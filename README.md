@@ -35,7 +35,7 @@
 **如果遇到问题，可以查阅 [F.A.Q.](https://oi-wiki.org/intro/faq/) 来了解更多信息。**
 
 ```bash
-git clone https://github.com/OI-wiki/OI-wiki.git --depth=1
+git clone https://github.com/cuom1999/OI-wiki.git --depth=1
 
 cd OI-wiki
 
