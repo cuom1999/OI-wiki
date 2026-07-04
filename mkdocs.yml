@@ -519,17 +519,17 @@ nav:
       - Thuật toán leo đồi: misc/hill-climbing.md
       - Mô phỏng luyện kim: misc/simulated-annealing.md
     - Phương pháp đường treo: misc/hoverline.md
-    - 有限状态自动机: misc/fsm.md
-    - 计算理论基础: misc/cc-basic.md
+    - Automaton trạng thái hữu hạn: misc/fsm.md
+    - Cơ sở lý thuyết tính toán: misc/cc-basic.md
     - Thứ tự byte: misc/endianness.md
     - Bài toán Josephus: misc/josephus.md
-    - 表达式求值: misc/expression.md
+    - Tính giá trị biểu thức: misc/expression.md
     - Lập lịch tác vụ trên một máy: misc/job-order.md
     - Bài toán phần tử chính: misc/main-element.md
     - Thuật toán Garsia-Wachs: misc/garsia-wachs.md
     - 15-puzzle: misc/15-puzzle.md
     - Phép cộng Kahan: misc/kahan-summation.md
-    - 珂朵莉树/颜色段均摊: misc/odt.md
+    - Chtholly Tree / chia đoạn màu khấu hao: misc/odt.md
     - Giới thiệu tối ưu bộ nhớ: misc/space-optimization.md
   - Chuyên Đề:
     - RMQ: topic/rmq.md

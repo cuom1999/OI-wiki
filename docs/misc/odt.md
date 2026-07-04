@@ -1,12 +1,12 @@
-## 简介
+## Giới thiệu
 
-珂朵莉树（Chtholly Tree），又名老司机树 ODT（Old Driver Tree）．起源自 [CF896C](https://codeforces.com/problemset/problem/896/C)．
+Cây Chtholly Tree, còn gọi là Old Driver Tree ODT (Old Driver Tree). Nó bắt nguồn từ [CF896C](https://codeforces.com/problemset/problem/896/C).
 
-这个名称指代的是一种「使用平衡树（`std::set`、`std::map` 等）或链表（`std::list`、手写链表等）维护颜色段均摊」的技巧，而不是一种特定的数据结构．其核心思想是将值相同的一段区间合并成一个结点处理．相较于传统的线段树等数据结构，对于含有区间覆盖的操作的问题，珂朵莉树可以更加方便地维护每个被覆盖区间的值．
+Tên gọi này chỉ một kĩ thuật "dùng cây cân bằng (`std::set`, `std::map`, v.v.) hoặc danh sách liên kết (`std::list`, danh sách liên kết tự cài đặt, v.v.) để duy trì các đoạn màu theo phân tích khấu hao", chứ không phải một cấu trúc dữ liệu cụ thể. Ý tưởng cốt lõi là gộp một đoạn liên tiếp có cùng giá trị thành một nút để xử lí. So với các cấu trúc dữ liệu truyền thống như cây phân đoạn, với những bài toán có thao tác phủ giá trị trên đoạn, Chtholly Tree có thể duy trì giá trị của từng đoạn bị phủ một cách thuận tiện hơn.
 
-## 实现（std::set）
+## Cài đặt (`std::set`)
 
-### 结点类型
+### Kiểu nút
 
 ```cpp
 struct Node_t {
@@ -19,24 +19,24 @@ struct Node_t {
 };
 ```
 
-其中，`int v` 是你自己指定的附加数据．
+Trong đó, `int v` là dữ liệu bổ sung do bạn tự quy định.
 
-???+ note "`mutable` 关键字的含义是什么？"
-    `mutable` 的意思是「可变的」，让我们可以在后面的操作中修改 `v` 的值．在 C++ 中，mutable 是为了突破 const 的限制而设置的．被 mutable 修饰的变量（mutable 只能用于修饰类中的非静态数据成员），将永远处于可变的状态，即使在一个 const 函数中．
-    
-    这意味着，我们可以直接修改已经插入 `set` 的元素的 `v` 值，而不用将该元素取出后重新加入 `set`．
+???+ note "Từ khóa `mutable` có ý nghĩa gì?"
+    `mutable` có nghĩa là "có thể thay đổi", cho phép ta sửa giá trị của `v` trong các thao tác về sau. Trong C++, mutable được thiết kế để vượt qua ràng buộc của const. Biến được đánh dấu mutable (mutable chỉ dùng để đánh dấu thành viên dữ liệu phi tĩnh trong lớp) sẽ luôn ở trạng thái có thể thay đổi, kể cả trong một hàm const.
 
-### 结点存储
+    Điều này có nghĩa là ta có thể sửa trực tiếp giá trị `v` của phần tử đã chèn vào `set`, mà không cần lấy phần tử đó ra rồi chèn lại vào `set`.
 
-我们希望维护所有结点，使得这些结点所代表的区间左端点单调增加且两两不交，最好可以保证所有区间的并是一个极大的连续范围．此处以 `std::set` 为例，用一个 `set<Node_t> odt;` 维护所有结点．
+### Lưu trữ nút
 
-初始化时，向珂朵莉树中插入一个极长区间（如题目要求维护位置 $1$ 到 $n$ 的信息，插入区间 $[1,n+1]$）．
+Ta muốn duy trì tất cả các nút sao cho đầu trái của các khoảng mà chúng đại diện tăng đơn điệu và đôi một không giao nhau. Tốt hơn nữa là đảm bảo hợp của tất cả các khoảng là một miền liên tục cực đại. Ở đây lấy `std::set` làm ví dụ, dùng một `set<Node_t> odt;` để duy trì tất cả các nút.
 
-### split 操作
+Khi khởi tạo, chèn vào Chtholly Tree một khoảng rất dài (ví dụ nếu đề bài yêu cầu duy trì thông tin tại các vị trí từ $1$ đến $n$, hãy chèn khoảng $[1,n+1]$).
 
-`split` 操作是珂朵莉树的核心．它接受一个位置 $x$，将原本包含点 $x$ 的区间（设为 $[l, r]$）分裂为两个区间 $[l, x)$ 和 $[x, r]$，并返回指向后者的迭代器．
+### Thao tác split
 
-参考代码如下：
+Thao tác `split` là cốt lõi của Chtholly Tree. Nó nhận một vị trí $x$, tách khoảng ban đầu chứa điểm $x$ (giả sử là $[l, r]$) thành hai khoảng $[l, x)$ và $[x, r]$, đồng thời trả về iterator trỏ đến khoảng sau.
+
+Mã tham khảo như sau:
 
 ```cpp
 auto split(int x) {
@@ -50,19 +50,19 @@ auto split(int x) {
 }
 ```
 
-在不支持使用 `auto` 进行返回类型推导的编译器上，可以将函数的返回类型改为 `set<Node_t>::iterator`．
+Trên các trình biên dịch không hỗ trợ suy diễn kiểu trả về bằng `auto`, có thể đổi kiểu trả về của hàm thành `set<Node_t>::iterator`.
 
-### assign 操作
+### Thao tác assign
 
-另外一个重要的操作：`assign`．用于对一段区间进行赋值．设将要对区间 $[l,r]$ 赋值为 $v$．
+Một thao tác quan trọng khác là `assign`. Nó dùng để gán giá trị cho một đoạn. Giả sử cần gán khoảng $[l,r]$ thành $v$.
 
-首先，将区间 $[l, r]$ 截取出来．依次调用 `split(r + 1), split(l)`，将此两者返回的迭代器记作 $itr, itl$，那么 $[itl, itr)$ 这个迭代器范围就指向了珂朵莉树中 $[l,r]$ 包含的所有区间．
+Trước hết, cắt riêng khoảng $[l, r]$ ra. Gọi lần lượt `split(r + 1), split(l)`, và kí hiệu các iterator mà hai lời gọi này trả về là $itr, itl$. Khi đó phạm vi iterator $[itl, itr)$ sẽ trỏ đến tất cả các khoảng trong Chtholly Tree nằm trong $[l,r]$.
 
-然后，将原有的信息删除．`std::set` 有成员方法 `erase`，签名如同 `iterator erase( const_iterator first, const_iterator last );`，可以移除范围 `[first; last)` 中的元素．于是我们调用 `odt.erase(itl, itr);` 以删除原有的信息．
+Sau đó, xóa thông tin cũ. `std::set` có hàm thành viên `erase`, với chữ kí như `iterator erase( const_iterator first, const_iterator last );`, có thể loại bỏ các phần tử trong phạm vi `[first; last)`. Vì vậy ta gọi `odt.erase(itl, itr);` để xóa thông tin cũ.
 
-最后，插入区间 $[l,r]$ 的新值．调用 `odt.insert(Node_t(l, r, v))` 即可．
+Cuối cùng, chèn giá trị mới của khoảng $[l,r]$. Chỉ cần gọi `odt.insert(Node_t(l, r, v))`.
 
-参考代码如下：
+Mã tham khảo như sau:
 
 ```cpp
 void assign(int l, int r, int v) {
@@ -72,16 +72,16 @@ void assign(int l, int r, int v) {
 }
 ```
 
-???+ note "为什么需要先 `split(r + 1)` 再 `split(l)`？"
-    1.  `std::set::erase` 方法将使指向被擦除元素的引用和迭代器失效．而其他引用和迭代器不受影响．
-    2.  `std::set::insert` 方法不会使任何迭代器或引用失效．
-    3.  `split` 操作会将区间拆开．调用 `split(r + 1)` 之后 $r + 1$ 会成为两个新区间中右边区间的左端点，此时 `split` 左区间，必然不会访问到 $r + 1$ 为左端点的那个区间，也就不会将其拆开，删去 $r + 1$ 为左端点的区间，使迭代器失效．反之，先 `split(l)`，再 `split(r + 1)`，可能会把 $l$ 为左端点的区间删去，使迭代器失效．
+???+ note "Vì sao cần gọi `split(r + 1)` trước rồi mới gọi `split(l)`?"
+    1.  Phương thức `std::set::erase` sẽ làm mất hiệu lực các tham chiếu và iterator trỏ đến phần tử bị xóa. Các tham chiếu và iterator khác không bị ảnh hưởng.
+    2.  Phương thức `std::set::insert` không làm mất hiệu lực bất kì iterator hay tham chiếu nào.
+    3.  Thao tác `split` sẽ tách khoảng. Sau khi gọi `split(r + 1)`, $r + 1$ sẽ trở thành đầu trái của khoảng bên phải trong hai khoảng mới. Lúc này khi `split` khoảng bên trái, chắc chắn ta không truy cập đến khoảng có đầu trái là $r + 1$, nên cũng không tách và xóa khoảng có đầu trái là $r + 1$ khiến iterator mất hiệu lực. Ngược lại, nếu gọi `split(l)` trước rồi mới gọi `split(r + 1)`, có thể xóa khoảng có đầu trái là $l$, làm iterator mất hiệu lực.
 
-### perform 操作
+### Thao tác perform
 
-将珂朵莉树上的一段区间提取出来并进行操作．与 `assign` 操作类似，只不过是将删除区间改为遍历区间．
+Trích một đoạn trên Chtholly Tree ra rồi thực hiện thao tác. Nó tương tự thao tác `assign`, chỉ khác là thay việc xóa khoảng bằng việc duyệt khoảng.
 
-参考代码如下：
+Mã tham khảo như sau:
 
 ```cpp
 void perform(int l, int r) {
@@ -92,47 +92,47 @@ void perform(int l, int r) {
 }
 ```
 
-注意不应该滥用这样的提取操作，可能使得时间复杂度错误．见下文「复杂度分析」一栏．
+Chú ý không nên lạm dụng cách trích khoảng như vậy, vì có thể làm sai độ phức tạp thời gian. Xem mục "Phân tích độ phức tạp" bên dưới.
 
-## 实现（std::map）
+## Cài đặt (`std::map`)
 
-相较于 `std::set` 的实现，`std::map` 的实现的 `split` 操作写法更简单．除此之外，其余操作与 `std::set` 并无二异．
+So với cách cài đặt bằng `std::set`, thao tác `split` trong cách cài đặt bằng `std::map` viết đơn giản hơn. Ngoài điểm đó, các thao tác còn lại không khác gì nhiều so với `std::set`.
 
-### 结点存储
+### Lưu trữ nút
 
-由于珂朵莉树存储的区间是连续的，我们不一定要记下右端点是什么．不妨使用一个 `map<int, int> mp;` 存储所有区间，其键维护左端点，其值维护其对应的左端点到下一个左端点之前的值．
+Vì các khoảng được Chtholly Tree lưu trữ là liên tục, ta không nhất thiết phải ghi lại đầu phải. Có thể dùng một `map<int, int> mp;` để lưu tất cả các khoảng: key duy trì đầu trái, value duy trì giá trị từ đầu trái tương ứng đến trước đầu trái kế tiếp.
 
-初始化时，如题目要求维护位置 $1$ 到 $n$ 的信息，则调用 `mp[1] = -1, mp[n + 1] = -1` 表示将 $[1,n+1)$ 即 $[1, n]$ 都设为特殊值 $-1$，$[n+1, +\infty)$ 这个区间当作哨兵使用，也可以对它进行初始化．
+Khi khởi tạo, nếu đề bài yêu cầu duy trì thông tin tại các vị trí từ $1$ đến $n$, gọi `mp[1] = -1, mp[n + 1] = -1` để biểu thị rằng $[1,n+1)$, tức $[1, n]$, đều được gán thành giá trị đặc biệt $-1$. Khoảng $[n+1, +\infty)$ được dùng làm lính canh, và cũng có thể khởi tạo nó.
 
-### split 操作
+### Thao tác split
 
-参考代码：（第一份）
+Mã tham khảo (bản thứ nhất):
 
 ```cpp
 void split(int x) {
-  auto it = prev(mp.upper_bound(x));  // 找到左端点小于等于 x 的区间．
-  mp[x] = it->second;  // 设立新的区间，并将上一个区间储存的值复制给本区间．
+  auto it = prev(mp.upper_bound(x));  // Tìm khoảng có đầu trái nhỏ hơn hoặc bằng x.
+  mp[x] = it->second;  // Tạo khoảng mới và sao chép giá trị lưu trong khoảng trước cho khoảng này.
 }
 ```
 
-参考代码：（第二份）
+Mã tham khảo (bản thứ hai):
 
 ```cpp
 auto split(int pos) {
-  auto it = prev(mp.upper_bound(pos));  // 找到左端点小于等于 x 的区间．
+  auto it = prev(mp.upper_bound(pos));  // Tìm khoảng có đầu trái nhỏ hơn hoặc bằng x.
   return mp.insert(it, make_pair(pos, it->second));
-  // 设立新的区间，并将上一个区间储存的值复制给本区间．
+  // Tạo khoảng mới và sao chép giá trị lưu trong khoảng trước cho khoảng này.
 }
 ```
 
-这里使用了 `std::map::insert` 的重载 `iterator insert( const_iterator pos, const value_type& value );`，其插入 `value` 到尽可能接近正好在 `pos` 之前的位置．如果插入恰好发生在正好在 `pos` 之前的位置，那么复杂度是均摊常数，否则复杂度与容器大小成对数．
+Ở đây dùng overload `iterator insert( const_iterator pos, const value_type& value );` của `std::map::insert`. Nó chèn `value` vào vị trí gần nhất có thể ngay trước `pos`. Nếu việc chèn thực sự xảy ra ngay trước `pos`, độ phức tạp là hằng số theo phân tích khấu hao; nếu không, độ phức tạp là logarit theo kích thước container.
 
-### assign 操作
+### Thao tác assign
 
-对于 assign 操作，我们需要把 $[l,r−1]$ 内所有区间左端点删除，再建立新的区间．
+Với thao tác assign, ta cần xóa tất cả đầu trái của các khoảng nằm trong $[l,r-1]$, rồi tạo khoảng mới.
 
 ```cpp
-void assign(int l, int r, int v) {  // 注意，这里的r是区间右端点+1
+void assign(int l, int r, int v) {  // Chú ý: ở đây r là đầu phải của khoảng + 1
   split(l);
   split(r);
   auto it = mp.find(l);
@@ -143,10 +143,10 @@ void assign(int l, int r, int v) {  // 注意，这里的r是区间右端点+1
 }
 ```
 
-### perform 操作
+### Thao tác perform
 
 ```cpp
-void perform(int l, int r) {  // 注意，这里的r是区间右端点+1
+void perform(int l, int r) {  // Chú ý: ở đây r là đầu phải của khoảng + 1
   split(l);
   split(r);
   auto it = mp.find(l);
@@ -157,19 +157,19 @@ void perform(int l, int r) {  // 注意，这里的r是区间右端点+1
 }
 ```
 
-## 实现（链表）
+## Cài đặt (danh sách liên kết)
 
-目前主流的实现是基于 `set` 来维护节点，但由于平均维护的区间个数很小，`set` 的优势并不明显．相比之下，链表（或数组）能更简洁地维护分裂与合并操作．
+Hiện nay cách cài đặt chủ lưu dựa trên `set` để duy trì các nút, nhưng vì số khoảng trung bình cần duy trì rất nhỏ, ưu thế của `set` không rõ rệt. So với nó, danh sách liên kết (hoặc mảng) có thể duy trì các thao tác tách và gộp một cách gọn hơn.
 
-### 结点存储
+### Lưu trữ nút
 
 ```cpp
 using i64 = int64_t;
 
 struct Block {
-  Block *next;  // 链表下一节点
-  int l, r;     // 区间范围
-  i64 val;      // 区间上的值
+  Block *next;  // Nút tiếp theo trong danh sách liên kết
+  int l, r;     // Phạm vi khoảng
+  i64 val;      // Giá trị trên khoảng
 
   Block(Block *next, int l, int r, i64 val)
       : next(next), l(l), r(r), val(val) {}
@@ -178,53 +178,53 @@ struct Block {
 } *root;
 ```
 
-### split 操作
+### Thao tác split
 
 ```cpp
-// 返回左端点为 mid+1 的区间
+// Trả về khoảng có đầu trái là mid+1
 Block *split(int mid) {
-  for (Block *b = root; b; b = b->next) {  // 遍历链表
-    if (b->l == mid + 1) {                 // 左端点为 mid+1
+  for (Block *b = root; b; b = b->next) {  // Duyệt danh sách liên kết
+    if (b->l == mid + 1) {                 // Đầu trái là mid+1
       return b;
     }
-    // 寻找能包含 mid 和 mid+1 的区间 [l, r]，将其被拆分成 [l, mid] 和 [mid+1,
-    // r]
+    // Tìm khoảng [l, r] có thể chứa cả mid và mid+1, rồi tách nó thành
+    // [l, mid] và [mid+1, r]
     if (b->l <= mid && mid + 1 <= b->r) {
       b->next = new Block(b->next, mid + 1, b->r, b->val);
       b->r = mid;
       return b->next;
     }
   }
-  return nullptr;  // 未找到，返回空
+  return nullptr;  // Không tìm thấy thì trả về rỗng
 }
 ```
 
-在操作区间时，由于不能只维护区间的一部分，所以下面的操作进行之前都需要预先分裂区间，再完成相应操作．
+Khi thao tác trên một khoảng, vì không thể chỉ duy trì một phần của khoảng, nên trước khi thực hiện các thao tác bên dưới đều cần tách trước khoảng, rồi mới hoàn thành thao tác tương ứng.
 
 ```cpp
 Block *lb, *rb;
 
-// 预分裂，保证后续操作在 [l, r] 内部
+// Tách trước để đảm bảo các thao tác sau nằm bên trong [l, r]
 void prepare(int l, int r) {
   lb = split(l - 1);
   rb = split(r);
 }
 ```
 
-### assign 操作
+### Thao tác assign
 
 ```cpp
 void assign(int l, int r, i64 val) {
   prepare(l, r);
-  lb->r = r;  // 将区间 [lb.l, lb.r] 修改成 [lb.l, r]
+  lb->r = r;  // Sửa khoảng [lb.l, lb.r] thành [lb.l, r]
   lb->val = val;
-  lb->next = rb;  // 将 [lb.l, r] 链至其右侧相邻区间
+  lb->next = rb;  // Nối [lb.l, r] với khoảng kề bên phải của nó
 }
 
-// 注：这里没有释放被删除节点的内存，若有需要可自行添加
+// Ghi chú: ở đây không giải phóng bộ nhớ của các nút bị xóa; nếu cần, bạn có thể tự thêm
 ```
 
-### perform 操作
+### Thao tác perform
 
 ```cpp
 void perform(int l, int r) {
@@ -235,35 +235,35 @@ void perform(int l, int r) {
 }
 ```
 
-## 复杂度分析
+## Phân tích độ phức tạp
 
-### perform 以后立即对同一区间调用 assign
+### Gọi assign ngay sau khi perform trên cùng một khoảng
 
-此时观察发现，两次 `split` 操作至多增加两个区间；一次 `assign` 将删除范围内的所有区间并增加一个区间，同时遍历所删除的区间．所以，我们所遍历的区间与所删除的区间数量成线性，而每次操作都只会增加 $O(1)$ 个区间，所以我们操作的区间数量关于操作次数（包括初始化）成线性，时间复杂度为均摊 $O(m\log n)$，其中 $m$ 为操作次数，$n$ 为珂朵莉树中最大区间个数（可以认为 $n\leq m$）．
+Quan sát trong trường hợp này, hai thao tác `split` tăng nhiều nhất hai khoảng; một thao tác `assign` sẽ xóa tất cả các khoảng trong phạm vi và thêm một khoảng, đồng thời duyệt qua các khoảng bị xóa. Vì vậy số khoảng ta duyệt tỉ lệ tuyến tính với số khoảng bị xóa, còn mỗi thao tác chỉ tăng thêm $O(1)$ khoảng. Do đó số khoảng mà ta thao tác là tuyến tính theo số thao tác (kể cả khởi tạo), và độ phức tạp thời gian là $O(m\log n)$ theo phân tích khấu hao, trong đó $m$ là số thao tác, $n$ là số khoảng lớn nhất trong Chtholly Tree (có thể xem $n\leq m$).
 
-### perform 以后不进行 assign
+### Không gọi assign sau perform
 
-如果允许特殊构造数据，这样一定是能被卡掉的，只需要使珂朵莉树中有足够多的不同区间并反复遍历，就能使珂朵莉树的复杂度达到甚至高于平方级别．
+Nếu cho phép tạo dữ liệu đặc biệt, cách này chắc chắn có thể bị hack: chỉ cần làm cho Chtholly Tree có đủ nhiều khoảng khác nhau và lặp lại việc duyệt, độ phức tạp của Chtholly Tree có thể đạt tới, thậm chí vượt qua, bậc hai.
 
-如果要保证复杂度正确，必须保证数据随机．详见 [Codeforces 上关于珂朵莉树的复杂度的证明](http://codeforces.com/blog/entry/56135?#comment-398940)．更详细的严格证明见 [珂朵莉树的复杂度分析](https://zhuanlan.zhihu.com/p/102786071)．证明的结论是：用 `std::set` 实现的珂朵莉树的复杂度为 $O(n \log \log n)$，而用链表实现的复杂度为 $O(n \log n)$．
+Nếu muốn đảm bảo độ phức tạp đúng, dữ liệu phải ngẫu nhiên. Xem thêm [chứng minh về độ phức tạp của Chtholly Tree trên Codeforces](http://codeforces.com/blog/entry/56135?#comment-398940). Chứng minh nghiêm ngặt hơn có trong [phân tích độ phức tạp của Chtholly Tree](https://zhuanlan.zhihu.com/p/102786071). Kết luận của chứng minh là: độ phức tạp của Chtholly Tree cài đặt bằng `std::set` là $O(n \log \log n)$, còn cài đặt bằng danh sách liên kết là $O(n \log n)$.
 
-## 习题
+## Bài tập
 
--   [「Luogu 1840」Color the Axis](https://www.luogu.com.cn/problem/P1840)
--   ~~[「SCOI2010」序列操作](https://www.luogu.com.cn/problem/P2572)~~（该题目来源已添加 Hack 数据）
--   [「SHOI2015」脑洞治疗仪](https://loj.ac/problem/2037)
--   [「Luogu 4979」矿洞：坍塌](https://www.luogu.com.cn/problem/P4979)
--   [「Luogu 8146」risrqnis](https://www.luogu.com.cn/problem/P8146)
+-   ["Luogu 1840" Color the Axis](https://www.luogu.com.cn/problem/P1840)
+-   ~~["SCOI2010" Thao tác dãy](https://www.luogu.com.cn/problem/P2572)~~ (nguồn của bài này đã được thêm dữ liệu Hack)
+-   ["SHOI2015" Máy trị liệu não động](https://loj.ac/problem/2037)
+-   ["Luogu 4979" Mỏ: sập đổ](https://www.luogu.com.cn/problem/P4979)
+-   ["Luogu 8146" risrqnis](https://www.luogu.com.cn/problem/P8146)
 
-## 扩展阅读
+## Đọc thêm
 
-[ODT 的映射思想的推广 - 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/0mys9qkh)
+[Mở rộng tư tưởng ánh xạ của ODT - chuyên mục Luogu (luogu.com.cn)](https://www.luogu.com.cn/article/0mys9qkh)
 
-## 参考资料和注释
+## Tài liệu tham khảo và chú thích
 
--   [Problem - 896C - Codeforces](https://codeforces.com/problemset/problem/896/C)（珂朵莉树的起源）
--   [CF896C Willem, Chtholly and Seniorious 题解 - 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/gyxbe23s)（`std::set` 实现参考）
--   [珂朵莉树的 map 实现 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/469794466)（`std::map` 实现参考）
--   [题解 CF896C【Willem, Chtholly and Seniorious】- 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/umiw1fwp)（链表实现参考）
--   [Codeforces Round #449 Editorial - Codeforces](https://codeforces.com/blog/entry/56135?#comment-398940)（关于珂朵莉树的复杂度的证明）
--   [珂朵莉树的复杂度分析 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/102786071)（珂朵莉树的复杂度分析）
+-   [Problem - 896C - Codeforces](https://codeforces.com/problemset/problem/896/C) (nguồn gốc của Chtholly Tree)
+-   [Lời giải CF896C Willem, Chtholly and Seniorious - chuyên mục Luogu (luogu.com.cn)](https://www.luogu.com.cn/article/gyxbe23s) (tham khảo cách cài đặt bằng `std::set`)
+-   [Cài đặt Chtholly Tree bằng map - Zhihu (zhihu.com)](https://zhuanlan.zhihu.com/p/469794466) (tham khảo cách cài đặt bằng `std::map`)
+-   [Lời giải CF896C Willem, Chtholly and Seniorious - chuyên mục Luogu (luogu.com.cn)](https://www.luogu.com.cn/article/umiw1fwp) (tham khảo cách cài đặt bằng danh sách liên kết)
+-   [Codeforces Round #449 Editorial - Codeforces](https://codeforces.com/blog/entry/56135?#comment-398940) (chứng minh về độ phức tạp của Chtholly Tree)
+-   [Phân tích độ phức tạp của Chtholly Tree - Zhihu (zhihu.com)](https://zhuanlan.zhihu.com/p/102786071) (phân tích độ phức tạp của Chtholly Tree)

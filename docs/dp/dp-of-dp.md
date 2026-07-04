@@ -16,7 +16,7 @@ Kỹ thuật này chủ yếu được dùng cho một lớp bài toán **đếm
 -   Với mỗi dãy cụ thể $s\in\Sigma^n$, có thể dùng quy hoạch động để phán đoán nó có hợp lệ hay không (tức $s\in A$), tính trọng số của nó hoặc tính một giá trị liên quan.
 -   Cuối cùng, ta muốn thống kê số lượng, tổng trọng số, giá trị kỳ vọng, v.v. của tất cả các dãy trong tập $A$.
 
-Lúc này, liệt kê mọi dãy là không khả thi. Vì vậy, ta xét việc trừu tượng hóa quá trình "phán đoán một dãy có hợp lệ hay không" (tức DP bên trong) thành một [automaton hữu hạn xác định](../misc/fsm.md#%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA) (DFA). Nói chung, với một dãy cố định $s\in\Sigma^n$, hàm trạng thái của DP bên trong có thể được biểu diễn là $g(i,x;s)$, tức là giá trị của một đại lượng nào đó sau khi đã xử lý xong tiền tố độ dài $i$ của dãy $s$, đồng thời thành phần trạng thái khác là $x$. Tương ứng, phương trình chuyển trạng thái của DP bên trong là
+Lúc này, liệt kê mọi dãy là không khả thi. Vì vậy, ta xét việc trừu tượng hóa quá trình "phán đoán một dãy có hợp lệ hay không" (tức DP bên trong) thành một [automaton hữu hạn xác định](../misc/fsm.md#automaton-trạng-thái-hữu-hạn-xác-định) (DFA). Nói chung, với một dãy cố định $s\in\Sigma^n$, hàm trạng thái của DP bên trong có thể được biểu diễn là $g(i,x;s)$, tức là giá trị của một đại lượng nào đó sau khi đã xử lý xong tiền tố độ dài $i$ của dãy $s$, đồng thời thành phần trạng thái khác là $x$. Tương ứng, phương trình chuyển trạng thái của DP bên trong là
 
 $$
 g(i,\cdot;s) = G(g(i-1,\cdot;s),s_i).

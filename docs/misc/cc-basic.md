@@ -1,223 +1,223 @@
-本部分将介绍基础的计算理论的知识．这部分内容在 OI 中作用不大（但还是略有作用：如果你遇到了一个 NP-hard 问题，你可以认为它是不存在多项式复杂度的解法的），可以作为兴趣了解，或者为以后的学习做准备．
+Phần này giới thiệu các kiến thức cơ bản của lý thuyết tính toán. Nội dung này không có vai trò lớn trong OI (nhưng vẫn có một chút tác dụng: nếu gặp một bài toán NP-hard, bạn có thể xem như nó không có lời giải với độ phức tạp đa thức), có thể đọc để mở rộng hiểu biết hoặc chuẩn bị cho việc học sau này.
 
-本文中许多结论都是不加证明的，如果有兴趣的话可以自行查阅相关证明．
+Nhiều kết luận trong bài này được nêu mà không chứng minh. Nếu quan tâm, bạn có thể tự tra cứu các chứng minh liên quan.
 
-前置知识：[时间复杂度](../basic/complexity.md)．
+Kiến thức cần có: [Độ phức tạp thời gian](../basic/complexity.md).
 
-## 问题
+## Bài toán
 
-### 语言
+### Ngôn ngữ
 
-一个 **字母表（alphabet）** 是一个非空有限集合，该集合中的元素称为 **符号/字符（symbol）**．
+Một **bảng chữ cái (alphabet)** là một tập hữu hạn không rỗng. Các phần tử trong tập này được gọi là **ký hiệu/ký tự (symbol)**.
 
-令 $\Sigma^\ast$ 表示非负整数个 $\Sigma$ 中的字符连接而成的串，字母表 $\Sigma$ 上的一个 **语言（language）** 是 $\Sigma^\ast$ 的一个子集．
+Ký hiệu $\Sigma^\ast$ là tập các xâu tạo thành bằng cách nối một số không âm ký tự trong $\Sigma$. Một **ngôn ngữ (language)** trên bảng chữ cái $\Sigma$ là một tập con của $\Sigma^\ast$.
 
-需要注意的是，这里的「语言」是一个抽象的概念，通常意义上的字符串是语言，所有的有向无环图也可以是一个语言（01 串与有向图之间可以建立双射，具体方式无需了解）．
+Cần chú ý rằng "ngôn ngữ" ở đây là một khái niệm trừu tượng. Xâu theo nghĩa thông thường là ngôn ngữ, và toàn bộ các đồ thị có hướng không chu trình cũng có thể là một ngôn ngữ (có thể thiết lập song ánh giữa xâu 01 và đồ thị có hướng; không cần biết cách làm cụ thể).
 
-由于任何语言都可以转化成 01 串的形式，所以在下文中不加说明时 $\Sigma=\{0, 1\}$．
+Vì mọi ngôn ngữ đều có thể được chuyển thành dạng xâu 01, nên trong phần dưới, nếu không nói thêm thì $\Sigma=\{0, 1\}$.
 
-### 判定问题
+### Bài toán quyết định
 
-判定问题就是只能用 YES/NO 回答的问题，本质上是判定一个串是否属于一个语言，即：$f:\Sigma^\ast\rightarrow\{0, 1\}, f(x)=1\iff x\in L$ 是一个关于字母表 $\Sigma$ 和语言 $L$ 的判定问题．如，「判定一张图是不是一个有向无环图」就是一个判定问题．
+Bài toán quyết định là bài toán chỉ có thể trả lời bằng YES/NO. Về bản chất, đó là việc quyết định một xâu có thuộc một ngôn ngữ hay không, tức là: $f:\Sigma^\ast\rightarrow\{0, 1\}, f(x)=1\iff x\in L$ là một bài toán quyết định liên quan đến bảng chữ cái $\Sigma$ và ngôn ngữ $L$. Chẳng hạn, "quyết định một đồ thị có phải là đồ thị có hướng không chu trình hay không" là một bài toán quyết định.
 
-判定问题由于其简洁性而常常被作为计算理论研究的对象．本文中不加说明时，「问题」都指「判定问题」，当然，有时一些命题也能简单地推广到其它问题上．
+Do tính đơn giản, bài toán quyết định thường được dùng làm đối tượng nghiên cứu trong lý thuyết tính toán. Trong bài này, nếu không nói thêm, "bài toán" đều chỉ "bài toán quyết định". Dĩ nhiên, đôi khi một số mệnh đề cũng có thể được mở rộng đơn giản sang các loại bài toán khác.
 
-一个语言也可以代指「判定一个串是否属于这个语言」这个判定问题，因此，「语言」和「问题」可以视作同义词．
+Một ngôn ngữ cũng có thể được dùng để chỉ bài toán quyết định "một xâu có thuộc ngôn ngữ này hay không", vì vậy "ngôn ngữ" và "bài toán" có thể được xem là đồng nghĩa.
 
-### 功能性问题
+### Bài toán hàm
 
-功能性问题的回答不止 YES/NO，可以是一个数或是其它．如，「求两个数的和」就是一个功能性问题．
+Câu trả lời của bài toán hàm không chỉ là YES/NO, mà có thể là một số hoặc dạng khác. Chẳng hạn, "tính tổng của hai số" là một bài toán hàm.
 
-任何功能性问题都可以转化为一个判定问题，如，「求两个数的和」可以转化为「判定两个数的和是否等于第三个数」．
+Mọi bài toán hàm đều có thể chuyển thành một bài toán quyết định. Chẳng hạn, "tính tổng của hai số" có thể chuyển thành "quyết định tổng của hai số có bằng số thứ ba hay không".
 
-判定问题也可以转化为一个功能性问题：求这个判定问题的指示函数，即上文中判定问题定义里的 $f$．
+Bài toán quyết định cũng có thể chuyển thành một bài toán hàm: tính hàm chỉ thị của bài toán quyết định đó, tức là $f$ trong định nghĩa bài toán quyết định ở trên.
 
-## 图灵机
+## Máy Turing
 
-### 确定性图灵机
+### Máy Turing tất định
 
-不加说明时，「图灵机」往往指「确定性图灵机」，本文中也是如此．
+Nếu không nói thêm, "máy Turing" thường chỉ "máy Turing tất định"; trong bài này cũng vậy.
 
-图灵机有很多不同的定义，这里选取其中一种，其它定义下的图灵机往往与下面这种定义的图灵机计算能力等价．
+Máy Turing có nhiều định nghĩa khác nhau. Ở đây chọn một trong số đó; máy Turing theo các định nghĩa khác thường có năng lực tính toán tương đương với máy Turing theo định nghĩa dưới đây.
 
-图灵机是一个在一条可双向无限延伸且被划分为若干格子的纸带上进行操作的机器，其有内部状态，还有一个可以在纸带上进行修改与移动的磁针．
+Máy Turing là một máy thao tác trên một băng giấy có thể kéo dài vô hạn theo hai chiều và được chia thành các ô. Máy có trạng thái bên trong, cùng một đầu đọc/ghi có thể sửa nội dung và di chuyển trên băng.
 
-正式地说，图灵机是一个七元组 $M=\langle Q,\Gamma,b,\Sigma,\delta,q_0,F\rangle$，其中：
+Nói chính thức, máy Turing là một bộ bảy $M=\langle Q,\Gamma,b,\Sigma,\delta,q_0,F\rangle$, trong đó:
 
--   $Q$ 是一个有限非空的 **状态集合**；
--   $\Gamma$ 是一个有限非空的 **磁带字母表**；
--   $b\in\Gamma$ 是 **空字符**，它是唯一一个在计算过程中可以在磁带上无限频繁地出现的字符；
--   $\Sigma\subseteq(\Gamma\setminus\{b\})$ 是 **输入符号集**，是可以出现在初始磁带（即输入）上的字符；
--   $q_0\in Q$ 是 **初始状态**；
--   $F\subseteq Q$ 是 **接受状态**，如果一个图灵机在某个接受状态停机，则称初始磁带上的内容被这个图灵机 **接受**．
--   $\delta :(Q\setminus F)\times \Gamma \not \to Q\times \Gamma \times \{L,R\}$ 是一个被称作 **转移函数** 的 partial function（即只对定义域的一个子集有定义的函数）．如果 $\delta$ 在当前状态下没有定义，则图灵机停机．
+-   $Q$ là một **tập trạng thái** hữu hạn không rỗng;
+-   $\Gamma$ là một **bảng chữ cái băng** hữu hạn không rỗng;
+-   $b\in\Gamma$ là **ký tự trắng**, là ký tự duy nhất có thể xuất hiện vô hạn lần trên băng trong quá trình tính toán;
+-   $\Sigma\subseteq(\Gamma\setminus\{b\})$ là **tập ký hiệu đầu vào**, gồm các ký tự có thể xuất hiện trên băng ban đầu (tức đầu vào);
+-   $q_0\in Q$ là **trạng thái ban đầu**;
+-   $F\subseteq Q$ là **tập trạng thái chấp nhận**. Nếu một máy Turing dừng tại một trạng thái chấp nhận, ta nói nội dung trên băng ban đầu được máy Turing này **chấp nhận**.
+-   $\delta :(Q\setminus F)\times \Gamma \not \to Q\times \Gamma \times \{L,R\}$ là một hàm riêng phần (partial function) được gọi là **hàm chuyển** (tức là hàm chỉ được định nghĩa trên một tập con của miền xác định). Nếu $\delta$ không được định nghĩa trong trạng thái hiện tại, máy Turing sẽ dừng.
 
-图灵机从初始状态与纸带起点起，每次根据当前的内部状态 $x$ 和当前磁针指向的纸带上的单元格中的字符 $y$ 进行操作：若 $\delta(x, y)$ 没有定义则停机，否则若 $\delta(x, y)=(a, b, c)$，则将内部状态修改为 $a$，将磁针指向的格子中的字符修改为 $b$，若 $c$ 为 $L$ 则向左移动一格，为 $R$ 则向右移动一格．
+Máy Turing bắt đầu từ trạng thái ban đầu và vị trí đầu băng. Ở mỗi bước, nó thao tác dựa trên trạng thái bên trong hiện tại $x$ và ký tự $y$ trong ô băng mà đầu đọc/ghi đang trỏ tới: nếu $\delta(x, y)$ không được định nghĩa thì dừng; ngược lại, nếu $\delta(x, y)=(a, b, c)$, nó đổi trạng thái bên trong thành $a$, đổi ký tự trong ô đang trỏ tới thành $b$, rồi nếu $c$ là $L$ thì di chuyển sang trái một ô, nếu là $R$ thì di chuyển sang phải một ô.
 
-其实，知道图灵机的工作细节是不必要的，只需建立直观理解即可．
+Thực ra, không cần nắm mọi chi tiết hoạt động của máy Turing; chỉ cần xây dựng trực giác là đủ.
 
-图灵机 $M$ 在输入 $x$ 下的输出记作 $M(x)$（$M(x)=1$ 当且仅当 $M$ 接受 $x$，$M(x)=0$ 当且仅当 $M$ 在输入 $x$ 下在有限步骤内停机且 $M$ 不接受 $x$），也可以在括号内包含多个参数，用逗号隔开，具体实现时可以向字母表中添加一个元素表示逗号来隔开各个参数．
+Đầu ra của máy Turing $M$ trên đầu vào $x$ được ký hiệu là $M(x)$ ($M(x)=1$ khi và chỉ khi $M$ chấp nhận $x$; $M(x)=0$ khi và chỉ khi $M$ dừng trong hữu hạn bước trên đầu vào $x$ và $M$ không chấp nhận $x$). Trong ngoặc cũng có thể chứa nhiều tham số, phân tách bằng dấu phẩy; khi hiện thực cụ thể, có thể thêm một phần tử vào bảng chữ cái để biểu diễn dấu phẩy và phân tách các tham số.
 
-图灵机与冯·诺依曼计算机解决问题的时间复杂度差别在多项式级别内，所以研究复杂度类时可以使用图灵机作为计算模型．
+Độ phức tạp thời gian khi máy Turing giải bài toán chỉ khác máy tính von Neumann trong phạm vi đa thức, nên khi nghiên cứu lớp độ phức tạp, ta có thể dùng máy Turing làm mô hình tính toán.
 
-### 非确定性图灵机
+### Máy Turing không tất định
 
-非确定型图灵机是图灵机的一种，它与确定型图灵机的不同在于：确定型图灵机的每一步只能转移到一个状态，而非确定型图灵机可以「同时」转移到多个状态，从而在多个「分支」并行计算，一旦这些「分支」中有一个在接受状态停机，则此非确定性图灵机接受这个输入．
+Máy Turing không tất định là một loại máy Turing. Điểm khác với máy Turing tất định là: ở mỗi bước, máy Turing tất định chỉ có thể chuyển sang một trạng thái, còn máy Turing không tất định có thể "đồng thời" chuyển sang nhiều trạng thái, từ đó tính toán song song trên nhiều "nhánh"; chỉ cần một trong các "nhánh" này dừng tại trạng thái chấp nhận thì máy Turing không tất định đó chấp nhận đầu vào.
 
-事实上，任何确定型图灵机都可以用类似于迭代加深搜索的方式在指数级时间内模拟一台非确定型图灵机多项式时间内的行为．
+Trên thực tế, mọi máy Turing tất định đều có thể mô phỏng hành vi trong thời gian đa thức của một máy Turing không tất định bằng cách tương tự tìm kiếm sâu lặp, với thời gian cấp số mũ.
 
-在现实生活中，确定型图灵机相当于单核处理器，只支持串行处理；而非确定型图灵机相当于理想的多核处理器，支持无限大小的并行处理．
+Trong đời sống thực, máy Turing tất định tương ứng với bộ xử lý đơn nhân, chỉ hỗ trợ xử lý tuần tự; còn máy Turing không tất định tương ứng với bộ xử lý đa nhân lý tưởng, hỗ trợ xử lý song song với quy mô vô hạn.
 
-### 多带图灵机
+### Máy Turing nhiều băng
 
-标准的图灵机只能在一条纸带上进行操作，但为了方便，本文中研究多带图灵机．对于一个 $k$ 带图灵机，其中一条纸带是只读的输入带，而剩下的 $k-1$ 条纸带可以进行读写，并且这 $k-1$ 条纸带中还有一条纸带用作输出．
+Máy Turing chuẩn chỉ có thể thao tác trên một băng giấy, nhưng để tiện, trong bài này ta nghiên cứu máy Turing nhiều băng. Với một máy Turing $k$ băng, một băng là băng đầu vào chỉ đọc, còn $k-1$ băng còn lại có thể đọc ghi, và trong $k-1$ băng này còn có một băng dùng làm đầu ra.
 
-多带图灵机的纸带数必须是有限的．
+Số băng của máy Turing nhiều băng phải là hữu hạn.
 
-对于一个多带图灵机，它使用的空间是磁头在除输入带外的其它纸带上所访问过的单元格数目．
+Với một máy Turing nhiều băng, không gian mà nó sử dụng là số ô mà đầu đọc/ghi đã truy cập trên các băng khác ngoài băng đầu vào.
 
-### 图灵机的编码
+### Mã hóa máy Turing
 
-图灵机可以被自然数编码，即存在满射函数 $f:\mathbb{N}\to\mathbb{M}$，使得每个自然数都对应一个图灵机，而每个图灵机都有无数个编码．因此，由若干图灵机构成的集合可以是一个语言．
+Máy Turing có thể được mã hóa bằng số tự nhiên, tức là tồn tại một toàn ánh $f:\mathbb{N}\to\mathbb{M}$ sao cho mỗi số tự nhiên đều tương ứng với một máy Turing, và mỗi máy Turing có vô số mã hóa. Vì vậy, một tập gồm các máy Turing có thể là một ngôn ngữ.
 
-记由自然数 $\alpha$ 编码的图灵机为 $M_{\alpha}$．
+Ký hiệu máy Turing được mã hóa bởi số tự nhiên $\alpha$ là $M_{\alpha}$.
 
-### 通用图灵机
+### Máy Turing phổ dụng
 
-存在一台图灵机 $\mathcal U$ 满足：
+Tồn tại một máy Turing $\mathcal U$ thỏa mãn:
 
-1.  若 $M_{\alpha}$ 在输入 $x$ 下在有限时间内停机，则 $\mathcal{U}(x, \alpha)=M_{\alpha}(x)$，否则 $\mathcal{U}(x, \alpha)$ 不会在有限时间内停机；
-2.  如果对于任意 $x\in\{0, 1\}^\ast$，$M_\alpha$ 在输入 $x$ 下在 $T(|x|)$ 时间内停机，则对于任意 $x\in\{0, 1\}^\ast$，$\mathcal{U}(x, \alpha)$ 在 $O(T(|x|)\log T(|x|))$ 时间内停机．
+1.  Nếu $M_{\alpha}$ dừng trong thời gian hữu hạn trên đầu vào $x$, thì $\mathcal{U}(x, \alpha)=M_{\alpha}(x)$; nếu không, $\mathcal{U}(x, \alpha)$ sẽ không dừng trong thời gian hữu hạn;
+2.  Nếu với mọi $x\in\{0, 1\}^\ast$, $M_\alpha$ dừng trong thời gian $T(|x|)$ trên đầu vào $x$, thì với mọi $x\in\{0, 1\}^\ast$, $\mathcal{U}(x, \alpha)$ dừng trong thời gian $O(T(|x|)\log T(|x|))$.
 
-即：存在一台通用图灵机，它能模拟任何一台图灵机，且花费的时间只会比这台被模拟的图灵机慢其运行时间的对数．
+Tức là: tồn tại một máy Turing phổ dụng có thể mô phỏng bất kỳ máy Turing nào, và thời gian tiêu tốn chỉ chậm hơn máy được mô phỏng một thừa số logarit theo thời gian chạy của máy đó.
 
-## 可计算性
+## Tính khả tính
 
-### 不可计算问题
+### Bài toán không tính được
 
-对于一个判定问题，若存在一个总是在有限步内停机且能够正确进行判定的图灵机，则这个问题是一个 **图灵可计算** 的问题，否则这个问题是一个 **图灵不可计算** 的问题．
+Với một bài toán quyết định, nếu tồn tại một máy Turing luôn dừng trong hữu hạn bước và có thể quyết định đúng, thì bài toán đó là một bài toán **tính được theo Turing**; nếu không, bài toán đó là một bài toán **không tính được theo Turing**.
 
-由于图灵机可以被自然数编码，所以图灵机的个数是可数无穷，而语言（即二进制串的集合）的个数是不可数无穷，而每个图灵机最多判定一个语言，所以一定存在图灵不可计算的问题．
+Vì máy Turing có thể được mã hóa bằng số tự nhiên, nên số lượng máy Turing là vô hạn đếm được, còn số lượng ngôn ngữ (tức các tập xâu nhị phân) là vô hạn không đếm được. Mỗi máy Turing nhiều nhất quyết định một ngôn ngữ, vì vậy chắc chắn tồn tại bài toán không tính được theo Turing.
 
-### 停机问题
+### Bài toán dừng
 
-停机问题是一个经典的图灵不可计算问题：给定 $\alpha$ 和 $x$，判定 $M_{\alpha}$ 在输入为 $x$ 时是否会在有限步内停机．
+Bài toán dừng là một bài toán không tính được theo Turing kinh điển: cho $\alpha$ và $x$, quyết định $M_{\alpha}$ có dừng trong hữu hạn bước khi đầu vào là $x$ hay không.
 
-??? note "停机问题是图灵不可计算的证明"
-    定义函数 $\mathsf{UC}:\{0,1\}^\ast\to\{0,1\}$ 为：
+??? note "Chứng minh bài toán dừng là không tính được theo Turing"
+    Định nghĩa hàm $\mathsf{UC}:\{0,1\}^\ast\to\{0,1\}$ như sau:
     
     $$
     \mathsf{UC}(\alpha)=\begin{cases}0&M_\alpha(\alpha)=1\\1&\text{otherwise}\end{cases}
     $$
     
-    我们先证明 $\mathsf{UC}$ 函数是图灵不可计算的：
+    Trước hết, ta chứng minh hàm $\mathsf{UC}$ là không tính được theo Turing:
     
-    假设存在一台图灵机 $M_{\beta}$ 能够计算 $\mathsf{UC}$，那么根据 $\mathsf{UC}$ 的定义可以得到 $\mathsf{UC}(\beta)=1\iff M_\beta(\beta)\neq 1$，而根据 $M_{\beta}$ 能够计算 $\mathsf{UC}$ 可以得到 $M_{\beta}(\beta)=\mathsf{UC}(\beta)$，产生了矛盾，所以假设不成立，不存在可以计算 $\mathsf{UC}$ 的图灵机．
+    Giả sử tồn tại một máy Turing $M_{\beta}$ có thể tính $\mathsf{UC}$. Khi đó, theo định nghĩa của $\mathsf{UC}$, ta có $\mathsf{UC}(\beta)=1\iff M_\beta(\beta)\neq 1$, còn theo việc $M_{\beta}$ có thể tính $\mathsf{UC}$, ta có $M_{\beta}(\beta)=\mathsf{UC}(\beta)$. Điều này tạo ra mâu thuẫn, nên giả thiết không đúng, và không tồn tại máy Turing nào có thể tính $\mathsf{UC}$.
     
-    令 $M_{\mathsf{HALT}}$ 是一个可以解决停机问题的图灵机，$M_{\mathsf{HALT}}(x,\alpha)$ 的值是判定问题 $M_\alpha$ 在输入为 $x$ 时是否会在有限步内停机的解，那么我们可以构造出一台能够计算 $\mathsf{UC}$ 函数的图灵机 $M_{\mathsf{UC}}$：
+    Giả sử $M_{\mathsf{HALT}}$ là một máy Turing có thể giải bài toán dừng, và giá trị của $M_{\mathsf{HALT}}(x,\alpha)$ là đáp án của bài toán quyết định liệu $M_\alpha$ có dừng trong hữu hạn bước khi đầu vào là $x$ hay không. Khi đó ta có thể xây dựng một máy Turing $M_{\mathsf{UC}}$ có thể tính hàm $\mathsf{UC}$:
     
-    $M_\mathsf{UC}$ 首先调用 $M_\mathsf{HALT}(α,α)$, 如果它输出 $0$, 则 $M_\mathsf{UC}(α)=1$；否则，$M_\mathsf{UC}$ 使用通用图灵机模拟计算得到答案．
+    $M_\mathsf{UC}$ trước hết gọi $M_\mathsf{HALT}(\alpha,\alpha)$. Nếu nó xuất ra $0$, thì $M_\mathsf{UC}(\alpha)=1$; nếu không, $M_\mathsf{UC}$ dùng máy Turing phổ dụng để mô phỏng tính toán và thu được đáp án.
     
-    由于 $\mathsf{UC}$ 函数是图灵不可计算的，所以 $M_\mathsf{HALT}$ 不存在，也就是说停机问题是图灵不可计算的．
+    Vì hàm $\mathsf{UC}$ là không tính được theo Turing, nên $M_\mathsf{HALT}$ không tồn tại; nói cách khác, bài toán dừng là không tính được theo Turing.
 
-## 丘奇 - 图灵论题
+## Luận đề Church-Turing
 
-丘奇 - 图灵论题称，若一类问题有一个有效的方法解决，则这类问题可以被某个图灵机解决．
+Luận đề Church-Turing phát biểu rằng nếu một lớp bài toán có một phương pháp hữu hiệu để giải, thì lớp bài toán đó có thể được giải bởi một máy Turing nào đó.
 
-其中，「有效的方法」需要满足：
+Trong đó, "phương pháp hữu hiệu" cần thỏa mãn:
 
-1.  包含有限条清晰的指令；
-2.  当用其解决这类问题的其中一个时，这个方法需要在有限步骤内结束，且得到正确的答案．
+1.  Chứa hữu hạn chỉ thị rõ ràng;
+2.  Khi dùng phương pháp này để giải một bài toán thuộc lớp đó, phương pháp cần kết thúc trong hữu hạn bước và nhận được đáp án đúng.
 
-这个论题没有被证明，但其是计算理论的一条基本公理．
+Luận đề này chưa được chứng minh, nhưng nó là một tiên đề cơ bản của lý thuyết tính toán.
 
-## 复杂度类
+## Lớp độ phức tạp
 
-复杂度类有很多，本文只会介绍其中较为常见的一小部分．
+Có rất nhiều lớp độ phức tạp. Bài này chỉ giới thiệu một phần nhỏ tương đối thường gặp.
 
-### R 和 RE
+### R và RE
 
-对于语言 $L$ 和图灵机 $M$，若 $M$ 在任何输入下都能在有限步骤内停机，且 $M(x)=1\iff x\in L$，则称 $M$ 能够 **判定**  $L$．
+Với ngôn ngữ $L$ và máy Turing $M$, nếu $M$ dừng trong hữu hạn bước trên mọi đầu vào, và $M(x)=1\iff x\in L$, thì ta nói $M$ có thể **quyết định** $L$.
 
-对于语言 $L$ 和图灵机 $M$，若对于任何属于 $L$ 的输入，$M$ 都在有限步骤内停机，且 $M(x)=1\iff x\in L$，则称 $M$ 能够 **识别**  $L$．
+Với ngôn ngữ $L$ và máy Turing $M$, nếu với mọi đầu vào thuộc $L$, $M$ đều dừng trong hữu hạn bước, và $M(x)=1\iff x\in L$, thì ta nói $M$ có thể **nhận biết** $L$.
 
-复杂度类 $\mathsf R$ 表示那些可以被某台图灵机判定的语言的集合，即所有图灵可计算的语言．
+Lớp độ phức tạp $\mathsf R$ biểu diễn tập các ngôn ngữ có thể được một máy Turing nào đó quyết định, tức là tất cả các ngôn ngữ tính được theo Turing.
 
-复杂度类 $\mathsf{RE}$ 表示那些可以被某台图灵机识别的语言的集合．$\mathsf{RE}$ 也被称作递归可枚举语言．
+Lớp độ phức tạp $\mathsf{RE}$ biểu diễn tập các ngôn ngữ có thể được một máy Turing nào đó nhận biết. $\mathsf{RE}$ còn được gọi là các ngôn ngữ đệ quy liệt kê được.
 
-由定义可以得到 $\mathsf{R}\subseteq\mathsf{RE}$．
+Từ định nghĩa có thể suy ra $\mathsf{R}\subseteq\mathsf{RE}$.
 
 ### DTIME
 
-如果存在一台确定性图灵机能够判定一个语言，且对于任何输入 $x$，这台图灵机可以在 $O(f(|x|))$ 的时间内停机，那么这个语言属于 $\mathsf{DTIME}(f(n))$ 类．
+Nếu tồn tại một máy Turing tất định có thể quyết định một ngôn ngữ, và với mọi đầu vào $x$, máy Turing này có thể dừng trong thời gian $O(f(|x|))$, thì ngôn ngữ đó thuộc lớp $\mathsf{DTIME}(f(n))$.
 
 ### P
 
-复杂度类 $\mathsf P$ 表示可以由确定性图灵机在多项式时间内解决的判定问题，即：
+Lớp độ phức tạp $\mathsf P$ biểu diễn các bài toán quyết định có thể được giải bởi máy Turing tất định trong thời gian đa thức, tức là:
 
 $$
 \mathsf{P}=\bigcup\limits_{k\in\mathbb{N}}\mathsf{DTIME}(n^k)
 $$
 
-线性规划、计算最大公约数、求图的最大匹配的判定版本都是 $\mathsf P$ 类问题．
+Quy hoạch tuyến tính, tính ước chung lớn nhất, và phiên bản quyết định của bài toán tìm cặp ghép cực đại trong đồ thị đều là các bài toán thuộc lớp $\mathsf P$.
 
 ### EXPTIME
 
-复杂度类 $\mathsf{EXPTIME}$ 表示可以由确定性图灵机在指数级时间内解决的判定问题，即：
+Lớp độ phức tạp $\mathsf{EXPTIME}$ biểu diễn các bài toán quyết định có thể được giải bởi máy Turing tất định trong thời gian cấp số mũ, tức là:
 
 $$
 \mathsf{EXPTIME}=\bigcup\limits_{k\in\mathbb{N}}\mathsf{DTIME}(2^{n^k})
 $$
 
-停机问题的弱化版——给定一个图灵机的编码以及一个正整数 $k$，判定这个图灵机是否在 $k$ 步内停机，是一个 $\mathsf{EXPTIME}$ 类的问题．因为这个问题的解法需要 $O(k)$ 的时间，而数字 $k$ 可以被编码为长度为 $O(\log k)$ 的二进制串．
+Một phiên bản yếu hóa của bài toán dừng - cho mã hóa của một máy Turing và một số nguyên dương $k$, quyết định máy Turing đó có dừng trong $k$ bước hay không - là một bài toán thuộc lớp $\mathsf{EXPTIME}$. Lý do là lời giải của bài toán này cần thời gian $O(k)$, còn số $k$ có thể được mã hóa thành một xâu nhị phân có độ dài $O(\log k)$.
 
 ### NTIME
 
-如果存在一台非确定性图灵机能够判定一个语言，且对于任何输入 $x$，这台图灵机可以在 $O(f(|x|))$ 的时间内停机，那么这个语言属于 $\mathsf{NTIME}(f(n))$ 类．
+Nếu tồn tại một máy Turing không tất định có thể quyết định một ngôn ngữ, và với mọi đầu vào $x$, máy Turing này có thể dừng trong thời gian $O(f(|x|))$, thì ngôn ngữ đó thuộc lớp $\mathsf{NTIME}(f(n))$.
 
 ### NP
 
-复杂度类 $\mathsf{NP}$ 表示可以由非确定性图灵机在多项式时间内解决的判定问题，即：
+Lớp độ phức tạp $\mathsf{NP}$ biểu diễn các bài toán quyết định có thể được giải bởi máy Turing không tất định trong thời gian đa thức, tức là:
 
 $$
 \mathsf{NP}=\bigcup\limits_{k\in\mathbb{N}}\mathsf{NTIME}(n^k)
 $$
 
-所有 $\mathsf P$ 类问题都是 $\mathsf{NP}$ 类问题．更多 $\mathsf{NP}$ 类问题请参见下文中的 NPC 问题以及 NP-intermediate 问题．
+Mọi bài toán thuộc lớp $\mathsf P$ đều là bài toán thuộc lớp $\mathsf{NP}$. Để xem thêm các bài toán thuộc lớp $\mathsf{NP}$, hãy tham khảo các bài toán NPC và NP-intermediate ở phần dưới.
 
 #### NP-hard
 
-如果所有 $\mathsf{NP}$ 类问题都可以在多项式时间内规约到问题 $H$，那么问题 $H$ 是 NP-hard 的．
+Nếu mọi bài toán thuộc lớp $\mathsf{NP}$ đều có thể quy về bài toán $H$ trong thời gian đa thức, thì bài toán $H$ là NP-hard.
 
-换句话说，如果可以在一单位的时间内解决 NP-hard 的问题 $H$，那么所有 $\mathsf{NP}$ 类问题都可以在多项式单位的时间内解决．
+Nói cách khác, nếu có thể giải bài toán NP-hard $H$ trong một đơn vị thời gian, thì mọi bài toán thuộc lớp $\mathsf{NP}$ đều có thể được giải trong một số đơn vị thời gian đa thức.
 
 #### NP-complete
 
-如果一个问题既是 $\mathsf{NP}$ 类问题又是 NP-hard 的，那么这个问题是 NP 完全 (NP-complete) 的，或者说这是一个 NPC 问题．
+Nếu một bài toán vừa thuộc lớp $\mathsf{NP}$ vừa là NP-hard, thì bài toán đó là NP hoàn toàn (NP-complete), hoặc nói cách khác là một bài toán NPC.
 
-一些经典的 NPC 问题：旅行商问题的判定版本、最大独立集问题的判定版本、最小点覆盖问题的判定版本、最长路问题的判定版本、0-1 整数规划问题的判定版本、集合覆盖问题、图着色问题、背包问题、三维匹配问题、最大割问题的判定版本．
+Một số bài toán NPC kinh điển: phiên bản quyết định của bài toán người bán hàng du lịch, phiên bản quyết định của bài toán tập độc lập lớn nhất, phiên bản quyết định của bài toán phủ đỉnh nhỏ nhất, phiên bản quyết định của bài toán đường đi dài nhất, phiên bản quyết định của bài toán quy hoạch nguyên 0-1, bài toán phủ tập, bài toán tô màu đồ thị, bài toán ba lô, bài toán ghép cặp ba chiều, phiên bản quyết định của bài toán lát cắt lớn nhất.
 
-NPC 问题的功能性版本往往是 NP-hard 的，例如：「判定一张图中是否存在大小为 $k$ 的团」既是一个 $\mathsf{NP}$ 类问题又是 NP-hard 的，从而它是一个 NPC 问题，而它的功能性版本「求一张图的最大团」不是 NPC 问题，但这个功能性版本依然是 NP-hard 的．
+Phiên bản hàm của bài toán NPC thường là NP-hard. Ví dụ: "quyết định trong một đồ thị có tồn tại clique kích thước $k$ hay không" vừa là một bài toán thuộc lớp $\mathsf{NP}$ vừa là NP-hard, nên nó là một bài toán NPC; còn phiên bản hàm của nó, "tìm clique lớn nhất của một đồ thị", không phải là bài toán NPC, nhưng phiên bản hàm này vẫn là NP-hard.
 
-类似地，其它复杂度类也会有「XX-complete」，如所有 $\mathsf{EXPTIME}$ 类的问题都能在多项式时间内规约到 EXPTIME-complete 的问题．
+Tương tự, các lớp độ phức tạp khác cũng có khái niệm "XX-complete". Chẳng hạn, mọi bài toán thuộc lớp $\mathsf{EXPTIME}$ đều có thể quy về một bài toán EXPTIME-complete trong thời gian đa thức.
 
 #### co-NP
 
-一个问题是 $\mathsf{co-NP}$ 类问题，当且仅当它的补集是 $\mathsf{NP}$ 类问题．如果将「问题」理解为「语言」，而「语言」是 $\Sigma^\ast$ 的子集，就能理解「补集」了．
+Một bài toán thuộc lớp $\mathsf{co-NP}$ khi và chỉ khi phần bù của nó là một bài toán thuộc lớp $\mathsf{NP}$. Nếu hiểu "bài toán" là "ngôn ngữ", còn "ngôn ngữ" là tập con của $\Sigma^\ast$, ta sẽ hiểu được "phần bù".
 
-例如：「给定 $n$ 个子集，判断是否能够从中选取 $k$ 个，覆盖整个集合」是一个 NPC 问题，而其补集「给定 $n$ 个子集，判断是否从中任取 $k$ 个都不能覆盖整个集合」是一个 $\mathsf{co-NP}$ 类问题．如果第一个问题的答案是「是」，那么相当于找到了第二个问题的一组反例，从而第二个问题的答案是「否」．
+Ví dụ: "cho $n$ tập con, xác định có thể chọn $k$ tập trong số đó để phủ toàn bộ tập hay không" là một bài toán NPC, còn phần bù của nó, "cho $n$ tập con, xác định có phải bất kỳ cách chọn $k$ tập nào trong số đó cũng không thể phủ toàn bộ tập hay không", là một bài toán thuộc lớp $\mathsf{co-NP}$. Nếu đáp án của bài toán thứ nhất là "có", thì điều đó tương đương với việc tìm được một phản ví dụ cho bài toán thứ hai, nên đáp án của bài toán thứ hai là "không".
 
 #### NP-intermediate
 
-如果一个问题是 $\mathsf{NP}$ 类问题，但它既不是 $\mathsf{P}$ 类问题也不是 NPC 问题，则称其为 NP-intermediate 问题．
+Nếu một bài toán thuộc lớp $\mathsf{NP}$ nhưng vừa không thuộc lớp $\mathsf{P}$ vừa không phải là bài toán NPC, thì nó được gọi là bài toán NP-intermediate.
 
-就人们目前的了解，图同构问题、离散对数问题和因数分解问题可能是 NP-intermediate 的．
+Theo hiểu biết hiện nay, bài toán đẳng cấu đồ thị, bài toán logarit rời rạc và bài toán phân tích thừa số có thể là NP-intermediate.
 
-Ladner 定理指出，如果 $\mathsf{P}\ne\mathsf{NP}$，则一定存在问题是 NP-intermediate 的．
+Định lý Ladner chỉ ra rằng nếu $\mathsf{P}\ne\mathsf{NP}$, thì chắc chắn tồn tại bài toán NP-intermediate.
 
 ### NEXPTIME
 
-复杂度类 $\mathsf{NEXPTIME}$ 表示可以由非确定性图灵机在指数级时间内解决的判定问题，即：
+Lớp độ phức tạp $\mathsf{NEXPTIME}$ biểu diễn các bài toán quyết định có thể được giải bởi máy Turing không tất định trong thời gian cấp số mũ, tức là:
 
 $$
 \mathsf{NEXPTIME}=\bigcup\limits_{k\in\mathbb{N}}\mathsf{NTIME}(2^{n^k})
@@ -225,17 +225,17 @@ $$
 
 ### #P
 
-$\mathsf{\#P}$ 类问题不是判定问题，而是关于 $\mathsf{NP}$ 类问题的计数问题：数一个 $\mathsf{NP}$ 类问题的解的个数是一个 $\mathsf{\#P}$ 类的问题．换句话说，数一个串在一个总是在多项式时间内停机的非确定性图灵机的多少个分支处被接受是一个 $\mathsf{\#P}$ 类的问题．
+Các bài toán thuộc lớp $\mathsf{\#P}$ không phải là bài toán quyết định, mà là bài toán đếm liên quan đến các bài toán thuộc lớp $\mathsf{NP}$: đếm số nghiệm của một bài toán thuộc lớp $\mathsf{NP}$ là một bài toán thuộc lớp $\mathsf{\#P}$. Nói cách khác, đếm xem một xâu được chấp nhận tại bao nhiêu nhánh của một máy Turing không tất định luôn dừng trong thời gian đa thức là một bài toán thuộc lớp $\mathsf{\#P}$.
 
-求一张普通图或二分图的匹配或完美匹配个数都是 #P 完全的，对应的判定问题为「判定一张图是否存在（完美）匹配」．
+Đếm số cặp ghép hoặc cặp ghép hoàn hảo của một đồ thị thông thường hoặc đồ thị hai phía đều là #P-complete; bài toán quyết định tương ứng là "quyết định một đồ thị có tồn tại cặp ghép (hoàn hảo) hay không".
 
 ### DSPACE
 
-如果存在一台确定性图灵机能够在输入为 $x$ 时在 $O(f(|x|))$ 的空间内判定一个语言，那么这个语言属于 $\mathsf{DSPACE}(f(n))$ 类．
+Nếu tồn tại một máy Turing tất định có thể quyết định một ngôn ngữ trong không gian $O(f(|x|))$ khi đầu vào là $x$, thì ngôn ngữ đó thuộc lớp $\mathsf{DSPACE}(f(n))$.
 
--   $\mathsf{REG}=\mathsf{DSPACE}(O(1))$，即正则语言，也就是自动机能够判定的语言．
+-   $\mathsf{REG}=\mathsf{DSPACE}(O(1))$, tức là ngôn ngữ chính quy, cũng là các ngôn ngữ mà automaton có thể quyết định.
 
--   $\mathsf{L}=\mathsf{DSPACE}(O(\log n))$，需要注意的是图灵机使用的空间不包括输入占用的空间．
+-   $\mathsf{L}=\mathsf{DSPACE}(O(\log n))$. Cần chú ý rằng không gian mà máy Turing sử dụng không bao gồm không gian do đầu vào chiếm dụng.
 
 -   $\mathsf{PSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(n^k)$
 
@@ -243,130 +243,130 @@ $\mathsf{\#P}$ 类问题不是判定问题，而是关于 $\mathsf{NP}$ 类问�
 
 ### NSPACE
 
-如果存在一台非确定性图灵机能够在输入为 $x$ 时在 $O(f(|x|))$ 的空间内判定一个语言，那么这个语言属于 $\mathsf{NSPACE}(f(n))$ 类．
+Nếu tồn tại một máy Turing không tất định có thể quyết định một ngôn ngữ trong không gian $O(f(|x|))$ khi đầu vào là $x$, thì ngôn ngữ đó thuộc lớp $\mathsf{NSPACE}(f(n))$.
 
 -   $\mathsf{REG}=\mathsf{DSPACE}(O(1))=\mathsf{NSPACE}(O(1))$
 
 -   $\mathsf{NL}=\mathsf{NSPACE}(O(\log n))$
 
--   $\mathsf{CSL}=\mathsf{NSPACE}(O(n))$，即上下文相关语言．
+-   $\mathsf{CSL}=\mathsf{NSPACE}(O(n))$, tức là ngôn ngữ phụ thuộc ngữ cảnh.
 
 -   $\mathsf{PSPACE}=\mathsf{NPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(n^k)$
 
 -   $\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(2^{n^k})$
 
-## 多项式时间
+## Thời gian đa thức
 
-简单来说，如果存在正数 $k$ 使得一个算法的时间复杂度为 $O(n^k)$（注意，不是 $\Theta(n^k)$），其中 $n$ 为问题规模（输入的长度），则称这个算法是 **多项式时间** 的．如果一个问题有（确定性图灵机上的）多项式时间的算法来解决，则这个问题属于复杂度类 $\mathsf{P}$．
+Nói đơn giản, nếu tồn tại số dương $k$ sao cho độ phức tạp thời gian của một thuật toán là $O(n^k)$ (chú ý, không phải $\Theta(n^k)$), trong đó $n$ là quy mô bài toán (độ dài đầu vào), thì thuật toán đó được gọi là có **thời gian đa thức**. Nếu một bài toán có thuật toán thời gian đa thức (trên máy Turing tất định) để giải, thì bài toán đó thuộc lớp độ phức tạp $\mathsf{P}$.
 
-多项式时间可分为强多项式时间和弱多项式时间，除此之外还有伪多项式时间．
+Thời gian đa thức có thể chia thành thời gian đa thức mạnh và thời gian đa thức yếu; ngoài ra còn có thời gian giả đa thức.
 
-### Strongly polynomial time 强多项式时间
+### Strongly polynomial time
 
-我们先定义一个计算模型，称作算术模型．在算术模型中，数字之间的算术运算（加减乘除、比较大小）可以在单位时间内完成（即 $O(1)$ 时间内完成，与数字大小无关）．
+Trước hết, ta định nghĩa một mô hình tính toán gọi là mô hình số học. Trong mô hình số học, các phép toán số học giữa các số (cộng, trừ, nhân, chia, so sánh độ lớn) có thể hoàn thành trong thời gian đơn vị (tức là trong thời gian $O(1)$, không phụ thuộc vào độ lớn của số).
 
-如果一个算法在算术模型下的操作数是输入中的数字个数的多项式，并且空间复杂度是输入规模（而非数字个数）的多项式，则这个算法是 **强多项式时间** 的．由于算术操作在一般的计算模型下可以在输入规模（即数字大小的对数）的多项式时间内完成，强多项式时间的算法一定是多项式时间的．
+Nếu số phép toán của một thuật toán trong mô hình số học là một đa thức theo số lượng các số trong đầu vào, và độ phức tạp không gian là một đa thức theo quy mô đầu vào (chứ không phải theo số lượng các số), thì thuật toán đó có **thời gian đa thức mạnh**. Vì các phép toán số học trong mô hình tính toán thông thường có thể hoàn thành trong thời gian đa thức theo quy mô đầu vào (tức là theo logarit độ lớn của số), thuật toán thời gian đa thức mạnh chắc chắn là thuật toán thời gian đa thức.
 
-一般来说，强多项式时间的算法的时间复杂度与值域无关．
+Nói chung, độ phức tạp thời gian của thuật toán thời gian đa thức mạnh không phụ thuộc vào miền giá trị.
 
-### Weakly polynomial time 弱多项式时间
+### Weakly polynomial time
 
-如果一个算法是多项式时间的但不是强多项式时间的，则它是 **弱多项式时间** 的．
+Nếu một thuật toán có thời gian đa thức nhưng không có thời gian đa thức mạnh, thì nó có **thời gian đa thức yếu**.
 
-例如，计算最大公约数的欧几里得算法，时间复杂度为 $O(\log a + \log b)$（$a$ 和 $b$ 为输入的数的大小），是弱多项式时间的．
+Ví dụ, thuật toán Euclid để tính ước chung lớn nhất có độ phức tạp thời gian $O(\log a + \log b)$ (trong đó $a$ và $b$ là độ lớn của các số đầu vào), nên là thuật toán thời gian đa thức yếu.
 
-### Pseudo-polynomial time 伪多项式时间
+### Pseudo-polynomial time
 
-如果一个算法的用时是值域的多项式，则称它是 **伪多项式时间** 的．伪多项式时间的算法可能是多项式时间的也可能不是，可能不是多项式时间是因为表示一个大小为 $n$ 的正整数一般只需要 $O(\log n)$ 个二进制位，所以关于值域多项式时间的算法往往关于输入长度是指数级时间的．虽然从定义上来说伪多项式时间也可能是多项式时间，但当我们说一个算法是伪多项式时间的，一般都是说这个算法不是多项式时间的．
+Nếu thời gian chạy của một thuật toán là đa thức theo miền giá trị, thì thuật toán đó được gọi là có **thời gian giả đa thức**. Thuật toán thời gian giả đa thức có thể là thời gian đa thức hoặc cũng có thể không phải. Lý do có thể không phải thời gian đa thức là vì để biểu diễn một số nguyên dương có độ lớn $n$ thường chỉ cần $O(\log n)$ bit nhị phân, nên thuật toán có thời gian đa thức theo miền giá trị thường có thời gian cấp số mũ theo độ dài đầu vào. Tuy theo định nghĩa, thời gian giả đa thức cũng có thể là thời gian đa thức, nhưng khi nói một thuật toán có thời gian giả đa thức, thông thường ta đang nói thuật toán đó không phải là thời gian đa thức.
 
-例如，背包问题是 NP-hard 问题，但它有基于动态规划的伪多项式时间的解法．
+Ví dụ, bài toán ba lô là bài toán NP-hard, nhưng nó có lời giải thời gian giả đa thức dựa trên quy hoạch động.
 
-如果一个 NPC/NP-hard 问题有伪多项式时间的解法，则称这个问题是 **弱 NPC**/**弱 NP-hard** 问题．如果一个 NPC/NP-hard 问题在 $\mathsf{P} \ne \mathsf{NP}$ 的前提下没有伪多项式时间的解法，则称这个问题是 **强 NPC**/**强 NP-hard** 问题．
+Nếu một bài toán NPC/NP-hard có lời giải thời gian giả đa thức, thì bài toán đó được gọi là bài toán **NPC yếu**/**NP-hard yếu**. Nếu một bài toán NPC/NP-hard không có lời giải thời gian giả đa thức dưới giả thiết $\mathsf{P} \ne \mathsf{NP}$, thì bài toán đó được gọi là bài toán **NPC mạnh**/**NP-hard mạnh**.
 
-## 可构造函数
+## Hàm xây dựng được
 
-### 时间可构造函数
+### Hàm xây dựng được theo thời gian
 
-有时，我们想让图灵机知道自己用了多长的时间，例如，强制图灵机在进行 $T(n)$ 步计算后停机．但如果计算 $T(n)$ 的用时就超过了 $T(n)$，这便是不可做到的．为此，定义了时间可构造函数，来避免这样的麻烦．
+Đôi khi ta muốn máy Turing biết nó đã dùng bao nhiêu thời gian, ví dụ như buộc máy Turing dừng sau khi thực hiện $T(n)$ bước tính toán. Nhưng nếu thời gian dùng để tính $T(n)$ đã vượt quá $T(n)$, điều này là không thể. Vì vậy, ta định nghĩa hàm xây dựng được theo thời gian để tránh rắc rối như vậy.
 
-如果存在图灵机 $M$，使得输入为 $1^n$($n$ 个 1) 时 $M$ 能在 $O(f(n))$ 的时间内停机并且输出 $f(n)$ 的二进制表示（注意，这里的图灵机的输出不是接受/不接受，而是一个串，输出可以在纸带上进行），则 $f(n)$ 是一个 **时间可构造函数**．
+Nếu tồn tại máy Turing $M$ sao cho khi đầu vào là $1^n$ ($n$ ký tự 1), $M$ có thể dừng trong thời gian $O(f(n))$ và xuất ra biểu diễn nhị phân của $f(n)$ (chú ý, đầu ra của máy Turing ở đây không phải là chấp nhận/không chấp nhận, mà là một xâu; đầu ra có thể được đặt trên băng), thì $f(n)$ là một **hàm xây dựng được theo thời gian**.
 
-由于读入需要 $O(n)$ 的时间，$o(n)$ 的非常值函数都不是时间可构造函数．
+Vì việc đọc đầu vào cần thời gian $O(n)$, mọi hàm không hằng thuộc $o(n)$ đều không phải là hàm xây dựng được theo thời gian.
 
-### 空间可构造函数
+### Hàm xây dựng được theo không gian
 
-类似地可以定义空间可构造函数．
+Tương tự, có thể định nghĩa hàm xây dựng được theo không gian.
 
-如果存在图灵机 $M$，使得输入为 $1^n$($n$ 个 1) 时 $M$ 能在 $O(f(n))$ 的空间内停机并且输出 $f(n)$ 的二进制表示，则 $f(n)$ 是一个 **空间可构造函数**．
+Nếu tồn tại máy Turing $M$ sao cho khi đầu vào là $1^n$ ($n$ ký tự 1), $M$ có thể dừng trong không gian $O(f(n))$ và xuất ra biểu diễn nhị phân của $f(n)$, thì $f(n)$ là một **hàm xây dựng được theo không gian**.
 
-## 复杂度类之间的关系
+## Quan hệ giữa các lớp độ phức tạp
 
-### 时间谱系定理
+### Định lý phân cấp thời gian
 
-#### 确定性时间谱系定理
+#### Định lý phân cấp thời gian tất định
 
-若 $f(n)$ 是一个时间可构造函数，则：
+Nếu $f(n)$ là một hàm xây dựng được theo thời gian, thì:
 
 $$
 \mathsf {DTIME}\left(o\left({\frac {f(n)}{\log f(n)}}\right)\right)\subsetneq \mathsf {DTIME}(f(n))
 $$
 
-由确定性时间谱系定理可以得到 $\mathsf{P}\subsetneq\mathsf{EXPTIME}$．
+Từ định lý phân cấp thời gian tất định có thể suy ra $\mathsf{P}\subsetneq\mathsf{EXPTIME}$.
 
-??? note "确定性时间谱系定理的证明"
-    定义语言 $L=\{(x, y)|\mathcal{U}((x, y), x)\text{ 在 }f(|x|+|y|)\text{ 时间内停机并拒绝}\}$，由于 $f(n)$ 是一个时间可构造函数，可以根据定义进行计算来判定 $L$，用时为 $O(f(|x|+|y|))$，所以 $L\in\mathsf{DTIME}(f(n))$．
+??? note "Chứng minh định lý phân cấp thời gian tất định"
+    Định nghĩa ngôn ngữ $L=\{(x, y)|\mathcal{U}((x, y), x)\text{ dừng và từ chối trong thời gian }f(|x|+|y|)\}$. Vì $f(n)$ là một hàm xây dựng được theo thời gian, có thể tính theo định nghĩa để quyết định $L$, với thời gian $O(f(|x|+|y|))$, nên $L\in\mathsf{DTIME}(f(n))$.
     
-    现在假设 $L\in\mathsf{DTIME}(o\left({\dfrac {f(n)}{\log f(n)}}\right))$，设 $M_z$ 就是那台在 $o\left({\dfrac {f(n)}{\log f(n)}}\right)$ 的时间内判定 $L$ 的图灵机．
+    Bây giờ giả sử $L\in\mathsf{DTIME}(o\left({\dfrac {f(n)}{\log f(n)}}\right))$, và đặt $M_z$ là máy Turing quyết định $L$ trong thời gian $o\left({\dfrac {f(n)}{\log f(n)}}\right)$.
     
-    令通用图灵机 $\mathcal{U}(x, z)$ 关于 $x$ 的用时为 $g(|x|)$，由上文关于通用图灵机的介绍可以得到 $g(n)=o(f(n))$，所以，当 $y$ 足够大时，$g(|z|+|y|)<f(|z|+|y|)$．
+    Gọi thời gian chạy của máy Turing phổ dụng $\mathcal{U}(x, z)$ theo $x$ là $g(|x|)$. Từ phần giới thiệu về máy Turing phổ dụng ở trên, ta có $g(n)=o(f(n))$, nên khi $y$ đủ lớn, $g(|z|+|y|)<f(|z|+|y|)$.
     
-    令 $y'$ 是一个足够大的 $y$，那么 $\mathcal{U}((z, y'), z)$ 一定能在 $f(|z|+|y'|)$ 时间内停机，从而 $M_z(z, y')\ne M_z(z, y')$，产生矛盾，所以假设不成立，确定性时间谱系定理证毕．
+    Lấy $y'$ là một $y$ đủ lớn. Khi đó $\mathcal{U}((z, y'), z)$ chắc chắn dừng trong thời gian $f(|z|+|y'|)$, dẫn đến $M_z(z, y')\ne M_z(z, y')$, tạo ra mâu thuẫn. Vì vậy giả thiết không đúng, và định lý phân cấp thời gian tất định được chứng minh.
 
-#### 非确定性时间谱系定理
+#### Định lý phân cấp thời gian không tất định
 
-若 $g(n)$ 是一个时间可构造函数，并且 $f(n+1)=o(g(n))$，则 $\mathsf{NTIME}(f(n))\subsetneq\mathsf{NTIME}(g(n))$．
+Nếu $g(n)$ là một hàm xây dựng được theo thời gian, và $f(n+1)=o(g(n))$, thì $\mathsf{NTIME}(f(n))\subsetneq\mathsf{NTIME}(g(n))$.
 
-由非确定性时间谱系定理可以得到 $\mathsf{NP}\subsetneq\mathsf{NEXPTIME}$．
+Từ định lý phân cấp thời gian không tất định có thể suy ra $\mathsf{NP}\subsetneq\mathsf{NEXPTIME}$.
 
-### 空间谱系定理
+### Định lý phân cấp không gian
 
-若 $f(n)$ 是一个空间可构造函数且 $f(n)=\Omega(\log n)$，则 $\mathsf{SPACE}(o(f(n)))\subsetneq\mathsf{SPACE}(f(n))$．
+Nếu $f(n)$ là một hàm xây dựng được theo không gian và $f(n)=\Omega(\log n)$, thì $\mathsf{SPACE}(o(f(n)))\subsetneq\mathsf{SPACE}(f(n))$.
 
-其中 $\mathsf{SPACE}$ 可以代指 $\mathsf{DSPACE}$ 或 $\mathsf{NSPACE}$．
+Trong đó $\mathsf{SPACE}$ có thể thay cho $\mathsf{DSPACE}$ hoặc $\mathsf{NSPACE}$.
 
-由空间谱系定理可以得到 $\mathsf{PSPACE}\subsetneq\mathsf{EXPSPACE}$．
+Từ định lý phân cấp không gian có thể suy ra $\mathsf{PSPACE}\subsetneq\mathsf{EXPSPACE}$.
 
-### 萨维奇定理
+### Định lý Savitch
 
-一台确定性图灵机可以在一台非确定性图灵机所消耗空间的平方内模拟它（尽管消耗的时间可能多很多），即：
+Một máy Turing tất định có thể mô phỏng một máy Turing không tất định trong bình phương không gian mà máy không tất định tiêu thụ (dù thời gian tiêu thụ có thể lớn hơn nhiều), tức là:
 
-若 $f(n)=\Omega(\log n)$，则：
+Nếu $f(n)=\Omega(\log n)$, thì:
 
 $$
 \mathsf{NSPACE}\left(f\left(n\right)\right)\subseteq \mathsf {DSPACE}\left(\left(f\left(n\right)\right)^2\right)
 $$
 
-推论：$\mathsf{PSPACE}=\mathsf{NPSPACE}$，$\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}$．
+Hệ quả: $\mathsf{PSPACE}=\mathsf{NPSPACE}$, $\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}$.
 
 ### P?=NP
 
-复杂度类 $\mathsf{P}$ 与 $\mathsf{NP}$ 是否相等是计算复杂度理论中一个著名的尚未解决的问题．
+Việc hai lớp độ phức tạp $\mathsf{P}$ và $\mathsf{NP}$ có bằng nhau hay không là một bài toán mở nổi tiếng trong lý thuyết độ phức tạp tính toán.
 
-若 $\mathsf{P}=\mathsf{NP}$，可以得到 $\mathsf{NP}=\mathsf{co-NP}$，但反之不行（目前没有基于 $\mathsf{NP}=\mathsf{co-NP}$ 证明 $\mathsf{P}=\mathsf{NP}$ 的方法）．
+Nếu $\mathsf{P}=\mathsf{NP}$, có thể suy ra $\mathsf{NP}=\mathsf{co-NP}$, nhưng chiều ngược lại thì không (hiện chưa có phương pháp chứng minh $\mathsf{P}=\mathsf{NP}$ dựa trên $\mathsf{NP}=\mathsf{co-NP}$).
 
-???+ note "为什么 NP?=co-NP 不是显然的？"
-    由于 $\mathsf{NP}$ 问题和与其对应的 $\mathsf{co-NP}$ 问题答案相反，很容易有这种想法：对于一个 $\mathsf{co-NP}$ 问题，我只要将解决其补集的非确定性图灵机的输出反过来，就解决了该 $\mathsf{co-NP}$ 问题，所以 $\mathsf{NP}=\mathsf{co-NP}$．
+???+ note "Vì sao NP?=co-NP không phải là hiển nhiên?"
+    Vì một bài toán $\mathsf{NP}$ và bài toán $\mathsf{co-NP}$ tương ứng có đáp án trái ngược nhau, rất dễ nảy sinh ý nghĩ này: với một bài toán $\mathsf{co-NP}$, chỉ cần đảo ngược đầu ra của máy Turing không tất định giải phần bù của nó là giải được bài toán $\mathsf{co-NP}$ đó, nên $\mathsf{NP}=\mathsf{co-NP}$.
     
-    实际上，上面所说的这种方法确实能够解决该 $\mathsf{co-NP}$ 问题，但并没有找到一个非确定性图灵机来解决它：如果一个图灵机所做的事情是将一个非确定性图灵机的输出反过来，该图灵机并不是一个非确定性图灵机．因为，非确定性图灵机接受是在某个分支处接受，而拒绝是在所有分支处拒绝；而将其输出反过来，就变成了接受是在所有分支处，而拒绝是在一个分支处，而这样就不符合非确定性图灵机的定义了，所以能用该图灵机解决这个 $\mathsf{co-NP}$ 问题并不能使这个 $\mathsf{co-NP}$ 问题变成一个 $\mathsf{NP}$ 问题．
+    Thực ra, cách nói trên đúng là có thể giải bài toán $\mathsf{co-NP}$ đó, nhưng nó không tìm được một máy Turing không tất định để giải bài toán này: nếu việc một máy Turing làm là đảo ngược đầu ra của một máy Turing không tất định, thì máy Turing đó không phải là máy Turing không tất định. Bởi vì máy Turing không tất định chấp nhận khi có một nhánh nào đó chấp nhận, còn từ chối khi mọi nhánh đều từ chối; khi đảo ngược đầu ra của nó, việc chấp nhận biến thành xảy ra ở mọi nhánh, còn từ chối biến thành xảy ra ở một nhánh, điều này không phù hợp với định nghĩa của máy Turing không tất định. Vì vậy, việc có thể dùng máy Turing đó để giải bài toán $\mathsf{co-NP}$ này không làm cho bài toán $\mathsf{co-NP}$ này trở thành một bài toán $\mathsf{NP}$.
 
-若 $\mathsf{P}=\mathsf{NP}$，还可以得到 $\mathsf{EXPTIME}=\mathsf{NEXPTIME}$．
+Nếu $\mathsf{P}=\mathsf{NP}$, còn có thể suy ra $\mathsf{EXPTIME}=\mathsf{NEXPTIME}$.
 
-若 $\mathsf{P}\ne\mathsf{NP}$，可以得到 NP-intermediate 不为空．
+Nếu $\mathsf{P}\ne\mathsf{NP}$, có thể suy ra NP-intermediate không rỗng.
 
-## 参考资料
+## Tài liệu tham khảo
 
-1.  [计算复杂性（1）自动机与正则语言](https://lingerois.com/p/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A71-%E8%87%AA%E5%8A%A8%E6%9C%BA%E4%B8%8E%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80/)；
+1.  [Độ phức tạp tính toán (1): Automaton và ngôn ngữ chính quy](https://lingerois.com/p/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A71-%E8%87%AA%E5%8A%A8%E6%9C%BA%E4%B8%8E%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80/);
 
-2.  [计算复杂性（2）图灵机与可计算性](https://lingerois.com/p/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A72-%E5%9B%BE%E7%81%B5%E6%9C%BA%E4%B8%8E%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7/)；
+2.  [Độ phức tạp tính toán (2): Máy Turing và tính khả tính](https://lingerois.com/p/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A72-%E5%9B%BE%E7%81%B5%E6%9C%BA%E4%B8%8E%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7/);
 
-3.  [Wikipedia](https://en.wikipedia.org/) 的相关词条以及这些词条的参考资料．
+3.  Các mục từ liên quan trên [Wikipedia](https://en.wikipedia.org/) và tài liệu tham khảo của các mục từ đó.

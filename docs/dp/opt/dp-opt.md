@@ -170,7 +170,7 @@ Bên cạnh tối ưu chuyển trạng thái, cũng có thể giảm độ phứ
 
 ### DP lồng DP và tối thiểu hóa DFA
 
-Trang chính: [DP lồng DP](../dp-of-dp.md), [tối thiểu hóa DFA](../../misc/fsm.md#dfa-%E6%9C%80%E5%B0%8F%E5%8C%96)
+Trang chính: [DP lồng DP](../dp-of-dp.md), [tối thiểu hóa DFA](../../misc/fsm.md#tối-thiểu-hóa-dfa)
 
 Một số bài DP có hàm trạng thái dạng $f(i,x)$, nhưng bản thân chuyển trạng thái của $x$ khá phức tạp, thậm chí có thể phụ thuộc vào một bài DP khác. Với kiểu bài này, có thể trước hết xây dựng tự động hóa cho chuyển trạng thái của $x$, dùng tối thiểu hóa DFA để giảm số trạng thái, rồi thực hiện DP bên ngoài.
 

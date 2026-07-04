@@ -31,7 +31,7 @@ Về trực giác, SAM của một xâu có thể được hiểu là dạng né
 
 ## Định nghĩa
 
-SAM của xâu $s$ là [DFA](../misc/fsm.md#%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA) nhỏ nhất chấp nhận tất cả các hậu tố của $s$.
+SAM của xâu $s$ là [DFA](../misc/fsm.md#automaton-trạng-thái-hữu-hạn-xác-định) nhỏ nhất chấp nhận tất cả các hậu tố của $s$.
 
 Nói cách khác:
 
@@ -103,7 +103,7 @@ Hai xâu con $t_1$ và $t_2$ có thể có tập vị trí kết thúc hoàn to�
 
 Một sự thật là mỗi lớp tương đương như vậy ứng với một trạng thái của SAM[^state-endpos]. Tức là, nếu hai xâu con có cùng vị trí kết thúc, đường đi của chúng trong SAM sẽ ứng với cùng một trạng thái. Nói cách khác, mỗi trạng thái không phải trạng thái ban đầu trong SAM ứng với một hoặc nhiều xâu con không rỗng có cùng $\operatorname{endpos}$. Tóm lại, các trạng thái trong SAM chính là các lớp tương đương của mọi xâu con không rỗng, cộng thêm trạng thái ban đầu.
 
-Tạm thời chấp nhận sự thật này, ta sẽ dựa vào nó để giới thiệu thuật toán xây SAM. Ta cũng sẽ chỉ ra rằng mọi tính chất mà SAM cần thỏa, ngoại trừ tính nhỏ nhất, đều đã được thỏa mãn; còn tính nhỏ nhất có thể suy ra từ [định lý Myhill-Nerode](../misc/fsm.md#myhillnerode-%E5%AE%9A%E7%90%86).
+Tạm thời chấp nhận sự thật này, ta sẽ dựa vào nó để giới thiệu thuật toán xây SAM. Ta cũng sẽ chỉ ra rằng mọi tính chất mà SAM cần thỏa, ngoại trừ tính nhỏ nhất, đều đã được thỏa mãn; còn tính nhỏ nhất có thể suy ra từ [định lý Myhill-Nerode](../misc/fsm.md#định-lý-myhill-nerode).
 
 Từ giá trị của $\operatorname{endpos}$, ta có thể rút ra một số kết luận quan trọng. Chúng giải thích quan hệ giữa các xâu con khác nhau ứng với cùng một trạng thái.
 

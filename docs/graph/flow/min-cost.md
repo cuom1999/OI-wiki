@@ -32,7 +32,7 @@ Do đó, thuật toán SSP có thể tìm đúng luồng cực đại chi phí n
 
 ### Độ phức tạp thời gian
 
-Nếu dùng [thuật toán Bellman–Ford](../shortest-path.md#thuật-toán-bellman-ford) để tìm đường đi ngắn nhất, độ phức tạp cho mỗi lần tìm đường tăng luồng là $O(nm)$. Gọi luồng cực đại của mạng là $f$, độ phức tạp xấu nhất là $O(nmf)$. Trên thực tế, thuật toán SSP là thuật toán có [thời gian giả đa thức](../../misc/cc-basic.md#pseudo-polynomial-time-%E4%BC%AA%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%97%B6%E9%97%B4).
+Nếu dùng [thuật toán Bellman–Ford](../shortest-path.md#thuật-toán-bellman-ford) để tìm đường đi ngắn nhất, độ phức tạp cho mỗi lần tìm đường tăng luồng là $O(nm)$. Gọi luồng cực đại của mạng là $f$, độ phức tạp xấu nhất là $O(nmf)$. Trên thực tế, thuật toán SSP là thuật toán có [thời gian giả đa thức](../../misc/cc-basic.md#pseudo-polynomial-time).
 
 ???+ note "Vì sao thuật toán SSP có thời gian giả đa thức?"
     Độ phức tạp thời gian của thuật toán SSP có cận trên $O(nmf)$. Đây là một đa thức theo miền giá trị, nên là thời gian giả đa thức.

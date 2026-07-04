@@ -1,313 +1,313 @@
 author: CCXXXI, countercurrent-time, Enter-tainer, FFjet, H-J-Granger, Ir1d, mgt, NachtgeistW, orzAtalod, ouuan, SukkaW
 
-前置知识：[语言和判定问题](./cc-basic.md#问题)
+Kiến thức nền: [Ngôn ngữ và bài toán quyết định](./cc-basic.md#bài-toán)
 
-**有限状态自动机**（Finite State Machine，FSM，以下也简称自动机）是最简单的一类计算模型，体现在它的描述能力与资源都极其有限．自动机广泛应用在 OI、计算机科学中，其思想在许多字符串算法中都有涉及，因此推荐在学习一些字符串算法（[KMP](../string/kmp.md)、[AC 自动机](../string/ac-automaton.md)、[SAM](../string/sam.md)）前先完成自动机的学习．
+**Automaton trạng thái hữu hạn** (Finite State Machine, FSM, dưới đây cũng gọi tắt là automaton) là một trong những mô hình tính toán đơn giản nhất: cả khả năng mô tả lẫn tài nguyên của nó đều rất hạn chế. Automaton được dùng rộng rãi trong OI và khoa học máy tính; tư tưởng của nó xuất hiện trong nhiều thuật toán chuỗi, vì vậy nên học xong automaton trước khi học một số thuật toán chuỗi như [KMP](../string/kmp.md), [AC automaton](../string/ac-automaton.md), [SAM](../string/sam.md).
 
-## 自动机入门
+## Nhập môn automaton
 
-首先，我们来理解自动机是用来做什么的：自动机是一种判断一个信号序列是否满足某种特定模式或规则的数学模型．
+Trước hết, hãy hiểu automaton dùng để làm gì: automaton là một mô hình toán học dùng để phán định một dãy tín hiệu có thỏa một mẫu hoặc quy tắc cụ thể nào đó hay không.
 
-这句话中的一些术语可以具体解释一下．「信号序列」指的是一个按顺序排列的信号，例如字符串从前到后的每一个字符、数组从 $1$ 到 $n$ 的每一个数、数从高到低的每一位等．「判断是否满足某种规则」，可以理解为：我们关心这个序列是否属于某个特定的集合．这个集合由我们事先设定好的规则来定义，例如「所有长度为偶数的二进制串」或「所有回文串」．
+Có thể giải thích cụ thể hơn vài thuật ngữ trong câu trên. "Dãy tín hiệu" là một dãy các tín hiệu được sắp theo thứ tự, chẳng hạn từng ký tự của một chuỗi từ đầu đến cuối, từng số của một mảng từ $1$ đến $n$, hoặc từng chữ số của một số từ cao xuống thấp. "Phán định có thỏa một quy tắc nào đó hay không" có thể hiểu là: ta quan tâm dãy này có thuộc một tập cụ thể nào đó hay không. Tập này được định nghĩa bởi các quy tắc đã đặt trước, chẳng hạn "mọi chuỗi nhị phân có độ dài chẵn" hoặc "mọi chuỗi đối xứng".
 
-有时我们需要回答这类问题：一个给定的序列，是否满足某种特性？例如，一个二进制数是否是奇数，一个字符串是否是回文，或是否是另一个字符串的子序列等等．自动机就是用来解决这类问题的数学工具．
+Đôi khi ta cần trả lời các câu hỏi kiểu này: một dãy cho trước có thỏa tính chất nào đó không? Ví dụ, một số nhị phân có phải số lẻ không, một chuỗi có phải chuỗi đối xứng không, hoặc có phải dãy con của một chuỗi khác không, v.v. Automaton chính là công cụ toán học dùng để giải quyết các vấn đề như vậy.
 
-自动机的工作原理和流程图很类似．假设你想要在外卖平台点购一杯奶茶，你的所有选择就构成了一个序列．以下这个流程图是一个例子：
+Cách hoạt động của automaton rất giống lưu đồ. Giả sử bạn muốn đặt mua một cốc trà sữa trên nền tảng giao đồ ăn, toàn bộ lựa chọn của bạn tạo thành một dãy. Lưu đồ sau là một ví dụ:
 
 ![order fsm](./images/fsm1.svg)
 
-例如，你的选择序列是「打开点单界面 -> 选择奶茶 -> 有奶茶的钱」，那你按顺序经过的状态可能是「外卖平台 -> 点单界面 -> 支付奶茶的钱 -> 买到奶茶」．就这样，我们的这个「奶茶自动机」根据我们的选择，帮我们判定了我们是否买到了奶茶．我们还可以发现，到达一个状态的方法可能不止一条．同样没有买到奶茶，你可能是在点单界面直接退出，或者没有奶茶的钱以至于没有买到奶茶．
+Ví dụ, dãy lựa chọn của bạn là "mở giao diện đặt món -> chọn trà sữa -> có tiền mua trà sữa", thì các trạng thái bạn đi qua theo thứ tự có thể là "nền tảng giao đồ ăn -> giao diện đặt món -> thanh toán tiền trà sữa -> mua được trà sữa". Như vậy, "automaton trà sữa" này dựa vào lựa chọn của ta để giúp phán định ta có mua được trà sữa hay không. Ta cũng có thể thấy rằng có thể có nhiều hơn một cách để đi tới cùng một trạng thái. Cùng là không mua được trà sữa, có thể bạn thoát ngay ở giao diện đặt món, hoặc không có tiền mua trà sữa nên không mua được.
 
-我们通过这个自动机，将信号序列分成了两类：一类是买到了奶茶的信号序列，一类是没有买到奶茶的信号序列．根据最后位于的状态的不同，我们就完成了一个判定问题．
+Thông qua automaton này, ta chia các dãy tín hiệu thành hai loại: dãy tín hiệu mua được trà sữa và dãy tín hiệu không mua được trà sữa. Dựa vào trạng thái cuối cùng, ta hoàn thành một bài toán quyết định.
 
-虽然我们刚才用流程图来类比自动机的工作过程，但流程图本身只是一个直观的可视化工具，并不构成对自动机的数学定义．为了更准确地刻画自动机的结构，我们需要对流程图中的元素进行抽象．抽象之后，我们发现流程图的结构其实可以简化为一个有向图，其中每个结点表示一种状态，每条有向边表示状态之间的转换．
+Dù vừa dùng lưu đồ để so sánh với quá trình hoạt động của automaton, bản thân lưu đồ chỉ là một công cụ trực quan hóa dễ hiểu, không phải định nghĩa toán học của automaton. Để mô tả chính xác hơn cấu trúc của automaton, ta cần trừu tượng hóa các phần tử trong lưu đồ. Sau khi trừu tượng hóa, ta thấy cấu trúc của lưu đồ thực ra có thể rút gọn thành một đồ thị có hướng, trong đó mỗi đỉnh biểu diễn một trạng thái, mỗi cạnh có hướng biểu diễn một phép chuyển giữa các trạng thái.
 
-因此，自动机的核心结构可以形式化地看作是一张有向图，我们称之为 **状态图**．
+Vì vậy, cấu trúc cốt lõi của automaton có thể được hình thức hóa như một đồ thị có hướng, gọi là **đồ thị trạng thái**.
 
-自动机的工作方式和流程图类似，不同的是：自动机的每一个结点都是一个判定结点；自动机的结点只是一个单纯的状态而非任务；自动机的边可以接受多种字符（不局限于 `T` 或 `F`）．
+Cách hoạt động của automaton tương tự lưu đồ, nhưng có các điểm khác: mỗi đỉnh của automaton đều là một đỉnh phán định; đỉnh của automaton chỉ là một trạng thái đơn thuần chứ không phải nhiệm vụ; cạnh của automaton có thể nhận nhiều loại ký tự (không chỉ giới hạn ở `T` hoặc `F`).
 
-举个例子，完成「判断一个二进制数是不是偶数」的自动机如下：
+Ví dụ, automaton để "kiểm tra một số nhị phân có phải số chẵn hay không" như sau:
 
 ![example fsm](./images/fsm2.svg)
 
-从起始结点开始，从高到低接受这个数的二进制序列，然后看最终停在哪里．如果最终停在红圈结点，就是偶数；否则不是．
+Bắt đầu từ đỉnh khởi đầu, đọc dãy nhị phân của số đó từ bit cao xuống bit thấp, rồi xem cuối cùng dừng ở đâu. Nếu cuối cùng dừng tại đỉnh được khoanh đỏ thì đó là số chẵn; ngược lại thì không.
 
-在这里，我们需要强调，下文中我们会多次提到「字符」、「字符集」之类的名词，这不代表自动机只能应用于字符串领域，字符不一定是 $\tt abc\cdots z$ 之类的字母，也可以是一种选择．
+Ở đây cần nhấn mạnh rằng dưới đây ta sẽ nhiều lần nhắc tới các khái niệm như "ký tự", "bảng chữ cái". Điều này không có nghĩa automaton chỉ áp dụng cho lĩnh vực chuỗi; ký tự không nhất thiết là các chữ cái kiểu $\tt abc\cdots z$, mà cũng có thể là một lựa chọn nào đó.
 
-如果需要判定一个有限的信号序列和另外一个信号序列的关系（例如另一个信号序列是不是某个信号序列的子序列），那么常用的方法是针对那个有限的信号序列构建一个自动机．这个在学习 KMP 的时候会讲到．
+Nếu cần phán định quan hệ giữa một dãy tín hiệu hữu hạn và một dãy tín hiệu khác (ví dụ dãy tín hiệu kia có phải dãy con của một dãy tín hiệu nào đó hay không), cách thường dùng là xây dựng một automaton cho dãy tín hiệu hữu hạn đó. Nội dung này sẽ được nói tới khi học KMP.
 
-需要注意的是，自动机只是一个 **数学模型**，而 **不是算法**，也 **不是数据结构**．实现同一个自动机的方法有很多种，可能会有不一样的时空复杂度．
+Cần chú ý rằng automaton chỉ là một **mô hình toán học**, **không phải thuật toán**, và cũng **không phải cấu trúc dữ liệu**. Có nhiều cách hiện thực cùng một automaton, có thể có độ phức tạp thời gian và không gian khác nhau.
 
-接下来你可以选择在本页面继续进一步研究自动机，也可以去学习 [KMP](../string/kmp.md)、[AC 自动机](../string/ac-automaton.md) 或 [SAM](../string/sam.md) 等具体的例子．
+Tiếp theo, bạn có thể tiếp tục nghiên cứu sâu hơn về automaton trên trang này, hoặc đi học các ví dụ cụ thể như [KMP](../string/kmp.md), [AC automaton](../string/ac-automaton.md), [SAM](../string/sam.md).
 
-FSM 分为两类：确定性有限状态自动机、非确定性有限状态自动机．
+FSM được chia thành hai loại: automaton trạng thái hữu hạn xác định và automaton trạng thái hữu hạn không xác định.
 
-## 确定性有限状态自动机
+## Automaton trạng thái hữu hạn xác định
 
-**确定性有限状态自动机**（Deterministic Finite Automaton，DFA）体现在它的判定过程是确定性的．以「奶茶自动机」为例子，你只要打开点单界面，就会进入点单界面，不会出现网络崩溃打不开、手机没电黑屏了之类的意外情况．
+**Automaton trạng thái hữu hạn xác định** (Deterministic Finite Automaton, DFA) có quá trình phán định là xác định. Lấy "automaton trà sữa" làm ví dụ: chỉ cần bạn mở giao diện đặt món thì sẽ đi vào giao diện đặt món, không xuất hiện các tình huống ngoài ý muốn như mạng sập không mở được, điện thoại hết pin đen màn hình, v.v.
 
 ???+ abstract "DFA"
-    DFA 是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，包括：
+    DFA là một bộ năm $(Q,\Sigma,\delta,q_0,F)$, bao gồm:
     
-    1.  **有限状态集合**  $Q$．如果把一个 DFA 看成一张有向图，那么 DFA 中的状态就相当于图上的顶点．
-    2.  **字符集** $\Sigma$．该自动机只能输入这些字符．
-    3.  **转移函数** $\delta:Q\times \Sigma \to Q$ 是一个接受两个参数返回一个值的函数，其中第一个参数和返回值都是一个状态，第二个参数是字符集中的一个字符．如果把一个 DFA 看成一张有向图，那么 DFA 中的转移函数就相当于顶点间的边，而每条边上都有一个字符．
-    4.  **起始状态**  $q_0\in Q$ 是一个特殊的状态．在不同文章中，起始状态一般用 $s$、$\textit{start}$、$q_0$ 表示，本文中选择使用 $q_0$ 表示．
-    5.  **接受状态集合**  $F\subseteq Q$ 是一组特殊的状态．
+    1.  **Tập trạng thái hữu hạn** $Q$. Nếu xem một DFA như một đồ thị có hướng, thì các trạng thái trong DFA tương ứng với các đỉnh trên đồ thị.
+    2.  **Bảng chữ cái** $\Sigma$. Automaton này chỉ có thể nhận các ký tự này làm đầu vào.
+    3.  **Hàm chuyển** $\delta:Q\times \Sigma \to Q$ là một hàm nhận hai tham số và trả về một giá trị; tham số thứ nhất và giá trị trả về đều là một trạng thái, tham số thứ hai là một ký tự trong bảng chữ cái. Nếu xem một DFA như một đồ thị có hướng, thì hàm chuyển của DFA tương ứng với các cạnh giữa các đỉnh, và trên mỗi cạnh có một ký tự.
+    4.  **Trạng thái khởi đầu** $q_0\in Q$ là một trạng thái đặc biệt. Trong các bài viết khác nhau, trạng thái khởi đầu thường được ký hiệu là $s$, $\textit{start}$ hoặc $q_0$; trong bài này dùng $q_0$.
+    5.  **Tập trạng thái chấp nhận** $F\subseteq Q$ là một nhóm trạng thái đặc biệt.
 
-DFA 可以简单地用以下结构体表示：
+DFA có thể được biểu diễn đơn giản bằng cấu trúc dữ liệu sau:
 
-???+ example "参考实现"
+???+ example "Hiện thực tham khảo"
     ```cpp
     --8<-- "docs/misc/code/fsm/dfa.hpp:dfa"
     ```
 
-求出输入串 $w$ 在 DFA 中的状态序列，并判断它是否被接受的过程称为 **计算**．
+Quá trình tìm dãy trạng thái của xâu đầu vào $w$ trong DFA và phán định nó có được chấp nhận hay không được gọi là **tính toán**.
 
-???+ abstract "DFA 的计算流程"
-    设 $M=(Q,\Sigma,\delta,q_0,F)$ 是一个 DFA，$w=w_1w_2\cdots w_n\in\Sigma^*$ 是一个串．若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_n$ 满足
+???+ abstract "Quy trình tính toán của DFA"
+    Giả sử $M=(Q,\Sigma,\delta,q_0,F)$ là một DFA, $w=w_1w_2\cdots w_n\in\Sigma^*$ là một xâu. Nếu tồn tại dãy trạng thái $r_0,r_1,\cdots,r_n$ trong $Q$ thỏa mãn
     
-    -   $r_0=q_0$，
-    -   $\delta(r_i,w_{i+1})=r_{i+1}$ 对于任何 $i=0,1,\cdots,n-1$ 都成立，
-    -   $r_n\in F$，
+    -   $r_0=q_0$,
+    -   $\delta(r_i,w_{i+1})=r_{i+1}$ đúng với mọi $i=0,1,\cdots,n-1$,
+    -   $r_n\in F$,
     
-    则称 $M$  **接受**（accepts）$w$．反之，则称 $M$  **不接受**  $w$．
+    thì nói rằng $M$ **chấp nhận** (accepts) $w$. Ngược lại, nói rằng $M$ **không chấp nhận** $w$.
 
-当一个 DFA 读入一个字符串时，从初始状态起按照转移函数一个一个字符地转移．如果读入完一个字符串的所有字符后位于一个接受状态，那么我们称这个 DFA **接受** 这个字符串，反之我们称这个 DFA **不接受** 这个字符串．
+Khi một DFA đọc một chuỗi, nó bắt đầu từ trạng thái ban đầu và chuyển trạng thái theo từng ký tự dựa trên hàm chuyển. Nếu sau khi đọc hết mọi ký tự của chuỗi mà nó nằm ở một trạng thái chấp nhận, ta nói DFA này **chấp nhận** chuỗi đó; ngược lại, ta nói DFA này **không chấp nhận** chuỗi đó.
 
-???+ abstract "形式语言"
-    字符集合 $\Sigma$ 上的一个 **形式语言**（language），或简称 **语言**，是 $\Sigma$ 上字符串的一个集合 $L$．
+???+ abstract "Ngôn ngữ hình thức"
+    Một **ngôn ngữ hình thức** (language), hay gọi tắt là **ngôn ngữ**, trên tập ký tự $\Sigma$ là một tập hợp các chuỗi trên $\Sigma$, ký hiệu là $L$.
 
-???+ abstract "自动机识别的语言"
-    对于一个自动机 $M$，它识别的语言 $L(M)$ 就定义为它接受的全部子串的集合 $\{w\mid M\text{ accepts }w\}$．
+???+ abstract "Ngôn ngữ được automaton nhận dạng"
+    Với một automaton $M$, ngôn ngữ $L(M)$ mà nó nhận dạng được định nghĩa là tập tất cả các chuỗi mà nó chấp nhận: $\{w\mid M\text{ accepts }w\}$.
 
-并非所有的语言都可以通过 DFA 识别．
+Không phải mọi ngôn ngữ đều có thể được nhận dạng bởi DFA.
 
-???+ abstract "正则语言"
-    如果一个语言能由某个 DFA 识别，则称它为 **正则语言**（regular language），也称为正规语言．
+???+ abstract "Ngôn ngữ chính quy"
+    Nếu một ngôn ngữ có thể được nhận dạng bởi một DFA nào đó, thì gọi nó là **ngôn ngữ chính quy** (regular language).
 
-上文提到过，一个自动机可以由状态图表示出来．如下是一个接受且仅接受字符串 $\tt a$、$\tt ab$、$\tt aac$ 的 DFA：
+Như đã nói ở trên, một automaton có thể được biểu diễn bằng đồ thị trạng thái. Sau đây là một DFA chấp nhận và chỉ chấp nhận các chuỗi $\tt a$, $\tt ab$, $\tt aac$:
 
 ![](./images/fsm3.svg)
 
-（图中省略了失配状态，所有未画出的转移均指向该失配状态）
+(Trong hình đã lược bỏ trạng thái thất bại; mọi chuyển trạng thái không được vẽ đều trỏ tới trạng thái thất bại đó.)
 
-## 非确定性有限状态自动机
+## Automaton trạng thái hữu hạn không xác định
 
-**非确定性有限状态自动机**[^nfa-and-nfaepsilon]（Nondeterministic Finite Automaton，NFA）是 DFA 的自然推广．在 NFA 中，对于任意状态和任意字符，都可能存在零个、一个或多个后继状态．同时，本节讨论的 NFA 允许接受空字符，也就是说，可以在不消耗任何字符的情况下，由一个状态转移到它的某个后继状态．
+**Automaton trạng thái hữu hạn không xác định**[^nfa-and-nfaepsilon] (Nondeterministic Finite Automaton, NFA) là mở rộng tự nhiên của DFA. Trong NFA, với một trạng thái bất kỳ và một ký tự bất kỳ, có thể tồn tại không, một hoặc nhiều trạng thái kế tiếp. Đồng thời, NFA được thảo luận trong mục này cho phép nhận ký tự rỗng, nghĩa là có thể chuyển từ một trạng thái sang một trạng thái kế tiếp nào đó mà không tiêu thụ ký tự nào.
 
-举个例子，还是「奶茶自动机」．下单后，尽管有奶茶的钱，却有可能因为网络不佳从而没有买到奶茶，这是存在多个后继；也有可能因为手速慢了，尽管输入的串（即操作序列）是一样的，却因为奶茶售完从而没有买到奶茶，这就是空字符的存在，空字符可走可不走．对前文的自动机稍加修改即可实现上述功能：
+Ví dụ, vẫn là "automaton trà sữa". Sau khi đặt hàng, dù có tiền mua trà sữa, vẫn có thể vì mạng kém mà không mua được trà sữa, đây là trường hợp tồn tại nhiều trạng thái kế tiếp; cũng có thể vì thao tác chậm, dù chuỗi đầu vào (tức dãy thao tác) là như nhau, nhưng trà sữa đã bán hết nên không mua được, đây là sự tồn tại của ký tự rỗng: cạnh ký tự rỗng có thể đi hoặc không đi. Chỉ cần sửa nhẹ automaton ở trên là có thể mô tả các chức năng này:
 
 ![order nfa](./images/fsm4.svg)
 
-显然，所有的 DFA 都是一个 NFA，所以 NFA 至少可以识别所有正则语言．但是，作为 DFA 的一个扩展，NFA 是否能够识别更多的语言呢？其实不然，我们之后将探讨 DFA 与 NFA 的等价性．
+Rõ ràng mọi DFA đều là một NFA, nên NFA ít nhất có thể nhận dạng mọi ngôn ngữ chính quy. Nhưng với vai trò là một mở rộng của DFA, liệu NFA có thể nhận dạng nhiều ngôn ngữ hơn không? Thực ra là không; sau đây ta sẽ bàn về tính tương đương giữa DFA và NFA.
 
 ???+ abstract "NFA"
-    令 $\mathcal{P}(Q)$ 表示 $Q$ 的幂集．令 $\varepsilon\notin\Sigma$ 表示空串，并记 $\Sigma_\varepsilon = \Sigma\cup\{\varepsilon\}$．NFA 是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，包括：
+    Gọi $\mathcal{P}(Q)$ là tập lũy thừa của $Q$. Gọi $\varepsilon\notin\Sigma$ là xâu rỗng, và ký hiệu $\Sigma_\varepsilon = \Sigma\cup\{\varepsilon\}$. NFA là một bộ năm $(Q,\Sigma,\delta,q_0,F)$, bao gồm:
     
-    1.  **有限状态集合**  $Q$，
-    2.  **字符集** $\Sigma$，
-    3.  **转移函数** $\delta:Q\times \Sigma_{\varepsilon} \to \mathcal{P}(Q)$，一个接受两个参数返回一个 **状态集合** 的函数，其中第一个参数是一个状态，第二个参数是字符集中的一个字符，而返回值则是所有可能的后继状态形成的集合（可能为空），
-    4.  **起始状态**  $q_0\in Q$，
-    5.  **接受状态集合**  $F\subseteq Q$．
+    1.  **Tập trạng thái hữu hạn** $Q$,
+    2.  **Bảng chữ cái** $\Sigma$,
+    3.  **Hàm chuyển** $\delta:Q\times \Sigma_{\varepsilon} \to \mathcal{P}(Q)$, một hàm nhận hai tham số và trả về một **tập trạng thái**; tham số thứ nhất là một trạng thái, tham số thứ hai là một ký tự trong bảng chữ cái, còn giá trị trả về là tập hợp gồm tất cả các trạng thái kế tiếp có thể có (có thể rỗng),
+    4.  **Trạng thái khởi đầu** $q_0\in Q$,
+    5.  **Tập trạng thái chấp nhận** $F\subseteq Q$.
 
-NFA 的计算过程，相当于同时运行多个 DFA．每一步操作都穷举所有的可能性，最后，只要有一条分支到达了接受状态，NFA 就接受整个串．
+Quá trình tính toán của NFA tương đương với việc chạy nhiều DFA cùng lúc. Mỗi bước đều liệt kê mọi khả năng; cuối cùng, chỉ cần có một nhánh đi tới trạng thái chấp nhận thì NFA chấp nhận toàn bộ chuỗi.
 
-???+ abstract "NFA 的计算流程"
-    设 $N=(Q,\Sigma,\delta,q_0,F)$ 是一个 NFA，串 $w$ 可以表示为 $y_1y_2\cdots y_m\in\Sigma^*_\varepsilon$．若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_m$ 满足
+???+ abstract "Quy trình tính toán của NFA"
+    Giả sử $N=(Q,\Sigma,\delta,q_0,F)$ là một NFA, chuỗi $w$ có thể được biểu diễn thành $y_1y_2\cdots y_m\in\Sigma^*_\varepsilon$. Nếu tồn tại dãy trạng thái $r_0,r_1,\cdots,r_m$ trong $Q$ thỏa mãn
     
-    -   $r_0=q_0$，
-    -   $r_{i+1}\in\delta(r_i,y_{i+1})$ 对于任何 $i=0,1,\cdots,m-1$ 都成立，
-    -   $r_m\in F$，
+    -   $r_0=q_0$,
+    -   $r_{i+1}\in\delta(r_i,y_{i+1})$ đúng với mọi $i=0,1,\cdots,m-1$,
+    -   $r_m\in F$,
     
-    则称 $N$  **接受**  $w$．反之，则称 $N$  **不接受**  $w$．
+    thì nói rằng $N$ **chấp nhận** $w$. Ngược lại, nói rằng $N$ **không chấp nhận** $w$.
 
-由于允许空字符，将串 $w$ 表示为 $y_1y_2\cdots y_m\in\Sigma^*_\varepsilon$ 时，可以插入任意多的空字符．例如，字符串 $\texttt{abc}$ 可以表示为 $\texttt{a}\varepsilon\texttt{bc}\varepsilon\varepsilon\in\Sigma^*_\varepsilon$．相较于 DFA 的每一次输入只对应一个结果，而 NFA 的每次输入可能对应多个结果，形成一个结果集．
+Do cho phép ký tự rỗng, khi biểu diễn chuỗi $w$ thành $y_1y_2\cdots y_m\in\Sigma^*_\varepsilon$, ta có thể chèn tùy ý nhiều ký tự rỗng. Ví dụ, chuỗi $\texttt{abc}$ có thể được biểu diễn thành $\texttt{a}\varepsilon\texttt{bc}\varepsilon\varepsilon\in\Sigma^*_\varepsilon$. So với DFA, trong đó mỗi đầu vào chỉ tương ứng với một kết quả, mỗi đầu vào của NFA có thể tương ứng với nhiều kết quả và tạo thành một tập kết quả.
 
-## DFA 与 NFA 的等价性
+## Tính tương đương giữa DFA và NFA
 
-我们称两个自动机等价，当且仅当它们能识别的语言相同．DFA 与 NFA 是等价的，即每一个 NFA 都等价于某一个 DFA；因此，NFA 识别的语言类也是全体正则语言．每个 DFA 都可以直接看作一个 NFA；反过来，可以通过 **幂集构造**（powerset construction）的方法将一个 NFA 转换为 DFA．
+Ta nói hai automaton là tương đương khi và chỉ khi chúng nhận dạng cùng một ngôn ngữ. DFA và NFA là tương đương, tức là mỗi NFA đều tương đương với một DFA nào đó; vì vậy, lớp ngôn ngữ mà NFA nhận dạng được cũng chính là toàn bộ ngôn ngữ chính quy. Mỗi DFA có thể được xem trực tiếp như một NFA; ngược lại, có thể chuyển một NFA thành DFA bằng phương pháp **xây dựng tập lũy thừa** (powerset construction).
 
-???+ abstract "幂集构造"
-    假设 NFA 为 $N = (Q, \Sigma, \delta, q_0, F)$．定义 $E(q)$ 表示从状态 $q$ 出发，只沿 $\varepsilon$ 转移能到达的状态集合．
+???+ abstract "Xây dựng tập lũy thừa"
+    Giả sử NFA là $N = (Q, \Sigma, \delta, q_0, F)$. Định nghĩa $E(q)$ là tập trạng thái có thể đi tới từ trạng thái $q$ nếu chỉ đi theo các chuyển $\varepsilon$.
     
-    构造 DFA 为 $M = (Q', \Sigma, \delta', E(q_0), F')$，其中：
+    Xây dựng DFA $M = (Q', \Sigma, \delta', E(q_0), F')$, trong đó:
     
-    -   **有限状态集合**  $Q' = \mathcal{P}(Q)$，
-    -   **转移函数** $\delta' : Q' \times \Sigma \to Q'$ 满足 $\delta'(S, c) = \bigcup_{q \in S,~q' \in \delta(q, c)} E(q')$，
-    -   **接受状态集合**  $F' = \{ S \subseteq Q \mid S \cap F \neq \varnothing \}$．
+    -   **Tập trạng thái hữu hạn** $Q' = \mathcal{P}(Q)$,
+    -   **Hàm chuyển** $\delta' : Q' \times \Sigma \to Q'$ thỏa $\delta'(S, c) = \bigcup_{q \in S,~q' \in \delta(q, c)} E(q')$,
+    -   **Tập trạng thái chấp nhận** $F' = \{ S \subseteq Q \mid S \cap F \neq \varnothing \}$.
     
-    显然，计算的每一步中，$M$ 所在的状态都对应 $N$ 可能处于的状态集合．
+    Hiển nhiên, ở mỗi bước tính toán, trạng thái của $M$ tương ứng với tập các trạng thái mà $N$ có thể đang ở.
 
-虽然 NFA 与 DFA 识别语言的能力相同，但 NFA 仍然是有用的．这是因为对于某些正则语言，用 NFA 表示所需的状态数远小于 DFA 所需的状态数．例如，可以构造出一个状态数为 $n$ 的 NFA 使得它对应的最小 DFA 状态数是 $\Theta(2^n)$ 的．此时直接计算 NFA 的时间复杂度是更优的．
+Dù NFA và DFA có cùng khả năng nhận dạng ngôn ngữ, NFA vẫn hữu ích. Lý do là với một số ngôn ngữ chính quy, số trạng thái cần để biểu diễn bằng NFA nhỏ hơn rất nhiều so với số trạng thái cần cho DFA. Ví dụ, có thể dựng một NFA có $n$ trạng thái sao cho DFA nhỏ nhất tương ứng với nó có $\Theta(2^n)$ trạng thái. Khi đó tính toán trực tiếp trên NFA có độ phức tạp thời gian tốt hơn.
 
-## 计算 DFA 与 NFA 的时间复杂度
+## Độ phức tạp thời gian khi tính toán DFA và NFA
 
-设给定的串长为 $n$，自动机状态数为 $s$，字符集大小为常数．那么显然地，DFA 计算的时间复杂度为 $O(n)$，只需要模拟上述的过程即可．
+Giả sử độ dài chuỗi cho trước là $n$, số trạng thái của automaton là $s$, và kích thước bảng chữ cái là hằng số. Khi đó hiển nhiên độ phức tạp thời gian để tính toán DFA là $O(n)$, chỉ cần mô phỏng quá trình nêu trên.
 
-朴素计算 NFA 的时间复杂度为 $O(ns^2)$，这是因为需要考虑到每一种后继，以及状态的合并所需的复杂度．当然，可以使用 bitset 或者 Method of Four Russians 将计算的复杂度优化到 $O\left(\dfrac{ns^2}{w}\right)$ 或 $O\left(\dfrac{ns^2}{w\cdot \log n}\right)$．
+Tính toán NFA một cách đơn giản có độ phức tạp $O(ns^2)$, vì cần xét mọi trạng thái kế tiếp và chi phí hợp nhất các trạng thái. Tất nhiên, có thể dùng bitset hoặc Method of Four Russians để tối ưu độ phức tạp tính toán xuống $O\left(\dfrac{ns^2}{w}\right)$ hoặc $O\left(\dfrac{ns^2}{w\cdot \log n}\right)$.
 
-## 正则表达式与正则语言
+## Biểu thức chính quy và ngôn ngữ chính quy
 
-本节将讨论正则表达式和正则语言的定义、性质，并研究正则表达式与 FSM 的关系．
+Mục này sẽ thảo luận định nghĩa và tính chất của biểu thức chính quy, ngôn ngữ chính quy, đồng thời nghiên cứu quan hệ giữa biểu thức chính quy và FSM.
 
-### 正则表达式
+### Biểu thức chính quy
 
-**正则表达式**（regular expression）是另一种常用的正则语言的描述方法．尽管我们可以在许多现代语言（例如 Python）中看到这个名字，但实际上这些语言实现的是正则表达式的一个超集．
+**Biểu thức chính quy** (regular expression) là một cách mô tả ngôn ngữ chính quy thường dùng khác. Dù ta có thể thấy tên gọi này trong nhiều ngôn ngữ hiện đại (ví dụ Python), thực ra các ngôn ngữ đó hiện thực một siêu tập của biểu thức chính quy.
 
-???+ abstract "正则表达式"
-    给定一个字符集 $\Sigma$，正则表达式是由以下规则归纳定义的符号串：
+???+ abstract "Biểu thức chính quy"
+    Với một bảng chữ cái $\Sigma$ cho trước, biểu thức chính quy là các chuỗi ký hiệu được định nghĩa quy nạp bởi các quy tắc sau:
     
-    1.  任意字符 $c \in \Sigma$ 是一个正则表达式；
-    2.  空串符号 $\varepsilon$ 是正则表达式；
-    3.  空语言符号 $\varnothing$ 是正则表达式；
-    4.  如果 $R_1$ 和 $R_2$ 是正则表达式，那么 $(R_1 + R_2)$、$(R_1 R_2)$（也记作 $(R_1 \cdot R_2)$）、$(R_1^\ast)$ 都是正则表达式．
+    1.  Mọi ký tự $c \in \Sigma$ là một biểu thức chính quy;
+    2.  Ký hiệu xâu rỗng $\varepsilon$ là biểu thức chính quy;
+    3.  Ký hiệu ngôn ngữ rỗng $\varnothing$ là biểu thức chính quy;
+    4.  Nếu $R_1$ và $R_2$ là biểu thức chính quy, thì $(R_1 + R_2)$, $(R_1 R_2)$ (cũng viết là $(R_1 \cdot R_2)$), $(R_1^\ast)$ đều là biểu thức chính quy.
 
-正则表达式的目标是通过这些符号描述一个语言．每个正则表达式都有一个对应的形式语言．
+Mục tiêu của biểu thức chính quy là mô tả một ngôn ngữ bằng các ký hiệu này. Mỗi biểu thức chính quy đều có một ngôn ngữ hình thức tương ứng.
 
-???+ abstract "正则表达式所表示的语言"
-    设每个正则表达式 $R$ 对应的形式语言为 $L(R)$，则有：
+???+ abstract "Ngôn ngữ được biểu thức chính quy biểu diễn"
+    Giả sử mỗi biểu thức chính quy $R$ tương ứng với ngôn ngữ hình thức $L(R)$, ta có:
     
-    1.  若 $R = c$，其中 $c \in \Sigma$，则 $L(R) = \{c\}$；
-    2.  若 $R = \varepsilon$，则 $L(R) = \{\varepsilon\}$；
-    3.  若 $R = \varnothing$，则 $L(R) = \varnothing$；
-    4.  若 $R = (R_1 + R_2)$，则 $L(R) = L(R_1) \cup L(R_2)$；
-    5.  若 $R = (R_1 R_2) = (R_1\cdot R_2)$，则 $L(R) = \{ uv \mid u \in L(R_1),~ v \in L(R_2) \}$，其中，$uv$ 指将两个串前后拼接在一起；
-    6.  若 $R = (R_1^\ast)$，则 $L(R) = \{u_1 u_2 \cdots u_n \mid u_i \in L(R_1),\ n \in \mathbf{N}_+\}\cup\{\varepsilon\}$，也称为 **Kleene 星号**（Kleene 星号）或 **Kleene closure**（Kleene 闭包），简称闭包．
+    1.  Nếu $R = c$, trong đó $c \in \Sigma$, thì $L(R) = \{c\}$;
+    2.  Nếu $R = \varepsilon$, thì $L(R) = \{\varepsilon\}$;
+    3.  Nếu $R = \varnothing$, thì $L(R) = \varnothing$;
+    4.  Nếu $R = (R_1 + R_2)$, thì $L(R) = L(R_1) \cup L(R_2)$;
+    5.  Nếu $R = (R_1 R_2) = (R_1\cdot R_2)$, thì $L(R) = \{ uv \mid u \in L(R_1),~ v \in L(R_2) \}$, trong đó $uv$ chỉ việc nối hai chuỗi trước sau với nhau;
+    6.  Nếu $R = (R_1^\ast)$, thì $L(R) = \{u_1 u_2 \cdots u_n \mid u_i \in L(R_1),\ n \in \mathbf{N}_+\}\cup\{\varepsilon\}$, còn gọi là **ngôi sao Kleene** (Kleene star) hoặc **bao đóng Kleene** (Kleene closure), gọi tắt là bao đóng.
 
-当然，规定了运算的优先级后，这些小括号在不引起混淆时可以省略．
+Dĩ nhiên, sau khi quy định thứ tự ưu tiên của các phép toán, có thể lược bỏ các dấu ngoặc tròn này nếu không gây nhầm lẫn.
 
-???+ example "例子"
-    设 $L(R_1) = \{0,\ 01\}$，$L(R_2) = \{\varepsilon,\ 1,\ 11,\ 111,\ \dots\}$，则有：
+???+ example "Ví dụ"
+    Giả sử $L(R_1) = \{0,\ 01\}$, $L(R_2) = \{\varepsilon,\ 1,\ 11,\ 111,\ \dots\}$, ta có:
     
-    -   $L(R_1R_2) = \{0,\ 01,\ 011,\ 0111,\ \dots\}$，
-    -   $R_2^\ast = R_2$，
-    -   $L(R_1 + R_2) = \{0,\ 01,\ \varepsilon,\ 1,\ 11,\ 111,\ \dots\}$．
+    -   $L(R_1R_2) = \{0,\ 01,\ 011,\ 0111,\ \dots\}$,
+    -   $R_2^\ast = R_2$,
+    -   $L(R_1 + R_2) = \{0,\ 01,\ \varepsilon,\ 1,\ 11,\ 111,\ \dots\}$.
 
-每个正则表达式都可以通过 [Thompson 构造法](https://zh.wikipedia.org/wiki/%E6%B1%A4%E6%99%AE%E6%A3%AE%E6%9E%84%E9%80%A0%E6%B3%95)（Thompson's construction）转换为一个 NFA，每个 DFA 也都可以通过状态消除法[^state-elimination-method]（State Elimination Method）转换为一个正则表达式．所以，正则表达式与 FSM 是等价的．
+Mỗi biểu thức chính quy đều có thể được chuyển thành một NFA bằng [Thompson's construction](https://zh.wikipedia.org/wiki/%E6%B1%A4%E6%99%AE%E6%A3%AE%E6%9E%84%E9%80%A0%E6%B3%95). Mỗi DFA cũng có thể được chuyển thành một biểu thức chính quy bằng phương pháp loại bỏ trạng thái[^state-elimination-method] (State Elimination Method). Vì vậy, biểu thức chính quy và FSM là tương đương.
 
-### 正则语言
+### Ngôn ngữ chính quy
 
-在本小节中，我们不考虑具体的正则表达式，转而考虑以变量为参数的正则表达式（变量可以为任意正则语言）．运用正则表达式的代数定律有助于化简正则表达式．
+Trong tiểu mục này, ta không xét các biểu thức chính quy cụ thể, mà chuyển sang xét biểu thức chính quy có biến làm tham số (biến có thể là ngôn ngữ chính quy bất kỳ). Vận dụng các luật đại số của biểu thức chính quy giúp rút gọn biểu thức chính quy.
 
-???+ note "正则语言的代数性质"
-    1.  并的交换律：$L + M = M + L$
-    2.  并的结合律：$(L + M) + N = L + (M + N)$
-    3.  连接的结合律：$(LM)N = L(MN)$
-    4.  $\varnothing$ 是并运算的单位元：$\varnothing + L = L + \varnothing = L$
-    5.  $\varepsilon$ 是连接运算的单位元：$\varepsilon L = L \varepsilon = L$
-    6.  $\varnothing$ 是连接运算的零因子：$\varnothing L = L \varnothing = \varnothing$
-    7.  分配律：$L(M + N) = LM + LN$，$(M + N)L = ML + NL$
-    8.  并的幂等律：$L + L = L$
-    9.  闭包相关的定律：$(L^\ast)^\ast = L^\ast$，$\varnothing^\ast = \varepsilon$，$\varepsilon^\ast = \varepsilon$
+???+ note "Tính chất đại số của ngôn ngữ chính quy"
+    1.  Tính giao hoán của hợp: $L + M = M + L$
+    2.  Tính kết hợp của hợp: $(L + M) + N = L + (M + N)$
+    3.  Tính kết hợp của phép nối: $(LM)N = L(MN)$
+    4.  $\varnothing$ là phần tử đơn vị của phép hợp: $\varnothing + L = L + \varnothing = L$
+    5.  $\varepsilon$ là phần tử đơn vị của phép nối: $\varepsilon L = L \varepsilon = L$
+    6.  $\varnothing$ là phần tử hấp thụ của phép nối: $\varnothing L = L \varnothing = \varnothing$
+    7.  Luật phân phối: $L(M + N) = LM + LN$, $(M + N)L = ML + NL$
+    8.  Tính lũy đẳng của hợp: $L + L = L$
+    9.  Các luật liên quan đến bao đóng: $(L^\ast)^\ast = L^\ast$, $\varnothing^\ast = \varepsilon$, $\varepsilon^\ast = \varepsilon$
 
-正则语言的 **封闭性** 也是重要的性质．这些性质允许我们从一些简单的自动机出发，通过一定的运算，构造能够识别另一些语言的有限状态机（FSM）．简而言之，封闭性可以作为构造复杂 FSM 的工具．
+**Tính đóng** của ngôn ngữ chính quy cũng là một tính chất quan trọng. Các tính chất này cho phép ta xuất phát từ một số automaton đơn giản, thông qua một số phép toán, xây dựng các máy trạng thái hữu hạn (FSM) có thể nhận dạng những ngôn ngữ khác. Nói ngắn gọn, tính đóng có thể được dùng như công cụ để xây dựng FSM phức tạp.
 
-关于正则语言的封闭性，我们有：
+Về tính đóng của ngôn ngữ chính quy, ta có:
 
-???+ note "正则语言的封闭性"
-    设 $L,M$ 为字符集 $\Sigma$ 上的两个正则语言，且映射 $h:\Sigma\to\Sigma^*$．定义字符串 $s=s_1s_2\cdots s_n$ 的同态为 $h(s)=h(s_1)h(s_2)\cdots h(s_n)$．那么，
+???+ note "Tính đóng của ngôn ngữ chính quy"
+    Giả sử $L,M$ là hai ngôn ngữ chính quy trên bảng chữ cái $\Sigma$, và ánh xạ $h:\Sigma\to\Sigma^*$. Định nghĩa đồng cấu của chuỗi $s=s_1s_2\cdots s_n$ là $h(s)=h(s_1)h(s_2)\cdots h(s_n)$. Khi đó,
     
-    1.  两个正则语言的并 $L + M$ 是正则的，
-    2.  两个正则语言的连接 $LM$ 是正则的，
-    3.  正则语言的闭包 $L^*$ 是正则的，
-    4.  正则语言的补 $\Sigma^*\setminus L$ 是正则的，
-    5.  两个正则语言的交 $L\cap M$ 是正则的，
-    6.  两个正则语言的差 $L\setminus M$ 是正则的，
-    7.  正则语言的反转 $L^R=\{s_n\cdots s_2s_1 \mid s=s_1s_2\cdots s_n\in L\}$ 是正则的，
-    8.  正则语言的同态 $h(L)=\{h(s)\mid s\in L\}$ 是正则的，
-    9.  正则语言的逆同态 $h^{-1}(L) = \{ s \in \Sigma^\ast \mid h(s) \in L \}$ 是正则的．
+    1.  Hợp $L + M$ của hai ngôn ngữ chính quy là chính quy,
+    2.  Phép nối $LM$ của hai ngôn ngữ chính quy là chính quy,
+    3.  Bao đóng $L^*$ của ngôn ngữ chính quy là chính quy,
+    4.  Phần bù $\Sigma^*\setminus L$ của ngôn ngữ chính quy là chính quy,
+    5.  Giao $L\cap M$ của hai ngôn ngữ chính quy là chính quy,
+    6.  Hiệu $L\setminus M$ của hai ngôn ngữ chính quy là chính quy,
+    7.  Đảo ngược $L^R=\{s_n\cdots s_2s_1 \mid s=s_1s_2\cdots s_n\in L\}$ của ngôn ngữ chính quy là chính quy,
+    8.  Đồng cấu $h(L)=\{h(s)\mid s\in L\}$ của ngôn ngữ chính quy là chính quy,
+    9.  Nghịch đồng cấu $h^{-1}(L) = \{ s \in \Sigma^\ast \mid h(s) \in L \}$ của ngôn ngữ chính quy là chính quy.
 
-一个简单的推论是，所有的有限语言都是正则语言．实际上，[字典树 Trie](../string/trie.md) 就是一个识别它们的自动机．
+Một hệ quả đơn giản là mọi ngôn ngữ hữu hạn đều là ngôn ngữ chính quy. Thực tế, [Trie](../string/trie.md) chính là một automaton nhận dạng chúng.
 
-## Myhill–Nerode 定理
+## Định lý Myhill-Nerode
 
-Myhill–Nerode 定理给出了一个语言是否是正则语言的判定标准．该定理通过等价类的概念描述了正则语言的结构特征．
+Định lý Myhill-Nerode đưa ra tiêu chuẩn để phán định một ngôn ngữ có phải ngôn ngữ chính quy hay không. Định lý này mô tả đặc trưng cấu trúc của ngôn ngữ chính quy thông qua khái niệm lớp tương đương.
 
-???+ abstract "Nerode 等价关系"
-    对于一个语言 $L$ 和任意串 $x,y\in \Sigma^\ast$，如果对于任意 $z\in\Sigma^*$，都有 $xz\in L\iff yz\in L$，那么，称字符串 $x$ 和 $y$ 关于 $L$ 是等价的，记作 $x\equiv_L y$．
+???+ abstract "Quan hệ tương đương Nerode"
+    Với một ngôn ngữ $L$ và hai chuỗi bất kỳ $x,y\in \Sigma^\ast$, nếu với mọi $z\in\Sigma^*$ đều có $xz\in L\iff yz\in L$, thì nói rằng hai chuỗi $x$ và $y$ tương đương đối với $L$, ký hiệu $x\equiv_L y$.
 
-也就是说，如果对于两个串 $x$ 与 $y$，在 $x$ 和 $y$ 后面拼上相同的任意串 $z$（包括空串），它们总是要么同时属于 $L$ 或者同时不属于 $L$ 的，则我们说 $x$ 与 $y$ 关于 $L$ 等价．
+Nói cách khác, nếu với hai chuỗi $x$ và $y$, khi nối cùng một chuỗi tùy ý $z$ (kể cả xâu rỗng) vào sau $x$ và $y$, chúng luôn hoặc cùng thuộc $L$ hoặc cùng không thuộc $L$, thì ta nói $x$ và $y$ tương đương đối với $L$.
 
-根据上述定义，我们把所有有限字符串的集合划分成一个或多个等价类．当且仅当这些等价类的数目只有有限多个时，可以利用这些等价类构造一个识别该语言的 DFA．这个 DFA 的状态数目就等于等价类的数目．而且，这个状态数目是所有能够识别该语言的 DFA 中最小的．这就是 Myhill–Nerode 定理．
+Theo định nghĩa trên, ta chia tập mọi chuỗi hữu hạn thành một hoặc nhiều lớp tương đương. Khi và chỉ khi số lớp tương đương này là hữu hạn, ta có thể dùng các lớp tương đương đó để xây dựng một DFA nhận dạng ngôn ngữ này. Số trạng thái của DFA đó bằng số lớp tương đương. Hơn nữa, số trạng thái này là nhỏ nhất trong mọi DFA có thể nhận dạng ngôn ngữ đó. Đây chính là định lý Myhill-Nerode.
 
-???+ note "Myhill–Nerode 定理"
-    一个语言 $L$ 是正则的，当且仅当 $\Sigma^\ast$ 通过等价关系 $\equiv_L$ 划分成的等价类数量是有限的．
+???+ note "Định lý Myhill-Nerode"
+    Một ngôn ngữ $L$ là chính quy khi và chỉ khi số lượng lớp tương đương thu được bằng cách chia $\Sigma^\ast$ theo quan hệ tương đương $\equiv_L$ là hữu hạn.
     
-    对于任何能识别语言 $L$ 的 DFA，任意两个能驱使它走到同一个状态的串 $x$ 和 $y$ 必在同一个等价类中．
+    Với mọi DFA nhận dạng ngôn ngữ $L$, hai chuỗi bất kỳ $x$ và $y$ khiến nó đi tới cùng một trạng thái chắc chắn nằm trong cùng một lớp tương đương.
     
-    进而，等价类的数量就是可以识别 $L$ 的最小 DFA 的状态数量．每个等价类都恰好对应最小 DFA 里的一个状态．这个最小 DFA 在同构意义下是唯一的．
+    Do đó, số lượng lớp tương đương chính là số trạng thái của DFA nhỏ nhất có thể nhận dạng $L$. Mỗi lớp tương đương tương ứng đúng với một trạng thái trong DFA nhỏ nhất. DFA nhỏ nhất này là duy nhất theo nghĩa đẳng cấu.
 
-这个定理提供了一种方法，能够利用等价关系构造 DFA：
+Định lý này cung cấp một phương pháp dùng quan hệ tương đương để xây dựng DFA:
 
--   状态集合，就是根据等价关系划分得到的所有等价类．每个等价类都随意选定一个代表字符串（例如某个串长最小的串）．
--   要构造转移函数，只需要将选定的代表字符串后面添加转移中的字符，并找到得到的字符串所在等价类对应的状态，就是相应的转移的后继状态．因为同一等价类中，所有字符串都是等价的，所以任意选定的代表字符串并不会影响转移的结果．
--   初始状态，就是空字符串 $\varepsilon$ 对应的等价类．
--   接受状态集合，就是代表字符串属于所给语言的等价类的集合．
+-   Tập trạng thái là tất cả các lớp tương đương thu được từ phép chia theo quan hệ tương đương. Với mỗi lớp tương đương, chọn tùy ý một chuỗi đại diện (ví dụ một chuỗi có độ dài nhỏ nhất).
+-   Để xây dựng hàm chuyển, chỉ cần thêm ký tự chuyển vào sau chuỗi đại diện đã chọn, rồi tìm trạng thái tương ứng với lớp tương đương chứa chuỗi thu được; đó chính là trạng thái kế tiếp của chuyển tương ứng. Vì mọi chuỗi trong cùng một lớp tương đương đều tương đương, nên việc chọn tùy ý chuỗi đại diện không ảnh hưởng đến kết quả chuyển.
+-   Trạng thái ban đầu là lớp tương đương tương ứng với xâu rỗng $\varepsilon$.
+-   Tập trạng thái chấp nhận là tập các lớp tương đương mà chuỗi đại diện thuộc ngôn ngữ đã cho.
 
-作为一个经典的例子，[后缀自动机](../string/sam.md) 就是利用 Myhill–Nerode 定理构造出的最小 DFA．
+Một ví dụ kinh điển là [suffix automaton](../string/sam.md), được xây dựng thành DFA nhỏ nhất bằng định lý Myhill-Nerode.
 
-Myhill–Nerode 定理通常应用于一些无限大的正则语言对应的 DFA 的构造．很多时候，问题的条件比较简单，只需要考察长度不太长的字符串的集合，就可以构造出识别整个语言的自动机．
+Định lý Myhill-Nerode thường được áp dụng để xây dựng DFA tương ứng với một số ngôn ngữ chính quy vô hạn. Trong nhiều trường hợp, điều kiện của bài toán khá đơn giản; chỉ cần khảo sát tập các chuỗi có độ dài không quá lớn là đã có thể xây dựng automaton nhận dạng toàn bộ ngôn ngữ.
 
-### 例题
+### Ví dụ
 
-本节通过一道例题介绍如何实际应用 Myhill–Nerode 定理．
+Mục này giới thiệu cách áp dụng thực tế định lý Myhill-Nerode thông qua một bài ví dụ.
 
-???+ example "[P12294 \[THUPC 2025 决赛\] 一个 01 串，n 次三目运算符，最后值为 1（加强版）](https://www.luogu.com.cn/problem/P12294)"
-    关于 $a,b,c$ 的三目运算表 $s_0s_1\cdots s_7$（$s$ 仅由 $0,1$ 组成）的含义是，如果 $s$ 的第 $a+2b+4c$ 位为 $1$，那么返回 $1$，否则返回 $0$．
+???+ example "[P12294 \[THUPC 2025 Final\] Một xâu 01, n lần toán tử ba ngôi, giá trị cuối là 1 (bản tăng cường)](https://www.luogu.com.cn/problem/P12294)"
+    Bảng toán tử ba ngôi $s_0s_1\cdots s_7$ (trong đó $s$ chỉ gồm $0,1$) theo các biến $a,b,c$ có ý nghĩa như sau: nếu bit thứ $a+2b+4c$ của $s$ là $1$, thì trả về $1$, ngược lại trả về $0$.
     
-    给定运算表 $s$ 以及 $q$ 个长为 $2n+1$ 的 $01$ 串，你需要对于对每个 $01$ 串分别回答：
+    Cho bảng toán tử $s$ và $q$ chuỗi $01$ có độ dài $2n+1$, với mỗi chuỗi $01$ bạn cần trả lời riêng:
     
-    能否操作 $n$ 次，每次将三位连续的数字替换为所对应的运算值，使得运算的结果为 $1$，给出方案，或判断无解．
+    Có thể thực hiện $n$ lần thao tác, mỗi lần thay ba chữ số liên tiếp bằng giá trị phép toán tương ứng, sao cho kết quả phép toán là $1$ hay không; hãy đưa ra phương án, hoặc phán định vô nghiệm.
     
-    $1\le 2n+1\le 10^5,~\sum(2n+1)\le 3\times 10^5$．
+    $1\le 2n+1\le 10^5,~\sum(2n+1)\le 3\times 10^5$.
 
-??? note "题解"
-    能够合成出 $1$ 的 $01$ 串集合是一个正则语言（也就是存在一个 DFA 能够判定一个 $01$ 串能否合成出 $1$）[^prove-regular-language]．故考虑使用 Myhill–Nerode 定理．因为条件比较简单，经过实验，我们只需要对于长度 $\le 9$ 的 $01$ 串进行等价类划分；判定两个串等价时，只需要往后枚举长度 $\le 6$ 的后缀进行判定．只要两个串，接上长度 $\le 6$ 的任意后缀，它们要么能够同时合成出我们想要的串，要么两个都不能合成我们想要的串，那么这两个串就是等价的．
+??? note "Lời giải"
+    Tập các chuỗi $01$ có thể tổng hợp ra $1$ là một ngôn ngữ chính quy (tức là tồn tại một DFA có thể phán định một chuỗi $01$ có thể tổng hợp ra $1$ hay không)[^prove-regular-language]. Vì vậy xét dùng định lý Myhill-Nerode. Do điều kiện khá đơn giản, qua thực nghiệm ta chỉ cần chia lớp tương đương cho các chuỗi $01$ có độ dài $\le 9$; khi phán định hai chuỗi có tương đương không, chỉ cần liệt kê thêm các hậu tố có độ dài $\le 6$ để kiểm tra. Chỉ cần với hai chuỗi, sau khi nối vào mọi hậu tố có độ dài $\le 6$, chúng hoặc đều có thể tổng hợp ra chuỗi ta muốn, hoặc đều không thể tổng hợp ra chuỗi ta muốn, thì hai chuỗi đó là tương đương.
     
-    每次转移都相当于在当前串后面添加一个新的 $01$ 字符，然后将这个新串变为这个新串所在等价类中串长最小的串．根据上述转移设计一个自动机．该自动机能够在 $O(n)$ 复杂度内判定一个长度为 $n$ 的串是否存在一种运算方式使得结果为 $1$．同时自动机的状态数非常少．
+    Mỗi lần chuyển tương đương với việc thêm một ký tự $01$ mới vào sau chuỗi hiện tại, rồi biến chuỗi mới này thành chuỗi có độ dài nhỏ nhất trong lớp tương đương chứa chuỗi mới đó. Dựa trên cách thiết kế chuyển này, ta xây dựng một automaton. Automaton này có thể phán định trong độ phức tạp $O(n)$ xem một chuỗi độ dài $n$ có tồn tại cách thực hiện phép toán để kết quả là $1$ hay không. Đồng thời số trạng thái của automaton rất ít.
     
-    为了方便，我们会建 $6$ 个自动机，这 $6$ 个自动机分别表示能否通过一种运算方式使得结果为 $0,1,00,01,10,11$．对于所有可能的运算表，自动机的最大状态数目为 $47$．
+    Để thuận tiện, ta sẽ dựng $6$ automaton; $6$ automaton này lần lượt biểu diễn việc có thể dùng một cách thực hiện phép toán để tạo ra $0,1,00,01,10,11$ hay không. Với mọi bảng toán tử có thể, số trạng thái lớn nhất của automaton là $47$.
     
-    利用自动机，通过适当的预处理，可以考虑使用倍增或者猫树实现静态区间查询区间是否存在一种运算方式使得结果为 $1$，前者查询一次是 $O(\log n)$，后者查询一次是 $O(1)$ 的．
+    Dùng automaton, thông qua tiền xử lý thích hợp, có thể dùng binary lifting hoặc cat tree để hiện thực truy vấn tĩnh trên đoạn: một đoạn có tồn tại cách thực hiện phép toán để kết quả là $1$ hay không. Cách trước truy vấn một lần là $O(\log n)$, cách sau truy vấn một lần là $O(1)$.
     
-    考虑使用分治解决构造问题．设 $f(l,r,t)$ 表示区间 $[l,r]$ 合并出 $t\in\{{0,1,00,01,10,11}\}$ 的方案．此时使用启发式分裂，维护两个指针 $i,j$ 一个从左到右扫，一个从右往左扫，以枚举断点 $\textit{mid}$ 为 $i$ 或 $j$．对于 $t\in\{{0,1}\}$，则枚举 $t$ 是怎么分为左右两个部分的，其中一个部分的 $t$ 长度为 $2$，另一个部分 $t$ 长度为 $1$．（例如对于中位数的运算表 $s=00010111$，$1$ 可以分为 $01$ 和 $1$．）对于 $t\in\{{00,01,10,11}\}$，则 $type$ 直接分为左右两个部分．
+    Xét dùng chia để trị để giải bài toán dựng phương án. Gọi $f(l,r,t)$ biểu diễn phương án gộp đoạn $[l,r]$ thành $t\in\{{0,1,00,01,10,11}\}$. Lúc này dùng tách theo heuristic, duy trì hai con trỏ $i,j$, một con trỏ quét từ trái sang phải, một con trỏ quét từ phải sang trái, để liệt kê điểm cắt $\textit{mid}$ là $i$ hoặc $j$. Với $t\in\{{0,1}\}$, liệt kê $t$ được tách thành hai phần trái phải như thế nào, trong đó một phần có độ dài $2$ và phần còn lại có độ dài $1$. (Ví dụ với bảng toán tử lấy trung vị $s=00010111$, $1$ có thể tách thành $01$ và $1$.) Với $t\in\{{00,01,10,11}\}$, $type$ được tách trực tiếp thành hai phần trái phải.
     
-    如果此时分为的左右两个部分分别为 $t_1$ 与 $t_2$，则进一步判断 $[l,mid]$ 能否生成 $t_1$ 和 $[\textit{mid}+1,r]$ 能否生成 $t_2$，如果能则直接分治下去．如果使用 $O(1)$ 猫树判定，这么启发式分裂构造的复杂度是 $O(n\log n)$；否则，利用倍增判定，构造的复杂度就是 $O(n\log^2n)$ 的．
+    Nếu lúc này hai phần trái phải được tách ra lần lượt là $t_1$ và $t_2$, thì tiếp tục kiểm tra $[l,mid]$ có thể sinh $t_1$ và $[\textit{mid}+1,r]$ có thể sinh $t_2$ hay không; nếu có thì chia để trị tiếp. Nếu dùng cat tree để phán định $O(1)$, độ phức tạp của cách dựng bằng tách heuristic này là $O(n\log n)$; nếu dùng binary lifting để phán định, độ phức tạp dựng là $O(n\log^2n)$.
     
-    如果使用了猫树，总复杂度是 $O(n|Q|\log n+n\log n)$，其中，$|Q|\le 47$．参考代码为了方便，使用了倍增，并且通过底层分块减小常数，对应的总复杂度为 $O(n|Q|\log n+n\log^2 n)$．
+    Nếu dùng cat tree, tổng độ phức tạp là $O(n|Q|\log n+n\log n)$, trong đó $|Q|\le 47$. Code tham khảo để thuận tiện đã dùng binary lifting, đồng thời giảm hằng số bằng cách chia khối ở tầng dưới; tổng độ phức tạp tương ứng là $O(n|Q|\log n+n\log^2 n)$.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/misc/code/fsm/fsm_1.cpp:main"
     ```
 
-### 习题
+### Bài tập
 
 -   [Median Replace Hard](https://qoj.ac/problem/12010)
--   [JOISC 2024 卡牌收集](https://www.luogu.com.cn/problem/P10436)（通过 Myhill–Nerode 定理建立自动机，本题可以做到多次区间查询）
+-   [JOISC 2024 Card Collection](https://www.luogu.com.cn/problem/P10436) (xây dựng automaton bằng định lý Myhill-Nerode; bài này có thể xử lý nhiều truy vấn đoạn)
 
-## DFA 最小化
+## Tối thiểu hóa DFA
 
-前文提到，两个 DFA 等价当且仅当它们识别相同的正则语言．根据识别的语言不同，全体 DFA 划分为无穷多个等价类．在进行 DP 套 DP 之类的算法时，建立出来的 DFA 的 $|Q|$ 可能过大，使得外层 DP 转移复杂度过大．因此，往往需要找到 DFA 所属等价类中的最小 DFA，以减少外层 DP 转移复杂度．
+Ở trên đã nói rằng hai DFA tương đương khi và chỉ khi chúng nhận dạng cùng một ngôn ngữ chính quy. Theo ngôn ngữ được nhận dạng, toàn bộ DFA được chia thành vô số lớp tương đương. Khi thực hiện các thuật toán kiểu DP lồng DP, $|Q|$ của DFA dựng ra có thể quá lớn, khiến độ phức tạp chuyển của DP tầng ngoài quá lớn. Vì vậy, thường cần tìm DFA nhỏ nhất trong lớp tương đương mà DFA đó thuộc về, nhằm giảm độ phức tạp chuyển của DP tầng ngoài.
 
-上一节的 Myhill–Nerode 定理就提供了一种构造方法．但是，对于一些比较复杂的问题，直接通过 Myhill–Nerode 定理构造需要遍历相当长的字符串的集合，花费大量时间．因此，我们需要一种方法，可以从已经构造出来的 DFA（通常较为容易）出发，直接构造一个最小 DFA．这就称为 **DFA 最小化**（DFA minimization）问题．
+Định lý Myhill-Nerode ở mục trước đã cung cấp một phương pháp xây dựng. Nhưng với một số bài toán phức tạp hơn, nếu trực tiếp xây dựng bằng định lý Myhill-Nerode thì cần duyệt tập các chuỗi khá dài, tốn nhiều thời gian. Vì vậy ta cần một phương pháp có thể xuất phát từ một DFA đã dựng sẵn (thường dễ dựng hơn) và trực tiếp xây dựng một DFA nhỏ nhất. Đây được gọi là bài toán **tối thiểu hóa DFA** (DFA minimization).
 
-DFA 最小化常用的算法是 **Hopcroft 算法**．由于 Myhill–Nerode 定理指出，对于任意一个可以识别某语言的 DFA，能够驱使它到达同一状态的字符串都必然是 Nerode 等价的．所有 Nerode 等价的字符串对应着最小 DFA 中的同一个状态，所以，最小 DFA 的状态一定是当前 DFA 中若干个状态的集合．我们可以从已有的 DFA 的状态集合出发，将它们划分为若干个等价类，而无需考察具体的字符串．Hopcroft 算法从最粗糙的划分 $\{F,Q\setminus F\}$ 开始，利用一系列证据 $A$，改进这个划分，直到无法进一步改进为止．这就是 Hopcroft 算法的核心想法．
+Thuật toán thường dùng cho tối thiểu hóa DFA là **thuật toán Hopcroft**. Vì định lý Myhill-Nerode chỉ ra rằng, với một DFA bất kỳ có thể nhận dạng một ngôn ngữ, các chuỗi khiến nó đi tới cùng một trạng thái chắc chắn là tương đương Nerode. Mọi chuỗi tương đương Nerode ứng với cùng một trạng thái trong DFA nhỏ nhất; vì vậy, mỗi trạng thái của DFA nhỏ nhất nhất định là một tập gồm một số trạng thái trong DFA hiện tại. Ta có thể xuất phát từ tập trạng thái của DFA đã có, chia chúng thành một số lớp tương đương mà không cần khảo sát các chuỗi cụ thể. Thuật toán Hopcroft bắt đầu từ phép chia thô nhất $\{F,Q\setminus F\}$, rồi dùng một loạt chứng cứ $A$ để tinh chỉnh phép chia này cho đến khi không thể tinh chỉnh thêm. Đây là ý tưởng cốt lõi của thuật toán Hopcroft.
 
-所谓 **证据**  $A$，就是一个状态集合，而且它和它的补集 $Q\setminus A$ 一定对应着不同的 Nerode 等价类．也就是说，存在某个字符串 $s\in\Sigma^*$，使得分别从 $A$ 和 $Q\setminus A$ 中的状态出发，读入字符串 $s$ 后，$A$ 中的状态全部处于接受状态，而 $Q\setminus A$ 中的状态全部属于非接受状态，或者反过来．因此，如果有两个状态 $u,v\in Q$，它们在某个字符 $c$ 下恰好一个转移到证据 $A$ 中，一个转移到证据 $A$ 外，即 $\delta(u,c)\in A$ 和 $\delta(v,c)\in A$ 成立且仅成立一个，那么，$u,v$ 同样不属于一个 Nerode 等价类——状态 $\delta(u,cs)$ 和 $\delta(v,cs)$ 中有且只有一个位于接受状态．因此，利用是否成立 $\delta(u,c)\in A$ 这一点，就可以改进划分．具体地，设
+**Chứng cứ** $A$ ở đây là một tập trạng thái, và nó cùng phần bù $Q\setminus A$ chắc chắn tương ứng với các lớp tương đương Nerode khác nhau. Nói cách khác, tồn tại một chuỗi nào đó $s\in\Sigma^*$ sao cho khi lần lượt xuất phát từ các trạng thái trong $A$ và trong $Q\setminus A$, sau khi đọc chuỗi $s$, mọi trạng thái trong $A$ đều ở trạng thái chấp nhận còn mọi trạng thái trong $Q\setminus A$ đều ở trạng thái không chấp nhận, hoặc ngược lại. Vì vậy, nếu có hai trạng thái $u,v\in Q$ mà dưới một ký tự $c$ nào đó, đúng một trong hai chuyển vào chứng cứ $A$, còn trạng thái kia chuyển ra ngoài chứng cứ $A$, tức là $\delta(u,c)\in A$ và $\delta(v,c)\in A$ đúng với đúng một mệnh đề, thì $u,v$ cũng không thuộc cùng một lớp tương đương Nerode: trong hai trạng thái $\delta(u,cs)$ và $\delta(v,cs)$ có đúng một trạng thái là trạng thái chấp nhận. Do đó, có thể dùng việc $\delta(u,c)\in A$ có đúng hay không để tinh chỉnh phép chia. Cụ thể, đặt
 
 $$
 S_x = \{u\mid u\in P_x,~\delta(u,c)\in A\}.
 $$
 
-如果 $S_x$ 和 $P_x\setminus S_x$ 均不是空集，那么，当前的划分中状态集合 $P_x$ 就可以改进为 $S_x$ 和 $P_x\setminus S_x$．
+Nếu $S_x$ và $P_x\setminus S_x$ đều không rỗng, thì trong phép chia hiện tại, tập trạng thái $P_x$ có thể được tinh chỉnh thành $S_x$ và $P_x\setminus S_x$.
 
-最开始时，将接受状态集合 $F$ 作为一个证据塞入证据集合 $W$，即 $W\gets\{F\}$，并维护当前的划分为 $P\gets\{F,~Q\setminus F\}$．初始证据是显然成立的：$F$ 和 $Q\setminus F$ 中的状态绝不可能等价．每次都从证据集合 $W$ 中随意取出一个集合 $A$ 用于改进当前的划分．枚举所有的字符 $c\in\Sigma$．对当前划分 $P$ 中的每个状态集合 $P_x$ 都求出前文描述的 $S_x$．如果 $S_x\neq\varnothing$ 且 $|S_x|\neq|P_x|$，就意味着 $P_x$ 可以进一步分为两个集合 $S_x$ 和 $P_x\setminus S_x$，直接用它们替换掉 $P$ 中的 $P_x$．
+Ban đầu, đưa tập trạng thái chấp nhận $F$ vào tập chứng cứ $W$, tức $W\gets\{F\}$, và duy trì phép chia hiện tại là $P\gets\{F,~Q\setminus F\}$. Chứng cứ ban đầu hiển nhiên đúng: các trạng thái trong $F$ và $Q\setminus F$ tuyệt đối không thể tương đương. Mỗi lần tùy ý lấy một tập $A$ từ tập chứng cứ $W$ để tinh chỉnh phép chia hiện tại. Liệt kê mọi ký tự $c\in\Sigma$. Với mỗi tập trạng thái $P_x$ trong phép chia hiện tại $P$, tính $S_x$ như đã mô tả ở trên. Nếu $S_x\neq\varnothing$ và $|S_x|\neq|P_x|$, nghĩa là $P_x$ có thể tiếp tục được tách thành hai tập $S_x$ và $P_x\setminus S_x$; khi đó trực tiếp dùng chúng thay thế $P_x$ trong $P$.
 
-每当获得更细致的划分时，就意味着获得了新的证据．原则上，可以将新得到的 $S_x$ 和 $P_x\setminus S_x$ 都塞进证据集合 $W$，等待后续进一步验证．但是，这样做并不是必要的．容易理解，对于三个证据 $P_x,S_x,P_x\setminus S_x$，只需要验证其中任意两个，就可以保证结果的正确性：因为结果只有 $\delta(u,c)\in S_x$、$\delta(u,c)\in P_x\setminus S_x$ 和 $\delta(u,c)\notin P_x$ 三种，而将集合划分成三部分只需要两次判断．因此，将 $P_x$ 划分为 $S_x$ 和 $P_x\setminus S_x$ 时，如果 $P_x$ 仍处于证据集合 $W$ 中，这说明还没有检验过证据 $P_x$，就需要将证据集合 $W$ 中的 $P_x$ 替换为 $S_x$ 和 $P_x\setminus S_x$ 两个；否则，当前的划分一定相当于[^smaller-evidence]已经检验过 $P_x$ 的结果，所以，只需要将 $S_x$ 和 $P_x\setminus S_x$ 中较小的那个塞入证据集合 $W$ 中．类似于启发式分裂，这样做可以得到优秀的复杂度．
+Mỗi khi thu được phép chia tinh hơn, tức là đã thu được chứng cứ mới. Về nguyên tắc, có thể đưa cả $S_x$ và $P_x\setminus S_x$ mới thu được vào tập chứng cứ $W$, chờ các bước kiểm tra tiếp theo. Nhưng làm như vậy là không cần thiết. Dễ thấy với ba chứng cứ $P_x,S_x,P_x\setminus S_x$, chỉ cần kiểm tra hai chứng cứ bất kỳ là đã đủ đảm bảo tính đúng đắn: vì kết quả chỉ có ba loại $\delta(u,c)\in S_x$, $\delta(u,c)\in P_x\setminus S_x$ và $\delta(u,c)\notin P_x$, còn chia một tập thành ba phần chỉ cần hai lần phán định. Vì vậy, khi chia $P_x$ thành $S_x$ và $P_x\setminus S_x$, nếu $P_x$ vẫn nằm trong tập chứng cứ $W$, điều này nghĩa là chứng cứ $P_x$ vẫn chưa được kiểm tra, nên cần thay $P_x$ trong tập chứng cứ $W$ bằng cả $S_x$ và $P_x\setminus S_x$; ngược lại, phép chia hiện tại nhất định tương đương với[^smaller-evidence] kết quả sau khi đã kiểm tra $P_x$, nên chỉ cần đưa tập nhỏ hơn trong $S_x$ và $P_x\setminus S_x$ vào tập chứng cứ $W$. Tương tự tách theo heuristic, cách làm này cho độ phức tạp tốt.
 
-将上述过程写成伪代码就是：
+Viết quá trình trên thành mã giả:
 
 $$
 \begin{array}{l}
@@ -334,94 +334,94 @@ $$
 \end{array}
 $$
 
-算法实现时，复杂度的瓶颈在于 $S$ 的计算．直接遍历所有 $q\in Q$ 进而判断 $\delta(q,c)\in A$ 是否成立是不可行的．因此，需要在算法运行前，预处理反向转移边 $\{q\in Q\mid \delta(q,c)=a\}$，从而，利用这些反向转移，遍历 $a\in A$，就可以得到集合 $S$．这样做可以保证每条转移 $\delta(q,c)=a$ 只会在 $a$ 属于某个证据时才会遍历到；而前文的证据筛选方法保证了，算法中实际用到的包含 $a$ 的证据序列 $A_1\supset A_2\supset\cdots\supset A_k$ 中，前一个至少是后一个的两倍大小，因此，$k\in O(\log n)$．也就是说，每条转移边至多只会遍历 $O(\log n)$ 次，而总的转移数目是 $n|\Sigma|$ 的，因此，总的复杂度就是 $O(n|\Sigma|\log n)$ 的．
+Khi hiện thực thuật toán, nút thắt độ phức tạp nằm ở việc tính $S$. Trực tiếp duyệt mọi $q\in Q$ rồi kiểm tra $\delta(q,c)\in A$ có đúng hay không là không khả thi. Vì vậy, trước khi chạy thuật toán, cần tiền xử lý các cạnh chuyển ngược $\{q\in Q\mid \delta(q,c)=a\}$; nhờ đó, dùng các chuyển ngược này và duyệt $a\in A$ là có thể thu được tập $S$. Cách này đảm bảo mỗi chuyển $\delta(q,c)=a$ chỉ bị duyệt khi $a$ thuộc một chứng cứ nào đó; còn cách lọc chứng cứ ở trên đảm bảo rằng trong dãy chứng cứ chứa $a$ thực sự được dùng trong thuật toán $A_1\supset A_2\supset\cdots\supset A_k$, phần tử trước có kích thước ít nhất gấp đôi phần tử sau, nên $k\in O(\log n)$. Nói cách khác, mỗi cạnh chuyển nhiều nhất chỉ bị duyệt $O(\log n)$ lần, mà tổng số chuyển là $n|\Sigma|$, vì vậy tổng độ phức tạp là $O(n|\Sigma|\log n)$.
 
-参考实现如下：[^detail]
+Hiện thực tham khảo như sau:[^detail]
 
-??? example "参考实现"
+??? example "Hiện thực tham khảo"
     ```cpp
     --8<-- "docs/misc/code/fsm/dfa.hpp:hopcroft"
     ```
 
-这一参考实现允许自动机的状态带有任何整数取值的标签，而并非简单的「接受」与「不接受」的二元标签．从参考实现可以看出，与基础 Hopcroft 算法的唯一不同就在于初始划分和证据集合的构造．这种拓展的自动机也称为 [Moore 机](https://en.wikipedia.org/wiki/Moore_machine)．它的一个应用可以看本节的第二个例题．
+Hiện thực tham khảo này cho phép trạng thái của automaton mang nhãn là giá trị nguyên bất kỳ, chứ không chỉ là nhãn nhị phân "chấp nhận" và "không chấp nhận". Từ hiện thực tham khảo có thể thấy, điểm khác duy nhất so với thuật toán Hopcroft cơ bản nằm ở cách xây dựng phép chia ban đầu và tập chứng cứ. Automaton mở rộng kiểu này cũng được gọi là [Moore machine](https://en.wikipedia.org/wiki/Moore_machine). Một ứng dụng của nó có thể xem ở ví dụ thứ hai của mục này.
 
-### 例题
+### Ví dụ
 
-本节通过两道例题介绍如何实际应用 DFA 最小化的技巧．
+Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiểu hóa DFA thông qua hai bài ví dụ.
 
-???+ example "例题"
-    给定一个长度为 $n$ 的 $01?$ 串 $a$，初始变量 $x = 0$，我们按顺序遍历每一位 $a_i$ 并执行如下操作：
+???+ example "Bài ví dụ"
+    Cho một chuỗi $01?$ độ dài $n$ là $a$, biến ban đầu $x = 0$. Ta duyệt từng vị trí $a_i$ theo thứ tự và thực hiện thao tác sau:
     
-    1.  若 $a_i = 0$，令 $x \gets x - \text{lowbit}(x)$；
-    2.  若 $a_i = 1$，令 $x \gets x + \text{lowbit}(2^k - 1 - x)$；
-    3.  若 $a_i = ?$，可任选 $0$ 或 $1$，对应上述两种操作之一．
+    1.  Nếu $a_i = 0$, đặt $x \gets x - \text{lowbit}(x)$;
+    2.  Nếu $a_i = 1$, đặt $x \gets x + \text{lowbit}(2^k - 1 - x)$;
+    3.  Nếu $a_i = ?$, có thể tùy ý chọn $0$ hoặc $1$, tương ứng với một trong hai thao tác trên.
     
-    最终若 $x \in [0, r]$，则称该操作序列是好的．
+    Nếu cuối cùng $x \in [0, r]$, gọi dãy thao tác này là tốt.
     
-    现在需要对每个 $j = 1 \ldots n$，求在强制 $a_j = 0$ 的前提下，有多少「好的」完整序列．特别地，$a_j = 1$ 时，答案为 $0$．
+    Bây giờ cần với mỗi $j = 1 \ldots n$, tính số lượng dãy đầy đủ "tốt" với điều kiện bắt buộc $a_j = 0$. Đặc biệt, khi $a_j = 1$, đáp án là $0$.
     
-    $1\le n\le 10^5,~1\le k\le 20,~0\le r<2^k$．输出对 $998244353$ 取模．
+    $1\le n\le 10^5,~1\le k\le 20,~0\le r<2^k$. In kết quả modulo $998244353$.
 
-??? note "题解"
-    考虑朴素 DP．设 $f_{i,j}$ 表示从 $x=0$ 开始，经过 $[1,i]$ 的操作，当前数为 $j$ 的方案数．设 $g_{i,j}$ 表示从 $x=j$ 开始，经过 $[i,n]$ 的操作，最终 $x \in [0, r]$ 的方案数．强制 $a_i=0$ 的答案，就是 $\sum_j f_{i-1,j}g_{i+1,j - \text{lowbit}(j)}$．复杂度是 $O(n2^k)$．
+??? note "Lời giải"
+    Xét DP đơn giản. Gọi $f_{i,j}$ là số phương án bắt đầu từ $x=0$, sau khi thực hiện các thao tác trên $[1,i]$, số hiện tại là $j$. Gọi $g_{i,j}$ là số phương án bắt đầu từ $x=j$, sau khi thực hiện các thao tác trên $[i,n]$, cuối cùng có $x \in [0, r]$. Đáp án khi bắt buộc $a_i=0$ là $\sum_j f_{i-1,j}g_{i+1,j - \text{lowbit}(j)}$. Độ phức tạp là $O(n2^k)$.
     
-    考虑直接将 $j$ 的转移建成 DFA，然后跑 DFA 最小化，再 DP 就可以了．
+    Xét trực tiếp xây dựng chuyển của $j$ thành DFA, sau đó chạy tối thiểu hóa DFA, rồi làm DP.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/misc/code/fsm/fsm_2.cpp:main"
     ```
 
 ???+ example "[Minimal Subset Difference](https://codeforces.com/contest/956/problem/F)"
-    定义 $f(n)$ 表示将十进制数 $n$ 所有数码之间填入加号或者减号，最终得到的值的绝对值最小值．
+    Định nghĩa $f(n)$ là giá trị tuyệt đối nhỏ nhất của kết quả thu được sau khi chèn dấu cộng hoặc dấu trừ giữa mọi chữ số thập phân của $n$.
     
-    $T$ 组询问．每组询问给定 $l, r, k$，求满足 $l \le m \le r$ 且 $f(m) \le k$ 的 $m$ 的个数．
+    Có $T$ truy vấn. Mỗi truy vấn cho $l, r, k$, hãy tính số lượng $m$ thỏa $l \le m \le r$ và $f(m) \le k$.
     
-    $1 \le T \le 5\times 10^4$，$1 \le l \le r \le 10^{18}$，$0 \le k \le 9$．
+    $1 \le T \le 5\times 10^4$, $1 \le l \le r \le 10^{18}$, $0 \le k \le 9$.
 
-??? note "题解"
-    先给出一种贪心地计算 $f(n)$ 的方法．从高位向低位考虑一个数，最开始，设得到的数的和是 $0$．计算到某一数位，如果当前合成出的数如果是负数就加上当前数位，如果是正数就减去当前数位．这么处理，贪心计算出的 $f(n)$ 的绝对值一定小于等于 $9$．所以真实的 $f(n)$ 的绝对值一定小于等于 $9$．
+??? note "Lời giải"
+    Trước hết đưa ra một cách tính $f(n)$ tham lam. Xét một số từ chữ số cao xuống chữ số thấp. Ban đầu, đặt tổng của số thu được là $0$. Khi tính tới một chữ số, nếu số hiện tại đã ghép được là âm thì cộng chữ số hiện tại vào, nếu là dương thì trừ chữ số hiện tại đi. Với cách xử lý này, giá trị tuyệt đối của $f(n)$ do tham lam tính được chắc chắn không quá $9$. Vì vậy, giá trị tuyệt đối của $f(n)$ thật sự chắc chắn cũng không quá $9$.
     
-    我们进一步思考，要合成出最终的答案，中间过程中能够合成出来的数最大能是多少．因为答案一定是小于等于 $9$ 的，而且数位只有 $18$ 位，每次最多只能加减 $9$．过程中能够合成出来的数肯定是小于等于 $90$ 的，否则最后减不回来．实际上，这个上限还能够更低[^upper-bound]．
+    Ta tiếp tục suy nghĩ: để ghép ra đáp án cuối cùng, số có thể ghép được trong quá trình trung gian lớn nhất là bao nhiêu? Vì đáp án chắc chắn không quá $9$, mà số chỉ có $18$ chữ số, mỗi lần nhiều nhất chỉ cộng hoặc trừ $9$, nên số có thể ghép ra trong quá trình chắc chắn không quá $90$; nếu không thì cuối cùng không thể trừ về được. Thực tế, cận trên này còn có thể thấp hơn[^upper-bound].
     
-    考虑朴素 DP 套 DP．首先，思考内层 DP 怎么判定一个数的答案：定义 $g_{i,c}$ 表示这个数只根据前 $i$ 位，能否合成出 $c$．根据前文，$c$ 只用保留小于等于 $90$ 的数．如果当前这一位填的是 $v$，那么，有转移：
+    Xét DP lồng DP đơn giản. Trước hết, nghĩ cách DP tầng trong phán định đáp án của một số: định nghĩa $g_{i,c}$ biểu diễn việc chỉ dựa vào $i$ chữ số đầu của số này thì có thể ghép ra $c$ hay không. Theo phần trên, $c$ chỉ cần giữ các số không quá $90$. Nếu chữ số hiện tại điền là $v$, thì có các chuyển:
     
     $$
     g_{i+1,c+v}\gets g_{i,c},~
     g_{i+1,|c-v|}\gets g_{i,c}.
     $$
     
-    外层 DP 考虑数位 DP．将询问差分．设状态为 $f_{\textit{len},\textit{lim},\textit{sta}}$，它的下标分别表示已经考虑到第 $\textit{len}$ 位，是否有上界限制，当前自动机的状态位于 $\textit{sta}$ 等．
+    DP tầng ngoài xét digit DP. Lấy hiệu các truy vấn. Gọi trạng thái là $f_{\textit{len},\textit{lim},\textit{sta}}$, các chỉ số lần lượt biểu diễn đã xét tới vị trí thứ $\textit{len}$, có đang bị giới hạn trên hay không, trạng thái hiện tại của automaton là $\textit{sta}$, v.v.
     
-    与普通的 DFA 不同，我们需要对自动机的每个状态记录对应的答案．跑一次暴力搜索，会发现内层 DP 的状态数只有 $19564$．然后接下来直接跑 DFA 最小化，可以将状态数优化到 $715$．
+    Khác với DFA thông thường, ta cần ghi lại đáp án tương ứng cho mỗi trạng thái của automaton. Chạy một lần tìm kiếm vét cạn sẽ thấy số trạng thái của DP tầng trong chỉ là $19564$. Sau đó chạy trực tiếp tối thiểu hóa DFA, có thể giảm số trạng thái xuống $715$.
     
-    此时我们将 $\textit{lim}=0$ 的数位 DP 答案都预处理出来，在多测时就只需要跑 $\textit{lim}=1$ 的情况，可以很快地求出答案．
+    Lúc này ta tiền xử lý toàn bộ đáp án digit DP với $\textit{lim}=0$; khi có nhiều test chỉ cần chạy trường hợp $\textit{lim}=1$, nên có thể tính đáp án rất nhanh.
     
-    时间复杂度 $O(|S||\Sigma|\log |S|+(|Q||\Sigma|+T)|\Sigma|\log_{10} V)$（$|S|=19564$，$|Q|=715$）．
+    Độ phức tạp thời gian $O(|S||\Sigma|\log |S|+(|Q||\Sigma|+T)|\Sigma|\log_{10} V)$ ($|S|=19564$, $|Q|=715$).
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/misc/code/fsm/fsm_3.cpp:main"
     ```
 
-### 习题
+### Bài tập
 
 -   [Language Recognition](http://poj.org/problem?id=3576)
 -   [Equanimous](https://qoj.ac/problem/7083)
 
-## 自动机常见应用
+## Ứng dụng thường gặp của automaton
 
-本节列举了一些算法竞赛中常见的自动机的应用[^is-dfa]．
+Mục này liệt kê một số ứng dụng thường gặp của automaton trong lập trình thi đấu[^is-dfa].
 
-### 字典树
+### Trie
 
-[字典树](../string/trie.md) 是大部分 OIer 接触到的第一个自动机，接受且仅接受指定的字符串集合中的元素．转移函数就是 Trie 上的边，接受状态是将每个字符串插入到 Trie 时到达的那个状态．
+[Trie](../string/trie.md) là automaton đầu tiên mà phần lớn OIer tiếp xúc, chấp nhận và chỉ chấp nhận các phần tử trong tập chuỗi được chỉ định. Hàm chuyển chính là các cạnh trên Trie, còn trạng thái chấp nhận là trạng thái đi tới khi chèn từng chuỗi vào Trie.
 
-### KMP 自动机
+### KMP automaton
 
-[KMP 算法](../string/kmp.md) 可以视作自动机，基于字符串 $s$ 的 KMP 自动机接受且仅接受以 $s$ 为后缀的字符串，其接受状态为 $|s|$．
+[Thuật toán KMP](../string/kmp.md) có thể được xem như automaton. KMP automaton dựa trên chuỗi $s$ chấp nhận và chỉ chấp nhận các chuỗi có $s$ là hậu tố; trạng thái chấp nhận của nó là $|s|$.
 
-转移函数：
+Hàm chuyển:
 
 $$
 \delta(i, c)=
@@ -432,60 +432,60 @@ i+1&s[i+1]=c\\
 \end{cases}
 $$
 
-### AC 自动机
+### AC automaton
 
-[AC 自动机](../string/ac-automaton.md) 接受且仅接受以指定的字符串集合中的某个元素为后缀的字符串．也就是 Trie + KMP．
+[AC automaton](../string/ac-automaton.md) chấp nhận và chỉ chấp nhận các chuỗi có hậu tố là một phần tử trong tập chuỗi được chỉ định. Nói cách khác là Trie + KMP.
 
-### 后缀自动机
+### Suffix automaton
 
-[后缀自动机](../string/sam.md) 接受且仅接受指定字符串的后缀．
+[Suffix automaton](../string/sam.md) chấp nhận và chỉ chấp nhận các hậu tố của chuỗi được chỉ định.
 
-### 广义后缀自动机
+### Generalized suffix automaton
 
-[广义后缀自动机](../string/general-sam.md) 接受且仅接受指定的字符串集合中的某个元素的后缀．也就是 Trie + SAM．
+[Generalized suffix automaton](../string/general-sam.md) chấp nhận và chỉ chấp nhận các hậu tố của một phần tử nào đó trong tập chuỗi được chỉ định. Nói cách khác là Trie + SAM.
 
-广义 SAM 与 SAM 的关系就是 AC 自动机与 KMP 自动机的关系．
+Quan hệ giữa generalized SAM và SAM chính là quan hệ giữa AC automaton và KMP automaton.
 
-### 回文自动机
+### Palindromic automaton
 
-[回文自动机](../string/pam.md) 比较特殊，它不能非常方便地定义为自动机．
+[Palindromic automaton](../string/pam.md) khá đặc biệt, nó không thể được định nghĩa rất thuận tiện như một automaton.
 
-如果需要定义的话，它接受且仅接受某个字符串的所有回文子串的 **中心及右半部分**．
+Nếu cần định nghĩa, nó chấp nhận và chỉ chấp nhận **tâm và nửa phải** của mọi chuỗi con đối xứng của một chuỗi nào đó.
 
-「中心及右边部分」在奇回文串中就是字面意思，在偶回文串中定义为一个特殊字符加上右边部分．这个定义看起来很奇怪，但它能让 PAM 真正成为一个自动机，而不仅是两棵树．
+"Tâm và phần bên phải" trong chuỗi đối xứng lẻ là ý nghĩa theo mặt chữ; trong chuỗi đối xứng chẵn, nó được định nghĩa là một ký tự đặc biệt cộng với phần bên phải. Định nghĩa này trông hơi lạ, nhưng nó giúp PAM thực sự trở thành một automaton, chứ không chỉ là hai cây.
 
-### 序列自动机
+### Sequence automaton
 
-[序列自动机](../string/seq-automaton.md) 接受且仅接受指定字符串的子序列．
+[Sequence automaton](../string/seq-automaton.md) chấp nhận và chỉ chấp nhận các dãy con của chuỗi được chỉ định.
 
-### DP 套 DP
+### DP lồng DP
 
-[DP 套 DP](../dp/dp-of-dp.md) 是自动机的一个应用，可以看作是先通过内层 DP 建出自动机，再在外层通过自动机上的 DP 实现计数、最优化任务的技巧．
+[DP lồng DP](../dp/dp-of-dp.md) là một ứng dụng của automaton, có thể xem như kỹ thuật trước hết xây dựng automaton bằng DP tầng trong, rồi ở tầng ngoài thực hiện các nhiệm vụ đếm hoặc tối ưu hóa bằng DP trên automaton.
 
-## 后缀链接
+## Liên kết hậu tố
 
-由于自动机和匹配有着密不可分的关系，而匹配的一个基本思想是「这个串不行，就试试它的后缀可不可以」，所以在很多自动机（KMP、AC 自动机、SAM、PAM）中，都有后缀链接的概念．
+Vì automaton và so khớp có quan hệ rất chặt chẽ, mà một tư tưởng cơ bản của so khớp là "chuỗi này không được thì thử xem hậu tố của nó có được không", nên trong nhiều automaton (KMP, AC automaton, SAM, PAM) đều có khái niệm liên kết hậu tố.
 
-一个状态会对应若干字符串．它的后缀链接，就指向自动机上该状态对应的字符串的公共真后缀中，最长的那个对应的状态．一般地，后缀链接会形成一棵树，并且不同自动机的后缀链接树有着一些相同的性质，学习时可以加以注意．
+Một trạng thái sẽ tương ứng với một số chuỗi. Liên kết hậu tố của nó trỏ tới trạng thái tương ứng với hậu tố thực chung dài nhất trong các chuỗi mà trạng thái đó biểu diễn. Nói chung, các liên kết hậu tố sẽ tạo thành một cây, và cây liên kết hậu tố của các automaton khác nhau có một số tính chất giống nhau; khi học có thể chú ý thêm.
 
-## 拓展阅读
+## Đọc thêm
 
--   [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/)
--   [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)
--   [Myhill–Nerode theorem - Wikipedia](https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem)
+-   [Computational Complexity (1) Warming Up: mô hình automaton](https://lingeros-tot.github.io/2019/03/05/Warming-Up-%E8%87%AA%E5%8A%A8%E6%9C%BA%E6%A8%A1%E5%9E%8B/)
+-   [Bài báo đội tuyển quốc gia 2021, Xu Zhean: Bàn về automaton trạng thái hữu hạn và ứng dụng](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)
+-   [Myhill-Nerode theorem - Wikipedia](https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem)
 -   Knuutila, Timo. "Re-describing an algorithm by Hopcroft." Theoretical Computer Science 250, no. 1-2 (2001): 333-363.
 -   Hopcroft, John E., Rajeev Motwani, and Jeffrey D. Ullman. "Introduction to automata theory, languages, and computation." Acm Sigact News 32, no. 1 (2001): 60-65.
 
-[^nfa-and-nfaepsilon]: 这个定义中我们允许状态之间通过空字符（$\varepsilon$）转移，因此更准确地说，这是一个带 $\varepsilon$ 转移的非确定有限自动机（NFA-$\varepsilon$）．有些教材中将它直接称为 NFA，为简洁起见，本文采用这一用法．在理论上 NFA 与 NFA-$\varepsilon$ 是有所区分的，但是实际上它们的计算能力是一致的．
+[^nfa-and-nfaepsilon]: Trong định nghĩa này, ta cho phép chuyển giữa các trạng thái bằng ký tự rỗng ($\varepsilon$), nên nói chính xác hơn, đây là automaton hữu hạn không xác định có chuyển $\varepsilon$ (NFA-$\varepsilon$). Một số giáo trình gọi trực tiếp nó là NFA; để ngắn gọn, bài này dùng cách gọi đó. Về mặt lý thuyết, NFA và NFA-$\varepsilon$ có phân biệt, nhưng trong thực tế khả năng tính toán của chúng là như nhau.
 
-[^state-elimination-method]: 详见 [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf) 中 3.2 节．
+[^state-elimination-method]: Xem chi tiết mục 3.2 trong [Bài báo đội tuyển quốc gia 2021, Xu Zhean: Bàn về automaton trạng thái hữu hạn và ứng dụng](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf).
 
-[^prove-regular-language]: 详见 [官方题解](https://qoj.ac/download.php?type=attachments&id=2079&r=1)．
+[^prove-regular-language]: Xem chi tiết trong [lời giải chính thức](https://qoj.ac/download.php?type=attachments&id=2079&r=1).
 
-[^smaller-evidence]: 此处的「相当于」指的是，尽管实际上 $P_x$ 可能并没有实际检验过，但是，即使对当前划分进行 $P_x$ 的检验，也不会有任何改进．简单理解，就是在集合分裂得到的证据集合的树上，它的某个祖先和路径上的所有旁支都已经得到了检验，因此，可以归纳地说明，就相当于它也已经检验过了．
+[^smaller-evidence]: "Tương đương với" ở đây có nghĩa là dù trên thực tế $P_x$ có thể chưa thật sự được kiểm tra, nhưng ngay cả khi kiểm tra $P_x$ trên phép chia hiện tại thì cũng không tạo ra bất kỳ tinh chỉnh nào. Hiểu đơn giản, trên cây các tập chứng cứ thu được bằng cách tách tập, một tổ tiên nào đó của nó và mọi nhánh bên trên đường đi đều đã được kiểm tra; vì vậy, có thể chứng minh quy nạp rằng điều này tương đương với việc chính nó cũng đã được kiểm tra.
 
-[^detail]: 算法实现中有一处细节：对于一个证据 $A$，有可能检验完一部分字符后，这个证据集合就已经分裂为 $B$ 和 $C$ 了．不妨设 $|B|\ge |C|$．由于参考实现中，较小的集合 $C$ 插入到了证据队列的末尾，而较大的证据集合 $B$ 替换到了集合 $A$ 原来的位置．算法继续运行时，实际只是利用证据 $B$ 检验剩余的字符．这样做是正确的．这是因为对于已经检验完的字符，至少验证了 $A$ 和 $C$ 两个集合；而对于尚未检验的字符，至少验证了 $B$ 和 $C$ 两个集合．
+[^detail]: Có một chi tiết trong hiện thực thuật toán: với một chứng cứ $A$, có thể sau khi kiểm tra xong một phần ký tự thì tập chứng cứ này đã bị tách thành $B$ và $C$. Giả sử $|B|\ge |C|$. Trong hiện thực tham khảo, tập nhỏ hơn $C$ được chèn vào cuối hàng đợi chứng cứ, còn tập chứng cứ lớn hơn $B$ thay thế vị trí ban đầu của tập $A$. Khi thuật toán tiếp tục chạy, thực tế chỉ dùng chứng cứ $B$ để kiểm tra các ký tự còn lại. Cách làm này là đúng, vì với các ký tự đã kiểm tra xong, ít nhất đã kiểm chứng hai tập $A$ và $C$; còn với các ký tự chưa kiểm tra, ít nhất kiểm chứng hai tập $B$ và $C$.
 
-[^upper-bound]: 详见 [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf) 中的例题 5.2．
+[^upper-bound]: Xem chi tiết bài ví dụ 5.2 trong [Bài báo đội tuyển quốc gia 2021, Xu Zhean: Bàn về automaton trạng thái hữu hạn và ứng dụng](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf).
 
-[^is-dfa]: 本文对自动机的定义要求它是完备的，即任一状态在任一字符下都必须有转移．对这些字符串相关的自动机的描述中，通常会忽略失配状态．Trie、SAM 等都是这样的例子．为了与本文提供的定义相适应，需要在这些自动机的描述中显式地添加失配状态．
+[^is-dfa]: Định nghĩa automaton trong bài này yêu cầu nó là đầy đủ, tức là mọi trạng thái dưới mọi ký tự đều phải có chuyển. Trong mô tả các automaton liên quan đến chuỗi này, trạng thái thất bại thường bị lược bỏ. Trie, SAM, v.v. đều là các ví dụ như vậy. Để phù hợp với định nghĩa trong bài này, cần thêm tường minh trạng thái thất bại vào mô tả các automaton đó.

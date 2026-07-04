@@ -342,6 +342,10 @@ MkDocs source layout intact.
   `docs/misc/garsia-wachs.md`, `docs/misc/15-puzzle.md`,
   `docs/misc/kahan-summation.md`, `docs/misc/space-optimization.md`:
   translated standalone miscellaneous algorithm and implementation notes.
+- `docs/misc/fsm.md`, `docs/misc/cc-basic.md`,
+  `docs/misc/expression.md`, `docs/misc/odt.md`: translated finite-state
+  automata, computation theory basics, expression evaluation, and Chtholly
+  Tree material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
