@@ -370,17 +370,17 @@ Phép chia dài đặt dọc thực chất có thể xem là một quá trình t
 Chương trình tham khảo cài đặt hàm `greater_eq()` để xét xem phần số bị chia có chỉ số `last_dg` làm hàng thấp nhất còn có thể trừ thêm số chia mà vẫn không âm hay không. Sau đó, với mỗi chữ số của thương, ta liên tục gọi `greater_eq()`; khi điều kiện đúng thì dùng phép trừ độ chính xác cao để trừ số chia khỏi phần dư, qua đó mô phỏng quá trình chia đặt dọc.
 
 ```cpp
-// Phan so bi chia a voi chi so last_dg lam hang thap nhat co the tru them so chia b ma van khong am hay khong
-// len la do dai cua so chia b, de tranh tinh lap lai
+// Phần số bị chia a với chỉ số last_dg làm hàng thấp nhất có thể trừ thêm số chia b mà vẫn không âm hay không
+// len là độ dài của số chia b, để tránh tính lặp lại
 bool greater_eq(int a[], int b[], int last_dg, int len) {
-  // Phan con lai cua so bi chia co the dai hon so chia; truong hop nay nhieu nhat chi hon 1 chu so, nen kiem tra nhu vay la du
+  // Phần còn lại của số bị chia có thể dài hơn số chia; trường hợp này nhiều nhất chỉ hơn 1 chữ số, nên kiểm tra như vậy là đủ
   if (a[last_dg + len] != 0) return true;
-  // So sanh tung hang tu cao xuong thap
+  // So sánh từng hàng từ cao xuống thấp
   for (int i = len - 1; i >= 0; --i) {
     if (a[last_dg + i] > b[i]) return true;
     if (a[last_dg + i] < b[i]) return false;
   }
-  // Neu bang nhau thi van co the tru
+  // Nếu bằng nhau thì vẫn có thể trừ
   return true;
 }
 
@@ -393,19 +393,19 @@ void div(int a[], int b[], int c[], int d[]) {
     if (a[la - 1] != 0) break;
   for (lb = LEN - 1; lb > 0; --lb)
     if (b[lb - 1] != 0) break;
-  if (lb == 0) {  // So chia khong duoc bang 0
+  if (lb == 0) {  // Số chia không được bằng 0
     puts("> <");
     return;
   }
 
-  // c la thuong
-  // d la phan con lai cua so bi chia; sau khi thuat toan ket thuc, no tro thanh so du
+  // c là thương
+  // d là phần còn lại của số bị chia; sau khi thuật toán kết thúc, nó trở thành số dư
   for (int i = 0; i < la; ++i) d[i] = a[i];
   for (int i = la - lb; i >= 0; --i) {
-    // Tinh chu so thu i cua thuong
+    // Tính chữ số thứ i của thương
     while (greater_eq(d, b, i, lb)) {
-      // Neu co the tru thi tru
-      // Doan nay la mot phep tru do chinh xac cao
+      // Nếu có thể trừ thì trừ
+      // Đoạn này là một phép trừ độ chính xác cao
       for (int j = 0; j < lb; ++j) {
         d[i + j] -= b[j];
         if (d[i + j] < 0) {
@@ -413,9 +413,9 @@ void div(int a[], int b[], int c[], int d[]) {
           d[i + j] += 10;
         }
       }
-      // Tang chu so nay cua thuong len 1
+      // Tăng chữ số này của thương lên 1
       c[i] += 1;
-      // Quay lai dau vong lap de kiem tra lai
+      // Quay lại đầu vòng lặp để kiểm tra lại
     }
   }
 }
@@ -597,14 +597,14 @@ Dưới đây là mã cộng độ chính xác cao gộp chữ số, dùng để
 
 ??? note "Cài đặt tham khảo phép cộng độ chính xác cao gộp chữ số"
     ```cpp
-    // Cac mang a,b,c o day deu la so trong he co so p
-    // Khi in dap an cuoi cung can chuyen so ve he thap phan
+    // Các mảng a,b,c ở đây đều là số trong hệ cơ số p
+    // Khi in đáp án cuối cùng cần chuyển số về hệ thập phân
     void add(int a[], int b[], int c[]) {
       clear(c);
     
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] + b[i];
-        if (c[i] >= p) {  // Trong phep toan do chinh xac cao thong thuong, p=10
+        if (c[i] >= p) {  // Trong phép toán độ chính xác cao thông thường, p=10
           c[i + 1] += 1;
           c[i] -= p;
         }
@@ -629,18 +629,18 @@ Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể r�
 
 ??? note "Cài đặt tham khảo phép chia đặt dọc hiệu quả cho độ chính xác cao gộp chữ số"
     ```cpp
-    // Mau va cai dat day du: https://baobaobear.github.io/post/20210228-bigint1/
-    // Tru ket qua cua b nhan mul roi dich trai offset, phuc vu phep chia
+    // Mẫu và cài đặt đầy đủ: https://baobaobear.github.io/post/20210228-bigint1/
+    // Trừ kết quả của b nhân mul rồi dịch trái offset, phục vụ phép chia
     BigIntSimple &sub_mul(const BigIntSimple &b, int mul, int offset) {
       if (mul == 0) return *this;
       int borrow = 0;
-      // Khac voi phep tru, borrow co the rat lon, nen khong the viet nhu phep tru thong thuong
+      // Khác với phép trừ, borrow có thể rất lớn, nên không thể viết như phép trừ thông thường
       for (size_t i = 0; i < b.v.size(); ++i) {
         borrow += v[i + offset] - b.v[i] * mul - BIGINT_BASE + 1;
         v[i + offset] = borrow % BIGINT_BASE + BIGINT_BASE - 1;
         borrow /= BIGINT_BASE;
       }
-      // Neu van con muon thi tiep tuc xu ly
+      // Nếu vẫn còn mượn thì tiếp tục xử lý
       for (size_t i = b.v.size(); borrow; ++i) {
         borrow += v[i + offset] - BIGINT_BASE + 1;
         v[i + offset] = borrow % BIGINT_BASE + BIGINT_BASE - 1;
@@ -654,13 +654,13 @@ Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể r�
       r = *this;
       if (absless(b)) return d;
       d.v.resize(v.size() - b.v.size() + 1);
-      // Tinh truoc nghich dao cua ba chu so cao nhat cua so chia + 1; neu ba chu so cao nhat la a3,a2,a1
-      // Thi db la nghich dao cua a3+a2/base+(a1+1)/base^2; cuoi cung dung phep nhan de uoc luong tung chu so thuong
-      // Cach nay dung duoc trong pham vi int32 khi BIGINT_BASE<=32768
-      // Nhung ngay ca khi dung int64, cung chi dung duoc khi BIGINT_BASE<=131072 (bi gioi han boi do chinh xac cua double)
-      // Co the bao dam quan he giua ket qua uoc luong q' va ket qua thuc q la q'<=q<=q'+1
-      // Vi vay moi chu so trung binh chi can thu thuong mot lan; sau do chi can xu ly nho thong nhat
-      // Neu muon dung base lon hon, can thay bang phuong an thu thuong khac
+      // Tính trước nghịch đảo của ba chữ số cao nhất của số chia + 1; nếu ba chữ số cao nhất là a3,a2,a1
+      // Thì db là nghịch đảo của a3+a2/base+(a1+1)/base^2; cuối cùng dùng phép nhân để ước lượng từng chữ số thương
+      // Cách này dùng được trong phạm vi int32 khi BIGINT_BASE<=32768
+      // Nhưng ngay cả khi dùng int64, cũng chỉ dùng được khi BIGINT_BASE<=131072 (bị giới hạn bởi độ chính xác của double)
+      // Có thể bảo đảm quan hệ giữa kết quả ước lượng q' và kết quả thực q là q'<=q<=q'+1
+      // Vì vậy mỗi chữ số trung bình chỉ cần thử thương một lần; sau đó chỉ cần xử lý nhớ thống nhất
+      // Nếu muốn dùng base lớn hơn, cần thay bằng phương án thử thương khác
       double t = (b.get((unsigned)b.v.size() - 2) +
                   (b.get((unsigned)b.v.size() - 3) + 1.0) / BIGINT_BASE);
       double db = 1.0 / (b.v.back() + t / BIGINT_BASE);
@@ -669,17 +669,17 @@ Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể r�
         int m = std::max((int)(db * rm), r.get(i + 1));
         r.sub_mul(b, m, j);
         d.v[j] += m;
-        if (!r.get(i + 1))  // Kiem tra chu so cao nhat da bang 0 chua, tranh truong hop cuc doan
+        if (!r.get(i + 1))  // Kiểm tra chữ số cao nhất đã bằng 0 chưa, tránh trường hợp cực đoan
           --i, --j;
       }
       r.trim();
-      // Hieu chinh hang don vi cua ket qua
+      // Hiệu chỉnh hàng đơn vị của kết quả
       int carry = 0;
       while (!r.absless(b)) {
         r.subtract(b);
         ++carry;
       }
-      // Hieu chinh phan nho cua tung hang
+      // Hiệu chỉnh phần nhớ của từng hàng
       for (size_t i = 0; i < d.v.size(); ++i) {
         carry += d.v[i];
         d.v[i] = carry % BIGINT_BASE;
@@ -743,7 +743,7 @@ Toàn bộ quá trình có thể cài đặt bằng đệ quy. Để rõ ràng, 
     ```cpp
     int *karatsuba_polymul(int n, int *a, int *b) {
       if (n <= 32) {
-        // Khi kich thuoc nho, tinh truc tiep de tranh mat hieu suat do tiep tuc de quy
+        // Khi kích thước nhỏ, tính trực tiếp để tránh mất hiệu suất do tiếp tục đệ quy
         int *r = new int[n * 2 + 1]();
         for (int i = 0; i <= n; ++i)
           for (int j = 0; j <= n; ++j) r[i + j] += a[i] * b[j];
@@ -757,8 +757,8 @@ Toàn bộ quá trình có thể cài đặt bằng đệ quy. Để rõ ràng, 
       z0 = karatsuba_polymul(m - 1, a, b);
       z2 = karatsuba_polymul(n - m, a + m, b + m);
     
-      // Tinh z1
-      // Thay doi tam thoi, tinh xong thi khoi phuc
+      // Tính z1
+      // Thay đổi tạm thời, tính xong thì khôi phục
       for (int i = 0; i + m <= n; ++i) a[i] += a[i + m];
       for (int i = 0; i + m <= n; ++i) b[i] += b[i + m];
       z1 = karatsuba_polymul(m - 1, a, b);
@@ -812,15 +812,15 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
 ??? note "Đây là một mẫu khác"
     ```cpp
     constexpr int MAXN = 9999;
-    // MAXN la so lon nhat trong mot hang
+    // MAXN là số lớn nhất trong một hàng
     constexpr int MAXSIZE = 10024;
-    // MAXSIZE la so chu so
+    // MAXSIZE là số chữ số
     constexpr int DLEN = 4;
     
-    // DLEN ghi nhan so chu so duoc gop
+    // DLEN ghi nhận số chữ số được gộp
     struct Big {
       int a[MAXSIZE], len;
-      bool flag;  // Danh dau dau '-'
+      bool flag;  // Đánh dấu dấu '-'
     
       Big() {
         len = 1;

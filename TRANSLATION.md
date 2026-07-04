@@ -136,8 +136,8 @@ MkDocs source layout intact.
   `docs/math/number-theory/sieve.md`, `docs/math/number-theory/inverse.md`,
   `docs/math/number-theory/linear-equation.md`: translated arbitrary-precision
   arithmetic and the first number-theory pages, plus explanatory comments in
-  the included modular arithmetic, prime, inverse, and linear congruence
-  snippets.
+  the included big integer, modular arithmetic, prime, inverse, and linear
+  congruence snippets.
 - Quality pass: restored Vietnamese diacritics and smoothed core prose in
   selected `docs/math/number-theory/basic.md`,
   `docs/math/number-theory/mod-arithmetic.md`, and
