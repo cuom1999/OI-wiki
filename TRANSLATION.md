@@ -53,6 +53,9 @@ MkDocs source layout intact.
   beginner C++ variable, operator, and pointer pages.
 - `docs/lang/namespace.md`, `docs/lang/reference.md`, `docs/lang/const.md`:
   translated C++ namespace, reference, and const/constexpr pages.
+- `docs/lang/class.md`, `docs/lang/value-category.md`,
+  `docs/lang/op-overload.md`: translated C++ class, value-category, and operator
+  overloading pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

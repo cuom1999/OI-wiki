@@ -1,10 +1,10 @@
-值类别是 C++ 中一个非常重要的概念，虽然在算法竞赛中可能用处不大，但了解它可以帮助我们发现并避免不必要的复制，从而提高代码的效率和性能．
+Loại giá trị là một khái niệm rất quan trọng trong C++. Tuy trong lập trình thi đấu có thể không được dùng nhiều, hiểu nó giúp ta phát hiện và tránh những phép sao chép không cần thiết, từ đó cải thiện hiệu quả và hiệu năng của mã.
 
-值类别的概念在 C 语言、C++98、C++11 和 C++17 中经历了多次发展，逐渐成为一个较为复杂的概念．
+Khái niệm loại giá trị đã trải qua nhiều lần phát triển trong ngôn ngữ C, C++98, C++11 và C++17, rồi dần trở thành một khái niệm tương đối phức tạp.
 
-## 不必要的复制
+## Sao chép không cần thiết
 
-我们考虑将字符串塞入 vector 这一过程：
+Hãy xét quá trình đưa chuỗi vào một vector:
 
 ```cpp
 int main() {
@@ -19,9 +19,9 @@ int main() {
 }
 ```
 
-可以发现字符串在转移的过程中，在 `str` 和 `vec` 中各保存了一份，内存占用加倍．
+Có thể thấy trong quá trình chuyển chuỗi, cả `str` và `vec` đều giữ một bản, làm lượng bộ nhớ sử dụng tăng gấp đôi.
 
-如果非要省下这一部分的内存，我们可以实现一个简陋的移动操作：自定义 `MyString` 结构体，内有一指针指向我们的字符串，即我们只需要把指针复制过去，并小心地清理原对象的指针，防止被错误析构．
+Nếu nhất định muốn tiết kiệm phần bộ nhớ này, ta có thể tự hiện thực một thao tác di chuyển đơn giản: tự định nghĩa cấu trúc `MyString`, bên trong có một con trỏ trỏ tới chuỗi của ta. Như vậy ta chỉ cần sao chép con trỏ sang nơi mới, đồng thời cẩn thận dọn con trỏ của đối tượng gốc để tránh bị hủy sai.
 
 ```cpp
 struct MyString {
@@ -36,40 +36,42 @@ void move_to(MyString &src, MyString &dst) {
 }
 ```
 
-由于这种高效转移对象的需求较为常见，且与 C++ 的构造、析构等操作交互困难，C++11 将移动语义引入了语言核心．
+Nhu cầu chuyển đối tượng một cách hiệu quả như vậy khá thường gặp, nhưng lại khó phối hợp với các thao tác như khởi tạo và hủy của C++. Vì thế C++11 đã đưa ngữ nghĩa di chuyển vào phần lõi của ngôn ngữ.
 
-## C 语言中的值类别
+## Loại giá trị trong ngôn ngữ C
 
-在 C 语言标准中，对象是一个比变量更为一般化的概念，它指代一块内存区域，具有内存地址．对象的主要属性包括：大小、有效类型、值和标识符．标识符即变量名，值是该内存以其类型解释时的含义．例如，`int` 和 `float` 类型虽然都占用 4 字节，但对于同一块内存，我们会解释出不同的含义．
+Trong chuẩn ngôn ngữ C, đối tượng là một khái niệm tổng quát hơn biến; nó chỉ một vùng nhớ có địa chỉ bộ nhớ. Các thuộc tính chính của đối tượng gồm: kích thước, kiểu hiệu lực, giá trị và định danh. Định danh chính là tên biến; giá trị là ý nghĩa của vùng nhớ đó khi được diễn giải theo kiểu của nó. Ví dụ, tuy kiểu `int` và `float` đều chiếm 4 byte, cùng một vùng nhớ sẽ được diễn giải ra các ý nghĩa khác nhau.
 
-C 语言中每个表达式都具有类型和值类别．值类别主要分为三类：
+Trong ngôn ngữ C, mỗi biểu thức đều có kiểu và loại giá trị. Loại giá trị chủ yếu được chia thành ba loại:
 
--   左值（lvalue）：隐含指代一个对象的表达式．即我们可以对该表达式取地址．
--   右值（rvalue）：不指代对象的表达式，即指代没有存储位置的值，我们无法取该值的地址．
--   函数指代符：函数类型的表达式．
+-   Trái trị (lvalue): biểu thức ngầm chỉ tới một đối tượng. Nghĩa là ta có thể lấy địa chỉ của biểu thức đó.
+-   Phải trị (rvalue): biểu thức không chỉ tới đối tượng; tức là nó chỉ tới một giá trị không có vị trí lưu trữ, nên ta không thể lấy địa chỉ của giá trị này.
+-   Biểu thức chỉ định hàm: biểu thức có kiểu hàm.
 
-因此，只有可修改的左值（没有 `const` 修饰且非数组的左值）可以位于赋值表达式左侧．
+Vì vậy, chỉ các trái trị có thể sửa đổi (trái trị không được bổ nghĩa bằng `const` và không phải mảng) mới có thể đứng ở vế trái của biểu thức gán.
 
-对于某个要求右值作为它的操作数的运算符，每当左值被用作操作数，都会对该表达式应用左值到右值，数组到指针，或者函数到指针标准转换以将它转换成右值．
+Với một toán tử yêu cầu toán hạng của nó là phải trị, mỗi khi một trái trị được dùng làm toán hạng, biểu thức đó sẽ được áp dụng phép chuyển chuẩn từ trái trị sang phải trị, từ mảng sang con trỏ, hoặc từ hàm sang con trỏ để chuyển thành phải trị.
 
-常见误区：
+Các hiểu lầm thường gặp:
 
--   右值表达式继续运算可能是左值．例如 `int *a`，表达式 `a + 1` 是右值，但 `*(a + 1)` 是左值．
--   表达式才有值类别，变量没有．例如 `int *a`，不能说变量 `a` 是左值，可以说其在表达式 `a` 中做左值．
+-   Tiếp tục tính toán từ một biểu thức phải trị vẫn có thể cho ra trái trị. Ví dụ với `int *a`, biểu thức `a + 1` là phải trị, nhưng `*(a + 1)` là trái trị.
+-   Chỉ biểu thức mới có loại giá trị, biến thì không. Ví dụ với `int *a`, không nên nói biến `a` là trái trị; có thể nói rằng trong biểu thức `a`, nó đóng vai trò trái trị.
 
-## C++98 中的值类别
+## Loại giá trị trong C++98
 
-C++98 在值类别方面与 C 语言几乎一致，但增加了一些新的规则：
+C++98 gần như giống ngôn ngữ C về loại giá trị, nhưng bổ sung một số quy tắc mới:
 
--   函数为左值，因为可以取地址．
--   左值引用（T&）是左值，因为可以取地址．
--   仅有 `const T&` 可绑定到右值．
+-   Hàm là trái trị, vì có thể lấy địa chỉ.
+-   Tham chiếu trái trị (`T&`) là trái trị, vì có thể lấy địa chỉ.
+-   Chỉ `const T&` mới có thể gắn với phải trị.
 
-### 复制消除
+<span id="&#x590D;&#x5236;&#x6D88;&#x9664;"></span><span id="%E5%A4%8D%E5%88%B6%E6%B6%88%E9%99%A4"></span>
 
-C++ 允许编译器执行复制消除（Copy Elision），可以减少临时对象的创建和销毁．
+### Loại bỏ sao chép
 
-例如下面的代码，就触发了复制消除中的返回值优化（Return Value Optimization，RVO），你只会看到一次构造和一次复制构造，即便构造与析构有副作用．
+C++ cho phép trình biên dịch thực hiện loại bỏ sao chép (Copy Elision), nhờ đó giảm việc tạo và hủy đối tượng tạm.
+
+Ví dụ, đoạn mã dưới đây kích hoạt tối ưu giá trị trả về (Return Value Optimization, RVO) trong cơ chế loại bỏ sao chép. Bạn chỉ thấy một lần khởi tạo và một lần khởi tạo sao chép, kể cả khi việc khởi tạo và hủy có tác dụng phụ.
 
 ```cpp
 struct X {
@@ -92,11 +94,11 @@ int main() {
 }
 ```
 
-## C++11 中的值类别
+## Loại giá trị trong C++11
 
-C++11 引入了移动语义和右值引用（`T&&`），包括移动构造、移动赋值函数．这给了我们利用临时对象的方法．
+C++11 đưa vào ngữ nghĩa di chuyển và tham chiếu phải trị (`T&&`), bao gồm hàm khởi tạo di chuyển và toán tử gán di chuyển. Nhờ đó ta có cách tận dụng các đối tượng tạm.
 
-我们上面的 `move_to` 可以改写如下：
+Hàm `move_to` ở trên có thể được viết lại như sau:
 
 ```cpp
 struct MyString {
@@ -109,26 +111,26 @@ struct MyString {
 };
 ```
 
-我们现在关注的表达式特性增加了一点：
+Lúc này các đặc tính biểu thức mà ta quan tâm tăng thêm một điểm:
 
--   是否具有身份：是否指代一个对象，即是否有地址．
--   是否可被移动：是否具有移动构造、移动赋值等函数，让我们有办法利用这些临时对象．
+-   Có danh tính hay không: có chỉ tới một đối tượng hay không, tức có địa chỉ hay không.
+-   Có di chuyển được hay không: có các hàm như khởi tạo di chuyển, gán di chuyển hay không, để ta có cách tận dụng các đối tượng tạm này.
 
-因此我们有三种值类别：
+Vì vậy ta có ba loại giá trị:
 
--   有身份，不可移动：左值（lvalue）．
--   有身份，可被移动：亡值（xvalue）．
--   无身份，可被移动：纯右值（prvalue）．
--   无身份，不可移动：此类表达式无法使用．
+-   Có danh tính, không thể di chuyển: trái trị (lvalue).
+-   Có danh tính, có thể di chuyển: giá trị sắp hết hạn (xvalue).
+-   Không có danh tính, có thể di chuyển: giá trị thuần phải (prvalue).
+-   Không có danh tính, không thể di chuyển: loại biểu thức này không thể sử dụng.
 
-另外 C++11 还引入了两个复合类别：
+Ngoài ra, C++11 còn đưa vào hai loại tổng hợp:
 
--   具有身份：泛左值（glvalue），即左值和亡值．
--   可被移动：右值（rvalue），即纯右值和亡值．
+-   Có danh tính: giá trị tổng quát phía trái (glvalue), tức trái trị và giá trị sắp hết hạn.
+-   Có thể di chuyển: phải trị (rvalue), tức giá trị thuần phải và giá trị sắp hết hạn.
 
 ### std::move
 
-为了配合移动语义，C++11 还引入了一个工具函数 `std::move`，其作用是将左值强制转换为右值，以便触发移动语义．
+Để phối hợp với ngữ nghĩa di chuyển, C++11 còn đưa vào hàm tiện ích `std::move`; tác dụng của nó là ép trái trị thành phải trị để kích hoạt ngữ nghĩa di chuyển.
 
 ```cpp
 int main() {
@@ -141,7 +143,7 @@ int main() {
 }
 ```
 
-因此我们只需将 `push_back(str)` 改为 `push_back(std::move(str))` 即可避免复制．
+Vì vậy ta chỉ cần đổi `push_back(str)` thành `push_back(std::move(str))` là có thể tránh sao chép.
 
 ```cpp
 int main() {
@@ -151,26 +153,26 @@ int main() {
     std::string str;
     std::cin >> str;
     vec.push_back(std::move(str));
-    // 另一种巧妙的写法，需要 C++17
+    // Một cách viết khéo léo khác, cần C++17
     // std::cin >> vec.emplace_back();
   }
   return 0;
 }
 ```
 
-> 由于 `std::string` 有小对象优化（Small String Optimization，SSO），短字符串直接存储于结构体内，你可能得输入较长的字符串才能观察到 `data` 指针的不变性．
+> Do `std::string` có tối ưu đối tượng nhỏ (Small String Optimization, SSO), các chuỗi ngắn được lưu trực tiếp bên trong cấu trúc. Có thể bạn cần nhập chuỗi dài hơn mới quan sát được tính bất biến của con trỏ `data`.
 
-## C++17 中的值类别
+## Loại giá trị trong C++17
 
-C++17 进一步简化了值类别：
+C++17 tiếp tục đơn giản hóa loại giá trị:
 
--   左值（lvalue）：有身份，不可移动．
--   亡值（xvalue）：有身份，可以移动．
--   纯右值（prvalue）：对象的初始化．
+-   Trái trị (lvalue): có danh tính, không thể di chuyển.
+-   Giá trị sắp hết hạn (xvalue): có danh tính, có thể di chuyển.
+-   Giá trị thuần phải (prvalue): phép khởi tạo đối tượng.
 
-C++11 将复制消除扩展到了移动上，下面的代码中 `urvo` 在编译器启用 RVO 的情况下是没有移动的．
+C++11 đã mở rộng loại bỏ sao chép sang cả di chuyển; trong đoạn mã dưới đây, `urvo` sẽ không có thao tác di chuyển nếu trình biên dịch bật RVO.
 
-C++17 要求纯右值非必须不实质化，直接构造到其最终目标的存储中，在构造之前对象尚不存在．因此在 C++17 中我们就没有返回这一步，也就不必依赖 RVO．也可以理解为强制了 URVO（Unnamed RVO），但对于 NRVO（Named RVO）还是非强制的．
+C++17 yêu cầu giá trị thuần phải không nhất thiết phải được hiện thực hóa, mà được khởi tạo trực tiếp vào vùng lưu trữ của đích cuối cùng; trước khi khởi tạo, đối tượng còn chưa tồn tại. Vì vậy trong C++17, ta không còn bước trả về đó nữa, và cũng không cần phụ thuộc vào RVO. Cũng có thể hiểu là URVO (Unnamed RVO) đã trở thành bắt buộc, nhưng NRVO (Named RVO) thì vẫn không bắt buộc.
 
 ```cpp
 std::string urvo() { return std::string("123"); }
@@ -183,24 +185,26 @@ std::string nrvo() {
 }
 
 int main() {
-  std::string str = urvo();  // 直接构造
-  std::string str = nrvo();  // 不一定直接构造，依赖于优化
+  std::string str = urvo();  // Khởi tạo trực tiếp
+  std::string str = nrvo();  // Không nhất thiết khởi tạo trực tiếp, phụ thuộc vào tối ưu hóa
 }
 ```
 
-同时 C++17 引入了临时量实质化的机制，当我们需要访问成员变量、调用成员函数等需要泛左值的情形时，可以隐式转换为亡值．
+Đồng thời, C++17 đưa vào cơ chế hiện thực hóa đối tượng tạm: khi ta cần truy cập biến thành viên, gọi hàm thành viên, hoặc gặp các tình huống khác cần giá trị tổng quát phía trái, giá trị thuần phải có thể được chuyển ngầm định thành giá trị sắp hết hạn.
 
-### 常见误区
+<span id="&#x5E38;&#x89C1;&#x8BEF;&#x533A;"></span><span id="%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%8C%BA"></span>
 
-下面的例子中：
+### Các hiểu lầm thường gặp
 
--   在 `f1` 中返回 `std::move(x)` 是多余的，并不会带来性能上的提升，反而会干扰编译器进行 NRVO 优化．
--   在 `f2` 中返回 `std::move(x)` 是危险的，函数返回右值引用指向了已被销毁的局部变量 `s`，出现了悬空引用问题．
+Trong ví dụ dưới đây:
+
+-   Trả về `std::move(x)` trong `f1` là thừa; nó không đem lại cải thiện hiệu năng, ngược lại còn cản trở trình biên dịch thực hiện tối ưu NRVO.
+-   Trả về `std::move(x)` trong `f2` là nguy hiểm; hàm trả về một tham chiếu phải trị trỏ tới biến cục bộ `s` đã bị hủy, gây ra vấn đề tham chiếu treo.
 
 ```cpp
 std::string f1() {
   std::string s = "123";
-  // 等价于 return std::string(std::move(s))
+  // Tương đương với return std::string(std::move(s))
   return std::move(s);
 }
 
@@ -210,10 +214,10 @@ std::string&& f2() {
 }
 ```
 
-## 参考文献与推荐阅读
+## Tài liệu tham khảo và đọc thêm
 
 1.  [Value categories](https://en.cppreference.com/w/cpp/language/value_category)
 2.  [Wording for guaranteed copy elision through simplified value categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html)
-3.  [C++ 中的值类别](https://paul.pub/cpp-value-category/)
-4.  [C++ 的右值引用、移动和值类别系统，你所需要的一切](https://zclll.com/index.php/cpp/value_category.html)
+3.  [Loại giá trị trong C++](https://paul.pub/cpp-value-category/)
+4.  [Tham chiếu phải trị, di chuyển và hệ thống loại giá trị của C++: mọi thứ bạn cần biết](https://zclll.com/index.php/cpp/value_category.html)
 5.  [Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision)

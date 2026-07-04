@@ -112,10 +112,10 @@ nav:
       - string: lang/csl/string.md
       - pair: lang/csl/pair.md
     - C++ 进阶:
-      - 类: lang/class.md
+      - Lớp: lang/class.md
       - Namespace: lang/namespace.md
-      - 值类别: lang/value-category.md
-      - 重载运算符: lang/op-overload.md
+      - Loại giá trị: lang/value-category.md
+      - Nạp chồng toán tử: lang/op-overload.md
       - Tham chiếu: lang/reference.md
       - Hằng: lang/const.md
       - 新版 C++ 特性: lang/new.md
