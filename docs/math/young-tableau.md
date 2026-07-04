@@ -1,83 +1,103 @@
-## 引入
+<span id="&#24341;&#20837;"></span>
 
-**杨氏矩阵**(Young tableau)，又名杨表，是一种常用于表示论和舒伯特演算中的组合对象．
+## Giới thiệu
 
-杨表是一种特殊的矩阵．它便于对称群和一般线性群的群表示和性质研究．杨表由剑桥大学数学家阿尔弗雷德·杨（Alfred Young）于 1900 年首次提出，于 1903 年被德国数学家弗罗贝尼乌斯（Ferdinand Georg Frobenius）应用于对称群的研究．
+**Bảng Young** (Young tableau), còn gọi là bảng Young, là một đối tượng tổ hợp thường gặp trong lý thuyết biểu diễn và phép tính Schubert.
 
-???+ note "注释"
-    **表示论**（Representation theory）是数学的一个分支．它通过将元素表示为向量空间的线性变换来研究抽象代数结构．**舒伯特演算**（Schubert calculus）是代数几何的一个分支，于 19 世纪由赫尔曼·舒伯特为了解决射影几何的计数问题而引入．
+Bảng Young là một dạng ma trận đặc biệt. Nó thuận tiện cho việc nghiên cứu biểu diễn nhóm và tính chất của nhóm đối xứng cũng như nhóm tuyến tính tổng quát. Bảng Young do nhà toán học Cambridge Alfred Young đưa ra lần đầu vào năm 1900, rồi được nhà toán học Đức Ferdinand Georg Frobenius áp dụng vào nghiên cứu nhóm đối xứng năm 1903.
 
-## 定义
+???+ note "Ghi chú"
+    **Lý thuyết biểu diễn** (Representation theory) là một nhánh của toán học nghiên cứu các cấu trúc đại số trừu tượng bằng cách biểu diễn phần tử của chúng thành các phép biến đổi tuyến tính trên không gian vectơ. **Phép tính Schubert** (Schubert calculus) là một nhánh của hình học đại số, được Hermann Schubert đưa ra vào thế kỷ 19 để giải các bài toán đếm trong hình học xạ ảnh.
 
-### 杨图
+<span id="&#23450;&#20041;"></span>
 
-**杨图**（Young diagram，使用点表示时又称 [Ferrers 图](https://en.wikipedia.org/wiki/Partition_%28number_theory%29#Ferrers_diagram)，在 [分拆数](./combinatorics/partition.md#ferrers-%E5%9B%BE) 一节中有相关介绍）是一个有限的框或单元格集合，左对齐排列，行长按非递增顺序排列．如果把杨图每行的方格数列出，我们得到了一个非负整数 $n$（总方格数）的 **整数分拆**(integer partition)$\lambda$．因此，我们可以将杨图的形状看作 $\lambda$，因为它携带与其整数拆分相同的信息．
+## Định nghĩa
 
-杨图之间的包含关系定义了整数分拆上的一个 [偏序](../math/order-theory.md#偏序集) 关系，此关系拥有 [格](../math/order-theory.md#有向集与格) 的结构，被称为 **杨格**(Young's lattice)．如果把杨图各列的方格数列出，则会得到整数分拆 $\lambda$ 的「共轭分拆」，或「转置分拆」，它所对应到的杨图可由原本的杨图沿主对角线作镜射对称而得．
+<span id="&#26472;&#22270;"></span>
 
-杨图每个方格的位置由分别代表 **行数** 与 **列数** 的两个座标点决定．列的顺序由左向右，行的顺序则按方格数的由多向少的方向．此处需要注意，根据习惯不同存在着两种不同的杨图画法：第一个将方格数较少的行排在方格数较多的行的下方，第二种画法将各行由大到小一层一层往上叠．由于前一种画法主要由英语国家使用，而后者通常被法语国家使用，习惯上我们分别称它们为英式画法和法式画法．
+### Biểu đồ Young
 
-以下表格中分别为整数分拆 $(5,4,1)$ 对应的杨图不同画法：
+**Biểu đồ Young** (Young diagram; khi dùng các điểm để biểu diễn còn gọi là [biểu đồ Ferrers](https://en.wikipedia.org/wiki/Partition_%28number_theory%29#Ferrers_diagram), đã được giới thiệu trong mục [phân hoạch số nguyên](./combinatorics/partition.md#ferrers-%E5%9B%BE)) là một tập hữu hạn các ô, được căn trái, với độ dài các hàng sắp theo thứ tự không tăng. Nếu liệt kê số ô trên từng hàng của biểu đồ Young, ta thu được một **phân hoạch số nguyên** (integer partition) $\lambda$ của một số nguyên không âm $n$ (tổng số ô). Vì vậy ta có thể xem hình dạng của biểu đồ Young là $\lambda$, bởi nó mang cùng lượng thông tin với phân hoạch số nguyên tương ứng.
 
--   英式画法：![](./images/young-diagram-1.svg)
--   法式画法：![](./images/young-diagram-2.svg)
+Quan hệ bao hàm giữa các biểu đồ Young định nghĩa một quan hệ [thứ tự bộ phận](../math/order-theory.md#%E5%81%8F%E5%BA%8F%E9%9B%86) trên các phân hoạch số nguyên. Quan hệ này có cấu trúc [dàn](../math/order-theory.md#%E6%9C%89%E5%90%91%E9%9B%86%E4%B8%8E%E6%A0%BC) và được gọi là **dàn Young** (Young's lattice). Nếu liệt kê số ô trên từng cột của biểu đồ Young, ta nhận được "phân hoạch liên hợp" hoặc "phân hoạch chuyển vị" của phân hoạch số nguyên $\lambda$; biểu đồ Young tương ứng có thể thu được bằng cách phản xạ biểu đồ ban đầu qua đường chéo chính.
 
-### 杨表
+Vị trí của mỗi ô trong biểu đồ Young được xác định bởi hai tọa độ lần lượt biểu thị **số hàng** và **số cột**. Các cột được đánh theo thứ tự từ trái sang phải, còn các hàng được đánh theo hướng số ô giảm dần. Cần chú ý rằng, tùy quy ước, có hai cách vẽ biểu đồ Young khác nhau: cách thứ nhất đặt hàng có ít ô hơn ở bên dưới hàng có nhiều ô hơn, còn cách thứ hai xếp các hàng từ lớn đến nhỏ lên phía trên. Vì cách đầu chủ yếu được dùng trong các nước nói tiếng Anh, còn cách sau thường được dùng trong các nước nói tiếng Pháp, theo quy ước chúng được gọi lần lượt là kiểu Anh và kiểu Pháp.
 
-#### 定义
+Sau đây là hai cách vẽ khác nhau của biểu đồ Young ứng với phân hoạch số nguyên $(5,4,1)$:
 
-**杨表**（Young tableau）是通过用取自某个字母表的符号填充杨氏图的框来获得的，这通常需要是一个全序集和．填入的元素写作 $x_{1}$,$x_{2}$,$x_{3}$,$\ldots$．但为了方便起见，都直接填入正整数．
+-   Kiểu Anh: ![](./images/young-diagram-1.svg)
+-   Kiểu Pháp: ![](./images/young-diagram-2.svg)
 
-杨表最初应用于对称群的表示理论时，允许在杨图的 $n$ 的方格中任意填入 $1$ 到 $n$ 中相异的正整数．但现在的研究大多使用「标准」的杨表，即上述条件中各行与各列中方格的数字皆为严格递增的．由 $n$ 个方格的相异杨表数个数形成 [对和数](https://en.wikipedia.org/wiki/Telephone_number_%28mathematics%29)：
+<span id="&#26472;&#34920;"></span>
 
-???+ note "注释"
-    **对和数**（involution number/telephone number）是在数学中是一个整数序列，用来计算 $n$ 条电话线中每条线路最多可以连接到另一条线路时可以相互连接的方法个数．它还可以用来描述完全图 $n$ 个顶点上的匹配数，$n$ 个对合元素的排列数，Hermite 多项式系数的绝对值之和，含有 $n$ 个格子的标准杨表的个数，以及不可约对称群的度数之和．
+### Bảng Young
 
-$1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikipedia.org/wiki/On-Line_Encyclopedia_of_Integer_Sequences) 中的数列 [A000085](https://oeis.org/A000085)）
+#### Định nghĩa
 
-在其他应用中，杨图也可以被填入相同的数字．若填法的同列数字严格递增，且同行数字单调递增，则该杨表被称为是 **半标准的**（Semistandard Young Tableaux, 有时称为列严格）．杨表中个数字出现的次数记录下来得到的序列被视为杨表的 **权重**．因此，标准杨表的权重必然是 $(1,1,\ldots,1)$．因为在标准杨表中，$1$ 到 $n$ 的每个正整数恰好各出现一次．
+**Bảng Young** (Young tableau) thu được bằng cách điền các ký hiệu lấy từ một bảng chữ cái nào đó vào các ô của biểu đồ Young; thông thường bảng chữ cái này cần là một tập sắp thứ tự toàn phần. Các phần tử được viết là $x_{1}$, $x_{2}$, $x_{3}$, $\ldots$. Tuy nhiên, để thuận tiện, người ta thường điền trực tiếp các số nguyên dương.
 
-#### 标准杨表的插入算法
+Khi bảng Young ban đầu được dùng trong lý thuyết biểu diễn của nhóm đối xứng, người ta cho phép điền tùy ý các số nguyên dương phân biệt từ $1$ đến $n$ vào $n$ ô của biểu đồ Young. Trong nghiên cứu hiện nay, phần lớn sử dụng bảng Young "chuẩn", tức là ngoài điều kiện trên, các số trong mỗi hàng và mỗi cột đều tăng nghiêm ngặt. Số lượng bảng Young phân biệt gồm $n$ ô tạo thành dãy [số đối hợp](https://en.wikipedia.org/wiki/Telephone_number_%28mathematics%29):
 
-排列的性质可以由杨表直观地表现出来．**RSK 插入算法** 就提供了一个将杨表和排列联系起来的途径．它由 Robinson, Schensted 和 Knuth 提出．
+???+ note "Ghi chú"
+    **Số đối hợp** (involution number/telephone number) là một dãy số nguyên trong toán học, dùng để đếm số cách nối các đường dây khi trong $n$ đường dây điện thoại mỗi đường dây được nối với nhiều nhất một đường dây khác. Nó cũng có thể mô tả số matching trên đồ thị đầy đủ $n$ đỉnh, số hoán vị là đối hợp của $n$ phần tử, tổng trị tuyệt đối các hệ số của đa thức Hermite, số bảng Young chuẩn có $n$ ô, và tổng bậc của các biểu diễn bất khả quy của nhóm đối xứng.
 
-令 $S$ 是一个杨表，定义 $S \leftarrow x$ 表示将 $x$ 从第一行插入杨表中，具体如下：
+$1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$ (dãy [A000085](https://oeis.org/A000085) trong [OEIS](https://en.wikipedia.org/wiki/On-Line_Encyclopedia_of_Integer_Sequences))
 
-1.  在当前行中找到最小的比 $x$ 大的数 $y$．
-2.  如果找到了，用 $x$ 去替换 $y$，移到下一行，令 $x \leftarrow y$ 重复操作 1．
-3.  如果找不到，就把 $x$ 放在该行末尾并退出．记 $x$ 在第 $s$ 行第 $t$ 列，$(s, t)$ 必定是一个边角．一个格子 $(s, t)$ 是边角当且仅当 $(s + 1, t)$ 和 $(s, t + 1)$ 都不存在格子．
+Trong các ứng dụng khác, biểu đồ Young cũng có thể được điền các số trùng nhau. Nếu các số trong cùng một cột tăng nghiêm ngặt, còn các số trong cùng một hàng tăng không giảm, bảng Young đó được gọi là **nửa chuẩn** (Semistandard Young Tableaux, đôi khi gọi là chặt theo cột). Dãy ghi lại số lần xuất hiện của từng số trong bảng Young được xem là **trọng số** của bảng Young. Vì vậy, trọng số của bảng Young chuẩn nhất định là $(1,1,\ldots,1)$, bởi trong bảng Young chuẩn, mỗi số nguyên dương từ $1$ đến $n$ xuất hiện đúng một lần.
 
-例如，将 $3$ 插入杨表 $(2, 5, 9)(6, 7)(8)$ 的步骤为：
+<span id="&#26631;&#20934;&#26472;&#34920;&#30340;&#25554;&#20837;&#31639;&#27861;"></span>
+
+#### Thuật toán chèn bảng Young chuẩn
+
+Các tính chất của một hoán vị có thể được thể hiện trực quan bằng bảng Young. **Thuật toán chèn RSK** cung cấp một cách liên hệ bảng Young với hoán vị. Thuật toán này do Robinson, Schensted và Knuth đưa ra.
+
+Gọi $S$ là một bảng Young. Ký hiệu $S \leftarrow x$ là thao tác chèn $x$ vào bảng Young từ hàng đầu tiên, cụ thể như sau:
+
+1.  Trên hàng hiện tại, tìm số nhỏ nhất $y$ lớn hơn $x$.
+2.  Nếu tìm thấy, dùng $x$ thay thế $y$, chuyển sang hàng kế tiếp, đặt $x \leftarrow y$ rồi lặp lại bước 1.
+3.  Nếu không tìm thấy, đặt $x$ vào cuối hàng đó rồi kết thúc. Giả sử $x$ nằm ở hàng $s$, cột $t$; khi đó $(s, t)$ nhất định là một góc. Một ô $(s, t)$ là góc khi và chỉ khi cả hai ô $(s + 1, t)$ và $(s, t + 1)$ đều không tồn tại.
+
+Ví dụ, các bước chèn $3$ vào bảng Young $(2, 5, 9)(6, 7)(8)$ là:
 
 ![](./images/young-tableau-insert.svg)
 
-### 变体
+<span id="&#21464;&#20307;"></span>
 
-非完全严格标准的杨表有许多变体（Variations）．例如行严格杨表要求同行数字严格递增，且同列数字单调递增，即列严格杨表的共轭．此外，在平面分拆（plane partitions）理论中，习惯上会将上述的定义中的递增改为递减．其他变体例如带状杨表，会先将一些方块打包成群，然后要求各群的方块必须填入相同数字．
+### Các biến thể
 
-### 斜杨表
+Bảng Young không hoàn toàn chuẩn theo nghĩa nghiêm ngặt có nhiều **biến thể** (variations). Chẳng hạn, bảng Young chặt theo hàng yêu cầu các số trong cùng hàng tăng nghiêm ngặt và các số trong cùng cột tăng không giảm; nó chính là liên hợp của bảng Young chặt theo cột. Ngoài ra, trong lý thuyết phân hoạch phẳng (plane partitions), người ta thường đổi các điều kiện tăng trong định nghĩa trên thành giảm. Một biến thể khác là bảng Young dạng dải: trước hết gom một số ô thành từng nhóm, rồi yêu cầu các ô trong cùng một nhóm phải được điền cùng một số.
 
-给定两个杨图 $\lambda = (\lambda{1}, \lambda{2} \ldots)$、$\mu = (\mu{1}, \mu{2},\ldots)$，满足 $\lambda$ 包含 $\mu$，即 $\mu{i} \leq \mu{i}$ 对所有 $i$．定义「斜杨图」$\lambda/\mu$ 为 $\lambda$ 中所有方格减去 $\mu$ 中的所有方格 即 $\lambda$ 差集 $\mu$．在斜杨图的各方格中填入元素就形成了 **斜杨表**(Skew tableaux)．
+<span id="&#26012;&#26472;&#34920;"></span>
 
-例如，下图为整数分拆 $(5,4,1)$ 对应的一个标准斜杨表：
+### Bảng Young lệch
+
+Cho hai biểu đồ Young $\lambda = (\lambda_{1}, \lambda_{2}, \ldots)$ và $\mu = (\mu_{1}, \mu_{2},\ldots)$, trong đó $\lambda$ chứa $\mu$, tức là $\mu_{i} \leq \lambda_{i}$ với mọi $i$. Định nghĩa **biểu đồ Young lệch** $\lambda/\mu$ là tập các ô của $\lambda$ sau khi bỏ đi tất cả các ô của $\mu$, tức là hiệu tập hợp $\lambda$ trừ $\mu$. Điền phần tử vào các ô của biểu đồ Young lệch sẽ tạo thành **bảng Young lệch** (Skew tableaux).
+
+Ví dụ, hình sau là một bảng Young lệch chuẩn ứng với phân hoạch số nguyên $(5,4,1)$:
 
 ![](./images/skew-tableau.svg)
 
-同理，若满足同一列中的数字严格递增，且同一行中的数字单调递增，则该斜杨表被称作 **半标准斜杨表**；若半标准斜杨表满足各方格不重复的填入数字 $1$ 到 $n$（方格总数），则该斜杨表被称作 **标准斜杨表**．注意，由不同的 $\lambda$ 和 $\mu$ 可得到相同的 $\lambda/\mu$．虽然大部分斜杨表的性质都只依赖于取完差集的方格，但是仍然部分运算依赖于 $\lambda$ 和 $\mu$ 的选取．因此，$\lambda/\mu$ 必须被视为包含两个元素信息：$\lambda$ 和 $\mu$．当 $\mu$ 是空分拆（$0$ 的唯一一种分拆）时，斜杨表 $\lambda/\mu$ 就变成杨表 $\lambda$．
+Tương tự, nếu các số trong cùng một cột tăng nghiêm ngặt và các số trong cùng một hàng tăng không giảm, bảng Young lệch đó được gọi là **bảng Young lệch nửa chuẩn**; nếu bảng Young lệch nửa chuẩn điền các số không lặp từ $1$ đến $n$ (tổng số ô), nó được gọi là **bảng Young lệch chuẩn**. Lưu ý rằng các cặp $\lambda$ và $\mu$ khác nhau có thể cho cùng một $\lambda/\mu$. Mặc dù phần lớn tính chất của bảng Young lệch chỉ phụ thuộc vào các ô còn lại sau khi lấy hiệu, vẫn có một số phép toán phụ thuộc vào lựa chọn $\lambda$ và $\mu$. Vì vậy, $\lambda/\mu$ phải được xem là chứa thông tin của hai đối tượng: $\lambda$ và $\mu$. Khi $\mu$ là phân hoạch rỗng (phân hoạch duy nhất của $0$), bảng Young lệch $\lambda/\mu$ trở thành bảng Young $\lambda$.
 
-## 应用
+<span id="&#24212;&#29992;"></span>
 
-杨表常用于在组合学、表示理论和代数几何中，用各种不同计算杨表个数的方法得到舒尔函数的定义及相关的恒等式．在信息学竞赛中，常有考察杨表勾长公式的题目．
+## Ứng dụng
 
-### 勾长
+Bảng Young thường được dùng trong tổ hợp, lý thuyết biểu diễn và hình học đại số để định nghĩa hàm Schur và suy ra các đồng nhất thức liên quan thông qua nhiều cách đếm số bảng Young khác nhau. Trong lập trình thi đấu, các bài toán kiểm tra công thức độ dài móc của bảng Young cũng khá thường gặp.
 
-给定一个共有 $n$ 个方格的杨表 $\pi_{\lambda}$，把 $1$ 到 $n$ 的 $n$ 个数字填入杨表中，使得每行从左到右，每列从下到上都是递增的．用 $dim_{\pi_{\lambda}}$ 表示可以这样填的方法个数．
+<span id="&#21246;&#38271;"></span>
 
-对于杨表中的一个方格 $v$，定义其 **勾长** $\mathrm{hook}(v)$ 等于同行右边的方格数加上同列上面的方格数，再加 1（即方格本身）．
+### Độ dài móc
 
-### 勾长公式
+Cho một bảng Young $\pi_{\lambda}$ có tổng cộng $n$ ô. Điền $n$ số từ $1$ đến $n$ vào bảng Young sao cho mỗi hàng tăng từ trái sang phải và mỗi cột tăng từ dưới lên trên. Dùng $\dim_{\pi_{\lambda}}$ để chỉ số cách điền như vậy.
 
-如果用 $dim_{\lambda}$ 表示这样的方法个数，**勾长公式** 就是方法个数等于 $n!$ 除以所有方格的勾长的乘积．
+Với một ô $v$ trong bảng Young, định nghĩa **độ dài móc** $\mathrm{hook}(v)$ bằng số ô ở bên phải trên cùng hàng cộng với số ô ở phía trên trên cùng cột, rồi cộng thêm 1 (chính ô đó).
+
+<span id="&#21246;&#38271;&#20844;&#24335;"></span>
+
+### Công thức độ dài móc
+
+Nếu dùng $\dim_{\lambda}$ để chỉ số cách điền như trên, **công thức độ dài móc** nói rằng số cách bằng $n!$ chia cho tích độ dài móc của tất cả các ô.
 
 $$
 \dim \pi _{\lambda}={\frac {n!}{\prod_{{x\in Y(\lambda)}}{\mathrm {hook}}(x)}}.
@@ -85,53 +105,59 @@ $$
 
 ![](./images/young-tableau-2.svg)
 
-所以对于整数分拆 $10 = 5 + 4 + 1$ 的杨表，如上图所示．有
+Vì vậy, với bảng Young của phân hoạch số nguyên $10 = 5 + 4 + 1$ như hình trên, ta có
 
 $$
 \dim \pi _{\lambda }={\frac  {10!}{7\cdot 5\cdot 4\cdot 3\cdot 1\cdot 5\cdot 3\cdot 2\cdot 1\cdot 1}}=288.
 $$
 
-种方法．
+cách điền.
 
-## 例题
+<span id="&#20363;&#39064;"></span>
 
-### 子序列问题
+## Bài tập
 
-对于杨表 $P$, 定义对于一个从 $1$ 到 $n$ 的排列 $X = x_{1}, \ldots , x_{n}$．
+<span id="&#23376;&#24207;&#21015;&#38382;&#39064;"></span>
 
-1.  $P_{X}$ 中第一行的长度即为排列 $X$ 的 **最长上升子序列（LIS）** 长度．注意，$P$ 的第一行并不一定是 LIS 本身，所以不能直接利用杨表性质解决「LIS 划分」之类的问题．
+### Bài toán dãy con
 
-2.  对于一个排列 $X$ 和它产生的杨表 $P_{X}$，若 $X^R$ 是 $X$ 的翻转，那么 $X^R$ 产生的杨表 $P_{X^R}$ 即为 $P_{X}$ 交换行列得到．
+Với bảng Young $P$, xét một hoán vị $X = x_{1}, \ldots , x_{n}$ của các số từ $1$ đến $n$.
 
-    例如，对于排列 $X = 1, 5, 7, 2, 8, 6, 3, 4$ 和 $X^R = 4, 3, 6, 8, 2, 7, 5, 1$, 我们可得到如下杨表 $P_{X}$:
+1.  Độ dài hàng đầu tiên của $P_{X}$ chính là độ dài **dãy con tăng dài nhất (LIS)** của hoán vị $X$. Lưu ý rằng hàng đầu tiên của $P$ không nhất thiết là chính LIS, nên không thể trực tiếp dùng tính chất của bảng Young để giải các bài như "phân hoạch LIS".
+
+2.  Với một hoán vị $X$ và bảng Young $P_{X}$ do nó sinh ra, nếu $X^R$ là hoán vị đảo ngược của $X$, thì bảng Young $P_{X^R}$ do $X^R$ sinh ra chính là bảng nhận được từ $P_{X}$ sau khi hoán đổi hàng và cột.
+
+    Ví dụ, với hoán vị $X = 1, 5, 7, 2, 8, 6, 3, 4$ và $X^R = 4, 3, 6, 8, 2, 7, 5, 1$, ta thu được bảng Young $P_{X}$ như sau:
 
     ![](./images/young-tableau-LIS.svg)
 
-3.  杨表 $P_{X}$ 中的第一列长度即为排列 $X$ 的 **最长下降子序列（LDS）** 长度．
+3.  Độ dài cột đầu tiên của bảng Young $P_{X}$ chính là độ dài **dãy con giảm dài nhất (LDS)** của hoán vị $X$.
 
-定义长度不超过 $k$ 的 $LIS/LDS$ 长度为 $k-LIS$ 和 $k-LDS$, 此类问题我们同样可以用杨表来解决．对于 $1-LIS$，显而易见最长的 $1-LIS$ 子序列就是该序列的 $LDS$，这也正是杨表的第一列；同样可得，杨表前 $k$ 列的长度就是最长的 $k-LIS$ 子序列的长度．证明如下：
+Định nghĩa độ dài $LIS/LDS$ gồm không quá $k$ dãy là $k-LIS$ và $k-LDS$. Loại bài toán này cũng có thể giải bằng bảng Young. Với $1-LIS$, hiển nhiên dãy con $1-LIS$ dài nhất chính là $LDS$ của dãy, cũng chính là cột đầu tiên của bảng Young; tương tự, độ dài của $k$ cột đầu tiên trong bảng Young là độ dài dãy con $k-LIS$ dài nhất. Chứng minh như sau:
 
-对于一个排列 $X$ 和它的 $m$ 行杨表 $P$，令排列 $X^∗$ 为 $(P_{m,1}\ldots,P_{m,λ_{m}},P_{m−1,1}\ldots,P_{1,1}\ldots P_{1,λ_{1}})$（即将杨表从下往上每行依次写在后面）．那么 $X$ 一定可以通过交换操作转化成 $X^*$．
+Với một hoán vị $X$ và bảng Young $P$ gồm $m$ hàng của nó, đặt hoán vị $X^*$ là $(P_{m,1}\ldots,P_{m,\lambda_{m}},P_{m-1,1}\ldots,P_{1,1}\ldots P_{1,\lambda_{1}})$, tức là viết lần lượt từng hàng của bảng Young từ dưới lên trên. Khi đó $X$ chắc chắn có thể được biến đổi thành $X^*$ bằng các phép đổi chỗ.
 
-所以，最长 $k-LIS$ 子序列长度可以表示成 $F(k)=\sum_{i=1}^{m} \min(k,\lambda_{i})$，即前 $k$ 列的长度和．
+Vì vậy, độ dài dãy con $k-LIS$ dài nhất có thể biểu diễn là $F(k)=\sum_{i=1}^{m} \min(k,\lambda_{i})$, tức là tổng độ dài của $k$ cột đầu tiên.
 
-???+ note "[CTSC2017 最长上升子序列](https://uoj.ac/problem/301)"
-    有一个长为 $n$ 的数列 $b$．对于序列 $B_{m} = (b_{1}, b_{2},\ldots, b_{m})$，设 $C$ 是 $B_{m}$ 的子序列，且 $C$ 的最长上升子序列的长度不超过 $k$，询问 $C$ 的长度最大值．
+???+ note "[CTSC2017 Dãy con tăng dài nhất](https://uoj.ac/problem/301)"
+    Có một dãy số $b$ độ dài $n$. Với dãy $B_{m} = (b_{1}, b_{2},\ldots, b_{m})$, gọi $C$ là một dãy con của $B_{m}$ sao cho độ dài dãy con tăng dài nhất của $C$ không vượt quá $k$. Hỏi độ dài lớn nhất của $C$ là bao nhiêu.
 
-??? note "解题思路"
-    多个询问考虑使用扫描线的方法．这样我们就需要维护每个前缀的杨表．如果使用以上结论，可以发现问题变成了如何快速维护杨表前 $k$ 列的长度之和．如果直接维护，复杂度是 $O(n^2 \log n)$ 的不能接受．考虑维护前 $\sqrt{n}$ 列和前 $\sqrt{n}$ 行．
-    
-    可以发现，杨表一定不会完全覆盖这个 $W \times H$ 的矩形．如果 $K \leq W$，那么可以直接得答案；如果 $K > W$，那么大于 $W$ 的部分一定在 $H$ 行内．所以可以考虑如何同时维护前 $\sqrt{n}$ 列和前 $\sqrt{n}$ 行．将这个排列翻转一下就可以得到杨表的翻转，所以只需要再同时维护 $-A_{i}$ 即可，复杂度为 $O(n \sqrt{n} \log n)$．
+??? note "Hướng giải"
+    Với nhiều truy vấn, xét dùng phương pháp đường quét. Khi đó ta cần duy trì bảng Young của từng tiền tố. Dùng kết luận trên, có thể thấy bài toán trở thành cách duy trì nhanh tổng độ dài của $k$ cột đầu tiên trong bảng Young. Nếu duy trì trực tiếp thì độ phức tạp $O(n^2 \log n)$ là không chấp nhận được. Ta xét duy trì đồng thời $\sqrt{n}$ cột đầu tiên và $\sqrt{n}$ hàng đầu tiên.
 
-???+ note "[BJWC2018 最长上升子序列](https://www.luogu.com.cn/problem/P4484)"
-    现在有一个长度为 $n$ 的随机排列，求它的最长上升子序列长度的期望．
+    Có thể nhận thấy bảng Young chắc chắn không phủ kín hoàn toàn hình chữ nhật $W \times H$ này. Nếu $K \leq W$, ta có thể trả lời trực tiếp; nếu $K > W$, phần vượt quá $W$ chắc chắn nằm trong $H$ hàng. Vì vậy có thể xét cách duy trì đồng thời $\sqrt{n}$ cột đầu tiên và $\sqrt{n}$ hàng đầu tiên. Đảo ngược hoán vị sẽ nhận được bảng Young chuyển vị, nên chỉ cần đồng thời duy trì thêm $-A_{i}$ là đủ; độ phức tạp là $O(n \sqrt{n} \log n)$.
 
-???+ note "[CF1268B 杨氏多米诺骨牌](https://codeforces.com/problemset/problem/1268/B)"
-    给定一个具有 $n$ 列长度 $a_{1} ,a_{2},\ldots,a_{n}\,(a_{1} \geq a_{2} \geq \ldots \geq a_{n} \geq 1)$ 的直方图．$a=[3,2,2,2,1]$ 的杨图．找到可以在此直方图中绘制的最大数量的非重叠多米诺骨牌（$1 \times 2$ 或 $2 \times 1$ 矩形）．
+???+ note "[BJWC2018 Dãy con tăng dài nhất](https://www.luogu.com.cn/problem/P4484)"
+    Cho một hoán vị ngẫu nhiên độ dài $n$, hãy tính kỳ vọng độ dài dãy con tăng dài nhất của nó.
 
-## 参考资料与拓展阅读
+???+ note "[CF1268B Domino Young](https://codeforces.com/problemset/problem/1268/B)"
+    Cho một histogram gồm $n$ cột có độ dài $a_{1} ,a_{2},\ldots,a_{n}\,(a_{1} \geq a_{2} \geq \ldots \geq a_{n} \geq 1)$. Đây là biểu đồ Young của $a=[3,2,2,2,1]$. Hãy tìm số lượng domino không giao nhau lớn nhất có thể vẽ trong histogram này, trong đó mỗi domino là một hình chữ nhật $1 \times 2$ hoặc $2 \times 1$.
+
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#25299;&#23637;&#38405;&#35835;"></span>
+
+## Tài liệu tham khảo và đọc thêm
 
 1.  [Young Tableau - from Wolfram MathWorld](https://mathworld.wolfram.com/YoungTableau.html)
 2.  [Young tableau - Wikipedia](https://en.wikipedia.org/wiki/Young_tableau)
 3.  [Hook length formula - Wikipedia](https://en.wikipedia.org/wiki/Hook_length_formula)
-4.  袁方舟，[《浅谈杨氏矩阵在信息学竞赛中的应用》IOI2019](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2019%E8%AE%BA%E6%96%87%E9%9B%86.pdf), 中国国家候选队论文集，202-229
+4.  Yuan Fangzhou, ["Bàn về ứng dụng của bảng Young trong lập trình thi đấu" IOI2019](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2019%E8%AE%BA%E6%96%87%E9%9B%86.pdf), tuyển tập luận văn đội tuyển dự tuyển quốc gia Trung Quốc, tr. 202-229

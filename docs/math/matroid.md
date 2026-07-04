@@ -1,343 +1,389 @@
-## 引言
+<span id="&#24341;&#35328;"></span>
 
-**拟阵（Matroid）** 是哈斯勒·惠特尼（Hassler Whitney）于 1935 年提出的一种抽象代数结构，旨在统一和推广关于独立性的概念，例如线性代数中的线性无关性和图论中的无环性．
+## Giới thiệu
 
-拟阵为处理与独立性相关的优化问题提供了强大的理论工具，广泛应用于组合数学、图论、算法设计等领域，尤其在为贪心算法等优化方法提供数学理论支持方面发挥了重要作用．
+**Matroid** là một cấu trúc đại số trừu tượng do Hassler Whitney đề xuất vào năm 1935, nhằm thống nhất và khái quát hóa các khái niệm về tính độc lập, chẳng hạn như tính độc lập tuyến tính trong đại số tuyến tính và tính không chứa chu trình trong lý thuyết đồ thị.
 
-## 定义
+Matroid cung cấp một công cụ lý thuyết mạnh để xử lý các bài toán tối ưu hóa liên quan đến tính độc lập. Nó được ứng dụng rộng rãi trong tổ hợp, lý thuyết đồ thị, thiết kế thuật toán và đặc biệt đóng vai trò quan trọng trong việc cung cấp cơ sở toán học cho các phương pháp tối ưu hóa như thuật toán tham lam.
 
-### 拟阵
+<span id="&#23450;&#20041;"></span>
 
-一个 **拟阵（Matroid）** 可以表示为 $M = (E, \mathcal{I})$，其中：
+## Định nghĩa
 
--   $E$ 是一个有限集，称为 **基础集（Ground Set）**．
--   $\mathcal{I}$ 是 $E$ 的子集族，称为 **独立集族（Family of Independent Sets）**，其中的集合称为 **独立集（Independent Set）**．有以下三个性质：
+<span id="&#25311;&#38453;"></span>
 
-    -   **非空性**：空集是独立的，即 $\emptyset \in \mathcal{I}$．
+### Matroid
 
-    -   **遗传性**：独立集的任意子集也是独立集．若 $I \in \mathcal{I}$，则对于任意 $I' \subseteq I$，都有 $I' \in \mathcal{I}$．
+Một **matroid** có thể được biểu diễn bởi $M = (E, \mathcal{I})$, trong đó:
 
-    -   **扩张性**：若 $I, J \in \mathcal{I}$ 且 $|I| < |J|$，则存在 $j \in J \setminus I$，使得 $I \cup \{j\} \in \mathcal{I}$．
+-   $E$ là một tập hữu hạn, gọi là **tập nền** (Ground Set).
+-   $\mathcal{I}$ là một họ các tập con của $E$, gọi là **họ tập độc lập** (Family of Independent Sets); các tập trong họ này được gọi là **tập độc lập** (Independent Set). Họ này thỏa mãn ba tính chất sau:
 
-如果一个形如 $(E, \mathcal{I})$ 的结构满足上述三个性质，则称其为一个拟阵．
+    -   **Không rỗng**: tập rỗng là độc lập, tức là $\emptyset \in \mathcal{I}$.
 
-### 基
+    -   **Tính di truyền**: mọi tập con của một tập độc lập cũng là độc lập. Nếu $I \in \mathcal{I}$ thì với mọi $I' \subseteq I$ ta có $I' \in \mathcal{I}$.
 
-**基（Basis）** 是拟阵中极大的独立集，即无法再添加元素而保持独立性的独立集．所有基的集合称为 **基集族**，记为 $\mathcal{B}$．
+    -   **Tính mở rộng**: nếu $I, J \in \mathcal{I}$ và $|I| < |J|$, thì tồn tại $j \in J \setminus I$ sao cho $I \cup \{j\} \in \mathcal{I}$.
 
-**性质**：
+Nếu một cấu trúc dạng $(E, \mathcal{I})$ thỏa mãn ba tính chất trên, ta gọi nó là một matroid.
 
-1.  **等基数性**：所有基的大小都相同，称为拟阵的 **秩（Rank）**．
+<span id="&#22522;"></span>
 
-2.  **扩张性**：任何独立集通过添加基中的元素都可以扩张为一个基．
+### Cơ sở
 
-### 圈
+**Cơ sở** (Basis) là một tập độc lập cực đại trong matroid, tức là một tập độc lập mà không thể thêm phần tử nào nữa mà vẫn giữ được tính độc lập. Tập hợp tất cả các cơ sở được gọi là **họ cơ sở**, ký hiệu là $\mathcal{B}$.
 
-**圈（Circuit）** 是拟阵中最小的依赖集，即其所有真子集都是独立的，但自身不是独立集，任意两个圈之间不存在包含关系．
+**Tính chất**:
 
-### 秩
+1.  **Cùng lực lượng**: mọi cơ sở đều có cùng kích thước, gọi là **hạng** (Rank) của matroid.
 
-**秩函数（Rank Function）** $r: 2^E \rightarrow \mathbb{Z}_{\geq 0}$ 将基础集 $E$ 的子集映射到非负整数．对于任意 $S \subseteq E$，$r(S)$ 定义为 $S$ 中最大独立集的大小，即
+2.  **Tính mở rộng**: mọi tập độc lập đều có thể được mở rộng thành một cơ sở bằng cách thêm các phần tử thuộc một cơ sở.
+
+<span id="&#22280;"></span>
+
+### Mạch
+
+**Mạch** (Circuit) là một tập phụ thuộc tối tiểu trong matroid: mọi tập con thực sự của nó đều độc lập, nhưng bản thân nó không độc lập. Giữa hai mạch bất kỳ không tồn tại quan hệ bao hàm.
+
+<span id="&#31209;"></span>
+
+### Hạng
+
+**Hàm hạng** (Rank Function) $r: 2^E \rightarrow \mathbb{Z}_{\geq 0}$ ánh xạ mỗi tập con của tập nền $E$ tới một số nguyên không âm. Với mọi $S \subseteq E$, $r(S)$ được định nghĩa là kích thước của tập độc lập lớn nhất trong $S$, tức là
 
 $$
 r(S) = \max \{ |I| \mid I \subseteq S \wedge I \in \mathcal{I} \}.
 $$
 
-**性质**：
+**Tính chất**:
 
-1.  **非负性**：对于任意 $S \subseteq E$，有 $0 \leq r(S) \leq |S|$．
+1.  **Không âm**: với mọi $S \subseteq E$, ta có $0 \leq r(S) \leq |S|$.
 
-2.  **单调性**：若 $A \subseteq B \subseteq E$，则 $r(A) \leq r(B)$．
+2.  **Đơn điệu**: nếu $A \subseteq B \subseteq E$ thì $r(A) \leq r(B)$.
 
-3.  **次模性**：对于任意 $A, B \subseteq E$，有 $r(A \cup B) + r(A \cap B) \leq r(A) + r(B)$．
+3.  **Dưới mô-đun**: với mọi $A, B \subseteq E$, ta có $r(A \cup B) + r(A \cap B) \leq r(A) + r(B)$.
 
-## 典型示例
+<span id="&#20856;&#22411;&#31034;&#20363;"></span>
 
-### 1. 均匀拟阵（Uniform Matroid）
+## Các ví dụ điển hình
 
-**定义**：给定基础集 $E$ 和非负整数 $k$，均匀拟阵 $U_{k,E}$ 的独立集族是所有大小不超过 $k$ 的子集，表示为：
+<span id="1-&#22343;&#21248;&#25311;&#38453;uniform-matroid"></span>
 
-$$
-\mathcal{I} = \{ I \subseteq E \mid |I| \leq k \}．
-$$
+### 1. Matroid đều (Uniform Matroid)
 
--   **基（Bases）**：所有大小为 $k$ 的子集．
-
--   **圈（Circuits）**：所有大小为 $k + 1$ 的子集．
-
--   **秩（Rank）**：$r(E) = \min(k, |E|)$，即独立集中最多能有 $k$ 个元素．
-
-### 2. 图拟阵（Graphical Matroid）
-
-**定义**：给定一个无向图 $G = (V, E)$，图拟阵 $M(G)$ 的基础集是边集 $E$，其独立集族是所有不包含环的边集，即所有的森林．
-
--   **基**：图中的生成树（在连通图的情况下）．生成树是极大的独立集，无法再增加边而不形成环．
-
--   **圈**：图中的简单环，去掉环中的任意一条边，剩余部分都为独立集．
-
--   **秩**：$r(E) = |V|  - c$，其中 $c$ 是图的连通分支数．对于一个连通的无向图，其秩等于顶点数减一，即 $|V|  - 1$．
-
-### 3. 线性拟阵（Linear Matroid）
-
-**定义**：线性拟阵基于向量空间．给定向量空间 $V$，基础集 $E$ 是 $V$ 中的一组有限向量，其独立集族是 $E$ 中所有线性无关的向量子集．
-
--   **基**：极大的线性无关向量集，其大小等于向量空间的维数．
-
--   **圈**：最小的线性相关向量集合，其任意真子集都是独立的，而自身是线性相关的．
-
--   **秩**：线性拟阵的秩 $r(E) = \dim(V)$，即向量空间的维数．独立集的大小不能超过向量空间的维数．
-
-### 4. 划分拟阵（Partition Matroid）
-
-**定义**：将基础集 $E$ 划分为不相交的子集 $E_1, E_2, \dots, E_m$，并为每个子集 $E_i$ 指定一个非负整数 $k_i$．划分拟阵的独立集族由满足每个部分选取元素数量不超过 $k_i$ 的子集组成，表示为：
+**Định nghĩa**: cho tập nền $E$ và số nguyên không âm $k$, họ tập độc lập của matroid đều $U_{k,E}$ gồm tất cả các tập con có kích thước không vượt quá $k$, được biểu diễn bởi:
 
 $$
-\mathcal{I} = \left\{ I \subseteq E \mid \forall i,\, |I \cap E_i|  \leq k_i \right\}．
+\mathcal{I} = \{ I \subseteq E \mid |I| \leq k \}.
 $$
 
--   **基**：满足 $|I \cap E_i| = k_i$ 的独立集是划分拟阵的基．每个基在每个子集中选取了恰好 $k_i$ 个元素．
+-   **Cơ sở** (Bases): tất cả các tập con có kích thước bằng $k$.
 
--   **圈**：划分拟阵的圈是最小的依赖集，即包含至少一个元素数量超过 $k_i$ 的子集．
+-   **Mạch** (Circuits): tất cả các tập con có kích thước bằng $k + 1$.
 
--   **秩**：划分拟阵的秩为 $r(E) = \sum_{i=1}^m k_i$，即最大独立集的大小等于每个子集中允许选取的最大元素数的总和．
+-   **Hạng** (Rank): $r(E) = \min(k, |E|)$, tức là một tập độc lập có nhiều nhất $k$ phần tử.
 
-### 5. 有色拟阵（Colored Matroid）
+<span id="2-&#22270;&#25311;&#38453;graphical-matroid"></span>
 
-**定义**：有色拟阵是划分拟阵的一种特殊形式，其中每个元素都赋予了颜色．给定基础集 $E$ 和颜色集 $C$，每个元素 $e \in E$ 都与某个颜色 $c \in C$ 相关联．有色拟阵的独立集不仅需要满足普通拟阵的独立性条件，还必须遵守颜色上指定的限制，例如同一种颜色的元素在独立集中最多选取一定数量．
+### 2. Matroid đồ thị (Graphical Matroid)
 
--   **基**：有色拟阵的基是符合颜色限制和独立性条件的极大独立集．
+**Định nghĩa**: cho một đồ thị vô hướng $G = (V, E)$, tập nền của matroid đồ thị $M(G)$ là tập cạnh $E$, còn họ tập độc lập của nó gồm tất cả các tập cạnh không chứa chu trình, tức là tất cả các rừng.
 
--   **圈**：圈是最小的依赖集，包含至少一个违反独立性或颜色限制的元素集合．
+-   **Cơ sở**: các cây khung trong đồ thị (trong trường hợp đồ thị liên thông). Cây khung là tập độc lập cực đại, vì không thể thêm cạnh nào nữa mà không tạo thành chu trình.
 
--   **秩**：有色拟阵的秩是满足颜色限制条件下的最大独立集大小．它既依赖于拟阵的结构，也依赖于颜色限制的具体规定．
+-   **Mạch**: các chu trình đơn trong đồ thị; nếu bỏ đi bất kỳ một cạnh nào trên chu trình thì phần còn lại là một tập độc lập.
 
-## 构造和运算
+-   **Hạng**: $r(E) = |V|  - c$, trong đó $c$ là số thành phần liên thông của đồ thị. Với một đồ thị vô hướng liên thông, hạng của nó bằng số đỉnh trừ đi một, tức là $|V|  - 1$.
 
-### 对偶
+<span id="3-&#32447;&#24615;&#25311;&#38453;linear-matroid"></span>
 
-给定拟阵 $M = (E, \mathcal{I})$，其 **对偶拟阵**  $M^* = (E, \mathcal{I}^*)$ 定义为：
+### 3. Matroid tuyến tính (Linear Matroid)
 
-$$
-\mathcal{I}^* = \{ I^* \subseteq E \mid \exists B \in \mathcal{I}, |B| = r(E), B \subseteq E \setminus I^* \}．
-$$
+**Định nghĩa**: matroid tuyến tính được xây dựng trên không gian vectơ. Cho không gian vectơ $V$, tập nền $E$ là một tập hữu hạn các vectơ trong $V$, và họ tập độc lập của nó gồm tất cả các tập con vectơ độc lập tuyến tính của $E$.
 
-**性质**：
+-   **Cơ sở**: tập vectơ độc lập tuyến tính cực đại, có kích thước bằng số chiều của không gian vectơ.
 
--   **基**：对偶拟阵 $M^*$ 的基是 $M$ 的基在基础集 $E$ 中的补集．换句话说，如果 $B$ 是 $M$ 的基，那么 $E \setminus B$ 就是 $M^*$ 的基．
+-   **Mạch**: tập vectơ phụ thuộc tuyến tính tối tiểu; mọi tập con thực sự của nó đều độc lập, còn bản thân nó phụ thuộc tuyến tính.
 
--   **秩函数**：对偶拟阵的秩函数为 $r^*(S) = |S| - r(E) + r(E \setminus S)$，其中 $S$ 是 $E$ 的子集．这意味着对偶拟阵的秩可以通过基础集的大小、原拟阵的秩以及从基础集中移除 $S$ 后的秩来计算．
+-   **Hạng**: hạng của matroid tuyến tính là $r(E) = \dim(V)$, tức là số chiều của không gian vectơ. Kích thước của một tập độc lập không thể vượt quá số chiều của không gian vectơ.
 
--   **自反性**：对偶拟阵的对偶仍是原拟阵，即 $(M^*)^* = M$．
+<span id="4-&#21010;&#20998;&#25311;&#38453;partition-matroid"></span>
 
-**示例**：
+### 4. Matroid phân hoạch (Partition Matroid)
 
-对于一个无向图 $G = (V, E)$，图拟阵 $M(G)$ 的对偶 $M(G)^*$ 是由图的割集组成的拟阵．图拟阵 $M(G)$ 的基是图中的生成树，而其对偶 $M(G)^*$ 的基是这些生成树的补集，对偶 $M(G)^*$ 的圈则是图的最小割集，即将图分成两个不连通部分的最小边集．
-
-例如，考虑一个简单的三角形图 $G$，其边集为 $E = \{e_1, e_2, e_3\}$．图拟阵 $M(G)$ 的基是两条边的集合（如 $\{e_1, e_2\}$），而对偶拟阵 $M(G)^*$ 的基是单条边的集合（如 $\{e_3\}$），$M(G)^*$ 的圈是两条边的集合（即最小割集，如 $\{e_2,e_3\}$），因为移除其中的一条边就会将图分割为两个连通分支．
-
-### 删除和收缩
-
-**删除（Deletion）**：
-
-对于 $A \subseteq E$，拟阵 $M$ 删除 $A$ 后得到新的拟阵 $M \setminus A$，其独立集族 $\mathcal{I}'$ 定义为：
+**Định nghĩa**: chia tập nền $E$ thành các tập con rời nhau $E_1, E_2, \dots, E_m$, rồi gán cho mỗi tập con $E_i$ một số nguyên không âm $k_i$. Họ tập độc lập của matroid phân hoạch gồm các tập con sao cho số phần tử được chọn trong mỗi phần không vượt quá $k_i$, được biểu diễn bởi:
 
 $$
-\mathcal{I}' = \{ I \subseteq E \setminus A \mid I \in \mathcal{I} \}．
+\mathcal{I} = \left\{ I \subseteq E \mid \forall i,\, |I \cap E_i|  \leq k_i \right\}.
 $$
 
-可以看出，删除操作就是从拟阵中移除某些元素，并保留剩余元素形成的独立集，其保持原独立集不变，只是移除了元素．
+-   **Cơ sở**: một tập độc lập thỏa mãn $|I \cap E_i| = k_i$ là một cơ sở của matroid phân hoạch. Mỗi cơ sở chọn đúng $k_i$ phần tử trong từng tập con.
 
-**收缩（Contraction）**：
+-   **Mạch**: mạch của matroid phân hoạch là tập phụ thuộc tối tiểu, tức là một tập chứa ít nhất một phần có số phần tử vượt quá $k_i$.
 
-对于 $A \subseteq E$，拟阵 $M$ 收缩 $A$ 后得到拟阵 $M / A$，其独立集族 $\mathcal{I}''$ 定义为：
+-   **Hạng**: hạng của matroid phân hoạch là $r(E) = \sum_{i=1}^m k_i$, tức là kích thước của tập độc lập lớn nhất bằng tổng số phần tử tối đa được phép chọn trong từng tập con.
+
+<span id="5-&#26377;&#33394;&#25311;&#38453;colored-matroid"></span>
+
+### 5. Matroid màu (Colored Matroid)
+
+**Định nghĩa**: matroid màu là một dạng đặc biệt của matroid phân hoạch, trong đó mỗi phần tử được gán một màu. Cho tập nền $E$ và tập màu $C$, mỗi phần tử $e \in E$ được liên kết với một màu $c \in C$. Tập độc lập của matroid màu không chỉ cần thỏa mãn điều kiện độc lập thông thường của matroid, mà còn phải tuân thủ các ràng buộc theo màu, chẳng hạn số phần tử cùng một màu được chọn vào tập độc lập không vượt quá một giới hạn nhất định.
+
+-   **Cơ sở**: cơ sở của matroid màu là tập độc lập cực đại thỏa mãn cả ràng buộc màu lẫn điều kiện độc lập.
+
+-   **Mạch**: mạch là tập phụ thuộc tối tiểu, chứa ít nhất một tập phần tử vi phạm điều kiện độc lập hoặc ràng buộc màu.
+
+-   **Hạng**: hạng của matroid màu là kích thước tập độc lập lớn nhất dưới các ràng buộc màu. Nó phụ thuộc cả vào cấu trúc của matroid lẫn quy định cụ thể của các ràng buộc màu.
+
+<span id="&#26500;&#36896;&#21644;&#36816;&#31639;"></span>
+
+## Cấu tạo và phép toán
+
+<span id="&#23545;&#20598;"></span>
+
+### Đối ngẫu
+
+Cho matroid $M = (E, \mathcal{I})$, **matroid đối ngẫu** $M^* = (E, \mathcal{I}^*)$ của nó được định nghĩa bởi:
+
+$$
+\mathcal{I}^* = \{ I^* \subseteq E \mid \exists B \in \mathcal{I}, |B| = r(E), B \subseteq E \setminus I^* \}.
+$$
+
+**Tính chất**:
+
+-   **Cơ sở**: cơ sở của matroid đối ngẫu $M^*$ là phần bù trong tập nền $E$ của các cơ sở của $M$. Nói cách khác, nếu $B$ là một cơ sở của $M$, thì $E \setminus B$ là một cơ sở của $M^*$.
+
+-   **Hàm hạng**: hàm hạng của matroid đối ngẫu là $r^*(S) = |S| - r(E) + r(E \setminus S)$, trong đó $S$ là một tập con của $E$. Điều này có nghĩa là hạng của matroid đối ngẫu có thể được tính từ kích thước tập nền, hạng của matroid gốc và hạng sau khi loại bỏ $S$ khỏi tập nền.
+
+-   **Tính phản thân**: đối ngẫu của matroid đối ngẫu chính là matroid ban đầu, tức là $(M^*)^* = M$.
+
+**Ví dụ**:
+
+Với một đồ thị vô hướng $G = (V, E)$, đối ngẫu $M(G)^*$ của matroid đồ thị $M(G)$ là matroid tạo bởi các tập cắt của đồ thị. Cơ sở của matroid đồ thị $M(G)$ là các cây khung trong đồ thị, còn cơ sở của đối ngẫu $M(G)^*$ là phần bù của các cây khung đó. Mạch của đối ngẫu $M(G)^*$ là các tập cắt tối tiểu của đồ thị, tức là các tập cạnh nhỏ nhất làm đồ thị bị chia thành hai phần không liên thông.
+
+Chẳng hạn, xét một đồ thị tam giác đơn giản $G$ có tập cạnh $E = \{e_1, e_2, e_3\}$. Cơ sở của matroid đồ thị $M(G)$ là các tập gồm hai cạnh (ví dụ $\{e_1, e_2\}$), còn cơ sở của matroid đối ngẫu $M(G)^*$ là các tập gồm một cạnh (ví dụ $\{e_3\}$). Mạch của $M(G)^*$ là các tập gồm hai cạnh (tức là các tập cắt tối tiểu, chẳng hạn $\{e_2,e_3\}$), vì bỏ đi một cạnh trong đó sẽ chia đồ thị thành hai thành phần liên thông.
+
+<span id="&#21024;&#38500;&#21644;&#25910;&#32553;"></span>
+
+### Xóa và co
+
+**Xóa** (Deletion):
+
+Với $A \subseteq E$, sau khi xóa $A$ khỏi matroid $M$, ta thu được matroid mới $M \setminus A$ có họ tập độc lập $\mathcal{I}'$ được định nghĩa bởi:
+
+$$
+\mathcal{I}' = \{ I \subseteq E \setminus A \mid I \in \mathcal{I} \}.
+$$
+
+Có thể thấy phép xóa chỉ loại bỏ một số phần tử khỏi matroid và giữ lại các tập độc lập tạo bởi những phần tử còn lại; nó không làm thay đổi tính độc lập gốc, mà chỉ bỏ bớt phần tử.
+
+**Co** (Contraction):
+
+Với $A \subseteq E$, sau khi co $A$ trong matroid $M$, ta thu được matroid $M / A$ có họ tập độc lập $\mathcal{I}''$ được định nghĩa bởi:
 
 $$
 \mathcal{I}'' = \left\{ I \subseteq E \setminus A \,\bigg|\, \exists B \subseteq A,\, B \in \mathcal{I},\, r(B) = r(A),\, I \cup B \in \mathcal{I} \right\}
 $$
 
-收缩操作可以理解为将集合 $A$ 中的元素缩约，并考虑剩下的元素与 $A$ 的基一起形成的独立集．收缩的结果依赖于集合 $A$ 的基，缩约后的独立集实际上是对原拟阵中更高秩的子集进行约简后得到的独立集．
+Phép co có thể được hiểu là co các phần tử trong tập $A$, rồi xét các phần tử còn lại khi ghép với một cơ sở của $A$ để tạo thành tập độc lập. Kết quả của phép co phụ thuộc vào cơ sở của $A$; các tập độc lập sau khi co thực chất là kết quả rút gọn các tập con có hạng cao hơn trong matroid ban đầu.
 
-**示例 - 图拟阵**：
+**Ví dụ - matroid đồ thị**:
 
--   **删除**：在图拟阵中，删除操作即从图中删除一些边．一个图 $G$ 删除某条边后，考虑的是剩余边所形成的独立集，即那些不包含环的边集．例如，如果从一个三角形图中删除一条边，剩下的两个边仍然是一个森林．
+-   **Xóa**: trong matroid đồ thị, phép xóa tương ứng với việc xóa một số cạnh khỏi đồ thị. Sau khi một đồ thị $G$ bị xóa một cạnh, ta xét các tập độc lập tạo bởi những cạnh còn lại, tức là các tập cạnh không chứa chu trình. Ví dụ, nếu xóa một cạnh khỏi đồ thị tam giác, hai cạnh còn lại vẫn là một rừng.
 
--   **收缩**：收缩操作则是将某条边收缩为一个顶点．对于图拟阵，收缩一条边相当于将这条边的两个顶点合并成一个顶点，并删除该边，合并顶点后，图中的其他边仍然可以形成独立集．例如，在一个三角形图中，收缩任意一条边将把两个顶点合并成一个，剩下的两条边将构成一个新的拟阵．
+-   **Co**: phép co tương ứng với việc co một cạnh thành một đỉnh. Với matroid đồ thị, co một cạnh tương đương với hợp nhất hai đầu mút của cạnh đó thành một đỉnh rồi xóa cạnh đó; sau khi hợp nhất đỉnh, các cạnh còn lại trong đồ thị vẫn có thể tạo thành tập độc lập. Ví dụ, trong một đồ thị tam giác, co bất kỳ một cạnh nào sẽ hợp nhất hai đỉnh thành một, và hai cạnh còn lại sẽ tạo thành một matroid mới.
 
-## 拟阵和贪心
+<span id="&#25311;&#38453;&#21644;&#36138;&#24515;"></span>
 
-**问题描述**：
+## Matroid và tham lam
 
-拟阵的应用之一是解决贪心算法中的最优化问题．具体而言，给定一个拟阵 $M = (S, \mathcal{I})$，其中 $S$ 是基础集，$\mathcal{I}$ 是独立集族．对于每个元素 $x \in S$，赋予一个正整数权值 $w(x)$，目标是找到权值最大的独立集，形式化为：
+**Mô tả bài toán**:
+
+Một trong những ứng dụng của matroid là giải các bài toán tối ưu trong thuật toán tham lam. Cụ thể, cho một matroid $M = (S, \mathcal{I})$, trong đó $S$ là tập nền và $\mathcal{I}$ là họ tập độc lập. Với mỗi phần tử $x \in S$, gán một trọng số nguyên dương $w(x)$; mục tiêu là tìm tập độc lập có tổng trọng số lớn nhất, được hình thức hóa như sau:
 
 $$
 \max_{A \in \mathcal{I}} w(A) = \max_{A \in \mathcal{I}} \sum_{x \in A} w(x)
 $$
 
-显然，权值最大独立集必须是极大独立集．如果一个独立集 $A$ 不是极大独立集，则存在一个可以加入 $A$ 的元素 $x$，且由于 $w(x) > 0$，加入该元素后权值会增加，说明 $A$ 不是权值最大的独立集．
+Rõ ràng, tập độc lập có trọng số lớn nhất phải là tập độc lập cực đại. Nếu một tập độc lập $A$ chưa cực đại, thì tồn tại một phần tử $x$ có thể thêm vào $A$; do $w(x) > 0$, sau khi thêm phần tử đó thì tổng trọng số tăng lên, nên $A$ không thể là tập độc lập có trọng số lớn nhất.
 
-### 步骤
+<span id="&#27493;&#39588;"></span>
 
-贪心算法求解权值最大独立集的步骤如下：
+### Các bước
 
-1.  **元素排序**：将基础集 $S$ 按照权值从大到小排序，记为序列 $e_1, e_2, \dots, e_n$．
-2.  **初始化**：设独立集 $A = \emptyset$．
-3.  **构建独立集**：依次考虑排序后的元素 $e_i$，如果 $A \cup \{ e_i \} \in \mathcal{I}$，则更新 $A = A \cup \{ e_i \}$．
-4.  **输出结果**：最终的集合 $A$ 即为权值最大的独立集．
+Các bước của thuật toán tham lam để tìm tập độc lập có trọng số lớn nhất như sau:
 
-**复杂度分析**：
+1.  **Sắp xếp phần tử**: sắp xếp tập nền $S$ theo trọng số giảm dần, thu được dãy $e_1, e_2, \dots, e_n$.
+2.  **Khởi tạo**: đặt tập độc lập $A = \emptyset$.
+3.  **Xây dựng tập độc lập**: lần lượt xét các phần tử đã sắp xếp $e_i$; nếu $A \cup \{ e_i \} \in \mathcal{I}$, cập nhật $A = A \cup \{ e_i \}$.
+4.  **Xuất kết quả**: tập $A$ cuối cùng chính là tập độc lập có trọng số lớn nhất.
 
-设 $n = |S|$ 为基础集的大小，$f(n)$ 表示判断一个集合是否为独立集的复杂度．贪心算法的时间复杂度为：
+**Phân tích độ phức tạp**:
+
+Gọi $n = |S|$ là kích thước tập nền, và $f(n)$ là độ phức tạp của việc kiểm tra một tập có độc lập hay không. Độ phức tạp thời gian của thuật toán tham lam là:
 
 $$
 O(n \log n + n f(n))
 $$
 
-其中，$O(n \log n)$ 是排序的复杂度，$O(n f(n))$ 是逐一判断独立性的复杂度．
+Trong đó, $O(n \log n)$ là độ phức tạp của sắp xếp, còn $O(n f(n))$ là độ phức tạp của việc kiểm tra tính độc lập từng phần tử một.
 
-???+ note "备注"
-    -   在图拟阵中，可以使用 [并查集](../ds/dsu.md) 来高效检测是否形成环，从而使 $f(n)$ 接近常数时间．
-    -   在线性拟阵中，独立性检测通常涉及矩阵运算，其复杂度依赖于具体实现方式．
+???+ note "Ghi chú"
+    -   Trong matroid đồ thị, có thể dùng [DSU](../ds/dsu.md) để phát hiện hiệu quả việc thêm cạnh có tạo chu trình hay không, qua đó làm cho $f(n)$ gần với thời gian hằng số.
+    -   Trong matroid tuyến tính, kiểm tra tính độc lập thường liên quan đến các phép toán ma trận, và độ phức tạp phụ thuộc vào cách cài đặt cụ thể.
 
-**正确性证明**：
+**Chứng minh tính đúng đắn**:
 
-设 $M = (S, \mathcal{I})$ 是一个拟阵，$A \in \mathcal{I}$ 是一个独立集，且 $A$ 是某个权值最大独立集 $T$ 的子集．定义集合 $P = \{ x \in S \setminus A \mid A \cup \{x\} \in \mathcal{I} \}$，即所有加入 $A$ 后，仍然使 $A$ 保持独立性的元素所构成的集合．
+Giả sử $M = (S, \mathcal{I})$ là một matroid, $A \in \mathcal{I}$ là một tập độc lập, và $A$ là tập con của một tập độc lập $T$ có trọng số lớn nhất nào đó. Định nghĩa tập $P = \{ x \in S \setminus A \mid A \cup \{x\} \in \mathcal{I} \}$, tức là tập tất cả các phần tử mà khi thêm vào $A$ vẫn giữ cho $A$ độc lập.
 
-设 $y$ 为 $P$ 中权值最大的元素，则 $A' = A \cup \{ y \}$ 也是某个权值最大独立集的子集，证明如下：
+Gọi $y$ là phần tử có trọng số lớn nhất trong $P$. Khi đó $A' = A \cup \{ y \}$ cũng là tập con của một tập độc lập có trọng số lớn nhất. Chứng minh như sau:
 
-假设 $A' = A \cup \{ y \}$ 不是任何权值最大独立集的子集，则存在一个权值最大的独立集 $T$，且 $|A'| < |T|$．
+Giả sử $A' = A \cup \{ y \}$ không phải là tập con của bất kỳ tập độc lập có trọng số lớn nhất nào. Khi đó tồn tại một tập độc lập $T$ có trọng số lớn nhất và $|A'| < |T|$.
 
-由于 $|A'|< |T|$，根据拟阵的 **扩张性**，存在 $x \in T \setminus A'$ 使得 $A' \cup \{ x \} \in \mathcal{I}$．
+Vì $|A'|< |T|$, theo **tính mở rộng** của matroid, tồn tại $x \in T \setminus A'$ sao cho $A' \cup \{ x \} \in \mathcal{I}$.
 
-利用 **扩张性**，不断将 $x$ 加入 $A'$，最终构造出一个新的独立集 $A''$，使得 $|A''| = |T|$．
+Dùng **tính mở rộng**, liên tục thêm $x$ vào $A'$ để cuối cùng xây dựng được một tập độc lập mới $A''$ sao cho $|A''| = |T|$.
 
-设 $K = A'' \cap T$，此时有 $x = T \setminus K$，$y = A'' \setminus K$．由于 $y$ 为 $P$ 中权值最大的元素，有 $w(x) \leq w(y)$．
+Đặt $K = A'' \cap T$. Khi đó có $x = T \setminus K$ và $y = A'' \setminus K$. Vì $y$ là phần tử có trọng số lớn nhất trong $P$, ta có $w(x) \leq w(y)$.
 
-因此，$w(A'') = w(K) + w(y) \geq w(K) + w(x) = w(T)$，此时：
+Do đó $w(A'') = w(K) + w(y) \geq w(K) + w(x) = w(T)$. Khi ấy:
 
--   若 $w(A'') > w(T)$，则 $T$ 不是权值最大独立集，与假设矛盾．
--   若 $w(A'') = w(T)$，则 $A''$ 为权值最大独立集，且 $A'$ 为其子集，与假设 $A'$ 不是任何权值最大独立集的子集矛盾．
+-   Nếu $w(A'') > w(T)$, thì $T$ không phải là tập độc lập có trọng số lớn nhất, mâu thuẫn với giả thiết.
+-   Nếu $w(A'') = w(T)$, thì $A''$ là một tập độc lập có trọng số lớn nhất và $A'$ là tập con của nó, mâu thuẫn với giả thiết rằng $A'$ không phải là tập con của bất kỳ tập độc lập có trọng số lớn nhất nào.
 
-综上，假设不成立，即 $A' = A \cup \{ y \}$ 必须是某个权值最大独立集的子集，因此通过不断使用贪心策略，最终可以找到权值最大的独立集．
+Tóm lại, giả thiết không đúng; tức là $A' = A \cup \{ y \}$ phải là tập con của một tập độc lập có trọng số lớn nhất nào đó. Vì vậy, bằng cách liên tục áp dụng chiến lược tham lam, cuối cùng ta có thể tìm được tập độc lập có trọng số lớn nhất.
 
-### 示例
+<span id="&#31034;&#20363;"></span>
 
-**最小生成树**：
+### Ví dụ
 
-给定一个连通无向图 $G = (V, E)$，每条边 $e \in E$ 都具有权值 $w(e)$．目标为找到一棵生成树，使其包含所有顶点且总权值最小．
+**Cây khung nhỏ nhất**:
 
-**拟阵的构建**：
+Cho một đồ thị vô hướng liên thông $G = (V, E)$, mỗi cạnh $e \in E$ có trọng số $w(e)$. Mục tiêu là tìm một cây khung chứa tất cả các đỉnh và có tổng trọng số nhỏ nhất.
 
-为了将最小生成树问题形式化为拟阵问题，可以构建图拟阵 $M(G)$：
+**Xây dựng matroid**:
 
--   **基础集**：$S = E$，即图中的所有边．
--   **独立集族**：$\mathcal{I}$ 为所有不包含环的边集（即所有森林）．
+Để hình thức hóa bài toán cây khung nhỏ nhất thành bài toán matroid, ta có thể xây dựng matroid đồ thị $M(G)$:
 
-**贪心算法**：
+-   **Tập nền**: $S = E$, tức là tất cả các cạnh trong đồ thị.
+-   **Họ tập độc lập**: $\mathcal{I}$ gồm tất cả các tập cạnh không chứa chu trình, tức là tất cả các rừng.
 
-在图拟阵的框架下，[Kruskal 算法](../graph/mst.md#kruskal-算法) 是一个典型的基于拟阵理论的贪心算法，可以用于构建最小生成树．虽然 [Prim 算法](../graph/mst.md#prim-算法) 也是一种有效的贪心算法，同样能够找到最小生成树，但它并不严格依赖于拟阵的贪心．因此，在拟阵理论的讨论中，Kruskal 算法是主要的贪心算法实例．
+**Thuật toán tham lam**:
 
--   **Kruskal 算法**：
-    1.  **边排序**：将所有边按权值从小到大排序．
-    2.  **逐步选择**：依次选择权值最小的边，若加入后不形成环，则将其加入生成树．
-    3.  **终止条件**：重复上述过程，直到生成树包含 $|V| - 1$ 条边．
+Trong khuôn khổ matroid đồ thị, [thuật toán Kruskal](../graph/mst.md#kruskal-%E7%AE%97%E6%B3%95) là một thuật toán tham lam điển hình dựa trên lý thuyết matroid, có thể dùng để xây dựng cây khung nhỏ nhất. Dù [thuật toán Prim](../graph/mst.md#prim-%E7%AE%97%E6%B3%95) cũng là một thuật toán tham lam hiệu quả và cũng tìm được cây khung nhỏ nhất, nó không phụ thuộc chặt chẽ vào tham lam của matroid. Vì vậy, trong thảo luận về lý thuyết matroid, thuật toán Kruskal là ví dụ chính của thuật toán tham lam.
 
--   **Prim 算法**：
-    -   **原理**：Prim 算法通过从一个起始顶点开始，逐步扩展生成树，每次选择连接树内与树外的最小权值边．
-    -   虽然 Prim 算法也是贪心的，但其选择策略不同于其他基于拟阵扩张性质的贪心算法．因此，在拟阵理论的严格意义下，Prim 算法不被视为典型的拟阵贪心算法．
+-   **Thuật toán Kruskal**:
+    1.  **Sắp xếp cạnh**: sắp xếp tất cả các cạnh theo trọng số tăng dần.
+    2.  **Chọn dần**: lần lượt chọn cạnh có trọng số nhỏ nhất; nếu thêm cạnh đó không tạo thành chu trình, đưa nó vào cây khung.
+    3.  **Điều kiện dừng**: lặp lại quá trình trên cho đến khi cây khung chứa $|V| - 1$ cạnh.
 
-## 拟阵交
+-   **Thuật toán Prim**:
+    -   **Nguyên lý**: thuật toán Prim bắt đầu từ một đỉnh xuất phát, rồi mở rộng cây khung từng bước; mỗi lần chọn cạnh có trọng số nhỏ nhất nối giữa phần trong cây và phần ngoài cây.
+    -   Dù thuật toán Prim cũng là tham lam, chiến lược lựa chọn của nó khác với các thuật toán tham lam dựa trên tính mở rộng của matroid. Vì vậy, theo nghĩa chặt chẽ trong lý thuyết matroid, Prim không được xem là một thuật toán tham lam matroid điển hình.
 
-对于定义在同一基础集 $S$ 上的两个拟阵 $M_1 = (S, \mathcal{I}_1)$ 和 $M_2 = (S, \mathcal{I}_2)$，若 $\mathcal{I} = \mathcal{I}_1 \cap \mathcal{I}_2$ 满足拟阵独立集族的三条性质，则称 $M = (S, \mathcal{I})$ 为 $M_1$ 和 $M_2$ 的 **交**．
+<span id="&#25311;&#38453;&#20132;"></span>
 
-**注意**：并非任意两个拟阵的交都是一个拟阵，只有当其独立集族的交集满足拟阵独立集族定义中的三条性质时，其交才构成一个拟阵．
+## Giao matroid
 
-### 问题描述
+Với hai matroid $M_1 = (S, \mathcal{I}_1)$ và $M_2 = (S, \mathcal{I}_2)$ được định nghĩa trên cùng tập nền $S$, nếu $\mathcal{I} = \mathcal{I}_1 \cap \mathcal{I}_2$ thỏa mãn ba tính chất của họ tập độc lập trong định nghĩa matroid, thì $M = (S, \mathcal{I})$ được gọi là **giao** của $M_1$ và $M_2$.
 
-1.  **最大独立集**：在 $\mathcal{I}_1 \cap \mathcal{I}_2$ 中找到最大的独立集（即具有最大基数的独立集）．
-2.  **加权最大独立集**：给定权值函数 $w: S \to \mathbb{R}$，在 $\mathcal{I}_1 \cap \mathcal{I}_2$ 中找到权值和最大的独立集．
+**Chú ý**: không phải giao của hai matroid bất kỳ cũng là một matroid. Chỉ khi giao của hai họ tập độc lập thỏa mãn ba tính chất trong định nghĩa họ tập độc lập của matroid thì giao đó mới tạo thành một matroid.
 
-### 算法
+<span id="&#38382;&#39064;&#25551;&#36848;"></span>
 
-**无权版本**：
+### Mô tả bài toán
 
-1.  **初始化**：选择一个初始独立集 $I \in \mathcal{I}_1 \cap \mathcal{I}_2$，通常设定 $I = \emptyset$．
-2.  **迭代**：
-    -   **构建交换图**：根据当前独立集 $I$ 构建交换图 $D_{M_1, M_2}(I)$．
-    -   **路径选择**：在交换图中，寻找从源点 $s$ 到汇点 $t$ 的增广路径 $P$．
-    -   **增广**：沿路径 $P$ 从 $s$ 到 $t$ 遍历每一个节点：
-        -   如果节点属于左部顶点（即 $I$ 中的元素），则将该元素从 $I$ 中移除．
-        -   如果节点属于右部顶点（即 $S \setminus I$ 中的元素），则将该元素加入 $I$ 中．
-    -   **重复**：更新独立集 $I$ 后，重复上述步骤，直到无法找到新的增广路径为止．
-3.  **结果**：最终得到的独立集 $I$ 即为拟阵交 $M = M_1 \cap M_2$ 中的一个最大独立集．
+1.  **Tập độc lập lớn nhất**: tìm tập độc lập lớn nhất trong $\mathcal{I}_1 \cap \mathcal{I}_2$ (tức là tập độc lập có lực lượng lớn nhất).
+2.  **Tập độc lập có trọng số lớn nhất**: cho hàm trọng số $w: S \to \mathbb{R}$, tìm tập độc lập có tổng trọng số lớn nhất trong $\mathcal{I}_1 \cap \mathcal{I}_2$.
 
-**加权版本**：
+<span id="&#31639;&#27861;"></span>
 
-为了找到权值和最大的独立集，算法需要在增广路径的选择上进行优化．
+### Thuật toán
 
-1.  **权值设置**：对于每个元素 $e \in S$，定义其在交换图中的权值 $w'(e)$：
-    -   **左部顶点**（$I$ 中的元素）：$w'(e) = -w(e)$．
-    -   **右部顶点**（$S \setminus I$ 中的元素）：$w'(e) = w(e)$．
-2.  **路径选择**：在交换图 $D_{M_1, M_2}(I)$ 中，寻找一条从源点 $s$ 到汇点 $t$ 的 **增广路径**  $P$，使得沿路径进行增广操作后，独立集 $I$ 的总权值增加最大．
-    -   **增广条件**：路径 $P$ 上加入的元素的权值总和大于移除的元素的权值总和，即 $\sum_{y \in \text{加入的元素}} w(y) > \sum_{x \in \text{移除的元素}} w(x)$
-3.  **增广操作**：沿路径 $P$ 从 $s$ 到 $t$ 遍历每一个节点：
-    -   如果节点属于左部顶点（即 $I$ 中的元素），则将该元素从 $I$ 中移除．
-    -   如果节点属于右部顶点（即 $S \setminus I$ 中的元素），则将该元素加入 $I$ 中．
-4.  **迭代**：重复步骤 1 至 3，不断构建交换图并寻找增广路径，逐步优化独立集 $I$ 的总权值．
-5.  **终止条件**：当无法在交换图中找到满足增广条件的路径时，算法终止．
-6.  **结果**：最终得到的独立集 $I$ 即为拟阵交 $M = M_1 \cap M_2$ 中的一个 **权值最大独立集**．
+**Phiên bản không trọng số**:
 
-**复杂度**：
+1.  **Khởi tạo**: chọn một tập độc lập ban đầu $I \in \mathcal{I}_1 \cap \mathcal{I}_2$, thường đặt $I = \emptyset$.
+2.  **Lặp**:
+    -   **Xây dựng đồ thị trao đổi**: dựa trên tập độc lập hiện tại $I$, xây dựng đồ thị trao đổi $D_{M_1, M_2}(I)$.
+    -   **Chọn đường đi**: trong đồ thị trao đổi, tìm một đường tăng $P$ từ nguồn $s$ đến đích $t$.
+    -   **Tăng**: duyệt từng nút trên đường đi $P$ từ $s$ đến $t$:
+        -   Nếu nút thuộc phần trái (tức là phần tử trong $I$), loại phần tử đó khỏi $I$.
+        -   Nếu nút thuộc phần phải (tức là phần tử trong $S \setminus I$), thêm phần tử đó vào $I$.
+    -   **Lặp lại**: sau khi cập nhật tập độc lập $I$, lặp lại các bước trên cho đến khi không tìm được đường tăng mới.
+3.  **Kết quả**: tập độc lập $I$ cuối cùng là một tập độc lập lớn nhất trong giao matroid $M = M_1 \cap M_2$.
 
--   **增广次数**：设两个拟阵的最大秩分别为 $r_1$ 和 $r_2$，则最大增广次数为 $\min(r_1, r_2)$．
+**Phiên bản có trọng số**:
 
--   **每次增广的复杂度**：
-    -   构建交换图的复杂度为 $O(n^2)$，其中 $n = |S|$．
-    -   寻找增广路径的复杂度取决于路径搜索策略，通常为 $O(n^2)$，例如使用广度优先搜索．
+Để tìm tập độc lập có tổng trọng số lớn nhất, thuật toán cần tối ưu hóa cách chọn đường tăng.
 
--   **总时间复杂度**：总体的时间复杂度为 $O(r \cdot n^2)$，其中 $r = \min(r_1, r_2)$．
+1.  **Gán trọng số**: với mỗi phần tử $e \in S$, định nghĩa trọng số $w'(e)$ của nó trong đồ thị trao đổi:
+    -   **Đỉnh phần trái** (phần tử trong $I$): $w'(e) = -w(e)$.
+    -   **Đỉnh phần phải** (phần tử trong $S \setminus I$): $w'(e) = w(e)$.
+2.  **Chọn đường đi**: trong đồ thị trao đổi $D_{M_1, M_2}(I)$, tìm một **đường tăng** $P$ từ nguồn $s$ đến đích $t$ sao cho sau khi tăng theo đường đi đó, tổng trọng số của tập độc lập $I$ tăng nhiều nhất.
+    -   **Điều kiện tăng**: tổng trọng số của các phần tử được thêm trên đường đi $P$ lớn hơn tổng trọng số của các phần tử bị loại bỏ, tức là $\sum_{y \in \text{phần tử được thêm}} w(y) > \sum_{x \in \text{phần tử bị loại bỏ}} w(x)$
+3.  **Thao tác tăng**: duyệt từng nút trên đường đi $P$ từ $s$ đến $t$:
+    -   Nếu nút thuộc phần trái (tức là phần tử trong $I$), loại phần tử đó khỏi $I$.
+    -   Nếu nút thuộc phần phải (tức là phần tử trong $S \setminus I$), thêm phần tử đó vào $I$.
+4.  **Lặp**: lặp lại các bước 1 đến 3, liên tục xây dựng đồ thị trao đổi và tìm đường tăng để từng bước tối ưu hóa tổng trọng số của tập độc lập $I$.
+5.  **Điều kiện dừng**: khi không thể tìm được đường đi thỏa mãn điều kiện tăng trong đồ thị trao đổi, thuật toán dừng.
+6.  **Kết quả**: tập độc lập $I$ cuối cùng là một **tập độc lập có trọng số lớn nhất** trong giao matroid $M = M_1 \cap M_2$.
 
-## 例题
+**Độ phức tạp**:
 
-**最小生成树**：
+-   **Số lần tăng**: giả sử hạng lớn nhất của hai matroid lần lượt là $r_1$ và $r_2$, thì số lần tăng tối đa là $\min(r_1, r_2)$.
 
-给定一个无向图 $G = (V, E)$，每条边 $e \in E$ 都有一个权值 $w(e)$．寻找一棵生成树，使其包含所有顶点且总权值最小．
+-   **Độ phức tạp của mỗi lần tăng**:
+    -   Độ phức tạp xây dựng đồ thị trao đổi là $O(n^2)$, trong đó $n = |S|$.
+    -   Độ phức tạp tìm đường tăng phụ thuộc vào chiến lược tìm kiếm đường đi, thường là $O(n^2)$, chẳng hạn khi dùng tìm kiếm theo chiều rộng.
 
--   详细介绍：[最小生成树](../graph/mst.md)．
--   题目模板：[洛谷 P3366【模板】最小生成树](https://www.luogu.com.cn/problem/P3366)．
+-   **Tổng độ phức tạp thời gian**: độ phức tạp thời gian tổng thể là $O(r \cdot n^2)$, trong đó $r = \min(r_1, r_2)$.
 
-??? note "解题思路"
-    使用 Kruskal 算法，将所有边按权值从小到大排序，然后逐步选择边，若加入后不形成环，则将其加入生成树，最终得到的生成树即为最小生成树．
+<span id="&#20363;&#39064;"></span>
 
-**Colorful Graph**：
+## Bài tập ví dụ
 
-给定一张带有多种颜色的无向图 $G = (V, E)$，每条边有一个颜色属性．寻找一个最大的边集，使得：
+**Cây khung nhỏ nhất**:
 
-1.  所选边不形成任何环．
-2.  每种颜色的边数不超过 $k$ 条（$k$ 为给定的正整数）．
+Cho một đồ thị vô hướng $G = (V, E)$, mỗi cạnh $e \in E$ đều có trọng số $w(e)$. Tìm một cây khung chứa tất cả các đỉnh và có tổng trọng số nhỏ nhất.
 
-??? note "解题思路"
-    1.  **拟阵建模**：
-    
-        -   **图拟阵 ($M_1$)**：定义为所有不形成环的边集，即独立集族 $\mathcal{I}_1$ 包含所有不构成环的边集合．
-        -   **颜色拟阵 ($M_2$)**：定义为每种颜色的边数不超过 $k$ 的边集，即独立集族 $\mathcal{I}_2$ 包含所有满足每种颜色边数 $\leq k$ 的边集合．
-    2.  **求解拟阵交**：通过求解 $M = M_1 \cap M_2$，找到既不形成环又满足每种颜色边数不超过 $k$ 的最大边集．
+-   Giới thiệu chi tiết: [Cây khung nhỏ nhất](../graph/mst.md).
+-   Bài mẫu: [Luogu P3366 [Mẫu] Cây khung nhỏ nhất](https://www.luogu.com.cn/problem/P3366).
 
-**约束的资源分配问题**:
+??? note "Ý tưởng lời giải"
+    Dùng thuật toán Kruskal: sắp xếp tất cả các cạnh theo trọng số tăng dần, rồi chọn cạnh từng bước; nếu thêm cạnh đó không tạo thành chu trình thì đưa nó vào cây khung. Cây khung thu được cuối cùng chính là cây khung nhỏ nhất.
 
-在一个资源分配问题中，有一组资源 $R = \{r_1, r_2, \dots, r_n\}$ 和一组项目 $P = \{p_1, p_2, \dots, p_m\}$．每个项目 $p_i$ 需要分配一定数量的资源，且每种资源的总分配量不能超过其供应量．
+**Colorful Graph**:
 
-**目标**：寻找一个资源分配方案，使其满足所有项目需求且不超过资源供应量．
+Cho một đồ thị vô hướng $G = (V, E)$ có nhiều màu, mỗi cạnh có một thuộc tính màu. Tìm một tập cạnh lớn nhất sao cho:
 
-??? note "解题思路"
-    1.  **拟阵建模**：
-    
-        -   **需求拟阵 ($M_1$)**：定义为满足各项目资源需求的分配方案，即独立集族 $\mathcal{I}_1$ 包含所有满足项目需求的资源分配集合．
-        -   **供应拟阵 ($M_2$)**：定义为不超过每种资源供应量的分配方案，即独立集族 $\mathcal{I}_2$ 包含所有满足资源供应限制的资源分配集合．
-    2.  **求解拟阵交**：通过求解 $M = M_1 \cap M_2$，找到既满足所有项目需求又不超过资源供应量的资源分配方案．
+1.  Các cạnh được chọn không tạo thành bất kỳ chu trình nào.
+2.  Số cạnh của mỗi màu không vượt quá $k$ cạnh ($k$ là một số nguyên dương cho trước).
 
-## 参考资料与注释
+??? note "Ý tưởng lời giải"
+    1.  **Mô hình hóa bằng matroid**:
+
+        -   **Matroid đồ thị ($M_1$)**: định nghĩa bởi tất cả các tập cạnh không tạo thành chu trình, tức là họ tập độc lập $\mathcal{I}_1$ chứa mọi tập cạnh không chứa chu trình.
+        -   **Matroid màu ($M_2$)**: định nghĩa bởi các tập cạnh có số cạnh của mỗi màu không vượt quá $k$, tức là họ tập độc lập $\mathcal{I}_2$ chứa mọi tập cạnh thỏa mãn số cạnh của mỗi màu $\leq k$.
+    2.  **Giải giao matroid**: bằng cách giải $M = M_1 \cap M_2$, ta tìm được tập cạnh lớn nhất vừa không tạo chu trình vừa thỏa mãn số cạnh mỗi màu không vượt quá $k$.
+
+**Bài toán phân bổ tài nguyên có ràng buộc**:
+
+Trong một bài toán phân bổ tài nguyên, có một tập tài nguyên $R = \{r_1, r_2, \dots, r_n\}$ và một tập dự án $P = \{p_1, p_2, \dots, p_m\}$. Mỗi dự án $p_i$ cần được phân bổ một lượng tài nguyên nhất định, và tổng lượng phân bổ của mỗi loại tài nguyên không được vượt quá lượng cung ứng của nó.
+
+**Mục tiêu**: tìm một phương án phân bổ tài nguyên sao cho thỏa mãn nhu cầu của mọi dự án và không vượt quá lượng cung ứng tài nguyên.
+
+??? note "Ý tưởng lời giải"
+    1.  **Mô hình hóa bằng matroid**:
+
+        -   **Matroid nhu cầu ($M_1$)**: định nghĩa bởi các phương án phân bổ thỏa mãn nhu cầu tài nguyên của từng dự án, tức là họ tập độc lập $\mathcal{I}_1$ chứa mọi tập phân bổ tài nguyên thỏa mãn nhu cầu dự án.
+        -   **Matroid cung ứng ($M_2$)**: định nghĩa bởi các phương án phân bổ không vượt quá lượng cung ứng của từng loại tài nguyên, tức là họ tập độc lập $\mathcal{I}_2$ chứa mọi tập phân bổ thỏa mãn giới hạn cung ứng tài nguyên.
+    2.  **Giải giao matroid**: bằng cách giải $M = M_1 \cap M_2$, ta tìm được phương án phân bổ tài nguyên vừa thỏa mãn nhu cầu của mọi dự án vừa không vượt quá lượng cung ứng tài nguyên.
+
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+
+## Tài liệu tham khảo và chú thích
 
 1.  [Wikipedia - Matroid](https://en.wikipedia.org/wiki/Matroid)
-2.  [百度百科 - 拟阵](https://baike.baidu.com/item/%E6%8B%9F%E9%98%B5)
-3.  [洛谷 - 拟阵与最优化问题](https://www.luogu.com.cn/article/87d02q9f)
-4.  [洛谷 - 从拟阵基础到 Shannon 开关游戏](https://www.luogu.com.cn/article/fuj3x886)
+2.  [Baidu Baike - Matroid](https://baike.baidu.com/item/%E6%8B%9F%E9%98%B5)
+3.  [Luogu - Matroid và bài toán tối ưu hóa](https://www.luogu.com.cn/article/87d02q9f)
+4.  [Luogu - Từ cơ sở matroid đến trò chơi công tắc Shannon](https://www.luogu.com.cn/article/fuj3x886)

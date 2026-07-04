@@ -340,10 +340,10 @@ nav:
       - Tích phân số: math/numerical/integral.md
       - Khử Gauss: math/numerical/gauss.md
       - Phương pháp Newton: math/numerical/newton.md
-    - 序理论: math/order-theory.md
-    - 杨氏矩阵: math/young-tableau.md
-    - 拟阵: math/matroid.md
-    - Berlekamp–Massey 算法: math/berlekamp-massey.md
+    - Lý thuyết thứ tự: math/order-theory.md
+    - Bảng Young: math/young-tableau.md
+    - Matroid: math/matroid.md
+    - Thuật toán Berlekamp–Massey: math/berlekamp-massey.md
   - Cấu Trúc Dữ Liệu:
     - Tổng quan cấu trúc dữ liệu: ds/index.md
     - 栈: ds/stack.md

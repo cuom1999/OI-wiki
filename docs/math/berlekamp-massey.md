@@ -1,57 +1,61 @@
 author: AntiLeaf
 
-Berlekamp–Massey 算法是一种用于求数列的最短递推式的算法．给定一个长为 $n$ 的数列，如果它的最短递推式的阶数为 $m$，则 Berlekamp–Massey 算法能够在 $O(nm)$ 时间内求出数列的每个前缀的最短递推式．最坏情况下 $m = O(n)$，因此算法的最坏复杂度为 $O(n^2)$．
+Thuật toán Berlekamp–Massey là thuật toán dùng để tìm hệ thức truy hồi ngắn nhất của một dãy số. Cho một dãy có độ dài $n$, nếu bậc của hệ thức truy hồi ngắn nhất là $m$, thì thuật toán Berlekamp–Massey có thể tìm hệ thức truy hồi ngắn nhất của từng tiền tố của dãy trong thời gian $O(nm)$. Trong trường hợp xấu nhất $m = O(n)$, vì vậy độ phức tạp xấu nhất của thuật toán là $O(n^2)$.
 
-### 定义
+<span id="&#23450;&#20041;"></span>
 
-定义一个数列 $\{a_0 \dots a_{n - 1} \}$ 的递推式为满足下式的序列 $\{r_0\dots r_m\}$：
+### Định nghĩa
+
+Định nghĩa một hệ thức truy hồi của dãy $\{a_0 \dots a_{n - 1} \}$ là dãy $\{r_0\dots r_m\}$ thỏa mãn:
 
 $\sum_{j = 0} ^ m r_j a_{i - j} = 0, \forall i \ge m$
 
-其中 $r_0 = 1$．$m$ 称为该递推式的 **阶数**．
+trong đó $r_0 = 1$. $m$ được gọi là **bậc** của hệ thức truy hồi này.
 
-数列 $\{a_i\}$ 的最短递推式即为阶数最小的递推式．
+Hệ thức truy hồi ngắn nhất của dãy $\{a_i\}$ là hệ thức truy hồi có bậc nhỏ nhất.
 
-### 做法
+<span id="&#20570;&#27861;"></span>
 
-与上面定义的稍有不同，这里定义一个新的递推系数 $\{f_0 \dots f_{m - 1}\}$，满足：
+### Cách làm
+
+Hơi khác với định nghĩa ở trên, ở đây ta định nghĩa một bộ hệ số truy hồi mới $\{f_0 \dots f_{m - 1}\}$, thỏa mãn:
 
 $a_i = \sum_{j = 0} ^ {m - 1} f_j a_{i - j - 1}, \forall i \ge m$
 
-容易看出 $f_i = -r_{i + 1}$，并且阶数 $m$ 与之前的定义是相同的．
+Dễ thấy $f_i = -r_{i + 1}$, và bậc $m$ vẫn giống với định nghĩa trước đó.
 
-我们可以增量地求递推式，按顺序考虑 $\{a_i\}$ 的每一位，并在递推结果出现错误时对递推系数 $\{f_i\}$ 进行调整．方便起见，以下将前 $i$ 位的最短递推式记为 $F_i = \{f_{i, j}\}$．
+Ta có thể tìm hệ thức truy hồi theo kiểu tăng dần: xét lần lượt từng phần tử của $\{a_i\}$, và khi kết quả truy hồi bị sai thì điều chỉnh các hệ số truy hồi $\{f_i\}$. Để thuận tiện, dưới đây ký hiệu hệ thức truy hồi ngắn nhất của $i$ phần tử đầu là $F_i = \{f_{i, j}\}$.
 
-显然初始时有 $F_0 = \{\}$．假设递推系数 $F_{i - 1}$ 对数列 $\{a_i\}$ 的前 $i - 1$ 项均成立，这时对第 $i$ 项就有两种情况：
+Hiển nhiên ban đầu có $F_0 = \{\}$. Giả sử các hệ số truy hồi $F_{i - 1}$ đều đúng với $i - 1$ phần tử đầu của dãy $\{a_i\}$; khi đó với phần tử thứ $i$ có hai trường hợp:
 
-1.  递推系数对 $a_i$ 也成立，这时不需要进行任何调整，直接令 $F_i = F_{i - 1}$ 即可．
-2.  递推系数对 $a_i$ 不成立，这时需要对 $F_{i - 1}$ 进行调整，得到新的 $F_i$．
+1.  Các hệ số truy hồi cũng đúng với $a_i$. Khi đó không cần điều chỉnh gì, chỉ cần đặt $F_i = F_{i - 1}$.
+2.  Các hệ số truy hồi không đúng với $a_i$. Khi đó cần điều chỉnh $F_{i - 1}$ để thu được $F_i$ mới.
 
-设 $\Delta_i = a_i - \sum_{j = 0} ^ m f_{i - 1, j} a_{i - j - 1}$，即 $a_i$ 与 $F_{i - 1}$ 的递推结果的差值．
+Đặt $\Delta_i = a_i - \sum_{j = 0} ^ m f_{i - 1, j} a_{i - j - 1}$, tức là hiệu giữa $a_i$ và kết quả truy hồi do $F_{i - 1}$ sinh ra.
 
-如果这是第一次对递推系数进行修改，则说明 $a_i$ 是序列中的第一个非零项．这时直接令 $F_i$ 为 $i$ 个 $0$ 即可，显然这是一个合法的最短递推式．
+Nếu đây là lần đầu tiên sửa các hệ số truy hồi, điều đó cho thấy $a_i$ là phần tử khác $0$ đầu tiên trong dãy. Khi đó chỉ cần đặt $F_i$ là $i$ số $0$; rõ ràng đây là một hệ thức truy hồi ngắn nhất hợp lệ.
 
-否则设上一次对递推系数进行修改时，已考虑的 $\{a_i\}$ 的项数为 $k$．如果存在一个序列 $G = \{g_0 \dots g_{m' - 1}\}$，满足：
+Ngược lại, giả sử ở lần sửa hệ số truy hồi trước đó, số phần tử $\{a_i\}$ đã được xét là $k$. Nếu tồn tại một dãy $G = \{g_0 \dots g_{m' - 1}\}$ thỏa mãn:
 
 $\sum_{j = 0} ^ {m' - 1} g_j a_{i' - j - 1} = 0, \forall i' \in [m', i)$
 
-并且 $\sum_{j = 0} ^ {m' - 1} g_j a_{i - j - 1} = \Delta_i$，那么不难发现将 $F_k$ 与 $G$ 按位分别相加之后即可得到一个合法的递推系数 $F_i$．
+và $\sum_{j = 0} ^ {m' - 1} g_j a_{i - j - 1} = \Delta_i$, thì không khó nhận ra rằng cộng từng vị trí $F_k$ với $G$ sẽ cho một bộ hệ số truy hồi hợp lệ $F_i$.
 
-考虑如何构造 $G$．一种可行的构造方案是令
+Xét cách xây dựng $G$. Một cách xây dựng khả thi là đặt
 
 $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_{k-1}\}$
 
-其中前面一共有 $i - k - 1$ 个 $0$，且最后的 $-\frac{\Delta_i}{\Delta_k} F_{k-1}$ 表示将 $F_{k-1}$ 每项乘以 $-\frac{\Delta_i}{\Delta_k}$ 后接在序列后面．
+trong đó phía trước có tổng cộng $i - k - 1$ số $0$, còn $-\frac{\Delta_i}{\Delta_k} F_{k-1}$ ở cuối biểu thị việc nhân từng phần tử của $F_{k-1}$ với $-\frac{\Delta_i}{\Delta_k}$ rồi nối vào sau dãy.
 
-不难验证此时 $\sum_{j = 0} ^ {m' - 1} g_j a_{i - j - 1} = \Delta_k \frac{\Delta_i}{\Delta_k} = \Delta_i$，因此这样构造出的是一个合法的 $G$．将 $F_i$ 赋值为 $F_k$ 与 $G$ 逐项相加后的结果即可．
+Không khó kiểm chứng rằng lúc này $\sum_{j = 0} ^ {m' - 1} g_j a_{i - j - 1} = \Delta_k \frac{\Delta_i}{\Delta_k} = \Delta_i$, nên $G$ được xây dựng như vậy là hợp lệ. Chỉ cần gán $F_i$ bằng kết quả cộng từng phần tử của $F_k$ và $G$.
 
-如果要求的是符合最开始定义的递推式 $\{r_i\}$，则将 $\{f_j\}$ 全部取相反数后在最开始插入 $r_0 = 1$ 即可．
+Nếu cần hệ thức truy hồi $\{r_i\}$ phù hợp với định nghĩa ban đầu, chỉ cần đổi dấu toàn bộ $\{f_j\}$ rồi chèn $r_0 = 1$ vào đầu.
 
-从上述算法流程中可以看出，如果数列的最短递推式的阶数为 $m$，则算法的复杂度为 $O(nm)$．最坏情况下 $m = O(n)$，因此算法的最坏复杂度为 $O(n^2)$．
+Từ quy trình thuật toán trên có thể thấy, nếu bậc của hệ thức truy hồi ngắn nhất của dãy là $m$, thì độ phức tạp của thuật toán là $O(nm)$. Trong trường hợp xấu nhất $m = O(n)$, vì vậy độ phức tạp xấu nhất của thuật toán là $O(n^2)$.
 
-在实现算法时，由于每次调整递推系数时都只需要用到上次调整时的递推系数 $F_k$，因此如果只需要求整个数列的最短递推式，可以只存储当前递推系数和上次调整时的递推系数，空间复杂度为 $O(n)$．
+Khi cài đặt thuật toán, do mỗi lần điều chỉnh hệ số truy hồi chỉ cần dùng đến các hệ số truy hồi $F_k$ tại lần điều chỉnh trước, nên nếu chỉ cần tìm hệ thức truy hồi ngắn nhất của toàn bộ dãy, ta có thể chỉ lưu các hệ số truy hồi hiện tại và các hệ số truy hồi ở lần điều chỉnh trước. Độ phức tạp bộ nhớ là $O(n)$.
 
-??? note "参考实现"
+??? note "Cài đặt tham khảo"
     ```cpp
     vector<int> berlekamp_massey(const vector<int> &a) {
       vector<int> v, last;  // v is the answer, 0-based, p is the module
@@ -99,67 +103,81 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_{k
     }
     ```
 
-朴素的 Berlekamp–Massey 算法求解的是有限项数列的最短递推式．如果待求递推式的序列有无限项，但已知最短递推式的阶数上界，则只需取出序列的前 $2m$ 项即可求出整个序列的最短递推式．（证明略）
+Thuật toán Berlekamp–Massey đơn giản giải hệ thức truy hồi ngắn nhất của một dãy có số hạng hữu hạn. Nếu dãy cần tìm hệ thức truy hồi có vô hạn số hạng, nhưng đã biết cận trên của bậc hệ thức truy hồi ngắn nhất, thì chỉ cần lấy $2m$ số hạng đầu của dãy là có thể tìm được hệ thức truy hồi ngắn nhất của toàn bộ dãy. (Lược bỏ chứng minh)
 
-### 应用
+<span id="&#24212;&#29992;"></span>
 
-由于 Berlekamp–Massey 算法的数值稳定性比较差，在处理实数问题时一般很少使用．为了叙述方便，以下均假定在某个质数 $p$ 的剩余系下进行运算．
+### Ứng dụng
 
-#### 求向量列或矩阵列的最短递推式
+Do tính ổn định số của thuật toán Berlekamp–Massey khá kém, thuật toán này thường hiếm khi được dùng để xử lý các bài toán trên số thực. Để tiện trình bày, dưới đây đều giả định các phép toán được thực hiện trong hệ thặng dư theo một số nguyên tố $p$.
 
-如果要求向量列 $\boldsymbol{v}_i$ 的最短递推式，设向量的维数为 $n$，我们可以随机一个 $n$ 维行向量 $\mathbf u^T$，并计算标量序列 $\{\boldsymbol{u}^T\boldsymbol{v}_i\}$ 的最短递推式．由 Schwartz–Zippel 引理，二者的最短递推式有至少 $1 - \frac n p$ 的概率相同．
+<span id="&#27714;&#21521;&#37327;&#21015;&#25110;&#30697;&#38453;&#21015;&#30340;&#26368;&#30701;&#36882;&#25512;&#24335;"></span>
 
-求矩阵列 $\{A_i\}$ 的最短递推式也是类似的，设矩阵的大小为 $n \times m$，则只需随机一个 $1 \times n$ 的行向量 $\mathbf u^T$ 和一个 $m \times 1$ 的列向量 $\boldsymbol{v}$，并计算标量序列 $\{\boldsymbol{u}^T A_i \boldsymbol{v}\}$ 的最短递推式即可．由 Schwartz–Zippel 引理可以类似地得到二者相同的概率至少为 $1 - \frac{n + m} p$．
+#### Tìm hệ thức truy hồi ngắn nhất của dãy vector hoặc dãy ma trận
 
-#### 优化矩阵快速幂
+Nếu cần tìm hệ thức truy hồi ngắn nhất của dãy vector $\boldsymbol{v}_i$, giả sử chiều của vector là $n$, ta có thể chọn ngẫu nhiên một vector hàng $n$ chiều $\mathbf u^T$, rồi tính hệ thức truy hồi ngắn nhất của dãy vô hướng $\{\boldsymbol{u}^T\boldsymbol{v}_i\}$. Theo bổ đề Schwartz–Zippel, hệ thức truy hồi ngắn nhất của hai dãy trùng nhau với xác suất ít nhất $1 - \frac n p$.
 
-设 $\boldsymbol{f}_i$ 是一个 $n$ 维列向量，并且转移满足 $\boldsymbol{f}_i = A \boldsymbol{f}_{i - 1}$，则可以发现 $\{\boldsymbol{f}_i\}$ 是一个不超过 $n$ 阶的线性递推向量列．（证明略）
+Việc tìm hệ thức truy hồi ngắn nhất của dãy ma trận $\{A_i\}$ cũng tương tự. Giả sử kích thước ma trận là $n \times m$, ta chỉ cần chọn ngẫu nhiên một vector hàng $1 \times n$ $\mathbf u^T$ và một vector cột $m \times 1$ $\boldsymbol{v}$, rồi tính hệ thức truy hồi ngắn nhất của dãy vô hướng $\{\boldsymbol{u}^T A_i \boldsymbol{v}\}$. Từ bổ đề Schwartz–Zippel cũng có thể suy ra tương tự rằng xác suất hai hệ thức truy hồi trùng nhau ít nhất là $1 - \frac{n + m} p$.
 
-我们可以直接暴力求出 $\boldsymbol{f}_0 \dots \boldsymbol{f}_{2n - 1}$，然后用前面提到的做法求出 $\{\boldsymbol{f}_i\}$ 的最短递推式，再调用 [常系数齐次线性递推](./poly/linear-recurrence.md) 即可．
+<span id="&#20248;&#21270;&#30697;&#38453;&#24555;&#36895;&#24130;"></span>
 
-如果要求的向量是 $\boldsymbol{f}_m$，则算法的复杂度是 $O(n^3 + n\log n \log m)$．如果 $A$ 是一个只有 $k$ 个非零项的稀疏矩阵，则复杂度可以降为 $O(nk + n\log n \log m)$．但由于算法至少需要 $O(nk)$ 的时间预处理，因此在压力不大的情况下也可以使用 $O(n^2 \log m)$ 的线性递推算法，复杂度同样是可以接受的．
+#### Tối ưu lũy thừa nhanh ma trận
 
-#### 求矩阵的最小多项式
+Giả sử $\boldsymbol{f}_i$ là một vector cột $n$ chiều, và phép chuyển trạng thái thỏa mãn $\boldsymbol{f}_i = A \boldsymbol{f}_{i - 1}$. Khi đó có thể thấy $\{\boldsymbol{f}_i\}$ là một dãy vector truy hồi tuyến tính bậc không quá $n$. (Lược bỏ chứng minh)
 
-方阵 $A$ 的最小多项式是次数最小的并且满足 $f(A) = 0$ 的多项式 $f$．
+Ta có thể trực tiếp tính vét cạn $\boldsymbol{f}_0 \dots \boldsymbol{f}_{2n - 1}$, sau đó dùng cách đã nêu ở trên để tìm hệ thức truy hồi ngắn nhất của $\{\boldsymbol{f}_i\}$, rồi gọi [truy hồi tuyến tính thuần nhất hệ số hằng](./poly/linear-recurrence.md).
 
-实际上最小多项式就是 $\{A^i\}$ 的最小递推式，所以直接调用 Berlekamp–Massey 算法就可以了．如果 $A$ 是一个 $n$ 阶方阵，则显然最小多项式的次数不超过 $n$．
+Nếu vector cần tìm là $\boldsymbol{f}_m$, độ phức tạp của thuật toán là $O(n^3 + n\log n \log m)$. Nếu $A$ là ma trận thưa chỉ có $k$ phần tử khác $0$, độ phức tạp có thể giảm xuống $O(nk + n\log n \log m)$. Tuy nhiên, vì thuật toán ít nhất cần thời gian tiền xử lý $O(nk)$, nên khi giới hạn không quá chặt cũng có thể dùng thuật toán truy hồi tuyến tính $O(n^2 \log m)$; độ phức tạp này vẫn chấp nhận được.
 
-瓶颈在于求出 $A^i$，因为如果直接每次做矩阵乘法的话复杂度会达到 $O(n^4)$．但考虑到求矩阵列的最短递推式时实际上求的是 $\{\boldsymbol{u}^T A^i \boldsymbol{v}\}$ 的最短递推式，因此我们只要求出 $A^i \boldsymbol{v}$ 就行了．
+<span id="&#27714;&#30697;&#38453;&#30340;&#26368;&#23567;&#22810;&#39033;&#24335;"></span>
 
-假设 $A$ 有 $k$ 个非零项，则复杂度为 $O(kn + n^2)$．
+#### Tìm đa thức tối tiểu của ma trận
 
-#### 求稀疏矩阵行列式
+Đa thức tối tiểu của ma trận vuông $A$ là đa thức $f$ có bậc nhỏ nhất và thỏa mãn $f(A) = 0$.
 
-如果能求出方阵 $A$ 的特征多项式，则常数项乘上 $(-1)^n$ 就是行列式．但是最小多项式不一定就是特征多项式．
+Thực ra đa thức tối tiểu chính là hệ thức truy hồi tối tiểu của $\{A^i\}$, nên chỉ cần gọi trực tiếp thuật toán Berlekamp–Massey. Nếu $A$ là ma trận vuông cấp $n$, thì hiển nhiên bậc của đa thức tối tiểu không vượt quá $n$.
 
-实际上如果把 $A$ 乘上一个随机对角阵 $B$，则 $AB$ 的最小多项式有至少 $1 - \frac {2n^2 - n} p$ 的概率就是特征多项式．最后再除掉 $\text{det}\;B$ 就行了．
+Nút thắt nằm ở việc tính $A^i$, vì nếu mỗi lần đều nhân ma trận trực tiếp thì độ phức tạp sẽ lên tới $O(n^4)$. Nhưng xét rằng khi tìm hệ thức truy hồi ngắn nhất của dãy ma trận, thực chất ta đang tìm hệ thức truy hồi ngắn nhất của $\{\boldsymbol{u}^T A^i \boldsymbol{v}\}$, nên ta chỉ cần tính $A^i \boldsymbol{v}$.
 
-设 $A$ 为 $n$ 阶方阵，且有 $k$ 个非零项，则复杂度为 $O(kn + n ^ 2)$．
+Giả sử $A$ có $k$ phần tử khác $0$, độ phức tạp là $O(kn + n^2)$.
 
-#### 求稀疏矩阵的秩
+<span id="&#27714;&#31232;&#30095;&#30697;&#38453;&#34892;&#21015;&#24335;"></span>
 
-设 $A$ 是一个 $n\times m$ 的矩阵，首先随机一个 $n\times n$ 的对角阵 $P$ 和一个 $m\times m$ 的对角阵 $Q$, 然后计算 $Q A P A^T Q$ 的最小多项式即可．
+#### Tìm định thức của ma trận thưa
 
-实际上不用调用矩阵乘法，因为求最小多项式时要用 $Q A P A^T Q$ 乘一个向量，所以我们依次把这几个矩阵乘到向量里就行了．答案就是最小多项式除掉所有 $x$ 因子后剩下的次数．
+Nếu có thể tìm đa thức đặc trưng của ma trận vuông $A$, thì hạng tử tự do nhân với $(-1)^n$ chính là định thức. Tuy nhiên, đa thức tối tiểu không nhất thiết là đa thức đặc trưng.
 
-设 $A$ 有 $k$ 个非零项，且 $n \le m$，则复杂度为 $O(kn + n ^ 2)$．
+Thực ra nếu nhân $A$ với một ma trận đường chéo ngẫu nhiên $B$, thì đa thức tối tiểu của $AB$ là đa thức đặc trưng với xác suất ít nhất $1 - \frac {2n^2 - n} p$. Cuối cùng chỉ cần chia cho $\text{det}\;B$.
 
-#### 解稀疏方程组
+Giả sử $A$ là ma trận vuông cấp $n$ và có $k$ phần tử khác $0$, độ phức tạp là $O(kn + n ^ 2)$.
 
-**问题**：已知 $A \mathbf x = \mathbf b$, 其中 $A$ 是一个 $n \times n$ 的 **满秩** 稀疏矩阵，$\mathbf b$ 和 $\mathbf x$ 是 $1\times n$ 的列向量．$A, \mathbf b$ 已知，需要在低于 $n^\omega$ 的复杂度内解出 $x$．
+<span id="&#27714;&#31232;&#30095;&#30697;&#38453;&#30340;&#31209;"></span>
 
-**做法**：显然 $\mathbf x = A^{-1} \mathbf b$．如果我们能求出 $\{A^i \mathbf b\}$($i \ge 0$) 的最小递推式 $\{r_0 \dots r_{m - 1}\}$($m \le n$), 那么就有结论
+#### Tìm hạng của ma trận thưa
+
+Giả sử $A$ là ma trận $n\times m$. Trước hết chọn ngẫu nhiên một ma trận đường chéo $n\times n$ $P$ và một ma trận đường chéo $m\times m$ $Q$, sau đó tính đa thức tối tiểu của $Q A P A^T Q$.
+
+Thực ra không cần gọi phép nhân ma trận, vì khi tìm đa thức tối tiểu ta cần nhân $Q A P A^T Q$ với một vector, nên chỉ cần lần lượt nhân các ma trận này vào vector. Đáp án chính là bậc còn lại sau khi loại bỏ toàn bộ nhân tử $x$ khỏi đa thức tối tiểu.
+
+Giả sử $A$ có $k$ phần tử khác $0$ và $n \le m$, độ phức tạp là $O(kn + n ^ 2)$.
+
+<span id="&#35299;&#31232;&#30095;&#26041;&#31243;&#32452;"></span>
+
+#### Giải hệ phương trình thưa
+
+**Bài toán**: Biết $A \mathbf x = \mathbf b$, trong đó $A$ là một ma trận thưa $n \times n$ **đầy hạng**, còn $\mathbf b$ và $\mathbf x$ là các vector cột $1\times n$. Đã biết $A, \mathbf b$, cần giải $x$ với độ phức tạp thấp hơn $n^\omega$.
+
+**Cách làm**: Hiển nhiên $\mathbf x = A^{-1} \mathbf b$. Nếu ta có thể tìm hệ thức truy hồi tối tiểu $\{r_0 \dots r_{m - 1}\}$($m \le n$) của $\{A^i \mathbf b\}$($i \ge 0$), thì có kết luận
 
 $A^{-1} \mathbf b = -\frac 1 {r_{m - 1}} \sum_{i = 0} ^ {m - 2} A^i \mathbf b r_{m - 2 - i}$
 
-（证明略）
+(Lược bỏ chứng minh)
 
-因为 $A$ 是稀疏矩阵，直接按定义递推出 $\mathbf b \dots A^{2n - 1} \mathbf b$ 即可．
+Vì $A$ là ma trận thưa, chỉ cần truy hồi trực tiếp theo định nghĩa để tính $\mathbf b \dots A^{2n - 1} \mathbf b$.
 
-同样地，设 $A$ 中有 $k$ 个非零项，则复杂度为 $O(kn + n^2)$．
+Tương tự, giả sử $A$ có $k$ phần tử khác $0$, độ phức tạp là $O(kn + n^2)$.
 
-??? note "参考实现"
+??? note "Cài đặt tham khảo"
     ```cpp
     vector<int> solve_sparse_equations(const vector<tuple<int, int, int>> &A,
                                        const vector<int> &b) {
@@ -202,7 +220,9 @@ $A^{-1} \mathbf b = -\frac 1 {r_{m - 1}} \sum_{i = 0} ^ {m - 2} A^i \mathbf b r_
     }
     ```
 
-### 例题
+<span id="&#20363;&#39064;"></span>
 
-1.  [LibreOJ #163. 高斯消元 2](https://loj.ac/p/163)
-2.  [ICPC2021 台北 Gym103443E. Composition with Large Red Plane, Yellow, Black, Gray, and Blue](https://codeforces.com/gym/103443/problem/E)
+### Bài tập ví dụ
+
+1.  [LibreOJ #163. Khử Gauss 2](https://loj.ac/p/163)
+2.  [ICPC 2021 Đài Bắc Gym103443E. Composition with Large Red Plane, Yellow, Black, Gray, and Blue](https://codeforces.com/gym/103443/problem/E)

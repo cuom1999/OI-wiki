@@ -188,6 +188,10 @@ MkDocs source layout intact.
 - `docs/math/numerical/*.md`: translated numerical algorithms covering
   interpolation, numerical integration, Gaussian elimination, and Newton's
   method, plus explanatory comments in included interpolation snippets.
+- `docs/math/order-theory.md`, `docs/math/young-tableau.md`,
+  `docs/math/matroid.md`, `docs/math/berlekamp-massey.md`: translated the
+  remaining standalone math pages on order theory, Young tableaux, matroids,
+  and Berlekamp-Massey, plus explanatory comments in order-theory snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

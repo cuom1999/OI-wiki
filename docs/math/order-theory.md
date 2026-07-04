@@ -1,178 +1,189 @@
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Mở đầu
 
-序理论是利用二元关系来将「次序」这一概念严格化的数学分支，下面将介绍这一分支的基本定义．
+Lý thuyết thứ tự là một nhánh toán học dùng quan hệ hai ngôi để hình thức hóa khái niệm "thứ tự". Phần dưới đây giới thiệu các định nghĩa cơ bản của nhánh này.
 
-## 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+## Định nghĩa
 
-### 二元关系
+<span id="&#x4E8C;&#x5143;&#x5173;&#x7CFB;"></span>
+### Quan hệ hai ngôi
 
-???+ note "定义"
-    集合 $X$ 和集合 $Y$ 上的一个 **二元关系**（binary relation）$R$ 定义为元组 $(X,Y,G(R))$，其中 $X$ 称为定义域（domain），$Y$ 称为陪域（codomain），$G(R)\subseteq X\times Y=\{(x,y):x\in X,y\in Y\}$ 称为二元关系 $R$ 的图（graph）．$xRy$ 成立当且仅当 $(x,y)\in G(R)$．
+???+ note "Định nghĩa"
+    Một **quan hệ hai ngôi** (binary relation) $R$ trên tập $X$ và tập $Y$ được định nghĩa là bộ $(X,Y,G(R))$, trong đó $X$ được gọi là miền xác định (domain), $Y$ được gọi là đối miền (codomain), và $G(R)\subseteq X\times Y=\{(x,y):x\in X,y\in Y\}$ được gọi là đồ thị (graph) của quan hệ hai ngôi $R$. Mệnh đề $xRy$ đúng khi và chỉ khi $(x,y)\in G(R)$.
     
-    若 $X=Y$，则称该二元关系为齐次二元关系（homogeneous relation）或内关系（endorelation）．
+    Nếu $X=Y$, quan hệ hai ngôi này được gọi là quan hệ hai ngôi thuần nhất (homogeneous relation) hoặc quan hệ nội tại (endorelation).
     
-    若没有特别说明，下文中的二元关系均为齐次二元关系．
+    Nếu không nói rõ thêm, các quan hệ hai ngôi trong phần dưới đều là quan hệ hai ngôi thuần nhất.
 
-例如 $\mathbf{N}_+$ 上的整除 $\mid$ 和小于等于 $\leq$ 均为二元关系．
+Ví dụ, quan hệ chia hết $\mid$ và quan hệ nhỏ hơn hoặc bằng $\leq$ trên $\mathbf{N}_+$ đều là quan hệ hai ngôi.
 
-我们研究二元关系时，往往会关注其是否具有一些特别的性质．对集合 $S$ 上的二元关系 $R$，我们定义如下特殊性质：
+Khi nghiên cứu quan hệ hai ngôi, ta thường quan tâm liệu chúng có một số tính chất đặc biệt hay không. Với quan hệ hai ngôi $R$ trên tập $S$, ta định nghĩa các tính chất đặc biệt sau:
 
-1.  自反性（reflexive）：$(\forall~a \in S)~~aRa$，
-2.  反自反性（irreflexive，anti-reflexive）：$(\forall~a \in S)~~\lnot(aRa)$，
-3.  对称性（symmetric）：$(\forall~a,b \in S)~~aRb \iff bRa$，
-4.  反对称性（antisymmetric）：$(\forall~a,b \in S)~~(aRb \land bRa) \implies a=b$，
-5.  非对称性（asymmetric）：$(\forall~a,b \in S)~~aRb \implies \lnot(bRa)$，
-6.  传递性（transitive）：$(\forall~a,b,c \in S)~~(aRb \land bRc) \implies aRc$，
-7.  连接性（connected）：$(\forall~a,b \in S)~~a \neq b \implies (aRb \lor bRa)$，
-8.  良基性（well-founded）：$(\exists~m \in S \neq \varnothing)~~(\forall~a \in S\setminus\{m\})~~\lnot(aRm)$（即非空集合 $S$ 中有极小元 $m$），
-9.  不可比的传递性（transitive of incomparability）：$(\forall~a,b,c \in S)~~(\lnot(aRb \lor bRa) \land \lnot(bRc \lor cRb)) \implies \lnot(aRc \lor cRa)$（若 $\lnot(aRb \lor bRa)$，则称 $a$ 和 $b$ 是不可比的）．
+1.  Tính phản xạ (reflexive): $(\forall~a \in S)~~aRa$,
+2.  Tính phi phản xạ (irreflexive, anti-reflexive): $(\forall~a \in S)~~\lnot(aRa)$,
+3.  Tính đối xứng (symmetric): $(\forall~a,b \in S)~~aRb \iff bRa$,
+4.  Tính phản đối xứng (antisymmetric): $(\forall~a,b \in S)~~(aRb \land bRa) \implies a=b$,
+5.  Tính bất đối xứng (asymmetric): $(\forall~a,b \in S)~~aRb \implies \lnot(bRa)$,
+6.  Tính bắc cầu (transitive): $(\forall~a,b,c \in S)~~(aRb \land bRc) \implies aRc$,
+7.  Tính liên thông (connected): $(\forall~a,b \in S)~~a \neq b \implies (aRb \lor bRa)$,
+8.  Tính có cơ sở tốt (well-founded): $(\exists~m \in S \neq \varnothing)~~(\forall~a \in S\setminus\{m\})~~\lnot(aRm)$ (tức là tập không rỗng $S$ có phần tử cực tiểu $m$),
+9.  Tính bắc cầu của không so sánh được (transitive of incomparability): $(\forall~a,b,c \in S)~~(\lnot(aRb \lor bRa) \land \lnot(bRc \lor cRb)) \implies \lnot(aRc \lor cRa)$ (nếu $\lnot(aRb \lor bRa)$, ta nói $a$ và $b$ không so sánh được).
 
-同时我们定义一些特殊的二元关系：
+Đồng thời, ta định nghĩa một số quan hệ hai ngôi đặc biệt:
 
-| 二元关系                       | 自反性 | 反自反性 | 对称性 | 反对称性 | 非对称性 | 传递性 | 连接性 | 良基性 | 不可比的传递性 |
-| -------------------------- | --- | ---- | --- | ---- | ---- | --- | --- | --- | ------- |
-| 等价关系（equivalence relation） | 有   |      | 有   |      |      | 有   |     |     |         |
-| 预序（preorder，quasiorder）    | 有   |      |     |      |      | 有   |     |     |         |
-| 偏序（partial order）          | 有   |      |     | 有    |      | 有   |     |     |         |
-| 全序（total order）            | 有   |      |     | 有    |      | 有   | 有   |     |         |
-| 良序（well-order）             | 有   |      |     | 有    |      | 有   | 有   | 有   |         |
-| 严格预序（strict preorder）      |     | 有    |     |      |      | 有   |     |     |         |
-| 严格偏序（strict partial order） |     | 有    |     |      | 有    | 有   |     |     |         |
-| 严格弱序（strict weak order）    |     | 有    |     |      | 有    | 有   |     |     | 有       |
-| 严格全序（strict total order）   |     | 有    |     |      | 有    | 有   | 有   |     |         |
+| Quan hệ hai ngôi | Tính phản xạ | Tính phi phản xạ | Tính đối xứng | Tính phản đối xứng | Tính bất đối xứng | Tính bắc cầu | Tính liên thông | Tính có cơ sở tốt | Bắc cầu của không so sánh được |
+| ---------------- | ------------ | ---------------- | ------------- | ------------------ | ----------------- | ------------- | --------------- | ----------------- | ------------------------------- |
+| Quan hệ tương đương (equivalence relation) | Có | | Có | | | Có | | | |
+| Tiền thứ tự (preorder, quasiorder) | Có | | | | | Có | | | |
+| Thứ tự bộ phận (partial order) | Có | | | Có | | Có | | | |
+| Thứ tự toàn phần (total order) | Có | | | Có | | Có | Có | | |
+| Thứ tự tốt (well-order) | Có | | | Có | | Có | Có | Có | |
+| Tiền thứ tự nghiêm ngặt (strict preorder) | | Có | | | | Có | | | |
+| Thứ tự bộ phận nghiêm ngặt (strict partial order) | | Có | | | Có | Có | | | |
+| Thứ tự yếu nghiêm ngặt (strict weak order) | | Có | | | Có | Có | | | Có |
+| Thứ tự toàn phần nghiêm ngặt (strict total order) | | Có | | | Có | Có | Có | | |
 
-### 关系间的运算
+<span id="&#x5173;&#x7CFB;&#x95F4;&#x7684;&#x8FD0;&#x7B97;"></span>
+### Các phép toán giữa quan hệ
 
-对集合 $X$ 和集合 $Y$ 上的二元关系 $R$ 和 $S$，我们可以定义如下运算：
+Với hai quan hệ hai ngôi $R$ và $S$ trên tập $X$ và tập $Y$, ta có thể định nghĩa các phép toán sau:
 
-1.  $R$ 和 $S$ 的并 $R\cup S$ 满足 $G(R\cup S):=\{(x,y):xRy \lor xSy\}$（如 $\leq$ 是 $<$ 和 $=$ 的并），
-2.  $R$ 和 $S$ 的交 $R\cap S$ 满足 $G(R\cap S):=\{(x,y):xRy \land xSy\}$，
-3.  $R$ 的补 $\bar{R}$ 满足 $G(\bar{R}):=\{(x,y):\lnot(xRy)\}$，
-4.  $R$ 的对偶 $R^T$ 满足 $G(R^T):=\{(y,x):xRy\}$.
+1.  Hợp $R\cup S$ của $R$ và $S$ thỏa mãn $G(R\cup S):=\{(x,y):xRy \lor xSy\}$ (ví dụ $\leq$ là hợp của $<$ và $=$),
+2.  Giao $R\cap S$ của $R$ và $S$ thỏa mãn $G(R\cap S):=\{(x,y):xRy \land xSy\}$,
+3.  Phần bù $\bar{R}$ của $R$ thỏa mãn $G(\bar{R}):=\{(x,y):\lnot(xRy)\}$,
+4.  Đối ngẫu $R^T$ của $R$ thỏa mãn $G(R^T):=\{(y,x):xRy\}$.
 
-对集合 $X$ 和集合 $Y$ 上的二元关系 $R$ 以及集合 $Y$ 和集合 $Z$ 上的二元关系 $S$，我们可以定义其复合 $S\circ R$ 满足 $G(S\circ R):=\{(x,z):(\exists~y\in Y)~~xRy\land ySz\}$.
+Với quan hệ hai ngôi $R$ trên tập $X$ và tập $Y$, cùng quan hệ hai ngôi $S$ trên tập $Y$ và tập $Z$, ta có thể định nghĩa hợp thành $S\circ R$ của chúng sao cho $G(S\circ R):=\{(x,z):(\exists~y\in Y)~~xRy\land ySz\}$.
 
-### 偏序集
+<span id="&#x504F;&#x5E8F;&#x96C6;"></span>
+### Tập có thứ tự bộ phận
 
-???+ note "定义"
-    若集合 $S$ 上的一个二元关系 $\preceq$ 具有 **自反性**、**反对称性**、**传递性**，则称 $S$ 是 **偏序集**（partially ordered set，poset），$\preceq$ 为其上一 **偏序**（partial order）．
+???+ note "Định nghĩa"
+    Nếu một quan hệ hai ngôi $\preceq$ trên tập $S$ có **tính phản xạ**, **tính phản đối xứng** và **tính bắc cầu**, thì $S$ được gọi là **tập có thứ tự bộ phận** (partially ordered set, poset), còn $\preceq$ là một **thứ tự bộ phận** (partial order) trên $S$.
     
-    若偏序 $\preceq$ 还具有 **连接性**，则称其为 **全序**（total order），对应的集合称为 **全序集**（totally ordered set）、**线性序集**（linearly ordered set，loset）、**简单序集**（simply ordered set）．
+    Nếu thứ tự bộ phận $\preceq$ còn có **tính liên thông**, thì nó được gọi là **thứ tự toàn phần** (total order), và tập tương ứng được gọi là **tập có thứ tự toàn phần** (totally ordered set), **tập có thứ tự tuyến tính** (linearly ordered set, loset) hoặc **tập có thứ tự đơn giản** (simply ordered set).
 
-不难发现 $\mathbf{N}$，$\mathbf{Z}$，$\mathbf{Q}$、$\mathbf{R}$ 均关于 $\leq$ 构成全序集．
+Dễ thấy $\mathbf{N}$, $\mathbf{Z}$, $\mathbf{Q}$ và $\mathbf{R}$ đều tạo thành tập có thứ tự toàn phần theo $\leq$.
 
-### 偏序集的可视化表示：Hasse 图
+<span id="&#x504F;&#x5E8F;&#x96C6;&#x7684;&#x53EF;&#x89C6;&#x5316;&#x8868;&#x793A;&#xFF1A;Hasse &#x56FE;"></span>
+### Biểu diễn trực quan tập có thứ tự bộ phận: biểu đồ Hasse
 
-对于有限偏序集，我们可以用 Hasse 图直观地表示其上的偏序关系．
+Với tập có thứ tự bộ phận hữu hạn, ta có thể dùng biểu đồ Hasse để biểu diễn trực quan quan hệ thứ tự bộ phận trên đó.
 
-???+ note "定义"
-    对有限偏序集 $S$ 和其上的偏序 $\preceq$，定义 $x\prec y\iff (x\preceq y\land x\neq y)$ 其对应的 **Hasse 图** 为满足如下条件的图 $G=\langle V,E\rangle$：
+???+ note "Định nghĩa"
+    Với tập có thứ tự bộ phận hữu hạn $S$ và thứ tự bộ phận $\preceq$ trên đó, định nghĩa $x\prec y\iff (x\preceq y\land x\neq y)$. **Biểu đồ Hasse** tương ứng là đồ thị $G=\langle V,E\rangle$ thỏa mãn các điều kiện sau:
     
     -   $V=S$,
     -   $E=\{(x,y)\in S\times S: x\prec y \land ((\nexists~z\in S)~~x\prec z\prec y)\}$
 
-如对于集合 $\{0,1,2\}$ 的幂集 $S$ 和集合的包含关系 $\subseteq$，其对应的 Hasse 图为：
+Ví dụ, với lũy tập $S$ của tập $\{0,1,2\}$ và quan hệ bao hàm tập hợp $\subseteq$, biểu đồ Hasse tương ứng là:
 
 ![](images/order-theory1.svg)
 
-由于偏序具有反对称性，所以 Hasse 图一定是 [有向无环图](../graph/dag.md)，进而我们可以根据 [拓扑排序](../graph/topo.md) 对任意有限偏序集构造全序．
+Vì thứ tự bộ phận có tính phản đối xứng, biểu đồ Hasse chắc chắn là [đồ thị có hướng không chu trình](../graph/dag.md). Do đó, ta có thể dựa vào [sắp xếp topo](../graph/topo.md) để xây dựng một thứ tự toàn phần cho bất kỳ tập có thứ tự bộ phận hữu hạn nào.
 
-### 链与反链
+<span id="&#x94FE;&#x4E0E;&#x53CD;&#x94FE;"></span>
+### Xích và phản xích
 
-???+ note "定义"
-    对偏序集 $S$ 和其上的偏序 $\preceq$，称 $S$ 的全序子集为 **链**（chain）．若 $S$ 的子集 $T$ 中任意两个不同元素均不可比（即 $(\forall~a,b \in T)~~a \neq b \implies (a \npreceq b \land b \npreceq a)$），则称 $T$ 为 **反链**（antichain）．
+???+ note "Định nghĩa"
+    Với tập có thứ tự bộ phận $S$ và thứ tự bộ phận $\preceq$ trên đó, một tập con có thứ tự toàn phần của $S$ được gọi là **xích** (chain). Nếu hai phần tử phân biệt bất kỳ trong tập con $T$ của $S$ đều không so sánh được (tức là $(\forall~a,b \in T)~~a \neq b \implies (a \npreceq b \land b \npreceq a)$), thì $T$ được gọi là **phản xích** (antichain).
     
-    对偏序集 $S$ 和其上的偏序 $\preceq$，我们将偏序集 $S$ 的最长反链长度称为 **宽度**（partial order width）．
+    Với tập có thứ tự bộ phận $S$ và thứ tự bộ phận $\preceq$ trên đó, độ dài phản xích dài nhất của $S$ được gọi là **độ rộng** (partial order width) của tập có thứ tự bộ phận $S$.
 
-如对于集合 $\{0,1,2\}$ 的幂集 $S$ 和集合的包含关系 $\subseteq$，$\{\varnothing,\{1\},\{1,2\}\}$ 为一条链，$\{\{1\},\{0,2\}\}$ 为一条反链，$S$ 的宽度为 $3$.
+Ví dụ, với lũy tập $S$ của tập $\{0,1,2\}$ và quan hệ bao hàm tập hợp $\subseteq$, $\{\varnothing,\{1\},\{1,2\}\}$ là một xích, $\{\{1\},\{0,2\}\}$ là một phản xích, và độ rộng của $S$ là $3$.
 
-### 预序集中的特殊元素
+<span id="&#x9884;&#x5E8F;&#x96C6;&#x4E2D;&#x7684;&#x7279;&#x6B8A;&#x5143;&#x7D20;"></span>
+### Các phần tử đặc biệt trong tập tiền thứ tự
 
-在预序集中，我们可以定义极大（小）元、上（下）界、上（下）确界等概念，这些概念可以推广到其他序关系中．
+Trong tập tiền thứ tự, ta có thể định nghĩa các khái niệm như phần tử cực đại (cực tiểu), cận trên (cận dưới), cận trên đúng (cận dưới đúng). Các khái niệm này có thể được mở rộng sang các quan hệ thứ tự khác.
 
-???+ note "定义"
-    对预序集 $S$ 和其上的预序 $\preceq$，取 $S$ 中的元素 $m$：
+???+ note "Định nghĩa"
+    Với tập tiền thứ tự $S$ và tiền thứ tự $\preceq$ trên đó, lấy phần tử $m$ trong $S$:
     
-    1.  若 $(\forall~a \in S\setminus\{m\})~~\lnot(m\preceq a)$，则称 $m$ 为 **极大元**（maximal element），
-    2.  若对 $T \subseteq S$ 满足 $(\forall~t\in T)~~t\preceq m$，则称 $m$ 为 $T$ 的 **上界**（upper bound），
-    3.  若对 $T \subseteq S$ 满足 $m$ 是 $T$ 的上界且对 $T$ 的任意上界 $n$ 均有 $m \preceq n$，则称 $m$ 为 $T$ 的 **上确界**（supremum）．
+    1.  Nếu $(\forall~a \in S\setminus\{m\})~~\lnot(m\preceq a)$, thì $m$ được gọi là **phần tử cực đại** (maximal element),
+    2.  Nếu với $T \subseteq S$ ta có $(\forall~t\in T)~~t\preceq m$, thì $m$ được gọi là **cận trên** (upper bound) của $T$,
+    3.  Nếu với $T \subseteq S$, $m$ là cận trên của $T$ và với mọi cận trên $n$ của $T$ đều có $m \preceq n$, thì $m$ được gọi là **cận trên đúng** (supremum) của $T$.
     
-    类似可定义 **极小元**（minimal element）、**下界**（lower bound）和 **下确界**（infimum）．
+    Tương tự, ta có thể định nghĩa **phần tử cực tiểu** (minimal element), **cận dưới** (lower bound) và **cận dưới đúng** (infimum).
 
-如 $1$ 是 $\mathbf{N}_+$ 的极小元和下界．
+Ví dụ, $1$ là phần tử cực tiểu và cận dưới của $\mathbf{N}_+$.
 
-可以证明：
+Có thể chứng minh:
 
--   预序集中，极大（小）元、上（下）界、上（下）确界都是不一定存在的，即使存在也不一定唯一．
+-   Trong tập tiền thứ tự, phần tử cực đại (cực tiểu), cận trên (cận dưới), cận trên đúng (cận dưới đúng) không nhất thiết tồn tại; ngay cả khi tồn tại cũng không nhất thiết duy nhất.
 
--   若偏序集 $S$ 的子集 $T$ 存在上（下）确界，则一定唯一．
+-   Nếu tập con $T$ của tập có thứ tự bộ phận $S$ có cận trên đúng (cận dưới đúng), thì cận đó chắc chắn duy nhất.
 
-    我们可将 $T$ 的上确界、下确界分别记为 $\sup T$，$\inf T$. 若偏序集 $S$ 既有上界又有下界，则称 $S$ 是有界的．
+    Ta có thể ký hiệu cận trên đúng và cận dưới đúng của $T$ lần lượt là $\sup T$ và $\inf T$. Nếu tập có thứ tự bộ phận $S$ vừa có cận trên vừa có cận dưới, ta nói $S$ là bị chặn.
 
-在无限偏序集中，极大元不一定存在．可用 **Zorn 引理**（Zorn's Lemma）来判断无限偏序集中是否存在极大元．
+Trong tập có thứ tự bộ phận vô hạn, phần tử cực đại không nhất thiết tồn tại. Có thể dùng **bổ đề Zorn** (Zorn's Lemma) để phán đoán liệu tập có thứ tự bộ phận vô hạn có phần tử cực đại hay không.
 
-???+ note "[Zorn 引理](https://en.wikipedia.org/wiki/Zorn%27s_lemma)"
-    **Zorn 引理** 也被称为 **Kuratowski–Zorn 引理**，其内容为：若非空偏序集的每条链都有上界，则该偏序集存在极大元．
+???+ note "[Bổ đề Zorn](https://en.wikipedia.org/wiki/Zorn%27s_lemma)"
+    **Bổ đề Zorn** còn được gọi là **bổ đề Kuratowski-Zorn**. Nội dung của nó là: nếu mọi xích của một tập có thứ tự bộ phận không rỗng đều có cận trên, thì tập có thứ tự bộ phận đó có phần tử cực đại.
 
-Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**、**[良序定理](https://en.wikipedia.org/wiki/Well-ordering_theorem)** 等价．
+Bổ đề Zorn tương đương với **[tiên đề chọn](https://en.wikipedia.org/wiki/Axiom_of_choice)** và **[định lý thứ tự tốt](https://en.wikipedia.org/wiki/Well-ordering_theorem)**.
 
-### 有向集与格
+<span id="&#x6709;&#x5411;&#x96C6;&#x4E0E;&#x683C;"></span>
+### Tập định hướng và dàn
 
-我们知道若偏序集的子集存在上（下）确界，则一定唯一．但是这一点并不适用于极大（小）元．例如：考虑偏序集 $S=\{\{0\},\{1\},\{2\},\{0,1\},\{0,2\},\{1,2\}\}$ 和其上的偏序 $\subseteq$，不难发现其有 $3$ 个极大元和 $3$ 个极小元．
+Ta biết rằng nếu một tập con của tập có thứ tự bộ phận có cận trên đúng (cận dưới đúng), thì cận đó chắc chắn duy nhất. Tuy nhiên, điều này không áp dụng cho phần tử cực đại (cực tiểu). Ví dụ: xét tập có thứ tự bộ phận $S=\{\{0\},\{1\},\{2\},\{0,1\},\{0,2\},\{1,2\}\}$ với thứ tự bộ phận $\subseteq$ trên đó. Dễ thấy nó có $3$ phần tử cực đại và $3$ phần tử cực tiểu.
 
-我们希望通过向偏序集添加一定的条件来使得若极大（小）元存在则一定唯一，这样我们就可以定义最大（小）元的概念了．
+Ta muốn thêm một số điều kiện vào tập có thứ tự bộ phận để bảo đảm rằng nếu phần tử cực đại (cực tiểu) tồn tại thì nó chắc chắn duy nhất; nhờ đó ta có thể định nghĩa khái niệm phần tử lớn nhất (nhỏ nhất).
 
-???+ note "有向集"
-    对预序集 $S$ 和其上的预序 $\preceq$，若 $(\forall~a,b\in S)~~(\exists~c\in S)~~a\preceq c\land b\preceq c$，则称 $\preceq$ 为 $S$ 的一个 **方向**（direction），$S$ 称为 **有向集**（directed set）或 **过滤集**（filtered set）．
+???+ note "Tập định hướng"
+    Với tập tiền thứ tự $S$ và tiền thứ tự $\preceq$ trên đó, nếu $(\forall~a,b\in S)~~(\exists~c\in S)~~a\preceq c\land b\preceq c$, thì $\preceq$ được gọi là một **hướng** (direction) của $S$, còn $S$ được gọi là **tập định hướng** (directed set) hoặc **tập lọc** (filtered set).
     
-    有时也将满足上述定义的集合 $S$ 称为 **上有向集**（upward directed set），类似地可定义 **下有向集**（downward directed set）．
+    Đôi khi tập $S$ thỏa mãn định nghĩa trên cũng được gọi là **tập định hướng lên** (upward directed set); tương tự, ta có thể định nghĩa **tập định hướng xuống** (downward directed set).
 
-有向集也可用如下方式定义：
+Tập định hướng cũng có thể được định nghĩa theo cách sau:
 
-???+ note "有向集的等价定义"
-    对预序集 $S$ 和其上的预序 $\preceq$，若 $S$ 的任意有限子集 $T$ 均有上界，则称 $\preceq$ 为 $S$ 的一个方向，$S$ 称为有向集．
+???+ note "Định nghĩa tương đương của tập định hướng"
+    Với tập tiền thứ tự $S$ và tiền thứ tự $\preceq$ trên đó, nếu mọi tập con hữu hạn $T$ của $S$ đều có cận trên, thì $\preceq$ được gọi là một hướng của $S$, còn $S$ được gọi là tập định hướng.
 
-不难发现：
+Dễ thấy:
 
--   若上有向集存在极大元，则一定唯一．我们将上有向集的极大元称为 **最大元**（greatest element）．
--   若下有向集存在极小元，则一定唯一．我们将下有向集的极小元称为 **最小元**（least element）．
+-   Nếu tập định hướng lên có phần tử cực đại, thì phần tử đó chắc chắn duy nhất. Ta gọi phần tử cực đại của tập định hướng lên là **phần tử lớn nhất** (greatest element).
+-   Nếu tập định hướng xuống có phần tử cực tiểu, thì phần tử đó chắc chắn duy nhất. Ta gọi phần tử cực tiểu của tập định hướng xuống là **phần tử nhỏ nhất** (least element).
 
-有方向的偏序集中，对任意元素 $a,b$，$\{a,b\}$ 都有上界，若将上界修改为上确界，则得到了并半格的定义．
+Trong một tập có thứ tự bộ phận có hướng, với mọi phần tử $a,b$, $\{a,b\}$ đều có cận trên. Nếu thay cận trên bằng cận trên đúng, ta thu được định nghĩa của nửa dàn hợp.
 
-对偏序集 $S$ 和其上的偏序 $\preceq$：
+Với tập có thứ tự bộ phận $S$ và thứ tự bộ phận $\preceq$ trên đó:
 
-???+ note "并半格"
-    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有上确界 $c$，则称 $S$ 为 **并半格**（join-semilattice，upper semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **并**（join），记为 $a\lor b$.
+???+ note "Nửa dàn hợp"
+    Nếu với mọi phần tử $a,b$ trong $S$, $\{a,b\}$ đều có cận trên đúng $c$, thì $S$ được gọi là **nửa dàn hợp** (join-semilattice, upper semilattice), và ta gọi $c$ là **hợp** (join) của $a$ và $b$, ký hiệu là $a\lor b$.
 
-???+ note "交半格"
-    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有下确界 $c$，则称 $S$ 为 **交半格**（meet-semilattice，lower semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **交**（meet），记为 $a\land b$.
+???+ note "Nửa dàn giao"
+    Nếu với mọi phần tử $a,b$ trong $S$, $\{a,b\}$ đều có cận dưới đúng $c$, thì $S$ được gọi là **nửa dàn giao** (meet-semilattice, lower semilattice), và ta gọi $c$ là **giao** (meet) của $a$ và $b$, ký hiệu là $a\land b$.
 
-???+ note "格"
-    若 $S$ 既是并半格也是交半格，则称 $S$ 为 **格**（lattice）．
+???+ note "Dàn"
+    Nếu $S$ vừa là nửa dàn hợp vừa là nửa dàn giao, thì $S$ được gọi là **dàn** (lattice).
 
-例如 $60$ 的正因子构成的集合 $S=\{1,2,3,4,5,6,10,12,15,20,30,60\}$ 关于整除构成偏序集，其上的任意正整数 $a,b$，$\operatorname{lcm}(a,b)$ 为 $a$ 和 $b$ 的并，$\gcd(a,b)$ 为 $a$ 和 $b$ 的交，从而 $S$ 是格．
+Ví dụ, tập $S=\{1,2,3,4,5,6,10,12,15,20,30,60\}$ gồm các ước dương của $60$ tạo thành một tập có thứ tự bộ phận theo quan hệ chia hết. Với hai số nguyên dương bất kỳ $a,b$ trong tập này, $\operatorname{lcm}(a,b)$ là hợp của $a$ và $b$, còn $\gcd(a,b)$ là giao của $a$ và $b$; do đó $S$ là một dàn.
 
-### 对偶
+<span id="&#x5BF9;&#x5076;"></span>
+### Đối ngẫu
 
-在序理论中，对偶是非常常见的概念，如上文提到的极大元与极小元对偶、上界与下界对偶、上确界与下确界对偶．
+Trong lý thuyết thứ tự, đối ngẫu là một khái niệm rất thường gặp, chẳng hạn các cặp đối ngẫu đã nhắc ở trên: phần tử cực đại và phần tử cực tiểu, cận trên và cận dưới, cận trên đúng và cận dưới đúng.
 
-对偏序集 $P$ 和其上的偏序 $\preceq$，定义其 **对偶**（dual，opposite）偏序集 $P^d$ 满足：$x \preceq y$ 在 $P$ 中成立当且仅当 $y \preceq x$ 在 $P^d$ 中成立．将 $P$ 的 Hasse 图的边反转即可得到 $P^d$ 的 Hasse 图．
+Với tập có thứ tự bộ phận $P$ và thứ tự bộ phận $\preceq$ trên đó, định nghĩa tập có thứ tự bộ phận **đối ngẫu** (dual, opposite) $P^d$ của nó như sau: $x \preceq y$ đúng trong $P$ khi và chỉ khi $y \preceq x$ đúng trong $P^d$. Đảo chiều các cạnh trong biểu đồ Hasse của $P$ sẽ thu được biểu đồ Hasse của $P^d$.
 
-## Dilworth 定理与 Mirsky 定理
+<span id="Dilworth &#x5B9A;&#x7406;&#x4E0E; Mirsky &#x5B9A;&#x7406;"></span>
+## Định lý Dilworth và định lý Mirsky
 
-对有限偏序集 $S$ 和其上的偏序 $\preceq$，我们有如下的一对对偶的定理：
+Với tập có thứ tự bộ phận hữu hạn $S$ và thứ tự bộ phận $\preceq$ trên đó, ta có cặp định lý đối ngẫu sau:
 
-???+ note "Dilworth 定理"
-    $S$ 的宽度（最长反链长度）等于最小的链覆盖数．
+???+ note "Định lý Dilworth"
+    Độ rộng của $S$ (độ dài phản xích dài nhất) bằng số xích ít nhất cần để phủ $S$.
     
-    ??? note "证明"
-        考虑数学归纳法．当 $|S|\leq 3$ 时，命题显然成立．
+    ??? note "Chứng minh"
+        Xét quy nạp toán học. Khi $|S|\leq 3$, mệnh đề hiển nhiên đúng.
         
-        假设命题对所有元素个数小于 $|S|$ 的偏序集都成立，令 $S$ 的宽度为 $d$. 若 $|S|$ 中所有元素均不可比，则命题显然成立，否则在 $S$ 中取一条长度大于 $1$ 的链，令其中的最小元为 $m$，最大元为 $M$.
+        Giả sử mệnh đề đúng với mọi tập có thứ tự bộ phận có số phần tử nhỏ hơn $|S|$. Gọi độ rộng của $S$ là $d$. Nếu mọi phần tử trong $S$ đều đôi một không so sánh được, mệnh đề hiển nhiên đúng; nếu không, lấy trong $S$ một xích có độ dài lớn hơn $1$, gọi phần tử nhỏ nhất của xích đó là $m$ và phần tử lớn nhất là $M$.
         
-        令 $T=S\setminus\{m,M\}$，若 $T$ 中的宽度不超过 $d-1$，则由归纳假设知 $T$ 可被至多 $d-1$ 条链覆盖，进而 $S$ 可被这些链再加上链 $\{m,M\}$ 覆盖，命题成立，否则说明 $T$ 中的宽度也为 $d$，令 $T$ 中最长的一条反链为 $A$.
+        Đặt $T=S\setminus\{m,M\}$. Nếu độ rộng của $T$ không vượt quá $d-1$, thì theo giả thiết quy nạp, $T$ có thể được phủ bởi nhiều nhất $d-1$ xích; do đó $S$ có thể được phủ bởi các xích này cộng thêm xích $\{m,M\}$, và mệnh đề đúng. Ngược lại, độ rộng của $T$ cũng là $d$; gọi $A$ là một phản xích dài nhất trong $T$.
         
-        我们考虑如下两个集合：
+        Xét hai tập sau:
         
         $$
         S^+:=\{x\in S:(\exists~a\in A)~~a\preceq x\}
@@ -182,103 +193,107 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
         S^-:=\{x\in S:(\exists~a\in A)~~x\preceq a\}
         $$
         
-        我们不难发现如下性质：
+        Dễ thấy các tính chất sau:
         
-        -   $S^+\cup S^-=S$，
-        -   $S^+\cap S^-=A$，
-        -   $|S^+|<|S|$,$|S^-|<|S|$（因为 $m\notin S^+$ 且 $M\notin S^-$）．
+        -   $S^+\cup S^-=S$,
+        -   $S^+\cap S^-=A$,
+        -   $|S^+|<|S|$,$|S^-|<|S|$ (vì $m\notin S^+$ và $M\notin S^-$).
         
-        对 $S^+$ 和 $S^-$ 都应用归纳假设，则这两个集合的最小链覆盖数为 $d$，且这些链中恰好包含一个 $A$ 中的元素 $a$，设这些链分别为 $C_a^+$，$C_a^-$，则 $\{C_a^-\cup\{a\}\cup C_a^+\}_{a\in A}$ 是 $S$ 的一个最小链覆盖，命题得证．
+        Áp dụng giả thiết quy nạp cho cả $S^+$ và $S^-$, số xích ít nhất cần để phủ mỗi tập này đều là $d$, và các xích đó chứa đúng một phần tử $a$ trong $A$. Gọi các xích tương ứng là $C_a^+$ và $C_a^-$. Khi đó $\{C_a^-\cup\{a\}\cup C_a^+\}_{a\in A}$ là một phủ xích tối tiểu của $S$, nên mệnh đề được chứng minh.
 
-???+ note "Mirsky 定理"
-    $S$ 的最长链长度等于最小的反链覆盖数．
+???+ note "Định lý Mirsky"
+    Độ dài xích dài nhất của $S$ bằng số phản xích ít nhất cần để phủ $S$.
     
-    ??? note "证明"
-        设 $S$ 的最长链长度为 $d$，则由定义，最小反链覆盖数至少为 $d$.
+    ??? note "Chứng minh"
+        Gọi độ dài xích dài nhất của $S$ là $d$. Theo định nghĩa, số phản xích ít nhất cần để phủ $S$ ít nhất là $d$.
         
-        令 $f(s)$ 为以 $s$ 为最小元的最长链长度，注意到若 $f(s)=f(t)$，则 $s$ 与 $t$ 不可比，进而 $(\forall~n\in\mathbf{N})~~f^{-1}(\{n\})$ 均为反链，其中 $f^{-1}(\{n\}):=\{a\in S:f(a)=n\}$ 称为 [水平集（level set）](https://en.wikipedia.org/wiki/Level_set)．
+        Gọi $f(s)$ là độ dài xích dài nhất có $s$ làm phần tử nhỏ nhất. Chú ý rằng nếu $f(s)=f(t)$ thì $s$ và $t$ không so sánh được; do đó $(\forall~n\in\mathbf{N})~~f^{-1}(\{n\})$ đều là phản xích, trong đó $f^{-1}(\{n\}):=\{a\in S:f(a)=n\}$ được gọi là [tập mức (level set)](https://en.wikipedia.org/wiki/Level_set).
         
-        因此不难得出 $\{f^{-1}(\{i\}):1\leq i\leq d\}$ 是一个反链覆盖，从而最小反链覆盖数至多为 $d$.
+        Vì vậy dễ suy ra $\{f^{-1}(\{i\}):1\leq i\leq d\}$ là một phủ phản xích, nên số phản xích ít nhất cần để phủ không vượt quá $d$.
 
-Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#hall-定理) 等价．
+Định lý Dilworth tương đương với [định lý hôn nhân Hall](../graph/graph-matching/graph-match.md#hall-%E5%AE%9A%E7%90%86).
 
-我们可以用 Dilworth 定理证明如下定理：
+Ta có thể dùng định lý Dilworth để chứng minh định lý sau:
 
-???+ note "Erdős–Szekeres 定理"
-    含至少 $rs+1$ 个元素的实数序列 $\{a_i\}$ 要么有一个长为 $r+1$ 的不下降子序列，要么有一个长为 $s+1$ 的不上升子序列．
+???+ note "Định lý Erdős-Szekeres"
+    Một dãy số thực $\{a_i\}$ có ít nhất $rs+1$ phần tử thì hoặc có một dãy con không giảm độ dài $r+1$, hoặc có một dãy con không tăng độ dài $s+1$.
     
-    ??? note "证明"
-        设序列长度为 $n\geq rs+1$，定义偏序集 $\{(i,a_i)\}_{i=1}^{n}$，其上的偏序 $\preceq$ 定义为：
+    ??? note "Chứng minh"
+        Giả sử độ dài dãy là $n\geq rs+1$. Định nghĩa tập có thứ tự bộ phận $\{(i,a_i)\}_{i=1}^{n}$, với thứ tự bộ phận $\preceq$ trên đó được định nghĩa bởi:
         
         $$
         (i,a_i)\preceq (j,a_j)\iff (i\leq j\land a_i\leq a_j)
         $$
         
-        假设该偏序集的宽度不超过 $s$，则由 Dilworth 定理可知该偏序集可以被至多 $s$ 条链覆盖，若这些链的长度都不超过 $r$，则序列所含元素数至多为 $rs$，与条件矛盾．
+        Giả sử độ rộng của tập có thứ tự bộ phận này không vượt quá $s$. Khi đó, theo định lý Dilworth, tập có thứ tự bộ phận này có thể được phủ bởi nhiều nhất $s$ xích. Nếu độ dài của mỗi xích đều không vượt quá $r$, thì số phần tử của dãy nhiều nhất là $rs$, mâu thuẫn với điều kiện.
 
-### 例题
+<span id="&#x4F8B;&#x9898;"></span>
+### Bài tập ví dụ
 
-???+ note "[Luogu P1020 \[NOIP1999 提高组\] 导弹拦截](https://www.luogu.com.cn/problem/P1020)"
-    某国为了防御敌国的导弹袭击，发展出一种导弹拦截系统．但是这种导弹拦截系统有一个缺陷：虽然它的第一发炮弹能够到达任意的高度，但是以后每一发炮弹都不能高于前一发的高度．某天，雷达捕捉到敌国的导弹来袭．由于该系统还在试用阶段，所以只有一套系统，因此有可能不能拦截所有的导弹．
+???+ note "[Luogu P1020 \[NOIP1999 Nhóm nâng cao\] Chặn tên lửa](https://www.luogu.com.cn/problem/P1020)"
+    Để phòng thủ trước các cuộc tấn công bằng tên lửa của nước địch, một quốc gia đã phát triển một hệ thống đánh chặn tên lửa. Tuy nhiên, hệ thống này có một nhược điểm: tuy quả đạn đầu tiên có thể đạt tới độ cao bất kỳ, nhưng mỗi quả đạn sau đó không thể cao hơn độ cao của quả trước. Một ngày nọ, radar phát hiện tên lửa của địch đang bay tới. Vì hệ thống còn đang trong giai đoạn thử nghiệm nên chỉ có một bộ hệ thống, do đó có thể không đánh chặn được tất cả tên lửa.
     
-    输入导弹依次飞来的高度，计算这套系统最多能拦截多少导弹，如果要拦截所有导弹最少要配备多少套这种导弹拦截系统．
+    Nhập lần lượt độ cao của các tên lửa bay tới. Hãy tính số tên lửa nhiều nhất mà một bộ hệ thống này có thể đánh chặn, và nếu muốn đánh chặn tất cả tên lửa thì cần trang bị ít nhất bao nhiêu bộ hệ thống như vậy.
     
-    对于全部数据，满足导弹的高度为正整数，且不超过 $5\times 10^4$.
+    Với toàn bộ dữ liệu, độ cao tên lửa là số nguyên dương và không vượt quá $5\times 10^4$.
     
-    ??? note "题解"
-        令一共有 $n$ 个导弹，第 $i$ 个导弹的高度为 $h_i$，则集合 $\{(i,h_i)\}_{i=1}^{n}$ 为偏序集，其上的偏序 $\preceq$ 定义为：
+    ??? note "Lời giải"
+        Giả sử có tổng cộng $n$ tên lửa, và độ cao của tên lửa thứ $i$ là $h_i$. Khi đó tập $\{(i,h_i)\}_{i=1}^{n}$ là một tập có thứ tự bộ phận, với thứ tự bộ phận $\preceq$ trên đó được định nghĩa bởi:
         
         $$
         (i,h_i)\preceq(j,h_j) \iff (i\leq j \land h_i\geq h_j)
         $$
         
-        进而根据 Dilworth 定理有：**序列的不上升子序列的最少覆盖数等于最长上升子序列长度**．从而可以通过 [最长不下降子序列的 $O(n\log n)$ 做法](../dp/basic.md#算法二) 解决本题．
+        Theo định lý Dilworth, ta có: **số dãy con không tăng ít nhất cần để phủ dãy bằng độ dài dãy con tăng dài nhất**. Vì vậy có thể giải bài này bằng [cách làm $O(n\log n)$ cho dãy con không giảm dài nhất](../dp/basic.md#%E7%AE%97%E6%B3%95%E4%BA%8C).
     
-    ??? note "参考代码"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/math/code/order-theory/order-theory_1.cpp"
         ```
 
-???+ note "[\[TJOI2015\] 组合数学](https://www.luogu.com.cn/problem/P3974)"
-    给一个 $n$ 行 $m$ 列的网格图，其中每个格子中均有若干块财宝．每次从左上角出发，只能往右或下走，每次经过一个格子至多只能捡走一块财宝．问至少要走几次才可能把财宝全捡完．
+???+ note "[\[TJOI2015\] Toán tổ hợp](https://www.luogu.com.cn/problem/P3974)"
+    Cho một lưới gồm $n$ hàng và $m$ cột, trong mỗi ô có một số khối châu báu. Mỗi lần xuất phát từ góc trên bên trái, chỉ được đi sang phải hoặc đi xuống, và mỗi lần đi qua một ô thì nhiều nhất chỉ có thể nhặt một khối châu báu. Hỏi cần đi ít nhất bao nhiêu lần thì mới có thể nhặt hết châu báu.
     
-    $1\le n \le 1000$，$1\le m \le 1000$，每个格子中的财宝不超过 $10^6$ 块．
+    $1\le n \le 1000$, $1\le m \le 1000$, số khối châu báu trong mỗi ô không vượt quá $10^6$.
     
-    ??? note "题解"
-        不考虑网格图的点权，不难发现按给定的规则下在网格图上行走等价于在 DAG 上行走，从而我们可以将其视作 Hasse 图来构造偏序集，进而根据 Dilworth 定理有：**DAG 的最小链覆盖数等于最大的点独立集大小**．
+    ??? note "Lời giải"
+        Không xét trọng số đỉnh của lưới, dễ thấy đi trên lưới theo quy tắc đã cho tương đương với đi trên một DAG. Do đó ta có thể xem nó như một biểu đồ Hasse để xây dựng tập có thứ tự bộ phận; theo định lý Dilworth, ta có: **số xích ít nhất cần để phủ một DAG bằng kích thước tập đỉnh độc lập lớn nhất**.
         
-        因此本题所求即为给定网格图最大点权独立集的点权和．
+        Vì vậy, thứ bài này cần tìm chính là tổng trọng số đỉnh của tập đỉnh độc lập có trọng số lớn nhất trong lưới đã cho.
         
-        令 $a_{ij}$ 为网格图在点 $(i,j)$ 处的权值，$f(i,j)$ 为 从 $(i,j)$ 到 $(1,m)$ 这个子网格中的答案，注意到每个点都和其右上角的点不相邻，则状态转移方程为：
+        Gọi $a_{ij}$ là trọng số của lưới tại đỉnh $(i,j)$, và $f(i,j)$ là đáp án trong lưới con từ $(i,j)$ đến $(1,m)$. Chú ý rằng mỗi đỉnh đều không kề với các đỉnh ở góc trên bên phải của nó, nên phương trình chuyển trạng thái là:
         
         $$
         f(i,j)=\max\{f(i-1,j),f(i,j+1),f(i-1,j+1)+a_{ij}\}
         $$
         
-        答案即为 $f(n,1)$.
+        Đáp án là $f(n,1)$.
     
-    ??? note "参考代码"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/math/code/order-theory/order-theory_2.cpp"
         ```
 
-### 习题
+<span id="&#x4E60;&#x9898;"></span>
+### Bài tập
 
--   [\[CTSC2008\] 祭祀](https://www.luogu.com.cn/problem/P4298)
+-   [\[CTSC2008\] Tế lễ](https://www.luogu.com.cn/problem/P4298)
 -   [CodeForces 590E Birthday](https://codeforces.com/problemset/problem/590/E)
 
-## C++ 中的应用
+<span id="C++ &#x4E2D;&#x7684;&#x5E94;&#x7528;"></span>
+## Ứng dụng trong C++
 
-另请参阅：[排序相关 STL -  算法基础](../basic/stl-sort.md)．
+Xem thêm: [STL liên quan đến sắp xếp - Cơ sở thuật toán](../basic/stl-sort.md).
 
-C++ STL 中 [需要使用比较的算法和数据结构](https://en.cppreference.com/w/cpp/named_req/Compare#Standard_library) 中有序理论的应用．我们经常需要在 C++ 中自定义比较器，STL [要求](https://en.cppreference.com/w/cpp/named_req/Compare) 其必须为 **严格弱序**．令 $<$ 为自定义比较器，则可以定义：
+Trong các [thuật toán và cấu trúc dữ liệu cần dùng so sánh](https://en.cppreference.com/w/cpp/named_req/Compare#Standard_library) của C++ STL, ta gặp các ứng dụng của lý thuyết thứ tự. Ta thường cần tự định nghĩa bộ so sánh trong C++; STL [yêu cầu](https://en.cppreference.com/w/cpp/named_req/Compare) bộ so sánh đó phải là **thứ tự yếu nghiêm ngặt**. Gọi $<$ là bộ so sánh tự định nghĩa, ta có thể định nghĩa:
 
--   $x>y$ 为 $y<x$；
--   $x \leq y$ 为 $y \nless x$；
--   $x \geq y$ 为 $x \nless y$；
--   $x=y$ 为 $x \nless y\land y \nless x$.
+-   $x>y$ là $y<x$;
+-   $x \leq y$ là $y \nless x$;
+-   $x \geq y$ là $x \nless y$;
+-   $x=y$ là $x \nless y\land y \nless x$.
 
-## 参考资料与拓展阅读
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+## Tài liệu tham khảo và đọc thêm
 
 1.  [Order theory - From Academic Kids](https://academickids.com/encyclopedia/index.php/Order_theory)
 2.  [Binary Relation - Wikipedia](https://en.wikipedia.org/wiki/Binary_relation)
@@ -286,12 +301,12 @@ C++ STL 中 [需要使用比较的算法和数据结构](https://en.cppreference
 4.  [Hasse diagram - Wikipedia](https://en.wikipedia.org/wiki/Hasse_diagram)
 5.  [Directed set - Wikipedia](https://en.wikipedia.org/wiki/Directed_set)
 6.  [Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
-7.  卢开澄，卢华明，[《组合数学》（第 3 版）](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
+7.  Kai-Cheng Lu, Hua-Ming Lu, [Combinatorics, ấn bản thứ 3](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
 8.  [List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
-9.  [浅谈邻项交换排序的应用以及需要注意的问题 by ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
-10. [One thing you should know about comparators—Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
+9.  [Bàn về ứng dụng của sắp xếp bằng hoán đổi hai phần tử kề và các vấn đề cần chú ý, bởi ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
+10. [One thing you should know about comparators: Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
 11. [Dilworth's theorem - Wikipedia](https://en.wikipedia.org/wiki/Dilworth%27s_theorem)
 12. [Dilworth's Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/dilworths-theorem/)
 13. [Hall's marriage theorem - Wikipedia](https://en.wikipedia.org/wiki/Hall's_marriage_theorem)
 14. [Hall's Marriage Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/hall-marriage-theorem/)
-15. [Dilworth 学习笔记 - Selfish](https://www.luogu.com.cn/blog/Rolling-Code/dilworth)
+15. [Ghi chú học Dilworth - Selfish](https://www.luogu.com.cn/blog/Rolling-Code/dilworth)
