@@ -1,43 +1,83 @@
-Bai viet nay gioi thieu ngan gon cac khai niem lien quan den truong bac hai. Hai vi du quan trong co lien quan la so nguyen Gauss va so nguyen Eisenstein; chung co the dung de giai mot so bai toan so hoc.
+Bài viết này giới thiệu ngắn gọn các khái niệm liên quan đến trường bậc hai.
+Hai ví dụ quan trọng có liên quan là số nguyên Gauss và số nguyên Eisenstein;
+chúng có thể dùng để giải một số bài toán số học.
 
 <span id="&#x57fa;&#x672c;&#x6982;&#x5ff5;"></span>
-## Khai niem co ban
+## Khái niệm cơ bản
 
-Phan nay truoc het gioi thieu mot loat khai niem co ban. Truong bac hai va vanh so nguyen bac hai deu la cac truong hop dac biet cua khai niem tong quat hon la mo rong dai so va vanh so nguyen dai so, vi vay hau het dinh nghia va ket qua trong phan nay deu co the mo rong mot cach thich hop sang truong hop tong quat. O day ta chi thao luan rieng truong hop truong bac hai, khong dua vao qua nhieu noi dung cua so hoc dai so.
+Phần này trước hết giới thiệu một loạt khái niệm cơ bản. Trường bậc hai và
+vành số nguyên bậc hai đều là các trường hợp đặc biệt của khái niệm tổng quát
+hơn là mở rộng đại số và vành số nguyên đại số, vì vậy hầu hết định nghĩa và
+kết quả trong phần này đều có thể mở rộng một cách thích hợp sang trường hợp
+tổng quát. Ở đây ta chỉ thảo luận riêng trường hợp trường bậc hai, không dựa
+vào quá nhiều nội dung của số học đại số.
 
 <span id="&#x4e8c;&#x6b21;&#x57df;"></span>
-### Truong bac hai
+### Trường bậc hai
 
-Cac phan tu cua truong bac hai deu la so dai so bac hai.
+Các phần tử của trường bậc hai đều là số đại số bậc hai.
 
-**So dai so bac hai** (quadratic algebraic number) la so phuc co the bieu dien nhu nghiem cua mot phuong trinh bac hai mot an voi he so nguyen. Tu cong thuc nghiem cua phuong trinh bac hai, moi so dai so bac hai deu co the viet duoi dang
+**Số đại số bậc hai** (quadratic algebraic number) là số phức có thể biểu diễn
+như nghiệm của một phương trình bậc hai một ẩn với hệ số nguyên. Từ công thức
+nghiệm của phương trình bậc hai, mọi số đại số bậc hai đều có thể viết dưới
+dạng
 
 $$
 a+b\sqrt{d}
 $$
 
-trong do $a$ va $b$ la cac so huu ti, $d$ la so nguyen khong chua nhan tu chinh phuong. Moi so co dang nay cung la so dai so bac hai. So dai so bac hai co the chia thanh so huu ti va **so vo ti bac hai** (quadratic irrational number). Hien nhien, cach bieu dien mot so vo ti bac hai duoi dang tren la duy nhat.
+trong đó $a$ và $b$ là các số hữu tỉ, $d$ là số nguyên không chứa nhân tử chính
+phương. Mọi số có dạng này cũng là số đại số bậc hai. Số đại số bậc hai có thể
+chia thành số hữu tỉ và **số vô tỉ bậc hai** (quadratic irrational number).
+Hiển nhiên, cách biểu diễn một số vô tỉ bậc hai dưới dạng trên là duy nhất.
 
-Voi moi so nguyen khong chua nhan tu chinh phuong $d\neq 0,1$, co the kiem tra tap $Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ dong duoi phep cong, tru, nhan, chia. Vi mot tap dong duoi bon phep toan so hoc duoc goi la [truong](../algebra/basic.md#%E5%9F%9F), tap $Q(\sqrt{d})$ duoc goi la **truong bac hai** (quadratic field). Moi truong bac hai deu chua toan bo cac so huu ti, do do chung deu la [mo rong bac hai](../algebra/field-theory.md#%E5%9F%9F%E7%9A%84%E6%89%A9%E5%BC%A0) cua truong so huu ti $\mathbf Q$. Khi $d>0$, moi so trong truong bac hai $\mathbf Q(\sqrt{d})$ deu la so thuc; khi do $\mathbf Q(\sqrt{d})$ duoc goi la truong bac hai thuc. Khi $d<0$, trong truong bac hai, ngoai cac so huu ti ra deu la so phuc; khi do $\mathbf Q(\sqrt{d})$ duoc goi la truong bac hai ao.
+Với mỗi số nguyên không chứa nhân tử chính phương $d\neq 0,1$, có thể kiểm tra
+tập $Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ đóng dưới phép cộng, trừ,
+nhân, chia. Vì một tập đóng dưới bốn phép toán số học được gọi là
+[trường](../algebra/basic.md#%E5%9F%9F), tập $Q(\sqrt{d})$ được gọi là
+**trường bậc hai** (quadratic field). Mọi trường bậc hai đều chứa toàn bộ các
+số hữu tỉ, do đó chúng đều là [mở rộng bậc hai](../algebra/field-theory.md#%E5%9F%9F%E7%9A%84%E6%89%A9%E5%BC%A0)
+của trường số hữu tỉ $\mathbf Q$. Khi $d>0$, mọi số trong trường bậc hai
+$\mathbf Q(\sqrt{d})$ đều là số thực; khi đó $\mathbf Q(\sqrt{d})$ được gọi là
+trường bậc hai thực. Khi $d<0$, trong trường bậc hai, ngoài các số hữu tỉ ra
+đều là số phức; khi đó $\mathbf Q(\sqrt{d})$ được gọi là trường bậc hai ảo.
 
 <span id="&#x5171;&#x8f6d;&#x4e0e;&#x8303;&#x6570;"></span>
-### Lien hop va chuan
+### Liên hợp và chuẩn
 
-**Lien hop** (conjugate) cua so vo ti bac hai $a+b\sqrt{d}$ duoc dinh nghia la $a-b\sqrt{d}$. Hai so vo ti bac hai lien hop la hai nghiem phan biet cua cung mot phuong trinh bac hai voi he so nguyen. Trong truong bac hai thuc, lien hop cua so vo ti bac hai khong trung voi lien hop phuc cua no; trong truong bac hai ao, lien hop cua so vo ti bac hai chinh la lien hop phuc cua no. Cuoi cung, lien hop cua mot so huu ti duoc quy uoc la chinh no. Nhu vay khai niem lien hop duoc dinh nghia cho tat ca cac so dai so bac hai.
+**Liên hợp** (conjugate) của số vô tỉ bậc hai $a+b\sqrt{d}$ được định nghĩa là
+$a-b\sqrt{d}$. Hai số vô tỉ bậc hai liên hợp là hai nghiệm phân biệt của cùng
+một phương trình bậc hai với hệ số nguyên. Trong trường bậc hai thực, liên hợp
+của số vô tỉ bậc hai không trùng với liên hợp phức của nó; trong trường bậc hai
+ảo, liên hợp của số vô tỉ bậc hai chính là liên hợp phức của nó. Cuối cùng,
+liên hợp của một số hữu tỉ được quy ước là chính nó. Như vậy khái niệm liên hợp
+được định nghĩa cho tất cả các số đại số bậc hai.
 
-Trong bat ki truong bac hai nao, cac dang thuc sinh ra tu bon phep cong, tru, nhan, chia khong phan biet duoc quan he lien hop. Noi cach khac, neu thay moi so trong mot dang thuc bang lien hop cua no, tuc doi dau moi can bac hai, thi dang thuc van dung.
+Trong bất kì trường bậc hai nào, các đẳng thức sinh ra từ bốn phép cộng, trừ,
+nhân, chia không phân biệt được quan hệ liên hợp. Nói cách khác, nếu thay mỗi
+số trong một đẳng thức bằng liên hợp của nó, tức đổi dấu mọi căn bậc hai, thì
+đẳng thức vẫn đúng.
 
-Dung lien hop co the xay dung mot so anh xa tu so dai so bac hai den so huu ti, giup chuyen cac thao luan ve so dai so bac hai thanh thao luan ve so huu ti. Anh xa don gian hon la **vet** (trace) cua so dai so bac hai $\alpha$, tuc tong cua mot so va lien hop cua no, ki hieu $\operatorname{tr}(\alpha)$. Vi no thuc chat chi la hai lan phan huu ti cua so do, nen khong cung cap nhieu thong tin.
+Dùng liên hợp có thể xây dựng một số ánh xạ từ số đại số bậc hai đến số hữu tỉ,
+giúp chuyển các thảo luận về số đại số bậc hai thành thảo luận về số hữu tỉ.
+Ánh xạ đơn giản hơn là **vết** (trace) của số đại số bậc hai $\alpha$, tức tổng
+của một số và liên hợp của nó, kí hiệu $\operatorname{tr}(\alpha)$. Vì nó thực
+chất chỉ là hai lần phần hữu tỉ của số đó, nên không cung cấp nhiều thông tin.
 
-Huu ich hon la chuan cua so dai so bac hai. Tich cua so dai so bac hai voi lien hop cua no duoc goi la **chuan** (norm) cua no:
+Hữu ích hơn là chuẩn của số đại số bậc hai. Tích của số đại số bậc hai với liên
+hợp của nó được gọi là **chuẩn** (norm) của nó:
 
 $$
 N(a+b\sqrt{d})=a^2-db^2
 $$
 
-Hien nhien, trong truong bac hai ao, khai niem chuan trung voi binh phuong modun cua so phuc; nhung trong truong bac hai thuc, hai khai niem nay khong trung nhau.
+Hiển nhiên, trong trường bậc hai ảo, khái niệm chuẩn trùng với bình phương
+modun của số phức; nhưng trong trường bậc hai thực, hai khái niệm này không
+trùng nhau.
 
-Chuan co cac tinh chat tot. Truoc het, vi $d$ khong chua nhan tu chinh phuong nen khong the la so chinh phuong; do do chi co $0$ moi co chuan bang $0$. Tiep theo, chuan bao toan phep nhan va phep chia:
+Chuẩn có các tính chất tốt. Trước hết, vì $d$ không chứa nhân tử chính phương
+nên không thể là số chính phương; do đó chỉ có $0$ mới có chuẩn bằng $0$. Tiếp
+theo, chuẩn bảo toàn phép nhân và phép chia:
 
 $$
 N(a_1+b_1\sqrt{d})N(a_2+b_2\sqrt{d})=N((a_1+b_1\sqrt{d})(a_2+b_2\sqrt{d})),
@@ -47,45 +87,64 @@ $$
 \frac{N(a_1+b_1\sqrt{d})}{N(a_2+b_2\sqrt{d})}=N\left(\frac{a_1+b_1\sqrt{d}}{a_2+b_2\sqrt{d}}\right).
 $$
 
-Ngoai ra, nghich dao cua mot so dai so bac hai bang thuong cua lien hop va chuan cua no:
+Ngoài ra, nghịch đảo của một số đại số bậc hai bằng thương của liên hợp và
+chuẩn của nó:
 
 $$
 \dfrac{1}{a+b\sqrt{d}}=\frac{a-b\sqrt{d}}{N(a+b\sqrt{d})}.
 $$
 
-Theo dinh li Vieta, so dai so bac hai $\alpha$ thuc ra la nghiem cua phuong trinh
+Theo định lý Vieta, số đại số bậc hai $\alpha$ thực ra là nghiệm của phương
+trình
 
 $$
 x^2-\operatorname{tr}(\alpha)x+N(\alpha)=0
 $$
 
-Biet thuc cua phuong trinh nay cung duoc goi la **biet thuc** (discriminant) cua so dai so bac hai do, ki hieu $\operatorname{disc}(\alpha)$, va co gia tri $4db^2$.
+Biệt thức của phương trình này cũng được gọi là **biệt thức** (discriminant)
+của số đại số bậc hai đó, kí hiệu $\operatorname{disc}(\alpha)$, và có giá trị
+$4db^2$.
 
-???+ note "Bieu dien ma tran"
-    Tuong tu so phuc, so dai so bac hai cung co the bieu dien bang ma tran. Cho $d\neq 0,1$ la so nguyen khong chua nhan tu chinh phuong va $a,b$ la cac so huu ti, khi do $a+b\sqrt{d}$ co the bieu dien boi ma tran
+???+ note "Biểu diễn ma trận"
+    Tương tự số phức, số đại số bậc hai cũng có thể biểu diễn bằng ma trận. Cho
+    $d\neq 0,1$ là số nguyên không chứa nhân tử chính phương và $a,b$ là các số
+    hữu tỉ, khi đó $a+b\sqrt{d}$ có thể biểu diễn bởi ma trận
     
     $$
     \begin{pmatrix}a & b \\ db & a\end{pmatrix}.
     $$
     
-    Co the kiem tra rang ket qua cua cac phep cong, tru, nhan, chia tren ma tran nay tuong ung voi ket qua phep toan tren so dai so bac hai. Vet va dinh thuc cua ma tran lan luot tuong ung voi vet va chuan cua so dai so bac hai; biet thuc cua da thuc dac trung cua ma tran chinh la biet thuc cua so dai so bac hai. Ma tran phu hop cua ma tran tuong ung voi so dai so bac hai lien hop.
+    Có thể kiểm tra rằng kết quả của các phép cộng, trừ, nhân, chia trên ma
+    trận này tương ứng với kết quả phép toán trên số đại số bậc hai. Vết và
+    định thức của ma trận lần lượt tương ứng với vết và chuẩn của số đại số bậc
+    hai; biệt thức của đa thức đặc trưng của ma trận chính là biệt thức của số
+    đại số bậc hai. Ma trận phụ hợp của ma trận tương ứng với số đại số bậc hai
+    liên hợp.
 
 <span id="&#x4e8c;&#x6b21;&#x6574;&#x6570;&#x73af;"></span>
-### Vanh so nguyen bac hai
+### Vành số nguyên bậc hai
 
-Mot lop dac biet trong cac so dai so bac hai la so nguyen bac hai. **So nguyen bac hai** (quadratic integer) la so phuc co the bieu dien nhu nghiem cua mot phuong trinh bac hai mot an voi he so nguyen va he so bac hai bang mot. Khac biet duy nhat voi so dai so bac hai nam o rang buoc tren he so bac hai. Theo cong thuc nghiem, hai nghiem cua phuong trinh bac hai $x^2+px+q=0$ la
+Một lớp đặc biệt trong các số đại số bậc hai là số nguyên bậc hai. **Số nguyên
+bậc hai** (quadratic integer) là số phức có thể biểu diễn như nghiệm của một
+phương trình bậc hai một ẩn với hệ số nguyên và hệ số bậc hai bằng một. Khác
+biệt duy nhất với số đại số bậc hai nằm ở ràng buộc trên hệ số bậc hai. Theo
+công thức nghiệm, hai nghiệm của phương trình bậc hai $x^2+px+q=0$ là
 
 $$
 \frac{-p\pm\sqrt{p^2-4q}}{2}.
 $$
 
-Neu $p$ chan, tuc $p=2k$, thi hai nghiem co the viet la $-k\pm\sqrt{k^2-q}$; neu $p$ le, tuc $p=2k+1$, thi hai nghiem co the viet la $-k-\dfrac{1\pm\sqrt{4(k^2+k-q)+1}}{2}$. Tu hai truong hop nay co the suy ra cac so nguyen bac hai trong $\mathbf Q(\sqrt{d})$ nhat dinh co the viet duoi dang
+Nếu $p$ chẵn, tức $p=2k$, thì hai nghiệm có thể viết là
+$-k\pm\sqrt{k^2-q}$; nếu $p$ lẻ, tức $p=2k+1$, thì hai nghiệm có thể viết là
+$-k-\dfrac{1\pm\sqrt{4(k^2+k-q)+1}}{2}$. Từ hai trường hợp này có thể suy ra
+các số nguyên bậc hai trong $\mathbf Q(\sqrt{d})$ nhất định có thể viết dưới
+dạng
 
 $$
 a+b\omega
 $$
 
-trong do $a$ va $b$ la cac so nguyen, con
+trong đó $a$ và $b$ là các số nguyên, còn
 
 $$
 \omega=\begin{cases}
@@ -94,11 +153,21 @@ $$
 \end{cases}
 $$
 
-Nguoc lai, moi so phuc co dang nay deu la so nguyen bac hai. Voi moi so nguyen bac hai khong huu ti, cach viet duoi dang nay la duy nhat.
+Ngược lại, mọi số phức có dạng này đều là số nguyên bậc hai. Với mọi số nguyên
+bậc hai không hữu tỉ, cách viết dưới dạng này là duy nhất.
 
-Tap hop tat ca so nguyen bac hai trong truong bac hai $\mathbf Q(\sqrt{d})$ duoc ki hieu la $\mathbf Z[\omega]$. Vi tap nay dong duoi phep cong, tru, nhan, no cung duoc goi la **vanh so nguyen bac hai** (quadratic integer ring). Cac so huu ti trong vanh so nguyen bac hai dung bang toan bo cac so nguyen. Neu xet tap tat ca cac thuong cua cac so nguyen bac hai trong $\mathbf Z[\omega]$, ta thu duoc truong bac hai tuong ung $\mathbf Q(\sqrt{d})$.
+Tập hợp tất cả số nguyên bậc hai trong trường bậc hai $\mathbf Q(\sqrt{d})$
+được kí hiệu là $\mathbf Z[\omega]$. Vì tập này đóng dưới phép cộng, trừ, nhân,
+nó cũng được gọi là **vành số nguyên bậc hai** (quadratic integer ring). Các số
+hữu tỉ trong vành số nguyên bậc hai đúng bằng toàn bộ các số nguyên. Nếu xét
+tập tất cả các thương của các số nguyên bậc hai trong $\mathbf Z[\omega]$, ta
+thu được trường bậc hai tương ứng $\mathbf Q(\sqrt{d})$.
 
-Vet, chuan va biet thuc cua so nguyen bac hai deu la so nguyen. Gia tri nho nhat cua biet thuc trong tat ca so vo ti bac hai thuoc vanh so nguyen bac hai $\mathbf Z[\omega]$ cung duoc goi la biet thuc cua truong bac hai tuong ung $\mathbf Q(\sqrt{d})$. Khi $d\equiv 1\pmod 4$, biet thuc la $d$; khi $d\equiv 2,3\pmod 4$, biet thuc la $4d$.
+Vết, chuẩn và biệt thức của số nguyên bậc hai đều là số nguyên. Giá trị nhỏ
+nhất của biệt thức trong tất cả số vô tỉ bậc hai thuộc vành số nguyên bậc hai
+$\mathbf Z[\omega]$ cũng được gọi là biệt thức của trường bậc hai tương ứng
+$\mathbf Q(\sqrt{d})$. Khi $d\equiv 1\pmod 4$, biệt thức là $d$; khi
+$d\equiv 2,3\pmod 4$, biệt thức là $4d$.
 
 <span id="&#x6574;&#x9664;&#x3001;&#x76f8;&#x4f34;&#x4e0e;&#x5355;&#x4f4d;&#x6570;"></span>
 ### Chia het, lien ket va don vi
