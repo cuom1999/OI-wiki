@@ -377,6 +377,8 @@ MkDocs source layout intact.
 - `docs/tools/editor/atom.md`, `docs/tools/editor/cpeditor.md`,
   `docs/tools/editor/eclipse.md`, `docs/tools/editor/geany.md`: translated
   small editor setup and overview pages.
+- `docs/tools/editor/guide.md`, `docs/tools/editor/clion.md`: translated the
+  GUIDE and CLion editor pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

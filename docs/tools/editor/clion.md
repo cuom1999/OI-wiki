@@ -1,32 +1,32 @@
-## 简介
+## Giới thiệu
 
-CLion 是一款由 JetBrains 公司开发的功能丰富且强大的跨平台 C/C++ 集成开发环境（IDE）．
+CLion là một môi trường phát triển tích hợp (IDE) C/C++ đa nền tảng, giàu tính năng và mạnh mẽ, do JetBrains phát triển.
 
 ![Clion](./images/clion.png)
 
-## 官方教程
+## Hướng dẫn chính thức
 
-在官方网站中给出了 [学习 CLion](https://www.jetbrains.com/clion/learn/) 的教程．
+Trang web chính thức cung cấp hướng dẫn [Learn CLion](https://www.jetbrains.com/clion/learn/).
 
-## 安装
+## Cài đặt
 
-参见 [Download CLion](https://www.jetbrains.com/clion/download/)．
+Xem [Download CLion](https://www.jetbrains.com/clion/download/).
 
-## 配置
+## Cấu hình
 
-### 工具链安装
+### Cài đặt toolchain
 
-CLion 默认不带编译器，构建工具和调试工具，需要手动进行安装．
+Mặc định CLion không đi kèm trình biên dịch, công cụ build và công cụ gỡ lỗi; cần cài đặt thủ công.
 
 #### Windows
 
-参见 [Tutorial: Configure CLion on Windows | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html)．
+Xem [Tutorial: Configure CLion on Windows | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html).
 
-值得一提的是 CLion 的 Windows 版本中自带了 MinGW，所以可以不用额外安装 MinGW 工具链．
+Đáng chú ý là phiên bản CLion cho Windows có sẵn MinGW, nên có thể không cần cài đặt thêm toolchain MinGW.
 
 #### Linux
 
-##### Debian/Ubuntu 及其衍生发行版
+##### Debian/Ubuntu và các bản phân phối phái sinh
 
 ```bash
 sudo apt install make cmake # build tools
@@ -34,7 +34,7 @@ sudo apt install gcc g++ gdb # compiler and debugger
 sudo apt install clang clang++ llvm lldb # you can also choose to use clang toolchain
 ```
 
-##### Arch Linux 及其衍生发行版
+##### Arch Linux và các bản phân phối phái sinh
 
 ```bash
 sudo pacman -S make cmake # build tools
@@ -52,69 +52,69 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 #### macOS
 
-参见 [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html)．
+Xem [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html).
 
-### 工具链设置
+### Thiết lập toolchain
 
-#### 手动设置工具链
+#### Thiết lập toolchain thủ công
 
-新安装的 CLion 会自动检测系统中的 C/C++ 开发工具链，如果已安装的工具链无法自动检测到，可在 `Settings` 中找到 `Build, Execution, Deployment`>`Toolchains` 进行手动配置．
+CLion mới cài sẽ tự động phát hiện toolchain phát triển C/C++ trong hệ thống. Nếu toolchain đã cài không được phát hiện tự động, có thể vào `Settings`, tìm `Build, Execution, Deployment`>`Toolchains` để cấu hình thủ công.
 
 ![Config Toolchains](./images/clion-toolchain.png)
 
-### 编译、运行和调试
+### Biên dịch, chạy và gỡ lỗi
 
-虽然 CLion 诞生之初是面向多文件的复杂 C/C++ 项目诞生的，早些时候的 CLion 默认使用 [CMake](https://cmake.org/) 作为构建工具，但是自 CLion 2022.3 版本起，CLion 已经支持 [C, C++ 单文件运行](https://www.jetbrains.com/help/clion/run-single-file.html)．
+Khi mới ra đời, CLion được thiết kế cho các dự án C/C++ phức tạp gồm nhiều tệp, và các phiên bản CLion trước đây mặc định dùng [CMake](https://cmake.org/) làm công cụ build. Tuy nhiên, từ CLion 2022.3, CLion đã hỗ trợ [chạy tệp đơn C, C++](https://www.jetbrains.com/help/clion/run-single-file.html).
 
-有多种方式来运行一个 C++ 程序，一个简单的流程如下：
+Có nhiều cách để chạy một chương trình C++; một quy trình đơn giản như sau:
 
-1.  创建一个 C/C++ 项目：`New -> Project -> C++ Executable`，选择合适的地址和语言标准版本，点击 `Create`．
-2.  打开项目，此时的项目目录下应当存在一个 `cmake-build-debug` 目录、一个 `CMakeLists.txt` 文件和一个 `main.cpp` 文件．因为我们不需要使用 CMake 来管理项目，因此我们可以删去 `CMakeLists.txt` 文件和 `cmake-build-debug` 目录及其内所有文件．
-3.  点击打开 `main.cpp` 文件，并在编辑区右键单击，可以看到 `Run 'main.cpp'` 选项．选择此选项后，CLion 可以自动创建一个运行配置并运行程序．
+1.  Tạo một project C/C++: `New -> Project -> C++ Executable`, chọn vị trí và phiên bản chuẩn ngôn ngữ phù hợp, rồi nhấp `Create`.
+2.  Mở project. Lúc này, trong thư mục project nên có một thư mục `cmake-build-debug`, một tệp `CMakeLists.txt` và một tệp `main.cpp`. Vì ta không cần dùng CMake để quản lý project, có thể xóa tệp `CMakeLists.txt`, thư mục `cmake-build-debug` và toàn bộ tệp bên trong nó.
+3.  Nhấp mở tệp `main.cpp`, rồi nhấp chuột phải trong vùng soạn thảo; bạn sẽ thấy tùy chọn `Run 'main.cpp'`. Chọn tùy chọn này, CLion có thể tự động tạo cấu hình chạy và chạy chương trình.
 
 ![C++ Single File Execution](./images/clion-single-file-execution.png)
 
-如需调试程序，可以编辑区打好断点，在编辑区右键单击，选择 `Debug 'main.cpp'` 选项．
+Nếu cần gỡ lỗi chương trình, có thể đặt breakpoint trong vùng soạn thảo, nhấp chuột phải trong vùng soạn thảo, rồi chọn `Debug 'main.cpp'`.
 
-### 通过 CMake 编译、运行和调试
+### Biên dịch, chạy và gỡ lỗi bằng CMake
 
-#### 设置
+#### Thiết lập
 
-CLion 也可使用 [CMake](https://cmake.org/) 作为构建工具，关于 CMake 的设置可以在 `Build, Execution, Deployment -> Toolchains -> CMake` 中修改．
+CLion cũng có thể dùng [CMake](https://cmake.org/) làm công cụ build. Thiết lập liên quan đến CMake có thể được chỉnh trong `Build, Execution, Deployment -> Toolchains -> CMake`.
 
 ![CMake Settings](./images/clion-cmake.png)
 
-#### 编译选项
+#### Tùy chọn biên dịch
 
-CMake 默认使用项目根目录下的 `CMakeList.txt` 作为构建项目的配置文件，可以使用 `add_compile_options` 命令来增加编译选项，例如：
+Mặc định CMake dùng `CMakeLists.txt` trong thư mục gốc project làm tệp cấu hình build project. Có thể dùng lệnh `add_compile_options` để thêm tùy chọn biên dịch, ví dụ:
 
 ```cmake
 add_compile_options(-std=c++17 -DDEBUG)
 ```
 
-其他 CMake 的功能请参考 [CMake 官方文档](https://cmake.org/documentation/)．
+Các chức năng khác của CMake xem trong [tài liệu chính thức của CMake](https://cmake.org/documentation/).
 
-## 免费获取 CLion IDE 许可证
+## Nhận giấy phép CLion IDE miễn phí
 
-CLion 为付费产品，但是可以通过教育邮箱或开源项目申请特殊许可证．申请之后不仅可以免费使用正版 CLion IDE，还可以免费使用 JetBrains 公司开发的其他付费产品．
+CLion là sản phẩm trả phí, nhưng có thể xin giấy phép đặc biệt bằng email giáo dục hoặc dự án mã nguồn mở. Sau khi được cấp, bạn không chỉ có thể dùng CLion IDE bản quyền miễn phí, mà còn có thể dùng miễn phí các sản phẩm trả phí khác do JetBrains phát triển.
 
-???+ note "Note"
-    [自 2025 年 5 月起，CLion 对非商业用途免费．](https://blog.jetbrains.com/clion/2025/05/clion-is-now-free-for-non-commercial-use)
-    
-    根据 Toolbox 非商业用途订阅协议中的定义，商业产品是指有偿分发或提供或者作为您的商业活动的一部分使用的产品．但某些类别被明确排除在这一定义之外．常见的非商业用例包括学习和自我教育、任何形式的内容创作、开源代码和业余爱好开发．
+???+ note "Ghi chú"
+    [Từ tháng 5 năm 2025, CLion miễn phí cho mục đích phi thương mại.](https://blog.jetbrains.com/clion/2025/05/clion-is-now-free-for-non-commercial-use)
 
-### 使用教育邮箱获取
+    Theo định nghĩa trong thỏa thuận đăng ký Toolbox cho mục đích phi thương mại, sản phẩm thương mại là sản phẩm được phân phối hoặc cung cấp có thu phí, hoặc được dùng như một phần hoạt động thương mại của bạn. Tuy nhiên, một số nhóm trường hợp được loại trừ rõ ràng khỏi định nghĩa này. Các trường hợp phi thương mại thường gặp bao gồm học tập và tự học, mọi hình thức sáng tạo nội dung, mã nguồn mở và phát triển theo sở thích.
 
-进入官网的 [Free Educational Licenses 页面](https://www.jetbrains.com/community/education/#students), 点击 `Apply` 按钮，填写相关信息即可申请．
+### Dùng email giáo dục để nhận
+
+Vào trang [Free Educational Licenses](https://www.jetbrains.com/community/education/#students) trên trang chính thức, nhấp nút `Apply`, rồi điền thông tin liên quan để đăng ký.
 
 ![Educational Licenses](./images/clion-edu.png)
 
-注意：在注册时于邮箱选项请填如 @edu.cn 后缀的教育邮箱，特殊许可证需要邮箱验证后方可拿到．
+Chú ý: khi đăng ký, ở mục email hãy điền email giáo dục có hậu tố như `@edu.cn`; giấy phép đặc biệt chỉ nhận được sau khi xác minh email.
 
-你可以到所在高校的教务中心官网去申请教育邮箱，如果申请不到需要使用 [学信网](https://www.chsi.com.cn) 进行认证（仅中国大陆）．
+Bạn có thể tới trang web phòng đào tạo của trường đại học nơi mình học để đăng ký email giáo dục. Nếu không đăng ký được, cần dùng [CHSI](https://www.chsi.com.cn) để xác thực (chỉ áp dụng tại Trung Quốc đại lục).
 
-### 使用开源项目获取
+### Dùng dự án mã nguồn mở để nhận
 
-如果您是某个开源项目的核心开发者或维护者之一，您可以尝试申请开源开发许可证 (Open Source Development License). 申请流程与教育许可证类似，但需要填写开源项目的仓库地址．
+Nếu bạn là một trong những nhà phát triển hoặc maintainer cốt lõi của một dự án mã nguồn mở, bạn có thể thử đăng ký Open Source Development License. Quy trình đăng ký tương tự giấy phép giáo dục, nhưng cần điền địa chỉ kho mã nguồn của dự án mã nguồn mở.
 
 ![Open Source Development License](./images/clion-oss.png)
