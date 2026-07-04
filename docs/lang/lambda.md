@@ -1,21 +1,23 @@
-**注意**：考虑到算法竞赛的实际情况，本文将不会全面研究语法，只会讲述在算法竞赛中可能会应用到的部分．
+**Lưu ý**: Xét đến thực tế của lập trình thi đấu, bài viết này sẽ không khảo sát toàn bộ cú pháp một cách đầy đủ, mà chỉ trình bày những phần có thể được dùng trong lập trình thi đấu.
 
-本文语法参照 **C++11** 标准，其他高版本的标准语法视情况提及并会特别标注．
+Cú pháp trong bài viết này tham chiếu chuẩn **C++11**. Cú pháp của các chuẩn mới hơn sẽ được nhắc đến tùy trường hợp và được đánh dấu riêng.
 
-## Lambda 表达式
+<a id="lambda-&#34920;&#36798;&#24335;"></a>
 
-Lambda 表达式因数学中的 $\lambda$ 演算得名，直接对应于其中的 lambda 抽象．编译器在编译时会根据语法生成一个匿名的 [**函数对象**](./new.md#函数对象)，以捕获的变量作为其成员，参数和函数体用于实现 `operator()` 重载．
+## Biểu thức Lambda
 
-??? note "函数对象（Function Object）"
-    函数对象是一种类对象，一般通过重载 `operator()` 实现，所以能像函数一样调用．相较于使用普通的函数，函数对象有很多优点，例如可以保存状态，可以作为参数传递给其他函数等．
+Biểu thức Lambda được đặt tên theo phép tính $\lambda$ trong toán học, tương ứng trực tiếp với lambda abstraction trong đó. Khi biên dịch, dựa trên cú pháp, trình biên dịch sẽ sinh ra một [**đối tượng hàm**](./new.md#%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1) ẩn danh, dùng các biến đã bắt giữ làm thành viên, còn danh sách tham số và thân hàm dùng để cài đặt nạp chồng `operator()`.
 
-以下是 lambda 的一种语法：
+??? note "Đối tượng hàm (Function Object)"
+    Đối tượng hàm là một đối tượng lớp, thường được cài đặt bằng cách nạp chồng `operator()`, vì vậy có thể được gọi như một hàm. So với việc dùng hàm thông thường, đối tượng hàm có nhiều ưu điểm, chẳng hạn có thể lưu trạng thái và có thể truyền làm tham số cho các hàm khác.
+
+Sau đây là một dạng cú pháp của lambda:
 
 ```text
 [capture] (parameters) mutable -> return-type {statement}
 ```
 
-Lambda 表达式本身是一个类，展开后如以下形式：
+Bản thân biểu thức Lambda là một lớp; nếu khai triển ra thì có dạng như sau:
 
 <!-- scripts.linter.preprocess.fix_details off -->
 
@@ -34,27 +36,31 @@ class Lambda_1 {
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-空的 capture 可以隐式转换为函数指针，例如：
+Capture rỗng có thể được chuyển đổi ngầm định thành con trỏ hàm, ví dụ:
 
 ```cpp
 void (*f)(int, int) = [](int, int) -> void {};
 ```
 
-下面我们分别对语法中的各部分进行介绍．
+Dưới đây, chúng ta sẽ lần lượt giới thiệu từng phần trong cú pháp.
 
-### statement 函数体
+<a id="statement-&#20989;&#25968;&#20307;"></a>
 
-Lambda 表达式的函数体与普通函数的函数体类似，除了能访问参数和全局变量等，还可访问 [捕获](#capture-捕获子句) 的变量．
+### statement thân hàm
 
-### capture 捕获子句
+Thân hàm của biểu thức Lambda tương tự thân hàm thông thường. Ngoài việc có thể truy cập tham số, biến toàn cục, v.v., nó còn có thể truy cập các biến được [bắt giữ](#capture-%E6%8D%95%E8%8E%B7%E5%AD%90%E5%8F%A5).
 
-lambda 以 capture 子句开头，它指定哪些变量被捕获，捕获列表可为空，或指定捕获方式：有 `&` 符号前缀的变量通过 [引用](./reference.md) 访问，没有该前缀的变量通过值访问．
+<a id="capture-&#25429;&#33719;&#23376;&#21477;"></a>
 
-我们也可以使用默认捕获模式，捕获 Lambda 中提及的所有变量：`&` 表示捕获到的所有变量都通过引用访问，`=` 表示捕获到的所有变量都通过值访问．
+### capture mệnh đề bắt giữ
 
-在默认捕获之后，仍然可以为特定的变量 **显式** 指定捕获模式．
+lambda bắt đầu bằng mệnh đề capture, dùng để chỉ định những biến nào được bắt giữ. Danh sách bắt giữ có thể rỗng, hoặc chỉ định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua [tham chiếu](./reference.md), còn biến không có tiền tố này được truy cập theo giá trị.
 
-如果需要引用访问外部变量 `a`，并通过值访问外部变量 `b`，那么以下捕获子句都可以做到：
+Ta cũng có thể dùng chế độ bắt giữ mặc định để bắt giữ tất cả các biến được nhắc đến trong Lambda: `&` nghĩa là mọi biến được bắt giữ sẽ được truy cập thông qua tham chiếu, còn `=` nghĩa là mọi biến được bắt giữ sẽ được truy cập theo giá trị.
+
+Sau chế độ bắt giữ mặc định, vẫn có thể chỉ định **tường minh** chế độ bắt giữ cho một biến cụ thể.
+
+Nếu cần truy cập biến ngoài `a` bằng tham chiếu và truy cập biến ngoài `b` theo giá trị, các mệnh đề bắt giữ sau đây đều làm được:
 
 -   `[&a, b]`
 -   `[b, &a]`
@@ -62,79 +68,81 @@ lambda 以 capture 子句开头，它指定哪些变量被捕获，捕获列表�
 -   `[b, &]`
 -   `[=, &a]`
 
-同时捕获列表也可以用于声明变量，类型由初始化器推导，类似于使用 `auto` 声明变量．
+Đồng thời, danh sách bắt giữ cũng có thể được dùng để khai báo biến; kiểu của biến được suy diễn từ bộ khởi tạo, tương tự việc khai báo biến bằng `auto`.
 
-以下是一些常见的例子：
+Dưới đây là một số ví dụ thường gặp:
 
 ```cpp
 int a = 0;
-auto f0 = []() { return a * 9; };   // Error, 无法访问 'a'
-auto f1 = [a]() { return a * 9; };  // OK, 'a' 被值「捕获」
-auto f2 = [&a]() { return a++; };   // OK, 'a' 被引用「捕获」
+auto f0 = []() { return a * 9; };   // Error, không thể truy cập 'a'
+auto f1 = [a]() { return a * 9; };  // OK, 'a' được "bắt giữ" theo giá trị
+auto f2 = [&a]() { return a++; };   // OK, 'a' được "bắt giữ" bằng tham chiếu
 auto f3 = [v = a + 1]() {
   return v + 1;
-};  // OK, 使用初始化器声明变量 v，类型与 a 相同
+};  // OK, dùng bộ khởi tạo để khai báo biến v, có cùng kiểu với a
 
-// 注意，使用引用捕获时，请保证被调用时 a 没有被销毁
-auto b = f2();  // f2 从捕获列表里获得 a 的值，无需通过参数传入 a
+// Lưu ý: khi dùng bắt giữ bằng tham chiếu, hãy đảm bảo a chưa bị hủy lúc gọi
+auto b = f2();  // f2 lấy giá trị của a từ danh sách bắt giữ, không cần truyền a qua tham số
 ```
 
-#### generalized capture 带初始化的捕获（C++14）
+<a id="generalized-capture-&#24102;&#21021;&#22987;&#21270;&#30340;&#25429;&#33719;c14"></a>
 
-自 C++14 起，capture 不仅可以用来捕获外部变量，还可用于声明新的变量并初始化，例如：
+#### generalized capture, bắt giữ có khởi tạo (C++14)
+
+Từ C++14 trở đi, capture không chỉ có thể bắt giữ biến bên ngoài, mà còn có thể khai báo biến mới và khởi tạo nó, ví dụ:
 
 ```cpp
 auto f1 = [val = 520]() {
   return val;
-};  // OK, 定义 val 类型为 int，初始值为 520，返回值类型 int
+};  // OK, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là int
 
 auto f2 = [val = 520LL]() {
   return val;
-};  // OK, 定义 val 类型为 long long，初始值为 520，返回值类型 long long
+};  // OK, định nghĩa val có kiểu long long, giá trị ban đầu là 520, kiểu trả về là long long
 
 auto f3 = [val = "520"]() {
   return val;
-};  // OK, 定义 val 类型为 const char*，初始值为 "520"，返回值类型 const char*
+};  // OK, định nghĩa val có kiểu const char*, giá trị ban đầu là "520", kiểu trả về là const char*
 
 auto f4 = [val = "520"s]() {
   return val;
-};  // OK, C++14 起，需要 using namespace std; 或 using namespace std::literals;
-    // 定义 val 类型为 std::string，初始值为 std::string("520")，返回值类型
-    // std::string
+};  // OK, từ C++14 trở đi, cần using namespace std; hoặc using namespace std::literals;
+    // định nghĩa val có kiểu std::string, giá trị ban đầu là std::string("520"),
+    // kiểu trả về là std::string
 
 auto f5 = [val = std::string("520")]() {
   return val;
-};  // OK, 定义 val 类型为 std::string，初始值为 std::string("520")，返回值类型
-    // std::string
+};  // OK, định nghĩa val có kiểu std::string, giá trị ban đầu là std::string("520"),
+    // kiểu trả về là std::string
 
 auto f6 = [val = std::vector<int>(3, 6)]() {
   return val;
-};  // OK, 定义 val 类型为 std::vector<int>，大小为 3，元素填充 6，返回值类型
-    // std::vector<int>
+};  // OK, định nghĩa val có kiểu std::vector<int>, kích thước là 3,
+    // các phần tử được gán giá trị 6, kiểu trả về là std::vector<int>
 
 auto f7 = [val = 520]() -> int {
   return val;
-};  // OK, 定义 val 类型为 int，初始值为 520，返回值类型 int
+};  // OK, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là int
 
 auto f8 = [val = 520]() -> long long {
   return val;
-};  // OK, 定义 val 类型为 int，初始值为 520，返回值类型 long long
+};  // OK, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là long long
 ```
 
-定义新的变量不可以省略初始值，变量的类型由初始值的类型决定，相当于：
+Khi định nghĩa biến mới, không được bỏ qua giá trị khởi tạo. Kiểu của biến do giá trị khởi tạo quyết định, tương đương với:
 
 ```text
 auto val = init-value;
 ```
 
-以下是错误的写法：
+Sau đây là cách viết sai:
 
 ```cpp
 auto f = [val]() { return val; };  // Error: 'val' was not declared in this
                                    // scope, identifier "val" is undefined
 ```
 
-初始化值也可以是外部变量，例如：
+Giá trị khởi tạo cũng có thể là biến bên ngoài, ví dụ:
 
 ```cpp
 int value = 520;
@@ -142,14 +150,14 @@ auto f = [val = value]() { return val; };
 std::cout << f();  // Output: 520
 ```
 
-`val` 也可以是一个引用类型，可以引用一个外部变量，通过这种方式可以为通过引用捕获的外部变量取个别名，例如：
+`val` cũng có thể là một kiểu tham chiếu, tham chiếu đến một biến bên ngoài. Bằng cách này, ta có thể đặt bí danh cho biến ngoài được bắt giữ bằng tham chiếu, ví dụ:
 
 ```cpp
 int value = 520;
 
 auto f = [&val = value]() {
   return val;
-};  // OK, 定义 val 类型为 int&，返回值类型 int，相当于 int& val = value;
+};  // OK, định nghĩa val có kiểu int&, kiểu trả về là int, tương đương int& val = value;
 
 std::cout << f() << '\n';  // Output: 520
 
@@ -158,9 +166,9 @@ value = 1314;
 std::cout << f() << '\n';  // Output: 1314
 ```
 
-捕获外部变量和定义新变量可以同时使用．
+Có thể vừa bắt giữ biến bên ngoài vừa định nghĩa biến mới.
 
-如果你想在 Lambda 表达式内修改 capture 中定义的新变量，需要使用 `mutable` 关键字，如果是引用则不需要，例如：
+Nếu muốn sửa đổi biến mới được định nghĩa trong capture ở bên trong biểu thức Lambda, cần dùng từ khóa `mutable`; nếu biến đó là tham chiếu thì không cần, ví dụ:
 
 ```cpp
 int value = 520;
@@ -168,35 +176,37 @@ int value = 520;
 {
   auto f = [val = value]() mutable -> int {
     return val = 1314;
-  };  // 需要 mutable
+  };  // cần mutable
   auto val_f = f();
   std::cout << value << ' ' << val_f << std::endl;  // Output: 520 1314
 }
 
 {
-  auto f = [&val = value]() -> int { return val = 1314; };  // 不需要 mutable
+  auto f = [&val = value]() -> int { return val = 1314; };  // không cần mutable
   auto val_f = f();
   std::cout << value << ' ' << val_f << std::endl;  // Output: 1314 1314
 }
 ```
 
-详见 [mutable 可变规范](#mutable-可变规范)．
+Xem thêm [đặc tả mutable](#mutable-%E5%8F%AF%E5%8F%98%E8%A7%84%E8%8C%83).
 
-在 capture 中定义的变量的生命周期跟随 Lambda 表达式的接收方，在以上几个示例中为变量 $f$，因为 Lambda 本身其实是一个类，capture 中的所有内容都是这个类的 `private` 成员变量，例如：
+Vòng đời của biến được định nghĩa trong capture đi theo đối tượng tiếp nhận biểu thức Lambda; trong các ví dụ trên là biến $f$. Lý do là bản thân Lambda thực chất là một lớp, và mọi nội dung trong capture đều là biến thành viên `private` của lớp này, ví dụ:
 
 ```cpp
 int main() {
-  auto f = [val = 0]() mutable -> int { return ++val; };  // val 被构造和初始化
+  auto f = [val = 0]() mutable -> int { return ++val; };  // val được khởi tạo và cấu tạo
 
   std::cout << f() << '\n';  // Output: 1
   std::cout << f() << '\n';  // Output: 2
   std::cout << f() << '\n';  // Output: 3
-}  // val 跟随 f 被销毁
+}  // val bị hủy theo f
 ```
 
-### parameters 参数列表
+<a id="parameters-&#21442;&#25968;&#21015;&#34920;"></a>
 
-大多数情况下类似于函数的参数列表，例如：
+### parameters danh sách tham số
+
+Trong phần lớn trường hợp, nó tương tự danh sách tham số của hàm, ví dụ:
 
 ```cpp
 int x[] = {5, 1, 7, 6, 1, 4, 2};
@@ -204,16 +214,18 @@ std::sort(x, x + 7, [](int a, int b) { return (a > b); });
 for (auto i : x) std::cout << i << " ";
 ```
 
-这将打印出 `x` 数组从大到小排序后的结果．
+Đoạn này sẽ in ra kết quả sau khi mảng `x` được sắp xếp theo thứ tự giảm dần.
 
-由于 **parameters 参数列表** 是可选的，如果不将参数传递给 lambda，并且其声明不包含 [mutable](#mutable-可变规范)，且没有后置返回值类型，则可以省略空括号．
+Vì **parameters danh sách tham số** là tùy chọn, nếu không truyền tham số cho lambda, khai báo của nó không chứa [mutable](#mutable-%E5%8F%AF%E5%8F%98%E8%A7%84%E8%8C%83), và không có kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
 
-??? note "使用 `auto` 声明的参数"
-    **C++14** 后，若参数使用 `auto` 声明类型，那么会构造一个 [泛型 Lambda 表达式](#泛型-lambdac14)．
+??? note "Tham số được khai báo bằng `auto`"
+    Sau **C++14**, nếu tham số dùng `auto` để khai báo kiểu, một [biểu thức Lambda tổng quát](#%E6%B3%9B%E5%9E%8B-lambdac14) sẽ được tạo.
 
-#### 显式对象形参（C++23）
+<a id="&#26174;&#24335;&#23545;&#35937;&#24418;&#21442;c23"></a>
 
-**C++23** 起，[显式对象形参](https://zh.cppreference.com/w/cpp/language/function#.E5.BD.A2.E5.8F.82.E5.88.97.E8.A1.A8) 可以在 lambda 的参数中使用．
+#### Tham số đối tượng tường minh (C++23)
+
+Từ **C++23** trở đi, [tham số đối tượng tường minh](https://zh.cppreference.com/w/cpp/language/function#.E5.BD.A2.E5.8F.82.E5.88.97.E8.A1.A8) có thể được dùng trong danh sách tham số của lambda.
 
 ```cpp
 auto nth_fibonacci = [](this auto self, unsigned n) -> unsigned {
@@ -223,9 +235,11 @@ auto nth_fibonacci = [](this auto self, unsigned n) -> unsigned {
 cout << nth_fibonacci(10u);
 ```
 
-### mutable 可变规范
+<a id="mutable-&#21487;&#21464;&#35268;&#33539;"></a>
 
-使得函数体可以修改通过值捕获的变量．
+### mutable đặc tả có thể thay đổi
+
+Cho phép thân hàm sửa đổi các biến được bắt giữ theo giá trị.
 
 ```cpp
 int a = 0;
@@ -236,14 +250,16 @@ by_value();
 by_ref();
 ```
 
-在执行完 `by_value()` 后，`by_value` 的捕获成员 `a` 为 1，但外部的变量 `a` 依然为 0．
-而在执行完 `by_ref()` 后，外部 `a` 的值变为 1．
+Sau khi thực thi `by_value()`, thành viên bắt giữ `a` của `by_value` có giá trị 1, nhưng biến `a` bên ngoài vẫn là 0.
+Còn sau khi thực thi `by_ref()`, giá trị của `a` bên ngoài trở thành 1.
 
-### return-type 返回类型
+<a id="return-type-&#36820;&#22238;&#31867;&#22411;"></a>
 
-用于指定 lambda 表达式的返回类型．如果省略，则返回类型将被自动推断（行为与用 `auto` 声明返回值的函数一致）．
+### return-type kiểu trả về
 
-多个 `return` 语句且推导类型不一致时，将产生编译错误．
+Dùng để chỉ định kiểu trả về của biểu thức lambda. Nếu bỏ qua, kiểu trả về sẽ được tự động suy diễn (hành vi giống hàm có giá trị trả về được khai báo bằng `auto`).
+
+Nếu có nhiều câu lệnh `return` và các kiểu suy diễn không nhất quán, sẽ phát sinh lỗi biên dịch.
 
 ```cpp
 auto lam = [](int a, int b) -> int { return 0; };
@@ -253,18 +269,20 @@ auto x1 = [](int i) { return i; };
 auto x2 = [](bool condition) {
   if (condition) return 1;
   return 1.0;
-};  // Error, 推导类型不一致
+};  // Error, các kiểu suy diễn không nhất quán
 ```
 
-### 泛型 Lambda（C++14）
+<a id="&#27867;&#22411;-lambdac14"></a>
 
-使用 `auto` 作为参数类型，可以构造泛型 lambda．
+### Lambda tổng quát (C++14)
+
+Dùng `auto` làm kiểu tham số có thể tạo lambda tổng quát.
 
 ```cpp
 auto add = [](auto a, auto b) { return a + b; };
 ```
 
-在 [cpp insights](https://cppinsights.io) 中可以观察到编译器生成的 `lambda` 类定义：
+Trong [cpp insights](https://cppinsights.io), có thể quan sát định nghĩa lớp `lambda` do trình biên dịch sinh ra:
 
 ```cpp
 class add_lambda {
@@ -278,11 +296,13 @@ class add_lambda {
 add_lambda add{};
 ```
 
-`add` 两个参数声明均使用了 `auto`，对应为 `add_lambda` 类的 `operator()` 函数模板的两个模板参数 `T` 和 `U`．
+Cả hai tham số của `add` đều được khai báo bằng `auto`, tương ứng với hai tham số khuôn mẫu `T` và `U` của khuôn mẫu hàm `operator()` trong lớp `add_lambda`.
 
-### Lambda 中的递归
+<a id="lambda-&#20013;&#30340;&#36882;&#24402;"></a>
 
-先来看一个编译失败的例子：
+### Đệ quy trong Lambda
+
+Trước hết hãy xem một ví dụ biên dịch thất bại:
 
 ```cpp
 int n = 10;
@@ -296,13 +316,13 @@ auto dfs = [&](int i) -> void {
 };
 ```
 
-我们这里尝试在捕获列表中捕获 $dfs$，但是有一个问题，$dfs$ 的类型为 `auto`，要等待等号右边的类型推导完成后才会推导出 $dfs$ 的类型，而 Lambda 要捕获 $dfs$ 就必须要确定 $dfs$ 的类型后才能创建它的引用变量，好，这会陷入了一个套娃过程．
+Ở đây chúng ta thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề: kiểu của $dfs$ là `auto`, nên phải chờ đến khi kiểu của vế phải dấu bằng được suy diễn xong thì mới suy diễn được kiểu của $dfs$. Trong khi đó, để Lambda bắt giữ $dfs$, nó lại phải biết kiểu của $dfs$ trước mới tạo được biến tham chiếu của nó. Như vậy ta rơi vào một vòng phụ thuộc lẫn nhau.
 
-怎么解决这个问题呢？
+Giải quyết vấn đề này như thế nào?
 
-1.  显式指定 $dfs$ 的类型，可以使用 `std::function` 替代．
+1.  Chỉ định tường minh kiểu của $dfs$, có thể dùng `std::function` để thay thế.
 
-    ???+ example "修改如上代码为："
+    ???+ example "Sửa đoạn mã trên thành:"
         ```cpp
         int n = 10;
         
@@ -316,12 +336,12 @@ auto dfs = [&](int i) -> void {
         dfs(1);
         ```
 
-    ??? warning "不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归"
-        `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能．
+    ??? warning "Không khuyến nghị dùng [`std::function`](./new.md#stdfunction) để cài đặt đệ quy"
+        Type erasure của `std::function` thường cần cấp phát thêm bộ nhớ; đồng thời, lời gọi gián tiếp làm tăng thao tác định địa chỉ và tiếp tục làm giảm hiệu năng.
         
-        在 [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 2.5 倍．
+        Trong bài [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c), với trình biên dịch Clang 17 và libc++ làm thư viện chuẩn, cách cài đặt bằng `std::function` chậm hơn đệ quy bằng lambda khoảng 2.5 lần.
         
-        ??? note "测试代码"
+        ??? note "Mã kiểm thử"
             ```cpp
             #include <algorithm>
             #include <functional>
@@ -379,16 +399,17 @@ auto dfs = [&](int i) -> void {
             
             BENCHMARK(template_lambda_fib);
             ```
-2.  不通过捕获的方式获取 $dfs$，而是通过函数传参的方式．
+2.  Không lấy $dfs$ bằng cách bắt giữ, mà truyền nó qua tham số hàm.
 
-    ???+ example "修改如上代码为："
+    ???+ example "Sửa đoạn mã trên thành:"
         ```cpp
         int n = 10;
         
-        // 参数列表中有参数类型为 auto，则这个 Lambda 类中的 operator()
-        // 函数将被定义为模板函数，模板函数可以在稍后被调用时再进行实例化
+        // Nếu danh sách tham số có tham số kiểu auto, thì operator()
+        // trong lớp Lambda này sẽ được định nghĩa là hàm khuôn mẫu;
+        // hàm khuôn mẫu có thể được hiện thực hóa sau, khi được gọi
         auto dfs = [&](auto& self,
-                       int i) -> void  // [&] 只会捕获用到的变量，所以不会捕获 auto dfs
+                       int i) -> void  // [&] chỉ bắt giữ các biến được dùng, nên sẽ không bắt giữ auto dfs
         {
           if (i == n)
             return;
@@ -399,12 +420,12 @@ auto dfs = [&](int i) -> void {
         dfs(dfs, 1);
         ```
 
-    ???+ note "`auto self`、`auto& self` 和 `auto&& self` 的区别："
-        `auto& self` 和 `auto&& self` 理论上都只会使用 $8$ 个字节（指针的大小）用作传参，不会发生其他的拷贝．具体要看编译器对 Lambda 的实现方式和对应的优化．
-        而使用 `auto self` 会发生对象拷贝，拷贝的大小取决于捕获列表中的元素，因为它们都是这个 Lambda 类中的私有成员变量．
-3.  可以通过手动展开 Lambda 类，或使用类似写法，这样可以直接声明 $dfs$ 的类型．
+    ???+ note "Khác biệt giữa `auto self`, `auto& self` và `auto&& self`:"
+        Về lý thuyết, `auto& self` và `auto&& self` đều chỉ dùng $8$ byte (kích thước của con trỏ) để truyền tham số, và sẽ không phát sinh bản sao nào khác. Cụ thể còn phụ thuộc vào cách trình biên dịch cài đặt Lambda và các tối ưu tương ứng.
+        Còn với `auto self`, sẽ phát sinh sao chép đối tượng. Kích thước bản sao phụ thuộc vào các phần tử trong danh sách bắt giữ, vì chúng đều là biến thành viên riêng của lớp Lambda này.
+3.  Có thể khai triển thủ công lớp Lambda, hoặc dùng cách viết tương tự; như vậy có thể khai báo trực tiếp kiểu của $dfs$.
 
-    ???+ example "修改如上代码为："
+    ???+ example "Sửa đoạn mã trên thành:"
         ```cpp
         int n = 10;
         
@@ -425,11 +446,11 @@ auto dfs = [&](int i) -> void {
         
         dfs(1);
         ```
-4.  如果 lambda 没有捕获任何变量，我们也可以利用函数指针．
+4.  Nếu lambda không bắt giữ bất kỳ biến nào, ta cũng có thể tận dụng con trỏ hàm.
 
-    如果 lambda 没有捕获任何变量，那么它可以隐式转换为函数指针．同时 lambda 此时也可以声明为 `static`，函数指针类型也可以声明为 `static`．如此依赖，lambda 可以不需要捕获就能访问函数指针，从而实现递归．
+    Nếu lambda không bắt giữ bất kỳ biến nào, nó có thể được chuyển đổi ngầm định thành con trỏ hàm. Đồng thời, lúc này lambda cũng có thể được khai báo là `static`, và kiểu con trỏ hàm cũng có thể được khai báo là `static`. Dựa vào đó, lambda có thể truy cập con trỏ hàm mà không cần bắt giữ, từ đó thực hiện đệ quy.
 
-    ???+ example "示例"
+    ???+ example "Ví dụ"
         ```cpp
         static unsigned (*fptr)(unsigned);
         
@@ -447,29 +468,35 @@ auto dfs = [&](int i) -> void {
         cout << lambda(10);
         ```
 
-### Lambda 表达式的应用
+<a id="lambda-&#34920;&#36798;&#24335;&#30340;&#24212;&#29992;"></a>
 
-#### 作为标准库算法的 Predicate（谓词）
+### Ứng dụng của biểu thức Lambda
 
-从大到小排序：
+<a id="&#20316;&#20026;&#26631;&#20934;&#24211;&#31639;&#27861;&#30340;-predicate&#35859;&#35789;"></a>
+
+#### Làm Predicate (vị từ) cho thuật toán thư viện chuẩn
+
+Sắp xếp theo thứ tự giảm dần:
 
 ```cpp
 std::vector<int> v = {1, 2, 3, 4, 5};
 std::sort(v.begin(), v.end(), [](int a, int b) { return a > b; });
 ```
 
-使用 [std::find\_if](https://zh.cppreference.com/w/cpp/algorithm/find) 查找第一个大于 3 的元素：
+Dùng [std::find\_if](https://zh.cppreference.com/w/cpp/algorithm/find) để tìm phần tử đầu tiên lớn hơn 3:
 
 ```cpp
 std::vector<int> v = {1, 2, 3, 4, 5};
 auto it = std::find_if(v.begin(), v.end(), [](int a) { return a > 3; });
 ```
 
-#### 控制中间变量的生命周期
+<a id="&#25511;&#21046;&#20013;&#38388;&#21464;&#37327;&#30340;&#29983;&#21629;&#21608;&#26399;"></a>
 
-在算法竞赛中，我们会遇到这样的场景：一个变量的初始化需要使用之前声明的变量，其初始化过程又生成占用空间较大的中间变量．
+#### Kiểm soát vòng đời của biến trung gian
 
-我们希望能尽快析构这些中间变量，以降低内存消耗．此时，我们可以使用 lambda 来控制这些中间变量的生命周期．
+Trong lập trình thi đấu, ta sẽ gặp những tình huống như sau: việc khởi tạo một biến cần dùng các biến đã khai báo trước đó, và quá trình khởi tạo lại sinh ra các biến trung gian chiếm nhiều bộ nhớ.
+
+Ta muốn hủy các biến trung gian này càng sớm càng tốt để giảm mức tiêu thụ bộ nhớ. Lúc này, ta có thể dùng lambda để kiểm soát vòng đời của các biến trung gian.
 
 ```cpp
 void solution(const vector<int>& input) {
@@ -489,9 +516,11 @@ void solution(const vector<int>& input) {
 }
 ```
 
-相较于使用块作用域，lambda 可以允许我们使用返回值，使得代码更加简洁；相较于函数，我们不需要额外起名和声明被捕获的各种参数，使得代码更加紧凑．
+So với việc dùng phạm vi khối lệnh, lambda cho phép ta dùng giá trị trả về, giúp mã ngắn gọn hơn; so với hàm, ta không cần đặt thêm tên và khai báo riêng các tham số được bắt giữ, giúp mã chặt chẽ hơn.
 
-## 参考文献
+<a id="&#21442;&#32771;&#25991;&#29486;"></a>
+
+## Tài liệu tham khảo
 
 -   [cppreference-lambda](https://en.cppreference.com/w/cpp/language/lambda)
 -   [Stackoverflow: Overhead with std::function](https://stackoverflow.com/a/33881130/11120338)

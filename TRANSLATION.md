@@ -56,6 +56,9 @@ MkDocs source layout intact.
 - `docs/lang/class.md`, `docs/lang/value-category.md`,
   `docs/lang/op-overload.md`: translated C++ class, value-category, and operator
   overloading pages.
+- `docs/lang/new.md`, `docs/lang/lambda.md`,
+  `docs/lang/cpp-other-langs.md`: translated modern C++ features, lambda
+  expressions, and comparisons between C++ and other common languages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
