@@ -1,17 +1,27 @@
 author: HeRaNO, Xeonacid, saffahyjp
 
-pb\_ds 库全称 Policy-Based Data Structures．
+Tên đầy đủ của thư viện pb\_ds là Policy-Based Data Structures.
 
-pb\_ds 库封装了很多数据结构，比如哈希（Hash）表，平衡二叉树，字典树（Trie 树），堆（优先队列）等．
+Thư viện pb\_ds đóng gói nhiều cấu trúc dữ liệu, chẳng hạn bảng băm (Hash table),
+cây nhị phân cân bằng, trie, heap (hàng đợi ưu tiên), v.v.
 
-就像 `vector`、`set`、`map` 一样，其组件均符合 STL 的相关接口规范．部分（如优先队列）包含 STL 内对应组件的所有功能，但比 STL 功能更多．
+Giống như `vector`, `set`, `map`, các thành phần của nó đều tuân theo các quy ước
+giao diện liên quan của STL. Một số thành phần (như hàng đợi ưu tiên) bao gồm
+toàn bộ chức năng của thành phần tương ứng trong STL, nhưng cung cấp thêm nhiều
+chức năng hơn.
 
-pb\_ds 只在使用 libstdc++ 为标准库的编译器下可以用．
+pb\_ds chỉ dùng được với trình biên dịch sử dụng libstdc++ làm thư viện chuẩn.
 
-可以使用 `begin()` 和 `end()` 来获取 `iterator` 从而遍历
+Có thể dùng `begin()` và `end()` để lấy `iterator` rồi duyệt.
 
-可以 `increase_key`,`decrease_key` 以及删除单个元素
+Có thể `increase_key`, `decrease_key` và xóa từng phần tử riêng lẻ.
 
-由于 pb\_ds 库的主要内容在以下划线开头的 `__gnu_pbds` 命名空间中，在 NOI 系列活动中的合规性一直没有确定．2021 年 9 月 1 日，根据 [《关于 NOI 系列活动中编程语言使用限制的补充说明》](https://www.noi.cn/xw/2021-09-01/735729.shtml)，允许使用以下划线开头的库函数或宏（但具有明确禁止操作的库函数和宏除外），在 NOI 系列活动中使用 pb\_ds 库的合规性有了文件上的依据．
+Vì nội dung chính của thư viện pb\_ds nằm trong namespace `__gnu_pbds`, bắt đầu
+bằng dấu gạch dưới, tính hợp lệ của nó trong các hoạt động thuộc hệ thống NOI
+từng không rõ ràng. Ngày 1 tháng 9 năm 2021, theo [bổ sung về giới hạn sử dụng
+ngôn ngữ lập trình trong các hoạt động thuộc hệ thống NOI](https://www.noi.cn/xw/2021-09-01/735729.shtml),
+việc dùng hàm thư viện hoặc macro bắt đầu bằng dấu gạch dưới được cho phép (trừ
+các hàm thư viện và macro bị cấm tường minh). Vì vậy, việc dùng thư viện pb\_ds
+trong các hoạt động thuộc hệ thống NOI đã có căn cứ bằng văn bản.
 
-**参考资料：[《C++ 的 pb\_ds 库在 OI 中的应用》](https://github.com/OI-Wiki/libs/blob/master/lang/pb-ds/C%2B%2B的pb_ds库在OI中的应用.pdf)**
+**Tài liệu tham khảo: [Ứng dụng thư viện pb\_ds của C++ trong OI](https://github.com/OI-Wiki/libs/blob/master/lang/pb-ds/C%2B%2B%E7%9A%84pb_ds%E5%BA%93%E5%9C%A8OI%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8.pdf)**

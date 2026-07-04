@@ -59,6 +59,10 @@ MkDocs source layout intact.
 - `docs/lang/new.md`, `docs/lang/lambda.md`,
   `docs/lang/cpp-other-langs.md`: translated modern C++ features, lambda
   expressions, and comparisons between C++ and other common languages.
+- `docs/lang/pb-ds/index.md`, `docs/lang/pb-ds/pq.md`,
+  `docs/lang/pb-ds/tree.md`, `docs/lang/optimizations.md`,
+  `docs/lang/pas-cpp.md`: translated GNU pb_ds, compiler optimization, and
+  Pascal-to-C++ transition pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

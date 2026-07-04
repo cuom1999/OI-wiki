@@ -2,7 +2,7 @@ author: Xeonacid, ouuan, Ir1d, WAAutoMaton, Chrogeek, abc1763613206, Planet6174,
 
 ## `__gnu_pbds::priority_queue`
 
-附：[官方文档地址——复杂度及常数测试](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/pq_performance_tests.html#std_mod1)
+Kèm theo: [tài liệu chính thức về độ phức tạp và kiểm thử hằng số](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/pq_performance_tests.html#std_mod1)
 
 ```cpp
 #include <ext/pb_ds/priority_queue.hpp>
@@ -10,61 +10,78 @@ using namespace __gnu_pbds;
 __gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
 ```
 
-## 模板形参
+## Tham số template
 
--   `T`: 储存的元素类型
--   `Compare`: 提供严格的弱序比较类型
--   `Tag`: 是 `__gnu_pbds` 提供的不同的五种堆，Tag 参数默认是 `pairing_heap_tag` 五种分别是：
-    -   `pairing_heap_tag`：配对堆
-        官方文档认为在非原生元素（如自定义结构体/`std::string`/`pair`）中，配对堆表现最好
-    -   `binary_heap_tag`：二叉堆
-        官方文档认为在原生元素中二叉堆表现最好，不过笔者测试的表现并没有那么好
-    -   `binomial_heap_tag`：二项堆
-        二项堆在合并操作的表现要优于二叉堆，但是其取堆顶元素操作的复杂度比二叉堆高
-    -   `rc_binomial_heap_tag`：冗余计数二项堆
-    -   `thin_heap_tag`：除了合并的复杂度都和 Fibonacci 堆一样的一个 tag
--   `Allocator`：空间配置器，由于 OI 中很少出现，故这里不做讲解
+-   `T`: kiểu phần tử được lưu trữ
+-   `Compare`: kiểu so sánh cung cấp thứ tự yếu nghiêm ngặt
+-   `Tag`: năm loại heap khác nhau do `__gnu_pbds` cung cấp; tham số `Tag` mặc
+    định là `pairing_heap_tag`. Năm loại này gồm:
+    -   `pairing_heap_tag`: heap ghép cặp (pairing heap)
+        Tài liệu chính thức cho rằng pairing heap có hiệu năng tốt nhất với các
+        phần tử không nguyên thủy (như struct tự định nghĩa, `std::string`,
+        `pair`).
+    -   `binary_heap_tag`: heap nhị phân
+        Tài liệu chính thức cho rằng heap nhị phân có hiệu năng tốt nhất với
+        phần tử nguyên thủy, nhưng kết quả thử nghiệm của tác giả không tốt đến
+        vậy.
+    -   `binomial_heap_tag`: heap nhị thức
+        Heap nhị thức có hiệu năng hợp nhất tốt hơn heap nhị phân, nhưng thao
+        tác lấy phần tử đỉnh heap có độ phức tạp cao hơn heap nhị phân.
+    -   `rc_binomial_heap_tag`: heap nhị thức đếm dư thừa
+    -   `thin_heap_tag`: một tag có mọi độ phức tạp giống Fibonacci heap, trừ
+        thao tác hợp nhất
+-   `Allocator`: bộ cấp phát bộ nhớ; vì hiếm gặp trong OI nên không giải thích ở
+    đây
 
-由于本篇文章只是提供给学习算法竞赛的同学们，故对于后四个 tag 只会简单的介绍复杂度，第一个会介绍成员函数和使用方法．
+Vì bài này chỉ phục vụ người học lập trình thi đấu, bốn tag phía sau chỉ được
+giới thiệu sơ lược về độ phức tạp; tag đầu tiên sẽ được giới thiệu về hàm thành
+viên và cách dùng.
 
-经作者本机 Core i5 @3.1 GHz On macOS 测试堆的基础操作，结合 GNU 官方的复杂度测试，Dijkstra 测试，都表明：
-至少对于 OIer 来讲，除了配对堆的其他四个 tag 都是鸡肋，要么没用，要么常数大到不如 `std` 的，且有可能造成 MLE，故这里只推荐用默认的配对堆．同样，配对堆也优于 `algorithm` 库中的 `make_heap()`．
+Qua thử nghiệm các thao tác heap cơ bản trên máy của tác giả (Core i5 @3.1 GHz
+trên macOS), kết hợp với kiểm thử độ phức tạp chính thức của GNU và kiểm thử
+Dijkstra, có thể thấy rằng:
+ít nhất với OIer, bốn tag ngoài pairing heap đều không đáng dùng: hoặc không có
+tác dụng thực tế, hoặc hằng số lớn đến mức thua `std`, thậm chí có thể gây MLE.
+Vì vậy, ở đây chỉ khuyến nghị dùng pairing heap mặc định. Tương tự, pairing heap
+cũng tốt hơn `make_heap()` trong thư viện `algorithm`.
 
-## 构造方式
+## Cách khởi tạo
 
-要注明命名空间因为和 `std` 的类名称重复．
+Cần ghi rõ namespace vì tên lớp trùng với `std`.
 
 ```cpp
 // __gnu_pbds::priority_queue<int>;
 // __gnu_pbds::priority_queue<int, greater<int>>;
 // __gnu_pbds::priority_queue<int, greater<int>, pairing_heap_tag>;
-__gnu_pbds::priority_queue<int>::point_iterator id;  // 点类型迭代器
-// 在 modify 和 push 的时候都会返回一个 point_iterator，下文会详细的讲使用方法
+__gnu_pbds::priority_queue<int>::point_iterator id;  // iterator kiểu điểm
+// modify và push đều trả về một point_iterator; bên dưới sẽ giải thích cách dùng
 id = q.push(1);
 ```
 
-## 成员函数
+## Hàm thành viên
 
--   `push()`: 向堆中压入一个元素，返回该元素位置的迭代器．
--   `pop()`: 将堆顶元素弹出．
--   `top()`: 返回堆顶元素．
--   `size()` 返回元素个数．
--   `empty()` 返回是否非空．
--   `modify(point_iterator, const key)`: 把迭代器位置的 `key` 修改为传入的 `key`，并对底层储存结构进行排序．
--   `erase(point_iterator)`: 把迭代器位置的键值从堆中擦除．
--   `join(__gnu_pbds::priority_queue &other)`: 把 `other` 合并到 `*this` 并把 `other` 清空．
+-   `push()`: đưa một phần tử vào heap, trả về iterator tại vị trí phần tử đó.
+-   `pop()`: lấy phần tử đỉnh heap ra.
+-   `top()`: trả về phần tử đỉnh heap.
+-   `size()`: trả về số phần tử.
+-   `empty()`: trả về heap có rỗng hay không.
+-   `modify(point_iterator, const key)`: sửa `key` tại vị trí iterator thành
+    `key` được truyền vào, rồi sắp xếp lại cấu trúc lưu trữ bên dưới.
+-   `erase(point_iterator)`: xóa khóa tại vị trí iterator khỏi heap.
+-   `join(__gnu_pbds::priority_queue &other)`: hợp nhất `other` vào `*this` rồi
+    làm rỗng `other`.
 
-使用的 tag 决定了每个操作的时间复杂度：
+Tag được dùng quyết định độ phức tạp thời gian của từng thao tác:
 
 |                        | push                                | pop                                 | modify                              | erase                               | Join              |
 | ---------------------- | ----------------------------------- | :---------------------------------- | ----------------------------------- | ----------------------------------- | ----------------- |
-| `pairing_heap_tag`     | $O(1)$                              | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$ | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$ | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$ | $O(1)$            |
-| `binary_heap_tag`      | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$ | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$ | $\Theta(n)$                         | $\Theta(n)$                         | $\Theta(n)$       |
-| `binomial_heap_tag`    | 最坏 $\Theta(\log(n))$ 均摊 $O(1)$      | $\Theta(\log(n))$                   | $\Theta(\log(n))$                   | $\Theta(\log(n))$                   | $\Theta(\log(n))$ |
+| `pairing_heap_tag`     | $O(1)$                              | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | $O(1)$            |
+| `binary_heap_tag`      | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | $\Theta(n)$                         | $\Theta(n)$                         | $\Theta(n)$       |
+| `binomial_heap_tag`    | xấu nhất $\Theta(\log(n))$, khấu hao $O(1)$      | $\Theta(\log(n))$                   | $\Theta(\log(n))$                   | $\Theta(\log(n))$                   | $\Theta(\log(n))$ |
 | `rc_binomial_heap_tag` | $O(1)$                              | $\Theta(\log(n))$                   | $\Theta(\log(n))$                   | $\Theta(\log(n))$                   | $\Theta(\log(n))$ |
-| `thin_heap_tag`        | $O(1)$                              | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$ | 最坏 $\Theta(\log(n))$ 均摊 $O(1)$      | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$ | $\Theta(n)$       |
+| `thin_heap_tag`        | $O(1)$                              | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | xấu nhất $\Theta(\log(n))$, khấu hao $O(1)$      | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | $\Theta(n)$       |
 
-## 示例
+## Ví dụ
 
 ```cpp
 #include <algorithm>
@@ -72,54 +89,72 @@ id = q.push(1);
 #include <ext/pb_ds/priority_queue.hpp>
 #include <iostream>
 using namespace __gnu_pbds;
-// 由于面向OIer, 本文以常用堆 : pairing_heap_tag作为范例
-// 为了更好的阅读体验，定义宏如下 ：
+// Vì hướng đến OIer, bài này dùng heap thường gặp pairing_heap_tag làm ví dụ
+// Để dễ đọc hơn, định nghĩa alias như sau:
 using pair_heap = __gnu_pbds::priority_queue<int>;
-pair_heap q1;  // 大根堆, 配对堆
+pair_heap q1;  // heap lớn, pairing heap
 pair_heap q2;
-pair_heap::point_iterator id;  // 一个迭代器
+pair_heap::point_iterator id;  // một iterator
 
 int main() {
   id = q1.push(1);
-  // 堆中元素 ： [1];
+  // Phần tử trong heap: [1];
   for (int i = 2; i <= 5; i++) q1.push(i);
-  // 堆中元素 :  [1, 2, 3, 4, 5];
+  // Phần tử trong heap: [1, 2, 3, 4, 5];
   std::cout << q1.top() << std::endl;
-  // 输出结果 : 5;
+  // Kết quả in ra: 5;
   q1.pop();
-  // 堆中元素 : [1, 2, 3, 4];
+  // Phần tử trong heap: [1, 2, 3, 4];
   id = q1.push(10);
-  // 堆中元素 : [1, 2, 3, 4, 10];
+  // Phần tử trong heap: [1, 2, 3, 4, 10];
   q1.modify(id, 1);
-  // 堆中元素 :  [1, 1, 2, 3, 4];
+  // Phần tử trong heap: [1, 1, 2, 3, 4];
   std::cout << q1.top() << std::endl;
-  // 输出结果 : 4;
+  // Kết quả in ra: 4;
   q1.pop();
-  // 堆中元素 : [1, 1, 2, 3];
+  // Phần tử trong heap: [1, 1, 2, 3];
   id = q1.push(7);
-  // 堆中元素 : [1, 1, 2, 3, 7];
+  // Phần tử trong heap: [1, 1, 2, 3, 7];
   q1.erase(id);
-  // 堆中元素 : [1, 1, 2, 3];
+  // Phần tử trong heap: [1, 1, 2, 3];
   q2.push(1), q2.push(3), q2.push(5);
-  // q1中元素 : [1, 1, 2, 3], q2中元素 : [1, 3, 5];
+  // Phần tử trong q1: [1, 1, 2, 3], phần tử trong q2: [1, 3, 5];
   q2.join(q1);
-  // q1中无元素，q2中元素 ：[1, 1, 1, 2, 3, 3, 5];
+  // q1 không còn phần tử, phần tử trong q2: [1, 1, 1, 2, 3, 3, 5];
 }
 ```
 
-## \_\_gnu\_pbds 迭代器的失效保证（invalidation\_guarantee）
+## Bảo đảm vô hiệu hóa iterator của \_\_gnu\_pbds (invalidation\_guarantee)
 
-在上述示例以及一些实践中（如使用本章的 pb-ds 堆来编写单源最短路等算法），常常需要保存并使用堆的迭代器（如 `__gnu_pbds::priority_queue<int>::point_iterator` 等）．
+Trong ví dụ trên và trong một số tình huống thực tế (như dùng heap pb-ds của
+chương này để viết thuật toán đường đi ngắn nhất một nguồn), ta thường cần lưu
+và dùng iterator của heap (như
+`__gnu_pbds::priority_queue<int>::point_iterator`).
 
-可是例如对于 `__gnu_pbds::priority_queue` 中不同的 Tag 参数，其底层实现并不相同，迭代器的失效条件也不一样，根据\_\_gnu\_pbds 库的设计，以下三种由上至下派生的情况：
+Tuy nhiên, với các tham số `Tag` khác nhau của `__gnu_pbds::priority_queue`,
+hiện thực bên dưới không giống nhau, nên điều kiện vô hiệu hóa iterator cũng
+khác nhau. Theo thiết kế của thư viện \_\_gnu\_pbds, có ba trường hợp dẫn xuất từ
+trên xuống dưới:
 
-1.  基本失效保证（basic\_invalidation\_guarantee）：即不修改容器时，点类型迭代器（point\_iterator）、指针和引用（key/value）**保持** 有效．
+1.  Bảo đảm vô hiệu hóa cơ bản (basic\_invalidation\_guarantee): khi không sửa
+    container, iterator kiểu điểm (point\_iterator), con trỏ và tham chiếu
+    (key/value) **vẫn** hợp lệ.
 
-2.  点失效保证（point\_invalidation\_guarantee）：即 **修改** 容器后，点类型迭代器（point\_iterator）、指针和引用（key/value）只要对应在容器中没被删除 **保持** 有效．
+2.  Bảo đảm vô hiệu hóa điểm (point\_invalidation\_guarantee): sau khi **sửa**
+    container, iterator kiểu điểm (point\_iterator), con trỏ và tham chiếu
+    (key/value) **vẫn** hợp lệ miễn là phần tử tương ứng chưa bị xóa khỏi
+    container.
 
-3.  范围失效保证（range\_invalidation\_guarantee）：即 **修改** 容器后，除（2）的特性以外，任何范围类型的迭代器（包括 `begin()` 和 `end()` 的返回值）是正确的，具有范围失效保证的 Tag 有 `rb_tree_tag` 和 适用于 `__gnu_pbds::tree` 的 `splay_tree_tag`，以及 适用于 `__gnu_pbds::trie` 的 `pat_trie_tag`．
+3.  Bảo đảm vô hiệu hóa phạm vi (range\_invalidation\_guarantee): sau khi
+    **sửa** container, ngoài tính chất ở (2), mọi iterator kiểu phạm vi (bao gồm
+    giá trị trả về của `begin()` và `end()`) đều đúng. Các tag có bảo đảm vô
+    hiệu hóa phạm vi gồm `rb_tree_tag`, `splay_tree_tag` dùng cho
+    `__gnu_pbds::tree`, và `pat_trie_tag` dùng cho `__gnu_pbds::trie`.
 
-从运行下述代码中看出，除了 `binary_heap_tag` 为 `basic_invalidation_guarantee` 在修改后迭代器会失效，其余的均为 `point_invalidation_guarantee` 可以实现修改后点类型迭代器 (point\_iterator) 不失效的需求．
+Từ kết quả chạy đoạn mã sau, có thể thấy ngoài `binary_heap_tag` là
+`basic_invalidation_guarantee` và iterator sẽ bị vô hiệu sau khi sửa, các tag
+còn lại đều là `point_invalidation_guarantee`, đáp ứng nhu cầu giữ iterator kiểu
+điểm (point\_iterator) không bị vô hiệu sau khi sửa.
 
 ```cpp
 #include <iostream>
