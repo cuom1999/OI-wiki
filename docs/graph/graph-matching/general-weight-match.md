@@ -1,127 +1,127 @@
 author: accelsao, Henry-ZHR, yuhuoji
 
-本页从一般图最大权完美匹配到一般图最大权匹配（最大权匹配可以通过增加零边变成最大权完美匹配）．
+Trang này đi từ ghép cặp hoàn hảo trọng số lớn nhất trên đồ thị tổng quát đến ghép cặp trọng số lớn nhất trên đồ thị tổng quát. Có thể biến ghép cặp trọng số lớn nhất thành ghép cặp hoàn hảo trọng số lớn nhất bằng cách thêm các cạnh có trọng số bằng 0.
 
-## 预备知识
+## Kiến thức chuẩn bị
 
-### 花（blossom）
+### Blossom/hoa (blossom)
 
-一般图匹配和二分图匹配不同的是，图可能存在奇环．可以将偶环视为二分图．
+Điểm khác nhau giữa ghép cặp trên đồ thị tổng quát và ghép cặp trên đồ thị hai phía là đồ thị có thể có chu trình lẻ. Chu trình chẵn có thể được xem như đồ thị hai phía.
 
-带花树算法（Blossom Algorithm）的处理方式时是遇到奇环就把它缩成一个 **花（Blossom）**，并把花中所有的点设为偶点．既然花上的点都可以成为偶点，那么可以把整个花直接缩成一个偶点．注意，一个花可以包含其它花．
+Cách xử lý của thuật toán blossom (Blossom Algorithm) là khi gặp một chu trình lẻ thì co nó lại thành một **blossom/hoa (Blossom)**, đồng thời đặt tất cả các đỉnh trong hoa thành đỉnh chẵn. Vì mọi đỉnh trên hoa đều có thể trở thành đỉnh chẵn, ta có thể co cả hoa trực tiếp thành một đỉnh chẵn. Lưu ý rằng một hoa có thể chứa các hoa khác.
 
-这也可以变成线性规划和对偶问题，但是要对花进行一些处理．
+Vấn đề này cũng có thể được chuyển thành quy hoạch tuyến tính và bài toán đối ngẫu, nhưng cần xử lý thêm đối với hoa.
 
-### 顶标（vertex labeling）和等边（Equality Edge）
+### Nhãn đỉnh (vertex labeling) và cạnh đẳng thức (Equality Edge)
 
-定义 $z_u$ 是点 $u$ 的顶标（vertex labeling），与 $KM$ 算法中定义的顶标含义相同．定义边 $e(u,v)$ 为 "等边" 当且仅当点 $u$ 和点 $v$ 的标号和等于边 $e$ 的权值（$z_u + z_v = w(e)$），此时边的标号 $z_e = z_u + z_v − w(e) = 0$．
+Định nghĩa $z_u$ là nhãn đỉnh (vertex labeling) của đỉnh $u$, có ý nghĩa giống nhãn đỉnh trong thuật toán $KM$. Định nghĩa cạnh $e(u,v)$ là "cạnh đẳng thức" khi và chỉ khi tổng nhãn của đỉnh $u$ và đỉnh $v$ bằng trọng số của cạnh $e$ ($z_u + z_v = w(e)$). Khi đó nhãn của cạnh là $z_e = z_u + z_v - w(e) = 0$.
 
-## 一般图最大权完美匹配的线性规划
+## Quy hoạch tuyến tính cho ghép cặp hoàn hảo trọng số lớn nhất trên đồ thị tổng quát
 
-### 定义
+### Định nghĩa
 
-因为一朵花最少有三个点，缩花后成为一个点．设 $O$ 为大小为 $≥3$ 奇数的集合的集合（包含所有花），$\gamma(S)$ 表示 $S$ 集合中的边．
+Vì một hoa có ít nhất ba đỉnh và sau khi co hoa sẽ trở thành một đỉnh, đặt $O$ là tập hợp các tập có kích thước lẻ $≥3$ (bao gồm mọi hoa), và $\gamma(S)$ biểu thị tập các cạnh bên trong tập $S$.
 
 $$
 \begin{aligned}
-& \text{设} S\subseteq V \\
+& \text{Đặt} S\subseteq V \\
 & \gamma(S)=\{(u,v)\in E:u\in S,v\in S\} \\
-& O=\{B\subseteq V:|B|\text{是奇数且}|B|\geq3\} \\
+& O=\{B\subseteq V:|B|\text{ là số lẻ và }|B|\geq3\} \\
 \end{aligned}
 $$
 
-### 对偶问题
+### Bài toán đối ngẫu
 
-???+ note "原问题"
+???+ note "Bài toán gốc"
     $$
     \begin{aligned}
     & \max\sum_{e\in E}w(e)x_e \\
-    & \text{限制：} \\
+    & \text{Ràng buộc:} \\
     & x(\delta(u))=1:\forall u\in V \\
     & x(\gamma(B))\leq\lfloor\frac{|B|}{2}\rfloor:\forall B\in O \\
     & x_e\geq0:\forall e\in E \\
     \end{aligned}
     $$
 
-然后通过原始对偶（Primal-Dual）将问题转换为对偶问题．
+Sau đó, dùng nguyên thủy - đối ngẫu (Primal-Dual) để chuyển bài toán thành bài toán đối ngẫu.
 
-???+ note "对偶问题"
+???+ note "Bài toán đối ngẫu"
     $$
     \begin{aligned}
     & \min\sum_{u\in V}z_u+\sum_{B\in O}\left\lfloor\frac{|B|}{2}\right\rfloor z_B \\
-    & \text{限制：} \\
+    & \text{Ràng buộc:} \\
     & z_B\geq0:\forall B\in O \\
     & z_e\geq0:\forall e\in E \\
-    & \text{设} e=(u,v)，\text{这里} \\
+    & \text{Đặt} e=(u,v),\text{ tại đây} \\
     & \begin{array}{lll}
     z_e & = & z_u + z_v - w(e) + \sum_{\substack{B \in O \\ u,v \in \gamma(B)}} z_B
     \end{array}
     \end{aligned}
     $$
 
-$x_e=1$ 的边是匹配边，$x_e=0$ 的边是非匹配边．和二分图一样，我们必须满足 $x_e\in\{0,1\}:\forall e\in E$．因此必须在最大权完美匹配的时候，让所有匹配边都是 **等边** 的．
+Các cạnh có $x_e=1$ là cạnh ghép cặp, còn các cạnh có $x_e=0$ là cạnh không thuộc ghép cặp. Giống như đồ thị hai phía, ta phải thỏa mãn $x_e\in\{0,1\}:\forall e\in E$. Vì vậy, khi tìm ghép cặp hoàn hảo trọng số lớn nhất, mọi cạnh ghép cặp đều phải là **cạnh đẳng thức**.
 
-和二分图不同的是，一般图多了 $z_B$ 要处理．下面考虑 $z_B$ 什么时候大于 $0$．
+Khác với đồ thị hai phía, đồ thị tổng quát có thêm $z_B$ cần xử lý. Sau đây xét khi nào $z_B$ lớn hơn $0$.
 
-可以看出，尽量使 $z_B=0$ 是最好的做法，但在不得已时还是要让 $z_B>0$．在 $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{且} x(\delta(B)) = 1$ 时，让 $z_B>0$ 即可．因为除了在这种情况下，$z_B>0$ 是无意义的．
+Có thể thấy cách tốt nhất là cố gắng để $z_B=0$, nhưng khi bắt buộc thì vẫn cần cho $z_B>0$. Khi $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{ và } x(\delta(B)) = 1$, ta có thể đặt $z_B>0$. Ngoài trường hợp này, $z_B>0$ không có ý nghĩa.
 
-根据互补松弛条件，有以下的对应关系：
+Theo điều kiện bổ đề chặt bổ sung, có các quan hệ tương ứng sau:
 
--   对于选中的边 $e$，必有 $z_e=0$．
+-   Với cạnh $e$ được chọn, nhất định có $z_e=0$.
 
     $$
     x_e>0 \longrightarrow z_e=0,\quad \forall e\in E
     $$
 
--   对于选中的集合*B*，$z_B>0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$，即所有 $z_B>0$ 的集合 $B$，都被选了集合大小一半的边，也即集合 $B$ 是一朵花，选中花中的一条边进行增广．同时，我们加入一个条件：$x(\delta(B))=1$，即只有花 $B$ 向外连了一条边的时候，$z_B>0$ 才是有意义的．
+-   Với tập *B* được chọn, $z_B>0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$, tức là mọi tập $B$ có $z_B>0$ đều đã chọn số cạnh bằng một nửa kích thước của tập, cũng có nghĩa tập $B$ là một hoa và ta chọn một cạnh trong hoa để tăng cường. Đồng thời, ta thêm một điều kiện: $x(\delta(B))=1$, tức là chỉ khi hoa $B$ nối ra ngoài bằng đúng một cạnh thì $z_B>0$ mới có ý nghĩa.
 
     $$
     z_B>0 \longrightarrow x(\gamma(B))=\left\lfloor\frac{|B|}2\right\rfloor, x(\delta(B))=1\quad \forall B\in O
     $$
 
-以「**等边**」的概念，结合之前的带花树算法：用「等边」构成的增广路不断进行扩充，由于用来扩充的边全是「等边」，最后得到的最大权完美匹配仍然全是「等边」．
+Kết hợp khái niệm "**cạnh đẳng thức**" với thuật toán blossom đã nêu: liên tục mở rộng bằng các đường tăng cường được tạo từ "cạnh đẳng thức". Vì mọi cạnh dùng để mở rộng đều là "cạnh đẳng thức", ghép cặp hoàn hảo trọng số lớn nhất cuối cùng vẫn chỉ gồm các "cạnh đẳng thức".
 
-### 处理花的问题
+### Xử lý hoa
 
-当遇到花的时候，要将它缩成一个偶点．将花中所有点都设为偶点，并让它的 $z_B=0$．
+Khi gặp một hoa, cần co nó thành một đỉnh chẵn. Đặt tất cả các đỉnh trong hoa thành đỉnh chẵn và đặt $z_B=0$ của nó.
 
-由于缩花后会把花保存起来，直到满足某些条件才会拆开，所以不能用之前的方法记录花．
+Do sau khi co hoa ta sẽ lưu hoa lại cho đến khi thỏa mãn một số điều kiện mới bung ra, không thể dùng cách cũ để ghi nhận hoa.
 
-如果没有特殊说明，之前提到的点，都包含缩花形成的偶点．
+Nếu không nói rõ thêm, những đỉnh được nhắc đến trước đây đều bao gồm cả các đỉnh chẵn hình thành từ việc co hoa.
 
-由于花也有可能缩成点被加入队列中，并且花的数量是不固定的，因此不能像之前一样枚举每个点来检查是否有增广路．因此，在进行广度优先搜索（BFS）时，必须将所有未匹配的点都放入队列中．
+Vì hoa cũng có thể được co thành một đỉnh rồi đưa vào hàng đợi, và số lượng hoa không cố định, ta không thể liệt kê từng đỉnh như trước để kiểm tra có đường tăng cường hay không. Vì vậy, khi thực hiện tìm kiếm theo chiều rộng (BFS), phải đưa mọi đỉnh chưa ghép cặp vào hàng đợi.
 
-这样会同时产生很多棵交错树．
+Như vậy sẽ đồng thời sinh ra nhiều cây luân phiên.
 
-### 算法的四个步骤
+### Bốn bước của thuật toán
 
-这个算法可以分成四个步骤．
+Thuật toán này có thể chia thành bốn bước.
 
-1.  GROW（等边）：用 "等边" 构成交错树．
-2.  AUGMENT（增广）：找出增广路并扩充匹配．
-3.  SHRINK（缩花）：把花缩成一个点．
-4.  EXPAND（展开）：把花拆开．
+1.  GROW (cạnh đẳng thức): dùng "cạnh đẳng thức" để xây dựng cây luân phiên.
+2.  AUGMENT (tăng cường): tìm đường tăng cường và mở rộng ghép cặp.
+3.  SHRINK (co hoa): co hoa thành một đỉnh.
+4.  EXPAND (bung hoa): tách hoa ra.
 
 ![general-weight-match-1](images/general-weight-match-1.png)
 
-在 AUGMENT 阶段时，因为所有未匹配点都会在不同的交错树上，所以当增广时两棵交错树的偶点连在一起，就表示找到了一条增广路．
+Trong giai đoạn AUGMENT, vì mọi đỉnh chưa ghép cặp nằm trên các cây luân phiên khác nhau, nên khi hai đỉnh chẵn của hai cây luân phiên được nối với nhau trong lúc tăng cường, điều đó có nghĩa là đã tìm được một đường tăng cường.
 
-### 找不到等边扩充
+### Không tìm được cạnh đẳng thức để mở rộng
 
-和二分图一样，也会有找不到「等边」扩充的问题．这时就需要调整 vertex labeling．
+Giống như trong đồ thị hai phía, cũng có trường hợp không tìm được "cạnh đẳng thức" để mở rộng. Khi đó cần điều chỉnh vertex labeling.
 
-### 调整 VERTEX LABELING
+### Điều chỉnh VERTEX LABELING
 
-vertex labeling 仍要维持大于等于的性质，而且既有的「等边」不能被改变，还要让 $z_B$ 尽量的小．
+Vertex labeling vẫn phải duy trì tính chất lớn hơn hoặc bằng, các "cạnh đẳng thức" đã có không được thay đổi, đồng thời cần làm cho $z_B$ nhỏ nhất có thể.
 
-???+ note "定义符号 奇偶点"
-    以 $u^−$ 来表示 $u$ 在交错树上为奇点．  
-    以 $u^+$ 来表示 $u$ 在交错树上为偶点．  
-    以 $u^\varnothing$ 来表示 $u$ 不在任何一棵交错树上．  
-    之后所有提到的 $B$ 预设都是花，并同时代表缩花之后的点．  
-    花也可以有奇花偶花之分，因此也适用 $B^+$、$B^−$、$B^\varnothing$ 等符号．
+???+ note "Ký hiệu đỉnh chẵn lẻ"
+    Dùng $u^-$ để biểu thị $u$ là đỉnh lẻ trên cây luân phiên.
+    Dùng $u^+$ để biểu thị $u$ là đỉnh chẵn trên cây luân phiên.
+    Dùng $u^\varnothing$ để biểu thị $u$ không nằm trên bất kỳ cây luân phiên nào.
+    Mọi $B$ được nhắc đến sau đây mặc định là hoa, đồng thời cũng đại diện cho đỉnh sau khi co hoa.
+    Hoa cũng có thể phân thành hoa lẻ và hoa chẵn, nên các ký hiệu như $B^+$, $B^-$, $B^\varnothing$ cũng áp dụng được.
 
-设目前有 r 棵交错树 $T_i=(U_{t_i},V_{t_i}):1\leq i\leq r$，令
+Giả sử hiện có r cây luân phiên $T_i=(U_{t_i},V_{t_i}):1\leq i\leq r$, đặt
 
 $$
 \begin{aligned}
@@ -131,9 +131,9 @@ d3 &= \min(\{z_{B^-} : B^- \in O\}) / 2
 \end{aligned}
 $$
 
-注意这里*B*是缩花之后的点，所以可以有奇偶性．
+Lưu ý ở đây *B* là đỉnh sau khi co hoa, nên có thể có tính chẵn lẻ.
 
-设 $d=min(d1,d2,d3)$，让
+Đặt $d=min(d1,d2,d3)$, cho
 
 $$
 \begin{aligned}
@@ -144,24 +144,24 @@ z_{B^-} - &= 2d \\
 \end{aligned}
 $$
 
-如果出现 $z_B=0(d=d3)$，为了防止 $z_B<0$ 的情况，所以要把这朵花拆了 (EXPAND)．
-拆花后只留下花里的交替路径，并把花里不在交替路径上的点设为未走访 ($\varnothing$)．
+Nếu xuất hiện $z_B=0(d=d3)$, để tránh trường hợp $z_B<0$, cần bung hoa này ra (EXPAND).
+Sau khi bung hoa, chỉ giữ lại đường luân phiên bên trong hoa, và đặt các đỉnh trong hoa không nằm trên đường luân phiên thành chưa thăm ($\varnothing$).
 
-如此便制造了一条（以上）的等边，既有等边保持不动，并维持了 $z_e\geq0:\forall e\in E$ 的性质，且最低限度增加了 $z_B$，可以继续找增广路了．
+Như vậy ta tạo ra một hoặc nhiều cạnh đẳng thức, giữ nguyên các cạnh đẳng thức đã có, vẫn duy trì tính chất $z_e\geq0:\forall e\in E$, đồng thời chỉ tăng $z_B$ ở mức tối thiểu, rồi có thể tiếp tục tìm đường tăng cường.
 
-## 一般图最大权匹配
+## Ghép cặp trọng số lớn nhất trên đồ thị tổng quát
 
-以上求的是最大权完美匹配，求最大权匹配需要在 vertex labeling 额外增加一个限制：对于所有匹配点 $u$，$z_u>0$．
+Phần trên tìm ghép cặp hoàn hảo trọng số lớn nhất. Để tìm ghép cặp trọng số lớn nhất, cần thêm một ràng buộc vào vertex labeling: với mọi đỉnh đã ghép cặp $u$, $z_u>0$.
 
-开始时先设所有的 $z_u=max(\{w(e):e\in E\})/2$．
+Ban đầu đặt mọi $z_u=max(\{w(e):e\in E\})/2$.
 
-vertex labeling 为 $0$ 的点最后将成为未匹配点．
+Các đỉnh có vertex labeling bằng $0$ cuối cùng sẽ trở thành đỉnh chưa ghép cặp.
 
-### 参考代码
+### Code tham khảo
 
-这里为了方便实现，使用边权乘 $2$ 来计算 $z_e$ 的值，这样就不会出现浮点数误差了．
+Ở đây, để tiện cài đặt, ta nhân trọng số cạnh với $2$ khi tính giá trị $z_e$, nhờ vậy sẽ không có sai số số thực.
 
-???+ note "存储"
+???+ note "Lưu trữ"
     ```cpp
     constexpr int INF = INT_MAX;
     constexpr int MAXN = 400;
@@ -169,27 +169,28 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点．
     struct edge {
       int u, v, w;
     
-      // 表示(u,v)为一条边其权重为w
+      // Bieu thi (u,v) la mot canh co trong so w
       edge() {}
     
       edge(int u, int v, int w) : u(u), v(v), w(w) {}
     };
     
     int n, n_x;
-    // 有n个点，编号为 1 ~ n
-    // n_x表示当前点加上花的数量，编号从n+1到n_x为花的节点
+    // Co n dinh, danh so tu 1 den n
+    // n_x bieu thi tong so dinh hien tai cong voi so hoa,
+    // cac dinh hoa duoc danh so tu n+1 den n_x
     edge g[MAXN * 2 + 1][MAXN * 2 + 1];
-    // 图用邻接矩阵存储，因为最多有n-1朵花，所以大小为MAXN*
+    // Do thi duoc luu bang ma tran ke, vi toi da co n-1 hoa nen kich thuoc la MAXN*2
     vector<int> flower[MAXN * 2 + 1];
-    // flower[b]记录了花b中有哪些点
-    // 我们记录花中的点的方式是只记录花里面的最外层花
+    // flower[b] ghi lai nhung dinh nao nam trong hoa b
+    // Cach ghi cac dinh trong hoa chi ghi cac hoa ngoai cung nam trong hoa do
     ```
 
-下面是嵌套花的例子．
+Dưới đây là ví dụ về hoa lồng nhau.
 
 ![general-weight-match-2](images/general-weight-match-2.png)
 
-其中 $\{ 6, 5, 8\} \in b1,\{ b1, 4, 3, 2, 11, 10, 9\} \in b2$．存储为：
+Trong đó $\{ 6, 5, 8\} \in b1,\{ b1, 4, 3, 2, 11, 10, 9\} \in b2$. Lưu trữ thành:
 
 ```text
 flower[b2] = {b1, 4, 3, 2, 11, 10, 9} 
@@ -205,22 +206,24 @@ flower[b1] = {5, 8, 6}
 
 ```cpp
 int lab[MAXN * 2 + 1];
-// lab[u]用来记录z_u, lab[b]用来记录z_B
+// lab[u] dung de ghi z_u, lab[b] dung de ghi z_B
 int match[MAXN * 2 + 1], slack[MAXN * 2 + 1], st[MAXN * 2 + 1],
     pa[MAXN * 2 + 1];
-// match[x]=y表示(x,y)是匹配，这里x、y可能是花
-// slack[x]=u表示z(x,u)是所有和x相邻的边中最小的那条边
-// 表示节点 x 所在的花是 b．如果 x=b 且 b<=n，则表示 x
-// 是一个普通节点（不属于任何花） 表示在交错树中，节点 v 的父节点是 u
+// match[x]=y bieu thi (x,y) la cap ghep, o day x va y co the la hoa
+// slack[x]=u bieu thi z(x,u) la nho nhat trong cac canh ke voi x
+// st[x]=b bieu thi hoa chua nut x la b. Neu x=b va b<=n thi x
+// la mot nut thong thuong khong thuoc bat ky hoa nao.
+// pa[v]=u bieu thi trong cay luan phien, nut cha cua v la u
 int flower_from[MAXN * 2 + 1][MAXN + 1], S[MAXN * 2 + 1], vis[MAXN * 2 + 1];
 /*
-flower_from[b][x]=xs表示最大的包含x的b的子花是xs
-x是b里面的一个点，xs是b里面的一朵花或一个点，同时x=xs或x是xs的其中一个点
+flower_from[b][x]=xs bieu thi hoa con lon nhat cua b co chua x la xs
+x la mot dinh trong b, xs la mot hoa hoac mot dinh trong b,
+dong thoi x=xs hoac x la mot trong cac dinh cua xs
 */
-// S[u]={-1:没走过 0:偶点 1:奇点}
-// vis只用在找lca的时候检查是不是走过了
+// S[u]={-1: chua tham, 0: dinh chan, 1: dinh le}
+// vis chi duoc dung khi tim lca de kiem tra da di qua hay chua
 queue<int> q;
-// BFS找增广路用的queue
+// queue dung cho BFS tim duong tang cuong
 ```
 
 ![general-weight-match-4](images/general-weight-match-4.png)
@@ -230,25 +233,25 @@ flower_from[b2][6] = b1
 flower_from[b2][5] = b1 
 flower_from[b2][9] = 9 
 flower_from[b1][6] = 6 
-以此类推
+Va cu the tiep
 ```
 
 ```cpp
 int e_delta(const edge &e) {
-  // 计算ze，为了方便起见先把所有边的权重乘二
-  // 在花里面直接计算 e_delta 值会导致错误
+  // Tinh ze. De tien loi, truoc do nhan trong so moi canh voi hai
+  // Tinh truc tiep gia tri e_delta ben trong hoa se gay loi
   return lab[e.u] + lab[e.v] - g[e.u][e.v].w * 2;
 }
 
 void update_slack(int u, int x) {
-  // 以u更新slack[x]的值
+  // Dung u de cap nhat gia tri slack[x]
   if (!slack[x] || e_delta(g[u][x]) < e_delta(g[slack[x]][x])) {
     slack[x] = u;
   }
 }
 
 void set_slack(int x) {
-  // 算出slack[x]的值，slack[x]=0表示x是交错树中的节点
+  // Tinh gia tri slack[x], slack[x]=0 bieu thi x la nut trong cay luan phien
   slack[x] = 0;
   for (int u = 1; u <= n; ++u) {
     if (g[u][x].w > 0 && st[u] != x && S[st[u]] == 0) {
@@ -260,11 +263,11 @@ void set_slack(int x) {
 
 ```cpp
 void q_push(int x) {
-  // 把x丟到queue里面，我们设定queue不能直接push一朵花
+  // Dua x vao queue, ta quy dinh queue khong the push truc tiep mot hoa
   if (x <= n)
     q.push(x);
   else {
-    // 若要push花必须将花里面原图的点都添加到queue中
+    // Neu muon push mot hoa thi phai them tat ca dinh cua do thi goc trong hoa vao queue
     for (size_t i = 0; i < flower[x].size(); i++) {
       q_push(flower[x][i]);
     }
@@ -272,10 +275,10 @@ void q_push(int x) {
 }
 
 void set_st(int x, int b) {
-  // 将x所在的花设为b
+  // Dat hoa chua x thanh b
   st[x] = b;
   if (x > n) {
-    // 若x也是花的话，就必须要把x里面的点其所在的花也设为b
+    // Neu x cung la hoa, phai dat hoa chua cac dinh ben trong x thanh b
     for (size_t i = 0; i < flower[x].size(); ++i) {
       set_st(flower[x][i], b);
     }
@@ -285,13 +288,13 @@ void set_st(int x, int b) {
 
 ```cpp
 int get_pr(int b, int xr) {
-  // xr是flower[b]中的一个点，返回值pr是它的位置
-  // 为了方便程序运行，我们让 flower[b][0]~flower[b][pr]为花里的交替路
+  // xr la mot dinh trong flower[b], gia tri tra ve pr la vi tri cua no
+  // De chuong trinh chay thuan tien, ta de flower[b][0]~flower[b][pr] la duong luan phien trong hoa
   int pr = find(flower[b].begin(), flower[b].end(), xr) - flower[b].begin();
   if (pr % 2 == 1) {
-    // 检查他在花里的位置，如果 flower[b][0]~flower[b][pr] 不是交替路
-    // 就把整朵花反转，重新计算 pr
-    // 让 flower[b][0]~flower[b][pr] 为花里的交替路
+    // Kiem tra vi tri cua no trong hoa. Neu flower[b][0]~flower[b][pr] khong phai duong luan phien
+    // thi dao nguoc ca hoa va tinh lai pr
+    // De flower[b][0]~flower[b][pr] thanh duong luan phien trong hoa
     reverse(flower[b].begin() + 1, flower[b].end());
     return (int)flower[b].size() - pr;
   } else
@@ -301,31 +304,31 @@ int get_pr(int b, int xr) {
 
 ![general-weight-match-5](images/general-weight-match-5.png)
 
-如果使用 `get_pr(b2,11)`，`flower[b2]` 会变成 `{9,10,11,2,3,4,b1}`，并返回 2．
+Nếu dùng `get_pr(b2,11)`, `flower[b2]` sẽ trở thành `{9,10,11,2,3,4,b1}` và trả về 2.
 
-如果使用 `get_pr(b2,2)`，`flower[b2]` 会变成 `{9,b1,4,3,2,11,10}`，并返回 4．
+Nếu dùng `get_pr(b2,2)`, `flower[b2]` sẽ trở thành `{9,b1,4,3,2,11,10}` và trả về 4.
 
 ```cpp
 void set_match(int u, int v) {
-  // 设置u和v为匹配边，u和v有可能是花
+  // Dat u va v thanh canh ghep cap, u va v co the la hoa
   match[u] = g[u][v].v;
   if (u > n) {
-    // 如果u是花的话
+    // Neu u la hoa
     edge e = g[u][v];
-    int xr = flower_from[u][e.u];  // 找出e.u在flower[u]里的哪朵花上
-    int pr = get_pr(u, xr);  // 找出xr的位置并让0~pr为花里的交替路径
-    for (int i = 0; i < pr; ++i) {  // 把花里的交替路上的匹配边和非匹配边反转
+    int xr = flower_from[u][e.u];  // Tim e.u nam tren hoa nao trong flower[u]
+    int pr = get_pr(u, xr);  // Tim vi tri cua xr va de 0~pr la duong luan phien trong hoa
+    for (int i = 0; i < pr; ++i) {  // Dao cac canh ghep va khong ghep tren duong luan phien trong hoa
       set_match(flower[u][i], flower[u][i ^ 1]);
     }
-    set_match(xr, v);  // 设置(xr,v)为匹配边
+    set_match(xr, v);  // Dat (xr,v) thanh canh ghep cap
     rotate(flower[u].begin(), flower[u].begin() + pr, flower[u].end());
-    // 最后把pr设为花托，因为花的存法是flower[u][0]会是u的花托
-    // 所以要把flower[u][pr] rotate 到最前面
+    // Cuoi cung dat pr thanh de hoa, vi cach luu hoa la flower[u][0] se la de hoa cua u
+    // Nen can rotate flower[u][pr] ve dau
   }
 }
 
 void augment(int u, int v) {
-  // 把u和u的祖先全部增广，并设(u,v)为匹配边
+  // Tang cuong toan bo u va cac to tien cua u, dong thoi dat (u,v) thanh canh ghep cap
   for (;;) {
     int xnv = st[match[u]];
     set_match(u, v);
@@ -337,12 +340,12 @@ void augment(int u, int v) {
 }
 
 int get_lca(int u, int v) {
-  // 找出u,v在交错树上的lca
+  // Tim lca cua u, v tren cay luan phien
   static int t = 0;
   for (++t; u || v; swap(u, v)) {
     if (u == 0) continue;
     if (vis[u] == t) return u;
-    vis[u] = t;  // 这种方法可以不用清空vis数组
+    vis[u] = t;  // Cach nay giup khong can xoa mang vis
     u = st[match[u]];
     if (u) u = st[pa[u]];
   }
@@ -350,18 +353,18 @@ int get_lca(int u, int v) {
 }
 ```
 
-???+ note "增加一朵奇花"
+???+ note "Thêm một hoa lẻ"
     ```cpp
     void add_blossom(int u, int lca, int v) {
-      // 将u,v,lca这朵花缩成一个点 b
-      // 交错树上u,v的lca即为花托
+      // Co hoa tao boi u, v, lca thanh mot dinh b
+      // lca cua u, v tren cay luan phien chinh la de hoa
       int b = n + 1;
       while (b <= n_x && st[b]) ++b;
       if (b > n_x) ++n_x;
-      // 找出目前未使用的花的编号
-      lab[b] = 0;             // 设置zB=0
-      S[b] = 0;               // 整朵花为一个偶点
-      match[b] = match[lca];  // 设置花的匹配边为花托的匹配边
+      // Tim chi so hoa hien chua duoc dung
+      lab[b] = 0;             // Dat zB=0
+      S[b] = 0;               // Ca hoa la mot dinh chan
+      match[b] = match[lca];  // Dat canh ghep cua hoa thanh canh ghep cua de hoa
       flower[b].clear();
       flower[b].push_back(lca);
       for (int x = u, y; x != lca; x = st[pa[y]]) {
@@ -377,8 +380,8 @@ int get_lca(int u, int v) {
         flower[b].push_back(y);
         q_push(y);
       }
-      // b中所有点以环形的方式加入flower[b]，并设花托为首个元素
-      set_st(b, b);  // 把整朵花里所有的元素其所在的花设为b
+      // Dua tat ca dinh trong b vao flower[b] theo dang vong, va dat de hoa lam phan tu dau tien
+      set_st(b, b);  // Dat hoa chua moi phan tu trong ca hoa thanh b
       for (int x = 1; x <= n_x; ++x) {
         g[b][x].w = 0;
         g[x][b].w = 0;
@@ -389,7 +392,7 @@ int get_lca(int u, int v) {
       for (size_t i = 0; i < flower[b].size(); ++i) {
         int xs = flower[b][i];
         for (int x = 1; x <= n_x; ++x) {
-          // 设置b和x相邻的边为b里面和x相邻的边e_delta最小的那条
+          // Dat canh ke giua b va x thanh canh trong b ke voi x co e_delta nho nhat
           if (g[b][x].w == 0 || e_delta(g[xs][x]) < e_delta(g[b][x])) {
             g[b][x] = g[xs][x];
             g[x][b] = g[x][xs];
@@ -397,33 +400,33 @@ int get_lca(int u, int v) {
         }
         for (int x = 1; x <= n; ++x) {
           if (flower_from[xs][x]) {
-            // 如果b里面的点xs有包含x
-            // 那flower_from[b][x]就会是xs
+            // Neu dinh xs ben trong b co chua x
+            // Thi flower_from[b][x] se la xs
             flower_from[b][x] = xs;
           }
         }
       }
       set_slack(b);
-      // 最后必须要设置b的slack值
+      // Cuoi cung phai dat gia tri slack cua b
     }
     ```
 
-???+ note "拆花"
+???+ note "Bung hoa"
     ```cpp
     void expand_blossom(int b) {
-      // b是奇花且zB=0时，必须要把b拆开
-      // 因为只拆开b而已，所以如果b里面有包含其他的花
-      // 不需要把他们拆开
+      // Khi b la hoa le va zB=0, phai bung b ra
+      // Vi chi bung b, nen neu ben trong b co chua cac hoa khac
+      // thi khong can bung chung ra
       for (size_t i = 0; i < flower[b].size(); ++i) {
         set_st(flower[b][i], flower[b][i]);
-        // 先把flower[b]里每个元素所在的花设为自己
+        // Truoc tien dat hoa chua moi phan tu trong flower[b] thanh chinh no
       }
       int xr = flower_from[b][g[b][pa[b]].u];
-      // xr表示交错路上b的父母节点在flower[b]里的哪朵花上
-      int pr = get_pr(b, xr);  // 找出xr的位置并让0~pr为花里的交替路径
+      // xr bieu thi nut cha cua b tren duong luan phien nam tren hoa nao trong flower[b]
+      int pr = get_pr(b, xr);  // Tim vi tri cua xr va de 0~pr la duong luan phien trong hoa
       for (int i = 0; i < pr; i += 2) {
-        // 把交替路径拆开到交错树中
-        // 并把交替路中的偶点丢到queue里
+        // Bung duong luan phien vao trong cay luan phien
+        // Va dua cac dinh chan trong duong luan phien vao queue
         int xs = flower[b][i];
         int xns = flower[b][i + 1];
         pa[xs] = g[xns][xs].u;
@@ -433,10 +436,10 @@ int get_lca(int u, int v) {
         set_slack(xns);
         q_push(xns);
       }
-      S[xr] = 1;  // 这时xr会是奇点或奇花
+      S[xr] = 1;  // Luc nay xr se la dinh le hoac hoa le
       pa[xr] = pa[b];
       for (size_t i = pr + 1; i < flower[b].size(); ++i) {
-        // 把花中所有不再交替路径上的点设为未走访
+        // Dat moi dinh trong hoa khong nam tren duong luan phien thanh chua tham
         int xs = flower[b][i];
         S[xs] = -1;
         set_slack(xs);
@@ -445,15 +448,15 @@ int get_lca(int u, int v) {
     }
     ```
 
-???+ note "尝试增广一条等边"
+???+ note "Thử tăng cường một cạnh đẳng thức"
     ```cpp
     bool on_found_edge(const edge &e) {
-      // BFS时找到一条等边e
-      // 要对它进行以下的处理
-      // 这里u一定是偶点
+      // Tim thay mot canh dang thuc e trong BFS
+      // Can xu ly no theo cac buoc sau
+      // O day u nhat dinh la dinh chan
       int u = st[e.u], v = st[e.v];
       if (S[v] == -1) {
-        // v是未走访节点
+        // v la nut chua tham
         pa[v] = e.u;
         S[v] = 1;
         int nu = st[match[v]];
@@ -462,35 +465,35 @@ int get_lca(int u, int v) {
         S[nu] = 0;
         q_push(nu);
       } else if (S[v] == 0) {
-        // v是偶点
+        // v la dinh chan
         int lca = get_lca(u, v);
-        if (!lca) {  // lca=0表示u,v在不同的交错树上，有增广路
+        if (!lca) {  // lca=0 bieu thi u, v o hai cay luan phien khac nhau, co duong tang cuong
           augment(u, v);
           augment(v, u);
-          return true;  // 找到增广路
+          return true;  // Tim thay duong tang cuong
         } else
           add_blossom(u, lca, v);
-        // 否则u,v在同棵树上就会是一朵花，要缩花
+        // Nguoc lai, u va v o cung mot cay thi se tao thanh mot hoa, can co hoa
       }
       return false;
     }
     ```
 
-???+ note "增广"
+???+ note "Tăng cường"
     ```cpp
     bool matching() {
       memset(S + 1, -1, sizeof(int) * n_x);
       memset(slack + 1, 0, sizeof(int) * n_x);
-      q = queue<int>();  // 把queue清空
+      q = queue<int>();  // Xoa rong queue
       for (int x = 1; x <= n_x; ++x) {
         if (st[x] == x && !match[x]) {
-          // 把所有非匹配点加入queue里面，并设为偶点
+          // Dua tat ca dinh chua ghep cap vao queue va dat thanh dinh chan
           pa[x] = 0;
           S[x] = 0;
           q_push(x);
         }
       }
-      if (q.empty()) return false;  // 所有点都有匹配了
+      if (q.empty()) return false;  // Tat ca dinh deu da duoc ghep cap
       for (;;) {
         while (q.size()) {
           // BFS
@@ -506,11 +509,11 @@ int get_lca(int u, int v) {
             }
           }
         }
-        // 修改lab值
+        // Sua gia tri lab
         int d = INF;
         for (int u = 1; u <= n; ++u) {
-          // 这是为了防止出现lab<0的情况发生
-          // 只要有任何一个lab[u]=0就结束程序
+          // De tranh xay ra truong hop lab<0
+          // Chi can co bat ky lab[u]=0 nao thi ket thuc chuong trinh
           if (S[st[u]] == 0) d = min(d, lab[u]);
         }
         for (int b = n + 1; b <= n_x; ++b) {
@@ -526,7 +529,7 @@ int get_lca(int u, int v) {
         for (int u = 1; u <= n; ++u) {
           if (S[st[u]] == 0) {
             if (lab[u] == d) return false;
-            // 如果lab[u]=0就直接结束程序
+            // Neu lab[u]=0 thi ket thuc truc tiep chuong trinh
             lab[u] -= d;
           } else if (S[st[u]] == 1)
             lab[u] += d;
@@ -539,15 +542,15 @@ int get_lca(int u, int v) {
               lab[b] -= d * 2;
           }
         }
-        q = queue<int>();  // 把queue清空
+        q = queue<int>();  // Xoa rong queue
         for (int x = 1; x <= n_x; ++x) {
-          // 检查看看有没有增广路径产生
+          // Kiem tra xem co sinh ra duong tang cuong hay khong
           if (st[x] == x && slack[x] && st[slack[x]] != x &&
               e_delta(g[slack[x]][x]) == 0)
             if (on_found_edge(g[slack[x]][x])) return true;
         }
         for (int b = n + 1; b <= n_x; ++b) {
-          // EXPAND的操作，把所有lab[b]=0的奇花拆开
+          // Thao tac EXPAND, bung moi hoa le co lab[b]=0
           if (st[b] == b && S[b] == 1 && lab[b] == 0) expand_blossom(b);
         }
       }
@@ -555,30 +558,30 @@ int get_lca(int u, int v) {
     }
     ```
 
-???+ note "主函数"
+???+ note "Hàm chính"
     ```cpp
     pair<long long, int> weight_blossom() {
-      // 主函数，一开始先初始化
+      // Ham chinh, ban dau khoi tao truoc
       memset(match + 1, 0, sizeof(int) * n);
-      n_x = n;  // 一开始没有花
+      n_x = n;  // Ban dau chua co hoa
       int n_matches = 0;
       long long tot_weight = 0;
       for (int u = 0; u <= n; ++u) {
-        // 先把自己所在的花设为自己
+        // Truoc tien dat hoa chua chinh no thanh chinh no
         st[u] = u;
         flower[u].clear();
       }
       int w_max = 0;
       for (int u = 1; u <= n; ++u)
         for (int v = 1; v <= n; ++v) {
-          // u是一个点时，里面所包含的点只有自己
+          // Khi u la mot dinh, cac dinh ma no chua chi co chinh no
           flower_from[u][v] = (u == v ? u : 0);
           w_max = max(w_max, g[u][v].w);
-          // 找出最大的边权
+          // Tim trong so canh lon nhat
         }
       for (int u = 1; u <= n; ++u) lab[u] = w_max;
-      // 让所有的lab=最大的边权
-      // 因为这里实现是用边权乘二来计算ze的值所以不用除以二
+      // Dat moi lab bang trong so canh lon nhat
+      // Vi phan cai dat nay dung trong so canh nhan hai de tinh ze, nen khong can chia hai
       while (matching()) ++n_matches;
       for (int u = 1; u <= n; ++u)
         if (match[u] && match[u] < u) tot_weight += g[u][match[u]].w;
@@ -586,29 +589,29 @@ int get_lca(int u, int v) {
     }
     ```
 
-???+ note "初始化"
-    很重要 使用前一定要初始化
+???+ note "Khởi tạo"
+    Rất quan trọng: nhất định phải khởi tạo trước khi dùng.
     
     ```cpp
     void init_weight_graph() {
-      // 在把边输入到图里面前必须要初始化
-      // 因为是最大权匹配所以把不存在的边设为0
+      // Phai khoi tao truoc khi nhap canh vao do thi
+      // Vi day la ghep cap trong so lon nhat, dat canh khong ton tai bang 0
       for (int u = 1; u <= n; ++u)
         for (int v = 1; v <= n; ++v) g[u][v] = edge(u, v, 0);
     }
     ```
 
-## 复杂度分析
+## Phân tích độ phức tạp
 
-每朵花在一次 BFS 中只会被缩花或拆花一次．每次缩花或拆花的时间复杂度为 $O(|V|)$．最多总共有 $O(|V|)$ 朵花，所以花的处理花费 $O(|V|^2)$ 的时间．而 BFS 花费 $O(|V| + |E|)$ 的时间复杂度．因此，找增广路花费 $O(|V| + |E|) + O(|V|^2) = O(|V|^2)$ 的时间复杂度．
+Mỗi hoa chỉ bị co hoặc bung một lần trong một BFS. Mỗi lần co hoa hoặc bung hoa có độ phức tạp thời gian $O(|V|)$. Tổng cộng có nhiều nhất $O(|V|)$ hoa, nên phần xử lý hoa tốn $O(|V|^2)$ thời gian. Còn BFS có độ phức tạp thời gian $O(|V| + |E|)$. Vì vậy, tìm đường tăng cường tốn $O(|V| + |E|) + O(|V|^2) = O(|V|^2)$ thời gian.
 
-最多做 $|V|$ 次 BFS．所以，总时间复杂度为 $O(|V|^3)$．
+Thực hiện nhiều nhất $|V|$ lần BFS. Do đó, tổng độ phức tạp thời gian là $O(|V|^3)$.
 
-## 习题
+## Bài tập
 
--   [UOJ #81. 一般图最大权匹配](https://uoj.ac/problem/81)
+-   [UOJ #81. Ghép cặp trọng số lớn nhất trên đồ thị tổng quát](https://uoj.ac/problem/81)
 
-## 参考资料
+## Tài liệu tham khảo
 
 1.  [Kolmogorov, Vladimir (2009), "Blossom V: A new implementation of a minimum cost perfect matching algorithm"](http://pub.ist.ac.at/~vnk/papers/BLOSSOM5.html)
-2.  [从匈牙利算法到带权带花树——详解对偶问题在图匹配上的应用](https://www.luogu.com.cn/blog/potassium/solution-p6699)
+2.  [Từ thuật toán Hungary đến cây blossom có trọng số - giải thích chi tiết ứng dụng của bài toán đối ngẫu trong ghép cặp đồ thị](https://www.luogu.com.cn/blog/potassium/solution-p6699)

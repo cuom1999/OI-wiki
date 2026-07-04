@@ -300,6 +300,13 @@ MkDocs source layout intact.
   `docs/graph/flow/bound.md`, `docs/graph/stoer-wagner.md`: translated
   network-flow overview, max flow, min cut, min-cost flow, bounded flows, and
   Stoer-Wagner global min-cut material.
+- `docs/graph/graph-matching/graph-match.md`,
+  `docs/graph/graph-matching/bigraph-match.md`,
+  `docs/graph/graph-matching/bigraph-weight-match.md`,
+  `docs/graph/graph-matching/general-match.md`,
+  `docs/graph/graph-matching/general-weight-match.md`,
+  `docs/graph/graph-matching/stable-match.md`: translated graph matching,
+  bipartite/general matching, weighted matching, and stable matching material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

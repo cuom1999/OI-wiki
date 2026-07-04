@@ -1,238 +1,238 @@
 author: 310552025atNYCU, accelsao, Chrogeek, Enter-tainer, iamtwz, mcendu, Shen-Linwood, shuzhouliu, StudyingFather, t4rf9, Tiphereth-A, TrickEye, wlbksy, Xeonacid, yuhuoji, c-forrest, aaron20100919
 
-## 引入
+## Mở đầu
 
-**匹配** 或是 **独立边集** 是一张图中不具有公共端点的边的集合．图匹配算法是信息学竞赛中常用的算法，大致可以分为最大匹配以及最大权匹配两类．因为 [二分图](../bi-graph.md) 中的匹配等价于网络流问题，性质良好，相对容易处理，所以，此处将先从二分图开始介绍两类算法，再讨论一般图的算法．
+**Ghép cặp** hay **tập cạnh độc lập** là một tập các cạnh trong đồ thị không có chung đầu mút. Thuật toán ghép cặp trong đồ thị là nhóm thuật toán thường gặp trong lập trình thi đấu, có thể chia đại khái thành hai loại: ghép cặp lớn nhất và ghép cặp trọng số lớn nhất. Vì ghép cặp trong [đồ thị hai phía](../bi-graph.md) tương đương với bài toán luồng mạng, có nhiều tính chất tốt và tương đối dễ xử lý, phần này sẽ bắt đầu bằng hai loại thuật toán trên đồ thị hai phía rồi mới thảo luận thuật toán cho đồ thị tổng quát.
 
-## 图的匹配
+## Ghép cặp trong đồ thị
 
-设 $G=(V,E)$ 是一张无向图，其中，$V$ 是顶点集，$E$ 是边集．如果一组边 $M\subseteq E$ 不包含自环，且两两之间没有公共顶点，那么，边集 $M$ 就称为图 $G$ 的一个 **匹配**（matching）或 **独立边集**（independent edge set）．一条边 $e\in E$，如果出现在匹配 $M$ 中，就称为 **匹配边**，否则称为 **非匹配边**．相应地，一个顶点 $v\in V$，如果它是一条匹配边的一个端点，就称为 **匹配点**，否则称为 **未匹配点**．
+Gọi $G=(V,E)$ là một đồ thị vô hướng, trong đó $V$ là tập đỉnh và $E$ là tập cạnh. Nếu một tập cạnh $M\subseteq E$ không chứa khuyên và mọi cặp cạnh trong đó không có đỉnh chung, thì tập cạnh $M$ được gọi là một **ghép cặp** (matching) hay **tập cạnh độc lập** (independent edge set) của đồ thị $G$. Một cạnh $e\in E$ nếu xuất hiện trong ghép cặp $M$ thì được gọi là **cạnh ghép cặp**, ngược lại được gọi là **cạnh không ghép cặp**. Tương ứng, một đỉnh $v\in V$ nếu là đầu mút của một cạnh ghép cặp thì được gọi là **đỉnh đã ghép cặp**, ngược lại được gọi là **đỉnh chưa ghép cặp**.
 
-匹配 $M$ 的大小，就是它包含的边的数量．对于（加权）无向图中的匹配，常常会考虑如下概念：
+Kích thước của ghép cặp $M$ là số cạnh mà nó chứa. Với ghép cặp trong đồ thị vô hướng (có trọng số), ta thường xét các khái niệm sau:
 
--   **极大匹配**（maximal matching）：无法继续增加匹配边的匹配．极大匹配不一定是最大匹配．
+-   **Ghép cặp cực đại** (maximal matching): ghép cặp không thể thêm cạnh ghép cặp nào nữa. Ghép cặp cực đại không nhất thiết là ghép cặp lớn nhất.
 
-    ![maximal matching](images/graph-match-1.svg)
+    ![ghép cặp cực đại](images/graph-match-1.svg)
 
--   **最大匹配**（maximum matching or maximum cardinality matching）：匹配边数最多的匹配．最大匹配可能有不止一个，但最大匹配的边数是确定的，而且不可能超过图中顶点数的一半．
+-   **Ghép cặp lớn nhất** (maximum matching or maximum cardinality matching): ghép cặp có số cạnh ghép cặp nhiều nhất. Có thể có nhiều ghép cặp lớn nhất, nhưng số cạnh của ghép cặp lớn nhất là xác định và không thể vượt quá một nửa số đỉnh của đồ thị.
 
-    ![maximum cardinality matching](images/graph-match-2.svg)
+    ![ghép cặp lớn nhất theo số cạnh](images/graph-match-2.svg)
 
--   **最大权匹配**（maximum weight matching）：加权图中，边权和最大的匹配．
+-   **Ghép cặp trọng số lớn nhất** (maximum weight matching): trong đồ thị có trọng số, đây là ghép cặp có tổng trọng số cạnh lớn nhất.
 
-    ![maximum weight matching](images/graph-match-3.svg)
+    ![ghép cặp trọng số lớn nhất](images/graph-match-3.svg)
 
--   **最大权最大匹配**（maximum weight maximum cardinality matching）：匹配数最多的前提下，边权和最大的匹配．即所有最大匹配中，边权和最大的匹配．
+-   **Ghép cặp lớn nhất có trọng số lớn nhất** (maximum weight maximum cardinality matching): trong số các ghép cặp có số cạnh lớn nhất, chọn ghép cặp có tổng trọng số cạnh lớn nhất. Nói cách khác, đó là ghép cặp có tổng trọng số lớn nhất trong tất cả các ghép cặp lớn nhất.
 
-    ![maximum weight maximum cardinality matching](images/graph-match-4.svg)
+    ![ghép cặp lớn nhất có trọng số lớn nhất](images/graph-match-4.svg)
 
--   **完美匹配**（perfect matching）：每个顶点都是匹配点的匹配．完美匹配一定是最大匹配．顶点数为偶数的完全图，必然存在完美匹配．
+-   **Ghép cặp hoàn hảo** (perfect matching): ghép cặp mà mọi đỉnh đều là đỉnh đã ghép cặp. Ghép cặp hoàn hảo chắc chắn là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh chẵn luôn tồn tại ghép cặp hoàn hảo.
 
--   **近完美匹配**（near-perfect matching）：有且只有一个未匹配点的匹配．这只能发生在图的顶点数是奇数时．近完美匹配也一定是最大匹配．顶点数为奇数的完全图，必然存在近完美匹配．
+-   **Ghép cặp gần hoàn hảo** (near-perfect matching): ghép cặp có đúng một đỉnh chưa ghép cặp. Điều này chỉ có thể xảy ra khi số đỉnh của đồ thị là lẻ. Ghép cặp gần hoàn hảo cũng chắc chắn là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh lẻ luôn tồn tại ghép cặp gần hoàn hảo.
 
-算法竞赛中涉及的图的匹配问题，主要指的是图的最大匹配或最大权匹配．
+Trong lập trình thi đấu, các bài toán ghép cặp trong đồ thị chủ yếu nói đến ghép cặp lớn nhất hoặc ghép cặp trọng số lớn nhất.
 
-## 增广路
+## Đường tăng
 
-图匹配算法中，增广路是用于改进匹配的核心结构．
+Trong các thuật toán ghép cặp trong đồ thị, đường tăng là cấu trúc cốt lõi dùng để cải thiện ghép cặp.
 
-### 定义
+### Định nghĩa
 
-对于图 $G=(V,E)$ 和它的一个匹配 $M$，可以定义如下两种（简单）路径：
+Với đồ thị $G=(V,E)$ và một ghép cặp $M$ của nó, ta có thể định nghĩa hai loại đường đi (đơn) sau:
 
--   **交错路**（alternating path）是由匹配边与非匹配边交错而成的路径；
--   **增广路**（augmenting path）是始于未匹配点且终于未匹配点的交错路．
+-   **Đường xen kẽ** (alternating path) là đường đi gồm các cạnh ghép cặp và cạnh không ghép cặp xuất hiện luân phiên;
+-   **Đường tăng** (augmenting path) là đường xen kẽ bắt đầu ở một đỉnh chưa ghép cặp và kết thúc ở một đỉnh chưa ghép cặp.
 
-因为增广路上非匹配边比匹配边数量多 $1$，所以增广路中边的数量一定是奇数．如果将增广路上的匹配边和非匹配边反转，那么它依然是交错路，而且匹配数量会增加 $1$．寻找增广路并反转它以增加匹配大小的过程，就称为 **增广**（augmentation）．用数学语言说，增广相当于将匹配 $M$ 与增广路 $P$ 取对称差，得到新的匹配 $M\oplus P$．
+Vì trên đường tăng, số cạnh không ghép cặp nhiều hơn số cạnh ghép cặp đúng $1$, nên số cạnh của đường tăng luôn là số lẻ. Nếu đảo trạng thái các cạnh ghép cặp và không ghép cặp trên đường tăng, ta vẫn thu được một đường xen kẽ, đồng thời số cạnh trong ghép cặp tăng thêm $1$. Quá trình tìm một đường tăng rồi đảo nó để tăng kích thước ghép cặp được gọi là **tăng** (augmentation). Theo ngôn ngữ toán học, phép tăng tương đương với lấy hiệu đối xứng giữa ghép cặp $M$ và đường tăng $P$, thu được ghép cặp mới $M\oplus P$.
 
-下图展示了在一次增广操作后，匹配数量由 $2$ 增加为 $3$ 的过程．
+Hình dưới minh họa quá trình sau một phép tăng, số cạnh ghép cặp tăng từ $2$ lên $3$.
 
-![augment-1](./images/augment-1.png)
+![tăng-1](./images/augment-1.png)
 
-### Berge 引理
+### Bổ đề Berge
 
-Berge 引理说明，利用增广路改进匹配的方法是充分的．也就是说，当找不到增广路时，就说明已经得到了最大匹配．
+Bổ đề Berge cho biết phương pháp cải thiện ghép cặp bằng đường tăng là đủ. Nói cách khác, khi không tìm được đường tăng nữa thì ta đã thu được ghép cặp lớn nhất.
 
-???+ note "Berge 引理"
-    对于图 $G=(V,E)$ 和它的一个匹配 $M$，匹配 $M$ 是最大匹配，当且仅当不存在相对于匹配 $M$ 的增广路．
+???+ note "Bổ đề Berge"
+    Với đồ thị $G=(V,E)$ và một ghép cặp $M$ của nó, $M$ là ghép cặp lớn nhất khi và chỉ khi không tồn tại đường tăng đối với ghép cặp $M$.
 
-??? note "证明"
-    前文已经说明，存在增广路 $P$ 时，匹配 $M\oplus P$ 是比 $M$ 更大的匹配，因此 $M$ 一定不是最大匹配．
+??? note "Chứng minh"
+    Như đã nói ở trên, nếu tồn tại đường tăng $P$, thì $M\oplus P$ là một ghép cặp lớn hơn $M$, vì vậy $M$ chắc chắn không phải là ghép cặp lớn nhất.
     
-    反过来，需要说明，如果存在比匹配 $M$ 更大的匹配 $M'$，那么，一定存在相对于 $M$ 的增广路 $P$．为此，考察对称差 $M\oplus M'$．图 $(V,M\oplus M')$ 中顶点的度数只能是 $0$、$1$ 或 $2$；这样的图的连通分量必然是路径、环路、孤立点之一．而且，与度数为 $2$ 的顶点相邻的两条边必定来自不同的匹配，所以，这些环路中来自 $M$ 和 $M'$ 的边的数量是一样的．因为 $M'$ 比 $M$ 大，所以存在至少一条路径中来自 $M'$ 的边的数量多于 $M$；记该路径为 $P$．那么，$P$ 的起点和终点都是 $M$ 的未匹配点，且 $P$ 是相对于 $M$ 的交错路，所以 $P$ 一定是相对于 $M$ 的增广路．这就完成了证明．
+    Ngược lại, cần chứng minh rằng nếu tồn tại một ghép cặp $M'$ lớn hơn ghép cặp $M$, thì chắc chắn tồn tại một đường tăng $P$ đối với $M$. Xét hiệu đối xứng $M\oplus M'$. Trong đồ thị $(V,M\oplus M')$, bậc của mỗi đỉnh chỉ có thể là $0$, $1$ hoặc $2$; các thành phần liên thông của đồ thị như vậy tất yếu là đường đi, chu trình hoặc đỉnh cô lập. Hơn nữa, hai cạnh kề với một đỉnh bậc $2$ chắc chắn đến từ hai ghép cặp khác nhau, nên trong mỗi chu trình này, số cạnh đến từ $M$ và $M'$ là như nhau. Vì $M'$ lớn hơn $M$, nên tồn tại ít nhất một đường đi mà số cạnh đến từ $M'$ nhiều hơn số cạnh đến từ $M$; gọi đường đi đó là $P$. Khi đó, hai đầu mút của $P$ đều là đỉnh chưa ghép cặp theo $M$, và $P$ là đường xen kẽ đối với $M$, nên $P$ chắc chắn là đường tăng đối với $M$. Chứng minh hoàn tất.
 
-由此定理可知我们求最大匹配的核心思路：
+Từ định lý này, ý tưởng cốt lõi để tìm ghép cặp lớn nhất là:
 
--   枚举所有未匹配点，找增广路径，直到找不到增广路径．
+-   Duyệt tất cả các đỉnh chưa ghép cặp, tìm đường tăng cho đến khi không còn tìm được đường tăng nào nữa.
 
-事实上，每次增广操作结束后，不需要重新遍历一次所有未匹配点．在整个求最大匹配的过程中，每个顶点只需要遍历一次就好．
+Thực ra, sau mỗi phép tăng, không cần duyệt lại tất cả các đỉnh chưa ghép cặp. Trong toàn bộ quá trình tìm ghép cặp lớn nhất, mỗi đỉnh chỉ cần được duyệt một lần.
 
-??? note "证明"
-    只需要说明，如果在枚举进行到顶点 $v$ 时，不存在以 $v$ 为起点的增广路，那么在若干轮增广之后，也不存在以 $v$ 为起点的增广路．这就说明，即使增广引起了匹配的改变，也不需要再次检查之前已经枚举过的未匹配点．
+??? note "Chứng minh"
+    Chỉ cần chứng minh rằng nếu khi đang xét đỉnh $v$ không tồn tại đường tăng bắt đầu từ $v$, thì sau một số lượt tăng, vẫn không tồn tại đường tăng bắt đầu từ $v$. Điều này cho thấy dù phép tăng làm thay đổi ghép cặp, ta cũng không cần kiểm tra lại các đỉnh chưa ghép cặp đã được duyệt trước đó.
     
-    假设不然．也就是说，假设 $v$ 是已经枚举过的未匹配点，在某一轮沿着自 $u$ 至 $w$ 的增广路 $P$ 增广后，新增了之前不存在的以 $v$ 为起点的增广路 $P'$．那么，路径 $P'$ 必然与 $P$ 有公共边；否则，沿着 $P$ 增广不会引起 $P'$ 中的边的匹配状态改变，$P'$ 也就不是因为此次增广而新增的增广路．
+    Giả sử ngược lại. Tức là, giả sử $v$ là một đỉnh chưa ghép cặp đã được duyệt, và sau một lượt tăng dọc theo đường tăng $P$ từ $u$ đến $w$, xuất hiện một đường tăng mới $P'$ bắt đầu từ $v$ mà trước đó không tồn tại. Khi đó, đường $P'$ chắc chắn phải có cạnh chung với $P$; nếu không, việc tăng dọc theo $P$ sẽ không làm thay đổi trạng thái ghép cặp của các cạnh trong $P'$, và $P'$ sẽ không phải là đường tăng mới xuất hiện do lượt tăng này.
     
-    ![augment-2](./images/augment-2.svg)
+    ![tăng-2](./images/augment-2.svg)
     
-    （图中黑色表示非匹配边，红色和蓝色表示不同的匹配状态）
+    (Trong hình, màu đen biểu thị cạnh không ghép cặp, màu đỏ và màu xanh biểu thị các trạng thái ghép cặp khác nhau.)
     
-    设 $x$ 是自 $v$ 出发，沿着路径 $P'$ 最先到达的 $P$ 中的顶点．因为在本次增广前，就存在自 $v$ 到 $x$ 的交错路，所以 $x$ 必然是匹配点，也就不能是顶点 $u$ 或顶点 $w$ 中的一个．因此，在增广路 $P$ 上，与 $x$ 相邻的边有两条，且它们的匹配状态相反．这说明，无论沿着以 $v$ 为起点的交错路到达顶点 $x$ 时，边的匹配状态如何，都可以沿着路径 $P$ 将交错路延长至 $u$ 或 $w$ 中的一个．这说明，增广之前就已经存在以 $v$ 为起点的增广路，与假设矛盾．
+    Gọi $x$ là đỉnh đầu tiên thuộc $P$ mà ta gặp khi xuất phát từ $v$ và đi dọc theo đường $P'$. Vì trước lượt tăng này đã tồn tại một đường xen kẽ từ $v$ đến $x$, nên $x$ chắc chắn là đỉnh đã ghép cặp, do đó không thể là một trong hai đỉnh $u$ hoặc $w$. Vì vậy, trên đường tăng $P$, có hai cạnh kề với $x$ và trạng thái ghép cặp của chúng trái ngược nhau. Điều này có nghĩa là bất kể khi đến đỉnh $x$ dọc theo đường xen kẽ bắt đầu từ $v$, trạng thái ghép cặp của cạnh cuối là gì, ta đều có thể kéo dài đường xen kẽ dọc theo $P$ đến một trong hai đỉnh $u$ hoặc $w$. Như vậy trước khi tăng đã tồn tại một đường tăng bắt đầu từ $v$, mâu thuẫn với giả thiết.
 
-### 交错树
+### Cây xen kẽ
 
-另一个与增广路紧密相关的概念是交错树．它是从未匹配点 $r$ 进行 DFS 或 BFS 寻找增广路的过程中产生的树．
+Một khái niệm khác liên quan chặt chẽ đến đường tăng là cây xen kẽ. Đây là cây sinh ra trong quá trình dùng DFS hoặc BFS từ một đỉnh chưa ghép cặp $r$ để tìm đường tăng.
 
-对于图 $G=(V,E)$ 和它的一个匹配 $M$，如果子图 $H\subseteq G$ 是以未匹配点 $r$ 为根的树，且连接 $r$ 和任意 $v\in H$ 的路径都是交错路，那么，就称 $H$ 是一个 **交错树**（alternating tree）．其中，树上深度为偶数的点称为偶点，树上深度为奇数的点称为奇点．
+Với đồ thị $G=(V,E)$ và một ghép cặp $M$ của nó, nếu đồ thị con $H\subseteq G$ là một cây có gốc là đỉnh chưa ghép cặp $r$, và đường đi nối $r$ với bất kỳ $v\in H$ nào đều là đường xen kẽ, thì $H$ được gọi là một **cây xen kẽ** (alternating tree). Trong cây, các đỉnh có độ sâu chẵn được gọi là đỉnh chẵn, còn các đỉnh có độ sâu lẻ được gọi là đỉnh lẻ.
 
-下图展示了自未匹配点 $1$ 开始进行 BFS 可能得到的一个交错树．（图中，红边为匹配边，黑边为非匹配边；深色顶点为匹配点，浅色顶点为未匹配点．）
+Hình dưới minh họa một cây xen kẽ có thể thu được khi bắt đầu BFS từ đỉnh chưa ghép cặp $1$. (Trong hình, cạnh đỏ là cạnh ghép cặp, cạnh đen là cạnh không ghép cặp; đỉnh màu đậm là đỉnh đã ghép cặp, đỉnh màu nhạt là đỉnh chưa ghép cặp.)
 
 ![](images/alternating-tree.svg)
 
-## 完美匹配的存在性
+## Sự tồn tại của ghép cặp hoàn hảo
 
-图匹配理论中，有两个重要的存在性定理，可以用于判定二分图或一般图中完美匹配是否存在．
+Trong lý thuyết ghép cặp đồ thị, có hai định lý tồn tại quan trọng, dùng để xác định liệu ghép cặp hoàn hảo có tồn tại trong đồ thị hai phía hoặc đồ thị tổng quát hay không.
 
-### Hall 定理
+### Định lý Hall
 
-假设 $G=(X,Y,E)$ 是二分图，且 $|X|\le |Y|$．对于图 $G$ 的一个匹配 $M$，如果 $X$ 中的所有顶点都是匹配点，那么就称 $M$ 是一个 **$X$‑完美匹配**，有时也简称作（二分图 $G$ 的）完美匹配．这是二分图中可能达成的最大的匹配．Hall 定理提供了判断这种匹配是否存在的充要条件．
+Giả sử $G=(X,Y,E)$ là đồ thị hai phía và $|X|\le |Y|$. Với một ghép cặp $M$ của đồ thị $G$, nếu mọi đỉnh trong $X$ đều là đỉnh đã ghép cặp, thì $M$ được gọi là một **ghép cặp $X$-hoàn hảo**, đôi khi cũng gọi tắt là ghép cặp hoàn hảo (của đồ thị hai phía $G$). Đây là ghép cặp lớn nhất có thể đạt được trong đồ thị hai phía. Định lý Hall đưa ra điều kiện cần và đủ để xác định kiểu ghép cặp này có tồn tại hay không.
 
-Hall 定理说明，只要保证对于 $X$ 的任何子集，$Y$ 中都有足够多的顶点可以与它匹配，就一定存在 $X$‑完美匹配．
+Định lý Hall nói rằng chỉ cần bảo đảm rằng với mọi tập con của $X$, trong $Y$ có đủ nhiều đỉnh để ghép với nó, thì chắc chắn tồn tại ghép cặp $X$-hoàn hảo.
 
-???+ note "Hall 定理"
-    假设 $G=(X,Y,E)$ 是二分图，且 $|X|\le |Y|$．对于任何 $W\subseteq X$，记 $N_G(W)$ 为图 $G$ 中所有与 $W$ 中的顶点相邻的顶点集合．那么，$X$‑完美匹配存在，当且仅当 $|W|\le |N_G(W)|$ 对于所有 $W\subseteq X$ 都成立．
+???+ note "Định lý Hall"
+    Giả sử $G=(X,Y,E)$ là đồ thị hai phía và $|X|\le |Y|$. Với mọi $W\subseteq X$, ký hiệu $N_G(W)$ là tập tất cả các đỉnh trong đồ thị $G$ kề với các đỉnh thuộc $W$. Khi đó, ghép cặp $X$-hoàn hảo tồn tại khi và chỉ khi $|W|\le |N_G(W)|$ đúng với mọi $W\subseteq X$.
 
-??? note "证明"
-    条件显然是必要的．假设 $X$‑完美匹配 $M$ 存在，那么 $X$ 中的每个顶点都匹配到了 $Y$ 中的不同顶点．集合 $N_G(W)$ 至少包括了与 $W$ 中顶点匹配的那些顶点，所以它的大小至少为 $|W|$．
+??? note "Chứng minh"
+    Tính cần thiết là hiển nhiên. Giả sử tồn tại ghép cặp $X$-hoàn hảo $M$, thì mỗi đỉnh trong $X$ được ghép với một đỉnh khác nhau trong $Y$. Tập $N_G(W)$ ít nhất chứa các đỉnh được ghép với các đỉnh trong $W$, nên kích thước của nó ít nhất là $|W|$.
     
-    条件也是充分的．假设 $X$‑完美匹配不存在，那么一定有最大匹配 $M$ 使得顶点 $v\in X$ 仍然是未匹配点．设 $Z$ 是所有可以通过由 $v$ 出发的交错路到达的顶点集合，并设 $S=Z\cap X$，$T=Z\cap Y$．集合 $S\setminus\{v\}$ 一定全部是匹配点，否则就会出现奇环，与 $G$ 是二分图矛盾；集合 $T$ 也一定全部是匹配点，否则就存在增广路，根据 Berge 引理，这与 $M$ 是最大匹配矛盾．因为全部是匹配点，且匹配只能发生在 $X$ 和 $Y$ 之间，所以集合 $S\setminus\{v\}$ 和集合 $T$ 中的顶点一一对应，也就是说，$|T|=|S|-1$．同时，因为 $T$ 中的顶点已经和 $S$ 中顶点匹配，所以至少有 $T\subseteq N_G(S)$；但是，$N_G(S)$ 中并不存在未匹配点 $u$，因为如果设它与 $S$ 中的 $v'$ 相邻，那么，必然可以通过延长到达 $v'$ 的交错路得到到达 $u$ 的交错路：这说明 $T=N_G(S)$．这些论证说明 $|N_G(S)|<|S|$，这与 Hall 定理所设条件矛盾．这就说明了 $X$‑完美匹配存在．
+    Điều kiện cũng là đủ. Giả sử không tồn tại ghép cặp $X$-hoàn hảo, khi đó tồn tại một ghép cặp lớn nhất $M$ sao cho một đỉnh $v\in X$ vẫn chưa được ghép cặp. Gọi $Z$ là tập các đỉnh có thể đi tới bằng đường xen kẽ xuất phát từ $v$, và đặt $S=Z\cap X$, $T=Z\cap Y$. Tập $S\setminus\{v\}$ chắc chắn toàn là đỉnh đã ghép cặp, nếu không sẽ xuất hiện chu trình lẻ, mâu thuẫn với việc $G$ là đồ thị hai phía; tập $T$ cũng chắc chắn toàn là đỉnh đã ghép cặp, nếu không sẽ tồn tại đường tăng, mâu thuẫn với việc $M$ là ghép cặp lớn nhất theo bổ đề Berge. Vì tất cả đều là đỉnh đã ghép cặp, và ghép cặp chỉ có thể xảy ra giữa $X$ và $Y$, nên các đỉnh trong $S\setminus\{v\}$ và $T$ tương ứng một-một, tức là $|T|=|S|-1$. Đồng thời, vì các đỉnh trong $T$ đã được ghép với các đỉnh trong $S$, ít nhất ta có $T\subseteq N_G(S)$; nhưng trong $N_G(S)$ không tồn tại đỉnh chưa ghép cặp $u$, bởi nếu giả sử nó kề với một đỉnh $v'$ trong $S$, thì ta có thể kéo dài đường xen kẽ đi tới $v'$ để thu được một đường xen kẽ đi tới $u$. Điều này cho thấy $T=N_G(S)$. Các lập luận trên suy ra $|N_G(S)|<|S|$, mâu thuẫn với điều kiện của định lý Hall. Do đó ghép cặp $X$-hoàn hảo tồn tại.
 
-???+ note "推论"
-    所有正则的二分图都有完美匹配．
+???+ note "Hệ quả"
+    Mọi đồ thị hai phía chính quy đều có ghép cặp hoàn hảo.
 
-??? note "证明"
-    正则二分图中，所有顶点的度数都相同，设为 $k$．首先验证 Hall 条件成立，即对于任何 $W\subseteq X$，都有 $|N_G(W)|\ge |W|$．因为与 $W$ 中顶点相邻的边的数量是 $k|W|$，而集合 $N_G(W)$ 中每个顶点至多只能与其中 $k$ 条边相邻，所以必然有 $k|W|\le k|N_G(W)|$，也就是 $|W|\le |N_G(W)|$．特别地，有 $|X|\le |Y|$；因为 $X$ 和 $Y$ 是对称的，所以有 $|X|=|Y|$．这说明，正则二分图中，$X$‑完美匹配也一定是完美匹配．由于 Hall 定理保证了 $X$‑完美匹配存在，那么完美匹配也一定存在．
+??? note "Chứng minh"
+    Trong đồ thị hai phía chính quy, mọi đỉnh đều có cùng bậc, gọi là $k$. Trước hết kiểm tra điều kiện Hall, tức là với mọi $W\subseteq X$, ta có $|N_G(W)|\ge |W|$. Số cạnh kề với các đỉnh trong $W$ là $k|W|$, còn mỗi đỉnh trong tập $N_G(W)$ kề với nhiều nhất $k$ cạnh trong số đó, nên chắc chắn $k|W|\le k|N_G(W)|$, tức là $|W|\le |N_G(W)|$. Đặc biệt, $|X|\le |Y|$; vì $X$ và $Y$ đối xứng, ta cũng có $|X|=|Y|$. Điều này cho thấy trong đồ thị hai phía chính quy, ghép cặp $X$-hoàn hảo cũng chắc chắn là ghép cặp hoàn hảo. Vì định lý Hall bảo đảm tồn tại ghép cặp $X$-hoàn hảo, nên ghép cặp hoàn hảo cũng chắc chắn tồn tại.
 
-### Tutte 定理
+### Định lý Tutte
 
-Tutte 定理提供了判断一般图中是否存在完美匹配的充要条件．这个条件源于一个直接的观察：顶点数量为奇数的图中一定不存在完美匹配．
+Định lý Tutte đưa ra điều kiện cần và đủ để xác định trong đồ thị tổng quát có tồn tại ghép cặp hoàn hảo hay không. Điều kiện này bắt nguồn từ một quan sát trực tiếp: đồ thị có số đỉnh lẻ chắc chắn không tồn tại ghép cặp hoàn hảo.
 
-???+ note "Tutte 定理"
-    图 $G=(V,E)$ 存在完美匹配，当且仅当对于任何 $U\subseteq V$，都有 $\operatorname{odd}(G-U)\le |U|$，其中，$G-U$ 表示从图 $G$ 中删去 $U$ 中的顶点以及与之相邻的边得到的子图，而 $\operatorname{odd}(G-U)$ 表示子图 $G-U$ 中顶点数量为奇数的连通分量的数量．
+???+ note "Định lý Tutte"
+    Đồ thị $G=(V,E)$ tồn tại ghép cặp hoàn hảo khi và chỉ khi với mọi $U\subseteq V$, ta có $\operatorname{odd}(G-U)\le |U|$, trong đó $G-U$ là đồ thị con thu được bằng cách xóa khỏi $G$ các đỉnh thuộc $U$ cùng các cạnh kề với chúng, còn $\operatorname{odd}(G-U)$ là số thành phần liên thông có số đỉnh lẻ trong đồ thị con $G-U$.
 
-??? note "证明"
-    只需要考虑简单图即可，因为重边和自环不影响 Tutte 条件和完美匹配的存在性．
+??? note "Chứng minh"
+    Chỉ cần xét đồ thị đơn, vì cạnh song song và khuyên không ảnh hưởng đến điều kiện Tutte cũng như sự tồn tại của ghép cặp hoàn hảo.
     
-    条件的必要性相对容易．假设存在完美匹配 $M$．对于任意 $U\subseteq V$，从图 $G$ 中删去 $U$ 中的顶点之后，每一个顶点数量为奇数的连通分量都至少有一个无法与同一个连通分量顶点匹配的顶点，这些顶点只能寻求与 $U$ 中的顶点匹配．这样的匹配存在，至少要求 $\operatorname{odd}(G-U)\le |U|$．这就是 Tutte 条件．
+    Tính cần thiết của điều kiện tương đối dễ thấy. Giả sử tồn tại ghép cặp hoàn hảo $M$. Với mọi $U\subseteq V$, sau khi xóa các đỉnh thuộc $U$ khỏi đồ thị $G$, mỗi thành phần liên thông có số đỉnh lẻ đều có ít nhất một đỉnh không thể được ghép với đỉnh trong cùng thành phần liên thông đó; các đỉnh này chỉ có thể tìm cách ghép với các đỉnh thuộc $U$. Để phép ghép như vậy tồn tại, ít nhất cần có $\operatorname{odd}(G-U)\le |U|$. Đây chính là điều kiện Tutte.
     
-    条件的充分性较为复杂．假设 $G$ 满足 Tutte 条件，但是没有完美匹配．因为向 $G$ 中添加任何边都会使得 Tutte 条件依然成立，所以不妨设 $G$ 是一个极大的这样的图，也就是说，$G$ 不存在完美匹配，但是，向 $G$ 中添加任何尚不存在的边 $e$，都会使得 $G+e$ 存在完美匹配．设 $U\subseteq V$ 是所有度数为 $|V|-1$ 的顶点的集合．可以证明，$G-U$ 的每一个连通分量都是一个完全图．由此，可以构造出一个 $G$ 的完美匹配：首先取每个 $G-U$ 的连通分量的最大匹配，这样只有连通分量顶点数量为奇数时，才会出现一个未匹配点；将这些未匹配点匹配到 $U$ 中顶点；因为 $G$ 的顶点数量为偶数（在 Tutte 条件中取 $U=\varnothing$），所以，$U$ 中剩余的尚未匹配的顶点数量也是偶数，将它们两两配对即可．这一矛盾就说明，不存在满足 Tutte 条件但是没有完美匹配的 $G$．
+    Tính đủ của điều kiện phức tạp hơn. Giả sử $G$ thỏa điều kiện Tutte nhưng không có ghép cặp hoàn hảo. Vì thêm bất kỳ cạnh nào vào $G$ vẫn giữ điều kiện Tutte đúng, nên không mất tính tổng quát, giả sử $G$ là một đồ thị cực đại như vậy: $G$ không có ghép cặp hoàn hảo, nhưng thêm bất kỳ cạnh $e$ nào chưa tồn tại vào $G$ thì $G+e$ đều có ghép cặp hoàn hảo. Gọi $U\subseteq V$ là tập tất cả các đỉnh có bậc bằng $|V|-1$. Có thể chứng minh rằng mỗi thành phần liên thông của $G-U$ đều là một đồ thị đầy đủ. Từ đó có thể xây dựng một ghép cặp hoàn hảo của $G$: trước hết lấy ghép cặp lớn nhất trong mỗi thành phần liên thông của $G-U$, khi đó chỉ những thành phần có số đỉnh lẻ mới để lại một đỉnh chưa ghép cặp; ghép các đỉnh chưa ghép cặp này với các đỉnh trong $U$; vì số đỉnh của $G$ là chẵn (lấy $U=\varnothing$ trong điều kiện Tutte), nên số đỉnh còn lại chưa được ghép trong $U$ cũng là chẵn, ta ghép chúng từng cặp. Mâu thuẫn này cho thấy không tồn tại đồ thị $G$ thỏa điều kiện Tutte nhưng không có ghép cặp hoàn hảo.
     
-    关键是要证明 $G-U$ 的每一个连通分量都是一个完全图．假设不然．不妨设顶点 $x,y,z$ 属于这样的一个连通分量，且 $(x,y)\in E$，$(y,z)\in E$，$(x,z)\notin E$．而且，因为 $y\notin U$，必然存在 $w\in V\setminus U$ 但是 $(y,w)\notin E$．由于 $G$ 的极大性，图 $G+(x,z)$ 和图 $G+(y,w)$ 中分别存在完美匹配 $M_1$ 和 $M_2$．考察它们的对称差 $M_1\oplus M_2$．因为图 $(V,M_1\oplus M_2)$ 中所有顶点的度数要么是 $0$ 要么是 $2$，所以 $M_1\oplus M_2$ 实际上是若干个偶环的不交并，且每个偶环都是 $M_1$ 和 $M_2$ 中的匹配边交错组成的．
+    Điểm mấu chốt là phải chứng minh mỗi thành phần liên thông của $G-U$ đều là đồ thị đầy đủ. Giả sử ngược lại. Không mất tính tổng quát, giả sử các đỉnh $x,y,z$ thuộc một thành phần liên thông như vậy, với $(x,y)\in E$, $(y,z)\in E$, $(x,z)\notin E$. Hơn nữa, vì $y\notin U$, chắc chắn tồn tại $w\in V\setminus U$ nhưng $(y,w)\notin E$. Do tính cực đại của $G$, các đồ thị $G+(x,z)$ và $G+(y,w)$ lần lượt có các ghép cặp hoàn hảo $M_1$ và $M_2$. Xét hiệu đối xứng $M_1\oplus M_2$. Vì trong đồ thị $(V,M_1\oplus M_2)$, bậc của mọi đỉnh hoặc là $0$ hoặc là $2$, nên $M_1\oplus M_2$ thực ra là hợp rời của một số chu trình chẵn, và mỗi chu trình chẵn được tạo bởi các cạnh ghép cặp của $M_1$ và $M_2$ xen kẽ nhau.
     
     ![](images/tutte-proof.svg)
     
-    如图所示，可以分两种情形：
+    Như hình minh họa, có thể chia làm hai trường hợp:
     
-    -   $(x,z)$ 和 $(y,w)$ 位于不同的环路（如图左所示）：设 $(y,w)$ 所在环路为 $C$，那么，边集 $M_2\oplus C$ 就是图 $G$ 的完美匹配；
-    -   $(x,z)$ 和 $(y,w)$ 位于相同的环路（如图右所示）：由对称性，不妨设环路依次经过 $x,y,w,z$，因此可以取环路上从 $y$ 经过 $w$ 到达 $z$ 的路径 $P$，记 $\{(y,z)\}\cup P$ 为环路 $C$，那么，边集 $M_2\oplus C$ 同样是图 $G$ 的完美匹配．
+    -   $(x,z)$ và $(y,w)$ nằm trên hai chu trình khác nhau (như hình bên trái): gọi chu trình chứa $(y,w)$ là $C$, khi đó tập cạnh $M_2\oplus C$ là một ghép cặp hoàn hảo của đồ thị $G$;
+    -   $(x,z)$ và $(y,w)$ nằm trên cùng một chu trình (như hình bên phải): do tính đối xứng, không mất tính tổng quát, giả sử chu trình lần lượt đi qua $x,y,w,z$. Khi đó lấy đường đi $P$ trên chu trình từ $y$ qua $w$ đến $z$, và gọi $\{(y,z)\}\cup P$ là chu trình $C$; tập cạnh $M_2\oplus C$ cũng là một ghép cặp hoàn hảo của đồ thị $G$.
     
-    无论是哪种情形，都与 $G$ 的选取矛盾．这个矛盾说明了 $G-U$ 的每一个连通分量都是一个完全图．
+    Dù ở trường hợp nào, ta cũng mâu thuẫn với cách chọn $G$. Mâu thuẫn này chứng minh rằng mỗi thành phần liên thông của $G-U$ đều là đồ thị đầy đủ.
 
-???+ note "推论"
-    无桥 3‑正则图都有完美匹配．
+???+ note "Hệ quả"
+    Mọi đồ thị 3-chính quy không có cầu đều có ghép cặp hoàn hảo.
 
-??? note "证明"
-    为了验证 Tutte 条件成立，任取 $U\subseteq V$，需要证明 $\operatorname{odd}(G-U)\le |U|$．设 $G_1,\cdots,G_n$ 是 $G-U$ 的顶点数为奇数的所有连通分量．设 $m_i$ 是连接 $G_i$ 中顶点和 $U$ 中顶点的边的数量．简单的计数可知
+??? note "Chứng minh"
+    Để kiểm tra điều kiện Tutte, lấy tùy ý $U\subseteq V$ và cần chứng minh $\operatorname{odd}(G-U)\le |U|$. Gọi $G_1,\cdots,G_n$ là tất cả các thành phần liên thông có số đỉnh lẻ của $G-U$. Gọi $m_i$ là số cạnh nối đỉnh trong $G_i$ với đỉnh trong $U$. Một phép đếm đơn giản cho thấy
     
     $$
     3|V(G_i)| = \sum_{v\in V(G_i)} d(v) = 2|E(G_i)| + m_i.
     $$
     
-    因此，$m_i$ 必然是奇数．因为 $G$ 中没有桥（即割边），所以 $m_i\ge 3$．这就说明
+    Do đó, $m_i$ chắc chắn là số lẻ. Vì $G$ không có cầu (tức là cạnh cắt), nên $m_i\ge 3$. Điều này cho thấy
     
     $$
     \operatorname{odd}(G-U) = n \le \dfrac{1}{3}\sum_{i=1}^n m_i \le \dfrac{1}{3}\sum_{v\in U} d(v) = |U|.
     $$
     
-    因此，Tutte 条件成立，图 $G$ 必然有完美匹配．
+    Vì vậy, điều kiện Tutte đúng và đồ thị $G$ chắc chắn có ghép cặp hoàn hảo.
 
-## 常见算法
+## Các thuật toán thường gặp
 
-组合优化中的一个基本问题是求图的最大匹配和最大权匹配．
+Một bài toán cơ bản trong tối ưu tổ hợp là tìm ghép cặp lớn nhất và ghép cặp trọng số lớn nhất trong đồ thị.
 
-### 二分图最大匹配
+### Ghép cặp lớn nhất trong đồ thị hai phía
 
-详见 [二分图最大匹配](./bigraph-match.md) 页面．
+Xem chi tiết tại trang [ghép cặp lớn nhất trong đồ thị hai phía](./bigraph-match.md).
 
-在无权二分图中，可以使用 Kuhn 算法在 $O(|V||E|)$ 时间内解决，也可以使用 Hopcroft–Karp 算法在 $O(|V|^{1/2}|E|)$ 时间内解决．
+Trong đồ thị hai phía không trọng số, có thể dùng thuật toán Kuhn để giải trong thời gian $O(|V||E|)$, hoặc dùng thuật toán Hopcroft–Karp để giải trong thời gian $O(|V|^{1/2}|E|)$.
 
-### 二分图最大权匹配
+### Ghép cặp trọng số lớn nhất trong đồ thị hai phía
 
-详见 [二分图最大权匹配](./bigraph-weight-match.md) 页面．
+Xem chi tiết tại trang [ghép cặp trọng số lớn nhất trong đồ thị hai phía](./bigraph-weight-match.md).
 
-在加权二分图中，可用 Hungarian 算法解决．如果在寻找最短路时使用 Bellman–Ford 算法，时间复杂度为 $O(|V|^2|E|)$；如果使用 Dijkstra 算法或 Fibonacci heap，可在 $O(|V|^{2}\log {|V|}+|V||E|)$ 时间内解决．
+Trong đồ thị hai phía có trọng số, có thể dùng thuật toán Hungarian. Nếu dùng thuật toán Bellman–Ford khi tìm đường đi ngắn nhất, độ phức tạp thời gian là $O(|V|^2|E|)$; nếu dùng thuật toán Dijkstra hoặc Fibonacci heap, có thể giải trong thời gian $O(|V|^{2}\log {|V|}+|V||E|)$.
 
-### 一般图最大匹配
+### Ghép cặp lớn nhất trong đồ thị tổng quát
 
-详见 [一般图最大匹配](./general-match.md) 页面．
+Xem chi tiết tại trang [ghép cặp lớn nhất trong đồ thị tổng quát](./general-match.md).
 
-无权一般图中，可以使用 Edmonds' blossom 算法在 $O(|V|^2|E|)$ 时间内解决．
+Trong đồ thị tổng quát không trọng số, có thể dùng thuật toán Edmonds' blossom để giải trong thời gian $O(|V|^2|E|)$.
 
-### 一般图最大权匹配
+### Ghép cặp trọng số lớn nhất trong đồ thị tổng quát
 
-详见 [一般图最大权匹配](./general-weight-match.md) 页面．
+Xem chi tiết tại trang [ghép cặp trọng số lớn nhất trong đồ thị tổng quát](./general-weight-match.md).
 
-加权一般图中，可以使用 Edmonds' blossom 算法在 $O(|V|^2|E|)$ 时间内解决．
+Trong đồ thị tổng quát có trọng số, có thể dùng thuật toán Edmonds' blossom để giải trong thời gian $O(|V|^2|E|)$.
 
-## 相关问题
+## Các vấn đề liên quan
 
-最大（权）匹配与其它图论问题有着紧密的联系．本节仅讨论一般图，关于二分图的结论可以参考 [二分图最大匹配](./bigraph-match.md#相关问题) 页面．
+Ghép cặp lớn nhất (có trọng số) có liên hệ chặt chẽ với nhiều bài toán lý thuyết đồ thị khác. Phần này chỉ thảo luận đồ thị tổng quát; các kết luận cho đồ thị hai phía có thể xem tại trang [ghép cặp lớn nhất trong đồ thị hai phía](./bigraph-match.md#các-bài-toán-liên-quan).
 
-### 最大权最大匹配
+### Ghép cặp lớn nhất có trọng số lớn nhất
 
-最大权最大匹配问题和最大权匹配问题可以相互归约．它们之间一个很显著的区别是，最大权最大匹配中可能存在负权边，但是最大权匹配中不会存在负权边．
+Bài toán ghép cặp lớn nhất có trọng số lớn nhất và bài toán ghép cặp trọng số lớn nhất có thể quy về nhau. Một khác biệt rất đáng chú ý giữa chúng là trong ghép cặp lớn nhất có trọng số lớn nhất có thể tồn tại cạnh trọng số âm, nhưng trong ghép cặp trọng số lớn nhất sẽ không tồn tại cạnh trọng số âm.
 
-首先，最大权匹配问题可以归约为最大权最大匹配问题．首先，将图 $G$ 的所有负权边的权重设为 $0$；然后，通过连接若干权重为 $0$ 的边，将图扩充为完全图 $G'$．注意到，边权非负的完全图中，最大权最大匹配和最大权匹配是一致的．所以，只需要计算 $G'$ 的最大权最大匹配 $M'$，再删去 $M'$ 中的所有零权边，得到的边集 $M$ 就是图 $G$ 的最大权匹配．[^other-approach]
+Trước hết, bài toán ghép cặp trọng số lớn nhất có thể quy về bài toán ghép cặp lớn nhất có trọng số lớn nhất. Đầu tiên, đặt trọng số của mọi cạnh âm trong đồ thị $G$ thành $0$; sau đó mở rộng đồ thị thành đồ thị đầy đủ $G'$ bằng cách nối thêm một số cạnh có trọng số $0$. Chú ý rằng trong đồ thị đầy đủ có trọng số cạnh không âm, ghép cặp lớn nhất có trọng số lớn nhất và ghép cặp trọng số lớn nhất là như nhau. Vì vậy, chỉ cần tính ghép cặp lớn nhất có trọng số lớn nhất $M'$ của $G'$, rồi xóa tất cả các cạnh trọng số không trong $M'$, tập cạnh $M$ thu được chính là ghép cặp trọng số lớn nhất của đồ thị $G$.[^other-approach]
 
-![graph-match](images/graph-match-5.svg)
+![ghép cặp đồ thị](images/graph-match-5.svg)
 
-反过来，最大权最大匹配问题也可以归约为最大权匹配问题．只需要对图 $G$ 所有边的边权都加一个足够大的正数 $K$，就可以保证得到的图 $G'$ 的最大权匹配也一定是最大匹配，故而必然是最大权最大匹配．这是因为计算图 $G'$ 的最大权匹配相当于在图 $G$ 的所有匹配中最大化
+Ngược lại, bài toán ghép cặp lớn nhất có trọng số lớn nhất cũng có thể quy về bài toán ghép cặp trọng số lớn nhất. Chỉ cần cộng một số dương đủ lớn $K$ vào trọng số của mọi cạnh trong đồ thị $G$, ta có thể bảo đảm rằng ghép cặp trọng số lớn nhất của đồ thị $G'$ thu được cũng chắc chắn là ghép cặp lớn nhất, và do đó tất yếu là ghép cặp lớn nhất có trọng số lớn nhất. Lý do là việc tính ghép cặp trọng số lớn nhất của $G'$ tương đương với tối đa hóa biểu thức sau trên tất cả các ghép cặp của đồ thị $G$:
 
 $$
 K|M| + \sum_{e\in M}w(e).
 $$
 
-当 $K$ 充分大时，多匹配一条边带来的增益 $K$，会超过后面一项的权值和的变化．因此，算法会首先尽可能地多匹配边，然后才会最大化匹配边的边权和．常数 $K$ 的选择，只要保证它严格大于两个可能的匹配的差值即可．一个显然的选择是
+Khi $K$ đủ lớn, lợi ích $K$ từ việc ghép thêm một cạnh sẽ vượt quá mức thay đổi của tổng trọng số ở hạng sau. Vì vậy, thuật toán trước tiên sẽ ghép nhiều cạnh nhất có thể, rồi mới tối đa hóa tổng trọng số của các cạnh ghép cặp. Chỉ cần chọn hằng số $K$ sao cho nó lớn hơn chặt chẽ mọi chênh lệch có thể giữa hai ghép cặp. Một lựa chọn hiển nhiên là
 
 $$
 K = \sum_{e\in E}|w(e)| + 1.
 $$
 
-![graph-match](images/graph-match-6.svg)
+![ghép cặp đồ thị](images/graph-match-6.svg)
 
-### 最小（权）边覆盖
+### Phủ cạnh nhỏ nhất (có trọng số)
 
-另一个与最大（权）匹配紧密相关的问题是最小（权）边覆盖．边覆盖与匹配（又称边独立集）的关系，和点覆盖与独立集的关系相似．
+Một bài toán khác liên quan chặt chẽ đến ghép cặp lớn nhất (có trọng số) là phủ cạnh nhỏ nhất (có trọng số). Quan hệ giữa phủ cạnh và ghép cặp (còn gọi là tập cạnh độc lập) tương tự quan hệ giữa phủ đỉnh và tập độc lập.
 
-图 $G=(V,E)$ 中的一组边 $C\subseteq E$，如果任意顶点 $v\in V$ 都是 $C$ 中某条边的端点，那么，就称 $C$ 是图 $G$ 的一组 **边覆盖**（edge cover）．讨论边覆盖时，总是假设图 $G$ 没有孤立点．
+Trong đồ thị $G=(V,E)$, một tập cạnh $C\subseteq E$ được gọi là một **phủ cạnh** (edge cover) của đồ thị $G$ nếu mọi đỉnh $v\in V$ đều là đầu mút của một cạnh nào đó trong $C$. Khi thảo luận phủ cạnh, ta luôn giả sử đồ thị $G$ không có đỉnh cô lập.
 
-对于无权图，最小边覆盖问题几乎就是最大匹配问题．对于图 $G$ 的任何最大匹配 $M$，只要为每个未匹配点都加入一条相连的边，就可以得到一个最小边覆盖 $C$．它们的大小满足简单的数量关系：$|M|+|C|=|V|$．下图是一些最小边覆盖的例子：
+Với đồ thị không trọng số, bài toán phủ cạnh nhỏ nhất gần như chính là bài toán ghép cặp lớn nhất. Với bất kỳ ghép cặp lớn nhất $M$ nào của đồ thị $G$, chỉ cần thêm cho mỗi đỉnh chưa ghép cặp một cạnh kề với nó, ta thu được một phủ cạnh nhỏ nhất $C$. Kích thước của chúng thỏa mãn hệ thức đếm đơn giản: $|M|+|C|=|V|$. Hình dưới là một số ví dụ về phủ cạnh nhỏ nhất:
 
-![graph-match](images/graph-match-7.svg)
+![ghép cặp đồ thị](images/graph-match-7.svg)
 
-对于加权图，最小权边覆盖问题可以归约为一个 **最小权完美匹配** 问题．首先，将图 $G=(V,E)$ 拷贝一份得到 $\tilde G=(\tilde V,\tilde E)$，边权与原图一致；然后，将每个顶点 $v\in V$ 都与它的拷贝 $\tilde v\in\tilde V$ 连接起来，边权为图 $G$ 中与 $v$ 关联的边的权值最小值．这样得到的图记作 $G'=(V',E')$．如果图 $G$ 是二分图或稀疏图，那么图 $G'$ 同样分别是二分图或稀疏图．而且，图 $G$ 的最小权边覆盖问题，就归约为图 $G'$ 的最小权完美匹配问题[^edge-cover]：对于图 $G'$ 的最小权完美匹配 $M'$，只要保留 $E$ 中的边，再将所有匹配到的 $(v,v')$ 替换成图 $G$ 中与 $v$ 关联的权值最小的边，就得到图 $G$ 的最小权边覆盖．
+Với đồ thị có trọng số, bài toán phủ cạnh trọng số nhỏ nhất có thể quy về một bài toán **ghép cặp hoàn hảo trọng số nhỏ nhất**. Trước hết, sao chép đồ thị $G=(V,E)$ thành $\tilde G=(\tilde V,\tilde E)$ với trọng số cạnh giữ nguyên như đồ thị ban đầu; sau đó nối mỗi đỉnh $v\in V$ với bản sao $\tilde v\in\tilde V$ của nó, với trọng số bằng giá trị nhỏ nhất trong các trọng số của những cạnh kề với $v$ trong đồ thị $G$. Ký hiệu đồ thị thu được là $G'=(V',E')$. Nếu đồ thị $G$ là đồ thị hai phía hoặc đồ thị thưa, thì $G'$ tương ứng cũng là đồ thị hai phía hoặc đồ thị thưa. Hơn nữa, bài toán phủ cạnh trọng số nhỏ nhất của đồ thị $G$ được quy về bài toán ghép cặp hoàn hảo trọng số nhỏ nhất của đồ thị $G'$[^edge-cover]: với ghép cặp hoàn hảo trọng số nhỏ nhất $M'$ của đồ thị $G'$, chỉ cần giữ lại các cạnh thuộc $E$, rồi thay mọi cạnh đã ghép dạng $(v,v')$ bằng cạnh có trọng số nhỏ nhất kề với $v$ trong đồ thị $G$, ta thu được phủ cạnh trọng số nhỏ nhất của đồ thị $G$.
 
-## 参考资料
+## Tài liệu tham khảo
 
 1.  [Wikiwand - Matching (graph theory)](https://www.wikiwand.com/en/Matching_%28graph_theory%29)
 2.  [Wikiwand - Blossom algorithm](https://www.wikiwand.com/en/Blossom_algorithm)
-3.  2015 年《浅谈图的匹配算法及其应用》- 陈胤伯
-4.  [演算法笔记 - Matching](http://web.ntnu.edu.tw/~algo/Matching.html)
+3.  Bài viết năm 2015 "Bàn về thuật toán ghép cặp trong đồ thị và ứng dụng" - Chen Yinbo
+4.  [Ghi chú thuật toán - Matching](http://web.ntnu.edu.tw/~algo/Matching.html)
 5.  [the-tourist/algo](https://github.com/the-tourist/algo)
-6.  [Bill Yang's Blog - 带花树学习笔记](https://blog.bill.moe/blossom-algorithm-notes/)
-7.  [二分图的最大匹配、完美匹配和匈牙利算法](https://www.renfei.org/blog/bipartite-matching.html)
+6.  [Bill Yang's Blog - Ghi chú học thuật toán blossom](https://blog.bill.moe/blossom-algorithm-notes/)
+7.  [Ghép cặp lớn nhất, ghép cặp hoàn hảo và thuật toán Hungarian trong đồ thị hai phía](https://www.renfei.org/blog/bipartite-matching.html)
 8.  [Wikiwand - Hopcroft–Karp algorithm](https://www.wikiwand.com/en/Hopcroft%E2%80%93Karp_algorithm)
 9.  Bondy, John Adrian, and Uppaluri Siva Ramachandra Murty. Graph theory with applications. Vol. 290. London: Macmillan, 1976.
 
-[^other-approach]: 当然，这并不是唯一的归约方式．对于图 $G=(V,E)$，还可以将它的一份拷贝 $\tilde G=(\tilde V,\tilde E)$ 逐点地连接到原来的图上，并将所有相对于原图 $G$ 新加的边（包括拷贝中的边）的权重设为 $0$，得到图 $G'=(V',E')$．换句话说，新图 $G'$ 的顶点集是 $V\cup V'$，而它的边集除了图 $G$ 中的边之外，还将所有顶点 $v\in V$ 都与它的拷贝 $\tilde v\in V$ 用零权边连接，且对于所有边 $(u,v)\in E$，都将 $\tilde u$ 与 $\tilde v$ 用零权边连接．图 $G$ 中的所有匹配 $M$ 都对应着图 $G'$ 中的一个权值和相同的完美匹配：只需要将 $G$ 中所有未匹配点 $v$ 都与它的拷贝 $\tilde v$ 匹配，而对于所有匹配边 $(u,v)$，都将 $\tilde u$ 与 $\tilde v$ 匹配．因此，图 $G'$ 中的最大权最大匹配，也就是最大权完美匹配，限制到 $E$ 上，就得到图 $G$ 的最大权匹配．这样归约的好处是，如果图 $G$ 是二分图或稀疏图，那么扩充得到的图 $G'$ 也分别是二分图或稀疏图．
+[^other-approach]: Tất nhiên, đây không phải cách quy về duy nhất. Với đồ thị $G=(V,E)$, ta cũng có thể lấy một bản sao $\tilde G=(\tilde V,\tilde E)$ của nó, nối từng đỉnh của bản sao vào đồ thị ban đầu, và đặt trọng số của mọi cạnh mới so với đồ thị gốc $G$ (bao gồm cả các cạnh trong bản sao) bằng $0$, thu được đồ thị $G'=(V',E')$. Nói cách khác, tập đỉnh của đồ thị mới $G'$ là $V\cup \tilde V$, còn tập cạnh của nó ngoài các cạnh trong đồ thị $G$ còn có cạnh trọng số không nối mỗi đỉnh $v\in V$ với bản sao $\tilde v\in \tilde V$ của nó, và với mọi cạnh $(u,v)\in E$, có cạnh trọng số không nối $\tilde u$ với $\tilde v$. Mọi ghép cặp $M$ trong đồ thị $G$ đều tương ứng với một ghép cặp hoàn hảo trong đồ thị $G'$ có cùng tổng trọng số: chỉ cần ghép mọi đỉnh chưa ghép cặp $v$ của $G$ với bản sao $\tilde v$ của nó, và với mỗi cạnh ghép cặp $(u,v)$, ghép $\tilde u$ với $\tilde v$. Do đó, ghép cặp lớn nhất có trọng số lớn nhất trong đồ thị $G'$, tức là ghép cặp hoàn hảo trọng số lớn nhất, khi giới hạn lại trên $E$ sẽ cho ghép cặp trọng số lớn nhất của đồ thị $G$. Ưu điểm của cách quy về này là nếu đồ thị $G$ là đồ thị hai phía hoặc đồ thị thưa, thì đồ thị mở rộng $G'$ thu được cũng tương ứng là đồ thị hai phía hoặc đồ thị thưa.
 
-[^edge-cover]: 对于图 $G'$ 的每个完美匹配 $M'$，都可以按照此处描述的方式得到一个图 $G$ 的边覆盖 $C$，且后者的权值和为前者的一半；将这个构造过程反过来，对于图 $G$ 的每个边覆盖 $C$，都可以构造出一个图 $G'$ 的完美匹配 $M'$，且后者的权值和不超过前者的二倍．这就说明归约是成立的．
+[^edge-cover]: Với mỗi ghép cặp hoàn hảo $M'$ của đồ thị $G'$, đều có thể theo cách mô tả ở đây để thu được một phủ cạnh $C$ của đồ thị $G$, và tổng trọng số của $C$ bằng một nửa tổng trọng số của $M'$; đảo ngược quá trình xây dựng này, với mỗi phủ cạnh $C$ của đồ thị $G$, đều có thể xây dựng một ghép cặp hoàn hảo $M'$ của đồ thị $G'$, và tổng trọng số của $M'$ không vượt quá hai lần tổng trọng số của $C$. Điều đó chứng minh phép quy về là đúng.

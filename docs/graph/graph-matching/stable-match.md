@@ -1,148 +1,148 @@
-## 引入
+## Mở đầu
 
-**稳定匹配问题**（stable matching problem）是组合优化和合作博弈论中的经典问题．相较于传统的图论匹配问题，稳定匹配引入了个体偏好和稳定性的限制，这使得算法设计更多地依赖于偏好顺序而非单纯的图结构．稳定匹配问题的模型中，每个个体对潜在的匹配对象具有偏好，而稳定匹配问题希望能在它们之间建立一种稳定的匹配关系．一个稳定的匹配中，不存在任何一组个体，会因为能得到更优的选择而合谋偏离当前的匹配结果．稳定匹配及其相关问题广泛地应用于劳动力市场、学校录取、医疗资源分配等场景中．
+**Bài toán ghép cặp ổn định** (stable matching problem) là một bài toán kinh điển trong tối ưu tổ hợp và lý thuyết trò chơi hợp tác. So với các bài toán ghép cặp đồ thị truyền thống, ghép cặp ổn định đưa thêm các ràng buộc về sở thích cá nhân và tính ổn định, khiến thiết kế thuật toán phụ thuộc nhiều hơn vào thứ tự ưu tiên thay vì chỉ vào cấu trúc đồ thị. Trong mô hình của bài toán ghép cặp ổn định, mỗi cá thể có sở thích đối với các đối tượng ghép cặp tiềm năng, và bài toán mong muốn thiết lập một quan hệ ghép cặp ổn định giữa họ. Trong một ghép cặp ổn định, không tồn tại bất kỳ nhóm cá thể nào có thể cùng rời bỏ kết quả ghép cặp hiện tại vì họ có lựa chọn tốt hơn. Ghép cặp ổn định và các bài toán liên quan được ứng dụng rộng rãi trong thị trường lao động, tuyển sinh, phân bổ tài nguyên y tế và nhiều bối cảnh khác.
 
-算法竞赛中最常出现的稳定匹配问题是双边市场的一对一匹配，即稳定婚姻问题．本文将重点介绍稳定婚姻问题及其算法．
+Trong lập trình thi đấu, bài toán ghép cặp ổn định thường gặp nhất là ghép cặp một-một trong thị trường hai phía, tức bài toán hôn nhân ổn định. Bài viết này tập trung giới thiệu bài toán hôn nhân ổn định và thuật toán của nó.
 
-## 稳定婚姻问题
+## Bài toán hôn nhân ổn định
 
-稳定婚姻问题是最早研究的稳定匹配问题．类似于二分图匹配，它可以描述为婚恋市场上的匹配问题：假设有男士和女士若干，每个人都对异性有一组偏好顺序，目标是找到一种匹配方式，使得没有一对男女更愿意抛弃各自的匹配对象而选择彼此．
+Bài toán hôn nhân ổn định là bài toán ghép cặp ổn định được nghiên cứu sớm nhất. Tương tự ghép cặp trong đồ thị hai phía, nó có thể được mô tả như bài toán ghép cặp trong thị trường hôn nhân: giả sử có một số nam và nữ, mỗi người đều có một thứ tự ưu tiên đối với người khác giới, mục tiêu là tìm một cách ghép cặp sao cho không có một cặp nam nữ nào muốn bỏ đối tượng hiện tại của mình để chọn nhau.
 
-### 问题描述
+### Mô tả bài toán
 
-匹配市场由若干男士 $M$ 和若干女士 $W$ 构成．每个人都对异性有严格的偏好顺序：
+Thị trường ghép cặp gồm một số nam $M$ và một số nữ $W$. Mỗi người đều có một thứ tự ưu tiên nghiêm ngặt đối với người khác giới:
 
--   对于每位男士 $m\in M$，都存在集合 $W\cup\{m\}$ 上一个严格的全序 $\preceq_m$；
--   对于每位女士 $w\in W$，都存在集合 $M\cup\{w\}$ 上一个严格的全序 $\preceq_w$．
+-   Với mỗi nam $m\in M$, tồn tại một thứ tự toàn phần nghiêm ngặt $\preceq_m$ trên tập $W\cup\{m\}$;
+-   Với mỗi nữ $w\in W$, tồn tại một thứ tự toàn phần nghiêm ngặt $\preceq_w$ trên tập $M\cup\{w\}$.
 
-除了在异性之间相互比较之外，每个人还会将自身加入到这个偏好顺序中．这表示，这个人只会接受与排在自身前面的异性匹配；这些异性称为 **可接受的**（acceptable）．显然，不可接受的异性的偏好顺序是无足轻重的；原则上，只需要给出可接受的异性之间的偏好顺序即可．所以，这些存在不可接受异性的偏好也称为列表不完整的偏好（preferences with incomplete lists）．
+Ngoài việc so sánh giữa những người khác giới, mỗi người còn đưa chính mình vào thứ tự ưu tiên này. Điều đó biểu thị rằng người này chỉ chấp nhận ghép cặp với những người khác giới được họ xếp cao hơn chính mình; các đối tượng này được gọi là **chấp nhận được** (acceptable). Rõ ràng, thứ tự ưu tiên giữa các đối tượng không chấp nhận được không còn quan trọng; về nguyên tắc, chỉ cần đưa ra thứ tự ưu tiên giữa các đối tượng chấp nhận được. Vì vậy, các sở thích có tồn tại đối tượng không chấp nhận được cũng được gọi là sở thích với danh sách không đầy đủ (preferences with incomplete lists).
 
-???+ example "例子"
-    假设 $m$ 是一位男士，$w_1,w_2,w_3$ 是三位女士，且有偏好关系 $w_1\prec_m m \prec_m w_2\prec_m w_3$ 成立．那么，男士 $m$ 相对于和女士 $w_1$ 匹配，更喜欢单身；相对于单身，更喜欢和女士 $w_2$ 匹配；相对于和女士 $w_2$ 匹配，更喜欢和女士 $w_3$ 匹配．对于男士 $m$，女士 $w_1$ 就是不可接受的，女士 $w_2,w_3$ 就是可接受的．
+???+ example "Ví dụ"
+    Giả sử $m$ là một nam, $w_1,w_2,w_3$ là ba nữ, và có quan hệ ưu tiên $w_1\prec_m m \prec_m w_2\prec_m w_3$. Khi đó, nam $m$ thích độc thân hơn là ghép cặp với nữ $w_1$; thích ghép cặp với nữ $w_2$ hơn là độc thân; và thích ghép cặp với nữ $w_3$ hơn là ghép cặp với nữ $w_2$. Đối với nam $m$, nữ $w_1$ là không chấp nhận được, còn nữ $w_2,w_3$ là chấp nhận được.
 
-市场上的一个 **匹配** $\mu:M\cup W\rightarrow M\cup W$ 需要满足如下性质：
+Một **ghép cặp** $\mu:M\cup W\rightarrow M\cup W$ trên thị trường cần thỏa các tính chất sau:
 
--   每个人只能匹配异性或其自身，即对所有 $m\in M$ 都有 $\mu(m)\in W\cup\{m\}$ 且对所有 $w\in W$ 都有 $\mu(w)\in W\cup\{w\}$．
--   匹配是相互的，即对所有 $i\in M\cup W$ 都有 $i = \mu(\mu(i))$．
+-   Mỗi người chỉ có thể được ghép với người khác giới hoặc với chính mình, tức là với mọi $m\in M$ ta có $\mu(m)\in W\cup\{m\}$ và với mọi $w\in W$ ta có $\mu(w)\in M\cup\{w\}$.
+-   Ghép cặp là tương hỗ, tức là với mọi $i\in M\cup W$ ta có $i = \mu(\mu(i))$.
 
-一个匹配 $\mu$ 中可能存在两种不稳定因素：
+Trong một ghép cặp $\mu$, có thể tồn tại hai loại yếu tố gây bất ổn:
 
--   如果存在个体 $i\in M\cup W$ 使得 $\mu(i)\prec_i i$，也就是说，相对于当前的匹配对象，个体 $i$ 宁愿单身，那么，就称 $i$ 是匹配 $\mu$ 的 **阻塞个体**（blocking individual）．
--   如果存在一对异性 $m\in M$ 和 $w\in W$ 使得 $\mu(m)\prec_m w$ 且 $\mu(w)\prec_w m$，也就是说，相对于当前各自的匹配对象，男士 $m$ 和女士 $w$ 更希望和对方在一起，那么，就称 $(m,w)$ 是匹配 $\mu$ 的 **阻塞对**（blocking pair）．
+-   Nếu tồn tại một cá thể $i\in M\cup W$ sao cho $\mu(i)\prec_i i$, tức là so với đối tượng ghép cặp hiện tại, cá thể $i$ thà độc thân hơn, thì $i$ được gọi là **cá thể chặn** (blocking individual) của ghép cặp $\mu$.
+-   Nếu tồn tại một cặp khác giới $m\in M$ và $w\in W$ sao cho $\mu(m)\prec_m w$ và $\mu(w)\prec_w m$, tức là so với đối tượng hiện tại của mỗi người, nam $m$ và nữ $w$ đều muốn ở với nhau hơn, thì $(m,w)$ được gọi là **cặp chặn** (blocking pair) của ghép cặp $\mu$.
 
-如果一个匹配 $\mu$ 既不存在阻塞个体，也不存在阻塞对，就称匹配 $\mu$ 是 **稳定的**（stable）．稳定匹配中，所有人都无法破坏当前的局面：单身的人找不到愿意同他在一起的人；结婚的人既不愿意离婚单身，也找不到愿意同他私奔的人．
+Nếu một ghép cặp $\mu$ không có cá thể chặn cũng không có cặp chặn, thì $\mu$ được gọi là **ổn định** (stable). Trong một ghép cặp ổn định, không ai có thể phá vỡ trạng thái hiện tại: người độc thân không tìm được ai sẵn lòng ở với mình; người đã ghép cặp không muốn trở lại độc thân, cũng không tìm được ai sẵn lòng rời bỏ đối tượng hiện tại để đi với mình.
 
-稳定匹配问题就是在问：对于任意给定的一组偏好顺序，是否都存在一个稳定匹配？如果是，如何求出这样的稳定匹配？
+Bài toán ghép cặp ổn định đặt ra câu hỏi: với bất kỳ bộ thứ tự ưu tiên cho trước nào, liệu luôn tồn tại một ghép cặp ổn định hay không? Nếu có, làm thế nào để tìm được một ghép cặp như vậy?
 
-### Gale–Shapley 算法
+### Thuật toán Gale–Shapley
 
-Gale 和 Shapley 在 1962 年提出了 **延迟接受算法**（deferred acceptance algorithm），可以对任意给定的一组偏好顺序求出一个稳定匹配．因此，稳定匹配一定是存在的．
+Gale và Shapley đã đề xuất **thuật toán chấp nhận trì hoãn** (deferred acceptance algorithm) vào năm 1962, có thể tìm một ghép cặp ổn định cho bất kỳ bộ thứ tự ưu tiên cho trước nào. Do đó, ghép cặp ổn định luôn tồn tại.
 
-Gale–Shapley 算法有两个对称的版本，分别由男士求婚和女士求婚．以男士求婚的 Gale–Shapley 算法为例，算法流程如下：
+Thuật toán Gale–Shapley có hai phiên bản đối xứng, lần lượt là phiên bản nam cầu hôn và phiên bản nữ cầu hôn. Lấy thuật toán Gale–Shapley nam cầu hôn làm ví dụ, quy trình thuật toán như sau:
 
-1.  算法开始时，每位女士都视为保留着她对其自身的求婚请求，每位男士都标记为活跃的．
-2.  活跃的男士会向他可接受但是尚未求婚过的女士中最喜欢的那位求婚；如果这样的女士不存在，就无需进行任何操作．无论求婚与否，将所有男士都标记为不活跃的．
-3.  收到新的求婚请求的女士，会将他们与之前保留的求婚请求比较，只保留其中最喜欢的那一个（可能是她自身），并拒绝所有其他的求婚请求．将遭到拒绝的男士恢复标记为活跃的．
-4.  重复前两个步骤，直到没有活跃的男士为止．此时，女士接受她们当前保留的求婚请求．这样得到的匹配结果，就是一个稳定匹配．
+1.  Khi thuật toán bắt đầu, mỗi nữ được xem như đang giữ lời cầu hôn của chính mình, và mỗi nam được đánh dấu là đang hoạt động.
+2.  Một nam đang hoạt động sẽ cầu hôn người nữ mà anh ta thích nhất trong số những người nữ chấp nhận được nhưng chưa từng được anh ta cầu hôn; nếu không tồn tại người nữ như vậy thì không cần làm gì. Dù có cầu hôn hay không, sau đó đánh dấu tất cả nam là không hoạt động.
+3.  Người nữ nhận được lời cầu hôn mới sẽ so sánh chúng với lời cầu hôn đang giữ trước đó, chỉ giữ lại lời cầu hôn mà cô thích nhất (có thể là chính cô), và từ chối mọi lời cầu hôn còn lại. Các nam bị từ chối được đánh dấu lại là đang hoạt động.
+4.  Lặp lại hai bước trước cho đến khi không còn nam nào đang hoạt động. Khi đó, các nữ chấp nhận lời cầu hôn mà họ đang giữ. Kết quả ghép cặp thu được là một ghép cặp ổn định.
 
-由于每位男士向每位女士至多求婚一次，算法在 $O(|M||W|)$ 时间内一定会结束．
+Vì mỗi nam cầu hôn mỗi nữ nhiều nhất một lần, thuật toán chắc chắn kết thúc trong thời gian $O(|M||W|)$.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-??? example "模板题 [SPOJ STABLEMP - Stable Marriage Problem](https://www.spoj.com/problems/STABLEMP/) 参考实现"
+??? example "Bài mẫu [SPOJ STABLEMP - Stable Marriage Problem](https://www.spoj.com/problems/STABLEMP/) cài đặt tham khảo"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/stable-match/stable-match.cpp"
     ```
 
-### 稳定匹配的性质
+### Tính chất của ghép cặp ổn định
 
-稳定匹配有着良好的理论性质．首先，Gale–Shapley 算法构造性地证明，稳定匹配一定存在．
+Ghép cặp ổn định có những tính chất lý thuyết tốt. Trước hết, thuật toán Gale–Shapley chứng minh một cách xây dựng rằng ghép cặp ổn định luôn tồn tại.
 
-???+ note "定理 1（Gale and Shapley, 1962）"
-    Gale–Shapley 算法得到的是一个稳定匹配．因此，稳定匹配存在．
+???+ note "Định lý 1 (Gale and Shapley, 1962)"
+    Kết quả của thuật toán Gale–Shapley là một ghép cặp ổn định. Do đó, ghép cặp ổn định tồn tại.
 
-??? note "证明"
-    男士不会对他不接受的女士求婚，女士也会立即拒绝她不接受的男士的求婚．因此，最终互相匹配的男士和女士一定是彼此接受的，不可能存在阻塞个体．要证明它是稳定匹配，只需要说明不存在阻塞对．
+??? note "Chứng minh"
+    Nam sẽ không cầu hôn những nữ mà anh ta không chấp nhận, và nữ cũng sẽ lập tức từ chối lời cầu hôn từ những nam mà cô không chấp nhận. Vì vậy, những nam và nữ được ghép với nhau ở cuối thuật toán chắc chắn chấp nhận lẫn nhau, nên không thể tồn tại cá thể chặn. Để chứng minh đó là ghép cặp ổn định, chỉ cần chứng minh không tồn tại cặp chặn.
     
-    反证法．假设 $(m,w)$ 是一个阻塞对．那么，在男士 $m$ 向 $\mu(m)$ 求婚之前，他一定已经向 $w$ 求过婚．但是，既然女士 $w$ 拒绝了 $m$，她一定是收到了她更喜欢的人 $m'$ 的求婚请求．如果 $m'\neq \mu(w)$，那么，女士 $w$ 相对于 $m'$ 只会更喜欢 $\mu(w)$．由此，相对于 $m$，女士 $w$ 一定更喜欢最终的匹配对象 $\mu(w)$．这与 $(m,w)$ 是阻塞对矛盾．所以，匹配是稳定的．
+    Chứng minh phản chứng. Giả sử $(m,w)$ là một cặp chặn. Khi đó, trước khi nam $m$ cầu hôn $\mu(m)$, anh ta chắc chắn đã từng cầu hôn $w$. Nhưng vì nữ $w$ đã từ chối $m$, cô ấy chắc chắn đã nhận được lời cầu hôn của một người $m'$ mà cô thích hơn. Nếu $m'\neq \mu(w)$, thì nữ $w$ chỉ có thể thích đối tượng ghép cặp cuối cùng $\mu(w)$ hơn $m'$. Do đó, so với $m$, nữ $w$ chắc chắn thích đối tượng ghép cặp cuối cùng $\mu(w)$ hơn. Điều này mâu thuẫn với việc $(m,w)$ là cặp chặn. Vì vậy, ghép cặp là ổn định.
 
-???+ note "推论"
-    如果 $|M|=|W|$ 且所有异性都是可接受的，那么，存在一个稳定的完美匹配．
+???+ note "Hệ quả"
+    Nếu $|M|=|W|$ và mọi người khác giới đều chấp nhận được, thì tồn tại một ghép cặp hoàn hảo ổn định.
 
-Gale–Shapley 算法中，可以由男士求婚，也可以由女士求婚．一般情况下，这两个版本的 Gale–Shapley 算法得到的稳定匹配并不相同．事实上，由男士求婚的 Gale–Shapley 算法得到的稳定匹配是所有稳定匹配中，对于男士最有利的；反之亦然．
+Trong thuật toán Gale–Shapley, có thể để nam cầu hôn hoặc nữ cầu hôn. Nói chung, hai phiên bản này của thuật toán Gale–Shapley không cho cùng một ghép cặp ổn định. Thực tế, ghép cặp ổn định do thuật toán Gale–Shapley nam cầu hôn thu được là ghép cặp có lợi nhất cho nam trong tất cả các ghép cặp ổn định; chiều ngược lại cũng đúng.
 
-???+ note "定理 2（Gale and Shapley, 1962）"
-    设 $\mu_M$ 和 $\mu_W$ 分别是由男士和女士求婚的 Gale–Shapley 算法得到的稳定匹配．对于任何稳定匹配 $\mu$，都有 $\mu(m)\preceq_m\mu_M(m)$ 对于所有 $m\in M$ 成立，且 $\mu(w)\preceq_w\mu_W(w)$ 对所有 $w\in W$ 成立．
+???+ note "Định lý 2 (Gale and Shapley, 1962)"
+    Gọi $\mu_M$ và $\mu_W$ lần lượt là các ghép cặp ổn định thu được từ thuật toán Gale–Shapley nam cầu hôn và nữ cầu hôn. Với mọi ghép cặp ổn định $\mu$, ta có $\mu(m)\preceq_m\mu_M(m)$ với mọi $m\in M$, và $\mu(w)\preceq_w\mu_W(w)$ với mọi $w\in W$.
 
-??? note "证明"
-    根据对称性，只需要证明 $\mu(m)\preceq_m\mu_M(m)$ 对于所有 $m\in M$ 成立．为此，仍然考虑由男士求婚的 Gale–Shapley 算法，并记 $k(m,w)$ 为女士 $w$ 拒绝男士 $m$ 的求婚时，算法进行到的轮次．这个轮次对于所有满足 $\mu_M(m)\prec_m w$ 的 $(m,w)$ 都是良定义的．
+??? note "Chứng minh"
+    Theo tính đối xứng, chỉ cần chứng minh $\mu(m)\preceq_m\mu_M(m)$ với mọi $m\in M$. Để làm điều này, vẫn xét thuật toán Gale–Shapley nam cầu hôn, và ký hiệu $k(m,w)$ là vòng lặp của thuật toán khi nữ $w$ từ chối lời cầu hôn của nam $m$. Vòng lặp này được định nghĩa tốt với mọi $(m,w)$ thỏa $\mu_M(m)\prec_m w$.
     
-    假设 $\mu_M$ 并非对所有男士都最有利的，也就是说，存在稳定匹配 $\mu$ 和男士 $m\in M$ 使得 $\mu_M(m)\prec_m\mu(m)$ 成立．由于匹配 $\mu_M$ 是稳定的，就有 $m\preceq_m\mu_M(m)\prec_m\mu(m)$，所以 $\mu(m)$ 是女士，一定有良定义的 $k(m,\mu(m))$．于是，不妨设 $m$ 恰为所有这样的男士中，$k(m,\mu(m))$ 最小的那个．设算法过程中，女士 $w=\mu(m)$ 拒绝男士 $m$ 时保留的是男士 $m'$ 的求婚请求，也就是说，$m=\mu(w)\prec_w m'$．由于 $\mu$ 是稳定匹配，$(w,m')$ 不能是阻塞对，又有 $\mu(m')\neq w$，所以，$w\prec_{m'}\mu(m')$．由于 Gale–Shapley 算法过程中，女士 $w$ 未必会保留 $m'$ 的求婚请求到最后，所以 $\mu_M(m')\preceq_{m'}w\prec_{m'}\mu(m')$．此时，$k(m',\mu(m'))$ 是良定义的．而且，由于 $w\prec_{m'}\mu(m')$，所以，女士 $\mu(m')$ 拒绝 $m'$ 的求婚请求之后，才会有 $w$ 保留 $m'$ 的求婚请求，也就是说，$k(m',\mu(m')) < k(m,\mu(m))$．这与 $m$ 的选取相矛盾．所以，根据反证法，$\mu_M$ 是对所有男士最有利的稳定匹配．
+    Giả sử $\mu_M$ không phải là ghép cặp có lợi nhất cho tất cả nam, tức là tồn tại một ghép cặp ổn định $\mu$ và một nam $m\in M$ sao cho $\mu_M(m)\prec_m\mu(m)$. Vì ghép cặp $\mu_M$ là ổn định, ta có $m\preceq_m\mu_M(m)\prec_m\mu(m)$, nên $\mu(m)$ là một nữ, và $k(m,\mu(m))$ chắc chắn được định nghĩa tốt. Do đó, không mất tính tổng quát, chọn $m$ là nam có $k(m,\mu(m))$ nhỏ nhất trong số tất cả các nam như vậy. Giả sử trong quá trình thuật toán, khi nữ $w=\mu(m)$ từ chối nam $m$, cô giữ lời cầu hôn của nam $m'$, tức là $m=\mu(w)\prec_w m'$. Vì $\mu$ là ghép cặp ổn định, $(w,m')$ không thể là cặp chặn; lại có $\mu(m')\neq w$, nên $w\prec_{m'}\mu(m')$. Vì trong thuật toán Gale–Shapley, nữ $w$ không nhất thiết giữ lời cầu hôn của $m'$ đến cuối, nên $\mu_M(m')\preceq_{m'}w\prec_{m'}\mu(m')$. Khi đó, $k(m',\mu(m'))$ được định nghĩa tốt. Hơn nữa, do $w\prec_{m'}\mu(m')$, chỉ sau khi nữ $\mu(m')$ từ chối lời cầu hôn của $m'$ thì mới có chuyện $w$ giữ lời cầu hôn của $m'$, tức là $k(m',\mu(m')) < k(m,\mu(m))$. Điều này mâu thuẫn với cách chọn $m$. Vì vậy, theo phản chứng, $\mu_M$ là ghép cặp ổn định có lợi nhất cho tất cả nam.
 
-一个匹配市场可能存在指数级数量的稳定匹配．设 $\mathcal S$ 为全体稳定匹配的集合．在这个集合上，可以定义两个偏序：
+Một thị trường ghép cặp có thể có số lượng ghép cặp ổn định cấp số mũ. Gọi $\mathcal S$ là tập tất cả các ghép cặp ổn định. Trên tập này có thể định nghĩa hai thứ tự bộ phận:
 
--   $\mu_1\preceq_M\mu_2$，当且仅当 $\mu_1(m)\preceq_m\mu_2(m)$ 对所有 $m\in M$ 都成立；
--   $\mu_1\preceq_W\mu_2$，当且仅当 $\mu_1(w)\preceq_w\mu_2(w)$ 对所有 $w\in W$ 都成立．
+-   $\mu_1\preceq_M\mu_2$ khi và chỉ khi $\mu_1(m)\preceq_m\mu_2(m)$ đúng với mọi $m\in M$;
+-   $\mu_1\preceq_W\mu_2$ khi và chỉ khi $\mu_1(w)\preceq_w\mu_2(w)$ đúng với mọi $w\in W$.
 
-这两个偏序分别表示匹配结果对于所有男士和所有女士都更优．一般地，两个稳定匹配未必是可比的．但是，任意两个稳定匹配都诱导如图所示的分解，使得分解所得的三个部分中，分别成立 $\mu_1\preceq_M\mu_2$，$\mu_1=\mu_2$ 和 $\mu_2\preceq_M\mu_1$．注意，尽管没有直接绘制出，但是 $\mu_1=\mu_2$ 的那一部分其实包含了匹配到自身（即未匹配）的情形．
+Hai thứ tự bộ phận này lần lượt biểu thị rằng kết quả ghép cặp tốt hơn cho tất cả nam và cho tất cả nữ. Nói chung, hai ghép cặp ổn định chưa chắc so sánh được với nhau. Tuy nhiên, bất kỳ hai ghép cặp ổn định nào cũng cảm sinh một phép phân rã như hình dưới, sao cho trong ba phần thu được từ phân rã, lần lượt có $\mu_1\preceq_M\mu_2$, $\mu_1=\mu_2$ và $\mu_2\preceq_M\mu_1$. Lưu ý rằng dù không được vẽ trực tiếp, phần $\mu_1=\mu_2$ thực ra bao gồm cả trường hợp ghép với chính mình (tức là chưa được ghép cặp).
 
 ![](./images/stable-match-decompose.svg)
 
-这一分解依赖于如下的引理：
+Phép phân rã này dựa trên bổ đề sau:
 
-???+ note "引理（Knuth, 1976）"
-    设 $\mu_1$ 和 $\mu_2$ 是两个稳定匹配．设 $M(\mu_i)=\{m\in M : \mu_j(m)\prec_m\mu_i(m)\}$ 和 $W(\mu_i)=\{w\in W:\mu_j(w)\prec_w\mu_i(w)\}$ 分别为更偏好 $\mu_i$ 中的匹配结果的男士和女士的集合，其中，$i,j=1,2$ 且 $i\neq j$．那么，$\mu_1$ 和 $\mu_2$ 都是 $M(\mu_1)$ 与 $W(\mu_2)$ 之间的双射，也都是 $M(\mu_2)$ 与 $W(\mu_1)$ 之间的双射．
+???+ note "Bổ đề (Knuth, 1976)"
+    Gọi $\mu_1$ và $\mu_2$ là hai ghép cặp ổn định. Gọi $M(\mu_i)=\{m\in M : \mu_j(m)\prec_m\mu_i(m)\}$ và $W(\mu_i)=\{w\in W:\mu_j(w)\prec_w\mu_i(w)\}$ lần lượt là tập các nam và nữ thích kết quả ghép cặp trong $\mu_i$ hơn, trong đó $i,j=1,2$ và $i\neq j$. Khi đó, cả $\mu_1$ và $\mu_2$ đều là song ánh giữa $M(\mu_1)$ và $W(\mu_2)$, đồng thời cũng là song ánh giữa $M(\mu_2)$ và $W(\mu_1)$.
 
-??? note "证明"
-    设 $m\in M(\mu_1)$．由于 $m\preceq_m \mu_2(m)\prec_m\mu_1(m)$，所以 $\mu_1(m)\in W$．令 $w=\mu_1(m)$．因为 $\mu_2(w)\neq m$，而 $\mu_2(w)\prec_w m$ 又意味着 $(m,w)$ 是 $\mu_2$ 的阻塞对，所以，$\mu_1(w)=m\prec_w\mu_2(w)$．也就是说，$w\in W(\mu_2)$．这说明，$\mu_1(M(\mu_1))\subseteq W(\mu_2)$．由对称性，还可以建立 $\mu_2(W(\mu_2))\subseteq M(\mu_1)$．由于 $\mu_1$ 和 $\mu_2$ 都是单射，所以，$|M(\mu_1)|=|W(\mu_2)|$ 且这两个映射都是满射．这就说明，$\mu_1$ 和 $\mu_2$ 都是 $M(\mu_1)$ 与 $W(\mu_2)$ 之间的双射．同理，它们也都是 $M(\mu_2)$ 与 $W(\mu_1)$ 之间的双射．
+??? note "Chứng minh"
+    Xét $m\in M(\mu_1)$. Vì $m\preceq_m \mu_2(m)\prec_m\mu_1(m)$, nên $\mu_1(m)\in W$. Đặt $w=\mu_1(m)$. Do $\mu_2(w)\neq m$, và $\mu_2(w)\prec_w m$ sẽ kéo theo $(m,w)$ là cặp chặn của $\mu_2$, nên ta phải có $\mu_1(w)=m\prec_w\mu_2(w)$. Nói cách khác, $w\in W(\mu_2)$. Điều này cho thấy $\mu_1(M(\mu_1))\subseteq W(\mu_2)$. Theo tính đối xứng, cũng có thể thiết lập $\mu_2(W(\mu_2))\subseteq M(\mu_1)$. Vì $\mu_1$ và $\mu_2$ đều là đơn ánh, nên $|M(\mu_1)|=|W(\mu_2)|$ và hai ánh xạ này đều là toàn ánh. Do đó, $\mu_1$ và $\mu_2$ đều là song ánh giữa $M(\mu_1)$ và $W(\mu_2)$. Tương tự, chúng cũng đều là song ánh giữa $M(\mu_2)$ và $W(\mu_1)$.
 
-这一引理说明，偏序集 $(\mathcal S,\preceq_M)$ 和 $(\mathcal S,\preceq_W)$ 互为 [对偶](../../math/order-theory.md#对偶)．而且，在每个偏序下，集合 $\mathcal S$ 都构成一个 [格](../../math/order-theory.md#有向集与格)．因为 $\mathcal S$ 是有限的，这两个格一定存在最大元和最小元．这两个最值元素，分别就是前文提到的两个版本的 Gale–Shapley 算法所得到的稳定匹配．
+Bổ đề này cho thấy hai tập thứ tự bộ phận $(\mathcal S,\preceq_M)$ và $(\mathcal S,\preceq_W)$ là [đối ngẫu](../../math/order-theory.md#đối-ngẫu). Hơn nữa, dưới mỗi thứ tự bộ phận, tập $\mathcal S$ đều tạo thành một [dàn](../../math/order-theory.md#tập-định-hướng-và-dàn). Vì $\mathcal S$ là hữu hạn, hai dàn này chắc chắn có phần tử lớn nhất và phần tử nhỏ nhất. Hai phần tử cực trị này chính là các ghép cặp ổn định thu được từ hai phiên bản của thuật toán Gale–Shapley đã nói ở trên.
 
-???+ note "定理 3（Conway and Knuth, 1976）"
-    偏序集 $(\mathcal S,\preceq_M)$ 和 $(\mathcal S,\preceq_W)$ 是相互对偶的格．而且，$\mu_M$ 和 $\mu_W$ 分别是 $(\mathcal S,\preceq_M)$ 的最大元和最小元，也分别是 $(\mathcal S,\preceq_W)$ 的最小元和最大元．
+???+ note "Định lý 3 (Conway and Knuth, 1976)"
+    Các tập thứ tự bộ phận $(\mathcal S,\preceq_M)$ và $(\mathcal S,\preceq_W)$ là hai dàn đối ngẫu của nhau. Hơn nữa, $\mu_M$ và $\mu_W$ lần lượt là phần tử lớn nhất và nhỏ nhất của $(\mathcal S,\preceq_M)$, đồng thời lần lượt là phần tử nhỏ nhất và lớn nhất của $(\mathcal S,\preceq_W)$.
 
-??? note "证明"
-    根据引理，容易说明两个偏序集是对偶的．如果 $\mu_1\preceq_M\mu_2$，这说明 $M(\mu_1)=\varnothing$；由引理，$W(\mu_2)=\varnothing$，此即 $\mu_2\preceq_W\mu_1$．反之亦然．这就说明两者互为对偶．再结合前文的定理 2，就得到 $\mu_M$ 和 $\mu_W$ 是两个偏序集的最值元素．命题中还需要证明的是，两个偏序集是格．由对称性，只需要证明 $(\mathcal S,\preceq_M)$ 是格．再根据交和并运算的对称性，只需要证明稳定匹配的并仍然是稳定匹配．形式化地，对于任意 $\mu_1,\mu_2\in\mathcal S$，需要证明对于所有 $m\in M$ 都满足 $\mu(m)=\mu_1(m)\lor_m\mu_2(m)$ 的匹配 $\mu=\mu_1\lor_M\mu_2$ 是稳定匹配，其中，$\lor_m$ 是全序 $\preceq_m$ 下的并运算（即两者中 $m$ 更喜欢的那个）．
+??? note "Chứng minh"
+    Theo bổ đề, dễ thấy hai tập thứ tự bộ phận là đối ngẫu. Nếu $\mu_1\preceq_M\mu_2$, điều này cho thấy $M(\mu_1)=\varnothing$; theo bổ đề, $W(\mu_2)=\varnothing$, tức là $\mu_2\preceq_W\mu_1$. Chiều ngược lại cũng tương tự. Vì vậy, hai thứ tự này đối ngẫu với nhau. Kết hợp với định lý 2 ở trên, ta thu được $\mu_M$ và $\mu_W$ là các phần tử cực trị của hai tập thứ tự bộ phận. Điều còn cần chứng minh trong mệnh đề là hai tập thứ tự bộ phận đều là dàn. Theo tính đối xứng, chỉ cần chứng minh $(\mathcal S,\preceq_M)$ là dàn. Lại theo tính đối xứng của phép gặp và phép hợp, chỉ cần chứng minh hợp của hai ghép cặp ổn định vẫn là ghép cặp ổn định. Nói một cách hình thức, với mọi $\mu_1,\mu_2\in\mathcal S$, cần chứng minh rằng ghép cặp $\mu=\mu_1\lor_M\mu_2$ thỏa $\mu(m)=\mu_1(m)\lor_m\mu_2(m)$ với mọi $m\in M$ là ghép cặp ổn định, trong đó $\lor_m$ là phép hợp dưới thứ tự toàn phần $\preceq_m$ (tức là đối tượng mà $m$ thích hơn trong hai đối tượng).
     
-    仍采用引理中的记号．对于 $i\in M(\mu_1)\cup W(\mu_2)$，有 $\mu(i)=\mu_1(i)$；否则，有 $\mu(i)=\mu_2(i)$．由于 $\mu_1$ 和 $\mu_2$ 都是稳定的，不存在阻塞个体，$\mu$ 也同样如此．假设 $(m,w)$ 是 $\mu$ 的阻塞对．如果 $m\in M(\mu_1)$，那么，$\mu_2(m)\prec_m\mu_1(m)=\mu(m)\prec_m w$．此时，如果 $w\in W(\mu_2)$，那么，$\mu_1(w)=\mu(w)\prec_w m$，所以，$(m,w)$ 是 $\mu_1$ 的阻塞对，矛盾；否则，$w\in W\setminus W(\mu_2)$，有 $\mu_2(w)=\mu(w)\prec_w m$，所以，$(m,w)$ 是 $\mu_2$ 的阻塞对，也矛盾．类似地，$m\in M\setminus M(\mu_1)$ 的情形也只能导出矛盾．由反证法可知，这样的阻塞对不存在．所以，$\mu_1\lor_M\mu_2$ 是稳定匹配．命题得证．
+    Tiếp tục dùng ký hiệu trong bổ đề. Với $i\in M(\mu_1)\cup W(\mu_2)$, ta có $\mu(i)=\mu_1(i)$; ngược lại, ta có $\mu(i)=\mu_2(i)$. Vì $\mu_1$ và $\mu_2$ đều ổn định và không có cá thể chặn, $\mu$ cũng không có cá thể chặn. Giả sử $(m,w)$ là một cặp chặn của $\mu$. Nếu $m\in M(\mu_1)$, thì $\mu_2(m)\prec_m\mu_1(m)=\mu(m)\prec_m w$. Khi đó, nếu $w\in W(\mu_2)$, ta có $\mu_1(w)=\mu(w)\prec_w m$, nên $(m,w)$ là cặp chặn của $\mu_1$, mâu thuẫn; nếu không, $w\in W\setminus W(\mu_2)$, ta có $\mu_2(w)=\mu(w)\prec_w m$, nên $(m,w)$ là cặp chặn của $\mu_2$, cũng mâu thuẫn. Tương tự, trường hợp $m\in M\setminus M(\mu_1)$ cũng chỉ dẫn đến mâu thuẫn. Theo phản chứng, không tồn tại cặp chặn như vậy. Vì vậy, $\mu_1\lor_M\mu_2$ là ghép cặp ổn định. Mệnh đề được chứng minh.
 
-最后，在所有稳定匹配中，未匹配的男士和女士的集合都是固定的．
+Cuối cùng, trong tất cả các ghép cặp ổn định, tập nam và nữ chưa được ghép cặp là cố định.
 
-???+ note "定理 4（McVitie and Wilson, 1970）"
-    设 $\mu_1$ 和 $\mu_2$ 是两个稳定匹配．那么，$\mu_1$ 和 $\mu_2$ 的不动点集合相同．
+???+ note "Định lý 4 (McVitie and Wilson, 1970)"
+    Gọi $\mu_1$ và $\mu_2$ là hai ghép cặp ổn định. Khi đó, tập điểm bất động của $\mu_1$ và $\mu_2$ là như nhau.
 
-??? note "证明"
-    假设存在 $m\in M$ 使得 $\mu_1(m)=m$ 且 $\mu_2(m)\neq m$ 对某组 $\mu_1,\mu_2\in\mathcal S$ 成立．此时，有 $m\in M(\mu_2)$．由引理可知，$m=\mu_1(m)\in W(\mu_1)$，这与 $m\in M$ 矛盾．所以，不存在这样的 $m\in M$．同理，也不存在这样的 $w\in W$．所以，任意两个稳定匹配的不动点集合必然相同．
+??? note "Chứng minh"
+    Giả sử tồn tại $m\in M$ sao cho $\mu_1(m)=m$ và $\mu_2(m)\neq m$ với một cặp $\mu_1,\mu_2\in\mathcal S$ nào đó. Khi đó, $m\in M(\mu_2)$. Theo bổ đề, $m=\mu_1(m)\in W(\mu_1)$, mâu thuẫn với $m\in M$. Vì vậy, không tồn tại nam $m\in M$ như vậy. Tương tự, cũng không tồn tại nữ $w\in W$ như vậy. Do đó, tập điểm bất động của bất kỳ hai ghép cặp ổn định nào cũng chắc chắn giống nhau.
 
-除了本节讨论的这些性质外，稳定匹配还有一些良好的策略性质．关于这些内容，可以参见文末提供的文献．
+Ngoài các tính chất được thảo luận trong phần này, ghép cặp ổn định còn có một số tính chất chiến lược tốt. Có thể xem các tài liệu ở cuối bài để biết thêm về các nội dung này.
 
-## 相关问题
+## Các vấn đề liên quan
 
-稳定匹配及其类似问题还出现在许多其他的情境中．
+Ghép cặp ổn định và các bài toán tương tự còn xuất hiện trong nhiều bối cảnh khác.
 
-### 学院招生问题
+### Bài toán tuyển sinh đại học
 
-如果将稳定婚姻问题中的一对一匹配的限制放宽，允许多对一匹配，就得到了 **学院招生问题**（college admissions problem）．此时，一个学院可以招收多名学生，只要不超过招生限额；但是，一名学生仍然只允许进入至多一个学院学习．类似的情景还出现在公司招聘、医院招收实习医生等场景中．
+Nếu nới lỏng ràng buộc ghép cặp một-một trong bài toán hôn nhân ổn định và cho phép ghép cặp nhiều-một, ta thu được **bài toán tuyển sinh đại học** (college admissions problem). Khi đó, một trường đại học có thể tuyển nhiều sinh viên, miễn là không vượt quá chỉ tiêu tuyển sinh; nhưng mỗi sinh viên vẫn chỉ được phép vào học nhiều nhất một trường. Các tình huống tương tự cũng xuất hiện trong tuyển dụng công ty, bệnh viện tuyển bác sĩ nội trú và các bối cảnh khác.
 
-对于这类问题，Gale–Shapley 算法仍然适用．例如，由学生申请的 Gale–Shapley 算法中，学院可以维持一个不超过限额长度的候选名单（waitlist），每次只要在申请数量超过限额时，拒绝最差学生的申请即可．前文关于稳定匹配性质的讨论对于这一场景仍然适用．特别地，定理 4 对应的版本是，在所有稳定匹配中，学校能够招到的学生人数是固定的．这也称为 **乡村医院定理**（rural hospitals theorem）．因为它意味着，无论如何更改匹配机制，只要得到的结果是稳定的，那些招不满医生的乡村医院永远招不到人．
+Với loại bài toán này, thuật toán Gale–Shapley vẫn áp dụng được. Chẳng hạn, trong thuật toán Gale–Shapley do sinh viên nộp đơn, trường đại học có thể duy trì một danh sách chờ (waitlist) có độ dài không vượt quá chỉ tiêu; mỗi khi số lượng đơn vượt quá chỉ tiêu, chỉ cần từ chối đơn của sinh viên kém nhất. Những thảo luận ở trên về tính chất của ghép cặp ổn định vẫn áp dụng cho bối cảnh này. Đặc biệt, phiên bản tương ứng của định lý 4 là: trong tất cả các ghép cặp ổn định, số sinh viên mà mỗi trường tuyển được là cố định. Điều này còn được gọi là **định lý bệnh viện nông thôn** (rural hospitals theorem). Tên gọi này xuất phát từ hệ quả rằng dù thay đổi cơ chế ghép cặp thế nào, miễn là kết quả thu được ổn định, những bệnh viện nông thôn vốn không tuyển đủ bác sĩ sẽ mãi không tuyển đủ người.
 
-### 稳定室友问题
+### Bài toán bạn cùng phòng ổn định
 
-如果将稳定婚姻问题中，只能匹配异性的条件放宽，就得到了 **稳定室友问题**（stable roommates problem）．此时，初始只有若干名学生，需要两两结对成为室友．对于这类问题，稳定匹配未必存在．Irving 在 1985 年提出了可以在 $O(n^2)$ 时间内解决该问题的算法．
+Nếu nới lỏng điều kiện trong bài toán hôn nhân ổn định rằng chỉ có thể ghép cặp với người khác giới, ta thu được **bài toán bạn cùng phòng ổn định** (stable roommates problem). Khi đó, ban đầu chỉ có một số sinh viên và cần ghép họ thành từng cặp bạn cùng phòng. Với loại bài toán này, ghép cặp ổn định không nhất thiết tồn tại. Irving đã đề xuất vào năm 1985 một thuật toán giải bài toán này trong thời gian $O(n^2)$.
 
-### 住房分配问题
+### Bài toán phân bổ nhà ở
 
-稳定婚姻问题中，两组个体互相有偏好，所以是双边匹配问题．除此之外，还可以考虑单边匹配问题．一个常见的场景是 **住房分配问题**（house allocation problem）．有 $n$ 名居民，各自拥有一套住房．每人对所有住房有一个严格偏好．现在，要将这些住房重新分配给这些居民，要求每名居民都不能分配到比初始更差的住房，且不存在任何数量的居民，可以私自交换房产，得到更满意的结局．对于这一问题，可以通过 Top Trading Cycle 算法在 $O(n^2)$ 时间内解决．这类问题还出现在肾移植等场景中．
+Trong bài toán hôn nhân ổn định, hai nhóm cá thể có sở thích đối với nhau, nên đó là bài toán ghép cặp hai phía. Ngoài ra, cũng có thể xét bài toán ghép cặp một phía. Một bối cảnh thường gặp là **bài toán phân bổ nhà ở** (house allocation problem). Có $n$ cư dân, mỗi người sở hữu một căn nhà. Mỗi người có một sở thích nghiêm ngặt đối với tất cả các căn nhà. Bây giờ cần phân bổ lại các căn nhà này cho các cư dân, với yêu cầu mỗi cư dân không nhận căn nhà tệ hơn căn ban đầu của mình, và không tồn tại bất kỳ nhóm cư dân nào có thể tự trao đổi nhà với nhau để thu được kết quả hài lòng hơn. Bài toán này có thể được giải bằng thuật toán Top Trading Cycle trong thời gian $O(n^2)$. Các bài toán thuộc loại này cũng xuất hiện trong bối cảnh ghép thận và những tình huống tương tự.
 
-## 习题
+## Bài tập
 
--   [UOJ 41.【清华集训 2014】矩阵变换](https://uoj.ac/problem/41)
+-   [UOJ 41. Tsinghua Training Camp 2014 - Matrix Transform](https://uoj.ac/problem/41)
 -   [Codeforces 1147 F. Zigzag Game](https://codeforces.com/problemset/problem/1147/F)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
--   [什么是算法：如何寻找稳定的婚姻搭配 - Matrix67](https://matrix67.com/blog/archives/2976)
--   [Gale–Shapley 算法：在二分图中寻找稳定匹配](https://reimuyk.github.io/2021-03-24-Gale-Shapley-Algorithm/)
+-   [Thuật toán là gì: cách tìm một ghép cặp hôn nhân ổn định - Matrix67](https://matrix67.com/blog/archives/2976)
+-   [Thuật toán Gale–Shapley: tìm ghép cặp ổn định trong đồ thị hai phía](https://reimuyk.github.io/2021-03-24-Gale-Shapley-Algorithm/)
 -   [Stable matching problem - Wikipedia](https://en.wikipedia.org/wiki/Stable_matching_problem)
 -   [Lattice of stable matchings - Wikipedia](https://en.wikipedia.org/wiki/Lattice_of_stable_matchings)
 -   [Stable roommates problem - Wikipedia](https://en.wikipedia.org/wiki/Stable_roommates_problem)

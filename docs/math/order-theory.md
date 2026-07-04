@@ -211,7 +211,7 @@ Với tập có thứ tự bộ phận hữu hạn $S$ và thứ tự bộ phậ
         
         Vì vậy dễ suy ra $\{f^{-1}(\{i\}):1\leq i\leq d\}$ là một phủ phản xích, nên số phản xích ít nhất cần để phủ không vượt quá $d$.
 
-Định lý Dilworth tương đương với [định lý hôn nhân Hall](../graph/graph-matching/graph-match.md#hall-%E5%AE%9A%E7%90%86).
+Định lý Dilworth tương đương với [định lý hôn nhân Hall](../graph/graph-matching/graph-match.md#định-lý-hall).
 
 Ta có thể dùng định lý Dilworth để chứng minh định lý sau:
 
@@ -244,7 +244,7 @@ Ta có thể dùng định lý Dilworth để chứng minh định lý sau:
         (i,h_i)\preceq(j,h_j) \iff (i\leq j \land h_i\geq h_j)
         $$
         
-        Theo định lý Dilworth, ta có: **số dãy con không tăng ít nhất cần để phủ dãy bằng độ dài dãy con tăng dài nhất**. Vì vậy có thể giải bài này bằng [cách làm $O(n\log n)$ cho dãy con không giảm dài nhất](../dp/basic.md#%E7%AE%97%E6%B3%95%E4%BA%8C).
+        Theo định lý Dilworth, ta có: **số dãy con không tăng ít nhất cần để phủ dãy bằng độ dài dãy con tăng dài nhất**. Vì vậy có thể giải bài này bằng [cách làm $O(n\log n)$ cho dãy con không giảm dài nhất](../dp/basic.md#thuật-toán-2).
     
     ??? note "Mã tham khảo"
         ```cpp

@@ -2,7 +2,7 @@ author: cutekibry, woruo27, tinjyu, 2008verser, Backl1ght, billchenchina, Enter-
 
 Kiến thức cần có: [giới thiệu lý thuyết trò chơi](./intro.md)
 
-Bài viết này thảo luận về [trò chơi tổ hợp công bằng](./intro.md#%E5%85%AC%E5%B9%B3%E7%BB%84%E5%90%88%E5%8D%9A%E5%BC%88).
+Bài viết này thảo luận về [trò chơi tổ hợp công bằng](./intro.md#trò-chơi-tổ-hợp-công-bằng).
 
 Trong các trò chơi tổ hợp công bằng, trò chơi cơ bản nhất và quan trọng nhất là Nim theo luật bình thường. Định lý Sprague-Grundy chỉ ra rằng mọi trò chơi tổ hợp công bằng theo luật bình thường đều tương đương với một trò chơi Nim chỉ có một đống. Từ đó có thể phát triển các khái niệm hàm Sprague-Grundy và số Nim; chúng mô tả đầy đủ một trò chơi tổ hợp công bằng theo luật bình thường. Vì vậy, bài viết trước hết xây dựng các kết luận cho Nim bình thường và lý thuyết Sprague-Grundy. Sau đó, bài viết thảo luận một số trò chơi tổ hợp công bằng thường gặp trong lập trình thi đấu.
 
@@ -70,7 +70,7 @@ Bằng cách dựng đồ thị trò chơi, có thể xác định một cục d
 ???+ abstract "Tổng Nim"
     **Tổng Nim** (Nim sum) của các số tự nhiên $a_1,a_2,\cdots,a_n$ được định nghĩa là $a_1\oplus a_2\oplus\cdots\oplus a_n$.
 
-Cái gọi là tổng Nim chính là [phép toán XOR](../bit.md#%E4%BD%8D%E8%BF%90%E7%AE%97).
+Cái gọi là tổng Nim chính là [phép toán XOR](../bit.md#phép-toán-bit).
 
 ???+ note "Định lý"
     Trong trò chơi Nim, trạng thái $(a_1,a_2,\cdots,a_n)$ là trạng thái tất bại $\mathcal P$ khi và chỉ khi tổng Nim
@@ -159,7 +159,7 @@ Quan sát này gợi ý rằng ta có thể nghiên cứu tính chất của m�
 ???+ abstract "Quan hệ tương đương của trò chơi"
     Nếu với mọi trò chơi $H$, hai trò chơi $G_1+H$ và $G_2+H$ luôn cùng là trạng thái tất bại hoặc cùng là trạng thái tất thắng, thì gọi $G_1$ và $G_2$ là **tương đương** (equivalent), ký hiệu $G_1\approx G_2$.
 
-Dễ kiểm tra rằng $\approx$ được định nghĩa như trên thực sự là một [quan hệ tương đương](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB) trên tập tất cả trò chơi công bằng.
+Dễ kiểm tra rằng $\approx$ được định nghĩa như trên thực sự là một [quan hệ tương đương](../order-theory.md#quan-hệ-hai-ngôi) trên tập tất cả trò chơi công bằng.
 
 <span id="Sprague&#8211;Grundy &#20989;&#25968;"></span>
 ### Hàm Sprague-Grundy
@@ -298,7 +298,7 @@ Mọi trò chơi công bằng đều tương ứng duy nhất với một số N
     -   tổng Nim $a\oplus b=\operatorname{mex}(\{a'\oplus b:a'<a,~a'\in\mathbf N\}\cup\{a\oplus b':b'<b,~b'\in\mathbf N\})$,
     -   tích Nim $a\otimes b=\operatorname{mex}(\{(a'\otimes b)\oplus(a\otimes b')\oplus(a'\otimes b'):a'<a,~b'<b,~a',b'\in\mathbf N\})$.
 
-Tập tất cả số Nim với hai phép toán $\oplus$ và $\otimes$ tạo thành một [trường](../algebra/basic.md#%E5%9F%9F) có đặc số $2$. Hơn nữa, các phép toán này và các phép toán nghịch đảo của chúng đóng trên $2^{2^n}$ số Nim đầu tiên; từ đó nhận được một dãy các [trường hữu hạn](../algebra/field-theory.md#%E6%9C%89%E9%99%90%E5%9F%9F) $\mathbf F_{2^{2^n}}$ có kích thước $2^{2^n}$.
+Tập tất cả số Nim với hai phép toán $\oplus$ và $\otimes$ tạo thành một [trường](../algebra/basic.md#trường) có đặc số $2$. Hơn nữa, các phép toán này và các phép toán nghịch đảo của chúng đóng trên $2^{2^n}$ số Nim đầu tiên; từ đó nhận được một dãy các [trường hữu hạn](../algebra/field-theory.md#trường-hữu-hạn) $\mathbf F_{2^{2^n}}$ có kích thước $2^{2^n}$.
 
 <span id="&#24120;&#35265;&#30340;&#20844;&#24179;&#28216;&#25103;"></span>
 ## Các trò chơi công bằng thường gặp
@@ -387,7 +387,7 @@ Với trò chơi này, có kết luận sau:
     Khi trò chơi bắt đầu, người đi trước tất bại khi và chỉ khi số đá $n$ là một [số Fibonacci](../combinatorics/fibonacci.md).
 
 ??? note "Chứng minh"
-    Gọi $q$ là hạn mức (quota) số đá có thể lấy ở cục diện hiện tại. Trong lượt đầu tiên, $q=n-1$; còn ở các lượt sau, $q$ bằng hai lần số đá mà đối thủ lấy ở lượt trước. Xét [mã hóa Fibonacci](../combinatorics/fibonacci.md#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E7%BC%96%E7%A0%81) của số đá còn lại $n$, tức phân rã duy nhất $n$ thành tổng của một dãy các số Fibonacci dương không kề nhau. Cần chứng minh rằng trạng thái hiện tại là tất thắng khi và chỉ khi $q$ lớn hơn hoặc bằng số Fibonacci nhỏ nhất trong phân rã của $n$.
+    Gọi $q$ là hạn mức (quota) số đá có thể lấy ở cục diện hiện tại. Trong lượt đầu tiên, $q=n-1$; còn ở các lượt sau, $q$ bằng hai lần số đá mà đối thủ lấy ở lượt trước. Xét [mã hóa Fibonacci](../combinatorics/fibonacci.md#mã-hóa-fibonacci) của số đá còn lại $n$, tức phân rã duy nhất $n$ thành tổng của một dãy các số Fibonacci dương không kề nhau. Cần chứng minh rằng trạng thái hiện tại là tất thắng khi và chỉ khi $q$ lớn hơn hoặc bằng số Fibonacci nhỏ nhất trong phân rã của $n$.
     
     Chiến lược thắng là: nếu có thể thì lấy hết số đá còn lại; nếu không thì lấy đi số Fibonacci nhỏ nhất trong phân rã. Vì trong phân rã, số Fibonacci nhỏ thứ hai luôn lớn nghiêm ngặt hơn hai lần số Fibonacci nhỏ nhất, nên nếu lượt hiện tại ở trạng thái tất thắng không thể lấy hết đá, thì ở lượt sau đối thủ cũng không thể lấy số Fibonacci nhỏ thứ hai, tức số Fibonacci nhỏ nhất của lượt sau; đối thủ nhất định ở trạng thái tất bại.
     
@@ -487,9 +487,9 @@ $$
 <span id="&#20108;&#20998;&#22270;&#21338;&#24328;"></span>
 ### Trò chơi trên đồ thị hai phía
 
-Kiến thức cần có: [ghép cực đại trên đồ thị hai phía](../../graph/graph-matching/bigraph-match.md)
+Kiến thức cần có: [ghép cặp lớn nhất trên đồ thị hai phía](../../graph/graph-matching/bigraph-match.md)
 
-Phần cuối của mục này thảo luận trò chơi trên đồ thị hai phía. Mặc dù trò chơi này thường được gọi là trò chơi trên đồ thị hai phía, mô tả và chứng minh kết luận của nó đều không phụ thuộc vào cấu trúc hai phía của đồ thị, nên kết luận thực ra đúng với đồ thị vô hướng tổng quát. Tuy nhiên, ghép cực đại trên đồ thị tổng quát phức tạp hơn, vì vậy kết luận này thường xuất hiện trong các bài về đồ thị hai phía.
+Phần cuối của mục này thảo luận trò chơi trên đồ thị hai phía. Mặc dù trò chơi này thường được gọi là trò chơi trên đồ thị hai phía, mô tả và chứng minh kết luận của nó đều không phụ thuộc vào cấu trúc hai phía của đồ thị, nên kết luận thực ra đúng với đồ thị vô hướng tổng quát. Tuy nhiên, ghép cặp lớn nhất trên đồ thị tổng quát phức tạp hơn, vì vậy kết luận này thường xuất hiện trong các bài về đồ thị hai phía.
 
 ???+ abstract "Trò chơi trên đồ thị hai phía"
     Hai người chơi lần lượt hành động. Cục diện mà mỗi người chơi đối mặt gồm một đồ thị vô hướng $G=(V,E)$ và một đỉnh $v\in V$ của nó. Trong lượt của một người chơi, nếu cục diện hiện tại là $(G,v)$, người chơi đó phải chọn một đỉnh $u$ kề với $v$. Sau đó, xóa đỉnh $v$ và mọi cạnh liên thuộc với nó khỏi đồ thị $G$, thu được đồ thị còn lại $G'$. Cục diện mới là $(G',u)$ và được giao cho người chơi tiếp theo. Nếu một người chơi bắt đầu lượt của mình mà đỉnh hiện tại $v$ không có đỉnh kề trong đồ thị, tức không tồn tại lựa chọn hợp lệ, thì người chơi đó không thể hành động và thua.
@@ -497,21 +497,21 @@ Phần cuối của mục này thảo luận trò chơi trên đồ thị hai ph
 Với trò chơi này, có kết luận sau:
 
 ???+ note "Định lý"
-    Người đi trước tất thắng khi và chỉ khi đỉnh $v$ là điểm then chốt của ghép cực đại trong đồ thị $G$, nghĩa là trong mọi ghép cực đại của đồ thị $G$, đỉnh $v$ đều là đỉnh được ghép.
+    Người đi trước tất thắng khi và chỉ khi đỉnh $v$ là điểm then chốt của ghép cặp lớn nhất trong đồ thị $G$, nghĩa là trong mọi ghép cặp lớn nhất của đồ thị $G$, đỉnh $v$ đều là đỉnh được ghép.
 
 ??? note "Chứng minh"
-    Trước hết, giả sử đỉnh $v$ là điểm then chốt của ghép cực đại trong đồ thị $G$. Gọi $M$ là một ghép cực đại của $G$. Khi đó, người đi trước có thể chuyển cục diện tới đỉnh $u$ được ghép với $v$ trong $M$. Vì đỉnh $v$ xuất hiện trong mọi ghép cực đại của đồ thị $G$, kích thước ghép cực đại của đồ thị còn lại $G'$ nhiều nhất là $|M|-1$; hơn nữa, bỏ cạnh $(v,u)$ khỏi $M$ sẽ thu được một ghép $M'$ của đồ thị $G'$ có kích thước $|M|-1$. Kết hợp hai điểm này, $M'$ là một ghép cực đại của đồ thị $G'$. Tuy nhiên, trong cục diện của người đi sau, đỉnh $u$ không phải là đỉnh được ghép trong ghép $M'$. Vì vậy, người đi sau tất yếu ở trạng thái tất bại.
+    Trước hết, giả sử đỉnh $v$ là điểm then chốt của ghép cặp lớn nhất trong đồ thị $G$. Gọi $M$ là một ghép cặp lớn nhất của $G$. Khi đó, người đi trước có thể chuyển cục diện tới đỉnh $u$ được ghép với $v$ trong $M$. Vì đỉnh $v$ xuất hiện trong mọi ghép cặp lớn nhất của đồ thị $G$, kích thước ghép cặp lớn nhất của đồ thị còn lại $G'$ nhiều nhất là $|M|-1$; hơn nữa, bỏ cạnh $(v,u)$ khỏi $M$ sẽ thu được một ghép cặp $M'$ của đồ thị $G'$ có kích thước $|M|-1$. Kết hợp hai điểm này, $M'$ là một ghép cặp lớn nhất của đồ thị $G'$. Tuy nhiên, trong cục diện của người đi sau, đỉnh $u$ không phải là đỉnh được ghép trong ghép cặp $M'$. Vì vậy, người đi sau tất yếu ở trạng thái tất bại.
     
-    Ngược lại, giả sử tồn tại một ghép cực đại $M$ sao cho $v$ là đỉnh chưa ghép. Vì $M$ là ghép cực đại, mọi đỉnh kề với $v$ nhất định là đỉnh được ghép; nếu không, có thể thêm cạnh giữa chúng vào $M$ để nhận được một ghép lớn hơn. Do đó, bất kể người đi trước chọn thế nào, người đi sau đều ở trạng thái tất thắng.
+    Ngược lại, giả sử tồn tại một ghép cặp lớn nhất $M$ sao cho $v$ là đỉnh chưa ghép. Vì $M$ là ghép cặp lớn nhất, mọi đỉnh kề với $v$ nhất định là đỉnh được ghép; nếu không, có thể thêm cạnh giữa chúng vào $M$ để nhận được một ghép cặp lớn hơn. Do đó, bất kể người đi trước chọn thế nào, người đi sau đều ở trạng thái tất thắng.
 
-Thuật toán tìm các điểm then chốt của ghép cực đại trên đồ thị hai phía xem tại [trang ghép cực đại trên đồ thị hai phía](../../graph/graph-matching/bigraph-match.md#%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E5%85%B3%E9%94%AE%E7%82%B9).
+Thuật toán tìm các điểm then chốt của ghép cặp lớn nhất trên đồ thị hai phía xem tại [trang ghép cặp lớn nhất trên đồ thị hai phía](../../graph/graph-matching/bigraph-match.md#đỉnh-then-chốt-của-ghép-cặp-lớn-nhất).
 
 Ngoài ra, trò chơi trên đồ thị hai phía còn có một biến thể:
 
 ???+ abstract "Biến thể của trò chơi trên đồ thị hai phía"
     Cho $G=(V,E)$ là một đồ thị vô hướng, và trên mỗi đỉnh của đồ thị đặt một viên đá. Hai người chơi lần lượt hành động để lấy đá. Khi trò chơi bắt đầu, người đi trước có thể lấy đi bất kỳ viên đá nào; ở các lượt sau, mỗi người chơi phải lấy viên đá tại một đỉnh kề với đỉnh mà đối phương đã lấy đá ở lượt trước. Người đầu tiên không thể lấy đá thua.
 
-Rõ ràng, biến thể này tương đương với việc trong trò chơi trên đồ thị hai phía ở trên, cho người đi trước chọn cục diện ban đầu, rồi để người đi sau bắt đầu trò chơi trên đồ thị hai phía. Vì vậy, trong biến thể này, người đi trước tất bại khi và chỉ khi mọi đỉnh đều là điểm then chốt của ghép cực đại, tức đồ thị $G$ tồn tại [ghép hoàn hảo](../../graph/graph-matching/graph-match.md#%E5%AE%9A%E4%B9%89).
+Rõ ràng, biến thể này tương đương với việc trong trò chơi trên đồ thị hai phía ở trên, cho người đi trước chọn cục diện ban đầu, rồi để người đi sau bắt đầu trò chơi trên đồ thị hai phía. Vì vậy, trong biến thể này, người đi trước tất bại khi và chỉ khi mọi đỉnh đều là điểm then chốt của ghép cặp lớn nhất, tức đồ thị $G$ tồn tại [ghép cặp hoàn hảo](../../graph/graph-matching/graph-match.md#sự-tồn-tại-của-ghép-cặp-hoàn-hảo).
 
 <span id="&#21453;&#24120; Nim &#28216;&#25103;"></span>
 ## Trò chơi Nim luật ngược

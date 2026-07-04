@@ -1,93 +1,93 @@
 author: accelsao, Enter-tainer, guodong2005, StudyingFather, Backl1ght, Chrogeek, H-J-Granger, Henry-ZHR
 
-二分图的最大权匹配是指二分图中边权和最大的匹配．
+Ghép cặp hai phía có trọng số lớn nhất là một ghép cặp trong đồ thị hai phía sao cho tổng trọng số các cạnh được chọn là lớn nhất.
 
-## Hungarian Algorithm（Kuhn–Munkres Algorithm）
+## Hungarian Algorithm (Kuhn–Munkres Algorithm)
 
-匈牙利算法又称为 **KM** 算法，可以在 $O(n^3)$ 时间内求出二分图的 **最大权完美匹配**．
+Thuật toán Hungarian, còn gọi là thuật toán **KM**, có thể tìm **ghép cặp hoàn hảo có trọng số lớn nhất** trong đồ thị hai phía trong thời gian $O(n^3)$.
 
-考虑到二分图中两个集合中的点并不总是相同，为了能应用 KM 算法解决二分图的最大权匹配，需要先作如下处理：将两个集合中点数比较少的补点，使得两边点数相同，再将不存在的边权重设为 $0$，这种情况下，问题就转换成求 **最大权完美匹配问题**，从而能应用 KM 算法求解．
+Vì số đỉnh ở hai tập của đồ thị hai phía không phải lúc nào cũng bằng nhau, để áp dụng thuật toán KM cho bài toán ghép cặp hai phía có trọng số lớn nhất, trước hết cần xử lý như sau: thêm các đỉnh giả vào tập có ít đỉnh hơn để hai phía có cùng số đỉnh, rồi đặt trọng số của những cạnh không tồn tại thành $0$. Khi đó, bài toán được chuyển thành bài toán tìm **ghép cặp hoàn hảo có trọng số lớn nhất**, nên có thể giải bằng thuật toán KM.
 
-???+ note "可行顶标"
-    给每个节点 $i$ 分配一个权值 $l(i)$，对于所有边 $(u,v)$ 满足 $w(u,v) \leq l(u) + l(v)$．
+???+ note "Nhãn đỉnh khả thi"
+    Gán cho mỗi đỉnh $i$ một giá trị $l(i)$, sao cho với mọi cạnh $(u,v)$ đều có $w(u,v) \leq l(u) + l(v)$.
 
-???+ note "相等子图"
-    在一组可行顶标下原图的生成子图，包含所有点但只包含满足 $w(u,v) = l(u) + l(v)$ 的边 $(u,v)$．
+???+ note "Đồ thị con đẳng thức"
+    Với một bộ nhãn đỉnh khả thi, đây là đồ thị con sinh của đồ thị gốc, chứa toàn bộ các đỉnh nhưng chỉ chứa những cạnh $(u,v)$ thỏa mãn $w(u,v) = l(u) + l(v)$.
 
-???+ note "定理 1 : 对于某组可行顶标，如果其相等子图存在完美匹配，那么，该匹配就是原二分图的最大权完美匹配．"
-    证明 1.
+???+ note "Định lý 1: Với một bộ nhãn đỉnh khả thi, nếu đồ thị con đẳng thức của nó có ghép cặp hoàn hảo, thì ghép cặp đó là ghép cặp hoàn hảo có trọng số lớn nhất của đồ thị hai phía ban đầu."
+    Chứng minh 1.
     
-    考虑原二分图任意一组完美匹配 $M$，其边权和为
+    Xét một ghép cặp hoàn hảo bất kỳ $M$ của đồ thị hai phía ban đầu, tổng trọng số của nó là
     
     $val(M) = \sum_{(u,v)\in M} {w(u,v)} \leq \sum_{(u,v)\in M} {l(u) + l(v)} \leq \sum_{i=1}^{n} l(i)$
     
-    任意一组可行顶标的相等子图的完美匹配 $M'$ 的边权和
+    Với một ghép cặp hoàn hảo $M'$ bất kỳ trong đồ thị con đẳng thức ứng với một bộ nhãn đỉnh khả thi, tổng trọng số là
     
     $val(M') = \sum_{(u,v)\in M} {l(u) + l(v)} = \sum_{i=1}^{n} l(i)$
     
-    即任意一组完美匹配的边权和都不会大于 $val(M')$，那个 $M'$ 就是最大权匹配．
+    Do đó tổng trọng số của mọi ghép cặp hoàn hảo đều không lớn hơn $val(M')$, nên $M'$ chính là ghép cặp có trọng số lớn nhất.
 
-有了定理 1，我们的目标就是透过不断的调整可行顶标，使得相等子图是完美匹配．
+Từ định lý 1, mục tiêu của ta là liên tục điều chỉnh bộ nhãn đỉnh khả thi để đồ thị con đẳng thức có ghép cặp hoàn hảo.
 
-因为两边点数相等，假设点数为 $n$，$lx(i)$ 表示左边第 $i$ 个点的顶标，$ly(i)$ 表示右边第 $i$ 个点的顶标，$w(u,v)$ 表示左边第 $u$ 个点和右边第 $v$ 个点之间的权重．
+Vì hai phía có số đỉnh bằng nhau, giả sử số đỉnh là $n$. Gọi $lx(i)$ là nhãn đỉnh của đỉnh thứ $i$ ở phía trái, $ly(i)$ là nhãn đỉnh của đỉnh thứ $i$ ở phía phải, và $w(u,v)$ là trọng số giữa đỉnh thứ $u$ ở phía trái và đỉnh thứ $v$ ở phía phải.
 
-首先初始化一组可行顶标，例如
+Trước hết khởi tạo một bộ nhãn đỉnh khả thi, ví dụ
 
 $lx(i) = \max_{1\leq j\leq n} \{ w(i, j)\},\, ly(i) = 0$
 
-然后选一个未匹配点，如同最大匹配一样求增广路．找到增广路就增广，否则，会得到一个交错树．
+Sau đó chọn một đỉnh chưa ghép cặp và tìm đường tăng giống như trong bài toán ghép cặp lớn nhất. Nếu tìm được đường tăng thì mở rộng ghép cặp; nếu không, ta thu được một cây luân phiên.
 
-令 $S$，$T$ 表示二分图左边右边在交错树中的点，$S'$，$T'$ 表示不在交错树中的点．
+Gọi $S$, $T$ lần lượt là các đỉnh phía trái và phía phải nằm trong cây luân phiên, còn $S'$, $T'$ là các đỉnh không nằm trong cây luân phiên.
 
 ![bigraph-weight-match-1](./images/bigraph-weight-match-1.png)
 
-在相等子图中：
+Trong đồ thị con đẳng thức:
 
--   $S-T'$ 的边不存在，否则交错树会增长．
--   $S'-T$ 一定是非匹配边，否则他就属于 $S$．
+-   Không tồn tại cạnh $S-T'$, nếu không cây luân phiên đã có thể mở rộng.
+-   Mọi cạnh $S'-T$ chắc chắn là cạnh không thuộc ghép cặp, nếu không đỉnh tương ứng đã thuộc $S$.
 
-假设给 $S$ 中的顶标 $-a$，给 $T$ 中的顶标 $+a$，可以发现
+Giả sử giảm nhãn của các đỉnh trong $S$ đi $a$ và tăng nhãn của các đỉnh trong $T$ thêm $a$, ta thấy rằng:
 
--   $S-T$ 边依然存在相等子图中．
--   $S'-T'$ 没变化．
--   $S-T'$ 中的 $lx + ly$ 有所减少，可能加入相等子图．
--   $S'-T$ 中的 $lx + ly$ 会增加，所以不可能加入相等子图．
+-   Các cạnh $S-T$ vẫn nằm trong đồ thị con đẳng thức.
+-   Các cạnh $S'-T'$ không thay đổi.
+-   Với các cạnh $S-T'$, giá trị $lx + ly$ giảm xuống, nên chúng có thể được thêm vào đồ thị con đẳng thức.
+-   Với các cạnh $S'-T$, giá trị $lx + ly$ tăng lên, nên chúng không thể được thêm vào đồ thị con đẳng thức.
 
-所以这个 $a$ 值的选择，显然得是 $S-T'$ 当中最小的边权，
+Vì vậy giá trị $a$ rõ ràng nên được chọn là độ chênh nhỏ nhất trên các cạnh $S-T'$:
 
-$a = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} , v\in{T'} \}$．
+$a = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} , v\in{T'} \}$.
 
-当一条新的边 $(u,v)$ 加入相等子图后有两种情况
+Khi một cạnh mới $(u,v)$ được thêm vào đồ thị con đẳng thức, có hai trường hợp:
 
--   $v$ 是未匹配点，则找到增广路
--   $v$ 和 $S'$ 中的点已经匹配
+-   $v$ là đỉnh chưa ghép cặp, khi đó tìm được đường tăng.
+-   $v$ đã được ghép cặp với một đỉnh trong $S'$.
 
-这样至多修改 $n$ 次顶标后，就可以找到增广路．
+Như vậy, sau nhiều nhất $n$ lần sửa nhãn đỉnh, ta có thể tìm được một đường tăng.
 
-每次修改顶标的时候，交错树中的边不会离开相等子图，那么我们直接维护这棵树．
+Mỗi lần sửa nhãn đỉnh, các cạnh trong cây luân phiên sẽ không rời khỏi đồ thị con đẳng thức, vì vậy ta có thể trực tiếp duy trì cây này.
 
-我们对 $T$ 中的每个点 $v$ 维护
+Với mỗi đỉnh $v$ trong $T$, ta duy trì
 
-$slack(v) = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} \}$．
+$slack(v) = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} \}$.
 
-所以可以在 $O(n)$ 算出顶标修改值 $a$
+Vì vậy có thể tính giá trị sửa nhãn $a$ trong $O(n)$:
 
 $a = \min \{ slack(v) | v\in{T'} \}$
 
-交错树新增一个点进入 $S$ 的时候需要 $O(n)$ 更新 $slack(v)$．修改顶标需要 $O(n)$ 给每个 $slack(v)$ 减去 $a$．只要交错树找到一个未匹配点，就找到增广路．
+Khi cây luân phiên thêm một đỉnh mới vào $S$, cần $O(n)$ để cập nhật $slack(v)$. Khi sửa nhãn, cần $O(n)$ để trừ $a$ khỏi mỗi $slack(v)$. Chỉ cần cây luân phiên tìm thấy một đỉnh chưa ghép cặp là ta tìm được đường tăng.
 
-一开始枚举 $n$ 个点找增广路，为了找增广路需要延伸 $n$ 次交错树，每次延伸需要 $n$ 次维护，共 $O(n^3)$．
+Ban đầu ta duyệt $n$ đỉnh để tìm đường tăng. Để tìm một đường tăng, cây luân phiên cần mở rộng nhiều nhất $n$ lần, mỗi lần mở rộng cần $n$ thao tác duy trì, nên tổng độ phức tạp là $O(n^3)$.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     template <typename T>
     struct hungarian {  // km
       int n;
-      vector<int> matchx;  // 左集合对应的匹配点
-      vector<int> matchy;  // 右集合对应的匹配点
-      vector<int> pre;     // 连接右集合的左点
-      vector<bool> visx;   // 拜访数组 左
-      vector<bool> visy;   // 拜访数组 右
+      vector<int> matchx;  // matched vertex for the left set
+      vector<int> matchy;  // matched vertex for the right set
+      vector<int> pre;     // left vertex connected to the right set
+      vector<bool> visx;   // visited array for the left set
+      vector<bool> visy;   // visited array for the right set
       vector<T> lx;
       vector<T> ly;
       vector<vector<T>> g;
@@ -116,7 +116,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
       }
     
       void addEdge(int u, int v, int w) {
-        g[u][v] = max(w, 0);  // 负值还不如不匹配 因此设为0不影响
+        g[u][v] = max(w, 0);  // negative values are worse than not matching, so setting them to 0 has no effect
       }
     
       bool check(int v) {
@@ -126,7 +126,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
           visx[matchy[v]] = true;  // in S
           return false;
         }
-        // 找到新的未匹配点 更新匹配点 pre 数组记录着"非匹配边"上与之相连的点
+        // Found a new unmatched vertex. Update matches; pre records the vertex connected by a non-matching edge.
         while (v != -1) {
           matchy[v] = pre[v];
           swap(v, matchx[pre[v]]);
@@ -151,15 +151,15 @@ $a = \min \{ slack(v) | v\in{T'} \}$
                   pre[v] = u;
                   if (delta) {
                     slack[v] = delta;
-                  } else if (check(v)) {  // delta=0 代表有机会加入相等子图 找增广路
-                                          // 找到就return 重建交错树
+                  } else if (check(v)) {  // delta = 0 means the edge can enter the equality subgraph and form an augmenting path
+                                          // return after finding it and rebuild the alternating tree
                     return;
                   }
                 }
               }
             }
           }
-          // 没有增广路 修改顶标
+          // No augmenting path; adjust labels.
           T a = inf;
           for (int j = 0; j < n; j++) {
             if (!visy[j]) {
@@ -185,7 +185,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
       }
     
       void solve() {
-        // 初始顶标
+        // Initial labels
         for (int i = 0; i < n; i++) {
           for (int j = 0; j < n; j++) {
             lx[i] = max(lx[i], g[i][j]);
@@ -218,58 +218,58 @@ $a = \min \{ slack(v) | v\in{T'} \}$
 
 ## Dynamic Hungarian Algorithm
 
-原论文 [The Dynamic Hungarian Algorithm for the Assignment Problem with Changing Costs](https://www.ri.cmu.edu/publications/the-dynamic-hungarian-algorithm-for-the-assignment-problem-with-changing-costs/)
+Bài báo gốc: [The Dynamic Hungarian Algorithm for the Assignment Problem with Changing Costs](https://www.ri.cmu.edu/publications/the-dynamic-hungarian-algorithm-for-the-assignment-problem-with-changing-costs/)
 
-伪代码更清晰的论文 [A Fast Dynamic Assignment Algorithm for Solving Resource Allocation Problems](https://www.researchgate.net/publication/352490780_A_Fast_Dynamic_Assignment_Algorithm_for_Solving_Resource_Allocation_Problems)
+Bài báo có mã giả rõ ràng hơn: [A Fast Dynamic Assignment Algorithm for Solving Resource Allocation Problems](https://www.researchgate.net/publication/352490780_A_Fast_Dynamic_Assignment_Algorithm_for_Solving_Resource_Allocation_Problems)
 
-相关 OJ 问题 [DAP](https://www.spoj.com/problems/DAP/)
+Bài OJ liên quan: [DAP](https://www.spoj.com/problems/DAP/)
 
-???+ note "算法思路"
-    1.  修改单点 $u_i$ 和所有 $v_j$ 之间的权重，即权重矩阵中的一行
-        -   修改顶标 $lx(u_i) = max(w_{ij} - v_{j}), \forall j$
-        -   删除 $u_i$ 相关的匹配
-    2.  修改所有 $u_i$ 和单点 $v_j$ 之间的权重，即权重矩阵中的一列
-        -   修改顶标 $ly(v_j) = max(w_{ij} - u_{i}), \forall i$
-        -   删除 $v_j$ 相关的匹配
-    3.  修改单点 $u_i$ 和单点 $v_j$ 之间的权重，即权重矩阵中的单个元素
-        -   做 1 或 2 两种操作之一即可
-    4.  添加某一单点 $u_i$，或者某一单点 $v_j$，即在权重矩阵中添加或者删除一行或者一列
-        -   对应地做 1 或 2 即可，注意此处加点操作仅为加点，不额外设定权重值，新加点与其他点的权重为 0.
+???+ note "Ý tưởng thuật toán"
+    1.  Sửa trọng số giữa một đỉnh $u_i$ và tất cả các đỉnh $v_j$, tức là một hàng trong ma trận trọng số.
+        -   Sửa nhãn đỉnh $lx(u_i) = max(w_{ij} - v_{j}), \forall j$
+        -   Xóa ghép cặp liên quan đến $u_i$
+    2.  Sửa trọng số giữa tất cả các đỉnh $u_i$ và một đỉnh $v_j$, tức là một cột trong ma trận trọng số.
+        -   Sửa nhãn đỉnh $ly(v_j) = max(w_{ij} - u_{i}), \forall i$
+        -   Xóa ghép cặp liên quan đến $v_j$
+    3.  Sửa trọng số giữa một đỉnh $u_i$ và một đỉnh $v_j$, tức là một phần tử trong ma trận trọng số.
+        -   Chỉ cần thực hiện một trong hai thao tác 1 hoặc 2
+    4.  Thêm một đỉnh $u_i$ hoặc một đỉnh $v_j$, tức là thêm hoặc xóa một hàng hoặc một cột trong ma trận trọng số.
+        -   Thực hiện thao tác 1 hoặc 2 tương ứng. Lưu ý rằng thao tác thêm đỉnh ở đây chỉ thêm đỉnh, không gán thêm giá trị trọng số; trọng số giữa đỉnh mới và các đỉnh khác là 0.
 
-???+ note "算法证明"
-    -   设原图为 G，左右两边的顶标为 $\alpha^{i}$ 和 $\beta^{j}$，可行顶标为 l，那 $G_l$ 是 G 的一个子图，包含图 G 中满足 $w_{ij} = alpha_{i}+beta_{j}$ 的点和边．
-    -   在上面匈牙利算法的部分，定理一证明了：对于某组可行顶标，如果其相等子图存在完美匹配，那么，该匹配就是原二分图的最大权完美匹配．
-    -   假设原来的最优匹配是 $M^*$, 当一个修改发生的时候，我们会根据规则更新可行顶标，更新后的顶标设为 $\alpha^{i^*}$, 或者 $\beta^{j^*}$，会出现以下情况：
-        1.  权重矩阵的一整行被修改了，设被修改的行为 $i^*$ 行，即 $v_{i^*}$ 的所有边被修改了，所以 $v_{i^*}$ 原来的顶标可能不满足条件，因为我们需要 $w_{i^{*}j} \leq alpha_{i^*}+beta_{j}$，但对于其他的 $u_j$ 来说，除了 $i^*$ 相关的边，他们的边权是不变的，因此他们的顶标都是合法的，所以算法中修改了 $v_{i^*}$ 相关的顶标使得这组顶标是一组可行顶标．
-        2.  权重矩阵的一整列被修改了，同理可得算法修改顶标使得这组顶标是一组可行顶标．
-        3.  修改权重矩阵某一元素，任意修改其中一个顶标即可满足顶标条件
-    -   每一次权重矩阵被修改，都关系到一个特定节点，这个节点可能是左边的也可能是右边的，因此我们直接记为 $x$, 这个节点和某个节点 $y$ 在原来的最优匹配中匹配上了．每一次修改操作，最多让这一对节点 unpair，因此我们只要跑一轮匈牙利算法中的搜索我们就能得到一个新的 match，而根据定理一，新跑出来的 match 是最优的．
+???+ note "Chứng minh thuật toán"
+    -   Gọi đồ thị ban đầu là G, nhãn đỉnh ở hai phía trái và phải lần lượt là $\alpha^{i}$ và $\beta^{j}$, và bộ nhãn khả thi là l. Khi đó $G_l$ là một đồ thị con của G, chứa các đỉnh và cạnh trong G thỏa mãn $w_{ij} = alpha_{i}+beta_{j}$.
+    -   Trong phần thuật toán Hungarian ở trên, định lý 1 đã chứng minh rằng: với một bộ nhãn đỉnh khả thi, nếu đồ thị con đẳng thức của nó có ghép cặp hoàn hảo, thì ghép cặp đó là ghép cặp hoàn hảo có trọng số lớn nhất của đồ thị hai phía ban đầu.
+    -   Giả sử ghép cặp tối ưu ban đầu là $M^*$. Khi có một thay đổi, ta cập nhật nhãn đỉnh khả thi theo các quy tắc trên; nhãn sau khi cập nhật được ký hiệu là $\alpha^{i^*}$ hoặc $\beta^{j^*}$. Các trường hợp xảy ra như sau:
+        1.  Cả một hàng của ma trận trọng số bị sửa, giả sử đó là hàng $i^*$, tức là tất cả các cạnh của $u_{i^*}$ bị sửa. Vì vậy nhãn ban đầu của $u_{i^*}$ có thể không còn thỏa điều kiện, do ta cần $w_{i^{*}j} \leq alpha_{i^*}+beta_{j}$. Nhưng với các đỉnh $u_j$ khác, ngoài các cạnh liên quan đến $i^*$, trọng số các cạnh không thay đổi, nên nhãn của chúng vẫn hợp lệ. Do đó thuật toán sửa nhãn liên quan đến $u_{i^*}$ để bộ nhãn này trở thành một bộ nhãn khả thi.
+        2.  Cả một cột của ma trận trọng số bị sửa. Lập luận tương tự cho thấy thuật toán sửa nhãn để bộ nhãn này trở thành một bộ nhãn khả thi.
+        3.  Khi sửa một phần tử của ma trận trọng số, chỉ cần sửa một trong hai nhãn là có thể thỏa điều kiện nhãn.
+    -   Mỗi lần ma trận trọng số bị sửa đều liên quan đến một đỉnh cụ thể; đỉnh này có thể ở phía trái hoặc phía phải, nên ta ký hiệu chung là $x$. Trong ghép cặp tối ưu ban đầu, đỉnh này được ghép với một đỉnh nào đó $y$. Mỗi thao tác sửa nhiều nhất chỉ hủy ghép cặp giữa hai đỉnh này, vì vậy chỉ cần chạy một vòng tìm kiếm của thuật toán Hungarian là ta thu được một ghép cặp mới; theo định lý 1, ghép cặp mới tìm được là tối ưu.
 
-以下代码应该为论文 2 作者提交的代码（以下代码为最大化权重版本，原始论文中为最小化 cost）
+Đoạn mã sau được cho là mã do tác giả bài báo 2 nộp. Đoạn mã dưới đây là phiên bản tối đa hóa trọng số, còn bài báo gốc dùng tối thiểu hóa chi phí.
 
-??? note "动态匈牙利算法参考代码"
+??? note "Mã tham khảo cho thuật toán Hungarian động"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/bigraph-weight-match/bigraph-weight-match_1.cpp"
     ```
 
-## 转化为费用流模型
+## Chuyển thành mô hình luồng chi phí
 
-与 [二分图最大匹配](./bigraph-match.md) 类似，二分图的最大权匹配也可以转化为网络流问题来求解．
+Tương tự [ghép cặp lớn nhất trong đồ thị hai phía](./bigraph-match.md), bài toán ghép cặp hai phía có trọng số lớn nhất cũng có thể chuyển thành một bài toán luồng mạng để giải.
 
-首先，在图中新增一个源点和一个汇点．
+Trước hết, thêm vào đồ thị một đỉnh nguồn và một đỉnh đích.
 
-从源点向二分图的每个左部点连一条流量为 $1$，费用为 $0$ 的边，从二分图的每个右部点向汇点连一条流量为 $1$，费用为 $0$ 的边．
+Nối từ nguồn đến mỗi đỉnh phía trái của đồ thị hai phía một cạnh có lưu lượng $1$ và chi phí $0$; nối từ mỗi đỉnh phía phải đến đích một cạnh có lưu lượng $1$ và chi phí $0$.
 
-接下来对于二分图中每一条连接左部点 $u$ 和右部点 $v$，边权为 $w$ 的边，则连一条从 $u$ 到 $v$，流量为 $1$，费用为 $w$ 的边．
+Tiếp theo, với mỗi cạnh trong đồ thị hai phía nối đỉnh phía trái $u$ và đỉnh phía phải $v$, có trọng số $w$, ta nối một cạnh từ $u$ đến $v$ với lưu lượng $1$ và chi phí $w$.
 
-另外，考虑到最大权匹配下，匹配边的数量不一定与最大匹配的匹配边数量相等，因此对于每个左部点，还需向汇点连一条流量为 $1$，费用为 $0$ 的边．
+Ngoài ra, do trong ghép cặp có trọng số lớn nhất, số cạnh được ghép không nhất thiết bằng số cạnh trong ghép cặp lớn nhất, nên với mỗi đỉnh phía trái, còn cần nối thêm một cạnh đến đích với lưu lượng $1$ và chi phí $0$.
 
-求这个网络的 [最大费用最大流](../flow/min-cost.md) 即可得到答案．此时，该网络的最大流量一定为左部点的数量，而最大流量下的最大费用即对应一个最大权匹配方案．
+Tìm luồng cực đại có chi phí lớn nhất trên mạng này là thu được đáp án. Tương đương, có thể đổi dấu chi phí rồi dùng [luồng chi phí nhỏ nhất](../flow/min-cost.md). Khi đó lưu lượng cực đại của mạng chắc chắn bằng số đỉnh phía trái, và chi phí lớn nhất trong số các luồng cực đại tương ứng với một phương án ghép cặp có trọng số lớn nhất.
 
-## 习题
+## Bài tập
 
-??? note "[UOJ #80. 二分图最大权匹配](https://uoj.ac/problem/80)"
-    模板题
+??? note "[UOJ #80. Ghép cặp hai phía có trọng số lớn nhất](https://uoj.ac/problem/80)"
+    Bài mẫu.
     
     ```cpp
     --8<-- "docs/graph/code/graph-matching/bigraph-weight-match/bigraph-weight-match_2.cpp"

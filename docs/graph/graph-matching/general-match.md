@@ -1,57 +1,57 @@
 author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, ShizuhaAki, pukui
 
-## 带花树算法（Blossom Algorithm）
+## Thuật toán blossom (Blossom Algorithm)
 
-开花算法（Blossom Algorithm，也被称做带花树）可以解决一般图最大匹配问题（maximum cardinality matchings）．此算法由 Jack Edmonds 在 1961 年提出．
-经过一些修改后也可以解决一般图最大权匹配问题．
-此算法是第一个给出证明说最大匹配有多项式复杂度．
+Thuật toán blossom (Blossom Algorithm, còn được gọi là cây hoa) có thể giải bài toán ghép cặp lớn nhất trong đồ thị tổng quát (maximum cardinality matchings). Thuật toán này được Jack Edmonds đề xuất vào năm 1961.
+Sau một số sửa đổi, nó cũng có thể giải bài toán ghép cặp trọng số lớn nhất trong đồ thị tổng quát.
+Đây là thuật toán đầu tiên đưa ra chứng minh rằng bài toán ghép cặp lớn nhất có độ phức tạp đa thức.
 
-一般图匹配和二分图匹配（bipartite matching）不同的是，图可能存在奇环．
+Điểm khác biệt giữa ghép cặp trong đồ thị tổng quát và ghép cặp trong đồ thị hai phía (bipartite matching) là đồ thị có thể chứa chu trình lẻ.
 
 ![general-matching-1](./images/general-matching-1.png)
 
-以此图为例，若直接取反（匹配边和未匹配边对调），会使得取反后的 $M$ 不合法，某些点会出现在两条匹配上，而问题就出在奇环．
+Lấy đồ thị này làm ví dụ. Nếu trực tiếp đảo trạng thái các cạnh (đổi cạnh ghép cặp và cạnh chưa ghép cặp cho nhau), thì $M$ sau khi đảo sẽ không hợp lệ: một số đỉnh sẽ xuất hiện trong hai cạnh ghép cặp. Vấn đề nằm ở chu trình lẻ.
 
-下面考虑一般图的增广算法．
-从二分图的角度出发，每次枚举一个未匹配点，设出发点为根，标记为 **「o」**，接下来交错标记 **「o」** 和 **「i」**，不难发现 **「i」** 到 **「o」** 这段边是匹配边．
+Sau đây xét thuật toán tìm đường tăng cho đồ thị tổng quát.
+Nhìn từ góc độ đồ thị hai phía, mỗi lần ta liệt kê một đỉnh chưa được ghép cặp, đặt đỉnh xuất phát làm gốc và đánh dấu là **"o"**, sau đó đánh dấu xen kẽ **"o"** và **"i"**. Không khó để nhận thấy đoạn cạnh từ **"i"** đến **"o"** là cạnh ghép cặp.
 
-假设当前点是 $v$，相邻点为 $u$，可以分为以下两种情况：
+Giả sử đỉnh hiện tại là $v$, đỉnh kề là $u$, có thể chia thành hai trường hợp sau:
 
-1.  $u$ 未拜访过，当 $u$ 是未匹配点，则找到增广路径，否则从 $u$ 的配偶找增广路．
-2.  $u$ 已拜访过，遇到标记「o」代表需要 **缩花**，否则代表遇到偶环，跳过．
+1.  $u$ chưa được thăm. Nếu $u$ là đỉnh chưa ghép cặp thì tìm được đường tăng; ngược lại tiếp tục tìm đường tăng từ đỉnh đang ghép với $u$.
+2.  $u$ đã được thăm. Nếu gặp nhãn "o" thì cần **co hoa**; nếu không thì đang gặp chu trình chẵn, bỏ qua.
 
-遇到偶环的情况，将他视为二分图解决，故可忽略．**缩花** 后，再新图中继续找增广路．
+Trường hợp gặp chu trình chẵn có thể xem như xử lý trong đồ thị hai phía, nên có thể bỏ qua. Sau khi **co hoa**, tiếp tục tìm đường tăng trong đồ thị mới.
 
 ![general-matching-2](./images/general-matching-2.png)
 
-设原图为 $G$，**缩花** 后的图为 $G'$，我们只需要证明：
+Gọi đồ thị ban đầu là $G$, đồ thị sau khi **co hoa** là $G'$. Ta chỉ cần chứng minh:
 
-1.  若 $G$ 存在增广路，$G'$ 也存在．
-2.  若 $G'$ 存在增广路，$G$ 也存在．
+1.  Nếu $G$ tồn tại đường tăng, thì $G'$ cũng tồn tại.
+2.  Nếu $G'$ tồn tại đường tăng, thì $G$ cũng tồn tại.
 
 ![general-matching-3](./images/general-matching-3.png)
 
-设非树边（形成环的那条边）为 $(u,v)$，定义花根 $h=LCA(u,v)$．
-奇环是交替的，有且仅有 $h$ 的两条邻边类型相同，都是非匹配边．
-那么进入 $h$ 的树边肯定是匹配边，环上除了 $h$ 以外其他点往环外的边都是非匹配边．
+Gọi cạnh không thuộc cây (cạnh tạo thành chu trình) là $(u,v)$, định nghĩa gốc hoa $h=LCA(u,v)$.
+Chu trình lẻ là chu trình xen kẽ, và chỉ có hai cạnh kề với $h$ có cùng loại, đều là cạnh không ghép cặp.
+Khi đó cạnh cây đi vào $h$ chắc chắn là cạnh ghép cặp; ngoài $h$, mọi cạnh từ các đỉnh khác trên chu trình đi ra ngoài chu trình đều là cạnh không ghép cặp.
 
-观察可知，从环外的边出去有两种情况，顺时针或逆时针．
+Quan sát cho thấy khi đi ra bằng một cạnh ngoài chu trình, có hai khả năng: theo chiều kim đồng hồ hoặc ngược chiều kim đồng hồ.
 
 ![general-matching-4](./images/general-matching-4.png)
 
-于是 **缩花** 与 **不缩花** 都不影响正确性．
+Vì vậy, **co hoa** hay **không co hoa** đều không ảnh hưởng đến tính đúng đắn.
 
-实作上找到 **花** 以后我们不需要真的 **缩花**，可以用数组纪录每个点在以哪个点为根的那朵花中．
+Khi hiện thực, sau khi tìm được **hoa**, ta không cần thật sự **co hoa**; có thể dùng mảng để ghi lại mỗi đỉnh đang nằm trong bông hoa có gốc là đỉnh nào.
 
-### 复杂度分析 Complexity Analysis
+### Phân tích độ phức tạp Complexity Analysis
 
-每次找增广路，遍历所有边，遇到 **花** 会维护 **花** 上的点，$O(|E|^2)$．
+Mỗi lần tìm đường tăng, ta duyệt qua tất cả các cạnh; khi gặp **hoa** thì cần duy trì các đỉnh trên **hoa**, độ phức tạp là $O(|E|^2)$.
 
-枚举所有未匹配点做增广路，总共 $O(|V||E|^2)$．
+Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng, tổng cộng là $O(|V||E|^2)$.
 
-### 参考代码
+### Mã tham khảo
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     // graph
     template <typename T>
@@ -96,11 +96,11 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
     template <typename T>
     vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       std::mt19937 rng(std::random_device{}());
-      vector<int> match(g.n, -1);   // 匹配
-      vector<int> aux(g.n, -1);     // 时间戳记
-      vector<int> label(g.n);       // 「o」或「i」
-      vector<int> orig(g.n);        // 花根
-      vector<int> parent(g.n, -1);  // 父节点
+      vector<int> match(g.n, -1);   // ghep cap
+      vector<int> aux(g.n, -1);     // dau thoi gian
+      vector<int> label(g.n);       // "o" hoac "i"
+      vector<int> orig(g.n);        // goc hoa
+      vector<int> parent(g.n, -1);  // nut cha
       queue<int> q;
       int aux_time = -1;
     
@@ -108,14 +108,14 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
         aux_time++;
         while (true) {
           if (v != -1) {
-            if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
+            if (aux[v] == aux_time) {  // tim thay dinh da tham, tuc LCA
               return v;
             }
             aux[v] = aux_time;
             if (match[v] == -1) {
               v = -1;
             } else {
-              v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
+              v = orig[parent[match[v]]];  // tiep tuc tim tu nut cha cua dinh ghep cap
             }
           }
           swap(v, u);
@@ -126,11 +126,11 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
         while (orig[v] != a) {
           parent[v] = u;
           u = match[v];
-          if (label[u] == 1) {  // 初始点设为「o」找增广路
+          if (label[u] == 1) {  // dat diem ban dau la "o" de tim duong tang
             label[u] = 0;
             q.push(u);
           }
-          orig[v] = orig[u] = a;  // 缩花
+          orig[v] = orig[u] = a;  // co hoa
           v = parent[u];
         }
       };  // blossom
@@ -152,7 +152,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
           q.pop();
         }
         q.push(root);
-        // 初始点设为「o」，这里以「0」代替「o」，「1」代替「i」
+        // Dat diem ban dau la "o"; o day dung "0" thay cho "o", "1" thay cho "i"
         label[root] = 0;
         while (!q.empty()) {
           int v = q.front();
@@ -160,21 +160,21 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
           for (int id : g.g[v]) {
             auto &e = g.edges[id];
             int u = e.from ^ e.to ^ v;
-            if (label[u] == -1) {  // 找到未拜访点
-              label[u] = 1;        // 标记「i」
+            if (label[u] == -1) {  // tim thay dinh chua tham
+              label[u] = 1;        // danh dau "i"
               parent[u] = v;
-              if (match[u] == -1) {  // 找到未匹配点
-                augment(u);          // 寻找增广路径
+              if (match[u] == -1) {  // tim thay dinh chua ghep cap
+                augment(u);          // tim duong tang
                 return true;
               }
-              // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
+              // Tim thay dinh da ghep cap; dua dinh ghep voi no vao queue de mo rong cay xen ke
               label[match[u]] = 0;
               q.push(match[u]);
               continue;
             } else if (label[u] == 0 && orig[v] != orig[u]) {
-              // 找到已拜访点 且标记同为「o」代表找到「花」
+              // Tim thay dinh da tham va cung co nhan "o", nghia la tim thay "hoa"
               int a = lca(orig[v], orig[u]);
-              // 找LCA 然后缩花
+              // Tim LCA roi co hoa
               blossom(u, v, a);
               blossom(v, u, a);
             }
@@ -185,11 +185,11 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
     
       auto greedy = [&]() {
         vector<int> order(g.n);
-        // 随机打乱 order
+        // Xao tron ngau nhien order
         iota(order.begin(), order.end(), 0);
         shuffle(order.begin(), order.end(), rng);
     
-        // 将可以匹配的点匹配
+        // Ghep cac dinh co the ghep cap
         for (int i : order) {
           if (match[i] == -1) {
             for (auto id : g.g[i]) {
@@ -205,9 +205,9 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
         }
       };  // greedy
     
-      // 一开始先随机匹配
+      // Ban dau ghep cap ngau nhien
       greedy();
-      // 对未匹配点找增广路
+      // Tim duong tang tu cac dinh chua ghep cap
       for (int i = 0; i < g.n; i++) {
         if (match[i] == -1) {
           bfs(i);
@@ -217,25 +217,25 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
     }
     ```
 
-??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)"
+??? note "[UOJ #79. Ghép cặp lớn nhất trong đồ thị tổng quát](https://uoj.ac/problem/79)"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/general-match/general-match_1.cpp"
     ```
 
-## 基于高斯消元的一般图匹配算法
+## Thuật toán ghép cặp trong đồ thị tổng quát dựa trên khử Gauss
 
-???+ tip "提示"
-    在阅读以下内容前，你可能需要先阅读「线性代数」部分中关于矩阵的内容：
+???+ tip "Gợi ý"
+    Trước khi đọc phần sau, có thể bạn cần đọc trước nội dung về ma trận trong phần "Đại số tuyến tính":
     
-    -   [矩阵](../../math/linear-algebra/matrix.md)
-    -   [行列式](../../math/linear-algebra/determinant.md)
-    -   [高斯消元](../../math/numerical/gauss.md)
+    -   [Ma trận](../../math/linear-algebra/matrix.md)
+    -   [Định thức](../../math/linear-algebra/determinant.md)
+    -   [Khử Gauss](../../math/numerical/gauss.md)
 
-这一部分将介绍一种基于高斯消元的一般图匹配算法．与传统的带花树算法相比，它的优势在于更易于理解与编写，同时便于解决「最大匹配中的必须点」等问题；缺点在于常数比较大，因为高斯消元的 $O(n^3)$ 基本是跑满的，而带花树一般跑不满．
+Phần này giới thiệu một thuật toán ghép cặp trong đồ thị tổng quát dựa trên khử Gauss. So với thuật toán cây hoa truyền thống, ưu điểm của nó là dễ hiểu và dễ viết hơn, đồng thời thuận tiện để giải các bài toán như "đỉnh bắt buộc trong ghép cặp lớn nhất"; nhược điểm là hằng số khá lớn, vì phần $O(n^3)$ của khử Gauss về cơ bản chạy đủ, còn cây hoa thường không chạy hết như vậy.
 
-### 前置知识：Tutte 矩阵
+### Kiến thức chuẩn bị: Ma trận Tutte
 
-**定义**：对于一张 $n$ 个点的无向图 $G = (V, E)$，其 Tutte 矩阵 $\tilde{A}(G)$ 为一个 $n \times n$ 的矩阵，其中：
+**Định nghĩa**: Với một đồ thị vô hướng $G = (V, E)$ có $n$ đỉnh, ma trận Tutte $\tilde{A}(G)$ của nó là một ma trận $n \times n$, trong đó:
 
 $$
 \tilde{A}(G)_{i,j} = \begin{cases}
@@ -245,67 +245,67 @@ x_{i,j}, & i<j,\; (v_i, v_j)\in E \\
 \end{cases}
 $$
 
-其中 $x_{i, j}$ 是一个变量，因此 $\tilde{A}(G)$ 中共有 $|E|$ 个变量．
+Trong đó $x_{i, j}$ là một biến, nên trong $\tilde{A}(G)$ có tổng cộng $|E|$ biến.
 
-在无歧义的情况下，以下将 $\tilde{A}(G)$ 简写为 $\tilde{A}$．
+Khi không gây nhầm lẫn, bên dưới viết tắt $\tilde{A}(G)$ thành $\tilde{A}$.
 
-**定理**（Tutte 定理）：$G$ 存在完美匹配当且仅当 $\det \tilde{A} \ne 0$．
+**Định lý** (định lý Tutte): $G$ tồn tại ghép cặp hoàn hảo khi và chỉ khi $\det \tilde{A} \ne 0$.
 
-??? note "证明"
-    这里引入「偶环覆盖」的概念：一个无向图 $G$ 的偶环覆盖指用若干偶环（包括二元环）不重不漏地覆盖所有的点．
+??? note "Chứng minh"
+    Ở đây đưa vào khái niệm "phủ chu trình chẵn": một phủ chu trình chẵn của đồ thị vô hướng $G$ là cách dùng một số chu trình chẵn (bao gồm cả chu trình hai cạnh) để phủ tất cả các đỉnh, không trùng và không sót.
     
-    易证 $G$ 存在完美匹配当且仅当 $G$ 存在偶环覆盖．
+    Dễ chứng minh rằng $G$ tồn tại ghép cặp hoàn hảo khi và chỉ khi $G$ tồn tại phủ chu trình chẵn.
     
-    -   如果 $G$ 存在偶环覆盖，我们只需要在每个环都隔一条取一条边，就可以得到一个完美匹配．
-    -   如果 $G$ 存在完美匹配，我们只需要将匹配边对应的二元环取出，就可以得到一个偶环覆盖．
+    -   Nếu $G$ tồn tại phủ chu trình chẵn, ta chỉ cần lấy xen kẽ các cạnh trên mỗi chu trình để thu được một ghép cặp hoàn hảo.
+    -   Nếu $G$ tồn tại ghép cặp hoàn hảo, ta chỉ cần lấy ra các chu trình hai cạnh tương ứng với các cạnh ghép cặp để thu được một phủ chu trình chẵn.
     
-    然后证明 $G$ 存在偶环覆盖当且仅当 $\tilde{A} \ne 0$．
+    Tiếp theo chứng minh $G$ tồn tại phủ chu trình chẵn khi và chỉ khi $\tilde{A} \ne 0$.
     
-    考虑行列式的定义
+    Xét định nghĩa của định thức:
     
     $$
     \det A = \sum_{\pi} (-1)^{\pi} \prod_{i} A_{i, \pi_i}
     $$
     
-    其中 $\pi$ 是任意排列，$(-1)^{\pi}$ 表示若 $\pi$ 中的逆序对数为奇数，则取 $-1$，否则取 $1$．
+    Trong đó $\pi$ là một hoán vị bất kỳ, $(-1)^{\pi}$ nghĩa là nếu số cặp nghịch thế trong $\pi$ là lẻ thì lấy $-1$, ngược lại lấy $1$.
     
-    不难看出每个排列都可以被看作 $G$ 的一个环覆盖．如果这个环覆盖中存在奇环，则将这个环翻转后的和一定为 $0$，因此只有偶环覆盖才能使行列式不为 $0$，证毕．
+    Không khó thấy rằng mỗi hoán vị đều có thể được xem là một phủ chu trình của $G$. Nếu trong phủ chu trình này có chu trình lẻ, thì tổng sau khi đảo chiều chu trình đó chắc chắn bằng $0$. Do đó chỉ phủ chu trình chẵn mới có thể làm định thức khác $0$, chứng minh hoàn tất.
 
-**定理**：$\operatorname{rank}\tilde{A}$ 一定为偶数，并且 $G$ 的最大匹配的大小等于 $\operatorname{rank}\tilde{A}$ 的一半．
+**Định lý**: $\operatorname{rank}\tilde{A}$ luôn là số chẵn, và kích thước ghép cặp lớn nhất của $G$ bằng một nửa $\operatorname{rank}\tilde{A}$.
 
-??? note "证明"
-    反对称矩阵的秩只能是偶数；后者请读者自行思考．
+??? note "Chứng minh"
+    Hạng của ma trận phản đối xứng chỉ có thể là số chẵn; phần sau xin để bạn đọc tự suy nghĩ.
 
-实际应用中不可能带着 $|E|$ 个变量进行计算，不过可以取一个数域，例如取某个素数 $p$ 的剩余系 $\mathcal{Z}_p$，将变量分别随机替换为 $\mathcal{Z}_p$ 中的数，再进行计算．方便起见，在无歧义的情况下，以下用 $\tilde{A}$ 直接指代替换后的矩阵．
+Trong ứng dụng thực tế, không thể tính toán với $|E|$ biến. Tuy nhiên, ta có thể chọn một trường số, chẳng hạn trường thặng dư $\mathcal{Z}_p$ theo một số nguyên tố $p$, rồi thay ngẫu nhiên từng biến bằng một phần tử trong $\mathcal{Z}_p$ trước khi tính toán. Để tiện trình bày, khi không gây nhầm lẫn, bên dưới dùng $\tilde{A}$ để chỉ trực tiếp ma trận sau khi thay thế.
 
-**定理**：$\operatorname{rank}\tilde{A}$ 至多为 $G$ 的最大匹配大小的两倍，并且二者相等的概率至少为 $1 - \frac n p$．
+**Định lý**: $\operatorname{rank}\tilde{A}$ không vượt quá hai lần kích thước ghép cặp lớn nhất của $G$, và xác suất để hai đại lượng này bằng nhau ít nhất là $1 - \frac n p$.
 
-考虑到一般图最大匹配中 $n$ 基本不会超过 $10^3$，实际中 $p$ 取 $10^9$ 数量级的素数就足够了．
+Xét rằng trong bài toán ghép cặp lớn nhất trên đồ thị tổng quát, $n$ thường không vượt quá $10^3$, nên trên thực tế chọn $p$ là một số nguyên tố cỡ $10^9$ là đủ.
 
-由定理可知，如果只需要求最大匹配数，而无需匹配方案，那么只需要用一次高斯消元求出 $\operatorname{rank}\tilde{A}$ 即可，远比带花树简洁．不过如果需要输出方案，会稍微复杂一些，需要用到下面介绍的算法．
+Từ định lý có thể thấy, nếu chỉ cần tìm số lượng cạnh trong ghép cặp lớn nhất mà không cần phương án ghép cặp, thì chỉ cần dùng một lần khử Gauss để tính $\operatorname{rank}\tilde{A}$, ngắn gọn hơn cây hoa rất nhiều. Tuy nhiên, nếu cần xuất phương án, bài toán sẽ phức tạp hơn một chút và cần dùng thuật toán được giới thiệu dưới đây.
 
-### 构造完美匹配
+### Xây dựng ghép cặp hoàn hảo
 
-由 Tutte 定理和上面的定理可知，如果 $G$ 存在完美匹配，那么 $\tilde{A}$ 有很大概率满秩．方便起见，以下叙述中均省略「有很大概率」．
+Từ định lý Tutte và định lý ở trên, nếu $G$ tồn tại ghép cặp hoàn hảo, thì $\tilde{A}$ có xác suất rất lớn là khả nghịch. Để tiện trình bày, trong phần sau đều lược bỏ cụm "với xác suất rất lớn".
 
-记 $G$ 中标号为 $i$ 的点为 $v_i$，进一步地我们有如下定理：
+Ký hiệu đỉnh có nhãn $i$ trong $G$ là $v_i$. Hơn nữa, ta có định lý sau:
 
-**定理**：$\tilde{A}^{-1}_{j,i} \ne 0 \iff G - \{v_i, v_j\}$ 有完美匹配．
+**Định lý**: $\tilde{A}^{-1}_{j,i} \ne 0 \iff G - \{v_i, v_j\}$ có ghép cặp hoàn hảo.
 
-???+ tip "逆矩阵与伴随矩阵"
-    对任意 $n$ 阶方阵 $A$，定义其伴随矩阵为 $A^*_{i, j} = (-1)^{i + j} M_{j, i}$，其中 $M_{j, i}$ 为删去第 $j$ 行第 $i$ 列的余子式．换言之，设 $A$ 的代数余子式矩阵为 $M$，则 $A^* = M^T$．
+???+ tip "Ma trận nghịch đảo và ma trận phụ hợp"
+    Với ma trận vuông cấp $n$ bất kỳ $A$, định nghĩa ma trận phụ hợp của nó là $A^*_{i, j} = (-1)^{i + j} M_{j, i}$, trong đó $M_{j, i}$ là định thức con thu được sau khi xóa hàng thứ $j$ và cột thứ $i$. Nói cách khác, nếu ma trận các phần bù đại số của $A$ là $M$, thì $A^* = M^T$.
     
-    **定理**：如果 $A$ 可逆，那么 $A^{-1} = \frac 1 {\det A} A^*$．
+    **Định lý**: Nếu $A$ khả nghịch, thì $A^{-1} = \frac 1 {\det A} A^*$.
     
-    所以这里的 $A^{-1}_{j, i} \ne 0 \iff M_{i, j} \ne 0$，也就是 $A$ 删去第 $i$ 行第 $j$ 列后的部分满秩．
+    Vì vậy ở đây $A^{-1}_{j, i} \ne 0 \iff M_{i, j} \ne 0$, tức là phần ma trận sau khi xóa hàng thứ $i$ và cột thứ $j$ của $A$ có hạng đầy đủ.
 
-换言之，如果 $(v_i, v_j) \in E$，并且 $\tilde{A}^{-1}_{j, i} \ne 0$，就表明存在一个完美匹配方案包含 $(v_i, v_j)$ 这条边．以下将这种边称为 **可行边**．
+Nói cách khác, nếu $(v_i, v_j) \in E$ và $\tilde{A}^{-1}_{j, i} \ne 0$, thì tồn tại một phương án ghép cặp hoàn hảo chứa cạnh $(v_i, v_j)$. Bên dưới gọi những cạnh như vậy là **cạnh khả thi**.
 
-由如上定理，对于一个有完美匹配的无向图 $G$，我们可以得到一个比较显然的暴力算法来寻找一组完美匹配：每次枚举 $i, j$，如果 $(v_i, v_j)$ 是一条可行边（连边存在，并且 $\tilde{A}^{-1}_{j, i} \ne 0$），就将 $(v_i, v_j)$ 加入匹配方案，并在 $G$ 中都删掉这两个点，再重新计算新的 $\tilde{A}^{-1}$．
+Từ định lý trên, với một đồ thị vô hướng $G$ có ghép cặp hoàn hảo, ta có thể đưa ra một thuật toán vét cạn khá hiển nhiên để tìm một ghép cặp hoàn hảo: mỗi lần liệt kê $i, j$; nếu $(v_i, v_j)$ là một cạnh khả thi (có cạnh nối và $\tilde{A}^{-1}_{j, i} \ne 0$), thì thêm $(v_i, v_j)$ vào phương án ghép cặp, xóa cả hai đỉnh này khỏi $G$, rồi tính lại $\tilde{A}^{-1}$ mới.
 
-总共要做 $\frac n 2$ 轮，每轮都是 $O(n^3)$ 的，总的复杂度是 $O(n ^ 4)$，有点慢了．实际上我们在重新计算 $\tilde{A}^{-1}$ 时，不必每次都重新用高斯消元求逆矩阵，而是可以利用如下定理：
+Cần thực hiện tổng cộng $\frac n 2$ vòng, mỗi vòng đều là $O(n^3)$, nên tổng độ phức tạp là $O(n ^ 4)$, hơi chậm. Thực ra khi tính lại $\tilde{A}^{-1}$, ta không cần mỗi lần đều dùng khử Gauss để tính lại ma trận nghịch đảo từ đầu, mà có thể sử dụng định lý sau:
 
-**定理**（消去定理）：令
+**Định lý** (định lý khử): Gọi
 
 $$
 A = \begin{bmatrix}
@@ -317,20 +317,20 @@ A = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-并且 $\hat a_{1, 1} \ne 0$, 那么就有
+và $\hat a_{1, 1} \ne 0$, khi đó có:
 
 $$
 B^{-1} = \hat B - \frac {\hat u \hat v^T} {\hat a_{1, 1}}
 $$
 
-定理中描述的是消去第一行第一列的情况．实际上，它可以非常显然地推广到消去任意一行一列的情况，因此我们只需在算法最开始计算一次 $\tilde{A}^{-1}$，后面每次删除两个点时，只需执行两次 $O(n^2)$ 的消去过程即可．
+Định lý mô tả trường hợp khử hàng đầu tiên và cột đầu tiên. Trên thực tế, nó có thể được mở rộng một cách rất rõ ràng sang trường hợp khử một hàng và một cột bất kỳ. Do đó ta chỉ cần tính $\tilde{A}^{-1}$ một lần ở đầu thuật toán; về sau mỗi lần xóa hai đỉnh, chỉ cần thực hiện hai lần quá trình khử $O(n^2)$.
 
-??? note "描述有些抽象，可以参考 C++ 代码"
+??? note "Mô tả hơi trừu tượng, có thể tham khảo mã C++"
     ```cpp
-    void eliminate(int A[][MAXN], int r, int c) {  // 消去第 r 行第 c 列
-      row_marked[r] = col_marked[c] = true;        // 已经被消掉
+    void eliminate(int A[][MAXN], int r, int c) {  // khu hang r cot c
+      row_marked[r] = col_marked[c] = true;        // da bi khu
     
-      int inv = quick_power(A[r][c], p - 2);  // 逆元
+      int inv = quick_power(A[r][c], p - 2);  // nghich dao modulo
     
       for (int i = 1; i <= n; i++)
         if (!row_marked[i] && A[i][c]) {
@@ -343,30 +343,30 @@ $$
     }
     ```
 
-总共要做 $\frac n 2$ 轮，每轮复杂度为 $O(n^2)$，因此上述算法可以在 $O(n^3)$ 的时间内找到一组完美匹配．
+Cần thực hiện tổng cộng $\frac n 2$ vòng, mỗi vòng có độ phức tạp $O(n^2)$, nên thuật toán trên có thể tìm một ghép cặp hoàn hảo trong thời gian $O(n^3)$.
 
-### 构造最大匹配
+### Xây dựng ghép cặp lớn nhất
 
-我们刚刚已经解决了构造一组完美匹配的问题，但是求解问题时一般需要最大匹配．
+Ta vừa giải quyết bài toán xây dựng một ghép cặp hoàn hảo, nhưng khi giải bài thường cần ghép cặp lớn nhất.
 
-前面已经提到，$G$ 的最大匹配大小等于 $\operatorname{rank}\tilde{A}$ 的一半．如果我们能找到 $\tilde{A}$ 的一个最大满秩子方阵，那么对子方阵对应的导出子图求出一组完美匹配，即可找到 $G$ 的一组最大匹配．
+Phần trước đã nhắc rằng kích thước ghép cặp lớn nhất của $G$ bằng một nửa $\operatorname{rank}\tilde{A}$. Nếu ta tìm được một ma trận con vuông hạng đầy đủ lớn nhất của $\tilde{A}$, thì chỉ cần tìm một ghép cặp hoàn hảo trên đồ thị con cảm sinh tương ứng với ma trận con đó là có thể tìm được một ghép cặp lớn nhất của $G$.
 
-换一个角度考虑，如果 $G$ 有完美匹配，那么 $\tilde{A}$ 满秩，换言之，$\tilde{A}$ 是线性无关的．那么如果 $\tilde{A}$ 不是满秩的，我们可以求出 $\tilde{A}$ 的一组线性基，然后只保留线性基对应的行列，就可以得到 $\tilde{A}$ 的一个最大满秩子方阵．
+Xét theo góc nhìn khác, nếu $G$ có ghép cặp hoàn hảo, thì $\tilde{A}$ có hạng đầy đủ, nói cách khác, các hàng/cột của $\tilde{A}$ độc lập tuyến tính. Vậy nếu $\tilde{A}$ không có hạng đầy đủ, ta có thể tìm một cơ sở tuyến tính của $\tilde{A}$, rồi chỉ giữ lại các hàng và cột tương ứng với cơ sở tuyến tính đó để thu được một ma trận con vuông hạng đầy đủ lớn nhất của $\tilde{A}$.
 
-求出最大满秩子方阵之后，再用上面的算法找出导出子图的一组完美匹配，即可得到原图的一组最大匹配．注意由于高斯消元中可能会有行的交换，因此实现时要注意维护好点的编号．
+Sau khi tìm được ma trận con vuông hạng đầy đủ lớn nhất, dùng thuật toán ở trên để tìm một ghép cặp hoàn hảo của đồ thị con cảm sinh, từ đó thu được một ghép cặp lớn nhất của đồ thị ban đầu. Lưu ý rằng trong khử Gauss có thể xảy ra hoán đổi hàng, nên khi hiện thực cần duy trì cẩn thận chỉ số của các đỉnh.
 
-??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)"
+??? note "[UOJ #79. Ghép cặp lớn nhất trong đồ thị tổng quát](https://uoj.ac/problem/79)"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/general-match/general-match_2.cpp"
     ```
 
-## 习题
+## Bài tập
 
--   [UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)
--   [UOJ#171.【WC2016】挑战 NPC](https://uoj.ac/problem/171)
+-   [UOJ #79. Ghép cặp lớn nhất trong đồ thị tổng quát](https://uoj.ac/problem/79)
+-   [UOJ #171. [WC2016] Thử thách NPC](https://uoj.ac/problem/171)
 
-## 参考资料
+## Tài liệu tham khảo
 
-1.  Mucha M, Sankowski P.[Maximum matchings via Gaussian elimination](http://web.eecs.umich.edu/~pettie/matching/Mucha-Sankowski-maximum-matching-matrix-multiplication.pdf)
-2.  周子鑫，杨家齐《基于线性代数的一般图匹配》
-3.  ZYQN [《基于线性代数的一般图匹配算法》](https://oi.cyo.ng/wp-content/uploads/2017/02/maximum_matchings_via_gaussian_elimination.pdf)
+1.  Mucha M, Sankowski P. [Maximum matchings via Gaussian elimination](http://web.eecs.umich.edu/~pettie/matching/Mucha-Sankowski-maximum-matching-matrix-multiplication.pdf)
+2.  Zhou Zixin, Yang Jiaqi, "Ghép cặp trong đồ thị tổng quát dựa trên đại số tuyến tính"
+3.  ZYQN, ["Thuật toán ghép cặp trong đồ thị tổng quát dựa trên đại số tuyến tính"](https://oi.cyo.ng/wp-content/uploads/2017/02/maximum_matchings_via_gaussian_elimination.pdf)

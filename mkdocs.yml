@@ -467,13 +467,13 @@ nav:
       - Luồng chi phí: graph/flow/min-cost.md
       - Luồng mạng có cận dưới/trên: graph/flow/bound.md
       - Thuật toán Stoer-Wagner: graph/stoer-wagner.md
-    - 图的匹配:
-      - 图匹配: graph/graph-matching/graph-match.md
-      - 二分图最大匹配: graph/graph-matching/bigraph-match.md
-      - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
-      - 一般图最大匹配: graph/graph-matching/general-match.md
-      - 一般图最大权匹配: graph/graph-matching/general-weight-match.md
-      - 稳定匹配: graph/graph-matching/stable-match.md
+    - Ghép cặp trên đồ thị:
+      - Ghép cặp trên đồ thị: graph/graph-matching/graph-match.md
+      - Ghép cặp lớn nhất trên đồ thị hai phía: graph/graph-matching/bigraph-match.md
+      - Ghép cặp trọng số lớn nhất trên đồ thị hai phía: graph/graph-matching/bigraph-weight-match.md
+      - Ghép cặp lớn nhất trên đồ thị tổng quát: graph/graph-matching/general-match.md
+      - Ghép cặp trọng số lớn nhất trên đồ thị tổng quát: graph/graph-matching/general-weight-match.md
+      - Ghép cặp ổn định: graph/graph-matching/stable-match.md
     - Prüfer 序列: graph/prufer.md
     - 矩阵树定理: graph/matrix-tree.md
     - LGV 引理: graph/lgv.md
