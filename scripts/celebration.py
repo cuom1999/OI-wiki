@@ -13,7 +13,7 @@ headers = {
     "Authorization": f'token {sys.argv[1]}'
 }
 
-label = "Celebration / 庆贺"
+label = "Celebration / Chúc mừng"
 
 query = f'''
 query {{
@@ -84,19 +84,19 @@ mutation {{
     body: {json.dumps(f"""> To celebrate that our project's stars will soon reach {celebration}.
 > This issue will be closed in one week.
 
-为庆祝我们的 **OI Wiki** 项目 Stars 即将到达 {celebration}，特开此 Issue，大家也放松下。
+Để chúc mừng dự án **OI Wiki** sắp đạt {celebration} sao, issue này được mở để mọi người cùng thư giãn một chút.
 
-诸位维护本项目也都辛苦了，我刚刚看了下 Commits 也到达了 {res['defaultBranchRef']['target']['history']['totalCount']}，大家在本 Issue 里面想说什么就说什么吧（But please don't spam in this issue）。
+Mọi người đã vất vả duy trì dự án. Tôi vừa xem và thấy số commit cũng đã đạt {res['defaultBranchRef']['target']['history']['totalCount']}; trong issue này, mọi người cứ chia sẻ điều mình muốn nói (but please don't spam in this issue).
 
-祝大家愉快。
+Chúc mọi người vui vẻ.
 
-<!--（文案来自 @K-Guan）-->
+<!-- Nội dung dựa trên bản của @K-Guan -->
 
 ***
 
-非常感谢这么长时间以来大家的支持，我们再接再厉～
+Cảm ơn mọi người rất nhiều vì đã ủng hộ trong suốt thời gian qua. Chúng ta hãy tiếp tục cố gắng.
 
-最后，祝大家身体健康，我们 {nextCelebration(celebration)} stars 时再见。
+Cuối cùng, chúc mọi người nhiều sức khỏe. Hẹn gặp lại khi đạt {nextCelebration(celebration)} sao.
 
 cc {" ".join(numbers)}
 """, ensure_ascii = False)}

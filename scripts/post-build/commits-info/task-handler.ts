@@ -87,7 +87,7 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
     const $ = document.querySelector.bind(document);
     const $$ = document.querySelectorAll.bind(document);
 
-    $("html").setAttribute("lang", "zh-Hans");
+    $("html").setAttribute("lang", "vi");
 
     // The path of .md file relative to /docs, starting with a leading "/"
     const sourceFilePath = ($(".page_edit_url").getAttribute("href") || "").split("?ref=")[1];
@@ -97,16 +97,16 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
 
       const commitsLog = await readCommitsLog(sourceFilePath);
 
-      // "本页面最近更新"
+      // "Lần cập nhật gần nhất của trang này"
       const latestDate = new Date(
         commitsLog.map(l => +new Date(l.commitDate)).reduce((latest, current) => Math.max(latest, current))
       );
       $(".facts_modified").textContent =
-        latestDate.toLocaleDateString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false }) +
+        latestDate.toLocaleDateString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh", hour12: false }) +
         " " +
-        latestDate.toLocaleTimeString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false });
+        latestDate.toLocaleTimeString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh", hour12: false });
 
-      // "本页面贡献者"
+      // "Người đóng góp cho trang này"
       const authors = Object.entries(
         // Commit count by author
         [
@@ -150,8 +150,8 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
     } else {
       // Pages without source
       $(".edit_history").setAttribute("href", `https://github.com/${GITHUB_REPO}/commits/master`);
-      $(".facts_modified").textContent = "无更新";
-      $(".page_contributors").textContent = "（自动生成）";
+      $(".facts_modified").textContent = "Chưa có cập nhật";
+      $(".page_contributors").textContent = "(Tự động tạo)";
       $(".page_edit_url").setAttribute("href", "#");
     }
   }

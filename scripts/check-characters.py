@@ -63,17 +63,17 @@ else:
         for filename in files:
             if filename.endswith(".md") or filename.endswith(".tex"):
                 check(os.path.join(root, filename))
-summary("## :checkered_flag: 字符检查结果")
+summary("## :checkered_flag: Kết quả kiểm tra ký tự")
 if successed_list:
-    summary("### :white_check_mark: 成功")
+    summary("### :white_check_mark: Thành công")
     for filename in successed_list:
         summary(f"- {filename}")
 if skipped_list:
-    summary("### 跳过")
+    summary("### Đã bỏ qua")
     for filename in skipped_list:
         summary(f"- {filename}")
 if failed_list:
-    summary("### :x: 失败")
+    summary("### :x: Thất bại")
     for filename, failed_chars in failed_list.items():
         summary(f"- {filename}")
         for failed_char in failed_chars:

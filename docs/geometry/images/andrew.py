@@ -5,7 +5,7 @@ import shutil
 
 tmp_dir = "./svg/"
 
-# 点的坐标
+# Tọa độ các điểm
 points = [(0, 1), (1, 4), (2.5, 6), (3, 0), (4, 3), (4, 4), (6, 6)]
 labels = ["1", "2", "3", "4", "5", "6", "7"]
 
@@ -16,7 +16,7 @@ scale_y = 0.7
 
 
 def save(id=-1):
-    """保存图片（递增编号）"""
+    """Lưu hình ảnh với số thứ tự tăng dần."""
     global tot
     if id == -1:
         tot += 1
@@ -51,7 +51,7 @@ def save(id=-1):
 
 
 def draw_points():
-    """绘制点和标签"""
+    """Vẽ các điểm và nhãn."""
     x = [p[0] for p in points]
     y = [p[1] for p in points]
     ax.scatter(x, y, color="blue", s=50)
@@ -72,7 +72,7 @@ def draw_points():
 
 
 def draw_lines(stk, x, y, highlight=None):
-    """绘制凸壳边界线，highlight=(i,j) 可高亮当前连线"""
+    """Vẽ đường biên bao lồi; highlight=(i,j) để tô nổi cạnh hiện tại."""
     for j in range(len(stk) - 1):
         ax.plot([x[stk[j]], x[stk[j + 1]]], [y[stk[j]], y[stk[j + 1]]], color="black")
     if highlight:
@@ -81,7 +81,7 @@ def draw_lines(stk, x, y, highlight=None):
 
 
 def add_text(str, fontsize=12, k=0):
-    """在右下角添加多行文字"""
+    """Thêm văn bản nhiều dòng ở góc dưới bên phải."""
     ax.text(
         1.0,
         0.1 * k,
@@ -104,7 +104,7 @@ def sub(p1, p2):
 
 
 def init():
-    """清空并重绘坐标系和点"""
+    """Xóa và vẽ lại hệ tọa độ cùng các điểm."""
     ax.cla()
     draw_points()
     ax.axis("off")
@@ -120,10 +120,10 @@ def Andrew():
 
     stk.append(0)
 
-    # 下凸壳
+    # Bao lồi dưới
     for i in range(1, len(points)):
         init()
-        add_text("下凸壳", fontsize=15)
+        add_text("Bao lồi dưới", fontsize=15)
         draw_lines(stk, x, y, highlight=(stk[-1], i))
         save()
 
@@ -136,22 +136,22 @@ def Andrew():
         ):
             used[stk.pop()] = False
             init()
-            add_text("下凸壳", fontsize=15)
+            add_text("Bao lồi dưới", fontsize=15)
             draw_lines(stk, x, y, highlight=(stk[-1], i))
             save()
 
         used[i] = True
         stk.append(i)
 
-    # 上凸壳
+    # Bao lồi trên
     for i in range(len(points) - 1, -1, -1):
         if not used[i]:
             init()
             if labels[stk[-1]] == "5":
-                add_text("上凸壳", fontsize=15)
-                add_text("4 已经在凸壳中", fontsize=10, k=1)
+                add_text("Bao lồi trên", fontsize=15)
+                add_text("4 đã nằm trong bao lồi", fontsize=10, k=1)
             else:
-                add_text("上凸壳", fontsize=15)
+                add_text("Bao lồi trên", fontsize=15)
 
             draw_lines(stk, x, y, highlight=(stk[-1], i))
             save()
@@ -166,21 +166,21 @@ def Andrew():
             ):
                 used[stk.pop()] = False
                 init()
-                add_text("上凸壳", fontsize=15)
+                add_text("Bao lồi trên", fontsize=15)
                 draw_lines(stk, x, y, highlight=(stk[-1], i))
                 save()
 
             used[i] = True
             stk.append(i)
 
-    # 完成
+    # Hoàn thành
     init()
-    add_text("完成", fontsize=15)
+    add_text("Hoàn thành", fontsize=15)
     draw_lines(stk, x, y)
     save()
 
     init()
-    add_text("完成", fontsize=15)
+    add_text("Hoàn thành", fontsize=15)
     draw_lines(stk, x, y)
     save(0)
 
