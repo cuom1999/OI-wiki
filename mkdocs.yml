@@ -85,7 +85,7 @@ nav:
     - Tổng quan ngôn ngữ: lang/index.md
     - C++ cơ bản:
       - Hello, World!: lang/helloworld.md
-      - C++ 语法基础: lang/basic.md
+      - Cú pháp C++ cơ bản: lang/basic.md
       - 变量: lang/var.md
       - 运算: lang/op.md
       - Câu lệnh điều khiển luồng:
@@ -96,8 +96,8 @@ nav:
         - Cấu trúc: lang/struct.md
         - Liên hiệp: lang/union.md
         - 指针: lang/pointer.md
-      - 函数: lang/func.md
-      - 文件操作: lang/file-op.md
+      - Hàm: lang/func.md
+      - Thao tác tệp: lang/file-op.md
     - C++ 标准库:
       - C++ 标准库简介: lang/csl/index.md
       - STL 容器:

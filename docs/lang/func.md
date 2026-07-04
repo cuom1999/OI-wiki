@@ -1,47 +1,66 @@
 author: Ir1d, tsagaanbar, yang-lile
 
-## 函数的声明
+## Khai báo hàm
 
-编程中的函数（function）一般是若干语句的集合．我们也可以将其称作「**子过程**（subroutine）」．在编程中，如果有一些重复的过程，我们可以将其提取出来，形成一个函数．函数可以接收若干值，这叫做函数的参数．函数也可以返回某个值，这叫做函数的返回值．
+Hàm (function) trong lập trình thường là một tập hợp gồm nhiều câu lệnh. Ta cũng
+có thể gọi nó là **thủ tục con** (subroutine). Trong lập trình, nếu có một số
+quy trình bị lặp lại, ta có thể tách chúng ra để tạo thành một hàm. Hàm có thể
+nhận một số giá trị; các giá trị này được gọi là tham số của hàm. Hàm cũng có
+thể trả về một giá trị; giá trị đó được gọi là giá trị trả về của hàm.
 
-声明一个函数，我们需要返回值类型、函数的名称，以及参数列表．
+Để khai báo một hàm, ta cần kiểu giá trị trả về, tên hàm và danh sách tham số.
 
 ```cpp
-// 返回值类型 int
-// 函数的名称 some_function
-// 参数列表 int, int
+// kiểu giá trị trả về: int
+// tên hàm: some_function
+// danh sách tham số: int, int
 int some_function(int, int);
 ```
 
-如上图，我们声明了一个名为 `some_function` 的函数，它需要接收两个 `int` 类型的参数，返回值类型也为 `int`．可以认为，这个函数将会对传入的两个整数进行一些操作，并且返回一个同样类型的结果．
+Như trên, ta đã khai báo một hàm tên là `some_function`. Hàm này cần nhận hai
+tham số kiểu `int`, và kiểu giá trị trả về cũng là `int`. Có thể hiểu rằng hàm
+này sẽ thực hiện một số thao tác trên hai số nguyên được truyền vào, rồi trả về
+một kết quả cùng kiểu.
 
-## 实现函数：编写函数的定义
+## Cài đặt hàm: viết định nghĩa hàm
 
-只有函数的声明（declaration）还不够，他只能让我们在调用时能够得知函数的 **接口** 类型（即接收什么数据、返回什么数据），但其缺乏具体的内部实现，也就是函数的 **定义**（definition）．我们可以在 **声明之后的其他地方** 编写代码 **实现**（implement）这个函数（也可以在另外的文件中实现，但是需要将分别编译后的文件在链接时一并给出）．
+Chỉ có khai báo hàm (declaration) là chưa đủ. Khai báo chỉ cho phép ta biết kiểu
+**giao diện** của hàm khi gọi (tức nhận dữ liệu gì, trả về dữ liệu gì), nhưng
+chưa có phần cài đặt cụ thể bên trong, tức **định nghĩa** (definition) của hàm.
+Ta có thể viết mã **cài đặt** (implement) hàm này ở **một nơi khác sau phần khai
+báo**. Cũng có thể cài đặt trong file khác, nhưng khi liên kết cần cung cấp cả
+các file đã được biên dịch riêng.
 
-如果函数有返回值，则需要通过 `return` 语句，将值返回给调用方．函数一旦执行到 `return` 语句，则直接结束当前函数，不再执行后续的语句．
+Nếu hàm có giá trị trả về, cần dùng câu lệnh `return` để trả giá trị cho nơi
+gọi. Khi hàm thực thi đến câu lệnh `return`, hàm hiện tại sẽ kết thúc ngay và
+không thực thi các câu lệnh phía sau.
 
 ```cpp
-int some_function(int, int);  // 声明
+int some_function(int, int);  // khai báo
 
 /* some other code here... */
 
-int some_function(int x, int y) {  // 定义
+int some_function(int x, int y) {  // định nghĩa
   int result = 2 * x + y;
   return result;
-  result = 3;  // 这条语句不会被执行
+  result = 3;  // câu lệnh này sẽ không được thực thi
 }
 ```
 
-在定义时，我们给函数的参数列表的变量起了名字．这样，我们便可以在函数定义中使用这些变量了．
+Khi định nghĩa, ta đặt tên cho các biến trong danh sách tham số của hàm. Nhờ
+vậy, ta có thể dùng các biến này trong định nghĩa hàm.
 
-如果是同一个文件中，我们也可以直接将 **声明和定义合并在一起**，换句话说，也就是在声明时就完成定义．
+Nếu ở cùng một file, ta cũng có thể trực tiếp **gộp khai báo và định nghĩa lại
+với nhau**; nói cách khác, hoàn thành định nghĩa ngay lúc khai báo.
 
 ```cpp
 int some_function(int x, int y) { return 2 * x + y; }
 ```
 
-如果函数不需要有返回值，则将函数的返回值类型标为 `void`；如果函数不需要参数，则可以将参数列表置空．同样，无返回值的函数执行到 `return;` 语句也会结束执行．
+Nếu hàm không cần có giá trị trả về, hãy đánh dấu kiểu giá trị trả về của hàm là
+`void`; nếu hàm không cần tham số, có thể để danh sách tham số trống. Tương tự,
+khi một hàm không có giá trị trả về thực thi đến câu lệnh `return;`, nó cũng sẽ
+kết thúc.
 
 ```cpp
 void say_hello() {
@@ -49,17 +68,26 @@ void say_hello() {
   cout << "hello!\n";
   cout << "hello!\n";
   return;
-  cout << "hello!\n";  // 这条语句不会被执行
+  cout << "hello!\n";  // câu lệnh này sẽ không được thực thi
 }
 ```
 
-## 函数的调用
+## Gọi hàm
 
-和变量一样，函数需要先被声明，才能使用．使用函数的行为，叫做「调用（call）」．我们可以在任何函数内部调用其他函数，包括这个函数自身．函数调用自身的行为，称为 **递归**（recursion）．
+Giống như biến, hàm cần được khai báo trước rồi mới có thể sử dụng. Hành vi sử
+dụng hàm được gọi là "gọi" (call). Ta có thể gọi hàm khác bên trong bất kỳ hàm
+nào, bao gồm cả chính hàm đó. Hành vi một hàm gọi chính nó được gọi là **đệ
+quy** (recursion).
 
-在大多数语言中，调用函数的写法，是 **函数名称加上一对括号** `()`，如 `foo()`．如果函数需要参数，则我们将其需要的参数按顺序填写在括号中，以逗号间隔，如 `foo(1, 2)`．函数的调用也是一个表达式，**函数的返回值** 就是 **表达式的值**．
+Trong hầu hết ngôn ngữ, cách gọi hàm là **tên hàm cộng với một cặp ngoặc**
+`()`; ví dụ `foo()`. Nếu hàm cần tham số, ta điền các tham số cần thiết vào
+trong ngoặc theo thứ tự, phân tách bằng dấu phẩy, ví dụ `foo(1, 2)`. Lời gọi
+hàm cũng là một biểu thức, và **giá trị trả về của hàm** chính là **giá trị của
+biểu thức**.
 
-函数声明时候写出的参数，可以理解为在函数 **当前次调用的内部** 可以使用的变量，这些变量的值由调用处传入的值初始化．看下面这个例子：
+Các tham số viết trong khai báo hàm có thể hiểu là những biến có thể dùng **bên
+trong lần gọi hiện tại** của hàm. Giá trị của các biến này được khởi tạo bằng
+giá trị truyền vào từ nơi gọi. Xem ví dụ sau:
 
 ```cpp
 void foo(int, int);
@@ -75,14 +103,18 @@ void foo(int x, int y) {
 
 a = 1;
 b = 1;
-// 调用前：a = 1, b = 1
-foo(a, b);  // 调用 foo
-            // 调用后：a = 1, b = 1
+// trước khi gọi: a = 1, b = 1
+foo(a, b);  // gọi foo
+            // sau khi gọi: a = 1, b = 1
 ```
 
-在上面的例子中，`foo(a, b)` 是一次对 `foo` 的调用．调用时，`foo` 中的 `x` 和 `y` 变量，分别由调用处 `a` 和 `b` 的值初始化．因此，在 `foo` 中对变量 `x` 和 `y` 的修改，**并不会影响到调用处的变量的值**．
+Trong ví dụ trên, `foo(a, b)` là một lần gọi `foo`. Khi gọi, các biến `x` và
+`y` trong `foo` lần lượt được khởi tạo bằng giá trị của `a` và `b` tại nơi gọi.
+Vì vậy, việc sửa biến `x` và `y` trong `foo` **không ảnh hưởng đến giá trị của
+biến tại nơi gọi**.
 
-如果我们需要在函数（子过程）中修改变量的值，则需要采用「传引用」的方式．
+Nếu cần sửa giá trị của biến trong hàm (thủ tục con), ta cần dùng cách "truyền
+tham chiếu".
 
 ```cpp
 void foo(int& x, int& y) {
@@ -94,20 +126,28 @@ void foo(int& x, int& y) {
 
 a = 1;
 b = 1;
-// 调用前：a = 1, b = 1
-foo(a, b);  // 调用 foo
-            // 调用后：a = 2, b = 4
+// trước khi gọi: a = 1, b = 1
+foo(a, b);  // gọi foo
+            // sau khi gọi: a = 2, b = 4
 ```
 
-上述代码中，我们看到函数参数列表中的「`int`」后面添加了一个「`&`（and 符号）」，这表示对于 `int` 类型的 **引用**（reference）．在调用 `foo` 时，调用处 `a` 和 `b` 变量分别初始化了 `foo` 中两个对 `int` 类型的引用 `x` 和 `y`．在 `foo` 中的 `x` 和 `y`，可以理解为调用处 `a` 和 `b` 变量的「别名」，即 `foo` 中对 `x` 和 `y` 的操作，就是对调用处 `a` 和 `b` 的操作．
+Trong đoạn mã trên, ta thấy sau "`int`" trong danh sách tham số hàm có thêm dấu
+"`&`" (ký hiệu and). Điều này biểu thị **tham chiếu** (reference) tới kiểu
+`int`. Khi gọi `foo`, các biến `a` và `b` tại nơi gọi lần lượt khởi tạo hai
+tham chiếu tới kiểu `int` là `x` và `y` trong `foo`. Có thể hiểu `x` và `y`
+trong `foo` là "bí danh" của các biến `a` và `b` tại nơi gọi; tức thao tác lên
+`x` và `y` trong `foo` chính là thao tác lên `a` và `b` tại nơi gọi.
 
-## `main` 函数
+## Hàm `main`
 
-特别的，每个 C/C++ 程序都需要有一个名为 `main` 的函数．任何程序都将从 `main` 函数开始运行．
+Đặc biệt, mỗi chương trình C/C++ đều cần có một hàm tên là `main`. Mọi chương
+trình đều bắt đầu chạy từ hàm `main`.
 
-> `main` 函数也可以有参数，通过 `main` 函数的参数，我们可以获得外界传给这个程序的指令（也就是「命令行参数」），以便做出不同的反应．
+> Hàm `main` cũng có thể có tham số. Thông qua tham số của hàm `main`, ta có
+> thể nhận các chỉ thị mà bên ngoài truyền cho chương trình này (tức "tham số
+> dòng lệnh"), để đưa ra phản ứng khác nhau.
 
-下面是一段调用了函数（子过程）的代码：
+Dưới đây là một đoạn mã có gọi hàm (thủ tục con):
 
 ```cpp
 // hello_subroutine.cpp

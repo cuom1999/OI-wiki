@@ -1,81 +1,81 @@
 author: Ir1d, cqnuljs, akakw1, MingqiHuang, Chrogeek, henrytbtrue, Planet6174, StudyingFather
 
-## 文件的概念
+## Khái niệm về tệp
 
-文件是根据特定的目的而收集在一起的有关数据的集合．C/C++ 把每一个文件都看成是一个有序的字节流，每个文件都是以 **文件结束标志**（EOF）结束，如果要操作某个文件，程序应该首先打开该文件，每当一个文件被打开后（请记得关闭打开的文件），该文件就和一个流关联起来，这里的流实际上是一个字节序列．
+Tệp là tập hợp dữ liệu có liên quan được gom lại theo một mục đích cụ thể. C/C++ xem mỗi tệp là một luồng byte có thứ tự; mỗi tệp đều kết thúc bằng **dấu kết thúc tệp** (EOF). Nếu muốn thao tác với một tệp, trước hết chương trình phải mở tệp đó. Mỗi khi một tệp được mở (hãy nhớ đóng tệp đã mở), tệp ấy sẽ được liên kết với một luồng; luồng ở đây thực chất là một dãy byte.
 
-C/C++ 将文件分为文本文件和二进制文件．文本文件就是简单的文本文件（重点），另外二进制文件就是特殊格式的文件或者可执行代码文件等．
+C/C++ chia tệp thành tệp văn bản và tệp nhị phân. Tệp văn bản là các tệp văn bản đơn giản (trọng tâm của phần này); còn tệp nhị phân là các tệp có định dạng đặc biệt, tệp mã thực thi, v.v.
 
-## 文件的操作步骤
+## Các bước thao tác với tệp
 
-1、打开文件，将文件指针指向文件，决定打开文件类型；  
-2、对文件进行读、写操作（比赛中主要用到的操作，其他一些操作暂时不写）；  
-3、在使用完文件后，关闭文件．
+1. Mở tệp, trỏ con trỏ tệp tới tệp và xác định kiểu mở tệp;
+2. Thực hiện thao tác đọc, ghi trên tệp (đây là các thao tác chủ yếu dùng trong thi đấu; các thao tác khác tạm thời không đề cập);
+3. Sau khi dùng xong tệp, đóng tệp.
 
-## `freopen` 函数
+## Hàm `freopen`
 
-### 函数简介
+### Giới thiệu hàm
 
-函数用于将指定输入输出流以指定方式重定向到文件，包含于头文件 `stdio.h (cstdio)` 中，该函数可以在不改变代码原貌的情况下改变输入输出环境，但使用时应当保证流是可靠的．
+Hàm này dùng để chuyển hướng luồng nhập/xuất được chỉ định sang tệp theo một chế độ chỉ định. Hàm nằm trong tệp tiêu đề `stdio.h (cstdio)`. Nó có thể thay đổi môi trường nhập/xuất mà không cần thay đổi cấu trúc ban đầu của mã, nhưng khi sử dụng cần bảo đảm luồng là đáng tin cậy.
 
-函数主要有三种方式：读、写和附加．
+Hàm chủ yếu có ba cách dùng: đọc, ghi và ghi nối thêm.
 
-### 命令格式
+### Cú pháp lệnh
 
 ```cpp
 FILE* freopen(const char* filename, const char* mode, FILE* stream);
 ```
 
-### 参数说明
+### Giải thích tham số
 
--   `filename`: 要打开的文件名
--   `mode`: 文件打开的模式，表示文件访问的权限
--   `stream`: 文件指针，通常使用标准文件流 (`stdin/stdout`) 或标准错误输出流 (`stderr`)
--   返回值：文件指针，指向被打开文件
+-   `filename`: tên tệp cần mở
+-   `mode`: chế độ mở tệp, biểu thị quyền truy cập tệp
+-   `stream`: con trỏ tệp, thường dùng luồng tệp chuẩn (`stdin/stdout`) hoặc luồng lỗi chuẩn (`stderr`)
+-   Giá trị trả về: con trỏ tệp, trỏ tới tệp đã được mở
 
-### 文件打开格式（选读）
+### Các chế độ mở tệp (đọc thêm)
 
--   `r`：以只读方式打开文件，文件必须存在，只允许读入数据 **（常用）**
--   `r+`：以读/写方式打开文件，文件必须存在，允许读/写数据
--   `rb`：以只读方式打开二进制文件，文件必须存在，只允许读入数据
--   `rb+`：以读/写方式打开二进制文件，文件必须存在，允许读/写数据
--   `rt+`：以读/写方式打开文本文件，允许读/写数据
--   `w`：以只写方式打开文件，文件不存在会新建文件，否则清空内容，只允许写入数据 **（常用）**
--   `w+`：以读/写方式打开文件，文件不存在将新建文件，否则清空内容，允许读/写数据
--   `wb`：以只写方式打开二进制文件，文件不存在将会新建文件，否则清空内容，只允许写入数据
--   `wb+`：以读/写方式打开二进制文件，文件不存在将新建文件，否则清空内容，允许读/写数据
--   `a`：以只写方式打开文件，文件不存在将新建文件，写入数据将被附加在文件末尾（保留 EOF 符）
--   `a+`：以读/写方式打开文件，文件不存在将新建文件，写入数据将被附加在文件末尾（不保留 EOF 符）
--   `at+`：以读/写方式打开文本文件，写入数据将被附加在文件末尾
--   `ab+`：以读/写方式打开二进制文件，写入数据将被附加在文件末尾
+-   `r`: mở tệp ở chế độ chỉ đọc, tệp phải tồn tại, chỉ cho phép đọc dữ liệu **(thường dùng)**
+-   `r+`: mở tệp ở chế độ đọc/ghi, tệp phải tồn tại, cho phép đọc/ghi dữ liệu
+-   `rb`: mở tệp nhị phân ở chế độ chỉ đọc, tệp phải tồn tại, chỉ cho phép đọc dữ liệu
+-   `rb+`: mở tệp nhị phân ở chế độ đọc/ghi, tệp phải tồn tại, cho phép đọc/ghi dữ liệu
+-   `rt+`: mở tệp văn bản ở chế độ đọc/ghi, cho phép đọc/ghi dữ liệu
+-   `w`: mở tệp ở chế độ chỉ ghi; nếu tệp không tồn tại thì tạo tệp mới, nếu không thì xóa sạch nội dung; chỉ cho phép ghi dữ liệu **(thường dùng)**
+-   `w+`: mở tệp ở chế độ đọc/ghi; nếu tệp không tồn tại thì tạo tệp mới, nếu không thì xóa sạch nội dung; cho phép đọc/ghi dữ liệu
+-   `wb`: mở tệp nhị phân ở chế độ chỉ ghi; nếu tệp không tồn tại thì tạo tệp mới, nếu không thì xóa sạch nội dung; chỉ cho phép ghi dữ liệu
+-   `wb+`: mở tệp nhị phân ở chế độ đọc/ghi; nếu tệp không tồn tại thì tạo tệp mới, nếu không thì xóa sạch nội dung; cho phép đọc/ghi dữ liệu
+-   `a`: mở tệp ở chế độ chỉ ghi; nếu tệp không tồn tại thì tạo tệp mới; dữ liệu ghi vào sẽ được nối thêm ở cuối tệp (giữ lại ký hiệu EOF)
+-   `a+`: mở tệp ở chế độ đọc/ghi; nếu tệp không tồn tại thì tạo tệp mới; dữ liệu ghi vào sẽ được nối thêm ở cuối tệp (không giữ lại ký hiệu EOF)
+-   `at+`: mở tệp văn bản ở chế độ đọc/ghi; dữ liệu ghi vào sẽ được nối thêm ở cuối tệp
+-   `ab+`: mở tệp nhị phân ở chế độ đọc/ghi; dữ liệu ghi vào sẽ được nối thêm ở cuối tệp
 
-### 使用方法
+### Cách sử dụng
 
-读入文件内容：
+Đọc nội dung từ tệp:
 
 ```cpp
 freopen("data.in", "r", stdin);
-// data.in 就是读取的文件名，要和可执行文件放在同一目录下
+// data.in là tên tệp cần đọc, phải đặt cùng thư mục với tệp thực thi
 ```
 
-输出到文件：
+Xuất ra tệp:
 
 ```cpp
 freopen("data.out", "w", stdout);
-// data.out 就是输出文件的文件名，和可执行文件在同一目录下
+// data.out là tên tệp xuất, nằm cùng thư mục với tệp thực thi
 ```
 
-关闭标准输入/输出流
+Đóng luồng nhập/xuất chuẩn
 
 ```cpp
 fclose(stdin);
 fclose(stdout);
 ```
 
-??? note "注"
-    `printf/scanf/cin/cout` 等函数默认使用 `stdin/stdout`，将 `stdin/stdout` 重定向后，这些函数将输入/输出到被定向的文件
+??? note "Ghi chú"
+    Các hàm như `printf/scanf/cin/cout` mặc định sử dụng `stdin/stdout`. Sau khi chuyển hướng `stdin/stdout`, các hàm này sẽ nhập/xuất từ tệp được chuyển hướng.
 
-### 模板
+### Mẫu
 
 ```cpp
 #include <cstdio>
@@ -85,7 +85,7 @@ int main(void) {
   freopen("data.in", "r", stdin);
   freopen("data.out", "w", stdout);
   /*
-  中间的代码不需要改变，直接使用 cin 和 cout 即可
+  Phần mã ở giữa không cần thay đổi, có thể dùng trực tiếp cin và cout
   */
   fclose(stdin);
   fclose(stdout);
@@ -93,75 +93,75 @@ int main(void) {
 }
 ```
 
-## `fopen` 函数（选读）
+## Hàm `fopen` (đọc thêm)
 
-函数大致与 `freopen` 相同，函数将打开指定文件并返回打开文件的指针
+Hàm này về cơ bản giống `freopen`: nó mở tệp được chỉ định và trả về con trỏ tới tệp đã mở.
 
-### 函数原型
+### Nguyên mẫu hàm
 
 ```cpp
 FILE* fopen(const char* path, const char* mode)
 ```
 
-各项参数含义同 `freopen`
+Ý nghĩa các tham số giống với `freopen`.
 
-### 可用读写函数（基本）
+### Các hàm đọc/ghi có thể dùng (cơ bản)
 
 -   `fread/fwrite`
 -   `fgetc/fputc`
 -   `fscanf/fprintf`
 -   `fgets/fputs`
 
-### 使用方式
+### Cách sử dụng
 
 ```cpp
-FILE *in, *out;  // 定义文件指针
+FILE *in, *out;  // Định nghĩa con trỏ tệp
 in = fopen("data.in", "r");
 out = fopen("data.out", "w");
 /*
-do what you want to do
+Làm những gì bạn cần làm
 */
 fclose(in);
 fclose(out);
 ```
 
-## C++ 的 `ifstream/ofstream` 文件输入输出流
+## Luồng nhập/xuất tệp `ifstream/ofstream` trong C++
 
-### 使用方法
+### Cách sử dụng
 
-读入文件内容：
+Đọc nội dung từ tệp:
 
 ```cpp
 ifstream fin("data.in");
-// data.in 就是读取文件的相对位置或绝对位置
+// data.in là đường dẫn tương đối hoặc tuyệt đối của tệp cần đọc
 ```
 
-输出到文件：
+Xuất ra tệp:
 
 ```cpp
 ofstream fout("data.out");
-// data.out 就是输出文件的相对位置或绝对位置
+// data.out là đường dẫn tương đối hoặc tuyệt đối của tệp xuất
 ```
 
-关闭标准输入/输出流
+Đóng luồng nhập/xuất chuẩn
 
 ```cpp
 fin.close();
 fout.close();
 ```
 
-### 模板
+### Mẫu
 
 ```cpp
 #include <fstream>
-using namespace std;  // 两个类型都在 std 命名空间里
+using namespace std;  // Cả hai kiểu đều nằm trong không gian tên std
 
 ifstream fin("data.in");
 ofstream fout("data.out");
 
 int main(void) {
   /*
-  中间的代码改变 cin 为 fin ，cout 为 fout 即可
+  Trong phần mã ở giữa, chỉ cần đổi cin thành fin và cout thành fout
   */
   fin.close();
   fout.close();
@@ -169,6 +169,6 @@ int main(void) {
 }
 ```
 
-## 参考资料
+## Tài liệu tham khảo
 
-1.  信息学奥赛一本通
+1.  Sách hướng dẫn Olympic Tin học
