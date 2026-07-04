@@ -1,20 +1,24 @@
 author: StudyingFather, CCXXXI, Chrogeek, ChungZH, countercurrent-time, Early0v0, Enter-tainer, GavinZhengOI, Great-designer, H-J-Granger, henrytbtrue, HeRaNO, huayucaiji, iamtwz, Ir1d, ksyx, MegaOwIer, NachtgeistW, P-Y-Y, qwqAutomaton, shuzhouliu, shuzhouliu-bot, Siger Young, sshwy, SukkaW, Tiphereth-A, tsentau, WhenMelancholy, Xeonacid, Yukimaikoriya, Zhoier, zyj-111, qute-firefly-26710-zjyjoe-lg-592080
 
-## 引入
+<span id="&#24341;&#20837;"></span>
+## Mở đầu
 
-高斯消元法（Gauss–Jordan elimination）是求解线性方程组的经典算法，它在当代数学中有着重要的地位和价值，是线性代数课程教学的重要组成部分．
+Phương pháp khử Gauss (Gauss-Jordan elimination) là thuật toán kinh điển để giải hệ phương trình tuyến tính. Nó có vị trí và giá trị quan trọng trong toán học hiện đại, đồng thời là một phần trọng tâm trong việc giảng dạy đại số tuyến tính.
 
-高斯消元法除了用于线性方程组求解外，还可以用于行列式计算、求矩阵的逆，以及其他计算机和工程方面．
+Ngoài việc giải hệ phương trình tuyến tính, phương pháp khử Gauss còn có thể dùng để tính định thức, tìm ma trận nghịch đảo, cũng như trong nhiều bài toán máy tính và kỹ thuật khác.
 
-## 消元法及高斯消元法思想
+<span id="&#28040;&#20803;&#27861;&#21450;&#39640;&#26031;&#28040;&#20803;&#27861;&#24605;&#24819;"></span>
+## Phương pháp khử và tư tưởng khử Gauss
 
-### 定义
+<span id="&#23450;&#20041;"></span>
+### Định nghĩa
 
-消元法是将方程组中的一方程的未知数用含有另一未知数的代数式表示，并将其带入到另一方程中，这就消去了一未知数，得到一解；或将方程组中的一方程倍乘某个常数加到另外一方程中去，也可达到消去一未知数的目的．消元法主要用于二元一次方程组的求解．
+Phương pháp khử là cách biểu diễn một ẩn trong một phương trình của hệ bằng biểu thức đại số chứa một ẩn khác, rồi thay biểu thức đó vào phương trình còn lại; nhờ vậy ta khử được một ẩn và thu được nghiệm. Ta cũng có thể nhân một phương trình với một hằng số rồi cộng vào phương trình khác để khử một ẩn. Phương pháp khử chủ yếu được dùng để giải hệ hai phương trình bậc nhất hai ẩn.
 
-### 解释
+<span id="&#35299;&#37322;"></span>
+### Diễn giải
 
-例一：利用消元法求解二元一次线性方程组：
+Ví dụ 1: dùng phương pháp khử để giải hệ phương trình tuyến tính hai ẩn:
 
 $$
 \begin{cases}
@@ -23,69 +27,74 @@ x-y&=100
 \end{cases}
 $$
 
-解：将方程组中两方程相加，消元 $y$ 可得：
+Lời giải: cộng hai phương trình trong hệ để khử $y$, ta được:
 
 $$
 5x = 200
 $$
 
-解得：
+Suy ra:
 
 $$
 x = 40
 $$
 
-将 $x = 40$ 代入方程组中第二个方程可得：
+Thay $x = 40$ vào phương trình thứ hai của hệ, ta được:
 
 $$
 y = -60
 $$
 
-### 消元法理论的核心
+<span id="&#28040;&#20803;&#27861;&#29702;&#35770;&#30340;&#26680;&#24515;"></span>
+### Cốt lõi của lý thuyết khử
 
-消元法理论的核心主要如下：
+Cốt lõi của lý thuyết khử chủ yếu gồm các tính chất sau:
 
--   两方程互换，解不变；
+-   Đổi chỗ hai phương trình thì nghiệm không đổi;
 
--   一方程乘以非零数 $k$，解不变；
+-   Nhân một phương trình với số khác không $k$ thì nghiệm không đổi;
 
--   一方程乘以数 $k$ 加上另一方程，解不变．
+-   Nhân một phương trình với số $k$ rồi cộng với phương trình khác thì nghiệm không đổi.
 
-### 高斯消元法思想概念
+<span id="&#39640;&#26031;&#28040;&#20803;&#27861;&#24605;&#24819;&#27010;&#24565;"></span>
+### Khái niệm tư tưởng của phương pháp khử Gauss
 
-德国数学家高斯对消元法进行了思考分析，得出了如下结论：
+Nhà toán học người Đức Gauss đã phân tích phương pháp khử và rút ra các kết luận sau:
 
--   在消元法中，参与计算和发生改变的是方程中各变量的系数；
+-   Trong phương pháp khử, những đại lượng tham gia tính toán và bị thay đổi là các hệ số của từng biến trong phương trình;
 
--   各变量并未参与计算，且没有发生改变；
+-   Bản thân các biến không tham gia tính toán và không bị thay đổi;
 
--   可以利用系数的位置表示变量，从而省略变量；
+-   Có thể dùng vị trí của hệ số để biểu diễn biến, từ đó lược bỏ biến;
 
--   在计算中将变量简化省略，方程的解不变．
+-   Khi lược bỏ biến trong quá trình tính toán, nghiệm của phương trình không đổi.
 
-高斯在这些结论的基础上，提出了高斯消元法，首先将方程的增广矩阵利用行初等变换化为行最简形，然后以线性无关为准则对自由未知量赋值，最后列出表达方程组通解．
+Dựa trên các kết luận này, Gauss đề xuất phương pháp khử Gauss: trước hết dùng các phép biến đổi sơ cấp trên hàng để đưa ma trận mở rộng của hệ về dạng rút gọn theo hàng; sau đó gán giá trị cho các ẩn tự do theo tiêu chí độc lập tuyến tính; cuối cùng viết nghiệm tổng quát của hệ phương trình.
 
-## 高斯消元五步骤法
+<span id="&#39640;&#26031;&#28040;&#20803;&#20116;&#27493;&#39588;&#27861;"></span>
+## Phương pháp khử Gauss năm bước
 
-## 解释
+<span id="&#35299;&#37322;_1"></span>
+### Diễn giải
 
-高斯消元法在将增广矩阵化为最简形后对于自由未知量的赋值，需要掌握线性相关知识，且赋值存在人工经验的因素，使得在学习过程中有一定的困难，将高斯消元法划分为五步骤，从而提出五步骤法，内容如下：
+Sau khi phương pháp khử Gauss đưa ma trận mở rộng về dạng rút gọn, việc gán giá trị cho các ẩn tự do đòi hỏi kiến thức về phụ thuộc tuyến tính; đồng thời cách gán cũng có yếu tố kinh nghiệm, khiến quá trình học có phần khó khăn. Vì vậy có thể chia phương pháp khử Gauss thành năm bước như sau:
 
-1.  增广矩阵行初等行变换为行最简形；
+1.  Dùng các phép biến đổi sơ cấp trên hàng để đưa ma trận mở rộng về dạng rút gọn theo hàng;
 
-2.  还原线性方程组；
+2.  Khôi phục hệ phương trình tuyến tính;
 
-3.  求解第一个变量；
+3.  Giải biến đầu tiên;
 
-4.  补充自由未知量；
+4.  Bổ sung các ẩn tự do;
 
-5.  列表示方程组通解．
+5.  Viết nghiệm tổng quát của hệ phương trình dưới dạng cột.
 
-利用实例进一步说明该算法的运作情况．
+Dưới đây dùng một ví dụ để minh họa thêm cách thuật toán vận hành.
 
-## 过程
+<span id="&#36807;&#31243;"></span>
+### Quá trình
 
-例二：利用高斯消元法五步骤法求解线性方程组：
+Ví dụ 2: dùng phương pháp khử Gauss năm bước để giải hệ phương trình tuyến tính:
 
 $$
 \begin{cases}
@@ -95,9 +104,10 @@ x_3+x_4&=-4 \\
 \end{cases}
 $$
 
-### 增广矩阵行（初等）变换为行最简形
+<span id="&#22686;&#24191;&#30697;&#38453;&#34892;&#65288;&#21021;&#31561;&#65289;&#21464;&#25442;&#20026;&#34892;&#26368;&#31616;&#24418;"></span>
+### Biến đổi hàng sơ cấp ma trận mở rộng thành dạng rút gọn theo hàng
 
-所谓增广矩阵，即为方程组系数矩阵 $A$ 与常数列 $b$ 的并生成的新矩阵，即 $(A | b)$，增广矩阵行初等变换化为行最简形，即是利用了高斯消元法的思想理念，省略了变量而用变量的系数位置表示变量，增广矩阵中用竖线隔开了系数矩阵和常数列，代表了等于符号．
+Ma trận mở rộng là ma trận mới được tạo bằng cách ghép ma trận hệ số $A$ của hệ phương trình với cột hằng số $b$, tức $(A | b)$. Việc dùng các phép biến đổi sơ cấp trên hàng để đưa ma trận mở rộng về dạng rút gọn theo hàng chính là vận dụng tư tưởng của phương pháp khử Gauss: lược bỏ biến và dùng vị trí hệ số để biểu diễn biến. Trong ma trận mở rộng, đường thẳng đứng tách ma trận hệ số và cột hằng số, đại diện cho dấu bằng.
 
 $$
 \left(\begin{matrix}
@@ -126,7 +136,7 @@ $$
 \end{matrix} \right)
 $$
 
-化为行阶梯形
+Đưa về dạng bậc thang theo hàng
 
 $$
 \xrightarrow{\frac{r_1}{2}}
@@ -156,9 +166,10 @@ $$
 \end{matrix} \right)
 $$
 
-化为最简形
+Đưa về dạng rút gọn
 
-### 还原线性方程组
+<span id="&#36824;&#21407;&#32447;&#24615;&#26041;&#31243;&#32452;"></span>
+### Khôi phục hệ phương trình tuyến tính
 
 $$
 \begin{cases}
@@ -167,10 +178,11 @@ x_3+x_4 &= -4 \\
 \end{cases}
 $$
 
-???+ note "解释"
-    所谓的还原线性方程组，即是在行最简形的基础上，将之重新书写为线性方程组的形式，即将行最简形中各位置的系数重新赋予变量，中间的竖线还原为等号．
+???+ note "Diễn giải"
+    Khôi phục hệ phương trình tuyến tính nghĩa là dựa trên dạng rút gọn theo hàng để viết lại nó thành hệ phương trình tuyến tính: gán lại biến cho các hệ số ở từng vị trí trong dạng rút gọn, đồng thời khôi phục đường thẳng đứng ở giữa thành dấu bằng.
 
-### 求解第一个变量
+<span id="&#27714;&#35299;&#31532;&#19968;&#20010;&#21464;&#37327;"></span>
+### Giải biến đầu tiên
 
 $$
 \begin{cases}
@@ -179,10 +191,11 @@ x_3 = -x_4-4\notag
 \end{cases}
 $$
 
-???+ note "解释"
-    即是对于所还原的线性方程组而言，将方程组中每个方程的第一个变量，用其他量表达出来．如方程组两方程中的第一个变量 $x_1$ 和 $x_3$．
+???+ note "Diễn giải"
+    Với hệ phương trình tuyến tính đã khôi phục, bước này biểu diễn biến đầu tiên của mỗi phương trình bằng các đại lượng còn lại. Chẳng hạn, trong hai phương trình trên, các biến đầu tiên lần lượt là $x_1$ và $x_3$.
 
-### 补充自由未知量
+<span id="&#34917;&#20805;&#33258;&#30001;&#26410;&#30693;&#37327;"></span>
+### Bổ sung các ẩn tự do
 
 $$
 \begin{cases}
@@ -193,10 +206,11 @@ x_4 = x_4
 \end{cases}
 $$
 
-???+ note "解释"
-    第 3 步中，求解出变量 $x_1$ 和 $x_3$，从而说明了方程剩余的变量 $x_2$ 和 $x_4$ 不受方程组的约束，是自由未知量，可以取任意值，所以需要在第 3 步骤解得基础上进行解得补充，补充的方法为 $x_2 = x_2,x_4 = x_4$，这种解得补充方式符合自由未知量定义，并易于理解，因为是自由未知量而不受约束，所以只能自己等于自己．
+???+ note "Diễn giải"
+    Ở bước 3, ta đã giải được các biến $x_1$ và $x_3$. Điều này cho thấy các biến còn lại $x_2$ và $x_4$ không bị hệ phương trình ràng buộc, tức là các ẩn tự do và có thể nhận giá trị tùy ý. Vì vậy, trên cơ sở nghiệm thu được ở bước 3, cần bổ sung nghiệm bằng cách viết $x_2 = x_2, x_4 = x_4$. Cách bổ sung này phù hợp với định nghĩa ẩn tự do và dễ hiểu: vì là ẩn tự do, không chịu ràng buộc, nên chúng chỉ có thể bằng chính chúng.
 
-### 列表示方程组的通解
+<span id="&#21015;&#34920;&#31034;&#26041;&#31243;&#32452;&#30340;&#36890;&#35299;"></span>
+### Viết nghiệm tổng quát của hệ phương trình dưới dạng cột
 
 $$
 \begin{aligned}
@@ -210,18 +224,20 @@ $$
 \end{aligned}
 $$
 
-其中 $C_1$ 和 $C_2$ 为任意常数．
+Trong đó $C_1$ và $C_2$ là các hằng số tùy ý.
 
-???+ note "解释"
-    即在第 4 步的基础上，将解表达为列向量组合的表示形式，同时由于 $x_2$ 和 $x_4$ 是自由未知量，可以取任意值，所以在解得右边，令二者分别为任意常数 $C_1$ 和 $C_2$，即实现了对方程组的求解．
+???+ note "Diễn giải"
+    Dựa trên bước 4, ta biểu diễn nghiệm dưới dạng tổ hợp các vector cột. Đồng thời, vì $x_2$ và $x_4$ là ẩn tự do, có thể nhận giá trị tùy ý, nên ở vế phải của nghiệm ta lần lượt đặt chúng bằng các hằng số tùy ý $C_1$ và $C_2$. Như vậy, hệ phương trình đã được giải xong.
 
-## 行列式计算
+<span id="&#34892;&#21015;&#24335;&#35745;&#31639;"></span>
+## Tính định thức
 
-### 解释
+<span id="&#35299;&#37322;_2"></span>
+### Diễn giải
 
-$N \times N$ 方阵行列式（Determinant）可以理解为所有列向量所夹的几何体的有向体积．
+Định thức (determinant) của ma trận vuông $N \times N$ có thể được hiểu là thể tích có hướng của khối hình học được căng bởi tất cả các vector cột.
 
-例如：
+Ví dụ:
 
 $$
 \begin{vmatrix}
@@ -235,29 +251,30 @@ $$
 2 & 1 \end{vmatrix} = -3
 $$
 
-行列式有公式
+Định thức có công thức
 
 $$
 \operatorname{det}(A)=\sum_{\sigma \in S_{n}} \operatorname{sgn}(\sigma) \prod_{i=1}^{n} a_{i, \sigma(i)}
 $$
 
-其中 $S_n$ 是指长度为 $n$ 的全排列的集合，$\sigma$ 就是一个全排列，如果 $\sigma$ 的逆序对对数为偶数，则 $\operatorname{sgn}(\sigma)=1$，否则 $\operatorname{sgn}(\sigma)=−1$．
+Trong đó $S_n$ là tập hợp các hoán vị độ dài $n$, còn $\sigma$ là một hoán vị. Nếu số cặp nghịch thế của $\sigma$ là chẵn thì $\operatorname{sgn}(\sigma)=1$, ngược lại $\operatorname{sgn}(\sigma)=-1$.
 
-通过体积概念理解行列式不变性是一个非常简单的办法：
+Hiểu tính bất biến của định thức thông qua khái niệm thể tích là một cách rất đơn giản:
 
--   矩阵转置，行列式不变；
+-   Chuyển vị ma trận thì định thức không đổi;
 
--   矩阵行（列）交换，行列式取反；
+-   Đổi chỗ hai hàng (hoặc hai cột) của ma trận thì định thức đổi dấu;
 
--   矩阵行（列）相加或相减，行列式不变；
+-   Cộng hoặc trừ các hàng (hoặc cột) của ma trận với nhau thì định thức không đổi;
 
--   矩阵行（列）所有元素同时乘以数 $k$，行列式等比例变大．
+-   Nhân đồng thời mọi phần tử của một hàng (hoặc cột) của ma trận với số $k$ thì định thức thay đổi theo cùng tỉ lệ.
 
-由此，对矩阵应用高斯消元之后，我们可以得到一个对角线矩阵，此矩阵的行列式由对角线元素之积所决定．其符号可由交换行的数量来确定（如果为奇数，则行列式的符号应颠倒）．因此，我们可以在 $O(n^3)$ 的复杂度下使用高斯算法计算矩阵．
+Từ đó, sau khi áp dụng khử Gauss lên ma trận, ta có thể thu được một ma trận đường chéo; định thức của ma trận này được quyết định bởi tích các phần tử trên đường chéo. Dấu của nó có thể xác định theo số lần đổi hàng (nếu số lần là lẻ thì dấu của định thức phải đảo ngược). Vì vậy, ta có thể dùng thuật toán Gauss để tính định thức của ma trận với độ phức tạp $O(n^3)$.
 
-注意，如果在某个时候，我们在当前列中找不到非零单元，则算法应停止并返回 0．
+Lưu ý rằng nếu tại một thời điểm nào đó ta không tìm được phần tử khác không trong cột hiện tại, thuật toán nên dừng và trả về 0.
 
-### 实现
+<span id="&#23454;&#29616;"></span>
+### Cài đặt
 
 ```cpp
 constexpr double EPS = 1E-9;
@@ -285,20 +302,22 @@ for (int i = 0; i < n; ++i) {
 cout << det;
 ```
 
-## 矩阵求逆
+<span id="&#30697;&#38453;&#27714;&#36870;"></span>
+## Tìm ma trận nghịch đảo
 
-对于方阵 $A$，若存在方阵 $A^{-1}$，使得 $A \times A^{-1} = A^{-1} \times A = I$，则称矩阵 $A$ 可逆，$A^{-1}$ 被称为它的逆矩阵．
+Với ma trận vuông $A$, nếu tồn tại ma trận vuông $A^{-1}$ sao cho $A \times A^{-1} = A^{-1} \times A = I$, thì ma trận $A$ được gọi là khả nghịch, còn $A^{-1}$ được gọi là ma trận nghịch đảo của nó.
 
-给出 $n$ 阶方阵 $A$，求解其逆矩阵的方法如下：
+Cho ma trận vuông cấp $n$ là $A$, cách tìm ma trận nghịch đảo của nó như sau:
 
-1.  构造 $n \times 2n$ 的矩阵 $(A, I_n)$；
-2.  用高斯消元法将其化简为最简形 $(I_n, A^{-1})$，即可得到 $A$ 的逆矩阵 $A^{-1}$．如果最终最简形的左半部分不是单位矩阵 $I_n$，则矩阵 $A$ 不可逆．
+1.  Xây dựng ma trận kích thước $n \times 2n$ là $(A, I_n)$;
+2.  Dùng phương pháp khử Gauss để rút gọn nó thành dạng $(I_n, A^{-1})$, khi đó ta thu được ma trận nghịch đảo $A^{-1}$ của $A$. Nếu phần bên trái của dạng rút gọn cuối cùng không phải ma trận đơn vị $I_n$, thì ma trận $A$ không khả nghịch.
 
-该方法的正确性证明需要用到较多线性代数的知识，限于篇幅这里不再给出．感兴趣的读者可以自行查阅相关资料．
+Chứng minh tính đúng đắn của phương pháp này cần khá nhiều kiến thức đại số tuyến tính, nên do giới hạn dung lượng, phần này không trình bày ở đây. Bạn đọc quan tâm có thể tự tra cứu các tài liệu liên quan.
 
-## 高斯消元法解异或方程组
+<span id="&#39640;&#26031;&#28040;&#20803;&#27861;&#35299;&#24322;&#25110;&#26041;&#31243;&#32452;"></span>
+## Giải hệ phương trình XOR bằng khử Gauss
 
-异或方程组是指形如
+Hệ phương trình XOR là hệ có dạng
 
 $$
 \begin{cases}
@@ -308,20 +327,20 @@ a_{2,1}x_1 \oplus a_{2,2}x_2 \oplus \cdots \oplus a_{2,n}x_n &= b_2\\
 \end{cases}
 $$
 
-的方程组，其中 $\oplus$ 表示「按位异或」（即 `xor` 或 C++ 中的 `^`），且式中所有系数/常数（即 $a_{i,j}$ 与 $b_i$）均为 $0$ 或 $1$．
+Trong đó $\oplus$ biểu thị "XOR theo bit" (tức `xor` hoặc `^` trong C++), và mọi hệ số/hằng số trong biểu thức (tức $a_{i,j}$ và $b_i$) đều là $0$ hoặc $1$.
 
-由于「异或」符合交换律与结合律，故可以按照高斯消元法逐步消元求解．值得注意的是，我们在消元的时候应使用「异或消元」而非「加减消元」，且不需要进行乘除改变系数（因为系数均为 $0$ 和 $1$）．
+Vì phép XOR thỏa mãn tính giao hoán và tính kết hợp, ta có thể khử dần để giải theo phương pháp khử Gauss. Cần chú ý rằng khi khử, ta nên dùng "khử bằng XOR" thay vì "khử bằng cộng trừ", và không cần nhân chia để thay đổi hệ số (vì mọi hệ số đều là $0$ hoặc $1$).
 
-注意到异或方程组的增广矩阵是 $01$ 矩阵（矩阵中仅含有 $0$ 与 $1$），所以我们可以使用 C++ 中的 `std::bitset` 进行优化，将时间复杂度降为 $O(\dfrac{n^2m}{\omega})$，其中 $n$ 为元的个数，$m$ 为方程条数，$\omega$ 一般为 $32$（与机器有关）．
+Do ma trận mở rộng của hệ phương trình XOR là ma trận $01$ (trong ma trận chỉ chứa $0$ và $1$), ta có thể dùng `std::bitset` trong C++ để tối ưu, giảm độ phức tạp thời gian xuống $O(\dfrac{n^2m}{\omega})$, trong đó $n$ là số ẩn, $m$ là số phương trình, còn $\omega$ thường là $32$ (phụ thuộc vào máy).
 
-参考实现：
+Cài đặt tham khảo:
 
 ```cpp
-std::bitset<1010> matrix[2010];  // matrix[1~n]：增广矩阵，0 位置为常数
+std::bitset<1010> matrix[2010];  // matrix[1~n]: ma trận mở rộng, vị trí 0 là hằng số
 
 std::vector<bool> GaussElimination(
-    int n, int m)  // n 为未知数个数，m 为方程个数，返回方程组的解
-                   // （多解 / 无解返回一个空的 vector）
+    int n, int m)  // n là số ẩn, m là số phương trình, trả về nghiệm của hệ
+                   // (nhiều nghiệm / vô nghiệm thì trả về một vector rỗng)
 {
   for (int i = 1; i <= n; i++) {
     int cur = i;
@@ -337,7 +356,8 @@ std::vector<bool> GaussElimination(
 }
 ```
 
-## 练习题
+<span id="&#32451;&#20064;&#39064;"></span>
+## Bài tập
 
--   [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E)
--   [luogu - SDOI2010 外星千足虫](https://www.luogu.com.cn/problem/P2447)
+-   [Codeforces - Phù thủy và tiền cược](http://codeforces.com/contest/167/problem/E)
+-   [Luogu - SDOI2010 Rết ngoài hành tinh](https://www.luogu.com.cn/problem/P2447)

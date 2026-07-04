@@ -335,11 +335,11 @@ nav:
       - Trò chơi tổ hợp công bằng: math/game-theory/impartial-game.md
       - Trò chơi tổng bằng không: math/game-theory/zero-sum-game.md
       - Trò chơi tổ hợp không công bằng: math/game-theory/partizan-game.md
-    - 数值算法:
-      - 插值: math/numerical/interp.md
-      - 数值积分: math/numerical/integral.md
-      - 高斯消元: math/numerical/gauss.md
-      - 牛顿迭代法: math/numerical/newton.md
+    - Thuật toán số:
+      - Nội suy: math/numerical/interp.md
+      - Tích phân số: math/numerical/integral.md
+      - Khử Gauss: math/numerical/gauss.md
+      - Phương pháp Newton: math/numerical/newton.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
     - 拟阵: math/matroid.md

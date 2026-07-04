@@ -1,25 +1,26 @@
 author: H-J-Granger, Chrogeek, countercurrent-time, Enter-tainer, Great-designer, iamtwz, Ir1d, ksyx, mao1t, Menci, NachtgeistW, Nanarikom, ShaoChenHeng, StudyingFather, SukkaW, Tiphereth-A, zyj-111
 
-## 定积分的定义
+<span id="&#23450;&#31215;&#20998;&#30340;&#23450;&#20041;"></span>
+## Định nghĩa tích phân xác định
 
-简单来说，函数 $f(x)$ 在区间 $[l,r]$ 上的定积分 $\int_{l}^{r}f(x)\mathrm{d}x$ 指的是 $f(x)$ 在区间 $[l,r]$ 中与 $x$ 轴围成的区域的面积（其中 $x$ 轴上方的部分为正值，$x$ 轴下方的部分为负值）．
+Nói đơn giản, tích phân xác định $\int_{l}^{r}f(x)\mathrm{d}x$ của hàm $f(x)$ trên đoạn $[l,r]$ là diện tích miền được bao bởi $f(x)$ và trục $x$ trên đoạn $[l,r]$; phần nằm phía trên trục $x$ được tính dương, còn phần nằm phía dưới trục $x$ được tính âm.
 
-很多情况下，我们需要高效，准确地求出一个积分的近似值．下面介绍的 **辛普森法**，就是这样一种求数值积分的方法．
+Trong nhiều tình huống, ta cần tính xấp xỉ một tích phân một cách hiệu quả và chính xác. **Phương pháp Simpson** được giới thiệu dưới đây là một phương pháp tích phân số như vậy.
 
-## 辛普森法
+<span id="&#36763;&#26222;&#26862;&#27861;"></span>
+## Phương pháp Simpson
 
-这个方法的思想是将被积区间分为若干小段，每段套用二次函数的积分公式进行计算．
+Ý tưởng của phương pháp này là chia khoảng lấy tích phân thành nhiều đoạn nhỏ, rồi trên mỗi đoạn áp dụng công thức tích phân của hàm bậc hai.
 
-??? note "二次函数积分公式（辛普森公式）"
-    对于一个二次函数 $f(x)=ax^2+bx+c$，有：
+??? note "Công thức tích phân hàm bậc hai (công thức Simpson)"
+    Với một hàm bậc hai $f(x)=ax^2+bx+c$, ta có:
     
     $$
     \int_l^r f(x) {\mathrm d}x = \frac{(r-l)(f(l)+f(r)+4 f(\frac{l+r}{2}))}{6}
     $$
     
-    推导过程：
-    对于一个二次函数 $f(x)=ax^2+bx+c$；
-    求积分可得 $F(x)=\int_0^x f(x) {\mathrm d}x = \frac{a}{3}x^3+\frac{b}{2}x^2+cx+D$ 在这里 D 是一个常数，那么
+    Quá trình suy ra:
+    với hàm bậc hai $f(x)=ax^2+bx+c$, nguyên hàm là $F(x)=\int_0^x f(x) {\mathrm d}x = \frac{a}{3}x^3+\frac{b}{2}x^2+cx+D$, trong đó $D$ là một hằng số. Khi đó
     
     $$
     \begin{aligned}
@@ -32,39 +33,43 @@ author: H-J-Granger, Chrogeek, countercurrent-time, Enter-tainer, Great-designer
     \end{aligned}
     $$
 
-根据这个辛普森公式，我们先介绍一种普通的辛普森积分法．
+Dựa trên công thức Simpson này, trước hết ta giới thiệu phương pháp Simpson thông thường.
 
-### 普通辛普森法
+<span id="&#26222;&#36890;&#36763;&#26222;&#26862;&#27861;"></span>
+### Phương pháp Simpson thông thường
 
-1743 年，这种方法发表于托马斯·辛普森的一篇论文中．
+Phương pháp này được công bố trong một bài báo của Thomas Simpson vào năm 1743.
 
-#### 描述
+<span id="&#25551;&#36848;"></span>
+#### Mô tả
 
-给定一个自然数 $n$，将区间 $[l, r]$ 分成 $2n$ 个等长的区间 $x$．
+Cho một số tự nhiên $n$, chia đoạn $[l, r]$ thành $2n$ đoạn con bằng nhau.
 
 $x_i = l + i h, ~~ i = 0 \ldots 2n,$ $h = \frac {r-l} {2n}.$
 
-我们就可以计算每个小区间 $[x_ {2i-2}, x_ {2i}]$，$i = 1\ldots n$ 的积分值，将所有区间的积分值相加即为总积分．
+Ta có thể tính giá trị tích phân trên từng đoạn nhỏ $[x_ {2i-2}, x_ {2i}]$, $i = 1\ldots n$, rồi cộng các giá trị đó lại để thu được tích phân tổng.
 
-对于 $[x_ {2i-2}, x_ {2i}]$，$i = 1\ldots n$ 的一个区间，选其中的三个点 $(x_ {2i-2}, x_ {2i-1}, x_ {2i})$ 就可以构成一条抛物线从而得到一个函数 $P(x)$，这个函数存在且唯一．计算原函数在该区间的积分值就变成了计算新的二次函数 $P(x)$ 在该段区间的积分值．这样我们就可以利用辛普森公式来近似计算它．
+Với một đoạn $[x_ {2i-2}, x_ {2i}]$, $i = 1\ldots n$, chọn ba điểm $(x_ {2i-2}, x_ {2i-1}, x_ {2i})$ sẽ xác định duy nhất một parabol, tức một hàm $P(x)$. Khi đó việc tính tích phân của hàm ban đầu trên đoạn này được chuyển thành tính tích phân của hàm bậc hai mới $P(x)$ trên cùng đoạn. Nhờ vậy, ta có thể dùng công thức Simpson để tính xấp xỉ:
 
 $\int_{x_ {2i-2}} ^ {x_ {2i}} f (x) ~dx \approx \int_{x_ {2i-2}} ^ {x_ {2i}} P (x) ~dx = \left(f(x_{2i-2}) + 4f(x_{2i-1})+(f(x_{2i})\right)\frac {h} {3}$
 
-将其分段求和即可得到如下结论：
+Cộng theo từng đoạn sẽ cho kết luận sau:
 
 $\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2 f(x_4) + \ldots + 4 f(x_{2N-1}) + f(x_{2N}) \right)\frac {h} {3}$
 
-#### 误差
+<span id="&#35823;&#24046;"></span>
+#### Sai số
 
-我们直接给出结论，普通辛普森法的误差为：
+Ta nêu trực tiếp kết luận: sai số của phương pháp Simpson thông thường là
 
 $$
 -\tfrac{1}{90} \left(\tfrac{r-l}{2}\right)^5 f^{(4)}(\xi)
 $$
 
-其中 $\xi$ 是位于区间 $[l,r]$ 的某个值．
+trong đó $\xi$ là một giá trị nào đó thuộc đoạn $[l,r]$.
 
-#### 实现
+<span id="&#23454;&#29616;"></span>
+#### Cài đặt
 
 === "C++"
     ```cpp
@@ -100,38 +105,39 @@ $$
         return s
     ```
 
-### 自适应辛普森法
+<span id="&#33258;&#36866;&#24212;&#36763;&#26222;&#26862;&#27861;"></span>
+### Phương pháp Simpson thích nghi
 
-普通的方法为保证精度在时间方面无疑会受到 $n$ 的限制，我们应该找一种更加合适的方法．
+Để bảo đảm độ chính xác, phương pháp thông thường chắc chắn bị ràng buộc bởi $n$ về mặt thời gian. Ta nên tìm một phương pháp phù hợp hơn.
 
-现在唯一的问题就是如何进行分段．如果段数少了计算误差就大，段数多了时间效率又会低．我们需要找到一个准确度和效率的平衡点．
+Vấn đề duy nhất hiện nay là chia đoạn như thế nào. Nếu số đoạn quá ít thì sai số tính toán lớn; nếu số đoạn quá nhiều thì hiệu quả thời gian thấp. Ta cần tìm điểm cân bằng giữa độ chính xác và hiệu quả.
 
-我们这样考虑：假如有一段图像已经很接近二次函数的话，直接带入公式求积分，得到的值精度就很高了，不需要再继续分割这一段了．
+Ta xét như sau: nếu một đoạn đồ thị đã rất gần với một hàm bậc hai, thì thay trực tiếp vào công thức để lấy tích phân sẽ cho giá trị rất chính xác, và không cần tiếp tục chia nhỏ đoạn đó.
 
-于是我们有了这样一种分割方法：每次判断当前段和二次函数的相似程度，如果足够相似的话就直接代入公式计算，否则将当前段分割成左右两段递归求解．
+Từ đó ta có một cách chia đoạn: mỗi lần kiểm tra mức độ giống nhau giữa đoạn hiện tại và một hàm bậc hai; nếu đủ giống thì thay trực tiếp vào công thức để tính, ngược lại chia đoạn hiện tại thành hai nửa trái và phải rồi giải đệ quy.
 
-现在就剩下一个问题了：如果判断每一段和二次函数是否相似？
+Bây giờ chỉ còn một câu hỏi: làm sao phán đoán mỗi đoạn có giống hàm bậc hai hay không?
 
-我们把当前段直接代入公式求积分，再将当前段从中点分割成两段，把这两段再直接代入公式求积分．如果当前段的积分和分割成两段后的积分之和相差很小的话，就可以认为当前段和二次函数很相似了，不用再递归分割了．
+Ta thay trực tiếp đoạn hiện tại vào công thức để tính tích phân, rồi chia đoạn hiện tại tại trung điểm thành hai đoạn và lại thay trực tiếp hai đoạn đó vào công thức. Nếu tích phân của đoạn hiện tại và tổng tích phân của hai đoạn sau khi chia chênh lệch rất nhỏ, thì có thể xem đoạn hiện tại rất giống một hàm bậc hai và không cần chia đệ quy nữa.
 
-上面就是自适应辛普森法的思想．在分治判断的时候，除了判断精度是否正确，一般还要强制执行最少的迭代次数．
+Trên đây là ý tưởng của phương pháp Simpson thích nghi. Khi kiểm tra chia để trị, ngoài việc kiểm tra độ chính xác, thông thường còn ép thực hiện một số lần lặp tối thiểu.
 
-参考代码如下：
+Mã tham khảo như sau:
 
 === "C++"
     ```cpp
     double simpson(double l, double r) {
       double mid = (l + r) / 2;
-      return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6;  // 辛普森公式
+      return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6;  // Công thức Simpson
     }
     
     double asr(double l, double r, double eps, double ans, int step) {
       double mid = (l + r) / 2;
       double fl = simpson(l, mid), fr = simpson(mid, r);
       if (abs(fl + fr - ans) <= 15 * eps && step < 0)
-        return fl + fr + (fl + fr - ans) / 15;  // 足够相似的话就直接返回
+        return fl + fr + (fl + fr - ans) / 15;  // Đủ giống thì trả về trực tiếp
       return asr(l, mid, eps / 2, fl, step - 1) +
-             asr(mid, r, eps / 2, fr, step - 1);  // 否则分割成两段递归求解
+             asr(mid, r, eps / 2, fr, step - 1);  // Nếu không, chia đôi rồi đệ quy
     }
     
     double calc(double l, double r, double eps) {
@@ -143,7 +149,7 @@ $$
     ```python
     def simpson(l, r):
         mid = (l + r) / 2
-        return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6  # 辛普森公式
+        return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6  # Công thức Simpson
     
     
     def asr(l, r, eps, ans, step):
@@ -151,22 +157,24 @@ $$
         fl = simpson(l, mid)
         fr = simpson(mid, r)
         if abs(fl + fr - ans) <= 15 * eps and step < 0:
-            return fl + fr + (fl + fr - ans) / 15  # 足够相似的话就直接返回
+            return fl + fr + (fl + fr - ans) / 15  # Đủ giống thì trả về trực tiếp
         return asr(l, mid, eps / 2, fl, step - 1) + asr(
             mid, r, eps / 2, fr, step - 1
-        )  # 否则分割成两段递归求解
+        )  # Nếu không, chia đôi rồi đệ quy
     
     
     def calc(l, r, eps):
         return asr(l, r, eps, simpson(l, r), 12)
     ```
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
--   [Luogu4525【模板】自适应辛普森法 1](https://www.luogu.com.cn/problem/P4525)
+-   [Luogu4525【Mẫu】Phương pháp Simpson thích nghi 1](https://www.luogu.com.cn/problem/P4525)
 -   [HDU1724 Ellipse](https://acm.hdu.edu.cn/showproblem.php?pid=1724)
--   [NOI2005 月下柠檬树](https://www.luogu.com.cn/problem/P4207)
+-   [NOI2005 Cây chanh dưới trăng](https://www.luogu.com.cn/problem/P4207)
 
-## 参考资料
+<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+## Tài liệu tham khảo
 
-<https://doi.org/10.1145/321526.321537>：该文章讨论了自适应 Simpson 法的改进方案，其中详细论述了上文代码中的常数 `15` 的由来与优势．
+<https://doi.org/10.1145/321526.321537>: bài viết này thảo luận về các cải tiến của phương pháp Simpson thích nghi, trong đó trình bày chi tiết nguồn gốc và ưu điểm của hằng số `15` trong đoạn mã ở trên.

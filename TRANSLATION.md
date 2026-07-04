@@ -185,6 +185,9 @@ MkDocs source layout intact.
 - `docs/math/game-theory/*.md`: translated game-theory overview, impartial
   combinatorial games, zero-sum games, and explanatory comments in included
   game-theory snippets; the upstream partizan-game page is currently empty.
+- `docs/math/numerical/*.md`: translated numerical algorithms covering
+  interpolation, numerical integration, Gaussian elimination, and Newton's
+  method, plus explanatory comments in included interpolation snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
