@@ -370,6 +370,10 @@ MkDocs source layout intact.
 - `docs/tools/cmd.md`: translated the command-line usage guide.
 - `docs/tools/compile-debug.md`: translated the command-line compile/debug
   guide.
+- `docs/tools/git.md`: translated the Git configuration, branching, merge,
+  remote, ssh, and GUI workflow guide.
+- `docs/tools/latex.md`: translated the LaTeX beginner tutorial, including
+  environment setup, document structure, text formatting, tables, and figures.
 - `docs/tools/polygon.md`: translated the Polygon collaborative problemsetting
   guide.
 - `docs/tools/special-judge.md`: translated the Special Judge writing guide
