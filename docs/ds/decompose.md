@@ -1,97 +1,103 @@
 author: Ir1d, HeRaNO, Xeonacid
 
-## 简介
+<span id="&#31616;&#20171;"></span>
+## Giới thiệu
 
-其实，分块是一种思想，而不是一种数据结构．
+Thực ra, chia khối (sqrt decomposition) là một cách tư duy, không phải một cấu trúc dữ liệu.
 
-从 NOIP 到 NOI 到 IOI，各种难度的分块思想都有出现．
+Từ NOIP đến NOI rồi IOI, tư tưởng chia khối đã xuất hiện ở nhiều bài với độ khó khác nhau.
 
-分块的基本思想是，通过对原数据的适当划分，并在划分后的每一个块上预处理部分信息，从而较一般的暴力算法取得更优的时间复杂度．
+Ý tưởng cơ bản của chia khối là chia dữ liệu gốc thành các phần phù hợp, rồi tiền xử lý một phần thông tin trên mỗi khối sau khi chia, qua đó đạt độ phức tạp thời gian tốt hơn thuật toán vét cạn thông thường.
 
-分块的时间复杂度主要取决于分块的块长，一般可以通过均值不等式求出某个问题下的最优块长，以及相应的时间复杂度．
+Độ phức tạp thời gian của chia khối chủ yếu phụ thuộc vào độ dài khối. Thông thường có thể dùng bất đẳng thức trung bình để tìm độ dài khối tối ưu cho một bài toán cụ thể, cũng như độ phức tạp thời gian tương ứng.
 
-分块是一种很灵活的思想，相较于树状数组和线段树，分块的优点是通用性更好，可以维护很多树状数组和线段树无法维护的信息．
+Chia khối là một tư tưởng rất linh hoạt. So với cây Fenwick và cây đoạn, ưu điểm của chia khối là tính tổng quát cao hơn: nó có thể duy trì nhiều loại thông tin mà cây Fenwick và cây đoạn khó xử lý.
 
-当然，分块的缺点是渐近意义的复杂度，相较于线段树和树状数组不够好．
+Tất nhiên, nhược điểm của chia khối là độ phức tạp tiệm cận thường không tốt bằng cây đoạn hay cây Fenwick.
 
-不过在大多数问题上，分块仍然是解决这些问题的一个不错选择．
+Tuy vậy, trong phần lớn bài toán, chia khối vẫn là một lựa chọn tốt để giải quyết chúng.
 
-下面是几个例子．
+Dưới đây là một vài ví dụ.
 
-## 区间和
+<span id="&#21306;&#38388;&#21644;"></span>
+## Tổng đoạn
 
-??? note "例题 [LibreOJ 6280 数列分块入门 4](https://loj.ac/problem/6280)"
-    给定一个长度为 $n$ 的序列 $\{a_i\}$，需要执行 $n$ 次操作．操作分为两种：
+??? note "Ví dụ [LibreOJ 6280 Nhập môn chia khối dãy số 4](https://loj.ac/problem/6280)"
+    Cho một dãy độ dài $n$ là $\{a_i\}$, cần thực hiện $n$ thao tác. Có hai loại thao tác:
     
-    1.  给 $a_l \sim a_r$ 之间的所有数加上 $x$；
-    2.  求 $\sum_{i=l}^r a_i$．
+    1.  Cộng $x$ vào tất cả các số từ $a_l$ đến $a_r$;
+    2.  Tính $\sum_{i=l}^r a_i$.
     
         $1 \leq n \leq 5 \times 10^4$
 
-我们将序列按每 $s$ 个元素一块进行分块，并记录每块的区间和 $b_i$．
+Ta chia dãy thành các khối, mỗi khối có $s$ phần tử, và ghi lại tổng đoạn của mỗi khối là $b_i$.
 
 $$
 \underbrace{a_1, a_2, \ldots, a_s}_{b_1}, \underbrace{a_{s+1}, \ldots, a_{2s}}_{b_2}, \dots, \underbrace{a_{(s-1) \times s+1}, \dots, a_n}_{b_{\frac{n}{s}}}
 $$
 
-最后一个块可能是不完整的（因为 $n$ 很可能不是 $s$ 的倍数），但是这对于我们的讨论来说并没有太大影响．
+Khối cuối có thể không đầy đủ (vì $n$ rất có thể không phải bội của $s$), nhưng điều này không ảnh hưởng nhiều đến phần thảo luận của chúng ta.
 
-首先看查询操作：
+Trước hết xét thao tác truy vấn:
 
--   若 $l$ 和 $r$ 在同一个块内，直接暴力求和即可，因为块长为 $s$，因此最坏复杂度为 $O(s)$．
--   若 $l$ 和 $r$ 不在同一个块内，则答案由三部分组成：以 $l$ 开头的不完整块，中间几个完整块，以 $r$ 结尾的不完整块．对于不完整的块，仍然采用上面暴力计算的方法，对于完整块，则直接利用已经求出的 $b_i$ 求和即可．这种情况下，最坏复杂度为 $O(\dfrac{n}{s}+s)$．
+-   Nếu $l$ và $r$ nằm trong cùng một khối, chỉ cần tính tổng trực tiếp bằng vét cạn. Vì độ dài khối là $s$, độ phức tạp xấu nhất là $O(s)$.
+-   Nếu $l$ và $r$ không nằm trong cùng một khối, đáp án gồm ba phần: khối không đầy đủ bắt đầu từ $l$, một vài khối đầy đủ ở giữa, và khối không đầy đủ kết thúc tại $r$. Với các khối không đầy đủ, vẫn tính trực tiếp như trên; với các khối đầy đủ, chỉ cần cộng trực tiếp các tổng $b_i$ đã tính sẵn. Trong trường hợp này, độ phức tạp xấu nhất là $O(\dfrac{n}{s}+s)$.
 
-接下来是修改操作：
+Tiếp theo là thao tác cập nhật:
 
--   若 $l$ 和 $r$ 在同一个块内，直接暴力修改即可，因为块长为 $s$，因此最坏复杂度为 $O(s)$．
--   若 $l$ 和 $r$ 不在同一个块内，则需要修改三部分：以 $l$ 开头的不完整块，中间几个完整块，以 $r$ 结尾的不完整块．对于不完整的块，仍然是暴力修改每个元素的值（别忘了更新区间和 $b_i$），对于完整块，则直接修改 $b_i$ 即可．这种情况下，最坏复杂度和仍然为 $O(\dfrac{n}{s}+s)$．
+-   Nếu $l$ và $r$ nằm trong cùng một khối, chỉ cần sửa trực tiếp bằng vét cạn. Vì độ dài khối là $s$, độ phức tạp xấu nhất là $O(s)$.
+-   Nếu $l$ và $r$ không nằm trong cùng một khối, cần sửa ba phần: khối không đầy đủ bắt đầu từ $l$, một vài khối đầy đủ ở giữa, và khối không đầy đủ kết thúc tại $r$. Với các khối không đầy đủ, vẫn sửa giá trị từng phần tử bằng vét cạn (đừng quên cập nhật tổng đoạn $b_i$); với các khối đầy đủ, chỉ cần sửa trực tiếp tổng khối $b_i$. Trong trường hợp này, độ phức tạp xấu nhất vẫn là $O(\dfrac{n}{s}+s)$.
 
-利用均值不等式可知，当 $\dfrac{n}{s}=s$，即 $s=\sqrt n$ 时，单次操作的时间复杂度最优，为 $O(\sqrt n)$．
+Theo bất đẳng thức trung bình, khi $\dfrac{n}{s}=s$, tức $s=\sqrt n$, độ phức tạp thời gian cho một thao tác là tối ưu, bằng $O(\sqrt n)$.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/decompose/decompose_1.cpp"
     ```
 
-## 区间和 2
+<span id="&#21306;&#38388;&#21644; 2"></span>
+## Tổng đoạn 2
 
-上一个做法的复杂度是 $\Omega(1) , O(\sqrt{n})$．
+Cách làm trước có độ phức tạp là $\Omega(1) , O(\sqrt{n})$.
 
-我们在这里介绍一种 $O(\sqrt{n}) - O(1)$ 的算法．
+Ở đây ta giới thiệu một thuật toán $O(\sqrt{n}) - O(1)$.
 
-为了 $O(1)$ 询问，我们可以维护各种前缀和．
+Để truy vấn $O(1)$, ta có thể duy trì các loại tổng tiền tố.
 
-然而在有修改的情况下，不方便维护，只能维护单个块内的前缀和．
+Tuy nhiên, khi có cập nhật thì việc duy trì không thuận tiện; ta chỉ có thể duy trì tổng tiền tố bên trong từng khối.
 
-以及整块作为一个单位的前缀和．
+Đồng thời duy trì tổng tiền tố với mỗi khối nguyên vẹn được xem như một đơn vị.
 
-每次修改 $O(T+\frac{n}{T})$．
+Mỗi lần cập nhật tốn $O(T+\frac{n}{T})$.
 
-询问：涉及三部分，每部分都可以直接通过前缀和得到，时间复杂度 $O(1)$．
+Truy vấn: gồm ba phần, mỗi phần đều có thể lấy trực tiếp bằng tổng tiền tố, nên độ phức tạp thời gian là $O(1)$.
 
-## 对询问分块
+<span id="&#23545;&#35810;&#38382;&#20998;&#22359;"></span>
+## Chia khối theo truy vấn
 
-同样的问题，现在序列长度为 $n$，有 $m$ 个操作．
+Vẫn là bài toán đó, bây giờ độ dài dãy là $n$ và có $m$ thao tác.
 
-如果操作数量比较少，我们可以把操作记下来，在询问的时候加上这些操作的影响．
+Nếu số thao tác tương đối ít, ta có thể ghi lại các thao tác đó, rồi khi truy vấn thì cộng thêm ảnh hưởng của chúng.
 
-假设最多记录 $T$ 个操作，则修改 $O(1)$，询问 $O(T)$．
+Giả sử ghi lại tối đa $T$ thao tác, khi đó cập nhật là $O(1)$, truy vấn là $O(T)$.
 
-$T$ 个操作之后，重新计算前缀和，$O(n)$．
+Sau mỗi $T$ thao tác, tính lại tổng tiền tố, tốn $O(n)$.
 
-总复杂度：$O(mT+n\frac{m}{T})$．
+Tổng độ phức tạp: $O(mT+n\frac{m}{T})$.
 
-$T=\sqrt{n}$ 时，总复杂度 $O(m \sqrt{n})$．
+Khi $T=\sqrt{n}$, tổng độ phức tạp là $O(m \sqrt{n})$.
 
-### 其他问题
+<span id="&#20854;&#20182;&#38382;&#39064;"></span>
+### Các vấn đề khác
 
-分块思想也可以应用于其他整数相关问题：寻找零元素的数量、寻找第一个非零元素、计算满足某个性质的元素个数等等．
+Tư tưởng chia khối cũng có thể áp dụng cho nhiều bài toán liên quan đến số nguyên: tìm số lượng phần tử bằng không, tìm phần tử khác không đầu tiên, đếm số phần tử thỏa mãn một tính chất nào đó, v.v.
 
-还有一些问题可以通过分块来解决，例如维护一组允许添加或删除数字的集合，检查一个数是否属于这个集合，以及查找第 $k$ 大的数．要解决这个问题，必须将数字按递增顺序存储，并分割成多个块，每个块中包含 $\sqrt{n}$ 个数字．每次添加或删除一个数字时，必须通过在相邻块的边界移动数字来重新分块．
+Còn có một số bài toán khác có thể giải bằng chia khối, chẳng hạn duy trì một tập các số cho phép thêm hoặc xóa, kiểm tra một số có thuộc tập này hay không, và tìm số lớn thứ $k$. Để giải bài toán này, cần lưu các số theo thứ tự tăng dần và chia chúng thành nhiều khối, mỗi khối chứa $\sqrt{n}$ số. Mỗi khi thêm hoặc xóa một số, cần chia khối lại bằng cách di chuyển các số ở biên giữa các khối kề nhau.
 
-一种很有名的离线算法 [莫队算法](../misc/mo-algo.md)，也是基于分块思想实现的．
+Một thuật toán offline rất nổi tiếng, [thuật toán Mo](../misc/mo-algo.md), cũng được xây dựng dựa trên tư tưởng chia khối.
 
-## 练习题
+<span id="&#32451;&#20064;&#39064;"></span>
+## Bài tập
 
 -   [UVa - 12003 - Array Transformer](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3154)
 -   [UVa - 11990 Dynamic Inversion](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3141)
@@ -103,4 +109,4 @@ $T=\sqrt{n}$ 时，总复杂度 $O(m \sqrt{n})$．
 -   [Codeforces - Powerful array](http://codeforces.com/problemset/problem/86/D)
 -   [SPOJ - DQUERY](https://www.spoj.com/problems/DQUERY)
 
-    **本页面主要译自博文 [Sqrt-декомпозиция](http://e-maxx.ru/algo/sqrt_decomposition) 与其英文翻译版 [Sqrt Decomposition](https://cp-algorithms.com/data_structures/sqrt_decomposition.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+    **Trang này chủ yếu được dịch từ bài viết [Sqrt-декомпозиция](http://e-maxx.ru/algo/sqrt_decomposition) và bản dịch tiếng Anh [Sqrt Decomposition](https://cp-algorithms.com/data_structures/sqrt_decomposition.html). Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**

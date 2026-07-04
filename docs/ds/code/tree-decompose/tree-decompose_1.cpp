@@ -67,7 +67,7 @@ int main() {
   keyid[1] = tot;
   while (top) bl[sta[top--]] = tot;
 
-  for (i = 1; i <= tot; ++i) {  // 预处理
+  for (i = 1; i <= tot; ++i) {  // Tiền xử lý
     if (vis[key[i]]) continue;
     vis[key[i]] = true;
     temp.reset();
@@ -90,13 +90,13 @@ int main() {
 
       while (key[bl[x]] != key[bl[y]]) {
         if (dep[key[bl[x]]] > dep[key[bl[y]]]) {
-          if (x == u) {  // 若是第一次跳先暴力跳到关键点
+          if (x == u) {  // Lần nhảy đầu tiên thì nhảy vét cạn tới điểm then chốt
             while (x != key[bl[u]]) {
               temp[c[x]] = 1;
               x = fa[x];
             }
           } else
-            x = p[x];  // 否则跳一整块
+            x = p[x];  // Nếu không thì nhảy cả một khối
         } else {
           if (y == v) {
             while (y != key[bl[v]]) {
@@ -130,7 +130,7 @@ int main() {
   return 0;
 }
 
-void dfs(int u) {  // 根据题意找点
+void dfs(int u) {  // Tìm các điểm theo yêu cầu bài toán
   int i, v, t = top;
   for (i = head[u]; i; i = nxt[i]) {
     v = to[i];

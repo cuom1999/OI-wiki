@@ -2,43 +2,44 @@
 #include <iostream>
 using namespace std;
 int id[50005], len;
-// id 表示块的编号, len=sqrt(n) , 即上述题解中的s, sqrt的时候时间复杂度最优
+// id lưu chỉ số khối, len = sqrt(n), tức s trong lời giải trên; độ phức tạp
+// tối ưu khi lấy căn bậc hai.
 long long a[50005], b[50005], s[50005];
 
-// a 数组表示数据数组, b 数组记录每个块的整体赋值情况, 类似于 lazy_tag, s
-// 表示块内元素总和
-void add(int l, int r, long long x) {  // 区间加法
+// a là mảng dữ liệu; b ghi phần cộng toàn khối, tương tự tag lười; s lưu tổng
+// các phần tử trong khối.
+void add(int l, int r, long long x) {  // Cộng trên đoạn
   int sid = id[l], eid = id[r];
-  if (sid == eid) {  // 在一个块中
+  if (sid == eid) {  // Nằm trong cùng một khối
     for (int i = l; i <= r; i++) a[i] += x, s[sid] += x;
     return;
   }
   for (int i = l; id[i] == sid; i++) a[i] += x, s[sid] += x;
   for (int i = sid + 1; i < eid; i++)
-    b[i] += x, s[i] += len * x;  // 更新区间和数组(完整的块)
+    b[i] += x, s[i] += len * x;  // Cập nhật tổng đoạn cho các khối đầy đủ
   for (int i = r; id[i] == eid; i--) a[i] += x, s[eid] += x;
-  // 以上两行不完整的块直接简单求和,就OK
+  // Các khối không đầy đủ ở hai biên được xử lý trực tiếp.
 }
 
-long long query(int l, int r, long long p) {  // 区间查询
+long long query(int l, int r, long long p) {  // Truy vấn đoạn
   int sid = id[l], eid = id[r];
   long long ans = 0;
-  if (sid == eid) {  // 在一个块里直接暴力求和
+  if (sid == eid) {  // Trong một khối thì tính tổng trực tiếp
     for (int i = l; i <= r; i++) ans = (ans + a[i] + b[sid]) % p;
     return ans;
   }
   for (int i = l; id[i] == sid; i++) ans = (ans + a[i] + b[sid]) % p;
   for (int i = sid + 1; i < eid; i++) ans = (ans + s[i]) % p;
   for (int i = r; id[i] == eid; i--) ans = (ans + a[i] + b[eid]) % p;
-  // 和上面的区间修改是一个道理
+  // Cùng ý tưởng với cập nhật đoạn ở trên.
   return ans;
 }
 
 int main() {
   int n;
   cin >> n;
-  len = sqrt(n);  // 均值不等式可知复杂度最优为根号n
-  for (int i = 1; i <= n; i++) {  // 题面要求
+  len = sqrt(n);  // Theo bất đẳng thức trung bình, căn n là tối ưu.
+  for (int i = 1; i <= n; i++) {  // Theo yêu cầu đề bài
     cin >> a[i];
     id[i] = (i - 1) / len + 1;
     s[id[i]] += a[i];

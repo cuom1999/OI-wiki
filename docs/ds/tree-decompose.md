@@ -1,38 +1,46 @@
 author: ouuan, Ir1d, Marcythm, Xeonacid
 
-## 树分块的方式
+<span id="&#x6811;&#x5206;&#x5757;&#x7684;&#x65B9;&#x5F0F;"></span>
 
-可以参考 [真 - 树上莫队](../misc/mo-algo-on-tree.md)．
+## Cách chia khối trên cây
 
-也可以参考 [ouuan 的博客/莫队、带修莫队、树上莫队详解/树上莫队](https://ouuan.github.io/莫队、带修莫队、树上莫队详解/#树上莫队)．
+Có thể tham khảo [Mo trên cây thật sự](../misc/mo-algo-on-tree.md).
 
-树上莫队同样可以参考以上两篇文章．
+Cũng có thể tham khảo [blog của ouuan/giải thích chi tiết Mo, Mo có sửa đổi, Mo trên cây/Mo trên cây](https://ouuan.github.io/%E8%8E%AB%E9%98%9F%E3%80%81%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F%E3%80%81%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F%E8%AF%A6%E8%A7%A3/#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F).
 
-## 树分块的应用
+Bản thân Mo trên cây cũng có thể tham khảo hai bài viết trên.
 
-树分块除了应用于莫队，还可以灵活地运用到某些树上问题中．但可以用树分块解决的题目往往都有更优秀的做法，所以相关的题目较少．
+<span id="&#x6811;&#x5206;&#x5757;&#x7684;&#x5E94;&#x7528;"></span>
 
-顺带提一句，「gty 的妹子树」的树分块做法可以被菊花图卡掉．
+## Ứng dụng của chia khối trên cây
 
-### [BZOJ4763 雪辉](https://hydro.ac/p/bzoj-P4763)
+Ngoài việc áp dụng cho Mo, chia khối trên cây còn có thể được vận dụng linh hoạt trong một số bài toán trên cây. Tuy nhiên, những bài có thể giải bằng chia khối trên cây thường vẫn có cách tốt hơn, nên số bài liên quan không nhiều.
 
-先进行树分块，然后对每个块的关键点，预处理出它到祖先中每个关键点的路径上颜色的 bitset，以及每个关键点的最近关键点祖先，复杂度是 $O(n\sqrt n+\frac{nc}{32})$，其中 $n\sqrt n$ 是暴力从每个关键点向上跳的复杂度，$\frac{nc}{32}$ 是把 $O(n)$ 个 `bitset` 存下来的复杂度．
+Nhân tiện, cách chia khối trên cây cho bài "cây cô gái của gty" có thể bị dữ liệu hình sao đánh bại.
 
-回答询问的时候，先从路径的端点暴力跳到所在块的关键点，再从所在块的关键点一块一块地向上跳，直到 $lca$ 所在块，然后再暴力跳到 $lca$．关键点之间的 `bitset` 已经预处理了，剩下的在暴力跳的过程中计算．单次询问复杂度是 $O(\sqrt n+\frac c{32})$，其中 $\sqrt n$ 是块内暴力跳以及块直接向上跳的复杂度，$O(\frac c{32})$ 是将预处理的结果与暴力跳的结果合并的复杂度．数颜色个数可以用 `bitset` 的 `count()`，求 $\operatorname{mex}$ 可以用 `bitset` 的 `_Find_first()`．
+<span id="bzoj4763-&#x96EA;&#x8F89;"></span>
 
-所以，总复杂度为 $O((n+m)(\sqrt n+\frac c{32}))$．
+### [BZOJ4763 Tuyết Huy](https://hydro.ac/p/bzoj-P4763)
 
-??? note "参考代码"
+Trước hết thực hiện chia khối trên cây. Sau đó, với điểm then chốt của mỗi khối, tiền xử lý `bitset` màu trên đường đi từ nó tới từng điểm then chốt trong các tổ tiên, cũng như tổ tiên là điểm then chốt gần nhất của mỗi điểm then chốt. Độ phức tạp là $O(n\sqrt n+\frac{nc}{32})$, trong đó $n\sqrt n$ là độ phức tạp của việc nhảy ngược lên một cách vét cạn từ từng điểm then chốt, còn $\frac{nc}{32}$ là độ phức tạp để lưu $O(n)$ `bitset`.
+
+Khi trả lời truy vấn, trước hết nhảy vét cạn từ các đầu mút của đường đi lên điểm then chốt của khối chứa chúng; sau đó từ điểm then chốt của khối hiện tại, nhảy ngược lên theo từng khối cho đến khối chứa $lca$, rồi lại nhảy vét cạn tới $lca$. Các `bitset` giữa những điểm then chốt đã được tiền xử lý; phần còn lại được tính trong quá trình nhảy vét cạn. Độ phức tạp cho một truy vấn là $O(\sqrt n+\frac c{32})$, trong đó $\sqrt n$ đến từ việc nhảy vét cạn trong khối và nhảy trực tiếp lên theo khối, còn $O(\frac c{32})$ là độ phức tạp để hợp nhất kết quả tiền xử lý với kết quả nhảy vét cạn. Có thể dùng `count()` của `bitset` để đếm số màu, và dùng `_Find_first()` của `bitset` để tìm $\operatorname{mex}$.
+
+Do đó, tổng độ phức tạp là $O((n+m)(\sqrt n+\frac c{32}))$.
+
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/tree-decompose/tree-decompose_1.cpp"
     ```
 
-### [BZOJ4812 由乃打扑克](https://hydro.ac/p/bzoj-P4812)
+<span id="bzoj4812-&#x7531;&#x4E43;&#x6253;&#x6251;&#x514B;"></span>
 
-这题和上一题基本一样，唯一的区别是得到 `bitset` 后如何计算答案．
+### [BZOJ4812 Yuno chơi poker](https://hydro.ac/p/bzoj-P4812)
 
-~~由于 BZOJ 是计算所有测试点总时限，不好卡，所以可以用 `_Find_next()` 水过去．~~
+Bài này về cơ bản giống bài trước; khác biệt duy nhất là cách tính đáp án sau khi có `bitset`.
 
-正解是每 $16$ 位一起算，先预处理出 $2^{16}$ 种可能的情况高位连续 $1$ 的个数、低位连续 $1$ 的个数以及中间的贡献．只不过这样要手写 `bitset`，因为标准库的 `bitset` 不能取某 $16$ 位……
+~~Vì BZOJ tính tổng giới hạn thời gian của mọi điểm kiểm thử và khó chặn cách làm này, có thể dùng `_Find_next()` để qua bài.~~
 
-代码可以参考 [这篇博客](https://www.cnblogs.com/FallDream/p/bzoj4763.html)．
+Cách giải chuẩn là xử lý từng nhóm $16$ bit. Trước hết tiền xử lý cho $2^{16}$ trạng thái có thể: số lượng bit $1$ liên tiếp ở phần cao, số lượng bit $1$ liên tiếp ở phần thấp, và đóng góp ở giữa. Tuy nhiên cách này cần tự viết `bitset`, vì `bitset` của thư viện chuẩn không thể lấy trực tiếp một đoạn $16$ bit bất kỳ.
+
+Có thể tham khảo mã ở [bài blog này](https://www.cnblogs.com/FallDream/p/bzoj4763.html).

@@ -203,6 +203,11 @@ MkDocs source layout intact.
   `docs/ds/pairing-heap.md`, `docs/ds/leftist-tree.md`: translated heap
   overview, binary heap, pairing heap, and leftist tree material, plus
   explanatory comments in included heap snippets.
+- `docs/ds/decompose.md`, `docs/ds/block-array.md`,
+  `docs/ds/block-list.md`, `docs/ds/tree-decompose.md`,
+  `docs/ds/sqrt-tree.md`: translated block-based data-structure material
+  covering sqrt decomposition, block arrays/lists, tree decomposition, and
+  Sqrt Tree, plus explanatory comments in included snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

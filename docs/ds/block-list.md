@@ -2,14 +2,14 @@ author: HeRaNO, konnyakuxzy, littlefrog
 
 ![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
 
-块状链表大概就长这样……
+Danh sách liên kết chia khối đại khái có dạng như vậy.
 
-不难发现块状链表就是一个链表，每个节点指向一个数组．
-我们把原来长度为 n 的数组分为 $\sqrt{n}$ 个节点，每个节点对应的数组大小为 $\sqrt{n}$．
-所以我们这么定义结构体，代码见下．
-其中 `sqn` 表示 `sqrt(n)` 即 $\sqrt{n}$，`pb` 表示 `push_back`，即在这个 `node` 中加入一个元素．
+Không khó thấy danh sách liên kết chia khối thực chất là một danh sách liên kết, trong đó mỗi nút trỏ tới một mảng.
+Ta chia mảng ban đầu có độ dài $n$ thành $\sqrt{n}$ nút, mỗi nút tương ứng với một mảng có kích thước $\sqrt{n}$.
+Vì vậy có thể định nghĩa cấu trúc như sau.
+Trong đó `sqn` biểu thị `sqrt(n)`, tức $\sqrt{n}$; `pb` biểu thị `push_back`, tức thêm một phần tử vào `node` này.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     struct node {
       node* nxt;
@@ -22,57 +22,65 @@ author: HeRaNO, konnyakuxzy, littlefrog
     };
     ```
 
-块状链表应该至少支持：分裂、插入、查找．
-什么是分裂？分裂就是分裂一个 `node`，变成两个小的 `node`，以保证每个 `node` 的大小都接近 $\sqrt{n}$（否则可能退化成普通数组）．当一个 `node` 的大小超过 $2\times \sqrt{n}$ 时执行分裂操作．
+Danh sách liên kết chia khối tối thiểu nên hỗ trợ: tách, chèn và tìm kiếm.
+Tách là gì? Tách nghĩa là chia một `node` thành hai `node` nhỏ hơn, để bảo đảm kích thước của mỗi `node` đều gần $\sqrt{n}$ (nếu không, cấu trúc có thể suy biến thành mảng thông thường). Khi kích thước của một `node` vượt quá $2\times \sqrt{n}$, ta thực hiện thao tác tách.
 
-分裂操作怎么做呢？先新建一个节点，再把被分裂的节点的后 $\sqrt{n}$ 个值 `copy` 到新节点，然后把被分裂的节点的后 $\sqrt{n}$ 个值删掉（`size--`），最后把新节点插入到被分裂节点的后面即可．
+Thao tác tách được làm như sau: trước hết tạo một nút mới, rồi `copy` $\sqrt{n}$ giá trị cuối của nút cần tách sang nút mới; sau đó xóa $\sqrt{n}$ giá trị cuối khỏi nút cũ (`size--`), cuối cùng chèn nút mới vào ngay sau nút bị tách.
 
-块状链表的所有操作的复杂度都是 $\sqrt{n}$ 的．
+Mọi thao tác của danh sách liên kết chia khối đều có độ phức tạp cỡ $\sqrt{n}$.
 
-还有一个要说的．
-随着元素的插入（或删除），$n$ 会变，$\sqrt{n}$ 也会变．这样块的大小就会变化，我们难道还要每次维护块的大小？
+Còn một điểm cần nói thêm.
+Khi chèn (hoặc xóa) phần tử, $n$ thay đổi, nên $\sqrt{n}$ cũng thay đổi. Như vậy kích thước khối sẽ thay đổi; chẳng lẽ mỗi lần ta đều phải bảo trì lại kích thước khối?
 
-其实不然，把 $\sqrt{n}$ 设置为一个定值即可．比如题目给的范围是 $10^6$，那么 $\sqrt{n}$ 就设置为大小为 $10^3$ 的常量，不用更改它．
+Thực ra không cần. Chỉ cần đặt $\sqrt{n}$ thành một hằng số cố định. Chẳng hạn nếu phạm vi đề bài cho là $10^6$, ta đặt $\sqrt{n}$ thành hằng số kích thước $10^3$ và không cần thay đổi nó.
 
 ```cpp
 list<vector<char>> orz_list;
 ```
 
-## libstdc++ 中的 `rope`
+<span id="libstdc-&#x4E2D;&#x7684;-rope"></span>
 
-### 导入
+## `rope` trong libstdc++
 
-libstdc++ 中的 `rope` 也起到块状链表的作用，它采用可持久化平衡树实现，可完成随机访问和插入、删除元素的操作．
+<span id="&#x5BFC;&#x5165;"></span>
 
-由于 `rope` 并不是真正的用块状链表来实现，所以它的时间复杂度并不等同于块状链表，而是相当于可持久化平衡树的复杂度（即 $O(\log n)$）．
+### Nhập thư viện
 
-可以使用如下方法来引入：
+`rope` trong libstdc++ cũng có thể đóng vai trò của danh sách liên kết chia khối. Nó được cài đặt bằng cây cân bằng khả tồn, hỗ trợ truy cập ngẫu nhiên, chèn và xóa phần tử.
+
+Do `rope` không thật sự được cài đặt bằng danh sách liên kết chia khối, độ phức tạp thời gian của nó không giống danh sách liên kết chia khối, mà tương đương độ phức tạp của cây cân bằng khả tồn (tức $O(\log n)$).
+
+Có thể đưa vào chương trình như sau:
 
 ```cpp
 #include <ext/rope>
 using namespace __gnu_cxx;
 ```
 
-???+ warning "关于双下划线开头的库函数"
-    OI 中，关于能否使用双下划线开头的库函数曾经一直不确定，2021 年 CCF 发布的 [关于 NOI 系列活动中编程语言使用限制的补充说明](https://www.noi.cn/xw/2021-09-01/735729.shtml) 中提到「允许使用以下划线开头的库函数或宏，但具有明确禁止操作的库函数和宏除外」．故 `rope` 目前可以在 OI 中正常使用．
+???+ warning "Về các hàm thư viện bắt đầu bằng hai dấu gạch dưới"
+    Trong OI, việc có được dùng các hàm thư viện bắt đầu bằng hai dấu gạch dưới hay không từng không rõ ràng. Năm 2021, CCF công bố [thuyết minh bổ sung về hạn chế sử dụng ngôn ngữ lập trình trong chuỗi hoạt động NOI](https://www.noi.cn/xw/2021-09-01/735729.shtml), trong đó nêu rằng được phép dùng các hàm thư viện hoặc macro bắt đầu bằng dấu gạch dưới, trừ các hàm thư viện và macro có thao tác bị cấm rõ ràng. Vì vậy hiện nay `rope` có thể dùng bình thường trong OI.
 
-### 基本操作
+<span id="&#x57FA;&#x672C;&#x64CD;&#x4F5C;"></span>
 
-|             操作            |               作用              |
-| :-----------------------: | :---------------------------: |
-|       `rope<int> a`       | 初始化 `rope`（与 `vector` 等容器很相似） |
-|      `a.push_back(x)`     |       在 `a` 的末尾添加元素 `x`       |
-|     `a.insert(pos, x)`    |   在 `a` 的 `pos` 个位置添加元素 `x`   |
-|     `a.erase(pos, x)`     |  在 `a` 的 `pos` 个位置删除 `x` 个元素  |
-|     `a.at(x)` 或 `a[x]`    |       访问 `a` 的第 `x` 个元素       |
-| `a.length()` 或 `a.size()` |           获取 `a` 的大小          |
+### Thao tác cơ bản
 
-## 例题
+|             Thao tác            |                    Tác dụng                    |
+| :-----------------------------: | :--------------------------------------------: |
+|          `rope<int> a`          | Khởi tạo `rope` (rất giống các container như `vector`) |
+|         `a.push_back(x)`        |           Thêm phần tử `x` vào cuối `a`        |
+|        `a.insert(pos, x)`       |       Thêm phần tử `x` vào vị trí `pos` của `a` |
+|        `a.erase(pos, x)`        |    Xóa `x` phần tử bắt đầu từ vị trí `pos` của `a` |
+|        `a.at(x)` hoặc `a[x]`    |           Truy cập phần tử thứ `x` của `a`     |
+|    `a.length()` hoặc `a.size()` |              Lấy kích thước của `a`            |
+
+<span id="&#x4F8B;&#x9898;"></span>
+
+## Bài mẫu
 
 [POJ2887 Big String](http://poj.org/problem?id=2887)
 
-题解：
-很简单的模板题．代码如下：
+Lời giải:
+Đây là một bài mẫu rất đơn giản. Mã như sau:
 
 ```cpp
 --8<-- "docs/ds/code/block-list/block-list_1.cpp"

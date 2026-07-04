@@ -358,11 +358,11 @@ nav:
       - Heap nhị phân: ds/binary-heap.md
       - Heap ghép cặp: ds/pairing-heap.md
       - Cây lệch trái: ds/leftist-tree.md
-    - 块状数据结构:
-      - 分块思想: ds/decompose.md
-      - 块状数组: ds/block-array.md
-      - 块状链表: ds/block-list.md
-      - 树分块: ds/tree-decompose.md
+    - Cấu trúc chia khối:
+      - Tư tưởng chia khối: ds/decompose.md
+      - Mảng chia khối: ds/block-array.md
+      - Danh sách liên kết chia khối: ds/block-list.md
+      - Chia khối trên cây: ds/tree-decompose.md
       - Sqrt Tree: ds/sqrt-tree.md
     - 单调栈: ds/monotonic-stack.md
     - 单调队列: ds/monotonic-queue.md
