@@ -180,9 +180,9 @@ MkDocs source layout intact.
   explanatory comments in included Stern-Brocot snippets; quality-passed the
   opening solution-structure discussion, first Pell solution-structure
   theorem/existence proof and nontrivial-solution proof, generalized-Pell
-  equivalence-class structure, the PQa theorem block, the negative-Pell theorem
-  around the missing quadratic factor, and the general Lagrange–Matthews–Mollin
-  argument in
+  equivalence-class structure, the PQa theorem block and Pell-solving
+  derivation/examples, the negative-Pell theorem around the missing quadratic
+  factor, and the general Lagrange–Matthews–Mollin argument in
   `docs/math/number-theory/pell-equation.md`, including its LMM examples and
   closing notes.
 - `docs/math/poly/intro.md`, `docs/math/poly/fundamental.md`,

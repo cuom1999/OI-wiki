@@ -369,46 +369,89 @@ Sau khi hiểu ý tưởng này, ta xử lý một số chi tiết của thuật
 mọi nghiệm đều có thể thu được theo cách này.
 
 <span id="pell-&#x65b9;&#x7a0b;_1"></span>
-### Phuong trinh Pell
+### Phương trình Pell
 
-De giai phuong trinh Pell $x^2-Dy^2=1$, chi can chay thuat toan PQa voi $(P_0,Q_0,D)=(0,1,D)$ cho den khi xuat hien $(-1)^kQ_k=1$; khi do $(A_{k-1},B_{k-1})$ la mot nghiem cua phuong trinh Pell (vi luc nay $G_{k-1}$ chinh la $A_{k-1}$). Di nhien, voi phuong trinh Pell, co the mo ta qua trinh nay chinh xac hon.
+Để giải phương trình Pell $x^2-Dy^2=1$, chỉ cần chạy thuật toán PQa với
+$(P_0,Q_0,D)=(0,1,D)$ cho đến khi xuất hiện $(-1)^kQ_k=1$; khi đó
+$(A_{k-1},B_{k-1})$ là một nghiệm của phương trình Pell (vì lúc này
+$G_{k-1}$ chính là $A_{k-1}$). Dĩ nhiên, với phương trình Pell, có thể mô tả
+quá trình này chính xác hơn.
 
-Truoc het, nghiem nhat dinh xuat hien o cuoi chu ki. Qua trinh tren tuong duong voi khai trien phan so lien tuc cua $\sqrt{D}$. Ve dieu nay, da co [ket qua](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0):
+Trước hết, nghiệm nhất định xuất hiện ở cuối chu kỳ. Quá trình trên tương đương
+với khai triển phân số liên tục của $\sqrt{D}$. Về điều này, đã có
+[kết quả](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0):
 
 $$
 \sqrt{D} = [\lfloor\sqrt{D}\rfloor,\overline{a_1,\cdots,a_{\ell-1},2\lfloor\sqrt{D}\rfloor}].
 $$
 
-O day do dai chu ki la $\ell$, va vi tri bat dau la hang thu $1$ (chi so bat dau tu $0$). Hon nua, thuong hoan toan thu $\ell$ cua no bang $\lfloor\sqrt{D}\rfloor+\sqrt{D}$, cho thay $Q_{\ell}=1$. Do do, neu $\ell$ chan thi $(A_{\ell-1},B_{\ell-1})$ la mot nghiem khong tam thuong cua phuong trinh Pell; neu $\ell$ le thi $(A_{2\ell-1},B_{2\ell-1})$ la mot nghiem khong tam thuong cua phuong trinh Pell.
+Ở đây độ dài chu kỳ là $\ell$, và vị trí bắt đầu là hạng thứ $1$ (chỉ số bắt
+đầu từ $0$). Hơn nữa, thương hoàn toàn thứ $\ell$ của nó bằng
+$\lfloor\sqrt{D}\rfloor+\sqrt{D}$, cho thấy $Q_{\ell}=1$. Do đó, nếu $\ell$
+chẵn thì $(A_{\ell-1},B_{\ell-1})$ là một nghiệm không tầm thường của phương
+trình Pell; nếu $\ell$ lẻ thì $(A_{2\ell-1},B_{2\ell-1})$ là một nghiệm không
+tầm thường của phương trình Pell.
 
-Tiep theo can chi ra nghiem vua thu duoc nhat dinh la nghiem co ban. Ket qua nay dua tren hai ly do: thu nhat, moi nghiem nguyen duong $(x,y)$ cua phuong trinh Pell deu co phan so $x/y$ xuat hien trong cac phan so gan dung cua $\sqrt{D}$, dam bao $(x,y)$ nhat dinh la mot $(A_k,B_k)$ nao do trong qua trinh PQa; thu hai, ngoai cuoi chu ki se khong co vi tri nao khac co $Q_k=1$, vi he thuc truy hoi cua $A_k$ va $B_k$ dam bao kich thuoc cua chung tang theo chi so, nen nghiem nguyen duong nho nhat (tuc nghiem co ban) nhat dinh xuat hien tai vi tri vua chi ra. Hai ly do nay lan luot suy ra tu hai dinh li sau:
+Tiếp theo cần chỉ ra nghiệm vừa thu được nhất định là nghiệm cơ bản. Kết quả này
+dựa trên hai lý do: thứ nhất, mọi nghiệm nguyên dương $(x,y)$ của phương trình
+Pell đều có phân số $x/y$ xuất hiện trong các phân số gần đúng của $\sqrt{D}$,
+đảm bảo $(x,y)$ nhất định là một $(A_k,B_k)$ nào đó trong quá trình PQa; thứ
+hai, ngoài cuối chu kỳ sẽ không có vị trí nào khác có $Q_k=1$, vì hệ thức truy
+hồi của $A_k$ và $B_k$ đảm bảo kích thước của chúng tăng theo chỉ số, nên nghiệm
+nguyên dương nhỏ nhất (tức nghiệm cơ bản) nhất định xuất hiện tại vị trí vừa chỉ
+ra. Hai lý do này lần lượt suy ra từ hai định lý sau:
 
-???+ note "Dinh li"
-    Gia su phuong trinh $x^2-Dy^2=N$ co nghiem nguyen duong $(x,y)$. Neu $|N|<\sqrt{D}$, thi $\dfrac{x}{y}$ nhat dinh la mot phan so gan dung cua $\sqrt{D}$.
+???+ note "Định lý"
+    Giả sử phương trình $x^2-Dy^2=N$ có nghiệm nguyên dương $(x,y)$. Nếu
+    $|N|<\sqrt{D}$, thì $\dfrac{x}{y}$ nhất định là một phân số gần đúng của
+    $\sqrt{D}$.
 
-??? note "Chung minh"
-    Khi $N>0$, vi $x^2-Dy^2>0$, nen $x>y\sqrt{D}$. Do do
+??? note "Chứng minh"
+    Khi $N>0$, vì $x^2-Dy^2>0$, nên $x>y\sqrt{D}$. Do đó
 
     $$
     \left|\dfrac{x}{y}-\sqrt{D}\right| = \dfrac{N}{y(x+y\sqrt{D})}<\dfrac{N}{2y^2\sqrt{D}}<\dfrac{1}{2y^2}.
     $$
 
-    Theo [tieu chuan Legendre](./continued-fraction.md#%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E7%9A%84%E5%88%A4%E5%AE%9A), $\dfrac{x}{y}$ la phan so gan dung cua $\sqrt{D}$.
+    Theo [tiêu chuẩn Legendre](./continued-fraction.md#%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E7%9A%84%E5%88%A4%E5%AE%9A),
+    $\dfrac{x}{y}$ là phân số gần đúng của $\sqrt{D}$.
 
-    Khi $N<0$, bat dang thuc $x>y\sqrt{D}$ khong con dung. Do do xet phuong trinh $y^2-\dfrac{1}{D}x^2=-\dfrac{N}{D}$. Vi $\dfrac{|N|}{D}<\sqrt{\dfrac{1}{D}}$, lap lai lap luan tren van dung. Dieu nay cho thay $\dfrac{y}{x}$ la phan so gan dung cua $\dfrac{1}{\sqrt{D}}$. Theo [dinh li nghich dao](./continued-fraction.md#%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB), $\dfrac{x}{y}$ cung la phan so gan dung cua $\sqrt{D}$.
+    Khi $N<0$, bất đẳng thức $x>y\sqrt{D}$ không còn đúng. Do đó xét phương
+    trình $y^2-\dfrac{1}{D}x^2=-\dfrac{N}{D}$. Vì
+    $\dfrac{|N|}{D}<\sqrt{\dfrac{1}{D}}$, lặp lại lập luận trên vẫn đúng. Điều
+    này cho thấy $\dfrac{y}{x}$ là phân số gần đúng của $\dfrac{1}{\sqrt{D}}$.
+    Theo [định lý nghịch đảo](./continued-fraction.md#%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB),
+    $\dfrac{x}{y}$ cũng là phân số gần đúng của $\sqrt{D}$.
 
-???+ note "Dinh li"
-    Trong qua trinh chay thuat toan PQa o tren voi $(P_0,Q_0,D)=(0,1,D)$, $Q_k=1$ nhat dinh keo theo $\ell\mid k$.
+???+ note "Định lý"
+    Trong quá trình chạy thuật toán PQa ở trên với $(P_0,Q_0,D)=(0,1,D)$,
+    $Q_k=1$ nhất định kéo theo $\ell\mid k$.
 
-??? note "Chung minh"
-    Trong khai trien phan so lien tuc cua $\sqrt{D}$, ngoai thuong hoan toan thu $0$, moi thuong hoan toan khac deu la [phan so lien tuc thuan tuan hoan](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0). Gia su $Q_k=1$. Theo ket qua cua Galois, nhat dinh co thuong hoan toan $\omega_k=P_k+\sqrt{D}>1$, va lien hop cua no $-1<P_k-\sqrt{D}<0$, suy ra $P_k=\lfloor\sqrt{D}\rfloor$. Do do thuong hoan toan $\omega_k$ bang $\omega_\ell$. Nhung su lap lai cua thuong hoan toan co nghia phan so lien tuc vao chu ki; neu $k$ khong phai boi cua $\ell$, dieu nay mau thuan voi viec $\ell$ la chu ki duong nho nhat. Vi vay nhat dinh $\ell\mid k$.
+??? note "Chứng minh"
+    Trong khai triển phân số liên tục của $\sqrt{D}$, ngoài thương hoàn toàn thứ
+    $0$, mọi thương hoàn toàn khác đều là [phân số liên tục thuần tuần hoàn](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0).
+    Giả sử $Q_k=1$. Theo kết quả của Galois, nhất định có thương hoàn toàn
+    $\omega_k=P_k+\sqrt{D}>1$, và liên hợp của nó $-1<P_k-\sqrt{D}<0$, suy ra
+    $P_k=\lfloor\sqrt{D}\rfloor$. Do đó thương hoàn toàn $\omega_k$ bằng
+    $\omega_\ell$. Nhưng sự lặp lại của thương hoàn toàn có nghĩa phân số liên
+    tục vào chu kỳ; nếu $k$ không phải bội của $\ell$, điều này mâu thuẫn với
+    việc $\ell$ là chu kỳ dương nhỏ nhất. Vì vậy nhất định $\ell\mid k$.
 
-Tong hop thao luan trong phan nay: chi can khai trien phan so lien tuc cua $\sqrt{D}$, tuc chay thuat toan PQa tu $(P_0,Q_0,D)=(0,1,D)$; khi lan dau co $Q_\ell=1$ thi da den cuoi chu ki dau tien. Neu $\ell$ chan, $(A_{\ell-1},B_{\ell-1})$ la nghiem co ban cua phuong trinh Pell; neu khong, $(A_{2\ell-1},B_{2\ell-1})$ la nghiem co ban cua phuong trinh Pell. Khi do dai chu ki $\ell$ le, khong can tiep tuc PQa den hai lan chu ki, vi ngay sau day se thay $A_{2\ell-1}+B_{2\ell-1}\sqrt{D}=(A_{\ell-1}+B_{\ell-1}\sqrt{D})^2$, nen co the tinh truc tiep nghiem co ban cua phuong trinh Pell tu $(A_{\ell-1},B_{\ell-1})$. Moi nghiem khac cua phuong trinh Pell deu co the tinh tu nghiem co ban.
+Tổng hợp thảo luận trong phần này: chỉ cần khai triển phân số liên tục của
+$\sqrt{D}$, tức chạy thuật toán PQa từ $(P_0,Q_0,D)=(0,1,D)$; khi lần đầu có
+$Q_\ell=1$ thì đã đến cuối chu kỳ đầu tiên. Nếu $\ell$ chẵn,
+$(A_{\ell-1},B_{\ell-1})$ là nghiệm cơ bản của phương trình Pell; nếu không,
+$(A_{2\ell-1},B_{2\ell-1})$ là nghiệm cơ bản của phương trình Pell. Khi độ dài
+chu kỳ $\ell$ lẻ, không cần tiếp tục PQa đến hai lần chu kỳ, vì ngay sau đây sẽ
+thấy $A_{2\ell-1}+B_{2\ell-1}\sqrt{D}=(A_{\ell-1}+B_{\ell-1}\sqrt{D})^2$, nên
+có thể tính trực tiếp nghiệm cơ bản của phương trình Pell từ
+$(A_{\ell-1},B_{\ell-1})$. Mọi nghiệm khác của phương trình Pell đều có thể
+tính từ nghiệm cơ bản.
 
-??? example "Vi du"
-    1.  Giai phuong trinh $x^2-14y^2=1$.
+??? example "Ví dụ"
+    1.  Giải phương trình $x^2-14y^2=1$.
 
-        Chay thuat toan PQa voi $(P_0,Q_0,D)=(0,1,14)$ cho ket qua sau: (phan mau do la chu ki dau tien)
+        Chạy thuật toán PQa với $(P_0,Q_0,D)=(0,1,14)$ cho kết quả sau: (phần màu đỏ là chu kỳ đầu tiên)
 
         | $k$ | $P$ | $Q$ |        $a$       |  $A$  |  $B$ |  $G$  | $G^2-DB^2$ |
         | :-: | :-: | :-: | :--------------: | :---: | :--: | :---: | :--------: |
@@ -419,10 +462,10 @@ Tong hop thao luan trong phan nay: chi can khai trien phan so lien tuc cua $\sqr
         | $4$ | $3$ | $1$ | $\color{red}{6}$ | $101$ | $27$ | $101$ |    $-5$    |
         | $5$ | $3$ | $5$ |        $1$       | $116$ | $31$ | $116$ |     $2$    |
 
-        Do dai chu ki $\ell=4$ la chan. Nghiem nguyen duong nho nhat cua phuong trinh la $(G_3,B_3)=(15,4)$.
-    2.  Giai phuong trinh $x^2-41y^2=1$.
+        Độ dài chu kỳ $\ell=4$ là chẵn. Nghiệm nguyên dương nhỏ nhất của phương trình là $(G_3,B_3)=(15,4)$.
+    2.  Giải phương trình $x^2-41y^2=1$.
 
-        Chay thuat toan PQa voi $(P_0,Q_0,D)=(0,1,41)$ cho ket qua sau: (phan mau do la chu ki dau tien)
+        Chạy thuật toán PQa với $(P_0,Q_0,D)=(0,1,41)$ cho kết quả sau: (phần màu đỏ là chu kỳ đầu tiên)
 
         | $k$ | $P$ | $Q$ |        $a$        |   $A$   |   $B$  |   $G$   | $G^2-DB^2$ |
         | :-: | :-: | :-: | :---------------: | :-----: | :----: | :-----: | :--------: |
@@ -435,7 +478,7 @@ Tong hop thao luan trong phan nay: chi can khai trien phan so lien tuc cua $\sqr
         | $6$ | $6$ | $1$ |        $12$       | $25414$ | $3969$ | $25414$ |    $-5$    |
         | $7$ | $6$ | $5$ |        $2$        | $52877$ | $8258$ | $52877$ |     $5$    |
 
-        Do dai chu ki $\ell=3$ la le. Nghiem nguyen duong nho nhat cua phuong trinh la $(G_5,B_5)=(2049,320)$. No cung co the duoc tinh tu $(G_2,B_2)=(32,5)$:
+        Độ dài chu kỳ $\ell=3$ là lẻ. Nghiệm nguyên dương nhỏ nhất của phương trình là $(G_5,B_5)=(2049,320)$. Nó cũng có thể được tính từ $(G_2,B_2)=(32,5)$:
 
         $$
         (32+5\sqrt{41})^2=2049+320\sqrt{41}.
