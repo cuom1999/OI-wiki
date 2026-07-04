@@ -1,186 +1,186 @@
 author: ouuan, CBW2007, partychicken, StudyingFather, Xeonacid, Henry-ZHR
 
-## 软件简介
+## Giới thiệu phần mềm
 
-Notepad++ 是 Windows 操作系统下的文本编辑器，支持多国语言、多种编码、多种编程语言的高亮和补全．它的 logo 也十分可爱，是一只变色龙（![npp-logo](./images/npp-logo.webp)）
+Notepad++ là trình soạn thảo văn bản trên hệ điều hành Windows, hỗ trợ nhiều ngôn ngữ, nhiều kiểu mã hóa, cũng như tô sáng và tự động hoàn thành cho nhiều ngôn ngữ lập trình. Logo của nó cũng khá đáng yêu: một con tắc kè hoa (![npp-logo](./images/npp-logo.webp)).
 
-其功能比其他许多编辑软件强大许多，打开大文件时更加稳定，不断撤销不会出问题．关闭时也不需要保存，它会自动为你保存在缓冲区中．（可能需要配置）而且，它十分小巧，只有 10MB+，甚至可以放在 U 盘中随身携带．
+Chức năng của nó mạnh hơn nhiều trình soạn thảo khác; khi mở tệp lớn thì ổn định hơn, và undo liên tục cũng không gặp vấn đề. Khi đóng phần mềm cũng không cần lưu ngay, vì nó sẽ tự lưu vào vùng đệm cho bạn (có thể cần cấu hình). Hơn nữa, nó rất nhỏ gọn, chỉ hơn 10 MB, thậm chí có thể đặt trong USB để mang theo.
 
-## 下载与安装
+## Tải xuống và cài đặt
 
-参见 [Getting started | Notepad++ User Manual](https://npp-user-manual.org/docs/getting-started/)．
+Xem [Getting started | Notepad++ User Manual](https://npp-user-manual.org/docs/getting-started/).
 
-## 更改界面语言
+## Đổi ngôn ngữ giao diện
 
 ![npp-lang](./images/npp-lang.gif)
 
-语言改完了，就可以随心所欲地魔改编辑器啦！
+Sau khi đổi ngôn ngữ xong, bạn có thể tùy ý chỉnh sửa trình soạn thảo theo ý mình.
 
-## 初级玩法
+## Cách dùng cơ bản
 
-这里主要讲一些基础和特色功能．
+Phần này chủ yếu nói về một số chức năng cơ bản và đặc trưng.
 
-### 查找与替换
+### Tìm kiếm và thay thế
 
-依次单击「（菜单栏）搜索」->「查找」（快捷键 `CTRL`+`F`）即可打开「查找」页面（如下图）．
+Lần lượt nhấp "(thanh menu) Search" -> "Find" (phím tắt `CTRL`+`F`) để mở trang "Find" (như hình dưới).
 
 ![npp-search](./images/npp-search.png)
 
-依次单击「（菜单栏）搜索」->「替换」（快捷键 `CTRL`+`H`）即可打开「替换」页面（如下图）．
+Lần lượt nhấp "(thanh menu) Search" -> "Replace" (phím tắt `CTRL`+`H`) để mở trang "Replace" (như hình dưới).
 
 ![npp-replace](./images/npp-replace.png)
 
-查找、替换之间其实是一个窗口，单击上面的标签页就可以完成切换．
+Thực ra tìm kiếm và thay thế nằm trong cùng một cửa sổ; chỉ cần nhấp các thẻ phía trên là có thể chuyển đổi.
 
-其功能与普通编辑器大同小异，但是支持更多，如：
+Chức năng của nó gần giống trình soạn thảo thông thường, nhưng hỗ trợ nhiều hơn, ví dụ:
 
-1.  严格匹配或大小写匹配等
-2.  跨文档匹配
-3.  转义字符，如'\r'，'\n'．
-4.  正则表达式
-5.  计数
+1.  Khớp nghiêm ngặt hoặc khớp phân biệt hoa thường.
+2.  Khớp giữa nhiều tài liệu.
+3.  Ký tự escape, như `\r`, `\n`.
+4.  Biểu thức chính quy.
+5.  Đếm số lần xuất hiện.
 
-### 定期备份
+### Sao lưu định kỳ
 
 ![npp-settings-1](./images/npp-settings-1.png)
 
-有了这个功能，就可以不用费心地担心意外情况代码丢失啦！
+Có chức năng này thì bạn không cần quá lo mã bị mất do sự cố bất ngờ.
 
-但是，这个功能只是为你的文件拍了一个快照，并没有真正保存，所以还是建议要有良好的保存习惯．或者说可以去自带插件商店安装 "Auto Save" 插件（详见 [高级玩法 -> 插件](#插件)，下同）
+Tuy nhiên, chức năng này chỉ chụp một snapshot cho tệp của bạn, chứ chưa thật sự lưu tệp, nên vẫn nên giữ thói quen lưu tệp tốt. Hoặc bạn có thể vào kho plugin tích hợp để cài plugin "Auto Save" (xem [Cách dùng nâng cao -> Plugin](#plugin), các mục dưới tương tự).
 
-### 书签功能
+### Chức năng bookmark
 
-在你需要的行按 `Ctrl`+`F2` 即可设放置/取消书签，放置过书签的行前段有一个蓝色圆点．
+Tại dòng cần đánh dấu, nhấn `Ctrl`+`F2` để đặt/hủy bookmark. Dòng đã đặt bookmark sẽ có một chấm tròn màu xanh ở phía trước.
 
-按 `F2` 可以定位到下一个书签．
+Nhấn `F2` để nhảy tới bookmark tiếp theo.
 
-如果你抱怨不方便，可以去自带插件商店安装 "Bookmarks" 插件
+Nếu thấy chưa tiện, có thể vào kho plugin tích hợp để cài plugin "Bookmarks".
 
-### 代码高亮
+### Tô sáng mã
 
-右击左下角的 "XXX file"，可以选择许多种语言高亮，C、C++、PASCAL、Markdown 等任你挑选．你甚至可以自己定义高亮！
+Nhấp chuột phải vào "XXX file" ở góc dưới bên trái, bạn có thể chọn tô sáng cho rất nhiều ngôn ngữ như C, C++, PASCAL, Markdown. Thậm chí bạn có thể tự định nghĩa tô sáng.
 
-如果你认为每一次打开文件都要更改高亮很麻烦，可以在「设置 -> 首选项 -> 新建 -> 默认语言」中修改默认高亮．
+Nếu thấy mỗi lần mở tệp lại phải đổi tô sáng là phiền, có thể sửa tô sáng mặc định trong "Settings -> Preferences -> New Document -> Default Language".
 
-需要渲染 Markdown 的，可以去插件商店安装 "Markdown Viewer"，还有更多类似插件等着你！
+Nếu cần render Markdown, có thể vào kho plugin cài "Markdown Viewer"; còn nhiều plugin tương tự khác đang chờ bạn.
 
-### 显示所有字符
+### Hiển thị toàn bộ ký tự
 
 ![npp-settings-2](./images/npp-settings-2.png)
 
-点击红框所圈的按钮，就可以非（za）常（luan）清（wu）晰（zhang）地显示出「空格」、「TAB」、「换行」等原来不可见字符．
+Nhấp nút được khoanh đỏ để hiển thị rất rõ các ký tự vốn không nhìn thấy như "space", "TAB", "newline".
 
-### 自动识别文件编码与换行符
+### Tự động nhận diện mã hóa tệp và ký tự xuống dòng
 
-Notepad++ 可以自动识别当前文件编码是 `UTF-8` 还是 `GB2312` 甚至其他．再也不用担心被 `锟斤拷` 抡死或被 `烫烫烫` 烫死了．
+Notepad++ có thể tự động nhận diện tệp hiện tại dùng mã hóa `UTF-8`, `GB2312` hoặc các kiểu mã hóa khác. Bạn không còn phải lo bị lỗi mojibake khi đọc nhầm mã hóa.
 
-如果要使用不同的编码浏览文章，请依次单击「（菜单顶栏）编码」->「使用 XXX 编码」．如果想给文件换一个字符编码，请依次单击「（菜单顶栏）编码」->「转为 XXX 编码」．
+Nếu muốn xem văn bản bằng mã hóa khác, lần lượt nhấp "(thanh menu) Encoding" -> "Use XXX encoding". Nếu muốn đổi mã hóa ký tự cho tệp, lần lượt nhấp "(thanh menu) Encoding" -> "Convert to XXX encoding".
 
-它还可以自动识别换行符是 `CR`、`LF` 或 `CRLF`．不用担心下载下来的数据被吞换行．
+Nó cũng có thể tự động nhận diện ký tự xuống dòng là `CR`, `LF` hay `CRLF`, nên không cần lo dữ liệu tải xuống bị mất dòng.
 
-在底部信息栏，你可以看到 "Windows(CR LF)" 等字样，这就是当前文件的换行符．右击它，可以改变当前文件换行符．此操作配合「显示所有字符」更直观哟！
+Ở thanh thông tin phía dưới, bạn có thể thấy các dòng như "Windows(CR LF)"; đó chính là kiểu xuống dòng hiện tại của tệp. Nhấp chuột phải vào đó để đổi kiểu xuống dòng của tệp hiện tại. Thao tác này trực quan hơn khi dùng cùng chức năng "hiển thị toàn bộ ký tự".
 
-## 高级玩法
+## Cách dùng nâng cao
 
-这个就适用于需求较高的用户．
+Phần này phù hợp với người dùng có nhu cầu cao hơn.
 
-### 宏
+### Macro
 
-宏可以帮助你完成许多重复的工作，例如，将奇数行的「abcde」改为「afce」，需要两步．
+Macro có thể giúp bạn hoàn thành nhiều việc lặp lại. Ví dụ, đổi "abcde" ở các dòng lẻ thành "afce" cần hai bước.
 
-#### 录制宏
+#### Ghi macro
 
 ![npp-macro-rec](./images/npp-macro-rec.gif)
 
-#### 使用宏
+#### Dùng macro
 
 ![npp-macro-use](./images/npp-macro-use.gif)
 
-#### 大量处理，重复使用
+#### Xử lý hàng loạt và dùng lặp lại
 
-如果是更多行呢？操作就需要一点改变．
+Nếu có nhiều dòng hơn thì sao? Thao tác cần thay đổi một chút.
 
-首先是录制，一定要先按键盘上的 `HOME` 或 `END` 键将光标移动到行首或行尾，然后用方向键调整横向位置，再进行更改．最后一定要用方向键将光标移动到下一个要处理的行．
+Trước hết là ghi macro: nhất định phải nhấn phím `HOME` hoặc `END` trên bàn phím để đưa con trỏ về đầu dòng hoặc cuối dòng, rồi dùng phím mũi tên điều chỉnh vị trí ngang trước khi sửa. Cuối cùng, nhất định phải dùng phím mũi tên để chuyển con trỏ tới dòng tiếp theo cần xử lý.
 
-比如刚刚的例子，可以先按 `END` 键，然后依次按 `←`，`Backspace`,`←`,`Backspace`,`F`，最后按两下 `↓`，最后停止录制．
+Ví dụ với trường hợp vừa rồi, có thể nhấn `END`, rồi lần lượt nhấn `←`, `Backspace`, `←`, `Backspace`, `F`, cuối cùng nhấn `↓` hai lần, rồi dừng ghi.
 
-然后是重播，先定位到第一个要处理的行（第 3 行），然后点击「宏」->「重复运行宏」．在弹出窗口设置要运行的宏（刚录制的一般是第一个），设置运行次数（或者直接运行到文件尾），点确定即可．
+Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên cần xử lý (dòng 3), rồi nhấp "Macro" -> "Run a Macro Multiple Times". Trong cửa sổ bật lên, chọn macro cần chạy (macro vừa ghi thường là cái đầu tiên), đặt số lần chạy (hoặc chạy thẳng đến cuối tệp), rồi nhấp OK.
 
-#### 保存宏
+#### Lưu macro
 
-点击「宏」->「保存录制宏」，并设置名称和快捷键，即可保存，方便后续使用．
+Nhấp "Macro" -> "Save Current Recorded Macro", đặt tên và phím tắt, là có thể lưu lại để tiện dùng về sau.
 
-### 插件
+### Plugin
 
-#### 插件管理
+#### Quản lý plugin
 
-打开功能栏的「插件」按钮，列表中会显示所有你安装过的插件．
+Mở nút "Plugins" trên thanh chức năng; danh sách sẽ hiển thị toàn bộ plugin bạn đã cài.
 
-再选择「插件管理」选项，即可管理你的插件．
+Sau đó chọn "Plugins Admin" để quản lý plugin.
 
-#### 安装插件（商店）
+#### Cài plugin (kho plugin)
 
-1.  打开「可用」选项卡，在列表中勾选你所要的插件
-2.  点击右上角的「安装」按钮，按照提示重启软件即可．
+1.  Mở thẻ "Available", đánh dấu plugin bạn cần trong danh sách.
+2.  Nhấp nút "Install" ở góc trên bên phải, rồi khởi động lại phần mềm theo hướng dẫn.
 
-#### 安装插件（手动）
+#### Cài plugin (thủ công)
 
-1.  下载插件（由第三方托管的官方地址：<https://sourceforge.net/projects/npp-plugins/>）注意一定要选择 **与安装 Notepad++ 时处理器架构相同** 的插件．
-2.  找到一个名为 "XXX.dll" 的文件（通常以插件名命名）．
-3.  在 Notepad++ 中的功能栏点插件，并在列表中点「打开插件文件夹」．
-4.  将刚才找到的 DLL 文件放入文件夹中，重启 Notepad++．
-5.  【可选】删除刚才拷贝的文件，**但不要删除生成的文件夹！**
+1.  Tải plugin (địa chỉ chính thức do bên thứ ba lưu trữ: <https://sourceforge.net/projects/npp-plugins/>). Chú ý nhất định phải chọn plugin **cùng kiến trúc bộ xử lý với lúc cài Notepad++**.
+2.  Tìm tệp tên "XXX.dll" (thường được đặt theo tên plugin).
+3.  Trong Notepad++, nhấp Plugins trên thanh chức năng, rồi nhấp "Open Plugins Folder" trong danh sách.
+4.  Đặt tệp DLL vừa tìm được vào thư mục đó, rồi khởi động lại Notepad++.
+5.  [Tùy chọn] Xóa tệp vừa sao chép, **nhưng đừng xóa thư mục đã được sinh ra!**
 
-Tips: 如果多次不成功，可以尝试新建一个与插件名相同的文件夹在将 ".dll" 文件放入创建的文件夹中
+Tips: Nếu thử nhiều lần vẫn không thành công, có thể tạo một thư mục trùng tên plugin rồi đặt tệp ".dll" vào thư mục vừa tạo.
 
-#### 更新插件
+#### Cập nhật plugin
 
-在插件管理中，选择「更新」选项卡，并勾选要更新的插件，然后点右上角的「更新」按钮．
+Trong trình quản lý plugin, chọn thẻ "Updates", đánh dấu plugin cần cập nhật, rồi nhấp nút "Update" ở góc trên bên phải.
 
-#### 移除插件
+#### Gỡ plugin
 
-同样在插件管理中，选择「已安装」选项卡，并勾选要移除的插件，然后点右上角的「移除」按钮．
+Cũng trong trình quản lý plugin, chọn thẻ "Installed", đánh dấu plugin cần gỡ, rồi nhấp nút "Remove" ở góc trên bên phải.
 
-### 搭建开发环境
+### Dựng môi trường phát triển
 
-不只是编辑器！"Notepad++" 可谓神一样的存在，它可以通过傻瓜式地编译代码，甚至代替 IDE！这里以 C++ 为例
+Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công cụ rất mạnh: nó có thể biên dịch mã theo cách đơn giản, thậm chí thay thế IDE. Ở đây lấy C++ làm ví dụ.
 
-1.  安装编译器并将其必要的文件目录添加到 PATH 环境变量中．（C++ 需要添加 %APPPATH%\bin）当你在 cmd 中输入 g++ 时不再提示'g++'不是内部或外部命令……即可（中间可能需要重启电脑）．推荐 [下载 ConsolePauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download) 然后随便放并将其目录添加到环境变量（此为 Dev-C++ 的插件，在 Dev-C++ 软件根目录也有）．
+1.  Cài trình biên dịch và thêm các thư mục tệp cần thiết của nó vào biến môi trường PATH. (Với C++ cần thêm `%APPPATH%\bin`.) Khi nhập `g++` trong cmd mà không còn báo `'g++' is not recognized as an internal or external command...` là được (có thể cần khởi động lại máy). Khuyến nghị [tải ConsolePauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download), đặt ở đâu cũng được rồi thêm thư mục của nó vào biến môi trường (đây là plugin của Dev-C++; trong thư mục gốc của phần mềm Dev-C++ cũng có).
 
-2.  在菜单栏中选择「运行」->「运行……」，打开「运行」窗口．
+2.  Trên thanh menu, chọn "Run" -> "Run...", mở cửa sổ "Run".
 
-3.  分别输入以下命令
+3.  Nhập lần lượt các lệnh sau:
 
     ```shell
-    #编译命令：
+    # Lenh bien dich:
     cmd /c g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)
-    #运行命令：
+    # Lenh chay:
     cmd /c $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH) & pause
-    #调试命令：
+    # Lenh go loi:
     cmd /c gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe
 
-    #如果下载了ConsolePauser可以使用下列代码获得更好的程序运行体验！（注意添加环境变量！）
+    # Neu da tai ConsolePauser, co the dung cac lenh sau de co trai nghiem chay chuong trinh tot hon! (Chu y them bien moi truong!)
 
-    #编译命令：
+    # Lenh bien dich:
     cmd /c (start ConsolePauser "g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)")
-    #运行命令：
+    # Lenh chay:
     cmd /c (start ConsolePauser "$(CURRENT_DIRECTORY)\$(NAME_PART).exe")
-    #调试命令：
+    # Lenh go loi:
     cmd /c (start ConsolePauser "gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe")
     ```
 
-4.  单击「保存」，名字可以自己取，如 "Compile","Run" 等，然后设定好你想要的快捷键（捡好记的来，如 Dev-C++ 就分别是 `F9` 和 `F10`）．
+4.  Nhấp "Save"; tên có thể tự đặt, chẳng hạn "Compile", "Run", rồi đặt phím tắt bạn muốn (chọn phím dễ nhớ, ví dụ Dev-C++ lần lượt là `F9` và `F10`).
 
 5.  Enjoy it!
 
-## 小彩蛋
+## Trứng phục sinh
 
-1.  在运行安装程序时你会在下方看到这样一句话：
+1.  Khi chạy trình cài đặt, bạn sẽ thấy câu sau ở phía dưới:
 
     > "The best things in life are free. Notepad++ is free. So Notepad++ is the best(.)"
     >
-    > （生活中最好的事情都是免费的．Notepad++ 是免费的．所以 Notepad++ 是最好的．）
+    > (Những điều tốt nhất trong cuộc sống đều miễn phí. Notepad++ miễn phí. Vì vậy Notepad++ là tốt nhất.)
 
-    这牛吹的，不得不说，很有底气．
+    Câu này tự tin thật, nhưng phải nói là cũng có cơ sở.
 
-2.  在一个新开的页面中输入 "random" 并选中，再按 `F1` 就会得到一句很有意思的话．
+2.  Trong một trang mới mở, nhập "random" rồi chọn nó, sau đó nhấn `F1`, bạn sẽ nhận được một câu khá thú vị.
