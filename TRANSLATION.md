@@ -180,7 +180,8 @@ MkDocs source layout intact.
   explanatory comments in included Stern-Brocot snippets; quality-passed the
   PQa theorem block, the negative-Pell theorem around the missing quadratic
   factor, and the general Lagrange–Matthews–Mollin argument in
-  `docs/math/number-theory/pell-equation.md`.
+  `docs/math/number-theory/pell-equation.md`, including its LMM examples and
+  closing notes.
 - `docs/math/poly/intro.md`, `docs/math/poly/fundamental.md`,
   `docs/math/poly/fft.md`, `docs/math/poly/ntt.md`,
   `docs/math/poly/fwt.md`, `docs/math/poly/czt.md`: translated the opening

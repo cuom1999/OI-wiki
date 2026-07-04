@@ -819,15 +819,15 @@ trước, ở đây chỉ số $k$ thỏa điều kiện có thể xuất hiện
         | $23$ | $1$ |   $26277068347$  |   $2097138361$  |  $-10663$ |  $851$  |
         | $31$ | $1$ | $21950079635497$ | $1751807067011$ |   $-13$   |   $1$   |
 
-        Tat ca $(fG,fB)$ chinh la cac nghiem nguyen duong nho nhat trong moi lop tuong duong cua tap nghiem phuong trinh $x^2-157y^2=12$. De thu tat ca nghiem tu chung, co the dung nghiem co ban $(46698728731849,3726964292220)$ cua phuong trinh Pell tuong ung. Chang han, co the chuyen chung thanh nghiem co ban $(x,y)$ cua lop tuong duong do; cac nghiem tuong ung cung duoc liet ke trong bang tren.
-    2.  Giai phuong trinh $x^2-157y^2=12$.
+        Tất cả $(fG,fB)$ chính là các nghiệm nguyên dương nhỏ nhất trong mỗi lớp tương đương của tập nghiệm phương trình $x^2-157y^2=12$. Để thu tất cả nghiệm từ chúng, có thể dùng nghiệm cơ bản $(46698728731849,3726964292220)$ của phương trình Pell tương ứng. Chẳng hạn, có thể chuyển chúng thành nghiệm cơ bản $(x,y)$ của lớp tương đương đó; các nghiệm tương ứng cũng được liệt kê trong bảng trên.
+    2.  Giải phương trình $x^2-157y^2=12$.
 
-        Lan nay dung thuat toan Lagrange–Matthews–Mollin. Truoc het, liet ke cac nhan tu chinh phuong cua $N=12$:
+        Lần này dùng thuật toán Lagrange–Matthews–Mollin. Trước hết, liệt kê các nhân tử chính phương của $N=12$:
 
-        -   Khi $f^2=1^2$, co $m=12$, dong du $P^2\equiv 157\pmod{12}$ co nghiem $z=\pm 1,\pm 5$;
-        -   Khi $f^2=2^2$, co $m=3$, dong du $P^2\equiv 157\pmod{3}$ co nghiem $z=\pm 1$.
+        -   Khi $f^2=1^2$, có $m=12$, đồng dư $P^2\equiv 157\pmod{12}$ có nghiệm $z=\pm 1,\pm 5$;
+        -   Khi $f^2=2^2$, có $m=3$, đồng dư $P^2\equiv 157\pmod{3}$ có nghiệm $z=\pm 1$.
 
-        Voi moi to hop $(f,z)$ co the, chay thuat toan PQa voi tham so dau $(P_0,Q_0,D)=(z,|m|,D)$ va tim vi tri dau tien co $(-1)^kQ_k=1$; $(fG_{k-1},fB_{k-1})$ tuong ung la mot nghiem. Ket qua nhu bang sau:
+        Với mọi tổ hợp $(f,z)$ có thể, chạy thuật toán PQa với tham số đầu $(P_0,Q_0,D)=(z,|m|,D)$ và tìm vị trí đầu tiên có $(-1)^kQ_k=1$; $(fG_{k-1},fB_{k-1})$ tương ứng là một nghiệm. Kết quả như bảng sau:
 
         | $f$ |  $z$ |  $m$ |  $k$ |    $fG_{k-1}$    |    $fB_{k-1}$   |
         | :-: | :--: | :--: | :--: | :--------------: | :-------------: |
@@ -838,12 +838,12 @@ trước, ở đây chỉ số $k$ thỏa điều kiện có thể xuất hiện
         | $2$ |  $1$ |  $3$ | $20$ |    $483790960$   |    $38610722$   |
         | $2$ | $-1$ |  $3$ | $14$ |     $579160$     |     $46222$     |
 
-        Day chinh la cac nghiem nguyen duong nho nhat trong moi lop tuong duong da liet ke o tren; co the dung nghiem co ban cua phuong trinh Pell de chuyen chung thanh nghiem co ban.
-    3.  Giai phuong trinh $x^2-79y^2=\pm 101$.
+        Đây chính là các nghiệm nguyên dương nhỏ nhất trong mỗi lớp tương đương đã liệt kê ở trên; có thể dùng nghiệm cơ bản của phương trình Pell để chuyển chúng thành nghiệm cơ bản.
+    3.  Giải phương trình $x^2-79y^2=\pm 101$.
 
-        Van dung thuat toan Lagrange–Matthews–Mollin. Vi $N=101$ la so nguyen to, nhat dinh $f=1$. Khi do $m=101$, va dong du tuong ung $P^2\equiv 79\pmod{101}$ co nghiem $P=\pm 33$.
+        Vẫn dùng thuật toán Lagrange–Matthews–Mollin. Vì $N=101$ là số nguyên tố, nhất định $f=1$. Khi đó $m=101$, và đồng dư tương ứng $P^2\equiv 79\pmod{101}$ có nghiệm $P=\pm 33$.
 
-        Chay thuat toan PQa voi $(P_0,Q_0,D)=(33,101,79)$ cho ket qua sau: (phan mau do la chu ki dau tien)
+        Chạy thuật toán PQa với $(P_0,Q_0,D)=(33,101,79)$ cho kết quả sau: (phần màu đỏ là chu kỳ đầu tiên)
 
         | $k$ |  $P$  |  $Q$  |       $a$      |  $A$  |   $B$  |   $G$   | $G^2-DB^2$ |
         | :-: | :---: | :---: | :------------: | :---: | :----: | :-----: | :--------: |
@@ -858,33 +858,33 @@ trước, ở đây chỉ số $k$ thỏa điều kiện có thể xuất hiện
         | $8$ |  $4$  |  $9$  | $\color{red}1$ | $304$ |  $733$ |  $6515$ |   $-606$   |
         | $9$ |  $5$  |  $6$  |       $2$      | $805$ | $1941$ | $17252$ |    $505$   |
 
-        Do dai chu ki $\ell=6$ la chan. Den het mot chu ki van khong ton tai $Q_k=\pm 1$, nen truong hop nay vo nghiem. Tuong tu, chay thuat toan PQa voi $(P_0,Q_0,D)=(-33,101,79)$ cung quan sat duoc tinh huong giong vay. Vi the phuong trinh vo nghiem.
+        Độ dài chu kỳ $\ell=6$ là chẵn. Đến hết một chu kỳ vẫn không tồn tại $Q_k=\pm 1$, nên trường hợp này vô nghiệm. Tương tự, chạy thuật toán PQa với $(P_0,Q_0,D)=(-33,101,79)$ cũng quan sát được tình huống giống vậy. Vì thế phương trình vô nghiệm.
 
 <span id="&#x4e60;&#x9898;"></span>
-## Bai tap
+## Bài tập
 
--   [LOJ 6687. Project Euler 66 - Giai phuong trinh](https://loj.ac/p/6687)
+-   [LOJ 6687. Project Euler 66 - Giải phương trình](https://loj.ac/p/6687)
 -   [SPOJ EQU2 - Yet Another Equation](https://www.spoj.com/problems/EQU2/)
 -   [SPOJ PELL2 - Pell (Mid pelling)](https://www.spoj.com/problems/PELL2/)
 -   [UVa 12909. Numeric Center](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4774)
 -   [UVa 10241. Semi-triangular and also Square](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=14&page=show_problem&problem=1182)
 
 <span id="&#x53c2;&#x8003;&#x6587;&#x732e;&#x4e0e;&#x6ce8;&#x91ca;"></span>
-## Tai lieu tham khao va chu thich
+## Tài liệu tham khảo và chú thích
 
 -   [Pell's equation - Wikipedia](https://en.wikipedia.org/wiki/Pell%27s_equation)
 -   [John P. Robertson - Solving the generalized Pell equation $x^2-Dy^2=N$](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=5ac34a344ee346855184ff949eeaed18685b155c)
 -   [Keith Matthews - The Diophantine Equation $x^2-Dy^2=N$,$D>0$](http://www.numbertheory.org/PDFS/patz5.pdf)
 -   [Existence of Solution to Pell's Equation - Suryateja Gavva's Blog](https://surya-teja.com/2011/01/11/existence-of-solution-to-pells-equation/)
--   [Calculating the simple continued fraction of a quadratic irrational - Number Theory Web](http://www.numbertheory.org/php/surd.html) (thuat toan PQa)
--   [Solving the diophantine equation x2-Dy2 = N, D > 0 and not a perfect square, N != 0 - Number Theory Web](http://www.numbertheory.org/php/patz.html) (thuat toan Lagrange–Matthews–Mollin)
+-   [Calculating the simple continued fraction of a quadratic irrational - Number Theory Web](http://www.numbertheory.org/php/surd.html) (thuật toán PQa)
+-   [Solving the diophantine equation x2-Dy2 = N, D > 0 and not a perfect square, N != 0 - Number Theory Web](http://www.numbertheory.org/php/patz.html) (thuật toán Lagrange–Matthews–Mollin)
 
-[^not-square]: Khi $D$ la so chinh phuong, chi can phan tich nhan tu la biet $(x+y\sqrt{D})(x-y\sqrt{D})=N$, vi vay moi nghiem co the tim bang cach duyet cac uoc cua $N$. Dac biet, khi $N=1$, phuong trinh chi co nghiem $(\pm 1,0)$; khi $N=-1$ va $D\neq 1$, phuong trinh vo nghiem.
+[^not-square]: Khi $D$ là số chính phương, chỉ cần phân tích nhân tử là biết $(x+y\sqrt{D})(x-y\sqrt{D})=N$, vì vậy mọi nghiệm có thể tìm bằng cách duyệt các ước của $N$. Đặc biệt, khi $N=1$, phương trình chỉ có nghiệm $(\pm 1,0)$; khi $N=-1$ và $D\neq 1$, phương trình vô nghiệm.
 
-[^neg-pell]: Mot so tai lieu tieng Trung cung goi no la phuong trinh Pell loai hai.
+[^neg-pell]: Một số tài liệu tiếng Trung cũng gọi nó là phương trình Pell loại hai.
 
-[^half-int]: Tuc so huu ti co dang $n+\dfrac12$ voi $n\in\mathbf Z$.
+[^half-int]: Tức số hữu tỉ có dạng $n+\dfrac12$ với $n\in\mathbf Z$.
 
-[^fundamental-solution]: Chu y dinh nghia nghiem co ban trong phuong trinh Pell khong trung voi dinh nghia don vi co ban trong vanh so nguyen bac hai thuc. Truoc het, trong mot so vanh so nguyen bac hai thuc, don vi co ban $x+y\sqrt{D}$ co $x,y$ la ban nguyen, nen khong phai nghiem cua phuong trinh Pell. Tiep theo, cung mot vanh so nguyen bac hai thuc co bon don vi co ban, nhung nghiem co ban chi co mot, vi nghiem co ban yeu cau $x,y$ deu duong.
+[^fundamental-solution]: Chú ý định nghĩa nghiệm cơ bản trong phương trình Pell không trùng với định nghĩa đơn vị cơ bản trong vành số nguyên bậc hai thực. Trước hết, trong một số vành số nguyên bậc hai thực, đơn vị cơ bản $x+y\sqrt{D}$ có $x,y$ là bán nguyên, nên không phải nghiệm của phương trình Pell. Tiếp theo, cùng một vành số nguyên bậc hai thực có bốn đơn vị cơ bản, nhưng nghiệm cơ bản chỉ có một, vì nghiệm cơ bản yêu cầu $x,y$ đều dương.
 
-[^solubility-neg-pell]: Mot phuong phap va cong cu phan dinh kha thuc dung nam o [day](http://www.numbertheory.org/php/hardy_williams.html) va trong tai lieu tham khao cua no. Danh sach cac so nguyen duong $D$ sao cho phuong trinh $x^2-Dy^2=-1$ co nghiem la [OEIS A031396](https://oeis.org/A031396).
+[^solubility-neg-pell]: Một phương pháp và công cụ phán định khá thực dụng nằm ở [đây](http://www.numbertheory.org/php/hardy_williams.html) và trong tài liệu tham khảo của nó. Danh sách các số nguyên dương $D$ sao cho phương trình $x^2-Dy^2=-1$ có nghiệm là [OEIS A031396](https://oeis.org/A031396).
