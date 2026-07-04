@@ -858,13 +858,16 @@ nhỏ nhất của $x^2-Dy^2=\pm 4$. Khi thu được nghiệm nguyên dương n
 $(x,y)$, với $D\equiv 2,3\pmod 4$, đơn vị cơ bản là $\pm x\pm y\sqrt{D}$; với
 $D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
 
-??? example "Vi du"
-    1.  Giai phuong trinh $x^2-14y^2=\pm 4$.
+??? example "Ví dụ"
+    1.  Giải phương trình $x^2-14y^2=\pm 4$.
 
-        Tu ket qua tinh toan trong vi du o tren, nghiem nguyen duong nho nhat cua phuong trinh $x^2-14y^2=4$ la $(30,8)$, con phuong trinh $x^2-14y^2=-4$ vo nghiem.
-    2.  Giai phuong trinh $x^2-41y^2=\pm 4$.
+        Từ kết quả tính toán trong ví dụ ở trên, nghiệm nguyên dương nhỏ nhất
+        của phương trình $x^2-14y^2=4$ là $(30,8)$, còn phương trình
+        $x^2-14y^2=-4$ vô nghiệm.
+    2.  Giải phương trình $x^2-41y^2=\pm 4$.
 
-        Chay thuat toan PQa voi $(P_0,Q_0,D)=(1,2,41)$ cho ket qua sau: (phan mau do la chu ki dau tien)
+        Chạy thuật toán PQa với $(P_0,Q_0,D)=(1,2,41)$ cho kết quả sau: (phần
+        màu đỏ là chu kỳ đầu tiên)
 
         |  $k$ | $P$ | $Q$ |        $a$       |   $A$   |   $B$  |   $G$   | $G^2-DB^2$ |
         | :--: | :-: | :-: | :--------------: | :-----: | :----: | :-----: | :--------: |
@@ -881,16 +884,23 @@ $D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
         | $10$ | $5$ | $2$ |        $5$       | $13507$ | $3649$ | $23365$ |    $-16$   |
         | $11$ | $5$ | $8$ |        $1$       | $15876$ | $4289$ | $27463$ |     $8$    |
 
-        Do dai chu ki $\ell=5$ la le. Nghiem nguyen duong nho nhat cua phuong trinh $x^2-41y^2=-4$ la $(G_4,B_4)=(64,10)$, va nghiem nguyen duong nho nhat cua phuong trinh $x^2-41y^2=4$ la $(G_9,B_9)=(4098,640)$. Giua chung co quan he
+        Độ dài chu kỳ $\ell=5$ là lẻ. Nghiệm nguyên dương nhỏ nhất của phương
+        trình $x^2-41y^2=-4$ là $(G_4,B_4)=(64,10)$, và nghiệm nguyên dương nhỏ
+        nhất của phương trình $x^2-41y^2=4$ là $(G_9,B_9)=(4098,640)$. Giữa
+        chúng có quan hệ
 
         $$
         \dfrac{4098+640\sqrt{41}}{2} = \left(\dfrac{64+10\sqrt{41}}{2}\right)^2.
         $$
 
-        Tat nhien, vi $D\equiv 1\pmod 8$, theo ket qua o tren, nghiem nguyen duong nho nhat cua phuong trinh $x^2-41y^2=\pm 4$ khi do nhat dinh deu chan, va luon bang hai lan nghiem nguyen duong nho nhat cua $x^2-41y^2=\pm 1$; do do cung co the suy truc tiep tu vi du truoc.
-    3.  Giai phuong trinh $x^2-13y^2=\pm 4$.
+        Tất nhiên, vì $D\equiv 1\pmod 8$, theo kết quả ở trên, nghiệm nguyên
+        dương nhỏ nhất của phương trình $x^2-41y^2=\pm 4$ khi đó nhất định đều
+        chẵn, và luôn bằng hai lần nghiệm nguyên dương nhỏ nhất của
+        $x^2-41y^2=\pm 1$; do đó cũng có thể suy trực tiếp từ ví dụ trước.
+    3.  Giải phương trình $x^2-13y^2=\pm 4$.
 
-        Chay thuat toan PQa voi $(P_0,Q_0,D)=(1,2,13)$ cho ket qua sau: (phan mau do la chu ki dau tien)
+        Chạy thuật toán PQa với $(P_0,Q_0,D)=(1,2,13)$ cho kết quả sau: (phần
+        màu đỏ là chu kỳ đầu tiên)
 
         | $k$ | $P$ | $Q$ |        $a$       |  $A$ |  $B$ |  $G$  | $G^2-DB^2$ |
         | :-: | :-: | :-: | :--------------: | :--: | :--: | :---: | :--------: |
@@ -899,18 +909,26 @@ $D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
         | $2$ | $3$ | $2$ |        $3$       | $23$ | $10$ |  $36$ |    $-4$    |
         | $3$ | $3$ | $2$ |        $3$       | $74$ | $33$ | $119$ |     $4$    |
 
-        Do dai chu ki $\ell=1$ la le. Nghiem nguyen duong nho nhat cua phuong trinh $x^2-13y^2=-4$ la $(G_0,B_0)=(3,1)$, va nghiem nguyen duong nho nhat cua phuong trinh $x^2-13y^2=4$ la $(G_1,B_1)=(11,3)$.
+        Độ dài chu kỳ $\ell=1$ là lẻ. Nghiệm nguyên dương nhỏ nhất của phương
+        trình $x^2-13y^2=-4$ là $(G_0,B_0)=(3,1)$, và nghiệm nguyên dương nhỏ
+        nhất của phương trình $x^2-13y^2=4$ là $(G_1,B_1)=(11,3)$.
 
-        Vi nghiem nguyen duong nho nhat cua phuong trinh nay deu le, co the dung cap tai cuoi chu ki thu ba $(G_2,B_2)=(36,10)$ de thu nghiem nguyen duong nho nhat $(18,5)$ cua phuong trinh Pell (am) tuong ung $x^2-13y^2=\pm 1$. No cung co the tinh truc tiep:
+        Vì nghiệm nguyên dương nhỏ nhất của phương trình này đều lẻ, có thể dùng
+        cặp tại cuối chu kỳ thứ ba $(G_2,B_2)=(36,10)$ để thu được nghiệm nguyên
+        dương nhỏ nhất $(18,5)$ của phương trình Pell âm tương ứng
+        $x^2-13y^2=\pm 1$. Điều này cũng có thể tính trực tiếp:
 
         $$
         \dfrac{36+10\sqrt{13}}{2}=\left(\dfrac{3+\sqrt{13}}{2}\right)^3.
         $$
 
-        Hon nua, day la nghiem cua phuong trinh Pell am. Nghiem nguyen duong nho nhat cua phuong trinh Pell tuong ung la $(649,180)$.
-    4.  Giai phuong trinh $x^2-52y^2=\pm 4$.
+        Hơn nữa, đây là nghiệm của phương trình Pell âm. Nghiệm nguyên dương nhỏ
+        nhất của phương trình Pell tương ứng là $(649,180)$.
+    4.  Giải phương trình $x^2-52y^2=\pm 4$.
 
-        Vi nghiem nguyen duong nho nhat cua phuong trinh $x^2-13y^2=\pm 1$ lan luot la $(18,5)$ va $(649,180)$, nen nghiem nguyen duong nho nhat cua phuong trinh $x^2-52y^2=\pm 4$ lan luot la $(36,10)$ va $(1298,360)$.
+        Vì nghiệm nguyên dương nhỏ nhất của phương trình $x^2-13y^2=\pm 1$ lần
+        lượt là $(18,5)$ và $(649,180)$, nên nghiệm nguyên dương nhỏ nhất của
+        phương trình $x^2-52y^2=\pm 4$ lần lượt là $(36,10)$ và $(1298,360)$.
 
 <span id="&#x4e00;&#x822c;&#x60c5;&#x5f62;"></span>
 ### Trường hợp tổng quát
