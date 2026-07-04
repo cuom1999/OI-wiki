@@ -670,57 +670,77 @@ Bài mẫu:
 -   [AtCoder Regular Contest 123 D - Inc, Dec - Decomposition](https://atcoder.jp/contests/arc123/tasks/arc123_d)
 
 <span id="&#x7EF4;&#x62A4;&#x659C;&#x7387;"></span>
-## Duy tri do doc
+## Duy trì độ dốc
 
-Con co mot so bai toan ma viec duy tri do doc tien loi hon. Lop bai toan nay thuong cung co the giai bang tu tuong [tham lam hoi tiec](../../basic/greedy.md#%E5%90%8E%E6%82%94%E8%A7%A3%E6%B3%95) hoac mo phong luong chi phi. Trong mo hinh luong chi phi, chi phi nho nhat thuong la ham loi theo luong, va day la co so de dung Slope Trick.
+Còn có một số bài toán mà việc duy trì độ dốc tiện lợi hơn. Lớp bài toán này
+thường cũng có thể giải bằng tư tưởng
+[tham lam hối tiếc](../../basic/greedy.md#%E5%90%8E%E6%82%94%E8%A7%A3%E6%B3%95)
+hoặc mô phỏng luồng chi phí. Trong mô hình luồng chi phí, chi phí nhỏ nhất
+thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope Trick.
 
 <span id="&#x4F8B;&#x9898;&#x80A1;&#x7968;&#x4EA4;&#x6613;&#x95EE;&#x9898;"></span>
-### Vi du: bai toan giao dich co phieu
+### Ví dụ: bài toán giao dịch cổ phiếu
 
 ???+ example "[Codeforces 865 D. Buy Low Sell High](https://codeforces.com/problemset/problem/865/D)"
-    Cho day gia co phieu $\{p_i\}$ trong $n$ ngay (deu duong). Ban dau nam giu $0$ co phieu. Moi ngay co the mua mot co phieu, ban mot co phieu hoac khong giao dich. Hay tinh loi nhuan lon nhat sau $n$ ngay.
+    Cho dãy giá cổ phiếu $\{p_i\}$ trong $n$ ngày (đều dương). Ban đầu nắm giữ
+    $0$ cổ phiếu. Mỗi ngày có thể mua một cổ phiếu, bán một cổ phiếu hoặc không
+    giao dịch. Hãy tính lợi nhuận lớn nhất sau $n$ ngày.
 
-??? note "Loi giai"
-    Truoc het xet loi giai DP truc tiep. Dat $f_i(x)$ la loi nhuan lon nhat khi ket thuc ngay thu $i$ va dang nam giu $x\ge 0$ co phieu. Khi do
+??? note "Lời giải"
+    Trước hết xét lời giải DP trực tiếp. Đặt $f_i(x)$ là lợi nhuận lớn nhất khi
+    kết thúc ngày thứ $i$ và đang nắm giữ $x\ge 0$ cổ phiếu. Khi đó
 
     $$
     f_i(x) = \max\{f_{i-1}(x-1)-p_i,f_{i-1}(x),f_{i-1}(x+1)+p_i\}.
     $$
 
-    Trang thai ban dau la $f_0(0)=0$, va voi moi $x\neq 0$, $f_0(x)=-\infty$. Dap an cua bai toan la $f_n(0)$.
+    Trạng thái ban đầu là $f_0(0)=0$, và với mọi $x\neq 0$, $f_0(x)=-\infty$.
+    Đáp án của bài toán là $f_n(0)$.
 
-    De chuyen tu $f_{i-1}(x)$ sang $f_i(x)$ can hai buoc:
+    Để chuyển từ $f_{i-1}(x)$ sang $f_i(x)$ cần hai bước:
 
-    1.  Lay tich chap tren dung cua $f_{i-1}(x)$ voi ham tuyen tinh tung doan $\tilde h(x)$ ung voi ham
+    1.  Lấy tích chập trên đúng của $f_{i-1}(x)$ với hàm tuyến tính từng đoạn
+        $\tilde h(x)$ ứng với hàm
 
         $$
         h_i(x) = \begin{cases}p_i,&x=-1,\\0,&x=0,\\-p_i,&x=1\end{cases}
         $$
 
-        (ro rang la ham lom);
-    2.  Vi viec nay lam ham co gia tri huu han tren khoang $[-1,0)$, trai voi yeu cau $x\ge 0$, nen can cat lay phan cua ham tren $[0,+\infty)$.
+        (rõ ràng là hàm lõm);
+    2.  Vì việc này làm hàm có giá trị hữu hạn trên khoảng $[-1,0)$, trái với
+        yêu cầu $x\ge 0$, nên cần cắt lấy phần của hàm trên $[0,+\infty)$.
 
-    Chuyen chung thanh thay doi tren cac doan do doc, ta co hai buoc sau:
+    Chuyển chúng thành thay đổi trên các đoạn độ dốc, ta có hai bước sau:
 
-    1.  Chen mot doan do doc co do dai $2$ va do doc $-p_i$;
-    2.  Trong cac doan do doc huu han, xoa mot doan co do dai $1$ va do doc lon nhat.
+    1.  Chèn một đoạn độ dốc có độ dài $2$ và độ dốc $-p_i$;
+    2.  Trong các đoạn độ dốc hữu hạn, xóa một đoạn có độ dài $1$ và độ dốc lớn
+        nhất.
 
-    Vi do dai cua cac doan do doc luon la so tu nhien, ta co the duy tri nhieu doan do dai mot, nhu vay chi can ghi lai do doc cua moi doan. Vi chi can chen va truy cap gia tri lon nhat, chi can dung mot max-heap. Thao tac gom hai buoc:
+    Vì độ dài của các đoạn độ dốc luôn là số tự nhiên, ta có thể duy trì nhiều
+    đoạn độ dài một, như vậy chỉ cần ghi lại độ dốc của mỗi đoạn. Vì chỉ cần
+    chèn và truy cập giá trị lớn nhất, chỉ cần dùng một max-heap. Thao tác gồm
+    hai bước:
 
-    1.  Chen $-p_i$ hai lan;
-    2.  Pop dinh heap.
+    1.  Chèn $-p_i$ hai lần;
+    2.  Pop đỉnh heap.
 
-    Con can duy tri gia tri $f_i(0)$. Vi sau buoc dau tien, gia tri cua ham tai $x=-1$ la $f_{i-1}(0)+p_i$, nen gia tri tai $x=0$ la gia tri nay cong voi dinh heap sap bi pop, chinh la do doc cua ham tren khoang $[-1,0]$. Vi phep cat khong doi gia tri ham tai $x=0$, Day chinh la $f_i(0)$.
+    Còn cần duy trì giá trị $f_i(0)$. Vì sau bước đầu tiên, giá trị của hàm tại
+    $x=-1$ là $f_{i-1}(0)+p_i$, nên giá trị tại $x=0$ là giá trị này cộng với
+    đỉnh heap sắp bị pop, chính là độ dốc của hàm trên khoảng $[-1,0]$. Vì phép
+    cắt không đổi giá trị hàm tại $x=0$, đây chính là $f_i(0)$.
 
-    So sanh cach cai dat thuat toan nay voi code cua phan [day tang voi chi phi nho nhat](#%E4%BE%8B%E9%A2%98%E6%9C%80%E5%B0%8F%E6%88%90%E6%9C%AC%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97) o tren co the thay, thuat toan nay tuong duong voi bai toan bien day gia co phieu thanh day khong tang voi chi phi nho nhat.
+    So sánh cách cài đặt thuật toán này với code của phần
+    [dãy tăng với chi phí nhỏ nhất](#%E4%BE%8B%E9%A2%98%E6%9C%80%E5%B0%8F%E6%88%90%E6%9C%AC%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97)
+    ở trên có thể thấy, thuật toán này tương đương với bài toán biến dãy giá cổ
+    phiếu thành dãy không tăng với chi phí nhỏ nhất.
 
-    Do phuc tap thoi gian la $O(n\log n)$.
+    Độ phức tạp thời gian là $O(n\log n)$.
 
     ```cpp
     --8<-- "docs/dp/code/opt/slope-trick/stock.cpp"
     ```
 
-Bai mau:
+Bài mẫu:
 
 -   [Codeforces 865 D. Buy Low Sell High](https://codeforces.com/problemset/problem/865/D)
 
