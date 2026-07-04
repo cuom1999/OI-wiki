@@ -113,11 +113,11 @@ nav:
       - pair: lang/csl/pair.md
     - C++ 进阶:
       - 类: lang/class.md
-      - 命名空间: lang/namespace.md
+      - Namespace: lang/namespace.md
       - 值类别: lang/value-category.md
       - 重载运算符: lang/op-overload.md
-      - 引用: lang/reference.md
-      - 常量: lang/const.md
+      - Tham chiếu: lang/reference.md
+      - Hằng: lang/const.md
       - 新版 C++ 特性: lang/new.md
       - Lambda 表达式: lang/lambda.md
       - pb_ds:
