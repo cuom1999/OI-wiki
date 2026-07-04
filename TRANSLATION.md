@@ -144,6 +144,7 @@ MkDocs source layout intact.
   `docs/math/number-theory/prime.md` sections, including the Miller-Rabin
   algorithm outline, reference implementation comments, and probability proof,
   deterministic-base notes, anti-prime introduction, examples, and references,
+  the Barrett reduction discussion in `mod-arithmetic.md`,
   the residue-class, residue-system, and residue-system composition definitions
   and arithmetic-function through floor-function sections in `basic.md`, then fully cleaned
   `docs/math/number-theory/gcd.md` and

@@ -147,28 +147,40 @@ rồi lấy modulo trực tiếp:
     --8<-- "docs/math/code/mod-arithmetic/i64-mul.cpp:i128-mul"
     ```
 
-Tat nhien, phep modulo tren `__int128` cung khong re. Neu can toi uu hang so hon nua, co the xet cac phuong phap trong hai muc tiep theo.
+Tất nhiên, phép modulo trên `__int128` cũng không rẻ. Nếu cần tối ưu hằng số
+hơn nữa, có thể xét các phương pháp trong hai mục tiếp theo.
 
 <span id="barrett-&#x7EA6;&#x51CF;"></span>
-### Rut gon Barrett
+### Rút gọn Barrett
 
-Nhu da noi o tren, phep chia va modulo thuong ton thoi gian hon cac phep toan so hoc khac. De giam chi phi modulo, co mot so thuat toan cho ket qua tuong tu ma khong truc tiep thuc hien modulo. Barrett reduction, hay phep rut gon Barrett, la mot trong so do.
+Như đã nói ở trên, phép chia và modulo thường tốn thời gian hơn các phép toán số
+học khác. Để giảm chi phí modulo, có một số thuật toán cho kết quả tương tự mà
+không trực tiếp thực hiện modulo. Barrett reduction, hay phép rút gọn Barrett,
+là một trong số đó.
 
-Cho $m$ la modulo co dinh, gia su can tinh $a\bmod m$ nhieu lan voi cac gia tri $a > 0$ khac nhau. Theo phep chia co du,
+Cho $m$ là modulo cố định, giả sử cần tính $a\bmod m$ nhiều lần với các giá trị
+$a > 0$ khác nhau. Theo phép chia có dư,
 
 $$
 z = a\bmod m = a - \left\lfloor\dfrac{a}{m}\right\rfloor m.
 $$
 
-Diem then chot nam o viec tinh thuong $\left\lfloor\dfrac{a}{m}\right\rfloor$. Dat $R$ la mot hang so nao do, ta co[^floor-barrett]
+Điểm then chốt nằm ở việc tính thương $\left\lfloor\dfrac{a}{m}\right\rfloor$.
+Đặt $R$ là một hằng số nào đó, ta có[^floor-barrett]
 
 $$
 \left\lfloor\dfrac{a}{m}\right\rfloor = \left\lfloor a\dfrac{R}{m} / R\right\rfloor \approx \left\lfloor a\left\lfloor\dfrac{R}{m}\right\rfloor/R\right\rfloor.
 $$
 
-Neu chon $R = 2^k$, thi $\left\lfloor\dfrac{R}{m}\right\rfloor$ trong ve phai co the tien xu ly, va phep chia cho $R$ co the thuc hien bang dich bit. Do do, tinh thuong bang ve phai chi can mot phep nhan va mot phep dich. Thay vao bieu thuc cua $a\bmod m$, ta thu duoc uoc luong $z'$ cua so du can tim.
+Nếu chọn $R = 2^k$, thì $\left\lfloor\dfrac{R}{m}\right\rfloor$ trong vế phải
+có thể tiền xử lý, và phép chia cho $R$ có thể thực hiện bằng dịch bit. Do đó,
+tính thương bằng vế phải chỉ cần một phép nhân và một phép dịch. Thay vào biểu
+thức của $a\bmod m$, ta thu được ước lượng $z'$ của số dư cần tìm.
 
-Phan tich sai so cua cach lam nay. [Ham lay phan nguyen](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0) co tinh chat: voi $x > y > 0$, luon co $\lfloor x\rfloor - \lfloor y\rfloor \le \lceil x - y\rceil$. Vi vay sai so
+Phân tích sai số của cách làm này.
+[Hàm lấy phần nguyên](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0) có tính
+chất: với $x > y > 0$, luôn có
+$\lfloor x\rfloor - \lfloor y\rfloor \le \lceil x - y\rceil$. Vì vậy sai số
 
 $$
 \begin{aligned}
@@ -177,34 +189,56 @@ $$
 \end{aligned}
 $$
 
-Chi can $a \le R$, sai so $\Delta$ khong vuot qua $m$. Do $z' \ge z$, gia tri uoc luong $z'$ chi co the la $z$ hoac $z + m$. Sau khi co uoc luong, neu $z' \ge m$ thi tru di phan $m$ thua la du de bao dam dap an dung.
+Chỉ cần $a \le R$, sai số $\Delta$ không vượt quá $m$. Do $z' \ge z$, giá trị
+ước lượng $z'$ chỉ có thể là $z$ hoặc $z + m$. Sau khi có ước lượng, nếu
+$z' \ge m$ thì trừ đi phần $m$ thừa là đủ để bảo đảm đáp án đúng.
 
-Trong qua trinh tinh Barrett reduction, chi can hai phep nhan, mot phep dich bit va toi da hai phep tru de hoan thanh modulo so nguyen. Tuy nhien, hieu nang tang khong phai mien phi: cac bien trung gian trong Barrett reduction thuong dai hon bien dau vao. De thay rang bien trung gian dai nhat trong Barrett reduction la $a\left\lfloor\dfrac{R}{m}\right\rfloor$. Dat $\ell(x)$ la do dai bieu dien nhi phan cua so nguyen $x$. Khi do
+Trong quá trình tính Barrett reduction, chỉ cần hai phép nhân, một phép dịch bit
+và tối đa hai phép trừ để hoàn thành modulo số nguyên. Tuy nhiên, hiệu năng tăng
+không miễn phí: các biến trung gian trong Barrett reduction thường dài hơn biến
+đầu vào. Dễ thấy biến trung gian dài nhất trong Barrett reduction là
+$a\left\lfloor\dfrac{R}{m}\right\rfloor$. Đặt $\ell(x)$ là độ dài biểu diễn nhị
+phân của số nguyên $x$. Khi đó
 
 $$
 \ell\left(a\left\lfloor\dfrac{R}{m}\right\rfloor\right) \approx \ell(a) + \ell(R) - \ell(m).
 $$
 
-Vi cach chon $R$ can thoa man $a < R$, do dai nay it nhat la $2\ell(a) - \ell(m)$. Nhung khi can modulo, thuong co $\ell(m)\le\ell(a)$, nen do dai bien trung gian nay co the lon hon do dai dau vao $\ell(a)$. Vi du, neu can lay modulo mot so nguyen $64$ bit theo mot so nguyen $32$ bit, thuc te can bien trung gian $64 \times 2 - 32 = 96$ bit.
+Vì cách chọn $R$ cần thỏa mãn $a < R$, độ dài này ít nhất là
+$2\ell(a) - \ell(m)$. Nhưng khi cần modulo, thường có $\ell(m)\le\ell(a)$, nên
+độ dài biến trung gian này có thể lớn hơn độ dài đầu vào $\ell(a)$. Ví dụ, nếu
+cần lấy modulo một số nguyên $64$ bit theo một số nguyên $32$ bit, thực tế cần
+biến trung gian $64 \times 2 - 32 = 96$ bit.
 
-Mot ung dung cua Barrett reduction la tinh so du cua tich $ab\bmod m$. Neu mot thua so co dinh, chang han $b$ co dinh, co the uoc luong tuong tu bang
+Một ứng dụng của Barrett reduction là tính số dư của tích $ab\bmod m$. Nếu một
+thừa số cố định, chẳng hạn $b$ cố định, có thể ước lượng tương tự bằng
 
 $$
 ab\bmod m = ab - \left\lfloor a\left\lfloor\dfrac{bR}{m}\right\rfloor/R\right\rfloor m
 $$
 
-chi can tien xu ly gia tri $\left\lfloor\dfrac{bR}{m}\right\rfloor$. Truong hop $b$ co dinh nay doi khi duoc goi la phep nhan modulo Shoup[^shoup].
+chỉ cần tiền xử lý giá trị $\left\lfloor\dfrac{bR}{m}\right\rfloor$. Trường hợp
+$b$ cố định này đôi khi được gọi là phép nhân modulo Shoup[^shoup].
 
-Truong hop pho bien hon la ca $a,b$ deu khong co dinh. Khi do can tinh gia tri $ab$ truoc, roi dung Barrett reduction de thu duoc $ab\bmod m$. Vi du, khi cai dat phep nhan modulo, can tinh $ab\bmod m$ voi $0 \le a,b < m$. Luc nay $R$ duoc chon can thoa man $ab < R$. Theo phan tich tren, bien trung gian dai nhat trong qua trinh tinh co do dai $2\ell(ab)-\ell(m)$. Khi $\ell(a)\approx\ell(b)\approx\ell(m)$, do dai nay la $3\ell(m)$. Noi cach khac, neu dung Barrett reduction de cai dat phep nhan modulo cho so nguyen $32$ bit, bien trung gian can so nguyen $96$ bit. Day cung la mot han che cua Barrett reduction khi ap dung trong lap trinh thi dau.
+Trường hợp phổ biến hơn là cả $a,b$ đều không cố định. Khi đó cần tính giá trị
+$ab$ trước, rồi dùng Barrett reduction để thu được $ab\bmod m$. Ví dụ, khi cài
+đặt phép nhân modulo, cần tính $ab\bmod m$ với $0 \le a,b < m$. Lúc này $R$
+được chọn cần thỏa mãn $ab < R$. Theo phân tích trên, biến trung gian dài nhất
+trong quá trình tính có độ dài $2\ell(ab)-\ell(m)$. Khi
+$\ell(a)\approx\ell(b)\approx\ell(m)$, độ dài này là $3\ell(m)$. Nói cách khác,
+nếu dùng Barrett reduction để cài đặt phép nhân modulo cho số nguyên $32$ bit,
+biến trung gian cần số nguyên $96$ bit. Đây cũng là một hạn chế của Barrett
+reduction khi áp dụng trong lập trình thi đấu.
 
-Lam vi du, cai dat tham khao cho phep nhan modulo so nguyen co dau 32 bit bang Barrett reduction nhu sau:
+Làm ví dụ, cài đặt tham khảo cho phép nhân modulo số nguyên có dấu $32$ bit bằng
+Barrett reduction như sau:
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/i32-mul.cpp:barrett"
     ```
 
-Cai dat nay can dung so nguyen 128 bit[^int128].
+Cài đặt này cần dùng số nguyên $128$ bit[^int128].
 
 <span id="montgomery-&#x6A21;&#x4E58;"></span>
 ### Phep nhan modulo Montgomery
