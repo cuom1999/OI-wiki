@@ -1,6 +1,6 @@
 author: i-Yirannn, Xeonacid, ouuan
 
-<span id="&#20171;&#32461;"></span>
+<span id="giới-thiệu"></span>
 ## Giới thiệu
 
 `std::bitset` là một container có kích thước cố định trong thư viện chuẩn, dùng để lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
@@ -29,33 +29,33 @@ Trong một số trường hợp, `bitset` có thể tối ưu hiệu năng ch�
 
 Ngoài ra, một phiên bản đặc biệt hóa của `vector`, là `vector<bool>`, có cách lưu trữ giống `bitset`. Điểm khác là nó hỗ trợ cấp phát kích thước động, còn `bitset` giống mảng tĩnh thông thường: kích thước được xác định từ lúc biên dịch. Tuy nhiên, `bitset` có một số hàm thư viện rất tiện dụng; chúng không chỉ thuận tiện mà đôi khi còn có thể được hiện thực bằng SIMD để giảm hằng số. Bên cạnh đó, một phần hành vi của `vector<bool>` không nhất quán với `vector` (ví dụ với `std::vector<bool> vec`, `&vec[0] + i` không bằng `&vec[i]`). Vì vậy thông thường không dùng `vector<bool>`.
 
-<span id="&#20351;&#29992;"></span>
+<span id="cách-sử-dụng"></span>
 ## Cách sử dụng
 
 Xem [std::bitset - cppreference.com](https://en.cppreference.com/w/cpp/utility/bitset).
 
-<span id="&#22836;&#25991;&#20214;"></span>
+<span id="tệp-tiêu-đề"></span>
 ### Tệp tiêu đề
 
 ```cpp
 #include <bitset>
 ```
 
-<span id="&#25351;&#23450;&#22823;&#23567;"></span>
+<span id="chỉ-định-kích-thước"></span>
 ### Chỉ định kích thước
 
 ```cpp
 std::bitset<1000> bs;  // một bitset gồm 1000 bit
 ```
 
-<span id="&#26500;&#36896;&#20989;&#25968;"></span>
+<span id="hàm-khởi-tạo"></span>
 ### Hàm khởi tạo
 
 -   `bitset()`: mọi bit đều là `false`.
 -   `bitset(unsigned long val)`: gán thành dạng nhị phân của `val`.
 -   `bitset(const string& str)`: gán thành xâu $01$ `str`.
 
-<span id="&#36816;&#31639;&#31526;"></span>
+<span id="toán-tử"></span>
 ### Toán tử
 
 -   `operator []`: truy cập một bit cụ thể.
@@ -70,7 +70,7 @@ std::bitset<1000> bs;  // một bitset gồm 1000 bit
 
 Ngoài ra, `bitset` còn hỗ trợ IO kiểu stream của C++, nghĩa là có thể nhập xuất bằng `cin`/`cout`.
 
-<span id="&#25104;&#21592;&#20989;&#25968;"></span>
+<span id="hàm-thành-viên"></span>
 ### Hàm thành viên
 
 -   `count()`: trả về số bit có giá trị `true`.
@@ -94,11 +94,10 @@ Ngoài ra, trong libstdc++ có một số hàm thành viên nội bộ khá hữ
 -   `_Find_first()`: trả về chỉ số của bit `true` đầu tiên trong `bitset`; nếu không có bit `true` nào thì trả về kích thước của `bitset`.
 -   `_Find_next(pos)`: trả về chỉ số của bit `true` đầu tiên nằm sau `pos` (vị trí có chỉ số lớn hơn hẳn `pos`); nếu sau `pos` không có bit `true` nào thì trả về kích thước của `bitset`.
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
-<span id="libreoj-&#946;-round-2&#36138;&#24515;&#21482;&#33021;&#36807;&#26679;&#20363;"></span>
-<span id="LibreOJ-&#946;-Round-2-&#36138;&#24515;&#21482;&#33021;&#36807;&#26679;&#20363;"></span>
+<span id="libreoj-beta-round-2-tham-lam-chỉ-qua-được-ví-dụ-mẫu"></span>
 ### [LibreOJ β Round #2: Tham lam chỉ qua được ví dụ mẫu](https://loj.ac/problem/515)
 
 Có thể giải bài này bằng DP, công thức chuyển rất đơn giản:
@@ -248,7 +247,7 @@ Ngoài ra, cách vét cạn có thêm vài nhánh cắt tỉa cũng có thể qu
 
 ### [CF1097F Alex and a TV Show](https://codeforces.com/contest/1097/problem/F)
 
-<span id="&#39064;&#24847;"></span>
+<span id="tóm-tắt-đề-bài"></span>
 #### Tóm tắt đề bài
 
 Cho $n$ đa tập hợp, hỗ trợ bốn loại thao tác:
@@ -260,7 +259,7 @@ Cho $n$ đa tập hợp, hỗ trợ bốn loại thao tác:
 
 Số đa tập hợp là $10^5$, số thao tác là $10^6$, miền giá trị là $7000$.
 
-<span id="&#20570;&#27861;"></span>
+<span id="cách-làm"></span>
 #### Cách làm
 
 Thấy cụm "theo modulo $2$", ta có thể nghĩ đến việc dùng `bitset` để duy trì mỗi đa tập hợp.
@@ -363,10 +362,10 @@ Phần tiền xử lý có thể làm đơn giản với $O(v\sqrt v)$ hoặc $O
     }
     ```
 
-<span id="&#19982;&#22467;&#27663;&#31579;&#32467;&#21512;"></span>
+<span id="kết-hợp-với-sàng-eratosthenes"></span>
 ### Kết hợp với sàng Eratosthenes
 
-Do hiệu năng đọc ghi liên tiếp của `bitset` rất nhanh, nó rất phù hợp để kết hợp với [sàng Eratosthenes](../../math/number-theory/sieve.md#%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95) khi tạo bảng số nguyên tố.
+Do hiệu năng đọc ghi liên tiếp của `bitset` rất nhanh, nó rất phù hợp để kết hợp với [sàng Eratosthenes](../../math/number-theory/sieve.md#sàng-eratosthenes) khi tạo bảng số nguyên tố.
 
 Cách dùng cũng rất đơn giản: chỉ cần thay mảng Boolean trong sàng Eratosthenes bằng `bitset`.
 
@@ -596,22 +595,22 @@ Cách dùng cũng rất đơn giản: chỉ cần thay mảng Boolean trong sàn
     BENCHMARK_MAIN();
     ```
 
-<span id="&#19982;&#26641;&#20998;&#22359;&#32467;&#21512;"></span>
+<span id="kết-hợp-với-phân-khối-trên-cây"></span>
 ### Kết hợp với phân khối trên cây
 
 `bitset` kết hợp với phân khối trên cây có thể giải một lớp bài toán hỏi hợp thông tin của nhiều đường đi trên cây. Xem thêm [Cấu trúc dữ liệu / phân khối trên cây](../../ds/tree-decompose.md).
 
-<span id="&#19982;&#33707;&#38431;&#32467;&#21512;"></span>
+<span id="kết-hợp-với-thuật-toán-mo"></span>
 ### Kết hợp với thuật toán Mo
 
 Xem thêm [Tạp mục / thuật toán Mo kết hợp bitset](../../misc/mo-algo-with-bitset.md).
 
-<span id="&#35745;&#31639;&#39640;&#32500;&#20559;&#24207;"></span>
+<span id="tính-thứ-tự-riêng-phần-nhiều-chiều"></span>
 ### Tính thứ tự riêng phần nhiều chiều
 
 Xem thêm [slide của FHR](https://github.com/OI-wiki/libs/blob/master/lang/csl/FHR-%E5%88%86%E5%9D%97bitset%E6%B1%82%E9%AB%98%E7%BB%B4%E5%81%8F%E5%BA%8F.pdf).
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 [^bitset1]: [libstdc++: SGI STL extensions](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00994.html#g32541eb0d6581b915af48b5a51006dff)
