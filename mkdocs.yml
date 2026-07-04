@@ -424,10 +424,10 @@ nav:
       - Tâm của cây: graph/tree-center.md
       - Trọng tâm của cây: graph/tree-centroid.md
       - Tổ tiên chung gần nhất: graph/lca.md
-      - 树链剖分: graph/hld.md
-      - 树上启发式合并: graph/dsu-on-tree.md
-      - 虚树: graph/virtual-tree.md
-      - 树分治: graph/tree-divide.md
+      - Phân rã chuỗi trên cây: graph/hld.md
+      - DSU on tree: graph/dsu-on-tree.md
+      - Cây ảo: graph/virtual-tree.md
+      - Phân trị trên cây: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
       - AHU 算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md

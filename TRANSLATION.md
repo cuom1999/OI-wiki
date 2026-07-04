@@ -266,6 +266,10 @@ MkDocs source layout intact.
   `docs/graph/tree-center.md`, `docs/graph/tree-centroid.md`,
   `docs/graph/lca.md`: translated the first tree-theory pages covering tree
   terminology, diameter, center, centroid, and LCA methods.
+- `docs/graph/hld.md`, `docs/graph/dsu-on-tree.md`,
+  `docs/graph/virtual-tree.md`, `docs/graph/tree-divide.md`: translated
+  tree-technique pages covering HLD, DSU on tree, virtual trees, and tree
+  divide/centroid decomposition.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
