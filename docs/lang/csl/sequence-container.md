@@ -4,37 +4,37 @@ author: MingqiHuang, Xeonacid, greyqz, i-Yirannn, ChenZ01
 
 `std::vector` là cấu trúc mảng **có bộ nhớ liên tục**, **độ dài thay đổi được** (cũng có thể xem là một danh sách) do STL cung cấp. Nó hỗ trợ chèn và xóa với độ phức tạp tuyến tính, đồng thời hỗ trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
 
-<span id="&#20026;&#20160;&#20040;&#35201;&#20351;&#29992;-vector"></span>
+<span id="vì-sao-nên-dùng-vector"></span>
 
 ### Vì sao nên dùng `vector`
 
 Với OIer, yêu cầu về hiệu năng chương trình thường cao hơn rất nhiều so với độ ổn định ở mức dự án phần mềm. Do `vector` xử lý bộ nhớ động, trong một số trường hợp hiệu năng thời gian của nó kém hơn mảng tĩnh, và còn tệ hơn nếu máy chủ OJ không bật tối ưu hóa đầy đủ. Vì vậy khi chỉ cần lưu trữ dữ liệu thông thường, ta thường không chọn `vector`. Dưới đây là một số đặc tính nổi bật của `vector`; khi cần dùng đến các đặc tính này, `vector` có thể giúp ích rất nhiều.
 
-<span id="vector-&#21487;&#20197;&#21160;&#24577;&#20998;&#37197;&#20869;&#23384;"></span>
+<span id="vector-có-thể-cấp-phát-bộ-nhớ-động"></span>
 
 #### `vector` có thể cấp phát bộ nhớ động
 
 Nhiều khi ta không thể mở sẵn một vùng nhớ lớn như vậy (ví dụ: tiền xử lý tất cả ước của các số từ 1 đến n). Dù biết tổng lượng dữ liệu vẫn nằm trong giới hạn bộ nhớ, từng phần dữ liệu riêng lẻ vẫn có thể rất lớn; khi đó ta cần `vector` để khống chế mức sử dụng bộ nhớ trong phạm vi phù hợp. `vector` cũng hỗ trợ mở rộng dung lượng động, đặc tính này rất hữu ích khi bộ nhớ thật sự căng thẳng.
 
-<span id="vector-&#37325;&#20889;&#20102;&#27604;&#36739;&#36816;&#31639;&#31526;&#21450;&#36171;&#20540;&#36816;&#31639;&#31526;"></span>
+<span id="vector-nạp-chồng-toán-tử-so-sánh-và-toán-tử-gán"></span>
 
 #### `vector` nạp chồng toán tử so sánh và toán tử gán
 
 `vector` nạp chồng sáu toán tử so sánh, được cài đặt theo thứ tự từ điển. Điều này giúp ta dễ dàng kiểm tra hai container có bằng nhau hay không (độ phức tạp tuyến tính theo kích thước container). Chẳng hạn có thể dùng `vector<char>` để so sánh xâu (tất nhiên, dùng `std::string` vẫn nhanh và tiện hơn). Ngoài ra, `vector` cũng nạp chồng toán tử gán, giúp việc sao chép mảng thuận tiện hơn.
 
-<span id="vector-&#20415;&#21033;&#30340;&#21021;&#22987;&#21270;"></span>
+<span id="khởi-tạo-vector-thuận-tiện"></span>
 
 #### Khởi tạo `vector` thuận tiện
 
-Vì `vector` nạp chồng toán tử `=`, ta có thể thực hiện phép gán toàn bộ `vector` một cách thuận tiện. Ngoài ra, từ C++11, `vector` còn hỗ trợ [khởi tạo bằng danh sách](https://zh.cppreference.com/w/cpp/language/list_initialization), ví dụ `vector<int> data {1, 2, 3};`.
+Vì `vector` nạp chồng toán tử `=`, ta có thể thực hiện phép gán toàn bộ `vector` một cách thuận tiện. Ngoài ra, từ C++11, `vector` còn hỗ trợ [khởi tạo bằng danh sách](https://en.cppreference.com/w/cpp/language/list_initialization), ví dụ `vector<int> data {1, 2, 3};`.
 
-<span id="vector-&#30340;&#20351;&#29992;&#26041;&#27861;"></span>
+<span id="cách-dùng-vector"></span>
 
 ### Cách dùng `vector`
 
-Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết [xem tại tài liệu C++](https://zh.cppreference.com/w/cpp/container/vector).
+Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/vector).
 
-<span id="&#26500;&#36896;&#20989;&#25968;"></span>
+<span id="hàm-khởi-tạo-vector"></span>
 
 #### Hàm khởi tạo
 
@@ -86,7 +86,7 @@ vector<int> v6(std::move(v2));  // hoặc v6 = std::move(v2);
 
 Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông thường.
 
-<span id="&#20803;&#32032;&#35775;&#38382;"></span>
+<span id="truy-cập-phần-tử-vector"></span>
 
 #### Truy cập phần tử
 
@@ -112,7 +112,7 @@ Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông
 
     `v.data()` trả về con trỏ đến phần tử đầu tiên trong vùng bộ nhớ liên tục mà `v` dùng để lưu dữ liệu nội bộ.
 
-<span id="&#36845;&#20195;&#22120;"></span>
+<span id="iterator-vector"></span>
 
 #### Iterator
 
@@ -136,7 +136,7 @@ Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông
 
 Trong các iterator liệt kê trên, những hàm có ký tự `c` trả về iterator chỉ đọc; bạn không thể dùng iterator chỉ đọc để sửa giá trị phần tử trong `vector`. Nếu bản thân một `vector` là chỉ đọc, iterator thông thường và iterator chỉ đọc của nó hoàn toàn tương đương. Iterator chỉ đọc được hỗ trợ từ C++11.
 
-<span id="&#38271;&#24230;&#21644;&#23481;&#37327;"></span>
+<span id="độ-dài-và-dung-lượng-vector"></span>
 
 #### Độ dài và dung lượng
 
@@ -160,7 +160,7 @@ Trong các iterator liệt kê trên, những hàm có ký tự `c` trả về i
 
 -   `shrink_to_fit()` làm cho dung lượng của `vector` bằng độ dài, loại bỏ phần dung lượng chưa dùng đến.
 
-<span id="&#20803;&#32032;&#22686;&#21024;&#21450;&#20462;&#25913;"></span>
+<span id="thêm-xóa-và-sửa-phần-tử-vector"></span>
 
 ### Thêm, xóa và sửa phần tử
 
@@ -171,7 +171,7 @@ Trong các iterator liệt kê trên, những hàm có ký tự `c` trả về i
 -   `pop_back()` xóa phần tử cuối, độ phức tạp hằng số.
 -   `swap()` trao đổi với một container khác; thao tác này có **độ phức tạp hằng số**, không phải tuyến tính.
 
-<span id="vector-&#30340;&#23454;&#29616;&#32454;&#33410;"></span>
+<span id="chi-tiết-cài-đặt-của-vector"></span>
 
 ### Chi tiết cài đặt của `vector`
 
@@ -186,17 +186,17 @@ Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bo
 
 `std::array` là cấu trúc mảng **có bộ nhớ liên tục**, **độ dài cố định** do STL cung cấp. Bản chất của nó là lớp bọc trực tiếp quanh mảng nguyên thủy.
 
-<span id="&#20026;&#20160;&#20040;&#35201;&#29992;-array"></span>
+<span id="vì-sao-nên-dùng-array"></span>
 
 ### Vì sao nên dùng `array`
 
 `array` thực chất là lớp bọc mảng của STL. So với `vector`, nó hy sinh đặc tính mở rộng động, đổi lại hiệu năng gần như tương đương mảng nguyên thủy (với điều kiện bật tối ưu hóa đầy đủ). Vì vậy nếu có thể dùng đặc tính C++11, gần như mọi nơi dùng được mảng nguyên thủy đều có thể thay mảng độ dài cố định bằng `array`, còn mảng cấp phát động có thể thay bằng `vector`.
 
-<span id="&#25104;&#21592;&#20989;&#25968;"></span>
+<span id="hàm-thành-viên-array"></span>
 
 ### Hàm thành viên
 
-<span id="&#38544;&#24335;&#23450;&#20041;&#30340;&#25104;&#21592;&#20989;&#25968;"></span>
+<span id="hàm-thành-viên-được-định-nghĩa-ngầm-định-array"></span>
 
 #### Hàm thành viên được định nghĩa ngầm định
 
@@ -204,7 +204,7 @@ Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bo
 | ------------ | --------------------------------------------------------------- |
 | `operator=` | Ghi đè từng phần tử từ một `array` khác lên phần tử tương ứng của `array` |
 
-<span id="&#20803;&#32032;&#35775;&#38382;_1"></span>
+<span id="truy-cập-phần-tử-array"></span>
 
 #### Truy cập phần tử
 
@@ -218,7 +218,7 @@ Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bo
 
 `at` sẽ ném `std::out_of_range` nếu gặp trường hợp `pos >= size()`.
 
-<span id="&#23481;&#37327;"></span>
+<span id="dung-lượng-array"></span>
 
 #### Dung lượng
 
@@ -230,7 +230,7 @@ Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bo
 
 Vì mỗi `array` đều là container kích thước cố định, giá trị `size()` trả về bằng giá trị `max_size()` trả về.
 
-<span id="&#25805;&#20316;"></span>
+<span id="thao-tác-array"></span>
 
 ### Thao tác
 
@@ -241,7 +241,7 @@ Vì mỗi `array` đều là container kích thước cố định, giá trị `
 
 **Lưu ý, trao đổi hai `array` có độ phức tạp $\Theta(\text{size})$, không phải $O(1)$ như các container STL thông thường.**
 
-<span id="&#38750;&#25104;&#21592;&#20989;&#25968;"></span>
+<span id="hàm-không-phải-thành-viên-array"></span>
 
 ### Hàm không phải thành viên
 
@@ -267,15 +267,15 @@ for (int i = 0; i != arr.size(); ++i) cout << arr[i] << " ";
 
 ## `deque`
 
-`std::deque` là cấu trúc [hàng đợi hai đầu](../../ds/queue.md#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97) do STL cung cấp. Nó hỗ trợ chèn và xóa với độ phức tạp tuyến tính, đồng thời hỗ trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
+`std::deque` là cấu trúc [hàng đợi hai đầu](../../ds/queue.md#hàng-đợi-hai-đầu) do STL cung cấp. Nó hỗ trợ chèn và xóa với độ phức tạp tuyến tính, đồng thời hỗ trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
 
-<span id="deque-&#30340;&#20351;&#29992;&#26041;&#27861;"></span>
+<span id="cách-dùng-deque"></span>
 
 ### Cách dùng `deque`
 
-Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết [xem tại tài liệu C++](https://zh.cppreference.com/w/cpp/container/deque). Các hàm iterator của `deque` giống `vector`, nên không trình bày chi tiết.
+Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/deque). Các hàm iterator của `deque` giống `vector`, nên không trình bày chi tiết.
 
-<span id="&#26500;&#36896;&#20989;&#25968;_1"></span>
+<span id="hàm-khởi-tạo-deque"></span>
 
 #### Hàm khởi tạo
 
@@ -296,7 +296,7 @@ deque<int> v4(v2.begin(), v2.begin() + 3);
 deque<int> v5(std::move(v2));
 ```
 
-<span id="&#20803;&#32032;&#35775;&#38382;_2"></span>
+<span id="truy-cập-phần-tử-deque"></span>
 
 #### Truy cập phần tử
 
@@ -307,19 +307,19 @@ Giống `vector`, nhưng không thể truy cập bộ nhớ tầng dưới. Tố
 -   `front()` trả về tham chiếu đến phần tử đầu tiên.
 -   `back()` trả về tham chiếu đến phần tử cuối cùng.
 
-<span id="&#36845;&#20195;&#22120;_1"></span>
+<span id="iterator-deque"></span>
 
 #### Iterator
 
 Giống `vector`.
 
-<span id="&#38271;&#24230;"></span>
+<span id="độ-dài-deque"></span>
 
 #### Độ dài
 
 Giống `vector`, nhưng không có hàm `reserve()` và `capacity()`. (Vẫn có hàm `shrink_to_fit()`.)
 
-<span id="&#20803;&#32032;&#22686;&#21024;&#21450;&#20462;&#25913;_1"></span>
+<span id="thêm-xóa-và-sửa-phần-tử-deque"></span>
 
 #### Thêm, xóa và sửa phần tử
 
@@ -334,7 +334,7 @@ Giống `vector`, và có thêm các hàm chèn phần tử vào đầu hàng đ
 -   `pop_back()` xóa phần tử cuối, **độ phức tạp hằng số**.
 -   `swap()` trao đổi với một container khác; thao tác này có **độ phức tạp hằng số**, không phải tuyến tính.
 
-<span id="deque-&#30340;&#23454;&#29616;&#32454;&#33410;"></span>
+<span id="chi-tiết-cài-đặt-của-deque"></span>
 
 ### Chi tiết cài đặt của `deque`
 
@@ -344,13 +344,13 @@ Tầng dưới của `deque` thường được cài đặt bằng nhiều buffe
 
 `std::list` là cấu trúc [danh sách liên kết đôi](../../ds/linked-list.md) do STL cung cấp. Có thể truy cập phần tử bằng cách duyệt tuyến tính, còn thao tác chèn và xóa có độ phức tạp hằng số.
 
-<span id="list-&#30340;&#20351;&#29992;&#26041;&#27861;"></span>
+<span id="cách-dùng-list"></span>
 
 ### Cách dùng `list`
 
-Cách dùng `list` về cơ bản giống `deque`, nhưng độ phức tạp của thao tác thêm xóa và truy cập khác nhau. Nội dung chi tiết [xem tại tài liệu C++](https://zh.cppreference.com/w/cpp/container/list). Các hàm liên quan đến iterator, độ dài, thêm xóa và sửa phần tử của `list` giống `deque`, nên không trình bày chi tiết.
+Cách dùng `list` về cơ bản giống `deque`, nhưng độ phức tạp của thao tác thêm xóa và truy cập khác nhau. Nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/list). Các hàm liên quan đến iterator, độ dài, thêm xóa và sửa phần tử của `list` giống `deque`, nên không trình bày chi tiết.
 
-<span id="&#20803;&#32032;&#35775;&#38382;_3"></span>
+<span id="truy-cập-phần-tử-list"></span>
 
 #### Truy cập phần tử
 
@@ -359,7 +359,7 @@ Vì `list` được cài đặt bằng danh sách liên kết, nó không cung c
 -   `front()` trả về tham chiếu đến phần tử đầu tiên.
 -   `back()` trả về tham chiếu đến phần tử cuối cùng.
 
-<span id="&#25805;&#20316;_1"></span>
+<span id="thao-tác-list"></span>
 
 #### Thao tác
 
@@ -369,8 +369,8 @@ Kiểu `list` còn cung cấp một số hàm thuật toán STL được cài đ
 
 `std::forward_list` là cấu trúc [danh sách liên kết đơn](../../ds/linked-list.md) do STL cung cấp; so với `std::list`, nó giảm chi phí bộ nhớ.
 
-<span id="forward_list-&#30340;&#20351;&#29992;&#26041;&#27861;"></span>
+<span id="cách-dùng-forward-list"></span>
 
 ### Cách dùng `forward_list`
 
-Cách dùng `forward_list` gần như giống `list`, nhưng iterator chỉ là một chiều, nên ở đây không trình bày chi tiết. Nội dung chi tiết [xem tại tài liệu C++](https://zh.cppreference.com/w/cpp/container/forward_list).
+Cách dùng `forward_list` gần như giống `list`, nhưng iterator chỉ là một chiều, nên ở đây không trình bày chi tiết. Nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/forward_list).
