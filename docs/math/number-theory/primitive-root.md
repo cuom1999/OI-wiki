@@ -499,24 +499,41 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         modulo $p^{e+1}$. Theo quy nạp toán học, mệnh đề đúng với mọi
         $e\ge 1$.
 
-3.  $m=2p^{e}$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
+3.  $m=2p^{e}$, trong đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$.
 
-    ???+ note "Bo de 3"
-        Voi so nguyen to le $p$ va $e \in \mathbf{N}_+$, can nguyen thuy modulo $2p^e$ ton tai.
+    ???+ note "Bổ đề 3"
+        Với số nguyên tố lẻ $p$ và $e \in \mathbf{N}_+$, căn nguyên thủy modulo
+        $2p^e$ tồn tại.
 
-    ??? note "Chung minh"
-        Gia su $g$ la can nguyen thuy modulo $p^{e}$, khi do $g+p^e$ cung la can nguyen thuy modulo $p^{e}$. Trong hai so nay chac chan co mot so le; khong mat tinh tong quat, gia su do la $g$. Hien nhien $(g,2p^e)=1$. Dat $\delta=\delta_{2p^e}(g)$, can chung minh $\delta=\varphi(2p^e)$. Theo dinh ly Euler, $\delta\mid\varphi(2p^e)$. Dong thoi, theo dinh nghia $g^\delta\equiv 1\pmod{2p^e}$, nen $g^\delta\equiv 1\pmod{p^e}$. Do do, theo [Tinh chat 2](#ord-prop-2) ve bac va cach chon $g$, ta co $\delta_{p^e}(g)=\varphi(p^e)\mid \delta$. Theo cong thuc ham Euler, $\varphi(2p^e) = \varphi(p^e)$. Vi vay $\delta=\delta_{2p^e}(g)=\varphi(p^e)$. Dieu nay chung minh $g$ la can nguyen thuy modulo $2p^e$.
+    ??? note "Chứng minh"
+        Giả sử $g$ là căn nguyên thủy modulo $p^{e}$, khi đó $g+p^e$ cũng là
+        căn nguyên thủy modulo $p^{e}$. Trong hai số này chắc chắn có một số
+        lẻ; không mất tính tổng quát, giả sử đó là $g$. Hiển nhiên
+        $(g,2p^e)=1$. Đặt $\delta=\delta_{2p^e}(g)$, cần chứng minh
+        $\delta=\varphi(2p^e)$. Theo định lí Euler,
+        $\delta\mid\varphi(2p^e)$. Đồng thời, theo định nghĩa
+        $g^\delta\equiv 1\pmod{2p^e}$, nên $g^\delta\equiv 1\pmod{p^e}$. Do
+        đó, theo [Tính chất 2](#ord-prop-2) về bậc và cách chọn $g$, ta có
+        $\delta_{p^e}(g)=\varphi(p^e)\mid \delta$. Theo công thức hàm Euler,
+        $\varphi(2p^e) = \varphi(p^e)$. Vì vậy
+        $\delta=\delta_{2p^e}(g)=\varphi(p^e)$. Điều này chứng minh $g$ là căn
+        nguyên thủy modulo $2p^e$.
 
-4.  $m\ne 1,2,4,p^{e},2p^{e}$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
+4.  $m\ne 1,2,4,p^{e},2p^{e}$, trong đó $p$ là số nguyên tố lẻ và
+    $e\in\mathbf N_+$.
 
     <a id="prim-root-lem-4"></a>
 
-    ???+ note "Bo de 4"
-        Gia su $m\neq 1,2,4$ va khong ton tai so nguyen to le $p$ cung so nguyen duong $e$ sao cho $m=p^e$ hoac $m=2p^e$. Khi do can nguyen thuy modulo $m$ khong ton tai.
+    ???+ note "Bổ đề 4"
+        Giả sử $m\neq 1,2,4$ và không tồn tại số nguyên tố lẻ $p$ cùng số
+        nguyên dương $e$ sao cho $m=p^e$ hoặc $m=2p^e$. Khi đó căn nguyên thủy
+        modulo $m$ không tồn tại.
 
-    ??? note "Chung minh"
-        Voi $m=2^e$ va $e\ge 3$, gia su can nguyen thuy $g$ modulo $m$ ton tai. Vi $g\perp m$, no phai la so le. Gia su $g=2k+1$ voi $k\in\mathbf N$, khi do
-        
+    ??? note "Chứng minh"
+        Với $m=2^e$ và $e\ge 3$, giả sử căn nguyên thủy $g$ modulo $m$ tồn tại.
+        Vì $g\perp m$, nó phải là số lẻ. Giả sử $g=2k+1$ với $k\in\mathbf N$,
+        khi đó
+
         $$
         \begin{aligned}
         g^{2^{e-2}}
@@ -527,36 +544,45 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         &\equiv 1 \pmod{2^{e}}.
         \end{aligned}
         $$
-        
-        O dong gan cuoi, vi $k$ va $(2^{e-2}-1)k^2$ co cung tinh chan le, tong cua chung la so chan. Theo dinh nghia bac, $\delta_{2^{e}}(g)\le 2^{e-2}< \varphi(2^{e}) = 2^{e-1}$. Dieu nay mau thuan voi gia thiet $g$ la can nguyen thuy. Theo phan chung, can nguyen thuy nhu vay khong ton tai.
-        
-        Gia su $m$ thoa man cac dieu kien da neu va khong phai luy thua cua $2$. Khi do chac chan ton tai $2 < m_1 < m_2$ va $m_1\perp m_2$ sao cho $m=m_1m_2$. Gia su can nguyen thuy $g$ modulo $m$ ton tai. Vi $g\perp m$, nen voi $i=1,2$ deu co $g\perp m_i$. Theo dinh ly Euler,
-        
+
+        Ở dòng gần cuối, vì $k$ và $(2^{e-2}-1)k^2$ có cùng tính chẵn lẻ, tổng
+        của chúng là số chẵn. Theo định nghĩa bậc,
+        $\delta_{2^{e}}(g)\le 2^{e-2}< \varphi(2^{e}) = 2^{e-1}$. Điều này mâu
+        thuẫn với giả thiết $g$ là căn nguyên thủy. Theo phản chứng, căn nguyên
+        thủy như vậy không tồn tại.
+
+        Giả sử $m$ thỏa mãn các điều kiện đã nêu và không phải lũy thừa của
+        $2$. Khi đó chắc chắn tồn tại $2 < m_1 < m_2$ và $m_1\perp m_2$ sao cho
+        $m=m_1m_2$. Giả sử căn nguyên thủy $g$ modulo $m$ tồn tại. Vì
+        $g\perp m$, nên với $i=1,2$ đều có $g\perp m_i$. Theo định lí Euler,
+
         $$
         g^{\varphi(m_i)} \equiv 1 \pmod{m_i}.
         $$
-        
-        Vi $m_i > 2$, $\varphi(m_i)$ la so chan, nen voi $i=1,2$ ta co
-        
+
+        Vì $m_i > 2$, $\varphi(m_i)$ là số chẵn, nên với $i=1,2$ ta có
+
         $$
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m_i}.
         $$
-        
-        Theo [dinh ly thang du Trung Hoa](./crt.md), suy ra
-        
+
+        Theo [định lí thặng dư Trung Hoa](./crt.md), suy ra
+
         $$
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m}.
         $$
-        
-        Lai vi $\varphi(m)=\varphi(m_1)\varphi(m_2)$, theo dinh nghia bac ta co
-        
+
+        Lại vì $\varphi(m)=\varphi(m_1)\varphi(m_2)$, theo định nghĩa bậc ta có
+
         $$
         \delta_m(g) \le \frac{1}{2}\varphi(m_1)\varphi(m_2) = \dfrac{1}{2}\varphi(m) < \varphi(m).
         $$
-        
-        Dieu nay mau thuan voi gia thiet $g$ la can nguyen thuy modulo $m$. Vi vay, theo phan chung, can nguyen thuy modulo $m$ khong ton tai.
 
-Tong hop bon bo de tren, ta da dua ra dieu kien can va du de mot so co can nguyen thuy.
+        Điều này mâu thuẫn với giả thiết $g$ là căn nguyên thủy modulo $m$. Vì
+        vậy, theo phản chứng, căn nguyên thủy modulo $m$ không tồn tại.
+
+Tổng hợp bốn bổ đề trên, ta đã đưa ra điều kiện cần và đủ để một số có căn
+nguyên thủy.
 
 <span id="&#x6C42;&#x539F;&#x6839;&#x7684;&#x7B97;&#x6CD5;"></span>
 
