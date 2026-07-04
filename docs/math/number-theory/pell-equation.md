@@ -720,29 +720,35 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     thuẫn với việc $\ell$ là chu kỳ dương nhỏ nhất. Vì vậy nhất định
     $\ell\mid k$.
 
-???+ note "Dinh li"
-    Gia su nghiem nguyen duong nho nhat cua phuong trinh $x^2-Dy^2=\pm 4$ la $(x_1,y_1)$. Khi do toan bo nghiem cua no la
+???+ note "Định lý"
+    Giả sử nghiệm nguyên dương nhỏ nhất của phương trình $x^2-Dy^2=\pm 4$ là
+    $(x_1,y_1)$. Khi đó toàn bộ nghiệm của nó là
 
     $$
     \left\{(x,y):\dfrac{x+y\sqrt{D}}{2}=\pm\left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^k,k\in\mathbf Z\right\}.
     $$
 
-??? note "Chung minh"
-    Do tinh doi xung, chi can xet nghiem nguyen duong $(x,y)$. O day chi can chung minh cac cap so thuc $(x,y)$ trong tap tren thuc su la nghiem nguyen cua phuong trinh $x^2-Dy^2=\pm 4$. Phan con lai chi can lap lai chung minh cau truc nghiem cua phuong trinh $x^2-Dy^2=\pm 1$.
+??? note "Chứng minh"
+    Do tính đối xứng, chỉ cần xét nghiệm nguyên dương $(x,y)$. Ở đây chỉ cần
+    chứng minh các cặp số thực $(x,y)$ trong tập trên thực sự là nghiệm nguyên
+    của phương trình $x^2-Dy^2=\pm 4$. Phần còn lại chỉ cần lặp lại chứng minh
+    cấu trúc nghiệm của phương trình $x^2-Dy^2=\pm 1$.
 
-    Thuc chat can chung minh rang voi bat ki hai nghiem nguyen $(x_1,y_1)$ va $(x_2,y_2)$ cua phuong trinh $x^2-Dy^2=\pm 4$, cap so thuc duong $(x_3,y_3)$ dinh nghia boi
+    Thực chất cần chứng minh rằng với bất kỳ hai nghiệm nguyên $(x_1,y_1)$ và
+    $(x_2,y_2)$ của phương trình $x^2-Dy^2=\pm 4$, cặp số thực dương
+    $(x_3,y_3)$ định nghĩa bởi
 
     $$
     \dfrac{x_3+y_3\sqrt{D}}{2} = \dfrac{x_1+y_1\sqrt{D}}{2}\dfrac{x_2+y_2\sqrt{D}}{2}
     $$
 
-    van la nghiem nguyen:
+    vẫn là nghiệm nguyên:
 
     $$
     x_3=\dfrac{x_1x_2+Dy_1y_2}{2},\ y_3=\dfrac{x_1y_2+x_2y_1}{2}.
     $$
 
-    Vi voi $i=1,2$ co $x_i\equiv x_i^2\equiv Dy_i^2\equiv Dy_i\pmod 2$, nen
+    Vì với $i=1,2$ có $x_i\equiv x_i^2\equiv Dy_i^2\equiv Dy_i\pmod 2$, nên
 
     $$
     \begin{aligned}
@@ -751,15 +757,40 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     \end{aligned}
     $$
 
-    Dieu nay cho thay $x_3$ va $y_3$ deu la so nguyen. Lai dung tinh chat chuan bao toan phep nhan, ta biet $(x_3,y_3)$ la nghiem cua $x^2-Dy^2=\pm 4$.
+    Điều này cho thấy $x_3$ và $y_3$ đều là số nguyên. Lại dùng tính chất chuẩn
+    bảo toàn phép nhân, ta biết $(x_3,y_3)$ là nghiệm của $x^2-Dy^2=\pm 4$.
 
-Tong hop cac su kien nay va lap lai lap luan cua cac phan truoc, co the chung minh tinh dung dan cua thuat toan giai phuong trinh $x^2-Dy^2=\pm 4$ neu tren. Cac ket qua nay cho thay phuong trinh $x^2-Dy^2=\pm 4$ co cau truc nghiem don gian tuong tu phuong trinh $x^2-Dy^2=\pm 1$: tat ca nghiem deu co the bieu dien bang nghiem nguyen duong nho nhat cua no, khong can giai cac phuong trinh khac.
+Tổng hợp các sự kiện này và lặp lại lập luận của các phần trước, có thể chứng
+minh tính đúng đắn của thuật toán giải phương trình $x^2-Dy^2=\pm 4$ nêu trên.
+Các kết quả này cho thấy phương trình $x^2-Dy^2=\pm 4$ có cấu trúc nghiệm đơn
+giản tương tự phương trình $x^2-Dy^2=\pm 1$: tất cả nghiệm đều có thể biểu diễn
+bằng nghiệm nguyên dương nhỏ nhất của nó, không cần giải các phương trình khác.
 
-Thuc ra, moi nghiem cua phuong trinh $x^2-Dy^2=\pm 1$ deu co the tim thay trong nghiem cua phuong trinh $x^2-Dy^2=\pm 4$; tu goc nhin nay, phuong trinh $x^2-Dy^2=\pm 4$ co tinh co ban hon. Hien nhien, $(x,y)$ la nghiem cua $x^2-Dy^2=\pm 1$ khi va chi khi $(2x,2y)$ la nghiem cua $x^2-Dy^2=\pm 4$. Phan tich tren chi ra rang khi $D\equiv 2,3\pmod 4$, moi nghiem cua phuong trinh $x^2-Dy^2=\pm 4$ deu dong thoi chan, nen tuong ung voi nghiem cua $x^2-Dy^2=\pm 1$.
+Thực ra, mọi nghiệm của phương trình $x^2-Dy^2=\pm 1$ đều có thể tìm thấy trong
+nghiệm của phương trình $x^2-Dy^2=\pm 4$; từ góc nhìn này, phương trình
+$x^2-Dy^2=\pm 4$ có tính cơ bản hơn. Hiển nhiên, $(x,y)$ là nghiệm của
+$x^2-Dy^2=\pm 1$ khi và chỉ khi $(2x,2y)$ là nghiệm của $x^2-Dy^2=\pm 4$. Phân
+tích trên chỉ ra rằng khi $D\equiv 2,3\pmod 4$, mọi nghiệm của phương trình
+$x^2-Dy^2=\pm 4$ đều đồng thời chẵn, nên tương ứng với nghiệm của
+$x^2-Dy^2=\pm 1$.
 
-Khi $D\equiv 0\pmod 4$, trong nghiem $(x,y)$ cua phuong trinh $x^2-Dy^2=\pm 4$, $x$ nhat dinh chan nhung $y$ co the le. Neu trong nghiem nguyen duong nho nhat $(x_1,y_1)$ cua phuong trinh $x^2-Dy^2=\pm 4$, $y_1$ chan, thi trong moi nghiem $y$ cung nhat dinh chan; khi do cac nghiem nguyen nay tuong ung mot-mot voi nghiem nguyen cua $x^2-Dy^2=\pm 1$. Nhung neu trong nghiem nguyen nho nhat $(x_1,y_1)$, $y_1$ le, thi tinh chan le cua $y_k$ se trung voi tinh chan le cua $k$ va thay doi xen ke; vi vay chi khi $k$ chan moi tuong ung voi nghiem cua $x^2-Dy^2=\pm 1$. Neu trong nghiem nguyen duong nho nhat cua $x^2-Dy^2=\pm 4$, $y_1$ le va chuan cua $x_1+y_1\sqrt{D}$ la $-4$, thi voi $D$ nhu vay, $x^2-Dy^2=-4$ co nghiem nhung $x^2-Dy^2=-1$ vo nghiem.
+Khi $D\equiv 0\pmod 4$, trong nghiệm $(x,y)$ của phương trình
+$x^2-Dy^2=\pm 4$, $x$ nhất định chẵn nhưng $y$ có thể lẻ. Nếu trong nghiệm
+nguyên dương nhỏ nhất $(x_1,y_1)$ của phương trình $x^2-Dy^2=\pm 4$, $y_1$
+chẵn, thì trong mọi nghiệm $y$ cũng nhất định chẵn; khi đó các nghiệm nguyên này
+tương ứng một-một với nghiệm nguyên của $x^2-Dy^2=\pm 1$. Nhưng nếu trong
+nghiệm nguyên nhỏ nhất $(x_1,y_1)$, $y_1$ lẻ, thì tính chẵn lẻ của $y_k$ sẽ
+trùng với tính chẵn lẻ của $k$ và thay đổi xen kẽ; vì vậy chỉ khi $k$ chẵn mới
+tương ứng với nghiệm của $x^2-Dy^2=\pm 1$. Nếu trong nghiệm nguyên dương nhỏ
+nhất của $x^2-Dy^2=\pm 4$, $y_1$ lẻ và chuẩn của $x_1+y_1\sqrt{D}$ là $-4$, thì
+với $D$ như vậy, $x^2-Dy^2=-4$ có nghiệm nhưng $x^2-Dy^2=-1$ vô nghiệm.
 
-Khi $D\equiv 1\pmod 4$, nghiem $(x,y)$ cua phuong trinh $x^2-Dy^2=\pm 4$ co the dong thoi le, cung co the dong thoi chan. Neu nghiem nguyen duong nho nhat $(x_1,y_1)$ da dong thoi chan, thi moi nghiem nguyen cua no cung nhat dinh dong thoi chan, nen luon tuong ung voi nghiem nguyen cua phuong trinh $x^2-Dy^2=\pm 1$. Neu nghiem nguyen duong nho nhat $(x_1,y_1)$ dong thoi le, ta co ket qua sau:
+Khi $D\equiv 1\pmod 4$, nghiệm $(x,y)$ của phương trình $x^2-Dy^2=\pm 4$ có thể
+đồng thời lẻ, cũng có thể đồng thời chẵn. Nếu nghiệm nguyên dương nhỏ nhất
+$(x_1,y_1)$ đã đồng thời chẵn, thì mọi nghiệm nguyên của nó cũng nhất định đồng
+thời chẵn, nên luôn tương ứng với nghiệm nguyên của phương trình
+$x^2-Dy^2=\pm 1$. Nếu nghiệm nguyên dương nhỏ nhất $(x_1,y_1)$ đồng thời lẻ, ta
+có kết quả sau:
 
 ???+ note "Dinh li"
     Gia su nghiem nguyen duong nho nhat cua phuong trinh $x^2-Dy^2=\pm 4$ la $(x_1,y_1)$. Neu $x_1$ va $y_1$ dong thoi le, thi $D\equiv 5\pmod 8$, va nghiem nguyen $(x,y)$ cua phuong trinh do dong thoi chan khi va chi khi
