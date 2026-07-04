@@ -144,11 +144,9 @@ MkDocs source layout intact.
   `docs/math/number-theory/prime.md` sections, including the Miller-Rabin
   algorithm outline, reference implementation comments, and probability proof,
   deterministic-base notes, anti-prime introduction, examples, and references,
-  the Barrett reduction and Montgomery multiplication discussions in
-  `mod-arithmetic.md`, plus the modulo-power-of-two inverse and discrete-log
-  setup there,
-  the residue-class, residue-system, and residue-system composition definitions
-  and arithmetic-function through floor-function sections in `basic.md`, then fully cleaned
+  then fully cleaned
+  `docs/math/number-theory/basic.md`,
+  `docs/math/number-theory/mod-arithmetic.md`,
   `docs/math/number-theory/gcd.md` and
   `docs/math/number-theory/sieve.md`, plus the opening concept sections of
   `docs/math/number-theory/quadratic.md` through the Eisenstein integer

@@ -444,77 +444,106 @@ là bit thứ $d$ (chỉ số bắt đầu từ $0$). Nhờ đó, cũng có th�
 nhị phân để đệ quy phân tích $4L(a)$ thành tổng các số có dạng $4L(2^d+1)$, từ
 đó thu được giá trị của $a$.
 
-Khi cai dat cu the, co mot vai diem co the toi uu them. Truoc het, viec phan tich $a$ thanh dang tich van can dung phep chia. Cach thuan tien hon la tinh phan tich cua $a^{-1}$, tuc la tim $1 < e_1 < e_2 < \cdots < e_s < e$ sao cho
+Khi cài đặt cụ thể, có một vài điểm có thể tối ưu thêm. Trước hết, việc phân
+tích $a$ thành dạng tích vẫn cần dùng phép chia. Cách thuận tiện hơn là tính
+phân tích của $a^{-1}$, tức là tìm $1 < e_1 < e_2 < \cdots < e_s < e$ sao cho
 
 $$
 a(2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1) \equiv 1 \pmod{m}
 $$
 
-dung. Van xac dinh $e_1$ bang cach tim bit bang $1$ thap thu hai, nhung de khu nhan tu $2^{e_1}+1$ trong $a^{-1}$, chi can nhan $a$ voi $2^{e_1}+1$, thao tac nay co the thuc hien bang bit. Lai vi $4L(a^{-1})=-4L(a)$, nen khi cong don $4L(a)$ can dung phep tru thay cho phep cong. Thu hai, voi lua chon co so $g$ dac biet, vong lap khong can chay den $d = e-1$, ma chi can chay den $d = \lceil e/2\rceil - 1$. De lam vay, can chon $g$ sao cho
+đúng. Vẫn xác định $e_1$ bằng cách tìm bit bằng $1$ thấp thứ hai, nhưng để khử
+nhân tử $2^{e_1}+1$ trong $a^{-1}$, chỉ cần nhân $a$ với $2^{e_1}+1$, thao tác
+này có thể thực hiện bằng bit. Lại vì $4L(a^{-1})=-4L(a)$, nên khi cộng dồn
+$4L(a)$ cần dùng phép trừ thay cho phép cộng. Thứ hai, với lựa chọn cơ sở $g$
+đặc biệt, vòng lặp không cần chạy đến $d = e-1$, mà chỉ cần chạy đến
+$d = \lceil e/2\rceil - 1$. Để làm vậy, cần chọn $g$ sao cho
 
 $$
 4L(2^{\lceil e/2\rceil} + 1) = 2^{\lceil e/2\rceil}.
 $$
 
-Voi $d \ge e / 2$, deu co
+Với $d \ge e / 2$, đều có
 
 $$
 (2^d+1)^2 = 2^{2d} + 2^{d+1} + 1 \equiv 2^{d+1} + 1 \pmod{m}.
 $$
 
-Do do, quy nap tu $d = \lceil e/2\rceil$ cho thay $L(2^d+1)=2^d$ dung voi moi $d \ge e/2$. Suy ra, chi can $e/2 \le e_1 < e_2 < \cdots < e_s < e$, ta co
+Do đó, quy nạp từ $d = \lceil e/2\rceil$ cho thấy $L(2^d+1)=2^d$ đúng với mọi
+$d \ge e/2$. Suy ra, chỉ cần $e/2 \le e_1 < e_2 < \cdots < e_s < e$, ta có
 
 $$
 (2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1) \equiv 1 + 2^{e_1} + 2^{e_2} + \cdots + 2^{e_s} \pmod{m}
 $$
 
-va
+và
 
 $$
 4L((2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1)) = 2^{e_1} + 2^{e_2} + \cdots + 2^{e_s}.
 $$
 
-Vi vay, sau khi xu ly tat ca cac bit $d < e/2$, co the truc tiep thu duoc logarit roi rac cua phan con lai ma khong can tinh tung bit. Sau toi uu thu nhat, toan bo phep luy thua chi can $O(e)$ phep cong tru, thao tac bit va $1$ phep nhan; sau toi uu thu hai, co the tiet kiem gan mot nua so phep cong tru va thao tac bit, doi lai can them $1$ phep nhan.
+Vì vậy, sau khi xử lý tất cả các bit $d < e/2$, có thể trực tiếp thu được
+logarit rời rạc của phần còn lại mà không cần tính từng bit. Sau tối ưu thứ
+nhất, toàn bộ phép lũy thừa chỉ cần $O(e)$ phép cộng trừ, thao tác bit và $1$
+phép nhân; sau tối ưu thứ hai, có thể tiết kiệm gần một nửa số phép cộng trừ và
+thao tác bit, đổi lại cần thêm $1$ phép nhân.
 
-Lam vi du, cai dat tham khao cho phep luy thua modulo $2^{32}$ nhu sau:
+Làm ví dụ, cài đặt tham khảo cho phép lũy thừa modulo $2^{32}$ như sau:
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/mod-32-inv-pow.cpp:pow"
     ```
 
-Tien xu ly logarit roi rac co the thuc hien bang thuat toan Pohlig-Hellman, va co the chon co so $g$ la
+Tiền xử lý logarit rời rạc có thể thực hiện bằng thuật toán Pohlig-Hellman, và
+có thể chọn cơ sở $g$ là
 
 $$
 5^{\operatorname{ind}_5(2^{\lceil e/2\rceil})/2^{\lceil e/2\rceil - 2}}\bmod{2^e}.
 $$
 
 <span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
-## Tai lieu tham khao va ghi chu
+## Tài liệu tham khảo và ghi chú
 
 -   [Fast modular multiplication by orz - Codeforces](https://codeforces.com/blog/entry/96759)
 -   [Barrett Reduction - Wikipedia](https://en.wikipedia.org/wiki/Barrett_reduction)
 -   [Barrett Reduction - A41](https://encrypt.a41.io/primitives/modular-arithmetic/modular-reduction/barrett-reduction#cost-analysis-of-modular-multiplication)
--   [Nguyen ly va chung minh tinh dung cua Barrett reduction by Chen - Zhihu](https://zhuanlan.zhihu.com/p/690876166)
+-   [Nguyên lý và chứng minh tính đúng của Barrett reduction by Chen - Zhihu](https://zhuanlan.zhihu.com/p/690876166)
 -   [Montgomery Multiplication - CP Algorithms](https://cp-algorithms.com/algebra/montgomery_multiplication.html)
--   [Phep nhan modulo Montgomery by Chen - Zhihu](https://zhuanlan.zhihu.com/p/645428404)
+-   [Phép nhân modulo Montgomery by Chen - Zhihu](https://zhuanlan.zhihu.com/p/645428404)
 -   [Binary Exponentiation by Factoring - CP Algorithms](https://cp-algorithms.com/algebra/factoring-exp.html)
 -   Barrett, Paul. "Implementing the Rivest Shamir and Adleman public key encryption algorithm on a standard digital signal processor." In Conference on the Theory and Application of Cryptographic Techniques, pp. 311-323. Berlin, Heidelberg: Springer Berlin Heidelberg, 1986.
 -   Becker, Hanno, Vincent Hwang, Matthias J. Kannwischer, Bo-Yin Yang, and Shang-Yi Yang. "Neon NTT: Faster Dilithium, Kyber, and Saber on Cortex-A72 and Apple M1." IACR Transactions on Cryptographic Hardware and Embedded Systems (2022): 221-244.
 -   Montgomery, Peter L. "Modular multiplication without trial division." Mathematics of computation 44, no. 170 (1985): 519-521.
 
-[^long-double-80bit]: Dieu nay dung voi GCC hoac Clang tren phan lon he thong 64 bit.
+[^long-double-80bit]: Điều này đúng với GCC hoặc Clang trên phần lớn hệ thống
+    64 bit.
 
 [^floating-format]: Xem [Double-precision floating-point format - Wikipedia](https://en.wikipedia.org/wiki/Double-precision_floating-point_format).
 
-[^ld-mul-err]: O day dung dieu kien $a < m$, tuc la $a / m \in [0,1)$.
+[^ld-mul-err]: Ở đây dùng điều kiện $a < m$, tức là $a / m \in [0,1)$.
 
-[^int128]: Trong cac moi truong bien dich pho bien hien nay, chi MSVC tren Windows khong ho tro kieu `__int128`. Neu can viet ma tuong thich nhieu nen tang, co the phat hien moi truong MSVC bang macro `_MSC_VER`, roi trong dieu kien do include [`<intrin.h>`](https://learn.microsoft.com/en-us/cpp/intrinsics/x64-amd64-intrinsics-list?view=msvc-170) va dung cac ham noi tai duoc cung cap (nhu `_umul128`) de gian tiep cai dat so nguyen 128 bit (chi kha dung tren nen tang 64 bit).
+[^int128]: Trong các môi trường biên dịch phổ biến hiện nay, chỉ MSVC trên
+    Windows không hỗ trợ kiểu `__int128`. Nếu cần viết mã tương thích nhiều nền
+    tảng, có thể phát hiện môi trường MSVC bằng macro `_MSC_VER`, rồi trong điều
+    kiện đó include [`<intrin.h>`](https://learn.microsoft.com/en-us/cpp/intrinsics/x64-amd64-intrinsics-list?view=msvc-170)
+    và dùng các hàm nội tại được cung cấp (như `_umul128`) để gián tiếp cài đặt
+    số nguyên 128 bit (chỉ khả dụng trên nền tảng 64 bit).
 
-[^floor-barrett]: O day $\left\lfloor\dfrac{r}{m}\right\rfloor$ cung co the thay bang cac uoc luong nguyen khac cua $\dfrac{r}{m}$, chang han ham tran $\left\lceil\dfrac{r}{m}\right\rceil$ va ham lam tron gan nhat $\left\lfloor\dfrac{r}{m}\right\rceil$, mien la dieu chinh buoc sua sai so cua gia tri uoc luong tuong ung.
+[^floor-barrett]: Ở đây $\left\lfloor\dfrac{r}{m}\right\rfloor$ cũng có thể
+    thay bằng các ước lượng nguyên khác của $\dfrac{r}{m}$, chẳng hạn hàm trần
+    $\left\lceil\dfrac{r}{m}\right\rceil$ và hàm làm tròn gần nhất
+    $\left\lfloor\dfrac{r}{m}\right\rceil$, miễn là điều chỉnh bước sửa sai số
+    của giá trị ước lượng tương ứng.
 
-[^shoup]: Shoup da cai dat mo rong nay cua Barrett reduction trong thu vien tinh toan so hoc [NTL](https://libntl.org/), nen cach lam duoc dat ten nhu vay.
+[^shoup]: Shoup đã cài đặt mở rộng này của Barrett reduction trong thư viện tính
+    toán số học [NTL](https://libntl.org/), nên cách làm được đặt tên như vậy.
 
-[^newton-hensel]: Kiem tra truc tiep: tu $mx \equiv 1 \pmod{2^e}$, dat $mx = 1 + \lambda 2^e$, khi do $mx(2-mx) = (1+\lambda 2^e)(1-\lambda 2^e) = 1 - \lambda^2 2^{2e} \equiv 1\pmod{2^{2e}}$.
+[^newton-hensel]: Kiểm tra trực tiếp: từ $mx \equiv 1 \pmod{2^e}$, đặt
+    $mx = 1 + \lambda 2^e$, khi đó
+    $mx(2-mx) = (1+\lambda 2^e)(1-\lambda 2^e) = 1 - \lambda^2 2^{2e} \equiv 1\pmod{2^{2e}}$.
 
-[^mod-2-g]: Trang duoc dan trong bai chi chung minh $g$ co the lay bang $5$. Thuc ra, lap lai hoan toan chung minh do cho thay $g$ co the la bat ky so nguyen nao dong du $5$ theo modulo $8$. Phan sau se thao luan cach chon $g$.
+[^mod-2-g]: Trang được dẫn trong bài chỉ chứng minh $g$ có thể lấy bằng $5$.
+    Thực ra, lặp lại hoàn toàn chứng minh đó cho thấy $g$ có thể là bất kỳ số
+    nguyên nào đồng dư $5$ theo modulo $8$. Phần sau sẽ thảo luận cách chọn
+    $g$.
