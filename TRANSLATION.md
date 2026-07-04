@@ -63,6 +63,8 @@ MkDocs source layout intact.
   `docs/lang/pb-ds/tree.md`, `docs/lang/optimizations.md`,
   `docs/lang/pas-cpp.md`: translated GNU pb_ds, compiler optimization, and
   Pascal-to-C++ transition pages.
+- `docs/lang/python.md`, `docs/lang/java.md`, `docs/lang/java-pro.md`:
+  translated Python and Java quick-start/advanced language pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

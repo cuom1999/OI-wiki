@@ -1,474 +1,516 @@
 author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran, CuriosityQiu
 
-## 关于 Python
+<a id="&#20851;&#20110;-python"></a>
 
-Python 是一门已在世界上广泛使用的解释型语言．它提供了高效的高级数据结构，还能简单有效地面向对象编程，也可以在算法竞赛．
+## Về Python
 
-### Python 的优点
+Python là một ngôn ngữ thông dịch được sử dụng rộng rãi trên thế giới. Ngôn ngữ này cung cấp các cấu trúc dữ liệu bậc cao hiệu quả, hỗ trợ lập trình hướng đối tượng đơn giản mà mạnh mẽ, và cũng có thể dùng trong lập trình thi đấu.
 
--   Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤．
--   Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令．
--   Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序．
--   Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统．
--   Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序．
--   Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短．
--   Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用．
+<a id="python-&#30340;&#20248;&#28857;"></a>
 
-### 学习 Python 的注意事项
+### Ưu điểm của Python
 
--   目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用．本文将 **介绍较新版本的 Python**．如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码．
--   Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格．
--   Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时．在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能．
+-   Python là một ngôn ngữ **thông dịch**: không cần biên dịch và liên kết trước, nên giảm được nhiều thao tác khi chạy chương trình.
+-   Python là một ngôn ngữ **tương tác**: trình thông dịch Python hỗ trợ thao tác tương tác, có thể nhập và chạy lệnh trực tiếp trong terminal.
+-   Python **dễ học, dễ dùng**: Python cung cấp nhiều cấu trúc dữ liệu tiện lợi và vẫn phù hợp để phát triển chương trình lớn.
+-   Python **tương thích tốt**: Python hỗ trợ Windows, macOS và các hệ điều hành Unix.
+-   Python **thực dụng**: từ nhập xuất đơn giản, tính toán khoa học cho đến các ứng dụng web lớn, đều có thể viết bằng Python.
+-   Chương trình Python **ngắn gọn và dễ đọc**: mã Python thường ngắn hơn mã của các ngôn ngữ khác khi thực hiện cùng một chức năng.
+-   Python **hỗ trợ mở rộng**: Python được phát triển bằng C (tức CPython), hỗ trợ liên kết trình thông dịch Python với ứng dụng viết bằng C, nhờ đó có thể dùng Python để mở rộng và điều khiển ứng dụng đó.
 
-## 环境搭建
+<a id="&#23398;&#20064;-python-&#30340;&#27880;&#24847;&#20107;&#39033;"></a>
 
-参见 [Python 3](../tools/compiler.md#python-3)．或者：
+### Lưu ý khi học Python
 
--   Windows：也可以在 Microsoft Store 中免费而快捷地获取 Python．
+-   Phiên bản Python được dùng chủ yếu hiện nay là Python 3.7 trở lên. Python 2 và Python 3.6 trở về trước đã [không còn được hỗ trợ](https://devguide.python.org/versions/#unsupported-versions), nhưng vẫn có thể xuất hiện trong một số hệ thống và mã cũ. Bài này sẽ **giới thiệu các phiên bản Python mới hơn**. Nếu gặp mã Python 2, bạn có thể thử dùng chương trình [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) để chuyển mã Python 2 sang Python 3.
+-   Tư tưởng thiết kế và cấu trúc cú pháp của Python **khác khá nhiều so với một số ngôn ngữ khác**. Python che giấu nhiều chi tiết tầng thấp, vì vậy mang phong cách thực dụng và gọn gàng.
+-   Python là ngôn ngữ thông dịch có tính động cao, nên **tốc độ chạy chương trình tương đối chậm**, đặc biệt khi dùng vòng lặp `for` thuần Python. Khi dùng Python, nên tận dụng các hàm dựng sẵn như `filter`, `map`, hoặc dùng cú pháp [list comprehension](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) để cải thiện hiệu năng.
 
--   macOS/Linux：通常情况下，大部分的 Linux 发行版中已经自带了 Python．如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python．
+<a id="&#29615;&#22659;&#25645;&#24314;"></a>
 
-    ???+ warning "注意"
-        在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器．[^ref1]
+## Thiết lập môi trường
 
-此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题．
+Xem [Python 3](../tools/compiler.md#python-3). Hoặc:
 
-作为一种解释型语言，Python 的执行方式和 C++ 有所不同，这种差异在使用 IDE 编程时往往得不到体现，因此这里需要强调一下运行程序的不同方式．
+-   Windows: bạn cũng có thể cài Python miễn phí và nhanh chóng qua Microsoft Store.
 
-当在命令行中键入 `python3` 或刚刚打开 IDLE 时，你实际进入了一种交互式的编程环境，也称「REPL」（「读取 - 求值 - 输出」循环），初学者可以在这里输入语句并立即看到结果，这让验证一些语法变得极为容易，我们也将在后文中大量使用这种形式．
+-   macOS/Linux: thông thường, phần lớn bản phân phối Linux đã cài sẵn Python. Nếu chỉ muốn học cú pháp Python và không có nhu cầu phát triển khác, bạn không nhất thiết phải cài thêm Python.
 
-但若要编写完整的程序，你最好还是新建一个文本文件（通常后缀为 `.py`），然后在命令行中执行 `python3 filename.py`，就能够运行代码看到结果了．
+    ???+ warning "Lưu ý"
+        Trên một số hệ thống cài Python mặc định (tức cài bằng trình quản lý gói), chẳng hạn các hệ Unix, nên chạy `python3` trong terminal để mở trình thông dịch Python 3.[^ref1]
 
-### 一些平台提供的 Python 版本
+Ngoài ra, bạn cũng có thể dùng các công cụ như venv, conda, Nix để quản lý bộ công cụ Python và các gói Python, tạo môi trường ảo độc lập và tránh lỗi phụ thuộc.
 
-| 系统名/版本           | python 版本               |
-| ---------------- | ----------------------- |
-| Noi Linux 2.0    | 3.8.0, Include requests |
-| Luogu 评测机        | 3.11.5, NumPy 1.25.2    |
-| 基于 Hydro 的 OJ    | 3.8.0+ Include NumPy    |
-| Ubuntu 22.04（内置） | 3.10.4                  |
-| 微软商店             | 最新正式版                   |
+Là một ngôn ngữ thông dịch, cách thực thi Python khác với C++. Sự khác biệt này thường không lộ rõ khi lập trình bằng IDE, nên cần nhấn mạnh các cách chạy chương trình.
 
-???+ warning "注意"
-    本表格在本文撰写时（2025/01/15）时有效，建议前往相关平台重新查证．
+Khi gõ `python3` trên dòng lệnh hoặc vừa mở IDLE, thực chất bạn đã vào một môi trường lập trình tương tác, còn gọi là "REPL" (vòng lặp "đọc - đánh giá - in kết quả"). Người mới học có thể nhập lệnh tại đây và thấy kết quả ngay, rất tiện để kiểm tra cú pháp. Phần sau cũng sẽ thường dùng hình thức này.
 
-目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学自由与开源软件镜像站](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/)，可以到那里尝试下载 Python 安装文件．
+Nhưng nếu muốn viết một chương trình hoàn chỉnh, tốt hơn hết hãy tạo một tệp văn bản mới (thường có đuôi `.py`), sau đó chạy `python3 filename.py` trên dòng lệnh để xem kết quả.
 
-## 使用 `pip` 安装第三方库
+<a id="&#19968;&#20123;&#24179;&#21488;&#25552;&#20379;&#30340;-python-&#29256;&#26412;"></a>
 
-Python 的生命力很大程度上来自于丰富的第三方库，编写一些实用程序时「调库」是常规操作，`pip` 是首选的安装第三方库的程序．自 Python 3.4 版本起，它被默认包含在 Python 二进制安装程序中．
+### Một số phiên bản Python trên các nền tảng
 
-`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台．使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 等使用帮助．你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源．
+| Tên hệ thống/phiên bản      | Phiên bản Python              |
+| --------------------------- | ----------------------------- |
+| NOI Linux 2.0               | 3.8.0, có requests            |
+| Máy chấm Luogu              | 3.11.5, NumPy 1.25.2          |
+| OJ dựa trên Hydro           | 3.8.0+, có NumPy              |
+| Ubuntu 22.04 (cài sẵn)      | 3.10.4                        |
+| Microsoft Store             | Bản ổn định mới nhất          |
 
-???+ info "使用清华大学开源镜像站安装一个包"
+???+ warning "Lưu ý"
+    Bảng này đúng tại thời điểm bài viết được soạn (2025/01/15); nên kiểm tra lại trên các nền tảng liên quan.
+
+Hiện nay các mirror cache **mã nguồn** trong nước Trung Quốc chủ yếu gồm [Beijing Jiaotong University Free and Open Source Software Mirror](https://mirror.bjtu.edu.cn/python/) và [Huawei Open Source Mirror](https://repo.huaweicloud.com/python/). Bạn có thể thử tải bộ cài Python từ đó.
+
+<a id="&#20351;&#29992;-pip-&#23433;&#35013;&#31532;&#19977;&#26041;&#24211;"></a>
+
+## Cài thư viện bên thứ ba bằng `pip`
+
+Sức sống của Python phần lớn đến từ hệ sinh thái thư viện bên thứ ba phong phú. Khi viết các tiện ích thực dụng, việc "gọi thư viện" là thao tác rất thường gặp, và `pip` là chương trình cài thư viện bên thứ ba được ưu tiên. Từ Python 3.4, `pip` được kèm sẵn trong bộ cài nhị phân Python.
+
+Thư viện bên thứ ba trong `pip` chủ yếu được lưu trên [Python Package Index (PyPI)](https://pypi.org/), và người dùng cũng có thể chỉ định các nền tảng lưu trữ thư viện bên thứ ba khác. Cách dùng có thể tham khảo các hướng dẫn như [pypi mirror help - Tsinghua Open Source Mirror](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/). Bạn có thể xem thêm mirror PyPI trên [MirrorZ](https://mirrorz.org/list/pypi).
+
+???+ info "Cài một gói bằng Tsinghua Open Source Mirror"
     ```sh
     pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple <some-package>
     ```
 
-## 基本语法
+<a id="&#22522;&#26412;&#35821;&#27861;"></a>
 
-Python 的语法简洁而易懂，也有许多官方和第三方文档与教程．这里仅介绍一些对 OIer 比较实用的语言特性，你可以在 [Python 文档](https://docs.python.org/zh-cn/3/) 和 [Python Wiki](https://wiki.python.org/moin/) 等网页上了解更多关于 Python 的教程．
+## Cú pháp cơ bản
 
-### 注释
+Cú pháp Python ngắn gọn và dễ hiểu, đồng thời có nhiều tài liệu và giáo trình cả chính thức lẫn bên thứ ba. Ở đây chỉ giới thiệu một số đặc điểm ngôn ngữ hữu ích với OIer. Bạn có thể đọc thêm các bài học Python trên [tài liệu Python](https://docs.python.org/zh-cn/3/) và [Python Wiki](https://wiki.python.org/moin/).
 
-加入注释并不会对代码的运行产生影响，但加入注释可以使代码更加易懂易用．
+<a id="&#27880;&#37322;"></a>
+
+### Chú thích
+
+Thêm chú thích không ảnh hưởng đến việc chạy mã, nhưng giúp mã dễ hiểu và dễ dùng hơn.
 
 ```python
-# 用 # 字符开头的是单行注释
+# Dòng bắt đầu bằng ký tự # là chú thích một dòng
 
 """
-跨多行字符串会用三引号
-（即三个单引号或三个双引号）
-包裹，但也通常被用于注释
+Chuỗi nhiều dòng được bao bằng ba dấu nháy
+(ba dấu nháy đơn hoặc ba dấu nháy kép),
+nhưng nó cũng thường được dùng làm chú thích
 """
 ```
 
-加入注释代码并不会对代码产生影响．我们鼓励加入注释来使代码更加易懂易用．
+Thêm mã chú thích sẽ không ảnh hưởng đến chương trình. Nên thêm chú thích để mã dễ hiểu và dễ dùng hơn.
 
-### 基本数据类型
+<a id="&#22522;&#26412;&#25968;&#25454;&#31867;&#22411;"></a>
 
-#### 一切皆对象
+### Kiểu dữ liệu cơ bản
 
-在 Python 中，你无需事先声明变量名及其类型，直接赋值即可创建各种类型的变量：
+<a id="&#19968;&#20999;&#30342;&#23545;&#35937;"></a>
+
+#### Mọi thứ đều là đối tượng
+
+Trong Python, bạn không cần khai báo trước tên biến và kiểu của nó; chỉ cần gán giá trị là có thể tạo biến thuộc nhiều kiểu khác nhau:
 
 ```pycon
->>> x = -3  # 语句结尾不用加分号
+>>> x = -3  # Cuối câu lệnh không cần dấu chấm phẩy
 >>> x
 -3
->>> f = 3.1415926535897932384626; f  # 实在想加分号也可以，这里节省了一行
+>>> f = 3.1415926535897932384626; f  # Nếu thật sự muốn thêm chấm phẩy thì vẫn được; ở đây tiết kiệm một dòng
 3.141592653589793
 >>> s1 = "O"
->>> s1  # 在 Python 中双引号和单引号的作用相同
+>>> s1  # Trong Python, dấu nháy kép và dấu nháy đơn có tác dụng như nhau
 'O'
->>> b = 'A' == 65  # 'A' 和 65 不是一个数据类型，所以不相等
->>> b  # True, False 首字母均大写
+>>> b = 'A' == 65  # 'A' và 65 không cùng kiểu dữ liệu, nên không bằng nhau
+>>> b  # True và False đều viết hoa chữ cái đầu
 False
->>> True + 1 == 2 and not False != 0  # Python 中的表达式中大多使用单词，但是也支持符号
+>>> True + 1 == 2 and not False != 0  # Biểu thức Python chủ yếu dùng từ, nhưng cũng hỗ trợ ký hiệu
 True
 ```
 
-但这不代表 Python 没有类型的概念，实际上解释器会根据赋值或运算自动推断变量类型，你可以使用内置函数 `type()` 查看这些变量的类型：
+Điều này không có nghĩa Python không có khái niệm kiểu. Thực tế, trình thông dịch sẽ tự động suy luận kiểu biến theo phép gán hoặc phép tính. Bạn có thể dùng hàm dựng sẵn `type()` để xem kiểu của các biến này:
 
 ```pycon
 >>> type(x)
 <class 'int'>
 >>> type(f)
 <class 'float'>
->>> type(s1)  # 请注意，不要给字符串起名为 str，否则 str 对象会被篡改
+>>> type(s1)  # Lưu ý: đừng đặt tên chuỗi là str, nếu không đối tượng str sẽ bị ghi đè
 <class 'str'>
 >>> type(b)
 <class 'bool'>
 ```
 
-???+ note "[**内置函数**](https://docs.python.org/zh-cn/3/library/functions.html) 是什么？"
-    在 C/C++ 中，很多常用函数都分散在不同的头文件中，但 Python 的解释器内置了许多实用且通用的函数，你可以直接使用而无需注意它们的存在，但这也带来了小问题，这些内置函数的名称多为常见单词，你需要注意避免给自己的变量起相同的名字，否则可能会产生奇怪的结果．
+???+ note "[**Hàm dựng sẵn**](https://docs.python.org/zh-cn/3/library/functions.html) là gì?"
+    Trong C/C++, nhiều hàm thường dùng nằm rải rác trong các tệp header khác nhau. Còn trình thông dịch Python tích hợp sẵn nhiều hàm thực dụng và tổng quát; bạn có thể dùng trực tiếp mà không cần quan tâm chúng nằm ở đâu. Điều này cũng tạo ra một vấn đề nhỏ: tên các hàm dựng sẵn thường là từ thông dụng, vì vậy cần tránh đặt biến trùng tên, nếu không có thể sinh ra kết quả kỳ lạ.
 
-正如我们所看到的，Python 内置有整数、浮点数、字符串和布尔类型，可以类比为 C++ 中的 `int`，`float`，`string` 和 `bool`．但有一些明显的不同之处，比如没有 `char` 字符类型，也没有 `double` 类型（但 `float` 其实对应 C 中的双精度），如果需要更精确的浮点运算，可以使用标准库中的 [decimal](https://docs.python.org/zh-cn/3/library/decimal.html) 模块，如果需要用到复数，Python 还内置了 `complex` 类型（而这也意味着最好不要给变量起名为 `complex`）．
-可以看到这些类型都以 `class` 开头，而这正是 Python 不同于 C++ 的关键之处，Python 程序中的所有数据都是由对象或对象间关系来表示的，函数是对象，类型本身也是对象：
+Như đã thấy, Python có sẵn các kiểu số nguyên, số thực dấu phẩy động, chuỗi và boolean, có thể đối chiếu với `int`, `float`, `string` và `bool` trong C++. Nhưng có một số khác biệt rõ ràng: Python không có kiểu ký tự `char`, cũng không có kiểu `double` (nhưng `float` thực ra tương ứng với số chính xác kép trong C). Nếu cần phép tính dấu phẩy động chính xác hơn, có thể dùng module [decimal](https://docs.python.org/zh-cn/3/library/decimal.html) trong thư viện chuẩn. Nếu cần số phức, Python có sẵn kiểu `complex` (tất nhiên tốt nhất là không đặt biến tên `complex`).
+
+Có thể thấy các kiểu này đều bắt đầu bằng `class`, và đây là điểm cốt lõi khiến Python khác C++: mọi dữ liệu trong chương trình Python được biểu diễn bằng đối tượng hoặc quan hệ giữa các đối tượng. Hàm là đối tượng, bản thân kiểu cũng là đối tượng:
 
 ```pycon
 >>> type(int)
 <class 'type'>
->>> type(pow)  # 求幂次的内置函数，后文会介绍
+>>> type(pow)  # Hàm dựng sẵn tính lũy thừa, phần sau sẽ giới thiệu
 <class 'builtin_function_or_method'>
->>> type(type)  # type() 也是内置函数，但有些特殊，感兴趣可自行查阅
+>>> type(type)  # type() cũng là hàm dựng sẵn, nhưng khá đặc biệt; ai quan tâm có thể tự tra cứu
 <class 'type'>
 ```
 
-你或许会觉得这些概念一时难以理解且没有用处，所以我们暂时不再深入，在后文的示例中你或许能慢慢体会到，Python 的对象提供了强大的方法，我们在编程时应当优先考虑围绕对象而不是过程进行操作，这会让我们的代码显得更加紧凑明晰．
+Có thể bạn thấy các khái niệm này tạm thời khó hiểu và chưa hữu ích, nên ta chưa đi sâu. Qua các ví dụ sau, bạn có thể dần cảm nhận được: đối tượng Python cung cấp nhiều phương thức mạnh. Khi lập trình, nên ưu tiên suy nghĩ thao tác quanh đối tượng thay vì quanh quy trình; mã sẽ gọn và rõ hơn.
 
-#### 数字运算
+<a id="&#25968;&#23383;&#36816;&#31639;"></a>
 
-有人说，你可以把你系统里装的 Python 当作一个多用计算器，这是事实．  
-在交互模式下，你可以在提示符 `>>>` 后面输入一个表达式，就像其他大部分语言（如 C++）一样使用运算符 `+`、`-`、`*`、`/`、`%` 来对数字进行运算，也可以使用 `()` 来进行符合结合律的分组，读者可以自行试验，在这里我们仅展示与 C++ 差异较大的部分：
+#### Phép toán số học
+
+Có người nói rằng có thể xem Python cài trên máy như một chiếc máy tính đa năng; điều đó đúng.
+Trong chế độ tương tác, bạn có thể nhập một biểu thức sau dấu nhắc `>>>`, dùng các toán tử `+`, `-`, `*`, `/`, `%` để tính toán trên số như phần lớn ngôn ngữ khác (ví dụ C++), và dùng `()` để nhóm theo thứ tự kết hợp. Bạn đọc có thể tự thử; ở đây chỉ trình bày các điểm khác C++ rõ hơn:
 
 ```pycon
->>> 5.0 * 6  # 浮点数的运算结果是浮点数
+>>> 5.0 * 6  # Kết quả phép tính với số thực là số thực
 30.0
->>> 15 / 3  # 与 C/C++ 不同，除法永远返回浮点 float 类型
+>>> 15 / 3  # Khác C/C++, phép chia luôn trả về kiểu float
 5.0
->>> 5 / 100000  # 位数太多，结果显示成科学计数法形式
+>>> 5 / 100000  # Quá nhiều chữ số, kết quả hiện theo dạng ký pháp khoa học
 5e-05
->>> 5 // 3 # 使用整数除法（地板除）则会向下取整，输出整数类型
+>>> 5 // 3  # Chia nguyên (floor division) sẽ làm tròn xuống và xuất kiểu số nguyên
 1
->>> -5 // 3 # 符合向下取整原则，注意这与 C/C++ 不同
+>>> -5 // 3  # Vẫn theo nguyên tắc làm tròn xuống; lưu ý khác C/C++
 -2
->>> 5 % 3 # 取模
+>>> 5 % 3  # Lấy phần dư
 2
->>> -5 % 3 # 负数取模结果一定是非负数，这点也与 C/C++ 不同，不过都满足 (a//b)*b+(a%b)==a 
+>>> -5 % 3  # Phần dư của số âm luôn không âm; điểm này cũng khác C/C++, nhưng đều thỏa (a//b)*b+(a%b)==a
 1
->>> x = abs(-1e4)  # 求绝对值的内置函数
->>> x += 1  # 没有自增/自减运算符
->>> x  # 科学计数法默认为 float
+>>> x = abs(-1e4)  # Hàm dựng sẵn tính giá trị tuyệt đối
+>>> x += 1  # Không có toán tử tăng/giảm một đơn vị
+>>> x  # Ký pháp khoa học mặc định là float
 10001.0
 ```
 
-在上面的实践中可以发现，除法运算（`/`）永远返回浮点类型（在 Python 2 中返回整数）．如果你想要整数或向下取整的结果的话，可以使用整数除法（`//`）．同样的，你也可以像 C++ 中一样，使用模（`%`）来计算余数，科学计数法的形式也相同．
+Từ các thử nghiệm trên có thể thấy phép chia (`/`) luôn trả về kiểu dấu phẩy động (trong Python 2 thì trả về số nguyên). Nếu muốn kết quả số nguyên hoặc làm tròn xuống, hãy dùng chia nguyên (`//`). Tương tự C++, có thể dùng modulo (`%`) để tính phần dư, và dạng ký pháp khoa học cũng giống nhau.
 
-特别地，Python 用 `**` 即可进行幂运算，还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/binary-exponentiation.md) 的高效实现．
+Đặc biệt, Python dùng `**` để tính lũy thừa, và cung cấp cài đặt hiệu quả của [lũy thừa nhanh](../math/binary-exponentiation.md) qua hàm dựng sẵn `pow(a, b, mod)`.
 
 ```pycon
->>> 3 ** 4 # 幂运算
+>>> 3 ** 4  # Lũy thừa
 81
 >>> 2 ** 512
 13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649006084096
->>> pow(2, 512, int(1e4)) # 即 2**512 % 10000 的快速实现, 1e4 是 float 所以要转 int
+>>> pow(2, 512, int(1e4))  # Cài đặt nhanh của 2**512 % 10000; 1e4 là float nên cần ép sang int
 4096
->>> 2048 ** 2048 # 在IDLE里试试大整数？
->>> 0.1 + 0.1 + 0.1 - 0.3 == 0.  # 和 C/C++ 一样需要注意浮点数不能直接判相等
+>>> 2048 ** 2048  # Thử số nguyên lớn trong IDLE?
+>>> 0.1 + 0.1 + 0.1 - 0.3 == 0.  # Như C/C++, cần cẩn thận: không nên so sánh trực tiếp số thực bằng nhau
 False
 ```
 
-#### 数据类型判断
+<a id="&#25968;&#25454;&#31867;&#22411;&#21028;&#26029;"></a>
 
-对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`．
+#### Kiểm tra kiểu dữ liệu
 
-#### [基本输入输出](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
+Với một biến, có thể dùng `type(object)` để trả về kiểu của biến. Ví dụ, giá trị của `type(8)` và `type('a')` lần lượt là `<class 'int'>` và `<class 'str'>`.
 
-Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成，`print()` 的用法十分符合直觉：
+<a id="&#22522;&#26412;&#36755;&#20837;&#36755;&#20986;"></a>
+
+#### [Nhập xuất cơ bản](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
+
+Nhập xuất trong Python chủ yếu thực hiện qua hai hàm dựng sẵn `input()` và `print()`. Cách dùng `print()` rất trực quan:
 
 ```pycon
->>> a = [1,2,3]; print(a[-1])  # 打印时默认末尾换行
+>>> a = [1,2,3]; print(a[-1])  # Mặc định xuống dòng ở cuối khi in
 3
->>> print(ans[0], ans[1])  # 可以输出任意多个变量，默认以空格间隔
+>>> print(ans[0], ans[1])  # Có thể xuất bao nhiêu biến tùy ý, mặc định cách nhau bằng dấu cách
 1 2
->>> print(a[0], a[1], end='')  # 令 end='', 使末尾不换行
+>>> print(a[0], a[1], end='')  # Đặt end='' để cuối dòng không xuống dòng
 1 2>>>
->>> print(a[0], a[1], sep=', ')  # 令 sep=', '，改变间隔样式
+>>> print(a[0], a[1], sep=', ')  # Đặt sep=', ' để đổi kiểu phân cách
 1, 2
->>> print(str(a[0]) + ', ' + str(a[1]))  # 输出同上，但是手动拼接成一整个字符串
+>>> print(str(a[0]) + ', ' + str(a[1]))  # Kết quả như trên, nhưng ghép thủ công thành một chuỗi
 ```
 
-`input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符．
+Hành vi của hàm `input()` gần với `getline()` trong C++: đọc cả một dòng thành chuỗi và không gồm ký tự xuống dòng ở cuối.
 
 ```pycon
->>> s = input('请输入一串数字: '); s  # 自己调试时可以向 input() 传入字符串作为提示
-请输入一串数字: 1 2 3 4 5 6
+>>> s = input('Nhập dãy số: '); s  # Khi tự debug, có thể truyền chuỗi vào input() làm lời nhắc
+Nhập dãy số: 1 2 3 4 5 6
 '1 2 3 4 5 6'
 ```
 
-#### 字符串
+<a id="&#23383;&#31526;&#20018;"></a>
 
-Python 3 提供了强大的基于 [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) 的字符串类型，使用起来和 C++ 中的 `string` 类似，一些概念如转义字符也都相通，除了加号拼接和索引访问，还额外支持数乘 `*` 重复字符串，和 `in` 操作符．
+#### Chuỗi
+
+Python 3 cung cấp kiểu chuỗi dựa trên [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) rất mạnh, cách dùng gần với `string` trong C++. Nhiều khái niệm như ký tự thoát cũng tương tự. Ngoài phép cộng để nối chuỗi và truy cập bằng chỉ số, Python còn hỗ trợ nhân với số `*` để lặp chuỗi và toán tử `in`.
 
 ```pycon
->>> s1 = "O"  # 单引号和双引号都能包起字符串，有时可节省转义字符
->>> s1 += 'I-Wiki'  # 为和 C++ 同步建议使用双引号 
->>> 'OI' in s1  # 检测子串很方便
+>>> s1 = "O"  # Dấu nháy đơn và dấu nháy kép đều bao được chuỗi; đôi khi giúp tiết kiệm ký tự thoát
+>>> s1 += 'I-Wiki'  # Để đồng bộ với C++, nên dùng dấu nháy kép
+>>> 'OI' in s1  # Kiểm tra chuỗi con rất tiện
 True
->>> len(s1)  # 类似 C++ 的 s.length()，但更通用
+>>> len(s1)  # Gần như s.length() trong C++, nhưng tổng quát hơn
 7
->>> s2 = """ 感谢你的阅读
-... 欢迎参与贡献!
-"""   # 使用三重引号的字符串可以跨越多行
->>> s1 + s2 
-'OI-Wiki 感谢你的阅读\n欢迎参与贡献!'
->>> print(s1 + s2)  # 这里使用了 print() 函数打印字符串
-OI-Wiki 感谢你的阅读
-欢迎参与贡献!
->>> s2[2] * 2 + s2[3] + s2[-1]  # 负数索引从右开始计数，加上 len(s)，相当于模 n 的剩余类环
-'谢谢你!'
->>> s1[0] = 'o'  # str 是不可变类型，不能原地修改，其实 += 也是创建了新的对象
+>>> s2 = """ cam on ban
+... chao mung dong gop!"""   # Chuỗi dùng ba dấu nháy có thể trải qua nhiều dòng
+>>> s1 + s2
+'OI-Wiki cam on ban\nchao mung dong gop!'
+>>> print(s1 + s2)  # Ở đây dùng hàm print() để in chuỗi
+OI-Wiki cam on ban
+chao mung dong gop!
+>>> s2[1:4] + s2[-1]  # Chỉ số âm đếm từ bên phải; cộng lên len(s) tương đương đưa về modulo n
+'cam!'
+>>> s1[0] = 'o'  # str là kiểu bất biến, không thể sửa tại chỗ; thực ra += cũng tạo đối tượng mới
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: 'str' object does not support item assignment
 ```
 
-Python 支持多种复合数据类型，可将不同值组合在一起．最常用的 `list`，类型是用方括号标注、逗号分隔的一组值．例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表．
+Python hỗ trợ nhiều kiểu dữ liệu hợp, có thể gom các giá trị khác nhau lại với nhau. Kiểu thường dùng nhất là `list`, được viết bằng một nhóm giá trị phân cách bằng dấu phẩy và đặt trong ngoặc vuông. Ví dụ, `[1, 2, 3]` và `['a','b','c']` đều là danh sách.
 
-除了索引，字符串还支持*切片*，它的设计非常精妙，格式为 `s[左闭索引:右开索引:步长]`：
+Ngoài truy cập bằng chỉ số, chuỗi còn hỗ trợ *cắt lát* (slice), với thiết kế rất tinh tế. Dạng chung là `s[chi_so_trai_dong:chi_so_phai_mo:buoc]`:
 
 ```pycon
->>> s = 'OI-Wiki 感谢你的阅读\n欢迎参与贡献!'
->>> s[:8]  # 省略左闭索引则从头开始
+>>> s = 'OI-Wiki cam on ban\nchao mung dong gop!'
+>>> s[:8]  # Bỏ qua chỉ số trái đóng thì bắt đầu từ đầu
 'OI-Wiki '
->>> s[8:14]  # 左闭右开设计的妙处，长度为 14-8=6，还和上一个字符串无缝衔接
-'感谢你的阅读'
->>> s[-4:]  # 省略右开索引则直到结尾
-'与贡献!'
->>> s[8:14:2]  # 步长为2
-'感你阅'
->>> s[::-1]  # 步长为 -1 时，获得了反转的字符串
-'!献贡与参迎欢\n读阅的你谢感 ikiW-IO'
->>> s  # 但原来的字符串并未改变
-'OI-Wiki 感谢你的阅读\n欢迎参与贡献!'
+>>> s[8:18]  # Thiết kế trái đóng phải mở: độ dài là 18-8=10, và ghép liền mạch với đoạn trước
+'cam on ban'
+>>> s[-9:]  # Bỏ qua chỉ số phải mở thì lấy đến hết
+'dong gop!'
+>>> s[8:18:2]  # Bước nhảy bằng 2
+'cmo a'
+>>> s[::-1]  # Khi bước nhảy là -1, thu được chuỗi đảo ngược
+'!pog gnod gnum oahc\nnab no mac ikiW-IO'
+>>> s  # Nhưng chuỗi gốc không đổi
+'OI-Wiki cam on ban\nchao mung dong gop!'
 ```
 
-在最新的 Python 3 版本中，字符串是以 Unicode 编码的，也就是说，Python 的字符串支持多语言．[^ref2]在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`．C/C++ 中 `char` 类型也可以和 对应的 ASCII 码互转．
+Trong các phiên bản Python 3 mới, chuỗi được mã hóa bằng Unicode, nghĩa là chuỗi Python hỗ trợ đa ngôn ngữ.[^ref2] Trong Python, có thể dùng hàm dựng sẵn `ord()` để chuyển một ký tự Unicode sang mã Unicode tương ứng; chiều ngược lại dùng `chr()`. Trong C/C++, kiểu `char` cũng có thể chuyển qua lại với mã ASCII tương ứng.
 
-如果想把数字转换成对应的字符串，可以使用内置函数 `str()`，反之可以使用 `int()` 和 `float()`，你可以类比为 C/C++ 中的强制类型转换，但括号不是加在类型上而是作为函数的一部分括住参数．
+Nếu muốn chuyển số thành chuỗi tương ứng, có thể dùng hàm dựng sẵn `str()`; chiều ngược lại có thể dùng `int()` và `float()`. Có thể xem như ép kiểu trong C/C++, nhưng ngoặc không đặt sau kiểu mà là một phần của lời gọi hàm.
 
-Python 的字符串类型提供了许多强大的方法，包括计算某字符的索引与出现次数，转换大小写等等，这里就不一一列举，强烈建议查看 [官方文档](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str) 熟悉常用方法，遇到字符串操作应当首先考虑使用这些方法而非自力更生．
+Kiểu chuỗi của Python cung cấp nhiều phương thức mạnh, bao gồm tìm chỉ số và số lần xuất hiện của một ký tự, đổi hoa thường, v.v. Ở đây không liệt kê từng cái; rất nên đọc [tài liệu chính thức](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str) để làm quen các phương thức thường dùng. Khi gặp thao tác chuỗi, hãy nghĩ đến các phương thức sẵn có trước khi tự viết lại.
 
-### 创建数组
+<a id="&#21019;&#24314;&#25968;&#32452;"></a>
 
-从 C++ 转过来的同学可能很迷惑怎么在 Python 中创建数组，这里就介绍在 Python 开「数组」的语法，需要强调我们介绍的其实是几种 [序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types)，和 C 的数组有着本质区别，而更接近 C++ 中的 `vector`．
+### Tạo mảng
 
-#### 使用 `list`
+Bạn nào chuyển từ C++ sang có thể bối rối về cách tạo mảng trong Python. Phần này giới thiệu cú pháp "mô phỏng mảng" trong Python. Cần nhấn mạnh rằng thực chất ta đang nói về một số [kiểu sequence](https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types), khác bản chất với mảng C và gần với `vector` trong C++ hơn.
 
-列表（`list`）大概是 Python 中最常用也最强大的序列类型，列表中可以存放任意类型的元素，包括嵌套的列表，这符合数据结构中「广义表」的定义．请注意不要将其与 C++ STL 中的双向链表 [`list`](./csl/sequence-container.md#list) 混淆，故本文将使用「列表」而非 `list` 以免造成误解．
+<a id="&#20351;&#29992;-list"></a>
+
+#### Dùng `list`
+
+Danh sách (`list`) có lẽ là kiểu sequence thường dùng và mạnh nhất trong Python. Danh sách có thể chứa phần tử thuộc bất kỳ kiểu nào, kể cả danh sách lồng nhau, phù hợp với định nghĩa "generalized list" trong cấu trúc dữ liệu. Lưu ý đừng nhầm với danh sách liên kết đôi [`list`](./csl/sequence-container.md#list) trong C++ STL; vì vậy bài này sẽ gọi là "danh sách" thay vì `list` để tránh hiểu nhầm.
 
 ```pycon
->>> []  # 创建空列表，注意列表使用方括号
+>>> []  # Tạo danh sách rỗng; lưu ý danh sách dùng ngoặc vuông
 []
->>> nums = [0, 1, 2, 3, 5, 8, 13]; nums  # 初始化列表，注意整个列表可以直接打印
+>>> nums = [0, 1, 2, 3, 5, 8, 13]; nums  # Khởi tạo danh sách; có thể in trực tiếp cả danh sách
 [0, 1, 2, 3, 5, 8, 13]
->>> nums[0] = 1; nums  # 支持索引访问，支持修改元素
+>>> nums[0] = 1; nums  # Hỗ trợ truy cập chỉ số và sửa phần tử
 [1, 1, 2, 3, 5, 8, 13]
->>> nums.append(nums[-2]+nums[-1]); nums  # append() 同 vector 的 push_back()，也都没有返回值
+>>> nums.append(nums[-2]+nums[-1]); nums  # append() giống push_back() của vector, đều không có giá trị trả về
 [1, 1, 2, 3, 5, 8, 13, 21]
->>> nums.pop()  # 弹出并返回末尾元素，可以当栈使用；其实还可指定位置，默认是末尾
+>>> nums.pop()  # Lấy ra và trả về phần tử cuối, có thể dùng như stack; thực ra có thể chỉ định vị trí, mặc định là cuối
 21
->>> nums.insert(0, 1); nums  # 同 vector 的 insert(position, val)
+>>> nums.insert(0, 1); nums  # Giống insert(position, val) của vector
 [1, 1, 1, 2, 3, 5, 8, 13]
->>> nums.remove(1); nums  # 按值移除元素（只删第一个出现的），若不存在则抛出错误
+>>> nums.remove(1); nums  # Xóa theo giá trị (chỉ xóa lần xuất hiện đầu tiên), nếu không tồn tại sẽ báo lỗi
 [1, 1, 2, 3, 5, 8, 13]
->>> len(nums)  # 求列表长度，类似 vector 的 size()，但 len() 是内置函数
+>>> len(nums)  # Lấy độ dài danh sách, gần với size() của vector, nhưng len() là hàm dựng sẵn
 7
->>> nums.reverse(); nums  # 原地逆置
+>>> nums.reverse(); nums  # Đảo ngược tại chỗ
 [13, 8, 5, 3, 2, 1, 1]
->>> sorted(nums)  # 获得排序后的列表
+>>> sorted(nums)  # Lấy danh sách đã sắp xếp
 [1, 1, 2, 3, 5, 8, 13]
->>> nums  # 但原来的列表并未排序
+>>> nums  # Nhưng danh sách gốc chưa được sắp xếp
 [13, 8, 5, 3, 2, 1, 1]
->>> nums.sort(); nums  # 原地排序，可以指定参数 key 作为排序标准
+>>> nums.sort(); nums  # Sắp xếp tại chỗ, có thể chỉ định tham số key làm tiêu chí sắp xếp
 [1, 1, 2, 3, 5, 8, 13]
->>> nums.count(1)  # 类似 std::count()
+>>> nums.count(1)  # Gần với std::count()
 2
->>> nums.index(1)  # 返回值首次出现项的索引号，若不存在则抛出错误
+>>> nums.index(1)  # Trả về chỉ số của lần xuất hiện đầu tiên; nếu không tồn tại sẽ báo lỗi
 0
->>> nums.clear(); nums  # 同 vector 的 clear()
+>>> nums.clear(); nums  # Giống clear() của vector
 ```
 
-以上示例展现了列表与 `vector` 的相似之处，`vector` 中常用的操作一般也都能在列表中找到对应方法，不过某些方法如 `len()`,`sorted()` 会以内置函数的面目出现，而 STL 算法中的函数如 `find()`,`count()`,`max_element()`,`sort()`,`reverse()` 在 Python 中又成了对象的方法，使用时需要注意区分，更多方法请参见官方文档的 [列表详解](https://docs.python.org/zh-cn/3/tutorial/datastructures.html#more-on-lists)．下面将展示列表作为 Python 的基本序列类型的一些强大功能：
+Ví dụ trên cho thấy danh sách có nhiều điểm giống `vector`: các thao tác thường dùng trong `vector` thường cũng có phương thức tương ứng trong danh sách. Tuy nhiên, một số thao tác như `len()`, `sorted()` xuất hiện dưới dạng hàm dựng sẵn; còn các hàm trong STL algorithm như `find()`, `count()`, `max_element()`, `sort()`, `reverse()` lại trở thành phương thức của đối tượng trong Python. Khi dùng cần phân biệt. Xem thêm [mô tả chi tiết về list](https://docs.python.org/zh-cn/3/tutorial/datastructures.html#more-on-lists) trong tài liệu chính thức. Dưới đây là một số tính năng mạnh của danh sách với vai trò kiểu sequence cơ bản của Python:
 
-Python 支持多种复合数据类型，可将不同值组合在一起．最常用的 `list`，类型是用方括号标注、逗号分隔的一组值．例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表．
+Python hỗ trợ nhiều kiểu dữ liệu hợp, có thể gom các giá trị khác nhau lại với nhau. Kiểu thường dùng nhất là `list`, được viết bằng một nhóm giá trị phân cách bằng dấu phẩy và đặt trong ngoặc vuông. Ví dụ, `[1, 2, 3]` và `['a','b','c']` đều là danh sách.
 
 ```pycon
->>> lst = [1, '1'] + ["2", 3.0]  # 列表直接相加生成一个新列表
->>> lst  # 这里存放不同的类型只是想说明可以这么做，但这不是好的做法
+>>> lst = [1, '1'] + ["2", 3.0]  # Cộng trực tiếp hai danh sách tạo ra danh sách mới
+>>> lst  # Chứa nhiều kiểu khác nhau chỉ để minh họa rằng có thể làm vậy; đây không phải thực hành tốt
 [1, '1', '2', 3.0]
->>> 3 in lst  # 实用的成员检测操作，字符串也有该操作且还支持子串检测
+>>> 3 in lst  # Kiểm tra thành viên rất hữu ích; chuỗi cũng có thao tác này và còn hỗ trợ kiểm tra chuỗi con
 True
->>> [1, '1'] in lst  # 仅支持单个成员检测，不会发现「子序列」
+>>> [1, '1'] in lst  # Chỉ hỗ trợ kiểm tra một phần tử, không phát hiện "dãy con"
 False
->>> lst[1:3] = [2, 3]; lst  # 切片并赋值，原列表被修改
+>>> lst[1:3] = [2, 3]; lst  # Cắt lát và gán, danh sách gốc bị sửa
 [1, 2, 3, 3.0]
->>> lst[::-1]  # 获得反转后的新列表
+>>> lst[::-1]  # Lấy danh sách mới đã đảo ngược
 [3.0, 3, 2, 1]
->>> lst *= 2; lst  # 数乘拼接
+>>> lst *= 2; lst  # Nhân để nối lặp
 [1, 2, 3, 3.0, 1, 2, 3, 3.0]
->>> del lst[4:]; lst  # 也可写 lst[4:] = []，del 语句不止可以用于删除序列中元素
+>>> del lst[4:]; lst  # Cũng có thể viết lst[4:] = []; câu lệnh del không chỉ dùng để xóa phần tử trong sequence
 [1, 2, 3, 3.0]
 ```
 
-以上示例展现了列表作为序列的一些常用操作，可以看出许多操作如切片是与字符串相通的，但字符串是「不可变序列」而列表是「可变序列」，故可以通过切片灵活地修改列表．在 C/C++ 中我们往往会通过循环处理字符数组，下面将展示如何使用 [「列表推导式」](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) 在字符串和列表之间转换：
+Ví dụ trên cho thấy một số thao tác thường dùng của danh sách như một sequence. Có thể thấy nhiều thao tác, như cắt lát, dùng chung ý tưởng với chuỗi. Nhưng chuỗi là "sequence bất biến", còn danh sách là "sequence khả biến", nên có thể linh hoạt sửa danh sách bằng slice. Trong C/C++, ta thường xử lý mảng ký tự bằng vòng lặp; dưới đây minh họa cách dùng [list comprehension](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) để chuyển đổi giữa chuỗi và danh sách:
 
 ```pycon
->>> # 建立一个 [65, 70) 区间上的整数数组，range 也是一种类型，可看作左闭右开区间，第三个参数为步长可省略
->>> nums = list(range(65,70))  # 记得 range 外面还要套一层 list()
+>>> # Tạo mảng số nguyên trên đoạn [65, 70); range cũng là một kiểu, có thể xem như khoảng trái đóng phải mở, tham số thứ ba là bước và có thể bỏ qua
+>>> nums = list(range(65,70))  # Nhớ bọc range bằng list()
 [65, 66, 67, 68, 69]
->>> lst = [chr(x) for x in nums]  # 列表推导式的典型结构，[exp for var in iterable if cond]
->>> lst  # 上两句可以合并成 [chr(x) for x in range(65,70)]
+>>> lst = [chr(x) for x in nums]  # Cấu trúc điển hình của list comprehension: [exp for var in iterable if cond]
+>>> lst  # Hai câu trên có thể gộp thành [chr(x) for x in range(65,70)]
 ['A', 'B', 'C', 'D', 'E']
->>> s = ''.join(lst); s # 用空字符串 '' 拼接列表中的元素生成新字符串
+>>> s = ''.join(lst); s  # Dùng chuỗi rỗng '' để nối các phần tử danh sách thành chuỗi mới
 'ABCDE'
->> list(s)  # 字符串生成字符列表
+>>> list(s)  # Tạo danh sách ký tự từ chuỗi
 ['A', 'B', 'C', 'D', 'E']
->>> # 如果你不知道有 s.lower() 方法就可能写出下面这样新瓶装旧酒的表达式
->>> ''.join([chr(ord(ch) - 65 + 97) for ch in s if ch >= 'A' and ch <= 'Z'])  
+>>> # Nếu không biết phương thức s.lower(), bạn có thể viết một biểu thức "rượu cũ bình mới" như sau
+>>> ''.join([chr(ord(ch) - 65 + 97) for ch in s if ch >= 'A' and ch <= 'Z'])
 'abcde'
 ```
 
-下面演示一些在 OI 中更常见的场景，比如二维「数组」：
+Dưới đây là vài tình huống thường gặp hơn trong OI, chẳng hạn "mảng" hai chiều:
 
 ```pycon
->>> vis = [[0] * 3] * 3  # 开一个 3*3 的全 0 数组
->>> vis 
+>>> vis = [[0] * 3] * 3  # Tạo mảng 3*3 toàn 0
+>>> vis
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> vis[0][0] = 1; vis  # 怎么会把其他行也修改了？
+>>> vis[0][0] = 1; vis  # Sao các dòng khác cũng bị sửa?
 [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
->>> # 先来看下一维列表的赋值
->>> a1 = [0, 0, 0]; a2 = a1; a3 = a1[:]  # 列表也可以直接被赋给新的变量
->>> a1[0] = 1; a1  # 修改列表 a1，似乎正常
+>>> # Trước hết xem phép gán danh sách một chiều
+>>> a1 = [0, 0, 0]; a2 = a1; a3 = a1[:]  # Danh sách có thể gán trực tiếp cho biến mới
+>>> a1[0] = 1; a1  # Sửa danh sách a1, trông có vẻ bình thường
 [1, 0, 0]
->>> a2  # 怎么 a2 也被改变了
+>>> a2  # Sao a2 cũng đổi?
 [1, 0, 0]
->>> a3  # a3 没有变化
+>>> a3  # a3 không đổi
 [0, 0, 0]
->>> id(a1) == id(a2) and id(a1) != id(a3)  # 内置函数 id() 给出对象的「标识值」，可类比为地址，地址相同说明是一个对象
+>>> id(a1) == id(a2) and id(a1) != id(a3)  # Hàm dựng sẵn id() cho "định danh" của đối tượng, có thể so với địa chỉ; địa chỉ giống nhau tức là cùng một đối tượng
 True
->>> vis2 = vis[:]  # 拷贝一份二维列表
->>> vis[0][1] = 2; vis  # vis 会被批量修改
+>>> vis2 = vis[:]  # Sao chép một danh sách hai chiều
+>>> vis[0][1] = 2; vis  # vis bị sửa hàng loạt
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
->>> vis2  # 但 vis2 是切片拷贝还是被改了
+>>> vis2  # Nhưng vis2 được copy bằng slice vẫn bị sửa
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
->>> id(vis) != id(vis2)  # vis 和 vis2 不是一个对象
+>>> id(vis) != id(vis2)  # vis và vis2 không phải cùng một đối tượng
 True
->>> # vis2 虽然不是 vis 的引用，但其中对应行都指向相同的对象
+>>> # Tuy vis2 không phải tham chiếu của vis, các dòng tương ứng bên trong vẫn trỏ đến cùng đối tượng
 >>> [id(vis[i]) == id(vis2[i]) for i in range(3)]
 [True, True, True]
->>> # 回看二维列表自身
->>> [id(x) for x in vis]  # 具体数字和这里不一样但三个值一定相同，说明是三个相同对象
+>>> # Nhìn lại bản thân danh sách hai chiều
+>>> [id(x) for x in vis]  # Con số cụ thể sẽ khác, nhưng ba giá trị chắc chắn giống nhau, cho thấy đó là ba lần lặp của cùng đối tượng
 [139760373248192, 139760373248192, 139760373248192]
 ```
 
-其实有一个重要的事实，Python 中赋值只传递了引用而非创建新值，你可以创建不同类型的变量并赋给新变量，验证发现二者的标识值是相同的，只不过直到现在我们才介绍了列表这一种可变类型，而给数字、字符串这样的不可变类型赋新值时实际上创建了新的对象，故而前后两个变量互不干扰．但列表是可变类型，所以我们修改一个列表的元素时，另一个列表由于指向同一个对象所以也被修改了．创建二维数组也是类似的情况，示例中用乘法创建二维列表相当于把 `[0]*3` 这个一维列表重复了 3 遍，所以涉及其中一个列表的操作会同时影响其他两个列表．更不幸的是，在将二维列表赋给其他变量的时候，就算用切片来拷贝，也只是「浅拷贝」，其中的元素仍然指向相同的对象，解决这个问题需要使用标准库中的 [`deepcopy`](https://docs.python.org/3/library/copy.html)，或者尽量避免整个赋值二维列表．不过还好，创建二维列表时避免创建重复的列表还是比较简单，只需使用「列表推导式」：
+Có một sự thật quan trọng: phép gán trong Python chỉ truyền tham chiếu, không tạo giá trị mới. Bạn có thể tạo biến thuộc nhiều kiểu khác nhau rồi gán cho biến mới, sau đó kiểm tra thấy định danh của hai biến giống nhau. Đến bây giờ ta mới giới thiệu danh sách, một kiểu khả biến; khi gán giá trị mới cho các kiểu bất biến như số và chuỗi, thực tế Python tạo đối tượng mới, nên hai biến trước sau không ảnh hưởng nhau. Nhưng danh sách là kiểu khả biến, nên khi sửa phần tử của một danh sách, danh sách kia cũng bị sửa vì cùng trỏ đến một đối tượng. Tạo mảng hai chiều cũng tương tự: trong ví dụ, dùng phép nhân để tạo danh sách hai chiều tương đương lặp lại danh sách một chiều `[0]*3` ba lần, nên thao tác trên một dòng sẽ đồng thời ảnh hưởng hai dòng còn lại. Tệ hơn nữa, khi gán danh sách hai chiều cho biến khác, ngay cả dùng slice để copy cũng chỉ là "shallow copy"; các phần tử bên trong vẫn trỏ đến cùng đối tượng. Để giải quyết, cần dùng [`deepcopy`](https://docs.python.org/3/library/copy.html) trong thư viện chuẩn, hoặc cố gắng tránh gán cả danh sách hai chiều. May là việc tạo danh sách hai chiều mà không lặp lại cùng một danh sách khá đơn giản: chỉ cần dùng list comprehension.
 
 ```pycon
->>> vis1 = [[0] * 3 for _ in range(3)]  # 把用不到的循环计数变量设为下划线 _ 是一种惯例
->>> # 但在 REPL 中 _ 默认指代上一个表达式输出的结果，故也可使用双下划线
+>>> vis1 = [[0] * 3 for _ in range(3)]  # Đặt biến đếm không dùng đến thành dấu gạch dưới _ là một quy ước
+>>> # Nhưng trong REPL, _ mặc định chỉ kết quả của biểu thức trước, nên cũng có thể dùng hai dấu gạch dưới
 >>> vis1
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> [id(x) for x in vis1]  # 具体数字和这里不一样但三个值一定不同，说明是三个不同对象
+>>> [id(x) for x in vis1]  # Con số cụ thể sẽ khác, nhưng ba giá trị chắc chắn khác nhau, cho thấy là ba đối tượng khác nhau
 [139685508981248, 139685508981568, 139685508981184]
 >>> vis1[0][0] = 1
 [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> a2[0][0] = 10  # 访问和赋值二维数组
+>>> a2[0][0] = 10  # Truy cập và gán mảng hai chiều
 ```
 
-我们未讲循环的用法就先介绍了列表推导式，这是由于 Python 是高度动态的解释型语言，因此其程序运行有大量的额外开销．尤其是 **for 循环在 Python 中运行的奇慢无比**．因此在使用 Python 时若想获得高性能，尽量使用列表推导式，或者 `filter`,`map` 等内置函数直接操作整个序列来避免循环，当然这还是要根据具体问题而定．
+Ta đã giới thiệu list comprehension trước khi nói về vòng lặp, vì Python là ngôn ngữ thông dịch có tính động cao, nên việc chạy chương trình có nhiều overhead. Đặc biệt, **vòng lặp for trong Python chạy khá chậm**. Vì vậy khi dùng Python mà muốn đạt hiệu năng cao, hãy cố gắng dùng list comprehension, hoặc các hàm dựng sẵn như `filter`, `map` để thao tác trực tiếp trên cả sequence nhằm tránh vòng lặp. Tất nhiên, vẫn phải tùy bài toán cụ thể.
 
-#### 使用 NumPy
+<a id="&#20351;&#29992;-numpy"></a>
 
-??? note "什么是 NumPy"
-    [NumPy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算．在测试算法原型时可以利用 NumPy 避免手写排序、求最值等算法．NumPy 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的．此外 NumPy 核心是用 C 编写的，运算效率很高．不过需要注意，它不是标准库的一部分，可以使用 `pip install numpy` 安装，但不保证 OI 考场环境中可用（参见文首 [Python 版本](#一些平台提供的-python-版本)）．
+#### Dùng NumPy
 
-下面的代码将介绍如何利用 NumPy 建立多维数组并进行访问．
+??? note "NumPy là gì"
+    [NumPy](https://numpy.org/) là thư viện tính toán khoa học nổi tiếng của Python, cung cấp phép tính số học và ma trận hiệu năng cao. Khi thử nghiệm mẫu thuật toán, có thể dùng NumPy để tránh tự viết các thuật toán sắp xếp, tìm min/max, v.v. Cấu trúc dữ liệu cốt lõi của NumPy là `ndarray`, tức mảng n chiều; nó được lưu liên tục trong bộ nhớ và có độ dài cố định. Ngoài ra, phần lõi của NumPy được viết bằng C nên hiệu suất cao. Cần lưu ý NumPy không phải một phần của thư viện chuẩn; có thể cài bằng `pip install numpy`, nhưng không đảm bảo môi trường thi OI có sẵn (xem [phiên bản Python](#mot-so-phien-ban-python-tren-cac-nen-tang) ở đầu bài).
+
+Đoạn mã sau giới thiệu cách dùng NumPy để tạo mảng nhiều chiều và truy cập chúng.
 
 ```pycon
->>> import numpy as np  # 请自行搜索 import 的意义和用法
->>> np.empty(3) # 开容量为 3 的空数组，注意没有初始化为 0
+>>> import numpy as np  # Hãy tự tìm hiểu ý nghĩa và cách dùng import
+>>> np.empty(3)  # Tạo mảng rỗng dung lượng 3; lưu ý không khởi tạo bằng 0
 array([0.00000000e+000, 0.00000000e+000, 2.01191014e+180])
->>> np.zeros((3, 3)) # 开 3*3 的数组，并初始化为 0
+>>> np.zeros((3, 3))  # Tạo mảng 3*3 và khởi tạo bằng 0
 array([[0., 0., 0.],
        [0., 0., 0.],
        [0., 0., 0.]])
->>> a1 = np.zeros((3, 3), dtype=int) # 开 3×3 的整数数组
->>> a1[0][0] = 1 # 访问和赋值
->>> a1[0, 0] = 1 # 更友好的语法
->>> a1.shape # 数组的形状
+>>> a1 = np.zeros((3, 3), dtype=int)  # Tạo mảng số nguyên 3x3
+>>> a1[0][0] = 1  # Truy cập và gán
+>>> a1[0, 0] = 1  # Cú pháp thân thiện hơn
+>>> a1.shape  # Hình dạng của mảng
 (3, 3)
 
->>> a1[:2, :2] # 取前两行、前两列构成的子阵，无拷贝
+>>> a1[:2, :2]  # Lấy ma trận con gồm hai dòng đầu, hai cột đầu, không copy
 array([[1, 0],
        [0, 0]])
 
->>> a1[:, [0, 2]] # 获取第 1、3 列，无拷贝
+>>> a1[:, [0, 2]]  # Lấy cột 1 và 3, không copy
 array([[1, 0],
        [0, 0],
        [0, 0]])
->>> np.max(a1) # 获取数组最大值
+>>> np.max(a1)  # Lấy giá trị lớn nhất của mảng
 1
->>> a1.flatten() # 将数组展平
+>>> a1.flatten()  # Trải phẳng mảng
 array([1, 0, 0, 0, 0, 0, 0, 0, 0])
 
->>> np.sort(a1, axis = 1) # 沿行方向对数组进行排序，返回排序结果
+>>> np.sort(a1, axis = 1)  # Sắp xếp mảng theo chiều dòng, trả về kết quả sắp xếp
 array([[0, 0, 1],
        [0, 0, 0],
        [0, 0, 0]])
->>> a1.sort(axis = 1) # 沿行方向对数组进行原地排序
+>>> a1.sort(axis = 1)  # Sắp xếp tại chỗ theo chiều dòng
 ```
 
-#### 使用 `array`
+<a id="&#20351;&#29992;-array"></a>
 
-[`array`](https://docs.python.org/zh-cn/3/library/array.html) 是 Python 标准库提供的一种高效数值数组，可以紧凑地表示基本类型值的数组，但不支持数组嵌套，也很少见到有人使用它，这里只是顺便提一下．
+#### Dùng `array`
 
-若无特殊说明，后文出现「数组」一般指「列表」．
+[`array`](https://docs.python.org/zh-cn/3/library/array.html) là một kiểu mảng số hiệu quả do thư viện chuẩn Python cung cấp. Nó biểu diễn mảng các giá trị kiểu cơ bản một cách gọn trong bộ nhớ, nhưng không hỗ trợ lồng mảng và cũng hiếm khi được dùng; ở đây chỉ nhắc qua.
 
-### [输入输出](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
+Nếu không nói gì thêm, "mảng" trong phần sau thường chỉ "danh sách".
 
-Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成．前文已经介绍过，下面介绍进阶用法．
+<a id="&#36755;&#20837;&#36755;&#20986;"></a>
 
-#### 格式化输出
+### [Nhập xuất](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
 
-算法竞赛中通常只涉及到基本的数值和字符串输出，`print()` 已基本足够，只有当涉及到浮点数位数时需要用到格式化字符串输出．格式化有三种方法，第一种也是最老旧的方法是使用 `printf()` 风格的 `%` 操作符；另一种是利用 [`format` 函数](https://docs.python.org/3/library/string.html#formatstrings)；第三种是 Python 3.6 新增的 [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals)，最为简洁，但不保证考场中的 Python 版本足够新．详细丰富的说明可以参考 [这个网页](https://www.python-course.eu/python3_formatted_output.php)，尽管更推荐使用 `format()` 方法，但为了获得与 C 接近的体验，下面仅演示与 `printf()` 类似的老式方法：
+Nhập xuất trong Python chủ yếu thực hiện bằng các hàm dựng sẵn `input()` và `print()`. Phần trước đã giới thiệu cơ bản; dưới đây là cách dùng nâng cao hơn.
+
+<a id="&#26684;&#24335;&#21270;&#36755;&#20986;"></a>
+
+#### Xuất định dạng
+
+Trong lập trình thi đấu, thông thường chỉ cần xuất số và chuỗi cơ bản, `print()` về cơ bản đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo phong cách `printf()`; cách khác là dùng [hàm `format`](https://docs.python.org/3/library/string.html#formatstrings); cách thứ ba là [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals) thêm từ Python 3.6, ngắn gọn nhất nhưng không đảm bảo phiên bản Python trong phòng thi đủ mới. Có thể xem giải thích chi tiết hơn tại [trang này](https://www.python-course.eu/python3_formatted_output.php). Dù khuyến nghị dùng phương thức `format()`, để có trải nghiệm gần với C, dưới đây chỉ minh họa cách cũ tương tự `printf()`:
 
 ```pycon
->>> pi = 3.1415926; print('%.4f' % pi)   # 格式为 %[flags][width][.precision]type
+>>> pi = 3.1415926; print('%.4f' % pi)   # Định dạng: %[flags][width][.precision]type
 3.1416
->>> '%.4f - %8f = %d' % (pi, 0.1416, 3)  # 右边多个参数用 () 括住，后面会看到其实是「元组」 
+>>> '%.4f - %8f = %d' % (pi, 0.1416, 3)  # Nếu bên phải có nhiều tham số, dùng () bao lại; sau này sẽ thấy đây thực ra là "tuple"
 '3.1416 - 0.141600 = 3'
 ```
 
-#### `split()` 函数
+<a id="split-&#20989;&#25968;"></a>
 
-`input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符，但在算法竞赛中，常见的输入形式是一行输入多个数值，因此就需要使用字符串的 `split()` 方法并搭配列表推导式得到存放数值类型的列表，下面以输入 n 个数求平均值为例演示输入 n 个数得到「数组」的方法：
+#### Hàm `split()`
+
+Hành vi của hàm `input()` gần với `getline()` trong C++: đọc cả một dòng thành chuỗi và không gồm ký tự xuống dòng ở cuối. Nhưng trong lập trình thi đấu, dạng nhập thường gặp là một dòng có nhiều số, nên cần dùng phương thức `split()` của chuỗi kết hợp với list comprehension để lấy danh sách chứa các giá trị số. Dưới đây minh họa bằng bài nhập n số và tính trung bình:
 
 ```pycon
->>> s = input('请输入一串数字: '); s  # 自己调试时可以向 input() 传入字符串作为提示
-请输入一串数字: 1 2 3 4 5 6
+>>> s = input('Nhập dãy số: '); s  # Khi tự debug, có thể truyền chuỗi vào input() làm lời nhắc
+Nhập dãy số: 1 2 3 4 5 6
 '1 2 3 4 5 6'
 >>> a = s.split(); a
 ['1', '2', '3', '4', '5', '6']
 >>> a = [int(x) for x in a]; a
 [1, 2, 3, 4, 5, 6]
->>> # 以上输入过程可写成一行 a = [int(x) for x in input().split()]
->>> sum(a) / len(a)  # sum() 是内置函数
+>>> # Quá trình nhập trên có thể viết một dòng: a = [int(x) for x in input().split()]
+>>> sum(a) / len(a)  # sum() là hàm dựng sẵn
 3.5
 ```
 
-有时题目会在每行输入固定几个数，比如边的起点、终点、权重，如果只用上面提到的方法就只能每次读入数组然后根据下标赋值，这时可以使用 Python 的「拆包」特性一次赋值多个变量：
+Đôi khi đề bài mỗi dòng nhập cố định vài số, chẳng hạn đỉnh đầu, đỉnh cuối và trọng số của cạnh. Nếu chỉ dùng cách trên, mỗi lần phải đọc vào mảng rồi gán theo chỉ số. Lúc này có thể dùng tính năng "unpack" của Python để gán nhiều biến một lần:
 
 ```pycon
 >>> u, v, w = [int(x) for x in input().split()]
@@ -477,194 +519,210 @@ Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成
 1 2 4
 ```
 
-题目中经常遇到输入 N 行的情况，可我们还没有讲最基本的循环语句，但 Python 强大的序列操作能在不使用循环的情况下应对多行输入，下面假设将各条边的起点、终点、权值分别读入三个数组：
+Trong đề bài thường gặp trường hợp nhập N dòng. Ta chưa nói về câu lệnh vòng lặp cơ bản, nhưng các thao tác sequence mạnh của Python có thể xử lý nhập nhiều dòng mà không cần viết vòng lặp riêng. Dưới đây giả sử đọc riêng điểm đầu, điểm cuối và trọng số của các cạnh vào ba mảng:
 
 ```pycon
 >>> N = 4; mat = [[int(x) for x in input().split()] for i in range(N)]
-1 3 3 
-1 4 1 
-2 3 4 
-3 4 1 
->>> mat  # 先按行读入二维数组
+1 3 3
+1 4 1
+2 3 4
+3 4 1
+>>> mat  # Trước hết đọc theo dòng thành mảng hai chiều
 [[1, 3, 3], [1, 4, 1], [2, 3, 4], [3, 4, 1]]
->>> u, v, w = map(list, zip(*mat))   
-# *将 mat 解包得到里层的多个列表
-# zip() 将多个列表中对应元素聚合成元组，得到一个迭代器
-# map(list, iterable) 将序列中的元素（这里为元组）转成列表
->>> print(u, v, w)  # 直接将 map() 得到的迭代器拆包，分别赋值给 u, v, w
+>>> u, v, w = map(list, zip(*mat))
+# * unpack mat để lấy các danh sách bên trong
+# zip() gom các phần tử cùng vị trí của nhiều danh sách thành tuple, tạo một iterator
+# map(list, iterable) chuyển các phần tử trong sequence (ở đây là tuple) thành list
+>>> print(u, v, w)  # Unpack trực tiếp iterator do map() tạo ra, gán lần lượt cho u, v, w
 [1, 1, 2, 3] [3, 4, 3, 4] [3, 1, 4, 1]
 ```
 
-上述程序实际上相当于先读入一个 N 行 3 列的矩阵，然后将其转置成 3 行 N 列的矩阵，也就是外层列表中嵌套了 3 个列表，最后将代表这起点、终点、权值的 3 个列表分别赋值给 u, v, w．内置函数 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) 可以将多个等长序列中的对应元素拼接在「元组」内，得到新序列．而 `map()` 其实是函数式编程的一种操作，它将一个给定函数作用于 `zip()` 所产生序列的元素，这里就是用 `list()` 将元组变成列表．你可以自行练习使用 `*` 和 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip)，[`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 以理解其含义．需要注意的是 Python 3 中 `zip()` 和 `map()` 创建的不再返回列表而是返回迭代器，这里暂不解释它们之间的异同，你可以认为迭代器可以产生列表中的各个元素，用 `list()` 套住迭代器就能生成列表．
+Chương trình trên thực chất tương đương đọc trước một ma trận N dòng 3 cột, sau đó chuyển vị thành ma trận 3 dòng N cột, tức danh sách ngoài lồng 3 danh sách, cuối cùng gán riêng 3 danh sách đại diện điểm đầu, điểm cuối và trọng số cho `u`, `v`, `w`. Hàm dựng sẵn [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) có thể ghép các phần tử tương ứng trong nhiều sequence cùng độ dài vào "tuple" để tạo sequence mới. Còn `map()` là một thao tác lập trình hàm: áp dụng một hàm cho từng phần tử của sequence do `zip()` sinh ra; ở đây là dùng `list()` để biến tuple thành list. Bạn có thể tự luyện tập với `*`, [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) và [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) để hiểu ý nghĩa. Cần lưu ý trong Python 3, `zip()` và `map()` không còn trả về list mà trả về iterator. Ở đây tạm thời không giải thích khác biệt giữa chúng; có thể hiểu iterator là thứ có thể sinh ra từng phần tử của list, và dùng `list()` bọc iterator sẽ tạo ra list.
 
-#### [文件读写](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
+<a id="&#25991;&#20214;&#35835;&#20889;"></a>
 
-Python 内置函数 [`open()`](https://docs.python.org/3/library/functions.html#open) 用于文件读写，为了防止读写过程中出错导致文件未被正常关闭，这里只介绍使用 [`with`](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) 语句的安全读写方法：
+#### [Đọc ghi tệp](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
+
+Hàm dựng sẵn [`open()`](https://docs.python.org/3/library/functions.html#open) của Python dùng để đọc ghi tệp. Để tránh lỗi trong quá trình đọc ghi khiến tệp không được đóng đúng cách, ở đây chỉ giới thiệu cách đọc ghi an toàn bằng câu lệnh [`with`](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement):
 
 ```python
 a = []
 with open("in.txt") as f:
-    N = int(f.readline())  # 读入第一行的 N
+    N = int(f.readline())  # Đọc N ở dòng đầu tiên
     a[len(a) :] = [[int(x) for x in f.readline().split()] for i in range(N)]
 
 with open("out.txt", "w") as f:
     f.write("1\n")
 ```
 
-关于文件读写的函数有很多，分别适用于不同的场景，由于 OI 赛事尚不支持使用 Python，这里从略．
+Có nhiều hàm liên quan đến đọc ghi tệp, phù hợp với các tình huống khác nhau. Vì các kỳ thi OI hiện chưa hỗ trợ dùng Python, ở đây không đi sâu.
 
-### [控制流程](https://docs.python.org/zh-cn/3/tutorial/controlflow.html)
+<a id="&#25511;&#21046;&#27969;&#31243;"></a>
 
-尽管我们已经学习了 Python 的许多特性，但到目前为止我们展示的 Python 代码都是单行语句，这掩盖了 Python 和 C 在代码风格上的重大差异：首先，Python 中不用 `{}` 而是用缩进表示块结构，如果缩进没有对齐会直接报错，如果 tab 和 空格混用也会报错；其次，块结构开始的地方比如 `if` 和 `for` 语句的行末要有冒号 `:`．这有助于代码的可读性，但你也可能怀念 C 那种自由的体验，毕竟如果复制粘贴时因为丢失缩进而不得不手动对齐是很恼人的．
+### [Luồng điều khiển](https://docs.python.org/zh-cn/3/tutorial/controlflow.html)
 
-#### 循环结构
+Tuy đã học nhiều tính năng của Python, đến lúc này các đoạn mã Python được trình bày đều là câu lệnh một dòng. Điều đó che đi khác biệt lớn giữa Python và C về phong cách mã: thứ nhất, Python không dùng `{}` mà dùng thụt lề để biểu diễn khối lệnh; nếu thụt lề không thẳng hàng sẽ báo lỗi ngay, nếu trộn tab và dấu cách cũng sẽ báo lỗi. Thứ hai, nơi bắt đầu khối lệnh, chẳng hạn dòng `if` và `for`, phải kết thúc bằng dấu hai chấm `:`. Điều này giúp mã dễ đọc hơn, nhưng bạn cũng có thể nhớ cảm giác tự do của C, vì khi copy paste làm mất thụt lề rồi phải căn lại thủ công thì rất phiền.
 
-列表推导式能在一行内高效地完成批量操作，但有时为了压行我们已经显得过分刻意，许多场景下还是只能使用循环结构，所以我们再以读入多行数据为例展示 Python 中的循环是如何编写的：
+<a id="&#24490;&#29615;&#32467;&#26500;"></a>
+
+#### Cấu trúc vòng lặp
+
+List comprehension có thể thực hiện thao tác hàng loạt hiệu quả trong một dòng, nhưng đôi khi việc ép dòng trở nên quá gượng ép. Nhiều tình huống vẫn chỉ có thể dùng cấu trúc vòng lặp, nên ta tiếp tục lấy ví dụ đọc nhiều dòng dữ liệu để minh họa cách viết vòng lặp trong Python:
 
 ```python
-# 请注意从现在开始我们不再使用 REPL，请自行复制多行数据
-u, v, w = ([] for i in range(3))  # 多变量赋值
-for i in range(4):  # 这里假设输入 4 行数据
+# Lưu ý từ đây trở đi ta không dùng REPL nữa; hãy tự copy dữ liệu nhiều dòng
+u, v, w = ([] for i in range(3))  # Gán nhiều biến
+for i in range(4):  # Ở đây giả sử nhập 4 dòng dữ liệu
     _u, _v, _w = [int(x) for x in input().split()]
     u.append(_u), v.append(_v), w.append(_w)
-    # 不可进行类似 cin >> u[i] >> v[i] >> w[i] 的操作，因为必定超出列表当前的长度
-    # 当然你可以选择初始化长度为 MAXN 的全 0 列表，不过需要记住真实长度并删掉多余元素
+    # Không thể làm kiểu cin >> u[i] >> v[i] >> w[i], vì chắc chắn vượt quá độ dài hiện tại của list
+    # Tất nhiên bạn có thể khởi tạo list toàn 0 độ dài MAXN, nhưng cần nhớ độ dài thật và xóa phần dư
 print(u, v, w)
 ```
 
-需要注意，Python 中的 for 循环和 C/C++ 有较大的差别，其作用类似 C++ 11 引入的 [「基于范围的循环」](./new.md#基于范围的-for-循环)，实质是迭代序列中的元素，比如编写循环遍历数组下标需要迭代 `range(len(lst))`，而非真正定义起始和终止条件，所以使用起来并没有 C/C++ 灵活．
+Cần lưu ý vòng lặp `for` trong Python khác C/C++ khá nhiều. Vai trò của nó gần với [vòng lặp dựa trên range của C++11](./new.md#%E5%9F%BA%E4%BA%8E%E8%8C%83%E5%9B%B4%E7%9A%84-for-%E5%BE%AA%E7%8E%AF): về bản chất là lặp qua các phần tử trong sequence. Ví dụ, nếu muốn lặp qua chỉ số mảng, cần lặp qua `range(len(lst))`, chứ không phải thật sự định nghĩa điều kiện bắt đầu và kết thúc. Vì vậy nó không linh hoạt như C/C++.
 
-下面再用 while 循环展示行数不定的情况下如何输入：
+Dưới đây dùng vòng lặp `while` để minh họa cách nhập khi số dòng không cố định:
 
 ```python
-u, v, w = [], [], []  # 多变量赋值，其实同上
-s = input()  # 注意 Python 中赋值语句不能放在条件表达式中
-while s:  # 不能像 C 那样 while(!scanf())
-    # 用切片拼接避免了 append()，注意列表推导式中又嵌套了列表
+u, v, w = [], [], []  # Gán nhiều biến, thực ra giống trên
+s = input()  # Lưu ý câu lệnh gán trong Python không thể đặt trong biểu thức điều kiện
+while s:  # Không thể viết như C: while(!scanf())
+    # Dùng slice để nối, tránh append(); lưu ý trong list comprehension lại lồng list
     u[len(u) :], v[len(v) :], w[len(w) :] = [[int(x)] for x in s.split()]
     s = input()
-# Python 3.8 引入了 walrus operator 海象运算符后，你可以节省两行，但考场环境很可能不支持
+# Từ Python 3.8 có walrus operator, bạn có thể tiết kiệm hai dòng, nhưng môi trường thi có thể không hỗ trợ
 while s := input():
     u[len(u) :], v[len(v) :], w[len(w) :] = [[int(x)] for x in s.split()]
 print(u, v, w)
 ```
 
-#### 选择结构
+<a id="&#36873;&#25321;&#32467;&#26500;"></a>
 
-和 C/C++ 大同小异，一些形式上的差别都在下面的示例中有所展示，此外还需注意条件表达式中不允许使用赋值运算符（Python 3.8 以上可用 [`:=`](https://www.python.org/dev/peps/pep-0572/)），以及 [没有 switch 语句](https://docs.python.org/zh-cn/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python)．
+#### Cấu trúc rẽ nhánh
+
+Nhìn chung gần giống C/C++; các khác biệt về hình thức được minh họa trong ví dụ dưới đây. Ngoài ra cần lưu ý biểu thức điều kiện không cho phép dùng toán tử gán (Python 3.8 trở lên có thể dùng [`:=`](https://www.python.org/dev/peps/pep-0572/)), và [không có câu lệnh switch](https://docs.python.org/zh-cn/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python).
 
 ```python
-# 条件表达式两侧无括号
+# Biểu thức điều kiện không cần ngoặc hai bên
 if 4 >= 3 > 2 and 3 != 5 == 5 != 7:
-    print("关系运算符可以连续使用")
+    print("Có thể viết liên tiếp các toán tử quan hệ")
     x = None or [] or -2
-    print("&&  ||  !", "与  或  非", "and or not", sep="\n")
-    print("善用 and/or 可节省行数")
+    print("&&  ||  !", "and  or  not", "and or not", sep="\n")
+    print("Dùng khéo and/or có thể tiết kiệm số dòng")
     if not x:
-        print("负数也是 True，不执行本句")
+        print("Số âm cũng là True, nên câu này không chạy")
     elif x & 1:
-        print("用 elif 而不是 else if\n" "位运算符与 C 相近，偶数&1 得 0，不执行本句")
+        print("Dùng elif thay vì else if\n" "Toán tử bit gần với C; số chẵn&1 bằng 0, nên câu này không chạy")
     else:
-        print("也有三目运算符") if x else print("注意结构")
+        print("Cũng có toán tử ba ngôi") if x else print("Chú ý cấu trúc")
 ```
 
-#### 异常处理
+<a id="&#24322;&#24120;&#22788;&#29702;"></a>
 
-尽管 C++ 中有 [try 块](https://zh.cppreference.com/w/cpp/language/try_catch) 用于异常处理，但竞赛中一般从不使用，而 Python 中常见的是 [EAFP](https://docs.python.org/zh-cn/3/glossary.html#term-eafp) 风格，故而代码中可能大量使用 [`try-except`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-try-statement) 语句，在后文介绍 `dict` 这一结构时还会用到，这里展示：
+#### Xử lý ngoại lệ
+
+Tuy C++ có [try block](https://zh.cppreference.com/w/cpp/language/try_catch) để xử lý ngoại lệ, trong thi đấu thông thường gần như không dùng. Còn trong Python, phong cách [EAFP](https://docs.python.org/zh-cn/3/glossary.html#term-eafp) rất phổ biến, nên trong mã có thể dùng nhiều câu lệnh [`try-except`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-try-statement). Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; ở đây minh họa trước:
 
 ```python
 s = "OI-wiki"
 pat = "NOIP"
-x = s.find(pat)  # find() 找不到返回 -1
+x = s.find(pat)  # find() không tìm thấy thì trả về -1
 try:
-    y = s.index(pat)  # index() 找不到则抛出错误
-    print(y)  # 这句被跳过
+    y = s.index(pat)  # index() không tìm thấy thì ném lỗi
+    print(y)  # Câu này bị bỏ qua
 except ValueError:
-    print("没找到")
+    print("Không tìm thấy")
     try:
-        print(y)  # 此时 y 并没有定义，故又会抛出错误
+        print(y)  # Lúc này y chưa được định nghĩa, nên lại ném lỗi
     except NameError as e:
-        print("无法输出 y")
-        print("原因:", e)
+        print("Không thể xuất y")
+        print("Lý do:", e)
 ```
 
-### 内置容器
+<a id="&#20869;&#32622;&#23481;&#22120;"></a>
 
-Python 内置了许多强大的容器类型，只有熟练使用并了解其特点才能真正让 Python 在算法竞赛中有用武之地，除了上面详细介绍的 `list`（列表），还有 `tuple`（元组）、[`dict`](https://docs.python.org/zh-cn/3/library/stdtypes.html#mapping-types-dict)（字典）和 `set`（集合）这几种类型．
+### Container dựng sẵn
 
-元组可以简单理解成不可变的列表，不过还需注意「不可变」的内涵，如果元组中的某元素是可变类型比如列表，那么仍可以修改该列表的值，元组中存放的是对列表的引用所以元组本身并没有改变．元组的优点是开销较小且「[可哈希](https://docs.python.org/zh-cn/3/glossary.html)」，后者在创建字典和集合时非常有用．
+Python có sẵn nhiều kiểu container mạnh. Chỉ khi dùng thành thạo và hiểu đặc điểm của chúng, Python mới thật sự hữu ích trong lập trình thi đấu. Ngoài `list` (danh sách) đã giới thiệu kỹ, còn có `tuple` (bộ), [`dict`](https://docs.python.org/zh-cn/3/library/stdtypes.html#mapping-types-dict) (từ điển) và `set` (tập hợp).
+
+Có thể hiểu đơn giản tuple như một danh sách bất biến, nhưng cần chú ý nội hàm của "bất biến": nếu một phần tử trong tuple là kiểu khả biến như list, giá trị của list đó vẫn có thể sửa. Tuple lưu tham chiếu đến list, nên bản thân tuple không thay đổi. Ưu điểm của tuple là overhead nhỏ và ["hashable"](https://docs.python.org/zh-cn/3/glossary.html), điểm sau rất hữu ích khi tạo dict và set.
 
 ```python
-tup = tuple([[1, 2], 4])  # 由列表得到元组
-# 等同于 tup = ([1,2], 4)
+tup = tuple([[1, 2], 4])  # Tạo tuple từ list
+# Tương đương tup = ([1,2], 4)
 tup[0].append(3)
 print(tup)
-a, b = 0, "I-Wiki"  # 多变量赋值其实是元组拆包
+a, b = 0, "I-Wiki"  # Gán nhiều biến thực ra là unpack tuple
 print(id(a), id(b))
 b, a = a, b
-print(id(a), id(b))  # 你应该会看到 a, b 的 id 值现在互换了
-# 这更说明 Python 中，变量更像是名字，赋值只是让其指代对象
+print(id(a), id(b))  # Bạn sẽ thấy id của a, b đã hoán đổi
+# Điều này càng cho thấy trong Python, biến giống như tên gọi; phép gán chỉ làm tên đó trỏ đến đối tượng
 ```
 
-字典就像 C++ STL 中的 [`map`](./csl/associative-container.md#map)（请注意和 Python 中内置函数 [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 区分）用于存储键值对，形式类似 [JSON](https://docs.python.org/3/library/json.html)，但 JSON 中键必须是字符串且以双引号括住，字典则更加灵活强大，可哈希的对象都可作为字典的键．需要注意 Python 几次版本更新后字典的特性有了较多变化，包括其中元素的顺序等，请自行探索．
+Dict giống [`map`](./csl/associative-container.md#map) trong C++ STL (lưu ý phân biệt với hàm dựng sẵn [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) của Python), dùng để lưu cặp khóa-giá trị. Hình thức gần với [JSON](https://docs.python.org/3/library/json.html), nhưng khóa trong JSON bắt buộc là chuỗi đặt trong dấu nháy kép, còn dict linh hoạt và mạnh hơn: mọi đối tượng hashable đều có thể làm khóa. Cần lưu ý sau nhiều lần cập nhật phiên bản Python, đặc tính của dict đã thay đổi khá nhiều, bao gồm thứ tự các phần tử; bạn có thể tự tìm hiểu thêm.
 
 ```python
-dic = {"key": "value"}  # 基本形式
-dic = {chr(i): i for i in range(65, 91)}  # 大写字母到对应 ASCII 码的映射，注意断句
-dic = dict(zip([chr(i) for i in range(65, 91)], range(65, 91)))  # 效果同上
-dic = {dic[k]: k for k in dic}  # 将键值对逆转，for k in dic 迭代其键
-dic = {v: k for k, v in dic.items()}  # 和上行作用相同，dic.items() 以元组存放单个键值对
+dic = {"key": "value"}  # Dạng cơ bản
+dic = {chr(i): i for i in range(65, 91)}  # Ánh xạ chữ cái in hoa sang mã ASCII tương ứng; chú ý ngắt dòng
+dic = dict(zip([chr(i) for i in range(65, 91)], range(65, 91)))  # Hiệu quả như trên
+dic = {dic[k]: k for k in dic}  # Đảo ngược cặp khóa-giá trị; for k in dic lặp qua các khóa
+dic = {v: k for k, v in dic.items()}  # Tác dụng giống dòng trên; dic.items() lưu từng cặp khóa-giá trị bằng tuple
 dic = {
     k: v for k, v in sorted(dic.items(), key=lambda x: -x[1])
-}  # 字典按值逆排序，用到了 lambda 表达式
+}  # Sắp xếp dict giảm dần theo giá trị, dùng biểu thức lambda
 
-print(dic["A"])  # 返回 dic 中 以 'A' 为键的项，这里值为65
-dic["a"] = 97  # 将 d[key] 设为 value，字典中原无 key 就是直接插入
-if "b" in dic:  # LBYL(Look Before You Leap) 风格
-    print(dic["b"])  # 若字典中无该键则会出错，故先检查
+print(dic["A"])  # Trả về mục trong dic có khóa 'A', ở đây giá trị là 65
+dic["a"] = 97  # Gán d[key] thành value; nếu dict chưa có key thì chèn trực tiếp
+if "b" in dic:  # Phong cách LBYL (Look Before You Leap)
+    print(dic["b"])  # Nếu dict không có khóa này sẽ lỗi, nên kiểm tra trước
 else:
     dic["b"] = 98
 
-# 经典场景 统计出现次数
-# 新键不存在于原字典，需要额外处理
-try:  # EAFP (Easier to Ask for Forgiveness than Permission) 风格
+# Tình huống kinh điển: đếm số lần xuất hiện
+# Khóa mới không tồn tại trong dict gốc, cần xử lý thêm
+try:  # Phong cách EAFP (Easier to Ask for Forgiveness than Permission)
     cnter[key] += 1
 except KeyError:
     cnter[key] = 1
 ```
 
-集合就像 C++ STL 中的 [`set`](./csl/associative-container.md#set)，不会保存重复的元素，可以看成只保存键的字典．需要注意集合和字典都用 `{}` 括住，不过单用 `{}` 会创建空字典而不是空集合，这里就不再给出示例．
+Set giống [`set`](./csl/associative-container.md#set) trong C++ STL: không lưu phần tử lặp, có thể xem như dict chỉ lưu khóa. Cần lưu ý set và dict đều dùng `{}` bao lại, nhưng riêng `{}` sẽ tạo dict rỗng chứ không phải set rỗng. Ở đây không đưa thêm ví dụ.
 
-### 编写函数
+<a id="&#32534;&#20889;&#20989;&#25968;"></a>
 
-Python 中定义函数无需指定参数类型和返回值类型，无形中为 OI 选手减少了代码量
+### Viết hàm
+
+Trong Python, định nghĩa hàm không cần chỉ định kiểu tham số và kiểu trả về, vô hình trung giảm bớt lượng mã cho người thi OI.
 
 ```python
 def add(a, b):
-    return a + b  # 动态类型的优势，a 和 b 也可以是字符串
+    return a + b  # Lợi thế của kiểu động: a và b cũng có thể là chuỗi
 
 
 def add_no_swap(a, b):
     print("in func #1:", id(a), id(b))
     a += b
     b, a = a, b
-    print("in func #2:", id(a), id(b))  # a, b 已交换
-    return a, b  # 返回多个值，其实就是返回元组，可以拆包接收
+    print("in func #2:", id(a), id(b))  # a, b đã hoán đổi
+    return a, b  # Trả về nhiều giá trị, thực ra là trả về tuple, có thể unpack khi nhận
 
 
 lst1 = [1, 2]
 lst2 = [3, 4]
 print("outside func #1:", id(lst1), id(lst2))
 add_no_swap(lst1, lst2)
-# 函数外 lst1, lst2 并未交换
+# Bên ngoài hàm, lst1 và lst2 chưa hoán đổi
 print("outside func #2:", id(lst1), id(lst2))
-# 不过值确实已经改变
+# Nhưng giá trị thực sự đã thay đổi
 print(lst1, lst2)
 ```
 
-#### 默认参数
+<a id="&#40664;&#35748;&#21442;&#25968;"></a>
 
-Python 中函数的参数非常灵活，有关键字参数、可变参数等，但在算法竞赛中这些特性的用处并不是很大，这里只介绍一下默认参数，因为 C++ 中也有默认参数，且在 Python 中使用默认参数很有可能遇到坑．例如如下代码．
+#### Tham số mặc định
+
+Tham số hàm trong Python rất linh hoạt, có tham số từ khóa, tham số biến đổi, v.v. Nhưng trong lập trình thi đấu, các tính năng này không quá hữu dụng. Ở đây chỉ giới thiệu tham số mặc định, vì C++ cũng có tham số mặc định, và trong Python tham số mặc định rất dễ gây lỗi. Ví dụ đoạn mã sau:
 
 ```python
 def append_to(element, to=[]):
@@ -676,11 +734,11 @@ lst1 = append_to(12)
 lst2 = append_to(42)
 print(lst1, lst2)
 
-# 你可能以为输出是 [12] [42]
-# 但运行结果其实是 [12, 42] [12, 42]
+# Bạn có thể nghĩ kết quả là [12] [42]
+# Nhưng kết quả thực tế là [12, 42] [12, 42]
 ```
 
-之所以出现以上的运行结果，是因为默认参数的值仅仅在函数定义的时候赋值一次，对于可变对象（如列表、字典、集合），所有调用会共享同一个对象，`lst1` 和 `lst2` 实际上都指向内存中同一个默认列表对象．因此，第二次调用后，这个共享列表的内容被修改为 `[12, 42]`．所以函数的默认参数的值应该设为不可变对象，使用 `None` 占位是一种最佳实践：
+Kết quả trên xảy ra vì giá trị tham số mặc định chỉ được gán một lần tại thời điểm định nghĩa hàm. Với đối tượng khả biến (như list, dict, set), mỗi lần gọi hàm sẽ dùng chung cùng một đối tượng. `lst1` và `lst2` thực ra đều trỏ đến cùng một list mặc định trong bộ nhớ. Vì vậy sau lần gọi thứ hai, nội dung list dùng chung thành `[12, 42]`. Do đó, giá trị tham số mặc định của hàm nên là đối tượng bất biến; dùng `None` làm giá trị giữ chỗ là thực hành tốt:
 
 ```python
 def append_to(element, to=None):
@@ -694,26 +752,28 @@ lst1 = append_to(12)
 lst2 = append_to(42)
 print(lst1, lst2)
 
-# 运行结果为 [12] [42]
+# Kết quả chạy là [12] [42]
 ```
 
-#### 类型标注
+<a id="&#31867;&#22411;&#26631;&#27880;"></a>
 
-Python 是一个动态类型检查的语言，以灵活但隐式的方式处理类型，Python 解释器仅仅在运行时检查类型是否正确，并且允许在运行时改变变量类型，俗话说「动态类型一时爽，代码重构火葬场」，程序中的一些错误可能在运行时才会暴露：
+#### Type hint
+
+Python là ngôn ngữ kiểm tra kiểu động: xử lý kiểu một cách linh hoạt nhưng ngầm định. Trình thông dịch Python chỉ kiểm tra kiểu khi chạy, và cho phép thay đổi kiểu biến trong runtime. Nói vui là "kiểu động lúc đầu rất sướng, đến lúc refactor thì rất đau": một số lỗi trong chương trình có thể chỉ lộ ra lúc chạy:
 
 ```pycon
 >>> if False:
-...     1 + "two"  # This line never runs, so no TypeError is raised
+...     1 + "two"  # Dòng này không bao giờ chạy, nên không phát sinh TypeError
 ... else:
 ...     1 + 2
 ...
 3
 
->>> 1 + "two"  # Now this is type checked, and a TypeError is raised
+>>> 1 + "two"  # Bây giờ được kiểm tra kiểu, và phát sinh TypeError
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ```
 
-Python 3.5 后引入了类型标注，允许设置函数参数和返回值的类型，但只是作为提示，并没有实际的限制作用，需要静态检查工具才能排除这类错误（例如 [PyCharm](https://www.jetbrains.com/pycharm/) 和 [Mypy](http://mypy-lang.org/)），所以显得有些鸡肋，对于 OIer 来说更是只需了解，可按如下方式对函数的参数和返回值设置类型标注：
+Từ Python 3.5, type hint được thêm vào, cho phép đặt kiểu cho tham số hàm và giá trị trả về. Tuy nhiên, chúng chỉ là gợi ý, không có tác dụng ràng buộc thực tế; cần công cụ kiểm tra tĩnh mới phát hiện loại lỗi này (ví dụ [PyCharm](https://www.jetbrains.com/pycharm/) và [Mypy](http://mypy-lang.org/)). Vì vậy tính năng này không thật thiết yếu với OIer, chỉ cần biết là đủ. Có thể gán type hint cho tham số và giá trị trả về của hàm như sau:
 
 ```python
 def headline(
@@ -727,7 +787,7 @@ def headline(
 print(headline("type comments work", width=40))
 ```
 
-除了函数参数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看函数中所有的类型标注．变量类型标注赋予了 Python 静态语言的性质，即声明与赋值分离：
+Ngoài tham số hàm, biến cũng có thể có type hint. Bạn có thể gọi `__annotations__` để xem mọi type hint trong hàm. Type hint cho biến đem lại cho Python một phần tính chất của ngôn ngữ tĩnh: khai báo và gán giá trị tách nhau.
 
 ```pycon
 >>> nothing: str
@@ -738,19 +798,21 @@ NameError: name 'nothing' is not defined
 {'nothing': <class 'str'>}
 ```
 
-## 装饰器
+<a id="&#35013;&#39280;&#22120;"></a>
 
-装饰器是一个函数，接受一个函数或方法作为其唯一的参数，并返回一个新函数或方法，其中整合了修饰后的函数或方法，并附带了一些额外的功能．简而言之，可以在不修改函数代码的情况下，增加函数的功能．相关知识可以参考 [官方文档](https://docs.python.org/3/glossary.html#term-decorator)．
+## Decorator
 
-部分装饰器在竞赛中非常实用，比如 [`lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache)，可以为函数自动增加记忆化的能力，在递归算法中非常实用：
+Decorator là một hàm nhận một hàm hoặc phương thức làm tham số duy nhất và trả về một hàm hoặc phương thức mới, trong đó tích hợp hàm/phương thức đã được trang trí và có thêm một số chức năng. Nói ngắn gọn, decorator cho phép tăng cường chức năng của hàm mà không sửa mã của hàm đó. Có thể tham khảo [tài liệu chính thức](https://docs.python.org/3/glossary.html#term-decorator).
+
+Một số decorator rất hữu dụng trong thi đấu, chẳng hạn [`lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache). Nó có thể tự động thêm khả năng memoization cho hàm, rất thực dụng trong thuật toán đệ quy:
 
 `@lru_cache(maxsize=128,typed=False)`
 
--   传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`．
--   其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量．如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果．
--   如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次．
+-   Có 2 tham số truyền vào: `maxsize` và `typed`. Nếu không truyền, giá trị mặc định của `maxsize` là 128, của `typed` là `False`.
+-   Tham số `maxsize` biểu thị dung lượng cache LRU, tức số lượng kết quả tối đa mà phương thức được trang trí có thể lưu. Nếu giá trị này là 128, phương thức đó tối đa cache 128 kết quả trả về; nếu `maxsize` là `None`, có nghĩa cache được vô hạn kết quả.
+-   Nếu `typed` đặt thành `True`, các tham số hàm có kiểu khác nhau sẽ được cache riêng. Ví dụ, `f(3)` và `f(3.0)` sẽ được cache hai lần.
 
-以下是使用 `lru_cache` 优化计算斐波那契数列的例子：
+Dưới đây là ví dụ dùng `lru_cache` để tối ưu tính dãy Fibonacci:
 
 ```python
 @lru_cache(maxsize=None)
@@ -760,33 +822,39 @@ def fib(n):
     return fib(n - 1) + fib(n - 2)
 ```
 
-## 常用内置库
+<a id="&#24120;&#29992;&#20869;&#32622;&#24211;"></a>
 
-在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html)．
+## Thư viện chuẩn thường dùng
 
-| 库名                                                                  | 用途             |
-| ------------------------------------------------------------------- | -------------- |
-| [`array`](https://docs.python.org/3/library/array.html)             | 定长数组           |
-| [`argparse`](https://docs.python.org/3/library/argparse.html)       | 命令行参数处理        |
-| [`bisect`](https://docs.python.org/3/library/bisect.html)           | 二分查找           |
-| [`collections`](https://docs.python.org/3/library/collections.html) | 有序字典、双端队列等数据结构 |
-| [`fractions`](https://docs.python.org/3/library/fractions.html)     | 有理数            |
-| [`heapq`](https://docs.python.org/3/library/heapq.html)             | 基于堆的优先级队列      |
-| [`io`](https://docs.python.org/3/library/io.html)                   | 文件流、内存流        |
-| [`itertools`](https://docs.python.org/3/library/itertools.html)     | 迭代器            |
-| [`math`](https://docs.python.org/3/library/math.html)               | 数学函数           |
-| [`os.path`](https://docs.python.org/3/library/os.html)              | 系统路径等          |
-| [`random`](https://docs.python.org/3/library/random.html)           | 随机数            |
-| [`re`](https://docs.python.org/3/library/re.html)                   | 正则表达式          |
-| [`struct`](https://docs.python.org/3/library/struct.html)           | 转换结构体和二进制数据    |
-| [`sys`](https://docs.python.org/3/library/sys.html)                 | 系统信息           |
+Ở đây giới thiệu một số thư viện chuẩn có thể dùng khi viết thuật toán. Cách dùng cụ thể có thể tự tìm hoặc đọc [tài liệu chính thức](https://docs.python.org/3/library/index.html).
 
-## 从例题对比 C++ 与 Python
+| Tên thư viện                                                        | Công dụng                                      |
+| ------------------------------------------------------------------- | ---------------------------------------------- |
+| [`array`](https://docs.python.org/3/library/array.html)             | Mảng độ dài cố định                            |
+| [`argparse`](https://docs.python.org/3/library/argparse.html)       | Xử lý tham số dòng lệnh                        |
+| [`bisect`](https://docs.python.org/3/library/bisect.html)           | Tìm kiếm nhị phân                              |
+| [`collections`](https://docs.python.org/3/library/collections.html) | Ordered dict, deque và các cấu trúc dữ liệu khác |
+| [`fractions`](https://docs.python.org/3/library/fractions.html)     | Số hữu tỷ                                      |
+| [`heapq`](https://docs.python.org/3/library/heapq.html)             | Hàng đợi ưu tiên dựa trên heap                 |
+| [`io`](https://docs.python.org/3/library/io.html)                   | File stream, memory stream                     |
+| [`itertools`](https://docs.python.org/3/library/itertools.html)     | Iterator                                       |
+| [`math`](https://docs.python.org/3/library/math.html)               | Hàm toán học                                   |
+| [`os.path`](https://docs.python.org/3/library/os.html)              | Đường dẫn hệ thống, v.v.                       |
+| [`random`](https://docs.python.org/3/library/random.html)           | Số ngẫu nhiên                                  |
+| [`re`](https://docs.python.org/3/library/re.html)                   | Biểu thức chính quy                            |
+| [`struct`](https://docs.python.org/3/library/struct.html)           | Chuyển đổi struct và dữ liệu nhị phân          |
+| [`sys`](https://docs.python.org/3/library/sys.html)                 | Thông tin hệ thống                             |
 
-??? note "[例题 洛谷 P4779【模板】单源最短路径（标准版）](https://www.luogu.com.cn/problem/P4779)"
-    给定一个 $n(1 \leq n \leq 10^5)$ 个点、$m(1 \leq m \leq 2\times 10^5)$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离．数据保证能从 $s$ 出发到任意点．
+<a id="&#20174;&#20363;&#39064;&#23545;&#27604;-c-&#19982;-python"></a>
 
-### 声明常量
+## Đối chiếu C++ và Python qua bài mẫu
+
+??? note "[Bài mẫu Luogu P4779: Template Single-Source Shortest Path (Standard Version)](https://www.luogu.com.cn/problem/P4779)"
+    Cho một đồ thị có hướng gồm $n(1 \leq n \leq 10^5)$ đỉnh và $m(1 \leq m \leq 2\times 10^5)$ cạnh có trọng số không âm. Hãy tính khoảng cách từ $s$ đến mọi đỉnh. Dữ liệu đảm bảo có thể đi từ $s$ đến mọi đỉnh.
+
+<a id="&#22768;&#26126;&#24120;&#37327;"></a>
+
+### Khai báo hằng số
 
 === "C++"
     ```cpp
@@ -800,29 +868,31 @@ def fib(n):
 
 === "Python"
     ```python
-    try:  # 引入优先队列模块
+    try:  # Nạp module hàng đợi ưu tiên
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
-    
+
     N = int(1e5 + 5)
     M = int(2e5 + 5)
     INF = 0x3F3F3F3F
     ```
 
-### 声明前向星结构体和其它变量
+<a id="&#22768;&#26126;&#21069;&#21521;&#26143;&#32467;&#26500;&#20307;&#21644;&#20854;&#23427;&#21464;&#37327;"></a>
+
+### Khai báo struct forward star và các biến khác
 
 === "C++"
     ```cpp
     struct qxx {
       int nex, t, v;
     };
-    
+
     qxx e[M];
     int h[N], cnt;
-    
+
     void add_path(int f, int t, int v) { e[++cnt] = qxx{h[f], t, v}, h[f] = cnt; }
-    
+
     using pii = pair<int, int>;
     priority_queue<pii, vector<pii>, greater<pii>> q;
     int dist[N];
@@ -830,25 +900,25 @@ def fib(n):
 
 === "Python"
     ```python
-    class qxx:  # 前向星类（结构体）
+    class qxx:  # Lớp forward star (struct)
         def __init__(self):
             self.nex = 0
             self.t = 0
             self.v = 0
-    
-    
-    e = [qxx() for i in range(M)]  # 链表
+
+
+    e = [qxx() for i in range(M)]  # Danh sách liên kết
     h = [0 for i in range(N)]
     cnt = 0
-    
+
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
-    
-    
-    def add_path(f, t, v):  # 在前向星中加边
-        # 如果要修改全局变量，要使用 global 来声明
+    q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là min-heap theo phần tử đầu
+
+
+    def add_path(f, t, v):  # Thêm cạnh vào forward star
+        # Nếu muốn sửa biến toàn cục, phải khai báo bằng global
         global cnt, e, h
-        # 调试时的输出语句，多个变量使用元组
+        # Câu lệnh xuất khi debug; nhiều biến dùng tuple
         # print("add_path(%d,%d,%d)" % (f,t,v))
         cnt += 1
         e[cnt].nex = h[f]
@@ -857,7 +927,9 @@ def fib(n):
         h[f] = cnt
     ```
 
-### Dijkstra 算法
+<a id="dijkstra-&#31639;&#27861;"></a>
+
+### Thuật toán Dijkstra
 
 === "C++"
     ```cpp
@@ -880,18 +952,18 @@ def fib(n):
 
 === "Python"
     ```python
-    def nextedgeid(u):  # 生成器，可以用在 for 循环里
+    def nextedgeid(u):  # Generator, có thể dùng trong vòng lặp for
         i = h[u]
         while i:
             yield i
             i = e[i].nex
-    
-    
+
+
     def dijkstra(s):
         dist[s] = 0
         q.put((0, s))
         while not q.empty():
-            u = q.get()  # get 函数会顺便删除堆中对应的元素
+            u = q.get()  # Hàm get tiện thể xóa phần tử tương ứng trong heap
             if dist[u[1]] < u[0]:
                 continue
             for i in nextedgeid(u[1]):
@@ -903,12 +975,14 @@ def fib(n):
                 q.put((dist[v], v))
     ```
 
-### 主函数
+<a id="&#20027;&#20989;&#25968;"></a>
+
+### Hàm main
 
 === "C++"
     ```cpp
     int n, m, s;
-    
+
     int main() {
       scanf("%d%d%d", &n, &m, &s);
       for (int i = 1; i <= m; i++) {
@@ -925,21 +999,23 @@ def fib(n):
 === "Python"
     ```python
     if __name__ == "__main__":
-        # 一行读入多个整数．注意它会把整行都读进来
+        # Đọc nhiều số nguyên trên một dòng. Lưu ý nó đọc cả dòng vào
         n, m, s = map(int, input().split())
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-    
+
         dijkstra(s)
-    
+
         for i in range(1, n + 1):
             print(dist[i], end=" ")
-    
+
         print()
     ```
 
-### 完整代码
+<a id="&#23436;&#25972;&#20195;&#30721;"></a>
+
+### Mã hoàn chỉnh
 
 === "C++"
     ```cpp
@@ -949,20 +1025,20 @@ def fib(n):
     #include <vector>
     using namespace std;
     constexpr int N = 1e5 + 5, M = 2e5 + 5;
-    
+
     struct qxx {
       int nex, t, v;
     };
-    
+
     qxx e[M];
     int h[N], cnt;
-    
+
     void add_path(int f, int t, int v) { e[++cnt] = qxx{h[f], t, v}, h[f] = cnt; }
-    
+
     using pii = pair<int, int>;
     priority_queue<pii, vector<pii>, greater<pii>> q;
     int dist[N];
-    
+
     void dijkstra(int s) {
       memset(dist, 0x3f, sizeof(dist));
       dist[s] = 0, q.push(make_pair(0, s));
@@ -978,9 +1054,9 @@ def fib(n):
         }
       }
     }
-    
+
     int n, m, s;
-    
+
     int main() {
       scanf("%d%d%d", &n, &m, &s);
       for (int i = 1; i <= m; i++) {
@@ -996,50 +1072,50 @@ def fib(n):
 
 === "Python"
     ```python
-    try:  # 引入优先队列模块
+    try:  # Nạp module hàng đợi ưu tiên
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
-    
+
     N = int(1e5 + 5)
     M = int(2e5 + 5)
     INF = 0x3F3F3F3F
-    
-    
-    class qxx:  # 前向星类（结构体）
+
+
+    class qxx:  # Lớp forward star (struct)
         def __init__(self):
             self.nex = 0
             self.t = 0
             self.v = 0
-    
-    
-    e = [qxx() for i in range(M)]  # 链表
+
+
+    e = [qxx() for i in range(M)]  # Danh sách liên kết
     h = [0 for i in range(N)]
     cnt = 0
-    
+
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
-    
-    
-    def add_path(f, t, v):  # 在前向星中加边
-        # 如果要修改全局变量，要使用 global 来声名
+    q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là min-heap theo phần tử đầu
+
+
+    def add_path(f, t, v):  # Thêm cạnh vào forward star
+        # Nếu muốn sửa biến toàn cục, phải khai báo bằng global
         global cnt, e, h
-        # 调试时的输出语句，多个变量使用元组
+        # Câu lệnh xuất khi debug; nhiều biến dùng tuple
         # print("add_path(%d,%d,%d)" % (f,t,v))
         cnt += 1
         e[cnt].nex = h[f]
         e[cnt].t = t
         e[cnt].v = v
         h[f] = cnt
-    
-    
-    def nextedgeid(u):  # 生成器，可以用在 for 循环里
+
+
+    def nextedgeid(u):  # Generator, có thể dùng trong vòng lặp for
         i = h[u]
         while i:
             yield i
             i = e[i].nex
-    
-    
+
+
     def dijkstra(s):
         dist[s] = 0
         q.put((0, s))
@@ -1054,37 +1130,41 @@ def fib(n):
                     continue
                 dist[v] = dist[u[1]] + w
                 q.put((dist[v], v))
-    
-    
-    # 如果你直接运行这个 Python 代码（不是模块调用什么的）就执行命令
+
+
+    # Nếu chạy trực tiếp file Python này (không phải import như module) thì thực thi lệnh
     if __name__ == "__main__":
-        # 一行读入多个整数．注意它会把整行都读进来
+        # Đọc nhiều số nguyên trên một dòng. Lưu ý nó đọc cả dòng vào
         n, m, s = map(int, input().split())
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-    
+
         dijkstra(s)
-    
+
         for i in range(1, n + 1):
-            # 两种输出语法都是可以用的
+            # Hai cú pháp xuất dưới đây đều dùng được
             print("{}".format(dist[i]), end=" ")
             # print("%d" % dist[i],end=' ')
-    
-        print()  # 结尾换行
+
+        print()  # Xuống dòng ở cuối
     ```
 
-## 参考文档
+<a id="&#21442;&#32771;&#25991;&#26723;"></a>
+
+## Tài liệu tham khảo
 
 1.  [Python Documentation](https://www.python.org/doc/)
-2.  [Python 官方中文教程](https://docs.python.org/zh-cn/3/tutorial/)
+2.  [Python tutorial chính thức bằng tiếng Trung](https://docs.python.org/zh-cn/3/tutorial/)
 3.  [Learn Python3 In Y Minutes](https://learnxinyminutes.com/docs/python3/)
 4.  [Real Python Tutorials](https://realpython.com/)
-5.  [廖雪峰的 Python 教程](https://www.liaoxuefeng.com/wiki/1016959663602400/)
+5.  [Python tutorial của Liao Xuefeng](https://www.liaoxuefeng.com/wiki/1016959663602400/)
 6.  [GeeksforGeeks: Python Tutorials](https://www.geeksforgeeks.org/python-programming-language/)
 
-## 参考资料和注释
+<a id="&#21442;&#32771;&#36164;&#26009;&#21644;&#27880;&#37322;"></a>
 
-[^ref1]: [2. Python 解释器—Python 3 文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html#id1)
+## Tài liệu và chú thích tham khảo
 
-[^ref2]: [Unicode 指南—Python 3 文档](https://docs.python.org/zh-cn/3/howto/unicode.html#the-string-type)
+[^ref1]: [2. Trình thông dịch Python - Tài liệu Python 3](https://docs.python.org/zh-cn/3/tutorial/interpreter.html#id1)
+
+[^ref2]: [Hướng dẫn Unicode - Tài liệu Python 3](https://docs.python.org/zh-cn/3/howto/unicode.html#the-string-type)
