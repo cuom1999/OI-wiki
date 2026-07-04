@@ -644,98 +644,154 @@ phần liệt kê và kiểm tra.
 
 <span id="carmichael-&#x51FD;&#x6570;"></span>
 
-## Ham Carmichael
+## Hàm Carmichael
 
-So voi khai niem cuc bo la bac cua mot phan tu modulo $m$, ham Carmichael la mot khai niem toan cuc. No la chu ky chung nho nhat cua luy thua cua tat ca cac so nguyen nguyen to cung nhau voi $m$.
+So với khái niệm cục bộ là bậc của một phần tử modulo $m$, hàm Carmichael là
+một khái niệm toàn cục. Nó là chu kỳ chung nhỏ nhất của lũy thừa của tất cả các
+số nguyên nguyên tố cùng nhau với $m$.
 
-???+ abstract "Ham Carmichael"
-    Voi $m\in\mathbf N_+$, dinh nghia $\lambda(m)$ la so nguyen duong nho nhat $n$ sao cho dong du $a^n\equiv 1\pmod m$ dung voi moi $a\perp m$. Ham $\lambda:\mathbf N_+\to\mathbf N_+$ duoc goi la **ham Carmichael**.
+???+ abstract "Hàm Carmichael"
+    Với $m\in\mathbf N_+$, định nghĩa $\lambda(m)$ là số nguyên dương nhỏ nhất
+    $n$ sao cho đồng dư $a^n\equiv 1\pmod m$ đúng với mọi $a\perp m$. Hàm
+    $\lambda:\mathbf N_+\to\mathbf N_+$ được gọi là **hàm Carmichael**.
 
-Theo [Tinh chat 2](#ord-prop-2), viec $a^n\equiv 1\pmod m$ dung voi moi $a\perp m$ co nghia la $\delta_m(a)\mid n$ voi moi $a\perp m$. Noi cach khac, so nguyen duong $n$ thoa man dieu kien nay nhat dinh la boi chung cua tat ca cac $\delta_m(a)$. Do do, so $n$ nho nhat nhu vay chinh la boi chung nho nhat cua chung:
+Theo [Tính chất 2](#ord-prop-2), việc $a^n\equiv 1\pmod m$ đúng với mọi
+$a\perp m$ có nghĩa là $\delta_m(a)\mid n$ với mọi $a\perp m$. Nói cách khác,
+số nguyên dương $n$ thỏa mãn điều kiện này nhất định là bội chung của tất cả các
+$\delta_m(a)$. Do đó, số $n$ nhỏ nhất như vậy chính là bội chung nhỏ nhất của
+chúng:
 
 $$
 \lambda(m) = \operatorname{lcm}\{\delta_m(a) : a\perp m\}.
 $$
 
-Day cung thuong duoc dung lam dinh nghia tuong duong cua ham Carmichael.
+Đây cũng thường được dùng làm định nghĩa tương đương của hàm Carmichael.
 
-Ap dung lap lai [Tinh chat 5](#ord-prop-5), ta biet chac chan ton tai mot phan tu $a\perp m$ sao cho $\delta_m(a)=\lambda(m)$. Do do cong thuc tren cung co the viet thanh
+Áp dụng lặp lại [Tính chất 5](#ord-prop-5), ta biết chắc chắn tồn tại một phần
+tử $a\perp m$ sao cho $\delta_m(a)=\lambda(m)$. Do đó công thức trên cũng có thể
+viết thành
 
 $$
 \lambda(m) = \max\{\delta_m(a) : a\perp m\}.
 $$
 
-Phan tu $a\perp m$ dat gia tri lon nhat nay cung duoc goi la **$\lambda$-can nguyen thuy** modulo $m$. No ton tai voi moi modulo $m$.
+Phần tử $a\perp m$ đạt giá trị lớn nhất này cũng được gọi là **$\lambda$-căn
+nguyên thủy** modulo $m$. Nó tồn tại với mọi modulo $m$.
 
 <span id="&#x9012;&#x63A8;&#x516C;&#x5F0F;"></span>
 
-### Cong thuc truy hoi
+### Công thức truy hồi
 
-Ham Carmichael la mot [ham so hoc](./basic.md#%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0). Muc nay thao luan mot cong thuc truy hoi cua no, tu do dua ra mot chung minh khac cho dinh ly ton tai can nguyen thuy.
+Hàm Carmichael là một [hàm số học](./basic.md#%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0).
+Mục này thảo luận một công thức truy hồi của nó, từ đó đưa ra một chứng minh
+khác cho định lí tồn tại căn nguyên thủy.
 
-Tuy khong phai ham nhan tinh, khi tinh ham Carmichael ta van co the xu ly rieng cac thua so nguyen to cung nhau.
+Tuy không phải hàm nhân tính, khi tính hàm Carmichael ta vẫn có thể xử lý riêng
+các thừa số nguyên tố cùng nhau.
 
-???+ note "Bo de"
-    Voi hai so nguyen duong nguyen to cung nhau $m_1,m_2$, ta co $\lambda(m_1m_2)=[\lambda(m_1),\lambda(m_2)]$.
+???+ note "Bổ đề"
+    Với hai số nguyên dương nguyên tố cùng nhau $m_1,m_2$, ta có
+    $\lambda(m_1m_2)=[\lambda(m_1),\lambda(m_2)]$.
 
-??? note "Chung minh"
-    Gia su $a_1$ va $a_2$ lan luot la $\lambda$-can nguyen thuy modulo $m_1$ va modulo $m_2$. Dat $m=m_1m_2$. Theo [dinh ly thang du Trung Hoa](./crt.md), ton tai $a\perp m$ sao cho $a\equiv a_i\pmod{m_i}$ voi $i=1,2$. Vi $a^{\lambda(m)}\equiv 1\pmod m$, nen voi $i=1,2$ deu co $a_i^{\lambda(m)} \equiv 1\pmod{m_i}$. Tu do theo [Tinh chat 2](#ord-prop-2) va cach chon $a_i$, ta co $\lambda(m_i)=\delta_{m_i}(a_i)\mid \lambda(m)$. Dieu nay chung minh $[\lambda(m_1),\lambda(m_2)]\mid\lambda(m)$.
-    
-    Nguoc lai, voi moi $a\perp m$ va $i=1,2$, ta deu co $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m_i}$. Ap dung dinh ly thang du Trung Hoa, ta duoc $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m}$ voi moi $a\perp m$. Theo dinh nghia ham Carmichael, $\lambda(m)\mid [\lambda(m_1),\lambda(m_2)]$.
-    
-    Do do dang bang trong menh de dung.
+??? note "Chứng minh"
+    Giả sử $a_1$ và $a_2$ lần lượt là $\lambda$-căn nguyên thủy modulo $m_1$ và
+    modulo $m_2$. Đặt $m=m_1m_2$. Theo
+    [định lí thặng dư Trung Hoa](./crt.md), tồn tại $a\perp m$ sao cho
+    $a\equiv a_i\pmod{m_i}$ với $i=1,2$. Vì $a^{\lambda(m)}\equiv 1\pmod m$,
+    nên với $i=1,2$ đều có $a_i^{\lambda(m)} \equiv 1\pmod{m_i}$. Từ đó theo
+    [Tính chất 2](#ord-prop-2) và cách chọn $a_i$, ta có
+    $\lambda(m_i)=\delta_{m_i}(a_i)\mid \lambda(m)$. Điều này chứng minh
+    $[\lambda(m_1),\lambda(m_2)]\mid\lambda(m)$.
 
-Vi vay, tiep theo chi can tinh gia tri cua ham Carmichael tai cac luy thua nguyen to. Truoc het, xu ly truong hop luy thua cua $2$.
+    Ngược lại, với mọi $a\perp m$ và $i=1,2$, ta đều có
+    $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m_i}$. Áp dụng định lí
+    thặng dư Trung Hoa, ta được
+    $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m}$ với mọi $a\perp m$.
+    Theo định nghĩa hàm Carmichael, $\lambda(m)\mid [\lambda(m_1),\lambda(m_2)]$.
 
-???+ note "Bo de"
-    Voi $m=2^e$ va $e\in\mathbf N_+$, ta co $\lambda(2)=1$, $\lambda(4)=2$, va voi moi $e\ge 3$ deu co $\lambda(m)=2^{e-2}$.
+    Do đó dạng bằng trong mệnh đề đúng.
 
-??? note "Chung minh"
-    Truong hop $m=2,4$ co the xet rieng. Voi $m=2^e$ va $e\ge 3$, truoc het lap lai phan dau trong chung minh [Bo de 4](#prim-root-lem-4) o tren, ta duoc $\lambda(m)\le 2^{e-2}$. Tiep theo, chi can chung minh ton tai phan tu bac $2^{e-2}$. De lam viec nay, co
-    
+Vì vậy, tiếp theo chỉ cần tính giá trị của hàm Carmichael tại các lũy thừa
+nguyên tố. Trước hết, xử lý trường hợp lũy thừa của $2$.
+
+???+ note "Bổ đề"
+    Với $m=2^e$ và $e\in\mathbf N_+$, ta có $\lambda(2)=1$, $\lambda(4)=2$, và
+    với mọi $e\ge 3$ đều có $\lambda(m)=2^{e-2}$.
+
+??? note "Chứng minh"
+    Trường hợp $m=2,4$ có thể xét riêng. Với $m=2^e$ và $e\ge 3$, trước hết lặp
+    lại phần đầu trong chứng minh [Bổ đề 4](#prim-root-lem-4) ở trên, ta được
+    $\lambda(m)\le 2^{e-2}$. Tiếp theo, chỉ cần chứng minh tồn tại phần tử bậc
+    $2^{e-2}$. Để làm việc này, có
+
     $$
     5^{2^{e-3}} = (1 + 2^2)^{2^{e-3}} = 1 + 2^2\times 2^{e-3} = 1 + 2^{e-1} \not\equiv 1 \pmod{2^e}.
     $$
-    
-    Dieu nay cho thay $\delta_m(5)\nmid 2^{e-3}$, lai vi $\delta_m(5) \mid 2^{e-2}$, nen $5$ chi co the la phan tu bac $2^{e-2}$. Do do $\lambda(m)=2^{e-2}$.
 
-Trong qua trinh chung minh bo de nay, thuc ra ta da thu duoc mo ta ve cau truc cua he thang du thu gon modulo $2^e$:
+    Điều này cho thấy $\delta_m(5)\nmid 2^{e-3}$, lại vì
+    $\delta_m(5) \mid 2^{e-2}$, nên $5$ chỉ có thể là phần tử bậc $2^{e-2}$. Do
+    đó $\lambda(m)=2^{e-2}$.
+
+Trong quá trình chứng minh bổ đề này, thực ra ta đã thu được mô tả về cấu trúc
+của hệ thặng dư thu gọn modulo $2^e$:
 
 <a id="mod-pow-2"></a>
 
-???+ note "He qua"
-    Gia su modulo la $2^e$ va $e \ge 2$. Khi do moi so le deu dong du voi dung mot so nguyen co dang $\pm 5^k$, trong do $k\in\mathbf N$ va $k < 2^{e-2}$. Noi cach khac, $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ doi mot khong dong du, va tao thanh mot he thang du thu gon.
+???+ note "Hệ quả"
+    Giả sử modulo là $2^e$ và $e \ge 2$. Khi đó mọi số lẻ đều đồng dư với đúng
+    một số nguyên có dạng $\pm 5^k$, trong đó $k\in\mathbf N$ và
+    $k < 2^{e-2}$. Nói cách khác, $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ đôi
+    một không đồng dư, và tạo thành một hệ thặng dư thu gọn.
 
-??? note "Chung minh"
-    De dang kiem tra truong hop $e=2$ dung. Voi $e \ge 3$, trong chung minh o tren ta da co bac cua $5$ modulo $2^e$ la $2^{e-2}$, nen $1,5,\cdots,5^{2^{e-2}-1}$ doi mot khong dong du. Vi cac so nguyen nay deu du $1$ modulo $4$, con cac so doi cua chung deu du $3$ modulo $4$, nen $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ doi mot khong dong du modulo $2^e$. Vi tong cong co $2^{e-1}$ so, dung bang kich thuoc cua he thang du thu gon modulo $2^{e}$, chung tao thanh chinh he thang du thu gon.
+??? note "Chứng minh"
+    Dễ dàng kiểm tra trường hợp $e=2$ đúng. Với $e \ge 3$, trong chứng minh ở
+    trên ta đã có bậc của $5$ modulo $2^e$ là $2^{e-2}$, nên
+    $1,5,\cdots,5^{2^{e-2}-1}$ đôi một không đồng dư. Vì các số nguyên này đều
+    dư $1$ modulo $4$, còn các số đối của chúng đều dư $3$ modulo $4$, nên
+    $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ đôi một không đồng dư modulo $2^e$.
+    Vì tổng cộng có $2^{e-1}$ số, đúng bằng kích thước của hệ thặng dư thu gọn
+    modulo $2^{e}$, chúng tạo thành chính hệ thặng dư thu gọn.
 
-Sau do, xu ly truong hop luy thua cua so nguyen to le.
+Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
 
-???+ note "Bo de"
-    Voi $m=p^e$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$, ta co $\lambda(m)=p^{e-1}(p-1)$.
+???+ note "Bổ đề"
+    Với $m=p^e$, trong đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$, ta có
+    $\lambda(m)=p^{e-1}(p-1)$.
 
-??? note "Chung minh"
-    Truoc het chung minh menh de dung voi $e=1$, tuc $m=p$ la so nguyen to le. Theo dinh nghia ham Carmichael, moi so nguyen $a$ nguyen to cung nhau voi $p$ deu la nghiem cua phuong trinh dong du $x^{\lambda(p)}\equiv 1\pmod{p}$. Theo nghia modulo $p$, phuong trinh nay co tong cong $p-1$ nghiem doi mot khac nhau. Theo [dinh ly Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86), ta co $p-1\le\lambda(p)$. Dong thoi, dinh ly Euler yeu cau $\lambda(p)\mid\varphi(p)=p-1$. Do do $\lambda(p)=p-1$.
-    
-    Voi $m=p^e$ va $e> 1$, co the bat dau bang viec chung minh $1+p$ la phan tu bac $p^{e-1}$. Thuc vay,
-    
+??? note "Chứng minh"
+    Trước hết chứng minh mệnh đề đúng với $e=1$, tức $m=p$ là số nguyên tố lẻ.
+    Theo định nghĩa hàm Carmichael, mọi số nguyên $a$ nguyên tố cùng nhau với
+    $p$ đều là nghiệm của phương trình đồng dư
+    $x^{\lambda(p)}\equiv 1\pmod{p}$. Theo nghĩa modulo $p$, phương trình này có
+    tổng cộng $p-1$ nghiệm đôi một khác nhau. Theo
+    [định lí Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86),
+    ta có $p-1\le\lambda(p)$. Đồng thời, định lí Euler yêu cầu
+    $\lambda(p)\mid\varphi(p)=p-1$. Do đó $\lambda(p)=p-1$.
+
+    Với $m=p^e$ và $e> 1$, có thể bắt đầu bằng việc chứng minh $1+p$ là phần tử
+    bậc $p^{e-1}$. Thật vậy,
+
     $$
     (1+p)^{p^{e-1}} \equiv 1,\quad (1+p)^{p^{e-2}} \equiv 1 + p^{e-1} \not\equiv 1 \pmod{p^e}.
     $$
-    
-    Nen $\delta_m(1+p)=p^{e-1}$. Ngoai ra, gia su $g$ la can nguyen thuy modulo $p$. Khi do, vi $g^{\delta_m(g)}\equiv 1 \pmod{p}$, theo [Tinh chat 2](#ord-prop-2) ve bac, ta co $p-1\mid\delta_m(g)$. Theo dinh nghia ham Carmichael va dinh ly Euler,
-    
+
+    Nên $\delta_m(1+p)=p^{e-1}$. Ngoài ra, giả sử $g$ là căn nguyên thủy modulo
+    $p$. Khi đó, vì $g^{\delta_m(g)}\equiv 1 \pmod{p}$, theo
+    [Tính chất 2](#ord-prop-2) về bậc, ta có $p-1\mid\delta_m(g)$. Theo định
+    nghĩa hàm Carmichael và định lí Euler,
+
     $$
     p^{e-1}(p-1) = [\delta_m(g),p^{e-1}]\mid\lambda(m) \mid \varphi(m) = p^{e-1}(p-1).
     $$
-    
-    Do do $\lambda(m)=p^{e-1}(p-1)$.
 
-Tom tat cac ket qua cua muc nay, ta thu duoc cong thuc truy hoi cua ham Carmichael:
+    Do đó $\lambda(m)=p^{e-1}(p-1)$.
 
-???+ note "Dinh ly"
-    Voi moi so nguyen duong $m$, ta co
-    
+Tóm tắt các kết quả của mục này, ta thu được công thức truy hồi của hàm
+Carmichael:
+
+???+ note "Định lí"
+    Với mọi số nguyên dương $m$, ta có
+
     $$
     \lambda(m) = \begin{cases}
     \varphi(m), & \text{if }m=1,2,4,p^e\text{ for odd prime }p\text{ and }e \ge 1,\\
@@ -744,17 +800,22 @@ Tom tat cac ket qua cua muc nay, ta thu duoc cong thuc truy hoi cua ham Carmicha
     \end{cases}
     $$
 
-Dung cong thuc truy hoi nay co the lam manh ket qua phia tren:
+Dùng công thức truy hồi này có thể làm mạnh kết quả phía trên:
 
-???+ note "He qua"
-    Voi cac so nguyen duong $m_1,m_2$, ta co $\lambda([m_1,m_2])=[\lambda(m_1),\lambda(m_2)]$.
+???+ note "Hệ quả"
+    Với các số nguyên dương $m_1,m_2$, ta có
+    $\lambda([m_1,m_2])=[\lambda(m_1),\lambda(m_2)]$.
 
-So sanh dinh nghia can nguyen thuy va ham Carmichael, ta thay can nguyen thuy modulo $m$ ton tai khi va chi khi $\lambda(m)=\varphi(m)$. Tu cong thuc truy hoi cua ham Carmichael, de dang quy nap ra ket qua sau:
+So sánh định nghĩa căn nguyên thủy và hàm Carmichael, ta thấy căn nguyên thủy
+modulo $m$ tồn tại khi và chỉ khi $\lambda(m)=\varphi(m)$. Từ công thức truy
+hồi của hàm Carmichael, dễ dàng quy nạp ra kết quả sau:
 
-???+ note "He qua"
-    Can nguyen thuy modulo $m$ ton tai khi va chi khi $m=1,2,4,p^e,2p^e$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
+???+ note "Hệ quả"
+    Căn nguyên thủy modulo $m$ tồn tại khi và chỉ khi $m=1,2,4,p^e,2p^e$, trong
+    đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$.
 
-Vi chung minh cong thuc truy hoi trong muc nay khong dung den dinh ly ton tai can nguyen thuy, day tao thanh mot chung minh khac cho dinh ly do.
+Vì chứng minh công thức truy hồi trong mục này không dùng đến định lí tồn tại
+căn nguyên thủy, đây tạo thành một chứng minh khác cho định lí đó.
 
 <span id="carmichael-&#x6570;"></span>
 

@@ -158,8 +158,8 @@ MkDocs source layout intact.
   discrete-logarithm, higher-residue/unit-root, and number-theory block
   decomposition material, plus explanatory comments in included snippets;
   quality-passed the opening order, product-order, primitive-root counting,
-  existence-theorem, and primitive-root search algorithm sections of
-  `docs/math/number-theory/primitive-root.md`.
+  existence-theorem, primitive-root search algorithm, and Carmichael recurrence
+  sections of `docs/math/number-theory/primitive-root.md`.
 - `docs/math/number-theory/dirichlet.md`,
   `docs/math/number-theory/mobius.md`, `docs/math/number-theory/du.md`,
   `docs/math/number-theory/powerful-number.md`,
