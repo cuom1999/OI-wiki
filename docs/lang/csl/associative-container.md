@@ -4,7 +4,7 @@
 
 Tương tự tập hợp trong toán học, `set` không có hai phần tử có giá trị bằng nhau. Nếu cần một tập cho phép các phần tử trùng nhau, hãy dùng `multiset`. Cách sử dụng `multiset` về cơ bản giống với `set`.
 
-<span id="&#x63D2;&#x5165;&#x4E0E;&#x5220;&#x9664;&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-chèn-và-xóa-set"></span>
 ### Thao tác chèn và xóa
 
 -   `insert(x)` chèn phần tử x vào `set` nếu trong container chưa có phần tử tương đương.
@@ -16,7 +16,7 @@ Tương tự tập hợp trong toán học, `set` không có hai phần tử có
 ???+ note "Giá trị trả về của hàm insert"
     Kiểu trả về của hàm insert là `pair<iterator, bool>`, trong đó iterator trỏ đến phần tử vừa được chèn (hoặc trỏ đến phần tử đã tồn tại sẵn trong container và bằng với giá trị cần chèn), còn bool cho biết việc chèn có thành công hay không. Do các phần tử trong `set` có tính duy nhất, nếu trong `set` đã có phần tử bằng giá trị đó thì chèn thất bại và trả về false; ngược lại chèn thành công và trả về true. `insert` trong `map` cũng tương tự.
 
-<span id="&#x8FED;&#x4EE3;&#x5668;"></span>
+<span id="iterator-set"></span>
 ### Iterator
 
 `set` cung cấp các loại iterator sau:
@@ -32,7 +32,7 @@ Tương tự tập hợp trong toán học, `set` không có hai phần tử có
 
 Trong các iterator liệt kê ở trên, những hàm có chữ cái `c` trả về iterator chỉ đọc; bạn không thể dùng iterator chỉ đọc để sửa giá trị phần tử trong `set`. Nếu bản thân một `set` là chỉ đọc, iterator thông thường và iterator chỉ đọc của nó hoàn toàn tương đương. Iterator chỉ đọc được hỗ trợ từ C++11.
 
-<span id="&#x67E5;&#x627E;&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-tìm-kiếm-set"></span>
 ### Thao tác tìm kiếm
 
 -   `count(x)` trả về số phần tử trong `set` có khóa bằng x.
@@ -52,10 +52,10 @@ Trong các iterator liệt kê ở trên, những hàm có chữ cái `c` trả 
     
     Nếu cần hiện thực chức năng tìm phần tử lớn thứ $k$ trong $O(\log n)$ như cây nhị phân cân bằng, bạn cần tự viết cây nhị phân cân bằng hoặc cây phân đoạn theo giá trị, hoặc dùng cây nhị phân cân bằng trong thư viện pb\_ds.
 
-<span id="&#x4F7F;&#x7528;&#x6837;&#x4F8B;"></span>
+<span id="ví-dụ-sử-dụng-set"></span>
 ### Ví dụ sử dụng
 
-<span id="&#x73;&#x65;&#x74;-&#x5728;&#x8D2A;&#x5FC3;&#x4E2D;&#x7684;&#x4F7F;&#x7528;"></span>
+<span id="dùng-set-trong-tham-lam"></span>
 #### Dùng `set` trong tham lam
 
 Trong thuật toán tham lam, ta thường cần thao tác kiểu **tìm và xóa phần tử nhỏ nhất lớn hơn hoặc bằng một giá trị nào đó**. Thao tác này có thể được thực hiện dễ dàng bằng `set`.
@@ -100,7 +100,7 @@ Trong `map` không tồn tại hai phần tử có cùng khóa; `multimap` cho p
 ??? warning "Cảnh báo"
     Chính vì `multimap` cho phép nhiều phần tử có cùng một khóa, `multimap` không cung cấp cách truy cập giá trị tương ứng chỉ bằng khóa.
 
-<span id="&#x63D2;&#x5165;&#x4E0E;&#x5220;&#x9664;&#x64CD;&#x4F5C;_1"></span>
+<span id="thao-tác-chèn-và-xóa-map"></span>
 ### Thao tác chèn và xóa
 
 -   Có thể truy cập trực tiếp bằng chỉ số để truy vấn hoặc chèn. Ví dụ: `mp["Alan"]=100`.
@@ -115,7 +115,7 @@ Trong `map` không tồn tại hai phần tử có cùng khóa; `multimap` cho p
     
     Nếu thao tác truy cập bằng chỉ số diễn ra quá thường xuyên, container có thể sinh ra nhiều phần tử vô nghĩa, làm giảm hiệu quả của `map`. Vì vậy, thông thường nên dùng hàm `find()` để tìm phần tử có khóa cụ thể.
 
-<span id="&#x67E5;&#x8BE2;&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-truy-vấn-map"></span>
 ### Thao tác truy vấn
 
 -   `count(x)`: trả về số phần tử trong container có khóa bằng x. Độ phức tạp là $O(\log(size)+ans)$ (logarit theo kích thước container, cộng với số phần tử khớp).
@@ -125,10 +125,10 @@ Trong `map` không tồn tại hai phần tử có cùng khóa; `multimap` cho p
 -   `empty()`: trả về container có rỗng hay không.
 -   `size()`: trả về số phần tử trong container.
 
-<span id="&#x4F7F;&#x7528;&#x6837;&#x4F8B;_1"></span>
+<span id="ví-dụ-sử-dụng-map"></span>
 ### Ví dụ sử dụng
 
-<span id="&#x6D;&#x61;&#x70;-&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x590D;&#x6742;&#x72B6;&#x6001;"></span>
+<span id="dùng-map-để-lưu-trạng-thái-phức-tạp"></span>
 #### Dùng `map` để lưu trạng thái phức tạp
 
 Trong tìm kiếm, đôi khi ta cần lưu một số trạng thái khá phức tạp (như tọa độ, giá trị không thể rời rạc hóa, chuỗi, v.v.) và đáp án liên quan đến chúng (như số bước tối thiểu để đến trạng thái đó). `map` có thể được dùng để hiện thực chức năng này. Khóa trong `map` là trạng thái, còn giá trị là đáp án liên quan. Ví dụ dưới đây minh họa cách dùng `map` để lưu trạng thái biểu diễn bằng `string`.
@@ -151,7 +151,7 @@ if (it == record.end()) {
 }
 ```
 
-<span id="&#x904D;&#x5386;&#x5BB9;&#x5668;"></span>
+<span id="duyệt-container"></span>
 ## Duyệt container
 
 Có thể dùng iterator để duyệt tất cả phần tử của container kết hợp.
@@ -173,14 +173,14 @@ for (auto x : s) cout << x << endl;
 
 Với mọi container kết hợp, thời gian duyệt container bằng iterator đều là $O(n)$.
 
-<span id="&#x81EA;&#x5B9A;&#x4E49;&#x6BD4;&#x8F83;&#x65B9;&#x5F0F;"></span>
+<span id="tùy-biến-cách-so-sánh"></span>
 ## Tùy biến cách so sánh
 
-Theo mặc định, hàm so sánh của `set` là `<` (nếu là kiểu không dựng sẵn, cần [nạp chồng toán tử `<`](../op-overload.md#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6)). Tuy nhiên, trong một số tình huống đặc biệt, ta muốn tùy biến cách so sánh bên trong `set`.
+Theo mặc định, hàm so sánh của `set` là `<` (nếu là kiểu không dựng sẵn, cần [nạp chồng toán tử `<`](../op-overload.md#toán-tử-so-sánh)). Tuy nhiên, trong một số tình huống đặc biệt, ta muốn tùy biến cách so sánh bên trong `set`.
 
 Lúc này có thể giải quyết bằng cách truyền vào một comparator tùy biến.
 
-Cụ thể, ta cần định nghĩa một lớp và [nạp chồng toán tử `()`](../op-overload.md#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6) trong lớp đó.
+Cụ thể, ta cần định nghĩa một lớp và [nạp chồng toán tử `()`](../op-overload.md#toán-tử-gọi-hàm) trong lớp đó.
 
 Ví dụ, nếu muốn duy trì một `set` lưu các số nguyên sao cho giá trị lớn hơn đứng trước, có thể hiện thực như sau:
 
