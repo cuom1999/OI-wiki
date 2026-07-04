@@ -614,86 +614,118 @@ $F(x)=\sum F(p_i^{k_i})=\sum F(p_i)\cdot k_i$.
     $a_1(n)=\sum_{p \in\mathbf P} [p \mid n] \cdot p$.
 
 <span id="&#x53D6;&#x6574;&#x51FD;&#x6570;"></span>
-## Ham lay phan nguyen
+## Hàm lấy phần nguyên
 
-Voi so thuc $x$, dinh nghia **ham san** (floor function) va **ham tran** (ceiling function) lan luot la
+Với số thực $x$, định nghĩa **hàm sàn** (floor function) và **hàm trần**
+(ceiling function) lần lượt là
 
 $$
 \lfloor x\rfloor = \max\{k\in\mathbf Z:k\le x\},~\lceil x\rceil = \min\{k\in\mathbf Z:k\ge x\}.
 $$
 
-Dung ham san, mot so thuc co the tach thanh phan nguyen va phan thap phan: $x = \lfloor x\rfloor + \{x\}$. Trong do, $\{x\}$ bieu thi phan thap phan cua $x$.
+Dùng hàm sàn, một số thực có thể tách thành phần nguyên và phần thập phân:
+$x = \lfloor x\rfloor + \{x\}$. Trong đó, $\{x\}$ biểu thị phần thập phân của
+$x$.
 
-Ham lay phan nguyen co cac tinh chat co ban sau: ($x\in\mathbf R,~n\in\mathbf Z$)
+Hàm lấy phần nguyên có các tính chất cơ bản sau:
+($x\in\mathbf R,~n\in\mathbf Z$)
 
 -   $x\in\mathbf Z \iff x = \lfloor x\rfloor = \lceil x\rceil$.
 -   $\lceil x\rceil - \lfloor x\rfloor = [x\notin\mathbf Z]$.
 -   $x - 1 < \lfloor x\rfloor \le x \le \lceil x\rceil < x + 1$.
 -   $\lfloor -x\rfloor = -\lceil x\rceil,~\lceil -x\rceil = -\lfloor x\rfloor$.
 -   $\lfloor x + n\rfloor = \lfloor x\rfloor + n,~\lceil x + n\rceil = \lceil x \rceil + n$.
--   $\lfloor x\rfloor$ va $\lceil x\rceil$ deu la cac ham don dieu khong giam theo $x$.
+-   $\lfloor x\rfloor$ và $\lceil x\rceil$ đều là các hàm đơn điệu không giảm
+    theo $x$.
 
-Khi chung minh cac dang thuc ve ham san (ham tran), thuong dung cac dang tuong duong sau: ($x\in\mathbf R,~n\in\mathbf Z$)
+Khi chứng minh các đẳng thức về hàm sàn (hàm trần), thường dùng các dạng tương
+đương sau: ($x\in\mathbf R,~n\in\mathbf Z$)
 
 -   $\lfloor x\rfloor = n \iff n \le x < n + 1 \iff x - 1 < n \le x$.
 -   $\lceil x\rceil = n \iff n - 1 < x \le n \iff x \le n < x + 1$.
 
-Khi chung minh cac bat dang thuc ve ham san (ham tran), thuong dung cac dang tuong duong sau: ($x\in\mathbf R,~n\in\mathbf Z$)
+Khi chứng minh các bất đẳng thức về hàm sàn (hàm trần), thường dùng các dạng
+tương đương sau: ($x\in\mathbf R,~n\in\mathbf Z$)
 
 -   $x < n \iff \lfloor x\rfloor < n$.
 -   $n < x \iff n < \lceil x\rceil$.
 -   $x \le n \iff \lceil x\rceil \le n$.
 -   $n \le x \iff n \le \lfloor x\rfloor$.
 
-Tinh chat lien quan den tong va hieu: ($x,y\in\mathbf R$)
+Tính chất liên quan đến tổng và hiệu: ($x,y\in\mathbf R$)
 
--   $\lfloor x\rfloor + \lfloor y\rfloor \le \lfloor x + y\rfloor \le \lfloor x\rfloor + \lfloor y\rfloor + 1$, va dung dung mot dau bang.
--   $\lceil x\rceil +\lceil y\rceil -1\leq \lceil x+y\rceil \leq \lceil x\rceil +\lceil y\rceil$, va dung dung mot dau bang.
+-   $\lfloor x\rfloor + \lfloor y\rfloor \le \lfloor x + y\rfloor \le \lfloor x\rfloor + \lfloor y\rfloor + 1$, và đúng một dấu bằng xảy ra.
+-   $\lceil x\rceil +\lceil y\rceil -1\leq \lceil x+y\rceil \leq \lceil x\rceil +\lceil y\rceil$, và đúng một dấu bằng xảy ra.
 -   $\lfloor|x - y|\rfloor \le |\lfloor x\rfloor - \lfloor y\rfloor| \le \lceil|x - y|\rceil$.
 -   $\lfloor|x - y|\rfloor \le |\lceil x\rceil - \lceil y\rceil| \le \lceil|x-y|\rceil$.
 
-Tinh chat lien quan den thuong: ($x\in\mathbf R,~n\in\mathbf Z,~m\in\mathbf Z_+$)
+Tính chất liên quan đến thương:
+($x\in\mathbf R,~n\in\mathbf Z,~m\in\mathbf Z_+$)
 
 -   $\left\lceil\dfrac{n}{m}\right\rceil = \left\lfloor\dfrac{n+m-1}{m}\right\rfloor,~\left\lfloor\dfrac{n}{m}\right\rfloor = \left\lceil\dfrac{n-m+1}{m}\right\rceil$.
 -   $\left\lfloor\dfrac{x + n}{m} \right\rfloor = \left\lfloor\dfrac{\lfloor x\rfloor + n}{m} \right\rfloor,~\left\lceil\dfrac{x + n}{m} \right\rceil = \left\lceil\dfrac{\lceil x\rceil + n}{m} \right\rceil$.
 -   $\left\lfloor\dfrac{\lfloor x/n\rfloor}{m}\right\rfloor = \left\lfloor\dfrac{x}{nm}\right\rfloor,~\left\lceil\dfrac{\lceil x/n\rceil}{m}\right\rceil = \left\lceil\dfrac{x}{nm}\right\rceil$.
--   Voi $x > 0$, co $\displaystyle\left\lfloor\dfrac{x}{m}\right\rfloor = \sum_{k=1}^{\lfloor x\rfloor}[m\mid k]$.
+-   Với $x > 0$, có
+    $\displaystyle\left\lfloor\dfrac{x}{m}\right\rfloor = \sum_{k=1}^{\lfloor x\rfloor}[m\mid k]$.
 
-Trong do, tinh chat thu hai va thu ba deu co the xem la he qua truc tiep cua ket luan sau:
+Trong đó, tính chất thứ hai và thứ ba đều có thể xem là hệ quả trực tiếp của kết
+luận sau:
 
--   Cho $f$ la ham lien tuc, don dieu tang, va cu moi khi $f(x)\in\mathbf Z$ thi $x\in\mathbf Z$. Khi do
+-   Cho $f$ là hàm liên tục, đơn điệu tăng, và cứ mỗi khi $f(x)\in\mathbf Z$ thì
+    $x\in\mathbf Z$. Khi đó
 
     $$
     \lfloor f(x)\rfloor = \lfloor f(\lfloor x\rfloor)\rfloor,~ \lceil f(x)\rceil = \lceil f(\lceil x\rceil)\rceil.
     $$
 
-    ??? note "Chung minh"
-        Do tinh doi xung, chi can chung minh dang thuc thu nhat. Neu $x$ la so nguyen thi menh de hien nhien. Nguoc lai, $\lfloor x\rfloor < x$. Tu tinh don dieu cua $f$ va cua ham san, ta co $\lfloor f(x)\rfloor \ge \lfloor f(\lfloor x\rfloor)\rfloor$. Neu dau bang khong dung, dat $y = \lfloor f(x)\rfloor$; khi do $\lfloor f(\lfloor x\rfloor)\rfloor < y \le \lfloor f(x)\rfloor$, tuong duong voi $f(\lfloor x\rfloor) < y \le f(x)$. Do $f$ lien tuc, ton tai $\lfloor x\rfloor < x_0 \le x$ sao cho $f(x_0)=y$. Vi $y\in\mathbf Z$, suy ra $x_0\in\mathbf Z$, mau thuan voi dinh nghia cua $\lfloor x\rfloor$. Vi vay dau bang dung, tuc la $\lfloor f(x)\rfloor = \lfloor f(\lfloor x\rfloor)\rfloor$.
+    ??? note "Chứng minh"
+        Do tính đối xứng, chỉ cần chứng minh đẳng thức thứ nhất. Nếu $x$ là số
+        nguyên thì mệnh đề hiển nhiên. Ngược lại, $\lfloor x\rfloor < x$. Từ
+        tính đơn điệu của $f$ và của hàm sàn, ta có
+        $\lfloor f(x)\rfloor \ge \lfloor f(\lfloor x\rfloor)\rfloor$. Nếu dấu
+        bằng không đúng, đặt $y = \lfloor f(x)\rfloor$; khi đó
+        $\lfloor f(\lfloor x\rfloor)\rfloor < y \le \lfloor f(x)\rfloor$, tương
+        đương với $f(\lfloor x\rfloor) < y \le f(x)$. Do $f$ liên tục, tồn tại
+        $\lfloor x\rfloor < x_0 \le x$ sao cho $f(x_0)=y$. Vì $y\in\mathbf Z$,
+        suy ra $x_0\in\mathbf Z$, mâu thuẫn với định nghĩa của $\lfloor x\rfloor$.
+        Vì vậy dấu bằng đúng, tức là
+        $\lfloor f(x)\rfloor = \lfloor f(\lfloor x\rfloor)\rfloor$.
 
-Cuoi cung la mot nhom ket luan ve cac tong co ham lay phan nguyen: ($x\in\mathbf R,~n\in\mathbf Z,~m\in\mathbf Z_+$)
+Cuối cùng là một nhóm kết luận về các tổng có hàm lấy phần nguyên:
+($x\in\mathbf R,~n\in\mathbf Z,~m\in\mathbf Z_+$)
 
 -   $n = \left\lfloor\dfrac{n}{2}\right\rfloor + \left\lceil\dfrac{n}{2}\right\rceil$.
 -   $n = \left\lfloor\dfrac{n}{m} \right\rfloor + \left\lfloor\dfrac{n+1}{m} \right\rfloor + \cdots + \left\lfloor\dfrac{n+m-1}{m} \right\rfloor$.
 -   $n = \left\lceil\dfrac{n}{m} \right\rceil + \left\lceil\dfrac{n-1}{m} \right\rceil + \cdots + \left\lceil\dfrac{n-m+1}{m} \right\rceil$.
 -   $\lfloor mx\rfloor = \lfloor x\rfloor + \left\lfloor x+\dfrac{1}{m}\right\rfloor + \cdots + \left\lfloor x+\dfrac{m-1}{m}\right\rfloor$.
 -   $\lceil mx\rceil = \lceil x\rceil + \left\lceil x - \dfrac{1}{m}\right\rceil + \cdots + \left\lceil x - \dfrac{m-1}{m}\right\rceil$.
--   Khi $m\perp n$, $\displaystyle\sum_{k=1}^{m-1}\left\lfloor\dfrac{kn}{m}\right\rfloor=\dfrac{1}{2}(n-1)(m-1)$.
--   Khi $m\perp n$, $\displaystyle\sum_{k=1}^{m-1}\left\lceil\dfrac{kn}{m}\right\rceil=\dfrac{1}{2}(n+1)(m-1)$.
+-   Khi $m\perp n$,
+    $\displaystyle\sum_{k=1}^{m-1}\left\lfloor\dfrac{kn}{m}\right\rfloor=\dfrac{1}{2}(n-1)(m-1)$.
+-   Khi $m\perp n$,
+    $\displaystyle\sum_{k=1}^{m-1}\left\lceil\dfrac{kn}{m}\right\rceil=\dfrac{1}{2}(n+1)(m-1)$.
 
-Cach suy ra cac tong dang nay va cac dang tong tuong tu tong quat hon co the tham khao trang [thuat toan Euclid mo rong dang lop](./euclidean.md).
+Cách suy ra các tổng dạng này và các dạng tổng tương tự tổng quát hơn có thể
+tham khảo trang [thuật toán Euclid mở rộng dạng lớp](./euclidean.md).
 
-Co the tham khao them cac tinh chat va ung dung cua ham lay phan nguyen o cac trang sau:
+Có thể tham khảo thêm các tính chất và ứng dụng của hàm lấy phần nguyên ở các
+trang sau:
 
--   Phep modulo: $n\bmod m = n - \left\lfloor\dfrac{n}{m}\right\rfloor m$. No co the dung de [toi uu phep modulo so nguyen](./mod-arithmetic.md#%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95).
--   Dung bo de Gauss de chung minh [luat tuong ho bac hai](./quad-residue.md#%E4%BA%8C%E6%AC%A1%E4%BA%92%E5%8F%8D%E5%BE%8B).
--   [Chia khoi so hoc](./sqrt-decomposition.md), dac biet la phan chung minh tinh chat cua no.
--   Tinh so mu cua thua so nguyen to trong giai thua bang [cong thuc Legendre](./factorial.md#legendre-%E5%85%AC%E5%BC%8F).
--   [Day Beatty](../game-theory/impartial-game.md#wythoff-%E6%B8%B8%E6%88%8F), dinh ly Rayleigh va tro choi Wythoff.
+-   Phép modulo: $n\bmod m = n - \left\lfloor\dfrac{n}{m}\right\rfloor m$.
+    Nó có thể dùng để [tối ưu phép modulo số nguyên](./mod-arithmetic.md#%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95).
+-   Dùng bổ đề Gauss để chứng minh
+    [luật tương hỗ bậc hai](./quad-residue.md#%E4%BA%8C%E6%AC%A1%E4%BA%92%E5%8F%8D%E5%BE%8B).
+-   [Chia khối số học](./sqrt-decomposition.md), đặc biệt là phần chứng minh
+    tính chất của nó.
+-   Tính số mũ của thừa số nguyên tố trong giai thừa bằng
+    [công thức Legendre](./factorial.md#legendre-%E5%85%AC%E5%BC%8F).
+-   [Dãy Beatty](../game-theory/impartial-game.md#wythoff-%E6%B8%B8%E6%88%8F),
+    định lý Rayleigh và trò chơi Wythoff.
 
 <span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
-## Tai lieu tham khao va ghi chu
+## Tài liệu tham khảo và ghi chú
 
--   Pan Chengdong, Pan Chengbiao. *So hoc so cap*. Nha xuat ban Dai hoc Bac Kinh.
+-   Pan Chengdong, Pan Chengbiao. *Số học sơ cấp*. Nhà xuất bản Đại học Bắc
+    Kinh.
 -   [Floor and ceiling functions - Wikipedia](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)
 -   Graham, Ronald L., Donald E. Knuth, and Oren Patashnik. "Concrete mathematics: a foundation for computer science." (1989).
 
