@@ -1,38 +1,59 @@
-Kien thuc nen: [phan so lien tuc](./continued-fraction.md), [truong bac hai](./quadratic.md)
+Kiến thức nền: [phân số liên tục](./continued-fraction.md), [trường bậc hai](./quadratic.md)
 
 <span id="&#x5f15;&#x5165;"></span>
-## Mo dau
+## Mở đầu
 
-Bai viet nay thao luan cach giai phuong trinh Pell (tong quat). Phuong trinh Pell tong quat la phuong trinh vo dinh theo $x$ va $y$
+Bài viết này thảo luận cách giải phương trình Pell (tổng quát). Phương trình
+Pell tổng quát là phương trình vô định theo $x$ và $y$
 
 $$
 x^2-Dy^2=N,
 $$
 
-trong do $D$ la so nguyen duong khong phai so chinh phuong[^not-square], va $N$ la so nguyen khac khong. Theo nghia hep, phuong trinh Pell chi truong hop dac biet $N=1$ hoac $N=\pm 1$, doi khi cung gom ca $N=\pm 4$. Phuong trinh Pell tong quat lien quan chat che den viec tim so nguyen bac hai co chuan bang $N$ trong vanh so nguyen bac hai thuc, con cac truong hop thuong duoc goi la phuong trinh Pell (nghia hep) co the xem nhu viec tim don vi trong vanh so nguyen bac hai thuc.
+trong đó $D$ là số nguyên dương không phải số chính phương[^not-square], và
+$N$ là số nguyên khác không. Theo nghĩa hẹp, phương trình Pell chỉ trường hợp
+đặc biệt $N=1$ hoặc $N=\pm 1$, đôi khi cũng gồm cả $N=\pm 4$. Phương trình Pell
+tổng quát liên quan chặt chẽ đến việc tìm số nguyên bậc hai có chuẩn bằng $N$
+trong vành số nguyên bậc hai thực, còn các trường hợp thường được gọi là phương
+trình Pell (nghĩa hẹp) có thể xem như việc tìm đơn vị trong vành số nguyên bậc
+hai thực.
 
-Khi bai viet nay noi den phuong trinh Pell, mac dinh la truong hop $N=1$. Tuong ung, truong hop $N=-1$ duoc goi la phuong trinh Pell am[^neg-pell] (negative Pell's equation).
+Khi bài viết này nói đến phương trình Pell, mặc định là trường hợp $N=1$. Tương
+ứng, trường hợp $N=-1$ được gọi là phương trình Pell âm[^neg-pell] (negative
+Pell's equation).
 
 <span id="&#x89e3;&#x7684;&#x7ed3;&#x6784;"></span>
-## Cau truc nghiem
+## Cấu trúc nghiệm
 
-Nghiem nguyen $(x,y)$ cua phuong trinh Pell tong quat co lien he mat thiet voi so nguyen bac hai $x+y\sqrt{D}$, vi vay trong tai lieu nghiem cua phuong trinh Pell thuong duoc viet duoi dang $x+y\sqrt{D}$. Vi chuan cua so nguyen bac hai la
+Nghiệm nguyên $(x,y)$ của phương trình Pell tổng quát có liên hệ mật thiết với
+số nguyên bậc hai $x+y\sqrt{D}$, vì vậy trong tài liệu nghiệm của phương trình
+Pell thường được viết dưới dạng $x+y\sqrt{D}$. Vì chuẩn của số nguyên bậc hai là
 
 $$
 N(x+y\sqrt{D}) = x^2-Dy^2,
 $$
 
-nen phuong trinh Pell tong quat ve co ban la bai toan tim so nguyen bac hai co chuan bang $N$. Tuy nhien, hai bai toan co khac biet nho. Khi $x$ va $y$ deu la so nguyen, $x+y\sqrt{D}$ nhat dinh la so nguyen bac hai; nguoc lai, so nguyen bac hai khong nhat thiet yeu cau $x$ va $y$ deu la so nguyen: trong truong hop $D\equiv 1\pmod 4$, $x$ va $y$ con co the dong thoi la ban nguyen[^half-int].
+nên phương trình Pell tổng quát về cơ bản là bài toán tìm số nguyên bậc hai có
+chuẩn bằng $N$. Tuy nhiên, hai bài toán có khác biệt nhỏ. Khi $x$ và $y$ đều là
+số nguyên, $x+y\sqrt{D}$ nhất định là số nguyên bậc hai; ngược lại, số nguyên
+bậc hai không nhất thiết yêu cầu $x$ và $y$ đều là số nguyên: trong trường hợp
+$D\equiv 1\pmod 4$, $x$ và $y$ còn có thể đồng thời là bán nguyên[^half-int].
 
-Khac biet nay dac biet quan trong khi tim don vi co ban. Don vi trong vanh so nguyen bac hai la so nguyen bac hai co chuan bang $\pm 1$. Voi $D\equiv 2,3\pmod 4$, de tim cac don vi nhu vay chi can giai phuong trinh Pell tong quat trong truong hop $N=\pm 1$; nhung voi $D\equiv 1\pmod 4$, can xet them truong hop $N=\pm 4$. [Phan duoi](#%E8%8C%83%E6%95%B0%E4%B8%BA-4-%E7%9A%84%E6%83%85%E5%BD%A2) se thao luan cach tim don vi.
+Khác biệt này đặc biệt quan trọng khi tìm đơn vị cơ bản. Đơn vị trong vành số
+nguyên bậc hai là số nguyên bậc hai có chuẩn bằng $\pm 1$. Với
+$D\equiv 2,3\pmod 4$, để tìm các đơn vị như vậy chỉ cần giải phương trình Pell
+tổng quát trong trường hợp $N=\pm 1$; nhưng với $D\equiv 1\pmod 4$, cần xét
+thêm trường hợp $N=\pm 4$. [Phần dưới](#%E8%8C%83%E6%95%B0%E4%B8%BA-4-%E7%9A%84%E6%83%85%E5%BD%A2)
+sẽ thảo luận cách tìm đơn vị.
 
-De hieu cau truc nghiem cua phuong trinh Pell tong quat, can bat dau tu [dong nhat thuc Brahmagupta](https://en.wikipedia.org/wiki/Brahmagupta%27s_identity):
+Để hiểu cấu trúc nghiệm của phương trình Pell tổng quát, cần bắt đầu từ
+[đồng nhất thức Brahmagupta](https://en.wikipedia.org/wiki/Brahmagupta%27s_identity):
 
 $$
 (x_1^2-Dy_1^2)(x_2^2-Dy_2^2)=(x_1x_2+Dy_1y_2)^2-D(x_1y_2+x_2y_1)^2.
 $$
 
-No tuong duong voi tinh chat chuan cua so nguyen bac hai bao toan phep nhan, tuc
+Nó tương đương với tính chất chuẩn của số nguyên bậc hai bảo toàn phép nhân, tức
 
 $$
 \begin{aligned}
@@ -41,7 +62,17 @@ N\left(x_1+y_1\sqrt{D}\right)N\left(x_2+y_2\sqrt{D}\right) &= N\left((x_1+y_1\sq
 \end{aligned}
 $$
 
-Dung dong nhat thuc nay, ta co the ghep nghiem nguyen cua phuong trinh $x^2-Dy^2=N_1$ va nghiem nguyen cua phuong trinh $x^2-Dy^2=N_2$ de thu nghiem nguyen cua phuong trinh $x^2-Dy^2=N_1N_2$. Di nhien, nhin tu goc do so nguyen bac hai, phep ghep nghiem chinh la phep nhan so nguyen bac hai; day la tien ich cua cach ghi nghiem phuong trinh Pell duoi dang so nguyen bac hai. Dac biet, lay $N_1=N$ va $N_2=1$ cho thay: neu da biet mot nghiem cua $x^2-Dy^2=N$ va tat ca nghiem cua phuong trinh Pell tuong ung $x^2-Dy^2=1$, ta co the thu them nhieu nghiem cua $x^2-Dy^2=N$. Tat nhien, phuong phap nay khong nhat thiet sinh ra tat ca nghiem. Nhung it nhat no cho thay viec hieu cau truc nghiem cua phuong trinh Pell co vai tro quan trong doi voi cau truc nghiem cua phuong trinh Pell tong quat.
+Dùng đồng nhất thức này, ta có thể ghép nghiệm nguyên của phương trình
+$x^2-Dy^2=N_1$ và nghiệm nguyên của phương trình $x^2-Dy^2=N_2$ để thu nghiệm
+nguyên của phương trình $x^2-Dy^2=N_1N_2$. Dĩ nhiên, nhìn từ góc độ số nguyên
+bậc hai, phép ghép nghiệm chính là phép nhân số nguyên bậc hai; đây là tiện ích
+của cách ghi nghiệm phương trình Pell dưới dạng số nguyên bậc hai. Đặc biệt,
+lấy $N_1=N$ và $N_2=1$ cho thấy: nếu đã biết một nghiệm của $x^2-Dy^2=N$ và tất
+cả nghiệm của phương trình Pell tương ứng $x^2-Dy^2=1$, ta có thể thu thêm
+nhiều nghiệm của $x^2-Dy^2=N$. Tất nhiên, phương pháp này không nhất thiết sinh
+ra tất cả nghiệm. Nhưng ít nhất nó cho thấy việc hiểu cấu trúc nghiệm của
+phương trình Pell có vai trò quan trọng đối với cấu trúc nghiệm của phương trình
+Pell tổng quát.
 
 <span id="pell-&#x65b9;&#x7a0b;"></span>
 ### Phuong trinh Pell
