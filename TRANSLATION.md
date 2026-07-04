@@ -372,6 +372,8 @@ MkDocs source layout intact.
   guide.
 - `docs/tools/polygon.md`: translated the Polygon collaborative problemsetting
   guide.
+- `docs/tools/special-judge.md`: translated the Special Judge writing guide
+  for multiple OJ and judging tools.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
