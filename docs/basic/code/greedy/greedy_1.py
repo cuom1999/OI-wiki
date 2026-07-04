@@ -4,17 +4,17 @@ from heapq import heappush, heappop
 a = defaultdict(list)
 for _ in range(int(input())):
     d, p = map(int, input().split())
-    a[d].append(p)  # 存放对应时间的收益
+    a[d].append(p)  # Lưu lợi nhuận ứng với thời hạn này.
 
-ans = 0  # 记录总收益
-q = []  # 小根堆维护最小值
+ans = 0  # Ghi lại tổng lợi nhuận.
+q = []  # Min-heap duy trì giá trị nhỏ nhất.
 l = sorted(a.keys(), reverse=True)
 for i, j in zip(l, l[1:] + [0]):
     for k in a.pop(i):
         heappush(q, ~k)
     for _ in range(i - j):
-        if q:  # 从堆中取出收益最多的工作
+        if q:  # Lấy công việc có lợi nhuận lớn nhất khỏi heap.
             ans += ~heappop(q)
-        else:  # 堆为空时退出循环
+        else:  # Thoát vòng lặp khi heap rỗng.
             break
 print(ans)

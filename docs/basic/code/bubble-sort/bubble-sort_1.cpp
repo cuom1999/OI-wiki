@@ -1,4 +1,4 @@
-// 假设数组的大小是 n + 1，冒泡排序从数组下标 1 开始
+// Giả sử mảng có kích thước n + 1; bubble sort bắt đầu từ chỉ số 1.
 void bubble_sort(int *a, int n) {
   bool flag = true;
   while (flag) {

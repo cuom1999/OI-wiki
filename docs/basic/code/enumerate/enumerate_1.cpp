@@ -1,13 +1,13 @@
 #include <cstring>
-constexpr int MAXN = 100000;  // 此处 MAXN 是数组内元素的界
+constexpr int MAXN = 100000;  // Ở đây MAXN là cận của phần tử trong mảng.
 
 int solve(int n, int a[]) {
-  bool met[MAXN * 2 + 1];  // 创建一个能装下 [-MAXN, MAXN] 的桶
+  bool met[MAXN * 2 + 1];  // Tạo bucket chứa được đoạn [-MAXN, MAXN].
   memset(met, 0, sizeof(met));
   int ans = 0;
   for (int i = 0; i < n; ++i) {
-    if (met[MAXN - a[i]]) ++ans;  // 如果桶内有想要的元素，答案加一
-    met[MAXN + a[i]] = true;  // 无论如何，都要把当前元素放进桶里
+    if (met[MAXN - a[i]]) ++ans;  // Nếu bucket có phần tử cần tìm, tăng đáp án.
+    met[MAXN + a[i]] = true;      // Luôn đưa phần tử hiện tại vào bucket.
   }
   return ans * 2;
 }

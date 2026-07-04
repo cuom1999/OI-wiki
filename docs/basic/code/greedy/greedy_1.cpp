@@ -12,7 +12,7 @@ struct f {
 
 bool cmp(f A, f B) { return A.d < B.d; }
 
-// 小根堆维护最小值
+// Min-heap duy trì giá trị nhỏ nhất.
 priority_queue<long long, vector<long long>, greater<long long>> q;
 
 int main() {
@@ -24,13 +24,13 @@ int main() {
   sort(a + 1, a + n + 1, cmp);
   long long ans = 0;
   for (i = 1; i <= n; i++) {
-    if (a[i].d <= (int)q.size()) {  // 超过截止时间
-      if (q.top() < a[i].p) {       // 后悔
+    if (a[i].d <= (int)q.size()) {  // Vượt quá hạn chót.
+      if (q.top() < a[i].p) {       // Đổi lựa chọn trước đó.
         ans += a[i].p - q.top();
         q.pop();
         q.push(a[i].p);
       }
-    } else {  // 直接加入队列
+    } else {  // Đưa trực tiếp vào hàng đợi.
       ans += a[i].p;
       q.push(a[i].p);
     }

@@ -13,13 +13,13 @@ int power[MAXN];
 int depth[MAXN], lg[MAXN];
 int n, k, ans = 0, tot = 0;
 
-void add(int x, int y) {  // 加边
+void add(int x, int y) {  // Thêm cạnh.
   edge[++tot].to = y;
   edge[tot].next = head[x];
   head[x] = tot;
 }
 
-void dfs(int now, int father) {  // dfs求最大压力
+void dfs(int now, int father) {  // DFS để chuẩn bị thông tin tổ tiên.
   fa[now][0] = father;
   depth[now] = depth[father] + 1;
   for (int i = 1; i <= lg[depth[now]]; ++i)
@@ -28,7 +28,7 @@ void dfs(int now, int father) {  // dfs求最大压力
     if (edge[i].to != father) dfs(edge[i].to, now);
 }
 
-int lca(int x, int y) {  // 求LCA，最近公共祖先
+int lca(int x, int y) {  // Tìm LCA, tức tổ tiên chung gần nhất.
   if (depth[x] < depth[y]) swap(x, y);
   while (depth[x] > depth[y]) x = fa[x][lg[depth[x] - depth[y]] - 1];
   if (x == y) return x;
@@ -38,7 +38,7 @@ int lca(int x, int y) {  // 求LCA，最近公共祖先
   return fa[x][0];
 }
 
-// 用dfs求最大压力，回溯时将子树的权值加上
+// Dùng DFS để tìm áp lực lớn nhất; khi quay lui, cộng trọng số của cây con.
 void get_ans(int u, int father) {
   for (int i = head[u]; i; i = edge[i].next) {
     int to = edge[i].to;
@@ -56,7 +56,7 @@ int main() {
   for (int i = 1; i <= n; i++) {
     lg[i] = lg[i - 1] + (1 << lg[i - 1] == i);
   }
-  for (int i = 1; i <= n - 1; i++) {  // 建图
+  for (int i = 1; i <= n - 1; i++) {  // Xây dựng đồ thị.
     cin >> x >> y;
     add(x, y);
     add(y, x);
@@ -66,7 +66,7 @@ int main() {
   for (int i = 1; i <= k; i++) {
     cin >> s >> t;
     int ancestor = lca(s, t);
-    // 树上差分
+    // Hiệu trên cây.
     power[s]++;
     power[t]++;
     power[ancestor]--;

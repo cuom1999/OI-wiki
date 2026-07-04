@@ -12,21 +12,22 @@ int get_digit(string* arr, int i, int dig) {
 }
 
 void MSD_radix_sort_string_base(string* arr, int* begin, int* end,
-                                int digit)  // 主体函数
-// 对仅由小写字母构成的字符串排序
-// 参数表示现在 [begin,end) 内的元素 [0,digit) 位都相同
-// 现在从 digit 位开始进行排序
-// 调用示例：MSD_radix_sort_string(a,a+n,0)
-// 和上一份代码几乎完全相同，所以注释较少
-// 为节省空间和时间，我们对下标数组进行排序，比较函数依旧比较字符串对应位
+                                int digit)  // Hàm chính.
+// Sắp xếp các chuỗi chỉ gồm chữ cái thường.
+// Tham số cho biết các phần tử trong [begin,end) hiện giống nhau ở đoạn [0,digit).
+// Bây giờ bắt đầu sắp xếp từ vị trí digit.
+// Ví dụ gọi: MSD_radix_sort_string(a,a+n,0)
+// Gần giống đoạn code trước nên phần chú thích ít hơn.
+// Để tiết kiệm bộ nhớ và thời gian, ta sắp xếp mảng chỉ số; hàm so sánh vẫn
+// so sánh ký tự tương ứng của chuỗi.
 {
   if (begin >= end) return;
   static int tmp[MAXN + 5];
   static int cnt[28];
   vector<int> beg;
   beg.resize(28);
-  // Q: 为什么开 28？
-  // A: 0=空字符，1-26=a-z，27=额外空间（防止越界）
+  // Q: Vì sao dùng kích thước 28?
+  // A: 0=ký tự rỗng, 1-26=a-z, 27=ô dự phòng để tránh vượt biên.
   for (int i = 0; i < 28; i++) cnt[i] = beg[i] = 0;
   for (int* it = begin; it != end; it++) cnt[get_digit(arr, *it, digit)] += 1;
   beg[0] = 0;
@@ -38,7 +39,7 @@ void MSD_radix_sort_string_base(string* arr, int* begin, int* end,
     cnt[bitVal]++;
   }
   for (int* it = begin; it != end; it++) *it = tmp[it - begin];
-  // 如果已经是空字符了就没必要递归了，所以递归 1~26
+  // Nếu đã là ký tự rỗng thì không cần đệ quy, nên chỉ đệ quy 1~26.
   for (int i = 1; i <= 26; i++)
     MSD_radix_sort_string_base(arr, begin + beg[i], begin + beg[i + 1],
                                digit + 1);
@@ -46,7 +47,7 @@ void MSD_radix_sort_string_base(string* arr, int* begin, int* end,
 
 int label[MAXN + 5];
 
-void MSD_radix_sort_string(string* begin, string* end)  // 调用接口
+void MSD_radix_sort_string(string* begin, string* end)  // Giao diện gọi.
 {
   static string tmp[MAXN + 5];
   int n = end - begin;

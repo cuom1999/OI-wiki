@@ -7,15 +7,15 @@ public class Main {
         int d = input.nextInt();
         int n = input.nextInt();
         int time = 0, dist = 0;
-        while (true) {  // 用死循环来枚举
+        while (true) {  // Dùng vòng lặp vô hạn để liệt kê.
             dist += u;
             time++;
             if (dist >= n) {
-                break;  // 满足条件则退出死循环
+                break;  // Thoát vòng lặp vô hạn khi thỏa điều kiện.
             }
             dist -= d;
         }
-        System.out.println(time);   // 输出得到的结果
+        System.out.println(time);   // In kết quả thu được.
         input.close();
     }
 }

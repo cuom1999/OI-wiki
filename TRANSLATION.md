@@ -412,6 +412,8 @@ MkDocs source layout intact.
   identifiers.
 - Official contest names and stage labels in `docs/contest/oi.md` were
   normalized into Vietnamese/romanized forms where needed.
+- Chinese comments in `docs/basic/code` snippets were translated while keeping
+  the example code unchanged.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

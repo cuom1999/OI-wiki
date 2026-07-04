@@ -16,15 +16,15 @@ void counting_sort(int p) {
   memset(cnt, 0, sizeof(cnt));
   for (int i = 1; i <= n; ++i) ++cnt[a[i].key[p]];
   for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];
-  // 为保证排序的稳定性，此处循环i应从n到1
-  // 即当两元素关键字的值相同时，原先排在后面的元素在排序后仍应排在后面
+  // Để bảo đảm tính ổn định của sắp xếp, vòng lặp i ở đây phải đi từ n về 1.
+  // Khi hai phần tử có cùng khóa, phần tử vốn đứng sau vẫn đứng sau khi sắp xếp.
   for (int i = n; i >= 1; --i) b[cnt[a[i].key[p]]--] = a[i];
   memcpy(a, b, sizeof(a));
 }
 
 void radix_sort() {
   for (int i = k; i >= 1; --i) {
-    // 借助计数排序完成对关键字的排序
+    // Dùng counting sort để sắp xếp theo khóa.
     counting_sort(i);
   }
 }
