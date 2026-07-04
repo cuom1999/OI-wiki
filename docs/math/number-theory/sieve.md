@@ -1,27 +1,32 @@
 author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China, HeRaNO, weilycoder
 
 <span id="&#x7D20;&#x6570;&#x7B5B;&#x6CD5;"></span>
-## Sang so nguyen to
+## Sàng số nguyên tố
 
 <span id="&#x5F15;&#x5165;"></span>
-### Gioi thieu
+### Giới thiệu
 
-Neu muon biet co bao nhieu so nguyen to nho hon hoac bang $n$ thi lam the nao?
+Nếu muốn biết có bao nhiêu số nguyên tố nhỏ hơn hoặc bằng $n$ thì làm thế nào?
 
-Mot y tuong tu nhien la kiem tra tinh nguyen to cho tung so khong vuot qua $n$. Cach vét can nay ro rang khong dat do phuc tap toi uu.
+Một ý tưởng tự nhiên là kiểm tra tính nguyên tố cho từng số không vượt quá
+$n$. Cách vét cạn này rõ ràng không đạt độ phức tạp tối ưu.
 
 <span id="&#x57C3;&#x62C9;&#x6258;&#x65AF;&#x7279;&#x5C3C;&#x7B5B;&#x6CD5;"></span>
-### Sang Eratosthenes
+### Sàng Eratosthenes
 
 <span id="&#x8FC7;&#x7A0B;"></span>
-#### Qua trinh
+#### Quá trình
 
-Xet mot nhan xet: voi bat ky so nguyen duong $n$ lon hon $1$, boi $x$ cua no la hop so neu $x > 1$. Dua vao ket luan nay, ta co the tranh nhieu lan kiem tra khong can thiet.
+Xét một nhận xét: với bất kỳ số nguyên dương $n$ lớn hơn $1$, bội $x$ của nó
+là hợp số nếu $x > 1$. Dựa vào kết luận này, ta có thể tránh nhiều lần kiểm tra
+không cần thiết.
 
-Neu xet tung so tu nho den lon, dong thoi danh dau tat ca cac boi so cua so hien tai (lon hon chinh no) la hop so, thi sau khi ket thuc, nhung so chua bi danh dau chinh la so nguyen to.
+Nếu xét từng số từ nhỏ đến lớn, đồng thời đánh dấu tất cả các bội số của số
+hiện tại (lớn hơn chính nó) là hợp số, thì sau khi kết thúc, những số chưa bị
+đánh dấu chính là số nguyên tố.
 
 <span id="&#x5B9E;&#x73B0;"></span>
-#### Cai dat
+#### Cài đặt
 
 === "C++"
     ```cpp
@@ -36,9 +41,9 @@ Neu xet tung so tu nho den lon, dong thoi danh dau tat ca cac boi so cua so hien
           prime.push_back(i);
           if ((long long)i * i > n) continue;
           for (int j = i * i; j <= n; j += i)
-            // Cac boi tu 2 den i - 1 da duoc sang truoc do, nen o day bat dau
-            // truc tiep tu boi cua i de tang toc
-            is_prime[j] = false;  // cac boi cua i deu khong phai so nguyen to
+            // Các bội từ 2 đến i - 1 đã được sàng trước đó, nên ở đây bắt đầu
+            // trực tiếp từ bội của i để tăng tốc
+            is_prime[j] = false;  // các bội của i đều không phải số nguyên tố
         }
       }
     }
@@ -63,28 +68,35 @@ Neu xet tung so tu nho den lon, dong thoi danh dau tat ca cac boi so cua so hien
                     is_prime[j] = False
     ```
 
-Tren day la **sang Eratosthenes** (goi tat la sang Eratosthenes), co do phuc tap thoi gian $O(n\log\log n)$.
+Trên đây là **sàng Eratosthenes** (gọi tắt là sàng Eratosthenes), có độ phức
+tạp thời gian $O(n\log\log n)$.
 
-???+ note "Chung minh"
-    Bay gio xet qua trinh suy ra:
+???+ note "Chứng minh"
+    Bây giờ xét quá trình suy ra:
     
-    Neu moi thao tac tren mang ton 1 don vi thoi gian, do phuc tap thoi gian la:
+    Nếu mỗi thao tác trên mảng tốn 1 đơn vị thời gian, độ phức tạp thời gian là:
     
     $$
     O\left(\sum_{k=1}^{\pi(n)}{\frac{n}{p_k}}\right)=O\left(n\sum_{k=1}^{\pi(n)}{\frac{1}{p_k}}\right)
     $$
     
-    Trong do $p_k$ la so nguyen to nho thu $k$, $\pi(n)$ la so luong so nguyen to $\le n$. $\sum_{k=1}^{\pi(n)}$ bieu dien vong `for` lop ngoai, voi can tren $\pi(n)$ la so lan `if (prime[i])` di vao nhanh `true`; $\frac{n}{p_k}$ bieu dien so lan thuc hien vong `for` lop trong.
+    Trong đó $p_k$ là số nguyên tố nhỏ thứ $k$, $\pi(n)$ là số lượng số nguyên
+    tố $\le n$. $\sum_{k=1}^{\pi(n)}$ biểu diễn vòng `for` lớp ngoài, với cận
+    trên $\pi(n)$ là số lần `if (prime[i])` đi vào nhánh `true`;
+    $\frac{n}{p_k}$ biểu diễn số lần thực hiện vòng `for` lớp trong.
     
-    Theo dinh ly thu hai cua Mertens, ton tai hang so $B_1$ sao cho:
+    Theo định lý thứ hai của Mertens, tồn tại hằng số $B_1$ sao cho:
     
     $$
     \sum_{k=1}^{\pi(n)}{\frac{1}{p_k}}=\log\log n+B_1+O\left(\frac{1}{\log n}\right)
     $$
     
-    Do do do phuc tap thoi gian cua **sang Eratosthenes** la $O(n\log\log n)$. Tiep theo ta chung minh phien ban yeu hon cua dinh ly thu hai Mertens: $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$.
+    Do đó độ phức tạp thời gian của **sàng Eratosthenes** là
+    $O(n\log\log n)$. Tiếp theo ta chứng minh phiên bản yếu hơn của định lý thứ
+    hai Mertens: $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$.
     
-    Tu $\pi(n)=\Theta(n/\log n)$, suy ra so nguyen to thu $n$ co kich thuoc $\Theta(n\log n)$. Khi do
+    Từ $\pi(n)=\Theta(n/\log n)$, suy ra số nguyên tố thứ $n$ có kích thước
+    $\Theta(n\log n)$. Khi đó
     
     $$
     \begin{aligned}
@@ -95,12 +107,14 @@ Tren day la **sang Eratosthenes** (goi tat la sang Eratosthenes), co do phuc tap
     \end{aligned}
     $$
     
-    Tat nhien, cach tren van chua du nhanh trong thuc te; cac phuong phap duoi day co the cai thien hieu nang mot chut.
+    Tất nhiên, cách trên vẫn chưa đủ nhanh trong thực tế; các phương pháp dưới
+    đây có thể cải thiện hiệu năng một chút.
 
 <span id="&#x7B5B;&#x81F3;&#x5E73;&#x65B9;&#x6839;"></span>
-#### Sang den can bac hai
+#### Sàng đến căn bậc hai
 
-Ro rang, de tim tat ca so nguyen to den $n$, chi can sang bang cac so nguyen to khong vuot qua $\sqrt n$.
+Rõ ràng, để tìm tất cả số nguyên tố đến $n$, chỉ cần sàng bằng các số nguyên tố
+không vượt quá $\sqrt n$.
 
 === "C++"
     ```cpp
@@ -110,7 +124,7 @@ Ro rang, de tim tat ca so nguyen to den $n$, chi can sang bang cac so nguyen to 
     void Eratosthenes(int n) {
       is_prime[0] = is_prime[1] = false;
       for (int i = 2; i <= n; ++i) is_prime[i] = true;
-      // i * i <= n nghia la i <= sqrt(n)
+      // i * i <= n nghĩa là i <= sqrt(n)
       for (int i = 2; i * i <= n; ++i) {
         if (is_prime[i])
           for (int j = i * i; j <= n; j += i) is_prime[j] = false;
@@ -130,8 +144,8 @@ Ro rang, de tim tat ca so nguyen to den $n$, chi can sang bang cac so nguyen to 
         is_prime[0] = is_prime[1] = False
         for i in range(2, n + 1):
             is_prime[i] = True
-        # Cho i lap den <= sqrt(n)
-        for i in range(2, isqrt(n) + 1):  # `isqrt` la ham moi trong Python 3.8
+        # Cho i lặp đến <= sqrt(n)
+        for i in range(2, isqrt(n) + 1):  # `isqrt` là hàm mới trong Python 3.8
             if is_prime[i]:
                 for j in range(i * i, n + 1, i):
                     is_prime[j] = False
@@ -140,40 +154,64 @@ Ro rang, de tim tat ca so nguyen to den $n$, chi can sang bang cac so nguyen to 
                 prime.append(i)
     ```
 
-Toi uu nay khong anh huong den do phuc tap tiem can. Tren thuc te, lap lai chung minh tren se thu duoc $n \ln \ln \sqrt n + o(n)$; theo tinh chat cua logarit, chung tuong duong ve tiem can, nhung so thao tac giam dang ke.
+Tối ưu này không ảnh hưởng đến độ phức tạp tiệm cận. Trên thực tế, lặp lại
+chứng minh trên sẽ thu được $n \ln \ln \sqrt n + o(n)$; theo tính chất của
+logarit, chúng tương đương về tiệm cận, nhưng số thao tác giảm đáng kể.
 
 <span id="&#x53EA;&#x7B5B;&#x5947;&#x6570;"></span>
-#### Chi sang so le
+#### Chỉ sàng số lẻ
 
-Vi moi so chan ngoai $2$ deu la hop so, ta co the bo qua truc tiep va chi quan tam den so le.
+Vì mọi số chẵn ngoài $2$ đều là hợp số, ta có thể bỏ qua trực tiếp và chỉ quan
+tâm đến số lẻ.
 
-Truoc het, cach nay lam giam mot nua nhu cau bo nho; tiep theo, so thao tac can thiet cung xap xi giam mot nua.
+Trước hết, cách này làm giảm một nửa nhu cầu bộ nhớ; tiếp theo, số thao tác cần
+thiết cũng xấp xỉ giảm một nửa.
 
 <span id="&#x51CF;&#x5C11;&#x5185;&#x5B58;&#x7684;&#x5360;&#x7528;"></span>
-#### Giam dung luong bo nho
+#### Giảm dung lượng bộ nhớ
 
-Ta nhan thay khi sang chi can mang kieu `bool`. Mot phan tu cua mang `bool` thuong chiem $1$ byte (tuc $8$ bit), nhung de luu mot gia tri boolean chi can $1$ bit.
+Ta nhận thấy khi sàng chỉ cần mảng kiểu `bool`. Một phần tử của mảng `bool`
+thường chiếm $1$ byte (tức $8$ bit), nhưng để lưu một giá trị boolean chỉ cần
+$1$ bit.
 
-Co the dung kien thuc ve [thao tac bit](../bit.md) de nen moi gia tri boolean vao mot bit. Khi do chi can $n$ bit (tuc $\dfrac n 8$ byte) thay vi $n$ byte, giup giam dang ke bo nho. Cach nay goi la "nen o muc bit".
+Có thể dùng kiến thức về [thao tác bit](../bit.md) để nén mỗi giá trị boolean
+vào một bit. Khi đó chỉ cần $n$ bit (tức $\dfrac n 8$ byte) thay vì $n$ byte,
+giúp giảm đáng kể bộ nhớ. Cách này gọi là "nén ở mức bit".
 
-Dang chu y la co nhung cau truc du lieu tu dong thuc hien nen muc bit, nhu `vector<bool>` va `bitset<>` trong C++.
+Đáng chú ý là có những cấu trúc dữ liệu tự động thực hiện nén mức bit, như
+`vector<bool>` và `bitset<>` trong C++.
 
-Ngoai ra, `vector<bool>` va `bitset<>` co toi uu hang so cho chuong trinh; sang Eratosthenes co do phuc tap $O(n \log \log n)$ sau khi toi uu bang `bitset<>` hoac `vector<bool>` tham chi co hieu nang vuot qua sang Euler co do phuc tap $O(n)$.
+Ngoài ra, `vector<bool>` và `bitset<>` có tối ưu hằng số cho chương trình; sàng
+Eratosthenes có độ phức tạp $O(n \log \log n)$ sau khi tối ưu bằng `bitset<>`
+hoặc `vector<bool>` thậm chí có hiệu năng vượt qua sàng Euler có độ phức tạp
+$O(n)$.
 
-Xem [bitset: ket hop voi sang Eratosthenes](../../lang/csl/bitset.md#%E4%B8%8E%E5%9F%83%E6%B0%8F%E7%AD%9B%E7%BB%93%E5%90%88).
+Xem [bitset: kết hợp với sàng Eratosthenes](../../lang/csl/bitset.md#%E4%B8%8E%E5%9F%83%E6%B0%8F%E7%AD%9B%E7%BB%93%E5%90%88).
 
 <span id="&#x5206;&#x5757;&#x7B5B;&#x9009;"></span>
-#### Sang theo khoi
+#### Sàng theo khối
 
-Tu toi uu "sang den can bac hai", ta biet khong can giu toan bo mang `is_prime[1...n]`. De sang, chi can giu cac so nguyen to den $\sqrt n$, tuc `prime[1...sqrt(n)]`, roi chia toan bo mien thanh cac khoi va sang rieng tung khoi. Nhu vay khong can giu nhieu khoi trong bo nho cung luc, va CPU cung xu ly cache tot hon.
+Từ tối ưu "sàng đến căn bậc hai", ta biết không cần giữ toàn bộ mảng
+`is_prime[1...n]`. Để sàng, chỉ cần giữ các số nguyên tố đến $\sqrt n$, tức
+`prime[1...sqrt(n)]`, rồi chia toàn bộ miền thành các khối và sàng riêng từng
+khối. Như vậy không cần giữ nhiều khối trong bộ nhớ cùng lúc, và CPU cũng xử lý
+cache tốt hơn.
 
-Goi $s$ la mot hang so quyet dinh kich thuoc khoi, khi do co $\lceil {\frac n s} \rceil$ khoi, va khoi $k$ ($k = 0 \dots \lfloor {\frac n s} \rfloor$) chua cac so trong doan $[ks, ks + s - 1]$. Ta xu ly tung khoi lan luot: voi moi khoi $k$, duyet tat ca cac so nguyen to (tu $1$ den $\sqrt n$) va dung chung de sang.
+Gọi $s$ là một hằng số quyết định kích thước khối, khi đó có
+$\lceil {\frac n s} \rceil$ khối, và khối $k$
+($k = 0 \dots \lfloor {\frac n s} \rfloor$) chứa các số trong đoạn
+$[ks, ks + s - 1]$. Ta xử lý từng khối lần lượt: với mỗi khối $k$, duyệt tất cả
+các số nguyên tố (từ $1$ đến $\sqrt n$) và dùng chúng để sàng.
 
-Can luu y khi xu ly cac so dau tien phai sua chien luoc mot chut: thu nhat, can giu tat ca so nguyen to trong $[1, \sqrt n]$; thu hai, so $0$ va $1$ phai duoc danh dau la khong phai so nguyen to. Khi xu ly khoi cuoi, khong duoc quen rang so cuoi cung $n$ khong nhat thiet nam o cuoi khoi.
+Cần lưu ý khi xử lý các số đầu tiên phải sửa chiến lược một chút: thứ nhất, cần
+giữ tất cả số nguyên tố trong $[1, \sqrt n]$; thứ hai, số $0$ và $1$ phải được
+đánh dấu là không phải số nguyên tố. Khi xử lý khối cuối, không được quên rằng
+số cuối cùng $n$ không nhất thiết nằm ở cuối khối.
 
-Cai dat duoi day dung sang theo khoi de tinh so luong so nguyen to khong vuot qua $n$.
+Cài đặt dưới đây dùng sàng theo khối để tính số lượng số nguyên tố không vượt
+quá $n$.
 
-???+ note "Cai dat"
+???+ note "Cài đặt"
     ```cpp
     int count_primes(int n) {
       constexpr static int S = 10000;
@@ -205,20 +243,24 @@ Cai dat duoi day dung sang theo khoi de tinh so luong so nguyen to khong vuot qu
     }
     ```
 
-Do phuc tap tiem can cua sang theo khoi giong sang Eratosthenes (tru khi khoi qua nho), nhung bo nho can dung giam xuong $O(\sqrt{n} + S)$ va co hieu qua cache tot hon.
-Mat khac, voi moi cap gom mot khoi va mot so nguyen to trong doan $[1, \sqrt{n}]$, ta deu phai thuc hien phep chia; voi khoi nho, dieu nay te hon nhieu.
-Vi vay can can bang khi chon hang so $S$.
+Độ phức tạp tiệm cận của sàng theo khối giống sàng Eratosthenes (trừ khi khối
+quá nhỏ), nhưng bộ nhớ cần dùng giảm xuống $O(\sqrt{n} + S)$ và có hiệu quả
+cache tốt hơn. Mặt khác, với mỗi cặp gồm một khối và một số nguyên tố trong
+đoạn $[1, \sqrt{n}]$, ta đều phải thực hiện phép chia; với khối nhỏ, điều này
+tệ hơn nhiều. Vì vậy cần cân bằng khi chọn hằng số $S$.
 
-Kich thuoc khoi $S$ trong khoang $10^4$ den $10^5$ thuong cho toc do tot nhat.
+Kích thước khối $S$ trong khoảng $10^4$ đến $10^5$ thường cho tốc độ tốt nhất.
 
 <span id="&#x7EBF;&#x6027;&#x7B5B;&#x6CD5;"></span>
-### Sang tuyen tinh
+### Sàng tuyến tính
 
-Sang Eratosthenes van con khong gian toi uu, vi no danh dau mot hop so nhieu lan. Co cach nao bo qua cac buoc vo nghia nay khong? Cau tra loi la co.
+Sàng Eratosthenes vẫn còn không gian tối ưu, vì nó đánh dấu một hợp số nhiều
+lần. Có cách nào bỏ qua các bước vô nghĩa này không? Câu trả lời là có.
 
-Neu moi hop so chi bi danh dau mot lan, do phuc tap thoi gian co the giam xuong $O(n)$.
+Nếu mỗi hợp số chỉ bị đánh dấu một lần, độ phức tạp thời gian có thể giảm xuống
+$O(n)$.
 
-???+ note "Cai dat"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         vector<int> pri;
@@ -234,10 +276,10 @@ Neu moi hop so chi bi danh dau mot lan, do phuc tap thoi gian co the giam xuong 
               not_prime[i * pri_j] = true;
               if (i % pri_j == 0) {
                 // i % pri_j == 0
-                // Noi cach khac, i da bi sang boi pri_j truoc do
-                // Vi cac so nguyen to trong pri tang dan, nen ket qua cua i nhan
-                // voi cac so nguyen to khac chac chan se bi sang boi boi cua pri_j;
-                // khong can sang truoc o day, nen break truc tiep
+                // Nói cách khác, i đã bị sàng bởi pri_j trước đó
+                // Vì các số nguyên tố trong pri tăng dần, nên kết quả của i nhân
+                // với các số nguyên tố khác chắc chắn sẽ bị sàng bởi bội của pri_j;
+                // không cần sàng trước ở đây, nên break trực tiếp
                 break;
               }
             }
@@ -262,27 +304,32 @@ Neu moi hop so chi bi danh dau mot lan, do phuc tap thoi gian co the giam xuong 
                     if i % pri_j == 0:
                         """
                         i % pri_j == 0
-                        Noi cach khac, i da bi sang boi pri_j truoc do
-                        Vi cac so nguyen to trong pri tang dan, nen ket qua cua i nhan
-                        voi cac so nguyen to khac chac chan se bi sang boi boi cua pri_j;
-                        khong can sang truoc o day, nen break truc tiep
+                        Nói cách khác, i đã bị sàng bởi pri_j trước đó
+                        Vì các số nguyên tố trong pri tăng dần, nên kết quả của i nhân
+                        với các số nguyên tố khác chắc chắn sẽ bị sàng bởi bội của pri_j;
+                        không cần sàng trước ở đây, nên break trực tiếp
                         """
                         break
         ```
 
-Kieu sang tren duoc goi la **sang tuyen tinh**, hay **sang Euler**.
+Kiểu sàng trên được gọi là **sàng tuyến tính**, hay **sàng Euler**.
 
-???+ note "Ghi chu"
-    Khi dung sang de tim so nguyen to, ta dong thoi thu duoc thua so nguyen to nho nhat cua moi so.
+???+ note "Ghi chú"
+    Khi dùng sàng để tìm số nguyên tố, ta đồng thời thu được thừa số nguyên tố
+    nhỏ nhất của mỗi số.
 
 <span id="&#x7B5B;&#x6CD5;&#x6C42;&#x6B27;&#x62C9;&#x51FD;&#x6570;"></span>
-## Tinh ham Euler bang sang
+## Tính hàm Euler bằng sàng
 
-Trong sang tuyen tinh, moi hop so deu bi sang boi thua so nguyen to nho nhat. Vi du, goi $p_1$ la thua so nguyen to nho nhat cua $n$, $n' = \frac{n}{p_1}$; trong qua trinh sang tuyen tinh, $n$ bi sang qua $n' \times p_1$.
+Trong sàng tuyến tính, mỗi hợp số đều bị sàng bởi thừa số nguyên tố nhỏ nhất.
+Ví dụ, gọi $p_1$ là thừa số nguyên tố nhỏ nhất của $n$,
+$n' = \frac{n}{p_1}$; trong quá trình sàng tuyến tính, $n$ bị sàng qua
+$n' \times p_1$.
 
-Quan sat qua trinh sang tuyen tinh, ta con can xu ly hai phan; sau day chia truong hop theo $n' \bmod p_1$.
+Quan sát quá trình sàng tuyến tính, ta còn cần xử lý hai phần; sau đây chia
+trường hợp theo $n' \bmod p_1$.
 
-Neu $n' \bmod p_1 = 0$, thi $n'$ chua tat ca thua so nguyen to cua $n$.
+Nếu $n' \bmod p_1 = 0$, thì $n'$ chứa tất cả thừa số nguyên tố của $n$.
 
 $$
 \begin{aligned}
@@ -292,7 +339,8 @@ $$
 \end{aligned}
 $$
 
-Con neu $n' \bmod p_1 \neq 0$ thi sao? Khi do $n'$ va $p_1$ nguyen to cung nhau; theo tinh chat cua ham Euler, ta co:
+Còn nếu $n' \bmod p_1 \neq 0$ thì sao? Khi đó $n'$ và $p_1$ nguyên tố cùng
+nhau; theo tính chất của hàm Euler, ta có:
 
 $$
 \begin{aligned}
@@ -302,7 +350,7 @@ $$
 $$
 
 <span id="&#x5B9E;&#x73B0;"></span>
-### Cai dat
+### Cài đặt
 
 === "C++"
     ```cpp
@@ -354,12 +402,13 @@ $$
     ```
 
 <span id="&#x7B5B;&#x6CD5;&#x6C42;&#x83AB;&#x6BD4;&#x4E4C;&#x65AF;&#x51FD;&#x6570;"></span>
-## Tinh ham Mobius bang sang
+## Tính hàm Möbius bằng sàng
 
 <span id="&#x5B9A;&#x4E49;"></span>
-### Dinh nghia
+### Định nghĩa
 
-Theo dinh nghia ham Mobius, gia su $n$ la hop so, $p_1$ la thua so nguyen to nho nhat cua $n$, $n'=\frac{n}{p_1}$, ta co:
+Theo định nghĩa hàm Möbius, giả sử $n$ là hợp số, $p_1$ là thừa số nguyên tố
+nhỏ nhất của $n$, $n'=\frac{n}{p_1}$, ta có:
 
 $$
 \mu(n)=
@@ -369,10 +418,10 @@ $$
 \end{cases}
 $$
 
-Neu $n$ la so nguyen to, $\mu(n)=-1$.
+Nếu $n$ là số nguyên tố, $\mu(n)=-1$.
 
 <span id="&#x5B9E;&#x73B0;"></span>
-### Cai dat
+### Cài đặt
 
 === "C++"
     ```cpp
@@ -424,27 +473,35 @@ Neu $n$ la so nguyen to, $\mu(n)=-1$.
     ```
 
 <span id="&#x7B5B;&#x6CD5;&#x6C42;&#x7EA6;&#x6570;&#x4E2A;&#x6570;"></span>
-## Tinh so luong uoc bang sang
+## Tính số lượng ước bằng sàng
 
-Dung $d_i$ de bieu dien so luong uoc cua $i$, va $num_i$ de bieu dien so lan xuat hien cua thua so nguyen to nho nhat cua $i$.
+Dùng $d_i$ để biểu diễn số lượng ước của $i$, và $num_i$ để biểu diễn số lần
+xuất hiện của thừa số nguyên tố nhỏ nhất của $i$.
 
 <span id="&#x7EA6;&#x6570;&#x4E2A;&#x6570;&#x5B9A;&#x7406;"></span>
-### Dinh ly ve so luong uoc
+### Định lý về số lượng ước
 
-Dinh ly: neu $n=\prod_{i=1}^m p_i^{c_i}$ thi $d_i=\prod_{i=1}^m (c_i+1)$.
+Định lý: nếu $n=\prod_{i=1}^m p_i^{c_i}$ thì
+$d_i=\prod_{i=1}^m (c_i+1)$.
 
-Chung minh: ta biet cac uoc cua $p_i^{c_i}$ la $p_i^0,p_i^1,\dots ,p_i^{c_i}$, tong cong $c_i+1$ uoc. Theo quy tac nhan, so luong uoc cua $n$ chinh la $\prod_{i=1}^m (c_i+1)$.
+Chứng minh: ta biết các ước của $p_i^{c_i}$ là
+$p_i^0,p_i^1,\dots ,p_i^{c_i}$, tổng cộng $c_i+1$ ước. Theo quy tắc nhân, số
+lượng ước của $n$ chính là $\prod_{i=1}^m (c_i+1)$.
 
 <span id="&#x5B9E;&#x73B0;"></span>
-### Cai dat
+### Cài đặt
 
-Vi $d_i$ la ham nhan tinh, co the dung sang tuyen tinh.
+Vì $d_i$ là hàm nhân tính, có thể dùng sàng tuyến tính.
 
-Sau day gioi thieu ngan gon nguyen ly cai dat sang tuyen tinh.
+Sau đây giới thiệu ngắn gọn nguyên lý cài đặt sàng tuyến tính.
 
-1.  Khi $i$ la so nguyen to, $\textit{num}_i \gets 1,\textit{d}_i \gets 2$; dong thoi dat $q = \left\lfloor \dfrac {i}{p} \right\rfloor$, trong do $p$ la thua so nguyen to nho nhat cua $i$.
-2.  Khi $p$ la thua so nguyen to cua $q$, $\textit{num}_i \gets \textit{num}_q + 1,\textit{d}_i \gets \dfrac{\textit{d}_q}{\textit{num}_i} \times (\textit{num}_i + 1)$.
-3.  Khi $p,q$ nguyen to cung nhau, $\textit{num}_i \gets 1,\textit{d}_i \gets \textit{d}_q \times (\textit{num}_i+1)$.
+1.  Khi $i$ là số nguyên tố, $\textit{num}_i \gets 1,\textit{d}_i \gets 2$;
+    đồng thời đặt $q = \left\lfloor \dfrac {i}{p} \right\rfloor$, trong đó $p$
+    là thừa số nguyên tố nhỏ nhất của $i$.
+2.  Khi $p$ là thừa số nguyên tố của $q$,
+    $\textit{num}_i \gets \textit{num}_q + 1,\textit{d}_i \gets \dfrac{\textit{d}_q}{\textit{num}_i} \times (\textit{num}_i + 1)$.
+3.  Khi $p,q$ nguyên tố cùng nhau,
+    $\textit{num}_i \gets 1,\textit{d}_i \gets \textit{d}_q \times (\textit{num}_i+1)$.
 
 === "C++"
     ```cpp
@@ -503,12 +560,13 @@ Sau day gioi thieu ngan gon nguyen ly cai dat sang tuyen tinh.
     ```
 
 <span id="&#x7B5B;&#x6CD5;&#x6C42;&#x7EA6;&#x6570;&#x548C;"></span>
-## Tinh tong uoc bang sang
+## Tính tổng ước bằng sàng
 
-$f_i$ bieu dien tong cac uoc cua $i$, $g_i$ bieu dien $p^0+p^1+p^2+\dots p^k$ ung voi thua so nguyen to nho nhat cua $i$.
+$f_i$ biểu diễn tổng các ước của $i$, $g_i$ biểu diễn
+$p^0+p^1+p^2+\dots p^k$ ứng với thừa số nguyên tố nhỏ nhất của $i$.
 
 <span id="&#x5B9E;&#x73B0;"></span>
-### Cai dat
+### Cài đặt
 
 === "C++"
     ```cpp
@@ -567,11 +625,17 @@ $f_i$ bieu dien tong cac uoc cua $i$, $g_i$ bieu dien $p^0+p^1+p^2+\dots p^k$ un
     ```
 
 <span id="&#x4E00;&#x822C;&#x7684;&#x79EF;&#x6027;&#x51FD;&#x6570;"></span>
-## Ham nhan tinh tong quat
+## Hàm nhân tính tổng quát
 
-Gia su mot [ham nhan tinh](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0) $f$ thoa man: voi moi so nguyen to $p$ va so nguyen duong $k$, co the tinh $f(p^k)$ trong thoi gian da thuc bac thap theo $k$. Khi do co the sang cac gia tri $f(1),f(2),\dots,f(n)$ trong thoi gian $O(n)$.
+Giả sử một [hàm nhân tính](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0) $f$
+thỏa mãn: với mọi số nguyên tố $p$ và số nguyên dương $k$, có thể tính $f(p^k)$
+trong thời gian đa thức bậc thấp theo $k$. Khi đó có thể sàng các giá trị
+$f(1),f(2),\dots,f(n)$ trong thời gian $O(n)$.
 
-Gia su hop so $n$ co phan tich thua so nguyen to la $\prod_{i=1}^k p_i^{\alpha_i}$, trong do $p_1<p_2<\dots<p_k$ la cac so nguyen to. Trong sang tuyen tinh, ta luu $g_n=p_1^{\alpha_1}$. Neu $n$ bi sang boi $x\cdot p$ (voi $p$ la so nguyen to), thi $g$ thoa man truy hoi sau:
+Giả sử hợp số $n$ có phân tích thừa số nguyên tố là
+$\prod_{i=1}^k p_i^{\alpha_i}$, trong đó $p_1<p_2<\dots<p_k$ là các số nguyên
+tố. Trong sàng tuyến tính, ta lưu $g_n=p_1^{\alpha_1}$. Nếu $n$ bị sàng bởi
+$x\cdot p$ (với $p$ là số nguyên tố), thì $g$ thỏa mãn truy hồi sau:
 
 $$
 g_n=
@@ -581,6 +645,10 @@ g_n=
 \end{cases}
 $$
 
-Neu $n=g_n$, nghia la $n$ chinh la luy thua cua mot so nguyen to nao do, co the tinh $f(n)$ trong $O(1)$; nguoc lai, $f(n)=f(\frac{n}{g_n})\cdot f(g_n)$.
+Nếu $n=g_n$, nghĩa là $n$ chính là lũy thừa của một số nguyên tố nào đó, có thể
+tính $f(n)$ trong $O(1)$; ngược lại, $f(n)=f(\frac{n}{g_n})\cdot f(g_n)$.
 
-**Mot phan noi dung muc nay duoc dich tu bai viet [Resheto Eratosthena](http://e-maxx.ru/algo/eratosthenes_sieve) va ban dich tieng Anh [Sieve of Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html). Ban tieng Nga co giay phep Public Domain + Leave a Link; ban tieng Anh co giay phep CC-BY-SA 4.0.**
+**Một phần nội dung mục này được dịch từ bài viết [Resheto Eratosthena](http://e-maxx.ru/algo/eratosthenes_sieve)
+và bản dịch tiếng Anh [Sieve of Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html).
+Bản tiếng Nga có giấy phép Public Domain + Leave a Link; bản tiếng Anh có giấy
+phép CC-BY-SA 4.0.**
