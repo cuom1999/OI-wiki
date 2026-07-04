@@ -1,216 +1,228 @@
-前置知识：[抽象代数基本概念](./basic.md)、[群论](./group-theory.md)、[环论](./ring-theory.md)
+Kiến thức cần có: [khái niệm cơ bản của đại số trừu tượng](./basic.md), [lý thuyết nhóm](./group-theory.md), [lý thuyết vành](./ring-theory.md)
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
 
-**域论**（field theory）是关于域的理论．
+## Giới thiệu
 
-本文涉及的域论主要是域的扩张理论．域是对加、减、乘、除都封闭的代数结构，算法竞赛中经常需要对质数 $p$ 取模，就相当于在有限域 $\mathbf F_p$ 上进行运算．和实数域 $\mathbf R$ 的情形类似，有些问题的求解在更大的域（即复数域 $\mathbf C$）上进行计算更为方便，常见的例子比如利用 [快速傅里叶变换](../poly/fft.md) 加速实系数多项式的乘法．对于有限域也可以做类似的操作．多数读者对于有限域的扩张相对陌生，因而，了解一般的域上的扩张理论是有益的．文末给出了一些需要对有限域进行扩张的算法应用，同时也简单地讨论了部分应用中可能需要的整数环上的扩张．
+**Lý thuyết trường** (field theory) là ngành nghiên cứu các trường.
 
-与域论紧密相关的是 Galois 理论．它将域的扩张与其自同构群联系起来，从而可以通过群论的工具来理解域的扩张的性质．尽管这一理论也往往是相关代数课程的核心内容，但是与算法竞赛的内容相去甚远，故而本文不做过多介绍．有兴趣的读者应当阅读相关专业书籍．
+Bài này chủ yếu trình bày lý thuyết mở rộng trường. Trường là một cấu trúc đại số đóng dưới các phép cộng, trừ, nhân và chia. Trong lập trình thi đấu, ta thường tính modulo một số nguyên tố $p$, điều này tương đương với tính toán trên trường hữu hạn $\mathbf F_p$. Tương tự như với trường số thực $\mathbf R$, có những bài toán thuận tiện hơn nếu tính trong một trường lớn hơn, chẳng hạn trường số phức $\mathbf C$; ví dụ quen thuộc là dùng [biến đổi Fourier nhanh](../poly/fft.md) để tăng tốc phép nhân đa thức hệ số thực. Với trường hữu hạn, ta cũng có thể làm những thao tác tương tự. Vì phần lớn độc giả ít quen với mở rộng của trường hữu hạn, việc hiểu lý thuyết mở rộng trên trường tổng quát là hữu ích. Cuối bài có một số ứng dụng thuật toán cần mở rộng trường hữu hạn, đồng thời thảo luận ngắn gọn về mở rộng trên vành số nguyên có thể gặp trong một số ứng dụng.
 
-???+ info "记号"
-    在不引起歧义时，本文可能会省略掉环和域的乘法记号，并且会将环 $(R,+,\cdot)$ 写作环 $R$，将域 $(F,+,\cdot)$ 写作域 $F$．环和域的加法单位元称为零元，乘法单位元称为幺元．而且，本文中的 $p$ 总是素数，而 $q$ 总是素数幂，且可以写作 $p^n$，其中，$n$ 是正整数．
+Liên quan chặt chẽ với lý thuyết trường là lý thuyết Galois. Lý thuyết này liên hệ mở rộng trường với nhóm tự đẳng cấu của nó, nhờ đó có thể dùng công cụ của lý thuyết nhóm để hiểu tính chất của mở rộng trường. Tuy đây thường là nội dung trung tâm trong các môn đại số liên quan, nó khá xa lập trình thi đấu, nên bài này không trình bày sâu. Độc giả quan tâm nên đọc các sách chuyên ngành.
 
-## 域的扩张
+???+ info "Ký hiệu"
+    Khi không gây nhầm lẫn, bài này có thể lược bỏ ký hiệu phép nhân của vành và trường, viết vành $(R,+,\cdot)$ là vành $R$, viết trường $(F,+,\cdot)$ là trường $F$. Phần tử đơn vị của phép cộng trong vành và trường gọi là phần tử không, phần tử đơn vị của phép nhân gọi là phần tử một. Ngoài ra, trong bài này $p$ luôn là số nguyên tố, còn $q$ luôn là lũy thừa của một số nguyên tố, có thể viết thành $p^n$, trong đó $n$ là số nguyên dương.
 
-类似群、环的情形，可以建立子域和域同态的概念．
+<span id="&#x57DF;&#x7684;&#x6269;&#x5F20;"></span>
 
-???+ abstract "子域"
-    对于域 $F$，如果它的子环 $E$ 也是域，那么称 $E$ 是域 $F$ 的 **子域**（subfield）．
+## Mở rộng trường
 
-其中，无论环和子环的定义对于幺元的处理如何，子域 $E$ 必然包含域 $F$ 的幺元[^subfield-one]．
+Tương tự như với nhóm và vành, ta có thể xây dựng khái niệm trường con và đồng cấu trường.
 
-???+ abstract "域同态"
-    自域 $F$ 到域 $E$ 的环同态 $\varphi:F\rightarrow E$ 也称为自域 $F$ 到域 $E$ 的 **域同态**（field homomorphism）．
+???+ abstract "Trường con"
+    Với trường $F$, nếu một vành con $E$ của nó cũng là trường, thì $E$ được gọi là **trường con** (subfield) của trường $F$.
 
-??? info "域同态对幺元的处理"
-    如果与本文的定义不同，环同态要求幺元映射到幺元，那么域同态自然也要求幺元映射到幺元．否则，幺元也可能映射到零元．
+Ở đây, bất kể định nghĩa vành và vành con xử lý phần tử một như thế nào, trường con $E$ nhất định chứa phần tử một của trường $F$[^subfield-one].
 
-因为域只有平凡的理想，所以域同态要么将整个域映射到零元，要么必然是嵌入映射．这说明，域同态的讨论可以转化为子域的讨论．
+???+ abstract "Đồng cấu trường"
+    Một đồng cấu vành $\varphi:F\rightarrow E$ từ trường $F$ đến trường $E$ cũng được gọi là **đồng cấu trường** (field homomorphism) từ trường $F$ đến trường $E$.
 
-在域的情形，往往更小的域是更为熟悉的域，所以，通常会转而以子域作为基点来考察更大的域．这就是域的扩张的概念．
+??? info "Cách xử lý phần tử một trong đồng cấu trường"
+    Nếu theo một định nghĩa khác với định nghĩa trong bài này, đồng cấu vành được yêu cầu ánh xạ phần tử một sang phần tử một, thì đồng cấu trường tự nhiên cũng có yêu cầu đó. Nếu không, phần tử một cũng có thể bị ánh xạ sang phần tử không.
 
-???+ abstract "域扩张"
-    对于域 $F$，如果 $F$ 是 $E$ 的子域，则称域 $E$ 是域 $F$ 的 **扩张**（extension），或称 **扩域**，记作 $E/F$．
+Vì trường chỉ có các ideal tầm thường, một đồng cấu trường hoặc ánh xạ toàn bộ trường về phần tử không, hoặc nhất định là một phép nhúng. Điều này cho thấy việc thảo luận đồng cấu trường có thể chuyển thành thảo luận về trường con.
 
-???+ info "域扩张的记号"
-    尽管形式上一致，但是域扩张的概念和商环并没有关系，不应混淆．
+Trong bối cảnh trường, trường nhỏ hơn thường quen thuộc hơn, nên ta thường lấy trường con làm điểm xuất phát để khảo sát trường lớn hơn. Đây chính là khái niệm mở rộng trường.
 
-???+ example "例子"
-    复数域 $\mathbf C$ 就是实数域 $\mathbf R$ 的扩张，而实数域 $\mathbf R$ 又是有理数域 $\mathbf Q$ 的扩张．
+???+ abstract "Mở rộng trường"
+    Với trường $F$, nếu $F$ là trường con của $E$, thì trường $E$ được gọi là **mở rộng** (extension) của trường $F$, ký hiệu là $E/F$.
 
-### 域扩张的次数
+???+ info "Ký hiệu mở rộng trường"
+    Dù ký hiệu có hình thức giống nhau, khái niệm mở rộng trường không liên quan đến vành thương; không nên nhầm lẫn hai khái niệm này.
 
-对于域扩张 $E/F$，域 $E$ 总是域 $F$ 上的 [线性空间](../linear-algebra/vector-space.md)．这个线性空间的维度就是域扩张的次数．
+???+ example "Ví dụ"
+    Trường số phức $\mathbf C$ là mở rộng của trường số thực $\mathbf R$, còn trường số thực $\mathbf R$ lại là mở rộng của trường số hữu tỉ $\mathbf Q$.
 
-???+ abstract "域扩张的次数"
-    域扩张 $E/F$ 的 **次数**（degree），是指将 $E$ 看作是域 $F$ 上线性空间时的维度，即 $\dim_F(E)$，记作 $[E:F]$．如果域扩张的次数是有限的，就称域扩张为 **有限扩张**（finite extension），否则就称为 **无限扩张**（infinite extension）．
+<span id="&#x57DF;&#x6269;&#x5F20;&#x7684;&#x6B21;&#x6570;"></span>
 
-???+ example "例子"
-    域扩张 $\mathbf C/\mathbf R$ 的次数 $[\mathbf C:\mathbf R]$ 等于 $2$，所以是有限扩张．域扩张 $\mathbf R/\mathbf Q$ 是无限扩张．
+### Bậc của mở rộng trường
 
-域的扩张次数满足乘法原理．
+Với mở rộng trường $E/F$, trường $E$ luôn là một [không gian tuyến tính](../linear-algebra/vector-space.md) trên trường $F$. Số chiều của không gian tuyến tính này chính là bậc của mở rộng.
 
-???+ note "定理"
-    设 $F\subseteq K\subseteq E$ 都是域，则它们之间的扩张次数满足 $[E:F]=[E:K][K:F]$．
+???+ abstract "Bậc của mở rộng trường"
+    **Bậc** (degree) của mở rộng trường $E/F$ là số chiều của $E$ khi xem như không gian tuyến tính trên trường $F$, tức $\dim_F(E)$, ký hiệu là $[E:F]$. Nếu bậc của mở rộng trường là hữu hạn, ta gọi đó là **mở rộng hữu hạn** (finite extension); nếu không, gọi là **mở rộng vô hạn** (infinite extension).
 
-??? note "证明"
-    对于扩张次数是无限的情形，这是显然的；否则，如果 $\{\alpha_i\}$ 是 $E$ 作为 $K$ 上线性空间的一组基，且 $\{\beta_j\}$ 是 $K$ 作为 $F$ 上线性空间的一组基，那么可以验证，$\{\alpha_i\beta_j\}$ 是 $E$ 作为 $F$ 上线性空间的一组基．
+???+ example "Ví dụ"
+    Bậc của mở rộng trường $\mathbf C/\mathbf R$ là $[\mathbf C:\mathbf R]=2$, nên đây là mở rộng hữu hạn. Mở rộng trường $\mathbf R/\mathbf Q$ là mở rộng vô hạn.
 
-本文讨论的情形主要是域的有限扩张．
+Bậc của mở rộng trường thỏa mãn nguyên lý nhân.
 
-### 域的特征
+???+ note "Định lý"
+    Giả sử $F\subseteq K\subseteq E$ đều là các trường, khi đó bậc mở rộng giữa chúng thỏa mãn $[E:F]=[E:K][K:F]$.
 
-对域扩张的研究，有一个自然的起点，就是包含域 $F$ 幺元的最小子域，这个域也称为域 $F$ 的 **素子域**（prime subfield）．
+??? note "Chứng minh"
+    Với trường hợp bậc mở rộng vô hạn, kết luận là hiển nhiên. Ngược lại, nếu $\{\alpha_i\}$ là một cơ sở của $E$ như không gian tuyến tính trên $K$, và $\{\beta_j\}$ là một cơ sở của $K$ như không gian tuyến tính trên $F$, thì có thể kiểm tra rằng $\{\alpha_i\beta_j\}$ là một cơ sở của $E$ như không gian tuyến tính trên $F$.
 
-素子域的结构，由域幺元的性质唯一确定．域的特征就概括了这样的性质．
+Các trường hợp được thảo luận trong bài này chủ yếu là các mở rộng hữu hạn.
 
-???+ abstract "域的特征"
-    域 $F$ 的 **特征**（characteristic）是使得 $n\cdot 1=0$ 成立的最小正整数 $n$；如果这样的 $n$ 不存在，则称域 $F$ 的特征是 $0$．其中，$n\cdot 1$ 指 $n$ 个幺元 $1$ 相加的结果．如果域 $F$ 的特征不为 $0$，那么就称域 $F$ 是 **有限特征的**（finite characteristic）．
+<span id="&#x57DF;&#x7684;&#x7279;&#x5F81;"></span>
 
-域的特征可以通过环同态来理解．整数环 $\mathbf Z$ 就是自 $0$ 和 $1$ 出发，反复施加加、减、乘等运算得到的封闭结构．它可以看作某种「原型」，所有包含幺元的环都应当「继承」了整数环的部分结构[^initial-object-ring]．因而，对于域 $F$，可以考察环同态 $\varphi:\mathbf Z\rightarrow F$ 并要求 $\varphi(1)=1$．这样的环同态是唯一确定的，它将 $n\in\mathbf N_+$ 映射到 $n\cdot 1$，即 $n$ 个幺元 $1$ 相加．该同态的像 $\varphi(\mathbf Z)$ 嵌入了域 $F$ 中，必然含幺、交换、无零因子，故而是整环．所以，同态的核 $\ker\varphi$ 必然是素理想．整数环 $\mathbf Z$ 的素理想只能是 $(n)$ 的形式，其中 $n=0$ 或者 $n$ 是素数．这样得到的 $n$ 就是该域的特征．
+### Đặc trưng của trường
 
-域的特征确定了素子域的结构：
+Khi nghiên cứu mở rộng trường, có một điểm xuất phát tự nhiên: trường con nhỏ nhất chứa phần tử một của trường $F$. Trường này còn được gọi là **trường con nguyên tố** (prime subfield) của $F$.
 
-1.  当特征为 $0$ 时，同态 $\varphi$ 是单的，整数环 $\mathbf Z$ 嵌入了域 $F$ 中．有理数域 $\mathbf Q$ 作为最小的包含整数环的域必然也可以嵌入域 $F$ 中，它就是域 $F$ 的素子域；
-2.  当特征为素数 $p$ 时，同态 $\varphi$ 的像 $\mathbf Z/p\mathbf Z$ 嵌入了域 $F$ 中．此时，$\mathbf Z/p\mathbf Z$ 已经是域，记作 $\mathbf F_p$，它就是域 $F$ 的素子域．
+Cấu trúc của trường con nguyên tố được xác định duy nhất bởi tính chất của phần tử một trong trường. Đặc trưng của trường tóm tắt tính chất đó.
 
-这些讨论实际上说明了如下结论：
+???+ abstract "Đặc trưng của trường"
+    **Đặc trưng** (characteristic) của trường $F$ là số nguyên dương nhỏ nhất $n$ sao cho $n\cdot 1=0$; nếu không tồn tại $n$ như vậy, ta nói trường $F$ có đặc trưng $0$. Trong đó, $n\cdot 1$ là tổng của $n$ phần tử một $1$. Nếu đặc trưng của trường $F$ khác $0$, ta nói $F$ có **đặc trưng hữu hạn** (finite characteristic).
 
-???+ note "定理"
-    域 $F$ 的特征只能是 $0$ 或素数 $p$．特征为 $0$ 的域对应的素子域是 $\mathbf Q$，特征为素数 $p$ 的域对应的素子域是 $\mathbf F_p$．
+Đặc trưng của trường có thể được hiểu qua đồng cấu vành. Vành số nguyên $\mathbf Z$ chính là cấu trúc đóng thu được từ $0$ và $1$ bằng cách lặp lại cộng, trừ, nhân. Nó có thể được xem như một "nguyên mẫu"; mọi vành chứa phần tử một đều nên "kế thừa" một phần cấu trúc của vành số nguyên[^initial-object-ring]. Vì vậy, với trường $F$, ta xét đồng cấu vành $\varphi:\mathbf Z\rightarrow F$ và yêu cầu $\varphi(1)=1$. Đồng cấu như vậy được xác định duy nhất: nó ánh xạ $n\in\mathbf N_+$ sang $n\cdot 1$, tức tổng của $n$ phần tử một. Ảnh $\varphi(\mathbf Z)$ được nhúng vào trường $F$, nhất định chứa phần tử một, giao hoán và không có ước của không, nên là miền nguyên. Do đó hạt nhân $\ker\varphi$ nhất định là ideal nguyên tố. Các ideal nguyên tố của vành số nguyên $\mathbf Z$ chỉ có dạng $(n)$, trong đó $n=0$ hoặc $n$ là số nguyên tố. Số $n$ thu được theo cách này chính là đặc trưng của trường.
 
-定理中的 $\mathbf Q$ 和 $\mathbf F_p$ 也称为 **素域**（prime field），即子域只有它自身的域．有限域必然是有限特征的，因为特征为 $0$ 的域至少包含子域 $\mathbf Q$．
+Đặc trưng của trường xác định cấu trúc của trường con nguyên tố:
 
-特征有限的域和零特征的域性质往往不同．比如，有限特征的域有如下性质：
+1.  Khi đặc trưng bằng $0$, đồng cấu $\varphi$ là đơn ánh, vành số nguyên $\mathbf Z$ được nhúng vào trường $F$. Trường số hữu tỉ $\mathbf Q$, là trường nhỏ nhất chứa vành số nguyên, tất yếu cũng có thể được nhúng vào trường $F$; nó chính là trường con nguyên tố của $F$.
+2.  Khi đặc trưng là số nguyên tố $p$, ảnh của đồng cấu $\varphi$ là $\mathbf Z/p\mathbf Z$ được nhúng vào trường $F$. Lúc này $\mathbf Z/p\mathbf Z$ đã là trường, ký hiệu $\mathbf F_p$, và nó chính là trường con nguyên tố của $F$.
 
-???+ note "定理"
-    设 $F$ 的特征为 $p$，则有：
+Các thảo luận này thực chất cho thấy kết luận sau:
+
+???+ note "Định lý"
+    Đặc trưng của trường $F$ chỉ có thể là $0$ hoặc một số nguyên tố $p$. Trường có đặc trưng $0$ có trường con nguyên tố là $\mathbf Q$; trường có đặc trưng là số nguyên tố $p$ có trường con nguyên tố là $\mathbf F_p$.
+
+Các trường $\mathbf Q$ và $\mathbf F_p$ trong định lý còn được gọi là **trường nguyên tố** (prime field), tức trường mà trường con duy nhất là chính nó. Trường hữu hạn nhất định có đặc trưng hữu hạn, vì một trường đặc trưng $0$ ít nhất chứa trường con $\mathbf Q$.
+
+Trường có đặc trưng hữu hạn và trường có đặc trưng $0$ thường có tính chất khác nhau. Chẳng hạn, trường có đặc trưng hữu hạn có tính chất sau:
+
+???+ note "Định lý"
+    Giả sử $F$ có đặc trưng $p$, khi đó:
     
-    1.  域 $F$ 的加法群中，所有非零元素的阶都是 $p$，即对所有 $x\in F$ 都有 $px=0$；
-    2.  「新手之梦」（freshman's dream），即对所有 $x,y\in F$ 都有 $(x+y)^p=x^p+y^p$．进而，映射 $x\mapsto x^p$ 是 $F$ 上的单自同态，叫做 **Frobenius 自同态**（Frobenius endomorphism）．
+    1.  Trong nhóm cộng của trường $F$, mọi phần tử khác không đều có bậc $p$, tức với mọi $x\in F$ đều có $px=0$.
+    2.  "Giấc mơ của sinh viên năm nhất" (freshman's dream): với mọi $x,y\in F$ đều có $(x+y)^p=x^p+y^p$. Hơn nữa, ánh xạ $x\mapsto x^p$ là một tự đồng cấu đơn ánh trên $F$, gọi là **tự đồng cấu Frobenius** (Frobenius endomorphism).
 
-??? note "证明"
-    对于第一条性质，只要注意到 $px=(p1)x=0x=0$ 即可．对于第二条性质，只需要注意到 $(x+y)^p$ 的二项式展开中，除了 $x^p$ 和 $y^p$ 外的全部其他项的系数都是 $p$ 的倍数，故而根据第一条性质就有 $(x+y)^p=x^p+y^p$．至于验证 $x\mapsto x^p$ 是自同态，只需要再验证 $(xy)^p=x^py^p$，这是因为域的乘法满足交换律．最后，域之间的环同态将幺元映射到幺元，则必然是单射．
+??? note "Chứng minh"
+    Với tính chất thứ nhất, chỉ cần chú ý $px=(p1)x=0x=0$. Với tính chất thứ hai, trong khai triển nhị thức của $(x+y)^p$, mọi hệ số của các hạng tử khác $x^p$ và $y^p$ đều là bội của $p$, nên theo tính chất thứ nhất ta có $(x+y)^p=x^p+y^p$. Để kiểm tra $x\mapsto x^p$ là tự đồng cấu, chỉ cần kiểm tra thêm $(xy)^p=x^py^p$, điều này đúng vì phép nhân trong trường giao hoán. Cuối cùng, đồng cấu vành giữa các trường ánh xạ phần tử một sang phần tử một thì nhất định là đơn ánh.
 
-当然，对于有限域，Frobenius 自同态必然也是满的，因而是域的自同构．
+Dĩ nhiên, với trường hữu hạn, tự đồng cấu Frobenius nhất định cũng toàn ánh, do đó là tự đẳng cấu của trường.
 
-### 单扩张
+<span id="&#x5355;&#x6269;&#x5F20;"></span>
 
-类似于实数域扩张到复数域的情形，很多扩张可以通过向域中添加额外的元素，并规定其运算性质来完成．在一般的情形，为避免规定运算性质引起的麻烦，不妨考虑在域扩张 $E/F$ 中，将 $E\setminus F$ 中的元素附加到 $F$ 上的情形，此时这些额外的元素与域 $F$ 中元素的运算的规则已经在更大的域 $E$ 中确定了．
+### Mở rộng đơn
 
-???+ abstract "由子集生成的域扩张"
-    设 $E/F$ 是域扩张，$S\subseteq E$，那么 **由 $S$ 生成的域 $F$ 上的扩张**（extension generated by $S$ over $F$）就是指同时包含 $F$ 和 $S$ 的，最小的 $E$ 的子域，记作 $F(S)$．
+Tương tự việc mở rộng trường số thực thành trường số phức, nhiều mở rộng có thể được thực hiện bằng cách thêm phần tử mới vào trường và quy định các phép toán với nó. Trong trường hợp tổng quát, để tránh rắc rối do tự định nghĩa phép toán, ta xét việc thêm các phần tử của $E\setminus F$ vào $F$ bên trong một mở rộng trường $E/F$. Khi đó quy tắc phép toán giữa các phần tử mới này và các phần tử của $F$ đã được xác định sẵn trong trường lớn hơn $E$.
 
-最为简单的情形自然是集合 $S$ 中的元素很少的情形．
+???+ abstract "Mở rộng trường sinh bởi một tập con"
+    Giả sử $E/F$ là mở rộng trường và $S\subseteq E$. **Mở rộng của $F$ sinh bởi $S$** (extension generated by $S$ over $F$) là trường con nhỏ nhất của $E$ đồng thời chứa $F$ và $S$, ký hiệu là $F(S)$.
 
-???+ abstract "有限生成扩张"
-    设 $E/F$ 是域扩张，如果存在有限集 $S=\{\alpha_1,\cdots,\alpha_n\}\subseteq E$ 使得 $E=F(S)$ 成立，则称 $E$ 为域 $F$ 的 **有限生成扩张**（finitely generated extension），也记作 $F(\alpha_1,\cdots,\alpha_n)$．
+Trường hợp đơn giản nhất tất nhiên là khi tập $S$ có rất ít phần tử.
 
-???+ abstract "单扩张"
-    设 $E/F$ 是域扩张，如果存在 $\alpha\in E$ 使得 $E=F(\alpha)$ 成立，则称域 $E$ 是域 $F$ 的 **单扩张**（simple extension）．其中，元素 $\alpha$ 称为这个单扩张的 **本原元**（primitive element）．
+???+ abstract "Mở rộng hữu hạn sinh"
+    Giả sử $E/F$ là mở rộng trường. Nếu tồn tại tập hữu hạn $S=\{\alpha_1,\cdots,\alpha_n\}\subseteq E$ sao cho $E=F(S)$, thì $E$ được gọi là **mở rộng hữu hạn sinh** (finitely generated extension) của trường $F$, cũng ký hiệu là $F(\alpha_1,\cdots,\alpha_n)$.
 
-???+ example "例子"
-    这些例子都是向 $\mathbf Q$ 中添加 $\mathbf C$ 中的元素得到的．
+???+ abstract "Mở rộng đơn"
+    Giả sử $E/F$ là mở rộng trường. Nếu tồn tại $\alpha\in E$ sao cho $E=F(\alpha)$, thì trường $E$ được gọi là **mở rộng đơn** (simple extension) của trường $F$. Phần tử $\alpha$ được gọi là **phần tử nguyên thủy** (primitive element) của mở rộng đơn này.
+
+???+ example "Ví dụ"
+    Các ví dụ sau đều thu được bằng cách thêm phần tử của $\mathbf C$ vào $\mathbf Q$.
     
-    1.  对于无平方因子的整数 $D\neq 0,1$，二次域 $\mathbf Q(\sqrt D)$ 就是在域 $\mathbf Q$ 中添加了 $\sqrt D\in\mathbf C\setminus\mathbf Q$ 得到的单扩张．它的扩张次数是 $2$，因为 $\{1,\sqrt D\}$ 构成了一组基．
-    2.  域 $\mathbf Q(\sqrt 2,\sqrt 3)$ 就是在域 $\mathbf Q$ 中添加了 $\sqrt 2$ 和 $\sqrt 3$ 得到的扩张．当然有 $\mathbf Q(\sqrt 2,\sqrt 3)=\mathbf Q(\sqrt 2)(\sqrt 3)=\mathbf Q(\sqrt 3)(\sqrt 2)$，即最后的扩张与元素的添加顺序和方式无关．这也是单扩张，因为 $\mathbf Q(\sqrt 2,\sqrt 3)=\mathbf Q(\sqrt 2+\sqrt 3)$．它的扩张次数是 $4$，因为 $\{1,\sqrt 2,\sqrt 3,\sqrt 6\}$ 构成了一组基．
-    3.  域 $\mathbf Q(\pi)$ 也是单扩张，其中，$\pi$ 是圆周率．它是无限扩张，因为 $\mathbf Q[\pi]\subseteq \mathbf Q(\pi)$ 已经有一组基 $\{1,\pi,\pi^2,\cdots\}$．
-    4.  域 $\mathbf Q(\pi,\mathrm e)$ 是有限生成的扩张，但不是单扩张．其中，$\pi$ 是圆周率，$\mathrm e$ 是自然对数的底．
+    1.  Với số nguyên không chứa nhân tử chính phương $D\neq 0,1$, trường bậc hai $\mathbf Q(\sqrt D)$ là mở rộng đơn thu được bằng cách thêm $\sqrt D\in\mathbf C\setminus\mathbf Q$ vào trường $\mathbf Q$. Bậc mở rộng của nó là $2$, vì $\{1,\sqrt D\}$ tạo thành một cơ sở.
+    2.  Trường $\mathbf Q(\sqrt 2,\sqrt 3)$ là mở rộng thu được bằng cách thêm $\sqrt 2$ và $\sqrt 3$ vào trường $\mathbf Q$. Dĩ nhiên $\mathbf Q(\sqrt 2,\sqrt 3)=\mathbf Q(\sqrt 2)(\sqrt 3)=\mathbf Q(\sqrt 3)(\sqrt 2)$, tức mở rộng cuối cùng không phụ thuộc vào thứ tự và cách thêm phần tử. Đây cũng là mở rộng đơn, vì $\mathbf Q(\sqrt 2,\sqrt 3)=\mathbf Q(\sqrt 2+\sqrt 3)$. Bậc mở rộng của nó là $4$, vì $\{1,\sqrt 2,\sqrt 3,\sqrt 6\}$ tạo thành một cơ sở.
+    3.  Trường $\mathbf Q(\pi)$ cũng là mở rộng đơn, trong đó $\pi$ là số pi. Đây là mở rộng vô hạn, vì $\mathbf Q[\pi]\subseteq \mathbf Q(\pi)$ đã có một cơ sở $\{1,\pi,\pi^2,\cdots\}$.
+    4.  Trường $\mathbf Q(\pi,\mathrm e)$ là mở rộng hữu hạn sinh, nhưng không phải mở rộng đơn. Trong đó $\pi$ là số pi, còn $\mathrm e$ là cơ số của logarit tự nhiên.
 
-这些例子说明，单扩张的性质可能相差悬殊．这取决于添加的元素的性质．
+Các ví dụ này cho thấy tính chất của mở rộng đơn có thể rất khác nhau. Điều này phụ thuộc vào tính chất của phần tử được thêm vào.
 
-### 代数扩张
+<span id="&#x4EE3;&#x6570;&#x6269;&#x5F20;"></span>
 
-为了分析向域中添加元素可能出现的所有情形，不妨仿照前文对域的特征的讨论，考察多项式环 $F[x]$ 到扩张 $E/F$ 的环同态．此处的 $F[x]$ 起到了前文的整数环 $\mathbf Z$ 的作用：它正是在域 $F$ 中添加不定元 $x$ 后且对加、减、乘封闭的结构的「原型」[^polynomial-universal]．
+### Mở rộng đại số
 
-设环同态 $\varphi:F[x]\rightarrow E$ 满足 $\varphi$ 限制在 $F$ 上是恒等映射，且 $\varphi(x)=\alpha$，即将不定元映射到扩张 $E$ 中的某个元素．此时，因为像 $\varphi(F[x])=F[\alpha]$ 必然是整环，同态的核 $\ker\varphi$ 必然是多项式环 $F[x]$ 的素理想．域上的多项式环是主理想整环，因而它必然有 $(f(x))$ 的形式，其中 $f(x)=0$ 或 $f(x)$ 是 $F[x]$ 中的不可约元．对此有如下讨论：
+Để phân tích mọi khả năng khi thêm phần tử vào một trường, ta có thể bắt chước thảo luận ở trên về đặc trưng của trường và xét đồng cấu vành từ vành đa thức $F[x]$ đến mở rộng $E/F$. Ở đây $F[x]$ đóng vai trò tương tự vành số nguyên $\mathbf Z$ ở trên: nó chính là "nguyên mẫu" của cấu trúc thu được sau khi thêm biến không xác định $x$ vào trường $F$ và đóng dưới các phép cộng, trừ, nhân[^polynomial-universal].
 
-1.  当同态的核 $\ker\varphi=\{0\}$ 时，多项式环 $F[x]$ 嵌入到 $E$ 中，它的像 $F[\alpha]$ 是整环．因而，域 $E$ 中同时包含 $F$ 和 $\alpha$ 的最小的域就是 $F[\alpha]$ 的分式域，即 $F(\alpha)$．这个记号，既可以解释为将有理分式域 $F(x)$ 中的不定元代入 $\alpha$ 的结果，也可以解释为域 $F$ 上由 $\alpha$ 生成的单扩张：这两个解释在这个语境下得到的结果是一致的；
+Giả sử đồng cấu vành $\varphi:F[x]\rightarrow E$ thỏa mãn $\varphi$ khi hạn chế trên $F$ là ánh xạ đồng nhất, và $\varphi(x)=\alpha$, tức ánh xạ biến không xác định đến một phần tử nào đó trong mở rộng $E$. Khi đó, vì ảnh $\varphi(F[x])=F[\alpha]$ nhất định là miền nguyên, hạt nhân $\ker\varphi$ nhất định là ideal nguyên tố của vành đa thức $F[x]$. Vành đa thức trên trường là miền ideal chính, nên hạt nhân tất yếu có dạng $(f(x))$, trong đó $f(x)=0$ hoặc $f(x)$ là phần tử bất khả quy trong $F[x]$. Ta phân tích như sau:
 
-2.  当同态的核 $\ker\varphi=(f(x))$，且 $f(x)$ 为不可约元时，就成立 $\varphi(f(x))=f(\alpha)=0$，即 $\alpha\in E$ 是 $F$ 上的多项式 $f(x)$ 的根．因为 $F$ 是域，不妨设 $f(x)$ 是首一多项式．此时同态 $\varphi$ 的像是域 $F(\alpha)$，故而有
+1.  Khi hạt nhân $\ker\varphi=\{0\}$, vành đa thức $F[x]$ được nhúng vào $E$, và ảnh $F[\alpha]$ của nó là miền nguyên. Vì vậy, trường nhỏ nhất trong $E$ đồng thời chứa $F$ và $\alpha$ chính là trường phân thức của $F[\alpha]$, tức $F(\alpha)$. Ký hiệu này vừa có thể hiểu là kết quả thay biến không xác định trong trường hàm hữu tỉ $F(x)$ bằng $\alpha$, vừa có thể hiểu là mở rộng đơn trên trường $F$ sinh bởi $\alpha$; trong ngữ cảnh này hai cách hiểu cho cùng một kết quả.
+
+2.  Khi hạt nhân $\ker\varphi=(f(x))$ và $f(x)$ là phần tử bất khả quy, ta có $\varphi(f(x))=f(\alpha)=0$, tức $\alpha\in E$ là nghiệm của đa thức $f(x)$ trên $F$. Vì $F$ là trường, có thể giả sử $f(x)$ là đa thức monic. Lúc này ảnh của đồng cấu $\varphi$ là trường $F(\alpha)$, do đó
 
     $$
     F[x]/(f(x))\cong F(\alpha).
     $$
 
-    此时又可以分为两种情形：
+    Lại có thể chia thành hai trường hợp:
 
-    1.  如果 $f(x)$ 是一次多项式，即 $f(x)=x-\alpha$ 时，有 $\alpha\in F$，故而扩张 $F(\alpha)=F$ 是平凡的；
-    2.  其余情形，$f(x)$ 是高于一次的不可约多项式，且 $\alpha\in E\setminus F$，此时的像 $F[\alpha]$ 已经是包含 $F$ 和 $\alpha$ 的域，因而，它就是 $F(\alpha)$，即 $F$ 上由 $\alpha$ 生成的扩张，且 $F(\alpha)\supset F$ 不是平凡的．
+    1.  Nếu $f(x)$ là đa thức bậc nhất, tức $f(x)=x-\alpha$, thì $\alpha\in F$, nên mở rộng $F(\alpha)=F$ là tầm thường.
+    2.  Trong các trường hợp còn lại, $f(x)$ là đa thức bất khả quy bậc lớn hơn một, và $\alpha\in E\setminus F$. Lúc này ảnh $F[\alpha]$ đã là trường chứa $F$ và $\alpha$, nên nó chính là $F(\alpha)$, tức mở rộng trên $F$ sinh bởi $\alpha$, và $F(\alpha)\supset F$ không tầm thường.
 
-这些讨论启发了如下的定义：
+Các thảo luận này gợi ra các định nghĩa sau:
 
-???+ abstract "代数元与超越元"
-    对于扩张 $E/F$，如果元素 $\alpha\in E$ 是 $F$ 上某个非零多项式 $f(x)$ 的根，则称 $\alpha$ 是 $F$ 上的 **代数元**（algebraic element）；否则，称元素 $\alpha$ 是 $F$ 上的 **超越元**（transcendental element）．
+???+ abstract "Phần tử đại số và phần tử siêu việt"
+    Với mở rộng $E/F$, nếu phần tử $\alpha\in E$ là nghiệm của một đa thức khác không $f(x)$ trên $F$, thì $\alpha$ được gọi là **phần tử đại số** (algebraic element) trên $F$; ngược lại, $\alpha$ được gọi là **phần tử siêu việt** (transcendental element) trên $F$.
 
-???+ abstract "极小多项式"
-    对于域 $F$ 上的代数元 $\alpha$，以 $\alpha$ 为根且次数最小的首一多项式 $f(x)$ 称作它的 **极小多项式**（minimal polynomial）．
+???+ abstract "Đa thức tối tiểu"
+    Với phần tử đại số $\alpha$ trên trường $F$, đa thức monic có bậc nhỏ nhất nhận $\alpha$ làm nghiệm được gọi là **đa thức tối tiểu** (minimal polynomial) của $\alpha$.
 
-此处的极小多项式就是前文分析中的不可约多项式 $f(x)$．当然，也可以直接证明极小多项式都是不可约的．极小多项式 $f(x)$ 的极小性就意味着，只要域 $F$ 上的多项式以 $\alpha$ 为根，就必然能够分解出因子 $f(x)$．
+Đa thức tối tiểu ở đây chính là đa thức bất khả quy $f(x)$ trong phân tích ở trên. Dĩ nhiên cũng có thể chứng minh trực tiếp rằng đa thức tối tiểu luôn bất khả quy. Tính tối tiểu của đa thức tối tiểu $f(x)$ có nghĩa là: hễ một đa thức trên trường $F$ nhận $\alpha$ làm nghiệm, nó nhất định chia hết cho nhân tử $f(x)$.
 
-???+ example "例子"
-    1.  $\sqrt 2$ 是 $\mathbf Q$ 上的代数元，极小多项式是 $x^2-2$．
-    2.  $\sqrt 2$ 是 $\mathbf R$ 上的代数元，极小多项式是 $x-\sqrt 2$．
-    3.  $\pi$ 是 $\mathbf Q$ 上的超越元．
-    4.  一般地，$\mathbf Q$ 上的代数元称为 **代数数**（algebraic number），而超越元称为 **超越数**（transcendental number）．特别地，如果代数数的极小多项式是首一多项式，它就称作 **代数整数**（algebraic integer）．代数扩张中的全体代数整数构成环．例如，二次域 $\mathbf Q(\sqrt{D})$ 中的代数整数就构成二次整数环 $\mathbf Z[\omega]$．此处记号的含义见 [二次整数环](./ring-theory.md#例子二次整数环) 页面．
+???+ example "Ví dụ"
+    1.  $\sqrt 2$ là phần tử đại số trên $\mathbf Q$, đa thức tối tiểu là $x^2-2$.
+    2.  $\sqrt 2$ là phần tử đại số trên $\mathbf R$, đa thức tối tiểu là $x-\sqrt 2$.
+    3.  $\pi$ là phần tử siêu việt trên $\mathbf Q$.
+    4.  Nói chung, các phần tử đại số trên $\mathbf Q$ được gọi là **số đại số** (algebraic number), còn phần tử siêu việt được gọi là **số siêu việt** (transcendental number). Đặc biệt, nếu đa thức tối tiểu của một số đại số là đa thức monic hệ số nguyên, số đó được gọi là **số nguyên đại số** (algebraic integer). Tập tất cả các số nguyên đại số trong một mở rộng đại số tạo thành một vành. Chẳng hạn, các số nguyên đại số trong trường bậc hai $\mathbf Q(\sqrt{D})$ tạo thành vành số nguyên bậc hai $\mathbf Z[\omega]$. Ý nghĩa ký hiệu ở đây xem trang [vành số nguyên bậc hai](./ring-theory.md#%E4%BE%8B%E5%AD%90%E4%BA%8C%E6%AC%A1%E6%95%B4%E6%95%B0%E7%8E%AF).
 
-???+ abstract "代数扩张与超越扩张"
-    对于扩张 $E/F$，如果域 $E$ 的元素都是 $F$ 中的代数元，则称域 $E$ 是 $F$ 上的 **代数扩张**（algebraic extension）；否则，称域 $E$ 是 $F$ 上的 **超越扩张**（transcendental extension）．
+???+ abstract "Mở rộng đại số và mở rộng siêu việt"
+    Với mở rộng $E/F$, nếu mọi phần tử của trường $E$ đều là phần tử đại số trên $F$, thì trường $E$ được gọi là **mở rộng đại số** (algebraic extension) của $F$; ngược lại, $E$ được gọi là **mở rộng siêu việt** (transcendental extension) của $F$.
 
-单扩张的结果，根据添加元素的性质不同，可以分为两类．当添加的元素是超越元时，单扩张总是同构于有理分式域．此时，没有任何可以进一步化简的可能性．但是，当添加的元素是代数元时，单扩张实际上就是 $F[\alpha]$，即将 $\alpha$ 直接替换多项式环 $F[x]$ 中的不定元 $x$ 得到的结果．从初等的视角看，相较于超越元的情形，此时扩域中的元素可以没有分母；这意味着，类似于初等算术中「分母有理化」的过程，在代数元的单扩张中总是可行的．因为算法竞赛中涉及到的扩域主要是单代数扩张，下一节要对它的计算做更为细致的讨论．
+Kết quả của mở rộng đơn có thể chia thành hai loại tùy theo tính chất của phần tử được thêm vào. Khi phần tử được thêm là phần tử siêu việt, mở rộng đơn luôn đẳng cấu với trường hàm hữu tỉ; khi đó không còn khả năng rút gọn thêm. Nhưng khi phần tử được thêm là phần tử đại số, mở rộng đơn thực chất là $F[\alpha]$, tức kết quả thay trực tiếp biến không xác định $x$ trong vành đa thức $F[x]$ bằng $\alpha$. Nhìn từ góc độ sơ cấp, so với trường hợp phần tử siêu việt, lúc này các phần tử trong trường mở rộng có thể viết không cần mẫu số; điều này có nghĩa quá trình tương tự "hữu tỉ hóa mẫu" trong số học sơ cấp luôn thực hiện được trong mở rộng đơn đại số. Vì các mở rộng trường xuất hiện trong lập trình thi đấu chủ yếu là mở rộng đơn đại số, mục tiếp theo sẽ thảo luận chi tiết hơn cách tính toán trên chúng.
 
-单代数扩张的重要性，也反映在如下的定理中：
+Tầm quan trọng của mở rộng đơn đại số cũng thể hiện qua định lý sau:
 
-???+ note "定理"
-    域扩张是有限扩张，当且仅当它是有限生成的代数扩张．
+???+ note "Định lý"
+    Một mở rộng trường là mở rộng hữu hạn khi và chỉ khi nó là mở rộng đại số hữu hạn sinh.
 
-??? note "证明"
-    设 $F$ 为域，$E=F(\alpha_1,\cdots,\alpha_n)$ 为域上的有限生成代数扩张，即 $\alpha_i$ 都是 $F$ 上的代数元．设 $E_i=F(\alpha_1,\cdots,\alpha_i)$，则 $E_0=F$ 且 $E_n=E$．注意到，$\alpha_i$ 必然是 $E_{i-1}$ 上的代数元，因为 $\alpha_i$ 在域 $F$ 上的极小多项式也是 $E_{i-1}$ 上的多项式；而且 $\alpha_i$ 在 $E_{i-1}$ 上的极小多项式次数必然不超过 $\alpha_i$ 在域 $F$ 上的极小多项式次数．故而，$[E_i:E_{i-1}]$ 必然是有限的，根据域扩张次数的乘法原理，$[E:F]=\prod_{i=1}^n[E_i:E_{i-1}]$ 也是有限的．反过来，从 $E_0=F$ 开始，对于已经构造好的 $E_i$，可以每次都在 $E\setminus E_i$ 中选择元素 $\alpha_{i+1}$ 加入到 $E_i$ 中，得到扩域 $E_{i+1}=E_i(\alpha_{i+1})$，直到 $E_n=E$ 为止．因为扩张的次数在不断的降低，这个过程必然在有限步内终止．因此，有限扩张必然是有限生成的代数扩张．
+??? note "Chứng minh"
+    Giả sử $F$ là trường, $E=F(\alpha_1,\cdots,\alpha_n)$ là mở rộng đại số hữu hạn sinh, tức mọi $\alpha_i$ đều là phần tử đại số trên $F$. Đặt $E_i=F(\alpha_1,\cdots,\alpha_i)$, khi đó $E_0=F$ và $E_n=E$. Chú ý rằng $\alpha_i$ nhất định là phần tử đại số trên $E_{i-1}$, vì đa thức tối tiểu của $\alpha_i$ trên trường $F$ cũng là đa thức trên $E_{i-1}$; hơn nữa bậc đa thức tối tiểu của $\alpha_i$ trên $E_{i-1}$ không vượt quá bậc đa thức tối tiểu của $\alpha_i$ trên trường $F$. Do đó $[E_i:E_{i-1}]$ nhất định hữu hạn, và theo nguyên lý nhân của bậc mở rộng trường, $[E:F]=\prod_{i=1}^n[E_i:E_{i-1}]$ cũng hữu hạn. Ngược lại, bắt đầu từ $E_0=F$, với $E_i$ đã xây dựng, mỗi lần chọn một phần tử $\alpha_{i+1}$ trong $E\setminus E_i$ và thêm vào $E_i$, thu được trường mở rộng $E_{i+1}=E_i(\alpha_{i+1})$, cho đến khi $E_n=E$. Vì bậc mở rộng liên tục giảm, quá trình này nhất định dừng sau hữu hạn bước. Vì vậy mở rộng hữu hạn nhất định là mở rộng đại số hữu hạn sinh.
 
-这意味着，要理解有限扩张的性质，只要理解单代数扩张即可．因为有限扩张总是可以通过有限多个的单代数扩张得到．
+Điều này có nghĩa để hiểu tính chất của mở rộng hữu hạn, chỉ cần hiểu mở rộng đơn đại số. Bởi vì mọi mở rộng hữu hạn luôn có thể thu được từ hữu hạn nhiều mở rộng đơn đại số.
 
-### 单代数扩张的结构与计算
+<span id="&#x5355;&#x4EE3;&#x6570;&#x6269;&#x5F20;&#x7684;&#x7ED3;&#x6784;&#x4E0E;&#x8BA1;&#x7B97;"></span>
 
-本节中，设 $F$ 是数域，$E$ 是它的扩域，且 $\alpha\in E\setminus F$ 是域 $F$ 上的代数元．设 $\alpha$ 的极小多项式是 $f(x)$，且多项式 $f(x)$ 是 $n$ 次首一多项式，亦即
+### Cấu trúc và tính toán của mở rộng đơn đại số
+
+Trong mục này, giả sử $F$ là một trường, $E$ là trường mở rộng của nó, và $\alpha\in E\setminus F$ là phần tử đại số trên trường $F$. Giả sử đa thức tối tiểu của $\alpha$ là $f(x)$, và $f(x)$ là đa thức monic bậc $n$, tức
 
 $$
 f(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0,
 $$
 
-其中，$a_0,a_1,\cdots,a_{n-1}\in F$ 且 $f(x)$ 在 $F$ 上不可约．
+trong đó $a_0,a_1,\cdots,a_{n-1}\in F$ và $f(x)$ bất khả quy trên $F$.
 
-同构关系 $F(\alpha)\cong F[x]/(f(x))$ 指出，扩域 $F(\alpha)$ 中的运算就是模 $f(x)$ 的多项式的计算．根据多项式的带余除法，只需要考虑所有次数小于 $n=\deg f(x)$ 的多项式的同余类就可以了．对于这些多项式，自然的一组基就是 $\{1,\alpha,\cdots,\alpha^{n-1}\}$．因此，有如下结论：
+Đẳng cấu $F(\alpha)\cong F[x]/(f(x))$ cho thấy phép toán trong trường mở rộng $F(\alpha)$ chính là phép tính đa thức modulo $f(x)$. Theo phép chia đa thức có dư, chỉ cần xét các lớp đồng dư của mọi đa thức có bậc nhỏ hơn $n=\deg f(x)$. Với các đa thức này, một cơ sở tự nhiên là $\{1,\alpha,\cdots,\alpha^{n-1}\}$. Vì vậy có kết luận sau:
 
-???+ note "定理"
-    在本节的假设下，扩域 $F(\alpha)$ 可以写作
+???+ note "Định lý"
+    Dưới giả thiết của mục này, trường mở rộng $F(\alpha)$ có thể viết thành
     
     $$
     F(\alpha)=\{\lambda(\alpha)=\lambda_0+\lambda_1\alpha+\cdots+\lambda_{n-1}\alpha^{n-1}:\lambda_0,\lambda_1,\cdots,\lambda_{n-1}\in F\}.
     $$
     
-    其中，$\lambda(x)$ 遍历全体次数小于 $n$ 的多项式．因此，扩张次数 $[F(\alpha):F]=n$，即 $\alpha$ 的极小多项式的次数．扩域中，元素 $\lambda(\alpha)$ 和 $\mu(\alpha)$ 的加法，就是多项式的加法，即对应位置的系数相加；元素 $\lambda(\alpha)$ 和 $\mu(\alpha)$ 的乘法，结果可以写作 $\rho(\alpha)$，其中 $\rho(x)$ 是乘积 $\lambda(x)\mu(x)$ 除以 $f(x)$ 的余式．
+    Trong đó $\lambda(x)$ chạy qua toàn bộ các đa thức bậc nhỏ hơn $n$. Vì vậy bậc mở rộng $[F(\alpha):F]=n$, tức bằng bậc của đa thức tối tiểu của $\alpha$. Trong trường mở rộng, phép cộng của hai phần tử $\lambda(\alpha)$ và $\mu(\alpha)$ chính là phép cộng đa thức, tức cộng các hệ số tương ứng. Phép nhân của $\lambda(\alpha)$ và $\mu(\alpha)$ có thể viết thành $\rho(\alpha)$, trong đó $\rho(x)$ là phần dư khi chia tích $\lambda(x)\mu(x)$ cho $f(x)$.
 
-当然，作为域，还可以计算 $F(\alpha)$ 中元素的除法．根据定理中描述的乘法的过程，这相当于求解多项式环上的 [线性同余方程](../number-theory/linear-equation.md)．类比整数的做法，要计算商 $\lambda(\alpha)/\mu(\alpha)$，可以先确定 $\mu(\alpha)$ 的乘法逆元，再乘以 $\lambda(\alpha)$ 即可．要计算 $\mu(\alpha)$ 的乘法逆元，只要解同余方程 $\mu(x)\xi(x)\equiv 1\pmod{f(x)}$ 即可．这可以通过扩展欧几里得算法实现．
+Dĩ nhiên, vì đây là trường, ta cũng có thể tính phép chia trong $F(\alpha)$. Theo quá trình nhân trong định lý, điều này tương đương với giải [phương trình đồng dư tuyến tính](../number-theory/linear-equation.md) trên vành đa thức. Tương tự cách làm với số nguyên, để tính thương $\lambda(\alpha)/\mu(\alpha)$, có thể trước hết tìm nghịch đảo nhân của $\mu(\alpha)$, rồi nhân với $\lambda(\alpha)$. Để tính nghịch đảo nhân của $\mu(\alpha)$, chỉ cần giải phương trình đồng dư $\mu(x)\xi(x)\equiv 1\pmod{f(x)}$. Việc này có thể thực hiện bằng thuật toán Euclid mở rộng.
 
-下面，通过几个具体的例子理解计算的细节．
+Dưới đây là vài ví dụ cụ thể để làm rõ cách tính.
 
-???+ example "例子"
-    考察扩域 $\mathbf Q(\alpha)$，其中的 $\alpha$ 是方程 $x^3-2x-2=0$ 的一个根．要计算
+???+ example "Ví dụ"
+    Xét trường mở rộng $\mathbf Q(\alpha)$, trong đó $\alpha$ là một nghiệm của phương trình $x^3-2x-2=0$. Cần tính giá trị
     
     $$
-    \frac{1+\alpha}{1+\alpha+\alpha^2}
+    \frac{1+\alpha}{1+\alpha+\alpha^2}.
     $$
     
-    的值．
-    
-    第一步是计算 $1+\alpha+\alpha^2$ 的逆元，也就是要计算同余方程
+    Bước đầu tiên là tính nghịch đảo của $1+\alpha+\alpha^2$, tức cần giải phương trình đồng dư
     
     $$
-    (x^2+x+1)\xi(x)+(x^3-2x-2)\nu(x)=1
+    (x^2+x+1)\xi(x)+(x^3-2x-2)\nu(x)=1.
     $$
     
-    的解．对此应用扩展欧几里得算法．先做辗转相除法，即有如下过程：
+    Áp dụng thuật toán Euclid mở rộng. Trước hết thực hiện phép chia Euclid:
     
     $$
     \begin{aligned}
@@ -220,7 +232,7 @@ $$
     \end{aligned}
     $$
     
-    再计算同余方程中的系数，即有
+    Sau đó tính ngược các hệ số trong phương trình đồng dư:
     
     $$
     \begin{aligned}
@@ -231,19 +243,19 @@ $$
     \end{aligned}
     $$
     
-    因而，方程的解为
+    Do đó nghiệm của phương trình là
     
     $$
     \xi(x)=-\frac23x^2+\frac13x+\frac53,\ \nu(x)=\frac23x+\frac13.
     $$
     
-    这说明 $1+\alpha+\alpha^2$ 的逆元是
+    Điều này cho thấy nghịch đảo của $1+\alpha+\alpha^2$ là
     
     $$
     -\frac23\alpha^2+\frac13\alpha+\frac53.
     $$
     
-    第二步，就是计算逆元和 $1+\alpha$ 的乘积．对此，有
+    Bước thứ hai là nhân nghịch đảo này với $1+\alpha$. Ta có
     
     $$
     \begin{aligned}
@@ -254,14 +266,14 @@ $$
     \end{aligned}
     $$
     
-    这就是最后的答案．
+    Đây là đáp án cuối cùng.
 
-在例子中只用到了 $\alpha$ 是方程的一个根这个条件，却并没有指定它是任何一个具体的根．多项式 $x^3-2x-2=0$ 在复数域 $\mathbf C$ 有一个实根和一对共轭复根，将它们中的任何一个添加进有理数域 $\mathbf Q$ 中得到的扩域都是同构的．也就是说，这三个互异的根在代数的视角上是没有区别的．
+Trong ví dụ, ta chỉ dùng điều kiện $\alpha$ là một nghiệm của phương trình, nhưng không chỉ rõ nó là nghiệm cụ thể nào. Đa thức $x^3-2x-2=0$ có một nghiệm thực và một cặp nghiệm phức liên hợp trong trường số phức $\mathbf C$. Thêm bất kỳ nghiệm nào trong ba nghiệm đó vào trường số hữu tỉ $\mathbf Q$ đều thu được các trường mở rộng đẳng cấu. Nói cách khác, dưới góc nhìn đại số, ba nghiệm phân biệt này không khác nhau.
 
-一般地，对于域 $F$ 上的不可约多项式 $f(x)$，在扩域中有不同的根 $\alpha\neq\beta$，这些根在分别对域 $F$ 做单扩张时表现出相同的代数性质，这些根互相称为 **共轭**（conjugate）．复数域上的通常意义的共轭，就是这一概念在域扩张 $\mathbf C/\mathbf R$ 上的特例．
+Nói chung, với một đa thức bất khả quy $f(x)$ trên trường $F$, nếu trong trường mở rộng có các nghiệm khác nhau $\alpha\neq\beta$, thì các nghiệm này biểu hiện cùng tính chất đại số khi lần lượt sinh mở rộng đơn của $F$. Các nghiệm như vậy được gọi là **liên hợp** (conjugate) của nhau. Liên hợp thông thường trên trường số phức là trường hợp đặc biệt của khái niệm này đối với mở rộng trường $\mathbf C/\mathbf R$.
 
-???+ example "例子"
-    考察扩域 $\mathbf F_2(\alpha)$，其中的 $\alpha$ 是方程 $x^2+x+1=0$ 的一个根．一般地，对于 $a+b\alpha$ 和 $c+d\alpha$，有运算规则
+???+ example "Ví dụ"
+    Xét trường mở rộng $\mathbf F_2(\alpha)$, trong đó $\alpha$ là một nghiệm của phương trình $x^2+x+1=0$. Nói chung, với $a+b\alpha$ và $c+d\alpha$, ta có quy tắc tính
     
     $$
     \begin{aligned}
@@ -271,261 +283,275 @@ $$
     \end{aligned}
     $$
     
-    这提供了类似于复数域上的运算法则．大多数读者对于这样的根 $\alpha$ 都应当是陌生的，但这并不妨碍对这样的域中的元素进行运算．实际上，有 $[\mathbf F_2(\alpha):\mathbf F_2]=2$，因而，作为线性空间 $|\mathbf F_2(\alpha)|=4$，即这样得到的是大小为 $4$ 的有限域．稍后会看到，所有的有限域都是这样构造的．
+    Điều này cung cấp quy tắc tính tương tự trường số phức. Phần lớn độc giả có thể chưa quen với một nghiệm $\alpha$ như vậy, nhưng điều đó không cản trở việc tính toán các phần tử trong trường này. Thực ra $[\mathbf F_2(\alpha):\mathbf F_2]=2$, nên với tư cách không gian tuyến tính, $|\mathbf F_2(\alpha)|=4$, tức trường thu được là một trường hữu hạn có kích thước $4$. Phần sau sẽ thấy mọi trường hữu hạn đều được xây dựng như vậy.
 
-在小规模运算时，对首一多项式取模 $f(x)$ 的运算通常可以通过代入
+Khi tính toán quy mô nhỏ, phép lấy modulo đa thức monic $f(x)$ thường có thể thực hiện bằng cách thay
 
 $$
 x^n=-a_{n-1}x^{n-1}-\cdots-a_1x-a_0
 $$
 
-对目标多项式降次来进行．而且，对于低次的扩张，往往可以直接计算出系数的运算规则，使用类似复数类的实现而不必每次都计算取模等过程．
+để hạ bậc đa thức mục tiêu. Ngoài ra, với mở rộng bậc thấp, thường có thể trực tiếp tính ra quy tắc phép toán trên hệ số, dùng cách cài đặt tương tự lớp số phức mà không cần mỗi lần đều thực hiện phép lấy modulo.
 
-作为单代数扩张的实例，可以参考下文中的有限域的 [参考实现](#参考实现)．
+Như một ví dụ về mở rộng đơn đại số, có thể xem [triển khai tham khảo](#%E5%8F%82%E8%80%83%E5%AE%9E%E7%8E%B0) cho trường hữu hạn ở phần dưới.
 
-此处描述的算法在实践中都只能处理扩张次数比较低的情形，这对于绝大多数算法竞赛中的应用都是足够的．对于扩张次数高到成为复杂度瓶颈的情形，应当采取适当的多项式技术（[快速傅里叶变换](../poly/fft.md)、[快速数论变换](../poly/ntt.md)、[多项式快速取余](../poly/elementary-func.md#多项式除法--取模)、[多项式欧几里得](../poly/intro.md#因式分解和欧几里得) 等）加速运算．
+Các thuật toán mô tả ở đây trong thực tế chỉ xử lý được trường hợp bậc mở rộng tương đối thấp; điều này đủ cho tuyệt đại đa số ứng dụng trong lập trình thi đấu. Nếu bậc mở rộng lớn đến mức trở thành nút thắt độ phức tạp, nên dùng các kỹ thuật đa thức thích hợp như [biến đổi Fourier nhanh](../poly/fft.md), [biến đổi số học nhanh](../poly/ntt.md), [lấy dư đa thức nhanh](../poly/elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E9%99%A4%E6%B3%95--%E5%8F%96%E6%A8%A1), [Euclid đa thức](../poly/intro.md#%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3%E5%92%8C%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97), v.v. để tăng tốc phép toán.
 
-### 分裂域
+<span id="&#x5206;&#x88C2;&#x57DF;"></span>
 
-上文已经对单代数扩张的结构做了详尽的讨论．但是，这样的扩张往往并不充分：
+### Trường phân rã
 
-???+ example "例子"
-    考察扩张 $\mathbf Q(\sqrt[3]{2})/\mathbf Q$．代数元 $\sqrt[3]{2}$ 在域 $\mathbf Q$ 上的极小多项式是 $x^3-2$．在复数域 $\mathbf C$ 中，多项式 $x^3-2$ 有三个根，即 $\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2$，其中，$\omega=\mathrm{e}^{2\pi\mathrm{i}/3}$ 是 $1$ 的三次原根．尽管 $\mathbf Q(\sqrt[3]{2})\cong\mathbf Q(\sqrt[3]{2}\omega)\cong\mathbf Q(\sqrt[3]{2}\omega^2)$，但是 $\mathbf Q(\sqrt[3]{2})$ 中并没有另外的两个根，这使得 $\sqrt[3]{2}+\sqrt[3]{2}\omega$ 这种运算就已经无法进行．如果要完整地考察这三个根，需要对域 $\mathbf Q(\sqrt[3]{2})$ 做进一步扩张，即扩张至 $\mathbf Q(\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2)$．
+Phần trên đã thảo luận chi tiết cấu trúc của mở rộng đơn đại số. Tuy nhiên, mở rộng như vậy thường chưa đủ:
+
+???+ example "Ví dụ"
+    Xét mở rộng $\mathbf Q(\sqrt[3]{2})/\mathbf Q$. Phần tử đại số $\sqrt[3]{2}$ có đa thức tối tiểu trên trường $\mathbf Q$ là $x^3-2$. Trong trường số phức $\mathbf C$, đa thức $x^3-2$ có ba nghiệm, là $\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2$, trong đó $\omega=\mathrm{e}^{2\pi\mathrm{i}/3}$ là căn nguyên thủy bậc ba của $1$. Tuy $\mathbf Q(\sqrt[3]{2})\cong\mathbf Q(\sqrt[3]{2}\omega)\cong\mathbf Q(\sqrt[3]{2}\omega^2)$, nhưng $\mathbf Q(\sqrt[3]{2})$ không chứa hai nghiệm còn lại, khiến những phép toán như $\sqrt[3]{2}+\sqrt[3]{2}\omega$ không thể thực hiện. Nếu muốn khảo sát đầy đủ ba nghiệm này, cần mở rộng tiếp trường $\mathbf Q(\sqrt[3]{2})$, tức mở rộng đến $\mathbf Q(\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2)$.
     
-    前文已经说明，要做这样的扩张，只要对元素逐个做单扩张即可．应当注意的是，$\sqrt[3]{2}\omega$ 在域 $\mathbf Q$ 中和在域 $\mathbf Q(\sqrt[3]{2})$ 中的极小多项式并不相同：前者是 $x^3-2\in\mathbf Q[x]$，后者则是 $x^2+\sqrt[3]{2}x+\sqrt[3]{4}\in \mathbf Q(\sqrt[3]{2})[x]$，因为有
+    Phần trước đã nói rằng để xây dựng mở rộng như vậy, chỉ cần thực hiện mở rộng đơn lần lượt theo từng phần tử. Cần chú ý rằng đa thức tối tiểu của $\sqrt[3]{2}\omega$ trong trường $\mathbf Q$ và trong trường $\mathbf Q(\sqrt[3]{2})$ không giống nhau: cái trước là $x^3-2\in\mathbf Q[x]$, còn cái sau là $x^2+\sqrt[3]{2}x+\sqrt[3]{4}\in \mathbf Q(\sqrt[3]{2})[x]$, vì
     
     $$
     x^3-2 = (x-\sqrt[3]{2})(x^2+\sqrt[3]{2}x+\sqrt[3]{4}).
     $$
     
-    原来的极小多项式在域的扩张后分解出一次因子，因而剩余的根的极小多项式的次数低于原来的域上的极小多项式．域不断扩张的过程，就是多项式不断「分裂」的过程．因此，每次单扩张时，都需要重新确定极小多项式．
+    Sau khi mở rộng trường, đa thức tối tiểu ban đầu đã tách ra một nhân tử bậc nhất, nên đa thức tối tiểu của các nghiệm còn lại có bậc thấp hơn đa thức tối tiểu trên trường ban đầu. Quá trình mở rộng trường liên tục chính là quá trình đa thức liên tục "phân rã". Vì vậy, mỗi lần thực hiện mở rộng đơn đều cần xác định lại đa thức tối tiểu.
 
-将多项式的全部根都添加到域中，得到的就是多项式的分裂域．
+Thêm toàn bộ các nghiệm của một đa thức vào trường sẽ thu được trường phân rã của đa thức đó.
 
-???+ abstract "分裂"
-    设 $F$ 为域．如果多项式 $f(x)$ 在 $F[x]$ 中可以分解为一系列一次因子的乘积，就称多项式 $f(x)$ 在域 $F$ 中 **分裂**（split）．
+???+ abstract "Phân rã"
+    Giả sử $F$ là trường. Nếu đa thức $f(x)$ có thể phân tích trong $F[x]$ thành tích của các nhân tử bậc nhất, ta nói đa thức $f(x)$ **phân rã** (split) trong trường $F$.
 
-???+ abstract "分裂域"
-    对于域 $F$ 上的多项式 $f(x)$，如果扩张 $E/F$ 满足 $f(x)$ 在域 $E$ 中分裂但不在任何 $E$ 的真子域中分裂，就称域 $E$ 是多项式 $f(x)$ 的 **分裂域**（splitting field）．
+???+ abstract "Trường phân rã"
+    Với đa thức $f(x)$ trên trường $F$, nếu mở rộng $E/F$ thỏa mãn $f(x)$ phân rã trong trường $E$ nhưng không phân rã trong bất kỳ trường con thực sự nào của $E$, thì trường $E$ được gọi là **trường phân rã** (splitting field) của đa thức $f(x)$.
 
-可以证明，如同单扩张一样，给定多项式的分裂域在同构意义下是唯一确定的，与具体的构造方法无关．分裂域总是有限扩张．
+Có thể chứng minh, tương tự mở rộng đơn, trường phân rã của một đa thức cho trước là duy nhất đến đẳng cấu, không phụ thuộc vào cách xây dựng cụ thể. Trường phân rã luôn là mở rộng hữu hạn.
 
-???+ abstract "正规扩张"
-    对于代数扩张 $E/F$，如果对所有 $\alpha\in E$ 都有 $\alpha$ 的极小多项式在 $E$ 中分裂，则称域 $E$ 是域 $F$ 的 **正规扩张**（normal extension）．
+???+ abstract "Mở rộng chuẩn tắc"
+    Với mở rộng đại số $E/F$, nếu với mọi $\alpha\in E$, đa thức tối tiểu của $\alpha$ đều phân rã trong $E$, thì trường $E$ được gọi là **mở rộng chuẩn tắc** (normal extension) của trường $F$.
 
-正规扩张在 Galois 理论中起到基础的作用．
+Mở rộng chuẩn tắc đóng vai trò cơ sở trong lý thuyết Galois.
 
-### 代数闭域
+<span id="&#x4EE3;&#x6570;&#x95ED;&#x57DF;"></span>
 
-前文提及的多数扩张的概念原则上需要在比扩张更大的域内进行．尽管对于单扩张的情形，通过多项式环可以不依赖于更大的域构造出域的扩张，但是对于一般的情形并没有这样的手段．对于有理数域 $\mathbf Q$ 和实数域 $\mathbf R$，总是可以假定代数扩张包含在复数域 $\mathbf C$ 内部．对于有限域，并没有类似的已知的域．其实，对于所有的域，都存在代数闭包，使得域上所有的代数扩张都可以假定在代数闭包内进行．这就彻底解决了这一问题．
+### Trường đóng đại số
 
-???+ abstract "代数闭包"
-    对于域 $F$，如果域 $\overline F$ 是域 $F$ 的代数扩张，且所有的 $f(x)\in F[x]$ 都在 $\overline F$ 中分裂，则称域 $\overline F$ 是域 $F$ 的 **代数闭包**（algebraic closure）．
+Về nguyên tắc, phần lớn các khái niệm mở rộng nói trên cần được xét bên trong một trường mở rộng lớn hơn. Với mở rộng đơn, ta có thể dùng vành đa thức để xây dựng mở rộng trường mà không phụ thuộc vào một trường lớn có sẵn; nhưng trong trường hợp tổng quát thì không có công cụ trực tiếp như vậy. Với trường số hữu tỉ $\mathbf Q$ và trường số thực $\mathbf R$, ta luôn có thể giả định mở rộng đại số nằm trong trường số phức $\mathbf C$. Với trường hữu hạn thì không có một trường quen thuộc tương tự. Thực ra, với mọi trường đều tồn tại bao đóng đại số, nhờ đó mọi mở rộng đại số trên trường đều có thể giả định diễn ra trong bao đóng đại số. Điều này giải quyết triệt để vấn đề trên.
 
-代数闭包是域上的正规扩张．它的构造方式也基本上就是将所有可能的多项式的根添加到域中．而且和分裂域一样，某个域的代数闭包在同构意义下也是唯一的．
+???+ abstract "Bao đóng đại số"
+    Với trường $F$, nếu trường $\overline F$ là mở rộng đại số của $F$, và mọi $f(x)\in F[x]$ đều phân rã trong $\overline F$, thì trường $\overline F$ được gọi là **bao đóng đại số** (algebraic closure) của trường $F$.
 
-???+ note "定理"
-    任何域 $F$ 都有代数闭包．
+Bao đóng đại số là mở rộng chuẩn tắc của trường. Về cơ bản, cách xây dựng của nó là thêm vào trường mọi nghiệm có thể có của mọi đa thức. Hơn nữa, giống trường phân rã, bao đóng đại số của một trường cũng là duy nhất đến đẳng cấu.
 
-??? note "证明"
-    证明的困难来自于集合论．此处引用 Artin 的一个证明．
+???+ note "Định lý"
+    Mọi trường $F$ đều có bao đóng đại số.
+
+??? note "Chứng minh"
+    Khó khăn của chứng minh đến từ lý thuyết tập hợp. Ở đây trình bày một chứng minh của Artin.
     
-    证明的第一部分从 $F$ 出发，构造了扩张 $K_1/F$ 使得所有 $F$ 上的多项式在 $K_1$ 中都有至少一个根．对于域 $F$，考察多元多项式环[^multi-poly-ring] $R=F[\cdots,x_f,\cdots]$，其中的不定元 $x_f$ 的下标取遍所有 $F$ 上的首一多项式．此时，由所有 $f(x_f)$ 生成的理想记作 $I$．首先，$I\neq R$，故而极大理想 $M\supseteq I$ 存在．否则，如果 $1\in I$，必然存在有限多个域 $F$ 上的首一多项式 $f_i$ 和相应的环 $R$ 中的元素 $g_i$ 使得 $g_1f_1(x_{f_1})+\cdots+g_kf_k(x_{f_k})=1$ 成立．设 $F(\alpha_1,\cdots,\alpha_k)$ 为向 $F$ 中添加 $f_i(x)$ 的根 $\alpha_i$ 后得到的代数扩张，则在 $F(\alpha_1,\cdots,\alpha_k)$ 中令上面得到的恒等式中 $x_{f_i}$ 都代入 $\alpha_i$，而在各个 $g_i$ 中出现的其它不定元 $x_f$ 都带入 $0$，则得到 $F(\alpha_1,\cdots,\alpha_k)$ 上的等式 $0=1$，这矛盾．故而，$I\neq R$，极大理想 $M$ 的构造是合法的．此时商环 $R/M$ 是域，记作 $K_1$，且任何 $F$ 上的首一多项式 $f(x)$ 都在 $K_1$ 中有根 $\overline{x_f}$．
+    Phần đầu của chứng minh bắt đầu từ $F$, xây dựng mở rộng $K_1/F$ sao cho mọi đa thức trên $F$ đều có ít nhất một nghiệm trong $K_1$. Với trường $F$, xét vành đa thức nhiều biến[^multi-poly-ring] $R=F[\cdots,x_f,\cdots]$, trong đó chỉ số của biến không xác định $x_f$ chạy qua mọi đa thức monic trên $F$. Ký hiệu $I$ là ideal sinh bởi mọi $f(x_f)$. Trước hết, $I\neq R$, nên tồn tại ideal cực đại $M\supseteq I$. Nếu không, nếu $1\in I$, thì phải tồn tại hữu hạn nhiều đa thức monic $f_i$ trên trường $F$ và các phần tử tương ứng $g_i$ trong vành $R$ sao cho $g_1f_1(x_{f_1})+\cdots+g_kf_k(x_{f_k})=1$. Gọi $F(\alpha_1,\cdots,\alpha_k)$ là mở rộng đại số thu được sau khi thêm vào $F$ các nghiệm $\alpha_i$ của $f_i(x)$. Trong $F(\alpha_1,\cdots,\alpha_k)$, thay mọi $x_{f_i}$ trong đẳng thức trên bằng $\alpha_i$, còn các biến không xác định khác $x_f$ xuất hiện trong các $g_i$ bằng $0$, ta thu được đẳng thức $0=1$, mâu thuẫn. Do đó $I\neq R$, việc xây dựng ideal cực đại $M$ là hợp lệ. Khi đó vành thương $R/M$ là trường, ký hiệu là $K_1$, và mọi đa thức monic $f(x)$ trên $F$ đều có nghiệm $\overline{x_f}$ trong $K_1$.
     
-    证明的第二部分则归纳地得到了包含 $F$ 的一个代数闭域 $K$（定义见下文）．重复上述构造，基于域 $K_i$ 可以构造出域 $K_{i+1}$，使得 $K_i$ 的多项式在 $K_{i+1}$ 中都至少有一个根．而且，$K_i$ 自然地嵌入到 $K_{i+1}$ 中，所以可以定义它们的并集 $K=\bigcup_{i=1}^\infty K_i$．容易验证，这也是域，而且 $K$ 上的任何多项式的系数必然全部包含在某个 $K_i$ 中，故而它的一个根必然出现 $K_{i+1}\subseteq K$ 中．这说明 $K$ 上的所有多项式都在 $K$ 上至少有一个根，所以，$K$ 是代数闭域．
+    Phần thứ hai của chứng minh xây dựng quy nạp một trường đóng đại số $K$ chứa $F$ (định nghĩa xem bên dưới). Lặp lại cách xây dựng trên: dựa trên trường $K_i$ có thể xây dựng trường $K_{i+1}$ sao cho mọi đa thức trên $K_i$ đều có ít nhất một nghiệm trong $K_{i+1}$. Hơn nữa, $K_i$ nhúng tự nhiên vào $K_{i+1}$, nên có thể định nghĩa hợp $K=\bigcup_{i=1}^\infty K_i$. Dễ kiểm tra đây cũng là trường, và mọi đa thức trên $K$ có toàn bộ hệ số nằm trong một $K_i$ nào đó, nên một nghiệm của nó nằm trong $K_{i+1}\subseteq K$. Điều này cho thấy mọi đa thức trên $K$ đều có ít nhất một nghiệm trong $K$, do đó $K$ là trường đóng đại số.
     
-    最后，令 $K$ 中所有 $F$ 上的代数元组成的集合记作 $\overline F$．它显然是域；因为对于任何 $\alpha,\beta\in\overline F$，都有 $\alpha\pm\beta,\alpha\beta,\alpha/\beta\in F(\alpha,\beta)\subseteq\overline F$．它也是 $F$ 的代数扩张，因为它的元素都是 $F$ 上的代数元．对于 $F$ 上的多项式 $f(x)$，它的所有根都是 $F$ 上的代数元，故而也在 $\overline F$ 中，故而必然可以分裂为一次因子的乘积．这就说明 $\overline F$ 是 $F$ 上的代数闭包．
+    Cuối cùng, ký hiệu $\overline F$ là tập gồm mọi phần tử của $K$ đại số trên $F$. Nó hiển nhiên là trường: với mọi $\alpha,\beta\in\overline F$, ta có $\alpha\pm\beta,\alpha\beta,\alpha/\beta\in F(\alpha,\beta)\subseteq\overline F$. Nó cũng là mở rộng đại số của $F$, vì mọi phần tử của nó đều là phần tử đại số trên $F$. Với đa thức $f(x)$ trên $F$, mọi nghiệm của nó đều là phần tử đại số trên $F$, nên cũng nằm trong $\overline F$, do đó đa thức nhất định phân rã thành tích của các nhân tử bậc nhất. Điều này chứng tỏ $\overline F$ là bao đóng đại số của $F$.
 
-???+ example "例子"
-    1.  实数域 $\mathbf R$ 的代数闭包是复数域 $\mathbf C$．
-    2.  有理数域 $\mathbf Q$ 的代数闭包是全体代数数（即域扩张 $\mathbf C/\mathbf Q$ 中的代数元）的集合，记作 $\overline{\mathbf Q}$．
+???+ example "Ví dụ"
+    1.  Bao đóng đại số của trường số thực $\mathbf R$ là trường số phức $\mathbf C$.
+    2.  Bao đóng đại số của trường số hữu tỉ $\mathbf Q$ là tập toàn bộ số đại số, tức các phần tử đại số trong mở rộng trường $\mathbf C/\mathbf Q$, ký hiệu là $\overline{\mathbf Q}$.
 
-所有的代数闭包的代数扩张都是平凡的．这样的域称为代数闭域．
+Mọi mở rộng đại số của bao đóng đại số đều tầm thường. Những trường như vậy được gọi là trường đóng đại số.
 
-???+ abstract "代数闭域"
-    如果域 $F$ 上任意非常数多项式 $f(x)$ 都至少有一个根 $\alpha\in F$，那么就称域 $F$ 为一个 **代数闭域**（algebraically closed field）．
+???+ abstract "Trường đóng đại số"
+    Nếu mọi đa thức không hằng $f(x)$ trên trường $F$ đều có ít nhất một nghiệm $\alpha\in F$, thì trường $F$ được gọi là **trường đóng đại số** (algebraically closed field).
 
-事实上，它有如下等价定义：
+Thực ra khái niệm này có các định nghĩa tương đương sau:
 
-???+ note "定理"
-    对于域 $F$，以下性质都是等价的：
+???+ note "Định lý"
+    Với trường $F$, các tính chất sau là tương đương:
     
-    1.  域 $F$ 是代数闭域；
-    2.  域 $F$ 上的所有多项式 $f(x)$ 都分裂；
-    3.  域 $F$ 上的不可约多项式只有一次多项式；
-    4.  域 $F$ 没有非平凡的代数扩张；
-    5.  域 $F$ 没有非平凡的有限扩张；
-    6.  域 $F$ 是某个域的代数闭包．
+    1.  Trường $F$ là trường đóng đại số.
+    2.  Mọi đa thức $f(x)$ trên trường $F$ đều phân rã.
+    3.  Các đa thức bất khả quy trên trường $F$ chỉ có đa thức bậc nhất.
+    4.  Trường $F$ không có mở rộng đại số không tầm thường.
+    5.  Trường $F$ không có mở rộng hữu hạn không tầm thường.
+    6.  Trường $F$ là bao đóng đại số của một trường nào đó.
 
-??? note "证明"
-    前五条性质的等价性显然，考察定义即可．对于第六条，代数闭域显然是自身的代数闭包，因为它没有非平凡的代数扩张；反过来，要证明域 $F$ 的代数闭包必然是代数闭域．设 $\overline F$ 是域 $F$ 的代数闭包，且 $f(x)$ 是 $\overline F$ 上的多项式．设 $\alpha$ 是 $f(x)$ 的分裂域中 $f(x)$ 的一个根，且 $f(x)$ 的非零系数的集合是 $S\subseteq\overline F$．那么，因为 $F(S)(\alpha)=F(S\cup\{\alpha\})$ 是有限扩张，$\alpha$ 必然也是 $F$ 上的代数元，故而根据代数闭包的定义，$\alpha$ 在 $F$ 上的极小多项式在域 $\overline F$ 中分裂，故而 $\alpha\in\overline F$．这说明，$\overline F$ 上任意多项式都有至少一个根．
+??? note "Chứng minh"
+    Tính tương đương của năm tính chất đầu là hiển nhiên khi xét định nghĩa. Với tính chất thứ sáu, trường đóng đại số hiển nhiên là bao đóng đại số của chính nó, vì nó không có mở rộng đại số không tầm thường. Ngược lại, cần chứng minh bao đóng đại số của trường $F$ nhất định là trường đóng đại số. Giả sử $\overline F$ là bao đóng đại số của trường $F$, và $f(x)$ là đa thức trên $\overline F$. Gọi $\alpha$ là một nghiệm của $f(x)$ trong trường phân rã của $f(x)$, và gọi $S\subseteq\overline F$ là tập các hệ số khác không của $f(x)$. Khi đó, vì $F(S)(\alpha)=F(S\cup\{\alpha\})$ là mở rộng hữu hạn, $\alpha$ nhất định cũng là phần tử đại số trên $F$. Theo định nghĩa bao đóng đại số, đa thức tối tiểu của $\alpha$ trên $F$ phân rã trong trường $\overline F$, nên $\alpha\in\overline F$. Điều này cho thấy mọi đa thức trên $\overline F$ đều có ít nhất một nghiệm.
 
-最后，[代数基本定理](../poly/fundamental.md) [^fundamental-algebra]说明，$\mathbf C$ 是代数闭域．实数域 $\mathbf R$ 上的不可约多项式至多是二次的，或者等价地，它上面的代数扩张至多是二次扩张，就是因为通过代数扩张能够得到的最大的域就是 $\mathbf C$．
+Cuối cùng, [định lý cơ bản của đại số](../poly/fundamental.md)[^fundamental-algebra] cho biết $\mathbf C$ là trường đóng đại số. Các đa thức bất khả quy trên trường số thực $\mathbf R$ có bậc không quá hai, hay tương đương, các mở rộng đại số của nó có bậc không quá hai, là vì trường lớn nhất thu được bằng mở rộng đại số chính là $\mathbf C$.
 
-### 可分扩张
+<span id="&#x53EF;&#x5206;&#x6269;&#x5F20;"></span>
 
-分裂域的概念保证了对于任何域上的多项式，总有扩域能够包括它的所有根，且分裂域精确地给出了这样的最小的扩域．多项式的性质和它的分裂域的性质紧密联系．但是，如果希望通过多项式的分裂域来研究多项式的性质，那么首先要面临的一个问题就是，多项式的分裂域与多项式的根的重数无关．因而，如果有可能，应当考虑多项式的某种意义上的「最简表示」．受此启发，把在域的代数闭包中也没有重根的多项式称为可分多项式．
+### Mở rộng tách được
 
-???+ abstract "可分多项式"
-    对于域 $F$ 上的多项式 $f(x)$，如果 $f(x)$ 在 $F$ 的代数闭包 $\overline F$ 中没有重根，即它分解成一次因子的乘积时没有重复因子，那么 $f(x)$ 称为 **可分的**（separable）．
+Khái niệm trường phân rã đảm bảo rằng với mọi đa thức trên mọi trường, luôn có trường mở rộng chứa tất cả các nghiệm của nó, và trường phân rã chính là trường mở rộng nhỏ nhất như vậy. Tính chất của đa thức liên hệ chặt chẽ với tính chất của trường phân rã của nó. Tuy nhiên, nếu muốn nghiên cứu tính chất đa thức thông qua trường phân rã, vấn đề đầu tiên là trường phân rã của đa thức không ghi nhận bội số của các nghiệm. Vì vậy, nếu có thể, nên xét một "biểu diễn tối giản" nào đó của đa thức. Từ ý tưởng này, ta gọi các đa thức không có nghiệm bội ngay cả trong bao đóng đại số của trường là đa thức tách được.
 
-因为总是要扩张到域 $F$ 的代数闭包上讨论，可分多项式的判断其实与域 $F$ 的选取无关．但是，因为多项式的系数在 $F$ 中，应当考虑给出一个判断方法，能够使得在域 $F$ 上就能判断多项式是否可分而不必显式地构造出其扩域．
+???+ abstract "Đa thức tách được"
+    Với đa thức $f(x)$ trên trường $F$, nếu $f(x)$ không có nghiệm bội trong bao đóng đại số $\overline F$ của $F$, tức khi phân tích thành tích các nhân tử bậc nhất không có nhân tử lặp, thì $f(x)$ được gọi là **tách được** (separable).
 
-熟悉分析学的读者知道，多项式函数的重根有无可以通过它的导数判断：多项式函数的重根同样是它的导数的根．虽然多项式和多项式函数并非一致的概念，但是判断多项式函数重根有无的方法可以类比地迁移到多项式上．多项式的导数可以形式地定义如下：
+Vì luôn phải mở rộng đến bao đóng đại số của trường $F$ để thảo luận, việc xác định đa thức tách được thực ra không phụ thuộc vào cách chọn trường mở rộng. Tuy nhiên, do hệ số của đa thức nằm trong $F$, ta nên có một phương pháp phán đoán ngay trên trường $F$, không cần xây dựng tường minh trường mở rộng của nó.
 
-???+ abstract "形式导数"
-    域 $F$ 上的多项式
-    
-    $$
-    f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}+a_nx^n=\sum_{i=0}^na_ix^i
-    $$
-    
-    的 **（形式）导数**（derivative），记作 $Df(x)$，定义为多项式
+Độc giả quen với giải tích biết rằng nghiệm bội của hàm đa thức có thể được nhận biết qua đạo hàm: nghiệm bội của hàm đa thức cũng là nghiệm của đạo hàm. Dù đa thức và hàm đa thức không phải là cùng một khái niệm, phương pháp nhận biết nghiệm bội của hàm đa thức có thể được chuyển sang đa thức bằng phép tương tự. Đạo hàm của đa thức có thể được định nghĩa hình thức như sau:
+
+???+ abstract "Đạo hàm hình thức"
+    Với đa thức trên trường $F$
     
     $$
-    Df(x)=a_1+2a_2x+\cdots+(n-1)a_{n-1}x^{n-1}+na_nx^{n-1}=\sum_{i=1}^nia_ix^{i-1}.
+    f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}+a_nx^n=\sum_{i=0}^na_ix^i,
+    $$
+    
+    **đạo hàm hình thức** (derivative), ký hiệu $Df(x)$, được định nghĩa là đa thức
+    
+    $$
+    Df(x)=a_1+2a_2x+\cdots+(n-1)a_{n-1}x^{n-2}+na_nx^{n-1}=\sum_{i=1}^n ia_ix^{i-1}.
     $$
 
-这个定义对于所有域上的多项式都适用，不依赖于任何拓扑结构，此处的导数算子 $D$ 只是把一个多项式映射到了另一个多项式．而且，可以通过对比系数验证，常见的导数运算法则，比如 $D(f(x)g(x))=(Df(x))g(x)+f(x)(Dg(x))$ 等，对于形式导数依然成立．
+Định nghĩa này áp dụng cho đa thức trên mọi trường, không phụ thuộc vào bất kỳ cấu trúc tô pô nào; toán tử đạo hàm $D$ ở đây chỉ ánh xạ một đa thức sang một đa thức khác. Hơn nữa, có thể so sánh hệ số để kiểm tra rằng các quy tắc đạo hàm quen thuộc, chẳng hạn $D(f(x)g(x))=(Df(x))g(x)+f(x)(Dg(x))$, vẫn đúng với đạo hàm hình thức.
 
-进而，要检查多项式 $f(x)$ 和它的导数 $Df(x)$ 在分裂域中是否有相同的根，可以不显式地构造出这个分裂域，而是通过它们的最小公因子来判断；这是因为多项式的根总是出现在它的极小多项式中，重复的根意味着相应的极小多项式因子也重复．于是，有重根的判断法则如下：
+Tiếp theo, để kiểm tra $f(x)$ và đạo hàm $Df(x)$ có nghiệm chung trong trường phân rã hay không, ta không cần xây dựng tường minh trường phân rã đó, mà chỉ cần xét ước chung lớn nhất của chúng. Lý do là nghiệm của đa thức luôn xuất hiện trong đa thức tối tiểu của nó, và nghiệm lặp nghĩa là nhân tử đa thức tối tiểu tương ứng cũng lặp. Do đó có quy tắc nhận biết nghiệm bội như sau:
 
-???+ note "定理"
-    对于域 $F$ 上的多项式 $f(x)$，如果 $f(x)$ 有重根 $\alpha$，那么导数 $Df(x)$ 也有同样的根 $\alpha$．进而，多项式 $f(x)$ 可分的充分必要条件是 $f(x)$ 与它的导数 $Df(x)$ 互素，即 $\gcd(f(x),Df(x))=1$．
+???+ note "Định lý"
+    Với đa thức $f(x)$ trên trường $F$, nếu $f(x)$ có nghiệm bội $\alpha$, thì đạo hàm $Df(x)$ cũng có nghiệm $\alpha$. Hơn nữa, điều kiện cần và đủ để $f(x)$ tách được là $f(x)$ và đạo hàm $Df(x)$ nguyên tố cùng nhau, tức $\gcd(f(x),Df(x))=1$.
 
-??? note "证明"
-    首先，因为带余除法在扩域中依然保持，欧几里得算法的结果也和扩域的选取无关，所以只要在分裂域中讨论它们的公因子就好了．由此，设 $\alpha$ 是 $f(x)$ 的 $k>1$ 重根，则分裂域中有分解 $f(x)=(x-\alpha)^kg(x)$，于是它的导数 $Df(x)=k(x-\alpha)^{k-1}g(x)+(x-\alpha)^kDg(x)$ 必然也有根 $\alpha$．反过来，如果 $f(x)$ 和 $Df(x)$ 都有根 $\alpha$，那么对于分裂域中的分解 $f(x)=(x-\alpha)g(x)$，就有 $Df(x)=(x-\alpha)Dg(x)+g(x)$，故而 $\alpha$ 也是 $g(x)$ 的根，因而 $\alpha$ 是 $f(x)$ 的重根．这就说明定理的第一部分．进而，多项式 $f(x)$ 有重根 $\alpha$，等价于 $x-\alpha$ 是 $\gcd(f(x),Df(x))$ 的因子．所以，多项式 $f(x)$ 不可分，就等价于 $\gcd(f(x),Df(x))$ 次数大于等于一．
+??? note "Chứng minh"
+    Trước hết, vì phép chia có dư vẫn được bảo toàn trong trường mở rộng, kết quả của thuật toán Euclid cũng không phụ thuộc vào cách chọn trường mở rộng, nên chỉ cần thảo luận ước chung trong trường phân rã. Gọi $\alpha$ là nghiệm bội $k>1$ của $f(x)$, khi đó trong trường phân rã có phân tích $f(x)=(x-\alpha)^kg(x)$, nên đạo hàm $Df(x)=k(x-\alpha)^{k-1}g(x)+(x-\alpha)^kDg(x)$ nhất định cũng có nghiệm $\alpha$. Ngược lại, nếu $f(x)$ và $Df(x)$ đều có nghiệm $\alpha$, thì với phân tích $f(x)=(x-\alpha)g(x)$ trong trường phân rã, ta có $Df(x)=(x-\alpha)Dg(x)+g(x)$, nên $\alpha$ cũng là nghiệm của $g(x)$, do đó $\alpha$ là nghiệm bội của $f(x)$. Điều này chứng minh phần đầu của định lý. Hơn nữa, $f(x)$ có nghiệm bội $\alpha$ tương đương với $x-\alpha$ là nhân tử của $\gcd(f(x),Df(x))$. Vì vậy $f(x)$ không tách được tương đương với $\gcd(f(x),Df(x))$ có bậc ít nhất một.
 
-域上的多项式总是可以分解为若干个不可约多项式的乘积．因为（相伴意义下）不同的不可约多项式总是有着不同的根，根的重复自然联系到相应的多项式因子的重复．那么，如果多项式的分解中没有重复的不可约因子，是否就能判断多项式可分呢？换句话说，不可约的多项式是否都可分？很遗憾，在一般的情形下，无法得到肯定的答案．问题出现在有限特征的域．
+Đa thức trên trường luôn có thể phân tích thành tích của một số đa thức bất khả quy. Vì các đa thức bất khả quy khác nhau (theo nghĩa liên kết) luôn có các nghiệm khác nhau, nghiệm lặp tự nhiên liên hệ với việc các nhân tử đa thức tương ứng bị lặp. Vậy nếu trong phân tích của một đa thức không có nhân tử bất khả quy lặp, liệu có thể kết luận đa thức tách được hay không? Nói cách khác, có phải mọi đa thức bất khả quy đều tách được không? Đáng tiếc, trong trường hợp tổng quát không thể trả lời khẳng định. Vấn đề xuất hiện ở các trường có đặc trưng hữu hạn.
 
-对于域 $F$ 上的不可约多项式 $f(x)$，多项式 $\gcd(f(x),Df(x))$ 作为 $f(x)$ 的因子，只能有两种情形，即 $1$ 或者 $f(x)$．对于前一种情况，多项式 $f(x)$ 自然是可分的；问题出现在后一种情况．但是，由于导数的定义中已经保证 $Df(x)=0$ 或者 $\deg Df(x)<\deg f(x)$，多项式 $f(x)$ 成为 $Df(x)$ 的因子，只能说明 $Df(x)=0$．这在有限特征的域中是有可能的．
+Với đa thức bất khả quy $f(x)$ trên trường $F$, đa thức $\gcd(f(x),Df(x))$ là nhân tử của $f(x)$, nên chỉ có hai khả năng: $1$ hoặc $f(x)$. Trong trường hợp đầu, $f(x)$ tự nhiên tách được; vấn đề nằm ở trường hợp sau. Nhưng do định nghĩa đạo hàm đã đảm bảo $Df(x)=0$ hoặc $\deg Df(x)<\deg f(x)$, việc $f(x)$ là nhân tử của $Df(x)$ chỉ có thể xảy ra khi $Df(x)=0$. Điều này có thể xảy ra trong trường có đặc trưng hữu hạn.
 
-对于特征为 $p$ 的域 $F$，如果 $Df(x)=0$，则多项式的所有非零系数都只能出现在次数恰为 $p$ 的倍数的项上，即多项式 $f(x)$ 可以写作
+Với trường $F$ có đặc trưng $p$, nếu $Df(x)=0$, thì mọi hệ số khác không của đa thức chỉ có thể xuất hiện ở các hạng tử có bậc là bội của $p$, tức đa thức $f(x)$ có thể viết thành
 
 $$
 f(x)=a_0+a_px^p+a_{2p}x^{2p}+\cdots+a_{(k-1)p}x^{(k-1)p}+a_{kp}x^{kp}.
 $$
 
-如果真的存在域 $F$ 上的多项式 $f(x)$ 既不可约也不可分，则它只能有这种形式．但是，如果域 $F$ 中的所有元素总有 $p$ 次根，即对每个系数 $a_{jp}$ 都存在 $b_j\in F$ 使得 $a_{jp}$ 可以写作 $b_j^p$ 的形式，那么，根据 Frobenius 自同态，总有
+Nếu thực sự tồn tại đa thức $f(x)$ trên trường $F$ vừa bất khả quy vừa không tách được, nó chỉ có thể có dạng này. Nhưng nếu mọi phần tử của trường $F$ luôn có căn bậc $p$, tức với mỗi hệ số $a_{jp}$ đều tồn tại $b_j\in F$ sao cho $a_{jp}=b_j^p$, thì theo tự đồng cấu Frobenius luôn có
 
 $$
 \begin{aligned}
 f(x)&=a_0+a_px^p+a_{2p}x^{2p}+\cdots+a_{(k-1)p}x^{(k-1)p}+a_{kp}x^{kp}\\
 &=b_0^p+b_1^px^p+b_2^px^{2p}+\cdots+b_{k-1}^px^{(k-1)p}+b_k^px^{kp}\\
-&=\left(b_0+b_1x+b_2x+\cdots+b_{k-1}x^{k-1}+b_kx^k\right)^p.
+&=\left(b_0+b_1x+b_2x^2+\cdots+b_{k-1}x^{k-1}+b_kx^k\right)^p.
 \end{aligned}
 $$
 
-因而，这样的域 $F$ 上并不存在这种形式的不可约多项式．因而，这种域上，所有不可约多项式都是可分的．这种域称为完美域．
+Do đó trên một trường $F$ như vậy không tồn tại đa thức bất khả quy có dạng trên. Vì vậy trên trường này, mọi đa thức bất khả quy đều tách được. Trường như vậy được gọi là trường hoàn hảo.
 
-???+ abstract "完美域"
-    如果域 $F$ 上的所有不可约多项式都是可分多项式，就称它为 **完美域**（perfect field）．
+???+ abstract "Trường hoàn hảo"
+    Nếu mọi đa thức bất khả quy trên trường $F$ đều là đa thức tách được, thì $F$ được gọi là **trường hoàn hảo** (perfect field).
 
-对于完美域，可分多项式的概念和唯一分解中没有平方因子的多项式的概念是等同的．
+Với trường hoàn hảo, khái niệm đa thức tách được tương đương với khái niệm đa thức không chứa nhân tử bình phương trong phân tích duy nhất.
 
-???+ note "定理"
-    设域 $F$ 是完美域，则 $F$ 上的多项式可分，当且仅当它可以写作若干个（相伴意义下）不同的不可约多项式的乘积．
+???+ note "Định lý"
+    Giả sử trường $F$ là trường hoàn hảo. Khi đó đa thức trên $F$ tách được khi và chỉ khi nó có thể viết thành tích của các đa thức bất khả quy khác nhau (theo nghĩa liên kết).
 
-本节的讨论其实已经足够给出移除多项式中的重复因子的方法，它是对多项式的因式分解算法中的关键步骤．但这超出了本文范畴，有兴趣的读者可以参考文末的相关资料．
+Thảo luận trong mục này thực ra đã đủ để đưa ra phương pháp loại bỏ nhân tử lặp trong đa thức; đây là bước then chốt trong thuật toán phân tích nhân tử đa thức. Nhưng nội dung đó vượt ra ngoài phạm vi bài này, nên độc giả quan tâm có thể tham khảo tài liệu liên quan ở cuối bài.
 
-这些讨论其实也给出了完美域的刻画：
+Các thảo luận này cũng đưa ra đặc trưng hóa trường hoàn hảo:
 
-???+ note "定理"
-    域 $F$ 为完美域，当且仅当域 $F$ 的特征是零，或者域 $F$ 的特征是 $p$ 且任何元素 $x\in F$ 都有 $p$ 次根（即 Frobenius 自同态也是自同构）．
+???+ note "Định lý"
+    Trường $F$ là trường hoàn hảo khi và chỉ khi đặc trưng của $F$ bằng không, hoặc đặc trưng của $F$ là $p$ và mọi phần tử $x\in F$ đều có căn bậc $p$ (tức tự đồng cấu Frobenius cũng là tự đẳng cấu).
 
-有理数域 $\mathbf Q$ 和下文会讨论的有限域 $\mathbf F_q$ 都是完美域．
+Trường số hữu tỉ $\mathbf Q$ và trường hữu hạn $\mathbf F_q$ sẽ thảo luận bên dưới đều là trường hoàn hảo.
 
-对于域不是完美域的情形，的确存在不可分的不可约多项式．
+Khi trường không hoàn hảo, quả thật tồn tại đa thức bất khả quy không tách được.
 
-??? example "例子"
-    考虑 $\mathbf F_2$ 的有理分式域 $\mathbf F_2(t)$ 上的多项式 $x^2-t$．因为 $\mathbf F_2(t)$ 是唯一分解整环 $\mathbf F_2[t]$ 的分式域，且 $t$ 是 $\mathbf F_2[t]$ 中的素元，则对素元 $t$ 应用 Eisenstein 判别法可知 $x^2-t$ 在 $\mathbf F_2[t]$ 中不可约，故而在 $\mathbf F_2(t)$ 中也不可约．但是，它的导数为 $0$，因而 $x^2-t$ 并不可分．事实上，在扩域 $\mathbf F_2(t)(\sqrt t)$ 中，它有二重根 $\sqrt t$．
+??? example "Ví dụ"
+    Xét đa thức $x^2-t$ trên trường hàm hữu tỉ $\mathbf F_2(t)$ của $\mathbf F_2$. Vì $\mathbf F_2(t)$ là trường phân thức của miền phân tích duy nhất $\mathbf F_2[t]$, và $t$ là phần tử nguyên tố trong $\mathbf F_2[t]$, áp dụng tiêu chuẩn Eisenstein với phần tử nguyên tố $t$ cho thấy $x^2-t$ bất khả quy trong $\mathbf F_2[t]$, nên cũng bất khả quy trong $\mathbf F_2(t)$. Nhưng đạo hàm của nó bằng $0$, do đó $x^2-t$ không tách được. Thực ra trong mở rộng $\mathbf F_2(t)(\sqrt t)$, nó có nghiệm kép $\sqrt t$.
 
-最后回到域的扩张的讨论．
+Cuối cùng quay lại thảo luận về mở rộng trường.
 
-???+ abstract "可分扩张"
-    对于代数扩张 $E/F$，如果对所有 $\alpha\in E$ 都有 $\alpha$ 的极小多项式是可分多项式，那么称域 $E$ 是域 $F$ 的 **可分扩张**（seperable extension）．
+???+ abstract "Mở rộng tách được"
+    Với mở rộng đại số $E/F$, nếu với mọi $\alpha\in E$, đa thức tối tiểu của $\alpha$ đều là đa thức tách được, thì trường $E$ được gọi là **mở rộng tách được** (separable extension) của trường $F$.
 
-完美域上的代数扩张都是可分扩张．这也可以作为完美域的等价定义．
+Mọi mở rộng đại số trên trường hoàn hảo đều là mở rộng tách được. Điều này cũng có thể dùng làm định nghĩa tương đương của trường hoàn hảo.
 
-如果一个代数扩张既是正规扩张，也是可分扩张，它也称作 Galois 扩张．Galois 扩张中，任何不可约多项式都没有重根，且根的数目都恰好等于多项式的次数，因而对根的置换可以充分地反映域扩张和多项式的性质．这样的扩张提供了建立 Galois 理论的基石．有兴趣的读者可以参考文末的相关资料．
+Nếu một mở rộng đại số vừa là mở rộng chuẩn tắc vừa là mở rộng tách được, nó còn được gọi là mở rộng Galois. Trong mở rộng Galois, mọi đa thức bất khả quy đều không có nghiệm bội, và số nghiệm đúng bằng bậc của đa thức, nên các hoán vị của nghiệm có thể phản ánh đầy đủ tính chất của mở rộng trường và đa thức. Những mở rộng như vậy là nền tảng để xây dựng lý thuyết Galois. Độc giả quan tâm có thể tham khảo các tài liệu liên quan ở cuối bài.
 
-## 分圆域
+<span id="&#x5206;&#x5706;&#x57DF;"></span>
 
-作为域扩张的简单例子，本节讨论分圆域．另一个域扩张的简单例子是 [二次域](../number-theory/quadratic.md)．
+## Trường cyclotomic
 
-### 单位根群
+Như một ví dụ đơn giản về mở rộng trường, mục này thảo luận trường cyclotomic. Một ví dụ đơn giản khác về mở rộng trường là [trường bậc hai](../number-theory/quadratic.md).
 
-复数域 $\mathbf C$ 中，多项式 $x^n=1$ 的根称为 **$n$ 次单位根**（$n$-th root of unity）．记 $\zeta_n=\mathrm{e}^{2\pi\mathrm{i}/n}$．那么，全体 $n$ 次单位根就是集合 $C_n=\{\zeta_n^k:k\in\mathbf Z\}$．在乘法运算下，$C_n$ 构成 $n$ 次循环群，可以记作 $\langle\zeta_n\rangle$，称为 $n$ 次单位根群．群 $C_n$ 的生成元，也就是那些阶恰好为 $n$ 的元素，称为 **$n$ 次本原单位根**（primitive $n$-th root of unity）．$n$ 次本原单位根的集合 $P_n=\{\zeta_n^k:k\in\mathbf Z,k\perp n\}$，恰有 $\varphi(n)$ 个元素；其中，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)．将单位根群 $C_n$ 的元素按照它的阶分类，就得到如下分解：
+<span id="&#x5355;&#x4F4D;&#x6839;&#x7FA4;"></span>
+
+### Nhóm căn đơn vị
+
+Trong trường số phức $\mathbf C$, các nghiệm của đa thức $x^n=1$ được gọi là **căn đơn vị bậc $n$** ($n$-th root of unity). Ký hiệu $\zeta_n=\mathrm{e}^{2\pi\mathrm{i}/n}$. Khi đó toàn bộ căn đơn vị bậc $n$ là tập $C_n=\{\zeta_n^k:k\in\mathbf Z\}$. Dưới phép nhân, $C_n$ tạo thành nhóm cyclic bậc $n$, có thể ký hiệu là $\langle\zeta_n\rangle$, gọi là nhóm căn đơn vị bậc $n$. Các phần tử sinh của nhóm $C_n$, tức các phần tử có bậc đúng bằng $n$, được gọi là **căn đơn vị nguyên thủy bậc $n$** (primitive $n$-th root of unity). Tập các căn đơn vị nguyên thủy bậc $n$ là $P_n=\{\zeta_n^k:k\in\mathbf Z,k\perp n\}$, có đúng $\varphi(n)$ phần tử; trong đó $\varphi(n)$ là [hàm Euler](../number-theory/euler-totient.md). Phân loại các phần tử của nhóm căn đơn vị $C_n$ theo bậc của chúng, ta có phân rã sau:
 
 $$
 C_n=\bigcup_{d|n}P_d.
 $$
 
-对两边元素计数，就得到恒等式 $n=\sum_{d\mid n}\varphi(d)$．
+Đếm số phần tử hai vế thu được đẳng thức $n=\sum_{d\mid n}\varphi(d)$.
 
-### 分圆域
+<span id="&#x5206;&#x5706;&#x57DF;_1"></span>
 
-分圆域是将单位根添加到有理数域中得到的扩域．
+### Trường cyclotomic
 
-???+ abstract "分圆域"
-    将 $n$ 次复单位根 $\zeta_n=\mathrm{e}^{2\pi\mathrm{i}/n}$ 添加到有理数域 $\mathbf Q$ 中得到的扩域 $\mathbf Q(\zeta_n)$ 称为 **$n$ 次分圆域**（$n$-th cyclotomic field）．
+Trường cyclotomic là trường mở rộng thu được bằng cách thêm căn đơn vị vào trường số hữu tỉ.
 
-因为全体 $n$ 次单位根在乘法运算下构成循环群 $\langle\zeta_n\rangle$，分圆域 $\mathbf Q(\zeta_n)$ 也包括所有这些 $n$ 次单位根．其实，$\mathbf Q(\zeta_n)$ 正是域 $\mathbf Q$ 上多项式 $x^n-1$ 的分裂域．
+???+ abstract "Trường cyclotomic"
+    Trường mở rộng $\mathbf Q(\zeta_n)$ thu được bằng cách thêm căn đơn vị phức bậc $n$, $\zeta_n=\mathrm{e}^{2\pi\mathrm{i}/n}$, vào trường số hữu tỉ $\mathbf Q$ được gọi là **trường cyclotomic bậc $n$** ($n$-th cyclotomic field).
 
-???+ note "定理"
-    分圆域 $\mathbf Q(\zeta_n)$ 是有理数域 $\mathbf Q$ 上多项式 $x^n-1$ 的分裂域．
+Vì toàn bộ căn đơn vị bậc $n$ tạo thành nhóm cyclic $\langle\zeta_n\rangle$ dưới phép nhân, trường cyclotomic $\mathbf Q(\zeta_n)$ cũng chứa tất cả các căn đơn vị bậc $n$ này. Thực ra $\mathbf Q(\zeta_n)$ chính là trường phân rã của đa thức $x^n-1$ trên trường $\mathbf Q$.
 
-??? note "证明"
-    设 $F$ 为有理数域 $\mathbf Q$ 上多项式 $x^n-1$ 的分裂域．因为 $\mathbf Q(\zeta_n)$ 上有多项式 $x^n-1$ 的全体复根，所以 $F\subseteq\mathbf Q(\zeta_n)$．反过来，因为 $\zeta_n\in F$，就必然有 $\mathbf Q(\zeta_n)=F$．这就说明 $F=\mathbf Q(\zeta_n)$．
+???+ note "Định lý"
+    Trường cyclotomic $\mathbf Q(\zeta_n)$ là trường phân rã của đa thức $x^n-1$ trên trường số hữu tỉ $\mathbf Q$.
 
-这可以作为分圆域的等价定义．其实，将任何 $n$ 次本原单位根添加到分圆域中都能够得到 $\mathbf Q(\zeta_n)$．
+??? note "Chứng minh"
+    Gọi $F$ là trường phân rã của đa thức $x^n-1$ trên trường số hữu tỉ $\mathbf Q$. Vì trên $\mathbf Q(\zeta_n)$ có toàn bộ nghiệm phức của đa thức $x^n-1$, nên $F\subseteq\mathbf Q(\zeta_n)$. Ngược lại, vì $\zeta_n\in F$, nhất định có $\mathbf Q(\zeta_n)=F$. Do đó $F=\mathbf Q(\zeta_n)$.
 
-### 分圆多项式
+Điều này có thể xem là một định nghĩa tương đương của trường cyclotomic. Thực ra, thêm bất kỳ căn đơn vị nguyên thủy bậc $n$ nào vào trường số hữu tỉ cũng đều thu được $\mathbf Q(\zeta_n)$.
 
-分圆域 $\mathbf Q(\zeta_n)$ 是有理数域 $\mathbf Q$ 上的单代数扩张．根据上文的分析，这样的域总是同构于某个多项式环的商环．为了得到这样的同构，需要分析 $\zeta_n$ 的极小多项式 $f(x)$．因为 $\zeta_n$ 是 $x^n-1$ 的根，所以 $f(x)$ 必然是 $x^n-1$ 的某个因子．这说明，需要考察多项式 $x^n-1$ 在 $\mathbf Q[x]$ 内的因式分解．根据 Gauss 引理，它必然可以在 $\mathbf Z[x]$ 中分解为若干个不可约的首一多项式的乘积．
+<span id="&#x5206;&#x5706;&#x591A;&#x9879;&#x5F0F;"></span>
 
-因为 $\mathbf Q(\zeta_n)$ 是分裂域，多项式 $x^n-1$ 有分解：
+### Đa thức cyclotomic
+
+Trường cyclotomic $\mathbf Q(\zeta_n)$ là mở rộng đơn đại số của trường số hữu tỉ $\mathbf Q$. Theo phân tích ở trên, trường như vậy luôn đẳng cấu với vành thương của một vành đa thức nào đó. Để có đẳng cấu này, cần phân tích đa thức tối tiểu $f(x)$ của $\zeta_n$. Vì $\zeta_n$ là nghiệm của $x^n-1$, nên $f(x)$ nhất định là một nhân tử của $x^n-1$. Điều này yêu cầu khảo sát phân tích nhân tử của đa thức $x^n-1$ trong $\mathbf Q[x]$. Theo bổ đề Gauss, nó nhất định có thể phân tích trong $\mathbf Z[x]$ thành tích của một số đa thức monic bất khả quy hệ số nguyên.
+
+Vì $\mathbf Q(\zeta_n)$ là trường phân rã, đa thức $x^n-1$ có phân tích:
 
 $$
 x^n-1=\prod_{\zeta\in C_n}(x-\zeta)=\prod_{d\mid n}\prod_{\zeta\in P_d}(x-\zeta).
 $$
 
-因为不同阶的单位根的代数性质不同，它们必然不会是同一个不可约多项式的根．因此，要考察 $\zeta_n$ 的极小多项式，只要考虑上述分解中的因子
+Do các căn đơn vị có bậc khác nhau có tính chất đại số khác nhau, chúng nhất định không phải là nghiệm của cùng một đa thức bất khả quy. Vì vậy, để khảo sát đa thức tối tiểu của $\zeta_n$, chỉ cần xét nhân tử sau trong phân tích trên:
 
 $$
-\Phi_n(x)=\prod_{\zeta\in P_n}(x-\zeta)
+\Phi_n(x)=\prod_{\zeta\in P_n}(x-\zeta).
 $$
 
-即可．单位根 $\zeta_n$ 的极小多项式，必然是 $\Phi_n(x)$ 的因子．而且，这样定义的 $\Phi_n(x)$ 有如下性质：
+Đa thức tối tiểu của căn đơn vị $\zeta_n$ nhất định là một nhân tử của $\Phi_n(x)$. Hơn nữa, $\Phi_n(x)$ được định nghĩa như vậy có các tính chất sau:
 
-???+ note "定理"
-    $\Phi_n(x)$ 是整系数首一多项式，且在 $\mathbf Z[x]$ 中不可约．
+???+ note "Định lý"
+    $\Phi_n(x)$ là đa thức monic hệ số nguyên và bất khả quy trong $\mathbf Z[x]$.
 
-??? note "证明"
-    由定义，$\Phi_n(x)$ 显然是首一多项式．首先，要证明 $\Phi_n(x)\in\mathbf Z[x]$．根据 Gauss 引理，多项式 $x^n-1$ 在 $\mathbf Z[x]$ 和 $\mathbf Q[x]$ 中有着相同的分解，且每个因子都是整系数首一多项式．这个分解中，每个因子 $f(x)$ 都是 $\mathbf Q[x]$ 上不可约的，且在 $\mathbf Q(\zeta_n)$ 中分裂；它的所有根都是 $n$ 次单位根，且必然有着相同的阶，所以这些根必然全部属于某一个 $P_d$ 而不能分别存在于不同的 $P_d$．这意味着，每个因子 $f(x)$ 都是某个 $\Phi_d(x)$ 的因子．故而，$\Phi_n(x)$ 可以写成若干个的整系数首一多项式的乘积，必然也是整系数首一多项式．
+??? note "Chứng minh"
+    Theo định nghĩa, $\Phi_n(x)$ hiển nhiên là đa thức monic. Trước hết cần chứng minh $\Phi_n(x)\in\mathbf Z[x]$. Theo bổ đề Gauss, đa thức $x^n-1$ có cùng phân tích trong $\mathbf Z[x]$ và $\mathbf Q[x]$, và mỗi nhân tử đều là đa thức monic hệ số nguyên. Trong phân tích này, mỗi nhân tử $f(x)$ đều bất khả quy trên $\mathbf Q[x]$ và phân rã trong $\mathbf Q(\zeta_n)$; mọi nghiệm của nó đều là căn đơn vị bậc $n$ và nhất định có cùng bậc, nên toàn bộ các nghiệm này phải thuộc một $P_d$ nào đó chứ không thể nằm rải rác trong nhiều $P_d$. Điều này có nghĩa mỗi nhân tử $f(x)$ đều là nhân tử của một $\Phi_d(x)$ nào đó. Vì vậy $\Phi_n(x)$ có thể viết thành tích của một số đa thức monic hệ số nguyên, nên nó cũng là đa thức monic hệ số nguyên.
     
-    接下来，要证明 $\Phi_n(x)$ 在 $\mathbf Z[x]$ 是不可约的．设它有分解 $f(x)g(x)$，且 $f(x)$ 在 $\mathbf Z[x]$ 中不可约，那么只要证明 $f(x)$ 包含所有 $n$ 次本原单位根即可．也就是说，设 $\zeta$ 是 $f(x)$ 的一个根，要证明对于所有 $k\perp n$，都有 $\zeta^k$ 也是 $f(x)$ 的根；由于 $k$ 总是可以分解为素数的乘积，所以只需要证明对于所有素数 $p\perp n$，$\zeta^p$ 是 $f(x)$ 的根就可以了．假设不然，$\zeta^p$ 是 $g(x)$ 的根．因而，$\zeta$ 是 $\mathbf Z[x]$ 中多项式 $f(x)$ 和 $g(x^p)$ 的共同的根．因为 $f(x)$ 是 $\zeta$ 在 $\mathbf Q$ 上的极小多项式，必然有 $f(x)$ 整除 $g(x^p)$；亦即存在 $h(x)\in\mathbf Z[x]$ 使得 $g(x^p)=f(x)h(x)$．等式两侧同时对 $p$ 取模，得到 $\mathbf F_p[x]$ 上的等式 $\overline{g}(x^p)=\overline{f}(x)\overline{h}(x)$．利用 Frobenius 自同态可知，$\overline{g}(x)^p=\overline{f}(x)\overline{h}(x)$．因为 $\mathbf F_p[x]$ 也是唯一分解整环，$\overline{g}(x)$ 和 $\overline{f}(x)$ 必然有不平凡的公因子，所以，$x^n-\overline 1=\overline{f}(x)\overline{g}(x)$ 在 $\mathbf F_p$ 上不可分．但是，因为 $p\perp n$，它的形式导数 $nx^{n-1}$ 与它自身互素，这与它不可分矛盾．故而，可以证明 $\zeta^p$ 必然还是 $f(x)$ 的根，因而 $f(x)$ 包含所有 $n$ 次本原单位根，它就是 $\Phi_n(x)$．
+    Tiếp theo cần chứng minh $\Phi_n(x)$ bất khả quy trong $\mathbf Z[x]$. Giả sử nó có phân tích $f(x)g(x)$, và $f(x)$ bất khả quy trong $\mathbf Z[x]$. Chỉ cần chứng minh $f(x)$ chứa mọi căn đơn vị nguyên thủy bậc $n$. Nói cách khác, giả sử $\zeta$ là một nghiệm của $f(x)$, cần chứng minh với mọi $k\perp n$, $\zeta^k$ cũng là nghiệm của $f(x)$. Vì $k$ luôn có thể phân tích thành tích các số nguyên tố, chỉ cần chứng minh với mọi số nguyên tố $p\perp n$, $\zeta^p$ là nghiệm của $f(x)$. Giả sử ngược lại, $\zeta^p$ là nghiệm của $g(x)$. Khi đó $\zeta$ là nghiệm chung của hai đa thức $f(x)$ và $g(x^p)$ trong $\mathbf Z[x]$. Vì $f(x)$ là đa thức tối tiểu của $\zeta$ trên $\mathbf Q$, nhất định $f(x)$ chia hết $g(x^p)$; tức tồn tại $h(x)\in\mathbf Z[x]$ sao cho $g(x^p)=f(x)h(x)$. Lấy modulo $p$ hai vế, ta được đẳng thức trên $\mathbf F_p[x]$: $\overline{g}(x^p)=\overline{f}(x)\overline{h}(x)$. Dùng tự đồng cấu Frobenius, $\overline{g}(x)^p=\overline{f}(x)\overline{h}(x)$. Vì $\mathbf F_p[x]$ cũng là miền phân tích duy nhất, $\overline{g}(x)$ và $\overline{f}(x)$ nhất định có ước chung không tầm thường, nên $x^n-\overline 1=\overline{f}(x)\overline{g}(x)$ không tách được trên $\mathbf F_p$. Nhưng vì $p\perp n$, đạo hàm hình thức $nx^{n-1}$ của nó nguyên tố cùng nhau với chính nó, mâu thuẫn với việc không tách được. Do đó có thể chứng minh $\zeta^p$ nhất định vẫn là nghiệm của $f(x)$, nên $f(x)$ chứa mọi căn đơn vị nguyên thủy bậc $n$, tức $f(x)=\Phi_n(x)$.
 
-这就说明，它就是 $\zeta_n$ 的极小多项式，也称为 **$n$ 次分圆多项式**（$n$-th cyclotomic polynomial）．上面的定义式指出，它有 $\varphi(n)$ 个复根，且这些复根正是全体 $n$ 次本原单位根；其中，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)．这也说明，$\mathbf Q(\zeta_n)/\mathbf Q$ 是 $\varphi(n)$ 次扩张．
+Điều này cho thấy nó chính là đa thức tối tiểu của $\zeta_n$, còn được gọi là **đa thức cyclotomic bậc $n$** ($n$-th cyclotomic polynomial). Công thức định nghĩa ở trên cho biết nó có $\varphi(n)$ nghiệm phức, và các nghiệm phức này chính là toàn bộ căn đơn vị nguyên thủy bậc $n$; trong đó $\varphi(n)$ là [hàm Euler](../number-theory/euler-totient.md). Điều này cũng cho thấy $\mathbf Q(\zeta_n)/\mathbf Q$ là mở rộng có bậc $\varphi(n)$.
 
-分圆域 $\mathbf Q(\zeta_n)$ 中的代数整数环是 $\mathbf Z[\zeta_n]$．另外，当 $\varphi(n)=2$ 时，分圆域是 [二次扩张](../number-theory/quadratic.md)．具体来说，$\mathbf Q(\zeta_4)$ 是二次域 $\mathbf Q(\sqrt{-1})$；$\mathbf Q(\zeta_3)$ 和 $\mathbf Q(\zeta_6)$ 相同，都是二次域 $\mathbf Q(\sqrt{-3})$．
+Vành số nguyên đại số trong trường cyclotomic $\mathbf Q(\zeta_n)$ là $\mathbf Z[\zeta_n]$. Ngoài ra, khi $\varphi(n)=2$, trường cyclotomic là [mở rộng bậc hai](../number-theory/quadratic.md). Cụ thể, $\mathbf Q(\zeta_4)$ là trường bậc hai $\mathbf Q(\sqrt{-1})$; $\mathbf Q(\zeta_3)$ và $\mathbf Q(\zeta_6)$ giống nhau, đều là trường bậc hai $\mathbf Q(\sqrt{-3})$.
 
-利用分圆多项式，多项式 $x^n-1$ 在 $\mathbf Z[x]$ 中有唯一分解
+Dùng đa thức cyclotomic, đa thức $x^n-1$ có phân tích duy nhất trong $\mathbf Z[x]$:
 
 $$
 x^n-1=\prod_{d\mid n}\Phi_d(x).
 $$
 
-因此，$(x^d-1)\mid(x^n-1)$ 当且仅当 $d\mid n$．而且，对此式应用 [Möbius 反演](../number-theory/mobius.md) 可得
+Vì vậy $(x^d-1)\mid(x^n-1)$ khi và chỉ khi $d\mid n$. Hơn nữa, áp dụng [nghịch đảo Möbius](../number-theory/mobius.md) cho công thức này thu được
 
 $$
-\Phi_d(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.
+\Phi_n(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.
 $$
 
-利用这个表达式，可以递归地计算出全部的分圆多项式．此处给出前几个分圆多项式的例子，便于读者熟悉．
+Dùng biểu thức này, có thể tính đệ quy toàn bộ đa thức cyclotomic. Dưới đây là vài đa thức cyclotomic đầu tiên để độc giả làm quen.
 
-???+ example "分圆多项式"
-    前 $10$ 个分圆多项式如下：
+???+ example "Đa thức cyclotomic"
+    $10$ đa thức cyclotomic đầu tiên như sau:
     
     $$
     \begin{aligned}
@@ -542,285 +568,309 @@ $$
     \end{aligned}
     $$
     
-    一个有趣的事实是，虽然看起来这些分圆多项式的系数都只能是 $0$ 和 $\pm1$，但是对于一般的 $n$，这个结论是不对的．第一个反例出现在 $\Phi_{105}(x)$，而且可以证明，随着 $n$ 的增大，它的系数可以取到任意大的值．
+    Một sự thật thú vị là tuy nhìn qua có vẻ hệ số của các đa thức cyclotomic này chỉ có thể là $0$ và $\pm1$, nhưng với $n$ tổng quát kết luận này không đúng. Phản ví dụ đầu tiên xuất hiện ở $\Phi_{105}(x)$; hơn nữa có thể chứng minh rằng khi $n$ tăng, hệ số của nó có thể đạt giá trị lớn tùy ý.
 
-利用上文的 Möbius 反演式，可以总结出如下性质来简化 $\Phi_n(x)$ 的计算：
+Dùng công thức nghịch đảo Möbius ở trên, có thể tổng kết các tính chất sau để đơn giản hóa việc tính $\Phi_n(x)$:
 
-???+ note "性质"
-    对于分圆多项式 $\Phi_n(x)$，有：
+???+ note "Tính chất"
+    Với đa thức cyclotomic $\Phi_n(x)$, ta có:
     
-    1.  如果素数 $p\mid n$，则 $\Phi_{pn}(x)=\Phi_n(x^p)$；
-    2.  如果素数 $p\perp n$，则 $\Phi_{pn}(x)=\dfrac{\Phi_n(x^p)}{\Phi_n(x)}$；
-    3.  特别地，如果 $n$ 是奇数，则 $\Phi_{2n}(x)=\Phi_n(-x)$；
-    4.  对于素数 $p$，有 $\Phi_{p}(x)=1+x+\cdots+x^{p-1}$；
-    5.  特别地，$\Phi_{2^k}(x)=x^{2^{k-1}}+1$．
+    1.  Nếu số nguyên tố $p\mid n$, thì $\Phi_{pn}(x)=\Phi_n(x^p)$.
+    2.  Nếu số nguyên tố $p\perp n$, thì $\Phi_{pn}(x)=\dfrac{\Phi_n(x^p)}{\Phi_n(x)}$.
+    3.  Đặc biệt, nếu $n$ là số lẻ, thì $\Phi_{2n}(x)=\Phi_n(-x)$.
+    4.  Với số nguyên tố $p$, có $\Phi_{p}(x)=1+x+\cdots+x^{p-1}$.
+    5.  Đặc biệt, $\Phi_{2^k}(x)=x^{2^{k-1}}+1$.
 
-这些性质说明，对分圆多项式的计算，重点在于那些次数是无平方因子的奇数的情形．而对于这种情形，可以用性质二逐个添加素因子；每个素因子的加入，只需要做一次多项式除法．
+Các tính chất này cho thấy trọng tâm của việc tính đa thức cyclotomic nằm ở trường hợp bậc là số lẻ không chứa nhân tử chính phương. Với trường hợp này, có thể dùng tính chất thứ hai để thêm từng nhân tử nguyên tố; mỗi lần thêm một nhân tử nguyên tố chỉ cần thực hiện một phép chia đa thức.
 
-分圆多项式还有很多其它的性质．
+Đa thức cyclotomic còn có nhiều tính chất khác.
 
-???+ note "定理"
-    设 $\Phi_n(x)$ 为 $n>1$ 次分圆多项式，且多项式的次数是 $\varphi(n)$．于是，有：
+???+ note "Định lý"
+    Giả sử $\Phi_n(x)$ là đa thức cyclotomic bậc $n>1$, và bậc đa thức là $\varphi(n)$. Khi đó:
     
-    1.  多项式 $\Phi_n(x)$ 是回文多项式，它的 $j$ 次项系数和 $\varphi(n)-j$ 次项系数相同，即 $\Phi_n(x)=x^{\varphi(n)}\Phi_n(1/x)$；
-    2.  多项式的 $\varphi(n)-1$ 次项系数等于 Möbius 函数 $-\mu(n)$；
-    3.  如果 $n$ 是素数幂 $p^k$，那么 $\Phi_n(1)=p$；否则，$\Phi_n(1)=1$；
-    4.  设 $b>1$ 且 $p$ 为 $\Phi_n(b)$ 的素因子，则 $p\mid n$，或者 $n$ 是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶，且这两种情况不能同时发生．
+    1.  Đa thức $\Phi_n(x)$ là đa thức đối xứng, hệ số của hạng tử bậc $j$ bằng hệ số của hạng tử bậc $\varphi(n)-j$, tức $\Phi_n(x)=x^{\varphi(n)}\Phi_n(1/x)$.
+    2.  Hệ số của hạng tử bậc $\varphi(n)-1$ bằng $-\mu(n)$, với $\mu$ là hàm Möbius.
+    3.  Nếu $n$ là lũy thừa của số nguyên tố $p^k$, thì $\Phi_n(1)=p$; ngược lại, $\Phi_n(1)=1$.
+    4.  Giả sử $b>1$ và $p$ là nhân tử nguyên tố của $\Phi_n(b)$. Khi đó $p\mid n$, hoặc $n$ là bậc của $b$ trong nhóm nhân $(\mathbf Z/p\mathbf Z)^\times$, và hai trường hợp này không thể xảy ra đồng thời.
 
-??? note "证明"
-    对于前三条性质，只需要利用 Möbius 反演即可．对于 1，直接考察 $\Phi_n(x)$ 的 Möbius 反演形式，即 $\Phi_d(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}$；对于 2，设 $\Phi_n(x)$ 的 $\varphi(n)-1$ 次项系数为 $f(n)$，则比较 $x^n-1=\prod_{d\mid n}\Phi_d(x)$ 等式两侧的 $n-1$ 次项系数可知，$\sum_{d\mid n}f(d)=-[n=1]$，再做 Möbius 反演；对于 3，在 $x^n-1=\prod_{d\mid n}\Phi_n(x)$ 两侧同时除以 $\Phi_1(x)=x-1$，再代入 $x=1$，即有 $n=\prod_{d\mid n,d\neq 1}\Phi_n(1)$，再做 Möbius 反演．
+??? note "Chứng minh"
+    Với ba tính chất đầu, chỉ cần dùng nghịch đảo Möbius. Với 1, trực tiếp xét dạng nghịch đảo Möbius của $\Phi_n(x)$, tức $\Phi_n(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}$. Với 2, đặt $f(n)$ là hệ số của hạng tử bậc $\varphi(n)-1$ trong $\Phi_n(x)$, so sánh hệ số của hạng tử bậc $n-1$ ở hai vế của đẳng thức $x^n-1=\prod_{d\mid n}\Phi_d(x)$ được $\sum_{d\mid n}f(d)=-[n=1]$, rồi dùng nghịch đảo Möbius. Với 3, chia hai vế của $x^n-1=\prod_{d\mid n}\Phi_d(x)$ cho $\Phi_1(x)=x-1$, rồi thay $x=1$, ta có $n=\prod_{d\mid n,d\neq 1}\Phi_d(1)$, sau đó dùng nghịch đảo Möbius.
     
-    下面证明第四条性质．首先，如果 $n$ 是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶，那么 $n$ 是满足 $p\mid b^n-1$ 的正整数中最小的，故而 $p\mid\Phi_n(b)$．反过来，如果 $p\mid\Phi_n(b)$，则有 $b^n\equiv 1\pmod p$；可如果 $n$ 不是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶，那么设它的阶为 $k$，必然有 $k\mid n$ 且 $p\mid\Phi_k(b)$．此时，$\Phi_k(x)$ 和 $\Phi_n(x)$ 在域 $\mathbf F_p$ 中有公共根 $b$，这说明 $x^n-1$ 有重根 $b$．这说明 $p\mid n$；否则，$x^n-1$ 与它的导数互素，所以在 $\mathbf F_p$ 上可分，不可能有重根．因而，$\Phi_n(b)$ 的素因子 $p$ 只有两种情况：$p\mid n$，或者 $n$ 是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶．这两种情况是互斥的，因为后者意味着 $n\mid p-1$．
+    Dưới đây chứng minh tính chất thứ tư. Trước hết, nếu $n$ là bậc của $b$ trong nhóm nhân $(\mathbf Z/p\mathbf Z)^\times$, thì $n$ là số nguyên dương nhỏ nhất thỏa mãn $p\mid b^n-1$, do đó $p\mid\Phi_n(b)$. Ngược lại, nếu $p\mid\Phi_n(b)$, thì $b^n\equiv 1\pmod p$. Nếu $n$ không phải bậc của $b$ trong nhóm nhân $(\mathbf Z/p\mathbf Z)^\times$, gọi bậc đó là $k$, nhất định có $k\mid n$ và $p\mid\Phi_k(b)$. Khi đó $\Phi_k(x)$ và $\Phi_n(x)$ có nghiệm chung $b$ trong trường $\mathbf F_p$, cho thấy $x^n-1$ có nghiệm bội $b$. Điều này suy ra $p\mid n$; nếu không, $x^n-1$ nguyên tố cùng nhau với đạo hàm của nó, nên tách được trên $\mathbf F_p$, không thể có nghiệm bội. Vì vậy nhân tử nguyên tố $p$ của $\Phi_n(b)$ chỉ có hai khả năng: $p\mid n$, hoặc $n$ là bậc của $b$ trong nhóm nhân $(\mathbf Z/p\mathbf Z)^\times$. Hai khả năng này loại trừ nhau, vì khả năng sau kéo theo $n\mid p-1$.
 
-分圆多项式还可以用于解决一些数论和代数问题．比如说分数在写成某个进制下的小数时的循环节长度，就和分圆多项式有密切的联系．对于这些具体的应用，有兴趣的读者可以参考文末的资料．
+Đa thức cyclotomic còn có thể dùng để giải một số bài toán số học và đại số. Chẳng hạn, độ dài chu kỳ của một phân số khi viết thành số thập phân trong một cơ số nào đó có liên hệ mật thiết với đa thức cyclotomic. Với các ứng dụng cụ thể này, độc giả quan tâm có thể tham khảo tài liệu cuối bài.
 
-## 有限域
+<span id="&#x6709;&#x9650;&#x57DF;"></span>
 
-**有限域**（finite field），也称作 **Galois 域**（Galois field），就是只有有限多个元素的域．有限域的结构由其元素个数唯一确定，且它的元素个数必然是素数的幂．
+## Trường hữu hạn
 
-???+ note "定理"
-    大小为 $q$ 的域存在，当且仅当 $q$ 具有素数幂 $p^n$ 的形式．而且，这样的域在同构意义下唯一，记作 $\mathbf F_q$．素数 $p$ 是域 $\mathbf F_q$ 的特征，正整数 $n$ 为域扩张 $\mathbf F_q/\mathbf F_p$ 的次数．最后，$\mathbf F_q$ 是 $\mathbf F_p$ 上多项式 $x^q-x$ 的分裂域，且恰好包括 $x^q-x$ 的 $q$ 个互异的根．
+**Trường hữu hạn** (finite field), còn gọi là **trường Galois** (Galois field), là trường chỉ có hữu hạn phần tử. Cấu trúc của trường hữu hạn được xác định duy nhất bởi số phần tử của nó, và số phần tử này nhất định là lũy thừa của một số nguyên tố.
 
-??? note "证明"
-    设域 $F$ 是有限域．域 $F$ 的特征必然有限，记作 $p$；故而，域 $F$ 有素子域 $\mathbf F_p$．而且，域 $F$ 必然是 $\mathbf F_p$ 上的有限扩张，扩张次数记作 $n$．作为 $\mathbf F_p$ 上的 $n$ 维向量空间，域 $F$ 有 $q=p^n$ 个元素．域 $F$ 的全体非零元构成群 $F^\times$，它的阶为 $q-1$，所以有 $x^{q-1}=1$．因此，$F=F^\times\cup\{0\}$ 的所有元素都满足 $x^q=x$，即它们是多项式 $x^q-x$ 的 $q$ 个互异的根．因此，在域 $F$ 中多项式 $x^q-x$ 有因子 $\prod_{\alpha\in F}(x-\alpha)$，但是这个因子的次数已经是 $q$ 且最高次项系数就等于 $1$，所以有 $x^q-x=\prod_{\alpha\in F}(x-\alpha)$．这说明 $x^q-x$ 在 $F$ 中分裂．对于任何能够使 $x^q-x$ 分裂的域，由于 $x^q-x$ 有 $q$ 个相异的根，必然至少有 $q$ 个元素．这说明 $F$ 是使 $x^q-x$ 可以分裂的最小的域，即 $x^q-x$ 的分裂域．总而言之，大小为 $q$ 的有限域必然是它的素子域上的多项式 $x^q-x$ 的分裂域．因为分裂域在同构意义下唯一，所以大小为 $q$ 的域必然也唯一．
+???+ note "Định lý"
+    Trường có kích thước $q$ tồn tại khi và chỉ khi $q$ có dạng lũy thừa nguyên tố $p^n$. Hơn nữa, trường như vậy là duy nhất đến đẳng cấu, ký hiệu là $\mathbf F_q$. Số nguyên tố $p$ là đặc trưng của trường $\mathbf F_q$, số nguyên dương $n$ là bậc của mở rộng trường $\mathbf F_q/\mathbf F_p$. Cuối cùng, $\mathbf F_q$ là trường phân rã của đa thức $x^q-x$ trên $\mathbf F_p$, và chứa đúng $q$ nghiệm phân biệt của $x^q-x$.
+
+??? note "Chứng minh"
+    Giả sử $F$ là trường hữu hạn. Đặc trưng của trường $F$ nhất định hữu hạn, ký hiệu là $p$; do đó $F$ có trường con nguyên tố $\mathbf F_p$. Hơn nữa, $F$ nhất định là mở rộng hữu hạn của $\mathbf F_p$, gọi bậc mở rộng là $n$. Với tư cách không gian vectơ $n$ chiều trên $\mathbf F_p$, trường $F$ có $q=p^n$ phần tử. Toàn bộ các phần tử khác không của trường $F$ tạo thành nhóm $F^\times$ có bậc $q-1$, nên có $x^{q-1}=1$. Vì vậy mọi phần tử của $F=F^\times\cup\{0\}$ đều thỏa mãn $x^q=x$, tức chúng là $q$ nghiệm phân biệt của đa thức $x^q-x$. Do đó trong trường $F$, đa thức $x^q-x$ có nhân tử $\prod_{\alpha\in F}(x-\alpha)$; nhưng nhân tử này đã có bậc $q$ và hệ số đầu bằng $1$, nên $x^q-x=\prod_{\alpha\in F}(x-\alpha)$. Điều này cho thấy $x^q-x$ phân rã trong $F$. Với bất kỳ trường nào làm $x^q-x$ phân rã, do $x^q-x$ có $q$ nghiệm phân biệt, trường đó nhất định có ít nhất $q$ phần tử. Điều này chứng tỏ $F$ là trường nhỏ nhất làm $x^q-x$ phân rã, tức là trường phân rã của $x^q-x$. Tóm lại, trường hữu hạn kích thước $q$ nhất định là trường phân rã của đa thức $x^q-x$ trên trường con nguyên tố của nó. Vì trường phân rã là duy nhất đến đẳng cấu, trường kích thước $q$ cũng nhất định duy nhất.
     
-    反过来，给定素数 $p$ 和它的幂 $q=p^n$，要说明 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域恰好有 $q$ 个元素，才能说明所有素数幂 $q$ 阶的域都存在．因为 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域总是存在，所以可以设该分裂域中多项式 $x^q-x$ 的全部根组成的集合为 $F$．现在要证明 $F$ 是域，因而它就是多项式 $x^q-x$ 的分裂域本身．但是，迭代 $n$ 次 Frobenius 自同态就可以知道 $x\mapsto x^q$ 也是自同态，因此对任意 $\alpha,\beta\in F$ 都有 $(\alpha\pm\beta)^q=\alpha^q\pm\beta^q$，$(\alpha\beta)^q=\alpha^q\beta^q$ 和 $(\alpha^{-1})^q=(\alpha^q)^{-1}$．因此，集合 $F$ 对加、减、乘、除都封闭，它是域．这就说明 $F$ 就是 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域．
+    Ngược lại, cho số nguyên tố $p$ và lũy thừa $q=p^n$ của nó, cần chứng minh trường phân rã của đa thức $x^q-x$ trên $\mathbf F_p$ có đúng $q$ phần tử, từ đó chứng minh mọi trường có kích thước $q$ với $q$ là lũy thừa nguyên tố đều tồn tại. Vì trường phân rã của đa thức $x^q-x$ trên $\mathbf F_p$ luôn tồn tại, gọi $F$ là tập tất cả các nghiệm của $x^q-x$ trong trường phân rã đó. Bây giờ cần chứng minh $F$ là trường, khi đó nó chính là trường phân rã của đa thức $x^q-x$. Nhưng lặp tự đồng cấu Frobenius $n$ lần cho biết $x\mapsto x^q$ cũng là tự đồng cấu, nên với mọi $\alpha,\beta\in F$ đều có $(\alpha\pm\beta)^q=\alpha^q\pm\beta^q$, $(\alpha\beta)^q=\alpha^q\beta^q$ và $(\alpha^{-1})^q=(\alpha^q)^{-1}$. Vì vậy tập $F$ đóng dưới các phép cộng, trừ, nhân, chia; nó là trường. Điều này chứng tỏ $F$ chính là trường phân rã của đa thức $x^q-x$ trên $\mathbf F_p$.
 
-???+ note "推论"
-    有限域 $\mathbf F_q$（$q>2$）中，全体非零元的和是 $0$，积是 $-1$．
+???+ note "Hệ quả"
+    Trong trường hữu hạn $\mathbf F_q$ với $q>2$, tổng của toàn bộ phần tử khác không là $0$, và tích của chúng là $-1$.
 
-??? note "证明"
-    有限域的全体非零元恰好是多项式 $x^{q-1}-1$ 的 $q-1$ 个根，应用 Vieta 定理即可．
+??? note "Chứng minh"
+    Toàn bộ phần tử khác không của trường hữu hạn chính là $q-1$ nghiệm của đa thức $x^{q-1}-1$. Áp dụng định lý Vieta là đủ.
 
-在素域 $\mathbf F_p$ 中，这个推论关于积的结论正是数论中的 [Wilson 定理](../number-theory/factorial.md#wilson-定理)（的一部分）．
+Trong trường nguyên tố $\mathbf F_p$, kết luận về tích trong hệ quả này chính là một phần của [định lý Wilson](../number-theory/factorial.md#wilson-%E5%AE%9A%E7%90%86) trong số học.
 
-### 乘法结构
+<span id="&#x4E58;&#x6CD5;&#x7ED3;&#x6784;"></span>
 
-有限域的乘法群 $\mathbf F^\times=\mathbf F\setminus\{0\}$ 一定是循环群．
+### Cấu trúc nhân
 
-???+ note "定理"
-    域 $F$ 的乘法群的有限子群一定是循环群．
+Nhóm nhân $\mathbf F^\times=\mathbf F\setminus\{0\}$ của trường hữu hạn nhất định là nhóm cyclic.
 
-??? note "证明"
-    设 $G$ 为域 $F$ 的乘法群的子群且 $|G|=n$．因而，$G$ 是有限 Abel 群．根据有限 Abel 群基本定理，群 $G$ 有不变因子分解 $C_{n_1}\times\cdots\times C_{n_s}$ 且 $n_1\mid\cdots\mid n_s$．所以，对于 $G$ 中的所有元素 $x$，都有 $x^{n_s}=1$．也就是说，群 $G$ 中的元素都是域 $F$ 上多项式 $x^{n_s}-1$ 的根．但是，多项式 $x^{n_s}-1$ 至多有 $n_s$ 个相异的根，即 $n\le n_s$．但是，$n_s\le n$，所以其实有 $n_s=n$．这说明 $G\cong C_{n_s}$，即群 $G$ 是循环群．
+???+ note "Định lý"
+    Mọi nhóm con hữu hạn của nhóm nhân của một trường đều là nhóm cyclic.
 
-???+ note "推论"
-    有限域 $\mathbf F_q$ 的乘法群 $\mathbf F_q^\times\cong C_{q-1}$．
+??? note "Chứng minh"
+    Giả sử $G$ là nhóm con của nhóm nhân của trường $F$ và $|G|=n$. Khi đó $G$ là nhóm Abel hữu hạn. Theo định lý cơ bản về nhóm Abel hữu hạn, nhóm $G$ có phân tích theo nhân tử bất biến $C_{n_1}\times\cdots\times C_{n_s}$ với $n_1\mid\cdots\mid n_s$. Vì vậy, với mọi phần tử $x$ trong $G$ đều có $x^{n_s}=1$. Nói cách khác, các phần tử của nhóm $G$ đều là nghiệm của đa thức $x^{n_s}-1$ trên trường $F$. Nhưng đa thức $x^{n_s}-1$ có nhiều nhất $n_s$ nghiệm phân biệt, tức $n\le n_s$. Mặt khác $n_s\le n$, nên thực ra $n_s=n$. Điều này cho thấy $G\cong C_{n_s}$, tức $G$ là nhóm cyclic.
 
-循环群 $\mathbf F_q^\times$ 中有 $\varphi(q-1)$ 个生成元，它们称为有限域的本原元；其中，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)．
+???+ note "Hệ quả"
+    Nhóm nhân của trường hữu hạn $\mathbf F_q$ thỏa mãn $\mathbf F_q^\times\cong C_{q-1}$.
 
-???+ abstract "本原元"
-    有限域 $\mathbf F_q$ 的乘法群的生成元，称为 $\mathbf F_q$ 的 **本原元**（primitive element）．
+Trong nhóm cyclic $\mathbf F_q^\times$ có $\varphi(q-1)$ phần tử sinh, chúng được gọi là phần tử nguyên thủy của trường hữu hạn; trong đó $\varphi(n)$ là [hàm Euler](../number-theory/euler-totient.md).
 
-??? warning "单扩张中的本原元和有限域中的本原元并不相同"
-    尽管单扩张中的本原元和有限域中的本原元的名称一致，两者并不相同．单扩张中的本原元是相应的单扩张的生成元，而有限域中的本原元是相应的乘法群（作为循环群）的生成元．有限域作为它的素子域的单扩张的本原元，未必是有限域本身的本原元．例如，$\mathbf F_{25}\cong\mathbf F_5[x]/(x^2+x+1)$ 中，$\overline x$ 是域扩张的本原元，但是并不是域 $\mathbf F_{25}$ 的本原元，因为它的阶数是 $3$．
+???+ abstract "Phần tử nguyên thủy"
+    Phần tử sinh của nhóm nhân của trường hữu hạn $\mathbf F_q$ được gọi là **phần tử nguyên thủy** (primitive element) của $\mathbf F_q$.
 
-??? warning "$\mathbf F_{q}$ 中的本原元和模 $q$ 的原根也不相同"
-    对于奇数特征的有限域 $\mathbf F_{q}$，总是存在模 $q$ 的 [原根](./ring-theory.md#应用整数同余类的乘法群)（primitive root）．但是，不应将它与有限域 $\mathbf F_{q}$ 中的本原元（primitive element）混淆．虽然它们都是相应的乘法结构作为循环群时的生成元，但是 $(\mathbf Z/q\mathbf Z)^\times$ 和 $\mathbf F_q$ 在 $q$ 本身不是素数的情况下并不相同．比如，前者的阶是 $\varphi(q)$ 而后者的阶是 $q-1$，两个乘法群的大小就不相同．
+??? warning "Phần tử nguyên thủy trong mở rộng đơn và trong trường hữu hạn không giống nhau"
+    Dù phần tử nguyên thủy trong mở rộng đơn và phần tử nguyên thủy trong trường hữu hạn có cùng tên, chúng không giống nhau. Phần tử nguyên thủy trong mở rộng đơn là phần tử sinh của mở rộng đơn tương ứng, còn phần tử nguyên thủy trong trường hữu hạn là phần tử sinh của nhóm nhân tương ứng (với tư cách nhóm cyclic). Phần tử nguyên thủy của trường hữu hạn khi xem nó là mở rộng đơn của trường con nguyên tố chưa chắc là phần tử nguyên thủy của chính trường hữu hạn đó. Chẳng hạn trong $\mathbf F_{25}\cong\mathbf F_5[x]/(x^2+x+1)$, $\overline x$ là phần tử nguyên thủy của mở rộng trường, nhưng không phải phần tử nguyên thủy của trường $\mathbf F_{25}$, vì bậc của nó là $3$.
 
-设 $\alpha$ 是有限域 $\mathbf F_q$ 的一个本原元．那么，对于所有 $x\in\mathbf F_q$ 都存在唯一的自然数 $k<q-1$ 使得 $x=\alpha^k$；这个 $k$ 就称为 $\mathbf F_q$ 上元素 $x$ 关于基 $\alpha$ 的 **离散对数**（discrete logarithm）．和 $\mathbf F_p$ 上的情形一致，[离散对数的算法](../number-theory/discrete-logarithm.md) 的复杂度都比较高．
+??? warning "Phần tử nguyên thủy trong $\mathbf F_{q}$ và căn nguyên thủy modulo $q$ cũng không giống nhau"
+    Với trường hữu hạn $\mathbf F_{q}$ có đặc trưng lẻ, luôn tồn tại [căn nguyên thủy](./ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4) modulo $q$ (primitive root). Tuy nhiên, không nên nhầm nó với phần tử nguyên thủy (primitive element) trong trường hữu hạn $\mathbf F_{q}$. Tuy cả hai đều là phần tử sinh của cấu trúc nhân tương ứng khi cấu trúc đó là nhóm cyclic, $(\mathbf Z/q\mathbf Z)^\times$ và $\mathbf F_q$ không giống nhau khi $q$ không phải số nguyên tố. Chẳng hạn, bậc của nhóm trước là $\varphi(q)$ còn bậc của nhóm sau là $q-1$, nên kích thước của hai nhóm nhân đã khác nhau.
 
-通过乘法运算，本原元已经可以生成域的全体非零元素．这说明，有限域作为它的子域的扩张，一定是单扩张．
+Giả sử $\alpha$ là phần tử nguyên thủy của trường hữu hạn $\mathbf F_q$. Khi đó, với mọi $x\in\mathbf F_q^\times$ đều tồn tại duy nhất số tự nhiên $k<q-1$ sao cho $x=\alpha^k$; số $k$ này được gọi là **logarit rời rạc** (discrete logarithm) của phần tử $x$ theo cơ số $\alpha$ trên $\mathbf F_q$. Tương tự trường hợp trên $\mathbf F_p$, [thuật toán logarit rời rạc](../number-theory/discrete-logarithm.md) thường có độ phức tạp khá cao.
 
-???+ note "定理"
-    对于有限域 $\mathbf F_q$，设 $F$ 为 $\mathbf F_q$ 的子域，则 $\mathbf F_q$ 是 $F$ 上的单代数扩张；又设 $\alpha$ 为 $\mathbf F_q$ 的本原元，则 $\mathbf F_q=F(\alpha)$．
+Thông qua phép nhân, phần tử nguyên thủy đã có thể sinh toàn bộ phần tử khác không của trường. Điều này cho thấy trường hữu hạn, khi được xem là mở rộng của một trường con, nhất định là mở rộng đơn.
 
-本原元的极小多项式是有限域的子域上的不可约多项式．
+???+ note "Định lý"
+    Với trường hữu hạn $\mathbf F_q$, giả sử $F$ là trường con của $\mathbf F_q$, thì $\mathbf F_q$ là mở rộng đơn đại số trên $F$; nếu $\alpha$ là phần tử nguyên thủy của $\mathbf F_q$, thì $\mathbf F_q=F(\alpha)$.
 
-### 包含关系
+Đa thức tối tiểu của phần tử nguyên thủy là đa thức bất khả quy trên trường con của trường hữu hạn.
 
-有限域的子域也是有限域．有限域之间的包含关系，也完全由它们的阶决定．
+<span id="&#x5305;&#x542B;&#x5173;&#x7CFB;"></span>
 
-???+ note "定理"
-    设 $\mathbf F_q$ 和 $\mathbf F_r$ 是有限域，则 $\mathbf F_r$ 是 $\mathbf F_q$ 的子域，当且仅当存在 $k$ 使得 $q=r^k$．换句话说，$\mathbf F_{p^d}$ 是 $\mathbf F_{p^n}$ 的子域，当且仅当 $d\mid n$．
+### Quan hệ bao hàm
 
-??? note "证明"
-    如果 $\mathbf F_r$ 是 $\mathbf F_q$ 的子域，那么两者必然有相同的特征 $p$．域扩张 $\mathbf F_q/\mathbf F_r$、$\mathbf F_r/\mathbf F_p$ 和 $\mathbf F_q/\mathbf F_p$ 都是单代数扩张，分别记它们的扩张次数为 $k,d,n$，则扩张次数必然满足 $n=kd$．而且，$r=p^d$ 和 $q=p^n$，并成立 $q=p^n=p^{kd}=(p^d)^k=r^k$．
+Trường con của trường hữu hạn cũng là trường hữu hạn. Quan hệ bao hàm giữa các trường hữu hạn cũng hoàn toàn được xác định bởi kích thước của chúng.
+
+???+ note "Định lý"
+    Giả sử $\mathbf F_q$ và $\mathbf F_r$ là các trường hữu hạn. Khi đó $\mathbf F_r$ là trường con của $\mathbf F_q$ khi và chỉ khi tồn tại $k$ sao cho $q=r^k$. Nói cách khác, $\mathbf F_{p^d}$ là trường con của $\mathbf F_{p^n}$ khi và chỉ khi $d\mid n$.
+
+??? note "Chứng minh"
+    Nếu $\mathbf F_r$ là trường con của $\mathbf F_q$, hai trường nhất định có cùng đặc trưng $p$. Các mở rộng trường $\mathbf F_q/\mathbf F_r$, $\mathbf F_r/\mathbf F_p$ và $\mathbf F_q/\mathbf F_p$ đều là mở rộng đơn đại số; lần lượt gọi bậc mở rộng là $k,d,n$, khi đó bậc mở rộng nhất định thỏa mãn $n=kd$. Hơn nữa $r=p^d$ và $q=p^n$, nên $q=p^n=p^{kd}=(p^d)^k=r^k$.
     
-    反过来，要证明对于所有 $d\mid n$，$\mathbf F_{p^d}$ 都是 $\mathbf F_{p^n}$ 的子域．记 $r=p^d$ 且 $q=p^n$．设 $F$ 为有限域 $\mathbf F_q$ 中方程 $x^r-x=0$ 的全体根的集合．通过 Frobenius 自同态可以证明，集合 $F$ 必然构成域；关键是要证明，这样的根恰好有 $r$ 个，所以才有 $F\cong\mathbf F_r$．因为 $d\mid n$，所以 $(p^d-1)\mid(p^n-1)$，所以 $(x^{p^d-1}-1)\mid(x^{p^n-1}-1)$，也就是 $(x^r-x)\mid (x^q-x)$．所以，$x^r-x$ 在 $\mathbf F_q$ 上分裂，故而在 $\mathbf F_q$ 内有 $r$ 个不同的根．这就说明 $F\cong\mathbf F_r$ 是 $\mathbf F_q$ 的子域．
+    Ngược lại, cần chứng minh với mọi $d\mid n$, $\mathbf F_{p^d}$ đều là trường con của $\mathbf F_{p^n}$. Đặt $r=p^d$ và $q=p^n$. Gọi $F$ là tập toàn bộ nghiệm của phương trình $x^r-x=0$ trong trường hữu hạn $\mathbf F_q$. Dùng tự đồng cấu Frobenius có thể chứng minh tập $F$ nhất định tạo thành trường; điểm then chốt là chứng minh các nghiệm như vậy có đúng $r$ phần tử, khi đó mới có $F\cong\mathbf F_r$. Vì $d\mid n$, nên $(p^d-1)\mid(p^n-1)$, do đó $(x^{p^d-1}-1)\mid(x^{p^n-1}-1)$, tức $(x^r-x)\mid (x^q-x)$. Vì vậy $x^r-x$ phân rã trên $\mathbf F_q$, nên có $r$ nghiệm khác nhau trong $\mathbf F_q$. Điều này chứng tỏ $F\cong\mathbf F_r$ là trường con của $\mathbf F_q$.
 
-这一定理说明，有限域 $\mathbf F_{p^n}$ 的包含关系，对应着域的阶 $p^n$ 中的指数 $n$ 之间的整除关系．所有特征为 $p$ 的有限域 $\mathbf F_{p^n}$ 之间形成的格，也就同构于整数 $n$ 在整除关系下形成的格．当然，为了让有限域 $\mathbf F_{p^n}$ 之间的交集等运算有意义，需要将所有特征为 $p$ 的域都嵌入到 $\mathbf F_p$ 的代数闭包中．
+Định lý này cho thấy quan hệ bao hàm của trường hữu hạn $\mathbf F_{p^n}$ tương ứng với quan hệ chia hết giữa các số mũ $n$ trong kích thước trường $p^n$. Dàn tạo bởi tất cả các trường hữu hạn đặc trưng $p$, $\mathbf F_{p^n}$, cũng đẳng cấu với dàn các số nguyên $n$ dưới quan hệ chia hết. Dĩ nhiên, để các phép toán như giao của các trường hữu hạn $\mathbf F_{p^n}$ có ý nghĩa, cần nhúng mọi trường đặc trưng $p$ vào bao đóng đại số của $\mathbf F_p$.
 
-???+ note "定理"
-    设 $F$ 为 $\mathbf F_p$ 的代数闭包，则域 $F$ 中多项式 $x^{p^n}-x$ 的根的集合构成有限域 $\mathbf F_{p^n}$．那么，有：
+???+ note "Định lý"
+    Giả sử $F$ là bao đóng đại số của $\mathbf F_p$, và tập nghiệm trong $F$ của đa thức $x^{p^n}-x$ tạo thành trường hữu hạn $\mathbf F_{p^n}$. Khi đó:
     
-    1.  $F=\bigcup_{n=1}^\infty\mathbf F_{p^n}$，即 $\mathbf F_p$ 的代数闭包就是所有特征为 $p$ 的有限域的并集；
-    2.  全体特征为 $p$ 的有限域 $\mathbf F_{p^n}$ 在包含关系下形成的格，同构于整数 $n$ 在整除关系下形成的格．特别地，$\mathbf F_{p^n}$ 和 $\mathbf F_{p^m}$ 的交集 $\mathbf F_{p^n}\cap\mathbf F_{p^m}=\mathbf F_{p^{\gcd(n,m)}}$，而同时包含 $\mathbf F_{p^n}$ 和 $\mathbf F_{p^m}$ 的最小的域 $\mathbf F_{p^n}\mathbf F_{p^m}=\mathbf F_{p^{\operatorname{lcm}(n,m)}}$．
+    1.  $F=\bigcup_{n=1}^\infty\mathbf F_{p^n}$, tức bao đóng đại số của $\mathbf F_p$ chính là hợp của mọi trường hữu hạn đặc trưng $p$.
+    2.  Dàn của tất cả các trường hữu hạn đặc trưng $p$, $\mathbf F_{p^n}$, dưới quan hệ bao hàm đẳng cấu với dàn các số nguyên $n$ dưới quan hệ chia hết. Đặc biệt, giao của $\mathbf F_{p^n}$ và $\mathbf F_{p^m}$ là $\mathbf F_{p^n}\cap\mathbf F_{p^m}=\mathbf F_{p^{\gcd(n,m)}}$, còn trường nhỏ nhất đồng thời chứa $\mathbf F_{p^n}$ và $\mathbf F_{p^m}$ là $\mathbf F_{p^n}\mathbf F_{p^m}=\mathbf F_{p^{\operatorname{lcm}(n,m)}}$.
 
-??? note "证明"
-    关键在于证明第一部分，即 $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $F_p$ 的代数闭包．第二部分是前面关于有限域的子域的定理的简单推论．
+??? note "Chứng minh"
+    Điểm then chốt là chứng minh phần thứ nhất, tức $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ là bao đóng đại số của $\mathbf F_p$. Phần thứ hai là hệ quả đơn giản của định lý về trường con của trường hữu hạn ở trên.
     
-    注意到，任取 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$，必然存在 $n\in\mathbf N_+$ 使得 $\alpha\in\mathbf F_{p^n}$ 成立，故而 $\alpha$ 是 $\mathbf F_p$ 上的代数元；因而，$\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $\mathbf F_p$ 的代数扩张．对于任何 $\mathbf F_p$ 上的 $m$ 次多项式 $f(x)$，它在代数闭包 $F$ 中有至多 $m$ 个不同的根 $\{\alpha_i\}_{i=1}^m$．设根 $\alpha_i$ 的极小多项式次数为 $n_i$，则 $\alpha_i$ 必然包含在域 $\mathbf F_{p^{n_i}}$ 内；故而，$f(x)$ 的所有根都在 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 中，亦即 $f(x)$ 在 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 上分裂．根据代数闭包的定义，$\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 就是 $\mathbf F_p$ 的代数闭包．
+    Chú ý rằng với bất kỳ $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$, nhất định tồn tại $n\in\mathbf N_+$ sao cho $\alpha\in\mathbf F_{p^n}$, nên $\alpha$ là phần tử đại số trên $\mathbf F_p$. Vì vậy $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ là mở rộng đại số của $\mathbf F_p$. Với mọi đa thức bậc $m$ trên $\mathbf F_p$, $f(x)$, nó có nhiều nhất $m$ nghiệm khác nhau $\{\alpha_i\}_{i=1}^m$ trong bao đóng đại số $F$. Gọi $n_i$ là bậc đa thức tối tiểu của nghiệm $\alpha_i$, khi đó $\alpha_i$ nhất định nằm trong trường $\mathbf F_{p^{n_i}}$. Do đó mọi nghiệm của $f(x)$ đều nằm trong $\bigcup_{n=1}^\infty\mathbf F_{p^n}$, tức $f(x)$ phân rã trên $\bigcup_{n=1}^\infty\mathbf F_{p^n}$. Theo định nghĩa bao đóng đại số, $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ chính là bao đóng đại số của $\mathbf F_p$.
 
-### 自同构群
+<span id="&#x81EA;&#x540C;&#x6784;&#x7FA4;"></span>
 
-有限域 $\mathbf F_q$ 上的子域都是形如 $x^r-x$ 的多项式的根的集合．换言之，它们都是某个映射 $x\mapsto x^r$ 的不动点集合．这其实揭示了有限域的子域和自同构群的子群之间的深刻对应关系．
+### Nhóm tự đẳng cấu
 
-特征为 $p$ 的域上都有 Frobenius 自同态 $\sigma_p:x\mapsto x^p$．对于有限域 $\mathbf F_q$ 的情形，这也是自同构；这说明有限域 $\mathbf F_q$ 都是完美域．域 $\mathbf F_q$ 的自同构群就是 $n$ 阶循环群 $\langle \sigma_p\rangle$，它的一个生成元就是 Frobenius 自同态 $\sigma_p$．
+Các trường con của trường hữu hạn $\mathbf F_q$ đều là tập nghiệm của một đa thức dạng $x^r-x$. Nói cách khác, chúng đều là tập điểm bất động của một ánh xạ nào đó $x\mapsto x^r$. Điều này hé lộ một tương ứng sâu sắc giữa trường con của trường hữu hạn và nhóm con của nhóm tự đẳng cấu.
 
-???+ note "定理"
-    有限域 $\mathbf F_q$ 的自同构群 $\operatorname{Aut}(\mathbf F_q)=\langle\sigma_p\rangle$ 是 $n$ 阶循环群，且生成元 $\sigma_p$ 是 Frobenius 自同态 $x\mapsto x^p$．
+Trên trường có đặc trưng $p$ luôn có tự đồng cấu Frobenius $\sigma_p:x\mapsto x^p$. Với trường hữu hạn $\mathbf F_q$, đây cũng là tự đẳng cấu; điều này cho thấy mọi trường hữu hạn $\mathbf F_q$ đều là trường hoàn hảo. Nhóm tự đẳng cấu của trường $\mathbf F_q$ là nhóm cyclic bậc $n$, $\langle \sigma_p\rangle$, trong đó một phần tử sinh là tự đồng cấu Frobenius $\sigma_p$.
 
-??? note "证明"
-    首先，Frobenius 自同态 $\sigma_p$ 在有限域 $\mathbf F_q$ 上是自同构，因为有限集合上的单射必然也是满射．因此，$\sigma_p\in\operatorname{Aut}(\mathbf F_q)$．
+???+ note "Định lý"
+    Nhóm tự đẳng cấu của trường hữu hạn $\mathbf F_q$, $\operatorname{Aut}(\mathbf F_q)=\langle\sigma_p\rangle$, là nhóm cyclic bậc $n$, và phần tử sinh $\sigma_p$ là tự đồng cấu Frobenius $x\mapsto x^p$.
+
+??? note "Chứng minh"
+    Trước hết, tự đồng cấu Frobenius $\sigma_p$ trên trường hữu hạn $\mathbf F_q$ là tự đẳng cấu, vì đơn ánh trên tập hữu hạn nhất định cũng toàn ánh. Do đó $\sigma_p\in\operatorname{Aut}(\mathbf F_q)$.
     
-    然后，$\sigma_p$ 的阶是 $n$．这是因为对于所有 $x\in\mathbf F_q$ 都有 $\sigma_p^n(x)=x^{p^n}=x$，故而 $x^{p^n}$ 是恒等映射；而且对于任何 $k<n$ 都有 $\sigma_p^k$ 不是恒等映射，否则 $\mathbf F_q$ 的元素都得是 $x^{p^k}-x$ 的根，这不可能．
+    Tiếp theo, bậc của $\sigma_p$ là $n$. Lý do là với mọi $x\in\mathbf F_q$ đều có $\sigma_p^n(x)=x^{p^n}=x$, nên $\sigma_p^n$ là ánh xạ đồng nhất. Hơn nữa, với mọi $k<n$, $\sigma_p^k$ không phải ánh xạ đồng nhất; nếu không, mọi phần tử của $\mathbf F_q$ đều là nghiệm của $x^{p^k}-x$, điều này không thể xảy ra.
     
-    最后，$\operatorname{Aut}(\mathbf F_q)$ 至多有 $n$ 个元素．设 $\alpha$ 为 $\mathbf F_q$ 的一个本原元，则自同构 $\sigma\in \operatorname{Aut}(\mathbf F_q)$ 由它在 $\alpha$ 处的取值 $\sigma(\alpha)$ 唯一确定．但是，$\sigma$ 必须将 $\alpha$ 映射到它的共轭元；否则，$\alpha$ 和 $\sigma(\alpha)$ 不再是同一个极小多项式的根．这样的共轭元只有 $n$ 个，这就说明 $\operatorname{Aut}(\mathbf F_q)$ 也至多有 $n$ 个元素．
+    Cuối cùng, $\operatorname{Aut}(\mathbf F_q)$ có nhiều nhất $n$ phần tử. Gọi $\alpha$ là một phần tử nguyên thủy của $\mathbf F_q$, khi đó tự đẳng cấu $\sigma\in \operatorname{Aut}(\mathbf F_q)$ được xác định duy nhất bởi giá trị của nó tại $\alpha$, tức $\sigma(\alpha)$. Nhưng $\sigma$ phải ánh xạ $\alpha$ đến một phần tử liên hợp của nó; nếu không, $\alpha$ và $\sigma(\alpha)$ sẽ không còn là nghiệm của cùng một đa thức tối tiểu. Các phần tử liên hợp như vậy chỉ có $n$ phần tử, nên $\operatorname{Aut}(\mathbf F_q)$ cũng có nhiều nhất $n$ phần tử.
     
-    因此，$\operatorname{Aut}(\mathbf F_q)$ 中的 $n$ 个元素正是 $\langle\sigma_p\rangle$．定理得证．
+    Vì vậy $n$ phần tử trong $\operatorname{Aut}(\mathbf F_q)$ chính là $\langle\sigma_p\rangle$. Định lý được chứng minh.
 
-自同构群 $\operatorname{Aut}(\mathbf F_q)$ 的子群和有限域 $\mathbf F_q$ 上的子域一一对应．
+Các nhóm con của nhóm tự đẳng cấu $\operatorname{Aut}(\mathbf F_q)$ tương ứng một-một với các trường con của trường hữu hạn $\mathbf F_q$.
 
-???+ note "定理"
-    设 $\mathbf F_q$ 为有限域，$\mathcal F$ 为它的全体子域，$\mathcal G$ 为它的自同构群 $\operatorname{Aut}(\mathbf F_q)$ 的全体子群．对此，有：
+???+ note "Định lý"
+    Giả sử $\mathbf F_q$ là trường hữu hạn, $\mathcal F$ là tập mọi trường con của nó, và $\mathcal G$ là tập mọi nhóm con của nhóm tự đẳng cấu $\operatorname{Aut}(\mathbf F_q)$. Khi đó:
     
-    1.  对于 $F\in\mathcal F$，设 $\operatorname{Aut}(\mathbf F_q/F)$ 为 $\operatorname{Aut}(\mathbf F_q)$ 中保持 $F$ 不变的自同构的集合，即 $\operatorname{Aut}(\mathbf F_q/F)=\{\sigma\in\operatorname{Aut}(\mathbf F_q):\forall x\in F(\sigma(x)=x)\}$，则 $\operatorname{Aut}(\mathbf F_q/F)\le\operatorname{Aut}(\mathbf F_q)$；
-    2.  对于 $G\in\mathcal G$，设 $F^G$ 为 $G$ 中的所有自同构的不动点集合的交集，即 $F^G=\{x\in\mathbf F_q:\forall\sigma\in G(\sigma(x)=x)\}$，则 $F^G$ 为 $\mathbf F_q$ 的子域；
-    3.  映射 $F\rightarrow\operatorname{Aut}(\mathbf F_q/F)$ 和映射 $G\rightarrow F^G$ 互为逆映射，且是 $\mathcal F$ 和 $\mathcal G$ 之间的一一对应；
-    4.  这个一一对应，将子域之间的扩张关系映射为子群之间的包含关系，即对于任何 $F_1\subseteq F_2$，都有 $\operatorname{Aut}(\mathbf F_q/F_2)\le\operatorname{Aut}(\mathbf F_q/F_1)$．
+    1.  Với $F\in\mathcal F$, đặt $\operatorname{Aut}(\mathbf F_q/F)$ là tập các tự đẳng cấu trong $\operatorname{Aut}(\mathbf F_q)$ giữ nguyên $F$, tức $\operatorname{Aut}(\mathbf F_q/F)=\{\sigma\in\operatorname{Aut}(\mathbf F_q):\forall x\in F(\sigma(x)=x)\}$, khi đó $\operatorname{Aut}(\mathbf F_q/F)\le\operatorname{Aut}(\mathbf F_q)$.
+    2.  Với $G\in\mathcal G$, đặt $F^G$ là giao của tập điểm bất động của mọi tự đẳng cấu trong $G$, tức $F^G=\{x\in\mathbf F_q:\forall\sigma\in G(\sigma(x)=x)\}$, khi đó $F^G$ là trường con của $\mathbf F_q$.
+    3.  Ánh xạ $F\rightarrow\operatorname{Aut}(\mathbf F_q/F)$ và ánh xạ $G\rightarrow F^G$ là nghịch đảo của nhau, và tạo thành một tương ứng một-một giữa $\mathcal F$ và $\mathcal G$.
+    4.  Tương ứng một-một này ánh xạ quan hệ mở rộng giữa các trường con thành quan hệ bao hàm giữa các nhóm con: với mọi $F_1\subseteq F_2$, đều có $\operatorname{Aut}(\mathbf F_q/F_2)\le\operatorname{Aut}(\mathbf F_q/F_1)$.
 
-这个结论是一般的 Galois 理论的基本定理的特殊情形，它将域扩张和群论的内容联系起来，从而可以通过群论的方法解决域扩张的问题．
+Kết luận này là một trường hợp đặc biệt của định lý cơ bản trong lý thuyết Galois tổng quát. Nó liên hệ mở rộng trường với lý thuyết nhóm, nhờ đó có thể dùng phương pháp của lý thuyết nhóm để giải quyết vấn đề về mở rộng trường.
 
-### 不可约多项式
+<span id="&#x4E0D;&#x53EF;&#x7EA6;&#x591A;&#x9879;&#x5F0F;"></span>
 
-有限域 $\mathbf F_q$ 上的不可约多项式十分容易确定．因为有限域 $\mathbf F_q$ 上的每个 $n$ 次不可约多项式都对应着 $n$ 次代数扩张，而这样的扩张是唯一的，故而所有 $n$ 次不可约多项式的根都可以在 $\mathbf F_{q^n}$ 中找到．这说明，$\mathbf F_q$ 上的 $n$ 次不可约多项式必然是 $x^{q^n}-x$ 的因子．要确定有限域 $\mathbf F_q$ 上的所有 $n$ 次不可约多项式，需要考察 $x^{q^n}-x$ 在 $\mathbf F_q$ 上的因式分解．这和分圆多项式的情形十分类似．
+### Đa thức bất khả quy
 
-有理数域 $\mathbf F_q$ 上的代数元可以根据其极小多项式的次数分类．设 $P_n$ 是极小多项式次数恰为 $n$ 的代数元集合，则
+Đa thức bất khả quy trên trường hữu hạn $\mathbf F_q$ rất dễ đặc trưng. Vì mỗi đa thức bất khả quy bậc $n$ trên $\mathbf F_q$ tương ứng với mở rộng đại số bậc $n$, mà mở rộng như vậy là duy nhất, nên nghiệm của mọi đa thức bất khả quy bậc $n$ đều có thể tìm thấy trong $\mathbf F_{q^n}$. Điều này cho thấy đa thức bất khả quy bậc $n$ trên $\mathbf F_q$ nhất định là nhân tử của $x^{q^n}-x$. Để xác định toàn bộ đa thức bất khả quy bậc $n$ trên trường hữu hạn $\mathbf F_q$, cần khảo sát phân tích nhân tử của $x^{q^n}-x$ trên $\mathbf F_q$. Điều này rất giống trường hợp đa thức cyclotomic.
+
+Các phần tử đại số trên trường hữu hạn $\mathbf F_q$ có thể được phân loại theo bậc đa thức tối tiểu. Gọi $P_n$ là tập các phần tử có đa thức tối tiểu bậc đúng bằng $n$, khi đó
 
 $$
 \mathbf F_{q^n} = \bigcup_{d\mid n}P_d.
 $$
 
-这对应着因式分解
+Điều này tương ứng với phân tích nhân tử
 
 $$
 x^{q^n}-x = \prod_{d|n}\prod_{\zeta\in P_d}(x-\zeta).
 $$
 
-因为 $n$ 次不可约多项式有 $n$ 个根，而且这些根的极小多项式的次数都是 $n$，所以 $n$ 次不可约多项式必然是多项式
+Vì đa thức bất khả quy bậc $n$ có $n$ nghiệm, và mọi nghiệm này đều có đa thức tối tiểu bậc $n$, nên đa thức bất khả quy bậc $n$ nhất định là nhân tử của đa thức
 
 $$
-\prod_{\zeta\in P_n}(x-\zeta) = \prod_{d\mid n}\left(x^{q^d}-x\right)^{\mu(n/d)}
+\prod_{\zeta\in P_n}(x-\zeta) = \prod_{d\mid n}\left(x^{q^d}-x\right)^{\mu(n/d)}.
 $$
 
-的因子；这个表达式是对前面的因式分解应用 [Möbius 反演](../number-theory/mobius.md) 得到的．因为这个多项式的次数是
+Biểu thức này thu được bằng cách áp dụng [nghịch đảo Möbius](../number-theory/mobius.md) cho phân tích nhân tử ở trên. Vì bậc của đa thức này là
 
 $$
 \sum_{d\mid n}\mu(d)q^{n/d},
 $$
 
-所以，$\mathbf F_q$ 上的 $n$ 次不可约首一多项式共计
+nên số đa thức monic bất khả quy bậc $n$ trên $\mathbf F_q$ là
 
 $$
-\frac1n\sum_{d\mid n}\mu(d)q^{n/d}
+\frac1n\sum_{d\mid n}\mu(d)q^{n/d}.
 $$
 
-个．这恰为不计旋转意义下，$q$ 个颜色的珠子能够串成的长度为 $n$ 的项链的种类个数（[证明](../combinatorics/polya.md#循环群)），所以又称为项链多项式（necklace polynomial）．
+Đây đúng bằng số loại vòng cổ độ dài $n$ dùng $q$ màu, không phân biệt các cấu hình chỉ khác nhau bởi phép quay ([chứng minh](../combinatorics/polya.md#%E5%BE%AA%E7%8E%AF%E7%BE%A4)), nên còn được gọi là đa thức vòng cổ (necklace polynomial).
 
-???+ note "定理"
-    有限域 $\mathbf F_q$ 上存在任意次数的不可约多项式．
+???+ note "Định lý"
+    Trên trường hữu hạn $\mathbf F_q$ tồn tại đa thức bất khả quy với mọi bậc.
 
-因为有限域上的不可约多项式有着简单的结构，这使得有限域上的多项式的因式分解十分容易．比如，要确定给定多项式的全体 $n$ 次不可约因子，只要求解给定多项式与 $x^{q^n}-x$ 的最大公因子即可[^ddf]．类似地，只要 $n$ 次多项式对所有的 $k<n$ 都与多项式 $x^{q^k}-1$ 互素，就可以断定该 $n$ 次多项式在 $\mathbf F_q$ 上不可约．
+Vì đa thức bất khả quy trên trường hữu hạn có cấu trúc đơn giản, việc phân tích nhân tử đa thức trên trường hữu hạn trở nên khá dễ. Chẳng hạn, để xác định toàn bộ nhân tử bất khả quy bậc $n$ của một đa thức cho trước, chỉ cần tính ước chung lớn nhất của đa thức đó với $x^{q^n}-x$[^ddf]. Tương tự, chỉ cần một đa thức bậc $n$ nguyên tố cùng nhau với mọi đa thức $x^{q^k}-1$ với $k<n$, ta có thể kết luận đa thức bậc $n$ đó bất khả quy trên $\mathbf F_q$.
 
-前文已经指出，有限域上的不可约多项式的根未必是相应扩域作为有限域的本原元．有限域 $\mathbf F_q$ 的本原元在它的素子域 $\mathbf F_p$ 上的极小多项式也称为域 $\mathbf F_p$ 上的 **本原多项式**[^prim-poly]（primitive polynomial）．用这样的多项式实现扩域，就可以保证 $\overline x$ 必然是扩域中的本原元．域 $\mathbf F_p$ 上的 $n$ 次本原多项式可以通过在 $\mathbf F_p$ 上对分圆多项式 $\Phi_n(x)$ 进行因式分解得到．
+Phần trước đã chỉ ra rằng nghiệm của đa thức bất khả quy trên trường hữu hạn chưa chắc là phần tử nguyên thủy của trường mở rộng tương ứng với tư cách trường hữu hạn. Đa thức tối tiểu của phần tử nguyên thủy của trường hữu hạn $\mathbf F_q$ trên trường con nguyên tố $\mathbf F_p$ còn được gọi là **đa thức nguyên thủy**[^prim-poly] (primitive polynomial) trên trường $\mathbf F_p$. Dùng đa thức như vậy để cài đặt mở rộng trường có thể đảm bảo $\overline x$ nhất định là phần tử nguyên thủy trong trường mở rộng. Các đa thức nguyên thủy bậc $n$ trên trường $\mathbf F_p$ có thể thu được bằng cách phân tích nhân tử đa thức cyclotomic $\Phi_n(x)$ trên $\mathbf F_p$.
 
-???+ note "定理"
-    设 $p$ 为素数，$n$ 为正整数，且 $p\perp n$．又设 $d$ 是乘法群 $(\mathbf Z/n\mathbf Z)^\times$ 中元素 $p$ 的阶．那么，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 可以分解为 $\dfrac{\varphi(n)}{d}$ 个 $\mathbf F_p$ 上的 $d$ 次本原多项式的乘积．特别地，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 上不可约，当且仅当 $p$ 是模 $n$ 的原根．
+???+ note "Định lý"
+    Giả sử $p$ là số nguyên tố, $n$ là số nguyên dương, và $p\perp n$. Lại giả sử $d$ là bậc của phần tử $p$ trong nhóm nhân $(\mathbf Z/n\mathbf Z)^\times$. Khi đó đa thức cyclotomic $\Phi_n(x)$ phân tích trên trường $\mathbf F_p$ thành tích của $\dfrac{\varphi(n)}{d}$ đa thức nguyên thủy bậc $d$ trên $\mathbf F_p$. Đặc biệt, đa thức cyclotomic $\Phi_n(x)$ bất khả quy trên trường $\mathbf F_p$ khi và chỉ khi $p$ là căn nguyên thủy modulo $n$.
 
-??? note "证明"
-    如果注意到，$n$ 次分圆多项式的根是所有 $\mathbf F_p$ 的 $n$ 次本原单位根，而 $n$ 次本原单位根的极小多项式的次数 $d$ 就是它的共轭（包括自身）的数量，也就等于它在自同构群 $\langle\sigma_p\rangle$ 下的轨道长度，那么就可以知道 $d$ 是 $\{\zeta^i:i\perp n\}$ 中映射 $\zeta^i\mapsto\zeta^{ip}$ 的循环子群的轨道长度，亦即乘法群 $(\mathbf Z/n\mathbf Z)^\times$ 中元素 $p$ 的阶．如果不想依赖于 Galois 理论，也可以通过说明 $d$ 是最小的正整数使得 $(x^n-1)\mid(x^{p^d-1}-1)$ 成立来证明此事．其余结论显然．
+??? note "Chứng minh"
+    Nếu chú ý rằng nghiệm của đa thức cyclotomic bậc $n$ là mọi căn đơn vị nguyên thủy bậc $n$ của $\mathbf F_p$, và bậc đa thức tối tiểu của một căn đơn vị nguyên thủy bậc $n$ chính là số lượng phần tử liên hợp của nó (bao gồm chính nó), cũng bằng độ dài quỹ đạo của nó dưới nhóm tự đẳng cấu $\langle\sigma_p\rangle$, thì ta biết $d$ là độ dài quỹ đạo của nhóm cyclic sinh bởi ánh xạ $\zeta^i\mapsto\zeta^{ip}$ trên $\{\zeta^i:i\perp n\}$, tức là bậc của phần tử $p$ trong nhóm nhân $(\mathbf Z/n\mathbf Z)^\times$. Nếu không muốn dựa vào lý thuyết Galois, cũng có thể chứng minh điều này bằng cách chỉ ra $d$ là số nguyên dương nhỏ nhất sao cho $(x^n-1)\mid(x^{p^d-1}-1)$. Các kết luận còn lại là hiển nhiên.
 
-虽然不可约多项式对于有限域的实现很重要，但是要找到有限域 $\mathbf F_q$ 上的一个 $n$ 次不可约多项式却并没有较好的确定性的方法．在一般的情况下，可以使用随机方法生成这样的不可约多项式．因为所有 $n$ 次首一多项式中，不可约多项式占的比例是 $\Theta(1/n)$ 的，所以可以先随机生成一个 $n$ 次首一多项式再判断它是否可约．这样做可以在生成期望 $\Theta(n)$ 个首一多项式后找到一个不可约多项式．当然，这样生成的不可约多项式未必是本原多项式，系数也未必是简单的．在实际操作中，如果有限域的大小提前给定，往往可以通过查表[^list-prim-poly]的方式找到系数简单的本原多项式，方便后续的计算．
+Dù đa thức bất khả quy rất quan trọng đối với việc cài đặt trường hữu hạn, không có phương pháp tất định tốt để tìm một đa thức bất khả quy bậc $n$ trên trường hữu hạn $\mathbf F_q$. Trong trường hợp tổng quát, có thể dùng phương pháp ngẫu nhiên để sinh đa thức bất khả quy như vậy. Vì trong tất cả các đa thức monic bậc $n$, tỉ lệ đa thức bất khả quy là $\Theta(1/n)$, có thể sinh ngẫu nhiên một đa thức monic bậc $n$ rồi kiểm tra nó có khả quy hay không. Làm như vậy kỳ vọng tìm được một đa thức bất khả quy sau khi sinh $\Theta(n)$ đa thức monic. Dĩ nhiên, đa thức bất khả quy sinh theo cách này chưa chắc là đa thức nguyên thủy, hệ số cũng chưa chắc đơn giản. Trong thực tế, nếu kích thước trường hữu hạn được cho trước, thường có thể tra bảng[^list-prim-poly] để tìm đa thức nguyên thủy có hệ số đơn giản, thuận tiện cho tính toán về sau.
 
-### 参考实现
+<span id="&#x53C2;&#x8003;&#x5B9E;&#x73B0;"></span>
 
-本节提供一个朴素的有限域的实现，仅供参考．代码中实现了随机生成不可约多项式的方法．
+### Triển khai tham khảo
 
-??? example "参考实现"
+Mục này cung cấp một cài đặt trường hữu hạn đơn giản, chỉ để tham khảo. Mã có cài đặt phương pháp sinh ngẫu nhiên đa thức bất khả quy.
+
+??? example "Triển khai tham khảo"
     ```cpp
     --8<-- "docs/math/code/finite-field/finite-field_1.cpp"
     ```
 
-密码学上用的最多的是特征为 $2$ 的有限域．对于这类有限域，可以将域中的元素存储为 01 串，用位运算的方式实现域中的操作．
+Trường hữu hạn được dùng nhiều nhất trong mật mã học là trường có đặc trưng $2$. Với loại trường hữu hạn này, có thể lưu các phần tử trong trường dưới dạng chuỗi 01 và dùng phép toán bit để cài đặt các phép toán của trường.
 
-## 应用
+<span id="&#x5E94;&#x7528;"></span>
 
-本节列举一些域扩张在算法竞赛中的应用．最主要的情形，就是在对域上的算术表达式进行计算时，需要在中间过程引入一些原本的域中并不存在的元素，从而使得直接的计算成为可能．读者应当熟悉利用复数解决实数问题的情形，这就是实数域上的扩张的例子；读者相对陌生的，可能是有限域上的扩张．所以，这里主要讨论有限域上的扩张，尤其是素域 $\mathbf F_p$ 上的扩张．
+## Ứng dụng
 
-有些情形下，域扩张可以降低计算的复杂度，故而是必要的，例如实数域上的 [快速傅里叶变换](../poly/fft.md)；有些情形下，域扩张只是众多解决问题方法中的一种，且通常有类似复杂度的方法可以避免使用域扩张，例如马上要提到的对斐波那契数列的计算．读者在理解这些应用的同时，应当比较不同方法的优劣，从而能够在解决问题时选择合适的方法．
+Mục này liệt kê một số ứng dụng của mở rộng trường trong lập trình thi đấu. Tình huống quan trọng nhất là khi tính một biểu thức số học trên trường, quá trình trung gian cần đưa vào một số phần tử không tồn tại trong trường ban đầu để phép tính trực tiếp trở nên khả thi. Độc giả hẳn đã quen với việc dùng số phức để giải bài toán số thực; đó là một ví dụ về mở rộng trên trường số thực. Điều độc giả có thể ít quen hơn là mở rộng trên trường hữu hạn. Vì vậy, ở đây chủ yếu thảo luận mở rộng trên trường hữu hạn, đặc biệt là mở rộng trên trường nguyên tố $\mathbf F_p$.
 
-### 斐波那契数列
+Trong một số trường hợp, mở rộng trường có thể giảm độ phức tạp tính toán nên là cần thiết, ví dụ [biến đổi Fourier nhanh](../poly/fft.md) trên trường số thực. Trong một số trường hợp khác, mở rộng trường chỉ là một trong nhiều cách giải, và thường có phương pháp có độ phức tạp tương tự nhưng tránh dùng mở rộng trường, ví dụ phép tính dãy Fibonacci sẽ nói ngay sau đây. Khi tìm hiểu các ứng dụng này, độc giả nên so sánh ưu nhược điểm của các phương pháp khác nhau để chọn phương pháp phù hợp khi giải bài.
 
-对于 [斐波那契数列](../combinatorics/fibonacci.md) 的计算，常见方法有 $O(n)$ 的线性递推和 $O(\log n)$ 的矩阵快速幂．实际上，它还可以通过域扩张的方法加以解决，时间复杂度同样是 $O(\log n)$．斐波那契数列有通项公式：
+<span id="&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;"></span>
+
+### Dãy Fibonacci
+
+Để tính [dãy Fibonacci](../combinatorics/fibonacci.md), các phương pháp thường gặp là truy hồi tuyến tính $O(n)$ và lũy thừa ma trận nhanh $O(\log n)$. Thực ra cũng có thể giải bằng phương pháp mở rộng trường, với độ phức tạp thời gian cũng là $O(\log n)$. Dãy Fibonacci có công thức tổng quát:
 
 $$
 f(n) = \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^n\right).
 $$
 
-现在要计算 $f(n)$ 在素数模 $p\neq 5$ 下的值[^fib-p5]．将这个问题转化为有限域 $\mathbf F_p$ 上的计算，首先要解决的就是 $\sqrt 5$ 在 $\mathbf F_p$ 中的意义．从代数角度看，它就是元素 $5$ 的平方根．因而，如果 $\mathbf F_p$ 中存在 $5$ 的平方根，即 $5$ 是模 $p$ 的二次剩余的时候，可以直接计算其二次剩余并带入计算；否则，就需要在扩域 $\mathbf F_p(\sqrt 5)\cong\mathbf F_p[x]/(x^2-5)$ 下进行计算．
+Bây giờ cần tính giá trị của $f(n)$ modulo số nguyên tố $p\neq 5$[^fib-p5]. Chuyển bài toán này thành phép tính trên trường hữu hạn $\mathbf F_p$, vấn đề đầu tiên cần giải quyết là ý nghĩa của $\sqrt 5$ trong $\mathbf F_p$. Từ góc nhìn đại số, nó chính là căn bậc hai của phần tử $5$. Vì vậy, nếu trong $\mathbf F_p$ tồn tại căn bậc hai của $5$, tức $5$ là thặng dư bậc hai modulo $p$, ta có thể trực tiếp tính thặng dư bậc hai đó rồi thay vào công thức; ngược lại, cần tính trong trường mở rộng $\mathbf F_p(\sqrt 5)\cong\mathbf F_p[x]/(x^2-5)$.
 
-当然，在扩域中进行计算的时候，没有必要一定加入 $\sqrt 5$．比如说，对于斐波那契数列，也可以设 $\phi$ 是多项式 $x^2-x-1$ 的根，从而 $f(n)$ 可以写作
+Dĩ nhiên, khi tính trong trường mở rộng, không nhất thiết phải thêm $\sqrt 5$. Chẳng hạn với dãy Fibonacci, cũng có thể đặt $\phi$ là nghiệm của đa thức $x^2-x-1$, khi đó $f(n)$ có thể viết thành
 
 $$
 f(n)=\frac{\phi^n-(-\phi)^{-n}}{2\phi-1}=\frac{\phi^n-(1-\phi)^n}{2\phi-1}.
 $$
 
-如果 $5$ 并非模 $p$ 下的二次剩余，多项式 $x^2-x-1$ 就是不可约的．此时，可以在扩域 $\mathbf F_p(\theta)\cong\mathbf F_p[x]/(x^2-x-1)$ 上进行计算，能够得到和前文一致的结果．
+Nếu $5$ không phải thặng dư bậc hai modulo $p$, đa thức $x^2-x-1$ là bất khả quy. Khi đó có thể tính trên trường mở rộng $\mathbf F_p(\theta)\cong\mathbf F_p[x]/(x^2-x-1)$, và thu được kết quả nhất quán với cách trên.
 
-计算斐波那契数列的方法当然可以推广到别的情形．但是，有一点应当注意：有限域上多项式的不可约性和有理数域并不一致．譬如 $x^4-10x^2+1$，它在 $\mathbf Q$ 上是不可约的，相应的分裂域是 $\mathbf Q(\sqrt 2+\sqrt 3)=\mathbf Q(\sqrt 2,\sqrt 3)$；但是在 $\mathbf F_p$ 中，如果 $2$ 和 $3$ 都不是模 $p$ 的二次剩余，那么它是两个不可约多项式的乘积，亦即在扩域 $\mathbf F_p(\sqrt 2)$ 中就已经存在平方根 $\sqrt{3}$ 而不需要进一步扩张．
+Phương pháp tính dãy Fibonacci tất nhiên có thể mở rộng sang các tình huống khác. Nhưng cần chú ý một điểm: tính bất khả quy của đa thức trên trường hữu hạn không giống trên trường số hữu tỉ. Chẳng hạn $x^4-10x^2+1$ bất khả quy trên $\mathbf Q$, trường phân rã tương ứng là $\mathbf Q(\sqrt 2+\sqrt 3)=\mathbf Q(\sqrt 2,\sqrt 3)$; nhưng trong $\mathbf F_p$, nếu cả $2$ và $3$ đều không phải thặng dư bậc hai modulo $p$, thì nó là tích của hai đa thức bất khả quy, tức trong mở rộng $\mathbf F_p(\sqrt 2)$ đã tồn tại căn bậc hai $\sqrt{3}$ và không cần mở rộng thêm.
 
-### 推广到环上的「扩张」
+<span id="&#x63A8;&#x5E7F;&#x5230;&#x73AF;&#x4E0A;&#x7684;&#x6269;&#x5F20;"></span>
 
-正如上一节所展示的那样，域的扩张有着各种各样的限制．对于斐波那契数列的计算，只用扩域的方法只能解决模数 $p$ 是素数且 $5$ 不是 $p$ 的二次剩余的情形．但是应当注意，在 [代数扩张](#代数扩张) 一节中的论述表明，如果不要求在扩张后的结构中做除法运算，那么可以对环进行扩张[^ring-extension]．本节以任意模数 $n$ 下斐波那契数列的计算为例，简要讨论这种方法．其他的不涉及过多除法运算的常见情景，包括行列式的计算、快速傅里叶变换等，有必要的时候都可以尝试应用这种方法．
+### Mở rộng sang "mở rộng" trên vành
 
-设 $m$ 为任意正整数，$f(n)$ 为斐波那契数列的第 $n$ 项．问题是要计算 $f(n)\bmod m$ 的值．原则上，需要在 $\mathbf Z/m\mathbf Z$ 上进行计算．但是，正如上节所表明的，在不同模数下，多项式 $x^2-x-1$ 的可约性和有无重根的情形不一致，所以斐波那契数列的通项可能相差甚远．而且，如果本身 $\mathbf Z/m\mathbf Z$ 并不是域，扩张后的元素也往往没有合法的逆（比如模 $5$ 的时候，分母 $\sqrt 5$ 直接就是零）．虽然有着诸多问题，但是其实在系数对 $m$ 取模的条件下，计算余数
+Như mục trước đã cho thấy, mở rộng trường có nhiều hạn chế. Với việc tính dãy Fibonacci, nếu chỉ dùng phương pháp mở rộng trường thì ta chỉ xử lý trực tiếp được trường hợp modulo $p$ là số nguyên tố và $5$ không phải thặng dư bậc hai modulo $p$. Tuy nhiên cần chú ý rằng thảo luận trong mục [mở rộng đại số](#%E4%BB%A3%E6%95%B0%E6%89%A9%E5%BC%A0) cho thấy nếu không yêu cầu thực hiện phép chia trong cấu trúc sau khi mở rộng, ta có thể mở rộng vành[^ring-extension]. Mục này lấy ví dụ tính dãy Fibonacci dưới modulo bất kỳ $n$ để thảo luận ngắn gọn phương pháp này. Các tình huống thường gặp khác không liên quan quá nhiều đến phép chia, bao gồm tính định thức, biến đổi Fourier nhanh, v.v.; khi cần cũng có thể thử áp dụng phương pháp này.
 
-$$
-(1-x)^n-x^n\mod{x^2-x-1}
-$$
-
-的常数项即可．比对上文中的通项公式，这个做法的合理性是显然的：这似乎就是在「扩张」$(\mathbf Z/m\mathbf Z)[x]/(x^2-x-1)$ 中计算
+Gọi $m$ là số nguyên dương bất kỳ, $f(n)$ là số hạng thứ $n$ của dãy Fibonacci. Bài toán là tính $f(n)\bmod m$. Về nguyên tắc, cần tính trên $\mathbf Z/m\mathbf Z$. Nhưng như mục trước đã chỉ ra, dưới các modulo khác nhau, tính khả quy và tình huống có nghiệm bội của đa thức $x^2-x-1$ không giống nhau, nên công thức tổng quát của dãy Fibonacci có thể rất khác. Hơn nữa, nếu bản thân $\mathbf Z/m\mathbf Z$ không phải trường, phần tử sau khi mở rộng cũng thường không có nghịch đảo hợp lệ (ví dụ modulo $5$, mẫu số $\sqrt 5$ trực tiếp bằng không). Tuy có nhiều vấn đề như vậy, thực ra khi các hệ số được lấy modulo $m$, ta chỉ cần tính hạng tử hằng của phần dư
 
 $$
-f(n)=\frac{(1-\phi)^n-\phi^n}{1-2\phi}
+(1-x)^n-x^n\mod{x^2-x-1}.
 $$
 
-的值，且 $\phi$ 是 $x^2-x-1$ 的根．
+So với công thức tổng quát ở trên, tính hợp lý của cách làm này là rõ ràng: nó dường như đang tính trong "mở rộng" $(\mathbf Z/m\mathbf Z)[x]/(x^2-x-1)$ giá trị
 
-虽然没有那么显然，但是这个做法也是合法的．注意到，在有理数域的扩张 $\mathbf Q(\phi)\cong\mathbf Q[x]/(x^2-x-1)$ 中，通项公式成立．这就说明，在 $\mathbf Q[x]$ 中，
+$$
+f(n)=\frac{(1-\phi)^n-\phi^n}{1-2\phi},
+$$
+
+trong đó $\phi$ là nghiệm của $x^2-x-1$.
+
+Dù không hiển nhiên như vậy, cách làm này vẫn hợp lệ. Chú ý rằng trong mở rộng của trường số hữu tỉ $\mathbf Q(\phi)\cong\mathbf Q[x]/(x^2-x-1)$, công thức tổng quát đúng. Điều này cho thấy trong $\mathbf Q[x]$,
 
 $$
 (1-x)^n-x^n \equiv f(n)(1-2x) \pmod{x^2-x-1}
 $$
 
-成立．这只涉及到整系数多项式，因而在 $\mathbf Z[x]$ 中也成立．写成带余除法，等式两边的系数都对 $m$ 取模，就得到 $(\mathbf Z/m\mathbf Z)[x]$ 上的恒等式．这个结论对于任意 $m$ 都成立．
+đúng. Công thức này chỉ liên quan đến đa thức hệ số nguyên, nên cũng đúng trong $\mathbf Z[x]$. Viết thành phép chia có dư, rồi lấy hệ số hai vế modulo $m$, ta thu được đẳng thức đồng nhất trên $(\mathbf Z/m\mathbf Z)[x]$. Kết luận này đúng với mọi $m$.
 
-一般的情况下，如果某个表达式可以在有理数域 $\mathbf Q$ 的扩域上进行计算，那么就一定可以通过约去分母的方式得到 $\mathbf Z[x]$ 上的结论，再对 $m$ 取模就得到 $(\mathbf Z/m\mathbf Z)[x]$ 上的结论．这种思路能够行得通的关键在于，约去分母这一步不应该造成「不可挽回」的后果．比如，对于斐波那契数列的计算，如果不用常数项的系数，而是用一次项的系数，那么因为系数有因子 $2$，那么 $2$ 在模 $m$ 是偶数的情况下就没有逆元，没有办法恢复 $f(n)$ 的值；再比如，同样是斐波那契数列的计算，如果使用带有 $(-\phi)^{-n}$ 项的通项公式，那么约去分母的步骤会引入难以处理的因子，从而无法从取余后的结果得到结论．因而，对于计算过程的选择，是能够应用这一技巧的关键．
+Trong trường hợp tổng quát, nếu một biểu thức có thể được tính trong trường mở rộng của trường số hữu tỉ $\mathbf Q$, thì nhất định có thể khử mẫu để thu được kết luận trên $\mathbf Z[x]$, rồi lấy modulo $m$ để thu được kết luận trên $(\mathbf Z/m\mathbf Z)[x]$. Mấu chốt để tư duy này hoạt động là bước khử mẫu không được gây ra hậu quả "không thể cứu vãn". Chẳng hạn với việc tính dãy Fibonacci, nếu không dùng hệ số của hạng tử hằng mà dùng hệ số của hạng tử bậc nhất, thì do hệ số có nhân tử $2$, khi $m$ chẵn thì $2$ không có nghịch đảo modulo $m$, không có cách khôi phục giá trị $f(n)$. Lại chẳng hạn, cũng trong việc tính dãy Fibonacci, nếu dùng công thức tổng quát có hạng tử $(-\phi)^{-n}$, bước khử mẫu sẽ đưa vào nhân tử khó xử lý, khiến không thể suy ra kết luận từ kết quả sau khi lấy dư. Vì vậy, việc chọn quá trình tính toán là điểm then chốt để áp dụng kỹ thuật này.
 
-### Cipolla 算法
+<span id="cipolla-&#x7B97;&#x6CD5;"></span>
 
-这是利用有限域的扩域进行计算的典型例子．对于模 $p\neq 2$ 下的二次剩余 $a$，要找到它的平方根，即使得 $x^2\equiv a\pmod p$ 成立的 $x$．虽然这是 $\mathbf F_p$ 上的问题，但是 [Cipolla 算法](../number-theory/quad-residue.md#cipolla-算法) 在有限域 $\mathbf F_{p^2}$ 上进行计算．本节使用域论的语言对这个算法进行说明．初等数论的证明可以参考所给链接．
+### Thuật toán Cipolla
 
-具体来说，Cipolla 算法首先选择 $r$ 使得 $r^2-a$ 是模 $p$ 的二次非剩余，这意味着 $x^2-(r^2-a)$ 是不可约多项式．因而，令 $u=r^2-a$，可以考虑扩域 $\mathbf F_p(\sqrt u)$．因为 Frobenius 自同态只能将元素映射到它的共轭，而这样的共轭在二次扩张中是唯一的，即有 $(r-\sqrt u)^p=r+\sqrt u$．故而，$(r-\sqrt u)^{p+1}=(r+\sqrt u)(r-\sqrt u)=r^2-u=a$．所以，要确定平方根，只要计算 $(r-\sqrt u)^{(p+1)/2}$ 就好了．这个值必然位于 $\mathbf F_p$ 中，因为 $x^2-a$ 的分裂域就是 $\mathbf F_p$ 本身．
+Đây là ví dụ điển hình về việc dùng mở rộng của trường hữu hạn để tính toán. Với thặng dư bậc hai $a$ modulo $p\neq 2$, cần tìm căn bậc hai của nó, tức tìm $x$ sao cho $x^2\equiv a\pmod p$. Dù đây là bài toán trên $\mathbf F_p$, [thuật toán Cipolla](../number-theory/quad-residue.md#cipolla-%E7%AE%97%E6%B3%95) tính trong trường hữu hạn $\mathbf F_{p^2}$. Mục này dùng ngôn ngữ lý thuyết trường để giải thích thuật toán. Chứng minh số học sơ cấp có thể xem trong liên kết đã cho.
 
-## 习题
+Cụ thể, thuật toán Cipolla trước hết chọn $r$ sao cho $r^2-a$ là bất thặng dư bậc hai modulo $p$. Điều này có nghĩa $x^2-(r^2-a)$ là đa thức bất khả quy. Vì vậy, đặt $u=r^2-a$, ta có thể xét trường mở rộng $\mathbf F_p(\sqrt u)$. Vì tự đồng cấu Frobenius chỉ có thể ánh xạ một phần tử đến phần tử liên hợp của nó, mà trong mở rộng bậc hai phần tử liên hợp như vậy là duy nhất, nên $(r-\sqrt u)^p=r+\sqrt u$. Do đó $(r-\sqrt u)^{p+1}=(r+\sqrt u)(r-\sqrt u)=r^2-u=a$. Vì vậy để xác định căn bậc hai, chỉ cần tính $(r-\sqrt u)^{(p+1)/2}$. Giá trị này nhất định nằm trong $\mathbf F_p$, vì trường phân rã của $x^2-a$ chính là $\mathbf F_p$.
 
-最后，列举一些直接应用本文内容的题目，以便加深理解．但应注意，很多内容并不是算法竞赛的常规考点．
+<span id="&#x4E60;&#x9898;"></span>
 
--   分圆多项式：
-    -   [Luogu P1520 因式分解](https://www.luogu.com.cn/problem/P1520)
+## Bài tập
+
+Cuối cùng, ta liệt kê một số bài toán áp dụng trực tiếp nội dung bài này để củng cố hiểu biết. Tuy nhiên cần chú ý, nhiều nội dung không phải là điểm kiến thức thường gặp trong lập trình thi đấu.
+
+-   Đa thức cyclotomic:
+    -   [Luogu P1520 Factorization](https://www.luogu.com.cn/problem/P1520)
     -   [Gym102114C Call It What You Want](https://codeforces.com/gym/102114/problem/C)
--   有限域：
-    -   [Luogu P3923 大学数学题](https://www.luogu.com.cn/problem/P3923)
-    -   [\[COTS 2021\] 菜 Jelo](https://www.luogu.com.cn/problem/P11192)
+-   Trường hữu hạn:
+    -   [Luogu P3923 University Math Problem](https://www.luogu.com.cn/problem/P3923)
+    -   [\[COTS 2021\] Cai Jelo](https://www.luogu.com.cn/problem/P11192)
     -   [CF1310F. Bad Cryptography](https://codeforces.com/problemset/problem/1310/F)
-    -   [LOJ 178. 多项式求根](https://loj.ac/p/178)
--   域扩张：
+    -   [LOJ 178. Polynomial Root Finding](https://loj.ac/p/178)
+-   Mở rộng trường:
     -   [\[Oleksandr Kulkov Contest 2\] Problem A. Square Root Partitioning](https://codeforces.com/gym/102354/problem/A)
     -   [CF1103E. Radix Sum](https://codeforces.com/problemset/problem/1103/E)
 
-## 参考资料与注释
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+
+## Tài liệu tham khảo và chú thích
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Milne, J.S. Fields and Galois Theory.](https://www.jmilne.org/math/CourseNotes/FT.pdf)
@@ -832,22 +882,22 @@ $$
 -   [Michel Waldschmidt. An introduction to the theory of finite fields](https://webusers.imj-prg.fr/~michel.waldschmidt/articles/pdf/FiniteFields.pdf)
 -   [Finite Field Arithmetic - Wikipedia](https://en.wikipedia.org/wiki/Finite_field_arithmetic)
 
-[^subfield-one]: 这是因为域 $E$ 的幺元 $1_E$ 必然满足 $F$ 上的关系 $x^2-x=0$，而后者在域 $F$ 内只有两个根 $0_F$ 和 $1_F$，由于域的定义要求 $1_E\neq 0_E$，就必然有 $1_E=1_F$ 和 $0_E=0_F$．
+[^subfield-one]: Điều này là vì phần tử một $1_E$ của trường $E$ nhất định thỏa mãn quan hệ $x^2-x=0$ trên $F$, mà quan hệ này trong trường $F$ chỉ có hai nghiệm $0_F$ và $1_F$. Do định nghĩa trường yêu cầu $1_E\neq 0_E$, nhất định có $1_E=1_F$ và $0_E=0_F$.
 
-[^initial-object-ring]: 用范畴论的语言来说，就是 $\mathbf Z$ 是幺环范畴的 [始对象](https://en.wikipedia.org/wiki/Initial_and_terminal_objects)．
+[^initial-object-ring]: Nói bằng ngôn ngữ phạm trù, $\mathbf Z$ là [đối tượng khởi đầu](https://en.wikipedia.org/wiki/Initial_and_terminal_objects) của phạm trù vành có đơn vị.
 
-[^polynomial-universal]: 严格地说，这里指的是多项式环 $R[x]$ 的 [万有性质](https://en.wikipedia.org/wiki/Polynomial_ring#Polynomial_evaluation)（universal property）．
+[^polynomial-universal]: Nói nghiêm ngặt, ở đây chỉ [tính chất phổ dụng](https://en.wikipedia.org/wiki/Polynomial_ring#Polynomial_evaluation) (universal property) của vành đa thức $R[x]$.
 
-[^multi-poly-ring]: 此处的多项式环有无限多个不定元．要定义这样的多项式环，首先要定义单项式．设不定元的集合为 $X$，则它上面的单项式是全体只在有限多个不定元处取值不为零的函数 $\alpha:X\rightarrow\mathbf N$，可以记作 $x_{i_1}^{\alpha(i_i)}\cdots x_{i_k}^{\alpha(i_k)}$，其中，$i_1,\cdots,i_k$ 是所有 $\alpha$ 取值不为零的不定元的指标．多项式是所有有限多个单项式的线性组合．它们在相应定义的加法和乘法运算下成为环．对于有限多个不定元的情形，可以证明这种定义与 [多元多项式环](./ring-theory.md#多元多项式环) 一节的递归定义得到的结果是一致的．
+[^multi-poly-ring]: Vành đa thức ở đây có vô hạn biến không xác định. Để định nghĩa vành đa thức như vậy, trước hết cần định nghĩa đơn thức. Giả sử tập biến không xác định là $X$, khi đó đơn thức trên nó là toàn bộ các hàm $\alpha:X\rightarrow\mathbf N$ chỉ nhận giá trị khác không tại hữu hạn nhiều biến, có thể ký hiệu là $x_{i_1}^{\alpha(i_i)}\cdots x_{i_k}^{\alpha(i_k)}$, trong đó $i_1,\cdots,i_k$ là các chỉ số của mọi biến mà $\alpha$ nhận giá trị khác không. Đa thức là tổ hợp tuyến tính của hữu hạn nhiều đơn thức. Chúng tạo thành vành dưới phép cộng và phép nhân được định nghĩa tương ứng. Với trường hợp hữu hạn biến không xác định, có thể chứng minh định nghĩa này nhất quán với kết quả thu được từ định nghĩa đệ quy trong mục [vành đa thức nhiều biến](./ring-theory.md#%E5%A4%9A%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%8E%AF).
 
-[^fundamental-algebra]: 虽然名字是代数基本定理，这个结论并不是纯代数的，这是因为实数域的构造需要通过拓扑结构进行．
+[^fundamental-algebra]: Dù tên là định lý cơ bản của đại số, kết luận này không thuần đại số, vì việc xây dựng trường số thực cần thông qua cấu trúc tô pô.
 
-[^ddf]: 这样的说法有失严谨，因为还会得到次数 $d\mid n$ 的不可约因子．但是，由于算法实现时通常会从较小的次数的因子开始分离，在分离 $n$ 次不可约多项式因子时，较小的因子应该已经分离完了，所以这说法也是可以接受的．
+[^ddf]: Cách nói này chưa thật chặt chẽ, vì còn có thể thu được các nhân tử bất khả quy có bậc $d\mid n$. Nhưng khi cài đặt thuật toán, thường tách nhân tử theo bậc nhỏ trước; khi tách nhân tử bất khả quy bậc $n$, các nhân tử bậc nhỏ hơn đáng lẽ đã được tách xong, nên cách nói này vẫn chấp nhận được.
 
-[^prim-poly]: 不要把这里的名称和多项式理论中的本原多项式（即所有系数的最大公因子是一的多项式）混淆．
+[^prim-poly]: Không nên nhầm tên gọi ở đây với đa thức nguyên thủy trong lý thuyết đa thức, tức đa thức có ước chung lớn nhất của mọi hệ số bằng một.
 
-[^list-prim-poly]: 比如，[Hansen, T., & Mullen, G. L. (1992). Primitive polynomials over finite fields. Mathematics of computation, 59(200), 639-643](https://www.ams.org/journals/mcom/1992-59-200/S0025-5718-1992-1134730-7/S0025-5718-1992-1134730-7.pdf) 的附录就提供了这样的列表．
+[^list-prim-poly]: Chẳng hạn, phụ lục của [Hansen, T., & Mullen, G. L. (1992). Primitive polynomials over finite fields. Mathematics of computation, 59(200), 639-643](https://www.ams.org/journals/mcom/1992-59-200/S0025-5718-1992-1134730-7/S0025-5718-1992-1134730-7.pdf) cung cấp danh sách như vậy.
 
-[^fib-p5]: 当 $p=5$ 时，Fibonacci 数列的特征方程 $x^2-x-1=0$ 有重根 $x=3$，因而在 $\mathbf F_5$ 中，Fibonacci 数列的通项公式是 $f(n)=n3^{n-1}$．
+[^fib-p5]: Khi $p=5$, phương trình đặc trưng $x^2-x-1=0$ của dãy Fibonacci có nghiệm kép $x=3$, nên trong $\mathbf F_5$, công thức tổng quát của dãy Fibonacci là $f(n)=n3^{n-1}$.
 
-[^ring-extension]: 所谓的环上的扩张，通常有两种含义：一种是 [群的扩张的推广](https://en.wikipedia.org/wiki/Algebra_extension)，一种是 [域的扩张的推广](https://en.wikipedia.org/wiki/Subring#Ring_extensions)．本文指的是第二种含义．更具体地说，本节涉及的扩张都是交换幺环上的 [整扩张](https://en.wikipedia.org/wiki/Integral_element#Integral_extensions)，它是域上的代数扩张的概念在交换幺环上的推广．
+[^ring-extension]: "Mở rộng trên vành" thường có hai nghĩa: một là [khái quát của mở rộng nhóm](https://en.wikipedia.org/wiki/Algebra_extension), hai là [khái quát của mở rộng trường](https://en.wikipedia.org/wiki/Subring#Ring_extensions). Bài này dùng nghĩa thứ hai. Cụ thể hơn, các mở rộng liên quan trong mục này đều là [mở rộng nguyên](https://en.wikipedia.org/wiki/Integral_element#Integral_extensions) trên vành giao hoán có đơn vị, là khái quát của khái niệm mở rộng đại số trên trường sang vành giao hoán có đơn vị.

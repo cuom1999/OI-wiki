@@ -1,171 +1,174 @@
 author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, isdanni, Menci, ouuan, Tiphereth-A, warzone-oier, Xeonacid, c-forrest
 
-本章节将简要介绍抽象代数的相关知识．现阶段算法竞赛的主要内容并不直接考察抽象代数的知识，但是在算法的描述或是问题的题解中常常会牵涉一些抽象函数的基本概念，这使得掌握了基础抽象代数概念的读者能够更快速理解一些算法．因此，这部分内容并不是任何选手的必修知识，而仅供那些感兴趣或者可能从中受益的读者参考使用．同时，本章节将避免过全过深的介绍抽象代数的知识[^oi-wiki-not-wikipedia]，而会集中在基础概念以及与 OI 其他部分知识联系最为紧密的部分．想系统学习抽象代数知识的读者，应当参考专业的抽象代数教科书学习．
+Chương này giới thiệu ngắn gọn các kiến thức liên quan đến đại số trừu tượng. Ở giai đoạn hiện nay, nội dung chính của lập trình thi đấu không trực tiếp kiểm tra kiến thức đại số trừu tượng, nhưng trong phần mô tả thuật toán hoặc lời giải bài toán, các khái niệm cơ bản về cấu trúc đại số thường xuyên xuất hiện. Vì vậy, độc giả nắm được các khái niệm cơ sở của đại số trừu tượng có thể hiểu một số thuật toán nhanh hơn. Do đó, phần nội dung này không phải kiến thức bắt buộc với mọi thí sinh, mà chỉ dùng làm tài liệu tham khảo cho những độc giả có quan tâm hoặc có thể hưởng lợi từ nó. Đồng thời, chương này sẽ tránh giới thiệu đại số trừu tượng quá đầy đủ hay quá sâu[^oi-wiki-not-wikipedia], mà tập trung vào các khái niệm cơ bản và những phần gắn bó chặt chẽ nhất với các kiến thức khác trong OI. Độc giả muốn học đại số trừu tượng một cách hệ thống nên tham khảo các giáo trình chuyên ngành về đại số trừu tượng.
 
-为了更好帮助读者理解阅读本部分内容可能的收获，列举一些算法竞赛中可能牵涉到抽象代数知识的例子：
+Để giúp độc giả hiểu rõ hơn việc đọc phần này có thể đem lại lợi ích gì, dưới đây là một số ví dụ về những chỗ trong lập trình thi đấu có thể liên quan đến kiến thức đại số trừu tượng:
 
--   数论和多项式的很多定理是抽象代数中结论的特例；
--   数据结构中，[线段树](../../ds/seg.md) 等结构可以维护幺半群的信息，而很多 DP 问题的递推关系可以抽象成这样的幺半群结构；
--   组合数学中，[Pólya 计数原理](../combinatorics/polya.md) 的严格表述和证明需要用到群论的相关概念．
+-   Nhiều định lý trong lý thuyết số và đa thức là trường hợp đặc biệt của các kết quả trong đại số trừu tượng;
+-   Trong cấu trúc dữ liệu, những cấu trúc như [cây đoạn](../../ds/seg.md) có thể duy trì thông tin của một vị nhóm, còn hệ thức truy hồi của nhiều bài DP có thể được trừu tượng hóa thành cấu trúc vị nhóm như vậy;
+-   Trong tổ hợp, cách phát biểu và chứng minh chặt chẽ của [nguyên lý đếm Pólya](../combinatorics/polya.md) cần dùng các khái niệm liên quan đến lý thuyết nhóm.
 
-基于此，本章节将着重介绍无法跳过的基础知识和与这些应用直接相关的部分．作为开始，本文介绍群、环、域的基本概念．
+Trên cơ sở đó, chương này sẽ tập trung giới thiệu các kiến thức cơ sở không thể bỏ qua và các phần liên quan trực tiếp đến những ứng dụng này. Để bắt đầu, bài này giới thiệu các khái niệm cơ bản về nhóm, vành và trường.
 
-## 群
+<span id="&#x7FA4;"></span>
+## Nhóm
 
-群的定义如下．
+Định nghĩa của nhóm như sau.
 
-???+ abstract "群"
-    设 $G$ 是非空集合，其上有二元运算 $\cdot:G\times G\rightarrow G$，如果它们满足以下性质，则称 $(G,\cdot)$ 是一个 **群**（group）：
+???+ abstract "Nhóm"
+    Cho $G$ là một tập hợp khác rỗng, trên đó có phép toán hai ngôi $\cdot:G\times G\rightarrow G$. Nếu chúng thỏa mãn các tính chất sau, thì $(G,\cdot)$ được gọi là một **nhóm** (group):
     
-    1.  结合律（associative property）：对于所有 $a,b,c\in G$，成立 $a\cdot(b\cdot c)=(a\cdot b)\cdot c$；
-    2.  有单位元：存在 $e\in G$，使得对于任意 $a\in G$，都成立 $a\cdot e = e\cdot a = a$．这里，$e$ 称为 $G$ 的 **单位元**（identity element），也称幺元；
-    3.  存在逆元：对于所有 $a\in G$，都存在相应的 $b\in G$ 使得 $a\cdot b=b\cdot a=e$．这里，$b$ 称为 $a$ 的 **逆元**（inverse element）．
+    1.  Luật kết hợp (associative property): với mọi $a,b,c\in G$, ta có $a\cdot(b\cdot c)=(a\cdot b)\cdot c$;
+    2.  Có phần tử đơn vị: tồn tại $e\in G$ sao cho với mọi $a\in G$, đều có $a\cdot e = e\cdot a = a$. Ở đây, $e$ được gọi là **phần tử đơn vị** (identity element) của $G$;
+    3.  Tồn tại phần tử nghịch đảo: với mọi $a\in G$, tồn tại $b\in G$ tương ứng sao cho $a\cdot b=b\cdot a=e$. Ở đây, $b$ được gọi là **phần tử nghịch đảo** (inverse element) của $a$.
 
-??? info "关于定义中的封闭性条件"
-    这里的二元运算就隐含了所谓的封闭性条件，即对于任何 $a,b\in G$，都有 $a\cdot b\in G$．有些文章会将其单独列出．
+??? info "Về điều kiện đóng trong định nghĩa"
+    Phép toán hai ngôi ở đây đã ngầm chứa điều kiện đóng, tức là với mọi $a,b\in G$, ta đều có $a\cdot b\in G$. Một số tài liệu sẽ liệt kê riêng điều kiện này.
 
-???+ note "群的基本性质"
-    对于群 $(G,\cdot)$，以下性质总是成立：
+???+ note "Các tính chất cơ bản của nhóm"
+    Với nhóm $(G,\cdot)$, các tính chất sau luôn đúng:
     
-    1.  对于任何有限长的列 $\{g_i\}_{i=1}^k\subseteq G$，乘积 $g_1\cdot g_2\cdot\cdots\cdot g_k$ 的运算结果与加括号的方式无关；
-    2.  单位元 $e$ 总是唯一的；
-    3.  对于任何元素 $a\in G$，它的逆 $a^{-1}$ 也是唯一的；
-    4.  消去律（cancellation law）：对于 $a,b,c\in G$，如果 $a\cdot c=b\cdot c$ 或 $c\cdot a=c\cdot b$，那么有 $a=b$．
+    1.  Với mọi dãy hữu hạn $\{g_i\}_{i=1}^k\subseteq G$, kết quả của tích $g_1\cdot g_2\cdot\cdots\cdot g_k$ không phụ thuộc vào cách đặt dấu ngoặc;
+    2.  Phần tử đơn vị $e$ luôn duy nhất;
+    3.  Với mọi phần tử $a\in G$, nghịch đảo $a^{-1}$ của nó cũng duy nhất;
+    4.  Luật giản ước (cancellation law): với $a,b,c\in G$, nếu $a\cdot c=b\cdot c$ hoặc $c\cdot a=c\cdot b$, thì $a=b$.
 
-群相当常见．通俗地说，所有不损失结构的变换都自动构成群．以常见的几种类型的群为例．
+Nhóm xuất hiện rất phổ biến. Nói một cách bình dân, mọi phép biến đổi không làm mất cấu trúc đều tự động tạo thành một nhóm. Xét một vài kiểu nhóm thường gặp làm ví dụ.
 
-???+ example "群的例子"
-    -   **对称群**（symmetric group）：集合 $M$ 上的所有 [置换](../permutation.md)，即自 $M$ 到 $M$ 自身的双射，就在映射的复合下构成群 $S_M$．单位元是恒等变换，逆元是逆映射（双射必然存在逆映射）．如果集合 $M$ 有限，大小为 $n$，也常记作 $S_n$，称作 $n$ 次对称群．
-    -   空间对称群（symmetry group）：对于一个几何图形，能够使其与自身重合的变换全体也在映射的复合下构成群．这描述了该几何图形的空间对称性．具体例子可以参考 [常见空间对称群](../combinatorics/polya.md#常见空间对称群)．
-    -   整数的加法群：整数集 $\mathbf Z$ 在加法 $+$ 运算下构成群 $(\mathbf Z,+)$．单位元是 $0$，逆元是相反数．
-    -   整数模 $n$ 乘法群（multiplicative group of integers modulo $n$）：对于一个模数 $n$，所有与 $n$ 互质的整数对应的 [同余类](../number-theory/basic.md#同余类与剩余系)，在乘法运算下构成群 $((\mathbf Z/n\mathbf Z)^\times,\times)$．单位元是 $\bar 1$，逆元就是模 $n$ 的 [乘法逆元](../number-theory/inverse.md)（对应的同余类），其存在性由 [裴蜀定理](../number-theory/bezouts.md) 保证．具体结构分析参考 [整数模 $n$ 乘法群](./ring-theory.md#应用整数同余类的乘法群)．
-    -   一般线性群（general linear group）：数域 $F$ 上的 $n$ 维的全体可逆方阵在乘法运算下构成群 $GL_n(F)$．单位元是单位矩阵，逆元是逆矩阵．
+???+ example "Ví dụ về nhóm"
+    -   **Nhóm đối xứng** (symmetric group): tất cả các [hoán vị](../permutation.md) trên tập hợp $M$, tức các song ánh từ $M$ đến chính $M$, tạo thành nhóm $S_M$ dưới phép hợp thành ánh xạ. Phần tử đơn vị là phép biến đổi đồng nhất, phần tử nghịch đảo là ánh xạ nghịch đảo (song ánh tất yếu có ánh xạ nghịch đảo). Nếu tập hợp $M$ hữu hạn và có kích thước $n$, nhóm này cũng thường được ký hiệu là $S_n$ và gọi là nhóm đối xứng bậc $n$.
+    -   Nhóm đối xứng không gian (symmetry group): với một hình hình học, toàn bộ các phép biến đổi làm nó trùng khớp với chính nó cũng tạo thành một nhóm dưới phép hợp thành ánh xạ. Nhóm này mô tả tính đối xứng không gian của hình hình học đó. Ví dụ cụ thể có thể xem tại [các nhóm đối xứng không gian thường gặp](../combinatorics/polya.md#%E5%B8%B8%E8%A7%81%E7%A9%BA%E9%97%B4%E5%AF%B9%E7%A7%B0%E7%BE%A4).
+    -   Nhóm cộng của số nguyên: tập số nguyên $\mathbf Z$ tạo thành nhóm $(\mathbf Z,+)$ dưới phép cộng $+$. Phần tử đơn vị là $0$, phần tử nghịch đảo là số đối.
+    -   Nhóm nhân các số nguyên modulo $n$ (multiplicative group of integers modulo $n$): với một modulo $n$, các [lớp đồng dư](../number-theory/basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB) ứng với tất cả các số nguyên nguyên tố cùng nhau với $n$ tạo thành nhóm $((\mathbf Z/n\mathbf Z)^\times,\times)$ dưới phép nhân. Phần tử đơn vị là $\bar 1$, phần tử nghịch đảo chính là [nghịch đảo nhân](../number-theory/inverse.md) modulo $n$ (lớp đồng dư tương ứng), và sự tồn tại của nó được đảm bảo bởi [định lý Bézout](../number-theory/bezouts.md). Phân tích cấu trúc cụ thể xem tại [nhóm nhân các số nguyên modulo $n$](./ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4).
+    -   Nhóm tuyến tính tổng quát (general linear group): tất cả các ma trận vuông khả nghịch cấp $n$ trên trường số $F$ tạo thành nhóm $GL_n(F)$ dưới phép nhân. Phần tử đơn vị là ma trận đơn vị, phần tử nghịch đảo là ma trận nghịch đảo.
 
-要更好地理解群的定义，不妨对比着看几个不属于群的例子．
+Để hiểu định nghĩa nhóm tốt hơn, có thể đối chiếu với một vài ví dụ không phải nhóm.
 
-???+ example "不是群的例子"
-    -   所有 $M$ 到自身的映射（不一定是双射），并不构成群．因为那些不是双射的映射不存在逆元．
-    -   整数在乘法下并不构成群，因为 $2$ 在整数范围内没有乘法逆元．
-    -   正整数在加法下也不构成群，因为正整数没有加法单位元．
-    -   模 $n$ 的所有非零同余类在乘法意义下往往不构成群．比如说 $(\mathbf Z/6\mathbf Z)\setminus\{\overline 0\}$ 中，$\overline 2\times\overline 3=\overline 0$ 不属于这个集合，这意味着乘法都不是这个集合上良定义的二元运算（或者说，它不满足封闭性）．
+???+ example "Ví dụ không phải nhóm"
+    -   Tất cả các ánh xạ từ $M$ đến chính nó (không nhất thiết là song ánh) không tạo thành nhóm, vì những ánh xạ không phải song ánh không có phần tử nghịch đảo.
+    -   Các số nguyên không tạo thành nhóm dưới phép nhân, vì $2$ không có nghịch đảo nhân trong phạm vi số nguyên.
+    -   Các số nguyên dương cũng không tạo thành nhóm dưới phép cộng, vì chúng không có phần tử đơn vị cộng.
+    -   Tất cả các lớp đồng dư khác không modulo $n$ thường không tạo thành nhóm theo nghĩa phép nhân. Chẳng hạn, trong $(\mathbf Z/6\mathbf Z)\setminus\{\overline 0\}$, ta có $\overline 2\times\overline 3=\overline 0$ không thuộc tập hợp này; điều đó có nghĩa phép nhân thậm chí không phải là một phép toán hai ngôi được định nghĩa tốt trên tập hợp này (hay nói cách khác, nó không thỏa mãn tính đóng).
 
-有时，也需要讨论这些更不完善的结构的性质．因此，可以定义如下概念，它们比群更宽泛．
+Đôi khi ta cũng cần thảo luận tính chất của những cấu trúc kém hoàn chỉnh hơn này. Vì vậy, có thể định nghĩa các khái niệm sau, chúng rộng hơn nhóm.
 
-???+ abstract "半群"
-    对于非空集合 $G$ 和其上的二元运算 $\cdot$，如果该运算满足结合律，则称 $(G,\cdot)$ 是一个 **半群**（semigroup）．
+???+ abstract "Nửa nhóm"
+    Với tập hợp khác rỗng $G$ và một phép toán hai ngôi $\cdot$ trên nó, nếu phép toán này thỏa mãn luật kết hợp, thì $(G,\cdot)$ được gọi là một **nửa nhóm** (semigroup).
 
-???+ abstract "幺半群"
-    对于半群 $(G,\cdot)$，如果它还存在单位元，则称 $(G,\cdot)$ 是一个 **幺半群**（monoid）．
+???+ abstract "Vị nhóm"
+    Với nửa nhóm $(G,\cdot)$, nếu nó còn có phần tử đơn vị, thì $(G,\cdot)$ được gọi là một **vị nhóm** (monoid).
 
-???+ example "幺半群和半群的例子"
-    上面的例子中，$(\mathbf N_+,+)$ 是半群，而 $(\mathbf Z,\times)$ 是幺半群．
+???+ example "Ví dụ về vị nhóm và nửa nhóm"
+    Trong các ví dụ bên trên, $(\mathbf N_+,+)$ là nửa nhóm, còn $(\mathbf Z,\times)$ là vị nhóm.
 
-最后，很多熟悉的群上的运算除了满足结合律外，还满足交换律．这类群的结构相对简单，它们称作 Abel 群，也称作交换群．
+Cuối cùng, nhiều phép toán trên các nhóm quen thuộc, ngoài việc thỏa mãn luật kết hợp, còn thỏa mãn luật giao hoán. Cấu trúc của loại nhóm này tương đối đơn giản; chúng được gọi là nhóm Abel, hay nhóm giao hoán.
 
-???+ abstract "Abel 群"
-    对于群 $(G,\cdot)$，如果运算 $\cdot$ 还满足交换律（commutative property），即对于所有 $a,b\in G$，都成立 $a\cdot b=b\cdot a$，则称 $(G,\cdot)$ 是一个 **Abel 群**（Abelian group）或 **交换群**（communicate group）．
+???+ abstract "Nhóm Abel"
+    Với nhóm $(G,\cdot)$, nếu phép toán $\cdot$ còn thỏa mãn luật giao hoán (commutative property), tức là với mọi $a,b\in G$, đều có $a\cdot b=b\cdot a$, thì $(G,\cdot)$ được gọi là một **nhóm Abel** (Abelian group) hay **nhóm giao hoán** (commutative group).
 
-???+ example "Abel 群和非 Abel 群的例子"
-    -   整数加法群 $(\mathbf Z,+)$ 就是一个 Abel 群．
-    -   当 $n\ge3$ 时，对称群 $S_n$ 并不是 Abel 群．
+???+ example "Ví dụ về nhóm Abel và nhóm không Abel"
+    -   Nhóm cộng các số nguyên $(\mathbf Z,+)$ là một nhóm Abel.
+    -   Khi $n\ge3$, nhóm đối xứng $S_n$ không phải nhóm Abel.
 
-这些就是群论相关的基本定义．群论的更多内容，可以参考 [群论](./group-theory.md) 或相关书籍．
+Đó là các định nghĩa cơ bản liên quan đến lý thuyết nhóm. Nội dung khác về lý thuyết nhóm có thể tham khảo tại [lý thuyết nhóm](./group-theory.md) hoặc các sách liên quan.
 
-## 环
+<span id="&#x73AF;"></span>
+## Vành
 
-环的定义如下．
+Định nghĩa của vành như sau.
 
-???+ abstract "环"
-    对于非空集合 $R$ 和其上的两个二元运算 $+:R\times R\rightarrow R$ 和 $\cdot:R\times R\rightarrow R$，如果它们满足以下性质，则称 $(R,+,\cdot)$ 是一个 **环**（ring）：
+???+ abstract "Vành"
+    Với tập hợp khác rỗng $R$ và hai phép toán hai ngôi $+:R\times R\rightarrow R$ và $\cdot:R\times R\rightarrow R$ trên nó, nếu chúng thỏa mãn các tính chất sau, thì $(R,+,\cdot)$ được gọi là một **vành** (ring):
     
-    1.  $(R,+)$ 构成 Abel 群，其单位元记作 $0$，元素 $a\in R$ 在 $+$ 下的逆元记作 $-a$．
-    2.  $(R,\cdot)$ 构成半群，即 $\cdot$ 满足结合律．
-    3.  分配律（distributive property）：对于所有 $a,b,c\in R$，成立 $a\cdot(b+c)=a\cdot b+a\cdot c$ 和 $(a+b)\cdot c=a\cdot c+b\cdot c$．
+    1.  $(R,+)$ tạo thành nhóm Abel, phần tử đơn vị của nó được ký hiệu là $0$, và nghịch đảo của phần tử $a\in R$ theo $+$ được ký hiệu là $-a$.
+    2.  $(R,\cdot)$ tạo thành nửa nhóm, tức $\cdot$ thỏa mãn luật kết hợp.
+    3.  Luật phân phối (distributive property): với mọi $a,b,c\in R$, ta có $a\cdot(b+c)=a\cdot b+a\cdot c$ và $(a+b)\cdot c=a\cdot c+b\cdot c$.
 
-为表述方便，这两个二元运算 $+$ 和 $\cdot$ 常称作该环的加法和乘法，相应地，加法单位元称作 **零元**（zero），乘法单位元（如果存在）称作 **幺元**（identity）．应避免和具体的数集中的加法、乘法，以及自然数零和一产生混淆．
+Để tiện trình bày, hai phép toán hai ngôi $+$ và $\cdot$ thường được gọi là phép cộng và phép nhân của vành. Tương ứng, phần tử đơn vị của phép cộng được gọi là **phần tử không** (zero), còn phần tử đơn vị của phép nhân (nếu tồn tại) được gọi là **phần tử đơn vị** (identity). Cần tránh nhầm lẫn chúng với phép cộng, phép nhân trong các tập số cụ thể, cũng như với số tự nhiên không và một.
 
-??? info "关于定义中是否要求乘法单位元"
-    在有的定义中，环必须存在乘法单位元；相对地，不存在乘法单位元的则被称为 **伪环**（rng 或 pseudo-ring）．遇到的时候需根据上下文加以判断．维基百科采用的就是这种定义[^ring-wiki]．
+??? info "Về việc định nghĩa có yêu cầu phần tử đơn vị nhân hay không"
+    Trong một số định nghĩa, vành bắt buộc phải có phần tử đơn vị nhân; tương ứng, cấu trúc không có phần tử đơn vị nhân được gọi là **giả vành** (rng hoặc pseudo-ring). Khi gặp cần xác định theo ngữ cảnh. Wikipedia sử dụng cách định nghĩa này[^ring-wiki].
 
-环的加法结构相当简单，但是乘法结构十分原始．因而如果类比群，在乘法上做更多要求，可以得到如下相关定义．
+Cấu trúc cộng của vành khá đơn giản, nhưng cấu trúc nhân thì rất sơ khai. Vì vậy, nếu tương tự như nhóm và đặt thêm các yêu cầu trên phép nhân, ta có các định nghĩa liên quan sau.
 
-???+ abstract "幺环"
-    对于环 $(R,+,\cdot)$，如果它含幺，即存在乘法单位元，记作 $1$，则称 $(R,+,\cdot)$ 是一个 **幺环**（ring with identity）．
+???+ abstract "Vành có đơn vị"
+    Với vành $(R,+,\cdot)$, nếu nó có phần tử đơn vị nhân, ký hiệu là $1$, thì $(R,+,\cdot)$ được gọi là một **vành có đơn vị** (ring with identity).
 
-???+ abstract "除环"
-    对于非零幺环 $(R,+,\cdot)$，如果对于所有非 $0$ 元素 $a\in R$，都存在乘法逆元（记作 $a^{-1}$），则称 $(R,+,\cdot)$ 是一个 **除环**（division ring）．
+???+ abstract "Vành chia"
+    Với vành có đơn vị khác không $(R,+,\cdot)$, nếu với mọi phần tử khác $0$ là $a\in R$, đều tồn tại nghịch đảo nhân (ký hiệu là $a^{-1}$), thì $(R,+,\cdot)$ được gọi là một **vành chia** (division ring).
 
-???+ abstract "交换环"
-    对于环 $(R,+,\cdot)$，如果它的乘法满足交换律，则称 $(R,+,\cdot)$ 是一个 **交换环**（commutative ring）．
+???+ abstract "Vành giao hoán"
+    Với vành $(R,+,\cdot)$, nếu phép nhân của nó thỏa mãn luật giao hoán, thì $(R,+,\cdot)$ được gọi là một **vành giao hoán** (commutative ring).
 
-这里除环的定义中有趣的一点是，它将 $0$ 视为乘法结构中的特殊元素．这是因为 $0 = 0\cdot a = a\cdot 0$[^zero-multiplication]．也就是说，环中加法单位元乘以任何元素都得到其自身．这样，它自然不会存在乘法逆元，除非它本身就是乘法单位元．这样的环只有零环（见下面的例子）．
+Một điểm thú vị trong định nghĩa vành chia là nó xem $0$ là phần tử đặc biệt trong cấu trúc nhân. Lý do là $0 = 0\cdot a = a\cdot 0$[^zero-multiplication]. Nghĩa là phần tử đơn vị cộng của vành nhân với bất kỳ phần tử nào cũng cho kết quả là chính $0$. Vì thế, tự nhiên nó không có nghịch đảo nhân, trừ khi bản thân nó cũng là phần tử đơn vị nhân. Vành như vậy chỉ có thể là vành không (xem ví dụ bên dưới).
 
-这里的启示是，理解一般的环的乘法结构时，要去除加法单位元的影响，考察 $R\setminus\{0\}$．基于这一想法，有如下定义．
+Gợi ý ở đây là: khi hiểu cấu trúc nhân của một vành tổng quát, cần loại bỏ ảnh hưởng của phần tử đơn vị cộng và xét $R\setminus\{0\}$. Dựa trên ý tưởng này, ta có định nghĩa sau.
 
-???+ abstract "零因子"
-    对于环 $(R,+,\cdot)$，如果存在 $b\in R$ 且 $b\ne 0$，成立 $a\cdot b=0$ 或 $b\cdot a=0$，则称非零元素 $a$ 为一个 **零因子**（zero divisor）．
+???+ abstract "Ước của không"
+    Với vành $(R,+,\cdot)$, nếu tồn tại $b\in R$ với $b\ne 0$ sao cho $a\cdot b=0$ hoặc $b\cdot a=0$, thì phần tử khác không $a$ được gọi là một **ước của không** (zero divisor).
 
-???+ abstract "可逆元（单位）"
-    对于环 $(R,+,\cdot)$，如果元素 $a$ 有乘法逆元，即存在 $b\in R$，成立 $a\cdot b=b\cdot a=1$，则称元素 $a\in R$ 是一个 **可逆元**，或称 **单位**（unit）．
+???+ abstract "Phần tử khả nghịch"
+    Với vành $(R,+,\cdot)$, nếu phần tử $a$ có nghịch đảo nhân, tức tồn tại $b\in R$ sao cho $a\cdot b=b\cdot a=1$, thì phần tử $a\in R$ được gọi là một **phần tử khả nghịch**, hay **đơn vị** (unit).
 
-???+ warning "「单位」与「单位元」"
-    请不要混淆这两个概念．为避免混淆，抽象代数部分将使用「可逆元」的名称代替「单位」．
+???+ warning "\"Đơn vị\" và \"phần tử đơn vị\""
+    Đừng nhầm lẫn hai khái niệm này. Để tránh nhầm lẫn, phần đại số trừu tượng sẽ dùng tên gọi "phần tử khả nghịch" thay cho "đơn vị".
 
-零因子不可能是可逆元，可逆元不可能是零因子．但是，一个非零元素可以既不是零因子，也不是可逆元．
+Ước của không không thể là phần tử khả nghịch, và phần tử khả nghịch không thể là ước của không. Tuy nhiên, một phần tử khác không có thể vừa không phải ước của không, vừa không phải phần tử khả nghịch.
 
-如果一个环没有零因子，就说明所有非零元素的集合在乘法运算下封闭，即 $(R\setminus\{0\},\cdot)$ 构成半群．进一步地，如果还要求它成为交换幺半群，就可以得到整环的定义．
+Nếu một vành không có ước của không, điều đó cho thấy tập hợp tất cả các phần tử khác không đóng dưới phép nhân, tức $(R\setminus\{0\},\cdot)$ tạo thành nửa nhóm. Tiến thêm một bước, nếu yêu cầu nó trở thành vị nhóm giao hoán, ta nhận được định nghĩa miền nguyên.
 
-???+ abstract "整环"
-    对于非零环 $(R,+,\cdot)$，如果它是交换环，有乘法单位元，且无零因子，则称它为整环（integral domain）．
+???+ abstract "Miền nguyên"
+    Với vành khác không $(R,+,\cdot)$, nếu nó là vành giao hoán, có phần tử đơn vị nhân và không có ước của không, thì nó được gọi là **miền nguyên** (integral domain).
 
-虽然整环中的元素不一定存在逆元，但是没有零因子这一特性已经足够在整环上建立消去律．
+Mặc dù các phần tử trong miền nguyên không nhất thiết có nghịch đảo, tính chất không có ước của không đã đủ để thiết lập luật giản ước trên miền nguyên.
 
-???+ note "整环的消去律"
-    设整环 $R$ 有元素 $a,b,c\in R$ 且 $a\neq 0$，如果 $ab=ac$，则必然有 $b=c$．
+???+ note "Luật giản ước trong miền nguyên"
+    Giả sử miền nguyên $R$ có các phần tử $a,b,c\in R$ và $a\neq 0$. Nếu $ab=ac$, thì tất yếu $b=c$.
 
-对于一般的幺环，如果只考虑它的全体可逆元，那么同样可以得到群结构．这称为环的乘法群或是单位群．
+Với một vành có đơn vị tổng quát, nếu chỉ xét toàn bộ các phần tử khả nghịch của nó, ta cũng nhận được cấu trúc nhóm. Cấu trúc này được gọi là nhóm nhân của vành, hay nhóm đơn vị.
 
-???+ abstract "乘法群（单位群）"
-    对于幺环 $(R,+,\cdot)$，设 $R^\times$ 为 $R$ 中全体可逆元的集合，则 $(R^\times,\cdot)$ 构成群，称为幺环 $R$ 的 **乘法群**（multiplicative group），或是 **单位群**（unit group）．
+???+ abstract "Nhóm nhân (nhóm đơn vị)"
+    Với vành có đơn vị $(R,+,\cdot)$, đặt $R^\times$ là tập hợp tất cả các phần tử khả nghịch trong $R$. Khi đó $(R^\times,\cdot)$ tạo thành nhóm, được gọi là **nhóm nhân** (multiplicative group), hay **nhóm đơn vị** (unit group), của vành có đơn vị $R$.
 
-最简单的一些环的例子如下．
+Một số ví dụ đơn giản nhất về vành như sau.
 
-???+ example "环的例子"
-    -   零环（zero ring）：集合 $\{0\}$ 在通常意义的加法 $+$ 和乘法 $\times$ 下构成环，称为零环．它是唯一的只有一个元素的环，也是唯一的加法单位元和乘法单位元相等的环．
-    -   整数环：整数集 $\mathbf Z$ 和其上通常定义的加法 $+$ 和乘法 $\times$ 构成了环 $(\mathbf Z,+,\times)$．实际上，这是一个整环，但是它不是除环．
-    -   多项式环：对于一个环 $R$，可以在上面定义 [多项式环](./ring-theory.md#多项式环)  $R[x]$．如果 $R$ 是整环，则该多项式环必然是整环．
-    -   四元数（quaternion）：类比复数，可以考虑集合 $\mathbf H=\{a+b\mathrm{i}+c\mathrm{j}+d\mathrm{k}:a,b,c,d\in\mathbf R\}$，并且定义其上的加法和乘法，这里，$\mathrm{i},\mathrm{j},\mathrm{k}$ 的乘法运算满足
+???+ example "Ví dụ về vành"
+    -   Vành không (zero ring): tập hợp $\{0\}$ tạo thành vành dưới phép cộng $+$ và phép nhân $\times$ theo nghĩa thông thường, và được gọi là vành không. Nó là vành duy nhất chỉ có một phần tử, đồng thời là vành duy nhất mà phần tử đơn vị cộng bằng phần tử đơn vị nhân.
+    -   Vành số nguyên: tập số nguyên $\mathbf Z$ cùng với phép cộng $+$ và phép nhân $\times$ được định nghĩa thông thường trên nó tạo thành vành $(\mathbf Z,+,\times)$. Thực ra, đây là một miền nguyên, nhưng không phải vành chia.
+    -   Vành đa thức: với một vành $R$, có thể định nghĩa [vành đa thức](./ring-theory.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%8E%AF) $R[x]$ trên nó. Nếu $R$ là miền nguyên, thì vành đa thức này tất yếu là miền nguyên.
+    -   Quaternion: tương tự số phức, có thể xét tập hợp $\mathbf H=\{a+b\mathrm{i}+c\mathrm{j}+d\mathrm{k}:a,b,c,d\in\mathbf R\}$, và định nghĩa phép cộng, phép nhân trên nó. Ở đây, phép nhân của $\mathrm{i},\mathrm{j},\mathrm{k}$ thỏa mãn
     
         $$
         \mathrm{i}^2=\mathrm{j}^2=\mathrm{k}^2=-1,\ \mathrm{i}\mathrm{j}=-\mathrm{j}\mathrm{i}=\mathrm{k},\ \mathrm{j}\mathrm{k}=-\mathrm{k}\mathrm{j}=\mathrm{i},\ \mathrm{k}\mathrm{i}=-\mathrm{i}\mathrm{k}=\mathrm{j}.
         $$
     
-        那么可以验证，$\mathbf H$ 构成环，而且，它是一个非交换的除环．
-    -   整数集的子集 $2\mathbf Z$，在通常意义的加法和乘法下构成环，它是交换环，没有零因子，但是并不含幺．
-    -   整数模 $n$ 同余类 $\mathbf Z/n\mathbf Z$ 在同余类的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）．这样的环含有零因子，当且仅当 $n$ 是合数．所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域．它的乘法群 $((\mathbf Z/n\mathbf Z)^\times,\times)$ 就是整数模 $n$ 乘法群．
-    -   矩阵环：环 $R$ 上的全体 $n$ 维方阵在矩阵的加法和乘法下构成一个环 $M_n(R)$．一般地，这个环有零因子，且不是交换环．
-    -   对于一个集合 $A$ 的全体子集 $\mathcal P(A)$，如果定义集合的对称差 $\triangle$ 和交 $\cap$ 分别为其加法和乘法运算，则 $(\mathcal P(A),\triangle,\cap)$ 构成环．一般地，这个环含幺，有零因子，且是交换环．
+        Khi đó có thể kiểm tra $\mathbf H$ tạo thành một vành, hơn nữa nó là một vành chia không giao hoán.
+    -   Tập con $2\mathbf Z$ của tập số nguyên tạo thành vành dưới phép cộng và phép nhân theo nghĩa thông thường. Nó là vành giao hoán, không có ước của không, nhưng không có phần tử đơn vị nhân.
+    -   Các lớp đồng dư modulo $n$ của số nguyên, $\mathbf Z/n\mathbf Z$, tạo thành vành dưới phép cộng và phép nhân các lớp đồng dư. Nó là vành giao hoán, có đơn vị (tức $\bar 1$). Vành như vậy có ước của không khi và chỉ khi $n$ là hợp số. Vì thế, khi $n$ là số nguyên tố, vành $(\mathbf Z/n\mathbf Z, +,\times)$ là miền nguyên; hơn nữa, khi đó nó cũng là vành chia, nên thực chất nó tạo thành một trường. Nhóm nhân của nó $((\mathbf Z/n\mathbf Z)^\times,\times)$ chính là nhóm nhân các số nguyên modulo $n$.
+    -   Vành ma trận: tất cả các ma trận vuông cấp $n$ trên vành $R$ tạo thành một vành $M_n(R)$ dưới phép cộng và phép nhân ma trận. Nói chung, vành này có ước của không và không phải vành giao hoán.
+    -   Với toàn bộ các tập con $\mathcal P(A)$ của một tập hợp $A$, nếu định nghĩa hiệu đối xứng $\triangle$ của tập hợp và phép giao $\cap$ lần lượt làm phép cộng và phép nhân, thì $(\mathcal P(A),\triangle,\cap)$ tạo thành một vành. Nói chung, vành này có đơn vị, có ước của không và là vành giao hoán.
 
-当然，对于环的结构的讨论远不止这些，要了解更多内容，可以参考 [环论](./ring-theory.md) 或相关书籍．
+Tất nhiên, việc thảo luận về cấu trúc của vành còn vượt xa những nội dung này. Để tìm hiểu thêm, có thể tham khảo [lý thuyết vành](./ring-theory.md) hoặc các sách liên quan.
 
-## 域
+<span id="&#x57DF;"></span>
+## Trường
 
-域是一个比环性质更强的代数结构．具体地，域是交换除环．当然也可以写出它完整的定义．
+Trường là một cấu trúc đại số có tính chất mạnh hơn vành. Cụ thể, trường là vành chia giao hoán. Tất nhiên, ta cũng có thể viết định nghĩa đầy đủ của nó.
 
-???+ abstract "域"
-    对于非空集合 $F$ 和其上的两个二元运算 $+:F\times F\rightarrow F$ 和 $\cdot:F\times F\rightarrow F$，如果它们满足以下性质，则称 $(F,+,\cdot)$ 是一个 **域**（field）：
+???+ abstract "Trường"
+    Với tập hợp khác rỗng $F$ và hai phép toán hai ngôi $+:F\times F\rightarrow F$ và $\cdot:F\times F\rightarrow F$ trên nó, nếu chúng thỏa mãn các tính chất sau, thì $(F,+,\cdot)$ được gọi là một **trường** (field):
     
-    1.  $(F,+)$ 构成 Abel 群，其单位元记作 $0$，元素 $a\in F$ 在 $+$ 下的逆元记作 $-a$．
-    2.  $(F\setminus\{0\},\cdot)$ 构成 Abel 群，其单位元记作 $1$，元素 $a\in F\setminus\{0\}$ 在 $\cdot$ 下的逆元记作 $a^{-1}$．
+    1.  $(F,+)$ tạo thành nhóm Abel, phần tử đơn vị của nó được ký hiệu là $0$, và nghịch đảo của phần tử $a\in F$ theo $+$ được ký hiệu là $-a$.
+    2.  $(F\setminus\{0\},\cdot)$ tạo thành nhóm Abel, phần tử đơn vị của nó được ký hiệu là $1$, và nghịch đảo của phần tử $a\in F\setminus\{0\}$ theo $\cdot$ được ký hiệu là $a^{-1}$.
 
-换句话说，域是对加、减、乘、除四则运算都封闭的代数结构．
+Nói cách khác, trường là cấu trúc đại số đóng đối với cả bốn phép toán cộng, trừ, nhân, chia.
 
-常见的域的例子如下．
+Ví dụ thường gặp về trường như sau.
 
-???+ example "域的例子"
-    -   数域：有理数集 $\mathbf Q$，实数集 $\mathbf R$ 和复数集 $\mathbf C$ 在通常意义的加法和乘法下都构成域．
-    -   有限域（finite field）：以质数 $p$ 为模的整数同余类的集合 $\mathbf Z/p\mathbf Z$ 在同余类的加法和乘法下构成域．当然，除此之外还有其他的有限域，它们的结构由其大小唯一确定，且大小必然是质数幂的形式．
-    -   **分式域**（fraction field）：设 $(R,+,\cdot)$ 为整环，可以考虑形如 $ab^{-1}$ 的元素构成的集合 $Q$．严格地说，在集合 $R\times(R\setminus\{0\})$ 上定义等价关系：$(a_1,b_1)\sim(a_2,b_2)$ 当且仅当 $a_1b_2=a_2b_1$．那么，集合 $Q$ 就是这一关系下的等价类构成的集合 $R\times(R\setminus\{0\})/\sim$，其中，$(a,b)$ 所在等价类就记作 $ab^{-1}$．如果定义它上面的运算为
+???+ example "Ví dụ về trường"
+    -   Trường số: tập số hữu tỷ $\mathbf Q$, tập số thực $\mathbf R$ và tập số phức $\mathbf C$ đều tạo thành trường dưới phép cộng và phép nhân theo nghĩa thông thường.
+    -   Trường hữu hạn (finite field): tập hợp các lớp đồng dư của số nguyên modulo số nguyên tố $p$, $\mathbf Z/p\mathbf Z$, tạo thành trường dưới phép cộng và phép nhân các lớp đồng dư. Tất nhiên, ngoài chúng ra còn có các trường hữu hạn khác; cấu trúc của chúng được xác định duy nhất bởi kích thước, và kích thước đó tất yếu có dạng lũy thừa của một số nguyên tố.
+    -   **Trường phân thức** (fraction field): cho $(R,+,\cdot)$ là một miền nguyên, có thể xét tập hợp $Q$ gồm các phần tử có dạng $ab^{-1}$. Nói một cách chặt chẽ, định nghĩa quan hệ tương đương trên tập $R\times(R\setminus\{0\})$: $(a_1,b_1)\sim(a_2,b_2)$ khi và chỉ khi $a_1b_2=a_2b_1$. Khi đó, $Q$ là tập hợp các lớp tương đương theo quan hệ này, tức $R\times(R\setminus\{0\})/\sim$; trong đó lớp tương đương chứa $(a,b)$ được ký hiệu là $ab^{-1}$. Nếu định nghĩa các phép toán trên nó bởi
     
         $$
         \begin{aligned}
@@ -174,22 +177,23 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
         \end{aligned}
         $$
     
-        则 $(Q,+,\cdot)$ 构成域，称为 $R$ 的分式域．例如，有理数域 $(\mathbf Q,+,\times)$ 就是整数环 $(\mathbf Z,+,\times)$ 的分式域．
-    -   二次域（quadratic field）：它是在有理数域 $\mathbf Q$ 中添加了 $\sqrt d$ 而扩张成的，这里 $d\neq 0,1$ 且没有平方因子．相关内容可以参考 [二次域](../number-theory/quadratic.md)．
+        thì $(Q,+,\cdot)$ tạo thành một trường, gọi là trường phân thức của $R$. Chẳng hạn, trường số hữu tỷ $(\mathbf Q,+,\times)$ chính là trường phân thức của vành số nguyên $(\mathbf Z,+,\times)$.
+    -   Trường bậc hai (quadratic field): đây là trường thu được bằng cách thêm $\sqrt d$ vào trường số hữu tỷ $\mathbf Q$, trong đó $d\neq 0,1$ và $d$ không có thừa số chính phương. Nội dung liên quan có thể tham khảo tại [trường bậc hai](../number-theory/quadratic.md).
 
-域相较于环，拥有着非常简单的加法和乘法结构．所以，域本身的结构往往很简单．这使得域的研究和环的研究大不相同，通常会转而研究域的扩张，以及相应的 Galois 理论．在算法竞赛中，有时会需要在有理数域或者有限域的扩域上进行计算．域论的相关内容，可以参考 [域论](./field-theory.md) 或相关书籍．
+So với vành, trường có cấu trúc cộng và nhân rất đơn giản. Vì thế, cấu trúc của bản thân trường thường khá đơn giản. Điều này làm cho việc nghiên cứu trường và việc nghiên cứu vành rất khác nhau: thông thường người ta chuyển sang nghiên cứu các mở rộng trường và lý thuyết Galois tương ứng. Trong thi đấu thuật toán, đôi khi cần tính toán trên các trường mở rộng của trường số hữu tỷ hoặc trường hữu hạn. Nội dung liên quan đến lý thuyết trường có thể tham khảo tại [lý thuyết trường](./field-theory.md) hoặc các sách liên quan.
 
-## 应用
+<span id="&#x5E94;&#x7528;"></span>
+## Ứng dụng
 
-最后，以下面的题目为例，说明抽象的代数对象是怎样辅助分析具体的问题的．
+Cuối cùng, lấy bài toán dưới đây làm ví dụ để minh họa các đối tượng đại số trừu tượng hỗ trợ phân tích vấn đề cụ thể như thế nào.
 
-???+ note "[【模板】"动态 DP"& 动态树分治（加强版）](https://www.luogu.com.cn/problem/P4751)"
-    给定大小为 $n$ 的带点权的树，进行 $m$ 次点权修改．每次修改后要输出树上最大带权独立集的权值之和．问题强制在线．
+???+ note "[Bài mẫu DP động và phân trị cây động (bản tăng cường)](https://www.luogu.com.cn/problem/P4751)"
+    Cho một cây có $n$ đỉnh, mỗi đỉnh có trọng số, thực hiện $m$ lần sửa đổi trọng số đỉnh. Sau mỗi lần sửa đổi, cần xuất tổng trọng số của tập độc lập có trọng số lớn nhất trên cây. Bài toán bắt buộc online.
 
-???+ note "思路分析"
-    这道题是动态 DP 模板，一种复杂度正确的代码实现需要用到 [全局平衡二叉树](../../ds/global-bst.md)，具体样例代码也在对应页面．这里仅仅结合该题情景，分析建模的过程．
+???+ note "Phân tích ý tưởng"
+    Bài này là mẫu cho DP động. Một cài đặt có độ phức tạp đúng cần dùng [cây nhị phân cân bằng toàn cục](../../ds/global-bst.md); mã mẫu cụ thể cũng nằm ở trang tương ứng. Ở đây chỉ kết hợp với bối cảnh bài toán này để phân tích quá trình mô hình hóa.
     
-    为了突出重点，这里暂不考虑全局平衡二叉树对于树形结构的处理，转而考虑链上的最大带权独立集的 DP 问题．顺次考虑链 $[1,n]$ 上的每个点，对于点 $i$ 可以选（$1$）或不选（$0$）．分别设这两种情形下，$[1,i]$ 上子问题的最优解为 $f_{i,1}$ 和 $f_{i,0}$．所以，可以写出 DP 方程为
+    Để làm nổi bật trọng tâm, tạm thời không xét cách cây nhị phân cân bằng toàn cục xử lý cấu trúc cây, mà chuyển sang xét bài toán DP tập độc lập có trọng số lớn nhất trên một đường thẳng. Xét lần lượt từng điểm trên đường thẳng $[1,n]$; điểm $i$ có thể được chọn ($1$) hoặc không được chọn ($0$). Lần lượt đặt lời giải tối ưu của bài toán con trên $[1,i]$ trong hai trường hợp này là $f_{i,1}$ và $f_{i,0}$. Khi đó có thể viết phương trình DP là
     
     $$
     \begin{aligned}
@@ -198,32 +202,32 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     \end{aligned}
     $$
     
-    它的初值为 $(f_{0,1},f_{0,0})=(0,0)$，而最终答案就是 $\max\{f_{n,1},f_{n,0}\}$．要表示点 $i$ 对于最终结果的影响，只需要注意到这一递归关系可以写作
+    Giá trị đầu là $(f_{0,1},f_{0,0})=(0,0)$, và đáp án cuối cùng là $\max\{f_{n,1},f_{n,0}\}$. Để biểu diễn ảnh hưởng của điểm $i$ lên kết quả cuối cùng, chỉ cần chú ý rằng quan hệ đệ quy này có thể viết thành
     
     $$
     (f_{i,1},f_{i,0})=g(f_{i-1,1},f_{i-1,0};w_i).
     $$
     
-    这是一连串 $\mathbf R^2$ 到 $\mathbf R^2$ 的映射，它将 $(f_{i-1,1},f_{i-1,0})$ 映射到 $(f_{i,1},f_{i,0})$，用群的语言描述，这些变换在映射的复合之下构成幺半群．这正是线段树可以维护的．
+    Đây là một chuỗi các ánh xạ từ $\mathbf R^2$ đến $\mathbf R^2$, ánh xạ $(f_{i-1,1},f_{i-1,0})$ thành $(f_{i,1},f_{i,0})$. Dùng ngôn ngữ của nhóm để mô tả, các phép biến đổi này tạo thành một vị nhóm dưới phép hợp thành ánh xạ. Đây chính là đối tượng mà cây đoạn có thể duy trì.
     
-    但是，这样的含参变换 $g(\cdot;w_i)$ 如果没有特殊的结构，一般的 $\mathbf R^2$ 到 $\mathbf R^2$ 的映射是不可能用有限维的数据描述的．这里就需要另一项观察，即如果在 $\mathbf R\cup\{-\infty\}$ 上，定义 $\max$ 作为加法、$+$ 作为乘法，那么 $\mathbf R\cup\{-\infty\}$ 构成一种类似环的结构，这里，$-\infty$ 是加法单位元，$0$ 是乘法单位元．但是它不是环，因为其中的元素并非都有加法逆元．这样的结构叫做半环[^semiring]，这里 $(\mathbf R\cup\{-\infty\},\max,+)$ 形成的半环叫做 **热带半环**（tropical semiring）．
+    Tuy nhiên, nếu phép biến đổi có tham số $g(\cdot;w_i)$ như vậy không có cấu trúc đặc biệt, một ánh xạ tổng quát từ $\mathbf R^2$ đến $\mathbf R^2$ không thể được mô tả bằng dữ liệu hữu hạn chiều. Ở đây cần một quan sát khác: nếu trên $\mathbf R\cup\{-\infty\}$, ta định nghĩa $\max$ làm phép cộng và $+$ làm phép nhân, thì $\mathbf R\cup\{-\infty\}$ tạo thành một cấu trúc tương tự vành; ở đây, $-\infty$ là phần tử đơn vị cộng, và $0$ là phần tử đơn vị nhân. Nhưng nó không phải vành, vì các phần tử của nó không phải đều có nghịch đảo cộng. Cấu trúc như vậy được gọi là nửa vành[^semiring]; nửa vành $(\mathbf R\cup\{-\infty\},\max,+)$ ở đây được gọi là **nửa vành nhiệt đới** (tropical semiring).
     
-    基于热带半环 $(R,\oplus,\otimes)$，可以定义它上面的矩阵乘法．即对于 $m\times n$ 维矩阵 $A=(a_{ij})$ 和 $n\times p$ 维矩阵 $B=(b_{jk})$，可以定义其乘积 $AB$ 为 $(c_{ik})$，它的每项元素等于
+    Dựa trên nửa vành nhiệt đới $(R,\oplus,\otimes)$, có thể định nghĩa phép nhân ma trận trên nó. Cụ thể, với ma trận $m\times n$ chiều $A=(a_{ij})$ và ma trận $n\times p$ chiều $B=(b_{jk})$, có thể định nghĩa tích $AB$ là $(c_{ik})$, trong đó mỗi phần tử bằng
     
     $$
-    c_{ik} = \bigoplus_{j=1}^n(b_{ij}\otimes c_{jk}) = \max_{1\le j\le n}\;(b_{ij}+c_{jk}).
+    c_{ik} = \bigoplus_{j=1}^n(a_{ij}\otimes b_{jk}) = \max_{1\le j\le n}\;(a_{ij}+b_{jk}).
     $$
     
-    有了这些记号，可以将上述递推关系看作是热带半环上的线性变换，并用矩阵语言写作
+    Với các ký hiệu này, có thể xem quan hệ truy hồi ở trên là một phép biến đổi tuyến tính trên nửa vành nhiệt đới và viết bằng ngôn ngữ ma trận như sau:
     
     $$
     \left(\begin{matrix}f_{i,1}\\f_{i,0}\end{matrix}\right)
     =\left(\begin{matrix}-\infty&w_i\\0&0\end{matrix}\right)\left(\begin{matrix}f_{i-1,1}\\f_{i-1,0}\end{matrix}\right).
     $$
     
-    由此，只要用线段树维护这一热带半环上的矩阵的乘积就可以回答多次修改的链上的动态 DP 问题．
+    Từ đó, chỉ cần dùng cây đoạn để duy trì tích các ma trận trên nửa vành nhiệt đới này là có thể trả lời bài toán DP động trên đường thẳng với nhiều lần sửa đổi.
     
-    现在回到该问题的树上版本．对于树上的节点 $i$，其子节点集合记作 $S(i)$，则该处的 DP 方程为
+    Bây giờ quay lại phiên bản trên cây của bài toán. Với nút $i$ trên cây, ký hiệu tập các nút con của nó là $S(i)$. Khi đó phương trình DP tại đây là
     
     $$
     \begin{aligned}
@@ -232,16 +236,16 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     \end{aligned}
     $$
     
-    首先，通过树链剖分将问题转化为链上版本．设 $h$ 是 $i$ 的重子节点，那么上述递推方程可以写作
+    Trước hết, dùng phân rã cây theo chuỗi nặng để chuyển bài toán về phiên bản trên đường thẳng. Giả sử $h$ là nút con nặng của $i$, khi đó hệ thức truy hồi trên có thể viết thành
     
     $$
     \begin{aligned}
     f_{i,1}&=w_i+f_{h,0}+g_{i,1},\\
-    f_{i,0}&=\max\{f_{j,0},f_{j,1}\}+g_{i,0},
+    f_{i,0}&=\max\{f_{h,0},f_{h,1}\}+g_{i,0},
     \end{aligned}
     $$
     
-    这里，
+    trong đó
     
     $$
     \begin{aligned}
@@ -250,19 +254,20 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     \end{aligned}
     $$
     
-    总结了轻子节点的贡献．根据上文描述，这些变换都可以写作热带半环上的矩阵形式，所以，整个问题也就可以在树剖后的线段树上维护．但是，直接用树剖加线段树的单次修改是 $O(\log^2n)$ 的，所以需要用到上文提到的全局平衡二叉树优化到 $O(\log n)$，当然也可以用 LCT 维护．
+    tóm tắt đóng góp của các nút con nhẹ. Theo mô tả ở trên, các phép biến đổi này đều có thể viết dưới dạng ma trận trên nửa vành nhiệt đới, nên toàn bộ bài toán cũng có thể được duy trì trên cây đoạn sau khi phân rã cây. Tuy nhiên, nếu trực tiếp dùng phân rã cây kết hợp cây đoạn, một lần sửa đổi có độ phức tạp $O(\log^2n)$, nên cần dùng cây nhị phân cân bằng toàn cục đã nhắc ở trên để tối ưu xuống $O(\log n)$; tất nhiên cũng có thể dùng LCT để duy trì.
     
-    这里提到的热带半环以及上面的矩阵运算其实并不罕见．如果将上文中的 $\max$ 换作 $\min$，则相应的热带半环常用于最短路问题中．如果 $n$ 维方阵 $A$ 给出了顶点数目为 $n$ 的某个图的两点间的（最短）边权，那么，$A^k$ 的 $(i,j)$ 处的元素就是自点 $i$ 经至多 $k$ 条边到点 $j$ 的最短距离；特别地，$A^n$ 就是该图的距离矩阵．当然实际实现的时候并不会真的暴力计算这一矩阵的幂，而是使用复杂度为 $O(n^3)$ 的 Floyd 算法．
+    Nửa vành nhiệt đới và các phép toán ma trận trên nó được nhắc tới ở đây thực ra không hiếm gặp. Nếu thay $\max$ ở trên bằng $\min$, nửa vành nhiệt đới tương ứng thường được dùng trong các bài toán đường đi ngắn nhất. Nếu ma trận vuông cấp $n$ là $A$ cho biết trọng số cạnh (ngắn nhất) giữa từng cặp đỉnh của một đồ thị có $n$ đỉnh, thì phần tử tại vị trí $(i,j)$ của $A^k$ là khoảng cách ngắn nhất từ đỉnh $i$ đến đỉnh $j$ qua nhiều nhất $k$ cạnh; đặc biệt, $A^n$ chính là ma trận khoảng cách của đồ thị này. Tất nhiên khi cài đặt thực tế, ta không thật sự tính lũy thừa ma trận này bằng vét cạn, mà dùng thuật toán Floyd với độ phức tạp $O(n^3)$.
 
-## 参考资料与注释
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+## Tài liệu tham khảo và chú thích
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Tropical semiring - Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring)
 
-[^oi-wiki-not-wikipedia]: 因为 [OI Wiki 不是百科全书](../../intro/what-oi-wiki-is-not.md#oi-wiki-不是百科全书)．
+[^oi-wiki-not-wikipedia]: Vì [OI Wiki không phải bách khoa toàn thư](../../intro/what-oi-wiki-is-not.md#oi-wiki-%E4%B8%8D%E6%98%AF%E7%99%BE%E7%A7%91%E5%85%A8%E4%B9%A6).
 
-[^ring-wiki]: [Ring（mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
+[^ring-wiki]: [Ring (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
 
-[^zero-multiplication]: 该式的推导即 $0\cdot a+0 = 0\cdot a = (0+0)\cdot a = 0\cdot a + 0\cdot a$，这里，第一个等号和第二个等号是加法单位元的定义，第三个等号是分配律，最后的蕴涵关系是加法的消去律．另一侧的乘法类似．
+[^zero-multiplication]: Cách suy ra công thức này là $0\cdot a+0 = 0\cdot a = (0+0)\cdot a = 0\cdot a + 0\cdot a$; trong đó đẳng thức thứ nhất và thứ hai đến từ định nghĩa phần tử đơn vị cộng, đẳng thức thứ ba đến từ luật phân phối, và hệ quả cuối cùng đến từ luật giản ước của phép cộng. Phép nhân ở phía còn lại cũng tương tự.
 
-[^semiring]: 半环（semiring）是在幺环的定义中放松了加法运算一定存在逆元的要求，即加法结构是交换幺半群、乘法结构是幺半群的代数结构．更多信息参见 [Wikipedia](https://en.wikipedia.org/wiki/Semiring)．
+[^semiring]: Nửa vành (semiring) là cấu trúc thu được bằng cách nới lỏng yêu cầu phép cộng nhất định phải có nghịch đảo trong định nghĩa vành có đơn vị; tức cấu trúc cộng là vị nhóm giao hoán, còn cấu trúc nhân là vị nhóm. Xem thêm tại [Wikipedia](https://en.wikipedia.org/wiki/Semiring).

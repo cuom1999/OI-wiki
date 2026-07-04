@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-// A permutation.
+// Một hoán vị.
 class Permutation {
   std::vector<int> perm;
 
@@ -20,7 +20,7 @@ class Permutation {
 
   bool empty() const { return perm.empty(); }
 
-  // First LHS then RHS.
+  // Thực hiện vế trái trước, rồi đến vế phải.
   Permutation operator*(const Permutation& rhs) const {
     Permutation res;
     res.perm.resize(std::max(perm.size(), rhs.perm.size()));
@@ -31,7 +31,7 @@ class Permutation {
     return res;
   }
 
-  // First LHS^{-1} then RHS.
+  // Thực hiện nghịch đảo của vế trái trước, rồi đến vế phải.
   Permutation operator/(const Permutation& rhs) const {
     Permutation res;
     res.perm.resize(std::max(perm.size(), rhs.perm.size()));
@@ -42,7 +42,7 @@ class Permutation {
     return res;
   }
 
-  // Inverse.
+  // Hoán vị nghịch đảo.
   Permutation inv() const {
     Permutation res;
     res.perm.resize(perm.size());
@@ -53,15 +53,15 @@ class Permutation {
   }
 };
 
-// A stabilizer chain (a.k.a., BSGS) for a group.
+// Một chuỗi ổn định hóa (còn gọi là BSGS) của một nhóm.
 class PermutationGroup {
   size_t n, k;
-  std::vector<bool> orbit;               // Orbit of the n-th point.
-  std::vector<Permutation> generators;   // Generators.
-  std::vector<Permutation> transversal;  // Inverse of coset representatives.
-  PermutationGroup* next;                // Stabilizer.
+  std::vector<bool> orbit;               // Quỹ đạo của điểm thứ n.
+  std::vector<Permutation> generators;   // Các phần tử sinh.
+  std::vector<Permutation> transversal;  // Nghịch đảo của đại diện lớp kề.
+  PermutationGroup* next;                // Nhóm ổn định hóa.
 
-  // Sift a permutation.
+  // Sàng một hoán vị.
   void sift(Permutation& h) const {
     if (!n) return;
     int i = h[n - 1];
@@ -70,7 +70,7 @@ class PermutationGroup {
     next->sift(h);
   }
 
-  // Add one more element into the transversal.
+  // Thêm một phần tử vào hệ đại diện lớp kề.
   void extend_transversal(Permutation t) {
     int i = t[n - 1];
     if (!orbit[i]) {
@@ -89,17 +89,17 @@ class PermutationGroup {
   PermutationGroup(int n)
       : n(n), k(1), orbit(n), transversal(n), next(nullptr) {
     if (!n) return;
-    // Initialize the current layer.
+    // Khởi tạo tầng hiện tại.
     orbit[n - 1] = true;
     next = new PermutationGroup(n - 1);
   }
 
-  // Destructor.
+  // Hàm hủy.
   ~PermutationGroup() {
     if (next) delete next;
   }
 
-  // Add one more permutation into the group.
+  // Thêm một hoán vị vào nhóm.
   void extend(Permutation g) {
     sift(g);
     if (g.empty()) return;
@@ -111,13 +111,13 @@ class PermutationGroup {
     }
   }
 
-  // Check whether a permutation belongs to the group.
+  // Kiểm tra một hoán vị có thuộc nhóm hay không.
   bool membership_test(Permutation h) const {
     sift(h);
     return h.empty();
   }
 
-  // Return the size of the group.
+  // Trả về kích thước của nhóm.
   long long size() const { return n ? next->size() * k : 1LL; }
 };
 
@@ -125,16 +125,16 @@ int main() {
   int n, m;
   std::cin >> n >> m;
   PermutationGroup group(n);
-  // Read permutations and insert them to the group.
+  // Đọc các hoán vị và thêm chúng vào nhóm.
   std::vector<int> vec(n);
   for (; m; --m) {
     for (int& x : vec) {
       std::cin >> x;
-      --x;  // Index starting at 0.
+      --x;  // Chỉ số bắt đầu từ 0.
     }
     group.extend(Permutation(vec));
   }
-  // Output the size of the group.
+  // In kích thước của nhóm.
   std::cout << group.size();
   return 0;
 }

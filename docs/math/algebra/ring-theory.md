@@ -1,66 +1,69 @@
-前置知识：[抽象代数基本概念](./basic.md)、[群论](./group-theory.md)
+Kiến thức chuẩn bị: [các khái niệm cơ bản của đại số trừu tượng](./basic.md), [lý thuyết nhóm](./group-theory.md)
 
-## 引入
+<span id="&#24341;&#20837;"></span>
+## Dẫn nhập
 
-**环论**（ring theory）研究形形色色的环．
+**Lý thuyết vành** (ring theory) nghiên cứu các loại vành và cấu trúc của chúng.
 
-本文涉及的环论的内容，与数论中的整除理论密不可分．首先，类似群论中的正规子群，本文首先介绍环同态的核，它称作环的理想；其实，这是数论中的数的概念在一般环的推广．然后，考虑将整数环上的素数、辗转相除法、质因子分解等概念推广到一般的环上，就有了不同类型的整环的概念．
+Nội dung lý thuyết vành trong bài này gắn chặt với lý thuyết chia hết trong số học. Trước hết, tương tự nhóm con chuẩn tắc trong lý thuyết nhóm, bài này giới thiệu hạt nhân của đồng cấu vành; đó chính là iđêan của vành. Có thể xem iđêan là sự khái quát của khái niệm bội số trong số học lên một vành tổng quát. Sau đó, khi khái quát các khái niệm như số nguyên tố, thuật toán Euclid và phân tích thừa số nguyên tố từ vành số nguyên sang các vành tổng quát, ta thu được nhiều loại miền nguyên khác nhau.
 
-数论中的很多结论在其它常见的环上，都依然成立．可以说，环论的一部分工作，就是在讨论使得这些数论中的结论在一般的环上能否成立；如果不能，需要给环施加怎样的限制才能够使这些结论成立．
+Nhiều kết luận trong số học vẫn đúng trên các vành thường gặp khác. Có thể nói, một phần nhiệm vụ của lý thuyết vành là xác định liệu các kết luận số học ấy còn đúng trên vành tổng quát hay không; nếu không, cần bổ sung điều kiện nào lên vành để chúng đúng.
 
-???+ info "记号"
-    在不引起歧义时，本文可能会省略掉环的乘法记号，并且会将环 $(R,+,\cdot)$ 写作环 $R$．环 $R$ 中，加法单位元也称作零元，记作 $0$；乘法单位元也称作幺元，记作 $1$．
+???+ info "Ký hiệu"
+    Khi không gây nhầm lẫn, bài này có thể lược bỏ ký hiệu nhân của vành và viết vành $(R,+,\cdot)$ đơn giản là vành $R$. Trong vành $R$, đơn vị cộng cũng được gọi là phần tử không, ký hiệu là $0$; đơn vị nhân cũng được gọi là phần tử đơn vị, ký hiệu là $1$.
 
-??? warning "本文的环的定义不要求有幺元"
-    注意，本文的环的定义不要求含幺．有些文章要求环的定义含幺，则本文部分结论的叙述需要稍作调整．比如说，本文中理想可以基于子环定义，但是其它文章中可能需要基于加法子群定义．
+??? warning "Định nghĩa vành trong bài này không yêu cầu có đơn vị"
+    Lưu ý rằng định nghĩa vành trong bài này không yêu cầu vành phải có đơn vị. Một số tài liệu yêu cầu vành phải có đơn vị; khi đó, phát biểu của một số kết luận trong bài này cần điều chỉnh đôi chút. Chẳng hạn, trong bài này iđêan có thể được định nghĩa dựa trên vành con, còn trong các tài liệu khác có thể phải định nghĩa dựa trên nhóm con cộng.
 
-## 理想
+<span id="&#29702;&#24819;"></span>
+## Iđêan
 
-类似群的情形，可以建立子环和环同态的概念．
+Tương tự trường hợp của nhóm, ta có thể xây dựng các khái niệm vành con và đồng cấu vành.
 
-???+ abstract "子环"
-    对于环 $(R,+,\cdot)$ 和它的子集 $S$，如果 $(S,+,\cdot)$ 也是一个环，则称 $S$ 是 $R$ 的 **子环**（subring）．
+???+ abstract "Vành con"
+    Với vành $(R,+,\cdot)$ và một tập con $S$ của nó, nếu $(S,+,\cdot)$ cũng là một vành, thì $S$ được gọi là **vành con** (subring) của $R$.
 
-???+ example "例子：整数环 $\mathbf Z$"
-    对于任何整数 $n$，都有 $n\mathbf Z=\{nk:k\in\mathbf Z\}$ 是 $\mathbf Z$ 的一个子环．
+???+ example "Ví dụ: vành số nguyên $\mathbf Z$"
+    Với mọi số nguyên $n$, ta có $n\mathbf Z=\{nk:k\in\mathbf Z\}$ là một vành con của $\mathbf Z$.
 
-???+ abstract "环同态"
-    对于环 $(R,+,\cdot)$ 和 $(S,\oplus,\odot)$，如果 $\pi$ 保持环的加法和乘法运算，即对所有 $r_1,r_2\in R$ 都成立 $\pi(r_1+r_2)=\pi(r_1)\oplus\pi(r_2)$ 和 $\pi(r_1\cdot r_2)=\pi(r_1)\odot\pi(r_2)$，则称映射 $\pi:R\rightarrow S$ 是自环 $R$ 到环 $S$ 的 **同态**（homomorphism）．
+???+ abstract "Đồng cấu vành"
+    Với hai vành $(R,+,\cdot)$ và $(S,\oplus,\odot)$, nếu ánh xạ $\pi$ bảo toàn phép cộng và phép nhân của vành, tức là với mọi $r_1,r_2\in R$ đều có $\pi(r_1+r_2)=\pi(r_1)\oplus\pi(r_2)$ và $\pi(r_1\cdot r_2)=\pi(r_1)\odot\pi(r_2)$, thì $\pi:R\rightarrow S$ được gọi là một **đồng cấu** (homomorphism) từ vành $R$ đến vành $S$.
 
-??? info "环的定义要求含幺的情形"
-    如果环的定义要求含有幺元，那么，环同态的定义也常常要求将幺元映射至幺元．对于非零幺环间的同态来说，这个额外的要求仅仅是保证了同态不会将整个幺环映射到零元．
+??? info "Trường hợp định nghĩa vành yêu cầu có đơn vị"
+    Nếu định nghĩa vành yêu cầu có phần tử đơn vị, thì định nghĩa đồng cấu vành cũng thường yêu cầu ánh xạ phần tử đơn vị đến phần tử đơn vị. Đối với đồng cấu giữa các vành có đơn vị khác không, điều kiện bổ sung này nhằm tránh trường hợp đồng cấu ánh xạ toàn bộ vành có đơn vị về phần tử không.
 
-???+ example "例子：整数环 $\mathbf Z$（续）"
-    对任何非零整数 $n$ 取模的映射，即 $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$，其中，$\pi(a)=\bar a$，都是环同态．
+???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
+    Với mọi số nguyên khác không $n$, ánh xạ lấy phần dư modulo $n$, tức $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$ với $\pi(a)=\bar a$, đều là đồng cấu vành.
 
-对群同态的核和像的 [讨论](./group-theory.md#群同态) 可以几乎原封不动地搬到此处．同态的像的（相对）大小决定了同态是否是满射，而同态的核的平凡与否则决定了同态是否是单射．环同态的核定义如下：
+Phần [thảo luận](./group-theory.md#%E7%BE%A4%E5%90%8C%E6%80%81) về hạt nhân và ảnh của đồng cấu nhóm gần như có thể chuyển nguyên vẹn sang đây. Ảnh của đồng cấu quyết định đồng cấu có toàn ánh hay không, còn việc hạt nhân có tầm thường hay không quyết định đồng cấu có đơn ánh hay không. Hạt nhân của đồng cấu vành được định nghĩa như sau:
 
-???+ abstract "同态的核"
-    自环 $R$ 到环 $S$ 的同态 $\pi:R\rightarrow S$ 的 **核**（kernel）是 $\{r\in R:\pi(r)=0\}$，记作 $\ker\pi$，其中，$0$ 是 $S$ 的加法单位元．
+???+ abstract "Hạt nhân của đồng cấu"
+    **Hạt nhân** (kernel) của đồng cấu $\pi:R\rightarrow S$ từ vành $R$ đến vành $S$ là $\{r\in R:\pi(r)=0\}$, ký hiệu là $\ker\pi$, trong đó $0$ là đơn vị cộng của $S$.
 
-显然，环同态的核和像都是子环．反过来，并不是所有子环都可以成为某个环同态的核．能够成为环同态的核的子环称为环的理想．
+Rõ ràng, hạt nhân và ảnh của đồng cấu vành đều là vành con. Ngược lại, không phải mọi vành con đều có thể trở thành hạt nhân của một đồng cấu vành nào đó. Những vành con có thể xuất hiện dưới dạng hạt nhân của đồng cấu vành được gọi là iđêan của vành.
 
-???+ abstract "理想"
-    对于环 $R$ 和它的子环 $I$，则称 $I$ 是 $R$ 的
+???+ abstract "Iđêan"
+    Với vành $R$ và vành con $I$ của nó, ta gọi $I$ là
     
-    -   **左理想**（left ideal），如果对于所有 $r\in R$，都有 $rI\subseteq I$，这里，$rI=\{ra:a\in I\}$；
-    -   **右理想**（left ideal），如果对于所有 $r\in R$，都有 $Ir\subseteq I$，这里，$Ir=\{ar:a\in I\}$；
-    -   **理想**（ideal），如果 $I$ 既是 $R$ 的左理想，也是 $R$ 的右理想．
+    -   **iđêan trái** (left ideal), nếu với mọi $r\in R$ đều có $rI\subseteq I$, trong đó $rI=\{ra:a\in I\}$;
+    -   **iđêan phải** (right ideal), nếu với mọi $r\in R$ đều có $Ir\subseteq I$, trong đó $Ir=\{ar:a\in I\}$;
+    -   **iđêan** (ideal), nếu $I$ vừa là iđêan trái vừa là iđêan phải của $R$.
 
-这里要求理想 $I$ 对环 $R$ 的左乘和右乘都封闭．这个条件是自然的．因为，理想中的元素在环同态中会映射到零元，而任何数左乘或右乘以零都应该等于零，这就是所要求的封闭性．除此之外，因为环的加法结构是 Abel 群，任何子群都是正规子群；而环的乘法结构又十分原始，不会对子结构施加额外的限制．这就说明，对左乘和右乘封闭这个条件也是充分的．
+Ở đây ta yêu cầu iđêan $I$ đóng dưới phép nhân trái và phép nhân phải bởi các phần tử của vành $R$. Điều kiện này rất tự nhiên. Các phần tử trong iđêan sẽ được ánh xạ về phần tử không dưới một đồng cấu vành, mà phần tử không nhân trái hay nhân phải với bất kỳ phần tử nào cũng vẫn là phần tử không; đó chính là tính đóng cần có. Ngoài ra, cấu trúc cộng của vành là nhóm Abel nên mọi nhóm con đều là nhóm con chuẩn tắc; còn cấu trúc nhân của vành khá yếu, không tự áp đặt thêm ràng buộc nào lên cấu trúc con. Điều này cho thấy điều kiện đóng dưới nhân trái và nhân phải cũng là đủ.
 
-???+ example "例子：整数环 $\mathbf Z$（续）"
-    作为例子，前面提到的子环 $n\mathbf Z$ 其实是 $\mathbf Z$ 的理想．它是所有 $n$ 的倍数构成的集合．一个 $n$ 的倍数，与任何整数相乘，都会得到 $n$ 的倍数．事实上，$\mathbf Z$ 的全部理想都是这样的形式，这样的环称为 [主理想整环](#主理想整环)．对于一般的环，有些理想并不是某个元素的倍数的集合；这样的一般的环的存在，也正是研究理想（而不是简单地研究倍数）的最初动机[^ideal-history]．
+???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
+    Chẳng hạn, vành con $n\mathbf Z$ đã nhắc ở trên thực ra là một iđêan của $\mathbf Z$. Nó là tập hợp tất cả bội của $n$. Một bội của $n$ khi nhân với bất kỳ số nguyên nào vẫn là một bội của $n$. Trên thực tế, mọi iđêan của $\mathbf Z$ đều có dạng này; những vành như vậy được gọi là [miền iđêan chính](#mien-ide-an-chinh). Đối với vành tổng quát, một số iđêan không phải là tập các bội của một phần tử nào đó; sự tồn tại của các vành như vậy cũng là động cơ ban đầu để nghiên cứu iđêan, thay vì chỉ nghiên cứu bội số[^ideal-history].
 
-### 商环
+<span id="&#21830;&#29615;"></span>
+### Vành thương
 
-和群一样，基于环的理想，可以在全体（加法群意义上的）陪集的集合上定义 **商环**（quotient ring）．考虑集合
+Tương tự trường hợp nhóm, dựa trên iđêan của vành, ta có thể định nghĩa **vành thương** (quotient ring) trên tập tất cả các lớp kề theo nghĩa nhóm cộng. Xét tập
 
 $$
 R/I=\{a+I:a\in R\},
 $$
 
-这里，陪集 $a+I=\{a+b:b\in I\}$．可以证明当且仅当 $I$ 是理想时，运算
+trong đó lớp kề $a+I=\{a+b:b\in I\}$. Có thể chứng minh rằng khi và chỉ khi $I$ là iđêan thì các phép toán
 
 $$
 \begin{aligned}
@@ -69,45 +72,46 @@ $$
 \end{aligned}
 $$
 
-是良定义的，即这些运算的结果和陪集中代表元的选取无关．在这些运算下，$R/I$ 构成环．再次和群的情形一致，可以建立环的 **第一同构定理**（first isomorphism theorem），并存在环到其商环的自然同态．这些证明，环的理想和群的正规子群，在相应结构的同态中起到了一样的作用．
+là xác định tốt, tức là kết quả của các phép toán không phụ thuộc vào cách chọn đại diện trong lớp kề. Dưới các phép toán này, $R/I$ tạo thành một vành. Cũng như với nhóm, ta có thể xây dựng **định lý đẳng cấu thứ nhất** (first isomorphism theorem) cho vành, và tồn tại đồng cấu tự nhiên từ vành đến vành thương của nó. Những điều này cho thấy iđêan của vành và nhóm con chuẩn tắc của nhóm giữ cùng một vai trò trong đồng cấu của các cấu trúc tương ứng.
 
-???+ note "第一同构定理"
-    设 $\pi:R\rightarrow S$ 是自环 $R$ 到环 $S$ 的同态，则 $\ker\pi$ 是 $R$ 的理想，且 $R/\ker\pi\cong\pi(R)$ 是 $S$ 的子环．
+???+ note "Định lý đẳng cấu thứ nhất"
+    Cho $\pi:R\rightarrow S$ là đồng cấu từ vành $R$ đến vành $S$. Khi đó $\ker\pi$ là một iđêan của $R$, và $R/\ker\pi\cong\pi(R)$ là một vành con của $S$.
 
-???+ abstract "自然同态"
-    对于环 $R$ 和它的理想 $I$，则由 $\pi(r)=r+I$ 给出的映射 $\pi:R\rightarrow R/I$ 是自 $R$ 到 $R/I$ 的满同态，称为自环 $R$ 到商环 $R/I$ 的 **自然同态**（natural homomorphism）．
+???+ abstract "Đồng cấu tự nhiên"
+    Với vành $R$ và iđêan $I$ của nó, ánh xạ $\pi:R\rightarrow R/I$ cho bởi $\pi(r)=r+I$ là một đồng cấu toàn ánh từ $R$ đến $R/I$, gọi là **đồng cấu tự nhiên** (natural homomorphism) từ vành $R$ đến vành thương $R/I$.
 
-???+ example "例子：整数环 $\mathbf Z$（续）"
-    作为例子，整数模 $n$ 的同余类构成的环 $\mathbf Z/n\mathbf Z$ 是 $\mathbf Z$ 模它的理想 $n\mathbf Z$ 得到的商环．这也解释了符号 $\mathbf Z/n\mathbf Z$ 的含义．上面提到的模 $n$ 的映射 $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$ 就是这里提到的自然映射，相应的核正是理想 $n\mathbf Z$．
+???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
+    Chẳng hạn, vành $\mathbf Z/n\mathbf Z$ gồm các lớp đồng dư modulo $n$ của số nguyên là vành thương thu được khi lấy $\mathbf Z$ modulo iđêan $n\mathbf Z$ của nó. Điều này cũng giải thích ý nghĩa của ký hiệu $\mathbf Z/n\mathbf Z$. Ánh xạ modulo $n$ đã nhắc ở trên, $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$, chính là ánh xạ tự nhiên ở đây, và hạt nhân tương ứng chính là iđêan $n\mathbf Z$.
 
-在环的情形，同样成立其他同构定理．
+Trong trường hợp vành, các định lý đẳng cấu khác cũng đúng.
 
-???+ note "第二同构定理"
-    设环 $R$ 有子环 $A$ 和理想 $B$，那么 $A+B=\{a+b:a\in A,b\in B\}$ 同样是 $R$ 的子环，而 $A\cap B$ 是 $A$ 的理想，$B$ 是 $A+B$ 的理想，并且 $(A+B)/B\cong A/(A\cap B)$．
+???+ note "Định lý đẳng cấu thứ hai"
+    Giả sử vành $R$ có vành con $A$ và iđêan $B$. Khi đó $A+B=\{a+b:a\in A,b\in B\}$ cũng là vành con của $R$, còn $A\cap B$ là iđêan của $A$, $B$ là iđêan của $A+B$, và $(A+B)/B\cong A/(A\cap B)$.
 
-???+ note "第三同构定理"
-    设环 $R$ 有理想 $I,J$ 且 $I\subseteq J$，那么 $J/I$ 也是 $R/I$ 的理想，并且 $(R/I)/(J/I)\cong R/J$．
+???+ note "Định lý đẳng cấu thứ ba"
+    Giả sử vành $R$ có các iđêan $I,J$ và $I\subseteq J$. Khi đó $J/I$ cũng là iđêan của $R/I$, và $(R/I)/(J/I)\cong R/J$.
 
-???+ note "对应定理"
-    设环 $R$ 有理想 $I$，则全体包含 $I$ 的环 $R$ 的子环 $\mathcal S=\{S:I\subseteq S\subseteq R\}$ 和商群 $R/I$ 的全体子群 $\mathcal T=\{T:T\le R/I\}$ 之间存在双射 $\varphi:\mathcal S\rightarrow\mathcal T$，它将 $S\in\mathcal S$ 映射至 $S/I\in\mathcal T$．这个双射保持子环的包含关系，且环 $R$ 的理想总是映射到 $R/I$ 的理想．
+???+ note "Định lý tương ứng"
+    Giả sử vành $R$ có iđêan $I$. Khi đó tồn tại song ánh $\varphi:\mathcal S\rightarrow\mathcal T$ giữa tập tất cả vành con của $R$ chứa $I$, $\mathcal S=\{S:I\subseteq S\subseteq R\}$, và tập tất cả nhóm con của nhóm thương $R/I$, $\mathcal T=\{T:T\le R/I\}$; song ánh này gửi $S\in\mathcal S$ đến $S/I\in\mathcal T$. Song ánh này bảo toàn quan hệ bao hàm giữa các vành con, và iđêan của vành $R$ luôn được ánh xạ thành iđêan của $R/I$.
 
-这些定理在后文中讨论环和理想的结构时将起到基础的作用．
+Các định lý này sẽ đóng vai trò nền tảng khi ta thảo luận về cấu trúc của vành và iđêan ở các phần sau.
 
-### 理想的运算
+<span id="&#29702;&#24819;&#30340;&#36816;&#31639;"></span>
+### Các phép toán trên iđêan
 
-环的理想上可以定义各种运算．这类似于整数的整除结构上可以定义最大公约数、最小公倍数等概念．
+Có thể định nghĩa nhiều phép toán khác nhau trên các iđêan của một vành. Điều này tương tự việc định nghĩa các khái niệm như ước chung lớn nhất, bội chung nhỏ nhất trong cấu trúc chia hết của số nguyên.
 
-???+ abstract "理想的运算"
-    设环 $R$ 有理想 $I,J$，可以定义如下运算：
+???+ abstract "Các phép toán trên iđêan"
+    Giả sử vành $R$ có các iđêan $I,J$. Ta có thể định nghĩa các phép toán sau:
     
-    -   理想的 **和**（sum）：$I+J=\{a+b:a\in I,b\in J\}$；
-    -   理想的 **乘积**（product）：$IJ=\{\sum_{i=1}^na_ib_i:a_i\in I,b_i\in J\}$，即全体 $ab$ 形式乘积的有限和构成的集合；
-    -   理想的 **交**（intersection）：$I\cap J$．
+    -   **tổng** (sum) của iđêan: $I+J=\{a+b:a\in I,b\in J\}$;
+    -   **tích** (product) của iđêan: $IJ=\{\sum_{i=1}^na_ib_i:a_i\in I,b_i\in J\}$, tức là tập các tổng hữu hạn của những tích có dạng $ab$;
+    -   **giao** (intersection) của iđêan: $I\cap J$.
 
-容易验证，这些运算的结果都依然是环的理想．
+Dễ kiểm tra rằng kết quả của các phép toán này vẫn là iđêan của vành.
 
-???+ example "例子：整数环 $\mathbf Z$（续）"
-    考虑整数环 $\mathbf Z$ 的情形．对于理想 $n\mathbf Z$ 和 $m\mathbf Z$，可以得到
+???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
+    Xét trường hợp vành số nguyên $\mathbf Z$. Với các iđêan $n\mathbf Z$ và $m\mathbf Z$, ta có
     
     $$
     \begin{aligned}
@@ -117,82 +121,85 @@ $$
     \end{aligned}
     $$
 
-一般地，对于环 $R$ 和它的理想 $I$ 和 $J$，总有
+Nói chung, với vành $R$ và các iđêan $I,J$ của nó, luôn có
 
 $$
 IJ\subseteq I\cap J\subseteq I,J\subseteq I+J.
 $$
 
-利用这些定义，可以将整数的中国剩余定理推广到一般的环上．但在此之前，还需要进一步将诸如素数和互素等概念推广到一般的环上．
+Dùng các định nghĩa này, ta có thể khái quát định lý số dư Trung Hoa từ số nguyên sang vành tổng quát. Trước đó, cần tiếp tục khái quát các khái niệm như nguyên tố và nguyên tố cùng nhau lên vành tổng quát.
 
-### 极大理想
+<span id="&#26497;&#22823;&#29702;&#24819;"></span>
+### Iđêan cực đại
 
-通过环的理想的结构，可以理解环的性质．
+Thông qua cấu trúc iđêan của vành, ta có thể hiểu các tính chất của vành.
 
-非零环 $R$ 总有两个平凡的理想，即 $\{0\}$ 和 $R$．如果环 $R$ 还是交换的，那么只有这两个理想的环能且只能是域[^simple-ring]．
+Vành khác không $R$ luôn có hai iđêan tầm thường, là $\{0\}$ và $R$. Nếu $R$ còn là vành giao hoán, thì $R$ chỉ có hai iđêan này khi và chỉ khi nó là trường[^simple-ring].
 
-???+ note "定理"
-    设 $R$ 是交换的非零幺环，那么 $R$ 是域，当且仅当 $R$ 只有平凡理想 $\{0\}$ 和 $R$．
+???+ note "Định lý"
+    Cho $R$ là vành giao hoán có đơn vị, khác không. Khi đó $R$ là trường khi và chỉ khi $R$ chỉ có các iđêan tầm thường $\{0\}$ và $R$.
 
-??? note "证明"
-    如果 $R$ 是域，则对于任何非零理想 $I$ 都可以任取非零元素 $a\in I$，于是，任何域中的元素 $r\in R$ 都有 $r=(ra^{-1})a\in (ra^{-1})I\subseteq I$，故而 $I=R$．反过来，对于任何 $a\in R$ 且 $a\neq 0$，可以验证 $aR=\{ar:r\in R\}$ 是理想，它必然等于 $R$，因而存在 $b\in R$ 使得 $ab=1$，这就说明 $a$ 存在逆元，故而有 $R$ 是域．
+??? note "Chứng minh"
+    Nếu $R$ là trường, thì với mọi iđêan khác không $I$, lấy một phần tử khác không $a\in I$. Khi đó với mọi phần tử $r\in R$, ta có $r=(ra^{-1})a\in (ra^{-1})I\subseteq I$, suy ra $I=R$. Ngược lại, với mọi $a\in R$ và $a\neq 0$, có thể kiểm tra $aR=\{ar:r\in R\}$ là một iđêan, nên nó phải bằng $R$. Vì vậy tồn tại $b\in R$ sao cho $ab=1$, tức là $a$ có nghịch đảo. Do đó $R$ là trường.
 
-这里交换环的条件是必要的；不然，需要同时限制左理想和右理想都是平凡的，才能保证环是除环．
+Điều kiện giao hoán ở đây là cần thiết; nếu không, phải đồng thời yêu cầu mọi iđêan trái và iđêan phải đều tầm thường mới bảo đảm vành là vành chia.
 
-这里的结论可以推广到环本身不是域的情形．但是，此时需要转而考虑商环，讨论交换非零幺环的商环是域的条件．商环 $R/I$ 是域，这意味着商环 $R/I$ 中只有平凡理想，根据对应定理可知，原来的环 $R$ 中没有严格介于模掉的理想 $I$ 和原来的环 $R$ 之间的理想．这样的理想 $I$ 称为极大理想．
+Kết luận trên có thể khái quát cho trường hợp bản thân vành không phải là trường. Tuy nhiên, lúc này cần chuyển sang xét vành thương, tức là thảo luận điều kiện để vành thương của một vành giao hoán có đơn vị, khác không là trường. Vành thương $R/I$ là trường nghĩa là $R/I$ chỉ có các iđêan tầm thường; theo định lý tương ứng, điều này có nghĩa là trong vành ban đầu $R$ không có iđêan nào nằm nghiêm ngặt giữa iđêan bị lấy modulo $I$ và toàn bộ vành $R$. Những iđêan $I$ như vậy được gọi là iđêan cực đại.
 
-???+ abstract "极大理想"
-    对于环 $R$ 和它的理想 $M$，如果 $M\neq R$，且包含 $M$ 的 $R$ 的理想只有 $M$ 和 $R$ 两个，则称理想 $M$ 是一个 **极大理想**（maximal ideal）．
+???+ abstract "Iđêan cực đại"
+    Với vành $R$ và iđêan $M$ của nó, nếu $M\neq R$ và các iđêan của $R$ chứa $M$ chỉ có hai iđêan $M$ và $R$, thì iđêan $M$ được gọi là một **iđêan cực đại** (maximal ideal).
 
-???+ note "定理"
-    设交换非零幺环 $R$ 有理想 $M$，那么商环 $R/M$ 是域，当且仅当 $M$ 是极大理想．
+???+ note "Định lý"
+    Giả sử vành giao hoán có đơn vị, khác không $R$ có iđêan $M$. Khi đó vành thương $R/M$ là trường khi và chỉ khi $M$ là iđêan cực đại.
 
-???+ example "例子：整数环 $\mathbf Z$（续）"
-    例如，整数环 $\mathbf Z$ 中的理想 $n\mathbf Z$ 是极大理想，当且仅当 $n$ 是素数．对于素数 $p$，商环 $\mathbf Z/p\mathbf Z$ 是域，也记作 $\mathbf F_p$．
+???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
+    Chẳng hạn, iđêan $n\mathbf Z$ trong vành số nguyên $\mathbf Z$ là iđêan cực đại khi và chỉ khi $n$ là số nguyên tố. Với số nguyên tố $p$, vành thương $\mathbf Z/p\mathbf Z$ là trường, cũng được ký hiệu là $\mathbf F_p$.
 
-并不是所有的环都有极大理想，但是非零幺环中总是有极大理想．
+Không phải mọi vành đều có iđêan cực đại, nhưng trong vành có đơn vị khác không thì iđêan cực đại luôn tồn tại.
 
-???+ note "定理（Krull）"
-    对于非零幺环 $R$ 的理想 $I\neq R$，总有 $R$ 的极大理想 $M$ 使得 $I\subseteq M$ 成立．
+???+ note "Định lý (Krull)"
+    Với iđêan $I\neq R$ của vành có đơn vị khác không $R$, luôn tồn tại iđêan cực đại $M$ của $R$ sao cho $I\subseteq M$.
 
-??? note "证明"
-    思路是利用 Zorn 引理．考察全体包含 $I$ 的 $R$ 的真理想（即不等于 $R$ 的理想）的集合 $\mathcal S$．因为 $I\in\mathcal S$，它非空，且在包含关系下形成偏序集．对于其中的任何链 $J_0\subseteq J_1\subseteq\cdots\subseteq J_n\subseteq\cdots$，设它们的并集为 $J$，则容易验证这也是理想．而且，$J\neq R$，否则 $1\in J$，亦即存在 $n$ 使得 $1\in J_n$，这与 $J_n$ 是真理想相矛盾．由此，依 Zorn 引理，存在极大理想 $M\supseteq I$．
+??? note "Chứng minh"
+    Ý tưởng là dùng bổ đề Zorn. Xét tập $\mathcal S$ gồm tất cả iđêan thực sự của $R$ chứa $I$ (tức là các iđêan khác $R$). Vì $I\in\mathcal S$, tập này khác rỗng, và nó tạo thành một tập sắp thứ tự bộ phận theo quan hệ bao hàm. Với bất kỳ dây chuyền nào trong đó, $J_0\subseteq J_1\subseteq\cdots\subseteq J_n\subseteq\cdots$, gọi hợp của chúng là $J$; dễ kiểm tra $J$ cũng là iđêan. Hơn nữa, $J\neq R$, nếu không $1\in J$, tức là tồn tại $n$ sao cho $1\in J_n$, mâu thuẫn với việc $J_n$ là iđêan thực sự. Do đó, theo bổ đề Zorn, tồn tại iđêan cực đại $M\supseteq I$.
 
-极大理想，类比到整除理论中就是不可约元．这是因为，理想的包含关系就是整数的整除关系；没有作为超集的理想，就相当于没有可以除尽的因子．但是，极大理想的概念比不可约元更为宽泛，这是因为并不是所有的理想都是主理想．
+Nếu đối chiếu với lý thuyết chia hết, iđêan cực đại tương tự phần tử bất khả quy. Lý do là quan hệ bao hàm giữa các iđêan chính là quan hệ chia hết của số nguyên; việc không còn iđêan nào chứa nó một cách thực sự tương ứng với việc không còn nhân tử không tầm thường. Tuy nhiên, khái niệm iđêan cực đại rộng hơn phần tử bất khả quy, vì không phải mọi iđêan đều là iđêan chính.
 
-### 素理想
+<span id="&#32032;&#29702;&#24819;"></span>
+### Iđêan nguyên tố
 
-域的条件比整环的更为苛刻．能够确保商环是整环的理想称为素理想，它类似于整除理论中的素数的概念．
+Điều kiện để là trường mạnh hơn điều kiện để là miền nguyên. Iđêan bảo đảm vành thương là miền nguyên được gọi là iđêan nguyên tố; nó tương tự khái niệm số nguyên tố trong lý thuyết chia hết.
 
-???+ abstract "素理想"
-    对于交换环 $R$ 和它的理想 $P$，如果 $P\neq R$，且对于环中任意元素 $a,b\in R$，每当 $ab\in P$ 成立时总有 $a\in P$ 或 $b\in P$，则称理想 $P$ 是一个 **素理想**（prime ideal）．
+???+ abstract "Iđêan nguyên tố"
+    Với vành giao hoán $R$ và iđêan $P$ của nó, nếu $P\neq R$ và với mọi phần tử $a,b\in R$, hễ $ab\in P$ thì luôn có $a\in P$ hoặc $b\in P$, thì iđêan $P$ được gọi là một **iđêan nguyên tố** (prime ideal).
 
-这个定义看起来稍显突兀，但是对比 [素数的定义](../number-theory/basic.md#算术基本定理)，这个素理想的定义也是自然的．
+Định nghĩa này thoạt nhìn có vẻ đột ngột, nhưng nếu so sánh với [định nghĩa số nguyên tố](../number-theory/basic.md#%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86), ta thấy nó rất tự nhiên.
 
-???+ note "定理"
-    设交换非零幺环 $R$ 有理想 $P$，那么商环 $R/P$ 是整环，当且仅当 $P$ 是素理想．
+???+ note "Định lý"
+    Giả sử vành giao hoán có đơn vị, khác không $R$ có iđêan $P$. Khi đó vành thương $R/P$ là miền nguyên khi và chỉ khi $P$ là iđêan nguyên tố.
 
-??? note "证明"
-    对于交换非零幺环 $R$，商环 $R/P$ 是整环，当且仅当 $R/P$ 没有零因子．将陪集 $a+P$ 记作 $\bar a$．商环 $R/P$ 没有零因子，就等价于 $\bar a\bar b=\bar 0$ 总能推出 $\bar a=\bar 0$ 或 $\bar b=\bar 0$．根据对应定理，这就等价于 $ab\in P$ 总能推出 $a\in P$ 或 $b\in P$．
+??? note "Chứng minh"
+    Với vành giao hoán có đơn vị, khác không $R$, vành thương $R/P$ là miền nguyên khi và chỉ khi $R/P$ không có ước của không. Ký hiệu lớp kề $a+P$ là $\bar a$. Việc $R/P$ không có ước của không tương đương với $\bar a\bar b=\bar 0$ luôn kéo theo $\bar a=\bar 0$ hoặc $\bar b=\bar 0$. Theo định lý tương ứng, điều này tương đương với việc $ab\in P$ luôn kéo theo $a\in P$ hoặc $b\in P$.
 
-在整数环 $\mathbf Z$ 中，$n\mathbf Z$ 是极大理想和素理想，当且仅当 $n$ 是素数．在一般的交换环中，极大理想总能推出素理想，当然反之未必成立；这从它们对应的商环的性质上可以看出来．
+Trong vành số nguyên $\mathbf Z$, $n\mathbf Z$ là iđêan cực đại và iđêan nguyên tố khi và chỉ khi $n$ là số nguyên tố. Trong vành giao hoán tổng quát, iđêan cực đại luôn là iđêan nguyên tố, nhưng chiều ngược lại không nhất thiết đúng; điều này có thể thấy từ tính chất của các vành thương tương ứng.
 
-???+ note "定理"
-    对于交换非零幺环 $R$，那么它的极大理想必然是素理想．
+???+ note "Định lý"
+    Với vành giao hoán có đơn vị, khác không $R$, mọi iđêan cực đại của nó đều là iđêan nguyên tố.
 
-稍后要看到，只有在那些具有良好性质、足够与整数环相似的环中，逆命题才成立．
+Ta sẽ thấy ngay sau đây rằng mệnh đề đảo chỉ đúng trong những vành có tính chất tốt, đủ giống vành số nguyên.
 
-### 主理想
+<span id="&#20027;&#29702;&#24819;"></span>
+### Iđêan chính
 
-类似子群的概念，在环的讨论中也常需要考虑由某个子集生成的理想．
+Tương tự khái niệm nhóm con sinh bởi một tập, trong thảo luận về vành ta cũng thường cần xét iđêan sinh bởi một tập con nào đó.
 
-???+ abstract "由子集生成的理想"
-    对于非零幺环 $R$ 和它的非空子集 $A\subseteq R$，如果 $I$ 是包含 $A$ 的 $R$ 的理想中（依包含关系）最小的，则理想 $I$ 称为 **由子集 $A$ 生成的理想**（ideal generated by a subset），并记作 $(A)$．此时，$A$ 称为 $(A)$ 的 **生成子集**（generating set）．
+???+ abstract "Iđêan sinh bởi một tập con"
+    Với vành có đơn vị khác không $R$ và tập con khác rỗng $A\subseteq R$ của nó, nếu $I$ là iđêan nhỏ nhất theo quan hệ bao hàm trong số các iđêan của $R$ chứa $A$, thì $I$ được gọi là **iđêan sinh bởi tập con $A$** (ideal generated by a subset), ký hiệu là $(A)$. Khi đó, $A$ được gọi là **tập sinh** (generating set) của $(A)$.
 
-???+ abstract "主理想"
-    由单个元素 $a\in R$ 生成的理想称为 **主理想**（principal ideal），记作 $(a)$．此时，$a$ 称为 $(a)$ 的 **生成元**（generator）．
+???+ abstract "Iđêan chính"
+    Iđêan sinh bởi một phần tử $a\in R$ được gọi là **iđêan chính** (principal ideal), ký hiệu là $(a)$. Khi đó, $a$ được gọi là **phần tử sinh** (generator) của $(a)$.
 
-对于集合 $A$，可以给出其生成的理想的构造．首先，有如下定义
+Với tập $A$, ta có thể mô tả cách xây dựng iđêan do nó sinh ra. Trước hết, định nghĩa
 
 $$
 \begin{aligned}
@@ -201,164 +208,170 @@ AR&=\{a_1r_1+\cdots+a_nr_n:r_i\in R,a_i\in A,n\in\mathbf Z\}.
 \end{aligned}
 $$
 
-其实它们分别是 $A$ 生成的左理想和右理想．然后，由子集 $A$ 生成的理想就是 $RAR$．对于交换环，定义出来的这些结构都相同．
+Thực ra chúng lần lượt là iđêan trái và iđêan phải sinh bởi $A$. Khi đó, iđêan sinh bởi tập con $A$ là $RAR$. Với vành giao hoán, các cấu trúc được định nghĩa như vậy đều trùng nhau.
 
-整数环中的所有理想 $n\mathbf Z$ 都是主理想，下文中常记作 $(n)$．
+Tất cả iđêan $n\mathbf Z$ trong vành số nguyên đều là iđêan chính; dưới đây thường ký hiệu chúng là $(n)$.
 
-## 整环
+<span id="&#25972;&#29615;"></span>
+## Miền nguyên
 
-整环是交换、含幺、无零因子的非零环．这个概念正是整数环的推广．但是，这样得到的环性质未必足够好到允许将整数的整除理论中的每个结论都原样照搬过来．为了能够推广数论中的结论，可以在整环上进一步作出限制．其中，最为常见的三种整环分别是欧几里得整环、主理想整环和唯一分解整环；前面的概念严格地包含在后面的概念中．
+Miền nguyên là vành khác không, giao hoán, có đơn vị và không có ước của không. Khái niệm này chính là sự khái quát của vành số nguyên. Tuy nhiên, các vành thu được như vậy chưa chắc có đủ tính chất tốt để chuyển nguyên vẹn mọi kết luận trong lý thuyết chia hết của số nguyên sang. Để khái quát các kết luận trong số học, ta có thể đặt thêm điều kiện lên miền nguyên. Ba loại miền nguyên thường gặp nhất là miền Euclid, miền iđêan chính và miền phân tích duy nhất; các khái niệm đứng trước được chứa nghiêm ngặt trong các khái niệm đứng sau.
 
-### 整除关系
+<span id="&#25972;&#38500;&#20851;&#31995;"></span>
+### Quan hệ chia hết
 
-首先，这里将整数的整除理论中的相关概念推广到一般的交换环上．
+Trước hết, ta khái quát các khái niệm liên quan trong lý thuyết chia hết của số nguyên lên vành giao hoán tổng quát.
 
-???+ abstract "整除"
-    设交换环 $R$ 有元素 $a,b\in R$，如果存在 $x\in R$，满足 $a=bx$，则称 $b$  **整除**（divide）$a$，记作 $b\mid a$．此时称 $b$ 是 $a$ 的 **因子**（divisor）．
+???+ abstract "Chia hết"
+    Giả sử vành giao hoán $R$ có các phần tử $a,b\in R$. Nếu tồn tại $x\in R$ sao cho $a=bx$, thì ta nói $a$ **chia hết cho** $b$, hay $b$ **chia** (divide) $a$, ký hiệu $b\mid a$. Khi đó $b$ được gọi là **ước** (divisor) của $a$.
 
-???+ abstract "相伴"
-    设交换环 $R$ 有元素 $a,b\in R$，如果它们只相差了一个可逆元，即存在可逆元 $u\in R$，满足 $a=bu$，则称 $a$ 和 $b$ 是 **相伴的**（associate）．
+???+ abstract "Liên hợp"
+    Giả sử vành giao hoán $R$ có các phần tử $a,b\in R$. Nếu chúng chỉ khác nhau bởi một phần tử khả nghịch, tức là tồn tại phần tử khả nghịch $u\in R$ sao cho $a=bu$, thì $a$ và $b$ được gọi là **liên hợp** (associate).
 
-整除关系是环上的 [偏序](../order-theory.md#二元关系) 关系，而相伴关系是环上的等价关系．从理想的角度看，$a\mid b$ 等价于 $(b)\subseteq (a)$，$a$ 和 $b$ 相伴等价于 $(a)=(b)$．因而，在讨论环中的元素时，通常不计较相伴元之间的差异．和整数的情形类似，交换环中 $a$ 和 $b$ 的最大公因子就定义为 $\{a,b\}$ 的下确界．
+Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB) trên vành, còn quan hệ liên hợp là một quan hệ tương đương trên vành. Từ góc nhìn iđêan, $a\mid b$ tương đương với $(b)\subseteq (a)$, còn $a$ và $b$ liên hợp tương đương với $(a)=(b)$. Vì vậy, khi thảo luận các phần tử trong vành, ta thường không phân biệt các phần tử liên hợp. Tương tự trường hợp số nguyên, ước chung lớn nhất của $a$ và $b$ trong vành giao hoán được định nghĩa là cận dưới lớn nhất của $\{a,b\}$ theo quan hệ chia hết.
 
-???+ abstract "最大公因子"
-    对于交换环 $R$ 和它的元素 $a,b\in R$，如果存在非零元素 $d\in R$，它满足 $d\mid a$ 和 $d\mid b$，且对于任何满足 $d'\mid a$ 和 $d'\mid b$ 的 $d'$ 都成立 $d'\mid d$，则称 $d$ 是 $a$ 和 $b$ 的 **最大公因子**（greatest common divisor），记作 $\gcd(a,b)$．
+???+ abstract "Ước chung lớn nhất"
+    Với vành giao hoán $R$ và các phần tử $a,b\in R$ của nó, nếu tồn tại phần tử khác không $d\in R$ thỏa mãn $d\mid a$ và $d\mid b$, đồng thời với mọi $d'$ thỏa mãn $d'\mid a$ và $d'\mid b$ đều có $d'\mid d$, thì $d$ được gọi là **ước chung lớn nhất** (greatest common divisor) của $a$ và $b$, ký hiệu là $\gcd(a,b)$.
 
-在整环中，最大公因子在相伴意义下是唯一确定的．下面的讨论就限制在整环中．
+Trong miền nguyên, ước chung lớn nhất được xác định duy nhất theo nghĩa liên hợp. Phần thảo luận dưới đây sẽ được giới hạn trong miền nguyên.
 
-整环中还可以建立类似素数的概念．在整数理论中，素数存在着两个等价的定义，但是在一般的整环中，这两个定义对应着不同的概念：
+Trong miền nguyên còn có thể xây dựng khái niệm tương tự số nguyên tố. Trong lý thuyết số nguyên, số nguyên tố có hai định nghĩa tương đương, nhưng trong miền nguyên tổng quát, hai định nghĩa này tương ứng với hai khái niệm khác nhau:
 
-???+ abstract "素元"
-    设整环 $R$ 有非零元素 $p\in R$，如果 $(p)$ 是素理想，也就是说，$p$ 不是可逆元，且 $p\mid ab$ 总能推出 $p\mid a$ 或 $p\mid b$，则称 $p$ 是 **素元**（prime）．
+???+ abstract "Phần tử nguyên tố"
+    Giả sử miền nguyên $R$ có phần tử khác không $p\in R$. Nếu $(p)$ là iđêan nguyên tố, tức là $p$ không khả nghịch và $p\mid ab$ luôn kéo theo $p\mid a$ hoặc $p\mid b$, thì $p$ được gọi là **phần tử nguyên tố** (prime).
 
-???+ abstract "不可约元"
-    设整环 $R$ 有非零元素 $r\in R$，如果 $r$ 不是可逆元，而且对于任何 $a,b\in R$ 且 $r=ab$ 都有 $a$ 或 $b$ 是可逆元，则称 $r$ 是 **不可约元**（irreducible），或称 $r$ 不可约．反过来，如果 $r=ab$ 且 $a,b\in R$ 都不是可逆元，则称 $r$ 可约．
+???+ abstract "Phần tử bất khả quy"
+    Giả sử miền nguyên $R$ có phần tử khác không $r\in R$. Nếu $r$ không khả nghịch, và với mọi $a,b\in R$ thỏa mãn $r=ab$ thì $a$ hoặc $b$ là phần tử khả nghịch, thì $r$ được gọi là **phần tử bất khả quy** (irreducible), hoặc nói $r$ bất khả quy. Ngược lại, nếu $r=ab$ và $a,b\in R$ đều không khả nghịch, thì $r$ được gọi là khả quy.
 
-可以说明，不可约元 $r$ 对应的主理想 $(r)$ 一定是环的所有主理想中极大的；但是，一般的整环中，并非所有理想都是主理想，所以不可约元和极大理想的概念并不等价．
+Có thể chỉ ra rằng iđêan chính $(r)$ ứng với phần tử bất khả quy $r$ luôn cực đại trong tập các iđêan chính của vành. Tuy nhiên, trong miền nguyên tổng quát, không phải mọi iđêan đều là iđêan chính, nên khái niệm phần tử bất khả quy và iđêan cực đại không tương đương.
 
-类似于证明主理想整环中，素理想一定是极大理想，一般地可以证明如下结论：
+Tương tự cách chứng minh trong miền iđêan chính rằng iđêan nguyên tố nhất định là iđêan cực đại, nói chung có thể chứng minh kết luận sau:
 
-???+ note "定理"
-    设 $R$ 是整环，如果 $a\in R$ 是素元，那么 $a$ 也一定是不可约元．
+???+ note "Định lý"
+    Giả sử $R$ là miền nguyên. Nếu $a\in R$ là phần tử nguyên tố, thì $a$ cũng là phần tử bất khả quy.
 
-??? note "证明"
-    设 $r\in R$ 是素元，且 $a,b\in R$ 满足 $r=ab$．因为 $r$ 是素元，不妨设 $r\mid a$ 成立，则 $a=cr=cba$．因为整环上成立消去律，有 $1=bc$，故而，$b$ 有逆元 $c$．这就说明 $r$ 是不可约元．
+??? note "Chứng minh"
+    Giả sử $r\in R$ là phần tử nguyên tố, và $a,b\in R$ thỏa mãn $r=ab$. Vì $r$ là phần tử nguyên tố, không mất tính tổng quát giả sử $r\mid a$. Khi đó $a=cr=cba$. Vì luật khử đúng trên miền nguyên, ta có $1=bc$, nên $b$ có nghịch đảo $c$. Điều này cho thấy $r$ là phần tử bất khả quy.
 
-反过来，这一结论并不成立．
+Chiều ngược lại không đúng.
 
-??? example "反例"
-    在二次整数环 $\mathbf Z[\sqrt{-5}]$ 中，$3$ 是不可约元，但是 $9=3\cdot 3=(2+\sqrt{-5})(2-\sqrt{-5})$，所以它不是素元．
+??? example "Phản ví dụ"
+    Trong vành số nguyên bậc hai $\mathbf Z[\sqrt{-5}]$, $3$ là phần tử bất khả quy, nhưng $9=3\cdot 3=(2+\sqrt{-5})(2-\sqrt{-5})$, nên nó không phải là phần tử nguyên tố.
     
-    这里给出这一反例的证明，不熟悉二次整数环的读者请先阅读 [二次整数环](#例子二次整数环) 部分．设 $N(\cdot)$ 是二次整数环上的范数．对于任何分解 $3=ab$ 都有 $N(a)N(b)=N(3)=9$．如果 $a,b$ 都不是可逆元，则 $N(a)$ 和 $N(b)$ 都大于 $1$，因而必然有 $N(a)=N(b)=3$．但是 $\mathbf Z[\sqrt{-5}]$ 上没有这样的元素，亦即 $x^2+5y^2=3$ 没有整数解．这就说明 $3$ 是不可约元．至于 $3$ 不是素元，就是要证明 $3$ 不能整除 $2\pm\sqrt{-5}$，这显然．
+    Sau đây là chứng minh cho phản ví dụ này; độc giả chưa quen với vành số nguyên bậc hai nên đọc trước phần [vành số nguyên bậc hai](#vi-du-vanh-so-nguyen-bac-hai). Gọi $N(\cdot)$ là chuẩn trên vành số nguyên bậc hai. Với mọi phân tích $3=ab$, ta có $N(a)N(b)=N(3)=9$. Nếu $a,b$ đều không khả nghịch, thì $N(a)$ và $N(b)$ đều lớn hơn $1$, do đó nhất định có $N(a)=N(b)=3$. Nhưng trên $\mathbf Z[\sqrt{-5}]$ không có phần tử như vậy, tức là $x^2+5y^2=3$ không có nghiệm nguyên. Điều này cho thấy $3$ là phần tử bất khả quy. Còn để thấy $3$ không phải là phần tử nguyên tố, chỉ cần chứng minh $3$ không chia $2\pm\sqrt{-5}$; điều này là hiển nhiên.
 
-### 欧几里得整环
+<span id="&#27431;&#20960;&#37324;&#24471;&#25972;&#29615;"></span>
+### Miền Euclid
 
-相关阅读：[（扩展）欧几里得算法](../number-theory/gcd.md)、[裴蜀定理](../number-theory/bezouts.md)
+Đọc thêm: [thuật toán Euclid (mở rộng)](../number-theory/gcd.md), [định lý Bézout](../number-theory/bezouts.md)
 
-欧几里得整环是允许做辗转相除法（即欧几里得算法）的整环．
+Miền Euclid là miền nguyên cho phép thực hiện phép chia có dư, từ đó thực hiện được thuật toán Euclid.
 
-???+ abstract "欧几里得整环"
-    对于整环 $R$，如果存在映射 $N:R\setminus\{0\}\rightarrow\mathbf N$，满足对于任意 $a,b\in R$ 且 $b\neq 0$，都存在 $q,r\in R$ 使得 $a=qb+r$ 成立且 $r=0$ 或 $N(r)<N(b)$，则称整环 $R$ 为 **欧几里得整环**（Euclidean domain, ED）．映射 $N$ 称为欧几里得整环中元素的范数（norm）．
+???+ abstract "Miền Euclid"
+    Với miền nguyên $R$, nếu tồn tại ánh xạ $N:R\setminus\{0\}\rightarrow\mathbf N$ sao cho với mọi $a,b\in R$ và $b\neq 0$, luôn tồn tại $q,r\in R$ thỏa mãn $a=qb+r$ và $r=0$ hoặc $N(r)<N(b)$, thì $R$ được gọi là **miền Euclid** (Euclidean domain, ED). Ánh xạ $N$ được gọi là chuẩn (norm) của phần tử trong miền Euclid.
 
-??? info "其他等价定义"
-    本文采用的定义仅仅在非零元素处定义了范数．不同文本可能对欧几里得整环的定义有不同处理．比如，有的文本可能补充定义 $N(0)=0$；但是随后的带余除法中并没有用到 $N(0)$ 的值，所以这无关紧要．再比如，[Wikipedia](https://en.wikipedia.org/wiki/Euclidean_domain) 的定义中还要求范数 $N$ 满足性质：对于任何非零 $a,b\in R$ 都有 $N(a)\le N(ab)$．但是，容易验证，如果欧几里得整环 $R$ 有范数 $N(\cdot)$ 满足本文定义所要求的性质，那么，可以定义范数 $N'(a)=\min_{b\in R\setminus\{0\}} N(ab)$ 使得它满足额外的性质 $N'(a)\le N'(ab)$．因此，这些不同的定义都是等价的．
+??? info "Các định nghĩa tương đương khác"
+    Định nghĩa dùng trong bài này chỉ định nghĩa chuẩn trên các phần tử khác không. Các tài liệu khác nhau có thể trình bày định nghĩa miền Euclid theo những cách khác nhau. Chẳng hạn, có tài liệu bổ sung định nghĩa $N(0)=0$; nhưng trong phép chia có dư, giá trị của $N(0)$ không được dùng đến, nên điều này không quan trọng. Một số tài liệu, như định nghĩa trên [Wikipedia](https://en.wikipedia.org/wiki/Euclidean_domain), còn yêu cầu chuẩn $N$ thỏa mãn tính chất: với mọi $a,b\in R$ khác không đều có $N(a)\le N(ab)$. Tuy nhiên, dễ kiểm tra rằng nếu miền Euclid $R$ có chuẩn $N(\cdot)$ thỏa mãn tính chất trong định nghĩa của bài này, thì có thể định nghĩa chuẩn $N'(a)=\min_{b\in R\setminus\{0\}} N(ab)$ để nó thỏa mãn thêm tính chất $N'(a)\le N'(ab)$. Do đó các định nghĩa khác nhau này đều tương đương.
 
-这个定义其实就是整数中的带余除法的推广．范数的存在使得能够衡量余数和除数的相对大小．这样在辗转相除的时候，对应的余数的范数也在不断下降；因为范数取值在自然数上，这样的过程必然结束在 $r=0$ 时．这样，就得到了欧几里得整环上的辗转相除法．
+Định nghĩa này là sự khái quát của phép chia có dư trong số nguyên. Sự tồn tại của chuẩn cho phép đo kích thước tương đối giữa số dư và số chia. Khi thực hiện thuật toán Euclid, chuẩn của các số dư liên tiếp sẽ giảm dần; vì chuẩn nhận giá trị trong các số tự nhiên, quá trình này nhất định kết thúc khi $r=0$. Từ đó ta thu được thuật toán Euclid trên miền Euclid.
 
-能够做辗转相除法，这意味着欧几里得整环上能够高效地计算最大公因子．完全类比整数的整除理论，可以证明，辗转相除法的结果一定是最大公因子，而且裴蜀定理成立，其中的系数可以通过扩展欧几里得算法确定．
+Việc thực hiện được thuật toán Euclid có nghĩa là trên miền Euclid có thể tính ước chung lớn nhất một cách hiệu quả. Hoàn toàn tương tự lý thuyết chia hết của số nguyên, có thể chứng minh kết quả của thuật toán Euclid là ước chung lớn nhất, và định lý Bézout vẫn đúng; các hệ số trong định lý có thể được xác định bằng thuật toán Euclid mở rộng.
 
-???+ note "定理"
-    对于欧几里得整环 $R$ 和它的元素 $a,b\in R$，对 $a$ 和 $b$ 做辗转相除法的得到的结果 $d$ 是 $a$ 和 $b$ 的最大公约数，且存在 $x,y\in R$ 使得 $d=ax+by$ 成立；反过来，任何 $ax+by$ 形式的元素都是 $d$ 的倍数．
+???+ note "Định lý"
+    Với miền Euclid $R$ và các phần tử $a,b\in R$ của nó, kết quả $d$ thu được khi áp dụng thuật toán Euclid cho $a$ và $b$ là ước chung lớn nhất của $a$ và $b$, và tồn tại $x,y\in R$ sao cho $d=ax+by$; ngược lại, mọi phần tử có dạng $ax+by$ đều là bội của $d$.
 
-注意到，在环论的语言中，所有形如 $ax+by$ 的元素正是理想 $(a,b)$ 中的元素，而这一定理就说明了 $(a,b)$ 一定是主理想 $(d)$．
+Lưu ý rằng trong ngôn ngữ lý thuyết vành, mọi phần tử có dạng $ax+by$ chính là các phần tử của iđêan $(a,b)$, và định lý này cho thấy $(a,b)$ nhất định là iđêan chính $(d)$.
 
-其实，欧几里得整环中的理想一定是主理想．
+Thực ra, mọi iđêan trong miền Euclid đều là iđêan chính.
 
-???+ note "定理"
-    欧几里得整环中的理想一定是主理想．
+???+ note "Định lý"
+    Mọi iđêan trong miền Euclid đều là iđêan chính.
 
-??? note "证明"
-    设 $R$ 是欧几里得整环，且 $I$ 是它的理想．如果 $I=\{0\}$，它显然是主理想．设 $I$ 是非零理想．依定义，环 $R$ 上有范数 $N(\cdot)$，于是可以取 $I$ 中范数最小的非零元素 $d$．此时，对于任何 $a\in I$，都有 $a=qd+r$ 满足 $r=0$ 或 $N(r)< N(d)$．又因为 $r=a-qd\in I$，所以依 $d$ 的选取方式就可知 $r=0$，也就说 $a=qd\in (d)$．这就说明 $I$ 必然是主理想．
+??? note "Chứng minh"
+    Giả sử $R$ là miền Euclid, và $I$ là một iđêan của nó. Nếu $I=\{0\}$, nó hiển nhiên là iđêan chính. Giả sử $I$ là iđêan khác không. Theo định nghĩa, trên vành $R$ có chuẩn $N(\cdot)$, nên có thể chọn phần tử khác không $d$ trong $I$ có chuẩn nhỏ nhất. Khi đó với mọi $a\in I$, ta có $a=qd+r$ với $r=0$ hoặc $N(r)< N(d)$. Lại vì $r=a-qd\in I$, theo cách chọn $d$ suy ra $r=0$, tức là $a=qd\in (d)$. Điều này cho thấy $I$ là iđêan chính.
 
-### 主理想整环
+<span id="&#20027;&#29702;&#24819;&#25972;&#29615;"></span><span id="mien-ide-an-chinh"></span>
+### Miền iđêan chính
 
-所有理想都是主理想的整环叫做主理想整环．这是性质相当良好，也十分常见的一类整环．在这些整环中，环中理想的概念就等同于整数中倍数的概念．
+Miền nguyên mà mọi iđêan đều là iđêan chính được gọi là miền iđêan chính. Đây là một lớp miền nguyên có tính chất tốt và cũng rất thường gặp. Trong các miền nguyên này, khái niệm iđêan của vành gần như đồng nhất với khái niệm bội số trong số nguyên.
 
-???+ abstract "主理想整环"
-    对于整环 $R$，如果它的每个理想都是主理想，则称它为 **主理想整环**（principal idel domain, PID）．
+???+ abstract "Miền iđêan chính"
+    Với miền nguyên $R$, nếu mọi iđêan của nó đều là iđêan chính, thì $R$ được gọi là **miền iđêan chính** (principal ideal domain, PID).
 
-因而，上一节最后一个定理就可以复述如下：
+Do đó, định lý cuối của mục trước có thể được phát biểu lại như sau:
 
-???+ note "定理"
-    欧几里得整环一定是主理想整环．
+???+ note "Định lý"
+    Mọi miền Euclid đều là miền iđêan chính.
 
-在主理想整环中，极大理想就等价于不可约元生成的理想．类似整数中素数和不可约元是等价的，主理想整环中，这两个概念也是等价的，故而极大理想和素理想也是完全等价的．
+Trong miền iđêan chính, iđêan cực đại tương đương với iđêan sinh bởi một phần tử bất khả quy. Tương tự việc số nguyên tố và phần tử bất khả quy là tương đương trong số nguyên, trong miền iđêan chính hai khái niệm này cũng tương đương; do đó iđêan cực đại và iđêan nguyên tố cũng hoàn toàn tương đương.
 
-???+ note "定理"
-    设主理想整环 $R$ 有非零理想 $I$，则 $I$ 是素理想，当且仅当 $I$ 是极大理想．
+???+ note "Định lý"
+    Giả sử miền iđêan chính $R$ có iđêan khác không $I$. Khi đó $I$ là iđêan nguyên tố khi và chỉ khi $I$ là iđêan cực đại.
 
-??? note "证明"
-    只需要证明素理想都是极大理想．设主理想整环 $R$ 中有非零素理想 $(p)$，且同时有理想 $(a)$ 满足 $(p)\subseteq(a)\subseteq R$．这说明 $a\mid p$，故而存在 $b\in R$ 使得 $p=ab$．但由于 $(p)$ 是素理想，$ab\in(p)$ 就意味着 $a\in(p)$ 或 $b\in(p)$．如果 $a\in(p)$，就说明 $(a)\subseteq (p)$，故而 $(a)=(p)$；如果 $b\in(p)$，就说明 $b=cp$，故而 $p=acp$，又因 $p\neq 0$，有 $1=ac$，即 $a$ 存在逆元 $c$，于是 $(a)=R$．这就说明，$(p)$ 是极大理想．
+??? note "Chứng minh"
+    Chỉ cần chứng minh mọi iđêan nguyên tố đều là iđêan cực đại. Giả sử trong miền iđêan chính $R$ có iđêan nguyên tố khác không $(p)$, và đồng thời có iđêan $(a)$ thỏa mãn $(p)\subseteq(a)\subseteq R$. Điều này cho thấy $a\mid p$, nên tồn tại $b\in R$ sao cho $p=ab$. Nhưng vì $(p)$ là iđêan nguyên tố, $ab\in(p)$ kéo theo $a\in(p)$ hoặc $b\in(p)$. Nếu $a\in(p)$, thì $(a)\subseteq (p)$, suy ra $(a)=(p)$; nếu $b\in(p)$, thì $b=cp$, nên $p=acp$, và vì $p\neq 0$, ta có $1=ac$, tức là $a$ có nghịch đảo $c$, do đó $(a)=R$. Điều này cho thấy $(p)$ là iđêan cực đại.
 
-???+ note "推论"
-    设主理想整环 $R$ 有非零元素 $r$，则 $r$ 是素元，当且仅当 $r$ 是不可约元．
+???+ note "Hệ quả"
+    Giả sử miền iđêan chính $R$ có phần tử khác không $r$. Khi đó $r$ là phần tử nguyên tố khi và chỉ khi $r$ là phần tử bất khả quy.
 
-上一节中对裴蜀定理的分析可以迁移到主理想整环上．
+Phân tích về định lý Bézout ở mục trước có thể chuyển sang miền iđêan chính.
 
-???+ note "定理"
-    设 $R$ 是主理想整环，且 $a,b\in R$ 是非零元素．设 $d\in R$ 是理想 $(a,b)$ 的生成元．那么，$a$ 和 $b$ 的最大公因子是 $d$，且在相伴意义下唯一；而且，存在 $x,y\in R$ 使得 $ax+by=d$ 成立．
+???+ note "Định lý"
+    Giả sử $R$ là miền iđêan chính, và $a,b\in R$ là các phần tử khác không. Gọi $d\in R$ là phần tử sinh của iđêan $(a,b)$. Khi đó ước chung lớn nhất của $a$ và $b$ là $d$, và là duy nhất theo nghĩa liên hợp; hơn nữa, tồn tại $x,y\in R$ sao cho $ax+by=d$.
 
-也就是说，主理想整环中 [裴蜀定理](../number-theory/bezouts.md) 依然成立．同样是存在最大公因子，欧几里得整环和主理想整环的最大区别在于在前者中，最大公因子可以通过辗转相除法高效地计算，但是主理想整环中一般并没有这样的高效算法．
+Nói cách khác, [định lý Bézout](../number-theory/bezouts.md) vẫn đúng trong miền iđêan chính. Dù cả hai đều có ước chung lớn nhất, khác biệt lớn nhất giữa miền Euclid và miền iđêan chính là trong miền Euclid, ước chung lớn nhất có thể được tính hiệu quả bằng thuật toán Euclid, còn trong miền iđêan chính nói chung không có thuật toán hiệu quả như vậy.
 
-### 唯一分解整环
+<span id="&#21807;&#19968;&#20998;&#35299;&#25972;&#29615;"></span>
+### Miền phân tích duy nhất
 
-比主理想整环更一般的概念是唯一分解整环．整数的唯一分解定理称为 [算术基本定理](../number-theory/basic.md#算术基本定理)．类似的唯一分解定理其实在一些并非主理想整环的整环中依然成立．这样的整环叫做唯一分解整环．
+Khái niệm tổng quát hơn miền iđêan chính là miền phân tích duy nhất. Định lý phân tích duy nhất của số nguyên được gọi là [định lý cơ bản của số học](../number-theory/basic.md#%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86). Một định lý phân tích duy nhất tương tự vẫn đúng trong một số miền nguyên không phải miền iđêan chính. Những miền nguyên như vậy được gọi là miền phân tích duy nhất.
 
-???+ abstract "唯一分解整环"
-    对于整环 $R$，如果任何非零且不可逆的元素 $r$ 都能写作 $r=p_1\cdots p_n$ 的形式，这里的 $p_1,\cdots,p_n$ 是可能重复的不可约元，且这样的分解在相伴和重新排列的意义下唯一，则称整环 $R$ 是 **唯一分解整环**（unique factorization domain, UFD）．
+???+ abstract "Miền phân tích duy nhất"
+    Với miền nguyên $R$, nếu mọi phần tử khác không và không khả nghịch $r$ đều có thể viết dưới dạng $r=p_1\cdots p_n$, trong đó $p_1,\cdots,p_n$ là các phần tử bất khả quy có thể lặp lại, và phân tích như vậy là duy nhất theo nghĩa liên hợp và hoán vị lại thứ tự, thì miền nguyên $R$ được gọi là **miền phân tích duy nhất** (unique factorization domain, UFD).
 
-算术基本定理说明，整数环 $\mathbf Z$ 是唯一分解整环．
+Định lý cơ bản của số học cho thấy vành số nguyên $\mathbf Z$ là miền phân tích duy nhất.
 
-前文给出了不可约元不是素元的反例，其中涉及的整环 $\mathbf Z[\sqrt{-5}]$ 中唯一分解定理不再成立．但是，在所有唯一分解整环上，不可约元和素元都是等价的．
+Ở trên đã đưa ra phản ví dụ trong đó phần tử bất khả quy không phải là phần tử nguyên tố; miền nguyên $\mathbf Z[\sqrt{-5}]$ xuất hiện trong đó không còn thỏa mãn định lý phân tích duy nhất. Tuy nhiên, trên mọi miền phân tích duy nhất, phần tử bất khả quy và phần tử nguyên tố là tương đương.
 
-???+ note "定理"
-    对于唯一分解整环 $R$ 和它的非零元素 $a\in R$，则 $a$ 是素元，当且仅当 $a$ 是不可约元．
+???+ note "Định lý"
+    Với miền phân tích duy nhất $R$ và phần tử khác không $a\in R$ của nó, $a$ là phần tử nguyên tố khi và chỉ khi $a$ là phần tử bất khả quy.
 
-??? note "证明"
-    只需要证明不可约元都是素元．对于不可约元 $r$，如果 $r\mid ab$，那么就存在 $c\in R$ 使得 $ab=rc$ 成立．因为 $R$ 是唯一分解整环，所以可以对 $a,b,c\in R$ 都做分解成不可约元的乘积．比较左右两边，根据分解的唯一性可知，$r$ 必然和 $a$ 或者 $b$ 的某个不可约因子相伴，故而 $r$ 整除 $a$ 或 $b$ 中的一个．这就说明 $r$ 也是素元．
+??? note "Chứng minh"
+    Chỉ cần chứng minh mọi phần tử bất khả quy đều là phần tử nguyên tố. Với phần tử bất khả quy $r$, nếu $r\mid ab$, thì tồn tại $c\in R$ sao cho $ab=rc$. Vì $R$ là miền phân tích duy nhất, ta có thể phân tích $a,b,c\in R$ thành tích các phần tử bất khả quy. So sánh hai vế và dùng tính duy nhất của phân tích, suy ra $r$ liên hợp với một nhân tử bất khả quy nào đó của $a$ hoặc của $b$, do đó $r$ chia một trong hai phần tử $a$ hoặc $b$. Điều này cho thấy $r$ cũng là phần tử nguyên tố.
 
-所有的主理想整环都是唯一分解整环．
+Mọi miền iđêan chính đều là miền phân tích duy nhất.
 
-???+ note "定理"
-    主理想整环一定是唯一分解整环．
+???+ note "Định lý"
+    Mọi miền iđêan chính đều là miền phân tích duy nhất.
 
-??? note "证明"
-    设 $R$ 是主理想整环，且 $r\in R$ 不是零元，也不是可逆元．要说明 $r$ 可以唯一分解为一系列不可约元的乘积，可以分为两步：首先证明分解的存在性，再证明分解的唯一性．
+??? note "Chứng minh"
+    Giả sử $R$ là miền iđêan chính, và $r\in R$ không phải phần tử không, cũng không khả nghịch. Để chứng minh $r$ có thể phân tích duy nhất thành tích của một dãy phần tử bất khả quy, có thể chia làm hai bước: trước hết chứng minh sự tồn tại của phân tích, rồi chứng minh tính duy nhất của phân tích.
     
-    分解的存在性比较自然．如果 $r$ 已经是不可约元，就不必继续分解；否则，必然存在 $r_1r_2$ 使得 $r=r_1r_2$ 且 $r_1,r_2$ 都不是可逆元．进而，如果 $r_1$ 和 $r_2$ 都是不可约元，那么也不必继续分解；否则，对 $r_1$ 和 $r_2$ 中不是不可约元的，可以进一步分解，$r$ 也就可以写成更多元素的乘积．由此，只要乘积中不全是不可约元，就可以将分解过程不断进行下去．分解必然在有限步后终止．不然，选择公理保证可以从 $R$ 中取出无限长的元素链 $\{r_{(i)}\}_{i=0}^\infty$ 满足 $r_{(0)}=r$ 且 $r_{(i+1)}\mid r_{(i)}$ 对所有 $i\in\mathbf N$ 都成立，且这些整除关系都是严格的，即链中不存在相伴元．用理想的语言说，这对应着严格无穷递增的理想列：$I_{0}\subset I_{1}\subset \cdots\subset I_{i}\subset\cdots\subset R$，其中，$I_i=(r_{(i)})$．容易验证，这些理想的并 $I=\bigcup_{i=0}^\infty I_i$ 还是理想，因而必然是主理想．令 $a$ 为主理想 $I$ 的生成元，因而，存在 $n\in\mathbf N$ 满足 $a\in I_n$．所以，$I=(a)\subseteq I_n$．这说明，这个严格无穷递增的理想列并不存在，故而上述分解过程必然在有限步内终止．
+    Sự tồn tại của phân tích khá tự nhiên. Nếu $r$ đã là phần tử bất khả quy thì không cần tiếp tục phân tích; nếu không, tồn tại $r_1,r_2$ sao cho $r=r_1r_2$ và $r_1,r_2$ đều không khả nghịch. Tiếp theo, nếu $r_1$ và $r_2$ đều là phần tử bất khả quy thì cũng không cần tiếp tục phân tích; nếu không, phần tử nào trong $r_1$ và $r_2$ không bất khả quy có thể được phân tích tiếp, và $r$ có thể được viết thành tích của nhiều phần tử hơn. Vì vậy, chừng nào các thừa số trong tích chưa toàn là phần tử bất khả quy, quá trình phân tích còn có thể tiếp tục. Quá trình phân tích nhất định dừng sau hữu hạn bước. Nếu không, tiên đề chọn bảo đảm có thể chọn từ $R$ một dây chuyền vô hạn các phần tử $\{r_{(i)}\}_{i=0}^\infty$ thỏa mãn $r_{(0)}=r$ và $r_{(i+1)}\mid r_{(i)}$ với mọi $i\in\mathbf N$, đồng thời các quan hệ chia hết này đều nghiêm ngặt, tức là trong dây chuyền không có các phần tử liên hợp. Nói bằng ngôn ngữ iđêan, điều này tương ứng với dãy iđêan tăng nghiêm ngặt vô hạn: $I_{0}\subset I_{1}\subset \cdots\subset I_{i}\subset\cdots\subset R$, trong đó $I_i=(r_{(i)})$. Dễ kiểm tra hợp $I=\bigcup_{i=0}^\infty I_i$ của các iđêan này vẫn là iđêan, nên nhất định là iđêan chính. Gọi $a$ là phần tử sinh của iđêan chính $I$; khi đó tồn tại $n\in\mathbf N$ sao cho $a\in I_n$. Vì vậy $I=(a)\subseteq I_n$. Điều này cho thấy dãy iđêan tăng nghiêm ngặt vô hạn nói trên không tồn tại, nên quá trình phân tích ở trên nhất định dừng trong hữu hạn bước.
     
-    然后证明分解的唯一性．可以对分解中因子的个数做归纳．归纳的关键步骤在于验证，如果 $r=p_1p_2\cdots p_n=q_1q_2\cdots q_m$ 且 $n\le m$，则必然有 $p_1$ 与某个 $q_j$ 相伴．这里需要用到之前的结论：主理想整环中不可约元都是素元．已知 $p_1$ 是 $R$ 中的不可约元，故而它也是素元，所以对右侧的乘积可以归纳地说明，必然存在某个元素 $q_j$ 使得 $p_1\mid q_j$．所以，存在 $c\in R$ 使得 $q_j=p_1c$，而 $q_j$ 是不可约元，$p_1$ 也是不可约元，依定义只能有 $c$ 是可逆元，故而 $p_1$ 与 $q_j$ 相伴．这样就可以利用消去律在左右两侧分别消去 $p_1$ 和 $q_j$，并将两者相差的相伴元乘到任意一个剩余元素上．根据归纳假设，必然有 $p_2\cdots p_n$ 和 $q_1\cdots q_{j-1}q_{j+1}\cdots q_m$ 中不可约元个数相等，且在相伴意义下是一样的．定理得证．
+    Sau đó chứng minh tính duy nhất của phân tích. Ta có thể quy nạp theo số nhân tử trong phân tích. Bước then chốt của quy nạp là kiểm tra rằng nếu $r=p_1p_2\cdots p_n=q_1q_2\cdots q_m$ và $n\le m$, thì nhất định có $p_1$ liên hợp với một $q_j$ nào đó. Ở đây cần dùng kết luận trước đó: trong miền iđêan chính, mọi phần tử bất khả quy đều là phần tử nguyên tố. Đã biết $p_1$ là phần tử bất khả quy trong $R$, nên nó cũng là phần tử nguyên tố; vì vậy với tích ở vế phải, có thể dùng quy nạp để chỉ ra rằng tồn tại $q_j$ sao cho $p_1\mid q_j$. Do đó tồn tại $c\in R$ sao cho $q_j=p_1c$, mà $q_j$ là phần tử bất khả quy và $p_1$ cũng là phần tử bất khả quy, nên theo định nghĩa $c$ chỉ có thể khả nghịch; do đó $p_1$ liên hợp với $q_j$. Khi ấy có thể dùng luật khử để khử $p_1$ và $q_j$ ở hai vế, rồi nhân phần tử khả nghịch biểu thị sự liên hợp giữa chúng vào một nhân tử còn lại bất kỳ. Theo giả thiết quy nạp, số phần tử bất khả quy trong $p_2\cdots p_n$ và $q_1\cdots q_{j-1}q_{j+1}\cdots q_m$ nhất định bằng nhau, và chúng giống nhau theo nghĩa liên hợp. Định lý được chứng minh.
 
-最后，最大公因子的存在性在唯一分解整环上依然成立．
+Cuối cùng, tính tồn tại của ước chung lớn nhất vẫn đúng trên miền phân tích duy nhất.
 
-???+ note "定理"
-    设唯一分解整环 $R$ 有非零元素 $a,b\in R$，且它们可以分解成 $a=up_1^{r_1}\cdots p_n^{r_n}$ 和 $b=vp_1^{s_1}\cdots p_n^{s_n}$ 的形式，其中，$u,v$ 是可逆元，$p_1,\cdots,p_n$ 是各不相同的不可约元，$r_i,s_i$ 都是自然数，那么，它们的一个最大公约数是 $d=p_1^{\min\{r_1,s_1\}}\cdots p_n^{\min\{r_n,s_n\}}$．
+???+ note "Định lý"
+    Giả sử miền phân tích duy nhất $R$ có các phần tử khác không $a,b\in R$, và chúng có thể được phân tích dưới dạng $a=up_1^{r_1}\cdots p_n^{r_n}$ và $b=vp_1^{s_1}\cdots p_n^{s_n}$, trong đó $u,v$ là các phần tử khả nghịch, $p_1,\cdots,p_n$ là các phần tử bất khả quy đôi một khác nhau, còn $r_i,s_i$ đều là số tự nhiên. Khi đó một ước chung lớn nhất của chúng là $d=p_1^{\min\{r_1,s_1\}}\cdots p_n^{\min\{r_n,s_n\}}$.
 
-这其实说明，最大公因子存在这个性质比唯一分解定理成立还要弱[^gcd-domain]．
+Điều này cũng cho thấy tính chất tồn tại ước chung lớn nhất còn yếu hơn cả tính đúng của định lý phân tích duy nhất[^gcd-domain].
 
-### 例子：二次整数环
+<span id="&#20363;&#23376;&#20108;&#27425;&#25972;&#25968;&#29615;"></span><span id="vi-du-vanh-so-nguyen-bac-hai"></span>
+### Ví dụ: vành số nguyên bậc hai
 
-相关阅读：[二次域](../number-theory/quadratic.md)
+Đọc thêm: [trường bậc hai](../number-theory/quadratic.md)
 
-抽象代数的理解不能离开例子．正是因为费马大定理的研究过程需要研究一类代数整数的性质，才逐渐发展出了今天的环论[^ring-theory-history]．这里讨论最简单的代数整数，即二次整数．这部分的很多结论的证明需要用到复杂的代数数论知识，故而略去．
+Việc hiểu đại số trừu tượng không thể tách khỏi các ví dụ. Chính vì quá trình nghiên cứu định lý lớn Fermat đòi hỏi khảo sát tính chất của một lớp số nguyên đại số, lý thuyết vành ngày nay mới dần phát triển[^ring-theory-history]. Ở đây ta thảo luận loại số nguyên đại số đơn giản nhất, tức số nguyên bậc hai. Chứng minh của nhiều kết luận trong phần này cần dùng kiến thức phức tạp của lý thuyết số đại số, nên sẽ được lược bỏ.
 
-**二次整数**（quadratic integer）指的是二次项系数为一的整系数二次方程 $\alpha^2+b\alpha+c=0$ 的复根．所有二次整数能且仅能有形式
+**Số nguyên bậc hai** (quadratic integer) là nghiệm phức của một phương trình bậc hai hệ số nguyên có hệ số bậc hai bằng một, $\alpha^2+b\alpha+c=0$. Mọi số nguyên bậc hai có và chỉ có dạng
 
 $$
 \alpha=a+b\omega,~(a,b\in\mathbf Z)
 $$
 
-这里，
+trong đó
 
 $$
 \omega=\begin{cases}
@@ -367,34 +380,34 @@ $$
 \end{cases}
 $$
 
-其中，$D$ 没有平方因子．
+và $D$ không có nhân tử chính phương.
 
-??? note "分析"
-    根据二次方程求根公式，可以知道这个方程的根一定可以写成
+??? note "Phân tích"
+    Theo công thức nghiệm của phương trình bậc hai, nghiệm của phương trình này nhất định có thể viết thành
     
     $$
     \alpha=\frac{-b\pm\sqrt{b^2-4c}}{2}.
     $$
     
-    当 $b=2k+1$ 是奇数时，这个根可以写作
+    Khi $b=2k+1$ là số lẻ, nghiệm này có thể viết là
     
     $$
     \alpha=-k-\frac{1\pm\sqrt{4(k^2+k-c)+1}}{2}.
     $$
     
-    否则，当 $b=2k$ 是偶数时，这个根可以写作
+    Ngược lại, khi $b=2k$ là số chẵn, nghiệm này có thể viết là
     
     $$
     \alpha=-k\pm\sqrt{k^2-c}.
     $$
     
-    从而可以归纳得知二次整数必然有上述形式．
+    Từ đó có thể suy ra rằng số nguyên bậc hai nhất định có dạng nêu trên.
 
-容易验证，对于这样的 $\omega$，集合 $\mathbf Z[\omega]=\{a+b\omega:a,b\in\mathbf Z\}$ 构成环．这称为 **二次整数环**（quadratic integer ring），它的分式域就是二次域 $\mathbf Q(\sqrt D)$．当 $D>0$ 时，所有二次整数都是实数，故而也称作 **实二次整数环**；当 $D<0$ 时，除了整数外的二次整数都是复数，故而也称作 **虚二次整数环**．
+Dễ kiểm tra rằng với $\omega$ như vậy, tập $\mathbf Z[\omega]=\{a+b\omega:a,b\in\mathbf Z\}$ tạo thành một vành. Nó được gọi là **vành số nguyên bậc hai** (quadratic integer ring), và trường phân thức của nó chính là trường bậc hai $\mathbf Q(\sqrt D)$. Khi $D>0$, mọi số nguyên bậc hai đều là số thực, nên vành này cũng được gọi là **vành số nguyên bậc hai thực**; khi $D<0$, các số nguyên bậc hai ngoài số nguyên đều là số phức, nên nó cũng được gọi là **vành số nguyên bậc hai ảo**.
 
-所有二次整数环 $\mathbf Z[\omega]$ 都是整环．其中，当 $D=-1$ 时，$\mathbf Z[\sqrt{-1}]$（或记作 $\mathbf Z[\mathrm{i}]$）也称 Gauss 整数环；当 $D=-3$ 时，$\mathbf Z\left[\dfrac{1+\sqrt{-3}}{2}\right]$ 则称为 Eisenstein 整数环．
+Mọi vành số nguyên bậc hai $\mathbf Z[\omega]$ đều là miền nguyên. Trong đó, khi $D=-1$, $\mathbf Z[\sqrt{-1}]$ (hoặc ký hiệu $\mathbf Z[\mathrm{i}]$) còn được gọi là vành số nguyên Gauss; khi $D=-3$, $\mathbf Z\left[\dfrac{1+\sqrt{-3}}{2}\right]$ được gọi là vành số nguyên Eisenstein.
 
-对于二次整数 $a+b\omega$，可以定义它的 **共轭**（conjugate）是 $a+b\bar\omega$，其中，
+Với số nguyên bậc hai $a+b\omega$, có thể định nghĩa **liên hợp** (conjugate) của nó là $a+b\bar\omega$, trong đó
 
 $$
 \bar\omega=\begin{cases}
@@ -403,9 +416,9 @@ $$
 \end{cases}
 $$
 
-注意，因为 $D>0$ 时，二次整数是实数，所以这里的共轭的概念和复数的共轭的概念并不是完全一致的，但它们都是域论中代数元的共轭的概念的特例．共轭的二次整数是同一个整系数二次方程的根．
+Lưu ý rằng khi $D>0$, số nguyên bậc hai là số thực, nên khái niệm liên hợp ở đây không hoàn toàn trùng với khái niệm liên hợp của số phức. Tuy vậy, cả hai đều là trường hợp đặc biệt của khái niệm liên hợp của phần tử đại số trong lý thuyết trường. Hai số nguyên bậc hai liên hợp là hai nghiệm của cùng một phương trình bậc hai hệ số nguyên.
 
-在二次整数环上可以定义 **范数**
+Trên vành số nguyên bậc hai có thể định nghĩa **chuẩn**
 
 $$
 \begin{aligned}
@@ -417,73 +430,74 @@ a^2-Db^2,& D\equiv 2,3\pmod 4.
 \end{aligned}
 $$
 
-二次整数的范数一定是整数．特别地，当 $D<0$ 时，范数一定是自然数．范数保持乘法结构，即 $N(ab)=N(a)N(b)$．
+Chuẩn của số nguyên bậc hai luôn là số nguyên. Đặc biệt, khi $D<0$, chuẩn luôn là số tự nhiên. Chuẩn bảo toàn phép nhân, tức là $N(ab)=N(a)N(b)$.
 
-二次整数环中的可逆元（单位）能且仅能是那些范数是 $\pm1$ 的元素．对于 $D>0$ 的情形，这就相当于考虑 [Pell 方程](../number-theory/pell-equation.md)  $x^2-Dy^2=\pm1$ 或 $x^2-Dy^2=\pm4$ 的解．对于 $D<0$ 的情形，容易验证，除了 Gauss 整数环 $\mathbf Z[\rm{i}]$ 中可逆元是 $\{\pm1,\pm\rm{i}\}$ 和 Eisenstein 整数环 $\mathbf Z[\omega]$ 中可逆元是 $\{\pm1,\pm\omega,\pm\omega^2\}$ 这两种特殊情形外，其余的可逆元都只有 $\{\pm1\}$．
+Các phần tử khả nghịch (đơn vị) trong vành số nguyên bậc hai chính là những phần tử có chuẩn bằng $\pm1$. Với trường hợp $D>0$, điều này tương đương với việc xét nghiệm của [phương trình Pell](../number-theory/pell-equation.md) $x^2-Dy^2=\pm1$ hoặc $x^2-Dy^2=\pm4$. Với trường hợp $D<0$, dễ kiểm tra rằng ngoài hai trường hợp đặc biệt là các phần tử khả nghịch trong vành số nguyên Gauss $\mathbf Z[\rm{i}]$ bằng $\{\pm1,\pm\rm{i}\}$ và các phần tử khả nghịch trong vành số nguyên Eisenstein $\mathbf Z[\omega]$ bằng $\{\pm1,\pm\omega,\pm\omega^2\}$, các phần tử khả nghịch còn lại chỉ là $\{\pm1\}$.
 
-二次整数环上定义的范数 $N(\alpha)$ 可以用来证明它是欧几里得整环．对于 $D>0$ 的情形，需要使用它的绝对值 $|N(\alpha)|$ 来作为欧几里得整环定义中的范数．利用这样得到的范数，能够证明在 $D<0$ 时，
+Chuẩn $N(\alpha)$ định nghĩa trên vành số nguyên bậc hai có thể được dùng để chứng minh nó là miền Euclid. Với trường hợp $D>0$, cần dùng giá trị tuyệt đối $|N(\alpha)|$ làm chuẩn trong định nghĩa miền Euclid. Dùng chuẩn thu được như vậy, có thể chứng minh khi $D<0$,
 
 $$
 D=-1,-2,-3,-7,-11
 $$
 
-或者在 $D>0$ 时，
+hoặc khi $D>0$,
 
 $$
 D=2, 3, 5, 6, 7, 11, 13, 17, 19, 21, 29, 33, 37, 41, 57, 73
 $$
 
-这些整数对应的二次整数环是在模 $|N(\cdot)|$ 下的欧几里得整环．但是，欧几里得整环定义中的范数未必是上述定义的范数．比如在 $D=14,69$ 时，相应的二次整数环也是欧几里得整环，但是需要用到别的范数．对于 $D<0$ 的情形，可以证明上面给出的情形就是二次整数环中所有的欧几里得整环．
+các vành số nguyên bậc hai ứng với những số nguyên này là miền Euclid theo chuẩn $|N(\cdot)|$. Tuy nhiên, chuẩn trong định nghĩa miền Euclid không nhất thiết phải là chuẩn được định nghĩa ở trên. Chẳng hạn, khi $D=14,69$, các vành số nguyên bậc hai tương ứng cũng là miền Euclid, nhưng cần dùng chuẩn khác. Với trường hợp $D<0$, có thể chứng minh rằng các trường hợp nêu trên chính là tất cả miền Euclid trong các vành số nguyên bậc hai.
 
-利用更为复杂的方法，还可以判断某个二次整数环是否是主理想整环．可以证明当 $D<0$ 时，只有
+Dùng các phương pháp phức tạp hơn, còn có thể xác định một vành số nguyên bậc hai có phải là miền iđêan chính hay không. Có thể chứng minh rằng khi $D<0$, chỉ có
 
 $$
 D=-1,-2,-3,-7,-11,-19,-43,-67,-163
 $$
 
-对应的二次整数环是主理想整环．比较上面的结果，可以知道诸如 $D=-19$ 的情形提供了主理想整环不是欧几里得整环的例子．当 $D>0$ 时，目前尚没有完整的结果．
+các vành số nguyên bậc hai tương ứng là miền iđêan chính. So sánh với kết quả ở trên, ta biết các trường hợp như $D=-19$ cung cấp ví dụ về miền iđêan chính không phải miền Euclid. Khi $D>0$, hiện vẫn chưa có kết quả hoàn chỉnh.
 
-但是，可以证明，在二次整数环中，唯一分解整环和主理想整环是等价的．上面的结果说明，比如说 $\mathbf Z[\sqrt{-5}]$ 就不是主理想整环，因而也不是唯一分解整环．之前已经通过例子实际证明过了它不能唯一分解，即
+Tuy nhiên, có thể chứng minh rằng trong vành số nguyên bậc hai, miền phân tích duy nhất và miền iđêan chính là tương đương. Kết quả ở trên cho thấy, chẳng hạn $\mathbf Z[\sqrt{-5}]$ không phải là miền iđêan chính, nên cũng không phải miền phân tích duy nhất. Trước đó ta đã trực tiếp chứng minh bằng ví dụ rằng nó không thể phân tích duy nhất, cụ thể là
 
 $$
 9=3\times3=(2+\sqrt{-5})\times(2-\sqrt{-5}).
 $$
 
-利用同样的例子，可以说明理想 $(3,2+\sqrt 5)$ 也不是主理想．稍后会看到，是唯一分解整环但不是主理想整环的一个简单例子是多项式环 $\mathbf Z[x]$．
+Dùng cùng ví dụ, có thể chỉ ra iđêan $(3,2+\sqrt{-5})$ cũng không phải là iđêan chính. Ta sẽ thấy sau rằng một ví dụ đơn giản về miền phân tích duy nhất nhưng không phải miền iđêan chính là vành đa thức $\mathbf Z[x]$.
 
-尽管很多二次整数环并不是唯一分解整环，但是它们都是 [Dedekind 整环](https://en.wikipedia.org/wiki/Dedekind_domain)．这意味着，所有二次整数环中的非平凡理想都可以唯一分解为一系列素理想之积．但如果二次整数环本身并非主理想整环，这些素理想因子并不一定对应着素元，因而唯一分解定理（即数分解成素数的乘积）不再成立：这也是研究理想而不是数的最初动机．
+Dù nhiều vành số nguyên bậc hai không phải miền phân tích duy nhất, chúng đều là [miền Dedekind](https://en.wikipedia.org/wiki/Dedekind_domain). Điều này nghĩa là mọi iđêan không tầm thường trong các vành số nguyên bậc hai đều có thể phân tích duy nhất thành tích của một dãy iđêan nguyên tố. Nhưng nếu bản thân vành số nguyên bậc hai không phải miền iđêan chính, các nhân tử iđêan nguyên tố này không nhất thiết tương ứng với phần tử nguyên tố, nên định lý phân tích duy nhất (tức là phân tích một số thành tích các số nguyên tố) không còn đúng. Đây cũng là động cơ ban đầu để nghiên cứu iđêan thay vì chỉ nghiên cứu các số.
 
-## 多项式环
+<span id="&#22810;&#39033;&#24335;&#29615;"></span>
+## Vành đa thức
 
-相关阅读：[多项式技术简介](../poly/intro.md)
+Đọc thêm: [giới thiệu kỹ thuật đa thức](../poly/intro.md)
 
-在算法竞赛中，时常会遇到多项式的各种运算．多项式的乘法、取逆、取余等运算可以看作数的运算在多项式环上的推广．利用抽象代数的语言，可以更快地理解多项式环上相关运算的性质．
+Trong lập trình thi đấu, ta thường gặp nhiều phép toán khác nhau trên đa thức. Phép nhân, lấy nghịch đảo, lấy dư của đa thức có thể được xem là sự khái quát các phép toán trên số sang vành đa thức. Dùng ngôn ngữ đại số trừu tượng, ta có thể hiểu rõ hơn tính chất của các phép toán liên quan trên vành đa thức.
 
-???+ abstract "多项式"
-    对于非零交换幺环 $R$，一个 $R$ 上的 **多项式**（polynomial）是指形式和
+???+ abstract "Đa thức"
+    Với vành giao hoán có đơn vị, khác không $R$, một **đa thức** (polynomial) trên $R$ là một tổng hình thức
     
     $$
     \sum_{k=0}^{n}a_kx^k = a_0+a_1x+\cdots+a_{n-1}x^{n-1}+a_nx^n,
     $$
     
-    其中，$n\in\mathbf N$，且对于每个 $k$，都有 $a_k\in R$．这些 $a_k$ 称为多项式的 **系数**（coefficient），相应的 $a_kx^k$ 称为多项式的 **项**（term）．项 $a_kx^k$ 中的 $k$ 称为该项的 **次数**（degree）．
+    trong đó $n\in\mathbf N$, và với mỗi $k$ đều có $a_k\in R$. Các $a_k$ này được gọi là **hệ số** (coefficient) của đa thức, còn $a_kx^k$ tương ứng được gọi là **hạng tử** (term) của đa thức. Trong hạng tử $a_kx^k$, số $k$ được gọi là **bậc** (degree) của hạng tử đó.
     
-    所有系数都为零（即零元）的多项式称为 **零多项式**（zero polynomial），记作 $0$．对于其它多项式，不妨设 $a_n\neq 0$，即 $a_nx^n$ 是系数不为零的项中次数最高的项．此时，自然数 $n$ 称为多项式的 **次数**（degree），而它所在的项 $a_nx^n$ 称为 **最高次项**（leading term），$a_n$ 也称为 **最高次项系数**（leading coefficient）．最高次项系数等于一（即幺元）的多项式称为 **首一**（monic）多项式．零多项式的次数不予指定，或者规定为 $-\infty$．
+    Đa thức có mọi hệ số bằng không (tức bằng phần tử không) được gọi là **đa thức không** (zero polynomial), ký hiệu là $0$. Với các đa thức khác, không mất tính tổng quát giả sử $a_n\neq 0$, tức là $a_nx^n$ là hạng tử có bậc cao nhất trong các hạng tử có hệ số khác không. Khi đó số tự nhiên $n$ được gọi là **bậc** (degree) của đa thức, hạng tử $a_nx^n$ được gọi là **hạng tử đầu** (leading term), và $a_n$ cũng được gọi là **hệ số đầu** (leading coefficient). Đa thức có hệ số đầu bằng một (tức phần tử đơn vị) được gọi là đa thức **monic**. Bậc của đa thức không không được chỉ định, hoặc được quy ước là $-\infty$.
 
-多项式记号中出现的 $x$ 称为多项式的 **不定元**（indeterminate）．它本身没有任何含义，也没有取值范围．它的存在，仅仅是通过它的指数标记系数的位置．所以，多项式也可以写作 $R$ 上的数列
+Ký hiệu $x$ xuất hiện trong ký hiệu đa thức được gọi là **biến không xác định** (indeterminate) của đa thức. Bản thân nó không có ý nghĩa giá trị, cũng không có miền giá trị. Nó chỉ dùng để đánh dấu vị trí của hệ số thông qua số mũ. Vì vậy, đa thức cũng có thể được viết như một dãy trên $R$
 
 $$
 (a_0,a_1,...,a_{n-1},a_n,0,0,\cdots).
 $$
 
-但是，这样的数列只能出现有限多个不为零的项．如果两个多项式对应的系数数列一样，就称两个多项式相等．这相当于在补齐系数为零的项后，它们的形式和完全一致．下文中，不再区分相等的多项式的形式和的记号：如果必要，读者可以自行补齐系数中空缺的零．
+Tuy nhiên, một dãy như vậy chỉ được phép có hữu hạn nhiều hạng tử khác không. Nếu hai đa thức ứng với cùng một dãy hệ số, ta nói hai đa thức đó bằng nhau. Điều này tương đương với việc sau khi bổ sung các hạng tử có hệ số bằng không, các tổng hình thức của chúng hoàn toàn giống nhau. Trong phần dưới, ta không phân biệt ký hiệu tổng hình thức của các đa thức bằng nhau: nếu cần, độc giả có thể tự bổ sung các hệ số không còn thiếu.
 
-有时候需要将环中的元素代入多项式中的不定元．比如设 $f(x)$ 是 $R$ 的多项式且 $a\in R$，则将 $a$ 代入多项式 $f(x)$ 的结果就是 $f(a)$．它的含义是：在多项式的形式和中，将 $x$ 替换成 $a$，就能得到 $R$ 中的算术表达式，而 $f(a)$ 就是这个表达式在 $R$ 中运算得到的结果．
+Đôi khi cần thay một phần tử của vành vào biến không xác định trong đa thức. Chẳng hạn, giả sử $f(x)$ là đa thức trên $R$ và $a\in R$, thì kết quả thay $a$ vào đa thức $f(x)$ là $f(a)$. Ý nghĩa của nó là: trong tổng hình thức của đa thức, thay $x$ bằng $a$, ta thu được một biểu thức số học trong $R$, và $f(a)$ chính là kết quả tính biểu thức này trong $R$.
 
-??? info "「多项式」和「多项式函数」"
-    读者不应混淆这两个概念．多项式只是有限长的系数数列，它并不自动成为函数．尽管这里将环中元素代入不定元的操作确实将多项式映射为多项式函数，但是这样的映射未必是单射．比如，$f(x)=x^p-x$ 作为域 $\mathbf F_p$ 上的多项式，显然不等于零多项式；但是 $f(x)$ 作为多项式函数 $\mathbf F_p\rightarrow \mathbf F_p$，恒等于零（即费马小定理）．虽然两者概念不同，很多多项式函数的概念都可以推广到多项式的情形，比如可以仿照多项式函数的微分、不定积分、复合等定义多项式的（形式的）[导数](../poly/intro.md#导数)、[不定积分](../poly/intro.md#导数)、[复合](../poly/intro.md#复合) 等．这些形式运算并不依赖于任何拓扑结构，但是仍然成立很多运算法则．
+??? info "\"Đa thức\" và \"hàm đa thức\""
+    Độc giả không nên nhầm lẫn hai khái niệm này. Đa thức chỉ là một dãy hệ số hữu hạn; nó không tự động trở thành một hàm. Dù thao tác thay phần tử của vành vào biến không xác định ở đây thật sự ánh xạ đa thức thành hàm đa thức, ánh xạ như vậy không nhất thiết là đơn ánh. Chẳng hạn, $f(x)=x^p-x$ với tư cách là đa thức trên trường $\mathbf F_p$ hiển nhiên không bằng đa thức không; nhưng $f(x)$ với tư cách là hàm đa thức $\mathbf F_p\rightarrow \mathbf F_p$ thì đồng nhất bằng không (tức là định lý nhỏ Fermat). Dù hai khái niệm khác nhau, nhiều khái niệm của hàm đa thức đều có thể khái quát sang trường hợp đa thức; chẳng hạn có thể phỏng theo các định nghĩa vi phân, tích phân bất định và hợp thành của hàm đa thức để định nghĩa [đạo hàm](../poly/intro.md#%E5%AF%BC%E6%95%B0), [tích phân bất định](../poly/intro.md#%E5%AF%BC%E6%95%B0), [hợp thành](../poly/intro.md#%E5%A4%8D%E5%90%88) hình thức của đa thức. Các phép toán hình thức này không phụ thuộc vào bất kỳ cấu trúc tôpô nào, nhưng nhiều quy tắc tính toán vẫn đúng.
 
-对于多项式
+Với các đa thức
 
 $$
 \begin{aligned}
@@ -492,26 +506,26 @@ g(x)&=b_0+b_1x+\cdots+b_{n-1}x^{n-1}+b_nx^n,
 \end{aligned}
 $$
 
-多项式的加法运算定义为
+phép cộng đa thức được định nghĩa là
 
 $$
 f(x)+g(x) = (a_0+b_0)+(a_1+b_1)x+\cdots+(a_{n-1}+b_{n-1})x^{n-1}+(a_n+b_n)x^n,
 $$
 
-而多项式的乘法运算定义为
+còn phép nhân đa thức được định nghĩa là
 
 $$
 f(x)g(x) = a_0b_0+(a_1b_0+a_0b_1)x+(a_2b_0+a_1b_1+a_0b_2)x^2+\cdots,
 $$
 
-其中，$x^k$ 项的系数为 $\sum_{i=0}^ka_{k-i}b_i$．在这样定义的加法和乘法运算下，可以证明，$R$ 上的全体多项式构成环，记作 $R[x]$．
+trong đó hệ số của hạng tử $x^k$ là $\sum_{i=0}^ka_{k-i}b_i$. Dưới phép cộng và phép nhân được định nghĩa như vậy, có thể chứng minh tập tất cả đa thức trên $R$ tạo thành một vành, ký hiệu là $R[x]$.
 
-多项式 $f(x)$ 的次数记作 $\deg f(x)$．那些次数为零的多项式是常数多项式，它们以及零多项式相当于 $R$ 在 $R[x]$ 中的嵌入．显然，$R$ 有零因子当且仅当有 $R[x]$ 有零因子．
+Bậc của đa thức $f(x)$ được ký hiệu là $\deg f(x)$. Những đa thức có bậc bằng không là đa thức hằng; chúng cùng với đa thức không tương ứng với phép nhúng $R$ vào $R[x]$. Rõ ràng, $R$ có ước của không khi và chỉ khi $R[x]$ có ước của không.
 
-???+ note "定理"
-    多项式环 $R[x]$ 是整环，当且仅当 $R$ 是整环．
+???+ note "Định lý"
+    Vành đa thức $R[x]$ là miền nguyên khi và chỉ khi $R$ là miền nguyên.
 
-整环 $R$ 上的多项式环 $R[x]$ 中，加法和乘法的结果满足
+Trong vành đa thức $R[x]$ trên miền nguyên $R$, kết quả của phép cộng và phép nhân thỏa mãn
 
 $$
 \begin{aligned}
@@ -520,175 +534,181 @@ $$
 \end{aligned}
 $$
 
-这里设 $\deg 0 = -\infty$．所以，多项式环中的可逆元也一定是它的常数多项式中的那些可逆元．任何一次及以上的多项式都不是可逆的．
+Ở đây đặt $\deg 0 = -\infty$. Vì vậy, các phần tử khả nghịch trong vành đa thức chỉ có thể là những phần tử khả nghịch nằm trong các đa thức hằng. Mọi đa thức bậc một trở lên đều không khả nghịch.
 
-下文的讨论将仅限于整环上的多项式．
+Phần thảo luận dưới đây chỉ giới hạn trong đa thức trên miền nguyên.
 
-???+ info "约定"
-    下文中，将不加区分地使用「环 $R$ 上的多项式」和「多项式环 $R[x]$ 中的多项式」两种说法．比如，多项式在环 $R$ 上不可约，就是指多项式在环 $R[x]$ 中不可约．而且，如果 $R$ 是 $S$ 的子环，那么 $R$ 上的多项式将自动成为 $S$ 上的多项式；对此也不再多加说明．
+???+ info "Quy ước"
+    Dưới đây, ta sẽ không phân biệt hai cách nói "đa thức trên vành $R$" và "đa thức trong vành đa thức $R[x]$". Chẳng hạn, nói đa thức bất khả quy trên vành $R$ nghĩa là đa thức bất khả quy trong vành $R[x]$. Hơn nữa, nếu $R$ là vành con của $S$, thì đa thức trên $R$ tự động trở thành đa thức trên $S$; điều này cũng sẽ không được nhắc lại.
 
-### 域上的多项式环
+<span id="&#22495;&#19978;&#30340;&#22810;&#39033;&#24335;&#29615;"></span>
+### Vành đa thức trên trường
 
-整环上的多项式环中性质最为简单的，当然是域上的多项式环．域 $F$ 上的多项式环 $F[x]$ 因为系数可以做除法，所以可以定义带余除法．不妨设非零多项式 $f(x)$ 的范数 $N(f(x))=\deg f(x)$．那么，对于 $F[x]$ 中的多项式 $f(x)$ 和非零多项式 $g(x)$，显然可以做带余除法
+Trong các vành đa thức trên miền nguyên, vành có tính chất đơn giản nhất đương nhiên là vành đa thức trên trường. Vành đa thức $F[x]$ trên trường $F$ có hệ số cho phép chia, nên có thể định nghĩa phép chia có dư. Giả sử chuẩn của đa thức khác không $f(x)$ là $N(f(x))=\deg f(x)$. Khi đó với đa thức $f(x)$ và đa thức khác không $g(x)$ trong $F[x]$, ta có thể thực hiện phép chia có dư
 
 $$
 f(x)=g(x)q(x)+r(x),
 $$
 
-其中，$q(x),r(x)\in F[x]$，且 $r(x)=0$ 或 $\deg r(x)<\deg g(x)$．这说明，域上的多项式环都是欧几里得整环．
+trong đó $q(x),r(x)\in F[x]$, và $r(x)=0$ hoặc $\deg r(x)<\deg g(x)$. Điều này cho thấy mọi vành đa thức trên trường đều là miền Euclid.
 
-???+ note "定理"
-    域 $F$ 上的多项式环 $F[x]$ 是欧几里得整环，也是主理想整环，也是唯一分解整环．
+???+ note "Định lý"
+    Vành đa thức $F[x]$ trên trường $F$ là miền Euclid, cũng là miền iđêan chính, và cũng là miền phân tích duy nhất.
 
-算法竞赛中，由于计算精度原因，常常考虑的是多项式环 $\mathbf F_p[x]=(\mathbf Z/p\mathbf Z)[x]$，此时的模数 $p$ 要求是质数．这样的环容许辗转相除法等操作．但是，任意模数 $n$ 对应的多项式环 $(\mathbf Z/n\mathbf Z)[x]$ 甚至都不是整环．
+Trong lập trình thi đấu, do vấn đề độ chính xác tính toán, người ta thường xét vành đa thức $\mathbf F_p[x]=(\mathbf Z/p\mathbf Z)[x]$; khi đó môđun $p$ cần là số nguyên tố. Vành như vậy cho phép thực hiện các phép toán như thuật toán Euclid. Tuy nhiên, vành đa thức $(\mathbf Z/n\mathbf Z)[x]$ ứng với môđun tùy ý $n$ thậm chí còn không phải miền nguyên.
 
-成立带余除法意味着多项式的根总对应着它的一个一次因子．
+Việc phép chia có dư đúng kéo theo nghiệm của đa thức luôn tương ứng với một nhân tử bậc nhất của nó.
 
-???+ abstract "根"
-    多项式 $f(x)$ 的 **根**（root）指的是使得 $f(\xi)=0$ 成立的元素 $\xi\in F$．
+???+ abstract "Nghiệm"
+    **Nghiệm** (root) của đa thức $f(x)$ là phần tử $\xi\in F$ làm cho $f(\xi)=0$.
 
-???+ note "定理"
-    对于域 $F$ 上的多项式 $f(x)$ 和域中的元素 $\xi\in F$，那么 $\xi$ 是 $f(x)$ 的根，当且仅当 $f(x)$ 有一次因子 $(x-\xi)$．
+???+ note "Định lý"
+    Với đa thức $f(x)$ trên trường $F$ và phần tử $\xi\in F$ trong trường, $\xi$ là nghiệm của $f(x)$ khi và chỉ khi $f(x)$ có nhân tử bậc nhất $(x-\xi)$.
 
-??? note "证明"
-    带余除法说明存在 $q(x),r(x)$，成立 $f(x)=q(x)(x-\xi)+r(x)$ 且 $\deg r(x)<\deg(x-\xi)=1$．因而，$r(x)$ 是常数多项式或者零多项式，令 $r(x)=c$，则必然有 $f(x)=q(x)(x-\xi)+c$．代入 $x=\xi$，故而有 $0=a(\xi)=c$，即 $f(x)=q(x)(x-\xi)$．
+??? note "Chứng minh"
+    Phép chia có dư cho thấy tồn tại $q(x),r(x)$ sao cho $f(x)=q(x)(x-\xi)+r(x)$ và $\deg r(x)<\deg(x-\xi)=1$. Do đó $r(x)$ là đa thức hằng hoặc đa thức không; đặt $r(x)=c$, ta có $f(x)=q(x)(x-\xi)+c$. Thay $x=\xi$ vào, suy ra $0=f(\xi)=c$, tức là $f(x)=q(x)(x-\xi)$.
 
-根的概念可以推广到重根的情形．
+Khái niệm nghiệm có thể được khái quát cho trường hợp nghiệm bội.
 
-???+ abstract "重根"
-    如果多项式 $f(x)$ 有因子 $(x-\xi)^k$，且 $(x-\xi)^{k+1}$ 不能整除 $f(x)$，则称 $\xi$ 是 $f(x)$ 的 **$k$ 重根**（root of multiplicity $k$）．如果 $k>1$，则根 $\xi$ 称为 $f(x)$ 的 **重根**（multiple root）；如果 $k=1$，则根 $\xi$ 称为 $f(x)$ 的 **单根**（simple root）．
+???+ abstract "Nghiệm bội"
+    Nếu đa thức $f(x)$ có nhân tử $(x-\xi)^k$, và $(x-\xi)^{k+1}$ không chia hết $f(x)$, thì $\xi$ được gọi là **nghiệm bội $k$** (root of multiplicity $k$) của $f(x)$. Nếu $k>1$, nghiệm $\xi$ được gọi là **nghiệm bội** (multiple root) của $f(x)$; nếu $k=1$, nghiệm $\xi$ được gọi là **nghiệm đơn** (simple root) của $f(x)$.
 
-???+ note "定理"
-    如果域 $F$ 上的多项式 $f(x)$ 有（可能重复的）根 $\xi_1,\cdots,\xi_k$，那么，它必然有因子 $(x-\xi_1)\cdots(x-\xi_k)$．进而，域 $F$ 上的多项式 $f(x)$ 次数为 $n$，那么它至多有 $n$ 个根（计重数）．
+???+ note "Định lý"
+    Nếu đa thức $f(x)$ trên trường $F$ có các nghiệm (có thể lặp) $\xi_1,\cdots,\xi_k$, thì nó nhất định có nhân tử $(x-\xi_1)\cdots(x-\xi_k)$. Hơn nữa, nếu đa thức $f(x)$ trên trường $F$ có bậc $n$, thì nó có nhiều nhất $n$ nghiệm tính cả bội số.
 
-??? note "证明"
-    注意到 $F[x]$ 是唯一分解整环即可．
+??? note "Chứng minh"
+    Chỉ cần lưu ý rằng $F[x]$ là miền phân tích duy nhất.
 
-虽然域上的多项式成立唯一分解定理，但是并没有一般的办法判断给定的多形式是否可约．次数比较小的情形相对容易．比如说，所有的一次多项式都是不可约多项式．在特殊的域上，所有的不可约多项式都是一次多项式．这样的域称为 [代数闭域](./field-theory.md#代数闭域)．在这样的域上，所有不恒等于非零常数的多项式都有根，因而任何大于一次的多项式都可以进一步分解．一个这样的例子是复数域 $\mathbf C$．而实数域 $\mathbf R$ 上，则存在二次的不可约多项式；有理数域 $\mathbf Q$ 上，不可约多项式的结构就更为复杂．[域论](./field-theory.md) 页面对于有理数域和有限域上的多项式有更多的讨论．
+Dù định lý phân tích duy nhất đúng với đa thức trên trường, nói chung không có cách tổng quát để phán đoán một đa thức cho trước có khả quy hay không. Trường hợp bậc tương đối nhỏ thì dễ hơn. Chẳng hạn, mọi đa thức bậc nhất đều là đa thức bất khả quy. Trên những trường đặc biệt, mọi đa thức bất khả quy đều là đa thức bậc nhất. Những trường như vậy được gọi là [trường đóng đại số](./field-theory.md#%E4%BB%A3%E6%95%B0%E9%97%AD%E5%9F%9F). Trên những trường như vậy, mọi đa thức không đồng nhất bằng hằng số khác không đều có nghiệm, nên mọi đa thức bậc lớn hơn một đều có thể tiếp tục phân tích. Một ví dụ là trường số phức $\mathbf C$. Còn trên trường số thực $\mathbf R$, tồn tại đa thức bậc hai bất khả quy; trên trường số hữu tỉ $\mathbf Q$, cấu trúc đa thức bất khả quy còn phức tạp hơn. Trang [lý thuyết trường](./field-theory.md) có thảo luận thêm về đa thức trên trường số hữu tỉ và trường hữu hạn.
 
-以上结论都是关于域上的多项式．更一般的整环上的多项式，常常可以转化为这样的情形．
+Các kết luận trên đều nói về đa thức trên trường. Đa thức trên miền nguyên tổng quát hơn thường có thể được chuyển về trường hợp như vậy.
 
-下面考虑唯一分解整环 $R$ 上的多项式环 $R[x]$．直接在 $R[x]$ 中做运算，因为系数时常不能做除法，很多运算受到限制．不妨考虑将 $R$ 扩充到它的分式域 $F$，进而考虑将 $R[x]$ 中的多项式 $f(x)$ 在 $F[x]$ 中做分解．已知 $F[x]$ 是唯一分解整环，那就可以通过 $F[x]$ 中 $f(x)$ 的分解反推出 $R[x]$ 中的分解．幸而这样的想法总是可行的．
+Tiếp theo xét vành đa thức $R[x]$ trên miền phân tích duy nhất $R$. Nếu tính trực tiếp trong $R[x]$, vì hệ số thường không chia được, nhiều phép toán bị hạn chế. Ta mở rộng $R$ thành trường phân thức $F$ của nó, rồi xét phân tích đa thức $f(x)$ trong $R[x]$ bên trong $F[x]$. Đã biết $F[x]$ là miền phân tích duy nhất, nên có thể từ phân tích của $f(x)$ trong $F[x]$ suy ngược ra phân tích trong $R[x]$. May mắn là ý tưởng này luôn khả thi.
 
-???+ note "Gauss 引理"
-    对于唯一分解整环 $R$ 和它的分式域 $F$，如果 $f(x)\in R[x]$，那么如果在 $F[x]$ 中 $f(x)=A(x)B(x)$，那么必然存在 $s,t\in F$，使得 $a(x)=sA(x)\in R[x]$，$b(x)=tB(x)\in R[x]$，且 $f(x)=a(x)b(x)$．因此，如果 $f(x)$ 在 $R[x]$ 中不可约，那么它在 $F[x]$ 中不可约．
+???+ note "Bổ đề Gauss"
+    Với miền phân tích duy nhất $R$ và trường phân thức $F$ của nó, nếu $f(x)\in R[x]$ và trong $F[x]$ có $f(x)=A(x)B(x)$, thì tồn tại $s,t\in F$ sao cho $a(x)=sA(x)\in R[x]$, $b(x)=tB(x)\in R[x]$, và $f(x)=a(x)b(x)$. Do đó, nếu $f(x)$ bất khả quy trong $R[x]$, thì nó bất khả quy trong $F[x]$.
 
-??? note "证明"
-    设 $f(x)\in R[x]$ 在 $F[x]$ 中可约，且 $f(x)=A(x)B(x)$．设 $r_a$ 和 $r_b$ 分别为 $A(x)$ 和 $B(x)$ 中所有系数的分母的最小公倍数，则有 $\tilde a(x)=r_aA(x)$ 和 $\tilde b(x)=r_bB(x)$ 都是 $R$ 上多项式．令 $r=r_ar_b$，就有 $rf(x)=\tilde a(x)\tilde b(x)$．如果 $r$ 是 $R$ 中可逆元，则可以取分解 $f(x)=(r^{-1}\tilde a(x))\tilde b(x)$，显然满足引理的要求．
+??? note "Chứng minh"
+    Giả sử $f(x)\in R[x]$ khả quy trong $F[x]$, và $f(x)=A(x)B(x)$. Gọi $r_a$ và $r_b$ lần lượt là bội chung nhỏ nhất của các mẫu số của mọi hệ số trong $A(x)$ và $B(x)$; khi đó $\tilde a(x)=r_aA(x)$ và $\tilde b(x)=r_bB(x)$ đều là đa thức trên $R$. Đặt $r=r_ar_b$, ta có $rf(x)=\tilde a(x)\tilde b(x)$. Nếu $r$ là phần tử khả nghịch trong $R$, thì có thể lấy phân tích $f(x)=(r^{-1}\tilde a(x))\tilde b(x)$, hiển nhiên thỏa mãn yêu cầu của bổ đề.
     
-    否则，如果 $r$ 中存在不可约元因子 $p$，这里要证明，等式两侧可以消去这个因子，且保证所有系数仍旧在整环 $R$ 中．注意到 $p$ 必然也是素元，因而 $(p)$ 是素理想．等式左右两边同时模去 $p$，则得到 $(R/(p))[x]$ 上的多项式 $0=\bar a(x)\bar b(x)$，这里，$\bar a$ 和 $\bar b$ 是取模后的多项式．因为 $R/(p)$ 是整环，$(R/(p))[x]$ 也是整环，故而可以设 $\bar a(x)=0$．这说明，$\tilde a(x)$ 的系数全都可以整除 $p$．因而，等式两侧可以直接消去因子 $p$．
+    Ngược lại, nếu trong $r$ tồn tại nhân tử bất khả quy $p$, cần chứng minh có thể khử nhân tử này ở hai vế của đẳng thức, đồng thời bảo đảm mọi hệ số vẫn nằm trong miền nguyên $R$. Lưu ý rằng $p$ cũng là phần tử nguyên tố, do đó $(p)$ là iđêan nguyên tố. Lấy modulo $p$ ở cả hai vế đẳng thức, ta được đẳng thức đa thức trên $(R/(p))[x]$ là $0=\bar a(x)\bar b(x)$, trong đó $\bar a$ và $\bar b$ là các đa thức sau khi lấy modulo. Vì $R/(p)$ là miền nguyên, $(R/(p))[x]$ cũng là miền nguyên, nên có thể giả sử $\bar a(x)=0$. Điều này cho thấy tất cả hệ số của $\tilde a(x)$ đều chia hết cho $p$. Do đó có thể trực tiếp khử nhân tử $p$ ở hai vế của đẳng thức.
     
-    根据唯一分解整环的定义，$r$ 至多有有限个这样的不可约元因子，故而有限次消去它们后就转化为了 $r$ 是 $R$ 中可逆元的情形．引理就得以证明．
+    Theo định nghĩa miền phân tích duy nhất, $r$ có nhiều nhất hữu hạn nhân tử bất khả quy như vậy, nên sau khi khử chúng hữu hạn lần, ta chuyển về trường hợp $r$ là phần tử khả nghịch trong $R$. Bổ đề được chứng minh.
 
-???+ note "推论"
-    对于唯一分解整环 $R$ 和它的分式域 $F$，如果 $f(x)\in R[x]$ 且 $f(x)$ 的所有非零系数互素（即最大公因子是 $R$ 中幺元），则 $f(x)$ 在 $R[x]$ 中不可约，当且仅当 $f(x)$ 在 $F[x]$ 中不可约．
+???+ note "Hệ quả"
+    Với miền phân tích duy nhất $R$ và trường phân thức $F$ của nó, nếu $f(x)\in R[x]$ và mọi hệ số khác không của $f(x)$ nguyên tố cùng nhau (tức là ước chung lớn nhất là phần tử đơn vị trong $R$), thì $f(x)$ bất khả quy trong $R[x]$ khi và chỉ khi $f(x)$ bất khả quy trong $F[x]$.
 
-也就是说，整系数多项式环 $\mathbf Z[x]$ 中的不可约元都是 $\mathbf Q[x]$ 中的不可约元．判断整系数多项式是否不可约的一个有效方法是 Eisenstein 判别法．根据 Gauss 引理，它也提供了判断有理系数多项式是否不可约的方法．
+Nói cách khác, các phần tử bất khả quy trong vành đa thức hệ số nguyên $\mathbf Z[x]$ đều là phần tử bất khả quy trong $\mathbf Q[x]$. Một phương pháp hiệu quả để phán đoán đa thức hệ số nguyên có bất khả quy hay không là tiêu chuẩn Eisenstein. Theo bổ đề Gauss, tiêu chuẩn này cũng cung cấp phương pháp phán đoán đa thức hệ số hữu tỉ có bất khả quy hay không.
 
-???+ note "Eisenstein 判别法"
-    设 $n$ 次整系数多项式 $f(x)=a_0+a_1x+\cdots+a_{n-1}x^{n-1}+a_nx^n$，如果存在质数 $p$ 满足 $p\mid a_i$ 对所有 $i=0,1,\cdots,n-1$ 都成立，且 $p$ 不能整除 $a_n$，$p^2$ 不能整除 $a_0$，则多项式 $f(x)$ 在有理数域 $\mathbf Q$ 上不可约．如果 $\gcd(a_0,a_1,\cdots,a_n)=1$，则多项式 $f(x)$ 也在整数环 $\mathbf Z$ 上不可约．
+???+ note "Tiêu chuẩn Eisenstein"
+    Cho đa thức hệ số nguyên bậc $n$, $f(x)=a_0+a_1x+\cdots+a_{n-1}x^{n-1}+a_nx^n$. Nếu tồn tại số nguyên tố $p$ thỏa mãn $p\mid a_i$ với mọi $i=0,1,\cdots,n-1$, đồng thời $p$ không chia hết $a_n$ và $p^2$ không chia hết $a_0$, thì đa thức $f(x)$ bất khả quy trên trường số hữu tỉ $\mathbf Q$. Nếu $\gcd(a_0,a_1,\cdots,a_n)=1$, thì đa thức $f(x)$ cũng bất khả quy trên vành số nguyên $\mathbf Z$.
 
-??? note "证明"
-    利用 Gauss 引理可知，如果多项式 $f(x)$ 在有理数域 $\mathbf Q$ 上可约，则它也在整数环 $\mathbf Z$ 上可约．设 $f(x)=b(x)c(x)$ 是它在 $\mathbf Z[x]$ 中的分解．将等式的左右两边对质数 $p$ 取模，则得到 $\mathbf F_p[x]$ 中的分解，$\overline{f}(x)=\overline{b}(x)\overline{c}(x)$．但是定理的条件说明，$\overline{f}(x)=x^n$，则必然存在整数 $m$ 使得 $\overline b(x)=x^m$ 且 $\overline c(x)=x^{n-m}$，其中，$0<m<n$．故而，因子 $b(x)$ 和 $c(x)$ 的常数项 $b_0$ 和 $c_0$ 都是 $p$ 的倍数．故而，$f(x)$ 的常数项 $a_0=b_0c_0$ 必然是 $p^2$ 的倍数．这与所给条件相矛盾．
+??? note "Chứng minh"
+    Dùng bổ đề Gauss, nếu đa thức $f(x)$ khả quy trên trường số hữu tỉ $\mathbf Q$, thì nó cũng khả quy trên vành số nguyên $\mathbf Z$. Giả sử $f(x)=b(x)c(x)$ là phân tích của nó trong $\mathbf Z[x]$. Lấy modulo số nguyên tố $p$ ở hai vế của đẳng thức, ta được phân tích trong $\mathbf F_p[x]$: $\overline{f}(x)=\overline{b}(x)\overline{c}(x)$. Nhưng điều kiện của định lý cho thấy $\overline{f}(x)=x^n$, nên tồn tại số nguyên $m$ sao cho $\overline b(x)=x^m$ và $\overline c(x)=x^{n-m}$, trong đó $0<m<n$. Vì vậy các hệ số hằng $b_0$ và $c_0$ của hai nhân tử $b(x)$ và $c(x)$ đều là bội của $p$. Do đó hệ số hằng $a_0=b_0c_0$ của $f(x)$ là bội của $p^2$. Điều này mâu thuẫn với điều kiện đã cho.
 
-??? example "例子"
-    1.  多项式 $x^3-2$ 在 $\mathbf Q[x]$ 中不可约．对 $p=2$ 应用 Eisenstein 判别法即可．
-    2.  多项式 $x^4+1$ 在 $\mathbf Q[x]$ 中不可约．否则，$(x+1)^4+1=x^4+4x^3+6x^2+4x+2$ 也可约．但是，对 $p=2$ 应用 Eisenstein 判别法可知，后者并不可约．
+??? example "Ví dụ"
+    1.  Đa thức $x^3-2$ bất khả quy trong $\mathbf Q[x]$. Chỉ cần áp dụng tiêu chuẩn Eisenstein với $p=2$.
+    2.  Đa thức $x^4+1$ bất khả quy trong $\mathbf Q[x]$. Nếu không, $(x+1)^4+1=x^4+4x^3+6x^2+4x+2$ cũng khả quy. Nhưng áp dụng tiêu chuẩn Eisenstein với $p=2$ cho thấy đa thức sau bất khả quy.
 
-对于唯一分解整环 $R$，因为相应的分式域 $F$ 上的多项式环是唯一分解整环，而 Gauss 引理说明，分式域 $F$ 上的多项式和原来的整环 $R$ 上的多项式的分解是相互对应的，所以 $R[x]$ 也是唯一分解整环．因此，有如下定理：
+Với miền phân tích duy nhất $R$, vì vành đa thức trên trường phân thức tương ứng $F$ là miền phân tích duy nhất, còn bổ đề Gauss cho thấy phân tích của đa thức trên trường phân thức $F$ và phân tích của đa thức trên miền nguyên ban đầu $R$ tương ứng với nhau, nên $R[x]$ cũng là miền phân tích duy nhất. Do đó ta có định lý sau:
 
-???+ note "定理"
-    多项式环 $R[x]$ 是唯一分解整环，当且仅当 $R$ 是唯一分解整环．
+???+ note "Định lý"
+    Vành đa thức $R[x]$ là miền phân tích duy nhất khi và chỉ khi $R$ là miền phân tích duy nhất.
 
-这里的 $\mathbf Z[x]$ 提供了唯一分解整环不一定是主理想整环的例子．例如，在 $\mathbf Z[x]$ 中，$(2,x)$ 并不是主理想．
+Ở đây $\mathbf Z[x]$ cung cấp ví dụ về miền phân tích duy nhất không phải miền iđêan chính. Chẳng hạn, trong $\mathbf Z[x]$, $(2,x)$ không phải là iđêan chính.
 
-有很多方法可以将多项式环扩充到更大的集合．比如说，对于整环上的多项式环 $R[x]$，可以将它扩充到它的分式域，记作 $R(x)$．这个分式域常称作 **有理分式域**（field of rational fractions），其中的元素的基本形式为 $\dfrac{f(x)}{g(x)}$，这里，$f(x)$ 和 $g(x)$ 都是多项式．
+Có nhiều cách mở rộng vành đa thức thành các tập lớn hơn. Chẳng hạn, với vành đa thức $R[x]$ trên miền nguyên, có thể mở rộng nó thành trường phân thức, ký hiệu là $R(x)$. Trường phân thức này thường được gọi là **trường phân thức hữu tỉ** (field of rational fractions), trong đó phần tử có dạng cơ bản $\dfrac{f(x)}{g(x)}$, với $f(x)$ và $g(x)$ đều là đa thức.
 
-### 多元多项式环
+<span id="&#22810;&#20803;&#22810;&#39033;&#24335;&#29615;"></span>
+### Vành đa thức nhiều biến
 
-多项式环可以推广到含有多个不定元的情形．对于交换幺环 $R$，可以定义 $R$ 上的多项式环，即一元多项式环 $R[x]$．进而，可以定义 $R[x]$ 上的多项式环 $R[x][y]$，它可以看作是 $R$ 上的二元多项式环 $R[x,y]$．由此，可以归纳地定义 $R$ 上的 $k$ 元多项式环 $R[x_1,\cdots,x_k]$．当 $R$ 是整环的时候，它上面的任意多元多项式环都是整环；类似地，唯一分解整环的性质也可以传递到任意多元多项式环．
+Vành đa thức có thể được khái quát sang trường hợp có nhiều biến không xác định. Với vành giao hoán có đơn vị $R$, có thể định nghĩa vành đa thức trên $R$, tức vành đa thức một biến $R[x]$. Tiếp theo, có thể định nghĩa vành đa thức $R[x][y]$ trên $R[x]$, và có thể xem nó là vành đa thức hai biến $R[x,y]$ trên $R$. Từ đó, có thể quy nạp để định nghĩa vành đa thức $k$ biến $R[x_1,\cdots,x_k]$ trên $R$. Khi $R$ là miền nguyên, mọi vành đa thức nhiều biến trên nó đều là miền nguyên; tương tự, tính chất miền phân tích duy nhất cũng truyền sang mọi vành đa thức nhiều biến.
 
-### 形式幂级数环
+<span id="&#24418;&#24335;&#24130;&#32423;&#25968;&#29615;"></span>
+### Vành chuỗi lũy thừa hình thức
 
-也可以考虑形式和中可以有任意多项系数不为零的情形．交换幺环 $R$ 上的 **形式幂级数**（formal power series）定义为
+Ta cũng có thể xét trường hợp tổng hình thức được phép có vô hạn nhiều hệ số khác không. **Chuỗi lũy thừa hình thức** (formal power series) trên vành giao hoán có đơn vị $R$ được định nghĩa là
 
 $$
 \sum_{k=0}^\infty a_kx^k=a_0+a_1x+a_2x^2+\cdots.
 $$
 
-利用与多项式环 $R[x]$ 一致的方式可以定义幂级数间的加法和乘法运算．并且，此时的形式幂级数也构成环，记作 $R[[x]]$．这里的形式幂级数并不需要考虑其敛散性，因为实际上每个形式幂级数只是它的系数序列，而并没有赋予更多的拓扑结构．
+Dùng cách nhất quán với vành đa thức $R[x]$, có thể định nghĩa phép cộng và phép nhân giữa các chuỗi lũy thừa. Khi đó các chuỗi lũy thừa hình thức cũng tạo thành một vành, ký hiệu là $R[[x]]$. Ở đây chuỗi lũy thừa hình thức không cần xét tính hội tụ hay phân kỳ, vì trên thực tế mỗi chuỗi lũy thừa hình thức chỉ là dãy hệ số của nó và không được gán thêm cấu trúc tôpô nào.
 
-形式幂级数环的结构很有趣．整环上的多项式环中，可逆元只能是常数．但是，在形式幂级数环中，却可以有
+Cấu trúc của vành chuỗi lũy thừa hình thức rất thú vị. Trong vành đa thức trên miền nguyên, phần tử khả nghịch chỉ có thể là hằng số. Nhưng trong vành chuỗi lũy thừa hình thức, ta lại có
 
 $$
 (1-x)^{-1}=\sum_{k=0}^\infty x^k=1+x+x^2+\cdots.
 $$
 
-这个现象是普遍的．只要一个形式幂级数的常数项 $a_0$ 是 $R$ 中的可逆元，就一定有 $\sum_{k=0}^\infty a_kx^k$ 也是可逆的．这是因为如果设
+Hiện tượng này là phổ biến. Chỉ cần hệ số hằng $a_0$ của một chuỗi lũy thừa hình thức là phần tử khả nghịch trong $R$, thì $\sum_{k=0}^\infty a_kx^k$ cũng khả nghịch. Lý do là nếu đặt
 
 $$
 \left(\sum_{k=0}^\infty a_kx^k\right)\left(\sum_{k=0}^\infty b_kx^k\right)=1,
 $$
 
-那么，列出系数需要满足的方程组，可以递归地求得 $b_k$ 的表达式，其中只涉及到 $a_0$ 的逆．
+thì khi viết ra hệ phương trình mà các hệ số cần thỏa mãn, ta có thể truy hồi để tìm biểu thức của $b_k$, trong đó chỉ cần dùng đến nghịch đảo của $a_0$.
 
-在形式幂级数环上可以定义各种运算，诸如取逆、除法、复合逆、形式导数、初等函数等，详见 [多项式技术简介](../poly/intro.md)．
+Trên vành chuỗi lũy thừa hình thức có thể định nghĩa nhiều phép toán như lấy nghịch đảo, phép chia, nghịch đảo hợp thành, đạo hàm hình thức, hàm sơ cấp, v.v.; xem chi tiết tại [giới thiệu kỹ thuật đa thức](../poly/intro.md).
 
-### 形式洛朗级数环
+<span id="&#24418;&#24335;&#27931;&#26391;&#32423;&#25968;&#29615;"></span>
+### Vành chuỗi Laurent hình thức
 
-形式幂级数环还可以进一步拓展，使得它允许负次数的项．交换幺环 $R$ 上的 **形式洛朗级数**（formal laurent series）定义为
+Vành chuỗi lũy thừa hình thức còn có thể được mở rộng thêm để cho phép các hạng tử bậc âm. **Chuỗi Laurent hình thức** (formal Laurent series) trên vành giao hoán có đơn vị $R$ được định nghĩa là
 
 $$
 \sum_{k=N}^\infty a_kx^k,
 $$
 
-这里，$N\in\mathbf Z$．因此，形式洛朗级数可以有有限多个负次数的项．将之前的加法和乘法拓展到形式洛朗级数上，就能得到形式洛朗级数环，记作 $R((x))$．如果 $F$ 是域，那么 $F((x))$ 也是域．
+trong đó $N\in\mathbf Z$. Vì vậy, chuỗi Laurent hình thức có thể có hữu hạn nhiều hạng tử bậc âm. Mở rộng phép cộng và phép nhân trước đó sang chuỗi Laurent hình thức, ta thu được vành chuỗi Laurent hình thức, ký hiệu là $R((x))$. Nếu $F$ là trường, thì $F((x))$ cũng là trường.
 
-形式洛朗级数环在 [Lagrange 反演](../poly/lagrange-inversion.md) 中有应用．
+Vành chuỗi Laurent hình thức có ứng dụng trong [nghịch đảo Lagrange](../poly/lagrange-inversion.md).
 
-## 中国剩余定理
+<span id="&#20013;&#22269;&#21097;&#20313;&#23450;&#29702;"></span>
+## Định lý số dư Trung Hoa
 
-相关阅读：[中国剩余定理](../number-theory/crt.md)
+Đọc thêm: [định lý số dư Trung Hoa](../number-theory/crt.md)
 
-在数论中，中国剩余定理常用来求解数论方程组．对于一般的交换幺环，同样可以建立中国剩余定理．每个同余方程都相当于指定了未知元在某个商环里的像，那么，交换幺环中的中国剩余定理就相当于通过这些商环里的像确定环中的元素．
+Trong lý thuyết số, định lý số dư Trung Hoa thường được dùng để giải hệ phương trình đồng dư. Với vành giao hoán có đơn vị tổng quát, cũng có thể xây dựng định lý số dư Trung Hoa. Mỗi phương trình đồng dư tương đương với việc chỉ định ảnh của ẩn trong một vành thương nào đó; khi ấy định lý số dư Trung Hoa trong vành giao hoán có đơn vị tương đương với việc xác định phần tử của vành thông qua các ảnh trong những vành thương này.
 
-这个讨论可以转化为形式语言．对于非零交换幺环 $R$ 和它的理想 $I_1,\cdots,I_n$，考虑环同态 $\varphi:R\rightarrow R/I_1\times \cdots R/I_n$，它将 $r$ 映射至 $(r+I_1,\cdots,r+I_n)$．其中，$r+I_i$ 是陪集，而 $\times$ 表示环的直积：
+Thảo luận này có thể chuyển thành ngôn ngữ hình thức. Với vành giao hoán có đơn vị, khác không $R$ và các iđêan $I_1,\cdots,I_n$ của nó, xét đồng cấu vành $\varphi:R\rightarrow R/I_1\times \cdots \times R/I_n$ ánh xạ $r$ đến $(r+I_1,\cdots,r+I_n)$. Trong đó, $r+I_i$ là lớp kề, còn $\times$ biểu thị tích trực tiếp của các vành:
 
-???+ abstract "直积"
-    对于环 $R_1$ 和 $R_2$，它们的加法群的直积 $R_1\times R_2$ 上可以定义乘法为各个分量分别相乘，则 $R_1\times R_2$ 就成为环，称为环 $R_1$ 和 $R_2$ 的 **直积**（direct prodcut），仍记作 $R_1\times R_2$．
+???+ abstract "Tích trực tiếp"
+    Với hai vành $R_1$ và $R_2$, trên tích trực tiếp $R_1\times R_2$ của các nhóm cộng của chúng, có thể định nghĩa phép nhân bằng cách nhân theo từng thành phần. Khi đó $R_1\times R_2$ trở thành một vành, gọi là **tích trực tiếp** (direct product) của hai vành $R_1$ và $R_2$, vẫn ký hiệu là $R_1\times R_2$.
 
-同态 $\varphi$ 的核是 $\ker\varphi=I_1\cap\cdots\cap I_n$．中国剩余定理要回答的问题就是这样的映射在什么条件下是满射．
+Hạt nhân của đồng cấu $\varphi$ là $\ker\varphi=I_1\cap\cdots\cap I_n$. Câu hỏi mà định lý số dư Trung Hoa cần trả lời là ánh xạ như vậy toàn ánh dưới điều kiện nào.
 
-在数论的情形下，定理的成立需要这些模数互质．这个条件可以推广到环论的情形．
+Trong trường hợp số học, định lý đúng khi các môđun nguyên tố cùng nhau. Điều kiện này có thể được khái quát sang ngôn ngữ lý thuyết vành.
 
-???+ abstract "互素"
-    设环 $R$ 有理想 $I$ 和 $J$，如果 $I+J=R$，则称 $I$ 和 $J$  **互素**（comaximal）．
+???+ abstract "Cùng nhau cực đại"
+    Giả sử vành $R$ có các iđêan $I$ và $J$. Nếu $I+J=R$, thì $I$ và $J$ được gọi là **cùng nhau cực đại** (comaximal).
 
-对于幺环的情形，如果考虑主理想 $(a)$ 和 $(b)$，这个条件就相当于存在 $x,y\in R$ 使得 $ax+by=1$，这类似于整数互素时的裴蜀定理．利用这个定义，可以完全仿照整数环的情形，建立交换幺环上的 **中国剩余定理**（Chinese remainder theorem）．
+Trong trường hợp vành có đơn vị, nếu xét các iđêan chính $(a)$ và $(b)$, điều kiện này tương đương với việc tồn tại $x,y\in R$ sao cho $ax+by=1$, tương tự định lý Bézout khi hai số nguyên nguyên tố cùng nhau. Dùng định nghĩa này, có thể xây dựng **định lý số dư Trung Hoa** (Chinese remainder theorem) trên vành giao hoán có đơn vị hoàn toàn tương tự trường hợp vành số nguyên.
 
-???+ note "中国剩余定理"
-    设非零交换幺环 $R$ 有理想 $I_1,\cdots,I_n$．如果它们两两互素，那么上述定义的环同态 $\varphi$ 是满射，它的核等于这些理想的乘积 $\ker\varphi=I_1\cap\cdots\cap I_n=I_1\cdots I_n$，因此，
+???+ note "Định lý số dư Trung Hoa"
+    Giả sử vành giao hoán có đơn vị, khác không $R$ có các iđêan $I_1,\cdots,I_n$. Nếu chúng đôi một cùng nhau cực đại, thì đồng cấu vành $\varphi$ được định nghĩa ở trên là toàn ánh, hạt nhân của nó bằng tích của các iđêan này, $\ker\varphi=I_1\cap\cdots\cap I_n=I_1\cdots I_n$, do đó
     
     $$
     R/(I_1\cdots I_n)=R/(I_1\cap\cdots\cap I_n)\cong R/I_1\times\cdots\times R/I_n.
     $$
 
-??? note "证明"
-    定理内容很丰富，但仍需证明的结论只有两个，即 $\varphi$ 是满射和 $I_1\cap\cdots\cap I_n=I_1\cdots I_n$．关键在于利用好互素的条件．
+??? note "Chứng minh"
+    Nội dung định lý khá phong phú, nhưng những kết luận còn cần chứng minh chỉ có hai: $\varphi$ là toàn ánh và $I_1\cap\cdots\cap I_n=I_1\cdots I_n$. Điểm then chốt là tận dụng điều kiện cùng nhau cực đại.
     
-    首先证明 $n=2$ 的情形．因为理想 $I_1$ 和 $I_2$ 互素，即 $I_1+I_2=R$，所以，$R$ 中幺元 $1$ 可以写成 $a_1+a_2$ 的形式，其中，$a_i\in I_i$．因为 $a_1\in I_1$ 且 $a_1=1-a_2\in 1+I_2$，所以 $\varphi(a_1)=(I_1,1+I_2)$；同理，$\varphi(a_2)=(1+I_1,I_2)$．因而，$(\varphi(a_2),\varphi(a_1))$ 起到了类似向量空间中的「基」的作用．故而，对任意像 $(r_1+I_1,r_2+I_2)$，都能找到同态 $\varphi$ 下的原像 $r_1a_2+r_2a_1$．这说明 $\varphi$ 是满射．
+    Trước hết chứng minh trường hợp $n=2$. Vì các iđêan $I_1$ và $I_2$ cùng nhau cực đại, tức là $I_1+I_2=R$, nên phần tử đơn vị $1$ trong $R$ có thể viết dưới dạng $a_1+a_2$, trong đó $a_i\in I_i$. Vì $a_1\in I_1$ và $a_1=1-a_2\in 1+I_2$, nên $\varphi(a_1)=(I_1,1+I_2)$; tương tự, $\varphi(a_2)=(1+I_1,I_2)$. Do đó $(\varphi(a_2),\varphi(a_1))$ đóng vai trò tương tự một "cơ sở" trong không gian vectơ. Vì vậy, với ảnh tùy ý $(r_1+I_1,r_2+I_2)$, ta đều có thể tìm được nguyên ảnh dưới đồng cấu $\varphi$, là $r_1a_2+r_2a_1$. Điều này cho thấy $\varphi$ là toàn ánh.
     
-    还需要证明 $I_1\cap I_2=I_1I_2$．对于一般的环总有 $I_1I_2\subseteq I_1\cap I_2$，关键在于其反面．对于任意 $r\in I_1\cap I_2$，都有 $r=r(a_1+a_2)=ra_1+ra_2\in I_1I_2$．故而也成立 $I_1\cap I_2\subseteq I_1I_2$．所以，所求得证．
+    Còn cần chứng minh $I_1\cap I_2=I_1I_2$. Với vành tổng quát luôn có $I_1I_2\subseteq I_1\cap I_2$, điểm then chốt là chiều ngược lại. Với mọi $r\in I_1\cap I_2$, ta có $r=r(a_1+a_2)=ra_1+ra_2\in I_1I_2$. Do đó cũng có $I_1\cap I_2\subseteq I_1I_2$. Suy ra điều phải chứng minh.
     
-    对于 $n>2$ 的情形，需要使用数学归纳法．归纳步骤的关键在于证明对于两两互素的理想 $I_1,\cdots,I_n$ 总有理想 $I_1$ 和 $I_2\cdots I_n$ 互素．由于 $I_1$ 与 $I_2,\cdots,I_n$ 都互素，故而对于每个 $i=2,\cdots,n$ 都存在 $a_i\in I_1$ 和 $b_i\in I_i$ 使得 $1=a_i+b_i$ 成立．因而，有 $1=(a_2+b_2)\cdots(a_n+b_n)$ 成立．所以，$1\in (b_2\cdots b_n)+I_1\subseteq I_1+(I_2\cdots I_n)$．这说明，理想 $I_1$ 和 $I_2\cdots I_n$ 互素．
+    Với trường hợp $n>2$, cần dùng quy nạp toán học. Bước quy nạp then chốt là chứng minh rằng với các iđêan đôi một cùng nhau cực đại $I_1,\cdots,I_n$, luôn có $I_1$ và $I_2\cdots I_n$ cùng nhau cực đại. Vì $I_1$ cùng nhau cực đại với từng $I_2,\cdots,I_n$, nên với mỗi $i=2,\cdots,n$ đều tồn tại $a_i\in I_1$ và $b_i\in I_i$ sao cho $1=a_i+b_i$. Do đó $1=(a_2+b_2)\cdots(a_n+b_n)$. Vì vậy $1\in (b_2\cdots b_n)+I_1\subseteq I_1+(I_2\cdots I_n)$. Điều này cho thấy các iđêan $I_1$ và $I_2\cdots I_n$ cùng nhau cực đại.
 
-### 应用：Lagrange 插值公式
+<span id="&#24212;&#29992;lagrange-&#25554;&#20540;&#20844;&#24335;"></span>
+### Ứng dụng: công thức nội suy Lagrange
 
-相关阅读：[Lagrange 插值](../numerical/interp.md#lagrange-插值法)、[多项式快速插值](../poly/multipoint-eval-interpolation.md#多项式的快速插值)
+Đọc thêm: [nội suy Lagrange](../numerical/interp.md#lagrange-%E6%8F%92%E5%80%BC%E6%B3%95), [nội suy nhanh đa thức](../poly/multipoint-eval-interpolation.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8F%92%E5%80%BC)
 
-插值（interpolation）问题是指，给定一系列点值 $\{(x_i,y_i)\}_{i=1}^n$，寻找域 $F$ 上的多项式 $f(x)$ 使其满足 $f(x_i)=y_i$ 对所有 $i=1,\cdots,n$ 都成立．当然假设所有 $x_i$ 互不相同．Lagrange 插值公式给出了这类问题的通解．
+Bài toán nội suy (interpolation) là: cho một dãy giá trị tại các điểm $\{(x_i,y_i)\}_{i=1}^n$, tìm đa thức $f(x)$ trên trường $F$ sao cho $f(x_i)=y_i$ với mọi $i=1,\cdots,n$. Tất nhiên, ta giả sử các $x_i$ đôi một khác nhau. Công thức nội suy Lagrange cho nghiệm tổng quát của loại bài toán này.
 
-对于域 $F$ 上的多项式 $f(x)$，条件 $f(x_i)=y_i$ 等价于 $x_i$ 是多项式 $f(x)-y_i$ 的一个根，因而等价于 $(x-x_i)\mid(f(x)-y_i)$，也就是 $f(x)\equiv y_i\pmod{x-x_i}$．所以，插值问题就等价于求解同余方程组
+Với đa thức $f(x)$ trên trường $F$, điều kiện $f(x_i)=y_i$ tương đương với việc $x_i$ là một nghiệm của đa thức $f(x)-y_i$, do đó tương đương với $(x-x_i)\mid(f(x)-y_i)$, tức là $f(x)\equiv y_i\pmod{x-x_i}$. Vì vậy, bài toán nội suy tương đương với việc giải hệ phương trình đồng dư
 
 $$
 \begin{cases}
@@ -699,66 +719,67 @@ f(x)\equiv y_n&\pmod{x-x_n}.
 \end{cases}
 $$
 
-这些一次多项式 $\{x-x_i\}_{i=1}^n$ 两两互质．根据中国剩余定理可知，问题的解应当具有形式
+Các đa thức bậc nhất $\{x-x_i\}_{i=1}^n$ đôi một nguyên tố cùng nhau. Theo định lý số dư Trung Hoa, nghiệm của bài toán phải có dạng
 
 $$
 f(x)=\sum_{i=1}^ny_iM_i(x),
 $$
 
-这里，$M_i(x)=m_i(x)\prod_{j\neq i}(x-x_j)$ 且 $M_i(x)\equiv 1\pmod{x-x_i}$．根据前文推得的等价性可知，这等价于 $M_i(x_i)=1$，亦即
+trong đó $M_i(x)=m_i(x)\prod_{j\neq i}(x-x_j)$ và $M_i(x)\equiv 1\pmod{x-x_i}$. Theo tính tương đương đã suy ra ở trên, điều này tương đương với $M_i(x_i)=1$, tức là
 
 $$
 m_i(x_i)\prod_{j\neq i}(x_i-x_j) = 1.
 $$
 
-不妨取 $m_i(x)$ 是常数多项式，即
+Ta có thể lấy $m_i(x)$ là đa thức hằng, tức là
 
 $$
 m_i(x) = \frac{1}{\prod_{j\neq i}(x_i-x_j)}.
 $$
 
-由此，就得到 Lagrange 插值公式
+Từ đó thu được công thức nội suy Lagrange
 
 $$
 f(x)=\sum_{i=1}^ny_i\frac{\prod_{j\neq i}(x-x_j)}{\prod_{j\neq i}(x_i-x_j)}.
 $$
 
-一般地，将这种方法推广，还可以导出 [Hermite 插值公式](https://en.wikipedia.org/wiki/Hermite_interpolation)，它允许限制多项式在各点处的若干项导数值．
+Nói chung, khi khái quát phương pháp này, còn có thể suy ra [công thức nội suy Hermite](https://en.wikipedia.org/wiki/Hermite_interpolation), cho phép ràng buộc thêm một số giá trị đạo hàm của đa thức tại từng điểm.
 
-### 应用：整数同余类的乘法群
+<span id="&#24212;&#29992;&#25972;&#25968;&#21516;&#20313;&#31867;&#30340;&#20056;&#27861;&#32676;"></span>
+### Ứng dụng: nhóm nhân của các lớp đồng dư số nguyên
 
-相关阅读：[原根](../number-theory/primitive-root.md)、[有限生成 Abel 群基本定理](./group-theory.md#分类定理)
+Đọc thêm: [căn nguyên thủy](../number-theory/primitive-root.md), [định lý cơ bản về nhóm Abel hữu hạn sinh](./group-theory.md#%E5%88%86%E7%B1%BB%E5%AE%9A%E7%90%86)
 
-作为中国剩余定理和群论相关内容的一个应用，这里讨论整数模 $n$ 乘法群的结构．本节略去同余类的横线记号．
+Là một ứng dụng của định lý số dư Trung Hoa và các nội dung liên quan đến lý thuyết nhóm, ở đây ta thảo luận cấu trúc của nhóm nhân modulo $n$ của số nguyên. Mục này lược bỏ ký hiệu gạch ngang của lớp đồng dư.
 
-**整数模 $n$ 乘法群**（multiplicative group of integers modulo $n$）指的是 $(\mathbf Z/n\mathbf Z)^\times$，即商环 $\mathbf Z/n\mathbf Z$ 中的可逆元的乘法群（也称单位群）．群 $(\mathbf Z/n\mathbf Z)^\times$ 的阶是 $\varphi(n)$，因为存在逆元的充要条件就是与 $n$ 互质．这里的 $\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)．而且，群 $(\mathbf Z/n\mathbf Z)^\times$ 总是 Abel 群．
+**Nhóm nhân modulo $n$ của số nguyên** (multiplicative group of integers modulo $n$) là $(\mathbf Z/n\mathbf Z)^\times$, tức là nhóm nhân của các phần tử khả nghịch trong vành thương $\mathbf Z/n\mathbf Z$ (cũng gọi là nhóm đơn vị). Cấp của nhóm $(\mathbf Z/n\mathbf Z)^\times$ là $\varphi(n)$, vì điều kiện cần và đủ để một lớp đồng dư có nghịch đảo chính là nguyên tố cùng nhau với $n$. Ở đây $\varphi(n)$ là [hàm Euler](../number-theory/euler-totient.md). Hơn nữa, nhóm $(\mathbf Z/n\mathbf Z)^\times$ luôn là nhóm Abel.
 
-根据算术基本定理，模数 $n$ 可以分解为不同的质数的幂的乘积：
+Theo định lý cơ bản của số học, môđun $n$ có thể phân tích thành tích các lũy thừa của các số nguyên tố khác nhau:
 
 $$
 n=p_1^{\alpha_1}\cdots p_s^{\alpha_s}.
 $$
 
-容易验证，对于整数环的理想，理想互素的条件等价于理想的生成元互素．所以，应用中国剩余定理可以得到
+Dễ kiểm tra rằng với các iđêan của vành số nguyên, điều kiện các iđêan cùng nhau cực đại tương đương với việc các phần tử sinh của chúng nguyên tố cùng nhau. Vì vậy, áp dụng định lý số dư Trung Hoa, ta thu được
 
 $$
 \mathbf Z/n\mathbf Z\cong\mathbf Z/p_1^{\alpha_1}\mathbf Z\times\cdots\times\mathbf Z/p_s^{\alpha_s}\mathbf Z.
 $$
 
-环的同构意味着相应的乘法结构也同构，所以
+Đẳng cấu vành kéo theo cấu trúc nhân tương ứng cũng đẳng cấu, nên
 
 $$
 (\mathbf Z/n\mathbf Z)^\times\cong(\mathbf Z/p_1^{\alpha_1}\mathbf Z)^\times\times\cdots\times(\mathbf Z/p_s^{\alpha_s}\mathbf Z)^\times.
 $$
 
-这说明 $\varphi(n)=\varphi(p_1^{\alpha_1})\cdots\varphi(p_n^{\alpha_n})$，即欧拉函数是积性函数．
+Điều này cho thấy $\varphi(n)=\varphi(p_1^{\alpha_1})\cdots\varphi(p_s^{\alpha_s})$, tức là hàm Euler là hàm nhân tính.
 
-因此，要研究一般的模数的情形，只要考虑素数幂 $p^k$ 作为模数的情形就可以了．对于素数幂的情形，需要分别考虑 $p=2$ 和 $p$ 为奇素数的两种情形：
+Do đó, để nghiên cứu trường hợp môđun tổng quát, chỉ cần xét trường hợp môđun là lũy thừa số nguyên tố $p^k$. Với trường hợp lũy thừa số nguyên tố, cần xét riêng hai trường hợp $p=2$ và $p$ là số nguyên tố lẻ:
 
--   对于 $p=2$ 的情形，直接验证可知 $(\mathbf Z/2\mathbf Z)^\times\cong C_1$ 和 $(\mathbf Z/4\mathbf Z)^\times\cong C_2$．对于 $k\ge3$ 的情形，有 $(\mathbf Z/2^k\mathbf Z)^\times\cong C_2\times C_{2^{k-2}}$．
+-   Với trường hợp $p=2$, kiểm tra trực tiếp cho thấy $(\mathbf Z/2\mathbf Z)^\times\cong C_1$ và $(\mathbf Z/4\mathbf Z)^\times\cong C_2$. Với trường hợp $k\ge3$, có $(\mathbf Z/2^k\mathbf Z)^\times\cong C_2\times C_{2^{k-2}}$.
 
-    ??? note "证明"
-        利用二项式定理直接计算可以知道
+    ??? note "Chứng minh"
+        Dùng định lý nhị thức để tính trực tiếp, ta biết
         
         $$
         \begin{aligned}
@@ -767,15 +788,15 @@ $$
         \end{aligned}
         $$
         
-        所以，$5$ 是 $(\mathbf Z/2^k\mathbf Z)^\times$ 中的 $2^{k-2}$ 阶元．同时，$-1$ 和 $5^{2^{k-3}}$ 是两个不同的二阶元，所以，$-1\notin\langle 5\rangle$．所以，$\langle-1\rangle$ 和 $\langle 5\rangle$ 交集是平凡的，故而根据第二同构定理可知
+        Vì vậy, $5$ là phần tử cấp $2^{k-2}$ trong $(\mathbf Z/2^k\mathbf Z)^\times$. Đồng thời, $-1$ và $5^{2^{k-3}}$ là hai phần tử cấp hai khác nhau, nên $-1\notin\langle 5\rangle$. Do đó $\langle-1\rangle$ và $\langle 5\rangle$ có giao tầm thường, và theo định lý đẳng cấu thứ hai ta có
         
         $$
         (\mathbf Z/2^k\mathbf Z)^\times\cong\langle-1\rangle\times\langle 5\rangle\cong C_2\times C_{2^{k-2}}.
         $$
--   对于 $p$ 为奇数的情形，可以证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 同构于循环群 $C_{\varphi(p^k)}$．
+-   Với trường hợp $p$ là số nguyên tố lẻ, có thể chứng minh $(\mathbf Z/p^k\mathbf Z)^\times$ đẳng cấu với nhóm cyclic $C_{\varphi(p^k)}$.
 
-    ??? note "证明"
-        要证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 是循环群，利用有限 Abel 群基本定理可知，只要证明它的每个 Sylow $q$‑子群都是循环群．首先，对于 Sylow $p$‑子群，直接计算可知
+    ??? note "Chứng minh"
+        Để chứng minh $(\mathbf Z/p^k\mathbf Z)^\times$ là nhóm cyclic, theo định lý cơ bản về nhóm Abel hữu hạn, chỉ cần chứng minh mỗi nhóm con Sylow $q$ của nó đều là nhóm cyclic. Trước hết, với nhóm con Sylow $p$, tính trực tiếp cho thấy
         
         $$
         \begin{aligned}
@@ -784,41 +805,42 @@ $$
         \end{aligned}
         $$
         
-        故而，$(1+p)$ 是 $p^{k-1}$ 阶元．也就是说，$(\mathbf Z/p^k\mathbf Z)^\times$ 的唯一的 Sylow $p$‑子群是循环群 $\langle 1+p\rangle$．
+        Do đó $(1+p)$ là phần tử cấp $p^{k-1}$. Nói cách khác, nhóm con Sylow $p$ duy nhất của $(\mathbf Z/p^k\mathbf Z)^\times$ là nhóm cyclic $\langle 1+p\rangle$.
         
-        对于其它的 Sylow $q$‑子群（$q\neq p$），可以通过群同态将它转化为 $k=1$ 的情形．考虑群同态 $\varphi:(\mathbf Z/p^k\mathbf Z)^\times\rightarrow(\mathbf Z/p\mathbf Z)^\times$，它将陪集 $r+p^k\mathbf Z$ 映射到陪集 $r+p\mathbf Z$．这个映射的核的大小是 $p^{k-1}$，所以，将映射 $\varphi$ 限制在 $(\mathbf Z/p^k\mathbf Z)^\times$ 的 Sylow $q$‑子群（$q\neq p$）上，限制后的映射的核都是平凡的，所以这个 Sylow $q$‑子群同构于映射的像，即 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群．因此，只要证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群就可以了．
+        Với các nhóm con Sylow $q$ khác ($q\neq p$), có thể dùng đồng cấu nhóm để chuyển về trường hợp $k=1$. Xét đồng cấu nhóm $\varphi:(\mathbf Z/p^k\mathbf Z)^\times\rightarrow(\mathbf Z/p\mathbf Z)^\times$, ánh xạ lớp kề $r+p^k\mathbf Z$ đến lớp kề $r+p\mathbf Z$. Kích thước hạt nhân của ánh xạ này là $p^{k-1}$, nên khi hạn chế ánh xạ $\varphi$ trên nhóm con Sylow $q$ của $(\mathbf Z/p^k\mathbf Z)^\times$ ($q\neq p$), hạt nhân của ánh xạ hạn chế đều tầm thường. Vì vậy, nhóm con Sylow $q$ này đẳng cấu với ảnh của ánh xạ, tức là một nhóm con Sylow $q$ của $(\mathbf Z/p\mathbf Z)^\times$. Do đó chỉ cần chứng minh mọi nhóm con Sylow $q$ của $(\mathbf Z/p\mathbf Z)^\times$ đều là nhóm cyclic.
         
-        最后，证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群．因为 $(\mathbf Z/p\mathbf Z)^\times$ 是有限 Abel 群，可以将它按照不变因子分解为
+        Cuối cùng, chứng minh mọi nhóm con Sylow $q$ của $(\mathbf Z/p\mathbf Z)^\times$ đều là nhóm cyclic. Vì $(\mathbf Z/p\mathbf Z)^\times$ là nhóm Abel hữu hạn, có thể phân tích nó theo các nhân tử bất biến thành
         
         $$
         C_{n_1}\times\cdots\times C_{n_r}.
         $$
         
-        这里，$n_1\mid n_2\mid \cdots \mid n_r$．所以，每个直积因子中都有 $n_1$ 个元素的阶整除 $n_1$．如果 $r>1$，则必然有严格多于 $n_1$ 个元素满足方程 $x^{n_1}=1$．但是，$\mathbf Z/p\mathbf Z$ 是域，而域上的 $n_1$ 次多项式至多 $n_1$ 个根，所以 $r=1$．也就是说，$(\mathbf Z/p\mathbf Z)^\times\cong C_{p-1}$．
+        Ở đây $n_1\mid n_2\mid \cdots \mid n_r$. Vì vậy, trong mỗi nhân tử tích trực tiếp đều có $n_1$ phần tử có cấp chia $n_1$. Nếu $r>1$, thì sẽ có nhiều hơn hẳn $n_1$ phần tử thỏa mãn phương trình $x^{n_1}=1$. Nhưng $\mathbf Z/p\mathbf Z$ là trường, và đa thức bậc $n_1$ trên trường có nhiều nhất $n_1$ nghiệm, nên $r=1$. Nói cách khác, $(\mathbf Z/p\mathbf Z)^\times\cong C_{p-1}$.
         
-        这样就证明 $(\mathbf Z/p^k\mathbf Z)^\times\cong C_{p^{k-1}}\times C_{p-1}=C_{\varphi(p^{k})}$．
+        Như vậy đã chứng minh $(\mathbf Z/p^k\mathbf Z)^\times\cong C_{p^{k-1}}\times C_{p-1}=C_{\varphi(p^{k})}$.
 
-一般的模数的情形的乘法群的结构也随之确定．从现有的结果能够知道整数模 $n$ 乘法群是循环群有且只有模数 $n$ 取
+Cấu trúc của nhóm nhân trong trường hợp môđun tổng quát cũng được xác định từ đó. Từ kết quả hiện có, có thể biết nhóm nhân modulo $n$ của số nguyên là nhóm cyclic khi và chỉ khi môđun $n$ nhận một trong các dạng
 
 $$
 1,2,4,p^k,2p^k
 $$
 
-时，其中，$p$ 是奇素数；否则，整数模 $n$ 乘法群一定有子群 $C_2\times C_2$，不可能是循环群．当乘法群是循环群的时候，乘法群的生成元就称为该模的 **原根**（primitive root）．因此，这里的定理给出的正是原根存在的充要条件．
+trong đó $p$ là số nguyên tố lẻ; nếu không, nhóm nhân modulo $n$ của số nguyên có nhóm con $C_2\times C_2$, nên không thể là nhóm cyclic. Khi nhóm nhân là nhóm cyclic, phần tử sinh của nhóm nhân được gọi là **căn nguyên thủy** (primitive root) modulo đó. Vì vậy, định lý ở đây chính là điều kiện cần và đủ để căn nguyên thủy tồn tại.
 
-当然，对乘法群结构的分析蕴含着比原根存在的条件更多的信息．它清楚地反映了乘法群中不同元素的阶．群 $(\mathbf Z/n\mathbf Z)^\times$ 中，满足 $x^k=1$ 的元素 $x$，也就是同余方程 $x^k\equiv 1\pmod n$ 的解，它称为 **模 $n$ 的 $k$ 次单位根**（$k$-th root of unity modulo $n$）；阶恰为 $k$ 的元素，则称为 **模 $n$ 的 $k$ 次本原单位根**（primitive $k$-th root of unity modulo $n$）．利用乘法群的结构，这些单位根的存在性和数目都可以得到精确的计算．最后，群 $(\mathbf Z/n\mathbf Z)^\times$ 中所有元素的阶的最小公倍数，即对所有 $x\in (\mathbf Z/n\mathbf Z)^\times$ 都满足 $x^k=1$ 的最小正整数 $k$，表示为 $n$ 的函数，就是 [Carmichael 函数](../number-theory/primitive-root.md#carmichael-函数)．它的一系列性质，都可以从乘法群的结构中获得．
+Tất nhiên, phân tích cấu trúc nhóm nhân chứa nhiều thông tin hơn điều kiện tồn tại căn nguyên thủy. Nó phản ánh rõ ràng cấp của các phần tử khác nhau trong nhóm nhân. Trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, phần tử $x$ thỏa mãn $x^k=1$, tức là nghiệm của phương trình đồng dư $x^k\equiv 1\pmod n$, được gọi là **căn bậc $k$ của đơn vị modulo $n$** ($k$-th root of unity modulo $n$); phần tử có cấp đúng bằng $k$ được gọi là **căn nguyên thủy bậc $k$ của đơn vị modulo $n$** (primitive $k$-th root of unity modulo $n$). Dựa vào cấu trúc của nhóm nhân, ta có thể tính chính xác sự tồn tại và số lượng của các căn đơn vị này. Cuối cùng, bội chung nhỏ nhất của cấp của mọi phần tử trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, tức là số nguyên dương nhỏ nhất $k$ sao cho mọi $x\in (\mathbf Z/n\mathbf Z)^\times$ đều thỏa mãn $x^k=1$, khi xem như hàm của $n$, chính là [hàm Carmichael](../number-theory/primitive-root.md#carmichael-%E5%87%BD%E6%95%B0). Một loạt tính chất của nó đều có thể thu được từ cấu trúc của nhóm nhân.
 
-## 参考资料和注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#21644;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Quadratic integer - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
 -   [Formal power series - Wikipedia](https://en.wikipedia.org/wiki/Formal_power_series)
--   [Multiplicative group of integers modulo $n$- Wikipedia](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
+-   [Multiplicative group of integers modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
 
 [^ideal-history]: <https://en.wikipedia.org/wiki/Ideal_(ring_theory)#History>
 
-[^simple-ring]: 和群的情形一致，这样的环叫做 **单环**（simple ring）．交换单环只能是域，非交换单环的情形则复杂得多．
+[^simple-ring]: Tương tự trường hợp nhóm, những vành như vậy được gọi là **vành đơn** (simple ring). Vành đơn giao hoán chỉ có thể là trường, còn trường hợp vành đơn không giao hoán thì phức tạp hơn nhiều.
 
-[^gcd-domain]: 最大公因子存在的整环叫做 [最大公因子整环](https://en.wikipedia.org/wiki/GCD_domain)．
+[^gcd-domain]: Miền nguyên trong đó ước chung lớn nhất tồn tại được gọi là [miền ước chung lớn nhất](https://en.wikipedia.org/wiki/GCD_domain).
 
-[^ring-theory-history]: 环论的简要历史可以参看 [这里](https://mathshistory.st-andrews.ac.uk/HistTopics/Ring_theory/)．
+[^ring-theory-history]: Có thể xem lịch sử tóm tắt của lý thuyết vành tại [đây](https://mathshistory.st-andrews.ac.uk/HistTopics/Ring_theory/).

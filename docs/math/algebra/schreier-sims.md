@@ -1,103 +1,111 @@
 author: Enter-tainer, iamtwz, Ir1d, isdanni, ksyx, StudyingFather, Tiphereth-A, Xeonacid, c-forrest
 
-前置知识：[抽象代数基本概念](./basic.md)、[群论](./group-theory.md)、[置换与排列](../permutation.md)
+Kiến thức tiên quyết: [Các khái niệm cơ bản của đại số trừu tượng](./basic.md), [Lý thuyết nhóm](./group-theory.md), [Hoán vị và sắp xếp](../permutation.md)
 
-## 引入
+<span id="&#24341;&#20837;"></span>
+## Giới thiệu
 
-**Schreier–Sims 算法** 是计算群论（computational group theory）的一种算法，以数学家 Otto Schreier 和 Charles Sims 的名字命名．该算法能够在多项式时间内解决诸如找到有限置换群的阶数、查看给定置换是否包含在所给群中等许多问题．Schreier–Sims 算法最早由 Sims 在 1970 年基于 Schreier 引理引入．在 1981 年[^knuth-year]，Donald Knuth 进一步改进了该算法的运行时间．后来，该算法又发展出来一种更快的随机化版本．计算机代数系统（例如 GAP 和 Magma）通常使用该算法的高度优化过的 Monte Carlo 版本[^monte-carlo]．
+**Thuật toán Schreier-Sims** là một thuật toán trong lý thuyết nhóm tính toán (computational group theory), được đặt theo tên hai nhà toán học Otto Schreier và Charles Sims. Thuật toán này có thể giải nhiều bài toán trong thời gian đa thức, như tìm cấp của một nhóm hoán vị hữu hạn, hoặc kiểm tra một hoán vị cho trước có nằm trong nhóm đã cho hay không. Schreier-Sims được Sims đưa ra lần đầu vào năm 1970 dựa trên bổ đề Schreier. Năm 1981[^knuth-year], Donald Knuth cải tiến thêm thời gian chạy của thuật toán. Về sau, thuật toán còn có một phiên bản ngẫu nhiên hóa nhanh hơn. Các hệ đại số máy tính (chẳng hạn GAP và Magma) thường dùng phiên bản Monte Carlo đã được tối ưu hóa cao của thuật toán này[^monte-carlo].
 
-???+ info "记号"
-    本文依照计算群论文献的惯例，将群作用记作右作用，这意味着置换的复合由左向右进行．本文涉及的群作用都可以视为置换作用，尽管部分算法对于更广泛的群作用也成立．相应地，群作用的集合默认为 $X=\{1,2,\cdots,n\}$，其中的元素则称为点．置换 $g$ 作用在点 $x$ 上得到的结果记作 $x^g$，有时也称置换 $g$ 将点 $x$ 移动到点 $x^g$．最后，置换群 $G$ 作用下，点 $x$ 的轨道记作 $x^G=\{x^g:g\in G\}$，它的稳定化子则记作 $G_x=\{g\in G:x^g=x\}$．稳定化子的概念还可以推广到集合 $B\subseteq X$，它的稳定化子定义为 $G_B=\bigcap_{x\in B}G_x$．
+???+ info "Ký hiệu"
+    Theo thông lệ trong các tài liệu lý thuyết nhóm tính toán, bài này viết tác động nhóm dưới dạng tác động phải; điều này có nghĩa là phép hợp thành hoán vị được thực hiện từ trái sang phải. Mọi tác động nhóm xuất hiện trong bài đều có thể xem là tác động hoán vị, dù một số thuật toán vẫn dùng được cho các tác động nhóm tổng quát hơn. Tương ứng, tập mà nhóm tác động lên mặc định là $X=\{1,2,\cdots,n\}$, và các phần tử của nó được gọi là điểm. Kết quả khi hoán vị $g$ tác động lên điểm $x$ được ký hiệu là $x^g$; đôi khi ta cũng nói hoán vị $g$ đưa điểm $x$ đến điểm $x^g$. Cuối cùng, với nhóm hoán vị $G$, quỹ đạo của điểm $x$ dưới tác động của $G$ được ký hiệu là $x^G=\{x^g:g\in G\}$, còn bộ ổn định của nó là $G_x=\{g\in G:x^g=x\}$. Khái niệm bộ ổn định cũng có thể mở rộng cho tập $B\subseteq X$, khi đó bộ ổn định của $B$ được định nghĩa là $G_B=\bigcap_{x\in B}G_x$.
 
-## 概述
+<span id="&#27010;&#36848;"></span>
+## Tổng quan
 
-Schreier–Sims 算法主要试图解决这样一个问题：
+Schreier-Sims chủ yếu cố gắng giải quyết bài toán sau:
 
--   给定大小为 $n$ 的集合 $X$ 上的一些置换组成的集合 $S$，如何在计算机中高效地存储由 $S$ 生成的置换群 $G=\langle S\rangle$，并完成一系列对该群的查询任务？
+-   Cho một tập $S$ gồm một số hoán vị trên tập $X$ có kích thước $n$, làm thế nào để lưu trữ hiệu quả trong máy tính nhóm hoán vị $G=\langle S\rangle$ sinh bởi $S$, đồng thời thực hiện các truy vấn liên quan đến nhóm này?
 
-显然，这样的群 $G$ 的规模可能很大，且远远大于集合 $X$ 和生成集 $S$ 的规模．比如，$n$ 次对称群 $S_n=\langle(123\cdots n),(12)\rangle$ 的大小为 $n!$，但是它可以仅由两个置换生成．存储群中的每一个元素是不现实的．
+Rõ ràng kích thước của nhóm $G$ như vậy có thể rất lớn, lớn hơn nhiều so với kích thước của tập $X$ và tập sinh $S$. Chẳng hạn, nhóm đối xứng bậc $n$, $S_n=\langle(123\cdots n),(12)\rangle$, có kích thước $n!$ nhưng chỉ cần hai hoán vị để sinh ra. Lưu từng phần tử của nhóm là điều không thực tế.
 
-类似于利用 [Gauss 消元法](../numerical/gauss.md) 构建出向量空间的一组 [线性基](../linear-algebra/basis.md)，Schreier–Sims 算法的思路是找到有限置换群 $G$ 的一组「基」：
+Tương tự như cách dùng [khử Gauss](../numerical/gauss.md) để xây dựng một [cơ sở tuyến tính](../linear-algebra/basis.md) của không gian vectơ, ý tưởng của Schreier-Sims là tìm một "cơ sở" cho nhóm hoán vị hữu hạn $G$:
 
-1.  算法的输入是 $G$ 的一个生成集 $S$，其中有若干个置换；
-2.  如果群 $G$ 不平凡，总能找到在群 $G$ 作用下位置会发生变化的点 $\beta$，即 $|\beta^G|>1$；
-3.  找到点 $\beta$ 的轨道 $\Delta=\beta^{G}$，并对轨道中的每个点 $\delta\in\Delta$，都找到群 $G$ 中一个置换 $t_{\delta}$，它能够将点 $\beta$ 移动到 $\delta$；
-4.  找到点 $\beta$ 的稳定化子 $G_{\beta}$ 的一个生成集 $S'$；
-5.  递归地对 $G'=\langle S'\rangle$ 调用该算法，直到得到平凡的群 $\{e\}$．
+1.  Đầu vào của thuật toán là một tập sinh $S$ của $G$, gồm một số hoán vị;
+2.  Nếu nhóm $G$ không tầm thường, luôn tìm được một điểm $\beta$ bị thay đổi vị trí dưới tác động của $G$, tức là $|\beta^G|>1$;
+3.  Tìm quỹ đạo $\Delta=\beta^{G}$ của điểm $\beta$, và với mỗi điểm $\delta\in\Delta$ trong quỹ đạo, tìm một hoán vị $t_{\delta}$ trong nhóm $G$ đưa điểm $\beta$ đến $\delta$;
+4.  Tìm một tập sinh $S'$ của bộ ổn định $G_{\beta}$ của điểm $\beta$;
+5.  Đệ quy gọi thuật toán trên $G'=\langle S'\rangle$ cho đến khi thu được nhóm tầm thường $\{e\}$.
 
-这个思路的合理性在于，点 $\beta$ 的稳定化子 $G_{\beta}$ 是群 $G$ 的子群，它的全体（右）陪集构成群 $G$ 的分划，且这些陪集和点 $\beta$ 的轨道 $\beta^G$ 一一对应，步骤 3 中求得的那些置换 $t_{\delta}$ 就是这些陪集的代表元．这个陪集代表元的集合 $T$ 称为稳定化子 $G_{\beta}$ 的 **陪集代表系**（transversal）．换句话说，群 $G$ 中的每个元素 $g$ 都和唯一的一对元素 $(h,t)\in G_\beta\times T$ 对应，且 $g=ht$．因而，只要能想办法存储子群 $G_{\beta}$ 和相应的陪集代表系 $T$，就可以存储整个群 $G$．然而，存储子群 $G_{\beta}$ 的问题也已经解决了——只要递归调用算法即可．
+Ý tưởng này hợp lý vì bộ ổn định $G_{\beta}$ của điểm $\beta$ là một nhóm con của $G$; toàn bộ các lớp kề (phải) của nó tạo thành một phân hoạch của $G$, và các lớp kề này tương ứng một-một với quỹ đạo $\beta^G$ của điểm $\beta$. Các hoán vị $t_{\delta}$ tìm được ở bước 3 chính là các đại diện của những lớp kề đó. Tập các đại diện lớp kề này $T$ được gọi là **hệ đại diện lớp kề** (transversal) của bộ ổn định $G_{\beta}$. Nói cách khác, mỗi phần tử $g$ của nhóm $G$ tương ứng duy nhất với một cặp phần tử $(h,t)\in G_\beta\times T$ sao cho $g=ht$. Vì vậy, nếu có cách lưu nhóm con $G_{\beta}$ và hệ đại diện lớp kề tương ứng $T$, ta có thể lưu cả nhóm $G$. Tuy nhiên, bài toán lưu nhóm con $G_{\beta}$ cũng đã được giải: chỉ cần gọi đệ quy thuật toán.
 
-当然，算法的实现还有很多细节需要梳理，这是本文的主要内容．但是在那之前，首先要考察调用该算法之后得到的结果，看看算法将群存储为怎样的结构，能够解决怎样的查询问题．为此，应当明晰一些概念．
+Tất nhiên, việc cài đặt thuật toán còn nhiều chi tiết cần sắp xếp; đó là nội dung chính của bài này. Trước đó, cần xem kết quả sau khi gọi thuật toán có dạng cấu trúc nào, và cấu trúc ấy giải được những truy vấn nào. Vì thế, ta cần làm rõ một số khái niệm.
 
-### 稳定化子链
+<span id="&#31283;&#23450;&#21270;&#23376;&#38142;"></span>
+### Chuỗi bộ ổn định
 
-假设对群 $G=\{S\}$ 调用该算法，共进行了 $k$ 次；且在第 $i$ 次调用该算法时，输入是置换的集合 $S^{(i-1)}$，找到的点是 $\beta_i$，得到的陪集代表系是 $T_i$，得到的稳定化子的生成集是 $S^{(i)}$．如果记 $G^{(i)}=\langle S^{(i)}\rangle$．那么，算法实际上得到了子群链
+Giả sử gọi thuật toán trên nhóm $G=\langle S\rangle$ tổng cộng $k$ lần; trong lần gọi thứ $i$, đầu vào là tập hoán vị $S^{(i-1)}$, điểm tìm được là $\beta_i$, hệ đại diện lớp kề thu được là $T_i$, và tập sinh của bộ ổn định thu được là $S^{(i)}$. Nếu đặt $G^{(i)}=\langle S^{(i)}\rangle$, thì thuật toán thực chất thu được chuỗi nhóm con
 
 $$
 G=G^{(0)}> G^{(1)}>\cdots> G^{(k-1)}> G^{(k)}=\{e\}.
 $$
 
-而且，每一个链中的子群都是一个稳定化子
+Hơn nữa, mỗi nhóm con trong chuỗi đều là một bộ ổn định
 
 $$
 G^{(i)}=G_{\beta_1,\cdots,\beta_i}.
 $$
 
-因而，Schreier–Sims 算法可以看作就是在计算这样一个 **稳定化子链**（stabilizer chain）．
+Vì vậy, có thể xem Schreier-Sims là thuật toán tính một **chuỗi bộ ổn định** (stabilizer chain) như vậy.
 
-### 基和强生成集
+<span id="&#22522;&#21644;&#24378;&#29983;&#25104;&#38598;"></span>
+### Cơ sở và tập sinh mạnh
 
-如果集合 $X$ 的子集 $B$ 满足 $G_B=\{e\}$，就称 $B$ 是置换群 $G$ 的一组 **基**（base）．显然，上述算法得到了一组基 $B=\{\beta_1,\cdots,\beta_k\}$．这意味着，置换 $g\in G$ 对这些点作用的结果在群 $G$ 中唯一地确定了这个置换．而且，算法输出的这个基还满足条件
+Nếu một tập con $B$ của $X$ thỏa $G_B=\{e\}$, thì $B$ được gọi là một **cơ sở** (base) của nhóm hoán vị $G$. Rõ ràng thuật toán trên thu được một cơ sở $B=\{\beta_1,\cdots,\beta_k\}$. Điều này có nghĩa là kết quả tác động của một hoán vị $g\in G$ lên các điểm này xác định duy nhất hoán vị đó trong nhóm $G$. Hơn nữa, cơ sở mà thuật toán xuất ra còn thỏa điều kiện
 
 $$
 G^{(i-1)}=G_{\beta_1,\cdots,\beta_{i-1}}>G_{\beta_1,\cdots,\beta_{i-1},\beta_i}=G^{(i)}.
 $$
 
-这就是说，基中的每个点都蕴含着关于群中的元素的有效信息．这样的基称为 **无冗余的**（nonredundant）．算法总是输出无冗余的基．这样的基对应的稳定化子链是严格递降的．
+Nói cách khác, mỗi điểm trong cơ sở đều chứa thông tin hữu ích về các phần tử trong nhóm. Một cơ sở như vậy được gọi là **không dư thừa** (nonredundant). Thuật toán luôn xuất ra cơ sở không dư thừa. Chuỗi bộ ổn định ứng với cơ sở như vậy giảm nghiêm ngặt.
 
-同时，算法得到的生成集的并集
+Đồng thời, hợp của các tập sinh mà thuật toán thu được
 
 $$
 \bar S=\bigcup_{i=0}^kS_i
 $$
 
-也是群 $G$ 的生成集，且成立 $\langle\bar S\cap G^{(i)}\rangle = G^{(i)}$．满足这个条件的生成集称为群 $G$ 相对于基 $B$ 的 **强生成集**（strong generating set）．因而，Schreier–Sims 算法也可以看作是在计算群 $G$ 的 **基和强生成集**（base and strong generating set, BSGS）．这个说法和稳定化子链的说法是等价的，本文不加以区分．
+cũng là một tập sinh của $G$, và thỏa $\langle\bar S\cap G^{(i)}\rangle = G^{(i)}$. Một tập sinh thỏa điều kiện này được gọi là **tập sinh mạnh** (strong generating set) của nhóm $G$ đối với cơ sở $B$. Vì vậy, cũng có thể xem Schreier-Sims là thuật toán tính **cơ sở và tập sinh mạnh** (base and strong generating set, BSGS) của $G$. Cách nói này tương đương với cách nói chuỗi bộ ổn định; trong bài này ta không phân biệt hai cách gọi.
 
-当然，算法还得到了一系列轨道 $\Delta_i=\beta_{i}^{G^{(i-1)}}$ 和相应的陪集代表系 $T_i$．这些轨道称为群 $G$ 的 **基础轨道**（fundamental orbits）．当本文提及群 $G$ 的稳定化子链或者基和强生成集时，总是默认相应的基础轨道和陪集代表系都已经一并求出．
+Tất nhiên, thuật toán còn thu được một dãy quỹ đạo $\Delta_i=\beta_{i}^{G^{(i-1)}}$ và các hệ đại diện lớp kề tương ứng $T_i$. Các quỹ đạo này được gọi là **quỹ đạo cơ bản** (fundamental orbits) của nhóm $G$. Khi bài này nhắc đến chuỗi bộ ổn định hoặc cơ sở và tập sinh mạnh của $G$, mặc định các quỹ đạo cơ bản và hệ đại diện lớp kề tương ứng đã được tính kèm theo.
 
-### 数据结构
+<span id="&#25968;&#25454;&#32467;&#26500;"></span>
+### Cấu trúc dữ liệu
 
-本文会提供一系列伪代码．伪代码中，群的稳定化子链（或基和强生成集）存储在数据结构 $C$ 中：
+Bài này sẽ đưa ra một loạt mã giả. Trong mã giả, chuỗi bộ ổn định của nhóm (hay cơ sở và tập sinh mạnh) được lưu trong cấu trúc dữ liệu $C$:
 
 $$
 C=(S,\Delta,T,C').
 $$
 
-这个结构中的数据成员分别是当前群的生成集 $S$、基础轨道 $\Delta$、相应的陪集代表系 $T$ 和存储为嵌套子结构的稳定化子 $C'$．当然，稳定化子 $C'$ 也是这样的一个结构．整个群实际存储在一个层状结构中，每层都描述了稳定化子链中的一个群．最内层是空的结构体，表示 $G^{(k)}=\{e\}$．
+Các thành viên dữ liệu trong cấu trúc này lần lượt là tập sinh $S$ của nhóm hiện tại, quỹ đạo cơ bản $\Delta$, hệ đại diện lớp kề tương ứng $T$, và bộ ổn định $C'$ được lưu như một cấu trúc con lồng nhau. Tất nhiên, bộ ổn định $C'$ cũng là một cấu trúc như vậy. Toàn bộ nhóm thực tế được lưu trong một cấu trúc phân tầng, mỗi tầng mô tả một nhóm trong chuỗi bộ ổn định. Tầng trong cùng là cấu trúc rỗng, biểu diễn $G^{(k)}=\{e\}$.
 
-在伪代码中，该数据结构中的成员可以分别由 $C.generators$、$C.orbit$、$C.transversal$ 和 $C.next$ 访问．轨道的首个元素 $C.orbit[0]$ 默认是基中的点 $\beta$，而相应的陪集代表元 $C.transversal[\beta]$ 默认是恒等变换 $e$．注意，虽然此处用数组下标访问了轨道和陪集代表系中的元素，但是它们未必存储为数组，而应当理解为它们提供了访问轨道首元素和根据轨道中的点查询相应的陪集代表元的方法．下文会讨论具体的实现细节．
+Trong mã giả, các thành viên của cấu trúc dữ liệu này có thể được truy cập lần lượt bằng $C.generators$, $C.orbit$, $C.transversal$ và $C.next$. Phần tử đầu tiên của quỹ đạo $C.orbit[0]$ mặc định là điểm cơ sở $\beta$, còn đại diện lớp kề tương ứng $C.transversal[\beta]$ mặc định là biến đổi đồng nhất $e$. Cần chú ý rằng tuy ở đây ta dùng chỉ số mảng để truy cập phần tử trong quỹ đạo và hệ đại diện lớp kề, chúng không nhất thiết phải được lưu bằng mảng; đúng hơn, nên hiểu rằng chúng cung cấp cách truy cập phần tử đầu của quỹ đạo và cách tra cứu đại diện lớp kề tương ứng theo điểm trong quỹ đạo. Các chi tiết cài đặt cụ thể sẽ được bàn ở phần sau.
 
-### 应用
+<span id="&#24212;&#29992;"></span>
+### Ứng dụng
 
-在获得群的基和强生成集后，能够解决一系列关于群的查询问题．其中，最基础的，也是算法竞赛中最常遇到的，是查询群的阶数和查询某个置换是否属于给定群的问题．
+Sau khi thu được cơ sở và tập sinh mạnh của nhóm, ta có thể giải một loạt bài toán truy vấn về nhóm. Cơ bản nhất, và thường gặp nhất trong thi lập trình, là truy vấn cấp của nhóm và kiểm tra một hoán vị có thuộc nhóm đã cho hay không.
 
-#### 群的阶数
+<span id="&#32676;&#30340;&#38454;&#25968;"></span>
+#### Cấp của nhóm
 
-如果已知群 $G$ 的基和强生成集，那么应用 Lagrange 定理和轨道稳定化子定理可知，群 $G$ 的阶数可以计算为
+Nếu đã biết cơ sở và tập sinh mạnh của nhóm $G$, từ định lý Lagrange và định lý quỹ đạo-bộ ổn định, cấp của $G$ có thể được tính bằng
 
 $$
 |G|=\prod_{i=1}^k[G^{(i-1)}:G^{(i)}]=\prod_{i=1}^k[G^{(i-1)}:G^{(i-1)}_{\beta_i}]=\prod_{i=1}^k|T_i|.
 $$
 
-所以，只要将所有陪集代表系 $T_i$ 的大小（或者等价地，基础轨道 $\Delta_i$ 的长度）乘起来就可以得到群 $G$ 的阶数．
+Do đó, chỉ cần nhân kích thước của tất cả các hệ đại diện lớp kề $T_i$ (tương đương với độ dài của các quỹ đạo cơ bản $\Delta_i$) là thu được cấp của nhóm $G$.
 
-#### 成员判定
+<span id="&#25104;&#21592;&#21028;&#23450;"></span>
+#### Kiểm tra thành viên
 
-已知群 $G$ 的基和强生成集，也可以判定某个置换 $h$ 是否属于群 $G$．这称为 **成员判定**（membership testing）问题．
+Nếu đã biết cơ sở và tập sinh mạnh của nhóm $G$, ta cũng có thể xác định một hoán vị $h$ có thuộc $G$ hay không. Bài toán này được gọi là **kiểm tra thành viên** (membership testing).
 
-这个问题可以递归地解决．要判定 $h\in G^{(i-1)}$，首先要找到 $G^{(i)}$ 的包含 $h$ 的陪集的代表元 $t\in T_i$．如果能够找到，那么设 $h'=ht^{-1}$，就有 $h=h't$ 且 $h\in G^{(i-1)}$ 等价于 $h'\in G^{(i)}$；问题就转化为判定 $h'\in G^{(i)}$．如果找不到这样的 $t$，或者已经递归到了 $G^{(k)}=\{e\}$ 但是 $h\neq e$，就可以得出结论，$h\notin G$．其实，这个过程不仅判定了 $h\in G$，而且在 $h\in G$ 的情形下，还能够将 $h$ 表示为一系列陪集代表元的乘积 $t_k\cdots t_2t_1$，其中，$t_i\in T_i$．对于群 $G$ 中的元素，这样的表示存在且唯一．这再次证明了上面关于群的阶数的公式是正确的．
+Bài toán này có thể giải đệ quy. Để xác định $h\in G^{(i-1)}$, trước hết cần tìm đại diện $t\in T_i$ của lớp kề của $G^{(i)}$ chứa $h$. Nếu tìm được, đặt $h'=ht^{-1}$, khi đó $h=h't$ và $h\in G^{(i-1)}$ tương đương với $h'\in G^{(i)}$; bài toán chuyển thành xác định $h'\in G^{(i)}$. Nếu không tìm được $t$ như vậy, hoặc đã đệ quy đến $G^{(k)}=\{e\}$ nhưng $h\neq e$, ta kết luận $h\notin G$. Thực ra, quá trình này không chỉ xác định $h\in G$, mà trong trường hợp $h\in G$ còn biểu diễn được $h$ thành tích của một dãy đại diện lớp kề $t_k\cdots t_2t_1$, với $t_i\in T_i$. Đối với các phần tử của $G$, biểu diễn như vậy tồn tại và duy nhất. Điều này một lần nữa chứng minh công thức tính cấp của nhóm ở trên là đúng.
 
-现在将该过程写成如下伪代码：
+Viết quá trình trên thành mã giả:
 
 $$
 \begin{array}{l}
@@ -122,19 +130,21 @@ $$
 \end{array}
 $$
 
-下文会看到，成员判定问题也是本文所讨论的 Schreier–Sims 算法的实现中的一个重要组成部分．
+Phần sau sẽ thấy bài toán kiểm tra thành viên cũng là một thành phần quan trọng trong cách cài đặt Schreier-Sims được thảo luận ở bài này.
 
-## 轨道、陪集代表系和稳定化子的计算
+<span id="&#36712;&#36947;&#12289;&#38506;&#38598;&#20195;&#34920;&#31995;&#21644;&#31283;&#23450;&#21270;&#23376;&#30340;&#35745;&#31639;"></span>
+## Tính quỹ đạo, hệ đại diện lớp kề và bộ ổn định
 
-要实现 Schreier–Sims 算法，首先要解决如下子问题：[^orbit-algo]
+Để cài đặt Schreier-Sims, trước hết cần giải bài toán con sau:[^orbit-algo]
 
--   给定群 $G$ 的生成集 $S$ 和一个点 $\beta$，如何求出轨道 $\beta^G$、相应的陪集代表系 $T$ 和稳定化子 $G_\beta$ 的生成集？
+-   Cho tập sinh $S$ của nhóm $G$ và một điểm $\beta$, làm thế nào để tìm quỹ đạo $\beta^G$, hệ đại diện lớp kề tương ứng $T$, và một tập sinh của bộ ổn định $G_\beta$?
 
-这就是本节要解决的问题．
+Đây là bài toán sẽ được giải quyết trong mục này.
 
-### 轨道和陪集代表系的存储
+<span id="&#36712;&#36947;&#21644;&#38506;&#38598;&#20195;&#34920;&#31995;&#30340;&#23384;&#20648;"></span>
+### Lưu quỹ đạo và hệ đại diện lớp kề
 
-要求得轨道和陪集代表系，只要直接搜索就好了．伪代码如下：
+Để tìm quỹ đạo và hệ đại diện lớp kề, chỉ cần tìm kiếm trực tiếp. Mã giả như sau:
 
 $$
 \begin{array}{l}
@@ -159,47 +169,50 @@ $$
 \end{array}
 $$
 
-具体实现的时候，使用广度优先搜索和深度优先搜索都是可以的．搜索遍历到的状态数目是 $|S||T|$，只要能合理地存储轨道和陪集代表系，时间复杂度是完全可以接受的．
+Khi cài đặt cụ thể, dùng tìm kiếm theo chiều rộng hay chiều sâu đều được. Số trạng thái mà tìm kiếm duyệt qua là $|S||T|$; miễn là quỹ đạo và hệ đại diện lớp kề được lưu hợp lý, độ phức tạp thời gian hoàn toàn chấp nhận được.
 
-由于在置换群的语境下，轨道无非是至多 $n$ 个点的集合，为了高效完成查找和添加操作，可以使用布尔值数组或是无序集合存储．这样两个操作的时间复杂度都是 $O(1)$ 的，整体的空间占用是 $O(n)$ 的．当然，取决于陪集代表系的实现，可能还需要额外标记首元素的位置．
+Trong ngữ cảnh nhóm hoán vị, quỹ đạo chỉ là một tập có tối đa $n$ điểm. Để tìm kiếm và thêm phần tử hiệu quả, có thể dùng mảng boolean hoặc tập băm. Khi đó cả hai thao tác đều có độ phức tạp $O(1)$, và tổng bộ nhớ là $O(n)$. Tất nhiên, tùy vào cách cài đặt hệ đại diện lớp kề, có thể còn cần đánh dấu thêm vị trí của phần tử đầu tiên.
 
-问题在于使用什么样的数据结构存储相应的陪集代表系 $T$．
+Vấn đề là nên dùng cấu trúc dữ liệu nào để lưu hệ đại diện lớp kề tương ứng $T$.
 
-#### 直接存储
+<span id="&#30452;&#25509;&#23384;&#20648;"></span>
+#### Lưu trực tiếp
 
-最简单的方法，当然是直接存储陪集代表系 $T$ 中的每一个元素 $t$．单个置换存储为 [单行记号](../permutation.md#单行记号)，需要的空间恰为 $n$，所以存储这样的陪集代表系的空间复杂度是 $O(|T|n)$ 的．这样做的好处是访问单个陪集代表元的时间复杂度是 $O(1)$ 的，代价是初次计算这些陪集代表元的时间复杂度是 $O(|T|n)$ 的．
+Cách đơn giản nhất hiển nhiên là lưu trực tiếp mỗi phần tử $t$ của hệ đại diện lớp kề $T$. Một hoán vị đơn lẻ khi lưu bằng [ký hiệu một dòng](../permutation.md#%E5%8D%95%E8%A1%8C%E8%AE%B0%E5%8F%B7) cần dùng đúng $n$ ô nhớ, nên độ phức tạp không gian để lưu hệ đại diện lớp kề như vậy là $O(|T|n)$. Lợi ích là truy cập một đại diện lớp kề đơn lẻ trong $O(1)$ thời gian; cái giá phải trả là lần đầu tính các đại diện lớp kề này tốn $O(|T|n)$ thời gian.
 
-#### Schreier 树
+<span id="Schreier &#26641;"></span>
+#### Cây Schreier
 
-另外一种常见的做法是实现一个树形结构用于存储陪集代表系．它称为 **Schreier 树**（Schreier tree）或 **Schreier 向量**（Schreier vector）[^schreier-vector]．它以 $\beta$ 为根，以轨道 $\Delta$ 中的元素 $\delta$ 为顶点．每次在搜索过程中得到新的顶点 $\gamma=\delta^s$ 时，就从旧的顶点 $\delta$ 到新的顶点 $\gamma$ 连一条边，边上记录生成集 $S$ 中置换 $s$ 的序号（或指针）．因为已经存储了生成集，存储陪集代表系的额外空间复杂度是 $O(|T|)$ 的．对于 $n$ 的规模很大的情形，这样做可以有效地节约空间，而且初次计算的时候复杂度是 $O(|T|)$ 的．但是，副作用就是每次需要获得陪集代表元的时候，需要遍历顶点到根的路径上的边，重新计算陪集代表元，因而时间复杂度高度依赖于 Schreier 树的深度．对于一般的情形，树的深度可能达到 $O(n)$ 级别．
+Một cách phổ biến khác là cài đặt một cấu trúc cây để lưu hệ đại diện lớp kề. Cấu trúc này được gọi là **cây Schreier** (Schreier tree) hoặc **vectơ Schreier** (Schreier vector)[^schreier-vector]. Nó lấy $\beta$ làm gốc và lấy các phần tử $\delta$ trong quỹ đạo $\Delta$ làm đỉnh. Mỗi khi trong quá trình tìm kiếm ta thu được đỉnh mới $\gamma=\delta^s$, ta nối một cạnh từ đỉnh cũ $\delta$ đến đỉnh mới $\gamma$, và trên cạnh ghi lại chỉ số (hoặc con trỏ) của hoán vị $s$ trong tập sinh $S$. Vì tập sinh đã được lưu sẵn, bộ nhớ phụ cần để lưu hệ đại diện lớp kề là $O(|T|)$. Khi $n$ rất lớn, cách này tiết kiệm bộ nhớ hiệu quả, và độ phức tạp lần tính đầu là $O(|T|)$. Tuy nhiên, tác dụng phụ là mỗi khi cần lấy đại diện lớp kề, ta phải duyệt các cạnh trên đường đi từ đỉnh về gốc và tính lại đại diện lớp kề, nên thời gian phụ thuộc mạnh vào độ sâu của cây Schreier. Trong trường hợp tổng quát, độ sâu của cây có thể đạt cấp $O(n)$.
 
-在具体实现的时候，需要根据实际情况权衡算法的时空复杂度．对于算法竞赛可能涉及的情形，$n$ 通常都不大，空间充足，而时间复杂度常常成为瓶颈．稍后会看到，Schreier–Sims 算法最耗时的步骤恰好需要多次访问陪集代表元，因而使用直接存储的方式往往更优．但是对于某些应用场景，$n$ 可能很大，存储空间可能更为紧张，就有可能需要使用 Schreier 树的方式存储陪集代表系．对于这种情况，为避免 Schreier 树深度过深，研究者提出了很多方法，可以在树的深度过深的时候重构出浅的 Schreier 树．有兴趣的读者可以参考文末的文献．
+Khi cài đặt cụ thể, cần cân đối độ phức tạp thời gian và không gian theo bài toán. Trong những tình huống có thể gặp trong thi lập trình, $n$ thường không lớn, bộ nhớ đủ, còn thời gian lại hay là nút thắt. Lát nữa sẽ thấy bước tốn thời gian nhất của Schreier-Sims lại cần truy cập đại diện lớp kề nhiều lần, nên cách lưu trực tiếp thường tốt hơn. Tuy nhiên, trong một số ứng dụng, $n$ có thể rất lớn và bộ nhớ chặt chẽ hơn; khi đó có thể cần dùng cây Schreier để lưu hệ đại diện lớp kề. Với trường hợp này, để tránh cây Schreier quá sâu, các nhà nghiên cứu đã đưa ra nhiều phương pháp dùng để xây lại cây Schreier nông hơn khi độ sâu của cây quá lớn. Độc giả quan tâm có thể tham khảo tài liệu ở cuối bài.
 
-在伪代码中，本文不会区分具体的陪集代表系的实现，而只假设存储陪集代表系 $T$ 的数据结构实现了根据轨道元素 $\delta\in\Delta$ 访问和修改对应陪集代表元 $T[\delta]$ 的操作．
+Trong mã giả, bài này không phân biệt cách cài đặt cụ thể của hệ đại diện lớp kề; chỉ giả định cấu trúc dữ liệu lưu $T$ có thao tác truy cập và sửa đại diện lớp kề tương ứng $T[\delta]$ theo phần tử quỹ đạo $\delta\in\Delta$.
 
-### Schreier 引理
+<span id="Schreier &#24341;&#29702;"></span>
+### Bổ đề Schreier
 
-在获得了轨道 $\beta^G$ 和陪集代表系 $T$ 后，Schreier 引理继而提供了获得稳定化子 $G_\beta$ 的生成集的方法．
+Sau khi có quỹ đạo $\beta^G$ và hệ đại diện lớp kề $T$, bổ đề Schreier cho ta cách thu được tập sinh của bộ ổn định $G_\beta$.
 
-???+ note "Schreier 引理"
-    设群 $G=\langle S\rangle$ 有子群 $H\le G$．设 $T$ 是子群 $H$ 的（右）陪集代表系，且 $e\in T$[^schreier-lemma-unity]，并记 $g\in G$ 所在陪集的代表元 $t\in T$ 为 $\overline g$．那么，集合
+???+ note "Bổ đề Schreier"
+    Cho nhóm $G=\langle S\rangle$ có nhóm con $H\le G$. Gọi $T$ là một hệ đại diện lớp kề (phải) của nhóm con $H$, với $e\in T$[^schreier-lemma-unity], và ký hiệu đại diện $t\in T$ của lớp kề chứa $g\in G$ là $\overline g$. Khi đó, tập
     
     $$
     U=\{ts(\overline{ts})^{-1}:t\in T,s\in S\}
     $$
     
-    是子群 $H$ 的一个生成集．它的元素称为子群 $H$ 的 **Schreier 生成元**（Schreier generator）．
+    là một tập sinh của nhóm con $H$. Các phần tử của nó được gọi là **phần tử sinh Schreier** (Schreier generator) của nhóm con $H$.
 
-??? note "证明"
-    首先，根据陪集代表元的定义可知，$ts(\overline{ts})^{-1}\in H$ 对所有 $t\in T,s\in S$ 都成立，故而 $\langle U\rangle\subseteq H$．
+??? note "Chứng minh"
+    Trước hết, theo định nghĩa của đại diện lớp kề, $ts(\overline{ts})^{-1}\in H$ đúng với mọi $t\in T,s\in S$, do đó $\langle U\rangle\subseteq H$.
     
-    反过来，对于任何 $h\in H$，因为 $S$ 是 $G\ge H$ 的生成集，必然存在一列 $s_i\in S\cup S^{-1}$ 使得
+    Ngược lại, với bất kỳ $h\in H$, vì $S$ là tập sinh của $G\ge H$, tồn tại một dãy $s_i\in S\cup S^{-1}$ sao cho
     
     $$
     h=s_1s_2\cdots s_r
     $$
     
-    成立．令 $t_1=e$，并递归地定义 $t_{i+1}=\overline{s_it_i}\in T$，于是，有
+    đúng. Đặt $t_1=e$, và định nghĩa đệ quy $t_{i+1}=\overline{s_it_i}\in T$. Khi đó
     
     $$
     \begin{aligned}
@@ -207,13 +220,14 @@ $$
     \end{aligned}
     $$
     
-    而对于每个 $i=1,2,\cdots,r$ 都有 $t_is_it_{i+1}^{-1}=t_is_i(\overline{t_is_i})^{-1}\in U\cup U^{-1}\subseteq H$，故而有 $t_{r+1}\in H$．但是，$H\cap T=\{e\}$，所以有 $t_{r+1}=e$．这就说明，任意 $h\in H$ 都可以写作一列 $u_i=t_is_it_{i+1}^{-1}\in U\cup U^{-1}$ 的乘积，亦即 $U$ 生成 $H$．
+    Với mỗi $i=1,2,\cdots,r$ ta có $t_is_it_{i+1}^{-1}=t_is_i(\overline{t_is_i})^{-1}\in U\cup U^{-1}\subseteq H$, nên $t_{r+1}\in H$. Nhưng $H\cap T=\{e\}$, vì vậy $t_{r+1}=e$. Điều này cho thấy mỗi $h\in H$ đều viết được thành tích của một dãy $u_i=t_is_it_{i+1}^{-1}\in U\cup U^{-1}$, tức là $U$ sinh ra $H$.
 
-因为陪集代表系 $T$ 对应的子群就是稳定化子 $G_\beta$，所以求出陪集代表系 $T$ 后再结合群 $G$ 的生成集 $S$ 就能得到稳定化子 $G_\beta$ 的生成集．
+Vì nhóm con tương ứng với hệ đại diện lớp kề $T$ chính là bộ ổn định $G_\beta$, sau khi tìm được $T$ và kết hợp với tập sinh $S$ của nhóm $G$, ta thu được một tập sinh của bộ ổn định $G_\beta$.
 
-### 算法
+<span id="&#31639;&#27861;"></span>
+### Thuật toán
 
-只要对上面的伪代码稍作修改，就能在计算轨道和陪集代表系的同时得到相应的稳定化子的生成集：
+Chỉ cần sửa nhẹ mã giả ở trên, ta có thể vừa tính quỹ đạo và hệ đại diện lớp kề, vừa thu được tập sinh của bộ ổn định tương ứng:
 
 $$
 \begin{array}{l}
@@ -242,39 +256,42 @@ $$
 \end{array}
 $$
 
-伪代码中，对于每对 $(\delta,s)$，只有轨道中不产生新的元素时，$t_\delta st_{\delta^s}^{-1}$ 才是新的 Schreier 生成元；否则，它就是恒等变换 $e$．因而，算法中实际生成的 Schreier 生成元（包括最初的恒等变换）最多只有
+Trong mã giả, với mỗi cặp $(\delta,s)$, chỉ khi không sinh ra phần tử mới trong quỹ đạo thì $t_\delta st_{\delta^s}^{-1}$ mới là một phần tử sinh Schreier mới; nếu không, nó chỉ là biến đổi đồng nhất $e$. Do đó, số phần tử sinh Schreier mà thuật toán thực sự sinh ra (kể cả biến đổi đồng nhất ban đầu) tối đa là
 
 $$
 |S||T|-(|T|-1) = |S|(|T|-1)+1
 $$
 
-个．对于一般的情形，这个上界是紧的．[^upper-bound]但是，对于实际要处理的有限群，这个上界相当地宽松：这些新得到的 Schreier 生成元大多数并都是之前得到的生成元的重复，或者可以由之前的生成元复合而成．
+phần tử. Trong trường hợp tổng quát, cận trên này đạt được.[^upper-bound] Tuy nhiên, với các nhóm hữu hạn cần xử lý trong thực tế, cận này khá lỏng: phần lớn các phần tử sinh Schreier mới thu được đều trùng với phần tử sinh đã có, hoặc có thể hợp thành từ các phần tử sinh trước đó.
 
-因为 Schreier–Sims 算法的基本流程可以实现为递归地调用上述计算轨道和稳定化子的算法，所以其实此时就已经得到了 Schreier–Sims 算法的一种朴素实现．但是，如果不加以筛选，Schreier 生成元的规模的增长速度是指数级的：反复应用 $O(|S_{i}|)=O(|S_{i-1}||T_i|)$ 可知，最内层的稳定化子的生成集的规模将达到 $O(|S||G|)$．这显然低效得荒诞，因为最内层的稳定化子是 $\{e\}$．
+Vì quy trình cơ bản của Schreier-Sims có thể cài đặt bằng cách đệ quy gọi thuật toán tính quỹ đạo và bộ ổn định ở trên, đến đây thực ra ta đã có một cách cài đặt thô sơ của Schreier-Sims. Nhưng nếu không lọc bớt, số lượng phần tử sinh Schreier tăng theo cấp số mũ: lặp lại $O(|S_{i}|)=O(|S_{i-1}||T_i|)$ cho thấy kích thước tập sinh của bộ ổn định trong cùng sẽ đạt $O(|S||G|)$. Điều này phi lý về mặt hiệu quả, vì bộ ổn định trong cùng là $\{e\}$.
 
-Sims 的工作提供了限制 Schreier 生成元的规模的增长速度的方法，它能够保证最终得到的强生成集 $\bar S$ 的大小是 $O(n^2)$ 的．这样就可以在多项式时间内计算基和强生成集．
+Công trình của Sims đưa ra cách khống chế tốc độ tăng của số phần tử sinh Schreier; nó đảm bảo tập sinh mạnh cuối cùng $\bar S$ có kích thước $O(n^2)$. Nhờ vậy có thể tính cơ sở và tập sinh mạnh trong thời gian đa thức.
 
-## Schreier–Sims 算法
+<span id="Schreier&#8211;Sims &#31639;&#27861;"></span>
+## Thuật toán Schreier-Sims
 
-为解决上述问题，本节讨论 Schreier–Sims 算法的一种增量实现，它得到的强生成集的大小是 $O(n^2)$ 的．
+Để giải quyết vấn đề trên, mục này thảo luận một cách cài đặt tăng dần của Schreier-Sims, trong đó tập sinh mạnh thu được có kích thước $O(n^2)$.
 
-### 筛选
+<span id="&#31579;&#36873;"></span>
+### Sàng lọc
 
-Schreier–Sims 算法对上述朴素算法的核心优化十分简明：它要求在向稳定化子的生成集添加任何 Schreier 生成元之前，都首先需要经过 **筛选**（sifting）．所谓筛选，就是首先判定新的 Schreier 生成元是否已经存在于已有的生成元生成的子群中，然后只添加那些尚不存在的生成元．为此，只需要使用前文的成员判定算法 $\textrm{MembershipTest}(C,h)$ 即可．
+Tối ưu cốt lõi của Schreier-Sims so với thuật toán thô sơ ở trên rất đơn giản: trước khi thêm bất kỳ phần tử sinh Schreier nào vào tập sinh của bộ ổn định, phần tử đó phải được **sàng lọc** (sifting). Sàng lọc nghĩa là trước hết xác định phần tử sinh Schreier mới đã nằm trong nhóm con sinh bởi các phần tử sinh hiện có hay chưa, rồi chỉ thêm những phần tử sinh chưa tồn tại. Để làm điều này, chỉ cần dùng thuật toán kiểm tra thành viên $\textrm{MembershipTest}(C,h)$ đã nêu ở trên.
 
-但是，能够这样做的前提是，基于当前群的已经产生了的 Schreier 生成元，早就构建好了它们生成的群的稳定化子链（或基和强生成集）．这意味着，每次向稳定化子的生成集中添加一个新的 Schreier 生成元，都需要动态地维护内层的稳定化子链，以用于之后的筛选．但是，当前层每插入一个生成元，可能会产生多个 Schreier 生成元，也就可能会多次更新内层结构；而内层结构的每次更新，都可能会引发更内层结构的多次更新．
+Nhưng điều kiện tiền đề để làm như vậy là, dựa trên các phần tử sinh Schreier đã sinh ra của nhóm hiện tại, ta đã xây dựng sẵn chuỗi bộ ổn định (hay cơ sở và tập sinh mạnh) của nhóm mà chúng sinh ra. Điều này có nghĩa là mỗi khi thêm một phần tử sinh Schreier mới vào tập sinh của bộ ổn định, cần duy trì đồng bộ chuỗi bộ ổn định bên trong để dùng cho các lần sàng lọc sau. Tuy nhiên, mỗi lần tầng hiện tại chèn thêm một phần tử sinh, có thể sinh ra nhiều phần tử sinh Schreier, nên có thể phải cập nhật cấu trúc bên trong nhiều lần; mỗi cập nhật ở cấu trúc bên trong lại có thể kéo theo nhiều cập nhật ở các cấu trúc sâu hơn.
 
-似乎之前提到的指数级爆炸的问题依然存在．其实不然．因为提前做好了筛选，只有待添加的生成元真的会引发某一层结构的扩大的时候，该层结构才会更新．这说明，单层结构更新的次数实际上等于该层结构存储的群严格增长的次数．但是，大小为 $|G|$ 的群至多有长度为 $\log|G|$ 的子群链；因为 Lagrange 定理保证，子群链长度每增加一，群的大小至少要翻倍．这就说明，单层结构至多只会更新 $\log|G|$ 次，因而最后得到的强生成集 $\bar S$ 的大小就是 $|B|\log|G|$ 的．
+Có vẻ như vấn đề bùng nổ theo cấp số mũ nêu trên vẫn tồn tại. Thực ra không phải. Vì đã sàng lọc trước, một tầng chỉ được cập nhật khi phần tử sinh sắp thêm thật sự làm nhóm được lưu ở tầng đó lớn hơn. Do đó, số lần cập nhật của một tầng thực chất bằng số lần nhóm mà tầng đó lưu tăng nghiêm ngặt. Nhưng một nhóm có kích thước $|G|$ có chuỗi nhóm con dài nhất không quá $\log|G|$, vì định lý Lagrange đảm bảo mỗi khi chuỗi nhóm con dài thêm một mức, kích thước nhóm ít nhất tăng gấp đôi. Vì vậy, mỗi tầng chỉ cập nhật tối đa $\log|G|$ lần, và kích thước tập sinh mạnh cuối cùng $\bar S$ là $|B|\log|G|$.
 
-这个估计还可以进一步改进．因为此处出现的群 $G$ 已知是 $n$ 次对称群 $S_n$ 的子群，所以 $G$ 的子群链长度不会超过 $S_n$ 的子群链长度．可以证明[^subgroup-chain]，$S_n$ 的严格递增子群链长度不会超过 $3n/2$．这说明，单层结构更新的次数其实是 $O(n)$ 的．显然，基的大小也不超过 $n$．故而，最后得到的强生成集 $\bar S$ 的大小就是 $O(n^2)$ 的．
+Ước lượng này còn có thể cải tiến. Vì nhóm $G$ ở đây đã biết là nhóm con của nhóm đối xứng bậc $n$, $S_n$, nên độ dài chuỗi nhóm con của $G$ không vượt quá độ dài chuỗi nhóm con của $S_n$. Có thể chứng minh[^subgroup-chain] rằng độ dài của một chuỗi nhóm con tăng nghiêm ngặt trong $S_n$ không vượt quá $3n/2$. Điều này cho thấy số lần cập nhật của một tầng thực ra là $O(n)$. Rõ ràng kích thước cơ sở cũng không vượt quá $n$. Vì thế, kích thước tập sinh mạnh cuối cùng $\bar S$ là $O(n^2)$.
 
-此处提到的筛选方法是 Sims 提出的，也称为 Sims 筛（Sims filter）．还有一种更为复杂的筛选方法，是由 Jerrum 提出的，也称为 [Jerrum 筛](https://groupprops.subwiki.org/w/index.php?title=Jerrum%27s_filter)（Jerrum filter），它能够保证得到的强生成集的大小是 $O(n)$ 的．有兴趣的读者可以自行学习．
+Phương pháp sàng lọc vừa nêu do Sims đưa ra, còn gọi là sàng Sims (Sims filter). Còn một phương pháp sàng lọc phức tạp hơn do Jerrum đưa ra, gọi là [sàng Jerrum](https://groupprops.subwiki.org/w/index.php?title=Jerrum%27s_filter) (Jerrum filter), đảm bảo tập sinh mạnh thu được có kích thước $O(n)$. Độc giả quan tâm có thể tự tìm hiểu.
 
-对于筛选过程，有一个小优化是，在 $\textrm{MembershipTest}(C,h)$ 的实现中，并不输出布尔值，而是输出最后得到的「筛渣」[^siftee]$h$（即用 $\textbf{return }h$ 代替伪代码中的第 $10$ 和第 $14$ 行）．如果「筛渣」$h\neq e$，就说明成员判定失败，此时可以直接将「筛渣」$h$ 而不是原来的 $h$ 添加到当前层．此处的「筛渣」$h$ 已经除去了若干个陪集代表元的因子，因而移动了更少的元素，所以会减少局部的计算量．这个优化对于整体的复杂度没有任何影响．
+Có một tối ưu nhỏ cho quá trình sàng lọc: trong cài đặt $\textrm{MembershipTest}(C,h)$, không cần xuất giá trị boolean, mà xuất "phần còn lại sau sàng"[^siftee] $h$ cuối cùng (tức dùng $\textbf{return }h$ thay cho dòng $10$ và dòng $14$ trong mã giả). Nếu "phần còn lại sau sàng" $h\neq e$, nghĩa là kiểm tra thành viên thất bại; khi đó có thể thêm trực tiếp "phần còn lại sau sàng" $h$ thay vì $h$ ban đầu vào tầng hiện tại. Phần tử $h$ này đã bị loại bỏ một số thừa số là đại diện lớp kề, nên di chuyển ít điểm hơn và giảm khối lượng tính toán cục bộ. Tối ưu này không ảnh hưởng đến độ phức tạp tổng thể.
 
-### 过程
+<span id="&#36807;&#31243;"></span>
+### Quy trình
 
-现在可以描述 Schreier–Sims 算法的具体过程：首先，初始化一个空结构 $C$，用于存储群的稳定化子链．然后，逐个向结构 $C$ 中添加生成集 $S$ 中的生成元，最后得到的结构 $C$ 就是群 $\langle S\rangle$ 的稳定化子链．伪代码如下：
+Bây giờ có thể mô tả quy trình cụ thể của Schreier-Sims: trước hết, khởi tạo một cấu trúc rỗng $C$ để lưu chuỗi bộ ổn định của nhóm. Sau đó lần lượt thêm các phần tử sinh trong tập sinh $S$ vào cấu trúc $C$; cấu trúc $C$ cuối cùng chính là chuỗi bộ ổn định của nhóm $\langle S\rangle$. Mã giả như sau:
 
 $$
 \begin{array}{l}
@@ -292,17 +309,17 @@ $$
 \end{array}
 $$
 
-算法的核心在于向当前的 $C$ 中添加新的生成元 $s$ 这一步，即子程序 $\textrm{Extend}(C,s)$．正如前文所述，添加置换 $s$ 之前和之后，都需要保证 $C$ 是稳定化子链．这样，在添加置换 $s$ 之前，可以首先做筛选．如果发现 $s$ 不在已有的群中，就 **增量地** 计算轨道、陪集代表元和 Schreier 生成元．此处的「增量」的含义是，已经计算过的，不要重复计算．这样才能保证正确的复杂度．
+Cốt lõi của thuật toán nằm ở bước thêm phần tử sinh mới $s$ vào $C$ hiện tại, tức thủ tục con $\textrm{Extend}(C,s)$. Như đã nêu, trước và sau khi thêm hoán vị $s$, cần đảm bảo $C$ là một chuỗi bộ ổn định. Vì vậy, trước khi thêm hoán vị $s$, có thể sàng lọc trước. Nếu phát hiện $s$ không nằm trong nhóm hiện có, ta **tăng dần** tính quỹ đạo, đại diện lớp kề và phần tử sinh Schreier. Ở đây "tăng dần" có nghĩa là những gì đã tính rồi thì không tính lại. Như vậy mới đảm bảo được độ phức tạp đúng.
 
-考虑如何将 $\textrm{OrbitTransversalStabilizer}(S,\beta)$ 改造为增量版本．算法搜索的状态空间是 $\Delta\times S$．在添加新的生成元 $s$ 之后，状态空间将变成 $\Delta'\times\left(S\cup\{s\}\right)$．两者的差集就是
+Xét cách biến đổi $\textrm{OrbitTransversalStabilizer}(S,\beta)$ thành phiên bản tăng dần. Không gian trạng thái mà thuật toán tìm kiếm là $\Delta\times S$. Sau khi thêm phần tử sinh mới $s$, không gian trạng thái trở thành $\Delta'\times\left(S\cup\{s\}\right)$. Hiệu của hai không gian là
 
 $$
 \left(\Delta\times\{s\}\right)\cup\left((\Delta'\setminus\Delta)\times \left(S\cup\{s\}\right)\right).
 $$
 
-这意味着，当加入新的生成元 $s$ 的时候，首先需要计算新的生成元 $s$ 与旧的轨道和相应的陪集代表元的组合；如果在这个过程中还得到了新的轨道的元素，就再考虑这些元素与所有生成元（无论新旧）的组合；过程重复到轨道不再延长为止．
+Điều này có nghĩa là khi thêm phần tử sinh mới $s$, trước hết cần tính các tổ hợp của phần tử sinh mới $s$ với quỹ đạo cũ và các đại diện lớp kề tương ứng; nếu trong quá trình này lại thu được phần tử quỹ đạo mới, thì tiếp tục xét các phần tử mới đó với tất cả phần tử sinh (cũ lẫn mới); lặp lại đến khi quỹ đạo không kéo dài nữa.
 
-向结构 $C$ 中添加置换 $g$ 的伪代码如下：
+Mã giả để thêm hoán vị $g$ vào cấu trúc $C$ như sau:
 
 $$
 \begin{array}{l}
@@ -349,11 +366,12 @@ $$
 \end{array}
 $$
 
-这样就得到了完整的 Schreier–Sims 算法．
+Như vậy ta thu được thuật toán Schreier-Sims hoàn chỉnh.
 
-### 另一种实现
+<span id="&#21478;&#19968;&#31181;&#23454;&#29616;"></span>
+### Một cách cài đặt khác
 
-上述的实现已经是正确的，但是 $12\sim 19$ 行和 $23\sim 30$ 行略显重复．基于此，Knuth 在论文中提出了一种递归实现，更为简明．他的做法是，将这个重复的部分视作是对陪集剩余系（和轨道）的更新．每次更新陪集剩余系都要和所有的生成元组合，根据是否产生了新的陪集代表元，决定是递归地调用自身还是添加生成元的程序．伪代码如下：
+Cách cài đặt trên đã đúng, nhưng các dòng $12\sim 19$ và $23\sim 30$ hơi lặp lại. Dựa trên quan sát này, Knuth đề xuất trong bài báo của mình một cách cài đặt đệ quy ngắn gọn hơn. Cách làm của ông là xem phần lặp lại này như việc cập nhật hệ đại diện lớp kề (và quỹ đạo). Mỗi lần cập nhật hệ đại diện lớp kề đều phải kết hợp với tất cả phần tử sinh; tùy theo việc có sinh ra đại diện lớp kề mới hay không mà quyết định gọi đệ quy chính thủ tục này hay gọi thủ tục thêm phần tử sinh. Mã giả như sau:
 
 $$
 \begin{array}{l}
@@ -373,12 +391,12 @@ $$
 8  & \textbf{end if}\\
 9  & \textrm{append }g\textrm{ to }C.generators\\
 10 & \textbf{for }t\in C.transversal\\
-11 & \qquad \textrm{ExtendTranserversal}(C,t\cdot g)\\
+11 & \qquad \textrm{ExtendTransversal}(C,t\cdot g)\\
 12 & \textbf{end for}\\
 13 & \textbf{return }C
 \end{array}\\
 \\
-\textbf{Sub-Algorithm }\textrm{ExtendTranserversal}(C,t):\\
+\textbf{Sub-Algorithm }\textrm{ExtendTransversal}(C,t):\\
 \textbf{Method.}\\
 \begin{array}{ll}
 1  & \beta \leftarrow C.orbit[0]\\
@@ -387,7 +405,7 @@ $$
 4  & \qquad \textrm{append }\gamma\textrm{ to }C.orbit\\
 5  & \qquad C.transversal[\gamma] \leftarrow t\\
 6  & \qquad \textbf{for }s\in C.generators\\
-7  & \qquad \qquad \textrm{ExtendTranserversal}(C,t\cdot s)\\
+7  & \qquad \qquad \textrm{ExtendTransversal}(C,t\cdot s)\\
 8  & \qquad \textbf{end for}\\
 9  & \textbf{else}\\
 10 & \qquad s' \leftarrow t\cdot C.transversal[\gamma]^{-1}\\
@@ -397,63 +415,67 @@ $$
 \end{array}
 $$
 
-将此处的伪代码和上节的相比，就可以知道它是正确的．而且，两者复杂度并无差异．
+So sánh mã giả này với mục trước, ta thấy nó là đúng. Hơn nữa, độ phức tạp của hai cách không khác nhau.
 
-### 复杂度
+<span id="&#22797;&#26434;&#24230;"></span>
+### Độ phức tạp
 
-为了分析 Schreier–Sims 算法的复杂度，需要一些记号．设置换的长度为 $n$，生成集的大小 $|S|$ 为 $m$．得到的（无冗余）基的长度记为 $|B|$．而且，最后得到的自外向内第 $i$ 层的稳定化子 $G_i$ 中，生成元的数目记为 $|S_{i-1}|$，陪集代表系的大小（或轨道的长度）记为 $|T_i|$．下面分析利用上述 Schreier–Sims 算法的增量实现所需要的时间复杂度．算法主要分为两部分：筛选，以及对轨道、陪集代表系和 Schreider 生成元的计算．
+Để phân tích độ phức tạp của Schreier-Sims, cần một số ký hiệu. Gọi độ dài của hoán vị là $n$, kích thước tập sinh $|S|$ là $m$. Độ dài của cơ sở (không dư thừa) thu được ký hiệu là $|B|$. Ngoài ra, trong bộ ổn định $G_i$ ở tầng thứ $i$ tính từ ngoài vào trong cuối cùng, số phần tử sinh được ký hiệu là $|S_{i-1}|$, còn kích thước hệ đại diện lớp kề (hay độ dài quỹ đạo) được ký hiệu là $|T_i|$. Sau đây phân tích độ phức tạp thời gian cần thiết cho cách cài đặt tăng dần của Schreier-Sims ở trên. Thuật toán chủ yếu gồm hai phần: sàng lọc, và tính quỹ đạo, hệ đại diện lớp kề cùng các phần tử sinh Schreier.
 
-最初输入的生成元和算法中得到的 Schreider 生成元都需要进行筛选，因而筛选过程执行的总次数是 $O(\sum_{i=1}^{|B|}|S_{i-1}||T_i|+|S|)$．单次筛选需要与 $O(|B|)$ 个陪集代表元计算置换乘积．设计算与单个陪集代表元的乘积的时间是 $\tau$．直接存储陪集代表元时，$\tau\in O(n)$；而用 Schreier 树存储陪集代表元时，$\tau\in O(n^2)$．执行筛选过程的时间复杂度总共为 $O(\tau|B|\sum_{i=1}^{|B|}|S_{i-1}||T_i|+\tau|B||S|)$．
+Các phần tử sinh đầu vào ban đầu và các phần tử sinh Schreier thu được trong thuật toán đều cần được sàng lọc, nên tổng số lần thực hiện quá trình sàng lọc là $O(\sum_{i=1}^{|B|}|S_{i-1}||T_i|+|S|)$. Một lần sàng lọc cần tính tích hoán vị với $O(|B|)$ đại diện lớp kề. Gọi thời gian tính tích với một đại diện lớp kề đơn lẻ là $\tau$. Nếu lưu trực tiếp đại diện lớp kề thì $\tau\in O(n)$; nếu dùng cây Schreier để lưu đại diện lớp kề thì $\tau\in O(n^2)$. Tổng thời gian thực hiện sàng lọc là $O(\tau|B|\sum_{i=1}^{|B|}|S_{i-1}||T_i|+\tau|B||S|)$.
 
-对于轨道等信息的计算，因为是增量实现，状态空间中的每对 $(\delta,s)\in\Delta_i\times S_{i-1}$ 都只计算了至多一次．对于轨道和陪集代表系的计算，根据存储方式不同，单次计算陪集代表元的时间复杂度可能是 $O(n)$ 的或是 $O(1)$ 的．但是，无论如何，这都不超过计算 Schreider 生成元的复杂度．直接存储时，它是 $O(n)$ 的；使用 Schreier 树时，它是 $O(n^2)$ 的．与筛选过程的总时间复杂度比较，会发现计算这些信息的时间复杂度都不会超过筛选需要的时间复杂度．所以，Schreier–Sims 算法的时间复杂度就是上一段得到的 $O(\tau|B|\sum_{i=1}^{|B|}|S_{i-1}||T_i|+\tau|B||S|)$．
+Đối với việc tính quỹ đạo và các thông tin liên quan, vì đây là cách cài đặt tăng dần, mỗi cặp $(\delta,s)\in\Delta_i\times S_{i-1}$ trong không gian trạng thái chỉ được tính tối đa một lần. Khi tính quỹ đạo và hệ đại diện lớp kề, tùy cách lưu trữ mà thời gian tính một đại diện lớp kề đơn lẻ có thể là $O(n)$ hoặc $O(1)$. Tuy nhiên, dù thế nào thì nó cũng không vượt quá độ phức tạp tính phần tử sinh Schreier. Nếu lưu trực tiếp, độ phức tạp này là $O(n)$; nếu dùng cây Schreier, là $O(n^2)$. So với tổng độ phức tạp thời gian của quá trình sàng lọc, ta thấy thời gian tính các thông tin này không vượt quá thời gian cần cho sàng lọc. Vì vậy, độ phức tạp thời gian của Schreier-Sims chính là kết quả ở đoạn trước: $O(\tau|B|\sum_{i=1}^{|B|}|S_{i-1}||T_i|+\tau|B||S|)$.
 
-至于空间复杂度，算法最后得到的数据结构中存储了 $O(\sum_{i=1}^{|B|}|S_{i-1}|)$ 个生成元和 $O(\sum_{i=1}^{|B|}|T_i|)$ 个陪集代表元．如果使用直接存储，生成元和陪集代表元都需要 $O(n)$ 的空间；如果使用 Schreiner 树，生成元需要 $O(n)$ 的空间，而陪集代表元只需要 $O(1)$ 的空间．
+Về độ phức tạp không gian, cấu trúc dữ liệu cuối cùng của thuật toán lưu $O(\sum_{i=1}^{|B|}|S_{i-1}|)$ phần tử sinh và $O(\sum_{i=1}^{|B|}|T_i|)$ đại diện lớp kề. Nếu lưu trực tiếp, cả phần tử sinh lẫn đại diện lớp kề đều cần $O(n)$ bộ nhớ; nếu dùng cây Schreier, phần tử sinh cần $O(n)$ bộ nhớ, còn đại diện lớp kề chỉ cần $O(1)$ bộ nhớ.
 
-前文已经说明，$n$ 次对称群中严格递增子群链的长度是 $O(n)$ 的，这对 $|B|$ 和 $|S_i|$ 都适用．因而，使用直接存储陪集代表系的方式实现的 Schreier–Sims 算法，时间复杂度是 $O(n^5+mn^2)$ 的，空间复杂度是 $O(n^3)$ 的．当然对于 $\log|G|\in O(n)$ 的情形，一个更好的估计是时间复杂度[^knuth-complexity] $O(n^2\log^3|G|+mn\log|G|)$ 和空间复杂度 $O(n^2\log|G|)$．对于随机的生成集的情形，实际测试发现算法的复杂度明显低于 $\Theta(n^5)$，而大致是 $\Theta(n^4)$ 的．
+Phần trước đã nói độ dài của chuỗi nhóm con tăng nghiêm ngặt trong nhóm đối xứng bậc $n$ là $O(n)$; điều này áp dụng cho cả $|B|$ lẫn $|S_i|$. Do đó, nếu cài đặt Schreier-Sims bằng cách lưu trực tiếp hệ đại diện lớp kề, độ phức tạp thời gian là $O(n^5+mn^2)$ và độ phức tạp không gian là $O(n^3)$. Tất nhiên, với trường hợp $\log|G|\in O(n)$, ước lượng tốt hơn là độ phức tạp thời gian[^knuth-complexity] $O(n^2\log^3|G|+mn\log|G|)$ và độ phức tạp không gian $O(n^2\log|G|)$. Với tập sinh ngẫu nhiên, thử nghiệm thực tế cho thấy độ phức tạp của thuật toán thấp hơn đáng kể so với $\Theta(n^5)$, xấp xỉ $\Theta(n^4)$.
 
-虽然相较于直接存储，用 Schreiner 树会在时间复杂度中引入额外的 $n$ 的指数，但对于 $n$ 很大，但是群本身远小于 $n$ 次对称群的情形，它的空间复杂度是 $O(n\log^2|G|)$ 的，远小于直接存储的 $O(n^2\log|G|)$．但是在算法竞赛中，很难遇到这样使用 Schreiner 树存储更优的情形．
+Tuy so với lưu trực tiếp, cây Schreier đưa thêm một thừa số $n$ vào độ phức tạp thời gian, nhưng khi $n$ rất lớn mà bản thân nhóm nhỏ hơn nhiều so với nhóm đối xứng bậc $n$, độ phức tạp không gian của nó là $O(n\log^2|G|)$, nhỏ hơn nhiều so với $O(n^2\log|G|)$ của cách lưu trực tiếp. Tuy nhiên trong thi lập trình, rất khó gặp trường hợp dùng cây Schreier để lưu lại tốt hơn.
 
-### 参考实现
+<span id="&#21442;&#32771;&#23454;&#29616;"></span>
+### Cài đặt tham khảo
 
-此处提供一个 Schreier–Sims 算法的参考实现．因为 $n$ 规模较小，实现中直接指定基 $B=\{n,n-1,\cdots,1\}$ 而不是通过算法选择它．这样做的好处是，自内向外第 $k$ 层（不计空结构体）的群中的置换只就会改变前 $k$ 个元素，方便后续计算．代码中的另一项优化是，在存储陪集代表元的时候，存储的实际上是它的逆置换，这简化了置换的运算．
+Ở đây cung cấp một cài đặt tham khảo cho Schreier-Sims. Vì $n$ tương đối nhỏ, trong cài đặt này ta chỉ định trực tiếp cơ sở $B=\{n,n-1,\cdots,1\}$ thay vì để thuật toán chọn. Lợi ích là trong nhóm ở tầng thứ $k$ tính từ trong ra ngoài (không tính cấu trúc rỗng), các hoán vị chỉ thay đổi $k$ phần tử đầu, thuận tiện cho các tính toán tiếp theo. Một tối ưu khác trong mã là khi lưu đại diện lớp kề, thực ra ta lưu hoán vị nghịch đảo của nó; điều này làm đơn giản các phép toán hoán vị.
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/schreier-sims/schreier-sims.cpp"
     ```
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
--   [LOJ 177. 生成子群阶数](https://loj.ac/p/177)
--   [\[WC2017\] 棋盘](https://uoj.ac/problem/287)
+-   [LOJ 177. Cấp của nhóm con sinh ra](https://loj.ac/p/177)
+-   [\[WC2017\] Bàn cờ](https://uoj.ac/problem/287)
 -   [Permutations](https://codeforces.com/gym/421334/problem/A)
 -   [\[Grand Prix of Yekaterinburg 2015\] Problem H. Heimdall](https://disk.yandex.com/i/OfEXXcu-anMHuw)
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và ghi chú
 
--   [Schreier–Sims algorithm - Wikipedia](https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm)
--   [Sims, Charles C, Computational methods in the study of permutation groups, Computational Problems in Abstract Algebra, pp. 169–183, Pergamon, Oxford, 1970.](https://www.sciencedirect.com/science/article/pii/B9780080129754500205)
--   [Knuth, Donald E. Efficient representation of perm groups, Combinatorica 11 (1991), no. 1, 33–43.](https://arxiv.org/abs/math/9201304)
+-   [Schreier-Sims algorithm - Wikipedia](https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm)
+-   [Sims, Charles C, Computational methods in the study of permutation groups, Computational Problems in Abstract Algebra, pp. 169-183, Pergamon, Oxford, 1970.](https://www.sciencedirect.com/science/article/pii/B9780080129754500205)
+-   [Knuth, Donald E. Efficient representation of perm groups, Combinatorica 11 (1991), no. 1, 33-43.](https://arxiv.org/abs/math/9201304)
 -   [Ákos Seress, Permutation Group Algorithms, Cambridge University Press](https://www.cambridge.org/core/books/permutation-group-algorithms/199629665EC545A10BCB99FFE6AAFD25)
 -   [Alexander Hulpke's Notes on Computational Group Theory](https://www.math.colostate.edu/%7Ehulpke/CGT/cgtnotes.pdf)
--   [Derek Holt's Slides on The Schreier–Sims algorithm for finite permutation groups](https://blogs.cs.st-andrews.ac.uk/codima/files/2015/11/CoDiMa2015_Holt.pdf)
--   [Martin Jaggi, Implementations of 3 Types of the Schreier–Sims Algorithm, MAS334 - Mathematics Computing Project, 2005](https://www.m8j.net/data/List/Files-118/Documentation.pdf)
--   [Henrik Bäärnhielm. The Schreier–Sims algorithm for matrix groups](https://henrik.baarnhielm.net/schreiersims.pdf)
+-   [Derek Holt's Slides on The Schreier-Sims algorithm for finite permutation groups](https://blogs.cs.st-andrews.ac.uk/codima/files/2015/11/CoDiMa2015_Holt.pdf)
+-   [Martin Jaggi, Implementations of 3 Types of the Schreier-Sims Algorithm, MAS334 - Mathematics Computing Project, 2005](https://www.m8j.net/data/List/Files-118/Documentation.pdf)
+-   [Henrik Bäärnhielm. The Schreier-Sims algorithm for matrix groups](https://henrik.baarnhielm.net/schreiersims.pdf)
 
-[^knuth-year]: Knuth 的论文是在 1991 年发表的，但是他的改进在 1981 年就通过会议广泛地宣传．论文是基于他的会议讲稿写作的．
+[^knuth-year]: Bài báo của Knuth được xuất bản năm 1991, nhưng cải tiến của ông đã được phổ biến rộng rãi qua hội nghị từ năm 1981. Bài báo được viết dựa trên bài giảng hội nghị của ông.
 
-[^monte-carlo]: 不要与 Monto Carlo 方法混淆．此处的 Monte Carlo 算法是指出错概率恒定且任意小的随机算法．
+[^monte-carlo]: Đừng nhầm với phương pháp Monte Carlo. Ở đây, thuật toán Monte Carlo chỉ thuật toán ngẫu nhiên có xác suất sai hằng số và có thể làm nhỏ tùy ý.
 
-[^orbit-algo]: 这个问题以及本节的算法都并不需要假设所讨论的群作用是置换作用，因而可以应用于更广泛的场景．比如，如果将这些算法应用于共轭作用，同样可以求得轨道（共轭类）、陪集代表系和稳定化子（中心化子）．
+[^orbit-algo]: Bài toán này và các thuật toán trong mục này không cần giả định tác động nhóm đang xét là tác động hoán vị, nên có thể áp dụng trong các ngữ cảnh rộng hơn. Chẳng hạn, nếu áp dụng các thuật toán này cho tác động liên hợp, ta cũng có thể tìm quỹ đạo (lớp liên hợp), hệ đại diện lớp kề và bộ ổn định (bộ trung tâm hóa).
 
-[^schreier-vector]: 因为这个树形结构可以通过一列指向父节点的指针来实现，所以也称作 Schreier 向量．
+[^schreier-vector]: Vì cấu trúc cây này có thể cài đặt bằng một dãy con trỏ trỏ đến cha, nó cũng được gọi là vectơ Schreier.
 
-[^schreier-lemma-unity]: 这个 $e\in T$ 的条件对于 Schreier 引理的成立不是必要的．
+[^schreier-lemma-unity]: Điều kiện $e\in T$ không cần thiết để bổ đề Schreier đúng.
 
-[^upper-bound]: [Nielsen–Schreier 定理](https://en.wikipedia.org/wiki/Nielsen%E2%80%93Schreier_theorem) 说明，对于由 $n$ 个生成元生成的 [自由群](https://en.wikipedia.org/wiki/Free_group)，它的指数为 $k$ 的子群是由 $k(n-1)+1$ 个生成元生成的自由群．
+[^upper-bound]: [Định lý Nielsen-Schreier](https://en.wikipedia.org/wiki/Nielsen%E2%80%93Schreier_theorem) nói rằng đối với [nhóm tự do](https://en.wikipedia.org/wiki/Free_group) sinh bởi $n$ phần tử sinh, một nhóm con có chỉ số $k$ của nó là nhóm tự do sinh bởi $k(n-1)+1$ phần tử sinh.
 
-[^subgroup-chain]: 参见 [Cameron, P. J., Solomon, R., & Turull, A. (1989). Chains of subgroups in symmetric groups. Journal of algebra, 127(2), 340-352.](https://www.sciencedirect.com/science/article/pii/0021869389902561)
+[^subgroup-chain]: Xem [Cameron, P. J., Solomon, R., & Turull, A. (1989). Chains of subgroups in symmetric groups. Journal of algebra, 127(2), 340-352.](https://www.sciencedirect.com/science/article/pii/0021869389902561)
 
-[^siftee]: 这并不是什么严格的术语，在不同的英文文献中可能称作 siftee 或者 sifted element．
+[^siftee]: Đây không phải một thuật ngữ thật chặt chẽ; trong các tài liệu tiếng Anh khác nhau nó có thể được gọi là siftee hoặc sifted element.
 
-[^knuth-complexity]: Knuth 的论文给出的上界还要再少一个对数因子，这需要对群的稳定化子链的基础轨道长度做更仔细的估计．
+[^knuth-complexity]: Cận trên trong bài báo của Knuth còn ít hơn một thừa số logarit; điều này cần ước lượng kỹ hơn độ dài các quỹ đạo cơ bản trong chuỗi bộ ổn định của nhóm.

@@ -176,6 +176,9 @@ MkDocs source layout intact.
   `docs/math/simplex.md`: translated linear algebra and linear programming
   material, plus explanatory comments in included linear-basis and simplex
   snippets.
+- `docs/math/algebra/*.md`: translated abstract algebra material covering
+  basic concepts, group/ring/field theory, Schreier-Sims, and explanatory
+  comments in the Schreier-Sims snippet.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
