@@ -382,6 +382,8 @@ MkDocs source layout intact.
 - `docs/tools/editor/codeblocks.md`, `docs/tools/editor/devcpp.md`: translated
   the Code::Blocks and Dev-C++ editor pages.
 - `docs/tools/editor/npp.md`: translated the Notepad++ editor workflow page.
+- `docs/tools/editor/kate.md`: translated the Kate editor features and LSP
+  setup page.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

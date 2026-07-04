@@ -1,78 +1,78 @@
 author: CoelacanthusHex
 
-## 软件简介
+## Giới thiệu phần mềm
 
-Kate 是一个具有众多功能的跨平台文本编辑器．Kate 还附带了多种插件，包括一个嵌入式终端，可以让你直接从 Kate 中启动控制台命令，强大的搜索和替换插件，以及一个预览插件，可以渲染 MD、HTML 甚至 SVG 文件．支持通过交换文件在系统崩溃时恢复数据，带参数提示的自动补全，同时支持 [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) 以获得更为强大的补全．
+Kate là một trình soạn thảo văn bản đa nền tảng với nhiều chức năng. Kate còn đi kèm nhiều plugin, bao gồm terminal nhúng để bạn khởi động lệnh console trực tiếp từ Kate, plugin tìm kiếm và thay thế mạnh, cùng plugin xem trước có thể render tệp MD, HTML, thậm chí SVG. Kate hỗ trợ khôi phục dữ liệu khi hệ thống crash thông qua swap file, tự động hoàn thành kèm gợi ý tham số, đồng thời hỗ trợ [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) để có khả năng hoàn thành mã mạnh hơn.
 
-## 下载与安装
+## Tải xuống và cài đặt
 
-可打开 [Kate 官网](https://kate-editor.org/)，然后进入 [获取页面](https://kate-editor.org/zh-cn/get-it/)．随后，根据你使用的系统和喜欢的安装方式进行安装．
+Có thể mở [trang chủ Kate](https://kate-editor.org/), rồi vào [trang tải xuống](https://kate-editor.org/zh-cn/get-it/). Sau đó, cài đặt theo hệ thống bạn dùng và cách cài đặt bạn thích.
 
-## 用法与功能
+## Cách dùng và chức năng
 
-### 交换文件防止数据丢失
+### Swap file để tránh mất dữ liệu
 
-与 Vim 类似，Kate 会将未保存的更改写入一个交换文件（一般是原文件名前面加点后面加 `.kate-swp`），如果遭遇断电或程序崩溃等意外，下次启动时不会丢失未保存的更改．
+Tương tự Vim, Kate sẽ ghi các thay đổi chưa lưu vào một swap file (thường là thêm dấu chấm trước tên tệp gốc và thêm `.kate-swp` phía sau). Nếu gặp sự cố như mất điện hoặc chương trình crash, lần khởi động tiếp theo sẽ không làm mất các thay đổi chưa lưu.
 
-### 代码高亮
+### Tô sáng mã
 
-Kate 支持三百余种语言的语法高亮．一般来说，Kate 可以自动地选择对应的语言进行语法高亮，不过偶尔也有错误的时候，这时候可以点击最右下角的按钮，选择正确的语言．
+Kate hỗ trợ tô sáng cú pháp cho hơn ba trăm ngôn ngữ. Nói chung, Kate có thể tự động chọn ngôn ngữ tương ứng để tô sáng cú pháp, nhưng đôi khi cũng có thể nhận sai; khi đó có thể nhấp nút ở góc dưới cùng bên phải và chọn đúng ngôn ngữ.
 
-#### 自己编写语法高亮文件
+#### Tự viết tệp tô sáng cú pháp
 
-尽管 Kate 支持超过三百种语言的语法高亮，但是仍不免有语言未被覆盖到，此时可以自己动手编写语法高亮文件．
-Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html)，编写好的文件根据 [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files) 放置．[CoelacanthusHex/dotfiles@80a913c/pam\_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) 有笔者编写的一个配置文件可供参考．
+Dù Kate hỗ trợ tô sáng cú pháp cho hơn ba trăm ngôn ngữ, vẫn khó tránh khỏi có ngôn ngữ chưa được bao phủ. Khi đó, bạn có thể tự viết tệp tô sáng cú pháp.
+Các tệp đi kèm Kate nằm tại [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/); cú pháp có thể tham khảo [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html); tệp viết xong đặt theo hướng dẫn trong [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files). [CoelacanthusHex/dotfiles@80a913c/pam\_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) là một tệp cấu hình do tác giả viết, có thể dùng để tham khảo.
 
-### 切换语言
+### Chuyển ngôn ngữ
 
-点击上方工具栏里的 `设置`/`Setting`，然后点击 `配置语言`/`Configure Language`，随后选择语言即可，注意可以选择备选语言．
+Nhấp `Settings`/`Setting` trên thanh công cụ phía trên, rồi nhấp `Configure Language`, sau đó chọn ngôn ngữ. Chú ý rằng có thể chọn ngôn ngữ dự phòng.
 
-### 编码与行尾符
+### Mã hóa và ký tự cuối dòng
 
-Kate 可以自动识别当前文件使用的是什么编码，如果识别错误，可以点击右下角倒数第二个按钮，选择正确的编码．
+Kate có thể tự động nhận diện tệp hiện tại dùng mã hóa nào. Nếu nhận diện sai, có thể nhấp nút thứ hai từ phải sang ở góc dưới bên phải và chọn mã hóa đúng.
 
-同时，Kate 也可以自动识别当前文件使用的行尾符，如果识别错误，可以点击 `工具`→`行尾`/`Tool`→`End of line` 选择正确的行尾符．
+Đồng thời, Kate cũng có thể tự động nhận diện kiểu ký tự cuối dòng hiện tại. Nếu nhận diện sai, có thể nhấp `Tools` -> `End of line` để chọn đúng kiểu cuối dòng.
 
-### 查找与替换
+### Tìm kiếm và thay thế
 
-依次单击 `编辑`→`查找`（快捷键<kbd>Ctrl</kbd>+<kbd>F</kbd>）即可打开「查找」页面．依次单击 `编辑`→`替换`（快捷键<kbd>Ctrl</kbd>+<kbd>R</kbd>）即可打开「查找与替换」页面．同时，点击左下角 `搜索与替换` 也可打开「查找与替换」页面．
+Lần lượt nhấp `Edit` -> `Find` (phím tắt <kbd>Ctrl</kbd>+<kbd>F</kbd>) để mở trang "Find". Lần lượt nhấp `Edit` -> `Replace` (phím tắt <kbd>Ctrl</kbd>+<kbd>R</kbd>) để mở trang "Find and Replace". Đồng thời, nhấp `Search and Replace` ở góc dưới bên trái cũng có thể mở trang "Find and Replace".
 
-具体操作和其他编辑器并无太大差别，但是支持一些额外的特性，例如：
+Thao tác cụ thể không khác nhiều so với các trình soạn thảo khác, nhưng Kate hỗ trợ thêm một số đặc tính, ví dụ:
 
-1.  是否区分大小写
-2.  支持正则表达式（包括捕获组）
-3.  从当前文件到多文件再到当前工程不等的范围
-4.  对查找的结果进行选择替换
+1.  Có phân biệt hoa thường hay không.
+2.  Hỗ trợ biểu thức chính quy (bao gồm nhóm bắt).
+3.  Phạm vi từ tệp hiện tại, nhiều tệp, cho tới project hiện tại.
+4.  Thay thế có chọn lọc trong kết quả tìm kiếm.
 
 ### Language Server Protocol
 
-Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust，现如今支持如下表中的语言：
+Kate hỗ trợ LSP Client từ phiên bản 19.12. Ban đầu chỉ hỗ trợ C/C++, D, Fortran, Go, Latex/BibTeX, OCaml, Python, Rust; hiện nay hỗ trợ các ngôn ngữ trong bảng sau:
 
-|     语言     |                                       LSP Server                                      |
-| :--------: | :-----------------------------------------------------------------------------------: |
-|    Bash    |        [bash-language-server](https://github.com/bash-lsp/bash-language-server)       |
-|    LaTeX   |                         [texlab](https://texlab.netlify.com/)                         |
-|   BibTeX   |                         [texlab](https://texlab.netlify.com/)                         |
-|      C     |                     [clangd](https://clang.llvm.org/extra/clangd/)                    |
-|     C++    |                     [clangd](https://clang.llvm.org/extra/clangd/)                    |
-|      D     |                      [serve-d](https://github.com/Pure-D/serve-d)                     |
-|   Fortran  |              [fortls](https://github.com/hansec/fortran-language-server)              |
-|     Go     |                       [gopls](https://golang.org/x/tools/gopls)                       |
-|   Haskell  | [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server) |
+| Ngôn ngữ | LSP Server |
+| :------: | :---------: |
+| Bash | [bash-language-server](https://github.com/bash-lsp/bash-language-server) |
+| LaTeX | [texlab](https://texlab.netlify.com/) |
+| BibTeX | [texlab](https://texlab.netlify.com/) |
+| C | [clangd](https://clang.llvm.org/extra/clangd/) |
+| C++ | [clangd](https://clang.llvm.org/extra/clangd/) |
+| D | [serve-d](https://github.com/Pure-D/serve-d) |
+| Fortran | [fortls](https://github.com/hansec/fortran-language-server) |
+| Go | [gopls](https://golang.org/x/tools/gopls) |
+| Haskell | [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server) |
 | JavaScript | [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
-|    OCaml   |                     [ocamllsp](https://github.com/ocaml/ocaml-lsp)                    |
-|    Perl    |        [Perl-LanguageServer](https://github.com/richterger/Perl-LanguageServer)       |
-|   Python   |               [pyls](https://github.com/palantir/python-language-server)              |
-|    Rust    |                        [rls](https://github.com/rust-lang/rls)                        |
+| OCaml | [ocamllsp](https://github.com/ocaml/ocaml-lsp) |
+| Perl | [Perl-LanguageServer](https://github.com/richterger/Perl-LanguageServer) |
+| Python | [pyls](https://github.com/palantir/python-language-server) |
+| Rust | [rls](https://github.com/rust-lang/rls) |
 | TypeScript | [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
-|      R     |          [RLanguageServer](https://github.com/REditorSupport/languageserver)          |
-|     zig    |                         [zls](https://github.com/zigtools/zls)                        |
+| R | [RLanguageServer](https://github.com/REditorSupport/languageserver) |
+| zig | [zls](https://github.com/zigtools/zls) |
 
-要启用 LSP 相关特性，需要前往菜单栏中 `设置`→`配置 Kate` 然后选择 `插件` 中 `LSP 客户端` 以启用相关特性．当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server．
+Để bật các tính năng liên quan đến LSP, cần vào thanh menu `Settings` -> `Configure Kate`, rồi trong `Plugins`, chọn `LSP Client` để bật các tính năng liên quan. Khi mở tệp của ngôn ngữ tương ứng, Kate sẽ tự động khởi động LSP Server tương ứng.
 
-#### 增加配置
+#### Thêm cấu hình
 
-此外，用户还可以手动编写配置，具体格式为：
+Ngoài ra, người dùng cũng có thể tự viết cấu hình thủ công. Định dạng cụ thể như sau:
 
 ```json
 {
@@ -112,72 +112,72 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 }
 ```
 
-其中 `server` 里的每一项代表一种语言，在这个语言里，`command` 代表启动 LSP Server 所使用的命令，`command` 是一个数组，是所需要执行的命令以空格分词的结果；`url` 是 LSP 的网址；`rootIndicationFileNames` 是用于确定项目根目录的文件；`highlightingModeRegex` 则匹配某种语法高亮的名字，以确定使用哪个 LSP；如果存在 `use` 项，则代表使用 `use` 项对应的语言的配置．
+Trong đó, mỗi mục trong `server` đại diện cho một ngôn ngữ. Trong cấu hình của ngôn ngữ đó, `command` là lệnh dùng để khởi động LSP Server; `command` là một mảng, chính là kết quả tách lệnh cần chạy theo dấu cách; `url` là trang web của LSP; `rootIndicationFileNames` là các tệp dùng để xác định thư mục gốc project; `highlightingModeRegex` khớp tên của một kiểu tô sáng cú pháp để xác định dùng LSP nào; nếu có mục `use`, nghĩa là dùng cấu hình của ngôn ngữ tương ứng với mục `use`.
 
-该配置项位于 `设置`→`配置 Kate`→`LSP 客户端`→`用户服务器设置`，其中 `LSP 客户端` 部分要在 `插件` 中启用 `LSP 客户端` 插件后才可见．
+Mục cấu hình này nằm tại `Settings` -> `Configure Kate` -> `LSP Client` -> `User Server Settings`; phần `LSP Client` chỉ hiện sau khi đã bật plugin `LSP Client` trong `Plugins`.
 
-### 内置终端
+### Terminal tích hợp
 
-???+ note "注意"
-    内置终端依赖了 KDE 的 Konsole[^ref1]，而 Konsole 为 \* nix 独有包．也就是说，Windows 下该特性不可用．
+???+ note "Chú ý"
+    Terminal tích hợp phụ thuộc vào Konsole[^ref1] của KDE, còn Konsole là gói chỉ có trên \*nix. Nói cách khác, tính năng này không dùng được trên Windows.
 
-按<kbd>F4</kbd>可打开或关闭内置终端，也可点击左下角 `终端` 按钮打开，内置终端的当前目录会自动与当前文件保持一致，并随着你选择的文件而改变．其余与一般终端并无太大不同．
+Nhấn <kbd>F4</kbd> để mở hoặc đóng terminal tích hợp; cũng có thể nhấp nút `Terminal` ở góc dưới bên trái để mở. Thư mục hiện tại của terminal tích hợp sẽ tự động đồng bộ với tệp hiện tại và thay đổi theo tệp bạn chọn. Các phần còn lại không khác nhiều so với terminal thông thường.
 
-### 外部工具
+### Công cụ ngoài
 
-点击 `工具`→`外部工具` 可执行．
+Nhấp `Tools` -> `External Tools` để thực thi.
 
-点击 `工具`→`外部工具`→`配置` 可以配置外部工具．
+Nhấp `Tools` -> `External Tools` -> `Configure` để cấu hình công cụ ngoài.
 
-#### 添加外部工具
+#### Thêm công cụ ngoài
 
-##### 从预置配置中添加
+##### Thêm từ cấu hình có sẵn
 
-进入配置页面后，点击左下角 `添加`→`从默认工具添加`，然后点击对应工具即可．
+Sau khi vào trang cấu hình, nhấp `Add` -> `Add from Defaults` ở góc dưới bên trái, rồi nhấp công cụ tương ứng.
 
-##### 手写配置添加
+##### Thêm bằng cấu hình tự viết
 
-进入配置页面后，点击左下角 `添加`→`添加工具`，然后按提示填写即可．可以参照 [此文档（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) 来编写自己的外部工具配置．注意可点击如下标志查看可使用的变量．
+Sau khi vào trang cấu hình, nhấp `Add` -> `Add Tool` ở góc dưới bên trái, rồi điền theo hướng dẫn. Có thể tham khảo [tài liệu này (tiếng Anh)](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) để viết cấu hình công cụ ngoài của riêng mình. Chú ý có thể nhấp biểu tượng dưới đây để xem các biến có thể dùng.
 
 ![](images/kate-3-var.png)
 
-#### 常用的外部工具
+#### Công cụ ngoài thường dùng
 
-##### 编译并执行单个 C++ 文件
+##### Biên dịch và chạy một tệp C++ đơn
 
-在 \* nix 系统下，打开任意 C++ 源文件，在外部工具里找到 `编译执行 cpp`，点击即可．
+Trên hệ thống \*nix, mở bất kỳ tệp nguồn C++ nào, tìm `Compile Execute cpp` trong công cụ ngoài, rồi nhấp vào đó.
 
-???+ note "对于 Windows 用户"
-    在默认情况下，由于该工具的可执行文件为 `sh`，使得该工具在 Windows 下不可用．然而，用户可以对该工具进行修改，使其可用于 Windows 系统．
-    
-    要进行修改，请先确保你的系统内有一个可用的 C++ 编译器．然后从默认工具添加 `编译运行 cpp`，将其中 `可执行文件` 从 `sh` 改为 `powershell`，参数改为 `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2]即可．
+???+ note "Dành cho người dùng Windows"
+    Theo mặc định, vì tệp thực thi của công cụ này là `sh`, công cụ này không dùng được trên Windows. Tuy nhiên, người dùng có thể chỉnh sửa công cụ này để dùng được trên Windows.
+
+    Để chỉnh sửa, trước hết hãy đảm bảo hệ thống của bạn có một trình biên dịch C++ dùng được. Sau đó thêm `Compile Run cpp` từ công cụ mặc định, đổi `Executable` từ `sh` thành `powershell`, và đổi tham số thành `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2].
 
 ##### Git Blame
 
-打开任意文件，在外部工具里找到 `git blame`，点击之后，会打开一个窗口，展示 git blame 的结果．
+Mở bất kỳ tệp nào, tìm `git blame` trong công cụ ngoài; sau khi nhấp, một cửa sổ sẽ mở ra và hiển thị kết quả git blame.
 
-##### 格式化
+##### Định dạng
 
-格式化功能要求对应包或应用程序可用，例如，C/C++ 的格式化要求 `clang-format` 可用．对于其他语言，用户可以前往外部工具配置中查看其默认可执行文件作为参考．
+Chức năng định dạng yêu cầu gói hoặc ứng dụng tương ứng khả dụng; ví dụ, định dạng C/C++ yêu cầu `clang-format` khả dụng. Với các ngôn ngữ khác, người dùng có thể vào cấu hình công cụ ngoài để xem tệp thực thi mặc định làm tham khảo.
 
-打开任意源文件，在外部工具里找到 `用 xxx 格式化`，点击即可．另外，对于 C/C++ 语言的源文件，`clang-format` 可格式化选中的文本．
+Mở bất kỳ tệp nguồn nào, tìm `Format with xxx` trong công cụ ngoài, rồi nhấp vào đó. Ngoài ra, với tệp nguồn C/C++, `clang-format` có thể định dạng phần văn bản được chọn.
 
 ### Git Blame
 
-要启用该特性，需要前往菜单栏中 `设置`→`配置 Kate` 然后选择 `插件` 中 `Git Blame`．
+Để bật tính năng này, cần vào thanh menu `Settings` -> `Configure Kate`, rồi trong `Plugins`, chọn `Git Blame`.
 
-启用该特性后，Kate 会在每一行后面以较浅字体显示在 Git 中最后于什么时间被谁修改，将鼠标移动到文字上会出现一个悬浮窗显示 commit 的具体信息．
+Sau khi bật tính năng này, Kate sẽ hiển thị bằng chữ nhạt ở cuối mỗi dòng rằng dòng đó được ai sửa lần cuối trong Git và vào thời điểm nào. Di chuột lên đoạn chữ đó sẽ hiện một cửa sổ nổi hiển thị thông tin cụ thể của commit.
 
-## 相关外部链接
+## Liên kết ngoài liên quan
 
 -   [The Kate Handbook](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)
--   [关于如何手写自己的 LSP 客户端配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
--   [关于如何手写自己的外部工具配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html)
+-   [Về cách tự viết cấu hình LSP Client (tiếng Anh)](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
+-   [Về cách tự viết cấu hình công cụ ngoài (tiếng Anh)](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html)
 
-## 参考资料与脚注
+## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Arch Linux 中对该包的描述](https://archlinux.org/packages/extra/x86_64/kate/) 中，其可选依赖了 `konsole`，描述为 `open a terminal in Kate`（在 Kate 中打开一个终端）．
+[^ref1]: Trong [mô tả gói này trên Arch Linux](https://archlinux.org/packages/extra/x86_64/kate/), gói có optional dependency là `konsole`, được mô tả là `open a terminal in Kate` (mở terminal trong Kate).
 
-[^note1]: 若 `g++` 不在 `PATH` 环境变量中，则将其改为编译器的绝对路径
+[^note1]: Nếu `g++` không nằm trong biến môi trường `PATH`, hãy đổi nó thành đường dẫn tuyệt đối của trình biên dịch.
 
-[^note2]: 或者，如果使用 Clang，则将 `g++` 改为 `clang++`．
+[^note2]: Hoặc nếu dùng Clang, hãy đổi `g++` thành `clang++`.
