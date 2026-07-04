@@ -510,41 +510,43 @@ Sau đó trong DFS, liên tục liệt kê số mũ theo từng tầng và đệ
     Tìm số tự nhiên nhỏ nhất có số lượng ước cho trước. Đáp án được đảm bảo
     không vượt quá $10^{18}$.
 
-??? note "Y tuong giai"
-    Voi dang bai nay, chi can lay so uoc lam dieu kien dung cua dfs, lien tuc cap nhat gia tri nho nhat tim duoc.
+??? note "Ý tưởng giải"
+    Với dạng bài này, chỉ cần lấy số ước làm điều kiện dừng của DFS, liên tục
+    cập nhật giá trị nhỏ nhất tìm được.
 
-??? note "Ma tham khao"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/prime/prime_1.cpp"
     ```
 
 ???+ example "[ZOJ 2562 More Divisors](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827366061)"
-    Tim so khong vuot qua $n$ co nhieu uoc nhat.
+    Tìm số không vượt quá $n$ có nhiều ước nhất.
 
-??? note "Y tuong giai"
-    Y tuong giong tren, chi can sua dieu kien dung cua dfs. Luu y pham vi du lieu cua bai nay: so nguyen 32 bit co the bi tran.
+??? note "Ý tưởng giải"
+    Ý tưởng giống trên, chỉ cần sửa điều kiện dừng của DFS. Lưu ý phạm vi dữ
+    liệu của bài này: số nguyên 32 bit có thể bị tràn.
 
-??? note "Ma tham khao"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/prime/prime_2.cpp"
     ```
 
 <span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
-## Tai lieu tham khao va chu thich
+## Tài liệu tham khảo và chú thích
 
 1.  Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
-2.  [Phan ly thuyet so, bai 1: so nguyen to va kiem tra tinh nguyen to](http://www.matrix67.com/blog/archives/234)
-3.  [Ghi chu hoc Miller-Rabin va Pollard-Rho - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
+2.  [Phần lý thuyết số, bài 1: số nguyên tố và kiểm tra tính nguyên tố](http://www.matrix67.com/blog/archives/234)
+3.  [Ghi chú học Miller-Rabin và Pollard-Rho - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
 4.  [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
 5.  [Fermat pseudoprime - Wikipedia](https://en.wikipedia.org/wiki/Fermat_pseudoprime)
-6.  [Ghi chu thuat toan cua Taozi: giai thich so phan nguyen to (acm/OI)](https://zhuanlan.zhihu.com/p/41759808)
+6.  [Ghi chú thuật toán của Taozi: giải thích số phản nguyên tố (acm/OI)](https://zhuanlan.zhihu.com/p/41759808)
 7.  [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
 8.  [Highly composite number - Wikipedia](https://en.wikipedia.org/wiki/Highly_composite_number)
 
-[^inf-fermat-pp]: Dinh ly 1 trong Pomerance, Carl, John L. Selfridge, and Samuel S. Wagstaff. "The pseudoprimes to 25⋅ 10⁹." Mathematics of Computation 35, no. 151 (1980): 1003-1026 cho thay voi co so $a$ co dinh, cung co vo han hop so vuot qua kiem tra Miller-Rabin manh hon.
+[^inf-fermat-pp]: Định lý 1 trong Pomerance, Carl, John L. Selfridge, and Samuel S. Wagstaff. "The pseudoprimes to 25⋅ 10⁹." Mathematics of Computation 35, no. 151 (1980): 1003-1026 cho thấy với cơ sở $a$ cố định, cũng có vô hạn hợp số vượt qua kiểm tra Miller-Rabin mạnh hơn.
 
-[^millerrabinproof]: Ket qua nay va chung minh cua no tham khao muc 3.5 trong Crandall, Richard, and Carl Pomerance. Prime numbers: a computational perspective. New York, NY: Springer New York, 2005.
+[^millerrabinproof]: Kết quả này và chứng minh của nó tham khảo mục 3.5 trong Crandall, Richard, and Carl Pomerance. Prime numbers: a computational perspective. New York, NY: Springer New York, 2005.
 
 [^deterministic-proof]: Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
 
-[^witnesses]: Xem them cac ket qua tuong tu tai [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#).
+[^witnesses]: Xem thêm các kết quả tương tự tại [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#).
