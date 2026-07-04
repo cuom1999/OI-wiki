@@ -370,6 +370,8 @@ MkDocs source layout intact.
 - `docs/tools/cmd.md`: translated the command-line usage guide.
 - `docs/tools/compile-debug.md`: translated the command-line compile/debug
   guide.
+- `docs/tools/polygon.md`: translated the Polygon collaborative problemsetting
+  guide.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

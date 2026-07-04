@@ -1,182 +1,182 @@
 author: ouuan, NachtgeistW
 
-本页面将简要介绍多人协作出题平台 Polygon．
+Trang này giới thiệu ngắn gọn nền tảng ra đề cộng tác nhiều người Polygon.
 
-## 简介
+## Giới thiệu
 
-### 什么是 Polygon
+### Polygon là gì
 
-网址：[Index Page - Polygon](https://polygon.codeforces.com)
+Trang web: [Index Page - Polygon](https://polygon.codeforces.com)
 
-Polygon 是一个支持多人协作的出题平台，功能非常完善．官网描述为「Polygon 的使命是为创建编程竞赛题目提供平台．」
+Polygon là một nền tảng ra đề hỗ trợ nhiều người cộng tác, với hệ thống chức năng rất hoàn chỉnh. Mô tả trên trang chính thức là: "Sứ mệnh của Polygon là cung cấp một nền tảng để tạo bài toán cho các cuộc thi lập trình."
 
-在 Codeforces (CF) 出题必须使用 Polygon．在其它地方出题，尤其是多人合作出题时，使用 Polygon 也是不错的选择．
+Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đề ở nơi khác, đặc biệt là khi nhiều người cùng cộng tác, Polygon cũng là một lựa chọn tốt.
 
-### 优点
+### Ưu điểm
 
--   有版本管理系统，多人合作时不会乱成一团，也不需要互相传文件．
+-   Có hệ thống quản lý phiên bản; khi nhiều người cùng làm sẽ không rối, và cũng không cần truyền tệp qua lại.
 
--   出题系统完善，validator、generator、checker、solutions 环环相扣，输出自动生成．
+-   Hệ thống ra đề hoàn chỉnh; validator, generator, checker và solutions liên kết chặt chẽ với nhau, đầu ra được tự động sinh.
 
--   可以为 solutions 设置标签，错解 AC、正解未 AC 都会警告，方便地逐一卡掉错解．
+-   Có thể đặt nhãn cho solutions; nếu lời giải sai AC hoặc lời giải đúng không AC thì hệ thống đều cảnh báo, thuận tiện để lần lượt chặn các lời giải sai.
 
--   可以方便地对拍，拍出来的数据可以直接添加到题目数据中．
+-   Có thể stress test rất thuận tiện; dữ liệu tìm được khi stress test có thể thêm trực tiếp vào dữ liệu của bài.
 
--   发现问题可以提 issue，而不会被消息刷屏却一直没有 fix．
+-   Khi phát hiện vấn đề có thể tạo issue, tránh việc bị tin nhắn trôi mất mà vẫn không có fix.
 
--   为日后出 CF 做准备．
+-   Chuẩn bị cho việc ra đề CF trong tương lai.
 
--   ……
+-   ...
 
-## 题目列表
+## Danh sách bài
 
-题目列表中会显示一道题目的基本信息，如题面、题解撰写情况、数据生成情况以及 std、validator 和 checker 的设置．
+Danh sách bài sẽ hiển thị thông tin cơ bản của một bài, chẳng hạn tình trạng viết statement, tutorial, tình trạng sinh dữ liệu, cũng như thiết lập của std, validator và checker.
 
-可以双击题目列表的 "Name" 这一栏来写上 note，比如需要提醒自己做的事（need to add more tests/need to write tutorial），或者是这道题预订的 score distribution，可以根据自己的需要随意填写，当然也可以空着．
+Có thể nhấp đúp vào cột "Name" trong danh sách bài để ghi note, ví dụ những việc cần tự nhắc (need to add more tests/need to write tutorial), hoặc score distribution dự kiến của bài. Có thể điền tùy nhu cầu, và dĩ nhiên cũng có thể để trống.
 
-"Rev." 中的 "x/y" 的 x 指当前题目版本，y 指 package 的版本．如果两者不一样 y 会显示为红色．
+Trong "Rev.", "x/y" nghĩa là x là phiên bản hiện tại của bài, còn y là phiên bản package. Nếu hai số khác nhau, y sẽ hiển thị màu đỏ.
 
-"Edit session" 中的 "Start" 是指你的账号还没有看过这道题，"Continue (x) Discard" 是指你的账号处于这个题目的第 x 个版本，点击 "Start" 或 "Continue (x)" 就会进入题目管理界面，点击 "Discard" 会 **不可恢复地** 撤销你的所有更改，回到没有看过这题的状态．
+Trong "Edit session", "Start" nghĩa là tài khoản của bạn chưa từng xem bài này; "Continue (x) Discard" nghĩa là tài khoản của bạn đang ở phiên bản thứ x của bài này. Nhấp "Start" hoặc "Continue (x)" sẽ đi vào giao diện quản lý bài; nhấp "Discard" sẽ hủy **không thể khôi phục** toàn bộ thay đổi của bạn và trở về trạng thái như chưa từng xem bài.
 
-如果你的账号上有一道题的更改没有提交，题目列表中这一整行就会变红．
+Nếu tài khoản của bạn có thay đổi chưa commit trong một bài, cả hàng tương ứng trong danh sách bài sẽ chuyển sang màu đỏ.
 
-## 题目管理
+## Quản lý bài
 
-Polygon 的大部分功能都不需要学，能看懂英文就基本能用了．
+Phần lớn chức năng của Polygon không cần học riêng; đọc hiểu tiếng Anh là về cơ bản dùng được.
 
-???+ warning "Warning"
-    题面不能使用 Markdown，只能用 TeX．
+???+ warning "Cảnh báo"
+    Statement không thể dùng Markdown, chỉ có thể dùng TeX.
 
--   Invocation 是用来测试 solution 的．
+-   Invocation dùng để kiểm thử solution.
 
--   Stress 是用来对拍的．
+-   Stress dùng để stress test.
 
--   数据在 Tests 中用 generator 造，generator 在 Files 中上传．
+-   Dữ liệu được tạo bằng generator trong Tests; generator được tải lên trong Files.
 
 ### General Info
 
-在这个页面中可以设置题目的时间限制、空间限制、题目类型、题目的标签、所属比赛．
+Trong trang này, có thể thiết lập giới hạn thời gian, giới hạn bộ nhớ, loại bài, tag của bài và contest chứa bài.
 
-在页面的最下方的 "statement sketch" 和 "tutorial sketch" 可以编辑题面、题解的 **草稿**，注意这两项不会出现在正式的题面、题解上．
+Ở cuối trang, "statement sketch" và "tutorial sketch" cho phép chỉnh sửa **bản nháp** của statement và tutorial. Chú ý rằng hai mục này sẽ không xuất hiện trong statement và tutorial chính thức.
 
 ### Statement
 
-这个页面是用来写题面和题解的．还可以通过 "Review" 按钮来查看题面、validator 与 checker，一般用于审核．
+Trang này dùng để viết statement và tutorial. Cũng có thể dùng nút "Review" để xem statement, validator và checker, thường dùng cho việc rà soát.
 
-题面和题解都需要使用 TeX 的语法，不能使用 Markdown．例如，需要使用 `\textbf{text}` 而不是 `**text**`．但 Polygon 支持的实际上是 TeX 的一个非常小的子集，具体可以自己尝试．
+Statement và tutorial đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ thực ra chỉ là một tập con rất nhỏ; có thể tự thử cụ thể.
 
-可以通过最上方的 "In HTML" 链接查看渲染后的题面，通过 "Tutorial in HTML" 查看渲染后的题解．
+Có thể dùng liên kết "In HTML" ở phía trên cùng để xem statement sau khi render, và dùng "Tutorial in HTML" để xem tutorial sau khi render.
 
-如果需要在题面中添加图片，需要先在下面的 "Statement Resource Files" 中上传图片，然后在题面中加上 `\includegraphics{filename.png}`．
+Nếu cần thêm ảnh vào statement, trước hết cần tải ảnh lên trong "Statement Resource Files" bên dưới, rồi thêm `\includegraphics{filename.png}` vào statement.
 
 ### Files
 
-"Source Files" 是用来存放 **除了 solutions 外** 的其它代码的，如 validator、checker、generator，如果是 IO 式交互题还有 interactor．
+"Source Files" dùng để lưu các mã nguồn **ngoại trừ solutions**, chẳng hạn validator, checker, generator, và nếu là bài tương tác kiểu IO thì còn có interactor.
 
-如果这些代码需要 include 其它文件，例如 [Tree-Generator](https://github.com/ouuan/Tree-Generator)，需要放在 "Resource Files" 中．
+Nếu các mã nguồn này cần include tệp khác, ví dụ [Tree-Generator](https://github.com/ouuan/Tree-Generator), thì cần đặt chúng trong "Resource Files".
 
-grader 式交互参见 [官方教程](https://codeforces.com/blog/entry/66916)．
+Tương tác kiểu grader xem [hướng dẫn chính thức](https://codeforces.com/blog/entry/66916).
 
 ### Checker
 
-testlib.h 提供了一些内置的 checker，在选择框中有简要介绍，也可以选择后再点 "View source" 查看源码．
+testlib.h cung cấp một số checker tích hợp sẵn; trong hộp chọn có giới thiệu ngắn gọn, và sau khi chọn cũng có thể nhấp "View source" để xem mã nguồn.
 
-如果需要自己编写 checker，请参考 [checker 教程](./testlib/checker.md)．
+Nếu cần tự viết checker, hãy tham khảo [hướng dẫn checker](./testlib/checker.md).
 
-下面的 "Checker tests" 是通过 "Add test" 添加若干组输出以及对应的期望评测结果，然后点击 "Run tests" 就可以测试 checker 是否正确返回了评测结果．
+"Checker tests" bên dưới dùng "Add test" để thêm nhiều nhóm output cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" để kiểm tra checker có trả về đúng kết quả chấm hay không.
 
 ### Interactor
 
-仅 IO 式交互题需要，请参考 [interactor 教程](./testlib/interactor.md)．
+Chỉ bài tương tác kiểu IO mới cần mục này; hãy tham khảo [hướng dẫn interactor](./testlib/interactor.md).
 
 ### Validator
 
-validator 用来检测数据合法性，编写请参考 [validator 教程](./testlib/validator.md)．
+Validator dùng để kiểm tra tính hợp lệ của dữ liệu. Cách viết xem [hướng dẫn validator](./testlib/validator.md).
 
-下面的 "Validator tests" 类似于 "Checker tests"，需要提供输入和期望是否合法，用来测试 validator．
+"Validator tests" bên dưới tương tự "Checker tests"; cần cung cấp input và kỳ vọng hợp lệ hay không, dùng để kiểm thử validator.
 
 ### Tests
 
-这个页面是用来管理数据的．
+Trang này dùng để quản lý dữ liệu.
 
-在 Polygon 上，推荐的做法是使用少量 **带命令行参数** 的 [generator](./testlib/generator.md) 来生成数据，而不是写一堆 generator 或者每生成一组数据都修改 generator．并且，只需要生成输入，输出会自动生成．
+Trên Polygon, cách làm được khuyến nghị là dùng một số ít [generator](./testlib/generator.md) **có tham số dòng lệnh** để sinh dữ liệu, thay vì viết nhiều generator hoặc mỗi lần sinh một bộ dữ liệu lại sửa generator. Ngoài ra, chỉ cần sinh input; output sẽ được sinh tự động.
 
-"Testset" 就是一个测试集，如果是给 CF 出题需要手动添加 "pretests" 这个 Testset，并且 "pretests" 需要是 "tests" 的子集．
+"Testset" là một tập kiểm thử. Nếu ra đề cho CF, cần tự thêm Testset tên "pretests", và "pretests" cần là tập con của "tests".
 
-"Add Test" 是手动添加一组数据，一般用于手动输入样例或较小的数据．虽然可以通过文件上传数据，但这是 **不推荐的**，数据应该要么是手动输入的要么是使用 generator 在某个参数下生成的．
+"Add Test" dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay sample hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng generator với một bộ tham số nào đó.
 
-如果勾选了 "Use in statements"，这组数据就会成为样例，自动加在题面里．如果需要题面里显示的不是样例的输入输出（一般用于交互题），就可以点 "If you want to specify custom content of input or output data for statements click here"，然后输入你想显示在题面中的输入输出．
+Nếu chọn "Use in statements", bộ dữ liệu này sẽ trở thành sample và được tự động thêm vào statement. Nếu cần nội dung hiển thị trong statement không phải input/output của sample (thường dùng cho bài tương tác), có thể nhấp "If you want to specify custom content of input or output data for statements click here", rồi nhập input/output muốn hiển thị trong statement.
 
-Tests 页面的下方是用来输入生成数据的脚本的，如 `generator-name [params] > test-index`．可以使用 `generator-name [params] > $`，就不用手动指定测试点编号了．
+Phần dưới của trang Tests dùng để nhập script sinh dữ liệu, ví dụ `generator-name [params] > test-index`. Có thể dùng `generator-name [params] > $` để không phải chỉ định thủ công số thứ tự test.
 
-可以参考 [Polygon 提供的教程](https://polygon.codeforces.com/docs/freemarker-manual) 使用 Freemarker 来批量生成脚本．
+Có thể tham khảo [hướng dẫn do Polygon cung cấp](https://polygon.codeforces.com/docs/freemarker-manual) để dùng Freemarker sinh script hàng loạt.
 
-"Preview Tests" 可以预览生成的数据．
+"Preview Tests" có thể xem trước dữ liệu được sinh.
 
 ### Stresses
 
-这个页面是用来对拍的．
+Trang này dùng để stress test.
 
-点击 "Add Stress" 就可以添加一组对拍，"Script pattern" 是一个生成数据的脚本，其中可以使用 "\[10..100]" 之类的来表示在一个范围内随机选择．
+Nhấp "Add Stress" để thêm một bộ stress test. "Script pattern" là script sinh dữ liệu, trong đó có thể dùng dạng như "\[10..100]" để biểu thị chọn ngẫu nhiên trong một khoảng.
 
-然后运行对拍，如果拍出错就会显示 "Crashed"，并且可以一键把这组数据加到 Tests 中．
+Sau đó chạy stress test; nếu tìm được lỗi, hệ thống sẽ hiển thị "Crashed", và có thể thêm bộ dữ liệu đó vào Tests bằng một lần nhấp.
 
 ### Solution Files
 
-这个页面是用来放解这道题的代码的，可以是正解也可以是错解．将错解传上来可以便捷地卡掉它们，也可以提醒自己需要卡掉它们．
+Trang này dùng để đặt mã nguồn lời giải của bài, có thể là lời giải đúng hoặc lời giải sai. Tải lời giải sai lên giúp chặn chúng thuận tiện hơn, và cũng có thể nhắc chính mình rằng cần chặn các lời giải đó.
 
 ### Invocations
 
-这个页面是用来运行 solutions 的．
+Trang này dùng để chạy solutions.
 
-选择代码和测试点就可以运行了，之后可以在列表里点进去（"View"）查看详细信息．
+Chọn mã nguồn và test rồi chạy; sau đó có thể nhấp vào mục trong danh sách ("View") để xem thông tin chi tiết.
 
-评测状态 "FL" 表示评测出错了，一般是数据没有过 validate 或者 validator/checker/interactor 之类的 RE 了．"RJ" 有两种情况，一种是出现了 "FL"，另一种是这份代码第一个测试点就没有通过．
+Trạng thái chấm "FL" nghĩa là chấm bị lỗi, thường là dữ liệu không qua validate hoặc validator/checker/interactor bị RE. "RJ" có hai trường hợp: một là đã xuất hiện "FL", hai là mã nguồn này không qua ngay test đầu tiên.
 
-如果用时在时限的一半到两倍之间，会用黄色标识出来．
+Nếu thời gian chạy nằm trong khoảng từ một nửa đến hai lần giới hạn thời gian, nó sẽ được đánh dấu màu vàng.
 
-如果数据中存在变量没有达到最小值或最大值，会在最下方提醒．
+Nếu trong dữ liệu có biến chưa đạt giá trị nhỏ nhất hoặc lớn nhất, phía dưới cùng sẽ nhắc.
 
 ### Issues
 
-用来提 Issue 的地方．
+Nơi dùng để tạo Issue.
 
 ### Packages
 
-Package 包含了一道题的全部信息，在出 CF 时是 CF 评测的依据（例如，如果赛时要修锅，更新了 package 才会影响到 CF），其它时候可以用来导出．
+Package chứa toàn bộ thông tin của một bài. Khi ra đề CF, package là căn cứ để CF chấm (ví dụ, nếu cần sửa lỗi trong lúc thi, chỉ khi cập nhật package thì mới ảnh hưởng đến CF); những lúc khác có thể dùng để xuất ra.
 
-"Verify" 是测试所有 solution 都符合标签（AC、WA、TLE），并且 checker 通过 checker tests，validator 通过 validator tests．
+"Verify" dùng để kiểm tra tất cả solution có phù hợp với tag (AC, WA, TLE) hay không, đồng thời checker có qua checker tests và validator có qua validator tests hay không.
 
 ### Manage access
 
-管理题目权限．
+Quản lý quyền truy cập của bài.
 
-### 侧边栏
+### Thanh bên
 
-第一栏会显示一些基本信息，如果有哪里不符合规范（如 tests 没有包含 pretests、有重复的测试点）就会显示为黄色，鼠标移上去会显示具体信息．
+Cột đầu tiên sẽ hiển thị một số thông tin cơ bản. Nếu có chỗ nào không đúng quy chuẩn (ví dụ tests không chứa pretests, hoặc có test bị trùng), nó sẽ hiển thị màu vàng; đưa chuột lên đó sẽ thấy thông tin cụ thể.
 
-"View changes" 可以看修改的历史记录．需要注意的是 "switch" 不能用来回退到某一个版本，只能在某个版本的基础上进行不产生冲突的修改，而这实际上是没有意义的，所以 switch 相当于是只读的．
+"View changes" dùng để xem lịch sử thay đổi. Cần chú ý rằng "switch" không dùng để quay lại một phiên bản nào đó; nó chỉ có thể thực hiện sửa đổi không sinh xung đột trên cơ sở một phiên bản nào đó, điều này thực ra không có ý nghĩa, nên switch tương đương chỉ đọc.
 
-"Update Working Copy" 是获取（他人的）更新．
+"Update Working Copy" dùng để lấy cập nhật của người khác.
 
-"Commit Changes" 是提交你的更新．
+"Commit Changes" dùng để commit cập nhật của bạn.
 
-commit 时如果有不合规范、需要警告的地方会列出来．
+Khi commit, nếu có chỗ không đúng quy chuẩn hoặc cần cảnh báo, chúng sẽ được liệt kê ra.
 
-## 比赛管理
+## Quản lý contest
 
-如果要出一场比赛，可以通过 "New Contest" 来创建比赛，就可以更加方便地管理题目．
+Nếu muốn ra một contest, có thể tạo bằng "New Contest", từ đó quản lý bài thuận tiện hơn.
 
-比赛管理页面的题目列表右上角的 "Add problems?" 是把一道已有的题目加到比赛里．
+"Add problems?" ở góc trên bên phải của danh sách bài trong trang quản lý contest dùng để thêm một bài đã có vào contest.
 
-侧边栏的 "New problem" 是新建一道题目加到比赛里．
+"New problem" ở thanh bên dùng để tạo một bài mới rồi thêm vào contest.
 
-上面的 "Manage problem access" 是查看每道题的权限，下面的 "Manage developers list" 是管理有这场比赛的权限的人．通过 "New problem" 创建一道题以及添加一个新的 developer 时会自动添加权限，但通过 "Add problems?" 加进来的题不会给已有的 developer 权限．
+"Manage problem access" ở phía trên dùng để xem quyền của từng bài; "Manage developers list" ở phía dưới dùng để quản lý những người có quyền trong contest này. Khi tạo bài bằng "New problem" và khi thêm developer mới, quyền sẽ được tự động thêm; nhưng bài thêm vào bằng "Add problems?" sẽ không cấp quyền cho developer đã có.
 
-侧边栏还可以预览所有题面、所有题解、所有 validator & checker，下载整个比赛的 package，给题目重新编号．
+Thanh bên còn có thể xem trước toàn bộ statement, toàn bộ tutorial, toàn bộ validator & checker, tải package của cả contest và đánh số lại các bài.
 
-## 冲突解决
+## Giải quyết xung đột
 
-在多人合作使用 Polygon 命题时，如果当前修改的题目版本与远程的题目版本不同，并且在从远程获取最新版本或提交更新时，修改的文件无法自动合并，就会发生冲突（Conflicted）．
+Khi nhiều người cùng dùng Polygon để ra đề, nếu phiên bản bài đang sửa khác với phiên bản bài ở remote, và khi lấy phiên bản mới nhất từ remote hoặc commit cập nhật mà tệp đã sửa không thể tự động merge, xung đột (Conflicted) sẽ xảy ra.
 
-发生冲突后，Polygon 会在冲突题目选项中提供 "Resolve conflicts" 选项，用户可以在里面对冲突文件进行冲突解决．
+Sau khi xảy ra xung đột, Polygon sẽ cung cấp tùy chọn "Resolve conflicts" trong các tùy chọn của bài bị xung đột; người dùng có thể vào đó để giải quyết xung đột trên các tệp bị xung đột.
