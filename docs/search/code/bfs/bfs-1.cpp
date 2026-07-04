@@ -2,38 +2,38 @@
 #include <queue>
 using namespace std;
 
-char a[110][110];    // 存储迷宫地图
-bool vis[110][110];  // 记录访问状态
-int n, m;            // 迷宫尺寸
+char a[110][110];    // Lưu bản đồ mê cung
+bool vis[110][110];  // Ghi nhận trạng thái đã thăm
+int n, m;            // Kích thước mê cung
 
 struct node {
   int x, y;
-};  // 定义坐标结构体
+};  // Định nghĩa cấu trúc tọa độ
 
-int dx[] = {0, 0, 1, -1}, dy[] = {1, -1, 0, 0};  // 方向数组（右左上下）
+int dx[] = {0, 0, 1, -1}, dy[] = {1, -1, 0, 0};  // Mảng hướng (phải, trái, xuống, lên)
 
-// 检查坐标是否合法
+// Kiểm tra tọa độ có hợp lệ không
 bool chk(int x, int y) {
-  return (x >= 1 && x <= n && y >= 1 && y <= m  // 边界检查
-          && !vis[x][y]                         // 未访问过
-          && a[x][y] != '#');                   // 不是障碍物
+  return (x >= 1 && x <= n && y >= 1 && y <= m  // Kiểm tra biên
+          && !vis[x][y]                         // Chưa từng thăm
+          && a[x][y] != '#');                   // Không phải vật cản
 }
 
 bool bfs() {
   queue<node> q;
-  q.push({1, 1});  // 起点入队
-  vis[1][1] = 1;   // 标记起点已访问
+  q.push({1, 1});  // Đưa điểm xuất phát vào hàng đợi
+  vis[1][1] = 1;   // Đánh dấu điểm xuất phát đã thăm
   while (!q.empty()) {
-    node p = q.front();  // 取出队首坐标
+    node p = q.front();  // Lấy tọa độ ở đầu hàng đợi
     q.pop();
     int px = p.x, py = p.y;
-    if (px == n && py == m) return true;  // 到达终点立即返回
-    // 向四个方向扩展
+    if (px == n && py == m) return true;  // Tới đích thì trả về ngay
+    // Mở rộng theo bốn hướng
     for (int i = 0; i < 4; ++i) {
       int nx = px + dx[i], ny = py + dy[i];
-      if (chk(nx, ny)) {   // 合法性检查
-        q.push({nx, ny});  // 新坐标入队
-        vis[nx][ny] = 1;   // 标记已访问
+      if (chk(nx, ny)) {   // Kiểm tra hợp lệ
+        q.push({nx, ny});  // Đưa tọa độ mới vào hàng đợi
+        vis[nx][ny] = 1;   // Đánh dấu đã thăm
       }
     }
   }

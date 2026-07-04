@@ -1,17 +1,21 @@
-## 引入
+<span id="&#24341;&#20837;"></span>
 
-DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面．在 **搜索算法** 中，该词常常指利用递归函数方便地实现暴力枚举的算法，与图论中的 DFS 算法有一定相似之处，但并不完全相同．
+## Dẫn nhập
 
-## 解释
+DFS (tìm kiếm theo chiều sâu) là một khái niệm trong lý thuyết đồ thị; xem chi tiết ở trang [DFS (đồ thị)](../graph/dfs.md). Trong **thuật toán tìm kiếm**, thuật ngữ này thường chỉ các thuật toán dùng hàm đệ quy để cài đặt vét cạn một cách thuận tiện. Cách làm này có một số điểm tương đồng với DFS trong lý thuyết đồ thị, nhưng không hoàn toàn giống nhau.
 
-考虑这个例子：
+<span id="&#35299;&#37322;"></span>
 
-???+ note "例题"
-    把正整数 $n$ 分解为 $3$ 个正整数，如 $6=1+2+3$，排在后面的数必须大于等于前面的数，输出所有方案．
+## Giải thích
 
-对于这个问题，如果不知道搜索，应该怎么办呢？当然是三重循环，参考代码如下：
+Xét ví dụ sau:
 
-???+ note "实现"
+???+ note "Bài toán ví dụ"
+    Phân tích số nguyên dương $n$ thành $3$ số nguyên dương, chẳng hạn $6=1+2+3$. Số đứng sau phải lớn hơn hoặc bằng số đứng trước. Hãy in ra tất cả các phương án.
+
+Với bài toán này, nếu chưa biết tìm kiếm thì nên làm thế nào? Tất nhiên có thể dùng ba vòng lặp lồng nhau; mã tham khảo như sau:
+
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         for (int i = 1; i <= n; ++i)
@@ -40,20 +44,20 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面．�
         }
         ```
 
-那如果是分解成四个整数呢？再加一重循环？那分解成小于等于 $m$ 个整数呢？
+Vậy nếu cần phân tích thành bốn số nguyên thì sao? Thêm một vòng lặp nữa? Nếu cần phân tích thành không quá $m$ số nguyên thì sao?
 
-这时候就需要用到递归搜索了．该类搜索算法的特点在于，将要搜索的目标分成若干「层」，每层基于前几层的状态进行决策，直到达到目标状态．
+Lúc này ta cần dùng tìm kiếm đệ quy. Đặc điểm của lớp thuật toán tìm kiếm này là chia mục tiêu cần tìm thành nhiều "tầng"; mỗi tầng dựa trên trạng thái của các tầng trước đó để đưa ra quyết định, cho đến khi đạt tới trạng thái mục tiêu.
 
-考虑上述问题，即将正整数 $n$ 分解成不超过 $m$ 个正整数之和，且排在后面的数必须大于等于前面的数，并输出所有方案．
+Xét lại bài toán trên: phân tích số nguyên dương $n$ thành tổng của không quá $m$ số nguyên dương, trong đó số đứng sau phải lớn hơn hoặc bằng số đứng trước, rồi in ra tất cả các phương án.
 
-设一组方案将正整数 $n$ 分解成 $k$ 个正整数 $a_1, a_2, \ldots, a_k$ 的和．将问题分层，第 $i$ 层决定 $a_i$．则为了进行第 $i$ 层决策，我们需要记录三个状态变量：$n-\sum_{j=1}^i{a_j}$，表示后面所有正整数的和；$a_{i-1}$，表示前一层的正整数，以确保正整数递增；以及 $i$，确保我们最多输出 $m$ 个正整数．为了记录方案，我们用 `arr` 数组，第 $i$ 项表示 $a_i$. 注意到 `arr` 实际上是一个长度为 $i$ 的栈．
+Giả sử một phương án phân tích số nguyên dương $n$ thành tổng của $k$ số nguyên dương $a_1, a_2, \ldots, a_k$. Ta chia bài toán thành các tầng, trong đó tầng thứ $i$ quyết định $a_i$. Để ra quyết định ở tầng thứ $i$, ta cần ghi lại ba biến trạng thái: $n-\sum_{j=1}^i{a_j}$, biểu thị tổng các số nguyên dương còn lại; $a_{i-1}$, biểu thị số nguyên dương ở tầng trước, để bảo đảm dãy không giảm; và $i$, để bảo đảm ta in ra tối đa $m$ số nguyên dương. Để ghi lại phương án, ta dùng mảng `arr`, trong đó phần tử thứ $i$ biểu thị $a_i$. Lưu ý rằng `arr` về bản chất là một ngăn xếp có độ dài $i$.
 
-代码如下：
+Mã như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
-        int m, arr[103];  // arr 用于记录方案
+        int m, arr[103];  // arr dùng để ghi lại phương án
         
         void dfs(int n, int i, int a) {
           if (n == 0) {
@@ -63,19 +67,19 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面．�
           if (i <= m) {
             for (int j = a; j <= n; ++j) {
               arr[i] = j;
-              dfs(n - j, i + 1, j);  // 请仔细思考该行含义．
+              dfs(n - j, i + 1, j);  // Hãy suy nghĩ kỹ ý nghĩa của dòng này.
             }
           }
         }
         
-        // 主函数
+        // Hàm chính
         scanf("%d%d", &n, &m);
         dfs(n, 1, 1);
         ```
     
     === "Python"
         ```python
-        arr = [0] * 103  # arr 用于记录方案
+        arr = [0] * 103  # arr dùng để ghi lại phương án
         
         
         def dfs(n, i, a):
@@ -84,10 +88,10 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面．�
             if i <= m:
                 for j in range(a, n + 1):
                     arr[i] = j
-                    dfs(n - j, i + 1, j)  # 请仔细思考该行含义．
+                    dfs(n - j, i + 1, j)  # Hãy suy nghĩ kỹ ý nghĩa của dòng này.
         
         
-        # 主函数
+        # Hàm chính
         n, m = map(int, input().split())
         dfs(n, 1, 1)
         ```
@@ -96,7 +100,7 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面．�
         ```Java
         static int m;
         
-        // arr 用于记录方案
+        // arr dùng để ghi lại phương án
         static int[] arr = new int[103];
         
         public static void dfs(int n, int i, int a) {
@@ -107,20 +111,22 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面．�
             if (i <= m) {
                 for (int j = a; j <= n; ++j) {
                     arr[i] = j;
-                    dfs(n - j, i + 1, j); // 请仔细思考该行含义．
+                    dfs(n - j, i + 1, j); // Hãy suy nghĩ kỹ ý nghĩa của dòng này.
                 }
             }
         }
         
-        // 主函数
+        // Hàm chính
         final int N = new Scanner(System.in).nextInt();
         m = new Scanner(System.in).nextInt();
         dfs(N, 1, 1);
         ```
 
-## 例题
+<span id="&#20363;&#39064;"></span>
 
-???+ note "[Luogu P1706 全排列问题](https://www.luogu.com.cn/problem/P1706)"
+## Bài tập ví dụ
+
+???+ note "[Luogu P1706 Bài toán hoán vị toàn phần](https://www.luogu.com.cn/problem/P1706)"
     ```cpp
     --8<-- "docs/search/code/dfs/dfs_1.cpp"
     ```

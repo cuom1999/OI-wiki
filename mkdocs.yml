@@ -161,17 +161,17 @@ nav:
     - Xây dựng: basic/construction.md
   - Tìm Kiếm:
     - Tổng quan tìm kiếm: search/index.md
-    - DFS（搜索）: search/dfs.md
-    - BFS（搜索）: search/bfs.md
-    - 双向搜索: search/bidirectional.md
-    - 启发式搜索: search/heuristic.md
+    - DFS (tìm kiếm): search/dfs.md
+    - BFS (tìm kiếm): search/bfs.md
+    - Tìm kiếm hai chiều: search/bidirectional.md
+    - Tìm kiếm heuristic: search/heuristic.md
     - A*: search/astar.md
-    - 迭代加深搜索: search/iterative.md
+    - Tìm kiếm sâu dần: search/iterative.md
     - IDA*: search/idastar.md
-    - 回溯法: search/backtracking.md
+    - Quay lui: search/backtracking.md
     - Dancing Links: search/dlx.md
-    - Alpha–Beta 剪枝: search/alpha-beta.md
-    - 优化: search/opt.md
+    - Cắt tỉa Alpha-Beta: search/alpha-beta.md
+    - Tối ưu hóa: search/opt.md
   - Quy Hoạch Động:
     - Tổng quan quy hoạch động: dp/index.md
     - 动态规划基础: dp/basic.md

@@ -1,87 +1,119 @@
 author: FFjet, ChungZH, frank-xjh, hsfzLZH1, Xarfa, AndrewWayne, hcx1204
 
-本页面将简要介绍两种双向搜索算法：「双向同时搜索」和「Meet in the middle」．
+Trang này giới thiệu ngắn gọn hai thuật toán tìm kiếm hai chiều: "tìm kiếm đồng
+thời hai chiều" và "meet in the middle".
 
-## 双向同时搜索
+## Tìm kiếm đồng thời hai chiều
 
-### 定义
+### Định nghĩa
 
-双向同时搜索的基本思路是从状态图上的起点和终点同时开始进行 [广搜](./bfs.md) 或 [深搜](./dfs.md)．
+Ý tưởng cơ bản của tìm kiếm đồng thời hai chiều là bắt đầu [BFS](./bfs.md) hoặc
+[DFS](./dfs.md) đồng thời từ trạng thái bắt đầu và trạng thái kết thúc trên đồ
+thị trạng thái.
 
-如果发现搜索的两端相遇了，那么可以认为是获得了可行解．
+Nếu phát hiện hai đầu tìm kiếm gặp nhau, ta có thể xem như đã tìm được một lời
+giải khả thi.
 
-### 过程
+### Quy trình
 
-双向广搜的步骤：
+Các bước của BFS hai chiều:
 
 ```text
-将开始结点和目标结点加入队列 q
-标记开始结点为 1
-标记目标结点为 2
-while (队列 q 不为空)
+Đưa nút bắt đầu và nút mục tiêu vào hàng đợi q
+Đánh dấu nút bắt đầu là 1
+Đánh dấu nút mục tiêu là 2
+while (hàng đợi q không rỗng)
 {
-  从 q.front() 扩展出新的 s 个结点
+  Mở rộng q.front() ra s nút mới
   
-  如果 新扩展出的结点已经被其他数字标记过
-    那么 表示搜索的两端碰撞
-    那么 循环结束
+  Nếu nút mới được mở rộng đã được đánh dấu bằng số khác
+    Thì hai đầu tìm kiếm đã va vào nhau
+    Khi đó kết thúc vòng lặp
   
-  如果 新的 s 个结点是从开始结点扩展来的
-    那么 将这个 s 个结点标记为 1 并且入队 q 
+  Nếu s nút mới được mở rộng từ nút bắt đầu
+    Thì đánh dấu s nút đó là 1 và đưa vào hàng đợi q
   
-  如果 新的 s 个结点是从目标结点扩展来的
-    那么 将这个 s 个结点标记为 2 并且入队 q
+  Nếu s nút mới được mở rộng từ nút mục tiêu
+    Thì đánh dấu s nút đó là 2 và đưa vào hàng đợi q
 }
 ```
 
-### 例题
+### Ví dụ
 
-???+ note "例题 [八数码难题](https://www.luogu.com.cn/problem/P1379)"
-    在 $3\times 3$ 的棋盘上，摆有八个棋子，每个棋子上标有 $1$ 至 $8$ 的某一数字．棋盘中留有一个空格，空格用 $0$ 来表示．空格周围的棋子可以移到空格中．要求解的问题是：给出一种初始布局（初始状态）和目标布局（为了使题目简单，设目标状态为 $123804765$），找到一种最少步骤的移动方法，实现从初始布局到目标布局的转变．
+???+ note "Ví dụ [Bài toán 8-puzzle](https://www.luogu.com.cn/problem/P1379)"
+    Trên bàn cờ $3\times 3$ có tám quân cờ, mỗi quân ghi một số từ $1$ đến $8$.
+    Trên bàn cờ còn một ô trống, biểu diễn bằng $0$. Các quân cờ xung quanh ô
+    trống có thể di chuyển vào ô trống. Bài toán yêu cầu: cho một bố cục ban
+    đầu và một bố cục mục tiêu (để đơn giản, đặt trạng thái mục tiêu là
+    $123804765$), hãy tìm cách di chuyển với số bước ít nhất để chuyển từ bố cục
+    ban đầu sang bố cục mục tiêu.
 
-??? note "解题思路"
-    很好想出暴力 bfs．本题使用暴力 bfs 也不会超时．但是这里把它作为双向同时搜索的例题．我们可以使用两个 bfs，一个从起点状态开始正着搜，一个从终点状态开始反着搜，交替使用两个 bfs，搜索树的大小会大大减小．当其中一个 bfs 搜出另一个 bfs 已经搜出的状态，即可得到答案．
+??? note "Ý tưởng giải"
+    Dễ nghĩ đến BFS vét cạn. Bài này dùng BFS vét cạn cũng không quá thời gian,
+    nhưng ở đây dùng nó làm ví dụ cho tìm kiếm đồng thời hai chiều. Ta có thể
+    dùng hai BFS: một BFS tìm xuôi từ trạng thái bắt đầu, một BFS tìm ngược từ
+    trạng thái kết thúc, rồi luân phiên dùng hai BFS. Kích thước cây tìm kiếm sẽ
+    giảm rất nhiều. Khi một BFS tìm ra trạng thái mà BFS kia đã tìm được, ta có
+    đáp án.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/search/code/bidirectional/bidirectional_1.cpp"
     ```
 
 ## Meet in the middle
 
-???+ warning "Warning"
-    本节要介绍的不是 [**二分搜索**](../basic/binary.md)（二分搜索的另外一个译名为「折半搜索」）．
+???+ warning "Cảnh báo"
+    Phần này không nói về [**tìm kiếm nhị phân**](../basic/binary.md), dù tìm
+    kiếm nhị phân cũng đôi khi được gọi là "tìm kiếm chia đôi".
 
-### 引入
+### Dẫn nhập
 
-Meet in the middle 算法没有正式译名，常见的翻译为「折半搜索」、「双向搜索」或「中途相遇」．
+Thuật toán meet in the middle không có tên dịch chính thức; các cách dịch thường
+gặp gồm "tìm kiếm chia đôi", "tìm kiếm hai chiều" hoặc "gặp nhau ở giữa".
 
-它适用于输入数据较小，但还没小到能直接使用暴力搜索的情况．
+Nó phù hợp với trường hợp dữ liệu đầu vào nhỏ, nhưng chưa nhỏ đến mức có thể
+dùng vét cạn trực tiếp.
 
-### 过程
+### Quy trình
 
-Meet in the middle 算法的主要思想是将整个搜索过程分成两半，分别搜索，最后将两半的结果合并．
+Ý tưởng chính của meet in the middle là chia toàn bộ quá trình tìm kiếm thành
+hai nửa, tìm kiếm riêng từng nửa, rồi cuối cùng gộp kết quả của hai nửa lại.
 
-### 性质
+### Tính chất
 
-暴力搜索的复杂度往往是指数级的，而改用 meet in the middle 算法后复杂度的指数可以减半，即让复杂度从 $O(a^b)$ 降到 $O(a^{b/2})$．
+Độ phức tạp của vét cạn thường có dạng mũ; sau khi đổi sang meet in the middle,
+số mũ của độ phức tạp có thể giảm một nửa, tức từ $O(a^b)$ xuống
+$O(a^{b/2})$.
 
-### 例题
+### Ví dụ
 
-???+ note "例题 [「USACO09NOV」灯 Lights](https://www.luogu.com.cn/problem/P2962)"
-    有 $n$ 盏灯，每盏灯与若干盏灯相连，每盏灯上都有一个开关，如果按下一盏灯上的开关，这盏灯以及与之相连的所有灯的开关状态都会改变．一开始所有灯都是关着的，你需要将所有灯打开，求最小的按开关次数．
+???+ note "Ví dụ [USACO09NOV Lights](https://www.luogu.com.cn/problem/P2962)"
+    Có $n$ bóng đèn. Mỗi bóng được nối với một số bóng khác, và trên mỗi bóng có
+    một công tắc. Nếu bấm công tắc trên một bóng, trạng thái bật/tắt của bóng đó
+    và tất cả bóng nối với nó sẽ thay đổi. Ban đầu tất cả bóng đều tắt; cần bật
+    tất cả bóng và tìm số lần bấm công tắc nhỏ nhất.
     
-    $1\le n\le 35$．
+    $1\le n\le 35$.
 
-??? note "解题思路"
-    如果这道题暴力 DFS 找开关灯的状态，时间复杂度就是 $O(2^{n})$, 显然超时．不过，如果我们用 meet in middle 的话，时间复杂度可以优化至 $O(n2^{n/2})$．meet in middle 就是让我们先找一半的状态，也就是找出只使用编号为 $1$ 到 $\mathrm{mid}$ 的开关能够到达的状态，再找出只使用另一半开关能到达的状态．如果前半段和后半段开启的灯互补，将这两段合并起来就得到了一种将所有灯打开的方案．具体实现时，可以把前半段的状态以及达到每种状态的最少按开关次数存储在 map 里面，搜索后半段时，每搜出一种方案，就把它与互补的第一段方案合并来更新答案．
+??? note "Ý tưởng giải"
+    Nếu dùng DFS vét cạn để tìm trạng thái bật/tắt công tắc, độ phức tạp là
+    $O(2^{n})$, rõ ràng quá thời gian. Nhưng dùng meet in the middle thì có thể
+    tối ưu còn $O(n2^{n/2})$. Cụ thể, trước hết tìm một nửa trạng thái, tức tìm
+    mọi trạng thái có thể đạt được chỉ bằng các công tắc đánh số từ $1$ đến
+    $\mathrm{mid}$; sau đó tìm mọi trạng thái có thể đạt được bằng nửa công tắc
+    còn lại. Nếu trạng thái đèn bật của nửa trước và nửa sau bù nhau, ghép hai
+    nửa đó lại sẽ được một phương án bật toàn bộ đèn. Khi hiện thực, có thể lưu
+    trạng thái của nửa đầu và số lần bấm công tắc ít nhất để đạt từng trạng thái
+    trong `map`; khi tìm kiếm nửa sau, với mỗi phương án tìm được, ghép nó với
+    phương án bù tương ứng của nửa đầu để cập nhật đáp án.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/search/code/bidirectional/bidirectional_2.cpp"
     ```
 
-## 外部链接
+## Liên kết ngoài
 
 -   [What is meet in the middle algorithm w.r.t. competitive programming? - Quora](https://www.quora.com/What-is-meet-in-the-middle-algorithm-w-r-t-competitive-programming)
 -   [Meet in the Middle Algorithm - YouTube](https://www.youtube.com/watch?v=57SUNQL4JFA)

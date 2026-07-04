@@ -1,112 +1,116 @@
-本页面将简要介绍 Minimax 算法和 Alpha–Beta 剪枝．
+Trang này giới thiệu ngắn gọn thuật toán Minimax và cắt tỉa Alpha-Beta.
 
-## Minimax 算法
+<span id="minimax-&#31639;&#27861;"></span>
 
-Minimax 算法又叫极小化极大算法，是一种最小化最差（即最大损失）情境下的潜在损失的算法．
+## Thuật toán Minimax
 
-### 过程
+Thuật toán Minimax, hay thuật toán cực tiểu hóa cực đại, là thuật toán dùng để tối thiểu hóa tổn thất tiềm ẩn trong trường hợp xấu nhất (tức tổn thất lớn nhất).
 
-在局面确定的双人零和对弈中，常需要进行对抗搜索，构建一棵每个节点都为一个确定状态的搜索树．奇数层为己方先手，偶数层为对方先手．搜索树上每个叶子节点都会被赋予一个估值，估值越大代表我方赢面越大．我方追求更大的赢面，而对方会设法降低我方的赢面；体现在搜索树上就是，奇数层节点（我方节点）总是会选择赢面最大的子节点状态，而偶数层（对方节点）总是会选择（我方）赢面最小的子节点状态．
+### Quy trình
 
-Minimax 算法中，会从上到下遍历搜索树，回溯时利用子树信息更新答案，最后得到根节点的值——这就是我方在双方都采取最优策略下能获得的最大分数．
+Trong các trò chơi hai người tổng bằng không với cục diện xác định, ta thường cần thực hiện tìm kiếm đối kháng và xây dựng một cây tìm kiếm, trong đó mỗi nút là một trạng thái xác định. Các tầng lẻ là lượt của ta, các tầng chẵn là lượt của đối phương. Mỗi nút lá của cây tìm kiếm được gán một giá trị đánh giá; giá trị càng lớn thì khả năng thắng của ta càng cao. Ta muốn chọn khả năng thắng lớn hơn, còn đối phương sẽ cố gắng hạ thấp khả năng thắng của ta. Trên cây tìm kiếm, điều này có nghĩa là các nút ở tầng lẻ (nút của ta) luôn chọn trạng thái con có khả năng thắng lớn nhất, còn các nút ở tầng chẵn (nút của đối phương) luôn chọn trạng thái con có khả năng thắng của ta nhỏ nhất.
 
-### 示例
+Trong thuật toán Minimax, ta duyệt cây tìm kiếm từ trên xuống dưới, rồi khi quay lui thì dùng thông tin của các cây con để cập nhật đáp án. Cuối cùng thu được giá trị của nút gốc, tức điểm số lớn nhất mà ta có thể đạt được khi cả hai bên đều chơi theo chiến lược tối ưu.
 
-来看一个简单的例子．
+### Ví dụ
 
-称我方为 MAX，对方为 MIN，图示如下：
+Xét một ví dụ đơn giản.
+
+Gọi phía ta là MAX, đối phương là MIN; hình minh họa như sau:
 
 ![](images/minimax-1.svg)
 
-例如，对于如下的局势，假设从左往右搜索，根节点的数值为我方赢面：
+Ví dụ, với cục diện sau, giả sử tìm kiếm từ trái sang phải, giá trị của nút gốc biểu thị khả năng thắng của ta:
 
 ![](images/minimax-2.svg)
 
-我方应选择中间的路线．因为，如果选择左边的路线，最差的赢面是 $3$；如果选择中间的路线，最差的赢面是 $15$；如果选择右边的路线，最差的赢面是 $1$．虽然选择右边的路线可能有 $22$ 的赢面，但足够理性的对方将会使我方只有 $1$ 的赢面．那么，经过权衡，显然选择中间的路线更优．
+Ta nên chọn nhánh ở giữa. Nếu chọn nhánh bên trái, khả năng thắng xấu nhất là $3$; nếu chọn nhánh ở giữa, khả năng thắng xấu nhất là $15$; nếu chọn nhánh bên phải, khả năng thắng xấu nhất là $1$. Mặc dù nhánh bên phải có thể đem lại khả năng thắng $22$, một đối phương đủ lý trí sẽ làm cho khả năng thắng của ta chỉ còn $1$. Sau khi cân nhắc, rõ ràng nhánh ở giữa tốt hơn.
 
 ![](images/minimax-3.svg)
 
-实际上，在看右边的路线时，当发现赢面可能为 $1$ 后就不必再去看赢面为 $12$、$20$、$22$ 的分支了．因为相较于左侧两条路线的赢面，已经可以确定右边的路线不是最好的．
+Thực ra, khi xét nhánh bên phải, một khi đã phát hiện khả năng thắng có thể là $1$, ta không cần tiếp tục xét các nhánh có khả năng thắng $12$, $20$, $22$ nữa. So với khả năng thắng của hai nhánh bên trái, ta đã có thể xác định nhánh bên phải không phải lựa chọn tốt nhất.
 
-朴素的 Minimax 算法常常需要构建一棵庞大的搜索树，时间和空间复杂度都将不能承受．而 Alpha–Beta 剪枝就是利用搜索树每个节点双方分数的上下界来对 Minimax 进行剪枝优化的一种方法．
+Thuật toán Minimax đơn giản thường phải xây dựng một cây tìm kiếm rất lớn, khiến cả độ phức tạp thời gian lẫn không gian đều có thể vượt quá giới hạn chấp nhận được. Cắt tỉa Alpha-Beta là một phương pháp tối ưu hóa Minimax bằng cách dùng cận trên và cận dưới của điểm số hai bên tại mỗi nút trên cây tìm kiếm để cắt tỉa.
 
-需要注意的是，对于不同的问题，搜索树每个节点上的值有着不同的含义，它可以是估值、分数、赢的概率等等．为方便起见，下文统一用分数来称呼．
+Cần chú ý rằng với các bài toán khác nhau, giá trị trên mỗi nút của cây tìm kiếm có thể mang những ý nghĩa khác nhau: giá trị đánh giá, điểm số, xác suất thắng, v.v. Để tiện trình bày, phần dưới thống nhất gọi chung là điểm số.
 
-## Alpha–Beta 剪枝
+<span id="alphabeta-&#21098;&#26525;"></span>
 
-Alpha–Beta 剪枝是针对 Minimax 算法的搜索剪枝．
+## Cắt tỉa Alpha-Beta
 
-### 过程
+Cắt tỉa Alpha-Beta là kỹ thuật cắt tỉa tìm kiếm dành cho thuật toán Minimax.
 
-Minimax 算法中，若已知某节点的所有子节点的分数，则可以算出该节点的分数：对于 MAX 节点，取最大分数；对于 MIN 节点，取最小分数．
+### Quy trình
 
-在搜索进行到某节点但尚未完成时，虽然不能算出该节点的分数，但是可以算出 **目前已经搜索过的节点中**，双方分数的取值范围．搜索时，维护两个变量 $\alpha$ 和 $\beta$，分别表示局面进行到该节点时，**考虑所有已经搜索过的节点**，Alpha 玩家（即寻求最大分数的一方）和 Beta 玩家（即寻求最小分数的一方）能够保证取得的分数的下界和上界．
+Trong thuật toán Minimax, nếu đã biết điểm số của tất cả các nút con của một nút, ta có thể tính điểm số của nút đó: với nút MAX, lấy điểm lớn nhất; với nút MIN, lấy điểm nhỏ nhất.
 
-Alpha–Beta 剪枝的剪枝策略依赖于搜索当前节点时 $\alpha$ 和 $\beta$ 的取值．如果当前节点是 MAX 节点，那么，Alpha 可以继续搜索它的子节点来提高分数下界 $\alpha$．但是，如果某次搜索后已经有 $\alpha\ge\beta$ 了，那么这个节点就不可能出现在一次对弈中：只要到达该节点处，Alpha 玩家就能够保证分数至少是 $\alpha$；可是 Beta 玩家已经知道存在一种（偏离当前路径的）策略，能够保证分数不超过 $\beta\le\alpha$，那么，Beta 玩家自然不会任由局面发展到 **当前节点** 处．同理，如果当前节点是 MIN 节点，且搜索它的某个子节点后已经发现该节点处有 $\beta\le\alpha$ 成立，那么，同样无需继续搜索其他子节点，因为 Alpha 玩家不会让局面进入 **当前节点**．总结两种情形可以发现：当 $\alpha \geq \beta$ 时，该节点剩余的分支就不必继续搜索了（也就是可以进行剪枝了）．注意，当 $\alpha = \beta$ 时，也需要剪枝，这是因为不会有更好的结果了，但可能有更差的结果．
+Khi quá trình tìm kiếm đã đi tới một nút nhưng chưa hoàn tất nút đó, tuy chưa thể tính điểm của nút, ta vẫn có thể suy ra **phạm vi giá trị điểm số của hai bên dựa trên các nút đã được tìm kiếm**. Khi tìm kiếm, ta duy trì hai biến $\alpha$ và $\beta$, lần lượt biểu thị, tại cục diện ứng với nút hiện tại và **xét tất cả các nút đã được tìm kiếm**, cận dưới của điểm số mà người chơi Alpha (bên tìm điểm lớn nhất) có thể bảo đảm đạt được và cận trên của điểm số mà người chơi Beta (bên tìm điểm nhỏ nhất) có thể bảo đảm đạt được.
 
-搜索过程中，无需维护节点分数，只需要维护 $\alpha$ 和 $\beta$ 即可．初始时，令 $\alpha=-\infty,~\beta=+\infty$．向下搜索时，需要一并下传 $\alpha$ 和 $\beta$ 的信息，以记录两名玩家的备选方案．
+Chiến lược cắt tỉa của Alpha-Beta phụ thuộc vào giá trị $\alpha$ và $\beta$ khi tìm kiếm nút hiện tại. Nếu nút hiện tại là nút MAX, Alpha có thể tiếp tục tìm các nút con để nâng cận dưới điểm số $\alpha$. Tuy nhiên, nếu sau một lần tìm kiếm đã có $\alpha\ge\beta$, nút này sẽ không thể xuất hiện trong một ván đấu: chỉ cần đi tới nút này, người chơi Alpha đã có thể bảo đảm điểm số ít nhất là $\alpha$; nhưng người chơi Beta đã biết tồn tại một chiến lược (lệch khỏi đường đi hiện tại) có thể bảo đảm điểm số không vượt quá $\beta\le\alpha$, nên Beta sẽ không để cục diện phát triển tới **nút hiện tại**. Tương tự, nếu nút hiện tại là nút MIN và sau khi tìm kiếm một nút con của nó đã có $\beta\le\alpha$, ta cũng không cần tiếp tục tìm các nút con khác, vì người chơi Alpha sẽ không để cục diện đi vào **nút hiện tại**. Tổng kết hai trường hợp, khi $\alpha \geq \beta$, các nhánh còn lại của nút đó không cần tìm tiếp nữa, tức có thể cắt tỉa. Lưu ý khi $\alpha = \beta$ cũng cần cắt tỉa, vì sẽ không có kết quả tốt hơn, nhưng có thể có kết quả xấu hơn.
 
-搜索完子节点时，需要更新当前节点处的信息．不妨假设当前节点 $X$ 是 MAX 节点，且刚刚搜索完它的子节点 $Y$．那么，节点 $X$ 处的 $\beta$ 值不会改变，只有 $\alpha$ 值需要与子节点 $Y$ 的分数取最大值．如果子节点 $Y$ 是叶子节点，直接用子节点 $Y$ 的分数更新当前节点 $X$ 处的 $\alpha$ 值；否则，只需要用子节点 $Y$ 的 $\beta$ 值更新当前节点 $X$ 的 $\alpha$ 值．此时，有三种可能性：
+Trong quá trình tìm kiếm, không cần duy trì điểm số của từng nút, chỉ cần duy trì $\alpha$ và $\beta$. Ban đầu đặt $\alpha=-\infty,~\beta=+\infty$. Khi tìm kiếm xuống dưới, cần truyền kèm thông tin $\alpha$ và $\beta$ để ghi lại các phương án dự phòng của hai người chơi.
 
-1.  子节点 $Y$ 的 $\beta$ 值严格位于节点 $X$ 的 $\alpha$ 值和 $\beta$ 值之间．因为子节点 $Y$ 继承了节点 $X$ 的 $\alpha$ 值且不会更新它，所以，搜索子节点 $Y$ 完后仍然有 $\beta > \alpha$，就说明搜索子节点 $Y$ 时没有发生剪枝．子节点 $Y$ 最终的 $\beta$ 值，就等于它继承的节点 $X$ 的 $\beta$ 值和它（指子节点 $Y$）的所有子节点的分数中，最小的那个．既然这个最小值严格小于节点 $X$ 的 $\beta$ 值，就说明它一定是子节点 $Y$ 的所有子节点的分数最小值．因此，作为 MIN 节点，子节点 $Y$ 的分数就是这个 $\beta$ 值．用它更新节点 $X$ 的 $\alpha$ 值是合理的．
-2.  子节点 $Y$ 的 $\beta$ 值就等于节点 $X$ 的 $\beta$ 值．如上文所述，这说明子节点 $Y$ 的所有子节点的分数均不小于节点 $X$ 的 $\beta$ 值．这进一步说明 Beta 玩家不会任由局面进入节点 $X$：因为 Alpha 玩家只要选择了子节点 $Y$，Beta 玩家就不能取得比 $\beta$ 更低的分数．因此，此时使用子节点 $Y$ 的 $\beta$ 值更新节点 $X$ 的 $\alpha$ 值，是为了使得节点 $X$ 处 $\alpha=\beta$，以触发剪枝条件．它的效果与使用 $Y$ 处实际分数——一个大于等于节点 $X$ 处 $\beta$ 值的数字——更新节点 $X$ 的 $\alpha$ 值的效果是一样的．
-3.  子节点 $Y$ 的 $\beta$ 值小于等于节点 $X$ 的 $\alpha$ 值．此时，子节点 $Y$ 触发了剪枝条件，它的实际分数不会超过子节点 $Y$ 的 $\beta$ 值，更不会超过节点 $X$ 的 $\alpha$ 值．用子节点 $Y$ 的实际分数更新节点 $X$ 的 $\alpha$ 值不会改变 $\alpha$ 值．这与使用子节点 $Y$ 的 $\beta$ 值更新节点 $X$ 的 $\alpha$ 值的效果是一样的．
+Khi tìm xong một nút con, cần cập nhật thông tin tại nút hiện tại. Giả sử nút hiện tại $X$ là nút MAX và vừa tìm xong nút con $Y$ của nó. Khi đó, giá trị $\beta$ tại nút $X$ không đổi; chỉ giá trị $\alpha$ cần lấy max với điểm số của nút con $Y$. Nếu nút con $Y$ là nút lá, dùng trực tiếp điểm số của $Y$ để cập nhật $\alpha$ tại $X$; nếu không, chỉ cần dùng giá trị $\beta$ của nút con $Y$ để cập nhật $\alpha$ của nút $X$. Lúc này có ba khả năng:
 
-这一分析说明，当某个子节点搜索完成后，只有它的分数处于第一种情形时，$\alpha$（或 $\beta$）才准确记录了这个子节点作为一个 MAX 节点（或 MIN 节点）的实际分数．对于其他情形，虽然它未必是准确的分数，但是它提供的信息足以保证剪枝的正确进行，从而不影响根节点处的分数记录．
+1.  Giá trị $\beta$ của nút con $Y$ nằm nghiêm ngặt giữa giá trị $\alpha$ và $\beta$ của nút $X$. Vì nút con $Y$ kế thừa giá trị $\alpha$ của nút $X$ và không cập nhật nó, sau khi tìm xong nút con $Y$ mà vẫn có $\beta > \alpha$, điều đó cho thấy không xảy ra cắt tỉa khi tìm nút con $Y$. Giá trị $\beta$ cuối cùng của nút con $Y$ bằng giá trị nhỏ hơn giữa giá trị $\beta$ mà nó kế thừa từ nút $X$ và điểm số nhỏ nhất trong tất cả các nút con của chính $Y$. Vì giá trị nhỏ nhất này nhỏ hơn nghiêm ngặt giá trị $\beta$ của nút $X$, nó chắc chắn là giá trị nhỏ nhất trong điểm số của tất cả các nút con của $Y$. Do đó, với vai trò là nút MIN, điểm số của nút con $Y$ chính là giá trị $\beta$ này. Dùng nó để cập nhật $\alpha$ của nút $X$ là hợp lý.
+2.  Giá trị $\beta$ của nút con $Y$ bằng giá trị $\beta$ của nút $X$. Như đã nói ở trên, điều này cho thấy điểm số của tất cả các nút con của $Y$ đều không nhỏ hơn giá trị $\beta$ của nút $X$. Điều đó tiếp tục cho thấy người chơi Beta sẽ không để cục diện đi vào nút $X$: vì chỉ cần người chơi Alpha chọn nút con $Y$, Beta không thể đạt điểm số thấp hơn $\beta$. Vì vậy lúc này, việc dùng giá trị $\beta$ của nút con $Y$ để cập nhật $\alpha$ của nút $X$ là nhằm làm cho tại nút $X$ có $\alpha=\beta$, từ đó kích hoạt điều kiện cắt tỉa. Hiệu quả của nó giống với việc dùng điểm số thực tế tại $Y$ - một số lớn hơn hoặc bằng giá trị $\beta$ tại nút $X$ - để cập nhật $\alpha$ của nút $X$.
+3.  Giá trị $\beta$ của nút con $Y$ nhỏ hơn hoặc bằng giá trị $\alpha$ của nút $X$. Lúc này nút con $Y$ đã kích hoạt điều kiện cắt tỉa; điểm số thực tế của nó không vượt quá giá trị $\beta$ của nút con $Y$, và càng không vượt quá giá trị $\alpha$ của nút $X$. Dùng điểm số thực tế của nút con $Y$ để cập nhật $\alpha$ của nút $X$ sẽ không làm thay đổi $\alpha$. Hiệu quả của việc này giống với việc dùng giá trị $\beta$ của nút con $Y$ để cập nhật $\alpha$ của nút $X$.
 
-### 示例
+Phân tích trên cho thấy sau khi tìm kiếm xong một nút con, chỉ khi điểm số của nó thuộc trường hợp thứ nhất thì $\alpha$ (hoặc $\beta$) mới ghi đúng điểm số thực tế của nút con đó với tư cách là một nút MAX (hoặc MIN). Trong các trường hợp khác, tuy giá trị được ghi lại không nhất thiết là điểm số chính xác, thông tin đó vẫn đủ để bảo đảm việc cắt tỉa diễn ra đúng đắn, nên không ảnh hưởng đến điểm số được ghi ở nút gốc.
 
-本节通过分析一个例子，来展示如何在搜索过程中更新各个节点处的 $\alpha$ 和 $\beta$ 值．过程中，也一并计算了所涉及的节点处的分数．由此，就可以观察每个节点处的实际分数与所记录的 $\alpha$ 和 $\beta$ 值的关系．但应注意，实现这一算法时，并不会计算这些节点的实际分数．
+### Ví dụ
 
-对于如下的局势，假设从左往右搜索：
+Phần này phân tích một ví dụ để minh họa cách cập nhật giá trị $\alpha$ và $\beta$ tại từng nút trong quá trình tìm kiếm. Trong quá trình đó, ta cũng tính điểm số tại các nút liên quan. Nhờ vậy có thể quan sát quan hệ giữa điểm số thực tế của mỗi nút và các giá trị $\alpha$, $\beta$ được ghi lại tại đó. Tuy nhiên cần lưu ý rằng khi cài đặt thuật toán này, ta sẽ không tính điểm số thực tế của các nút như vậy.
+
+Với cục diện sau, giả sử tìm kiếm từ trái sang phải:
 
 ![](images/alpha-beta-1.svg)
 
-初始化时，令 $\alpha = -\infty,~\beta = +\infty$，并将这一信息沿着搜索路径下传．
+Ban đầu đặt $\alpha = -\infty,~\beta = +\infty$, và truyền thông tin này xuống theo đường tìm kiếm.
 
 ![](images/alpha-beta-2.svg)
 
-搜索到节点 A 时，由于左子节点的分数为 $3$，而节点 A 是 MIN 节点，试图找分数小的走法，于是将 $\beta$ 值修改为 $3$，这是因为 $3$ 小于当前的 $\beta$ 值（$\beta = +\infty$）．然后节点 A 的右子节点的分数为 $17$，此时不修改节点 A 的 $\beta$ 值，这是因为 $17$ 大于当前的 $\beta$ 值（$\beta = 3$）．此时，节点 A 的所有子节点已搜索完毕，即可计算出节点 A 的分数为 $3$，这与该节点处记录的 $\beta$ 值一致（前文的情形 1）．
+Khi tìm tới nút A, vì điểm số của nút con bên trái là $3$ và nút A là nút MIN, nó muốn chọn nước đi có điểm nhỏ, nên giá trị $\beta$ được cập nhật thành $3$, bởi $3$ nhỏ hơn giá trị $\beta$ hiện tại ($\beta = +\infty$). Sau đó, điểm số của nút con bên phải của A là $17$, nên lúc này không cập nhật $\beta$ của nút A, vì $17$ lớn hơn giá trị $\beta$ hiện tại ($\beta = 3$). Đến đây, tất cả các nút con của A đã được tìm xong, có thể tính điểm số của nút A là $3$, trùng với giá trị $\beta$ được ghi tại nút này (trường hợp 1 ở trên).
 
 ![](images/alpha-beta-3.svg)
 
-节点 A 是节点 B 的子节点，计算出节点 A 的分数后，可以更新节点 B 的 $\alpha$ 和 $\beta$ 值．由于节点 B 是 MAX 节点，试图找分数大的走法，于是将 $\alpha$ 值修改为 $3$，这是因为子节点 A 处的 $\beta$ 值（$\beta=3$）大于当前的 $\alpha$ 值（$\alpha = -\infty$）．之后，搜索节点 B 的右子节点 C，并将节点 B 的 $\alpha$ 和 $\beta$ 值传递给节点 C．
+Nút A là nút con của nút B. Sau khi tính được điểm số của nút A, ta có thể cập nhật giá trị $\alpha$ và $\beta$ của nút B. Vì nút B là nút MAX và muốn chọn nước đi có điểm lớn, giá trị $\alpha$ được cập nhật thành $3$, bởi giá trị $\beta$ tại nút con A ($\beta=3$) lớn hơn giá trị $\alpha$ hiện tại ($\alpha = -\infty$). Sau đó, tìm kiếm nút con bên phải C của nút B, đồng thời truyền giá trị $\alpha$ và $\beta$ của nút B cho nút C.
 
 ![](images/alpha-beta-4.svg)
 
-对于节点 C，由于左子节点的分数为 $2$，而节点 C 是 MIN 节点，于是将 $\beta$ 值修改为 $2$．此时 $\alpha \geq \beta$，故节点 C 的剩余子节点就不必搜索了，因为可以确定，Alpha 玩家不会允许局面发展到节点 C．此时，节点 C 是 MIN 节点，它的分数就是 $2$，不超过记录的 $\beta$ 值（前文的情形 3）．由于节点 B 的所有子节点搜索完毕，即可计算出节点 B 的分数为 $3$，与记录的 $\alpha$ 值相同（前文的情形 1）．
+Với nút C, vì điểm số của nút con bên trái là $2$ và nút C là nút MIN, giá trị $\beta$ được cập nhật thành $2$. Lúc này $\alpha \geq \beta$, nên không cần tìm các nút con còn lại của C nữa, vì có thể xác định người chơi Alpha sẽ không cho phép cục diện phát triển tới nút C. Lúc này nút C là nút MIN, điểm số của nó là $2$, không vượt quá giá trị $\beta$ được ghi lại (trường hợp 3 ở trên). Vì tất cả các nút con của B đã được tìm xong, có thể tính điểm số của nút B là $3$, bằng với giá trị $\alpha$ được ghi lại (trường hợp 1 ở trên).
 
 ![](images/alpha-beta-5.svg)
 
-计算出节点 B 的分数后，节点 B 是节点 D 的一个子节点，故可以更新节点 D 的 $\alpha$ 和 $\beta$ 值．由于节点 D 是 MIN 节点，于是将 $\beta$ 值修改为 $3$．然后节点 D 将 $\alpha$ 和 $\beta$ 值传递给节点 E，节点 E 又传递给节点 F．对于节点 F，它只有一个分数为 $15$ 的子节点，由于 $15$ 大于当前的 $\beta$ 值，而节点 F 为 MIN 节点，所以不更新其 $\beta$ 值，然后可以计算出节点 F 的分数为 $15$，大于记录的 $\beta$ 值（前文的情形 2）．
+Sau khi tính điểm số của nút B, vì B là một nút con của nút D, ta có thể cập nhật giá trị $\alpha$ và $\beta$ của nút D. Vì nút D là nút MIN, giá trị $\beta$ được cập nhật thành $3$. Sau đó nút D truyền giá trị $\alpha$ và $\beta$ cho nút E, và nút E tiếp tục truyền cho nút F. Với nút F, nó chỉ có một nút con có điểm số $15$; vì $15$ lớn hơn giá trị $\beta$ hiện tại và nút F là nút MIN, ta không cập nhật $\beta$ của F. Sau đó có thể tính điểm số của nút F là $15$, lớn hơn giá trị $\beta$ được ghi lại (trường hợp 2 ở trên).
 
 ![](images/alpha-beta-6.svg)
 
-计算出节点 F 的分数后，节点 F 是节点 E 的一个子节点，故可以更新节点 E 的 $\alpha$ 和 $\beta$ 值．节点 E 是 MAX 节点，更新 $\alpha$ 值，此时 $\alpha \geq \beta$，故可以剪去节点 E 的余下分支（即节点 G）．然后，节点 E 是 MAX 节点，将节点 E 的分数设为 $15$，严格大于记录的 $\alpha$ 值（前文的情形 3）．利用节点 E 的 $\alpha$ 值更新节点 D 的 $\beta$ 值，仍然是 $3$．此时，节点 D 的所有子节点搜索完毕，即可计算出节点 D 的分数为 $3$，等于记录的 $\beta$ 值（前文的情形 1）．
+Sau khi tính điểm số của nút F, vì F là một nút con của nút E, ta có thể cập nhật giá trị $\alpha$ và $\beta$ của nút E. Nút E là nút MAX, nên cập nhật giá trị $\alpha$; lúc này $\alpha \geq \beta$, do đó có thể cắt bỏ các nhánh còn lại của E (tức nút G). Sau đó, vì nút E là nút MAX, đặt điểm số của nút E là $15$, lớn hơn nghiêm ngặt giá trị $\alpha$ được ghi lại (trường hợp 3 ở trên). Dùng giá trị $\alpha$ của nút E để cập nhật $\beta$ của nút D thì kết quả vẫn là $3$. Lúc này tất cả các nút con của D đã được tìm xong, có thể tính điểm số của nút D là $3$, bằng giá trị $\beta$ được ghi lại (trường hợp 1 ở trên).
 
 ![](images/alpha-beta-7.svg)
 
-计算出节点 D 的分数后，节点 D 是节点 H 的一个子节点，故可以更新节点 H 的 $\alpha$ 和 $\beta$ 值．节点 H 是 MAX 节点，更新 $\alpha$．然后，按搜索顺序，将节点 H 的 $\alpha$ 和 $\beta$ 值依次传递给节点 I、J、K．对于节点 K，其左子节点的分数为 $2$，而节点 K 是 MIN 节点，更新 $\beta$，此时 $\alpha \geq \beta$，故可以剪去节点 K 的余下分支．然后，将节点 K 的分数设为 $2$，小于等于记录的 $\beta$ 值（前文的情形 3）．
+Sau khi tính điểm số của nút D, vì D là một nút con của nút H, ta có thể cập nhật giá trị $\alpha$ và $\beta$ của nút H. Nút H là nút MAX, nên cập nhật $\alpha$. Sau đó, theo thứ tự tìm kiếm, lần lượt truyền giá trị $\alpha$ và $\beta$ của nút H cho các nút I, J, K. Với nút K, điểm số của nút con bên trái là $2$ và nút K là nút MIN, nên cập nhật $\beta$; lúc này $\alpha \geq \beta$, do đó có thể cắt bỏ các nhánh còn lại của K. Sau đó đặt điểm số của nút K là $2$, nhỏ hơn hoặc bằng giá trị $\beta$ được ghi lại (trường hợp 3 ở trên).
 
 ![](images/alpha-beta-8.svg)
 
-计算出节点 K 的分数后，节点 K 是节点 J 的一个子节点，故可以更新节点 J 的 $\alpha$ 和 $\beta$ 值．节点 J 是 MAX 节点，更新 $\alpha$，但是，由于节点 K 的分数小于 $\alpha$，所以节点 J 的 $\alpha$ 值维持 $3$ 不变．然后，将节点 J 的 $\alpha$ 和 $\beta$ 值传递给节点 L．由于节点 L 是 MIN 节点，更新 $\beta = 3$，此时 $\alpha \geq \beta$，故可以剪去节点 L 的余下分支．由于节点 L 没有余下分支，所以此处并没有实际剪枝．然后，将节点 L 的分数设为 $3$，它小于等于记录的 $\beta$ 值（前文的情形 3）．
+Sau khi tính điểm số của nút K, vì K là một nút con của nút J, ta có thể cập nhật giá trị $\alpha$ và $\beta$ của nút J. Nút J là nút MAX, nên cập nhật $\alpha$; tuy nhiên, vì điểm số của nút K nhỏ hơn $\alpha$, giá trị $\alpha$ của J vẫn giữ nguyên là $3$. Sau đó, truyền giá trị $\alpha$ và $\beta$ của nút J cho nút L. Vì nút L là nút MIN, cập nhật $\beta = 3$; lúc này $\alpha \geq \beta$, nên có thể cắt bỏ các nhánh còn lại của L. Do nút L không còn nhánh nào khác, ở đây thực tế không có nhánh nào bị cắt. Sau đó đặt điểm số của nút L là $3$, nhỏ hơn hoặc bằng giá trị $\beta$ được ghi lại (trường hợp 3 ở trên).
 
 ![](images/alpha-beta-9.svg)
 
-计算出节点 L 的分数后，节点 L 是节点 J 的一个子节点，故可以更新节点 J 的 $\alpha$ 和 $\beta$ 值．节点 J 是 MAX 节点，更新 $\alpha$，但是，由于节点 L 的分数小于等于 $\alpha$，所以节点 J 的 $\alpha$ 值维持 $3$ 不变．此时，节点 J 的所有子节点搜索完毕，即可计算出节点 J 的分数为 $3$，它等于记录的 $\alpha$ 值（前文的情形 2）．
+Sau khi tính điểm số của nút L, vì L là một nút con của nút J, ta có thể cập nhật giá trị $\alpha$ và $\beta$ của nút J. Nút J là nút MAX, nên cập nhật $\alpha$; tuy nhiên, vì điểm số của nút L nhỏ hơn hoặc bằng $\alpha$, giá trị $\alpha$ của J vẫn giữ nguyên là $3$. Lúc này tất cả các nút con của J đã được tìm xong, có thể tính điểm số của nút J là $3$, bằng giá trị $\alpha$ được ghi lại (trường hợp 2 ở trên).
 
-计算出节点 J 的分数后，节点 J 是节点 I 的一个子节点，故可以更新节点 I 的 $\alpha$ 和 $\beta$ 值．节点 I 是 MIN 节点，更新 $\beta$，此时 $\alpha \geq \beta$，故可以剪去节点 I 的余下分支．值得注意的是，由于右子节点的存在，节点 I 的实际分数是 $2$，小于记录的 $\beta$ 值（前文的情形 3）．
+Sau khi tính điểm số của nút J, vì J là một nút con của nút I, ta có thể cập nhật giá trị $\alpha$ và $\beta$ của nút I. Nút I là nút MIN, nên cập nhật $\beta$; lúc này $\alpha \geq \beta$, do đó có thể cắt bỏ các nhánh còn lại của I. Đáng chú ý là do tồn tại nút con bên phải, điểm số thực tế của nút I là $2$, nhỏ hơn giá trị $\beta$ được ghi lại (trường hợp 3 ở trên).
 
-计算出节点 I 的分数后，节点 I 是节点 H 的一个子节点，故可以更新节点 H 的 $\alpha$ 和 $\beta$ 值．节点 H 是 MAX 节点，更新 $\alpha$，但是，由于节点 I 的分数小于等于 $\alpha$，所以节点 H 的 $\alpha$ 值维持 $3$ 不变．此时，节点 H 的所有子节点搜索完毕，即可计算出节点 H 的分数为 $3$，它等于记录的 $\alpha$ 值（前文的情形 1）．
+Sau khi tính điểm số của nút I, vì I là một nút con của nút H, ta có thể cập nhật giá trị $\alpha$ và $\beta$ của nút H. Nút H là nút MAX, nên cập nhật $\alpha$; tuy nhiên, vì điểm số của nút I nhỏ hơn hoặc bằng $\alpha$, giá trị $\alpha$ của H vẫn giữ nguyên là $3$. Lúc này tất cả các nút con của H đã được tìm xong, có thể tính điểm số của nút H là $3$, bằng giá trị $\alpha$ được ghi lại (trường hợp 1 ở trên).
 
 ![](images/alpha-beta-10.svg)
 
-这就是最终结果．
+Đó là kết quả cuối cùng.
 
-### 实现
+### Cài đặt
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     int alpha_beta(int u, int alph, int beta, bool is_max) {
       if (!son_num[u]) return val[u];
@@ -128,9 +132,9 @@ Alpha–Beta 剪枝的剪枝策略依赖于搜索当前节点时 $\alpha$ 和 $\
     }
     ```
 
-## 参考资料与注释
+## Tài liệu tham khảo và ghi chú
 
 -   [Minimax Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Minimax#Minimax_algorithm_with_alternate_moves)
--   [Alpha–beta pruning - Wikipedia](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
+-   [Alpha-beta pruning - Wikipedia](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
 
-**本文部分引用自博文 [详解 Minimax 算法与α-β剪枝\_文剑木然](https://blog.csdn.net/wenjianmuran/article/details/90633418)，遵循 CC 4.0 BY-SA 版权协议．内容有改动．**
+**Một phần nội dung bài viết này được trích từ blog [Giải thích chi tiết thuật toán Minimax và cắt tỉa Alpha-Beta](https://blog.csdn.net/wenjianmuran/article/details/90633418), tuân theo giấy phép CC 4.0 BY-SA. Nội dung đã được chỉnh sửa.**

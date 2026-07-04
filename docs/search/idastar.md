@@ -1,37 +1,40 @@
-前置知识：[A\* 算法](./astar.md)、[迭代加深搜索](./iterative.md)
+Kiến thức nền: [Thuật toán A\*](./astar.md), [Tìm kiếm sâu dần](./iterative.md)
 
-本页面将简要介绍 IDA\* 算法．IDA\* 就是采用了迭代加深算法的 A\* 算法．
+Trang này giới thiệu ngắn gọn về thuật toán IDA\*. IDA\* chính là thuật toán A\* áp dụng chiến lược tìm kiếm sâu dần.
 
-## 过程
+<span id="&#x8fc7;&#x7a0b;"></span>
+## Quy trình
 
-IDA\* 算法是迭代加深搜索的一种变形．迭代加深搜索在每次 DFS 中限制搜索深度，而 IDA\* 则限制单次 DFS 的路径成本．
+IDA\* là một biến thể của tìm kiếm sâu dần. Tìm kiếm sâu dần giới hạn độ sâu tìm kiếm trong mỗi lần DFS, còn IDA\* giới hạn chi phí đường đi trong một lần DFS.
 
-在一次迭代中，算法从起点 $s$ 开始进行 DFS，记录到达当前结点 $x$ 的实际成本 $g(x)$，并利用它到终点的最小成本估计 $h(x)$ 进行剪枝．如果沿着当前路径到达终点的总成本估计
+Trong một vòng lặp, thuật toán bắt đầu DFS từ đỉnh xuất phát $s$, ghi lại chi phí thực tế $g(x)$ để đi tới đỉnh hiện tại $x$, và dùng ước lượng chi phí nhỏ nhất $h(x)$ từ $x$ đến đích để cắt tỉa. Nếu tổng chi phí ước lượng để đi tới đích theo đường hiện tại
 
 $$
 f(x) = g(x) + h(x)
 $$
 
-超过阈值 $C$，则停止对该分支的搜索．
+vượt quá ngưỡng $C$, thuật toán dừng tìm kiếm trên nhánh đó.
 
-阈值 $C$ 在迭代间动态更新．初始阈值取为起点的总成本估计值 $h(s)$．在一次迭代中，每当因超过阈值而停止时，就记录所有尚未访问的后继结点的总成本估计的最小值．迭代结束后，将阈值更新为这一最小值，继续下一轮搜索．
+Ngưỡng $C$ được cập nhật động giữa các vòng lặp. Ngưỡng ban đầu lấy bằng tổng chi phí ước lượng tại đỉnh xuất phát, tức $h(s)$. Trong một vòng lặp, mỗi khi dừng vì vượt ngưỡng, ta ghi lại giá trị nhỏ nhất trong các tổng chi phí ước lượng của những đỉnh kế tiếp chưa được thăm. Sau khi vòng lặp kết thúc, cập nhật ngưỡng thành giá trị nhỏ nhất này rồi tiếp tục vòng tìm kiếm kế tiếp.
 
-## 性质
+<span id="&#x6027;&#x8d28;"></span>
+## Tính chất
 
-由于使用了和 A\* 算法一样的剪枝策略，所以对 A\* 算法性质的讨论对 IDA\* 算法也适用．
+Vì IDA\* dùng cùng chiến lược cắt tỉa với A\*, các tính chất đã thảo luận cho thuật toán A\* cũng áp dụng cho IDA\*.
 
-和 A\* 算法相比，IDA\* 算法有如下优点：
+So với A\*, IDA\* có các ưu điểm sau:
 
--   不需要判重，不需要排序，利于深度剪枝．
--   空间需求减少．每次迭代都是一个深度优先搜索，但是对搜索中的路径成本有限制，使用 DFS 可以减小空间消耗．
+-   Không cần kiểm tra trùng lặp, không cần sắp xếp, thuận lợi cho cắt tỉa theo chiều sâu.
+-   Giảm nhu cầu bộ nhớ. Mỗi vòng lặp đều là một lần tìm kiếm theo chiều sâu, nhưng chi phí đường đi trong quá trình tìm kiếm bị giới hạn; dùng DFS giúp giảm mức tiêu thụ bộ nhớ.
 
-同时，它也有缺点：
+Đồng thời, nó cũng có nhược điểm:
 
--   重复搜索．即使前后两次搜索相差微小，每次放宽限制都要再次从头搜索．
+-   Tìm kiếm lặp lại. Ngay cả khi hai lần tìm kiếm liên tiếp chỉ khác nhau rất ít, mỗi lần nới lỏng giới hạn vẫn phải tìm lại từ đầu.
 
-## 实现
+<span id="&#x5b9e;&#x73b0;"></span>
+## Cài đặt
 
-设 $h$ 是一个合适的估价函数，$s$ 为搜索起点．完整的算法流程大致如下所示：
+Giả sử $h$ là một hàm ước lượng phù hợp và $s$ là đỉnh xuất phát. Quy trình đầy đủ của thuật toán có thể mô tả đại khái như sau:
 
 $$
 \begin{array}{l}
@@ -73,47 +76,48 @@ $$
 \end{array}
 $$
 
-## 例题
+<span id="&#x4f8b;&#x9898;"></span>
+## Ví dụ
 
-???+ example "[埃及分数](https://www.luogu.com.cn/problem/P1763)"
-    在古埃及，人们使用互不相同的单位分数（即 $1/a$，$a\in\mathbf{N}_+$）的和表示一切有理数．例如，$\dfrac{2}{3}=\dfrac{1}{2}+\dfrac{1}{6}$，但不允许 $\dfrac{2}{3}=\dfrac{1}{3}+\dfrac{1}{3}$，因为在加数中不允许有相同的单位分数．
+???+ example "[Phân số Ai Cập](https://www.luogu.com.cn/problem/P1763)"
+    Ở Ai Cập cổ đại, người ta biểu diễn mọi số hữu tỉ bằng tổng của các phân số đơn vị đôi một khác nhau, tức các số dạng $1/a$ với $a\in\mathbf{N}_+$. Ví dụ, $\dfrac{2}{3}=\dfrac{1}{2}+\dfrac{1}{6}$, nhưng không cho phép $\dfrac{2}{3}=\dfrac{1}{3}+\dfrac{1}{3}$, vì trong các số hạng không được có hai phân số đơn vị giống nhau.
     
-    对于一个分数 $\dfrac{a}{b}$，表示方法有很多种．规定：同一个分数的不同表示方法中，加数少的比加数多的好；如果加数个数相同，则最小的分数越大越好．例如，$\dfrac{19}{45}=\dfrac{1}{5}+\dfrac{1}{6}+\dfrac{1}{18}$ 是最佳方案．
+    Với một phân số $\dfrac{a}{b}$, có nhiều cách biểu diễn. Quy ước: trong các cách biểu diễn khác nhau của cùng một phân số, cách nào có ít số hạng hơn thì tốt hơn; nếu số hạng bằng nhau, cách nào có phân số nhỏ nhất lớn hơn thì tốt hơn. Chẳng hạn, $\dfrac{19}{45}=\dfrac{1}{5}+\dfrac{1}{6}+\dfrac{1}{18}$ là phương án tối ưu.
     
-    输入整数 $a,b$（$0<a<b<1000$），试编程计算最佳表达式．
+    Cho hai số nguyên $a,b$ ($0<a<b<1000$), hãy lập trình tính biểu thức tối ưu.
 
-??? note "解题思路"
-    这道题目理论上可以用回溯法求解，但是解答树会非常「恐怖」——不仅深度没有明显的上界，而且加数的选择理论上也是无限的．换句话说，如果用宽度优先遍历，连一层都扩展不完，因为每一层都是无限大的．
+??? note "Hướng giải"
+    Về lý thuyết, bài này có thể giải bằng quay lui, nhưng cây nghiệm sẽ rất lớn: độ sâu không có cận trên rõ ràng, và về lý thuyết lựa chọn số hạng cũng là vô hạn. Nói cách khác, nếu duyệt theo chiều rộng thì ngay cả một tầng cũng không mở rộng hết được, vì mỗi tầng đều có kích thước vô hạn.
     
-    解决方案是采用迭代加深搜索：从小到大枚举深度上限 $C$，每次搜索只考虑深度不超过 $C$ 的结点．这样，只要解的深度有限，则一定可以在有限时间内枚举到．
+    Cách giải là dùng tìm kiếm sâu dần: lần lượt liệt kê giới hạn độ sâu $C$ từ nhỏ đến lớn, mỗi lần tìm kiếm chỉ xét các đỉnh có độ sâu không vượt quá $C$. Như vậy, miễn là nghiệm có độ sâu hữu hạn, ta chắc chắn có thể liệt kê được trong thời gian hữu hạn.
     
-    深度上限 $C$ 还可以用来剪枝．按照分母递增的顺序来进行扩展，如果扩展到 $i$ 层时，前 $i$ 个分数之和为 $\dfrac{c}{d}$，而第 $i$ 个分数为 $\dfrac{1}{e}$，则接下来至少还需要
+    Giới hạn độ sâu $C$ còn có thể dùng để cắt tỉa. Mở rộng theo thứ tự mẫu số tăng dần. Nếu khi mở rộng đến tầng $i$, tổng của $i$ phân số đầu là $\dfrac{c}{d}$, và phân số thứ $i$ là $\dfrac{1}{e}$, thì tiếp theo ít nhất cần thêm
     
     $$
     h = \left(\dfrac{a}{b}-\dfrac{c}{d}\right)/\left(\dfrac{1}{e+1}\right)
     $$
     
-    个分数，总和才能达到 $\dfrac{a}{b}$．例如，当前搜索到 $\dfrac{19}{45}=\dfrac{1}{5}+\dfrac{1}{100}+\cdots$，则后面的分数每个最大为 $\dfrac{1}{101}$，至少需要 $\left({\dfrac{19}{45}-\dfrac{1}{5}}\right)/\left({\dfrac{1}{101}}\right)=23$ 项总和才能达到 $\dfrac{19}{45}$，因此前 $22$ 次迭代是根本不会考虑这棵子树的．这里的关键在于：可以估计至少还要多少步才能出解．
+    phân số nữa để tổng có thể đạt tới $\dfrac{a}{b}$. Ví dụ, nếu đang tìm đến $\dfrac{19}{45}=\dfrac{1}{5}+\dfrac{1}{100}+\cdots$, thì mỗi phân số phía sau lớn nhất cũng chỉ là $\dfrac{1}{101}$; do đó cần ít nhất $\left({\dfrac{19}{45}-\dfrac{1}{5}}\right)/\left({\dfrac{1}{101}}\right)=23$ số hạng để tổng đạt tới $\dfrac{19}{45}$. Vì thế, $22$ lần lặp đầu tiên hoàn toàn sẽ không xét cây con này. Điểm then chốt ở đây là: ta có thể ước lượng ít nhất còn cần bao nhiêu bước nữa mới tìm được nghiệm.
     
-    注意，这里使用「至少」一词表示估计是「乐观的」．和 A\* 算法一样，好的估计函数都需要是「乐观的」，也就是说，它不能高估实际成本．将迭代加深搜索中的深度限制 $g\le C$ 替换为更严格的限制 $g + h \le C$，就得到了本页面所讨论的 IDA\* 算法．因为本文中的路径成本就是它的长度，所以，IDA\* 算法同样是对路径长度进行限制，只是加上了对于还需要多少步的估计．更一般的问题中，根据具体要最小化的成本不同，还可以设计出其他的估计函数．
+    Lưu ý, từ "ít nhất" ở đây cho thấy ước lượng này là "lạc quan". Giống như trong thuật toán A\*, một hàm ước lượng tốt cần phải "lạc quan", nghĩa là không được đánh giá cao hơn chi phí thực tế. Thay giới hạn độ sâu $g\le C$ trong tìm kiếm sâu dần bằng giới hạn chặt hơn $g + h \le C$ sẽ thu được thuật toán IDA\* được thảo luận trong trang này. Vì trong bài này chi phí đường đi chính là độ dài của nó, IDA\* cũng giới hạn độ dài đường đi, chỉ khác là cộng thêm ước lượng về số bước còn cần. Trong các bài toán tổng quát hơn, tùy theo loại chi phí cần tối thiểu hóa, ta có thể thiết kế các hàm ước lượng khác.
     
-    在实现中，对 IDA\* 算法进一步剪枝优化：
+    Trong cài đặt, ta tiếp tục tối ưu IDA\* bằng các cắt tỉa sau:
     
-    1.  扩展结点时，下一个要考虑的分母至少是 $\left(\dfrac{a}{b}-\dfrac{c}{d}\right)^{-1}$，可以以此改进枚举 $e$ 的起点．
-    2.  IDA\* 的路径成本限制可以变形为
+    1.  Khi mở rộng đỉnh, mẫu số tiếp theo cần xét ít nhất là $\left(\dfrac{a}{b}-\dfrac{c}{d}\right)^{-1}$; có thể dùng giá trị này để cải thiện điểm bắt đầu khi liệt kê $e$.
+    2.  Giới hạn chi phí đường đi của IDA\* có thể biến đổi thành
     
         $$
         e \le \left(\dfrac{a}{b}-\dfrac{c}{d}\right)^{-1}(C-g) - 1.
         $$
     
-        所以，不必枚举所有的后续分母再逐个判断，只需要枚举到这个上界即可．
-    3.  在搜索到最后两个分数时，直接利用二次方程计算是否可行，而非继续搜索．具体地，要找到 $e<x<y\le E_\text{max}$ 使得
+        Vì vậy, không cần liệt kê tất cả mẫu số tiếp theo rồi kiểm tra từng cái; chỉ cần liệt kê đến cận trên này.
+    3.  Khi tìm đến hai phân số cuối cùng, dùng trực tiếp phương trình bậc hai để kiểm tra tính khả thi thay vì tiếp tục tìm kiếm. Cụ thể, cần tìm $e<x<y\le E_\text{max}$ sao cho
     
         $$
         \dfrac{1}{x} + \dfrac{1}{y} = \dfrac{p}{q} := \dfrac{a}{b}-\dfrac{c}{d},
         $$
     
-        只需要求解二元二次方程组
+        chỉ cần giải hệ phương trình bậc hai hai ẩn
     
         $$
         \begin{cases}
@@ -122,28 +126,29 @@ $$
         \end{cases}
         $$
     
-        即可，其中，$k\in\mathbf N_+$．由二次方程的知识可知，方程组在
+        trong đó $k\in\mathbf N_+$. Theo kiến thức về phương trình bậc hai, hệ phương trình chỉ có hai nghiệm thực phân biệt khi
     
         $$
         \Delta = k^2p^2-4kq > 0 \iff k > \dfrac{4q}{p^2}
         $$
     
-        时，才有两个不同的实根
+        và khi đó
     
         $$
         x = \dfrac{kp - \sqrt{\Delta}}{2},~ y = \dfrac{kp + \sqrt{\Delta}}{2}.
         $$
     
-        因此，可以直接枚举所有可行的 $k$，判断是否存在这样一组整数解．枚举 $k$ 时，上界通过 $y < E_\text{max}$ 判断．
-    4.  每次得到一组答案时，都将分母的上界 $M_e$ 调整到当前答案中的最大分母减一．
+        Do đó, có thể trực tiếp liệt kê mọi $k$ khả thi và kiểm tra xem có tồn tại một cặp nghiệm nguyên như vậy hay không. Cận trên khi liệt kê $k$ được xác định bằng điều kiện $y < E_\text{max}$.
+    4.  Mỗi khi tìm được một đáp án, điều chỉnh cận trên mẫu số $M_e$ thành mẫu số lớn nhất trong đáp án hiện tại trừ đi một.
     
-    另外，实现中，直接记录了 $\dfrac{a}{b}-\dfrac{c}{d}$ 和 $C-g$ 的取值，前者的分子和分母分别存储在变量 `a` 和 `b` 中，后者则存储为变量 `d`．
+    Ngoài ra, trong cài đặt, ta trực tiếp lưu giá trị của $\dfrac{a}{b}-\dfrac{c}{d}$ và $C-g$. Tử số và mẫu số của giá trị thứ nhất lần lượt được lưu trong hai biến `a` và `b`, còn giá trị thứ hai được lưu trong biến `d`.
 
-??? note "示例代码"
+??? note "Mã mẫu"
     ```cpp
     --8<-- "docs/search/code/idastar/idastar_1.cpp"
     ```
 
-## 习题
+<span id="&#x4e60;&#x9898;"></span>
+## Bài tập
 
--   [UVa1343 旋转游戏](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4089)
+-   [UVa1343 Trò chơi xoay](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4089)

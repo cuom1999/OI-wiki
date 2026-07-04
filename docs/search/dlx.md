@@ -1,20 +1,23 @@
 author: LeverImmy, 383494
 
-本页面将介绍精确覆盖问题、重复覆盖问题，解决这两个问题的算法「X 算法」，以及用来优化 X 算法的双向十字链表 Dancing Link．本页也将介绍如何在建模的配合下使用 DLX 解决一些搜索题．
+Trang này giới thiệu bài toán phủ chính xác, bài toán phủ lặp, thuật toán X dùng để giải hai bài toán đó, và danh sách liên kết chữ thập hai chiều Dancing Links dùng để tối ưu thuật toán X. Trang cũng trình bày cách phối hợp DLX với bước mô hình hóa để giải một số bài tìm kiếm.
 
-## 精确覆盖问题
+<span id="&#x7CBE;&#x786E;&#x8986;&#x76D6;&#x95EE;&#x9898;"></span>
+## Bài toán phủ chính xác
 
-### 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+### Định nghĩa
 
-精确覆盖问题（英文：Exact Cover Problem）是指给定许多集合 $S_i (1 \le i \le n)$ 以及一个集合 $X$，求满足以下条件的无序多元组 $(T_1, T_2, \cdots , T_m)$：
+Bài toán phủ chính xác (tiếng Anh: Exact Cover Problem) là bài toán: cho nhiều tập hợp $S_i (1 \le i \le n)$ và một tập hợp $X$, hãy tìm một bộ nhiều phần tử không xét thứ tự $(T_1, T_2, \cdots , T_m)$ thỏa mãn các điều kiện sau:
 
 1.  $\forall i, j \in [1, m],T_i\bigcap T_j = \varnothing (i \neq j)$
 2.  $X = \bigcup\limits_{i = 1}^{m}T_i$
 3.  $\forall i \in[1, m], T_i \in \{S_1, S_2, \cdots, S_n\}$
 
-### 解释
+<span id="&#x89E3;&#x91CA;"></span>
+### Giải thích
 
-例如，若给出
+Ví dụ, nếu cho
 
 $$
 \begin{aligned}
@@ -28,14 +31,15 @@ $$
 \end{aligned}
 $$
 
-则 $(S_1, S_4, S_5)$ 为一组合法解．
+thì $(S_1, S_4, S_5)$ là một nghiệm hợp lệ.
 
-### 问题转化
+<span id="&#x95EE;&#x9898;&#x8F6C;&#x5316;"></span>
+### Chuyển đổi bài toán
 
-将 $\bigcup\limits_{i = 1}^{n}S_i$ 中的所有数离散化，可以得到这么一个模型：
+Rời rạc hóa tất cả các số trong $\bigcup\limits_{i = 1}^{n}S_i$, ta thu được mô hình sau:
 
-> 给定一个 01 矩阵，你可以选择一些行（row），使得最终每列（column）[^note1]都恰好有一个 1．
-> 举个例子，我们对上文中的例子进行建模，可以得到这么一个矩阵：
+> Cho một ma trận 01. Ta có thể chọn một số hàng (row), sao cho cuối cùng mỗi cột (column)[^note1] đều có đúng một ô bằng 1.
+> Chẳng hạn, mô hình hóa ví dụ phía trên sẽ cho ma trận sau:
 
 $$
 \begin{pmatrix}
@@ -48,22 +52,24 @@ $$
 \end{pmatrix}
 $$
 
-> 其中第 $i$ 行表示着 $S_i$，而这一行的每个数依次表示 $[1 \in S_i],[3 \in S_i],[5 \in S_i],\cdots,[119 \in S_i]$．
+> Trong đó, hàng thứ $i$ biểu diễn $S_i$, còn từng số trên hàng này lần lượt biểu diễn $[1 \in S_i],[3 \in S_i],[5 \in S_i],\cdots,[119 \in S_i]$.
 
-### 实现
+<span id="&#x5B9E;&#x73B0;"></span>
+### Cài đặt
 
-#### 暴力 1
+<span id="&#x66B4;&#x529B;-1"></span>
+#### Vét cạn 1
 
-一种方法是枚举选择哪些行，最后检查这个方案是否合法．
+Một cách làm là liệt kê những hàng được chọn, rồi kiểm tra phương án đó có hợp lệ hay không.
 
-因为每一行都有选或者不选两种状态，所以枚举行的时间复杂度是 $O(2^n)$ 的；
+Vì mỗi hàng có hai trạng thái chọn hoặc không chọn, độ phức tạp thời gian để liệt kê các hàng là $O(2^n)$;
 
-而每次检查都需要 $O(nm)$ 的时间复杂度．所以总的复杂度是 $O(nm\cdot2^n)$．
+mỗi lần kiểm tra cần $O(nm)$ thời gian. Vì vậy độ phức tạp tổng cộng là $O(nm\cdot2^n)$.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     int ok = 0;
-    for (int state = 0; state < 1 << n; ++state) {  // 枚举每行是否被选
+    for (int state = 0; state < 1 << n; ++state) {  // Liệt kê xem từng hàng có được chọn không
       for (int i = 1; i <= n; ++i)
         if ((1 << i - 1) & state)
           for (int j = 1; j <= m; ++j) a[i][j] = 1;
@@ -89,19 +95,20 @@ $$
     if (!ok) puts("No solution.");
     ```
 
-#### 暴力 2
+<span id="&#x66B4;&#x529B;-2"></span>
+#### Vét cạn 2
 
-考虑到 01 矩阵的特殊性质，每一行都可以看做一个 $m$ 位二进制数．
+Xét tính chất đặc biệt của ma trận 01, mỗi hàng có thể được xem như một số nhị phân $m$ bit.
 
-因此原问题转化为
+Do đó, bài toán ban đầu được chuyển thành:
 
-> 给定 $n$ 个 $m$ 位二进制数，要求选择一些数，使得任意两个数的与都为 0，且所有数的或为 $2^m - 1$．`tmp` 表示的是截至目前被选中的二进制数的或．
+> Cho $n$ số nhị phân $m$ bit. Cần chọn một vài số sao cho phép AND của hai số bất kỳ đều bằng 0, và phép OR của tất cả các số được chọn bằng $2^m - 1$. `tmp` biểu diễn giá trị OR của các số nhị phân đã được chọn cho tới thời điểm hiện tại.
 
-因为每一行都有选或者不选两种状态，所以枚举行的时间复杂度为 $O(2^n)$；
+Vì mỗi hàng có hai trạng thái chọn hoặc không chọn, độ phức tạp thời gian để liệt kê các hàng là $O(2^n)$;
 
-而每次计算 `tmp` 都需要 $O(n)$ 的时间复杂度．所以总的复杂度为 $O(n\cdot2^n)$．
+mỗi lần tính `tmp` cần $O(n)$ thời gian. Vì vậy độ phức tạp tổng cộng là $O(n\cdot2^n)$.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     int ok = 0;
     for (int i = 1; i <= n; ++i)
@@ -127,17 +134,22 @@ $$
     if (!ok) puts("No solution.");
     ```
 
-## 重复覆盖问题
+<span id="&#x91CD;&#x590D;&#x8986;&#x76D6;&#x95EE;&#x9898;"></span>
+## Bài toán phủ lặp
 
-重复覆盖问题与精确覆盖问题类似，但没有对元素相似性的限制．下文介绍的 [X 算法](#x-算法) 原本针对精确覆盖问题，但经过一些修改和优化（已标注在其中）同样可以高效地解决重复覆盖问题．
+Bài toán phủ lặp tương tự bài toán phủ chính xác, nhưng không hạn chế việc một phần tử được phủ nhiều lần. [Thuật toán X](#thuat-toan-x) được trình bày bên dưới vốn dành cho bài toán phủ chính xác, nhưng sau một vài chỉnh sửa và tối ưu (đã được ghi chú trong phần tương ứng), nó cũng có thể giải hiệu quả bài toán phủ lặp.
 
-## X 算法
+<span id="x-&#x7B97;&#x6CD5;"></span>
+<span id="thuat-toan-x"></span>
+## Thuật toán X
 
-Donald E. Knuth 提出了 X 算法 (Algorithm X)，其思想与刚才的暴力差不多，但是方便优化．
+Donald E. Knuth đề xuất thuật toán X (Algorithm X). Ý tưởng của nó khá giống cách vét cạn phía trên, nhưng thuận tiện hơn cho việc tối ưu.
 
-### 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trinh"></span>
+### Quy trình
 
-继续以上文中中提到的例子为载体，得到一个这样的 01 矩阵：
+Tiếp tục dùng ví dụ ở trên, ta có ma trận 01 sau:
 
 $$
 \begin{pmatrix}
@@ -150,7 +162,7 @@ $$
 \end{pmatrix}
 $$
 
-1.  此时第一行有 $3$ 个 $1$，第二行有 $3$ 个 $1$，第三行有 $3$ 个 $1$，第四行有 $2$ 个 $1$，第五行有 $2$ 个 $1$，第六行有 $3$ 个 $1$．选择第一行，将它删除，并将所有 $1$ 所在的列打上标记；
+1.  Lúc này hàng thứ nhất có $3$ số $1$, hàng thứ hai có $3$ số $1$, hàng thứ ba có $3$ số $1$, hàng thứ tư có $2$ số $1$, hàng thứ năm có $2$ số $1$, hàng thứ sáu có $3$ số $1$. Chọn hàng thứ nhất, xóa nó, rồi đánh dấu tất cả các cột chứa số $1$ trên hàng đó;
 
     $$
     \begin{pmatrix}
@@ -163,7 +175,7 @@ $$
       \end{pmatrix}
     $$
 
-2.  选择所有被标记的列，将它们删除，并将这些列中含 $1$ 的行打上标记（重复覆盖问题无需打标记）；
+2.  Chọn tất cả các cột đã được đánh dấu, xóa chúng, rồi đánh dấu các hàng có số $1$ trong những cột đó (với bài toán phủ lặp thì không cần đánh dấu);
 
     $$
     \begin{pmatrix}
@@ -176,7 +188,7 @@ $$
     \end{pmatrix}
     $$
 
-3.  选择所有被标记的行，将它们删除；
+3.  Chọn tất cả các hàng đã được đánh dấu và xóa chúng;
 
     $$
     \begin{pmatrix}
@@ -189,9 +201,9 @@ $$
     \end{pmatrix}
     $$
 
-    **这表示这一行已被选择，且这一行的所有 $1$ 所在的列不能有其他 $1$ 了**．
+    **Điều này biểu thị rằng hàng này đã được chọn, và tất cả các cột chứa số $1$ trên hàng đó không được phép có số $1$ nào khác**.
 
-    于是得到一个新的小 01 矩阵：
+    Khi đó ta thu được một ma trận 01 nhỏ hơn:
 
     $$
     \begin{pmatrix}
@@ -201,7 +213,7 @@ $$
     \end{pmatrix}
     $$
 
-4.  此时第一行（原来的第二行）有 $3$ 个 $1$，第二行（原来的第四行）有 $2$ 个 $1$，第三行（原来的第五行）有 $2$ 个 $1$．选择第一行（原来的第二行），将它删除，并将所有 $1$ 所在的列打上标记；
+4.  Lúc này hàng thứ nhất (hàng thứ hai ban đầu) có $3$ số $1$, hàng thứ hai (hàng thứ tư ban đầu) có $2$ số $1$, hàng thứ ba (hàng thứ năm ban đầu) có $2$ số $1$. Chọn hàng thứ nhất (hàng thứ hai ban đầu), xóa nó, rồi đánh dấu tất cả các cột chứa số $1$ trên hàng đó;
 
     $$
     \begin{pmatrix}
@@ -211,7 +223,7 @@ $$
     \end{pmatrix}
     $$
 
-5.  选择所有被标记的列，将它们删除，并将这些列中含 $1$ 的行打上标记；
+5.  Chọn tất cả các cột đã được đánh dấu, xóa chúng, rồi đánh dấu các hàng có số $1$ trong những cột đó;
 
     $$
     \begin{pmatrix}
@@ -221,7 +233,7 @@ $$
     \end{pmatrix}
     $$
 
-6.  选择所有被标记的行，将它们删除；
+6.  Chọn tất cả các hàng đã được đánh dấu và xóa chúng;
 
     $$
     \begin{pmatrix}
@@ -231,14 +243,14 @@ $$
     \end{pmatrix}
     $$
 
-    这样就得到了一个空矩阵．但是上次删除的行 `1 0 1 1` 不是全 $1$ 的，说明选择有误；
+    Như vậy ta thu được một ma trận rỗng. Tuy nhiên, hàng vừa bị xóa ở lần trước là `1 0 1 1`, không phải hàng toàn $1$, nên lựa chọn này sai;
 
     $$
     \begin{pmatrix}
     \end{pmatrix}
     $$
 
-7.  回溯到步骤 4，考虑选择第二行（原来的第四行），将它删除，并将所有 $1$ 所在的列打上标记；
+7.  Quay lui về bước 4, xét việc chọn hàng thứ hai (hàng thứ tư ban đầu), xóa nó, rồi đánh dấu tất cả các cột chứa số $1$ trên hàng đó;
 
     $$
     \begin{pmatrix}
@@ -248,7 +260,7 @@ $$
     \end{pmatrix}
     $$
 
-8.  选择所有被标记的列，将它们删除，并将这些列中含 $1$ 的行打上标记；
+8.  Chọn tất cả các cột đã được đánh dấu, xóa chúng, rồi đánh dấu các hàng có số $1$ trong những cột đó;
 
     $$
     \begin{pmatrix}
@@ -258,7 +270,7 @@ $$
     \end{pmatrix}
     $$
 
-9.  选择所有被标记的行，将它们删除；
+9.  Chọn tất cả các hàng đã được đánh dấu và xóa chúng;
 
     $$
     \begin{pmatrix}
@@ -268,7 +280,7 @@ $$
       \end{pmatrix}
     $$
 
-    于是我们得到了这样的一个矩阵：
+    Khi đó ta thu được ma trận sau:
 
     $$
     \begin{pmatrix}
@@ -276,64 +288,66 @@ $$
     \end{pmatrix}
     $$
 
-10. 此时第一行（原来的第五行）有 $2$ 个 $1$，将它们全部删除，得到一个空矩阵：
+10. Lúc này hàng thứ nhất (hàng thứ năm ban đầu) có $2$ số $1$. Xóa toàn bộ chúng để thu được một ma trận rỗng:
 
     $$
     \begin{pmatrix}
     \end{pmatrix}
     $$
 
-11. 上一次删除的时候，删除的是全 $1$ 的行，因此成功，算法结束．
+11. Ở lần xóa trước đó, hàng bị xóa là hàng toàn $1$, nên thuật toán thành công và kết thúc.
 
-    答案即为被删除的三行：$1, 4, 5$．
+    Đáp án chính là ba hàng đã bị xóa: $1, 4, 5$.
 
-强烈建议自己模拟一遍矩阵删除、还原与回溯的过程后，再接着阅读下文．
+Rất nên tự mô phỏng một lần quá trình xóa ma trận, khôi phục và quay lui trước khi đọc tiếp phần dưới.
 
-通过上述步骤，可将 X 算法的流程概括如下：
+Từ các bước trên, có thể tóm tắt quy trình của thuật toán X như sau:
 
-1.  对于现在的矩阵 $M$，选择并标记一行 $r$，将 $r$ 添加至 $S$ 中；
-2.  如果尝试了所有的 $r$ 却无解，则算法结束，输出无解；
-3.  标记与 $r$ 相关的行 $r_i$ 和 $c_i$（相关的行和列与 [X 算法](#过程) 中第 2 步定义相同，下同）；
-4.  删除所有标记的行和列，得到新矩阵 $M'$；
-5.  如果 $M'$ 为空，且 $r$ 为全 $1$，则算法结束，输出被删除的行组成的集合 $S$；
+1.  Với ma trận hiện tại $M$, chọn và đánh dấu một hàng $r$, rồi thêm $r$ vào $S$;
+2.  Nếu đã thử tất cả các $r$ mà vẫn không có nghiệm, thuật toán kết thúc và xuất ra không có nghiệm;
+3.  Đánh dấu các hàng $r_i$ và các cột $c_i$ liên quan đến $r$ (hàng và cột liên quan được định nghĩa giống bước 2 trong phần [thuật toán X](#quy-trinh); bên dưới cũng dùng cùng nghĩa này);
+4.  Xóa tất cả các hàng và cột đã đánh dấu, thu được ma trận mới $M'$;
+5.  Nếu $M'$ rỗng và $r$ là hàng toàn $1$, thuật toán kết thúc, xuất ra tập $S$ gồm các hàng đã bị xóa;
 
-    如果 $M'$ 为空，且 $r$ 不全为 $1$，则恢复与 $r$ 相关的行 $r_i$ 以及列 $c_i$，跳转至步骤 1；
+    Nếu $M'$ rỗng nhưng $r$ không phải hàng toàn $1$, khôi phục các hàng $r_i$ và các cột $c_i$ liên quan đến $r$, rồi nhảy về bước 1;
 
-    如果 $M'$ 不为空，则跳转至步骤 1．
+    Nếu $M'$ không rỗng, nhảy về bước 1.
 
-不难看出，X 算法需要大量的「删除行」、「删除列」和「恢复行」、「恢复列」的操作．
+Dễ thấy thuật toán X cần rất nhiều thao tác "xóa hàng", "xóa cột", "khôi phục hàng" và "khôi phục cột".
 
-一个朴素的想法是，使用一个二维数组存放矩阵，再用四个数组分别存放每一行与之相邻的行编号，每次删除和恢复仅需更新四个数组中的元素．但由于一般问题的矩阵中 0 的数量远多于 1 的数量，这样做的空间复杂度难以接受．
+Một ý tưởng đơn giản là dùng mảng hai chiều để lưu ma trận, rồi dùng bốn mảng để lưu chỉ số các hàng lân cận của mỗi hàng; khi xóa và khôi phục chỉ cần cập nhật các phần tử trong bốn mảng đó. Tuy nhiên, trong ma trận của các bài toán thông thường, số lượng ô 0 thường nhiều hơn rất nhiều so với số lượng ô 1, nên độ phức tạp bộ nhớ của cách làm này khó chấp nhận.
 
-Donald E. Knuth 想到了用双向十字链表来维护这些操作．
+Donald E. Knuth nghĩ đến việc dùng danh sách liên kết chữ thập hai chiều để duy trì các thao tác này.
 
-而在双向十字链表上不断跳跃的过程被形象地比喻成「跳跃」，因此被用来优化 X 算法的双向十字链表也被称为「Dancing Links」．
+Quá trình liên tục nhảy qua lại trên danh sách liên kết chữ thập hai chiều được ví như một điệu nhảy, vì vậy cấu trúc danh sách liên kết chữ thập hai chiều dùng để tối ưu thuật toán X còn được gọi là "Dancing Links".
 
-## Dancing Links 优化的 X 算法
+<span id="dancing-links-&#x4F18;&#x5316;&#x7684;-x-&#x7B97;&#x6CD5;"></span>
+## Thuật toán X tối ưu bằng Dancing Links
 
-### 预编译命令
+<span id="&#x9884;&#x7F16;&#x8BD1;&#x547D;&#x4EE4;"></span>
+### Lệnh tiền xử lý
 
 ```cpp
 #define IT(i, A, x) for (i = A[x]; i != x; i = A[i])
 ```
 
-### 定义
+### Định nghĩa
 
-双向十字链表中存在四个指针域，分别指向上、下、左、右的元素；且每个元素 $i$ 在整个双向十字链表系中都对应着一个格子，因此还要表示 $i$ 所在的列和所在的行，如图所示：
+Trong danh sách liên kết chữ thập hai chiều có bốn miền con trỏ, lần lượt trỏ tới phần tử phía trên, phía dưới, bên trái và bên phải. Mỗi phần tử $i$ trong toàn bộ hệ danh sách liên kết chữ thập hai chiều đều tương ứng với một ô, nên còn cần biểu diễn cột và hàng chứa $i$, như hình sau:
 
 ![dlx-1.svg](./images/dlx-1.svg)
 
-大型的双向链表则更为复杂：
+Một danh sách liên kết hai chiều cỡ lớn sẽ phức tạp hơn:
 
 ![dlx-2.svg](./images/dlx-2.svg)
 
-每一行都有一个行首指示，每一列都有一个列指示．
+Mỗi hàng có một chỉ thị đầu hàng, mỗi cột có một chỉ thị cột.
 
-行首指示为 `first[]`，列指示是我们新建的 $c + 1$ 个哨兵结点．值得注意的是，**行首指示并非是链表中的哨兵结点**．它是虚拟的，类似于邻接表中的 `first[]` 数组，**直接指向** 这一行中的首元素．
+Chỉ thị đầu hàng là `first[]`; chỉ thị cột là $c + 1$ nút lính canh do ta tạo mới. Cần chú ý rằng **chỉ thị đầu hàng không phải là nút lính canh trong danh sách liên kết**. Nó là phần tử ảo, tương tự mảng `first[]` trong danh sách kề, và **trỏ trực tiếp** tới phần tử đầu tiên của hàng đó.
 
-同时，每一列都有一个 `siz[]` 表示这一列的元素个数．
+Đồng thời, mỗi cột có một `siz[]` biểu diễn số phần tử trong cột đó.
 
-特殊地，$0$ 号结点无右结点等价于这个 Dancing Links 为空．
+Đặc biệt, nút số $0$ không có nút bên phải tương đương với việc Dancing Links này rỗng.
 
 ```cpp
 constexpr int MS = 1e5 + 5;
@@ -342,60 +356,62 @@ int L[MS], R[MS], U[MS], D[MS];
 int col[MS], row[MS];
 ```
 
-### 过程
+### Quy trình
 
-#### remove 操作
+<span id="remove-&#x64CD;&#x4F5C;"></span>
+#### Thao tác remove
 
-`remove(c)` 表示在 Dancing Links 中删除第 $c$ 列以及与其相关的行和列．
+`remove(c)` biểu diễn việc xóa cột thứ $c$ và các hàng, cột liên quan đến nó trong Dancing Links.
 
-先将 $c$ 删除，此时：
+Trước hết xóa $c$. Khi đó:
 
--   $c$ 左侧的结点的右结点应为 $c$ 的右结点．
--   $c$ 右侧的结点的左结点应为 $c$ 的左结点．
+-   Nút bên trái của $c$ phải có nút bên phải là nút bên phải của $c$.
+-   Nút bên phải của $c$ phải có nút bên trái là nút bên trái của $c$.
 
-即 `L[R[c]] = L[c], R[L[c]] = R[c];`．
+Tức là `L[R[c]] = L[c], R[L[c]] = R[c];`.
 
 ![dlx-3.svg](./images/dlx-3.svg)
 
-然后顺着这一列往下走，把走过的每一行都删掉．
+Sau đó đi xuống dọc theo cột này, xóa từng hàng đi qua.
 
-如何删掉每一行呢？枚举当前行的指针 $j$，此时：
+Xóa từng hàng như thế nào? Ta liệt kê con trỏ $j$ trên hàng hiện tại. Khi đó:
 
--   $j$ 上方的结点的下结点应为 $j$ 的下结点．
--   $j$ 下方的结点的上结点应为 $j$ 的上结点．
+-   Nút phía trên của $j$ phải có nút phía dưới là nút phía dưới của $j$.
+-   Nút phía dưới của $j$ phải có nút phía trên là nút phía trên của $j$.
 
-注意要修改每一列的元素个数．
+Chú ý phải cập nhật số phần tử của từng cột.
 
-即 `U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];`．
+Tức là `U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];`.
 
 ![dlx-4.svg](./images/dlx-4.svg)
 
-`remove` 函数的代码实现如下：
+Mã cài đặt hàm `remove` như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void remove(const int &c) {
       int i, j;
       L[R[c]] = L[c], R[L[c]] = R[c];
-      // 顺着这一列从上往下遍历
+      // Duyệt từ trên xuống dưới theo cột này
       IT(i, D, c)
-      // 顺着这一行从左往右遍历
+      // Duyệt từ trái sang phải theo hàng này
       IT(j, R, i)
       U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
     }
     ```
 
-#### recover 操作
+<span id="recover-&#x64CD;&#x4F5C;"></span>
+#### Thao tác recover
 
-`recover(c)` 表示在 Dancing Links 中还原第 $c$ 列以及与其相关的行和列．
+`recover(c)` biểu diễn việc khôi phục cột thứ $c$ và các hàng, cột liên quan đến nó trong Dancing Links.
 
-`recover(c)` 即 `remove(c)` 的逆操作，这里不再赘述．
+`recover(c)` chính là thao tác ngược của `remove(c)`, nên ở đây không nhắc lại chi tiết.
 
-**值得注意的是，** `recover(c)` **的所有操作的顺序与**  `remove(c)` **的操作恰好相反．**
+**Cần chú ý rằng** mọi thao tác trong `recover(c)` **có thứ tự đúng ngược lại với** các thao tác trong `remove(c)`.
 
-`recover(c)` 的代码实现如下：
+Mã cài đặt `recover(c)` như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void recover(const int &c) {
       int i, j;
@@ -404,23 +420,24 @@ int col[MS], row[MS];
     }
     ```
 
-#### build 操作
+<span id="build-&#x64CD;&#x4F5C;"></span>
+#### Thao tác build
 
-`build(r, c)` 表示新建一个大小为 $r \times c$，即有 $r$ 行，$c$ 列的 Dancing Links．
+`build(r, c)` biểu diễn việc tạo mới một Dancing Links kích thước $r \times c$, tức có $r$ hàng và $c$ cột.
 
-新建 $c + 1$ 个结点作为列指示．
+Tạo mới $c + 1$ nút làm chỉ thị cột.
 
-第 $i$ 个点的左结点为 $i - 1$，右结点为 $i + 1$，上结点为 $i$，下结点为 $i$．特殊地，$0$ 结点的左结点为 $c$，$c$ 结点的右结点为 $0$．
+Nút thứ $i$ có nút bên trái là $i - 1$, nút bên phải là $i + 1$, nút phía trên là $i$, nút phía dưới là $i$. Đặc biệt, nút $0$ có nút bên trái là $c$, còn nút $c$ có nút bên phải là $0$.
 
-于是我们得到了一个环状双向链表：
+Như vậy ta thu được một danh sách liên kết hai chiều dạng vòng:
 
 ![dlx-5.svg](./images/dlx-5.svg)
 
-这样就初始化了一个 Dancing Links．
+Vậy là đã khởi tạo xong một Dancing Links.
 
-`build(r, c)` 的代码实现如下：
+Mã cài đặt `build(r, c)` như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void build(const int &r, const int &c) {
       n = r, m = c;
@@ -434,59 +451,60 @@ int col[MS], row[MS];
     }
     ```
 
-#### insert 操作
+<span id="insert-&#x64CD;&#x4F5C;"></span>
+#### Thao tác insert
 
-`insert(r, c)` 表示在第 $r$ 行，第 $c$ 列插入一个结点．
+`insert(r, c)` biểu diễn việc chèn một nút vào hàng thứ $r$, cột thứ $c$.
 
-插入操作分为两种情况：
+Thao tác chèn được chia thành hai trường hợp:
 
--   如果第 $r$ 行没有元素，那么直接插入一个元素，并使 `first[r]` 指向这个元素．
+-   Nếu hàng thứ $r$ chưa có phần tử nào, trực tiếp chèn một phần tử và cho `first[r]` trỏ tới phần tử đó.
 
-    这可以通过 `first[r] = L[idx] = R[idx] = idx;` 来实现．
+    Điều này có thể được thực hiện bằng `first[r] = L[idx] = R[idx] = idx;`.
 
--   如果第 $r$ 行有元素，那么将这个新元素用一种特殊的方式与 $c$ 和 $first(r)$ 连接起来．
+-   Nếu hàng thứ $r$ đã có phần tử, nối phần tử mới này với $c$ và `first(r)` theo một cách đặc biệt.
 
-    设这个新元素为 $idx$，然后：
+    Giả sử phần tử mới này là $idx$, sau đó:
 
-    -   把 $idx$ 插入到 $c$ 的正下方，此时：
+    -   Chèn $idx$ ngay bên dưới $c$. Khi đó:
 
-        -   $idx$ 下方的结点为原来 $c$ 的下结点；
-        -   $idx$ 下方的结点（即原来 $c$ 的下结点）的上结点为 $idx$;
-        -   $idx$ 的上结点为 $c$；
-        -   $c$ 的下结点为 $idx$．
+        -   Nút phía dưới của $idx$ là nút phía dưới ban đầu của $c$;
+        -   Nút phía trên của nút phía dưới $idx$ (tức nút phía dưới ban đầu của $c$) là $idx$;
+        -   Nút phía trên của $idx$ là $c$;
+        -   Nút phía dưới của $c$ là $idx$.
 
-        注意记录 $idx$ 的所在列和所在行，以及更新这一列的元素个数．
+        Chú ý ghi lại cột và hàng chứa $idx$, đồng thời cập nhật số phần tử của cột này.
 
         ```cpp
         col[++idx] = c, row[idx] = r, ++siz[c];
         U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
         ```
 
-        **强烈建议读者完全掌握这几步的顺序后再继续阅读本文．**
+        Rất nên nắm chắc hoàn toàn thứ tự của các bước này trước khi đọc tiếp.
 
-    -   把 $idx$ 插入到 $first(r)$ 的正右方，此时：
+    -   Chèn $idx$ ngay bên phải `first(r)`. Khi đó:
 
-        -   $idx$ 右侧的结点为原来 $first(r)$ 的右结点；
-        -   原来 $first(r)$ 右侧的结点的左结点为 $idx$；
-        -   $idx$ 的左结点为 $first(r)$；
-        -   $first(r)$ 的右结点为 $idx$．
+        -   Nút bên phải của $idx$ là nút bên phải ban đầu của `first(r)`;
+        -   Nút bên trái của nút bên phải ban đầu của `first(r)` là $idx$;
+        -   Nút bên trái của $idx$ là `first(r)`;
+        -   Nút bên phải của `first(r)` là $idx$.
 
         ```cpp
         L[idx] = first[r], R[idx] = R[first[r]];
         L[R[first[r]]] = idx, R[first[r]] = idx;
         ```
 
-        **强烈建议读者完全掌握这几步的顺序后再继续阅读本文．**
+        Rất nên nắm chắc hoàn toàn thứ tự của các bước này trước khi đọc tiếp.
 
-`insert(r, c)` 这个操作可以通过图片来辅助理解：
+Có thể dùng hình sau để hỗ trợ hiểu thao tác `insert(r, c)`:
 
 ![dlx-6.svg](./images/dlx-6.svg)
 
-留心曲线箭头的方向．
+Hãy chú ý hướng của các mũi tên cong.
 
-`insert(r, c)` 的代码实现如下：
+Mã cài đặt `insert(r, c)` như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void insert(const int &r, const int &c) {
       row[++idx] = r, col[idx] = c, ++siz[c];
@@ -500,19 +518,20 @@ int col[MS], row[MS];
     }
     ```
 
-#### dance 操作
+<span id="dance-&#x64CD;&#x4F5C;"></span>
+#### Thao tác dance
 
-`dance()` 即为递归地删除以及还原各个行列的过程．
+`dance()` chính là quá trình đệ quy xóa và khôi phục các hàng, cột.
 
-1.  如果 $0$ 号结点没有右结点，那么矩阵为空，记录答案并返回；
-2.  选择列元素个数最少的一列，并删掉这一列；
-3.  遍历这一列所有有 $1$ 的行，枚举它是否被选择；
-4.  递归调用 `dance()`，如果可行，则返回；如果不可行，则恢复被选择的行；
-5.  如果无解，则返回．
+1.  Nếu nút số $0$ không có nút bên phải, ma trận rỗng; ghi nhận đáp án rồi trả về;
+2.  Chọn cột có số phần tử ít nhất, rồi xóa cột đó;
+3.  Duyệt tất cả các hàng có số $1$ trong cột này, liệt kê xem hàng đó có được chọn hay không;
+4.  Gọi đệ quy `dance()`; nếu khả thi thì trả về, nếu không khả thi thì khôi phục hàng đã chọn;
+5.  Nếu vô nghiệm thì trả về.
 
-`dance()` 的代码实现如下：
+Mã cài đặt `dance()` như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     bool dance(int dep) {
       int i, j, c = R[0];
@@ -533,132 +552,141 @@ int col[MS], row[MS];
     }
     ```
 
-其中 `stk[]` 用来记录答案．
+Trong đó `stk[]` dùng để ghi đáp án.
 
-注意我们每次优先选择列元素个数最少的一列进行删除，这样能保证程序具有一定的启发性，使搜索树分支最少．
+Chú ý rằng mỗi lần ta ưu tiên chọn cột có số phần tử ít nhất để xóa. Như vậy chương trình có một mức độ heuristic nhất định, làm số nhánh của cây tìm kiếm nhỏ nhất.
 
-对于重复覆盖问题，在搜索时可以用估价函数（与 [A\*](astar.md) 中类似）进行剪枝：若当前最好情况下所选行数超过目前最优解，则可以直接返回．
+Với bài toán phủ lặp, khi tìm kiếm có thể dùng hàm đánh giá (tương tự trong [A\*](astar.md)) để cắt tỉa: nếu trong trường hợp tốt nhất hiện tại, số hàng đã chọn vẫn vượt quá nghiệm tối ưu hiện có, ta có thể trả về ngay.
 
-## 模板
+<span id="&#x6A21;&#x677F;"></span>
+## Mẫu
 
-??? note "[模板代码](https://www.luogu.com.cn/problem/P4929)"
+??? note "[Mã mẫu](https://www.luogu.com.cn/problem/P4929)"
     ```cpp
     --8<-- "docs/search/code/dlx/dlx_1.cpp"
     ```
 
-## 性质
+<span id="&#x6027;&#x8D28;"></span>
+## Tính chất
 
-DLX 递归及回溯的次数与矩阵中 $1$ 的个数有关，与矩阵的 $r, c$ 等参数无关．因此，它的时间复杂度是 **指数级** 的，理论复杂度大概在 $O(c^n)$ 左右，其中 $c$ 为某个非常接近于 $1$ 的常数，$n$ 为矩阵中 $1$ 的个数．
+Số lần đệ quy và quay lui của DLX liên quan đến số lượng ô $1$ trong ma trận, không liên quan đến các tham số như $r, c$ của ma trận. Vì vậy, độ phức tạp thời gian của nó là **cấp số mũ**; độ phức tạp lý thuyết xấp xỉ $O(c^n)$, trong đó $c$ là một hằng số rất gần $1$, còn $n$ là số lượng ô $1$ trong ma trận.
 
-但实际情况下 DLX 表现良好，一般能解决大部分的问题．
+Tuy nhiên trong thực tế, DLX hoạt động tốt và thường giải được phần lớn các bài toán.
 
-## 建模
+<span id="&#x5EFA;&#x6A21;"></span>
+## Mô hình hóa
 
-DLX 的难点，不全在于链表的建立，而在于建模．
+Khó khăn của DLX không hoàn toàn nằm ở việc xây dựng danh sách liên kết, mà nằm ở bước mô hình hóa.
 
-请确保已经完全掌握 DLX 模板后再继续阅读本文．
+Hãy chắc chắn rằng bạn đã nắm vững hoàn toàn mẫu DLX trước khi đọc tiếp.
 
-我们每拿到一个题，应该考虑行和列所表示的意义：
+Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu diễn:
 
--   行表示*决策*，因为每行对应着一个集合，也就对应着选/不选；
+-   Hàng biểu diễn *quyết định*, vì mỗi hàng tương ứng với một tập hợp, tức tương ứng với việc chọn hoặc không chọn;
 
--   列表示*状态*，因为第 $i$ 列对应着某个条件 $P_i$．
+-   Cột biểu diễn *trạng thái*, vì cột thứ $i$ tương ứng với một điều kiện $P_i$.
 
-对于某一行而言，由于不同的列的值不尽相同，我们 **由不同的状态，定义了一个决策**．
+Đối với một hàng, do giá trị ở các cột khác nhau không giống nhau, ta **định nghĩa một quyết định thông qua các trạng thái khác nhau**.
 
-### 例题 1 [P1784 数独](https://www.luogu.com.cn/problem/P1784)
+<span id="&#x4F8B;&#x9898;-1-p1784-&#x6570;&#x72EC;"></span>
+### Ví dụ 1 [P1784 Sudoku](https://www.luogu.com.cn/problem/P1784)
 
-??? note "解题思路"
-    先考虑决策是什么．
+??? note "Ý tưởng giải"
+    Trước hết xét quyết định là gì.
     
-    在这一题中，每一个决策可以用形如 $(r, c, w)$ 的有序三元组表示．
+    Trong bài này, mỗi quyết định có thể được biểu diễn bằng bộ ba có thứ tự dạng $(r, c, w)$.
     
-    注意到「宫」并不是决策的参数，因为它 **可以被每个确定的 $(r, c)$ 表示**．
+    Chú ý rằng "khối" không phải là tham số của quyết định, vì nó **có thể được xác định bởi mỗi cặp $(r, c)$ cụ thể**.
     
-    因此有 $9 \times 9 \times 9 = 729$ 行．
+    Vì vậy có $9 \times 9 \times 9 = 729$ hàng.
     
-    再考虑状态是什么．
+    Tiếp theo xét trạng thái là gì.
     
-    我们思考一下 $(r, c, w)$ 这个决策将会造成什么影响．记 $(r, c)$ 所在的宫为 $b$．
+    Ta suy nghĩ xem quyết định $(r, c, w)$ sẽ gây ra ảnh hưởng gì. Gọi $b$ là khối chứa ô $(r, c)$.
     
-    1.  第 $r$ 行用了一个 $w$（用 $9 \times 9 = 81$ 列表示）；
-    2.  第 $c$ 列用了一个 $w$（用 $9 \times 9 = 81$ 列表示）；
-    3.  第 $b$ 宫用了一个 $w$（用 $9 \times 9 = 81$ 列表示）；
-    4.  $(r, c)$ 中填入了一个数（用 $9 \times 9 = 81$ 列表示）．
+    1.  Hàng thứ $r$ đã dùng một số $w$ (biểu diễn bằng $9 \times 9 = 81$ cột);
+    2.  Cột thứ $c$ đã dùng một số $w$ (biểu diễn bằng $9 \times 9 = 81$ cột);
+    3.  Khối thứ $b$ đã dùng một số $w$ (biểu diễn bằng $9 \times 9 = 81$ cột);
+    4.  Một số đã được điền vào ô $(r, c)$ (biểu diễn bằng $9 \times 9 = 81$ cột).
     
-    因此有 $81 \times 4 = 324$ 列，共 $729 \times 4 = 2916$ 个 $1$．
+    Vì vậy có $81 \times 4 = 324$ cột, tổng cộng $729 \times 4 = 2916$ ô $1$.
     
-    至此，我们成功地将 $9 \times 9$ 的数独问题转化成了一个 **有 $729$ 行，$324$ 列，共 $2916$ 个 $1$** 的精确覆盖问题．
+    Đến đây, ta đã chuyển thành công bài toán Sudoku $9 \times 9$ thành một bài toán phủ chính xác **có $729$ hàng, $324$ cột, tổng cộng $2916$ ô $1$**.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/search/code/dlx/dlx_2.cpp"
     ```
 
-### 例题 2 [靶形数独](https://www.luogu.com.cn/problem/P1074)
+<span id="&#x4F8B;&#x9898;-2-&#x9776;&#x5F62;&#x6570;&#x72EC;"></span>
+### Ví dụ 2 [Sudoku có trọng số theo hình bia](https://www.luogu.com.cn/problem/P1074)
 
-??? note "解题思路"
-    这一题与 [数独](https://www.luogu.com.cn/problem/P1784) 的模型构建 **一模一样**，主要区别在于答案的更新．
+??? note "Ý tưởng giải"
+    Mô hình của bài này **hoàn toàn giống** với [Sudoku](https://www.luogu.com.cn/problem/P1784); khác biệt chính nằm ở cách cập nhật đáp án.
     
-    这一题可以开一个权值数组，每次找到一组数独的解时，
+    Bài này có thể dùng một mảng trọng số. Mỗi khi tìm được một nghiệm Sudoku,
     
-    每个位置上的数乘上对应的权值计入答案即可．
+    chỉ cần nhân số ở từng vị trí với trọng số tương ứng rồi cộng vào đáp án.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/search/code/dlx/dlx_3.cpp"
     ```
 
-### 例题 3 [「NOI2005」智慧珠游戏](https://www.luogu.com.cn/problem/P4205)
+<span id="&#x4F8B;&#x9898;-3-noi2005-&#x667A;&#x6167;&#x73E0;&#x6E38;&#x620F;"></span>
+### Ví dụ 3 ["NOI2005" Trò chơi Smart Beads](https://www.luogu.com.cn/problem/P4205)
 
-??? note "解题思路"
-    定义：题中给我们的智慧珠的形态，称为这个智慧珠的*标准形态*．
+??? note "Ý tưởng giải"
+    Định nghĩa: hình dạng Smart Bead mà đề bài cho được gọi là *hình dạng chuẩn* của Smart Bead đó.
     
-    显然，我们可以通过改变两个参数 $d$（表示顺时针旋转 $90^{\circ}$ 的次数）和 $f$（是否水平翻转）来改变这个智慧珠的形态．
+    Rõ ràng, ta có thể thay đổi hình dạng của Smart Bead bằng cách thay đổi hai tham số $d$ (biểu thị số lần xoay thuận chiều kim đồng hồ $90^{\circ}$) và $f$ (có lật ngang hay không).
     
-    仍然，我们先考虑决策是什么．
+    Vẫn như trước, ta xét quyết định là gì.
     
-    在这一题中，每一个决策可以用形如 $(v, d, f, i)$ 的有序五元组表示．
+    Trong bài này, mỗi quyết định có thể được biểu diễn bằng bộ năm có thứ tự dạng $(v, d, f, i)$.
     
-    表示第 $i$ 个智慧珠的*标准形态*的左上角的位置，序号为 $v$，经过了 $d$ 次顺时针转 $90^{\circ}$．
+    Nó biểu thị vị trí góc trên bên trái của *hình dạng chuẩn* của Smart Bead thứ $i$, có số thứ tự là $v$, sau khi đã xoay thuận chiều kim đồng hồ $90^{\circ}$ tổng cộng $d$ lần.
     
-    巧合的是，我们可以令 $f = 1$ 时不水平翻转，$f = -1$ 时水平翻转，从而达到简化代码的目的．
+    Tình cờ là ta có thể quy ước $f = 1$ nghĩa là không lật ngang, $f = -1$ nghĩa là lật ngang, từ đó đơn giản hóa mã.
     
-    因此有 $55 \times 4 \times 2 \times 12 = 5280$ 行．
+    Vì vậy có $55 \times 4 \times 2 \times 12 = 5280$ hàng.
     
-    需要注意的是，因为一些不合法的填充，如 $(1, 0, 1, 4)$，
+    Cần chú ý rằng do có một số cách đặt không hợp lệ, chẳng hạn $(1, 0, 1, 4)$,
     
-    所以 **在实际操作中，空的智慧珠棋盘也只需要建出 $2730$ 行．**
+    nên **trong cài đặt thực tế, bàn Smart Beads rỗng cũng chỉ cần xây dựng $2730$ hàng**.
     
-    再考虑状态是什么．
+    Tiếp theo xét trạng thái là gì.
     
-    这一题的状态比较简单．
+    Trạng thái của bài này tương đối đơn giản.
     
-    我们思考一下，$(v, d, f, i)$ 这个决策会造成什么影响．
+    Ta suy nghĩ xem quyết định $(v, d, f, i)$ sẽ gây ra ảnh hưởng gì.
     
-    1.  某些格子被占了（用 $55$ 列表示）；
-    2.  第 $i$ 个智慧珠被用了（用 $12$ 列表示）．
+    1.  Một số ô bị chiếm (biểu diễn bằng $55$ cột);
+    2.  Smart Bead thứ $i$ đã được dùng (biểu diễn bằng $12$ cột).
     
-    因此有 $55 + 12 = 67$ 列，共 $5280 \times (5 + 1) = 31680$ 个 $1$．
+    Vì vậy có $55 + 12 = 67$ cột, tổng cộng $5280 \times (5 + 1) = 31680$ ô $1$.
     
-    至此，我们成功地将智慧珠游戏转化成了一个 **有 $5280$ 行，$67$ 列，共 $31680$ 个 $1$** 的精确覆盖问题．
+    Đến đây, ta đã chuyển thành công trò chơi Smart Beads thành một bài toán phủ chính xác **có $5280$ hàng, $67$ cột, tổng cộng $31680$ ô $1$**.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/search/code/dlx/dlx_4.cpp"
     ```
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
+## Bài tập
 
 -   [SUDOKU - Sudoku](https://www.spoj.com/problems/SUDOKU/)
--   [「kuangbin 带你飞」专题三 Dancing Links](https://vjudge.net/contest/65998#overview)
+-   [Chuyên đề 3 Dancing Links trong chuỗi "kuangbin dai ban bay"](https://vjudge.net/contest/65998#overview)
 
-## 外部链接
+<span id="&#x5916;&#x90E8;&#x94FE;&#x63A5;"></span>
+## Liên kết ngoài
 
--   [跳跃的舞者，舞蹈链（Dancing Links）算法——求解精确覆盖问题 - 万仓一黍](https://www.cnblogs.com/grenet/p/3145800.html)
--   [搜索：DLX 算法 - 静听风吟．](https://www.cnblogs.com/aininot260/p/9629926.html)
--   [《算法竞赛入门经典 - 训练指南》](https://book.douban.com/subject/35431537/)
+-   [Dancing Links và bài toán phủ chính xác](https://www.cnblogs.com/grenet/p/3145800.html)
+-   [Tìm kiếm: thuật toán DLX](https://www.cnblogs.com/aininot260/p/9629926.html)
+-   [Huấn luyện thi lập trình: sách hướng dẫn luyện tập](https://book.douban.com/subject/35431537/)
 
-## 注释
+<span id="&#x6CE8;&#x91CA;"></span>
+## Chú thích
 
-[^note1]: （两岸用语差异）台灣：直行（column）、橫列（row）
+[^note1]: Ghi chú thuật ngữ giữa các vùng dùng tiếng Trung: Taiwan dùng "vertical line" cho column và "horizontal row" cho row.

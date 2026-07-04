@@ -2,23 +2,23 @@
 #include <iostream>
 using namespace std;
 int n;
-bool vis[50];  // 访问标记数组
-int a[50];     // 排列数组，按顺序储存当前搜索结果
+bool vis[50];  // Mảng đánh dấu đã thăm
+int a[50];     // Mảng hoán vị, lưu kết quả tìm kiếm hiện tại theo thứ tự
 
 void dfs(int step) {
-  if (step == n + 1) {  // 边界
+  if (step == n + 1) {  // Điều kiện dừng
     for (int i = 1; i <= n; i++) {
-      cout << setw(5) << a[i];  // 保留5个场宽
+      cout << setw(5) << a[i];  // Dành độ rộng trường là 5
     }
     cout << endl;
     return;
   }
   for (int i = 1; i <= n; i++) {
-    if (!vis[i]) {  // 判断数字i是否在正在进行的全排列中
+    if (!vis[i]) {  // Kiểm tra số i có đang nằm trong hoán vị hiện tại không
       vis[i] = true;
       a[step] = i;
       dfs(step + 1);
-      vis[i] = false;  // 这一步不使用该数 置0后允许下一步使用
+      vis[i] = false;  // Không dùng số này ở bước hiện tại; đặt lại để bước sau có thể dùng
     }
   }
   return;

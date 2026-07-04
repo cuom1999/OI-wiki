@@ -67,6 +67,9 @@ MkDocs source layout intact.
   translated Python and Java quick-start/advanced language pages.
 - `docs/lang/csl/*.md`: translated the C++ standard-library/STL overview,
   container, iterator, algorithm, bitset, string, and pair pages.
+- `docs/search/*.md`: translated the search algorithm pages, including DFS,
+  BFS, bidirectional search, heuristic search, A*/IDA*, iterative deepening,
+  backtracking, Dancing Links, Alpha-Beta pruning, and search optimization.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

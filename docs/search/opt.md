@@ -1,125 +1,132 @@
 author: CBW2007, ChungZH, Marcythm, abc1763613206, Ir1d
 
-## 前言
+<span id="&#x524d;&#x8a00;"></span>
+## Lời nói đầu
 
-DFS（深度优先搜索）是一种常见的算法，大部分的题目都可以用 DFS 解决，但是大部分情况下，这都是骗分算法，很少会有爆搜为正解的题目．因为 DFS 的时间复杂度特别高．（没学过 DFS 的请自行补上这一课）
+DFS (tìm kiếm theo chiều sâu) là một thuật toán phổ biến. Phần lớn bài toán đều có thể giải bằng DFS, nhưng trong đa số trường hợp, đó chỉ là cách làm để lấy một phần điểm; rất hiếm bài toán mà vét cạn bằng tìm kiếm lại là lời giải chuẩn, vì độ phức tạp thời gian của DFS đặc biệt cao. Nếu chưa học DFS, hãy bổ sung kiến thức này trước.
 
-既然不能成为正解，那就多骗一点分吧．那么这一篇文章将介绍一些实用的优化算法（俗称「剪枝」）．
+Vì DFS thường không đủ để trở thành lời giải chuẩn, ta hãy cố gắng lấy được nhiều điểm hơn bằng các tối ưu hóa. Bài viết này sẽ giới thiệu một số kĩ thuật tối ưu thực dụng, thường được gọi là "cắt tỉa".
 
-先来一段深搜模板，之后的模板将在此基础上进行修改．
+Trước hết là một mẫu tìm kiếm sâu; các mẫu phía sau sẽ được sửa đổi dựa trên mẫu này.
 
 ```cpp
-int ans = 最坏情况, now;  // now 为当前答案
+int ans = worst_case, now;  // now là lời giải hiện tại
 
-void dfs(传入数值) {
-  if (到达目的地) ans = 从当前解与已有解中选最优;
-  for (遍历所有可能性)
-    if (可行) {
-      进行操作;
-      dfs(缩小规模);
-      撤回操作;
+void dfs(input_state) {
+  if (reached_goal) ans = best(current_solution, ans);
+  for (each_choice)
+    if (feasible) {
+      apply_choice;
+      dfs(smaller_state);
+      undo_choice;
     }
 }
 ```
 
-其中的 ans 可以是解的记录，那么从当前解与已有解中选最优就变成了输出解．
+Trong đó `ans` cũng có thể là bản ghi của nghiệm; khi đó thao tác chọn phương án tốt hơn giữa nghiệm hiện tại và nghiệm đã có sẽ trở thành thao tác xuất nghiệm.
 
-## 剪枝方法
+<span id="&#x526a;&#x679d;&#x65b9;&#x6cd5;"></span>
+## Các phương pháp cắt tỉa
 
-最常用的剪枝有三种，记忆化搜索、最优性剪枝、可行性剪枝．
+Ba dạng cắt tỉa thông dụng nhất là tìm kiếm có ghi nhớ, cắt tỉa tối ưu và cắt tỉa khả thi.
 
-### 记忆化搜索
+<span id="&#x8bb0;&#x5fc6;&#x5316;&#x641c;&#x7d22;"></span>
+### Tìm kiếm có ghi nhớ
 
-因为在搜索中，相同的传入值往往会带来相同的解，那我们就可以用数组来记忆，详见 [记忆化搜索](../dp/memo.md)．
+Trong quá trình tìm kiếm, cùng một giá trị truyền vào thường dẫn đến cùng một nghiệm. Vì vậy, ta có thể dùng mảng để ghi nhớ; xem thêm tại [Tìm kiếm có ghi nhớ](../dp/memo.md).
 
-**模板：**
+**Mẫu:**
 
 ```cpp
-int g[MAXN];  // 定义记忆化数组
-int ans = 最坏情况, now;
+int g[MAXN];  // Định nghĩa mảng ghi nhớ
+int ans = worst_case, now;
 
-void dfs f(传入数值) {
-  if (g[规模] != 无效数值) return;  // 或记录解，视情况而定
-  if (到达目的地) ans = 从当前解与已有解中选最优;  // 输出解，视情况而定
-  for (遍历所有可能性)
-    if (可行) {
-      进行操作;
-      dfs(缩小规模);
-      撤回操作;
+void dfs(input_state) {
+  if (g[size] != invalid_value) return;  // Hoặc ghi lại nghiệm, tùy bài toán
+  if (reached_goal) ans = best(current_solution, ans);  // Xuất nghiệm, tùy bài toán
+  for (each_choice)
+    if (feasible) {
+      apply_choice;
+      dfs(smaller_state);
+      undo_choice;
     }
 }
 
 int main() {
   // ...
-  memset(g, 无效数值, sizeof(g));  // 初始化记忆化数组
+  memset(g, invalid_value, sizeof(g));  // Khởi tạo mảng ghi nhớ
   // ...
 }
 ```
 
-### 最优性剪枝
+<span id="&#x6700;&#x4f18;&#x6027;&#x526a;&#x679d;"></span>
+### Cắt tỉa tối ưu
 
-在搜索中导致运行慢的原因还有一种，就是在当前解已经比已有解差时仍然在搜索，那么我们只需要判断一下当前解是否已经差于已有解．
+Một nguyên nhân khác làm tìm kiếm chạy chậm là vẫn tiếp tục tìm khi lời giải hiện tại đã kém hơn lời giải tốt nhất đã biết. Khi đó, chỉ cần kiểm tra xem lời giải hiện tại có đã tệ hơn lời giải đã có hay không.
 
-**模板：**
+**Mẫu:**
 
 ```cpp
-int ans = 最坏情况, now;
+int ans = worst_case, now;
 
-void dfs(传入数值) {
-  if (now比ans的答案还要差) return;
-  if (到达目的地) ans = 从当前解与已有解中选最优;
-  for (遍历所有可能性)
-    if (可行) {
-      进行操作;
-      dfs(缩小规模);
-      撤回操作;
+void dfs(input_state) {
+  if (now_is_worse_than_ans) return;
+  if (reached_goal) ans = best(current_solution, ans);
+  for (each_choice)
+    if (feasible) {
+      apply_choice;
+      dfs(smaller_state);
+      undo_choice;
     }
 }
 ```
 
-### 可行性剪枝
+<span id="&#x53ef;&#x884c;&#x6027;&#x526a;&#x679d;"></span>
+### Cắt tỉa khả thi
 
-在搜索过程中当前解已经不可用了还继续搜索下去也是运行慢的原因．
+Nếu lời giải hiện tại đã không còn khả thi mà vẫn tiếp tục tìm xuống, đó cũng là một nguyên nhân làm chương trình chạy chậm.
 
-**模板：**
+**Mẫu:**
 
 ```cpp
-int ans = 最坏情况, now;
+int ans = worst_case, now;
 
-void dfs(传入数值) {
-  if (当前解已不可用) return;
-  if (到达目的地) ans = 从当前解与已有解中选最优;
-  for (遍历所有可能性)
-    if (可行) {
-      进行操作;
-      dfs(缩小规模);
-      撤回操作;
+void dfs(input_state) {
+  if (current_solution_is_infeasible) return;
+  if (reached_goal) ans = best(current_solution, ans);
+  for (each_choice)
+    if (feasible) {
+      apply_choice;
+      dfs(smaller_state);
+      undo_choice;
     }
 }
 ```
 
-## 剪枝思路
+<span id="&#x526a;&#x679d;&#x601d;&#x8def;"></span>
+## Ý tưởng cắt tỉa
 
-剪枝思路有很多种，大多需要对于具体问题来分析，在此简要介绍几种常见的剪枝思路．
+Có rất nhiều hướng suy nghĩ để cắt tỉa; phần lớn cần phân tích theo từng bài toán cụ thể. Dưới đây là một vài ý tưởng cắt tỉa thường gặp.
 
--   极端法：考虑极端情况，如果最极端（最理想）的情况都无法满足，那么肯定实际情况搜出来的结果不会更优了．
+-   Phương pháp cực hạn: xét trường hợp cực đoan. Nếu ngay cả trường hợp cực đoan, lý tưởng nhất cũng không thể thỏa mãn, thì kết quả tìm kiếm trong thực tế chắc chắn sẽ không tốt hơn.
 
--   调整法：通过对子树的比较剪掉重复子树和明显不是最有「前途」的子树．
+-   Phương pháp điều chỉnh: so sánh các cây con để loại bỏ những cây con trùng lặp và những cây con rõ ràng không "hứa hẹn" nhất.
 
--   数学方法：比如在图论中借助连通分量，数论中借助模方程的分析，借助不等式的放缩来估计下界等等．
+-   Phương pháp toán học: chẳng hạn trong lý thuyết đồ thị có thể dựa vào các thành phần liên thông, trong số học có thể phân tích phương trình đồng dư, hoặc dùng bất đẳng thức để ước lượng cận dưới, v.v.
 
-## 例题
+<span id="&#x4f8b;&#x9898;"></span>
+## Ví dụ
 
-???+ note "工作分配问题"
-    有 $n$（$1 \leq n \leq  15$）份工作要分配给 $n$ 个人来完成，每个人完成一份．第 $i$ 个人完成第 $k$ 份工作所用的时间为一个正整数 $t_{i,k}$（$1 \leq t_{i,k} \leq 10^4$），其中 $1 \leq i, k \leq n$．试确定一个分配方案，使得完成这 $n$ 份工作的时间总和最小．
+???+ note "Bài toán phân công công việc"
+    Có $n$ ($1 \leq n \leq  15$) công việc cần phân cho $n$ người thực hiện, mỗi người làm đúng một việc. Thời gian người thứ $i$ cần để hoàn thành công việc thứ $k$ là một số nguyên dương $t_{i,k}$ ($1 \leq t_{i,k} \leq 10^4$), trong đó $1 \leq i, k \leq n$. Hãy xác định một phương án phân công sao cho tổng thời gian hoàn thành $n$ công việc là nhỏ nhất.
 
-由于每个人都必须分配到工作，在这里可以建一个二维数组 `time[i][j]`，用以表示 $i$ 个人完成 $j$ 号工作所花费的时间．给定一个循环，从第 1 个人开始循环分配工作，直到所有人都分配到．为第 $i$ 个人分配工作时，再循环检查每个工作是否已被分配，没有则分配给 $i$ 个人，否则检查下一个工作．可以用一个一维数组 `is_working[j]` 来表示第 $j$ 号工作是否已被分配，未分配则 `is_working[j]=0`，否则 `is_working[j]=1`．利用回溯思想，在工人循环结束后回到上一工人，取消此次分配的工作，而去分配下一工作直到可以分配为止．这样，一直回溯到第 1 个工人后，就能得到所有的可行解．
+Vì mỗi người đều phải được phân một công việc, ở đây có thể tạo một mảng hai chiều `time[i][j]` để biểu diễn thời gian người $i$ cần để hoàn thành công việc số $j$. Dùng một vòng lặp, bắt đầu từ người thứ 1 và lần lượt phân công việc cho đến khi tất cả mọi người đều đã được phân. Khi phân công việc cho người thứ $i$, lại duyệt từng công việc để kiểm tra xem công việc đó đã được phân chưa; nếu chưa thì phân cho người $i$, nếu rồi thì kiểm tra công việc tiếp theo. Có thể dùng một mảng một chiều `is_working[j]` để biểu diễn công việc số $j$ đã được phân hay chưa: chưa phân thì `is_working[j]=0`, ngược lại `is_working[j]=1`. Dùng tư tưởng quay lui: sau khi vòng lặp công nhân kết thúc, quay về công nhân trước đó, hủy công việc đã phân lần này, rồi thử phân công việc tiếp theo cho đến khi có thể phân được. Cứ như vậy, khi quay lui về người thứ 1, ta có thể thu được tất cả các nghiệm khả thi.
 
-检查工作分配，其实就是判断取得可行解时的二维数组的第一维下标各不相同并且第二维下标各不相同．而我们是要得到完成这 $n$ 份工作的最小时间总和，即可行解中时间总和最小的一个，故需要再定义一个全局变量 `cost_time_total_min` 表示目前找到的解中最小的时间总和，初始 `cost_time_total_min` 为 `time[i][i]` 之和，即对角线工作时间相加之和．在所有人分配完工作时，比较 `count` 与 `cost_time_total_min` 的大小，如果 `count` 小于 `cost_time_total_min`，说明找到了一个最优解，此时就把 `count` 赋给 `cost_time_total_min`．
+Kiểm tra một phương án phân công thực chất là kiểm tra rằng, khi thu được nghiệm khả thi, các chỉ số theo chiều thứ nhất của mảng hai chiều đôi một khác nhau và các chỉ số theo chiều thứ hai cũng đôi một khác nhau. Mục tiêu của ta là tổng thời gian nhỏ nhất để hoàn thành $n$ công việc, tức nghiệm khả thi có tổng thời gian nhỏ nhất. Vì vậy cần định nghĩa thêm một biến toàn cục `cost_time_total_min` để biểu diễn tổng thời gian nhỏ nhất trong các nghiệm đã tìm được. Giá trị ban đầu của `cost_time_total_min` là tổng các `time[i][i]`, tức tổng thời gian của các công việc trên đường chéo chính. Khi tất cả mọi người đã được phân việc, so sánh `count` với `cost_time_total_min`; nếu `count` nhỏ hơn `cost_time_total_min`, nghĩa là đã tìm thấy một nghiệm tốt hơn, khi đó gán `count` cho `cost_time_total_min`.
 
-但考虑到算法的效率，这里还有一个剪枝优化的工作可以做．就是在每次计算局部费用变量 `count` 的值时，如果判断 `count` 已经大于 `cost_time_total_min`，就没必要再往下分配了，因为这时得到的解必然不是最优解．
+Tuy nhiên, xét về hiệu suất thuật toán, ở đây vẫn còn một việc cắt tỉa cần làm. Mỗi khi tính biến chi phí cục bộ `count`, nếu thấy `count` đã lớn hơn `cost_time_total_min`, thì không cần tiếp tục phân công xuống nữa, vì nghiệm thu được khi đó chắc chắn không phải là nghiệm tối ưu.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/search/code/opt/opt_1.cpp"
     ```

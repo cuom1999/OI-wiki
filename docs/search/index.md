@@ -10,7 +10,7 @@ bằng tìm kiếm thuần túy.
 
 ## Bài tập
 
--   [「kuangbin 带你飞」Chuyên đề 1: tìm kiếm đơn giản](https://vjudge.net/contest/65959)
--   [「kuangbin 带你飞」Chuyên đề 2: tìm kiếm nâng cao](https://vjudge.net/contest/65997)
+-   [Bộ bài kuangbin - Chuyên đề 1: tìm kiếm đơn giản](https://vjudge.net/contest/65959)
+-   [Bộ bài kuangbin - Chuyên đề 2: tìm kiếm nâng cao](https://vjudge.net/contest/65997)
 -   [Danh sách bài tìm kiếm trên Luogu](https://www.luogu.com.cn/training/112#problems)
 -   [Danh sách bài tìm kiếm trên openjudge](http://noi.openjudge.cn/ch0205/)

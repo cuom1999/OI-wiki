@@ -1,26 +1,37 @@
-本页面将简要介绍启发式搜索及其用法．
+Trang này giới thiệu ngắn gọn tìm kiếm heuristic và cách sử dụng.
 
-## 定义
+## Định nghĩa
 
-启发式搜索（英文：heuristic search）是一种在普通搜索算法的基础上引入了启发式函数的搜索算法．
+Tìm kiếm heuristic (tiếng Anh: heuristic search) là một loại thuật toán tìm kiếm
+đưa thêm hàm heuristic vào trên nền các thuật toán tìm kiếm thông thường.
 
-启发式函数的作用是基于已有的信息对搜索的每一个分支选择都做估价，进而选择分支．简单来说，启发式搜索就是对取和不取都做分析，从中选取更优解或删去无效解．
+Vai trò của hàm heuristic là dựa trên thông tin đã có để đánh giá từng lựa chọn
+nhánh trong quá trình tìm kiếm, rồi từ đó chọn nhánh. Nói đơn giản, tìm kiếm
+heuristic phân tích cả hai khả năng chọn và không chọn, từ đó lấy lời giải tốt
+hơn hoặc loại bỏ lời giải không hợp lệ.
 
-## 例题
+## Ví dụ
 
-由于概念过于抽象，这里使用例题讲解．
+Vì khái niệm này khá trừu tượng, phần này dùng ví dụ để giải thích.
 
-???+ note "[「NOIP2005 普及组」采药](https://www.luogu.com.cn/problem/P1048)"
-    题目大意：有 $N$ 种物品和一个容量为 $W$ 的背包，每种物品有重量 $w_i$ 和价值 $v_i$ 两种属性，要求选若干个物品（每种物品只能选一次）放入背包，使背包中物品的总价值最大，且背包中物品的总重量不超过背包的容量．
+???+ note "[NOIP2005 Phổ cập - Hái thuốc](https://www.luogu.com.cn/problem/P1048)"
+    Tóm tắt đề bài: có $N$ loại vật phẩm và một ba lô dung tích $W$. Mỗi vật
+    phẩm có hai thuộc tính là trọng lượng $w_i$ và giá trị $v_i$. Cần chọn một
+    số vật phẩm (mỗi loại chỉ được chọn một lần) cho vào ba lô sao cho tổng giá
+    trị lớn nhất, đồng thời tổng trọng lượng không vượt quá dung tích ba lô.
 
-??? note "解题思路"
-    我们写一个估价函数 $f$，可以剪掉所有无效的 $0$ 枝条（就是剪去大量无用不选枝条）．
+??? note "Ý tưởng giải"
+    Ta viết một hàm đánh giá $f$ để cắt bỏ mọi nhánh $0$ vô ích (tức cắt bỏ rất
+    nhiều nhánh không chọn không cần thiết).
     
-    估价函数 $f$ 的运行过程如下：
+    Quá trình chạy của hàm đánh giá $f$ như sau:
     
-    我们在取的时候判断一下是不是超过了规定体积（可行性剪枝）；在不取的时候判断一下不取这个时，剩下的药所有的价值 + 现有的价值是否大于目前找到的最优解（最优性剪枝）．
+    Khi chọn một vật phẩm, kiểm tra xem có vượt quá dung tích quy định hay không
+    (cắt tỉa tính khả thi). Khi không chọn một vật phẩm, kiểm tra xem tổng
+    "giá trị của toàn bộ thuốc còn lại + giá trị hiện có" có lớn hơn lời giải
+    tốt nhất đã tìm được hay không (cắt tỉa tính tối ưu).
 
-??? note "示例代码"
+??? note "Mã ví dụ"
     ```cpp
     --8<-- "docs/search/code/heuristic/heuristic_1.cpp"
     ```

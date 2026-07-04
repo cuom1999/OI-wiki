@@ -1,45 +1,53 @@
-## 引入
+<span id="&#24341;&#20837;"></span>
 
-BFS（广度优先搜索）为图论中的基础算法，详见 [BFS（图论）](../graph/bfs.md) 页面．在 **搜索算法** 中，该算法通常指利用队列结构逐层扩展状态的搜索方式，与图论中的 BFS 算法思想一致，特别适合求解 **最短路径** 或 **最少步骤** 类问题．
+## Dẫn nhập
 
-## 解释
+BFS (tìm kiếm theo chiều rộng) là một thuật toán cơ bản trong lý thuyết đồ thị; xem chi tiết ở trang [BFS (đồ thị)](../graph/bfs.md). Trong **thuật toán tìm kiếm**, BFS thường chỉ phương pháp tìm kiếm dùng cấu trúc hàng đợi để mở rộng trạng thái theo từng lớp. Tư tưởng của nó nhất quán với BFS trong lý thuyết đồ thị, và đặc biệt phù hợp để giải các bài toán **đường đi ngắn nhất** hoặc **số bước ít nhất**.
 
-BFS 的核心思想是 **按层扩展**，从起点开始逐层扫描可到达的位置．首次遇到终点时的路径长度即为最短路径．这种方式保证了搜索的层次性与最优性．
+<span id="&#35299;&#37322;"></span>
 
-在实际执行中，BFS 会从起点出发，先访问起点的所有直接可到达结点，这些可到达结点构成了搜索的第一层；接着，再以这些可到达结点为新的起点，依次访问它们的邻居，形成第二层；以此类推，不断向外扩展，直至找到目标结点或遍历完所有可达结点．这个过程中，算法会借助队列和访问数组，将每一层新发现的结点（访问数组中还没有记录过的）依次入队，确保同一层的结点按照访问顺序依次被处理，从而严格遵循「按层扩展」的逻辑．
+## Giải thích
 
-BFS 非常擅于快速求解 **最短路径** 或 **最少步骤**．当算法在某一层首次遇到目标时，此时经过的路径长度（步骤数）必然是最短的．这是因为 BFS 算法的「按层扩展」机制保证了每个结点都是通过最少的步数被访问到：就像从起点出发，沿着最直接的路径不断搜索，直到抵达终点，不会出现绕路或走多余步骤的情况．在这类问题中，BFS 通常也比 DFS 的效率更高．
+Tư tưởng cốt lõi của BFS là **mở rộng theo từng lớp**: bắt đầu từ trạng thái xuất phát, lần lượt quét các vị trí có thể đi tới theo từng lớp. Khi lần đầu gặp đích, độ dài đường đi lúc đó chính là đường đi ngắn nhất. Cách làm này bảo đảm tính phân lớp và tính tối ưu của quá trình tìm kiếm.
 
-但是，相较于 DFS，BFS 也有其缺点．通常情况下，BFS 需要更大的内存，缺乏天然的回溯过程，且深度剪枝相对没有 DFS 灵活．
+Khi thực thi, BFS bắt đầu từ điểm xuất phát và trước hết thăm tất cả các đỉnh có thể đi tới trực tiếp từ điểm đó; các đỉnh này tạo thành lớp tìm kiếm đầu tiên. Sau đó, thuật toán lấy các đỉnh vừa tìm được làm điểm xuất phát mới, lần lượt thăm các đỉnh kề của chúng để tạo thành lớp thứ hai. Quá trình tiếp tục mở rộng ra ngoài như vậy cho đến khi tìm thấy đỉnh đích hoặc duyệt hết tất cả các đỉnh có thể đi tới. Trong quá trình này, thuật toán dùng hàng đợi và mảng đánh dấu thăm để lần lượt đưa các đỉnh mới phát hiện ở mỗi lớp vào hàng đợi, đồng thời tránh xử lý lặp lại. Nhờ đó, các đỉnh cùng một lớp được xử lý theo đúng thứ tự được phát hiện, và logic "mở rộng theo từng lớp" được tuân thủ chặt chẽ.
 
-## 例题
+BFS rất thích hợp để nhanh chóng giải các bài toán **đường đi ngắn nhất** hoặc **số bước ít nhất**. Khi thuật toán lần đầu gặp mục tiêu ở một lớp nào đó, độ dài đường đi (hay số bước) tương ứng chắc chắn là nhỏ nhất. Lý do là cơ chế "mở rộng theo từng lớp" của BFS bảo đảm mỗi đỉnh được thăm bằng số bước ít nhất có thể: từ điểm xuất phát, thuật toán luôn mở rộng các đường đi ngắn trước, nên không có trường hợp phải đi vòng hoặc thêm bước thừa mới tới đích. Trong nhóm bài toán này, BFS thường hiệu quả hơn DFS.
 
-???+ example "例题 [Luogu B3625 迷宫寻路](https://www.luogu.com.cn/problem/B3625)"
-    在一个 $n \times m$ 的迷宫矩阵中，`.` 表示可通行区域，`#` 表示障碍物．从起点 $(1,1)$ 出发，每次可向上下左右四个方向移动，问是否能到达终点 $(n,m)$．
+Tuy vậy, so với DFS, BFS cũng có nhược điểm. Thông thường BFS cần nhiều bộ nhớ hơn, không có quá trình quay lui tự nhiên, và việc cắt tỉa theo độ sâu kém linh hoạt hơn DFS.
 
-??? note "解答"
-    实现时需要维护一个队列来存储待处理的坐标，并配合访问标记数组避免重复计算．一个结点扩展可到达结点的时候，需要向上下左右拓展，这四个方向分别为 $(x, y + 1)$，$(x, y - 1)$，$(x + 1, y)$，$(x - 1, y)$，在代码中使用了方向数组．注意判断不能拓展到有障碍物的位置．
+<span id="&#20363;&#39064;"></span>
 
-??? note "参考实现"
+## Bài tập ví dụ
+
+???+ example "Bài tập [Luogu B3625 Tìm đường trong mê cung](https://www.luogu.com.cn/problem/B3625)"
+    Trong một ma trận mê cung kích thước $n \times m$, ký tự `.` biểu thị ô có thể đi qua, còn `#` biểu thị vật cản. Bắt đầu từ điểm $(1,1)$, mỗi lần có thể đi theo bốn hướng lên, xuống, trái, phải. Hỏi có thể đi tới điểm đích $(n,m)$ hay không.
+
+??? note "Lời giải"
+    Khi cài đặt, cần duy trì một hàng đợi để lưu các tọa độ đang chờ xử lý, đồng thời dùng mảng đánh dấu thăm để tránh tính lặp. Khi mở rộng một đỉnh, ta cần thử đi theo bốn hướng lên, xuống, trái, phải; bốn hướng đó lần lượt là $(x, y + 1)$, $(x, y - 1)$, $(x + 1, y)$, $(x - 1, y)$, và được cài đặt bằng mảng hướng trong mã. Cần chú ý không mở rộng tới vị trí là vật cản.
+
+??? note "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/search/code/bfs/bfs-1.cpp"
     ```
 
-???+ example "例题 [Luogu P1135 奇怪的电梯](https://www.luogu.com.cn/problem/P1135)"
-    有 $n$ 层楼和一架电梯．电梯位于第 $i$ 层楼时，向上或向下移动的层数等于一个固定的数字 $k_i$．如果到达的层数不合法，即不在 $1$ 和 $n$ 之间，相应的操作就无法进行．问：从第 $a$ 楼到第 $b$ 楼至少操作几次电梯？如果无法到达，输出 $-1$．
+???+ example "Bài tập [Luogu P1135 Thang máy kỳ lạ](https://www.luogu.com.cn/problem/P1135)"
+    Có $n$ tầng và một thang máy. Khi thang máy ở tầng thứ $i$, nó có thể đi lên hoặc đi xuống đúng $k_i$ tầng. Nếu tầng sau khi di chuyển không hợp lệ, tức không nằm trong khoảng từ $1$ đến $n$, thao tác tương ứng không thể thực hiện. Hỏi từ tầng $a$ đến tầng $b$ cần ít nhất bao nhiêu lần thao tác thang máy? Nếu không thể đến được, in ra $-1$.
 
-??? note "解答"
-    本题需要计算最短路径，这正是 BFS 擅长解决的问题．实现时，需要在队列中同时维护需要处理的楼层位置和从起点 $a$ 出发到达当前楼层的最短距离，并配合访问标记数组避免重复加入同一个元素．一个结点 $i$ 扩展可到达结点的时候，需要向 $i + k_i$ 和 $i - k_i$ 扩展，注意不能到达非法楼层．当扩展到尚未到达的合法楼层时，需要将它加入队列，并记录到达该楼层的最短距离为到达当前所在楼层的最短距离加一．当首次到达结点 $b$ 时，记录的最短距离就是最终答案．
+??? note "Lời giải"
+    Bài này cần tính đường đi ngắn nhất, đúng là dạng bài toán mà BFS giải tốt. Khi cài đặt, hàng đợi cần đồng thời lưu tầng đang chờ xử lý và khoảng cách ngắn nhất từ tầng xuất phát $a$ đến tầng hiện tại; kết hợp với mảng đánh dấu thăm để tránh đưa cùng một phần tử vào hàng đợi nhiều lần. Khi mở rộng một đỉnh $i$, ta cần xét hai tầng có thể đến là $i + k_i$ và $i - k_i$, đồng thời chú ý không đi tới tầng không hợp lệ. Khi mở rộng tới một tầng hợp lệ chưa từng đến, cần đưa nó vào hàng đợi và ghi lại khoảng cách ngắn nhất tới tầng đó bằng khoảng cách ngắn nhất tới tầng hiện tại cộng một. Khi lần đầu đến được đỉnh $b$, khoảng cách được ghi lại chính là đáp án cuối cùng.
     
-    代码中，直接记录距离数组，并利用距离是否为默认值（即 $-1$）来判断结点是否尚未访问．
+    Trong mã, ta trực tiếp ghi mảng khoảng cách, và dựa vào việc giá trị khoảng cách có bằng giá trị mặc định (tức $-1$) hay không để phân biệt đỉnh chưa được thăm.
 
-??? note "参考实现"
+??? note "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/search/code/bfs/bfs-2.cpp"
     ```
 
-## 习题
+<span id="&#20064;&#39064;"></span>
 
--   [Luogu P1443 马的遍历](https://www.luogu.com.cn/problem/P1443)
--   [Luogu P3956 \[NOIP 2017 普及组\] 棋盘](https://www.luogu.com.cn/problem/P3956)
--   [Luogu P1126 机器人搬重物](https://www.luogu.com.cn/problem/P1126)
+## Bài tập
+
+-   [Luogu P1443 Hành trình của quân mã](https://www.luogu.com.cn/problem/P1443)
+-   [Luogu P3956 \[NOIP 2017 Nhóm phổ cập\] Bàn cờ](https://www.luogu.com.cn/problem/P3956)
+-   [Luogu P1126 Robot vận chuyển vật nặng](https://www.luogu.com.cn/problem/P1126)

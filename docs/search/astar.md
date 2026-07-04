@@ -1,45 +1,78 @@
-本文介绍 A\* 搜索算法．
+Bài viết này giới thiệu thuật toán tìm kiếm A\*.
 
-A\* 搜索算法（A\* search algorithm，A\* 读作 A-star），简称 A\* 算法，是一种在带权有向图上，找到给定起点与终点之间的最短路径的算法．它属于图遍历（graph traversal）和最佳优先搜索算法（best-first search），亦是 [BFS](./bfs.md) 的改进．
+Thuật toán tìm kiếm A\* (A\* search algorithm, A\* đọc là A-star), gọi tắt là
+thuật toán A\*, là thuật toán tìm đường đi ngắn nhất giữa một điểm bắt đầu và
+một điểm kết thúc cho trước trên đồ thị có hướng có trọng số. Nó thuộc nhóm
+duyệt đồ thị (graph traversal) và tìm kiếm ưu tiên tốt nhất (best-first search),
+đồng thời là một cải tiến của [BFS](./bfs.md).
 
-## 过程
+## Quy trình
 
-A\* 算法的目标是找到有向图上从起点 $s$ 到终点 $t$ 的最短路径．设 $d(x,y)$ 为结点 $x$ 与 $y$ 之间的距离，也就是它们之间最短路径的长度．记 $g(x)=d(s,x)$ 为从起点 $s$ 到结点 $x$ 的距离函数，$h^*(x)$ 为从结点 $x$ 到终点 $t$ 的距离函数，$h(x)$ 为 $h^*(x)$ 的一个估计[^note1]．最后，记从 $s$ 出发经由 $x$ 到达 $t$ 的最短路径长度的估计为
+Mục tiêu của thuật toán A\* là tìm đường đi ngắn nhất từ điểm bắt đầu $s$ đến
+điểm kết thúc $t$ trên đồ thị có hướng. Gọi $d(x,y)$ là khoảng cách giữa nút $x$
+và nút $y$, tức độ dài đường đi ngắn nhất giữa chúng. Ký hiệu $g(x)=d(s,x)$ là
+hàm khoảng cách từ điểm bắt đầu $s$ đến nút $x$, $h^*(x)$ là hàm khoảng cách từ
+nút $x$ đến điểm kết thúc $t$, và $h(x)$ là một ước lượng của $h^*(x)$[^note1].
+Cuối cùng, ký hiệu ước lượng độ dài đường đi ngắn nhất từ $s$ qua $x$ đến $t$ là
 
 $$
 f(x) = g(x) + h(x).
 $$
 
-搜索时，A\* 算法每次从优先队列中取出一个 $f$ 最小的结点．然后，将它的所有后继结点 $x$ 都推入优先队列中，并利用实际记录的 $g(x)$ 和估计的 $h(x)$ 更新 $f(x)$．
+Khi tìm kiếm, thuật toán A\* mỗi lần lấy ra từ hàng đợi ưu tiên một nút có $f$
+nhỏ nhất. Sau đó, đưa toàn bộ nút kế tiếp $x$ của nó vào hàng đợi ưu tiên, đồng
+thời dùng giá trị thực tế đã ghi nhận $g(x)$ và ước lượng $h(x)$ để cập nhật
+$f(x)$.
 
-## 性质
+## Tính chất
 
-由于 $h^*(x)$ 的实际值在搜索的时候是未知的，所以，需要使用容易计算的 $h(x)$ 作为它的估计．A\* 搜索的实际复杂度就取决于这一估计函数 $h(x)$ 的性质．容易想象，如果 $h\equiv h^*$，也就是说，估计是精确的，那么，搜索过程就会严格按照最短路径前进．而如果 $h\equiv 0$，那么，A\* 算法就退化为 [Dijkstra 算法](./../graph/shortest-path.md#dijkstra-算法)；当 $h\equiv 0$ 并且边权为 $1$ 时，这就是 [BFS](./bfs.md)．
+Vì giá trị thực của $h^*(x)$ chưa biết trong lúc tìm kiếm, cần dùng một hàm
+$h(x)$ dễ tính để ước lượng nó. Độ phức tạp thực tế của tìm kiếm A\* phụ thuộc
+vào tính chất của hàm ước lượng $h(x)$. Dễ hình dung rằng nếu $h\equiv h^*$, tức
+ước lượng chính xác, quá trình tìm kiếm sẽ đi đúng theo đường ngắn nhất. Còn nếu
+$h\equiv 0$, thuật toán A\* suy biến thành [thuật toán Dijkstra](./../graph/shortest-path.md#dijkstra-%E7%AE%97%E6%B3%95);
+khi $h\equiv 0$ và mọi cạnh có trọng số $1$, nó chính là [BFS](./bfs.md).
 
-假设图没有负权边．如果估计 $h(x)$ 永远不超过实际距离 $h^*(x)$，即 $0\le h\le h^*$，那么，A\* 算法就一定能够找到最优解．满足这一条件的估计函数 $h(x)$ 称为 **可采纳的**（admissible）．根据前文的讨论，$h$ 越接近 $h^*$，相应的 A\* 算法效率就越高．一般来说，在最差情形中，算法会经过所有满足
+Giả sử đồ thị không có cạnh trọng số âm. Nếu ước lượng $h(x)$ không bao giờ vượt
+quá khoảng cách thực $h^*(x)$, tức $0\le h\le h^*$, thì thuật toán A\* chắc chắn
+tìm được lời giải tối ưu. Hàm ước lượng $h(x)$ thỏa điều kiện này được gọi là
+**chấp nhận được** (admissible). Theo thảo luận phía trên, $h$ càng gần $h^*$
+thì thuật toán A\* tương ứng càng hiệu quả. Nói chung, trong trường hợp xấu
+nhất, thuật toán sẽ đi qua mọi nút thỏa mãn
 
 $$
 f(x) = g(x) + h(x) \le C^*
 $$
 
-的结点，其中，$C^*$ 是起点 $s$ 和终点 $t$ 之间的最短距离．直觉上，$h$ 越接近 $h^*$，每次扩展时，能够满足该条件的后继结点就越少，因此，算法搜索到的分支就越少．所以，A\* 算法可以看作是对搜索算法的一种「剪枝」优化．
+trong đó $C^*$ là khoảng cách ngắn nhất giữa điểm bắt đầu $s$ và điểm kết thúc
+$t$. Trực giác là $h$ càng gần $h^*$ thì khi mở rộng, số nút kế tiếp thỏa điều
+kiện trên càng ít, nên số nhánh mà thuật toán phải tìm kiếm càng ít. Vì vậy,
+thuật toán A\* có thể xem là một dạng tối ưu "cắt tỉa" cho thuật toán tìm kiếm.
 
-如果 $h$ 不仅是可采纳的，还是 **一致的**（consistent），即
+Nếu $h$ không chỉ chấp nhận được mà còn **nhất quán** (consistent), tức
 
 $$
 h(x) \le h(y) + d(x, y),
 $$
 
-那么，A\* 算法不会将已经弹出队列的结点再次加入队列．一致性条件，可以理解为结点 $x,y,t$ 之间的三角形不等式．
+thì thuật toán A\* sẽ không đưa lại vào hàng đợi một nút đã được lấy ra. Điều
+kiện nhất quán có thể hiểu là bất đẳng thức tam giác giữa các nút $x,y,t$.
 
-## 例题
+## Ví dụ
 
-A\* 算法的一个经典应用是解决 k 短路问题．关于该问题的描述、A\* 做法，以及复杂度更优的可持久化可并堆做法，请移步 [k 短路问题](./../graph/kth-path.md) 页面．
+Một ứng dụng kinh điển của thuật toán A\* là giải bài toán k đường đi ngắn nhất.
+Mô tả bài toán, cách làm bằng A\*, và cách dùng heap khả gộp khả persistent có
+độ phức tạp tốt hơn được trình bày ở trang [bài toán k đường đi ngắn nhất](./../graph/kth-path.md).
 
-本节介绍一个可以用 A\* 算法解决的经典问题．
+Phần này giới thiệu một bài toán kinh điển có thể giải bằng thuật toán A\*.
 
-???+ example "[八数码](https://www.luogu.com.cn/problem/P1379)"
-    在 $3\times 3$ 的棋盘上，摆有八个棋子，每个棋子上标有 $1$ 至 $8$ 的某一数字．棋盘中留有一个空格，空格用 $0$ 来表示．空格周围的棋子可以移到空格中，这样原来的位置就会变成空格．给出一种初始布局和目标布局（为了使题目简单，设目标状态如下），找到一种从初始布局到目标布局最少步骤的移动方法．
+???+ example "[8-puzzle](https://www.luogu.com.cn/problem/P1379)"
+    Trên bàn cờ $3\times 3$ có tám quân cờ, mỗi quân ghi một số từ $1$ đến $8$.
+    Trên bàn cờ còn một ô trống, biểu diễn bằng $0$. Các quân cờ xung quanh ô
+    trống có thể di chuyển vào ô trống, khi đó vị trí cũ sẽ trở thành ô trống.
+    Cho một bố cục ban đầu và bố cục mục tiêu (để đơn giản, đặt trạng thái mục
+    tiêu như sau), hãy tìm cách di chuyển ít bước nhất từ bố cục ban đầu đến bố
+    cục mục tiêu.
     
     $$
     \begin{aligned}
@@ -49,16 +82,19 @@ A\* 算法的一个经典应用是解决 k 短路问题．关于该问题的描�
     \end{aligned}
     $$
 
-??? note "解题思路"
-    $h$ 函数可以定义为，不在应该在的位置的棋子个数．容易发现，$h$ 既是可采纳的，也是一致的．此题可以使用 A\* 算法求解．
+??? note "Ý tưởng giải"
+    Có thể định nghĩa hàm $h$ là số quân cờ không nằm đúng vị trí. Dễ thấy $h$
+    vừa chấp nhận được, vừa nhất quán. Bài này có thể dùng thuật toán A\* để
+    giải.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/search/code/astar/astar_1.cpp"
     ```
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
 -   [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm)
 
-[^note1]: 此处的 $h$ 意为 heuristic．详见 [启发式搜索 - 维基百科](https://zh.wikipedia.org/wiki/%E5%90%AF%E5%8F%91%E5%BC%8F%E6%90%9C%E7%B4%A2) 和 [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation) 的 Bounded relaxation 一节．
+[^note1]: $h$ ở đây nghĩa là heuristic. Xem thêm [Heuristic search - Wikipedia](https://zh.wikipedia.org/wiki/%E5%90%AF%E5%8F%91%E5%BC%8F%E6%90%9C%E7%B4%A2)
+    và phần Bounded relaxation của [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation).
