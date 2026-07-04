@@ -1,110 +1,110 @@
 author: sshwy
 
-并查集、Kruskal 重构树的思维方式是很类似的，它们都能用于处理与连通性有关的问题．本文通过例题讲解的方式给大家介绍并查集思想的应用．
+DSU và cây tái cấu trúc Kruskal có cách tư duy rất giống nhau; cả hai đều có thể dùng để xử lý các bài toán liên quan đến tính liên thông. Bài viết này giới thiệu các ứng dụng của tư tưởng DSU thông qua một số ví dụ.
 
 ## A
 
 ???+ note "A"
-    有 $n$ 个点，初始时均为孤立点．
+    Có $n$ đỉnh, ban đầu tất cả đều là các đỉnh cô lập.
     
-    接下来有 $m$ 次加边操作，第 $i$ 次操作在 $a_i$ 和 $b_i$ 之间加一条无向边．设 $L(i,j)$ 表示结点 $i$ 和 $j$ 最早在第 $L(i,j)$ 次操作后连通．
+    Tiếp theo có $m$ thao tác thêm cạnh. Thao tác thứ $i$ thêm một cạnh vô hướng giữa $a_i$ và $b_i$. Gọi $L(i,j)$ là thao tác sớm nhất sao cho sau thao tác thứ $L(i,j)$, hai đỉnh $i$ và $j$ liên thông.
     
-    在 $m$ 次操作完后，你要求出 $\sum_{i=1}^n\sum_{j=i+1}^nL(i,j)$ 的值．
+    Sau khi thực hiện xong $m$ thao tác, hãy tính giá trị $\sum_{i=1}^n\sum_{j=i+1}^nL(i,j)$.
 
-这是基础并查集的应用，并查集记录一下子树的大小．考虑统计每次操作的贡献．如果第 $i$ 次操作 $a_i$ 和 $b_i$ 分属于两个不同子树，就将这两个子树合并，并将两者子树大小的乘积乘上 $i$ 累加到答案里．时间复杂度 $O(n\alpha(n))$．
+Đây là một ứng dụng cơ bản của DSU: trong DSU ta lưu kích thước của từng cây con. Xét việc thống kê đóng góp của từng thao tác. Nếu ở thao tác thứ $i$, $a_i$ và $b_i$ thuộc hai cây con khác nhau, ta hợp nhất hai cây con đó, rồi cộng vào đáp án tích kích thước của hai cây con nhân với $i$. Độ phức tạp thời gian là $O(n\alpha(n))$.
 
 ## B
 
 ???+ note "B"
-    有 $n$ 个点，初始时均为孤立点．
+    Có $n$ đỉnh, ban đầu tất cả đều là các đỉnh cô lập.
     
-    接下来有 $m$ 次加边操作，第 $i$ 次操作在 $a_i$ 和 $b_i$ 之间加一条无向边．
+    Tiếp theo có $m$ thao tác thêm cạnh. Thao tác thứ $i$ thêm một cạnh vô hướng giữa $a_i$ và $b_i$.
     
-    接下来有 $q$ 次询问，第 $i$ 次询问 $u_i$ 和 $v_i$ 最早在第几次操作后连通．
+    Tiếp theo có $q$ truy vấn. Truy vấn thứ $i$ hỏi $u_i$ và $v_i$ sớm nhất liên thông sau thao tác thứ mấy.
 
-考虑在并查集合并的时候记录「并查集生成树」，也就是说如果第 $i$ 次操作 $a_i$ 和 $b_i$ 分属于两个不同子树，那么把 $(a_i,b_i)$ 这条边纳入生成树中．边权是 $i$．那么查询就是询问 $u$ 到 $v$ 路径上边权的最大值，可以使用树上倍增或者树链剖分的方法维护．时间复杂度 $O(n\log n)$．
+Xét việc ghi lại "cây sinh bởi DSU" trong quá trình hợp nhất DSU. Nói cách khác, nếu ở thao tác thứ $i$, $a_i$ và $b_i$ thuộc hai cây con khác nhau, ta đưa cạnh $(a_i,b_i)$ vào cây khung, với trọng số cạnh là $i$. Khi đó, một truy vấn trở thành bài toán hỏi trọng số cạnh lớn nhất trên đường đi từ $u$ đến $v$; có thể duy trì bằng binary lifting trên cây hoặc phân rã heavy-light. Độ phức tạp thời gian là $O(n\log n)$.
 
-另外一个方法是维护 Kruskal 重构树，其本质与并查集生成树是相同的．复杂度亦相同．
+Một cách khác là duy trì cây tái cấu trúc Kruskal. Về bản chất, nó giống với cây sinh bởi DSU và có cùng độ phức tạp.
 
 ## C
 
 ???+ note "C"
-    有 $n$ 个点，初始时均为孤立点．
+    Có $n$ đỉnh, ban đầu tất cả đều là các đỉnh cô lập.
     
-    接下来有 $m$ 次加边操作，第 $i$ 次操作在 $a_i$ 和 $b_i$ 之间加一条无向边．
+    Tiếp theo có $m$ thao tác thêm cạnh. Thao tác thứ $i$ thêm một cạnh vô hướng giữa $a_i$ và $b_i$.
     
-    接下来有 $q$ 次询问，第 $i$ 次询问第 $x_i$ 个点在第 $t_i$ 次操作后所在连通块的大小．
+    Tiếp theo có $q$ truy vấn. Truy vấn thứ $i$ hỏi kích thước thành phần liên thông chứa đỉnh $x_i$ sau thao tác thứ $t_i$.
 
-离线算法：考虑将询问按 $t_i$ 从小到大排序．在加边的过程中使用并查集顺便处理询问即可．时间复杂度 $O(q\log q+(n+q)\alpha(n))$．
+Thuật toán offline: sắp xếp các truy vấn theo $t_i$ tăng dần. Trong quá trình thêm cạnh, dùng DSU và xử lý luôn các truy vấn tương ứng. Độ phức tạp thời gian là $O(q\log q+(n+q)\alpha(n))$.
 
-在线算法：本题的在线算法只能使用 Kruskal 重构树．Kruskal 重构树与并查集的区别是：第 $i$ 次操作 $a_i$ 和 $b_i$ 分属于两个不同子树，那么 Kruskal 会新建一个结点 $u$，然后让 $a_i$ 所在子树的根和 $b_i$ 所在子树的根分别连向 $u$，作为 $u$ 的两个儿子．不妨设 $u$ 的点权是 $i$．对于初始的 $n$ 个点，点权为 $0$．
+Thuật toán online: với bài này, thuật toán online chỉ có thể dùng cây tái cấu trúc Kruskal. Điểm khác biệt giữa cây tái cấu trúc Kruskal và DSU là: nếu ở thao tác thứ $i$, $a_i$ và $b_i$ thuộc hai cây con khác nhau, Kruskal tạo một đỉnh mới $u$, rồi nối gốc của cây con chứa $a_i$ và gốc của cây con chứa $b_i$ lần lượt tới $u$, làm hai con của $u$. Có thể xem trọng số đỉnh của $u$ là $i$. Với $n$ đỉnh ban đầu, trọng số đỉnh là $0$.
 
-对于询问，我们只需要求出 $x_i$ 在重构树中最大的一个连通块使得连通中的点权最大值不超过 $t_i$，询问的答案就是这个连通块中点权为 $0$ 的结点个数，即叶子结点个数．
+Đối với mỗi truy vấn, ta chỉ cần tìm thành phần liên thông lớn nhất chứa $x_i$ trong cây tái cấu trúc sao cho trọng số đỉnh lớn nhất trong thành phần đó không vượt quá $t_i$. Đáp án của truy vấn là số đỉnh có trọng số $0$ trong thành phần liên thông này, tức số đỉnh lá.
 
-由于我们操作的编号是递增的，因此重构树上父结点的点权总是大于子结点的点权．这意味着我们可以在重构树上从 $x_i$ 到根结点的路径上倍增找到点权最大的不超过 $t_i$ 的结点．这样我们就求出了答案．时间复杂度 $O(n\log n)$．
+Do chỉ số thao tác tăng dần, trọng số của đỉnh cha trên cây tái cấu trúc luôn lớn hơn trọng số của đỉnh con. Điều này có nghĩa là ta có thể dùng binary lifting trên đường đi từ $x_i$ đến gốc trong cây tái cấu trúc để tìm đỉnh có trọng số lớn nhất nhưng không vượt quá $t_i$. Như vậy ta thu được đáp án. Độ phức tạp thời gian là $O(n\log n)$.
 
 ## D
 
 ???+ note "D"
-    给一个长度为 $n$ 的 01 序列 $a_1,\ldots,a_n$，一开始全是 $0$，接下来进行 $m$ 次操作：
+    Cho một dãy nhị phân $a_1,\ldots,a_n$ độ dài $n$, ban đầu tất cả đều bằng $0$. Tiếp theo thực hiện $m$ thao tác:
     
-    -   令 $a_x=1$；
-    -   求 $a_x,a_{x+1},\ldots,a_n$ 中左数第一个为 $0$ 的位置．
+    -   Gán $a_x=1$;
+    -   Tìm vị trí đầu tiên tính từ trái sang phải có giá trị $0$ trong $a_x,a_{x+1},\ldots,a_n$.
 
-建立一个并查集，$f_i$ 表示 $a_i,a_{i+1},\ldots,a_n$ 中第一个 $0$ 的位置．初始时 $f_i=i$．
+Xây dựng một DSU, trong đó $f_i$ biểu thị vị trí đầu tiên có giá trị $0$ trong $a_i,a_{i+1},\ldots,a_n$. Ban đầu $f_i=i$.
 
-对于一次 $a_x=1$ 的操作，如果 $a_x$ 原本就等于 $1$，就不管．否则我们令 $f_x=f_{x+1}$．
+Với một thao tác $a_x=1$, nếu $a_x$ vốn đã bằng $1$ thì bỏ qua. Ngược lại, ta đặt $f_x=f_{x+1}$.
 
-时间复杂度 $O(n\log n)$，如果要使用按秩合并的话实现会较为麻烦，不过仍然可行．也就是说时间复杂度或为 $O(n\alpha(n))$．
+Độ phức tạp thời gian là $O(n\log n)$. Nếu muốn dùng hợp nhất theo hạng thì cài đặt sẽ phức tạp hơn, nhưng vẫn khả thi. Khi đó độ phức tạp thời gian có thể là $O(n\alpha(n))$.
 
 ## E
 
 ???+ note "E"
-    给出三个长度为 $n$ 的正整数序列 $a$，$b$，$c$．枚举 $1\le i\le j\le n$，求 $a_i\cdot b_j\cdot \min_{i\le k\le j}c_k$ 的最大值．
+    Cho ba dãy số nguyên dương $a$, $b$, $c$ có độ dài $n$. Duyệt mọi $1\le i\le j\le n$, hãy tìm giá trị lớn nhất của $a_i\cdot b_j\cdot \min_{i\le k\le j}c_k$.
 
-本题同样有许多做法，这里我们重点讲解并查集思路．按权值从大到小考虑 $c_k$．相当于我们在 $k$ 上加入一个点，然后将 $k-1$ 和 $k+1$ 位置上的点所在的连通块与之合并（如果这两个位置上有点的话）．连通块上记录 $a$ 的最大值和 $b$ 的最大值，即可在合并的时候更新答案．时间复杂度 $O(n\log n)$．
+Bài này cũng có nhiều cách giải; ở đây ta tập trung trình bày hướng DSU. Xét các $c_k$ theo thứ tự trọng số giảm dần. Điều này tương đương với việc thêm một đỉnh tại vị trí $k$, rồi hợp nhất nó với thành phần liên thông chứa các đỉnh ở vị trí $k-1$ và $k+1$ nếu các vị trí đó đã có đỉnh. Trên mỗi thành phần liên thông, lưu giá trị lớn nhất của $a$ và giá trị lớn nhất của $b$; khi hợp nhất là có thể cập nhật đáp án. Độ phức tạp thời gian là $O(n\log n)$.
 
 ## F
 
 ???+ note "F"
-    给出一棵 $n$ 个点的树，接下来有 $m$ 次操作：
+    Cho một cây có $n$ đỉnh. Tiếp theo có $m$ thao tác:
     
-    -   加一条从 $a_i$ 到 $b_i$ 的边．
-    -   询问两个点 $u_i$ 和 $v_i$ 之间是否有至少两条边不相交的路径．
+    -   Thêm một cạnh từ $a_i$ đến $b_i$.
+    -   Hỏi giữa hai đỉnh $u_i$ và $v_i$ có tồn tại ít nhất hai đường đi không giao nhau về cạnh hay không.
 
-询问可以转化为：求 $u_i$ 和 $v_i$ 是否在同一个简单环上．按照双连通分量缩点的想法，每次我们在 $a_i$ 和 $b_i$ 间加一条边，就可以把 $a_i$ 到 $b_i$ 树上路径的点缩到一起．如果两条边 $(a_i,b_i)$ 和 $(a_j,b_j)$ 对应的树上路径有交，那么这两条边就会被缩到一起．
+Truy vấn có thể chuyển thành: hỏi $u_i$ và $v_i$ có nằm trên cùng một chu trình đơn hay không. Theo ý tưởng co các thành phần song liên thông cạnh, mỗi khi thêm một cạnh giữa $a_i$ và $b_i$, ta có thể co các đỉnh trên đường đi từ $a_i$ đến $b_i$ trong cây lại với nhau. Nếu hai cạnh $(a_i,b_i)$ và $(a_j,b_j)$ tương ứng với hai đường đi trên cây có giao nhau, thì hai cạnh đó sẽ bị co vào cùng một nhóm.
 
-换言之，加边操作可以理解为，将 $a_i$ 到 $b_i$ 树上路径的边覆盖一次．而询问就转化为了：判断 $u_i$ 到 $v_i$ 路径上是否存在未被覆盖的边．如果不存在，那么 $u_i$ 和 $v_i$ 就属于同一个双连通分量，也就属于同一个简单环．
+Nói cách khác, thao tác thêm cạnh có thể hiểu là phủ một lần các cạnh trên đường đi từ $a_i$ đến $b_i$ trong cây. Khi đó truy vấn được chuyển thành: kiểm tra trên đường đi từ $u_i$ đến $v_i$ có tồn tại cạnh chưa bị phủ hay không. Nếu không tồn tại, thì $u_i$ và $v_i$ thuộc cùng một thành phần song liên thông cạnh, tức cũng thuộc cùng một chu trình đơn.
 
-考虑使用并查集维护．给树定根，设 $f_i$ 表示 $i$ 到根的路径中第一个未被覆盖的边．那么每次加边操作，我们就暴力跳并查集．覆盖了一条边后，将这条边对应结点的 $f$ 与父节点合并．这样，每条边至多被覆盖一次，总复杂度 $O(n\log n)$．使用按秩合并的并查集同样可以做到 $O(n\alpha(n))$．
+Xét việc dùng DSU để duy trì. Chọn gốc cho cây, đặt $f_i$ biểu thị cạnh chưa bị phủ đầu tiên trên đường đi từ $i$ đến gốc. Khi đó với mỗi thao tác thêm cạnh, ta nhảy DSU trực tiếp. Sau khi phủ một cạnh, hợp nhất $f$ của đỉnh tương ứng với cạnh đó vào cha của nó. Như vậy, mỗi cạnh bị phủ nhiều nhất một lần, nên tổng độ phức tạp là $O(n\log n)$. Dùng DSU hợp nhất theo hạng cũng có thể đạt $O(n\alpha(n))$.
 
-本题的维护方式类似于 D 的树上版本．
+Cách duy trì của bài này tương tự phiên bản trên cây của bài D.
 
 ## G
 
 ???+ note "G"
-    无向图 $G$ 有 $n$ 个点，初始时均为孤立点（即没有边）．
+    Đồ thị vô hướng $G$ có $n$ đỉnh, ban đầu tất cả đều là các đỉnh cô lập, tức chưa có cạnh.
     
-    接下来有 $m$ 次加边操作，第 $i$ 次操作在 $a_i$ 和 $b_i$ 之间加一条无向边．
+    Tiếp theo có $m$ thao tác thêm cạnh. Thao tác thứ $i$ thêm một cạnh vô hướng giữa $a_i$ và $b_i$.
     
-    每次操作后，你均需要求出图中桥的个数．
+    Sau mỗi thao tác, hãy tính số lượng cầu trong đồ thị.
     
-    桥的定义为：对于一条 $G$ 中的边 $(x,y)$，如果删掉它会使得连通块数量增加，则 $(x,y)$ 被称作桥．
+    Định nghĩa cầu: với một cạnh $(x,y)$ trong $G$, nếu xóa cạnh đó làm số thành phần liên thông tăng lên, thì $(x,y)$ được gọi là cầu.
     
-    强制在线．
+    Bắt buộc xử lý online.
 
-本题考察对并查集性质的理解．考虑用并查集维护连通情况．对于边双树，考虑维护有根树，设 $p_i$ 表示结点 $i$ 的父亲．也就是不带路径压缩的并查集．
+Bài này kiểm tra khả năng hiểu tính chất của DSU. Xét việc dùng DSU để duy trì tính liên thông. Với cây các thành phần song liên thông cạnh, ta duy trì một cây có gốc, đặt $p_i$ là cha của đỉnh $i$. Đây chính là DSU không dùng nén đường đi.
 
-如果第 $i$ 次操作 $a_i$ 和 $b_i$ 属于同一个连通块，那么我们就需要将边双树上 $a_i$ 到 $b_i$ 路径上的点缩起来．这可以用并查集维护．每次缩点，边双连通分量的个数减少 $1$，最多减少 $n-1$ 次，因此缩点部分的并查集复杂度是 $O(n\alpha(n))$．
+Nếu ở thao tác thứ $i$, $a_i$ và $b_i$ thuộc cùng một thành phần liên thông, ta cần co các đỉnh trên đường đi từ $a_i$ đến $b_i$ trong cây thành phần song liên thông cạnh. Việc này có thể duy trì bằng DSU. Mỗi lần co đỉnh, số thành phần song liên thông cạnh giảm $1$, và giảm nhiều nhất $n-1$ lần, nên độ phức tạp DSU của phần co đỉnh là $O(n\alpha(n))$.
 
-为了缩点，我们要先求出 $a_i$ 和 $b_i$ 在边双树上的 LCA．对此我们可以维护一个标记数组．然后从 $a_i$ 和 $b_i$ 开始轮流沿着祖先一个一个往上跳，并标记沿途经过的点．一但跳到了某个之前就被标记过的点，那么这个点就是 $a_i$ 和 $b_i$ 的 LCA．这个算法的复杂度与 $a_i$ 到 $b_i$ 的路径长度是线性相关的，可以接受．
+Để co đỉnh, trước hết ta phải tìm LCA của $a_i$ và $b_i$ trên cây thành phần song liên thông cạnh. Có thể duy trì một mảng đánh dấu cho việc này. Sau đó, bắt đầu từ $a_i$ và $b_i$, luân phiên nhảy từng bước lên tổ tiên và đánh dấu các đỉnh đi qua. Một khi nhảy tới một đỉnh đã được đánh dấu trước đó, đỉnh này chính là LCA của $a_i$ và $b_i$. Độ phức tạp của thuật toán này tuyến tính theo độ dài đường đi từ $a_i$ đến $b_i$, nên có thể chấp nhận được.
 
-如果 $a_i$ 和 $b_i$ 分属于两个不同连通块，那么我们将这两个连通块合并，并且桥的数量加 $1$．此时我们需要将两个点所在的边双树连起来，也就是加一条 $a_i$ 到 $b_i$ 的边．因此我们需要将其中一棵树重新定根，然后接到另一棵树上．这里运用启发式合并的思想：我们把结点数更小的重新定根．这样的总复杂度是 $O(n\log n)$ 的．
+Nếu $a_i$ và $b_i$ thuộc hai thành phần liên thông khác nhau, ta hợp nhất hai thành phần đó và tăng số cầu thêm $1$. Lúc này cần nối hai cây thành phần song liên thông cạnh chứa hai đỉnh đó, tức thêm một cạnh từ $a_i$ đến $b_i$. Vì vậy ta cần đặt lại gốc cho một trong hai cây, rồi nối nó vào cây còn lại. Ở đây dùng ý tưởng hợp nhất theo heuristic: đặt lại gốc cho cây có ít đỉnh hơn. Tổng độ phức tạp của phần này là $O(n\log n)$.
 
-综上，该算法的总复杂度是 $O(n\log n+m\log n)$ 的．
+Tổng hợp lại, độ phức tạp toàn bộ thuật toán là $O(n\log n+m\log n)$.
 
-## 小结
+## Tổng kết
 
-并查集与 Kruskal 重构树有许多共通点，而并查集的优化（按秩合并）正是启发式合并思想的应用．因此灵活运用并查集可以方便地处理许多与连通性有关的图论问题．
+DSU và cây tái cấu trúc Kruskal có nhiều điểm chung, còn tối ưu hóa của DSU, tức hợp nhất theo hạng, chính là một ứng dụng của tư tưởng hợp nhất theo heuristic. Vì vậy, vận dụng linh hoạt DSU có thể xử lý thuận tiện nhiều bài toán đồ thị liên quan đến tính liên thông.
 
-**本页面部分内容译自博文 [Поиск мостов в режиме онлайн](http://e-maxx.ru/algo/bridge_searching_online) 与其英文翻译版 [Finding Bridges Online](https://cp-algorithms.com/graph/bridge-searching-online.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+**Một phần nội dung của trang này được dịch từ bài viết [Поиск мостов в режиме онлайн](http://e-maxx.ru/algo/bridge_searching_online) và bản dịch tiếng Anh của nó, [Finding Bridges Online](https://cp-algorithms.com/graph/bridge-searching-online.html). Phiên bản tiếng Nga có giấy phép Public Domain + Leave a Link; phiên bản tiếng Anh có giấy phép CC-BY-SA 4.0.**

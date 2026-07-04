@@ -1,136 +1,136 @@
-## 简介
+## Giới thiệu
 
-RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值．
+RMQ là viết tắt của Range Maximum/Minimum Query, nghĩa là truy vấn giá trị lớn nhất (nhỏ nhất) trên một đoạn.
 
-在接下来的描述中，默认初始数组大小为 $n$，询问次数为 $m$．
+Trong các phần mô tả dưới đây, ta mặc định kích thước ban đầu của mảng là $n$ và số lượng truy vấn là $m$.
 
-在接下来的描述中，默认时间复杂度标记方式为 $O(A) \sim O(B)$，其中 $O(A)$ 表示预处理时间复杂度，而 $O(B)$ 表示单次询问的时间复杂度．
+Trong các phần mô tả dưới đây, ta mặc định ký hiệu độ phức tạp thời gian có dạng $O(A) \sim O(B)$, trong đó $O(A)$ là độ phức tạp tiền xử lý, còn $O(B)$ là độ phức tạp cho một truy vấn.
 
-## 单调栈
+## Ngăn xếp đơn điệu
 
-由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/monotonic-stack.md)．这部分不再展开．
+Vì **OI Wiki** đã có phần mô tả cho nội dung này, bài viết này chỉ đưa ra [liên kết](../ds/monotonic-stack.md). Phần này sẽ không trình bày thêm.
 
-时间复杂度 $O(m\log m) \sim O(\log n)$，空间复杂度 $O(n)$．
+Độ phức tạp thời gian $O(m\log m) \sim O(\log n)$, độ phức tạp không gian $O(n)$.
 
-## ST 表
+## ST table
 
-由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/sparse-table.md)．这部分不再展开．
+Vì **OI Wiki** đã có phần mô tả cho nội dung này, bài viết này chỉ đưa ra [liên kết](../ds/sparse-table.md). Phần này sẽ không trình bày thêm.
 
-时间复杂度 $O(n\log n) \sim O(1)$，空间复杂度 $O(n\log n)$．
+Độ phức tạp thời gian $O(n\log n) \sim O(1)$, độ phức tạp không gian $O(n\log n)$.
 
-## 线段树
+## Cây đoạn
 
-由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/seg.md)．这部分不再展开．
+Vì **OI Wiki** đã có phần mô tả cho nội dung này, bài viết này chỉ đưa ra [liên kết](../ds/seg.md). Phần này sẽ không trình bày thêm.
 
-时间复杂度 $O(n) \sim O(\log n)$，空间复杂度 $O(n)$．
+Độ phức tạp thời gian $O(n) \sim O(\log n)$, độ phức tạp không gian $O(n)$.
 
-## Four Russian
+## Four Russians
 
-Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基于 ST 表的算法．
+Four Russians là một thuật toán dựa trên ST table, do bốn nhà khoa học máy tính người Nga đề xuất.
 
-在 ST 表的基础上 Four russian 算法对其做出的改进是序列分块．
+Cải tiến mà thuật toán Four Russians thực hiện trên nền ST table là chia dãy thành các khối.
 
-具体来说，我们将原数组——我们将其称之为数组 A——每 $S$ 个分成一块，总共 $n/S$ 块．
+Cụ thể, ta chia mảng gốc, gọi là mảng A, thành các khối có kích thước $S$, tổng cộng $n/S$ khối.
 
-对于每一块我们预处理出来块内元素的最小值，建立一个长度为 $n/S$ 的数组 B，并对数组 B 采用 ST 表的方式预处理．
+Với mỗi khối, ta tiền xử lý giá trị nhỏ nhất trong khối để xây dựng một mảng B có độ dài $n/S$, rồi tiền xử lý mảng B theo cách của ST table.
 
-同时，我们对于数组 A 的每一个零散块也建立一个 ST 表．
+Đồng thời, với mỗi khối rời rạc của mảng A, ta cũng xây dựng một ST table.
 
-询问的时候，我们可以将询问区间划分为不超过 1 个数组 B 上的连续块区间和不超过 2 个数组 A 上的整块内的连续区间．显然这些问题我们通过 ST 表上的区间查询解决．
+Khi truy vấn, ta có thể chia đoạn truy vấn thành không quá 1 đoạn khối liên tiếp trên mảng B và không quá 2 đoạn liên tiếp nằm trọn trong một khối trên mảng A. Rõ ràng các bài toán này đều có thể được giải bằng truy vấn đoạn trên ST table.
 
-在 $S=\log n$ 时候，预处理复杂度达到最优，为 $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$．
+Khi $S=\log n$, độ phức tạp tiền xử lý đạt tối ưu, bằng $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$.
 
-时间复杂度 $O(n\log \log n) \sim O(1)$，空间复杂度 $O(n\log \log n)$．
+Độ phức tạp thời gian $O(n\log \log n) \sim O(1)$, độ phức tạp không gian $O(n\log \log n)$.
 
-当然询问由于要跑三个 ST 表，该实现方法的常数较大．
+Dĩ nhiên, vì mỗi truy vấn phải chạy trên ba ST table, cách cài đặt này có hằng số khá lớn.
 
-??? note "一些小小的算法改进"
-    我们发现，在询问的两个端点在数组 A 中属于不同的块的时候，数组 A 中块内的询问是关于每一块前缀或者后缀的询问．
+??? note "Một vài cải tiến thuật toán nhỏ"
+    Ta nhận thấy rằng, khi hai đầu mút của truy vấn thuộc hai khối khác nhau trong mảng A, các truy vấn nội bộ khối trong mảng A đều là truy vấn trên tiền tố hoặc hậu tố của mỗi khối.
     
-    显然这些询问可以通过预处理答案在 $O(n)$ 的时间复杂度内被解决．
+    Rõ ràng các truy vấn này có thể được giải trong $O(n)$ bằng cách tiền xử lý đáp án.
     
-    这样子我们只需要在询问的时候进行至多一次 ST 表上的查询操作了．
+    Như vậy, khi truy vấn ta chỉ cần thực hiện nhiều nhất một phép truy vấn trên ST table.
 
-??? note "一些玄学的算法改进"
-    由于 Four russian 算法以 ST 表为基础，而算法竞赛一般没有非常高的时间复杂度要求，所以 Four russian 算法一般都可以被 ST 表代替，在算法竞赛中并不实用．这里提供一种在算法竞赛中更加实用的 Four russian 改进算法．
+??? note "Một vài cải tiến thuật toán mang tính kinh nghiệm"
+    Vì thuật toán Four Russians dựa trên ST table, mà trong lập trình thi đấu thường không có yêu cầu độ phức tạp thời gian quá khắt khe, nên thuật toán Four Russians nhìn chung có thể được thay bằng ST table và không thực dụng lắm trong lập trình thi đấu. Ở đây đưa ra một biến thể cải tiến của Four Russians thực dụng hơn trong lập trình thi đấu.
     
-    我们将块大小设为 $\sqrt n$，然后预处理出每一块内前缀和后缀的 RMQ，再暴力预处理出任意连续的整块之间的 RMQ，时间复杂度为 $O(n)$．
+    Ta đặt kích thước khối là $\sqrt n$, sau đó tiền xử lý RMQ trên tiền tố và hậu tố trong mỗi khối, rồi tiền xử lý vét cạn RMQ giữa hai khối nguyên liên tiếp bất kỳ; độ phức tạp thời gian là $O(n)$.
     
-    查询时，对于左右端点不在同一块内的询问，我们可以直接 $O(1)$ 得到左端点所在块的后缀 RMQ，左端点和右端点之间的连续整块 RMQ，和右端点所在块的前缀 RMQ，答案即为三者之间的最值．
+    Khi truy vấn, với truy vấn có hai đầu mút không nằm trong cùng một khối, ta có thể lấy trực tiếp trong $O(1)$ ba giá trị: RMQ hậu tố của khối chứa đầu mút trái, RMQ của các khối nguyên liên tiếp nằm giữa đầu mút trái và đầu mút phải, và RMQ tiền tố của khối chứa đầu mút phải. Đáp án chính là giá trị cực trị trong ba giá trị đó.
     
-    而对于左右端点在同一块内的询问，我们可以暴力求出两点之间的 RMQ，时间复杂度为 $O(\sqrt n)$，但是单个询问的左右端点在同一块内的期望为 $O(\frac{\sqrt n}{n})$，所以这种方法的时间复杂度为期望 $O(n)$．
+    Còn với truy vấn có hai đầu mút nằm trong cùng một khối, ta có thể vét cạn để tìm RMQ giữa hai điểm, với độ phức tạp thời gian $O(\sqrt n)$. Tuy nhiên, xác suất kỳ vọng để hai đầu mút của một truy vấn nằm trong cùng một khối là $O(\frac{\sqrt n}{n})$, nên độ phức tạp thời gian của phương pháp này là kỳ vọng $O(n)$.
     
-    而在算法竞赛中，我们并不用非常担心出题人卡掉这种算法，因为我们可以通过在 $\sqrt n$ 的基础上随机微调块大小，很大程度上避免算法在根据特定块大小构造的数据中出现最坏情况．并且如果出题人想要卡掉这种方法，则暴力有可能可以通过．
+    Trong lập trình thi đấu, ta không cần quá lo việc người ra đề cố tình làm thuật toán này bị kẹt, vì có thể tinh chỉnh ngẫu nhiên kích thước khối quanh $\sqrt n$ để phần lớn tránh trường hợp xấu nhất trên dữ liệu được dựng theo một kích thước khối cụ thể. Hơn nữa, nếu người ra đề muốn chặn phương pháp này, lời giải vét cạn cũng có thể vượt qua được.
     
-    这是一种期望时间复杂度达到下界，并且代码实现难度和算法常数均较小的算法，因此在算法竞赛中比较实用．
+    Đây là một thuật toán đạt cận dưới về độ phức tạp thời gian kỳ vọng, đồng thời có độ khó cài đặt và hằng số thuật toán đều nhỏ, nên khá thực dụng trong lập trình thi đấu.
     
-    以上做法参考了 [P3793 由乃救爷爷](https://www.luogu.com.cn/problem/P3793) 中的题解．
+    Cách làm trên tham khảo lời giải của bài [P3793 Yuno cứu ông nội](https://www.luogu.com.cn/problem/P3793).
 
-## 加减 1RMQ
+## RMQ cộng trừ 1
 
-若序列满足相邻两元素相差为 1，在这个序列上做 RMQ 可以成为加减 1RMQ，根究这个特性可以改进 Four Russian 算法，做到 $O(n) \sim O(1)$ 的时间复杂度，$O(n)$ 的空间复杂度．
+Nếu dãy thỏa mãn hai phần tử kề nhau chênh lệch đúng 1, thì RMQ trên dãy đó có thể được gọi là RMQ cộng trừ 1. Dựa vào tính chất này, ta có thể cải tiến thuật toán Four Russians để đạt độ phức tạp thời gian $O(n) \sim O(1)$ và độ phức tạp không gian $O(n)$.
 
-由于 Four russian 算法的瓶颈在于块内 RMQ 问题，我们重点去讨论块内 RMQ 问题的优化．
+Vì điểm nghẽn của thuật toán Four Russians nằm ở bài toán RMQ trong khối, ta sẽ tập trung thảo luận cách tối ưu bài toán RMQ trong khối.
 
-由于相邻两个数字的差值为 $\pm 1$，所以在固定左端点数字时 长度不超过 $\log n$ 的右侧序列种类数为 $\sum_{i=1}^{\log n} 2^{i-1}$，而这个式子显然不超过 $n$．
+Do hiệu của hai số kề nhau là $\pm 1$, nên khi cố định số ở đầu mút trái, số loại dãy bên phải có độ dài không vượt quá $\log n$ là $\sum_{i=1}^{\log n} 2^{i-1}$, và biểu thức này rõ ràng không vượt quá $n$.
 
-这启示我们可以预处理所有不超过 $n$ 种情况的 最小值 - 第一个元素 的值．
+Điều này gợi ý rằng ta có thể tiền xử lý giá trị "giá trị nhỏ nhất - phần tử đầu tiên" cho tất cả không quá $n$ trường hợp.
 
-在预处理的时候我们需要去预处理同一块内相邻两个数字之间的差，并且使用二进制将其表示出来．
+Khi tiền xử lý, ta cần tiền xử lý hiệu giữa hai số kề nhau trong cùng một khối và biểu diễn hiệu đó bằng nhị phân.
 
-在询问的时候我们找到询问区间对应的二进制表示，查表得出答案．
+Khi truy vấn, ta tìm biểu diễn nhị phân tương ứng với đoạn truy vấn, rồi tra bảng để lấy đáp án.
 
-这样子 Four russian 预处理的时间复杂度就被优化到了 $O(n)$．
+Như vậy, độ phức tạp tiền xử lý của Four Russians được tối ưu xuống $O(n)$.
 
-## 笛卡尔树在 RMQ 上的应用
+## Ứng dụng cây Cartesian trong RMQ
 
-不了解笛卡尔树的朋友请移步 [笛卡尔树](../ds/cartesian-tree.md)．
+Nếu chưa quen với cây Cartesian, hãy xem [cây Cartesian](../ds/cartesian-tree.md).
 
-不难发现，原序列上两个点之间的 min/max，等于笛卡尔树上两个点的 LCA 的权值．根据这一点就可以借助 $O(n) \sim O(1)$ 求解树上两个点之间的 LCA 进而求解 RMQ．$O(n) \sim O(1)$ 树上 LCA 在 [LCA - 标准 RMQ](../graph/lca.md#标准-rmq) 已经有描述，这里不再展开．
+Dễ thấy rằng min/max giữa hai điểm trên dãy ban đầu bằng trọng số của LCA của hai điểm đó trên cây Cartesian. Dựa vào điều này, ta có thể mượn lời giải LCA giữa hai điểm trên cây với độ phức tạp $O(n) \sim O(1)$ để giải RMQ. LCA trên cây với $O(n) \sim O(1)$ đã được mô tả trong [LCA - RMQ chuẩn](../graph/lca.md#rmq-chuẩn), nên phần này không trình bày thêm.
 
-总结一下，笛卡尔树在 RMQ 上的应用，就是通过将普通 RMQ 问题转化为 LCA 问题，进而转化为加减 1 RMQ 问题进行求解，时间复杂度为 $O(n) \sim O(1)$．当然由于转化步数较多，$O(n) \sim O(1)$ RMQ 常数较大．
+Tóm lại, ứng dụng cây Cartesian trong RMQ là chuyển bài toán RMQ thông thường thành bài toán LCA, rồi tiếp tục chuyển thành bài toán RMQ cộng trừ 1 để giải, với độ phức tạp thời gian $O(n) \sim O(1)$. Dĩ nhiên, vì có nhiều bước chuyển đổi, RMQ $O(n) \sim O(1)$ có hằng số khá lớn.
 
-如果数据随机，还可以暴力在笛卡尔树上查找．此时的时间复杂度为期望 $O(n) \sim O(\log n)$，并且实际使用时这种算法的常数往往很小．
+Nếu dữ liệu ngẫu nhiên, ta cũng có thể tìm kiếm vét cạn trên cây Cartesian. Khi đó độ phức tạp thời gian là kỳ vọng $O(n) \sim O(\log n)$, và trong thực tế hằng số của thuật toán này thường rất nhỏ.
 
-### 例题 [Luogu P3865【模板】ST 表](https://www.luogu.com.cn/problem/P3865)
+### Bài ví dụ [Luogu P3865 [Mẫu] ST table](https://www.luogu.com.cn/problem/P3865)
 
-## 基于状压的线性 RMQ 算法
+## Thuật toán RMQ tuyến tính dựa trên nén trạng thái
 
-### 隐性要求
+### Yêu cầu ngầm
 
--   序列的长度 $n$ 满足 $\log_2{n} \leq 64$．
+-   Độ dài dãy $n$ thỏa mãn $\log_2{n} \leq 64$.
 
-### 前置知识
+### Kiến thức chuẩn bị
 
 -   [Sparse Table](../ds/sparse-table.md)
 
--   基本位操作
+-   Các thao tác bit cơ bản
 
--   前后缀极值
+-   Cực trị tiền tố và hậu tố
 
-### 算法原理
+### Nguyên lý thuật toán
 
-将原序列 $A[1\cdots n]$ 分成每块长度为 $O(\log_2{n})$ 的 $O(\frac{n}{\log_2{n}})$ 块．
+Chia dãy gốc $A[1\cdots n]$ thành $O(\frac{n}{\log_2{n}})$ khối, mỗi khối có độ dài $O(\log_2{n})$.
 
-> 听说令块长为 $1.5\times \log_2{n}$ 时常数较小．
+> Nghe nói khi đặt độ dài khối là $1.5\times \log_2{n}$ thì hằng số nhỏ hơn.
 
-记录每块的最大值，并用 ST 表维护块间最大值，复杂度 $O(n)$．
+Ghi lại giá trị lớn nhất của mỗi khối, và dùng ST table để duy trì giá trị lớn nhất giữa các khối; độ phức tạp là $O(n)$.
 
-记录块中每个位置的前、后缀最大值 $Pre[1\cdots n], Sub[1\cdots n]$（$Pre[i]$ 即 $A[i]$ 到其所在块的块首的最大值），复杂度 $O(n)$．
+Ghi lại giá trị lớn nhất theo tiền tố và hậu tố tại mỗi vị trí trong khối, $Pre[1\cdots n], Sub[1\cdots n]$ ($Pre[i]$ là giá trị lớn nhất từ $A[i]$ đến đầu khối chứa nó); độ phức tạp là $O(n)$.
 
-若查询的 $l,r$ 在两个不同块上，分别记为第 $bl,br$ 块，则最大值为 $[bl+1,br-1]$ 块间的最大值，以及 $Sub[l]$ 和 $Pre[r]$ 这三个数的较大值．
+Nếu $l,r$ của truy vấn nằm trên hai khối khác nhau, lần lượt ký hiệu là khối thứ $bl,br$, thì giá trị lớn nhất là giá trị lớn nhất giữa ba số: giá trị lớn nhất giữa các khối trong $[bl+1,br-1]$, $Sub[l]$ và $Pre[r]$.
 
-现在的问题在于若 $l,r$ 在同一块中怎么办．
+Vấn đề còn lại là xử lý trường hợp $l,r$ nằm trong cùng một khối.
 
-将 $A[1\cdots r]$ 依次插入单调栈中，记录下标和值，满足值从栈底到栈顶递减，则 $A[l,r]$ 中的最大值为从栈底往上，单调栈中第一个满足其下标 $p \geq l$ 的值．
+Lần lượt chèn $A[1\cdots r]$ vào ngăn xếp đơn điệu, ghi lại chỉ số và giá trị, sao cho giá trị giảm dần từ đáy lên đỉnh ngăn xếp. Khi đó giá trị lớn nhất trong $A[l,r]$ là giá trị đầu tiên trên ngăn xếp đơn điệu, tính từ đáy đi lên, có chỉ số $p \geq l$.
 
-由于 $A[p]$ 是 $A[l,r]$ 中的最大值，因而在插入 $A[p]$ 时，$A[l\cdots p-1]$ 都被弹出，且在插入 $A[p+1\cdots r]$ 时不可能将 $A[p]$ 弹出．
+Vì $A[p]$ là giá trị lớn nhất trong $A[l,r]$, nên khi chèn $A[p]$, các phần tử $A[l\cdots p-1]$ đều bị bật ra, và khi chèn $A[p+1\cdots r]$ thì không thể bật $A[p]$ ra.
 
-而如果用 $0/1$ 表示每个数是否在栈中，就可以用整数状压，则 $p$ 为第 $l$ 位后的第一个 $1$ 的位置．
+Nếu dùng $0/1$ để biểu diễn mỗi số có đang ở trong ngăn xếp hay không, ta có thể dùng một số nguyên để nén trạng thái. Khi đó $p$ là vị trí đầu tiên có bit $1$ sau vị trí thứ $l$.
 
-由于块大小为 $O(\log_2{n})$，因而最多不超过 $64$ 位，可以用一个整数存下（即隐性条件的原因）．
+Vì kích thước khối là $O(\log_2{n})$, nên nhiều nhất không vượt quá $64$ bit và có thể lưu bằng một số nguyên (đây cũng là nguyên nhân của điều kiện ngầm).
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cmath>
@@ -238,6 +238,6 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
     }
     ```
 
-### 习题
+### Bài tập
 
-[\[BJOI 2020\] 封印](https://loj.ac/problem/3298)：SAM+RMQ
+[\[BJOI 2020\] Phong ấn](https://loj.ac/problem/3298): SAM+RMQ

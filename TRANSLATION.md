@@ -346,6 +346,10 @@ MkDocs source layout intact.
   `docs/misc/expression.md`, `docs/misc/odt.md`: translated finite-state
   automata, computation theory basics, expression evaluation, and Chtholly
   Tree material.
+- `docs/topic/rmq.md`, `docs/topic/dsu-app.md`, `docs/topic/bracket.md`,
+  `docs/topic/segment-tree-offline.md`: translated topic pages for RMQ, DSU
+  applications, bracket sequences, and segment-tree divide-and-conquer over
+  offline queries.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

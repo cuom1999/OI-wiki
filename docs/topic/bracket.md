@@ -1,53 +1,53 @@
 author: sshwy
 
-定义一个合法括号序列（balanced bracket sequence）为仅由 $($ 和 $)$ 构成的字符串且：
+Định nghĩa một dãy ngoặc hợp lệ/cân bằng (balanced bracket sequence) là một xâu chỉ gồm $($ và $)$, đồng thời thỏa mãn:
 
--   空串 $\varepsilon$ 是一个合法括号序列．
--   如果 $s$ 是合法括号序列，那么 $(s)$ 也是合法括号序列．
--   如果 $s,t$ 都是合法括号序列，那么 $st$ 也是合法括号序列．
+-   Xâu rỗng $\varepsilon$ là một dãy ngoặc hợp lệ.
+-   Nếu $s$ là một dãy ngoặc hợp lệ, thì $(s)$ cũng là một dãy ngoặc hợp lệ.
+-   Nếu $s,t$ đều là dãy ngoặc hợp lệ, thì $st$ cũng là một dãy ngoặc hợp lệ.
 
-例如 $(())()$ 是合法括号序列，而 $)()$ 不是．
+Ví dụ, $(())()$ là một dãy ngoặc hợp lệ, còn $)()$ thì không.
 
-有时候会有多种不同的括号，如 $[()]\{\}$．这样的变种括号序列与朴素括号序列有相似的定义．
+Đôi khi có nhiều loại ngoặc khác nhau, chẳng hạn $[()]\{\}$. Các biến thể dãy ngoặc như vậy có định nghĩa tương tự dãy ngoặc đơn giản.
 
-本文将会介绍与括号序列相关的经典问题．
+Bài viết này giới thiệu các bài toán kinh điển liên quan đến dãy ngoặc.
 
-注：英语中一般称左括号为 opening bracket，而右括号是 closing bracket．
+Ghi chú: Trong tiếng Anh, ngoặc trái thường được gọi là opening bracket, còn ngoặc phải là closing bracket.
 
-## 判断是否合法
+## Kiểm tra tính hợp lệ
 
-判断 $s$ 是否为合法括号序列的经典方法是贪心思想．该算法同样适用于变种括号序列．
+Cách kinh điển để kiểm tra $s$ có phải là dãy ngoặc hợp lệ hay không dựa trên tư tưởng tham lam. Thuật toán này cũng áp dụng được cho các biến thể dãy ngoặc.
 
-我们维护一个栈，对于 $i=1,2,\ldots,|s|$ 依次考虑：
+Ta duy trì một ngăn xếp và lần lượt xét $i=1,2,\ldots,|s|$:
 
--   如果 $s_i$ 是右括号且栈非空且栈顶元素是 $s_i$ 对应的左括号，就弹出栈顶元素．
--   若不满足上述条件，则将 $s_i$ 压入栈中．
+-   Nếu $s_i$ là ngoặc phải, ngăn xếp không rỗng, và phần tử trên đỉnh ngăn xếp là ngoặc trái tương ứng với $s_i$, thì lấy phần tử đỉnh ra khỏi ngăn xếp.
+-   Nếu không thỏa mãn điều kiện trên, đưa $s_i$ vào ngăn xếp.
 
-在遍历整个 $s$ 后，若栈是空的，那么 $s$ 就是合法括号序列，否则就不是．时间复杂度 $O(n)$．
+Sau khi duyệt toàn bộ $s$, nếu ngăn xếp rỗng thì $s$ là dãy ngoặc hợp lệ, ngược lại thì không. Độ phức tạp thời gian là $O(n)$.
 
-## 合法括号序列计数
+## Đếm dãy ngoặc hợp lệ
 
-考虑求出长度为 $2n$ 的合法括号序列 $s$ 的个数 $f_n$．不妨枚举与 $s_1$ 匹配的括号的位置，假设是 $2i+2$．它将整个序列又分成了两个更短的合法括号序列．因此
+Xét bài toán tìm số lượng $f_n$ các dãy ngoặc hợp lệ $s$ có độ dài $2n$. Ta có thể liệt kê vị trí của ngoặc khớp với $s_1$, giả sử vị trí đó là $2i+2$. Vị trí này chia toàn bộ dãy thành hai dãy ngoặc hợp lệ ngắn hơn. Do đó
 
 $$
 f_n=\sum_{i=0}^{n-1}f_if_{n-i-1}
 $$
 
-这同样是卡特兰数的递推式．也就是说 $f_n=\frac{1}{n+1}\binom{2n}{n}$．
+Đây cũng chính là công thức truy hồi của số Catalan. Nói cách khác, $f_n=\frac{1}{n+1}\binom{2n}{n}$.
 
-当然，对于变种合法括号序列的计数，方法是类似的．假设有 $k$ 种不同类型的括号，那么有 $f'_n=\frac{1}{n+1}\binom{2n}{n}k^n$．
+Tất nhiên, cách đếm các biến thể dãy ngoặc hợp lệ cũng tương tự. Giả sử có $k$ loại ngoặc khác nhau, khi đó $f'_n=\frac{1}{n+1}\binom{2n}{n}k^n$.
 
-## 字典序后继
+## Phần tử kế tiếp theo thứ tự từ điển
 
-给出合法的括号序列 $s$，我们要求出按字典序升序排序的长度为 $|s|$ 的所有合法括号序列中，序列 $s$ 的下一个合法括号序列．在本问题中，我们认为左括号的字典序小于右括号，且不考虑变种括号序列．
+Cho một dãy ngoặc hợp lệ $s$, ta cần tìm dãy ngoặc hợp lệ kế tiếp của $s$ trong danh sách tất cả các dãy ngoặc hợp lệ có độ dài $|s|$, được sắp xếp tăng dần theo thứ tự từ điển. Trong bài toán này, ta coi ngoặc trái nhỏ hơn ngoặc phải theo thứ tự từ điển, và không xét các biến thể dãy ngoặc.
 
-我们需要找到一个最大的 $i$ 使得 $s_i$ 是左括号．然后，将其变成右括号，并将 $s[i+1,|s|]$ 这部分重构一下．另外，$i$ 必须满足：$s[1,i-1]$ 中左括号的数量 **大于** 右括号的数量．
+Ta cần tìm chỉ số lớn nhất $i$ sao cho $s_i$ là ngoặc trái. Sau đó, đổi nó thành ngoặc phải và tái dựng đoạn $s[i+1,|s|]$. Ngoài ra, $i$ phải thỏa mãn: trong $s[1,i-1]$, số lượng ngoặc trái **lớn hơn** số lượng ngoặc phải.
 
-不妨设当 $s_i$ 变成右括号后，$s[1,i]$ 中左括号比右括号多了 $k$ 个．那么我们就让 $s$ 的最后 $k$ 个字符变成右括号，而 $s[i+1,|s|-k]$ 则用 $((\dots(())\dots))$ 的形式填充即可，因为这样填充的字典序最小．
+Giả sử sau khi $s_i$ được đổi thành ngoặc phải, trong $s[1,i]$ số ngoặc trái nhiều hơn số ngoặc phải $k$ cái. Khi đó ta đặt $k$ ký tự cuối của $s$ thành ngoặc phải, còn $s[i+1,|s|-k]$ được điền theo dạng $((\dots(())\dots))$, vì cách điền này cho thứ tự từ điển nhỏ nhất.
 
-该算法的时间复杂度是 $O(n)$．
+Độ phức tạp thời gian của thuật toán là $O(n)$.
 
-??? note "参考实现"
+??? note "Cài đặt tham khảo"
     ```cpp
     bool next_balanced_sequence(string& s) {
       int n = s.size();
@@ -72,22 +72,22 @@ $$
     }
     ```
 
-## 字典序计算
+## Tính hạng theo thứ tự từ điển
 
-给出合法的括号序列 $s$，我们要求出它的字典序排名．
+Cho một dãy ngoặc hợp lệ $s$, ta cần tìm hạng của nó theo thứ tự từ điển.
 
-考虑求出字典序比 $s$ 小的括号序列 $p$ 的个数．
+Xét việc tìm số lượng dãy ngoặc $p$ có thứ tự từ điển nhỏ hơn $s$.
 
-不妨设 $p_i<s_i$ 且 $\forall 1\le j<i,p_j=s_i$．显然 $p_i$ 是左括号而 $s_i$ 是右括号．枚举 $i$（满足 $s_i$ 为右括号），假设 $p[1,i]$ 中左括号比右括号多 $k$ 个，那么相当于我们要统计长度为 $|s|-i$ 且存在 $k$ 个未匹配的右括号且不存在未匹配的左括号的括号序列的个数．
+Giả sử $p_i<s_i$ và $\forall 1\le j<i,p_j=s_j$. Hiển nhiên $p_i$ là ngoặc trái còn $s_i$ là ngoặc phải. Ta liệt kê $i$ (thỏa mãn $s_i$ là ngoặc phải); giả sử trong $p[1,i]$ số ngoặc trái nhiều hơn số ngoặc phải $k$ cái, khi đó bài toán tương đương với việc đếm số dãy ngoặc có độ dài $|s|-i$, có $k$ ngoặc phải chưa được khớp và không có ngoặc trái chưa được khớp.
 
-不妨设 $f(i,j)$ 表示长度为 $i$ 且存在 $j$ 个未匹配的右括号且不存在未匹配的左括号的括号序列的个数．
+Đặt $f(i,j)$ là số lượng dãy ngoặc có độ dài $i$, có $j$ ngoặc phải chưa được khớp và không có ngoặc trái chưa được khớp.
 
-通过枚举括号序列第一个字符是什么，可以得到 $f$ 的转移：$f(i,j) = f(i-1,j-1)+f(i-1,j+1)$．初始时 $f(0,0)=1$．其实 $f$ 是 [OEIS - A053121](http://oeis.org/A053121)．
+Bằng cách liệt kê ký tự đầu tiên của dãy ngoặc, ta thu được chuyển tiếp của $f$: $f(i,j) = f(i-1,j-1)+f(i-1,j+1)$. Giá trị khởi tạo là $f(0,0)=1$. Thực ra $f$ là [OEIS - A053121](http://oeis.org/A053121).
 
-这样我们就可以 $O(|s|^2)$ 计算字典序了．
+Như vậy ta có thể tính hạng theo thứ tự từ điển trong $O(|s|^2)$.
 
-对于变种括号序列，方法是类似的，只不过我们需要对每个 $s_i$ 考虑比它小的那些字符进行计算（在上述算法中因为不存在比左括号小的字符，所以我们只考虑了 $s_i$ 为右括号的情况）．
+Đối với các biến thể dãy ngoặc, phương pháp cũng tương tự, chỉ khác là với mỗi $s_i$ ta cần xét các ký tự nhỏ hơn nó để tính toán (trong thuật toán trên, do không tồn tại ký tự nào nhỏ hơn ngoặc trái, nên ta chỉ xét trường hợp $s_i$ là ngoặc phải).
 
-另外，利用 $f$ 数组，我们同样可以求出字典序排名为 $k$ 的合法括号序列．
+Ngoài ra, bằng cách sử dụng mảng $f$, ta cũng có thể tìm dãy ngoặc hợp lệ có hạng $k$ theo thứ tự từ điển.
 
-**本页面主要译自博文 <http://e-maxx.ru/algo/bracket_sequences> 与其英文翻译版 [Balanced bracket sequences](https://cp-algorithms.com/combinatorics/bracket_sequences.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+**Trang này chủ yếu được dịch từ bài viết <http://e-maxx.ru/algo/bracket_sequences> và bản dịch tiếng Anh [Balanced bracket sequences](https://cp-algorithms.com/combinatorics/bracket_sequences.html). Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**

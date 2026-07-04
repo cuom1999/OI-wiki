@@ -531,11 +531,11 @@ nav:
     - Phép cộng Kahan: misc/kahan-summation.md
     - Chtholly Tree / chia đoạn màu khấu hao: misc/odt.md
     - Giới thiệu tối ưu bộ nhớ: misc/space-optimization.md
-  - Chuyên Đề:
+  - Chuyên đề:
     - RMQ: topic/rmq.md
-    - 并查集应用: topic/dsu-app.md
-    - 括号序列: topic/bracket.md
-    - 线段树与离线询问: topic/segment-tree-offline.md
+    - Ứng dụng DSU: topic/dsu-app.md
+    - Dãy ngoặc: topic/bracket.md
+    - Cây phân đoạn và truy vấn offline: topic/segment-tree-offline.md
 
 # Theme
 theme:

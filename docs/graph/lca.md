@@ -161,7 +161,7 @@ Trong trường hợp không có các thao tác như link và cut, độ phức 
 
 Phần trước đã nói đến việc dùng thứ tự Euler để chuyển bài toán LCA thành bài toán RMQ; nút thắt nằm ở RMQ. Nếu có thể giải RMQ với $O(n) \sim O(1)$, thì cũng có thể giải LCA với $O(n) \sim O(1)$.
 
-Chú ý rằng thứ tự Euler thỏa mãn hiệu giữa hai số kề nhau là 1 hoặc -1, nên có thể dùng [RMQ cộng trừ 1](../topic/rmq.md#%E5%8A%A0%E5%87%8F-1rmq) với $O(n) \sim O(1)$ để làm.
+Chú ý rằng thứ tự Euler thỏa mãn hiệu giữa hai số kề nhau là 1 hoặc -1, nên có thể dùng [RMQ cộng trừ 1](../topic/rmq.md#rmq-cộng-trừ-1) với $O(n) \sim O(1)$ để làm.
 
 Độ phức tạp thời gian là $O(n) \sim O(1)$, độ phức tạp không gian là $O(n)$, hỗ trợ truy vấn trực tuyến, nhưng hằng số khá lớn.
 
