@@ -1,44 +1,44 @@
 author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo, Hszzzx, y-kx-b, toprise
 
-## 定义
+## Định nghĩa
 
-在阅读下列内容之前，请务必阅读 [图论相关概念](./concept.md) 与 [树基础](./tree-basic.md) 部分，并了解以下定义：
+Trước khi đọc các nội dung dưới đây, hãy đọc phần [các khái niệm liên quan đến đồ thị](./concept.md) và [kiến thức cơ bản về cây](./tree-basic.md), đồng thời nắm các định nghĩa sau:
 
-1.  生成子图
-2.  生成树
+1.  Đồ thị con bao trùm
+2.  Cây khung
 
-我们定义无向连通图的 **最小生成树**（Minimum Spanning Tree，MST）为边权和最小的生成树．
+Ta định nghĩa **cây khung nhỏ nhất** (Minimum Spanning Tree, MST) của một đồ thị vô hướng liên thông là cây khung có tổng trọng số cạnh nhỏ nhất.
 
-注意：只有连通图才有生成树，而对于非连通图，只存在生成森林．
+Lưu ý: chỉ đồ thị liên thông mới có cây khung; với đồ thị không liên thông, chỉ tồn tại rừng khung.
 
-## Kruskal 算法
+## Thuật toán Kruskal
 
-Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 发明．该算法的基本思想是从小到大加入边，是个贪心算法．
+Thuật toán Kruskal là một thuật toán tìm cây khung nhỏ nhất phổ biến và dễ cài đặt, do Kruskal đề xuất. Ý tưởng cơ bản của thuật toán là thêm các cạnh theo thứ tự trọng số tăng dần; đây là một thuật toán tham lam.
 
-### 前置知识
+### Kiến thức cần có
 
-[并查集](../ds/dsu.md)、[贪心](../basic/greedy.md)、[图的存储](./save.md)．
+[Tập hợp rời nhau](../ds/dsu.md), [tham lam](../basic/greedy.md), [lưu trữ đồ thị](./save.md).
 
-### 实现
+### Cài đặt
 
-图示：
+Minh họa:
 
 ![](./images/mst-2.apng)
 
-伪代码：
+Mã giả:
 
 <!--
 ```pseudo
 \begin{algorithm}
 \caption{Kruskal}
 \begin{algorithmic}
-\INPUT{ The edges of the graph $e$ where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$. }
-\OUTPUT The edges of the MST of the input graph
+\INPUT{ Các cạnh của đồ thị $e$, mỗi phần tử trong $e$ có dạng $(u, v, w)$, biểu thị có một cạnh giữa $u$ và $v$ với trọng số $w$. }
+\OUTPUT Các cạnh của MST của đồ thị đầu vào
 \STATE $result \gets \varnothing$
-\STATE sort $e$ into nondecreasing order by weight $w$
-\FOR{each $(u, v, w)$ in the sorted $e$}
-    \IF{$u$ \AND $v$ are not connected in the union-find set}
-        \STATE connect $u$ \AND $v$ in the union-find set
+\STATE sắp xếp $e$ theo thứ tự không giảm của trọng số $w$
+\FOR{mỗi $(u, v, w)$ trong $e$ đã sắp xếp}
+    \IF{$u$ \AND $v$ chưa liên thông trong DSU}
+        \STATE nối $u$ \AND $v$ trong DSU
         \STATE $result \gets result \bigcup (u, v, w)$
     \ENDIF
 \ENDFOR
@@ -50,147 +50,147 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 
 $$
 \begin{array}{ll}
-1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
-  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
-2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
-3 &  \textbf{Method. } \\ 
+1 &  \textbf{Input. } \text{Các cạnh của đồ thị } e , \text{ trong đó mỗi phần tử của } e \text{ là } (u, v, w) \\
+  &  \text{ biểu thị có một cạnh giữa } u \text{ và } v \text{ với trọng số } w . \\
+2 &  \textbf{Output. } \text{Các cạnh của MST của đồ thị đầu vào}.\\
+3 &  \textbf{Method. } \\
 4 &  result \gets \varnothing \\
-5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
-6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
-7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
-8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+5 &  \text{sắp xếp } e \text{ theo thứ tự không giảm của trọng số } w \\
+6 &  \textbf{for} \text{ mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
+7 &  \qquad \textbf{if } u \text{ và } v \text{ chưa liên thông trong DSU } \\
+8 &  \qquad\qquad \text{nối } u \text{ và } v \text{ trong DSU} \\
 9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
 10 &  \textbf{return }  result
 \end{array}
 $$
 
-算法虽简单，但需要相应的数据结构来支持……具体来说，维护一个森林，查询两个结点是否在同一棵树中，连接两棵树．
+Thuật toán tuy đơn giản, nhưng cần cấu trúc dữ liệu phù hợp để hỗ trợ. Cụ thể, ta cần duy trì một khu rừng, truy vấn hai đỉnh có nằm trong cùng một cây hay không, và nối hai cây lại với nhau.
 
-抽象一点地说，维护一堆 **集合**，查询两个元素是否属于同一集合，合并两个集合．
+Nói một cách trừu tượng hơn, ta duy trì một tập hợp các **tập hợp**, truy vấn hai phần tử có thuộc cùng một tập hợp hay không, và hợp nhất hai tập hợp.
 
-其中，查询两点是否连通和连接两点可以使用并查集维护．
+Trong đó, việc truy vấn hai đỉnh có liên thông hay không và việc nối hai đỉnh có thể được duy trì bằng DSU.
 
-如果使用 $O(m\log m)$ 的排序算法，并且使用 $O(m\alpha(m, n))$ 或 $O(m\log n)$ 的并查集，就可以得到时间复杂度为 $O(m\log m)$ 的 Kruskal 算法．
+Nếu dùng thuật toán sắp xếp $O(m\log m)$ và DSU có độ phức tạp $O(m\alpha(m, n))$ hoặc $O(m\log n)$, ta thu được thuật toán Kruskal có độ phức tạp thời gian $O(m\log m)$.
 
-### 证明
+### Chứng minh
 
-思路很简单，为了造出一棵最小生成树，我们从最小边权的边开始，按边权从小到大依次加入，如果某次加边产生了环，就扔掉这条边，直到加入了 $n-1$ 条边，即形成了一棵树．
+Ý tưởng rất đơn giản: để tạo một cây khung nhỏ nhất, ta bắt đầu từ cạnh có trọng số nhỏ nhất, thêm lần lượt các cạnh theo thứ tự trọng số tăng dần. Nếu một lần thêm cạnh tạo ra chu trình, ta bỏ cạnh đó đi, cho đến khi đã thêm $n-1$ cạnh, tức là đã tạo thành một cây.
 
-证明：使用归纳法，证明任何时候 K 算法选择的边集都被某棵 MST 所包含．
+Chứng minh: dùng quy nạp để chứng minh rằng ở mọi thời điểm, tập cạnh mà thuật toán Kruskal chọn đều được chứa trong một MST nào đó.
 
-基础：对于算法刚开始时，显然成立（最小生成树存在）．
+Cơ sở: khi thuật toán vừa bắt đầu, mệnh đề hiển nhiên đúng vì cây khung nhỏ nhất tồn tại.
 
-归纳：假设某时刻成立，当前边集为 $F$，令 $T$ 为这棵 MST，考虑下一条加入的边 $e$．
+Bước quy nạp: giả sử ở một thời điểm nào đó mệnh đề đúng, tập cạnh hiện tại là $F$, và gọi $T$ là MST đó; xét cạnh tiếp theo được thêm vào, ký hiệu $e$.
 
-如果 $e$ 属于 $T$，那么成立．
+Nếu $e$ thuộc $T$, mệnh đề đúng.
 
-否则，$T+e$ 一定存在一个环，考虑这个环上不属于 $F$ 的另一条边 $f$（至少存在一条）．
+Ngược lại, $T+e$ chắc chắn có một chu trình. Xét một cạnh khác $f$ trên chu trình này mà không thuộc $F$; cạnh này tồn tại.
 
-首先，$f$ 的权值一定不会比 $e$ 小，不然 $f$ 会在 $e$ 之前被选取．
+Trước hết, trọng số của $f$ không thể nhỏ hơn trọng số của $e$, vì nếu không $f$ đã được chọn trước $e$.
 
-然后，$f$ 的权值一定不会比 $e$ 大，不然 $T+e-f$ 就是一棵比 $T$ 还优的生成树了．
+Tiếp theo, trọng số của $f$ không thể lớn hơn trọng số của $e$, vì nếu không $T+e-f$ sẽ là một cây khung tốt hơn $T$.
 
-所以，$T+e-f$ 包含了 $F$，并且也是一棵最小生成树，归纳成立．
+Do đó, $T+e-f$ chứa $F$ và cũng là một cây khung nhỏ nhất, nên bước quy nạp được chứng minh.
 
-### 例题
+### Bài tập mẫu
 
-???+ note "[洛谷 P1195 口袋的天空](https://www.luogu.com.cn/problem/P1195)"
-    有 $n$ 朵云，你要将它们连成 $k$ 个棉花糖，将 $X_i$ 云朵和 $Y_i$ 连接起来需要 $L_i$ 的代价，求最小代价．
+???+ note "[Luogu P1195 Bầu trời của Pocket](https://www.luogu.com.cn/problem/P1195)"
+    Có $n$ đám mây. Bạn cần nối chúng thành $k$ kẹo bông; nối đám mây $X_i$ với đám mây $Y_i$ tốn chi phí $L_i$. Hãy tìm chi phí nhỏ nhất.
 
-??? note "例题代码"
+??? note "Mã cho bài tập mẫu"
     === "C++"
         ```cpp
         --8<-- "docs/graph/code/mst/mst_3.cpp"
         ```
-    
+
     === "Python"
         ```python
         --8<-- "docs/graph/code/mst/mst_3.py"
         ```
-    
+
     === "Java"
         ```java
         --8<-- "docs/graph/code/mst/mst_3.java"
         ```
 
-## Prim 算法
+## Thuật toán Prim
 
-Prim 算法是另一种常见并且好写的最小生成树算法．该算法的基本思想是从一个结点开始，不断加点（而不是 Kruskal 算法的加边）．
+Thuật toán Prim là một thuật toán cây khung nhỏ nhất phổ biến khác và cũng dễ cài đặt. Ý tưởng cơ bản của nó là bắt đầu từ một đỉnh, sau đó liên tục thêm đỉnh mới, thay vì thêm cạnh như thuật toán Kruskal.
 
-### 实现
+### Cài đặt
 
-图示：
+Minh họa:
 
 ![](./images/mst-3.apng)
 
-具体来说，每次要选择距离最小的一个结点，以及用新的边更新其他结点的距离．
+Cụ thể, mỗi lần ta chọn một đỉnh có khoảng cách nhỏ nhất, rồi dùng cạnh mới để cập nhật khoảng cách của các đỉnh khác.
 
-其实跟 Dijkstra 算法一样，每次找到距离最小的一个点，可以暴力找也可以用堆维护．
+Thực ra điều này giống thuật toán Dijkstra: mỗi lần tìm đỉnh có khoảng cách nhỏ nhất, có thể tìm bằng vét cạn hoặc duy trì bằng heap.
 
-堆优化的方式类似 Dijkstra 的堆优化，但如果使用二叉堆等不支持 $O(1)$ decrease-key 的堆，复杂度就不优于 Kruskal，常数也比 Kruskal 大．所以，一般情况下都使用 Kruskal 算法，在稠密图尤其是完全图上，暴力 Prim 的复杂度比 Kruskal 优，但 **不一定** 实际跑得更快．
+Cách tối ưu bằng heap tương tự tối ưu heap của Dijkstra. Tuy nhiên, nếu dùng heap nhị phân hoặc các loại heap không hỗ trợ thao tác decrease-key trong $O(1)$, độ phức tạp sẽ không tốt hơn Kruskal và hằng số cũng lớn hơn Kruskal. Vì vậy, trong trường hợp thông thường người ta dùng Kruskal; trên đồ thị dày đặc, đặc biệt là đồ thị đầy đủ, độ phức tạp của Prim vét cạn tốt hơn Kruskal, nhưng khi chạy thực tế **chưa chắc** nhanh hơn.
 
-暴力：$O(n^2+m)$．
+Vét cạn: $O(n^2+m)$.
 
-二叉堆：$O((n+m) \log n)$．
+Heap nhị phân: $O((n+m) \log n)$.
 
-Fib 堆：$O(n \log n + m)$．
+Heap Fibonacci: $O(n \log n + m)$.
 
-伪代码：
+Mã giả:
 
 $$
 \begin{array}{ll}
-1 &  \textbf{Input. } \text{The nodes of the graph }V\text{ ; the function }g(u, v)\text{ which}\\
-  &  \text{means the weight of the edge }(u, v)\text{; the function }adj(v)\text{ which}\\
-  &  \text{means the nodes adjacent to }v.\\
-2 &  \textbf{Output. } \text{The sum of weights of the MST of the input graph.} \\
+1 &  \textbf{Input. } \text{Tập đỉnh của đồ thị }V\text{; hàm }g(u, v)\text{ biểu thị}\\
+  &  \text{trọng số của cạnh }(u, v)\text{; hàm }adj(v)\text{ biểu thị}\\
+  &  \text{các đỉnh kề với }v.\\
+2 &  \textbf{Output. } \text{Tổng trọng số của MST của đồ thị đầu vào.} \\
 3 &  \textbf{Method.} \\
 4 &  result \gets 0 \\
-5 & \text{choose an arbitrary node in }V\text{ to be the }root \\
+5 & \text{chọn một đỉnh bất kỳ trong }V\text{ làm }root \\
 6 &  dis(root)\gets 0 \\
-7 &  \textbf{for } \text{each node }v\in(V-\{root\}) \\
+7 &  \textbf{for } \text{mỗi đỉnh }v\in(V-\{root\}) \\
 8 &  \qquad  dis(v)\gets\infty \\
 9 &  rest\gets V \\
 10 &  \textbf{while }  rest\ne\varnothing \\
-11 &  \qquad cur\gets \text{the node with the minimum }dis\text{ in }rest \\
+11 &  \qquad cur\gets \text{đỉnh có }dis\text{ nhỏ nhất trong }rest \\
 12 &  \qquad  result\gets result+dis(cur) \\
 13 &  \qquad  rest\gets rest-\{cur\} \\
-14 &  \qquad  \textbf{for}\text{ each node }v\in adj(cur) \\
+14 &  \qquad  \textbf{for}\text{ mỗi đỉnh }v\in adj(cur) \\
 15 &  \qquad\qquad  dis(v)\gets\min(dis(v), g(cur, v)) \\
-16 &  \textbf{return }  result 
+16 &  \textbf{return }  result
 \end{array}
 $$
 
-注意：上述代码只是求出了最小生成树的权值，如果要输出方案还需要记录每个点的 $dis$ 代表的是哪条边．
+Lưu ý: đoạn mã trên chỉ tính tổng trọng số của cây khung nhỏ nhất. Nếu cần in phương án, ta phải ghi lại mỗi giá trị $dis$ của từng đỉnh đại diện cho cạnh nào.
 
-??? note "代码实现"
+??? note "Cài đặt mã"
     ```cpp
-    // 使用二叉堆优化的 Prim 算法．
+    // Thuật toán Prim tối ưu bằng heap nhị phân.
     #include <cstring>
     #include <iostream>
     #include <queue>
     using namespace std;
     constexpr int N = 5050, M = 2e5 + 10;
-    
+
     struct E {
       int v, w, x;
     } e[M * 2];
-    
+
     int n, m, h[N], cnte;
-    
+
     void adde(int u, int v, int w) { e[++cnte] = E{v, w, h[u]}, h[u] = cnte; }
-    
+
     struct S {
       int u, d;
     };
-    
+
     bool operator<(const S &x, const S &y) { return x.d > y.d; }
-    
+
     priority_queue<S> q;
     int dis[N];
     bool vis[N];
-    
+
     int res = 0, cnt = 0;
-    
+
     void Prim() {
       memset(dis, 0x3f, sizeof(dis));
       dis[1] = 0;
@@ -211,7 +211,7 @@ $$
         }
       }
     }
-    
+
     int main() {
       cin >> n >> m;
       for (int i = 1, u, v, w; i <= m; ++i) {
@@ -226,177 +226,177 @@ $$
     }
     ```
 
-### 证明
+### Chứng minh
 
-从任意一个结点开始，将结点分成两类：已加入的，未加入的．
+Bắt đầu từ một đỉnh bất kỳ, chia các đỉnh thành hai loại: đã được thêm và chưa được thêm.
 
-每次从未加入的结点中，找一个与已加入的结点之间边权最小值最小的结点．
+Mỗi lần, trong các đỉnh chưa được thêm, ta tìm đỉnh có giá trị nhỏ nhất của cạnh nhẹ nhất nối nó với một đỉnh đã được thêm.
 
-然后将这个结点加入，并连上那条边权最小的边．
+Sau đó thêm đỉnh này vào, đồng thời nối cạnh có trọng số nhỏ nhất đó.
 
-重复 $n-1$ 次即可．
+Lặp lại $n-1$ lần là đủ.
 
-证明：还是说明在每一步，都存在一棵最小生成树包含已选边集．
+Chứng minh: ta vẫn chứng minh rằng ở mỗi bước, tồn tại một cây khung nhỏ nhất chứa tập cạnh đã chọn.
 
-基础：只有一个结点的时候，显然成立．
+Cơ sở: khi chỉ có một đỉnh, mệnh đề hiển nhiên đúng.
 
-归纳：如果某一步成立，当前边集为 $F$，属于 $T$ 这棵 MST，接下来要加入边 $e$．
+Bước quy nạp: nếu một bước nào đó mệnh đề đúng, tập cạnh hiện tại là $F$ và thuộc về MST $T$; tiếp theo ta thêm cạnh $e$.
 
-如果 $e$ 属于 $T$，那么成立．
+Nếu $e$ thuộc $T$, mệnh đề đúng.
 
-否则考虑 $T+e$ 中环上另一条可以加入当前边集的边 $f$．
+Ngược lại, xét trong $T+e$ một cạnh khác $f$ trên chu trình mà có thể thêm vào tập cạnh hiện tại.
 
-首先，$f$ 的权值一定不小于 $e$ 的权值，否则就会选择 $f$ 而不是 $e$ 了．
+Trước hết, trọng số của $f$ chắc chắn không nhỏ hơn trọng số của $e$, nếu không ta đã chọn $f$ thay vì $e$.
 
-然后，$f$ 的权值一定不大于 $e$ 的权值，否则 $T+e-f$ 就是一棵更小的生成树了．
+Tiếp theo, trọng số của $f$ chắc chắn không lớn hơn trọng số của $e$, nếu không $T+e-f$ sẽ là một cây khung nhỏ hơn.
 
-因此，$e$ 和 $f$ 的权值相等，$T+e-f$ 也是一棵最小生成树，且包含了 $F$．
+Vì vậy, $e$ và $f$ có trọng số bằng nhau, $T+e-f$ cũng là một cây khung nhỏ nhất và chứa $F$.
 
-## Boruvka 算法
+## Thuật toán Boruvka
 
-接下来介绍另一种求解最小生成树的算法——Boruvka 算法．该算法的思想是前两种算法的结合．它可以用于求解无向图的最小生成森林．（无向连通图就是最小生成树．）
+Tiếp theo là một thuật toán khác để tìm cây khung nhỏ nhất: thuật toán Boruvka. Ý tưởng của thuật toán này là sự kết hợp của hai thuật toán trên. Nó có thể dùng để tìm rừng khung nhỏ nhất của đồ thị vô hướng. Với đồ thị vô hướng liên thông, đó chính là cây khung nhỏ nhất.
 
-在边具有较多特殊性质的问题中，Boruvka 算法具有优势．例如 [CF888G](https://codeforces.com/problemset/problem/888/G) 的完全图问题．
+Trong các bài toán mà cạnh có nhiều tính chất đặc biệt, thuật toán Boruvka có lợi thế. Ví dụ bài toán đồ thị đầy đủ [CF888G](https://codeforces.com/problemset/problem/888/G).
 
-为了描述该算法，我们需要引入一些定义：
+Để mô tả thuật toán này, ta cần đưa vào một số định nghĩa:
 
-1.  定义 $E'$ 为我们当前找到的最小生成森林的边．在算法执行过程中，我们逐步向 $E'$ 加边，定义 **连通块** 表示一个点集 $V'\subseteq V$，且这个点集中的任意两个点 $u$，$v$ 在 $E'$ 中的边构成的子图上是连通的（互相可达）．
-2.  定义一个连通块的 **最小边** 为它连向其它连通块的边中权值最小的那一条．
+1.  Định nghĩa $E'$ là tập cạnh của rừng khung nhỏ nhất mà ta hiện đang tìm được. Trong quá trình thuật toán chạy, ta dần thêm cạnh vào $E'$. Định nghĩa **thành phần liên thông** là một tập đỉnh $V'\subseteq V$ sao cho với hai đỉnh bất kỳ $u$, $v$ trong tập này, chúng liên thông với nhau trên đồ thị con được tạo bởi các cạnh trong $E'$.
+2.  Định nghĩa **cạnh nhỏ nhất** của một thành phần liên thông là cạnh có trọng số nhỏ nhất trong số các cạnh nối nó đến các thành phần liên thông khác.
 
-初始时，$E'=\varnothing$，每个点各自是一个连通块：
+Ban đầu, $E'=\varnothing$, mỗi đỉnh là một thành phần liên thông riêng:
 
-1.  计算每个点分别属于哪个连通块．将每个连通块都设为「没有最小边」．
-2.  遍历每条边 $(u, v)$，如果 $u$ 和 $v$ 不在同一个连通块，就用这条边的边权分别更新 $u$ 和 $v$ 所在连通块的最小边．
-3.  如果所有连通块都没有最小边，退出程序，此时的 $E'$ 就是原图最小生成森林的边集．否则，将每个有最小边的连通块的最小边加入 $E'$，返回第一步．
+1.  Tính mỗi đỉnh thuộc thành phần liên thông nào. Đặt mỗi thành phần liên thông về trạng thái "không có cạnh nhỏ nhất".
+2.  Duyệt mỗi cạnh $(u, v)$. Nếu $u$ và $v$ không nằm trong cùng một thành phần liên thông, dùng trọng số cạnh này để cập nhật cạnh nhỏ nhất của thành phần chứa $u$ và thành phần chứa $v$.
+3.  Nếu tất cả thành phần liên thông đều không có cạnh nhỏ nhất, thoát chương trình; khi đó $E'$ là tập cạnh của rừng khung nhỏ nhất của đồ thị ban đầu. Ngược lại, thêm cạnh nhỏ nhất của mỗi thành phần liên thông có cạnh nhỏ nhất vào $E'$, rồi quay về bước một.
 
-下面通过一张动态图来举一个例子（图源自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm)）：
+Dưới đây là một ví dụ bằng ảnh động; nguồn ảnh từ [Wikipedia](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm):
 
 ![eg](./images/mst-1.apng)
 
-当原图连通时，每次迭代连通块数量至少减半，算法只会迭代不超过 $O(\log V)$ 次，而原图不连通时相当于多个子问题，因此算法复杂度是 $O(E\log V)$ 的．给出算法的伪代码：（修改自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm)）
+Khi đồ thị ban đầu liên thông, trong mỗi vòng lặp số thành phần liên thông ít nhất giảm một nửa, nên thuật toán chỉ lặp không quá $O(\log V)$ lần. Khi đồ thị ban đầu không liên thông, bài toán tương đương với nhiều bài toán con, vì vậy độ phức tạp của thuật toán là $O(E\log V)$. Mã giả dưới đây được sửa từ [Wikipedia](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm):
 
 $$
 \begin{array}{ll}
-1 &  \textbf{Input. } \text{A graph }G\text{ whose edges have distinct weights. } \\
-2 &  \textbf{Output. } \text{The minimum spanning forest of }G .  \\
+1 &  \textbf{Input. } \text{Một đồ thị }G\text{ có các cạnh mang trọng số phân biệt. } \\
+2 &  \textbf{Output. } \text{Rừng khung nhỏ nhất của }G .  \\
 3 &  \textbf{Method. }  \\
-4 & \text{Initialize a forest }F\text{ to be a set of one-vertex trees} \\
+4 & \text{Khởi tạo một rừng }F\text{ gồm các cây một đỉnh} \\
 5 &  \textbf{while } \text{True} \\
-6 &  \qquad \text{Find the components of }F\text{ and label each vertex of }G\text{ by its component } \\
-7 &  \qquad \text{Initialize the cheapest edge for each component to "None"} \\
-8 &  \qquad  \textbf{for } \text{each edge }(u, v)\text{ of }G  \\
-9 &  \qquad\qquad  \textbf{if }  u\text{ and }v\text{ have different component labels} \\
-10 &  \qquad\qquad\qquad  \textbf{if }  (u, v)\text{ is cheaper than the cheapest edge for the component of }u  \\
-11 &  \qquad\qquad\qquad\qquad\text{ Set }(u, v)\text{ as the cheapest edge for the component of }u \\
-12 &  \qquad\qquad\qquad  \textbf{if }  (u, v)\text{ is cheaper than the cheapest edge for the component of }v  \\
-13 &  \qquad\qquad\qquad\qquad\text{ Set }(u, v)\text{ as the cheapest edge for the component of }v  \\
-14 &  \qquad  \textbf{if }\text{ all components'cheapest edges are "None"} \\
+6 &  \qquad \text{Tìm các thành phần của }F\text{ và gán nhãn thành phần cho mỗi đỉnh của }G \\
+7 &  \qquad \text{Khởi tạo cạnh rẻ nhất của mỗi thành phần là "None"} \\
+8 &  \qquad  \textbf{for } \text{mỗi cạnh }(u, v)\text{ của }G  \\
+9 &  \qquad\qquad  \textbf{if }  u\text{ và }v\text{ có nhãn thành phần khác nhau} \\
+10 &  \qquad\qquad\qquad  \textbf{if }  (u, v)\text{ rẻ hơn cạnh rẻ nhất của thành phần chứa }u  \\
+11 &  \qquad\qquad\qquad\qquad\text{ Đặt }(u, v)\text{ làm cạnh rẻ nhất của thành phần chứa }u \\
+12 &  \qquad\qquad\qquad  \textbf{if }  (u, v)\text{ rẻ hơn cạnh rẻ nhất của thành phần chứa }v  \\
+13 &  \qquad\qquad\qquad\qquad\text{ Đặt }(u, v)\text{ làm cạnh rẻ nhất của thành phần chứa }v  \\
+14 &  \qquad  \textbf{if }\text{ cạnh rẻ nhất của mọi thành phần đều là "None"} \\
 15 &  \qquad\qquad  \textbf{return }  F \\
-16 &  \qquad  \textbf{for }\text{ each component whose cheapest edge is not "None"} \\
-17 &  \qquad\qquad\text{ Add its cheapest edge to }F \\
+16 &  \qquad  \textbf{for }\text{ mỗi thành phần có cạnh rẻ nhất khác "None"} \\
+17 &  \qquad\qquad\text{ Thêm cạnh rẻ nhất của nó vào }F \\
 \end{array}
 $$
 
-需要注意边与边的比较通常需要第二关键字（例如按编号排序），以便当边权相同时分出边的大小．
+Cần lưu ý rằng phép so sánh giữa các cạnh thường cần khóa phụ thứ hai, chẳng hạn sắp xếp theo chỉ số, để phân định thứ tự khi các cạnh có cùng trọng số.
 
-## 习题
+## Bài tập
 
--   [「HAOI2006」聪明的猴子](https://www.luogu.com.cn/problem/P2504)
--   [「SCOI2005」繁忙的都市](https://loj.ac/problem/2149)
+-   [HAOI2006 Clever Monkey](https://www.luogu.com.cn/problem/P2504)
+-   [SCOI2005 Busy City](https://loj.ac/problem/2149)
 
-## 最小生成树的唯一性
+## Tính duy nhất của cây khung nhỏ nhất
 
-考虑最小生成树的唯一性．如果一条边 **不在最小生成树的边集中**，并且可以替换与其 **权值相同、并且在最小生成树边集** 的另一条边．那么，这个最小生成树就是不唯一的．
+Xét tính duy nhất của cây khung nhỏ nhất. Nếu một cạnh **không nằm trong tập cạnh của cây khung nhỏ nhất** và có thể thay thế một cạnh khác **có cùng trọng số và nằm trong tập cạnh của cây khung nhỏ nhất**, thì cây khung nhỏ nhất này không duy nhất.
 
-对于 Kruskal 算法，只要计算为当前权值的边可以放几条，实际放了几条，如果这两个值不一样，那么就说明这几条边与之前的边产生了一个环（这个环中至少有两条当前权值的边，否则根据并查集，这条边是不能放的），即最小生成树不唯一．
+Với thuật toán Kruskal, chỉ cần tính số cạnh có trọng số hiện tại có thể được thêm và số cạnh thực sự được thêm. Nếu hai giá trị này khác nhau, điều đó cho thấy các cạnh này cùng với các cạnh trước đó đã tạo ra một chu trình. Chu trình này có ít nhất hai cạnh mang trọng số hiện tại; nếu không, theo DSU cạnh đó không thể được thêm. Khi đó cây khung nhỏ nhất không duy nhất.
 
-寻找权值与当前边相同的边，我们只需要记录头尾指针，用单调队列即可在 $O(\alpha(m))$（m 为边数）的时间复杂度里优秀解决这个问题（基本与原算法时间相同）．
+Để tìm các cạnh có trọng số bằng cạnh hiện tại, ta chỉ cần ghi lại con trỏ đầu và cuối; dùng hàng đợi đơn điệu có thể xử lý vấn đề này trong độ phức tạp $O(\alpha(m))$ với $m$ là số cạnh, gần như bằng thời gian của thuật toán gốc.
 
-??? note "例题：[POJ 1679](http://poj.org/problem?id=1679)"
+??? note "Bài tập mẫu: [POJ 1679](http://poj.org/problem?id=1679)"
     ```cpp
     --8<-- "docs/graph/code/mst/mst_1.cpp"
     ```
 
-## 次小生成树
+## Cây khung nhỏ thứ hai
 
-### 非严格次小生成树
+### Cây khung nhỏ thứ hai không nghiêm ngặt
 
-#### 定义
+#### Định nghĩa
 
-在无向图中，边权和最小的满足边权和 **大于等于** 最小生成树边权和的生成树
+Trong đồ thị vô hướng, đây là cây khung có tổng trọng số nhỏ nhất trong số các cây khung có tổng trọng số **lớn hơn hoặc bằng** tổng trọng số của cây khung nhỏ nhất.
 
-#### 求解方法
+#### Cách giải
 
--   求出无向图的最小生成树 $T$，设其权值和为 $M$
--   遍历每条未被选中的边 $e = (u,v,w)$，找到 $T$ 中 $u$ 到 $v$ 路径上边权最大的一条边 $e' = (s,t,w')$，则在 $T$ 中以 $e$ 替换 $e'$，可得一棵权值和为 $M' = M + w - w'$ 的生成树 $T'$.
--   对所有替换得到的答案 $M'$ 取最小值即可
+-   Tìm cây khung nhỏ nhất $T$ của đồ thị vô hướng, gọi tổng trọng số của nó là $M$
+-   Duyệt mỗi cạnh chưa được chọn $e = (u,v,w)$, tìm cạnh có trọng số lớn nhất $e' = (s,t,w')$ trên đường đi từ $u$ đến $v$ trong $T$. Khi thay $e'$ bằng $e$ trong $T$, ta thu được một cây khung $T'$ có tổng trọng số $M' = M + w - w'$.
+-   Lấy giá trị nhỏ nhất trong tất cả đáp án $M'$ thu được từ các phép thay thế
 
-如何求 $u,v$ 路径上的边权最大值呢？
+Làm thế nào để tìm trọng số cạnh lớn nhất trên đường đi $u,v$?
 
-我们可以使用倍增来维护，预处理出每个节点的 $2^i$ 级祖先及到达其 $2^i$ 级祖先路径上最大的边权，这样在倍增求 LCA 的过程中可以直接求得．
+Ta có thể dùng kỹ thuật binary lifting để duy trì: tiền xử lý tổ tiên cấp $2^i$ của mỗi nút và trọng số cạnh lớn nhất trên đường đi từ nút đó đến tổ tiên cấp $2^i$ của nó. Khi đó trong quá trình tìm LCA bằng binary lifting, ta có thể lấy trực tiếp giá trị này.
 
-### 严格次小生成树
+### Cây khung nhỏ thứ hai nghiêm ngặt
 
-#### 定义
+#### Định nghĩa
 
-在无向图中，边权和最小的满足边权和 **严格大于** 最小生成树边权和的生成树
+Trong đồ thị vô hướng, đây là cây khung có tổng trọng số nhỏ nhất trong số các cây khung có tổng trọng số **nghiêm ngặt lớn hơn** tổng trọng số của cây khung nhỏ nhất.
 
-#### 求解方法
+#### Cách giải
 
-考虑刚才的非严格次小生成树求解过程，为什么求得的解是非严格的？
+Xét lại quá trình tìm cây khung nhỏ thứ hai không nghiêm ngặt ở trên: tại sao đáp án thu được là không nghiêm ngặt?
 
-因为最小生成树保证生成树中 $u$ 到 $v$ 路径上的边权最大值一定 **不大于** 其他从 $u$ 到 $v$ 路径的边权最大值．换言之，当我们用于替换的边的权值与原生成树中被替换边的权值相等时，得到的次小生成树是非严格的．
+Vì cây khung nhỏ nhất đảm bảo rằng trong cây khung, giá trị lớn nhất của cạnh trên đường đi từ $u$ đến $v$ chắc chắn **không lớn hơn** giá trị lớn nhất của cạnh trên bất kỳ đường đi nào khác từ $u$ đến $v$. Nói cách khác, khi trọng số của cạnh dùng để thay thế bằng trọng số của cạnh bị thay thế trong cây khung ban đầu, cây khung nhỏ thứ hai thu được là không nghiêm ngặt.
 
-解决的办法很自然：我们维护到 $2^i$ 级祖先路径上的最大边权的同时维护 **严格次大边权**，当用于替换的边的权值与原生成树中路径最大边权相等时，我们用严格次大值来替换即可．
+Cách xử lý rất tự nhiên: khi duy trì trọng số cạnh lớn nhất trên đường đi đến tổ tiên cấp $2^i$, ta đồng thời duy trì **trọng số cạnh lớn thứ hai nghiêm ngặt**. Khi trọng số của cạnh dùng để thay thế bằng trọng số lớn nhất trên đường đi trong cây khung ban đầu, ta thay bằng giá trị lớn thứ hai nghiêm ngặt.
 
-这个过程可以用倍增求解，复杂度 $O(m \log m)$．
+Quá trình này có thể giải bằng binary lifting, với độ phức tạp $O(m \log m)$.
 
-??? note "代码实现"
+??? note "Cài đặt mã"
     ```cpp
     #include <algorithm>
     #include <iostream>
-    
+
     constexpr int INF = 0x3fffffff;
     constexpr long long INF64 = 0x3fffffffffffffffLL;
-    
+
     struct Edge {
       int u, v, val;
-    
+
       bool operator<(const Edge &other) const { return val < other.val; }
     };
-    
+
     Edge e[300010];
     bool used[300010];
-    
+
     int n, m;
     long long sum;
-    
+
     class Tr {
      private:
       struct Edge {
         int to, nxt, val;
       } e[600010];
-    
+
       int cnt, head[100010];
-    
+
       int pnt[100010][22];
       int dpth[100010];
-      // 到祖先的路径上边权最大的边
+      // Cạnh có trọng số lớn nhất trên đường đi đến tổ tiên
       int maxx[100010][22];
-      // 到祖先的路径上边权次大的边，若不存在则为 -INF
+      // Cạnh có trọng số lớn thứ hai trên đường đi đến tổ tiên; nếu không tồn tại thì là -INF
       int minn[100010][22];
-    
+
      public:
       void addedge(int u, int v, int val) {
         e[++cnt] = Edge{v, head[u], val};
         head[u] = cnt;
       }
-    
+
       void insedge(int u, int v, int val) {
         addedge(u, v, val);
         addedge(v, u, val);
       }
-    
+
       void dfs(int now, int fa) {
         dpth[now] = dpth[fa] + 1;
         pnt[now][0] = fa;
@@ -405,15 +405,15 @@ $$
           pnt[now][i] = pnt[pnt[now][i - 1]][i - 1];
           int kk[4] = {maxx[now][i - 1], maxx[pnt[now][i - 1]][i - 1],
                        minn[now][i - 1], minn[pnt[now][i - 1]][i - 1]};
-          // 从四个值中取得最大值
+          // Lấy giá trị lớn nhất trong bốn giá trị
           std::sort(kk, kk + 4);
           maxx[now][i] = kk[3];
-          // 取得严格次大值
+          // Lấy giá trị lớn thứ hai nghiêm ngặt
           int ptr = 2;
           while (ptr >= 0 && kk[ptr] == kk[3]) ptr--;
           minn[now][i] = (ptr == -1 ? -INF : kk[ptr]);
         }
-    
+
         for (int i = head[now]; i; i = e[i].nxt) {
           if (e[i].to != fa) {
             maxx[e[i].to][0] = e[i].val;
@@ -421,15 +421,15 @@ $$
           }
         }
       }
-    
+
       int lca(int a, int b) {
         if (dpth[a] < dpth[b]) std::swap(a, b);
-    
+
         for (int i = 21; i >= 0; i--)
           if (dpth[pnt[a][i]] >= dpth[b]) a = pnt[a][i];
-    
+
         if (a == b) return a;
-    
+
         for (int i = 21; i >= 0; i--) {
           if (pnt[a][i] != pnt[b][i]) {
             a = pnt[a][i];
@@ -438,7 +438,7 @@ $$
         }
         return pnt[a][0];
       }
-    
+
       int query(int a, int b, int val) {
         int res = -INF;
         for (int i = 21; i >= 0; i--) {
@@ -453,16 +453,16 @@ $$
         return res;
       }
     } tr;
-    
+
     int fa[100010];
-    
+
     int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
-    
+
     void Kruskal() {
       int tot = 0;
       std::sort(e + 1, e + m + 1);
       for (int i = 1; i <= n; i++) fa[i] = i;
-    
+
       for (int i = 1; i <= m; i++) {
         int a = find(e[i].u);
         int b = find(e[i].v);
@@ -476,129 +476,129 @@ $$
         if (tot == n - 1) break;
       }
     }
-    
+
     int main() {
       std::ios::sync_with_stdio(false);
       std::cin.tie(nullptr);
-    
+
       std::cin >> n >> m;
       for (int i = 1; i <= m; i++) {
         int u, v, val;
         std::cin >> u >> v >> val;
         e[i] = Edge{u, v, val};
       }
-    
+
       Kruskal();
       long long ans = INF64;
       tr.dfs(1, 0);
-    
+
       for (int i = 1; i <= m; i++) {
         if (!used[i]) {
           int _lca = tr.lca(e[i].u, e[i].v);
-          // 找到路径上不等于 e[i].val 的最大边权
+          // Tìm cạnh có trọng số lớn nhất trên đường đi và khác e[i].val
           long long tmpa = tr.query(e[i].u, _lca, e[i].val);
           long long tmpb = tr.query(e[i].v, _lca, e[i].val);
-          // 这样的边可能不存在，只在这样的边存在时更新答案
+          // Cạnh như vậy có thể không tồn tại; chỉ cập nhật đáp án khi nó tồn tại
           if (std::max(tmpa, tmpb) > -INF)
             ans = std::min(ans, sum - std::max(tmpa, tmpb) + e[i].val);
         }
       }
-      // 次小生成树不存在时输出 -1
+      // In -1 khi không tồn tại cây khung nhỏ thứ hai
       std::cout << (ans == INF64 ? -1 : ans) << '\n';
       return 0;
     }
     ```
 
-## 瓶颈生成树
+## Cây khung nút cổ chai
 
-### 定义
+### Định nghĩa
 
-无向图 $G$ 的瓶颈生成树是这样的一个生成树，它的最大的边权值在 $G$ 的所有生成树中最小．
+Cây khung nút cổ chai của đồ thị vô hướng $G$ là một cây khung sao cho cạnh có trọng số lớn nhất của nó là nhỏ nhất trong tất cả cây khung của $G$.
 
-### 性质
+### Tính chất
 
-**最小生成树是瓶颈生成树的充分不必要条件．** 即最小生成树一定是瓶颈生成树，而瓶颈生成树不一定是最小生成树．
+**Cây khung nhỏ nhất là điều kiện đủ nhưng không cần của cây khung nút cổ chai.** Nghĩa là cây khung nhỏ nhất chắc chắn là cây khung nút cổ chai, nhưng cây khung nút cổ chai chưa chắc là cây khung nhỏ nhất.
 
-关于最小生成树一定是瓶颈生成树这一命题，可以运用反证法证明：我们设最小生成树中的最大边权为 $w$，如果最小生成树不是瓶颈生成树的话，则瓶颈生成树的所有边权都小于 $w$，我们只需删去原最小生成树中的最长边，用瓶颈生成树中的一条边来连接删去边后形成的两棵树，得到的新生成树一定比原最小生成树的权值和还要小，这样就产生了矛盾．
+Có thể chứng minh bằng phản chứng mệnh đề "cây khung nhỏ nhất chắc chắn là cây khung nút cổ chai": giả sử trọng số cạnh lớn nhất trong cây khung nhỏ nhất là $w$. Nếu cây khung nhỏ nhất không phải cây khung nút cổ chai, thì mọi cạnh trong cây khung nút cổ chai đều có trọng số nhỏ hơn $w$. Ta chỉ cần xóa cạnh dài nhất trong cây khung nhỏ nhất ban đầu, rồi dùng một cạnh trong cây khung nút cổ chai để nối hai cây tạo thành sau khi xóa cạnh đó. Cây khung mới thu được sẽ có tổng trọng số nhỏ hơn cây khung nhỏ nhất ban đầu, tạo ra mâu thuẫn.
 
-### 例题
+### Bài tập mẫu
 
 ???+ note "POJ 2395 Out of Hay"
-    给出 n 个农场和 m 条边，农场按 1 到 n 编号，现在有一人要从编号为 1 的农场出发到其他的农场去，求在这途中他最多需要携带的水的重量，注意他每到达一个农场，可以对水进行补给，且要使总共的路径长度最小．
-    题目要求的就是瓶颈树的最大边，可以通过求最小生成树来解决．
+    Cho $n$ nông trại và $m$ cạnh, các nông trại được đánh số từ $1$ đến $n$. Có một người cần đi từ nông trại số $1$ đến các nông trại khác. Hãy tìm khối lượng nước tối đa người đó cần mang theo trên hành trình; lưu ý mỗi khi đến một nông trại, người đó có thể bổ sung nước, và tổng độ dài đường đi phải nhỏ nhất.
+    Bài toán yêu cầu cạnh lớn nhất của cây nút cổ chai, có thể giải bằng cách tìm cây khung nhỏ nhất.
 
-## 最小瓶颈路
+## Đường đi nút cổ chai nhỏ nhất
 
-### 定义
+### Định nghĩa
 
-无向图 $G$ 中 x 到 y 的最小瓶颈路是这样的一类简单路径，满足这条路径上的最大的边权在所有 x 到 y 的简单路径中是最小的．
+Trong đồ thị vô hướng $G$, đường đi nút cổ chai nhỏ nhất từ $x$ đến $y$ là một lớp các đường đi đơn sao cho cạnh có trọng số lớn nhất trên đường đi đó là nhỏ nhất trong tất cả đường đi đơn từ $x$ đến $y$.
 
-### 性质
+### Tính chất
 
-根据最小生成树定义，x 到 y 的最小瓶颈路上的最大边权等于最小生成树上 x 到 y 路径上的最大边权．虽然最小生成树不唯一，但是每种最小生成树 x 到 y 路径的最大边权相同且为最小值．也就是说，每种最小生成树上的 x 到 y 的路径均为最小瓶颈路．
+Theo định nghĩa cây khung nhỏ nhất, trọng số lớn nhất trên đường đi nút cổ chai nhỏ nhất từ $x$ đến $y$ bằng trọng số lớn nhất trên đường đi từ $x$ đến $y$ trong cây khung nhỏ nhất. Cây khung nhỏ nhất có thể không duy nhất, nhưng với mọi cây khung nhỏ nhất, trọng số lớn nhất trên đường đi từ $x$ đến $y$ đều bằng nhau và đều là giá trị nhỏ nhất. Nói cách khác, đường đi từ $x$ đến $y$ trên mọi cây khung nhỏ nhất đều là đường đi nút cổ chai nhỏ nhất.
 
-但是，并不是所有最小瓶颈路都存在一棵最小生成树满足其为树上 x 到 y 的简单路径．
+Tuy nhiên, không phải mọi đường đi nút cổ chai nhỏ nhất đều có một cây khung nhỏ nhất sao cho nó là đường đi đơn từ $x$ đến $y$ trên cây.
 
-例如下图：
-
-![](./images/mst5.png)
-
-1 到 4 的最小瓶颈路显然有以下两条：1-2-3-4．1-3-4．
-
-但是，1-2 不会出现在任意一种最小生成树上．
-
-### 应用
-
-由于最小瓶颈路不唯一，一般情况下会询问最小瓶颈路上的最大边权．
-
-也就是说，我们需要求最小生成树链上的 max．
-
-倍增、树剖都可以解决，这里不再展开．
-
-## Kruskal 重构树
-
-### 定义
-
-在跑 Kruskal 的过程中我们会从小到大加入若干条边．现在我们仍然按照这个顺序．
-
-首先新建 $n$ 个集合，每个集合恰有一个节点，点权为 $0$．
-
-每一次加边会合并两个集合，我们可以新建一个点，点权为加入边的边权，同时将两个集合的根节点分别设为新建点的左儿子和右儿子．然后我们将两个集合和新建点合并成一个集合．将新建点设为根．
-
-不难发现，在进行 $n-1$ 轮之后我们得到了一棵恰有 $n$ 个叶子的二叉树，同时每个非叶子节点恰好有两个儿子．这棵树就叫 Kruskal 重构树．
-
-举个例子：
+Ví dụ trong hình sau:
 
 ![](./images/mst5.png)
 
-这张图的 Kruskal 重构树如下：
+Từ $1$ đến $4$ rõ ràng có hai đường đi nút cổ chai nhỏ nhất sau: $1-2-3-4$ và $1-3-4$.
+
+Tuy nhiên, cạnh $1-2$ sẽ không xuất hiện trong bất kỳ cây khung nhỏ nhất nào.
+
+### Ứng dụng
+
+Vì đường đi nút cổ chai nhỏ nhất không duy nhất, thông thường truy vấn sẽ hỏi trọng số lớn nhất trên đường đi nút cổ chai nhỏ nhất.
+
+Nói cách khác, ta cần tìm giá trị max trên chuỗi trong cây khung nhỏ nhất.
+
+Binary lifting và phân tách cây theo chuỗi đều có thể xử lý việc này; ở đây không trình bày thêm.
+
+## Cây tái cấu trúc Kruskal
+
+### Định nghĩa
+
+Trong quá trình chạy Kruskal, ta thêm một số cạnh theo thứ tự trọng số tăng dần. Bây giờ ta vẫn theo đúng thứ tự này.
+
+Trước hết tạo mới $n$ tập hợp, mỗi tập hợp có đúng một nút, và trọng số đỉnh bằng $0$.
+
+Mỗi lần thêm cạnh sẽ hợp nhất hai tập hợp. Ta có thể tạo một nút mới, đặt trọng số đỉnh của nó bằng trọng số cạnh vừa thêm, đồng thời đặt gốc của hai tập hợp lần lượt làm con trái và con phải của nút mới. Sau đó hợp nhất hai tập hợp và nút mới thành một tập hợp, rồi đặt nút mới làm gốc.
+
+Dễ thấy rằng sau $n-1$ vòng, ta thu được một cây nhị phân có đúng $n$ lá, và mỗi nút không phải lá đều có đúng hai con. Cây này được gọi là cây tái cấu trúc Kruskal.
+
+Ví dụ:
+
+![](./images/mst5.png)
+
+Cây tái cấu trúc Kruskal của hình này như sau:
 
 ![](./images/mst6.png)
 
-### 性质
+### Tính chất
 
-不难发现，原图中两个点之间的所有简单路径上最大边权的最小值 = 最小生成树上两个点之间的简单路径上的最大值 = Kruskal 重构树上两点之间的 LCA 的权值．
+Dễ thấy rằng, trong đồ thị ban đầu, giá trị nhỏ nhất của trọng số cạnh lớn nhất trên mọi đường đi đơn giữa hai đỉnh = giá trị lớn nhất trên đường đi đơn giữa hai đỉnh trong cây khung nhỏ nhất = trọng số của LCA của hai đỉnh trong cây tái cấu trúc Kruskal.
 
-也就是说，到点 $x$ 的简单路径上最大边权的最小值 $\leq val$ 的所有点 $y$ 均在 Kruskal 重构树上的某一棵子树内，且恰好为该子树的所有叶子节点．
+Nói cách khác, mọi đỉnh $y$ sao cho giá trị nhỏ nhất của trọng số cạnh lớn nhất trên đường đi đơn đến đỉnh $x$ không vượt quá $val$ đều nằm trong một cây con nào đó của cây tái cấu trúc Kruskal, và tập đỉnh này đúng bằng toàn bộ các lá của cây con đó.
 
-我们在 Kruskal 重构树上找到 $x$ 到根的路径上权值 $\leq val$ 的最浅的节点．显然这就是所有满足条件的节点所在的子树的根节点．
+Ta tìm trên cây tái cấu trúc Kruskal nút nông nhất trên đường từ $x$ đến gốc có trọng số $\leq val$. Rõ ràng đây chính là gốc của cây con chứa tất cả các nút thỏa điều kiện.
 
-如果需要求原图中两个点之间的所有简单路径上最小边权的最大值，则在跑 Kruskal 的过程中按边权大到小的顺序加边．
+Nếu cần tìm giá trị lớn nhất của trọng số cạnh nhỏ nhất trên mọi đường đi đơn giữa hai đỉnh trong đồ thị ban đầu, thì khi chạy Kruskal ta thêm cạnh theo thứ tự trọng số giảm dần.
 
-??? note "[「LOJ 137」最小瓶颈路 加强版](https://loj.ac/problem/137)"
+??? note "[LOJ 137 Minimum Bottleneck Path, enhanced version](https://loj.ac/problem/137)"
     ```cpp
     --8<-- "docs/graph/code/mst/mst_2.cpp"
     ```
 
-??? note "[NOI 2018 归程](https://uoj.ac/problem/393)"
-    首先预处理出来每一个点到根节点的最短路．
-    
-    我们构造出来根据海拔的最大生成树．显然每次询问可以到达的节点是在最大生成树中和询问点的路径上最小边权 $> p$ 的节点．
-    
-    根据 Kruskal 重构树的性质，这些节点满足均在一棵子树内同时为其所有叶子节点．
-    
-    也就是说，我们只需要求出 Kruskal 重构树上每一棵子树叶子的权值 min 就可以支持子树询问．
-    
-    询问的根节点可以使用 Kruskal 重构树上倍增的方式求出．
-    
-    时间复杂度 $O((n+m+Q) \log n)$．
+??? note "[NOI 2018 Return Journey](https://uoj.ac/problem/393)"
+    Trước hết tiền xử lý đường đi ngắn nhất từ mỗi đỉnh đến nút gốc.
+
+    Ta xây dựng cây khung lớn nhất theo độ cao. Rõ ràng, với mỗi truy vấn, các nút có thể đi đến là các nút mà trên đường đi giữa chúng và đỉnh truy vấn trong cây khung lớn nhất, cạnh có trọng số nhỏ nhất lớn hơn $p$.
+
+    Theo tính chất của cây tái cấu trúc Kruskal, các nút này nằm trong cùng một cây con và đồng thời là toàn bộ các lá của cây con đó.
+
+    Nói cách khác, ta chỉ cần tính giá trị min của các lá trong mỗi cây con của cây tái cấu trúc Kruskal để hỗ trợ truy vấn cây con.
+
+    Nút gốc của truy vấn có thể được tìm bằng binary lifting trên cây tái cấu trúc Kruskal.
+
+    Độ phức tạp thời gian là $O((n+m+Q) \log n)$.

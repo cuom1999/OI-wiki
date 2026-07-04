@@ -279,6 +279,10 @@ MkDocs source layout intact.
   `docs/graph/kth-path.md`, `docs/graph/mod-shortest-path.md`: translated DAG,
   topological sorting, shortest-path algorithms, difference constraints,
   k-shortest walks, and modular shortest-path material.
+- `docs/graph/mst.md`, `docs/graph/dmst.md`, `docs/graph/mdst.md`,
+  `docs/graph/steiner-tree.md`, `docs/graph/node.md`: translated spanning-tree
+  algorithms, directed and minimum-diameter spanning trees, Steiner tree, and
+  node-splitting graph modeling material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

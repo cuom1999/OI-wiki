@@ -206,7 +206,7 @@ Tất nhiên, mỗi đỉnh có thể được đưa vào hàng đợi nhiều l
 
 So với BFS dùng hàng đợi thông thường, độ phức tạp thời gian có thêm một thừa số $\log n$, bởi dù sao ta cũng phải duy trì hàng đợi ưu tiên này. Tuy nhiên, trong BFS thông thường, mỗi đỉnh cũng có thể vào hàng đợi và ra khỏi hàng đợi nhiều lần, khiến độ phức tạp thời gian đạt tới $O(n^2)$ chứ không phải $O(n)$. Vì vậy BFS hàng đợi ưu tiên thường vẫn nhanh hơn.
 
-Nghe có vẻ rất giống thuật toán [Dijkstra](./shortest-path.md#dijkstra-%E7%AE%97%E6%B3%95) tối ưu bằng heap phải không? Thật ra, Dijkstra tối ưu bằng heap chính là BFS hàng đợi ưu tiên.
+Nghe có vẻ rất giống thuật toán [Dijkstra](./shortest-path.md#thuật-toán-dijkstra) tối ưu bằng heap phải không? Thật ra, Dijkstra tối ưu bằng heap chính là BFS hàng đợi ưu tiên.
 
 ## Bài tập
 

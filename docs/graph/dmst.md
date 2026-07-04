@@ -1,15 +1,15 @@
-## 定义
+## Định nghĩa
 
-有向图上的最小生成树（Directed Minimum Spanning Tree）称为最小树形图．
+Cây khung nhỏ nhất trên đồ thị có hướng (Directed Minimum Spanning Tree) được gọi là arborescence nhỏ nhất.
 
-常用的算法是朱刘算法（也称 Edmonds 算法），可以在 $O(nm)$ 时间内解决最小树形图问题．
+Thuật toán thường dùng là thuật toán Chu-Liu (còn gọi là thuật toán Edmonds), giải bài toán arborescence nhỏ nhất trong thời gian $O(nm)$.
 
-## 过程
+## Quy trình
 
-1.  对于每个点，选择指向它的边权最小的那条边．
-2.  如果没有环，算法终止；否则进行缩环并更新其他点到环的距离．
+1.  Với mỗi đỉnh, chọn cạnh đi vào nó có trọng số nhỏ nhất.
+2.  Nếu không có chu trình, thuật toán kết thúc; nếu có, co chu trình lại và cập nhật khoảng cách từ các đỉnh khác tới chu trình.
 
-## 实现
+## Cài đặt
 
 ```cpp
 bool solve() {
@@ -58,37 +58,37 @@ bool solve() {
 }
 ```
 
-## Tarjan 的 DMST 算法
+## Thuật toán DMST của Tarjan
 
-Tarjan 提出了一种能够在 $O(m+n\log n)$ 时间内解决最小树形图问题的算法．
+Tarjan đề xuất một thuật toán giải bài toán arborescence nhỏ nhất trong thời gian $O(m+n\log n)$.
 
-这里的算法描述以及参考代码基于 Uri Zwick 教授的课堂讲义，更多的细节可以参考原文．
+Phần mô tả thuật toán và mã tham khảo ở đây dựa trên bài giảng của Giáo sư Uri Zwick; có thể xem tài liệu gốc để biết thêm chi tiết.
 
-### 过程
+### Quy trình
 
-Tarjan 的算法分为 **收缩** 与 **伸展** 两个过程．接下来先介绍 **收缩** 的过程．
+Thuật toán của Tarjan gồm hai giai đoạn: **co** và **mở rộng**. Trước hết ta xét giai đoạn **co**.
 
-我们需要假设输入的图是满足强连通的，如果不满足那么就加入 $O(n)$ 条边使其满足，并且这些边的边权是无穷大的．
+Ta cần giả sử đồ thị đầu vào là liên thông mạnh. Nếu không, thêm $O(n)$ cạnh có trọng số vô cùng lớn để đồ thị thỏa điều kiện này.
 
-我们需要一个堆存储结点的入边编号，入边权值，结点总代价等相关信息，由于后续过程中会有堆的合并操作，这里采用 [左偏树](../ds/leftist-tree.md) 与 [并查集](../ds/dsu.md) 实现．算法的每一步都选择一个任意结点 $v$，需要保证 $v$ 不是根节点，并且在堆中没有它的入边．再将 $v$ 的最小入边加入到堆中，如果新加入的这条边使堆中的边形成了环，那么将构成环的那些结点收缩，我们不妨将这些已经收缩的结点命名为 **超级结点**，再继续这个过程，如果所有的顶点都缩成了一个超级结点，那么收缩过程就结束了．整个收缩过程结束后会得到一棵收缩树，之后将对它进行伸展操作．
+Ta cần một heap để lưu các thông tin như chỉ số cạnh vào của đỉnh, trọng số cạnh vào và tổng chi phí của đỉnh. Vì các bước sau cần thao tác gộp heap, phần này dùng [cây lệch trái](../ds/leftist-tree.md) và [DSU](../ds/dsu.md) để cài đặt. Ở mỗi bước của thuật toán, chọn một đỉnh tùy ý $v$ sao cho $v$ không phải là đỉnh gốc và cạnh vào của nó chưa nằm trong heap. Sau đó đưa cạnh vào nhỏ nhất của $v$ vào heap. Nếu cạnh mới thêm khiến các cạnh trong heap tạo thành một chu trình, co các đỉnh thuộc chu trình đó lại; ta gọi các đỉnh đã được co như vậy là **siêu đỉnh**. Tiếp tục quá trình này, và khi toàn bộ các đỉnh đã được co thành một siêu đỉnh, giai đoạn co kết thúc. Sau toàn bộ giai đoạn co, ta thu được một cây co, rồi sẽ thực hiện thao tác mở rộng trên cây đó.
 
-堆中的边总是会形成一条路径 $v_0\leftarrow v_1\leftarrow \dots\leftarrow v_k$，由于图是强连通的，这个路径必然存在，并且其中的 $v_i$ 可能是最初的单一结点，也可能是压缩后的超级结点．
+Các cạnh trong heap luôn tạo thành một đường đi $v_0\leftarrow v_1\leftarrow \dots\leftarrow v_k$. Vì đồ thị liên thông mạnh, đường đi này chắc chắn tồn tại; mỗi $v_i$ có thể là một đỉnh đơn ban đầu hoặc một siêu đỉnh sau khi co.
 
-最初有 $v_o=a$，其中 $a$ 是图中任意的一个结点，每一次选择一条最小入边 $v_k\leftarrow u$，如果 $u$ 不是 $v_0,v_1,\dots,v_k$ 中的一个结点，那么就将结点扩展到 $v_{k+1}=u$．如果 $u$ 是他们其中的一个结点 $v_i$，那么就找到了一个关于 $v_i\leftarrow\dots\leftarrow v_k\leftarrow v_i$ 的环，再将他们收缩为一个超级结点 $c$．
+Ban đầu có $v_o=a$, trong đó $a$ là một đỉnh bất kỳ trong đồ thị. Mỗi lần chọn một cạnh vào nhỏ nhất $v_k\leftarrow u$. Nếu $u$ không phải một trong các đỉnh $v_0,v_1,\dots,v_k$, ta mở rộng đường đi tới $v_{k+1}=u$. Nếu $u$ là một đỉnh $v_i$ trong số đó, ta đã tìm được chu trình $v_i\leftarrow\dots\leftarrow v_k\leftarrow v_i$, rồi co các đỉnh này thành một siêu đỉnh $c$.
 
-向队列 $P$ 中放入所有的结点或超级结点，并初始选择任意一节点 $a$，只要队列不为空，就进行以下步骤：
+Đưa tất cả các đỉnh hoặc siêu đỉnh vào hàng đợi $P$, đồng thời ban đầu chọn một đỉnh tùy ý $a$. Chừng nào hàng đợi còn chưa rỗng, thực hiện các bước sau:
 
-1.  选择 $a$ 的最小入边，保证不存在自环，并找到另一头的结点 $b$．如果结点 $b$ 没有被记录过说明未形成环，令 $a\leftarrow b$，继续当前操作寻找环．
+1.  Chọn cạnh vào nhỏ nhất của $a$, bảo đảm không có khuyên, rồi tìm đỉnh $b$ ở đầu còn lại. Nếu đỉnh $b$ chưa từng được ghi nhận, nghĩa là chưa hình thành chu trình; đặt $a\leftarrow b$ và tiếp tục thao tác hiện tại để tìm chu trình.
 
-2.  如果 $b$ 被记录过了，就说明出现了环．总结点数加一，并将环上的所有结点重新编号，对堆进行合并，以及结点/超级结点的总权值的更新．更新权值操作就是将环上所有结点的入边都收集起来，并减去环上入边的边权．
+2.  Nếu $b$ đã được ghi nhận, nghĩa là đã xuất hiện chu trình. Tăng tổng số đỉnh lên một, đánh số lại mọi đỉnh trên chu trình, gộp các heap, đồng thời cập nhật tổng trọng số của các đỉnh hoặc siêu đỉnh. Thao tác cập nhật trọng số là gom tất cả cạnh vào của các đỉnh trên chu trình và trừ đi trọng số của cạnh vào tương ứng trên chu trình.
 
 ![dmst1](./images/dmst1.png)
 
-以图片为例，左边的强连通图在收缩后就形成了右边的一棵收缩树，其中 $a$ 是结点 1 与结点 2 收缩后的超级结点，$b$ 是结点 3，结点 4，结点 5 收缩后的超级结点，$A$ 是两个超级结点 $a$ 与 $b$ 收缩后形成的．
+Trong hình minh họa, đồ thị liên thông mạnh bên trái sau khi co sẽ tạo thành cây co ở bên phải. Trong đó, $a$ là siêu đỉnh thu được sau khi co đỉnh 1 và đỉnh 2; $b$ là siêu đỉnh thu được sau khi co đỉnh 3, đỉnh 4 và đỉnh 5; còn $A$ được tạo thành sau khi co hai siêu đỉnh $a$ và $b$.
 
-伸展过程是相对简单的，以原先要求的根节点 $r$ 为起始点，对 $r$ 到收缩树的根上的每一个环进行伸展．再以 $r$ 的祖先结点 $f_r$ 为起始点，将其到根的环展开，直到遍历完所有的结点．
+Giai đoạn mở rộng tương đối đơn giản. Bắt đầu từ đỉnh gốc $r$ được yêu cầu ban đầu, mở rộng từng chu trình trên đường từ $r$ tới gốc của cây co. Sau đó bắt đầu từ đỉnh tổ tiên $f_r$ của $r$, mở rộng các chu trình từ đó tới gốc, cho tới khi duyệt xong mọi đỉnh.
 
-### 实现
+### Cài đặt
 
 ```cpp
 #include <cstdio>
@@ -161,7 +161,7 @@ UnionFind id;
 
 void contract() {
   bool mark[MAXN << 1];
-  // 将图上的每一个结点与其相连的那些结点进行记录．
+  // Ghi nhận các cạnh nối với từng đỉnh trong đồ thị.
   for (int i = 1; i <= n; i++) {
     queue<Heap *> q;
     for (int j = 0; j < in[i].size(); j++) q.push(new Heap(&in[i][j]));
@@ -176,14 +176,14 @@ void contract() {
   }
   mark[1] = true;
   for (int a = 1, b = 1, p; Q[a]; b = a, mark[b] = true) {
-    // 寻找最小入边以及其端点，保证无环．
+    // Tìm cạnh vào nhỏ nhất và đầu mút của nó, đồng thời tránh tạo khuyên.
     do {
       ed[a] = extract(Q[a]);
       a = id[ed[a]->u];
     } while (a == b && Q[a]);
     if (a == b) break;
     if (!mark[a]) continue;
-    // 对发现的环进行收缩，以及环内的结点重新编号，总权值更新．
+    // Co chu trình vừa tìm được, đánh số lại các đỉnh trong chu trình và cập nhật tổng trọng số.
     for (a = b, n++; a != n; a = p) {
       id.fa[a] = fa[a] = n;
       if (Q[a]) Q[a]->constant -= ed[a]->w;
@@ -226,7 +226,7 @@ int main() {
     scanf("%d %d %d", &u, &v, &w);
     link(u, v, w);
   }
-  // 保证强连通
+  // Bảo đảm đồ thị liên thông mạnh.
   for (int i = 1; i <= n; i++) link(i > 1 ? i - 1 : n, i, INF);
   contract();
   ll ans = expand(rt, n);
@@ -238,7 +238,7 @@ int main() {
 }
 ```
 
-## 参考文献
+## Tài liệu tham khảo
 
 Uri Zwick. (2013),[Directed Minimum Spanning Trees](http://www.cs.tau.ac.il/~zwick/grad-algo-13/directed-mst.pdf), Lecture notes on "Analysis of Algorithms"
 

@@ -108,7 +108,7 @@ Duyệt toàn bộ đồ thị: $O(nm)$.
 
 Do hiệu suất duyệt của cách lưu cạnh trực tiếp thấp, thông thường không dùng nó để duyệt đồ thị.
 
-Trong [thuật toán Kruskal](./mst.md#kruskal-%E7%AE%97%E6%B3%95), do cần sắp xếp các cạnh theo trọng số, ta cần lưu cạnh trực tiếp.
+Trong [thuật toán Kruskal](./mst.md#thuật-toán-kruskal), do cần sắp xếp các cạnh theo trọng số, ta cần lưu cạnh trực tiếp.
 
 Trong một số bài toán, cần xây dựng đồ thị nhiều lần, chẳng hạn xây một lần đồ thị gốc và một lần đồ thị đảo. Khi đó có thể dùng nhiều cấu trúc dữ liệu khác để lưu đồng thời nhiều đồ thị, hoặc cũng có thể lưu trực tiếp các cạnh rồi dùng các cạnh đã lưu để xây lại đồ thị khi cần.
 

@@ -30,7 +30,7 @@ Vì giá trị thực của $h^*(x)$ chưa biết trong lúc tìm kiếm, cần 
 $h(x)$ dễ tính để ước lượng nó. Độ phức tạp thực tế của tìm kiếm A\* phụ thuộc
 vào tính chất của hàm ước lượng $h(x)$. Dễ hình dung rằng nếu $h\equiv h^*$, tức
 ước lượng chính xác, quá trình tìm kiếm sẽ đi đúng theo đường ngắn nhất. Còn nếu
-$h\equiv 0$, thuật toán A\* suy biến thành [thuật toán Dijkstra](./../graph/shortest-path.md#dijkstra-%E7%AE%97%E6%B3%95);
+$h\equiv 0$, thuật toán A\* suy biến thành [thuật toán Dijkstra](./../graph/shortest-path.md#thuật-toán-dijkstra);
 khi $h\equiv 0$ và mọi cạnh có trọng số $1$, nó chính là [BFS](./bfs.md).
 
 Giả sử đồ thị không có cạnh trọng số âm. Nếu ước lượng $h(x)$ không bao giờ vượt

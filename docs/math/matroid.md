@@ -270,7 +270,7 @@ Cho một đồ thị vô hướng liên thông $G = (V, E)$, mỗi cạnh $e \i
 
 **Thuật toán tham lam**:
 
-Trong khuôn khổ matroid đồ thị, [thuật toán Kruskal](../graph/mst.md#kruskal-%E7%AE%97%E6%B3%95) là một thuật toán tham lam điển hình dựa trên lý thuyết matroid, có thể dùng để xây dựng cây khung nhỏ nhất. Dù [thuật toán Prim](../graph/mst.md#prim-%E7%AE%97%E6%B3%95) cũng là một thuật toán tham lam hiệu quả và cũng tìm được cây khung nhỏ nhất, nó không phụ thuộc chặt chẽ vào tham lam của matroid. Vì vậy, trong thảo luận về lý thuyết matroid, thuật toán Kruskal là ví dụ chính của thuật toán tham lam.
+Trong khuôn khổ matroid đồ thị, [thuật toán Kruskal](../graph/mst.md#thuật-toán-kruskal) là một thuật toán tham lam điển hình dựa trên lý thuyết matroid, có thể dùng để xây dựng cây khung nhỏ nhất. Dù [thuật toán Prim](../graph/mst.md#thuật-toán-prim) cũng là một thuật toán tham lam hiệu quả và cũng tìm được cây khung nhỏ nhất, nó không phụ thuộc chặt chẽ vào tham lam của matroid. Vì vậy, trong thảo luận về lý thuyết matroid, thuật toán Kruskal là ví dụ chính của thuật toán tham lam.
 
 -   **Thuật toán Kruskal**:
     1.  **Sắp xếp cạnh**: sắp xếp tất cả các cạnh theo trọng số tăng dần.

@@ -1,50 +1,50 @@
-在学习最小直径生成树（Minimum Diameter Spanning Tree）前建议先阅读 [树的直径](./tree-diameter.md) 的内容．
+Trước khi học cây khung đường kính nhỏ nhất (Minimum Diameter Spanning Tree), bạn nên đọc nội dung về [đường kính của cây](./tree-diameter.md).
 
-## 定义
+## Định nghĩa
 
-在无向图的所有生成树中，直径最小的那一棵生成树就是最小直径生成树．
+Trong tất cả các cây khung của một đồ thị vô hướng, cây khung có đường kính nhỏ nhất chính là cây khung đường kính nhỏ nhất.
 
-## 图的绝对中心
+## Tâm tuyệt đối của đồ thị
 
-求解直径最小生成树，首先需要找到 **图的绝对中心**，**图的绝对中心** 可以存在于一条边上或某个结点上，该中心到所有点的最短距离的最大值最小．
+Để tìm cây khung có đường kính nhỏ nhất, trước hết cần tìm **tâm tuyệt đối của đồ thị**. **Tâm tuyệt đối của đồ thị** có thể nằm trên một cạnh hoặc tại một đỉnh; nó là vị trí sao cho giá trị lớn nhất trong các khoảng cách ngắn nhất từ vị trí đó đến mọi đỉnh là nhỏ nhất.
 
-根据 **图的绝对中心** 的定义可以知道，到绝对中心距离最远的结点至少有两个．
+Theo định nghĩa của **tâm tuyệt đối của đồ thị**, có thể biết rằng có ít nhất hai đỉnh xa tâm tuyệt đối nhất.
 
-令 $d(i,j)$ 为顶点 $i,j$ 间的最短路径长，通过多源最短路算法求出所有结点的最短路．
+Gọi $d(i,j)$ là độ dài đường đi ngắn nhất giữa hai đỉnh $i,j$. Ta dùng thuật toán đường đi ngắn nhất đa nguồn để tính đường đi ngắn nhất giữa mọi cặp đỉnh.
 
-$\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结点．
+$\textit{rk}(i,j)$ ghi lại đỉnh có khoảng cách nhỏ thứ $j$ từ đỉnh $i$ trong tất cả các đỉnh còn lại.
 
-图的绝对中心可能在某条边上，枚举每一条边 $w=(u,v)$，并且假设图的绝对中心 $c$ 就在这条边上．那么距离 $u$ 的长度为 $x$（$x \leq w$），距离 $v$ 的长度就是 $w - x$．
+Tâm tuyệt đối của đồ thị có thể nằm trên một cạnh nào đó. Duyệt từng cạnh $w=(u,v)$ và giả sử tâm tuyệt đối của đồ thị $c$ nằm trên cạnh này. Khi đó khoảng cách từ $c$ đến $u$ là $x$ ($x \leq w$), còn khoảng cách từ $c$ đến $v$ là $w - x$.
 
-对于图中的任意一点 $i$，图的绝对中心 $c$ 到 $i$ 的距离为 $d(c,i)=\min(d(u,i) + x, d(v,i) + (w - x))$．
+Với một đỉnh bất kỳ $i$ trong đồ thị, khoảng cách từ tâm tuyệt đối của đồ thị $c$ đến $i$ là $d(c,i)=\min(d(u,i) + x, d(v,i) + (w - x))$.
 
-举例一个结点 $i$，该结点与图的绝对中心的位置关系如下图．
+Lấy một đỉnh $i$ làm ví dụ, quan hệ vị trí giữa đỉnh này và tâm tuyệt đối của đồ thị được minh họa như sau.
 
 ![mdst1](./images/mdst-graph.svg)
 
-随着图的绝对中心 $c$ 在边上的改变会生成一个距离与 $c$ 位置的函数图像．显然的，当前的 $d(c,i)$ 的函数图像是一个两条斜率相同的线段构成的折线段．
+Khi tâm tuyệt đối của đồ thị $c$ thay đổi vị trí trên cạnh, ta thu được đồ thị hàm số biểu diễn khoảng cách theo vị trí của $c$. Rõ ràng, đồ thị hàm số của $d(c,i)$ hiện tại là một đường gấp khúc gồm hai đoạn thẳng có hệ số góc cố định.
 
 ![mdst2](./images/mdst-plot1.svg)
 
-对于图上的任意一结点，图的绝对中心到最远距离结点的函数就写作 $f = \max\{ d(c,i)\},i \in[1,n]$，其函数图像如下．
+Với mọi đỉnh trên đồ thị, hàm số mô tả khoảng cách từ tâm tuyệt đối của đồ thị đến đỉnh xa nhất được viết là $f = \max\{ d(c,i)\},i \in[1,n]$; đồ thị hàm số của nó như sau.
 
 ![mdst3](./images/mdst-plot2.svg)
 
-并且这些折线交点中的最低点，横坐标就是图的绝对中心的位置．
+Điểm thấp nhất trong các giao điểm của những đường gấp khúc này có hoành độ chính là vị trí của tâm tuyệt đối của đồ thị.
 
-图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，即 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,n))\times 2)$．
+Tâm tuyệt đối của đồ thị cũng có thể nằm tại một đỉnh. Khi đó dùng đỉnh xa nhất so với đỉnh đang xét để cập nhật, tức là $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,n))\times 2)$.
 
-### 过程
+### Quy trình
 
-1.  使用多源最短路算法（[Floyd](./shortest-path.md#floyd-算法)，[Johnson](./shortest-path.md#johnson-全源最短路径算法) 等），求出 $d$ 数组；
+1.  Dùng thuật toán đường đi ngắn nhất đa nguồn ([Floyd](./shortest-path.md#thuật-toán-floyd), [Johnson](./shortest-path.md#thuật-toán-johnson-tìm-đường-đi-ngắn-nhất-mọi-cặp), v.v.) để tính mảng $d$;
 
-2.  求出 $\textit{rk}(i,j)$，并将其升序排序；
+2.  Tính $\textit{rk}(i,j)$ và sắp xếp nó theo thứ tự tăng dần;
 
-3.  图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，遍历所有结点并用 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,n)) \times 2)$ 更新最小值．
+3.  Tâm tuyệt đối của đồ thị có thể nằm tại một đỉnh. Dùng đỉnh xa nhất so với đỉnh đang xét để cập nhật; duyệt mọi đỉnh và cập nhật giá trị nhỏ nhất bằng $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,n)) \times 2)$.
 
-4.  图的绝对中心可能在某条边上，枚举所有的边．对于一条边 $w(u,v)$ 从距离 $u$ 最远的结点开始更新．当出现 $d(v,\textit{rk}(u,i)) > \max_{j=i+1}^n d(v,\textit{rk}(u,j))$ 的情况时，用 $\textit{ans}\leftarrow  \min(\textit{ans}, d(u,\textit{rk}(u,i))+\max_{j=i+1}^n d(v,\textit{rk}(u,j))+w(u,v))$ 来更新．因为这种情况会使图的绝对中心改变．
+4.  Tâm tuyệt đối của đồ thị có thể nằm trên một cạnh, nên duyệt tất cả các cạnh. Với một cạnh $w(u,v)$, bắt đầu cập nhật từ đỉnh xa $u$ nhất. Khi xuất hiện trường hợp $d(v,\textit{rk}(u,i)) > \max_{j=i+1}^n d(v,\textit{rk}(u,j))$, dùng $\textit{ans}\leftarrow  \min(\textit{ans}, d(u,\textit{rk}(u,i))+\max_{j=i+1}^n d(v,\textit{rk}(u,j))+w(u,v))$ để cập nhật. Lý do là trường hợp này sẽ làm vị trí tâm tuyệt đối của đồ thị thay đổi.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     bool cmp(int a, int b) { return val[a] < val[b]; }
     
@@ -64,9 +64,9 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
         sort(rk[i] + 1, rk[i] + 1 + n, cmp);
       }
       int ans = INF;
-      // 图的绝对中心可能在结点上
+      // Tâm tuyệt đối của đồ thị có thể nằm tại đỉnh
       for (int i = 1; i <= n; i++) ans = min(ans, d[i][rk[i][n]] * 2);
-      // 图的绝对中心可能在边上
+      // Tâm tuyệt đối của đồ thị có thể nằm trên cạnh
       for (int i = 1; i <= m; i++) {
         int u = a[i].u, v = a[i].v, w = a[i].w;
         for (int p = n, i = n - 1; i >= 1; i--) {
@@ -79,17 +79,17 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
     }
     ```
 
-### 例题
+### Bài tập ví dụ
 
 -   [CodeForce 266D BerDonalds](https://codeforces.com/contest/266/problem/D)
 
-## 最小直径生成树
+## Cây khung đường kính nhỏ nhất
 
-根据图的绝对中心的定义，容易得知图的绝对中心是最小直径生成树的直径的中点．
+Theo định nghĩa của tâm tuyệt đối của đồ thị, dễ thấy tâm tuyệt đối của đồ thị là trung điểm của đường kính trong cây khung đường kính nhỏ nhất.
 
-求解最小直径生成树首先需要找到图的绝对中心．以图的绝对中心为起点，生成一个最短路径树，那么就可以得到最小直径生成树了．
+Để tìm cây khung đường kính nhỏ nhất, trước hết cần tìm tâm tuyệt đối của đồ thị. Lấy tâm tuyệt đối của đồ thị làm điểm bắt đầu và sinh một cây đường đi ngắn nhất, khi đó ta thu được cây khung đường kính nhỏ nhất.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     #include <algorithm>
     #include <climits>
@@ -116,7 +116,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
     } a[MAXN * (MAXN - 1) / 2];
     
     void solve() {
-      // 求图的绝对中心
+      // Tìm tâm tuyệt đối của đồ thị
       floyd();
       for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
@@ -126,14 +126,14 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
         sort(rk[i] + 1, rk[i] + 1 + n, cmp);
       }
       ll P = 0, ansP = INF;
-      // 在点上
+      // Nằm tại đỉnh
       for (int i = 1; i <= n; i++) {
         if (d[i][rk[i][n]] * 2 < ansP) {
           ansP = d[i][rk[i][n]] * 2;
           P = i;
         }
       }
-      // 在边上
+      // Nằm trên cạnh
       int f1 = 0, f2 = 0;
       ll disu = INT_MIN, disv = INT_MIN, ansL = INF;
       for (int i = 1; i <= m; i++) {
@@ -151,7 +151,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
         }
       }
       cout << min(ansP, ansL) / 2 << '\n';
-      // 最小路径生成树
+      // Cây khung đường đi ngắn nhất
       vector<pii> pp;
       for (int i = 1; i <= 501; ++i)
         for (int j = 1; j <= 501; ++j) dd[i][j] = INF;
@@ -224,7 +224,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
     }
     ```
 
-### 例题
+### Bài tập ví dụ
 
 [SPOJ MDST](https://www.spoj.com/problems/MDST/)
 
@@ -232,6 +232,6 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 [SPOJ PT07C - The GbAaY Kingdom](https://www.spoj.com/problems/PT07C)
 
-## 参考文献
+## Tài liệu tham khảo
 
 [Play with Trees Solutions The GbAaY Kingdom](https://adn.botao.hu/adn-backup/blog/attachments/month_0705/32007531153238.pdf)

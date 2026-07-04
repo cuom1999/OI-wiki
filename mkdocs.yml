@@ -439,12 +439,12 @@ nav:
       - Ràng buộc hiệu: graph/diff-constraints.md
       - Đường đi ngắn thứ k: graph/kth-path.md
       - Đường đi ngắn nhất theo đồng dư: graph/mod-shortest-path.md
-    - 生成树问题:
-      - 最小生成树: graph/mst.md
-      - 最小树形图: graph/dmst.md
-      - 最小直径生成树: graph/mdst.md
-    - 斯坦纳树: graph/steiner-tree.md
-    - 拆点: graph/node.md
+    - Bài toán cây khung:
+      - Cây khung nhỏ nhất: graph/mst.md
+      - Cây khung có hướng nhỏ nhất: graph/dmst.md
+      - Cây khung đường kính nhỏ nhất: graph/mdst.md
+    - Cây Steiner: graph/steiner-tree.md
+    - Tách đỉnh: graph/node.md
     - 连通性相关:
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md

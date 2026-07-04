@@ -594,7 +594,7 @@ Ví dụ Floyd cần ghi `pre[i][j] = k;`, còn Bellman-Ford và Dijkstra thư�
 ## Một số trường hợp đặc biệt
 
 -   Đường đi ngắn nhất trên đồ thị có trọng số cạnh chỉ gồm $0$ và $1$: [0-1 BFS](./bfs.md#bfs-hai-đầu-hàng-đợi);
--   Bài toán đường đi ngắn nhất cho phép thay đổi chi phí đường đi tối đa $k$ lần: [đường đi ngắn nhất trên đồ thị phân tầng](./node.md#%E5%88%86%E5%B1%82%E5%9B%BE%E6%9C%80%E7%9F%AD%E8%B7%AF).
+-   Bài toán đường đi ngắn nhất cho phép thay đổi chi phí đường đi tối đa $k$ lần: [đường đi ngắn nhất trên đồ thị phân tầng](./node.md#đường-đi-ngắn-nhất-trên-đồ-thị-phân-tầng).
 
 ## Tài liệu tham khảo và chú thích
 
