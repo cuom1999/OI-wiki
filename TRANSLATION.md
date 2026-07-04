@@ -350,6 +350,8 @@ MkDocs source layout intact.
   `docs/topic/segment-tree-offline.md`: translated topic pages for RMQ, DSU
   applications, bracket sequences, and segment-tree divide-and-conquer over
   offline queries.
+- `docs/tools/testlib/index.md`, `docs/tools/testlib/general.md`: translated
+  the Testlib introduction and common API material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

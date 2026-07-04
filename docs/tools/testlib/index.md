@@ -1,18 +1,18 @@
 author: Xeonacid, sshwy
 
-如果你正在使用 C++ 出一道算法竞赛题目，Testlib 是编写相关程序（generator, validator, checker, interactor）时的优秀辅助工具．它是俄罗斯和其他一些国家的出题人的必备工具，许多比赛也都在用它：ROI、ICPC 区域赛、所有 Codeforces round……
+Nếu bạn đang dùng C++ để chuẩn bị một bài thi lập trình, Testlib là công cụ hỗ trợ rất tốt để viết các chương trình liên quan như generator, validator, checker và interactor. Đây là công cụ gần như bắt buộc với nhiều người ra đề ở Nga và một số quốc gia khác; nhiều kỳ thi cũng sử dụng Testlib, chẳng hạn ROI, các vòng ICPC khu vực và toàn bộ các vòng Codeforces.
 
-Testlib 库仅有 `testlib.h` 一个文件，使用时仅需在所编写的程序开头添加 `#include "testlib.h"` 即可．
+Thư viện Testlib chỉ gồm một tệp `testlib.h`. Khi sử dụng, bạn chỉ cần thêm `#include "testlib.h"` ở đầu chương trình đang viết.
 
-Testlib 的具体用途：
+Các mục đích sử dụng cụ thể của Testlib:
 
--   编写 [Generator](./generator.md)，即数据生成器．
--   编写 [Validator](./validator.md)，即数据校验器，判断生成数据是否符合题目要求，如数据范围、格式等．
--   编写 [Interactor](./interactor.md)，即交互器，用于交互题．
--   编写 [Checker](./checker.md)，即 [Special Judge](../special-judge.md)．
+-   Viết [Generator](./generator.md), tức trình sinh dữ liệu.
+-   Viết [Validator](./validator.md), tức trình kiểm tra dữ liệu, dùng để xác định dữ liệu sinh ra có thỏa yêu cầu của đề hay không, chẳng hạn miền giá trị và định dạng.
+-   Viết [Interactor](./interactor.md), tức trình tương tác cho bài tương tác.
+-   Viết [Checker](./checker.md), tức [Special Judge](../special-judge.md).
 
-Testlib 与 Codeforces 开发的 [Polygon](https://polygon.codeforces.com/) 出题平台完全兼容．
+Testlib hoàn toàn tương thích với nền tảng ra đề [Polygon](https://polygon.codeforces.com/) do Codeforces phát triển.
 
-`testlib.h` 在 2005 年移植自 `testlib.pas`，并一直在更新．Testlib 与绝大多数编译器兼容，如 VC++ 和 GCC g++，并兼容 C++11．
+`testlib.h` được chuyển từ `testlib.pas` vào năm 2005 và vẫn được cập nhật liên tục. Testlib tương thích với phần lớn trình biên dịch, chẳng hạn VC++ và GCC g++, đồng thời tương thích với C++11.
 
-**本文主要翻译自 [Testlib - Codeforces](https://codeforces.com/testlib)．`testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)．**
+**Bài viết này chủ yếu được dịch từ [Testlib - Codeforces](https://codeforces.com/testlib). Kho GitHub của `testlib.h` là [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib).**

@@ -71,8 +71,8 @@ nav:
     - WSL (Windows 10): tools/wsl.md
     - Special Judge: tools/special-judge.md
     - Testlib:
-      - Testlib 简介: tools/testlib/index.md
-      - 通用: tools/testlib/general.md
+      - Giới thiệu Testlib: tools/testlib/index.md
+      - Thông dụng: tools/testlib/general.md
       - Generator: tools/testlib/generator.md
       - Validator: tools/testlib/validator.md
       - Interactor: tools/testlib/interactor.md
@@ -91,7 +91,7 @@ nav:
       - Câu lệnh điều khiển luồng:
         - Rẽ nhánh: lang/branch.md
         - Vòng lặp: lang/loop.md
-      - 高级数据类型:
+      - Kiểu dữ liệu nâng cao:
         - Mảng: lang/array.md
         - Cấu trúc: lang/struct.md
         - Liên hiệp: lang/union.md
@@ -111,7 +111,7 @@ nav:
       - bitset: lang/csl/bitset.md
       - string: lang/csl/string.md
       - pair: lang/csl/pair.md
-    - C++ 进阶:
+    - C++ nâng cao:
       - Lớp: lang/class.md
       - Namespace: lang/namespace.md
       - Loại giá trị: lang/value-category.md
@@ -195,7 +195,7 @@ nav:
       - Slope Trick: dp/opt/slope-trick.md
       - Tìm kiếm nhị phân WQS: dp/opt/wqs-binary-search.md
       - Tối ưu thiết kế trạng thái: dp/opt/state.md
-    - 其它 DP 方法: dp/misc.md
+    - Các phương pháp DP khác: dp/misc.md
   - Xâu:
     - Tổng quan xâu: string/index.md
     - Cơ sở xâu: string/basic.md
