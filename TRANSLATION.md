@@ -216,6 +216,11 @@ MkDocs source layout intact.
   two-dimensional BIT operations, range-add/range-sum transformations, value
   Fenwick applications, non-differentiable information, and implementation
   tricks.
+- `docs/ds/seg-merge-split.md`, `docs/ds/li-chao-tree.md`,
+  `docs/ds/cat-tree.md`, `docs/ds/seg-beats.md`,
+  `docs/ds/kinetic-tournament-tree.md`: translated segment-tree subpages
+  covering merge/split techniques, Li Chao trees, cat trees, Segment Tree
+  Beats, historical extrema, and Kinetic Tournament Trees.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

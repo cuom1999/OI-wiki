@@ -1,102 +1,102 @@
-## 引入
+## Giới thiệu
 
-???+ note "[洛谷 4097 \[HEOI2013\]Segment](https://www.luogu.com.cn/problem/P4097)"
-    要求在平面直角坐标系下维护两个操作（强制在线）：
-    
-    1.  在平面上加入一条线段．记第 $i$ 条被插入的线段的标号为 $i$，该线段的两个端点分别为 $(x_0,y_0)$，$(x_1,y_1)$．
-    2.  给定一个数 $k$，询问与直线 $x = k$ 相交的线段中，交点纵坐标最大的线段的编号（若有多条线段与查询直线的交点纵坐标都是最大的，则输出编号最小的线段）．特别地，若不存在线段与给定直线相交，输出 $0$．
-    
-    数据满足：操作总数 $1 \leq n \leq 10^5$，$1 \leq k, x_0, x_1 \leq 39989$，$1 \leq y_0, y_1 \leq 10^9$．
+???+ note "[Luogu 4097 \[HEOI2013\]Segment](https://www.luogu.com.cn/problem/P4097)"
+    Yêu cầu duy trì hai thao tác trong hệ tọa độ Descartes phẳng (bắt buộc trực tuyến):
 
-我们发现，传统的线段树无法很好地维护这样的信息．这种情况下，**李超线段树** 便应运而生．
+    1.  Thêm một đoạn thẳng vào mặt phẳng. Gọi chỉ số của đoạn thẳng được chèn thứ $i$ là $i$, hai đầu mút của đoạn thẳng này lần lượt là $(x_0,y_0)$ và $(x_1,y_1)$.
+    2.  Cho một số $k$, hỏi trong các đoạn thẳng cắt đường thẳng $x = k$, chỉ số của đoạn thẳng có tung độ giao điểm lớn nhất (nếu có nhiều đoạn thẳng cùng đạt tung độ giao điểm lớn nhất với đường thẳng truy vấn, xuất đoạn có chỉ số nhỏ nhất). Đặc biệt, nếu không có đoạn thẳng nào cắt đường thẳng đã cho, xuất $0$.
 
-## 过程
+    Dữ liệu thỏa mãn: tổng số thao tác $1 \leq n \leq 10^5$, $1 \leq k, x_0, x_1 \leq 39989$, $1 \leq y_0, y_1 \leq 10^9$.
 
-我们可以把任务转化为维护如下操作：
+Ta thấy rằng cây phân đoạn truyền thống khó duy trì tốt loại thông tin này. Trong tình huống đó, **cây phân đoạn Li Chao** ra đời.
 
--   加入一个一次函数，定义域为 $[l,r]$；
--   给定 $k$，求定义域包含 $k$ 的所有一次函数中，在 $x=k$ 处取值最大的那个，如果有多个函数取值相同，选编号最小的．
+## Quá trình
 
-???+ warning "注意"
-    当线段垂直于 $x$ 轴时，会出现除以零的情况．假设线段两端点分别为 $(x,y_0)$ 和 $(x,y_1)$，$y_0<y_1$，则插入定义域为 $[x,x]$ 的一次函数 $f(x)=0\cdot x+y_1$．
+Ta có thể chuyển bài toán thành việc duy trì các thao tác sau:
 
-看到区间修改，我们按照线段树解决区间问题的常见方法，给每个节点一个懒标记．每个节点 $i$ 的懒标记都是一条线段，记为 $l_i$，表示要用 $l_i$ 更新该节点所表示的整个区间．
+-   Thêm một hàm bậc nhất có miền xác định là $[l,r]$;
+-   Cho $k$, trong tất cả các hàm bậc nhất có miền xác định chứa $k$, tìm hàm có giá trị lớn nhất tại $x=k$; nếu có nhiều hàm có cùng giá trị, chọn hàm có chỉ số nhỏ nhất.
 
-现在我们需要插入一条线段 $f$，考虑某个被新线段 $f$ 完整覆盖的线段树区间．若该区间无标记，直接打上用该线段更新的标记．
+???+ warning "Chú ý"
+    Khi đoạn thẳng vuông góc với trục $x$, sẽ xảy ra trường hợp chia cho không. Giả sử hai đầu mút của đoạn thẳng lần lượt là $(x,y_0)$ và $(x,y_1)$, $y_0<y_1$, khi đó chèn hàm bậc nhất $f(x)=0\cdot x+y_1$ có miền xác định là $[x,x]$.
 
-如果该区间已经有标记了，由于标记难以合并，只能把标记下传．但是子节点也有自己的标记，也可能产生冲突，所以我们要递归下传标记．
+Khi gặp cập nhật đoạn, ta làm theo cách thường dùng của cây phân đoạn để giải bài toán trên đoạn: gán cho mỗi nút một nhãn lười. Nhãn lười của mỗi nút $i$ là một đoạn thẳng, ký hiệu là $l_i$, biểu thị rằng cần dùng $l_i$ để cập nhật toàn bộ đoạn mà nút đó đại diện.
+
+Bây giờ ta cần chèn một đoạn thẳng $f$, xét một đoạn trên cây phân đoạn được đoạn thẳng mới $f$ phủ hoàn toàn. Nếu đoạn này chưa có nhãn, trực tiếp gán nhãn cập nhật bằng đoạn thẳng đó.
+
+Nếu đoạn này đã có nhãn, do các nhãn khó hợp nhất, ta chỉ có thể đẩy nhãn xuống. Tuy nhiên các nút con cũng có nhãn riêng và cũng có thể phát sinh xung đột, nên ta phải đệ quy đẩy nhãn xuống.
 
 ![](images/li-chao-tree-1.png)
 
-如图，按新线段 $f$ 取值是否大于原标记 $g$，我们可以把当前区间分为两个子区间．其中 **肯定有一个子区间被左区间或右区间完全包含**，也就是说，在两条线段中，肯定有一条线段，只可能成为左区间的答案，或者只可能成为右区间的答案．我们用这条线段递归更新对应子树，用另一条线段作为懒标记更新整个区间，这就保证了递归下传的复杂度．当一条线段只可能成为左或右区间的答案时，才会被下传，所以不用担心漏掉某些线段．
+Như hình minh họa, dựa trên việc giá trị của đoạn thẳng mới $f$ có lớn hơn nhãn cũ $g$ hay không, ta có thể chia đoạn hiện tại thành hai đoạn con. Trong đó **chắc chắn có một đoạn con được nửa trái hoặc nửa phải chứa hoàn toàn**, tức là trong hai đoạn thẳng, chắc chắn có một đoạn chỉ có thể trở thành đáp án ở nửa trái, hoặc chỉ có thể trở thành đáp án ở nửa phải. Ta dùng đoạn thẳng đó để đệ quy cập nhật cây con tương ứng, và dùng đoạn thẳng còn lại làm nhãn lười để cập nhật toàn bộ đoạn; nhờ vậy đảm bảo độ phức tạp của quá trình đệ quy đẩy xuống. Một đoạn thẳng chỉ được đẩy xuống khi nó chỉ có thể trở thành đáp án ở nửa trái hoặc nửa phải, nên không cần lo bỏ sót đoạn thẳng nào.
 
-具体来说，设当前区间的中点为 $m$，我们拿新线段 $f$ 在中点处的值与原最优线段 $g$ 在中点处的值作比较．
+Cụ thể, giả sử trung điểm của đoạn hiện tại là $m$, ta so sánh giá trị của đoạn thẳng mới $f$ tại trung điểm với giá trị của đoạn thẳng tối ưu cũ $g$ tại trung điểm.
 
-如果新线段 $f$ 更优，则将 $f$ 和 $g$ 交换．那么现在考虑在中点处 $f$ 不如 $g$ 优的情况：
+Nếu đoạn thẳng mới $f$ tốt hơn, hoán đổi $f$ và $g$. Khi đó ta chỉ cần xét trường hợp tại trung điểm $f$ không tốt bằng $g$:
 
-1.  若在左端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在左半区间中产生了交点，$f$ 只有在左区间才可能优于 $g$，递归到左儿子中进行下传；
-2.  若在右端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在右半区间中产生了交点，$f$ 只有在右区间才可能优于 $g$，递归到右儿子中进行下传；
-3.  若在左右端点处 $g$ 都更优，那么 $f$ 不可能成为答案，不需要继续下传．
+1.  Nếu tại đầu mút trái $f$ tốt hơn, thì $f$ và $g$ chắc chắn có giao điểm trong nửa trái; $f$ chỉ có thể tốt hơn $g$ ở nửa trái, nên đệ quy xuống con trái để đẩy nhãn.
+2.  Nếu tại đầu mút phải $f$ tốt hơn, thì $f$ và $g$ chắc chắn có giao điểm trong nửa phải; $f$ chỉ có thể tốt hơn $g$ ở nửa phải, nên đệ quy xuống con phải để đẩy nhãn.
+3.  Nếu tại cả hai đầu mút trái và phải $g$ đều tốt hơn, thì $f$ không thể trở thành đáp án, không cần tiếp tục đẩy xuống.
 
-除了这两种情况之外，还有一种情况是 $f$ 和 $g$ 刚好交于中点，在程序实现时可以归入中点处 $f$ 不如 $g$ 优的情况，结果会往 $f$ 更优的一个端点进行递归下传．
+Ngoài các trường hợp trên, còn có trường hợp $f$ và $g$ giao nhau đúng tại trung điểm. Khi cài đặt, có thể xếp trường hợp này vào nhóm tại trung điểm $f$ không tốt bằng $g$; kết quả sẽ đệ quy đẩy xuống về phía đầu mút mà $f$ tốt hơn.
 
-最后将 $g$ 作为当前区间的懒标记．
+Cuối cùng, đặt $g$ làm nhãn lười của đoạn hiện tại.
 
-下传标记：
+Đẩy nhãn xuống:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     constexpr double eps = 1e-9;
-    
-    int cmp(double x, double y) {  // 因为用到了浮点数，所以会有精度误差
+
+    int cmp(double x, double y) {  // Do dùng số thực nên sẽ có sai số độ chính xác
       if (x - y > eps) return 1;
       if (y - x > eps) return -1;
       return 0;
     }
-    
+
     //...
-    
-    void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区间进行修改
+
+    void upd(int root, int cl, int cr, int u) {  // Cập nhật đoạn được đoạn thẳng phủ hoàn toàn
       int &v = s[root], mid = (cl + cr) >> 1;
       int bmid = cmp(calc(u, mid), calc(v, mid));
-      if (bmid == 1 || (!bmid && u < v))  // 在此题中记得判线段编号
+      if (bmid == 1 || (!bmid && u < v))  // Trong bài này cần nhớ xét chỉ số đoạn thẳng
         swap(u, v);
       int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
       if (bl == 1 || (!bl && u < v)) upd(root << 1, cl, mid, u);
       if (br == 1 || (!br && u < v)) upd(root << 1 | 1, mid + 1, cr, u);
-      // 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
+      // Trong hai điều kiện if trên, nhiều nhất chỉ một điều kiện đúng; điều này đảm bảo độ phức tạp của cây Li Chao
     }
     ```
 
-拆分线段：
+Tách đoạn thẳng:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void update(int root, int cl, int cr, int l, int r,
-                int u) {  // 定位插入线段完全覆盖到的区间
+                int u) {  // Xác định các đoạn được đoạn thẳng cần chèn phủ hoàn toàn
       if (l <= cl && cr <= r) {
-        upd(root, cl, cr, u);  // 完全覆盖当前区间，更新当前区间的标记
+        upd(root, cl, cr, u);  // Phủ hoàn toàn đoạn hiện tại, cập nhật nhãn của đoạn hiện tại
         return;
       }
       int mid = (cl + cr) >> 1;
-      if (l <= mid) update(root << 1, cl, mid, l, r, u);  // 递归拆分区间
+      if (l <= mid) update(root << 1, cl, mid, l, r, u);  // Đệ quy tách đoạn
       if (mid < r) update(root << 1 | 1, mid + 1, cr, l, r, u);
     }
     ```
 
-注意懒标记并不等价于在区间中点处取值最大的线段．
+Chú ý rằng nhãn lười không tương đương với đoạn thẳng có giá trị lớn nhất tại trung điểm của đoạn.
 
 ![](images/li-chao-tree-2.png)
 
-如图，加入黄色线段后，只有红色节点的标记被更新，而绿色节点的标记还未被改变．但在第二、三、四个绿色区间的中点处显然黄色线段取值最大．
+Như hình, sau khi thêm đoạn thẳng màu vàng, chỉ nhãn của nút màu đỏ được cập nhật, còn nhãn của các nút màu xanh lá vẫn chưa thay đổi. Nhưng tại trung điểm của các đoạn màu xanh lá thứ hai, thứ ba và thứ tư, rõ ràng đoạn thẳng màu vàng có giá trị lớn nhất.
 
-查询时，我们可以利用标记永久化思想，在包含 $x$ 的所有线段树区间（不超过 $O(\log n)$ 个）的标记线段中，比较得出最终答案．
+Khi truy vấn, ta có thể dùng tư tưởng vĩnh cửu hóa nhãn: trong các đoạn trên cây phân đoạn chứa $x$ (không quá $O(\log n)$ đoạn), so sánh các đoạn thẳng được lưu trong nhãn để thu được đáp án cuối cùng.
 
-查询：
+Truy vấn:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
-    pdi query(int root, int l, int r, int d) {  // 查询
+    pdi query(int root, int l, int r, int d) {  // Truy vấn
       if (r < d || d < l) return {0, 0};
       int mid = (l + r) >> 1;
       double res = calc(s[root], d);
@@ -106,31 +106,31 @@
     }
     ```
 
-根据上面的描述，查询过程的时间复杂度显然为 $O(\log n)$，而插入过程中，我们需要将原线段拆分到 $O(\log n)$ 个区间中，对于每个区间，我们又需要花费 $O(\log n)$ 的时间递归下传，从而插入过程的时间复杂度为 $O(\log^2 n)$．
+Theo mô tả trên, độ phức tạp thời gian của quá trình truy vấn rõ ràng là $O(\log n)$. Còn khi chèn, ta cần tách đoạn thẳng ban đầu vào $O(\log n)$ đoạn; với mỗi đoạn, lại cần tốn $O(\log n)$ thời gian để đệ quy đẩy nhãn xuống, do đó độ phức tạp thời gian của quá trình chèn là $O(\log^2 n)$.
 
-??? note "[\[HEOI2013\]Segment](https://www.luogu.com.cn/problem/P4097) 参考代码"
+??? note "[\[HEOI2013\]Segment](https://www.luogu.com.cn/problem/P4097) Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp"
     ```
 
-## 合并
+## Hợp nhất
 
-类似于普通线段树的合并，我们定义以下过程来将两个李超线段树节点 $u,v$ 合并，并以 $u$ 作为新的根．
+Tương tự cách hợp nhất cây phân đoạn thông thường, ta định nghĩa quy trình sau để hợp nhất hai nút cây phân đoạn Li Chao $u,v$, lấy $u$ làm gốc mới.
 
-1.  如果 $v$ 为空，结束过程．
+1.  Nếu $v$ rỗng, kết thúc quy trình.
 
-2.  如果 $u$ 为空，将 $v$ 复制给 $u$．
+2.  Nếu $u$ rỗng, sao chép $v$ cho $u$.
 
-3.  将 $v$ 对应线段插入到 $u$ 为根的子树．
+3.  Chèn đoạn thẳng tương ứng với $v$ vào cây con có gốc là $u$.
 
-4.  递归将 $u,v$ 的左右子树对应合并．
+4.  Đệ quy hợp nhất tương ứng các cây con trái và phải của $u,v$.
 
-若合并若干李超线段树涉及的总点数为 $n$，则该过程的复杂度为 $O(n\log n)$：对于任意线段在树上对应的节点，每次涉及移动它时，我们要么使其深度 $+1$，要么直接从树上删除，这两个操作的代价都是 $O(1)$ 的，而每个点深度至多为 $O(\log n)$，于是复杂度如上．
+Nếu tổng số nút liên quan khi hợp nhất một số cây phân đoạn Li Chao là $n$, độ phức tạp của quy trình này là $O(n\log n)$: với mỗi nút tương ứng với một đoạn thẳng bất kỳ trên cây, mỗi lần cần di chuyển nó, ta hoặc làm độ sâu của nó tăng $1$, hoặc trực tiếp xóa nó khỏi cây. Cả hai thao tác đều có chi phí $O(1)$, còn độ sâu của mỗi nút nhiều nhất là $O(\log n)$, vì vậy thu được độ phức tạp như trên.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void upd(int &root, int cl, int cr,
-             int u) {  // 涉及多棵李超线段树合并，使用动态开点．
+             int u) {  // Khi hợp nhất nhiều cây phân đoạn Li Chao, dùng cấp phát nút động.
       static int idx = 0;
       if (!root) {
         s[root = ++idx] = u;
@@ -143,7 +143,7 @@
       if (bl == 1 || (!bl && u < v)) upd(ls[root], cl, mid, u);
       if (br == 1 || (!br && u < v)) upd(rs[root], mid + 1, cr, u);
     }
-    
+
     int merge(int &u, int &v, int l, int r) {
       if (!u || !v) {
         return u + v;
@@ -161,12 +161,12 @@
     }
     ```
 
-## 习题
+## Bài tập
 
-[「JSOI2008」Blue Mary 开公司](https://www.luogu.com.cn/problem/P4254)
+[JSOI2008 Blue Mary mở công ty](https://www.luogu.com.cn/problem/P4254)
 
-[「CodeChef」TSUM2 Sum on Tree](https://www.codechef.com/problems/TSUM2)
+[CodeChef TSUM2 Sum on Tree](https://www.codechef.com/problems/TSUM2)
 
-[「USACO13MAR」Hill Walk G](https://www.luogu.com.cn/problem/P3081)
+[USACO13MAR Hill Walk G](https://www.luogu.com.cn/problem/P3081)
 
-[「CF932F」Escape Through Leaf](https://codeforces.com/problemset/problem/932/F)
+[CF932F Escape Through Leaf](https://codeforces.com/problemset/problem/932/F)

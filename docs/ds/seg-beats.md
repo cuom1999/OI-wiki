@@ -1,175 +1,175 @@
-本文讲解吉老师在 [2016 年国家集训队论文](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf) 中提到的线段树处理历史区间最值的问题．
+Bài viết này giải thích vấn đề dùng cây phân đoạn để xử lý cực trị lịch sử trên đoạn, được thầy Ji nhắc tới trong [luận văn đội tuyển quốc gia năm 2016](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf).
 
-## 区间最值
+## Cực trị đoạn
 
-笼统地说，区间最值操作指，将区间 $[l,r]$ 的数全部对 $x$ 取 $\max$ 或 $\min$，即 $a_i=\max(a_i,x)$ 或者 $a_i=\min(a_i,x)$．
+Nói một cách khái quát, thao tác cực trị đoạn là lấy $\max$ hoặc $\min$ với $x$ cho toàn bộ các số trong đoạn $[l,r]$, tức $a_i=\max(a_i,x)$ hoặc $a_i=\min(a_i,x)$.
 
 ???+ note "[HDU5306 Gorgeous Sequence](https://acm.hdu.edu.cn/showproblem.php?pid=5306)"
-    维护一个序列 $a$，执行以下操作：
-    
-    1.  `0 l r t` $\forall l\le i\le r,~ a_i=\min(a_i,t)$．
-    2.  `1 l r` 输出 $\max\limits_{i=l}^r a_i$．
-    3.  `2 l r` 输出 $\sum\limits_{i=l}^r a_i$．
-    
-    多组测试数据，保证 $T\le 100,~\sum n,\sum m\le 10^6$．
+    Duy trì một dãy $a$, thực hiện các thao tác sau:
 
-区间取 $\min$，意味着只对那些大于 $t$ 的数有更改．因此这个操作的对象不再是整个区间，而是「这个区间中大于 $t$ 的数」．于是我们可以有这样的思路：每个结点维护该区间的最大值 $Max$、次大值 $Se$、区间和 $Sum$ 以及最大值的个数 $Cnt$．接下来我们考虑区间对 $t$ 取 $\min$ 的操作．
+    1.  `0 l r t` $\forall l\le i\le r,~ a_i=\min(a_i,t)$.
+    2.  `1 l r` xuất $\max\limits_{i=l}^r a_i$.
+    3.  `2 l r` xuất $\sum\limits_{i=l}^r a_i$.
 
-1.  如果 $Max\le t$，显然这个 $t$ 是没有意义的，直接返回；
-2.  如果 $Se<t < Max$，那么这个 $t$ 就能更新当前区间中的最大值．于是我们让区间和加上 $Cnt(t-Max)$，然后更新 $Max$ 为 $t$，并打一个标记．
-3.  如果 $t\le Se$，那么这时你发现你不知道有多少个数涉及到更新的问题．于是我们的策略就是，暴力递归向下操作．然后上传信息．
+    Có nhiều bộ dữ liệu, bảo đảm $T\le 100,~\sum n,\sum m\le 10^6$.
 
-这个算法的复杂度如何？使用势能分析法可以得到复杂度是 $O(m\log n)$ 的．具体分析过程见论文．
+Lấy $\min$ trên đoạn nghĩa là chỉ những số lớn hơn $t$ mới bị thay đổi. Vì vậy đối tượng của thao tác không còn là toàn bộ đoạn, mà là "các số lớn hơn $t$ trong đoạn này". Từ đó ta có thể nghĩ như sau: mỗi nút duy trì giá trị lớn nhất $Max$, giá trị lớn thứ hai $Se$, tổng đoạn $Sum$ và số lượng giá trị lớn nhất $Cnt$ trong đoạn tương ứng. Tiếp theo, xét thao tác lấy $\min$ với $t$ trên đoạn.
+
+1.  Nếu $Max\le t$, rõ ràng $t$ không có tác dụng, trả về ngay.
+2.  Nếu $Se<t < Max$, thì $t$ có thể cập nhật các giá trị lớn nhất trong đoạn hiện tại. Ta cộng $Cnt(t-Max)$ vào tổng đoạn, rồi cập nhật $Max$ thành $t$ và gắn một nhãn.
+3.  Nếu $t\le Se$, lúc này ta không biết có bao nhiêu số sẽ bị cập nhật. Chiến lược là đệ quy xuống dưới một cách trực tiếp, rồi đẩy thông tin lên.
+
+Độ phức tạp của thuật toán này là bao nhiêu? Dùng phân tích thế năng có thể chứng minh độ phức tạp là $O(m\log n)$. Quá trình phân tích cụ thể xem trong luận văn.
 
 ```cpp
 --8<-- "docs/ds/code/seg-beats/seg-beats_1.cpp"
 ```
 
-???+ note "[BZOJ4695 最假女选手](https://loj.ac/p/6565)"
-    维护一个序列 $a$，执行以下操作：
-    
-    1.  `1 l r x` $\forall l\le i\le r,~ a_i=a_i+x$．
-    2.  `2 l r x` $\forall l\le i\le r,~ a_i=\max(a_i,x)$．
-    3.  `3 l r x` $\forall l\le i\le r,~ a_i=\min(a_i,x)$．
-    4.  `4 l r` 输出 $\sum\limits_{i=l}^r a_i$．
-    5.  `5 l r` 输出 $\max\limits_{i=l}^r a_i$．
-    6.  `6 l r` 输出 $\min\limits_{i=l}^r a_i$．
-    
-    $n,m\le 5\times 10^5,~|a_i|\le 10^8$．所有类型 $1$ 操作有 $|x|\le 10^3$，其余操作满足 $|x|\le10^8$．
+???+ note "[BZOJ4695 Nữ tuyển thủ giả nhất](https://loj.ac/p/6565)"
+    Duy trì một dãy $a$, thực hiện các thao tác sau:
 
-同样的方法，我们维护最大、次大、最大个数、最小、次小、最小个数、区间和．除了这些信息，我们还需要维护区间 $\max$、区间 $\min$、区间加的标记．相比上一道题，这就涉及到标记下传的顺序问题了．我们采用这样的策略：
+    1.  `1 l r x` $\forall l\le i\le r,~ a_i=a_i+x$.
+    2.  `2 l r x` $\forall l\le i\le r,~ a_i=\max(a_i,x)$.
+    3.  `3 l r x` $\forall l\le i\le r,~ a_i=\min(a_i,x)$.
+    4.  `4 l r` xuất $\sum\limits_{i=l}^r a_i$.
+    5.  `5 l r` xuất $\max\limits_{i=l}^r a_i$.
+    6.  `6 l r` xuất $\min\limits_{i=l}^r a_i$.
 
-1.  我们认为区间加的标记是最优先的，其余两种标记地位平等．
-2.  对一个结点加上一个 $v$ 标记，除了用 $v$ 更新卫星信息和当前结点的区间加标记外，我们用这个 v 更新区间 $\max$ 和区间 $\min$ 的标记．
-3.  对一个结点取 $v$ 的 $\min$（这里忽略暴搜的过程，假定标记满足添加的条件），除了更新卫星信息，我们要与区间 $\max$ 的标记做比较．如果 $v$ 小于区间 $\max$ 的标记，则所有的数最后都会变成 v，那么把区间 $\max$ 的标记也变成 $v$．否则不管．
-4.  区间取 v 的 $\max$ 同理．
+    $n,m\le 5\times 10^5,~|a_i|\le 10^8$. Mọi thao tác loại $1$ có $|x|\le 10^3$, các thao tác còn lại thỏa $|x|\le10^8$.
 
-在维护信息的时候，当只有一个数或两个数的时候可能发生数集重合，比如一个数既是最大值又是次小值，需要特判．
+Với cùng phương pháp, ta duy trì giá trị lớn nhất, lớn thứ hai, số lượng giá trị lớn nhất, giá trị nhỏ nhất, nhỏ thứ hai, số lượng giá trị nhỏ nhất và tổng đoạn. Ngoài các thông tin này, ta còn cần duy trì các nhãn cộng đoạn, $\max$ đoạn và $\min$ đoạn. So với bài trước, ở đây phát sinh vấn đề thứ tự đẩy nhãn xuống. Ta dùng chiến lược sau:
+
+1.  Ta xem nhãn cộng đoạn có độ ưu tiên cao nhất, hai loại nhãn còn lại ngang hàng.
+2.  Khi gắn một nhãn cộng $v$ cho một nút, ngoài việc dùng $v$ để cập nhật thông tin phụ và nhãn cộng đoạn của nút hiện tại, ta còn dùng $v$ để cập nhật các nhãn $\max$ đoạn và $\min$ đoạn.
+3.  Khi lấy $\min$ với $v$ cho một nút (ở đây bỏ qua quá trình tìm kiếm brute force, giả sử nhãn thỏa điều kiện để được gắn), ngoài việc cập nhật thông tin phụ, ta phải so sánh với nhãn $\max$ đoạn. Nếu $v$ nhỏ hơn nhãn $\max$ đoạn, thì cuối cùng mọi số đều sẽ trở thành $v$, nên cũng đổi nhãn $\max$ đoạn thành $v$. Nếu không thì bỏ qua.
+4.  Lấy $\max$ với $v$ trên đoạn cũng tương tự.
+
+Khi duy trì thông tin, với đoạn chỉ có một hoặc hai số có thể xảy ra hiện tượng các tập giá trị trùng nhau, chẳng hạn một số vừa là giá trị lớn nhất vừa là giá trị nhỏ thứ hai; cần xử lý riêng.
 
 ```cpp
 --8<-- "docs/ds/code/seg-beats/seg-beats_2.cpp"
 ```
 
-吉老师证出来这个算法的复杂度是 $O(m\log^2 n)$ 的．
+Thầy Ji đã chứng minh độ phức tạp của thuật toán này là $O(m\log^2 n)$.
 
 ???+ note "Mzl loves segment tree"
-    两个序列 $A,B$，一开始 $B$ 中的数都是 $0$．维护的操作是：
-    
-    1.  对 $A$ 做区间取 $\min$
-    2.  对 $A$ 做区间取 $\max$
-    3.  对 $A$ 做区间加
-    4.  询问 $B$ 的区间和
-    
-    每次操作完后，如果 $A_i$ 的值发生变化，就给 $B_i$ 加 $1$．$n,m\le 3\times 10^5$．
+    Có hai dãy $A,B$; ban đầu mọi số trong $B$ đều là $0$. Cần duy trì các thao tác:
 
-先考虑最容易的区间加操作．只要 $x\neq 0$ 那么整个区间的数都变化，所以给 B 作一次区间加即可．
+    1.  Lấy $\min$ trên đoạn của $A$
+    2.  Lấy $\max$ trên đoạn của $A$
+    3.  Cộng đoạn trên $A$
+    4.  Hỏi tổng đoạn của $B$
 
-对于区间取最值的操作，你发现你打标记与下传标记是与 $B$ 数组一一对应的．本质上你将序列的数分成三类：最大值、最小值、非最值．并分别维护（只不过你没有建出具体的最值集合而已，但这并不妨碍维护的操作）．因此在打标记的时候顺便给 $B$ 更新信息即可（注意不是给 $B$ 打标记！是更新信息！）．查询的时候，你在 $A$ 上查询，下传标记的时候顺便给 $B$ 更新信息．找到需要的结点后，返回 $B$ 的信息即可．这种操作本质上就是把最值的信息拿给 $B$ 去维护了．另外仍要处理数集的重复问题．
+    Sau mỗi thao tác, nếu giá trị của $A_i$ thay đổi thì cộng $1$ vào $B_i$. $n,m\le 3\times 10^5$.
+
+Trước hết xét thao tác cộng đoạn dễ nhất. Chỉ cần $x\neq 0$ thì mọi số trong đoạn đều thay đổi, nên chỉ việc cộng đoạn một lần cho $B$.
+
+Với thao tác lấy cực trị trên đoạn, ta sẽ thấy việc gắn nhãn và đẩy nhãn xuống tương ứng một-một với mảng $B$. Về bản chất, ta chia các số của dãy thành ba loại: giá trị lớn nhất, giá trị nhỏ nhất và không phải cực trị, rồi duy trì riêng từng loại (dù không thực sự dựng ra tập cực trị cụ thể, điều đó không cản trở việc duy trì). Vì vậy khi gắn nhãn, ta tiện thể cập nhật thông tin cho $B$ (chú ý: không phải gắn nhãn cho $B$, mà là cập nhật thông tin!). Khi truy vấn, ta truy vấn trên $A$; lúc đẩy nhãn xuống thì tiện thể cập nhật thông tin cho $B$. Sau khi tìm được nút cần thiết, trả về thông tin của $B$. Về bản chất, thao tác này đưa thông tin cực trị cho $B$ duy trì. Ngoài ra vẫn phải xử lý vấn đề các tập giá trị bị trùng.
 
 ???+ note "[CTSN loves segment tree](https://www.luogu.com.cn/problem/U180387)"
-    维护两个序列 $a,b$，执行以下操作：
-    
-    1.  `1 l r x` $\forall l\le i\le r,~ a_i=\min(a_i,x)$．
-    2.  `2 l r x` $\forall l\le i\le r,~ b_i=\min(b_i,x)$．
-    3.  `3 l r x` $\forall l\le i\le r,~ a_i=a_i+x$．
-    4.  `4 l r x` $\forall l\le i\le r,~ b_i=b_i+x$．
-    5.  `5 l r` 输出 $\max\limits_{i=l}^r (a_i+b_i)$．
-    
-    $n,m\le 3\times 10^5,~|a_i|,|b_i|,|x|\le 10^9$．
+    Duy trì hai dãy $a,b$, thực hiện các thao tác sau:
 
-我们把区间 $[l,r]$ 中的备选答案 $A_i+B_i$ 分成四类：$A_i,B_i$ 均不是序列 $A,B$ 区间最大值、$A_i$ 是序列 $A$ 区间最大值但是 $B_i$ 不是序列 $B$ 区间最大值、$A_i$ 不是序列 $A$ 区间最大值但是 $B_i$ 是序列 $B$ 区间最大值、$A_i,B_i$ 均是序列 $A,B$ 区间最大值．我们不妨分别设为 $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$．此外我们正常维护序列 $A,B$ 的区间最大值和次大值．下传区间加法标记和 $\min$ 标记时对 $A,B$ 最大值和次大值的处理与上述两个例题一致．对 $A$ 的 $\min$ 标记会影响到 $C_{1,1}$ 和 $C_{1,0}$，对 $B$ 的标记会影响到 $C_{1,1}$ 和 $C_{0,1}$．对 $A,B$ 的加法则会对 $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ 均产生影响．只需要注意 $C_{0,0},C_{1,0},C_{0,1}$ 不存在的边界情况即可（例如区间 $[i,i]$ 只有 $A,B$ 的最大值与 $C_{1,1}$ 存在）．
+    1.  `1 l r x` $\forall l\le i\le r,~ a_i=\min(a_i,x)$.
+    2.  `2 l r x` $\forall l\le i\le r,~ b_i=\min(b_i,x)$.
+    3.  `3 l r x` $\forall l\le i\le r,~ a_i=a_i+x$.
+    4.  `4 l r x` $\forall l\le i\le r,~ b_i=b_i+x$.
+    5.  `5 l r` xuất $\max\limits_{i=l}^r (a_i+b_i)$.
 
-接下来需要考虑在 pushup 时如何维护 $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$．我们可以考虑一下完成 $A,B$ 最大值的更新之后，讨论左右儿子的 $A,B$ 最大值是否与当前节点 $A,B$ 最大值相等．我们以左儿子为例进行讲解，右儿子类似处理：
+    $n,m\le 3\times 10^5,~|a_i|,|b_i|,|x|\le 10^9$.
 
--   当左儿子的 $A,B$ 最大值与当前节点的 $A,B$ 最大值均相等时，左儿子的 $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ 会分别对当前节点的 $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ 产生贡献．
--   当左儿子的 $A$ 最大值与当前节点 $A$ 最大值相等，但是 $B$ 最大值不相等时，左儿子的 $C_{1,0},C_{1,1}$ 会对该节点的 $C_{1,0}$ 产生贡献，$C_{0,0},C_{0,1}$ 会对该节点的 $C_{0,0}$ 产生贡献．
--   当左儿子的 $A$ 最大值与当前节点 $A$ 最大值不相等，但是 $B$ 最大值相等时，左儿子的 $C_{0,1},C_{1,1}$ 会对该节点的 $C_{0,1}$ 产生贡献，$C_{0,0},C_{1,0}$ 会对该节点的 $C_{0,0}$ 产生贡献．
--   当左儿子的 $A,B$ 最大值与当前节点的 $A,B$ 最大值均不相等时，左儿子的 $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ 仅会对该节点的 $C_{0,0}$ 产生贡献．
+Ta chia các ứng viên đáp án $A_i+B_i$ trong đoạn $[l,r]$ thành bốn loại: cả $A_i,B_i$ đều không phải giá trị lớn nhất trên đoạn của dãy $A,B$; $A_i$ là giá trị lớn nhất trên đoạn của dãy $A$ nhưng $B_i$ không phải giá trị lớn nhất trên đoạn của dãy $B$; $A_i$ không phải giá trị lớn nhất trên đoạn của dãy $A$ nhưng $B_i$ là giá trị lớn nhất trên đoạn của dãy $B$; cả $A_i,B_i$ đều là giá trị lớn nhất trên đoạn của dãy $A,B$. Gọi lần lượt là $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$. Ngoài ra ta vẫn duy trì bình thường giá trị lớn nhất và lớn thứ hai trên đoạn của hai dãy $A,B$. Khi đẩy nhãn cộng đoạn và nhãn $\min$ xuống, cách xử lý giá trị lớn nhất và lớn thứ hai của $A,B$ giống hai ví dụ trên. Nhãn $\min$ của $A$ sẽ ảnh hưởng tới $C_{1,1}$ và $C_{1,0}$, còn nhãn của $B$ sẽ ảnh hưởng tới $C_{1,1}$ và $C_{0,1}$. Phép cộng của $A,B$ sẽ ảnh hưởng tới cả $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$. Chỉ cần chú ý các trường hợp biên khi $C_{0,0},C_{1,0},C_{0,1}$ không tồn tại (ví dụ đoạn $[i,i]$ chỉ có giá trị lớn nhất của $A,B$ và $C_{1,1}$ tồn tại).
 
-区间查询结果的 $\max(C_{0,0},C_{1,0},C_{0,1},C_{1,1})$ 即为所求．
+Tiếp theo cần xét cách duy trì $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ khi pushup. Có thể xét sau khi đã cập nhật giá trị lớn nhất của $A,B$, rồi thảo luận xem giá trị lớn nhất của $A,B$ ở con trái và con phải có bằng giá trị lớn nhất của $A,B$ ở nút hiện tại hay không. Ta lấy con trái làm ví dụ, con phải xử lý tương tự:
 
-由于需要同时维护区间 $\min$ 和区间加法，所以复杂度仍是 $O(m\log^2 n)$．
+-   Khi giá trị lớn nhất của $A,B$ ở con trái đều bằng giá trị lớn nhất của $A,B$ ở nút hiện tại, các giá trị $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ của con trái sẽ lần lượt đóng góp cho $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ của nút hiện tại.
+-   Khi giá trị lớn nhất của $A$ ở con trái bằng giá trị lớn nhất của $A$ ở nút hiện tại, nhưng giá trị lớn nhất của $B$ thì không bằng, $C_{1,0},C_{1,1}$ của con trái sẽ đóng góp cho $C_{1,0}$ của nút này, còn $C_{0,0},C_{0,1}$ sẽ đóng góp cho $C_{0,0}$ của nút này.
+-   Khi giá trị lớn nhất của $A$ ở con trái không bằng giá trị lớn nhất của $A$ ở nút hiện tại, nhưng giá trị lớn nhất của $B$ thì bằng, $C_{0,1},C_{1,1}$ của con trái sẽ đóng góp cho $C_{0,1}$ của nút này, còn $C_{0,0},C_{1,0}$ sẽ đóng góp cho $C_{0,0}$ của nút này.
+-   Khi giá trị lớn nhất của $A,B$ ở con trái đều không bằng giá trị lớn nhất của $A,B$ ở nút hiện tại, $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ của con trái chỉ đóng góp cho $C_{0,0}$ của nút này.
+
+$\max(C_{0,0},C_{1,0},C_{0,1},C_{1,1})$ của kết quả truy vấn đoạn chính là đáp án cần tìm.
+
+Do cần đồng thời duy trì $\min$ đoạn và cộng đoạn, độ phức tạp vẫn là $O(m\log^2 n)$.
 
 ```cpp
 --8<-- "docs/ds/code/seg-beats/seg-beats_4.cpp"
 ```
 
-### 小结
+### Tổng kết
 
-在第本章节中我们给出了四道例题，分别讲解了基本区间最值操作的维护、多个标记的优先级处理、数集分类的思想以及多个分类的维护．本质上处理区间最值的基本思想就是数集信息的分类维护与高效合并．在下一章节中，我们将探讨历史区间最值的相关问题．
+Trong chương này, ta đã đưa ra bốn bài ví dụ, lần lượt giải thích cách duy trì thao tác cực trị đoạn cơ bản, cách xử lý độ ưu tiên của nhiều nhãn, tư tưởng phân loại tập giá trị và cách duy trì nhiều loại phân lớp. Về bản chất, tư tưởng cơ bản khi xử lý cực trị đoạn là duy trì thông tin theo phân loại tập giá trị và hợp nhất hiệu quả. Trong chương tiếp theo, ta sẽ thảo luận các vấn đề liên quan đến cực trị lịch sử trên đoạn.
 
-## 历史最值问题
+## Bài toán cực trị lịch sử
 
-### 历史最值不等于可持久化
+### Cực trị lịch sử không phải là tính bền vững
 
-注意，本章所讲到的历史最值问题不同于所谓的可持久化数据结构．这类特殊的问题我们将其称为历史最值问题．历史最值的问题可以分为三类．
+Chú ý, bài toán cực trị lịch sử được nói tới trong chương này khác với cấu trúc dữ liệu bền vững. Ta gọi riêng lớp bài toán đặc biệt này là bài toán cực trị lịch sử. Bài toán cực trị lịch sử có thể chia thành ba loại.
 
-#### 历史最大值
+#### Cực đại lịch sử
 
-简单地说，一个位置的历史最大值就是当前位置下曾经出现过的数的最大值．形式化地定义，我们定义一个辅助数组 $B$，一开始与 $A$ 完全相同．在 $A$ 的每次操作后，我们对整个数组取 $\max$：
+Nói đơn giản, cực đại lịch sử của một vị trí là giá trị lớn nhất từng xuất hiện tại vị trí hiện tại. Định nghĩa hình thức như sau: ta định nghĩa một mảng phụ $B$, ban đầu hoàn toàn giống $A$. Sau mỗi thao tác trên $A$, ta lấy $\max$ cho toàn bộ mảng:
 
 $$
 \forall i\in[1,n],\ B_i=\max(B_i,A_i)
 $$
 
-这时，我们将 $B_i$ 称作这个位置的历史最大值，
+Khi đó, ta gọi $B_i$ là cực đại lịch sử của vị trí này.
 
-#### 历史最小值
+#### Cực tiểu lịch sử
 
-定义与历史最大值类似，在 $A$ 的每次操作后，我们对整个数组取 $\min$．这时，我们将 $B_i$ 称作这个位置的历史最小值，
+Định nghĩa tương tự cực đại lịch sử. Sau mỗi thao tác trên $A$, ta lấy $\min$ cho toàn bộ mảng. Khi đó, ta gọi $B_i$ là cực tiểu lịch sử của vị trí này.
 
-#### 历史版本和
+#### Tổng các phiên bản lịch sử
 
-辅助数组 $B$ 一开始全部是 $0$．在每一次操作后，我们把整个 $A$ 数组累加到 $B$ 数组上
+Mảng phụ $B$ ban đầu toàn là $0$. Sau mỗi thao tác, ta cộng toàn bộ mảng $A$ vào mảng $B$:
 
 $$
 \forall i\in[1,n], \ B_i=B_i+A_i
 $$
 
-我们称 $B_i$ 为 $i$ 这个位置上的历史版本和．
+Ta gọi $B_i$ là tổng các phiên bản lịch sử tại vị trí $i$.
 
-接下来，我们将历史最值问题分成四类讨论．
+Tiếp theo, ta sẽ chia bài toán cực trị lịch sử thành bốn loại để thảo luận.
 
-### 可以用标记处理的问题
+### Các bài toán có thể xử lý bằng nhãn
 
-???+ note "[CPU 监控](https://www.luogu.com.cn/problem/P4314)"
-    序列 $A,B$ 一开始相同：
-    
-    1.  对 $A$ 做区间覆盖 $x$
-    2.  对 $A$ 做区间加 $x$
-    3.  询问 $A$ 的区间 $\max$
-    4.  询问 $B$ 的区间 $\max$
-    
-    每次操作后，我们都进行一次更新，$\forall i\in [1,n],\ B_i=\max(B_i,A_i)$．$n,m\le 10^5$．
+???+ note "[Giám sát CPU](https://www.luogu.com.cn/problem/P4314)"
+    Hai dãy $A,B$ ban đầu giống nhau:
 
-我们先不考虑操作 1．那么只有区间加的操作，我们维护标记 $Add$ 表示当前区间增加的值，这个标记可以解决区间 $\max$ 的问题．接下来考虑历史区间 $\max$．我们定义标记 $Pre$，该标记的含义是：在该标记的生存周期内，$Add$ 标记的历史最大值．
+    1.  Gán đoạn của $A$ thành $x$
+    2.  Cộng $x$ vào đoạn của $A$
+    3.  Hỏi $\max$ đoạn của $A$
+    4.  Hỏi $\max$ đoạn của $B$
 
-这个定义可能比较模糊．因此我们先解释一下标记的生存周期．一个标记会经历这样的过程：
+    Sau mỗi thao tác, ta đều cập nhật một lần: $\forall i\in [1,n],\ B_i=\max(B_i,A_i)$. $n,m\le 10^5$.
 
-1.  在结点 $u$ 被建立．
-2.  在结点 $u$ 接受若干个新的标记的同时，与新的标记合并（指同类标记）
-3.  结点 $u$ 的标记下传给 $u$ 的儿子，$u$ 的标记清空
+Trước hết chưa xét thao tác 1. Khi chỉ có thao tác cộng đoạn, ta duy trì nhãn $Add$ biểu thị giá trị được cộng vào đoạn hiện tại; nhãn này có thể giải quyết bài toán $\max$ đoạn. Tiếp theo xét $\max$ đoạn lịch sử. Ta định nghĩa nhãn $Pre$ với ý nghĩa: trong vòng đời của nhãn này, đó là giá trị lớn nhất lịch sử của nhãn $Add$.
 
-我们认为在这个过程中，从 1 开始到 3 之前，都是结点 $u$ 的标记的生存周期．两个标记合并后，成为同一个标记，那么他们的生存周期也会合并（即取建立时间较早的那个做为生存周期的开始）．一个与之等价的说法是，从上次把这个结点的标记下传的时刻到当前时刻这一时间段．
+Định nghĩa này có thể hơi mơ hồ, nên trước hết ta giải thích vòng đời của một nhãn. Một nhãn sẽ trải qua quá trình sau:
 
-为什么要定义生存周期？利用这个概念，我们可以证明：在一个结点标记的生存周期内，其子结点均不会发生任何变化，并保留在这个生存周期之前的状态．道理很简单，因为在这个期间你是没有下传标记的．
+1.  Được tạo tại nút $u$.
+2.  Khi nút $u$ nhận một số nhãn mới, nó hợp nhất với nhãn mới (ý nói các nhãn cùng loại).
+3.  Nhãn của nút $u$ được đẩy xuống các con của $u$, rồi nhãn của $u$ bị xóa.
 
-于是，你就可以保证，在当前标记生存周期内的历史 $Add$ 的最大值是可以更新到子结点的标记和信息上的．因为子结点的标记和信息在这个时间段内都没有变过．于是我们把 $u$ 的标记下传给它的儿子 $s$，不难发现
+Ta xem khoảng thời gian từ bước 1 đến trước bước 3 trong quá trình này là vòng đời của nhãn tại nút $u$. Sau khi hai nhãn được hợp nhất và trở thành cùng một nhãn, vòng đời của chúng cũng được hợp nhất (tức lấy thời điểm tạo sớm hơn làm thời điểm bắt đầu vòng đời). Một cách nói tương đương là: đó là khoảng thời gian từ lần cuối cùng đẩy nhãn của nút này xuống đến thời điểm hiện tại.
+
+Vì sao cần định nghĩa vòng đời? Dựa vào khái niệm này, ta có thể chứng minh: trong vòng đời của nhãn tại một nút, các nút con của nó đều không thay đổi và vẫn giữ trạng thái trước vòng đời này. Lý do rất đơn giản: trong khoảng thời gian đó ta không hề đẩy nhãn xuống.
+
+Do đó ta có thể bảo đảm rằng giá trị lớn nhất lịch sử của $Add$ trong vòng đời của nhãn hiện tại có thể được cập nhật vào nhãn và thông tin của các nút con. Vì nhãn và thông tin của nút con trong khoảng thời gian này đều không thay đổi. Khi đẩy nhãn của $u$ xuống con $s$ của nó, không khó thấy:
 
 $$
 Pre_s=\max(Pre_s,Pre_u+Add_s),Add_s=Add_u+Add_s
 $$
 
-那么信息的更新也是类似的，拿对应的标记更新即可．
+Việc cập nhật thông tin cũng tương tự: dùng nhãn tương ứng để cập nhật.
 
-接下来，我们考虑操作 1．
+Tiếp theo xét thao tác 1.
 
-区间覆盖操作，会把所有的数变成一个数．在这之后，无论是区间加减还是覆盖，整个区间的数仍是同一个（除非你结束当前标记的生存周期，下传标记）．因此我们可以把第一次区间覆盖后的所有标记都看成区间覆盖标记．也就是说一个标记的生存周期被大致分成两个阶段：
+Thao tác gán đoạn sẽ biến mọi số thành cùng một số. Sau đó, dù là cộng/trừ đoạn hay gán đoạn, mọi số trong cả đoạn vẫn là cùng một số (trừ khi ta kết thúc vòng đời của nhãn hiện tại và đẩy nhãn xuống). Vì vậy ta có thể xem mọi nhãn sau thao tác gán đoạn đầu tiên đều là nhãn gán đoạn. Nói cách khác, vòng đời của một nhãn được chia đại khái thành hai giai đoạn:
 
-1.  若干个加减操作标记的合并，没有接收过覆盖标记．
-2.  覆盖操作的标记，没有所谓的加减标记（加减标记转化为覆盖标记）
+1.  Giai đoạn hợp nhất một số nhãn cộng/trừ, chưa từng nhận nhãn gán.
+2.  Giai đoạn nhãn gán, không còn nhãn cộng/trừ theo nghĩa riêng nữa (nhãn cộng/trừ được chuyển hóa thành nhãn gán).
 
-于是我们把这个结点的 Pre 标记拆成 $(P_1,P_2)$．$P_1$ 表示第一阶段的最大加减标记；$P_2$ 表示第二阶段的最大覆盖标记．利用相似的方法，我们可以对这个做标记下传和信息更新．时间复杂度是 $O(m\log n)$ 的（这个问题并没有区间对 $x$ 取最值的操作哦～）
+Do đó ta tách nhãn Pre của nút này thành $(P_1,P_2)$. $P_1$ biểu thị nhãn cộng/trừ lớn nhất trong giai đoạn thứ nhất; $P_2$ biểu thị nhãn gán lớn nhất trong giai đoạn thứ hai. Dùng phương pháp tương tự, ta có thể đẩy nhãn và cập nhật thông tin cho trường hợp này. Độ phức tạp thời gian là $O(m\log n)$; bài này không có thao tác lấy cực trị với $x$ trên đoạn.
 
 ```cpp
 --8<-- "docs/ds/code/seg-beats/seg-beats_3.cpp"
