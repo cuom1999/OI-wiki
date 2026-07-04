@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-// A simple BIT implementation.
+// Cài đặt BIT đơn giản.
 class BIT {
   int n;
   std::vector<int> su;
@@ -10,21 +10,21 @@ class BIT {
  public:
   BIT(int n) : n(n), su(n + 1) {}
 
-  // Fill the BIT with one.
+  // Điền giá trị một vào BIT.
   void fill() {
     for (int x = 1; x <= n; ++x) {
       su[x] += x & (-x);
     }
   }
 
-  // Add v to the x-th number.
+  // Cộng v vào phần tử thứ x.
   void add(int x, int v) {
     for (; x <= n; x += x & (-x)) {
       su[x] += v;
     }
   }
 
-  // Get the k-th smallest element.
+  // Lấy phần tử nhỏ thứ k.
   int find_kth(int k) {
     int ps = 0, x = 0;
     for (int i = log2(n); i >= 0; --i) {
@@ -39,23 +39,23 @@ class BIT {
   }
 };
 
-// Find the k-th permutation of 1~n.
+// Tìm cách sắp xếp thứ k của 1~n.
 std::vector<int> find_permutation(int n, long long k) {
   --k;
-  // Expand rank to Lehmer code.
+  // Khai triển thứ hạng thành mã Lehmer.
   std::vector<int> lehmer(n);
   for (int i = 1; i <= n; ++i) {
     lehmer[n - i] = k % i;
     k /= i;
   }
   BIT bit(n);
-  // Set all values in BIT to one.
+  // Đặt mọi giá trị trong BIT bằng một.
   bit.fill();
   std::vector<int> res(n);
   for (int i = 0; i < n; ++i) {
-    // Find the lehmer[i]-th smallest unused element.
+    // Tìm phần tử chưa dùng nhỏ thứ lehmer[i].
     res[i] = bit.find_kth(lehmer[i] + 1);
-    // Remove it from the BIT.
+    // Loại bỏ phần tử đó khỏi BIT.
     bit.add(res[i], -1);
   }
   return res;

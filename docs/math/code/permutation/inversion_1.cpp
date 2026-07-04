@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <vector>
 
-// A simple BIT implementation.
+// Cài đặt BIT đơn giản.
 class BIT {
   int n;
   std::vector<int> su;
@@ -11,14 +11,14 @@ class BIT {
  public:
   BIT(int n) : n(n), su(n + 1) {}
 
-  // Add v to the x-th number.
+  // Cộng v vào phần tử thứ x.
   void add(int x, int v) {
     for (; x <= n; x += x & (-x)) {
       su[x] += v;
     }
   }
 
-  // Get the cumulative sum till the x-th number.
+  // Lấy tổng tiền tố đến phần tử thứ x.
   int query(int x) {
     int res = 0;
     for (; x; x &= x - 1) {
@@ -28,29 +28,29 @@ class BIT {
   }
 };
 
-// Count inversions.
+// Đếm số nghịch thế.
 long long solve(const std::vector<int>& nums) {
-  // Discretization.
+  // Rời rạc hóa.
   std::vector<int> sorted(nums);
   std::sort(sorted.begin(), sorted.end());
   sorted.erase(std::unique(sorted.begin(), sorted.end()), sorted.end());
   std::unordered_map<int, int> ids;
   int m = sorted.size();
   for (int i = 0; i < m; ++i) {
-    // Reverse the order.
-    // Now a smaller id means a larger element.
+    // Đảo ngược thứ tự.
+    // Bây giờ id nhỏ hơn tương ứng với phần tử lớn hơn.
     ids[sorted[i]] = m - i;
   }
-  // Main part.
+  // Phần chính.
   BIT bit(m);
   long long res = 0;
   for (int num : nums) {
     int id = ids[num];
-    // Get inversion pair (i,j) with j the current element.
-    // Namely, count the number of elements larger than
-    //     the current one but located before it.
+    // Đếm cặp nghịch thế (i,j) với j là phần tử hiện tại.
+    // Tức là đếm số phần tử lớn hơn phần tử hiện tại
+    //     nhưng nằm trước nó.
     res += bit.query(id - 1);
-    // Insert the current element to the BIT.
+    // Chèn phần tử hiện tại vào BIT.
     bit.add(id, 1);
   }
   return res;

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-// A simple BIT implementation.
+// Cài đặt BIT đơn giản.
 class BIT {
   int n;
   std::vector<int> su;
@@ -9,14 +9,14 @@ class BIT {
  public:
   BIT(int n) : n(n), su(n + 1) {}
 
-  // Add v to the x-th number.
+  // Cộng v vào phần tử thứ x.
   void add(int x, int v) {
     for (; x <= n; x += x & (-x)) {
       su[x] += v;
     }
   }
 
-  // Get the cumulative sum till the x-th number.
+  // Lấy tổng tiền tố đến phần tử thứ x.
   int query(int x) {
     int res = 0;
     for (; x; x &= x - 1) {
@@ -26,19 +26,19 @@ class BIT {
   }
 };
 
-// Get the rank of a permutation of 1~n.
+// Tính thứ hạng của một cách sắp xếp của 1~n.
 long long find_rank(const std::vector<int>& nums) {
   int n = nums.size();
   BIT bit(n);
   long long fac = 1;
   long long res = 0;
-  // Reverse iteration.
+  // Duyệt ngược.
   for (int i = n - 1; i >= 0; --i) {
-    // Count the number of elements smaller than the current one.
+    // Đếm số phần tử nhỏ hơn phần tử hiện tại.
     res += bit.query(nums[i] - 1) * fac;
-    // Insert the current element into the BIT.
+    // Chèn phần tử hiện tại vào BIT.
     bit.add(nums[i], 1);
-    // Update the factorial.
+    // Cập nhật giai thừa.
     fac *= n - i;
   }
   return res + 1;

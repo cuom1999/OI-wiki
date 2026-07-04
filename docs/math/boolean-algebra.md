@@ -1,170 +1,175 @@
-在数理逻辑中，布尔代数（boolean algebra）是代数的一个分支．初等代数中变量的值是数字，其研究的主要运算符有加法、乘法、乘方以及这三种运算的逆运算．而布尔代数中变量的值仅为 **真** 和 **假** 两种（通常记作 $1$ 和 $0$），其研究的主要运算符有合取（与，$\land$）、析取（或，$\lor$）、否定（非，$\lnot$）．就像初等代数是描述数字运算的一种形式一样，布尔代数是描述逻辑运算的一种形式．
+Trong logic toán học, đại số Boolean (boolean algebra) là một nhánh của đại số. Trong đại số sơ cấp, giá trị của biến là các số, và các phép toán chủ yếu được nghiên cứu gồm cộng, nhân, lũy thừa cùng các phép toán ngược của ba phép đó. Trong đại số Boolean, giá trị của biến chỉ có hai khả năng **đúng** và **sai** (thường ký hiệu là $1$ và $0$), và các phép toán chủ yếu được nghiên cứu gồm hội (AND, $\land$), tuyển (OR, $\lor$), phủ định (NOT, $\lnot$). Giống như đại số sơ cấp là một hình thức mô tả phép toán trên số, đại số Boolean là một hình thức mô tả phép toán logic.
 
-## 布尔函数
+<span id="&#x5E03;&#x5C14;&#x51FD;&#x6570;"></span>
+## Hàm Boolean
 
-???+ abstract "定义"
-    **布尔函数**（boolean function）指的是形如 $f:\mathbf{B}^k\to \mathbf{B}$ 的函数，其中 $\mathbf{B}=\{0,1\}$ 为 **布尔域**（boolean domain），非负整数 $k$ 为该布尔函数的 **元数**（arity）．$k=1$ 的布尔函数为一元函数，以此类推．$k=0$ 时，我们认为函数退化为 $\mathbf{B}$ 中的常量．
+???+ abstract "Định nghĩa"
+    **Hàm Boolean** (boolean function) là hàm có dạng $f:\mathbf{B}^k\to \mathbf{B}$, trong đó $\mathbf{B}=\{0,1\}$ là **miền Boolean** (boolean domain), và số nguyên không âm $k$ là **số ngôi** (arity) của hàm Boolean này. Hàm Boolean với $k=1$ là hàm một ngôi, và tương tự cho các trường hợp khác. Khi $k=0$, ta xem hàm suy biến thành một hằng trong $\mathbf{B}$.
 
-我们一般只研究一元和二元的布尔函数．如无特殊说明，下文的布尔函数仅限于一元和二元的情况．
+Thông thường ta chỉ nghiên cứu các hàm Boolean một ngôi và hai ngôi. Nếu không nói rõ thêm, các hàm Boolean dưới đây chỉ xét trong hai trường hợp một ngôi và hai ngôi.
 
-除了函数的一般表达方式外，我们还可以用 **真值表**（truth table）、**逻辑门**（logic gate）、[Venn 图](https://en.wikipedia.org/wiki/Venn_diagram) 来表示布尔函数．
+Ngoài cách biểu diễn hàm thông thường, ta còn có thể dùng **bảng chân trị** (truth table), **cổng logic** (logic gate), hoặc [biểu đồ Venn](https://en.wikipedia.org/wiki/Venn_diagram) để biểu diễn hàm Boolean.
 
-???+ abstract "真值表"
-    对一个布尔函数，我们枚举其输入的所有情况，并将输入和对应的输出列成一张表，这个表就叫做真值表．
+???+ abstract "Bảng chân trị"
+    Với một hàm Boolean, ta liệt kê tất cả các trường hợp đầu vào của nó, rồi lập thành một bảng gồm đầu vào và đầu ra tương ứng. Bảng đó được gọi là bảng chân trị.
 
-$n$ 元布尔函数也可以用含 $n$ 个变量的 **命题公式**（propositional formula）表示，命题公式 $p$ 与 $q$  **逻辑等价**（logically equivalent）当且仅当其描述的是同一个布尔函数，记作 $p\iff q$．
+Hàm Boolean $n$ ngôi cũng có thể được biểu diễn bằng **công thức mệnh đề** (propositional formula) gồm $n$ biến. Hai công thức mệnh đề $p$ và $q$ **tương đương logic** (logically equivalent) khi và chỉ khi chúng mô tả cùng một hàm Boolean, ký hiệu là $p\iff q$.
 
-以下是一些常见布尔函数，我们也会把这些布尔函数统称为 **逻辑运算符**（logical connective）或 **逻辑算子**（logical operator）：
+Sau đây là một số hàm Boolean thường gặp; ta cũng gọi chung các hàm Boolean này là **liên từ logic** (logical connective) hoặc **toán tử logic** (logical operator):
 
-| 名称（数理逻辑）                                           | 其他名称                 | 记号                               |
-| -------------------------------------------------- | -------------------- | -------------------------------- |
-| 恒真（truth、tautology）                                |                      | $\top$                           |
-| 恒假（falsity、contradiction）                          |                      | $\bot$                           |
-| 命题                                                 | 自身                   | $A$                              |
-| 否定（negation）                                       | 非（NOT）               | $\lnot A$                        |
-| 合取（conjunction）                                    | 与（AND）               | $A \land B$                      |
-| 析取（disjunction）                                    | 或（OR）                | $A \lor B$                       |
-| 非合取（non-conjunction）                               | 与非（NAND）、Sheffer 竖线  | $A \bar{\land} B$、$A\uparrow B$  |
-| 非析取（non-disjunction）                               | 或非（NOR）              | $A \bar{\lor} B$、$A\downarrow B$ |
-|                                                    | 异或（Exclusive-OR，XOR） | $A \oplus B$                     |
-|                                                    | 同或（Exclusive-NOR）    | $A \odot B$                      |
-| 实质蕴含（material implication）[^note1]                 |                      | $A \to B$                        |
-| 实质非蕴含（material nonimplication）[^note1]             |                      | $A \nrightarrow B$               |
-| 反蕴涵（converse implication）[^note1]                  |                      | $A \gets B$                      |
-| 非反蕴涵（converse nonimplication）[^note1]              |                      | $A \nleftarrow B$                |
-| 双条件（biconditional）、等价（equivalence）[^note1][^note2] |                      | $A \leftrightarrow B$            |
-| 非等价（non-equivalence）[^note1][^note3]               |                      | $A \nleftrightarrow B$           |
+| Tên (logic toán học)                                      | Tên khác                               | Ký hiệu                          |
+| --------------------------------------------------------- | -------------------------------------- | -------------------------------- |
+| Đúng hằng (truth, tautology)                              |                                        | $\top$                           |
+| Sai hằng (falsity, contradiction)                         |                                        | $\bot$                           |
+| Mệnh đề                                                   | Chính nó                               | $A$                              |
+| Phủ định (negation)                                       | NOT                                    | $\lnot A$                        |
+| Hội (conjunction)                                         | AND                                    | $A \land B$                      |
+| Tuyển (disjunction)                                       | OR                                     | $A \lor B$                       |
+| Không hội (non-conjunction)                               | NAND, vạch dọc Sheffer                 | $A \bar{\land} B$, $A\uparrow B$  |
+| Không tuyển (non-disjunction)                             | NOR                                    | $A \bar{\lor} B$, $A\downarrow B$ |
+|                                                           | XOR (Exclusive-OR)                     | $A \oplus B$                     |
+|                                                           | XNOR (Exclusive-NOR)                   | $A \odot B$                      |
+| Kéo theo vật chất (material implication)[^note1]          |                                        | $A \to B$                        |
+| Không kéo theo vật chất (material nonimplication)[^note1] |                                        | $A \nrightarrow B$               |
+| Kéo theo đảo (converse implication)[^note1]               |                                        | $A \gets B$                      |
+| Không kéo theo đảo (converse nonimplication)[^note1]      |                                        | $A \nleftarrow B$                |
+| Song điều kiện (biconditional), tương đương (equivalence)[^note1][^note2] |                    | $A \leftrightarrow B$            |
+| Không tương đương (non-equivalence)[^note1][^note3]       |                                        | $A \nleftrightarrow B$           |
 
-对应的真值表（From [Wikipedia](https://commons.wikimedia.org/wiki/File:Logical_connectives_table.svg)）：
+Bảng chân trị tương ứng (From [Wikipedia](https://commons.wikimedia.org/wiki/File:Logical_connectives_table.svg)):
 
 ![](./images/logical-connectives-table.svg)
 
-对应的 Venn 图和 [Hasse 图](./order-theory.md#偏序集的可视化表示hasse-图)（以集合的包含关系 $\subseteq$ 为偏序，From [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)）：
+Biểu đồ Venn và [biểu đồ Hasse](./order-theory.md#%E5%81%8F%E5%BA%8F%E9%9B%86%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E8%A1%A8%E7%A4%BAhasse-%E5%9B%BE) tương ứng (lấy quan hệ bao hàm tập hợp $\subseteq$ làm thứ tự riêng phần, From [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)):
 
 ![](./images/logical-connectives-hasse-diagram.svg)
 
-由于 $n$ 元布尔函数的输入有 $2^n$ 种，所以 $n$ 元布尔函数有 $2\uparrow (2\uparrow n)$ 种，其中 $\uparrow$ 为 Knuth 箭头．
+Vì đầu vào của hàm Boolean $n$ ngôi có $2^n$ trường hợp, nên có $2\uparrow (2\uparrow n)$ hàm Boolean $n$ ngôi, trong đó $\uparrow$ là mũi tên Knuth.
 
-我们把逻辑算子的组合称为 **逻辑表达式**（logical expression）．
+Ta gọi tổ hợp các toán tử logic là **biểu thức logic** (logical expression).
 
-如果我们把 $\mathbf{B}$ 视作模 $2$ 的一个 [剩余类](./number-theory/basic.md#同余类与剩余系)，此时异或等价于模 $2$ 加法，与等价于模 $2$ 乘法，所以有时我们也用 $\mathbf{Z}_2$ 表示布尔域．
+Nếu xem $\mathbf{B}$ như một [lớp thặng dư](./number-theory/basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB) modulo $2$, thì XOR tương đương với phép cộng modulo $2$, còn AND tương đương với phép nhân modulo $2$. Vì vậy đôi khi ta cũng dùng $\mathbf{Z}_2$ để biểu thị miền Boolean.
 
-### 优先级
+<span id="&#x4F18;&#x5148;&#x7EA7;"></span>
+### Thứ tự ưu tiên
 
-一元逻辑算子优先级高于二元逻辑算子，即 $\lnot$ 的优先级高于 $\land$、$\lor$、$\oplus$ 等的优先级．
+Toán tử logic một ngôi có thứ tự ưu tiên cao hơn toán tử logic hai ngôi; tức là $\lnot$ có thứ tự ưu tiên cao hơn $\land$, $\lor$, $\oplus$, v.v.
 
-二元逻辑算子之间的优先级有多种规定，有的资料认为 $\land$、$\lor$、$\oplus$ 的优先级比 $\to$、$\gets$、$\leftrightarrow$ 更高，而有的资料持相反观点．所以在使用时推荐多加括号来明确顺序．
+Có nhiều quy ước khác nhau về thứ tự ưu tiên giữa các toán tử logic hai ngôi. Một số tài liệu xem $\land$, $\lor$, $\oplus$ có thứ tự ưu tiên cao hơn $\to$, $\gets$, $\leftrightarrow$, trong khi một số tài liệu khác lại quy ước ngược lại. Do đó khi sử dụng, nên thêm ngoặc để làm rõ thứ tự thực hiện.
 
-C++ 中的规定参见 [C++ 运算符优先级总表](../lang/op.md#c-运算符优先级总表)．
+Quy ước trong C++ xem tại [bảng tổng hợp thứ tự ưu tiên toán tử C++](../lang/op.md#c-%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E6%80%BB%E8%A1%A8).
 
-### 自足算子与完备算子集
+<span id="&#x81EA;&#x8DB3;&#x7B97;&#x5B50;&#x4E0E;&#x5B8C;&#x5907;&#x7B97;&#x5B50;&#x96C6;"></span>
+### Toán tử tự túc và tập toán tử đầy đủ
 
-实际上，我们只用与非或者或非即可表达其余的逻辑算子，CPU 也是基于这一点构建的．但是，由于 **与、或、非、异或** 这四种逻辑算子的性质更好，所以我们在研究布尔代数时一般只使用这四种函数．
+Thực ra, chỉ cần NAND hoặc NOR là có thể biểu diễn các toán tử logic còn lại; CPU cũng được xây dựng dựa trên điểm này. Tuy nhiên, do bốn toán tử logic **AND, OR, NOT, XOR** có tính chất tốt hơn, nên khi nghiên cứu đại số Boolean ta thường chỉ dùng bốn hàm này.
 
-??? example "如何分别用与非、或非表示其余的逻辑算子"
-    我们有
+??? example "Cách dùng riêng NAND và NOR để biểu diễn các toán tử logic còn lại"
+    Ta có
     
-    -   $\lnot p=p\bar{\land} p=p\bar{\lor} p$，
-    -   $p\land q=(p\bar{\land}q)\bar{\land}(p\bar{\land}q)=(p\bar{\lor}p)\bar{\lor}(q\bar{\lor}q)$，
-    -   $p\lor q=(p\bar{\land}p)\bar{\land}(q\bar{\land}q)=(p\bar{\lor}q)\bar{\lor}(p\bar{\lor}q)$，
-    -   $p\to q=p\bar{\land} (q\bar{\land} q)=((p\bar{\lor}p)\bar{\lor}q)\bar{\lor}((p\bar{\lor}p)\bar{\lor}q)$．
+    -   $\lnot p=p\bar{\land} p=p\bar{\lor} p$,
+    -   $p\land q=(p\bar{\land}q)\bar{\land}(p\bar{\land}q)=(p\bar{\lor}p)\bar{\lor}(q\bar{\lor}q)$,
+    -   $p\lor q=(p\bar{\land}p)\bar{\land}(q\bar{\land}q)=(p\bar{\lor}q)\bar{\lor}(p\bar{\lor}q)$,
+    -   $p\to q=p\bar{\land} (q\bar{\land} q)=((p\bar{\lor}p)\bar{\lor}q)\bar{\lor}((p\bar{\lor}p)\bar{\lor}q)$.
     
-    另外
+    Ngoài ra,
     
-    -   $p=\lnot\lnot p$，
-    -   $p\nleftrightarrow q=p\oplus q=(p\lor q)\land\lnot (p\land q)$，
-    -   $p\leftrightarrow q=p\odot q=\lnot(p\oplus q)$，
-    -   $p\nrightarrow q=\lnot(p\to q)$，
-    -   $p\gets q=q\to p$，
-    -   $p\nleftarrow q=\lnot(p\gets q)$．
+    -   $p=\lnot\lnot p$,
+    -   $p\nleftrightarrow q=p\oplus q=(p\lor q)\land\lnot (p\land q)$,
+    -   $p\leftrightarrow q=p\odot q=\lnot(p\oplus q)$,
+    -   $p\nrightarrow q=\lnot(p\to q)$,
+    -   $p\gets q=q\to p$,
+    -   $p\nleftarrow q=\lnot(p\gets q)$.
 
-我们能不能用指定的若干逻辑算子描述所有的逻辑算子？这便引出了完备算子集的定义．
+Liệu ta có thể dùng một số toán tử logic được chỉ định để mô tả tất cả các toán tử logic hay không? Câu hỏi này dẫn đến định nghĩa tập toán tử đầy đủ.
 
-???+ abstract "定义"
-    对一个给定的逻辑算子集，如果能只用这个集合里的函数描述所有的逻辑算子，则称该集合为 **完备算子集**（functionally complete operator set）．特别地，如果只用一个逻辑算子即可描述所有的逻辑算子，则称该算子为 **自足算子**（sole sufficient operator）或 **Sheffer 函数**（Sheffer function）．
+???+ abstract "Định nghĩa"
+    Với một tập toán tử logic cho trước, nếu chỉ dùng các hàm trong tập đó mà có thể mô tả tất cả các toán tử logic, thì tập đó được gọi là **tập toán tử đầy đủ** (functionally complete operator set). Đặc biệt, nếu chỉ cần một toán tử logic để mô tả tất cả các toán tử logic, thì toán tử đó được gọi là **toán tử tự túc** (sole sufficient operator) hoặc **hàm Sheffer** (Sheffer function).
     
-    如果在一个完备算子集中删去任意一个元素，其都不能描述所有的逻辑算子，则称该集合为 **极小完备算子集**（minimal functionally complete operator set）．
+    Nếu xóa bất kỳ một phần tử nào khỏi một tập toán tử đầy đủ thì tập con thu được không còn mô tả được tất cả các toán tử logic, ta gọi tập ban đầu là **tập toán tử đầy đủ cực tiểu** (minimal functionally complete operator set).
 
-可以证明逻辑算子中只有 $\bar{\land}$、$\bar{\lor}$ 是自足算子．
+Có thể chứng minh rằng trong các toán tử logic, chỉ có $\bar{\land}$ và $\bar{\lor}$ là toán tử tự túc.
 
-以下为常见的极小完备算子集[^vaughan1942complete]：
+Sau đây là các tập toán tử đầy đủ cực tiểu thường gặp[^vaughan1942complete]:
 
--   $\{\bar{\land}\}$，$\{\bar{\lor}\}$，
--   $\{\land,\lnot\}$，$\{\lor,\lnot\}$，$\{\gets,\lnot\}$，$\{\to,\lnot\}$，$\{\nleftarrow,\lnot\}$，$\{\nrightarrow,\lnot\}$，
--   $\{\gets,\bot\}$，$\{\to,\bot\}$，$\{\nleftarrow,\top\}$，$\{\nrightarrow,\top\}$，
--   $\{\gets,\nleftarrow\}$，$\{\to,\nleftarrow\}$，$\{\gets,\nrightarrow\}$，$\{\to,\nrightarrow\}$，
--   $\{\gets,\nleftrightarrow\}$，$\{\to,\nleftrightarrow\}$，$\{\nleftarrow,\leftrightarrow\}$，$\{\nrightarrow,\leftrightarrow\}$，
--   $\{\lor,\leftrightarrow,\bot\}$，$\{\lor,\leftrightarrow,\nleftrightarrow\}$，$\{\lor,\nleftrightarrow,\top\}$，
--   $\{\land,\leftrightarrow,\bot\}$，$\{\land,\leftrightarrow,\nleftrightarrow\}$，$\{\land,\nleftrightarrow,\top\}$．
+-   $\{\bar{\land}\}$, $\{\bar{\lor}\}$,
+-   $\{\land,\lnot\}$, $\{\lor,\lnot\}$, $\{\gets,\lnot\}$, $\{\to,\lnot\}$, $\{\nleftarrow,\lnot\}$, $\{\nrightarrow,\lnot\}$,
+-   $\{\gets,\bot\}$, $\{\to,\bot\}$, $\{\nleftarrow,\top\}$, $\{\nrightarrow,\top\}$,
+-   $\{\gets,\nleftarrow\}$, $\{\to,\nleftarrow\}$, $\{\gets,\nrightarrow\}$, $\{\to,\nrightarrow\}$,
+-   $\{\gets,\nleftrightarrow\}$, $\{\to,\nleftrightarrow\}$, $\{\nleftarrow,\leftrightarrow\}$, $\{\nrightarrow,\leftrightarrow\}$,
+-   $\{\lor,\leftrightarrow,\bot\}$, $\{\lor,\leftrightarrow,\nleftrightarrow\}$, $\{\lor,\nleftrightarrow,\top\}$,
+-   $\{\land,\leftrightarrow,\bot\}$, $\{\land,\leftrightarrow,\nleftrightarrow\}$, $\{\land,\nleftrightarrow,\top\}$.
 
-### 性质
+<span id="&#x6027;&#x8D28;"></span>
+### Tính chất
 
-首先是代数结构的相关性质：
+Trước hết là các tính chất liên quan đến cấu trúc đại số:
 
--   与、或均关于 $\mathbf{B}$ 构成 [交换幺半群](./algebra/basic.md#群)．即与运算和或运算均具有交换律、结合律和幺元（$x\land 1=x\lor 0=x$）．
--   异或、同或均关于 $\mathbf{B}$ 构成 [群](./algebra/basic.md#群)．即异或运算和同或运算均具有交换律、结合律、幺元（$x\oplus 0=x\odot 1=x$）和逆元（$x\oplus x=0$，$x\odot x=1$）．
--   与非、或非均不具有结合律，所以不构成半群．
+-   AND và OR đều lập thành [vị nhóm giao hoán](./algebra/basic.md#%E7%BE%A4) trên $\mathbf{B}$. Tức là phép AND và phép OR đều có tính giao hoán, tính kết hợp và phần tử đơn vị ($x\land 1=x\lor 0=x$).
+-   XOR và XNOR đều lập thành [nhóm](./algebra/basic.md#%E7%BE%A4) trên $\mathbf{B}$. Tức là phép XOR và phép XNOR đều có tính giao hoán, tính kết hợp, phần tử đơn vị ($x\oplus 0=x\odot 1=x$) và phần tử nghịch đảo ($x\oplus x=0$, $x\odot x=1$).
+-   NAND và NOR đều không có tính kết hợp, nên không lập thành nửa nhóm.
 
-对于 $\land$、$\lor$，我们有
+Với $\land$ và $\lor$, ta có:
 
--   分配律：
-    -   $a\land(b\diamond c)=(a\land b)\diamond (a\land c)$，其中 $\diamond$ 可以为 $\land$、$\lor$、$\oplus$，
-    -   $a\lor(b\diamond c)=(a\lor b)\diamond (a\lor c)$，其中 $\diamond$ 可以为 $\land$、$\lor$、$\odot$．
--   **幂等**（idempotence）律：$x\land x=x$、$x\lor x=x$．
--   单调性：$a\to b\iff(a\land c)\to(b\land c)$、$a\to b\iff(a\lor c)\to(b\lor c)$．
--   **吸收**（absorption）律：$x\land(x\lor y)=x\lor(x\land y)=x$．
--   与「$\to$」的关系：
-    -   $a \lor b \iff (\lnot a \to b) \land (\lnot b \to a)$，
-    -   $a \land b \iff \lnot((a \to \lnot b) \lor (b \to \lnot a))$．
+-   Luật phân phối:
+    -   $a\land(b\diamond c)=(a\land b)\diamond (a\land c)$, trong đó $\diamond$ có thể là $\land$, $\lor$, $\oplus$,
+    -   $a\lor(b\diamond c)=(a\lor b)\diamond (a\lor c)$, trong đó $\diamond$ có thể là $\land$, $\lor$, $\odot$.
+-   Luật **lũy đẳng** (idempotence): $x\land x=x$, $x\lor x=x$.
+-   Tính đơn điệu: $a\to b\iff(a\land c)\to(b\land c)$, $a\to b\iff(a\lor c)\to(b\lor c)$.
+-   Luật **hấp thụ** (absorption): $x\land(x\lor y)=x\lor(x\land y)=x$.
+-   Quan hệ với "$\to$":
+    -   $a \lor b \iff (\lnot a \to b) \land (\lnot b \to a)$,
+    -   $a \land b \iff \lnot((a \to \lnot b) \lor (b \to \lnot a))$.
 
-???+ abstract "布尔函数的单调性"
-    对一个布尔函数 $f(x_1,\dots,x_n)$ 和 $\mathbf{B}^n$ 中的两个元素 $(a_1,\dots,a_n),(b_1,\dots,b_n)$，若当 $a_i\leq b_i,~~\forall i=1,\dots,n$ 时恒有 $f(a_1,\dots,a_n)\leq f(b_1,\dots,b_n)$，则称该布尔函数是单调的．
+???+ abstract "Tính đơn điệu của hàm Boolean"
+    Với một hàm Boolean $f(x_1,\dots,x_n)$ và hai phần tử $(a_1,\dots,a_n),(b_1,\dots,b_n)$ trong $\mathbf{B}^n$, nếu cứ $a_i\leq b_i,~~\forall i=1,\dots,n$ thì luôn có $f(a_1,\dots,a_n)\leq f(b_1,\dots,b_n)$, ta gọi hàm Boolean đó là đơn điệu.
 
-我们还有如下性质：
+Ta còn có các tính chất sau:
 
--   **排中律**（law of excluded middle）：$p\lor\lnot p$ 恒真．
--   $\lnot p\iff p\to\bot$．
--   双重否定/$\lnot$ 的 **对合**（involution）律：$\lnot\lnot x=x$．
--   $\oplus$、$\odot$ 的对合律：$x\oplus y\oplus y=x$、$x\odot y\odot y=x$．
--   De Morgan 律：$\lnot(p\land q)=\lnot p\lor \lnot q$、$\lnot(p\lor q)=\lnot p\land \lnot q$．
+-   **Luật loại trừ trung gian** (law of excluded middle): $p\lor\lnot p$ luôn đúng.
+-   $\lnot p\iff p\to\bot$.
+-   Phủ định kép / luật **đối hợp** (involution) của $\lnot$: $\lnot\lnot x=x$.
+-   Luật đối hợp của $\oplus$ và $\odot$: $x\oplus y\oplus y=x$, $x\odot y\odot y=x$.
+-   Luật De Morgan: $\lnot(p\land q)=\lnot p\lor \lnot q$, $\lnot(p\lor q)=\lnot p\land \lnot q$.
 
-## 逻辑表达式的标准化
+<span id="&#x903B;&#x8F91;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x6807;&#x51C6;&#x5316;"></span>
+## Chuẩn hóa biểu thức logic
 
-根据上述性质，我们可以对逻辑表达式进行一定的等价变换，使其符合特定的范式，这一点可用于自动定理证明中．常见的标准化范式有 **合取范式**（conjunctive normal form，CNF）、**析取范式**（disjunctive normal form，DNF）和 **代数范式**（algebraic normal form，ANF）．
+Theo các tính chất trên, ta có thể thực hiện một số phép biến đổi tương đương trên biểu thức logic để đưa nó về những dạng chuẩn nhất định; điều này có thể được dùng trong chứng minh định lý tự động. Các dạng chuẩn hóa thường gặp gồm **dạng chuẩn hội** (conjunctive normal form, CNF), **dạng chuẩn tuyển** (disjunctive normal form, DNF) và **dạng chuẩn đại số** (algebraic normal form, ANF).
 
-???+ abstract "合取范式与析取范式"
-    我们做如下递归式的定义：
+???+ abstract "Dạng chuẩn hội và dạng chuẩn tuyển"
+    Ta định nghĩa đệ quy như sau:
     
-    1.  **文字**（literal）：对变量 $x$，$x$ 和 $\lnot x$ 是文字．
-    2.  子式：
-        -   文字是子式，
-        -   若 $A$ 是文字、$B$ 是子式，则 $A\lor B$ 是子式．
-    3.  合取范式：
-        -   若 $A$ 是子式，则 $(A)$ 是合取范式，
-        -   若 $A$ 是子式、$B$ 是合取范式，则 $(A)\land B$ 是合取范式．
+    1.  **Literal** (literal): với biến $x$, $x$ và $\lnot x$ là literal.
+    2.  Mệnh đề con:
+        -   Literal là mệnh đề con,
+        -   Nếu $A$ là literal và $B$ là mệnh đề con, thì $A\lor B$ là mệnh đề con.
+    3.  Dạng chuẩn hội:
+        -   Nếu $A$ là mệnh đề con, thì $(A)$ là dạng chuẩn hội,
+        -   Nếu $A$ là mệnh đề con và $B$ là dạng chuẩn hội, thì $(A)\land B$ là dạng chuẩn hội.
     
-    类似地，交换上面定义中的 $\land$ 与 $\lor$ 即可得到析取范式的定义．
+    Tương tự, hoán đổi $\land$ và $\lor$ trong định nghĩa trên thì thu được định nghĩa của dạng chuẩn tuyển.
 
-例如以下逻辑表达式均为析取范式：
+Ví dụ, các biểu thức logic sau đều là dạng chuẩn tuyển:
 
--   $(A\land\lnot B)\lor(C\land D\land\lnot E)$，
--   $(A\land B)\lor (C)$，
--   $(A\land B)$，
--   $(A)$．
+-   $(A\land\lnot B)\lor(C\land D\land\lnot E)$,
+-   $(A\land B)\lor (C)$,
+-   $(A\land B)$,
+-   $(A)$.
 
-以下逻辑表达式均为合取范式：
+Các biểu thức logic sau đều là dạng chuẩn hội:
 
--   $(\lnot A\lor\lnot B\lor C)\land(\lor D\lor\lnot E)$，
--   $(A\lor B)\land (C)$，
--   $(A\lor B)$，
--   $(A)$．
+-   $(\lnot A\lor\lnot B\lor C)\land(\lor D\lor\lnot E)$,
+-   $(A\lor B)\land (C)$,
+-   $(A\lor B)$,
+-   $(A)$.
 
-以下逻辑表达式既不为合取范式也不为析取范式：
+Các biểu thức logic sau không phải dạng chuẩn hội cũng không phải dạng chuẩn tuyển:
 
--   $\lnot(A\land B)$，
--   $A\land (B\lor (C\land D))$．
+-   $\lnot(A\land B)$,
+-   $A\land (B\lor (C\land D))$.
 
-我们可以通过如下的步骤将任意一个只含有 $\lnot$、$\land$、$\lor$ 运算的逻辑表达式变形为 DNF：
+Ta có thể đưa một biểu thức logic bất kỳ chỉ chứa các phép toán $\lnot$, $\land$, $\lor$ về DNF bằng các bước sau:
 
 $$
 \begin{array}{rcccl}
@@ -176,30 +181,31 @@ $$
 \end{array}
 $$
 
-要得到表达式 $X$ 的 CNF，只需得到 $\lnot X$ 的 DNF 后取反并应用 De Morgan 律即可．
+Để thu được CNF của biểu thức $X$, chỉ cần tìm DNF của $\lnot X$, sau đó phủ định lại và áp dụng luật De Morgan.
 
-???+ abstract "代数范式"
-    首先，我们用如下递归式的定义来定义子式：
+???+ abstract "Dạng chuẩn đại số"
+    Trước hết, ta dùng định nghĩa đệ quy sau để định nghĩa mệnh đề con:
     
-    -   变量 $x$ 是子式，
-    -   若 $A$ 是子式，$x$ 是变量，则 $x\land A$ 是子式．
+    -   Biến $x$ là mệnh đề con,
+    -   Nếu $A$ là mệnh đề con và $x$ là biến, thì $x\land A$ là mệnh đề con.
     
-    则满足如下三种形式之一的逻辑表达式为代数范式：
+    Khi đó, biểu thức logic thỏa mãn một trong ba dạng sau là dạng chuẩn đại số:
     
-    1.  $1$、$0$，
-    2.  若干不等价子式的异或，如 $a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$，
-    3.  若干不等价子式与唯一的 $1$ 的异或，如 $1\oplus a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$．
+    1.  $1$, $0$,
+    2.  XOR của một số mệnh đề con không tương đương nhau, chẳng hạn $a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$,
+    3.  XOR của một số mệnh đề con không tương đương nhau và duy nhất một $1$, chẳng hạn $1\oplus a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$.
 
-注意到代数范式和 $\mathbf{Z}_2$ 上的多项式一一对应，所以代数范式也被称为 **Zhegalkin 多项式**（Zhegalkin polynomial）．
+Chú ý rằng dạng chuẩn đại số tương ứng một-một với đa thức trên $\mathbf{Z}_2$, nên dạng chuẩn đại số cũng được gọi là **đa thức Zhegalkin** (Zhegalkin polynomial).
 
-我们可以通过如下的步骤将任意一个只含有 $\lnot$、$\land$、$\lor$、$\oplus$ 运算的逻辑表达式变形为 ANF：
+Ta có thể đưa một biểu thức logic bất kỳ chỉ chứa các phép toán $\lnot$, $\land$, $\lor$, $\oplus$ về ANF bằng các bước sau:
 
-1.  $\oplus$：直接展开，如 $(1\oplus x)\oplus(1\oplus x\oplus y)=1\oplus x\oplus 1\oplus x\oplus y=y$，
-2.  $\land$：用分配律展开，如 $x\land(1\oplus x\oplus y)=(x\land 1)\oplus (x\land x)\oplus (x\land y)=x\oplus (x\land y)$，
-3.  $\lnot$：将 $\lnot x$ 用 $1\oplus x$ 代替，如 $\lnot(1\oplus x\oplus y)=1\oplus 1\oplus x\oplus y=x\oplus y$，
-4.  $\lor$：将 $x\lor y$ 用 $1\oplus((1\oplus x)\land(1\oplus y))$ 或 $x\oplus y\oplus (x\land y)$ 代替，如 $(1\oplus x)\lor(1\oplus x\oplus y)=1\oplus((1\oplus 1\oplus x)\land(1\oplus 1\oplus x\oplus y))=1\oplus x\oplus(x\land y)$．
+1.  $\oplus$: khai triển trực tiếp, chẳng hạn $(1\oplus x)\oplus(1\oplus x\oplus y)=1\oplus x\oplus 1\oplus x\oplus y=y$,
+2.  $\land$: khai triển bằng luật phân phối, chẳng hạn $x\land(1\oplus x\oplus y)=(x\land 1)\oplus (x\land x)\oplus (x\land y)=x\oplus (x\land y)$,
+3.  $\lnot$: thay $\lnot x$ bằng $1\oplus x$, chẳng hạn $\lnot(1\oplus x\oplus y)=1\oplus 1\oplus x\oplus y=x\oplus y$,
+4.  $\lor$: thay $x\lor y$ bằng $1\oplus((1\oplus x)\land(1\oplus y))$ hoặc $x\oplus y\oplus (x\land y)$, chẳng hạn $(1\oplus x)\lor(1\oplus x\oplus y)=1\oplus((1\oplus 1\oplus x)\land(1\oplus 1\oplus x\oplus y))=1\oplus x\oplus(x\land y)$.
 
-## 参考资料与注释
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+## Tài liệu tham khảo và ghi chú
 
 1.  [Boolean algebra - Wikipedia](https://en.wikipedia.org/wiki/Boolean_algebra)
 2.  [Boolean function - Wikipedia](https://en.wikipedia.org/wiki/Boolean_function)
@@ -207,10 +213,10 @@ $$
 4.  [Disjunctive normal form - Wikipedia](https://en.wikipedia.org/wiki/Disjunctive_normal_form)
 5.  [Zhegalkin polynomial - Wikipedia](https://en.wikipedia.org/wiki/Zhegalkin_polynomial)
 
-[^note1]: 用于命题推导时应使用双横长箭头，如 $A\implies B$、$A\impliedby B$、$A\iff B$ 等．
+[^note1]: Khi dùng cho suy diễn mệnh đề, nên dùng mũi tên hai vạch dài, như $A\implies B$, $A\impliedby B$, $A\iff B$, v.v.
 
-[^note2]: 等价于同或．
+[^note2]: Tương đương với XNOR.
 
-[^note3]: 等价于异或．
+[^note3]: Tương đương với XOR.
 
 [^vaughan1942complete]: Vaughan, H. E. (1942). Complete sets of logical functions.*Transactions of the American Mathematical Society 51*: 117–32.

@@ -107,6 +107,11 @@ MkDocs source layout intact.
   `docs/math/binary-exponentiation.md`: translated numeral-system basics, bit
   operations, and binary exponentiation, plus explanatory comments in included
   snippets.
+- `docs/math/boolean-algebra.md`, `docs/math/binary-set.md`,
+  `docs/math/permutation.md`, `docs/math/coordinate.md`,
+  `docs/math/complex.md`: translated general math pages on Boolean algebra,
+  binary set operations, permutations, coordinate systems, and complex numbers,
+  plus explanatory comments in permutation snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

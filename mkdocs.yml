@@ -222,19 +222,19 @@ nav:
     - Thuật toán Main-Lorentz: string/main-lorentz.md
   - Toán:
     - Tổng quan toán học: math/index.md
-    - 布尔代数: math/boolean-algebra.md
+    - Đại số Boolean: math/boolean-algebra.md
     - Hệ ghi số:
       - Giới thiệu hệ ghi số: math/numeral-sys/intro.md
       - Hệ cơ số: math/numeral-sys/base.md
       - Tam phân cân bằng: math/numeral-sys/balanced-ternary.md
       - Mã Gray: math/numeral-sys/gray-code.md
     - Phép toán bit: math/bit.md
-    - 二进制集合操作: math/binary-set.md
+    - Thao tác tập bằng nhị phân: math/binary-set.md
     - 高精度计算: math/bignum.md
     - Lũy thừa nhị phân: math/binary-exponentiation.md
-    - 置换和排列: math/permutation.md
-    - 弧度制与坐标系: math/coordinate.md
-    - 复数: math/complex.md
+    - Hoán vị và sắp xếp: math/permutation.md
+    - Radian và hệ tọa độ: math/coordinate.md
+    - Số phức: math/complex.md
     - 数论:
       - 数论基础: math/number-theory/basic.md
       - 模算术简介: math/number-theory/mod-arithmetic.md
