@@ -2,7 +2,7 @@
 #include <iostream>
 
 int n, m, a[1000010], ans[1000010];
-int pre[1000010], lst[1000010];  // 处理 pre
+int pre[1000010], lst[1000010];  // Xử lý pre.
 
 struct ope {
   int type, x, y, id;
@@ -18,14 +18,14 @@ struct ope {
 };
 
 ope op[2500010];
-int tot;  // 操作总数
+int tot;  // Tổng số thao tác.
 
-int sum[1000010];  // 树状数组
+int sum[1000010];  // Fenwick tree.
 
 int lowbit(int x) { return x & (-x); }
 
 void add(int x, int k) {
-  x++;  // 位置 0 也要进行修改，所以树状数组下标均加 1
+  x++;  // Vị trí 0 cũng cần sửa, nên mọi chỉ số Fenwick tree đều cộng 1.
   while (x <= n) {
     sum[x] = sum[x] + k;
     x = x + lowbit(x);
@@ -50,16 +50,16 @@ int main() {
   cin >> n;
   for (int i = 1; i <= n; i++) {
     cin >> a[i];
-    pre[i] = lst[a[i]], lst[a[i]] = i;  // 处理 pre
-    op[++tot] = ope{0, i, pre[i], i};   // 加点操作
+    pre[i] = lst[a[i]], lst[a[i]] = i;  // Xử lý pre.
+    op[++tot] = ope{0, i, pre[i], i};   // Thao tác thêm điểm.
   }
   cin >> m;
   for (int i = 1, l, r; i <= m; i++) {
     cin >> l >> r;
-    op[++tot] = ope{1, r, l - 1, i};  // 将查询差分
+    op[++tot] = ope{1, r, l - 1, i};  // Biến truy vấn thành hiệu.
     op[++tot] = ope{2, l - 1, l - 1, i};
   }
-  std::sort(op + 1, op + tot + 1);  // 将操作按横坐标排序，且优先执行加点操作
+  std::sort(op + 1, op + tot + 1);  // Sắp xếp thao tác theo hoành độ, ưu tiên thêm điểm.
   for (int i = 1; i <= tot; i++) {
     if (op[i].type == 0)
       add(op[i].y, 1);

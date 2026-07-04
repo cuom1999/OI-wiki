@@ -3,11 +3,11 @@
 
 int n, m;
 int x[500010], y[500010], ans[500010];
-int ax[1500010], ay[1500010], tx, ty;  // 离散化
+int ax[1500010], ay[1500010], tx, ty;  // Rời rạc hóa.
 
 struct query {
   int a, b, c, d;
-} q[500010];  // 保存查询操作方便离散化
+} q[500010];  // Lưu thao tác truy vấn để tiện rời rạc hóa.
 
 struct ope {
   int type, x, y, id;
@@ -23,9 +23,9 @@ struct ope {
 };
 
 ope op[2500010];
-int tot;  // 操作总数
+int tot;  // Tổng số thao tác.
 
-int sum[1500010];  // 树状数组
+int sum[1500010];  // Fenwick tree.
 
 int lowbit(int x) { return x & (-x); }
 
@@ -62,19 +62,19 @@ int main() {
   for (int i = 1; i <= n; i++) {
     x[i] = std::lower_bound(ax + 1, ax + tx + 1, x[i]) - ax;
     y[i] = std::lower_bound(ay + 1, ay + ty + 1, y[i]) - ay;
-    op[++tot] = ope(0, x[i], y[i], i);  // 加点操作
+    op[++tot] = ope(0, x[i], y[i], i);  // Thao tác thêm điểm.
   }
   for (int i = 1; i <= m; i++) {
     q[i].a = std::lower_bound(ax + 1, ax + tx + 1, q[i].a) - ax;
     q[i].b = std::lower_bound(ay + 1, ay + ty + 1, q[i].b) - ay;
     q[i].c = std::lower_bound(ax + 1, ax + tx + 1, q[i].c) - ax;
     q[i].d = std::lower_bound(ay + 1, ay + ty + 1, q[i].d) - ay;
-    op[++tot] = ope(1, q[i].c, q[i].d, i);  // 将查询差分
+    op[++tot] = ope(1, q[i].c, q[i].d, i);  // Biến truy vấn thành hiệu.
     op[++tot] = ope(1, q[i].a - 1, q[i].b - 1, i);
     op[++tot] = ope(2, q[i].a - 1, q[i].d, i);
     op[++tot] = ope(2, q[i].c, q[i].b - 1, i);
   }
-  std::sort(op + 1, op + tot + 1);  // 将操作按横坐标排序，且优先执行加点操作
+  std::sort(op + 1, op + tot + 1);  // Sắp xếp thao tác theo hoành độ, ưu tiên thêm điểm.
   for (int i = 1; i <= tot; i++) {
     if (op[i].type == 0)
       add(op[i].y, 1);

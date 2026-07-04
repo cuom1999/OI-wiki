@@ -42,7 +42,7 @@ void Solve() {
   for (int i = 0, l = 0; i < n; i++) {
     for (; l < i && 1LL * (a[i].x - a[l].x) * (a[i].x - a[l].x) >= mindist; l++)
       s.erase(s.find({a[l].y, a[l]}));
-    // 需要注意浮点数误差
+    // Cần chú ý sai số số thực.
     for (auto it =
              s.lower_bound({(double)a[i].y - sqrt(mindist) + 1e-6, point()});
          it != s.end() &&

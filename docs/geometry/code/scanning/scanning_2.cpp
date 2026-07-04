@@ -4,23 +4,23 @@
 constexpr int MAXN = 300;
 using namespace std;
 
-int lazy[MAXN << 3];  // 标记了这条线段出现的次数
+int lazy[MAXN << 3];  // Đánh dấu số lần đoạn này xuất hiện.
 double s[MAXN << 3];
 
 struct node1 {
   double l, r;
   double sum;
-} cl[MAXN << 3];  // 线段树
+} cl[MAXN << 3];  // Cây đoạn.
 
 struct node2 {
   double x, y1, y2;
   int flag;
-} p[MAXN << 3];  // 坐标
+} p[MAXN << 3];  // Tọa độ.
 
-// 定义sort比较
+// Định nghĩa hàm so sánh cho sort.
 bool cmp(node2 a, node2 b) { return a.x < b.x; }
 
-// 上传
+// Cập nhật từ dưới lên.
 void pushup(int rt) {
   if (lazy[rt] > 0)
     cl[rt].sum = cl[rt].r - cl[rt].l;
@@ -28,7 +28,7 @@ void pushup(int rt) {
     cl[rt].sum = cl[rt * 2].sum + cl[rt * 2 + 1].sum;
 }
 
-// 建树
+// Xây cây.
 void build(int rt, int l, int r) {
   if (r - l > 1) {
     cl[rt].l = s[l];
@@ -44,7 +44,7 @@ void build(int rt, int l, int r) {
   return;
 }
 
-// 更新
+// Cập nhật.
 void update(int rt, double y1, double y2, int flag) {
   if (cl[rt].l == y1 && cl[rt].r == y2) {
     lazy[rt] += flag;
@@ -76,9 +76,9 @@ int main() {
       s[i + 1] = y1;
       s[i + n + 1] = y2;
     }
-    sort(s + 1, s + (2 * n + 1));  // 离散化
-    sort(p, p + 2 * n, cmp);  // 把矩形的边的横坐标从小到大排序
-    build(1, 1, 2 * n);       // 建树
+    sort(s + 1, s + (2 * n + 1));  // Rời rạc hóa.
+    sort(p, p + 2 * n, cmp);  // Sắp xếp hoành độ cạnh hình chữ nhật tăng dần.
+    build(1, 1, 2 * n);       // Xây cây.
     memset(lazy, 0, sizeof(lazy));
     update(1, p[0].y1, p[0].y2, p[0].flag);
     for (int i = 1; i < 2 * n; i++) {

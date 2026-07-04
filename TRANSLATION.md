@@ -416,6 +416,8 @@ MkDocs source layout intact.
   the example code unchanged.
 - Chinese comments in translated contest I/O and data-structure code snippets
   were translated without changing the algorithms.
+- Chinese comments in `docs/geometry/code` snippets were translated while
+  preserving geometry implementations.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
