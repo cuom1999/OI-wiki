@@ -40,9 +40,9 @@ int main() {
 
 ## constexpr
 
-> Xem thêm [biểu thức hằng constexpr (C++11)](const.md#%E5%B8%B8%E9%87%8F%E8%A1%A8%E8%BE%BE%E5%BC%8F-constexprc11)
+> Xem thêm [biểu thức hằng constexpr (C++11)](const.md#biểu-thức-hằng-constexpr-c11)
 
-<a id="&#22522;&#20110;&#33539;&#22260;&#30340;-for-&#24490;&#29615;"></a>
+<a id="vòng-lặp-for-dựa-trên-phạm-vi"></a>
 
 ## Vòng lặp `for` dựa trên phạm vi
 
@@ -171,7 +171,7 @@ for (auto& [k, v] : m) {
 
 ## Bộ `std::tuple`
 
-[Tuple](https://zh.cppreference.com/w/cpp/utility/tuple) được định nghĩa trong header `<tuple>`, là sự khái quát hóa của `std::pair` và có thể lưu nhiều giá trị thuộc các kiểu khác nhau. Hãy xem ví dụ sau:
+[Tuple](https://en.cppreference.com/w/cpp/utility/tuple) được định nghĩa trong header `<tuple>`, là sự khái quát hóa của `std::pair` và có thể lưu nhiều giá trị thuộc các kiểu khác nhau. Hãy xem ví dụ sau:
 
 ```cpp
 #include <iostream>
@@ -244,13 +244,13 @@ std::cout << x << std::endl;
 
 `std::tie` gán các phần tử tuple cho những biến đã có; có thể dùng `std::ignore` để bỏ qua phần tử không cần. Structured binding trực tiếp khai báo biến mới (hỗ trợ binding theo giá trị/tham chiếu), và bắt buộc phải nhận tất cả phần tử.
 
-<a id="&#20989;&#25968;&#23545;&#35937;"></a>
+<a id="đối-tượng-hàm"></a>
 
 ## Đối tượng hàm
 
 Đối tượng có thể dùng toán tử gọi hàm `operator()` được gọi là đối tượng hàm (FunctionObject).
 
-Nó không phải một đặc tính ngôn ngữ, mà là một [khái niệm hoặc yêu cầu](https://zh.cppreference.com/w/cpp/named_req/FunctionObject), được dùng rộng rãi trong thư viện chuẩn.
+Nó không phải một đặc tính ngôn ngữ, mà là một [khái niệm hoặc yêu cầu](https://en.cppreference.com/w/cpp/named_req/FunctionObject), được dùng rộng rãi trong thư viện chuẩn.
 
 Đối tượng hàm có thể được chia đại khái thành hai loại:
 
@@ -266,7 +266,7 @@ Nó không phải một đặc tính ngôn ngữ, mà là một [khái niệm ho
 ## std::function
 
 ???+ warning "Chú ý chi phí hiệu năng"
-    `std::function` sẽ gây ra một phần chi phí hiệu năng. Theo thử nghiệm [Benchmark](./lambda.md#lambda-%E4%B8%AD%E7%9A%84%E9%80%92%E5%BD%92), nó thường làm hiệu năng giảm từ 2 đến hơn 3 lần.
+    `std::function` sẽ gây ra một phần chi phí hiệu năng. Theo thử nghiệm [Benchmark](./lambda.md#đệ-quy-trong-lambda), nó thường làm hiệu năng giảm từ 2 đến hơn 3 lần.
     
     Nguyên nhân là nó sử dụng kỹ thuật type erasure, kỹ thuật này thường được hiện thực bằng cơ chế hàm ảo; gọi hàm ảo sẽ gây thêm [chi phí](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction).
     
@@ -274,9 +274,9 @@ Nó không phải một đặc tính ngôn ngữ, mà là một [khái niệm ho
 
 `std::function` là một bộ bao bọc hàm đa hình tổng quát, được định nghĩa trong header `<functional>`.
 
-Một thể hiện của `std::function` có thể lưu trữ, sao chép và gọi bất kỳ đối tượng [**callable**](https://zh.cppreference.com/w/cpp/named_req/Callable) nào, bao gồm [**biểu thức lambda**](./lambda.md), con trỏ hàm thành viên hoặc [**đối tượng hàm**](#đối-tượng-hàm) khác.
+Một thể hiện của `std::function` có thể lưu trữ, sao chép và gọi bất kỳ đối tượng [**callable**](https://en.cppreference.com/w/cpp/named_req/Callable) nào, bao gồm [**biểu thức lambda**](./lambda.md), con trỏ hàm thành viên hoặc [**đối tượng hàm**](#đối-tượng-hàm) khác.
 
-Nếu `std::function` không chứa đối tượng callable nào (ví dụ được khởi tạo mặc định), khi gọi nó sẽ ném ngoại lệ [`std::bad_function_call`](https://zh.cppreference.com/w/cpp/utility/functional/bad_function_call).
+Nếu `std::function` không chứa đối tượng callable nào (ví dụ được khởi tạo mặc định), khi gọi nó sẽ ném ngoại lệ [`std::bad_function_call`](https://en.cppreference.com/w/cpp/utility/functional/bad_function_call).
 
 ```cpp
 #include <functional>
@@ -452,7 +452,7 @@ void func(T... args) {
 
 Range là một dãy có thể duyệt, bao gồm mảng, container, view, v.v.
 
-Khi cần thực hiện các thao tác phức tạp trên container hoặc các range khác, [thư viện ranges](https://zh.cppreference.com/w/cpp/ranges) có thể giúp viết thuật toán dễ hơn và rõ ràng hơn.
+Khi cần thực hiện các thao tác phức tạp trên container hoặc các range khác, [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) có thể giúp viết thuật toán dễ hơn và rõ ràng hơn.
 
 ### View
 
@@ -463,10 +463,10 @@ Trong thư viện ranges đã hiện thực một số view thường dùng, đ�
 1.  **Range factory**, dùng để xây dựng một số range đặc biệt. Dùng loại factory này có thể bỏ qua bước tự xây dựng container, giảm chi phí và trực tiếp sinh ra một range.
 2.  **Range adaptor**, cung cấp nhiều kiểu hỗ trợ duyệt đa dạng; vừa có thể gọi như hàm, vừa có thể nối bằng toán tử pipe `|` để gọi dạng chuỗi.
 
-Với vai trò là [**range adaptor closure object**](https://zh.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject), **range adaptor** cũng thuộc về [**đối tượng hàm**](#đối-tượng-hàm); chúng nạp chồng `operator|`, nhờ đó có thể ghép lại với nhau như pipe.
+Với vai trò là [**range adaptor closure object**](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject), **range adaptor** cũng thuộc về [**đối tượng hàm**](#đối-tượng-hàm); chúng nạp chồng `operator|`, nhờ đó có thể ghép lại với nhau như pipe.
 
 ??? note "Toán tử pipe"
-    Ở đây nên hiểu `|` là toán tử pipe, chứ không phải toán tử OR theo bit. Cách dùng này bắt nguồn từ [pipe](https://zh.wikipedia.org/wiki/%E7%AE%A1%E9%81%93_%28Unix%29) trong Linux.
+    Ở đây nên hiểu `|` là toán tử pipe, chứ không phải toán tử OR theo bit. Cách dùng này bắt nguồn từ [pipe](https://en.wikipedia.org/wiki/Pipeline_(Unix)) trong Linux.
 
 Trong các thao tác phức tạp, nó vẫn giữ được tính dễ đọc tốt và có các đặc tính sau:
 
@@ -526,7 +526,7 @@ int main() {
 
 > Trong C++20, namespace std::ranges cung cấp phiên bản có ràng buộc của hầu hết thuật toán. Có thể dùng cặp iterator-sentinel hoặc một range đơn làm đối số để chỉ định phạm vi, đồng thời hỗ trợ projection và callable object là con trỏ đến thành viên. Ngoài ra, kiểu trả về của hầu hết thuật toán cũng được thay đổi để trả về mọi thông tin có khả năng hữu ích được tính trong quá trình thực thi thuật toán.
 
-Các thuật toán này có thể được hiểu là phiên bản cải tiến của thuật toán thư viện chuẩn cũ. Chúng đều là đối tượng hàm, cung cấp overload thân thiện hơn và kiểm tra kiểu tham số đầu vào tốt hơn (dựa trên [`concept`](https://zh.cppreference.com/w/cpp/language/constraints)). Trước tiên, hãy lấy so sánh giữa `std::sort` và `ranges::sort` làm ví dụ:
+Các thuật toán này có thể được hiểu là phiên bản cải tiến của thuật toán thư viện chuẩn cũ. Chúng đều là đối tượng hàm, cung cấp overload thân thiện hơn và kiểm tra kiểu tham số đầu vào tốt hơn (dựa trên [`concept`](https://en.cppreference.com/w/cpp/language/constraints)). Trước tiên, hãy lấy so sánh giữa `std::sort` và `ranges::sort` làm ví dụ:
 
 ```cpp
 #include <algorithm>
@@ -582,4 +582,4 @@ int main() {
 
 ## Tham khảo
 
-1.  [C++ Reference](https://zh.cppreference.com/)
+1.  [C++ Reference](https://en.cppreference.com/)

@@ -580,7 +580,7 @@ for i in range(4):  # Ở đây giả sử nhập 4 dòng dữ liệu
 print(u, v, w)
 ```
 
-Cần lưu ý vòng lặp `for` trong Python khác C/C++ khá nhiều. Vai trò của nó gần với [vòng lặp dựa trên range của C++11](./new.md#%E5%9F%BA%E4%BA%8E%E8%8C%83%E5%9B%B4%E7%9A%84-for-%E5%BE%AA%E7%8E%AF): về bản chất là lặp qua các phần tử trong sequence. Ví dụ, nếu muốn lặp qua chỉ số mảng, cần lặp qua `range(len(lst))`, chứ không phải thật sự định nghĩa điều kiện bắt đầu và kết thúc. Vì vậy nó không linh hoạt như C/C++.
+Cần lưu ý vòng lặp `for` trong Python khác C/C++ khá nhiều. Vai trò của nó gần với [vòng lặp dựa trên range của C++11](./new.md#vòng-lặp-for-dựa-trên-phạm-vi): về bản chất là lặp qua các phần tử trong sequence. Ví dụ, nếu muốn lặp qua chỉ số mảng, cần lặp qua `range(len(lst))`, chứ không phải thật sự định nghĩa điều kiện bắt đầu và kết thúc. Vì vậy nó không linh hoạt như C/C++.
 
 Dưới đây dùng vòng lặp `while` để minh họa cách nhập khi số dòng không cố định:
 
