@@ -388,6 +388,8 @@ MkDocs source layout intact.
   clangd, and editing workflow page.
 - `docs/tools/editor/vim.md`: translated the Vim editor introduction and
   command tutorial.
+- `docs/tools/editor/emacs.md`: translated the Emacs introductory tutorial and
+  configuration examples.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

@@ -1,198 +1,198 @@
 author: ouuan, akakw1, Ir1d, partychicken, Xeonacid
 
-本页面为 Emacs 的入门教程．
+Trang này là hướng dẫn nhập môn Emacs.
 
-> 15 分钟入门 Emacs．
+> Nhập môn Emacs trong 15 phút.
 
-## 简介
+## Giới thiệu
 
-Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置就能使用，但是想要非常熟练地使用 Emacs 进行各项工作还是需要一定的时间．
+Emacs là một trình soạn thảo rất dễ bắt đầu; chỉ cần vài dòng cấu hình ngắn là có thể dùng. Tuy nhiên, để dùng Emacs thật thành thạo cho nhiều công việc khác nhau thì vẫn cần một khoảng thời gian nhất định.
 
-作为入门教程，这里仅介绍 Emacs 的基本功能，以及较方便地用 Emacs 编写、调试代码的方法．
+Là một hướng dẫn nhập môn, trang này chỉ giới thiệu các chức năng cơ bản của Emacs, cũng như cách dùng Emacs để viết và gỡ lỗi mã tương đối thuận tiện.
 
-## 入门
+## Nhập môn
 
-### 命令
+### Lệnh
 
-命令在 Emacs 中有很大的作用．
+Lệnh có vai trò rất lớn trong Emacs.
 
-使用 Application 键[^note1]（Windows 系统下 Emacs 未指定这个键，需要手动设置）或者快捷键 M-x（<kbd>Alt</kbd>+<kbd>x</kbd>）可以打开命令输入，输入完按下回车可以执行命令．
+Dùng phím Application[^note1] (trên Windows, Emacs chưa gán phím này, cần tự thiết lập) hoặc phím tắt M-x (<kbd>Alt</kbd>+<kbd>x</kbd>) để mở ô nhập lệnh; sau khi nhập xong, nhấn Enter để thực thi lệnh.
 
-通常使用 `es` 或者 `eshell` 命令来打开 Eshell（类似一个终端）．
+Thường dùng lệnh `es` hoặc `eshell` để mở Eshell (tương tự một terminal).
 
-输入命令通常可以用快捷键代替．
+Việc nhập lệnh thường có thể được thay bằng phím tắt.
 
-### 缓冲 (buffer)
+### Buffer
 
-缓冲即打开的文件和进程，在不保存的情况下，在缓冲中修改并不会修改到文件．
+Buffer là các tệp và tiến trình đang mở. Khi chưa lưu, sửa đổi trong buffer sẽ không sửa trực tiếp vào tệp.
 
-在缓冲区的底部点击缓冲的名字或者使用快捷键可以切换缓冲．
+Có thể nhấp tên buffer ở đáy vùng buffer hoặc dùng phím tắt để chuyển buffer.
 
-### 编译、调试和运行
+### Biên dịch, gỡ lỗi và chạy
 
-编译和调试功能的入口在顶部菜单栏的 Tools 下拉栏．使用者也可以通过命令或者自定义快捷键使用编译和调试功能．
+Lối vào chức năng biên dịch và gỡ lỗi nằm trong menu thả xuống Tools trên thanh menu phía trên. Người dùng cũng có thể dùng lệnh hoặc phím tắt tự định nghĩa để dùng chức năng biên dịch và gỡ lỗi.
 
-可以使用终端或 Eshell 运行程序．
+Có thể dùng terminal hoặc Eshell để chạy chương trình.
 
-按下 Tools 中的调试 (gud-gdb) 后，输入程序名（一般会自动输好，但如果中途将程序另存为或者打开了两个需要调试的程序，**自动输好的文件名可能会有误**）即可开始调试．
+Sau khi nhấn debug (gud-gdb) trong Tools, nhập tên chương trình (thường sẽ được tự động điền sẵn, nhưng nếu giữa chừng lưu chương trình thành tên khác hoặc mở hai chương trình cần gỡ lỗi, **tên tệp tự động điền có thể sai**) là có thể bắt đầu gỡ lỗi.
 
-### 分屏
+### Chia cửa sổ
 
-这个功能能让使用者同时查看各个缓冲的内容，而不需要来回切换缓冲，方便测试、调试代码．
+Chức năng này cho phép người dùng đồng thời xem nội dung của nhiều buffer mà không cần chuyển qua lại giữa các buffer, thuận tiện cho kiểm thử và gỡ lỗi mã.
 
-分屏功能可以同时显示多个窗口，用鼠标拖动窗口的边缘可以缩放窗口．
+Chức năng chia cửa sổ có thể hiển thị nhiều cửa sổ cùng lúc; kéo mép cửa sổ bằng chuột để thay đổi kích thước cửa sổ.
 
-几个快捷键：
+Một vài phím tắt:
 
--   删除分屏 "C-x 0"：将这个分屏删去
--   横向分屏 "C-x 3"：将这个分屏横向分成两半
--   纵向分屏 "C-x 2"：将这个分屏纵向分成两半
+-   Xóa cửa sổ chia "C-x 0": xóa cửa sổ chia này.
+-   Chia ngang "C-x 3": chia cửa sổ này thành hai nửa theo chiều ngang.
+-   Chia dọc "C-x 2": chia cửa sổ này thành hai nửa theo chiều dọc.
 
-推荐的窗口布局为将窗口分为四块：先横向分，调整一块的宽度约为 3/4 屏，作为编辑窗口．将另一块横向分，一块作为调试和编译信息显示的窗口，另一块再纵向分，一块打开输入文件，一块打开输出文件．
+Bố cục cửa sổ được khuyến nghị là chia cửa sổ thành bốn phần: trước hết chia ngang, điều chỉnh một phần rộng khoảng 3/4 màn hình để làm cửa sổ chỉnh sửa. Chia ngang phần còn lại; một phần dùng để hiển thị thông tin gỡ lỗi và biên dịch, phần còn lại lại chia dọc, một phần mở tệp input, một phần mở tệp output.
 
 ![](./images/emacs.png)
 
-### 快捷键
+### Phím tắt
 
-Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率．使用者可以在配置中自定义快捷键或者设置快捷键的映射．
+Emacs có hệ thống phím tắt cực kỳ phong phú, có thể nâng cao đáng kể hiệu suất làm việc. Người dùng có thể tự định nghĩa phím tắt hoặc thiết lập ánh xạ phím tắt trong cấu hình.
 
-由于快捷键过多，所以 Emacs 快捷键的使用与操作系统不同．
+Do số lượng phím tắt quá nhiều, cách dùng phím tắt của Emacs khác với hệ điều hành.
 
-为了方便描述，做如下约定：
+Để tiện mô tả, ta dùng quy ước sau:
 
-| 字符 | 键位              |
-| -- | --------------- |
-| C  | <kbd>Ctrl</kbd> |
-| M  | <kbd>Alt</kbd>  |
-| ？  | 任意键位            |
+| Ký tự | Phím |
+| ----- | ---- |
+| C | <kbd>Ctrl</kbd> |
+| M | <kbd>Alt</kbd> |
+| ? | Phím bất kỳ |
 
-一般有以下三种：
+Thông thường có ba dạng sau:
 
--   `F?`、`ESC`：直接按下对应的功能键．
--   `M-?`、`C-?`、`C-M-?`：按下<kbd>Alt</kbd>或者<kbd>Ctrl</kbd>的同时按下 `?`．
--   `? ?`：先按下第一个 `?` 代表的键，松开再按下第二个 `?` 代表的键．
+-   `F?`, `ESC`: nhấn trực tiếp phím chức năng tương ứng.
+-   `M-?`, `C-?`, `C-M-?`: giữ <kbd>Alt</kbd> hoặc <kbd>Ctrl</kbd> đồng thời nhấn `?`.
+-   `? ?`: trước hết nhấn phím tương ứng với `?` đầu tiên, thả ra rồi nhấn phím tương ứng với `?` thứ hai.
 
-下面是一些常用的快捷键：
+Dưới đây là một số phím tắt thường dùng:
 
--   `C-x h`：全选
--   `C-x left`、`C-x right`：切换到上/下一个缓冲
--   `C-x d`：打开一个目录
--   `C-x C-f`：打开一个文件（如果不存在文件则新建文件）
+-   `C-x h`: chọn tất cả.
+-   `C-x left`, `C-x right`: chuyển tới buffer trước/sau.
+-   `C-x d`: mở một thư mục.
+-   `C-x C-f`: mở một tệp (nếu tệp không tồn tại thì tạo tệp mới).
 
-## 个性化
+## Cá nhân hóa
 
-刚安装好的 Emacs 外观难看且不好使用，因此需要对其进行个性化设置．
+Emacs mới cài có giao diện xấu và không dễ dùng, vì vậy cần cá nhân hóa nó.
 
-由于配置不好记，所以部分可以直接设置的部分建议不要记配置．
+Vì cấu hình không dễ nhớ, nên với một số mục có thể thiết lập trực tiếp, khuyến nghị không cần nhớ cấu hình.
 
-### 直接设置
+### Thiết lập trực tiếp
 
--   Options：`Highlight Matching Parentheses` 高亮匹配括号
--   Options：`Blink Cursor` 设置光标闪烁
--   Options Show/Hide：`Tool Bar` 显示/不显示工具栏（默认显示，建议不显示）
--   Options：`Use CUA Keys` 勾选后可以使用 Ctrl + C,Ctrl + V 等快捷键进行复制粘贴
--   Options Customize-Emacs：`Custom Theme` 选择配色方案，选择完后需要点击保存
--   Options：`Save Options`  **保存配置**
+-   Options: `Highlight Matching Parentheses` tô sáng cặp ngoặc khớp.
+-   Options: `Blink Cursor` thiết lập con trỏ nhấp nháy.
+-   Options Show/Hide: `Tool Bar` hiển thị/ẩn thanh công cụ (mặc định hiển thị, khuyến nghị ẩn).
+-   Options: `Use CUA Keys` sau khi chọn có thể dùng các phím tắt như Ctrl + C, Ctrl + V để sao chép/dán.
+-   Options Customize-Emacs: `Custom Theme` chọn bảng màu; sau khi chọn xong cần nhấp lưu.
+-   Options: `Save Options` **lưu cấu hình**.
 
-### 配置
+### Cấu hình
 
-在 home 目录下显示隐藏文件（Windows 系统在 **用户目录** 的 `AppData\Roaming` 目录下），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可．如果 Emacs 已打开，则需要重启 Emacs，配置才能生效．
+Hiển thị tệp ẩn trong thư mục home (trên Windows là thư mục `AppData\Roaming` trong **thư mục người dùng**); `.emacs` chính là tệp cấu hình (nếu không có thì nghĩa là trước đó chưa từng lưu). Mở tệp này để sửa. Nếu Emacs đang mở, cần khởi động lại Emacs để cấu hình có hiệu lực.
 
-考场推荐的配置如下．
+Cấu hình khuyến nghị cho phòng thi như sau.
 
 ```text
-;;设置一键编译 可以自行添加参数 难背考场不建议使用 不建议依赖一键编译
+;; Dat bien dich mot phim; co the tu them tham so; kho nho nen khong khuyen nghi dung o phong thi; khong nen phu thuoc vao bien dich mot phim
 (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
 (global-set-key [f9] 'compile-file)
-;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
+;;;; Dat phim tat bien dich (neu da dat bien dich mot phim thi khong duoc xung dot)
 ;;(global-set-key [f9] 'compile)
 
-(global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
-(global-set-key (kbd "C-z") 'undo) ;;撤销快捷键
-(global-set-key [f10] 'gud-gdb) ;;GDB调试快捷键
-(global-set-key (kbd "RET") 'newline-and-indent) ;;换行自动缩进
-(global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
-(setq-default kill-ring-max 65535) ;;扩大可撤销记录
+(global-set-key (kbd "C-a") 'mark-whole-buffer) ;; Phim tat chon tat ca
+(global-set-key (kbd "C-z") 'undo) ;; Phim tat hoan tac
+(global-set-key [f10] 'gud-gdb) ;; Phim tat go loi GDB
+(global-set-key (kbd "RET") 'newline-and-indent) ;; Xuong dong tu dong thut le
+(global-set-key (kbd "C-s") 'save-buffer) ;; Dat phim tat luu
+(setq-default kill-ring-max 65535) ;; Mo rong lich su co the hoan tac
 
-;;C++ 代码风格 一般控制缩进规则
-;;;"bsd" 所有大括号换行
-;;;"java" 所有大括号不换行．else 接在右大括号后面
-;;;"awk" 只有命名空间旁、定义类、定义函数时的大括号换行．else 接在右大括号后面
-;;;"linux" 只有命名空间旁、定义类、定义函数时的大括号换行．else 接在右大括号后面．一般来说，这个风格应该有 8 格的空格缩进
+;; Kieu ma C++; thuong dung de dieu khien quy tac thut le
+;;;"bsd" tat ca dau ngoac nhon xuong dong
+;;;"java" tat ca dau ngoac nhon khong xuong dong. else nam sau dau ngoac nhon phai
+;;;"awk" chi dau ngoac nhon canh namespace, dinh nghia lop, dinh nghia ham moi xuong dong. else nam sau dau ngoac nhon phai
+;;;"linux" chi dau ngoac nhon canh namespace, dinh nghia lop, dinh nghia ham moi xuong dong. else nam sau dau ngoac nhon phai. Noi chung kieu nay nen co thut le 8 dau cach
 (setq-default c-default-style "awk")
 ```
 
-??? note "完整配置"
+??? note "Cấu hình đầy đủ"
     ```text
-    ;;设置一键编译
+    ;; Dat bien dich mot phim
     (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
     (global-set-key [f9] 'compile-file)
-    ;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
+    ;;;; Dat phim tat bien dich (neu da dat bien dich mot phim thi khong duoc xung dot)
     ;;(global-set-key [f9] 'compile)
-    
-    ;;考场必备
-    (global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
-    (global-set-key (kbd "C-z") 'undo) ;;撤销快捷键
-    (global-set-key [f10] 'gud-gdb) ;;GDB调试快捷键
-    (global-set-key (kbd "RET") 'newline-and-indent) ;;换行自动缩进
-    (global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
-    (setq-default kill-ring-max 65535) ;;扩大可撤销记录
-    ;;(define-key key-translation-map [apps] (kbd "M-x")) ;; windows 系统下设置命令快捷键
-    
-    ;;设置缩进
-    ;;;C++ 代码缩进长度．
+
+    ;; Can thiet trong phong thi
+    (global-set-key (kbd "C-a") 'mark-whole-buffer) ;; Phim tat chon tat ca
+    (global-set-key (kbd "C-z") 'undo) ;; Phim tat hoan tac
+    (global-set-key [f10] 'gud-gdb) ;; Phim tat go loi GDB
+    (global-set-key (kbd "RET") 'newline-and-indent) ;; Xuong dong tu dong thut le
+    (global-set-key (kbd "C-s") 'save-buffer) ;; Dat phim tat luu
+    (setq-default kill-ring-max 65535) ;; Mo rong lich su co the hoan tac
+    ;;(define-key key-translation-map [apps] (kbd "M-x")) ;; Dat phim tat lenh tren Windows
+
+    ;; Dat thut le
+    ;;; Do dai thut le ma C++.
     (setq-default c-basic-offset 4)
-    ;;;使用 tab 缩进
+    ;;; Dung tab de thut le
     (setq-default indent-tabs-mode t)
-    ;;;tab 的长度．务必和缩进长度一致
+    ;;; Do dai tab. Nhat dinh phai trung voi do dai thut le
     (setq-default default-tab-width 4)
     (setq-default tab-width 4)
-    
-    ;;设置默认编码环境
+
+    ;; Dat moi truong ma hoa mac dinh
     (set-language-environment "UTF-8")
     (set-default-coding-systems 'utf-8)
-    
-    ;;不显示欢迎页面
+
+    ;; Khong hien trang chao mung
     (setq-default inhibit-startup-screen t)
-    
-    ;;设置标题
+
+    ;; Dat tieu de
     (setq-default frame-title-format "")
-    
-    ;;显示行号
+
+    ;; Hien so dong
     (global-display-line-numbers-mode t)
-    
-    ;;高亮
-    (global-hl-line-mode 1);;高亮当前行
-    (show-paren-mode t);;高亮匹配括号
-    (global-font-lock-mode t);;语法高亮
-    
-    ;;允许emacs和外部其他程序的粘贴 好像默认允许
+
+    ;; To sang
+    (global-hl-line-mode 1);; To sang dong hien tai
+    (show-paren-mode t);; To sang cap ngoac khop
+    (global-font-lock-mode t);; To sang cu phap
+
+    ;; Cho phep dan giua emacs va cac chuong trinh ben ngoai; hinh nhu mac dinh da cho phep
     (setq-default x-select-enable-clipboard t)
-    
-    ;;设置字体是 Ubuntu Mono 的 16 号，如果字体不存在会报错
+
+    ;; Dat font la Ubuntu Mono co 16 point; neu font khong ton tai se bao loi
     (set-face-attribute 'default nil :font "Ubuntu Mono-16")
-    ;(set-face-attribute 'default nil :font "Consolas-16") ;; windows 系统请用这条
-    
-    ;;鼠标滚轮支持
+    ;(set-face-attribute 'default nil :font "Consolas-16") ;; He Windows hay dung dong nay
+
+    ;; Ho tro con lan chuot
     (mouse-wheel-mode t)
-    
-    ;;设置光标形状为竖线（默认为方块）
+
+    ;; Dat hinh dang con tro thanh vach dung (mac dinh la khoi vuong)
     (setq-default cursor-type 'bar)
-    
-    ;;回答 yes/no 改成回答 y/n
+
+    ;; Doi cau tra loi yes/no thanh y/n
     (fset 'yes-or-no-p 'y-or-n-p)
-    
-    ;;透明度
+
+    ;; Do trong suot
     (set-frame-parameter (selected-frame) 'alpha (list 85 60))
     (add-to-list 'default-frame-alist (cons 'alpha (list 85 60)))
-    
-    ;;减少页面滚动的行数，防止整页地滚动
+
+    ;; Giam so dong cuon trang, tranh cuon ca trang
     (setq-default scroll-margin 3 scroll-conservatively 10000)
-    
-    ;;优化文件树结构
+
+    ;; Toi uu cau truc cay tep
     (ido-mode t)
-    
-    ;;配色方案
+
+    ;; Bang mau
     (setq default-frame-alist
              '((vertical-scroll-bars)
                (top . 25)
@@ -208,7 +208,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率．使�
                (scroll-bar-lines . 0)
                (right-fringe)
                (left-fringe)))
-    
+
     (set-face-background 'highlight "gray5")
     (set-face-foreground 'region "cyan")
     (set-face-background 'region "blue")
@@ -216,30 +216,30 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率．使�
     (set-face-background 'secondary-selection "darkblue")
     (set-cursor-color "wheat")
     (set-mouse-color "wheat")
-    
+
     (custom-set-variables
      '(ansi-color-faces-vector
        [default default default italic underline success warning error])
-    ;;启动 Ctrl-x Ctrl-c Ctrl-v = 剪切 复制 粘贴
+    ;; Bat Ctrl-x Ctrl-c Ctrl-v = cat sao-chep dan
      '(cua-mode t nil (cua-base))
      '(show-paren-mode t)
-    ;;隐藏工具栏
+    ;; An thanh cong cu
      '(tool-bar-mode nil))
-    ;;关闭光标闪烁
+    ;; Tat con tro nhap nhay
      '(blink-cursor-mode nil)
     (custom-set-faces)
     ```
 
-### 拓展阅读
+### Đọc thêm
 
-要以终端模式启动 Emacs，在启动时添加参数 `-nw`．Emacs 有多种变体，如采用 native-comp 来减少延迟的 [GCC Emacs](http://akrl.sdf.org/gccemacs.html) 及其纯 GTK 版本变体、针对 macOS 优化的 Emacs Macport．
+Để khởi động Emacs ở chế độ terminal, thêm tham số `-nw` khi khởi động. Emacs có nhiều biến thể, chẳng hạn [GCC Emacs](http://akrl.sdf.org/gccemacs.html) dùng native-comp để giảm độ trễ và biến thể GTK thuần của nó, hoặc Emacs Macport được tối ưu cho macOS.
 
-Emacs 有中心化的软件仓库，配置后可通过 `M-x package-install` 来安装插件．使用 [镜像站](https://mirrors.bfsu.edu.cn/help/elpa/) 可以加快下载速度．
+Emacs có kho phần mềm tập trung; sau khi cấu hình, có thể dùng `M-x package-install` để cài plugin. Dùng [mirror](https://mirrors.bfsu.edu.cn/help/elpa/) có thể tăng tốc tải xuống.
 
-Emacs 可以使用语言服务器（Language Server Protocol）来提高编辑体验，目前推荐的 C++ 后端是 [Clangd](https://clangd.llvm.org/)．前端可以采用 [Eglot](https://github.com/joaotavora/eglot) 或 [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/)，参阅 [此条目](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) 可能对选择前端有所帮助．
+Emacs có thể dùng language server (Language Server Protocol) để cải thiện trải nghiệm chỉnh sửa. Backend C++ hiện được khuyến nghị là [Clangd](https://clangd.llvm.org/). Frontend có thể dùng [Eglot](https://github.com/joaotavora/eglot) hoặc [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/); tham khảo [mục này](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) có thể hữu ích khi chọn frontend.
 
-拓展名为 `.org` 的 Org Mode 文档可以通过 [Pandoc](https://pandoc.org/) 转换为 Markdown 文档．
+Tài liệu Org Mode có phần mở rộng `.org` có thể được chuyển thành tài liệu Markdown bằng [Pandoc](https://pandoc.org/).
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^note1]: 该键的作用是调出鼠标右键菜单，一般为右<kbd>Ctrl</kbd>左边的第一个键．
+[^note1]: Phím này dùng để mở menu chuột phải, thường là phím đầu tiên bên trái phím <kbd>Ctrl</kbd> phải.
