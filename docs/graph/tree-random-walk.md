@@ -1,26 +1,26 @@
-给定一棵有根树，树的某个结点上有一个硬币，在某一时刻硬币会等概率地移动到邻接结点上，问硬币移动到邻接结点上的期望距离．
+Cho một cây có gốc. Trên một đỉnh nào đó của cây có một đồng xu. Tại mỗi thời điểm, đồng xu sẽ di chuyển đến một đỉnh kề với xác suất bằng nhau. Hỏi kỳ vọng khoảng cách mà đồng xu cần đi để di chuyển đến một đỉnh kề.
 
-## 需要用到的定义
+## Các định nghĩa cần dùng
 
--   $T=(V,E)$: 所讨论的树
--   $d(u)$: 结点 $u$ 的度数
--   $w(u,v)$: 结点 $u$ 与结点 $v$ 之间的边的边权
--   $p_u$: 结点 $u$ 的父结点
--   $\textit{root}$: 树的根结点
--   $\textit{son}_u$: 结点 $u$ 的子结点集合
--   $\textit{sibling}_u$: 结点 $u$ 的兄弟结点集合
+-   $T=(V,E)$: cây đang xét
+-   $d(u)$: bậc của đỉnh $u$
+-   $w(u,v)$: trọng số của cạnh giữa đỉnh $u$ và đỉnh $v$
+-   $p_u$: đỉnh cha của đỉnh $u$
+-   $\textit{root}$: đỉnh gốc của cây
+-   $\textit{son}_u$: tập các đỉnh con của đỉnh $u$
+-   $\textit{sibling}_u$: tập các đỉnh anh em của đỉnh $u$
 
-## 向父结点走的期望距离
+## Kỳ vọng khoảng cách khi đi về đỉnh cha
 
-设 $f(u)$ 代表 $u$ 结点走到其父结点 $p_u$ 的期望距离，则有：
+Đặt $f(u)$ là kỳ vọng khoảng cách để đi từ đỉnh $u$ đến đỉnh cha $p_u$ của nó. Khi đó:
 
 $$
 f(u) = \cfrac{w(u,p_u) + \sum\limits_{v \in \textit{son}_u}(w(u,v) + f(v) + f(u))}{d(u)}
 $$
 
-分子中的前半部分代表直接走向了父结点，后半部分代表先走向了子结点再由子结点走回来然后再向父结点走；分母 $d(u)$ 代表从 $u$ 结点走向其任何邻接点的概率相同．
+Phần đầu của tử số biểu thị trường hợp đi trực tiếp đến đỉnh cha, còn phần sau biểu thị trường hợp trước tiên đi đến một đỉnh con, rồi từ đỉnh con đó quay lại, sau đó mới đi về đỉnh cha. Mẫu số $d(u)$ biểu thị rằng từ đỉnh $u$, xác suất đi đến mỗi đỉnh kề là như nhau.
 
-化简如下：
+Rút gọn như sau:
 
 $$
 \begin{aligned}
@@ -31,27 +31,27 @@ $$
 \end{aligned}
 $$
 
-对于叶子结点 $l$，初始状态为 $f(l) = w(p_l, l)$．
+Với đỉnh lá $l$, trạng thái ban đầu là $f(l) = w(p_l, l)$.
 
-当树上所有边的边权都为 $1$ 时，上式可化为：
+Khi mọi cạnh trên cây đều có trọng số bằng $1$, công thức trên có thể rút gọn thành:
 
 $$
 f(u) = d(u) + \sum\limits_{v \in \textit{son}_u}f(v)
 $$
 
-即 $u$ 子树的所有结点的度数和，也即 $u$ 子树大小的两倍 $-1$（每个结点连向其父亲的边都有且只有一条，除 $u$ 与 $p_u$ 之间的边只有 $1$ 点度数的贡献外，每条边会产生 $2$ 点度数的贡献）．
+Tức là tổng bậc của tất cả các đỉnh trong cây con của $u$, cũng chính là hai lần kích thước cây con của $u$ trừ $1$. Lý do là mỗi đỉnh đều có đúng một cạnh nối với cha của nó. Ngoại trừ cạnh giữa $u$ và $p_u$ chỉ đóng góp $1$ đơn vị bậc, mỗi cạnh còn lại đóng góp $2$ đơn vị bậc.
 
-## 向子结点走的期望距离
+## Kỳ vọng khoảng cách khi đi đến đỉnh con
 
-设 $g(u)$ 代表 $p_u$ 结点走到其子结点 $u$ 的期望距离，则有：
+Đặt $g(u)$ là kỳ vọng khoảng cách để đi từ đỉnh $p_u$ đến đỉnh con $u$ của nó. Khi đó:
 
 $$
 g(u) = \cfrac{w(p_u,u) + \left(w(p_u,p_{p_u})+g(p_u)+g(u)\right) + \sum\limits_{s \in \textit{sibling}_u}(w(p_u,s)+f(s)+g(u))}{d(p_u)}
 $$
 
-分子中的第一部分代表直接走向了子结点 $u$，第二部分代表先走向了父结点再由父结点走回来然后再向 $u$ 结点走，第三部分代表先走向 $u$ 结点的兄弟结点再由其走回来然后再向 $u$ 结点走；分母 $d(p_u)$ 代表从 $p_u$ 结点走向其任何邻接点的概率相同．
+Phần thứ nhất của tử số biểu thị trường hợp đi trực tiếp đến đỉnh con $u$. Phần thứ hai biểu thị trường hợp trước tiên đi đến đỉnh cha, rồi từ đỉnh cha đó quay lại, sau đó mới đi đến đỉnh $u$. Phần thứ ba biểu thị trường hợp trước tiên đi đến một đỉnh anh em của $u$, rồi từ đỉnh đó quay lại, sau đó mới đi đến đỉnh $u$. Mẫu số $d(p_u)$ biểu thị rằng từ đỉnh $p_u$, xác suất đi đến mỗi đỉnh kề là như nhau.
 
-化简如下：
+Rút gọn như sau:
 
 $$
 \begin{aligned}
@@ -64,9 +64,9 @@ $$
 \end{aligned}
 $$
 
-初始状态为 $g(\text{root}) = 0$．
+Trạng thái ban đầu là $g(\text{root}) = 0$.
 
-## 代码实现（以无权树为例）
+## Cài đặt mã nguồn (ví dụ với cây không trọng số)
 
 ```cpp
 vector<int> G[MAXN];

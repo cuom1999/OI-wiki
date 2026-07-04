@@ -1,151 +1,151 @@
 author: Backl1ght
 
-AHU 算法用于判断两棵有根树是否同构．
+Thuật toán AHU được dùng để xác định hai cây có gốc có đẳng cấu hay không.
 
-判断树同构外还有一种常见的做法是 [树哈希](tree-hash.md)．
+Ngoài AHU, một cách phổ biến khác để kiểm tra đẳng cấu cây là [băm cây](tree-hash.md).
 
-前置知识：[树基础](tree-basic.md)，[树的重心](tree-centroid.md)
+Kiến thức cần có: [kiến thức cơ bản về cây](tree-basic.md), [trọng tâm của cây](tree-centroid.md).
 
-建议配合参考资料里给的例子观看．
+Nên đọc kèm các ví dụ trong phần tài liệu tham khảo.
 
-## 树同构的定义
+## Định nghĩa đẳng cấu cây
 
-### 有根树同构
+### Đẳng cấu cây có gốc
 
-对于两棵有根树 $T_1(V_1,E_1,r_1)$ 和 $T_2(V_2,E_2,r_2)$，如果存在一个双射 $\varphi: V_1 \rightarrow V_2$，使得
-
-$$
-\forall u,v \in V_1,(u,v) \in E_1 \iff (\varphi(u),\varphi(v))  \in E_2
-$$
-
-**且** $\varphi(r_1)=r_2$ 成立，那么称有根树 $T_1(V_1,E_1,r_1)$ 和 $T_2(V_2,E_2,r_2)$ 同构．
-
-### 无根树同构
-
-对于两棵无根树 $T_1(V_1,E_1)$ 和 $T_2(V_2,E_2)$，如果存在一个双射 $\varphi: V_1 \rightarrow V_2$，使得
+Với hai cây có gốc $T_1(V_1,E_1,r_1)$ và $T_2(V_2,E_2,r_2)$, nếu tồn tại một song ánh $\varphi: V_1 \rightarrow V_2$ sao cho
 
 $$
 \forall u,v \in V_1,(u,v) \in E_1 \iff (\varphi(u),\varphi(v))  \in E_2
 $$
 
-成立，那么称无根树 $T_1(V_1,E_1)$ 和 $T_2(V_2,E_2)$ 同构．
+**và** $\varphi(r_1)=r_2$, thì ta nói hai cây có gốc $T_1(V_1,E_1,r_1)$ và $T_2(V_2,E_2,r_2)$ đẳng cấu.
 
-简单的说就是，如果能够通过把树 $T_1$ 的所有节点重新标号，使得树 $T_1$ 和树 $T_2$  **完全相同**，那么称这两棵树同构．
+### Đẳng cấu cây không gốc
 
-## 问题的转化
+Với hai cây không gốc $T_1(V_1,E_1)$ và $T_2(V_2,E_2)$, nếu tồn tại một song ánh $\varphi: V_1 \rightarrow V_2$ sao cho
 
-无根树同构问题可以转化为有根树同构问题．具体方法如下：
+$$
+\forall u,v \in V_1,(u,v) \in E_1 \iff (\varphi(u),\varphi(v))  \in E_2
+$$
 
-对于无根树 $T_1(V_1, E_1)$ 和 $T_2(V_2,E_2)$，先分别找出它们的 **所有** 重心．
+thì ta nói hai cây không gốc $T_1(V_1,E_1)$ và $T_2(V_2,E_2)$ đẳng cấu.
 
--   如果这两棵无根树重心数量不同，那么这两棵树不同构．
--   如果这两颗无根树重心数量都为 $1$，分别记为 $c_1$ 和 $c_2$，那么如果有根树 $T_1(V_1,E_1,c_1)$ 和有根树 $T_2(V_2,E_2,c_2)$ 同构，那么无根树 $T_1(V_1, E_1)$ 和 $T_2(V_2,E_2)$ 同构，反之则不同构．
--   如果这两颗无根树重心数量都为 $2$，分别记为 $c_1,c'_1$ 和 $c_2,c'_2$，那么如果有根树 $T_1(V_1,E_1,c_1)$ 和有根树 $T_2(V_2,E_2,c_2)$ 同构 **或者** 有根树 $T_1(V_1,E_1,c'_1)$ 和 $T_2(V_2,E_2,c_2)$ 同构，那么无根树 $T_1(V_1, E_1)$ 和 $T_2(V_2,E_2)$ 同构，反之则不同构．
+Nói đơn giản, nếu có thể đánh nhãn lại toàn bộ các đỉnh của cây $T_1$ để $T_1$ và $T_2$ **hoàn toàn giống nhau**, thì hai cây đó được gọi là đẳng cấu.
 
-所以，只要解决了有根树同构问题，我们就可以把无根树同构问题根据上述方法转化成有根树同构的问题，进而解决无根树同构的问题．
+## Chuyển hóa bài toán
 
-假设有一个可以 $O(\left|V\right|)$ 解决有根树同构问题的算法，那么根据上述方法我们也可以在 $O(\left|V\right|)$ 的时间内解决无根树同构问题．
+Bài toán đẳng cấu cây không gốc có thể chuyển thành bài toán đẳng cấu cây có gốc. Cách làm cụ thể như sau:
 
-## 朴素的 AHU 算法
+Với hai cây không gốc $T_1(V_1, E_1)$ và $T_2(V_2,E_2)$, trước hết tìm **tất cả** các trọng tâm của từng cây.
 
-朴素的 AHU 算法是基于括号序的．
+-   Nếu số lượng trọng tâm của hai cây không gốc khác nhau, thì hai cây không đẳng cấu.
+-   Nếu mỗi cây không gốc đều có đúng $1$ trọng tâm, lần lượt ký hiệu là $c_1$ và $c_2$, thì nếu cây có gốc $T_1(V_1,E_1,c_1)$ và cây có gốc $T_2(V_2,E_2,c_2)$ đẳng cấu, hai cây không gốc $T_1(V_1, E_1)$ và $T_2(V_2,E_2)$ cũng đẳng cấu. Ngược lại, chúng không đẳng cấu.
+-   Nếu mỗi cây không gốc đều có đúng $2$ trọng tâm, lần lượt ký hiệu là $c_1,c'_1$ và $c_2,c'_2$, thì nếu cây có gốc $T_1(V_1,E_1,c_1)$ và cây có gốc $T_2(V_2,E_2,c_2)$ đẳng cấu **hoặc** cây có gốc $T_1(V_1,E_1,c'_1)$ và $T_2(V_2,E_2,c_2)$ đẳng cấu, hai cây không gốc $T_1(V_1, E_1)$ và $T_2(V_2,E_2)$ đẳng cấu. Ngược lại, chúng không đẳng cấu.
 
-### 原理 1
+Vì vậy, chỉ cần giải được bài toán đẳng cấu cây có gốc, ta có thể chuyển bài toán đẳng cấu cây không gốc thành bài toán đẳng cấu cây có gốc theo cách trên, từ đó giải bài toán đẳng cấu cây không gốc.
 
-我们知道一段合法的括号序和一棵有根树唯一对应，而且一棵树的括号序是由它的子树的括号序拼接而成的．如果我们通过改变子树括号序拼接的顺序，从而获得了一段新的括号序，那么新括号序对应的树和原括号序对应的树同构．
+Giả sử có một thuật toán giải bài toán đẳng cấu cây có gốc trong $O(\left|V\right|)$, thì theo cách trên ta cũng có thể giải bài toán đẳng cấu cây không gốc trong thời gian $O(\left|V\right|)$.
 
-### 原理 2
+## Thuật toán AHU đơn giản
 
-树的同构关系是传递的．既如果 $T_1$ 和 $T_2$ 同构，$T_2$ 和 $T_3$ 同构，那么 $T_1$ 和 $T_3$ 同构．
+Thuật toán AHU đơn giản dựa trên dãy ngoặc.
 
-### 推论
+### Nguyên lý 1
 
-考虑求树括号序的递归算法，我们在回溯时拼接子树的括号序．如果在拼接的时候将字典序小的序列先拼接，并将最后的结果记为 $NAME$．
+Ta biết rằng một dãy ngoặc hợp lệ tương ứng duy nhất với một cây có gốc, và dãy ngoặc của một cây được tạo bằng cách nối các dãy ngoặc của những cây con của nó. Nếu ta thay đổi thứ tự nối các dãy ngoặc của cây con để thu được một dãy ngoặc mới, thì cây tương ứng với dãy ngoặc mới đẳng cấu với cây tương ứng với dãy ngoặc ban đầu.
 
-将以节点 $r$ 为根的子树的 $NAME$ 作为节点 $r$ 的 $NAME$，记为 $NAME(r)$，那么对于有根树 $T_1(V_1,E_1,r_1)$ 和 $T_2(V_2,E_2,r_2)$，如果 $NAME(r_1)=NAME(r_2)$，那么 $T_1$ 和 $T_2$ 同构．
+### Nguyên lý 2
 
-### 命名算法
+Quan hệ đẳng cấu của cây có tính bắc cầu. Tức là nếu $T_1$ đẳng cấu với $T_2$, và $T_2$ đẳng cấu với $T_3$, thì $T_1$ đẳng cấu với $T_3$.
 
-???+ note "实现"
+### Hệ quả
+
+Xét thuật toán đệ quy để tính dãy ngoặc của cây: khi quay lui, ta nối các dãy ngoặc của cây con. Nếu khi nối, ta đặt các dãy có thứ tự từ điển nhỏ hơn lên trước, và ký hiệu kết quả cuối cùng là $NAME$.
+
+Lấy $NAME$ của cây con gốc tại đỉnh $r$ làm $NAME$ của đỉnh $r$, ký hiệu là $NAME(r)$. Khi đó với hai cây có gốc $T_1(V_1,E_1,r_1)$ và $T_2(V_2,E_2,r_2)$, nếu $NAME(r_1)=NAME(r_2)$, thì $T_1$ và $T_2$ đẳng cấu.
+
+### Thuật toán đặt tên
+
+???+ note "Cài đặt"
     $$
     \begin{array}{ll}
-    1 & \textbf{Input. } \text{A rooted tree }T\\
-    2 & \textbf{Output. } \text{The name of rooted tree }T\\
+    1 & \textbf{Input. } \text{Một cây có gốc }T\\
+    2 & \textbf{Output. } \text{Tên của cây có gốc }T\\
     3 & \text{ASSIGN-NAME(u)}\\
-    4 & \qquad \text{if  } u \text{  is a leaf}\\
+    4 & \qquad \text{nếu } u \text{ là lá}\\
     5 & \qquad \qquad \text{NAME(} u \text{) = (0)}\\
-    6 & \qquad \text{else }\\
-    7 & \qquad \qquad \text{for all child } v \text{ of } u\\
+    6 & \qquad \text{ngược lại }\\
+    7 & \qquad \qquad \text{với mọi con } v \text{ của } u\\
     8 & \qquad \qquad \qquad \text{ASSIGN-NAME(}v\text{)}\\
-    9 & \qquad \text{sort the names of the children of }u\\
-    10 & \qquad \text{concatenate the names of all children }u\text{ to temp}\\
+    9 & \qquad \text{sắp xếp tên của các con của }u\\
+    10 & \qquad \text{nối tên của mọi con của }u\text{ vào temp}\\
     11 & \qquad \text{NAME(} u \text{) = (temp)}
     \end{array}
     $$
 
-### AHU 算法
+### Thuật toán AHU
 
-???+ note "实现"
+???+ note "Cài đặt"
     $$
     \begin{array}{ll}
-    1 & \textbf{Input. } \text{Two rooted trees }T_1(V_1,E_1,r_1)\text{ and }T_2(V_2,E_2,r_2) \\
-    2 & \textbf{Output. } \text{Whether these two trees are isomorphic}\\
+    1 & \textbf{Input. } \text{Hai cây có gốc }T_1(V_1,E_1,r_1)\text{ và }T_2(V_2,E_2,r_2) \\
+    2 & \textbf{Output. } \text{Hai cây có đẳng cấu hay không}\\
     3 & \text{AHU}(T_1(V_1,E_1,r_1), T_2(V_2,E_2,r_2))\\
     4 & \qquad \text{ASSIGN-NAME(}r_1\text{)}\\
     5 & \qquad \text{ASSIGN-NAME(}r_2\text{)}\\
-    6 & \qquad \text{if  NAME}(r_1) = \text{NAME}(r_2)\\
-    7 & \qquad \qquad \text{return true}\\
-    8 & \qquad \text{else}\\
-    10 & \qquad \qquad \text{return false}
+    6 & \qquad \text{nếu NAME}(r_1) = \text{NAME}(r_2)\\
+    7 & \qquad \qquad \text{trả về true}\\
+    8 & \qquad \text{ngược lại}\\
+    10 & \qquad \qquad \text{trả về false}
     \end{array}
     $$
 
-### 复杂度证明
+### Chứng minh độ phức tạp
 
-对于一颗有 $n$ 个节点的有根树，假设他是链状的，那么节点名字长度最长可以是 $n$，那么 ASSIGN-NAME 算法的复杂度是 $1+2+\cdots+n$ 的常数倍，即 $\Theta(n^2)$．由此，朴素 AHU 算法的复杂度为 $O(n^2)$．
+Với một cây có gốc gồm $n$ đỉnh, giả sử cây có dạng một đường thẳng, thì độ dài tên của một đỉnh có thể lớn nhất là $n$. Khi đó độ phức tạp của thuật toán ASSIGN-NAME là một hằng số nhân với $1+2+\cdots+n$, tức $\Theta(n^2)$. Do đó, độ phức tạp của thuật toán AHU đơn giản là $O(n^2)$.
 
-## 优化的 AHU 算法
+## Thuật toán AHU tối ưu hóa
 
-朴素的 AHU 算法的缺点是树的 $NAME$ 的长度可能会过长，我们可以针对这一点做一些优化．
+Nhược điểm của thuật toán AHU đơn giản là độ dài $NAME$ của cây có thể quá lớn, nên ta có thể tối ưu ở điểm này.
 
-### 原理 1
+### Nguyên lý 1
 
-对树进行层次划分，第 $i$ 层的节点到根的最短距离为 $i$．位于第 $i$ 层的节点的 $NAME$ 可以 **只** 由位于第 $i+1$ 层的节点的 $NAME$ 拼接得到．
+Chia cây thành các tầng: đỉnh ở tầng thứ $i$ có khoảng cách ngắn nhất tới gốc bằng $i$. $NAME$ của một đỉnh ở tầng thứ $i$ có thể được tạo **chỉ** bằng cách nối $NAME$ của các đỉnh ở tầng thứ $i+1$.
 
-### 原理 2
+### Nguyên lý 2
 
-在同一层内，节点的 $NAME$ 可以由其在层内的排名唯一标识．
+Trong cùng một tầng, $NAME$ của một đỉnh có thể được biểu diễn duy nhất bằng thứ hạng của nó trong tầng đó.
 
-**注意**，这里的排名是对两棵树而言的，假设节点 $u$ 位于第 $i$ 层，那么节点 $u$ 的排名等于所有 $T_1$ 和 $T_2$ 第 $i$ 层的节点中 $NAME$ 比 $NAME(u)$ 小的节点的个数．
+**Lưu ý**, thứ hạng ở đây được xét trên cả hai cây. Giả sử đỉnh $u$ nằm ở tầng thứ $i$, thì thứ hạng của đỉnh $u$ bằng số đỉnh ở tầng thứ $i$ của cả $T_1$ và $T_2$ có $NAME$ nhỏ hơn $NAME(u)$.
 
-### 推论
+### Hệ quả
 
-我们可以将节点原来的 $NAME$ 用其在层内的排名代替，然后把原来拼接节点 $NAME$ 用向数组加入元素代替．
+Ta có thể thay $NAME$ ban đầu của một đỉnh bằng thứ hạng của nó trong tầng, rồi thay thao tác nối các $NAME$ của đỉnh bằng thao tác thêm phần tử vào mảng.
 
-这样用整数和数组来代替字符串，既不会影响算法的正确性，又很大的降低了算法的复杂度．
+Cách dùng số nguyên và mảng để thay thế chuỗi này không ảnh hưởng đến tính đúng đắn của thuật toán, đồng thời giảm đáng kể độ phức tạp.
 
-### 复杂度证明
+### Chứng minh độ phức tạp
 
-首先注意到第 $i$ 层由拼接得到的 $NAME$ 的总长度为第 $i$ 层点的度数之和，即第 $i+1$ 层的总点数，以下用 $L_i$ 表示．算法的下一步会将这些 $NAME$ 看成字符串（数组）并排序，然后将它们替换为其在层内的排名（即重新映射为一个数）．以下引理表明了对总长为 $L$ 的 $m$ 个字符串排序的复杂度：
+Trước hết, nhận thấy tổng độ dài của các $NAME$ được tạo bằng phép nối ở tầng thứ $i$ bằng tổng bậc của các đỉnh ở tầng thứ $i$, tức tổng số đỉnh ở tầng thứ $i+1$; dưới đây ký hiệu là $L_i$. Bước tiếp theo của thuật toán sẽ xem các $NAME$ này như chuỗi (mảng) rồi sắp xếp, sau đó thay chúng bằng thứ hạng trong tầng (tức ánh xạ lại thành một số). Các bổ đề sau cho biết độ phức tạp khi sắp xếp $m$ chuỗi có tổng độ dài là $L$:
 
-1.  我们可以使用基数排序在 $O(L+|\Sigma|)$ 的时间内完成排序，其中 $|\Sigma|$ 为字符集的大小．（有一些实现细节，参见参考资料）
-2.  我们可以使用快速排序在 $O(L \log m)$ 的时间内完成排序．证明的大致思路为快排递归树的高度为 $O(\log m)$，且暴力比较长度为 $\ell_1$ 和 $\ell_2$ 的两个字符串的复杂度为 $O(\min\{\ell_1,\ell_2\})$．
+1.  Có thể dùng sắp xếp cơ số để hoàn thành việc sắp xếp trong $O(L+|\Sigma|)$, trong đó $|\Sigma|$ là kích thước bảng chữ cái. Có một số chi tiết cài đặt, xem phần tài liệu tham khảo.
+2.  Có thể dùng quicksort để hoàn thành việc sắp xếp trong $O(L \log m)$. Ý tưởng chứng minh đại khái là chiều cao của cây đệ quy quicksort là $O(\log m)$, và độ phức tạp khi so sánh trực tiếp hai chuỗi có độ dài $\ell_1$ và $\ell_2$ là $O(\min\{\ell_1,\ell_2\})$.
 
-在 AHU 算法中，第 $i$ 层字符串的字符集大小最多为第 $i+1$ 层的点数，即 $L_i$，所以基数排序的复杂度是线性的．根据 $\sum_i L_i=O(n)$，并将每层的复杂度相加后可以看出，若使用字符串的基数排序，则算法的总复杂度为 $T(n)=O(n)$．同理，如果使用快排排序字符串，那么 $T(n)=O(n \log n)$．
+Trong thuật toán AHU, kích thước bảng chữ cái của các chuỗi ở tầng thứ $i$ nhiều nhất bằng số đỉnh ở tầng thứ $i+1$, tức $L_i$, nên độ phức tạp của sắp xếp cơ số là tuyến tính. Từ $\sum_i L_i=O(n)$, cộng độ phức tạp của từng tầng lại, ta thấy nếu dùng sắp xếp cơ số cho chuỗi thì tổng độ phức tạp của thuật toán là $T(n)=O(n)$. Tương tự, nếu dùng quicksort để sắp xếp chuỗi, thì $T(n)=O(n \log n)$.
 
-## 例题
+## Bài tập ví dụ
 
 [SPOJ-TREEISO](https://www.spoj.com/problems/TREEISO/en/)
 
-题意翻译：给你两颗无根树，判断两棵树是否同构．
+Dịch đề: Cho hai cây không gốc, hãy xác định hai cây đó có đẳng cấu hay không.
 
-???+ note "参考代码"
+???+ note "Mã tham khảo"
     ```cpp
     --8<-- "docs/graph/code/tree-ahu/tree-ahu_1.cpp"
     ```
 
-## 参考资料
+## Tài liệu tham khảo
 
-本文大部分内容译自 [Paper](http://wwwmayr.in.tum.de/konferenzen/Jass08/courses/1/smal/Smal_Paper.pdf) 和 [Slide](https://logic.pdmi.ras.ru/~smal/files/smal_jass08_slides.pdf)．参考资料里的证明会更加全面和严谨，本文做了一定的简化．
+Phần lớn nội dung bài viết này được dịch từ [Paper](http://wwwmayr.in.tum.de/konferenzen/Jass08/courses/1/smal/Smal_Paper.pdf) và [Slide](https://logic.pdmi.ras.ru/~smal/files/smal_jass08_slides.pdf). Các chứng minh trong tài liệu tham khảo đầy đủ và chặt chẽ hơn; bài viết này đã lược giản một phần.
 
-对 AHU 算法的复杂度分析，以及字符串的线性时间基数排序算法可以参见 The Design and Analysis of Computer Algorithms 的 3.2 节 Radix sorting，以及其中的 Example 3.2．
+Về phân tích độ phức tạp của thuật toán AHU, cũng như thuật toán sắp xếp cơ số tuyến tính cho chuỗi, có thể tham khảo mục 3.2 Radix sorting và Example 3.2 trong The Design and Analysis of Computer Algorithms.

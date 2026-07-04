@@ -270,6 +270,10 @@ MkDocs source layout intact.
   `docs/graph/virtual-tree.md`, `docs/graph/tree-divide.md`: translated
   tree-technique pages covering HLD, DSU on tree, virtual trees, and tree
   divide/centroid decomposition.
+- `docs/graph/dynamic-tree-divide.md`, `docs/graph/tree-ahu.md`,
+  `docs/graph/tree-hash.md`, `docs/graph/tree-random-walk.md`: translated the
+  remaining tree subsection pages covering dynamic centroid decomposition, AHU
+  tree isomorphism, tree hashing, and random walks on trees.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

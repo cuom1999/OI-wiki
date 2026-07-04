@@ -428,10 +428,10 @@ nav:
       - DSU on tree: graph/dsu-on-tree.md
       - Cây ảo: graph/virtual-tree.md
       - Phân trị trên cây: graph/tree-divide.md
-      - 动态树分治: graph/dynamic-tree-divide.md
-      - AHU 算法: graph/tree-ahu.md
-      - 树哈希: graph/tree-hash.md
-      - 树上随机游走: graph/tree-random-walk.md
+      - Phân rã trọng tâm động: graph/dynamic-tree-divide.md
+      - Thuật toán AHU: graph/tree-ahu.md
+      - Băm cây: graph/tree-hash.md
+      - Bước đi ngẫu nhiên trên cây: graph/tree-random-walk.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
     - 最短路问题:
