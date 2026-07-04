@@ -1,4 +1,4 @@
-Kiến thức cần có: [phép toán bit](./bit.md#%E4%BD%8D%E8%BF%90%E7%AE%97), [số nguyên và dãy bit](./bit.md#%E6%95%B4%E6%95%B0%E4%B8%8E%E4%BD%8D%E5%BA%8F%E5%88%97).
+Kiến thức cần có: [phép toán bit](./bit.md#phép-toán-bit), [số nguyên và chuỗi bit](./bit.md#số-nguyên-và-chuỗi-bit).
 
 Biểu diễn nhị phân của một số có thể được xem như một tập hợp (`0` biểu thị không thuộc tập, `1` biểu thị thuộc tập). Ví dụ tập $\{1,3,4,8\}$ có thể được biểu diễn thành $(100011010)_2$. Các phép toán bit tương ứng cũng có thể được xem như phép toán trên tập hợp.
 

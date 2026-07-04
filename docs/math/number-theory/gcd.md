@@ -259,7 +259,7 @@ tính `countr_zero` rất nhanh thì thuật toán Stein nhanh hơn thuật toá
 ngược lại nó có thể chậm hơn Euclid.
 
 ???+ note "Về countr_zero"
-    1.  gcc có [hàm nội tại](../bit.md#gcc-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0)
+    1.  gcc có [hàm nội tại](../bit.md#hàm-nội-tại-của-gcc)
         `__builtin_ctz` (32 bit) hoặc `__builtin_ctzll` (64 bit), có thể thay
         cho `countr_zero` trong đoạn code trên;
     2.  Từ C++20, header `<bit>` chứa

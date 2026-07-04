@@ -840,7 +840,7 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
       Big operator^(const int&) const;
       // TODO: Big ^ Big;
     
-      // TODO: Phep toan bit cho Big;
+      // TODO: Phép toán bit cho Big;
     
       int operator%(const int&) const;
       // TODO: Big ^ Big;
@@ -881,7 +881,7 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
     Big::Big(const Big& T) : len(T.len) {
       CLR(a);
       f(i, 0, len) a[i] = T.a[i];
-      // TODO: Nap chong o day?
+      // TODO: Nạp chồng ở đây?
     }
     
     Big& Big::operator=(const Big& T) {

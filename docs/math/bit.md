@@ -1,10 +1,10 @@
 Thao tác bit là các phép toán một ngôi và hai ngôi trên biểu diễn nhị phân của số nguyên, gồm hai nhóm: **phép toán bit** và **dịch bit**. Đây là một trong những loại phép tính cơ bản nhất trong CPU, nên thường có tốc độ rất nhanh.
 
-<span id="&#25972;&#25968;&#19982;&#20301;&#24207;&#21015;"></span>
+<span id="số-nguyên-và-chuỗi-bit"></span>
 
 ## Số nguyên và chuỗi bit
 
-Xem thêm: [kiểu số nguyên](../lang/var.md#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B), [phương pháp biểu diễn bù](./numeral-sys/base.md#%E8%A1%A5%E6%95%B0%E6%B3%95)
+Xem thêm: [kiểu số nguyên](../lang/var.md#kiểu-số-nguyên), [phương pháp biểu diễn bù](./numeral-sys/base.md#phương-pháp-biểu-diễn-bù)
 
 Ta gọi một dãy có độ dài cố định chỉ gồm `0` và `1` là chuỗi bit. Bit ngoài cùng bên trái được gọi là bit cao nhất, bit ngoài cùng bên phải được gọi là bit thấp nhất.
 
@@ -39,11 +39,11 @@ Có thể thấy vấn đề lớn nhất của mã bù một là xuất hiện 
 
 Chuyển chuỗi bit về số nguyên cũng rất đơn giản: với số không âm thì không cần thao tác đặc biệt; với mã bù một, đảo bit sẽ thu được số đối tương ứng; với mã bù hai, đảo bit rồi cộng một sẽ thu được số đối tương ứng.
 
-<span id="&#20301;&#36816;&#31639;"></span>
+<span id="phép-toán-bit"></span>
 
 ## Phép toán bit
 
-Phép toán bit là phép toán áp dụng một [hàm Boolean](./boolean-algebra.md#%E5%B8%83%E5%B0%94%E5%87%BD%E6%95%B0) nào đó trên từng bit của chuỗi bit. Một cách hình thức, với hàm Boolean $f:\mathbf{B}^k\to \mathbf{B}$, phép toán bit là hàm có dạng
+Phép toán bit là phép toán áp dụng một [hàm Boolean](./boolean-algebra.md#hàm-boolean) nào đó trên từng bit của chuỗi bit. Một cách hình thức, với hàm Boolean $f:\mathbf{B}^k\to \mathbf{B}$, phép toán bit là hàm có dạng
 
 $$
 \begin{aligned}
@@ -102,11 +102,11 @@ $$
 
 Khi không gây nhầm lẫn, từ phần sau ta sẽ lược bỏ từ "bit".
 
-<span id="&#31227;&#20301;"></span>
+<span id="dịch-bit"></span>
 
 ## Dịch bit
 
-Xem thêm: [toán tử bit trong C++](../lang/op.md#%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6).
+Xem thêm: [toán tử bit trong C++](../lang/op.md#toán-tử-bit).
 
 Dịch bit là một lớp phép toán hai ngôi "di chuyển chuỗi bit sang trái hoặc sang phải theo từng bit"; tham số thứ nhất là chuỗi bit, tham số thứ hai thường là một số nguyên không âm. Dịch sang trái được gọi là **dịch trái**, dịch sang phải được gọi là **dịch phải**. Dựa trên cách lấp các vị trí trống sau khi dịch, thao tác dịch bit có thể chia thành **dịch số học**, **dịch logic**, và **dịch vòng**. Trong đó:
 
@@ -125,7 +125,7 @@ Ví dụ với chuỗi bit $8$ bit `10 01 01 10`:
 | Dịch vòng trái $2$ bit | `01 01 10 10` |
 | Dịch vòng phải $2$ bit | `10 10 01 01` |
 
-Trong C++, ta dùng `a << b` để biểu diễn dịch trái và `a >> b` để biểu diễn dịch phải; quy tắc dịch cụ thể được áp dụng ra sao thì xem [toán tử bit trong C++](../lang/op.md#%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6).
+Trong C++, ta dùng `a << b` để biểu diễn dịch trái và `a >> b` để biểu diễn dịch phải; quy tắc dịch cụ thể được áp dụng ra sao thì xem [toán tử bit trong C++](../lang/op.md#toán-tử-bit).
 
 Ta có thể dùng đoạn mã sau để thực hiện dịch vòng:
 
@@ -134,19 +134,19 @@ Ta có thể dùng đoạn mã sau để thực hiện dịch vòng:
     --8<-- "docs/math/code/bit/bit_1.cpp:core"
     ```
 
-<span id="&#20301;&#25805;&#20316;&#30340;&#24212;&#29992;"></span>
+<span id="ứng-dụng-của-thao-tác-bit"></span>
 
 ## Ứng dụng của thao tác bit
 
 Thao tác bit thường có ba công dụng:
 
-1.  Thực hiện một số phép tính hiệu quả hơn, thay cho các cách kém hiệu quả hơn. Xem [tối ưu biên dịch #giảm cường độ](../lang/optimizations.md#%E5%BC%BA%E5%BA%A6%E5%89%8A%E5%87%8F-strength-reduction).
+1.  Thực hiện một số phép tính hiệu quả hơn, thay cho các cách kém hiệu quả hơn. Xem [tối ưu biên dịch #giảm độ mạnh phép toán](../lang/optimizations.md#giảm-độ-mạnh-phép-toán-strength-reduction).
 2.  [Biểu diễn tập hợp](./binary-set.md) (thường dùng trong [DP nén trạng thái](../dp/state.md)).
 3.  Bản thân bài toán yêu cầu thực hiện thao tác bit.
 
 Cần chú ý rằng việc dùng thao tác bit để thay thế các phép tính khác trong nhiều trường hợp không tối ưu được bao nhiêu, mà còn làm mã nguồn phức tạp hơn; cần cân nhắc khi sử dụng.
 
-<span id="&#26377;&#20851;-2-&#30340;&#24130;&#30340;&#24212;&#29992;"></span>
+<span id="các-ứng-dụng-liên-quan-đến-lũy-thừa-của-2"></span>
 
 ### Các ứng dụng liên quan đến lũy thừa của 2
 
@@ -167,7 +167,7 @@ Nhân (chia) một số với lũy thừa nguyên không âm của 2:
 ??? warning "Cảnh báo"
     Phép chia ta thường viết được làm tròn về $0$, còn dịch phải ở đây được làm tròn xuống (cần chú ý sự khác nhau này). Nghĩa là khi số lớn hơn hoặc bằng $0$ thì hai cách tương đương, còn khi số nhỏ hơn $0$ thì sẽ khác nhau, ví dụ: `-1 / 2` có giá trị là $0$, còn `-1 >> 1` có giá trị là $-1$.
 
-<span id="&#21462;&#32477;&#23545;&#20540;"></span>
+<span id="lấy-giá-trị-tuyệt-đối"></span>
 
 ### Lấy giá trị tuyệt đối
 
@@ -183,7 +183,7 @@ Trên một số máy, cách này hiệu quả hơn `n > 0 ? n : -n`.
     --8<-- "docs/math/code/bit/bit_2.py:abs"
     ```
 
-<span id="&#21462;&#20004;&#20010;&#25968;&#30340;&#26368;&#22823;&#26368;&#23567;&#20540;"></span>
+<span id="lấy-giá-trị-lớn-nhất-nhỏ-nhất-của-hai-số"></span>
 
 ### Lấy giá trị lớn nhất/nhỏ nhất của hai số
 
@@ -199,7 +199,7 @@ Trên một số máy, cách này hiệu quả hơn `a > b ? a : b`.
     --8<-- "docs/math/code/bit/bit_2.py:minmax"
     ```
 
-<span id="&#21028;&#26029;&#20004;&#38750;&#38646;&#25968;&#31526;&#21495;&#26159;&#21542;&#30456;&#21516;"></span>
+<span id="kiểm-tra-hai-số-khác-không-có-cùng-dấu-hay-không"></span>
 
 ### Kiểm tra hai số khác không có cùng dấu hay không
 
@@ -213,7 +213,7 @@ Trên một số máy, cách này hiệu quả hơn `a > b ? a : b`.
     --8<-- "docs/math/code/bit/bit_2.py:sgn"
     ```
 
-<span id="&#20132;&#25442;&#20004;&#20010;&#25968;"></span>
+<span id="hoán-đổi-hai-số"></span>
 
 ### Hoán đổi hai số
 
@@ -226,7 +226,7 @@ Trên một số máy, cách này hiệu quả hơn `a > b ? a : b`.
 --8<-- "docs/math/code/bit/bit_2.cpp:swap"
 ```
 
-<span id="&#25805;&#20316;&#19968;&#20010;&#25968;&#30340;&#20108;&#36827;&#21046;&#20301;"></span>
+<span id="thao-tác-trên-các-bit-nhị-phân-của-một-số"></span>
 
 ### Thao tác trên các bit nhị phân của một số
 
@@ -280,7 +280,7 @@ Lấy một bit trong biểu diễn nhị phân của một số:
 
 Những thao tác này tương đương với việc xem một biến số nguyên $32$ bit như một mảng Boolean có độ dài $32$.
 
-<span id="&#27721;&#26126;&#26435;&#37325;"></span>
+<span id="trọng-số-hamming"></span>
 
 ## Trọng số Hamming
 
@@ -302,7 +302,7 @@ Mã nguồn như sau:
 --8<-- "docs/math/code/bit/bit_2.cpp:popcnt2"
 ```
 
-<span id="&#26500;&#36896;&#27721;&#26126;&#26435;&#37325;&#36882;&#22686;&#30340;&#25490;&#21015;"></span>
+<span id="xây-dựng-hoán-vị-có-trọng-số-hamming-tăng-dần"></span>
 
 ### Xây dựng hoán vị có trọng số Hamming tăng dần
 
@@ -337,11 +337,11 @@ Do đó, mã nguồn đầy đủ để liệt kê hoán vị của $0\sim n$ th
 
 Trong đó cần chú ý xử lý riêng $0$, vì $0$ không có phần tử kế tiếp có cùng trọng số Hamming.
 
-<span id="c-&#20013;&#30340;&#30456;&#20851;&#31867;&#19982;&#20989;&#25968;"></span>
+<span id="các-lớp-và-hàm-liên-quan-trong-c"></span>
 
 ## Các lớp và hàm liên quan trong C++
 
-<span id="gcc-&#20869;&#24314;&#20989;&#25968;"></span>
+<span id="hàm-nội-tại-của-gcc"></span>
 
 ### Hàm nội tại của GCC
 
@@ -359,19 +359,19 @@ Chẳng hạn, đôi khi ta muốn tính logarit cơ số hai của một số; 
 
 Vì các hàm này là hàm nội tại và đã được trình biên dịch tối ưu mạnh, tốc độ chạy của chúng rất nhanh (một số hàm thậm chí chỉ cần một lệnh máy).
 
-<span id="&#26356;&#22810;&#20301;&#25968;"></span>
+<span id="nhiều-bit-hơn"></span>
 
 ### Nhiều bit hơn
 
 Nếu cần thao tác trên chuỗi bit rất dài, có thể dùng [`std::bitset`](../lang/csl/bitset.md).
 
-<span id="&#39064;&#30446;&#25512;&#33616;"></span>
+<span id="bài-tập-gợi-ý"></span>
 
 ## Bài tập gợi ý
 
 -   [Luogu P1225 Trò chơi cờ đen trắng](https://www.luogu.com.cn/problem/P1225)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 
 ## Tài liệu tham khảo và ghi chú
 

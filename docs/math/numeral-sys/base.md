@@ -96,7 +96,7 @@ Một chữ số bát phân có thể biểu diễn bằng 3 bit nhị phân (v�
 <span id="&#34917;&#25968;&#27861;"></span>
 ## Phương pháp bù
 
-Xem thêm: [Mã bù một và mã bù hai](../bit.md#%E6%95%B4%E6%95%B0%E4%B8%8E%E4%BD%8D%E5%BA%8F%E5%88%97)
+Xem thêm: [Mã bù một và mã bù hai](../bit.md#số-nguyên-và-chuỗi-bit)
 
 **Phương pháp bù** (method of complements) là phương pháp dùng số dương để biểu diễn số âm, nhằm tính phép trừ bằng cùng thuật toán, mạch điện hoặc cấu trúc cơ khí như phép cộng số dương. Phương pháp bù được dùng rộng rãi trong thiết kế máy tính bỏ túi và máy tính điện tử để đơn giản hóa cấu trúc.
 

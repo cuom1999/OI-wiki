@@ -442,7 +442,7 @@ Nếu còn câu hỏi về mkdocs-material (chủ đề mà chúng ta đang dùn
 
     -   <a id="CONT-10.2.4"></a>CONT-10.2.4: không khuyến nghị định nghĩa hằng bằng macro; nên trực tiếp dùng các từ khóa như `constexpr`/`const` để định nghĩa hằng.
 
-    -   <a id="CONT-10.2.5"></a>CONT-10.2.5: không khuyến nghị dùng từ khóa `inline` cho hàm; xem [tối ưu biên dịch](../lang/optimizations.md#inline---%E5%86%85%E8%81%94).
+    -   <a id="CONT-10.2.5"></a>CONT-10.2.5: không khuyến nghị dùng từ khóa `inline` cho hàm; xem [tối ưu biên dịch](../lang/optimizations.md#inline---nội-tuyến).
 
     -   <a id="CONT-10.2.6"></a>CONT-10.2.6: cố gắng tránh type traits, partial specialization và các kỹ thuật lập trình meta bằng template phức tạp khác. Nếu thật sự cần dùng, cần thêm chú thích để giải thích ý nghĩa.
 

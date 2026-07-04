@@ -235,7 +235,7 @@ Ví dụ, một snippet mẫu tệp có thể viết như sau:
 
 ```XML
 <snippet>
-  <description>template_code</description> <!-- Noi dung nay la ban xem truoc cua phan hoan thanh -->
+  <description>template_code</description> <!-- Nội dung này là bản xem trước của phần hoàn thành -->
   <content><![CDATA[#include <cstdio>
 using namespace std;
 
@@ -247,8 +247,8 @@ int main() {
   fclose(stdout);
   return 0;
 }]]></content>
-  <tabTrigger>code</tabTrigger> <!-- Noi dung nay la van ban kich hoat hoan thanh -->
-  <scope>source.c++</scope> <!-- Noi dung nay la ngon ngu ap dung cho hoan thanh -->
+  <tabTrigger>code</tabTrigger> <!-- Nội dung này là văn bản kích hoạt hoàn thành -->
+  <scope>source.c++</scope> <!-- Nội dung này là ngôn ngữ áp dụng cho hoàn thành -->
 </snippet>
 ```
 
