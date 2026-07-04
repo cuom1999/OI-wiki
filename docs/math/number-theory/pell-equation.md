@@ -1054,10 +1054,11 @@ số vô tỉ bậc hai nhất định tương đương, nên khi thu được n
 $(-1)^kQ_k=N/|N|$, thì không cần tính tiếp nữa. Khác với tất cả thuật toán
 trước, ở đây chỉ số $k$ thỏa điều kiện có thể xuất hiện trước khi vào chu kỳ.
 
-??? example "Vi du"
-    1.  Giai phuong trinh $x^2-157y^2=12$.
+??? example "Ví dụ"
+    1.  Giải phương trình $x^2-157y^2=12$.
 
-        Vi $12^2<157$, chay thuat toan PQa voi $(P_0,Q_0,D)=(0,1,157)$ cho ket qua sau: (phan mau do la chu ki dau tien)
+        Vì $12^2<157$, chạy thuật toán PQa với $(P_0,Q_0,D)=(0,1,157)$ cho kết
+        quả sau: (phần màu đỏ là chu kỳ đầu tiên)
 
         |  $k$ |  $P$ |  $Q$ |        $a$        |         $A$        |        $B$       |         $G$        | $G^2-DB^2$ |
         | :--: | :--: | :--: | :---------------: | :----------------: | :--------------: | :----------------: | :--------: |
