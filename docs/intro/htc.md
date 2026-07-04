@@ -62,7 +62,6 @@ theo các bước dưới đây, bạn vẫn có thể hoàn thành việc chỉ
 
     Nếu vẫn chưa yên tâm, bạn có thể xem [hướng dẫn chính thức của GitHub](https://skills.github.com/).
 
-<a id="编辑单个页面内的内容"></a>
 <a id="chinh-sua-noi-dung-trong-mot-trang"></a>
 
 #### Chỉnh sửa nội dung trong một trang
@@ -189,7 +188,6 @@ Pull Requests cũng sẽ bị từ chối.
 Nếu bạn vẫn muốn sửa liên kết, hãy chú ý cập nhật trường author và tệp chuyển
 hướng.
 
-<a id="author-字段"></a>
 <a id="author-field"></a>
 
 ### Trường author
@@ -223,7 +221,6 @@ Mỗi dòng biểu thị một quy tắc chuyển hướng, lần lượt ghi UR
 Lưu ý: tất cả chuyển hướng đều là chuyển hướng 301, và chỉ cần sửa khi việc sửa
 URL trong mục lục gây ra liên kết chết.
 
-<a id="commit-信息格式规范"></a>
 <a id="commit-format"></a>
 
 ### Quy chuẩn định dạng thông tin commit
@@ -251,7 +248,6 @@ Các loại thay đổi gồm:
     lớn).
 -   `revert`: dùng khi hoàn tác thay đổi trước đó.
 
-<a id="pull-request-信息格式规范"></a>
 <a id="pull-request-format"></a>
 
 ### Quy chuẩn định dạng thông tin Pull Request

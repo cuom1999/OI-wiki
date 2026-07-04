@@ -249,31 +249,31 @@ Mục này xét một số hệ tọa độ trong không gian ba chiều. Điể
 
 | Số hiệu | Tọa độ | Vector vị trí và vi phân | Tên hệ tọa độ | Ghi chú |
 | ------- | ----- | ------------------------ | ------------- | ------- |
-| <a id="n13.1"></a>n13.1 | $x$, $y$, $z$ | $\boldsymbol{r} = x \boldsymbol{e}_x + y \boldsymbol{e}_y + z \boldsymbol{e}_z$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}x~\boldsymbol{e}_x + \mathrm{d}y~\boldsymbol{e}_y + \mathrm{d}z~\boldsymbol{e}_z$ | Tọa độ Descartes | Các vector cơ sở $\boldsymbol{e}_x$, $\boldsymbol{e}_y$, $\boldsymbol{e}_z$ tạo thành một hệ trực chuẩn tay phải, xem [Hình 1](#图-1) và [Hình 4](#图-4).<br>Vector cơ sở cũng có thể dùng $\boldsymbol{e}_1$, $\boldsymbol{e}_2$, $\boldsymbol{e}_3$ hoặc $\boldsymbol{i}$, $\boldsymbol{j}$, $\boldsymbol{k}$; tọa độ cũng có thể dùng $x_1$, $x_2$, $x_3$ hoặc $i$, $j$, $k$. |
-| <a id="n13.2"></a>n13.2 | $\rho$, $\varphi$, $z$ | $\boldsymbol{r} = \rho~\boldsymbol{e}_{\rho} + z~\boldsymbol{e}_z$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}\rho~\boldsymbol{e}_{\rho} +\rho~\mathrm{d}\varphi~\boldsymbol{e}_{\varphi} + \mathrm{d}z~\boldsymbol{e}_z$ | Tọa độ trụ | $\boldsymbol{e}_{\rho}(\varphi)$, $\boldsymbol{e}_{\varphi}(\varphi)$, $\boldsymbol{e}_z$ tạo thành một hệ trực chuẩn tay phải, xem [Hình 2](#图-2).<br>Nếu $z = 0$, thì $\rho$ và $\varphi$ là tọa độ cực trên mặt phẳng. |
-| <a id="n13.3"></a>n13.3 | $r$, $\vartheta$, $\varphi$ | $\boldsymbol{r} = r \boldsymbol{e}_r$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}r~\boldsymbol{e}_r + r~\mathrm{d}\vartheta~\boldsymbol{e}_{\vartheta} + r~\sin\vartheta~\mathrm{\mathrm{d}}\varphi~\boldsymbol{e}_{\varphi}$ | Tọa độ cầu | $\boldsymbol{e}_r(\vartheta, \varphi)$, $\boldsymbol{e}_{\vartheta}(\vartheta, \varphi)$, $\boldsymbol{e}_{\varphi}(\varphi)$ tạo thành một hệ trực chuẩn tay phải, xem [Hình 3](#图-3). |
+| <a id="n13.1"></a>n13.1 | $x$, $y$, $z$ | $\boldsymbol{r} = x \boldsymbol{e}_x + y \boldsymbol{e}_y + z \boldsymbol{e}_z$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}x~\boldsymbol{e}_x + \mathrm{d}y~\boldsymbol{e}_y + \mathrm{d}z~\boldsymbol{e}_z$ | Tọa độ Descartes | Các vector cơ sở $\boldsymbol{e}_x$, $\boldsymbol{e}_y$, $\boldsymbol{e}_z$ tạo thành một hệ trực chuẩn tay phải, xem [Hình 1](#hinh-1) và [Hình 4](#hinh-4).<br>Vector cơ sở cũng có thể dùng $\boldsymbol{e}_1$, $\boldsymbol{e}_2$, $\boldsymbol{e}_3$ hoặc $\boldsymbol{i}$, $\boldsymbol{j}$, $\boldsymbol{k}$; tọa độ cũng có thể dùng $x_1$, $x_2$, $x_3$ hoặc $i$, $j$, $k$. |
+| <a id="n13.2"></a>n13.2 | $\rho$, $\varphi$, $z$ | $\boldsymbol{r} = \rho~\boldsymbol{e}_{\rho} + z~\boldsymbol{e}_z$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}\rho~\boldsymbol{e}_{\rho} +\rho~\mathrm{d}\varphi~\boldsymbol{e}_{\varphi} + \mathrm{d}z~\boldsymbol{e}_z$ | Tọa độ trụ | $\boldsymbol{e}_{\rho}(\varphi)$, $\boldsymbol{e}_{\varphi}(\varphi)$, $\boldsymbol{e}_z$ tạo thành một hệ trực chuẩn tay phải, xem [Hình 2](#hinh-2).<br>Nếu $z = 0$, thì $\rho$ và $\varphi$ là tọa độ cực trên mặt phẳng. |
+| <a id="n13.3"></a>n13.3 | $r$, $\vartheta$, $\varphi$ | $\boldsymbol{r} = r \boldsymbol{e}_r$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}r~\boldsymbol{e}_r + r~\mathrm{d}\vartheta~\boldsymbol{e}_{\vartheta} + r~\sin\vartheta~\mathrm{\mathrm{d}}\varphi~\boldsymbol{e}_{\varphi}$ | Tọa độ cầu | $\boldsymbol{e}_r(\vartheta, \varphi)$, $\boldsymbol{e}_{\vartheta}(\vartheta, \varphi)$, $\boldsymbol{e}_{\varphi}(\varphi)$ tạo thành một hệ trực chuẩn tay phải, xem [Hình 3](#hinh-3). |
 
-Nếu không dùng [hệ tọa độ tay phải](#图-4) mà dùng [hệ tọa độ tay trái](#图-5), cần nhấn mạnh rõ trước đó để tránh dùng sai ký hiệu.
+Nếu không dùng [hệ tọa độ tay phải](#hinh-4) mà dùng [hệ tọa độ tay trái](#hinh-5), cần nhấn mạnh rõ trước đó để tránh dùng sai ký hiệu.
 
 ![](./images/symbol-1.svg)
 
-<a id="图-1"></a>**Hình 1** Hệ tọa độ Descartes tay phải
+<a id="hinh-1"></a>**Hình 1** Hệ tọa độ Descartes tay phải
 
 ![](./images/symbol-2.svg)
 
-<a id="图-2"></a>**Hình 2** Hệ tọa độ trụ tay phải
+<a id="hinh-2"></a>**Hình 2** Hệ tọa độ trụ tay phải
 
 ![](./images/symbol-3.svg)
 
-<a id="图-3"></a>**Hình 3** Hệ tọa độ cầu tay phải
+<a id="hinh-3"></a>**Hình 3** Hệ tọa độ cầu tay phải
 
 ![](./images/symbol-4.svg)
 
-<a id="图-4"></a>**Hình 4** Hệ tọa độ tay phải
+<a id="hinh-4"></a>**Hình 4** Hệ tọa độ tay phải
 
 ![](./images/symbol-5.svg)
 
-<a id="图-5"></a>**Hình 5** Hệ tọa độ tay trái
+<a id="hinh-5"></a>**Hình 5** Hệ tọa độ tay trái
 
 ## Vô hướng và vector
 

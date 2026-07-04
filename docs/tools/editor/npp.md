@@ -152,20 +152,20 @@ Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công
 3.  Nhập lần lượt các lệnh sau:
 
     ```shell
-    # Lenh bien dich:
+    # Lệnh biên dịch:
     cmd /c g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)
-    # Lenh chay:
+    # Lệnh chạy:
     cmd /c $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH) & pause
-    # Lenh go loi:
+    # Lệnh gỡ lỗi:
     cmd /c gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe
 
-    # Neu da tai ConsolePauser, co the dung cac lenh sau de co trai nghiem chay chuong trinh tot hon! (Chu y them bien moi truong!)
+    # Nếu đã tải ConsolePauser, có thể dùng các lệnh sau để có trải nghiệm chạy chương trình tốt hơn! (Chú ý thêm biến môi trường!)
 
-    # Lenh bien dich:
+    # Lệnh biên dịch:
     cmd /c (start ConsolePauser "g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)")
-    # Lenh chay:
+    # Lệnh chạy:
     cmd /c (start ConsolePauser "$(CURRENT_DIRECTORY)\$(NAME_PART).exe")
-    # Lenh go loi:
+    # Lệnh gỡ lỗi:
     cmd /c (start ConsolePauser "gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe")
     ```
 

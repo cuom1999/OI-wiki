@@ -93,7 +93,7 @@ Dùng dòng lệnh:
 
     ```powershell
     Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-    # Neu chi muon dung WSL 1, hay bo qua buoc nay
+    # Nếu chỉ muốn dùng WSL 1, hãy bỏ qua bước này
     Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
     ```
 
@@ -128,7 +128,7 @@ Sự khác biệt giữa WSL 1 và WSL 2 xem tại [So sánh WSL 2 và WSL 1](ht
     WSL 1 hoàn toàn không hỗ trợ systemd (nghĩa là một số chức năng cần systemd sẽ không thể dùng hoặc cần phương án thay thế). WSL 2 đã tích hợp sẵn hỗ trợ systemd. Nếu cần dùng systemd mà bản phân phối hiện tại chưa được cấu hình để bật systemd, có thể tham khảo [cấu hình nâng cao trong WSL](https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config#systemd-support).
 
 ```powershell
-# Dat phien ban WSL mac dinh thanh WSL 2
+# Đặt phiên bản WSL mặc định thành WSL 2
 wsl --set-default-version 2
 ```
 
@@ -208,7 +208,7 @@ Nguồn phần mềm mặc định của Ubuntu nằm ở nước ngoài. Có th
 Dùng các lệnh sau để cập nhật phần mềm và nguồn phần mềm:
 
 ```console
-$ sudo su # Sau khi chay lenh nay, prompt terminal se doi tu $ thanh #; truoc khi chay cac lenh ben duoi hay chu y prompt
+$ sudo su # Sau khi chạy lệnh này, prompt terminal sẽ đổi từ $ thành #; trước khi chạy các lệnh bên dưới hãy chú ý prompt
 [sudo] mat khau cua xxx:
 # cp /etc/apt/sources.list /etc/apt/sources.list.bak
 # vim /etc/apt/sources.list
@@ -225,7 +225,7 @@ $
 ```console
 # apt install language-pack-zh-hans -y
 # apt install fontconfig -y
-# apt install fonts-noto-cjk fonts-wqy-microhei fonts-wqy-zenhei -y # Phong chu tieng Trung
+# apt install fonts-noto-cjk fonts-wqy-microhei fonts-wqy-zenhei -y # Phông chữ tiếng Trung
 # dpkg-reconfigure locales
 ```
 

@@ -129,28 +129,28 @@ Thiết lập trong `Preferences->Settings`. Dưới đây liệt kê một số
 
 ```JSON
 {
-  // Co chu
+  // Cỡ chữ
   "font_size": 11,
 
-  // Phong chu; co the khong dat, mac dinh la Consolas
+  // Phông chữ; có thể không đặt, mặc định là Consolas
   "font_face": "",
 
-  // Tu dong chuyen Tab thanh dau cach
+  // Tự động chuyển Tab thành dấu cách
   "translate_tabs_to_spaces": true,
 
-  // Do rong thut le
+  // Độ rộng thụt lề
   "tab_size": 4,
 
-  // To sang dong hien tai
+  // Tô sáng dòng hiện tại
   "highlight_line": true,
 
-  // Tu dong them xuong dong o cuoi tep khi luu
+  // Tự động thêm xuống dòng ở cuối tệp khi lưu
   "trim_trailing_white_space_on_save": true,
 
-  // Khi dang chon van ban, tim kiem chi tim trong pham vi da chon
+  // Khi đang chọn văn bản, tìm kiếm chỉ tìm trong phạm vi đã chọn
   "auto_find_in_selection": true,
 
-  // Tat cac plugin it khi dung trong OI; co the tu dieu chinh
+  // Tắt các plugin ít khi dùng trong OI; có thể tự điều chỉnh
   "ignored_packages": [
     "ActionScript", "AppleScript", "ASP", "Batch File", "C#",
     "Clojure", "CSS", "D", "Diff", "Erlang", "Git Formats",
@@ -161,7 +161,7 @@ Thiết lập trong `Preferences->Settings`. Dưới đây liệt kê một số
     "Scala", "ShellScript", "SQL", "TCL", "Textile", "XML",
   ],
 
-  // So dong tuong doi, co the phoi hop voi Vintage de nhay nhanh
+  // Số dòng tương đối, có thể phối hợp với Vintage để nhảy nhanh
   "relative_line_numbers": false,
 }
 ```
@@ -173,11 +173,11 @@ Thiết lập trong `Preferences->Key Bindings`: tìm chức năng cần sửa �
 Ví dụ, nếu muốn đổi phím biên dịch từ <kbd>Ctrl</kbd>+<kbd>B</kbd> sang <kbd>F9</kbd> (nếu không vô hiệu hóa phím tắt cũ thì thực tế là thêm một cách kích hoạt), có thể thêm vào `Preferences->Key Bindings`:
 
 ```JSON
-// Doi lenh build thanh f9
+// Đổi lệnh build thành f9
 { "keys": ["f9"], "command": "build" },
 
-// Doi phim sap xep dong dang gan voi f9 sang shift+f9.
-// Phan lon truong hop khong can chuc nang nay, nen co the bo dong nay.
+// Đổi phím sắp xếp dòng đang gắn với f9 sang shift+f9.
+// Phần lớn trường hợp không cần chức năng này, nên có thể bỏ dòng này.
 { "keys": ["shift+f9"], "command": "sort_lines", "args": {"case_sensitive": false} },
 ```
 
@@ -189,20 +189,20 @@ Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, c
 
 ```JSON
 {
-  // Hien mot vach o dau dong giua hai ngoac khop nhau,
-  // giup nhanh chong tim pham vi cap ngoac
+  // Hiện một vạch ở đầu dòng giữa hai ngoặc khớp nhau,
+  // giúp nhanh chóng tìm phạm vi cặp ngoặc
   "content_highlight_bar": true,
 
-  // Hien cap ngoac khop nhau trong minimap
+  // Hiện cặp ngoặc khớp nhau trong minimap
   "show_in_minimap": true,
 
-  // Bo qua gioi han pham vi khop
+  // Bỏ qua giới hạn phạm vi khớp
   "ignore_threshold": true,
 
-  // style la kieu to sang: bold la to sang khoi,
-  // underline la gach chan dam, outline la vien ngoai
-  // color la mau; thiet lap mac dinh da chua tat ca mau duoc ho tro
-  // icon la dau hieu hien thi o thanh ben
+  // style là kiểu tô sáng: bold là tô sáng khối,
+  // underline là gạch chân đậm, outline là viền ngoài
+  // color là màu; thiết lập mặc định đã chứa tất cả màu được hỗ trợ
+  // icon là dấu hiệu hiển thị ở thanh bên
   "bracket_styles": {
     "default": {"icon": "dot", "color": "region.yellowish", "style": "bold",},
     "unmatched": {"icon": "question", "color": "region.redish", "style": "outline",},
@@ -428,12 +428,12 @@ Tùy chọn biên dịch mặc định của ST là `g++ "${file}" -o "${file_pa
 Vào `Tools->Build System->New Build System...`, rồi nhập vào giữa cặp ngoặc nhọn:
 
 ```JSON
-// Tuy chon bien dich co the tu dieu chinh
-// Bien dich va chay
+// Tùy chọn biên dịch có thể tự điều chỉnh
+// Biên dịch và chạy
 "shell_cmd": "g++ -Wall \"${file}\" -o \"${file_path}/${file_base_name}.exe\" && \"${file_path}/${file_base_name}.exe\"",
 
-// Dong nay giup ST3 hien loi bang giao dien do hoa.
-// Neu quen xem thong tin g++ tra ve thi co the bo.
+// Dòng này giúp ST3 hiện lỗi bằng giao diện đồ họa.
+// Nếu quen xem thông tin g++ trả về thì có thể bỏ.
 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 ```
 

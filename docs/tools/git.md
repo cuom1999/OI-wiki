@@ -106,7 +106,7 @@ Chạy lệnh `git add <tệp>` để đưa tệp chỉ định vào theo dõi p
 <!-- scripts.linter.preprocess.fix_details off -->
 
 ```console
-$ git add README.md # Dua tep nay vao theo doi phien ban
+$ git add README.md # Đưa tệp này vào theo dõi phiên bản
 $ git status
 On branch master
 
@@ -127,7 +127,7 @@ Nhưng trước khi làm việc đó, hãy sửa nhẹ `README.md`.
 <!-- scripts.linter.preprocess.fix_details off -->
 
 ```console
-$ vim README.md # Sua tuy y mot chut
+$ vim README.md # Sửa tùy ý một chút
 $ git status
 On branch master
 
@@ -167,7 +167,7 @@ Bây giờ đưa các tệp chưa stage vào staging area, rồi commit tất c�
 
 ```console
 $ git add README.md
-$ git commit # Sau do trinh soan thao se bat len; ban can viet commit message
+$ git commit # Sau đó trình soạn thảo sẽ bật lên; bạn cần viết commit message
 [master (root-commit) f992763] initial commit
  1 file changed, 2 insertions(+)
  create mode 100644 README.md
@@ -225,9 +225,9 @@ Nói đơn giản, quá trình chuyển nhánh là đổi con trỏ HEAD từ nh
 Dùng lệnh `git branch` để tạo nhánh, lệnh `git switch` để chuyển nhánh, và lệnh `git switch -c` để tạo nhánh rồi chuyển sang nhánh mới này.
 
 ```console
-$ git switch -c dev # Tao mot nhanh moi ten dev va chuyen nhanh hien tai sang dev
+$ git switch -c dev # Tạo một nhánh mới tên dev và chuyển nhánh hiện tại sang dev
 Switched to branch 'dev'
-$ git branch # Xem danh sach nhanh
+$ git branch # Xem danh sách nhánh
   master
 * dev
 ```
@@ -250,7 +250,7 @@ Bây giờ chuyển về nhánh `master`. Lúc này trong thư mục không còn
 ```console
 $ git switch master
 Switched to branch 'master'
-$ vim README.md # Sua nhe README
+$ vim README.md # Sửa nhẹ README
 $ git commit -a -m "feat: update README.md"
 [master 5ca15f0] feat: update README.md
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -295,7 +295,7 @@ Bản thân quá trình gộp cũng là một commit. Tuy nhiên, khác với co
 Sau khi gộp xong, nhánh `dev` đã hoàn thành nhiệm vụ. Lúc này có thể dùng lệnh sau để xóa nhánh `dev`:
 
 ```console
-$ git branch -d dev # Voi nhanh chua gop, co the dung tham so -D de xoa bat buoc
+$ git branch -d dev # Với nhánh chưa gộp, có thể dùng tham số -D để xóa bắt buộc
 ```
 
 Tuy nhiên, quá trình gộp không phải lúc nào cũng thuận lợi. Trong một số trường hợp, quá trình gộp có thể xuất hiện conflict; vấn đề này sẽ được nói tiếp theo.
@@ -369,7 +369,7 @@ This repo includes some c++ codes.
 Xử lý conflict bằng cách chỉnh sửa văn bản, xóa các dấu conflict này, lưu tệp, đưa các tệp đó vào staging area rồi commit là có thể giải quyết merge conflict.
 
 ```console
-$ git add README.md # Dua tep bi conflict vao staging area
+$ git add README.md # Đưa tệp bị conflict vào staging area
 $ git commit
 [master fe92c6b] Merge branch readme-refactor into master
 ```
@@ -460,13 +460,13 @@ Chạy `git remote set-url <name> <newurl>` để đổi liên kết của kho t
 Trong kho từ xa, người khác có thể đẩy một số thay đổi. Chạy lệnh `git fetch` để lấy các thay đổi đó về local.
 
 ```console
-$ git fetch <remote-name> # Lay thay doi cua <remote-name>
+$ git fetch <remote-name> # Lấy thay đổi của <remote-name>
 ```
 
 Cần chú ý rằng lệnh `git fetch` chỉ lấy thay đổi của kho từ xa, chứ không gộp các thay đổi này vào kho local. Nếu cần gộp các thay đổi này, có thể dùng lệnh `git pull`. Mặc định, `git pull` tương đương với `git fetch` rồi `git merge FETCH_HEAD`.
 
 ```console
-$ git pull <remote-name> <branch> # Lay thay doi cua <remote-name>, roi gop cac thay doi nay vao HEAD
+$ git pull <remote-name> <branch> # Lấy thay đổi của <remote-name>, rồi gộp các thay đổi này vào HEAD
 ```
 
 ### Đẩy thay đổi lên kho từ xa
@@ -474,7 +474,7 @@ $ git pull <remote-name> <branch> # Lay thay doi cua <remote-name>, roi gop cac 
 Sau khi hoàn thành một số thay đổi, dùng lệnh `git push` để đẩy các thay đổi này lên kho từ xa.
 
 ```console
-$ git push <remote> <from>:<to> # Day thay doi cua nhanh local <from> len nhanh <to> cua <remote>
+$ git push <remote> <from>:<to> # Đẩy thay đổi của nhánh local <from> lên nhánh <to> của <remote>
 ```
 
 Tùy yêu cầu của kho từ xa, bạn có thể phải nhập tên người dùng và mật khẩu của tài khoản kho từ xa.
