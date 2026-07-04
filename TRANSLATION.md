@@ -358,6 +358,9 @@ MkDocs source layout intact.
   including sample-code comments.
 - `docs/tools/testlib/checker.md`: translated the Testlib checker page,
   including explanatory sample-code comments.
+- `docs/tools/judger/index.md`, `docs/tools/judger/cena.md`,
+  `docs/tools/judger/ccr-plus.md`: translated the local judging-tool overview
+  and short Cena/CCR Plus pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
