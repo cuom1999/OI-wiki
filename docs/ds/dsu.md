@@ -2,25 +2,29 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 ![](images/disjoint-set.svg)
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
 
-并查集是一种用于管理元素所属集合的数据结构，实现为一个森林，其中每棵树表示一个集合，树中的节点表示对应集合中的元素．
+## Giới thiệu
 
-顾名思义，并查集支持两种操作：
+DSU (disjoint-set union, cấu trúc tập hợp rời nhau) là một cấu trúc dữ liệu dùng để quản lý tập hợp mà mỗi phần tử thuộc về. Nó được cài đặt như một rừng, trong đó mỗi cây biểu diễn một tập hợp, còn các nút trong cây biểu diễn các phần tử của tập hợp tương ứng.
 
--   合并（Unite）：合并两个元素所属集合（合并对应的树）．
--   查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合．
+Đúng như tên gọi union-find, DSU hỗ trợ hai thao tác:
 
-并查集在经过修改后可以支持单个元素的删除、移动或维护树上的边权．使用动态开点线段树还可以实现 [可持久化并查集](./persistent-seg.md#拓展基于主席树的可持久化并查集)．
+-   Hợp nhất (Unite): hợp nhất hai tập hợp chứa hai phần tử đã cho (tức hợp nhất hai cây tương ứng).
+-   Tìm (Find): tìm tập hợp chứa một phần tử (tức tìm nút gốc của cây tương ứng); thao tác này có thể dùng để kiểm tra hai phần tử có thuộc cùng một tập hợp hay không.
 
-???+ warning "Warning"
-    并查集无法以较低复杂度实现集合的分离．
+Sau một số biến đổi, DSU có thể hỗ trợ xóa hoặc di chuyển một phần tử riêng lẻ, hoặc duy trì trọng số trên các cạnh của cây. Với cây phân đoạn mở nút động, ta còn có thể cài đặt [DSU bền vững](./persistent-seg.md#%E6%8B%93%E5%B1%95%E5%9F%BA%E4%BA%8E%E4%B8%BB%E5%B8%AD%E6%A0%91%E7%9A%84%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E5%B9%B6%E6%9F%A5%E9%9B%86).
 
-## 初始化
+???+ warning "Cảnh báo"
+    DSU không thể tách một tập hợp với độ phức tạp thấp.
 
-初始时，每个元素都位于一个单独的集合，表示为一棵只有根节点的树．方便起见，我们将根节点的父亲设为自己．
+<span id="&#x521D;&#x59CB;&#x5316;"></span>
 
-???+ example "实现"
+## Khởi tạo
+
+Ban đầu, mỗi phần tử nằm trong một tập hợp riêng, được biểu diễn bằng một cây chỉ có nút gốc. Để thuận tiện, ta đặt cha của nút gốc là chính nó.
+
+???+ example "Cài đặt"
     === "C++"
         ```cpp
         struct dsu {
@@ -37,13 +41,15 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
                 self.pa = list(range(size))
         ```
 
-## 查询
+<span id="&#x67E5;&#x8BE2;"></span>
 
-我们需要沿着树向上移动，直至找到根节点．
+## Tìm
+
+Ta cần đi ngược lên theo cây cho đến khi gặp nút gốc.
 
 ![](images/disjoint-set-find.svg)
 
-???+ example "实现"
+???+ example "Cài đặt"
     === "C++"
         ```cpp
         size_t dsu::find(size_t x) { return pa[x] == x ? x : find(pa[x]); }
@@ -55,13 +61,15 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
             return x if self.pa[x] == x else self.find(self.pa[x])
         ```
 
-### 路径压缩
+<span id="&#x8DEF;&#x5F84;&#x538B;&#x7F29;"></span>
 
-查询过程中经过的每个元素都属于该集合，我们可以将其直接连到根节点以加快后续查询．
+### Nén đường đi
+
+Mọi phần tử đi qua trong quá trình tìm đều thuộc cùng tập hợp, nên ta có thể nối trực tiếp chúng vào nút gốc để tăng tốc các lần tìm về sau.
 
 ![](images/disjoint-set-compress.svg)
 
-???+ example "实现"
+???+ example "Cài đặt"
     === "C++"
         ```cpp
         size_t dsu::find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
@@ -75,13 +83,15 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
             return self.pa[x]
         ```
 
-## 合并
+<span id="&#x5408;&#x5E76;"></span>
 
-要合并两棵树，我们只需要将一棵树的根节点连到另一棵树的根节点．
+## Hợp nhất
+
+Để hợp nhất hai cây, ta chỉ cần nối nút gốc của một cây vào nút gốc của cây còn lại.
 
 ![](images/disjoint-set-merge.svg)
 
-???+ example "实现"
+???+ example "Cài đặt"
     === "C++"
         ```cpp
         void dsu::unite(size_t x, size_t y) { pa[find(x)] = find(y); }
@@ -93,22 +103,24 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
             self.pa[self.find(x)] = self.find(y)
         ```
 
-### 启发式合并
+<span id="&#x542F;&#x53D1;&#x5F0F;&#x5408;&#x5E76;"></span>
 
-合并时，选择哪棵树的根节点作为新树的根节点会影响未来操作的复杂度．我们可以将节点较少或深度较小的树连到另一棵，以免发生退化．
+### Hợp nhất theo heuristic
 
-??? note "具体复杂度讨论"
-    由于需要我们支持的只有集合的合并、查询操作，当我们需要将两个集合合二为一时，无论将哪一个集合连接到另一个集合的下面，都能得到正确的结果．但不同的连接方法存在时间复杂度的差异．具体来说，如果我们将一棵点数与深度都较小的集合树连接到一棵更大的集合树下，显然相比于另一种连接方案，接下来执行查找操作的用时更小（也会带来更优的最坏时间复杂度）．
+Khi hợp nhất, việc chọn nút gốc của cây nào làm gốc mới sẽ ảnh hưởng đến độ phức tạp của các thao tác sau. Ta có thể nối cây có ít nút hơn hoặc độ sâu nhỏ hơn vào cây còn lại để tránh suy biến.
+
+??? note "Thảo luận cụ thể về độ phức tạp"
+    Vì DSU chỉ cần hỗ trợ hợp nhất và tìm, khi cần gộp hai tập hợp thành một, nối tập hợp nào xuống dưới tập hợp nào cũng cho kết quả đúng. Tuy vậy, các cách nối khác nhau có độ phức tạp thời gian khác nhau. Cụ thể, nếu nối cây tập hợp có số nút và độ sâu nhỏ hơn vào dưới một cây tập hợp lớn hơn, thì so với phương án ngược lại, các thao tác tìm sau đó hiển nhiên sẽ tốn ít thời gian hơn (và cho độ phức tạp xấu nhất tốt hơn).
     
-    当然，我们不总能遇到恰好如上所述的集合——点数与深度都更小．鉴于点数与深度这两个特征都很容易维护，我们常常从中择一，作为估价函数．而无论选择哪一个，时间复杂度都为 $O (m\alpha(m,n))$，具体的证明可参见 References 中引用的论文．
+    Tất nhiên, không phải lúc nào ta cũng gặp đúng trường hợp một tập hợp vừa ít nút hơn vừa nông hơn. Vì hai đặc trưng số nút và độ sâu đều dễ duy trì, ta thường chọn một trong hai làm hàm đánh giá. Dù chọn cách nào, độ phức tạp đều là $O (m\alpha(m,n))$; chứng minh chi tiết có thể xem trong các bài báo được trích ở phần tài liệu tham khảo.
     
-    在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务．在 Tarjan 的论文[^tarjan1984worst]中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $O (m \log n)$．在姚期智的论文[^yao1985expected]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $O (m\alpha(m,n))$．
+    Trong code thi lập trình thực tế, ngay cả khi không dùng hợp nhất theo heuristic, chương trình thường vẫn chạy kịp thời gian. Trong bài báo của Tarjan[^tarjan1984worst], độ phức tạp xấu nhất khi không dùng hợp nhất theo heuristic mà chỉ dùng nén đường đi được chứng minh là $O (m \log n)$. Trong bài báo của Yao[^yao1985expected], nếu không dùng hợp nhất theo heuristic mà chỉ dùng nén đường đi, độ phức tạp trung bình vẫn là $O (m\alpha(m,n))$.
     
-    如果只使用启发式合并，而不使用路径压缩，时间复杂度为 $O(m\log n)$．由于路径压缩单次合并可能造成大量修改，有时路径压缩并不适合使用．例如，在可持久化并查集、线段树分治 + 并查集中，一般使用只启发式合并的并查集．
+    Nếu chỉ dùng hợp nhất theo heuristic mà không dùng nén đường đi, độ phức tạp là $O(m\log n)$. Vì một lần nén đường đi có thể gây ra nhiều thay đổi, đôi khi không nên dùng kỹ thuật này. Ví dụ, trong DSU bền vững hoặc chia để trị trên cây phân đoạn kết hợp DSU, người ta thường dùng DSU chỉ có hợp nhất theo heuristic.
 
-按节点数合并的参考实现：（注意需要调整初始化方法）
+Cài đặt tham khảo cho hợp nhất theo kích thước tập hợp: (lưu ý cần điều chỉnh cách khởi tạo)
 
-???+ example "实现"
+???+ example "Cài đặt"
     === "C++"
         ```cpp
         struct dsu {
@@ -145,11 +157,13 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
                 self.size[x] += self.size[y]
         ```
 
-## 参考实现
+<span id="&#x53C2;&#x8003;&#x5B9E;&#x73B0;"></span>
 
-带有路径压缩、按节点数合并的并查集的完整实现如下所示：
+## Cài đặt tham khảo
 
-??? example "模板题 [Luogu P3367【模板】并查集](https://www.luogu.com.cn/problem/P3367) 参考实现"
+Cài đặt đầy đủ của DSU có nén đường đi và hợp nhất theo kích thước như sau:
+
+??? example "Bài mẫu [Luogu P3367 Template DSU](https://www.luogu.com.cn/problem/P3367), cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_0.cpp"
@@ -160,30 +174,36 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         --8<-- "docs/ds/code/dsu/dsu_0.py"
         ```
 
-## 复杂度
+<span id="&#x590D;&#x6742;&#x5EA6;"></span>
 
-同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为 $O(\alpha(n))$．其中，$\alpha$ 为阿克曼函数的反函数，增长极其缓慢．也就是说，并查集单次操作的平均运行时间可以认为是一个很小的常数．时间复杂度的证明在 [这个页面](./dsu-complexity.md) 中．
+## Độ phức tạp
 
-???+ info "反 Ackermann 函数"
-    [Ackermann 函数](https://en.wikipedia.org/wiki/Ackermann_function)  $A(m, n)$ 的定义是这样的：
+Sau khi dùng đồng thời nén đường đi và hợp nhất theo heuristic, thời gian trung bình cho mỗi thao tác của DSU chỉ là $O(\alpha(n))$. Ở đây, $\alpha$ là hàm ngược của hàm Ackermann, tăng cực kỳ chậm. Nói cách khác, thời gian chạy trung bình của một thao tác DSU có thể xem như một hằng số rất nhỏ. Chứng minh độ phức tạp nằm ở [trang này](./dsu-complexity.md).
+
+???+ info "Hàm Ackermann ngược"
+    [Hàm Ackermann](https://en.wikipedia.org/wiki/Ackermann_function)  $A(m, n)$ được định nghĩa như sau:
     
     $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0\\A(m-1,A(m,n-1))&\text{otherwise}\end{cases}$
     
-    而反 Ackermann 函数 $\alpha(n)$ 的定义是 Ackermann 函数的反函数，即为最大的整数 $m$ 使得 $A(m, m) \leqslant n$．
+    Còn hàm Ackermann ngược $\alpha(n)$ là hàm ngược của hàm Ackermann, tức là số nguyên lớn nhất $m$ sao cho $A(m, m) \leqslant n$.
 
-并查集的空间复杂度显然为 $O(n)$．
+Độ phức tạp bộ nhớ của DSU hiển nhiên là $O(n)$.
 
-## 拓展操作
+<span id="&#x62D3;&#x5C55;&#x64CD;&#x4F5C;"></span>
 
-在普通的并查集的基础上，还可以做一系列修改使之支持更多的操作或维护更复杂的信息．
+## Thao tác mở rộng
 
-### 带删除并查集
+Trên nền DSU thông thường, ta có thể thực hiện nhiều chỉnh sửa để hỗ trợ thêm thao tác hoặc duy trì thông tin phức tạp hơn.
 
-普通的并查集无法支持删除操作，是因为删除一个节点的时候，不可避免地会将以它为根的子树上所有节点都删除．为了解决这一问题，在带删除操作的并查集中，可以通过建立虚点的方法保证所有实际存储数据的节点总是叶子节点．为此，需要在初始化时，就为每个数据节点都建立一个虚点，并将数据节点的父节点设置为该虚点．由于每次合并两个集合时，都只会将两个集合的树根连接，所以，从始至终只有虚点会有子节点．这就保证了删除一个节点时，不会误删其他节点．
+<span id="&#x5E26;&#x5220;&#x9664;&#x5E76;&#x67E5;&#x96C6;"></span>
 
-注意，删除单个节点后，需要重新为该节点建立一个虚点作为其父节点；否则，无法正确执行后续的合并和删除操作．
+### DSU hỗ trợ xóa
 
-??? example "模板题 [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/) 参考实现"
+DSU thông thường không hỗ trợ thao tác xóa, vì khi xóa một nút, ta không tránh khỏi việc xóa toàn bộ các nút trong cây con có nút đó làm gốc. Để giải quyết vấn đề này, trong DSU hỗ trợ xóa, ta có thể tạo các nút ảo để bảo đảm mọi nút thật lưu dữ liệu luôn là lá. Do đó, ngay khi khởi tạo, ta tạo một nút ảo cho mỗi nút dữ liệu và đặt cha của nút dữ liệu là nút ảo đó. Vì mỗi lần hợp nhất hai tập hợp chỉ nối hai gốc của cây, từ đầu đến cuối chỉ các nút ảo mới có nút con. Nhờ vậy, khi xóa một nút, ta sẽ không xóa nhầm các nút khác.
+
+Lưu ý rằng sau khi xóa một nút riêng lẻ, cần tạo lại một nút ảo làm cha của nút đó; nếu không, các thao tác hợp nhất và xóa về sau sẽ không còn đúng.
+
+??? example "Bài mẫu [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/), cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_4.cpp"
@@ -194,15 +214,17 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         --8<-- "docs/ds/code/dsu/dsu_4.py"
         ```
 
-类似的方法还可以用于实现在集合间移动单个元素．实现细节详见例题．
+Cách tương tự cũng có thể dùng để di chuyển một phần tử riêng lẻ giữa các tập hợp. Chi tiết cài đặt xem trong ví dụ.
 
-### 带权并查集
+<span id="&#x5E26;&#x6743;&#x5E76;&#x67E5;&#x96C6;"></span>
 
-我们还可以在并查集的边上定义某种权值和这种权值在路径压缩时产生的运算，从而解决更多的问题．比如对于经典的「NOI2001」食物链，我们可以在边权上维护模 $3$ 意义下的加法群．对于这类维护模意义下边权且模数很小的问题，还可以通过将并查集的单个点拆分为多个状态的方式来解决．这种特殊情形下的技巧，也称为「种类并查集」或「拓展域并查集」．后文会通过例题来说明这些做法．
+### DSU có trọng số
 
-为了维护并查集中的边权，需要将边权下放到子节点中存储．因此，每个节点存储的都是它到它的父节点之间的边权．只有当一个节点的父节点发生变化时，才需要相应地调整边权．一般情形中，这可能发生在路径压缩和合并两个节点时．例如，如果边权是当前节点与父节点之间的距离，那么，在路径压缩时，每次将当前节点的父节点替换为根节点，都需要将父节点到根节点的距离加到当前节点存储的边权上；类似地，在合并两个节点所在集合时，需要计算两个根节点之间新连接的边的权值．
+Ta cũng có thể định nghĩa một loại trọng số trên các cạnh của DSU, cùng với phép toán mà trọng số đó sinh ra khi nén đường đi, để giải quyết nhiều bài toán hơn. Chẳng hạn, với bài kinh điển "NOI2001 Food Chain", ta có thể duy trì nhóm cộng modulo $3$ trên trọng số cạnh. Với các bài toán duy trì trọng số cạnh theo modulo nhỏ như vậy, còn có thể giải bằng cách tách một điểm DSU thành nhiều trạng thái. Kỹ thuật trong trường hợp đặc biệt này còn được gọi là "DSU phân loại" hoặc "DSU mở rộng miền". Phần sau sẽ minh họa các cách làm này qua ví dụ.
 
-??? example "模板题 [Library Checker - Unionfind with Potential](https://judge.yosupo.jp/problem/unionfind_with_potential) 参考实现"
+Để duy trì trọng số cạnh trong DSU, cần đẩy trọng số cạnh xuống lưu ở nút con. Vì vậy, mỗi nút lưu trọng số của cạnh nối nó với cha của nó. Chỉ khi cha của một nút thay đổi thì trọng số mới cần được điều chỉnh tương ứng. Trong trường hợp chung, điều này có thể xảy ra khi nén đường đi và khi hợp nhất hai nút. Ví dụ, nếu trọng số cạnh là khoảng cách giữa nút hiện tại và nút cha, thì khi nén đường đi, mỗi lần thay cha của nút hiện tại bằng nút gốc, ta phải cộng khoảng cách từ cha cũ đến gốc vào trọng số đang lưu ở nút hiện tại; tương tự, khi hợp nhất hai tập hợp chứa hai nút, cần tính trọng số của cạnh mới nối giữa hai nút gốc.
+
+??? example "Bài mẫu [Library Checker - Unionfind with Potential](https://judge.yosupo.jp/problem/unionfind_with_potential), cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_5.cpp"
@@ -213,21 +235,23 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         --8<-- "docs/ds/code/dsu/dsu_5.py"
         ```
 
-## 例题
+<span id="&#x4F8B;&#x9898;"></span>
 
-算法竞赛中，直接考察并查集的题目大多都需要针对题目设计特殊的结构．
+## Ví dụ
+
+Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần lớn đều cần thiết kế cấu trúc đặc thù theo đề bài.
 
 ???+ example "[UVa11987 Almost Union-Find](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=229&page=show_problem&problem=3138)"
-    实现类似并查集的数据结构，支持以下操作：
+    Cài đặt một cấu trúc dữ liệu tương tự DSU, hỗ trợ các thao tác sau:
     
-    1.  合并两个元素所属集合．
-    2.  将单个元素移动到另一个元素所在的集合．
-    3.  查询某个元素所属集合的大小及元素和．
+    1.  Hợp nhất hai tập hợp chứa hai phần tử.
+    2.  Di chuyển một phần tử riêng lẻ sang tập hợp chứa một phần tử khác.
+    3.  Truy vấn kích thước và tổng các phần tử của tập hợp chứa một phần tử.
 
-??? note "解答"
-    这道题目中，操作 1 和操作 3 都容易处理，难点在于操作 2．假定要将元素 $x$ 移动到元素 $y$ 所在的集合．在普通的并查集中，直接将元素 $x$ 的父亲设为元素 $y$ 所在集合的根节点是不行的，因为这样会将元素 $x$ 所在子树的元素都一起移动．针对这个问题，解决方法就是保证元素 $x$ 没有子节点．为此，在建立并查集时为每个元素 $x$ 都建立一个虚点 $\tilde x$，并将元素 $x$ 的父亲指向对应的虚点 $\tilde x$．这样，在合并两个集合的时候，因为总是将一个树根连接到另一个树根，而树根又全部是虚点，所以，只有虚点会有子节点，而所有实际存储元素的点都没有子节点．此时，要移动元素，就容易实现得多．
+??? note "Lời giải"
+    Trong bài này, thao tác 1 và thao tác 3 đều dễ xử lý, điểm khó nằm ở thao tác 2. Giả sử cần di chuyển phần tử $x$ sang tập hợp chứa phần tử $y$. Trong DSU thông thường, không thể trực tiếp đặt cha của phần tử $x$ thành gốc của tập hợp chứa phần tử $y$, vì làm như vậy sẽ di chuyển cả các phần tử trong cây con của $x$. Để xử lý vấn đề này, cách làm là bảo đảm phần tử $x$ không có nút con. Do đó, khi xây DSU, ta tạo cho mỗi phần tử $x$ một nút ảo $\tilde x$, rồi cho cha của phần tử $x$ trỏ tới nút ảo tương ứng $\tilde x$. Như vậy, khi hợp nhất hai tập hợp, vì ta luôn nối một gốc cây vào một gốc cây khác, mà mọi gốc cây đều là nút ảo, nên chỉ nút ảo mới có nút con, còn mọi nút thật lưu phần tử đều không có nút con. Khi đó, việc di chuyển phần tử trở nên dễ cài đặt hơn nhiều.
 
-??? note "参考实现"
+??? note "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_1.cpp"
@@ -238,30 +262,30 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         --8<-- "docs/ds/code/dsu/dsu_1.py"
         ```
 
-???+ example "[Luogu P2024「NOI2011」食物链](https://www.luogu.com.cn/problem/P2024)"
-    动物王国中有三类动物 $A,B,C$，这三类动物的食物链构成了有趣的环形．$A$ 吃 $B$，$B$ 吃 $C$，$C$ 吃 $A$．
+???+ example "[Luogu P2024 NOI2011 Food Chain](https://www.luogu.com.cn/problem/P2024)"
+    Trong vương quốc động vật có ba loại động vật $A,B,C$; chuỗi thức ăn của ba loại động vật này tạo thành một vòng thú vị. $A$ ăn $B$, $B$ ăn $C$, và $C$ ăn $A$.
     
-    现有 $N$ 个动物，以 $1 \sim N$ 编号．每个动物都是 $A,B,C$ 中的一种，但是我们并不知道它到底是哪一种．
+    Hiện có $N$ con vật, được đánh số từ $1 \sim N$. Mỗi con vật thuộc một trong ba loại $A,B,C$, nhưng ta không biết chính xác nó thuộc loại nào.
     
-    有人用两种说法对这 $N$ 个动物所构成的食物链关系进行描述：
+    Có người dùng hai dạng phát biểu để mô tả quan hệ chuỗi thức ăn giữa $N$ con vật này:
     
-    -   第一种说法是 `1 X Y`，表示 $X$ 和 $Y$ 是同类．
-    -   第二种说法是 `2 X Y`，表示 $X$ 吃 $Y$．
+    -   Phát biểu dạng thứ nhất là `1 X Y`, nghĩa là $X$ và $Y$ cùng loại.
+    -   Phát biểu dạng thứ hai là `2 X Y`, nghĩa là $X$ ăn $Y$.
     
-    此人对 $N$ 个动物，用上述两种说法，一句接一句地说出 $K$ 句话，这 $K$ 句话有的是真的，有的是假的．当一句话满足下列三条之一时，这句话就是假话，否则就是真话．
+    Người này lần lượt đưa ra $K$ phát biểu thuộc hai dạng trên về $N$ con vật; trong đó có phát biểu đúng và có phát biểu sai. Một phát biểu là sai nếu thỏa một trong ba điều kiện sau, ngược lại là đúng.
     
-    -   当前的话与前面的某些真的话冲突，就是假话；
-    -   当前的话中 $X$ 或 $Y$ 比 $N$ 大，就是假话；
-    -   当前的话表示 $X$ 吃 $X$，就是假话．
+    -   Phát biểu hiện tại mâu thuẫn với một số phát biểu đúng trước đó;
+    -   Trong phát biểu hiện tại, $X$ hoặc $Y$ lớn hơn $N$;
+    -   Phát biểu hiện tại nói rằng $X$ ăn chính $X$.
     
-    你的任务是根据给定的 $N$ 和 $K$ 句话，输出假话的总数．
+    Nhiệm vụ của bạn là dựa trên $N$ và $K$ phát biểu đã cho để xuất ra tổng số phát biểu sai.
 
-??? note "解答一"
-    考虑用带权并查集维护食物链信息．如果 $x$ 和 $y$ 是同类，那么 $x\equiv y\pmod 3$；如果 $x$ 吃 $y$，那么 $x - y \equiv 1 \pmod 3$．这样就将本题转化为前文的模板题．
+??? note "Lời giải 1"
+    Xét dùng DSU có trọng số để duy trì thông tin chuỗi thức ăn. Nếu $x$ và $y$ cùng loại, thì $x\equiv y\pmod 3$; nếu $x$ ăn $y$, thì $x - y \equiv 1 \pmod 3$. Như vậy, bài toán được chuyển về bài mẫu ở phần trước.
     
-    具体地，对于每一句话，除去那些 $x>n$ 或 $y>n$ 的显然的假话外，需要判断 $x$ 和 $y$ 是否已经连接：如果已经连接，计算两者的模意义下的距离，并与这句话声称的信息进行比较；否则，将两者按照这句话提供的信息连接．除了显然的情形外，一句话是假话，当且仅当提到的两个节点已经连接，且对应的距离与这句话声称的信息矛盾．
+    Cụ thể, với mỗi phát biểu, ngoài các phát biểu hiển nhiên sai như $x>n$ hoặc $y>n$, ta cần kiểm tra $x$ và $y$ đã được nối hay chưa: nếu đã nối, tính khoảng cách giữa chúng theo modulo rồi so sánh với thông tin mà phát biểu khẳng định; nếu chưa nối, nối chúng theo thông tin do phát biểu cung cấp. Trừ các trường hợp hiển nhiên, một phát biểu là sai khi và chỉ khi hai nút được nhắc tới đã được nối, và khoảng cách tương ứng mâu thuẫn với thông tin mà phát biểu khẳng định.
 
-??? note "参考实现一"
+??? note "Cài đặt tham khảo 1"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_6.cpp"
@@ -272,26 +296,26 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         --8<-- "docs/ds/code/dsu/dsu_6.py"
         ```
 
-??? note "解答二"
-    将一种生物 $x$ 拆分为三种状态．在具体实现中，我们可以直接将不同的状态当作不同的元素：
+??? note "Lời giải 2"
+    Tách một sinh vật $x$ thành ba trạng thái. Khi cài đặt cụ thể, ta có thể trực tiếp xem các trạng thái khác nhau là các phần tử khác nhau:
     
-    -   与 $x$ 处于同一集合的状态与 $x$ 属于同一物种；
-    -   与 $x+n$ 处于同一集合的状态能被 $x$ 吃；
-    -   与 $x+2n$ 处于同一集合的能吃 $x$．
+    -   Trạng thái nằm cùng tập hợp với $x$ thuộc cùng loài với $x$;
+    -   Trạng thái nằm cùng tập hợp với $x+n$ có thể bị $x$ ăn;
+    -   Trạng thái nằm cùng tập hợp với $x+2n$ có thể ăn $x$.
     
-    于是，对于一句话：
+    Khi đó, với một phát biểu:
     
-    -   `1 x y` 为假话当且仅当：
+    -   `1 x y` là phát biểu sai khi và chỉ khi:
     
-        1.  $x>N$ 或 $y>N$；
-        2.  $y$ 与 $x+n$ 或 $x+2n$ 中的一个处于同一集合内．
-    -   `2 x y` 为假话当且仅当：
+        1.  $x>N$ hoặc $y>N$;
+        2.  $y$ nằm cùng tập hợp với một trong $x+n$ hoặc $x+2n$.
+    -   `2 x y` là phát biểu sai khi và chỉ khi:
     
-        1.  $x>N$ 或 $y>N$；
-        2.  $y$ 与 $x$ 或 $x+2n$ 中的一个处于同一集合内．
-    -   若为真话，合并对应状态．
+        1.  $x>N$ hoặc $y>N$;
+        2.  $y$ nằm cùng tập hợp với một trong $x$ hoặc $x+2n$.
+    -   Nếu là phát biểu đúng, hợp nhất các trạng thái tương ứng.
 
-??? note "参考实现二"
+??? note "Cài đặt tham khảo 2"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_2.cpp"
@@ -303,18 +327,18 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         ```
 
 ???+ example "[ABC396E Min of Restricted Sum](https://atcoder.jp/contests/abc396/tasks/abc396_e)"
-    给定整数 $N, M$ 和长度为 $M$ 的整数序列 $X=(X_1,X_2,\ldots,X_M)$、$Y=(Y_1,Y_2,\ldots,Y_M)$、$Z=(Z_1,Z_2,\ldots,Z_M)$．其中，保证 $X$ 和 $Y$ 的所有元素均在 $1$ 至 $N$ 的范围内．
+    Cho các số nguyên $N, M$ và ba dãy số nguyên độ dài $M$: $X=(X_1,X_2,\ldots,X_M)$, $Y=(Y_1,Y_2,\ldots,Y_M)$, $Z=(Z_1,Z_2,\ldots,Z_M)$. Bảo đảm mọi phần tử của $X$ và $Y$ đều nằm trong phạm vi từ $1$ đến $N$.
     
-    定义长度为 $N$ 的非负整数序列 $A=(A_1,A_2,\ldots,A_N)$ 为 **好的整数序列**，当且仅当满足以下条件：
+    Định nghĩa một dãy số nguyên không âm độ dài $N$, $A=(A_1,A_2,\ldots,A_N)$, là một **dãy số nguyên tốt** khi và chỉ khi thỏa điều kiện sau:
     
-    -   对于所有满足 $1 \leq i \leq M$ 的整数 $i$，有 $A_{X_i} \oplus A_{Y_i} = Z_i$，其中 $\oplus$ 表示异或运算．
+    -   Với mọi số nguyên $i$ thỏa $1 \leq i \leq M$, ta có $A_{X_i} \oplus A_{Y_i} = Z_i$, trong đó $\oplus$ biểu thị phép XOR.
     
-    请判断是否存在这样的好的整数序列．若存在，请找出使得元素总和 $\displaystyle \sum_{i=1}^N A_i$ 最小的好的整数序列，并输出该序列．
+    Hãy xác định có tồn tại dãy số nguyên tốt như vậy hay không. Nếu tồn tại, hãy tìm một dãy số nguyên tốt làm cho tổng các phần tử $\displaystyle \sum_{i=1}^N A_i$ nhỏ nhất và xuất dãy đó.
 
-??? note "解答"
-    异或就是单个二进制位上的「相同」或「不同」关系．那么，将 $A_i$ 的所有二进制位拆开，异或关系就能用带权并查集（或种类并查集）维护了．同一个连通块内的元素一定对应着 $A$ 中不同数字的同一个数位．统计答案时，同一连通块的元素通常分为两组，两组之间取值应当不同，只需要取其中较大的一组赋值为 $0$，另一组赋值为 $1$ 即可保证总权值最小．
+??? note "Lời giải"
+    XOR chính là quan hệ "giống nhau" hoặc "khác nhau" trên từng bit nhị phân. Vì vậy, nếu tách mọi bit nhị phân của $A_i$, quan hệ XOR có thể được duy trì bằng DSU có trọng số (hoặc DSU phân loại). Các phần tử trong cùng một thành phần liên thông chắc chắn tương ứng với cùng một bit của các số khác nhau trong $A$. Khi thống kê đáp án, các phần tử trong cùng một thành phần liên thông thường được chia thành hai nhóm, hai nhóm phải nhận giá trị khác nhau; chỉ cần gán nhóm lớn hơn bằng $0$ và nhóm còn lại bằng $1$ là bảo đảm tổng trọng số nhỏ nhất.
 
-??? note "参考实现"
+??? note "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_3.cpp"
@@ -325,24 +349,30 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         --8<-- "docs/ds/code/dsu/dsu_3.py"
         ```
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
 
--   [「NOI2015」程序自动分析](https://uoj.ac/problem/127)
--   [「JSOI2008」星球大战](https://www.luogu.com.cn/problem/P1197)
--   [「NOIP2023」三值逻辑](https://www.luogu.com.cn/problem/P9869)
--   [「NOI2002」银河英雄传说](https://www.luogu.com.cn/problem/P1196)
+## Bài tập
 
-## 其他应用
+-   [NOI2015 Program Automatic Analysis](https://uoj.ac/problem/127)
+-   [JSOI2008 Star Wars](https://www.luogu.com.cn/problem/P1197)
+-   [NOIP2023 Three-Valued Logic](https://www.luogu.com.cn/problem/P9869)
+-   [NOI2002 Legend of Galactic Heroes](https://www.luogu.com.cn/problem/P1196)
 
-[最小生成树算法](../graph/mst.md) 中的 Kruskal 和 [最近公共祖先](../graph/lca.md) 中的 Tarjan 算法是基于并查集的算法．
+<span id="&#x5176;&#x4ED6;&#x5E94;&#x7528;"></span>
 
-相关专题见 [并查集应用](../topic/dsu-app.md)．
+## Ứng dụng khác
 
-## 参考资料与拓展阅读
+Thuật toán Kruskal trong [cây khung nhỏ nhất](../graph/mst.md) và thuật toán Tarjan trong [tổ tiên chung gần nhất](../graph/lca.md) đều dựa trên DSU.
 
-1.  [知乎回答：是否在并查集中真的有二分路径压缩优化？](https://www.zhihu.com/question/28410263/answer/40966441)
+Xem thêm chuyên đề liên quan ở [ứng dụng DSU](../topic/dsu-app.md).
+
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+
+## Tài liệu tham khảo và đọc thêm
+
+1.  [Zhihu: DSU có thật sự có tối ưu nén đường đi kiểu chia đôi không?](https://www.zhihu.com/question/28410263/answer/40966441)
 2.  Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union. JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221.[PDF](https://dl.acm.org/doi/pdf/10.1145/800061.808753)
-3.  [CSDN：扩展域并查集 & 带权并查集](https://blog.csdn.net/qqqqqwerttwtwe/article/details/145440100)
+3.  [CSDN: DSU mở rộng miền & DSU có trọng số](https://blog.csdn.net/qqqqqwerttwtwe/article/details/145440100)
 
 [^tarjan1984worst]: Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.[ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
 

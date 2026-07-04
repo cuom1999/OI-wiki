@@ -196,6 +196,9 @@ MkDocs source layout intact.
   `docs/ds/hash.md`: translated the opening data-structure pages covering
   stacks, queues/deques, linked lists, and hash tables, plus explanatory
   comments in included queue snippets.
+- `docs/ds/dsu.md`, `docs/ds/dsu-complexity.md`: translated the union-find/DSU
+  pages covering core operations, extensions, examples, and the amortized
+  complexity proof, plus explanatory comments in included DSU snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

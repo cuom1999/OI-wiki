@@ -1,10 +1,10 @@
-# 此代码仅作示意，因超时无法通过原题
+# Code này chỉ dùng để minh họa; không qua được bài gốc vì quá thời gian.
 class Dsu:
     def __init__(self, size, m):
         self.id = size * 2
-        # 令 i 指向虚点 i + size_，所有虚点指向它自身
+        # Cho i trỏ đến nút ảo i + size_; mọi nút ảo trỏ đến chính nó.
         self.pa = list(range(size, size * 2)) + list(range(size, size * 2 + m))
-        # size 的前半段其实没有使用，只是为了让下标计算更简单
+        # Nửa đầu của size thực ra không được dùng; chỉ để tính chỉ số đơn giản hơn.
         self.size = [1] * (size * 2 + m)
 
     def find(self, x):

@@ -1,6 +1,6 @@
 class Dsu:
     def __init__(self, size):
-        # size 与 sum 的前半段其实没有使用，只是为了让下标计算更简单
+        # Nửa đầu của size và sum thực ra không được dùng; chỉ để tính chỉ số đơn giản hơn.
         self.pa = list(range(size, size * 2)) * 2
         self.size = [1] * size * 2
         self.sum = list(range(size)) * 2
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     while True:
         try:
             n, m = map(int, input().split())
-            dsu = Dsu(n + 1)  # 元素范围是 1..n
+            dsu = Dsu(n + 1)  # Phạm vi phần tử là 1..n
             for _ in range(m):
                 op_x_y = list(map(int, input().split()))
                 op = op_x_y[0]

@@ -9,10 +9,10 @@ struct DSU {
 
   explicit DSU(size_t size_, size_t m)
       : id(size_ * 2), pa(size_ * 2 + m), size(size_ * 2 + m, 1) {
-    // size 的前半段其实没有使用，只是为了让下标计算更简单
+    // Nửa đầu của size thực ra không được dùng; chỉ để tính chỉ số đơn giản hơn.
     std::iota(pa.begin(), pa.begin() + size_,
-              size_);  // 令 i 指向虚点 i + size_
-    std::iota(pa.begin() + size_, pa.end(), size_);  // 所有虚点指向它自身
+              size_);  // Cho i trỏ đến nút ảo i + size_
+    std::iota(pa.begin() + size_, pa.end(), size_);  // Mọi nút ảo trỏ đến chính nó
   }
 
   size_t find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
