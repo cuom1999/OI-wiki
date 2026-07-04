@@ -27,7 +27,7 @@ struct Node {
 
 int head[N], nxt[N], to[N], cnt;
 int n, m, p[N], f[N], a[N], dep[N], c[N], ans1[N],
-    ans2[N];  // p 是树上每个点对应的堆顶
+    ans2[N];  // p là đỉnh heap tương ứng với mỗi nút trên cây
 ll h[N], b[N];
 
 void add(int u, int v) {
@@ -47,7 +47,7 @@ void mmul(int u, ll x) {
   t[u].mul *= x;
 }
 
-void pushdown(int x) {  // 类似线段树下传标记
+void pushdown(int x) {  // Tương tự đẩy tag xuống trong cây phân đoạn
   mmul(t[x].ls, t[x].mul);
   madd(t[x].ls, t[x].add);
   mmul(t[x].rs, t[x].mul);

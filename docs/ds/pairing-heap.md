@@ -1,174 +1,193 @@
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
 
-配对堆是一个支持插入，查询/删除最小值，合并，修改元素等操作的数据结构，是一种可并堆．有速度快和结构简单的优势，但由于其为基于势能分析的均摊复杂度，无法可持久化．
+## Mở đầu
 
-## 定义
+Heap ghép cặp là một cấu trúc dữ liệu hỗ trợ các thao tác chèn, truy vấn/xóa phần tử nhỏ nhất, hợp nhất, sửa phần tử, v.v. Đây là một loại heap có thể hợp nhất. Nó có ưu điểm là nhanh và có cấu trúc đơn giản, nhưng vì độ phức tạp khấu hao của nó dựa trên phân tích thế năng nên không thể làm bền vững hóa.
 
-配对堆是一棵满足堆性质的带权多叉树（如下图），即每个节点的权值都小于或等于他的所有儿子（以小根堆为例，下同）．  
+<span id="&#x5B9A;&#x4E49;"></span>
+
+## Định nghĩa
+
+Heap ghép cặp là một cây đa phân có trọng số thỏa mãn tính chất heap (như hình dưới), tức là trọng số của mỗi nút đều nhỏ hơn hoặc bằng trọng số của mọi nút con của nó (ở đây xét min-heap, các phần sau cũng vậy).
+
 ![](./images/pairingheap1.jpg)
 
-通常我们使用儿子 - 兄弟表示法储存一个配对堆（如下图），一个节点的所有儿子节点形成一个单向链表．每个节点储存第一个儿子的指针，即链表的头节点；和他的右兄弟的指针．
+Thông thường, ta dùng biểu diễn con - anh em để lưu một heap ghép cặp (như hình dưới). Tất cả các nút con của một nút tạo thành một danh sách liên kết đơn. Mỗi nút lưu con trỏ tới nút con đầu tiên, tức nút đầu của danh sách liên kết, và con trỏ tới anh em bên phải của nó.
 
-这种方式便于实现配对堆，也将方便复杂度分析．
+Cách này thuận tiện cho việc cài đặt heap ghép cặp, đồng thời cũng giúp phân tích độ phức tạp dễ hơn.
 
 ![](./images/pairingheap2.jpg)
 
 ```cpp
 struct Node {
-  T v;  // T为权值类型
+  T v;  // T là kiểu của trọng số
   Node *child, *sibling;
-  // child 指向该节点第一个儿子，sibling 指向该节点的下一个兄弟．
-  // 若该节点没有儿子/下个兄弟则指针指向 nullptr．
+  // child trỏ tới nút con đầu tiên của nút này, sibling trỏ tới anh em kế tiếp của nút này.
+  // Nếu nút này không có con/anh em kế tiếp thì con trỏ trỏ tới nullptr.
 };
 ```
 
-从定义可以发现，和其他常见的堆结构相比，配对堆不维护任何额外的树大小，深度，排名等信息（二叉堆也不维护额外信息，但它是通过维持一个严格的完全二叉树结构来保证操作的复杂度），且任何一个满足堆性质的树都是一个合法的配对堆，这样简单又高度灵活的数据结构奠定了配对堆在实践中优秀效率的基础；作为对比，斐波那契堆糟糕的常数就是因为它需要维护很多额外的信息．
+Từ định nghĩa có thể thấy, so với các cấu trúc heap thường gặp khác, heap ghép cặp không duy trì thêm bất kỳ thông tin nào như kích thước cây, độ sâu, hạng, v.v. (heap nhị phân cũng không duy trì thông tin phụ, nhưng nó đảm bảo độ phức tạp thao tác bằng cách giữ một cấu trúc cây nhị phân hoàn chỉnh nghiêm ngặt). Hơn nữa, bất kỳ cây nào thỏa mãn tính chất heap cũng là một heap ghép cặp hợp lệ. Chính cấu trúc đơn giản nhưng rất linh hoạt này là nền tảng cho hiệu quả tốt của heap ghép cặp trong thực tế. Để so sánh, hằng số lớn của heap Fibonacci xuất phát từ việc nó phải duy trì rất nhiều thông tin phụ.
 
-配对堆通过一套精心设计的操作顺序来保证它的总复杂度，原论文[^ref1]将其称为「一种自调整的堆（Self Adjusting Heap）」．在这方面和 Splay 树（在原论文中被称作「Self Adjusting Binary Tree」）颇有相似之处．
+Heap ghép cặp đảm bảo tổng độ phức tạp thông qua một trình tự thao tác được thiết kế cẩn thận. Bài báo gốc[^ref1] gọi nó là "một heap tự điều chỉnh (Self Adjusting Heap)". Ở khía cạnh này, nó khá giống cây Splay (trong bài báo gốc được gọi là "Self Adjusting Binary Tree").
 
-## 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
 
-### 查询最小值
+## Quy trình
 
-从配对堆的定义可看出，配对堆的根节点的权值一定最小，直接返回根节点即可．
+<span id="&#x67E5;&#x8BE2;&#x6700;&#x5C0F;&#x503C;"></span>
 
-### 合并
+### Truy vấn phần tử nhỏ nhất
 
-合并两个配对堆的操作很简单，首先令两个根节点较小的一个为新的根节点，然后将较大的根节点作为它的儿子插入进去．（见下图）
+Từ định nghĩa của heap ghép cặp, có thể thấy trọng số của nút gốc luôn là nhỏ nhất, vì vậy chỉ cần trả về nút gốc.
+
+<span id="&#x5408;&#x5E76;"></span>
+
+### Hợp nhất
+
+Thao tác hợp nhất hai heap ghép cặp rất đơn giản: trước hết chọn nút gốc nhỏ hơn trong hai nút gốc làm nút gốc mới, sau đó chèn nút gốc lớn hơn vào làm con của nó (xem hình dưới).
 
 ![](./images/pairingheap3.jpg)
 
-需要注意的是，一个节点的儿子链表是按插入时间排序的，即最右边的节点最早成为父节点的儿子，最左边的节点最近成为父节点的儿子．
+Cần lưu ý rằng danh sách con của một nút được sắp theo thời điểm chèn: nút ngoài cùng bên phải trở thành con của nút cha sớm nhất, còn nút ngoài cùng bên trái trở thành con của nút cha gần đây nhất.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     Node* meld(Node* x, Node* y) {
-      // 若有一个为空则直接返回另一个
+      // Nếu một heap rỗng thì trả về heap còn lại
       if (x == nullptr) return y;
       if (y == nullptr) return x;
-      if (x->v > y->v) std::swap(x, y);  // swap后x为权值小的堆，y为权值大的堆
-      // 将y设为x的儿子
+      if (x->v > y->v) std::swap(x, y);  // sau khi swap, x là heap có trọng số nhỏ hơn, y là heap có trọng số lớn hơn
+      // Đặt y làm con của x
       y->sibling = x->child;
       x->child = y;
-      return x;  // 新的根节点为 x
+      return x;  // nút gốc mới là x
     }
     ```
 
-### 插入
+<span id="&#x63D2;&#x5165;"></span>
 
-合并都有了，插入就直接把新元素视为一个新的配对堆和原堆合并就行了．
+### Chèn
 
-### 删除最小值
+Khi đã có thao tác hợp nhất, thao tác chèn chỉ cần xem phần tử mới như một heap ghép cặp mới rồi hợp nhất với heap ban đầu.
 
-首先要提及的一点是，上文的几个操作都十分偷懒，完全没有对数据结构进行维护，所以我们需要小心设计删除最小值的操作，来保证总复杂度不出问题．
+<span id="&#x5220;&#x9664;&#x6700;&#x5C0F;&#x503C;"></span>
 
-根节点即为最小值，所以要删除的是根节点．考虑拿掉根节点之后会发生什么：根节点原来的所有儿子构成了一片森林；而配对堆应当是一棵树，所以我们需要通过某种顺序把这些儿子全部合并起来．
+### Xóa phần tử nhỏ nhất
 
-一个很自然的想法是使用 `meld` 函数把儿子们从左到右挨个并在一起，这样做的话正确性是显然的，但是会导致单次操作复杂度退化到 $O(n)$．
+Trước hết cần nhắc rằng vài thao tác ở trên đều khá "lười", hầu như không bảo trì cấu trúc dữ liệu, nên ta phải thiết kế cẩn thận thao tác xóa phần tử nhỏ nhất để đảm bảo tổng độ phức tạp không gặp vấn đề.
 
-为了保证总的均摊复杂度，需要使用一个「两步走」的合并方法：
+Nút gốc chính là phần tử nhỏ nhất, nên nút cần xóa là nút gốc. Hãy xét điều gì xảy ra sau khi lấy nút gốc đi: toàn bộ các con ban đầu của nút gốc tạo thành một rừng; trong khi heap ghép cặp phải là một cây, vì vậy ta cần hợp nhất toàn bộ các nút con này theo một thứ tự nào đó.
 
-1.  把儿子们两两配成一对，用 `meld` 操作把被配成同一对的两个儿子合并到一起（见下图 1），
-2.  将新产生的堆 **从右往左**（即老的儿子到新的儿子的方向）挨个合并在一起（见下图 2）．
+Một ý tưởng rất tự nhiên là dùng hàm `meld` để lần lượt hợp nhất các con từ trái sang phải. Làm như vậy thì tính đúng đắn là hiển nhiên, nhưng độ phức tạp của một thao tác có thể suy giảm thành $O(n)$.
+
+Để đảm bảo tổng độ phức tạp khấu hao, cần dùng một phương pháp hợp nhất "hai bước":
+
+1.  Ghép các con thành từng cặp, rồi dùng thao tác `meld` để hợp nhất hai con trong cùng một cặp (xem hình 1 bên dưới).
+2.  Hợp nhất lần lượt các heap mới sinh ra **từ phải sang trái** (tức theo hướng từ các con cũ đến các con mới) (xem hình 2 bên dưới).
 
 ![](./images/pairingheap4.jpg)
 
 ![](./images/pairingheap5.jpg)
 
-先实现一个辅助函数 `merges`，作用是合并一个节点的所有兄弟．
+Trước hết cài đặt một hàm phụ trợ `merges`, có tác dụng hợp nhất toàn bộ anh em của một nút.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     Node* merges(Node* x) {
       if (x == nullptr || x->sibling == nullptr)
-        return x;  // 如果该树为空或他没有下一个兄弟，就不需要合并了，return．
-      Node* y = x->sibling;                // y 为 x 的下一个兄弟
-      Node* c = y->sibling;                // c 是再下一个兄弟
-      x->sibling = y->sibling = nullptr;   // 拆散
-      return meld(merges(c), meld(x, y));  // 核心部分
+        return x;  // Nếu cây rỗng hoặc không có anh em kế tiếp thì không cần hợp nhất nữa, return.
+      Node* y = x->sibling;                // y là anh em kế tiếp của x
+      Node* c = y->sibling;                // c là anh em tiếp theo nữa
+      x->sibling = y->sibling = nullptr;   // tách rời
+      return meld(merges(c), meld(x, y));  // phần cốt lõi
     }
     ```
 
-最后一句话是该函数的核心，这句话分三部分：
+Câu cuối cùng là phần cốt lõi của hàm này, gồm ba phần:
 
-1.  `meld(x,y)`「配对」了 x 和 y．
-2.  `merges(c)` 递归合并 c 和他的兄弟们．
-3.  将上面 2 个操作产生的 2 个新树合并．
+1.  `meld(x,y)` "ghép cặp" x và y.
+2.  `merges(c)` đệ quy hợp nhất c và các anh em của nó.
+3.  Hợp nhất hai cây mới sinh ra từ hai thao tác trên.
 
-需要注意到的是，上文提到了第二步时的合并方向是有要求的（从右往左合并），该递归函数的实现已保证了这个顺序，如果读者需要自行实现迭代版本的话请务必注意保证该顺序，否则复杂度将失去保证．
+Cần chú ý rằng ở trên đã nêu hướng hợp nhất trong bước thứ hai là có yêu cầu (hợp nhất từ phải sang trái). Cài đặt đệ quy của hàm này đã đảm bảo thứ tự đó; nếu người đọc muốn tự cài đặt phiên bản lặp thì nhất định phải đảm bảo thứ tự này, nếu không độ phức tạp sẽ mất bảo đảm.
 
-有了 `merges` 函数，`delete-min` 操作就显然了．
+Khi đã có hàm `merges`, thao tác `delete-min` trở nên hiển nhiên.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     Node* delete_min(Node* x) {
       Node* t = merges(x->child);
-      delete x;  // 如果需要内存回收
+      delete x;  // nếu cần thu hồi bộ nhớ
       return t;
     }
     ```
 
-### 减小一个元素的值
+<span id="&#x51CF;&#x5C0F;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x503C;"></span>
 
-要实现这个操作，需要给节点添加一个「父」指针，当节点有左兄弟时，其指向左兄弟而非实际的父节点；否则，指向其父节点．
+### Giảm khóa của một phần tử
 
-首先节点的定义修改为：
+Để cài đặt thao tác này, cần thêm cho nút một con trỏ "cha". Khi nút có anh em bên trái, con trỏ này trỏ tới anh em bên trái thay vì nút cha thật sự; nếu không, nó trỏ tới nút cha của nút đó.
 
-???+ note "实现"
+Trước hết, định nghĩa nút được sửa thành:
+
+???+ note "Cài đặt"
     ```cpp
     struct Node {
       LL v;
       int id;
       Node *child, *sibling;
-      Node *father;  // 新增：父指针，若该节点为根节点则指向空节点 nullptr
+      Node *father;  // thêm mới: con trỏ cha; nếu nút này là nút gốc thì trỏ tới nút rỗng nullptr
     };
     ```
 
-`meld` 操作修改为：
+Thao tác `meld` được sửa thành:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     Node* meld(Node* x, Node* y) {
       if (x == nullptr) return y;
       if (y == nullptr) return x;
       if (x->v > y->v) std::swap(x, y);
-      if (x->child != nullptr) {  // 新增：维护父指针
+      if (x->child != nullptr) {  // thêm mới: duy trì con trỏ cha
         x->child->father = y;
       }
       y->sibling = x->child;
-      y->father = x;  // 新增：维护父指针
+      y->father = x;  // thêm mới: duy trì con trỏ cha
       x->child = y;
       return x;
     }
     ```
 
-`merges` 操作修改为：
+Thao tác `merges` được sửa thành:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     Node *merges(Node *x) {
       if (x == nullptr) return nullptr;
-      x->father = nullptr;  // 新增：维护父指针
+      x->father = nullptr;  // thêm mới: duy trì con trỏ cha
       if (x->sibling == nullptr) return x;
       Node *y = x->sibling, *c = y->sibling;
-      y->father = nullptr;  // 新增：维护父指针
+      y->father = nullptr;  // thêm mới: duy trì con trỏ cha
       x->sibling = y->sibling = nullptr;
       return meld(merges(c), meld(x, y));
     }
     ```
 
-现在我们来考虑如何实现 `decrease-key` 操作．  
-首先我们发现，当我们减少节点 `x` 的权值之后，以 `x` 为根的子树仍然满足配对堆性质，但 `x` 的父亲和 `x` 之间可能不再满足堆性质．  
-因此我们把整棵以 `x` 为根的子树剖出来，现在两棵树都符合配对堆性质了，然后把他们合并起来，就完成了全部操作．
+Bây giờ ta xét cách cài đặt thao tác `decrease-key`.
 
-???+ note "实现"
+Trước hết ta thấy rằng sau khi giảm trọng số của nút `x`, cây con gốc `x` vẫn thỏa mãn tính chất heap ghép cặp, nhưng giữa cha của `x` và `x` có thể không còn thỏa mãn tính chất heap.
+
+Do đó, ta tách cả cây con gốc `x` ra. Lúc này hai cây đều thỏa mãn tính chất heap ghép cặp, rồi chỉ cần hợp nhất chúng lại là hoàn thành toàn bộ thao tác.
+
+???+ note "Cài đặt"
     ```cpp
-    // root为堆的根，x为要操作的节点，v为新的权值，调用时需保证 v <= x->v
-    // 返回值为新的根节点
+    // root là gốc của heap, x là nút cần thao tác, v là trọng số mới; khi gọi cần đảm bảo v <= x->v
+    // Giá trị trả về là nút gốc mới
     Node *decrease_key(Node *root, Node *x, LL v) {
-      x->v = v;                 // 更新权值
-      if (x == root) return x;  // 如果 x 为根，则直接返回
-      // 把x从fa的子节点中剖出去，这里要分x的位置讨论一下．
+      x->v = v;                 // cập nhật trọng số
+      if (x == root) return x;  // nếu x là gốc thì trả về trực tiếp
+      // Tách x khỏi các nút con của cha; ở đây cần xét vị trí của x.
       if (x->father->child == x) {
         x->father->child = x->sibling;
       } else {
@@ -179,21 +198,25 @@ struct Node {
       }
       x->sibling = nullptr;
       x->father = nullptr;
-      return meld(root, x);  // 重新合并 x 和根节点
+      return meld(root, x);  // hợp nhất lại x và nút gốc
     }
     ```
 
-## 复杂度分析
+<span id="&#x590D;&#x6742;&#x5EA6;&#x5206;&#x6790;"></span>
 
-配对堆结构与实现简单，但时间复杂度分析并不容易．
+## Phân tích độ phức tạp
 
-原论文[^ref1]仅将复杂度分析到 `meld` 和 `delete-min` 操作均为均摊 $O(\log n)$，但提出猜想认为其各操作都有和斐波那契堆相同的复杂度．
+Cấu trúc và cài đặt của heap ghép cặp đều đơn giản, nhưng phân tích độ phức tạp thời gian của nó thì không dễ.
 
-遗憾的是，后续发现，不维护额外信息的配对堆，在特定的操作序列下，`decrease-key` 操作的均摊复杂度下界至少为 $\Omega (\log \log n)$[^ref2]．
+Bài báo gốc[^ref1] chỉ phân tích được rằng các thao tác `meld` và `delete-min` đều có độ phức tạp khấu hao $O(\log n)$, nhưng đưa ra phỏng đoán rằng mọi thao tác của nó đều có độ phức tạp giống heap Fibonacci.
 
-目前对复杂度上界比较好的估计有，Iacono 的 $O(1)$ `meld`，$O(\log n)$ `decrease-key`[^ref3]；Pettie 的 $O(2^{2 \sqrt{\log \log n}})$ `meld` 和 `decrease-key`[^ref4]．需要注意的是，前述复杂度均为均摊复杂度，因此不能对各结果分别取最小值．
+Đáng tiếc là các nghiên cứu sau đó phát hiện rằng với heap ghép cặp không duy trì thông tin phụ, trong một số chuỗi thao tác nhất định, cận dưới độ phức tạp khấu hao của thao tác `decrease-key` ít nhất là $\Omega (\log \log n)$[^ref2].
 
-## 参考文献
+Hiện nay, một vài ước lượng tốt hơn về cận trên độ phức tạp gồm có: kết quả của Iacono với `meld` $O(1)$ và `decrease-key` $O(\log n)$[^ref3]; kết quả của Pettie với `meld` và `decrease-key` $O(2^{2 \sqrt{\log \log n}})$[^ref4]. Cần lưu ý rằng các độ phức tạp nói trên đều là độ phức tạp khấu hao, vì vậy không thể lấy giá trị nhỏ nhất riêng lẻ giữa các kết quả.
+
+<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+
+## Tài liệu tham khảo
 
 [^ref1]: [The pairing heap: a new form of self-adjusting heap](http://www.cs.cmu.edu/~sleator/papers/pairing-heaps.pdf)
 

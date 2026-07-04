@@ -1,32 +1,34 @@
 author: ouuan, HeRaNO
 
-堆是一棵树，其每个节点都有一个键值，且每个节点的键值都大于等于/小于等于其父亲的键值．
+Heap là một cây mà mỗi nút có một khóa, và khóa của mỗi nút đều lớn hơn hoặc bằng / nhỏ hơn hoặc bằng khóa của cha nó.
 
-每个节点的键值都大于等于其父亲键值的堆叫做小根堆，否则叫做大根堆．[STL 中的 `priority_queue`](../lang/csl/container-adapter.md#优先队列) 其实就是一个大根堆．
+Heap trong đó khóa của mỗi nút đều lớn hơn hoặc bằng khóa của cha được gọi là heap nhỏ; ngược lại gọi là heap lớn. [`priority_queue` trong STL](../lang/csl/container-adapter.md#%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97) thực chất là một heap lớn.
 
-（小根）堆主要支持的操作有：插入一个数、查询最小值、删除最小值、合并两个堆、减小一个元素的值．
+Heap nhỏ chủ yếu hỗ trợ các thao tác: chèn một số, truy vấn giá trị nhỏ nhất, xóa giá trị nhỏ nhất, hợp nhất hai heap, và giảm khóa của một phần tử.
 
-一些功能强大的堆（可并堆）还能（高效地）支持 merge 等操作．
+Một số heap mạnh hơn (heap có thể hợp nhất) còn hỗ trợ hiệu quả các thao tác như `merge`.
 
-一些功能更强大的堆还支持可持久化，也就是对任意历史版本进行查询或者操作，产生新的版本．
+Một số heap mạnh hơn nữa còn hỗ trợ tính bền vững, tức là có thể truy vấn hoặc thao tác trên bất kỳ phiên bản lịch sử nào và sinh ra phiên bản mới.
 
-## 堆的分类
+<span id="&#22534;&#30340;&#20998;&#31867;"></span>
 
-|    操作 `\` 数据结构[^ref4]   |                                      配对堆                                     |      二叉堆     |      左偏树     |          二项堆         |        斐波那契堆       |
-| :---------------------: | :--------------------------------------------------------------------------: | :----------: | :----------: | :------------------: | :----------------: |
-|        插入（insert）       |                                    $O(1)$                                    |  $O(\log n)$ |  $O(\log n)$ |  $O(\log n)$[^ref1]  |       $O(1)$       |
-|     查询最小值（find-min）     |                                    $O(1)$                                    |    $O(1)$    |    $O(1)$    | $O(1)$[^ref2][^ref3] |       $O(1)$       |
-|    删除最小值（delete-min）    |                              $O(\log n)$[^ref3]                              |  $O(\log n)$ |  $O(\log n)$ |      $O(\log n)$     | $O(\log n)$[^ref3] |
-|        合并 (merge)       |                                    $O(1)$                                    |    $O(n)$    |  $O(\log n)$ |      $O(\log n)$     |       $O(1)$       |
-| 减小一个元素的值 (decrease-key) | $o(\log n)$（下界 $\Omega(\log \log n)$，上界 $O(2^{2\sqrt{\log \log n}})$）[^ref3] |  $O(\log n)$ |  $O(\log n)$ |      $O(\log n)$     |    $O(1)$[^ref3]   |
-|         是否支持可持久化        |                                   $\times$                                   | $\checkmark$ | $\checkmark$ |     $\checkmark$     |      $\times$      |
+## Phân loại heap
 
-[^ref1]: 单次插入的复杂度为 $O(\log n)$，但有 $k$ 次连续插入时，可创建一个只包含要插入元素的二项堆，再将此堆与原先的二项堆进行合并，均摊复杂度为 $O(1)$
+| Thao tác `\` cấu trúc dữ liệu[^ref4] | Heap ghép cặp | Heap nhị phân | Cây lệch trái | Heap nhị thức | Heap Fibonacci |
+| :----------------------------------: | :-----------: | :-----------: | :-----------: | :-----------: | :------------: |
+| Chèn (insert) | $O(1)$ | $O(\log n)$ | $O(\log n)$ | $O(\log n)$[^ref1] | $O(1)$ |
+| Truy vấn nhỏ nhất (find-min) | $O(1)$ | $O(1)$ | $O(1)$ | $O(1)$[^ref2][^ref3] | $O(1)$ |
+| Xóa nhỏ nhất (delete-min) | $O(\log n)$[^ref3] | $O(\log n)$ | $O(\log n)$ | $O(\log n)$ | $O(\log n)$[^ref3] |
+| Hợp nhất (merge) | $O(1)$ | $O(n)$ | $O(\log n)$ | $O(\log n)$ | $O(1)$ |
+| Giảm khóa (decrease-key) | $o(\log n)$ (cận dưới $\Omega(\log \log n)$, cận trên $O(2^{2\sqrt{\log \log n}})$)[^ref3] | $O(\log n)$ | $O(\log n)$ | $O(\log n)$ | $O(1)$[^ref3] |
+| Hỗ trợ bền vững | $\times$ | $\checkmark$ | $\checkmark$ | $\checkmark$ | $\times$ |
 
-[^ref2]: 可以保存一个指向最小元素的指针，在执行其他操作时修改该指针，即可在 $O(1)$ 的复杂度下进行查询了
+[^ref1]: Độ phức tạp của một lần chèn đơn lẻ là $O(\log n)$, nhưng nếu có $k$ lần chèn liên tiếp, có thể tạo một heap nhị thức chỉ chứa các phần tử cần chèn rồi hợp nhất heap này với heap nhị thức ban đầu; độ phức tạp khấu hao là $O(1)$.
 
-[^ref3]: 复杂度为均摊复杂度
+[^ref2]: Có thể lưu một con trỏ tới phần tử nhỏ nhất và cập nhật con trỏ này khi thực hiện các thao tác khác, nhờ đó truy vấn được trong $O(1)$.
 
-[^ref4]: 表格来自于 [Wikipedia](https://en.wikipedia.org/wiki/Priority_queue#Summary_of_running_times)
+[^ref3]: Độ phức tạp là độ phức tạp khấu hao.
 
-习惯上，不加限定提到「堆」时往往都指二叉堆．
+[^ref4]: Bảng lấy từ [Wikipedia](https://en.wikipedia.org/wiki/Priority_queue#Summary_of_running_times).
+
+Theo thói quen, khi nhắc đến "heap" mà không nói rõ thêm, thường mặc định là heap nhị phân.

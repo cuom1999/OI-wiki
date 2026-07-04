@@ -7,26 +7,28 @@ int main() {
   int t, x;
   cin >> t;
   while (t--) {
-    // 大根堆，维护前一半元素（存小值）
+    // Heap lớn, duy trì nửa trước của các phần tử (lưu các giá trị nhỏ)
     priority_queue<int, vector<int>, less<int>> a;
-    // 小根堆，维护后一半元素（存大值）
+    // Heap nhỏ, duy trì nửa sau của các phần tử (lưu các giá trị lớn)
     priority_queue<int, vector<int>, greater<int>> b;
     while (cin >> x, x) {
-      // 若为查询并删除操作，输出并删除大根堆堆顶元素
-      // 因为这题要求输出中位数中较小者（偶数个数字会存在两个中位数候选）
-      // 这个和上面的第k大讲解有稍许出入，但如果理解了上面的，这个稍微变通下便可理清
+      // Nếu là thao tác truy vấn và xóa, in rồi xóa phần tử ở đỉnh heap lớn
+      // vì bài này yêu cầu in trung vị nhỏ hơn (khi có chẵn số phần tử sẽ có
+      // hai ứng viên trung vị).
+      // Cách này hơi khác phần giải thích phần tử lớn thứ k ở trên, nhưng chỉ
+      // cần biến đổi nhẹ là có thể hiểu được từ ý tưởng đó.
       if (x == -1) {
         cout << a.top() << '\n';
         a.pop();
       }
-      // 若为插入操作，根据大根堆堆顶的元素值，选择合适的堆进行插入
+      // Nếu là thao tác chèn, chọn heap phù hợp dựa trên phần tử ở đỉnh heap lớn
       else {
         if (a.empty() || x <= a.top())
           a.push(x);
         else
           b.push(x);
       }
-      // 对对顶堆进行调整
+      // Điều chỉnh heap đối đỉnh
       if (a.size() > (a.size() + b.size() + 1) / 2) {
         b.push(a.top());
         a.pop();

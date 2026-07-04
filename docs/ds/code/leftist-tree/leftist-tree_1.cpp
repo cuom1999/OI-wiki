@@ -29,7 +29,7 @@ int merge(int x, int y) {
 
 int f[N];
 
-// 查找
+// Tìm kiếm
 int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }
 
 bool kill[N];
@@ -65,7 +65,7 @@ int main() {
         x = find(x);
         kill[x] = true;
         f[x] = f[t[x].ls] = f[t[x].rs] = merge(t[x].ls, t[x].rs);
-        // 由于堆中的点会 find 到 x，所以 f[x] 也要修改
+        // Vì các nút trong heap sẽ find tới x, nên f[x] cũng cần cập nhật
         cout << t[x].val << '\n';
       } else
         cout << "0\n";

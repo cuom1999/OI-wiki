@@ -199,6 +199,10 @@ MkDocs source layout intact.
 - `docs/ds/dsu.md`, `docs/ds/dsu-complexity.md`: translated the union-find/DSU
   pages covering core operations, extensions, examples, and the amortized
   complexity proof, plus explanatory comments in included DSU snippets.
+- `docs/ds/heap.md`, `docs/ds/binary-heap.md`,
+  `docs/ds/pairing-heap.md`, `docs/ds/leftist-tree.md`: translated heap
+  overview, binary heap, pairing heap, and leftist tree material, plus
+  explanatory comments in included heap snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

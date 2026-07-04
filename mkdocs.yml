@@ -353,11 +353,11 @@ nav:
     - DSU:
       - DSU: ds/dsu.md
       - Độ phức tạp của DSU: ds/dsu-complexity.md
-    - 堆:
-      - 堆简介: ds/heap.md
-      - 二叉堆: ds/binary-heap.md
-      - 配对堆: ds/pairing-heap.md
-      - 左偏树: ds/leftist-tree.md
+    - Heap:
+      - Tổng quan heap: ds/heap.md
+      - Heap nhị phân: ds/binary-heap.md
+      - Heap ghép cặp: ds/pairing-heap.md
+      - Cây lệch trái: ds/leftist-tree.md
     - 块状数据结构:
       - 分块思想: ds/decompose.md
       - 块状数组: ds/block-array.md
