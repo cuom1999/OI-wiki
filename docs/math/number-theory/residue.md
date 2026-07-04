@@ -587,33 +587,61 @@ $O\left(\sqrt{(s-e)p}\right)$. Sau khi thu được $h$, thay vào biểu thức
 <span id="&#26102;&#38388;&#22797;&#26434;&#24230;"></span>
 #### Độ phức tạp thời gian
 
-Do phuc tap thoi gian cua thuat toan nay la $O(m^{1/4+\varepsilon})$. Khi thao luan ve do phuc tap trong muc nay, luon gia su mot phep nhan mat $O(1)$ thoi gian, va khi tinh luy thua thi luon dung dinh ly Euler de giam so mu; vi vay viec tinh tung luy thua lien quan luon co the hoan thanh trong $O(\log m)$.
+Độ phức tạp thời gian của thuật toán này là $O(m^{1/4+\varepsilon})$. Khi thảo
+luận về độ phức tạp trong mục này, luôn giả sử một phép nhân mất $O(1)$ thời
+gian, và khi tính lũy thừa thì luôn dùng định lí Euler để giảm số mũ; vì vậy
+việc tính từng lũy thừa liên quan luôn có thể hoàn thành trong $O(\log m)$.
 
-Truoc het xet viec tinh mot can bac $p^e$. Tim bat thang du bac $p$ chi can kiem tra ky vong $O(1)$ so, tong thoi gian la $O(\log m)$. Tinh $s,r,\zeta,\eta,b^{qr}$ moi phan chi can $O(\log m)$. Khi tinh $h$, moi chu so can $O(\log m)$ thoi gian de tinh luy thua; tong cong co $(s-e)$ chu so, nen tong do phuc tap la $O((s-e)\log m)$. Phan tren da chi ra rang tong thoi gian tien xu ly va $(s-e)$ truy van de tinh logarit roi rac la $O\left(\sqrt{(s-e)p}\right)$. Vi $s-e\in O(\log m)$, do phuc tap thoi gian de tinh mot can bac $p^e$ la $O(p^{1/2+\varepsilon})$. Dac biet, khi $s=e$, do phuc tap co the giam them xuong $O(\log m)$.
+Trước hết xét việc tính một căn bậc $p^e$. Việc tìm bất thặng dư bậc $p$ chỉ
+cần kiểm tra kỳ vọng $O(1)$ số, nên tổng thời gian là $O(\log m)$. Việc tính
+$s,r,\zeta,\eta,b^{qr}$ mỗi phần chỉ cần $O(\log m)$. Khi tính $h$, mỗi chữ số
+cần $O(\log m)$ thời gian để tính lũy thừa; tổng cộng có $(s-e)$ chữ số, nên
+tổng độ phức tạp là $O((s-e)\log m)$. Phần trên đã chỉ ra rằng tổng thời gian
+tiền xử lý và $(s-e)$ truy vấn để tính logarit rời rạc là
+$O\left(\sqrt{(s-e)p}\right)$. Vì $s-e\in O(\log m)$, độ phức tạp thời gian để
+tính một căn bậc $p^e$ là $O(p^{1/2+\varepsilon})$. Đặc biệt, khi $s=e$, độ
+phức tạp có thể giảm thêm xuống $O(\log m)$.
 
-Tiep theo xet tong do phuc tap cua thuat toan. Viec tinh $\varphi(m),d,\ell$ deu co do phuc tap $O(\log m)$. Ngay sau do can phan tich thua so nguyen to $d=\prod_p{p^e}$; buoc nay co the dung [thuat toan Pollard Rho](./pollard-rho.md#pollard-rho-%E7%AE%97%E6%B3%95) trong $O(m^{1/4})$. Cuoi cung, tong thoi gian de lan luot khai can bac $p^e$ la
+Tiếp theo xét tổng độ phức tạp của thuật toán. Việc tính $\varphi(m),d,\ell$
+đều có độ phức tạp $O(\log m)$. Ngay sau đó cần phân tích thừa số nguyên tố
+$d=\prod_p{p^e}$; bước này có thể dùng [thuật toán Pollard Rho](./pollard-rho.md#pollard-rho-%E7%AE%97%E6%B3%95)
+trong $O(m^{1/4})$. Cuối cùng, tổng thời gian để lần lượt khai căn bậc $p^e$ là
 
 $$
 O\left(\sum_{e < s}p^{1/2+\varepsilon}\right).
 $$
 
-Vi moi thua so nguyen to $p$ thoa man $e < s$ xuat hien it nhat $2$ lan trong $\varphi(m)$, nen chac chan $p < m^{1/2}$. Do do, tong do phuc tap thoi gian la $O(m^{1/4+\varepsilon})$.
+Vì mỗi thừa số nguyên tố $p$ thỏa mãn $e < s$ xuất hiện ít nhất $2$ lần trong
+$\varphi(m)$, nên chắc chắn $p < m^{1/2}$. Do đó, tổng độ phức tạp thời gian là
+$O(m^{1/4+\varepsilon})$.
 
-Thuc ra, trong boi canh nay, khong can dung thuat toan Pollard Rho de phan tich thua so nguyen to ma van co the dat do phuc tap $O(m^{1/4+\varepsilon})$. Chi can thu chia truc tiep $d$ va chi liet ke cac thua so nguyen to khong vuot qua $m^{1/4}$. Goi so nguyen con lai sau khi loai cac thua so nho nay la $z$. Khi do, voi thua so nguyen to $p > m^{1/4}$ cua $z$, chac chan co $\nu_p(\varphi(m)) < 4$, trong do $\nu_p(n)$ la so mu cua $p$ trong phan tich thua so nguyen to cua $n$. Vi chi can xet truong hop
+Thật ra, trong bối cảnh này, không cần dùng thuật toán Pollard Rho để phân tích
+thừa số nguyên tố mà vẫn có thể đạt độ phức tạp $O(m^{1/4+\varepsilon})$. Chỉ
+cần thử chia trực tiếp $d$ và chỉ liệt kê các thừa số nguyên tố không vượt quá
+$m^{1/4}$. Gọi số nguyên còn lại sau khi loại các thừa số nhỏ này là $z$. Khi
+đó, với thừa số nguyên tố $p > m^{1/4}$ của $z$, chắc chắn có
+$\nu_p(\varphi(m)) < 4$, trong đó $\nu_p(n)$ là số mũ của $p$ trong phân tích
+thừa số nguyên tố của $n$. Vì chỉ cần xét trường hợp
 
 $$
 1 \le e = \nu_p(d) < s = \nu_p(\varphi(m)) < 4
 $$
 
-nen thua so nguyen to $p$ thoa man dieu kien nay nhieu nhat chi co mot; neu khong, chung deu xuat hien trong $\varphi(m)$ voi so mu it nhat $2$, va tich tong se vuot qua $m$. De tach thua so nguyen to lon duy nhat nay (neu ton tai), chi can tinh
+nên thừa số nguyên tố $p$ thỏa mãn điều kiện này nhiều nhất chỉ có một; nếu
+không, chúng đều xuất hiện trong $\varphi(m)$ với số mũ ít nhất $2$, và tích
+của chúng sẽ vượt quá $m$. Để tách thừa số nguyên tố lớn duy nhất này (nếu tồn
+tại), chỉ cần tính
 
 $$
 p^\star=\gcd\left(z,\dfrac{\varphi(m)}{z}\right) = \prod_{p : \nu_p(d) < \nu_p(\varphi(m))}p^{\min\{\nu_p(d),\nu_p(\varphi(m))-\nu_p(d)\}}.
 $$
 
-Liet ke moi kha nang cua $\nu_p(d),\nu_p(\varphi(m))$ cho thay so mu cua $p$ trong tich chac chan bang $1$, vi vay gia tri tinh duoc chinh la thua so nguyen to lon duy nhat $p^\star$ (neu ton tai). Phan con lai $z/p^\star$ chi co the gom mot so thua so nguyen to thoa man $e=s$, nen khong can tiep tuc phan tich.
+Liệt kê mọi khả năng của $\nu_p(d),\nu_p(\varphi(m))$ cho thấy số mũ của $p$
+trong tích chắc chắn bằng $1$, vì vậy giá trị tính được chính là thừa số nguyên
+tố lớn duy nhất $p^\star$ (nếu tồn tại). Phần còn lại $z/p^\star$ chỉ có thể
+gồm một số thừa số nguyên tố thỏa mãn $e=s$, nên không cần tiếp tục phân tích.
 
-Ma tham khao de tim can bac $k$ modulo so nguyen to nhu sau:
+Mã tham khảo để tìm căn bậc $k$ theo modulo số nguyên tố như sau:
 
 ??? example "Bài mẫu [Library Checker - Kth Root (Mod)](https://judge.yosupo.jp/problem/kth_root_mod), mã tham khảo"
     ```cpp

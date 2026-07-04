@@ -160,7 +160,8 @@ MkDocs source layout intact.
   quality-passed `docs/math/number-theory/primitive-root.md` through the
   Carmichael-number section and footnotes, and the opening high-order-residue
   and unit-root sections of `docs/math/number-theory/residue.md`, plus its
-  direct modular-root algorithm and improved Tonelli-Shanks derivation.
+  direct modular-root algorithm, improved Tonelli-Shanks derivation, and
+  Tonelli-Shanks complexity analysis.
 - `docs/math/number-theory/dirichlet.md`,
   `docs/math/number-theory/mobius.md`, `docs/math/number-theory/du.md`,
   `docs/math/number-theory/powerful-number.md`,
