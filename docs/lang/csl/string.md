@@ -28,7 +28,7 @@ ký tự. Tương tự `std::vector`, `string` nạp chồng toán tử so sánh
 ## Cách dùng
 
 Dưới đây giới thiệu các thao tác cơ bản của `string`; chi tiết có thể xem trong
-[tài liệu C++](https://zh.cppreference.com/w/cpp/string/basic_string).
+[tài liệu C++](https://en.cppreference.com/w/cpp/string/basic_string).
 
 ### Khai báo
 

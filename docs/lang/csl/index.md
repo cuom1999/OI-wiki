@@ -16,7 +16,7 @@ mà còn quy định đặc tả hiện thực cho một bộ thư viện dựng
 là thư viện chuẩn C++. Thư viện chuẩn C++ chứa rất nhiều hiện thực mã thường
 dùng, như nhập xuất, cấu trúc dữ liệu cơ bản, quản lý bộ nhớ, hỗ trợ đa luồng,
 v.v. Nắm được thư viện chuẩn C++ là bước cần thiết để viết mã C++ hiện đại hơn.
-Tài liệu chi tiết của thư viện chuẩn C++ có trên [cppreference](https://zh.cppreference.com/);
+Tài liệu chi tiết của thư viện chuẩn C++ có trên [cppreference](https://en.cppreference.com/);
 tài liệu này giới thiệu cách dùng, hiệu suất, điểm cần chú ý, v.v. của các kiểu
 và hàm trong thư viện chuẩn, nên hãy tận dụng.
 
@@ -64,7 +64,7 @@ STL container. Bạn đọc quan tâm có thể tự tìm hướng dẫn trên m
 ## Tài liệu tham khảo
 
 1.  [C++ reference](https://en.cppreference.com/)
-2.  [Sổ tay tham khảo C++](https://zh.cppreference.com/)
+2.  [Sổ tay tham khảo C++](https://en.cppreference.com/)
 3.  [Wikipedia - C++](https://zh.wikipedia.org/wiki/C%2B%2B)
 4.  [Trang chính thức Boost](https://www.boost.org/)
 5.  [Trang hướng dẫn Boost](https://theboostcpplibraries.com/)

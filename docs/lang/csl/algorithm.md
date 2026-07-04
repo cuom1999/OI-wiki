@@ -1,6 +1,6 @@
 STL cung cấp khoảng 100 hàm template hiện thực thuật toán; phần lớn nằm trong
 `<algorithm>`, một phần khác nằm trong `<numeric>` và `<functional>`. Danh sách
-hàm đầy đủ có thể [xem trong sổ tay tham khảo](https://zh.cppreference.com/w/cpp/algorithm);
+hàm đầy đủ có thể [xem trong sổ tay tham khảo](https://en.cppreference.com/w/cpp/algorithm);
 các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương ứng về sắp xếp](../../basic/stl-sort.md).
 
 -   `find`: tìm kiếm tuần tự. `find(v.begin(), v.end(), value)`, trong đó
@@ -23,8 +23,8 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
         Trong C++11 và các chuẩn mới hơn, bạn có thể dùng hàm `shuffle` thay
         cho `random_shuffle` cũ. Cách dùng là `shuffle(v.begin(), v.end(), rng)`;
         tham số cuối truyền vào bộ sinh số ngẫu nhiên, thường dùng Mersenne
-        Twister [`mt19937`](https://zh.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine)
-        được seed bằng bộ sinh số ngẫu nhiên thật [`random_device`](https://zh.cppreference.com/w/cpp/numeric/random/random_device).
+        Twister [`mt19937`](https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine)
+        được seed bằng bộ sinh số ngẫu nhiên thật [`random_device`](https://en.cppreference.com/w/cpp/numeric/random/random_device).
         
         ```cpp
         // #include <random>
