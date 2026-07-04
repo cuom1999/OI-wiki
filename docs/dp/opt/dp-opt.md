@@ -55,7 +55,7 @@ Bài tập:
 
 ### Tối ưu DP bằng chia để trị CDQ
 
-Trang chính: [tối ưu DP bằng chia để trị CDQ](../../misc/cdq-divide.md#cdq-%E5%88%86%E6%B2%BB%E4%BC%98%E5%8C%96-1d1d-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E8%BD%AC%E7%A7%BB)
+Trang chính: [tối ưu DP bằng chia để trị CDQ](../../misc/cdq-divide.md#chia-để-trị-cdq-tối-ưu-chuyển-trạng-thái-của-quy-hoạch-động-1d1d)
 
 Tương tự phần trên, xem toàn bộ quá trình DP như một chuỗi truy vấn và cập nhật. Với một số bài, tính tuần tự có độ phức tạp quá cao; có thể đưa toàn bộ truy vấn và cập nhật về dạng offline rồi dùng chia để trị CDQ để tăng tốc.
 

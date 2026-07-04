@@ -497,12 +497,12 @@ nav:
     - Linh tinh hình học tính toán: geometry/misc.md
   - Khác:
     - Tổng quan mục khác: misc/index.md
-    - 离散化: misc/discrete.md
-    - 双指针: misc/two-pointer.md
-    - 离线算法:
-      - 离线算法简介: misc/offline.md
-      - CDQ 分治: misc/cdq-divide.md
-      - 整体二分: misc/parallel-binsearch.md
+    - Rời rạc hóa: misc/discrete.md
+    - Hai con trỏ: misc/two-pointer.md
+    - Thuật toán offline:
+      - Giới thiệu thuật toán offline: misc/offline.md
+      - Chia để trị CDQ: misc/cdq-divide.md
+      - Chặt nhị phân tổng thể: misc/parallel-binsearch.md
       - 莫队算法:
         - 莫队算法简介: misc/mo-algo-intro.md
         - 普通莫队算法: misc/mo-algo.md

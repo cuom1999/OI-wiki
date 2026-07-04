@@ -320,6 +320,11 @@ MkDocs source layout intact.
   `docs/geometry/random-incremental.md`, `docs/geometry/inverse.md`,
   `docs/geometry/index.md`, `docs/geometry/misc.md`: translated
   computational geometry foundations and algorithm material.
+- `docs/misc/discrete.md`, `docs/misc/two-pointer.md`,
+  `docs/misc/offline.md`, `docs/misc/cdq-divide.md`,
+  `docs/misc/parallel-binsearch.md`: translated discretization, two-pointer,
+  offline algorithm, CDQ divide-and-conquer, and overall binary search
+  material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

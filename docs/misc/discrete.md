@@ -1,33 +1,33 @@
 author: GavinZhengOI, PlanariaIce
 
-## 简介
+## Giới thiệu
 
-离散化是一种数据处理的技巧，本质上可以看成是一种 [哈希](../string/hash.md#hash-的思想)，其保证数据在哈希以后仍然保持原来的 [全/偏序](../math/order-theory.md#偏序集) 关系．
+Rời rạc hóa là một kỹ thuật xử lý dữ liệu. Về bản chất, có thể xem nó như một dạng [hash](../string/hash.md), bảo đảm dữ liệu sau khi hash vẫn giữ nguyên quan hệ [thứ tự toàn phần hoặc thứ tự bộ phận](../math/order-theory.md) ban đầu.
 
-通俗地讲就是当有些数据因为本身很大或者类型不支持，自身无法作为数组的下标来方便地处理，而影响最终结果的只有元素之间的相对大小关系时，我们可以将原来的数据按照排名来处理问题，即离散化．
+Nói một cách đơn giản, khi một số dữ liệu quá lớn hoặc có kiểu không hỗ trợ dùng trực tiếp làm chỉ số mảng, nhưng kết quả cuối cùng chỉ phụ thuộc vào quan hệ thứ tự tương đối giữa các phần tử, ta có thể xử lý bài toán bằng thứ hạng của dữ liệu ban đầu. Đó chính là rời rạc hóa.
 
-用来离散化的可以是大整数、浮点数、字符串等等．
+Dữ liệu được rời rạc hóa có thể là số nguyên lớn, số thực, chuỗi, v.v.
 
-## 实现
+## Cài đặt
 
-将一个数组离散化，并进行查询是比较常用的应用场景．
+Rời rạc hóa một mảng và thực hiện truy vấn trên mảng đó là một tình huống ứng dụng khá thường gặp.
 
-### 方法一
+### Cách 1
 
-通常原数组中会有重复的元素，一般把相同的元素离散化为相同的数据．
+Thông thường mảng ban đầu có thể chứa các phần tử trùng lặp. Nhìn chung, các phần tử bằng nhau sẽ được rời rạc hóa thành cùng một giá trị.
 
-方法如下：
+Cách làm như sau:
 
-1.  创建原数组的副本．
+1.  Tạo một bản sao của mảng ban đầu.
 
-2.  将副本中的值从小到大排序．
+2.  Sắp xếp các giá trị trong bản sao theo thứ tự tăng dần.
 
-3.  将排序好的副本去重．
+3.  Loại bỏ các giá trị trùng lặp trong bản sao đã sắp xếp.
 
-4.  查找原数组的每一个元素在副本中的位置，位置即为排名，将其作为离散化后的值．
+4.  Tìm vị trí của từng phần tử trong mảng ban đầu trên bản sao; vị trí đó chính là thứ hạng, và được dùng làm giá trị sau khi rời rạc hóa.
 
 ```cpp
-// arr[i] 为初始数组,下标范围为 [1, n]
+// arr[i] là mảng ban đầu, phạm vi chỉ số là [1, n]
 
 for (int i = 1; i <= n; ++i)  // step 1
   tmp[i] = arr[i];
@@ -37,30 +37,30 @@ for (int i = 1; i <= n; ++i)                              // step 4
   arr[i] = std::lower_bound(tmp + 1, tmp + len + 1, arr[i]) - tmp;
 ```
 
-参考实现中使用的 STL 算法可参考 [STL 算法](../lang/csl/algorithm.md)．
+Các thuật toán STL được dùng trong code tham khảo có thể xem tại [Thuật toán STL](../lang/csl/algorithm.md).
 
-同样地，我们也可以对 [std::vector](../lang/csl/sequence-container.md#vector) 进行离散化：
+Tương tự, ta cũng có thể rời rạc hóa [std::vector](../lang/csl/sequence-container.md#vector):
 
 ```cpp
 // std::vector<int> arr;
-std::vector<int> tmp(arr);  // tmp 是 arr 的一个副本
+std::vector<int> tmp(arr);  // tmp là một bản sao của arr
 std::sort(tmp.begin(), tmp.end());
 tmp.erase(std::unique(tmp.begin(), tmp.end()), tmp.end());
 for (int i = 0; i < n; ++i)
   arr[i] = std::lower_bound(tmp.begin(), tmp.end(), arr[i]) - tmp.begin();
 ```
 
-### 方法二
+### Cách 2
 
-根据题目要求，有时候会把相同的元素根据输入顺序离散化为不同的数据．
+Tùy yêu cầu của bài toán, đôi khi các phần tử bằng nhau cần được rời rạc hóa thành các giá trị khác nhau theo thứ tự xuất hiện trong đầu vào.
 
-此时再用 `std::lower_bound()` 函数实现就有些困难了，需要换一种思路：
+Lúc này việc dùng hàm `std::lower_bound()` để cài đặt sẽ hơi khó, nên cần đổi sang một cách nghĩ khác:
 
-1.  创建原数组的副本，同时记录每个元素出现的位置．
+1.  Tạo một bản sao của mảng ban đầu, đồng thời ghi lại vị trí xuất hiện của mỗi phần tử.
 
-2.  将副本按值从小到大排序，当值相同时，按出现顺序从小到大排序．
+2.  Sắp xếp bản sao theo giá trị tăng dần; nếu giá trị bằng nhau, sắp xếp theo thứ tự xuất hiện tăng dần.
 
-3.  将离散化后的数字放回原数组．
+3.  Ghi các số sau khi rời rạc hóa trở lại mảng ban đầu.
 
 ```cpp
 struct Data {
@@ -68,27 +68,27 @@ struct Data {
 
   bool operator<(const Data& o) const {
     if (val == o.val)
-      return idx < o.idx;  // 当值相同时，先出现的元素离散化后的值更小
+      return idx < o.idx;  // Nếu giá trị bằng nhau, phần tử xuất hiện trước có giá trị rời rạc hóa nhỏ hơn
     return val < o.val;
   }
-} tmp[MAXN];  // 也可以使用 std::pair
+} tmp[MAXN];  // Cũng có thể dùng std::pair
 
 for (int i = 1; i <= n; ++i) tmp[i] = Data{i, arr[i]};
 std::sort(tmp + 1, tmp + n + 1);
 for (int i = 1; i <= n; ++i) arr[tmp[i].idx] = i;
 ```
 
-### 复杂度
+### Độ phức tạp
 
-对于方法一，去重复杂度为 $O(n)$，排序复杂度为 $O(n \log n)$，最后的 $n$ 次查找复杂度为 $O(n \log n)$．
+Với cách 1, độ phức tạp loại trùng là $O(n)$, độ phức tạp sắp xếp là $O(n \log n)$, và $n$ lần tìm kiếm cuối cùng có độ phức tạp $O(n \log n)$.
 
-对于方法二，排序复杂度为 $O(n \log n)$．
+Với cách 2, độ phức tạp sắp xếp là $O(n \log n)$.
 
-故两种方法的总时间复杂度都为 $O(n \log n)$．
+Vì vậy tổng độ phức tạp thời gian của cả hai cách đều là $O(n \log n)$.
 
-空间复杂度为 $O(n)$．
+Độ phức tạp không gian là $O(n)$.
 
-## 习题
+## Bài tập
 
--   [\[HAOI2014\] 贴海报](https://www.luogu.com.cn/problem/P3740)
--   [\[NOI2015\] 程序自动分析](https://www.luogu.com.cn/problem/P1955)
+-   [\[HAOI2014\] Dán áp phích](https://www.luogu.com.cn/problem/P3740)
+-   [\[NOI2015\] Phân tích tự động chương trình](https://www.luogu.com.cn/problem/P1955)

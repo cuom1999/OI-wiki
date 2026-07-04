@@ -1,62 +1,62 @@
-## 引入
+## Mở đầu
 
-在信息学竞赛中，有一部分题目可以使用二分的办法来解决．但是当这种题目有多次询问且我们每次查询都直接二分可能导致 TLE 时，就会用到整体二分．整体二分的主体思路就是把多个查询一起解决．（所以这是一个离线算法）
+Trong các kỳ thi lập trình thi đấu, có một số bài có thể giải bằng chặt nhị phân. Tuy nhiên, khi dạng bài này có nhiều truy vấn và việc chặt nhị phân trực tiếp cho từng truy vấn có thể dẫn đến TLE, ta sẽ dùng chặt nhị phân tổng thể. Ý tưởng chính của chặt nhị phân tổng thể là xử lý nhiều truy vấn cùng lúc. Vì vậy, đây là một thuật toán offline. Thuật ngữ này cũng thường được gọi là chặt nhị phân song song.
 
-可以使用整体二分解决的题目需要满足以下性质[^ref1]：
+Những bài có thể giải bằng chặt nhị phân tổng thể cần thỏa mãn các tính chất sau[^ref1]:
 
-1.  询问的答案具有可二分性
-2.  **修改对判定答案的贡献互相独立**，修改之间互不影响效果
-3.  修改如果对判定答案有贡献，则贡献为一确定的与判定标准无关的值
-4.  贡献满足交换律，结合律，具有可加性
-5.  题目允许使用离线算法
+1.  Đáp án của truy vấn có thể chặt nhị phân được.
+2.  **Đóng góp của các phép sửa đổi vào việc kiểm tra đáp án độc lập với nhau**, hiệu quả của các phép sửa đổi không ảnh hưởng lẫn nhau.
+3.  Nếu một phép sửa đổi có đóng góp vào việc kiểm tra đáp án, đóng góp đó là một giá trị xác định và không phụ thuộc vào tiêu chuẩn kiểm tra.
+4.  Các đóng góp thỏa mãn tính giao hoán, tính kết hợp và có tính cộng được.
+5.  Bài toán cho phép dùng thuật toán offline.
 
-## 解释
+## Giải thích
 
-记 $[l,r]$ 为答案的值域，$[L,R]$ 为答案的定义域．（也就是说求答案时仅考虑下标在区间 $[L,R]$ 内的操作和询问，这其中询问的答案在 $[l,r]$ 内）
+Ký hiệu $[l,r]$ là miền giá trị của đáp án, $[L,R]$ là miền xác định của đáp án. Nói cách khác, khi tìm đáp án, ta chỉ xét các thao tác và truy vấn có chỉ số nằm trong đoạn $[L,R]$, và đáp án của các truy vấn này nằm trong $[l,r]$.
 
--   我们首先把所有操作 **按时间顺序** 存入数组中，然后开始分治．
--   在每一层分治中，利用数据结构（常见的是树状数组）统计当前查询的答案和 $mid$ 之间的关系．
--   根据查询出来的答案和 $mid$ 间的关系（小于等于 $mid$ 和大于 $mid$）将当前处理的操作序列分为 $q1$ 和 $q2$ 两份，并分别递归处理．
--   当 $l=r$ 时，找到答案，记录答案并返回即可．
+-   Trước hết, ta lưu tất cả thao tác vào một mảng **theo thứ tự thời gian**, rồi bắt đầu chia để trị.
+-   Ở mỗi tầng chia để trị, dùng một cấu trúc dữ liệu, thường là cây Fenwick, để thống kê quan hệ giữa đáp án của truy vấn hiện tại và $mid$.
+-   Dựa trên quan hệ giữa kết quả truy vấn được và $mid$, tức nhỏ hơn hoặc bằng $mid$ hay lớn hơn $mid$, chia dãy thao tác hiện đang xử lý thành hai phần $q1$ và $q2$, rồi đệ quy xử lý từng phần.
+-   Khi $l=r$, đáp án đã được xác định, chỉ cần ghi lại đáp án rồi trả về.
 
-需要注意的是，在整体二分过程中，若当前处理的值域为 $[l,r]$，则此时最终答案范围不在 $[l,r]$ 的询问会在其他时候处理．
+Cần chú ý rằng trong quá trình chặt nhị phân tổng thể, nếu miền giá trị đang xử lý là $[l,r]$, thì các truy vấn có phạm vi đáp án cuối cùng không nằm trong $[l,r]$ sẽ được xử lý ở thời điểm khác.
 
-## 过程
+## Quy trình
 
-???+ tip "注"
-    1.  为可读性，文中代码或未采用实际竞赛中的常见写法．
-    2.  若觉得某段代码有难以理解之处，请先参考之前题目的解释，因为节省篇幅解释过的内容不再赘述．
+???+ tip "Chú ý"
+    1.  Để dễ đọc, mã trong bài có thể không dùng đúng phong cách thường gặp trong thi đấu thực tế.
+    2.  Nếu thấy một đoạn mã nào đó khó hiểu, hãy tham khảo trước phần giải thích của các bài trước đó, vì những nội dung đã giải thích để tiết kiệm độ dài sẽ không được lặp lại.
 
-从普通二分说起：
+Bắt đầu từ chặt nhị phân thông thường:
 
-### 查询全局第 k 小
+### Truy vấn phần tử nhỏ thứ k toàn cục
 
-???+ note "题 1"
-    在一个数列中查询第 $k$ 小的数．
+???+ note "Bài 1"
+    Truy vấn số nhỏ thứ $k$ trong một dãy số.
 
-??? note "解法"
-    当然可以直接排序．如果用二分法呢？可以用数据结构记录每个大小范围内有多少个数，然后用二分法猜测，利用数据结构检验．
+??? note "Lời giải"
+    Tất nhiên có thể sắp xếp trực tiếp. Nếu dùng chặt nhị phân thì sao? Ta có thể dùng cấu trúc dữ liệu để ghi nhận trong mỗi khoảng giá trị có bao nhiêu số, rồi dùng chặt nhị phân để đoán và dùng cấu trúc dữ liệu để kiểm tra.
 
-???+ note "题 2"
-    在一个数列中多次查询第 $k$ 小的数．
+???+ note "Bài 2"
+    Trong một dãy số, truy vấn nhiều lần phần tử nhỏ thứ $k$.
 
-??? note "解法"
-    可以对于每个询问进行一次二分；但是，也可以把所有的询问放在一起二分．
+??? note "Lời giải"
+    Có thể thực hiện một lần chặt nhị phân cho mỗi truy vấn. Nhưng ta cũng có thể đưa tất cả truy vấn vào cùng một quá trình chặt nhị phân.
     
-    先考虑二分的本质：假设要猜一个 $[l,r]$ 之间的数，猜测之后会知道是猜大了，猜小了还是刚好．当然可以从 $l$ 枚举到 $r$，但更优秀的方法是二分：猜测答案是 $m = \lfloor\frac{l + r}{2}\rfloor$，然后去验证 $m$ 的正确性，再调整边界．这样做每次询问的复杂度为 $O(\log n)$，若询问次数为 $q$，则时间复杂度为 $O(q\log n)$．
+    Trước hết xét bản chất của chặt nhị phân: giả sử cần đoán một số trong $[l,r]$, sau khi đoán ta sẽ biết mình đoán lớn hơn, nhỏ hơn hay đúng. Tất nhiên có thể liệt kê từ $l$ đến $r$, nhưng cách tốt hơn là chặt nhị phân: đoán đáp án là $m = \lfloor\frac{l + r}{2}\rfloor$, sau đó kiểm tra tính đúng đắn của $m$ rồi điều chỉnh biên. Như vậy, độ phức tạp cho mỗi truy vấn là $O(\log n)$. Nếu có $q$ truy vấn, độ phức tạp thời gian là $O(q\log n)$.
     
-    回过头来，对于当前的所有询问，可以去猜测所有询问的答案都是 $mid$，然后去依次验证每个询问的答案应该是小于等于 $mid$ 的还是大于 $mid$ 的，并将询问分为两个部分（不大于/大于），对于每个部分继续二分．注意：如果一个询问的答案是大于 $mid$ 的，则在将其划至右侧前需更新它的 $k$，即，如果当前数列中小于等于 $mid$ 的数有 $t$ 个，则将询问划分后实际是在右区间询问第 $k - t$ 小数．如果一个部分的 $l = r$ 了，则结束这个部分的二分．利用线段树的相关知识，我们每次将整个答案可能在的区间 $[1,n]$（假设已经离散化）划分成了若干个部分，这样的划分共进行了 $O(\log n)$ 次，一次划分会将整个操作序列操作一次．若对整个序列进行操作，并支持对应的查询的时间复杂度为 $O(T)$，则整体二分的时间复杂度为 $O(T\log n)$．
+    Quay lại với tất cả truy vấn hiện tại, ta có thể đoán đáp án của mọi truy vấn đều là $mid$, rồi lần lượt kiểm tra đáp án của mỗi truy vấn phải nhỏ hơn hoặc bằng $mid$ hay lớn hơn $mid$, sau đó chia truy vấn thành hai phần, không lớn hơn và lớn hơn. Với mỗi phần, tiếp tục chặt nhị phân. Chú ý: nếu đáp án của một truy vấn lớn hơn $mid$, trước khi chuyển nó sang bên phải cần cập nhật $k$ của nó. Cụ thể, nếu trong dãy hiện tại có $t$ số nhỏ hơn hoặc bằng $mid$, thì sau khi chia, truy vấn thực chất là hỏi số nhỏ thứ $k - t$ trong khoảng bên phải. Nếu một phần đã có $l = r$, quá trình chặt nhị phân của phần đó kết thúc. Dựa trên kiến thức về cây đoạn, mỗi lần ta chia toàn bộ khoảng mà đáp án có thể nằm trong đó $[1,n]$, giả sử đã rời rạc hóa, thành một số phần. Việc chia như vậy được thực hiện tổng cộng $O(\log n)$ lần, và một lần chia sẽ xử lý toàn bộ dãy thao tác một lần. Nếu độ phức tạp để xử lý toàn bộ dãy và hỗ trợ các truy vấn tương ứng là $O(T)$, thì độ phức tạp thời gian của chặt nhị phân tổng thể là $O(T\log n)$.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     struct Query {
-      int id, k;  // 这个询问的编号, 这个询问的 k
+      int id, k;  // số hiệu của truy vấn này, k của truy vấn này
     };
     
-    int ans[N], a[N];  // ans[i] 表示编号为i的询问的答案，a 为原数列
-    int val[N], cnt[N];  // 离散化后，记录对应的值及其计数（假设已经处理好）
+    int ans[N], a[N];  // ans[i] là đáp án của truy vấn có số hiệu i, a là dãy gốc
+    int val[N], cnt[N];  // sau rời rạc hóa, ghi giá trị tương ứng và số lần xuất hiện
     
-    // 返回原数列中值域在 [l,r] 中的数的个数
+    // trả về số phần tử trong dãy gốc có giá trị thuộc [l,r]
     int check(int l, int r) {
       int res = 0;
       for (int i = l; i <= r; i++) {
@@ -65,7 +65,7 @@
       return res;
     }
     
-    // 整体二分
+    // chặt nhị phân tổng thể
     void solve(int l, int r, vector<Query> q) {
       int m = (l + r) / 2;
       if (l == r) {
@@ -85,31 +85,31 @@
     }
     ```
 
-### 查询区间第 k 小
+### Truy vấn phần tử nhỏ thứ k trên đoạn
 
-???+ note "题 3"
-    在一个数列中多次查询区间第 $k$ 小的数．
+???+ note "Bài 3"
+    Trong một dãy số, truy vấn nhiều lần phần tử nhỏ thứ $k$ trên một đoạn.
 
-??? note "解法"
-    涉及到给定区间的查询，再按之前的方法进行二分就会导致 `check` 函数的时间复杂度爆炸．仍然考虑询问与值域中点 $m$ 的关系：若询问区间内小于等于 $m$ 的数有 $t$ 个，询问的是区间内的 $k$ 小数，则当 $k \leq t$ 时，答案应小于等于 $m$；否则，答案应大于 $m$．（注意边界问题）此处需记录一个区间小于等于指定数的数的数量，即单点加，求区间和，可用树状数组快速处理．为提高效率，只对数列中值在值域区间 $[l,r]$ 的数进行统计，即，在进一步递归之前，不仅将询问划分，将当前处理的数按值域范围划为两半．
+??? note "Lời giải"
+    Khi có truy vấn trên một đoạn cho trước, nếu tiếp tục chặt nhị phân theo cách trước thì độ phức tạp thời gian của hàm `check` sẽ bùng nổ. Vẫn xét quan hệ giữa truy vấn và trung điểm miền giá trị $m$: nếu trong đoạn truy vấn có $t$ số nhỏ hơn hoặc bằng $m$, và truy vấn hỏi số nhỏ thứ $k$ trong đoạn, thì khi $k \leq t$, đáp án phải nhỏ hơn hoặc bằng $m$; ngược lại, đáp án phải lớn hơn $m$. Chú ý xử lý biên. Ở đây cần ghi nhận số lượng phần tử trong một đoạn nhỏ hơn hoặc bằng một số được chỉ định, tức cộng điểm và truy vấn tổng đoạn, có thể xử lý nhanh bằng cây Fenwick. Để tăng hiệu quả, chỉ thống kê các số trong dãy có giá trị nằm trong khoảng miền giá trị $[l,r]$. Tức là trước khi đệ quy tiếp, không chỉ chia truy vấn mà còn chia các số hiện đang xử lý thành hai nửa theo miền giá trị.
 
-??? note "参考代码（关键部分）"
+??? note "Mã tham khảo (phần chính)"
     ```cpp
     struct Num {
       int p, x;
-    };  // 位于数列中第 p 项的数的值为 x
+    };  // số ở vị trí p trong dãy có giá trị x
     
     struct Query {
       int l, r, k, id;
-    };  // 一个编号为 id, 询问 [l,r] 中第 k 小数的询问
+    };  // truy vấn có số hiệu id, hỏi số nhỏ thứ k trong [l,r]
     
     int ans[N];
-    void add(int p, int x);  // 树状数组, 在 p 位置加上 x
-    int query(int p);        // 树状数组, 求 [1,p] 的和
-    void clear();            // 树状数组, 清空
+    void add(int p, int x);  // cây Fenwick, cộng x tại vị trí p
+    int query(int p);        // cây Fenwick, tính tổng [1,p]
+    void clear();            // cây Fenwick, xóa rỗng
     
     void solve(int l, int r, vector<Num> a, vector<Query> q)
-    // a中为给定数列中值在值域区间 [l,r] 中的数
+    // a chứa các số trong dãy đã cho có giá trị thuộc miền giá trị [l,r]
     {
       int m = (l + r) / 2;
       if (l == r) {
@@ -136,113 +136,115 @@
     }
     ```
 
-下面提供 [【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834) 一题使用整体二分的，偏向竞赛风格的写法．
+Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt nhị phân tổng thể cho bài [Mẫu: Cây đoạn bền vững 2](https://www.luogu.com.cn/problem/P3834).
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/parallel-binsearch/parallel-binsearch_1.cpp"
     ```
 
-### 带修区间第 k 小
+### Truy vấn phần tử nhỏ thứ k trên đoạn có sửa đổi
 
-???+ note "题 4（[Dynamic Rankings](https://www.luogu.com.cn/problem/P2617)）"
-    给定一个数列，要支持单点修改，区间查第 $k$ 小．
+???+ note "Bài 4 ([Dynamic Rankings](https://www.luogu.com.cn/problem/P2617))"
+    Cho một dãy số, cần hỗ trợ sửa đổi tại một điểm và truy vấn phần tử nhỏ thứ $k$ trên đoạn.
 
-??? note "解法"
-    修改操作可以直接理解为从原数列中删去一个数再添加一个数，为方便起见，将询问和修改统称为「操作」．因后面的操作会依附于之前的操作，不能如题 3 一样将统计和处理询问分开，故可将所有操作存于一个数组，用标识区分类型，依次处理每个操作．为便于处理树状数组，修改操作可分拆为擦除操作和插入操作．
+??? note "Lời giải"
+    Có thể hiểu trực tiếp một thao tác sửa đổi là xóa một số khỏi dãy gốc rồi thêm một số mới. Để tiện, ta gọi chung truy vấn và sửa đổi là "thao tác". Vì các thao tác phía sau phụ thuộc vào các thao tác trước đó, không thể tách việc thống kê và xử lý truy vấn như Bài 3. Do đó, có thể lưu tất cả thao tác vào một mảng, dùng nhãn để phân biệt loại, rồi lần lượt xử lý từng thao tác. Để tiện xử lý cây Fenwick, thao tác sửa đổi có thể tách thành thao tác xóa và thao tác chèn.
     
-    **优化**
+    **Tối ưu**
     
-    1.  注意到每次对于操作进行分类时，只会更改操作顺序，故可直接在原数组上操作．具体实现，在二分时将记录操作的 $q, a$ 数组换为一个大的全局数组，二分时记录信息变为 $L, R$，即当前处理的操作是全局数组上的哪个区间．利用临时数组记录当前的分类情况，进一步递归前将临时数组信息写回原数组．
-    2.  树状数组每次清空会导致时间复杂度爆炸，可采用每次使用树状数组时记录当前修改位置（这已由 1 中提到的临时数组实现），本次操作结束后在原位置加 $-1$ 的方法快速清零．
-    3.  一开始对于数列的初始化操作可简化为插入操作．
+    1.  Nhận thấy mỗi lần phân loại thao tác chỉ thay đổi thứ tự thao tác, nên có thể thao tác trực tiếp trên mảng gốc. Khi cài đặt cụ thể, trong lúc chặt nhị phân, thay các mảng $q, a$ ghi thao tác bằng một mảng toàn cục lớn, và thông tin được ghi khi chặt nhị phân chuyển thành $L, R$, tức đoạn nào trên mảng toàn cục là các thao tác hiện đang xử lý. Dùng mảng tạm để ghi tình trạng phân loại hiện tại, rồi trước khi đệ quy tiếp thì ghi thông tin từ mảng tạm trở lại mảng gốc.
+    2.  Nếu xóa rỗng cây Fenwick mỗi lần sẽ làm độ phức tạp thời gian bùng nổ. Có thể dùng cách ghi lại các vị trí được sửa đổi mỗi khi dùng cây Fenwick, điều này đã được mảng tạm nêu ở mục 1 thực hiện, rồi sau khi thao tác lần này kết thúc, cộng $-1$ tại vị trí gốc để xóa nhanh.
+    3.  Các thao tác khởi tạo dãy ban đầu có thể giản lược thành thao tác chèn.
 
-??? note "参考代码（关键部分）"
+??? note "Mã tham khảo (phần chính)"
     ```cpp
     struct Opt {
       int x, y, k, type, id;
-      // 对于询问, type = 1, x, y 表示区间左右边界, k 表示询问第 k 小
-      // 对于修改, type = 0, x 表示修改位置, y 表示修改后的值,
-      // k 表示当前操作是插入(1)还是擦除(-1), 更新树状数组时使用.
-      // id 记录每个操作原先的编号, 因二分过程中操作顺序会被打散
+      // Với truy vấn, type = 1; x, y là biên trái và phải của đoạn;
+      // k biểu thị truy vấn phần tử nhỏ thứ k.
+      // Với sửa đổi, type = 0; x là vị trí sửa đổi; y là giá trị sau sửa đổi;
+      // k biểu thị thao tác hiện tại là chèn (1) hay xóa (-1), dùng khi cập nhật cây Fenwick.
+      // id ghi số hiệu ban đầu của mỗi thao tác, vì thứ tự thao tác bị xáo trộn khi chặt nhị phân.
     };
     
     Opt q[N], q1[N], q2[N];
-    // q 为所有操作,
-    // 二分过程中, 分到左边的操作存到 q1 中, 分到右边的操作存到 q2 中.
+    // q là tất cả thao tác.
+    // Trong quá trình chặt nhị phân, thao tác được chia sang trái lưu vào q1,
+    // thao tác được chia sang phải lưu vào q2.
     int ans[N];
     void add(int p, int x);
-    int query(int p);  // 树状数组函数, 含义见题3
+    int query(int p);  // hàm cây Fenwick, ý nghĩa xem Bài 3
     
     void solve(int l, int r, int L, int R)
-    // 当前的值域范围为 [l,r], 处理的操作的区间为 [L,R]
+    // miền giá trị hiện tại là [l,r], đoạn thao tác đang xử lý là [L,R]
     {
       if (l > r || L > R) return;
       int cnt1 = 0, cnt2 = 0, m = (l + r) / 2;
-      // cnt1, cnt2 分别为分到左边, 分到右边的操作数
+      // cnt1, cnt2 lần lượt là số thao tác được chia sang trái và sang phải
       if (l == r) {
         for (int i = L; i <= R; i++)
           if (q[i].type == 1) ans[q[i].id] = l;
         return;
       }
       for (int i = L; i <= R; i++)
-        if (q[i].type == 1) {  // 是询问: 进行分类
+        if (q[i].type == 1) {  // là truy vấn: phân loại
           int t = query(q[i].y) - query(q[i].x - 1);
           if (q[i].k <= t)
             q1[++cnt1] = q[i];
           else
             q[i].k -= t, q2[++cnt2] = q[i];
         } else
-          // 是修改: 更新树状数组 & 分类
+          // là sửa đổi: cập nhật cây Fenwick và phân loại
           if (q[i].y <= m)
             add(q[i].x, q[i].k), q1[++cnt1] = q[i];
           else
             q2[++cnt2] = q[i];
       for (int i = 1; i <= cnt1; i++)
-        if (q1[i].type == 0) add(q1[i].x, -q1[i].k);  // 清空树状数组
+        if (q1[i].type == 0) add(q1[i].x, -q1[i].k);  // xóa rỗng cây Fenwick
       for (int i = 1; i <= cnt1; i++) q[L + i - 1] = q1[i];
       for (int i = 1; i <= cnt2; i++)
-        q[L + cnt1 + i - 1] = q2[i];  // 将临时数组中的元素合并回原数组
+        q[L + cnt1 + i - 1] = q2[i];  // gộp phần tử trong mảng tạm về mảng gốc
       solve(l, m, L, L + cnt1 - 1), solve(m + 1, r, L + cnt1, R);
       return;
     }
     ```
 
-### 针对静态序列的优化
+### Tối ưu cho dãy tĩnh
 
-???+ note "题 5（[【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834)）"
-    给定一个序列，区间查询第 $k$ 小．
+???+ note "Bài 5 ([Mẫu: Cây đoạn bền vững 2](https://www.luogu.com.cn/problem/P3834))"
+    Cho một dãy, truy vấn phần tử nhỏ thứ $k$ trên đoạn.
 
-??? note "解法"
-    树套树和整体二分实现带修区间第 $k$ 小问题的复杂度都为 $O(n \log^2 n)$，但静态区间第 $k$ 小问题可以使用可持久化线段树在 $O(n \log n)$ 时间复杂度内解决，而几乎所有整体二分实现的静态区间第 $k$ 小问题代码时间复杂度都是 $O(n \log^2 n)$，面对大数据范围时存在 TLE 的风险．（这里默认值域与序列长度同阶，值域与序列长不同阶的情况可以通过离散化转化为同阶情况）
+??? note "Lời giải"
+    Cả cây lồng cây và chặt nhị phân tổng thể khi cài đặt bài toán phần tử nhỏ thứ $k$ trên đoạn có sửa đổi đều có độ phức tạp $O(n \log^2 n)$. Nhưng bài toán phần tử nhỏ thứ $k$ trên đoạn tĩnh có thể giải bằng cây đoạn bền vững trong độ phức tạp thời gian $O(n \log n)$, trong khi hầu hết mã chặt nhị phân tổng thể cho bài toán phần tử nhỏ thứ $k$ trên đoạn tĩnh đều có độ phức tạp $O(n \log^2 n)$, nên có nguy cơ TLE khi phạm vi dữ liệu lớn. Ở đây mặc định miền giá trị cùng bậc với độ dài dãy; nếu miền giá trị và độ dài dãy khác bậc, có thể dùng rời rạc hóa để chuyển về trường hợp cùng bậc.
     
-    **优化**
+    **Tối ưu**
     
-    1.  对于每一轮划分，如果当前数列中小于等于 $mid$ 的数有 $t$ 个，则将询问划分后实际是在右区间询问第 $k - t$ 小数，因此对划分到右区间的询问做出了修改．如果答案的原始值域为 $[L,R]$，某次划分的答案值域为 $[l,r]$，那么对于参与此次划分的询问，$[L,l)$ 中所有数值对它们的影响已经在之前被消除了．
-    2.  由于需要使每轮划分都仅和当前答案值域 $[l,r]$ 有关，树状数组需要多次载入和清空．
+    1.  Trong mỗi vòng chia, nếu trong dãy hiện tại có $t$ số nhỏ hơn hoặc bằng $mid$, thì sau khi chia, truy vấn thực chất là hỏi số nhỏ thứ $k - t$ trong khoảng bên phải. Vì vậy các truy vấn được chia sang khoảng phải đã bị sửa đổi. Nếu miền giá trị ban đầu của đáp án là $[L,R]$, và miền giá trị đáp án trong một lần chia nào đó là $[l,r]$, thì với các truy vấn tham gia lần chia này, ảnh hưởng của mọi giá trị trong $[L,l)$ lên chúng đã bị loại bỏ từ trước.
+    2.  Vì cần để mỗi vòng chia chỉ liên quan đến miền giá trị đáp án hiện tại $[l,r]$, cây Fenwick phải được nạp và xóa nhiều lần.
     
-    如果划分不仅仅和当前答案值域有关呢？
+    Nếu việc chia không chỉ liên quan đến miền giá trị đáp án hiện tại thì sao?
     
-    由此可以得到一个与全局序列有关的优化方法：维护一个指针 $pos$ 追踪每轮划分的 $mid$（分治中心），将所有 $\leq pos$ 的元素对应的下标在树状数组中置为 $1$，树状数组的其余位置置为 $0$．每次划分之前移动 $pos$ 并更新树状数组．指针 $pos$ 移动的次数与 $n \log n$ 同阶．划分时对每一个询问查询树状数组中对应区间的值，满足则划分至左区间，否则划分至右区间，**不需要对询问做出修改**．
+    Từ đó có thể thu được một cách tối ưu liên quan đến dãy toàn cục: duy trì một con trỏ $pos$ để theo dõi $mid$ của mỗi vòng chia, tức tâm chia để trị, đặt chỉ số tương ứng của mọi phần tử $\leq pos$ thành $1$ trong cây Fenwick, còn các vị trí khác trong cây Fenwick đặt thành $0$. Trước mỗi lần chia, di chuyển $pos$ và cập nhật cây Fenwick. Số lần con trỏ $pos$ di chuyển cùng bậc với $n \log n$. Khi chia, với mỗi truy vấn, truy vấn giá trị của đoạn tương ứng trong cây Fenwick; nếu thỏa mãn thì chia sang khoảng trái, ngược lại chia sang khoảng phải, **không cần sửa đổi thông tin truy vấn**.
     
-    由于要追踪分治中心，需要让 $pos$ 准确地更新树状数组．在整体二分之前将序列按元素大小排序并记录元素对应下标，指针移动时在树状数组中对下标进行相应修改．对于绝大多数 **可以用整体二分解决并且不带修改的问题**，都可以应用此种优化以大幅降低数据结构的使用次数．
+    Vì cần theo dõi tâm chia để trị, phải cho $pos$ cập nhật cây Fenwick chính xác. Trước khi chặt nhị phân tổng thể, sắp xếp dãy theo giá trị phần tử và ghi lại chỉ số tương ứng của từng phần tử; khi con trỏ di chuyển, sửa đổi chỉ số tương ứng trong cây Fenwick. Với phần lớn các bài **có thể giải bằng chặt nhị phân tổng thể và không có sửa đổi**, đều có thể áp dụng tối ưu này để giảm mạnh số lần sử dụng cấu trúc dữ liệu.
     
-    由于减少了很多树状数组的载入和清空操作，应用这种优化通常情况下会明显提升整体二分的效率（即使只是常数优化），对于静态区间第 $k$ 小值问题而言效率完全不差于时间复杂度更优的可持久化线段树．值得注意的是，对于静态区间第 $k$ 小值问题也存在时间复杂度 $O(n \log n)$ 的整体二分实现．
+    Nhờ giảm rất nhiều thao tác nạp và xóa cây Fenwick, áp dụng tối ưu này thường cải thiện rõ rệt hiệu quả của chặt nhị phân tổng thể, dù chỉ là tối ưu hằng số. Đối với bài toán giá trị nhỏ thứ $k$ trên đoạn tĩnh, hiệu quả hoàn toàn không kém cây đoạn bền vững có độ phức tạp thời gian tốt hơn. Đáng chú ý là bài toán giá trị nhỏ thứ $k$ trên đoạn tĩnh cũng có cài đặt chặt nhị phân tổng thể với độ phức tạp thời gian $O(n \log n)$.
 
-??? note "参考代码（关键部分）"
+??? note "Mã tham khảo (phần chính)"
     ```cpp
     struct Query {
       int i, l, r, k;
-    };  // 第 i 次询问查询区间 [l,r] 的第 k 小值
+    };  // truy vấn thứ i hỏi giá trị nhỏ thứ k trong đoạn [l,r]
     
     Query s[200005], t1[200005], t2[200005];
     int n, m, cnt, pos, p[200005], ans[200005];
     pair<int, int> a[200005];
     
-    void add(int x, int y);  // 树状数组 位置 x 加 y
-    int sum(int x);          // 树状数组 [1,x] 前缀和
+    void add(int x, int y);  // cây Fenwick, cộng y tại vị trí x
+    int sum(int x);          // cây Fenwick, tổng tiền tố [1,x]
     
-    // 当前处理的询问为 [l,r],答案值域为 [ql,qr]
+    // các truy vấn hiện đang xử lý là [l,r], miền giá trị đáp án là [ql,qr]
     void overall_binary(int l, int r, int ql, int qr) {
       if (l > r) return;
       if (ql == qr) {
@@ -250,7 +252,7 @@
         return;
       }
       int cnt1 = 0, cnt2 = 0, mid = (ql + qr) >> 1;
-      // 追踪分治中心,认为 [1,pos] 的值已经载入树状数组
+      // theo dõi tâm chia để trị, xem như các giá trị trong [1,pos] đã được nạp vào cây Fenwick
       while (pos <= n - 1 && a[pos + 1].first <= mid)
         add(a[pos + 1].second, 1), ++pos;
       while (pos >= 1 && a[pos].first > mid) add(a[pos].second, -1), --pos;
@@ -260,7 +262,7 @@
         if (s[i].k <= now)
           t1[++cnt1] = s[i];
         else
-          t2[++cnt2] = s[i];  // 注意 不应修改询问信息
+          t2[++cnt2] = s[i];  // chú ý: không nên sửa đổi thông tin truy vấn
       }
       for (int i = 1; i <= cnt1; i++) s[l + i - 1] = t1[i];
       for (int i = 1; i <= cnt2; i++) s[l + cnt1 + i - 1] = t2[i];
@@ -276,47 +278,47 @@
         a[i].second = i;
         p[++cnt] = a[i].first;
       }
-      sort(a + 1, a + n + 1);  // 对序列排序 离散化
+      sort(a + 1, a + n + 1);  // sắp xếp dãy và rời rạc hóa
       sort(p + 1, p + n + 1);
       cnt = unique(p + 1, p + n + 1) - p - 1;
       for (int i = 1; i <= n; i++)
         a[i].first = lower_bound(p + 1, p + cnt + 1, a[i].first) - p;
-      // 省略读入询问
+      // lược bỏ phần đọc truy vấn
       overall_binary(1, m, 1, cnt);
       for (int i = 1; i <= n; i++) printf("%d\n", p[ans[i]]);
       return 0;
     }
     ```
 
-### 区间前驱后继
+### Tiền nhiệm và kế nhiệm trên đoạn
 
-???+ note "题 6"
-    在一个数列中多次查询 $k$ 在区间中的前驱（严格小于 $k$，且最大的数）或后继（严格大于 $k$，且最小的数），保证存在这样的数．
+???+ note "Bài 6"
+    Trong một dãy số, truy vấn nhiều lần tiền nhiệm của $k$ trong một đoạn, tức số lớn nhất nhỏ hơn nghiêm ngặt $k$, hoặc kế nhiệm, tức số nhỏ nhất lớn hơn nghiêm ngặt $k$. Bảo đảm tồn tại số như vậy.
 
-??? note "解法"
-    以前驱为例，使用数据结构解决此种问题的方法一般是先查询区间内有多少严格小于 $k$ 的数（设它们的数量为 $x$），再查询区间第 $x$ 小的数．后继则是查询区间内有多少不大于 $k$ 的数（数量为 $x$），然后查询区间第 $x+1$ 小的数．
+??? note "Lời giải"
+    Lấy tiền nhiệm làm ví dụ. Cách dùng cấu trúc dữ liệu để giải dạng bài này thường là trước tiên truy vấn trong đoạn có bao nhiêu số nhỏ hơn nghiêm ngặt $k$, giả sử số lượng là $x$, rồi truy vấn số nhỏ thứ $x$ trong đoạn. Với kế nhiệm, truy vấn trong đoạn có bao nhiêu số không lớn hơn $k$, số lượng là $x$, rồi truy vấn số nhỏ thứ $x+1$ trong đoạn.
     
-    考虑使用整体二分解决这个问题：整体二分是一种高效求解区间第 $k$ 小的离线算法，而 [CDQ 分治](./cdq-divide.md) 可以离线高效求解区间内的排名．先跑一遍 CDQ 分治求出排名就可以使用整体二分得到区间内部的前驱和后继了．
+    Xét dùng chặt nhị phân tổng thể để giải bài này: chặt nhị phân tổng thể là một thuật toán offline hiệu quả để tìm phần tử nhỏ thứ $k$ trên đoạn, còn [chia để trị CDQ](./cdq-divide.md) có thể tính offline hiệu quả hạng trong một đoạn. Chạy chia để trị CDQ một lần để tìm hạng, sau đó có thể dùng chặt nhị phân tổng thể để thu được tiền nhiệm và kế nhiệm trong đoạn.
     
-    此问题还可以用 CDQ 分治套线段树离线一遍解决，但效率远低于跑两遍的 CDQ 分治 + 整体二分．
+    Bài này cũng có thể giải offline một lần bằng chia để trị CDQ lồng cây đoạn, nhưng hiệu quả kém xa việc chạy hai lần: chia để trị CDQ rồi chặt nhị phân tổng thể.
 
-### 构造单调性序列
+### Xây dựng dãy có tính đơn điệu
 
-???+ note "题 7（[Sequence](https://www.luogu.com.cn/problem/P4597)）"
-    给定一个序列，每次操作可以把某个数 $+1$ 或 $−1$．要求把序列变成单调不降的，并且修改后的数列只能出现修改前的数，输出最小操作次数．
+???+ note "Bài 7 ([Sequence](https://www.luogu.com.cn/problem/P4597))"
+    Cho một dãy, mỗi thao tác có thể tăng một số nào đó thêm $1$ hoặc giảm đi $1$. Yêu cầu biến dãy thành không giảm đơn điệu, và dãy sau khi sửa chỉ được chứa các số đã xuất hiện trong dãy trước khi sửa. Hãy xuất ra số thao tác ít nhất.
 
-??? note "解法"
-    此类题目也可以使用动态规划或反悔贪心解决．
+??? note "Lời giải"
+    Dạng bài này cũng có thể giải bằng quy hoạch động hoặc tham lam có hối tiếc.
     
-    在满足操作次数最小化的前提下，一定存在一种方案使得最后序列中的每个数都是序列修改前存在的，这个结论可以使用数学归纳法证明．由于题目并不需要最终序列的信息，问题转化为求出最小操作次数．
+    Với điều kiện tối thiểu hóa số thao tác, luôn tồn tại một phương án sao cho mỗi số trong dãy cuối cùng đều là một số đã tồn tại trong dãy trước khi sửa. Kết luận này có thể chứng minh bằng quy nạp toán học. Vì bài không yêu cầu thông tin của dãy cuối cùng, bài toán chuyển thành tìm số thao tác ít nhất.
     
-    由于要求最终的序列单调不降，可以使用整体二分．每轮整体二分判定最终序列区间 $[l,r]$ 的值域，此时答案的值域为 $[ql,qr]$．令 $mid=\lfloor\frac{ql + qr}{2}\rfloor$，每轮二分开始时默认将所有数划分至 $[mid+1,qr]$（要划分到 $[ql,mid]$ 的数设为 $0$ 个），初始代价设为将序列区间 $[l,r]$ 全部置为 $mid+1$ 的操作次数．依次枚举区间 $[l,r]$ 中的数 $i$ 并且计算将 $[l,i]$ 置为 $mid$、将 $[i+1,r]$ 置为 $mid+1$ 的操作次数之和，如果优于之前的操作次数则更新最少操作次数和要划分到 $[ql,mid]$ 的数的个数．
+    Vì yêu cầu dãy cuối cùng không giảm đơn điệu, có thể dùng chặt nhị phân tổng thể. Mỗi vòng chặt nhị phân tổng thể kiểm tra miền giá trị của đoạn dãy cuối cùng $[l,r]$; lúc này miền giá trị đáp án là $[ql,qr]$. Đặt $mid=\lfloor\frac{ql + qr}{2}\rfloor$. Khi bắt đầu mỗi vòng chặt nhị phân, mặc định chia mọi số vào $[mid+1,qr]$, tức số lượng phần tử cần chia vào $[ql,mid]$ được đặt là $0$, và chi phí ban đầu là số thao tác để đặt toàn bộ đoạn dãy $[l,r]$ thành $mid+1$. Sau đó lần lượt liệt kê từng số $i$ trong đoạn $[l,r]$ và tính tổng số thao tác để đặt $[l,i]$ thành $mid$ và đặt $[i+1,r]$ thành $mid+1$. Nếu tổng này tốt hơn số thao tác trước đó, cập nhật số thao tác nhỏ nhất và số lượng phần tử cần chia vào $[ql,mid]$.
     
-    划分时已经保证了最终序列的单调性不被破坏，同时因为每次都取最小操作次数，最终被划分至左区间的数取 $mid$ 一定比取 $mid+1$ 更优，故整体二分得到的序列一定是单调不降且操作次数最小的．计算操作次数输出即可．
+    Khi chia, tính đơn điệu của dãy cuối cùng đã được bảo đảm không bị phá vỡ. Đồng thời, vì mỗi lần đều lấy số thao tác nhỏ nhất, các phần tử cuối cùng được chia vào khoảng trái chắc chắn chọn $mid$ tốt hơn chọn $mid+1$. Do đó, dãy thu được bằng chặt nhị phân tổng thể chắc chắn không giảm đơn điệu và có số thao tác nhỏ nhất. Chỉ cần tính số thao tác rồi xuất ra.
 
-??? note "参考代码（关键部分）"
+??? note "Mã tham khảo (phần chính)"
     ```cpp
-    int a[500005], ans[500005];  // a:原序列 ans:构造的序列
+    int a[500005], ans[500005];  // a: dãy gốc, ans: dãy được dựng
     
     void overall_binary(int l, int r, int ql, int qr) {
       if (l > r) return;
@@ -325,30 +327,30 @@
         return;
       }
       int cnt = 0,
-          mid = ql + ((qr - ql) >> 1);  // 默认开始都填 mid+1 全部划分到右区间
+          mid = ql + ((qr - ql) >> 1);  // mặc định ban đầu điền mid+1, tất cả chia sang phải
       long long res = 0ll, sum = 0ll;
       for (int i = l; i <= r; i++) sum += abs(a[i] - (mid + 1));
       res = sum;
       for (int i = l; i <= r;
-           i++) {  // 尝试把 [l,i] 从 mid+1 换成 mid 并且划分到左区间
+           i++) {  // thử đổi [l,i] từ mid+1 thành mid và chia sang trái
         sum -= abs(a[i] - (mid + 1));
         sum += abs(a[i] - mid);
-        if (sum < res) cnt = i - l + 1, res = sum;  // 发现 [l,i] 取 mid 更优,更新
+        if (sum < res) cnt = i - l + 1, res = sum;  // thấy [l,i] lấy mid tốt hơn, cập nhật
       }
       overall_binary(l, l + cnt - 1, ql, mid);
       overall_binary(l + cnt, r, mid + 1, qr);
     }
     ```
 
-### 参考习题
+### Bài tập tham khảo
 
--   [「国家集训队」矩阵乘法](https://www.luogu.com.cn/problem/P1527)
--   [「POI2011 R3 Day2」流星 Meteors](https://loj.ac/p/2169)
--   [二逼平衡树](https://loj.ac/p/106)
--   [\[BalticOI 2004\] Sequence 数字序列](https://www.luogu.com.cn/problem/P4331)
+-   [Đội tuyển quốc gia: Nhân ma trận](https://www.luogu.com.cn/problem/P1527)
+-   [POI2011 R3 Day2: Meteors](https://loj.ac/p/2169)
+-   [Cây cân bằng nâng cao](https://loj.ac/p/106)
+-   [BalticOI 2004: Sequence, dãy số](https://www.luogu.com.cn/problem/P4331)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
--   许昊然．浅谈数据结构题的几个非经典解法．[2013 年信息学奥林匹克中国国家队侯选队员论文集](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2013%E8%AE%BA%E6%96%87%E9%9B%86.pdf)．
+-   Xu Haoran. Bàn về một số lời giải phi kinh điển cho bài toán cấu trúc dữ liệu. [Tập luận văn đội tuyển dự bị quốc gia Trung Quốc tham dự Olympic Tin học năm 2013](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2013%E8%AE%BA%E6%96%87%E9%9B%86.pdf).
 
-[^ref1]: 许昊然．浅谈数据结构题的几个非经典解法．[2013 年信息学奥林匹克中国国家队侯选队员论文集](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2013%E8%AE%BA%E6%96%87%E9%9B%86.pdf)．
+[^ref1]: Xu Haoran. Bàn về một số lời giải phi kinh điển cho bài toán cấu trúc dữ liệu. [Tập luận văn đội tuyển dự bị quốc gia Trung Quốc tham dự Olympic Tin học năm 2013](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2013%E8%AE%BA%E6%96%87%E9%9B%86.pdf).

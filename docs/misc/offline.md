@@ -1,11 +1,11 @@
-本章将介绍离线算法（Offline Algorithm）的思想、常见算法及优化．
+Chương này sẽ giới thiệu tư tưởng của thuật toán offline (Offline Algorithm), các thuật toán thường gặp và những cách tối ưu liên quan.
 
-离线算法是基于「**求解前已知所有数据**」这一假设来设计的，适用于有多组询问的题目．相对的还有 [在线算法](https://en.wikipedia.org/wiki/Online_algorithm)（Online Algorithm）．
+Thuật toán offline được thiết kế dựa trên giả thiết "**đã biết tất cả dữ liệu trước khi giải**", phù hợp với các bài toán có nhiều truy vấn. Đối lập với nó là [thuật toán online](https://en.wikipedia.org/wiki/Online_algorithm) (Online Algorithm).
 
-例如 [选择排序](../basic/selection-sort.md) 必须知道数组的全局最小元素才能执行，所以是离线算法，而 [插入排序](../basic/insertion-sort.md) 可以动态接收数据进行排序，不强制要求执行前已知全部数据，所以是在线算法．
+Ví dụ, [sắp xếp chọn](../basic/selection-sort.md) phải biết phần tử nhỏ nhất toàn cục của mảng mới có thể thực hiện, nên đó là thuật toán offline. Trong khi đó, [sắp xếp chèn](../basic/insertion-sort.md) có thể nhận dữ liệu động để sắp xếp và không bắt buộc phải biết toàn bộ dữ liệu trước khi chạy, nên đó là thuật toán online.
 
-对于相同的问题，在设计难度等方面，离线算法往往优于在线算法．为了阻止选手使用离线算法，有时题目会使用「强制在线」的方式，常见的有需要前一个询问的答案才能得到下一个询问的参数（[交互题](../contest/problems.md#交互题) 与 [通信题](../contest/problems.md#通信题) 也属于此类）．
+Với cùng một bài toán, xét về độ khó khi thiết kế lời giải, thuật toán offline thường dễ hơn thuật toán online. Để ngăn thí sinh dùng thuật toán offline, đôi khi đề bài sẽ dùng cơ chế "bắt buộc online"; trường hợp phổ biến là cần đáp án của truy vấn trước để tính tham số của truy vấn tiếp theo ([bài tương tác](../contest/problems.md#bai-tuong-tac) và [bài truyền tin](../contest/problems.md#bai-truyen-tin) cũng thuộc nhóm này).
 
-离线算法的常见思路包括将询问统一求解（如 [CDQ 分治](./cdq-divide.md)）、通过一个询问的答案求出另外相似询问的答案（如 [整体二分](./parallel-binsearch.md) 和 [莫队算法](./mo-algo-intro.md)）等．
+Những hướng tiếp cận thường gặp của thuật toán offline gồm giải các truy vấn một cách tập trung (ví dụ [chia để trị CDQ](./cdq-divide.md)), hoặc suy ra đáp án của một truy vấn từ đáp án của các truy vấn tương tự khác (ví dụ [nhị phân tổng thể](./parallel-binsearch.md) và [thuật toán Mo](./mo-algo-intro.md)).
 
-由于离线算法是一种思想而并不是某种具体的算法，因此它会搭配各种各样的数据结构或算法一起使用，与之相关的题目种类也更为繁杂．
+Vì thuật toán offline là một tư tưởng chứ không phải một thuật toán cụ thể, nó thường được kết hợp với nhiều cấu trúc dữ liệu hoặc thuật toán khác nhau; các dạng bài liên quan vì thế cũng phức tạp và đa dạng hơn.
