@@ -24,6 +24,11 @@ MkDocs source layout intact.
   `docs/basic/bubble-sort.md`, `docs/basic/insertion-sort.md`,
   `docs/basic/counting-sort.md`, `docs/basic/use-of-sort.md`: translated
   additional basic algorithm and sorting pages.
+- `docs/basic/greedy.md`, `docs/basic/bucket-sort.md`,
+  `docs/basic/heap-sort.md`, `docs/basic/tim-sort.md`,
+  `docs/basic/tournament-sort.md`, `docs/basic/merge-sort.md`,
+  `docs/basic/radix-sort.md`, `docs/basic/stl-sort.md`: translated more basic
+  greedy and sorting pages.
 - `docs/contest/resources.md`, `docs/contest/roadmap.md`: translated learning
   resources and roadmap pages.
 - `docs/intro/htc.md`, `docs/intro/faq.md`: translated contributor guide and

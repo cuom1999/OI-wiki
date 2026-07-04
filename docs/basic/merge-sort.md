@@ -1,32 +1,32 @@
-## 定义
+## Định nghĩa
 
-归并排序（[merge sort](https://en.wikipedia.org/wiki/Merge_sort)）是高效的基于比较的稳定排序算法．
+Sắp xếp trộn ([merge sort](https://en.wikipedia.org/wiki/Merge_sort)) là một thuật toán sắp xếp ổn định, hiệu quả, dựa trên so sánh.
 
-## 性质
+## Tính chất
 
-归并排序基于分治思想将数组分段排序后合并，时间复杂度在最优、最坏与平均情况下均为 $\Theta (n \log n)$，空间复杂度为 $\Theta (n)$．
+Sắp xếp trộn dựa trên tư tưởng chia để trị: chia mảng thành các đoạn, sắp xếp từng đoạn rồi trộn lại. Độ phức tạp thời gian trong trường hợp tốt nhất, xấu nhất và trung bình đều là $\Theta (n \log n)$; độ phức tạp không gian là $\Theta (n)$.
 
-归并排序可以只使用 $\Theta (1)$ 的辅助空间，但为便捷通常使用与原数组等长的辅助数组．
+Sắp xếp trộn có thể chỉ dùng $\Theta (1)$ không gian phụ, nhưng để tiện cài đặt, ta thường dùng một mảng phụ có cùng độ dài với mảng ban đầu.
 
-## 过程
+## Quy trình
 
-### 合并
+### Trộn
 
-归并排序最核心的部分是合并（merge）过程：将两个有序的数组 `a[i]` 和 `b[j]` 合并为一个有序数组 `c[k]`．
+Phần cốt lõi nhất của sắp xếp trộn là thao tác trộn (merge): trộn hai mảng đã sắp xếp `a[i]` và `b[j]` thành một mảng đã sắp xếp `c[k]`.
 
-从左往右枚举 `a[i]` 和 `b[j]`，找出最小的值并放入数组 `c[k]`；重复上述过程直到 `a[i]` 和 `b[j]` 有一个为空时，将另一个数组剩下的元素放入 `c[k]`．
+Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất rồi đưa vào mảng `c[k]`; lặp lại quá trình trên cho đến khi một trong hai mảng `a[i]` và `b[j]` rỗng, sau đó đưa các phần tử còn lại của mảng kia vào `c[k]`.
 
-为保证排序的稳定性，前段首元素小于或等于后段首元素时（`a[i] <= b[j]`）而非小于时（`a[i] < b[j]`）就要作为最小值放入 `c[k]`．
+Để bảo đảm tính ổn định của phép sắp xếp, khi phần tử đầu của đoạn trước nhỏ hơn hoặc bằng phần tử đầu của đoạn sau (`a[i] <= b[j]`), thay vì chỉ khi nhỏ hơn (`a[i] < b[j]`), ta phải đưa nó vào `c[k]` như giá trị nhỏ nhất.
 
-#### 实现
+#### Cài đặt
 
 === "C/C++"
-    === "数组实现"
+    === "Cài đặt bằng mảng"
         ```cpp
         void merge(const int *a, size_t aLen, const int *b, size_t bLen, int *c) {
           size_t i = 0, j = 0, k = 0;
           while (i < aLen && j < bLen) {
-            if (b[j] < a[i]) {  // <!> 先判断 b[j] < a[i]，保证稳定性
+            if (b[j] < a[i]) {  // <!> Kiểm tra b[j] < a[i] trước để đảm bảo tính ổn định
               c[k] = b[j];
               ++j;
             } else {
@@ -35,13 +35,13 @@
             }
             ++k;
           }
-          // 此时一个数组已空，另一个数组非空，将非空的数组并入 c 中
+          // Lúc này một mảng đã rỗng, mảng kia còn phần tử; gộp mảng chưa rỗng vào c
           for (; i < aLen; ++i, ++k) c[k] = a[i];
           for (; j < bLen; ++j, ++k) c[k] = b[j];
         }
         ```
     
-    === "指针实现"
+    === "Cài đặt bằng con trỏ"
         ```cpp
         void merge(const int *aBegin, const int *aEnd, const int *bBegin,
                    const int *bEnd, int *c) {
@@ -60,7 +60,7 @@
         }
         ```
     
-    也可使用 `<algorithm>` 库的 `merge` 函数，用法与上述指针式写法的相同．
+    Cũng có thể dùng hàm `merge` trong thư viện `<algorithm>`; cách dùng giống với cách viết bằng con trỏ ở trên.
 
 === "Python"
     ```python
@@ -68,43 +68,44 @@
         i, j = 0, 0
         c = []
         while i < len(a) and j < len(b):
-            # <!> 先判断 b[j] < a[i]，保证稳定性
+            # <!> Kiểm tra b[j] < a[i] trước để đảm bảo tính ổn định
             if b[j] < a[i]:
                 c.append(b[j])
                 j += 1
             else:
                 c.append(a[i])
                 i += 1
-        # 此时一个数组已空，另一个数组非空，将非空的数组并入 c 中
+        # Lúc này một mảng đã rỗng, mảng kia còn phần tử; gộp mảng chưa rỗng vào c
         c.extend(a[i:])
         c.extend(b[j:])
         return c
     ```
 
-### 分治法实现归并排序
+### Cài đặt sắp xếp trộn bằng chia để trị
 
-1.  当数组长度为 $1$ 时，该数组就已经是有序的，不用再分解．
+1.  Khi độ dài mảng là $1$, mảng đó đã được sắp xếp, không cần phân tách tiếp.
 
-2.  当数组长度大于 $1$ 时，该数组很可能不是有序的．此时将该数组分为两段，再分别检查两个数组是否有序（用第 1 条）．如果有序，则将它们合并为一个有序数组；否则对不有序的数组重复第 2 条，再合并．
+2.  Khi độ dài mảng lớn hơn $1$, mảng đó rất có thể chưa được sắp xếp. Khi đó, chia mảng thành hai đoạn, rồi lần lượt kiểm tra xem hai mảng con có được sắp xếp hay không (theo mục 1). Nếu đã sắp xếp thì trộn chúng thành một mảng đã sắp xếp; nếu chưa, lặp lại mục 2 với mảng chưa được sắp xếp rồi trộn lại.
 
-用数学归纳法可以证明该流程可以将一个数组转变为有序数组．
+Có thể chứng minh bằng quy nạp toán học rằng quy trình này biến một mảng thành mảng đã sắp xếp.
 
-为保证排序的复杂度，通常将数组分为尽量等长的两段（$mid = \left\lfloor \dfrac{l + r}{2} \right\rfloor$）．
+Để bảo đảm độ phức tạp của phép sắp xếp, thông thường ta chia mảng thành hai đoạn có độ dài gần bằng nhau nhất có thể ($mid = \left\lfloor \dfrac{l + r}{2} \right\rfloor$).
 
-#### 实现
+#### Cài đặt
 
-注意下面的代码所表示的区间分别是 $[l, r)$，$[l, mid)$，$[mid, r)$．
+Lưu ý rằng các đoạn được biểu diễn trong đoạn mã dưới đây lần lượt là $[l, r)$, $[l, mid)$, $[mid, r)$.
 
 === "C/C++"
     ```cpp
     void merge_sort(int *a, int l, int r) {
       if (r - l <= 1) return;
-      // 分解
+      // Phân tách
       int mid = l + ((r - l) >> 1);
       merge_sort(a, l, mid), merge_sort(a, mid, r);
-      // 合并
-      int tmp[1024] = {};  // 请结合实际情况设置 tmp 数组的长度（与 a 相同），或使用
-                           // vector；先将合并的结果放在 tmp 里，再返回到数组 a
+      // Trộn
+      int tmp[1024] = {};  // Hãy đặt độ dài mảng tmp theo tình huống thực tế
+                           // (bằng a), hoặc dùng vector; trước hết đặt kết quả
+                           // trộn vào tmp, rồi chép ngược về mảng a
       merge(a + l, a + mid, a + mid, a + r, tmp + l);  // pointer-style merge
       for (int i = l; i < r; ++i) a[i] = tmp[i];
     }
@@ -115,46 +116,47 @@
     def merge_sort(a, ll, rr):
         if rr - ll <= 1:
             return
-        # 分解
+        # Phân tách
         mid = (rr + ll) // 2
         merge_sort(a, ll, mid)
         merge_sort(a, mid, rr)
-        # 合并
+        # Trộn
         a[ll:rr] = merge(a[ll:mid], a[mid:rr])
     ```
 
-### 倍增法实现归并排序
+### Cài đặt sắp xếp trộn bằng nhân đôi
 
-已知当数组长度为 $1$ 时，该数组就已经是有序的．
+Ta đã biết rằng khi độ dài mảng là $1$, mảng đó đã được sắp xếp.
 
-将数组全部切成长度为 $1$ 的段．
+Cắt toàn bộ mảng thành các đoạn có độ dài $1$.
 
-从左往右依次合并两个长度为 $1$ 的有序段，得到一系列长度 $\le 2$ 的有序段；
+Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có độ dài $1$, thu được một loạt đoạn đã sắp xếp có độ dài $\le 2$;
 
-从左往右依次合并两个长度 $\le 2$ 的有序段，得到一系列长度 $\le 4$ 的有序段；
+Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có độ dài $\le 2$, thu được một loạt đoạn đã sắp xếp có độ dài $\le 4$;
 
-从左往右依次合并两个长度 $\le 4$ 的有序段，得到一系列长度 $\le 8$ 的有序段；
+Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có độ dài $\le 4$, thu được một loạt đoạn đã sắp xếp có độ dài $\le 8$;
 
 ……
 
-重复上述过程直至数组只剩一个有序段，该段就是排好序的原数组．
+Lặp lại quá trình trên cho đến khi trong mảng chỉ còn một đoạn đã sắp xếp; đoạn này chính là mảng ban đầu sau khi đã sắp xếp.
 
-???+ note "为什么是 $\le n$ 而不是 $= n$"
-    数组的长度很可能不是 $2^x$，此时在最后就可能出现长度不完整的段，可能出现最后一个段是独立的情况．
+???+ note "Vì sao là $\le n$ mà không phải $= n$"
+    Độ dài của mảng rất có thể không phải là $2^x$, khi đó ở cuối có thể xuất hiện các đoạn không đủ độ dài, thậm chí đoạn cuối cùng có thể đứng riêng.
 
-#### 实现
+#### Cài đặt
 
 === "C/C++"
     ```cpp
     void merge_sort(int *a, size_t n) {
-      int tmp[1024] = {};  // 请结合实际情况设置 tmp 数组的长度（与 a 相同），或使用
-                           // vector；先将合并的结果放在 tmp 里，再返回到数组 a
+      int tmp[1024] = {};  // Hãy đặt độ dài mảng tmp theo tình huống thực tế
+                           // (bằng a), hoặc dùng vector; trước hết đặt kết quả
+                           // trộn vào tmp, rồi chép ngược về mảng a
       for (size_t seg = 1; seg < n; seg <<= 1) {
         for (size_t left1 = 0; left1 < n - seg;
-             left1 += seg + seg) {  // n - seg: 如果最后只有一个段就不用合并
+             left1 += seg + seg) {  // n - seg: nếu cuối cùng chỉ còn một đoạn thì không cần trộn
           size_t right1 = left1 + seg;
           size_t left2 = right1;
-          size_t right2 = std::min(left2 + seg, n);  // <!> 注意最后一个段的边界
+          size_t right2 = std::min(left2 + seg, n);  // <!> Lưu ý biên của đoạn cuối cùng
           merge(a + left1, a + right1, a + left2, a + right2,
                 tmp + left1);  // pointer-style merge
           for (size_t i = left1; i < right2; ++i) a[i] = tmp[i];
@@ -176,16 +178,16 @@
         seg <<= 1
     ```
 
-## 逆序对
+## Nghịch thế
 
-相关阅读和参考实现：[逆序对](../math/permutation.md#逆序数)
+Bài đọc liên quan và cài đặt tham khảo: [nghịch thế](../math/permutation.md#逆序数)
 
-逆序对是 $i < j$ 且 $a_i > a_j$ 的有序数对 $(i, j)$．
+Nghịch thế là cặp có thứ tự $(i, j)$ thỏa mãn $i < j$ và $a_i > a_j$.
 
-排序后的数组无逆序对．归并排序的合并操作中，每次后段首元素被作为当前最小值取出时，前段剩余元素个数之和即是合并操作减少的逆序对数量；故归并排序计算逆序对数量的时间复杂度为 $\Theta (n \log n)$．此外，逆序对计数还可以通过树状数组或线段树解决，时间复杂度也是 $O(n \log n)$；这一算法的详细解释参见 [树状数组](../ds/fenwick.md#全局逆序对全局二维偏序) 相应描述．两种算法的参考实现都在 [逆序对](../math/permutation.md#逆序数) 章节．
+Mảng sau khi sắp xếp không còn nghịch thế. Trong thao tác trộn của sắp xếp trộn, mỗi khi phần tử đầu của đoạn sau được lấy ra làm giá trị nhỏ nhất hiện tại, tổng số phần tử còn lại ở đoạn trước chính là số nghịch thế mà thao tác trộn đã loại bỏ; vì vậy, độ phức tạp thời gian để dùng sắp xếp trộn tính số nghịch thế là $\Theta (n \log n)$. Ngoài ra, bài toán đếm nghịch thế cũng có thể được giải bằng cây Fenwick hoặc cây phân đoạn (segment tree), với độ phức tạp thời gian cũng là $O(n \log n)$; phần giải thích chi tiết của thuật toán này nằm trong mô tả tương ứng ở trang [cây Fenwick](../ds/fenwick.md#全局逆序对全局二维偏序). Cài đặt tham khảo của cả hai thuật toán đều có trong mục [nghịch thế](../math/permutation.md#逆序数).
 
-## 外部链接
+## Liên kết ngoài
 
 -   [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
--   [归并排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
--   [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)
+-   [Sắp xếp trộn - Wikipedia tiếng Trung](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
+-   [Nghịch thế - Wikipedia tiếng Trung](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)

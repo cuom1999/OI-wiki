@@ -138,22 +138,22 @@ nav:
     - Liệt kê: basic/enumerate.md
     - Mô phỏng: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
-    - 贪心: basic/greedy.md
+    - Tham lam: basic/greedy.md
     - Sắp xếp:
       - Tổng quan sắp xếp: basic/sort-intro.md
       - Selection sort: basic/selection-sort.md
       - Bubble sort: basic/bubble-sort.md
       - Insertion sort: basic/insertion-sort.md
       - Counting sort: basic/counting-sort.md
-      - 基数排序: basic/radix-sort.md
+      - Radix sort: basic/radix-sort.md
       - 快速排序: basic/quick-sort.md
-      - 归并排序: basic/merge-sort.md
-      - 堆排序: basic/heap-sort.md
-      - 桶排序: basic/bucket-sort.md
+      - Merge sort: basic/merge-sort.md
+      - Heap sort: basic/heap-sort.md
+      - Bucket sort: basic/bucket-sort.md
       - 希尔排序: basic/shell-sort.md
-      - 锦标赛排序: basic/tournament-sort.md
-      - Tim 排序: basic/tim-sort.md
-      - 排序相关 STL: basic/stl-sort.md
+      - Tournament sort: basic/tournament-sort.md
+      - Tim sort: basic/tim-sort.md
+      - STL liên quan đến sắp xếp: basic/stl-sort.md
       - Ứng dụng của sắp xếp: basic/use-of-sort.md
     - 前缀和 & 差分: basic/prefix-sum.md
     - 二分: basic/binary.md

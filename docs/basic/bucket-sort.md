@@ -1,33 +1,33 @@
-本页面将简要介绍桶排序．
+Trang này giới thiệu ngắn gọn về sắp xếp theo thùng.
 
-## 定义
+## Định nghĩa
 
-桶排序（英文：Bucket sort）是排序算法的一种，适用于待排序数据值域较大但分布比较均匀的情况．
+Sắp xếp theo thùng (tiếng Anh: Bucket sort) là một thuật toán sắp xếp, phù hợp khi dữ liệu cần sắp xếp có miền giá trị lớn nhưng phân bố tương đối đều.
 
-## 过程
+## Quy trình
 
-桶排序按下列步骤进行：
+Sắp xếp theo thùng được thực hiện theo các bước sau:
 
-1.  设置一个定量的数组当作空桶；
-2.  遍历序列，并将元素一个个放到对应的桶中；
-3.  对每个不是空的桶进行排序；
-4.  从不是空的桶里把元素再放回原来的序列中．
+1.  Tạo một số lượng mảng nhất định để làm các thùng rỗng;
+2.  Duyệt dãy và lần lượt đưa từng phần tử vào thùng tương ứng;
+3.  Sắp xếp từng thùng không rỗng;
+4.  Đưa các phần tử từ các thùng không rỗng trở lại dãy ban đầu.
 
-## 性质
+## Tính chất
 
-### 稳定性
+### Tính ổn định
 
-如果使用稳定的内层排序，并且将元素插入桶中时不改变元素间的相对顺序，那么桶排序就是一种稳定的排序算法．
+Nếu dùng một thuật toán sắp xếp ổn định bên trong mỗi thùng, đồng thời không thay đổi thứ tự tương đối giữa các phần tử khi đưa chúng vào thùng, thì sắp xếp theo thùng là một thuật toán sắp xếp ổn định.
 
-由于每块元素不多，一般使用插入排序．此时桶排序是一种稳定的排序算法．
+Vì số phần tử trong mỗi thùng thường không nhiều, ta thường dùng sắp xếp chèn. Khi đó sắp xếp theo thùng là một thuật toán sắp xếp ổn định.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-桶排序的平均时间复杂度为 $O(n + n^2/k + k)$（将值域平均分成 $n$ 块 + 排序 + 重新合并元素），当 $k\approx n$ 时为 $O(n)$．[^ref1]
+Độ phức tạp thời gian trung bình của sắp xếp theo thùng là $O(n + n^2/k + k)$ (chia đều miền giá trị thành $k$ phần + sắp xếp + gộp lại các phần tử); khi $k\approx n$ thì là $O(n)$.[^ref1]
 
-桶排序的最坏时间复杂度为 $O(n^2)$．
+Độ phức tạp thời gian xấu nhất của sắp xếp theo thùng là $O(n^2)$.
 
-## 实现
+## Cài đặt
 
 === "C++"
     ```cpp
@@ -98,6 +98,6 @@
                 p += 1
     ```
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^ref1]: [（英文）Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis)
+[^ref1]: [Bucket sort - Wikipedia tiếng Anh](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis)

@@ -1,136 +1,136 @@
-本页面将介绍 Tim 排序（Timsort），一种混合的、稳定的排序算法．
+Trang này giới thiệu Tim sort (Timsort), một thuật toán sắp xếp lai và ổn định.
 
-## 引入
+## Giới thiệu
 
-Timsort 由 Python 核心开发者 Tim Peters 于 2002 年设计，并应用于 Python 语言，其巧妙结合了插入排序和归并排序的优点，针对数据集中的有序性进行了精确的优化，尤其适合处理包含大量部分有序子序列的数据集．自 Python 2.3 版本以来，Timsort 被选为 Python 标准库的默认排序算法，并被广泛应用于其他编程环境，例如在 Java SE 7 中被用于对非原始对象数组进行排序．
+Timsort do Tim Peters, một lập trình viên lõi của Python, thiết kế năm 2002 và được áp dụng trong ngôn ngữ Python. Thuật toán này kết hợp khéo léo ưu điểm của sắp xếp chèn và sắp xếp trộn, đồng thời tối ưu rất sát theo mức độ có thứ tự sẵn trong dữ liệu; vì vậy nó đặc biệt phù hợp với các tập dữ liệu chứa nhiều dãy con đã có thứ tự một phần. Từ Python 2.3, Timsort được chọn làm thuật toán sắp xếp mặc định của thư viện chuẩn Python, và cũng được dùng rộng rãi trong các môi trường lập trình khác, chẳng hạn Java SE 7 dùng nó để sắp xếp mảng đối tượng không nguyên thủy.
 
-## 步骤
+## Các bước
 
-Timsort 的核心思想是通过识别和利用数据集中已有的有序性，提高排序效率，其主要包括以下步骤：
+Ý tưởng cốt lõi của Timsort là nhận diện và tận dụng tính có thứ tự đã tồn tại trong dữ liệu để tăng hiệu quả sắp xếp. Thuật toán chủ yếu gồm các bước sau:
 
-1.  **识别 Run**：扫描待排序数组，识别出有序的连续子序列（Run）．
-2.  **扩展 Run**：如果识别的 Run 长度小于 `MIN_RUN`，则使用插入排序对其进行扩展．
-3.  **归并 Run**：Timsort 维护一个特殊的栈，采用特定的归并策略将栈中已有的 Run 合并成更大的有序序列．
+1.  **Nhận diện Run**: Quét mảng cần sắp xếp và nhận diện các dãy con liên tiếp đã có thứ tự (Run).
+2.  **Mở rộng Run**: Nếu Run nhận diện được có độ dài nhỏ hơn `MIN_RUN`, dùng sắp xếp chèn để mở rộng Run đó.
+3.  **Trộn Run**: Timsort duy trì một ngăn xếp đặc biệt, dùng chiến lược trộn cụ thể để hợp nhất các Run hiện có trong ngăn xếp thành những dãy có thứ tự lớn hơn.
 
-### 识别 Run
+### Nhận diện Run
 
-首先，Timsort 会从左向右扫描数组，识别出连续的有序序列，这些有序序列被称为 Run：
+Trước hết, Timsort quét mảng từ trái sang phải để nhận diện các dãy liên tiếp đã có thứ tự; những dãy này được gọi là Run:
 
--   **升序 Run**：如果后一个元素大于等于前一个元素，则继续扩展 Run．
--   **降序 Run**：如果后一个元素小于前一个元素，则继续扩展 Run，随后将该 Run 反转为升序．
+-   **Run tăng dần**: Nếu phần tử sau lớn hơn hoặc bằng phần tử trước, tiếp tục mở rộng Run.
+-   **Run giảm dần**: Nếu phần tử sau nhỏ hơn phần tử trước, tiếp tục mở rộng Run, sau đó đảo ngược Run này thành tăng dần.
 
-### 扩展 Run
+### Mở rộng Run
 
-为了提高小规模数据的排序效率，Timsort 引入了一个 Run 最小的长度 `MIN_RUN`．其值一般根据待排序数组的长度动态计算，通常为 $32$ 至 $64$ 之间．
+Để tăng hiệu quả sắp xếp trên dữ liệu nhỏ, Timsort đưa vào một độ dài Run tối thiểu `MIN_RUN`. Giá trị này thường được tính động theo độ dài mảng cần sắp xếp, thông thường nằm trong khoảng từ $32$ đến $64$.
 
--   如果识别的 Run 长度大于等于 `MIN_RUN`，则不需要额外操作，直接将 Run 压入栈中．
--   如果识别的 Run 长度小于 `MIN_RUN`，则使用二分插入排序将该 Run 的后续元素插入到 Run 中，直到 Run 的长度达到 `MIN_RUN`，然后将其压入栈中．
+-   Nếu Run nhận diện được có độ dài lớn hơn hoặc bằng `MIN_RUN`, không cần thao tác bổ sung, trực tiếp đẩy Run vào ngăn xếp.
+-   Nếu Run nhận diện được có độ dài nhỏ hơn `MIN_RUN`, dùng sắp xếp chèn nhị phân để chèn các phần tử tiếp theo vào Run cho đến khi độ dài Run đạt `MIN_RUN`, rồi đẩy Run vào ngăn xếp.
 
-### 归并 Run
+### Trộn Run
 
-在 Timsort 中，归并排序是通过 **栈** 来管理和控制的．栈中保存了已经识别出的有序的 Run，并通过特定的归并规则控制栈中 Run 的合并，其目的是在合并时保持序列的平衡性和稳定性．
+Trong Timsort, quá trình sắp xếp trộn được quản lý và điều khiển bằng **ngăn xếp**. Ngăn xếp lưu các Run có thứ tự đã được nhận diện, rồi dùng những quy tắc trộn cụ thể để điều khiển việc hợp nhất các Run trong ngăn xếp; mục đích là giữ cho quá trình hợp nhất cân bằng và ổn định.
 
-#### 归并规则
+#### Quy tắc trộn
 
-Timsort 是一种稳定的排序算法，即相同元素在排序后仍然保持原有的相对顺序．为确保这一点，Timsort 在归并时只会合并相邻的、连续的 Run，而不会直接合并非相邻的 Run．因为非相邻的 Run 之间可能存在相同的元素，直接合并很有可能会打乱它们的相对顺序．
+Timsort là một thuật toán sắp xếp ổn định, tức là các phần tử bằng nhau vẫn giữ thứ tự tương đối ban đầu sau khi sắp xếp. Để bảo đảm điều này, khi trộn, Timsort chỉ hợp nhất các Run kề nhau và liên tiếp, chứ không trực tiếp hợp nhất các Run không kề nhau. Lý do là giữa các Run không kề nhau có thể tồn tại những phần tử bằng nhau; nếu trộn trực tiếp, thứ tự tương đối của chúng rất dễ bị phá vỡ.
 
-同时，为了确保合并的平衡性，Timsort 引入了特定的归并规则．在每次合并操作之前，算法会检查栈顶的三个 Run X、Y 和 Z，以确保满足以下两个条件：
+Đồng thời, để bảo đảm tính cân bằng của quá trình hợp nhất, Timsort đưa vào các quy tắc trộn cụ thể. Trước mỗi thao tác hợp nhất, thuật toán kiểm tra ba Run ở đỉnh ngăn xếp là X, Y và Z để bảo đảm thỏa mãn hai điều kiện sau:
 
--   **条件一**：`len(Z) > len(Y) + len(X)`
--   **条件二**：`len(Y) > len(X)`
+-   **Điều kiện 1**: `len(Z) > len(Y) + len(X)`
+-   **Điều kiện 2**: `len(Y) > len(X)`
 
-如果栈顶的三个 Run 不满足上述条件，Timsort 会将 Y 与 X 或 Z 中较小的一个进行合并，然后再次检查条件．一旦条件满足，则开始继续搜索新的 Run，将其添加到栈中并开始下一轮的归并．
+Nếu ba Run ở đỉnh ngăn xếp không thỏa mãn các điều kiện trên, Timsort sẽ hợp nhất Y với Run nhỏ hơn trong X và Z, rồi kiểm tra lại điều kiện. Khi các điều kiện đã thỏa mãn, thuật toán tiếp tục tìm Run mới, thêm nó vào ngăn xếp và bắt đầu vòng trộn tiếp theo.
 
 ![Merge Rules](./images/tim-sort-1.png)
 
-#### 归并优化
+#### Tối ưu hóa quá trình trộn
 
-为了在归并不同长度的 Run 时提高效率并减少空间开销，Timsort 在归并前会通过二分查找精确定位需要处理的元素范围，只对需要移动的部分进行归并，具体方式为：
+Để tăng hiệu quả và giảm chi phí bộ nhớ khi trộn các Run có độ dài khác nhau, trước khi trộn, Timsort dùng tìm kiếm nhị phân để xác định chính xác phạm vi phần tử cần xử lý, chỉ trộn phần thật sự cần di chuyển. Cách làm cụ thể như sau:
 
-1.  **确定插入点**：使用二分查找，找到第二个 Run 的第一个元素在第一个 Run 中的插入位置，以及第一个 Run 的最后一个元素在第二个 Run 中的插入位置．这样，可以缩小需要归并的范围，只对需要移动的元素进行处理．
+1.  **Xác định điểm chèn**: Dùng tìm kiếm nhị phân để tìm vị trí chèn của phần tử đầu tiên của Run thứ hai trong Run thứ nhất, cũng như vị trí chèn của phần tử cuối cùng của Run thứ nhất trong Run thứ hai. Nhờ vậy có thể thu hẹp phạm vi cần trộn và chỉ xử lý các phần tử cần di chuyển.
 
-2.  **临时缓冲区**：传统的原地合并算法效率太低，需要大量的元素移动．为了减少这种开销，Timsort 使用一个临时缓冲区，将长度较小的 Run 复制到缓冲区中，然后逐步将元素从缓冲区复制回原数组．
+2.  **Bộ đệm tạm thời**: Các thuật toán hợp nhất tại chỗ truyền thống có hiệu quả thấp và cần di chuyển rất nhiều phần tử. Để giảm chi phí này, Timsort dùng một bộ đệm tạm thời, sao chép Run ngắn hơn vào bộ đệm, rồi dần sao chép các phần tử từ bộ đệm trở lại mảng ban đầu.
 
-例如，假设存在两个 Run A 和 B，分别为：
+Ví dụ, giả sử có hai Run A và B lần lượt là:
 
--   Run A:$[1, 2, 3, 6, 10]$
--   Run B:$[4, 5, 7, 9, 12, 14, 17]$
+-   Run A: $[1, 2, 3, 6, 10]$
+-   Run B: $[4, 5, 7, 9, 12, 14, 17]$
 
-通过二分查找，可以确定：
+Thông qua tìm kiếm nhị phân, có thể xác định:
 
--   元素 $4$ 应插入到 Run A 的第四个位置．
--   元素 $10$ 应插入到 Run B 的第五个位置．
+-   Phần tử $4$ nên được chèn vào vị trí thứ tư của Run A.
+-   Phần tử $10$ nên được chèn vào vị trí thứ năm của Run B.
 
-因此，Run A 的前 $3$ 个元素和 Run B 的后 $3$ 个元素已经在正确位置，无需处理．只需归并 Run A 的 $[6, 10]$ 和 Run B 的 $[4, 5, 7, 9]$，其归并过程如下图所示：
+Do đó, $3$ phần tử đầu của Run A và $3$ phần tử cuối của Run B đã ở đúng vị trí, không cần xử lý. Ta chỉ cần trộn $[6, 10]$ của Run A với $[4, 5, 7, 9]$ của Run B; quá trình trộn được minh họa như hình sau:
 
 ![Timsort Merge](./images/tim-sort-2.apng)
 
-#### 加速模式
+#### Chế độ tăng tốc
 
-为进一步提升归并效率，Timsort 引入了 **加速模式（Galloping Mode）**．在标准的归并过程中，算法会逐一比较两个 Run 中的元素，将较小的元素放入结果数组．然而，如果一侧的 Run 中有大量连续元素比另一侧的当前元素要小，逐一比较会造成不必要的开销．
+Để tiếp tục nâng cao hiệu quả trộn, Timsort đưa vào **chế độ tăng tốc (Galloping Mode)**. Trong quá trình trộn chuẩn, thuật toán so sánh từng phần tử của hai Run và đưa phần tử nhỏ hơn vào mảng kết quả. Tuy nhiên, nếu một phía của Run có nhiều phần tử liên tiếp nhỏ hơn phần tử hiện tại của phía còn lại, việc so sánh từng phần tử sẽ gây chi phí không cần thiết.
 
-为了解决这一问题，Timsort 设定了一个阈值 `Min_Gallop`（默认值为 $7$）．当一侧 Run 中的元素连续比较胜利的次数达到 `Min_Gallop` 时，算法会进入加速模式，快速定位元素位置，其具体步骤如下：
+Để xử lý vấn đề này, Timsort đặt một ngưỡng `Min_Gallop` (giá trị mặc định là $7$). Khi các phần tử ở một phía Run thắng liên tiếp trong so sánh với số lần đạt `Min_Gallop`, thuật toán chuyển sang chế độ tăng tốc để định vị nhanh vị trí phần tử. Các bước cụ thể như sau:
 
-1.  **指数查找**：从当前位置开始，算法以指数增长的步长 $(1, 2, 4, 8, \dots)$ 在一侧的 Run 中查找，直到找到一个区间，使得目标元素位于该区间内．
-2.  **二分查找**：一旦确定了包含目标元素的区间，算法会在该区间内使用二分查找，精确定位目标元素的位置．
+1.  **Tìm kiếm lũy tiến**: Từ vị trí hiện tại, thuật toán tìm trong một phía Run với bước nhảy tăng theo lũy thừa $(1, 2, 4, 8, \dots)$ cho đến khi tìm được một khoảng chứa phần tử mục tiêu.
+2.  **Tìm kiếm nhị phân**: Sau khi xác định được khoảng chứa phần tử mục tiêu, thuật toán dùng tìm kiếm nhị phân trong khoảng đó để định vị chính xác vị trí của phần tử mục tiêu.
 
-通过这种方式，Timsort 可以跳过大量不必要的比较，快速处理一侧 Run 中连续的、较小（或较大）的元素，将它们批量移动到合并结果中．
+Bằng cách này, Timsort có thể bỏ qua rất nhiều phép so sánh không cần thiết, nhanh chóng xử lý các phần tử liên tiếp nhỏ hơn (hoặc lớn hơn) trong một phía Run và chuyển hàng loạt chúng vào kết quả hợp nhất.
 
-然而，加速模式并非在所有情况下都更高效．在某些数据分布下，加速模式可能导致更多的比较次数．为此，Timsort 采用了动态调整策略：
+Tuy nhiên, chế độ tăng tốc không phải lúc nào cũng hiệu quả hơn. Với một số phân bố dữ liệu, chế độ tăng tốc có thể làm tăng số lần so sánh. Vì vậy, Timsort dùng chiến lược điều chỉnh động:
 
--   **阈值调整**：维护一个可变的 `Min_Gallop` 参数．当加速模式表现良好（即连续多次从同一 Run 中选取元素）时，`Min_Gallop` 减 $1$，鼓励继续使用加速模式；当加速模式效果不佳（频繁在两个 Run 之间切换）时，`Min_Gallop` 加 $1$，降低加速模式的使用频率．
+-   **Điều chỉnh ngưỡng**: Duy trì một tham số `Min_Gallop` có thể thay đổi. Khi chế độ tăng tốc hoạt động tốt (tức là liên tiếp chọn phần tử nhiều lần từ cùng một Run), `Min_Gallop` giảm $1$ để khuyến khích tiếp tục dùng chế độ tăng tốc; khi chế độ tăng tốc hoạt động không tốt (thường xuyên chuyển qua lại giữa hai Run), `Min_Gallop` tăng $1$ để giảm tần suất dùng chế độ tăng tốc.
 
-通过动态调整 `Min_Gallop` 的值，算法能够根据实际数据情况，在普通归并模式和加速模式之间取得平衡．对于部分有序或高度有序的数据，加速模式可以显著提高效率，使 Timsort 的性能接近 $O(n)$；而对于随机数据，算法会逐渐倾向于使用普通归并，从而保证 $O(n \log n)$ 的时间复杂度．
+Bằng cách điều chỉnh động giá trị `Min_Gallop`, thuật toán có thể cân bằng giữa chế độ trộn thông thường và chế độ tăng tốc tùy theo dữ liệu thực tế. Với dữ liệu có thứ tự một phần hoặc có mức độ có thứ tự cao, chế độ tăng tốc có thể cải thiện hiệu quả rõ rệt, khiến hiệu năng của Timsort tiến gần $O(n)$; còn với dữ liệu ngẫu nhiên, thuật toán sẽ dần nghiêng về trộn thông thường để bảo đảm độ phức tạp thời gian $O(n \log n)$.
 
-## 复杂度
+## Độ phức tạp
 
-Timsort 的时间复杂度取决于数据的有序性：
+Độ phức tạp thời gian của Timsort phụ thuộc vào mức độ có thứ tự của dữ liệu:
 
--   **最优情况**：$O(n)$
-    -   当数据已经有序或近似有序时，算法识别出的 Run 长度接近 $n$，归并次数减少，复杂度趋近于 $O(n)$．
--   **最坏情况**：$O(n \log n)$
-    -   在数据完全无序的情况下，每一个 Run 的长度都接近 $1$，因此需要 $O(\log n)$ 次归并，每次归并的代价为 $O(n)$，总复杂度为 $O(n \log n)$．
+-   **Trường hợp tốt nhất**: $O(n)$
+    -   Khi dữ liệu đã có thứ tự hoặc gần như có thứ tự, các Run mà thuật toán nhận diện được có độ dài gần $n$, số lần trộn giảm, và độ phức tạp tiến gần $O(n)$.
+-   **Trường hợp xấu nhất**: $O(n \log n)$
+    -   Khi dữ liệu hoàn toàn không có thứ tự, độ dài của mỗi Run đều gần $1$, do đó cần $O(\log n)$ lần trộn; mỗi lần trộn có chi phí $O(n)$, nên tổng độ phức tạp là $O(n \log n)$.
 
-**证明**：
+**Chứng minh**:
 
--   **识别和扩展 Run**：
-    -   识别 Run 需线性遍历一次数组，其复杂度为 $O(n)$．
-    -   使用插入排序扩展 Run 也需线性遍历数组，其复杂度为 $O(n)$．
+-   **Nhận diện và mở rộng Run**:
+    -   Nhận diện Run cần duyệt tuyến tính mảng một lần, độ phức tạp là $O(n)$.
+    -   Dùng sắp xếp chèn để mở rộng Run cũng cần duyệt tuyến tính mảng, độ phức tạp là $O(n)$.
 
--   **归并 Run**：
-    -   归并操作的总次数与 Run 的总数有关，最坏情况下 Run 的数量为 `n / MIN_RUN`，由于 `MIN_RUN` 是常数，因此 Run 的数量可看作 $O(n)$．
-    -   $O(n)$ 个 Run 需要进行的归并次数为 $O(\log n)$，每次归并操作的代价为 $O(n)$，因此归并操作的总复杂度为 $O(n \log n)$．
+-   **Trộn Run**:
+    -   Tổng số thao tác trộn liên quan đến tổng số Run. Trong trường hợp xấu nhất, số Run là `n / MIN_RUN`; vì `MIN_RUN` là hằng số, số Run có thể xem là $O(n)$.
+    -   Với $O(n)$ Run, số lần trộn cần thực hiện là $O(\log n)$; mỗi thao tác trộn có chi phí $O(n)$, nên tổng độ phức tạp của các thao tác trộn là $O(n \log n)$.
 
-而对于空间复杂度，由于 Timsort 大致需要额外的 $O(n)$ 空间用于存储栈和临时缓冲区，因此总的空间复杂度为 $O(n)$．
+Về độ phức tạp bộ nhớ, do Timsort nhìn chung cần thêm $O(n)$ không gian để lưu ngăn xếp và bộ đệm tạm thời, tổng độ phức tạp bộ nhớ là $O(n)$.
 
-## 实现
+## Cài đặt
 
-???+ note "伪代码实现"
+???+ note "Cài đặt bằng mã giả"
     $$
     \begin{array}{ll}
-    1 & nRemaining \gets \text{数组长度} \\
-    2 & minRun \gets \text{选择合适的 MinRun 的值}(nRemaining) \\
+    1 & nRemaining \gets \text{độ dài mảng} \\
+    2 & minRun \gets \text{chọn giá trị MinRun phù hợp}(nRemaining) \\
     3 & startIndex \gets 0 \\
     4 & \textbf{while } nRemaining > 0 \ \textbf{do} \\
-    5 & \qquad runLength \gets \text{识别 Run }(array, startIndex, nRemaining) \\
+    5 & \qquad runLength \gets \text{nhận diện Run }(array, startIndex, nRemaining) \\
     6 & \qquad \textbf{if } runLength < minRun \ \textbf{then} \\
     7 & \qquad \qquad extendLength \gets \min(minRun, nRemaining) \\
-    8 & \qquad \qquad \text{使用插入排序扩展区间 } [startIndex, startIndex + extendLength - 1]\\
+    8 & \qquad \qquad \text{dùng sắp xếp chèn để mở rộng đoạn } [startIndex, startIndex + extendLength - 1]\\
     9 & \qquad \qquad runLength \gets extendLength \\
     10 & \qquad \textbf{end if} \\
-    11 & \qquad \text{将 Run  } (startIndex, runLength) \text{ 压入栈中} \\
-    12 & \qquad \textbf{调用 } \text{mergeCollapse(栈)} \ \text{检查并合并栈中的 Run } \\
-    13 & \qquad startIndex \gets startIndex + runLength \ \text{更新起始位置} \\
-    14 & \qquad nRemaining \gets nRemaining - runLength \ \text{更新剩余长度} \\
+    11 & \qquad \text{đẩy Run } (startIndex, runLength) \text{ vào ngăn xếp} \\
+    12 & \qquad \textbf{gọi } \text{mergeCollapse(ngăn xếp)} \ \text{để kiểm tra và hợp nhất các Run trong ngăn xếp} \\
+    13 & \qquad startIndex \gets startIndex + runLength \ \text{cập nhật vị trí bắt đầu} \\
+    14 & \qquad nRemaining \gets nRemaining - runLength \ \text{cập nhật độ dài còn lại} \\
     15 & \textbf{end while} \\
-    16 & \textbf{调用 } \text{mergeForceCollapse(栈)} \ \text{对栈中所有 Run 进行最终的合并} \\
+    16 & \textbf{gọi } \text{mergeForceCollapse(ngăn xếp)} \ \text{để hợp nhất lần cuối tất cả Run trong ngăn xếp} \\
     \end{array}
     $$
 
-## 参考资料
+## Tài liệu tham khảo
 
 1.  [Timsort](https://en.wikipedia.org/wiki/Timsort)
 2.  [On the Worst-Case Complexity of TimSort](https://drops.dagstuhl.de/opus/volltexte/2018/9467/pdf/LIPIcs-ESA-2018-4.pdf)
 3.  [Original Explanation by Tim Peters](https://github.com/python/cpython/blob/main/Objects/listsort.txt)
-4.  [Java 实现](https://cs.android.com/android/platform/superproject/main/+/main:libcore/ojluni/src/main/java/java/util/TimSort.java)
-5.  [C 语言实现](https://github.com/python/cpython/blob/main/Objects/listobject.c)
+4.  [Cài đặt Java](https://cs.android.com/android/platform/superproject/main/+/main:libcore/ojluni/src/main/java/java/util/TimSort.java)
+5.  [Cài đặt ngôn ngữ C](https://github.com/python/cpython/blob/main/Objects/listobject.c)
