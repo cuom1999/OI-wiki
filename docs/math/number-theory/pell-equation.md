@@ -52,26 +52,26 @@ Hyperbol dong thoi doi xung qua truc $x$ va truc $y$, nen khi thao luan nghiem c
 
 ???+ note "Dinh li"
     Gia su nghiem co ban cua phuong trinh Pell $x^2-Dy^2=1$ la $(x_1,y_1)$. Khi do toan bo nghiem cua no la
-    
+
     $$
     \{(x,y):x+y\sqrt{D}=\pm(x_1+y_1\sqrt{D})^k,k\in\mathbf Z\}.
     $$
 
 ??? note "Chung minh"
     Truoc het chung minh trong goc phan tu thu nhat khong co nghiem nao khac. Gia su nguoc lai ton tai nghiem khac $x+y\sqrt{D}$ va voi mot $k\ge 0$ nao do co
-    
+
     $$
     x_k+y_k\sqrt{D}< x+y\sqrt{D}< x_{k+1}+y_{k+1}\sqrt{D}.
     $$
-    
+
     Ve hinh hoc, dieu nay co nghia diem nguyen $(x,y)$ nam tren hyperbol giua $(x_k,y_k)$ va $(x_{k+1},y_{k+1})$ (khong ke hai dau mut). Nhan dong thoi bat dang thuc voi $x_k-y_k\sqrt{D}=(x_k+y_k\sqrt{D})^{-1}$, ta duoc
-    
+
     $$
     1< (x+y\sqrt{D})(x_k-y_k\sqrt{D})=(xx_k-Dyy_k)+(x_ky-xy_k)\sqrt{D} < x_1+y_1\sqrt{D}.
     $$
-    
+
     Theo tinh don dieu da neu o tren, bat dang thuc nay cho thay $(xx_k-Dyy_k,x_ky-xy_k)$ la diem nguyen nam giua $(1,0)$ va $(x_1,y_1)$. Dieu nay mau thuan voi cach chon $(x_1,y_1)$.
-    
+
     Khi mo rong nghiem tu goc phan tu thu nhat ra toan bo mat phang, doi dau so mu $k$ (tuc lay nghich dao toan bo) chinh la doi xung qua truc $x$, con doi dau toan bo la doi xung qua goc toa do. Them nghiem tam thuong khi $k=0$, ta thu duoc tat ca nghiem cua phuong trinh Pell.
 
 Thao luan tren chi gia su ton tai nghiem co ban. Bay gio can chi ra phuong trinh Pell luon co nghiem khong tam thuong.
@@ -81,32 +81,32 @@ Thao luan tren chi gia su ton tai nghiem co ban. Bay gio can chi ra phuong trinh
 
 ??? note "Chung minh"
     Truoc het, [dinh li Dirichlet](./continued-fraction.md#%E7%94%A8%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E9%80%BC%E8%BF%91%E5%AE%9E%E6%95%B0) cho biet ton tai vo han cap so nguyen duong $(x,y)$ sao cho
-    
+
     $$
     \left|\dfrac{x}{y}-\sqrt{D}\right| \le \dfrac{1}{y^2}
     $$
-    
+
     dung. Chung deu thoa man bat dang thuc
-    
+
     $$
     |x^2-Dy^2|=y^2\left|\dfrac{x}{y}-\sqrt{D}\right|\left|\dfrac{x}{y}+\sqrt{D}\right| \le \dfrac{1}{y^2}+2\sqrt{D}<1+2\sqrt{D}.
     $$
-    
+
     Do do, nhat dinh ton tai so nguyen $m\in(-1-2\sqrt{D},1+2\sqrt{D})$ sao cho co vo han cap $(x,y)$ thoa man $x^2-Dy^2 = m$. Phan loai cac cap $(x,y)$ nay theo phan du modulo $m$, ta biet voi mot cap so nguyen $(x_0,y_0)$ nao do, nhat dinh ton tai vo han cap $(x,y)$ sao cho $x\equiv x_0\pmod m$ va $y\equiv y_0\pmod m$. Chon hai cap phan biet bat ki $(x_1,y_1)$ va $(x_2,y_2)$ thoa man cac dieu kien nay, khi do
-    
+
     $$
     \dfrac{x_1+y_1\sqrt{D}}{x_2+y_2\sqrt{D}}=\dfrac{x_1x_2-Dy_1y_2}{m}+\dfrac{x_2y_1-x_1y_2}{m}\sqrt{D}.
     $$
-    
+
     Vi theo quan he dong du co
-    
+
     $$
     \begin{aligned}
     x_1x_2-Dy_1y_2 &\equiv x_0^2-Dy_0^2 = m \equiv 0 \pmod{|m|},\\
     x_2y_1-x_1y_2 &\equiv x_0y_0-x_0y_0 = 0 \pmod{|m|},
     \end{aligned}
     $$
-    
+
     nen ve phai cua cong thuc tren la mot nghiem nguyen. Hon nua, vi $(x_1,y_1)\neq(x_2,y_2)$, nghiem nay khong tam thuong. Dieu nay chung minh phuong trinh Pell thuc su co nghiem khong tam thuong.
 
 Tat nhien, phan nay dua ra chung minh khong xay dung. O phan duoi khi thao luan cach giai phuong trinh Pell, ta se truc tiep dung cac phan so gan dung cua phan so lien tuc de xay dung nghiem, qua do dua ra mot chung minh khac cho su ton tai nghiem khong tam thuong cua phuong trinh Pell. Ngoai ra, mac du cau truc nghiem cua phuong trinh Pell thu duoc o day phu hop voi cau truc don vi cua vanh so nguyen bac hai thuc, nhung voi truong hop $D\equiv 1\pmod 4$, phan nay van chua giai quyet hoan toan cau truc don vi cua vanh so nguyen bac hai tuong ung; phan duoi se thao luan tiep.
@@ -188,41 +188,41 @@ $$
 ???+ note "Định lý"
     Tiếp tục dùng ký hiệu trên. Đặt $G_k=Q_0A_k-P_0B_k$. Khi đó cặp số nguyên
     $(G_{k-1},B_{k-1})$ thỏa mãn
-    
+
     $$
     G_{k-1}^2-DB_{k-1}^2=(-1)^{k}Q_0Q_{k},
     $$
-    
+
     và ước chung lớn nhất của chúng $\gcd(G_{k-1},B_{k-1})$ là ước của $Q_{k}$.
 
 ??? note "Chứng minh"
     Giả sử trong khai triển phân số liên tục của $\omega$, thương hoàn toàn thứ
     $k$ là $\omega_{k}$, tức
-    
+
     $$
     \omega = [a_0,a_1,\cdots,a_{k-1},\omega_k] = \dfrac{\omega_k A_{k-1}+A_{k-2}}{\omega_k B_{k-1}+B_{k-2}}.
     $$
-    
+
     Thay $\omega=(P_0+\sqrt{D})/Q_0$ và $\omega_k=(P_k+\sqrt{D})/Q_k$ vào công
     thức trên, ta được
-    
+
     $$
     \dfrac{P_0+\sqrt{D}}{Q_0} = \dfrac{(P_k+\sqrt{D})A_{k-1}+Q_kA_{k-2}}{(P_k+\sqrt{D})B_{k-1}+Q_kB_{k-2}}.
     $$
-    
+
     Khử mẫu hai vế và so sánh hệ số của phần hữu tỉ và phần vô tỉ, rồi thay biểu
     thức của $G_k$, thu được các đẳng thức
-    
+
     $$
     \begin{aligned}
     G_{k-1} &= P_kB_{k-1} + Q_kB_{k-2},\\
     DB_{k-1} &= P_kG_{k-1} + Q_kG_{k-2}.
     \end{aligned}
     $$
-    
+
     Do đó, nhân đẳng thức thứ nhất với $G_{k-1}$ rồi trừ đẳng thức thứ hai nhân
     với $B_{k-1}$, ta có
-    
+
     $$
     \begin{aligned}
     G_{k-1}^2-DB_{k-1}^2 &= (B_{k-2}G_{k-1}-B_{k-1}G_{k-2})Q_k \\
@@ -230,23 +230,23 @@ $$
     &= (-1)^kQ_0Q_k.
     \end{aligned}
     $$
-    
+
     Bước cuối dùng [công thức sai phân](./continued-fraction.md#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1)
     của phân số gần đúng. Kết quả đầu tiên đã được chứng minh.
-    
+
     Để chứng minh kết quả thứ hai, thay biểu thức của $G_k$ vào kết quả đầu
     tiên:
-    
+
     $$
     (Q_0A_{k-1}-P_0B_{k-1})^2 - DB_{k-1}^2 = (-1)^kQ_0Q_k.
     $$
-    
+
     Do $Q_0\mid(P_0^2-D)$, suy ra
-    
+
     $$
     Q_0A_{k-1}^2 +\left(\dfrac{P_0^2-D}{Q_0}B_{k-1}- 2P_0A_{k-1}\right)B_{k-1} = (-1)^kQ_k.
     $$
-    
+
     Vì vậy, $\gcd(G_{k-1},B_{k-1}) = \gcd(Q_0A_{k-1},B_{k-1})$ là ước của
     $Q_k$.
 
@@ -282,13 +282,13 @@ Tiep theo can chi ra nghiem vua thu duoc nhat dinh la nghiem co ban. Ket qua nay
 
 ??? note "Chung minh"
     Khi $N>0$, vi $x^2-Dy^2>0$, nen $x>y\sqrt{D}$. Do do
-    
+
     $$
     \left|\dfrac{x}{y}-\sqrt{D}\right| = \dfrac{N}{y(x+y\sqrt{D})}<\dfrac{N}{2y^2\sqrt{D}}<\dfrac{1}{2y^2}.
     $$
-    
+
     Theo [tieu chuan Legendre](./continued-fraction.md#%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E7%9A%84%E5%88%A4%E5%AE%9A), $\dfrac{x}{y}$ la phan so gan dung cua $\sqrt{D}$.
-    
+
     Khi $N<0$, bat dang thuc $x>y\sqrt{D}$ khong con dung. Do do xet phuong trinh $y^2-\dfrac{1}{D}x^2=-\dfrac{N}{D}$. Vi $\dfrac{|N|}{D}<\sqrt{\dfrac{1}{D}}$, lap lai lap luan tren van dung. Dieu nay cho thay $\dfrac{y}{x}$ la phan so gan dung cua $\dfrac{1}{\sqrt{D}}$. Theo [dinh li nghich dao](./continued-fraction.md#%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB), $\dfrac{x}{y}$ cung la phan so gan dung cua $\sqrt{D}$.
 
 ???+ note "Dinh li"
@@ -301,9 +301,9 @@ Tong hop thao luan trong phan nay: chi can khai trien phan so lien tuc cua $\sqr
 
 ??? example "Vi du"
     1.  Giai phuong trinh $x^2-14y^2=1$.
-    
+
         Chay thuat toan PQa voi $(P_0,Q_0,D)=(0,1,14)$ cho ket qua sau: (phan mau do la chu ki dau tien)
-    
+
         | $k$ | $P$ | $Q$ |        $a$       |  $A$  |  $B$ |  $G$  | $G^2-DB^2$ |
         | :-: | :-: | :-: | :--------------: | :---: | :--: | :---: | :--------: |
         | $0$ | $0$ | $1$ |        $3$       |  $3$  |  $1$ |  $3$  |    $-5$    |
@@ -312,12 +312,12 @@ Tong hop thao luan trong phan nay: chi can khai trien phan so lien tuc cua $\sqr
         | $3$ | $2$ | $5$ | $\color{red}{1}$ |  $15$ |  $4$ |  $15$ |     $1$    |
         | $4$ | $3$ | $1$ | $\color{red}{6}$ | $101$ | $27$ | $101$ |    $-5$    |
         | $5$ | $3$ | $5$ |        $1$       | $116$ | $31$ | $116$ |     $2$    |
-    
+
         Do dai chu ki $\ell=4$ la chan. Nghiem nguyen duong nho nhat cua phuong trinh la $(G_3,B_3)=(15,4)$.
     2.  Giai phuong trinh $x^2-41y^2=1$.
-    
+
         Chay thuat toan PQa voi $(P_0,Q_0,D)=(0,1,41)$ cho ket qua sau: (phan mau do la chu ki dau tien)
-    
+
         | $k$ | $P$ | $Q$ |        $a$        |   $A$   |   $B$  |   $G$   | $G^2-DB^2$ |
         | :-: | :-: | :-: | :---------------: | :-----: | :----: | :-----: | :--------: |
         | $0$ | $0$ | $1$ |        $6$        |   $6$   |   $1$  |   $6$   |    $-5$    |
@@ -328,58 +328,102 @@ Tong hop thao luan trong phan nay: chi can khai trien phan so lien tuc cua $\sqr
         | $5$ | $4$ | $5$ |        $2$        |  $2049$ |  $320$ |  $2049$ |     $1$    |
         | $6$ | $6$ | $1$ |        $12$       | $25414$ | $3969$ | $25414$ |    $-5$    |
         | $7$ | $6$ | $5$ |        $2$        | $52877$ | $8258$ | $52877$ |     $5$    |
-    
+
         Do dai chu ki $\ell=3$ la le. Nghiem nguyen duong nho nhat cua phuong trinh la $(G_5,B_5)=(2049,320)$. No cung co the duoc tinh tu $(G_2,B_2)=(32,5)$:
-    
+
         $$
         (32+5\sqrt{41})^2=2049+320\sqrt{41}.
         $$
 
 <span id="&#x8d1f;-pell-&#x65b9;&#x7a0b;"></span>
-### Phuong trinh Pell am
+### Phương trình Pell âm
 
-Theo thao luan o phan truoc, nghiem cua phuong trinh Pell am cung nhat dinh tuong ung voi phan so gan dung cua $\sqrt{D}$, va chi co the xuat hien tai vi tri $(-1)^kQ_k=-1$. Dieu nay chi co the xuat hien o cuoi chu ki. Vi vay, phuong trinh Pell am co nghiem khi va chi khi do dai chu ki $\ell$ la le. Khi nghiem ton tai, $(A_{\ell-1},B_{\ell-1})$ la nghiem co ban cua phuong trinh Pell am. Cach giai cua no giong phan truoc.
+Theo thảo luận ở phần trước, nghiệm của phương trình Pell âm cũng nhất định
+tương ứng với phân số gần đúng của $\sqrt{D}$, và chỉ có thể xuất hiện tại vị
+trí $(-1)^kQ_k=-1$. Điều này chỉ có thể xảy ra ở cuối chu kỳ. Vì vậy, phương
+trình Pell âm có nghiệm khi và chỉ khi độ dài chu kỳ $\ell$ là lẻ. Khi nghiệm
+tồn tại, $(A_{\ell-1},B_{\ell-1})$ là nghiệm cơ bản của phương trình Pell âm.
+Cách giải của nó giống phần trước.
 
-Dung y tuong tuong tu chung minh cau truc nghiem cua phuong trinh Pell o tren, co the chung minh ket qua sau:
+Dùng ý tưởng tương tự chứng minh cấu trúc nghiệm của phương trình Pell ở trên,
+có thể chứng minh kết quả sau:
 
-???+ note "Dinh li"
-    Gia su phuong trinh $x^2-Dy^2=-1$ co nghiem va nghiem co ban la $(x_1,y_1)$. Khi do moi nghiem nguyen cua $x^2-Dy^2=\pm 1$ deu thuoc tap
-    
+???+ note "Định lý"
+    Giả sử phương trình $x^2-Dy^2=-1$ có nghiệm và nghiệm cơ bản là
+    $(x_1,y_1)$. Khi đó mọi nghiệm nguyên của $x^2-Dy^2=\pm 1$ đều thuộc tập
+
     $$
     \{(x,y):x+y\sqrt{D}=\pm(x_1+y_1\sqrt{D})^k,k\in\mathbf Z\}.
     $$
-    
-    Dac biet, nghiem nguyen $(x_2,y_2)$ thoa man $x_2+y_2\sqrt{D}=(x_1+y_1\sqrt{D})^2$ chinh la nghiem co ban cua $x^2-Dy^2=1$.
 
-??? note "Chung minh"
-    Do tinh doi xung, chi can xet nghiem nguyen duong, tuc truong hop $x+y\sqrt{D}>1$. Nhung vi $x^2-Dy^2=\pm 1$ la hai cap hyperbol, nen khong the lap tuong ung mot-mot giua $x+y\sqrt{D}$ va $(x,y)$. De xu li kho khan nay, truoc het chung minh $(x_2,y_2)$ noi tren la nghiem co ban cua $x^2-Dy^2=1$.
-    
-    Hien nhien, $(x_2,y_2)$ la nghiem cua $x^2-Dy^2=1$. Neu dat $(z,w)$ la nghiem co ban cua $x^2-Dy^2=1$, thi nhat dinh $1<z+w\sqrt{D}\le x_2+y_2\sqrt{D}$. Neu bat dang thuc ben phai la nghiem ngat, chia bat dang thuc cho $x_1+y_1\sqrt{D}$ se duoc $-x_1+y_1\sqrt{D}<(z+w\sqrt{D})(-x_1+y_1\sqrt{D})<x_1+y_1\sqrt{D}$. Khai trien hang giua ta thu duoc dang $x'+y'\sqrt{D}$, co chuan $-1$ va $(x',y')$ cung la nghiem nguyen. Lay nghich dao bat dang thuc nay, ta thay $-x'+y'\sqrt{D}$ cung nam giua $-x_1+y_1\sqrt{D}$ va $x_1+y_1\sqrt{D}$. Hai so nguyen bac hai $\pm x'+y'\sqrt{D}$ la nghich dao cua nhau, nen nhat dinh co mot so lon hon $1$. Nhung giua $1$ va $x_1+y_1\sqrt{D}$ khong nen xuat hien so nguyen bac hai nao khac co chuan $-1$, mau thuan voi tinh nho nhat cua $x_1+y_1\sqrt{D}$. Vi vay phai co $x_2+y_2\sqrt{D}=z+w\sqrt{D}$, tuc $(x_2,y_2)$ la nghiem co ban cua phuong trinh $x^2-Dy^2=1$.
-    
-    Dua tren dieu nay, neu ton tai nghiem $(x,y)$ cua phuong trinh $x^2-Dy^2=\pm 1$ khong tuong ung voi mot luy thua $(x_1+y_1\sqrt{D})^k$, thi nhat dinh ton tai $k$ sao cho $(x_1+y_1\sqrt{D})^{2k}<x+y\sqrt{D}<(x_1+y_1\sqrt{D})^{2k+2}$. Khu thua so $(x_1+y_1)^{2k+1}$, ta suy ra ton tai so nguyen bac hai $x'+y'\sqrt{D}\neq 1$ co chuan $\pm 1$ nam giua $-x_1+y_1\sqrt{D}$ va $x_1+y_1\sqrt{D}$. Lap lai lap luan bang nghich dao cua doan truoc cho thay dieu nay mau thuan voi tinh nho nhat cua $x_1+y_1\sqrt{D}$. Menh de duoc chung minh.
+    Đặc biệt, nghiệm nguyên $(x_2,y_2)$ thỏa mãn
+    $x_2+y_2\sqrt{D}=(x_1+y_1\sqrt{D})^2$ chính là nghiệm cơ bản của
+    $x^2-Dy^2=1$.
 
-Vi $(A_{\ell-1},B_{\ell-1})$ la nghiem nguyen duong nho nhat cua phuong trinh Pell am, va tat ca nghiem nguyen duong cua $x^2-Dy^2=\pm 1$ deu nam trong tap
+??? note "Chứng minh"
+    Do tính đối xứng, chỉ cần xét nghiệm nguyên dương, tức trường hợp
+    $x+y\sqrt{D}>1$. Nhưng vì $x^2-Dy^2=\pm 1$ là hai cặp hyperbol, nên không
+    thể lập tương ứng một-một giữa $x+y\sqrt{D}$ và $(x,y)$. Để xử lý khó khăn
+    này, trước hết chứng minh $(x_2,y_2)$ nói trên là nghiệm cơ bản của
+    $x^2-Dy^2=1$.
+
+    Hiển nhiên, $(x_2,y_2)$ là nghiệm của $x^2-Dy^2=1$. Nếu đặt $(z,w)$ là
+    nghiệm cơ bản của $x^2-Dy^2=1$, thì nhất định
+    $1<z+w\sqrt{D}\le x_2+y_2\sqrt{D}$. Nếu bất đẳng thức bên phải là nghiêm
+    ngặt, chia bất đẳng thức cho $x_1+y_1\sqrt{D}$ sẽ được
+    $-x_1+y_1\sqrt{D}<(z+w\sqrt{D})(-x_1+y_1\sqrt{D})<x_1+y_1\sqrt{D}$. Khai
+    triển hạng giữa ta thu được dạng $x'+y'\sqrt{D}$, có chuẩn $-1$ và
+    $(x',y')$ cũng là nghiệm nguyên. Lấy nghịch đảo bất đẳng thức này, ta thấy
+    $-x'+y'\sqrt{D}$ cũng nằm giữa $-x_1+y_1\sqrt{D}$ và
+    $x_1+y_1\sqrt{D}$. Hai số nguyên bậc hai $\pm x'+y'\sqrt{D}$ là nghịch đảo
+    của nhau, nên nhất định có một số lớn hơn $1$. Nhưng giữa $1$ và
+    $x_1+y_1\sqrt{D}$ không nên xuất hiện số nguyên bậc hai nào khác có chuẩn
+    $-1$, mâu thuẫn với tính nhỏ nhất của $x_1+y_1\sqrt{D}$. Vì vậy phải có
+    $x_2+y_2\sqrt{D}=z+w\sqrt{D}$, tức $(x_2,y_2)$ là nghiệm cơ bản của phương
+    trình $x^2-Dy^2=1$.
+
+    Dựa trên điều này, nếu tồn tại nghiệm $(x,y)$ của phương trình
+    $x^2-Dy^2=\pm 1$ không tương ứng với một lũy thừa
+    $(x_1+y_1\sqrt{D})^k$, thì nhất định tồn tại $k$ sao cho
+    $(x_1+y_1\sqrt{D})^{2k}<x+y\sqrt{D}<(x_1+y_1\sqrt{D})^{2k+2}$.
+    Khử thừa số $(x_1+y_1\sqrt{D})^{2k+1}$, ta suy ra tồn tại số nguyên bậc hai
+    $x'+y'\sqrt{D}\neq 1$ có chuẩn $\pm 1$ nằm giữa $-x_1+y_1\sqrt{D}$ và
+    $x_1+y_1\sqrt{D}$. Lặp lại lập luận bằng nghịch đảo của đoạn trước cho thấy
+    điều này mâu thuẫn với tính nhỏ nhất của $x_1+y_1\sqrt{D}$. Mệnh đề được
+    chứng minh.
+
+Vì $(A_{\ell-1},B_{\ell-1})$ là nghiệm nguyên dương nhỏ nhất của phương trình
+Pell âm, và tất cả nghiệm nguyên dương của $x^2-Dy^2=\pm 1$ đều nằm trong tập
 
 $$
 \{(x,y):x+y\sqrt{D}=(A_{\ell-1}+B_{\ell-1}\sqrt{D})^k,k\in\mathbf N_+\}
 $$
 
-hon nua cac nghiem nguyen duong nay nhat dinh tuong ung voi phan so gan dung cua $\sqrt{D}$ o vi tri cuoi chu ki (truoc mot vi tri), va tu so cung mau so cua phan so gan dung tang nghiem ngat, nen voi moi $k\in\mathbf N_+$ luon co
+hơn nữa các nghiệm nguyên dương này nhất định tương ứng với phân số gần đúng của
+$\sqrt{D}$ ở vị trí cuối chu kỳ (trước một vị trí), và tử số cùng mẫu số của
+phân số gần đúng tăng nghiêm ngặt, nên với mọi $k\in\mathbf N_+$ luôn có
 
 $$
 (A_{\ell-1}+B_{\ell-1}\sqrt{D})^k = A_{k\ell-1}+B_{k\ell-1}\sqrt{D}.
 $$
 
-Trong tat ca cac nghiem nguyen duong nay, khi $k$ le thi la nghiem cua phuong trinh Pell am, khi $k$ chan thi la nghiem cua phuong trinh Pell; hai loai xuat hien xen ke.
+Trong tất cả các nghiệm nguyên dương này, khi $k$ lẻ thì là nghiệm của phương
+trình Pell âm, khi $k$ chẵn thì là nghiệm của phương trình Pell; hai loại xuất
+hiện xen kẽ.
 
-De phan dinh phuong trinh Pell am co nghiem hay khong can tinh do dai chu ki cua khai trien phan so lien tuc cua $\sqrt{D}$; dieu nay khong de tinh, nen ta muon co tieu chuan don gian hon. Tuy nhien, hien chua co dieu kien nao vua ngan gon vua de tinh[^solubility-neg-pell]. O day chi dua ra mot ket qua don gian.
+Để phán định phương trình Pell âm có nghiệm hay không cần tính độ dài chu kỳ của
+khai triển phân số liên tục của $\sqrt{D}$; điều này không dễ tính, nên ta muốn
+có tiêu chuẩn đơn giản hơn. Tuy nhiên, hiện chưa có điều kiện nào vừa ngắn gọn
+vừa dễ tính[^solubility-neg-pell]. Ở đây chỉ đưa ra một kết quả đơn giản.
 
-???+ note "Dinh li"
-    Neu phuong trinh $x^2-Dy^2=-1$ co nghiem, thi $4$ khong chia het $D$ va $D$ khong chua thua so nguyen to dang $4k+3$. Nguoc lai, neu $D=2$ hoac $D$ la so nguyen to dang $4k+1$, thi phuong trinh nhat dinh co nghiem.
+???+ note "Định lý"
+    Nếu phương trình $x^2-Dy^2=-1$ có nghiệm, thì $4\nmid D$ và $D$ không chứa
+    thừa số nguyên tố dạng $4k+3$. Ngược lại, nếu $D=2$ hoặc $D$ là số nguyên tố
+    dạng $4k+1$, thì phương trình nhất định có nghiệm.
 
 ??? note "Chung minh"
     Truoc het, phuong trinh Pell am co nghiem co nghia $-1$ la thang du bac hai modulo $D$, nen $-1$ cung la thang du bac hai modulo moi uoc $d$ cua $D$; do do $d\neq 4$ va $d$ khong phai so nguyen to dang $4k+3$. Nguoc lai, phuong trinh $x^2-2y^2=-1$ co nghiem khong tam thuong $(1,1)$. Phan con lai la truong hop $D$ la so nguyen to dang $4k+1$.
-    
+
     Gia su $D$ la so nguyen to dang $4k+1$, can chung minh phuong trinh $x^2-Dy^2=-1$ co nghiem. Y tuong la bat dau tu nghiem co ban $(u,v)$ cua phuong trinh Pell $x^2-Dy^2=1$, roi xay dung nghiem $(\alpha,\beta)$ cua $x^2-Dy^2=-1$. Neu $u$ chan, lay dong du hai ve cua $u^2-Dv^2=1$ modulo $4$ se duoc $v^2\equiv -1\pmod 4$, nhung $-1$ khong phai thang du bac hai modulo $4$. Mau thuan nay cho thay $u$ le. Xet dang thuc $Dv^2=u^2-1=(u+1)(u-1)$. Vi $u$ le, $\gcd(u+1,u-1)=\gcd(u+1,2)=2$. Dua vao dieu nay, khi phan bo cac thua so cua $Dv^2$ vao $u+1$ va $u-1$, nhat dinh mot trong hai la $2\alpha^2$, so con lai la $2D\beta^2$, trong do $\alpha$ va $\beta$ la cac so nguyen duong nguyen to cung nhau va $v=2\alpha\beta$. Thay $u=\alpha^2+D\beta^2$ va $v=2\alpha\beta$ vao $u^2-Dv^2=1$, ta duoc $\alpha^2-D\beta^2=\pm 1$. Vi $(u,v)$ la nghiem co ban cua phuong trinh Pell va $(\alpha,\beta)$ la cap so nguyen duong nho hon $(u,v)$, ve phai cua dang thuc nay khong the la $+1$, nen chi co the la $-1$. Dieu nay chung minh $x^2-Dy^2=-1$ co nghiem $(\alpha,\beta)$.
 
 Neu $D$ la hop so, dieu kien khong chua thua so nguyen to dang $4k+3$ va khong chua nhan tu chinh phuong cung khong dam bao phuong trinh $x^2-Dy^2=-1$ co nghiem; chang han $x^2-34y^2=-1$ vo nghiem.
@@ -409,43 +453,43 @@ Tinh dung dan cua thuat toan nay dua tren cac su kien sau:
 
 ??? note "Chung minh"
     Truoc het chu y rang khi do $x,y$ nhat dinh cung tinh chan le, nen $(x+y)/2$ la so nguyen. Neu $(x,y)$ la nghiem cua phuong trinh $x^2-Dy^2=4$, thi $x>y\sqrt{D}>2y$, do do
-    
+
     $$
     \left|\dfrac{(x+y)/2}{y}-\dfrac{1+\sqrt{D}}{2}\right| = \dfrac{2}{y(x+y\sqrt{D})}<\dfrac{1}{2y^2}.
     $$
-    
+
     Theo [tieu chuan Legendre](./continued-fraction.md#%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E7%9A%84%E5%88%A4%E5%AE%9A), $\dfrac{(x+y)/2}{y}$ la phan so gan dung cua $\dfrac{1+\sqrt{D}}{2}$.
-    
+
     Neu $(x,y)$ la nghiem cua phuong trinh $x^2-Dy^2=-4$, de thiet lap bat dang thuc tren chi can chung minh $4y<x+y\sqrt{D}$. Dieu nay dung it nhat voi moi truong hop ngoai $D=5,13$. Voi $D=5,13$, thay $x=\sqrt{Dy^2-4}$ vao bat dang thuc cho thay no tuong duong voi $2(\sqrt{D}-2)y^2>1$. Ngoai $(D,y)=(5,1)$, bat dang thuc nay dung voi moi $D=5,13$ va so nguyen duong $y$. Con lai chi can kiem tra truong hop $(D,y)=(5,1)$; khi do nghiem cua phuong trinh $x^2-5y^2=-4$ la $(x,y)=(1,1)$, va can kiem tra $\dfrac{1}{1}$ la phan so gan dung cua $\dfrac{1+\sqrt{5}}{2}=[\overline{1}]$, dieu nay hien nhien dung.
 
 ???+ note "Dinh li"
     Gia su $D$ la so nguyen duong khong phai so chinh phuong. Khai trien phan so lien tuc cua so vo ti bac hai $\omega=\dfrac{1+\sqrt{D}}{2}$ co dang
-    
+
     $$
     \omega = [\lfloor\omega\rfloor,\overline{a_1,\cdots,a_{\ell-1},2\lfloor\omega\rfloor-1}],
     $$
-    
+
     trong do $\ell$ la do dai chu ki, va $a_k=a_{\ell-k}$ voi moi $1<k<\ell$.
 
 ??? note "Chung minh"
     Vi $\lfloor\omega\rfloor-1+\omega>1$, va lien hop cua no bang $\lfloor\omega\rfloor - \omega$, nam giua $-1$ va $0$, nen theo [ket qua cua Galois](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0), $\lfloor\omega\rfloor-1+\omega$ la phan so lien tuc thuan tuan hoan, co the viet thanh
-    
+
     $$
     \lfloor\omega\rfloor-1+\omega = [\overline{2\lfloor\omega\rfloor-1,a_1,\cdots,a_{\ell-1}}].
     $$
-    
+
     Ket qua cua Galois ve nghich dao cua lien hop doi dau cho biet
-    
+
     $$
     \dfrac{1}{\omega-\lfloor\omega\rfloor} = [\overline{a_{\ell-1},\cdots,a_1,2\lfloor\omega\rfloor-1}].
     $$
-    
+
     Do do, theo dinh nghia phan so lien tuc,
-    
+
     $$
     \lfloor\omega\rfloor-1+\omega = 2\lfloor\omega\rfloor-1 + \dfrac{1}{\dfrac{1}{\omega-\lfloor\omega\rfloor}} = [2\lfloor\omega\rfloor-1,\overline{a_{\ell-1},\cdots,a_1,2\lfloor\omega\rfloor-1}].
     $$
-    
+
     Tinh duy nhat cua khai trien phan so lien tuc cho thay $a_k=a_{\ell-k}$ voi moi $1<k<\ell$, va do do dang khai trien can chung minh cung dung.
 
 ???+ note "Dinh li"
@@ -456,35 +500,35 @@ Tinh dung dan cua thuat toan nay dua tren cac su kien sau:
 
 ???+ note "Dinh li"
     Gia su nghiem nguyen duong nho nhat cua phuong trinh $x^2-Dy^2=\pm 4$ la $(x_1,y_1)$. Khi do toan bo nghiem cua no la
-    
+
     $$
     \left\{(x,y):\dfrac{x+y\sqrt{D}}{2}=\pm\left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^k,k\in\mathbf Z\right\}.
     $$
 
 ??? note "Chung minh"
     Do tinh doi xung, chi can xet nghiem nguyen duong $(x,y)$. O day chi can chung minh cac cap so thuc $(x,y)$ trong tap tren thuc su la nghiem nguyen cua phuong trinh $x^2-Dy^2=\pm 4$. Phan con lai chi can lap lai chung minh cau truc nghiem cua phuong trinh $x^2-Dy^2=\pm 1$.
-    
+
     Thuc chat can chung minh rang voi bat ki hai nghiem nguyen $(x_1,y_1)$ va $(x_2,y_2)$ cua phuong trinh $x^2-Dy^2=\pm 4$, cap so thuc duong $(x_3,y_3)$ dinh nghia boi
-    
+
     $$
     \dfrac{x_3+y_3\sqrt{D}}{2} = \dfrac{x_1+y_1\sqrt{D}}{2}\dfrac{x_2+y_2\sqrt{D}}{2}
     $$
-    
+
     van la nghiem nguyen:
-    
+
     $$
     x_3=\dfrac{x_1x_2+Dy_1y_2}{2},\ y_3=\dfrac{x_1y_2+x_2y_1}{2}.
     $$
-    
+
     Vi voi $i=1,2$ co $x_i\equiv x_i^2\equiv Dy_i^2\equiv Dy_i\pmod 2$, nen
-    
+
     $$
     \begin{aligned}
     2x_3 &= x_1x_2+Dy_1y_2 \equiv D^2y_1y_2+Dy_1y_2=D(D+1)y_1y_2 \equiv 0 \pmod 2,\\
     2y_3 &= x_1y_2+x_2y_1 \equiv Dy_1y_2+Dy_2y_1 = 2Dy_1y_2 \equiv 0 \pmod 2.
     \end{aligned}
     $$
-    
+
     Dieu nay cho thay $x_3$ va $y_3$ deu la so nguyen. Lai dung tinh chat chuan bao toan phep nhan, ta biet $(x_3,y_3)$ la nghiem cua $x^2-Dy^2=\pm 4$.
 
 Tong hop cac su kien nay va lap lai lap luan cua cac phan truoc, co the chung minh tinh dung dan cua thuat toan giai phuong trinh $x^2-Dy^2=\pm 4$ neu tren. Cac ket qua nay cho thay phuong trinh $x^2-Dy^2=\pm 4$ co cau truc nghiem don gian tuong tu phuong trinh $x^2-Dy^2=\pm 1$: tat ca nghiem deu co the bieu dien bang nghiem nguyen duong nho nhat cua no, khong can giai cac phuong trinh khac.
@@ -497,45 +541,45 @@ Khi $D\equiv 1\pmod 4$, nghiem $(x,y)$ cua phuong trinh $x^2-Dy^2=\pm 4$ co the 
 
 ???+ note "Dinh li"
     Gia su nghiem nguyen duong nho nhat cua phuong trinh $x^2-Dy^2=\pm 4$ la $(x_1,y_1)$. Neu $x_1$ va $y_1$ dong thoi le, thi $D\equiv 5\pmod 8$, va nghiem nguyen $(x,y)$ cua phuong trinh do dong thoi chan khi va chi khi
-    
+
     $$
     \dfrac{x+y\sqrt{D}}{2} = \pm\left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^{3k},k\in\mathbf Z.
     $$
 
 ??? note "Chung minh"
     Lay modulo $8$ hai ve cua dang thuc $x_1^2-Dy_1^2=\pm 4$, ta duoc $D\equiv 5\pmod 8$. De chung minh ket qua thu hai, truoc het chung minh $(x_3,y_3)$ deu chan, vi
-    
+
     $$
     \dfrac{x_3+y_3\sqrt{D}}{2} = \left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^{3} = \dfrac{x_1^3+3Dx_1y_1^2}{8}+\dfrac{3x_1^2y_1+Dy_1^3}{8}\sqrt{D},
     $$
-    
+
     nen chi can chung minh ve phai la so nguyen. Vi binh phuong cua so le dong du $1$ modulo $8$, ta co
-    
+
     $$
     \begin{aligned}
     &x_1^3+3Dx_1y_1^2 = x_1(x_1^2+3Dy_1^2) \equiv x_1(1+3\times 5\times 1) = 16x_1 = 0 \pmod 8,\\
     &3x_1^2y_1+Dy_1^3 = y_1(3x_1^2+Dy_1^2) \equiv y_1(3\times 1+5\times 1) = 8y_1 = 0 \pmod 8.
     \end{aligned}
     $$
-    
+
     Dieu nay cho thay $x_3,y_3$ deu chan. Do do, voi moi $k\in\mathbf Z$,
-    
+
     $$
     \dfrac{x+y\sqrt{D}}{2} = \pm\left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^{3k} = \pm\left(\dfrac{x_3+y_3\sqrt{D}}{2}\right)^k \in \mathbf Z,
     $$
-    
+
     nen $(x,y)$ khi do deu chan. Nguoc lai, voi $r=1,2$, luon co
-    
+
     $$
     \pm\left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^{3k+r} = \pm\left(\dfrac{x_3+y_3\sqrt{D}}{2}\right)^k\left(\dfrac{x_r+y_r\sqrt{D}}{2}\right).
     $$
-    
+
     De chung minh $(x,y)$ tuong ung khong phai so nguyen, chi can chung minh bieu thuc nay khong phai so nguyen, tuc thua so thu hai trong tich ben phai khong phai so nguyen. Voi $r=1$ day la gia thiet; voi $r=2$, vi
-    
+
     $$
     \dfrac{x_2+y_2\sqrt{D}}{2} = \left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^2 = \dfrac{x_1^2+Dy_1^2}{4} + \dfrac{x_1y_1}{2}\sqrt{D},
     $$
-    
+
     va $x_1^2+Dy_1^2\equiv 1+1\times 1=2\pmod 4$, $x_1y_1\equiv 1\pmod 2$, nen bieu thuc nay cung khong phai so nguyen. Vay chi khi so mu la boi cua $3$, nghiem tuong ung moi deu chan.
 
 Noi cach khac, trong moi ba nghiem cua phuong trinh $x^2-Dy^2=\pm 4$ co mot nghiem dong thoi chan, va no tuong ung voi nghiem nguyen cua $x^2-Dy^2=\pm 1$. Dieu nay cung cho thay voi $D\equiv 1\pmod 4$, phuong trinh $x^2-Dy^2=-4$ co nghiem khi va chi khi phuong trinh $x^2-Dy^2=-1$ co nghiem.
@@ -544,12 +588,12 @@ Den day, cac thao luan da du de tinh don vi co ban cua vanh so nguyen bac hai th
 
 ??? example "Vi du"
     1.  Giai phuong trinh $x^2-14y^2=\pm 4$.
-    
+
         Tu ket qua tinh toan trong vi du o tren, nghiem nguyen duong nho nhat cua phuong trinh $x^2-14y^2=4$ la $(30,8)$, con phuong trinh $x^2-14y^2=-4$ vo nghiem.
     2.  Giai phuong trinh $x^2-41y^2=\pm 4$.
-    
+
         Chay thuat toan PQa voi $(P_0,Q_0,D)=(1,2,41)$ cho ket qua sau: (phan mau do la chu ki dau tien)
-    
+
         |  $k$ | $P$ | $Q$ |        $a$       |   $A$   |   $B$  |   $G$   | $G^2-DB^2$ |
         | :--: | :-: | :-: | :--------------: | :-----: | :----: | :-----: | :--------: |
         |  $0$ | $1$ | $2$ |        $3$       |   $3$   |   $1$  |   $5$   |    $-16$   |
@@ -564,114 +608,167 @@ Den day, cac thao luan da du de tinh don vi co ban cua vanh so nguyen bac hai th
         |  $9$ | $3$ | $8$ |        $1$       |  $2369$ |  $640$ |  $4098$ |     $4$    |
         | $10$ | $5$ | $2$ |        $5$       | $13507$ | $3649$ | $23365$ |    $-16$   |
         | $11$ | $5$ | $8$ |        $1$       | $15876$ | $4289$ | $27463$ |     $8$    |
-    
+
         Do dai chu ki $\ell=5$ la le. Nghiem nguyen duong nho nhat cua phuong trinh $x^2-41y^2=-4$ la $(G_4,B_4)=(64,10)$, va nghiem nguyen duong nho nhat cua phuong trinh $x^2-41y^2=4$ la $(G_9,B_9)=(4098,640)$. Giua chung co quan he
-    
+
         $$
         \dfrac{4098+640\sqrt{41}}{2} = \left(\dfrac{64+10\sqrt{41}}{2}\right)^2.
         $$
-    
+
         Tat nhien, vi $D\equiv 1\pmod 8$, theo ket qua o tren, nghiem nguyen duong nho nhat cua phuong trinh $x^2-41y^2=\pm 4$ khi do nhat dinh deu chan, va luon bang hai lan nghiem nguyen duong nho nhat cua $x^2-41y^2=\pm 1$; do do cung co the suy truc tiep tu vi du truoc.
     3.  Giai phuong trinh $x^2-13y^2=\pm 4$.
-    
+
         Chay thuat toan PQa voi $(P_0,Q_0,D)=(1,2,13)$ cho ket qua sau: (phan mau do la chu ki dau tien)
-    
+
         | $k$ | $P$ | $Q$ |        $a$       |  $A$ |  $B$ |  $G$  | $G^2-DB^2$ |
         | :-: | :-: | :-: | :--------------: | :--: | :--: | :---: | :--------: |
         | $0$ | $1$ | $2$ |        $2$       |  $2$ |  $1$ |  $3$  |    $-4$    |
         | $1$ | $3$ | $2$ | $\color{red}{3}$ |  $7$ |  $3$ |  $11$ |     $4$    |
         | $2$ | $3$ | $2$ |        $3$       | $23$ | $10$ |  $36$ |    $-4$    |
         | $3$ | $3$ | $2$ |        $3$       | $74$ | $33$ | $119$ |     $4$    |
-    
+
         Do dai chu ki $\ell=1$ la le. Nghiem nguyen duong nho nhat cua phuong trinh $x^2-13y^2=-4$ la $(G_0,B_0)=(3,1)$, va nghiem nguyen duong nho nhat cua phuong trinh $x^2-13y^2=4$ la $(G_1,B_1)=(11,3)$.
-    
+
         Vi nghiem nguyen duong nho nhat cua phuong trinh nay deu le, co the dung cap tai cuoi chu ki thu ba $(G_2,B_2)=(36,10)$ de thu nghiem nguyen duong nho nhat $(18,5)$ cua phuong trinh Pell (am) tuong ung $x^2-13y^2=\pm 1$. No cung co the tinh truc tiep:
-    
+
         $$
         \dfrac{36+10\sqrt{13}}{2}=\left(\dfrac{3+\sqrt{13}}{2}\right)^3.
         $$
-    
+
         Hon nua, day la nghiem cua phuong trinh Pell am. Nghiem nguyen duong nho nhat cua phuong trinh Pell tuong ung la $(649,180)$.
     4.  Giai phuong trinh $x^2-52y^2=\pm 4$.
-    
+
         Vi nghiem nguyen duong nho nhat cua phuong trinh $x^2-13y^2=\pm 1$ lan luot la $(18,5)$ va $(649,180)$, nen nghiem nguyen duong nho nhat cua phuong trinh $x^2-52y^2=\pm 4$ lan luot la $(36,10)$ va $(1298,360)$.
 
 <span id="&#x4e00;&#x822c;&#x60c5;&#x5f62;"></span>
-### Truong hop tong quat
+### Trường hợp tổng quát
 
-Cuoi cung, thao luan cach giai phuong trinh Pell tong quat.
+Cuối cùng, ta thảo luận cách giải phương trình Pell tổng quát.
 
-Voi truong hop $|N|<\sqrt{D}$ co mot cach giai don gian. Ket qua o tren cho biet nghiem $(x,y)$ cua phuong trinh $x^2-Dy^2=N$ nhat dinh thoa $\dfrac{x}{y}$ bang mot phan so gan dung nao do cua $\sqrt{D}$. Hon nua, theo cau truc nghiem da thao luan, moi nghiem co ban $(x,y)$ deu thoa $x+y\sqrt{D}$ khong vuot qua nghiem co ban $x_1+y_1\sqrt{D}$ cua phuong trinh Pell tuong ung $x^2-Dy^2=1$. Dung tinh don dieu cua day mau so $B_k$ trong thuat toan PQa, cac nghiem co ban nay cua phuong trinh Pell tong quat nhat dinh xuat hien truoc khi nghiem co ban cua phuong trinh Pell tuong ung xuat hien. Vi vay, chi can chay thuat toan PQa voi $(P_0,Q_0,D)=(0,1,D)$ cho den khi $Q_{\ell'}=1$ va $\ell'$ chan, trong qua trinh do kiem tra moi $(A_k,B_k)$ xuat hien xem co ton tai so nguyen $f$ sao cho
+Với trường hợp $|N|<\sqrt{D}$ có một cách giải đơn giản. Kết quả ở trên cho
+biết nghiệm $(x,y)$ của phương trình $x^2-Dy^2=N$ nhất định thỏa
+$\dfrac{x}{y}$ bằng một phân số gần đúng nào đó của $\sqrt{D}$. Hơn nữa, theo
+cấu trúc nghiệm đã thảo luận, mọi nghiệm cơ bản $(x,y)$ đều thỏa
+$x+y\sqrt{D}$ không vượt quá nghiệm cơ bản $x_1+y_1\sqrt{D}$ của phương trình
+Pell tương ứng $x^2-Dy^2=1$. Dùng tính đơn điệu của dãy mẫu số $B_k$ trong
+thuật toán PQa, các nghiệm cơ bản này của phương trình Pell tổng quát nhất định
+xuất hiện trước khi nghiệm cơ bản của phương trình Pell tương ứng xuất hiện. Vì
+vậy, chỉ cần chạy thuật toán PQa với $(P_0,Q_0,D)=(0,1,D)$ cho đến khi
+$Q_{\ell'}=1$ và $\ell'$ chẵn; trong quá trình đó, kiểm tra mỗi $(A_k,B_k)$
+xuất hiện xem có tồn tại số nguyên $f$ sao cho
 
 $$
 A_k^2-DB_k^2 = (-1)^{k+1}Q_{k+1} = N/f^2
 $$
 
-hay khong. Neu co, ghi nhan $(fA_{k},fB_{k})$ la mot nghiem nguyen duong nho nhat. Tat ca cac $(fA_k,fB_k)$ duoc ghi nhan trong qua trinh nay chinh la toan bo nghiem nguyen duong nho nhat cua phuong trinh $x^2-Dy^2=N$. Dung $(A_{\ell'-1},B_{\ell'-1})$, tuc nghiem co ban cua phuong trinh Pell tuong ung, co the sinh tat ca nghiem cua phuong trinh Pell tong quat tu cac nghiem nguyen duong nho nhat vua tim duoc. Chu y tuy theo do dai chu ki $\ell$ chan hay le, $\ell'$ noi tren co the la $\ell$ hoac $2\ell$.
+hay không. Nếu có, ghi nhận $(fA_{k},fB_{k})$ là một nghiệm nguyên dương nhỏ
+nhất. Tất cả các $(fA_k,fB_k)$ được ghi nhận trong quá trình này chính là toàn
+bộ nghiệm nguyên dương nhỏ nhất của phương trình $x^2-Dy^2=N$. Dùng
+$(A_{\ell'-1},B_{\ell'-1})$, tức nghiệm cơ bản của phương trình Pell tương ứng,
+có thể sinh tất cả nghiệm của phương trình Pell tổng quát từ các nghiệm nguyên
+dương nhỏ nhất vừa tìm được. Chú ý tùy theo độ dài chu kỳ $\ell$ chẵn hay lẻ,
+$\ell'$ nói trên có thể là $\ell$ hoặc $2\ell$.
 
-Voi truong hop $N$ tong quat hon, phuong phap tren khong con ap dung. Truoc het, liet ke moi nhan tu chinh phuong $f^2$ cua $N$, dat $m=N/f^2$, va liet ke moi nghiem $z$ cua dong du $z^2\equiv D\pmod{|m|}$ thoa $-|m|/2<z \le |m|/2$. Sau do chay thuat toan PQa voi $(P_0,Q_0,D)=(z,|m|,D)$ cho den khi $Q_k=\pm 1$ hoac da ket thuc mot chu ki. Trong truong hop thu hai, phuong trinh lien quan den cap $(f,z)$ nay khong co nghiem. Trong truong hop thu nhat, can kiem tra them $(-1)^kQ_k=N/|N|$ hay khong. Neu dau phu hop, $(fG_{k-1},fB_{k-1})$ la mot nghiem cua phuong trinh $x^2-Dy^2=N$. Neu khong, no la nghiem cua phuong trinh $x^2-Dy^2=-N$, va chi khi phuong trinh Pell am tuong ung co nghiem, moi co the ghep no voi nghiem co ban cua phuong trinh Pell am tuong ung de thu nghiem cua $x^2-Dy^2=N$. Sau khi duyet het moi cap $(f,z)$, ta thu duoc dung mot nghiem trong moi lop tuong duong cua nghiem phuong trinh $x^2-Dy^2=N$, va nghiem nay la nghiem co ban hoac nghiem nguyen duong nho nhat cua lop do. Dung chung va nghiem co ban cua phuong trinh Pell tuong ung, co the sinh tat ca nghiem nguyen cua phuong trinh. Thuat toan nay duoc goi la **thuat toan Lagrange–Matthews–Mollin**.
+Với trường hợp $N$ tổng quát hơn, phương pháp trên không còn áp dụng. Trước hết,
+liệt kê mọi $f>0$ sao cho $f^2\mid |N|$, đặt $m=N/f^2$, và liệt kê mọi nghiệm
+$z$ của đồng dư $z^2\equiv D\pmod{|m|}$ thỏa $-|m|/2<z \le |m|/2$. Sau đó chạy
+thuật toán PQa với $(P_0,Q_0,D)=(z,|m|,D)$ cho đến khi $Q_k=\pm 1$ hoặc đã kết
+thúc một chu kỳ. Trong trường hợp thứ hai, phương trình liên quan đến cặp
+$(f,z)$ này không có nghiệm. Trong trường hợp thứ nhất, cần kiểm tra thêm
+$(-1)^kQ_k=N/|N|$ hay không. Nếu dấu phù hợp, $(fG_{k-1},fB_{k-1})$ là một
+nghiệm của phương trình $x^2-Dy^2=N$. Nếu không, nó là nghiệm của phương trình
+$x^2-Dy^2=-N$, và chỉ khi phương trình Pell âm tương ứng có nghiệm, mới có thể
+ghép nó với nghiệm cơ bản của phương trình Pell âm tương ứng để thu nghiệm của
+$x^2-Dy^2=N$. Sau khi duyệt hết mọi cặp $(f,z)$, ta thu được đúng một nghiệm
+trong mỗi lớp tương đương của nghiệm phương trình $x^2-Dy^2=N$, và nghiệm này
+là nghiệm cơ bản hoặc nghiệm nguyên dương nhỏ nhất của lớp đó. Dùng chúng và
+nghiệm cơ bản của phương trình Pell tương ứng, có thể sinh tất cả nghiệm nguyên
+của phương trình. Thuật toán này được gọi là **thuật toán Lagrange–Matthews–Mollin**.
 
-Tinh dung dan cua thuat toan duoc dam bao boi dinh li sau:
+Tính đúng đắn của thuật toán được bảo đảm bởi định lý sau:
 
-???+ note "Dinh li"
-    Gia su phuong trinh $x^2-Dy^2=N$ co nghiem nguyen $(x,y)$ voi $x\ge 0, y>0,\gcd(x,y)=1$. Dat $Q_0=|N|$, khi do $\gcd(Q_0,y)=1$. Gia su $P_0$ la nghiem cua dong du $x\equiv -P_0y\pmod{Q_0}$ va $-Q_0/2<P_0\le Q_0/2$, dong thoi dat so nguyen $X$ sao cho $x=Q_0X-P_0y$. Khi do $P_0^2\equiv D\pmod{Q_0}$, $\dfrac{X}{y}$ la mot phan so gan dung $\dfrac{A_{k-1}}{B_{k-1}}$ cua $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$, va $Q_k=(-1)^k\dfrac{N}{|N|}$.
+???+ note "Định lý"
+    Giả sử phương trình $x^2-Dy^2=N$ có nghiệm nguyên $(x,y)$ với
+    $x\ge 0, y>0,\gcd(x,y)=1$. Đặt $Q_0=|N|$, khi đó $\gcd(Q_0,y)=1$. Giả sử
+    $P_0$ là nghiệm của đồng dư $x\equiv -P_0y\pmod{Q_0}$ và
+    $-Q_0/2<P_0\le Q_0/2$, đồng thời đặt số nguyên $X$ sao cho
+    $x=Q_0X-P_0y$. Khi đó $P_0^2\equiv D\pmod{Q_0}$, $\dfrac{X}{y}$ là một phân
+    số gần đúng $\dfrac{A_{k-1}}{B_{k-1}}$ của
+    $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$, và $Q_k=(-1)^k\dfrac{N}{|N|}$.
 
-??? note "Chung minh"
-    Dung $x\equiv -P_0y\pmod{Q_0}$ va $x^2-Dy^2=N\equiv 0\pmod{Q_0}$, hien nhien co $P_0^2\equiv D\pmod{Q_0}$. Do do
-    
+??? note "Chứng minh"
+    Dùng $x\equiv -P_0y\pmod{Q_0}$ và $x^2-Dy^2=N\equiv 0\pmod{Q_0}$, hiển
+    nhiên có $P_0^2\equiv D\pmod{Q_0}$. Do đó
+
     $$
     P_0x+Dy\equiv -P_0^2y+Dy = (D-P_0^2)y\equiv 0\pmod{Q_0}.
     $$
-    
-    Tu day co the xet ma tran he so nguyen
-    
+
+    Từ đây có thể xét ma trận hệ số nguyên
+
     $$
     \begin{pmatrix}P & R \\ Q & S\end{pmatrix}
     =
     \begin{pmatrix}X & \dfrac{P_0x+Dy}{Q_0} \\ y & x\end{pmatrix}.
     $$
-    
-    Dinh thuc cua no la
-    
+
+    Định thức của nó là
+
     $$
     PS-QR = \dfrac{x(x+P_0y)-y(P_0x+Dy)}{Q_0} = \dfrac{x^2-Dy^2}{Q_0} = \pm 1.
     $$
-    
-    Hon nua, dat $\zeta =\sqrt{D} > 1$, ta co
-    
+
+    Hơn nữa, đặt $\zeta =\sqrt{D} > 1$, ta có
+
     $$
     \dfrac{P\zeta+R}{Q\zeta+S} = \dfrac{(x+P_0y)\sqrt{D}+(P_0x+Dy)}{(x+y\sqrt{D})Q_0} = \dfrac{P_0+\sqrt{D}}{Q_0} = \omega.
     $$
-    
-    Tiep theo chung minh $\dfrac{P}{Q}$ la mot phan so gan dung cua $\omega$. Gia su $\dfrac{P}{Q}$ co [khai trien phan so lien tuc](./continued-fraction.md#%E7%AE%80%E5%8D%95%E8%BF%9E%E5%88%86%E6%95%B0)
-    
+
+    Tiếp theo chứng minh $\dfrac{P}{Q}$ là một phân số gần đúng của $\omega$.
+    Giả sử $\dfrac{P}{Q}$ có [khai triển phân số liên tục](./continued-fraction.md#%E7%AE%80%E5%8D%95%E8%BF%9E%E5%88%86%E6%95%B0)
+
     $$
     \dfrac{P}{Q} = [a_0,a_1,\cdots,a_k]
     $$
-    
-    va $PS-QR = (-1)^{k-1}$. Neu $\dfrac{p_k}{q_k}$ la phan so gan dung thu $k$ cua no, thi $(p_k,q_k)=(P,Q)$, va theo [cong thuc sai phan cua phan so gan dung](./continued-fraction.md#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1), $p_kq_{k-1}-q_kp_{k-1}=(-1)^{k-1}$. Dieu nay cho thay
-    
+
+    và $PS-QR = (-1)^{k-1}$. Nếu $\dfrac{p_k}{q_k}$ là phân số gần đúng thứ $k$
+    của nó, thì $(p_k,q_k)=(P,Q)$, và theo [công thức sai phân của phân số gần đúng](./continued-fraction.md#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1),
+    $p_kq_{k-1}-q_kp_{k-1}=(-1)^{k-1}$. Điều này cho thấy
+
     $$
     p_k(S-q_{k-1}) = q_k(R-p_{k-1}).
     $$
-    
-    Xet tung truong hop:
-    
-    -   Neu $S=0$, de thay $Q=R=1$, nen $\omega=P+\zeta^{-1}=[P,\zeta]$, do do $\dfrac{P}{Q}=P$ la phan so gan dung thu $0$ cua $\omega$;
-    -   Neu $Q=S>0$, thi $Q=S=1$ va $P-R=\pm 1$. Khi do:
-        -   Neu $P=R+1$, thi $\omega=R+\dfrac{1}{1+\zeta^{-1}}=[R,1,\zeta]$, do do $\dfrac{P}{Q}=\dfrac{R+1}{1}=[R,1]$ la phan so gan dung thu $1$ cua $\omega$;
-        -   Neu $P=R-1$, thi $\omega=R-1+\dfrac{1}{1+\zeta}=[R-1,\zeta-1]$, do do $\dfrac{P}{Q}=R-1$ la phan so gan dung thu $0$ cua $\omega$;
-    -   Neu $Q\neq S>0$, thi vi $Q=q_k\mid(S-q_{k-1})$, luon ton tai so nguyen $\kappa$ sao cho $S=\kappa q_k+q_{k-1}$ va $R=\kappa p_k+p_{k-1}$. Vi $q_k\ge q_{k-1}$ va $S>0$, nen $\kappa\ge 0$. Do do, $\omega=\dfrac{(\kappa+\zeta)p_k+p_{k-1}}{(\kappa+\zeta)q_k+q_{k-1}}=[a_0,a_1,\cdots,a_k,\kappa+\zeta]$, nen $\dfrac{P}{Q}$ la phan so gan dung thu $k$ cua no.
-    
-    Tom lai, $\dfrac{X}{y}$ luon la phan so gan dung cua $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$, va theo ki hieu trong thuat toan PQa duoc viet la $\dfrac{A_{k-1}}{B_{k-1}}$. Vi $A_{k-1}^2-DB_{k-1}^2=(-1)^kQ_0Q_k$, suy ra $Q_k=(-1)^k\dfrac{N}{|N|}$.
 
-Dinh li nay dam bao moi nghiem duong cua phuong trinh deu nam trong cac phan so gan dung cua so vo ti bac hai tuong ung. Vi khi tinh phan so gan dung bang thuat toan PQa, mot khi di vao chu ki thi co the dam bao cac phan so gan dung luon duong. Do do, chi can liet ke moi so vo ti bac hai duoc dieu kien cua dinh li cho phep, tinh cac phan so gan dung cua no den het mot chu ki, ta co the tim duoc mot nghiem. Vi hai nghiem xuat hien trong cac phan so gan dung cua cung mot so vo ti bac hai nhat dinh tuong duong, nen khi thu duoc nghiem dau tien thoa $(-1)^kQ_k=N/|N|$, co the dung viec tinh tiep. Khac voi tat ca thuat toan truoc, o day chi so $k$ thoa dieu kien co the xuat hien truoc khi vao chu ki.
+    Xét từng trường hợp:
+
+    -   Nếu $S=0$, dễ thấy $Q=R=1$, nên $\omega=P+\zeta^{-1}=[P,\zeta]$, do đó $\dfrac{P}{Q}=P$ là phân số gần đúng thứ $0$ của $\omega$;
+    -   Nếu $Q=S>0$, thì $Q=S=1$ và $P-R=\pm 1$. Khi đó:
+        -   Nếu $P=R+1$, thì $\omega=R+\dfrac{1}{1+\zeta^{-1}}=[R,1,\zeta]$, do đó $\dfrac{P}{Q}=\dfrac{R+1}{1}=[R,1]$ là phân số gần đúng thứ $1$ của $\omega$;
+        -   Nếu $P=R-1$, thì $\omega=R-1+\dfrac{1}{1+\zeta}=[R-1,\zeta-1]$, do đó $\dfrac{P}{Q}=R-1$ là phân số gần đúng thứ $0$ của $\omega$;
+    -   Nếu $Q\neq S>0$, thì vì $Q=q_k\mid(S-q_{k-1})$, luôn tồn tại số nguyên $\kappa$ sao cho $S=\kappa q_k+q_{k-1}$ và $R=\kappa p_k+p_{k-1}$. Vì $q_k\ge q_{k-1}$ và $S>0$, nên $\kappa\ge 0$. Do đó, $\omega=\dfrac{(\kappa+\zeta)p_k+p_{k-1}}{(\kappa+\zeta)q_k+q_{k-1}}=[a_0,a_1,\cdots,a_k,\kappa+\zeta]$, nên $\dfrac{P}{Q}$ là phân số gần đúng thứ $k$ của nó.
+
+    Tóm lại, $\dfrac{X}{y}$ luôn là phân số gần đúng của
+    $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$, và theo ký hiệu trong thuật toán PQa
+    được viết là $\dfrac{A_{k-1}}{B_{k-1}}$. Khi đó
+    $x=Q_0A_{k-1}-P_0B_{k-1}=G_{k-1}$. Vì
+    $G_{k-1}^2-DB_{k-1}^2=(-1)^kQ_0Q_k$, suy ra
+    $Q_k=(-1)^k\dfrac{N}{|N|}$.
+
+Định lý này bảo đảm mọi nghiệm dương của phương trình đều nằm trong các phân số
+gần đúng của số vô tỉ bậc hai tương ứng. Vì khi tính phân số gần đúng bằng thuật
+toán PQa, một khi đi vào chu kỳ thì có thể bảo đảm các phân số gần đúng luôn
+dương. Do đó, chỉ cần liệt kê mọi số vô tỉ bậc hai được điều kiện của định lý
+cho phép, tính các phân số gần đúng của nó đến hết một chu kỳ, ta có thể tìm
+được một nghiệm. Vì hai nghiệm xuất hiện trong các phân số gần đúng của cùng một
+số vô tỉ bậc hai nhất định tương đương, nên khi thu được nghiệm đầu tiên thỏa
+$(-1)^kQ_k=N/|N|$, thì không cần tính tiếp nữa. Khác với tất cả thuật toán
+trước, ở đây chỉ số $k$ thỏa điều kiện có thể xuất hiện trước khi vào chu kỳ.
 
 ??? example "Vi du"
     1.  Giai phuong trinh $x^2-157y^2=12$.
-    
+
         Vi $12^2<157$, chay thuat toan PQa voi $(P_0,Q_0,D)=(0,1,157)$ cho ket qua sau: (phan mau do la chu ki dau tien)
-    
+
         |  $k$ |  $P$ |  $Q$ |        $a$        |         $A$        |        $B$       |         $G$        | $G^2-DB^2$ |
         | :--: | :--: | :--: | :---------------: | :----------------: | :--------------: | :----------------: | :--------: |
         |  $0$ |  $0$ |  $1$ |        $12$       |        $12$        |        $1$       |        $12$        |    $-13$   |
@@ -710,9 +807,9 @@ Dinh li nay dam bao moi nghiem duong cua phuong trinh deu nam trong cac phan so 
         | $33$ |  $1$ | $13$ |        $1$        |  $46698728731849$  |  $3726964292220$ |  $46698728731849$  |     $1$    |
         | $34$ | $12$ |  $1$ |        $24$       | $1145518138660728$ | $91422300238489$ | $1145518138660728$ |    $-13$   |
         | $35$ | $12$ | $13$ |        $1$        | $1192216867392577$ | $95149264530709$ | $1192216867392577$ |    $12$    |
-    
-        Do dai chu ki $\ell=17$ la le, nen can xet trong hai chu ki cac truong hop ma $G_{k-1}^2-157B_{k-1}^2$ khac $12$ boi mot nhan tu chinh phuong, tuc cac truong hop $k=1,9,13,19,23,31$. Cac nghiem tuong ung la $(fG,fB)$ trong bang sau:
-    
+
+        Độ dài chu kỳ $\ell=17$ là lẻ, nên cần xét trong hai chu kỳ các trường hợp mà $G_{k-1}^2-157B_{k-1}^2 = 12/f^2$ với $f^2\mid 12$, tức các trường hợp $k=1,9,13,19,23,31$. Các nghiệm tương ứng là $(fG,fB)$ trong bảng sau:
+
         |  $k$ | $f$ |    $fG_{k-1}$    |    $fB_{k-1}$   |    $x$    |   $y$   |
         | :--: | :-: | :--------------: | :-------------: | :-------: | :-----: |
         |  $1$ | $1$ |       $13$       |       $1$       |    $13$   |   $1$   |
@@ -721,17 +818,17 @@ Dinh li nay dam bao moi nghiem duong cua phuong trinh deu nam trong cac phan so 
         | $19$ | $2$ |    $483790960$   |    $38610722$   | $-579160$ | $46222$ |
         | $23$ | $1$ |   $26277068347$  |   $2097138361$  |  $-10663$ |  $851$  |
         | $31$ | $1$ | $21950079635497$ | $1751807067011$ |   $-13$   |   $1$   |
-    
+
         Tat ca $(fG,fB)$ chinh la cac nghiem nguyen duong nho nhat trong moi lop tuong duong cua tap nghiem phuong trinh $x^2-157y^2=12$. De thu tat ca nghiem tu chung, co the dung nghiem co ban $(46698728731849,3726964292220)$ cua phuong trinh Pell tuong ung. Chang han, co the chuyen chung thanh nghiem co ban $(x,y)$ cua lop tuong duong do; cac nghiem tuong ung cung duoc liet ke trong bang tren.
     2.  Giai phuong trinh $x^2-157y^2=12$.
-    
+
         Lan nay dung thuat toan Lagrange–Matthews–Mollin. Truoc het, liet ke cac nhan tu chinh phuong cua $N=12$:
-    
+
         -   Khi $f^2=1^2$, co $m=12$, dong du $P^2\equiv 157\pmod{12}$ co nghiem $z=\pm 1,\pm 5$;
         -   Khi $f^2=2^2$, co $m=3$, dong du $P^2\equiv 157\pmod{3}$ co nghiem $z=\pm 1$.
-    
+
         Voi moi to hop $(f,z)$ co the, chay thuat toan PQa voi tham so dau $(P_0,Q_0,D)=(z,|m|,D)$ va tim vi tri dau tien co $(-1)^kQ_k=1$; $(fG_{k-1},fB_{k-1})$ tuong ung la mot nghiem. Ket qua nhu bang sau:
-    
+
         | $f$ |  $z$ |  $m$ |  $k$ |    $fG_{k-1}$    |    $fB_{k-1}$   |
         | :-: | :--: | :--: | :--: | :--------------: | :-------------: |
         | $1$ |  $1$ | $12$ | $32$ | $21950079635497$ | $1751807067011$ |
@@ -740,14 +837,14 @@ Dinh li nay dam bao moi nghiem duong cua phuong trinh deu nam trong cac phan so 
         | $1$ | $-5$ | $12$ | $10$ |      $10663$     |      $851$      |
         | $2$ |  $1$ |  $3$ | $20$ |    $483790960$   |    $38610722$   |
         | $2$ | $-1$ |  $3$ | $14$ |     $579160$     |     $46222$     |
-    
+
         Day chinh la cac nghiem nguyen duong nho nhat trong moi lop tuong duong da liet ke o tren; co the dung nghiem co ban cua phuong trinh Pell de chuyen chung thanh nghiem co ban.
     3.  Giai phuong trinh $x^2-79y^2=\pm 101$.
-    
+
         Van dung thuat toan Lagrange–Matthews–Mollin. Vi $N=101$ la so nguyen to, nhat dinh $f=1$. Khi do $m=101$, va dong du tuong ung $P^2\equiv 79\pmod{101}$ co nghiem $P=\pm 33$.
-    
+
         Chay thuat toan PQa voi $(P_0,Q_0,D)=(33,101,79)$ cho ket qua sau: (phan mau do la chu ki dau tien)
-    
+
         | $k$ |  $P$  |  $Q$  |       $a$      |  $A$  |   $B$  |   $G$   | $G^2-DB^2$ |
         | :-: | :---: | :---: | :------------: | :---: | :----: | :-----: | :--------: |
         | $0$ |  $33$ | $101$ |       $0$      |  $0$  |   $1$  |  $-33$  |   $1010$   |
@@ -760,7 +857,7 @@ Dinh li nay dam bao moi nghiem duong cua phuong trinh deu nam trong cac phan so 
         | $7$ |  $3$  |  $7$  | $\color{red}1$ | $197$ |  $475$ |  $4222$ |    $909$   |
         | $8$ |  $4$  |  $9$  | $\color{red}1$ | $304$ |  $733$ |  $6515$ |   $-606$   |
         | $9$ |  $5$  |  $6$  |       $2$      | $805$ | $1941$ | $17252$ |    $505$   |
-    
+
         Do dai chu ki $\ell=6$ la chan. Den het mot chu ki van khong ton tai $Q_k=\pm 1$, nen truong hop nay vo nghiem. Tuong tu, chay thuat toan PQa voi $(P_0,Q_0,D)=(-33,101,79)$ cung quan sat duoc tinh huong giong vay. Vi the phuong trinh vo nghiem.
 
 <span id="&#x4e60;&#x9898;"></span>
