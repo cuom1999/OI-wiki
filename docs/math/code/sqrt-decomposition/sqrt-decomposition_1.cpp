@@ -1,13 +1,13 @@
 #include <iostream>
 
 long long H(int n) {
-  long long res = 0;  // 储存结果
-  int l = 1, r;       // 块左端点与右端点
+  long long res = 0;  // Lưu kết quả
+  int l = 1, r;       // Biên trái và biên phải của khối
   while (l <= n) {
-    r = n / (n / l);  // 计算当前块的右端点
-    // 累加这一块的贡献到结果中。乘上 1LL 防止溢出
+    r = n / (n / l);  // Tính biên phải của khối hiện tại
+    // Cộng đóng góp của khối này vào kết quả. Nhân 1LL để tránh tràn số
     res += 1LL * (r - l + 1) * (n / l);
-    l = r + 1;  // 左端点移到下一块
+    l = r + 1;  // Chuyển biên trái sang khối tiếp theo
   }
   return res;
 }

@@ -1,4 +1,4 @@
-// Submission (TLE): https://judge.yosupo.jp/submission/320582
+// Bài nộp (TLE): https://judge.yosupo.jp/submission/320582
 #include <algorithm>
 #include <cmath>
 #include <iostream>
@@ -12,7 +12,7 @@ struct PrimePower {
   PrimePower(int p, int e, int pe) : p(p), e(e), pe(pe) {}
 };
 
-// Factorization.
+// Phân tích thừa số.
 auto factorize(int n) {
   std::vector<PrimePower> ans;
   for (int x = 2; x * x <= n; ++x) {
@@ -24,7 +24,7 @@ auto factorize(int n) {
   return ans;
 }
 
-// Binary exponentiation.
+// Lũy thừa nhị phân.
 int pow(int a, int b, int m = 0) {
   int res = 1;
   for (; b; b >>= 1) {
@@ -34,7 +34,7 @@ int pow(int a, int b, int m = 0) {
   return res;
 }
 
-// Find a primitive root modulo prime.
+// Tìm căn nguyên thủy modulo số nguyên tố.
 int primitive_root(int p) {
   std::vector<int> exp;
   for (auto factor : factorize(p - 1)) {
@@ -55,7 +55,7 @@ int primitive_root(int p) {
   return ans;
 }
 
-// Discrete logarithm. (BSGS Algorithm)
+// Logarit rời rạc. (Thuật toán BSGS)
 int log(int g, int a, int m) {
   int b = std::sqrt(m + 0.25l) + 1;
   std::unordered_map<int, int> mp;
@@ -72,7 +72,7 @@ int log(int g, int a, int m) {
   return -1;
 }
 
-// Extended Euclidean Algorithm.
+// Thuật toán Euclid mở rộng.
 int ex_gcd(int a, int b, int& x, int& y) {
   if (!b) {
     x = 1;
@@ -85,8 +85,8 @@ int ex_gcd(int a, int b, int& x, int& y) {
   }
 }
 
-// Solves the linear congruence equation: Ax = B mod N.
-// Return the least nonnegative solution and the common difference.
+// Giải phương trình đồng dư tuyến tính: Ax = B mod N.
+// Trả về nghiệm không âm nhỏ nhất và công sai.
 std::pair<int, int> solve_linear(int a, int b, int n) {
   int x, y;
   int d = ex_gcd(a, n, x, y);
@@ -96,7 +96,7 @@ std::pair<int, int> solve_linear(int a, int b, int n) {
   return {x, n};
 }
 
-// Subroutine: Find a K-th root with a primitive root G known.
+// Thủ tục con: tìm một căn bậc K khi đã biết căn nguyên thủy G.
 int calc(int g, int k, int a, int p) {
   int ind = log(g, a, p);
   if (ind == -1) return -1;
@@ -106,7 +106,7 @@ int calc(int g, int k, int a, int p) {
   return pow(g, y0, p);
 }
 
-// Find a K-th root of A modulo prime P.
+// Tìm một căn bậc K của A modulo số nguyên tố P.
 int kth_roots_mod_p(int k, int a, int p) {
   a %= p;
   if (k == 0) return a == 1 ? 0 : -1;

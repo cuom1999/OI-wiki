@@ -253,10 +253,10 @@ nav:
       - Định lý Lucas: math/number-theory/lucas.md
       - Phương trình đồng dư: math/number-theory/congruence-equation.md
       - Thặng dư bậc hai: math/number-theory/quad-residue.md
-      - 阶 & 原根: math/number-theory/primitive-root.md
-      - 离散对数: math/number-theory/discrete-logarithm.md
-      - 高次剩余 & 单位根: math/number-theory/residue.md
-      - 数论分块: math/number-theory/sqrt-decomposition.md
+      - Bậc & căn nguyên thủy: math/number-theory/primitive-root.md
+      - Logarithm rời rạc: math/number-theory/discrete-logarithm.md
+      - Thặng dư bậc cao & căn đơn vị: math/number-theory/residue.md
+      - Phân khối trong lý thuyết số: math/number-theory/sqrt-decomposition.md
       - 狄利克雷卷积: math/number-theory/dirichlet.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/number-theory/du.md

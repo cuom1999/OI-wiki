@@ -131,6 +131,12 @@ MkDocs source layout intact.
   `docs/math/number-theory/quad-residue.md`: translated factorization, Bézout,
   Fermat/Euler, CRT, LTE, factorial modulo, Lucas, congruence-equation, and
   quadratic-residue material, plus explanatory comments in included snippets.
+- `docs/math/number-theory/primitive-root.md`,
+  `docs/math/number-theory/discrete-logarithm.md`,
+  `docs/math/number-theory/residue.md`,
+  `docs/math/number-theory/sqrt-decomposition.md`: translated primitive-root,
+  discrete-logarithm, higher-residue/unit-root, and number-theory block
+  decomposition material, plus explanatory comments in included snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

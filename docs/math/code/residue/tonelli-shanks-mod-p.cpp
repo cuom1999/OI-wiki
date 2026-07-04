@@ -8,7 +8,7 @@
 
 std::mt19937 rng(std::random_device{}());
 
-// Binary exponentiation.
+// Lũy thừa nhị phân.
 int pow(int a, int b, int m = 0) {
   int res = 1;
   for (; b; b >>= 1) {
@@ -18,7 +18,7 @@ int pow(int a, int b, int m = 0) {
   return res;
 }
 
-// Find a P-th non-residue mod M.
+// Tìm một bất thặng dư bậc P modulo M.
 int non_residue(int p, int m, int phi) {
   std::uniform_int_distribution<int> dis(1, m - 1);
   while (true) {
@@ -28,10 +28,10 @@ int non_residue(int p, int m, int phi) {
   return -1;
 }
 
-// Euclidean Algorithm.
+// Thuật toán Euclid.
 int gcd(int a, int b) { return b ? gcd(b, a % b) : a; }
 
-// Extended Euclidean Algorithm.
+// Thuật toán Euclid mở rộng.
 int ex_gcd(int a, int b, int& x, int& y) {
   if (!b) {
     x = 1;
@@ -44,15 +44,15 @@ int ex_gcd(int a, int b, int& x, int& y) {
   }
 }
 
-// Returns the modular inverse of A modulo M.
-// Assumes that gcd(A, M) = 1, so the inverse exists.
+// Trả về nghịch đảo của A modulo M.
+// Giả sử gcd(A, M) = 1, nên nghịch đảo tồn tại.
 int inv(int a, int m) {
   int x, y;
   ex_gcd(a, m, x, y);
   return (x % m + m) % m;
 }
 
-// Subroutine: Find a P^E-th root of A mod M.
+// Thủ tục con: tìm một căn bậc P^E của A modulo M.
 int peth_root_mod_m(int p, int e, int a, int m, int phi) {
   int s = 0, r = phi, pe = pow(p, e);
   for (; r % p == 0; r /= p, ++s);
@@ -62,7 +62,7 @@ int peth_root_mod_m(int p, int e, int a, int m, int phi) {
   std::unordered_map<int, int> mp;
   int zeta = pow(eta, r, m);
   int xi = pow(eta, phi / p, m);
-  // Precompute powers for BSGS.
+  // Tiền xử lý các lũy thừa cho BSGS.
   int B = std::sqrt((s - e) * p + 0.25l) + 1;
   int pB = p / B + 1;
   int po0 = pow(xi, pB, m);
@@ -70,12 +70,12 @@ int peth_root_mod_m(int p, int e, int a, int m, int phi) {
     po1 = (long long)po1 * po0 % m;
     mp[po1] = j;
   }
-  // Compute p-adic digits of h.
+  // Tính các chữ số p-adic của h.
   for (int j = 0; j < s - e; ++j) {
     int err = (long long)pow(ans, pe, m) * inv(a, m) % m;
     int xi_hj = pow(err, pow(p, s - e - j - 1), m);
     long long hj = 0;
-    // BSGS query.
+    // Truy vấn BSGS.
     for (int i = 1; i <= pB; ++i) {
       xi_hj = (long long)xi_hj * xi % m;
       if (mp.count(xi_hj)) {
@@ -88,7 +88,7 @@ int peth_root_mod_m(int p, int e, int a, int m, int phi) {
   return ans;
 }
 
-// Find a K-th root of A modulo prime P.
+// Tìm một căn bậc K của A modulo số nguyên tố P.
 int kth_root_mod_p(int k, int a, int p) {
   a %= p;
   if (k == 0) return a == 1 ? 0 : -1;

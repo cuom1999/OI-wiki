@@ -1,198 +1,204 @@
-前置知识：[费马小定理](./fermat.md#费马小定理)、[欧拉定理](./fermat.md#欧拉定理)、[拉格朗日定理](./congruence-equation.md#定理-3lagrange-定理)
+Kien thuc nen: [dinh ly nho Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), [dinh ly Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), [dinh ly Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86)
 
-阶和原根，是理解模 $m$ [既约剩余系](./basic.md#同余类与剩余系) $\mathbf Z_m^*$ 乘法结构的重要工具．基于此，可以定义 [离散对数](./discrete-logarithm.md) 等概念．更为一般的讨论可以参见抽象代数部分 [群论](../algebra/group-theory.md#阶) 和 [环论](../algebra/ring-theory.md#应用整数同余类的乘法群) 等页面相关章节．
+Bac va can nguyen thuy la cac cong cu quan trong de hieu cau truc nhan cua [he thang du thu gon](./basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB) $\mathbf Z_m^*$ modulo $m$. Dua tren do, ta co the dinh nghia cac khai niem nhu [logarit roi rac](./discrete-logarithm.md). Phan thao luan tong quat hon co the xem o cac muc lien quan trong phan dai so truu tu, chang han [ly thuyet nhom](../algebra/group-theory.md#%E9%98%B6) va [ly thuyet vanh](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4).
 
-## 阶
+<span id="&#x9636;"></span>
 
-本节中，总是假设模数 $m\in\mathbf N_+$ 和底数 $a\in\mathbf Z$ 互素，即 $(a,m)=1$，也记作 $a\perp m$．
+## Bac
 
-对于 $n\in\mathbf Z$，幂次 $a^n\bmod m$ 呈现一种循环结构．这个循环节的最小长度，就是 $a$ 模 $m$ 的阶．阶就定义为幂 $a^n \bmod m$ 第一次回到起点 $a^0\bmod m = 1$ 时的指数：
+Trong muc nay, ta luon gia su modulo $m\in\mathbf N_+$ va co so $a\in\mathbf Z$ nguyen to cung nhau, tuc la $(a,m)=1$, cung viet la $a\perp m$.
 
-???+ abstract "阶"
-    对于 $a\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，满足同余式 $a^n \equiv 1 \pmod m$ 的最小正整数 $n$ 称作 **$a$ 模 $m$ 的阶**（the order of $a$ modulo $m$），记作 $\delta_m(a)$ 或 $\operatorname{ord}_m(a)$．
+Voi $n\in\mathbf Z$, luy thua $a^n\bmod m$ the hien mot cau truc tuan hoan. Do dai nho nhat cua chu ky nay chinh la bac cua $a$ modulo $m$. Bac duoc dinh nghia la so mu tai do luy thua $a^n \bmod m$ lan dau quay ve diem dau $a^0\bmod m = 1$:
 
-???+ tip "注"
-    在 [抽象代数](../algebra/group-theory.md#阶) 中，这里的「阶」就是模 $m$ 既约剩余系关于乘法形成的群中，元素 $a$ 的阶．用记号 $\delta$ 表示阶只适用于这个特殊的群．下面的诸多性质可以直接推广到抽象代数中群元素的阶的性质．
+???+ abstract "Bac"
+    Voi $a\in\mathbf Z,m\in\mathbf N_+$ va $a\perp m$, so nguyen duong nho nhat $n$ thoa man dong du $a^n \equiv 1 \pmod m$ duoc goi la **bac cua $a$ modulo $m$** (the order of $a$ modulo $m$), ky hieu la $\delta_m(a)$ hoac $\operatorname{ord}_m(a)$.
+
+???+ tip "Ghi chu"
+    Trong [dai so truu tu](../algebra/group-theory.md#%E9%98%B6), "bac" o day chinh la bac cua phan tu $a$ trong nhom tao boi he thang du thu gon modulo $m$ theo phep nhan. Ky hieu $\delta$ de bieu dien bac chi dung cho nhom dac biet nay. Nhieu tinh chat ben duoi co the mo rong truc tiep thanh tinh chat ve bac cua phan tu trong nhom o dai so truu tu.
     
-    另外还有「半阶」的概念，在数论中会用 $\delta^-$ 记号表示．它是满足同余式 $a^n \equiv -1 \pmod m$ 的最小正整数．半阶不是群论中的概念．阶一定存在，半阶不一定存在．
+    Ngoai ra con co khai niem "nua bac", trong so hoc thuong dung ky hieu $\delta^-$. Do la so nguyen duong nho nhat thoa man dong du $a^n \equiv -1 \pmod m$. Nua bac khong phai la khai niem trong ly thuyet nhom. Bac luon ton tai, con nua bac thi khong nhat thiet ton tai.
 
-### 幂的循环结构
+<span id="&#x5E42;&#x7684;&#x5FAA;&#x73AF;&#x7ED3;&#x6784;"></span>
 
-利用阶，可以刻画幂的循环结构．对于幂 $a^n\bmod m$，可以将指数 $n$ 对阶 $\delta_m(a)$ 做带余除法：
+### Cau truc tuan hoan cua luy thua
+
+Dung bac, ta co the mo ta cau truc tuan hoan cua luy thua. Voi luy thua $a^n\bmod m$, chia so mu $n$ cho bac $\delta_m(a)$ co du:
 
 $$
 n = \delta_m(a)q + r, ~ 0\le r < \delta_m(a). 
 $$
 
-进而，利用幂的运算律，就得到
+Tiep theo, dung cac quy tac tinh luy thua, ta co
 
 $$
 a^n = a^{\delta_m(a)q + r} = (a^{\delta_m(a)})^q \cdot a^r \equiv a^r \pmod m.
 $$
 
-这说明，对于任意指数的幂，可以将它平移到第一个非负的循环节．由此，可以得到一系列关于阶的性质．
+Dieu nay cho thay voi luy thua co so mu bat ky, ta co the tinh tien no ve chu ky khong am dau tien. Tu do suy ra mot loat tinh chat ve bac.
 
 <a id="ord-prop-1"></a>
 
-???+ note "性质 1"
-    对于 $a\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，幂次 $a^0(=1),a,a^2,\cdots,a^{\delta_m(a)-1}$ 模 $m$ 两两不同余．
+???+ note "Tinh chat 1"
+    Voi $a\in\mathbf Z,m\in\mathbf N_+$ va $a\perp m$, cac luy thua $a^0(=1),a,a^2,\cdots,a^{\delta_m(a)-1}$ doi mot khong dong du modulo $m$.
 
-??? note "证明"
-    考虑反证．假设存在两个数 $0\le i< j<\delta_m(a)$，且 $a^i\equiv a^j\pmod m$，则有 $a^{j - i}\equiv 1\pmod m$．但是，$0 < j - i < \delta_m(a)$．这与阶的最小性矛盾，故原命题成立．
+??? note "Chung minh"
+    Xet phan chung. Gia su ton tai hai so $0\le i< j<\delta_m(a)$ sao cho $a^i\equiv a^j\pmod m$. Khi do $a^{j - i}\equiv 1\pmod m$. Nhung $0 < j - i < \delta_m(a)$. Dieu nay mau thuan voi tinh nho nhat trong dinh nghia bac, nen menh de dung.
 
 <a id="ord-prop-2"></a>
 
-???+ note "性质 2"
-    对于 $a,n\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，同余关系 $a^n \equiv 1 \pmod m$ 成立，当且仅当 $\delta_m(a)\mid n$．
+???+ note "Tinh chat 2"
+    Voi $a,n\in\mathbf Z,m\in\mathbf N_+$ va $a\perp m$, dong du $a^n \equiv 1 \pmod m$ dung khi va chi khi $\delta_m(a)\mid n$.
 
-??? note "证明"
-    如前文所述，$a^{n}\equiv a^{n\bmod\delta_m(a)}\pmod m$．由 [性质 1](#ord-prop-1) 可知，$0\le r < \delta_m(a)$ 中唯一一个使得 $a^r\equiv 1\pmod m$ 成立的 $r$ 就是 $r=0$．因此，$a^n \equiv 1 \pmod m$，当且仅当 $n\bmod \delta_m(a) = 0$，也就是 $\delta_m(a)\mid n$．
+??? note "Chung minh"
+    Nhu da noi o tren, $a^{n}\equiv a^{n\bmod\delta_m(a)}\pmod m$. Theo [Tinh chat 1](#ord-prop-1), trong cac $r$ thoa man $0\le r < \delta_m(a)$, gia tri duy nhat khien $a^r\equiv 1\pmod m$ la $r=0$. Do do $a^n \equiv 1 \pmod m$ khi va chi khi $n\bmod \delta_m(a) = 0$, tuc la $\delta_m(a)\mid n$.
 
-[欧拉定理](./fermat.md#欧拉定理) 中，同余关系 $a^{\varphi(m)}\equiv 1\pmod m$ 对于所有 $a\perp m$ 都成立．结合 [性质 2](#ord-prop-2)，这说明对于所有 $a\perp m$，都有 $\delta_m(a)\mid\varphi(m)$．换句话说，$\varphi(m)$ 是所有 $a\perp m$ 的阶的一个公倍数．对于一个正整数 $m$，所有 $a\perp m$ 的阶 $\delta_m(a)$ 的最小公倍数，记作 $\lambda(m)$，就是 $m$ 的 [Carmichael 函数](#carmichael-函数)．后文会详细讨论它的性质．
+Trong [dinh ly Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), dong du $a^{\varphi(m)}\equiv 1\pmod m$ dung voi moi $a\perp m$. Ket hop voi [Tinh chat 2](#ord-prop-2), dieu nay cho thay voi moi $a\perp m$ deu co $\delta_m(a)\mid\varphi(m)$. Noi cach khac, $\varphi(m)$ la mot boi chung cua bac cua tat ca cac $a\perp m$. Voi mot so nguyen duong $m$, boi chung nho nhat cua tat ca cac bac $\delta_m(a)$ voi $a\perp m$, ky hieu la $\lambda(m)$, chinh la [ham Carmichael](#carmichael-%E5%87%BD%E6%95%B0) cua $m$. Phan sau se thao luan chi tiet cac tinh chat cua no.
 
-和其他的循环结构类似，可以根据 $a$ 的阶计算 $a^k$ 的阶．
+Tuong tu cac cau truc tuan hoan khac, ta co the tinh bac cua $a^k$ dua tren bac cua $a$.
 
 <a id="ord-prop-3"></a>
 
-???+ note "性质 3"
-    对于 $k,a\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，有
+???+ note "Tinh chat 3"
+    Voi $k,a\in\mathbf Z,m\in\mathbf N_+$ va $a\perp m$, ta co
     
     $$
     \delta_m(a^k) = \dfrac{\delta_m(a)}{(\delta_m(a),k)}.
     $$
 
-??? note "证明"
-    由 [性质 2](#ord-prop-2)，同余关系 $(a^k)^n = a^{kn} \equiv 1\pmod m$ 成立，当且仅当 $\delta_m(a) \mid kn$．这一条件就等价于
+??? note "Chung minh"
+    Theo [Tinh chat 2](#ord-prop-2), dong du $(a^k)^n = a^{kn} \equiv 1\pmod m$ dung khi va chi khi $\delta_m(a) \mid kn$. Dieu kien nay tuong duong voi
     
     $$
     \dfrac{\delta_m(a)}{\left(\delta_m(a),k\right)} \mid n.
     $$
     
-    使得这一条件成立的最小正整数就是
+    So nguyen duong nho nhat khien dieu kien nay dung la
     
     $$
     \delta_m(a^k)=\dfrac{\delta_m(a)}{\left(\delta_m(a),k\right)}.
     $$
 
-### 乘积的阶
+<span id="&#x4E58;&#x79EF;&#x7684;&#x9636;"></span>
 
-设 $a,b$ 是与 $m$ 互素的不同整数．如果已知阶 $\delta_m(a)$ 和 $\delta_m(b)$，那么，同样可以获得一些关于它们乘积 $ab$ 的阶 $\delta_{m}(ab)$ 的信息．
+### Bac cua tich
+
+Gia su $a,b$ la cac so nguyen khac nhau va cung nguyen to voi $m$. Neu da biet cac bac $\delta_m(a)$ va $\delta_m(b)$, ta cung co the thu duoc mot so thong tin ve bac $\delta_{m}(ab)$ cua tich $ab$.
 
 <a id="ord-prop-4"></a>
 
-???+ note "性质 4"
-    对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，那么，有
+???+ note "Tinh chat 4"
+    Voi $a,b\in\mathbf Z,m\in\mathbf N_+$ va $a,b\perp m$, ta co
     
     $$
     \dfrac{[\delta_m(a),\delta_m(b)]}{(\delta_m(a),\delta_m(b))} \mid \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
     $$
 
-??? note "证明"
-    因为 $[\delta_m(a),\delta_m(b)]$ 是 $\delta_m(a)$ 和 $\delta_m(b)$ 的倍数，所以，由 [性质 2](#ord-prop-2) 可知
+??? note "Chung minh"
+    Vi $[\delta_m(a),\delta_m(b)]$ la boi cua ca $\delta_m(a)$ lan $\delta_m(b)$, theo [Tinh chat 2](#ord-prop-2) ta co
     
     $$
     (ab)^{[\delta_m(a),\delta_m(b)]} = a^{[\delta_m(a),\delta_m(b)]} b^{[\delta_m(a),\delta_m(b)]} \equiv 1 \pmod m.
     $$
     
-    再次应用性质 2，就得到
+    Ap dung Tinh chat 2 mot lan nua, ta duoc
     
     $$
     \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
     $$
     
-    这就得到右侧的整除关系．
+    Day la quan he chia het o phia phai.
     
-    反过来，由于
+    Nguoc lai, vi
     
     $$
     1 \equiv (ab)^{\delta_m(ab)\delta_m(b)} \equiv a^{\delta_m(ab)\delta_m(b)} \pmod m,
     $$
     
-    所以，应用性质 2，就得到 $\delta_m(a)\mid\delta_m(ab)\delta_m(b)$．两侧消去 $(\delta_m(a),\delta_m(b))$，就得到
+    nen ap dung Tinh chat 2 ta duoc $\delta_m(a)\mid\delta_m(ab)\delta_m(b)$. Rut gon $(\delta_m(a),\delta_m(b))$ o hai phia, ta co
     
     $$
     \dfrac{\delta_m(a)}{(\delta_m(a),\delta_m(b))}\mid\delta_m(ab)\dfrac{\delta_m(b)}{(\delta_m(a),\delta_m(b))}.
     $$
     
-    消去公因子后，两个分式互素，这就得到
+    Sau khi rut gon uoc chung, hai phan so la nguyen to cung nhau, nen
     
     $$
     \dfrac{\delta_m(a)}{(\delta_m(a),\delta_m(b))}\mid\delta_m(ab).
     $$
     
-    同理，也有
+    Tuong tu, ta cung co
     
     $$
     \dfrac{\delta_m(b)}{(\delta_m(a),\delta_m(b))}\mid\delta_m(ab).
     $$
     
-    由于两个整除关系的左侧互素，有
+    Vi hai ve trai cua hai quan he chia het nay nguyen to cung nhau, ta co
     
     $$
     \dfrac{[\delta_m(a),\delta_m(b)]}{(\delta_m(a),\delta_m(b))} =\dfrac{\delta_m(a)\delta_m(b)}{(\delta_m(a),\delta_m(b))^2}\mid\delta_m(ab).
     $$
     
-    这就得到左侧的整除关系．
+    Day la quan he chia het o phia trai.
 
-对于 $a$ 和 $b$ 的阶互素的情形，这一结论有着更为简单的形式．
+Voi truong hop bac cua $a$ va $b$ nguyen to cung nhau, ket luan nay co dang don gian hon.
 
 <a id="ord-prop-4p"></a>
 
-???+ note "性质 4'"
-    对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，那么，有
+???+ note "Tinh chat 4'"
+    Voi $a,b\in\mathbf Z,m\in\mathbf N_+$ va $a,b\perp m$, ta co
     
     $$
     \delta_m(ab) = \delta_m(a)\delta_m(b) \iff \delta_m(a)\perp\delta_m(b).
     $$
 
-??? note "证明"
-    如果 $\delta_m(a)\perp\delta_m(b)$，那么 [性质 4](#ord-prop-4) 中所有整除关系都是等式，所以有
+??? note "Chung minh"
+    Neu $\delta_m(a)\perp\delta_m(b)$, thi moi quan he chia het trong [Tinh chat 4](#ord-prop-4) deu la dang bang, nen
     
     $$
     \delta_m(ab) = [\delta_m(a),\delta_m(b)] = \delta_m(a)\delta_m(b).
     $$
     
-    反过来，如果 $\delta_m(ab)=\delta_m(a)\delta_m(b)$，那么根据性质 4，就有
+    Nguoc lai, neu $\delta_m(ab)=\delta_m(a)\delta_m(b)$, theo Tinh chat 4 ta co
     
     $$
     \delta_m(a)\delta_m(b) = \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
     $$
     
-    这立马说明 $(\delta_m(a),\delta_m(b))=1$，即 $\delta_m(a)\perp\delta_m(b)$．
+    Dieu nay lap tuc cho thay $(\delta_m(a),\delta_m(b))=1$, tuc la $\delta_m(a)\perp\delta_m(b)$.
 
-一般情形中，[性质 4](#ord-prop-4) 得到的界已经是紧的．乘积的阶取得下界的情形很容易构造：例如 $(a,b,m)=(3,5,7)$ 时，$\delta_m(a)=\delta_m(b)=6$，但是它们的乘积的阶 $\delta_m(ab)=1$．
+Trong truong hop tong quat, cac can thu duoc tu [Tinh chat 4](#ord-prop-4) da la chat. Truong hop bac cua tich dat can duoi rat de xay dung: chang han voi $(a,b,m)=(3,5,7)$, ta co $\delta_m(a)=\delta_m(b)=6$, nhung bac cua tich la $\delta_m(ab)=1$.
 
-尽管一般情形中，乘积 $ab$ 的阶未必是它们的阶的最小公倍数，但是总能找到一个元素使得它的阶等于这个最小公倍数．
+Mac du trong truong hop tong quat, bac cua tich $ab$ khong nhat thiet la boi chung nho nhat cua cac bac cua chung, ta luon co the tim mot phan tu co bac bang boi chung nho nhat do.
 
 <a id="ord-prop-5"></a>
 
-???+ note "性质 5"
-    对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，总是存在 $c\in\mathbf Z$ 且 $c\perp m$ 使得
+???+ note "Tinh chat 5"
+    Voi $a,b\in\mathbf Z,m\in\mathbf N_+$ va $a,b\perp m$, luon ton tai $c\in\mathbf Z$ va $c\perp m$ sao cho
     
     $$
     \delta_m(c) = [\delta_m(a),\delta_m(b)].
     $$
 
-??? note "证明"
-    考虑素因数分解：
+??? note "Chung minh"
+    Xet phan tich thua so nguyen to:
     
     $$
     \delta_m(a) = \prod_p p^{\alpha_p},~ \delta_m(b) = \prod_p p^{\beta_p}.
     $$
     
-    利用 $\alpha_p$ 和 $\beta_p$ 的大小关系，可以将所有素因子分为两类：
+    Dua tren quan he lon nho giua $\alpha_p$ va $\beta_p$, chia tat ca cac thua so nguyen to thanh hai loai:
     
     $$
     A = \{p : \alpha_p \ge \beta_p\}, ~ B = \{p : \alpha_p < \beta_p\}.
     $$
     
-    由此，分别设
+    Tu do, dat lan luot
     
     $$
     \gamma_A = \prod_{p\in A}p^{\alpha_p},~\gamma_B = \prod_{p\in B}p^{\alpha_p},~\eta_A = \prod_{p\in A}p^{\beta_p},~\eta_B = \prod_{p\in B}p^{\beta_p},
     $$
     
-    就有 $\delta_m(a) = \gamma_A\gamma_B$ 和 $\delta_m(b)=\eta_A\eta_B$．根据 [性质 3](#ord-prop-3)，可知
+    thi $\delta_m(a) = \gamma_A\gamma_B$ va $\delta_m(b)=\eta_A\eta_B$. Theo [Tinh chat 3](#ord-prop-3), ta co
     
     $$
     \begin{aligned}
@@ -201,65 +207,71 @@ $$
     \end{aligned}
     $$
     
-    因为 $\gamma_A\perp\eta_B$，由 [性质 4'](#ord-prop-4p)，就有
+    Vi $\gamma_A\perp\eta_B$, theo [Tinh chat 4'](#ord-prop-4p), ta co
     
     $$
     \delta_m(a^{\gamma_B}b^{\eta_A}) = \gamma_A\eta_B = \prod_p p^{\max\{\alpha_p,\beta_p\}} = [\delta_m(a),\delta_m(b)].
     $$
     
-    因此，$c=a^{\gamma_B}b^{\eta_A}$ 就是阶为 $[\delta_m(a),\delta_m(b)]$ 的元素．
+    Do do $c=a^{\gamma_B}b^{\eta_A}$ la phan tu co bac bang $[\delta_m(a),\delta_m(b)]$.
 
-这一结论常用于构造出指定阶的元素．
+Ket luan nay thuong duoc dung de xay dung phan tu co bac chi dinh.
 
-## 原根
+<span id="&#x539F;&#x6839;"></span>
 
-原根是一些特殊元素——它的阶就等于所有模 $m$ 既约剩余系的个数．
+## Can nguyen thuy
 
-???+ abstract "原根"
-    对于 $m\in\mathbf N_+$，如果存在 $g\in\mathbf Z$ 且 $g\perp m$ 使得 $\delta_m(g)=|\mathbf Z_m^*|=\varphi(m)$，就称 $g$ 为 **模 $m$ 的原根**（primitive root modulo $m$）．其中，$\varphi(m)$ 是 [欧拉函数](./euler-totient.md)．
+Can nguyen thuy la cac phan tu dac biet: bac cua no bang dung so phan tu cua he thang du thu gon modulo $m$.
 
-并非所有正整数 $m$ 都存在模 $m$ 的原根．由上文的 [性质 1](#ord-prop-1)，如果模 $m$ 的原根 $g$ 存在，那么，$g,g^2,\cdots,g^{\varphi(m)}$ 所在的同余类互不相同，构成模 $m$ 既约剩余系．特别地，对于素数 $p$，余数 $g^i\bmod p$ 对于 $i=1,2,\cdots,p-1$ 两两不同．
+???+ abstract "Can nguyen thuy"
+    Voi $m\in\mathbf N_+$, neu ton tai $g\in\mathbf Z$ va $g\perp m$ sao cho $\delta_m(g)=|\mathbf Z_m^*|=\varphi(m)$, thi $g$ duoc goi la **can nguyen thuy modulo $m$** (primitive root modulo $m$). O day, $\varphi(m)$ la [ham Euler](./euler-totient.md).
 
-???+ tip "注"
-    在 [抽象代数](../algebra/ring-theory.md#应用整数同余类的乘法群) 中，原根就是循环群的生成元．这个概念只在模 $m$ 既约剩余系关于乘法形成的群中有「原根」这个名字，在一般的循环群中都称作「生成元」．并非每个模 $m$ 既约剩余系关于乘法形成的群都是循环群，存在原根就表明它同构于循环群，如果不存在原根就表明不同构．
+Khong phai moi so nguyen duong $m$ deu co can nguyen thuy modulo $m$. Theo [Tinh chat 1](#ord-prop-1), neu can nguyen thuy $g$ modulo $m$ ton tai, thi cac lop dong du chua $g,g^2,\cdots,g^{\varphi(m)}$ doi mot khac nhau va tao thanh he thang du thu gon modulo $m$. Dac biet, voi so nguyen to $p$, cac thang du $g^i\bmod p$ doi mot khac nhau voi $i=1,2,\cdots,p-1$.
 
-模为 $1$ 时，模 $1$ 整数乘法群就是 $\{0\}$．这显然是循环群，所以原根就是 $0$．
+???+ tip "Ghi chu"
+    Trong [dai so truu tu](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4), can nguyen thuy chinh la phan tu sinh cua nhom cyclic. Khai niem nay chi co ten "can nguyen thuy" trong nhom tao boi he thang du thu gon modulo $m$ theo phep nhan; trong nhom cyclic tong quat, no duoc goi la "phan tu sinh". Khong phai moi nhom tao boi he thang du thu gon modulo $m$ theo phep nhan deu la nhom cyclic; viec ton tai can nguyen thuy cho thay no dang cau voi mot nhom cyclic, con neu khong ton tai can nguyen thuy thi khong dang cau.
 
-### 原根判定定理
+Khi modulo bang $1$, nhom nhan cac so nguyen modulo $1$ la $\{0\}$. Hien nhien day la nhom cyclic, nen can nguyen thuy la $0$.
 
-如果已知模数 $\varphi(m)$ 的全体素因子，那么很容易判断模 $m$ 的原根是否存在．
+<span id="&#x539F;&#x6839;&#x5224;&#x5B9A;&#x5B9A;&#x7406;"></span>
 
-???+ note "定理"
-    对于整数 $m\ge 3$ 和 $g\perp m$，那么，$g$ 是模 $m$ 的原根，当且仅当对于 $\varphi(m)$ 的每个素因数 $p$，都有
+### Dinh ly kiem tra can nguyen thuy
+
+Neu da biet tat ca cac thua so nguyen to cua $\varphi(m)$, ta co the de dang kiem tra can nguyen thuy modulo $m$ co ton tai hay khong.
+
+???+ note "Dinh ly"
+    Voi so nguyen $m\ge 3$ va $g\perp m$, $g$ la can nguyen thuy modulo $m$ khi va chi khi voi moi thua so nguyen to $p$ cua $\varphi(m)$, ta deu co
     
     $$
     g^{\frac{\varphi(m)}{p}}\not\equiv 1 \pmod m.
     $$
 
-??? note "证明"
-    必要性显然．为证明充分性，考虑使用反证法．如果 $g$ 不是模 $m$ 的原根，那么一定有 $\delta_m(g)< \varphi(m)$．由 [性质 2](#ord-prop-2) 和欧拉定理可知，$\delta_m(g)\mid\varphi(m)$．由此，设 $p$ 是 $\dfrac{\varphi(m)}{\delta_m(g)}$ 的一个素因子，就有 $\delta_m(g)\mid\dfrac{\varphi(m)}{p}$．再次应用性质 2 就得到
+??? note "Chung minh"
+    Chieu can la hien nhien. De chung minh chieu du, ta dung phan chung. Neu $g$ khong phai la can nguyen thuy modulo $m$, thi chac chan $\delta_m(g)< \varphi(m)$. Theo [Tinh chat 2](#ord-prop-2) va dinh ly Euler, $\delta_m(g)\mid\varphi(m)$. Do do, lay $p$ la mot thua so nguyen to cua $\dfrac{\varphi(m)}{\delta_m(g)}$, ta co $\delta_m(g)\mid\dfrac{\varphi(m)}{p}$. Ap dung lai Tinh chat 2, suy ra
     
     $$
     g^{\frac{\varphi(m)}{p}} \equiv 1 \pmod m.
     $$
     
-    但是，$p$ 也是 $\varphi(m)$ 的一个因子，这就与题设条件矛盾．由此，原命题的充分性成立．
+    Nhung $p$ cung la mot uoc cua $\varphi(m)$, mau thuan voi gia thiet. Vi vay chieu du cua menh de duoc chung minh.
 
-### 原根个数
+<span id="&#x539F;&#x6839;&#x4E2A;&#x6570;"></span>
 
-原根如果存在，也未必唯一．一般地，对于模 $m$ 既约剩余系中所有元素可能的阶和某个阶的元素数量，有如下结论：
+### So luong can nguyen thuy
 
-???+ note "定理"
-    如果正整数 $m$ 有原根 $g$，那么，当且仅当 $d\mid\varphi(m)$ 时，模 $m$ 的 $d$ 阶元素存在，且恰有 $\varphi(d)$ 个．特别地，模 $m$ 的原根个数为 $\varphi(\varphi(m))$．
+Can nguyen thuy neu ton tai thi cung khong nhat thiet duy nhat. Tong quat hon, voi cac bac co the co cua moi phan tu trong he thang du thu gon modulo $m$ va so phan tu co mot bac nao do, ta co ket luan sau:
 
-??? note "证明"
-    根据原根的定义，所有模 $m$ 的既约同余类都可以写作 $g^k\bmod m$ 的形式，且 $k$ 是 $1,2,\cdots,\varphi(m)$ 之一．由 [性质 3](#ord-prop-3)，这些元素的阶等于
+???+ note "Dinh ly"
+    Neu so nguyen duong $m$ co can nguyen thuy $g$, thi phan tu bac $d$ modulo $m$ ton tai khi va chi khi $d\mid\varphi(m)$, va khi ton tai thi co dung $\varphi(d)$ phan tu nhu vay. Dac biet, so can nguyen thuy modulo $m$ bang $\varphi(\varphi(m))$.
+
+??? note "Chung minh"
+    Theo dinh nghia can nguyen thuy, moi lop dong du thu gon modulo $m$ deu co the viet duoi dang $g^k\bmod m$, trong do $k$ la mot trong cac so $1,2,\cdots,\varphi(m)$. Theo [Tinh chat 3](#ord-prop-3), bac cua cac phan tu nay bang
     
     $$
     \delta_m(g^k) = \dfrac{\varphi(m)}{(\varphi(m),k)}.
     $$
     
-    因此，$d$ 阶元素存在，当且仅当 $d\mid\varphi(m)$．而且，对于 $d\mid\varphi(m)$，令 $d'=\varphi(m)/d$，这些元素的集合就是
+    Do do phan tu bac $d$ ton tai khi va chi khi $d\mid\varphi(m)$. Hon nua, voi $d\mid\varphi(m)$, dat $d'=\varphi(m)/d$, tap cac phan tu do la
     
     $$
     \begin{aligned}
@@ -268,58 +280,60 @@ $$
     \end{aligned}
     $$
     
-    这些元素对应的 $k'=k/d'$ 恰为那些不超过 $d$ 且与 $d$ 互素的正整数．由欧拉函数的定义，这就是 $\varphi(d)$．
+    Cac $k'=k/d'$ ung voi nhung phan tu nay chinh la cac so nguyen duong khong vuot qua $d$ va nguyen to cung nhau voi $d$. Theo dinh nghia ham Euler, so luong do la $\varphi(d)$.
 
-### 原根存在定理
+<span id="&#x539F;&#x6839;&#x5B58;&#x5728;&#x5B9A;&#x7406;"></span>
 
-本节将建立如下原根存在定理：
+### Dinh ly ton tai can nguyen thuy
 
-???+ note "定理"
-    模 $m$ 的原根存在，当且仅当 $m=1,2,4,p^e,2p^e$，其中，$p$ 是奇素数且 $e\in\mathbf N_+$．
+Muc nay se thiet lap dinh ly ton tai can nguyen thuy sau:
 
-为说明这一结论，需要分别讨论如下四种情形：
+???+ note "Dinh ly"
+    Can nguyen thuy modulo $m$ ton tai khi va chi khi $m=1,2,4,p^e,2p^e$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
 
-1.  $m=1,2,4$，原根分别是 $g=0,1,3$，显然存在．
+De chung minh ket luan nay, can lan luot xet bon truong hop sau:
 
-2.  $m=p^{e}$ 是奇素数的幂，其中，$p$ 为奇素数，$e\in\mathbf N_+$．
+1.  $m=1,2,4$, cac can nguyen thuy lan luot la $g=0,1,3$, hien nhien ton tai.
 
-    ???+ note "引理 1"
-        对于奇素数 $p$，模 $p$ 的原根存在．
+2.  $m=p^{e}$ la luy thua cua mot so nguyen to le, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
 
-    ??? note "证明"
-        证明分为两步．
+    ???+ note "Bo de 1"
+        Voi so nguyen to le $p$, can nguyen thuy modulo $p$ ton tai.
+
+    ??? note "Chung minh"
+        Chung minh chia thanh hai buoc.
         
-        **第一步**：对于 $d\mid(p-1)$，同余方程 $x^d\equiv 1\pmod p$ 恰有 $d$ 个互不相同的解．
+        **Buoc 1**: Voi $d\mid(p-1)$, phuong trinh dong du $x^d\equiv 1\pmod p$ co dung $d$ nghiem doi mot khac nhau.
         
-        令 $p-1=kd$，多项式
+        Dat $p-1=kd$, xet da thuc
         
         $$
         f(x) = x^{d(k-1)} + x^{d(k-2)} + \cdots + x^d + 1. 
         $$
         
-        根据 [欧拉定理](./fermat.md#欧拉定理)，同余方程 $(x^d-1)f(x)=x^{p-1}-1\equiv 0\pmod{p}$ 恰有 $p-1$ 个互不相同的解．这些解分别是 $x^d-1$ 和 $f(x)$ 的零点．由 [Lagrange 定理](./congruence-equation.md#定理-3lagrange-定理)，它们分别至多只能有 $d$ 个和 $d(k-1)$ 个互不相同的零点．由于 $d+d(k-1)=p-1$，前者只能恰好有 $d$ 个互不相同的零点．这说明同余方程 $x^d\equiv 1\pmod p$ 恰有 $d$ 个互不相同的解．
+        Theo [dinh ly Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), phuong trinh dong du $(x^d-1)f(x)=x^{p-1}-1\equiv 0\pmod{p}$ co dung $p-1$ nghiem doi mot khac nhau. Cac nghiem nay lan luot la nghiem cua $x^d-1$ va $f(x)$. Theo [dinh ly Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86), chung lan luot co nhieu nhat $d$ va $d(k-1)$ nghiem doi mot khac nhau. Vi $d+d(k-1)=p-1$, truong hop dau chi co the co dung $d$ nghiem doi mot khac nhau. Dieu nay chung minh phuong trinh dong du $x^d\equiv 1\pmod p$ co dung $d$ nghiem doi mot khac nhau.
         
-        **第二步**：对于 $d\mid(p-1)$，$d$ 阶元素恰好有 $\varphi(d)$ 个．
+        **Buoc 2**: Voi $d\mid(p-1)$, so phan tu bac $d$ dung bang $\varphi(d)$.
         
-        对于 $\varphi(p)$ 的所有因子排序，然后应用归纳法．因为 $1$ 阶元素只能是 $1$，只有一个，归纳起点成立．对于 $d\mid(p-1)$，根据前文的 [性质 2](#ord-prop-2)，同余方程 $x^d\equiv 1\pmod p$ 的解一定满足 $\delta_p(x)\mid d$．因此，其中 $d$ 阶元素个数为
+        Sap xep tat ca cac uoc cua $\varphi(p)$, roi dung quy nap. Vi phan tu bac $1$ chi co the la $1$, nen co dung mot phan tu va co so quy nap dung. Voi $d\mid(p-1)$, theo [Tinh chat 2](#ord-prop-2) o tren, moi nghiem cua phuong trinh dong du $x^d\equiv 1\pmod p$ deu thoa man $\delta_p(x)\mid d$. Do do, so phan tu bac $d$ trong do la
         
         $$
         N(d) = d - \sum_{e\mid d,~e\neq d} N(e) =  d - \sum_{e\mid d,~e\neq d} \varphi(e) = \varphi(d).
         $$
         
-        第二个等号是归纳假设，第三个等号是欧拉函数的性质．由数学归纳法，就知道对于所有 $d\mid(p-1)$，都恰有 $\varphi(d)$ 个 $d$ 阶元素．
+        Dau bang thu hai dung theo gia thiet quy nap, dau bang thu ba la tinh chat cua ham Euler. Theo quy nap toan hoc, voi moi $d\mid(p-1)$ deu co dung $\varphi(d)$ phan tu bac $d$.
         
-        特别地，对于 $d=p-1$，恰有 $\varphi(p-1)$ 个 $(p-1)$ 阶元素．因此，模 $p$ 的原根存在．
+        Dac biet, voi $d=p-1$, co dung $\varphi(p-1)$ phan tu bac $(p-1)$. Vi vay can nguyen thuy modulo $p$ ton tai.
 
-    ???+ note "引理 2"
-        对于奇素数 $p$ 和 $e \in \mathbf{N}_+$，模 $p^e$ 的原根存在．
+    ???+ note "Bo de 2"
+        Voi so nguyen to le $p$ va $e \in \mathbf{N}_+$, can nguyen thuy modulo $p^e$ ton tai.
 
-    ??? note "证明"
-        证明分为三步．
+    ??? note "Chung minh"
+        Chung minh chia thanh ba buoc.
         
-        **第一步**：存在模 $p$ 的原根 $g$，使得 $g^{p-1}\not\equiv 1\pmod{p^2}$．
+        **Buoc 1**: Ton tai can nguyen thuy $g$ modulo $p$ sao cho $g^{p-1}\not\equiv 1\pmod{p^2}$.
         
-        任取一个模 $p$ 的原根 $g$．如果它不符合条件，即 $g^{p-1}\equiv 1\pmod{p^2}$，那么，可以证明 $g+p$ 符合条件：$g+p$ 也是模 $p$ 的原根，且
+        Lay tuy y mot can nguyen thuy $g$ modulo $p$. Neu no khong thoa man dieu kien, tuc la $g^{p-1}\equiv 1\pmod{p^2}$, thi co the chung minh $g+p$ thoa man dieu kien: $g+p$ cung la can nguyen thuy modulo $p$, va
         
         $$
         \begin{aligned}
@@ -329,43 +343,43 @@ $$
         \end{aligned}
         $$
         
-        **第二步**：上文选取的 $g$，对于任意 $e\ge 1$，都有 $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$．
+        **Buoc 2**: Voi $g$ da chon o tren, voi moi $e\ge 1$ deu co $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$.
         
-        对 $g$ 的选取保证了 $e=1$ 时，该式成立．假设该式对于 $e$ 的情形成立，现要证明 $e+1$ 的情形也成立．对于任意 $e \ge 1$，由欧拉定理可知，存在 $\lambda$ 使得
+        Cach chon $g$ bao dam bieu thuc nay dung khi $e=1$. Gia su bieu thuc dung voi truong hop $e$, ta chung minh no cung dung voi truong hop $e+1$. Voi moi $e \ge 1$, theo dinh ly Euler ton tai $\lambda$ sao cho
         
         $$
         g^{\varphi(p^e)} = 1 + \lambda p^e
         $$
         
-        成立．由归纳假设，$\lambda\perp p$．因为 $\varphi(p^{e+1})=p\varphi(p^e)$，所以
+        dung. Theo gia thiet quy nap, $\lambda\perp p$. Vi $\varphi(p^{e+1})=p\varphi(p^e)$, nen
         
         $$
         g^{\varphi(p^{e+1})} = \left(g^{\varphi(p^{e})}\right)^p = (1 + \lambda p^e)^p \equiv 1 + \lambda p^{e+1} \pmod{p^{e+2}}.
         $$
         
-        结合 $\lambda\perp p$ 可知，$g^{\varphi(p^{e+1})}\not\equiv 1\pmod{p^{e+2}}$．由数学归纳法可知，命题成立．
+        Ket hop voi $\lambda\perp p$, ta duoc $g^{\varphi(p^{e+1})}\not\equiv 1\pmod{p^{e+2}}$. Theo quy nap toan hoc, menh de dung.
         
-        **第三步**：上文选取的 $g$，对于任意 $e\ge 1$，都是模 $p^e$ 的原根．
+        **Buoc 3**: Voi $g$ da chon o tren, voi moi $e\ge 1$, $g$ deu la can nguyen thuy modulo $p^e$.
         
-        对 $g$ 的选取保证了 $e=1$ 时，命题成立．假设命题对于 $e$ 成立，现在要证明命题对于 $e+1$ 也成立．将 $\delta_{p^{e+1}}(g)$ 简记为 $\delta$．由于 $g^\delta\equiv 1\pmod{p^{e+1}}$，必然也有 $g^\delta\equiv 1\pmod{p^e}$．由归纳假设可知，$\delta_{p^e}(g) = \varphi(p^e)$．因此，由前文阶的 [性质 2](#ord-prop-2)，就有 $\varphi(p^e)\mid\delta$．又由欧拉定理可知，$\delta\mid\varphi(p^{e+1})$．但是，$\varphi(p^{e+1})=p\varphi(p^e)$．因此，只有两种可能：$\delta=\varphi(p^e)$ 或 $\delta=\varphi(p^{e+1})$．但是，第二步的结论说明，$g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$．因此，可能性 $\delta=\varphi(p^e)$ 并不成立．唯一的可能性就是 $\delta=\varphi(p^{e+1})$．这就说明 $g$ 是 $p^{e+1}$ 的原根．由数学归纳法，命题对于所有 $e\ge 1$ 都成立．
+        Cach chon $g$ bao dam menh de dung khi $e=1$. Gia su menh de dung voi $e$, ta chung minh no dung voi $e+1$. Viet gon $\delta_{p^{e+1}}(g)$ la $\delta$. Vi $g^\delta\equiv 1\pmod{p^{e+1}}$, tat yeu cung co $g^\delta\equiv 1\pmod{p^e}$. Theo gia thiet quy nap, $\delta_{p^e}(g) = \varphi(p^e)$. Do do, theo [Tinh chat 2](#ord-prop-2) ve bac o tren, $\varphi(p^e)\mid\delta$. Lai theo dinh ly Euler, $\delta\mid\varphi(p^{e+1})$. Nhung $\varphi(p^{e+1})=p\varphi(p^e)$. Vi vay chi co hai kha nang: $\delta=\varphi(p^e)$ hoac $\delta=\varphi(p^{e+1})$. Tuy nhien, ket luan o buoc 2 cho thay $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$. Do do kha nang $\delta=\varphi(p^e)$ khong dung. Kha nang duy nhat la $\delta=\varphi(p^{e+1})$. Dieu nay chung minh $g$ la can nguyen thuy modulo $p^{e+1}$. Theo quy nap toan hoc, menh de dung voi moi $e\ge 1$.
 
-3.  $m=2p^{e}$，其中，$p$ 为奇素数，$e\in\mathbf N_+$．
+3.  $m=2p^{e}$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
 
-    ???+ note "引理 3"
-        对于奇素数 $p$ 和 $e \in \mathbf{N}_+$，模 $2p^e$ 的原根存在．
+    ???+ note "Bo de 3"
+        Voi so nguyen to le $p$ va $e \in \mathbf{N}_+$, can nguyen thuy modulo $2p^e$ ton tai.
 
-    ??? note "证明"
-        设 $g$ 是模 $p^{e}$ 的原根，则 $g+p^e$ 也是模 $p^{e}$ 的原根．两者之间必然有一个是奇数，不妨设它就是 $g$．显然，$(g,2p^e)=1$．设 $\delta=\delta_{2p^e}(g)$，需要证明 $\delta=\varphi(2p^e)$．由欧拉定理，$\delta\mid\varphi(2p^e)$．同时，根据定义 $g^\delta\equiv 1\pmod{2p^e}$，所以，$g^\delta\equiv 1\pmod{p^e}$，因此，由阶的 [性质 2](#ord-prop-2) 和 $g$ 的选取可知，$\delta_{p^e}(g)=\varphi(p^e)\mid \delta$．由欧拉函数表达式可知，$\varphi(2p^e) = \varphi(p^e)$．所以，$\delta=\delta_{2p^e}(g)=\varphi(p^e)$．这就说明 $\delta$ 是模 $2p^e$ 的原根．
+    ??? note "Chung minh"
+        Gia su $g$ la can nguyen thuy modulo $p^{e}$, khi do $g+p^e$ cung la can nguyen thuy modulo $p^{e}$. Trong hai so nay chac chan co mot so le; khong mat tinh tong quat, gia su do la $g$. Hien nhien $(g,2p^e)=1$. Dat $\delta=\delta_{2p^e}(g)$, can chung minh $\delta=\varphi(2p^e)$. Theo dinh ly Euler, $\delta\mid\varphi(2p^e)$. Dong thoi, theo dinh nghia $g^\delta\equiv 1\pmod{2p^e}$, nen $g^\delta\equiv 1\pmod{p^e}$. Do do, theo [Tinh chat 2](#ord-prop-2) ve bac va cach chon $g$, ta co $\delta_{p^e}(g)=\varphi(p^e)\mid \delta$. Theo cong thuc ham Euler, $\varphi(2p^e) = \varphi(p^e)$. Vi vay $\delta=\delta_{2p^e}(g)=\varphi(p^e)$. Dieu nay chung minh $g$ la can nguyen thuy modulo $2p^e$.
 
-4.  $m\ne 1,2,4,p^{e},2p^{e}$，其中，$p$ 为奇素数，$e\in\mathbf N_+$．
+4.  $m\ne 1,2,4,p^{e},2p^{e}$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
 
     <a id="prim-root-lem-4"></a>
 
-    ???+ note "引理 4"
-        假设 $m\neq 1,2,4$ 且不存在奇素数 $p$ 和正整数 $e$ 使得 $m=p^e$ 或 $m=2p^e$．那么，模 $m$ 的原根不存在．
+    ???+ note "Bo de 4"
+        Gia su $m\neq 1,2,4$ va khong ton tai so nguyen to le $p$ cung so nguyen duong $e$ sao cho $m=p^e$ hoac $m=2p^e$. Khi do can nguyen thuy modulo $m$ khong ton tai.
 
-    ??? note "证明"
-        对于 $m=2^e$ 且 $e\ge 3$，假设模 $m$ 的原根 $g$ 存在．由于 $g\perp m$，它一定是奇数．假设 $g=2k+1$ 且 $k\in\mathbf N$，那么，有
+    ??? note "Chung minh"
+        Voi $m=2^e$ va $e\ge 3$, gia su can nguyen thuy $g$ modulo $m$ ton tai. Vi $g\perp m$, no phai la so le. Gia su $g=2k+1$ voi $k\in\mathbf N$, khi do
         
         $$
         \begin{aligned}
@@ -378,147 +392,153 @@ $$
         \end{aligned}
         $$
         
-        倒数第二行中，因为 $k$ 与 $(2^{e-2}-1)k^2$ 奇偶性相同，所以它们的和是偶数．由阶的定义可知，$\delta_{2^{e}}(g)\le 2^{e-2}< \varphi(2^{e}) = 2^{e-1}$．这与假设中 $g$ 是原根矛盾．由反证法，这样的原根并不存在．
+        O dong gan cuoi, vi $k$ va $(2^{e-2}-1)k^2$ co cung tinh chan le, tong cua chung la so chan. Theo dinh nghia bac, $\delta_{2^{e}}(g)\le 2^{e-2}< \varphi(2^{e}) = 2^{e-1}$. Dieu nay mau thuan voi gia thiet $g$ la can nguyen thuy. Theo phan chung, can nguyen thuy nhu vay khong ton tai.
         
-        假设 $m$ 满足所述条件，且不是 $2$ 的幂，那么，一定存在 $2 < m_1 < m_2$ 且 $m_1\perp m_2$ 使得 $m=m_1m_2$ 成立．假设模 $m$ 的原根 $g$ 存在．因为 $g\perp m$，所以对于 $i=1,2$，都有 $g\perp m_i$．由欧拉定理可知，
+        Gia su $m$ thoa man cac dieu kien da neu va khong phai luy thua cua $2$. Khi do chac chan ton tai $2 < m_1 < m_2$ va $m_1\perp m_2$ sao cho $m=m_1m_2$. Gia su can nguyen thuy $g$ modulo $m$ ton tai. Vi $g\perp m$, nen voi $i=1,2$ deu co $g\perp m_i$. Theo dinh ly Euler,
         
         $$
         g^{\varphi(m_i)} \equiv 1 \pmod{m_i}.
         $$
         
-        由于 $m_i > 2$，所以 $\varphi(m_i)$ 为偶数，所以，对于 $i=1,2$，有
+        Vi $m_i > 2$, $\varphi(m_i)$ la so chan, nen voi $i=1,2$ ta co
         
         $$
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m_i}.
         $$
         
-        由 [中国剩余定理](./crt.md) 可知
+        Theo [dinh ly thang du Trung Hoa](./crt.md), suy ra
         
         $$
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m}.
         $$
         
-        又因为 $\varphi(m)=\varphi(m_1)\varphi(m_2)$，所以由阶的定义可知
+        Lai vi $\varphi(m)=\varphi(m_1)\varphi(m_2)$, theo dinh nghia bac ta co
         
         $$
         \delta_m(g) \le \frac{1}{2}\varphi(m_1)\varphi(m_2) = \dfrac{1}{2}\varphi(m) < \varphi(m).
         $$
         
-        这与 $g$ 是模 $m$ 的原根的假设矛盾．故而，由反证法知，模 $m$ 的原根不存在．
+        Dieu nay mau thuan voi gia thiet $g$ la can nguyen thuy modulo $m$. Vi vay, theo phan chung, can nguyen thuy modulo $m$ khong ton tai.
 
-综合以上四个引理，我们便给出了一个数存在原根的充要条件．
+Tong hop bon bo de tren, ta da dua ra dieu kien can va du de mot so co can nguyen thuy.
 
-### 求原根的算法
+<span id="&#x6C42;&#x539F;&#x6839;&#x7684;&#x7B97;&#x6CD5;"></span>
 
-对于任何存在原根的模数 $m$，要求得它的原根 $g$，只需要枚举可能的正整数，并逐个判断它是否为原根即可．枚举时，通常有两种处理方式：从小到大逐一枚举、随机生成一些正整数．这两种枚举方式的实际效率相当．
+### Thuat toan tim can nguyen thuy
 
-从小到大逐一枚举时，得到的是模 $m$ 的最小原根 $g_m$，因此，枚举部分的复杂度取决于 $g_m$ 的大小．对此，有如下估计：
+Voi bat ky modulo $m$ nao co can nguyen thuy, de tim mot can nguyen thuy $g$, chi can liet ke cac so nguyen duong co the va lan luot kiem tra chung co phai can nguyen thuy hay khong. Khi liet ke, thuong co hai cach xu ly: liet ke tu nho den lon, hoac sinh ngau nhien mot so so nguyen duong. Hieu qua thuc te cua hai cach nay tuong duong nhau.
 
--   上界的估计：王元[^yuan1959note]和 Burgess[^burgess1962character]证明了素数 $p$ 的最小原根 $g_p=O\left(p^{0.25+\epsilon}\right)$，其中 $\epsilon>0$．Cohen, Odoni, and Stothers[^cohen1974least]和 Elliott and Murata[^elliott1998least]分别证明了该估计对于模数 $p^2$ 和 $2p^2$ 也成立，其中，$p$ 是奇素数．由于对于 $e>2$，模 $p^2$（或 $2p^2$）的原根也是模 $p^e$（或 $2p^e$）的原根，所以，最小原根的上界 $O\left(p^{0.25+\epsilon}\right)$ 对于所有情形都成立．
--   下界的估计：Fridlander[^fridlender1949least]和 Salié[^salie1949kleinsten]证明了存在 $C>0$，使得对于无穷多素数 $p$，都有最小原根 $g_p > C\log p$ 成立．
--   平均情形的估计：Burgess and Elliott[^burgess1968average]证明了平均情形下素数 $p$ 的最小原根 $g_p=O((\log p)^2(\log\log p)^4)$．Elliott and Murata[^elliott1997average]进一步猜想素数 $p$ 的最小原根的平均值是一个常数，且通过数值验证[^more-evidence]得到它大概为 $4.926$．随后，Elliott and Murata[^elliott1998least]将这一猜想推广到模 $2p^2$ 的情形．
+Khi liet ke tu nho den lon, ta thu duoc can nguyen thuy nho nhat $g_m$ modulo $m$; do do do phuc tap cua phan liet ke phu thuoc vao kich thuoc cua $g_m$. Ve diem nay, co cac uoc luong sau:
 
-根据这些分析，暴力寻找最小原根时，枚举部分的复杂度 $O(g_m(\log m)^2)$ 是可以接受的．
+-   Uoc luong can tren: Wang Yuan[^yuan1959note] va Burgess[^burgess1962character] chung minh rang can nguyen thuy nho nhat cua so nguyen to $p$ thoa man $g_p=O\left(p^{0.25+\epsilon}\right)$, trong do $\epsilon>0$. Cohen, Odoni, and Stothers[^cohen1974least] va Elliott and Murata[^elliott1998least] lan luot chung minh uoc luong nay cung dung cho modulo $p^2$ va $2p^2$, trong do $p$ la so nguyen to le. Vi voi $e>2$, can nguyen thuy modulo $p^2$ (hoac $2p^2$) cung la can nguyen thuy modulo $p^e$ (hoac $2p^e$), nen can tren $O\left(p^{0.25+\epsilon}\right)$ cua can nguyen thuy nho nhat dung cho moi truong hop.
+-   Uoc luong can duoi: Fridlander[^fridlender1949least] va Salie[^salie1949kleinsten] chung minh rang ton tai $C>0$ sao cho voi vo han so nguyen to $p$, can nguyen thuy nho nhat thoa man $g_p > C\log p$.
+-   Uoc luong trong truong hop trung binh: Burgess and Elliott[^burgess1968average] chung minh rang trong truong hop trung binh, can nguyen thuy nho nhat cua so nguyen to $p$ thoa man $g_p=O((\log p)^2(\log\log p)^4)$. Elliott and Murata[^elliott1997average] tiep tuc du doan gia tri trung binh cua can nguyen thuy nho nhat cua so nguyen to $p$ la mot hang so, va qua kiem chung so[^more-evidence] thu duoc gia tri xap xi $4.926$. Sau do, Elliott and Murata[^elliott1998least] mo rong du doan nay sang truong hop modulo $2p^2$.
 
-除了从小到大枚举外，还可以通过随机生成正整数并验证的方法寻找原根．原根的密度并不低：[^density-prim-root]
+Theo cac phan tich nay, khi tim can nguyen thuy nho nhat bang vét can, do phuc tap $O(g_m(\log m)^2)$ cua phan liet ke la chap nhan duoc.
+
+Ngoai viec liet ke tu nho den lon, ta con co the tim can nguyen thuy bang cach sinh ngau nhien cac so nguyen duong roi kiem tra. Mat do can nguyen thuy khong thap:[^density-prim-root]
 
 $$
 \dfrac{\varphi(\varphi(m))}{m} = \Omega\left(\dfrac{1}{\log\log m}\right).
 $$
 
-所以，通过随机方法寻找原根时，枚举部分的期望复杂度为 $O((\log m)^2\log\log m)$．
+Vi vay, khi tim can nguyen thuy bang phuong phap ngau nhien, do phuc tap ky vong cua phan liet ke la $O((\log m)^2\log\log m)$.
 
-需要注意的是，判定原根时需要已知 $\varphi(m)$ 的质因数分解．算法竞赛 [常用质因数分解算法](./pollard-rho.md) 中，复杂度最优的 Pollard Rho 算法也需要 $O(m^{1/4+\varepsilon})$ 的时间．因此，只要 $\varphi(m)$ 的质因数分解是未知的，无论采用哪种枚举方式，求原根的复杂度瓶颈都在于质因数分解这一步，而非枚举验证的部分．
+Can luu y rang khi kiem tra can nguyen thuy, ta can biet phan tich thua so nguyen to cua $\varphi(m)$. Trong cac [thuat toan phan tich thua so nguyen to thuong dung](./pollard-rho.md) trong lap trinh thi dau, thuat toan Pollard Rho co do phuc tap toi uu cung can thoi gian $O(m^{1/4+\varepsilon})$. Vi vay, chi can phan tich thua so nguyen to cua $\varphi(m)$ chua biet, bat ke dung cach liet ke nao, nut that do phuc tap cua viec tim can nguyen thuy nam o buoc phan tich thua so nguyen to, chu khong phai phan liet ke va kiem tra.
 
-## Carmichael 函数
+<span id="carmichael-&#x51FD;&#x6570;"></span>
 
-相对于模 $m$ 元素的阶这一局部概念，Carmichael 函数是一个全局概念．它是所有与 $m$ 互素的整数的幂次的最小公共循环节．
+## Ham Carmichael
 
-???+ abstract "Carmichael 函数"
-    对于 $m\in\mathbf N_+$，定义 $\lambda(m)$ 为能够使得同余关系 $a^n\equiv 1\pmod m$ 对于所有 $a\perp m$ 都成立的最小正整数 $n$．函数 $\lambda:\mathbf N_+\to\mathbf N_+$ 就称为 **Carmichael 函数**．
+So voi khai niem cuc bo la bac cua mot phan tu modulo $m$, ham Carmichael la mot khai niem toan cuc. No la chu ky chung nho nhat cua luy thua cua tat ca cac so nguyen nguyen to cung nhau voi $m$.
 
-根据 [性质 2](#ord-prop-2)，能够使得 $a^n\equiv 1\pmod m$ 对于所有 $a\perp m$ 都成立，意味着 $\delta_m(a)\mid n$ 对于所有 $a\perp m$ 都成立．也就是说，符合这一条件的正整数 $n$，一定是全体 $\delta_m(a)$ 的公倍数．因此，最小的这样的 $n$ 就是它们的最小公倍数：
+???+ abstract "Ham Carmichael"
+    Voi $m\in\mathbf N_+$, dinh nghia $\lambda(m)$ la so nguyen duong nho nhat $n$ sao cho dong du $a^n\equiv 1\pmod m$ dung voi moi $a\perp m$. Ham $\lambda:\mathbf N_+\to\mathbf N_+$ duoc goi la **ham Carmichael**.
+
+Theo [Tinh chat 2](#ord-prop-2), viec $a^n\equiv 1\pmod m$ dung voi moi $a\perp m$ co nghia la $\delta_m(a)\mid n$ voi moi $a\perp m$. Noi cach khac, so nguyen duong $n$ thoa man dieu kien nay nhat dinh la boi chung cua tat ca cac $\delta_m(a)$. Do do, so $n$ nho nhat nhu vay chinh la boi chung nho nhat cua chung:
 
 $$
 \lambda(m) = \operatorname{lcm}\{\delta_m(a) : a\perp m\}.
 $$
 
-这也常用作 Carmichael 函数的等价定义．
+Day cung thuong duoc dung lam dinh nghia tuong duong cua ham Carmichael.
 
-反复应用 [性质 5](#ord-prop-5) 可知，一定存在某个元素 $a\perp m$ 使得 $\delta_m(a)=\lambda(m)$．因此，上式也可以写作
+Ap dung lap lai [Tinh chat 5](#ord-prop-5), ta biet chac chan ton tai mot phan tu $a\perp m$ sao cho $\delta_m(a)=\lambda(m)$. Do do cong thuc tren cung co the viet thanh
 
 $$
 \lambda(m) = \max\{\delta_m(a) : a\perp m\}.
 $$
 
-取得这一最值的元素 $a\perp m$ 也称为模 $m$ 的 **$\lambda$‑原根**．它对于所有模数 $m$ 都存在．
+Phan tu $a\perp m$ dat gia tri lon nhat nay cung duoc goi la **$\lambda$-can nguyen thuy** modulo $m$. No ton tai voi moi modulo $m$.
 
-### 递推公式
+<span id="&#x9012;&#x63A8;&#x516C;&#x5F0F;"></span>
 
-Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨论它的一个递推公式，并由此给出原根存在定理的另一个证明．
+### Cong thuc truy hoi
 
-虽然不是积性函数，但是计算 Carmichael 函数时，同样可以对互素的因子分别处理．
+Ham Carmichael la mot [ham so hoc](./basic.md#%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0). Muc nay thao luan mot cong thuc truy hoi cua no, tu do dua ra mot chung minh khac cho dinh ly ton tai can nguyen thuy.
 
-???+ note "引理"
-    对于互素的正整数 $m_1,m_2$，有 $\lambda(m_1m_2)=[\lambda(m_1),\lambda(m_2)]$．
+Tuy khong phai ham nhan tinh, khi tinh ham Carmichael ta van co the xu ly rieng cac thua so nguyen to cung nhau.
 
-??? note "证明"
-    设 $a_1$ 和 $a_2$ 分别为模 $m_1$ 和模 $m_2$ 的 $\lambda$‑原根．令 $m=m_1m_2$，由 [中国剩余定理](./crt.md) 可知，存在 $a\perp m$ 使得 $a\equiv a_i\pmod{m_i}$ 对于 $i=1,2$ 都成立．由于 $a^{\lambda(m)}\equiv 1\pmod m$，所以对于 $i=1,2$，都有 $a_i^{\lambda(m)} \equiv 1\pmod{m_i}$，进而由 [性质 2](#ord-prop-2) 和 $a_i$ 的选取可知，$\lambda(m_i)=\delta_{m_i}(a_i)\mid \lambda(m)$．这就说明 $[\lambda(m_1),\lambda(m_2)]\mid\lambda(m)$．
+???+ note "Bo de"
+    Voi hai so nguyen duong nguyen to cung nhau $m_1,m_2$, ta co $\lambda(m_1m_2)=[\lambda(m_1),\lambda(m_2)]$.
+
+??? note "Chung minh"
+    Gia su $a_1$ va $a_2$ lan luot la $\lambda$-can nguyen thuy modulo $m_1$ va modulo $m_2$. Dat $m=m_1m_2$. Theo [dinh ly thang du Trung Hoa](./crt.md), ton tai $a\perp m$ sao cho $a\equiv a_i\pmod{m_i}$ voi $i=1,2$. Vi $a^{\lambda(m)}\equiv 1\pmod m$, nen voi $i=1,2$ deu co $a_i^{\lambda(m)} \equiv 1\pmod{m_i}$. Tu do theo [Tinh chat 2](#ord-prop-2) va cach chon $a_i$, ta co $\lambda(m_i)=\delta_{m_i}(a_i)\mid \lambda(m)$. Dieu nay chung minh $[\lambda(m_1),\lambda(m_2)]\mid\lambda(m)$.
     
-    反过来，对于任意 $a\perp m$ 和 $i=1,2$，都有 $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m_i}$．应用中国剩余定理，就得到 $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m}$ 对于所有 $a\perp m$ 都成立．根据 Carmichael 函数的定义可知，$\lambda(m)\mid [\lambda(m_1),\lambda(m_2)]$．
+    Nguoc lai, voi moi $a\perp m$ va $i=1,2$, ta deu co $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m_i}$. Ap dung dinh ly thang du Trung Hoa, ta duoc $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m}$ voi moi $a\perp m$. Theo dinh nghia ham Carmichael, $\lambda(m)\mid [\lambda(m_1),\lambda(m_2)]$.
     
-    由此，命题中的等式成立．
+    Do do dang bang trong menh de dung.
 
-因此，接下来只要计算 Carmichael 函数在素数幂处的取值．首先，处理 $2$ 的幂次的情形．
+Vi vay, tiep theo chi can tinh gia tri cua ham Carmichael tai cac luy thua nguyen to. Truoc het, xu ly truong hop luy thua cua $2$.
 
-???+ note "引理"
-    对于 $m=2^e$ 且 $e\in\mathbf N_+$，有 $\lambda(2)=1$，$\lambda(4)=2$，且对于 $e\ge 3$ 都有 $\lambda(m)=2^{e-2}$．
+???+ note "Bo de"
+    Voi $m=2^e$ va $e\in\mathbf N_+$, ta co $\lambda(2)=1$, $\lambda(4)=2$, va voi moi $e\ge 3$ deu co $\lambda(m)=2^{e-2}$.
 
-??? note "证明"
-    对于 $m=2,4$ 的情形，单独讨论即可．对于 $m=2^e$ 且 $e\ge 3$ 的情形，首先重复前文 [引理 4](#prim-root-lem-4) 的证明的第一部分，就得到 $\lambda(m)\le 2^{e-2}$．进而，只需要证明存在 $2^{e-2}$ 阶元素即可．为此，有
+??? note "Chung minh"
+    Truong hop $m=2,4$ co the xet rieng. Voi $m=2^e$ va $e\ge 3$, truoc het lap lai phan dau trong chung minh [Bo de 4](#prim-root-lem-4) o tren, ta duoc $\lambda(m)\le 2^{e-2}$. Tiep theo, chi can chung minh ton tai phan tu bac $2^{e-2}$. De lam viec nay, co
     
     $$
     5^{2^{e-3}} = (1 + 2^2)^{2^{e-3}} = 1 + 2^2\times 2^{e-3} = 1 + 2^{e-1} \not\equiv 1 \pmod{2^e}.
     $$
     
-    这说明 $\delta_m(5)\nmid 2^{e-3}$，又因为 $\delta_m(5) \mid 2^{e-2}$，所以，$5$ 只能是 $2^{e-2}$ 阶元素．这就说明，$\lambda(m)=2^{e-2}$．
+    Dieu nay cho thay $\delta_m(5)\nmid 2^{e-3}$, lai vi $\delta_m(5) \mid 2^{e-2}$, nen $5$ chi co the la phan tu bac $2^{e-2}$. Do do $\lambda(m)=2^{e-2}$.
 
-在这个引理的证明过程中，实际上得到了关于模 $2^e$ 既约剩余系结构的刻画：
+Trong qua trinh chung minh bo de nay, thuc ra ta da thu duoc mo ta ve cau truc cua he thang du thu gon modulo $2^e$:
 
 <a id="mod-pow-2"></a>
 
-???+ note "推论"
-    设模数为 $2^e$ 且 $e \ge 2$．那么，所有奇数都同余于唯一一个 $\pm 5^k$ 形式的整数同余，其中，$k\in\mathbf N$ 且 $k < 2^{e-2}$．也就是说，$\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 两两不同余，且构成一个既约剩余系．
+???+ note "He qua"
+    Gia su modulo la $2^e$ va $e \ge 2$. Khi do moi so le deu dong du voi dung mot so nguyen co dang $\pm 5^k$, trong do $k\in\mathbf N$ va $k < 2^{e-2}$. Noi cach khac, $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ doi mot khong dong du, va tao thanh mot he thang du thu gon.
 
-??? note "证明"
-    容易验证，$e=2$ 的情形成立．对于 $e \ge 3$ 的情形，由于前述证明中已经得到 $5$ 模 $2^e$ 的阶是 $2^{e-2}$，所以，$1,5,\cdots,5^{2^{e-2}-1}$ 两两不同余．因为这些整数都模 $4$ 余 $1$，它们的相反数都模 $4$ 余 $3$，所以 $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 模 $2^e$ 两两不同余．由于它们共计 $2^{e-1}$ 个，恰为模 $2^{e}$ 的既约剩余系的大小，所以，它们就构成了既约剩余系本身．
+??? note "Chung minh"
+    De dang kiem tra truong hop $e=2$ dung. Voi $e \ge 3$, trong chung minh o tren ta da co bac cua $5$ modulo $2^e$ la $2^{e-2}$, nen $1,5,\cdots,5^{2^{e-2}-1}$ doi mot khong dong du. Vi cac so nguyen nay deu du $1$ modulo $4$, con cac so doi cua chung deu du $3$ modulo $4$, nen $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ doi mot khong dong du modulo $2^e$. Vi tong cong co $2^{e-1}$ so, dung bang kich thuoc cua he thang du thu gon modulo $2^{e}$, chung tao thanh chinh he thang du thu gon.
 
-然后，处理奇素数幂的情形．
+Sau do, xu ly truong hop luy thua cua so nguyen to le.
 
-???+ note "引理"
-    对于 $m=p^e$，其中，$p$ 是奇素数且 $e\in\mathbf N_+$，有 $\lambda(m)=p^{e-1}(p-1)$．
+???+ note "Bo de"
+    Voi $m=p^e$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$, ta co $\lambda(m)=p^{e-1}(p-1)$.
 
-??? note "证明"
-    首先证明命题对于 $e=1$，即 $m=p$ 是奇素数的情形成立．为此，由 Carmichael 函数的定义可知，与 $p$ 互素的所有整数 $a$ 都是同余方程 $x^{\lambda(p)}\equiv 1\pmod{p}$ 的解．在模 $p$ 的意义下，该方程共有 $p-1$ 个互不相同的解．根据 [Lagrange 定理](./congruence-equation.md#定理-3lagrange-定理) 可知，$p-1\le\lambda(p)$．同时，欧拉定理要求，$\lambda(p)\mid\varphi(p)=p-1$．因此，$\lambda(p)=p-1$．
+??? note "Chung minh"
+    Truoc het chung minh menh de dung voi $e=1$, tuc $m=p$ la so nguyen to le. Theo dinh nghia ham Carmichael, moi so nguyen $a$ nguyen to cung nhau voi $p$ deu la nghiem cua phuong trinh dong du $x^{\lambda(p)}\equiv 1\pmod{p}$. Theo nghia modulo $p$, phuong trinh nay co tong cong $p-1$ nghiem doi mot khac nhau. Theo [dinh ly Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86), ta co $p-1\le\lambda(p)$. Dong thoi, dinh ly Euler yeu cau $\lambda(p)\mid\varphi(p)=p-1$. Do do $\lambda(p)=p-1$.
     
-    对于 $m=p^e$ 且 $e> 1$ 的情形，可以从证明 $1+p$ 是 $p^{e-1}$ 阶元开始．为此，有
+    Voi $m=p^e$ va $e> 1$, co the bat dau bang viec chung minh $1+p$ la phan tu bac $p^{e-1}$. Thuc vay,
     
     $$
     (1+p)^{p^{e-1}} \equiv 1,\quad (1+p)^{p^{e-2}} \equiv 1 + p^{e-1} \not\equiv 1 \pmod{p^e}.
     $$
     
-    所以，$\delta_m(1+p)=p^{e-1}$．另外，设模 $p$ 的原根为 $g$，那么，由于 $g^{\delta_m(g)}\equiv 1 \pmod{p}$，所以，由阶的 [性质 2](#ord-prop-2) 可知，$p-1\mid\delta_m(p)$．由 Carmichael 函数的定义和欧拉定理可知
+    Nen $\delta_m(1+p)=p^{e-1}$. Ngoai ra, gia su $g$ la can nguyen thuy modulo $p$. Khi do, vi $g^{\delta_m(g)}\equiv 1 \pmod{p}$, theo [Tinh chat 2](#ord-prop-2) ve bac, ta co $p-1\mid\delta_m(g)$. Theo dinh nghia ham Carmichael va dinh ly Euler,
     
     $$
-    p^{e-1}(p-1) = [\delta_m(p),p^{e-1}]\mid\lambda(m) \mid \varphi(m) = p^{e-1}(p-1).
+    p^{e-1}(p-1) = [\delta_m(g),p^{e-1}]\mid\lambda(m) \mid \varphi(m) = p^{e-1}(p-1).
     $$
     
-    因此，$\lambda(m)=p^{e-1}(p-1)$．
+    Do do $\lambda(m)=p^{e-1}(p-1)$.
 
-将本节的结果简单归纳，就得到 Carmichael 函数的递推公式：
+Tom tat cac ket qua cua muc nay, ta thu duoc cong thuc truy hoi cua ham Carmichael:
 
-???+ note "定理"
-    对于任意正整数 $m$，有
+???+ note "Dinh ly"
+    Voi moi so nguyen duong $m$, ta co
     
     $$
     \lambda(m) = \begin{cases}
@@ -528,54 +548,58 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
     \end{cases}
     $$
 
-利用该递推公式可以加强前文的结果：
+Dung cong thuc truy hoi nay co the lam manh ket qua phia tren:
 
-???+ note "推论"
-    对于正整数 $m_1,m_2$，有 $\lambda([m_1,m_2])=[\lambda(m_1),\lambda(m_2)]$．
+???+ note "He qua"
+    Voi cac so nguyen duong $m_1,m_2$, ta co $\lambda([m_1,m_2])=[\lambda(m_1),\lambda(m_2)]$.
 
-比较原根和 Carmichael 函数的定义可知，模 $m$ 的原根存在，当且仅当 $\lambda(m)=\varphi(m)$．从 Carmichael 函数的递推公式中，容易归纳出如下结果：
+So sanh dinh nghia can nguyen thuy va ham Carmichael, ta thay can nguyen thuy modulo $m$ ton tai khi va chi khi $\lambda(m)=\varphi(m)$. Tu cong thuc truy hoi cua ham Carmichael, de dang quy nap ra ket qua sau:
 
-???+ note "推论"
-    模 $m$ 的原根存在，当且仅当 $m=1,2,4,p^e,2p^e$，其中，$p$ 是奇素数且 $e\in\mathbf N_+$．
+???+ note "He qua"
+    Can nguyen thuy modulo $m$ ton tai khi va chi khi $m=1,2,4,p^e,2p^e$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
 
-由于本节对于递推公式的证明并没有用到原根存在定理，因此，这就构成了对该定理的又一个证明．
+Vi chung minh cong thuc truy hoi trong muc nay khong dung den dinh ly ton tai can nguyen thuy, day tao thanh mot chung minh khac cho dinh ly do.
 
-### Carmichael 数
+<span id="carmichael-&#x6570;"></span>
 
-利用 Carmichael 函数，可以讨论 Carmichael 数（卡迈克尔数，OEIS:[A002997](https://oeis.org/A002997)）的性质与分布．这是 [Fermat 素性测试](./prime.md#fermat-素性测试) 一定无法正确排除的合数．
+### So Carmichael
 
-???+ abstract "Carmichael 数"
-    对于合数 $n$，如果对于所有整数 $a\perp n$ 都有同余式 $a^{n-1} \equiv 1 \pmod n$ 成立，就称 $n$ 为 **Carmichael 数**．
+Dung ham Carmichael, ta co the thao luan tinh chat va phan bo cua so Carmichael (OEIS:[A002997](https://oeis.org/A002997)). Day la cac hop so ma [kiem tra tinh nguyen to Fermat](./prime.md#fermat-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95) chac chan khong the loai bo chinh xac.
 
-最小的 Carmichael 数是 $561 = 3 \times 11 \times 17$．
+???+ abstract "So Carmichael"
+    Voi hop so $n$, neu voi moi so nguyen $a\perp n$ deu co dong du $a^{n-1} \equiv 1 \pmod n$, thi $n$ duoc goi la **so Carmichael**.
 
-由 Carmichael 函数的定义可知，合数 $n$ 是 Carmichael 数当且仅当 $\lambda(n)\mid n-1$，其中 $\lambda(n)$ 为 Carmichael 函数．进一步地，可以得到如下判断合数 $n$ 是否为 Carmichael 数的方法：
+So Carmichael nho nhat la $561 = 3 \times 11 \times 17$.
 
-???+ note "Korselt 判别法[^korselt1899probleme]"
-    合数 $n$ 是 Carmichael 数当且仅当 $n$ 无平方因子且对 $n$ 的任意质因子 $p$ 均有 $(p-1) \mid (n-1)$．
+Theo dinh nghia ham Carmichael, hop so $n$ la so Carmichael khi va chi khi $\lambda(n)\mid n-1$, trong do $\lambda(n)$ la ham Carmichael. Hon nua, ta co phuong phap sau de xac dinh hop so $n$ co phai so Carmichael hay khong:
 
-??? note "证明"
-    首先证明条件的必要性．假设 $\lambda(n)\mid (n-1)$．检查 Carmichael 函数的递推公式可知，如果 $n$ 有平方因子 $p$，那么，一定有 $p\mid \lambda(n)$．但是 $p\nmid (n-1)$，矛盾．同理，Carmichael 函数的递推公式说明，$(p-1)\mid \lambda(n)$，所以，也有 $(p-1) \mid (n-1)$．
+???+ note "Tieu chuan Korselt[^korselt1899probleme]"
+    Hop so $n$ la so Carmichael khi va chi khi $n$ khong co thua so chinh phuong va voi moi thua so nguyen to $p$ cua $n$ deu co $(p-1) \mid (n-1)$.
+
+??? note "Chung minh"
+    Truoc het chung minh tinh can thiet. Gia su $\lambda(n)\mid (n-1)$. Kiem tra cong thuc truy hoi cua ham Carmichael, neu $n$ co thua so chinh phuong $p$, thi chac chan $p\mid \lambda(n)$. Nhung $p\nmid (n-1)$, mau thuan. Tuong tu, cong thuc truy hoi cua ham Carmichael cho thay $(p-1)\mid \lambda(n)$, nen cung co $(p-1) \mid (n-1)$.
     
-    然后证明条件的充分性．因为 $n$ 是合数，所以它一定有奇素因子 $p$，因此 $n-1$ 是偶数，$n$ 也就一定是奇数．对于无平方因子的奇合数 $n$，由 Carmichael 函数的递推公式可知，$\lambda(n)=\operatorname{lcm}\{p-1:p\mid n\}$．因此，只要 $(p-1) \mid (n-1)$ 对于所有素因子 $p$ 都成立，就一定有 $\lambda(n)\mid (n-1)$．
+    Tiep theo chung minh tinh du. Vi $n$ la hop so, no chac chan co thua so nguyen to le $p$, do do $n-1$ la so chan, va $n$ cung chac chan la so le. Voi hop so le khong co thua so chinh phuong $n$, theo cong thuc truy hoi cua ham Carmichael, $\lambda(n)=\operatorname{lcm}\{p-1:p\mid n\}$. Vi vay, chi can $(p-1) \mid (n-1)$ dung voi moi thua so nguyen to $p$, thi chac chan $\lambda(n)\mid (n-1)$.
 
-从这一判别法出发，可以建立 Carmichael 数的一些简单性质：
+Tu tieu chuan nay, co the thiet lap mot so tinh chat don gian cua so Carmichael:
 
-???+ note "推论"
-    Carmichael 数是奇数，没有平方因子，而且至少有 $3$ 个不同的素因子．
+???+ note "He qua"
+    So Carmichael la so le, khong co thua so chinh phuong, va co it nhat $3$ thua so nguyen to phan biet.
 
-??? note "证明"
-    前两条性质可以直接从 Korselt 判别法及其证明中得到．要得到第三条性质，只需要再证明：互异素数 $p_1,p_2$ 的乘积 $n=p_1p_2$ 一定不是 Carmichael 数．假设 $n=p_1p_2$ 是 Carmichael 数．由 Korselt 判别法可知，$(p_i-1)\mid (n-1)$．但是，有
+??? note "Chung minh"
+    Hai tinh chat dau co the suy truc tiep tu tieu chuan Korselt va chung minh cua no. De thu duoc tinh chat thu ba, chi can chung minh them: tich $n=p_1p_2$ cua hai so nguyen to phan biet $p_1,p_2$ chac chan khong phai so Carmichael. Gia su $n=p_1p_2$ la so Carmichael. Theo tieu chuan Korselt, $(p_i-1)\mid (n-1)$. Nhung ta co
     
     $$
     n-1=p_1p_2-1\equiv p_2-1 \pmod{p_1-1}.
     $$
     
-    因此，$(p_1-1)\mid(p_2-1)$．同理，$(p_2-1)\mid(p_1-1)$．也就是说，$p_1=p_2$．这与假设矛盾．因此，Carmichael 数 $n$ 至少有 $3$ 个互异素因子．
+    Do do $(p_1-1)\mid(p_2-1)$. Tuong tu, $(p_2-1)\mid(p_1-1)$. Nghia la $p_1=p_2$. Dieu nay mau thuan voi gia thiet. Vi vay so Carmichael $n$ co it nhat $3$ thua so nguyen to phan biet.
 
-利用解析数论还可以得到 Carmichael 数分布的一些性质．设 $C(n)$ 为小于等于 $n$ 的 Carmichael 数个数．Alford, Granville, and Pomerance[^alford1994infinitely]证明，对于充分大的 $n$，有 $C(n)>n^{2/7}$．由此，Carmichael 数有无限多个．在这之前，Erdős[^erdos1956pseudoprimes]已经证明，$C(n) < n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$，其中 $c$ 为常数．因此，Carmichael 数的分布（相对于素数来说）十分稀疏．实际上，有[^pinchcarmichael] $C(10^9)=646$，$C(10^{18})=1~401~644$．
+Dung so hoc giai tich, ta con co the thu duoc mot so tinh chat ve phan bo cua so Carmichael. Goi $C(n)$ la so luong so Carmichael khong vuot qua $n$. Alford, Granville, and Pomerance[^alford1994infinitely] chung minh rang voi $n$ du lon, ta co $C(n)>n^{2/7}$. Tu do, co vo han so Carmichael. Truoc do, Erdos[^erdos1956pseudoprimes] da chung minh $C(n) < n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$, trong do $c$ la hang so. Vi vay phan bo cua so Carmichael rat thua (so voi so nguyen to). Thuc te, co[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
 
-## 参考资料与注释
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+
+## Tai lieu tham khao va ghi chu
 
 -   [Primitive root modulo n - Wikipedia](https://en.wikipedia.org/wiki/Primitive_root_modulo_n)
 -   [The order of a unit - Course Notes](https://crypto.stanford.edu/pbc/notes/numbertheory/order.html)
@@ -585,7 +609,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 -   [Carmichael number - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_number)
 -   [Carmichael Number - Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
 
-[^yuan1959note]: Wang Y. "On the least primitive root of a prime." (in Chinese). Acta Math Sinica, 1959, 4: 432–441; English transl. in*Sci. Sinica*, 1961, 10: 1–14.
+[^yuan1959note]: Wang Y. "On the least primitive root of a prime." (in Chinese). Acta Math Sinica, 1959, 4: 432-441; English transl. in *Sci. Sinica*, 1961, 10: 1-14.
 
 [^burgess1962character]: BURGESS, David A. "On character sums and primitive roots." Proceedings of the London Mathematical Society, 1962, 3.1: 179-192.
 
@@ -595,20 +619,20 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 
 [^fridlender1949least]: FRIDLENDER, V. R. "On the least n-th power non-residue." Dokl. Akad. Nauk SSSR. 1949. p. 351-352.
 
-[^salie1949kleinsten]: SALIÉ, Hans. "Über den kleinsten positiven quadratischen Nichtrest nach einer Primzahl." Mathematische Nachrichten, 1949, 3.1: 7-8.
+[^salie1949kleinsten]: SALIE, Hans. "Uber den kleinsten positiven quadratischen Nichtrest nach einer Primzahl." Mathematische Nachrichten, 1949, 3.1: 7-8.
 
 [^burgess1968average]: Burgess, D. A., and P. D. T. A. Elliott. "The average of the least primitive root." Mathematika 15, no. 1 (1968): 39-50.
 
 [^elliott1997average]: Elliott, Peter DTA, and Leo Murata. "On the average of the least primitive root modulo p." Journal of The london Mathematical Society 56, no. 3 (1997): 435-454.
 
-[^more-evidence]: 更多结果可以参考 [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html)．
+[^more-evidence]: Co the xem them cac ket qua tai [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html).
 
-[^density-prim-root]: 如果模 $m$ 的原根存在，那么，$\varphi(m)\ge\dfrac{1}{3}m$，且等号仅在 $m=2\times 3^e~(e\in\mathbf N_+)$ 处取得．进一步地，当 $m > 2$ 时，对欧拉函数 $\varphi(m)$ 有估计：$\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$．将这两者结合，就得到文中的表达式．关于欧拉函数的该估计，可以参考论文 Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94．
+[^density-prim-root]: Neu can nguyen thuy modulo $m$ ton tai, thi $\varphi(m)\ge\dfrac{1}{3}m$, va dau bang chi dat tai $m=2\times 3^e~(e\in\mathbf N_+)$. Hon nua, khi $m > 2$, co uoc luong cho ham Euler $\varphi(m)$: $\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$. Ket hop hai ket qua nay, ta thu duoc bieu thuc trong bai. Ve uoc luong nay cua ham Euler, co the tham khao bai bao Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94.
 
-[^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois." L'Intermédiaire des Mathématiciens. 6: 142–143.
+[^korselt1899probleme]: Korselt, A. R. (1899). "Probleme chinois." L'Intermediaire des Mathematiciens. 6: 142-143.
 
-[^alford1994infinitely]: W. R. Alford; Andrew Granville; Carl Pomerance (1994). "There are Infinitely Many Carmichael Numbers." Annals of Mathematics. 140 (3): 703–722.
+[^alford1994infinitely]: W. R. Alford; Andrew Granville; Carl Pomerance (1994). "There are Infinitely Many Carmichael Numbers." Annals of Mathematics. 140 (3): 703-722.
 
-[^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers." Publ. Math. Debrecen. 4 (3–4): 201–206.
+[^erdos1956pseudoprimes]: Erdos, P. (1956). "On pseudoprimes and Carmichael numbers." Publ. Math. Debrecen. 4 (3-4): 201-206.
 
 [^pinchcarmichael]: PINCH, Richard GE. The Carmichael numbers up to ${10}^{20}$.

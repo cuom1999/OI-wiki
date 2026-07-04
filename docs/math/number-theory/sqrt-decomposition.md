@@ -1,142 +1,145 @@
-数论分块可以快速计算一些形如
+Phân khối số học có thể tính nhanh một số tổng có dạng
 
 $$
 \sum_{i=1}^nf(i)g\left(\left\lfloor\dfrac ni\right\rfloor\right)
 $$
 
-的和式．如果可以在 $O(1)$ 时间内计算出 $\sum_{i=l}^{r}f(i)$ 或已经预处理出 $f$ 的前缀和时，数论分块就可以在 $O(\sqrt{n})$ 时间内计算出上述和式的值．
+Nếu có thể tính $\sum_{i=l}^{r}f(i)$ trong $O(1)$, hoặc đã tiền xử lý tổng tiền tố của $f$, thì phân khối số học có thể tính giá trị của tổng trên trong $O(\sqrt{n})$.
 
-数论分块常与 [莫比乌斯反演](./mobius.md) 等技巧结合使用．
+Phân khối số học thường được dùng cùng các kỹ thuật như [đảo Möbius](./mobius.md).
 
-## 思路
+<span id="&#24605;&#36335;"></span>
+## Ý tưởng
 
-首先，本文通过一个简单的例子来说明数论分块的思路．假设要计算如图所示的双曲线下的整点个数：
+Trước hết, ta dùng một ví dụ đơn giản để minh họa ý tưởng của phân khối số học. Giả sử cần đếm số điểm nguyên nằm dưới hyperbol trong hình sau:
 
-![双曲线下整点](./images/sqrt-decomposition.svg)
+![Điểm nguyên dưới hyperbol](./images/sqrt-decomposition.svg)
 
-这相当于在计算和式：
+Điều này tương đương với việc tính tổng
 
 $$
 \sum_{i=1}^{11}\left\lfloor\dfrac{11}{i}\right\rfloor.
 $$
 
-这是前文所示和式在 $f(k)=1,~g(k)=k$ 时的特殊情况．
+Đây là trường hợp đặc biệt của tổng ở trên khi $f(k)=1,~g(k)=k$.
 
-最简单的做法当然是逐列计算然后求和，但是这样需要计算第 $i=1,2,\cdots,11$ 列中每列整点的个数．观察图示可以发现，这些整点列的可以分成 $5$ 块，每块内点列的高度是一致的，形成一个矩形点阵．所以，只要能够知道这些块的宽度，就能够通过计算这些矩形块的大小快速完成统计．
+Cách trực tiếp nhất là tính từng cột rồi cộng lại, tức là lần lượt tính số điểm nguyên trong các cột $i=1,2,\cdots,11$. Quan sát hình vẽ, các cột điểm nguyên này có thể chia thành $5$ khối; trong mỗi khối, chiều cao của các cột là như nhau và tạo thành một lưới điểm hình chữ nhật. Vì vậy, chỉ cần biết độ rộng của từng khối, ta có thể đếm nhanh bằng cách tính kích thước của các khối chữ nhật đó.
 
-这就是整除分块的基本思路．
+Đó là ý tưởng cơ bản của phân khối theo phép chia lấy phần nguyên.
 
-## 性质
+<span id="&#24615;&#36136;"></span>
+## Tính chất
 
-本节讨论关于双曲线 $y = \dfrac{n}{x}$ 下整点分块的若干结论．具体地，需要将 $1\sim n$ 之间的整数按照 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 的取值分为若干块．设
+Mục này xét một số kết luận về cách chia khối các điểm nguyên dưới hyperbol $y = \dfrac{n}{x}$. Cụ thể, ta cần chia các số nguyên từ $1$ đến $n$ thành các khối theo giá trị của $\left\lfloor\dfrac{n}{i}\right\rfloor$. Đặt
 
 $$
 D(n) = \left\{\left\lfloor\dfrac{n}{i}\right\rfloor : 1 \le i \le n,~i\in\mathbf N_+\right\}.
 $$
 
-这就是 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 所有可能的取值集合．
+Đây là tập hợp tất cả các giá trị có thể có của $\left\lfloor\dfrac{n}{i}\right\rfloor$.
 
-首先，这样的不同取值只有 $O(\sqrt{n})$ 个．所以，数论分块得到的块的数目只有 $O(\sqrt{n})$ 个．
+Trước hết, số giá trị khác nhau như vậy chỉ là $O(\sqrt{n})$. Do đó, số khối thu được từ phân khối số học cũng chỉ là $O(\sqrt{n})$.
 
-???+ note "性质 1"
-    $|D(n)|\le 2\sqrt{n}$．
+???+ note "Tính chất 1"
+    $|D(n)|\le 2\sqrt{n}$.
 
-??? note "证明"
-    分两种情况讨论：
+??? note "Chứng minh"
+    Xét hai trường hợp:
     
-    -   当 $i\le\sqrt{n}$ 时，$i$ 的取值至多 $\sqrt{n}$ 个，所以 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 的取值也至多只有 $\sqrt{n}$ 个．
-    -   当 $i>\sqrt{n}$ 时，$\left\lfloor\dfrac{n}{i}\right\rfloor \le\dfrac{n}{i} < \sqrt{n}$ 也至多只有 $\sqrt{n}$ 个取值．
+    -   Khi $i\le\sqrt{n}$, số giá trị có thể của $i$ nhiều nhất là $\sqrt{n}$, nên số giá trị có thể của $\left\lfloor\dfrac{n}{i}\right\rfloor$ cũng nhiều nhất là $\sqrt{n}$.
+    -   Khi $i>\sqrt{n}$, ta có $\left\lfloor\dfrac{n}{i}\right\rfloor \le\dfrac{n}{i} < \sqrt{n}$, nên cũng có nhiều nhất $\sqrt{n}$ giá trị.
     
-    因此，所有可能取值的总数 $|D(n)|\le 2\sqrt{n}$．
+    Vì vậy, tổng số giá trị có thể là $|D(n)|\le 2\sqrt{n}$.
 
-通过更细致的分析，实际上可以精确地描述集合 $D(n)$ 及其大小．
+Với phân tích chi tiết hơn, ta thực ra có thể mô tả chính xác tập $D(n)$ và kích thước của nó.
 
-???+ note "性质 2"
-    设 $s = \lfloor\sqrt{n}\rfloor$．集合 $D(n)$ 中的元素从小到大依次是
+???+ note "Tính chất 2"
+    Đặt $s = \lfloor\sqrt{n}\rfloor$. Các phần tử của $D(n)$ theo thứ tự tăng dần là
     
     $$
     1 < 2 < \cdots < s-1 < s \le \left\lfloor\dfrac{n}{s}\right\rfloor < \left\lfloor\dfrac{n}{s-1}\right\rfloor < \cdots < \left\lfloor\dfrac{n}{2}\right\rfloor < \left\lfloor\dfrac{n}{1}\right\rfloor = n.
     $$
     
-    进而，$|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$．
+    Suy ra $|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$.
 
-??? note "证明"
-    首先，对于 $1 \le i \le s$，可以证明 $\left\lfloor\dfrac{n}{\lfloor n/i\rfloor}\right\rfloor = i$．令 $d = \left\lfloor\dfrac{n}{i}\right\rfloor$，需要证明 $\left\lfloor\dfrac{n}{d}\right\rfloor = i$．写成不等式，这相当于已知 $d \le \dfrac{n}{i} < d + 1$，需要证明 $i \le \dfrac{n}{d} < i + 1$．已知条件可以写作 $i\le\dfrac{n}{d} < i + \dfrac{i}{d}$，因此，只需要证明 $\dfrac{i}{d} \le 1$，亦即 $i \le d = \left\lfloor\dfrac{n}{i}\right\rfloor$．这等价于 $i \le \dfrac{n}{i}$，这对于所有 $1 \le i \le s \le \sqrt{n}$ 都成立．
+??? note "Chứng minh"
+    Trước hết, với $1 \le i \le s$, có thể chứng minh $\left\lfloor\dfrac{n}{\lfloor n/i\rfloor}\right\rfloor = i$. Đặt $d = \left\lfloor\dfrac{n}{i}\right\rfloor$, ta cần chứng minh $\left\lfloor\dfrac{n}{d}\right\rfloor = i$. Viết dưới dạng bất đẳng thức, điều này tương đương với việc từ $d \le \dfrac{n}{i} < d + 1$ suy ra $i \le \dfrac{n}{d} < i + 1$. Điều kiện đã biết có thể viết thành $i\le\dfrac{n}{d} < i + \dfrac{i}{d}$, vì vậy chỉ cần chứng minh $\dfrac{i}{d} \le 1$, tức là $i \le d = \left\lfloor\dfrac{n}{i}\right\rfloor$. Điều này tương đương với $i \le \dfrac{n}{i}$, đúng với mọi $1 \le i \le s \le \sqrt{n}$.
     
-    这一结果实际上说明，映射 $i \mapsto \left\lfloor\dfrac{n}{i}\right\rfloor$ 构成集合 $\{i:1\le i \le s\}$ 和集合 $\left\{\left\lfloor\dfrac{n}{i}\right\rfloor: 1\le i\le s\right\}$ 之间的双射．由于 $i$ 各不相同，$\left\lfloor\dfrac{n}{i}\right\rfloor$ 也各不相同．两个集合唯一有可能相同的元素就是 $s$ 与 $\left\lfloor\dfrac{n}{s}\right\rfloor$．所以，$|D(n)|=2s - \left[s = \lfloor n/s\rfloor\right]$．
+    Kết quả này cho thấy ánh xạ $i \mapsto \left\lfloor\dfrac{n}{i}\right\rfloor$ tạo thành một song ánh giữa tập $\{i:1\le i \le s\}$ và tập $\left\{\left\lfloor\dfrac{n}{i}\right\rfloor: 1\le i\le s\right\}$. Vì các giá trị $i$ đôi một khác nhau, các giá trị $\left\lfloor\dfrac{n}{i}\right\rfloor$ tương ứng cũng đôi một khác nhau. Hai tập chỉ có thể trùng ở một phần tử, đó là $s$ và $\left\lfloor\dfrac{n}{s}\right\rfloor$. Do đó, $|D(n)|=2s - \left[s = \lfloor n/s\rfloor\right]$.
     
-    要得到 $|D(n)|$ 最终的表达式，需要考察何时 $s = \left\lfloor\dfrac{n}{s}\right\rfloor$ 成立．
+    Để thu được biểu thức cuối cùng của $|D(n)|$, ta xét khi nào $s = \left\lfloor\dfrac{n}{s}\right\rfloor$.
     
-    -   当 $s = \left\lfloor\dfrac{n}{s}\right\rfloor$ 时，总有 $s \le \dfrac{n}{s} < s + 1$，亦即 $s^2 \le n < s^2+s$．此时，有 $4s^2 + 1 \le 4n + 1 < 4s^2+4s+1 = (2s+1)^2$．又因为 $4n+1$ 一定是奇数，左侧可以等价地松弛到 $4s^2$，所以该条件就等价于 $2s \le \sqrt{4n+1} < 2s+1$，亦即 $\lfloor \sqrt{4n+1}\rfloor = 2s$．
-    -   当 $s < \left\lfloor\dfrac{n}{s}\right\rfloor$ 时，总有 $s + 1 \le \dfrac{n}{s}$，亦即 $s^2 + s\le n$．又因为 $n < (s+1)^2$，就有 $s^2 + s\le n < (s+1)^2$．这就等价于 $(2s+1)^2\le 4n+1 < 4(s+1)^2+1$．再次利用 $4n+1$ 是奇数这一点，右侧可以等价地收紧到 $4(s+1)^2$，所以该条件就等价于 $2s+1\le\sqrt{4n+1} < 2s+2$，亦即 $\lfloor \sqrt{4n+1}\rfloor = 2s+1$．
+    -   Nếu $s = \left\lfloor\dfrac{n}{s}\right\rfloor$, luôn có $s \le \dfrac{n}{s} < s + 1$, tức là $s^2 \le n < s^2+s$. Khi đó $4s^2 + 1 \le 4n + 1 < 4s^2+4s+1 = (2s+1)^2$. Vì $4n+1$ luôn là số lẻ, vế trái có thể nới tương đương thành $4s^2$, nên điều kiện này tương đương với $2s \le \sqrt{4n+1} < 2s+1$, tức là $\lfloor \sqrt{4n+1}\rfloor = 2s$.
+    -   Nếu $s < \left\lfloor\dfrac{n}{s}\right\rfloor$, luôn có $s + 1 \le \dfrac{n}{s}$, tức là $s^2 + s\le n$. Lại vì $n < (s+1)^2$, ta có $s^2 + s\le n < (s+1)^2$. Điều này tương đương với $(2s+1)^2\le 4n+1 < 4(s+1)^2+1$. Một lần nữa dùng việc $4n+1$ là số lẻ, vế phải có thể siết tương đương thành $4(s+1)^2$, nên điều kiện này tương đương với $2s+1\le\sqrt{4n+1} < 2s+2$, tức là $\lfloor \sqrt{4n+1}\rfloor = 2s+1$.
     
-    总结这两种情形，就得到 $|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$ 成立．
+    Tổng hợp hai trường hợp, ta thu được $|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$.
 
-然后，单个块的左右端点都很容易确定．
+Tiếp theo, hai đầu mút của mỗi khối cũng rất dễ xác định.
 
-???+ note "性质 3"
-    对于 $d\in D(n)$，所有满足 $\left\lfloor\dfrac{n}{i}\right\rfloor=d$ 的整数 $i$ 的取值范围为
+???+ note "Tính chất 3"
+    Với $d\in D(n)$, mọi số nguyên $i$ thỏa mãn $\left\lfloor\dfrac{n}{i}\right\rfloor=d$ nằm trong khoảng
     
     $$
     \left\lfloor\dfrac{n}{d+1}\right\rfloor + 1\le i \le \left\lfloor\dfrac{n}{d}\right\rfloor.
     $$
 
-??? note "证明"
-    因为 $\left\lfloor\dfrac{n}{i}\right\rfloor=d$ 相当于不等式
+??? note "Chứng minh"
+    Vì $\left\lfloor\dfrac{n}{i}\right\rfloor=d$ tương đương với bất đẳng thức
     
     $$
     d\le \dfrac{n}{i} < d+1.
     $$
     
-    这进一步等价于
+    Điều này lại tương đương với
     
     $$
     \dfrac{n}{d+1} < i\le \dfrac{n}{d}.
     $$
     
-    利用 $i\in\mathbf N_+$ 这一点，可以对该不等式取整，它就等价于
+    Do $i\in\mathbf N_+$, ta có thể lấy phần nguyên của bất đẳng thức trên và thu được dạng tương đương
     
     $$
     \left\lfloor\dfrac{n}{d+1}\right\rfloor + 1 \le i\le \left\lfloor\dfrac{n}{d}\right\rfloor.
     $$
 
-这一性质还体现了图像的对称性：每个块的右端点（前文图中的绿点）的集合恰为 $D(n)$．这很容易理解，因为整个图像关于直线 $y=x$ 是对称的．
+Tính chất này cũng thể hiện tính đối xứng của hình vẽ: tập các đầu mút phải của các khối (các điểm màu xanh trong hình phía trên) chính là $D(n)$. Điều này dễ hiểu vì toàn bộ hình đối xứng qua đường thẳng $y=x$.
 
-除了这些性质外，集合 $D(n)$ 还具有良好的递归性质：
+Ngoài các tính chất trên, tập $D(n)$ còn có tính chất đệ quy thuận tiện:
 
-???+ note "性质 4"
-    对于 $m\in D(n)$，有 $D(m)\subseteq D(n)$．
+???+ note "Tính chất 4"
+    Với $m\in D(n)$, ta có $D(m)\subseteq D(n)$.
 
-??? note "证明"
-    设 $m = \left\lfloor\dfrac{n}{k}\right\rfloor$，那么，因为对于所有 $i\in\mathbf N_+$，都有
+??? note "Chứng minh"
+    Giả sử $m = \left\lfloor\dfrac{n}{k}\right\rfloor$. Khi đó, với mọi $i\in\mathbf N_+$, ta có
     
     $$
     \left\lfloor\dfrac{m}{i}\right\rfloor = \left\lfloor\dfrac{\lfloor n/k\rfloor}{i}\right\rfloor = \left\lfloor\dfrac{n}{ki}\right\rfloor \in D(n),
     $$
     
-    所以，$D(m)\subseteq D(n)$．其中，第二个等号用到了 [取整函数](./basic.md#取整函数) 关于嵌套分式的性质．
+    nên $D(m)\subseteq D(n)$. Đẳng thức thứ hai dùng tính chất của [hàm lấy phần nguyên](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0) đối với phân thức lồng nhau.
 
-前文已经提到，$D(n)$ 既是每块中 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 的取值集合，也是每块的右端点集合．这意味着，如果要递归地应用数论分块（即函数在 $n$ 处的值依赖于它在 $m\in D(n)\setminus\{n\}$ 处的值），那么在整个计算过程中所涉及的取值集合和右端点集合，其实都是 $D(n)$．一个典型的例子是 [杜教筛](./du.md)．
+Như đã nói ở trên, $D(n)$ vừa là tập giá trị của $\left\lfloor\dfrac{n}{i}\right\rfloor$ trong các khối, vừa là tập các đầu mút phải của khối. Điều này có nghĩa là nếu áp dụng phân khối số học theo kiểu đệ quy (tức là giá trị của một hàm tại $n$ phụ thuộc vào giá trị của nó tại $m\in D(n)\setminus\{n\}$), thì trong toàn bộ quá trình tính toán, tập các đối số và tập các đầu mút phải thực ra đều là $D(n)$. Một ví dụ điển hình là [sàng Dujiao](./du.md).
 
-## 过程
+<span id="&#36807;&#31243;"></span>
+## Quy trình
 
-利用上一节叙述的结论，就得到数论分块的具体过程．
+Từ các kết luận ở mục trước, ta có quy trình cụ thể của phân khối số học.
 
-为计算和式
+Để tính tổng
 
 $$
 \sum_{i=1}^nf(i)g\left(\left\lfloor\dfrac ni\right\rfloor\right)
 $$
 
-的取值，可以依据 $\left\lfloor\dfrac ni\right\rfloor$ 的取值将标号 $i=1,2,\cdots,n$ 分块．因为 $\left\lfloor\dfrac ni\right\rfloor$ 取值相同的标号是一段连续整数 $[l,r]$，所以该块中和式的取值为
+ta có thể chia các chỉ số $i=1,2,\cdots,n$ thành các khối theo giá trị của $\left\lfloor\dfrac ni\right\rfloor$. Vì các chỉ số có cùng giá trị $\left\lfloor\dfrac ni\right\rfloor$ tạo thành một đoạn liên tiếp $[l,r]$, đóng góp của khối đó vào tổng là
 
 $$
 \left(\sum_{i=l}^rf(i)\right)\cdot g\left(\left\lfloor\dfrac nl\right\rfloor\right).
 $$
 
-为了快速计算该和式，通常需要能够快速计算左侧关于 $f$ 的和式．有些时候，该和式的表达式是已知的，可以在 $O(1)$ 时间内完成单次计算；有些时候，可以预处理出它的前缀和，仍然可以在 $O(1)$ 时间内完成单次查询．
+Để tính nhanh tổng này, thông thường ta cần tính nhanh tổng liên quan đến $f$ ở vế trái. Trong một số trường hợp, biểu thức của tổng này đã biết và có thể tính từng lần trong $O(1)$; trong các trường hợp khác, có thể tiền xử lý tổng tiền tố để mỗi truy vấn vẫn được trả lời trong $O(1)$.
 
-在顺次计算每块左右端点时，当前块的左端点 $l$ 就等于前一块的右端点再加 $1$，而当前块的右端点就等于 $\left\lfloor\dfrac n{\lfloor n/l\rfloor}\right\rfloor$．由此，可以得到如下伪代码：
+Khi lần lượt tính hai đầu mút của từng khối, đầu mút trái $l$ của khối hiện tại bằng đầu mút phải của khối trước cộng $1$, còn đầu mút phải của khối hiện tại bằng $\left\lfloor\dfrac n{\lfloor n/l\rfloor}\right\rfloor$. Từ đó có giả mã sau:
 
 $$
 \begin{array}{l}
@@ -157,143 +160,150 @@ $$
 \end{array}
 $$
 
-假设单次计算 $s(\cdot)$ 的时间复杂度为 $O(1)$，则整个过程的时间复杂度为 $O(\sqrt{n})$．
+Nếu mỗi lần tính $s(\cdot)$ mất $O(1)$, toàn bộ quy trình có độ phức tạp thời gian $O(\sqrt{n})$.
 
-## 扩展
+<span id="&#25193;&#23637;"></span>
+## Mở rộng
 
-前文讨论的是数论分块的最常见也最基本的形式．本节进一步讨论数论分块的扩展形式．
+Phần trên đã xét dạng phổ biến và cơ bản nhất của phân khối số học. Mục này tiếp tục xét các dạng mở rộng.
 
-### 向上取整的数论分块
+<span id="&#21521;&#19978;&#21462;&#25972;&#30340;&#25968;&#35770;&#20998;&#22359;"></span>
+### Phân khối số học với làm tròn lên
 
-数论分块可以用于计算含有向上取整的和式：
+Phân khối số học có thể dùng để tính các tổng chứa phép làm tròn lên:
 
 $$
 \sum_{i=1}^nf(i)g\left(\left\lceil\dfrac ni\right\rceil\right).
 $$
 
-因为 $\left\lceil\dfrac ni\right\rceil = \left\lfloor\dfrac {n-1}i\right\rfloor + 1$，该和式可以转化为向下取整的情形：
+Vì $\left\lceil\dfrac ni\right\rceil = \left\lfloor\dfrac {n-1}i\right\rfloor + 1$, tổng này có thể chuyển về trường hợp làm tròn xuống:
 
 $$
 f(n)g(1) + \sum_{i=1}^{n-1}f(i)g\left(\left\lfloor\dfrac {n-1}i\right\rfloor + 1\right).
 $$
 
-注意到求和的上限发生了变化，以及 $i=n$ 时单独的一项．
+Cần chú ý rằng cận trên của tổng đã thay đổi, và hạng tử ứng với $i=n$ được tách riêng.
 
-### 多维数论分块
+<span id="&#22810;&#32500;&#25968;&#35770;&#20998;&#22359;"></span>
+### Phân khối số học nhiều chiều
 
-数论分块还可以用于处理包含不只有一个取整式的和式：
+Phân khối số học cũng có thể xử lý các tổng chứa nhiều hơn một biểu thức lấy phần nguyên:
 
 $$
 \sum_{i=1}^{n}f(i)g\left(\left\lfloor\dfrac {n_1}i\right\rfloor,\left\lfloor\dfrac {n_2}i\right\rfloor,\cdots,\left\lfloor\dfrac {n_m}i\right\rfloor\right).
 $$
 
-为了应用数论分块的思想，需要保证每块中所有取整式 $\left\lfloor\dfrac {n_1}i\right\rfloor,\left\lfloor\dfrac {n_2}i\right\rfloor,\cdots,\left\lfloor\dfrac {n_m}i\right\rfloor$ 的取值都不发生变化，也就是说，多维的块应当是所有一维的块的交集．为此，对于已知的左端点 $l$，相应的右端点为
+Để áp dụng ý tưởng phân khối số học, cần bảo đảm rằng trong mỗi khối, tất cả các biểu thức lấy phần nguyên $\left\lfloor\dfrac {n_1}i\right\rfloor,\left\lfloor\dfrac {n_2}i\right\rfloor,\cdots,\left\lfloor\dfrac {n_m}i\right\rfloor$ đều không đổi. Nói cách khác, khối nhiều chiều phải là giao của tất cả các khối một chiều. Vì vậy, với đầu mút trái $l$ đã biết, đầu mút phải tương ứng là
 
 $$
 \min\left\{\left\lfloor\dfrac {n_1}{\lfloor n_1/l\rfloor}\right\rfloor,\left\lfloor\dfrac {n_2}{\lfloor n_2/l\rfloor}\right\rfloor,\cdots,\left\lfloor\dfrac {n_m}{\lfloor n_m/l\rfloor}\right\rfloor\right\}.
 $$
 
-也就是说，对于所有一维分块的右端点取最小值，作为多维分块的右端点．可以借助下图理解：
+Nghĩa là lấy giá trị nhỏ nhất trong các đầu mút phải của mọi phân khối một chiều làm đầu mút phải của khối nhiều chiều. Có thể hình dung qua hình sau:
 
-![多维数论分块图解](./images/n-dimension-sqrt-decomposition.svg)
+![Minh họa phân khối nhiều chiều](./images/n-dimension-sqrt-decomposition.svg)
 
-较为常见的是二维形式，此时可将前述伪代码中 $r \gets \left\lfloor \dfrac{n}{\lfloor n/l \rfloor}\right\rfloor$ 替换成
+Dạng hai chiều là trường hợp khá thường gặp. Khi đó, có thể thay dòng $r \gets \left\lfloor \dfrac{n}{\lfloor n/l \rfloor}\right\rfloor$ trong giả mã phía trên bằng
 
 $$
 r \gets \min\left\{\left\lfloor \dfrac{n_1}{\lfloor n_1/l \rfloor}\right\rfloor,\left\lfloor \dfrac{n_2}{\lfloor n_2/l \rfloor}\right\rfloor\right\}.
 $$
 
-### 任意指数数论分块
+<span id="&#20219;&#24847;&#25351;&#25968;&#25968;&#35770;&#20998;&#22359;"></span>
+### Phân khối số học với số mũ tùy ý
 
-数论分块可以用于含有任意指数的取整式的和式计算：
+Phân khối số học có thể dùng để tính các tổng có biểu thức lấy phần nguyên với số mũ tùy ý:
 
 $$
 \sum_{i=1}^{\lfloor n^{\alpha/\beta}\rfloor}f(i)g\left(\left\lfloor\dfrac {n^\alpha}{i^\beta}\right\rfloor\right).
 $$
 
-其中，$\alpha,\beta$ 为正实数．本文讨论的基本形式中，$\alpha=\beta=1$．
+Trong đó $\alpha,\beta$ là các số thực dương. Ở dạng cơ bản đã xét trong bài, $\alpha=\beta=1$.
 
-???+ note "性质"
-    对于正整数 $n$ 和正实数 $\alpha, \beta$，设
+???+ note "Tính chất"
+    Với số nguyên dương $n$ và các số thực dương $\alpha, \beta$, đặt
     
     $$
     D(n,\alpha,\beta) = \left\{\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor: i=1,2,\cdots,\lfloor n^{\alpha/\beta}\rfloor\right\}.
     $$
     
-    那么，有
+    Khi đó:
     
-    1.  $|D(n,\alpha,\beta)|\le 2n^{\alpha/(1+\beta)}$．
-    2.  对于 $d\in D(n,\alpha,\beta)$，使得 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=d$ 成立的 $i$ 的取值范围为
+    1.  $|D(n,\alpha,\beta)|\le 2n^{\alpha/(1+\beta)}$.
+    2.  Với $d\in D(n,\alpha,\beta)$, các giá trị $i$ thỏa mãn $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=d$ nằm trong khoảng
     
         $$
         \left\lfloor\dfrac{n^{\alpha/\beta}}{(d+1)^{1/\beta}}\right\rfloor + 1\le i \le \left\lfloor\dfrac{n^{\alpha/\beta}}{d^{1/\beta}}\right\rfloor.
         $$
 
-??? note "证明"
-    对于第一点，分两种情况：
+??? note "Chứng minh"
+    Với mệnh đề thứ nhất, xét hai trường hợp:
     
-    -   当 $i\le \dfrac{n^\alpha}{i^\beta}$ 时，有 $i\le n^{\alpha/(1+\beta)}$，所以 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ 至多有 $n^{\alpha/(1+\beta)}$ 种取值．
-    -   当 $i > \dfrac{n^\alpha}{i^\beta}$ 时，有 $i> n^{\alpha/(1+\beta)}$，进而有 $\dfrac{n^\alpha}{i^\beta} < n^{\alpha/(1+\beta)}$，所以 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ 也至多只有 $n^{\alpha/(1+\beta)}$ 种取值．
+    -   Khi $i\le \dfrac{n^\alpha}{i^\beta}$, ta có $i\le n^{\alpha/(1+\beta)}$, nên $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ có nhiều nhất $n^{\alpha/(1+\beta)}$ giá trị.
+    -   Khi $i > \dfrac{n^\alpha}{i^\beta}$, ta có $i> n^{\alpha/(1+\beta)}$, suy ra $\dfrac{n^\alpha}{i^\beta} < n^{\alpha/(1+\beta)}$, nên $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ cũng có nhiều nhất $n^{\alpha/(1+\beta)}$ giá trị.
     
-    综合两种情形，就有 $|D(n,\alpha,\beta)|\le 2n^{\alpha/(1+\beta)}$．
+    Tổng hợp hai trường hợp, ta có $|D(n,\alpha,\beta)|\le 2n^{\alpha/(1+\beta)}$.
     
-    对于第二点，$\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=d$ 就等价于
+    Với mệnh đề thứ hai, $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=d$ tương đương với
     
     $$
     d \le \dfrac{n^\alpha}{i^\beta} < d+1 \iff \dfrac{n^{\alpha/\beta}}{(d+1)^{1/\beta}} < i \le \dfrac{n^{\alpha/\beta}}{d^{1/\beta}}.
     $$
     
-    对该不等式取整，就得到第二个命题．
+    Lấy phần nguyên của bất đẳng thức trên sẽ thu được mệnh đề thứ hai.
 
-利用这些性质，就可以在 $O(n^{\alpha/(1+\beta)})$ 的时间复杂度下实现对任意指数的数论分块．
+Dựa vào các tính chất này, ta có thể thực hiện phân khối số học với số mũ tùy ý trong $O(n^{\alpha/(1+\beta)})$.
 
-???+ example "例子"
-    例如，对于 $\alpha=\beta=1/2$ 时的如下和式
+???+ example "Ví dụ"
+    Chẳng hạn, với $\alpha=\beta=1/2$, tổng sau
     
     $$
-    \sum_{i=1}^nf(i)g\left(\left\lfloor\sqrt{\dfrac {n}{i}}\right\rfloor\right),
+    \sum_{i=1}^nf(i)g\left(\left\lfloor\sqrt{\dfrac {n}{i}}\right\rfloor\right)
     $$
     
-    可以通过数论分块在 $O(n^{1/3})$ 时间内解决．已知块的左端点为 $l$ 时，可以计算右端点为 $r=\left\lfloor\dfrac{n}{\lfloor\sqrt{n/l}\rfloor^2}\right\rfloor$．
+    có thể được giải bằng phân khối số học trong $O(n^{1/3})$. Khi biết đầu mút trái của khối là $l$, ta có thể tính đầu mút phải là $r=\left\lfloor\dfrac{n}{\lfloor\sqrt{n/l}\rfloor^2}\right\rfloor$.
 
-## 例题
+<span id="&#20363;&#39064;"></span>
+## Bài tập ví dụ
 
 ???+ example "[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
-    $T$ 组数据，每组一个整数 $n$．对于每组数据，输出 $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$．
+    Có $T$ bộ dữ liệu, mỗi bộ gồm một số nguyên $n$. Với mỗi bộ dữ liệu, hãy in ra $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$.
 
-??? note "解答"
-    根据前文分析，可以对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算．时间复杂度为 $O(T\sqrt n)$．
+??? note "Lời giải"
+    Theo phân tích ở trên, có thể tính gộp các chỉ số thuộc cùng một khối có giá trị $\left\lfloor\dfrac ni\right\rfloor$ giống nhau. Độ phức tạp thời gian là $O(T\sqrt n)$.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
     ```
 
 ???+ example "[Codeforces 1954E Chain Reaction](https://codeforces.com/contest/1954/problem/E)"
-    有一排 $n$ 只怪兽，每只怪兽初始血量为 $a_i$．一次攻击会使一段连续的存活的怪兽血量减 $k$，血量不大于 $0$ 视作死亡．对于所有 $k$ 求出击杀所有怪兽所需攻击次数．其中，$n,a_i\leq 10^5$．
+    Có một hàng gồm $n$ quái vật, quái vật thứ $i$ có lượng máu ban đầu là $a_i$. Một lần tấn công làm giảm $k$ máu của một đoạn liên tiếp các quái vật còn sống; quái vật có máu không dương được xem là đã chết. Với mọi $k$, hãy tính số lần tấn công cần để tiêu diệt toàn bộ quái vật. Trong đó $n,a_i\leq 10^5$.
 
-??? note "解答"
-    令 $a_0=0$．假设击杀所有前 $(i-1)$ 只怪兽需要 $T(k,i-1)$ 次攻击，第 $i$ 只怪兽的血量为 $a_i$．由于击杀第 $(i-1)$ 只怪兽时，需要攻击它 $\lceil a_{i-1}/k\rceil$ 次，这些攻击都可以延伸到第 $i$ 只怪兽．因此，要击杀第 $i$ 只怪兽，只需要再攻击 $\max\{0,\lceil a_i/k\rceil-\lceil a_{i-1}/k\rceil\}$ 次．由此，总的攻击次数为
+??? note "Lời giải"
+    Đặt $a_0=0$. Giả sử cần $T(k,i-1)$ lần tấn công để tiêu diệt tất cả $(i-1)$ quái vật đầu tiên, và quái vật thứ $i$ có lượng máu là $a_i$. Khi tiêu diệt quái vật thứ $(i-1)$, cần tấn công nó $\lceil a_{i-1}/k\rceil$ lần; các đòn tấn công này đều có thể kéo dài sang quái vật thứ $i$. Vì vậy, để tiêu diệt quái vật thứ $i$, ta chỉ cần tấn công thêm $\max\{0,\lceil a_i/k\rceil-\lceil a_{i-1}/k\rceil\}$ lần. Do đó, tổng số lần tấn công là
     
     $$
     T(k,n)=\sum_{i=1}^n\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right).
     $$
     
-    由于题目涉及的 $n,k$ 都比较大，对每个 $k$ 分别计算该和式并不可行．可以考虑对每个 $i=1,2,\cdots,n$，都维护数列 $\{T(k,i)\}_k$．初始时，设 $T(k,0)\equiv 0$．假设数列 $\{T(k,i-1)\}_k$ 已知，考虑如何对它进行修改才能得到数列 $\{T(k,i)\}_k$．根据前文分析，只需要对数列的第 $k$ 项增加 $\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right)$ 即可．利用二维数论分块，可以将这一修改操作拆分成 $O(\sqrt{a_{i-1}}+\sqrt{a_i})$ 段区间修改操作，且每段区间上增加的值是固定的．最后得到的数列 $\{T(k,n)\}_k$ 就是答案．
+    Vì các giá trị $n,k$ trong bài đều lớn, không thể tính riêng tổng này cho từng $k$. Ta có thể xét từng $i=1,2,\cdots,n$ và duy trì dãy $\{T(k,i)\}_k$. Ban đầu đặt $T(k,0)\equiv 0$. Giả sử đã biết dãy $\{T(k,i-1)\}_k$, ta xét cách sửa nó để thu được dãy $\{T(k,i)\}_k$. Theo phân tích trên, chỉ cần cộng thêm $\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right)$ vào phần tử thứ $k$ của dãy. Dùng phân khối số học hai chiều, thao tác sửa đổi này có thể tách thành $O(\sqrt{a_{i-1}}+\sqrt{a_i})$ phép cộng trên đoạn, và giá trị được cộng trên mỗi đoạn là cố định. Dãy $\{T(k,n)\}_k$ cuối cùng chính là đáp án.
     
-    由于题目涉及一系列区间加操作，且查询只发生所有修改完成后．所以，可以通过维护差分序列进行区间加修改，最后通过求前缀和得到所求数列．总的时间复杂度为 $O(\sum\sqrt{a_i})$．本题也存在其他解法．
+    Bài toán gồm một loạt thao tác cộng trên đoạn, còn truy vấn chỉ diễn ra sau khi mọi sửa đổi đã hoàn tất. Vì vậy, ta có thể duy trì mảng hiệu để thực hiện cộng trên đoạn, rồi lấy tổng tiền tố ở cuối để thu được dãy cần tìm. Tổng độ phức tạp thời gian là $O(\sum\sqrt{a_i})$. Bài này cũng có các cách giải khác.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_2.cpp"
     ```
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
 -   [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)
--   [Luogu P2261 CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)
+-   [Luogu P2261 CQOI2007 Tổng phần dư](https://www.luogu.com.cn/problem/P2261)
 -   [Luogu P3455 POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
--   [杜教筛的时空复杂度分析 by riteme](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)
+-   [Phân tích độ phức tạp thời gian và bộ nhớ của sàng Dujiao, bởi riteme](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)

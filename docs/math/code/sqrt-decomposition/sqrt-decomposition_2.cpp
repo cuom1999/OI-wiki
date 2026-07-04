@@ -17,12 +17,12 @@ int main() {
     for (int l = 1, r;; l = r + 1) {
       r = std::min(l < a[i] ? (a[i] - 1) / ((a[i] - 1) / l) : N,
                    l < a[i + 1] ? (a[i + 1] - 1) / ((a[i + 1] - 1) / l)
-                                : N);  // 二维数论分块
+                                : N);  // Phân khối số học hai chiều
       if (r == N) break;
       int x = (a[i + 1] - 1) / l - std::max(a[i] - 1, 0) / l;
-      if (x > 0) ans[l] += x, ans[r + 1] -= x;  // 累加贡献
+      if (x > 0) ans[l] += x, ans[r + 1] -= x;  // Cộng dồn đóng góp
     }
-  ++ans[0];  // ⌈a/l⌉=(a-1)/l+1的式子当a=0时不成立，需要修正
+  ++ans[0];  // Công thức ⌈a/l⌉=(a-1)/l+1 sai khi a=0, cần hiệu chỉnh
   for (int i = 1; i <= maxn; ++i)
     std::cout << (ans[i] += ans[i - 1]) << " \n"[i == maxn];
   return 0;

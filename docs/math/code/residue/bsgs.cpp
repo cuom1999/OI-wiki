@@ -11,7 +11,7 @@ struct PrimePower {
   PrimePower(int p, int e, int pe) : p(p), e(e), pe(pe) {}
 };
 
-// Factorization.
+// Phân tích thừa số.
 auto factorize(int n) {
   std::vector<PrimePower> ans;
   for (int x = 2; x * x <= n; ++x) {
@@ -23,7 +23,7 @@ auto factorize(int n) {
   return ans;
 }
 
-// Binary exponentiation.
+// Lũy thừa nhị phân.
 int pow(int a, int b, int m = 0) {
   int res = 1;
   for (; b; b >>= 1) {
@@ -33,7 +33,7 @@ int pow(int a, int b, int m = 0) {
   return res;
 }
 
-// Find a primitive root modulo odd prime power.
+// Tìm căn nguyên thủy modulo lũy thừa của số nguyên tố lẻ.
 int primitive_root(PrimePower pp) {
   std::vector<int> exp;
   int phi = pp.pe / pp.p * (pp.p - 1);
@@ -56,7 +56,7 @@ int primitive_root(PrimePower pp) {
   return ans;
 }
 
-// Discrete logarithm. (BSGS Algorithm)
+// Logarit rời rạc. (Thuật toán BSGS)
 int log(int g, int a, int m) {
   int b = std::sqrt(m + 0.25l) + 1;
   std::unordered_map<int, int> mp;
@@ -73,7 +73,7 @@ int log(int g, int a, int m) {
   return -1;
 }
 
-// Extended Euclidean Algorithm.
+// Thuật toán Euclid mở rộng.
 int ex_gcd(int a, int b, int& x, int& y) {
   if (!b) {
     x = 1;
@@ -86,16 +86,16 @@ int ex_gcd(int a, int b, int& x, int& y) {
   }
 }
 
-// Returns the modular inverse of A modulo M.
-// Assumes that gcd(A, M) = 1, so the inverse exists.
+// Trả về nghịch đảo của A modulo M.
+// Giả sử gcd(A, M) = 1, nên nghịch đảo tồn tại.
 int inv(int a, int m) {
   int x, y;
   ex_gcd(a, m, x, y);
   return (x % m + m) % m;
 }
 
-// Solves the linear congruence equation: Ax = B mod N.
-// Return the least nonnegative solution and the common difference.
+// Giải phương trình đồng dư tuyến tính: Ax = B mod N.
+// Trả về nghiệm không âm nhỏ nhất và công sai.
 std::pair<int, int> solve_linear(int a, int b, int n) {
   int x, y;
   int d = ex_gcd(a, n, x, y);
@@ -105,7 +105,7 @@ std::pair<int, int> solve_linear(int a, int b, int n) {
   return {x, n};
 }
 
-// Subroutine: Find all the K-th roots with a primitive root G known.
+// Thủ tục con: tìm mọi căn bậc K khi đã biết căn nguyên thủy G.
 std::vector<int> calc(int g, int k, int a, int p, int pe) {
   int ind = log(g, a, pe);
   if (ind == -1) return {};
@@ -122,7 +122,7 @@ std::vector<int> calc(int g, int k, int a, int p, int pe) {
   return res;
 }
 
-// Find all the K-th roots of A modulo prime power P^E.
+// Tìm mọi căn bậc K của A modulo lũy thừa nguyên tố P^E.
 std::vector<int> kth_roots_mod_pe(int k, int a, PrimePower pp) {
   int p = pp.p, e = pp.e, pe = pp.pe;
   a %= pe;
@@ -171,7 +171,7 @@ std::vector<int> kth_roots_mod_pe(int k, int a, PrimePower pp) {
   return res;
 }
 
-// Find all the K-th roots of A modulo positive integer M.
+// Tìm mọi căn bậc K của A modulo số nguyên dương M.
 std::vector<int> kth_roots_mod_m(int k, int a, int m) {
   auto factors = factorize(m);
   int m0 = 0;

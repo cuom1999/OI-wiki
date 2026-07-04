@@ -14,7 +14,7 @@ struct PrimePower {
   PrimePower(int p, int e, int pe) : p(p), e(e), pe(pe) {}
 };
 
-// Factorization.
+// Phân tích thừa số.
 auto factorize(int n) {
   std::vector<PrimePower> ans;
   for (int x = 2; x * x <= n; ++x) {
@@ -26,7 +26,7 @@ auto factorize(int n) {
   return ans;
 }
 
-// Binary exponentiation.
+// Lũy thừa nhị phân.
 int pow(int a, int b, int m = 0) {
   int res = 1;
   for (; b; b >>= 1) {
@@ -36,7 +36,7 @@ int pow(int a, int b, int m = 0) {
   return res;
 }
 
-// Find a primitive root modulo odd prime power.
+// Tìm căn nguyên thủy modulo lũy thừa của số nguyên tố lẻ.
 int primitive_root(PrimePower pp) {
   std::vector<int> exp;
   int phi = pp.pe / pp.p * (pp.p - 1);
@@ -59,10 +59,10 @@ int primitive_root(PrimePower pp) {
   return ans;
 }
 
-// Euclidean Algorithm.
+// Thuật toán Euclid.
 int gcd(int a, int b) { return b ? gcd(b, a % b) : a; }
 
-// Extended Euclidean Algorithm.
+// Thuật toán Euclid mở rộng.
 int ex_gcd(int a, int b, int& x, int& y) {
   if (!b) {
     x = 1;
@@ -75,15 +75,15 @@ int ex_gcd(int a, int b, int& x, int& y) {
   }
 }
 
-// Returns the modular inverse of A modulo M.
-// Assumes that gcd(A, M) = 1, so the inverse exists.
+// Trả về nghịch đảo của A modulo M.
+// Giả sử gcd(A, M) = 1, nên nghịch đảo tồn tại.
 int inv(int a, int m) {
   int x, y;
   ex_gcd(a, m, x, y);
   return (x % m + m) % m;
 }
 
-// Find a P-th non-residue mod M.
+// Tìm một bất thặng dư bậc P modulo M.
 int non_residue(int p, int m, int phi) {
   std::uniform_int_distribution<int> dis(1, m - 1);
   while (true) {
@@ -93,7 +93,7 @@ int non_residue(int p, int m, int phi) {
   return -1;
 }
 
-// Subroutine: Find a P^E-th root of A mod M.
+// Thủ tục con: tìm một căn bậc P^E của A modulo M.
 int peth_root_mod_m(int p, int e, int a, int m, int phi) {
   if (m == 2) return 1;
   int s = 0, r = phi, pe = pow(p, e);
@@ -104,7 +104,7 @@ int peth_root_mod_m(int p, int e, int a, int m, int phi) {
   std::unordered_map<int, int> mp;
   int zeta = pow(eta, r, m);
   int xi = pow(eta, phi / p, m);
-  // Precompute powers for BSGS.
+  // Tiền xử lý các lũy thừa cho BSGS.
   int B = std::sqrt((s - e) * p + 0.25l) + 1;
   int pB = pe / B + 1;
   int po0 = pow(xi, pB, m);
@@ -112,12 +112,12 @@ int peth_root_mod_m(int p, int e, int a, int m, int phi) {
     po1 = (long long)po1 * po0 % m;
     mp[po1] = j;
   }
-  // Compute p-adic digits of h.
+  // Tính các chữ số p-adic của h.
   for (int j = 0; j < s - e; ++j) {
     int err = (long long)pow(ans, pe, m) * inv(a, m) % m;
     int xi_hj = pow(err, pow(p, s - e - j - 1), m);
     long long hj = 0;
-    // BSGS query.
+    // Truy vấn BSGS.
     for (int i = 1; i <= pB; ++i) {
       xi_hj = (long long)xi_hj * xi % m;
       if (mp.count(xi_hj)) {
@@ -130,7 +130,7 @@ int peth_root_mod_m(int p, int e, int a, int m, int phi) {
   return ans;
 }
 
-// Find a K-th root of A modulo prime P^E.
+// Tìm một căn bậc K của A modulo lũy thừa nguyên tố P^E.
 int kth_root_mod_pe(int k, int a, int pe, int phi) {
   a %= pe;
   if (k == 0) return a == 1 ? 0 : -1;
@@ -156,7 +156,7 @@ int kth_root_mod_pe(int k, int a, int pe, int phi) {
   return a;
 }
 
-// Subroutine: Find all the K-th roots with a primitive root G known.
+// Thủ tục con: tìm mọi căn bậc K khi đã biết căn nguyên thủy G.
 std::vector<int> calc(int g, int k, int a, int p, int pe) {
   int mm = p == 2 ? pe / 4 : pe / p * (p - 1);
   int ans = kth_root_mod_pe(k, a, pe, mm);
@@ -171,7 +171,7 @@ std::vector<int> calc(int g, int k, int a, int p, int pe) {
   return res;
 }
 
-// Find all the K-th roots of A modulo prime power P^E.
+// Tìm mọi căn bậc K của A modulo lũy thừa nguyên tố P^E.
 std::vector<int> kth_roots_mod_pe(int k, int a, PrimePower pp) {
   int p = pp.p, e = pp.e, pe = pp.pe;
   a %= pe;
@@ -220,7 +220,7 @@ std::vector<int> kth_roots_mod_pe(int k, int a, PrimePower pp) {
   return res;
 }
 
-// Find all the K-th roots of A modulo positive integer M.
+// Tìm mọi căn bậc K của A modulo số nguyên dương M.
 std::vector<int> kth_roots_mod_m(int k, int a, int m) {
   auto factors = factorize(m);
   int m0 = 0;
