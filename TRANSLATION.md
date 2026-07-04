@@ -49,6 +49,8 @@ MkDocs source layout intact.
   translated beginner C++ array and control-flow pages.
 - `docs/lang/basic.md`, `docs/lang/func.md`, `docs/lang/file-op.md`:
   translated beginner C++ syntax, function, and file-operation pages.
+- `docs/lang/var.md`, `docs/lang/op.md`, `docs/lang/pointer.md`: translated
+  beginner C++ variable, operator, and pointer pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

@@ -1,19 +1,19 @@
 author: tsagaanbar, Enter-tainer, Xeonacid
 
-## 变量的地址、指针
+## Địa chỉ của biến và con trỏ
 
-在程序中，我们的数据都有其存储的地址．在程序每次的实际运行过程中，变量在物理内存中的存储位置不尽相同．不过，我们仍能够在编程时，通过一定的语句，来取得数据在内存中的地址．
+Trong chương trình, mọi dữ liệu đều có địa chỉ lưu trữ của nó. Trong mỗi lần chương trình thực sự chạy, vị trí lưu trữ của biến trong bộ nhớ vật lý có thể không giống nhau. Tuy vậy, khi lập trình, ta vẫn có thể dùng những câu lệnh nhất định để lấy địa chỉ của dữ liệu trong bộ nhớ.
 
-地址也是数据．存放地址所用的变量类型有一个特殊的名字，叫做「指针变量」，有时也简称做「指针」．
+Địa chỉ cũng là dữ liệu. Kiểu biến dùng để lưu địa chỉ có một tên gọi đặc biệt là "biến con trỏ", đôi khi cũng được gọi ngắn gọn là "con trỏ".
 
-???+ note "指针变量的大小"
-    指针变量的大小在不同环境下有差异．在 32 位机上，地址用 32 位二进制整数表示，因此一个指针的大小为 4 字节．而 64 位机上，地址用 64 位二进制整数表示，因此一个指针的大小就变成了 8 字节．
+???+ note "Kích thước của biến con trỏ"
+    Kích thước của biến con trỏ khác nhau tùy môi trường. Trên máy 32 bit, địa chỉ được biểu diễn bằng số nguyên nhị phân 32 bit, nên kích thước của một con trỏ là 4 byte. Trên máy 64 bit, địa chỉ được biểu diễn bằng số nguyên nhị phân 64 bit, nên kích thước của một con trỏ trở thành 8 byte.
 
-地址只是一个刻度一般的数据，为了针对不同类型的数据，「指针变量」也有不同的类型，比如，可以有 `int` 类型的指针变量，其中存储的地址（即指针变量存储的数值）对应一块大小为 32 位的空间的起始地址；有 `char` 类型的指针变量，其中存储的地址对应一块 8 位的空间的起始地址．
+Địa chỉ chỉ là một loại dữ liệu giống như một mốc đo. Để xử lý dữ liệu thuộc các kiểu khác nhau, "biến con trỏ" cũng có các kiểu khác nhau. Ví dụ, ta có thể có biến con trỏ kiểu `int`, trong đó địa chỉ được lưu, tức giá trị được biến con trỏ lưu trữ, tương ứng với địa chỉ bắt đầu của một vùng nhớ có kích thước 32 bit; hoặc biến con trỏ kiểu `char`, trong đó địa chỉ được lưu tương ứng với địa chỉ bắt đầu của một vùng nhớ 8 bit.
 
-事实上，用户也可以声明指向指针变量的指针变量．
+Trên thực tế, người dùng cũng có thể khai báo biến con trỏ trỏ tới một biến con trỏ khác.
 
-假如用户自定义了一个结构体：
+Giả sử người dùng tự định nghĩa một cấu trúc:
 
 ```cpp
 struct ThreeInt {
@@ -23,15 +23,15 @@ struct ThreeInt {
 };
 ```
 
-则 `ThreeInt` 类型的指针变量，对应着一块 3 × 32 = 96 bit 的空间．
+Khi đó, biến con trỏ kiểu `ThreeInt` tương ứng với một vùng nhớ có kích thước 3 × 32 = 96 bit.
 
-## 指针的声明与使用
+## Khai báo và sử dụng con trỏ
 
-C/C++ 中，指针变量的类型为类型名后加上一个星号 `*`．比如，`int` 类型的指针变量的类型名即为 `int*`．
+Trong C/C++, kiểu của biến con trỏ được viết bằng tên kiểu cộng thêm một dấu sao `*` ở sau. Ví dụ, tên kiểu của biến con trỏ kiểu `int` là `int*`.
 
-我们可以使用 `&` 符号取得一个变量的地址．
+Ta có thể dùng ký hiệu `&` để lấy địa chỉ của một biến.
 
-要想访问指针变量地址所对应的空间（又称指针所 **指向** 的空间），需要对指针变量进行 **解引用**（dereference），使用 `*` 符号．
+Muốn truy cập vùng nhớ tương ứng với địa chỉ mà biến con trỏ lưu, còn gọi là vùng nhớ mà con trỏ **trỏ tới**, ta cần **giải tham chiếu** (dereference) biến con trỏ bằng ký hiệu `*`.
 
 ```cpp
 int main() {
@@ -41,7 +41,7 @@ int main() {
 }
 ```
 
-对结构体变量也是类似．如果要访问指针指向的结构中的成员，需要先对指针进行解引用，再使用 `.` 成员关系运算符．不过，更推荐使用「箭头」运算符 `->` 这一更简便的写法．
+Với biến cấu trúc cũng tương tự. Nếu muốn truy cập thành viên của cấu trúc mà con trỏ trỏ tới, trước hết cần giải tham chiếu con trỏ, rồi dùng toán tử quan hệ thành viên `.`. Tuy nhiên, nên dùng cách viết ngắn gọn hơn là toán tử "mũi tên" `->`.
 
 ```cpp
 struct ThreeInt {
@@ -59,59 +59,59 @@ int main() {
 }
 ```
 
-## 指针的偏移
+## Dịch chuyển con trỏ
 
-指针变量也可以 **和整数** 进行加减操作．对于 `int` 型指针，每加 1（递增 1），其指向的地址偏移 32 位（即 4 个字节）；若加 2，则指向的地址偏移 2 × 32 = 64 位．同理，对于 `char` 型指针，每次递增，其指向的地址偏移 8 位（即 1 个字节）．
+Biến con trỏ cũng có thể thực hiện phép cộng trừ **với số nguyên**. Với con trỏ kiểu `int`, mỗi khi cộng 1, tức tăng thêm 1, địa chỉ mà nó trỏ tới sẽ dịch đi 32 bit, tức 4 byte; nếu cộng 2, địa chỉ mà nó trỏ tới sẽ dịch đi 2 × 32 = 64 bit. Tương tự, với con trỏ kiểu `char`, mỗi lần tăng, địa chỉ mà nó trỏ tới sẽ dịch đi 8 bit, tức 1 byte.
 
-### 使用指针偏移访问数组
+### Dùng dịch chuyển con trỏ để truy cập mảng
 
-我们前面说过，数组是一块连续的存储空间．而在 C/C++ 中，直接使用数组名，得到的是数组的起始地址．
+Ở phần trước ta đã nói rằng mảng là một vùng lưu trữ liên tiếp. Trong C/C++, khi dùng trực tiếp tên mảng, ta nhận được địa chỉ bắt đầu của mảng.
 
 ```cpp
 int main() {
   int a[3] = {1, 2, 3};
-  int* p = a;  // p 指向 a[0]
+  int* p = a;  // p trỏ tới a[0]
   *p = 4;      // a: [4, 2, 3]
-  p = p + 1;   // p 指向 a[1]
+  p = p + 1;   // p trỏ tới a[1]
   *p = 5;      // a: [4, 5, 3]
-  p++;         // p 指向 a[2]
+  p++;         // p trỏ tới a[2]
   *p = 6;      // a: [4, 5, 6]
 }
 ```
 
-当通过指针访问数组中的元素时，往往需要用到「指针的偏移」，换句话说，即通过一个基地址（数组起始的地址）加上偏移量来访问．
+Khi truy cập phần tử trong mảng thông qua con trỏ, ta thường cần dùng đến "dịch chuyển con trỏ". Nói cách khác, ta truy cập bằng cách lấy một địa chỉ cơ sở, tức địa chỉ bắt đầu của mảng, cộng thêm độ lệch.
 
-我们常用 `[]` 运算符来访问数组中某一指定偏移量处的元素．比如 `a[3]` 或者 `p[4]`．这种写法和对指针进行运算后再引用是等价的，即 `p[4]` 和 `*(p + 4)` 是等价的两种写法．
+Ta thường dùng toán tử `[]` để truy cập phần tử của mảng tại một độ lệch được chỉ định, ví dụ `a[3]` hoặc `p[4]`. Cách viết này tương đương với việc tính toán trên con trỏ rồi tham chiếu tới kết quả, tức `p[4]` và `*(p + 4)` là hai cách viết tương đương.
 
-## 空指针
+## Con trỏ null
 
-在 C++11 之前，C++ 和 C 一样使用 `NULL` 宏表示空指针常量，C++ 中 `NULL` 的实现一般如下：
+Trước C++11, C++ cũng như C dùng macro `NULL` để biểu diễn hằng con trỏ null. Trong C++, `NULL` thường được cài đặt như sau:
 
 ```cpp
-// C++11 前
+// Trước C++11
 #define NULL 0
 ```
 
-???+ note "C 语言对 `NULL` 的定义"
-    C 语言在 C23 前有两个 `NULL` 的定义，只有类型不同：一个是整型常量表达式，一个是转换为 `void *` 类型的常量表达式，但其值都为 0，编译器可任选一个实现．
+???+ note "Định nghĩa `NULL` trong ngôn ngữ C"
+    Trước C23, ngôn ngữ C có hai định nghĩa cho `NULL`, chỉ khác nhau về kiểu: một là biểu thức hằng kiểu số nguyên, một là biểu thức hằng được chuyển đổi thành kiểu `void *`, nhưng giá trị của cả hai đều là 0; trình biên dịch có thể chọn một trong hai cách để cài đặt.
 
-空指针和整数 `0` 的混用在 C++ 中会导致许多问题，比如：
+Việc dùng lẫn con trỏ null và số nguyên `0` trong C++ sẽ gây ra nhiều vấn đề, ví dụ:
 
 ```cpp
 int f(int x);
 int f(int* p);
 ```
 
-在调用 `f(NULL)` 时，实际调用的函数的类型是 `int(int)` 而不是 `int(int *)`.
+Khi gọi `f(NULL)`, kiểu của hàm thực sự được gọi là `int(int)` chứ không phải `int(int *)`.
 
-???+ note "`NULL` 在 C 语言中造成的问题"
-    比起在 C++ 中，因为有两个定义，在 C 语言中 `NULL` 造成的问题更为严重：如果在一个传递可变参数的函数中，函数编写者想要接受一个指针，但是函数调用者传递了一个定义为整型的 `NULL`，则会造成未定义行为，因在函数内使用传入的可变参数时，要进行类型转换，而从整型到指针类型的转换是未定义行为．[^note1]
+???+ note "Vấn đề do `NULL` gây ra trong ngôn ngữ C"
+    So với C++, vì có hai định nghĩa, vấn đề do `NULL` gây ra trong ngôn ngữ C còn nghiêm trọng hơn: nếu trong một hàm nhận tham số biến thiên, người viết hàm muốn nhận một con trỏ, nhưng người gọi hàm lại truyền vào một `NULL` được định nghĩa là kiểu số nguyên, thì sẽ gây ra hành vi không xác định. Nguyên nhân là khi dùng tham số biến thiên đã truyền vào bên trong hàm, cần thực hiện chuyển đổi kiểu, mà việc chuyển đổi từ kiểu số nguyên sang kiểu con trỏ là hành vi không xác định.[^note1]
 
-为了解决这些问题，C++11 引入了 `nullptr` 关键字作为空指针常量．
+Để giải quyết các vấn đề này, C++11 đã đưa vào từ khóa `nullptr` làm hằng con trỏ null.
 
-C++ 规定 `nullptr` 可以隐式转换为任何指针类型，这种转换结果是该类型的空指针值．
+C++ quy định rằng `nullptr` có thể được chuyển đổi ngầm định sang bất kỳ kiểu con trỏ nào; kết quả của phép chuyển đổi này là giá trị con trỏ null của kiểu đó.
 
-`nullptr` 的类型为 `std::nullptr_t`, 称作空指针类型，可能的实现如下：
+Kiểu của `nullptr` là `std::nullptr_t`, gọi là kiểu con trỏ null. Một cách cài đặt có thể như sau:
 
 ```cpp
 namespace std {
@@ -119,25 +119,25 @@ typedef decltype(nullptr) nullptr_t;
 }
 ```
 
-另外，C++11 起 `NULL` 宏的实现也被修改为了：
+Ngoài ra, từ C++11, cách cài đặt macro `NULL` cũng được sửa thành:
 
 ```cpp
-// C++11 起
+// Từ C++11
 #define NULL nullptr
 ```
 
-???+ note "C 语言对空指针常量的改进"
-    基于类似的原因，C23 也引入了 `nullptr` 作为空指针常量，同时引入了 `nullptr_t` 作为其类型[^note1]．
+???+ note "Cải tiến của ngôn ngữ C đối với hằng con trỏ null"
+    Vì những lý do tương tự, C23 cũng đưa vào `nullptr` làm hằng con trỏ null, đồng thời đưa vào `nullptr_t` làm kiểu của nó.[^note1]
 
-## 指针的进阶使用
+## Sử dụng con trỏ nâng cao
 
-使用指针，使得程序编写者可以操作程序运行时中各处的数据，而不必局限于作用域．
+Việc dùng con trỏ cho phép người lập trình thao tác với dữ liệu ở nhiều nơi trong lúc chương trình chạy, thay vì bị giới hạn trong phạm vi hiện tại.
 
-### 指针类型参数的使用
+### Sử dụng tham số kiểu con trỏ
 
-在 C/C++ 中，调用函数（过程）时使用的参数，均以拷贝的形式传入子过程中（引用除外，会在后续介绍）．默认情况下，函数仅能通过返回值，将结果返回到调用处．但是，如果某个函数希望修改其外部的数据，或者某个结构体/类的数据量较为庞大、不宜进行拷贝，这时，则可以通过向其传入外部数据的地址，便得以在其中访问甚至修改外部数据．
+Trong C/C++, khi gọi hàm, hay thủ tục, các tham số được truyền vào chương trình con dưới dạng bản sao, ngoại trừ tham chiếu sẽ được giới thiệu ở phần sau. Theo mặc định, hàm chỉ có thể trả kết quả về nơi gọi thông qua giá trị trả về. Tuy nhiên, nếu một hàm muốn sửa dữ liệu bên ngoài nó, hoặc nếu lượng dữ liệu của một cấu trúc/lớp khá lớn và không phù hợp để sao chép, ta có thể truyền địa chỉ của dữ liệu bên ngoài vào hàm, nhờ đó truy cập, thậm chí sửa đổi, dữ liệu bên ngoài ngay trong hàm.
 
-下面的 `my_swap` 方法，通过接收两个 `int` 型的指针，在函数中使用中间变量，完成对两个 `int` 型变量值的交换．
+Hàm `my_swap` dưới đây nhận hai con trỏ kiểu `int` và dùng biến trung gian trong hàm để hoán đổi giá trị của hai biến kiểu `int`.
 
 ```cpp
 void my_swap(int *a, int *b) {
@@ -150,17 +150,18 @@ void my_swap(int *a, int *b) {
 int main() {
   int a = 6, b = 10;
   my_swap(&a, &b);
-  // 调用后，main 函数中 a 变量的值变为 10，b 变量的值变为 6
+  // Sau khi gọi, trong hàm main, giá trị của biến a trở thành 10,
+  // còn giá trị của biến b trở thành 6
 }
 ```
 
-C++ 中引入了引用的概念，相对于指针来说，更易用，也更安全．详情可以参见 [C++：引用](./reference.md) 以及 [C 与 C++ 的区别：指针与引用](./cpp-other-langs.md#指针与引用)．
+C++ đưa vào khái niệm tham chiếu; so với con trỏ, tham chiếu dễ dùng hơn và cũng an toàn hơn. Chi tiết có thể xem [C++: Tham chiếu](./reference.md) và [Khác biệt giữa C và C++: Con trỏ và tham chiếu](./cpp-other-langs.md#%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8).
 
-### 动态实例化
+### Khởi tạo động
 
-除此之外，程序编写时往往会涉及到动态内存分配，即，程序会在运行时，向操作系统动态地申请或归还存放数据所需的内存．当程序通过调用操作系统接口申请内存时，操作系统将返回程序所申请空间的地址．要使用这块空间，我们需要将这块空间的地址存储在指针变量中．
+Ngoài ra, khi viết chương trình ta thường gặp cấp phát bộ nhớ động, tức chương trình sẽ yêu cầu hoặc trả lại cho hệ điều hành vùng nhớ cần thiết để lưu dữ liệu trong lúc chạy. Khi chương trình gọi giao diện của hệ điều hành để xin bộ nhớ, hệ điều hành sẽ trả về địa chỉ của vùng nhớ mà chương trình đã xin. Để sử dụng vùng nhớ này, ta cần lưu địa chỉ của nó trong biến con trỏ.
 
-在 C++ 中，我们使用 `new` 运算符来获取一块内存，使用 `delete` 运算符释放某指针所指向的空间．
+Trong C++, ta dùng toán tử `new` để lấy một vùng nhớ, và dùng toán tử `delete` để giải phóng vùng nhớ mà một con trỏ trỏ tới.
 
 ```cpp
 int* p = new int(1234);
@@ -168,9 +169,9 @@ int* p = new int(1234);
 delete p;
 ```
 
-上面的语句使用 `new` 运算符向操作系统申请了一块 `int` 大小的空间，将其中的值初始化为 1234，并声明了一个 `int` 型的指针 `p` 指向这块空间．
+Câu lệnh trên dùng toán tử `new` để xin hệ điều hành một vùng nhớ có kích thước của `int`, khởi tạo giá trị trong đó là 1234, đồng thời khai báo một con trỏ kiểu `int` tên `p` trỏ tới vùng nhớ này.
 
-同理，也可以使用 `new` 开辟新的对象：
+Tương tự, cũng có thể dùng `new` để tạo đối tượng mới:
 
 ```cpp
 class A {
@@ -187,7 +188,7 @@ int main() {
 }
 ```
 
-如上，「`new` 表达式」将尝试开辟一块对应大小的空间，并尝试在这块空间上构造这一对象，并返回这一空间的地址．
+Như trên, biểu thức `new` sẽ thử mở một vùng nhớ có kích thước tương ứng, thử xây dựng đối tượng đó trên vùng nhớ này, rồi trả về địa chỉ của vùng nhớ.
 
 ```cpp
 struct ThreeInt {
@@ -203,14 +204,14 @@ int main() {
 }
 ```
 
-???+ note "列表初始化"
-    `{}` 运算符可以用来初始化没有构造函数的结构．除此之外，使用 `{}` 运算符可以使得变量的初始化形式变得统一．详见「[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)」．
+???+ note "Khởi tạo bằng danh sách"
+    Toán tử `{}` có thể dùng để khởi tạo những cấu trúc không có hàm tạo. Ngoài ra, dùng toán tử `{}` có thể làm cho hình thức khởi tạo biến trở nên thống nhất hơn. Xem thêm "[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)".
 
-需要注意，当使用 `new` 申请的内存不再使用时，需要使用 `delete` 释放这块空间．不能对一块内存释放两次或以上．而对空指针 `nullptr` 使用 `delete` 操作是合法的．
+Cần chú ý rằng khi vùng nhớ được xin bằng `new` không còn được sử dụng, ta cần dùng `delete` để giải phóng vùng nhớ này. Không được giải phóng cùng một vùng nhớ hai lần trở lên. Còn việc dùng thao tác `delete` trên con trỏ null `nullptr` là hợp lệ.
 
-### 动态创建数组
+### Tạo mảng động
 
-也可以使用 `new[]` 运算符创建数组，这时 `new[]` 运算符会返回数组的首地址，也就是数组第一个元素的地址，我们可以用对应类型的指针存储这个地址．释放时，则需要使用 `delete[]` 运算符．
+Cũng có thể dùng toán tử `new[]` để tạo mảng. Khi đó toán tử `new[]` sẽ trả về địa chỉ đầu của mảng, tức địa chỉ của phần tử đầu tiên trong mảng; ta có thể dùng con trỏ có kiểu tương ứng để lưu địa chỉ này. Khi giải phóng, cần dùng toán tử `delete[]`.
 
 ```cpp
 size_t element_cnt = 5;
@@ -218,56 +219,56 @@ int *p = new int[element_cnt];
 delete[] p;
 ```
 
-数组中元素的存储是连续的，即 `p + 1` 指向的是 `p` 的后继元素．
+Các phần tử trong mảng được lưu liên tiếp, tức `p + 1` trỏ tới phần tử kế tiếp của `p`.
 
-### 二维数组
+### Mảng hai chiều
 
-在存放矩阵形式的数据时，可能会用到「二维数组」这样的数据类型．从语义上来讲，二维数组是一个数组的数组．而计算机内存可以视作一个很长的一维数组．要在计算机内存中存放一个二维数组，便有「连续」与否的说法．
+Khi lưu dữ liệu dạng ma trận, ta có thể cần dùng đến kiểu dữ liệu như "mảng hai chiều". Về mặt ngữ nghĩa, mảng hai chiều là một mảng của các mảng. Còn bộ nhớ máy tính có thể được xem như một mảng một chiều rất dài. Khi lưu một mảng hai chiều trong bộ nhớ máy tính, sẽ có khái niệm có "liên tiếp" hay không.
 
-所谓「连续」，即二维数组的任意一行（row）的末尾与下一行的起始，在物理地址上是毗邻的，换言之，整个二维数组可以视作一个一维数组；反之，则二者在物理上不一定相邻．
+"Liên tiếp" nghĩa là cuối của bất kỳ hàng (row) nào trong mảng hai chiều và đầu của hàng tiếp theo nằm kề nhau về địa chỉ vật lý; nói cách khác, toàn bộ mảng hai chiều có thể được xem như một mảng một chiều. Ngược lại, hai phần đó không nhất thiết kề nhau về mặt vật lý.
 
-对于「连续」的二维数组，可以仅使用一个循环，借由一个不断递增的指针即可遍历数组中的所有数据．而对于非连续的二维数组，由于每一行不连续，则需要先取得某一行首的地址，再访问这一行中的元素．
+Với mảng hai chiều "liên tiếp", chỉ cần dùng một vòng lặp và một con trỏ tăng dần là có thể duyệt toàn bộ dữ liệu trong mảng. Với mảng hai chiều không liên tiếp, do từng hàng không liên tiếp với nhau, ta cần lấy địa chỉ đầu của một hàng nào đó trước, rồi mới truy cập các phần tử trong hàng đó.
 
-???+ note "二维数组的存储方式"
-    这种按照「行（row）」存储数据的方式，称为行优先存储；相对的，也可以按照列（column）存储数据．由于计算机内存访问的特性，一般来说，访问连续的数据会得到更高的效率．因此，需要按照数据可能的使用方式，选择「行优先」或「列优先」的存储方式．
+???+ note "Cách lưu trữ mảng hai chiều"
+    Cách lưu dữ liệu theo "hàng (row)" như vậy được gọi là lưu trữ theo thứ tự hàng trước; tương ứng, cũng có thể lưu dữ liệu theo cột (column). Do đặc tính truy cập bộ nhớ của máy tính, nhìn chung, truy cập dữ liệu liên tiếp sẽ hiệu quả hơn. Vì vậy, cần chọn cách lưu trữ "hàng trước" hoặc "cột trước" theo cách dữ liệu có thể được sử dụng.
 
-### 动态创建二维数组
+### Tạo mảng hai chiều động
 
-在 C/C++ 中，我们可以使用类似下面这样的语句声明一个 N 行（row）M 列（column）的二维数组，其空间在物理上是连续的．
+Trong C/C++, ta có thể dùng câu lệnh tương tự dưới đây để khai báo một mảng hai chiều gồm N hàng (row) và M cột (column), có vùng nhớ liên tiếp về mặt vật lý.
 
-???+ note "描述数组的维度"
-    更通用的方式是使用第 n 维（dimension）的说法．对于「行优先」的存储形式，数组的第一维长度为 N，第二维长度为 M．
+???+ note "Mô tả số chiều của mảng"
+    Cách tổng quát hơn là dùng cách nói chiều thứ n (dimension). Với dạng lưu trữ "hàng trước", độ dài của chiều thứ nhất của mảng là N, và độ dài của chiều thứ hai là M.
 
 ```cpp
 int a[N][M];
 ```
 
-这种声明方式要求 N 和 M 为在编译期即可确定的常量表达式．
+Cách khai báo này yêu cầu N và M là các biểu thức hằng có thể xác định tại thời điểm biên dịch.
 
-在 C/C++ 中，数组的第一个元素下标为 0，因此 `a[r][c]` 这样的式子代表二维数组 a 中第 r + 1 行的第 c + 1 个元素，我们也称这个元素的下标为 `(r,c)`．
+Trong C/C++, chỉ số của phần tử đầu tiên trong mảng là 0, nên biểu thức như `a[r][c]` biểu thị phần tử thứ c + 1 của hàng thứ r + 1 trong mảng hai chiều a; ta cũng gọi chỉ số của phần tử này là `(r,c)`.
 
-不过，实际使用中，（二维）数组的大小可能不是固定的，需要动态内存分配．
+Tuy nhiên, trong sử dụng thực tế, kích thước của mảng hai chiều có thể không cố định, nên cần cấp phát bộ nhớ động.
 
-常见的方式是声明一个长度为 N × M 的 **一维数组**，并通过下标 `r * M + c` 访问二维数组中下标为 `(r, c)` 的元素．
+Cách thường gặp là khai báo một **mảng một chiều** có độ dài N × M, rồi truy cập phần tử có chỉ số `(r, c)` trong mảng hai chiều bằng chỉ số `r * M + c`.
 
 ```cpp
 int* a = new int[N * M];
 ```
 
-这种方法可以保证二维数组是 **连续的**．
+Cách này có thể bảo đảm mảng hai chiều là **liên tiếp**.
 
-???+ note "数组在物理层面上的线性存储"
-    实际上，数据在内存中都可以视作线性存放的，因此在一定的规则下，通过动态开辟一维数组的空间，即可在其上存储 n 维的数组．
+???+ note "Lưu trữ tuyến tính của mảng ở mức vật lý"
+    Trên thực tế, dữ liệu trong bộ nhớ đều có thể được xem là được lưu theo tuyến tính. Vì vậy, dưới một quy tắc nhất định, chỉ cần mở động vùng nhớ của mảng một chiều là đã có thể lưu mảng n chiều trên đó.
 
-此外，亦可以根据「数组的数组」这一概念来进行内存的获取与使用．对于一个存放的若干数组的数组，实际上为一个存放的若干数组的首地址的数组，也就是一个存放若干指针变量的数组．
+Ngoài ra, cũng có thể xin và sử dụng bộ nhớ theo khái niệm "mảng của các mảng". Đối với một mảng lưu nhiều mảng, thực chất đó là một mảng lưu địa chỉ đầu của nhiều mảng, tức một mảng lưu nhiều biến con trỏ.
 
-我们需要一个变量来存放这个「数组的数组」的首地址——也就是一个指针的地址．这个变量便是一个「指向指针的指针」，有时也称作「二重指针」，如：
+Ta cần một biến để lưu địa chỉ đầu của "mảng của các mảng" này, tức địa chỉ của một con trỏ. Biến này chính là một "con trỏ trỏ tới con trỏ", đôi khi cũng gọi là "con trỏ cấp hai", ví dụ:
 
 ```cpp
 int** a = new int*[5];
 ```
 
-接着，我们需要为每一个数组申请空间：
+Tiếp theo, ta cần xin vùng nhớ cho từng mảng:
 
 ```cpp
 for (int i = 0; i < 5; i++) {
@@ -275,7 +276,7 @@ for (int i = 0; i < 5; i++) {
 }
 ```
 
-至此，我们便完成了内存的获取．而对于这样获得的内存的释放，则需要进行一个逆向的操作：即先释放每一个数组，再释放存储这些数组首地址的数组，如：
+Đến đây, ta đã hoàn tất việc xin bộ nhớ. Khi giải phóng vùng nhớ thu được theo cách này, ta cần thực hiện thao tác ngược lại: trước hết giải phóng từng mảng, rồi giải phóng mảng lưu địa chỉ đầu của các mảng đó, ví dụ:
 
 ```cpp
 for (int i = 0; i < 5; i++) {
@@ -284,18 +285,18 @@ for (int i = 0; i < 5; i++) {
 delete[] a;
 ```
 
-需要注意，这样获得的二维数组，不能保证其空间是连续的．
+Cần chú ý rằng mảng hai chiều thu được theo cách này không bảo đảm vùng nhớ của nó là liên tiếp.
 
-还有一种方式，需要使用到「指向数组的指针」．
+Còn một cách khác, cần dùng đến "con trỏ trỏ tới mảng".
 
-???+ note "数组名和数组首元素地址的区别"
-    我们之前说到，在 C/C++ 中，直接使用数组名，值等于数组首元素的地址．但是数组名表示的这一变量的类型实际上是整个数组，而非单个元素．
+???+ note "Khác biệt giữa tên mảng và địa chỉ phần tử đầu của mảng"
+    Trước đây ta đã nói rằng trong C/C++, khi dùng trực tiếp tên mảng, giá trị nhận được bằng địa chỉ của phần tử đầu tiên của mảng. Nhưng kiểu của biến được biểu diễn bởi tên mảng thực ra là toàn bộ mảng, chứ không phải một phần tử đơn lẻ.
     
     ```cpp
     int main() { int a[5] = {1, 2, 3, 4, 5}; }
     ```
     
-    从概念上说，代码中标识符 `a` 的类型是 `int[5]`；从实际上来说，`a + 1` 所指向的地址相较于 `a` 指向的地址的偏移量为 5 个 `int` 型变量的长度．
+    Về mặt khái niệm, kiểu của định danh `a` trong đoạn mã là `int[5]`; về mặt thực tế, địa chỉ mà `a + 1` trỏ tới có độ lệch so với địa chỉ mà `a` trỏ tới là độ dài của 5 biến kiểu `int`.
 
 ```cpp
 int main() {
@@ -306,19 +307,19 @@ int main() {
 }
 ```
 
-这种方式获得到的也是连续的内存，但是可以直接使用 `a[n]` 的形式获得到数组的第 n + 1 行（row）的首地址，因此，使用 `a[r][c]` 的形式即可访问到下标为 `(r, c)` 的元素．
+Cách này cũng thu được bộ nhớ liên tiếp, nhưng có thể trực tiếp dùng dạng `a[n]` để lấy địa chỉ đầu của hàng (row) thứ n + 1 của mảng. Vì vậy, dùng dạng `a[r][c]` là có thể truy cập phần tử có chỉ số `(r, c)`.
 
-由于指向数组的指针也是一种确定的数据类型，因此除数组的第一维外，其他维度的长度均须为一个能在编译器确定的常量．不然，编译器将无法翻译如 `a[n]` 这样的表达式（`a` 为指向数组的指针）．
+Vì con trỏ trỏ tới mảng cũng là một kiểu dữ liệu xác định, nên ngoại trừ chiều thứ nhất của mảng, độ dài của các chiều khác đều phải là hằng có thể được trình biên dịch xác định. Nếu không, trình biên dịch sẽ không thể dịch các biểu thức như `a[n]`, trong đó `a` là con trỏ trỏ tới mảng.
 
-## 指向函数的指针
+## Con trỏ trỏ tới hàm
 
-关于函数的介绍请参见 [C++ 函数](./func.md) 章节．
+Phần giới thiệu về hàm có thể xem trong chương [Hàm trong C++](./func.md).
 
-简单地说，要调用一个函数，需要知晓该函数的参数类型、个数以及返回值类型，这些也统一称作接口类型．
+Nói đơn giản, để gọi một hàm, cần biết kiểu tham số, số lượng tham số và kiểu giá trị trả về của hàm đó; các thông tin này cũng được gọi chung là kiểu giao diện.
 
-可以通过函数指针调用函数．有时候，若干个函数的接口类型是相同的，使用函数指针可以根据程序的运行 **动态地** 选择需要调用的函数．换句话说，可以在不修改一个函数的情况下，仅通过修改向其传入的参数（函数指针），使得该函数的行为发生变化．
+Có thể gọi hàm thông qua con trỏ hàm. Đôi khi, một số hàm có cùng kiểu giao diện; dùng con trỏ hàm cho phép chọn hàm cần gọi **một cách động** theo quá trình chạy của chương trình. Nói cách khác, không cần sửa đổi một hàm, chỉ cần sửa tham số truyền vào nó, tức con trỏ hàm, là có thể làm thay đổi hành vi của hàm đó.
 
-假设我们有若干针对 `int` 类型的二元运算函数，则函数的参数为 2 个 `int`，返回值亦为 `int`．下边是一个使用了函数指针的例子：
+Giả sử ta có một số hàm phép toán hai ngôi dành cho kiểu `int`, thì tham số của hàm là 2 giá trị `int`, và giá trị trả về cũng là `int`. Dưới đây là một ví dụ sử dụng con trỏ hàm:
 
 ```cpp
 #include <iostream>
@@ -344,31 +345,31 @@ int main() {
 }
 ```
 
-???+ note "`&`、`*` 和函数指针"
-    在 C 语言中，诸如 `void (*p)() = foo;`、`void (*p)() = &foo;`、`void (*p)() = *foo;`、`void (*p)() = ***foo` 等写法的结果是一样的．
+???+ note "`&`, `*` và con trỏ hàm"
+    Trong ngôn ngữ C, các cách viết như `void (*p)() = foo;`, `void (*p)() = &foo;`, `void (*p)() = *foo;`, `void (*p)() = ***foo` đều cho cùng một kết quả.
     
-    因为函数（如 `foo`）是能够被隐式转换为指向函数的指针的，因此 `void (*p)() = foo;` 的写法能够成立．
+    Vì hàm, chẳng hạn `foo`, có thể được chuyển đổi ngầm định thành con trỏ trỏ tới hàm, nên cách viết `void (*p)() = foo;` là hợp lệ.
     
-    使用 `&` 运算符可以取得到对象的地址，这对函数也是成立的，因此 `void (*p)() = &foo;` 的写法仍然成立．
+    Dùng toán tử `&` có thể lấy địa chỉ của đối tượng; điều này cũng đúng với hàm, nên cách viết `void (*p)() = &foo;` vẫn hợp lệ.
     
-    对函数指针使用 `*` 运算符可以取得指针指向的函数，而对于 `**foo` 这样的写法来说，`*foo` 得到的是 `foo` 这个函数，紧接着又被隐式转换为指向 `foo` 的指针．如此类推，`**foo` 得到的最终还是指向 `foo` 的函数指针；用户尽可以使用任意多的 `*`，结果也是一样的．
+    Dùng toán tử `*` trên con trỏ hàm có thể lấy hàm mà con trỏ trỏ tới. Với cách viết như `**foo`, `*foo` thu được chính hàm `foo`, rồi ngay sau đó lại được chuyển đổi ngầm định thành con trỏ trỏ tới `foo`. Cứ suy luận tương tự, kết quả cuối cùng của `**foo` vẫn là con trỏ hàm trỏ tới `foo`; người dùng có thể dùng bao nhiêu dấu `*` tùy ý, kết quả vẫn như nhau.
     
-    同理，在调用时使用类似 `(*p)()` 和 `p()` 的语句是一样的，可以省去 `*` 运算符．
+    Tương tự, khi gọi hàm, các câu lệnh như `(*p)()` và `p()` là như nhau; có thể lược bỏ toán tử `*`.
     
-    参考资料：[Why do function pointer definitions work with any number of ampersands '&' or asterisks '\*'? - stackoverflow.com](https://stackoverflow.com/questions/6893285/why-do-function-pointer-definitions-work-with-any-number-of-ampersands-or-as)
+    Tài liệu tham khảo: [Why do function pointer definitions work with any number of ampersands '&' or asterisks '\*'? - stackoverflow.com](https://stackoverflow.com/questions/6893285/why-do-function-pointer-definitions-work-with-any-number-of-ampersands-or-as)
 
-可以使用 `typedef` 关键字声明函数指针的类型．
+Có thể dùng từ khóa `typedef` để khai báo kiểu của con trỏ hàm.
 
 ```cpp
 typedef int (*p_bi_int_op)(int, int);
 ```
 
-这样我们就可以在之后使用 `p_bi_int_op` 这种类型，即指向「参数为 2 个 `int`，返回值亦为 `int`」的函数的指针．
+Như vậy, về sau ta có thể dùng kiểu `p_bi_int_op`, tức kiểu con trỏ trỏ tới hàm "có 2 tham số kiểu `int` và giá trị trả về cũng là `int`".
 
-可以通过使用 `std::function` 来更方便的引用函数．（未完待续）
+Có thể dùng `std::function` để tham chiếu hàm một cách thuận tiện hơn. (Còn tiếp)
 
-使用函数指针，可以实现「回调函数」．（未完待续）
+Dùng con trỏ hàm có thể triển khai "hàm callback". (Còn tiếp)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^note1]: 参见 [Introduce the nullptr constant](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3042.htm)
+[^note1]: Xem [Introduce the nullptr constant](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3042.htm)

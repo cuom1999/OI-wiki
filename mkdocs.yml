@@ -86,8 +86,8 @@ nav:
     - C++ cơ bản:
       - Hello, World!: lang/helloworld.md
       - Cú pháp C++ cơ bản: lang/basic.md
-      - 变量: lang/var.md
-      - 运算: lang/op.md
+      - Biến: lang/var.md
+      - Toán tử: lang/op.md
       - Câu lệnh điều khiển luồng:
         - Rẽ nhánh: lang/branch.md
         - Vòng lặp: lang/loop.md
@@ -95,7 +95,7 @@ nav:
         - Mảng: lang/array.md
         - Cấu trúc: lang/struct.md
         - Liên hiệp: lang/union.md
-        - 指针: lang/pointer.md
+        - Con trỏ: lang/pointer.md
       - Hàm: lang/func.md
       - Thao tác tệp: lang/file-op.md
     - C++ 标准库:

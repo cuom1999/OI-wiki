@@ -1,165 +1,171 @@
-## 数据类型
+<a id="&#25968;&#25454;&#31867;&#22411;"></a>
 
-C++ 的类型系统由如下几部分组成：
+## Kiểu dữ liệu
 
-1.  基础类型（括号内为代表关键词/代表类型）
-    1.  无类型/`void` 型 (`void`)
-    2.  （C++11 起）空指针类型 (`std::nullptr_t`)
-    3.  算术类型
-        1.  整数类型 (`int`)
-        2.  布尔类型/`bool` 型 (`bool`)
-        3.  字符类型 (`char`)
-        4.  浮点类型 (`float`,`double`)
-2.  复合类型[^note11]
+Hệ thống kiểu của C++ gồm các phần sau:
 
-### 布尔类型
+1.  Kiểu cơ bản (trong ngoặc là từ khóa/kiểu đại diện)
+    1.  Kiểu không có giá trị/kiểu `void` (`void`)
+    2.  (Từ C++11) kiểu con trỏ null (`std::nullptr_t`)
+    3.  Kiểu số học
+        1.  Kiểu số nguyên (`int`)
+        2.  Kiểu luận lý/kiểu `bool` (`bool`)
+        3.  Kiểu ký tự (`char`)
+        4.  Kiểu số thực dấu phẩy động (`float`,`double`)
+2.  Kiểu hợp thành[^note11]
 
-一个 `bool` 类型的变量取值只可能为两种：`true` 和 `false`．
+<a id="&#24067;&#23572;&#31867;&#22411;"></a>
 
-一般情况下，一个 `bool` 类型变量占有 $1$ 字节（一般情况下，$1$ 字节 =$8$ 位）的空间．
+### Kiểu luận lý
 
-???+ tip "Tip"
-    可通过头文件 `<climits>`(C++)/`<limits.h>`(C) 中的宏常量 `CHAR_BIT` 获取字节的位数．
+Một biến kiểu `bool` chỉ có thể nhận một trong hai giá trị: `true` và `false`.
 
-???+ note "C 语言的布尔类型"
-    另请参阅 [C++ 与其他常用语言的区别 - bool](./cpp-other-langs.md#bool)．
-    
-    C 语言最初是没有布尔类型的，直到 C99 时才引入 `_Bool` 关键词作为布尔类型，其被视作无符号整数类型．
-    
-    ???+ note "Note"
-        C 语言的 `bool` 类型从 C23 起不再使用整型的零与非零值定义，而是定义为足够储存 `true` 和 `false` 两个常量的类型．
-    
-    为方便使用，`stdbool.h` 中提供了 `bool`,`true`,`false` 三个宏，定义如下：
-    
+Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ (thông thường, $1$ byte = $8$ bit).
+
+???+ tip "Mẹo"
+    Có thể lấy số bit trong một byte thông qua hằng macro `CHAR_BIT` trong tệp tiêu đề `<climits>` (C++)/`<limits.h>` (C).
+
+???+ note "Kiểu luận lý trong ngôn ngữ C"
+    Xem thêm [Khác biệt giữa C++ và các ngôn ngữ thường dùng khác - bool](./cpp-other-langs.md#bool).
+
+    Ban đầu ngôn ngữ C không có kiểu luận lý. Đến C99, từ khóa `_Bool` mới được đưa vào làm kiểu luận lý, và kiểu này được xem như một kiểu số nguyên không dấu.
+
+    ???+ note "Ghi chú"
+        Từ C23, kiểu `bool` của C không còn được định nghĩa bằng giá trị nguyên bằng không và khác không nữa, mà được định nghĩa là kiểu đủ để lưu hai hằng `true` và `false`.
+
+    Để tiện sử dụng, `stdbool.h` cung cấp ba macro `bool`,`true`,`false`, được định nghĩa như sau:
+
     ```c
     #define bool _Bool
     #define true 1
     #define false 0
     ```
-    
-    这些宏于 C23 中移除，并且 C23 起引入 `true`,`false` 和 `bool` 作为关键字，同时保留 `_Bool` 作为替代拼写形式[^note10]．
-    
-    另外，C23 起还可以通过 `<limits.h>` 中的宏常量 `BOOL_WIDTH` 获取布尔类型的位宽．
 
-### 整数类型
+    Các macro này bị loại bỏ trong C23. Từ C23, `true`,`false` và `bool` được đưa vào làm từ khóa, đồng thời vẫn giữ `_Bool` như một cách viết thay thế[^note10].
 
-用于存储整数．最基础的整数类型是 `int`.
+    Ngoài ra, từ C23 cũng có thể lấy độ rộng bit của kiểu luận lý thông qua hằng macro `BOOL_WIDTH` trong `<limits.h>`.
 
-???+ warning "注意"
-    由于历史原因，C++ 中布尔类型和字符类型会被视作特殊的整型．
-    
-    在几乎所有的情况下都 **不应该** 将除 `signed char` 和 `unsigned char` 之外的字符类型作为整型使用．
+<a id="&#25972;&#25968;&#31867;&#22411;"></a>
 
-整数类型一般按位宽有 5 个梯度：`char`,`short`,`int`,`long`,`long long`.
+### Kiểu số nguyên
 
-C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)`
+Dùng để lưu số nguyên. Kiểu số nguyên cơ bản nhất là `int`.
 
-由于历史原因，整数类型的位宽有多种流行模型，为解决这一问题，C99/C++11 引入了 [定宽整数类型](#定宽整数类型)．
+???+ warning "Chú ý"
+    Do nguyên nhân lịch sử, trong C++, kiểu luận lý và kiểu ký tự được xem là các kiểu số nguyên đặc biệt.
 
-???+ note "`int` 类型的大小"
-    在 C++ 标准中，规定 `int` 的位数 **至少** 为 $16$ 位．
-    
-    事实上在现在的绝大多数平台，`int` 的位数均为 $32$ 位．
+    Trong hầu hết mọi trường hợp, **không nên** dùng các kiểu ký tự khác `signed char` và `unsigned char` như kiểu số nguyên.
 
-对于 `int` 关键字，可以使用如下修饰关键字进行修饰：
+Các kiểu số nguyên thường được chia thành 5 mức theo độ rộng bit: `char`,`short`,`int`,`long`,`long long`.
 
-符号性：
+Chuẩn C++ bảo đảm `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)`.
 
--   `signed`：表示带符号整数（默认）；
--   `unsigned`：表示无符号整数．
+Do nguyên nhân lịch sử, độ rộng bit của kiểu số nguyên có nhiều mô hình phổ biến khác nhau. Để giải quyết vấn đề này, C99/C++11 đã đưa vào [kiểu số nguyên có độ rộng cố định](#%E5%AE%9A%E5%AE%BD%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B).
 
-大小：
+???+ note "Kích thước của kiểu `int`"
+    Trong chuẩn C++, số bit của `int` được quy định là **ít nhất** $16$ bit.
 
--   `short`：表示 **至少**  $16$ 位整数；
--   `long`：表示 **至少**  $32$ 位整数；
--   （C++11 起）`long long`：表示 **至少**  $64$ 位整数．
+    Trên thực tế, ở đại đa số nền tảng hiện nay, `int` đều có $32$ bit.
 
-下表给出在 **一般情况下**，各整数类型的位宽和表示范围大小（少数平台上一些类型的表示范围可能与下表不同）：
+Với từ khóa `int`, có thể dùng các từ khóa bổ nghĩa sau:
 
-| 类型名                                                                   | 等价类型                     | 位宽（C++ 标准） | 位宽（常见） | 位宽（较罕见）                    |
-| --------------------------------------------------------------------- | ------------------------ | ---------- | ------ | -------------------------- |
-| `signed char`                                                         | `signed char`            | $8$        | -      | -                          |
-| `unsigned char`                                                       | `unsigned char`          | $8$        | -      | -                          |
-| `short`,`short int`,`signed short`,`signed short int`                 | `short int`              | $\geq 16$  | $16$   | -                          |
-| `unsigned short`,`unsigned short int`                                 | `unsigned short int`     | $\geq 16$  | $16$   | -                          |
-| `int`,`signed`,`signed int`                                           | `int`                    | $\geq 16$  | $32$   | $16$（常见于 Win16 API）        |
-| `unsigned`,`unsigned int`                                             | `unsigned int`           | $\geq 16$  | $32$   | $16$（常见于 Win16 API）        |
-| `long`,`long int`,`signed long`,`signed long int`                     | `long int`               | $\geq 32$  | $32$   | $64$（常见于 64 位 Linux、macOS） |
-| `unsigned long`,`unsigned long int`                                   | `unsigned long int`      | $\geq 32$  | $32$   | $64$（常见于 64 位 Linux、macOS） |
-| `long long`,`long long int`,`signed long long`,`signed long long int` | `long long int`          | $\geq 64$  | $64$   | -                          |
-| `unsigned long long`,`unsigned long long int`                         | `unsigned long long int` | $\geq 64$  | $64$   | -                          |
+Tính có dấu:
 
-当位宽为 $x$ 时，有符号类型的表示范围为 $-2^{x-1}\sim 2^{x-1}-1$[^note16], 无符号类型的表示范围为 $0 \sim 2^x-1$. 具体而言，有下表：
+-   `signed`: biểu thị số nguyên có dấu (mặc định);
+-   `unsigned`: biểu thị số nguyên không dấu.
 
-| 位宽   | 表示范围                                              |
-| ---- | ------------------------------------------------- |
-| $8$  | 有符号：$-2^{7}\sim 2^{7}-1$, 无符号：$0 \sim 2^{8}-1$    |
-| $16$ | 有符号：$-2^{15}\sim 2^{15}-1$, 无符号：$0 \sim 2^{16}-1$ |
-| $32$ | 有符号：$-2^{31}\sim 2^{31}-1$, 无符号：$0 \sim 2^{32}-1$ |
-| $64$ | 有符号：$-2^{63}\sim 2^{63}-1$, 无符号：$0 \sim 2^{64}-1$ |
+Kích thước:
 
-???+ note "等价的类型表述"
-    在不引发歧义的情况下，允许省略部分修饰关键字，或调整修饰关键字的顺序．这意味着同一类型会存在多种等价表述．
-    
-    例如 `int`，`signed`，`int signed`，`signed int` 表示同一类型，而 `unsigned long` 和 `unsigned long int` 表示同一类型．
+-   `short`: biểu thị số nguyên **ít nhất** $16$ bit;
+-   `long`: biểu thị số nguyên **ít nhất** $32$ bit;
+-   (Từ C++11) `long long`: biểu thị số nguyên **ít nhất** $64$ bit.
 
-另外，一些编译器实现了扩展整数类型，如 GCC 实现了 128 位整数：有符号版的 `__int128_t` 和无符号版的 `__uint128_t`，如果您在比赛时想使用这些类型，**请仔细阅读比赛规则** 以确定是否允许或支持使用扩展整数类型．
+Bảng dưới đây cho biết độ rộng bit và phạm vi biểu diễn của các kiểu số nguyên trong **trường hợp thông thường** (trên một số ít nền tảng, phạm vi biểu diễn của vài kiểu có thể khác bảng này):
 
-???+ warning "注意"
-    STL 不一定对扩展整数类型有足够的支持，故使用扩展整数类型时需格外小心．
-    
-    ???+ note "示例代码"
+| Tên kiểu                                                               | Kiểu tương đương          | Độ rộng bit (chuẩn C++) | Độ rộng bit (thường gặp) | Độ rộng bit (hiếm gặp hơn)               |
+| --------------------------------------------------------------------- | ------------------------ | ----------------------- | ------------------------ | ---------------------------------------- |
+| `signed char`                                                         | `signed char`            | $8$                     | -                        | -                                        |
+| `unsigned char`                                                       | `unsigned char`          | $8$                     | -                        | -                                        |
+| `short`,`short int`,`signed short`,`signed short int`                 | `short int`              | $\geq 16$               | $16$                     | -                                        |
+| `unsigned short`,`unsigned short int`                                 | `unsigned short int`     | $\geq 16$               | $16$                     | -                                        |
+| `int`,`signed`,`signed int`                                           | `int`                    | $\geq 16$               | $32$                     | $16$ (thường gặp trong Win16 API)        |
+| `unsigned`,`unsigned int`                                             | `unsigned int`           | $\geq 16$               | $32$                     | $16$ (thường gặp trong Win16 API)        |
+| `long`,`long int`,`signed long`,`signed long int`                     | `long int`               | $\geq 32$               | $32$                     | $64$ (thường gặp trên Linux, macOS 64-bit) |
+| `unsigned long`,`unsigned long int`                                   | `unsigned long int`      | $\geq 32$               | $32$                     | $64$ (thường gặp trên Linux, macOS 64-bit) |
+| `long long`,`long long int`,`signed long long`,`signed long long int` | `long long int`          | $\geq 64$               | $64$                     | -                                        |
+| `unsigned long long`,`unsigned long long int`                         | `unsigned long long int` | $\geq 64$               | $64$                     | -                                        |
+
+Khi độ rộng bit là $x$, phạm vi biểu diễn của kiểu có dấu là $-2^{x-1}\sim 2^{x-1}-1$[^note16], còn phạm vi biểu diễn của kiểu không dấu là $0 \sim 2^x-1$. Cụ thể như bảng sau:
+
+| Độ rộng bit | Phạm vi biểu diễn                                      |
+| ----------- | ------------------------------------------------------ |
+| $8$         | Có dấu: $-2^{7}\sim 2^{7}-1$, không dấu: $0 \sim 2^{8}-1$ |
+| $16$        | Có dấu: $-2^{15}\sim 2^{15}-1$, không dấu: $0 \sim 2^{16}-1$ |
+| $32$        | Có dấu: $-2^{31}\sim 2^{31}-1$, không dấu: $0 \sim 2^{32}-1$ |
+| $64$        | Có dấu: $-2^{63}\sim 2^{63}-1$, không dấu: $0 \sim 2^{64}-1$ |
+
+???+ note "Các cách viết kiểu tương đương"
+    Khi không gây nhập nhằng, có thể lược bỏ một số từ khóa bổ nghĩa, hoặc điều chỉnh thứ tự của các từ khóa bổ nghĩa. Điều này có nghĩa là cùng một kiểu có thể có nhiều cách viết tương đương.
+
+    Ví dụ, `int`, `signed`, `int signed`, `signed int` biểu thị cùng một kiểu, còn `unsigned long` và `unsigned long int` biểu thị cùng một kiểu.
+
+Ngoài ra, một số trình biên dịch có hiện thực các kiểu số nguyên mở rộng. Chẳng hạn GCC hiện thực số nguyên 128 bit: bản có dấu `__int128_t` và bản không dấu `__uint128_t`. Nếu bạn muốn dùng các kiểu này trong kỳ thi, **hãy đọc kỹ quy định của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng có được cho phép hoặc được hỗ trợ hay không.
+
+???+ warning "Chú ý"
+    STL không nhất thiết hỗ trợ đầy đủ các kiểu số nguyên mở rộng, vì vậy cần đặc biệt cẩn thận khi dùng chúng.
+
+    ???+ note "Mã ví dụ"
         ```cpp
         #include <cmath>
         #include <iostream>
-        
+
         int f1(int n) {
-          return abs(n);  // Good
+          return abs(n);  // Đúng
         }
-        
+
         int f2(int n) {
-          return std::abs(n);  // Good
+          return std::abs(n);  // Đúng
         }
-        
+
         __int128_t f3(__int128_t n) {
-          return abs(n);  // Bad
+          return abs(n);  // Sai
         }
-        
-        // Wrong
+
+        // Sai
         // __int128_t f4(__int128_t n) {
         //   return std::abs(n);
         // }
-        
+
         int main() {
           std::cout << "f1: " << f1(-42) << std::endl;
           std::cout << "f2: " << f2(-42) << std::endl;
-          // std::cout << "f3: " << f3(-42) << std::endl; // Wrong
-          // std::cout << "f4: " << f4(-42) << std::endl; // Wrong
+          // std::cout << "f3: " << f3(-42) << std::endl; // Sai
+          // std::cout << "f4: " << f4(-42) << std::endl; // Sai
           return 0;
         }
         ```
-    
-    以上示例代码存在如下问题：
-    
-    1.  `__int128_t f3(__int128_t)` 中使用的是 C 风格的绝对值函数，其签名为 `int abs(int)`，故 `n` 首先会强制转换为 `int`，然后才会调用 `abs` 函数．
-    2.  `__int128_t f4(__int128_t)` 中使用的是 C++ 风格的绝对值函数，其并没有签名为 `__int128_t std::abs(__int128_t)` 的函数重载，所以无法通过编译．
-    3.  C++ 的流式输出不支持 `__int128_t` 与 `__uint128_t`．
-    
-    以下是一种解决方案：
-    
-    ??? note "修正后的代码"
+
+    Mã ví dụ trên có các vấn đề sau:
+
+    1.  Trong `__int128_t f3(__int128_t)`, hàm trị tuyệt đối được dùng là hàm kiểu C, có chữ ký `int abs(int)`, nên trước hết `n` sẽ bị ép kiểu thành `int`, rồi mới gọi hàm `abs`.
+    2.  Trong `__int128_t f4(__int128_t)`, hàm trị tuyệt đối được dùng là hàm kiểu C++. Hàm này không có overload với chữ ký `__int128_t std::abs(__int128_t)`, nên không thể biên dịch.
+    3.  Xuất luồng của C++ không hỗ trợ `__int128_t` và `__uint128_t`.
+
+    Dưới đây là một cách giải quyết:
+
+    ??? note "Mã sau khi sửa"
         ```cpp
         #include <cmath>
         #include <iostream>
-        
+
         __int128_t abs(__int128_t n) { return n < 0 ? -n : n; }
-        
+
         std::ostream &operator<<(std::ostream &os, __uint128_t n) {
           if (n > 9) os << n / 10;
           os << (int)(n % 10);
           return os;
         }
-        
+
         std::ostream &operator<<(std::ostream &os, __int128_t n) {
           if (n < 0) {
             os << '-';
@@ -167,13 +173,13 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
           }
           return os << (__uint128_t)n;
         }
-        
+
         int f1(int n) { return abs(n); }
-        
+
         int f2(int n) { return std::abs(n); }
-        
+
         __int128_t f3(__int128_t n) { return abs(n); }
-        
+
         int main() {
           std::cout << "f1: " << f1(-42) << std::endl;
           std::cout << "f2: " << f2(-42) << std::endl;
@@ -181,74 +187,84 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
         }
         ```
 
-### 字符类型
+<a id="&#23383;&#31526;&#31867;&#22411;"></a>
 
-分为「窄字符类型」和「宽字符类型」，由于算法竞赛几乎不会用到宽字符类型，故此处仅介绍窄字符类型．
+### Kiểu ký tự
 
-窄字符型位数一般为 $8$ 位，实际上底层存储方式仍然是整数，一般通过 [ASCII 编码](http://www.asciitable.com/) 实现字符与整数的一一对应，有如下三种：
+Kiểu ký tự được chia thành "kiểu ký tự hẹp" và "kiểu ký tự rộng". Vì trong thi lập trình thuật toán hầu như không dùng đến kiểu ký tự rộng, phần này chỉ giới thiệu kiểu ký tự hẹp.
 
--   `signed char`：有符号字符表示的类型，表示范围在 $-128 \sim 127$ 之间．
--   `unsigned char`：无符号字符表示的类型，表示范围在 $0 \sim 255$ 之间．
--   `char` 拥有与 `signed char` 或 `unsigned char` 之一相同的表示和对齐，但始终是独立的类型．
+Kiểu ký tự hẹp thường có $8$ bit. Thực chất cách lưu trữ ở tầng dưới vẫn là số nguyên; thông thường, việc tương ứng một-một giữa ký tự và số nguyên được hiện thực thông qua [mã ASCII](http://www.asciitable.com/). Có ba loại sau:
 
-    `char` 的符号性取决于编译器和目标平台：ARM 和 PowerPC 的默认设置通常没有符号，而 x86 与 x64 的默认设置通常有符号．
+-   `signed char`: kiểu biểu diễn ký tự có dấu, phạm vi biểu diễn từ $-128 \sim 127$.
+-   `unsigned char`: kiểu biểu diễn ký tự không dấu, phạm vi biểu diễn từ $0 \sim 255$.
+-   `char` có cùng cách biểu diễn và căn chỉnh với một trong hai kiểu `signed char` hoặc `unsigned char`, nhưng luôn là một kiểu độc lập.
 
-    GCC 可以在编译参数中添加 `-fsigned-char` 或 `-funsigned-char` 指定将 `char` 视作 `signed char` 或 `unsigned char`，其他编译器请参照文档．需要注意指定与架构默认值不同的符号有可能会破坏 ABI，造成程序无法正常工作．
+    Tính có dấu của `char` phụ thuộc vào trình biên dịch và nền tảng đích: cấu hình mặc định trên ARM và PowerPC thường là không dấu, còn cấu hình mặc định trên x86 và x64 thường là có dấu.
 
-???+ warning "注意"
-    与其他整型不同，`char`、`signed char`、`unsigned char` 是 **三种不同的类型**．
-    
-    一般来说 `signed char`,`unsigned char` 不应用来存储字符，绝大多数情况下，这两种类型均被视作整数类型．
+    Với GCC, có thể thêm `-fsigned-char` hoặc `-funsigned-char` vào tham số biên dịch để chỉ định xem `char` là `signed char` hay `unsigned char`; với các trình biên dịch khác, hãy tham khảo tài liệu tương ứng. Cần chú ý rằng việc chỉ định tính có dấu khác với giá trị mặc định của kiến trúc có thể phá vỡ ABI, khiến chương trình không hoạt động bình thường.
 
-### 浮点类型
+???+ warning "Chú ý"
+    Khác với các kiểu số nguyên khác, `char`, `signed char`, `unsigned char` là **ba kiểu khác nhau**.
 
-用于存储「实数」（注意并不是严格意义上的实数，而是实数在一定规则下的近似），包括以下三种：
+    Nói chung, không nên dùng `signed char`,`unsigned char` để lưu ký tự. Trong tuyệt đại đa số trường hợp, hai kiểu này đều được xem như kiểu số nguyên.
 
--   `float`：单精度浮点类型．如果支持就会匹配 IEEE-754 binary32 格式．
--   `double`：双精度浮点类型．如果支持就会匹配 IEEE-754 binary64 格式．
--   `long double`：扩展精度浮点类型．如果支持就会匹配 IEEE-754 binary128 格式，否则如果支持就会匹配 IEEE-754 binary64 扩展格式，否则匹配某种精度优于 binary64 而值域至少和 binary64 一样好的非 IEEE-754 扩展浮点格式，否则匹配 IEEE-754 binary64 格式．
+<a id="&#28014;&#28857;&#31867;&#22411;"></a>
 
-| 浮点格式                   | 位宽        | 最大正数                       | 精度位数             |
-| ---------------------- | --------- | -------------------------- | ---------------- |
-| IEEE-754 binary32 格式   | $32$      | $3.4\times 10^{38}$        | $6\sim 9$        |
-| IEEE-754 binary64 格式   | $64$      | $1.8\times 10^{308}$       | $15\sim 17$      |
-| IEEE-754 binary64 扩展格式 | $\geq 80$ | $\geq 1.2\times 10^{4932}$ | $\geq 18\sim 21$ |
-| IEEE-754 binary128 格式  | $128$     | $1.2\times 10^{4932}$      | $33\sim 36$      |
+### Kiểu số thực dấu phẩy động
 
-> IEEE-754 浮点格式的最小负数是最大正数的相反数．
+Dùng để lưu "số thực" (chú ý rằng đây không phải số thực theo nghĩa chặt chẽ, mà là giá trị xấp xỉ của số thực theo một số quy tắc nhất định), gồm ba kiểu sau:
 
-因为 `float` 类型表示范围较小，且精度不高，实际应用中常使用 `double` 类型表示浮点数．
+-   `float`: kiểu dấu phẩy động độ chính xác đơn. Nếu được hỗ trợ, kiểu này khớp với định dạng IEEE-754 binary32.
+-   `double`: kiểu dấu phẩy động độ chính xác kép. Nếu được hỗ trợ, kiểu này khớp với định dạng IEEE-754 binary64.
+-   `long double`: kiểu dấu phẩy động độ chính xác mở rộng. Nếu được hỗ trợ, kiểu này khớp với định dạng IEEE-754 binary128; nếu không, nếu được hỗ trợ thì khớp với định dạng mở rộng IEEE-754 binary64; nếu không nữa thì khớp với một định dạng dấu phẩy động mở rộng không phải IEEE-754 có độ chính xác tốt hơn binary64 và miền giá trị ít nhất tốt bằng binary64; nếu không nữa thì khớp với định dạng IEEE-754 binary64.
 
-另外，浮点类型可以支持一些特殊值：
+| Định dạng dấu phẩy động            | Độ rộng bit | Số dương lớn nhất              | Số chữ số chính xác |
+| ---------------------------------- | ----------- | ------------------------------ | ------------------- |
+| Định dạng IEEE-754 binary32        | $32$        | $3.4\times 10^{38}$            | $6\sim 9$           |
+| Định dạng IEEE-754 binary64        | $64$        | $1.8\times 10^{308}$           | $15\sim 17$         |
+| Định dạng mở rộng IEEE-754 binary64 | $\geq 80$  | $\geq 1.2\times 10^{4932}$     | $\geq 18\sim 21$    |
+| Định dạng IEEE-754 binary128       | $128$       | $1.2\times 10^{4932}$          | $33\sim 36$         |
 
--   无穷（正或负）：`INFINITY`.
--   负零：`-0.0`，例如 `1.0 / 0.0 == INFINITY`,`1.0 / -0.0 == -INFINITY`.
--   非数（NaN）：`std::nan`,`NAN`，一般可以由 `0.0 / 0.0` 之类的运算产生．它与任何值（包括自身）比较都不相等，C++11 后可以 使用 `std::isnan` 判断一个浮点数是不是 NaN.
+> Số âm nhỏ nhất của định dạng dấu phẩy động IEEE-754 là số đối của số dương lớn nhất.
 
-### 无类型
+Vì kiểu `float` có phạm vi biểu diễn nhỏ và độ chính xác không cao, trong thực tế thường dùng kiểu `double` để biểu diễn số thực dấu phẩy động.
 
-`void` 类型为无类型，与上面几种类型不同的是，不能将一个变量声明为 `void` 类型．但是函数的返回值允许为 `void` 类型，表示该函数无返回值．
+Ngoài ra, kiểu dấu phẩy động có thể hỗ trợ một số giá trị đặc biệt:
 
-### 空指针类型
+-   Vô cùng (dương hoặc âm): `INFINITY`.
+-   Âm không: `-0.0`, ví dụ `1.0 / 0.0 == INFINITY`,`1.0 / -0.0 == -INFINITY`.
+-   Không phải số (NaN): `std::nan`,`NAN`, thường có thể sinh ra bởi các phép tính như `0.0 / 0.0`. Nó không bằng bất kỳ giá trị nào khi so sánh (kể cả chính nó); từ C++11 có thể dùng `std::isnan` để kiểm tra một số dấu phẩy động có phải NaN hay không.
 
-请参阅指针的 [对应章节](./pointer.md#空指针)
+<a id="&#26080;&#31867;&#22411;"></a>
 
-## 定宽整数类型
+### Kiểu không có giá trị
 
-C++11 起提供了定宽整数的支持，具体如下：
+Kiểu `void` là kiểu không có giá trị. Khác với các kiểu ở trên, không thể khai báo một biến có kiểu `void`. Tuy nhiên, giá trị trả về của hàm được phép có kiểu `void`, biểu thị rằng hàm đó không trả về giá trị.
 
--   `<cstdint>`：提供了若干定宽整数的类型和各定宽整数类型最大值、最小值等的宏常量．
--   `<cinttypes>`：为定宽整数类型提供了用于 `std::fprintf` 系列函数和 `std::fscanf` 系列函数的格式宏常量．
+<a id="&#31354;&#25351;&#38024;&#31867;&#22411;"></a>
 
-定宽整数有如下几种：
+### Kiểu con trỏ null
 
--   `intN_t`: 宽度 **恰为**  $N$ 位的有符号整数类型，如 `int32_t`.
--   `int_fastN_t`: 宽度 **至少** 有 $N$ 位的 **最快的** 有符号整数类型，如 `int_fast32_t`.
--   `int_leastN_t`: 宽度 **至少** 有 $N$ 位的 **最小的** 有符号整数类型，如 `int_least32_t`.
+Vui lòng xem [phần tương ứng](./pointer.md#%E7%A9%BA%E6%8C%87%E9%92%88) của bài về con trỏ.
 
-无符号版本只需在有符号版本前加一个字母 u 即可，如 `uint32_t`,`uint_least8_t`.
+<a id="&#23450;&#23485;&#25972;&#25968;&#31867;&#22411;"></a>
 
-标准规定必须实现如下 16 种类型：
+## Kiểu số nguyên có độ rộng cố định
+
+Từ C++11, C++ cung cấp hỗ trợ cho số nguyên có độ rộng cố định, cụ thể như sau:
+
+-   `<cstdint>`: cung cấp một số kiểu số nguyên có độ rộng cố định và các hằng macro như giá trị lớn nhất, giá trị nhỏ nhất của từng kiểu số nguyên có độ rộng cố định.
+-   `<cinttypes>`: cung cấp các hằng macro định dạng dùng cho họ hàm `std::fprintf` và họ hàm `std::fscanf` đối với các kiểu số nguyên có độ rộng cố định.
+
+Số nguyên có độ rộng cố định có các loại sau:
+
+-   `intN_t`: kiểu số nguyên có dấu có độ rộng **đúng bằng** $N$ bit, ví dụ `int32_t`.
+-   `int_fastN_t`: kiểu số nguyên có dấu **nhanh nhất** có độ rộng **ít nhất** $N$ bit, ví dụ `int_fast32_t`.
+-   `int_leastN_t`: kiểu số nguyên có dấu **nhỏ nhất** có độ rộng **ít nhất** $N$ bit, ví dụ `int_least32_t`.
+
+Phiên bản không dấu chỉ cần thêm chữ cái u trước phiên bản có dấu, ví dụ `uint32_t`,`uint_least8_t`.
+
+Chuẩn quy định bắt buộc hiện thực 16 kiểu sau:
 
 `int_fast8_t`,`int_fast16_t`,`int_fast32_t`,`int_fast64_t`,
 
@@ -258,26 +274,26 @@ C++11 起提供了定宽整数的支持，具体如下：
 
 `uint_least8_t`,`uint_least16_t`,`uint_least32_t`,`uint_least64_t`.
 
-绝大多数编译器在此基础上都实现了如下 8 种类型：
+Trên cơ sở đó, tuyệt đại đa số trình biên dịch đều hiện thực thêm 8 kiểu sau:
 
 `int8_t`,`int16_t`,`int32_t`,`int64_t`,
 
 `uint8_t`,`uint16_t`,`uint32_t`,`uint64_t`.
 
-在实现了对应类型的情况下，C++ 标准规定必须实现表示对应类型的最大值、最小值、位宽的宏常量，格式为将类型名末尾的 `_t` 去掉后转大写并添加后缀：
+Khi đã hiện thực kiểu tương ứng, chuẩn C++ quy định bắt buộc hiện thực các hằng macro biểu diễn giá trị lớn nhất, giá trị nhỏ nhất và độ rộng bit của kiểu tương ứng. Tên của chúng có dạng: bỏ `_t` ở cuối tên kiểu, đổi sang chữ hoa và thêm hậu tố:
 
--   `_MAX` 表示最大值，如 `INT32_MAX` 即为 `int32_t` 的最大值．
--   `_MIN` 表示最小值，如 `INT32_MIN` 即为 `int32_t` 的最小值．
+-   `_MAX` biểu thị giá trị lớn nhất, ví dụ `INT32_MAX` là giá trị lớn nhất của `int32_t`.
+-   `_MIN` biểu thị giá trị nhỏ nhất, ví dụ `INT32_MIN` là giá trị nhỏ nhất của `int32_t`.
 
-???+ warning "注意"
-    定宽整数类型本质上是普通整数类型的类型别名，所以混用定宽整数类型和普通整数类型可能会影响跨平台编译，例如：
-    
-    ???+ note "示例代码"
+???+ warning "Chú ý"
+    Về bản chất, kiểu số nguyên có độ rộng cố định là bí danh kiểu của các kiểu số nguyên thông thường, nên việc trộn lẫn kiểu số nguyên có độ rộng cố định và kiểu số nguyên thông thường có thể ảnh hưởng đến khả năng biên dịch đa nền tảng. Ví dụ:
+
+    ???+ note "Mã ví dụ"
         ```cpp
         #include <algorithm>
         #include <cstdint>
         #include <iostream>
-        
+
         int main() {
           long long a;
           int64_t b;
@@ -286,61 +302,65 @@ C++11 起提供了定宽整数的支持，具体如下：
           return 0;
         }
         ```
-    
-    `int64_t` 在 64 位 Windows 下一般为 `long long int`, 而在 64 位 Linux 下一般为 `long int`, 所以这段代码在使用 64 位 Linux 下的 GCC 时不能通过编译，而使用 64 位 Windows 下的 MSVC 时可以通过编译，因为 `std::max` 要求输入的两个参数类型必须相同．
 
-此外，C++17 起在 `<limits>` 中提供了 `std::numeric_limits` 类模板，用于查询各种算数类型的属性，如最大值、最小值、是否是整形、是否有符号等．
+    `int64_t` trên Windows 64-bit thường là `long long int`, còn trên Linux 64-bit thường là `long int`. Vì vậy, đoạn mã này không thể biên dịch với GCC trên Linux 64-bit, nhưng có thể biên dịch với MSVC trên Windows 64-bit, vì `std::max` yêu cầu hai tham số đầu vào phải có cùng kiểu.
+
+Ngoài ra, từ C++17, `<limits>` cung cấp mẫu lớp `std::numeric_limits`, dùng để truy vấn các thuộc tính của nhiều kiểu số học khác nhau, chẳng hạn giá trị lớn nhất, giá trị nhỏ nhất, có phải kiểu số nguyên hay không, có dấu hay không, v.v.
 
 ```cpp
 #include <cstdint>
 #include <limits>
 
-std::numeric_limits<int32_t>::max();  // int32_t 的最大值, 2'147'483'647
-std::numeric_limits<int32_t>::min();  // int32_t 的最小值, -2'147'483'648
+std::numeric_limits<int32_t>::max();  // giá trị lớn nhất của int32_t, 2'147'483'647
+std::numeric_limits<int32_t>::min();  // giá trị nhỏ nhất của int32_t, -2'147'483'648
 
-std::numeric_limits<double>::min();  // double 的最小值, 约为 2.22507e-308
-std::numeric_limits<double>::epsilon();  // 1.0 与 double 的下个可表示值的差,
-                                         // 约为 2.22045e-16
+std::numeric_limits<double>::min();  // giá trị nhỏ nhất của double, khoảng 2.22507e-308
+std::numeric_limits<double>::epsilon();  // hiệu giữa 1.0 và giá trị kế tiếp có thể biểu diễn của double,
+                                         // khoảng 2.22045e-16
 ```
 
-## 类型转换
+<a id="&#31867;&#22411;&#36716;&#25442;"></a>
 
-在一些时候（比如某个函数接受 `int` 类型的参数，但传入了 `double` 类型的变量），我们需要将某种类型，转换成另外一种类型．
+## Chuyển đổi kiểu
 
-C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据类型的两种转换：数值提升和数值转换．
+Trong một số trường hợp (chẳng hạn một hàm nhận tham số kiểu `int`, nhưng biến truyền vào lại có kiểu `double`), ta cần chuyển một kiểu nào đó thành một kiểu khác.
 
-### 数值提升
+Cơ chế chuyển đổi kiểu trong C++ khá phức tạp. Ở đây chủ yếu giới thiệu hai loại chuyển đổi đối với kiểu dữ liệu cơ bản: nâng hạng số học và chuyển đổi số học.
 
-数值提升过程中，值本身保持不变．
+<a id="&#25968;&#20540;&#25552;&#21319;"></a>
 
-???+ note "Note"
-    C 风格的可变参数域在传值过程中会进行默认参数提升．如：
-    
-    ???+ note "示例代码"
+### Nâng hạng số học
+
+Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
+
+???+ note "Ghi chú"
+    Vùng tham số biến thiên kiểu C sẽ thực hiện nâng hạng tham số mặc định khi truyền giá trị. Ví dụ:
+
+    ???+ note "Mã ví dụ"
         ```c
         #include <stdarg.h>
         #include <stdio.h>
-        
+
         void test(int tot, ...) {
           va_list valist;
           int i;
-        
-          // 初始化可变参数列表
+
+          // Khởi tạo danh sách tham số biến thiên
           va_start(valist, tot);
-        
+
           for (i = 0; i < tot; ++i) {
-            // 获取第 i 个变量的值
-            double xx = va_arg(valist, double);  // Correct
-            // float xx = va_arg(valist, float); // Wrong
-        
-            // 输出第 i 个变量的底层存储内容
+            // Lấy giá trị của biến thứ i
+            double xx = va_arg(valist, double);  // Đúng
+            // float xx = va_arg(valist, float); // Sai
+
+            // In nội dung lưu trữ tầng dưới của biến thứ i
             printf("i = %d, value = 0x%016llx\n", i, *(long long *)(&xx));
           }
-        
-          // 清理可变参数列表的内存
+
+          // Dọn bộ nhớ của danh sách tham số biến thiên
           va_end(valist);
         }
-        
+
         int main() {
           float f;
           double fd, d;
@@ -350,17 +370,17 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
           test(3, f, fd, d);
         }
         ```
-    
-    在调用 `test` 时，`f` 提升为 `double`，从而底层存储内容和 `fd` 相同，输出为
-    
+
+    Khi gọi `test`, `f` được nâng hạng thành `double`, nên nội dung lưu trữ tầng dưới giống với `fd`; kết quả in ra là
+
     ```text
     i = 0, value = 0x405ec00000000000
     i = 1, value = 0x405ec00000000000
     i = 2, value = 0x407c800000000000
     ```
-    
-    若将 `double xx = va_arg(valist, double);` 改为 `float xx = va_arg(valist, float);`，GCC 应该给出一条类似下文的警告：
-    
+
+    Nếu đổi `double xx = va_arg(valist, double);` thành `float xx = va_arg(valist, float);`, GCC sẽ đưa ra một cảnh báo tương tự như sau:
+
     ```text
     In file included from test.c:2:
     test.c: In function 'test':
@@ -370,103 +390,119 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
     test.c:14:35: note: (so you should pass 'double' not 'float' to 'va_arg')
     test.c:14:35: note: if this code is reached, the program will abort
     ```
-    
-    此时的程序将会在输出前终止．
-    
-    这一点也能解释为什么 `printf` 的 `%f` 既能匹配 `float` 也能匹配 `double`．
 
-#### 整数提升
+    Khi đó chương trình sẽ kết thúc trước khi in kết quả.
 
-小整数类型（如 `char`）的纯右值可转换成较大整数类型（如 `int`）的纯右值．
+    Điều này cũng giải thích vì sao `%f` của `printf` có thể khớp cả `float` lẫn `double`.
 
-具体而言，算术运算符不接受小于 `int` 的类型作为它的实参，而在左值到右值转换后，如果适用就会自动实施整数提升．
+<a id="&#25972;&#25968;&#25552;&#21319;"></a>
 
-具体地，有如下规则：
+#### Nâng hạng số nguyên
 
--   源类型为 `signed char`、`signed short / short` 时，可提升为 `int`．
--   源类型为 `unsigned char`、`unsigned short` 时，若 `int` 能保有源类型的值范围，则可提升为 `int`，否则可提升为 `unsigned int`．（`C++20` 起 `char8_t` 也适用本规则）
--   `char` 的提升规则取决于其底层类型是 `signed char` 还是 `unsigned char`．
--   `bool` 类型可转换到 `int`：`false` 变为 `0`，`true` 变为 `1`．
--   若目标类型的值范围包含源类型，且源类型的值范围不能被 `int` 和 `unsigned int` 包含，则源类型可提升为目标类型．[^note12]
+Giá trị thuần phải (prvalue) của kiểu số nguyên nhỏ (như `char`) có thể được chuyển thành giá trị thuần phải của kiểu số nguyên lớn hơn (như `int`).
 
-???+ warning "注意"
-    `char`->`short` 不是数值提升，因为 `char` 要优先提升为 `int / unsigned int`，之后是 `int / unsigned int`->`short`，不满足数值提升的条件．
+Cụ thể, toán tử số học không nhận kiểu nhỏ hơn `int` làm đối số. Sau phép chuyển từ lvalue sang rvalue, nếu phù hợp thì nâng hạng số nguyên sẽ tự động được áp dụng.
 
-如（以下假定 `int` 为 32 位，`unsigned short` 为 16 位，`signed char` 和 `unsigned char` 为 8 位，`bool` 为 1 位）
+Cụ thể có các quy tắc sau:
 
--   `(signed char)'\0' - (signed char)'\xff'` 会先将 `(signed char)'\0'` 提升为 `(int)0`、将 `(signed char)'\xff'` 提升为 `(int)-1`, 再进行 `int` 间的运算，最终结果为 `(int)1`．
--   `(unsigned char)'\0' - (unsigned char)'\xff'` 会先将 `(unsigned char)'\0'` 提升为 `(int)0`、将 `(unsigned char)'\xff'` 提升为 `(int)255`, 再进行 `int` 间的运算，最终结果为 `(int)-255`．
--   `false - (unsigned short)12` 会先将 `false` 提升为 `(int)0`、将 `(unsigned short)12` 提升为 `(int)12`, 再进行 `int` 间的运算，最终结果为 `(int)-12`．
+-   Khi kiểu nguồn là `signed char`, `signed short / short`, có thể nâng hạng thành `int`.
+-   Khi kiểu nguồn là `unsigned char`, `unsigned short`, nếu `int` có thể chứa toàn bộ phạm vi giá trị của kiểu nguồn thì có thể nâng hạng thành `int`, nếu không thì nâng hạng thành `unsigned int`. (Từ `C++20`, `char8_t` cũng áp dụng quy tắc này.)
+-   Quy tắc nâng hạng của `char` phụ thuộc vào kiểu tầng dưới của nó là `signed char` hay `unsigned char`.
+-   Kiểu `bool` có thể chuyển sang `int`: `false` trở thành `0`, `true` trở thành `1`.
+-   Nếu phạm vi giá trị của kiểu đích chứa phạm vi giá trị của kiểu nguồn, và phạm vi giá trị của kiểu nguồn không thể được chứa bởi `int` và `unsigned int`, thì kiểu nguồn có thể được nâng hạng thành kiểu đích.[^note12]
 
-#### 浮点提升
+???+ warning "Chú ý"
+    `char`->`short` không phải là nâng hạng số học, vì `char` được ưu tiên nâng hạng thành `int / unsigned int`, sau đó mới là `int / unsigned int`->`short`, không thỏa điều kiện của nâng hạng số học.
 
-位宽较小的浮点数可以提升为位宽较大的浮点数（例如 `float` 类型的变量和 `double` 类型的变量进行算术运算时，会将 `float` 类型变量提升为 `double` 类型变量），其值不变．
+Ví dụ (sau đây giả sử `int` là 32 bit, `unsigned short` là 16 bit, `signed char` và `unsigned char` là 8 bit, `bool` là 1 bit):
 
-### 数值转换
+-   `(signed char)'\0' - (signed char)'\xff'` trước hết sẽ nâng `(signed char)'\0'` thành `(int)0`, nâng `(signed char)'\xff'` thành `(int)-1`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là `(int)1`.
+-   `(unsigned char)'\0' - (unsigned char)'\xff'` trước hết sẽ nâng `(unsigned char)'\0'` thành `(int)0`, nâng `(unsigned char)'\xff'` thành `(int)255`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là `(int)-255`.
+-   `false - (unsigned short)12` trước hết sẽ nâng `false` thành `(int)0`, nâng `(unsigned short)12` thành `(int)12`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là `(int)-12`.
 
-数值转换过程中，值可能会发生改变．
+<a id="&#28014;&#28857;&#25552;&#21319;"></a>
 
-???+ warning "注意"
-    数值提升优先于数值转换．如 `bool`->`int` 时是数值提升而非数值转换．
+#### Nâng hạng dấu phẩy động
 
-#### 整数转换
+Số dấu phẩy động có độ rộng bit nhỏ hơn có thể được nâng hạng thành số dấu phẩy động có độ rộng bit lớn hơn (ví dụ khi một biến kiểu `float` và một biến kiểu `double` tham gia phép toán số học, biến kiểu `float` sẽ được nâng hạng thành biến kiểu `double`), và giá trị của nó không đổi.
+
+<a id="&#25968;&#20540;&#36716;&#25442;"></a>
+
+### Chuyển đổi số học
+
+Trong quá trình chuyển đổi số học, giá trị có thể thay đổi.
+
+???+ warning "Chú ý"
+    Nâng hạng số học có độ ưu tiên cao hơn chuyển đổi số học. Ví dụ, `bool`->`int` là nâng hạng số học chứ không phải chuyển đổi số học.
+
+<a id="&#25972;&#25968;&#36716;&#25442;"></a>
+
+#### Chuyển đổi số nguyên
 
 <!-- scripts.linter.preprocess.fix_details off -->
 
--   如果目标类型为位宽为 $x$ 的无符号整数类型，则转换结果是原值 $\bmod 2^x$ 后的结果．
+-   Nếu kiểu đích là kiểu số nguyên không dấu có độ rộng bit $x$, kết quả chuyển đổi là giá trị ban đầu sau khi lấy $\bmod 2^x$.
 
-    -   若目标类型位宽大于源类型位宽：
+    -   Nếu độ rộng bit của kiểu đích lớn hơn độ rộng bit của kiểu nguồn:
 
-        -   若源类型为有符号类型，一般情况下需先进行符号位扩展再转换．
+        -   Nếu kiểu nguồn là kiểu có dấu, thông thường cần mở rộng bit dấu trước rồi mới chuyển đổi.
 
-            如
+            Ví dụ:
 
-            -   将 `(short)-1`（`(short)0b1111'1111'1111'1111`）转换为 `unsigned int` 类型时，先进行符号位扩展，得到 `0b1111'1111'1111'1111'1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）．
-            -   将 `(short)32'767`（`(short)0b0111'1111'1111'1111`）转换为 `unsigned int` 类型时，先进行符号位扩展，得到 `0b0000'0000'0000'0000'0111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned int)32'767`（`(unsigned int)0b0000'0000'0000'0000'0111'1111'1111'1111`）．
+            -   Khi chuyển `(short)-1` (`(short)0b1111'1111'1111'1111`) sang kiểu `unsigned int`, trước hết mở rộng bit dấu, thu được `0b1111'1111'1111'1111'1111'1111'1111'1111`, rồi thực hiện chuyển đổi số nguyên; kết quả là `(unsigned int)4'294'967'295` (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`).
+            -   Khi chuyển `(short)32'767` (`(short)0b0111'1111'1111'1111`) sang kiểu `unsigned int`, trước hết mở rộng bit dấu, thu được `0b0000'0000'0000'0000'0111'1111'1111'1111`, rồi thực hiện chuyển đổi số nguyên; kết quả là `(unsigned int)32'767` (`(unsigned int)0b0000'0000'0000'0000'0111'1111'1111'1111`).
 
-        -   若源类型为无符号类型，则需先进行零扩展再转换．
+        -   Nếu kiểu nguồn là kiểu không dấu, cần mở rộng bằng bit 0 trước rồi mới chuyển đổi.
 
-            如将 `(unsigned short)65'535`（`(unsigned short)0b1111'1111'1111'1111`）转换为 `unsigned int` 类型时，先进行零扩展，得到 `0b0000'0000'0000'0000'1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned int)65'535`（`(unsigned int)0b0000'0000'0000'0000'1111'1111'1111'1111`）．
+            Ví dụ, khi chuyển `(unsigned short)65'535` (`(unsigned short)0b1111'1111'1111'1111`) sang kiểu `unsigned int`, trước hết mở rộng bằng bit 0, thu được `0b0000'0000'0000'0000'1111'1111'1111'1111`, rồi thực hiện chuyển đổi số nguyên; kết quả là `(unsigned int)65'535` (`(unsigned int)0b0000'0000'0000'0000'1111'1111'1111'1111`).
 
-    -   若目标类型位宽不大于源类型位宽，则需先截断再转换．
+    -   Nếu độ rộng bit của kiểu đích không lớn hơn độ rộng bit của kiểu nguồn, cần cắt bớt trước rồi mới chuyển đổi.
 
-        如将 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）转换为 `unsigned short` 类型时，先进行截断，得到 `0b1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned short)65'535`（`(unsigned short)0b1111'1111'1111'1111`）．
+        Ví dụ, khi chuyển `(unsigned int)4'294'967'295` (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`) sang kiểu `unsigned short`, trước hết cắt bớt, thu được `0b1111'1111'1111'1111`, rồi thực hiện chuyển đổi số nguyên; kết quả là `(unsigned short)65'535` (`(unsigned short)0b1111'1111'1111'1111`).
 
--   如果目标类型为位宽为 $x$ 的带符号整数类型，则 **一般情况下**，转换结果可以认为是原值 $\bmod 2^x$ 后的结果．[^note13]
+-   Nếu kiểu đích là kiểu số nguyên có dấu có độ rộng bit $x$, thì **trong trường hợp thông thường**, kết quả chuyển đổi có thể được xem là kết quả của giá trị ban đầu sau khi lấy $\bmod 2^x$.[^note13]
 
-    例如将 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）转换为 `short` 类型时，结果为 `(short)-1`（`(short)0b1111'1111'1111'1111`）．
+    Ví dụ, khi chuyển `(unsigned int)4'294'967'295` (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`) sang kiểu `short`, kết quả là `(short)-1` (`(short)0b1111'1111'1111'1111`).
 
--   如果目标类型是 `bool`，则是 [布尔转换](#布尔转换)．
+-   Nếu kiểu đích là `bool`, đó là [chuyển đổi luận lý](#%E5%B8%83%E5%B0%94%E8%BD%AC%E6%8D%A2).
 
--   如果源类型是 `bool`，则 `false` 转为对应类型的 0，`true` 转为对应类型的 1．
+-   Nếu kiểu nguồn là `bool`, thì `false` chuyển thành 0 của kiểu tương ứng, còn `true` chuyển thành 1 của kiểu tương ứng.
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-#### 浮点转换
+<a id="&#28014;&#28857;&#36716;&#25442;"></a>
 
-位宽较大的浮点数转换为位宽较小的浮点数，会将该数舍入到目标类型下最接近的值．
+#### Chuyển đổi dấu phẩy động
 
-#### 浮点整数转换
+Khi số dấu phẩy động có độ rộng bit lớn hơn được chuyển sang số dấu phẩy động có độ rộng bit nhỏ hơn, số đó sẽ được làm tròn về giá trị gần nhất trong kiểu đích.
 
--   浮点数转换为整数时，会舍弃浮点数的全部小数部分．
+<a id="&#28014;&#28857;&#25972;&#25968;&#36716;&#25442;"></a>
 
-    如果目标类型是 `bool`，则是 [布尔转换](#布尔转换)．
+#### Chuyển đổi giữa dấu phẩy động và số nguyên
 
--   整数转换为浮点数时，会舍入到目标类型下最接近的值．
+-   Khi chuyển số dấu phẩy động sang số nguyên, toàn bộ phần thập phân của số dấu phẩy động sẽ bị bỏ đi.
 
-    如果该值不能适应到目标类型中，那么行为未定义．
+    Nếu kiểu đích là `bool`, đó là [chuyển đổi luận lý](#%E5%B8%83%E5%B0%94%E8%BD%AC%E6%8D%A2).
 
-    如果源类型是 `bool`，那么 `false` 转换为零，而 `true` 转换为一．
+-   Khi chuyển số nguyên sang số dấu phẩy động, giá trị sẽ được làm tròn về giá trị gần nhất trong kiểu đích.
 
-#### 布尔转换
+    Nếu giá trị đó không thể chứa trong kiểu đích, hành vi là không xác định.
 
-将其他类型转换为 `bool` 类型时，零值转换为 `false`，非零值转换为 `true`．
+    Nếu kiểu nguồn là `bool`, thì `false` chuyển thành không, còn `true` chuyển thành một.
 
-## 定义变量
+<a id="&#24067;&#23572;&#36716;&#25442;"></a>
 
-简单地说[^note14]，定义一个变量，需要包含类型说明符（指明变量的类型），以及要定义的变量名．
+#### Chuyển đổi luận lý
 
-例如，下面这几条语句都是变量定义语句．
+Khi chuyển các kiểu khác sang kiểu `bool`, giá trị bằng không chuyển thành `false`, giá trị khác không chuyển thành `true`.
+
+<a id="&#23450;&#20041;&#21464;&#37327;"></a>
+
+## Định nghĩa biến
+
+Nói đơn giản[^note14], để định nghĩa một biến, cần có bộ mô tả kiểu (chỉ rõ kiểu của biến) và tên biến cần định nghĩa.
+
+Ví dụ, các câu lệnh dưới đây đều là câu lệnh định nghĩa biến.
 
 ```cpp
 int oi;
@@ -474,69 +510,75 @@ double wiki;
 char org = 'c';
 ```
 
-在目前我们所接触到的程序段中，定义在花括号包裹的地方的变量是局部变量，而定义在没有花括号包裹的地方的变量是全局变量．实际有例外，但是现在不必了解．
+Trong các đoạn chương trình hiện tại mà chúng ta tiếp xúc, biến được định nghĩa trong nơi được bao bởi cặp ngoặc nhọn là biến cục bộ, còn biến được định nghĩa ở nơi không được bao bởi cặp ngoặc nhọn là biến toàn cục. Trên thực tế có ngoại lệ, nhưng hiện tại chưa cần tìm hiểu.
 
-定义时没有初始化值的全局变量会被初始化为 $0$．而局部变量没有这种特性，需要手动赋初始值，否则可能引起难以发现的 bug．
+Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$. Biến cục bộ không có đặc tính này, cần được gán giá trị ban đầu thủ công; nếu không có thể gây ra lỗi khó phát hiện.
 
-## 变量作用域
+<a id="&#21464;&#37327;&#20316;&#29992;&#22495;"></a>
 
-作用域是变量可以发挥作用的代码块．
+## Phạm vi của biến
 
-全局变量的作用域，自其定义之处开始[^note15]，至文件结束位置为止．
+Phạm vi là khối mã mà biến có thể có hiệu lực.
 
-局部变量的作用域，自其定义之处开始，至代码块结束位置为止．
+Phạm vi của biến toàn cục bắt đầu từ nơi nó được định nghĩa[^note15] cho đến cuối tệp.
 
-由一对大括号括起来的若干语句构成一个代码块．
+Phạm vi của biến cục bộ bắt đầu từ nơi nó được định nghĩa cho đến cuối khối mã.
+
+Một số câu lệnh được bao bởi một cặp ngoặc nhọn tạo thành một khối mã.
 
 ```cpp
-int g = 20;  // 定义全局变量
+int g = 20;  // Định nghĩa biến toàn cục
 
 int main() {
-  int g = 10;         // 定义局部变量
-  printf("%d\n", g);  // 输出 g
+  int g = 10;         // Định nghĩa biến cục bộ
+  printf("%d\n", g);  // In g
   return 0;
 }
 ```
 
-如果一个代码块的内嵌块中定义了相同变量名的变量，则内层块中将无法访问外层块中相同变量名的变量．
+Nếu trong khối lồng bên trong của một khối mã có định nghĩa biến cùng tên, thì trong khối bên trong sẽ không thể truy cập biến cùng tên ở khối bên ngoài.
 
-例如上面的代码中，输出的 $g$ 的值将是 $10$．因此为了防止出现意料之外的错误，请尽量避免局部变量与全局变量重名的情况．
+Ví dụ trong đoạn mã trên, giá trị $g$ được in ra sẽ là $10$. Vì vậy, để tránh lỗi ngoài dự kiến, hãy cố gắng tránh để biến cục bộ trùng tên với biến toàn cục.
 
-## 常量
+<a id="&#24120;&#37327;"></a>
 
-常量是固定值，在程序执行期间不会改变．
+## Hằng
 
-常量的值在定义后不能被修改．定义时加一个 `const` 关键字即可．
+Hằng là giá trị cố định, không thay đổi trong quá trình chương trình thực thi.
+
+Giá trị của hằng không thể bị sửa sau khi định nghĩa. Khi định nghĩa, chỉ cần thêm từ khóa `const`.
 
 ```cpp
 const int a = 2;
 a = 3;
 ```
 
-如果修改了常量的值，在编译环节就会报错：`error: assignment of read-only variable 'a'`．
+Nếu sửa giá trị của hằng, lỗi sẽ xuất hiện ở giai đoạn biên dịch: `error: assignment of read-only variable 'a'`.
 
-## 参考资料与注释
+<a id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></a>
+
+## Tài liệu tham khảo và chú thích
 
 1.  [Working Draft, Standard for Programming Language C++](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4917.pdf)
-2.  [类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
-3.  C 语言的 [算术类型 - cppreference.com](https://zh.cppreference.com/w/c/language/arithmetic_types)
-4.  [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)
-5.  [定宽整数类型（C++11 起）- cppreference.com](https://zh.cppreference.com/w/cpp/types/integer)
+2.  [Kiểu - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
+3.  [Kiểu số học - cppreference.com](https://zh.cppreference.com/w/c/language/arithmetic_types) của ngôn ngữ C
+4.  [Kiểu cơ bản - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)
+5.  [Kiểu số nguyên có độ rộng cố định (từ C++11) - cppreference.com](https://zh.cppreference.com/w/cpp/types/integer)
 6.  William Kahan (1 October 1997).["Lecture Notes on the Status of IEEE Standard 754 for Binary Floating-Point Arithmetic"](https://people.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF).
-7.  [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
-8.  [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
-9.  [作用域 - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
+7.  [Chuyển đổi ngầm định - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
+8.  [Khai báo - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
+9.  [Phạm vi - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
 
-[^note10]: 参见 <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf>
+[^note10]: Xem <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf>
 
-[^note11]: 包括数组类型、引用类型、指针类型、类类型、函数类型等．由于本篇文章是面向初学者的，故不在本文做具体介绍．具体请参阅 [类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
+[^note11]: Bao gồm kiểu mảng, kiểu tham chiếu, kiểu con trỏ, kiểu lớp, kiểu hàm, v.v. Vì bài viết này hướng tới người mới bắt đầu, nên các kiểu đó không được giới thiệu cụ thể tại đây. Xem chi tiết tại [Kiểu - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
 
-[^note12]: 不包含宽字符类型、位域和枚举类型，详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)．
+[^note12]: Không bao gồm kiểu ký tự rộng, trường bit và kiểu liệt kê; xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2).
 
-[^note13]: 自 C++20 起生效．C++20 前结果是实现定义的．详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)．
+[^note13]: Có hiệu lực từ C++20. Trước C++20, kết quả là do hiện thực định nghĩa. Xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2).
 
-[^note14]: 定义一个变量时，除了类型说明符之外，还可以包含其他说明符．详见 [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)．
+[^note14]: Khi định nghĩa một biến, ngoài bộ mô tả kiểu, còn có thể chứa các bộ mô tả khác. Xem chi tiết tại [khai báo - cppreference](https://zh.cppreference.com/w/cpp/language/declarations).
 
-[^note15]: 更准确的说法是 [声明点](https://zh.cppreference.com/w/cpp/language/scope#.E5.A3.B0.E6.98.8E.E7.82.B9)．
+[^note15]: Nói chính xác hơn là [điểm khai báo](https://zh.cppreference.com/w/cpp/language/scope#.E5.A3.B0.E6.98.8E.E7.82.B9).
 
-[^note16]: C++20 前规定有符号整数至少要覆盖 [反码](../math/bit.md#整数与位序列) 的表示范围（即 $-2^{x-1}+1\sim 2^{x-1}-1$），但实际上绝大多数实现中均采用 [补码](../math/bit.md#整数与位序列) 实现；C++20 起进一步规定有符号整数必须使用补码实现．详见 [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values)．
+[^note16]: Trước C++20, chuẩn quy định số nguyên có dấu ít nhất phải bao phủ phạm vi biểu diễn của [mã bù một](../math/bit.md#%E6%95%B4%E6%95%B0%E4%B8%8E%E4%BD%8D%E5%BA%8F%E5%88%97) (tức $-2^{x-1}+1\sim 2^{x-1}-1$), nhưng trên thực tế tuyệt đại đa số hiện thực đều dùng [mã bù hai](../math/bit.md#%E6%95%B4%E6%95%B0%E4%B8%8E%E4%BD%8D%E5%BA%8F%E5%88%97); từ C++20, chuẩn quy định thêm rằng số nguyên có dấu bắt buộc phải dùng mã bù hai. Xem chi tiết tại [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values).
