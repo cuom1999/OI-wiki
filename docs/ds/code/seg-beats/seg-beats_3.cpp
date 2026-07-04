@@ -7,9 +7,9 @@ using ll = long long;
 constexpr int N = 1e5 + 7;
 
 struct Tree {
-  int mx, _mx;  // 区间最大值 区间历史最大值
-  int ad, _ad;  // 区间加标记 区间阶段历史最大加标记
-  int st, _st;  // 区间修改值 区间阶段历史最大修改标记
+  int mx, _mx;  // Giá trị lớn nhất đoạn; giá trị lớn nhất lịch sử của đoạn.
+  int ad, _ad;  // Tag cộng đoạn; tag cộng lớn nhất lịch sử trong giai đoạn.
+  int st, _st;  // Giá trị gán đoạn; tag gán lớn nhất lịch sử trong giai đoạn.
 } g[N * 4];
 
 int a[N];

@@ -37,7 +37,7 @@ void psd(int x, int ty) {
 }
 
 void psu(int x, int op) {
-  psd(x, op); /*不知道哪没 psd*/
+  psd(x, op); /* Không biết chỗ nào thiếu psd. */
   if (op == 0) {
     ss[x] = ss[ls(x)] + ss[rs(x)] + ss[ms(x)] + 1;
   } else {
