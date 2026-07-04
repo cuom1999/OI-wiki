@@ -712,9 +712,9 @@ Bài mẫu:
 -   [Luogu P5170 - Bài mẫu: Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)
 -   [Luogu P5171 Earthquake](https://www.luogu.com.cn/problem/P5171)
 -   [Luogu P5172 - Tsinghua Training 2014: Sum](https://www.luogu.com.cn/problem/P5172)
--   [Luogu P4132 - BJOI2012: Phuong trinh khong tinh ra duoc](https://www.luogu.com.cn/problem/P4132)
--   [LOJ 138. Thuat toan Euclid tuong tu](https://loj.ac/p/138)
--   [LOJ 6440. Euclid van nang](https://loj.ac/p/6440)
+-   [Luogu P4132 - BJOI2012: Phương trình không tính ra được](https://www.luogu.com.cn/problem/P4132)
+-   [LOJ 138. Thuật toán Euclid tương tự](https://loj.ac/p/138)
+-   [LOJ 6440. Euclid vạn năng](https://loj.ac/p/6440)
 -   [Luogu P5179 Fraction](https://www.luogu.com.cn/problem/P5179)
 -   [Codeforces 1182 F. Maximum Sine](https://codeforces.com/problemset/problem/1182/F)
 

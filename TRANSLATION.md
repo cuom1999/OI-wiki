@@ -148,7 +148,8 @@ MkDocs source layout intact.
   `docs/math/number-theory/basic.md`,
   `docs/math/number-theory/mod-arithmetic.md`,
   `docs/math/number-theory/gcd.md` and
-  `docs/math/number-theory/sieve.md`, plus the opening concept sections of
+  `docs/math/number-theory/sieve.md`, cleaned remaining exercise titles in
+  `docs/math/number-theory/euclidean.md`, plus the opening concept sections of
   `docs/math/number-theory/quadratic.md` through the Eisenstein integer
   material.
 - `docs/math/number-theory/pollard-rho.md`,
