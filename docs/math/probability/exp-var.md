@@ -1,81 +1,99 @@
-本文将介绍随机变量的期望、方差等数字特征．
+Bài viết này giới thiệu các đặc trưng số của biến ngẫu nhiên như kỳ vọng và phương sai.
 
-## 期望
+<span id="&#x671F;&#x671B;"></span>
 
-### 定义
+## Kỳ vọng
 
-#### 离散型随机变量
+<span id="&#x5B9A;&#x4E49;"></span>
 
-设离散型随机变量 $X$ 的概率分布为 $p_i = P\{ X = x_i \}$，若和式
+### Định nghĩa
+
+<span id="&#x79BB;&#x6563;&#x578B;&#x968F;&#x673A;&#x53D8;&#x91CF;"></span>
+
+#### Biến ngẫu nhiên rời rạc
+
+Giả sử biến ngẫu nhiên rời rạc $X$ có phân phối xác suất $p_i = P\{ X = x_i \}$. Nếu chuỗi
 
 $$
 \sum x_i p_i
 $$
 
-绝对收敛，则称其值为 $X$ 的 **期望**，记作 $EX$．
+hội tụ tuyệt đối, thì giá trị của nó được gọi là **kỳ vọng** của $X$, ký hiệu là $EX$.
 
-#### 连续型随机变量
+<span id="&#x8FDE;&#x7EED;&#x578B;&#x968F;&#x673A;&#x53D8;&#x91CF;"></span>
 
-设连续型随机变量 $X$ 的密度函数为 $f(x)$．若积分
+#### Biến ngẫu nhiên liên tục
+
+Giả sử biến ngẫu nhiên liên tục $X$ có hàm mật độ $f(x)$. Nếu tích phân
 
 $$
 \int_{\mathbb{R}} xf(x) \text{d} x
 $$
 
-绝对收敛，则称其值为 $X$ 的 **期望**，记作 $EX$．
+hội tụ tuyệt đối, thì giá trị của nó được gọi là **kỳ vọng** của $X$, ký hiệu là $EX$.
 
-#### 统一定义
+<span id="&#x7EDF;&#x4E00;&#x5B9A;&#x4E49;"></span>
 
-设随机变量 $X$ 的分布函数为 $F(x)$，若 [Stieltjes 积分](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral)
+#### Định nghĩa thống nhất
+
+Giả sử biến ngẫu nhiên $X$ có hàm phân phối $F(x)$. Nếu [tích phân Stieltjes](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral)
 
 $$
 \int_{\mathbb{R}} x \text{d} F(x)
 $$
 
-绝对收敛，则称其值为 $X$ 的 **期望**，记作 $EX$．
+hội tụ tuyệt đối, thì giá trị của nó được gọi là **kỳ vọng** của $X$, ký hiệu là $EX$.
 
-??? example "期望不存在的例子"
-    考虑有如下分布的离散型随机变量 $X$
+??? example "Ví dụ kỳ vọng không tồn tại"
+    Xét biến ngẫu nhiên rời rạc $X$ có phân phối như sau:
     
     $$
     P\left\{ X = (-1)^k \frac{2^k}{k} \right\} = \frac{1}{2^k}, \quad k = 1, 2, \cdots
     $$
     
-    尽管和式 $\sum x_i p_i$ 收敛于 $- \ln 2$，但由于其不是绝对收敛的，故 $X$ 的期望不存在．
+    Tuy chuỗi $\sum x_i p_i$ hội tụ đến $- \ln 2$, nhưng vì nó không hội tụ tuyệt đối nên kỳ vọng của $X$ không tồn tại.
     
-    再考虑有如下密度函数的连续型随机变量 $Y$
+    Tiếp theo, xét biến ngẫu nhiên liên tục $Y$ có hàm mật độ như sau:
     
     $$
     f(y) = \frac{1}{\pi} \cdot \frac{1}{1 + y^2}, \quad y \in (-\infty, +\infty)
     $$
     
-    容易验证 $Y$ 的期望也不存在．
+    Dễ kiểm chứng rằng kỳ vọng của $Y$ cũng không tồn tại.
 
-### 期望的性质
+<span id="&#x671F;&#x671B;&#x7684;&#x6027;&#x8D28;"></span>
 
-#### 线性性
+### Tính chất của kỳ vọng
 
-若随机变量 $X, Y$ 的期望存在，则
+<span id="&#x7EBF;&#x6027;&#x6027;"></span>
 
--   对任意实数 $a, b$，有 $E(aX + b) = a \cdot EX + b$．
--   $E(X + Y) = EX + EY$．
+#### Tính tuyến tính
 
-#### 随机变量乘积的期望
+Nếu kỳ vọng của các biến ngẫu nhiên $X, Y$ tồn tại, thì:
 
-若随机变量 $X$,$Y$ 的期望存在且 $X$,$Y$ 相互独立，则有
+-   Với mọi số thực $a, b$, ta có $E(aX + b) = a \cdot EX + b$.
+-   $E(X + Y) = EX + EY$.
+
+<span id="&#x968F;&#x673A;&#x53D8;&#x91CF;&#x4E58;&#x79EF;&#x7684;&#x671F;&#x671B;"></span>
+
+#### Kỳ vọng của tích các biến ngẫu nhiên
+
+Nếu kỳ vọng của các biến ngẫu nhiên $X$, $Y$ tồn tại và $X$, $Y$ độc lập với nhau, thì:
 
 $$
 E(XY) = EX \cdot EY
 $$
 
-注意：上述性质中的独立性 **并非** 必要条件．
+Chú ý: tính độc lập trong tính chất trên **không phải** là điều kiện cần.
 
-??? example "反例"
-    考察随机变量 $X$ 和 $Y$，其中 $X$ 服从 $[-1, 1]$ 上的均匀分布，$Y = X^2$．
+??? example "Phản ví dụ"
+    Xét các biến ngẫu nhiên $X$ và $Y$, trong đó $X$ tuân theo phân phối đều trên $[-1, 1]$, còn $Y = X^2$.
 
-### 期望与概率的转化
+<span id="&#x671F;&#x671B;&#x4E0E;&#x6982;&#x7387;&#x7684;&#x8F6C;&#x5316;"></span>
 
-对于随机事件 $A$，考虑其示性函数 $I_A$：
+### Chuyển đổi giữa kỳ vọng và xác suất
+
+Với biến cố ngẫu nhiên $A$, xét hàm chỉ báo $I_A$ của nó:
 
 $$
 I_A(\omega) = \begin{cases}
@@ -84,60 +102,68 @@ I_A(\omega) = \begin{cases}
 \end{cases}
 $$
 
-根据定义可以求得其期望 $EI_A = P(A)$．这一转化在实际应用中非常常见．
+Theo định nghĩa, ta tính được kỳ vọng của nó là $EI_A = P(A)$. Phép chuyển đổi này rất thường gặp trong ứng dụng thực tế.
 
-??? example "例子"
-    假设对于一个长为 $n$ 的序列 $\{ a_i \}$，其中 $a_k$ 以 $p_k$ 的概率取 $k$，以 $1 - p_k$ 的概率取 $0$．考虑如何求 $S = \sum_{i=1}^{n} a_i$ 的期望．
+??? example "Ví dụ"
+    Giả sử với một dãy độ dài $n$, $\{ a_i \}$, trong đó $a_k$ nhận giá trị $k$ với xác suất $p_k$ và nhận giá trị $0$ với xác suất $1 - p_k$. Xét cách tính kỳ vọng của $S = \sum_{i=1}^{n} a_i$.
     
-    如果使用定义直接求，需要求出 $S$ 在每个可能取值处的概率，这个计算过程比较繁琐，这里不展开叙述．
+    Nếu tính trực tiếp theo định nghĩa, cần tìm xác suất để $S$ nhận từng giá trị có thể, quá trình tính toán này khá rườm rà nên không trình bày chi tiết ở đây.
     
-    另一方面，用 $I_k$ 表示随机事件 $a_k = k$ 的示性函数，则有
+    Mặt khác, dùng $I_k$ để biểu thị hàm chỉ báo của biến cố ngẫu nhiên $a_k = k$, ta có:
     
     $$
     S = \sum_{k=1}^{n} k \cdot I_k
     $$
     
-    进而不难求出
+    Từ đó không khó để suy ra:
     
     $$
     ES = E \left( \sum_{k=1}^{n} k \cdot I_k \right) = \sum_{k=1}^{n} k \cdot E[I_k] = \sum_{k=1}^{n} k \cdot p_k
     $$
 
-## 条件分布与条件期望
+<span id="&#x6761;&#x4EF6;&#x5206;&#x5E03;&#x4E0E;&#x6761;&#x4EF6;&#x671F;&#x671B;"></span>
 
-我们之前研究过条件概率，类似的也可以提出所谓条件期望的概念．
+## Phân phối có điều kiện và kỳ vọng có điều kiện
 
-### 定义
+Trước đây ta đã nghiên cứu xác suất có điều kiện; tương tự, cũng có thể đưa ra khái niệm gọi là kỳ vọng có điều kiện.
 
-对于两个随机变量 $X$,$Y$，在已知 $Y = y$ 的条件下 $X$ 的概率分布（密度函数）称之为 **条件概率分布（条件概率密度）**，分别记作
+<span id="&#x5B9A;&#x4E49;_1"></span>
+
+### Định nghĩa
+
+Với hai biến ngẫu nhiên $X$, $Y$, khi đã biết $Y = y$, phân phối xác suất (hàm mật độ) của $X$ được gọi là **phân phối xác suất có điều kiện (mật độ xác suất có điều kiện)**, lần lượt ký hiệu là:
 
 $$
 P( X = x_i | Y = y ) \qquad f_{X|Y}(x|y)
 $$
 
-在此条件下，$X$ 的期望称为 **条件期望**，记作 $E[X|Y=y]$．
+Trong điều kiện này, kỳ vọng của $X$ được gọi là **kỳ vọng có điều kiện**, ký hiệu là $E[X|Y=y]$.
 
-### 条件期望的性质
+<span id="&#x6761;&#x4EF6;&#x671F;&#x671B;&#x7684;&#x6027;&#x8D28;"></span>
 
-条件期望的诸多性质可由条件概率推知，在此不做赘述．
+### Tính chất của kỳ vọng có điều kiện
 
-值得一提的是 $E[X | Y]$ 一般是随机变量 $Y$ 的函数，且这个函数通常不是线性的．但实际上有
+Nhiều tính chất của kỳ vọng có điều kiện có thể suy ra từ xác suất có điều kiện, nên ở đây không trình bày thêm.
+
+Điều đáng nói là $E[X | Y]$ nói chung là một hàm của biến ngẫu nhiên $Y$, và hàm này thường không tuyến tính. Tuy nhiên, ta có:
 
 $$
 E[E[X|Y]] = EX
 $$
 
-上式称作 **全期望公式**．
+Công thức trên được gọi là **công thức kỳ vọng toàn phần**.
 
-### 应用
+<span id="&#x5E94;&#x7528;"></span>
+
+### Ứng dụng
 
 ???+ example "[HDU 5984 Pocky](https://acm.hdu.edu.cn/showproblem.php?pid=5984)"
-    有一根长为 $L$ 的 Pocky，每次随机折成两段．若右边一段的长度不大于 $d$ 则停止，否则对右边一段重复上述过程．求重复次数的期望．
+    Có một thanh Pocky dài $L$, mỗi lần được bẻ ngẫu nhiên thành hai đoạn. Nếu đoạn bên phải có độ dài không lớn hơn $d$ thì dừng lại; ngược lại, lặp lại quá trình trên với đoạn bên phải. Hãy tính kỳ vọng của số lần lặp.
 
-??? note "题解"
-    记 $f(x)$ 表示长度为 $x$ 的期望次数．$x \leq d$ 的情形平凡．
+??? note "Lời giải"
+    Gọi $f(x)$ là kỳ vọng số lần lặp khi độ dài là $x$. Trường hợp $x \leq d$ là hiển nhiên.
     
-    当 $x > d$ 时，不妨设折断的位置距右端的长度为 $k$，则显然 $k \sim U[0, x]$，此时期望的重复次数为
+    Khi $x > d$, giả sử vị trí bẻ cách đầu bên phải một đoạn dài $k$; khi đó hiển nhiên $k \sim U[0, x]$. Lúc này kỳ vọng của số lần lặp là:
     
     $$
     g(k) = \begin{cases}
@@ -146,101 +172,115 @@ $$
     \end{cases}
     $$
     
-    由全期望公式可知
+    Theo công thức kỳ vọng toàn phần, ta có:
     
     $$
     f(x) = Eg(k) = 1 + \frac{1}{x} \cdot \int_{d}^{x} f(t) \text{d} t
     $$
     
-    解上述积分方程并代入初值条件得
+    Giải phương trình tích phân trên và thay điều kiện ban đầu vào, thu được:
     
     $$
     f(x) = 1 + \ln \frac{x}{d}
     $$
 
-## 方差
+<span id="&#x65B9;&#x5DEE;"></span>
 
-### 定义
+## Phương sai
 
-设随机变量 $X$ 的期望 $EX$ 存在且期望
+<span id="&#x5B9A;&#x4E49;_2"></span>
+
+### Định nghĩa
+
+Giả sử kỳ vọng $EX$ của biến ngẫu nhiên $X$ tồn tại và kỳ vọng
 
 $$
 E(X - EX)^2
 $$
 
-也存在，则称上式的值为随机变量 $X$ 的 **方差**，记作 $DX$ 或 $Var(x)$．方差的算术平方根称为 **标准差**，记作 $\sigma(X) = \sqrt{DX}$．
+cũng tồn tại. Khi đó giá trị của biểu thức trên được gọi là **phương sai** của biến ngẫu nhiên $X$, ký hiệu là $DX$ hoặc $Var(x)$. Căn bậc hai số học của phương sai được gọi là **độ lệch chuẩn**, ký hiệu là $\sigma(X) = \sqrt{DX}$.
 
-### 方差的性质
+<span id="&#x65B9;&#x5DEE;&#x7684;&#x6027;&#x8D28;"></span>
 
-若随机变量 $X$ 的方差存在，则
+### Tính chất của phương sai
 
--   对任意常数 $a, b$ 都有 $D(aX + b) = a^2 \cdot DX$
--   $DX = E(X^2) - (EX)^2$
+Nếu phương sai của biến ngẫu nhiên $X$ tồn tại, thì:
 
-## 协方差与相关系数
+-   Với mọi hằng số $a, b$, ta có $D(aX + b) = a^2 \cdot DX$.
+-   $DX = E(X^2) - (EX)^2$.
 
-一般来说，等式 $D(X + Y) = DX + DY$ 并不成立，我们自然会提出两个问题：
+<span id="&#x534F;&#x65B9;&#x5DEE;&#x4E0E;&#x76F8;&#x5173;&#x7CFB;&#x6570;"></span>
 
--   $D(X + Y)$ 与 $DX + DY$ 之间相差的部分到底是什么．
--   $D(X + Y)$ 与 $DX + DY$ 在什么情况下相等．
+## Hiệp phương sai và hệ số tương quan
 
-对于第一个问题，我们引入协方差作为解答．
+Nói chung, đẳng thức $D(X + Y) = DX + DY$ không đúng. Một cách tự nhiên, ta sẽ đặt ra hai câu hỏi:
 
-### 协方差的定义
+-   Phần chênh lệch giữa $D(X + Y)$ và $DX + DY$ rốt cuộc là gì?
+-   Trong trường hợp nào thì $D(X + Y)$ bằng $DX + DY$?
 
-对于随机变量 $X, Y$，称
+Với câu hỏi thứ nhất, ta đưa vào hiệp phương sai để trả lời.
+
+<span id="&#x534F;&#x65B9;&#x5DEE;&#x7684;&#x5B9A;&#x4E49;"></span>
+
+### Định nghĩa hiệp phương sai
+
+Với các biến ngẫu nhiên $X, Y$, ta gọi
 
 $$
 E((X - EX)(Y - EY))
 $$
 
-为 $X$ 与 $Y$ 的 **协方差**，记作 $\operatorname{Cov}(X, Y)$．
+là **hiệp phương sai** của $X$ và $Y$, ký hiệu là $\operatorname{Cov}(X, Y)$.
 
-### 协方差的性质
+<span id="&#x534F;&#x65B9;&#x5DEE;&#x7684;&#x6027;&#x8D28;"></span>
 
-对于随机变量 $X, Y, Z$，有
+### Tính chất của hiệp phương sai
 
--   $\operatorname{Cov}(X, Y) = \operatorname{Cov}(Y, X)$
--   对任意常数 $a, b$，有 $\operatorname{Cov}(aX + bY, Z) = a \cdot \operatorname{Cov}(X, Z) + b \cdot \operatorname{Cov}(Y, Z)$
+Với các biến ngẫu nhiên $X, Y, Z$, ta có:
 
-同时协方差与方差也有如下联系：
+-   $\operatorname{Cov}(X, Y) = \operatorname{Cov}(Y, X)$.
+-   Với mọi hằng số $a, b$, ta có $\operatorname{Cov}(aX + bY, Z) = a \cdot \operatorname{Cov}(X, Z) + b \cdot \operatorname{Cov}(Y, Z)$.
 
--   $DX = \operatorname{Cov}(X, X)$
--   $D(X + Y) = DX + 2 \operatorname{Cov}(X, Y) + DY$
+Đồng thời, hiệp phương sai và phương sai cũng có các liên hệ sau:
 
-??? note "关于协方差"
-    你可能会发现协方差的性质与向量内积的运算性质在形式上高度一致．
+-   $DX = \operatorname{Cov}(X, X)$.
+-   $D(X + Y) = DX + 2 \operatorname{Cov}(X, Y) + DY$.
+
+??? note "Về hiệp phương sai"
+    Bạn có thể nhận thấy các tính chất của hiệp phương sai có hình thức rất giống với các tính chất phép toán của tích vô hướng giữa các vectơ.
     
-    在泛函分析的视角下，对于给定的概率空间，其上的全体随机变量构成一个线性空间，而协方差是这个空间上的一个内积，标准差则是由该内积导出的范数．
+    Dưới góc nhìn của giải tích hàm, với một không gian xác suất cho trước, toàn bộ các biến ngẫu nhiên trên đó tạo thành một không gian tuyến tính; hiệp phương sai là một tích vô hướng trên không gian này, còn độ lệch chuẩn là chuẩn được dẫn xuất từ tích vô hướng đó.
 
-对于刚才提出的第二个问题，不难看出 $D(X + Y) = DX + DY$ 当且仅当 $\operatorname{Cov}(X, Y) = 0$．一个直观的必要条件是 $X$ 与 $Y$ 独立，因为此时有
+Với câu hỏi thứ hai đã nêu ở trên, không khó để thấy $D(X + Y) = DX + DY$ khi và chỉ khi $\operatorname{Cov}(X, Y) = 0$. Một điều kiện đủ trực quan là $X$ và $Y$ độc lập, vì khi đó:
 
 $$
 \operatorname{Cov}(X, Y) = E((X - EX)(Y - EY)) = E(X - EX) E(Y - EY) = 0
 $$
 
-但这个条件并不是充分的．为了描述满足 $\operatorname{Cov}(X, Y) = 0$ 的随机变量 $X$,$Y$ 之间的关系，我们引入相关系数
+Nhưng điều kiện này không cần thiết. Để mô tả quan hệ giữa các biến ngẫu nhiên $X$, $Y$ thỏa mãn $\operatorname{Cov}(X, Y) = 0$, ta đưa vào hệ số tương quan.
 
-### 相关系数
+<span id="&#x76F8;&#x5173;&#x7CFB;&#x6570;"></span>
 
-对于随机变量 $X, Y$，称
+### Hệ số tương quan
+
+Với các biến ngẫu nhiên $X, Y$, ta gọi
 
 $$
 \frac{ \operatorname{Cov}(X, Y)}{ \sigma(X)\sigma(Y) }
 $$
 
-为 $X$ 与 $Y$ 的 **Pearson 相关系数**，记作 $\rho_{X,Y}$．
+là **hệ số tương quan Pearson** của $X$ và $Y$, ký hiệu là $\rho_{X,Y}$.
 
-Pearson 相关系数描述了两个随机变量之间线性关联的紧密程度．$|\rho_{X,Y}|$ 越大，则 $X$ 与 $Y$ 之间的线性关联程度越强．不难证明 $|\rho_{X,Y}| \leq 1$，且 $|\rho_{X,Y}| = 1$ 仅可能出现在以下两种情况
+Hệ số tương quan Pearson mô tả mức độ chặt chẽ của liên hệ tuyến tính giữa hai biến ngẫu nhiên. $|\rho_{X,Y}|$ càng lớn thì mức độ liên hệ tuyến tính giữa $X$ và $Y$ càng mạnh. Không khó để chứng minh $|\rho_{X,Y}| \leq 1$, và $|\rho_{X,Y}| = 1$ chỉ có thể xuất hiện trong hai trường hợp sau:
 
--   当存在实数 $a$ 和正实数 $b$ 使得 $P(X = a + bY) = 1$ 时，有 $\rho_{X,Y} = 1$；
--   当存在实数 $a$ 和负实数 $b$ 使得 $P(X = a + bY) = 1$ 时，有 $\rho_{X,Y} = -1$．
+-   Khi tồn tại số thực $a$ và số thực dương $b$ sao cho $P(X = a + bY) = 1$, ta có $\rho_{X,Y} = 1$.
+-   Khi tồn tại số thực $a$ và số thực âm $b$ sao cho $P(X = a + bY) = 1$, ta có $\rho_{X,Y} = -1$.
 
-当 $\rho_{X,Y} = 0$ 时我们称随机变量 $X$ 与 $Y$  **不相关**，此时 $X$ 和 $Y$ 之间不存在线性关系．
+Khi $\rho_{X,Y} = 0$, ta nói các biến ngẫu nhiên $X$ và $Y$ **không tương quan**; khi đó giữa $X$ và $Y$ không tồn tại quan hệ tuyến tính.
 
-??? note "「不相关」与「独立」"
-    两随机变量不相关只是表明他们之间没有线性关联，并不代表没有其他形式的联系．
+??? note "\"Không tương quan\" và \"độc lập\""
+    Hai biến ngẫu nhiên không tương quan chỉ cho thấy giữa chúng không có liên hệ tuyến tính, chứ không có nghĩa là không có liên hệ dưới những hình thức khác.
     
-    因此两随机变量 $X, Y$ 不相关是他们相互独立的 **必要而不充分** 条件．
+    Vì vậy, việc hai biến ngẫu nhiên $X, Y$ không tương quan là điều kiện **cần nhưng không đủ** để chúng độc lập với nhau.
 
-对于这一小节开头提到的第二个问题，我们给出结论：$\operatorname{Cov}(X, Y) = 0$ 的充要条件就是 $X$,$Y$ 中的某一个以概率 $1$ 取常值，或 $X, Y$ 不相关．
+Với câu hỏi thứ hai được nêu ở đầu tiểu mục này, ta đưa ra kết luận: điều kiện cần và đủ để $\operatorname{Cov}(X, Y) = 0$ là một trong hai biến $X$, $Y$ nhận giá trị hằng với xác suất $1$, hoặc $X, Y$ không tương quan.

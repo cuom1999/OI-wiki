@@ -1,102 +1,114 @@
-## 概述
+<span id="&#x6982;&#x8FF0;"></span>
+## Tổng quan
 
-在研究具体的随机现象时我们通常着重关注以下要素：
+Khi nghiên cứu một hiện tượng ngẫu nhiên cụ thể, ta thường tập trung vào các yếu tố sau:
 
--   样本空间 $\Omega$，指明随机现象所有可能出现的结果．
--   事件域 $\mathcal{F}$，表示我们所关心的所有事件．
--   概率 $P$，描述每一个事件发生的可能性大小．
+-   Không gian mẫu $\Omega$, chỉ rõ tất cả các kết quả có thể xảy ra của hiện tượng ngẫu nhiên.
+-   Trường biến cố $\mathcal{F}$, biểu thị tất cả các biến cố mà ta quan tâm.
+-   Xác suất $P$, mô tả mức độ khả năng xảy ra của mỗi biến cố.
 
-## 样本空间、随机事件
+<span id="&#x6837;&#x672C;&#x7A7A;&#x95F4;&#x3001;&#x968F;&#x673A;&#x4E8B;&#x4EF6;"></span>
+## Không gian mẫu và biến cố ngẫu nhiên
 
-### 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+### Định nghĩa
 
-一个随机现象中可能发生的不能再细分的结果被称为 **样本点**．所有样本点的集合称为 **样本空间**，通常用 $\Omega$ 来表示．
+Trong một hiện tượng ngẫu nhiên, một kết quả có thể xảy ra và không thể chia nhỏ thêm được gọi là **điểm mẫu**. Tập hợp tất cả các điểm mẫu được gọi là **không gian mẫu**, thường được ký hiệu là $\Omega$.
 
-一个 **随机事件** 是样本空间 $\Omega$ 的子集，它由若干样本点构成，用大写字母 $A, B, C, \cdots$ 表示．
+Một **biến cố ngẫu nhiên** là một tập con của không gian mẫu $\Omega$. Nó gồm một số điểm mẫu và được ký hiệu bằng các chữ cái in hoa $A, B, C, \cdots$.
 
-对于一个随机现象的结果 $\omega$ 和一个随机事件 $A$，我们称事件 $A$  **发生了** 当且仅当 $\omega \in A$．
+Với kết quả $\omega$ của một hiện tượng ngẫu nhiên và một biến cố ngẫu nhiên $A$, ta nói biến cố $A$ **xảy ra** khi và chỉ khi $\omega \in A$.
 
-例如，掷一次骰子得到的点数是一个随机现象，其样本空间可以表示为 $\Omega=\{1,2,3,4,5,6\}$．设随机事件 $A$ 为「获得的点数大于 $4$」，则 $A = \{ 5, 6 \}$．若某次掷骰子得到的点数 $\omega = 3$，由于 $\omega \notin A$，故事件 $A$ 没有发生．
+Ví dụ, số chấm thu được khi gieo một con xúc xắc một lần là một hiện tượng ngẫu nhiên; không gian mẫu của nó có thể viết là $\Omega=\{1,2,3,4,5,6\}$. Giả sử biến cố ngẫu nhiên $A$ là "số chấm thu được lớn hơn $4$", khi đó $A = \{ 5, 6 \}$. Nếu trong một lần gieo xúc xắc số chấm thu được là $\omega = 3$, thì do $\omega \notin A$, biến cố $A$ không xảy ra.
 
-### 事件的运算
+<span id="&#x4E8B;&#x4EF6;&#x7684;&#x8FD0;&#x7B97;"></span>
+### Các phép toán trên biến cố
 
-由于我们将随机事件定义为了样本空间 $\Omega$ 的子集，故我们可以将集合的运算（如交、并、补等）移植到随机事件上．记号与集合运算保持一致．
+Vì ta định nghĩa biến cố ngẫu nhiên là tập con của không gian mẫu $\Omega$, nên có thể chuyển các phép toán trên tập hợp, như giao, hợp, phần bù, v.v., sang các biến cố ngẫu nhiên. Ký hiệu được giữ nhất quán với các phép toán tập hợp.
 
-特别的，事件的并 $A \cup B$ 也可记作 $A + B$，事件的交 $A \cap B$ 也可记作 $AB$，此时也可分别称作 **和事件** 和 **积事件**．
+Đặc biệt, hợp của hai biến cố $A \cup B$ cũng có thể viết là $A + B$, còn giao của hai biến cố $A \cap B$ cũng có thể viết là $AB$; khi đó chúng lần lượt cũng được gọi là **biến cố tổng** và **biến cố tích**.
 
-## 事件域
+<span id="&#x4E8B;&#x4EF6;&#x57DF;"></span>
+## Trường biến cố
 
-研究具体的随机现象时我们需要明确哪些事件是我们感兴趣的．根据随机事件的定义，显然有 $\mathcal{F} \subset 2^{\Omega}$（记号 $2^{\Omega}$ 表示 $\Omega$ 的幂集），但 $\mathcal{F} = 2^{\Omega}$ 却不是必须的．这在样本空间 $\Omega$ 有限时可能有些难以理解，毕竟 $2^{\Omega}$ 尽管更大了但仍然有限．而当 $\Omega$ 为无穷集时，$2^{\Omega}$ 的势变得更大，其中也难免会出现一些「性质不太好」且我们不关心的事件，这时为了兼顾这些事件而放弃一些性质就显得得不偿失了．
+Khi nghiên cứu một hiện tượng ngẫu nhiên cụ thể, ta cần xác định rõ những biến cố nào là đối tượng quan tâm. Theo định nghĩa của biến cố ngẫu nhiên, hiển nhiên có $\mathcal{F} \subset 2^{\Omega}$, trong đó ký hiệu $2^{\Omega}$ chỉ tập lũy thừa của $\Omega$, nhưng không nhất thiết phải có $\mathcal{F} = 2^{\Omega}$. Khi không gian mẫu $\Omega$ là hữu hạn, điều này có thể hơi khó hiểu, vì dù $2^{\Omega}$ lớn hơn nhưng vẫn hữu hạn. Tuy nhiên, khi $\Omega$ là một tập vô hạn, lực lượng của $2^{\Omega}$ trở nên lớn hơn nhiều; trong đó khó tránh khỏi một số biến cố có "tính chất không thật tốt" và ta cũng không quan tâm. Khi ấy, từ bỏ một số tính chất chỉ để bao quát các biến cố này là điều không đáng.
 
-尽管 $\mathcal{F} = 2^{\Omega}$ 不是必须的，这并不代表 $2^{\Omega}$ 的任一子集都能成为事件域．我们通常会对一些事件进行运算得到的结果事件的概率感兴趣，因此我们希望事件域 $\mathcal{F}$ 满足下列条件：
+Dù $\mathcal{F} = 2^{\Omega}$ không phải là bắt buộc, điều đó không có nghĩa là bất kỳ tập con nào của $2^{\Omega}$ cũng có thể trở thành trường biến cố. Thông thường ta quan tâm đến xác suất của các biến cố thu được sau khi thực hiện một số phép toán trên biến cố, vì vậy ta mong muốn trường biến cố $\mathcal{F}$ thỏa mãn các điều kiện sau:
 
--   $\varnothing \in \mathcal{F}$；
--   若 $A \in \mathcal{F}$，则补事件 $\bar{A} \in \mathcal{F}$；
--   若有一列事件 $A_n \in \mathcal{F}, n = 1, 2, 3\dots$，则 $\bigcup A_n \in \mathcal{F}$．
+-   $\varnothing \in \mathcal{F}$;
+-   Nếu $A \in \mathcal{F}$, thì biến cố bù $\bar{A} \in \mathcal{F}$;
+-   Nếu có một dãy biến cố $A_n \in \mathcal{F}, n = 1, 2, 3\dots$, thì $\bigcup A_n \in \mathcal{F}$.
 
-简言之，就是事件域 $\mathcal{F}$ 对在补运算、和可数并下是封闭的，且包含元素 $\varnothing$．
+Nói ngắn gọn, trường biến cố $\mathcal{F}$ đóng dưới phép lấy phần bù và phép hợp đếm được, đồng thời chứa phần tử $\varnothing$.
 
-可以证明满足上述三个条件的事件域 $\mathcal{F}$ 对可数交也是封闭的．
+Có thể chứng minh rằng trường biến cố $\mathcal{F}$ thỏa mãn ba điều kiện trên cũng đóng dưới phép giao đếm được.
 
-以掷骰子为例，当样本空间记为 $\Omega=\{1,2,3,4,5,6\}$ 时，以下两个集合能够成为事件域：
+Lấy ví dụ gieo xúc xắc. Khi không gian mẫu được viết là $\Omega=\{1,2,3,4,5,6\}$, hai tập hợp sau có thể trở thành trường biến cố:
 
 -   $\mathcal{F}_1 = \{ \varnothing, \Omega \}$
 -   $\mathcal{F}_2 = \{ \varnothing, \{1, 3, 5\}, \{2, 4, 6\}, \Omega \}$
 
-但以下两个集合则不能
+Nhưng hai tập hợp sau thì không:
 
--   $\mathcal{F}_3 = \{ \varnothing, \{1\}, \Omega \}$（对补不封闭）
--   $\mathcal{F}_4 = \{ \{1, 3, 5\}, \{2, 4, 6\} \}$（不含有 $\varnothing$ 且对并不封闭）
+-   $\mathcal{F}_3 = \{ \varnothing, \{1\}, \Omega \}$ (không đóng dưới phép lấy phần bù)
+-   $\mathcal{F}_4 = \{ \{1, 3, 5\}, \{2, 4, 6\} \}$ (không chứa $\varnothing$ và không đóng dưới phép hợp)
 
-## 概率
+<span id="&#x6982;&#x7387;"></span>
+## Xác suất
 
-### 定义
+<span id="&#x5B9A;&#x4E49;_1"></span>
+### Định nghĩa
 
-#### 古典定义
+<span id="&#x53E4;&#x5178;&#x5B9A;&#x4E49;"></span>
+#### Định nghĩa cổ điển
 
-在概率论早期实践中，由于涉及到的随机现象都比较简单，具体表现为样本空间 $\Omega$ 是有限集，且直观上所有样本点是等可能出现的，因此人们便总结出了下述定义：
+Trong giai đoạn đầu của lý thuyết xác suất, các hiện tượng ngẫu nhiên được xét còn tương đối đơn giản: cụ thể là không gian mẫu $\Omega$ là tập hữu hạn, và về trực giác mọi điểm mẫu đều có khả năng xuất hiện như nhau. Vì thế người ta đã tổng kết được định nghĩa sau:
 
-如果一个随机现象满足：
+Nếu một hiện tượng ngẫu nhiên thỏa mãn:
 
--   只有有限个基本结果；
--   每个基本结果出现的可能性是一样的；
+-   Chỉ có hữu hạn kết quả cơ bản;
+-   Mỗi kết quả cơ bản có cùng khả năng xuất hiện;
 
-那么对于每个事件 $A$，定义它的概率为
+thì với mỗi biến cố $A$, xác suất của nó được định nghĩa là
 
 $$
 P(A)=\frac{\#(A)}{\#(\Omega)}
 $$
 
-其中 $\#(\cdot)$ 表示对随机事件（一个集合）大小的度量．
+trong đó $\#(\cdot)$ biểu thị phép đo kích thước của một biến cố ngẫu nhiên, tức một tập hợp.
 
-后来人们发现这一定义可以直接推广到 $\Omega$ 无限的一部分情景中，于是就有了所谓 [几何概型](https://baike.baidu.com/item/%E5%87%A0%E4%BD%95%E6%A6%82%E5%9E%8B/4035773)．
+Về sau, người ta phát hiện rằng định nghĩa này có thể được mở rộng trực tiếp sang một phần các tình huống mà $\Omega$ là vô hạn, từ đó có cái gọi là [mô hình xác suất hình học](https://baike.baidu.com/item/%E5%87%A0%E4%BD%95%E6%A6%82%E5%9E%8B/4035773).
 
-#### 公理化定义
+<span id="&#x516C;&#x7406;&#x5316;&#x5B9A;&#x4E49;"></span>
+#### Định nghĩa tiên đề hóa
 
-上述基于直观认识的定义在逻辑上有一个很大的漏洞：在定义「概率」这一概念时用到了「可能性」这一说法，产生了循环定义的问题．同时「等可能」在样本空间无限时会产生歧义，由此产生了包括 [Bertrand 悖论](https://baike.baidu.com/item/%E8%B4%9D%E7%89%B9%E6%9C%97%E6%82%96%E8%AE%BA/9241081) 在内的一系列问题．
+Định nghĩa dựa trên nhận thức trực giác nói trên có một lỗ hổng logic lớn: khi định nghĩa khái niệm "xác suất", nó lại dùng đến cách nói "khả năng", dẫn đến vấn đề định nghĩa vòng quanh. Đồng thời, "đồng khả năng" cũng trở nên nhập nhằng khi không gian mẫu là vô hạn; từ đó phát sinh một loạt vấn đề, trong đó có [nghịch lý Bertrand](https://baike.baidu.com/item/%E8%B4%9D%E7%89%B9%E6%9C%97%E6%82%96%E8%AE%BA/9241081).
 
-经过不断探索，苏联数学家柯尔莫哥洛夫于 1933 年在他的《概率论基础》一书中第一次给出了概率的公理化定义：
+Sau quá trình tìm tòi liên tục, nhà toán học Liên Xô Kolmogorov lần đầu tiên đưa ra định nghĩa tiên đề hóa của xác suất trong cuốn *Cơ sở của lý thuyết xác suất* của ông vào năm 1933:
 
-概率函数 $P$ 是一个从事件域 $\mathcal{F}$ 到闭区间 $[0, 1]$ 的映射，且满足：
+Hàm xác suất $P$ là một ánh xạ từ trường biến cố $\mathcal{F}$ vào khoảng đóng $[0, 1]$, và thỏa mãn:
 
--   **规范性**：事件 $\Omega$ 的概率值为 $1$，即 $P(\Omega)=1$．
--   **可数可加性**：若一列事件 $A_1, A_2, \cdots$ 两两不交，则 $P\left( \bigcup_{i \geq 1} A_i \right) = \sum_{i \geq 1} P(A_i)$．
+-   **Tính chuẩn hóa**: xác suất của biến cố $\Omega$ bằng $1$, tức $P(\Omega)=1$.
+-   **Tính cộng được đếm được**: nếu một dãy biến cố $A_1, A_2, \cdots$ đôi một rời nhau, thì $P\left( \bigcup_{i \geq 1} A_i \right) = \sum_{i \geq 1} P(A_i)$.
 
-### 概率函数的性质
+<span id="&#x6982;&#x7387;&#x51FD;&#x6570;&#x7684;&#x6027;&#x8D28;"></span>
+### Tính chất của hàm xác suất
 
-对于任意随机事件 $A, B \in \mathcal{F}$，有
+Với mọi biến cố ngẫu nhiên $A, B \in \mathcal{F}$, ta có:
 
--   **单调性**：若 $A \subset B$，则有 $P(A) \leq P(B)$．
--   **容斥原理**：$P(A+B) = P(A) + P(B) - P(AB)$．
--   $P(A - B) = P(A) - P(AB)$，这里 $A - B$ 表示差集．
+-   **Tính đơn điệu**: nếu $A \subset B$, thì $P(A) \leq P(B)$.
+-   **Nguyên lý bao hàm - loại trừ**: $P(A+B) = P(A) + P(B) - P(AB)$.
+-   $P(A - B) = P(A) - P(AB)$, trong đó $A - B$ biểu thị hiệu tập hợp.
 
-## 概率空间
+<span id="&#x6982;&#x7387;&#x7A7A;&#x95F4;"></span>
+## Không gian xác suất
 
-我们在一开始提到，研究具体的随机现象时我们通常关注样本空间 $\Omega$、事件域 $\mathcal{F}$ 以及概率函数 $P$．我们将三元组 $(\Omega, \mathcal{F}, P)$ 称为一个概率空间．
+Ngay từ đầu ta đã nói rằng khi nghiên cứu một hiện tượng ngẫu nhiên cụ thể, ta thường quan tâm đến không gian mẫu $\Omega$, trường biến cố $\mathcal{F}$ và hàm xác suất $P$. Ta gọi bộ ba $(\Omega, \mathcal{F}, P)$ là một không gian xác suất.
 
-概率只有在确定的概率空间下讨论才有意义．我们前面提到的 Bertrand 悖论归根结底就是因对样本空间 $\Omega$ 的定义不明确而产生的．
+Việc thảo luận về xác suất chỉ có ý nghĩa dưới một không gian xác suất đã xác định. Nghịch lý Bertrand đã nhắc ở trên, xét đến cùng, phát sinh do định nghĩa không rõ ràng về không gian mẫu $\Omega$.
 
-## 参考资料与注释
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+## Tài liệu tham khảo và chú thích
 
--   [概率论（数学分支）\_百度百科](https://baike.baidu.com/item/概率论/829122)
+-   [Lý thuyết xác suất (nhánh toán học) - Baidu Baike](https://baike.baidu.com/item/%E6%A6%82%E7%8E%87%E8%AE%BA/829122)
 -   [Probability - Wikipedia](https://en.wikipedia.org/wiki/Probability)

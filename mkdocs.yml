@@ -324,12 +324,12 @@ nav:
       - Lý thuyết vành: math/algebra/ring-theory.md
       - Lý thuyết trường: math/algebra/field-theory.md
       - Thuật toán Schreier–Sims: math/algebra/schreier-sims.md
-    - 概率论:
-      - 基本概念: math/probability/basic-conception.md
-      - 条件概率与独立性: math/probability/conditional-probability.md
-      - 随机变量: math/probability/random-variable.md
-      - 随机变量的数字特征: math/probability/exp-var.md
-      - 概率不等式: math/probability/concentration-inequality.md
+    - Xác suất:
+      - Khái niệm cơ bản: math/probability/basic-conception.md
+      - Xác suất có điều kiện và tính độc lập: math/probability/conditional-probability.md
+      - Biến ngẫu nhiên: math/probability/random-variable.md
+      - Đặc trưng số của biến ngẫu nhiên: math/probability/exp-var.md
+      - Bất đẳng thức xác suất: math/probability/concentration-inequality.md
     - 博弈论: 
       - 博弈论简介: math/game-theory/intro.md
       - 公平组合游戏: math/game-theory/impartial-game.md

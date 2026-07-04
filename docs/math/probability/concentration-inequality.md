@@ -1,102 +1,108 @@
-算法竞赛中有时会用到 [随机化算法](../../misc/rand-technique.md)，这些算法的正确性与时空复杂度通常依赖于「某些随机事件发生的概率很小」这一前提．例如，快速排序的复杂度依赖于「所选的 `pivot` 元素几乎是最小或最大元素」这一事件较少发生．
+Trong thi đấu thuật toán, đôi khi ta dùng [thuật toán ngẫu nhiên hóa](../../misc/rand-technique.md). Tính đúng đắn và độ phức tạp thời gian - không gian của các thuật toán này thường dựa trên tiền đề rằng "xác suất một số biến cố ngẫu nhiên xảy ra là rất nhỏ". Ví dụ, độ phức tạp của quicksort phụ thuộc vào việc biến cố "phần tử `pivot` được chọn gần như là phần tử nhỏ nhất hoặc lớn nhất" hiếm khi xảy ra.
 
-本文将简要介绍一些用于分析随机化算法的工具并给出几个简单应用的例子．
+Bài viết này giới thiệu ngắn gọn một số công cụ dùng để phân tích thuật toán ngẫu nhiên hóa và đưa ra vài ví dụ ứng dụng đơn giản.
 
 ## Union Bound
 
-记 $A_1, \cdots, A_m$ 为随机事件，则
+Ký hiệu $A_1, \cdots, A_m$ là các biến cố ngẫu nhiên, khi đó
 
 $$
 P\left\{ \bigcup_{i=1}^m A_i \right\} \leq \sum_{i=1}^m P\{A_i\}
 $$
 
-即：一组事件中至少一个发生的概率，不超过每一个的发生概率之和．
+Nói cách khác: xác suất có ít nhất một biến cố trong một nhóm biến cố xảy ra không vượt quá tổng xác suất xảy ra của từng biến cố.
 
-实际上，这一结论还可以稍作加强：
+Thực ra, kết luận này còn có thể được tăng cường thêm một chút:
 
--   一组事件中至少一者发生的概率，**不小于** 每一个的发生概率之和，减掉每两个同时发生的概率之和．
--   一组事件中至少一者发生的概率，**不超过** 每一个的发生概率之和，减掉每两个同时发生的概率之和，加上每三个同时发生的概率之和．
--   ……
+-   Xác suất có ít nhất một biến cố trong một nhóm biến cố xảy ra **không nhỏ hơn** tổng xác suất xảy ra của từng biến cố, trừ đi tổng xác suất các cặp biến cố cùng xảy ra.
+-   Xác suất có ít nhất một biến cố trong một nhóm biến cố xảy ra **không vượt quá** tổng xác suất xảy ra của từng biến cố, trừ đi tổng xác suất các cặp biến cố cùng xảy ra, rồi cộng thêm tổng xác suất các bộ ba biến cố cùng xảy ra.
+-   ...
 
-随着层数越来越多，交替出现的上界和下界也越来越紧．这一系列结论形式上类似容斥原理，证明过程也和容斥类似，这里略去．
+Khi số tầng tăng dần, các cận trên và cận dưới xuất hiện luân phiên cũng ngày càng chặt hơn. Chuỗi kết luận này có hình thức tương tự nguyên lý bao hàm - loại trừ, và cách chứng minh cũng tương tự bao hàm - loại trừ; ở đây lược bỏ.
 
-## Markov 不等式
+<span id="markov-&#19981;&#31561;&#24335;"></span>
+## Bất đẳng thức Markov
 
-设 $X$ 是一个取值非负的随机变量，则对任意正实数 $a$ 有
+Giả sử $X$ là một biến ngẫu nhiên nhận giá trị không âm, khi đó với mọi số thực dương $a$ ta có
 
 $$
 P\{ X \geq a \} \leq \frac{EX}{a}
 $$
 
-事实上，由于 Markov 不等式本身并没有用到随机变量除期望外的与分布有关的任何信息，因此直接应用这个不等式得到的约束通常很松．
+Trên thực tế, vì bản thân bất đẳng thức Markov không dùng bất kỳ thông tin nào liên quan đến phân phối của biến ngẫu nhiên ngoài kỳ vọng, nên ràng buộc thu được khi áp dụng trực tiếp bất đẳng thức này thường khá lỏng.
 
-### 证明
+<span id="&#35777;&#26126;"></span>
+### Chứng minh
 
-记 $I$ 为事件 $X \geq a$ 的示性函数，则有
+Ký hiệu $I$ là hàm chỉ báo của biến cố $X \geq a$, khi đó
 
 $$
 I \leq \frac{X}{a}
 $$
 
-进而
+Do đó
 
 $$
 P\{ X \geq a \} = EI \leq E \left[ \frac{X}{a} \right] = \frac{EX}{a}
 $$
 
-## Chebyshev 不等式
+<span id="chebyshev-&#19981;&#31561;&#24335;"></span>
+## Bất đẳng thức Chebyshev
 
-设 $X$ 是一随机变量，则对任意的 $a > 0$ 都有
+Giả sử $X$ là một biến ngẫu nhiên, khi đó với mọi $a > 0$ ta đều có
 
 $$
 P \{ |X - EX| \geq a \} \leq \frac{DX}{a^2}
 $$
 
-特别地，当 $a$ 取 $k\sigma$ 时有
+Đặc biệt, khi lấy $a$ bằng $k\sigma$, ta có
 
 $$
 P \{ |X - EX| \geq k\sigma \} \leq \frac{1}{k^2}
 $$
 
-其中 $\sigma$ 是 $X$ 的标准差．
+trong đó $\sigma$ là độ lệch chuẩn của $X$.
 
-### 证明
+<span id="&#35777;&#26126;_1"></span>
+### Chứng minh
 
-由已知，有
+Từ giả thiết, ta có
 
 $$
 P \{ |X - EX| \geq a \} = P \{ (X - EX)^2 \geq a^2 \}
 $$
 
-注意到 $(X - EX)^2$ 非负，故由 Markov 不等式可知
+Nhận thấy $(X - EX)^2$ không âm, nên theo bất đẳng thức Markov,
 
 $$
 P \{ (X - EX)^2 \geq a^2 \} \leq \frac{E(X - EX)^2}{a^2} = \frac{DX}{a^2}
 $$
 
-## Chernoff 不等式
+<span id="chernoff-&#19981;&#31561;&#24335;"></span>
+## Bất đẳng thức Chernoff
 
-一般的 Chernoff 不等式可以从直接对随机变量 $\mathrm{e}^{tX}$ 应用 Markov 不等式得出：
+Bất đẳng thức Chernoff tổng quát có thể được suy ra bằng cách áp dụng trực tiếp bất đẳng thức Markov cho biến ngẫu nhiên $\mathrm{e}^{tX}$:
 
-设 $X$ 是一随机变量，则对任意的 $t > 0$ 都有
+Giả sử $X$ là một biến ngẫu nhiên, khi đó với mọi $t > 0$ ta đều có
 
 $$
 P\{ X \geq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
-类似地，当 $t < 0$ 时有
+Tương tự, khi $t < 0$, ta có
 
 $$
 P\{ X \leq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
-### Poisson 试验之和的 Chernoff 不等式
+<span id="poisson-&#35797;&#39564;&#20043;&#21644;&#30340;-chernoff-&#19981;&#31561;&#24335;"></span>
+### Bất đẳng thức Chernoff cho tổng các phép thử Poisson
 
-算法竞赛中涉及的随机变量通常没有那么「一般」，我们可以用概率论中的 Poisson 试验对其进行描述．
+Các biến ngẫu nhiên xuất hiện trong thi đấu thuật toán thường không "tổng quát" đến vậy; ta có thể mô tả chúng bằng các phép thử Poisson trong xác suất.
 
-所谓 Poisson 试验，是指在只有两种可能结果的随机试验．
+Cái gọi là phép thử Poisson là một phép thử ngẫu nhiên chỉ có hai kết quả có thể xảy ra.
 
-一次的 Poisson 试验的结果可以用一个取值为 $0$ 或 $1$ 的随机变量 $X$ 进行刻画，其概率分布为
+Kết quả của một phép thử Poisson có thể được mô tả bằng một biến ngẫu nhiên $X$ nhận giá trị $0$ hoặc $1$, với phân phối xác suất
 
 $$
 P\{ X = i \} = \begin{cases}
@@ -105,125 +111,131 @@ P\{ X = i \} = \begin{cases}
 \end{cases}
 $$
 
-对于 Poisson 试验，我们有如下结论：
+Đối với phép thử Poisson, ta có kết luận sau:
 
-对于 $n$ 个独立的 Poisson 试验 $X_1, X_2, \cdots, X_n$，记 $X = \sum_{i=1}^{n} X_i$ 以及 $\mu = EX$，则对任意 $0 < \epsilon < 1$ 有
+Với $n$ phép thử Poisson độc lập $X_1, X_2, \cdots, X_n$, đặt $X = \sum_{i=1}^{n} X_i$ và $\mu = EX$, khi đó với mọi $0 < \epsilon < 1$ ta có
 
 $$
 P\left\{ |X - \mu| \geq \epsilon \mu \right\} \leq 2 \exp\left( - \frac{1}{3} \mu \epsilon^2 \right)
 $$
 
-## Hoeffding 不等式
+<span id="hoeffding-&#19981;&#31561;&#24335;"></span>
+## Bất đẳng thức Hoeffding
 
-若 $X_1, \cdots, X_n$ 为互相独立的实随机变量且 $X_i\in [a_i,b_i]$，记随机变量 $X=\sum\limits_{i=1}^n X_i$，则
+Nếu $X_1, \cdots, X_n$ là các biến ngẫu nhiên thực độc lập lẫn nhau và $X_i\in [a_i,b_i]$, ký hiệu biến ngẫu nhiên $X=\sum\limits_{i=1}^n X_i$, thì
 
 $$
 P\{ |X - EX| \geq \epsilon \} \leq 2\exp \left( \frac {-2\epsilon^2}{\sum\limits_{i=1}^n (b_i-a_i)^2} \right)
 $$
 
-Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望值的程度．这两个不等式的证明过程较为冗长，有兴趣的同学可以查阅 Probability and Computing 一书中的相关章节．
+Cả bất đẳng thức Chernoff và bất đẳng thức Hoeffding đều giới hạn mức độ một biến ngẫu nhiên lệch khỏi kỳ vọng của nó. Chứng minh của hai bất đẳng thức này khá dài; bạn đọc quan tâm có thể tham khảo các chương liên quan trong sách Probability and Computing.
 
-从经验上讲，如果 $EX$ 不太接近 $a_1+\cdots+a_n$，则该不等式给出的界往往相对比较紧；如果非常接近的话（例如在 [UOJ #72 全新做法](https://matthew99.blog.uoj.ac/blog/5511) 中），给出的界则往往很松，此时更好的选择是使用 Chernoff 不等式．
+Theo kinh nghiệm, nếu $EX$ không quá gần $a_1+\cdots+a_n$, thì cận do bất đẳng thức này đưa ra thường tương đối chặt; nếu rất gần (chẳng hạn trong [UOJ #72 cách làm hoàn toàn mới](https://matthew99.blog.uoj.ac/blog/5511)), thì cận thu được thường rất lỏng, lúc này lựa chọn tốt hơn là dùng bất đẳng thức Chernoff.
 
-## 应用举例
+<span id="&#24212;&#29992;&#20030;&#20363;"></span>
+## Ví dụ ứng dụng
 
-### 例：随机撒点估算圆周率
+<span id="&#20363;&#65306;&#38543;&#26426;&#25746;&#28857;&#20272;&#31639;&#22278;&#21608;&#29575;"></span>
+### Ví dụ: ước lượng số pi bằng cách gieo điểm ngẫu nhiên
 
-考虑下列估计圆周率 $\pi$ 的精确值的算法：
+Xét thuật toán sau để ước lượng giá trị chính xác của hằng số $\pi$:
 
-在正方形区域 $[-1, 1]^2$ 内随机生成 $n$ 个点，记其中落入单位圆盘 $x^2 + y^2 \leq 1$ 的点数为 $m$，则可以取 $\dfrac{4m}{n}$ 为 $\pi$ 的近似值．
+Sinh ngẫu nhiên $n$ điểm trong miền hình vuông $[-1, 1]^2$. Gọi $m$ là số điểm trong đó rơi vào đĩa tròn đơn vị $x^2 + y^2 \leq 1$, khi đó có thể lấy $\dfrac{4m}{n}$ làm giá trị xấp xỉ của $\pi$.
 
-问题：若要保证上述算法以至少 $(1 - \delta)$ 的概率返回相对误差不超过 $\epsilon$ 的结果，$n$ 应该如何取定？
+Câu hỏi: để đảm bảo thuật toán trên trả về kết quả có sai số tương đối không vượt quá $\epsilon$ với xác suất ít nhất $(1 - \delta)$, cần chọn $n$ như thế nào?
 
-??? note "解答"
-    记 $X_i$ 表示事件「随机生成的第 $i$ 个点在单位圆内」，则圆内总点数 $X = \sum_{i=1}^{n} X_i$．我们需要找到一个合适的 $n$ 使得
+??? note "Lời giải"
+    Ký hiệu $X_i$ biểu diễn biến cố "điểm thứ $i$ được sinh ngẫu nhiên nằm trong đĩa tròn đơn vị", khi đó tổng số điểm trong đĩa tròn là $X = \sum_{i=1}^{n} X_i$. Ta cần tìm một $n$ thích hợp sao cho
     
     $$
     P\left\{ \left| \frac{4X}{n} - \pi \right| \geq \epsilon \pi \right\} \leq \delta
     $$
     
-    上式等价于
+    Bất đẳng thức trên tương đương với
     
     $$
     P\left\{ \left| X - \frac{\pi}{4}n \right| \geq \epsilon \cdot \frac{\pi}{4}n  \right\} \leq \delta
     $$
     
-    根据 Chernoff 不等式，我们只需令
+    Theo bất đẳng thức Chernoff, ta chỉ cần đặt
     
     $$
     2 \exp\left( - \frac{1}{3} \epsilon^2 \cdot \frac{\pi}{4}n \right) \leq \delta
     $$
     
-    即可，由此可解得
+    là đủ; từ đó giải được
     
     $$
     n \geq \frac{12}{\pi} \epsilon^{-2} \ln \frac{2}{\delta}
     $$
     
-    即当 $n = \Omega(\epsilon^{-2} \ln \frac{1}{\delta})$ 时可以达到需要的准确率．
+    Tức là khi $n = \Omega(\epsilon^{-2} \ln \frac{1}{\delta})$, ta có thể đạt được độ chính xác cần thiết.
 
-### 例：抽奖问题
+<span id="&#20363;&#65306;&#25277;&#22870;&#38382;&#39064;"></span>
+### Ví dụ: bài toán rút thưởng
 
-一个箱子里有 $n$ 个球，其中恰有 $k$ 个球对应着大奖．你要进行若干次独立、等概率的随机抽取，每次抽完之后会把球放回箱子．请问抽多少次能保证以至少 $(1 - \epsilon)$ 的概率，满足 **每一个** 奖球都被抽到至少一次？
+Trong một hộp có $n$ quả bóng, trong đó đúng $k$ quả bóng tương ứng với giải thưởng lớn. Bạn sẽ thực hiện một số lần rút ngẫu nhiên độc lập, đều xác suất; sau mỗi lần rút sẽ đặt bóng trở lại hộp. Hỏi cần rút bao nhiêu lần để đảm bảo với xác suất ít nhất $(1 - \epsilon)$ rằng **mỗi** quả bóng trúng thưởng đều được rút ra ít nhất một lần?
 
-??? note "解答"
-    假如只有一个奖球，则抽取 $M=n\log\epsilon^{-1}$ 次即可保证，因为 $M$ 次全不中的概率
+??? note "Lời giải"
+    Nếu chỉ có một quả bóng trúng thưởng, thì rút $M=n\log\epsilon^{-1}$ lần là đủ, vì xác suất không trúng lần nào trong $M$ lần là
     
     $$
     \Big(1-\dfrac 1n\Big)^{n\log\epsilon^{-1}}\leq e^{\log\epsilon}=\epsilon
     $$
     
-    现在有 $k>1$ 个奖球，那么根据 Union Bound，我们只需保证每个奖球被漏掉的概率都不超过 $\dfrac \epsilon k$ 即可．于是答案是 $n \log \dfrac{k}{\epsilon}$．
+    Bây giờ có $k>1$ quả bóng trúng thưởng. Theo Union Bound, ta chỉ cần đảm bảo xác suất mỗi quả bóng trúng thưởng bị bỏ sót đều không vượt quá $\dfrac \epsilon k$. Do đó đáp án là $n \log \dfrac{k}{\epsilon}$.
 
-### 例：随机选取一半元素
+<span id="&#20363;&#65306;&#38543;&#26426;&#36873;&#21462;&#19968;&#21322;&#20803;&#32032;"></span>
+### Ví dụ: chọn ngẫu nhiên một nửa số phần tử
 
-给出一个算法，从 $n$ 个元素中等概率随机选取一个大小为 $\dfrac{n}{2}$ 的子集，保证 $n$ 是偶数．你能使用的唯一的随机源是一枚均匀硬币，同时请你尽量减少抛硬币的次数（不要求最少）．
+Hãy đưa ra một thuật toán chọn ngẫu nhiên đều xác suất một tập con có kích thước $\dfrac{n}{2}$ từ $n$ phần tử, đảm bảo $n$ là số chẵn. Nguồn ngẫu nhiên duy nhất bạn có thể dùng là một đồng xu công bằng; đồng thời hãy cố gắng giảm số lần tung đồng xu (không yêu cầu tối thiểu).
 
-??? note "解法"
-    首先可以想到这样的算法：
+??? note "Lời giải"
+    Trước hết có thể nghĩ đến thuật toán sau:
     
-    -   通过抛 $n$ 次硬币，可以从所有子集中等概率随机选一个．
-    -   不断重复这一过程，直到选出的子集大小恰好为 $\dfrac n2$．
-        -   注意到大小为 $\dfrac n2$ 的子集至少占所有子集的 $\dfrac 1n$，因此重复次数的期望值 $\leq n$．
+    -   Bằng cách tung đồng xu $n$ lần, ta có thể chọn ngẫu nhiên đều xác suất một tập con trong tất cả các tập con.
+    -   Lặp lại quá trình này cho đến khi kích thước tập con được chọn đúng bằng $\dfrac n2$.
+        -   Lưu ý rằng các tập con có kích thước $\dfrac n2$ chiếm ít nhất $\dfrac 1n$ trong tất cả các tập con, nên kỳ vọng số lần lặp $\leq n$.
     
-    这一算法期望需要抛 $n^2$ 次硬币．
+    Thuật toán này cần tung đồng xu $n^2$ lần theo kỳ vọng.
     
-    另一个算法：
+    Một thuật toán khác:
     
-    -   我们可以通过抛期望 $2\lceil\log_2 n\rceil$ 次硬币来实现随机 $n$ 选 1．
-        -   具体方法：随机生成 $\lceil\log_2 n\rceil$ 位的二进制数，如果大于等于 $n$ 则重新随机，否则选择对应编号（编号从 0 开始）的元素并结束过程．
-    -   然后我们从所有元素中选一个，再从剩下的元素中再选一个，以此类推，直到选出 $\dfrac n2$ 个元素为止．
+    -   Ta có thể thực hiện chọn ngẫu nhiên 1 trong $n$ phần tử bằng cách tung đồng xu $2\lceil\log_2 n\rceil$ lần theo kỳ vọng.
+        -   Cách làm cụ thể: sinh ngẫu nhiên một số nhị phân có $\lceil\log_2 n\rceil$ bit; nếu số đó lớn hơn hoặc bằng $n$ thì sinh lại, nếu không thì chọn phần tử có chỉ số tương ứng (đánh số từ 0) và kết thúc quá trình.
+    -   Sau đó ta chọn một phần tử từ tất cả các phần tử, rồi chọn thêm một phần tử từ các phần tử còn lại, cứ như vậy cho đến khi chọn được $\dfrac n2$ phần tử.
     
-    这一算法期望需要抛 $n\lceil\log_2 n\rceil$ 次硬币．
+    Thuật toán này cần tung đồng xu $n\lceil\log_2 n\rceil$ lần theo kỳ vọng.
     
-    将两个算法缝合起来：
+    Ghép hai thuật toán lại với nhau:
     
-    -   先用第一个算法随机得到一个子集．
-    -   如果该子集大小不到 $\dfrac n2$，则利用第二个算法不断添加元素，直到将大小补到 $\dfrac n2$．
-    -   如果该子集大小超过 $\dfrac n2$，则利用第二个算法不断删除元素，直到将大小削到 $\dfrac n2$．
+    -   Trước tiên dùng thuật toán thứ nhất để lấy ngẫu nhiên một tập con.
+    -   Nếu kích thước tập con này nhỏ hơn $\dfrac n2$, thì dùng thuật toán thứ hai để liên tục thêm phần tử cho đến khi bù kích thước lên $\dfrac n2$.
+    -   Nếu kích thước tập con này lớn hơn $\dfrac n2$, thì dùng thuật toán thứ hai để liên tục xóa phần tử cho đến khi giảm kích thước xuống $\dfrac n2$.
     
-    尝试分析第二、第三步所需的操作次数（即添加/删除元素的次数）：
+    Thử phân tích số thao tác cần thiết ở bước hai và bước ba (tức số lần thêm/xóa phần tử):
     
-    -   记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二、第三步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$．在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$（其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2\mathrm{e}^{-c^2}$．也就是说，我们可以通过允许 $\Theta(\sqrt n)$ 级别的偏移，来得到任意小的常数级别的失败概率．
+    -   Ký hiệu biến ngẫu nhiên 0-1 $X_i$ biểu diễn việc $i$ có được chọn vào tập con ban đầu hay không, và đặt $X:=X_1+\cdots+X_n$ biểu diễn kích thước tập con. Khi đó số thao tác cần ở bước hai và bước ba bằng $\big|X-\mathrm{E}[X]\big|$. Trong bất đẳng thức Hoeffding, lấy $t=c\cdot\sqrt n$ (trong đó $c$ là hằng số tùy ý), ta được $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2\mathrm{e}^{-c^2}$. Nói cách khác, bằng cách cho phép độ lệch ở mức $\Theta(\sqrt n)$, ta có thể thu được xác suất thất bại nhỏ tùy ý ở cấp hằng số.
     
-    至此我们已经说明：该算法可以以很大概率保证抛硬币次数在 $n+\Theta(\sqrt n\log n)$ 以内．
+    Đến đây ta đã chứng minh rằng: với xác suất rất lớn, thuật toán này có thể đảm bảo số lần tung đồng xu không vượt quá $n+\Theta(\sqrt n\log n)$.
     
-    -   其中 $n$ 来自获得初始子集的抛硬币次数；$\Theta(\sqrt n\log n)$ 是 $\Theta(\sqrt n)$ 次添加/删除元素的总开销．
+    -   Trong đó $n$ đến từ số lần tung đồng xu để thu được tập con ban đầu; $\Theta(\sqrt n\log n)$ là tổng chi phí của $\Theta(\sqrt n)$ lần thêm/xóa phần tử.
     
-    ??? note "计算期望复杂度"
-        我们再从另一个角度分析，尝试计算该算法的期望抛硬币次数．
+    ??? note "Tính độ phức tạp kỳ vọng"
+        Ta tiếp tục phân tích từ một góc nhìn khác, thử tính số lần tung đồng xu kỳ vọng của thuật toán này.
         
-        用 Hoeffding 不等式求第二、第三步中操作次数期望值的上界：
+        Dùng bất đẳng thức Hoeffding để tìm cận trên cho kỳ vọng số thao tác trong bước hai và bước ba:
         
         $$
         E|X - EX| = \int_0^\infty P\{ |X - E[X]| \geq t \} \mathrm{d}t \leq 
         2 \int_0^\infty \exp \left(-\frac {t^2}{n}\right) \mathrm{d}t=\sqrt{\pi n}
         $$
         
-        从而第二、第三步所需抛硬币次数的期望值是 $\sqrt{\pi n}\cdot2\lceil\log_2 n\rceil$．
+        Do đó kỳ vọng số lần tung đồng xu cần cho bước hai và bước ba là $\sqrt{\pi n}\cdot2\lceil\log_2 n\rceil$.
         
-        综上，该算法期望需要抛 $n+2\sqrt{\pi n}\lceil\log_2 n\rceil$ 次硬币．
+        Tóm lại, thuật toán này cần tung đồng xu $n+2\sqrt{\pi n}\lceil\log_2 n\rceil$ lần theo kỳ vọng.
 
-### 练习：Balls and Bins
+<span id="&#32451;&#20064;&#65306;balls-and-bins"></span>
+### Bài tập: Balls and Bins
 
-$n$ 个球独立随机地扔到 $n$ 个盒子里，试证明：球最多的盒子中的球数以 $1 - \dfrac{1}{n}$ 的概率不少于 $\Omega \left( \dfrac{\log n}{\log \log n} \right)$．
+$n$ quả bóng được ném độc lập ngẫu nhiên vào $n$ hộp. Hãy chứng minh: số bóng trong hộp chứa nhiều bóng nhất không nhỏ hơn $\Omega \left( \dfrac{\log n}{\log \log n} \right)$ với xác suất $1 - \dfrac{1}{n}$.

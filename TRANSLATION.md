@@ -179,6 +179,9 @@ MkDocs source layout intact.
 - `docs/math/algebra/*.md`: translated abstract algebra material covering
   basic concepts, group/ring/field theory, Schreier-Sims, and explanatory
   comments in the Schreier-Sims snippet.
+- `docs/math/probability/*.md`: translated probability basics, conditional
+  probability and independence, random variables, expectation/variance, and
+  concentration inequalities.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
