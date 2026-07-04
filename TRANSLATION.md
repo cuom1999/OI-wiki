@@ -172,6 +172,10 @@ MkDocs source layout intact.
   basic counting, inclusion-exclusion, Fibonacci/Catalan/Stirling/Bell/Bernoulli
   numbers, partitions, Vandermonde convolution, Pólya counting, and graph
   enumeration, plus explanatory comments in included combinatorics snippets.
+- `docs/math/linear-algebra/*.md`, `docs/math/linear-programming.md`,
+  `docs/math/simplex.md`: translated linear algebra and linear programming
+  material, plus explanatory comments in included linear-basis and simplex
+  snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

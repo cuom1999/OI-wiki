@@ -1,46 +1,51 @@
-本文介绍向量之间的简单运算．
+Bài này giới thiệu các phép toán đơn giản giữa các vectơ.
 
-在本文之前，特别说明一下翻译的相关问题．由于历史原因，数学学科和物理学科关于「inner product」和「outer product」两个词汇有着五花八门的翻译．
+Trước khi vào bài, cần nói rõ một vấn đề về thuật ngữ dịch. Vì lý do lịch sử, trong toán học và vật lý, các thuật ngữ "inner product" và "outer product" có nhiều cách dịch khác nhau.
 
-在物理学科，一般翻译成「标积」和「矢积」，表示运算的结果为标量和矢量．高中数学课本上「数量积」和「向量积」也采用了这种意译的办法．
+Trong vật lý, thường dùng cách gọi nhấn mạnh kết quả của phép toán là vô hướng hay vectơ. Sách toán phổ thông cũng thường dùng cách dịch theo nghĩa này, chẳng hạn "tích vô hướng" và "tích có hướng".
 
-在数学学科，通常也可以翻译成「内积」和「外积」，是两个名词的直译．「点乘」和「叉乘」是根据运算符号得来的俗称，这种俗称也很常见．
+Trong toán học, hai thuật ngữ này cũng có thể dịch trực tiếp là "tích trong" và "tích ngoài". "Tích chấm" và "tích chéo" là cách gọi thông dụng dựa trên ký hiệu phép toán.
 
-在「点乘」运算中，经常省略运算的点符号，在线性代数中更是会直接看作矩阵乘法，不写点符号．
+Trong phép "tích chấm", dấu chấm của phép toán thường được lược bỏ; trong đại số tuyến tính, nó còn thường được xem trực tiếp như phép nhân ma trận và không viết dấu chấm.
 
-## 内积
+<span id="&#20869;&#31215;"></span>
+## Tích trong
 
-内积的概念 **对于任意维数的向量都适用**．
+Khái niệm tích trong **áp dụng cho vectơ ở mọi số chiều**.
 
-### 定义
+<span id="&#23450;&#20041;"></span>
+### Định nghĩa
 
-内积有不同但等价的定义方法，下面介绍其中一些．
+Tích trong có nhiều cách định nghĩa khác nhau nhưng tương đương. Dưới đây giới thiệu một vài cách.
 
-#### 几何定义
+<span id="&#20960;&#20309;&#23450;&#20041;"></span>
+#### Định nghĩa hình học
 
-在 $n$ 维欧氏空间 $\mathbf{R}^n$ 下，已知两个向量 $\boldsymbol{a}, \boldsymbol{b}$，它们的夹角为 $\theta$，那么：
+Trong không gian Euclid $n$ chiều $\mathbf{R}^n$, cho hai vectơ $\boldsymbol{a}, \boldsymbol{b}$, góc giữa chúng là $\theta$, khi đó:
 
 $$
 \boldsymbol{a} \cdot \boldsymbol{b} = |\boldsymbol{a}| |\boldsymbol{b}| \cos \theta
 $$
 
-就是这两个向量的 **内积**，也叫 **点积** 或 **数量积**．其中称 $|\boldsymbol{b}|\cos \theta$ 为 $\boldsymbol{b}$ 在 $\boldsymbol{a}$ 方向上的投影．内积的几何意义即为：内积 $\boldsymbol{a} \cdot \boldsymbol{b}$ 等于 $\boldsymbol{a}$ 的模与 $\boldsymbol{b}$ 在 $\boldsymbol{a}$ 方向上的投影的乘积．
+được gọi là **tích trong** của hai vectơ này, cũng gọi là **tích chấm** hoặc **tích vô hướng**. Trong đó $|\boldsymbol{b}|\cos \theta$ được gọi là hình chiếu của $\boldsymbol{b}$ lên hướng của $\boldsymbol{a}$. Ý nghĩa hình học của tích trong là: tích trong $\boldsymbol{a} \cdot \boldsymbol{b}$ bằng tích giữa độ dài của $\boldsymbol{a}$ và hình chiếu của $\boldsymbol{b}$ lên hướng của $\boldsymbol{a}$.
 
-#### 代数定义
+<span id="&#20195;&#25968;&#23450;&#20041;"></span>
+#### Định nghĩa đại số
 
-在 $n$ 维欧氏空间 $\mathbf{R}^n$ 下，已知两个向量 $\boldsymbol{a} = (a_1, a_2, \dots, a_n), \boldsymbol{b} = (b_1, b_2, \dots, b_n)$，那么：
+Trong không gian Euclid $n$ chiều $\mathbf{R}^n$, cho hai vectơ $\boldsymbol{a} = (a_1, a_2, \dots, a_n), \boldsymbol{b} = (b_1, b_2, \dots, b_n)$, khi đó:
 
 $$
 \boldsymbol{a} \cdot \boldsymbol{b} = \sum_{i = 1}^{n} a_i b_i
 $$
 
-就是这两个向量的 **内积**，也叫 **点积** 或 **数量积**．内积的几何定义与代数定义在欧氏空间下是等价的，而后者更方便使用．
+được gọi là **tích trong** của hai vectơ này, cũng gọi là **tích chấm** hoặc **tích vô hướng**. Định nghĩa hình học và định nghĩa đại số của tích trong là tương đương trong không gian Euclid, còn định nghĩa đại số thuận tiện hơn khi sử dụng.
 
-在不引起混淆的情况下，内积的点号可以省略不写．如果在向量的右上角有上角标 $2$，表示向量与自身内积的简写，即 **向量模长的平方**，省略模长记号．该上角标 $2$ 不可以理解为向量的平方，这是因为，向量内积的结果为标量，不存在除了 $2$ 以外任何个数的向量的内积．同理，向量模长平方的平方，不可以简写为上角标 $4$，而是必须将上角标 $2$ 的结果视为一个整体，以此类推．
+Khi không gây nhầm lẫn, dấu chấm của tích trong có thể được lược bỏ. Nếu ở góc trên bên phải của vectơ có số mũ $2$, đó là cách viết tắt của tích trong của vectơ với chính nó, tức **bình phương độ dài vectơ**, lược bỏ ký hiệu độ dài. Số mũ $2$ này không được hiểu là bình phương vectơ, vì kết quả của tích trong vectơ là một vô hướng, và không tồn tại tích trong của số lượng vectơ khác $2$. Tương tự, bình phương của bình phương độ dài vectơ không thể viết tắt bằng số mũ $4$, mà phải xem kết quả mang số mũ $2$ là một chỉnh thể rồi tiếp tục xử lý.
 
-### 性质
+<span id="&#24615;&#36136;"></span>
+### Tính chất
 
-可以发现，内积得到的结果是一个标量，其特别之处在于，它是关于两个向量分别都线性的双线性运算．具体而言，内积满足：
+Có thể thấy kết quả của tích trong là một vô hướng. Điểm đặc biệt của nó là phép toán song tuyến tính theo từng vectơ. Cụ thể, tích trong thỏa:
 
 $$
 \begin{aligned}
@@ -51,47 +56,49 @@ $$
 \end{aligned}
 $$
 
-内积还满足交换律，即：
+Tích trong còn thỏa tính giao hoán:
 
 $$
 \boldsymbol{a} \cdot \boldsymbol{b} = \boldsymbol{b} \cdot \boldsymbol{a}
 $$
 
-### 应用
+<span id="&#24212;&#29992;"></span>
+### Ứng dụng
 
-下面介绍内积运算的一些常见应用．
+Dưới đây giới thiệu một số ứng dụng thường gặp của phép tích trong.
 
-1.  判定两向量垂直：
+1.  Kiểm tra hai vectơ vuông góc:
 
     $$
     \boldsymbol{a} \perp \boldsymbol{b} \iff \boldsymbol{a} \cdot \boldsymbol{b} = 0
     $$
 
-    即互相垂直的两个向量的内积，结果为 $0$；向量与零向量内积，结果为 $0$．如果使用内积为零作为垂直的定义，则可以得出零向量与任何向量都垂直．
+    Tức là tích trong của hai vectơ vuông góc bằng $0$; tích trong của một vectơ với vectơ không cũng bằng $0$. Nếu dùng tích trong bằng không làm định nghĩa của vuông góc, thì có thể suy ra vectơ không vuông góc với mọi vectơ.
 
-2.  判定两向量共线：
+2.  Kiểm tra hai vectơ cùng phương:
 
     $$
     \exists\lambda \in \mathbf{R} (\boldsymbol{a} = \lambda \boldsymbol{b}) \iff |\boldsymbol{a} \cdot \boldsymbol{b}| = |\boldsymbol{a}| |\boldsymbol{b}|
     $$
 
-3.  计算向量的模：
+3.  Tính độ dài vectơ:
 
     $$
     |\boldsymbol a| = \sqrt{\boldsymbol{a} \cdot \boldsymbol{a}}
     $$
 
-4.  计算两向量的夹角：
+4.  Tính góc giữa hai vectơ:
 
     $$
     \theta = \arccos \frac{\boldsymbol{a} \cdot \boldsymbol{b}}{|\boldsymbol a| |\boldsymbol b|}
     $$
 
-## 二阶与三阶行列式
+<span id="&#20108;&#38454;&#19982;&#19977;&#38454;&#34892;&#21015;&#24335;"></span>
+## Định thức bậc hai và bậc ba
 
-二阶与三阶行列式，可以作为行列式的较为简单的情形特殊定义．在微积分的最后一个部分场论部分，格林公式用到了二阶行列式，高斯公式用到了点乘，斯托克斯公式用到了三阶行列式．
+Định thức bậc hai và bậc ba có thể được định nghĩa riêng như những trường hợp đơn giản hơn của định thức. Trong phần cuối của giải tích về trường vectơ, công thức Green dùng định thức bậc hai, công thức Gauss dùng tích chấm, và công thức Stokes dùng định thức bậc ba.
 
-二阶行列式可以视为四元函数，其定义为：
+Định thức bậc hai có thể xem là một hàm bốn biến, được định nghĩa là:
 
 $$
 \begin{vmatrix}
@@ -100,7 +107,7 @@ $$
 \end{vmatrix}=ad-bc
 $$
 
-三阶行列式可以视为九元函数，其定义为：
+Định thức bậc ba có thể xem là một hàm chín biến, được định nghĩa là:
 
 $$
 \begin{vmatrix}
@@ -110,34 +117,38 @@ $$
 \end{vmatrix}=aei+dhc+gbf-ahf-dbi-gec
 $$
 
-一种特殊的记忆方法是采用「对角线法则」，对角线法则只适用于二阶与三阶行列式．
+Một cách ghi nhớ đặc biệt là dùng "quy tắc đường chéo"; quy tắc này chỉ áp dụng cho định thức bậc hai và bậc ba.
 
-特别注意：四阶行列式展开后共有 24 项，并且副对角线一项的符号为正．如果强行应用三阶行列式的「对角线法则」，不仅项数不够，副对角线一项的符号也不正确，因此三阶行列式的「对角线法则」不适用于更高阶的行列式，更高阶的行列式也不适合使用直接展开法计算．
+Cần đặc biệt chú ý: định thức bậc bốn khi khai triển có tổng cộng 24 hạng tử, và hạng tử theo đường chéo phụ có dấu dương. Nếu cố áp dụng "quy tắc đường chéo" của định thức bậc ba, không chỉ thiếu hạng tử mà dấu của hạng tử theo đường chéo phụ cũng sai. Vì vậy, "quy tắc đường chéo" của định thức bậc ba không áp dụng cho định thức bậc cao hơn, và định thức bậc cao hơn cũng không thích hợp để tính bằng cách khai triển trực tiếp.
 
-## 外积
+<span id="&#22806;&#31215;"></span>
+## Tích ngoài
 
-外积是 **三维向量特有的运算**．
+Tích ngoài là phép toán **riêng của vectơ ba chiều**.
 
-在物理学中，三维向量为默认与空间位置相关的向量，一律采用粗体表示．然而，物理学中与相对论相关的四维向量不会采用粗体，而是使用特殊的记号与下标．
+Trong vật lý, vectơ ba chiều mặc định là vectơ liên quan đến vị trí trong không gian và đều được biểu diễn bằng chữ đậm. Tuy nhiên, vectơ bốn chiều liên quan đến thuyết tương đối trong vật lý không dùng chữ đậm, mà dùng ký hiệu và chỉ số đặc biệt.
 
-在线性代数中，所有的向量都会用粗体表示，并且由于麻烦，并且线性代数中大多为向量与矩阵的运算，很难造成歧义，在手写时可以省略向量记号不写．
+Trong đại số tuyến tính, mọi vectơ đều được biểu diễn bằng chữ đậm; hơn nữa vì khá phiền, và trong đại số tuyến tính phần lớn là phép toán giữa vectơ và ma trận nên khó gây nhầm lẫn, khi viết tay có thể lược bỏ ký hiệu vectơ.
 
-### 定义
+<span id="&#23450;&#20041;_1"></span>
+### Định nghĩa
 
-外积有不同但等价的定义方法，下面介绍其中一些．
+Tích ngoài có nhiều cách định nghĩa khác nhau nhưng tương đương. Dưới đây giới thiệu một vài cách.
 
-#### 几何定义
+<span id="&#20960;&#20309;&#23450;&#20041;_1"></span>
+#### Định nghĩa hình học
 
-在三维欧氏空间 $\mathbf{R}^3$ 下，定义向量 $\boldsymbol{a}, \boldsymbol{b}$ 的外积为一个向量，记为 $\boldsymbol{a} \times \boldsymbol{b}$，其模与方向定义如下：
+Trong không gian Euclid ba chiều $\mathbf{R}^3$, định nghĩa tích ngoài của hai vectơ $\boldsymbol{a}, \boldsymbol{b}$ là một vectơ, ký hiệu $\boldsymbol{a} \times \boldsymbol{b}$, có độ dài và hướng được định nghĩa như sau:
 
-1.  $|\boldsymbol{a} \times \boldsymbol{b}| = |\boldsymbol{a}| |\boldsymbol{b}| \sin \langle \boldsymbol{a}, \boldsymbol{b} \rangle$；
-2.  $\boldsymbol{a} \times \boldsymbol{b}$ 与 $\boldsymbol{a}, \boldsymbol{b}$ 都垂直，且 $\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{a} \times \boldsymbol{b}$ 的方向符合右手法则．
+1.  $|\boldsymbol{a} \times \boldsymbol{b}| = |\boldsymbol{a}| |\boldsymbol{b}| \sin \langle \boldsymbol{a}, \boldsymbol{b} \rangle$;
+2.  $\boldsymbol{a} \times \boldsymbol{b}$ vuông góc với cả $\boldsymbol{a}, \boldsymbol{b}$, và hướng của $\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{a} \times \boldsymbol{b}$ tuân theo quy tắc bàn tay phải.
 
-注意到外积的模，联想到三角形面积计算公式 $S=\frac{1}{2}ab\sin C$，可以发现外积的几何意义是：**$|\boldsymbol{a} \times \boldsymbol{b}|$ 是以 $\boldsymbol{a}, \boldsymbol{b}$ 为邻边的平行四边形的面积**．
+Nhìn vào độ dài của tích ngoài và liên hệ với công thức diện tích tam giác $S=\frac{1}{2}ab\sin C$, ta thấy ý nghĩa hình học của tích ngoài là: **$|\boldsymbol{a} \times \boldsymbol{b}|$ là diện tích hình bình hành có $\boldsymbol{a}, \boldsymbol{b}$ làm hai cạnh kề**.
 
-#### 代数定义
+<span id="&#20195;&#25968;&#23450;&#20041;_1"></span>
+#### Định nghĩa đại số
 
-在三维欧氏空间 $\mathbf{R}^3$ 下，定义向量 $\boldsymbol{a} = (x_1, y_1, z_1), \boldsymbol{b} = (x_2, y_2, z_2)$ 的外积为一个向量 $\boldsymbol{c}$，记作 $\boldsymbol{c} = \boldsymbol{a} \times \boldsymbol{b}$，其结果可以使用三阶行列式表示：
+Trong không gian Euclid ba chiều $\mathbf{R}^3$, định nghĩa tích ngoài của hai vectơ $\boldsymbol{a} = (x_1, y_1, z_1), \boldsymbol{b} = (x_2, y_2, z_2)$ là một vectơ $\boldsymbol{c}$, ký hiệu $\boldsymbol{c} = \boldsymbol{a} \times \boldsymbol{b}$. Kết quả của nó có thể biểu diễn bằng định thức bậc ba:
 
 $$
 \begin{vmatrix}
@@ -147,7 +158,7 @@ $$
 \end{vmatrix}
 $$
 
-其中 $\boldsymbol{i}, \boldsymbol{j}, \boldsymbol{k}$ 表示朝向为坐标轴 $x, y, z$ 的单位向量，并写在对应坐标处．展开得
+Trong đó $\boldsymbol{i}, \boldsymbol{j}, \boldsymbol{k}$ biểu thị các vectơ đơn vị hướng theo các trục tọa độ $x, y, z$, và được viết ở vị trí tọa độ tương ứng. Khai triển được
 
 $$
 \begin{aligned}
@@ -157,9 +168,10 @@ $$
 \end{aligned}
 $$
 
-### 性质
+<span id="&#24615;&#36136;_1"></span>
+### Tính chất
 
-1.  外积是关于两个向量分别都线性的双线性运算．具体而言，外积满足：
+1.  Tích ngoài là phép toán song tuyến tính theo từng vectơ. Cụ thể, tích ngoài thỏa:
 
     $$
     \begin{aligned}
@@ -170,15 +182,15 @@ $$
     \end{aligned}
     $$
 
-    前两行性质亦可称为分配律，即外积对于向量加法满足乘法分配律．
+    Hai dòng tính chất đầu cũng có thể gọi là luật phân phối, tức tích ngoài phân phối đối với phép cộng vectơ.
 
-2.  外积满足反交换律，即：
+2.  Tích ngoài thỏa tính phản giao hoán:
 
     $$
     \boldsymbol a \times \boldsymbol b=-\boldsymbol b \times \boldsymbol a
     $$
 
-3.  根据上文内积与外积的几何定义：
+3.  Theo định nghĩa hình học của tích trong và tích ngoài ở trên:
 
     $$
     \begin{aligned}
@@ -188,55 +200,59 @@ $$
     \end{aligned}
     $$
 
-    可以写出恒等式：
+    Có thể viết ra hằng đẳng thức:
 
     $$
     (\boldsymbol a\times \boldsymbol b) \cdot (\boldsymbol a\times \boldsymbol b) = |\boldsymbol a|^2 |\boldsymbol b|^2-{(\boldsymbol a \cdot \boldsymbol b)}^2
     $$
 
-4.  外积满足 Jacobi 恒等式：
+4.  Tích ngoài thỏa đẳng thức Jacobi:
 
     $$
     \boldsymbol a \times (\boldsymbol b \times \boldsymbol c) + \boldsymbol b \times (\boldsymbol c \times \boldsymbol a) + \boldsymbol c \times (\boldsymbol a \times \boldsymbol b) = \boldsymbol 0
     $$
 
-### 应用
+<span id="&#24212;&#29992;_1"></span>
+### Ứng dụng
 
-下面介绍外积运算的一些常见应用．
+Dưới đây giới thiệu một số ứng dụng thường gặp của phép tích ngoài.
 
-1.  判定两向量是否共线：
+1.  Kiểm tra hai vectơ có cùng phương hay không:
 
     $$
     \exists\lambda \in \mathbf{R} (\boldsymbol{a} = \lambda \boldsymbol{b}) \iff \boldsymbol{a} \times \boldsymbol{b} = \boldsymbol{0}
     $$
 
-    即共线的两个三维向量的外积，结果为 $\boldsymbol 0$；三维向量与自身外积，结果为 $\boldsymbol 0$；三维向量与零向量外积，结果为 $\boldsymbol 0$．若使用外积为零作为两向量共线的定义，则可以得出零向量与任何向量都共线．
+    Tức là tích ngoài của hai vectơ ba chiều cùng phương bằng $\boldsymbol 0$; tích ngoài của một vectơ ba chiều với chính nó bằng $\boldsymbol 0$; tích ngoài của một vectơ ba chiều với vectơ không bằng $\boldsymbol 0$. Nếu dùng tích ngoài bằng không làm định nghĩa hai vectơ cùng phương, thì có thể suy ra vectơ không cùng phương với mọi vectơ.
 
-2.  计算两向量张成的平行四边形面积：
+2.  Tính diện tích hình bình hành căng bởi hai vectơ:
 
     $$
     S \langle \boldsymbol a, \boldsymbol b \rangle = |\boldsymbol a \times \boldsymbol b|
     $$
 
-#### 二维向量的情形
+<span id="&#20108;&#32500;&#21521;&#37327;&#30340;&#24773;&#24418;"></span>
+#### Trường hợp vectơ hai chiều
 
-对于二维向量，无法计算外积，但是仍然可以计算两向量张成的平行四边形面积：
+Với vectơ hai chiều, không thể tính tích ngoài, nhưng vẫn có thể tính diện tích hình bình hành căng bởi hai vectơ:
 
-记 $\boldsymbol{a} = (m, n), \boldsymbol{b} = (p, q)$，将平面直角坐标系扩充为空间直角坐标系，原平面位于新坐标系的 $xOy$ 平面，原本的坐标 $(m, n)$ 和 $(p, q)$ 变为 $(m, n, 0)$ 和 $(p, q, 0)$．
+Ký hiệu $\boldsymbol{a} = (m, n), \boldsymbol{b} = (p, q)$. Mở rộng hệ tọa độ Descartes phẳng thành hệ tọa độ Descartes trong không gian; mặt phẳng ban đầu nằm trên mặt phẳng $xOy$ của hệ tọa độ mới, các tọa độ ban đầu $(m, n)$ và $(p, q)$ trở thành $(m, n, 0)$ và $(p, q, 0)$.
 
-那么两个向量的外积为 $(0, 0, mq - np)$，因此平行四边形的面积为 $|mq - np|$，可以视为二阶行列式运算结果的绝对值．
+Khi đó tích ngoài của hai vectơ là $(0, 0, mq - np)$, nên diện tích hình bình hành là $|mq - np|$, có thể xem là giá trị tuyệt đối của kết quả phép tính định thức bậc hai.
 
-此时，根据右手法则和 $z$ 坐标的符号，可以推断出 $\boldsymbol b$ 相对于 $\boldsymbol a$ 的方向，若在逆时针方向则 $z$ 坐标为正值，反之为负值，简记为 **顺负逆正**．
+Lúc này, theo quy tắc bàn tay phải và dấu của tọa độ $z$, có thể suy ra hướng của $\boldsymbol b$ so với $\boldsymbol a$: nếu theo chiều ngược kim đồng hồ thì tọa độ $z$ dương, ngược lại là âm. Có thể ghi nhớ ngắn gọn là **thuận âm, nghịch dương**.
 
-## 混合积
+<span id="&#28151;&#21512;&#31215;"></span>
+## Tích hỗn hợp
 
-与外积一样，向量的混合积是 **三维向量特有的运算**．
+Giống như tích ngoài, tích hỗn hợp của vectơ là phép toán **riêng của vectơ ba chiều**.
 
-### 定义
+<span id="&#23450;&#20041;_2"></span>
+### Định nghĩa
 
-设 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 是三维空间中的三个向量，则 $(\boldsymbol a \times \boldsymbol b) \cdot \boldsymbol c$ 称为三个向量 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 的混合积，记作 $[\boldsymbol a \boldsymbol b \boldsymbol c]$ 或 $(\boldsymbol a, \boldsymbol b, \boldsymbol c)$ 或 $(\boldsymbol a \boldsymbol b \boldsymbol c)$ 或 $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)$．混合积的绝对值 $|(\boldsymbol a \times \boldsymbol b) \cdot \boldsymbol c|$ 的几何意义表示以 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 为棱的平行六面体的体积．
+Giả sử $\boldsymbol a, \boldsymbol b, \boldsymbol c$ là ba vectơ trong không gian ba chiều. Khi đó $(\boldsymbol a \times \boldsymbol b) \cdot \boldsymbol c$ được gọi là tích hỗn hợp của ba vectơ $\boldsymbol a, \boldsymbol b, \boldsymbol c$, ký hiệu là $[\boldsymbol a \boldsymbol b \boldsymbol c]$ hoặc $(\boldsymbol a, \boldsymbol b, \boldsymbol c)$ hoặc $(\boldsymbol a \boldsymbol b \boldsymbol c)$ hoặc $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)$. Ý nghĩa hình học của giá trị tuyệt đối $|(\boldsymbol a \times \boldsymbol b) \cdot \boldsymbol c|$ của tích hỗn hợp là thể tích hình hộp song song có $\boldsymbol a, \boldsymbol b, \boldsymbol c$ làm các cạnh.
 
-向量的混合积可以使用三阶行列式表示：
+Tích hỗn hợp của vectơ có thể biểu diễn bằng định thức bậc ba:
 
 $$
 \begin{aligned}
@@ -250,9 +266,10 @@ $$
 \end{aligned}
 $$
 
-### 性质
+<span id="&#24615;&#36136;_2"></span>
+### Tính chất
 
-1.  混合积关于三个向量都分别线性，具体而言，有：
+1.  Tích hỗn hợp tuyến tính theo từng vectơ. Cụ thể, có:
 
     $$
     \begin{aligned}
@@ -262,58 +279,60 @@ $$
     \end{aligned}
     $$
 
-2.  混合积具有反对称性，交换两个向量的位置会使混合积变成其相反数，因此有：
+2.  Tích hỗn hợp có tính phản đối xứng: đổi chỗ hai vectơ sẽ biến tích hỗn hợp thành số đối của nó. Do đó có:
 
     $$
     \det(\boldsymbol a, \boldsymbol b, \boldsymbol c) = \det(\boldsymbol b, \boldsymbol c, \boldsymbol a) = \det(\boldsymbol c, \boldsymbol a, \boldsymbol b) = -\det(\boldsymbol b, \boldsymbol a, \boldsymbol c) = -\det(\boldsymbol a, \boldsymbol c, \boldsymbol b)= -\det(\boldsymbol c, \boldsymbol b, \boldsymbol a)
     $$
 
-    据此还可以得到内积与外积有如下关系：
+    Từ đó còn có thể thu được quan hệ sau giữa tích trong và tích ngoài:
 
     $$
     (\boldsymbol a \times \boldsymbol b) \cdot \boldsymbol c = \boldsymbol a \cdot (\boldsymbol b \times \boldsymbol c)
     $$
 
-### 应用
+<span id="&#24212;&#29992;_2"></span>
+### Ứng dụng
 
-向量的混合积有如下常见应用．
+Tích hỗn hợp của vectơ có các ứng dụng thường gặp sau.
 
-1.  计算四面体 $ABCD$ 的体积：
+1.  Tính thể tích tứ diện $ABCD$:
 
     $$
     V=\frac{1}{6}\left|\det(\overrightarrow{AB}, \overrightarrow{AC}, \overrightarrow{AD})\right|
     $$
 
-2.  判定 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 是否共面；
+2.  Kiểm tra $\boldsymbol a, \boldsymbol b, \boldsymbol c$ có đồng phẳng hay không;
 
-    三个三维向量 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 共面的充分必要条件是 $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)=0$．
+    Điều kiện cần và đủ để ba vectơ ba chiều $\boldsymbol a, \boldsymbol b, \boldsymbol c$ đồng phẳng là $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)=0$.
 
-3.  判定 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 构成的坐标系的手性；
+3.  Xác định tính thuận tay của hệ tọa độ do $\boldsymbol a, \boldsymbol b, \boldsymbol c$ tạo thành;
 
-    混合积 $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)$ 的符号是正还是负，取决于 $\boldsymbol a \times \boldsymbol b$ 与 $\boldsymbol c$ 形成的夹角是锐角还是钝角，即指向 $\boldsymbol a$ 与 $\boldsymbol b$ 张成平面的同侧还是异侧，这相当于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 三个向量依序构成右手系还是左手系．具体而言：
+    Dấu của tích hỗn hợp $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)$ là dương hay âm phụ thuộc vào góc giữa $\boldsymbol a \times \boldsymbol b$ và $\boldsymbol c$ là góc nhọn hay góc tù, tức chúng hướng về cùng phía hay khác phía so với mặt phẳng căng bởi $\boldsymbol a$ và $\boldsymbol b$. Điều này tương đương với việc ba vectơ $\boldsymbol a, \boldsymbol b, \boldsymbol c$ theo thứ tự tạo thành hệ tay phải hay hệ tay trái. Cụ thể:
 
-    -   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) < 0$ 等价于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 依序构成左手系；
-    -   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) > 0$ 等价于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 依序构成右手系．
+    -   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) < 0$ tương đương với $\boldsymbol a, \boldsymbol b, \boldsymbol c$ theo thứ tự tạo thành hệ tay trái;
+    -   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) > 0$ tương đương với $\boldsymbol a, \boldsymbol b, \boldsymbol c$ theo thứ tự tạo thành hệ tay phải.
 
-## 二重外积
+<span id="&#20108;&#37325;&#22806;&#31215;"></span>
+## Tích ngoài kép
 
-三维向量的混合积是内积与外积的混搭，具有轮换对称性．三维向量和三维向量的外积还是三维向量，那么外积的外积是否存在相关结论？
+Tích hỗn hợp của vectơ ba chiều là sự kết hợp giữa tích trong và tích ngoài, có tính đối xứng luân phiên. Tích ngoài của hai vectơ ba chiều vẫn là một vectơ ba chiều, vậy tích ngoài của tích ngoài có kết luận liên quan nào không?
 
-先证明一个引理．
+Trước hết chứng minh một bổ đề.
 
 $$
 (\boldsymbol a \times \boldsymbol b)\times \boldsymbol a = (\boldsymbol a \cdot \boldsymbol a) \boldsymbol b - (\boldsymbol a \cdot \boldsymbol b) \boldsymbol a
 $$
 
-证明：由右手定则，$\boldsymbol a \times \boldsymbol b$ 与 $\boldsymbol a$ 和 $\boldsymbol b$ 都垂直，待证等式左端与 $\boldsymbol a \times \boldsymbol b$ 垂直，因此待证等式左端与 $\boldsymbol a$ 和 $\boldsymbol b$ 共面．
+Chứng minh: Theo quy tắc bàn tay phải, $\boldsymbol a \times \boldsymbol b$ vuông góc với cả $\boldsymbol a$ và $\boldsymbol b$. Vế trái của đẳng thức cần chứng minh vuông góc với $\boldsymbol a \times \boldsymbol b$, nên vế trái đồng phẳng với $\boldsymbol a$ và $\boldsymbol b$.
 
-因此可以假设：
+Do đó có thể giả sử:
 
 $$
 (\boldsymbol a \times \boldsymbol b)\times \boldsymbol a = \lambda \boldsymbol a + \mu \boldsymbol b
 $$
 
-根据混合积的相关结论，上式两端同时对于 $\boldsymbol a$ 和 $\boldsymbol b$ 分别做内积，有：
+Theo các kết luận liên quan đến tích hỗn hợp, lấy tích trong của hai vế với $\boldsymbol a$ và $\boldsymbol b$ lần lượt, ta có:
 
 $$
 \begin{aligned}
@@ -323,13 +342,13 @@ $$
 \end{aligned}
 $$
 
-由前文推出的恒等式：
+Từ hằng đẳng thức đã suy ra ở trên:
 
 $$
 (\boldsymbol a \times \boldsymbol b) \cdot (\boldsymbol a \times \boldsymbol b) = |\boldsymbol a|^2|\boldsymbol b|^2-(\boldsymbol a \cdot \boldsymbol b)^2
 $$
 
-可以解得：
+có thể giải được:
 
 $$
 \begin{aligned}
@@ -338,25 +357,25 @@ $$
 \end{aligned}
 $$
 
-证毕．
+Chứng minh xong.
 
-在上文的证明中提到，$\boldsymbol a \times \boldsymbol b$ 与任意向量叉乘，得到的向量与 $\boldsymbol a$ 和 $\boldsymbol b$ 共面．接下来证明 **二重外积** 的结论：
+Trong chứng minh trên đã nhắc rằng $\boldsymbol a \times \boldsymbol b$ tích chéo với một vectơ bất kỳ sẽ cho ra một vectơ đồng phẳng với $\boldsymbol a$ và $\boldsymbol b$. Tiếp theo chứng minh kết luận của **tích ngoài kép**:
 
 $$
 (\boldsymbol a\times \boldsymbol b)\times \boldsymbol c=(\boldsymbol a \cdot \boldsymbol c)\boldsymbol b - (\boldsymbol b \cdot \boldsymbol c)\boldsymbol a
 $$
 
-上述共面性有助于二重外积结论的记忆．可见，上文的引理为二重外积的特殊情况．
+Tính đồng phẳng nói trên giúp ghi nhớ kết luận về tích ngoài kép. Có thể thấy bổ đề ở trên là trường hợp đặc biệt của tích ngoài kép.
 
-证明：这里只需考虑三个向量均为非零且不共线的情况，其他特例为显然的．
+Chứng minh: Ở đây chỉ cần xét trường hợp ba vectơ đều khác không và không cùng phương; các trường hợp đặc biệt khác là hiển nhiên.
 
-三维向量 $\boldsymbol a$，$\boldsymbol b$ 和 $\boldsymbol a \times \boldsymbol b$ 不共面，因此可以假设：
+Ba vectơ ba chiều $\boldsymbol a$, $\boldsymbol b$ và $\boldsymbol a \times \boldsymbol b$ không đồng phẳng, nên có thể giả sử:
 
 $$
 \boldsymbol c = \alpha \boldsymbol a + \beta \boldsymbol b + \gamma(\boldsymbol a \times \boldsymbol b)
 $$
 
-所以有：
+Do đó:
 
 $$
 \begin{aligned}
@@ -365,7 +384,7 @@ $$
 \end{aligned}
 $$
 
-根据上文的引理有：
+Theo bổ đề ở trên:
 
 $$
 \begin{aligned}
@@ -376,7 +395,7 @@ $$
 \end{aligned}
 $$
 
-因此有：
+Vì vậy:
 
 $$
 \begin{aligned}
@@ -386,9 +405,9 @@ $$
 \end{aligned}
 $$
 
-证毕．
+Chứng minh xong.
 
-根据外积的反交换性，可以得到二重外积的两个公式：
+Theo tính phản giao hoán của tích ngoài, có thể thu được hai công thức của tích ngoài kép:
 
 $$
 \begin{aligned}
@@ -397,15 +416,15 @@ $$
 \end{aligned}
 $$
 
-可见，二重外积对于运算顺序有着严格的要求．
+Có thể thấy tích ngoài kép có yêu cầu rất nghiêm ngặt về thứ tự phép toán.
 
-借助混合积与二重外积，还可以证明拉格朗日的恒等式．
+Nhờ tích hỗn hợp và tích ngoài kép, còn có thể chứng minh đẳng thức Lagrange.
 
 $$
 (\boldsymbol a \times \boldsymbol b) \cdot (\boldsymbol c \times \boldsymbol d)=(\boldsymbol a \cdot \boldsymbol c)(\boldsymbol b \cdot \boldsymbol d)-(\boldsymbol a \cdot \boldsymbol d)(\boldsymbol b \cdot \boldsymbol c)
 $$
 
-证明：
+Chứng minh:
 
 $$
 \begin{aligned}
@@ -417,10 +436,10 @@ $$
 \end{aligned}
 $$
 
-可见，前文的恒等式
+Có thể thấy hằng đẳng thức ở trên
 
 $$
 (\boldsymbol a \times \boldsymbol b) \cdot (\boldsymbol a \times \boldsymbol b) = |\boldsymbol a|^2|\boldsymbol b|^2 - (\boldsymbol a \cdot \boldsymbol b)^2
 $$
 
-是拉格朗日的恒等式的特殊情形．
+là một trường hợp đặc biệt của đẳng thức Lagrange.

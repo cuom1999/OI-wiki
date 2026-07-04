@@ -1,54 +1,58 @@
-研究线性映射是研究线性空间之间的映射．
+Nghiên cứu ánh xạ tuyến tính là nghiên cứu các ánh xạ giữa những không gian tuyến tính.
 
-线性映射可以表示为矩阵的形式，所以在线性映射中矩阵中的大量概念都可以找到对应关系．
+Ánh xạ tuyến tính có thể được biểu diễn dưới dạng ma trận, vì vậy nhiều khái niệm của ma trận đều có đối ứng trong ánh xạ tuyến tính.
 
-## 线性映射与线性变换
+<span id="&#x7EBF;&#x6027;&#x6620;&#x5C04;&#x4E0E;&#x7EBF;&#x6027;&#x53D8;&#x6362;"></span>
+## Ánh xạ tuyến tính và biến đổi tuyến tính
 
-设 $V$ 和 $W$ 是域 $F$ 上的两个线性空间，$T$ 是 $V$ 到 $W$ 的一个映射．
+Giả sử $V$ và $W$ là hai không gian tuyến tính trên trường $F$, và $T$ là một ánh xạ từ $V$ đến $W$.
 
-如果对于 $W$ 中任意的向量 $x$ 和 $y$，域 $F$ 中任意的标量 $k$ 和 $l$，有：
+Nếu với mọi vectơ $x$ và $y$ trong $W$, mọi vô hướng $k$ và $l$ trong trường $F$, ta có:
 
 $$
 T(kx+ly)=kTx+lTy
 $$
 
-称 $T$ 是 $V$ 到 $W$ 的一个线性映射．如果 $W=V$，则称 $T$ 是 $V$ 上的一个线性变换．
+thì $T$ được gọi là một ánh xạ tuyến tính từ $V$ đến $W$. Nếu $W=V$, thì $T$ được gọi là một biến đổi tuyến tính trên $V$.
 
-例如，恒等变换 $T_e$ 保持空间不变，零变换 $T_0$ 将空间映射至零空间．
+Ví dụ, biến đổi đồng nhất $T_e$ giữ nguyên không gian, còn biến đổi không $T_0$ ánh xạ không gian vào không gian không.
 
-可以记 $L(V,W)$ 为所有 $V$ 到 $W$ 的线性映射构成的集合．对于全体线性变换 $L(V,V)$，也记为 $L(V)$．
+Có thể ký hiệu $L(V,W)$ là tập hợp tất cả các ánh xạ tuyến tính từ $V$ đến $W$. Với toàn bộ các biến đổi tuyến tính $L(V,V)$, ta cũng ký hiệu là $L(V)$.
 
-### 性质
+<span id="&#x6027;&#x8D28;"></span>
+### Tính chất
 
--   线性映射将零向量映射到零向量．
--   线性映射保持线性运算形式不变，即，线性运算的线性映射，等于线性映射的线性运算．
--   线性映射保持线性相关性，即，映射前线性相关，映射后也线性相关．
+-   Ánh xạ tuyến tính đưa vectơ không thành vectơ không.
+-   Ánh xạ tuyến tính bảo toàn dạng của phép toán tuyến tính, tức là ánh xạ tuyến tính của một tổ hợp tuyến tính bằng tổ hợp tuyến tính của các ảnh.
+-   Ánh xạ tuyến tính bảo toàn tính phụ thuộc tuyến tính: nếu trước khi ánh xạ là phụ thuộc tuyến tính, thì sau khi ánh xạ vẫn phụ thuộc tuyến tính.
 
-但是线性映射不保持线性无关性．映射前线性无关，映射后不一定线性无关．
+Tuy nhiên ánh xạ tuyến tính không bảo toàn tính độc lập tuyến tính. Các vectơ độc lập tuyến tính trước khi ánh xạ chưa chắc vẫn độc lập tuyến tính sau khi ánh xạ.
 
-## 线性映射的矩阵表示
+<span id="&#x7EBF;&#x6027;&#x6620;&#x5C04;&#x7684;&#x77E9;&#x9635;&#x8868;&#x793A;"></span>
+## Biểu diễn ma trận của ánh xạ tuyến tính
 
-设 $V$ 的维数是 $n$，$V$ 的一组基为 $\alpha_1,\cdots,\alpha_n$，$W$ 的维数是 $m$，$W$ 的一组基为 $\beta_1,\cdots,\beta_m$，$T$ 是 $V$ 到 $W$ 的一个线性映射．
+Giả sử $V$ có số chiều là $n$, một cơ sở của $V$ là $\alpha_1,\cdots,\alpha_n$, $W$ có số chiều là $m$, một cơ sở của $W$ là $\beta_1,\cdots,\beta_m$, và $T$ là một ánh xạ tuyến tính từ $V$ đến $W$.
 
-将每个 $\alpha$ 经由 $T$ 映射后的向量用 $\beta$ 表示：
+Biểu diễn ảnh của mỗi $\alpha$ qua $T$ theo cơ sở $\beta$:
 
 $$
 T\alpha_j=a_{1j}\beta_1+\cdots+a_{mj}\beta_m
 $$
 
-采用矩阵记法：
+Dùng ký hiệu ma trận:
 
 $$
 T(\alpha_1,\cdots,\alpha_n)=(T\alpha_1,\cdots,T\alpha_n)=(\beta_1,\cdots,\beta_m)A
 $$
 
-称矩阵 $A$ 为线性映射 $T$ 在这两组基下的矩阵表示．
+Ma trận $A$ được gọi là biểu diễn ma trận của ánh xạ tuyến tính $T$ theo hai cơ sở này.
 
-## 线性映射的核空间与像空间
+<span id="&#x7EBF;&#x6027;&#x6620;&#x5C04;&#x7684;&#x6838;&#x7A7A;&#x95F4;&#x4E0E;&#x50CF;&#x7A7A;&#x95F4;"></span>
+## Không gian hạt nhân và không gian ảnh của ánh xạ tuyến tính
 
-这里的核空间与像空间是站在线性映射的视角下叙述的．借助矩阵表示可以看出，线性映射的核空间与像空间与矩阵的核空间与像空间是一致的．
+Ở đây không gian hạt nhân và không gian ảnh được mô tả từ góc nhìn của ánh xạ tuyến tính. Nhờ biểu diễn ma trận có thể thấy không gian hạt nhân và không gian ảnh của ánh xạ tuyến tính trùng với không gian hạt nhân và không gian ảnh của ma trận.
 
-设 $T$ 是由空间 $V$ 到空间 $W$ 的线性映射，令：
+Giả sử $T$ là ánh xạ tuyến tính từ không gian $V$ đến không gian $W$, đặt:
 
 $$
 N(T)=\{x\in V|Tx=0\}
@@ -58,43 +62,45 @@ $$
 R(T)=Im(T)=\{y\in W|y=Tx,Vx\in V\}
 $$
 
-易验证 $N(T)$ 为 $V$ 的子空间，$R(T)$ 为 $W$ 的子空间，称 $N(T)$ 及 $R(T)$ 为 $V$ 的核空间和像空间，并称 $N(T)$ 的维数为 $T$ 的 **零度** 或 **亏**，$R(T)$ 的维数为 $T$ 的 **秩**．
+Dễ kiểm chứng $N(T)$ là một không gian con của $V$, còn $R(T)$ là một không gian con của $W$. Ta gọi $N(T)$ và $R(T)$ lần lượt là không gian hạt nhân và không gian ảnh của $V$, đồng thời gọi số chiều của $N(T)$ là **độ không** hoặc **độ khuyết** của $T$, và số chiều của $R(T)$ là **hạng** của $T$.
 
-定理：设 $T$ 是由空间 $V$ 到空间 $W$ 的线性映射，$V$ 的维数有限，则 $N(T)$ 及 $R(T)$ 均为有限维，且有：
+Định lý: Giả sử $T$ là ánh xạ tuyến tính từ không gian $V$ đến không gian $W$, và $V$ hữu hạn chiều. Khi đó $N(T)$ và $R(T)$ đều hữu hạn chiều, đồng thời:
 
 $$
 \operatorname{dim} N(T)+\operatorname{dim} R(T)=\operatorname{dim} V
 $$
 
-即 $T$ 的亏加秩等于其定义域 $V$ 的维数．
+tức là độ khuyết cộng với hạng của $T$ bằng số chiều của miền xác định $V$.
 
-## 线性变换的矩阵表示
+<span id="&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x7684;&#x77E9;&#x9635;&#x8868;&#x793A;"></span>
+## Biểu diễn ma trận của biến đổi tuyến tính
 
-设 $V$ 的维数是 $n$，$V$ 的一组基为 $\alpha_1,\cdots,\alpha_n$，$T$ 是 $V$ 上的一个线性变换，则有：
+Giả sử $V$ có số chiều là $n$, một cơ sở của $V$ là $\alpha_1,\cdots,\alpha_n$, và $T$ là một biến đổi tuyến tính trên $V$. Khi đó:
 
 $$
 T\alpha_j=a_{1j}\alpha_1+\cdots+a_{nj}\alpha_n
 $$
 
-采用矩阵记法：
+Dùng ký hiệu ma trận:
 
 $$
 T(\alpha_1,\cdots,\alpha_n)=(T\alpha_1,\cdots,T\alpha_n)=(\alpha_1,\cdots,\alpha_n)A
 $$
 
-称矩阵 $A$ 为线性变换 $T$ 在这组基下的矩阵表示．
+Ma trận $A$ được gọi là biểu diễn ma trận của biến đổi tuyến tính $T$ theo cơ sở này.
 
-由空间结构和 $T$ 的线性性质，$T$ 由 $T\alpha_1,\cdots,T\alpha_n$ 完全确定，故由 $T$ 唯一确定一个矩阵 $A$．
+Do cấu trúc không gian và tính tuyến tính của $T$, $T$ được xác định hoàn toàn bởi $T\alpha_1,\cdots,T\alpha_n$, vì vậy $T$ xác định duy nhất một ma trận $A$.
 
-定理：设 $V$ 的维数是 $n$，$\alpha_1,\cdots,\alpha_n$ 为 $V$ 的一组基，任取 $n$ 阶方阵 $A$，有且仅有一个从 $V$ 到 $V$ 的线性变换 $T$，使得 $T$ 的矩阵恰好为 $A$．
+Định lý: Giả sử $V$ có số chiều là $n$, $\alpha_1,\cdots,\alpha_n$ là một cơ sở của $V$. Với mọi ma trận vuông cấp $n$ bất kỳ $A$, tồn tại duy nhất một biến đổi tuyến tính $T$ từ $V$ đến $V$ sao cho ma trận của $T$ đúng bằng $A$.
 
-推论：在 $L(V,V)$ 和全体 $n$ 阶方阵之间存在一一对应关系．
+Hệ quả: Có một song ánh giữa $L(V,V)$ và toàn bộ các ma trận vuông cấp $n$.
 
-例如：零变换对应零矩阵，恒等变换对应单位矩阵．
+Ví dụ: biến đổi không tương ứng với ma trận không, biến đổi đồng nhất tương ứng với ma trận đơn vị.
 
-## 线性变换构成的空间
+<span id="&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x6784;&#x6210;&#x7684;&#x7A7A;&#x95F4;"></span>
+## Không gian tạo bởi các biến đổi tuyến tính
 
-定理：$L(V)$ 也可以构成线性空间，引入 $L(V)$ 中的运算：对于 $L(V)$ 中任意的 $T_1$ 与 $T_2$，$V$ 中任意的 $x$，域 $F$ 中任意的 $k$，有：
+Định lý: $L(V)$ cũng có thể tạo thành một không gian tuyến tính. Đưa các phép toán sau vào $L(V)$: với mọi $T_1$ và $T_2$ trong $L(V)$, mọi $x$ trong $V$, và mọi $k$ trong trường $F$, ta có:
 
 $$
 (T_1+T_2)x=T_1x+T_2x
@@ -104,191 +110,196 @@ $$
 (kT_1)x=k(T_1x)
 $$
 
-容易验证 $L(V)$ 是 $F$ 上的一个线性空间，即线性变换空间．
+Dễ kiểm chứng $L(V)$ là một không gian tuyến tính trên $F$, tức là không gian các biến đổi tuyến tính.
 
-对于 $L(V)$ 中的线性变换 $T_1$ 与 $T_2$，定义 $T_1$ 与 $T_2$ 的乘积 $T_1T_2$ 为：
+Với hai biến đổi tuyến tính $T_1$ và $T_2$ trong $L(V)$, định nghĩa tích $T_1T_2$ của $T_1$ và $T_2$ là:
 
 $$
 (T_1T_2)x=T_2(T_1x)
 $$
 
-可以验证 $(T_1T_2)$ 也是 $L(V)$ 中的线性变换，并且线性变换的乘积满足结合律，而不满足交换律，与矩阵的乘积类似．
+Có thể kiểm chứng $(T_1T_2)$ cũng là một biến đổi tuyến tính trong $L(V)$, và tích của các biến đổi tuyến tính thỏa mãn luật kết hợp nhưng không thỏa mãn luật giao hoán, tương tự tích ma trận.
 
-对于 $L(V)$ 中的线性变换 $T_1$，如果 $L(V)$ 中的线性变换 $T_2$，使得对于 $V$ 中任意的向量 $x$，有：
+Với biến đổi tuyến tính $T_1$ trong $L(V)$, nếu tồn tại biến đổi tuyến tính $T_2$ trong $L(V)$ sao cho với mọi vectơ $x$ trong $V$:
 
 $$
 (T_1T_2)x=T_1(T_2x)=x
 $$
 
-则称 $T_2$ 是 $T_1$ 的逆变换，记作：
+thì $T_2$ được gọi là biến đổi nghịch đảo của $T_1$, ký hiệu:
 
 $$
 T_2=T_1^{-1}
 $$
 
-且有：
+và ta có:
 
 $$
 T_1T_2=T_2T_1=T_e
 $$
 
-定理：设 $V$ 的维数为 $n$，$\alpha_1,\cdots,\alpha_n$ 为 $V$ 的一组基，在这组基下线性变换 $T_1$ 的矩阵为 $A$，$T_2$ 的矩阵为 $B$，则：
+Định lý: Giả sử $V$ có số chiều là $n$, $\alpha_1,\cdots,\alpha_n$ là một cơ sở của $V$. Theo cơ sở này, ma trận của biến đổi tuyến tính $T_1$ là $A$, ma trận của $T_2$ là $B$. Khi đó:
 
--   线性变换 $T_1+T_2$ 的矩阵为 $A+B$
--   线性变换的数乘 $kT_1$ 的矩阵为 $kA$
--   线性变换的乘积 $T_1T_2$ 的矩阵为 $AB$
--   线性变换 $T_1$ 的逆变换若存在，矩阵为 $A^{-1}$
+-   Ma trận của biến đổi tuyến tính $T_1+T_2$ là $A+B$.
+-   Ma trận của bội vô hướng $kT_1$ là $kA$.
+-   Ma trận của tích biến đổi tuyến tính $T_1T_2$ là $AB$.
+-   Nếu biến đổi nghịch đảo của $T_1$ tồn tại, thì ma trận của nó là $A^{-1}$.
 
-## 坐标
+<span id="&#x5750;&#x6807;"></span>
+## Tọa độ
 
-设 $n$ 个向量 $x$ 是 $n$ 维空间 $V$ 的一个基，对于 $V$ 中任意的向量 $y$，令 $y$ 为：
+Giả sử $n$ vectơ $x$ là một cơ sở của không gian $n$ chiều $V$. Với mọi vectơ $y$ trong $V$, đặt $y$ là:
 
 $$
 y=a_1x_1+a_2x_2+\cdots+a_nx_n=(x_1,x_2,\cdots,x_n)\begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}
 $$
 
-称列向量：
+Vectơ cột:
 
 $$
 \begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}
 $$
 
-为向量 $y$ 在基 $x_1,x_2,\cdots,x_n$ 下的 **坐标**．
+được gọi là **tọa độ** của vectơ $y$ theo cơ sở $x_1,x_2,\cdots,x_n$.
 
-可见，坐标是由域中的标量构成的列向量，与阿贝尔群中的向量应当进行区分．
+Có thể thấy tọa độ là vectơ cột tạo bởi các vô hướng trong trường, cần phân biệt với vectơ trong nhóm Abel.
 
-## 坐标变换公式
+<span id="&#x5750;&#x6807;&#x53D8;&#x6362;&#x516C;&#x5F0F;"></span>
+## Công thức đổi tọa độ
 
-设 $V$ 的维数为 $n$，$L(V)$ 中有变换 $T$，$T$ 在基 $\alpha_1,\cdots,\alpha_n$ 下的矩阵为 $A$．设：
+Giả sử $V$ có số chiều là $n$, trong $L(V)$ có biến đổi $T$, và ma trận của $T$ theo cơ sở $\alpha_1,\cdots,\alpha_n$ là $A$. Giả sử:
 
 $$
 \xi=(\alpha_1,\cdots,\alpha_n)\begin{pmatrix}x_1\\x_2\\\vdots\\x_n\end{pmatrix}
 $$
 
-且有：
+và:
 
 $$
 T\xi=T(\alpha_1,\cdots,\alpha_n)\begin{pmatrix}y_1\\y_2\\\vdots\\y_n\end{pmatrix}
 $$
 
-则有：
+khi đó:
 
 $$
 T\xi=T(\alpha_1,\cdots,\alpha_n)\begin{pmatrix}y_1\\y_2\\\vdots\\y_n\end{pmatrix}=(\alpha_1,\cdots,\alpha_n)A\begin{pmatrix}x_1\\x_2\\\vdots\\x_n\end{pmatrix}
 $$
 
-空间 $V$ 中的列向量点本质上都是「基乘坐标」的形式．空间 $V$ 中的列向量点 $x$，本身用了单位阵 $I$ 作为基，即 $x=Ix$．
+Về bản chất, các điểm dạng vectơ cột trong không gian $V$ đều có dạng "cơ sở nhân với tọa độ". Điểm vectơ cột $x$ trong không gian $V$ tự nó dùng ma trận đơn vị $I$ làm cơ sở, tức là $x=Ix$.
 
-只有同一个基，基不动的时候，单纯的线性变换 $T$，就是坐标左乘普通矩阵．
+Chỉ khi cùng một cơ sở được giữ cố định, biến đổi tuyến tính thuần túy $T$ mới chính là việc nhân tọa độ ở bên trái với một ma trận thông thường.
 
-把线性变换 $T$ 看成对于空间 $V$ 的一个观测滤镜．线性变换 $T$ 的作用对象是空间 $V$，将空间 $V$ 扭曲了．加了滤镜之后，点本身的位置没有变．
+Có thể xem biến đổi tuyến tính $T$ như một bộ lọc quan sát đối với không gian $V$. Đối tượng tác động của biến đổi tuyến tính $T$ là không gian $V$, làm biến dạng không gian $V$. Sau khi thêm bộ lọc, vị trí của bản thân điểm không đổi.
 
-这个定理也说明，对于列向量基的线性变换 $T$，等价于对于基右乘一个过渡矩阵．
+Định lý này cũng cho thấy, với biến đổi tuyến tính $T$ trên cơ sở vectơ cột, điều đó tương đương với việc nhân bên phải cơ sở với một ma trận chuyển.
 
-于是，在不同的基之间，坐标关系是左乘过渡矩阵的逆矩阵．
+Vì vậy, giữa các cơ sở khác nhau, quan hệ tọa độ là nhân bên trái với ma trận nghịch đảo của ma trận chuyển cơ sở.
 
-## 过渡矩阵
+<span id="&#x8FC7;&#x6E21;&#x77E9;&#x9635;"></span>
+## Ma trận chuyển cơ sở
 
-设 $n$ 个向量 $x$ 与 $n$ 个向量 $y$ 是空间 $V$ 的两组基．对于 $1\leq i\leq n$，令每个向量 $y_i$ 在基 $x_1,x_2,\cdots,x_n$ 下的坐标为：
+Giả sử $n$ vectơ $x$ và $n$ vectơ $y$ là hai cơ sở của không gian $V$. Với $1\leq i\leq n$, gọi tọa độ của mỗi vectơ $y_i$ theo cơ sở $x_1,x_2,\cdots,x_n$ là:
 
 $$
 y_i=(x_1,x_2,\cdots,x_n)\begin{pmatrix}a_{1i}\\a_{2i}\\\vdots\\a_{ni}\end{pmatrix}
 $$
 
-于是 $n$ 个向量 $y$ 排成等式左边的矩阵，$n$ 个坐标排成等式右边的矩阵 $A$：
+Khi đó $n$ vectơ $y$ ghép thành ma trận ở vế trái, còn $n$ tọa độ ghép thành ma trận $A$ ở vế phải:
 
 $$
 (y_1,y_2,\cdots,y_n)=(x_1,x_2,\cdots,x_n)A
 $$
 
-矩阵 $A$ 称为由基 $x_1,x_2\cdots,x_n$ 到基 $y_1,y_2\cdots,y_n$ 的 **过渡矩阵**，也称为变换矩阵．
+Ma trận $A$ được gọi là **ma trận chuyển cơ sở** từ cơ sở $x_1,x_2\cdots,x_n$ sang cơ sở $y_1,y_2\cdots,y_n$, cũng gọi là ma trận biến đổi.
 
-显然过渡矩阵可逆．对于上式，由基 $y_1,y_2\cdots,y_n$ 到基 $x_1,x_2\cdots,x_n$ 的过渡矩阵为 $A^{-1}$．
+Rõ ràng ma trận chuyển cơ sở khả nghịch. Với đẳng thức trên, ma trận chuyển cơ sở từ cơ sở $y_1,y_2\cdots,y_n$ sang cơ sở $x_1,x_2\cdots,x_n$ là $A^{-1}$.
 
-可见，过渡矩阵是由域中的标量构成的矩阵，并非阿贝尔群中的向量排成的矩阵，应当予以区分．
+Có thể thấy ma trận chuyển cơ sở là ma trận tạo bởi các vô hướng trong trường, không phải ma trận ghép từ các vectơ trong nhóm Abel, nên cần phân biệt hai khái niệm này.
 
-设 $n$ 个向量 $x$ 与 $n$ 个向量 $y$ 是空间 $V$ 的两组基．对于空间 $V$ 中的同一个向量 $z$，有：
+Giả sử $n$ vectơ $x$ và $n$ vectơ $y$ là hai cơ sở của không gian $V$. Với cùng một vectơ $z$ trong không gian $V$, ta có:
 
 $$
 z=(x_1,x_2,\cdots,x_n)\begin{pmatrix}\xi_1\\\xi_2\\\vdots\\\xi_n\end{pmatrix}=(y_1,y_2\cdots,y_n)\begin{pmatrix}\eta_1\\\eta_2\\\vdots\\\eta_n\end{pmatrix}
 $$
 
-代入上文的
+Thay vào công thức ở trên:
 
 $$
 (y_1,y_2\cdots,y_n)=(x_1,x_2\cdots,x_n)A
 $$
 
-由唯一性，得到：
+Do tính duy nhất, ta được:
 
 $$
 \begin{pmatrix}\xi_1\\\xi_2\\\vdots\\\xi_n\end{pmatrix}=A\begin{pmatrix}\eta_1\\\eta_2\\\vdots\\\eta_n\end{pmatrix}
 $$
 
-或者
+hoặc:
 
 $$
 \begin{pmatrix}\eta_1\\\eta_2\\\vdots\\\eta_n\end{pmatrix}=A^{-1}\begin{pmatrix}\xi_1\\\xi_2\\\vdots\\\xi_n\end{pmatrix}
 $$
 
-这是纯粹坐标之间的变换，坐标变换公式均在标量域中．由于前文做了区分，线性空间与阿贝尔群中的向量是「抽象的向量」，而坐标与过渡矩阵的元素均在标量域中，视为「具体的向量」，两种向量应当视为「不同的东西」．
+Đây là phép biến đổi thuần túy giữa các tọa độ; các công thức đổi tọa độ đều nằm trong trường vô hướng. Do phần trước đã phân biệt, vectơ trong không gian tuyến tính và nhóm Abel là "vectơ trừu tượng", còn tọa độ và các phần tử của ma trận chuyển cơ sở đều nằm trong trường vô hướng, được xem là "vectơ cụ thể"; hai loại vectơ này nên được coi là "những thứ khác nhau".
 
-矩阵可以对整个空间，即全体坐标进行变换，列向量 $x$ 作为坐标遍布整个空间．
+Ma trận có thể biến đổi toàn bộ không gian, tức toàn bộ các tọa độ; vectơ cột $x$ với vai trò tọa độ trải khắp toàn bộ không gian.
 
-单位矩阵 $I$ 由单位向量构成．矩阵 $A$ 会将单位矩阵 $I$ 变换到矩阵 $A$ 的每个列向量，即将单位向量变换到矩阵 $A$ 的每个列向量．因此左乘矩阵 $A$，也可以视为将空间做了这样的变换．
+Ma trận đơn vị $I$ được tạo bởi các vectơ đơn vị. Ma trận $A$ sẽ biến đổi ma trận đơn vị $I$ thành từng vectơ cột của ma trận $A$, tức là biến đổi từng vectơ đơn vị thành từng vectơ cột của ma trận $A$. Vì vậy nhân bên trái với ma trận $A$ cũng có thể được xem là thực hiện một biến đổi như vậy lên không gian.
 
-向量左乘矩阵，也可以视为坐标左乘向量组．用坐标的观点看待就是：
+Vectơ nhân trái với ma trận cũng có thể được xem là tọa độ nhân trái với một hệ vectơ. Nhìn theo quan điểm tọa độ thì:
 
 $$
 Iy=Xa
 $$
 
-同一个列向量 $y$，在「正常」的空间，单位矩阵 $I$ 代表的空间下，坐标为 $y$，在变换后新的空间里，坐标将记为 $a$．这样一来，矩阵 $X$ 不仅是正常空间下的一组基，也是从向量组 $I$ 到向量组 $X$ 的过渡矩阵．
+Cùng một vectơ cột $y$, trong không gian "bình thường", tức không gian do ma trận đơn vị $I$ biểu diễn, có tọa độ là $y$; trong không gian mới sau biến đổi, tọa độ được ký hiệu là $a$. Như vậy, ma trận $X$ không chỉ là một cơ sở trong không gian bình thường, mà còn là ma trận chuyển cơ sở từ hệ vectơ $I$ sang hệ vectơ $X$.
 
-线性变换 $T$ 会将一个基映射为另一个基，于是坐标也被映射为另一个坐标．
+Biến đổi tuyến tính $T$ ánh xạ một cơ sở thành một cơ sở khác, nên tọa độ cũng được ánh xạ thành một tọa độ khác.
 
-如果将基 $\alpha$ 映射到 $\beta$ 对应的线性变换 $T$ 的过渡矩阵是 $A$，那么对应的基矩阵就有 $\beta=\alpha A$．
+Nếu ma trận chuyển cơ sở của biến đổi tuyến tính $T$ ánh xạ cơ sở $\alpha$ sang $\beta$ là $A$, thì ma trận cơ sở tương ứng thỏa mãn $\beta=\alpha A$.
 
-于是坐标的关系恰好反过来．假设线性变换 $T$ 映射后的坐标是 $b$，即加滤镜后观察到坐标 $b$，于是点在 $V$ 的表示就是 $\beta b$．还原的办法就是用过渡矩阵，把点在 $V$ 的表示写成 $\alpha Ab$．于是坐标变换为左乘过渡矩阵的逆矩阵的看法就明显了．
+Vì vậy quan hệ tọa độ đúng là đảo ngược lại. Giả sử tọa độ sau khi qua biến đổi tuyến tính $T$ là $b$, tức là tọa độ quan sát được sau khi thêm bộ lọc là $b$, thì biểu diễn của điểm trong $V$ là $\beta b$. Cách khôi phục là dùng ma trận chuyển cơ sở để viết biểu diễn của điểm trong $V$ thành $\alpha Ab$. Khi đó cách nhìn rằng đổi tọa độ là nhân bên trái với nghịch đảo của ma trận chuyển cơ sở trở nên rõ ràng.
 
-## 线性变换与矩阵相似
+<span id="&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4E0E;&#x77E9;&#x9635;&#x76F8;&#x4F3C;"></span>
+## Biến đổi tuyến tính và tương tự ma trận
 
-在空间 $V$ 中的一个线性变换 $T$ 对于空间 $V$ 的基 $\alpha$ 的关系：
+Quan hệ của một biến đổi tuyến tính $T$ trong không gian $V$ đối với cơ sở $\alpha$ của không gian $V$ là:
 
-线性变换 $T$ 作用于基 $\alpha$，将基 $\alpha$ 映射到了 $T(\alpha)$，相当于在基 $\alpha$ 右乘一个 $A$，即 $T(\alpha)=\alpha A$．
+Biến đổi tuyến tính $T$ tác động lên cơ sở $\alpha$, ánh xạ cơ sở $\alpha$ thành $T(\alpha)$, tương đương với việc nhân bên phải cơ sở $\alpha$ với một ma trận $A$, tức là $T(\alpha)=\alpha A$.
 
-矩阵相似考虑的问题是：同一个线性变换 $T$，在基 $\beta$ 的空间 $V$ 中描述为矩阵 $B$，在基 $\alpha$ 的空间 $V$ 中描述为矩阵 $A$．
+Vấn đề mà tương tự ma trận xét đến là: cùng một biến đổi tuyến tính $T$, khi mô tả trong không gian $V$ với cơ sở $\beta$ thì có ma trận $B$, còn khi mô tả trong không gian $V$ với cơ sở $\alpha$ thì có ma trận $A$.
 
-如果过渡矩阵为 $C$，即 $\beta=\alpha C$，那么两个描述 $B$ 和 $A$ 之间有怎样的联系．
+Nếu ma trận chuyển cơ sở là $C$, tức $\beta=\alpha C$, thì hai mô tả $B$ và $A$ liên hệ với nhau như thế nào?
 
-由于是同一个变换 $T$，可以发现一个事实，变换前后的过渡矩阵关系始终成立，即：
+Vì đây là cùng một biến đổi $T$, ta có thể nhận ra một sự thật: quan hệ ma trận chuyển cơ sở trước và sau biến đổi luôn được giữ nguyên, tức là:
 
 $$
 T(\beta)=T(\alpha)C=\alpha AC
 $$
 
-线性变换 $T$ 在基 $\beta$ 视角下仍旧为右乘，基 $\beta$ 转化到基 $\alpha$ 再右乘一个 $C$，变换前后保持过渡矩阵 $C$ 的关系：
+Biến đổi tuyến tính $T$ nhìn từ cơ sở $\beta$ vẫn là nhân bên phải; chuyển cơ sở $\beta$ về cơ sở $\alpha$ rồi nhân bên phải với $C$, quan hệ ma trận chuyển cơ sở $C$ được giữ nguyên trước và sau biến đổi:
 
 $$
 T(\beta)=\beta B=\alpha CB
 $$
 
-于是问题得到解决：
+Từ đó bài toán được giải:
 
 $$
 B=C^{-1}AC
 $$
 
-定理：设 $L(V)$ 中有变换 $T$，则 $T$ 在不同基下的矩阵 **相似**．
+Định lý: Nếu trong $L(V)$ có biến đổi $T$, thì các ma trận của $T$ theo những cơ sở khác nhau là **tương tự**.
 
-对于方阵 $A$ 和方阵 $B$，如果存在可逆矩阵 $C$ 使得 $B=C^{-1}AC$，则 $A$ 和 $B$ 相似．
+Với hai ma trận vuông $A$ và $B$, nếu tồn tại ma trận khả nghịch $C$ sao cho $B=C^{-1}AC$, thì $A$ và $B$ tương tự.
 
-矩阵相似保持秩不变，因此矩阵相似可以推出矩阵等价．但是，等价的两个矩阵未必相似．
+Tương tự ma trận bảo toàn hạng, nên từ hai ma trận tương tự có thể suy ra hai ma trận tương đương. Tuy nhiên, hai ma trận tương đương chưa chắc tương tự.
 
-由于矩阵相似与形状密切相关，因此矩阵相似和向量组等价、方程组同解之间没有关系．
+Vì tương tự ma trận liên quan chặt chẽ đến hình dạng của ma trận, nên tương tự ma trận không liên quan đến tính tương đương của hệ vectơ hay việc các hệ phương trình có cùng nghiệm.
 
-回过头来，矩阵相似的解释就是 4 个等式：$\beta=\alpha C$、$T(\alpha)=\alpha A$、$T(\beta)=\beta B$、$T(\beta)=T(\alpha)C$．
+Nhìn lại, cách giải thích tương tự ma trận chính là 4 đẳng thức: $\beta=\alpha C$, $T(\alpha)=\alpha A$, $T(\beta)=\beta B$, $T(\beta)=T(\alpha)C$.
 
-## 参考资料
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+## Tài liệu tham khảo
 
--   [【官方双语/合集】线性代数的本质 - 系列合集 P13 09 - 基变换](https://www.bilibili.com/video/BV1Ls411b7r2)
+-   [Tuyển tập song ngữ chính thức: Bản chất của đại số tuyến tính - P13 09 - Đổi cơ sở](https://www.bilibili.com/video/BV1Ls411b7r2)

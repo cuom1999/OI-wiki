@@ -1,382 +1,404 @@
 author: codewasp942, Tiphereth-A
 
-线性空间是 $d$ 维欧氏空间（$0\leq d\leq 3$）等的推广，相关概念的关系可参照 [欧氏空间与线性空间的关系](#欧氏空间与线性空间的关系)．
+Không gian tuyến tính là một khái quát của không gian Euclid $d$ chiều ($0\leq d\leq 3$), v.v. Có thể xem quan hệ giữa các khái niệm liên quan ở [quan hệ giữa không gian Euclid và không gian tuyến tính](#%E6%AC%A7%E6%B0%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB).
 
-前置知识：阿贝尔群、域．
+Kiến thức chuẩn bị: nhóm Abel, trường.
 
-通俗地讲，一个集合关于某运算封闭，满足结合律、单位元与逆元则构成群．如果还满足交换律，则构成阿贝尔群．
+Nói một cách trực quan, nếu một tập hợp đóng với một phép toán nào đó và thỏa mãn tính kết hợp, có phần tử đơn vị và phần tử nghịch đảo thì nó tạo thành một nhóm. Nếu còn thỏa mãn tính giao hoán thì nó tạo thành một nhóm Abel.
 
-如果一个集合关于四则运算封闭，则构成域．相关定义详见 [抽象代数基本概念](../algebra/basic.md#域)．
+Nếu một tập hợp đóng với bốn phép toán số học thì nó tạo thành một trường. Định nghĩa liên quan được trình bày chi tiết trong [các khái niệm cơ bản của đại số trừu tượng](../algebra/basic.md#%E5%9F%9F).
 
-## 定义
+<span id="&#23450;&#20041;"></span>
+## Định nghĩa
 
-线性空间（向量空间）是线性代数的基本概念与重要研究对象．线性空间是由向量集合 $V$、域 $\Bbb{P}$、加法运算 $+$ 和标量乘法（数乘）组成的模类代数结构．
+Không gian tuyến tính (không gian vectơ) là một khái niệm cơ bản và là đối tượng nghiên cứu quan trọng của đại số tuyến tính. Không gian tuyến tính là một cấu trúc đại số dạng mô-đun gồm tập vectơ $V$, trường $\Bbb{P}$, phép cộng $+$ và phép nhân vô hướng (nhân với số).
 
-具体来说，设 $(V,+)$ 是一个阿贝尔群，$\Bbb{P}$ 是一个域．
+Cụ thể, giả sử $(V,+)$ là một nhóm Abel, và $\Bbb{P}$ là một trường.
 
-定义 $\Bbb{P}$ 中的数与 $V$ 中元素的一种代数运算，称为 **数乘**：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p$ 在域 $\Bbb{P}$ 中，$v$ 在阿贝尔群 $V$ 中．要求该数乘运算是封闭的，运算结果始终有意义，也在群 $V$ 中．
+Định nghĩa một phép toán đại số giữa số trong $\Bbb{P}$ và phần tử trong $V$, gọi là **nhân vô hướng**: $\cdot:\Bbb{P}\times V\mapsto V$, ký hiệu là $p\cdot v$ hoặc $pv$, trong đó $p$ thuộc trường $\Bbb{P}$ và $v$ thuộc nhóm Abel $V$. Yêu cầu phép nhân vô hướng này đóng, tức kết quả phép toán luôn có nghĩa và vẫn thuộc nhóm $V$.
 
-且满足以下条件：
+Đồng thời thỏa mãn các điều kiện sau:
 
-1.  **数乘对向量加法分配律**：对于 $\mathbf u,\mathbf v\in V,a\in \Bbb{P}$，$a(\mathbf u+\mathbf v)=a\mathbf u+a\mathbf v$
-2.  **数乘对标量加法分配律**：对于 $a,b\in \Bbb{P},\mathbf u\in V$，$(a+b)\mathbf u=a\mathbf u+b\mathbf u$
-3.  **数乘结合律（一致于域乘法）**：对于 $a,b\in \Bbb{P},\mathbf u\in V$，$a(b\mathbf u)=(ab)\mathbf u$
-4.  **标量乘法单位元**：令 $1\in \Bbb{P}$ 是 $\Bbb{P}$ 的乘法单位元，则对于 $u\in V$，$1\mathbf u=\mathbf u$
+1.  **Luật phân phối của nhân vô hướng đối với cộng vectơ**: với $\mathbf u,\mathbf v\in V,a\in \Bbb{P}$, $a(\mathbf u+\mathbf v)=a\mathbf u+a\mathbf v$.
+2.  **Luật phân phối của nhân vô hướng đối với cộng vô hướng**: với $a,b\in \Bbb{P},\mathbf u\in V$, $(a+b)\mathbf u=a\mathbf u+b\mathbf u$.
+3.  **Luật kết hợp của nhân vô hướng (phù hợp với phép nhân trong trường)**: với $a,b\in \Bbb{P},\mathbf u\in V$, $a(b\mathbf u)=(ab)\mathbf u$.
+4.  **Phần tử đơn vị của nhân vô hướng**: gọi $1\in \Bbb{P}$ là phần tử đơn vị của phép nhân trong $\Bbb{P}$, thì với $u\in V$, $1\mathbf u=\mathbf u$.
 
-则称代数系统 $(V,+,\cdot,\mathbb{P})$ 是 $V$ 关于 $+,\cdot$ 构成 $\Bbb{P}$ 上的一个 **线性空间**，$\Bbb{P}$ 为线性空间的 **基域**，$V$ 中元素称为 **向量**，$\Bbb{P}$ 中元素称为 **标量**．当域 $\Bbb{P}$ 为实数域时，称为实线性空间．当域 $\Bbb{P}$ 为复数域时，称为复线性空间．
+Khi đó hệ đại số $(V,+,\cdot,\mathbb{P})$ được gọi là một **không gian tuyến tính** trên $\Bbb{P}$ do $V$ cùng với $+,\cdot$ tạo thành; $\Bbb{P}$ là **trường cơ sở** của không gian tuyến tính; các phần tử của $V$ gọi là **vectơ**, còn các phần tử của $\Bbb{P}$ gọi là **vô hướng**. Khi trường $\Bbb{P}$ là trường số thực, ta gọi đó là không gian tuyến tính thực. Khi trường $\Bbb{P}$ là trường số phức, ta gọi đó là không gian tuyến tính phức.
 
-不管是一列数还是箭头，或是别的什么东西，只要满足上述公理，都可以认为是向量，也就都可以利用线性代数的理论来研究．
+Dù là một dãy số, một mũi tên hay một đối tượng khác, miễn thỏa mãn các tiên đề trên thì đều có thể được xem là vectơ, và do đó có thể được nghiên cứu bằng lý thuyết đại số tuyến tính.
 
-称加法群中的零元为零向量，记作 $\mathbf 0$ 或 $\mathbf\theta$．
+Phần tử không trong nhóm cộng được gọi là vectơ không, ký hiệu là $\mathbf 0$ hoặc $\mathbf\theta$.
 
-原阿贝尔群中向量的加减法，与线性空间新定义的数乘，统称为 **线性运算**．
+Phép cộng trừ vectơ trong nhóm Abel ban đầu, cùng với phép nhân vô hướng mới định nghĩa trong không gian tuyến tính, được gọi chung là **phép toán tuyến tính**.
 
-???+ note "Note"
-    为行文方便，下文中：
+???+ note "Ghi chú"
+    Để tiện trình bày, trong phần dưới:
     
-    1.  对 $V$ 中的元素不做加粗处理．
-    2.  将满足线性空间定义的代数系统 $(V,+,\cdot,\mathbb{P})$ 也称为线性空间．
+    1.  Các phần tử của $V$ sẽ không được in đậm.
+    2.  Hệ đại số $(V,+,\cdot,\mathbb{P})$ thỏa mãn định nghĩa không gian tuyến tính cũng sẽ được gọi tắt là không gian tuyến tính.
     
-    请注意区分．
+    Cần chú ý phân biệt theo ngữ cảnh.
 
-### 直观理解
+<span id="&#30452;&#35266;&#29702;&#35299;"></span>
+### Cách hiểu trực quan
 
-不是很严谨地说，标量乘法对应着一种「**缩放**」，基域 $\Bbb{P}$ 中的元素就代表着缩放的「**比例**」，向量加法对应「**叠加**」．同时，$\Bbb{P}$ 中的元素还代表着向量的「**坐标**」的取值范围．
+Nói không hoàn toàn chặt chẽ, nhân vô hướng tương ứng với một kiểu "**co giãn**"; phần tử trong trường cơ sở $\Bbb{P}$ biểu thị "**tỉ lệ**" co giãn đó; còn cộng vectơ tương ứng với "**chồng cộng**". Đồng thời, phần tử của $\Bbb{P}$ cũng biểu thị phạm vi giá trị của "**tọa độ**" của vectơ.
 
-条件 1-4 描述的是「缩放」与「叠加」的关联．可以结合二维平面上的箭头来理解．
+Các điều kiện 1-4 mô tả quan hệ giữa "co giãn" và "chồng cộng". Có thể hiểu chúng thông qua các mũi tên trên mặt phẳng hai chiều.
 
-### 简单性质
+<span id="&#31616;&#21333;&#24615;&#36136;"></span>
+### Một số tính chất đơn giản
 
-???+ note "Note"
-    以下性质可在群论等中找到．
+???+ note "Ghi chú"
+    Các tính chất sau có thể tìm thấy trong lý thuyết nhóm, v.v.
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$,
+Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
-1.  $\theta$ 唯一
-2.  $\forall\alpha\in V$,$-\alpha$ 唯一
-3.  $\exists 0\in\mathbb{P}$,$\forall\alpha\in V$, 有 $0\alpha=\theta$
-4.  $\forall k\in\mathbb{P}$, 有 $k\theta=\theta$
-5.  $(-1)\alpha=-\alpha,~\forall\alpha\in V$
-6.  无零因子：$\forall\alpha\in V,k\in\mathbb{P}$, 有 $k\alpha=\theta\implies k=0\lor\alpha=\theta$
-7.  加法的消去律：$\forall\alpha,\beta,\gamma\in V$, 有 $\alpha+\beta=\alpha+\gamma\implies\beta=\gamma$
+1.  $\theta$ là duy nhất.
+2.  $\forall\alpha\in V$,$-\alpha$ là duy nhất.
+3.  $\exists 0\in\mathbb{P}$,$\forall\alpha\in V$, có $0\alpha=\theta$.
+4.  $\forall k\in\mathbb{P}$, có $k\theta=\theta$.
+5.  $(-1)\alpha=-\alpha,~\forall\alpha\in V$.
+6.  Không có ước không: $\forall\alpha\in V,k\in\mathbb{P}$, có $k\alpha=\theta\implies k=0\lor\alpha=\theta$.
+7.  Luật khử của phép cộng: $\forall\alpha,\beta,\gamma\in V$, có $\alpha+\beta=\alpha+\gamma\implies\beta=\gamma$.
 
-    > 实际上，加法的消去律是阿贝尔群的性质．
+    > Thật ra, luật khử của phép cộng là tính chất của nhóm Abel.
 
-### 例子
+<span id="&#20363;&#23376;"></span>
+### Ví dụ
 
-1.  $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间．例如 $\Bbb{P}$ 可以是 $\Bbb{R}$,$\Bbb{C}$,$\Bbb{N}_p$（$p$ 为素数）等．
-2.  数域 $\Bbb{P}$ 上的 $n\times m$ 阶矩阵 $\Bbb{P}^{n\times m}$ 关于矩阵的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间．
-3.  数域 $\Bbb{P}$ 上的一元多项式环 $\Bbb{P}[x]$ 关于多项式的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间．
-4.  区间 $[a,b]$ 上的全体连续函数（记作 $C[a,b]$）关于「函数加法」和「值与连续函数的数乘」构成值域上的一个线性空间．
+1.  $\Bbb{P}^n$ với phép cộng và phép nhân trên trường số $\Bbb{P}$ tạo thành một không gian tuyến tính trên $\Bbb{P}$. Ví dụ $\Bbb{P}$ có thể là $\Bbb{R}$, $\Bbb{C}$, $\Bbb{N}_p$ ($p$ là số nguyên tố), v.v.
+2.  Tập các ma trận cấp $n\times m$ trên trường số $\Bbb{P}$, tức $\Bbb{P}^{n\times m}$, với phép cộng ma trận và nhân vô hướng tạo thành một không gian tuyến tính trên $\Bbb{P}$.
+3.  Vành đa thức một biến $\Bbb{P}[x]$ trên trường số $\Bbb{P}$ với phép cộng đa thức và nhân vô hướng tạo thành một không gian tuyến tính trên $\Bbb{P}$.
+4.  Tập tất cả hàm liên tục trên đoạn $[a,b]$ (ký hiệu $C[a,b]$) với "phép cộng hàm" và "nhân giá trị với hàm liên tục" tạo thành một không gian tuyến tính trên miền giá trị.
 
-## 相关概念
+<span id="&#30456;&#20851;&#27010;&#24565;"></span>
+## Các khái niệm liên quan
 
-### 线性相关、线性无关
+<span id="&#32447;&#24615;&#30456;&#20851;&#12289;&#32447;&#24615;&#26080;&#20851;"></span>
+### Phụ thuộc tuyến tính và độc lập tuyến tính
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$：
+Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
-1.  称 $a_1,a_2,\dots,a_n\in V$ 为 $V$ 的一个 **向量组**．
-2.  对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 称 $\sum_{i=1}^nk_ia_i$ 为向量组 $a_1,a_2,\dots,a_n$ 的一个 **线性组合**．
-3.  若向量 $\beta\in V$ 可以表示为向量组 $a_1,a_2,\dots,a_n$ 的一个线性组合，则称 $\beta$ 能被向量组 $a_1,a_2,\dots,a_n$  **线性表出**．
-4.  对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 若向量组 $a_1,a_2,\dots,a_n$ 满足 $\sum_{i=1}^nk_ia_i=\theta\iff k_i=0, i=1,2,\dots,n$, 则称向量组 $a_1,a_2,\dots,a_n$  **线性无关**，否则称向量组 $a_1,a_2,\dots,a_n$  **线性相关**．
+1.  $a_1,a_2,\dots,a_n\in V$ được gọi là một **hệ vectơ** của $V$.
+2.  Với $k_1,k_2,\dots,k_n\in\Bbb{P}$, $\sum_{i=1}^nk_ia_i$ được gọi là một **tổ hợp tuyến tính** của hệ vectơ $a_1,a_2,\dots,a_n$.
+3.  Nếu vectơ $\beta\in V$ có thể được biểu diễn thành một tổ hợp tuyến tính của hệ vectơ $a_1,a_2,\dots,a_n$, ta nói $\beta$ có thể được **biểu diễn tuyến tính** bởi hệ vectơ $a_1,a_2,\dots,a_n$.
+4.  Với $k_1,k_2,\dots,k_n\in\Bbb{P}$, nếu hệ vectơ $a_1,a_2,\dots,a_n$ thỏa mãn $\sum_{i=1}^nk_ia_i=\theta\iff k_i=0, i=1,2,\dots,n$, thì hệ vectơ $a_1,a_2,\dots,a_n$ được gọi là **độc lập tuyến tính**; ngược lại gọi là **phụ thuộc tuyến tính**.
 
-规定零向量与任意向量线性相关．
+Quy ước rằng vectơ không phụ thuộc tuyến tính với mọi vectơ.
 
-线性表示或线性相关的式子，可以写成矩阵乘法的形式：
+Biểu thức biểu diễn tuyến tính hoặc phụ thuộc tuyến tính có thể viết dưới dạng phép nhân ma trận:
 
 $$
 \beta=k_1a_1+k_2a_2+\cdots+k_ra_r=(a_1,a_2,\cdots,a_r)\begin{pmatrix} k_1 \\ k_2 \\ \vdots \\ k_r \end{pmatrix}
 $$
 
-根据习惯，把向量 $a$ 按顺序并排写在左边；把标量 $k$ 按顺序竖着写在右边，构成一个「列向量」．
+Theo thói quen, các vectơ $a$ được viết cạnh nhau theo thứ tự ở bên trái; các vô hướng $k$ được viết dọc theo thứ tự ở bên phải, tạo thành một "vectơ cột".
 
-注意：这里标量构成的「列向量」只是方便的形式记号，不在空间 $V$ 中，与左边的向量有着本质的区别．左边的向量如果恰好是列向量，并排拼起来就可以形式上构成一个「矩阵」，上述乘积恰好是矩阵中常见的「矩阵左乘列向量」的形式．
+Chú ý: "vectơ cột" tạo bởi các vô hướng ở đây chỉ là ký hiệu hình thức cho tiện, không thuộc không gian $V$, và về bản chất khác với các vectơ ở bên trái. Nếu các vectơ bên trái tình cờ là vectơ cột, việc ghép chúng cạnh nhau có thể hình thức tạo thành một "ma trận"; tích trên khi đó đúng là dạng "ma trận nhân trái với vectơ cột" thường gặp trong ma trận.
 
-下文指出，这里的线性表示也等价于，向量 $\beta$ 落在矩阵 $(a_1,a_2\cdots,a_r)$ 的像空间里．
+Phần sau sẽ chỉ ra rằng biểu diễn tuyến tính ở đây cũng tương đương với việc vectơ $\beta$ nằm trong không gian ảnh của ma trận $(a_1,a_2\cdots,a_r)$.
 
-根据下文中的定义，零向量一定会落在像空间里．如果用线性变换的观点看，线性相关等价于变换后多个向量变换到零向量，而线性无关等价于只有零向量本身变换到零向量．
+Theo định nghĩa bên dưới, vectơ không chắc chắn nằm trong không gian ảnh. Nếu nhìn từ góc độ ánh xạ tuyến tính, phụ thuộc tuyến tính tương đương với việc có nhiều vectơ sau biến đổi đi tới vectơ không, còn độc lập tuyến tính tương đương với việc chỉ bản thân vectơ không đi tới vectơ không.
 
-#### 性质
+<span id="&#24615;&#36136;"></span>
+#### Tính chất
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$,
+Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
-1.  若向量组的一部分线性相关，则向量组线性相关．若向量组线性无关，则其任意非空部分均线性无关．简记为：**「大无关、小无关」；「小相关、大相关」**．
-2.  含 $\theta$ 的向量组线性相关．
-3.  向量组线性相关当且仅当向量组的某个向量可以由其余向量线性表出．
-4.  若向量 $\beta$ 可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则表出方式唯一当且仅当向量组 $a_1,a_2,\dots,a_n$ 线性无关．
-5.  若向量组 $a_1,a_2,\dots,a_n$ 线性无关，则向量 $\beta$ 可被向量组 $a_1,a_2,\dots,a_n$ 线性表出当且仅当向量组 $a_1,a_2,\dots,a_n,\beta$ 线性相关．
+1.  Nếu một phần của hệ vectơ phụ thuộc tuyến tính thì cả hệ vectơ phụ thuộc tuyến tính. Nếu hệ vectơ độc lập tuyến tính thì mọi phần không rỗng của nó đều độc lập tuyến tính. Có thể nhớ ngắn gọn: **"hệ lớn độc lập thì hệ nhỏ độc lập"; "hệ nhỏ phụ thuộc thì hệ lớn phụ thuộc"**.
+2.  Hệ vectơ chứa $\theta$ phụ thuộc tuyến tính.
+3.  Hệ vectơ phụ thuộc tuyến tính khi và chỉ khi một vectơ nào đó trong hệ có thể được biểu diễn tuyến tính bởi các vectơ còn lại.
+4.  Nếu vectơ $\beta$ có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$, thì cách biểu diễn là duy nhất khi và chỉ khi hệ vectơ $a_1,a_2,\dots,a_n$ độc lập tuyến tính.
+5.  Nếu hệ vectơ $a_1,a_2,\dots,a_n$ độc lập tuyến tính, thì vectơ $\beta$ có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$ khi và chỉ khi hệ vectơ $a_1,a_2,\dots,a_n,\beta$ phụ thuộc tuyến tính.
 
-### 极大线性无关组、秩
+<span id="&#26497;&#22823;&#32447;&#24615;&#26080;&#20851;&#32452;&#12289;&#31209;"></span>
+### Hệ con độc lập tuyến tính cực đại và hạng
 
-线性相关可以理解为「多余」，说明向量组内部有的向量可以被其他向量表出，可以删去．删完了之后，将剩下极大线性无关组．
+Phụ thuộc tuyến tính có thể hiểu là "dư thừa": bên trong hệ vectơ có một số vectơ có thể được biểu diễn bởi các vectơ khác, nên có thể xóa đi. Sau khi xóa hết phần dư thừa, phần còn lại là một hệ con độc lập tuyến tính cực đại.
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$：
+Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
-1.  对于向量组 $b_1,b_2,\dots,b_m$, 令 $\{a_1,a_2,\dots,a_n\}\subseteq\{b_1,b_2,\dots,b_m\}$, 若有：
+1.  Với hệ vectơ $b_1,b_2,\dots,b_m$, đặt $\{a_1,a_2,\dots,a_n\}\subseteq\{b_1,b_2,\dots,b_m\}$. Nếu:
 
-    -   向量组 $a_1,a_2,\dots,a_n$ 线性无关．
-    -   $\forall\beta\in\{b_1,b_2,\dots,b_m\}\setminus\{a_1,a_2,\dots,a_n\}$, 向量组 $a_1,a_2,\dots,a_n,\beta$ 线性相关．
+    -   Hệ vectơ $a_1,a_2,\dots,a_n$ độc lập tuyến tính.
+    -   $\forall\beta\in\{b_1,b_2,\dots,b_m\}\setminus\{a_1,a_2,\dots,a_n\}$, hệ vectơ $a_1,a_2,\dots,a_n,\beta$ phụ thuộc tuyến tính.
 
-    则称向量组 $a_1,a_2,\dots,a_n$ 为向量组 $b_1,b_2,\dots,b_m$ 中的一个 **极大线性无关组**．类似地，可定义线性空间 $V$ 的极大线性无关组．
+    thì hệ vectơ $a_1,a_2,\dots,a_n$ được gọi là một **hệ con độc lập tuyến tính cực đại** của hệ vectơ $b_1,b_2,\dots,b_m$. Tương tự, có thể định nghĩa hệ con độc lập tuyến tính cực đại của không gian tuyến tính $V$.
 
-    规定向量组 $\theta,\theta,\dots,\theta$ 的极大线性无关组为空集，于是全 $0$ 矩阵对应的向量组没有极大线性无关组．
+    Quy ước hệ con độc lập tuyến tính cực đại của hệ vectơ $\theta,\theta,\dots,\theta$ là tập rỗng; vì thế hệ vectơ tương ứng với ma trận toàn $0$ không có hệ con độc lập tuyến tính cực đại không rỗng.
 
-    从向量组删向量的删法不唯一，因此极大线性无关组也不唯一．习惯上从左到右按顺序删．
+    Cách xóa vectơ khỏi hệ vectơ không duy nhất, nên hệ con độc lập tuyến tính cực đại cũng không duy nhất. Theo thói quen, ta xóa theo thứ tự từ trái sang phải.
 
-    很巧的是，按顺序删，留下的向量，恰好就是「按行看」观点里面，高斯消元法剩下的行最简形矩阵中，元素 $1$ 所在的列．
+    Một điều khá thú vị là nếu xóa theo thứ tự, các vectơ còn lại đúng là các cột chứa phần tử $1$ trong ma trận dạng bậc thang rút gọn sau khử Gauss khi nhìn theo quan điểm "theo hàng".
 
-    称向量组 $b_1,b_2,\dots,b_m$ 的极大线性无关组的大小为向量组的 **秩**，记作 $\operatorname{rank}\{b_1,b_2,\dots,b_m\}$, 规定 $\operatorname{rank}\{\theta,\theta,\dots,\theta\}=0$．
+    Kích thước của hệ con độc lập tuyến tính cực đại của hệ vectơ $b_1,b_2,\dots,b_m$ được gọi là **hạng** của hệ vectơ, ký hiệu $\operatorname{rank}\{b_1,b_2,\dots,b_m\}$. Quy ước $\operatorname{rank}\{\theta,\theta,\dots,\theta\}=0$.
 
-    于是，向量组的秩的定义与矩阵的秩的定义完全一致．
+    Do đó, định nghĩa hạng của hệ vectơ hoàn toàn nhất quán với định nghĩa hạng của ma trận.
 
-2.  若向量组 $a_1,a_2,\dots,a_n$ 能线性表出向量组 $b_1,b_2,\dots,b_m$ 中的所有向量，称向量组 $b_1,b_2,\dots,b_m$ 能被向量组 $a_1,a_2,\dots,a_n$ 线性表出．
+2.  Nếu hệ vectơ $a_1,a_2,\dots,a_n$ có thể biểu diễn tuyến tính mọi vectơ trong hệ $b_1,b_2,\dots,b_m$, ta nói hệ vectơ $b_1,b_2,\dots,b_m$ có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$.
 
-3.  若向量组 $a_1,a_2,\dots,a_n$ 能被向量组 $b_1,b_2,\dots,b_m$ 线性表出，且向量组 $b_1,b_2,\dots,b_m$ 能被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则称两向量组 **等价**，记作 $\{a_1,a_2,\dots,a_n\}\cong\{b_1,b_2,\dots,b_m\}$．
+3.  Nếu hệ vectơ $a_1,a_2,\dots,a_n$ có thể được biểu diễn tuyến tính bởi hệ vectơ $b_1,b_2,\dots,b_m$, đồng thời hệ vectơ $b_1,b_2,\dots,b_m$ có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$, thì hai hệ vectơ được gọi là **tương đương**, ký hiệu $\{a_1,a_2,\dots,a_n\}\cong\{b_1,b_2,\dots,b_m\}$.
 
-    向量组的 **等价** 就是向量组张成的空间相同．张成空间相同的向量组相互等价，张成空间不同的向量组不等价．
+    **Tương đương** của hệ vectơ nghĩa là các không gian do chúng sinh ra là như nhau. Các hệ vectơ sinh ra cùng một không gian thì tương đương với nhau; các hệ vectơ sinh ra các không gian khác nhau thì không tương đương.
 
-    向量组等价比矩阵等价条件更强，不仅要求秩相同，还要求空间完全一样．因此，把两个矩阵 **横向** 拼在一起，秩不能发生变化．
+    Điều kiện tương đương của hệ vectơ mạnh hơn điều kiện tương đương của ma trận: không chỉ yêu cầu hạng bằng nhau, mà còn yêu cầu không gian hoàn toàn giống nhau. Vì vậy, khi ghép hai ma trận **theo chiều ngang**, hạng không được thay đổi.
 
-    矩阵等价仅要求秩相同，因此矩阵等价表示前一个矩阵或空间，可以通过可逆变换，到达后一个矩阵或空间．
+    Tương đương ma trận chỉ yêu cầu hạng bằng nhau, nên tương đương ma trận biểu thị rằng ma trận hoặc không gian phía trước có thể đi tới ma trận hoặc không gian phía sau thông qua một biến đổi khả nghịch.
 
-#### 性质
+<span id="&#24615;&#36136;_1"></span>
+#### Tính chất
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$,
+Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
-1.  设向量组 $a_1,a_2,\dots,a_n$ 能被线性表出向量组 $b_1,b_2,\dots,b_m$ 线性表出．
-    -   若 $n>m$, 则向量组 $a_1,a_2,\dots,a_n$ 线性相关．
-    -   若向量组 $a_1,a_2,\dots,a_n$ 线性无关，则 $n\leq m$．
+1.  Giả sử hệ vectơ $a_1,a_2,\dots,a_n$ có thể được biểu diễn tuyến tính bởi hệ vectơ $b_1,b_2,\dots,b_m$.
+    -   Nếu $n>m$, thì hệ vectơ $a_1,a_2,\dots,a_n$ phụ thuộc tuyến tính.
+    -   Nếu hệ vectơ $a_1,a_2,\dots,a_n$ độc lập tuyến tính, thì $n\leq m$.
 
-2.  等价的线性无关向量组的大小相等．
+2.  Các hệ vectơ độc lập tuyến tính tương đương có cùng kích thước.
 
-    向量组的任意极大线性无关组的大小均相等．
+    Mọi hệ con độc lập tuyến tính cực đại của một hệ vectơ đều có cùng kích thước.
 
-3.  向量组线性无关当且仅当其秩等于其大小．
+3.  Hệ vectơ độc lập tuyến tính khi và chỉ khi hạng của nó bằng kích thước của nó.
 
-4.  若向量组 $a_1,a_2,\dots,a_n$ 能被线性表出向量组 $b_1,b_2,\dots,b_m$ 线性表出，则 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq\operatorname{rank}\{b_1,b_2,\dots,b_m\}$．
+4.  Nếu hệ vectơ $a_1,a_2,\dots,a_n$ có thể được biểu diễn tuyến tính bởi hệ vectơ $b_1,b_2,\dots,b_m$, thì $\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq\operatorname{rank}\{b_1,b_2,\dots,b_m\}$.
 
-5.  等价的向量组的秩相等．
+5.  Các hệ vectơ tương đương có hạng bằng nhau.
 
-### 线性包
+<span id="&#32447;&#24615;&#21253;"></span>
+### Bao tuyến tính
 
-对于线性空间 $(V,+,\cdot,\Bbb{P})$，$\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$ 也构成一个线性空间，称为由向量组 $a_1,a_2,\dots,a_n$  **张成** 的线性空间（或 **线性包**），记作 $\operatorname{span}\{a_1,a_2,\dots,a_n\}$．
+Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$, tập $\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$ cũng tạo thành một không gian tuyến tính, gọi là không gian tuyến tính **sinh bởi** hệ vectơ $a_1,a_2,\dots,a_n$ (hoặc **bao tuyến tính**), ký hiệu $\operatorname{span}\{a_1,a_2,\dots,a_n\}$.
 
-这里的 $n$ 个向量 $a$ 不一定线性无关．
+$n$ vectơ $a$ ở đây không nhất thiết độc lập tuyến tính.
 
-### 线性子空间
+<span id="&#32447;&#24615;&#23376;&#31354;&#38388;"></span>
+### Không gian con tuyến tính
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$, 若代数系统 $(V_1,+,\cdot,\Bbb{P})$ 满足：
+Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$, nếu hệ đại số $(V_1,+,\cdot,\Bbb{P})$ thỏa mãn:
 
 1.  $\varnothing\ne V_1$
 2.  $V_1\subseteq V$
-3.  $V_1$ 关于 $+,\cdot$ 构成 $\mathbb{P}$ 上的线性空间
+3.  $V_1$ cùng với $+,\cdot$ tạo thành một không gian tuyến tính trên $\mathbb{P}$
 
-则称 $V_1$ 为 $V$ 的线性子空间，简称子空间，记作 $V_1\leq V$．
+thì $V_1$ được gọi là không gian con tuyến tính của $V$, gọi tắt là không gian con, ký hiệu $V_1\leq V$.
 
-任何空间 $V$ 都有两个 **平凡子空间**：它本身 $V$ 与零子空间．零子空间只含零向量，不含有线性无关的向量．
+Mọi không gian $V$ đều có hai **không gian con tầm thường**: chính nó $V$ và không gian con không. Không gian con không chỉ chứa vectơ không, không chứa vectơ độc lập tuyến tính nào.
 
-若第 2 条中的 $\subseteq$ 换为 $\subset$, 则称 $V_1$ 为 $V$ 的线性真子空间，记作 $V_1<V$．
+Nếu thay $\subseteq$ trong điều 2 bằng $\subset$, thì $V_1$ được gọi là không gian con tuyến tính thực sự của $V$, ký hiệu $V_1<V$.
 
-不难证明：线性空间 $V$ 的非空子集 $V_1$ 是其线性子空间当且仅当线性运算在 $V_1$ 上封闭，即：
+Không khó để chứng minh: tập con không rỗng $V_1$ của không gian tuyến tính $V$ là không gian con tuyến tính của nó khi và chỉ khi các phép toán tuyến tính đóng trên $V_1$, tức:
 
-1.  $\forall u,v\in V_1$,$u+v\in V_1$
-2.  $\forall v\in V_1$,$\forall k\in \Bbb{P}$,$kv\in V_1$
+1.  $\forall u,v\in V_1$,$u+v\in V_1$.
+2.  $\forall v\in V_1$,$\forall k\in \Bbb{P}$,$kv\in V_1$.
 
-### 交、和与直和、直积
+<span id="&#20132;&#12289;&#21644;&#19982;&#30452;&#21644;&#12289;&#30452;&#31215;"></span>
+### Giao, tổng, tổng trực tiếp và tích trực tiếp
 
-对线性空间 $(V_1,+,\cdot,\Bbb{P})$ 与 $(V_2,+,\cdot,\Bbb{P})$：
+Với các không gian tuyến tính $(V_1,+,\cdot,\Bbb{P})$ và $(V_2,+,\cdot,\Bbb{P})$:
 
-1.  不难验证：加法和数乘在 $V_1\cap V_2$ 上封闭，故可称 $V_1\cap V_2$ 为线性空间 $V_1$ 和 $V_2$ 的 **交**．
+1.  Không khó kiểm tra rằng phép cộng và nhân vô hướng đóng trên $V_1\cap V_2$, nên $V_1\cap V_2$ được gọi là **giao** của các không gian tuyến tính $V_1$ và $V_2$.
 
-    类似地，可定义多个线性空间的交 $\bigcap_{i=1}^m V_i$．
+    Tương tự, có thể định nghĩa giao của nhiều không gian tuyến tính $\bigcap_{i=1}^m V_i$.
 
-2.  若线性空间 $V$ 满足 $V=\{u+v|u\in V_1,v\in V_2\}$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的 **和**，记为 $V=V_1+V_2$．
+2.  Nếu không gian tuyến tính $V$ thỏa mãn $V=\{u+v|u\in V_1,v\in V_2\}$, thì $V$ được gọi là **tổng** của các không gian tuyến tính $V_1$ và $V_2$, ký hiệu $V=V_1+V_2$.
 
-    可以验证：$V_1+V_2$ 是包含 $V_1\cup V_2$ 的最小子空间．
+    Có thể kiểm tra rằng $V_1+V_2$ là không gian con nhỏ nhất chứa $V_1\cup V_2$.
 
-    类似地，可定义多个线性空间的和 $\sum_{i=1}^m V_i$．
+    Tương tự, có thể định nghĩa tổng của nhiều không gian tuyến tính $\sum_{i=1}^m V_i$.
 
-3.  设 $V=V_1+V_2$, 若线性空间 $V$ 中的任意元素 $v$, 均只能找到唯一一组向量 $v_1,v_2$ 满足 $v=v_1+v_2$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的 **直和**(direct sum)，记为 $V_1\oplus V_2$．
+3.  Giả sử $V=V_1+V_2$. Nếu mọi phần tử $v$ trong không gian tuyến tính $V$ chỉ có duy nhất một cặp vectơ $v_1,v_2$ thỏa mãn $v=v_1+v_2$, thì $V$ được gọi là **tổng trực tiếp** (direct sum) của các không gian tuyến tính $V_1$ và $V_2$, ký hiệu $V_1\oplus V_2$.
 
-    类似地，可定义多个线性空间的直和 $\bigoplus_{i=1}^m V_i$．
+    Tương tự, có thể định nghĩa tổng trực tiếp của nhiều không gian tuyến tính $\bigoplus_{i=1}^m V_i$.
 
-4.  $V_1$ 与 $V_2$ 的 **直积**  $V_1\times V_2$ 定义为二者的笛卡儿积关于如下的加法和数乘构成 $\Bbb{P}$ 上的线性空间：
+4.  **Tích trực tiếp** $V_1\times V_2$ của $V_1$ và $V_2$ được định nghĩa là tích Descartes của chúng, cùng với phép cộng và nhân vô hướng sau đây, tạo thành một không gian tuyến tính trên $\Bbb{P}$:
 
     1.  $+:(V_1\times V_2)\times(V_1\times V_2)\mapsto V_1\times V_2; ((u_1,v_1),(u_2,v_2))\to (u_1+u_2,v_1+v_2)$
     2.  $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,v))\to (ku,kv)$
 
-    类似地，可定义多个线性空间的直积 $\prod_{i=1}^m V_i$．
+    Tương tự, có thể định nghĩa tích trực tiếp của nhiều không gian tuyến tính $\prod_{i=1}^m V_i$.
 
-#### 例子
+<span id="&#20363;&#23376;_1"></span>
+#### Ví dụ
 
-对于线性空间 $V=\Bbb{R}^3$，设线性空间：
+Với không gian tuyến tính $V=\Bbb{R}^3$, xét các không gian tuyến tính:
 
 -   $V_1:=\{(x,0,0)|x\in\Bbb{R}\}$
 -   $V_2:=\{(x,y,0)|x,y\in\Bbb{R}\}$
 -   $V_3:=\{(0,y,z)|y,z\in\Bbb{R}\}$
 -   $V_4:=\{(x,0,z)|x,z\in\Bbb{R}\}$
 
-则
+Khi đó:
 
-1.  $V_1<V_2<V$,$V_3<V$
-2.  $V_2=V_1+V_2$
-3.  $V=V_1\oplus V_3=V_2+V_3$
-4.  $V_2\oplus V_3=V_4$,$V_2\oplus V_4=V_3$,$V_3\oplus V_4=V_2$
-5.  $V_2+V_3\leq V$
+1.  $V_1<V_2<V$,$V_3<V$.
+2.  $V_2=V_1+V_2$.
+3.  $V=V_1\oplus V_3=V_2+V_3$.
+4.  $V_2\oplus V_3=V_4$,$V_2\oplus V_4=V_3$,$V_3\oplus V_4=V_2$.
+5.  $V_2+V_3\leq V$.
 
-#### 性质
+<span id="&#24615;&#36136;_2"></span>
+#### Tính chất
 
-1.  令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，和集合的交一样，线性空间的交适用如下法则：
-    1.  交换律：$V_1\cap V_2=V_2\cap V_1$
-    2.  结合律：$V_1\cap(V_2\cap V_3)=(V_1\cap V_2)\cap V_3$
-2.  令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，类似于集合的并，线性空间的和适用如下法则：
-    1.  交换律：$V_1+V_2=V_2+V_1$
-    2.  结合律：$V_1+(V_2+V_3)=(V_1+V_2)+V_3$
-3.  令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，线性空间的交与并有如下关系：
+1.  Gọi $V_1,V_2,V_3$ là các không gian tuyến tính trên $\Bbb{P}$. Tương tự giao của tập hợp, giao của không gian tuyến tính thỏa mãn:
+    1.  Tính giao hoán: $V_1\cap V_2=V_2\cap V_1$.
+    2.  Tính kết hợp: $V_1\cap(V_2\cap V_3)=(V_1\cap V_2)\cap V_3$.
+2.  Gọi $V_1,V_2,V_3$ là các không gian tuyến tính trên $\Bbb{P}$. Tương tự hợp của tập hợp, tổng của không gian tuyến tính thỏa mãn:
+    1.  Tính giao hoán: $V_1+V_2=V_2+V_1$.
+    2.  Tính kết hợp: $V_1+(V_2+V_3)=(V_1+V_2)+V_3$.
+3.  Gọi $V_1,V_2,V_3$ là các không gian tuyến tính trên $\Bbb{P}$. Giao và tổng của không gian tuyến tính có quan hệ:
     1.  $V_1\cap (V_2+V_3)\supseteq (V_1\cap V_2)+(V_1\cap V_3)$
     2.  $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$
 4.  $\operatorname{span}\{a_1,a_2,\dots,a_n\}+\operatorname{span}\{b_1,b_2,\dots,b_m\}=\operatorname{span}\{a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m\}$
-5.  令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的线性空间，则下列诸款等价：
+5.  Gọi $V_1,V_2$ là các không gian tuyến tính trên $\Bbb{P}$, các mệnh đề sau tương đương:
 
     1.  $V_1+V_2=V_1\oplus V_2$
 
-    2.  $\exists \beta\in V_1+V_2$, 使得拆分为 $V_1$ 和 $V_2$ 中的向量和的方式唯一（任意 $\to$ 存在）
+    2.  $\exists \beta\in V_1+V_2$ sao cho cách tách thành tổng của một vectơ trong $V_1$ và một vectơ trong $V_2$ là duy nhất (từ "mọi" có thể đổi thành "tồn tại").
 
-    3.  $\theta$ 拆分为 $V_1$ 和 $V_2$ 中向量的和的方式唯一
+    3.  Cách tách $\theta$ thành tổng của một vectơ trong $V_1$ và một vectơ trong $V_2$ là duy nhất.
 
     4.  $V_1\cap V_2=\{\theta\}$
 
-    ???+ note "证明"
-        $1\implies 2$：由定义立得．
+    ???+ note "Chứng minh"
+        $1\implies 2$: suy ra trực tiếp từ định nghĩa.
         
-        $2 \implies 3$：
+        $2 \implies 3$:
         
-        令 $\beta=\beta_1+\beta_2$, 其中 $\beta_1\in V_1, \beta_2\in V_2$, 若 $\theta=\alpha_1+\alpha_2$,$\theta\ne\alpha_1\in V_1,\alpha_2\in V_2$, 则 $\beta=\beta+\theta=(\beta_1+\alpha_1)+(\beta_2+\alpha_2)$．
+        Gọi $\beta=\beta_1+\beta_2$, trong đó $\beta_1\in V_1, \beta_2\in V_2$. Nếu $\theta=\alpha_1+\alpha_2$,$\theta\ne\alpha_1\in V_1,\alpha_2\in V_2$, thì $\beta=\beta+\theta=(\beta_1+\alpha_1)+(\beta_2+\alpha_2)$.
         
-        而 $\beta_1\ne\beta_1+\alpha_1$, 与条件矛盾．
+        Mà $\beta_1\ne\beta_1+\alpha_1$, mâu thuẫn với điều kiện.
         
-        $3 \implies 4$：
+        $3 \implies 4$:
         
-        在 $V_1$ 和 $V_2$ 中取一非零向量 $\alpha$, 则 $\theta=\alpha+(-\alpha)=(-\alpha)+\alpha$, 这与条件矛盾．
+        Lấy một vectơ khác không $\alpha$ trong $V_1$ và $V_2$, khi đó $\theta=\alpha+(-\alpha)=(-\alpha)+\alpha$, mâu thuẫn với điều kiện.
         
-        $4 \implies 1$：
+        $4 \implies 1$:
         
-        若 $V_1+V_2$ 不是直和，则存在 $\beta\in V_1+V_2$ 使得 $\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1,\beta_2,\gamma_1,\gamma_2$ 互不相同．
+        Nếu $V_1+V_2$ không phải tổng trực tiếp, thì tồn tại $\beta\in V_1+V_2$ sao cho $\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, trong đó $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ và $\beta_1,\beta_2,\gamma_1,\gamma_2$ đôi một khác nhau.
         
-        进而 $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, 与条件矛盾．
+        Suy ra $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, mâu thuẫn với điều kiện.
 
-### 同构
+<span id="&#21516;&#26500;"></span>
+### Đẳng cấu
 
-设 $V,V'$ 均为域 $\Bbb{P}$ 上的线性空间，若存在双射 $\sigma:V\mapsto V'$ 且保持加法与数乘，即 $\forall u,v\in V$,$\forall k\in\Bbb{P}$ 满足：
+Giả sử $V,V'$ đều là không gian tuyến tính trên trường $\Bbb{P}$. Nếu tồn tại song ánh $\sigma:V\mapsto V'$ bảo toàn phép cộng và nhân vô hướng, tức với $\forall u,v\in V$,$\forall k\in\Bbb{P}$ thỏa mãn:
 
 1.  $\sigma(u+v)=\sigma(u)+\sigma(v)$
 2.  $\sigma(ku)=k\sigma(u)$
 
-则称 $\sigma$ 是 $V$ 到 $V'$ 的 **同构映射**，此时称 $V$ 与 $V'$ **同构**，记为 $V\cong V'$．
+thì $\sigma$ được gọi là **ánh xạ đẳng cấu** từ $V$ tới $V'$. Khi đó $V$ và $V'$ được gọi là **đẳng cấu**, ký hiệu $V\cong V'$.
 
-???+ note "Note"
-    若 $\sigma$ 是单射，则可定义 **单同态**；若 $\sigma$ 是满射，则可定义 **满同态**．
+???+ note "Ghi chú"
+    Nếu $\sigma$ là đơn ánh thì có thể định nghĩa **đơn đồng cấu**; nếu $\sigma$ là toàn ánh thì có thể định nghĩa **toàn đồng cấu**.
 
-#### 性质
+<span id="&#24615;&#36136;_3"></span>
+#### Tính chất
 
-1.  域 $\Bbb{P}$ 上的两线性空间同构当且仅当其维数相等．（维数的定义参见 [线性基](./basis.md)．）
-2.  （1 的推论）域 $\Bbb{P}$ 上的 $n$ 维线性空间与线性空间 $\Bbb{P}^n$ 同构．
+1.  Hai không gian tuyến tính trên trường $\Bbb{P}$ đẳng cấu khi và chỉ khi chúng có cùng số chiều. (Định nghĩa số chiều xem ở [cơ sở tuyến tính](./basis.md).)
+2.  (Hệ quả của 1) Không gian tuyến tính $n$ chiều trên trường $\Bbb{P}$ đẳng cấu với không gian tuyến tính $\Bbb{P}^n$.
 
-    ???+ note "Note"
-        本性质说明我们基本上可以将坐标和向量等同看待．
+    ???+ note "Ghi chú"
+        Tính chất này cho thấy về cơ bản ta có thể xem tọa độ và vectơ như nhau.
 
-## 欧氏空间与线性空间的关系
+<span id="&#27431;&#27663;&#31354;&#38388;&#19982;&#32447;&#24615;&#31354;&#38388;&#30340;&#20851;&#31995;"></span>
+## Quan hệ giữa không gian Euclid và không gian tuyến tính
 
-以我们最熟悉的三维欧氏空间为例，其部分相关概念在线性空间中的对应关系如下表：
+Lấy không gian Euclid ba chiều quen thuộc nhất làm ví dụ, một số khái niệm liên quan của nó tương ứng với không gian tuyến tính như bảng sau:
 
-| 三维欧氏空间   | 线性空间              |
-| -------- | ----------------- |
-| 向量       | 向量                |
-| 垂直       | 正交（即内积为 $0$）      |
-| 三向量共线/共面 | $k$ 个向量线性相关       |
-| 三向量不共面   | $k$ 个向量线性无关       |
-| 基向量      | [线性基](./basis.md) |
-| 空间的维数    | 空间的维数             |
+| Không gian Euclid ba chiều | Không gian tuyến tính |
+| -------------------------- | --------------------- |
+| Vectơ                      | Vectơ                 |
+| Vuông góc                  | Trực giao (tức tích trong bằng $0$) |
+| Ba vectơ thẳng hàng/đồng phẳng | $k$ vectơ phụ thuộc tuyến tính |
+| Ba vectơ không đồng phẳng  | $k$ vectơ độc lập tuyến tính |
+| Vectơ cơ sở                | [Cơ sở tuyến tính](./basis.md) |
+| Số chiều của không gian    | Số chiều của không gian |
 
-## 应用
+<span id="&#24212;&#29992;"></span>
+## Ứng dụng
 
-从本节开始主要讲述对于线性方程组「按列看」的观点．
+Từ phần này trở đi chủ yếu trình bày quan điểm "nhìn theo cột" đối với hệ phương trình tuyến tính.
 
-矩阵 $A$ 本身也是由列向量构成的．把 $A$ 本身看成了列向量组，而 $x$ 是未知数系数，思考 $A$ 当中的这组列向量能不能配上未知数，凑出列向量 $b$．此时列向量 $x$ 是完全未知的．
+Bản thân ma trận $A$ cũng được tạo bởi các vectơ cột. Hãy xem $A$ như một hệ vectơ cột, còn $x$ là các hệ số chưa biết, và xét liệu hệ vectơ cột trong $A$ có thể phối hợp với các ẩn để tạo ra vectơ cột $b$ hay không. Lúc này vectơ cột $x$ hoàn toàn chưa biết.
 
-此时研究的等式 $Ax=b$ 整理为：
+Phương trình đang xét $Ax=b$ được viết lại thành:
 
 $$
 \alpha_1 x_1 +\alpha_2 x_2 +\cdots+\alpha_n x_n=b 
 $$
 
-这时，矩阵乘法中，位于左边的矩阵 $A$ 可以看作向量组，即一组列向量．这组列向量作为一组基，张成一个空间，探讨列向量 $b$ 是否落在这个空间里．
+Khi đó trong phép nhân ma trận, ma trận $A$ ở bên trái có thể được xem là một hệ vectơ, tức một hệ vectơ cột. Hệ vectơ cột này, với vai trò một hệ cơ sở, sinh ra một không gian; ta xét xem vectơ cột $b$ có nằm trong không gian đó hay không.
 
-### 按列看待线性方程组的解
+<span id="&#25353;&#21015;&#30475;&#24453;&#32447;&#24615;&#26041;&#31243;&#32452;&#30340;&#35299;"></span>
+### Nhìn nghiệm của hệ phương trình tuyến tính theo cột
 
-秩是极大线性无关组中向量的个数，代表了「约束」．那么其余的向量将赋予解的自由度，即允许在其他方向赋予冗余的向量．
+Hạng là số vectơ trong hệ con độc lập tuyến tính cực đại, đại diện cho "ràng buộc". Các vectơ còn lại đem lại bậc tự do cho nghiệm, tức cho phép gán các vectơ dư thừa ở những hướng khác.
 
-如果记 $n$ 是矩阵 $A$ 的列数，即含有的列向量个数，记 $r(A)$ 为矩阵 A 的秩，则有自由度 $S$：
+Nếu ký hiệu $n$ là số cột của ma trận $A$, tức số vectơ cột mà nó chứa, và ký hiệu $r(A)$ là hạng của ma trận A, thì bậc tự do $S$ là:
 
 $$
 S=n-r(A)
 $$
 
-方程组的全体解也构成向量组，自由度 $S$ 就是 $Ax=0$ 解向量组的秩，即下文核空间的维数．
+Tập tất cả nghiệm của hệ phương trình cũng tạo thành một hệ vectơ; bậc tự do $S$ chính là hạng của hệ vectơ nghiệm của $Ax=0$, tức số chiều của không gian hạt nhân bên dưới.
 
-### 方程组的同解
+<span id="&#26041;&#31243;&#32452;&#30340;&#21516;&#35299;"></span>
+### Hệ phương trình tương đương nghiệm
 
-两个方程组的公共解定义为两组解的交集．
+Nghiệm chung của hai hệ phương trình được định nghĩa là giao của hai tập nghiệm.
 
-方程组的 **同解** 就是方程组的解的集合相等．解的集合相等的方程组同解，解的集合不相等的方程组不同解．
+Hai hệ phương trình **tương đương nghiệm** nghĩa là tập nghiệm của chúng bằng nhau. Hai hệ có tập nghiệm bằng nhau thì tương đương nghiệm; hai hệ có tập nghiệm không bằng nhau thì không tương đương nghiệm.
 
-方程组同解也比矩阵等价条件强，不仅要求秩相等，还要求把两个矩阵 **纵向** 拼在一起之后，秩仍然不改变．
+Tương đương nghiệm của hệ phương trình cũng mạnh hơn điều kiện tương đương ma trận: không chỉ yêu cầu hạng bằng nhau, mà còn yêu cầu sau khi ghép hai ma trận **theo chiều dọc**, hạng vẫn không thay đổi.
 
-这里与向量组等价对比，向量组等价要求矩阵横向拼接，秩不改变．因此，有如下关系：
+So sánh với tương đương của hệ vectơ: tương đương của hệ vectơ yêu cầu ghép ma trận theo chiều ngang mà hạng không đổi. Do đó có quan hệ sau:
 
-矩阵等价，不一定有对应的向量组等价或者方程组同解，但是若有向量组等价或者方程组同解，必然有对应的矩阵等价（秩相同）．
+Tương đương ma trận không nhất thiết kéo theo tương đương hệ vectơ hoặc tương đương nghiệm của hệ phương trình; nhưng nếu có tương đương hệ vectơ hoặc tương đương nghiệm của hệ phương trình thì chắc chắn có tương đương ma trận tương ứng (hạng bằng nhau).
 
-如果矩阵对应的向量组等价，那么将矩阵转置后，对应的方程组同解，反之亦然．
+Nếu hệ vectơ tương ứng với ma trận là tương đương, thì sau khi chuyển vị ma trận, hệ phương trình tương ứng là tương đương nghiệm, và ngược lại.
 
-### 矩阵的核空间与像空间
+<span id="&#30697;&#38453;&#30340;&#26680;&#31354;&#38388;&#19982;&#20687;&#31354;&#38388;"></span>
+### Không gian hạt nhân và không gian ảnh của ma trận
 
-这部分的核空间与像空间是站在线性空间的角度上叙述的．
+Phần này trình bày không gian hạt nhân và không gian ảnh từ góc độ không gian tuyến tính.
 
-对于矩阵 $A$，令 $W$ 为方程 $Ax=0$ 的全体解 $x$ 构成的集合，则 $W$ 是一个线性空间，$W$ 的标量域与 $A$ 的元素所在的域相同．
+Với ma trận $A$, gọi $W$ là tập tất cả nghiệm $x$ của phương trình $Ax=0$. Khi đó $W$ là một không gian tuyến tính, và trường vô hướng của $W$ giống với trường chứa các phần tử của $A$.
 
-称此时的 $W$ 为矩阵 $A$ 的 **核空间**，记作 $N(A)$．
+Khi đó $W$ được gọi là **không gian hạt nhân** của ma trận $A$, ký hiệu $N(A)$.
 
-矩阵 $A$ 的核空间 $N(A)$ 就是方程 $Ax=0$ 的 **解空间**．根据后文基的定义，该方程的 **基础解系** 就是核空间的基．
+Không gian hạt nhân $N(A)$ của ma trận $A$ chính là **không gian nghiệm** của phương trình $Ax=0$. Theo định nghĩa cơ sở ở phần sau, **hệ nghiệm cơ bản** của phương trình này chính là một cơ sở của không gian hạt nhân.
 
-如果矩阵 $A$ 是可逆矩阵，则 $A$ 的核空间 $N(A)$ 只含零向量．
+Nếu ma trận $A$ là ma trận khả nghịch, thì không gian hạt nhân $N(A)$ của $A$ chỉ chứa vectơ không.
 
-对于矩阵 $A$，它的 $n$ 个列为向量 $\alpha$，称 $n$ 个列向量 $\alpha$ 张成的空间为 $A$ 的 **像空间**，或者记作 **列空间**，记作：
+Với ma trận $A$, gọi $n$ cột của nó là các vectơ $\alpha$. Không gian sinh bởi $n$ vectơ cột $\alpha$ được gọi là **không gian ảnh** của $A$, hoặc **không gian cột**, ký hiệu:
 
 $$
 R(A)=\operatorname{span}\{\alpha_1,\alpha_2,\cdots,\alpha_n\}
 $$
 
-根据后文维数的定义，像空间的维数等于矩阵 $A$ 的秩．
+Theo định nghĩa số chiều ở phần sau, số chiều của không gian ảnh bằng hạng của ma trận $A$.
 
-由定义，对于像空间 $R(A)$ 中的每一个元素 $y$，均有相应的表示：
+Theo định nghĩa, với mỗi phần tử $y$ trong không gian ảnh $R(A)$, đều có một biểu diễn tương ứng:
 
 $$
 y=k_1\alpha_1+k_2\alpha_2+\cdots+k_n\alpha_n=(\alpha_1,\alpha_2,\cdots,\alpha_n)\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix}=A\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix}
 $$
 
-因此像空间 $R(A)$ 就是对于任意向量 $x$，$Ax$ 的 **值域**．
+Do đó không gian ảnh $R(A)$ chính là **miền giá trị** của $Ax$ khi $x$ chạy qua mọi vectơ.
 
-同理可以定义 $A$ 的 **行空间**，即 $A$ 的转置的值域 $R(A^T)$．
+Tương tự, có thể định nghĩa **không gian hàng** của $A$, tức miền giá trị $R(A^T)$ của ma trận chuyển vị của $A$.
 
-由于矩阵的行秩等于列秩，行空间的维数也为矩阵的秩，因此转置改变像空间，而不改变像空间的维数．
+Vì hạng hàng của ma trận bằng hạng cột, số chiều của không gian hàng cũng bằng hạng của ma trận. Do đó phép chuyển vị làm thay đổi không gian ảnh, nhưng không làm thay đổi số chiều của không gian ảnh.
 
-在这里可以与前文建立对应关系：
+Tại đây có thể liên hệ với phần trước:
 
-向量组等价，等价于对应矩阵的像空间 $R(A)$ 相同．
+Tương đương của hệ vectơ tương đương với việc không gian ảnh $R(A)$ của ma trận tương ứng là như nhau.
 
-方程组同解，等价于对应矩阵的行空间 $R(A^T)$ 相同．
+Tương đương nghiệm của hệ phương trình tương đương với việc không gian hàng $R(A^T)$ của ma trận tương ứng là như nhau.
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
-1.  丘维声，高等代数（下）．清华大学出版社．
-2.  [Vector space](https://en.wikipedia.org/w/index.php?title=Vector_space&oldid=1108546097).*Wikipedia, The Free Encyclopedia*.
+1.  Qiu Weisheng, *Advanced Algebra (Vol. 2)*. Tsinghua University Press.
+2.  [Vector space](https://en.wikipedia.org/w/index.php?title=Vector_space&oldid=1108546097). *Wikipedia, The Free Encyclopedia*.

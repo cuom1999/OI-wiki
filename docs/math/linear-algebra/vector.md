@@ -1,62 +1,66 @@
-在本文之前，特别说明一下翻译的相关问题．由于历史原因，数学学科和物理学科关于「vector」一词的翻译不同．
+Trước khi vào bài, cần nói rõ một vấn đề về thuật ngữ dịch. Vì lý do lịch sử, trong toán học và vật lý, từ "vector" thường được dịch khác nhau.
 
-在物理学科，一般翻译成「矢量」，并且与「标量」一词相对．在数学学科，一般翻译成「向量」．这种翻译的差别还有「本征」与「特征」、「幺正」与「酉」，等等．
+Trong vật lý, từ này thường được hiểu là "đại lượng vectơ", đối lập với "đại lượng vô hướng". Trong toán học, thường dùng "vectơ". Sự khác biệt kiểu này còn gặp ở các cặp thuật ngữ như "eigen" và "characteristic", "unitary" và các cách dịch tương ứng, v.v.
 
-在 **OI Wiki**，主要面向计算机等工程类相关学科，与数学学科关系更近一些，因此采用「向量」这个词汇．
+Trên **OI Wiki**, nội dung chủ yếu hướng tới các ngành kỹ thuật như khoa học máy tính, gần với toán học hơn, nên bài này dùng thuật ngữ "vectơ".
 
-## 定义及相关概念
+<span id="&#23450;&#20041;&#21450;&#30456;&#20851;&#27010;&#24565;"></span>
+## Định nghĩa và các khái niệm liên quan
 
-**向量**：既有大小又有方向的量称为向量．数学上研究的向量为 **自由向量**，即只要不改变它的大小和方向，起点和终点可以任意平行移动的向量．记作 $\vec a$ 或 $\boldsymbol{a}$．
+**Vectơ**: Đại lượng vừa có độ lớn vừa có hướng được gọi là vectơ. Vectơ được nghiên cứu trong toán học là **vectơ tự do**, tức là miễn không thay đổi độ lớn và hướng, điểm đầu và điểm cuối có thể tịnh tiến song song tùy ý. Ký hiệu là $\vec a$ hoặc $\boldsymbol{a}$.
 
-**有向线段**：带有方向的线段称为有向线段．有向线段有三要素：**起点，方向，长度**，知道了三要素，终点就唯一确定．一般使用有向线段表示向量．
+**Đoạn thẳng có hướng**: Đoạn thẳng mang hướng được gọi là đoạn thẳng có hướng. Đoạn thẳng có hướng có ba yếu tố: **điểm đầu, hướng, độ dài**; biết ba yếu tố này thì điểm cuối được xác định duy nhất. Thông thường dùng đoạn thẳng có hướng để biểu diễn vectơ.
 
-**向量的模**：有向线段 $\overrightarrow{AB}$ 的长度称为向量的模，即为这个向量的大小．记为：$|\overrightarrow{AB}|$ 或 $|\boldsymbol{a}|$．
+**Độ dài của vectơ**: Độ dài của đoạn thẳng có hướng $\overrightarrow{AB}$ được gọi là độ dài của vectơ, tức độ lớn của vectơ đó. Ký hiệu: $|\overrightarrow{AB}|$ hoặc $|\boldsymbol{a}|$.
 
-**零向量**：模为 $0$ 的向量．零向量的方向任意．记为：$\vec 0$ 或 $\boldsymbol{0}$．
+**Vectơ không**: Vectơ có độ dài bằng $0$. Hướng của vectơ không là tùy ý. Ký hiệu: $\vec 0$ hoặc $\boldsymbol{0}$.
 
-**单位向量**：模为 $1$ 的向量称为该方向上的单位向量．一般记为 $\vec e$ 或 $\boldsymbol{e}$．
+**Vectơ đơn vị**: Vectơ có độ dài bằng $1$ được gọi là vectơ đơn vị theo hướng đó. Thường ký hiệu là $\vec e$ hoặc $\boldsymbol{e}$.
 
-**平行向量**：方向相同或相反的两个 **非零** 向量．记作：$\boldsymbol a\parallel \boldsymbol b$．对于多个互相平行的向量，可以任作一条直线与这些向量平行，那么任一组平行向量都可以平移到同一直线上，所以平行向量又叫 **共线向量**．
+**Vectơ song song**: Hai vectơ **khác không** có cùng hướng hoặc ngược hướng. Ký hiệu: $\boldsymbol a\parallel \boldsymbol b$. Với nhiều vectơ song song nhau, ta có thể chọn một đường thẳng bất kỳ song song với chúng; khi đó mọi nhóm vectơ song song đều có thể tịnh tiến lên cùng một đường thẳng, nên vectơ song song còn được gọi là **vectơ cùng phương**.
 
-**相等向量**：模相等且方向相同的向量．
+**Vectơ bằng nhau**: Các vectơ có độ dài bằng nhau và cùng hướng.
 
-**相反向量**：模相等且方向相反的向量．
+**Vectơ đối**: Các vectơ có độ dài bằng nhau và ngược hướng.
 
-**向量的夹角**：已知两个非零向量 $\boldsymbol a,\boldsymbol b$，作 $\overrightarrow{OA}=\boldsymbol a,\overrightarrow{OB}=\boldsymbol b$，那么 $\theta=\angle AOB$ 就是向量 $\boldsymbol a$ 与向量 $\boldsymbol b$ 的夹角．记作：$\langle \boldsymbol a,\boldsymbol b\rangle$．显然当 $\theta=0$ 时两向量同向，$\theta=\pi$ 时两向量反向，$\theta=\frac{\pi}{2}$ 时两向量垂直，记作 $\boldsymbol a\perp \boldsymbol b$，并且规定 $\theta \in [0,\pi]$．
+**Góc giữa hai vectơ**: Với hai vectơ khác không $\boldsymbol a,\boldsymbol b$, dựng $\overrightarrow{OA}=\boldsymbol a,\overrightarrow{OB}=\boldsymbol b$. Khi đó $\theta=\angle AOB$ là góc giữa vectơ $\boldsymbol a$ và vectơ $\boldsymbol b$. Ký hiệu: $\langle \boldsymbol a,\boldsymbol b\rangle$. Rõ ràng khi $\theta=0$ thì hai vectơ cùng hướng, khi $\theta=\pi$ thì hai vectơ ngược hướng, khi $\theta=\frac{\pi}{2}$ thì hai vectơ vuông góc, ký hiệu $\boldsymbol a\perp \boldsymbol b$, và quy ước $\theta \in [0,\pi]$.
 
-注意到平面向量具有方向性，两个向量不能比较大小（但可以比较两向量的模长）．但是两个向量可以相等．
+Cần chú ý rằng vectơ phẳng có hướng, nên không thể so sánh lớn nhỏ giữa hai vectơ (nhưng có thể so sánh độ dài của chúng). Tuy vậy, hai vectơ có thể bằng nhau.
 
-## 向量的线性运算
+<span id="&#21521;&#37327;&#30340;&#32447;&#24615;&#36816;&#31639;"></span>
+## Phép toán tuyến tính trên vectơ
 
-### 向量的加减法
+<span id="&#21521;&#37327;&#30340;&#21152;&#20943;&#27861;"></span>
+### Cộng và trừ vectơ
 
-在定义了一种量之后，就希望让它具有运算．向量的运算可以类比数的运算，从物理学的角度出发也可以研究向量的运算．
+Sau khi định nghĩa một đại lượng, ta thường muốn đại lượng đó có phép toán. Phép toán trên vectơ có thể được xét bằng cách tương tự phép toán trên số, cũng có thể được nghiên cứu từ góc nhìn vật lý.
 
-类比物理学中的位移概念，假如一个人从 $A$ 经 $B$ 走到 $C$，那么他经过的位移为 $\overrightarrow{AB}+\overrightarrow{BC}$，这其实等价于这个人直接从 $A$ 走到 $C$，即 $\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}$．
+Tương tự khái niệm độ dời trong vật lý, giả sử một người đi từ $A$ qua $B$ đến $C$, thì độ dời người đó đi qua là $\overrightarrow{AB}+\overrightarrow{BC}$. Điều này thực ra tương đương với việc người đó đi thẳng từ $A$ đến $C$, tức $\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}$.
 
-注意到力的合成法则——平行四边形法则，同样也可以看做一些向量相加．
+Quy tắc tổng hợp lực, tức quy tắc hình bình hành, cũng có thể được xem là một phép cộng vectơ.
 
-整理一下向量的加法法则：
+Tóm tắt quy tắc cộng vectơ:
 
-1.  **向量加法的三角形法则**：若要求和的向量首尾顺次相连，那么这些向量的和为第一个向量的起点指向最后一个向量的终点；
-2.  **向量加法的平行四边形法则**：若要求和的两个向量 **共起点**，那么它们的和向量为以这两个向量为邻边的平行四边形的对角线，起点为两个向量共有的起点，方向沿平行四边形对角线方向．
+1.  **Quy tắc tam giác của phép cộng vectơ**: Nếu các vectơ cần cộng được nối đầu đuôi liên tiếp, thì tổng của chúng là vectơ đi từ điểm đầu của vectơ đầu tiên đến điểm cuối của vectơ cuối cùng.
+2.  **Quy tắc hình bình hành của phép cộng vectơ**: Nếu hai vectơ cần cộng có **chung điểm đầu**, thì vectơ tổng là đường chéo của hình bình hành có hai vectơ đó làm hai cạnh kề; điểm đầu là điểm đầu chung của hai vectơ, hướng theo hướng đường chéo của hình bình hành.
 
-这样，向量的加法就具有了几何意义．并且可以验证，向量的加法满足 **交换律与结合律**．
+Như vậy, phép cộng vectơ có ý nghĩa hình học. Có thể kiểm chứng rằng phép cộng vectơ thỏa **tính giao hoán và tính kết hợp**.
 
-因为实数的减法可以写成加上相反数的形式，考虑在向量做减法时也这么写．即：$\boldsymbol a-\boldsymbol b=\boldsymbol a+(-\boldsymbol b)$．
+Vì phép trừ số thực có thể viết thành cộng với số đối, khi trừ vectơ ta cũng xét cách viết này. Tức là: $\boldsymbol a-\boldsymbol b=\boldsymbol a+(-\boldsymbol b)$.
 
-这样，考虑共起点的向量，按照平行四边形法则做出它们的差，经过平移后可以发现 **「共起点向量的差向量」是由「减向量」指向「被减向量」的有向线段**．这也是向量减法的几何意义．
+Với các vectơ có chung điểm đầu, nếu dựng hiệu của chúng theo quy tắc hình bình hành rồi tịnh tiến, ta thấy **"hiệu của hai vectơ chung điểm đầu" là đoạn thẳng có hướng đi từ "vectơ bị trừ" đến "vectơ trừ"**. Đây cũng là ý nghĩa hình học của phép trừ vectơ.
 
-有时候有两点 $A,B$，想知道 $\overrightarrow{AB}$，可以利用减法运算 $\overrightarrow{AB}=\overrightarrow{OB}-\overrightarrow{OA}$ 获得．
+Đôi khi có hai điểm $A,B$ và muốn biết $\overrightarrow{AB}$, ta có thể dùng phép trừ $\overrightarrow{AB}=\overrightarrow{OB}-\overrightarrow{OA}$.
 
-### 向量的数乘
+<span id="&#21521;&#37327;&#30340;&#25968;&#20056;"></span>
+### Nhân vectơ với số
 
-规定「实数 $\lambda$ 与向量 $\boldsymbol a$ 的积」为一个向量，这种运算就是向量的 **数乘运算**，记作 $\lambda \boldsymbol a$，它的长度与方向规定如下：
+Quy ước "tích của số thực $\lambda$ với vectơ $\boldsymbol a$" là một vectơ. Phép toán này gọi là **phép nhân vectơ với số**, ký hiệu $\lambda \boldsymbol a$, với độ dài và hướng được quy định như sau:
 
-1.  $|\lambda \boldsymbol a|=|\lambda||\boldsymbol a|$；
-2.  当 $\lambda >0$ 时，$\lambda\boldsymbol a$ 与 $\boldsymbol a$ 同向，当 $\lambda =0$ 时，$\lambda \boldsymbol a=\boldsymbol 0$，当 $\lambda<0$ 时，$\lambda \boldsymbol a$ 与 $\boldsymbol a$ 方向相反．
+1.  $|\lambda \boldsymbol a|=|\lambda||\boldsymbol a|$;
+2.  Khi $\lambda >0$, $\lambda\boldsymbol a$ cùng hướng với $\boldsymbol a$; khi $\lambda =0$, $\lambda \boldsymbol a=\boldsymbol 0$; khi $\lambda<0$, $\lambda \boldsymbol a$ ngược hướng với $\boldsymbol a$.
 
-根据数乘的定义，可以验证有如下运算律：
+Theo định nghĩa phép nhân với số, có thể kiểm chứng các luật toán sau:
 
 $$
 \begin{aligned}
@@ -66,7 +70,7 @@ $$
 \end{aligned}
 $$
 
-特别地：
+Đặc biệt:
 
 $$
 \begin{gathered}
@@ -75,43 +79,49 @@ $$
 \end{gathered}
 $$
 
-### 判定两向量共线
+<span id="&#21028;&#23450;&#20004;&#21521;&#37327;&#20849;&#32447;"></span>
+### Kiểm tra hai vectơ cùng phương
 
-两个 **非零** 向量 $\boldsymbol a$ 与 $\boldsymbol b$ 共线 $\iff$ 有唯一实数 $\lambda$，使得 $\boldsymbol b=\lambda \boldsymbol a$．
+Hai vectơ **khác không** $\boldsymbol a$ và $\boldsymbol b$ cùng phương $\iff$ tồn tại duy nhất số thực $\lambda$ sao cho $\boldsymbol b=\lambda \boldsymbol a$.
 
-证明：由数乘的定义可知，对于 **非零** 向量 $\boldsymbol a$，如果存在实数 $\lambda$，使得 $\boldsymbol b=\lambda \boldsymbol a$，那么 $\boldsymbol a \parallel \boldsymbol b$．
+Chứng minh: Theo định nghĩa phép nhân với số, với vectơ **khác không** $\boldsymbol a$, nếu tồn tại số thực $\lambda$ sao cho $\boldsymbol b=\lambda \boldsymbol a$, thì $\boldsymbol a \parallel \boldsymbol b$.
 
-反过来，如果 $\boldsymbol a\parallel \boldsymbol b$，$\boldsymbol a \not = \boldsymbol 0$，且 $|\boldsymbol b|=\mu |\boldsymbol a|$，那么当 $\boldsymbol a$ 与 $\boldsymbol b$ 同向时，$\boldsymbol b=\mu \boldsymbol a$，反向时 $\boldsymbol b=-\mu \boldsymbol a$．
+Ngược lại, nếu $\boldsymbol a\parallel \boldsymbol b$, $\boldsymbol a \not = \boldsymbol 0$, và $|\boldsymbol b|=\mu |\boldsymbol a|$, thì khi $\boldsymbol a$ và $\boldsymbol b$ cùng hướng, $\boldsymbol b=\mu \boldsymbol a$; khi ngược hướng, $\boldsymbol b=-\mu \boldsymbol a$.
 
-最后，向量的加，减，数乘统称为向量的线性运算．
+Cuối cùng, phép cộng, phép trừ và phép nhân với số của vectơ được gọi chung là các phép toán tuyến tính trên vectơ.
 
-## 平面向量的基本定理及坐标表示
+<span id="&#24179;&#38754;&#21521;&#37327;&#30340;&#22522;&#26412;&#23450;&#29702;&#21450;&#22352;&#26631;&#34920;&#31034;"></span>
+## Định lý cơ bản của vectơ phẳng và biểu diễn tọa độ
 
-### 平面向量基本定理
+<span id="&#24179;&#38754;&#21521;&#37327;&#22522;&#26412;&#23450;&#29702;"></span>
+### Định lý cơ bản của vectơ phẳng
 
-定理内容：如果两个向量 $\boldsymbol{e_1},\boldsymbol{e_2}$ 不共线，那么存在唯一实数对 $(x,y)$，使得与 $\boldsymbol{e_1},\boldsymbol{e_2}$ 共面的任意向量 $\boldsymbol p$ 满足 $\mathbf p=x\boldsymbol{e_1}+y\boldsymbol{e_2}$．
+Nội dung định lý: Nếu hai vectơ $\boldsymbol{e_1},\boldsymbol{e_2}$ không cùng phương, thì tồn tại duy nhất cặp số thực $(x,y)$ sao cho mọi vectơ $\boldsymbol p$ cùng mặt phẳng với $\boldsymbol{e_1},\boldsymbol{e_2}$ thỏa $\mathbf p=x\boldsymbol{e_1}+y\boldsymbol{e_2}$.
 
-平面向量那么多，怎样用尽可能少的量表示出所有平面向量？
+Có rất nhiều vectơ phẳng; làm thế nào để biểu diễn tất cả vectơ phẳng bằng lượng thông tin ít nhất?
 
-只用一个向量表示出所有向量显然是不可能的，最多只能表示出某条直线上的向量．
+Chỉ dùng một vectơ để biểu diễn tất cả vectơ hiển nhiên là không thể, nhiều nhất chỉ biểu diễn được các vectơ trên một đường thẳng nào đó.
 
-再加入一个向量，用两个 **不共线** 向量表示（两个共线向量在此可以看成同一个向量），这样可以把任意一个平面向量分解到这两个向量的方向上了．
+Thêm một vectơ nữa, dùng hai vectơ **không cùng phương** để biểu diễn (hai vectơ cùng phương ở đây có thể xem như cùng một vectơ), khi đó có thể phân tích bất kỳ vectơ phẳng nào theo hai hướng của hai vectơ này.
 
-在同一平面内的两个不共线的向量称为 **基底**．如果基底相互垂直，那么在分解的时候就是对向量 **正交分解**．
+Hai vectơ không cùng phương trong cùng một mặt phẳng được gọi là **cơ sở**. Nếu các vectơ cơ sở vuông góc với nhau, thì quá trình phân tích vectơ là **phân tích trực giao**.
 
-### 平面向量的坐标表示
+<span id="&#24179;&#38754;&#21521;&#37327;&#30340;&#22352;&#26631;&#34920;&#31034;"></span>
+### Biểu diễn tọa độ của vectơ phẳng
 
-如果取与横轴与纵轴方向相同的单位向量 $i,j$ 作为一组基底，根据平面向量基本定理，平面上的所有向量与有序实数对 $(x,y)$ 一一对应．
+Nếu chọn các vectơ đơn vị $i,j$ cùng hướng với trục hoành và trục tung làm một cơ sở, theo định lý cơ bản của vectơ phẳng, mọi vectơ trên mặt phẳng tương ứng một-một với cặp số thực có thứ tự $(x,y)$.
 
-而有序实数对 $(x,y)$ 与平面直角坐标系上的点一一对应，于是作 $\overrightarrow{OP}=\boldsymbol p$，那么终点 $P(x,y)$ 也是唯一确定的．由于研究的对象是自由向量，可以自由平移起点，这样，在平面直角坐标系里，每一个向量都可以用有序实数对唯一表示．
+Cặp số thực có thứ tự $(x,y)$ lại tương ứng một-một với điểm trên hệ tọa độ Descartes phẳng. Vì vậy, dựng $\overrightarrow{OP}=\boldsymbol p$, thì điểm cuối $P(x,y)$ cũng được xác định duy nhất. Do đối tượng nghiên cứu là vectơ tự do và điểm đầu có thể tịnh tiến tùy ý, trong hệ tọa độ Descartes phẳng, mỗi vectơ đều có thể được biểu diễn duy nhất bằng một cặp số thực có thứ tự.
 
-## 平面向量的坐标运算
+<span id="&#24179;&#38754;&#21521;&#37327;&#30340;&#22352;&#26631;&#36816;&#31639;"></span>
+## Phép toán tọa độ của vectơ phẳng
 
-### 平面向量线性运算
+<span id="&#24179;&#38754;&#21521;&#37327;&#32447;&#24615;&#36816;&#31639;"></span>
+### Phép toán tuyến tính của vectơ phẳng
 
-由平面向量的线性运算可以推导其坐标运算，主要方法是将坐标全部化为用基底表示，然后利用运算律进行合并，之后表示出运算结果的坐标形式．
+Từ các phép toán tuyến tính của vectơ phẳng có thể suy ra phép toán trên tọa độ. Cách làm chính là đổi toàn bộ tọa độ thành biểu diễn theo cơ sở, rồi dùng các luật toán để gộp lại, sau đó viết tọa độ của kết quả.
 
-若两向量 $\boldsymbol a=(m,n)$，$\boldsymbol b=(p,q)$，则：
+Nếu hai vectơ $\boldsymbol a=(m,n)$, $\boldsymbol b=(p,q)$, thì:
 
 $$
 \begin{aligned}
@@ -121,100 +131,113 @@ k\boldsymbol a&=(km,kn)
 \end{aligned}
 $$
 
-### 求一个向量的坐标表示
+<span id="&#27714;&#19968;&#20010;&#21521;&#37327;&#30340;&#22352;&#26631;&#34920;&#31034;"></span>
+### Tìm biểu diễn tọa độ của một vectơ
 
-已知两点 $A(a,b),B(c,d)$，易证 $\overrightarrow{AB}=(c-a,d-b)$．
+Biết hai điểm $A(a,b),B(c,d)$, dễ chứng minh $\overrightarrow{AB}=(c-a,d-b)$.
 
-### 平移一点
+<span id="&#24179;&#31227;&#19968;&#28857;"></span>
+### Tịnh tiến một điểm
 
-有时需要将一个点 $P$ 沿一定方向平移某单位长度，这样把要平移的方向和距离组合成一个向量，利用向量加法的三角形法则，将 $\overrightarrow{OP}$ 加上这个向量，得到的向量终点即为平移后的点．
+Đôi khi cần tịnh tiến một điểm $P$ theo một hướng nhất định một độ dài đơn vị nào đó. Khi đó ta ghép hướng và khoảng cách cần tịnh tiến thành một vectơ, rồi dùng quy tắc tam giác của phép cộng vectơ để cộng vectơ này vào $\overrightarrow{OP}$; điểm cuối của vectơ thu được chính là điểm sau khi tịnh tiến.
 
-### 三点共线的判定
+<span id="&#19977;&#28857;&#20849;&#32447;&#30340;&#21028;&#23450;"></span>
+### Kiểm tra ba điểm thẳng hàng
 
-若 $A,B,C$ 三点共线，则 $\overrightarrow{OB}=\lambda \overrightarrow{OA}+(1-\lambda)\overrightarrow{OC}$．
+Nếu ba điểm $A,B,C$ thẳng hàng, thì $\overrightarrow{OB}=\lambda \overrightarrow{OA}+(1-\lambda)\overrightarrow{OC}$.
 
-### 三点共线判定的拓展
+<span id="&#19977;&#28857;&#20849;&#32447;&#21028;&#23450;&#30340;&#25299;&#23637;"></span>
+### Mở rộng kiểm tra ba điểm thẳng hàng
 
-在三角形 $ABC$ 中，若 $D$ 为 $BC$ 的 $n$ 等分点（$n\ BD=k\ DC$），则有：$\overrightarrow{AD}=\frac{n}{k+n}\overrightarrow{AB}+\frac{k}{k+n}\overrightarrow{AC}$
+Trong tam giác $ABC$, nếu $D$ là điểm chia đoạn $BC$ theo tỉ lệ $n\ BD=k\ DC$, thì có: $\overrightarrow{AD}=\frac{n}{k+n}\overrightarrow{AB}+\frac{k}{k+n}\overrightarrow{AC}$
 
-## 在三维空间中的拓展（立体几何/空间向量）
+<span id="&#22312;&#19977;&#32500;&#31354;&#38388;&#20013;&#30340;&#25299;&#23637;&#65288;&#31435;&#20307;&#20960;&#20309;/&#31354;&#38388;&#21521;&#37327;&#65289;"></span>
+## Mở rộng trong không gian ba chiều (hình học không gian/vectơ không gian)
 
-在空间中，以上部分所述的所有内容均成立．更有：
+Trong không gian, mọi nội dung ở trên đều vẫn đúng. Ngoài ra còn có:
 
-### 空间向量基本定理
+<span id="&#31354;&#38388;&#21521;&#37327;&#22522;&#26412;&#23450;&#29702;"></span>
+### Định lý cơ bản của vectơ không gian
 
-定理内容：如果三个向量 $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ 不共面，那么存在唯一实数对 $(x,y,z)$，使得空间中任意向量 $\boldsymbol p$ 满足 $\mathbf p=x\boldsymbol{e_1}+y\boldsymbol{e_2}+z\boldsymbol{e_3}$．
-根据空间向量基本定理，我们同样可以使用三个相互垂直的基底 $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ 作为正交基底，建立 **空间直角坐标系** 并用一个三元组 $(x,y,z)$ 作为坐标表示空间向量．
+Nội dung định lý: Nếu ba vectơ $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ không đồng phẳng, thì tồn tại duy nhất bộ số thực $(x,y,z)$ sao cho mọi vectơ $\boldsymbol p$ trong không gian thỏa $\mathbf p=x\boldsymbol{e_1}+y\boldsymbol{e_2}+z\boldsymbol{e_3}$.
+Theo định lý cơ bản của vectơ không gian, ta cũng có thể dùng ba vectơ cơ sở đôi một vuông góc $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ làm cơ sở trực giao, thiết lập **hệ tọa độ Descartes trong không gian** và dùng bộ ba $(x,y,z)$ làm tọa độ để biểu diễn vectơ không gian.
 
-### 共面向量基本定理
+<span id="&#20849;&#38754;&#21521;&#37327;&#22522;&#26412;&#23450;&#29702;"></span>
+### Định lý cơ bản về vectơ đồng phẳng
 
-如果存在两个不共线的向量 $\boldsymbol{x},\boldsymbol{y}$, 则向量 $\boldsymbol{p}$ 与 $\boldsymbol{x},\boldsymbol{y}$ 共面的充要条件是存在唯一实数对 $(a,b)$ 使得 $\boldsymbol{p}=a\boldsymbol{x}+b\boldsymbol{y}$．
+Nếu tồn tại hai vectơ không cùng phương $\boldsymbol{x},\boldsymbol{y}$, thì điều kiện cần và đủ để vectơ $\boldsymbol{p}$ đồng phẳng với $\boldsymbol{x},\boldsymbol{y}$ là tồn tại duy nhất cặp số thực $(a,b)$ sao cho $\boldsymbol{p}=a\boldsymbol{x}+b\boldsymbol{y}$.
 
-### 方向向量
+<span id="&#26041;&#21521;&#21521;&#37327;"></span>
+### Vectơ chỉ phương
 
-空间直线的方向用一个与该直线平行的非零向量来表示，该向量称为这条直线的一个方向向量．直线在空间中的位置，由它经过的空间一点及它的一个方向向量 **完全确定**．
+Hướng của một đường thẳng trong không gian được biểu diễn bằng một vectơ khác không song song với đường thẳng đó; vectơ này được gọi là một vectơ chỉ phương của đường thẳng. Vị trí của đường thẳng trong không gian được **xác định hoàn toàn** bởi một điểm trong không gian mà nó đi qua và một vectơ chỉ phương của nó.
 
-注意，平面中的直线也有方向向量．
+Chú ý rằng đường thẳng trong mặt phẳng cũng có vectơ chỉ phương.
 
-对于 **空间** 中的直线，对其方向向量有以下求法：
+Với đường thẳng trong **không gian**, có các cách tìm vectơ chỉ phương sau:
 
--   若有 $A(x_1,y_1,z_1),B(x_2,y_2,z_2)$，则 $AB$ 所在直线的一个方向向量为 $\boldsymbol{s}=(x_2-x_1,y_2-y_1,z_2-z_1)$．
+-   Nếu có $A(x_1,y_1,z_1),B(x_2,y_2,z_2)$, thì một vectơ chỉ phương của đường thẳng chứa $AB$ là $\boldsymbol{s}=(x_2-x_1,y_2-y_1,z_2-z_1)$.
 
--   若已知一个与所求直线 **垂直** 的平面，该平面一般方程为 $ax+by+cz+d=0$，那么垂直于该平面的直线的一个方向向量为 $\boldsymbol{s}=(a,b,c)$，该方向向量也是该平面的 **一个法向量**．
+-   Nếu biết một mặt phẳng **vuông góc** với đường thẳng cần tìm, và phương trình tổng quát của mặt phẳng đó là $ax+by+cz+d=0$, thì một vectơ chỉ phương của đường thẳng vuông góc với mặt phẳng này là $\boldsymbol{s}=(a,b,c)$; vectơ chỉ phương này cũng là **một vectơ pháp tuyến** của mặt phẳng đó.
 
-### 法向量
+<span id="&#27861;&#21521;&#37327;"></span>
+### Vectơ pháp tuyến
 
-对于一个面 $ABCD$，其法向量 $\boldsymbol{n}$ 与这个面垂直．
+Với một mặt $ABCD$, vectơ pháp tuyến $\boldsymbol{n}$ của nó vuông góc với mặt đó.
 
-计算方法：任取两个面内直线 $\overrightarrow{AB},\overrightarrow{AD}$，使得 $\overrightarrow{AB} \cdot \boldsymbol{n}=\boldsymbol{0}$ 且 $\overrightarrow{AD} \cdot \boldsymbol{n}=\boldsymbol{0}$，利用坐标法即可计算．
+Cách tính: chọn tùy ý hai đường thẳng trong mặt, chẳng hạn $\overrightarrow{AB},\overrightarrow{AD}$, sao cho $\overrightarrow{AB} \cdot \boldsymbol{n}=\boldsymbol{0}$ và $\overrightarrow{AD} \cdot \boldsymbol{n}=\boldsymbol{0}$, rồi dùng phương pháp tọa độ để tính.
 
-## 向量与矩阵
+<span id="&#21521;&#37327;&#19982;&#30697;&#38453;"></span>
+## Vectơ và ma trận
 
-线性代数中，线性变换可以用矩阵表示．令 $T$ 表示一个将 $\mathbf R^n$ 映射到 $\mathbf R^m$ 的线性变换，$\mathbf x$ 表示一个 $n$ 维列向量，则存在一个 $m\times n$ 矩阵 $A$，使得
+Trong đại số tuyến tính, biến đổi tuyến tính có thể được biểu diễn bằng ma trận. Gọi $T$ là một biến đổi tuyến tính ánh xạ từ $\mathbf R^n$ sang $\mathbf R^m$, và $\mathbf x$ là một vectơ cột $n$ chiều. Khi đó tồn tại một ma trận $m\times n$ $A$ sao cho
 
 $$
 T(\mathbf x)=A\mathbf x.
 $$
 
-矩阵 $A$ 称为线性变换 $T$ 的变换矩阵．在算法问题中，一般情况下线性变换在相同维度下进行，因此 $A$ 是一个方阵．这样，对向量的线性变换问题可以转化为矩阵乘法问题．
+Ma trận $A$ được gọi là ma trận biến đổi của biến đổi tuyến tính $T$. Trong các bài toán thuật toán, thông thường biến đổi tuyến tính được thực hiện trong cùng số chiều, nên $A$ là ma trận vuông. Như vậy, bài toán biến đổi tuyến tính trên vectơ có thể chuyển thành bài toán nhân ma trận.
 
-接下来我们探讨三种竞赛中较为常见的变换与其对应的变换矩阵：放缩变换（变换矩阵用 $S$ 表示）、旋转变换（变换矩阵用 $R$ 表示）和平移变换（变换矩阵用 $T$ 表示）．
+Tiếp theo, ta xét ba loại biến đổi thường gặp trong thi đấu và ma trận biến đổi tương ứng của chúng: biến đổi co giãn (ma trận biến đổi ký hiệu $S$), biến đổi quay (ma trận biến đổi ký hiệu $R$) và biến đổi tịnh tiến (ma trận biến đổi ký hiệu $T$).
 
-### 放缩变换
+<span id="&#25918;&#32553;&#21464;&#25442;"></span>
+### Biến đổi co giãn
 
-对于 $n$ 维列向量 $\boldsymbol a$，将其每一维放缩 $v_1,v_2,\ldots,v_n$ 倍．很容易发现放缩操作的变换矩阵 $R$ 是 $n\times n$ 的对角矩阵，即 $S=\operatorname{diag}\{v_1,v_2,\ldots,v_n\}$．
+Với vectơ cột $n$ chiều $\boldsymbol a$, co giãn từng chiều của nó lần lượt $v_1,v_2,\ldots,v_n$ lần. Dễ thấy ma trận biến đổi của thao tác co giãn là ma trận đường chéo $n\times n$, tức $S=\operatorname{diag}\{v_1,v_2,\ldots,v_n\}$.
 
-### 旋转变换
+<span id="&#26059;&#36716;&#21464;&#25442;"></span>
+### Biến đổi quay
 
-向量的旋转是相对复杂的操作，我们仅限于讨论二维和三维的情况．
+Quay vectơ là thao tác tương đối phức tạp; ở đây chỉ thảo luận trường hợp hai chiều và ba chiều.
 
-#### 向量绕点旋转
+<span id="&#21521;&#37327;&#32469;&#28857;&#26059;&#36716;"></span>
+#### Quay vectơ quanh một điểm
 
-对于向量绕点旋转，一般指的是向量绕原点旋转．对于某一点绕另一点 $P$ 旋转，可以利用平移变换使得点 $P$ 位于原点，进行向量旋转后再将坐标系平移回原位置即可．设平移操作的变换矩阵为 $T$，绕原点旋转操作的变换矩阵为 $R$，则整个过程的变换矩阵为 $TRT^{-1}$．根据几何意义，$T^{-1}$ 一定存在．
+Quay vectơ quanh một điểm thường là quay vectơ quanh gốc tọa độ. Với việc quay một điểm quanh điểm khác $P$, có thể dùng biến đổi tịnh tiến để đưa điểm $P$ về gốc tọa độ, thực hiện quay vectơ rồi tịnh tiến hệ tọa độ về vị trí ban đầu. Gọi ma trận biến đổi tịnh tiến là $T$, ma trận biến đổi quay quanh gốc tọa độ là $R$, thì ma trận biến đổi của toàn bộ quá trình là $TRT^{-1}$. Theo ý nghĩa hình học, $T^{-1}$ chắc chắn tồn tại.
 
-对于二维空间，设 $\boldsymbol a=(x,y)$，倾角为 $\theta$，长度为 $l=\sqrt{x^2+y^2}$．则 $x=l\cos \theta,y=l\sin\theta$．令其绕原点逆时针旋转 $\alpha$ 角，得到向量 $\boldsymbol b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$．
+Trong không gian hai chiều, giả sử $\boldsymbol a=(x,y)$, góc nghiêng là $\theta$, độ dài là $l=\sqrt{x^2+y^2}$. Khi đó $x=l\cos \theta,y=l\sin\theta$. Cho vectơ quay ngược chiều kim đồng hồ quanh gốc tọa độ một góc $\alpha$, ta được vectơ $\boldsymbol b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$.
 
 ![](./images/vector-rotation.svg)
 
-由三角恒等变换得，
+Theo các hằng đẳng thức lượng giác,
 
 $$
 \boldsymbol{b}=(l(\cos\theta\cos\alpha-\sin\theta\sin\alpha),l(\sin\theta\cos\alpha+\cos\theta\sin\alpha))
 $$
 
-化简，
+Rút gọn,
 
 $$
 \boldsymbol b=(l\cos\theta\cos\alpha-l\sin\theta\sin\alpha,l\sin\theta\cos\alpha+l\cos\theta\sin\alpha)
 $$
 
-把上面的 $x,y$ 代回来得
+Thay $x,y$ ở trên vào, ta được
 
 $$
 \boldsymbol b=(x\cos\alpha-y\sin\alpha,y\cos\alpha+x\sin\alpha)
 $$
 
-因此二维空间下，变换矩阵 $R$ 为
+Vì vậy trong không gian hai chiều, ma trận biến đổi $R$ là
 
 $$
 R=
@@ -224,13 +247,14 @@ R=
 \end{bmatrix}.
 $$
 
-对于三维空间，向量旋转需要使用两个角度参量，即天顶角旋转角度与方向角旋转角度，可以利用 [空间球坐标系](../coordinate.md#空间球坐标系) 进行旋转操作．
+Trong không gian ba chiều, quay vectơ cần dùng hai tham số góc, tức góc thiên đỉnh và góc phương vị; có thể dùng [hệ tọa độ cầu trong không gian](../coordinate.md#%E7%A9%BA%E9%97%B4%E7%90%83%E5%9D%90%E6%A0%87%E7%B3%BB) để thực hiện phép quay.
 
-#### 向量绕直线旋转
+<span id="&#21521;&#37327;&#32469;&#30452;&#32447;&#26059;&#36716;"></span>
+#### Quay vectơ quanh một đường thẳng
 
-对于三维向量，更常见的是绕某直线旋转．同样为了方便，此直线是过原点的．如果直线不过原点，我们仍可以平移坐标系进行转化．
+Với vectơ ba chiều, trường hợp thường gặp hơn là quay quanh một đường thẳng. Tương tự, để thuận tiện, giả sử đường thẳng này đi qua gốc tọa độ. Nếu đường thẳng không đi qua gốc tọa độ, ta vẫn có thể tịnh tiến hệ tọa độ để chuyển về trường hợp này.
 
-取直线的方向向量 $\boldsymbol u=(u_x,u_y,u_z)$，设三维向量绕其逆时针旋转 $\theta$ 角．则对应的变换矩阵 $R$ 为[^note1]
+Lấy vectơ chỉ phương của đường thẳng là $\boldsymbol u=(u_x,u_y,u_z)$, giả sử vectơ ba chiều quay quanh nó ngược chiều kim đồng hồ một góc $\theta$. Khi đó ma trận biến đổi tương ứng $R$ là[^note1]
 
 $$
 R=
@@ -241,11 +265,12 @@ u_x u_z \left(1-\cos \theta\right) - u_y \sin \theta & u_y u_z \left(1-\cos \the
 \end{bmatrix}.
 $$
 
-### 平移变换
+<span id="&#24179;&#31227;&#21464;&#25442;"></span>
+### Biến đổi tịnh tiến
 
-平移变换并非线性变换，而是仿射变换．但 $\mathbf R^n$ 下的仿射变换仍可以用 $\mathbf R^{n+1}$ 下的线性变换表示．
+Biến đổi tịnh tiến không phải là biến đổi tuyến tính, mà là biến đổi affine. Tuy nhiên, biến đổi affine trong $\mathbf R^n$ vẫn có thể được biểu diễn bằng biến đổi tuyến tính trong $\mathbf R^{n+1}$.
 
-考虑 $n$ 维向量 $\boldsymbol a=(a_1,a_2, \ldots , a_n)$，现在要将其沿向量 $\boldsymbol t=(t_1, t_2, \ldots , t_n)$ 平移．我们对列向量 $\boldsymbol a$ 添加一维并置为 $1$，得到新列向量 $\boldsymbol a'=(a_1, a_2, \ldots , a_n, 1)$．则变换矩阵 $T$ 可以写作
+Xét vectơ $n$ chiều $\boldsymbol a=(a_1,a_2, \ldots , a_n)$, cần tịnh tiến nó theo vectơ $\boldsymbol t=(t_1, t_2, \ldots , t_n)$. Ta thêm một chiều vào vectơ cột $\boldsymbol a$ và đặt bằng $1$, thu được vectơ cột mới $\boldsymbol a'=(a_1, a_2, \ldots , a_n, 1)$. Khi đó ma trận biến đổi $T$ có thể viết là
 
 $$
 T=
@@ -258,7 +283,7 @@ T=
 \end{bmatrix}.
 $$
 
-对于其他线性变换矩阵，在矩阵中增加一列与一行，除右下角的元素为 $1$ 外其它部分填充为 $0$，通过这种方法，所有的线性变换矩阵都可以转换为仿射变换矩阵．例如，对于二维向量旋转，变换矩阵可以变为
+Với các ma trận biến đổi tuyến tính khác, chỉ cần thêm một hàng và một cột vào ma trận, điền $0$ vào các phần khác trừ phần tử góc dưới bên phải bằng $1$. Bằng cách này, mọi ma trận biến đổi tuyến tính đều có thể chuyển thành ma trận biến đổi affine. Ví dụ, với phép quay vectơ hai chiều, ma trận biến đổi có thể trở thành
 
 $$
 R'=
@@ -269,8 +294,9 @@ R'=
 \end{bmatrix}.
 $$
 
-## 向量的更严格定义
+<span id="&#21521;&#37327;&#30340;&#26356;&#20005;&#26684;&#23450;&#20041;"></span>
+## Định nghĩa chặt chẽ hơn về vectơ
 
-上文中，向量被定义为了空间中的有向线段．但是严格来说，向量不仅是有向线段．要作出向量的更严格定义，需要先定义 [线性空间](./vector-space.md)，具体内容参见 [线性空间](./vector-space.md) 页面的介绍．
+Ở trên, vectơ được định nghĩa là đoạn thẳng có hướng trong không gian. Tuy nhiên, nói chặt chẽ, vectơ không chỉ là đoạn thẳng có hướng. Để đưa ra định nghĩa chặt chẽ hơn về vectơ, trước hết cần định nghĩa [không gian tuyến tính](./vector-space.md); nội dung cụ thể xem phần giới thiệu trong trang [không gian tuyến tính](./vector-space.md).
 
-[^note1]: 参见 [Rotation matrix from axis and angle - Wikipedia](https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle)
+[^note1]: Xem [Rotation matrix from axis and angle - Wikipedia](https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle)

@@ -1,20 +1,21 @@
-## Jordan 分解
+<span id="jordan-&#x5206;&#x89E3;"></span>
+## Phân rã Jordan
 
-设 $T$ 是 $n$ 维空间 $V$ 上的一个线性变换．如果 $T$ 的最小多项式为：
+Giả sử $T$ là một biến đổi tuyến tính trên không gian $n$ chiều $V$. Nếu đa thức tối tiểu của $T$ là:
 
 $$
 m_A(\lambda)={(\lambda-\lambda_1)}^{r_1}{(\lambda-\lambda_2)}^{r_2}\cdots{(\lambda-\lambda_k)}^{r_k}
 $$
 
-那么由准素分解可知，空间 $V$ 可以分解为子空间的直和：
+thì theo phân rã nguyên sơ, không gian $V$ có thể phân rã thành tổng trực tiếp của các không gian con:
 
 $$
 V=V_1\oplus V_2\oplus\cdots\oplus V_k
 $$
 
-其中 $V_i=N\left({(A-\lambda_i I)}^{r_i}\right)$，式中 $A$ 为 $T$ 对应的矩阵，这些子空间都在 $T$ 作用下不变．
+trong đó $V_i=N\left({(A-\lambda_i I)}^{r_i}\right)$, với $A$ là ma trận tương ứng với $T$; các không gian con này đều bất biến dưới tác dụng của $T$.
 
-令变换 $T_i$ 为 $V$ 在子空间 $V_i$ 上的射影，即构造多项式 $u_i(T)$ 使得：
+Gọi biến đổi $T_i$ là phép chiếu của $V$ lên không gian con $V_i$, tức là xây dựng đa thức $u_i(T)$ sao cho:
 
 -   $$
     T_i=u_i(T)\frac{m_A(T)}{{(T-\lambda_i T_e)}^{r_i}}
@@ -23,52 +24,52 @@ $$
     T_1+T_2+\cdots+T_k=T_e
     $$
 
-式中 $T_e$ 表示空间 $V$ 的恒等变换．于是有性质：
+trong đó $T_e$ biểu thị biến đổi đồng nhất của không gian $V$. Khi đó có các tính chất:
 
--   变换 $T_i$ 在空间 $V_i$ 上的限制 ${T_i|}_{V_i}$ 为空间 $V_i$ 的恒等变换．
--   如果 $i$ 与 $j$ 不相等，变换 $T_i$ 在空间 $V_j$ 上的限制 ${T_i|}_{V_j}$ 为空间 $V_j$ 的零变换．
+-   Hạn chế ${T_i|}_{V_i}$ của biến đổi $T_i$ trên không gian $V_i$ là biến đổi đồng nhất của không gian $V_i$.
+-   Nếu $i$ và $j$ khác nhau, thì hạn chế ${T_i|}_{V_j}$ của biến đổi $T_i$ trên không gian $V_j$ là biến đổi không của không gian $V_j$.
 
-于是变换 $T_i$ 将空间 $V$ 的每一个向量 $\xi$ 映射为它在空间 $V_i$ 中的分量 $\xi_i$．
+Vì vậy biến đổi $T_i$ ánh xạ mỗi vectơ $\xi$ của không gian $V$ thành thành phần $\xi_i$ của nó trong không gian $V_i$.
 
-构造变换：
+Xây dựng biến đổi:
 
 $$
 T_D=\lambda_1 T_1+\lambda_2 T_2+\cdots+\lambda_k T_k
 $$
 
-由于每一个变换 $T_i$ 都是变换 $T$ 的一个多项式，所以变换 $T_D$ 也是变换 $T$ 的一个多项式，于是每一个子空间 $V_i$ 在变换 $T_D$ 下不变．
+Do mỗi biến đổi $T_i$ đều là một đa thức của biến đổi $T$, nên biến đổi $T_D$ cũng là một đa thức của biến đổi $T$; vì thế mỗi không gian con $V_i$ bất biến dưới biến đổi $T_D$.
 
-由上述等式可知，变换 $T_D$ 在子空间 $V_i$ 上的限制 ${T_D|}_{V_i}$ 是子空间 $V_i$ 的一个位似，位似系数为 $\lambda_i$．因此，变换 $T_D$ 可以对角化．
+Từ đẳng thức trên có thể biết rằng hạn chế ${T_D|}_{V_i}$ của biến đổi $T_D$ trên không gian con $V_i$ là một phép vị tự của không gian con $V_i$, với hệ số vị tự $\lambda_i$. Do đó biến đổi $T_D$ có thể chéo hóa.
 
-构造：
+Xây dựng:
 
 $$
 T_N=T-T_D
 $$
 
-于是变换 $T_N$ 也是变换 $T$ 的一个多项式，所以每一个子空间 $V_i$ 在变换 $T_N$ 下不变．对于子空间 $V_i$ 中的任意向量 $\xi_i$，有：
+Khi đó biến đổi $T_N$ cũng là một đa thức của biến đổi $T$, nên mỗi không gian con $V_i$ bất biến dưới biến đổi $T_N$. Với mọi vectơ $\xi_i$ trong không gian con $V_i$, ta có:
 
 $$
 {T_N}^{r_i}(\xi_i)={T-T_D}^{r_i}(\xi_i)={T-\lambda_i T_i}^{r_i}(\xi_i)=0
 $$
 
-令 $r$ 为全体 $r_i$ 的最大值，那么对于空间 $V$ 中的任意向量 $\xi$，变换 $T_N$ 的 $r$ 次方将向量 $\xi$ 映射至零向量．因此变换 $T_N$ 是一个幂零变换．
+Gọi $r$ là giá trị lớn nhất trong tất cả các $r_i$. Khi đó với mọi vectơ $\xi$ trong không gian $V$, lũy thừa bậc $r$ của biến đổi $T_N$ ánh xạ vectơ $\xi$ thành vectơ không. Vì vậy biến đổi $T_N$ là một biến đổi lũy linh.
 
-这样，空间 $V$ 的每一个变换 $T$ 都可以写成：
+Như vậy, mỗi biến đổi $T$ của không gian $V$ đều có thể viết thành:
 
 $$
 T=T_D+T_N
 $$
 
-其中 $T_D$ 可以对角化，而 $T_N$ 是一个幂零变换．因为 $T_D$ 和 $T_N$ 都是变换 $T$ 的多项式，所以它们的乘积可交换：
+trong đó $T_D$ chéo hóa được, còn $T_N$ là một biến đổi lũy linh. Vì $T_D$ và $T_N$ đều là các đa thức của biến đổi $T$, nên tích của chúng giao hoán:
 
 $$
 T_DT_N=T_NT_D
 $$
 
-定理：设 $T_1$ 和 $T_2$ 是空间 $V$ 的两个可对角化变换，且 $T_1T_2=T_2T_1$，那么存在一个基，使得 $T_1$ 和 $T_2$ 关于这同一个基的矩阵是对角形式．
+Định lý: Giả sử $T_1$ và $T_2$ là hai biến đổi chéo hóa được của không gian $V$, và $T_1T_2=T_2T_1$. Khi đó tồn tại một cơ sở sao cho ma trận của $T_1$ và $T_2$ theo cùng cơ sở này đều có dạng đường chéo.
 
-定理：设 $T$ 是 $n$ 维空间 $V$ 上的一个线性变换，那么存在一个可对角化变换 $T_D$ 和一个幂零变换 $T_N$，使得：
+Định lý: Giả sử $T$ là một biến đổi tuyến tính trên không gian $n$ chiều $V$. Khi đó tồn tại một biến đổi chéo hóa được $T_D$ và một biến đổi lũy linh $T_N$ sao cho:
 
 -   $$
     T=T_D+T_N
@@ -77,13 +78,13 @@ $$
     T_DT_N=T_NT_D
     $$
 
-它们都是变换 $T$ 的多项式，并且它们由变换 $T$ 唯一确定．
+Chúng đều là các đa thức của biến đổi $T$, và được xác định duy nhất bởi biến đổi $T$.
 
-该定理给出关于变换 $T$ 的分解，称为 $T$ 的若尔当（Jordan）分解，$T_D$ 叫做 $T$ 的可对角化部分，$T_N$ 叫做 $T$ 的幂零部分．
+Định lý này đưa ra một phân rã của biến đổi $T$, gọi là phân rã Jordan của $T$; $T_D$ được gọi là phần chéo hóa được của $T$, còn $T_N$ được gọi là phần lũy linh của $T$.
 
-同样地，有矩阵的 Jordan 分解：
+Tương tự, có phân rã Jordan của ma trận:
 
-定理：设 $A$ 是一个 $n$ 阶矩阵，那么存在一个可对角化矩阵 $D$ 和一个幂零矩阵 $N$，使得：
+Định lý: Giả sử $A$ là một ma trận cấp $n$. Khi đó tồn tại một ma trận chéo hóa được $D$ và một ma trận lũy linh $N$ sao cho:
 
 -   $$
     A=D+N
@@ -92,41 +93,44 @@ $$
     DN=ND
     $$
 
-它们都是矩阵 $A$ 的多项式，并且它们由矩阵 $A$ 唯一确定．
+Chúng đều là các đa thức của ma trận $A$, và được xác định duy nhất bởi ma trận $A$.
 
-该定理给出关于矩阵 $A$ 的分解，称为 $A$ 的若尔当（Jordan）分解，$D$ 叫做 $A$ 的可对角化部分，$N$ 叫做 $A$ 的幂零部分．
+Định lý này đưa ra một phân rã của ma trận $A$, gọi là phân rã Jordan của $A$; $D$ được gọi là phần chéo hóa được của $A$, còn $N$ được gọi là phần lũy linh của $A$.
 
-## lambda 矩阵
+<span id="lambda-&#x77E9;&#x9635;"></span>
+## Ma trận lambda
 
-接下来引入的部分是含有变元参量 $\lambda$ 的更广义的矩阵，不仅仅是一个数表．这部分讨论相较单纯由数构成的矩阵而言，更加广泛一些．
+Phần tiếp theo giới thiệu một loại ma trận tổng quát hơn có chứa tham số biến $\lambda$, không chỉ là một bảng số.
 
-对于 $\lambda$ 矩阵，对应空间相应的域，变为含有一个变元 $\lambda$ 的有理式域．
+Đối với ma trận $\lambda$, trường tương ứng với không gian sẽ trở thành trường các biểu thức hữu tỉ chứa một biến $\lambda$.
 
-以 $\lambda$ 的多项式为元素的矩阵称为 $\lambda$ 矩阵，记为 $A(\lambda)$．
+Ma trận có phần tử là các đa thức theo $\lambda$ được gọi là ma trận $\lambda$, ký hiệu $A(\lambda)$.
 
-由于多项式域包含数域，数字矩阵是特殊的 $\lambda$ 矩阵，数字矩阵 $A$ 的特征矩阵 $\lambda I-A$ 是一种 $\lambda$ 矩阵．
+Vì vành đa thức chứa trường số, ma trận số là một trường hợp đặc biệt của ma trận $\lambda$; ma trận đặc trưng $\lambda I-A$ của ma trận số $A$ là một loại ma trận $\lambda$.
 
-### lambda 矩阵的初等变换
+<span id="lambda-&#x77E9;&#x9635;&#x7684;&#x521D;&#x7B49;&#x53D8;&#x6362;"></span>
+### Biến đổi sơ cấp của ma trận lambda
 
-对于 $\lambda$ 矩阵，同样可以定义加减法、乘法、初等变换、秩．对于 $\lambda$ 方阵，同样可以定义行列式、余子式、代数余子式．
+Với ma trận $\lambda$, ta cũng có thể định nghĩa phép cộng trừ, phép nhân, biến đổi sơ cấp, hạng. Với ma trận vuông $\lambda$, ta cũng có thể định nghĩa định thức, minor và phần bù đại số.
 
-对于 $\lambda$ 矩阵，初等变换与数阵大多相同，仅将倍加变换改为（这里以行变换为例）：
+Với ma trận $\lambda$, các biến đổi sơ cấp phần lớn giống ma trận số, chỉ thay phép cộng bội thành (ở đây lấy biến đổi hàng làm ví dụ):
 
--   用 $\lambda$ 的多项式 $\varphi(\lambda)$ 乘某行并加到另一行上．
+-   Nhân một hàng với đa thức $\varphi(\lambda)$ theo $\lambda$ rồi cộng vào một hàng khác.
 
-注意倍乘变换不进行修改．这是因为倍加变换不改变行列式，而倍乘变换改变行列式．为了保持多项式域的秩的性质，行列式只能在数域上进行改变．
+Chú ý phép nhân một hàng với bội số không được sửa đổi. Lý do là phép cộng bội không làm thay đổi định thức, còn phép nhân bội làm thay đổi định thức. Để giữ tính chất hạng trên vành đa thức, định thức chỉ được phép thay đổi trên trường số.
 
-相应的初等矩阵也一并进行修改．
+Các ma trận sơ cấp tương ứng cũng được sửa đổi theo.
 
-易见三种初等阵的行列式均为非零常数，因此均为满秩．所以它们左乘或右乘，不改变 $\lambda$ 矩阵的秩．
+Dễ thấy định thức của cả ba loại ma trận sơ cấp đều là hằng số khác không, vì vậy chúng đều đủ hạng. Do đó nhân trái hoặc nhân phải với chúng không làm thay đổi hạng của ma trận $\lambda$.
 
-若 $A(\lambda)$ 经过有限次初等变换变为 $B(\lambda)$，则称 $A(\lambda)$ 和 $B(\lambda)$ 等价．
+Nếu $A(\lambda)$ qua hữu hạn lần biến đổi sơ cấp trở thành $B(\lambda)$, thì $A(\lambda)$ và $B(\lambda)$ được gọi là tương đương.
 
-对于 $\lambda$ 矩阵，如果等价，则秩相同．反之则不然，这与数字矩阵有区别．
+Với ma trận $\lambda$, nếu hai ma trận tương đương thì chúng có cùng hạng. Chiều ngược lại không đúng; đây là điểm khác với ma trận số.
 
-## Smith 标准型
+<span id="smith-&#x6807;&#x51C6;&#x578B;"></span>
+## Dạng chuẩn Smith
 
-定理：设 $\lambda$ 矩阵的秩是 $r$，则 $A(\lambda)$ 一定等价于：
+Định lý: Giả sử hạng của ma trận $\lambda$ là $r$, thì $A(\lambda)$ nhất định tương đương với:
 
 $$
 \begin{pmatrix}
@@ -135,7 +139,7 @@ D(\lambda) & 0\\
 \end{pmatrix}
 $$
 
-其中：
+trong đó:
 
 $$
 D(\lambda)=\begin{pmatrix}
@@ -145,71 +149,74 @@ d_1(\lambda) &  & \\
 \end{pmatrix}
 $$
 
-每一个 $d_i(\lambda)$ 是一个首 $1$ 多项式，并且相邻两个多项式有整除关系 $d_i(\lambda)|d_{i+1}(\lambda)$．
+Mỗi $d_i(\lambda)$ là một đa thức monic, và hai đa thức kề nhau có quan hệ chia hết $d_i(\lambda)|d_{i+1}(\lambda)$.
 
-称此标准型为 Smith 标准型，称 $d_i(\lambda)$ 为不变因子．
+Dạng chuẩn này được gọi là dạng chuẩn Smith, và $d_i(\lambda)$ được gọi là nhân tử bất biến.
 
-具体求解 Smith 标准型的办法是，从左上角到右下角进行消元，每次左上角的元素是右下方剩余的全体多项式的最大公因式，并借助左上角的元素将该行该列全部消为 $0$．
+Cách cụ thể để tìm dạng chuẩn Smith là khử từ góc trên trái đến góc dưới phải; mỗi lần, phần tử ở góc trên trái là ước chung lớn nhất của toàn bộ các đa thức còn lại ở phía dưới bên phải, rồi dùng phần tử ở góc trên trái để khử toàn bộ hàng và cột đó về $0$.
 
-定理：条件 $A(\lambda)$ 和 $B(\lambda)$ 等价，等价于条件 $A(\lambda)$ 和 $B(\lambda)$ 拥有完全一样的不变因子．
+Định lý: Điều kiện $A(\lambda)$ và $B(\lambda)$ tương đương tương đương với điều kiện $A(\lambda)$ và $B(\lambda)$ có đúng cùng các nhân tử bất biến.
 
-### 初等因子
+<span id="&#x521D;&#x7B49;&#x56E0;&#x5B50;"></span>
+### Nhân tử sơ cấp
 
-由代数基本定理，设 $A(\lambda)$ 的不变因子 $d_1(\lambda),d_2(\lambda),\cdots,d_m(\lambda)$ 的分解为：
+Theo định lý cơ bản của đại số, giả sử các nhân tử bất biến $d_1(\lambda),d_2(\lambda),\cdots,d_m(\lambda)$ của $A(\lambda)$ phân tích thành:
 
 $$
 d_i(\lambda)={(\lambda-\lambda_1)}^{e_{i1}}{(\lambda-\lambda_2)}^{e_{i2}}\cdots{(\lambda-\lambda_S)}^{e_{iS}}
 $$
 
-其中 $\lambda_1,\cdots,\lambda_S$ 互不相同．由于：
+trong đó $\lambda_1,\cdots,\lambda_S$ đôi một khác nhau. Do:
 
 $$
 d_i(\lambda)|d_{i+1}(\lambda)
 $$
 
-因此指数 $e_{1j},e_{2j},\cdots,e_{mj}$ 递增，并且最后一项 $d_m(\lambda)$ 的各项指数均非零．
+nên các số mũ $e_{1j},e_{2j},\cdots,e_{mj}$ tăng dần, và các số mũ của mọi hạng tử trong hạng cuối $d_m(\lambda)$ đều khác không.
 
-上式中指数大于零的全部因子，统称为 $A(\lambda)$ 的初等因子．
+Toàn bộ các nhân tử có số mũ lớn hơn không trong công thức trên được gọi chung là các nhân tử sơ cấp của $A(\lambda)$.
 
-注意，初等因子计重数．如果对于某个 $j$，指数 $e_{ij}$ 出现了若干次，则对应的初等因子 ${(\lambda-\lambda_j)}^{e_{ij}}$ 也应当出现相应次数．
+Chú ý rằng nhân tử sơ cấp được tính cả bội. Nếu với một $j$ nào đó, số mũ $e_{ij}$ xuất hiện nhiều lần, thì nhân tử sơ cấp tương ứng ${(\lambda-\lambda_j)}^{e_{ij}}$ cũng phải xuất hiện số lần tương ứng.
 
-之前的定理说明，$A(\lambda)$ 与 $B(\lambda)$ 等价，等价于他们两个拥有完全一致的不变因子．不变因子完全相同，自然初等因子也完全相同，但是反之则不然．事实上有结论：
+Định lý trước cho biết $A(\lambda)$ và $B(\lambda)$ tương đương khi và chỉ khi chúng có hoàn toàn cùng các nhân tử bất biến. Nhân tử bất biến hoàn toàn giống nhau thì đương nhiên nhân tử sơ cấp cũng hoàn toàn giống nhau, nhưng chiều ngược lại không đúng. Thực ra có kết luận:
 
-定理：$A(\lambda)$ 与 $B(\lambda)$ 不变因子完全相同，等价于初等因子和秩均完全相同．
+Định lý: $A(\lambda)$ và $B(\lambda)$ có hoàn toàn cùng nhân tử bất biến khi và chỉ khi chúng có hoàn toàn cùng nhân tử sơ cấp và cùng hạng.
 
-于是「初等因子和秩均完全相同」也成为判断 $\lambda$ 矩阵等价性的条件．
+Vì vậy, "nhân tử sơ cấp và hạng đều hoàn toàn giống nhau" cũng trở thành một điều kiện để phán đoán tính tương đương của ma trận $\lambda$.
 
-在初等变换的时候，也可以先将 $A(\lambda)$ 变换为对角阵，再求出初等因子和秩，再求出不变因子得到标准型．有结论：
+Khi thực hiện biến đổi sơ cấp, cũng có thể trước tiên biến đổi $A(\lambda)$ thành ma trận đường chéo, rồi tìm nhân tử sơ cấp và hạng, sau đó tìm nhân tử bất biến để thu được dạng chuẩn. Có kết luận:
 
-定理：设 $A(\lambda)$ 等价于对角阵：
+Định lý: Giả sử $A(\lambda)$ tương đương với ma trận đường chéo:
 
 $$
 \operatorname{diag}\{f_1(\lambda),f_2(\lambda),\cdots,f_r(\lambda),0,\cdots,0\}
 $$
 
-那么有 $f_1(\lambda),f_2(\lambda),\cdots,f_r(\lambda)$ 的全体一次因子的幂 ${(\lambda-\lambda_j)}^{e_{ij}}$，构成 $A(\lambda)$ 的初等因子．
+Khi đó toàn bộ các lũy thừa của nhân tử bậc nhất ${(\lambda-\lambda_j)}^{e_{ij}}$ trong $f_1(\lambda),f_2(\lambda),\cdots,f_r(\lambda)$ tạo thành các nhân tử sơ cấp của $A(\lambda)$.
 
-由初等因子和秩构造不变因子的具体方法为：先将初等因子按照因式分类，排成表格，把同类因式进行降幂排列放到同一行，各类因式的最高次幂放到一列，把列数用 $1$ 补齐至秩 $r$，那么每一列的乘积构成一个不变因子．
+Phương pháp cụ thể để xây dựng nhân tử bất biến từ nhân tử sơ cấp và hạng là: trước hết phân loại các nhân tử sơ cấp theo nhân tử, xếp thành bảng; với các nhân tử cùng loại, sắp theo lũy thừa giảm dần và đặt trong cùng một hàng; đặt lũy thừa cao nhất của mỗi loại nhân tử vào cùng một cột; dùng $1$ để bổ sung số cột đến hạng $r$; khi đó tích của từng cột tạo thành một nhân tử bất biến.
 
-### 在特征矩阵中的应用
+<span id="&#x5728;&#x7279;&#x5F81;&#x77E9;&#x9635;&#x4E2D;&#x7684;&#x5E94;&#x7528;"></span>
+### Ứng dụng trong ma trận đặc trưng
 
-如果 $A$ 与 $B$ 是数阵，那么它们的特征矩阵是 $\lambda$ 矩阵．有结论：
+Nếu $A$ và $B$ là ma trận số, thì ma trận đặc trưng của chúng là ma trận $\lambda$. Có kết luận:
 
-定理：条件数阵 $A$ 与 $B$ 相似，等价于条件特征矩阵 $\lambda I-A$ 和 $\lambda I-B$ 等价．
+Định lý: Điều kiện ma trận số $A$ và $B$ tương tự tương đương với điều kiện ma trận đặc trưng $\lambda I-A$ và $\lambda I-B$ tương đương.
 
-由于特征矩阵 $\lambda I-A$ 只在主对角线含有 $n$ 个 $\lambda$，所以秩为 $n$．由上述推理，同型的数阵的特征矩阵的秩始终相等，于是有等价性：
+Vì ma trận đặc trưng $\lambda I-A$ chỉ chứa $n$ ký hiệu $\lambda$ trên đường chéo chính, nên hạng của nó là $n$. Từ suy luận trên, hạng của ma trận đặc trưng của các ma trận số cùng dạng luôn bằng nhau, do đó có tương đương:
 
-数阵 $A$ 与 $B$ 相似，等价于特征矩阵 $\lambda I-A$ 和 $\lambda I-B$ 有完全相同的初等因子．
+Ma trận số $A$ và $B$ tương tự khi và chỉ khi các ma trận đặc trưng $\lambda I-A$ và $\lambda I-B$ có hoàn toàn cùng nhân tử sơ cấp.
 
-对于特征矩阵 $\lambda I-A$，初等变换保持等价性，所以不改变秩．
+Với ma trận đặc trưng $\lambda I-A$, biến đổi sơ cấp giữ tính tương đương, nên không làm thay đổi hạng.
 
-观察三种初等变换，由于唯一被改写的倍加变换不改变行列式，事实上三种初等变换仅对行列式的结果多项式改变常数倍，因此不改变行列式的结果多项式的因式分解与次数．
+Quan sát ba loại biến đổi sơ cấp: vì phép cộng bội duy nhất được sửa đổi không làm thay đổi định thức, trên thực tế ba loại biến đổi sơ cấp chỉ làm đa thức kết quả của định thức thay đổi bởi một bội hằng số, do đó không làm thay đổi phân tích nhân tử và bậc của đa thức kết quả của định thức.
 
-因此特征矩阵 $\lambda I-A$ 的行列式为 $n$ 次多项式，初等变换化为 Smith 标准型后，由于秩为 $n$，行列式就是主对角线全体不变因子的乘积，也等于全体初等因子的乘积．因此，特征矩阵 $\lambda I-A$ 的全体初等因子的次数之和等于 $n$．
+Vì vậy định thức của ma trận đặc trưng $\lambda I-A$ là đa thức bậc $n$. Sau khi dùng biến đổi sơ cấp đưa nó về dạng chuẩn Smith, do hạng là $n$, định thức chính là tích của toàn bộ các nhân tử bất biến trên đường chéo chính, cũng bằng tích của toàn bộ các nhân tử sơ cấp. Do đó, tổng bậc của toàn bộ các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ bằng $n$.
 
-## Jordan 标准型
+<span id="jordan-&#x6807;&#x51C6;&#x578B;"></span>
+## Dạng chuẩn Jordan
 
-矩阵
+Ma trận:
 
 $$
 \begin{pmatrix}
@@ -222,11 +229,11 @@ $$
 \end{pmatrix}
 $$
 
-主对角线上的元素都是 $\lambda$，紧邻主对角线上方的元素都是 $1$，其余位置都是 $0$，叫做属于 $\lambda$ 的一个 Jordan 矩阵，或称 Jordan 块．
+có mọi phần tử trên đường chéo chính đều là $\lambda$, mọi phần tử ngay phía trên đường chéo chính đều là $1$, các vị trí còn lại đều là $0$, được gọi là một ma trận Jordan ứng với $\lambda$, hoặc khối Jordan.
 
-显然，幂零 Jordan 矩阵是 Jordan 矩阵的特例，即 $\lambda$ 为 $0$ 的情形．
+Rõ ràng, ma trận Jordan lũy linh là một trường hợp đặc biệt của ma trận Jordan, tức trường hợp $\lambda$ bằng $0$.
 
-定理：设 $T$ 是 $n$ 维空间 $V$ 的一个变换，$\lambda_1,\cdots,\lambda_k$ 是 $T$ 的一切互不相同的特征值，那么存在一个基，使得 $T$ 关于这个基的矩阵有形状：
+Định lý: Giả sử $T$ là một biến đổi của không gian $n$ chiều $V$, và $\lambda_1,\cdots,\lambda_k$ là tất cả các giá trị riêng đôi một khác nhau của $T$. Khi đó tồn tại một cơ sở sao cho ma trận của $T$ theo cơ sở này có dạng:
 
 $$
 \begin{pmatrix}
@@ -237,7 +244,7 @@ B_1 &  &  & 0\\
 \end{pmatrix}
 $$
 
-其中
+trong đó:
 
 $$
 B_i=\begin{pmatrix}
@@ -248,45 +255,45 @@ J_{i1} &  &  & 0\\
 \end{pmatrix}
 $$
 
-其中 $J_{i1},\cdots,J_{is_i}$ 都是属于 $\lambda_i$ 的 Jordan 块．
+và $J_{i1},\cdots,J_{is_i}$ đều là các khối Jordan ứng với $\lambda_i$.
 
-这是因为，首先根据最小多项式：
+Lý do là trước hết, theo đa thức tối tiểu:
 
 $$
 m_A(\lambda)={(\lambda-\lambda_1)}^{r_1}{(\lambda-\lambda_2)}^{r_2}\cdots{(\lambda-\lambda_k)}^{r_k}
 $$
 
-有准素分解：
+ta có phân rã nguyên sơ:
 
 $$
 V=V_1\oplus V_2\oplus\cdots\oplus V_k
 $$
 
-其中：
+trong đó:
 
 $$
 V_i=N\left({(A-\lambda_i I)}^{r_i}\right)
 $$
 
-式中 $A$ 为 $T$ 对应的矩阵．
+với $A$ là ma trận tương ứng với $T$.
 
-令变换 $S_i$ 为 $T$ 在 $V_i$ 上的限制 ${T|}_{V_i}$，接下来试图对每一个 $S_i$ 进行 Jordan 分解．
+Gọi biến đổi $S_i$ là hạn chế ${T|}_{V_i}$ của $T$ trên $V_i$; tiếp theo ta thử thực hiện phân rã Jordan cho từng $S_i$.
 
-记 $T_e$ 为 $V$ 上的恒等变换．与前文的 Jordan 分解不同，记 $T_i$ 为 $S_i$ 的 Jordan 分解中的幂零部分：
+Ký hiệu $T_e$ là biến đổi đồng nhất trên $V$. Khác với phân rã Jordan ở phần trước, ký hiệu $T_i$ là phần lũy linh trong phân rã Jordan của $S_i$:
 
 $$
 S_i=\lambda_i T_e+T_i
 $$
 
-于是 $T_i$ 为子空间 $V_i$ 的一个幂零变换，事实上也是 $T-\lambda_i T_e$ 在 $V_i$ 上的限制 ${(T-\lambda_i T_e)|}_{V_i}$．
+Khi đó $T_i$ là một biến đổi lũy linh của không gian con $V_i$, thực ra cũng là hạn chế ${(T-\lambda_i T_e)|}_{V_i}$ của $T-\lambda_i T_e$ trên $V_i$.
 
-子空间 $V_i$ 可以分解为幂零变换 $T_i$ 循环子空间的直和：
+Không gian con $V_i$ có thể phân rã thành tổng trực tiếp của các không gian con cyclic của biến đổi lũy linh $T_i$:
 
 $$
 V_i=W_{i1}\oplus W_{i2}\oplus\cdots\oplus W_{is_i}
 $$
 
-在每一个循环子空间 $W_{ij}$ 里，取一个循环基并倒序排列，凑成 $V_i$ 的一个基，于是 $T_i$ 关于这个基的矩阵有形状：
+Trong mỗi không gian con cyclic $W_{ij}$, chọn một cơ sở cyclic rồi sắp theo thứ tự ngược, ghép lại thành một cơ sở của $V_i$. Khi đó ma trận của $T_i$ theo cơ sở này có dạng:
 
 $$
 N_i=\begin{pmatrix}
@@ -297,7 +304,7 @@ N_{i1} &  &  & 0\\
 \end{pmatrix}
 $$
 
-全体 $N_{ij}$ 均为幂零 Jordan 块．于是对于 $V_i$ 上述选取的基，$S_i$ 对应的矩阵是：
+Mọi $N_{ij}$ đều là khối Jordan lũy linh. Vì vậy với cơ sở được chọn ở trên của $V_i$, ma trận tương ứng với $S_i$ là:
 
 $$
 B_i=\begin{pmatrix}
@@ -318,11 +325,11 @@ J_{i1} &  &  & 0\\
 \end{pmatrix}
 $$
 
-这里 $J_{i1},J_{i2},\cdots,J_{is_i}$ 都是属于 $\lambda_i$ 的 Jordan 块．
+Ở đây $J_{i1},J_{i2},\cdots,J_{is_i}$ đều là các khối Jordan ứng với $\lambda_i$.
 
-对于每一个子空间 $V_i$，按照以上方式选取一个基，凑起来成为 $V$ 的基，那么 $T$ 关于这个基的矩阵即构成定理规定的形式．
+Với mỗi không gian con $V_i$, chọn một cơ sở theo cách trên, rồi ghép chúng lại thành cơ sở của $V$. Khi đó ma trận của $T$ theo cơ sở này chính là dạng được nêu trong định lý.
 
-形如：
+Ma trận cấp $n$ có dạng:
 
 $$
 \begin{pmatrix}
@@ -333,15 +340,15 @@ J_1 &  &  & 0\\
 \end{pmatrix}
 $$
 
-的 $n$ 阶矩阵，其中每一个 $J_i$ 都是一个 Jordan 块，叫做一个 Jordan 标准型．
+trong đó mỗi $J_i$ đều là một khối Jordan, được gọi là một dạng chuẩn Jordan.
 
-定理：每一个 $n$ 阶矩阵 $A$ 都与一个 Jordan 标准型相似．除了各个 Jordan 块排列的次序以外，与 $A$ 相似的 Jordan 标准型是由 $A$ 唯一确定的．
+Định lý: Mỗi ma trận cấp $n$ $A$ đều tương tự với một dạng chuẩn Jordan. Ngoài thứ tự sắp xếp của các khối Jordan, dạng chuẩn Jordan tương tự với $A$ được xác định duy nhất bởi $A$.
 
-注意在上述构造的矩阵 $B_i$ 中，第一项是一个单位阵的若干倍，自然可以和第二项交换．因此，第一项就是 $B_i$ 的 Jordan 分解的可对角化部分，第二项就是 $B_i$ 的 Jordan 分解的幂零部分．
+Chú ý rằng trong ma trận $B_i$ được xây dựng ở trên, hạng đầu là một bội của ma trận đơn vị, nên đương nhiên giao hoán với hạng thứ hai. Vì vậy hạng đầu chính là phần chéo hóa được trong phân rã Jordan của $B_i$, còn hạng thứ hai chính là phần lũy linh trong phân rã Jordan của $B_i$.
 
-在一个矩阵对应的 Jordan 标准型里面，主对角线上的元素构成的对角阵是这个矩阵对应的 Jordan 标准型的可对角化部分，把主对角线上的元素换成 $0$ 就得到这个矩阵对应的 Jordan 标准型的幂零部分．
+Trong dạng chuẩn Jordan tương ứng với một ma trận, ma trận đường chéo tạo bởi các phần tử trên đường chéo chính là phần chéo hóa được của dạng chuẩn Jordan tương ứng với ma trận đó; nếu thay các phần tử trên đường chéo chính bằng $0$, ta được phần lũy linh của dạng chuẩn Jordan tương ứng với ma trận đó.
 
-定理：对于矩阵 $A$ 的 Jordan 标准型中，每一个 Jordan 块：
+Định lý: Trong dạng chuẩn Jordan của ma trận $A$, mỗi khối Jordan:
 
 $$
 J_i=\begin{pmatrix}
@@ -353,28 +360,29 @@ J_i=\begin{pmatrix}
 \end{pmatrix}
 $$
 
-对应于特征矩阵 $\lambda I-A$ 的一个初等因子 ${(\lambda-\lambda_i)}^{n_i}$，特征矩阵 $\lambda I-A$ 的全体初等因子对应于矩阵 $A$ 的 Jordan 标准型中的全体 Jordan 块．
+tương ứng với một nhân tử sơ cấp ${(\lambda-\lambda_i)}^{n_i}$ của ma trận đặc trưng $\lambda I-A$; toàn bộ các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ tương ứng với toàn bộ các khối Jordan trong dạng chuẩn Jordan của ma trận $A$.
 
-这是因为，矩阵 $A$ 相似于它的 Jordan 标准型，因此两者的特征矩阵也等价，将 Jordan 标准型的特征矩阵化为 Smith 标准型即可看出．
+Lý do là ma trận $A$ tương tự với dạng chuẩn Jordan của nó, do đó ma trận đặc trưng của hai bên cũng tương đương; đưa ma trận đặc trưng của dạng chuẩn Jordan về dạng chuẩn Smith là có thể thấy điều này.
 
-由这个定理，借助特征矩阵 $\lambda I-A$ 的初等因子，可以写出矩阵 $A$ 的 Jordan 标准型．
+Từ định lý này, nhờ các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$, ta có thể viết ra dạng chuẩn Jordan của ma trận $A$.
 
-一个推论是，矩阵 $A$ 可对角化，等价于特征矩阵 $\lambda I-A$ 的初等因子均为一次的．
+Một hệ quả là: ma trận $A$ chéo hóa được khi và chỉ khi các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ đều là bậc nhất.
 
-## 弗罗贝尼乌斯（Forbenious）定理
+<span id="&#x5F17;&#x7F57;&#x8D1D;&#x5C3C;&#x4E4C;&#x65AF;&#xFF08;forbenious&#xFF09;&#x5B9A;&#x7406;"></span>
+## Định lý Frobenius
 
-上文指出，$n$ 阶特征矩阵的 Smith 标准形的秩为 $n$．
+Phần trên đã chỉ ra rằng hạng của dạng chuẩn Smith của ma trận đặc trưng cấp $n$ là $n$.
 
-定理：设矩阵 $A$ 的特征矩阵 $\lambda I-A$ 的 Smith 标准形为：
+Định lý: Giả sử dạng chuẩn Smith của ma trận đặc trưng $\lambda I-A$ của ma trận $A$ là:
 
 $$
 \operatorname{diag}\{d_1(\lambda),d_2(\lambda),\cdots,d_n(\lambda)\}
 $$
 
-则最后一个不变因子 $d_n(\lambda)$ 恰好为矩阵 $A$ 的最小多项式 $m_A(\lambda)$．
+thì nhân tử bất biến cuối cùng $d_n(\lambda)$ đúng bằng đa thức tối tiểu $m_A(\lambda)$ của ma trận $A$.
 
-推论：矩阵 $A$ 可对角化的等价条件为：
+Hệ quả: Các điều kiện tương đương để ma trận $A$ chéo hóa được là:
 
--   最小多项式 $m_A(\lambda)$ 无重根．
--   特征矩阵 $\lambda I-A$ 的不变因子无重根．
--   特征矩阵 $\lambda I-A$ 的初等因子均为一次的．
+-   Đa thức tối tiểu $m_A(\lambda)$ không có nghiệm bội.
+-   Các nhân tử bất biến của ma trận đặc trưng $\lambda I-A$ không có nghiệm bội.
+-   Các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ đều là bậc nhất.

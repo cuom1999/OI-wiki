@@ -1,20 +1,20 @@
 author: codewasp942
 
-??? tip "提示"
-    本篇与「线性代数」分类下的其他篇目关联不大．但笔者认为，讲讲线性代数的本质，追溯概念的根源与联系，让读者对于线性代数有一个初步但是成体系的认识，确实有其必要性．
+??? tip "Gợi ý"
+    Bài này không liên quan quá chặt chẽ với các mục khác trong chuyên đề "Đại số tuyến tính". Tuy vậy, tác giả cho rằng việc nói về bản chất của đại số tuyến tính, truy nguyên nguồn gốc và mối liên hệ giữa các khái niệm, để người đọc có một nhận thức ban đầu nhưng có hệ thống về đại số tuyến tính, là điều cần thiết.
 
-早在几千年前，就有古人应用线性方程组解决问题，而如今，线性代数仍然应用广泛．
+Từ vài nghìn năm trước, con người đã biết dùng hệ phương trình tuyến tính để giải quyết vấn đề; ngày nay, đại số tuyến tính vẫn được ứng dụng rất rộng rãi.
 
-线性代数源于人们的观察．人们发现，很多对象都拥有相似的性质，比如：
+Đại số tuyến tính bắt nguồn từ quan sát. Người ta nhận thấy nhiều đối tượng có những tính chất tương tự nhau, chẳng hạn:
 
--   力可以被分解、合成．
+-   Lực có thể được phân tích và tổng hợp.
 
--   对于任意的 $k,x_0$，$k \sin (x-x_0)$ 可以分解成 $k_1\sin x + k_2\cos x$．
+-   Với mọi $k,x_0$, $k \sin (x-x_0)$ có thể được phân tích thành $k_1\sin x + k_2\cos x$.
 
-这些性质与所描述对象的 **缩放**、**分解**、**叠加** 等有关．线性代数把这些性质从具体对象中抽象出来，作为一个独立的学科来研究．在 OI 中，线性代数的知识可以直接用来解决问题，也可以用于优化算法、数据结构等．例如：
+Những tính chất này liên quan đến **co giãn**, **phân tích**, **chồng chất** của đối tượng được mô tả. Đại số tuyến tính trừu tượng hóa các tính chất ấy khỏi các đối tượng cụ thể và nghiên cứu chúng như một ngành độc lập. Trong OI, kiến thức đại số tuyến tính có thể trực tiếp dùng để giải bài toán, cũng có thể dùng để tối ưu thuật toán, cấu trúc dữ liệu, v.v. Ví dụ:
 
--   用树剖维护线性基求链上最大异或和
+-   Dùng phân rã cây để duy trì cơ sở tuyến tính và tìm tổng xor lớn nhất trên đường đi.
 
--   利用矩阵树定理把图的生成树计数问题转化为求矩阵的行列式
+-   Dùng định lý ma trận cây để chuyển bài toán đếm cây khung của đồ thị thành bài toán tính định thức của ma trận.
 
--   用矩阵快速幂优化递推
+-   Dùng lũy thừa ma trận nhanh để tối ưu truy hồi.

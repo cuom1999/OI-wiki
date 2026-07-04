@@ -1,32 +1,34 @@
 author: Ir1d, YZircon, huhaoo, QAQAutoMaton, Enter-tainer, Marcythm, sshwy, partychicken, Konano, H-J-Granger, baker221, isdanni, ksyx
 
-## 引入
+<span id="&#24341;&#20837;"></span>
+## Mở đầu
 
-线性规划（linear programming, LP）是研究线性约束条件下线性目标函数最值问题的方法总称，是运筹学的一个分支，在多方面均有应用．线性规划的某些特殊情况，如网络流、多商品流量等问题都有可能在算法竞赛题目中出现．算法竞赛很少会出现只能用线性规划算法解决的问题，绝大多数这类问题可以通过网络流建模等方法更高效地解决．
+Quy hoạch tuyến tính (linear programming, LP) là tên gọi chung cho các phương pháp nghiên cứu bài toán tối ưu một hàm mục tiêu tuyến tính dưới các ràng buộc tuyến tính. Đây là một nhánh của vận trù học và có ứng dụng trong nhiều lĩnh vực. Một số trường hợp đặc biệt của quy hoạch tuyến tính, chẳng hạn như luồng mạng và luồng đa hàng hóa, có thể xuất hiện trong các bài toán thi lập trình. Trong thi thuật toán, hiếm khi có bài toán chỉ có thể giải bằng thuật toán quy hoạch tuyến tính; phần lớn các bài toán kiểu này có thể được mô hình hóa bằng luồng mạng hoặc các phương pháp chuyên biệt khác để giải hiệu quả hơn.
 
-### 一个简单的例子
+<span id="&#19968;&#20010;&#31616;&#21333;&#30340;&#20363;&#23376;"></span>
+### Một ví dụ đơn giản
 
-一个问题能够写成线性规划的形式，既要有若干个线性约束条件，又要有线性的目标函数．
+Để một bài toán có thể viết dưới dạng quy hoạch tuyến tính, nó cần có một số ràng buộc tuyến tính và một hàm mục tiêu tuyến tính.
 
-考虑下面的例子：
+Xét ví dụ sau:
 
-???+ example "例子"
-    早点师傅每天可以制作一定数量的包子和油条，这两种早餐深受顾客喜爱．为了最大化利润，师傅希望尽可能多地制作早点，但在实际操作中受到食材、时间等多种资源的限制．为此，师傅统计了制作每份早点所需的食材用量、制作时间及其对应的利润，具体如下表所示：
+???+ example "Ví dụ"
+    Mỗi ngày một người bán bữa sáng có thể làm một số lượng bánh bao và quẩy nhất định; hai món này đều được khách hàng ưa chuộng. Để tối đa hóa lợi nhuận, người bán muốn làm càng nhiều càng tốt, nhưng trong thực tế bị giới hạn bởi nguyên liệu, thời gian và các tài nguyên khác. Người bán thống kê lượng nguyên liệu, thời gian chế biến và lợi nhuận tương ứng của mỗi phần như bảng sau:
     
-    |  早点 | 植物油 |  面粉 |  时间 |  利润 |
+    | Bữa sáng | Dầu thực vật | Bột mì | Thời gian | Lợi nhuận |
     | :-: | :-: | :-: | :-: | :-: |
-    |  包子 | $4$ | $7$ | $8$ | $5$ |
-    |  油条 | $7$ | $3$ | $6$ | $6$ |
+    | Bánh bao | $4$ | $7$ | $8$ | $5$ |
+    | Quẩy | $7$ | $3$ | $6$ | $6$ |
     
-    假设师傅每天最多可以购入 $66$ 单位的植物油和 $60$ 单位的面粉，并且最多可以投入 $96$ 单位的制作时间．那么，师傅应如何合理安排包子和油条的生产数量，才能使每天的利润最大化？
+    Giả sử mỗi ngày người bán mua được nhiều nhất $66$ đơn vị dầu thực vật và $60$ đơn vị bột mì, đồng thời chỉ có thể dành nhiều nhất $96$ đơn vị thời gian chế biến. Vậy nên sắp xếp số lượng bánh bao và quẩy như thế nào để lợi nhuận hằng ngày lớn nhất?
 
-用数学语言描述，可以设 $x_1$ 和 $x_2$ 分别是师傅制作包子和油条的数量．那么，「总共需要的植物油不超过 $66$ 单位」就可以表示为
+Dùng ngôn ngữ toán học, đặt $x_1$ và $x_2$ lần lượt là số lượng bánh bao và quẩy được làm. Khi đó, điều kiện "tổng lượng dầu thực vật cần dùng không vượt quá $66$ đơn vị" có thể viết là
 
 $$
 4x_1 + 7x_2 \le 66.
 $$
 
-类似地，「总共需要的面粉不超过 $60$ 单位」和「总共需要的时间不超过 $96$ 单位」可以表示为
+Tương tự, "tổng lượng bột mì không vượt quá $60$ đơn vị" và "tổng thời gian không vượt quá $96$ đơn vị" có thể viết là
 
 $$
 \begin{aligned}
@@ -35,25 +37,26 @@ $$
 \end{aligned}
 $$
 
-另外，师傅不可能生产出负数单位的早点，所以，还有条件
+Ngoài ra, người bán không thể sản xuất số lượng bữa sáng âm, nên còn có điều kiện
 
 $$
 x_1,x_2\ge 0.
 $$
 
-师傅就是要在这些限制下，最大化利润：
+Mục tiêu là tối đa hóa lợi nhuận dưới các ràng buộc này:
 
 $$
 z = 5x_1 + 6x_2.
 $$
 
-这就是一个典型的线性规划问题．它的目标函数是关于决策变量的线性函数，约束条件则由决策变量构成的线性等式或不等式组成．
+Đây là một bài toán quy hoạch tuyến tính điển hình. Hàm mục tiêu là một hàm tuyến tính theo các biến quyết định, còn các ràng buộc là các đẳng thức hoặc bất đẳng thức tuyến tính tạo bởi các biến quyết định.
 
-### 图解法
+<span id="&#22270;&#35299;&#27861;"></span>
+### Phương pháp đồ thị
 
-对于只有两个决策变量的线性规划问题，可以通过图解法直观地解决问题．
+Với bài toán quy hoạch tuyến tính chỉ có hai biến quyết định, ta có thể giải trực quan bằng phương pháp đồ thị.
 
-考虑本节的问题
+Xét bài toán trong phần này:
 
 $$
 \begin{aligned}
@@ -65,47 +68,50 @@ $$
 \end{aligned}
 $$
 
-对应的几何图像．最后一行约束表示可选的点 $(x_1,x_2)$ 都出现在第一象限，另外的三个约束则表示可选的点一定在直线 $4x_1 + 7x_2 = 66$、直线 $7x_1 + 3x_2 = 60$ 和直线 $8x_1 + 6x_2 = 96$ 的下方．这些区域的交集（如下图绿色区域所示）就是所有可供选择的点的集合：
+Hình học tương ứng như sau. Ràng buộc ở dòng cuối nói rằng các điểm có thể chọn $(x_1,x_2)$ đều nằm trong góc phần tư thứ nhất; ba ràng buộc còn lại nói rằng các điểm có thể chọn phải nằm phía dưới các đường thẳng $4x_1 + 7x_2 = 66$, $7x_1 + 3x_2 = 60$ và $8x_1 + 6x_2 = 96$. Giao của các miền này (miền màu xanh trong hình dưới) chính là tập tất cả các điểm có thể chọn:
 
 ![](images/linear-programming.svg)
 
-接下来要最大化 $z=5x_1+6x_2$ 的取值．如果将该等式视作直线 $5x_1+6x_2=z$ 的方程，则随着 $z$ 的变化，将得到一族平行直线，且 $z$ 越大，直线就越靠近右上方．因此，只需要不断移动直线直至达到某一临界位置，使得再向右上移动一点点，直线就不再和图中所示区域相交，此时直线对应的 $z$ 就是所求的最大值．
+Tiếp theo cần tối đa hóa giá trị của $z=5x_1+6x_2$. Nếu xem đẳng thức này là phương trình đường thẳng $5x_1+6x_2=z$, thì khi $z$ thay đổi ta thu được một họ đường thẳng song song; $z$ càng lớn thì đường thẳng càng dịch về phía trên bên phải. Vì vậy chỉ cần liên tục dịch đường thẳng đến một vị trí tới hạn, sao cho nếu dịch thêm một chút về phía trên bên phải thì nó không còn giao với miền trong hình nữa. Giá trị $z$ ứng với đường thẳng lúc đó chính là giá trị lớn nhất cần tìm.
 
-如图所示，这样的情形发生在红点所示位置．它是直线 $4x_1 + 7x_2 = 66$ 和直线 $7x_1 + 3x_2 = 60$ 的交点．联立两直线方程可知，它的坐标是 $(6,6)$．这是本问题唯一的最优解．早点师傅的最大利润是 $z=66$．
+Như hình vẽ, tình huống này xảy ra tại điểm đỏ. Đó là giao điểm của hai đường thẳng $4x_1 + 7x_2 = 66$ và $7x_1 + 3x_2 = 60$. Giải hệ hai phương trình đường thẳng cho tọa độ $(6,6)$. Đây là nghiệm tối ưu duy nhất của bài toán. Lợi nhuận lớn nhất của người bán là $z=66$.
 
-当问题涉及多于两个决策变量时，图解法不再适用．但是，本节的例子中的一些观察仍然有效．线性规划问题中的每个不等式约束都描述了一个「半平面」，所有可行的解的集合就是这些「半平面」的交集，因此，总是一个「凸多边形」．规划问题的最优解总是可以在该「凸多边形」的某个「顶点」处取得．这些「顶点」的坐标可以通过联立这些「半平面」的「边界」的方程求得．将这些观察拓展到高维空间，就发展出了一个高效的求解线性规划问题的方法——单纯形法．这也是算法竞赛中最常应用的方法．
+Khi bài toán có nhiều hơn hai biến quyết định, phương pháp đồ thị không còn dùng được. Tuy vậy, một số quan sát trong ví dụ này vẫn đúng. Mỗi ràng buộc bất đẳng thức trong bài toán quy hoạch tuyến tính mô tả một "nửa mặt phẳng"; tập các nghiệm khả thi là giao của các "nửa mặt phẳng" đó, nên luôn là một "đa giác lồi". Nghiệm tối ưu của bài toán quy hoạch luôn có thể đạt tại một "đỉnh" nào đó của "đa giác lồi". Tọa độ các "đỉnh" này có thể tìm bằng cách giải hệ phương trình của các "biên" của các "nửa mặt phẳng". Mở rộng các quan sát này lên không gian nhiều chiều sẽ dẫn tới một phương pháp hiệu quả để giải quy hoạch tuyến tính: phương pháp đơn hình. Đây cũng là phương pháp thường được dùng nhất trong thi thuật toán.
 
-另外一个值得注意的问题是，原则上，早点师傅制作的包子和油条都不是无限可分的，应当是某个整数．虽然本题求解过程中没有明确地限制这一点，但是由于最终的最优解的确是整数，所以，即使加上整数限制，本题的答案仍然是可行的．但是对于很多规划问题，最优解可能无法取得在整点处，这些问题实际上是一类整数规划问题，而非简单的线性规划问题．本文的结尾简单地讨论了这一类问题．
+Một điểm khác đáng chú ý là về nguyên tắc, số bánh bao và quẩy người bán làm ra không thể chia nhỏ vô hạn mà phải là số nguyên nào đó. Tuy trong quá trình giải bài toán này ta không ràng buộc rõ điều đó, nghiệm tối ưu cuối cùng quả thực là số nguyên, nên đáp án vẫn khả thi ngay cả khi thêm ràng buộc nguyên. Nhưng với nhiều bài toán quy hoạch, nghiệm tối ưu có thể không đạt tại điểm nguyên; những bài toán đó thực chất thuộc lớp quy hoạch nguyên, chứ không phải quy hoạch tuyến tính đơn giản. Cuối bài viết sẽ bàn ngắn gọn về lớp bài toán này.
 
-## 基本概念
+<span id="&#22522;&#26412;&#27010;&#24565;"></span>
+## Khái niệm cơ bản
 
-本节介绍线性规划问题的基本概念．
+Phần này giới thiệu các khái niệm cơ bản của quy hoạch tuyến tính.
 
-### 线性规划问题
+<span id="&#32447;&#24615;&#35268;&#21010;&#38382;&#39064;"></span>
+### Bài toán quy hoạch tuyến tính
 
-一个线性规划问题 $P$ 通常由如下两部分组成：
+Một bài toán quy hoạch tuyến tính $P$ thường gồm hai phần sau:
 
--   线性目标函数，即形如
+-   Hàm mục tiêu tuyến tính, tức một hàm có dạng
 
     $$
     f(x_1,x_2,\cdots,x_n)=c_1x_1+c_2x_2+\cdots+c_nx_n
     $$
 
-    的函数，其中，$c_i\in\mathbf R$ 是常数；
+    trong đó $c_i\in\mathbf R$ là hằng số;
 
--   线性约束，即形如
+-   Ràng buộc tuyến tính, tức các ràng buộc bất đẳng thức hoặc đẳng thức có dạng
 
     $$
     g_j(x_1,x_2,\cdots,x_n)=a_{j1}x_1+a_{j2}x_2+\cdots+a_{jn}x_n \le (=,\ge) b_j
     $$
 
-    的不等式或等式约束，其中，$a_{ji},b_j\in\mathbf R$ 都是常数．
+    trong đó $a_{ji},b_j\in\mathbf R$ đều là hằng số.
 
-线性规划问题，就是要在满足所给约束的前提下，最大化或者最小化目标函数．满足所给约束的解 $(x_1,x_2,\cdots,x_n)\in\mathbf R^n$ 称为 **可行解**（feasible solution）；在所有可行解中，使得目标函数取得最值的解称为 **最优解**（optimal solution）．
+Bài toán quy hoạch tuyến tính yêu cầu tối đa hóa hoặc tối thiểu hóa hàm mục tiêu với điều kiện các ràng buộc đã cho được thỏa mãn. Một nghiệm $(x_1,x_2,\cdots,x_n)\in\mathbf R^n$ thỏa mãn các ràng buộc gọi là **nghiệm khả thi** (feasible solution); trong tất cả nghiệm khả thi, nghiệm làm hàm mục tiêu đạt cực trị gọi là **nghiệm tối ưu** (optimal solution).
 
-### 标准形式
+<span id="&#26631;&#20934;&#24418;&#24335;"></span>
+### Dạng chuẩn
 
-为了方便描述和进一步处理，通常需要指定一个线性规划问题的标准形式．不同文献可能有不同的规定方式，本文规定线性规划的标准形式如下：
+Để tiện mô tả và xử lý tiếp, thông thường cần quy định một dạng chuẩn cho bài toán quy hoạch tuyến tính. Các tài liệu khác nhau có thể có quy ước khác nhau; trong bài này, dạng chuẩn của quy hoạch tuyến tính được quy định như sau:
 
 $$
 \begin{aligned}
@@ -115,18 +121,18 @@ $$
 \end{aligned}
 $$
 
-也就是说，线性规划问题是最小化问题，所有决策变量都有非负约束，且除此之外只包含若干右侧常量非负的等式约束．利用 [矩阵](./linear-algebra/matrix.md) 可以更为简洁地表达这一问题：
+Nói cách khác, bài toán quy hoạch tuyến tính là bài toán tối thiểu hóa, mọi biến quyết định đều có ràng buộc không âm, và ngoài ra chỉ chứa một số ràng buộc đẳng thức có hằng số vế phải không âm. Dùng [ma trận](./linear-algebra/matrix.md), bài toán này có thể được viết gọn hơn:
 
 $$
 \max\{c^Tx : Ax = b \ge 0,~ x\ge 0\}.
 $$
 
-其中，$x=(x_i)\in\mathbf R^n$ 是决策变量，$b=(b_j)\in\mathbf R^m$ 和 $A=(a_{ji})\in\mathbf R^{m\times n}$ 是约束中涉及的常量．线性规划问题的规模就是指它的决策变量的数目和它的约束的个数．
+Ở đây, $x=(x_i)\in\mathbf R^n$ là biến quyết định, $b=(b_j)\in\mathbf R^m$ và $A=(a_{ji})\in\mathbf R^{m\times n}$ là các hằng số xuất hiện trong ràng buộc. Kích thước của một bài toán quy hoạch tuyến tính là số biến quyết định và số ràng buộc của nó.
 
-???+ tip "向量不等式"
-    本文中会多次出现像 $b \ge 0$ 这样的向量不等式．一般地，对于向量 $x,y\in\mathbf R^n$，不等式 $x\le y$ 表示 $\forall i(x_i\le y_i)$，即逐维地进行实数意义上的比较．这一关系是向量空间上的 [偏序关系](./order-theory.md#二元关系)，也就是说，存在两个向量无法比较的情形．
+???+ tip "Bất đẳng thức vector"
+    Trong bài này sẽ nhiều lần xuất hiện bất đẳng thức vector như $b \ge 0$. Nói chung, với các vector $x,y\in\mathbf R^n$, bất đẳng thức $x\le y$ nghĩa là $\forall i(x_i\le y_i)$, tức so sánh theo nghĩa số thực trên từng chiều. Quan hệ này là một [quan hệ thứ tự bộ phận](./order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB) trên không gian vector; vì vậy có thể tồn tại hai vector không so sánh được với nhau.
 
-标准形式的选取只是为了行文方便，而并没有任何特别之处，因为任何线性规划问题都可以等价地写成下面的六种形式：
+Việc chọn dạng chuẩn chỉ nhằm thuận tiện cho trình bày, chứ không có gì đặc biệt, vì mọi bài toán quy hoạch tuyến tính đều có thể viết tương đương dưới một trong sáu dạng sau:
 
 $$
 \begin{aligned}
@@ -135,22 +141,22 @@ $$
 &\min\{c^Tx : Ax \ge b,~ x\ge 0\},\\
 &\max\{c^Tx : Ax = b,~ x\ge 0\}, \\
 &\max\{c^Tx : Ax \le b\},\\
-&\max\{c^Tx : Ax \le b,~ x\ge 0\}.\\
+&\max\{c^Tx : Ax \le b,~ x\ge 0\}.
 \end{aligned}
 $$
 
-下列操作可以将所有线性规划问题都等价地转化为这六种形式之一：
+Các thao tác sau có thể biến mọi bài toán quy hoạch tuyến tính một cách tương đương về một trong sáu dạng trên:
 
-1.  通过添加负号，即将 $c$ 变为 $-c$，就可以完成最大化问题和最小化问题的相互转化．
-2.  通过添加负号，即将 $a_j^Tx \lesseqqgtr b_j$ 替换成 $-a_j^Tx \gtreqqless -b_j$，就可以完成不等式约束的两种方向的相互转化，或将等式约束的右侧常量变为非负数．
-3.  所有的等式约束 $a_j^Tx = b_j$ 都可以替换成两个相反方向的不等式约束 $a_j^Tx \ge b_j$ 和 $a_j^Tx \le b_j$．
-4.  所有的不等式约束 $a_j^Tx \le(\ge) b_j$ 都可以通过添加非负松弛变量 $s_j$ 的方式，转化为等式约束 $a_j^Tx +(-) s_j = b_j$ 以及相应的非负约束 $s_j\ge 0$．
-5.  如果某个决策变量 $x_i$ 没有非负约束，那么，可以将它替换成两个非负变量的差值，即 $x_j = x^+_j - x^-_j$ 且 $x^+_j,x^-_j \ge 0$．
+1.  Thêm dấu âm, tức thay $c$ bằng $-c$, để chuyển đổi qua lại giữa bài toán tối đa hóa và tối thiểu hóa.
+2.  Thêm dấu âm, tức thay $a_j^Tx \lesseqqgtr b_j$ bằng $-a_j^Tx \gtreqqless -b_j$, để đổi chiều bất đẳng thức, hoặc để biến hằng số vế phải của ràng buộc đẳng thức thành số không âm.
+3.  Mọi ràng buộc đẳng thức $a_j^Tx = b_j$ đều có thể thay bằng hai ràng buộc bất đẳng thức ngược chiều $a_j^Tx \ge b_j$ và $a_j^Tx \le b_j$.
+4.  Mọi ràng buộc bất đẳng thức $a_j^Tx \le(\ge) b_j$ đều có thể chuyển thành ràng buộc đẳng thức $a_j^Tx +(-) s_j = b_j$ bằng cách thêm biến dư không âm $s_j$, kèm ràng buộc không âm tương ứng $s_j\ge 0$.
+5.  Nếu một biến quyết định $x_i$ không có ràng buộc không âm, có thể thay nó bằng hiệu của hai biến không âm, tức $x_j = x^+_j - x^-_j$ với $x^+_j,x^-_j \ge 0$.
 
-通过这些操作转化得到的线性规划问题的规模不超过原问题的规模的二倍，而且这些问题的可行解和最优解都很容易相互转化．因此，对于一般形式的线性规划问题，总是可以首先将它转化为标准形式（或上述六种形式之一）再进行求解．
+Kích thước của bài toán quy hoạch tuyến tính thu được sau các thao tác này không vượt quá hai lần kích thước bài toán ban đầu, và nghiệm khả thi cũng như nghiệm tối ưu của các bài toán này rất dễ chuyển đổi qua lại. Do đó, với bài toán quy hoạch tuyến tính tổng quát, ta luôn có thể trước hết chuyển nó về dạng chuẩn (hoặc một trong sáu dạng trên) rồi mới giải.
 
-??? example "例子"
-    考虑线性规划问题
+??? example "Ví dụ"
+    Xét bài toán quy hoạch tuyến tính
     
     $$
     \begin{aligned}
@@ -162,7 +168,7 @@ $$
     \end{aligned}
     $$
     
-    通过操作 1、2 和 3 可以将它转化为形式 $\min\{c^Tx : Ax \ge b\}$，即
+    Dùng các thao tác 1, 2 và 3, có thể chuyển nó về dạng $\min\{c^Tx : Ax \ge b\}$, tức
     
     $$
     \begin{aligned}
@@ -176,7 +182,7 @@ $$
     \end{aligned}
     $$
     
-    通过操作 4 和 5 可以将它转化为形式 $\max\{c^Tx : Ax = b,~ x\ge 0\}$，即
+    Dùng các thao tác 4 và 5, có thể chuyển nó về dạng $\max\{c^Tx : Ax = b,~ x\ge 0\}$, tức
     
     $$
     \begin{aligned}
@@ -188,71 +194,74 @@ $$
     \end{aligned}
     $$
 
-### 可行域与问题的解
+<span id="&#21487;&#34892;&#22495;&#19982;&#38382;&#39064;&#30340;&#35299;"></span>
+### Miền khả thi và nghiệm của bài toán
 
-所有可行解的集合 $\mathcal D\subseteq\mathbf R^n$ 称为线性规划问题 $P$ 的 **可行域**（feasible region）．从几何角度看，每个不等式约束 $a_j^T x \le b_j$ 都描述了一个半空间 $\{x\in\mathbf R^n:a_j^T x \le b_j\}$，每个等式约束 $a^T_jx = b_j$ 都描述了一个超平面 $\{x\in\mathbf R^n:a_j^Tx=b_j\}$，所以，可行域一定是有限多个半空间和超平面的交集．在优化领域[^poly-names]，这样的几何体通常称为 $\mathbf R^n$ 中的 **多面体**（polyhedron）．多面体一定是闭凸集，但未必是有界的．有界的多面体也称为 **多胞形**（polytope）．多胞形可以看作是平面上的多边形在高维空间的推广，而多面体将它进一步推广到可能无界的情形．
+Tập tất cả nghiệm khả thi $\mathcal D\subseteq\mathbf R^n$ gọi là **miền khả thi** (feasible region) của bài toán quy hoạch tuyến tính $P$. Về mặt hình học, mỗi ràng buộc bất đẳng thức $a_j^T x \le b_j$ mô tả một nửa không gian $\{x\in\mathbf R^n:a_j^T x \le b_j\}$, và mỗi ràng buộc đẳng thức $a^T_jx = b_j$ mô tả một siêu phẳng $\{x\in\mathbf R^n:a_j^Tx=b_j\}$. Vì vậy miền khả thi luôn là giao của hữu hạn nửa không gian và siêu phẳng. Trong tối ưu hóa[^poly-names], hình học như vậy thường được gọi là **đa diện** (polyhedron) trong $\mathbf R^n$. Đa diện luôn là tập lồi đóng, nhưng không nhất thiết bị chặn. Đa diện bị chặn còn gọi là **đa bào** (polytope). Đa bào có thể xem là sự mở rộng của đa giác phẳng lên không gian nhiều chiều, còn đa diện tiếp tục mở rộng khái niệm đó sang trường hợp có thể không bị chặn.
 
-???+ example "多面体的例子"
-    此处列举了一些常见的多面体：
+???+ example "Ví dụ về đa diện"
+    Dưới đây là một số đa diện thường gặp:
     
-    1.  空集 $\varnothing$，又称为 **零胞形**（nullitope），维度规定为 $-1$．
-    2.  **仿射子空间**（affine subspace），即若干超平面的交集 $\{x\in\mathbf R^n:Ax = b\}$．它相当于线性方程组 $Ax = b$ 的解集：当方程组无解时，它就是空集；否则，它总是可以写成 $x_0+V$ 的形式，其中，$x_0\in\mathbf R^n$ 且 $V\subseteq\mathbf R^n$ 是 $n-\operatorname{rank}(A)$ 维线性子空间．特别地，超平面也是仿射子空间．
-    3.  **多面体锥**（polyhedral cone），即空间中有限多个点 $\{x_i\}$ 的全体非负线性组合 $\{\sum_i\alpha_ix_i:\alpha_i\ge 0\}$．它是顶点位于原点的凸锥体．等价地，它可以看作是由若干个经过原点的超平面围成的多面体，即 $\{x\in\mathbf R^n : Ax\le 0\}$．特别地，半空间也是多面体锥．
-    4.  多胞形，即有界的多面体．特别地，$-1$、$0$、$1$、$2$、$3$ 维的多胞形就是常见的空集、点、线段、多边形和（通常意义下的）多面体．一个集合是多胞形，当且仅当它是有限多个点 $\{x_i\}$ 的凸包 $\{\sum_i\alpha_ix_i:\alpha_i\ge 0,~\sum_i\alpha_i=1\}$．一个 $k$ 维的多胞形至少是由 $k+1$ 个点生成的凸包．
-    5.  **单纯形**（simplex），即恰由 $k+1$ 个点生成的 $k$ 维多胞形．它是最简单的 $k$ 维多胞形．特别地，$-1$、$0$、$1$、$2$、$3$ 维的多胞形分别是空集、点、线段、三角形和四面体．最简单的 $k$ 维单纯形的例子，就是 $\{x\in\mathbf R^k:x_i\ge 0,~\sum_ix_i=1\}$．实际上，任何 $k$ 维单纯形都可以通过仿射变换（即平移和伸缩）变为这样一种特殊情形．值得注意的是，单纯形法并不是真的在单纯形上进行的．
+    1.  Tập rỗng $\varnothing$, còn gọi là **nullitope**, được quy ước có chiều $-1$.
+    2.  **Không gian con affine** (affine subspace), tức giao của một số siêu phẳng $\{x\in\mathbf R^n:Ax = b\}$. Nó tương đương với tập nghiệm của hệ phương trình tuyến tính $Ax = b$: khi hệ vô nghiệm, nó là tập rỗng; ngược lại, nó luôn có thể viết dưới dạng $x_0+V$, trong đó $x_0\in\mathbf R^n$ và $V\subseteq\mathbf R^n$ là không gian con tuyến tính có chiều $n-\operatorname{rank}(A)$. Đặc biệt, siêu phẳng cũng là không gian con affine.
+    3.  **Nón đa diện** (polyhedral cone), tức toàn bộ các tổ hợp tuyến tính không âm của hữu hạn điểm $\{x_i\}$ trong không gian: $\{\sum_i\alpha_ix_i:\alpha_i\ge 0\}$. Đây là một nón lồi có đỉnh tại gốc tọa độ. Tương đương, nó có thể xem là đa diện được bao bởi một số siêu phẳng đi qua gốc tọa độ, tức $\{x\in\mathbf R^n : Ax\le 0\}$. Đặc biệt, nửa không gian cũng là nón đa diện.
+    4.  Đa bào, tức đa diện bị chặn. Đặc biệt, các đa bào chiều $-1$, $0$, $1$, $2$, $3$ lần lượt là tập rỗng, điểm, đoạn thẳng, đa giác và đa diện theo nghĩa thông thường. Một tập là đa bào khi và chỉ khi nó là bao lồi của hữu hạn điểm $\{x_i\}$: $\{\sum_i\alpha_ix_i:\alpha_i\ge 0,~\sum_i\alpha_i=1\}$. Một đa bào $k$ chiều ít nhất được sinh bởi bao lồi của $k+1$ điểm.
+    5.  **Đơn hình** (simplex), tức đa bào $k$ chiều được sinh đúng bởi $k+1$ điểm. Đây là đa bào $k$ chiều đơn giản nhất. Đặc biệt, các đa bào chiều $-1$, $0$, $1$, $2$, $3$ lần lượt là tập rỗng, điểm, đoạn thẳng, tam giác và tứ diện. Ví dụ đơn giản nhất của đơn hình $k$ chiều là $\{x\in\mathbf R^k:x_i\ge 0,~\sum_ix_i=1\}$. Thực ra, mọi đơn hình $k$ chiều đều có thể biến thành trường hợp đặc biệt này bằng một phép biến đổi affine (tịnh tiến và co giãn). Cần chú ý rằng phương pháp đơn hình không thực sự chạy trên một đơn hình.
     
-    任何多面体，都可以看作是一个多面体锥和一个多胞形的 [Minkowski 和](../geometry/convex-hull.md#闵可夫斯基和)：前者描述了多面体无界的部分，后者描述了多面体有界部分的形状．这个多面体锥是唯一的：多面体 $\{x\in\mathbf R^n:Ax\le b\}$ 分解得到的多面体锥一定是 $\{x\in\mathcal R^n:Ax\le 0\}$．
+    Mọi đa diện đều có thể xem là [tổng Minkowski](../geometry/convex-hull.md#%E9%97%B5%E5%8F%AF%E5%A4%AB%E6%96%AF%E5%9F%BA%E5%92%8C) của một nón đa diện và một đa bào: phần trước mô tả phần không bị chặn của đa diện, phần sau mô tả hình dạng phần bị chặn của đa diện. Nón đa diện này là duy nhất: nón đa diện thu được khi phân rã đa diện $\{x\in\mathbf R^n:Ax\le b\}$ nhất định là $\{x\in\mathcal R^n:Ax\le 0\}$.
 
-线性规划的解与多面体的结构紧密相关．对于多面体 $\mathcal D\in\mathbf R^n$ 和向量 $c\in\mathbf R^n\setminus\{0\}$，考虑如下的线性规划问题 $P$：（对最小化的情形也可以类似地讨论）
+Nghiệm của quy hoạch tuyến tính gắn chặt với cấu trúc của đa diện. Với đa diện $\mathcal D\in\mathbf R^n$ và vector $c\in\mathbf R^n\setminus\{0\}$, xét bài toán quy hoạch tuyến tính $P$ sau (trường hợp tối thiểu hóa có thể bàn tương tự):
 
 $$
 \max\{c^Tx:x\in\mathcal D\}.
 $$
 
-从几何角度看，这相当于在超平面 $H:c^Tx = z$ 与可行域 $\mathcal{D}$ 至少有一个交点的前提下，沿着向量 $c$ 的方向移动超平面 $H$，使得 $z$ 尽可能大．这就存在三种可能性：
+Về hình học, việc này tương đương với di chuyển siêu phẳng $H:c^Tx = z$ theo hướng vector $c$, với điều kiện $H$ và miền khả thi $\mathcal{D}$ có ít nhất một giao điểm, sao cho $z$ lớn nhất có thể. Có ba khả năng:
 
--   可行域 $\mathcal D$ 是空集．这说明问题 $P$ 没有可行解，它的某些约束是相互矛盾的．此时，称问题 $P$ 是 **不可行的**（infeasible），它的最优价值规定为 $-\infty$．
+-   Miền khả thi $\mathcal D$ là tập rỗng. Điều này nói rằng bài toán $P$ không có nghiệm khả thi, một số ràng buộc của nó mâu thuẫn với nhau. Khi đó, bài toán $P$ gọi là **không khả thi** (infeasible), và giá trị tối ưu của nó được quy ước là $-\infty$.
 
--   可行域 $\mathcal D$ 非空，但是它包含一条方向向量为 $c$ 的射线，即存在 $x_0\in\mathbf R^n$ 使得 $x_0+tc\in\mathcal D$ 对于所有 $t\ge 0$ 都成立．因为沿着向量 $c$ 的方向可以不断地移动超平面 $H$，而且移动过程中，集合 $H\cap\mathcal D$ 至少含有这条射线中的某个点，一定是非空的，所以，目标函数 $c^Tx = c^Tx_0 + tc^Tc$ 可以取得任意大的值．此时，称问题 $P$ 是 **无界的**（unbounded），它的最优价值规定为 $+\infty$．
+-   Miền khả thi $\mathcal D$ không rỗng, nhưng chứa một tia có vector chỉ phương là $c$, tức tồn tại $x_0\in\mathbf R^n$ sao cho $x_0+tc\in\mathcal D$ với mọi $t\ge 0$. Vì có thể liên tục di chuyển siêu phẳng $H$ theo hướng vector $c$, và trong quá trình di chuyển tập $H\cap\mathcal D$ luôn chứa ít nhất một điểm trên tia đó nên không rỗng, hàm mục tiêu $c^Tx = c^Tx_0 + tc^Tc$ có thể nhận giá trị lớn tùy ý. Khi đó, bài toán $P$ gọi là **không bị chặn** (unbounded), và giá trị tối ưu của nó được quy ước là $+\infty$.
 
--   可行域 $\mathcal D$ 非空，且不含有任何方向向量为 $c$ 的射线．此时，问题 $P$ 称为 **有界的**（bounded）．记 $z^*\in\mathbf R$ 为问题 $P$ 的最优价值．超平面 $H^*:c^Tx = z^*$ 处于一种临界位置：它与多面体 $\mathcal D$ 相交，且 $\mathcal D$ 包含于半空间 $\{x:c^Tx\le z^*\}$ 中．这样的超平面称为多面体 $\mathcal D$ 的一个 **支撑超平面**（supporting hyperlane）．问题 $P$ 的最优解集就是 $H^*\cap\mathcal D$．作为支撑超平面和多面体的交集，集合 $H^*\cap\mathcal D$ 一定是多面体，且包含在 $\mathcal D$ 的边界中．它称为多面体 $\mathcal D$ 的一个 **面**（face）．形象地说，多面体就是由这些面围成的．除了这些由支撑超平面和多面体相交形成的面之外，一般来说，多面体还有两个面：空集和多面体本身．多面体的所有面在集合的包含关系下，形成了 [格](../math/order-theory.md#有向集与格) 的结构．
+-   Miền khả thi $\mathcal D$ không rỗng và không chứa tia nào có vector chỉ phương là $c$. Khi đó, bài toán $P$ gọi là **bị chặn** (bounded). Gọi $z^*\in\mathbf R$ là giá trị tối ưu của $P$. Siêu phẳng $H^*:c^Tx = z^*$ nằm ở một vị trí tới hạn: nó cắt đa diện $\mathcal D$, và $\mathcal D$ nằm trong nửa không gian $\{x:c^Tx\le z^*\}$. Siêu phẳng như vậy gọi là một **siêu phẳng đỡ** (supporting hyperplane) của đa diện $\mathcal D$. Tập nghiệm tối ưu của $P$ là $H^*\cap\mathcal D$. Là giao của một siêu phẳng đỡ và đa diện, tập $H^*\cap\mathcal D$ cũng là đa diện và nằm trên biên của $\mathcal D$. Nó gọi là một **mặt** (face) của đa diện $\mathcal D$. Nói một cách trực quan, đa diện được bao bởi các mặt này. Ngoài các mặt hình thành từ giao của siêu phẳng đỡ và đa diện, nói chung đa diện còn có hai mặt: tập rỗng và chính đa diện. Tất cả các mặt của một đa diện, dưới quan hệ bao hàm tập hợp, tạo thành cấu trúc [dàn](../math/order-theory.md#%E6%9C%89%E5%90%91%E9%9B%86%E4%B8%8E%E6%A0%BC).
 
-    一个 $d$ 维的多面体的面的维度一定是 $0$ 和 $d$ 之间的整数．维度为 $0$ 的面（即一个点）称为多面体 $\mathcal D$ 的 **顶点**（vertex）或 **角点**（corner point），维度为 $1$ 的面称为多面体 $\mathcal D$ 的 **边**（edge），维度为 $d-1$ 的面则称为多面体 $\mathcal D$ 的 **维面**（facet）．但是，并非所有多面体都有顶点．因为多面体的面的面仍然是多面体的面，而只有仿射子空间才没有严格更小的非空面，所以，多面体 $\mathcal D$ 的所有极小面都是仿射子空间．而且，同一个多面体的极小面的维度是相同的；特别地，多面体 $\mathcal D=\{x\in\mathbf R^n:Ax\le b\}$ 的极小面的维度是 $n-\operatorname{rank}A$．
+    Chiều của một mặt của đa diện $d$ chiều luôn là một số nguyên từ $0$ đến $d$. Mặt có chiều $0$ (tức một điểm) gọi là **đỉnh** (vertex) hoặc **điểm góc** (corner point) của đa diện $\mathcal D$; mặt có chiều $1$ gọi là **cạnh** (edge); mặt có chiều $d-1$ gọi là **diện** (facet) của đa diện $\mathcal D$. Tuy nhiên, không phải đa diện nào cũng có đỉnh. Vì mặt của một mặt của đa diện vẫn là mặt của đa diện, và chỉ có không gian con affine mới không có mặt không rỗng nhỏ hơn nghiêm ngặt, nên mọi mặt cực tiểu của đa diện $\mathcal D$ đều là không gian con affine. Hơn nữa, các mặt cực tiểu của cùng một đa diện có cùng chiều; đặc biệt, chiều của mặt cực tiểu của đa diện $\mathcal D=\{x\in\mathbf R^n:Ax\le b\}$ là $n-\operatorname{rank}A$.
 
-    因为多面体的面就是有界线性规划问题的解集，所以，需要搞清楚如何确定多面体的面的方程．设多面体 $\mathcal D$ 由若干个约束 $a_j^Tx \lesseqqgtr b_j$ 描述，且 $F$ 是 $\mathcal D$ 的一个面．如果某个约束在所有 $x\in F$ 处都取得等号，就称该约束在面 $F$ 上是 **紧的**（tight）．面 $F$ 上的点显然满足这些紧约束取等号得到的方程组，而这个方程组确定的仿射子空间和多面体 $\mathcal D$ 的交集，就是面 $F$．反过来，任意选取多面体 $\mathcal D$ 的约束的一个子集，将这些约束取等、联立、求解得到的仿射子空间和多面体的交集，就是 $\mathcal D$ 的一个面．而且，选取的紧约束越多，得到的面（在包含意义下）就越小．
+    Vì mặt của đa diện chính là tập nghiệm của một bài toán quy hoạch tuyến tính bị chặn, cần hiểu cách xác định phương trình của các mặt của đa diện. Giả sử đa diện $\mathcal D$ được mô tả bởi một số ràng buộc $a_j^Tx \lesseqqgtr b_j$, và $F$ là một mặt của $\mathcal D$. Nếu một ràng buộc đạt dấu bằng tại mọi $x\in F$, ta nói ràng buộc đó **chặt** (tight) trên mặt $F$. Các điểm trên $F$ hiển nhiên thỏa mãn hệ phương trình thu được bằng cách đặt dấu bằng cho các ràng buộc chặt này, và giao của không gian con affine xác định bởi hệ đó với đa diện $\mathcal D$ chính là mặt $F$. Ngược lại, chọn tùy ý một tập con các ràng buộc của đa diện $\mathcal D$, đặt chúng thành đẳng thức, giải hệ để được một không gian con affine rồi lấy giao với đa diện, ta thu được một mặt của $\mathcal D$. Hơn nữa, càng chọn nhiều ràng buộc chặt thì mặt thu được càng nhỏ theo nghĩa bao hàm.
 
-    特别地，标准形式的线性规划的可行域 $\mathcal D=\{x\in\mathbf R^n:Ax=b,~x\ge 0\}$ 的系数矩阵 $\begin{pmatrix}A\\ I\end{pmatrix}$ 的秩是 $n$，因此，它的极小面就是它的顶点．也就是说，如果问题有界，那么它的最优解一定可以选取为某个顶点．而且，这个顶点可以通过选取 $n$ 个线性独立的紧约束联立得到．这正是线性规划的标准形式的方便之处．
+    Đặc biệt, miền khả thi của quy hoạch tuyến tính dạng chuẩn $\mathcal D=\{x\in\mathbf R^n:Ax=b,~x\ge 0\}$ có ma trận hệ số $\begin{pmatrix}A\\ I\end{pmatrix}$ với hạng bằng $n$, nên các mặt cực tiểu của nó chính là các đỉnh. Nói cách khác, nếu bài toán bị chặn thì luôn có thể chọn một nghiệm tối ưu là một đỉnh nào đó. Hơn nữa, đỉnh này có thể thu được bằng cách chọn $n$ ràng buộc chặt độc lập tuyến tính rồi giải hệ. Đây chính là điểm thuận tiện của dạng chuẩn của quy hoạch tuyến tính.
 
-???+ example "例子"
-    下图中，$\mathcal D$ 为可行域．目标函数中的系数是 $c_1,c_2,c_3$ 时，分别对应着唯一最优解、多组最优解和无界三种情形．对于前两种情形，相应的红色粗实线就是解集对应的支撑超平面（之一），最优解集分别是多面体 $\mathcal D$ 的顶点 $B$ 和边 $\overline{CD}$．对于第三种情形，因为可行域 $\mathcal D$ 中包含方向为 $c_3$ 的射线，所以，以 $c_3$ 为法向量的超平面可以不断沿着 $c_3$ 方向移动，进而问题是无界的．
+???+ example "Ví dụ"
+    Trong hình dưới, $\mathcal D$ là miền khả thi. Khi các hệ số trong hàm mục tiêu là $c_1,c_2,c_3$, chúng lần lượt ứng với ba trường hợp: nghiệm tối ưu duy nhất, nhiều nghiệm tối ưu và không bị chặn. Với hai trường hợp đầu, các đường liền đỏ đậm tương ứng là một siêu phẳng đỡ của tập nghiệm; tập nghiệm tối ưu lần lượt là đỉnh $B$ và cạnh $\overline{CD}$ của đa diện $\mathcal D$. Với trường hợp thứ ba, vì miền khả thi $\mathcal D$ chứa một tia theo hướng $c_3$, nên siêu phẳng có vector pháp tuyến $c_3$ có thể liên tục dịch theo hướng $c_3$, và bài toán không bị chặn.
     
     ![](./images/lp-feasible.svg)
 
-这些讨论忽略了 $c=0$ 的情形．此时，线性规划问题显然不能是无界的，所以要么问题本身是不可行的，要么最优价值等于 $0$，且最优解集就是 $\mathcal D$ 本身．这类特殊的线性规划也称为 **可行性线性规划**（feasibility linear programming）．
+Các thảo luận trên bỏ qua trường hợp $c=0$. Khi đó, bài toán quy hoạch tuyến tính hiển nhiên không thể không bị chặn, nên hoặc bản thân bài toán không khả thi, hoặc giá trị tối ưu bằng $0$ và tập nghiệm tối ưu chính là $\mathcal D$. Loại quy hoạch tuyến tính đặc biệt này còn gọi là **quy hoạch tuyến tính khả thi** (feasibility linear programming).
 
-值得指出的是，判定线性规划问题是否可行、是否有界，以及求出不等式组的可行解等问题，都和解线性规划问题本身同样困难[^reducible]．比如说，下文中强对偶定理的证明就说明，解一个有界的线性规划问题，就相当于寻找一组不等式的可行解．因此，对于判断不等式组是否有解和判断方程组是否有非负解等任务，最有效的方式就是求解相应的可行性线性规划[^other-methods]．
+Cần chỉ ra rằng các bài toán như quyết định một quy hoạch tuyến tính có khả thi hay không, có bị chặn hay không, hoặc tìm nghiệm khả thi của một hệ bất đẳng thức, đều khó tương đương với việc giải chính bài toán quy hoạch tuyến tính[^reducible]. Chẳng hạn, chứng minh định lý đối ngẫu mạnh dưới đây cho thấy việc giải một bài toán quy hoạch tuyến tính bị chặn tương đương với việc tìm nghiệm khả thi của một hệ bất đẳng thức. Vì vậy, với các nhiệm vụ như kiểm tra hệ bất đẳng thức có nghiệm hay không hoặc kiểm tra hệ phương trình có nghiệm không âm hay không, cách hiệu quả nhất là giải quy hoạch tuyến tính khả thi tương ứng[^other-methods].
 
-另外，如果线性规划问题的一个约束，在可行域的所有面上都不是紧的，那么这个约束就是 **冗余的**（redundant）．本文开头早点师傅的例子中，工作时间的约束就是一个冗余约束．在给定的不等式组中判定某个不等式 $a_j^Tx\le b_j$ 是否冗余这一问题，可以通过求解线性规划问题 $\max\{a_j^Tx:x\in\mathcal D\}$，并将它与 $b_j$ 相比较来解决．
+Ngoài ra, nếu một ràng buộc của bài toán quy hoạch tuyến tính không chặt trên mọi mặt của miền khả thi, thì ràng buộc đó là **dư thừa** (redundant). Trong ví dụ người bán bữa sáng ở đầu bài, ràng buộc về thời gian làm việc là một ràng buộc dư thừa. Để quyết định một bất đẳng thức $a_j^Tx\le b_j$ trong hệ đã cho có dư thừa hay không, có thể giải bài toán quy hoạch tuyến tính $\max\{a_j^Tx:x\in\mathcal D\}$ rồi so sánh kết quả với $b_j$.
 
-## 常见算法
+<span id="&#24120;&#35265;&#31639;&#27861;"></span>
+## Các thuật toán thường gặp
 
-算法竞赛中，很少有问题只能通过线性规划的算法解决．大多数可以用线性规划方法求解的题目，通常也可以通过网络流等更为专门也更为高效的算法来解决．
+Trong thi thuật toán, hiếm khi có bài toán chỉ có thể giải bằng thuật toán quy hoạch tuyến tính. Phần lớn bài toán có thể giải bằng phương pháp quy hoạch tuyến tính thường cũng có thể giải bằng luồng mạng hoặc các thuật toán chuyên biệt hơn và hiệu quả hơn.
 
-解决线性规划问题的常见算法如下：
+Các thuật toán thường gặp để giải quy hoạch tuyến tính gồm:
 
--   [单纯形法](./simplex.md)
--   椭球法
--   内点法
+-   [Phương pháp đơn hình](./simplex.md)
+-   Phương pháp ellipsoid
+-   Phương pháp điểm trong
 
-尽管单纯形法的最差情形复杂度是指数级的，而内点法的复杂度是多项式的，但这两类算法在大多数实际问题中的表现都非常出色．相比之下，虽然椭球法的理论复杂度是多项式级别的，但是通常运行缓慢，并不实用．
+Dù độ phức tạp trường hợp xấu nhất của phương pháp đơn hình là cấp mũ, còn độ phức tạp của phương pháp điểm trong là đa thức, cả hai loại thuật toán này đều thể hiện rất tốt trong đa số bài toán thực tế. Ngược lại, tuy phương pháp ellipsoid có độ phức tạp lý thuyết cấp đa thức, nó thường chạy chậm và không thực dụng.
 
-目前尚不清楚线性规划问题是否存在强多项式复杂度的算法．
+Hiện vẫn chưa rõ liệu bài toán quy hoạch tuyến tính có thuật toán độ phức tạp đa thức mạnh hay không.
 
-## 对偶问题
+<span id="&#23545;&#20598;&#38382;&#39064;"></span>
+## Bài toán đối ngẫu
 
-每个线性规划问题都对应着一个对偶问题．原问题和对偶问题的解有着紧密的联系．通过对偶问题，不仅有助于更深入地理解问题的结构，还常常可以提升原问题的求解效率．
+Mỗi bài toán quy hoạch tuyến tính đều có một bài toán đối ngẫu tương ứng. Nghiệm của bài toán gốc và bài toán đối ngẫu có liên hệ chặt chẽ. Thông qua bài toán đối ngẫu, ta không chỉ hiểu sâu hơn cấu trúc bài toán mà còn thường có thể cải thiện hiệu quả giải bài toán gốc.
 
-对于线性规划问题 $P$（所涉小写字母变量均为向量）
+Với bài toán quy hoạch tuyến tính $P$ sau (các biến chữ thường xuất hiện đều là vector)
 
 $$
 \begin{aligned}
@@ -264,7 +273,7 @@ $$
 \end{aligned}
 $$
 
-它的对偶问题 $D$ 是指线性规划问题
+bài toán đối ngẫu $D$ của nó là bài toán quy hoạch tuyến tính
 
 $$
 \begin{aligned}
@@ -276,216 +285,219 @@ $$
 \end{aligned}
 $$
 
-其中，对偶问题的决策变量 $y_1,y_2,y_3$ 分别是原问题的三类约束的 Lagrange 乘子；反过来，原问题的决策变量 $x_1,x_2,x_3$ 也分别是对偶问题的三类约束的 Lagrange 乘子．容易验证，对偶问题的对偶问题就是原问题．
+Trong đó, các biến quyết định $y_1,y_2,y_3$ của bài toán đối ngẫu lần lượt là các hệ số nhân Lagrange của ba loại ràng buộc trong bài toán gốc; ngược lại, các biến quyết định $x_1,x_2,x_3$ của bài toán gốc cũng lần lượt là các hệ số nhân Lagrange của ba loại ràng buộc trong bài toán đối ngẫu. Dễ kiểm chứng rằng đối ngẫu của bài toán đối ngẫu chính là bài toán gốc.
 
-原问题 $P$ 和对偶问题 $D$ 的对应关系如下：
+Quan hệ tương ứng giữa bài toán gốc $P$ và bài toán đối ngẫu $D$ như sau:
 
-|  最小化问题 |  最大化问题 |
+| Bài toán tối thiểu hóa | Bài toán tối đa hóa |
 | :----: | :----: |
-| 大于等于约束 |  非负变量  |
-| 小于等于约束 |  非正变量  |
-|  等式约束  |  无约束变量 |
-|  非负变量  | 小于等于约束 |
-|  非正变量  | 大于等于约束 |
-|  无约束变量 |  等式约束  |
-| 目标函数系数 | 约束右侧常量 |
-| 约束右侧常量 | 目标函数系数 |
+| Ràng buộc lớn hơn hoặc bằng | Biến không âm |
+| Ràng buộc nhỏ hơn hoặc bằng | Biến không dương |
+| Ràng buộc đẳng thức | Biến tự do |
+| Biến không âm | Ràng buộc nhỏ hơn hoặc bằng |
+| Biến không dương | Ràng buộc lớn hơn hoặc bằng |
+| Biến tự do | Ràng buộc đẳng thức |
+| Hệ số hàm mục tiêu | Hằng số vế phải của ràng buộc |
+| Hằng số vế phải của ràng buộc | Hệ số hàm mục tiêu |
 
-特别地，标准形式的线性规划问题
+Đặc biệt, bài toán quy hoạch tuyến tính dạng chuẩn
 
 $$
 \min\{c^Tx:Ax=b,~x\ge 0\}
 $$
 
-的对偶问题是
+có bài toán đối ngẫu là
 
 $$
 \max\{b^Ty:A^Ty\le c\}.
 $$
 
-### 对偶原理
+<span id="&#23545;&#20598;&#21407;&#29702;"></span>
+### Nguyên lý đối ngẫu
 
-原问题和对偶问题不仅在形式上互为镜像，而且两者的解也紧密相关．这称为 **对偶原理**（duality principal）．为表述方便，本节在叙述和证明定理时，将采用标准形式的原问题．
+Bài toán gốc và bài toán đối ngẫu không chỉ là ảnh gương nhau về hình thức; nghiệm của chúng cũng liên hệ chặt chẽ. Điều này gọi là **nguyên lý đối ngẫu** (duality principle). Để tiện trình bày, phần này dùng bài toán gốc ở dạng chuẩn khi phát biểu và chứng minh các định lý.
 
-首先，**弱对偶定理**（weak duality theorem）说明，对偶问题的最大值不超过原问题的最小值．
+Trước hết, **định lý đối ngẫu yếu** (weak duality theorem) nói rằng giá trị lớn nhất của bài toán đối ngẫu không vượt quá giá trị nhỏ nhất của bài toán gốc.
 
-???+ note "弱对偶定理"
-    对于所有 $A\in\mathbf R^{m\times n}$，$b\in\mathbf R^m$ 和 $c\in\mathbf R^n$，总有
+???+ note "Định lý đối ngẫu yếu"
+    Với mọi $A\in\mathbf R^{m\times n}$, $b\in\mathbf R^m$ và $c\in\mathbf R^n$, luôn có
     
     $$
     \max\{b^Ty:A^Ty\le c\} \le \min\{c^Tx:Ax=b,~x\ge 0\}.
     $$
 
-??? note "证明"
-    如果原问题和对偶问题中的任何一个不可行，那么该不等式就是平凡的．假设两个问题都是可行的．那么，对于所有可行的 $x$ 和 $y$，都有
+??? note "Chứng minh"
+    Nếu một trong hai bài toán gốc và đối ngẫu không khả thi, bất đẳng thức là hiển nhiên. Giả sử cả hai đều khả thi. Khi đó, với mọi $x$ và $y$ khả thi, ta có
     
     $$
     b^Ty = x^TA^Ty \le x^Tc.
     $$
     
-    因此，将两侧取最值，就得到弱对偶定理成立．
+    Do đó, lấy cực trị hai vế sẽ cho định lý đối ngẫu yếu.
 
-基于弱对偶定理，原问题和对偶问题的解的情况只能有下面四种情形：
+Dựa trên định lý đối ngẫu yếu, trạng thái nghiệm của bài toán gốc và bài toán đối ngẫu chỉ có bốn khả năng sau:
 
-1.  原问题和对偶问题均不可行，即 $-\infty\le+\infty$；
-2.  原问题不可行，对偶问题无界，即 $+\infty\le+\infty$；
-3.  原问题无界，对偶问题不可行，即 $-\infty\le-\infty$；
-4.  原问题和对偶问题均有界．
+1.  Bài toán gốc và bài toán đối ngẫu đều không khả thi, tức $-\infty\le+\infty$;
+2.  Bài toán gốc không khả thi, bài toán đối ngẫu không bị chặn, tức $+\infty\le+\infty$;
+3.  Bài toán gốc không bị chặn, bài toán đối ngẫu không khả thi, tức $-\infty\le-\infty$;
+4.  Bài toán gốc và bài toán đối ngẫu đều bị chặn.
 
-弱对偶定理有很多推论．例如，它实际上给出了利用原问题和对偶问题的可行性判定原问题无界的方法．
+Định lý đối ngẫu yếu có nhiều hệ quả. Chẳng hạn, nó thực chất đưa ra cách dùng tính khả thi của bài toán gốc và đối ngẫu để quyết định bài toán gốc có không bị chặn hay không.
 
-???+ note "推论"
-    线性规划问题无界，当且仅当它可行，且它的对偶问题不可行．
+???+ note "Hệ quả"
+    Một bài toán quy hoạch tuyến tính không bị chặn khi và chỉ khi nó khả thi và bài toán đối ngẫu của nó không khả thi.
 
-将弱对偶定理应用于可行性线性规划问题，就得到 Farkas 引理（和它的各种变体）．
+Áp dụng định lý đối ngẫu yếu cho quy hoạch tuyến tính khả thi sẽ thu được bổ đề Farkas (và các biến thể của nó).
 
-???+ note "Farkas 引理"
-    对于 $A\in\mathbf R^{m\times n}$ 和 $b\in\mathbf R^n$，下列情形中恰有一种成立：
+???+ note "Bổ đề Farkas"
+    Với $A\in\mathbf R^{m\times n}$ và $b\in\mathbf R^n$, đúng đúng một trong hai trường hợp sau:
     
-    1.  存在 $x\in\mathbf R^n$，使得 $Ax=b$ 且 $x\ge 0$；
-    2.  存在 $y\in\mathbf R^m$，使得 $A^T y\ge 0$ 且 $b^Ty<0$．
+    1.  Tồn tại $x\in\mathbf R^n$ sao cho $Ax=b$ và $x\ge 0$;
+    2.  Tồn tại $y\in\mathbf R^m$ sao cho $A^T y\ge 0$ và $b^Ty<0$.
 
-??? note "证明"
-    考虑线性规划问题 $\max\{0:Ax=b,~x\ge 0\}$，它的对偶问题是 $\min\{b^Ty:A^Ty\ge 0\}$．对偶问题显然是可行的，因为至少 $0\in\mathbf R^m$ 是一组可行解．因此，根据弱对偶定理，要么原问题可行，要么对偶问题无界，二者必择其一．原问题可行就是 Farkas 引理中的情形 1，而对偶问题无界就等价于 Farkas 引理中的情形 2．这就证明了 Farkas 引理．
+??? note "Chứng minh"
+    Xét bài toán quy hoạch tuyến tính $\max\{0:Ax=b,~x\ge 0\}$; bài toán đối ngẫu của nó là $\min\{b^Ty:A^Ty\ge 0\}$. Bài toán đối ngẫu hiển nhiên khả thi, vì ít nhất $0\in\mathbf R^m$ là một nghiệm khả thi. Do đó, theo định lý đối ngẫu yếu, hoặc bài toán gốc khả thi, hoặc bài toán đối ngẫu không bị chặn, và đúng một trong hai trường hợp xảy ra. Bài toán gốc khả thi chính là trường hợp 1 trong bổ đề Farkas, còn bài toán đối ngẫu không bị chặn tương đương với trường hợp 2. Vậy bổ đề Farkas được chứng minh.
 
-Farkas 实际上是一种 [超平面分离定理](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem)．情形 1 是在说，点 $b$ 位于 $A$ 的列向量生成的多面体锥 $C$ 里；因此，Farkas 引理说明，当且仅当点 $b$ 不在这一凸锥 $C$ 中时，存在经过原点且法向量为 $y$ 的超平面 $H:y^Tx = 0$ 强分离了点 $b$ 和多面体锥 $C$．
+Farkas thực chất là một [định lý tách siêu phẳng](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem). Trường hợp 1 nói rằng điểm $b$ nằm trong nón đa diện $C$ sinh bởi các vector cột của $A$; vì vậy, bổ đề Farkas nói rằng khi và chỉ khi điểm $b$ không nằm trong nón lồi $C$ này, tồn tại một siêu phẳng $H:y^Tx = 0$ đi qua gốc tọa độ và có vector pháp tuyến $y$ tách mạnh điểm $b$ khỏi nón đa diện $C$.
 
-事实上，对于弱对偶定理允许的第四种情形，有更强的结论成立：原问题和对偶问题的最优值是相等的．将后三种情形合在一起，就得到 **强对偶定理**（strong duality theorem）：只要原问题或对偶问题之一是可行的，它们的最优值就必然相等．
+Thực ra, với khả năng thứ tư mà định lý đối ngẫu yếu cho phép, còn có một kết luận mạnh hơn: giá trị tối ưu của bài toán gốc và bài toán đối ngẫu bằng nhau. Gộp ba khả năng sau lại, ta thu được **định lý đối ngẫu mạnh** (strong duality theorem): miễn là một trong hai bài toán gốc hoặc đối ngẫu khả thi, giá trị tối ưu của chúng nhất định bằng nhau.
 
-???+ note "强对偶定理"
-    对于所有 $A\in\mathbf R^{m\times n}$，$b\in\mathbf R^m$ 和 $c\in\mathbf R^n$，都有
+???+ note "Định lý đối ngẫu mạnh"
+    Với mọi $A\in\mathbf R^{m\times n}$, $b\in\mathbf R^m$ và $c\in\mathbf R^n$, ta có
     
     $$
     \max\{b^Ty:A^Ty\le c\} = \min\{c^Tx:Ax=b,~x\ge 0\}.
     $$
     
-    只要两个集合之一非空．
+    miễn là một trong hai tập là không rỗng.
 
-??? note "证明"
-    弱对偶定理唯一没有包含的情形，就是原问题和对偶问题都可行的情形．此时，考虑如下可行性线性规划问题 $Q$：
+??? note "Chứng minh"
+    Trường hợp duy nhất chưa được định lý đối ngẫu yếu bao phủ là cả bài toán gốc và bài toán đối ngẫu đều khả thi. Khi đó xét bài toán quy hoạch tuyến tính khả thi $Q$ sau:
     
     $$
     \max\{0:c^Tx \le b^Ty,~Ax=b,~x\ge 0,~A^Ty\le c\}.
     $$
     
-    如果问题 $Q$ 有可行解 $(x^*,y^*)\in\mathbf R^n\times\mathbf R^m$，那么，由弱对偶定理和最优性可知
+    Nếu bài toán $Q$ có nghiệm khả thi $(x^*,y^*)\in\mathbf R^n\times\mathbf R^m$, thì theo định lý đối ngẫu yếu và tính tối ưu, ta có
     
     $$
     b^Ty^* \le \max\{b^Ty:A^Ty\le c\} \le \min\{c^Tx:Ax=b,~x\ge 0\} \le c^Tx^*,
     $$
     
-    但是 $c^Tx^*\le b^Ty^*$，故而所有这些不等式都可以取得等号，也就是说，不仅强对偶成立，而且 $x^*$ 和 $y^*$ 分别是原问题和对偶问题的最优解．
+    nhưng $c^Tx^*\le b^Ty^*$, nên tất cả các bất đẳng thức này đều đạt dấu bằng. Nói cách khác, không chỉ đối ngẫu mạnh đúng, mà $x^*$ và $y^*$ lần lượt là nghiệm tối ưu của bài toán gốc và bài toán đối ngẫu.
     
-    因此，只需要证明问题 $Q$ 是可行的．假设不然．仿照 Farkas 引理的证明，可以考虑问题 $Q$ 的对偶问题 $DQ$：
+    Vì vậy chỉ cần chứng minh bài toán $Q$ khả thi. Giả sử ngược lại. Bắt chước chứng minh bổ đề Farkas, xét bài toán đối ngẫu $DQ$ của $Q$:
     
     $$
     \min\{c^T\mu - b^T\lambda : ct - A^T\lambda \ge 0,~ -bt + A\mu = 0,~t\ge 0,~\mu\ge 0\}.
     $$
     
-    因为 $(t,\lambda,\mu)=(0,0,0)$ 是对偶问题 $DQ$ 的一组可行解，所以由弱对偶定理可知，问题 $Q$ 不可行，就意味着对偶问题 $DQ$ 无界，即存在一组 $(t^*,\lambda^*,\mu^*)$ 使得
+    Vì $(t,\lambda,\mu)=(0,0,0)$ là một nghiệm khả thi của bài toán đối ngẫu $DQ$, theo định lý đối ngẫu yếu, việc $Q$ không khả thi kéo theo $DQ$ không bị chặn. Tức tồn tại một bộ $(t^*,\lambda^*,\mu^*)$ sao cho
     
     $$
     c^T\mu^* - b^T\lambda^* <0,~ ct^* - A^T\lambda^* \ge 0,~ -bt^* + A\mu^* = 0,~t^*\ge 0,~\mu^*\ge 0.
     $$
     
-    此时，如果 $t^*>0$，那么这些不等式实际说明 $(x,y)=(\mu^*/t^*,\lambda^*/t^*)$ 是前述问题的一组可行解，与假设矛盾．所以，只能有 $t^*=0$．这说明
+    Khi đó, nếu $t^*>0$, các bất đẳng thức này thực ra nói rằng $(x,y)=(\mu^*/t^*,\lambda^*/t^*)$ là một nghiệm khả thi của bài toán nói trên, mâu thuẫn với giả thiết. Do đó chỉ có thể có $t^*=0$. Điều này cho
     
     $$
     c^T\mu^* < b^T\lambda^*,~ A^T\lambda^*\le 0,~ A\mu^*=0,~\mu^*\ge 0.
     $$
     
-    但是，因为已经假设定理中的原问题和对偶问题都可行，也就是说，存在 $(x_0,y_0)$ 使得
+    Nhưng vì đã giả sử bài toán gốc và bài toán đối ngẫu trong định lý đều khả thi, tức tồn tại $(x_0,y_0)$ sao cho
     
     $$
     Ax_0 = b,~ x_0\ge 0,~ A^Ty_0\le c
     $$
     
-    成立，所以，有
+    nên
     
     $$
     0 = (A\mu^*)^Ty_0 = (A^Ty_0)^T\mu^* \le c^T\mu^* < b^T\lambda^* = x_0^TA^T\lambda^* \le 0.
     $$
     
-    这显然矛盾．这一矛盾说明问题 $Q$ 是可行的，进而说明强对偶成立．
+    Đây là mâu thuẫn hiển nhiên. Mâu thuẫn này chứng tỏ $Q$ khả thi, từ đó suy ra đối ngẫu mạnh.
 
-从强对偶定理的证明过程还能得到如下推论：
+Từ quá trình chứng minh định lý đối ngẫu mạnh còn suy ra hệ quả sau:
 
-???+ note "推论"
-    设原问题和对偶问题的一组可行解 $x^*$ 和 $y^*$ 满足强对偶性，即 $c^Tx^* = b^Ty^*$．那么，它们同样分别是原问题和对偶问题的最优解．
+???+ note "Hệ quả"
+    Giả sử $x^*$ và $y^*$ là một cặp nghiệm khả thi của bài toán gốc và đối ngẫu thỏa mãn đối ngẫu mạnh, tức $c^Tx^* = b^Ty^*$. Khi đó chúng cũng lần lượt là nghiệm tối ưu của bài toán gốc và bài toán đối ngẫu.
 
-强对偶定理说明，对于可行的线性规划问题，只需要求解它的对偶问题，就能够得到原问题的最优价值．
+Định lý đối ngẫu mạnh nói rằng với một bài toán quy hoạch tuyến tính khả thi, chỉ cần giải bài toán đối ngẫu của nó là có thể thu được giá trị tối ưu của bài toán gốc.
 
-### 互补松弛条件
+<span id="&#20114;&#34917;&#26494;&#24347;&#26465;&#20214;"></span>
+### Điều kiện bù trừ độ lỏng
 
-和其它的优化问题一样，互补松弛条件是线性规划问题的最优性条件的一部分．而且，因为目标函数是线性的，所以对于线性规划问题来说，互补松弛条件是可行解成为最优解的充分必要条件．
+Giống các bài toán tối ưu khác, điều kiện bù trừ độ lỏng là một phần của điều kiện tối ưu của bài toán quy hoạch tuyến tính. Hơn nữa, vì hàm mục tiêu là tuyến tính, nên với quy hoạch tuyến tính, điều kiện bù trừ độ lỏng là điều kiện cần và đủ để một nghiệm khả thi trở thành nghiệm tối ưu.
 
-所谓 **互补松弛**（complementary slackness）条件，就是指只有在原问题（对偶问题）中的约束取得等号（即约束是紧的）的时候，对偶问题（原问题）中与之对应的变量才能取非零值．如果将变量取非零值也当成一条松弛的约束，那么这就相当于说，原问题和对偶问题中相对应的变量和约束不能同时是松弛的．因此，这一条件称为互补松弛条件．
+Cái gọi là điều kiện **bù trừ độ lỏng** (complementary slackness) nghĩa là chỉ khi một ràng buộc trong bài toán gốc (bài toán đối ngẫu) đạt dấu bằng, tức ràng buộc đó chặt, thì biến tương ứng trong bài toán đối ngẫu (bài toán gốc) mới có thể nhận giá trị khác không. Nếu cũng xem việc biến nhận giá trị khác không là một ràng buộc không bị lỏng, thì điều này tương đương với nói rằng biến và ràng buộc tương ứng trong bài toán gốc và đối ngẫu không thể đồng thời bị lỏng. Vì vậy điều kiện này gọi là điều kiện bù trừ độ lỏng.
 
-以标准形式的线性规划问题为例，如下结论成立：
+Với bài toán quy hoạch tuyến tính dạng chuẩn, kết luận sau đúng:
 
-???+ note "定理"
-    假设 $x^*$ 和 $y^*$ 分别是原问题 $\min\{c^Tx:Ax=b,~x\ge 0\}$ 和对偶问题 $\max\{b^Ty:A^Ty\le c\}$ 的可行解．那么，当且仅当互补松弛条件成立，即
+???+ note "Định lý"
+    Giả sử $x^*$ và $y^*$ lần lượt là nghiệm khả thi của bài toán gốc $\min\{c^Tx:Ax=b,~x\ge 0\}$ và bài toán đối ngẫu $\max\{b^Ty:A^Ty\le c\}$. Khi đó, $x^*$ và $y^*$ cũng lần lượt là nghiệm tối ưu của bài toán gốc và bài toán đối ngẫu khi và chỉ khi điều kiện bù trừ độ lỏng đúng, tức
     
     $$
     x^T(A^Ty-c) = 0
     $$
     
-    时，$x^*$ 和 $y^*$ 也分别是原问题和对偶问题的最优解．
+    đúng.
 
-??? note "证明"
-    因为 $x^*$ 和 $y^*$ 都是可行解，所以，有
+??? note "Chứng minh"
+    Vì $x^*$ và $y^*$ đều là nghiệm khả thi, ta có
     
     $$
     b^Ty^* - c^Tx^* = (x^*)^T(A^T y^* - c).
     $$
     
-    因此，互补松弛条件成立，当且仅当 $b^Ty^* = c^Tx^*$．根据强对偶定理的推论，这一条件成立，当且仅当 $x^*$ 和 $y^*$ 分别是原问题的最优解．
+    Vì vậy điều kiện bù trừ độ lỏng đúng khi và chỉ khi $b^Ty^* = c^Tx^*$. Theo hệ quả của định lý đối ngẫu mạnh, điều kiện này đúng khi và chỉ khi $x^*$ và $y^*$ lần lượt là nghiệm tối ưu của bài toán gốc.
 
-标准形式可能太过特殊．该定理的稍微一般的形式如下：
+Dạng chuẩn có thể hơi đặc biệt. Một dạng tổng quát hơn một chút của định lý là:
 
-???+ note "定理"
-    假设 $x^*$ 和 $y^*$ 分别是原问题 $\min\{c^Tx:Ax\ge b,~x\ge 0\}$ 和对偶问题 $\max\{b^Ty:A^Ty\le c,~y\ge 0\}$ 的可行解．那么，当且仅当互补松弛条件成立，即
+???+ note "Định lý"
+    Giả sử $x^*$ và $y^*$ lần lượt là nghiệm khả thi của bài toán gốc $\min\{c^Tx:Ax\ge b,~x\ge 0\}$ và bài toán đối ngẫu $\max\{b^Ty:A^Ty\le c,~y\ge 0\}$. Khi đó, $x^*$ và $y^*$ cũng lần lượt là nghiệm tối ưu của bài toán gốc và bài toán đối ngẫu khi và chỉ khi điều kiện bù trừ độ lỏng đúng, tức
     
     $$
     x^T(A^Ty-c) = y^T(Ax-b) = 0
     $$
     
-    时，$x^*$ 和 $y^*$ 也分别是原问题和对偶问题的最优解．
+    đúng.
 
-??? note "证明"
-    证明基本同上，只是这次要将差值写成
+??? note "Chứng minh"
+    Chứng minh gần như trên, chỉ khác là lần này cần viết hiệu thành
     
     $$
     b^Ty^* - c^Tx^* = (x^*)^T(A^T y^* - c) - (y^*)^T(Ax^*-b).
     $$
 
-互补松弛条件提供了判断线性规划问题的可行解的最优性的简单条件．
+Điều kiện bù trừ độ lỏng cung cấp một điều kiện đơn giản để kiểm tra tính tối ưu của nghiệm khả thi của bài toán quy hoạch tuyến tính.
 
-### 原始‑对偶方法
+<span id="&#21407;&#22987;&#8209;&#23545;&#20598;&#26041;&#27861;"></span>
+### Phương pháp nguyên thủy-đối ngẫu
 
-对偶问题可以辅助原问题的求解．在解决线性规划问题时，常常会用到的一种方法是 **原始‑对偶方法**（primal-dual method）．它通过求解一系列相对简单的辅助问题，逐步改进对偶问题的解，进而获得原始问题的最优解．
+Bài toán đối ngẫu có thể hỗ trợ giải bài toán gốc. Khi giải quy hoạch tuyến tính, một phương pháp thường dùng là **phương pháp nguyên thủy-đối ngẫu** (primal-dual method). Phương pháp này giải một chuỗi các bài toán phụ tương đối đơn giản, dần cải thiện nghiệm của bài toán đối ngẫu, rồi thu được nghiệm tối ưu của bài toán nguyên thủy.
 
-对于标准形式的原问题
+Với bài toán gốc dạng chuẩn
 
 $$
 (P)\qquad\min\{c^Tx : Ax=b\ge 0,~ x\ge 0\}
 $$
 
-和它的对偶问题
+và bài toán đối ngẫu của nó
 
 $$
 (D)\qquad\max\{b^Ty : A^Ty\le c\},
 $$
 
-上一节已经说明，要找到它们的最优解，只需要找到问题 $(P)$ 和 $(D)$ 的一组可行解，使得它们满足互补松弛条件 $x^T(A^Ty-c)=0$．那不妨考虑如下流程：
+phần trước đã chỉ ra rằng để tìm nghiệm tối ưu của chúng, chỉ cần tìm một cặp nghiệm khả thi của $(P)$ và $(D)$ thỏa mãn điều kiện bù trừ độ lỏng $x^T(A^Ty-c)=0$. Vì vậy có thể xét quy trình sau:
 
-1.  从对偶问题 $(D)$ 的一个可行解 $y$ 出发，计算对偶问题的紧约束的集合
+1.  Bắt đầu từ một nghiệm khả thi $y$ của bài toán đối ngẫu $(D)$, tính tập các ràng buộc chặt của bài toán đối ngẫu:
 
     $$
     I = \{i : (A^Ty - c)_i = 0\}.
     $$
 
-2.  根据互补松弛条件，如果存在问题 $(P)$ 的可行解 $x$ 使得 $x_i>0$ 仅在 $i\in I$ 上成立，就意味着已经找到一组最优解．因此，考虑线性规划问题
+2.  Theo điều kiện bù trừ độ lỏng, nếu tồn tại nghiệm khả thi $x$ của bài toán $(P)$ sao cho $x_i>0$ chỉ xảy ra trên $i\in I$, thì ta đã tìm được một cặp nghiệm tối ưu. Do đó, xét bài toán quy hoạch tuyến tính
 
     $$
     (RP)\qquad
@@ -498,7 +510,7 @@ $$
     \end{aligned}
     $$
 
-3.  如果问题 $(RP)$ 的最小值是 $0$，那么最优解 $(x^*,0)$ 中的 $x^*$ 就是原问题 $(P)$ 的最优解．否则，可以求出它的对偶问题 $(DRP)$ 的解 $\bar y$：
+3.  Nếu giá trị nhỏ nhất của $(RP)$ là $0$, thì $x^*$ trong nghiệm tối ưu $(x^*,0)$ chính là nghiệm tối ưu của bài toán gốc $(P)$. Ngược lại, có thể tìm nghiệm $\bar y$ của bài toán đối ngẫu $(DRP)$ của nó:
 
     $$
     (DRP)\qquad
@@ -509,33 +521,34 @@ $$
     \end{aligned}
     $$
 
-    根据强对偶定理可知，$b^T\bar y = 1^Ts^*>0$．
+    Theo định lý đối ngẫu mạnh, $b^T\bar y = 1^Ts^*>0$.
 
-4.  根据问题 $(DRP)$ 的解改进对偶问题 $(D)$ 的可行解．设 $y' = y + \varepsilon \bar y$，其中，$\varepsilon>0$，则一定有 $b^Ty' = b^Ty + \varepsilon b^T\bar y > b^Ty$．因此，只要保证 $y'$ 仍然是对偶问题的可行解 $(D)$，就要尽可能大地选取 $\varepsilon$ 的值．
+4.  Dùng nghiệm của $(DRP)$ để cải thiện nghiệm khả thi của bài toán đối ngẫu $(D)$. Đặt $y' = y + \varepsilon \bar y$, trong đó $\varepsilon>0$; khi đó chắc chắn $b^Ty' = b^Ty + \varepsilon b^T\bar y > b^Ty$. Vì vậy, miễn là bảo đảm $y'$ vẫn là nghiệm khả thi của bài toán đối ngẫu $(D)$, ta nên chọn $\varepsilon$ lớn nhất có thể.
 
-    对于 $i\in I$，有
+    Với $i\in I$, ta có
 
     $$
     \sum_ja_{ji}y'_j = \sum_ja_{ji}y_j + \varepsilon \sum_ja_{ji}\bar y_j \le c_i,
     $$
 
-    所以，问题 $(D)$ 的这些约束总是可以满足的．
+    nên các ràng buộc này của $(D)$ luôn được thỏa mãn.
 
-    对于剩下的约束，即 $i\notin I$ 时，只需要取
+    Với các ràng buộc còn lại, tức $i\notin I$, chỉ cần lấy
 
     $$
     \varepsilon = \min\left\{\dfrac{c_i - \sum_{j}a_{ji}y_j}{\sum_{j}a_{ji}\bar y_j}:i\notin I,~\textstyle\sum_{j}a_{ji}\bar y_j>0\right\}
     $$
 
-    就可以在保证可行性的前提下，尽可能大地改进对偶问题的解，然后回到步骤 1 继续迭代．特别地，如果上式中的集合为空集，即 $\varepsilon=+\infty$，那么，对偶问题 $(D)$ 无界，原问题 $(P)$ 不可行．
+    là có thể cải thiện nghiệm của bài toán đối ngẫu nhiều nhất có thể trong khi vẫn bảo đảm tính khả thi, rồi quay lại bước 1 để lặp tiếp. Đặc biệt, nếu tập trong công thức trên rỗng, tức $\varepsilon=+\infty$, thì bài toán đối ngẫu $(D)$ không bị chặn và bài toán gốc $(P)$ không khả thi.
 
-这个过程中其实只有问题 $(DRP)$ 是确实需要求解的，它与问题 $(RP)$ 通过强对偶定理相互联系．问题 $(DRP)$ 提供了一个改进对偶问题解的方向，而且相对于对偶问题 $(D)$ 本身，问题 $(DRP)$ 的形式更加简单．问题 $(DRP)$ 的可行性由 Farkas 引理保证，而约束 $y\le 1$ 只是一组规范化条件，保证了问题 $(DRP)$ 有界．
+Trong quá trình này, thực ra chỉ có bài toán $(DRP)$ thật sự cần giải; nó liên hệ với bài toán $(RP)$ qua định lý đối ngẫu mạnh. Bài toán $(DRP)$ cung cấp một hướng cải thiện nghiệm của bài toán đối ngẫu, và so với bản thân bài toán đối ngẫu $(D)$, dạng của $(DRP)$ đơn giản hơn. Tính khả thi của $(DRP)$ được bảo đảm bởi bổ đề Farkas, còn ràng buộc $y\le 1$ chỉ là một nhóm điều kiện chuẩn hóa để bảo đảm $(DRP)$ bị chặn.
 
-算法竞赛中，原始‑对偶方法广泛地应用于各类组合优化问题．例如二分图最大权匹配的 [匈牙利算法](../graph/graph-matching/bigraph-weight-match.md#hungarian-algorithmkuhnmunkres-algorithm)、最小费用流的 [消圈算法](../graph/flow/min-cost.md) 和 [SSP 算法（原始‑对偶算法）](../graph/flow/min-cost.md#ssp-算法)、最短路的 [Dijkstra 算法](../graph/shortest-path.md#dijkstra-算法)、最大流的 [Ford–Fulkerson 增广算法](../graph/flow/max-flow.md#fordfulkerson-增广) 等，都可以看作是原始‑对偶方法的直接应用．
+Trong thi thuật toán, phương pháp nguyên thủy-đối ngẫu được dùng rộng rãi trong nhiều bài toán tối ưu tổ hợp. Ví dụ, [thuật toán Hungary](../graph/graph-matching/bigraph-weight-match.md#hungarian-algorithmkuhnmunkres-algorithm) cho ghép cặp hai phía trọng số lớn nhất, [thuật toán khử chu trình](../graph/flow/min-cost.md) và [thuật toán SSP (thuật toán nguyên thủy-đối ngẫu)](../graph/flow/min-cost.md#ssp-%E7%AE%97%E6%B3%95) cho luồng chi phí nhỏ nhất, [thuật toán Dijkstra](../graph/shortest-path.md#dijkstra-%E7%AE%97%E6%B3%95) cho đường đi ngắn nhất, [thuật toán tăng luồng Ford-Fulkerson](../graph/flow/max-flow.md#fordfulkerson-%E5%A2%9E%E5%B9%BF) cho luồng cực đại, v.v. đều có thể xem là ứng dụng trực tiếp của phương pháp nguyên thủy-đối ngẫu.
 
-## 整数规划
+<span id="&#25972;&#25968;&#35268;&#21010;"></span>
+## Quy hoạch nguyên
 
-**整数规划**（integer programming）通常指 **整数线性规划**（integer linear programming, ILP）．标准形式的整数线性规划如下：
+**Quy hoạch nguyên** (integer programming) thường chỉ **quy hoạch tuyến tính nguyên** (integer linear programming, ILP). Dạng chuẩn của quy hoạch tuyến tính nguyên như sau:
 
 $$
 \begin{aligned}
@@ -546,58 +559,60 @@ $$
 \end{aligned}
 $$
 
-其中，$A\in\mathbf R^{m\times n}$，$b\in\mathbf R^m$，$c\in\mathbf R^n$．也就是说，整数线性规划是在线性规划问题上添加决策变量必须为整数这一约束条件所得到的问题．
+trong đó $A\in\mathbf R^{m\times n}$, $b\in\mathbf R^m$, $c\in\mathbf R^n$. Nói cách khác, quy hoạch tuyến tính nguyên là bài toán thu được bằng cách thêm ràng buộc các biến quyết định phải là số nguyên vào một bài toán quy hoạch tuyến tính.
 
-整数约束显著增加了整数规划问题的复杂性．许多组合优化问题，例如背包问题、适定性问题以及众多图论中的优化问题，都可以表示为整数规划模型，而这些问题中的多数被证明是 NP 困难的．
+Ràng buộc nguyên làm tăng đáng kể độ phức tạp của bài toán quy hoạch nguyên. Nhiều bài toán tối ưu tổ hợp, chẳng hạn bài toán ba lô, bài toán thỏa mãn và rất nhiều bài toán tối ưu trong lý thuyết đồ thị, đều có thể biểu diễn bằng mô hình quy hoạch nguyên; phần lớn các bài toán đó đã được chứng minh là NP-khó.
 
-### 全幺模矩阵
+<span id="&#20840;&#24186;&#27169;&#30697;&#38453;"></span>
+### Ma trận hoàn toàn đơn môđun
 
-正因如此，对于很多大规模的整数优化问题，有时候会考虑将它的整数约束松弛掉，转而求解一个线性规划问题．通常来说，松弛后的线性规划问题的最优价值只是原来的整数规划问题的一个下界估计（假设问题是最小化问题）．但是，如果松弛后的线性规划问题的最优解恰好是整数解，那么，它也一定是原来的整数规划问题的最优解．
+Chính vì vậy, với nhiều bài toán tối ưu nguyên quy mô lớn, đôi khi người ta nới lỏng ràng buộc nguyên và chuyển sang giải một bài toán quy hoạch tuyến tính. Thông thường, giá trị tối ưu của quy hoạch tuyến tính sau khi nới lỏng chỉ là một cận dưới của bài toán quy hoạch nguyên ban đầu (giả sử là bài toán tối thiểu hóa). Nhưng nếu nghiệm tối ưu của bài toán quy hoạch tuyến tính sau khi nới lỏng tình cờ là nghiệm nguyên, thì nó nhất định cũng là nghiệm tối ưu của bài toán quy hoạch nguyên ban đầu.
 
-一个自然的问题是，是否存在条件，能够保证线性规划问题的最优解都是整数解？全幺模矩阵的概念就提供了这样的一个条件．
+Một câu hỏi tự nhiên là liệu có điều kiện nào bảo đảm nghiệm tối ưu của bài toán quy hoạch tuyến tính đều là nghiệm nguyên hay không. Khái niệm ma trận hoàn toàn đơn môđun cung cấp một điều kiện như vậy.
 
-???+ abstract "全幺模矩阵"
-    如果矩阵 $A\in\mathbf R^{m\times n}$ 的所有子方阵的行列式都是 $0$ 或 $\pm 1$，那么，矩阵 $A$ 就称为一个 **全幺模矩阵**（totally unimodular matrix）．
+???+ abstract "Ma trận hoàn toàn đơn môđun"
+    Nếu định thức của mọi ma trận con vuông của ma trận $A\in\mathbf R^{m\times n}$ đều là $0$ hoặc $\pm 1$, thì $A$ gọi là một **ma trận hoàn toàn đơn môđun** (totally unimodular matrix).
 
-特别地，全幺模矩阵的所有元素都是 $0$ 或 $\pm 1$．利用全幺模矩阵的概念，可以叙述如下结论：
+Đặc biệt, mọi phần tử của ma trận hoàn toàn đơn môđun đều là $0$ hoặc $\pm 1$. Dùng khái niệm này, có thể phát biểu kết luận sau:
 
-???+ note "定理"
-    对于全幺模矩阵 $A\in\mathbf Z^{m\times n}$，$b\in\mathbf Z^{m}$ 且 $c\in\mathbf Z^n$，线性规划问题及其对偶问题
+???+ note "Định lý"
+    Với ma trận hoàn toàn đơn môđun $A\in\mathbf Z^{m\times n}$, $b\in\mathbf Z^{m}$ và $c\in\mathbf Z^n$, bài toán quy hoạch tuyến tính và bài toán đối ngẫu của nó
     
     $$
     \min\{c^Tx : Ax=b,x\ge 0\} = \max\{b^Ty: A^Ty\le c\}
     $$
     
-    都有整数最优解，只要它们都有界．
+    đều có nghiệm tối ưu nguyên, miễn là chúng đều bị chặn.
 
-??? note "证明"
-    前文已经说明，线性规划问题的最优解集可以取作它的一个极小面，而后者是由若干线性独立的紧约束作为等式联立得到的方程组的解：
+??? note "Chứng minh"
+    Phần trước đã chỉ ra rằng tập nghiệm tối ưu của bài toán quy hoạch tuyến tính có thể lấy là một mặt cực tiểu của nó, và mặt này là nghiệm của hệ phương trình thu được bằng cách chọn một số ràng buộc chặt độc lập tuyến tính rồi đặt chúng thành đẳng thức:
     
     $$
     \{x\in\mathbf R^n : a_j^Tx = b_j,~\forall j\in J\}.
     $$
     
-    记这个方程组为 $A_Jx=b_J$，且 $A_J=(A_1,A_2)$，其中，$A_1$ 是满秩的方阵，行列式为 $\pm 1$．那么，由 Cramer 法则，解
+    Ký hiệu hệ phương trình này là $A_Jx=b_J$, và đặt $A_J=(A_1,A_2)$, trong đó $A_1$ là ma trận vuông đầy hạng có định thức $\pm 1$. Theo quy tắc Cramer, nghiệm
     
     $$
     x = \begin{pmatrix}A_1^{-1}b_J \\ 0\end{pmatrix}
     $$
     
-    就是极小面上的一个整数解．
+    là một nghiệm nguyên trên mặt cực tiểu.
 
-常见的图论模型中，网络流、最短路、二分图等对应的线性规划问题的系数矩阵都是全幺模矩阵．因此，只需要这些问题仅涉及整数参数，它们的最优解就可以取作整数，而不用担心线性规划问题的解对应着分数流、分数匹配等情形．所以，[最大流](../graph/flow/max-flow.md)、[最小割](../graph/flow/min-cut.md)、[最小费用流](../graph/flow/min-cost.md)、[最短路](../graph/shortest-path.md)、[差分约束](../graph/diff-constraints.md)、[二分图最大（权）匹配和最小点覆盖](../graph/graph-matching/bigraph-match.md#线性规划形式) 等问题，都可以转化为线性规划问题求解．而且，最大流与最小割、最短路与差分约束、二分图最大匹配和最小点覆盖，两两互为对偶问题．
+Trong các mô hình đồ thị thường gặp, ma trận hệ số của các bài toán quy hoạch tuyến tính tương ứng với luồng mạng, đường đi ngắn nhất, đồ thị hai phía, v.v. đều là ma trận hoàn toàn đơn môđun. Vì vậy, miễn là các bài toán này chỉ chứa tham số nguyên, nghiệm tối ưu của chúng có thể chọn là nghiệm nguyên, không cần lo nghiệm của bài toán quy hoạch tuyến tính tương ứng là luồng phân số, ghép cặp phân số, v.v. Do đó, các bài toán như [luồng cực đại](../graph/flow/max-flow.md), [cắt nhỏ nhất](../graph/flow/min-cut.md), [luồng chi phí nhỏ nhất](../graph/flow/min-cost.md), [đường đi ngắn nhất](../graph/shortest-path.md), [ràng buộc hiệu](../graph/diff-constraints.md), [ghép cặp lớn nhất (có trọng số) và phủ đỉnh nhỏ nhất trong đồ thị hai phía](../graph/graph-matching/bigraph-match.md#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%BD%A2%E5%BC%8F), v.v. đều có thể chuyển thành bài toán quy hoạch tuyến tính để giải. Hơn nữa, luồng cực đại và cắt nhỏ nhất, đường đi ngắn nhất và ràng buộc hiệu, ghép cặp lớn nhất trong đồ thị hai phía và phủ đỉnh nhỏ nhất, từng cặp một là các bài toán đối ngẫu của nhau.
 
-除此之外，还有一些常见的图论模型，它所有的可行解恰巧是某个顶点均为整点的多胞形的全体顶点．因此，可以通过巧妙地选取约束，使得相应的组合优化问题的解，恰为某个线性规划问题的最优解．例如，一般图匹配和生成树等图论模型都属于这种情况，因此 [一般图最大（权）匹配](../graph/graph-matching/general-weight-match.md) 和 [最小生成树](../graph/mst.md) 等问题同样可以转化为线性规划问题．
+Ngoài ra, còn có một số mô hình đồ thị thường gặp mà mọi nghiệm khả thi của chúng vừa đúng là toàn bộ các đỉnh của một đa bào có các đỉnh nguyên. Vì vậy, bằng cách chọn ràng buộc khéo léo, có thể làm cho nghiệm của bài toán tối ưu tổ hợp tương ứng đúng bằng nghiệm tối ưu của một bài toán quy hoạch tuyến tính. Ví dụ, ghép cặp trong đồ thị tổng quát và cây khung đều thuộc trường hợp này, nên các bài toán [ghép cặp lớn nhất (có trọng số) trong đồ thị tổng quát](../graph/graph-matching/general-weight-match.md) và [cây khung nhỏ nhất](../graph/mst.md) cũng có thể chuyển thành bài toán quy hoạch tuyến tính.
 
-## 参考文献与注释
+<span id="&#21442;&#32771;&#25991;&#29486;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và ghi chú
 
 -   Schrijver, Alexander. Theory of linear and integer programming. John Wiley & Sons, 1998.
 -   Papadimitriou, Christos H., and Kenneth Steiglitz. Combinatorial optimization: algorithms and complexity. Courier Corporation, 1998.
--   [Duality in linear programming. Part 1—definition and construction. by adamant - Codeforces blog](https://codeforces.com/blog/entry/105049)
--   [Duality in linear programming. Part 2—in competitive programming. by adamant - Codeforces blog](https://codeforces.com/blog/entry/105789)
+-   [Duality in linear programming. Part 1: definition and construction. by adamant - Codeforces blog](https://codeforces.com/blog/entry/105049)
+-   [Duality in linear programming. Part 2: in competitive programming. by adamant - Codeforces blog](https://codeforces.com/blog/entry/105789)
 
-[^poly-names]: 不同文献可能对这两个名词的定义有着不同的定义：有些文献会将有界的情形称作「多面体」，而将无界的情形称作「多胞形」；有些文献不会假定它们一定是凸集；有些文献会用「多面体」称呼三维空间中的多胞形．本文采取了与 Schrijver (1998) 和 Boyd and Vandenberghe (2004) 等文献一致的定义．
+[^poly-names]: Các tài liệu khác nhau có thể định nghĩa hai thuật ngữ này theo những cách khác nhau: một số tài liệu gọi trường hợp bị chặn là "đa diện" và trường hợp không bị chặn là "đa bào"; một số tài liệu không giả định chúng nhất định là tập lồi; một số tài liệu dùng "đa diện" để chỉ đa bào trong không gian ba chiều. Bài này dùng định nghĩa nhất quán với các tài liệu như Schrijver (1998) và Boyd and Vandenberghe (2004).
 
-[^reducible]: 更严格的表述是，它们之间可以在多项式时间内相互归约．
+[^reducible]: Phát biểu chặt chẽ hơn là các bài toán này có thể quy giảm lẫn nhau trong thời gian đa thức.
 
-[^other-methods]: 其它用于解决不等式组的方法还包括 Fourier–Motzkin 消元法和 Agmon–Motzkin–Schoenberg 松弛法等．它们更为直接，但是效率往往不高．
+[^other-methods]: Các phương pháp khác để giải hệ bất đẳng thức còn có khử Fourier-Motzkin, phương pháp nới lỏng Agmon-Motzkin-Schoenberg, v.v. Chúng trực tiếp hơn nhưng thường không hiệu quả.

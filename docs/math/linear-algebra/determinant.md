@@ -1,14 +1,15 @@
-行列式，是方阵的一种运算．对于方阵 $A$，$\det A$ 表示方阵 $A$ 的行列式．
+Định thức là một phép toán trên ma trận vuông. Với ma trận vuông $A$, $\det A$ biểu thị định thức của $A$.
 
-本文介绍行列式的三种定义．可以证明，本文中的定义方法是等价的．
+Bài này giới thiệu ba cách định nghĩa định thức. Có thể chứng minh rằng các định nghĩa trong bài là tương đương.
 
-## 全排列方法定义
+<span id="&#20840;&#25490;&#21015;&#26041;&#27861;&#23450;&#20041;"></span>
+## Định nghĩa bằng hoán vị
 
-前置知识：[置换](../permutation.md)、[逆序数](../permutation.md#逆序数)．
+Kiến thức chuẩn bị: [hoán vị](../permutation.md), [số nghịch thế](../permutation.md#%E9%80%86%E5%BA%8F%E6%95%B0).
 
-手动计算较低阶的行列式可以采用这种方法，它的时间复杂度为阶乘量级．
+Khi tính tay định thức bậc thấp, có thể dùng cách này; độ phức tạp thời gian của nó ở cấp giai thừa.
 
-使用记号 $\pi(j_1j_2\cdots j_n)$ 表示排列 $j_1j_2\cdots j_n$ 的逆序数，$S_n$ 为全体长度为 $n$ 的排列构成的集合．记号：
+Dùng ký hiệu $\pi(j_1j_2\cdots j_n)$ để chỉ số nghịch thế của hoán vị $j_1j_2\cdots j_n$, và $S_n$ là tập tất cả hoán vị độ dài $n$. Ta có ký hiệu:
 
 $$
 \begin{aligned}
@@ -22,19 +23,19 @@ a_{n1} & a_{n2} & \cdots & a_{nn}\\
 \end{aligned}
 $$
 
-表示的 $n$ 阶行列式是指 $n!$ 项的代数和，这些项是一切可能的取自方阵 $A$ 中不同的行与不同的列上的 $n$ 个元素的乘积 $a_{1j_1}a_{2j_2}\cdots a_{nj_n}$．
+Định thức bậc $n$ ở trên là tổng đại số gồm $n!$ hạng tử. Mỗi hạng tử là tích của $n$ phần tử lấy từ ma trận vuông $A$, sao cho các phần tử đó nằm trên các hàng khác nhau và các cột khác nhau, có dạng $a_{1j_1}a_{2j_2}\cdots a_{nj_n}$.
 
-项 $a_{1j_1}a_{2j_2}\cdots a_{nj_n}$ 前面的符号是 ${(-1)}^{\pi(j_1j_2\cdots j_n)}$，也就是说，当 $j_1j_2\cdots j_n$ 是偶排列时，符号为正，当 $j_1j_2\cdots j_n$ 是奇排列时，符号为负．
+Dấu đứng trước hạng tử $a_{1j_1}a_{2j_2}\cdots a_{nj_n}$ là ${(-1)}^{\pi(j_1j_2\cdots j_n)}$. Nói cách khác, nếu $j_1j_2\cdots j_n$ là hoán vị chẵn thì dấu là dương, còn nếu là hoán vị lẻ thì dấu là âm.
 
-对于二三阶行列式的对角线法则，事实上就是采用了全排列定义．四阶以上行列式不再适用于对角线法则，也是同样的原因．特别地，一阶行列式就是元素本身．
+Quy tắc đường chéo cho định thức bậc hai và bậc ba thực chất chính là dùng định nghĩa bằng hoán vị. Định thức từ bậc bốn trở lên không còn dùng được quy tắc đường chéo cũng vì lý do này. Đặc biệt, định thức bậc một chính là bản thân phần tử đó.
 
-定理：从 $n$ 阶行列式的第 $i_1,i_2,\cdots,i_n$ 行和第 $j_1,j_2,\cdots,j_n$ 列取出元素做乘积
+Định lý: Lấy các phần tử từ hàng thứ $i_1,i_2,\cdots,i_n$ và cột thứ $j_1,j_2,\cdots,j_n$ của một định thức bậc $n$, rồi nhân lại:
 
 $$
 a_{i_1j_1}a_{i_2j_2}\cdots a_{i_nj_n}
 $$
 
-这里 $i_1,i_2,\cdots,i_n$ 和 $j_1,j_2,\cdots,j_n$ 都是 $1,2,\cdots,n$ 这 $n$ 个数的排列．那么这一项在行列式中的符号是 ${(-1)}^{s+t}$，其中
+Ở đây $i_1,i_2,\cdots,i_n$ và $j_1,j_2,\cdots,j_n$ đều là các hoán vị của $1,2,\cdots,n$. Khi đó dấu của hạng tử này trong định thức là ${(-1)}^{s+t}$, trong đó
 
 $$
 s=\pi(i_1i_2\cdots i_n)
@@ -44,9 +45,9 @@ $$
 t=\pi(j_1j_2\cdots j_n)
 $$
 
-定理：行列式和它的转置行列式相等．
+Định lý: Một định thức bằng định thức chuyển vị của nó.
 
-定理：设行列式 $\det A$ 的第 $i$ 行的所有元素都可以表示成两项的和：
+Định lý: Giả sử mọi phần tử ở hàng thứ $i$ của định thức $\det A$ đều có thể viết thành tổng của hai hạng:
 
 $$
 \begin{vmatrix}
@@ -58,31 +59,34 @@ a_{n1} & a_{n2} & \cdots & a_{nn}\\
 \end{vmatrix}
 $$
 
-那么该行列式等于两个行列式 $\det A_1$ 和 $\det A_2$ 的和．其中 $A_1$ 的第 $i$ 行是 $b_{i1},b_{i2},\cdots,b_{in}$，$A_2$ 的第 $i$ 行是 $c_{i1},c_{i2},\cdots,c_{in}$，$A_1$ 和 $A_2$ 的其余各行都和 $A$ 相同．同样的性质对于列来说也成立．
+Khi đó định thức này bằng tổng của hai định thức $\det A_1$ và $\det A_2$. Trong đó hàng thứ $i$ của $A_1$ là $b_{i1},b_{i2},\cdots,b_{in}$, hàng thứ $i$ của $A_2$ là $c_{i1},c_{i2},\cdots,c_{in}$, còn các hàng khác của $A_1$ và $A_2$ đều giống $A$. Tính chất tương tự cũng đúng với cột.
 
-## 归纳方法定义
+<span id="&#24402;&#32435;&#26041;&#27861;&#23450;&#20041;"></span>
+## Định nghĩa bằng quy nạp
 
-这种方法只是描述了行列式的一种代数性质，时间复杂度也为阶乘量级，不适合用于计算．
+Cách này chỉ mô tả một tính chất đại số của định thức; độ phức tạp thời gian cũng ở cấp giai thừa, nên không phù hợp để tính toán.
 
-### 代数余子式
+<span id="&#20195;&#25968;&#20313;&#23376;&#24335;"></span>
+### Phần bù đại số
 
-在 $n$ 阶行列式 $\det A$ 中，任意取定矩阵 $A$ 的 $k$ 行和 $k$ 列．位于这些行列相交处的元素构成的 $k$ 阶矩阵叫做 $k$ 阶子矩阵，其行列式称为 $k$ 阶子式．
+Trong định thức bậc $n$ $\det A$, chọn tùy ý $k$ hàng và $k$ cột của ma trận $A$. Các phần tử nằm tại giao của những hàng và cột này tạo thành một ma trận con bậc $k$, và định thức của nó được gọi là một định thức con bậc $k$.
 
-对于 $n$ 阶行列式 $\det A$，某一元素 $a_{ij}$ 的余子阵 $M_{ij}$ 指的是原矩阵 $A$ 中，划去 $a_{ij}$ 所在的行和列后，余下的 $n-1$ 阶子矩阵；其行列式 $\det M_{ij}$ 称为余子式．
+Với định thức bậc $n$ $\det A$, ma trận phụ $M_{ij}$ của phần tử $a_{ij}$ là ma trận con bậc $n-1$ còn lại sau khi xóa hàng và cột chứa $a_{ij}$ khỏi ma trận gốc $A$; định thức $\det M_{ij}$ của nó được gọi là phần bù.
 
-对于 $n$ 阶行列式 $\det A$，元素 $a_{ij}$ 的余子式 $\det M_{ij}$ 附以符号 ${(-1)}^{i+j}$ 之后，叫做元素 $a_{ij}$ 的代数余子式，用符号 $A_{ij}$ 表示．
+Với định thức bậc $n$ $\det A$, sau khi gắn dấu ${(-1)}^{i+j}$ cho phần bù $\det M_{ij}$ của phần tử $a_{ij}$, ta được phần bù đại số của phần tử $a_{ij}$, ký hiệu là $A_{ij}$.
 
-从上一节全排列方法的定义可以推出结论：
+Từ định nghĩa bằng hoán vị ở phần trước có thể suy ra kết luận:
 
-定理：若在一个 $n$ 阶行列式 $\det A$ 中，第 $i$ 行或第 $j$ 列的元素除了 $a_{ij}$ 都是 $0$，那么这个行列式等于 $a_{ij}$ 和它的代数余子式 $A_{ij}$ 的乘积．
+Định lý: Nếu trong một định thức bậc $n$ $\det A$, các phần tử ở hàng thứ $i$ hoặc cột thứ $j$ đều bằng $0$ trừ $a_{ij}$, thì định thức đó bằng tích của $a_{ij}$ và phần bù đại số $A_{ij}$ của nó.
 
-### 行列式展开
+<span id="&#34892;&#21015;&#24335;&#23637;&#24320;"></span>
+### Khai triển định thức
 
-由于方阵转置，行列式不变，只需介绍按行展开或按列展开之一即可．
+Vì định thức không đổi khi chuyển vị ma trận vuông, chỉ cần giới thiệu một trong hai cách khai triển theo hàng hoặc theo cột.
 
-行列式 $\det A$ 定义为它任意一行（或一列）的所有元素与它们的对应代数余子式乘积的和．
+Định thức $\det A$ được định nghĩa là tổng các tích giữa mọi phần tử trên một hàng bất kỳ (hoặc một cột bất kỳ) với phần bù đại số tương ứng của chúng.
 
-换句话说，行列式可以使用按行（或按列）的展开式递归定义：
+Nói cách khác, định thức có thể được định nghĩa đệ quy bằng khai triển theo hàng (hoặc theo cột):
 
 $$
 \begin{aligned}
@@ -100,13 +104,13 @@ $$
 \end{aligned}
 $$
 
-递归终点为一阶矩阵的行列式，其即为该矩阵包含的唯一一个元素．
+Điểm dừng của đệ quy là định thức của ma trận bậc một, tức phần tử duy nhất trong ma trận đó.
 
-于是有结论：
+Từ đó có kết luận:
 
-定理：行列式 $\det A$ 的某一行（或某一列）的元素与另外一行（或另外一列）对应元素的代数余子式的乘积之和等于 $0$．
+Định lý: Tổng các tích giữa các phần tử của một hàng (hoặc một cột) của định thức $\det A$ với phần bù đại số tương ứng của một hàng khác (hoặc một cột khác) bằng $0$.
 
-换句话说，当 $i\neq j$ 时：
+Nói cách khác, khi $i\neq j$:
 
 $$
 a_{i1}A_{j1}+a_{i2}A_{j2}+\cdots+a_{in}A_{jn}=0
@@ -116,47 +120,48 @@ $$
 a_{1i}A_{1j}+a_{2i}A_{2j}+\cdots+a_{ni}A_{nj}=0
 $$
 
-## 公理化定义
+<span id="&#20844;&#29702;&#21270;&#23450;&#20041;"></span>
+## Định nghĩa tiên đề hóa
 
-公理化定义是说，满足了某些性质的运算只能是行列式．
+Định nghĩa tiên đề hóa nói rằng một phép toán thỏa một số tính chất nhất định thì chỉ có thể là định thức.
 
-前置知识：[初等变换](./elementary-operations.md)．
+Kiến thức chuẩn bị: [phép biến đổi sơ cấp](./elementary-operations.md).
 
-记 $D_i(k)$ 为 [倍乘矩阵](./elementary-operations.md#倍乘矩阵)、$P_{ij}$ 为 [对换矩阵](./elementary-operations.md#对换矩阵)、$T_{ij}(k)$ 为 [倍加矩阵](./elementary-operations.md#倍加矩阵)．
+Ký hiệu $D_i(k)$ là [ma trận nhân hàng/cột](./elementary-operations.md#%E5%80%8D%E4%B9%98%E7%9F%A9%E9%98%B5), $P_{ij}$ là [ma trận hoán đổi](./elementary-operations.md#%E5%AF%B9%E6%8D%A2%E7%9F%A9%E9%98%B5), $T_{ij}(k)$ là [ma trận cộng bội](./elementary-operations.md#%E5%80%8D%E5%8A%A0%E7%9F%A9%E9%98%B5).
 
-对于一个 $n$ 阶矩阵 $A$ 的运算 $\det$，如果满足以下四个性质，称为行列式：
+Với một phép toán $\det$ trên ma trận bậc $n$ $A$, nếu thỏa bốn tính chất sau thì nó được gọi là định thức:
 
--   把一个行列式的某一行或某一列的所有元素同时乘以一个数 $k$，等于用 $k$ 乘这个行列式．
+-   Nhân đồng thời mọi phần tử của một hàng hoặc một cột của định thức với một số $k$ thì định thức được nhân với $k$.
 
     $$
     \det(D_i(k)A) = \det(AD_i(k)) = k \det A
     $$
 
--   交换一个行列式的两行或两列，行列式改变符号．
+-   Đổi chỗ hai hàng hoặc hai cột của một định thức làm định thức đổi dấu.
 
     $$
     \det(P_{ij}A) = \det(AP_{ij}) = -\det A
     $$
 
--   把行列式的某一行或某一列的元素乘以同一数后加到另一行或另一列的对应元素上，行列式不变．
+-   Nhân các phần tử của một hàng hoặc một cột với cùng một số rồi cộng vào các phần tử tương ứng của hàng hoặc cột khác thì định thức không đổi.
 
     $$
     \det(T_{ij}(k)A) = \det(AT_{ij}(k))= \det A
     $$
 
--   单位矩阵的行列式为 $1$．
+-   Định thức của ma trận đơn vị bằng $1$.
 
     $$
     \det I = 1
     $$
 
-利用行列式有关初等变换的性质，可以方便手动计算更高阶的行列式．[「高斯消元」法计算行列式](../numerical/gauss.md#行列式计算)，也用到了这个性质，时间复杂度为 $O(n^3)$．
+Dùng các tính chất của định thức đối với biến đổi sơ cấp, ta có thể tính tay định thức bậc cao thuận tiện hơn. [Tính định thức bằng khử Gauss](../numerical/gauss.md#%E8%A1%8C%E5%88%97%E5%BC%8F%E8%AE%A1%E7%AE%97) cũng dùng tính chất này, với độ phức tạp thời gian $O(n^3)$.
 
-上述性质也有若干推论：
+Các tính chất trên cũng có một số hệ quả:
 
--   一个行列式中某一行或某一列的公因子可以提到行列式符号的外边．
--   如果一个行列式的某一行或某一列的元素全部是 $0$，那么这个行列式等于 $0$．
--   如果一个行列式有两行或两列的对应元素成比例，那么这个行列式等于 $0$．
--   如果一个行列式有两行或两列完全相同，那么这个行列式等于 $0$．
+-   Nhân tử chung của một hàng hoặc một cột trong định thức có thể đưa ra ngoài dấu định thức.
+-   Nếu một hàng hoặc một cột của định thức toàn là $0$, thì định thức đó bằng $0$.
+-   Nếu một định thức có hai hàng hoặc hai cột có các phần tử tương ứng tỉ lệ với nhau, thì định thức đó bằng $0$.
+-   Nếu một định thức có hai hàng hoặc hai cột hoàn toàn giống nhau, thì định thức đó bằng $0$.
 
-这些推论在手算行列式的时候非常常用．
+Các hệ quả này được dùng rất thường xuyên khi tính định thức bằng tay.

@@ -302,22 +302,22 @@ nav:
       - Tích chập Vandermonde: math/combinatorics/vandermonde-convolution.md
       - Đếm Pólya: math/combinatorics/polya.md
       - Đếm trong lý thuyết đồ thị: math/combinatorics/graph-enumeration.md
-    - 线性代数:
-      - 线性代数简介: math/linear-algebra/index.md
-      - 向量: math/linear-algebra/vector.md
-      - 内积和外积: math/linear-algebra/product.md
-      - 矩阵: math/linear-algebra/matrix.md
-      - 初等变换: math/linear-algebra/elementary-operations.md
-      - 行列式: math/linear-algebra/determinant.md
-      - 线性空间: math/linear-algebra/vector-space.md
-      - 线性基: math/linear-algebra/basis.md
-      - 线性映射: math/linear-algebra/linear-mapping.md
-      - 特征多项式: math/linear-algebra/char-poly.md
-      - 对角化: math/linear-algebra/diagonalization.md
-      - Jordan标准型: math/linear-algebra/jordan.md
-    - 线性规划:
-      - 线性规划基础: math/linear-programming.md
-      - 单纯形法: math/simplex.md
+    - Đại số tuyến tính:
+      - Giới thiệu đại số tuyến tính: math/linear-algebra/index.md
+      - Vector: math/linear-algebra/vector.md
+      - Tích trong và tích ngoài: math/linear-algebra/product.md
+      - Ma trận: math/linear-algebra/matrix.md
+      - Biến đổi sơ cấp: math/linear-algebra/elementary-operations.md
+      - Định thức: math/linear-algebra/determinant.md
+      - Không gian vector: math/linear-algebra/vector-space.md
+      - Cơ sở tuyến tính: math/linear-algebra/basis.md
+      - Ánh xạ tuyến tính: math/linear-algebra/linear-mapping.md
+      - Đa thức đặc trưng: math/linear-algebra/char-poly.md
+      - Chéo hóa: math/linear-algebra/diagonalization.md
+      - Dạng chuẩn Jordan: math/linear-algebra/jordan.md
+    - Quy hoạch tuyến tính:
+      - Cơ sở quy hoạch tuyến tính: math/linear-programming.md
+      - Phương pháp đơn hình: math/simplex.md
     - 抽象代数:
       - 基本概念: math/algebra/basic.md
       - 群论: math/algebra/group-theory.md

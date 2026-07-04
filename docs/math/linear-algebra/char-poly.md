@@ -1,38 +1,39 @@
-特征的这部分只研究方阵，即矩阵 $A$ 对应的线性变换将 $n$ 个向量映射到 $n$ 个向量．
+Phần về đặc trưng này chỉ xét ma trận vuông, tức là biến đổi tuyến tính tương ứng với ma trận $A$ ánh xạ $n$ vectơ thành $n$ vectơ.
 
-由于在实际问题中，经常要考虑连续进行重复的变换，如果只用「矩阵 $A$ 对应的线性变换将单位阵 $I$ 变换为 $A$」的描述，就会很抽象．此时最好的办法是找「不动点」，即变换当中不动的部分．
+Trong các bài toán thực tế, ta thường phải xét việc thực hiện liên tiếp các biến đổi lặp lại. Nếu chỉ dùng mô tả "biến đổi tuyến tính tương ứng với ma trận $A$ biến ma trận đơn vị $I$ thành $A$", thì sẽ rất trừu tượng. Lúc này cách tốt nhất là tìm "điểm bất động", tức phần không thay đổi trong biến đổi.
 
-然而事实上，矩阵 $A$ 对应的线性变换很可能没有不动点，于是退而求其次，寻找共线或者类似于简单变形的部分．
+Tuy nhiên trên thực tế, biến đổi tuyến tính tương ứng với ma trận $A$ rất có thể không có điểm bất động, nên ta lùi một bước và tìm các phần cộng tuyến hoặc gần giống một biến dạng đơn giản.
 
-## 特征值与特征向量
+<span id="&#x7279;&#x5F81;&#x503C;&#x4E0E;&#x7279;&#x5F81;&#x5411;&#x91CF;"></span>
+## Giá trị riêng và vectơ riêng
 
-在矩阵 $A$ 对应的线性变换作用下，一些向量的方向不改变，只是伸缩了．
+Dưới tác dụng của biến đổi tuyến tính tương ứng với ma trận $A$, hướng của một số vectơ không thay đổi, chỉ bị co giãn.
 
-设 $V$ 是 $F$ 上的线性空间，$T$ 是 $V$ 上的线性变换．若存在 $F$ 中的 $\lambda$ 与 $V$ 中的 **非零向量** $\xi$，使得：
+Giả sử $V$ là không gian tuyến tính trên $F$, và $T$ là một biến đổi tuyến tính trên $V$. Nếu tồn tại $\lambda$ trong $F$ và một **vectơ khác không** $\xi$ trong $V$ sao cho:
 
 $$
 T\xi=\lambda\xi
 $$
 
-则称 $\lambda$ 为 $T$ 的一个 **特征值**，而 $\xi$ 为 $T$ 的 **属于特征值 $\lambda$ 的一个特征向量**．
+thì $\lambda$ được gọi là một **giá trị riêng** của $T$, còn $\xi$ được gọi là **một vectơ riêng của $T$ ứng với giá trị riêng $\lambda$**.
 
-特征向量在同一直线上，在线性变换作用下保持方向不改变（压缩到零也认为是方向不改变）．特征向量不唯一，与特征向量共线的向量都是特征向量，但是规定零向量不是特征向量，拥有方向的向量自然是非零向量．特征向量的特征值就是它伸缩的倍数．
+Các vectơ riêng nằm trên cùng một đường thẳng vẫn giữ nguyên hướng dưới tác dụng của biến đổi tuyến tính (bị nén về không cũng được xem là không đổi hướng). Vectơ riêng không duy nhất; mọi vectơ cộng tuyến với một vectơ riêng đều là vectơ riêng, nhưng theo quy ước vectơ không không phải là vectơ riêng, vì vectơ có hướng đương nhiên phải khác không. Giá trị riêng của một vectơ riêng chính là hệ số co giãn của nó.
 
-在实际应用中，一般对于拥有相同特征值的特征向量，会选取一组基作为它们全体的代表．
+Trong ứng dụng thực tế, với các vectơ riêng có cùng giá trị riêng, người ta thường chọn một cơ sở làm đại diện cho toàn bộ chúng.
 
-设 $\alpha_1,\alpha_2,\cdots,\alpha_n$ 是 $V$ 的一组基，$T$ 在这组基下的矩阵为 $A$，即：
+Giả sử $\alpha_1,\alpha_2,\cdots,\alpha_n$ là một cơ sở của $V$, và ma trận của $T$ theo cơ sở này là $A$, tức là:
 
 $$
 T(\alpha_1,\alpha_2,\cdots,\alpha_n)=(\alpha_1,\alpha_2,\cdots,\alpha_n)A
 $$
 
-设 $\lambda_0$ 是 $T$ 的一个特征值，$\xi$ 为 $T$ 的属于特征值 $\lambda_0$ 的一个特征向量，且有非零向量 $X$ 满足：
+Giả sử $\lambda_0$ là một giá trị riêng của $T$, $\xi$ là một vectơ riêng của $T$ ứng với giá trị riêng $\lambda_0$, và tồn tại vectơ khác không $X$ thỏa mãn:
 
 $$
 \xi=(\alpha_1,\alpha_2,\cdots,\alpha_n)X
 $$
 
-于是有：
+Khi đó:
 
 $$
 T\xi=\lambda_0\xi
@@ -54,13 +55,14 @@ $$
 (A-\lambda_0I)X=0
 $$
 
-所以相应的行列式也为 $0$．
+Vì vậy định thức tương ứng cũng bằng $0$.
 
-## 特征多项式
+<span id="&#x7279;&#x5F81;&#x591A;&#x9879;&#x5F0F;"></span>
+## Đa thức đặc trưng
 
-考虑一个 $n\times n$ 的矩阵 $A$，其中 $n\geq 0\land n\in\mathbb{Z}$．设 $\lambda$ 为一个参量，矩阵 $\lambda I-A$ 称为 $A$ 的 **特征矩阵**．
+Xét một ma trận $n\times n$ là $A$, trong đó $n\geq 0\land n\in\mathbb{Z}$. Gọi $\lambda$ là một tham số, ma trận $\lambda I-A$ được gọi là **ma trận đặc trưng** của $A$.
 
-特征矩阵的行列式称为 $A$ 的 **特征多项式**，展开为一个 $n$ 次多项式，根为 $A$ 的特征值，记为 $p_A(\lambda)$：
+Định thức của ma trận đặc trưng được gọi là **đa thức đặc trưng** của $A$; khi khai triển là một đa thức bậc $n$, các nghiệm của nó là các giá trị riêng của $A$, ký hiệu là $p_A(\lambda)$:
 
 $$
 p_A(\lambda)=\det(\lambda I_n-A)=\begin{vmatrix}
@@ -71,61 +73,64 @@ p_A(\lambda)=\det(\lambda I_n-A)=\begin{vmatrix}
 \end{vmatrix}
 $$
 
-其中 $I_n$ 为一个 $n\times n$ 的单位矩阵．一些地方会定义为 $p_A(\lambda)=\det(A-\lambda I_n)$ 与我们的定义仅相差了一个符号 $(-1)^n$，但采用这种定义得到的 $p_A(\lambda)$ 一定为首一多项式，而另外的定义则仅当 $n$ 为偶数时才是首一多项式．需要注意的是 $0\times 0$ 的矩阵行列式为 $1$ 是良定义的．
+Trong đó $I_n$ là ma trận đơn vị $n\times n$. Một số nơi định nghĩa $p_A(\lambda)=\det(A-\lambda I_n)$; định nghĩa đó chỉ khác định nghĩa của chúng ta một dấu $(-1)^n$. Với định nghĩa ở đây, $p_A(\lambda)$ chắc chắn là đa thức monic, còn định nghĩa kia chỉ monic khi $n$ chẵn. Cần chú ý rằng định thức của ma trận $0\times 0$ bằng $1$ là một định nghĩa tốt.
 
-相应于 $(\lambda_0 I-A)X=0$ 的非零解向量 $X$，称为 $A$ 的属于 $\lambda_0$ 的特征向量．
+Vectơ nghiệm khác không $X$ tương ứng với $(\lambda_0 I-A)X=0$ được gọi là vectơ riêng của $A$ ứng với $\lambda_0$.
 
-线性变换 $T$ 有特征值 $\lambda_0$ 等价于矩阵 $A$ 有特征值 $\lambda_0$．
+Biến đổi tuyến tính $T$ có giá trị riêng $\lambda_0$ khi và chỉ khi ma trận $A$ có giá trị riêng $\lambda_0$.
 
-线性变换 $T$ 有特征向量 $\xi$ 等价于矩阵 $A$ 有特征向量 $X$，其中有：
+Biến đổi tuyến tính $T$ có vectơ riêng $\xi$ khi và chỉ khi ma trận $A$ có vectơ riêng $X$, trong đó:
 
 $$
 \xi=(\alpha_1,\cdots,\alpha_n)X
 $$
 
-根据代数基本定理，特征多项式可以分解为：
+Theo định lý cơ bản của đại số, đa thức đặc trưng có thể phân tích thành:
 
 $$
 f(\lambda)=|\lambda I-A|={(\lambda-\lambda_1)}^{d_1}\cdots{(\lambda-\lambda_m)}^{d_m}
 $$
 
-称 $d_i$ 为特征值 $\lambda_i$ 的 **代数重数**．全体代数重数的和为空间维数 $n$．
+Gọi $d_i$ là **bội đại số** của giá trị riêng $\lambda_i$. Tổng của tất cả các bội đại số bằng số chiều không gian $n$.
 
-### 求解矩阵的全部特征值及特征向量
+<span id="&#x6C42;&#x89E3;&#x77E9;&#x9635;&#x7684;&#x5168;&#x90E8;&#x7279;&#x5F81;&#x503C;&#x53CA;&#x7279;&#x5F81;&#x5411;&#x91CF;"></span>
+### Tìm toàn bộ giá trị riêng và vectơ riêng của ma trận
 
-分为以下步骤：
+Chia thành các bước sau:
 
--   计算行列式 $|\lambda I-A|$．
--   求出多项式 $f(\lambda)=|\lambda I-A|$ 在域 $F$ 中的全部根，即 $A$ 的特征值．
--   对 $A$ 的每个特征值 $\lambda$，解齐次线性方程组 $(\lambda I-A)X=0$，求出它的一组基础解系 $X_1,\cdots,X_t$，则 $A$ 的属于 $\lambda$ 的全部特征向量为：
+-   Tính định thức $|\lambda I-A|$.
+-   Tìm toàn bộ nghiệm của đa thức $f(\lambda)=|\lambda I-A|$ trong trường $F$, tức các giá trị riêng của $A$.
+-   Với mỗi giá trị riêng $\lambda$ của $A$, giải hệ phương trình tuyến tính thuần nhất $(\lambda I-A)X=0$ để tìm một hệ nghiệm cơ sở $X_1,\cdots,X_t$. Khi đó toàn bộ vectơ riêng của $A$ ứng với $\lambda$ là:
 
 $$
 k_1X_1+k_2X_2+\cdots+k_tX_t
 $$
 
-该表达式中的 $k_i$ 不全为零．
+trong biểu thức này, các $k_i$ không đồng thời bằng không.
 
--   线性变换 $T$ 的属于 $\lambda$ 的特征向量为：
+-   Vectơ riêng của biến đổi tuyến tính $T$ ứng với $\lambda$ là:
 
 $$
 \xi_i=(\alpha_1,\cdots,\alpha_n)X_i
 $$
 
-因此，属于 $\lambda$ 的全部特征向量为：
+Vì vậy, toàn bộ vectơ riêng ứng với $\lambda$ là:
 
 $$
 k_1\xi_1+k_2\xi_2+\cdots+k_t\xi_t
 $$
 
-该表达式中的 $k_i$ 不全为零．
+trong biểu thức này, các $k_i$ không đồng thời bằng không.
 
-特征值与特征向量是否存在，依赖于 $V$ 所在的域．
+Việc giá trị riêng và vectơ riêng có tồn tại hay không phụ thuộc vào trường chứa $V$.
 
-## 相似变换
+<span id="&#x76F8;&#x4F3C;&#x53D8;&#x6362;"></span>
+## Biến đổi tương tự
 
-### 引入
+<span id="&#x5F15;&#x5165;"></span>
+### Dẫn nhập
 
-若 $n\times n$ 的矩阵 $A$ 为上三角矩阵如
+Nếu ma trận $n\times n$ $A$ là ma trận tam giác trên như sau:
 
 $$
 A=
@@ -137,7 +142,7 @@ a_{1,1}&a_{1,2}&\cdots &a_{1,n}\\
 \end{bmatrix}
 $$
 
-那么
+thì:
 
 $$
 \begin{aligned}
@@ -154,19 +159,20 @@ x-a_{1,1}&-a_{1,2}&\cdots &-a_{1,n}\\
 \end{aligned}
 $$
 
-可轻松求得，下三角矩阵也是类似的．但如果 $A$ 不属于这两种矩阵，则需要使用相似变换，使得矩阵变为容易求得特征多项式的形式．
+ta có thể tính rất dễ; với ma trận tam giác dưới cũng tương tự. Nhưng nếu $A$ không thuộc hai loại ma trận này, ta cần dùng biến đổi tương tự để đưa ma trận về dạng dễ tính đa thức đặc trưng.
 
-### 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+### Định nghĩa
 
-对于 $n\times n$ 的矩阵 $A$ 和 $B$，当存在 $n\times n$ 的可逆矩阵 $P$ 满足
+Với hai ma trận $n\times n$ $A$ và $B$, nếu tồn tại ma trận khả nghịch $n\times n$ $P$ sao cho:
 
 $$
 B=P^{-1}AP
 $$
 
-则矩阵 $A$ 和 $B$ 相似，记变换 $A\mapsto P^{-1}AP$ 为相似变换．且 $A$ 和 $P^{-1}AP$ 有相同的特征多项式．
+thì hai ma trận $A$ và $B$ tương tự; phép biến đổi $A\mapsto P^{-1}AP$ được gọi là biến đổi tương tự. Khi đó $A$ và $P^{-1}AP$ có cùng đa thức đặc trưng.
 
-考虑
+Xét:
 
 $$
 \begin{aligned}
@@ -178,67 +184,71 @@ $$
 \end{aligned}
 $$
 
-得证，对于 $A\mapsto PAP^{-1}$ 也是一样的．另外 $p_A(0)=(-1)^n\cdot \det(A)$，因为 $p_A(0)=\det(-1\cdot I_nA)=\det(-1\cdot I_n)\cdot \det(A)$ 故 $\det(A)=\det(P^{-1}AP)$．
+Suy ra điều phải chứng minh; với $A\mapsto PAP^{-1}$ cũng tương tự. Ngoài ra $p_A(0)=(-1)^n\cdot \det(A)$, vì $p_A(0)=\det(-1\cdot I_nA)=\det(-1\cdot I_n)\cdot \det(A)$, nên $\det(A)=\det(P^{-1}AP)$.
 
-定理：相似矩阵有相同的特征多项式及特征值，反之不然．
+Định lý: Các ma trận tương tự có cùng đa thức đặc trưng và cùng giá trị riêng; chiều ngược lại không đúng.
 
-定理表明，线性变换的矩阵的特征多项式与基的选取无关，而直接由线性变换决定，故可称之为线性变换的特征多项式．
+Định lý này cho thấy đa thức đặc trưng của ma trận của một biến đổi tuyến tính không phụ thuộc vào cách chọn cơ sở, mà được quyết định trực tiếp bởi biến đổi tuyến tính, nên có thể gọi là đa thức đặc trưng của biến đổi tuyến tính.
 
-矩阵 $A$ 的特征多项式 $f(\lambda)=|\lambda I-A|$ 是一个首一的多项式．根据韦达定理，它的 $n-1$ 次系数为：
+Đa thức đặc trưng $f(\lambda)=|\lambda I-A|$ của ma trận $A$ là một đa thức monic. Theo định lý Vieta, hệ số bậc $n-1$ của nó là:
 
 $$
 -(\lambda_1+\cdots+\lambda_n)=-(a_{11}+\cdots+a_{nn})=-tr A
 $$
 
-其中 $tr A$ 称为 $A$ 的迹，为 $A$ 的主对角线元素之和．
+trong đó $tr A$ được gọi là vết của $A$, bằng tổng các phần tử trên đường chéo chính của $A$.
 
-根据韦达定理，特征多项式的常数项为：
+Theo định lý Vieta, hạng tử tự do của đa thức đặc trưng là:
 
 $$
 {(-1)}^n|A|={(-1)}^n(\lambda_1\cdots\lambda_n)
 $$
 
-定理：相似的矩阵有相同的迹．
+Định lý: Các ma trận tương tự có cùng vết.
 
-### 换位公式
+<span id="&#x6362;&#x4F4D;&#x516C;&#x5F0F;"></span>
+### Công thức đổi chỗ
 
-定理：无论矩阵 $A$ 和矩阵 $B$ 是否方阵，只要乘法能进行，则矩阵 $AB$ 的迹等于矩阵 $BA$ 的迹．
+Định lý: Bất kể ma trận $A$ và ma trận $B$ có là ma trận vuông hay không, miễn là phép nhân thực hiện được, thì vết của ma trận $AB$ bằng vết của ma trận $BA$.
 
-一种证法是直接展开，即证毕．另一种证法用到换位公式．
+Một cách chứng minh là khai triển trực tiếp, khi đó xong. Một cách chứng minh khác dùng công thức đổi chỗ.
 
-定理：设 $A$ 为 $m$ 行 $n$ 列矩阵，设 $B$ 为 $n$ 行 $m$ 列矩阵，则有：
+Định lý: Giả sử $A$ là ma trận $m$ hàng $n$ cột, và $B$ là ma trận $n$ hàng $m$ cột. Khi đó:
 
 $$
 \lambda^n|\lambda I_m-AB|=\lambda^m|\lambda I_n-BA|
 $$
 
-该公式表明 $AB$ 与 $BA$ 有相同的非零特征值．
+Công thức này cho thấy $AB$ và $BA$ có cùng các giá trị riêng khác không.
 
-### 舒尔（Schur）引理
+<span id="&#x8212;&#x5C14;&#xFF08;schur&#xFF09;&#x5F15;&#x7406;"></span>
+### Bổ đề Schur
 
-任意的 $n$ 阶矩阵 $A$ 都相似于一个上三角阵，即存在满秩阵 $P$，使得 $P^{-1}AP$ 为上三角阵，它的主对角线上元素为 $A$ 的全部特征值．
+Mọi ma trận cấp $n$ $A$ đều tương tự với một ma trận tam giác trên, tức tồn tại ma trận đủ hạng $P$ sao cho $P^{-1}AP$ là ma trận tam giác trên, và các phần tử trên đường chéo chính của nó là toàn bộ các giá trị riêng của $A$.
 
-推论：设 $A$ 的 $n$ 个特征值为 $\lambda_1,\cdots,\lambda_n$，$\phi(x)$ 为任一多项式，则矩阵多项式 $\phi(A)$ 的 $n$ 个特征值为：
+Hệ quả: Giả sử $n$ giá trị riêng của $A$ là $\lambda_1,\cdots,\lambda_n$, và $\phi(x)$ là một đa thức bất kỳ. Khi đó $n$ giá trị riêng của đa thức ma trận $\phi(A)$ là:
 
 $$
 \phi(\lambda_1),\cdots,\phi(\lambda_n)
 $$
 
-特别地，$kA$ 的特征值为 $k\lambda_1,\cdots,k\lambda_n$，$A^m$ 的特征值为 ${\lambda_1}^m,\cdots,{\lambda_n}^m$．
+Đặc biệt, các giá trị riêng của $kA$ là $k\lambda_1,\cdots,k\lambda_n$, các giá trị riêng của $A^m$ là ${\lambda_1}^m,\cdots,{\lambda_n}^m$.
 
-### 使用高斯消元进行相似变换
+<span id="&#x4F7F;&#x7528;&#x9AD8;&#x65AF;&#x6D88;&#x5143;&#x8FDB;&#x884C;&#x76F8;&#x4F3C;&#x53D8;&#x6362;"></span>
+### Dùng khử Gauss để thực hiện biến đổi tương tự
 
-对 $n\times n$ 的矩阵 $B$ 可以进行高斯消元，其基本操作为初等行变换．
+Với ma trận $n\times n$ $B$, có thể thực hiện khử Gauss; các thao tác cơ bản là các phép biến đổi sơ cấp trên hàng.
 
-在对矩阵使用上述操作（左乘初等矩阵）后再右乘其逆矩阵即相似变换，左乘为行变换，易发现右乘即列变换．
+Sau khi áp dụng các thao tác trên cho ma trận (nhân trái với ma trận sơ cấp), lại nhân phải với ma trận nghịch đảo của nó thì ta được một biến đổi tương tự. Nhân trái là biến đổi hàng, và dễ thấy nhân phải tương ứng với biến đổi cột.
 
-若能将矩阵通过相似变换变为上三角或下三角的形式，那么可以轻松求出其特征多项式．但若对主对角线上的元素应用变换 $A\mapsto T_{ij}(k)AT_{ij}(-k)$ 后会导致原本通过 $A\mapsto T_{ij}(k)A$ 将第 $i$ 行第 $j$ 列的元素消为零后右乘 $T_{ij}(-k)$ 即将 $A$ 的第 $i$ 列的 $-k$ 倍加到第 $j$ 列这一操作使得之前消为零的元素现在可能不为零，可能不能将其变为上三角或下三角形式．
+Nếu có thể đưa ma trận bằng biến đổi tương tự về dạng tam giác trên hoặc tam giác dưới, thì có thể dễ dàng tính đa thức đặc trưng. Tuy nhiên, nếu áp dụng phép biến đổi $A\mapsto T_{ij}(k)AT_{ij}(-k)$ lên các phần tử trên đường chéo chính, thì sau khi dùng $A\mapsto T_{ij}(k)A$ để khử phần tử ở hàng $i$ cột $j$ về không, việc nhân phải với $T_{ij}(-k)$, tức cộng $-k$ lần cột thứ $i$ của $A$ vào cột thứ $j$, có thể làm phần tử đã khử về không trước đó lại khác không; vì thế có thể không đưa được về dạng tam giác trên hoặc tam giác dưới.
 
-后文将说明对次对角线上的元素应用变换后得到的矩阵依然可以轻松得到其特征多项式．
+Phần sau sẽ giải thích rằng sau khi áp dụng phép biến đổi lên các phần tử trên đường chéo phụ, ma trận thu được vẫn có thể được dùng để tính đa thức đặc trưng một cách dễ dàng.
 
-### 上 Hessenberg 矩阵
+<span id="&#x4E0A;-hessenberg-&#x77E9;&#x9635;"></span>
+### Ma trận Hessenberg trên
 
-对于 $n\gt 2$ 的形如
+Với $n\gt 2$, ma trận có dạng:
 
 $$
 H=
@@ -251,11 +261,11 @@ H=
 \end{bmatrix}
 $$
 
-的矩阵我们称为上 Hessenberg 矩阵，其中 $\beta$ 为次对角线．
+được gọi là ma trận Hessenberg trên, trong đó $\beta$ là đường chéo phụ.
 
-我们使用相似变换将次对角线以下的元素消为零后即能得到上 Hessenberg 矩阵，而求出一个 $n\times n$ 上 Hessenberg 矩阵的特征多项式则可在 $O(n^3)$ 时间完成．
+Ta dùng biến đổi tương tự để khử các phần tử bên dưới đường chéo phụ về không, từ đó thu được ma trận Hessenberg trên; còn việc tính đa thức đặc trưng của một ma trận Hessenberg trên $n\times n$ có thể hoàn thành trong thời gian $O(n^3)$.
 
-我们记 $H_i$ 为只保留 $H$ 的前 $i$ 行和前 $i$ 列的矩阵，记 $p_i(x)=\det(xI_i-H_i)$ 那么
+Ký hiệu $H_i$ là ma trận chỉ giữ lại $i$ hàng đầu và $i$ cột đầu của $H$, ký hiệu $p_i(x)=\det(xI_i-H_i)$. Khi đó:
 
 $$
 H_0=
@@ -281,7 +291,7 @@ H_2=
 p_2(x)=\det(xI_2-H_2)=(x-\alpha_2)p_1(x)-\beta_2h_{12}p_0(x)
 $$
 
-在计算行列式时我们一般选择按零最多的行或列余子式展开，余子式即删除了当前选择的元素所在行和列之后的矩阵，在这里我们选择按最后一行进行展开，有
+Khi tính định thức, ta thường chọn khai triển theo phần bù đại số của hàng hoặc cột có nhiều số không nhất. Phần bù tương ứng với một phần tử là ma trận thu được sau khi xóa hàng và cột chứa phần tử đang xét. Ở đây ta chọn khai triển theo hàng cuối, có:
 
 $$
 \begin{aligned}
@@ -301,7 +311,7 @@ x-\alpha_1&-h_{13}\\
 \end{aligned}
 $$
 
-观察并归纳，对 $2\leq i\leq n$ 有
+Quan sát và quy nạp, với $2\leq i\leq n$ ta có:
 
 $$
 p_i(x)=(x-\alpha_i)p_{i-1}(x)-
@@ -312,35 +322,38 @@ p_i(x)=(x-\alpha_i)p_{i-1}(x)-
 p_{i-m-1}(x)
 $$
 
-至此完成了整个算法，该算法一般被称为 Hessenberg 算法．
+Đến đây toàn bộ thuật toán đã hoàn tất; thuật toán này thường được gọi là thuật toán Hessenberg.
 
-## Cayley–Hamilton 定理
+<span id="cayley&#x2013;hamilton-&#x5B9A;&#x7406;"></span>
+## Định lý Cayley-Hamilton
 
-对于任意的 $n$ 阶矩阵 $A$，特征多项式为 $f(\lambda)=|\lambda I-A|$，则必有 $f(A)=0$．
+Với mọi ma trận cấp $n$ $A$, nếu đa thức đặc trưng là $f(\lambda)=|\lambda I-A|$, thì nhất định có $f(A)=0$.
 
-对于线性变换 $T$ 有平行的结果：如果 $f(\lambda)$ 为 $T$ 的特征多项式，则 $f(T)$ 为零变换．
+Với biến đổi tuyến tính $T$ cũng có kết quả song song: nếu $f(\lambda)$ là đa thức đặc trưng của $T$, thì $f(T)$ là biến đổi không.
 
-由本定理可知，对于任意的矩阵 $A$，必有可以使其零化的多项式．
+Từ định lý này có thể biết rằng, với mọi ma trận $A$, luôn tồn tại một đa thức triệt tiêu nó.
 
-## 最小多项式
+<span id="&#x6700;&#x5C0F;&#x591A;&#x9879;&#x5F0F;"></span>
+## Đa thức tối tiểu
 
-设 $V$ 是一个 $n$ 维向量空间，由于线性变换对应的矩阵有 $n^2$ 个元素，一切线性变换构成 $n^2$ 维线性空间．
+Giả sử $V$ là một không gian vectơ $n$ chiều. Vì ma trận tương ứng với một biến đổi tuyến tính có $n^2$ phần tử, nên toàn bộ các biến đổi tuyến tính tạo thành một không gian tuyến tính $n^2$ chiều.
 
-对于一个特定的线性变换 $T$，从作用 $0$ 次到作用 $n$ 次，总共 $n^2+1$ 个线性变换，它们对应的矩阵一定线性相关．于是存在非零多项式 $f$，使得 $f(T)$ 为零变换，称变换 $T$ 满足多项式 $f$．在 $T$ 满足的所有多项式 $f$ 中，存在次数最低的．
+Với một biến đổi tuyến tính cụ thể $T$, xét từ tác dụng $0$ lần đến tác dụng $n$ lần, tổng cộng có $n^2+1$ biến đổi tuyến tính; các ma trận tương ứng với chúng chắc chắn phụ thuộc tuyến tính. Vì vậy tồn tại đa thức khác không $f$ sao cho $f(T)$ là biến đổi không; ta nói biến đổi $T$ thỏa mãn đa thức $f$. Trong tất cả các đa thức $f$ mà $T$ thỏa mãn, tồn tại một đa thức có bậc thấp nhất.
 
-可以将矩阵 $A$ 零化的最小次数的首一多项式称为 $A$ 的最小多项式，记为 $m_A(\lambda)$．
+Đa thức monic có bậc nhỏ nhất có thể triệt tiêu ma trận $A$ được gọi là đa thức tối tiểu của $A$, ký hiệu $m_A(\lambda)$.
 
-根据多项式的辗转相除法，最小多项式是唯一的，且可整除任一 $A$ 的零化多项式．特别地，最小多项式整除特征多项式．
+Theo phép chia Euclid của đa thức, đa thức tối tiểu là duy nhất và chia hết mọi đa thức triệt tiêu của $A$. Đặc biệt, đa thức tối tiểu chia đa thức đặc trưng.
 
-定理：在不计重数的情况下，矩阵 $A$ 的特征多项式 $f(\lambda)$ 与最小多项式 $m_A(\lambda)$ 有相同的根．
+Định lý: Nếu không tính bội, đa thức đặc trưng $f(\lambda)$ và đa thức tối tiểu $m_A(\lambda)$ của ma trận $A$ có cùng tập nghiệm.
 
-定理：矩阵 $A$ 的属于不同特征值的特征向量线性无关．
+Định lý: Các vectơ riêng của ma trận $A$ ứng với các giá trị riêng khác nhau thì độc lập tuyến tính.
 
-## 应用
+<span id="&#x5E94;&#x7528;"></span>
+## Ứng dụng
 
-在信息学中我们一般考虑 $(\mathbb{Z}/m\mathbb{Z})^{n\times n}$ 上的矩阵，通常 $m$ 为素数，进行上述相似变换是简单的，当 $m$ 为合数时，我们可以考虑类似辗转相除的方法来进行．
+Trong tin học, ta thường xét các ma trận trên $(\mathbb{Z}/m\mathbb{Z})^{n\times n}$; thông thường $m$ là số nguyên tố, khi đó thực hiện các biến đổi tương tự ở trên là đơn giản. Khi $m$ là hợp số, ta có thể xét cách làm tương tự thuật toán Euclid.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     #include <cassert>
     #include <iostream>
@@ -461,11 +474,11 @@ $$
     }
     ```
 
-上述 Hessenberg 算法不具有数值的稳定性，所以 $\mathbb{R}^{n\times n}$ 上的矩阵在使用前需要其他算法进行调整或改用其他具有数值稳定性的算法．
+Thuật toán Hessenberg ở trên không ổn định về mặt số học, vì vậy với ma trận trên $\mathbb{R}^{n\times n}$ cần dùng thuật toán khác để điều chỉnh trước khi áp dụng, hoặc chuyển sang thuật toán khác có tính ổn định số tốt hơn.
 
-我们可以将特征多项式与常系数齐次线性递推联系起来，也可结合 Cayley–Hamilton 定理、多项式取模加速一些域上求矩阵幂次的算法．
+Ta có thể liên hệ đa thức đặc trưng với truy hồi tuyến tính thuần nhất hệ số hằng, cũng có thể kết hợp định lý Cayley-Hamilton và phép lấy dư đa thức để tăng tốc một số thuật toán tính lũy thừa ma trận trên trường.
 
-Cayley–Hamilton 定理指出
+Định lý Cayley-Hamilton chỉ ra:
 
 $$
 \begin{aligned}
@@ -474,11 +487,11 @@ p_A(A)&=A^n+c_1A^{n-1}+\cdots +c_{n-1}A+c_nI\\
 \end{aligned}
 $$
 
-其中 $O$ 为 $n\times n$ 的零矩阵，$A\in\mathbb{C}^{n\times n}$ 且 $p_A(x)=x^n+\sum_{i=1}^nc_ix^{n-i}\in\mathbb{C}[x]$ 为 $A$ 的特征多项式．
+trong đó $O$ là ma trận không $n\times n$, $A\in\mathbb{C}^{n\times n}$ và $p_A(x)=x^n+\sum_{i=1}^nc_ix^{n-i}\in\mathbb{C}[x]$ là đa thức đặc trưng của $A$.
 
-若我们要求 $A^K$ 其中 $K$ 较大，那么可以求出 $f(x)=x^K\bmod{p_A(x)}$ 后利用 $f(A)=A^K$．
+Nếu cần tính $A^K$ với $K$ khá lớn, ta có thể tìm $f(x)=x^K\bmod{p_A(x)}$ rồi dùng $f(A)=A^K$.
 
-而 $\deg(f(x))\lt n$ 显然．我们令 $f(x)=\sum_{i=0}^{n-1}f_ix^i$ 且 $n=km$ 那么
+Hiển nhiên $\deg(f(x))\lt n$. Đặt $f(x)=\sum_{i=0}^{n-1}f_ix^i$ và $n=km$, khi đó:
 
 $$
 \begin{aligned}
@@ -489,10 +502,11 @@ f_{km-1}x^{km-1}+\cdots +f_1x+f_0&=(\cdots (f_{km-1}x^{k-1}+\cdots +f_{k(m-1)})x
 \end{aligned}
 $$
 
-令 $k=\sqrt{n}$ 可以发现计算 $f(A)$ 大约需要 $O(\sqrt{n})$ 次矩阵与矩阵的乘法．
+Lấy $k=\sqrt{n}$, có thể thấy việc tính $f(A)$ cần khoảng $O(\sqrt{n})$ phép nhân ma trận với ma trận.
 
-## 参考文献
+<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+## Tài liệu tham khảo
 
--   Rizwana Rehman, Ilse C.F. Ipsen.[La Budde’s Method for Computing Characteristic Polynomials](https://ipsen.math.ncsu.edu/ps/charpoly3.pdf).
+-   Rizwana Rehman, Ilse C.F. Ipsen.[La Budde's Method for Computing Characteristic Polynomials](https://ipsen.math.ncsu.edu/ps/charpoly3.pdf).
 -   Marshall Law.[Computing Characteristic Polynomials of Matrices of Structured Polynomials](http://summit.sfu.ca/system/files/iritems1/17301/etd10125_.pdf).
 -   Mike Paterson.[On the Number of Nonscalar Multiplications Necessary to Evaluate Polynomials](https://epubs.siam.org/doi/10.1137/0202007).

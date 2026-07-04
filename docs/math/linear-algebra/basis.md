@@ -1,126 +1,131 @@
 author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, RUIN-RISE, wjy-yy, rsdbkhusky, ouuan, Menci, Tiphereth-A
 
-回想高中数学立体几何中基向量的概念，我们可以在三维欧氏空间中找到一组基向量 $\boldsymbol{i}$，$\boldsymbol{j}$，$\boldsymbol{k}$，之后空间中任意一个向量都可以由这组基向量表示．换句话说，我们可以 **通过有限的基向量来描述无限的三维空间**，这足以体现基向量的重要性．
+Nhớ lại khái niệm vectơ cơ sở trong hình học không gian ở bậc phổ thông: trong không gian Euclid ba chiều, ta có thể tìm một bộ vectơ cơ sở $\boldsymbol{i}$, $\boldsymbol{j}$, $\boldsymbol{k}$; khi đó mọi vectơ trong không gian đều có thể được biểu diễn bởi bộ vectơ cơ sở này. Nói cách khác, ta có thể **mô tả một không gian ba chiều vô hạn bằng một số hữu hạn vectơ cơ sở**, điều này đủ cho thấy tầm quan trọng của vectơ cơ sở.
 
-三维欧氏空间是特殊的 [线性空间](./vector-space.md)，三维欧氏空间的基向量在线性空间中就被推广为了线性基．
+Không gian Euclid ba chiều là một trường hợp đặc biệt của [không gian tuyến tính](./vector-space.md); vectơ cơ sở của không gian Euclid ba chiều được khái quát trong không gian tuyến tính thành cơ sở tuyến tính.
 
-OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线性空间 $\mathbf{R}^n$ 和 $n$ 维 [布尔域](https://en.wikipedia.org/wiki/Boolean_domain) 线性空间 $\mathbf{Z}_2^n$，我们会在 [应用](#应用) 一节中详细介绍．若您不熟悉线性代数，则推荐从应用部分开始阅读．
+Trong OI, các ứng dụng liên quan đến cơ sở tuyến tính thường chỉ xét hai loại không gian tuyến tính: không gian tuyến tính thực $n$ chiều $\mathbf{R}^n$ và không gian tuyến tính $n$ chiều trên [trường Boolean](https://en.wikipedia.org/wiki/Boolean_domain) $\mathbf{Z}_2^n$. Chúng ta sẽ giới thiệu chi tiết trong phần [ứng dụng](#%E5%BA%94%E7%94%A8). Nếu chưa quen với đại số tuyến tính, bạn nên bắt đầu đọc từ phần ứng dụng.
 
-以下会从一般的线性空间出发来介绍线性基，并给出线性基的常见性质．
+Phần dưới sẽ xuất phát từ không gian tuyến tính tổng quát để giới thiệu cơ sở tuyến tính và nêu các tính chất thường gặp của nó.
 
-前置知识：[线性空间](./vector-space.md)．
+Kiến thức chuẩn bị: [không gian tuyến tính](./vector-space.md).
 
-线性基是线性空间的一组基，是研究线性空间的重要工具．
+Cơ sở tuyến tính là một bộ cơ sở của không gian tuyến tính, là công cụ quan trọng để nghiên cứu không gian tuyến tính.
 
-## 定义
+<span id="&#23450;&#20041;"></span>
+## Định nghĩa
 
-称线性空间 $V$ 的一个极大线性无关组为 $V$ 的一组 **Hamel 基** 或 **线性基**，简称 **基**．
+Một hệ con độc lập tuyến tính cực đại của không gian tuyến tính $V$ được gọi là một **cơ sở Hamel** hoặc **cơ sở tuyến tính** của $V$, gọi tắt là **cơ sở**.
 
-规定线性空间 $\{\theta\}$ 的基为空集．
+Quy ước rằng cơ sở của không gian tuyến tính $\{\theta\}$ là tập rỗng.
 
-可以证明任意线性空间均存在线性基[^existence_basis]，我们定义线性空间 $V$ 的 **维数** 为线性基的元素个数（或势），记作 $\dim V$．
+Có thể chứng minh mọi không gian tuyến tính đều tồn tại cơ sở tuyến tính[^existence_basis]. Ta định nghĩa **số chiều** của không gian tuyến tính $V$ là số phần tử (hoặc lực lượng) của một cơ sở tuyến tính, ký hiệu $\dim V$.
 
-## 性质
+<span id="&#24615;&#36136;"></span>
+## Tính chất
 
-1.  对于有限维线性空间 $V$, 设其维数为 $n$, 则：
+1.  Với không gian tuyến tính hữu hạn chiều $V$, giả sử số chiều của nó là $n$, khi đó:
 
-    1.  $V$ 中的任意 $n+1$ 个向量线性相关．
+    1.  Mọi $n+1$ vectơ trong $V$ đều phụ thuộc tuyến tính.
 
-    2.  $V$ 中的任意 $n$ 个线性无关的向量均为 $V$ 的基．
+    2.  Mọi $n$ vectơ độc lập tuyến tính trong $V$ đều là một cơ sở của $V$.
 
-    3.  若 $V$ 中的任意向量均可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则其是 $V$ 的一个基．
+    3.  Nếu mọi vectơ trong $V$ đều có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$, thì hệ này là một cơ sở của $V$.
 
-        ???+ note "证明"
-            任取 $V$ 中的一组基 $b_1,b_2,\dots,b_n$, 由已知条件，向量组 $b_1,b_2,\dots,b_n$ 可被 $a_1,a_2,\dots,a_n$ 线性表出，故
+        ???+ note "Chứng minh"
+            Lấy tùy ý một cơ sở $b_1,b_2,\dots,b_n$ của $V$. Theo giả thiết, hệ vectơ $b_1,b_2,\dots,b_n$ có thể được biểu diễn tuyến tính bởi $a_1,a_2,\dots,a_n$, nên
             
             $$
             n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n
             $$
             
-            因此 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}=n$
+            Do đó $\operatorname{rank}\{a_1,a_2,\dots,a_n\}=n$.
 
-    4.  $V$ 中任意线性无关向量组 $a_1,a_2,\dots,a_m$ 均可通过插入一些向量使得其变为 $V$ 的一个基．
+    4.  Mọi hệ vectơ độc lập tuyến tính $a_1,a_2,\dots,a_m$ trong $V$ đều có thể được mở rộng bằng cách chèn thêm một số vectơ để trở thành một cơ sở của $V$.
 
-2.  （子空间维数公式）令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的有限维线性空间，且 $V_1+V_2$ 和 $V_1\cap V_2$ 也是有限维的，则 $\dim V_1+\dim V_2=\dim(V_1+V_2)+\dim(V_1\cap V_2)$
+2.  (Công thức số chiều của không gian con) Gọi $V_1,V_2$ là các không gian tuyến tính hữu hạn chiều trên $\Bbb{P}$, đồng thời $V_1+V_2$ và $V_1\cap V_2$ cũng hữu hạn chiều. Khi đó $\dim V_1+\dim V_2=\dim(V_1+V_2)+\dim(V_1\cap V_2)$.
 
-    ???+ note "证明"
-        设 $\dim V_1=n_1$,$\dim V_2=n_2$,$\dim(V_1\cap V_2)=m$.
+    ???+ note "Chứng minh"
+        Giả sử $\dim V_1=n_1$,$\dim V_2=n_2$,$\dim(V_1\cap V_2)=m$.
         
-        取 $V_1\cap V_2$ 的一组基 $a_1,a_2,\dots,a_m$, 将其分别扩充为 $V_1$ 和 $V_2$ 中的基：$a_1,a_2,\dots,a_m,b_1,b_2,\dots,b_{n_1-m}$ 和 $a_1,a_2,\dots,a_m,c_1,c_2,\dots,c_{n_2-m}$.
+        Lấy một cơ sở $a_1,a_2,\dots,a_m$ của $V_1\cap V_2$, rồi lần lượt mở rộng nó thành cơ sở của $V_1$ và $V_2$: $a_1,a_2,\dots,a_m,b_1,b_2,\dots,b_{n_1-m}$ và $a_1,a_2,\dots,a_m,c_1,c_2,\dots,c_{n_2-m}$.
         
-        接下来只需证明向量组 $a_1,a_2,\dots,a_m,b_1,b_2,\dots,b_{n_1-m},c_1,c_2,\dots,c_{n_2-m}$ 线性无关即可．
+        Tiếp theo chỉ cần chứng minh hệ vectơ $a_1,a_2,\dots,a_m,b_1,b_2,\dots,b_{n_1-m},c_1,c_2,\dots,c_{n_2-m}$ độc lập tuyến tính.
         
-        设 $\sum_{i=1}^m r_ia_i+\sum_{i=1}^{n_1-m} s_ib_i+\sum_{i=1}^{n_2-m} t_ic_i=\theta$.
+        Giả sử $\sum_{i=1}^m r_ia_i+\sum_{i=1}^{n_1-m} s_ib_i+\sum_{i=1}^{n_2-m} t_ic_i=\theta$.
         
-        则 $\sum_{i=1}^{n_2-m} t_ic_i=-\sum_{i=1}^m r_ia_i-\sum_{i=1}^{n_1-m} s_ib_i$.
+        Khi đó $\sum_{i=1}^{n_2-m} t_ic_i=-\sum_{i=1}^m r_ia_i-\sum_{i=1}^{n_1-m} s_ib_i$.
         
-        注意到上式左边在 $V_2$ 中，右边在 $V_1$ 中，故两边均在 $V_1\cap V_2$ 中，因此 $\sum_{i=1}^{n_2-m} t_ic_i=\sum_{i=1}^m k_ia_i$
+        Chú ý rằng vế trái nằm trong $V_2$, còn vế phải nằm trong $V_1$, nên cả hai vế đều nằm trong $V_1\cap V_2$. Do đó $\sum_{i=1}^{n_2-m} t_ic_i=\sum_{i=1}^m k_ia_i$.
         
-        故 $t_1=t_2=\dots=t_{n_2-m}=k_1=k_2=\dots=k_m=0$, 进而 $r_1=r_2=\dots=r_m=s_1=s_2=\dots=s_{n_1-m}=t_1=t_2=\dots=t_{n_2-m}=0$
+        Suy ra $t_1=t_2=\dots=t_{n_2-m}=k_1=k_2=\dots=k_m=0$, tiếp đó $r_1=r_2=\dots=r_m=s_1=s_2=\dots=s_{n_1-m}=t_1=t_2=\dots=t_{n_2-m}=0$.
 
-3.  令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的有限维线性空间，且 $V_1+V_2$ 和 $V_1\cap V_2$ 也是有限维的，则下列诸款等价：
+3.  Gọi $V_1,V_2$ là các không gian tuyến tính hữu hạn chiều trên $\Bbb{P}$, đồng thời $V_1+V_2$ và $V_1\cap V_2$ cũng hữu hạn chiều. Các mệnh đề sau tương đương:
 
     1.  $V_1+V_2=V_1\oplus V_2$.
 
     2.  $\dim V_1+\dim V_2=\dim(V_1+V_2)$.
 
-    3.  若 $a_1,a_2,\dots,a_n$ 是 $V_1$ 的一组基，$b_1,b_2,\dots,b_m$ 是 $V_2$ 的一组基，则 $a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m$ 是 $V_1+V_2$ 的一组基．
+    3.  Nếu $a_1,a_2,\dots,a_n$ là một cơ sở của $V_1$, và $b_1,b_2,\dots,b_m$ là một cơ sở của $V_2$, thì $a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m$ là một cơ sở của $V_1+V_2$.
 
-    ???+ note "Note"
-        1,3 两条可推广到无限维线性空间中
+    ???+ note "Ghi chú"
+        Hai mệnh đề 1 và 3 có thể được mở rộng sang không gian tuyến tính vô hạn chiều.
 
-## 例子
+<span id="&#20363;&#23376;"></span>
+## Ví dụ
 
-考虑 $\Bbb{R}^2$ 的基．
+Xét các cơ sở của $\Bbb{R}^2$.
 
-1.  如图
+1.  Như hình:
 
     ![](./images/basis-1.svg)
 
-    $u,v$ 是一组基．
+    $u,v$ là một cơ sở.
 
-2.  如图
+2.  Như hình:
 
     ![](./images/basis-2.svg)
 
-    $u,v$ 是一组基．
+    $u,v$ là một cơ sở.
 
-3.  如图
+3.  Như hình:
 
     ![](./images/basis-3.svg)
 
-    $u,v$ 不是一组基，因为 $u=-v$.
+    $u,v$ không phải là một cơ sở, vì $u=-v$.
 
-4.  如图
+4.  Như hình:
 
     ![](./images/basis-4.svg)
 
-    $u,v,w$ 不是一组基，因为 $u+4v+6w=\theta$.
+    $u,v,w$ không phải là một cơ sở, vì $u+4v+6w=\theta$.
 
-## 正交基与单位正交基
+<span id="&#27491;&#20132;&#22522;&#19982;&#21333;&#20301;&#27491;&#20132;&#22522;"></span>
+## Cơ sở trực giao và cơ sở trực chuẩn
 
-若线性空间 $V$ 的一组基 $B$ 满足 $\forall b,b'\in B,~(b,b')\ne 0\iff b=b'$（即两两正交），则称这组基是 **正交基**．
+Nếu một cơ sở $B$ của không gian tuyến tính $V$ thỏa mãn $\forall b,b'\in B,~(b,b')\ne 0\iff b=b'$ (tức các vectơ đôi một trực giao), thì cơ sở này được gọi là **cơ sở trực giao**.
 
-若线性空间 $V$ 的一组正交基 $B$ 还满足 $\forall b\in B,~|b|=\sqrt{(b,b)}=1$，则称这组基是 **单位正交基**．
+Nếu một cơ sở trực giao $B$ của không gian tuyến tính $V$ còn thỏa mãn $\forall b\in B,~|b|=\sqrt{(b,b)}=1$, thì cơ sở này được gọi là **cơ sở trực chuẩn**.
 
-任意有限维线性空间 $V$ 的基都可以通过 [Schmidt 正交化](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) 变换为正交基．
+Mọi cơ sở của không gian tuyến tính hữu hạn chiều $V$ đều có thể được biến đổi thành cơ sở trực giao bằng [trực giao hóa Schmidt](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process).
 
-## 应用
+<span id="&#24212;&#29992;"></span>
+## Ứng dụng
 
-根据前文内容，我们可以利用线性基实现：
+Từ các nội dung phía trước, ta có thể dùng cơ sở tuyến tính để:
 
-1.  求给定向量组的秩；
-2.  对给定的向量组，找到一组极大线性无关组（或其张成的线性空间的一组基）；
-3.  向给定的向量组插入某些向量，在插入操作后的向量组中找到一组极大线性无关组（或其张成的线性空间的一组基）；
-4.  对找到的一组极大线性无关组（或基），判断某向量能否被其线性表出；
-5.  对找到的一组极大线性无关组（或基），求其张成的线性空间中的特殊元素（如最大元、最小元等）．
+1.  Tìm hạng của một hệ vectơ cho trước.
+2.  Với một hệ vectơ cho trước, tìm một hệ con độc lập tuyến tính cực đại (hoặc một cơ sở của không gian tuyến tính do nó sinh ra).
+3.  Chèn một số vectơ vào hệ vectơ cho trước, rồi tìm một hệ con độc lập tuyến tính cực đại (hoặc một cơ sở của không gian tuyến tính do nó sinh ra) trong hệ vectơ sau khi chèn.
+4.  Với một hệ con độc lập tuyến tính cực đại (hoặc cơ sở) đã tìm được, phán đoán một vectơ có thể được biểu diễn tuyến tính bởi nó hay không.
+5.  Với một hệ con độc lập tuyến tính cực đại (hoặc cơ sở) đã tìm được, tìm các phần tử đặc biệt trong không gian tuyến tính do nó sinh ra, chẳng hạn phần tử lớn nhất, nhỏ nhất, v.v.
 
-在 OI 中，我们一般将 $n$ 维实线性空间 $\mathbf{R}^n$ 下的线性基称为 **实数线性基**，$n$ 维布尔域线性空间 $\mathbf{Z}_2^n$ 下的线性基称为 **异或线性基**．
+Trong OI, ta thường gọi cơ sở tuyến tính trong không gian tuyến tính thực $n$ chiều $\mathbf{R}^n$ là **cơ sở tuyến tính thực**, và cơ sở tuyến tính trong không gian tuyến tính $n$ chiều trên trường Boolean $\mathbf{Z}_2^n$ là **cơ sở tuyến tính XOR**.
 
-???+ tip "Tip"
-    $\mathbf{Z}_2$ 中的加法为异或，乘法为与，可以证明 $\mathbf{Z}_2$ 是域．
+???+ tip "Mẹo"
+    Trong $\mathbf{Z}_2$, phép cộng là XOR, phép nhân là AND; có thể chứng minh $\mathbf{Z}_2$ là một trường.
     
-    可以证明代数系统 $(\mathbf{Z}_2^n,+,\cdot,\mathbf{Z}_2)$ 是线性空间，其中：
+    Có thể chứng minh hệ đại số $(\mathbf{Z}_2^n,+,\cdot,\mathbf{Z}_2)$ là một không gian tuyến tính, trong đó:
     
     $$
     (a_1,\dots,a_n)+(b_1,\dots,b_n):=(a_1+b_1,\dots,a_n+b_n),
@@ -130,74 +135,78 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
     k\cdot(a_1,\dots,a_n):=(ka_1,\dots,ka_n).
     $$
     
-    即加法是异或，数乘是与．
+    Tức phép cộng là XOR, nhân vô hướng là AND.
 
-以异或线性基为例，我们可以根据给定的一组布尔序列 $X=\{x_1,\dots,x_m\}$ 构造出一组异或线性基 $B=\{b_1,\dots,b_n\}$，这组基有如下性质：
+Lấy cơ sở tuyến tính XOR làm ví dụ. Với một hệ dãy Boolean cho trước $X=\{x_1,\dots,x_m\}$, ta có thể xây dựng một cơ sở tuyến tính XOR $B=\{b_1,\dots,b_n\}$. Cơ sở này có các tính chất sau:
 
-1.  $B$ 中任意非空子集的异或和不为 $0$；
-2.  对 $X$ 中的任意元素 $x$，都可在 $B$ 中取出若干元素使其异或和为 $x$；
-3.  对任意满足上两条的集合 $B'$，其元素个数不会小于 $B$ 的元素个数．
+1.  XOR của mọi tập con không rỗng của $B$ khác $0$.
+2.  Với mọi phần tử $x$ trong $X$, có thể lấy một số phần tử trong $B$ sao cho XOR của chúng bằng $x$.
+3.  Với mọi tập $B'$ thỏa mãn hai điều trên, số phần tử của nó không nhỏ hơn số phần tử của $B$.
 
-我们可以利用异或线性基实现：
+Ta có thể dùng cơ sở tuyến tính XOR để:
 
-1.  判断一个数能否表示成某数集子集的异或和；
-2.  求一个数表示成某数集子集异或和的方案数；
-3.  求某数集子集的最大/最小/第 $k$ 大/第 $k$ 小异或和；
-4.  求一个数在某数集子集异或和中的排名．
+1.  Kiểm tra một số có thể được biểu diễn thành XOR của một tập con của một tập số hay không.
+2.  Tính số cách biểu diễn một số thành XOR của một tập con của một tập số.
+3.  Tìm giá trị XOR lớn nhất/nhỏ nhất/lớn thứ $k$/nhỏ thứ $k$ của các tập con của một tập số.
+4.  Tìm thứ hạng của một số trong các giá trị XOR của các tập con của một tập số.
 
-### 构造方法
+<span id="&#26500;&#36896;&#26041;&#27861;"></span>
+### Phương pháp xây dựng
 
-因为异或线性基与实数线性基没有本质差别，所以接下来以异或线性基为例，实数线性基版本的代码只需做一点简单修改即可．
+Vì cơ sở tuyến tính XOR và cơ sở tuyến tính thực không khác nhau về bản chất, phần tiếp theo sẽ lấy cơ sở tuyến tính XOR làm ví dụ; phiên bản mã cho cơ sở tuyến tính thực chỉ cần sửa đổi đơn giản.
 
-#### 贪心法
+<span id="&#36138;&#24515;&#27861;"></span>
+#### Phương pháp tham lam
 
-对原集合的每个数 $p$ 转为二进制，从高位向低位扫，对于第 $x$ 位是 $1$ 的，如果 $a_x$ 不存在，那么令 $a_x \leftarrow p$ 并结束扫描，如果存在，令 $p\leftarrow p~\text{xor}~a_x$．
+Với mỗi số $p$ trong tập ban đầu, chuyển nó sang dạng nhị phân và quét từ bit cao xuống bit thấp. Với bit thứ $x$ bằng $1$, nếu $a_x$ chưa tồn tại thì gán $a_x \leftarrow p$ và kết thúc quét; nếu đã tồn tại thì gán $p\leftarrow p~\text{xor}~a_x$.
 
-查询原集合内任意几个元素 $\text{xor}$ 的最大值，只需将线性基从高位向低位扫，若 $\text{xor}$ 上当前扫到的 $a_x$ 答案变大，就把答案异或上 $a_x$．
+Để truy vấn giá trị lớn nhất của XOR của một số phần tử bất kỳ trong tập ban đầu, chỉ cần quét cơ sở tuyến tính từ bit cao xuống bit thấp; nếu XOR với $a_x$ hiện đang quét làm đáp án lớn hơn, thì XOR đáp án với $a_x$.
 
-为什么能行呢？因为从高往低位扫，若当前扫到第 $i$ 位，意味着可以保证答案的第 $i$ 位为 $1$，且后面没有机会改变第 $i$ 位．
+Vì sao cách này đúng? Vì khi quét từ cao xuống thấp, nếu đang quét tới bit thứ $i$, ta có thể đảm bảo bit thứ $i$ của đáp án là $1$, và về sau không còn cơ hội thay đổi bit thứ $i$ nữa.
 
-查询原集合内任意几个元素 $\text{xor}$ 的最小值，就是线性基集合所有元素中最小的那个．
+Giá trị nhỏ nhất của XOR của một số phần tử bất kỳ trong tập ban đầu chính là phần tử nhỏ nhất trong tập cơ sở tuyến tính.
 
-查询某个数是否能被异或出来，类似于插入，如果最后插入的数 $p$ 被异或成了 $0$，则能被异或出来．
+Để kiểm tra một số có thể được XOR ra hay không, làm tương tự thao tác chèn; nếu cuối cùng số $p$ cần chèn bị XOR thành $0$, thì số đó có thể được XOR ra.
 
-??? example "代码（洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）"
+??? example "Mã nguồn (Luogu P3812 [Template: Linear Basis](https://www.luogu.com.cn/problem/P3812))"
     ```cpp
     --8<-- "docs/math/code/basis/basis_1.cpp"
     ```
 
-#### 高斯消元法
+<span id="&#39640;&#26031;&#28040;&#20803;&#27861;"></span>
+#### Phương pháp khử Gauss
 
-高斯消元法相当于从线性方程组的角度去构造线性基，正确性显然．
+Phương pháp khử Gauss tương đương với việc xây dựng cơ sở tuyến tính từ góc độ hệ phương trình tuyến tính, nên tính đúng đắn là hiển nhiên.
 
-??? example "代码（洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）"
+??? example "Mã nguồn (Luogu P3812 [Template: Linear Basis](https://www.luogu.com.cn/problem/P3812))"
     ```cpp
     --8<-- "docs/math/code/basis/basis_2.cpp"
     ```
 
-### 性质
+<span id="&#24615;&#36136;_1"></span>
+### Tính chất
 
-贪心法构造的线性基具有如下性质：
+Cơ sở tuyến tính xây dựng bằng phương pháp tham lam có các tính chất sau:
 
--   线性基没有异或和为 $0$ 的子集．
--   线性基中各数二进制最高位不同．
+-   Cơ sở tuyến tính không có tập con nào có XOR bằng $0$.
+-   Các số trong cơ sở tuyến tính có bit cao nhất trong biểu diễn nhị phân đôi một khác nhau.
 
-高斯消元法构造出的线性基满足如下性质：
+Cơ sở tuyến tính xây dựng bằng phương pháp khử Gauss thỏa mãn tính chất sau:
 
--   高斯消元后的矩阵是一个行简化阶梯形矩阵．
+-   Ma trận sau khử Gauss là một ma trận bậc thang rút gọn theo hàng.
 
-    > 该性质包含了贪心法构造的线性基满足的两条性质
+    > Tính chất này bao gồm cả hai tính chất của cơ sở tuyến tính xây dựng bằng phương pháp tham lam.
 
-    如果不理解这条性质的正确性，可以跳转 [高斯消元](../numerical/gauss.md)．
+    Nếu chưa hiểu vì sao tính chất này đúng, có thể chuyển tới [khử Gauss](../numerical/gauss.md).
 
-提供一组样例：
+Cho một mẫu:
 
 ```text
 5
 633 211 169 841 1008
 ```
 
-二进制表示：
+Biểu diễn nhị phân:
 
 ```text
 1001111001
@@ -207,7 +216,7 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 1111110000
 ```
 
-贪心法生成的线性基：
+Cơ sở tuyến tính sinh bởi phương pháp tham lam:
 
 ```text
 1001111001
@@ -222,7 +231,7 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 0000000000
 ```
 
-高斯消元法生成的线性基：
+Cơ sở tuyến tính sinh bởi phương pháp khử Gauss:
 
 ```text
 1000000011
@@ -237,96 +246,101 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 0000000000
 ```
 
-这是一条非常好的性质，能帮我们更方便的解决很多问题．比如：给定一些数，选其中一些异或起来，求异或最大值，如果用贪心法构造线性基，需要再做一遍贪心，如果 `ans` 的当前位是 `0`，那么异或一定会更优，否则当前位如果为 `1`，则一定不会更优；而使用高斯消元法构造线性基后直接将线性基中所有元素都异或起来输出即可．
+Đây là một tính chất rất hữu ích, giúp ta giải nhiều bài toán thuận tiện hơn. Ví dụ: cho một số số, chọn một vài số trong đó để XOR lại và tìm giá trị XOR lớn nhất. Nếu dùng phương pháp tham lam để xây dựng cơ sở tuyến tính, cần làm thêm một lần tham lam: nếu bit hiện tại của `ans` là `0`, thì XOR chắc chắn tốt hơn; nếu bit hiện tại là `1`, thì chắc chắn không tốt hơn. Còn sau khi dùng khử Gauss để xây dựng cơ sở tuyến tính, chỉ cần XOR tất cả phần tử trong cơ sở tuyến tính rồi xuất ra.
 
-对于其他比较经典的问题（查询一个数能否被异或得到，查询能被异或得到的第 $k$ 大数等），高斯消元法得到的线性基也能更加方便地解决．
+Với các bài toán kinh điển khác như truy vấn một số có thể được XOR ra hay không, truy vấn số lớn thứ $k$ có thể được XOR ra, v.v., cơ sở tuyến tính thu được từ khử Gauss cũng giải quyết thuận tiện hơn.
 
-### 时间复杂度
+<span id="&#26102;&#38388;&#22797;&#26434;&#24230;"></span>
+### Độ phức tạp thời gian
 
-设向量长度为 $n$, 总数为 $m$, 则时间复杂度为 $O(nm)$. 其中高斯消元法的常数略大．
+Giả sử độ dài vectơ là $n$, tổng số vectơ là $m$, khi đó độ phức tạp thời gian là $O(nm)$. Hằng số của phương pháp khử Gauss lớn hơn một chút.
 
-若是实数线性基，则时间复杂度为 $O(n^2m)$.
+Nếu là cơ sở tuyến tính thực, độ phức tạp thời gian là $O(n^2m)$.
 
-### 线性基合并
+<span id="&#32447;&#24615;&#22522;&#21512;&#24182;"></span>
+### Hợp nhất cơ sở tuyến tính
 
-线性基的合并只需要暴力处理，即将要合并的一组线性基暴力地插入到另一组线性基即可．单次合并的时间复杂度是 $O(n^2)$（异或线性基）或 $O(n^3)$（实数线性基）．
+Việc hợp nhất cơ sở tuyến tính chỉ cần xử lý trực tiếp: chèn thô toàn bộ cơ sở tuyến tính cần hợp nhất vào cơ sở tuyến tính còn lại. Độ phức tạp cho một lần hợp nhất là $O(n^2)$ (cơ sở tuyến tính XOR) hoặc $O(n^3)$ (cơ sở tuyến tính thực).
 
-### 线性基求交
+<span id="&#32447;&#24615;&#22522;&#27714;&#20132;"></span>
+### Tìm giao của cơ sở tuyến tính
 
-线性基求交，严格地说就是求它们张成的两个线性空间的交空间的一组线性基．本节介绍两种算法．这两种算法，单次求交的时间复杂度都是 $O(n^2)$（异或线性基）或 $O(n^3)$（实数线性基）．
+Nói chặt chẽ, tìm giao của cơ sở tuyến tính là tìm một cơ sở tuyến tính của giao của hai không gian tuyến tính do chúng sinh ra. Phần này giới thiệu hai thuật toán. Cả hai thuật toán đều có độ phức tạp cho một lần tìm giao là $O(n^2)$ (cơ sở tuyến tính XOR) hoặc $O(n^3)$ (cơ sở tuyến tính thực).
 
-#### 朴素算法
+<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+#### Thuật toán đơn giản
 
-设要求交的线性基分别是 $\alpha$ 和 $\beta$．线性基求交的算法只需要对线性基暴力合并的算法做如下调整：（以异或线性基为例）
+Giả sử hai cơ sở tuyến tính cần tìm giao lần lượt là $\alpha$ và $\beta$. Thuật toán tìm giao của cơ sở tuyến tính chỉ cần điều chỉnh thuật toán hợp nhất thô cơ sở tuyến tính như sau (lấy cơ sở tuyến tính XOR làm ví dụ):
 
--   将线性基 $\beta$ 中的向量 $\beta_j$ 利用 [贪心法](#贪心法) 尝试插入到 $\alpha$ 中，并初始化线性基的交 $\gamma$ 为空集；
--   在插入时，需要记录要插入的向量中，线性基 $\beta$ 中元素的贡献．具体地，维持一个新向量 $b$，初始化为 $\beta_j$，而且，如果正在插入的向量与线性基中第 $x$ 位的向量取了异或，那么贡献 $b$ 也要与第 $x$ 位记录的贡献 $b_x$ 取一次异或；
--   如果插入成功，在线性基的第 $x$ 位插入了向量 $\beta_j'$，就将第 $x$ 位记录的 $b_x$ 改为得到 $\beta_j'$ 的过程中线性基 $\beta$ 中元素的贡献 $b$；
--   如果插入不成功，就将过程中记录到的线性基 $\beta$ 中元素的贡献 $b$ 插入到 $\gamma$ 中．
+-   Thử chèn vectơ $\beta_j$ trong cơ sở tuyến tính $\beta$ vào $\alpha$ bằng [phương pháp tham lam](#%E8%B4%AA%E5%BF%83%E6%B3%95), đồng thời khởi tạo giao $\gamma$ của các cơ sở tuyến tính là tập rỗng.
+-   Khi chèn, cần ghi lại đóng góp của các phần tử trong cơ sở tuyến tính $\beta$ vào vectơ đang chèn. Cụ thể, duy trì một vectơ mới $b$, khởi tạo bằng $\beta_j$; hơn nữa, nếu vectơ đang chèn đã XOR với vectơ ở bit thứ $x$ trong cơ sở tuyến tính, thì đóng góp $b$ cũng phải XOR một lần với đóng góp $b_x$ được ghi ở bit thứ $x$.
+-   Nếu chèn thành công, tức đã chèn vectơ $\beta_j'$ vào bit thứ $x$ của cơ sở tuyến tính, thì đổi $b_x$ được ghi ở bit thứ $x$ thành đóng góp $b$ của các phần tử trong cơ sở tuyến tính $\beta$ trong quá trình thu được $\beta_j'$.
+-   Nếu chèn không thành công, thì chèn đóng góp $b$ của các phần tử trong cơ sở tuyến tính $\beta$ đã ghi trong quá trình đó vào $\gamma$.
 
-这样得到的线性基 $\gamma$ 就是所求的交，当然，该算法同时也求出了线性基的并．
+Cơ sở tuyến tính $\gamma$ thu được theo cách này chính là giao cần tìm. Tất nhiên, thuật toán này đồng thời cũng tìm được tổng của các cơ sở tuyến tính.
 
-??? note "对算法的解释"
-    设合并后的线性基为 $\{\alpha_1,\cdots,\alpha_m,\beta'_{j_1},\cdots,\beta'_{j_\ell}\}$，其中，$\beta'_{j_k}$ 是插入 $\beta_{j_k}$ 时最后得到的向量．那么，$\{\alpha_1,\cdots,\alpha_m,\beta_{j_1},\cdots,\beta_{j_\ell}\}$ 同样是一组合并后的线性基．记 $\beta^+$ 为集合 $\{\beta_{j_1},\cdots,\beta_{j_\ell}\}$，则合并后的基可以写作 $\alpha\cup\beta^+$．而且，和空间中的每个向量 $c$ 都可以唯一地表示成
+??? note "Giải thích thuật toán"
+    Giả sử cơ sở tuyến tính sau khi hợp nhất là $\{\alpha_1,\cdots,\alpha_m,\beta'_{j_1},\cdots,\beta'_{j_\ell}\}$, trong đó $\beta'_{j_k}$ là vectơ cuối cùng thu được khi chèn $\beta_{j_k}$. Khi đó $\{\alpha_1,\cdots,\alpha_m,\beta_{j_1},\cdots,\beta_{j_\ell}\}$ cũng là một cơ sở tuyến tính sau khi hợp nhất. Ký hiệu $\beta^+$ là tập $\{\beta_{j_1},\cdots,\beta_{j_\ell}\}$, thì cơ sở sau hợp nhất có thể viết là $\alpha\cup\beta^+$. Hơn nữa, mọi vectơ $c$ trong không gian tổng đều có thể được biểu diễn duy nhất dưới dạng
     
     $$
     c = a\oplus b
     $$
     
-    的形式，其中，$a\in\operatorname{span}\alpha$ 且 $b\in\operatorname{span}\beta^+$．这个分解中的 $b$ 就是前文算法所 **试图** 记录的「线性基 $\beta$ 中元素的贡献」．严格地说，只是 $\beta$ 中最后成功插入的那些向量的贡献．
+    trong đó $a\in\operatorname{span}\alpha$ và $b\in\operatorname{span}\beta^+$. Thành phần $b$ trong phân rã này chính là "đóng góp của các phần tử trong cơ sở tuyến tính $\beta$" mà thuật toán phía trước **cố gắng** ghi lại. Nói chặt chẽ hơn, đó chỉ là đóng góp của những vectơ trong $\beta$ đã được chèn thành công cuối cùng.
     
-    对于成功的插入，最后记录的 $b$ 就是该分解中的 $b$ 项．设 $\beta_j\in\beta^+$．初始时，$\beta_j=0\oplus\beta_j$，已经是 $\beta_j$ 在基 $\alpha\cup\beta^+$ 上的正确的分解．在更新 $\beta'_j=a\oplus b$ 为 $\beta'_j\oplus c_x$ 时，因为 $\beta_j'\oplus c_x=(a\oplus a_x)\oplus(b\oplus b_x)$，所以，只需要更新 $b$ 为 $b\oplus b_x$，就可以保证分解依然正确．因此，归纳可知，最后插入 $\beta'_j$ 到合并后的线性基中时，记录的贡献 $b$ 就是上述分解中的 $b$ 项．
+    Với một lần chèn thành công, $b$ được ghi lại cuối cùng chính là thành phần $b$ trong phân rã trên. Giả sử $\beta_j\in\beta^+$. Ban đầu, $\beta_j=0\oplus\beta_j$, đã là phân rã đúng của $\beta_j$ trên cơ sở $\alpha\cup\beta^+$. Khi cập nhật $\beta'_j=a\oplus b$ thành $\beta'_j\oplus c_x$, vì $\beta_j'\oplus c_x=(a\oplus a_x)\oplus(b\oplus b_x)$, nên chỉ cần cập nhật $b$ thành $b\oplus b_x$ là vẫn đảm bảo phân rã đúng. Vì thế theo quy nạp, khi cuối cùng chèn $\beta'_j$ vào cơ sở tuyến tính sau hợp nhất, đóng góp $b$ được ghi lại chính là thành phần $b$ trong phân rã nói trên.
     
-    对于不成功的插入，最后要插入的变量一定会变成 $0$，而此时的贡献 $b$ 要插入到 $\gamma$ 中．此时，如果重复上面的论证，会发现仍然能够保证在插入过程中总是有 $\beta_j'=a\oplus b$，且 $a\in\operatorname{span}\alpha$，只是 $b$ 不再属于 $\operatorname{span}\beta^+$．这是因为初始化时，$\beta_j=0\oplus\beta_j$ 中的 $\beta_j\notin\beta^+$．除此之外，贡献更新时异或的项都属于 $\operatorname{span}\beta^+$．所以，实际上，有 $b\oplus\beta_j\in\operatorname{span}\beta^+$．
+    Với một lần chèn không thành công, biến cuối cùng cần chèn chắc chắn trở thành $0$, và đóng góp $b$ lúc này cần được chèn vào $\gamma$. Nếu lặp lại lập luận phía trên, ta sẽ thấy trong quá trình chèn vẫn luôn đảm bảo $\beta_j'=a\oplus b$, với $a\in\operatorname{span}\alpha$, chỉ là $b$ không còn thuộc $\operatorname{span}\beta^+$. Nguyên nhân là ở thời điểm khởi tạo, trong $\beta_j=0\oplus\beta_j$ thì $\beta_j\notin\beta^+$. Ngoài điểm này, các hạng tử được XOR khi cập nhật đóng góp đều thuộc $\operatorname{span}\beta^+$. Vì vậy thực ra có $b\oplus\beta_j\in\operatorname{span}\beta^+$.
     
-    那么，为什么将这些插入不成功时的 $b$ 都插入到 $\gamma$ 中，就能得到交空间的线性基呢？首先，插入 $\beta_j$ 不成功，最后一定会得到 $0=a\oplus b$，其中，$a\in\operatorname{span}\alpha$ 且 $b\in\operatorname{span}(\beta^+\cup\{\beta_j\})\subseteq\operatorname{span}\beta$．因此，$b=a$ 必然位于交空间 $\operatorname{span}\alpha\cap\operatorname{span}\beta$ 中．反过来，设 $c$ 是交空间中的任意元素，因为 $c\in\operatorname{span}\beta$，所以 $c$ 可以表示为 $\beta$ 中元素的线性组合（异或和）：
+    Vậy vì sao chèn tất cả các $b$ từ những lần chèn không thành công vào $\gamma$ lại thu được cơ sở tuyến tính của không gian giao? Trước hết, nếu chèn $\beta_j$ không thành công, cuối cùng chắc chắn thu được $0=a\oplus b$, trong đó $a\in\operatorname{span}\alpha$ và $b\in\operatorname{span}(\beta^+\cup\{\beta_j\})\subseteq\operatorname{span}\beta$. Do đó $b=a$ nhất định nằm trong không gian giao $\operatorname{span}\alpha\cap\operatorname{span}\beta$. Ngược lại, giả sử $c$ là một phần tử bất kỳ trong không gian giao. Vì $c\in\operatorname{span}\beta$, nên $c$ có thể được biểu diễn thành tổ hợp tuyến tính (XOR) của các phần tử trong $\beta$:
     
     $$
     c = \bigoplus_{\beta_j\in\beta}\lambda_j\beta_j,
     $$
     
-    其中，$\lambda_j\in\{0,1\}$．对于每一个 $\beta_j\notin\beta^+$，记相应的插入到 $\gamma$ 中的贡献为 $b_j$，就有
+    trong đó $\lambda_j\in\{0,1\}$. Với mỗi $\beta_j\notin\beta^+$, gọi đóng góp tương ứng được chèn vào $\gamma$ là $b_j$, ta có
     
     $$
     c\oplus\bigoplus_{\beta_j\notin\beta^+}\lambda_jb_j = \bigoplus_{\beta_j\in\beta^+}\lambda_j\beta_j+\bigoplus_{\beta_j\notin\beta^+}\lambda_j(\beta_j\oplus b_j),
     $$
     
-    注意到，$b_j$ 和 $c$ 都位于交空间中，因而左侧必然也位于交空间中，故而左侧可以写成 $\alpha$ 中元素的线性组合；同时，右侧所有项，要么 $\beta_j\in\beta^+$，要么 $\beta_j\notin\beta^+$ 且 $\beta_j\oplus b_j\in\beta^+$，故而，右侧实际上是 $\beta^+$ 中元素的线性组合．但是，$\alpha\cup\beta^+$ 线性无关，故而所有的系数都是 $0$，也就是说 $c=\bigoplus_{\beta_j\notin\beta^+}\lambda_jb_j\in\operatorname{span}\{b_1,\cdots,b_j\}$．这就说明了，这些无法插入的向量的贡献 $b$ 共同张成了交空间．
+    Chú ý rằng $b_j$ và $c$ đều nằm trong không gian giao, nên vế trái cũng nhất định nằm trong không gian giao; do đó vế trái có thể viết thành tổ hợp tuyến tính của các phần tử trong $\alpha$. Đồng thời, mọi hạng tử ở vế phải hoặc là $\beta_j\in\beta^+$, hoặc là $\beta_j\notin\beta^+$ và $\beta_j\oplus b_j\in\beta^+$; vì vậy vế phải thực chất là tổ hợp tuyến tính của các phần tử trong $\beta^+$. Nhưng $\alpha\cup\beta^+$ độc lập tuyến tính, nên mọi hệ số đều bằng $0$, tức $c=\bigoplus_{\beta_j\notin\beta^+}\lambda_jb_j\in\operatorname{span}\{b_1,\cdots,b_j\}$. Điều này chứng tỏ các đóng góp $b$ của những vectơ không thể chèn cùng nhau sinh ra không gian giao.
     
-    根据这一解释，过程中维护贡献 $b$ 的目的，实际上是为了维护分解 $a\oplus b$；而且，最后向 $\gamma$ 插入贡献时也总有 $a=b$．所以，无论维护 $\alpha$ 还是 $\beta$ 中元素的贡献（即无论维护 $a$ 还是 $b$），得到的结果都是正确的．如果要维护线性基 $\alpha$ 中元素的贡献，只需要修改初始化时相应贡献的取值：每个 $\alpha$ 中的向量 $\alpha_i$ 初始就有贡献 $\alpha_i$，而插入的 $\beta_j$ 初始贡献为 $0$．
+    Theo cách giải thích này, mục đích của việc duy trì đóng góp $b$ trong quá trình là để duy trì phân rã $a\oplus b$; hơn nữa khi cuối cùng chèn đóng góp vào $\gamma$ thì luôn có $a=b$. Vì vậy, dù duy trì đóng góp của các phần tử trong $\alpha$ hay trong $\beta$ (tức duy trì $a$ hay $b$), kết quả đều đúng. Nếu muốn duy trì đóng góp của các phần tử trong cơ sở tuyến tính $\alpha$, chỉ cần sửa giá trị đóng góp tương ứng lúc khởi tạo: mỗi vectơ $\alpha_i$ trong $\alpha$ ban đầu có đóng góp $\alpha_i$, còn $\beta_j$ được chèn vào có đóng góp ban đầu là $0$.
 
-模板题代码如下：
+Mã mẫu cho bài toán mẫu như sau:
 
-??? example "代码（Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces)）"
+??? example "Mã nguồn (Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces))"
     ```cpp
     --8<-- "docs/math/code/basis/basis_intersect_1.cpp"
     ```
 
-#### Zassenhaus 算法
+<span id="Zassenhaus &#31639;&#27861;"></span>
+#### Thuật toán Zassenhaus
 
-另一种等价的做法是 Zassenhaus 算法，它同样可以同时计算出两个线性基的并和交．复杂度和上文完全一致．
+Một cách làm tương đương khác là thuật toán Zassenhaus; nó cũng có thể tính đồng thời tổng và giao của hai cơ sở tuyến tính. Độ phức tạp hoàn toàn giống phần trên.
 
-具体步骤如下：
+Các bước cụ thể như sau:
 
--   初始化一个向量长度为 $2n$ 的线性基 $\gamma$ 为空，其中的向量写成 $(a,b)$ 的形式，且 $a$ 和 $b$ 长度均为 $n$；
--   将 $\alpha$ 中的元素 $\alpha_i$ 以 $(\alpha_i,\alpha_i)$ 的形式插入 $\gamma$ 中；
--   将 $\beta$ 中的元素 $\beta_j$ 以 $(\beta_j,0)$ 的形式插入 $\gamma$ 中；
--   最后得到的线性基 $\gamma$ 中的所有非零元素 $(c_k,d_k)$ 中，$c_k$ 非零的那些向量中项 $c_k$ 的全体组成了 $\alpha$ 和 $\beta$ 的并的线性基，$c_k$ 为零的那些向量中项 $d_k$ 的全体组成了 $\alpha$ 和 $\beta$ 的交的线性基．
+-   Khởi tạo một cơ sở tuyến tính $\gamma$ rỗng có độ dài vectơ là $2n$, trong đó mỗi vectơ viết dưới dạng $(a,b)$, và $a,b$ đều có độ dài $n$.
+-   Chèn mỗi phần tử $\alpha_i$ trong $\alpha$ vào $\gamma$ dưới dạng $(\alpha_i,\alpha_i)$.
+-   Chèn mỗi phần tử $\beta_j$ trong $\beta$ vào $\gamma$ dưới dạng $(\beta_j,0)$.
+-   Trong tất cả phần tử khác không $(c_k,d_k)$ của cơ sở tuyến tính $\gamma$ cuối cùng, tập các thành phần $c_k$ của những vectơ có $c_k$ khác không tạo thành cơ sở tuyến tính của tổng của $\alpha$ và $\beta$; tập các thành phần $d_k$ của những vectơ có $c_k$ bằng không tạo thành cơ sở tuyến tính của giao của $\alpha$ và $\beta$.
 
-算法中的构造线性基的方法可以是 [贪心法](#贪心法) 或 [高斯消元法](#高斯消元法)，只要保证 $\gamma$ 中的线性基组成行阶梯型矩阵即可．
+Phương pháp xây dựng cơ sở tuyến tính trong thuật toán có thể là [phương pháp tham lam](#%E8%B4%AA%E5%BF%83%E6%B3%95) hoặc [phương pháp khử Gauss](#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%B3%95), miễn là đảm bảo cơ sở tuyến tính trong $\gamma$ tạo thành một ma trận bậc thang theo hàng.
 
-将 Zassenhaus 算法中的消元的步骤与上面的朴素算法相比较，很容易发现，基于贪心法的 Zassenhaus 算法相当于维护 $\alpha$ 中元素的贡献的朴素算法．如果转而先插入所有 $(\alpha_i,0)$，再插入所有 $(\beta_j,\beta_j)$，那么基于贪心法的 Zassenhaus 算法就相当于维护 $\beta$ 中元素贡献的朴素算法．根据消元步骤的等价性，Zassenhaus 算法的正确性也是成立的．
+So sánh các bước khử trong thuật toán Zassenhaus với thuật toán đơn giản phía trên, rất dễ thấy thuật toán Zassenhaus dựa trên tham lam tương đương với thuật toán đơn giản duy trì đóng góp của các phần tử trong $\alpha$. Nếu chuyển sang chèn trước tất cả $(\alpha_i,0)$, rồi chèn tất cả $(\beta_j,\beta_j)$, thì thuật toán Zassenhaus dựa trên tham lam tương đương với thuật toán đơn giản duy trì đóng góp của các phần tử trong $\beta$. Từ tính tương đương của các bước khử, tính đúng đắn của thuật toán Zassenhaus cũng được đảm bảo.
 
-除此之外，还可以再提供一个独立且更为一般的代数证明：
+Ngoài ra, ta cũng có thể đưa ra một chứng minh đại số độc lập và tổng quát hơn:
 
-??? note "正确性证明"
-    设 $V$ 为一线性空间，且有子空间 $U=\operatorname{span}\alpha$ 和 $W=\operatorname{span}\beta$．算法本身相当于通过化简为行阶梯型来求子空间
+??? note "Chứng minh tính đúng đắn"
+    Giả sử $V$ là một không gian tuyến tính, và có các không gian con $U=\operatorname{span}\alpha$ và $W=\operatorname{span}\beta$. Bản thân thuật toán tương đương với việc tìm một cơ sở $\gamma$ của không gian con
     
     $$
     H = \operatorname{span}(\{(\alpha_i,\alpha_i):\alpha_i\in\alpha\}\cup\{(\beta_j,0):\beta_j\in\beta\})
     $$
     
-    的一组基 $\gamma$．算法最后，$\gamma$ 中的元素 $(c_k,d_k)$ 根据 $c_k\neq 0$ 与否需要分为两类，所以不妨考察投影映射 $\pi:H\rightarrow V$ 且 $\pi(a,b)=a$．于是，$\pi(H)=U+W$ 且容易验证
+    bằng cách rút gọn về dạng bậc thang theo hàng. Sau cùng, các phần tử $(c_k,d_k)$ trong $\gamma$ cần được chia thành hai loại theo việc $c_k\neq 0$ hay không, nên ta xét ánh xạ chiếu $\pi:H\rightarrow V$ với $\pi(a,b)=a$. Khi đó $\pi(H)=U+W$ và dễ kiểm tra rằng
     
     $$
     \begin{aligned}
@@ -334,70 +348,73 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
     \end{aligned}
     $$
     
-    根据 [线性映射的相关定理](./linear-mapping.md#线性映射的核空间与像空间)，有 $\dim H = \dim\pi(H)+\dim\ker\pi = \dim(U+W)+\dim(U\cap W)$．
+    Theo [các định lý liên quan của ánh xạ tuyến tính](./linear-mapping.md#%E7%BA%BF%E6%80%A7%E6%98%A0%E5%B0%84%E7%9A%84%E6%A0%B8%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%83%8F%E7%A9%BA%E9%97%B4), có $\dim H = \dim\pi(H)+\dim\ker\pi = \dim(U+W)+\dim(U\cap W)$.
     
-    行阶梯型矩阵的前几列仍然是行阶梯型矩阵，因而 $c_k\neq 0$ 的行的数目，恰好等于 $\alpha\cup\beta$ 的行秩，亦即 $\dim(U+W)$；而且，这些行中 $c_k$ 的集合就形成了 $U+W$ 的一组基．剩下的非零行恰好有 $\dim(U\cap W)$ 个，且都满足 $c_k=0$．对于这些行中的 $d_k$，因为有 $(0,d_k)\in\ker\pi$，所以 $d_k\in U\cap W$；而且，$(0,d_k)$ 作为行阶梯型矩阵的行，必然线性无关，这就说明这些 $d_k$ 都线性无关．综合起来，这些 $d_k$ 是交空间 $U\cap W$ 中大小为 $\dim(U\cap W)$ 的线性无关组，所以也必然是该空间的一组基．
+    Các cột đầu của một ma trận bậc thang theo hàng vẫn là một ma trận bậc thang theo hàng, nên số hàng có $c_k\neq 0$ đúng bằng hạng hàng của $\alpha\cup\beta$, tức $\dim(U+W)$; hơn nữa, tập các $c_k$ trong những hàng này tạo thành một cơ sở của $U+W$. Các hàng khác không còn lại đúng bằng $\dim(U\cap W)$ hàng và đều thỏa mãn $c_k=0$. Với các $d_k$ trong những hàng này, vì $(0,d_k)\in\ker\pi$, nên $d_k\in U\cap W$; hơn nữa, các $(0,d_k)$ là các hàng của một ma trận bậc thang theo hàng nên nhất định độc lập tuyến tính. Tổng hợp lại, các $d_k$ này là một hệ độc lập tuyến tính trong không gian giao $U\cap W$ có kích thước $\dim(U\cap W)$, nên chắc chắn là một cơ sở của không gian đó.
 
-模板题代码如下：
+Mã mẫu cho bài toán mẫu như sau:
 
-??? example "代码（Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces)）"
+??? example "Mã nguồn (Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces))"
     ```cpp
     --8<-- "docs/math/code/basis/basis_intersect_2.cpp"
     ```
 
-注意，输出时只需要考虑前 $n$ 位均为零的向量即可．
+Chú ý rằng khi xuất, chỉ cần xét những vectơ có $n$ bit đầu đều bằng không.
 
-### 拓展：前缀线性基
+<span id="&#25299;&#23637;&#65306;&#21069;&#32512;&#32447;&#24615;&#22522;"></span>
+### Mở rộng: cơ sở tuyến tính tiền tố
 
-本节只讨论异或线性基的情形，并假设单个向量可以存储在 $O(1)$ 的空间内，且单次操作复杂度总是 $O(1)$ 的．
+Phần này chỉ thảo luận trường hợp cơ sở tuyến tính XOR, đồng thời giả sử một vectơ đơn lẻ có thể lưu trong không gian $O(1)$, và độ phức tạp của mỗi thao tác luôn là $O(1)$.
 
-对于需要多次查询区间异或最大值的情形，一种常见的做法是 [猫树](../../ds/cat-tree.md) 配合线性基，时间复杂度为 $O(nm\log m+n^2q)$，其中，$n$ 是向量长度，$m$ 是序列长度，$q$ 是询问次数．另一种可行的做法是利用前缀线性基（或称时间戳线性基），可以将复杂度降低到 $O(n(m+q))$．
+Với tình huống cần nhiều lần truy vấn giá trị XOR lớn nhất trên đoạn, một cách thường gặp là dùng [cat tree](../../ds/cat-tree.md) kết hợp với cơ sở tuyến tính, có độ phức tạp thời gian $O(nm\log m+n^2q)$, trong đó $n$ là độ dài vectơ, $m$ là độ dài dãy, $q$ là số truy vấn. Một cách khả thi khác là dùng cơ sở tuyến tính tiền tố (còn gọi là cơ sở tuyến tính dấu thời gian), giúp giảm độ phức tạp xuống $O(n(m+q))$.
 
-前缀线性基允许对于序列的每个前缀，都维护该前缀的所有后缀的线性基，这样就可以支持查询每个区间的线性基．注意到序列的某个前缀 $[1,i]$ 的所有后缀 $[j,i]$ 的线性基是相互包含的，即 $[j,i]$ 的线性基总是包含着 $[j+1,i]$ 的线性基，所以，这些后缀的线性基中互不相同的至多只有 $n$ 种，而且总是可以通过向空集中逐步添加新的向量来得到自 $[i,i]$ 到 $[1,i]$ 所有这些后缀的线性基．因此，利用这个单调性，只需要为添加的每个向量 $v$，都标记它出现的最大下标 $t$，就可以在 $O(n)$ 的空间内存储所有后缀的线性基．而且，查询区间 $[j,i]$ 对应的线性基时，只需要在 $i$ 处的前缀线性基中仅保留标记 $t\ge j$ 的那些向量即可．
+Cơ sở tuyến tính tiền tố cho phép với mỗi tiền tố của dãy, duy trì cơ sở tuyến tính của mọi hậu tố của tiền tố đó, nhờ vậy hỗ trợ truy vấn cơ sở tuyến tính của mỗi đoạn. Chú ý rằng cơ sở tuyến tính của mọi hậu tố $[j,i]$ của một tiền tố $[1,i]$ của dãy có quan hệ chứa nhau: cơ sở tuyến tính của $[j,i]$ luôn chứa cơ sở tuyến tính của $[j+1,i]$. Vì vậy trong các cơ sở tuyến tính của những hậu tố này, nhiều nhất chỉ có $n$ loại khác nhau, và luôn có thể thu được toàn bộ cơ sở tuyến tính của các hậu tố từ $[i,i]$ đến $[1,i]$ bằng cách từng bước thêm vectơ mới vào tập rỗng. Do đó, lợi dụng tính đơn điệu này, chỉ cần với mỗi vectơ $v$ được thêm vào, đánh dấu chỉ số xuất hiện lớn nhất $t$ của nó, là có thể lưu mọi cơ sở tuyến tính của hậu tố trong không gian $O(n)$. Hơn nữa, khi truy vấn cơ sở tuyến tính tương ứng với đoạn $[j,i]$, chỉ cần trong cơ sở tuyến tính tiền tố tại $i$ giữ lại các vectơ có nhãn $t\ge j$.
 
-不妨将每个向量 $v$ 的标记 $t$ 称为它的时间戳．线性基中的向量 $v$ 总是可以表示为原序列中某些元素的异或和，比如 $v_{i_1}\oplus v_{i_2}\oplus\cdots\oplus v_{i_k}$．而在所有这样的可能的表示中，最小下标的最大值就是 $t$，即
+Ta gọi nhãn $t$ của mỗi vectơ $v$ là dấu thời gian của nó. Một vectơ $v$ trong cơ sở tuyến tính luôn có thể được biểu diễn thành XOR của một số phần tử trong dãy ban đầu, chẳng hạn $v_{i_1}\oplus v_{i_2}\oplus\cdots\oplus v_{i_k}$. Trong tất cả các biểu diễn khả dĩ như vậy, giá trị lớn nhất của chỉ số nhỏ nhất chính là $t$, tức:
 
 $$
 t(v) = \max\{j:\exists i_1,\cdots,i_k\in[j,i]\text{ s.t. }v=v_{i_1}\oplus v_{i_2}\oplus\cdots\oplus v_{i_k}\}.
 $$
 
-这个表达式不过是将上一段的叙述用形式的语言写出来而已．它给我们带来的启发是，要维护线性基中每个向量 $v$ 的时间戳，只需要贪心地选取尽可能新的向量替换掉旧的向量即可．
+Biểu thức này chỉ là cách viết hình thức cho mô tả ở đoạn trước. Nó gợi ý rằng để duy trì dấu thời gian của mỗi vectơ $v$ trong cơ sở tuyến tính, ta chỉ cần tham lam chọn vectơ mới nhất có thể để thay thế vectơ cũ.
 
-基于上文提到的 [贪心法](#贪心法) 构造线性基，前缀线性基在构造过程中做了如下调整：
+Dựa trên [phương pháp tham lam](#%E8%B4%AA%E5%BF%83%E6%B3%95) xây dựng cơ sở tuyến tính đã nêu ở trên, cơ sở tuyến tính tiền tố điều chỉnh quá trình xây dựng như sau:
 
--   为线性基中保留的每个向量 $a_x$ 都保存一个时间戳 $t_x$，初始时均设为 $0$；
--   要添加序列中第 $i$ 个向量 $v$，仍然从高位向低位扫，但同时需要记录当前时间 $i$；
--   如果 $v$ 的第 $x$ 位是一，就比较线性基中已有的向量 $a_x$ 的时间戳 $t_x$ 和当前时间 $i$：
-    -   如果 $i>t_x$，即要添加的向量时间更晚，就将 $a_x$ 设为 $v$，并更新时间戳为 $i$，并将旧的 $a_x$ 异或 $v$ 的结果 $a_x\oplus v$ 按照之前记录的时间 $t_x$ 继续添加过程；
-    -   如果 $i<t_x$，即要添加的向量时间更早，不更新 $a_x$ 和 $t_x$，将 $v$ 异或 $a_x$ 后继续添加即可．
+-   Với mỗi vectơ $a_x$ được giữ trong cơ sở tuyến tính, lưu thêm một dấu thời gian $t_x$, ban đầu đều đặt là $0$.
+-   Khi thêm vectơ thứ $i$ của dãy, gọi là $v$, vẫn quét từ bit cao xuống bit thấp, nhưng đồng thời cần ghi lại thời gian hiện tại $i$.
+-   Nếu bit thứ $x$ của $v$ là một, so sánh dấu thời gian $t_x$ của vectơ $a_x$ đã có trong cơ sở tuyến tính với thời gian hiện tại $i$:
+    -   Nếu $i>t_x$, tức vectơ cần thêm có thời gian muộn hơn, đặt $a_x$ thành $v$, cập nhật dấu thời gian thành $i$, rồi tiếp tục quá trình thêm với kết quả XOR của $a_x$ cũ và $v$, tức $a_x\oplus v$, theo thời gian $t_x$ đã ghi trước đó.
+    -   Nếu $i<t_x$, tức vectơ cần thêm có thời gian sớm hơn, không cập nhật $a_x$ và $t_x$, chỉ cần XOR $v$ với $a_x$ rồi tiếp tục thêm.
 
-也就是说，如果当前位可以通过较新的向量表示，就直接用较新的向量；否则，保留原来的向量．在更新位置 $x$ 的向量时，不能将异或的结果 $a_x\oplus v$ 存入位置 $x$，因为异或的结果 $a_x\oplus v$ 的时间戳为 $\min\{t(a_x)=t(v)\}=t(a_x)$，小于要添加的变量 $v$ 的时间戳 $t(v)$．同样的原因，[高斯消元法](#高斯消元法) 构造线性基的过程中向上更新时可能会破坏时间戳的性质，所以不再适用于构造前缀线性基．
+Nói cách khác, nếu bit hiện tại có thể được biểu diễn bằng vectơ mới hơn, thì dùng trực tiếp vectơ mới hơn; nếu không, giữ lại vectơ ban đầu. Khi cập nhật vectơ ở vị trí $x$, không được lưu kết quả XOR $a_x\oplus v$ vào vị trí $x$, vì dấu thời gian của kết quả XOR $a_x\oplus v$ là $\min\{t(a_x)=t(v)\}=t(a_x)$, nhỏ hơn dấu thời gian $t(v)$ của biến cần thêm $v$. Cũng vì lý do này, bước cập nhật ngược lên trên trong quá trình xây dựng cơ sở tuyến tính bằng [phương pháp khử Gauss](#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%B3%95) có thể phá hỏng tính chất dấu thời gian, nên không còn phù hợp để xây dựng cơ sở tuyến tính tiền tố.
 
-模板题代码如下：
+Mã mẫu cho bài toán mẫu như sau:
 
-??? example "代码（Codeforces [1100F Ivan and Burgers](https://codeforces.com/problemset/problem/1100/F)）"
+??? example "Mã nguồn (Codeforces [1100F Ivan and Burgers](https://codeforces.com/problemset/problem/1100/F))"
     ```cpp
     --8<-- "docs/math/code/basis/prefix_basis.cpp"
     ```
 
-如果需要在线询问，也可以用 $O(mn)$ 的空间将每个前缀处的前缀线性基都存下来再查询，这可以看作是一种「可持久化」线性基．如果需要用到高斯消元法得到的线性基的性质，可以在查询时另行处理．
+Nếu cần truy vấn trực tuyến, cũng có thể dùng không gian $O(mn)$ để lưu lại cơ sở tuyến tính tiền tố tại mỗi tiền tố rồi truy vấn; cách này có thể xem như một cơ sở tuyến tính "khả bền vững". Nếu cần dùng các tính chất của cơ sở tuyến tính thu được từ khử Gauss, có thể xử lý riêng khi truy vấn.
 
-### 练习题
+<span id="&#32451;&#20064;&#39064;"></span>
+### Bài tập
 
--   [Luogu P3812【模板】线性基](https://www.luogu.com.cn/problem/P3812)
--   [Acwing 3164. 线性基](https://www.acwing.com/problem/content/description/3167)
+-   [Luogu P3812 Template: Linear Basis](https://www.luogu.com.cn/problem/P3812)
+-   [Acwing 3164. Linear Basis](https://www.acwing.com/problem/content/description/3167)
 -   [SGU 275 to xor or not xor](https://codeforces.com/problemsets/acmsguru/problem/99999/275)
 -   [HDU 3949 XOR](https://acm.hdu.edu.cn/showproblem.php?pid=3949)
 -   [HDU 6579 Operation](https://acm.hdu.edu.cn/showproblem.php?pid=6579)
--   [Luogu P4151 \[WC2011\] 最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151)
+-   [Luogu P4151 [WC2011] Maximum XOR Sum Path](https://www.luogu.com.cn/problem/P4151)
 -   [Library Checker - Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces)
 -   [AtCoder Grand Contest 045 A - Xor Battle](https://atcoder.jp/contests/agc045/tasks/agc045_a)
 -   [Codeforces 1100F Ivan and Burgers](https://codeforces.com/problemset/problem/1100/F)
--   [Luogu P3292 \[SCOI2016\] 幸运数字](https://www.luogu.com.cn/problem/P3292)
+-   [Luogu P3292 [SCOI2016] Lucky Numbers](https://www.luogu.com.cn/problem/P3292)
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
-1.  丘维声，高等代数（下）．清华大学出版社．
+1.  Qiu Weisheng, *Advanced Algebra (Vol. 2)*. Tsinghua University Press.
 2.  [Basis (linear algebra) - Wikipedia](https://en.wikipedia.org/wiki/Basis_%28linear_algebra%29)
 3.  [Vector Basis -- from Wolfram MathWorld](https://mathworld.wolfram.com/VectorBasis.html)
 4.  [Zassenhaus algorithm - Wikipedia](https://en.wikipedia.org/wiki/Zassenhaus_algorithm)
