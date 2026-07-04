@@ -586,27 +586,61 @@ nguyên thủy.
 
 <span id="&#x6C42;&#x539F;&#x6839;&#x7684;&#x7B97;&#x6CD5;"></span>
 
-### Thuat toan tim can nguyen thuy
+### Thuật toán tìm căn nguyên thủy
 
-Voi bat ky modulo $m$ nao co can nguyen thuy, de tim mot can nguyen thuy $g$, chi can liet ke cac so nguyen duong co the va lan luot kiem tra chung co phai can nguyen thuy hay khong. Khi liet ke, thuong co hai cach xu ly: liet ke tu nho den lon, hoac sinh ngau nhien mot so so nguyen duong. Hieu qua thuc te cua hai cach nay tuong duong nhau.
+Với bất kỳ modulo $m$ nào có căn nguyên thủy, để tìm một căn nguyên thủy $g$,
+chỉ cần liệt kê các số nguyên dương có thể và lần lượt kiểm tra chúng có phải
+căn nguyên thủy hay không. Khi liệt kê, thường có hai cách xử lý: liệt kê từ
+nhỏ đến lớn, hoặc sinh ngẫu nhiên một vài số nguyên dương. Hiệu quả thực tế của
+hai cách này tương đương nhau.
 
-Khi liet ke tu nho den lon, ta thu duoc can nguyen thuy nho nhat $g_m$ modulo $m$; do do do phuc tap cua phan liet ke phu thuoc vao kich thuoc cua $g_m$. Ve diem nay, co cac uoc luong sau:
+Khi liệt kê từ nhỏ đến lớn, ta thu được căn nguyên thủy nhỏ nhất $g_m$ modulo
+$m$; do đó độ phức tạp của phần liệt kê phụ thuộc vào kích thước của $g_m$. Về
+điểm này, có các ước lượng sau:
 
--   Uoc luong can tren: Wang Yuan[^yuan1959note] va Burgess[^burgess1962character] chung minh rang can nguyen thuy nho nhat cua so nguyen to $p$ thoa man $g_p=O\left(p^{0.25+\epsilon}\right)$, trong do $\epsilon>0$. Cohen, Odoni, and Stothers[^cohen1974least] va Elliott and Murata[^elliott1998least] lan luot chung minh uoc luong nay cung dung cho modulo $p^2$ va $2p^2$, trong do $p$ la so nguyen to le. Vi voi $e>2$, can nguyen thuy modulo $p^2$ (hoac $2p^2$) cung la can nguyen thuy modulo $p^e$ (hoac $2p^e$), nen can tren $O\left(p^{0.25+\epsilon}\right)$ cua can nguyen thuy nho nhat dung cho moi truong hop.
--   Uoc luong can duoi: Fridlander[^fridlender1949least] va Salie[^salie1949kleinsten] chung minh rang ton tai $C>0$ sao cho voi vo han so nguyen to $p$, can nguyen thuy nho nhat thoa man $g_p > C\log p$.
--   Uoc luong trong truong hop trung binh: Burgess and Elliott[^burgess1968average] chung minh rang trong truong hop trung binh, can nguyen thuy nho nhat cua so nguyen to $p$ thoa man $g_p=O((\log p)^2(\log\log p)^4)$. Elliott and Murata[^elliott1997average] tiep tuc du doan gia tri trung binh cua can nguyen thuy nho nhat cua so nguyen to $p$ la mot hang so, va qua kiem chung so[^more-evidence] thu duoc gia tri xap xi $4.926$. Sau do, Elliott and Murata[^elliott1998least] mo rong du doan nay sang truong hop modulo $2p^2$.
+-   Ước lượng cận trên: Wang Yuan[^yuan1959note] và
+    Burgess[^burgess1962character] chứng minh rằng căn nguyên thủy nhỏ nhất của
+    số nguyên tố $p$ thỏa mãn $g_p=O\left(p^{0.25+\epsilon}\right)$, trong đó
+    $\epsilon>0$. Cohen, Odoni, and Stothers[^cohen1974least] và Elliott and
+    Murata[^elliott1998least] lần lượt chứng minh ước lượng này cũng đúng cho
+    modulo $p^2$ và $2p^2$, trong đó $p$ là số nguyên tố lẻ. Vì với $e>2$, căn
+    nguyên thủy modulo $p^2$ (hoặc $2p^2$) cũng là căn nguyên thủy modulo $p^e$
+    (hoặc $2p^e$), nên cận trên $O\left(p^{0.25+\epsilon}\right)$ của căn
+    nguyên thủy nhỏ nhất đúng cho mọi trường hợp.
+-   Ước lượng cận dưới: Fridlander[^fridlender1949least] và
+    Salie[^salie1949kleinsten] chứng minh rằng tồn tại $C>0$ sao cho với vô hạn
+    số nguyên tố $p$, căn nguyên thủy nhỏ nhất thỏa mãn $g_p > C\log p$.
+-   Ước lượng trong trường hợp trung bình: Burgess and
+    Elliott[^burgess1968average] chứng minh rằng trong trường hợp trung bình,
+    căn nguyên thủy nhỏ nhất của số nguyên tố $p$ thỏa mãn
+    $g_p=O((\log p)^2(\log\log p)^4)$. Elliott and Murata[^elliott1997average]
+    tiếp tục dự đoán giá trị trung bình của căn nguyên thủy nhỏ nhất của số
+    nguyên tố $p$ là một hằng số, và qua kiểm chứng số[^more-evidence] thu được
+    giá trị xấp xỉ $4.926$. Sau đó, Elliott and Murata[^elliott1998least] mở
+    rộng dự đoán này sang trường hợp modulo $2p^2$.
 
-Theo cac phan tich nay, khi tim can nguyen thuy nho nhat bang vét can, do phuc tap $O(g_m(\log m)^2)$ cua phan liet ke la chap nhan duoc.
+Theo các phân tích này, khi tìm căn nguyên thủy nhỏ nhất bằng vét cạn, độ phức
+tạp $O(g_m(\log m)^2)$ của phần liệt kê là chấp nhận được.
 
-Ngoai viec liet ke tu nho den lon, ta con co the tim can nguyen thuy bang cach sinh ngau nhien cac so nguyen duong roi kiem tra. Mat do can nguyen thuy khong thap:[^density-prim-root]
+Ngoài việc liệt kê từ nhỏ đến lớn, ta còn có thể tìm căn nguyên thủy bằng cách
+sinh ngẫu nhiên các số nguyên dương rồi kiểm tra. Mật độ căn nguyên thủy không
+thấp:[^density-prim-root]
 
 $$
 \dfrac{\varphi(\varphi(m))}{m} = \Omega\left(\dfrac{1}{\log\log m}\right).
 $$
 
-Vi vay, khi tim can nguyen thuy bang phuong phap ngau nhien, do phuc tap ky vong cua phan liet ke la $O((\log m)^2\log\log m)$.
+Vì vậy, khi tìm căn nguyên thủy bằng phương pháp ngẫu nhiên, độ phức tạp kỳ vọng
+của phần liệt kê là $O((\log m)^2\log\log m)$.
 
-Can luu y rang khi kiem tra can nguyen thuy, ta can biet phan tich thua so nguyen to cua $\varphi(m)$. Trong cac [thuat toan phan tich thua so nguyen to thuong dung](./pollard-rho.md) trong lap trinh thi dau, thuat toan Pollard Rho co do phuc tap toi uu cung can thoi gian $O(m^{1/4+\varepsilon})$. Vi vay, chi can phan tich thua so nguyen to cua $\varphi(m)$ chua biet, bat ke dung cach liet ke nao, nut that do phuc tap cua viec tim can nguyen thuy nam o buoc phan tich thua so nguyen to, chu khong phai phan liet ke va kiem tra.
+Cần lưu ý rằng khi kiểm tra căn nguyên thủy, ta cần biết phân tích thừa số
+nguyên tố của $\varphi(m)$. Trong các
+[thuật toán phân tích thừa số nguyên tố thường dùng](./pollard-rho.md) trong
+lập trình thi đấu, thuật toán Pollard Rho có độ phức tạp tối ưu cũng cần thời
+gian $O(m^{1/4+\varepsilon})$. Vì vậy, chỉ cần phân tích thừa số nguyên tố của
+$\varphi(m)$ chưa biết, bất kể dùng cách liệt kê nào, nút thắt độ phức tạp của
+việc tìm căn nguyên thủy nằm ở bước phân tích thừa số nguyên tố, chứ không phải
+phần liệt kê và kiểm tra.
 
 <span id="carmichael-&#x51FD;&#x6570;"></span>
 
