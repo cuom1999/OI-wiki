@@ -1,197 +1,197 @@
 author: Ir1d, 0xis-cn
 
-## 引入
+## Dẫn nhập
 
-**替罪羊树** 是一种依靠重构操作维持平衡的重量平衡树．替罪羊树会在插入、删除操作后，检测树是否发生失衡；如果失衡，将有针对性地进行重构以恢复平衡．
+**Cây scapegoat** là một loại cây cân bằng theo trọng số, duy trì cân bằng bằng các thao tác xây lại. Sau mỗi thao tác chèn hoặc xóa, cây scapegoat sẽ kiểm tra xem cây có bị mất cân bằng hay không; nếu có, nó sẽ xây lại phần thích hợp để khôi phục cân bằng.
 
-一般地，替罪羊树不支持区间操作，且无法完全持久化；但它具有实现简单、常数较小的优点．
+Nhìn chung, cây scapegoat không hỗ trợ thao tác trên đoạn và cũng không thể bền vững hóa hoàn toàn; bù lại, nó có ưu điểm là cài đặt đơn giản và hằng số nhỏ.
 
-## 基本结构和操作
+## Cấu trúc và thao tác cơ bản
 
-替罪羊树的核心操作是重构、插入和删除操作．
+Các thao tác cốt lõi của cây scapegoat là xây lại, chèn và xóa.
 
-### 节点信息
+### Thông tin nút
 
-替罪羊树需要存储以下信息，用于树的自平衡操作：
+Cây scapegoat cần lưu các thông tin sau để phục vụ thao tác tự cân bằng của cây:
 
--   树的结构信息：
-    -   `id`：已使用节点数目；
-    -   `rt`：根节点；
-    -   `lc[x]`，`rc[x]`：左、右子节点；
-    -   `tot[x]`：以 $x$ 为根的子树大小（每个节点计数为 $1$）[^tot-cnt]；
-    -   `tot_active`：整个树中未删除（即 `cnt[x] != 0`）的节点的数目．
+-   Thông tin cấu trúc của cây:
+    -   `id`: số lượng nút đã dùng;
+    -   `rt`: nút gốc;
+    -   `lc[x]`, `rc[x]`: nút con trái và nút con phải;
+    -   `tot[x]`: kích thước cây con gốc $x$ (mỗi nút được tính là $1$)[^tot-cnt];
+    -   `tot_active`: số nút chưa bị xóa (tức là `cnt[x] != 0`) trong toàn bộ cây.
 
-当使用替罪羊树实现平衡树时，还需要存储如下信息：
+Khi dùng cây scapegoat để cài đặt cây cân bằng, ta còn cần lưu các thông tin sau:
 
--   平衡树的节点信息：
-    -   `val[x]`：节点存储的值；
-    -   `cnt[x]`：节点存储的值的计数（可能为 $0$）；
-    -   `sz[x]`：以 $x$ 为根的子树存储的值的计数．
+-   Thông tin nút của cây cân bằng:
+    -   `val[x]`: giá trị được lưu trong nút;
+    -   `cnt[x]`: số lần xuất hiện của giá trị được lưu trong nút (có thể bằng $0$);
+    -   `sz[x]`: tổng số giá trị được lưu trong cây con gốc $x$.
 
-为了维护节点信息，可以实现 `push_up` 操作：
+Để duy trì thông tin nút, có thể cài đặt thao tác `push_up`:
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/sgt/sgt.cpp:push-up"
     ```
 
-应注意 `tot[x]` 和 `sz[x]` 的更新方式的不同．
+Cần chú ý sự khác nhau giữa cách cập nhật `tot[x]` và `sz[x]`.
 
-### 重构操作
+### Thao tác xây lại
 
-当树发生失衡时，需要对某个子树进行重构，使之尽可能平衡．重构分为两步：
+Khi cây bị mất cân bằng, cần xây lại một cây con nào đó sao cho nó cân bằng nhất có thể. Việc xây lại gồm hai bước:
 
--   对要重构的子树做中序遍历，将所有未删除节点存到序列中；
--   二分建树，即取中点为根，左右两侧递归地建子树，并更新节点信息．
+-   Duyệt inorder cây con cần xây lại, đưa tất cả nút chưa bị xóa vào một dãy;
+-   Xây cây bằng cách chia đôi, tức là lấy phần tử giữa làm gốc, đệ quy xây cây con ở hai phía trái và phải, rồi cập nhật thông tin nút.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/sgt/sgt.cpp:rebuild"
     ```
 
-建树时注意维护节点信息，包括叶子节点的信息．
+Khi xây cây, cần chú ý duy trì thông tin nút, bao gồm cả thông tin của nút lá.
 
-单次重构的复杂度是 $\Theta(|T_x|)$ 的，因此如果每次插入、删除时都进行重构，复杂度将难以接受．替罪羊树的核心思想就在于对重构时机的选择，进而实现了 $O(\log n)$ 的均摊复杂度．
+Độ phức tạp của một lần xây lại là $\Theta(|T_x|)$, nên nếu lần nào chèn hoặc xóa cũng xây lại thì độ phức tạp sẽ khó chấp nhận. Ý tưởng cốt lõi của cây scapegoat nằm ở việc chọn thời điểm xây lại, nhờ đó đạt được độ phức tạp khấu hao $O(\log n)$.
 
-### 插入操作
+### Thao tác chèn
 
-插入操作时，可能会引起树的失衡．为了判断树的失衡，需要引入参数 $\alpha\in(0.5,1)$，通常的选择在 $0.7\sim 0.8$ 之间．
+Thao tác chèn có thể làm cây mất cân bằng. Để xác định mất cân bằng, cần đưa vào tham số $\alpha\in(0.5,1)$, thường chọn trong khoảng $0.7\sim 0.8$; tham số này còn được gọi là hệ số cân bằng alpha.
 
-如果新插入的节点的深度超过了 $\lfloor\log_{1/\alpha}|T|\rfloor$，其中，$|T|$ 为更新后的树的大小，就需要在回溯时寻找失衡发生的节点并进行重构．此时，需要根据如下条件判断以 $x$ 为根的子树失衡：
+Nếu độ sâu của nút mới chèn vượt quá $\lfloor\log_{1/\alpha}|T|\rfloor$, trong đó $|T|$ là kích thước cây sau khi cập nhật, thì khi quay lui cần tìm nút xảy ra mất cân bằng và xây lại. Khi đó, dùng điều kiện sau để xác định cây con gốc $x$ bị mất cân bằng:
 
 $$
 \max\{|T_{\mathrm{left}(x)}|,|T_{\mathrm{right}(x)}|\} > \alpha\cdot |T_x|,
 $$
 
-其中，$\mathrm{left}(x)$ 和 $\mathrm{right}(x)$ 分别为 $x$ 的左、右子节点，$|T_x|$ 为以 $x$ 为根的子树大小．
+trong đó $\mathrm{left}(x)$ và $\mathrm{right}(x)$ lần lượt là nút con trái và nút con phải của $x$, còn $|T_x|$ là kích thước cây con gốc $x$.
 
-插入操作的具体步骤如下：
+Các bước cụ thể của thao tác chèn như sau:
 
--   首先利用二分查找树的性质向下找到插入值的位置，下探时记录深度；
--   如果已经有节点，直接修改节点信息，否则新建节点；
--   如果新建节点过深，就需要自下而上回溯到根，更新节点信息，并记录第一个（或任意一个）子树失衡的节点；
--   如果存在失衡节点，重构失衡节点的子树．
+-   Trước hết dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí của giá trị cần chèn, đồng thời ghi lại độ sâu trong quá trình đi xuống;
+-   Nếu đã có nút tương ứng, chỉ cần sửa thông tin nút; nếu chưa thì tạo nút mới;
+-   Nếu nút mới quá sâu, cần quay lui từ dưới lên tới gốc, cập nhật thông tin nút và ghi lại nút đầu tiên (hoặc một nút bất kỳ) có cây con mất cân bằng;
+-   Nếu tồn tại nút mất cân bằng, xây lại cây con của nút đó.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/sgt/sgt.cpp:insert"
     ```
 
-注意，单次插入至多引起一次重构．如果没有新增节点或是新增节点并没有过深，又或是本次回溯过程中已经执行过重构，就不需要继续判断失衡了．多余的重构可能会导致效率损失[^insert-complexity]．回溯过程中的第一个失衡节点，就是所谓的「替罪羊」．
+Lưu ý rằng một lần chèn nhiều nhất chỉ gây ra một lần xây lại. Nếu không thêm nút mới, hoặc nút mới không quá sâu, hoặc trong quá trình quay lui lần này đã thực hiện xây lại rồi, thì không cần tiếp tục kiểm tra mất cân bằng. Các lần xây lại dư thừa có thể làm giảm hiệu suất[^insert-complexity]. Nút mất cân bằng đầu tiên trong quá trình quay lui chính là "scapegoat".
 
-### 删除操作
+### Thao tác xóa
 
-删除操作的处理则非常简单．替罪羊树的删除策略是「懒删除」，即节点为空时，不移除节点，而是留待后续处理．
+Cách xử lý thao tác xóa rất đơn giản. Chiến lược xóa của cây scapegoat là "xóa lười": khi một nút trở thành rỗng, ta không loại bỏ nút đó ngay mà để xử lý sau.
 
-当然，如果树中空节点过多，树的访问效率会大大下降．因此，替罪羊树维护两个计数，整个树中未删除节点的数目和整个树实际使用的节点数目．对于选定的阈值[^threshold] $\alpha\in(0,1)$，当前者与后者的比值下降到 $\alpha$ 以下时，就对整个树做一次重构，重构时删除所有空节点．
+Dĩ nhiên, nếu trong cây có quá nhiều nút rỗng, hiệu suất truy cập sẽ giảm mạnh. Vì vậy, cây scapegoat duy trì hai bộ đếm: số nút chưa bị xóa trong toàn bộ cây và số nút thực tế đã dùng trong toàn bộ cây. Với một ngưỡng đã chọn[^threshold] $\alpha\in(0,1)$, khi tỉ lệ giữa bộ đếm thứ nhất và bộ đếm thứ hai giảm xuống dưới $\alpha$, ta xây lại toàn bộ cây một lần; trong quá trình xây lại, tất cả nút rỗng sẽ bị loại bỏ.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/sgt/sgt.cpp:remove"
     ```
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-大小为 $n$ 的替罪羊树的访问节点的时间复杂度为单次 $O(\log n)$ 的，$\Theta(n)$ 次插入和删除的均摊时间复杂度也是单次 $O(\log n)$ 的．
+Với cây scapegoat có kích thước $n$, độ phức tạp thời gian của một lần truy cập nút là $O(\log n)$, và độ phức tạp thời gian khấu hao của mỗi thao tác trong $\Theta(n)$ lần chèn và xóa cũng là $O(\log n)$.
 
-本节对替罪羊树的时间复杂度仅做简要论证，详细证明请参考原论文．
+Phần này chỉ trình bày lập luận ngắn gọn về độ phức tạp thời gian của cây scapegoat; để xem chứng minh chi tiết, hãy tham khảo bài báo gốc.
 
-??? note "替罪羊树的时间复杂度的论证"
-    由于采用懒删除的策略，未删除节点数目为 $n$ 的替罪羊树可能占用了 $\alpha^{-1}n$ 个节点．由于仅仅相差一个常数因子，本文在表述中并不区分替罪羊树的未删除节点数目和占用节点数目，而统一称为「树的大小」．
-    
-    1.  **访问操作**：访问操作的复杂度得以保证，是因为大小为 $n$ 的替罪羊树的树高总是 $O(\log n)$ 的．
-    
-        首先，区分两个概念：
-    
-        -   $\alpha$‑重量平衡：所有节点处，左、右子节点的子树的大小均不超过该节点处子树的大小的 $\alpha$ 倍；
-        -   $\alpha$‑高度平衡：树的高度不超过 $\lfloor\log_{1/\alpha}|T|\rfloor$，其中，$T$ 是树的大小．
-    
-        $\alpha$‑重量平衡可以推出 $\alpha$‑高度平衡，因为子节点深度每增加一，大小就减少到原来的 $\alpha$ 倍；反过来则不一定成立．更严格地说，每次操作结束后，替罪羊树都总是 $\alpha$‑高度平衡的[^hei-bal]，这就保证了访问操作的复杂度．
-    
-        只有插入操作会改变树的结构，所以只需要说明每次插入操作后，替罪羊树都仍是 $\alpha$‑高度平衡的．如果新插入的节点过深，造成了整个树不再 $\alpha$‑高度平衡，那么自该节点回溯至根时，至少会碰上一个节点，即「替罪羊」，它的子树不再 $\alpha$‑重量平衡．将其重构后，子树的高度将降低至少一，故而新插入的节点将不再过深．
-    2.  **插入操作**：插入操作的复杂度是均摊 $O(\log n)$ 的．
-    
-        设在某次插入操作后，节点 $x$ 处发生一次子树的重构，时间成本为 $\Theta(|T_x|)$．因为节点 $x$ 刚插入时，或者它刚刚经历了（自身或祖先节点的）上一次重构之后，它的左右子树至多只相差一个节点．而在这次重构之前，节点 $x$ 处必然成立
-    
+??? note "Lập luận về độ phức tạp thời gian của cây scapegoat"
+    Do dùng chiến lược xóa lười, một cây scapegoat có $n$ nút chưa bị xóa có thể chiếm tới $\alpha^{-1}n$ nút. Vì chỉ khác nhau một hằng số, trong phần trình bày này ta không phân biệt số nút chưa bị xóa và số nút bị chiếm dụng của cây scapegoat, mà gọi chung là "kích thước cây".
+
+    1.  **Thao tác truy cập**: Độ phức tạp của thao tác truy cập được bảo đảm vì chiều cao của cây scapegoat kích thước $n$ luôn là $O(\log n)$.
+
+        Trước hết, phân biệt hai khái niệm:
+
+        -   Cân bằng trọng số $\alpha$: tại mọi nút, kích thước cây con của nút con trái và nút con phải đều không vượt quá $\alpha$ lần kích thước cây con tại nút đó;
+        -   Cân bằng chiều cao $\alpha$: chiều cao của cây không vượt quá $\lfloor\log_{1/\alpha}|T|\rfloor$, trong đó $|T|$ là kích thước cây.
+
+        Cân bằng trọng số $\alpha$ suy ra cân bằng chiều cao $\alpha$, vì mỗi khi độ sâu của nút con tăng thêm một, kích thước sẽ giảm xuống còn $\alpha$ lần ban đầu; chiều ngược lại thì không nhất thiết đúng. Nói chặt chẽ hơn, sau mỗi thao tác, cây scapegoat luôn cân bằng chiều cao $\alpha$[^hei-bal], nhờ đó bảo đảm độ phức tạp của thao tác truy cập.
+
+        Chỉ thao tác chèn mới thay đổi cấu trúc cây, nên chỉ cần chứng minh sau mỗi thao tác chèn, cây scapegoat vẫn cân bằng chiều cao $\alpha$. Nếu nút mới chèn quá sâu, làm cho toàn bộ cây không còn cân bằng chiều cao $\alpha$, thì khi quay lui từ nút đó về gốc, chắc chắn sẽ gặp ít nhất một nút, tức "scapegoat", có cây con không còn cân bằng trọng số $\alpha$. Sau khi xây lại cây con đó, chiều cao của cây con sẽ giảm ít nhất một, do đó nút mới chèn sẽ không còn quá sâu nữa.
+    2.  **Thao tác chèn**: Độ phức tạp của thao tác chèn là $O(\log n)$ theo nghĩa khấu hao.
+
+        Giả sử sau một thao tác chèn nào đó, tại nút $x$ xảy ra một lần xây lại cây con, với chi phí thời gian $\Theta(|T_x|)$. Khi nút $x$ vừa được chèn, hoặc ngay sau lần xây lại trước đó của chính nó (hoặc của một nút tổ tiên), hai cây con trái và phải của nó chênh lệch nhiều nhất một nút. Còn trước lần xây lại hiện tại, tại nút $x$ chắc chắn thỏa mãn
+
         $$
         \max\{|T_{\mathrm{left}(x)}|,|T_{\mathrm{right}(x)}|\} > \alpha\cdot |T_x|.
         $$
-    
-        这一条件保证左右子树的大小的差值至少为 $(2\alpha-1)|T_x|$ 的．因而，这两次重构之间，子树 $T_x$ 中插入了 $\Omega(|T_x|)$ 个节点．
-    
-        利用摊还分析可知[^alternative-analysis]，如果每次插入节点时，都在（可能的重构前）自根到该节点的路径上的每个节点都增加 $\Theta(1)$ 的势能，那么到节点 $x$ 处子树重构前，必然已经在节点 $x$ 处累积了 $\Omega(|T_x|)$ 的势能，足以用于偿还 $x$ 处子树重构的成本 $\Theta(|T_x|)$．因为树的深度都是 $O(\log n)$ 的，所以单次插入增加的势能是 $O(\log n)$ 的；这说明，$\Theta(n)$ 次插入操作中势能增加的总和是 $O(n\log n)$ 的．由此，子树重构的总成本也是 $O(n\log n)$ 的，单次插入操作（含重构）的均摊时间复杂度就是 $O(\log n)$ 的．
-    
-        注意，分析中没有假定在节点 $x$ 处的两次重构之间，子树 $T_x$ 内部没有发生其它的重构．因此，只要只重构满足失衡条件的节点处的子树，就能保证复杂度正确．
-    3.  **删除操作**：删除操作的复杂度也是均摊 $O(\log n)$ 的．
-    
-        删除引起的重构会导致整个树不含空节点．而某次删除引起重构之前，整个树中已经有 $\Theta(n)$ 个空节点，这意味着至少进行了 $\Theta(n)$ 次删除操作．因为每次删除操作的寻址的复杂度是 $O(\log n)$ 的，且单次重构的复杂度是 $\Theta(n)$，所以这 $\Theta(n)$ 次删除操作的实际时间成本为
-    
+
+        Điều kiện này bảo đảm độ chênh lệch kích thước giữa hai cây con trái và phải ít nhất là $(2\alpha-1)|T_x|$. Vì vậy, giữa hai lần xây lại này, đã có $\Omega(|T_x|)$ nút được chèn vào cây con $T_x$.
+
+        Theo phân tích khấu hao[^alternative-analysis], nếu mỗi lần chèn một nút ta đều cộng $\Theta(1)$ thế năng cho mỗi nút trên đường đi từ gốc tới nút đó (trước lần xây lại nếu có), thì trước khi cây con tại nút $x$ được xây lại, ở nút $x$ chắc chắn đã tích lũy $\Omega(|T_x|)$ thế năng, đủ để trả chi phí $\Theta(|T_x|)$ cho lần xây lại cây con tại $x$. Vì độ sâu của cây luôn là $O(\log n)$, thế năng tăng thêm trong một lần chèn là $O(\log n)$; điều này cho thấy tổng thế năng tăng thêm trong $\Theta(n)$ thao tác chèn là $O(n\log n)$. Do đó, tổng chi phí xây lại cây con cũng là $O(n\log n)$, và độ phức tạp thời gian khấu hao của một thao tác chèn (bao gồm xây lại) là $O(\log n)$.
+
+        Lưu ý rằng phân tích trên không giả định rằng giữa hai lần xây lại tại nút $x$, bên trong cây con $T_x$ không xảy ra lần xây lại nào khác. Vì vậy, chỉ cần xây lại cây con tại các nút thỏa điều kiện mất cân bằng là đã bảo đảm độ phức tạp đúng.
+    3.  **Thao tác xóa**: Độ phức tạp của thao tác xóa cũng là $O(\log n)$ theo nghĩa khấu hao.
+
+        Việc xây lại do thao tác xóa gây ra sẽ làm cho toàn bộ cây không còn nút rỗng. Trước một lần xây lại do xóa nào đó, trong toàn bộ cây đã có $\Theta(n)$ nút rỗng, nghĩa là trước đó đã có ít nhất $\Theta(n)$ thao tác xóa. Vì độ phức tạp tìm vị trí của mỗi thao tác xóa là $O(\log n)$, và độ phức tạp của một lần xây lại là $\Theta(n)$, chi phí thời gian thực tế của $\Theta(n)$ thao tác xóa này là
+
         $$
         \Theta(n)O(\log n)+\Theta(n)
         $$
-    
-        的．故而，单次删除的均摊复杂度为 $O(\log n)$ 的．
 
-## 平衡树操作
+        Do đó, độ phức tạp khấu hao của một lần xóa là $O(\log n)$.
 
-本节介绍用替罪羊树维护可重集的方法．
+## Thao tác cây cân bằng
 
-除上节介绍的操作外，其余操作均为平衡树的常见操作．但是，因为替罪羊树中可能存在空节点，这些操作也需要相应调整．
+Phần này giới thiệu cách dùng cây scapegoat để duy trì một multiset.
 
-### 查询排名
+Ngoài các thao tác đã giới thiệu ở phần trước, các thao tác còn lại đều là thao tác thường gặp của cây cân bằng. Tuy nhiên, vì trong cây scapegoat có thể tồn tại nút rỗng, các thao tác này cũng cần được điều chỉnh tương ứng.
 
-利用二分查找树的性质向下查找节点位置，过程中记录路径左侧存储的值的数目即可．
+### Truy vấn hạng
 
-???+ example "参考实现"
+Dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí nút, đồng thời ghi lại số lượng giá trị được lưu ở bên trái đường đi là đủ.
+
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/sgt/sgt.cpp:find-rank"
     ```
 
-### 根据排名查询值
+### Truy vấn giá trị theo hạng
 
-利用节点记录的子树存储值的数目信息向下查找即可．注意可能存在计数为零的节点．
+Dùng thông tin số lượng giá trị được lưu trong cây con mà các nút ghi lại để đi xuống tìm kiếm là đủ. Cần chú ý rằng có thể tồn tại nút có số lần xuất hiện bằng không.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/sgt/sgt.cpp:find-kth"
     ```
 
-### 查询前驱、后继
+### Truy vấn tiền nhiệm và kế nhiệm
 
-以上两种功能结合即可．
+Kết hợp hai chức năng trên là được.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/sgt/sgt.cpp:pred-succ"
     ```
 
-如果想直接实现，应注意处理计数为零的节点．
+Nếu muốn cài đặt trực tiếp, cần chú ý xử lý các nút có số lần xuất hiện bằng không.
 
-### 参考实现
+### Cài đặt tham khảo
 
-本节的最后，给出模板题 [普通平衡树](https://loj.ac/p/104) 的参考实现．
+Cuối phần này là cài đặt tham khảo cho bài mẫu [Cây cân bằng thông thường](https://loj.ac/p/104).
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/sgt/sgt.cpp:full-text"
     ```
 
-## 参考资料
+## Tài liệu tham khảo
 
 -   Galperin, Igal, and Ronald L. Rivest. "Scapegoat trees." Proceedings of the fourth annual ACM-SIAM Symposium on Discrete algorithms. 1993.
 -   [Scapegoat Tree - Wikipedia](https://en.wikipedia.org/wiki/Scapegoat_tree)
--   [替罪羊树 - riteme 的博客](https://riteme.site/blog/2016-4-6/scapegoat.html)
+-   [Bài viết của riteme về cây scapegoat](https://riteme.site/blog/2016-4-6/scapegoat.html)
 
-[^tot-cnt]: 也可以只统计未删除节点数目，此时不再需要统计 `tot_active`，而需要统计所有占用节点数目 `tot_max`，代码相应调整即可．
+[^tot-cnt]: Cũng có thể chỉ thống kê số nút chưa bị xóa; khi đó không cần thống kê `tot_active` nữa, mà cần thống kê tổng số nút đã cấp phát `tot_max`, và mã nguồn cần được điều chỉnh tương ứng.
 
-[^insert-complexity]: 根据后文的复杂度分析可知，这些效率损失仅意味着更大的常数因子，而复杂度依然是正确的．因为判断树深可能会涉及较多的浮点数对数运算，不判断树深只判断失衡的代码在某些数据中可能更快．
+[^insert-complexity]: Theo phân tích độ phức tạp ở phần sau, phần hiệu suất bị mất này chỉ làm hằng số lớn hơn, còn độ phức tạp vẫn đúng. Vì việc kiểm tra độ sâu của cây có thể liên quan tới khá nhiều phép tính logarit số thực, trên một số dữ liệu, mã chỉ kiểm tra mất cân bằng mà không kiểm tra độ sâu của cây có thể nhanh hơn.
 
-[^threshold]: 不必与上文插入操作时选取的参数相同．尽管原论文做了这样的假定，但是选取不同的参数只会导致单次操作的复杂度中常数项的变化，整体复杂度依然是正确的．
+[^threshold]: Không nhất thiết phải giống tham số được chọn cho thao tác chèn ở trên. Dù bài báo gốc giả định như vậy, việc chọn các tham số khác nhau chỉ làm thay đổi hằng số trong độ phức tạp của một thao tác, còn độ phức tạp tổng thể vẫn đúng.
 
-[^hei-bal]: 按原文定义，$n$ 指未删除节点的数目，故而只能保证树高不超过 $\lfloor\log_{1/\alpha}n\rfloor+1$，这称为弱 $\alpha$‑高度平衡．此处没有细究该常数项的差异．
+[^hei-bal]: Theo định nghĩa trong bài báo gốc, $n$ chỉ số nút chưa bị xóa, vì vậy chỉ có thể bảo đảm chiều cao cây không vượt quá $\lfloor\log_{1/\alpha}n\rfloor+1$; đây được gọi là cân bằng chiều cao $\alpha$ yếu. Ở đây không đi sâu vào khác biệt ở hằng số này.
 
-[^alternative-analysis]: 有些文章会简单分析成 $\Omega(|T_x|)$ 次插入对应一次重构，故而均摊复杂度为 $\dfrac{\Omega(|T_x|)O(\log n)+\Theta(|T_x|)}{\Omega(|T_x|)} = O(\log n)$．这样的思路可以辅助理解均摊复杂度为什么正确，但并不严谨．这是因为，一次插入可能对应着多个祖先节点的重构，故而当节点 $x$ 发生重构时，子树内未引起重构的节点数目并不显然是 $\Omega(|T_x|)$ 的．
+[^alternative-analysis]: Một số bài viết sẽ phân tích đơn giản rằng $\Omega(|T_x|)$ lần chèn tương ứng với một lần xây lại, nên độ phức tạp khấu hao là $\dfrac{\Omega(|T_x|)O(\log n)+\Theta(|T_x|)}{\Omega(|T_x|)} = O(\log n)$. Cách lập luận này có thể giúp hiểu vì sao độ phức tạp khấu hao là đúng, nhưng chưa chặt chẽ. Lý do là một lần chèn có thể tương ứng với việc xây lại ở nhiều nút tổ tiên, nên khi nút $x$ xảy ra xây lại, không hiển nhiên rằng số nút trong cây con chưa gây ra xây lại là $\Omega(|T_x|)$.

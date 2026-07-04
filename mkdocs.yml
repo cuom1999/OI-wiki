@@ -381,13 +381,13 @@ nav:
       - Treap: ds/treap.md
       - Splay 树: ds/splay.md
       - WBLT: ds/wblt.md
-      - 替罪羊树: ds/sgt.md
-      - 笛卡尔树: ds/cartesian-tree.md
+      - Cây scapegoat: ds/sgt.md
+      - Cây Descartes: ds/cartesian-tree.md
       - Size Balanced Tree: ds/sbt.md
-      - AVL 树: ds/avl.md
+      - Cây AVL: ds/avl.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
-      - AA 树: ds/aa-tree.md
+      - Cây AA: ds/aa-tree.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md

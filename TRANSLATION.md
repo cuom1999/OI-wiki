@@ -225,6 +225,9 @@ MkDocs source layout intact.
   construction, range queries, lazy propagation, dynamic opening nodes,
   templates, examples, extensions, and graph-building optimization, plus
   explanatory comments in included snippets.
+- `docs/ds/cartesian-tree.md`, `docs/ds/avl.md`, `docs/ds/aa-tree.md`,
+  `docs/ds/sgt.md`: translated smaller balanced-tree pages covering
+  Cartesian trees, AVL trees, AA trees, and scapegoat trees.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
