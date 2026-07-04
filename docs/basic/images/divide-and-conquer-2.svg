@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1356 678" role="img" aria-labelledby="title desc">
+  <title id="title">So sánh thời gian giữa cách không đệ quy và đệ quy</title>
+  <desc id="desc">Biểu đồ cột cho thấy phiên bản không đệ quy nhanh hơn phiên bản đệ quy trong phép đo minh họa.</desc>
+  <style>
+    text {
+      font-family: Arial, "Helvetica Neue", sans-serif;
+      fill: #666;
+    }
+    .label { font-size: 28px; }
+    .tick { font-size: 26px; }
+    .caption { font-size: 27px; font-weight: 700; }
+    .grid { stroke: #d9d9d9; stroke-width: 1.3; }
+    .axis { stroke: #9b9b9b; stroke-width: 1.4; }
+  </style>
+
+  <rect width="1356" height="678" fill="#fff"/>
+  <g transform="translate(80 14)">
+    <line class="grid" x1="0" y1="0" x2="1270" y2="0"/>
+    <line class="grid" x1="0" y1="72" x2="1270" y2="72"/>
+    <line class="grid" x1="0" y1="145" x2="1270" y2="145"/>
+    <line class="grid" x1="0" y1="217" x2="1270" y2="217"/>
+    <line class="grid" x1="0" y1="290" x2="1270" y2="290"/>
+    <line class="grid" x1="0" y1="362" x2="1270" y2="362"/>
+    <line class="grid" x1="0" y1="435" x2="1270" y2="435"/>
+    <line class="grid" x1="0" y1="507" x2="1270" y2="507"/>
+    <line class="grid" x1="635" y1="0" x2="635" y2="526"/>
+    <line class="grid" x1="1270" y1="0" x2="1270" y2="526"/>
+
+    <line class="axis" x1="0" y1="0" x2="0" y2="526"/>
+    <line class="axis" x1="0" y1="507" x2="1270" y2="507"/>
+
+    <text class="tick" x="-69" y="515">0</text>
+    <text class="tick" x="-69" y="443">1e-6</text>
+    <text class="tick" x="-69" y="370">2e-6</text>
+    <text class="tick" x="-69" y="298">3e-6</text>
+    <text class="tick" x="-69" y="225">4e-6</text>
+    <text class="tick" x="-69" y="153">5e-6</text>
+    <text class="tick" x="-69" y="80">6e-6</text>
+    <text class="tick" x="-69" y="7">7e-6</text>
+
+    <rect x="88" y="218" width="458" height="289" fill="#58d0c4"/>
+    <rect x="723" y="43" width="458" height="464" fill="#f2acbd"/>
+
+    <text class="label" x="240" y="550">không đệ quy</text>
+    <text class="label" x="901" y="550">đệ quy</text>
+  </g>
+
+  <text class="caption" x="518" y="622">tỉ lệ (thời gian CPU / thời gian Noop)</text>
+  <text class="caption" x="593" y="650">Càng thấp càng nhanh</text>
+</svg>

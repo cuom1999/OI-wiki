@@ -30,7 +30,7 @@ Một số ví dụ giúp hiểu đệ quy:
     thế nào thì hãy đọc lại câu này.
 3.  Năm nay bạn bao nhiêu tuổi? Trả lời: tuổi năm ngoái cộng thêm một; tôi sinh
     năm 1999.
-4.  ![Một ví dụ để hiểu đệ quy](images/divide-and-conquer-1.png)
+4.  ![Một ví dụ để hiểu đệ quy](images/divide-and-conquer-1.svg)
 
 Đệ quy rất thường gặp trong toán học. Chẳng hạn trong lý thuyết tập hợp, một
 định nghĩa hình thức của số tự nhiên là: 1 là một số tự nhiên; mỗi số tự nhiên
@@ -134,7 +134,7 @@ int size_recursion(Node *head) {
 }
 ```
 
-![[So sánh hai cách, compiler đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png "[So sánh hai cách, compiler đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
+![[So sánh hai cách, compiler đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.svg "[So sánh hai cách, compiler đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
 
 ### Tối ưu đệ quy
 

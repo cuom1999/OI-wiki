@@ -1,6 +1,6 @@
 author: HeRaNO, konnyakuxzy, littlefrog
 
-![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
+![Danh sách liên kết chia khối](./images/kuaizhuanglianbiao.svg "Danh sách liên kết chia khối")
 
 Danh sách liên kết chia khối đại khái có dạng như vậy.
 

@@ -13,6 +13,9 @@ MkDocs source layout intact.
   `docs/geometry/images/andrew.py`: translated user-facing CI summaries,
   generated commit-info fallback strings, celebration issue text, and Andrew
   convex-hull diagram labels.
+- `docs/basic/images/divide-and-conquer-*.svg` and
+  `docs/ds/images/kuaizhuanglianbiao.svg`: replaced referenced raster diagrams
+  with editable Vietnamese SVG versions.
 - `docs/index.md`: translated landing page.
 - `docs/edit-landing.md`: translated the in-browser edit landing prompt.
 - `docs/intro/about.md`: translated project overview.
