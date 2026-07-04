@@ -651,27 +651,35 @@ Mã tham khảo để tìm căn bậc $k$ theo modulo số nguyên tố như sau
 <span id="&#19968;&#33324;&#24773;&#24418;&#30340;&#22788;&#29702;"></span>
 ### Xử lý trường hợp tổng quát
 
-Xet truong hop tong quat, van gia su modulo $m$ la luy thua so nguyen to $p^e$, nhung $\gcd(a,m)>1$. Neu $a\equiv 0\pmod{m}$, thi
+Xét trường hợp tổng quát, vẫn giả sử modulo $m$ là lũy thừa số nguyên tố $p^e$,
+nhưng $\gcd(a,m)>1$. Nếu $a\equiv 0\pmod{m}$, thì
 
 $$
 x = p^{\lceil e/k \rceil}\ell\pmod{p^e},~\ell=0,1,\cdots,p^{e-\lceil e/k\rceil}-1
 $$
 
-deu la nghiem cua phuong trinh ban dau. Tiep theo xet truong hop $a\not\equiv 0\pmod{m}$. Dat $a = p^sa'$ va $p\perp a'$. Khi do, dat $x=p^zx'$ va $p\perp x'$, ta co
+đều là nghiệm của phương trình ban đầu. Tiếp theo xét trường hợp
+$a\not\equiv 0\pmod{m}$. Đặt $a = p^sa'$ và $p\perp a'$. Khi đó, đặt $x=p^zx'$
+và $p\perp x'$, ta có
 
 $$
 x^k = p^{kz}(x')^k\equiv p^sa'\pmod{p^e}.
 $$
 
-Vi $(x')^k\perp p$, cong thuc tren dung khi va chi khi $kz = s$ va $(x')^k\equiv a'\pmod{p^{e-s}}$. Phuong trinh thu nhat co nghiem $z=\dfrac{s}{k}$ khi va chi khi $k\mid s$; con phuong trinh thu hai da duoc giai o tren. Can chu y rang do modulo cua nghiem tong quat trong phuong trinh thu hai khac voi modulo cua nghiem tong quat ban dau, moi nghiem $x'$ cua phuong trinh thu hai tuong ung voi mot so nghiem cua phuong trinh ban dau:
+Vì $(x')^k\perp p$, công thức trên đúng khi và chỉ khi $kz = s$ và
+$(x')^k\equiv a'\pmod{p^{e-s}}$. Phương trình thứ nhất có nghiệm
+$z=\dfrac{s}{k}$ khi và chỉ khi $k\mid s$; còn phương trình thứ hai đã được
+giải ở trên. Cần chú ý rằng do modulo của nghiệm tổng quát trong phương trình
+thứ hai khác với modulo của nghiệm tổng quát ban đầu, mỗi nghiệm $x'$ của
+phương trình thứ hai tương ứng với một số nghiệm của phương trình ban đầu:
 
 $$
 x \equiv p^{s/k}(x' + \ell p^{e-s})\pmod{p^e},~\ell = 0,1,\cdots, p^{s-s/k}-1.
 $$
 
-Ma tham khao de tim toan bo can bac $k$ theo modulo bat ky nhu sau:
+Mã tham khảo để tìm toàn bộ căn bậc $k$ theo modulo bất kỳ như sau:
 
-??? example "Bài mẫu [Luogu P5668 - mẫu N-th residue](https://www.luogu.com.cn/problem/P5668), mã tham khảo"
+??? example "Bài mẫu [Luogu P5668 - mẫu căn bậc N](https://www.luogu.com.cn/problem/P5668), mã tham khảo"
     === "Thuật toán trực tiếp"
         ```cpp
         --8<-- "docs/math/code/residue/bsgs.cpp"
@@ -689,10 +697,10 @@ Ma tham khao de tim toan bo can bac $k$ theo modulo bat ky nhu sau:
 -   [Root of unity modulo n - Wikipedia](https://en.wikipedia.org/wiki/Root_of_unity_modulo_n)
 -   [No.981 General Power Root, editorial by 37zigen](https://yukicoder.me/problems/no/981/editorial)
 
-[^fnnt]: Thuc ra, modulo $m$ khong nhat thiet la so nguyen to. Chi can $a$ la can don vi nguyen thuy bac $k=2^e$ modulo $m$, no co the duoc dung cho bien doi so hoc nhanh modulo $m$. Tuy nhien, vi $2^e$ can xu ly thuong kha lon, moi thua so nguyen to cua modulo $m$ phai co dang $c2^e+1$. Do do chi mot thua so nguyen to da rat lon, con modulo $m$ thuong lon hon nua; vi vay truong hop modulo tong quat khong thong dung bang truong hop modulo so nguyen to.
+[^fnnt]: Thật ra, modulo $m$ không nhất thiết là số nguyên tố. Chỉ cần $a$ là căn đơn vị nguyên thủy bậc $k=2^e$ modulo $m$, nó có thể được dùng cho biến đổi số học nhanh modulo $m$. Tuy nhiên, vì $2^e$ cần xử lý thường khá lớn, mỗi thừa số nguyên tố của modulo $m$ phải có dạng $c2^e+1$. Do đó chỉ một thừa số nguyên tố đã rất lớn, còn modulo $m$ thường lớn hơn nữa; vì vậy trường hợp modulo tổng quát không thông dụng bằng trường hợp modulo số nguyên tố.
 
-[^lambda-density]: Theo [ket qua ve so luong can nguyen thuy](./primitive-root.md#%E5%8E%9F%E6%A0%B9%E4%B8%AA%E6%95%B0), so luong $\lambda$-can nguyen thuy dung bang $\varphi(\lambda(m))$, trong do $\varphi(\cdot)$ va $\lambda(\cdot)$ lan luot la ham Euler va ham Carmichael. Vi voi hau het so nguyen $m$, ta co $\lambda(m)/m = \exp(-(1+o(1))\log\log m\log\log\log m)$, va ton tai $C > 0$ sao cho voi moi so nguyen $m > 2$ deu co $\varphi(m)/m = C / \log\log m$, nen voi hau het so nguyen $m$, ta co $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$. O day, $o(1)$ trong he so cua phan mu da hap thu dong gop cua thua so $\varphi(\lambda(m))/\lambda(m)$. Vi vay, co the tim $\lambda$-can nguyen thuy sau ky vong $\exp((1+o(1))\log\log m\log\log\log m)$ lan thu. Ve uoc luong cho ham Euler, co the tham khao bai bao Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94. Ve uoc luong cho ham Carmichael, co the tham khao bai bao Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael's lambda function." Acta Arith 58, no. 4 (1991): 363-385.
+[^lambda-density]: Theo [kết quả về số lượng căn nguyên thủy](./primitive-root.md#%E5%8E%9F%E6%A0%B9%E4%B8%AA%E6%95%B0), số lượng $\lambda$-căn nguyên thủy đúng bằng $\varphi(\lambda(m))$, trong đó $\varphi(\cdot)$ và $\lambda(\cdot)$ lần lượt là hàm Euler và hàm Carmichael. Vì với hầu hết số nguyên $m$, ta có $\lambda(m)/m = \exp(-(1+o(1))\log\log m\log\log\log m)$, và tồn tại $C > 0$ sao cho với mọi số nguyên $m > 2$ đều có $\varphi(m)/m = C / \log\log m$, nên với hầu hết số nguyên $m$, ta có $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$. Ở đây, $o(1)$ trong hệ số của phần mũ đã hấp thụ đóng góp của thừa số $\varphi(\lambda(m))/\lambda(m)$. Vì vậy, có thể tìm $\lambda$-căn nguyên thủy sau kỳ vọng $\exp((1+o(1))\log\log m\log\log\log m)$ lần thử. Về ước lượng cho hàm Euler, có thể tham khảo bài báo Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94. Về ước lượng cho hàm Carmichael, có thể tham khảo bài báo Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael's lambda function." Acta Arith 58, no. 4 (1991): 363-385.
 
-[^amm]: Bai bao goc: Adleman, Leonard, Kenneth Manders, and Gary Miller. "On taking roots in finite fields." In 18th Annual Symposium on Foundations of Computer Science (sfcs 1977), pp. 175-178. IEEE Computer Society, 1977. Mot phan gioi thieu de doc hon co trong Cao, Zhengjun, Qian Sha, and Xiao Fan. "Adleman-Manders-Miller root extraction method revisited." In International Conference on Information Security and Cryptology, pp. 77-85. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011.
+[^amm]: Bài báo gốc: Adleman, Leonard, Kenneth Manders, and Gary Miller. "On taking roots in finite fields." In 18th Annual Symposium on Foundations of Computer Science (sfcs 1977), pp. 175-178. IEEE Computer Society, 1977. Một phần giới thiệu dễ đọc hơn có trong Cao, Zhengjun, Qian Sha, and Xiao Fan. "Adleman-Manders-Miller root extraction method revisited." In International Conference on Information Security and Cryptology, pp. 77-85. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011.
 
-[^amm-comp]: Vi thuat toan nay yeu cau $k$ la so nguyen to, trong truong hop xau nhat no can tim can bac $p$ cua $a$ modulo $m$, voi $p$ la thua so nguyen to lon nhat cua $\varphi(m)$. Trong qua trinh nay, can tinh logarit roi rac cua $a$ modulo $m$ theo can don vi nguyen thuy bac $p$. Ngay ca khi dung thuat toan BSGS, qua trinh nay cung can $O(\sqrt{p})$ thoi gian. Tuy nhien, bai bao Fouvry, Etienne. "Theoreme de Brun-Titchmarsh; application au theoreme de Fermat." Inventiones mathematicae 79, no. 2 (1985): 383-407 chi ra rang ton tai mot tap so nguyen to $m$ co mat do duong sao cho thua so nguyen to lon nhat $p$ cua $\varphi(m)=m-1$ thoa man $p=\Omega(m^{2/3})$. Dieu nay co nghia do phuc tap cua thuat toan it nhat la $\Omega(m^{1/3})$, kem hon thuat toan Tonelli-Shanks cai tien duoc gioi thieu trong bai.
+[^amm-comp]: Vì thuật toán này yêu cầu $k$ là số nguyên tố, trong trường hợp xấu nhất nó cần tìm căn bậc $p$ của $a$ modulo $m$, với $p$ là thừa số nguyên tố lớn nhất của $\varphi(m)$. Trong quá trình này, cần tính logarit rời rạc của $a$ modulo $m$ theo căn đơn vị nguyên thủy bậc $p$. Ngay cả khi dùng thuật toán BSGS, quá trình này cũng cần $O(\sqrt{p})$ thời gian. Tuy nhiên, bài báo Fouvry, Etienne. "Theoreme de Brun-Titchmarsh; application au theoreme de Fermat." Inventiones mathematicae 79, no. 2 (1985): 383-407 chỉ ra rằng tồn tại một tập số nguyên tố $m$ có mật độ dương sao cho thừa số nguyên tố lớn nhất $p$ của $\varphi(m)=m-1$ thỏa mãn $p=\Omega(m^{2/3})$. Điều này có nghĩa độ phức tạp của thuật toán ít nhất là $\Omega(m^{1/3})$, kém hơn thuật toán Tonelli-Shanks cải tiến được giới thiệu trong bài.
