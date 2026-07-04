@@ -241,49 +241,70 @@ Barrett reduction như sau:
 Cài đặt này cần dùng số nguyên $128$ bit[^int128].
 
 <span id="montgomery-&#x6A21;&#x4E58;"></span>
-### Phep nhan modulo Montgomery
+### Phép nhân modulo Montgomery
 
-Thuat toan nhan modulo Montgomery co chuc nang rat giong thuat toan Barrett: no cung giam chi phi modulo trong qua trinh tinh so nguyen modulo. Khac voi hai thuat toan truoc deu dua tren xap xi thuong, phep nhan modulo Montgomery anh xa moi so nguyen vao khong gian Montgomery, noi cac phep toan tuong doi de thuc hien, tu do giam chi phi tinh toan tong the.
+Thuật toán nhân modulo Montgomery có chức năng rất giống thuật toán Barrett: nó
+cũng giảm chi phí modulo trong quá trình tính số nguyên modulo. Khác với hai
+thuật toán trước đều dựa trên xấp xỉ thương, phép nhân modulo Montgomery ánh xạ
+mỗi số nguyên vào không gian Montgomery, trong đó các phép toán tương đối dễ
+thực hiện, từ đó giảm chi phí tính toán tổng thể.
 
-Cho modulo $m$ la so le, va chon $R = 2^k > m$. Khi do dang Montgomery cua lop dong du $a \bmod m$ la
+Cho modulo $m$ là số lẻ, và chọn $R = 2^k > m$. Khi đó dạng Montgomery của lớp
+đồng dư $a \bmod m$ là
 
 $$
 aR\bmod m.
 $$
 
-Vi $R\perp m$, co mot song anh giua lop dong du $a \bmod m$ va dang Montgomery cua no $aR\bmod m$. Do do, co the chuyen so nguyen sang dang Montgomery, thuc hien mot so phep toan modulo $m$, roi chuyen dang Montgomery thu duoc ve so nguyen; ket qua luon dung.
+Vì $R\perp m$, có một song ánh giữa lớp đồng dư $a \bmod m$ và dạng Montgomery
+của nó $aR\bmod m$. Do đó, có thể chuyển số nguyên sang dạng Montgomery, thực
+hiện một số phép toán modulo $m$, rồi chuyển dạng Montgomery thu được về số
+nguyên; kết quả luôn đúng.
 
-Dang Montgomery cho phep thuc hien thuan tien nhieu phep toan so nguyen modulo. Nhu da noi, de so sanh hai lop dong du co giong nhau hay khong, chi can so sanh dang Montgomery cua chung. Lai co
+Dạng Montgomery cho phép thực hiện thuận tiện nhiều phép toán số nguyên modulo.
+Như đã nói, để so sánh hai lớp đồng dư có giống nhau hay không, chỉ cần so sánh
+dạng Montgomery của chúng. Lại có
 
 $$
 (a+b)R\bmod m = ((aR\bmod m)\pm(bR\bmod m)) \bmod{m},
 $$
 
-nen phep cong, tru tren lop dong du tuong ung voi phep cong, tru tren dang Montgomery cua chung. Tuy nhien, de tinh phep nhan lop dong du, khong the truc tiep nhan hai dang Montgomery. Vi
+nên phép cộng, trừ trên lớp đồng dư tương ứng với phép cộng, trừ trên dạng
+Montgomery của chúng. Tuy nhiên, để tính phép nhân lớp đồng dư, không thể trực
+tiếp nhân hai dạng Montgomery. Vì
 
 $$
 (ab)R\bmod m =  ((aR\bmod m)(bR\bmod m)R^{-1}) \bmod{m},
 $$
 
-nen khi tinh tich cua hai dang Montgomery, can thuc hien **phep rut gon Montgomery** (Montgomery reduction) sau tren tich $x$ cua chung:
+nên khi tính tích của hai dạng Montgomery, cần thực hiện **phép rút gọn
+Montgomery** (Montgomery reduction) sau trên tích $x$ của chúng:
 
 $$
 \operatorname{REDC}: x \mapsto xR^{-1}\bmod m.
 $$
 
-Dung thao tac nay, dang Montgomery cua tich $ab$ la $\operatorname{REDC}((aR\bmod m)(bR\bmod m))$. Phep rut gon Montgomery la thao tac cot loi cua phep nhan modulo Montgomery:
+Dùng thao tác này, dạng Montgomery của tích $ab$ là
+$\operatorname{REDC}((aR\bmod m)(bR\bmod m))$. Phép rút gọn Montgomery là thao
+tác cốt lõi của phép nhân modulo Montgomery:
 
--   Chuyen $a$ sang dang Montgomery cua no la $\operatorname{REDC}((a\bmod m)(R^2\bmod m))$.
--   Chuyen dang Montgomery cua $a$ ve $a\bmod m$ la $\operatorname{REDC}(aR\bmod m)$.
--   Dang Montgomery ung voi nghich dao modulo $a^{-1}\bmod m$ la $\operatorname{REDC}((aR\bmod m)^{-1}(R^3\bmod m))$.
+-   Chuyển $a$ sang dạng Montgomery của nó là
+    $\operatorname{REDC}((a\bmod m)(R^2\bmod m))$.
+-   Chuyển dạng Montgomery của $a$ về $a\bmod m$ là
+    $\operatorname{REDC}(aR\bmod m)$.
+-   Dạng Montgomery ứng với nghịch đảo modulo $a^{-1}\bmod m$ là
+    $\operatorname{REDC}((aR\bmod m)^{-1}(R^3\bmod m))$.
 
-Bay gio xet cach cai dat phep rut gon Montgomery $\operatorname{REDC}$. Khi tinh $\operatorname{REDC}(x)$, luon gia su $0 \le x < m^2$, dieu nay dung voi cac truong hop tren. Vi $R\perp m$, theo [dinh ly Bezout](./bezouts.md), ton tai cac so nguyen $R^{-1},m'$ sao cho
+Bây giờ xét cách cài đặt phép rút gọn Montgomery $\operatorname{REDC}$. Khi tính
+$\operatorname{REDC}(x)$, luôn giả sử $0 \le x < m^2$, điều này đúng với các
+trường hợp trên. Vì $R\perp m$, theo [định lý Bezout](./bezouts.md), tồn tại
+các số nguyên $R^{-1},m'$ sao cho
 
 $$
 RR^{-1} + mm' = 1.
 $$
 
-Do do, dat $q=\lfloor xm' / R\rfloor$, ta co
+Do đó, đặt $q=\lfloor xm' / R\rfloor$, ta có
 
 $$
 \begin{aligned}
@@ -291,24 +312,43 @@ xR^{-1} &= x\dfrac{1 - mm'}{R} \equiv \dfrac{x-xmm' + qmR}{R} = \dfrac{x - m(xm'
 \end{aligned}
 $$
 
-Vi $0 \le x < m^2 < mR$ va $0 \le xm'\bmod R < R$, nen
+Vì $0 \le x < m^2 < mR$ và $0 \le xm'\bmod R < R$, nên
 
 $$
 -m < \dfrac{x - m(xm'\bmod R)}{R} < m.
 $$
 
-Noi cach khac, thuong nay va $xR^{-1}\bmod m$ chen nhau nhieu nhat mot $m$. Chi can neu thuong am thi cong them $m$ la thu duoc $\operatorname{REDC}(x)$. Tinh thuong nay chi can hai phep nhan so nguyen, mot phep tru so nguyen va hai thao tac bit (lan luot la lay modulo theo $R=2^k$ va thuc hien phep chia). Vi vay, phep rut gon Montgomery co the thuc hien hieu qua.
+Nói cách khác, thương này và $xR^{-1}\bmod m$ chênh nhau nhiều nhất một $m$.
+Chỉ cần nếu thương âm thì cộng thêm $m$ là thu được $\operatorname{REDC}(x)$.
+Tính thương này chỉ cần hai phép nhân số nguyên, một phép trừ số nguyên và hai
+thao tác bit (lần lượt là lấy modulo theo $R=2^k$ và thực hiện phép chia). Vì
+vậy, phép rút gọn Montgomery có thể thực hiện hiệu quả.
 
-De thuc hien phep nhan modulo Montgomery, can tien xu ly mot loat hang so. Truoc het, phep rut gon Montgomery can $m' = m^{-1}\bmod R$, co the tinh bang phuong phap Newton-Hensel gioi thieu [ben duoi](#%E6%A8%A1-2-%E7%9A%84%E5%B9%82%E6%AC%A1%E7%9A%84%E6%95%B4%E6%95%B0%E7%B1%BB). Tiep theo, khi quy cac thao tac khac ve phep rut gon Montgomery, con can cac hang so nhu $R^2\bmod m$. De tinh no, truoc het tinh $R\bmod m$, cong no voi chinh no de duoc $2R\bmod m$. Sau do xem no la dang Montgomery cua $2$, tinh luy thua nhanh truc tiep, se thu duoc $2^kR\bmod m = R^2\bmod m$.
+Để thực hiện phép nhân modulo Montgomery, cần tiền xử lý một loạt hằng số. Trước
+hết, phép rút gọn Montgomery cần $m' = m^{-1}\bmod R$, có thể tính bằng phương
+pháp Newton-Hensel giới thiệu [bên dưới](#%E6%A8%A1-2-%E7%9A%84%E5%B9%82%E6%AC%A1%E7%9A%84%E6%95%B4%E6%95%B0%E7%B1%BB).
+Tiếp theo, khi quy các thao tác khác về phép rút gọn Montgomery, còn cần các
+hằng số như $R^2\bmod m$. Để tính nó, trước hết tính $R\bmod m$, cộng nó với
+chính nó để được $2R\bmod m$. Sau đó xem nó là dạng Montgomery của $2$, tính lũy
+thừa nhanh trực tiếp, sẽ thu được $2^kR\bmod m = R^2\bmod m$.
 
-Lam vi du, cai dat phep nhan modulo Montgomery cho so nguyen co dau $32$ bit nhu sau:
+Làm ví dụ, cài đặt phép nhân modulo Montgomery cho số nguyên có dấu $32$ bit như
+sau:
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/i32-mul.cpp:montgomery"
     ```
 
-So voi viec dung Barrett reduction de cai dat phep nhan modulo, phep nhan modulo Montgomery gom nhieu buoc nhu chuyen doi, nhan trong dang Montgomery va chuyen nguoc. Vi vay, chi khi so phep toan modulo giua chuyen doi va chuyen nguoc du nhieu, chi phi chuyen doi moi duoc khau hao va hieu nang tong the moi cao. Tuy nhien, do qua trinh cai dat phep nhan modulo Montgomery chi can bien trung gian co do dai $2\ell(m)$, no linh hoat hon. Vi du, phep nhan modulo cho so nguyen $32$ bit chi can bien trung gian $64$ bit. Do do, neu can cai dat mot lop so nguyen modulo de thuc hien nhieu tinh toan so hoc, phep nhan modulo Montgomery phu hop hon.
+So với việc dùng Barrett reduction để cài đặt phép nhân modulo, phép nhân modulo
+Montgomery gồm nhiều bước như chuyển đổi, nhân trong dạng Montgomery và chuyển
+ngược. Vì vậy, chỉ khi số phép toán modulo giữa chuyển đổi và chuyển ngược đủ
+nhiều, chi phí chuyển đổi mới được khấu hao và hiệu năng tổng thể mới cao. Tuy
+nhiên, do quá trình cài đặt phép nhân modulo Montgomery chỉ cần biến trung gian
+có độ dài $2\ell(m)$, nó linh hoạt hơn. Ví dụ, phép nhân modulo cho số nguyên
+$32$ bit chỉ cần biến trung gian $64$ bit. Do đó, nếu cần cài đặt một lớp số
+nguyên modulo để thực hiện nhiều tính toán số học, phép nhân modulo Montgomery
+phù hợp hơn.
 
 <span id="&#x6A21;-2-&#x7684;&#x5E42;&#x6B21;&#x7684;&#x6574;&#x6570;&#x7C7B;"></span>
 ### Lop so nguyen modulo luy thua cua 2
