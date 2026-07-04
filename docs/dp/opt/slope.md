@@ -1,33 +1,33 @@
 author: Marcythm, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chrogeek, Enter-tainer, StudyingFather, MrFoodinChina, luoguyuntianming, sshwy, wood3
 
-## 例题引入
+## Dẫn nhập bằng ví dụ
 
-???+ note "[「HNOI2008」玩具装箱](https://loj.ac/problem/10188)"
-    有 $n$ 个玩具排成一排，第 $i$ 个玩具价值为 $c_i$．要求将这 $n$ 个玩具分成若干段．对于一段 $[l,r]$，它的代价为 $(r-l+\sum_{i=l}^r c_i-L)^2$．其中 $L$ 是一个常量，求分段的最小代价．
+???+ note "[「HNOI2008」Đóng gói đồ chơi](https://loj.ac/problem/10188)"
+    Có $n$ món đồ chơi xếp thành một hàng, món thứ $i$ có giá trị $c_i$. Cần chia $n$ món đồ chơi thành một số đoạn. Với một đoạn $[l,r]$, chi phí của nó là $(r-l+\sum_{i=l}^r c_i-L)^2$, trong đó $L$ là hằng số. Hãy tìm chi phí chia đoạn nhỏ nhất.
     
-    $1\le n\le 5\times 10^4, 1\le L, c_i\le 10^7$．
+    $1\le n\le 5\times 10^4, 1\le L, c_i\le 10^7$.
 
-### 朴素的 DP 做法
+### Cách DP đơn giản
 
-令 $f_i$ 表示前 $i$ 个物品，分若干段的最小代价．
+Đặt $f_i$ là chi phí nhỏ nhất khi chia $i$ vật phẩm đầu tiên thành một số đoạn.
 
-状态转移方程：$f_i=\min_{j<i}\{f_j+(i-(j+1)+pre_i-pre_j-L)^2\}=\min_{j<i}\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$．
+Phương trình chuyển trạng thái: $f_i=\min_{j<i}\{f_j+(i-(j+1)+pre_i-pre_j-L)^2\}=\min_{j<i}\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$.
 
-其中 $pre_i$ 表示前 $i$ 个数的和，即 $\sum_{j=1}^i c_j$．
+Trong đó $pre_i$ là tổng của $i$ số đầu tiên, tức $\sum_{j=1}^i c_j$.
 
-该做法的时间复杂度为 $O(n^2)$，无法解决本题．
+Cách làm này có độ phức tạp thời gian $O(n^2)$, không đủ để giải bài này.
 
-### 优化
+### Tối ưu
 
-考虑简化上面的状态转移方程式：令 $s_i=pre_i+i,L'=L+1$，则 $f_i=\min_{j<i}\{f_j+(s_i-s_j-L')^2\}$．
+Xét đơn giản hóa phương trình chuyển ở trên. Đặt $s_i=pre_i+i,L'=L+1$, khi đó $f_i=\min_{j<i}\{f_j+(s_i-s_j-L')^2\}$.
 
-将与 $j$ 无关的移到外面，我们得到
+Đưa các phần không liên quan tới $j$ ra ngoài, ta được:
 
 $$
 f_i - (s_i-L')^2=\min_{j<i}\{f_j+s_j^2 + 2s_j(L'-s_i) \} 
 $$
 
-考虑一次函数的斜截式 $y=kx+b$，将其移项得到 $b=y-kx$．我们将与 $j$ 有关的信息表示为 $y$ 的形式，把同时与 $i,j$ 有关的信息表示为 $kx$，把要最小化的信息（与 $i$ 有关的信息）表示为 $b$，也就是截距．具体地，设
+Xét dạng hệ số góc - tung độ gốc của hàm bậc nhất $y=kx+b$, chuyển vế được $b=y-kx$. Ta biểu diễn thông tin liên quan tới $j$ dưới dạng $y$, thông tin liên quan đồng thời tới $i,j$ dưới dạng $kx$, và thông tin cần tối thiểu hóa (liên quan tới $i$) dưới dạng $b$, tức tung độ gốc. Cụ thể, đặt:
 
 $$
 \begin{aligned}
@@ -38,93 +38,93 @@ b_i&=f_i-(s_i-L')^2\\
 \end{aligned}
 $$
 
-则转移方程就写作 $b_i = \min_{j<i}\{ y_j-k_ix_j \}$．我们把 $(x_j,y_j)$ 看作二维平面上的点，则 $k_i$ 表示直线斜率，$b_i$ 表示一条过 $(x_j,y_j)$ 的斜率为 $k_i$ 的直线的截距．问题转化为了，选择合适的 $j$（$1\le j<i$），最小化直线的截距．
+Khi đó phương trình chuyển viết thành $b_i=\min_{j<i}\{y_j-k_ix_j\}$. Xem $(x_j,y_j)$ là một điểm trên mặt phẳng hai chiều, $k_i$ là hệ số góc của đường thẳng, còn $b_i$ là tung độ gốc của đường thẳng có hệ số góc $k_i$ đi qua $(x_j,y_j)$. Bài toán chuyển thành chọn $j$ phù hợp ($1\le j<i$) để tối thiểu hóa tung độ gốc của đường thẳng.
 
 ![slope\_optimization](../images/optimization.svg)
 
-如图，我们将这个斜率为 $k_i$ 的直线从下往上平移，直到有一个点 $(x_p,y_p)$ 在这条直线上，则有 $b_i=y_p-k_ix_p$，这时 $b_i$ 取到最小值．算完 $f_i$，我们就把 $(x_i,y_i)$ 这个点加入点集中，以做为新的 DP 决策．那么，我们该如何维护点集？
+Như hình trên, ta tịnh tiến đường thẳng có hệ số góc $k_i$ từ dưới lên trên cho tới khi có một điểm $(x_p,y_p)$ nằm trên đường thẳng đó. Khi ấy $b_i=y_p-k_ix_p$, và $b_i$ đạt giá trị nhỏ nhất. Sau khi tính xong $f_i$, ta thêm điểm $(x_i,y_i)$ vào tập điểm để làm quyết định DP mới. Vậy cần duy trì tập điểm thế nào?
 
-容易发现，可能让 $b_i$ 取到最小值的点一定在下凸壳上．因此在寻找 $p$ 的时候我们不需要枚举所有 $i-1$ 个点，只需要考虑凸包上的点．而在本题中 $k_i$ 随 $i$ 的增加而递增，因此我们可以单调队列维护凸包．
+Dễ thấy các điểm có thể làm $b_i$ đạt giá trị nhỏ nhất chắc chắn nằm trên bao lồi dưới. Vì vậy khi tìm $p$, không cần duyệt tất cả $i-1$ điểm, chỉ cần xét các điểm trên bao lồi. Trong bài này, $k_i$ tăng theo $i$, nên có thể dùng hàng đợi đơn điệu để duy trì bao lồi.
 
-具体地，设 $K(a,b)$ 表示过 $(x_a,y_a)$ 和 $(x_b,y_b)$ 的直线的斜率．考虑队列 $q_l,q_{l+1},\ldots,q_r$，维护的是下凸壳上的点．也就是说，对于 $l<i<r$，始终有 $K(q_{i-1},q_i) < K(q_i,q_{i+1})$ 成立．
+Cụ thể, đặt $K(a,b)$ là hệ số góc của đường thẳng đi qua $(x_a,y_a)$ và $(x_b,y_b)$. Xét hàng đợi $q_l,q_{l+1},\ldots,q_r$, duy trì các điểm trên bao lồi dưới. Nói cách khác, với $l<i<r$, luôn có $K(q_{i-1},q_i)<K(q_i,q_{i+1})$.
 
-我们维护一个指针 $e$ 来计算 $b_i$ 最小值．我们需要找到一个 $K(q_{e-1},q_e)\le k_i< K(q_e,q_{e+1})$ 的 $e$（特别地，当 $e=l$ 或者 $e=r$ 时要特别判断），这时就有 $p=q_e$，即 $q_e$ 是 $i$ 的最优决策点．由于 $k_i$ 是单调递增的，因此 $e$ 的移动次数是均摊 $O(1)$ 的．
+Ta duy trì một con trỏ $e$ để tính giá trị nhỏ nhất của $b_i$. Cần tìm $e$ sao cho $K(q_{e-1},q_e)\le k_i<K(q_e,q_{e+1})$ (đặc biệt, khi $e=l$ hoặc $e=r$ cần xử lý riêng). Khi đó $p=q_e$, tức $q_e$ là điểm quyết định tối ưu của $i$. Vì $k_i$ tăng đơn điệu, số lần di chuyển của $e$ là khấu hao $O(1)$.
 
-在插入一个点 $(x_i,y_i)$ 时，我们要判断是否 $K(q_{r-1},q_r)<K(q_r,i)$，如果不等式不成立就将 $q_r$ 弹出，直到等式满足．然后将 $i$ 插入到 $q$ 队尾．
+Khi chèn một điểm $(x_i,y_i)$, ta cần kiểm tra liệu $K(q_{r-1},q_r)<K(q_r,i)$ có đúng không. Nếu bất đẳng thức không đúng, pop $q_r$ cho tới khi điều kiện thỏa, rồi chèn $i$ vào cuối hàng đợi $q$.
 
-这样我们就将 DP 的复杂度优化到了 $O(n)$．
+Như vậy độ phức tạp của DP được tối ưu xuống $O(n)$.
 
-概括一下上述斜率优化模板题的算法：
+Tóm tắt thuật toán của bài mẫu tối ưu bằng độ dốc ở trên:
 
-1.  将初始状态入队．
-2.  每次使用一条和 $i$ 相关的直线 $f(i)$ 去切维护的凸包，找到最优决策，更新 $dp_i$．
-3.  加入状态 $dp_i$．如果一个状态（即凸包上的一个点）在 $dp_i$ 加入后不再是凸包上的点，需要在 $dp_i$ 加入前将其剔除．
+1.  Đưa trạng thái ban đầu vào hàng đợi.
+2.  Mỗi lần dùng một đường thẳng $f(i)$ liên quan tới $i$ để cắt bao lồi đang duy trì, tìm quyết định tối ưu và cập nhật $dp_i$.
+3.  Thêm trạng thái $dp_i$. Nếu một trạng thái (tức một điểm trên bao lồi) không còn thuộc bao lồi sau khi thêm $dp_i$, cần loại bỏ nó trước khi thêm $dp_i$.
 
-接下来我们介绍斜率优化的进阶应用，将斜率优化与二分/分治/数据结构等结合，来维护性质不那么好（缺少一些单调性性质）的 DP 方程．
+Tiếp theo giới thiệu các ứng dụng nâng cao của tối ưu bằng độ dốc: kết hợp nó với tìm kiếm nhị phân, chia để trị, cấu trúc dữ liệu, v.v. để duy trì các phương trình DP có tính chất không thuận lợi lắm (thiếu một số tính đơn điệu).
 
-## 二分/CDQ/平衡树优化 DP
+## Tối ưu DP bằng nhị phân/CDQ/cây cân bằng
 
-当我们在 $i$ 这个点寻找最优决策时，会使用一个和 $i$ 相关的直线 $f(i)$ 去切我们维护的凸包．切到的点即为最优决策．
+Khi tìm quyết định tối ưu tại điểm $i$, ta dùng một đường thẳng $f(i)$ liên quan tới $i$ để cắt bao lồi đang duy trì. Điểm được cắt tới chính là quyết định tối ưu.
 
-在上述例题中，直线的斜率随 $i$ 单调变化，但是对于有些问题，斜率并不是单调的．这时我们需要维护凸包上的每一个节点，然后每次用当前的直线去切这个凸包．这个过程可以使用二分解决，因为凸包上相邻两个点的斜率是有单调性的．
+Trong ví dụ trên, hệ số góc của đường thẳng biến thiên đơn điệu theo $i$, nhưng trong một số bài, hệ số góc không đơn điệu. Khi đó cần duy trì mọi nút trên bao lồi, rồi mỗi lần dùng đường thẳng hiện tại để cắt bao lồi này. Quá trình đó có thể giải bằng tìm kiếm nhị phân, vì hệ số góc giữa hai điểm kề nhau trên bao lồi có tính đơn điệu.
 
-???+ note "玩具装箱 改"
-    有 $n$ 个玩具排成一排，第 $i$ 个玩具价值为 $c_i$．要求将这 $n$ 个玩具分成若干段．对于一段 $[l,r]$，它的代价为 $(r-l+\sum_{i=l}^r c_i-L)^2$．其中 $L$ 是一个常量，求分段的最小代价．
+???+ note "Đóng gói đồ chơi - phiên bản sửa"
+    Có $n$ món đồ chơi xếp thành một hàng, món thứ $i$ có giá trị $c_i$. Cần chia $n$ món đồ chơi thành một số đoạn. Với đoạn $[l,r]$, chi phí là $(r-l+\sum_{i=l}^r c_i-L)^2$, trong đó $L$ là hằng số. Hãy tìm chi phí chia đoạn nhỏ nhất.
     
-    $1\le n\le 5\times 10^4,1\le L\le 10^7,-10^7\le c_i\le 10^7$．
+    $1\le n\le 5\times 10^4,1\le L\le 10^7,-10^7\le c_i\le 10^7$.
 
-本题与「玩具装箱」问题唯一的区别是，玩具的价值可以为负．延续之前的思路，令 $f_i$ 表示前 $i$ 个物品，分若干段的最小代价．
+Khác biệt duy nhất giữa bài này và "Đóng gói đồ chơi" là giá trị của đồ chơi có thể âm. Tiếp tục dùng ý tưởng trước, đặt $f_i$ là chi phí nhỏ nhất khi chia $i$ vật phẩm đầu tiên thành một số đoạn.
 
-状态转移方程：$f_i=\min_{j<i}\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$．
+Phương trình chuyển trạng thái: $f_i=\min_{j<i}\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$.
 
-其中 $pre_i = \sum_{j=1}^i c_j$．
+Trong đó $pre_i=\sum_{j=1}^i c_j$.
 
-将方程做相同的变换
+Biến đổi phương trình tương tự:
 
 $$
 f_i - (s_i-L')^2=\min_{j<i}\{f_j+s_j^2 + 2s_j(L'-s_i) \} 
 $$
 
-然而这时有两个条件不成立了：
+Tuy nhiên lúc này có hai điều kiện không còn đúng:
 
-1.  直线的斜率不再单调；
-2.  每次加入的决策点的横坐标不再单调．
+1.  Hệ số góc của đường thẳng không còn đơn điệu;
+2.  Hoành độ của các điểm quyết định được thêm vào không còn đơn điệu.
 
-仍然考虑凸壳的维护．
+Vẫn xét việc duy trì bao lồi.
 
-在寻找最优决策点，也就是用直线切凸壳的时候，我们将单调队列找队首改为：凸壳上二分．我们二分出斜率最接近直线斜率的那条凸壳边，就可以找到最优决策．
+Khi tìm điểm quyết định tối ưu, tức dùng đường thẳng cắt bao lồi, ta thay thao tác lấy đầu hàng đợi đơn điệu bằng tìm kiếm nhị phân trên bao lồi. Tìm nhị phân cạnh trên bao lồi có hệ số góc gần nhất với hệ số góc của đường thẳng là có thể tìm được quyết định tối ưu.
 
-在加入决策点，也就是凸壳上加一个点的时候，我们有两种方法维护．
+Khi thêm điểm quyết định, tức thêm một điểm vào bao lồi, có hai cách duy trì.
 
-第一种方法是直接用平衡树维护凸壳．那么寻找决策点的二分操作就转化为在平衡树上二分，插入决策点就转化为在平衡树上插入一个结点，并删除若干个被踢出凸壳的点．此方法思路简洁但实现繁琐．
+Cách thứ nhất là trực tiếp dùng cây cân bằng để duy trì bao lồi. Khi đó thao tác tìm nhị phân quyết định trở thành tìm trên cây cân bằng, còn chèn điểm quyết định trở thành chèn một nút vào cây cân bằng và xóa một số điểm bị loại khỏi bao lồi. Ý tưởng cách này gọn nhưng cài đặt rườm rà.
 
-下面介绍一种基于 [CDQ 分治](../../misc/cdq-divide.md) 的做法．
+Dưới đây giới thiệu một cách làm dựa trên [chia để trị CDQ](../../misc/cdq-divide.md).
 
-设 $\text{CDQ}(l,r)$ 代表计算 $f_i,i\in [l,r]$．考虑 $\text{CDQ}(1,n)$：
+Đặt $\text{CDQ}(l,r)$ là quá trình tính $f_i,i\in[l,r]$. Xét $\text{CDQ}(1,n)$:
 
--   我们先调用 $\text{CDQ}(1,mid)$ 算出 $f_i,i\in[1,mid]$．然后我们对 $[1,mid]$ 这个区间内的决策点建凸壳，然后使用这个凸壳去更新 $f_i,i\in [mid+1,n]$．这时我们决策点集是固定的，不像之前那样边计算 DP 值边加入决策点，那么我们就可以把 $i \in [mid+1,n]$ 的 $f_i$ 先按照直线的斜率 $k_i$ 排序，然后就可以使用单调队列来计算 DP 值了．当然，也可以在静态凸壳上二分计算 DP 值．
+-   Trước hết gọi $\text{CDQ}(1,mid)$ để tính $f_i,i\in[1,mid]$. Sau đó dựng bao lồi từ các điểm quyết định trong đoạn $[1,mid]$, rồi dùng bao lồi này để cập nhật $f_i,i\in[mid+1,n]$. Lúc này tập điểm quyết định là cố định, không giống trước đó vừa tính giá trị DP vừa thêm điểm quyết định. Vì vậy có thể sắp xếp trước các $f_i$ với $i\in[mid+1,n]$ theo hệ số góc $k_i$ của đường thẳng, rồi dùng hàng đợi đơn điệu để tính giá trị DP. Tất nhiên, cũng có thể tìm nhị phân trên bao lồi tĩnh để tính giá trị DP.
 
--   对于 $[mid+1,n]$ 中的每个点，如果它的最优决策的位置是在 $[1,mid]$ 这个区间，在这一步操作中他就会被更新成最优答案．当执行完这一步操作时，我们发现 $[1,mid]$ 中的所有点已经发挥了全部的作用，凸壳中他们存不存在已经不影响之后的答案更新．因此我们可以直接舍弃这个区间的决策点，并使用 $\text{CDQ}(mid+1,n)$ 解决右区间剩下的问题．
+-   Với mỗi điểm trong $[mid+1,n]$, nếu vị trí quyết định tối ưu của nó nằm trong $[1,mid]$, thì nó sẽ được cập nhật thành đáp án tối ưu ở bước này. Sau khi thực hiện xong, mọi điểm trong $[1,mid]$ đã phát huy hết tác dụng; việc chúng còn trong bao lồi hay không không ảnh hưởng tới các cập nhật sau. Do đó có thể trực tiếp bỏ các điểm quyết định của đoạn này, rồi dùng $\text{CDQ}(mid+1,n)$ để giải phần còn lại của đoạn phải.
 
-时间复杂度 $O(n\log^2 n)$．
+Độ phức tạp thời gian là $O(n\log^2 n)$.
 
-对比「玩具装箱」和「玩具装箱 改」，可以总结出以下两点：
+So sánh "Đóng gói đồ chơi" và "Đóng gói đồ chơi - phiên bản sửa", có thể rút ra hai điểm:
 
--   二分/CDQ/平衡树等能够优化 DP 方程的计算，于一定程度上降低复杂度，但不能改变这个方程本身．
--   DP 方程的性质会取决于数据的特征，但 DP 方程本身取决于题目中的数学模型．
+-   Nhị phân/CDQ/cây cân bằng có thể tối ưu việc tính phương trình DP và giảm độ phức tạp ở mức nhất định, nhưng không thay đổi bản thân phương trình.
+-   Tính chất của phương trình DP phụ thuộc vào đặc trưng dữ liệu, còn bản thân phương trình DP phụ thuộc vào mô hình toán học của đề bài.
 
-## 小结
+## Tổng kết
 
-斜率优化 DP 需要灵活运用，其宗旨是将最优化问题转化为二维平面上与凸包有关的截距最值问题．遇到性质不太好的方程，有时需要辅以数据结构来加以解决，届时还请就题而论．
+Tối ưu DP bằng độ dốc cần vận dụng linh hoạt. Mục tiêu cốt lõi là chuyển bài toán tối ưu thành bài toán cực trị tung độ gốc liên quan tới bao lồi trên mặt phẳng hai chiều. Khi gặp phương trình có tính chất không thuận lợi, đôi khi cần hỗ trợ bằng cấu trúc dữ liệu; lúc đó cần phân tích theo từng bài cụ thể.
 
-## 习题
+## Bài tập
 
--   [「SDOI2016」征途](https://loj.ac/problem/2035)
--   [「ZJOI2007」仓库建设](https://loj.ac/problem/10189)
--   [「APIO2010」特别行动队](https://loj.ac/problem/10190)
--   [「JSOI2011」柠檬](https://www.luogu.com.cn/problem/P5504)
+-   [「SDOI2016」Hành trình](https://loj.ac/problem/2035)
+-   [「ZJOI2007」Xây dựng kho](https://loj.ac/problem/10189)
+-   [「APIO2010」Đội hành động đặc biệt](https://loj.ac/problem/10190)
+-   [「JSOI2011」Chanh](https://www.luogu.com.cn/problem/P5504)
 -   [「Codeforces 311B」Cats Transport](http://codeforces.com/problemset/problem/311/B)
--   [「NOI2007」货币兑换](https://loj.ac/problem/2353)
--   [「NOI2019」回家路线](https://loj.ac/problem/3156)
--   [「NOI2016」国王饮水记](https://uoj.ac/problem/223)
--   [「NOI2014」购票](https://uoj.ac/problem/7)
+-   [「NOI2007」Đổi tiền](https://loj.ac/problem/2353)
+-   [「NOI2019」Đường về nhà](https://loj.ac/problem/3156)
+-   [「NOI2016」Chuyện nhà vua uống nước](https://uoj.ac/problem/223)
+-   [「NOI2014」Mua vé](https://uoj.ac/problem/7)

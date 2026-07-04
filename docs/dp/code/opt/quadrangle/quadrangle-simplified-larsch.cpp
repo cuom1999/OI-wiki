@@ -10,11 +10,11 @@ using val_t = long double;
 constexpr val_t inf = 1e18;
 
 // --8<-- [start:core]
-val_t w(int j, int i);  // 成本函数
-val_t f[N];             // 最优值
-int opt[N];             // 最小最优决策
+val_t w(int j, int i);  // Hàm chi phí
+val_t f[N];             // Giá trị tối ưu
+int opt[N];             // Quyết định tối ưu nhỏ nhất
 
-// 用决策 j 更新问题 i
+// Dùng quyết định j để cập nhật bài toán i
 void check(int j, int i) {
   if (w(j, i) < f[i]) {
     f[i] = w(j, i);
@@ -22,7 +22,7 @@ void check(int j, int i) {
   }
 }
 
-// 递归求解区间 (l, r] 内的问题
+// Đệ quy giải các bài toán trong khoảng (l, r]
 void calc(int l, int r) {
   int mid = (l + r + 1) / 2;
   for (int j = opt[l]; j <= opt[r]; ++j) check(j, mid);
@@ -31,14 +31,14 @@ void calc(int l, int r) {
   if (mid > l) calc(mid, r);
 }
 
-// 求解整个区间 [1, n] 内的问题
+// Giải các bài toán trong toàn khoảng [1, n]
 void solve(int n) {
-  // 清空 f 数组
+  // Xóa mảng f
   std::fill(f + 1, f + n + 1, inf);
-  // 初始化
+  // Khởi tạo
   check(1, 1);
   check(1, n);
-  // 递归求解区间 (1, n] 内的问题
+  // Đệ quy giải các bài toán trong khoảng (1, n]
   calc(1, n);
 }
 

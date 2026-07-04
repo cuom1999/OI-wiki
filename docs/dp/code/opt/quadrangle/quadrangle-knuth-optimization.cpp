@@ -9,26 +9,26 @@ constexpr val_t inf = 0x3f3f3f3f;
 constexpr int N = 1024;
 
 // --8<-- [start:core]
-val_t w(int j, int i);  // 成本函数
-val_t f[N][N];          // 最优值
-int opt[N][N];          // 最小最优决策
+val_t w(int j, int i);  // Hàm chi phí
+val_t f[N][N];          // Giá trị tối ưu
+int opt[N][N];          // Quyết định tối ưu nhỏ nhất
 
-// 求解整个区间 [1,n] 对应的问题
+// Giải bài toán ứng với toàn khoảng [1,n]
 void solve(int n) {
-  // 初始化
+  // Khởi tạo
   for (int i = 1; i <= n; ++i) {
     f[i][i] = 0;
     opt[i][i] = i;
   }
-  // 枚举区间长度
+  // Liệt kê độ dài khoảng
   for (int len = 2; len <= n; ++len) {
-    // 枚举长度为 len 的所有区间
+    // Liệt kê mọi khoảng có độ dài len
     for (int j = 1, i = len; i <= n; ++j, ++i) {
       f[j][i] = inf;
       for (int k = opt[j][i - 1]; k <= opt[j + 1][i]; ++k)
         if (f[j][i] > f[j][k] + f[k + 1][i] + w(j, i)) {
-          f[j][i] = f[j][k] + f[k + 1][i] + w(j, i);  // 更新状态值
-          opt[j][i] = k;  // 更新（最小）最优决策点
+          f[j][i] = f[j][k] + f[k + 1][i] + w(j, i);  // Cập nhật giá trị trạng thái
+          opt[j][i] = k;  // Cập nhật điểm quyết định tối ưu (nhỏ nhất)
         }
     }
   }

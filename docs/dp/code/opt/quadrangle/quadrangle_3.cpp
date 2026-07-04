@@ -15,11 +15,11 @@ long long f(int i, int j) {
 void work() {
   all.clear();
   for (int i = 1; i <= n; ++i) {
-    if (q.size() && r.front() < i) all.pop_front();  // 队首出队
+    if (q.size() && r.front() < i) all.pop_front();  // Đầu hàng đợi ra hàng
     if (q.size()) l.front() = i;
-    for (; q.size() && f(q.back(), l.back()) >= f(i, l.back());)  // 队尾出队
+    for (; q.size() && f(q.back(), l.back()) >= f(i, l.back());)  // Cuối hàng đợi ra hàng
       all.pop_back();
-    if (q.empty())  // 入队
+    if (q.empty())  // Vào hàng đợi
       q.emplace_back(i), l.emplace_back(i), r.emplace_back((int)n);
     else if (f(q.back(), n) >= f(i, n)) {
       int ll = l.back(), rr = n, mid;
@@ -41,7 +41,7 @@ void work() {
 int main() {
   cin >> n >> m;
   for (int i = 1; i <= n; cin >> a[i], s[i] = s[i - 1] + a[i], ++i);
-  for (w = 2e12; u <= w;) {  // wqs二分
+  for (w = 2e12; u <= w;) {  // WQS binary search
     v = (u + w) >> 1;
     work();
     if (cnt[n] < m)

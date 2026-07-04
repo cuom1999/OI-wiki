@@ -11,21 +11,21 @@ using val_t = long double;
 constexpr val_t inf = 1e18;
 
 // --8<-- [start:core]
-val_t w(int j, int i);  // 成本函数
-val_t f[N];             // 最优值
-int opt[N];             // 最小最优决策
-int lt[N], rt[N];       // 决策 j 可以解决的问题区间 [l_j,r_j]
+val_t w(int j, int i);  // Hàm chi phí
+val_t f[N];             // Giá trị tối ưu
+int opt[N];             // Quyết định tối ưu nhỏ nhất
+int lt[N], rt[N];       // Khoảng bài toán [l_j,r_j] mà quyết định j có thể giải
 
-// 求解整个区间 [1,n] 的问题
+// Giải các bài toán trên toàn khoảng [1,n]
 void solve(int n) {
-  std::deque<int> dq;  // 存储所有可行决策的单调队列
+  std::deque<int> dq;  // Hàng đợi đơn điệu lưu mọi quyết định khả thi
 
-  // 顺次考虑所有问题和决策，下标从 1 开始
+  // Xét tuần tự mọi bài toán và quyết định, chỉ số bắt đầu từ 1
   for (int j = 1; j <= n; ++j) {
-    // 出队
+    // Ra hàng đợi
     if (!dq.empty() && rt[dq.front()] < j) dq.pop_front();
     if (!dq.empty()) lt[dq.front()] = j;
-    // 入队
+    // Vào hàng đợi
     while (!dq.empty() && w(j, lt[dq.back()]) < w(dq.back(), lt[dq.back()])) {
       dq.pop_back();
     }
@@ -41,7 +41,7 @@ void solve(int n) {
       }
     } else {
       int ll = lt[dq.back()], rr = rt[dq.back()], i = rr;
-      // 二分
+      // Tìm kiếm nhị phân
       while (ll <= rr) {
         int mm = (ll + rr) / 2;
         if (w(j, mm) < w(dq.back(), mm)) {
@@ -56,7 +56,7 @@ void solve(int n) {
       rt[j] = n;
       dq.emplace_back(j);
     }
-    // 计算
+    // Tính kết quả
     f[j] = w(dq.front(), j);
     opt[j] = dq.front();
   }

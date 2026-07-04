@@ -1,36 +1,42 @@
-## 定义
+## Định nghĩa
 
-有些 [状压 DP](./state.md) 问题要求我们记录状态的连通性信息，这类问题一般被形象的称为插头 DP 或连通性状态压缩 DP．例如格点图的哈密顿路径计数，求棋盘的黑白染色方案满足相同颜色之间形成一个连通块的方案数，以及特定图的生成树计数等等．这些问题通常需要我们对状态的连通性进行编码，讨论状态转移过程中连通性的变化．
+<span id="&#23450;&#20041;"></span>
 
-## 引入
+Một số bài toán [DP nén trạng thái](./state.md) yêu cầu ta ghi lại thông tin liên thông của trạng thái. Những bài toán như vậy thường được gọi một cách hình tượng là DP đầu nối (plug DP), hay DP nén trạng thái liên thông. Ví dụ: đếm đường đi Hamilton trên đồ thị lưới, đếm số cách tô đen trắng bàn cờ sao cho các ô cùng màu tạo thành một khối liên thông, hoặc đếm cây khung của một số đồ thị đặc biệt. Các bài toán này thường cần mã hóa tính liên thông của trạng thái và phân tích cách tính liên thông thay đổi trong quá trình chuyển trạng thái.
 
-### 骨牌覆盖与轮廓线 DP
+## Mở đầu
 
-温故而知新，在开始学习插头 DP 之前，不妨先让我们回顾一个经典问题．
+<span id="&#24341;&#20837;"></span>
 
-???+ note "例题 [「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400)"
-    题目大意：在 $N\times M$ 的棋盘内铺满 $1\times 2$ 或 $2\times 1$ 的多米诺骨牌，求方案数．
+### Lát domino và DP đường biên
 
-当 $n$ 或 $m$ 规模不大的时候，这类问题可以使用 [状压 DP](./state.md) 解决．逐行划分阶段，设 $dp(i,s)$ 表示当前已考虑过前 $i$ 行，且第 $i$ 行的状态为 $s$ 的方案数．这里的状态 $s$ 的每一位可以表示这个位置是否已被上一行覆盖．
+<span id="&#39592;&#29260;&#35206;&#30422;&#19982;&#36718;&#24275;&#32447;-dp"></span>
+
+Ôn cũ để biết mới: trước khi học DP đầu nối, ta hãy nhắc lại một bài toán kinh điển.
+
+???+ note "Ví dụ [「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400)"
+    Tóm tắt đề bài: lát kín một bàn cờ $N\times M$ bằng các quân domino $1\times 2$ hoặc $2\times 1$, hỏi có bao nhiêu cách lát.
+
+Khi $n$ hoặc $m$ không quá lớn, dạng bài này có thể giải bằng [DP nén trạng thái](./state.md). Nếu chia giai đoạn theo từng hàng, đặt $dp(i,s)$ là số cách sau khi đã xét $i$ hàng đầu, và trạng thái của hàng thứ $i$ là $s$. Mỗi bit của trạng thái $s$ có thể biểu thị vị trí tương ứng đã được phủ từ hàng trước hay chưa.
 
 ![domino](./images/domino.svg)
 
-另一种划分阶段的方法是逐格 DP，或者称之为轮廓线 DP．$dp(i,j,s)$ 表示已经考虑到第 $i$ 行第 $j$ 列，且当前轮廓线上的状态为 $s$ 的方案数．
+Một cách chia giai đoạn khác là DP theo từng ô, còn gọi là DP đường biên. $dp(i,j,s)$ biểu thị số cách khi đã xét đến hàng $i$, cột $j$, và trạng thái hiện tại trên đường biên là $s$.
 
-虽然逐格 DP 中我们的状态增加了一个维度，但是转移的时间复杂度减少为 $O(1)$，所以时间复杂度未变．我们用 $f_0$ 表示当前阶段的状态，用 $f_1$ 表示下一阶段的状态，$u = f_0(s)$ 表示当前枚举的函数值，那么有如下的状态转移方程：
+Mặc dù DP theo từng ô làm trạng thái có thêm một chiều, độ phức tạp của mỗi lần chuyển giảm xuống $O(1)$, nên tổng độ phức tạp thời gian không đổi. Gọi $f_0$ là trạng thái ở giai đoạn hiện tại, $f_1$ là trạng thái ở giai đoạn kế tiếp, và $u = f_0(s)$ là giá trị ứng với trạng thái đang xét. Khi đó có các công thức chuyển trạng thái sau:
 
 ```cpp
-if (s >> j & 1) {       // 如果已被覆盖
-  f1[s ^ 1 << j] += u;  // 不放
-} else {                // 如果未被覆盖
-  if (j != m - 1 && (!(s >> j + 1 & 1))) f1[s ^ 1 << j + 1] += u;  // 横放
-  f1[s ^ 1 << j] += u;                                             // 竖放
+if (s >> j & 1) {       // Nếu đã được phủ
+  f1[s ^ 1 << j] += u;  // Không đặt quân
+} else {                // Nếu chưa được phủ
+  if (j != m - 1 && (!(s >> j + 1 & 1))) f1[s ^ 1 << j + 1] += u;  // Đặt ngang
+  f1[s ^ 1 << j] += u;                                             // Đặt dọc
 }
 ```
 
-观察到这里不放和竖放的方程可以合并．
+Ta thấy hai công thức "không đặt" và "đặt dọc" có thể gộp lại.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     #include <algorithm>
     #include <iostream>
@@ -52,8 +58,8 @@ if (s >> j & 1) {       // 如果已被覆盖
     #define u f0[s]
             for (int s = 0; s < 1 << m; ++s)
               if (u) {
-                if (j != m - 1 && (!(s >> j & 3))) f1[s ^ 1 << j + 1] += u;  // 横放
-                f1[s ^ 1 << j] += u;  // 竖放或不放
+                if (j != m - 1 && (!(s >> j & 3))) f1[s ^ 1 << j + 1] += u;  // Đặt ngang
+                f1[s ^ 1 << j] += u;  // Đặt dọc hoặc không đặt
               }
           }
         }
@@ -62,73 +68,89 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note "习题 [「SRM 671. Div 1 900」BearDestroys](https://archive.topcoder.com/ProblemStatement/pm/14069)"
-    题目大意：给定 $n\times m$ 的矩阵，每个格子有 `E` 或 `S`．
-    对于一个矩阵，有一个计分方案．按照行优先的规则扫描每个格子，如果这个格子之前被骨牌占据，则 skip．
-    否则尝试放多米诺骨牌．如果放骨牌的方向在矩阵外或被其他骨牌占据，则放置失败，切换另一种方案或 skip．
-    如果是 `E` 则优先放一个 $1\times 2$ 的骨牌，
-    如果是 `S` 则优先放一个 $2\times 1$ 的骨牌．
-    一个矩阵的得分为最后放的骨牌数．
-    问所有 $2^{nm}$ 种矩阵的得分的和．
+??? note "Bài tập [「SRM 671. Div 1 900」BearDestroys](https://archive.topcoder.com/ProblemStatement/pm/14069)"
+    Tóm tắt đề bài: cho một ma trận $n\times m$, mỗi ô là `E` hoặc `S`.
+    Với một ma trận, có một cách tính điểm. Quét từng ô theo thứ tự hàng trước cột sau; nếu ô này đã bị domino chiếm thì bỏ qua.
+    Nếu không, thử đặt một quân domino. Nếu hướng đặt vượt ra ngoài ma trận hoặc đã bị domino khác chiếm, lần đặt thất bại, rồi chuyển sang phương án còn lại hoặc bỏ qua.
+    Nếu là `E` thì ưu tiên đặt một quân $1\times 2$,
+    nếu là `S` thì ưu tiên đặt một quân $2\times 1$.
+    Điểm của một ma trận là số quân domino được đặt cuối cùng.
+    Hỏi tổng điểm của tất cả $2^{nm}$ ma trận.
 
-### 术语
+### Thuật ngữ
 
-阶段：动态规划执行的顺序，后续阶段的结果只与前序阶段的结果有关（无后效性）．很多 DP 问题可以有多种划分阶段的方式．例如在背包问题中，我们通常既可以按照物品划分阶段，也可以按照背包容量划分阶段（外层循环先枚举什么）．而在多米诺骨牌问题中，我们可以按照行、列、格子以及对角线等特征划分阶段．
+<span id="&#26415;&#35821;"></span>
 
-轮廓线：已决策状态和未决策状态的分界线．
+Giai đoạn: thứ tự thực hiện quy hoạch động; kết quả của các giai đoạn sau chỉ phụ thuộc vào kết quả của các giai đoạn trước (không có hậu hiệu). Nhiều bài toán DP có thể có nhiều cách chia giai đoạn. Ví dụ trong bài toán ba lô, ta thường có thể chia theo vật phẩm hoặc theo dung lượng ba lô (vòng lặp ngoài duyệt gì trước). Còn trong bài toán domino, ta có thể chia theo hàng, cột, ô, đường chéo và các đặc trưng khác.
+
+Đường biên: ranh giới giữa phần trạng thái đã quyết định và phần chưa quyết định.
 
 ![contour line](./images/contour_line.svg)
 
-插头：一个格子某个方向的插头存在，表示这个格子在这个方向与相邻格子相连．
+Đầu nối: nếu một ô có đầu nối ở một hướng nào đó, nghĩa là ô này nối với ô kề nó theo hướng đó.
 
 ![plug](./images/plug.svg)
 
-## 路径模型
+## Mô hình đường đi
 
-### 多条回路
+<span id="&#36335;&#24452;&#27169;&#22411;"></span>
 
-#### 例题
+### Nhiều chu trình
 
-???+ note "例题 [「HDU 1693」Eat the Trees](https://acm.hdu.edu.cn/showproblem.php?pid=1693)"
-    题目大意：求用若干条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍．
+<span id="&#22810;&#26465;&#22238;&#36335;"></span>
 
-严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了．
+#### Ví dụ
 
-注意对于一个宽度为 $m$ 的棋盘，轮廓线的宽度为 $m+1$，因为包含 $m$ 个上插头，和 $1$ 个左插头．注意，当一行迭代完成之后，最右边的左插头通常是不合法的状态，同时我们需要补上下一行第一个左插头，这需要我们调整当前轮廓线的状态，通常是所有状态进行左移，我们把这个操作称为滚动 `roll()`．
+<span id="&#20363;&#39064;"></span>
 
-??? note "例题代码"
+???+ note "Ví dụ [「HDU 1693」Eat the Trees](https://acm.hdu.edu.cn/showproblem.php?pid=1693)"
+    Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng một số chu trình; một số vị trí có chướng ngại.
+
+Nói nghiêm ngặt, bài toán nhiều chu trình không thuộc DP đầu nối, vì cũng như bài toán lát domino ở trên, ta chỉ cần ghi lại đầu nối có tồn tại hay không, rồi ghép và sinh đầu nối theo từng cặp.
+
+Chú ý rằng với một bàn cờ rộng $m$, độ rộng của đường biên là $m+1$, vì nó gồm $m$ đầu nối phía trên và $1$ đầu nối bên trái. Sau khi duyệt xong một hàng, đầu nối trái ở ngoài cùng bên phải thường là trạng thái không hợp lệ; đồng thời ta cần bổ sung đầu nối trái đầu tiên của hàng tiếp theo. Việc này đòi hỏi điều chỉnh trạng thái đường biên hiện tại, thường là dịch trái toàn bộ trạng thái; ta gọi thao tác này là cuộn `roll()`.
+
+??? note "Mã ví dụ"
     ```cpp
     --8<-- "docs/dp/code/plug/plug_1.cpp"
     ```
 
-#### 习题
+#### Bài tập
 
-??? note "习题 [「ZOJ 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827368730)"
-    题目大意：同上题，但格子变成了六边形．
+<span id="&#20064;&#39064;"></span>
 
-### 一条回路
+??? note "Bài tập [「ZOJ 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827368730)"
+    Tóm tắt đề bài: giống bài trên, nhưng các ô trở thành lục giác.
 
-#### 例题
+### Một chu trình
 
-???+ note "例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
-    题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数．
+<span id="&#19968;&#26465;&#22238;&#36335;"></span>
 
-在上面的状态表示中我们每合并一组连通的插头，就会生成一条独立的回路，因而在本题中，我们还需要区分插头之间的连通性（出现了！）．这需要我们对状态进行额外的编码．
+#### Ví dụ
 
-#### 状态编码
+<span id="&#20363;&#39064;_1"></span>
 
-通常的编码方案有括号表示和最小表示，这里着重介绍泛用性更好的最小表示．我们用长度 $m+1$ 的整形数组，记录轮廓线上每个插头的状态，$0$ 表示没有插头，并约定连通的插头用相同的数字进行标记．
+???+ note "Ví dụ [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
+    Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng đúng một chu trình.
 
-那么下面两组编码方式表示的是相同的状态：
+Trong cách biểu diễn trạng thái ở trên, mỗi lần ta ghép một nhóm đầu nối liên thông, một chu trình độc lập sẽ được tạo ra. Vì vậy ở bài này, ta còn cần phân biệt tính liên thông giữa các đầu nối (nó đã xuất hiện!). Điều này đòi hỏi mã hóa trạng thái thêm một bước.
+
+#### Mã hóa trạng thái
+
+<span id="&#29366;&#24577;&#32534;&#30721;"></span>
+
+Các cách mã hóa thường dùng gồm biểu diễn bằng ngoặc và biểu diễn tối tiểu. Ở đây ta tập trung giới thiệu biểu diễn tối tiểu, vì nó có tính tổng quát tốt hơn. Ta dùng một mảng số nguyên độ dài $m+1$ để ghi lại trạng thái của từng đầu nối trên đường biên; $0$ nghĩa là không có đầu nối, và quy ước các đầu nối liên thông với nhau được đánh dấu bằng cùng một số.
+
+Khi đó hai cách mã hóa sau biểu diễn cùng một trạng thái:
 
 -   `0 3 1 0 1 3`
 -   `0 1 2 0 2 1`
 
-我们将相同的状态都映射成字典序最小表示，例如在上例中的 `0 1 2 0 2 1` 就是一组最小表示．
+Ta ánh xạ mọi trạng thái tương đương về biểu diễn có thứ tự từ điển nhỏ nhất; trong ví dụ trên, `0 1 2 0 2 1` là một biểu diễn tối tiểu.
 
-我们用 `b[]` 数组表示轮廓线上插头的状态．`bb[]` 表示在最小表示的编码的过程中，每个数字被映射到的最小数字．注意 $0$ 表示插头不存在，不能被映射成其他值．
+Ta dùng mảng `b[]` để biểu diễn trạng thái của các đầu nối trên đường biên. `bb[]` biểu diễn, trong quá trình mã hóa tối tiểu, mỗi số được ánh xạ tới số nhỏ nhất nào. Chú ý $0$ biểu thị đầu nối không tồn tại, nên không được ánh xạ thành giá trị khác.
 
-??? note "代码实现"
+??? note "Cài đặt mã"
     ```cpp
     int b[M + 1], bb[M + 1];
     
@@ -154,13 +176,15 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-我们注意到插头总是成对出现，成对消失的．因而 `0 1 2 0 1 2` 这样的状态是不合法的．合法的状态构成一组括号序列，实际中合法状态可能是非常稀疏的．
+Ta nhận thấy các đầu nối luôn xuất hiện theo cặp và biến mất theo cặp. Vì vậy trạng thái như `0 1 2 0 1 2` là không hợp lệ. Các trạng thái hợp lệ tạo thành một dãy ngoặc, và trong thực tế tập trạng thái hợp lệ có thể rất thưa.
 
-#### 手写哈希
+#### Tự viết bảng băm
 
-在一些 [状压 DP](./state.md) 的问题中，合法的状态可能是稀疏的（例如本题），为了优化时空复杂度，我们可以使用哈希表存储合法的 DP 状态．对于 C++ 选手，我们可以使用 [std::unordered\_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/)，当然也可以直接手写，这样可以灵活的将状态转移函数也封装于其中．
+<span id="&#25163;&#20889;&#21704;&#24076;"></span>
 
-???+ note "代码实现"
+Trong một số bài toán [DP nén trạng thái](./state.md), các trạng thái hợp lệ có thể rất thưa (ví dụ bài này). Để tối ưu độ phức tạp thời gian và bộ nhớ, ta có thể dùng bảng băm để lưu các trạng thái DP hợp lệ. Với người dùng C++, ta có thể dùng [std::unordered\_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/), và dĩ nhiên cũng có thể tự viết trực tiếp để linh hoạt đóng gói cả hàm chuyển trạng thái.
+
+???+ note "Cài đặt mã"
     ```cpp
     constexpr int MaxSZ = 16796, Prime = 9973;
     
@@ -191,111 +215,121 @@ if (s >> j & 1) {       // 如果已被覆盖
     } H[2], *H0, *H1;
     ```
 
-上面的代码中：
+Trong đoạn mã trên:
 
--   `MaxSZ` 表示合法状态的上界，可以估计，也可以预处理出较为精确的值．
--   `Prime` 一个小于 `MaxSZ` 的大素数．
--   `head[]` 表头节点的指针．
--   `next[]` 后续状态的指针．
--   `state[]` 节点的状态．
--   `key[]` 节点的关键字，在本题中是方案数．
--   `clear()` 初始化函数，和手写邻接表类似，我们只需要初始化表头节点的指针．
--   `push()` 状态转移函数，其中 `d` 是一个全局变量（偷懒），表示每次状态转移所带来的增量．如果找到的话就 `+=`，否则就创建一个状态为 `s`，关键字为 `d` 的新节点．
--   `roll()` 迭代完一整行之后，滚动轮廓线．
+-   `MaxSZ` biểu thị cận trên của số trạng thái hợp lệ; có thể ước lượng hoặc tiền xử lý để có giá trị chính xác hơn.
+-   `Prime` là một số nguyên tố lớn nhỏ hơn `MaxSZ`.
+-   `head[]` là con trỏ tới nút đầu của từng bucket.
+-   `next[]` là con trỏ tới trạng thái kế tiếp.
+-   `state[]` là trạng thái của nút.
+-   `key[]` là khóa của nút; trong bài này chính là số phương án.
+-   `clear()` là hàm khởi tạo. Tương tự danh sách kề tự viết, ta chỉ cần khởi tạo con trỏ của các nút đầu.
+-   `push()` là hàm chuyển trạng thái; trong đó `d` là một biến toàn cục (để viết nhanh), biểu thị lượng tăng thêm do mỗi lần chuyển trạng thái mang lại. Nếu tìm thấy trạng thái thì `+=`, nếu không thì tạo một nút mới có trạng thái là `s` và khóa là `d`.
+-   `roll()` cuộn đường biên sau khi duyệt xong cả một hàng.
 
-关于哈希表的复杂度分析，以及开哈希和闭哈希的不同，可以参见 [《算法导论》](../contest/resources.md#书籍) 中关于散列表的相关章节．
+Về phân tích độ phức tạp của bảng băm, cũng như sự khác nhau giữa hashing mở và hashing đóng, có thể tham khảo các chương liên quan đến bảng băm trong [Introduction to Algorithms](../contest/resources.md#%E4%B9%A6%E7%B1%8D).
 
-#### 状态转移
+#### Chuyển trạng thái
 
-???+ note "代码实现"
+<span id="&#29366;&#24577;&#36716;&#31227;"></span>
+
+???+ note "Cài đặt mã"
     ```cpp
     REP(ii, H0->sz) {
-      decode(H0->state[ii]);                  // 取出状态，并解码
-      d = H0->key[ii];                        // 得到增量 delta
-      int lt = b[j], up = b[j + 1];           // 左插头，上插头
-      bool dn = i != n - 1, rt = j != m - 1;  // 下插头，右插头
-      if (lt && up) {                         // 如果左、上均有插头
-        if (lt == up) {                       // 来自同一个连通块
+      decode(H0->state[ii]);                  // Lấy trạng thái ra và giải mã
+      d = H0->key[ii];                        // Lấy lượng tăng delta
+      int lt = b[j], up = b[j + 1];           // Đầu nối trái, đầu nối trên
+      bool dn = i != n - 1, rt = j != m - 1;  // Đầu nối dưới, đầu nối phải
+      if (lt && up) {                         // Nếu cả trái và trên đều có đầu nối
+        if (lt == up) {                       // Đến từ cùng một thành phần liên thông
           if (i == n - 1 &&
-              j == m - 1) {  // 只有在最后一个格子时，才能合并，封闭回路．
+              j == m - 1) {  // Chỉ ở ô cuối cùng mới được ghép để khép kín chu trình.
             push(j, 0, 0);
           }
-        } else {  // 否则，必须合并这两个连通块，因为本题中需要回路覆盖
+        } else {  // Nếu không, phải ghép hai thành phần liên thông này vì bài yêu cầu phủ bằng chu trình
           REP(i, m + 1) if (b[i] == lt) b[i] = up;
           push(j, 0, 0);
         }
-      } else if (lt || up) {  // 如果左、上之中有一个插头
-        int t = lt | up;      // 得到这个插头
-        if (dn) {             // 如果可以向下延伸
+      } else if (lt || up) {  // Nếu trong trái và trên có đúng một đầu nối
+        int t = lt | up;      // Lấy đầu nối đó
+        if (dn) {             // Nếu có thể kéo dài xuống dưới
           push(j, t, 0);
         }
-        if (rt) {  // 如果可以向右延伸
+        if (rt) {  // Nếu có thể kéo dài sang phải
           push(j, 0, t);
         }
-      } else {           // 如果左、上均没有插头
-        if (dn && rt) {  // 生成一对新插头
+      } else {           // Nếu cả trái và trên đều không có đầu nối
+        if (dn && rt) {  // Sinh một cặp đầu nối mới
           push(j, m, m);
         }
       }
     }
     ```
 
-??? note "例题代码"
+??? note "Mã ví dụ"
     ```cpp
     --8<-- "docs/dp/code/plug/plug_2.cpp"
     ```
 
-#### 习题
+#### Bài tập
 
-??? note "习题 [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
-    题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍．
+<span id="&#20064;&#39064;_1"></span>
 
-??? note "习题 [「USACO 5.4.4」Betsy's Tours](https://hydro.ac/d/USACO/p/USACO544)"
-    题目大意：一个 $N\times N$ 的方阵（$N\le 7$），求从左上角出发到左下角结束经过每个格子的路径总数．虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题．
+??? note "Bài tập [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
+    Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng đúng một chu trình; một số vị trí có chướng ngại.
 
-??? note "习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
-    题目大意：一个 $N\times M$ 的棋盘，求从左下角出发到右下角结束经过每个格子的路径总数，有些位置有障碍．
+??? note "Bài tập [「USACO 5.4.4」Betsy's Tours](https://hydro.ac/d/USACO/p/USACO544)"
+    Tóm tắt đề bài: với một hình vuông $N\times N$ ($N\le 7$), đếm số đường đi bắt đầu từ góc trên trái, kết thúc ở góc dưới trái và đi qua mọi ô. Tuy là một đường đi, nhưng vì điểm đầu và điểm cuối cố định, có thể chuyển thành bài toán một chu trình.
 
-??? note "习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
-    题目大意：求用一条有向回路覆盖 $4\times N$ 的棋盘的方案数，需要高精度．
+??? note "Bài tập [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
+    Tóm tắt đề bài: với một bàn cờ $N\times M$, đếm số đường đi bắt đầu từ góc dưới trái, kết thúc ở góc dưới phải và đi qua mọi ô; một số vị trí có chướng ngại.
 
-??? note "习题 [「HNOI 2007」神奇游乐园](https://www.luogu.com.cn/problem/P3190)"
-    题目大意：给定一个 $n\times m$ 的网格图，每格内有一个权值，求一个任意一个回路，最大化经过的权值和．
+??? note "Bài tập [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
+    Tóm tắt đề bài: đếm số cách phủ bàn cờ $4\times N$ bằng một chu trình có hướng; cần số học độ chính xác cao.
 
-??? note "习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
-    题目大意：用多条回路覆盖 $n\times n$ 的方阵，每个有 $m$ 条回路的方案对答案的贡献是 $2^m$，求所有方案的贡献和．
+??? note "Bài tập [「HNOI 2007」Công viên kỳ diệu](https://www.luogu.com.cn/problem/P3190)"
+    Tóm tắt đề bài: cho một đồ thị lưới $n\times m$, mỗi ô có một trọng số. Tìm một chu trình bất kỳ sao cho tổng trọng số đi qua là lớn nhất.
 
-### 一条路径
+??? note "Bài tập [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
+    Tóm tắt đề bài: phủ một hình vuông $n\times n$ bằng nhiều chu trình; mỗi phương án có $m$ chu trình đóng góp $2^m$ vào đáp án. Tính tổng đóng góp của mọi phương án.
 
-#### 例题
+### Một đường đi
 
-???+ note "例题 [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
-    题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和．
+<span id="&#19968;&#26465;&#36335;&#24452;"></span>
 
-本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头．需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况．独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果一定会出现多个连通块．
+#### Ví dụ
 
-我们需要在状态中额外记录这类事件发生的总次数，可以将这个信息编码进状态里（注意，类似这样的额外信息在调整轮廓线的时候，不需要跟着滚动），当然也可以在 `hashTable` 数组的外面加维．下面的范例程序中我们选择后者．
+<span id="&#20363;&#39064;_2"></span>
 
-#### 状态转移
+???+ note "Ví dụ [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
+    Tóm tắt đề bài: với một hình vuông $N\times M$ ($N,M\le 8$), mỗi điểm lưới có một trọng số. Tìm một đường đi sao cho tổng trọng số các điểm lưới được đường đi phủ là lớn nhất.
 
-???+ note "代码实现"
+Đây là bài toán một đường đi tiêu chuẩn. Trong bài toán một đường đi, trạng thái mã hóa còn có thể tồn tại các đầu nối độc lập không thể ghép cặp. Ta cần thảo luận thêm trong hàm chuyển trạng thái về việc sinh, ghép và biến mất của các đầu nối độc lập. Việc sinh và biến mất của đầu nối độc lập tương ứng với một đầu mút của đường đi, nên loại sự kiện này không xảy ra quá hai lần (một lần sinh một lần biến mất, hoặc hai lần sinh một lần ghép); nếu không, kết quả cuối cùng chắc chắn sẽ có nhiều thành phần liên thông.
+
+Ta cần ghi thêm trong trạng thái tổng số lần loại sự kiện này đã xảy ra. Có thể mã hóa thông tin này vào trạng thái (chú ý rằng các thông tin bổ sung kiểu này không cần cuộn theo khi điều chỉnh đường biên), hoặc thêm một chiều bên ngoài mảng `hashTable`. Trong chương trình mẫu dưới đây, ta chọn cách thứ hai.
+
+#### Chuyển trạng thái
+
+<span id="&#29366;&#24577;&#36716;&#31227;_1"></span>
+
+???+ note "Cài đặt mã"
     ```cpp
     REP(i, n) {
       REP(j, m) {
-        checkMax(ans, A[i][j]);  // 需要单独处理一个格子的情况
-        if (!A[i][j]) continue;  // 如果有障碍，则跳过，注意这时状态数组不需要滚动
+        checkMax(ans, A[i][j]);  // Cần xử lý riêng trường hợp chỉ có một ô
+        if (!A[i][j]) continue;  // Nếu có chướng ngại thì bỏ qua; khi đó mảng trạng thái không cần cuộn
         swap(H0, H1);
         REP(c, 3)
-        H1[c].clear();  // c 表示生成和消失事件发生的总次数，最多不超过 2 次
+        H1[c].clear();  // c biểu thị tổng số lần xảy ra sự kiện sinh và biến mất, tối đa không quá 2
         REP(c, 3) REP(ii, H0[c].sz) {
           decode(H0[c].state[ii]);
           d = H0[c].key[ii] + A[i][j];
           int lt = b[j], up = b[j + 1];
           bool dn = A[i + 1][j], rt = A[i][j + 1];
           if (lt && up) {
-            if (lt == up) {  // 在一条路径问题中，我们不能合并相同的插头．
-              // Cannot deploy here...
-            } else {  // 有可能参与合并的两者中有独立插头，但是也可以用同样的代码片段处理
+            if (lt == up) {  // Trong bài toán một đường đi, ta không được ghép hai đầu nối giống nhau.
+              // Không thể đặt chuyển trạng thái ở đây...
+            } else {  // Hai đầu nối tham gia ghép có thể có đầu nối độc lập, nhưng vẫn xử lý bằng cùng đoạn mã
               REP(i, m + 1) if (b[i] == lt) b[i] = up;
               push(c, j, 0, 0);
             }
@@ -307,19 +341,20 @@ if (s >> j & 1) {       // 如果已被覆盖
             if (rt) {
               push(c, j, 0, t);
             }
-            // 一个插头消失的情况，如果是独立插头则意味着消失，如果是成对出现的插头则相当于生成了一个独立插头，
-            // 无论哪一类事件都需要将 c + 1．
+            // Trường hợp một đầu nối biến mất: nếu là đầu nối độc lập thì nghĩa là biến mất,
+            // còn nếu là đầu nối xuất hiện theo cặp thì tương đương với việc sinh một đầu nối độc lập.
+            // Cả hai loại sự kiện đều cần tăng c thêm 1.
             if (c < 2) {
               push(c + 1, j, 0, 0);
             }
           } else {
             d -= A[i][j];
             H1[c].push(H0[c].state[ii]);
-            d += A[i][j];    // 跳过插头生成，本题中不要求全部覆盖
-            if (dn && rt) {  // 生成一对插头
+            d += A[i][j];    // Bỏ qua việc sinh đầu nối; bài này không yêu cầu phủ toàn bộ
+            if (dn && rt) {  // Sinh một cặp đầu nối
               push(c, j, m, m);
             }
-            if (c < 2) {  // 生成一个独立插头
+            if (c < 2) {  // Sinh một đầu nối độc lập
               if (dn) {
                 push(c + 1, j, m, 0);
               }
@@ -330,52 +365,60 @@ if (s >> j & 1) {       // 如果已被覆盖
           }
         }
       }
-      REP(c, 3) H1[c].roll();  // 一行结束，调整轮廓线
+      REP(c, 3) H1[c].roll();  // Hết một hàng, điều chỉnh đường biên
     }
     ```
 
-??? note "例题代码"
+??? note "Mã ví dụ"
     ```cpp
     --8<-- "docs/dp/code/plug/plug_3.cpp"
     ```
 
-#### 习题
+#### Bài tập
 
-??? note "习题 [「BZOJ 2310」ParkII](https://hydro.ac/p/bzoj-P2310)"
-    题目大意：$m\times n$ 的棋盘，每个格点有一个权值，求一条路径覆盖，最大化路径经过的点的权值和．
+<span id="&#20064;&#39064;_2"></span>
 
-??? note "习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
-    题目大意：$n\times m$ 的棋盘，棋盘的每个格子有一个 01 权值 T\[x]\[y]，要求寻找一个路径覆盖，满足：
+??? note "Bài tập [「BZOJ 2310」ParkII](https://hydro.ac/p/bzoj-P2310)"
+    Tóm tắt đề bài: bàn cờ $m\times n$, mỗi điểm lưới có một trọng số. Tìm một đường đi phủ sao cho tổng trọng số các điểm mà đường đi đi qua là lớn nhất.
+
+??? note "Bài tập [「NOI 2010 Day2」Tuyến du lịch](https://www.luogu.com.cn/problem/P1933)"
+    Tóm tắt đề bài: bàn cờ $n\times m$, mỗi ô của bàn cờ có trọng số 01 là T\[x]\[y]. Cần tìm một đường đi phủ thỏa mãn:
     
-    -   第 i 个参观的格点 (x, y)，满足 T\[x]\[y]= L\[i]
-    -   路径的一端在棋盘的边界上
+    -   Điểm lưới thứ i được thăm (x, y) thỏa mãn T\[x]\[y]= L\[i]
+    -   Một đầu của đường đi nằm trên biên bàn cờ
     
-    求可行的方案数．
+    Hỏi số phương án hợp lệ.
 
-## 染色模型
+## Mô hình tô màu
 
-除了路径模型之外，还有一类常见的模型，需要我们对棋盘进行染色，相邻的相同颜色节点被视为连通．在路径类问题中，状态转移的时候我们枚举当前路径的方向，而在染色类问题中，我们枚举当前节点染何种颜色．在染色模型中，状态中处在相同连通性的节点可能不止两个．但总体来说依然大同小异．我们不妨来看一个经典的例题．
+<span id="&#26579;&#33394;&#27169;&#22411;"></span>
 
-### 例题「UVa 10572」Black & White
+Ngoài mô hình đường đi, còn có một loại mô hình thường gặp khác, trong đó ta cần tô màu bàn cờ; các nút kề nhau có cùng màu được xem là liên thông. Trong các bài toán dạng đường đi, khi chuyển trạng thái ta liệt kê hướng của đường đi hiện tại; còn trong các bài toán tô màu, ta liệt kê màu sẽ tô cho nút hiện tại. Trong mô hình tô màu, các nút có cùng tính liên thông trong trạng thái có thể không chỉ có hai nút. Nhưng nhìn chung cách xử lý vẫn gần giống nhau. Ta hãy xét một ví dụ kinh điển.
 
-???+ note "例题 [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513)"
-    题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 $2\times 2$ 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案．
+### Ví dụ「UVa 10572」Black & White
+
+<span id="&#20363;&#39064;uva-10572black--white"></span>
+
+???+ note "Ví dụ [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513)"
+    Tóm tắt đề bài: tô đen trắng các điểm lưới chưa tô trong một bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời màu trong bất kỳ hình chữ nhật con $2\times 2$ nào không được hoàn toàn giống nhau (ví dụ trường hợp trong hình dưới là không hợp lệ). Hãy đếm số phương án hợp lệ và dựng một phương án hợp lệ.
     
     ![black\_and\_white1](./images/black_and_white1.svg)
 
-### 状态编码
+### Mã hóa trạng thái
 
-我们先考虑状态编码．不考虑连通性，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197)，不难用 [状压 DP](./state.md) 直接解决．现在我们需要在状态中同时体现颜色和连通性的信息，考察轮廓线上每个位置的状态，二进制的每 `Offset` 位描述轮廓线上的一个位置，因为只有黑白两种颜色，我们用最低位的奇偶性表示颜色，其余部分示连通性．
+<span id="&#29366;&#24577;&#32534;&#30721;_1"></span>
 
-考虑第一行上面的节点，和第一列左侧节点，如果要避免特判的话，可以考虑引入第三种颜色区分它们，这里我们观察到这些边界状态的连通性信息一定为 0，所以不需要对第三种颜色再进行额外编码．
+Trước hết xét cách mã hóa trạng thái. Nếu không xét tính liên thông thì đây chính là [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197), có thể giải trực tiếp bằng [DP nén trạng thái](./state.md). Bây giờ ta cần thể hiện đồng thời thông tin màu và tính liên thông trong trạng thái. Xét trạng thái của từng vị trí trên đường biên: mỗi `Offset` bit trong biểu diễn nhị phân mô tả một vị trí trên đường biên. Vì chỉ có hai màu đen trắng, ta dùng tính chẵn lẻ của bit thấp nhất để biểu thị màu, các phần còn lại biểu thị tính liên thông.
 
-在路径问题中我们的轮廓线是由 $m$ 个上插头与 $1$ 个左插头组成的．本题中，由于我们还需要判断当前格点为右下角的 $2\times 2$ 子矩形是否合法，所以需要记录左上角格子的颜色，因此轮廓线的长度依然是 $m+1$．
+Xét các nút phía trên hàng đầu tiên và các nút bên trái cột đầu tiên. Nếu muốn tránh xử lý riêng, có thể đưa thêm màu thứ ba để phân biệt chúng. Ở đây ta nhận thấy thông tin liên thông của các trạng thái biên này chắc chắn bằng 0, nên không cần mã hóa thêm cho màu thứ ba.
 
-这样的编码方案中依然保留了很多冗余信息，（连通的区域颜色一定相同，且左上角的格子只需要颜色信息不需要连通性），但是因为已经用了哈希表和最小表示，对时间复杂度的影响不大，为了降低编程压力，就不再细化了．
+Trong bài toán đường đi, đường biên của ta gồm $m$ đầu nối phía trên và $1$ đầu nối bên trái. Ở bài này, vì ta còn cần kiểm tra hình chữ nhật con $2\times 2$ có ô hiện tại là góc dưới phải có hợp lệ hay không, nên cần ghi lại màu của ô góc trên trái; do đó độ dài đường biên vẫn là $m+1$.
 
-在最多情况下（例如第一行黑白相间），每个插头的连通性信息都不一样，因此我们需要 $4$ 位二进制位记录连通性，再加上颜色信息，本题的 `Offset` 为 $5$ 位．
+Cách mã hóa này vẫn giữ lại nhiều thông tin dư thừa (các vùng liên thông chắc chắn cùng màu, và ô góc trên trái chỉ cần thông tin màu, không cần thông tin liên thông). Tuy nhiên vì đã dùng bảng băm và biểu diễn tối tiểu, ảnh hưởng đến độ phức tạp thời gian không lớn; để giảm áp lực lập trình, ta không tinh giản thêm.
 
-???+ note "代码实现"
+Trong trường hợp nhiều nhất (ví dụ hàng đầu tiên đen trắng xen kẽ), thông tin liên thông của mỗi đầu nối đều khác nhau. Vì vậy ta cần $4$ bit nhị phân để ghi tính liên thông; cộng thêm thông tin màu, `Offset` của bài này là $5$ bit.
+
+???+ note "Cài đặt mã"
     ```cpp
     constexpr int Offset = 5, Mask = (1 << Offset) - 1;
     int c[N + 2];
@@ -405,11 +448,13 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-### 手写哈希
+### Tự viết bảng băm
 
-因为需要构造任意一组方案，这里的哈希表我们需要添加一组域 `pre[]` 来记录每个状态在上一阶段的任意一个前驱．
+<span id="&#25163;&#20889;&#21704;&#24076;_1"></span>
 
-???+ note "代码实现"
+Vì cần dựng một phương án bất kỳ, bảng băm ở đây cần thêm một trường `pre[]` để ghi lại một tiền nhiệm bất kỳ của mỗi trạng thái ở giai đoạn trước.
+
+???+ note "Cài đặt mã"
     ```cpp
     constexpr int Prime = 9979, MaxSZ = 1 << 20;
     
@@ -444,11 +489,13 @@ if (s >> j & 1) {       // 如果已被覆盖
     hashTable<T_state, T_key> _H, H[N][N], *H0, *H1;
     ```
 
-### 方案构造
+### Dựng phương án
 
-有了上面的信息，我们就可以容易的构造方案了．首先遍历当前哈希表中的状态，如果连通块数目不超过 $2$，那么统计进方案数．如果方案数不为 $0$，我们倒序用 `pre` 数组构造出方案，注意每一行的末尾因为我们执行了 `Roll()` 操作，颜色需要取 `c[j+1]`．
+<span id="&#26041;&#26696;&#26500;&#36896;"></span>
 
-???+ note "代码实现"
+Với các thông tin trên, ta có thể dễ dàng dựng phương án. Trước hết duyệt các trạng thái trong bảng băm hiện tại; nếu số thành phần liên thông không vượt quá $2$ thì cộng vào số phương án. Nếu số phương án khác $0$, ta dùng mảng `pre` theo thứ tự ngược để dựng phương án. Chú ý ở cuối mỗi hàng, vì ta đã thực hiện thao tác `Roll()`, màu cần lấy từ `c[j+1]`.
+
+???+ note "Cài đặt mã"
     ```cpp
     void print() {
       T_key z = 0;
@@ -477,46 +524,48 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-### 状态转移
+### Chuyển trạng thái
 
-我们记：
+<span id="&#29366;&#24577;&#36716;&#31227;_2"></span>
 
--   `cc` 当前正在染色的格子的颜色
--   `lf` 左边格子的颜色
--   `up` 上边格子的颜色
--   `lu` 左上格子的颜色
+Ta ký hiệu:
 
-我们用 $-1$ 表示颜色不存在．接下来讨论状态转移，一共有三种情况，合并，继承与生成：
+-   `cc` là màu của ô đang được tô
+-   `lf` là màu của ô bên trái
+-   `up` là màu của ô bên trên
+-   `lu` là màu của ô góc trên trái
 
-???+ note "状态转移 - 代码"
+Ta dùng $-1$ để biểu thị màu không tồn tại. Tiếp theo xét chuyển trạng thái, gồm ba trường hợp: ghép, kế thừa và sinh mới.
+
+???+ note "Chuyển trạng thái - mã"
     ```cpp
     void trans(int i, int j, int u, int cc) {
       decode(H0->state[u]);
       int lf = j ? c[j - 1] : -1, lu = b[j] ? c[j] : -1,
-          up = b[j + 1] ? c[j + 1] : -1;  // 没有颜色也是颜色的一种！
-      if (lf == cc && up == cc) {         // 合并
-        if (lu == cc) return;             // 2x2 子矩形相同的情况
+          up = b[j + 1] ? c[j + 1] : -1;  // Không có màu cũng là một loại màu!
+      if (lf == cc && up == cc) {         // Ghép
+        if (lu == cc) return;             // Trường hợp hình chữ nhật con 2x2 cùng màu
         int lf_b = b[j - 1], up_b = b[j + 1];
         REP(i, m + 1) if (b[i] == up_b) { b[i] = lf_b; }
         b[j] = lf_b;
-      } else if (lf == cc || up == cc) {  // 继承
+      } else if (lf == cc || up == cc) {  // Kế thừa
         if (lf == cc)
           b[j] = b[j - 1];
         else
           b[j] = b[j + 1];
-      } else {                                             // 生成
-        if (i == n - 1 && j == m - 1 && lu == cc) return;  // 特判
+      } else {                                             // Sinh mới
+        if (i == n - 1 && j == m - 1 && lu == cc) return;  // Xử lý riêng
         b[j] = m + 2;
       }
       c[j] = cc;
-      if (!ok(i, j, cc)) return;  // 判断是否会因生成封闭的连通块导致不合法
+      if (!ok(i, j, cc)) return;  // Kiểm tra việc sinh thành phần liên thông khép kín có làm trạng thái bất hợp lệ không
       H1->push(encode(), H0->key[u], u);
     }
     ```
 
-对于最后一种情况需要注意的是，如果已经生成了一个封闭的连通区域，那么我们不能再使用她的颜色染色，否则这种颜色会出现两个连通块．我们似乎需要额度记录这种事件，可以参考 [「ZOJ 3213」Beautiful Meadow](#例题_2) 中的做法，再开一维记录这个事件．不过利用本题的特殊性，我们也可以特判掉．
+Với trường hợp cuối cùng, cần chú ý: nếu đã sinh ra một vùng liên thông khép kín, ta không thể tiếp tục dùng màu của vùng đó để tô, nếu không màu này sẽ có hai thành phần liên thông. Có vẻ ta cần ghi thêm loại sự kiện này; có thể tham khảo cách làm trong [「ZOJ 3213」Beautiful Meadow](#%E4%BE%8B%E9%A2%98_2), thêm một chiều để ghi lại sự kiện. Tuy nhiên nhờ tính chất đặc biệt của bài này, ta cũng có thể xử lý riêng.
 
-???+ note "特判 - 代码"
+???+ note "Xử lý riêng - mã"
     ```cpp
     bool ok(int i, int j, int cc) {
       if (cc == c[j + 1]) return true;
@@ -524,80 +573,88 @@ if (s >> j & 1) {       // 如果已被覆盖
       if (!up) return true;
       int c1 = 0, c2 = 0;
       REP(i, m + 1) if (i != j + 1) {
-        if (b[i] == b[j + 1]) {  // 连通性相同，颜色一定相同
+        if (b[i] == b[j + 1]) {  // Tính liên thông giống nhau thì màu chắc chắn giống nhau
           assert(c[i] == c[j + 1]);
         }
         if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
         if (c[i] == c[j + 1]) ++c2;
       }
-      if (!c1) {               // 如果会生成新的封闭连通块
-        if (c2) return false;  // 如果轮廓线上还有相同的颜色
+      if (!c1) {               // Nếu sẽ sinh một thành phần liên thông khép kín mới
+        if (c2) return false;  // Nếu trên đường biên vẫn còn màu giống vậy
         if (i < n - 1 || j < m - 2) return false;
       }
       return true;
     }
     ```
 
-进一步讨论连通块消失的情况．每当我们对一个格子进行染色后，如果没有其他格子与其上侧的格子连通，那么会形成一个封闭的连通块．这个事件仅在最后一行的最后两列时可以发生，否则后续为了不出现 $2\times 2$ 的同色连通块，这个颜色一定会再次出现，除了下面的情况：
+Thảo luận thêm về trường hợp một thành phần liên thông biến mất. Mỗi khi ta tô màu một ô, nếu không còn ô nào khác liên thông với ô phía trên nó, thì một thành phần liên thông khép kín sẽ được tạo thành. Sự kiện này chỉ được xảy ra ở hai cột cuối của hàng cuối; nếu không, để tránh xuất hiện khối $2\times 2$ cùng màu, màu này chắc chắn sẽ lại xuất hiện về sau, ngoại trừ trường hợp sau:
 
     2 2
     o#
     #o
 
-我们特判掉这种情况，这样在本题中，就可以偷懒不用记录之前是否已经生成了封闭的连通块了．
+Ta xử lý riêng trường hợp này. Nhờ vậy trong bài này có thể viết gọn mà không cần ghi lại trước đó đã sinh thành phần liên thông khép kín hay chưa.
 
-??? note "例题代码"
+??? note "Mã ví dụ"
     ```cpp
     --8<-- "docs/dp/code/plug/plug_4.cpp"
     ```
 
-### 习题
+### Bài tập
 
-??? note "习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://archive.topcoder.com/ProblemStatement/pm/6482)"
-    题目大意：给一个棋盘图，每个格子有权值，求权值之和最小的连通块．
+<span id="&#20064;&#39064;_3"></span>
 
-??? note "习题 [「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
-    题目大意：给一个棋盘图，每个格子有权值，求权值之和最大的连通块．
+??? note "Bài tập [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://archive.topcoder.com/ProblemStatement/pm/6482)"
+    Tóm tắt đề bài: cho một đồ thị bàn cờ, mỗi ô có trọng số. Tìm một khối liên thông có tổng trọng số nhỏ nhất.
 
-??? note "习题 [「AtCoder Beginner Contest 211. Problem E」Red Polyomino](https://atcoder.jp/contests/abc211/tasks/abc211_e)"
-    题目大意：给一个 $N\times N$ 大小的棋盘图，每个格子初始为黑色或白色．你可以从白色格子中挑选恰好 $K$ 个并将之染成红色，问有多少种染色方案满足红色格子形成一个连通块．
+??? note "Bài tập [「JLOI 2009」Sinh vật bí ẩn](https://www.luogu.com.cn/problem/P3886)"
+    Tóm tắt đề bài: cho một đồ thị bàn cờ, mỗi ô có trọng số. Tìm một khối liên thông có tổng trọng số lớn nhất.
 
-## 图论模型
+??? note "Bài tập [「AtCoder Beginner Contest 211. Problem E」Red Polyomino](https://atcoder.jp/contests/abc211/tasks/abc211_e)"
+    Tóm tắt đề bài: cho một bàn cờ kích thước $N\times N$, mỗi ô ban đầu là đen hoặc trắng. Bạn có thể chọn đúng $K$ ô trắng và tô chúng thành đỏ. Hỏi có bao nhiêu phương án tô màu sao cho các ô đỏ tạo thành một khối liên thông.
 
-???+ note "例题 [「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
-    题目大意：某类特殊图的生成树计数，每个节点恰好与其前 $k$ 个节点之间有边相连．
+## Mô hình đồ thị
 
-???+ note "例题 [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://acm.hdu.edu.cn/showproblem.php?pid=5513)"
-    题目大意：给出一个 $N\times M$ 的网格图，以及相邻四连通格子之间的边权．
-    对于一颗生成树，每个节点的得分为 1+\[有一条连向上的边]+\[有一条连向左的边]．
-    生成树的得分为所有节点的得分之积．
+<span id="&#22270;&#35770;&#27169;&#22411;"></span>
+
+???+ note "Ví dụ [「NOI 2007 Day2」Đếm cây khung](https://www.luogu.com.cn/problem/P2109)"
+    Tóm tắt đề bài: đếm cây khung của một lớp đồ thị đặc biệt, trong đó mỗi nút có cạnh nối tới đúng $k$ nút đứng trước nó.
+
+???+ note "Ví dụ [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://acm.hdu.edu.cn/showproblem.php?pid=5513)"
+    Tóm tắt đề bài: cho một đồ thị lưới $N\times M$ và trọng số cạnh giữa các ô kề nhau theo bốn hướng.
+    Với một cây khung, điểm của mỗi nút là 1+\[có một cạnh nối lên trên]+\[có một cạnh nối sang trái].
+    Điểm của cây khung là tích điểm của tất cả các nút.
     
-    你需要求出：最小生成树的边权和，以及所有最小生成树的得分之和．
-    （$n\le 800,m\le 7$）
+    Cần tính: tổng trọng số cạnh của cây khung nhỏ nhất, và tổng điểm của tất cả các cây khung nhỏ nhất.
+    ($n\le 800,m\le 7$)
 
-## 实战篇
+## Thực chiến
 
-### 例题
+<span id="&#23454;&#25112;&#31687;"></span>
 
-???+ note "例题 [「HDU 4113」Construct the Great Wall](https://acm.hdu.edu.cn/showproblem.php?pid=4113)"
-    题目大意：在 $N\times M$ 的棋盘内构造一组回路，分割所有的 `x` 和 `o`．
+### Ví dụ
 
-有一类插头 DP 问题要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素．不妨称之为修墙问题，这类问题既可视作染色模型，也可视作路径模型．
+<span id="&#20363;&#39064;_3"></span>
+
+???+ note "Ví dụ [「HDU 4113」Construct the Great Wall](https://acm.hdu.edu.cn/showproblem.php?pid=4113)"
+    Tóm tắt đề bài: dựng một tập chu trình trong bàn cờ $N\times M$ để phân tách tất cả `x` và `o`.
+
+Có một lớp bài toán DP đầu nối yêu cầu ta dựng một tập tường trên bàn cờ để phân tách một số phần tử trên đó. Có thể tạm gọi đây là bài toán xây tường; loại bài toán này có thể xem như mô hình tô màu, cũng có thể xem như mô hình đường đi.
 
 ![greatwall](./images/greatwall.svg)
 
-在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要判断在角上触碰而导致不合法的情况（图 2）．另外与 [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513) 不同的是，本题中要求围墙为简单多边形，因而对于下面的回字形的情况，在本题中是不合法的．
+Trong bài này, nếu xem như mô hình tô màu, ta không chỉ cần thảo luận thêm về chu vi của vùng được tô, mà còn phải kiểm tra trường hợp không hợp lệ do chạm nhau ở góc (hình 2). Ngoài ra, khác với [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513), bài này yêu cầu tường là đa giác đơn, nên trường hợp dạng vòng trong vòng dưới đây là không hợp lệ trong bài này.
 
     3 3
     ooo
     oxo
     ooo
 
-因而我们使用路径模型，转化为 [一条回路](#一条回路) 来处理．
+Vì vậy ta dùng mô hình đường đi và chuyển thành bài toán [một chu trình](#%E4%B8%80%E6%9D%A1%E5%9B%9E%E8%B7%AF) để xử lý.
 
-我们沿着棋盘的交叉点进行 DP（因而长宽需要增加 $1$），每次转移时，需要保证所有的 `x` 在回路之外，`o` 在回路之内．因此我们还需要维护当前位置是否在回路内部．对于这个信息我们可以加维，也可以直接统计轮廓线上到这个位置之前出现下插头次数的奇偶性（射线法）．
+Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chiều dài và chiều rộng cần tăng thêm $1$). Mỗi lần chuyển, cần bảo đảm tất cả `x` nằm ngoài chu trình và `o` nằm trong chu trình. Do đó ta còn cần duy trì vị trí hiện tại có nằm bên trong chu trình hay không. Với thông tin này, ta có thể thêm một chiều, hoặc trực tiếp thống kê tính chẵn lẻ của số đầu nối đi xuống đã xuất hiện trên đường biên trước vị trí này (phương pháp tia).
 
-??? note "例题代码"
+??? note "Mã ví dụ"
     ```cpp
     #include <cstring>
     #include <iostream>
@@ -746,70 +803,78 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-### 习题
+### Bài tập
 
-??? note "习题 [「SCOI 2011」地板](https://www.luogu.com.cn/problem/P3272)"
-    题目大意：$r\times c$ 的棋盘上有一些位置设置障碍，问使用 L 型的瓷砖铺满所有没有障碍的格子，有多少种方案．
+<span id="&#20064;&#39064;_4"></span>
 
-??? note "习题 [「HDU 4796」Winter's Coming](https://acm.hdu.edu.cn/showproblem.php?pid=4796)"
-    题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻．每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价．
+??? note "Bài tập [「SCOI 2011」Sàn nhà](https://www.luogu.com.cn/problem/P3272)"
+    Tóm tắt đề bài: trên bàn cờ $r\times c$ có một số vị trí đặt chướng ngại. Hỏi có bao nhiêu cách dùng gạch hình chữ L lát kín tất cả các ô không có chướng ngại.
+
+??? note "Bài tập [「HDU 4796」Winter's Coming](https://acm.hdu.edu.cn/showproblem.php?pid=4796)"
+    Tóm tắt đề bài: tô đen, trắng, xám các điểm lưới chưa tô trong bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời vùng đen và vùng trắng lần lượt liên thông với biên trên và biên dưới của bàn cờ, và vùng đen với vùng trắng không được kề nhau. Mỗi ô có một chi phí tương ứng; hãy tìm một phương án tô màu sao cho chi phí vùng xám nhỏ nhất.
     
     ![4796](./images/4796.jpg)
 
-??? note "习题 [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365624)"
-    题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与第 X 行的左边界通过管道相连．
+??? note "Bài tập [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365624)"
+    Tóm tắt đề bài: trên bản đồ $9\times6$, mỗi ô chứa một loại ống (`-`, `T`, `L`, `+` hoặc không có). Có thể xoay ống 0°, 90°, 180°, 270°. Hỏi tối đa có bao nhiêu hàng có biên phải nối được với biên trái của hàng X thông qua ống.
 
-??? note "习题 [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
-    题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与左边界通过管道相连．
+??? note "Bài tập [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
+    Tóm tắt đề bài: trên bản đồ $9\times6$, mỗi ô chứa một loại ống (`-`, `T`, `L`, `+` hoặc không có). Có thể xoay ống 0°, 90°, 180°, 270°. Hỏi tối đa có bao nhiêu hàng có biên phải nối được với biên trái thông qua ống.
 
-??? note "习题 [「World Finals 2009/2010 Harbin」Channel](https://qoj.ac/problem/13134)"
-    题目大意：一张方格地图上用 `.` 表示空地、`#` 表示石头，找到最长的一条路径满足：
+??? note "Bài tập [「World Finals 2009/2010 Harbin」Channel](https://qoj.ac/problem/13134)"
+    Tóm tắt đề bài: trên một bản đồ ô vuông, dùng `.` biểu thị đất trống và `#` biểu thị đá. Tìm một đường đi dài nhất thỏa mãn:
     
-    1.  起点在左上角，终点在右下角．
-    2.  不能经过石头．
-    3.  路径自身不能在八连通的意义下成环．（即包括拐角处也不能接触）
+    1.  Điểm đầu ở góc trên trái, điểm cuối ở góc dưới phải.
+    2.  Không được đi qua đá.
+    3.  Bản thân đường đi không được tạo chu trình theo nghĩa tám hướng. (Tức là kể cả ở góc cũng không được chạm nhau)
 
-??? note "习题 [「HDU 3958」Tower Defence](https://acm.hdu.edu.cn/showproblem.php?pid=3958)"
-    题目大意：可以转化为求解一条从 $\mathit{S}$ 到 $\mathit{T}$ 的不能接触的最长路径，拐角处可以接触．
+??? note "Bài tập [「HDU 3958」Tower Defence](https://acm.hdu.edu.cn/showproblem.php?pid=3958)"
+    Tóm tắt đề bài: có thể chuyển thành bài toán tìm đường đi dài nhất không tự chạm từ $\mathit{S}$ đến $\mathit{T}$; được phép chạm ở góc.
 
-??? note "习题 [「UVa 10531」Maze Statistics](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1472)"
-    题目大意：有一个 $N\times M$ 的图，每个格子有独立概率 $\mathit{p}$ 变成障碍物．你要从迷宫左上角走到迷宫右下角．求每个格子成为一个 **有解迷宫（即起点终点四联通）** 中的障碍物的概率．（$N \le 5$，$M \le 6$）
+??? note "Bài tập [「UVa 10531」Maze Statistics](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1472)"
+    Tóm tắt đề bài: có một đồ thị $N\times M$, mỗi ô độc lập có xác suất $\mathit{p}$ trở thành chướng ngại vật. Bạn cần đi từ góc trên trái đến góc dưới phải của mê cung. Hãy tính xác suất để mỗi ô trở thành chướng ngại vật trong một **mê cung có lời giải (tức điểm đầu và điểm cuối liên thông bốn hướng)**. ($N \le 5$, $M \le 6$)
 
-??? note "习题 [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
-    题目大意：现有一共 12 种图案的瓷砖，每种瓷砖数量给定．要求铺到一块可视为 $R\times C$ 网格图的矩形地板上，一个格子铺一块瓷砖，且左上角格子的中心与右下角格子的中心通过瓷砖图案上的线联通．$(2 \le R \times C \le 15)$
+??? note "Bài tập [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
+    Tóm tắt đề bài: có tổng cộng 12 loại mẫu gạch, mỗi loại có số lượng cho trước. Cần lát chúng lên một sàn hình chữ nhật xem như đồ thị lưới $R\times C$, mỗi ô đặt một viên gạch, sao cho tâm của ô góc trên trái liên thông với tâm của ô góc dưới phải thông qua các đường trên mẫu gạch. $(2 \le R \times C \le 15)$
     
     ![plug2](./images/plug2.png)
 
-??? note "习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
-    题目大意：一块 $N\times M$ 的电路板，上面有些位置是电线不能走的障碍，给定 $K$ 个格子对，要求每对格子都有电线相连，且电线之间互不相交（允许一条电路线从上边界进入当前格子，从左边界离开这个格子，另外一条电路线可以从下边界进入格子，从右边界出去）．视电线为无向边，求满足要求的最短电线长度和方案数．
+??? note "Bài tập [「SDOI 2014」Bảng mạch](https://www.luogu.com.cn/problem/P3314)"
+    Tóm tắt đề bài: một bảng mạch $N\times M$ có một số vị trí là chướng ngại mà dây điện không thể đi qua. Cho $K$ cặp ô, yêu cầu mỗi cặp ô đều được nối bằng dây điện, và các dây điện không giao nhau (cho phép một đường dây đi vào ô hiện tại từ biên trên rồi rời khỏi ô qua biên trái, đồng thời một đường dây khác đi vào từ biên dưới rồi ra qua biên phải). Xem dây điện là cạnh vô hướng; hãy tìm tổng chiều dài dây điện ngắn nhất thỏa mãn yêu cầu và số phương án.
 
-??? note "习题 [「SPOJ CAKE3」Delicious Cake](https://www.spoj.com/problems/CAKE3)"
-    题目大意：一块可视为 $N\times M$ 网格的蛋糕，现沿着格线将蛋糕切成数块，问有多少种不同的切割方法．切法相同当且仅当切成的每块蛋糕都形状相同且在同一位置上．（$\min(N,M) \le 5, \max(N,M) \le 130$）
+??? note "Bài tập [「SPOJ CAKE3」Delicious Cake](https://www.spoj.com/problems/CAKE3)"
+    Tóm tắt đề bài: một chiếc bánh có thể xem như lưới $N\times M$; nay cắt bánh dọc theo các đường lưới thành nhiều phần. Hỏi có bao nhiêu cách cắt khác nhau. Hai cách cắt được xem là giống nhau khi và chỉ khi từng miếng bánh sau khi cắt đều có cùng hình dạng và nằm ở cùng vị trí. ($\min(N,M) \le 5, \max(N,M) \le 130$)
 
-## 本章注记
+## Ghi chú chương
 
-插头 DP 问题通常编码难度较大，讨论复杂，因而属于 OI/ACM 中相对较为 [偏门的领域](https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt)．这方面最为经典的资料，当属 2008 年 [陈丹琦](https://www.cs.princeton.edu/~danqic/) 的集训队论文——[基于连通性状态压缩的动态规划问题](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/tree/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2008%E8%AE%BA%E6%96%87%E9%9B%86/%E9%99%88%E4%B8%B9%E7%90%A6%E3%80%8A%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E6%80%A7%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E3%80%8B)．其次，HDU 的 notonlysuccess 2011 年曾经在博客中连续写过两篇由浅入深的专题，也是不可多得的好资料，不过现在需要在 Web Archive 里考古．
+<span id="&#26412;&#31456;&#27880;&#35760;"></span>
 
--   [notonlysuccess，【专辑】插头 DP](https://web.archive.org/web/20110815044829/http://www.notonlysuccess.com/?p=625)
--   [notonlysuccess，【完全版】插头 DP](https://web.archive.org/web/20111007185146/http://www.notonlysuccess.com/?p=931)
+Các bài toán DP đầu nối thường khó mã hóa và thảo luận phức tạp, nên thuộc nhóm lĩnh vực tương đối [ít phổ biến](https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt) trong OI/ACM. Tài liệu kinh điển nhất về hướng này là luận văn đội tuyển năm 2008 của [Chen Danqi](https://www.cs.princeton.edu/~danqic/) - [Dynamic Programming Based on Connectivity State Compression](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/tree/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2008%E8%AE%BA%E6%96%87%E9%9B%86/%E9%99%88%E4%B8%B9%E7%90%A6%E3%80%8A%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E6%80%A7%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E3%80%8B). Ngoài ra, năm 2011 notonlysuccess của HDU từng viết hai bài chuyên đề từ dễ đến khó trên blog, cũng là tài liệu rất quý, nhưng hiện nay phải tra lại qua Web Archive.
 
-### 多米诺骨牌覆盖
+-   [notonlysuccess, chuyên đề DP đầu nối](https://web.archive.org/web/20110815044829/http://www.notonlysuccess.com/?p=625)
+-   [notonlysuccess, bản đầy đủ về DP đầu nối](https://web.archive.org/web/20111007185146/http://www.notonlysuccess.com/?p=931)
 
-[「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400) 也出现在 [《算法竞赛入门经典训练指南》](../contest/resources.md#书籍) 中，并作为《轮廓线上的动态规划》一节的例题．[多米诺骨牌覆盖（Domino tiling）](https://en.wikipedia.org/wiki/Domino_tiling) 是一组非常经典的数学问题，稍微修改其数据范围就可以得到不同难度，需要应用不同的算法解决的子问题．
+### Lát domino
 
-当限定 $m=2$ 时，多米诺骨牌覆盖等价于斐波那契数列．[《具体数学》](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) 中使用了该问题以引出斐波那契数列，并使用了多种方法得到其解析解．
+<span id="&#22810;&#31859;&#35834;&#39592;&#29260;&#35206;&#30422;"></span>
 
-当 $m\le 10,n\le 10^9$ 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276)．
+[「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400) cũng xuất hiện trong [Training Guide for Algorithmic Contests](../contest/resources.md#%E4%B9%A6%E7%B1%8D), với vai trò bài ví dụ của mục "quy hoạch động trên đường biên". [Lát domino (Domino tiling)](https://en.wikipedia.org/wiki/Domino_tiling) là một nhóm bài toán toán học rất kinh điển; chỉ cần thay đổi nhẹ phạm vi dữ liệu là có thể thu được các bài toán con ở nhiều mức độ khó khác nhau, đòi hỏi các thuật toán khác nhau.
+
+Khi giới hạn $m=2$, lát domino tương đương với dãy Fibonacci. [Concrete Mathematics](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) dùng bài toán này để dẫn nhập dãy Fibonacci, đồng thời dùng nhiều phương pháp để thu được nghiệm giải tích của nó.
+
+Khi $m\le 10,n\le 10^9$, có thể tiền xử lý công thức chuyển thành dạng ma trận và dùng [nhân ma trận để tăng tốc](http://www.matrix67.com/blog/archives/276).
 
 ![domino\_v2\_transform\_matrix](./images/domino_v2_transform_matrix.svg)
 
-当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数．
+Khi $n,m\le 100$, có thể dùng [thuật toán FKT](https://en.wikipedia.org/wiki/FKT_algorithm) để tính số ghép cặp hoàn hảo của đồ thị phẳng tương ứng.
 
--   [「51nod 1031」骨牌覆盖](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1031)
--   [「51nod 1033」骨牌覆盖 V2](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
--   [「51nod 1034」骨牌覆盖 V3](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
+-   [「51nod 1031」Lát domino](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1031)
+-   [「51nod 1033」Lát domino V2](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
+-   [「51nod 1034」Lát domino V3](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
 -   [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
 
-### 一条路径
+### Một đường đi
 
-「一条路径」是 [哈密顿路径（Hamiltonian Path）](https://en.wikipedia.org/wiki/Hamiltonian_path) 问题在 [格点图（Grid Graph）](https://mathworld.wolfram.com/GridGraph.html) 中的一种特殊情况．哈密顿路径的判定性问题是 [NP-complete](https://en.wikipedia.org/wiki/NP-completeness) 家族中的重要成员．
+<span id="&#19968;&#26465;&#36335;&#24452;_1"></span>
+
+"Một đường đi" là một trường hợp đặc biệt của bài toán [đường đi Hamilton (Hamiltonian Path)](https://en.wikipedia.org/wiki/Hamiltonian_path) trên [đồ thị lưới (Grid Graph)](https://mathworld.wolfram.com/GridGraph.html). Bài toán quyết định của đường đi Hamilton là một thành viên quan trọng trong họ [NP-complete](https://en.wikipedia.org/wiki/NP-completeness).

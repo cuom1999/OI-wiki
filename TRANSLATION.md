@@ -76,6 +76,12 @@ MkDocs source layout intact.
   `docs/dp/dynamic.md`, `docs/dp/probability.md`,
   `docs/dp/dp-of-dp.md`: translated the core dynamic-programming pages and
   explanatory code comments in their included snippets.
+- `docs/dp/plug.md`, `docs/dp/opt/dp-opt.md`,
+  `docs/dp/opt/monotonic-queue-stack.md`, `docs/dp/opt/slope.md`,
+  `docs/dp/opt/quadrangle.md`, `docs/dp/opt/slope-trick.md`,
+  `docs/dp/opt/state.md`: translated plug DP and most DP optimization pages,
+  plus explanatory comments in their included snippets. `wqs-binary-search.md`
+  remains to be translated.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

@@ -182,19 +182,19 @@ nav:
     - DP trên cây: dp/tree.md
     - DP nén trạng thái: dp/state.md
     - DP chữ số: dp/number.md
-    - 插头 DP: dp/plug.md
+    - DP cắm nối: dp/plug.md
     - DP đếm: dp/count.md
     - Dynamic DP: dp/dynamic.md
     - DP xác suất: dp/probability.md
     - DP lồng DP: dp/dp-of-dp.md
-    - DP 优化:
-      - DP 优化简介: dp/opt/dp-opt.md
-      - 单调队列/单调栈优化: dp/opt/monotonic-queue-stack.md
-      - 斜率优化: dp/opt/slope.md
-      - 四边形不等式优化: dp/opt/quadrangle.md
-      - Slope Trick 优化: dp/opt/slope-trick.md
+    - Tối ưu DP:
+      - Tổng quan tối ưu DP: dp/opt/dp-opt.md
+      - Hàng đợi/ngăn xếp đơn điệu: dp/opt/monotonic-queue-stack.md
+      - Tối ưu bằng độ dốc: dp/opt/slope.md
+      - Bất đẳng thức tứ giác: dp/opt/quadrangle.md
+      - Slope Trick: dp/opt/slope-trick.md
       - WQS 二分: dp/opt/wqs-binary-search.md
-      - 状态设计优化: dp/opt/state.md
+      - Tối ưu thiết kế trạng thái: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
   - Xâu:
     - Tổng quan xâu: string/index.md

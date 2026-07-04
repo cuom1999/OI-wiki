@@ -13,11 +13,11 @@ double f(int i, int j) { return a[i] + sqrtl(j - i); }
 void work() {
   all.clear();
   for (int i = 0; i < n; ++i) {
-    if (q.size() && r.front() < i) all.pop_front();  // 队首出队
+    if (q.size() && r.front() < i) all.pop_front();  // Đầu hàng đợi ra hàng
     if (q.size()) l.front() = i;
-    for (; q.size() && f(q.back(), l.back()) <= f(i, l.back());)  // 队尾出队
+    for (; q.size() && f(q.back(), l.back()) <= f(i, l.back());)  // Cuối hàng đợi ra hàng
       all.pop_back();
-    if (q.empty())  // 入队
+    if (q.empty())  // Vào hàng đợi
       q.emplace_back(i), l.emplace_back(i), r.emplace_back(n);
     else if (f(q.back(), n) < f(i, n)) {
       int ll = l.back(), rr = n, mid;

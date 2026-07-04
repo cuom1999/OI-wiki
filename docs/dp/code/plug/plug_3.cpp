@@ -85,11 +85,11 @@ void solve() {
   ans = 0;
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
-      checkMax(ans, A[i][j]);  // 需要单独处理一个格子的情况
-      if (!A[i][j]) continue;  // 如果有障碍，则跳过，注意这时状态数组不需要滚动
+      checkMax(ans, A[i][j]);  // Cần xử lý riêng trường hợp chỉ có một ô
+      if (!A[i][j]) continue;  // Nếu có chướng ngại thì bỏ qua; khi đó mảng trạng thái không cần cuộn
       swap(H0, H1);
       for (int c = 0; c < 3; c++)
-        H1[c].clear();  // c 表示生成和消失事件发生的总次数，最多不超过 2 次
+        H1[c].clear();  // c biểu thị tổng số lần xảy ra sự kiện sinh và biến mất, tối đa không quá 2
       for (int c = 0; c < 3; c++)
         for (int ii = 0; ii < H0[c].sz; ii++) {
           decode(H0[c].state[ii]);
@@ -97,9 +97,9 @@ void solve() {
           int lt = b[j], up = b[j + 1];
           bool dn = A[i + 1][j], rt = A[i][j + 1];
           if (lt && up) {
-            if (lt == up) {  // 在一条路径问题中，我们不能合并相同的插头。
-              // Cannot deploy here...
-            } else {  // 有可能参与合并的两者中有独立插头，但是也可以用同样的代码片段处理
+            if (lt == up) {  // Trong bài toán một đường đi, ta không được ghép hai đầu nối giống nhau.
+              // Không thể đặt chuyển trạng thái ở đây...
+            } else {  // Hai đầu nối tham gia ghép có thể có đầu nối độc lập, nhưng vẫn xử lý bằng cùng đoạn mã
               for (int i = 0; i < m + 1; i++)
                 if (b[i] == lt) b[i] = up;
               push(c, j, 0, 0);
@@ -112,19 +112,20 @@ void solve() {
             if (rt) {
               push(c, j, 0, t);
             }
-            // 一个插头消失的情况，如果是独立插头则意味着消失，如果是成对出现的插头则相当于生成了一个独立插头，
-            // 无论哪一类事件都需要将 c + 1。
+            // Trường hợp một đầu nối biến mất: nếu là đầu nối độc lập thì nghĩa là biến mất,
+            // còn nếu là đầu nối xuất hiện theo cặp thì tương đương với việc sinh một đầu nối độc lập.
+            // Cả hai loại sự kiện đều cần tăng c thêm 1.
             if (c < 2) {
               push(c + 1, j, 0, 0);
             }
           } else {
             d -= A[i][j];
             H1[c].push(H0[c].state[ii]);
-            d += A[i][j];  // 跳过插头生成，本题中不要求全部覆盖
-            if (dn && rt) {  // 生成一对插头
+            d += A[i][j];  // Bỏ qua việc sinh đầu nối; bài này không yêu cầu phủ toàn bộ
+            if (dn && rt) {  // Sinh một cặp đầu nối
               push(c, j, m, m);
             }
-            if (c < 2) {  // 生成一个独立插头
+            if (c < 2) {  // Sinh một đầu nối độc lập
               if (dn) {
                 push(c + 1, j, m, 0);
               }
@@ -135,7 +136,7 @@ void solve() {
           }
         }
     }
-    for (int c = 0; c < 3; c++) H1[c].roll();  // 一行结束，调整轮廓线
+    for (int c = 0; c < 3; c++) H1[c].roll();  // Hết một hàng, điều chỉnh đường biên
   }
   for (int ii = 0; ii < H1[2].sz; ii++) checkMax(ans, H1[2].key[ii]);
   cout << ans << endl;

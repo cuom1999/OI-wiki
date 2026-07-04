@@ -10,31 +10,31 @@ using val_t = long double;
 constexpr val_t inf = 1e18;
 
 // --8<-- [start:core]
-val_t w(int j, int i);  // 成本函数
-val_t f[N];             // 最优值
-int opt[N];             // 最小最优决策
+val_t w(int j, int i);  // Hàm chi phí
+val_t f[N];             // Giá trị tối ưu
+int opt[N];             // Quyết định tối ưu nhỏ nhất
 
-// 递归求解 [l,r] 中的问题
-// 已知它们的最小最优决策点一定出现在区间 [opt_l, opt_r] 中
+// Đệ quy giải các bài toán trong [l,r]
+// Biết rằng điểm quyết định tối ưu nhỏ nhất của chúng chắc chắn nằm trong [opt_l, opt_r]
 void calc(int l, int r, int opt_l, int opt_r) {
   int mid = (l + r) / 2;
-  // 求问题 mid 的最优决策点
+  // Tìm điểm quyết định tối ưu của bài toán mid
   for (int j = opt_l; j <= std::min(opt_r, mid); ++j) {
     if (w(j, mid) < f[mid]) {
       f[mid] = w(j, mid);
       opt[mid] = j;
     }
   }
-  // 根据决策单调性得出左右两部分的决策区间，递归处理
+  // Dựa vào tính đơn điệu quyết định để lấy khoảng quyết định cho hai nửa rồi xử lý đệ quy
   if (l < mid) calc(l, mid - 1, opt_l, opt[mid]);
   if (r > mid) calc(mid + 1, r, opt[mid], opt_r);
 }
 
-// 求解整个区间 [1,n] 的问题
+// Giải các bài toán trên toàn khoảng [1,n]
 void solve(int n) {
-  // 每次调用递归函数前，都需要清空数组 f
+  // Trước mỗi lần gọi hàm đệ quy, cần xóa mảng f
   std::fill(f + 1, f + n + 1, inf);
-  // 最开始时，只知道问题 [1,n] 的所有决策点都一定在 [1,n] 中
+  // Ban đầu chỉ biết mọi điểm quyết định của các bài toán [1,n] đều nằm trong [1,n]
   calc(1, n, 1, n);
 }
 

@@ -1,217 +1,229 @@
 author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, Chrogeek, StudyingFather, NFLSCode, c-forrest
 
-四边形不等式优化利用的是状态转移方程中的决策单调性，也常称为 **决策单调性优化 DP**．
+Tối ưu bằng bất đẳng thức tứ giác sử dụng tính đơn điệu của quyết định trong công thức chuyển trạng thái, nên cũng thường được gọi là **DP tối ưu bằng tính đơn điệu quyết định**.
 
-## 基础知识
+## Kiến thức cơ bản
 
-考虑最简单的情形，我们要解决如下一系列最优化问题：
+<span id="&#22522;&#30784;&#30693;&#35782;"></span>
+
+Xét trường hợp đơn giản nhất: ta cần giải một loạt bài toán tối ưu sau:
 
 $$
 f(i) = \min_{1 \leq j \leq i} w(j,i) \qquad \left(1 \leq i \leq n\right) \tag{1}
 $$
 
-这里假定成本函数 $w(j,i)$ 可以在 $O(1)$ 时间内计算．
+Ở đây giả sử hàm chi phí $w(j,i)$ có thể được tính trong thời gian $O(1)$.
 
-???+ info "约定"
-    动态规划的状态转移方程经常可以写作一系列最优化问题的形式．以（1）式为例，这些问题含有参数 $i$，问题的目标函数和可行域都可以依赖于 $i$．每一个问题都是在给定参数 $i$ 时，选取某个可行解 $j$ 来最小化目标函数的取值．为表述方便，下文将参数为 $i$ 的最优化问题简称为「问题 $i$」，该最优化问题的可行解 $j$ 称为「决策 $j$」，目标函数在最优解处取得的值则称为「状态 $f(i)$」．同时，记问题 $i$ 对应的最小最优决策点为 $\operatorname{opt}(i)$．
+???+ info "Quy ước"
+    Công thức chuyển trạng thái của quy hoạch động thường có thể viết dưới dạng một loạt bài toán tối ưu. Lấy công thức (1) làm ví dụ, các bài toán này có tham số $i$; hàm mục tiêu và miền nghiệm khả thi đều có thể phụ thuộc vào $i$. Mỗi bài toán, khi tham số $i$ đã cho, sẽ chọn một nghiệm khả thi $j$ để cực tiểu hóa giá trị hàm mục tiêu. Để trình bày thuận tiện, dưới đây ta gọi ngắn gọn bài toán tối ưu có tham số $i$ là "bài toán $i$", nghiệm khả thi $j$ của bài toán này là "quyết định $j$", và giá trị hàm mục tiêu tại nghiệm tối ưu là "trạng thái $f(i)$". Đồng thời, ký hiệu điểm quyết định tối ưu nhỏ nhất ứng với bài toán $i$ là $\operatorname{opt}(i)$.
 
-在一般的情形下，这些问题总时间复杂度为 $O(n^2)$．这是由于对于问题 $i$，我们需要考虑所有可能的决策 $j$．而在满足决策单调性时，可以有效缩小决策空间，优化总复杂度．
+Trong trường hợp tổng quát, tổng độ phức tạp thời gian của các bài toán này là $O(n^2)$, vì với bài toán $i$, ta cần xét mọi quyết định $j$ có thể. Khi thỏa mãn tính đơn điệu quyết định, ta có thể thu hẹp hiệu quả không gian quyết định và tối ưu tổng độ phức tạp.
 
--   **决策单调性**：对于任意 $i_1 < i_2$，必然成立 $\operatorname{opt}(i_1) \leq \operatorname{opt}(i_2)$．
+-   **Tính đơn điệu quyết định**: với mọi $i_1 < i_2$, luôn có $\operatorname{opt}(i_1) \leq \operatorname{opt}(i_2)$.
 
-??? note "附注"
-    对于问题 $i$，最优决策集合未必是一个区间．决策单调性实际可以定义在最优决策集合上．对于集合 $A$ 和 $B$，可以定义 $A \leq B$ 当且仅当对于任意 $a\in A$ 和 $b\in B$，成立 $\min\{a,b\}\in A$ 和 $\max\{a,b\}\in B$．这蕴含最小（最大）最优决策点的单调性，即此处采取的定义．本文关于最小最优决策点叙述的结论，同样适用于最大最优决策点．但是，存在情形，某更大问题的最小最优决策严格小于另一更小问题的最大最优决策，亦即可能对某些 $i_1 < i_2$ 成立 $\mathop{\mathrm{optmax}}(i_1) > \mathop{\mathrm{optmin}}(i_2)$，所以在书写代码时，应保证总是求得最小或最大的最优决策点．
+??? note "Ghi chú"
+    Với bài toán $i$, tập quyết định tối ưu chưa chắc là một khoảng. Tính đơn điệu quyết định thật ra có thể được định nghĩa trên tập các quyết định tối ưu. Với hai tập $A$ và $B$, có thể định nghĩa $A \leq B$ khi và chỉ khi với mọi $a\in A$ và $b\in B$, ta có $\min\{a,b\}\in A$ và $\max\{a,b\}\in B$. Điều này kéo theo tính đơn điệu của điểm quyết định tối ưu nhỏ nhất (hoặc lớn nhất), tức định nghĩa được dùng ở đây. Các kết luận trong bài viết về điểm quyết định tối ưu nhỏ nhất cũng áp dụng cho điểm quyết định tối ưu lớn nhất. Tuy nhiên, có những trường hợp điểm quyết định tối ưu nhỏ nhất của một bài toán lớn hơn lại nhỏ hơn nghiêm ngặt điểm quyết định tối ưu lớn nhất của một bài toán nhỏ hơn; tức là có thể tồn tại $i_1 < i_2$ sao cho $\mathop{\mathrm{optmax}}(i_1) > \mathop{\mathrm{optmin}}(i_2)$. Vì vậy khi viết code, cần bảo đảm luôn lấy điểm quyết định tối ưu nhỏ nhất hoặc lớn nhất một cách nhất quán.
     
-    另一方面，拥有相同最小最优决策的问题构成一个区间．这一区间，作为最小最优决策的函数，应严格递增．亦即，给定 $j_1 = \operatorname{opt}(i_1)$，$j_2 = \operatorname{opt}(i_2)$，如果 $j_1 < j_2$，那么必然有 $i_1 < i_2$．换言之，如果决策 $j_1 < j_2$ 能够成为最小最优决策的问题区间分别是 $[l_{j_1},r_{j_1}]$ 和 $[l_{j_2},r_{j_2}]$，那么必然有 $r_{j_1} < l_{j_2}$．
+    Mặt khác, các bài toán có cùng điểm quyết định tối ưu nhỏ nhất tạo thành một khoảng. Khoảng này, nếu xem như hàm của điểm quyết định tối ưu nhỏ nhất, phải tăng nghiêm ngặt. Nói cách khác, cho $j_1 = \operatorname{opt}(i_1)$ và $j_2 = \operatorname{opt}(i_2)$, nếu $j_1 < j_2$ thì tất yếu $i_1 < i_2$. Tương đương, nếu các khoảng bài toán mà quyết định $j_1 < j_2$ có thể trở thành quyết định tối ưu nhỏ nhất lần lượt là $[l_{j_1},r_{j_1}]$ và $[l_{j_2},r_{j_2}]$, thì tất yếu $r_{j_1} < l_{j_2}$.
 
-最常见的判断决策单调性的方法是通过四边形不等式（quadrangle inequality）．在不同的语境下，这一性质也常称为 Monge 性质（用于描述矩阵 $A_{j,i}$）或次模性（submodularity，用于描述以区间为自变量的函数 $f([j,i])$）．
+Cách thường gặp nhất để phán đoán tính đơn điệu quyết định là thông qua bất đẳng thức tứ giác (quadrangle inequality). Trong các ngữ cảnh khác nhau, tính chất này cũng thường được gọi là tính chất Monge (khi mô tả ma trận $A_{j,i}$) hoặc tính dưới mô-đun (submodularity, khi mô tả một hàm có biến là khoảng $f([j,i])$).
 
--   **四边形不等式**：如果对于任意 $a\leq b\leq c\leq d$ 均成立
+-   **Bất đẳng thức tứ giác**: nếu với mọi $a\leq b\leq c\leq d$ đều có
 
     $$
     w(a,c)+w(b,d) \leq w(a,d)+w(b,c),
     $$
 
-    则称函数 $w$ 满足四边形不等式（简记为「交叉小于包含」）．若等号永远成立，则称函数 $w$ 满足 **四边形恒等式**．
+    thì ta nói hàm $w$ thỏa mãn bất đẳng thức tứ giác (có thể nhớ ngắn gọn là "chéo nhỏ hơn chứa"). Nếu dấu bằng luôn xảy ra, ta nói hàm $w$ thỏa mãn **đẳng thức tứ giác**.
 
-如果没有特别说明，以下都会保证 $a\leq b\leq c\leq d$．四边形不等式给出了一个决策单调性的充分不必要条件．
+Nếu không nói gì thêm, dưới đây luôn giả sử $a\leq b\leq c\leq d$. Bất đẳng thức tứ giác cho một điều kiện đủ nhưng không cần cho tính đơn điệu quyết định.
 
-???+ note "定理 1"
-    若 $w$ 满足四边形不等式，则问题 (1) 满足决策单调性．
+???+ note "Định lý 1"
+    Nếu $w$ thỏa mãn bất đẳng thức tứ giác, thì bài toán (1) thỏa mãn tính đơn điệu quyết định.
 
-??? note "证明"
-    要证明这一点，可采用反证法．假设对某些 $c < d$，成立 $a = \operatorname{opt}(d) < \operatorname{opt}(c) = b$．此时有 $a < b \leq c < d$．根据最优化条件，$w(a,d) \leq w(b,d)$ 且 $w(b,c) < w(a,c)$，于是，$w(a,d) - w(b,d) \leq 0 < w(a,c) - w(b,c)$，这与四边形不等式矛盾．
+??? note "Chứng minh"
+    Ta chứng minh bằng phản chứng. Giả sử với một số $c < d$, có $a = \operatorname{opt}(d) < \operatorname{opt}(c) = b$. Khi đó $a < b \leq c < d$. Theo điều kiện tối ưu, $w(a,d) \leq w(b,d)$ và $w(b,c) < w(a,c)$, do đó $w(a,d) - w(b,d) \leq 0 < w(a,c) - w(b,c)$, mâu thuẫn với bất đẳng thức tứ giác.
 
-四边形不等式可以理解在合理的定义域内，$w$ 的二阶混合差分 $\Delta_i\Delta_jw(j,i)$ 非正．
+Bất đẳng thức tứ giác có thể được hiểu là trong miền xác định hợp lý, sai phân hỗn hợp bậc hai $\Delta_i\Delta_jw(j,i)$ của $w$ không dương.
 
-利用决策单调性，有很多常见算法都可以将算法复杂度优化到 $O(n\log n)$．这些算法的适用范围、实现难度、运行效率各不相同，需要根据实际场景选择合适的算法．这主要取决于 $w(j,i)$ 的性质．不加说明时，本文默认 $w(i,j)$ 可以 **随机访问**，即 $w(j,i)$ 可以在 $O(1)$ 时间内查询或计算．但是，并非所有问题中，$w(j,i)$ 都这样容易计算．因此，除了基本情形外，本文还讨论了 $w(j,i)$ 只具有如下性质时，利用决策单调性优化 DP 的方法：
+Nhờ tính đơn điệu quyết định, nhiều thuật toán thường gặp có thể tối ưu độ phức tạp xuống $O(n\log n)$. Phạm vi áp dụng, độ khó cài đặt và hiệu suất thực tế của các thuật toán này khác nhau, nên cần chọn thuật toán phù hợp theo bối cảnh. Điều này chủ yếu phụ thuộc vào tính chất của $w(j,i)$. Nếu không nói rõ, bài viết mặc định $w(i,j)$ có thể **truy cập ngẫu nhiên**, tức là $w(j,i)$ có thể được truy vấn hoặc tính trong $O(1)$. Tuy nhiên, không phải bài toán nào cũng có $w(j,i)$ dễ tính như vậy. Do đó, ngoài trường hợp cơ bản, bài viết còn thảo luận cách dùng tính đơn điệu quyết định để tối ưu DP khi $w(j,i)$ chỉ có các tính chất sau:
 
--   **移动访问**：$w(j,i)$ 可以从 $w(j\pm 1,i)$ 或 $w(j,i\pm 1)$ 以 $O(1)$ 时间转移得到．（类似 [莫队算法](../../misc/mo-algo.md) 中的情形）
--   **动态计算**：$w(j,i)$ 的计算依赖于 $\{f(j'):j' < j\}$．这意味着 $f$ 和 $w$ 只能顺次计算．下文介绍了不限制区间个数的区间分拆问题，它就属于这一情形．
+-   **Truy cập bằng di chuyển**: $w(j,i)$ có thể được chuyển từ $w(j\pm 1,i)$ hoặc $w(j,i\pm 1)$ trong thời gian $O(1)$. (Tương tự trường hợp trong [thuật toán Mo](../../misc/mo-algo.md))
+-   **Tính động**: việc tính $w(j,i)$ phụ thuộc vào $\{f(j'):j' < j\}$. Điều này nghĩa là $f$ và $w$ chỉ có thể được tính tuần tự. Bài toán phân tách khoảng không giới hạn số khoảng được giới thiệu bên dưới thuộc trường hợp này.
 
-这两条性质并不互斥，可能存在 $w(j,i)$ 既需要动态计算，又只支持移动访问的情形．
+Hai tính chất này không loại trừ nhau; có thể tồn tại trường hợp $w(j,i)$ vừa cần tính động, vừa chỉ hỗ trợ truy cập bằng di chuyển.
 
-### 分治
+### Chia để trị
 
-要求解所有状态，只需要求解所有最优决策点．为了对所有 $1 \leq i \leq n$ 求解 $\operatorname{opt}(i)$，首先计算 $\operatorname{opt}(n/2)$，而后分别计算 $1 \leq i < n/2$ 和 $n/2 < i \leq n$ 上的 $\operatorname{opt}(i)$，注意此时已知前半段的 $\operatorname{opt}(i)$ 必然位于 $1$ 和 $\operatorname{opt}(n/2)$ 之间（含端点），而后半段的 $\operatorname{opt}(i)$ 必然位于 $\operatorname{opt}(n/2)$ 和 $n$ 之间（含端点）．对于两个子区间，也类似处理，直至计算出每个问题的最优决策．在分治的过程中记录搜索的上下边界，就可以保证算法复杂度控制在 $O(n\log n)$．递归树层数为 $O(\log n)$，而每层中，单个决策点至多计算两次，所以总的计算次数是 $O(n\log n)$．
+<span id="&#20998;&#27835;"></span>
 
-???+ example "参考实现"
+Để tính mọi trạng thái, ta chỉ cần tìm mọi điểm quyết định tối ưu. Để tìm $\operatorname{opt}(i)$ cho mọi $1 \leq i \leq n$, trước hết tính $\operatorname{opt}(n/2)$, rồi lần lượt tính $\operatorname{opt}(i)$ trên các đoạn $1 \leq i < n/2$ và $n/2 < i \leq n$. Lúc này, $\operatorname{opt}(i)$ của nửa trước chắc chắn nằm giữa $1$ và $\operatorname{opt}(n/2)$ (kể cả hai đầu), còn $\operatorname{opt}(i)$ của nửa sau chắc chắn nằm giữa $\operatorname{opt}(n/2)$ và $n$ (kể cả hai đầu). Với hai đoạn con, ta xử lý tương tự cho đến khi tính được quyết định tối ưu của mọi bài toán. Nếu trong quá trình chia để trị ta ghi lại cận dưới và cận trên của vùng tìm kiếm, có thể bảo đảm độ phức tạp thuật toán là $O(n\log n)$. Cây đệ quy có $O(\log n)$ tầng, và trên mỗi tầng, một điểm quyết định được tính nhiều nhất hai lần, nên tổng số lần tính là $O(n\log n)$.
+
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle-divide-conquer.cpp:core"
     ```
 
-除了随机访问的基本情形外，分治算法还可以应用于 $w(j,i)$ 只支持移动访问的情形．只需要在计算过程中维护游标 $(j,i)$ 和相应函数值 $w(j,i)$，在需要查询新的值时，将游标暴力移动到当前位置并更新函数值即可．这样做的时间复杂度仍然为 $O(n\log n)$．对此更为详细的讨论，可以参考下文 [简化 LARSCH 算法](#简化-larsch-算法) 一节．但是，分治算法无法解决 $w(j,i)$ 需要动态计算的情形，因为分治算法没有办法在左半区间问题尚未解决时，就计算出区间中点处的最小最优决策 $\operatorname{opt}(n/2)$．
+Ngoài trường hợp cơ bản có truy cập ngẫu nhiên, thuật toán chia để trị cũng có thể áp dụng khi $w(j,i)$ chỉ hỗ trợ truy cập bằng di chuyển. Chỉ cần duy trì con trỏ $(j,i)$ và giá trị hàm tương ứng $w(j,i)$ trong quá trình tính; khi cần truy vấn giá trị mới, di chuyển con trỏ một cách trực tiếp đến vị trí hiện tại và cập nhật giá trị hàm. Cách làm này vẫn có độ phức tạp thời gian $O(n\log n)$. Thảo luận chi tiết hơn về việc này có trong mục [thuật toán LARSCH giản lược](#%E7%AE%80%E5%8C%96-larsch-%E7%AE%97%E6%B3%95) bên dưới. Tuy nhiên, thuật toán chia để trị không giải quyết được trường hợp $w(j,i)$ cần tính động, vì nó không thể tính điểm quyết định tối ưu nhỏ nhất $\operatorname{opt}(n/2)$ ở trung điểm khi các bài toán ở nửa trái vẫn chưa được giải.
 
-### 二分队列
+### Hàng đợi nhị phân
 
-注意到对于每个决策点 $j$，能使其成为最小最优决策点的问题 $i$ 必然构成一个区间．可以通过单调队列记录到目前为止每个决策点可以解决的问题的区间，这样，问题的最优解自然可以通过队列中记录的决策点计算得到．
+<span id="&#20108;&#20998;&#38431;&#21015;"></span>
 
-具体地，算法需要顺次遍历决策点．当遍历到决策点 $k$ 时，队列中需要记录到目前为止每个可行的决策点 $j$ 和能够解决的问题区间左右端点 $l_j$ 和 $r_j$ 构成的 **三元组**．对于给定区间 $[l_j,r_j]$ 内的问题，$j$ 应该是到目前为止考虑过的决策点（即区间 $[1,k]$ 中的决策点）中最小最优的．每时每刻，队列中存储的决策未必是连续的，但是尚未解决的问题 $[j,n]$ 应该是队列中存储的问题区间的不交并．
+Chú ý rằng với mỗi điểm quyết định $j$, các bài toán $i$ mà trong đó $j$ trở thành điểm quyết định tối ưu nhỏ nhất chắc chắn tạo thành một khoảng. Có thể dùng hàng đợi đơn điệu để ghi lại, cho đến hiện tại, khoảng bài toán mà mỗi điểm quyết định có thể giải. Khi đó nghiệm tối ưu của bài toán có thể được tính trực tiếp từ các điểm quyết định ghi trong hàng đợi.
 
-为了说明队列更新过程中，决策点 $j$ 是最小最优决策的问题 $i$ 总构成一段连续的区间，需要适当加强前文的结论：
+Cụ thể, thuật toán cần duyệt tuần tự các điểm quyết định. Khi duyệt đến điểm quyết định $k$, hàng đợi cần ghi lại **bộ ba** gồm mỗi điểm quyết định khả thi $j$ đã xét đến hiện tại, và hai đầu $l_j$, $r_j$ của khoảng bài toán mà nó có thể giải. Với các bài toán trong khoảng $[l_j,r_j]$, $j$ phải là quyết định tối ưu nhỏ nhất trong số các điểm quyết định đã xét (tức các điểm quyết định trong khoảng $[1,k]$). Ở mọi thời điểm, các quyết định lưu trong hàng đợi chưa chắc liên tiếp, nhưng các bài toán chưa giải $[j,n]$ phải là hợp rời nhau của các khoảng bài toán lưu trong hàng đợi.
 
-???+ note "推论 1"
-    设 $\operatorname{opt}_k(i)$ 是仅考虑 $[1,k]$ 中的决策时，问题 $i$ 的最小最优决策．如果 $w$ 满足四边形不等式，那么对于任意 $i_1 < i_2$，必然成立 $\operatorname{opt}_k(i_1) \leq \operatorname{opt}_k(i_2)$．
+Để chứng minh trong quá trình cập nhật hàng đợi, các bài toán $i$ mà điểm quyết định $j$ là quyết định tối ưu nhỏ nhất luôn tạo thành một đoạn liên tiếp, ta cần tăng cường kết luận phía trên một chút:
 
-??? note "证明"
-    设 $M$ 是充分大的正实数．函数 $w'(j,i) = w(j,i) + M[j > k]$ 仍然满足四边形不等式，其中，$[\cdot]$ 是 Iverson 括号．考虑以 $w'$ 为成本函数的辅助 DP．在辅助 DP 中，对于任何问题 $i$，决策 $j > k$ 都不可能是最小最优的，即 $\operatorname{opt}'(i) = \operatorname{opt}'_k(i) = \operatorname{opt}_k(i)$．对辅助 DP 应用定理 1 就得到本推论．
+???+ note "Hệ quả 1"
+    Gọi $\operatorname{opt}_k(i)$ là quyết định tối ưu nhỏ nhất của bài toán $i$ khi chỉ xét các quyết định trong $[1,k]$. Nếu $w$ thỏa mãn bất đẳng thức tứ giác, thì với mọi $i_1 < i_2$, luôn có $\operatorname{opt}_k(i_1) \leq \operatorname{opt}_k(i_2)$.
 
-该算法过程如下：[^cmp-min-opt]
+??? note "Chứng minh"
+    Gọi $M$ là một số thực dương đủ lớn. Hàm $w'(j,i) = w(j,i) + M[j > k]$ vẫn thỏa mãn bất đẳng thức tứ giác, trong đó $[\cdot]$ là ngoặc Iverson. Xét DP phụ có hàm chi phí là $w'$. Trong DP phụ, với mọi bài toán $i$, quyết định $j > k$ không thể là quyết định tối ưu nhỏ nhất, tức $\operatorname{opt}'(i) = \operatorname{opt}'_k(i) = \operatorname{opt}_k(i)$. Áp dụng Định lý 1 cho DP phụ sẽ thu được hệ quả này.
 
--   初始时，队列是空的．类似于单调队列，每次考虑下一个决策 $j$ 的时候，都需要进行出队和入队操作．
--   **出队**：首先将上一个问题 $j-1$ 从队列中移除．如果队首的决策能够解决的问题的右端点恰为 $j-1$，直接弹出队首；否则，将队首决策能够解决问题的左端点更新为 $j$．
--   **入队**：要对决策 $j$ 进行入队时，首先比较它和队尾的决策 $j'$．
-    -   如果对于问题 $l_{j'}$，将要入队的决策 $j$ 比已有的决策 $j'$ 严格更优，即 $w(j,l_{j'}) < w(j',l_{j'})$ 时，则弹出队尾的决策 $j'$．此操作持续到队列为空或队尾的决策 $j'$ 比起 $j$ 对于问题 $l_{j'}$ 更优时为止．
-    -   如果队列已空，入队 $(j,j,n)$，即认为决策 $j$ 是尚未解决的所有问题的最优解．
-    -   如果队尾决策 $j'$ 对于问题 $r_{j'}$ 同样不劣于将入队的决策 $j$，那么当 $r_{j'} < n$ 时，入队 $(j,r_{j'}+1,n)$，表示 $j$ 是问题 $[r_{j'}+1,n]$ 的最小最优决策；否则，不需要入队 $j$，因为它并不比已有的决策更优．
-    -   最后的情形是，队尾决策 $j'$ 比起要入队的决策 $j$ 对于问题 $l_{j'}$ 严格更优，而对于问题 $r_{j'}$ 严格更劣．这说明，存在问题 $i\in(l_{j'},r_{j'}]$ 使得问题 $[l_{j'},i-1]$ 的最小最优决策为 $j'$ 且问题 $[i,r_{j'}]$ 的最小最优决策为 $j$．因而，需要通过 **二分** 找到最小的 $i\in[l_{j'},r_{j'}]$ 使得 $w(j,i) < w(j',i)$，再将队尾的区间右端点 $r_{j'}$ 修改为 $i-1$，并入队 $(j,i,n)$．
--   处理完决策 $j$ 后，就已经处理了所有到 $j$ 为止的决策．此时，队首决策就是问题 $j$ 的最小最优决策，可以记录相应的最优解．
+Quy trình của thuật toán như sau:[^cmp-min-opt]
 
-???+ example "参考实现"
+-   Ban đầu, hàng đợi rỗng. Tương tự hàng đợi đơn điệu, mỗi lần xét quyết định kế tiếp $j$, ta cần thực hiện thao tác ra hàng đợi và vào hàng đợi.
+-   **Ra hàng đợi**: trước hết loại bài toán trước đó $j-1$ khỏi hàng đợi. Nếu đầu phải của khoảng bài toán mà quyết định ở đầu hàng đợi có thể giải đúng bằng $j-1$, trực tiếp bật đầu hàng đợi; nếu không, cập nhật đầu trái của khoảng bài toán mà quyết định đầu hàng đợi có thể giải thành $j$.
+-   **Vào hàng đợi**: khi đưa quyết định $j$ vào hàng đợi, trước hết so sánh nó với quyết định $j'$ ở cuối hàng đợi.
+    -   Nếu với bài toán $l_{j'}$, quyết định sắp vào $j$ tốt hơn nghiêm ngặt quyết định hiện có $j'$, tức $w(j,l_{j'}) < w(j',l_{j'})$, thì bật quyết định $j'$ ở cuối hàng đợi. Thao tác này tiếp tục cho đến khi hàng đợi rỗng hoặc quyết định cuối hàng đợi $j'$ tốt hơn $j$ trên bài toán $l_{j'}$.
+    -   Nếu hàng đợi đã rỗng, đưa $(j,j,n)$ vào hàng đợi, tức xem quyết định $j$ là nghiệm tối ưu của mọi bài toán chưa giải.
+    -   Nếu quyết định cuối hàng đợi $j'$ trên bài toán $r_{j'}$ cũng không kém quyết định sắp vào $j$, thì khi $r_{j'} < n$, đưa $(j,r_{j'}+1,n)$ vào hàng đợi, biểu thị $j$ là quyết định tối ưu nhỏ nhất của các bài toán $[r_{j'}+1,n]$; nếu không, không cần đưa $j$ vào, vì nó không tốt hơn các quyết định đã có.
+    -   Trường hợp cuối cùng là quyết định cuối hàng đợi $j'$ tốt hơn nghiêm ngặt quyết định sắp vào $j$ trên bài toán $l_{j'}$, nhưng kém hơn nghiêm ngặt trên bài toán $r_{j'}$. Điều này cho thấy tồn tại bài toán $i\in(l_{j'},r_{j'}]$ sao cho quyết định tối ưu nhỏ nhất của các bài toán $[l_{j'},i-1]$ là $j'$, còn của các bài toán $[i,r_{j'}]$ là $j$. Vì vậy, cần dùng **tìm kiếm nhị phân** để tìm $i\in[l_{j'},r_{j'}]$ nhỏ nhất sao cho $w(j,i) < w(j',i)$, rồi sửa đầu phải $r_{j'}$ của khoảng cuối hàng đợi thành $i-1$ và đưa $(j,i,n)$ vào hàng đợi.
+-   Sau khi xử lý quyết định $j$, mọi quyết định đến $j$ đã được xử lý. Lúc này, quyết định ở đầu hàng đợi chính là quyết định tối ưu nhỏ nhất của bài toán $j$, và ta có thể ghi lại nghiệm tối ưu tương ứng.
+
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle-monotone-queue.cpp:core"
     ```
 
-类似于单调队列，每个决策点至多入队一次，出队一次．其中，出队是 $O(1)$ 的，而入队是 $O(\log n)$ 的（可能需要二分），所以总的时间复杂度是 $O(n\log n)$．
+Tương tự hàng đợi đơn điệu, mỗi điểm quyết định được đưa vào hàng đợi nhiều nhất một lần và ra hàng đợi nhiều nhất một lần. Trong đó, thao tác ra hàng đợi là $O(1)$, còn vào hàng đợi là $O(\log n)$ (có thể cần tìm kiếm nhị phân), nên tổng độ phức tạp thời gian là $O(n\log n)$.
 
-由于二分队列算法顺次考虑所有问题和决策点，它可以应用于 $w(j,i)$ 需要动态计算的情形．这是它相较于分治算法的优势．但是，因为算法中的二分步骤依赖于对 $w(j,i)$ 的随机访问，它无法应用于 $w(j,i)$ 只支持移动访问的情形．
+Vì thuật toán hàng đợi nhị phân xét tuần tự mọi bài toán và điểm quyết định, nó có thể áp dụng cho trường hợp $w(j,i)$ cần tính động. Đây là ưu thế của nó so với thuật toán chia để trị. Tuy nhiên, vì bước tìm kiếm nhị phân trong thuật toán phụ thuộc vào truy cập ngẫu nhiên tới $w(j,i)$, nó không thể áp dụng khi $w(j,i)$ chỉ hỗ trợ truy cập bằng di chuyển.
 
-???+ example "例题 1：[「POI2011」Lightning Conductor](https://loj.ac/problem/2157)"
-    给定一个长度为 $n$ 的序列 $a_1,a_2,\cdots,a_n$，要求对于每一个 $1 \leq i \leq n$，找到最小的非负整数 $f_i$ 满足
+???+ example "Ví dụ 1: [「POI2011」Lightning Conductor](https://loj.ac/problem/2157)"
+    Cho một dãy độ dài $n$ là $a_1,a_2,\cdots,a_n$. Với mỗi $1 \leq i \leq n$, cần tìm số nguyên không âm nhỏ nhất $f_i$ thỏa mãn
     
     $$
     \forall j\in\left[1,n\right]:a_j \leq a_i + f_i - \sqrt{|i-j|}.
     $$
 
-??? note "思路"
-    显然，经过不等式变形，我们可以得到待求整数 $f_i = \max_{j}\{a_j+\sqrt{|i-j|}-a_i\}$．不妨先考虑 $j \leq i$ 的情况（另外一种情况类似），此时我们可以得到状态转移方程：
+??? note "Ý tưởng"
+    Rõ ràng sau khi biến đổi bất đẳng thức, ta thu được số nguyên cần tìm $f_i = \max_{j}\{a_j+\sqrt{|i-j|}-a_i\}$. Trước hết xét trường hợp $j \leq i$ (trường hợp còn lại tương tự), khi đó có công thức chuyển trạng thái:
     
     $$
     f_i = -\min_{j\le i}\{-a_j-\sqrt{i-j}+a_i\}.
     $$
     
-    根据 $-\sqrt{x}$ 的凸性，我们很容易得出（后文将详细描述）函数 $w(l, r) = -a_l - \sqrt{r-l} + a_r$ 满足四边形不等式，因此套用上述的算法便可在 $O(n\log n)$ 的时间内解决此题了．
+    Dựa vào tính lồi của $-\sqrt{x}$, ta dễ dàng suy ra (phần sau sẽ mô tả chi tiết) hàm $w(l, r) = -a_l - \sqrt{r-l} + a_r$ thỏa mãn bất đẳng thức tứ giác, do đó áp dụng thuật toán trên là có thể giải bài này trong thời gian $O(n\log n)$.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle_1.cpp"
     ```
 
-### 简化 LARSCH 算法
+### Thuật toán LARSCH giản lược
 
-前两种算法都无法处理 $w(j,i)$ 既需要动态计算，也只支持移动访问的情形．本节介绍一种能够同时克服这两种困难的算法．它是 Larmore 和 Schieber 在 1991 年提出的 LARSCH 算法[^larsch]的简化版本，故称为 **简化 LARSCH 算法**．该算法的原始版本可以在 $O(n)$ 时间内解决决策单调性 DP 问题，但实现较复杂，本文不做介绍．
+<span id="&#31616;&#21270;-larsch-&#31639;&#27861;"></span>
 
-仍然考虑分治求解．求解区间 $(l,r]$ 内的问题时，假设如下信息已知：
+Hai thuật toán đầu đều không xử lý được trường hợp $w(j,i)$ vừa cần tính động, vừa chỉ hỗ trợ truy cập bằng di chuyển. Mục này giới thiệu một thuật toán có thể đồng thời vượt qua hai khó khăn đó. Nó là phiên bản giản lược của thuật toán LARSCH[^larsch] do Larmore và Schieber đề xuất năm 1991, nên được gọi là **thuật toán LARSCH giản lược**. Phiên bản gốc của thuật toán có thể giải bài toán DP có tính đơn điệu quyết định trong thời gian $O(n)$, nhưng cài đặt phức tạp hơn nên bài viết không giới thiệu.
 
--   区间 $[1,l]$ 中问题 $i$ 的最小最优决策 $\operatorname{opt}(i)$ 和最优值，以及
--   仅考虑区间 $[1,l]$ 中的决策，问题 $r$ 的最小最优决策 $\operatorname{opt}_l(r)$ 和最优值．
+Vẫn xét cách giải chia để trị. Khi giải các bài toán trong khoảng $(l,r]$, giả sử các thông tin sau đã biết:
 
-区间 $(l,r]$ 内的问题求解结束时，需要得到区间 $(l,r]$ 内问题的最小最优决策和最优值．
+-   Quyết định tối ưu nhỏ nhất $\operatorname{opt}(i)$ và giá trị tối ưu của các bài toán $i$ trong khoảng $[1,l]$; và
+-   Quyết định tối ưu nhỏ nhất $\operatorname{opt}_l(r)$ và giá trị tối ưu của bài toán $r$ khi chỉ xét các quyết định trong khoảng $[1,l]$.
 
-设 $\textit{mid}$ 为区间 $(l,r]$ 的中点．求解过程如下：
+Khi giải xong các bài toán trong khoảng $(l,r]$, cần thu được quyết định tối ưu nhỏ nhất và giá trị tối ưu của các bài toán trong khoảng $(l,r]$.
 
-1.  遍历决策 $i\in[\operatorname{opt}(l),\operatorname{opt}_l(r)]$，更新问题 $\textit{mid}$ 的最小最优决策和最优值．
-2.  递归求解区间 $(l,\textit{mid}]$ 中的问题．
-3.  遍历决策 $i\in(l,\textit{mid}]$，更新问题 $r$ 的最小最优决策和最优值．
-4.  递归求解区间 $(\textit{mid},r]$ 中的问题．
+Gọi $\textit{mid}$ là trung điểm của khoảng $(l,r]$. Quy trình giải như sau:
 
-对整个区间 $[1,n]$ 执行递归前，首先需要用决策 $j=1$ 更新问题 $i\in\{1,n\}$．该算法在递归到 $l=r$ 时就终止．
+1.  Duyệt các quyết định $i\in[\operatorname{opt}(l),\operatorname{opt}_l(r)]$, cập nhật quyết định tối ưu nhỏ nhất và giá trị tối ưu của bài toán $\textit{mid}$.
+2.  Đệ quy giải các bài toán trong khoảng $(l,\textit{mid}]$.
+3.  Duyệt các quyết định $i\in(l,\textit{mid}]$, cập nhật quyết định tối ưu nhỏ nhất và giá trị tối ưu của bài toán $r$.
+4.  Đệ quy giải các bài toán trong khoảng $(\textit{mid},r]$.
 
-???+ example "参考实现"
+Trước khi thực hiện đệ quy cho toàn bộ khoảng $[1,n]$, trước hết cần dùng quyết định $j=1$ để cập nhật các bài toán $i\in\{1,n\}$. Thuật toán dừng khi đệ quy đến $l=r$.
+
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle-simplified-larsch.cpp:core"
     ```
 
-首先，可以说明这一算法的正确性．为此，只要检查每一递归求解的步骤（即步骤 2 和 4）前都满足上文给出的前提条件．由前一节得到的推论 1，有 $\operatorname{opt}(l)=\operatorname{opt}_l(l)\le\operatorname{opt}_l(\textit{mid})\le\operatorname{opt}_l(r)$，所以步骤 1 后，$\operatorname{opt}_l(\textit{mid})$ 是已知的，进而执行步骤 2 前递归求解区间 $(l,\textit{mid}]$ 中问题的前提条件成立．由于之前 $\{\operatorname{opt}(i):i\in[1,l]\}$ 是已知的，步骤 2 又得到了 $\{\operatorname{opt}(i):i\in(l,\textit{mid}]\}$ 的取值，所以这之后 $\{\operatorname{opt}(i):i\in[1,\textit{mid}]\}$ 都是已知的；同时，由于之前 $\operatorname{opt}_l(r)$ 是已知的，步骤 3 后，$\operatorname{opt}_\textit{mid}(r)$ 就也是已知的．因此，执行步骤 4 前递归求解区间 $(\textit{mid},r]$ 中问题的前提条件也成立．
+Trước hết, có thể chứng minh tính đúng đắn của thuật toán này. Để làm vậy, chỉ cần kiểm tra rằng trước mỗi bước giải đệ quy (tức bước 2 và 4), các tiền đề nêu trên đều được thỏa mãn. Từ Hệ quả 1 ở mục trước, có $\operatorname{opt}(l)=\operatorname{opt}_l(l)\le\operatorname{opt}_l(\textit{mid})\le\operatorname{opt}_l(r)$, nên sau bước 1, $\operatorname{opt}_l(\textit{mid})$ đã biết; vì vậy trước khi thực hiện bước 2, tiền đề để đệ quy giải các bài toán trong khoảng $(l,\textit{mid}]$ là đúng. Vì trước đó $\{\operatorname{opt}(i):i\in[1,l]\}$ đã biết, và bước 2 lại thu được giá trị của $\{\operatorname{opt}(i):i\in(l,\textit{mid}]\}$, nên sau bước này $\{\operatorname{opt}(i):i\in[1,\textit{mid}]\}$ đều đã biết; đồng thời, vì trước đó $\operatorname{opt}_l(r)$ đã biết, nên sau bước 3, $\operatorname{opt}_\textit{mid}(r)$ cũng đã biết. Do đó, trước khi thực hiện bước 4, tiền đề để đệ quy giải các bài toán trong khoảng $(\textit{mid},r]$ cũng đúng.
 
-然后，需要说明该算法的复杂度仍然是 $O(n\log n)$ 的．递归树的层数是 $O(\log n)$ 的．对于递归树中的同一层的每个结点，分别遍历区间 $[\operatorname{opt}(l),\operatorname{opt}_l(r)]$ 和 $(l,\textit{mid}]$ 中的决策．因为 $\operatorname{opt}(l)\le\operatorname{opt}_l(r)\le\operatorname{opt}(r)$，所以在同一层中，每个决策点只遍历了 $O(1)$ 次．故而，递归树的每一层中总的遍历次数是 $O(n)$ 的．假设单次访问或计算 $w(j,i)$ 的复杂度是 $O(1)$ 的，算法的时间复杂度就是 $O(n\log n)$ 的．
+Tiếp theo, cần chứng minh độ phức tạp của thuật toán vẫn là $O(n\log n)$. Cây đệ quy có $O(\log n)$ tầng. Với mỗi nút ở cùng một tầng của cây đệ quy, ta lần lượt duyệt các quyết định trong các khoảng $[\operatorname{opt}(l),\operatorname{opt}_l(r)]$ và $(l,\textit{mid}]$. Vì $\operatorname{opt}(l)\le\operatorname{opt}_l(r)\le\operatorname{opt}(r)$, nên ở cùng một tầng, mỗi điểm quyết định chỉ được duyệt $O(1)$ lần. Vì vậy tổng số lần duyệt trên mỗi tầng của cây đệ quy là $O(n)$. Giả sử độ phức tạp của một lần truy cập hoặc tính $w(j,i)$ là $O(1)$, độ phức tạp thời gian của thuật toán là $O(n\log n)$.
 
-对于一些 $w(j,i)$ 只支持移动访问的情形，这一算法的复杂度仍然是 $O(n\log n)$ 的．此时，需要为算法流程中的步骤 1 和步骤 3 分别维护游标 $(j,i)$ 和 $w(j,i)$ 的当前取值．每次需要访问新的值时，需要将游标 $(j,i)$ 从上一次访问时的位置暴力更新到当前位置，并对函数值 $w(j,i)$ 进行转移．容易验证，当对递归树进行遍历时，这些暴力更新的总次数是 $O(n\log n)$ 的．所以，算法的时间复杂度仍然是 $O(n\log n)$ 的．
+Với một số trường hợp $w(j,i)$ chỉ hỗ trợ truy cập bằng di chuyển, độ phức tạp của thuật toán này vẫn là $O(n\log n)$. Khi đó, cần lần lượt duy trì con trỏ $(j,i)$ và giá trị hiện tại của $w(j,i)$ cho bước 1 và bước 3 trong quy trình thuật toán. Mỗi khi cần truy cập giá trị mới, cần di chuyển trực tiếp con trỏ $(j,i)$ từ vị trí của lần truy cập trước đến vị trí hiện tại, đồng thời chuyển giá trị hàm $w(j,i)$. Dễ kiểm tra rằng khi duyệt cây đệ quy, tổng số lần cập nhật trực tiếp này là $O(n\log n)$. Vì vậy, độ phức tạp thời gian của thuật toán vẫn là $O(n\log n)$.
 
-??? note "非随机访问的复杂度证明"
-    只需要证明游标移动的总次数是 $O(n\log n)$ 的．设 $A$ 和 $B$ 分别为步骤 1 和 3 对应的游标．实际上可以保证：在求解区间 $(l,r]$ 的问题之前，游标 $A$ 处于位置 $(\operatorname{opt}(l),l)$，游标 $B$ 处于位置 $(l,l)$；而在这之后，游标 $A$ 处于位置 $(\operatorname{opt}(r),r)$，游标 $B$ 处于位置 $(r,r)$．
+??? note "Chứng minh độ phức tạp khi không truy cập ngẫu nhiên"
+    Chỉ cần chứng minh tổng số lần di chuyển con trỏ là $O(n\log n)$. Gọi $A$ và $B$ lần lượt là các con trỏ tương ứng với bước 1 và bước 3. Thật ra có thể bảo đảm rằng: trước khi giải các bài toán trong khoảng $(l,r]$, con trỏ $A$ ở vị trí $(\operatorname{opt}(l),l)$, con trỏ $B$ ở vị trí $(l,l)$; còn sau khi giải xong, con trỏ $A$ ở vị trí $(\operatorname{opt}(r),r)$, con trỏ $B$ ở vị trí $(r,r)$.
     
-    考虑构造如下游标移动规则．步骤 1 中，可以令游标 $A$ 沿着路径
+    Xét cách dựng quy tắc di chuyển con trỏ như sau. Ở bước 1, có thể cho con trỏ $A$ đi theo đường
     
     $$
     (\operatorname{opt}(l),l)\to(\operatorname{opt}(l),\textit{mid})\to(\operatorname{opt}_l(r),\textit{mid})\to(\operatorname{opt}(l),\textit{mid})\to(\operatorname{opt}(l),l)
     $$
     
-    移动．此时，游标 $A$ 和 $B$ 均处于求解区间 $(l,\textit{mid}]$ 的问题之前的规定位置上．步骤 2 中，按规定，游标 $A$ 将移动到 $(\operatorname{opt}(\textit{mid}),\textit{mid})$，游标 $B$ 将移动到 $(\textit{mid},\textit{mid})$．步骤 3 中，可以令游标 $B$ 沿着路径
+    để di chuyển. Lúc này, cả con trỏ $A$ và $B$ đều ở vị trí quy định trước khi giải các bài toán trong khoảng $(l,\textit{mid}]$. Ở bước 2, theo quy định, con trỏ $A$ sẽ di chuyển đến $(\operatorname{opt}(\textit{mid}),\textit{mid})$, con trỏ $B$ sẽ di chuyển đến $(\textit{mid},\textit{mid})$. Ở bước 3, có thể cho con trỏ $B$ đi theo đường
     
     $$
     (\textit{mid},\textit{mid}) \to (l,\textit{mid}) \to (l, r) \to (\textit{mid},r) \to (\textit{mid},\textit{mid})
     $$
     
-    移动．此时，游标 $A$ 和 $B$ 均处于求解区间 $(\textit{mid},r]$ 的问题之前的规定位置上．步骤 4 中，按规定，游标 $A$ 将移动到 $(\operatorname{opt}(r),r)$，游标 $B$ 将移动到 $(r,r)$．两个游标均在结束求解区间 $(l,r]$ 的问题的规定位置上．因此，这一移动规则符合上述规定．而且，该移动规则足以完成步骤 1 和 3 中的所有计算．直接计算该规则中游标的移动次数可知，步骤 1 需要
+    để di chuyển. Lúc này, cả con trỏ $A$ và $B$ đều ở vị trí quy định trước khi giải các bài toán trong khoảng $(\textit{mid},r]$. Ở bước 4, theo quy định, con trỏ $A$ sẽ di chuyển đến $(\operatorname{opt}(r),r)$, con trỏ $B$ sẽ di chuyển đến $(r,r)$. Khi kết thúc giải các bài toán trong khoảng $(l,r]$, cả hai con trỏ đều ở vị trí quy định. Do đó, quy tắc di chuyển này phù hợp với yêu cầu trên. Hơn nữa, quy tắc này đủ để hoàn thành mọi phép tính trong bước 1 và 3. Tính trực tiếp số lần di chuyển con trỏ trong quy tắc này, bước 1 cần
     
     $$
     2(\operatorname{opt}_l(r) - \operatorname{opt}(l)) + 2(\textit{mid} - l)
     $$
     
-    次移动，步骤 3 需要
+    lần di chuyển, bước 3 cần
     
     $$
     2(\textit{mid}-l)+2(r-\textit{mid}) = 2(r-l)
     $$
     
-    次移动．将这些移动次数对递归树中的所有结点求和，利用同一层中的所有 $[l,r]$ 和 $[\operatorname{opt}(l),\operatorname{opt}_l(r)]$ 至多只在端点处重合这一性质，就可以说明总的移动次数是 $O(n\log n)$ 的．
+    lần di chuyển. Lấy tổng số lần di chuyển này trên mọi nút của cây đệ quy, và dùng tính chất rằng mọi $[l,r]$ và $[\operatorname{opt}(l),\operatorname{opt}_l(r)]$ trên cùng một tầng chỉ trùng nhau nhiều nhất ở đầu mút, ta có thể chứng minh tổng số lần di chuyển là $O(n\log n)$.
     
-    由于上述移动规则比起实际计算时游标的移动设置了更多的途径点，所以游标的实际移动次数不会超过该规则下移动次数的估计．因此，游标的实际移动次数也是 $O(n\log n)$ 的．
+    Vì quy tắc di chuyển trên đặt thêm nhiều điểm trung gian hơn so với việc di chuyển con trỏ khi tính thực tế, số lần di chuyển thực tế của con trỏ không vượt quá ước lượng theo quy tắc này. Do đó, số lần di chuyển thực tế của con trỏ cũng là $O(n\log n)$.
 
-由于该算法在求解区间 $(l,r]$ 的问题前，已经计算出了区间 $[1,l]$ 中的最优解 $f(i)$，所以该算法也可以应用于 $w(j,i)$ 需要动态计算的情形．
+Vì trước khi giải các bài toán trong khoảng $(l,r]$, thuật toán này đã tính được nghiệm tối ưu $f(i)$ của các bài toán trong khoảng $[1,l]$, nên nó cũng có thể áp dụng cho trường hợp $w(j,i)$ cần tính động.
 
-## 区间分拆问题
+## Bài toán phân tách khoảng
 
-考虑将某个区间拆分成若干个子区间的问题．形式化地说，将给定区间 $[1,n]$ 拆分成 $[a_1,b_1],\cdots,[a_k,b_k]$，其中，$a_1=1$，$b_k=n$，以及 $b_{i}+1=a_{i+1}$ 对任意 $i < k$ 都成立．对于给定拆分，成本为 $\sum_{i=1}^kw(a_i,b_i)$．问题要求最小化这一成本．可以列出如下的 1D1D 状态转移方程．
+<span id="&#21306;&#38388;&#20998;&#25286;&#38382;&#39064;"></span>
+
+Xét bài toán tách một khoảng thành nhiều khoảng con. Nói hình thức, tách khoảng cho trước $[1,n]$ thành $[a_1,b_1],\cdots,[a_k,b_k]$, trong đó $a_1=1$, $b_k=n$, và $b_{i}+1=a_{i+1}$ với mọi $i < k$. Với một cách tách cho trước, chi phí là $\sum_{i=1}^kw(a_i,b_i)$. Bài toán yêu cầu cực tiểu hóa chi phí này. Có thể viết công thức chuyển trạng thái 1D1D như sau.
 
 $$
 f(i) = \min_{1\leq j\leq i} f(j-1)+w(j,i) \qquad (1\leq i\leq n)
 $$
 
-这里，$f(0)=0$．注意到，只要 $w(j,i)$ 满足四边形不等式，$f(j-1)+w(j,i)$ 必然满足四边形不等式，因为第一项并不包括 $j$ 和 $i$ 的交叉项，在混合差分时会消去．但是由于成本函数依赖于前面的子问题，这一转移只能够顺序计算，所以无法应用前文描述的第一种分治算法，通常只适合应用二分队列算法或简化 LARSCH 算法．算法复杂度为 $O(n\log n)$．
+Ở đây, $f(0)=0$. Chú ý rằng chỉ cần $w(j,i)$ thỏa mãn bất đẳng thức tứ giác, $f(j-1)+w(j,i)$ chắc chắn cũng thỏa mãn bất đẳng thức tứ giác, vì hạng đầu không chứa hạng giao nhau giữa $j$ và $i$, nên sẽ bị khử trong sai phân hỗn hợp. Tuy nhiên, vì hàm chi phí phụ thuộc vào các bài toán con phía trước, chuyển trạng thái này chỉ có thể được tính tuần tự, nên không thể áp dụng thuật toán chia để trị thứ nhất đã mô tả ở trên; thường chỉ phù hợp với thuật toán hàng đợi nhị phân hoặc thuật toán LARSCH giản lược. Độ phức tạp thuật toán là $O(n\log n)$.
 
-### 限制区间个数的情形
+### Trường hợp giới hạn số khoảng
 
-上述问题可以加强为限制区间个数的情形，即问题指定将区间拆分成 $m$ 个子区间．此时需要将拆分后的区间个数作为转移状态的一维．相应地，有 2D1D 状态转移方程如下．
+<span id="&#38480;&#21046;&#21306;&#38388;&#20010;&#25968;&#30340;&#24773;&#24418;"></span>
+
+Bài toán trên có thể được tăng cường thành trường hợp giới hạn số khoảng, tức đề bài chỉ định tách khoảng thành $m$ khoảng con. Khi đó cần dùng số khoảng sau khi tách làm một chiều của trạng thái chuyển. Tương ứng, ta có công thức chuyển trạng thái 2D1D như sau.
 
 $$
 f(k,i) = \min_{1\leq j\leq i} f(k-1,j-1)+w(j,i) \qquad (1\leq k\leq m,\ 1\leq i\leq n) \tag{2}
 $$
 
-这里，$f(0,0)=0$，$f(0,i)=f(k,0)=\infty$ 对任意 $1\leq k\leq m$ 和 $1\leq i\leq n$ 都成立．和上文同样的道理，这里的 $f(k-1,j-1)+w(j,i)$ 必然满足四边形不等式．此时对于第 $i$ 层的计算，并不再依赖于该层的结果，所以对于每一层，都可以通过上一节描述的任何算法进行计算，此时算法复杂度为 $O(mn\log n)$．
+Ở đây, $f(0,0)=0$, còn $f(0,i)=f(k,0)=\infty$ với mọi $1\leq k\leq m$ và $1\leq i\leq n$. Tương tự phần trên, $f(k-1,j-1)+w(j,i)$ ở đây chắc chắn thỏa mãn bất đẳng thức tứ giác. Lúc này việc tính tầng thứ $k$ không còn phụ thuộc vào kết quả của chính tầng đó, nên với mỗi tầng, ta có thể dùng bất kỳ thuật toán nào đã mô tả ở mục trước để tính. Khi đó độ phức tạp thuật toán là $O(mn\log n)$.
 
-对于这一问题，利用决策单调性，实际上还存在其他的优化算法．第二种优化思路依赖于如下结果．这种优化算法和下文详细描述的 Knuth 优化算法十分相似．
+Với bài toán này, ngoài cách dùng tính đơn điệu quyết định, thực ra còn có các thuật toán tối ưu khác. Ý tưởng tối ưu thứ hai dựa vào kết quả sau. Thuật toán tối ưu này rất giống tối ưu Knuth được mô tả chi tiết phía dưới.
 
-???+ note "定理 2"
-    若 $w$ 满足四边形不等式，则对于问题 (2) 成立 $\operatorname{opt}(k-1,i) \leq \operatorname{opt}(k,i) \leq \operatorname{opt}(k,i+1)$．
+???+ note "Định lý 2"
+    Nếu $w$ thỏa mãn bất đẳng thức tứ giác, thì với bài toán (2) có $\operatorname{opt}(k-1,i) \leq \operatorname{opt}(k,i) \leq \operatorname{opt}(k,i+1)$.
 
-??? note "证明"
-    第二个不等式只是第 $k$ 层的决策单调性．关键在于第一个不等式．
+??? note "Chứng minh"
+    Bất đẳng thức thứ hai chỉ là tính đơn điệu quyết định của tầng $k$. Điểm mấu chốt nằm ở bất đẳng thức thứ nhất.
     
-    下证 $\operatorname{opt}(k,i) \leq \operatorname{opt}(k+1,i)$．假设有如下两个区间 $[1,i]$ 的分划（逆序标号）：$[a_{k},d_{k}],\cdots,[a_1,d_1]$ 和 $[b_{k+1},c_{k+1}],\cdots,[b_1,c_1]$．其中，每个区间的左端点都是其右端点处对应问题的最小最优决策；同样地，从右向左考虑所有可能的分划，右端点也是左端点对应问题的最小最优决策．例如，$d_j$ 和 $c_j$ 分别是将 $[a_j,i]$ 和 $[b_j,i]$ 分成 $j$ 段左起第一个区间右端点的最小最优决策．根据决策单调性，如果 $a_{j-1} > b_{j-1}$，亦即 $d_j > c_j$，那么必然有 $a_j > b_j$．由此，如果所证不成立，则有 $a_1 > b_1$．进而可以归纳地证明 $a_{k} > b_{k}$．这显然与所设矛盾．由此得证．
+    Ta chứng minh $\operatorname{opt}(k,i) \leq \operatorname{opt}(k+1,i)$. Giả sử có hai phân hoạch của khoảng $[1,i]$ như sau (đánh số ngược): $[a_{k},d_{k}],\cdots,[a_1,d_1]$ và $[b_{k+1},c_{k+1}],\cdots,[b_1,c_1]$. Trong đó, đầu trái của mỗi khoảng đều là quyết định tối ưu nhỏ nhất của bài toán tương ứng tại đầu phải của nó; tương tự, nếu xét mọi phân hoạch có thể từ phải sang trái, đầu phải cũng là quyết định tối ưu nhỏ nhất của bài toán tương ứng tại đầu trái. Ví dụ, $d_j$ và $c_j$ lần lượt là quyết định tối ưu nhỏ nhất của đầu phải khoảng đầu tiên từ trái sang khi chia $[a_j,i]$ và $[b_j,i]$ thành $j$ đoạn. Theo tính đơn điệu quyết định, nếu $a_{j-1} > b_{j-1}$, tức $d_j > c_j$, thì tất yếu $a_j > b_j$. Do đó, nếu mệnh đề cần chứng minh không đúng, ta có $a_1 > b_1$. Từ đây có thể quy nạp chứng minh $a_{k} > b_{k}$. Điều này hiển nhiên mâu thuẫn với giả thiết, nên được chứng minh.
     
-    第一个不等式可以另证如下．同样考虑上面证明中的两个分划．如果所证命题不成立，则有 $a_1 > b_1$，但是由于有 $a_{k} < b_{k}$，我们可以找到最小的 $j>1$ 使得 $a_j \leq b_j$．进而，此时有 $a_{j-1} > b_{j-1}$，故 $d_j>c_j$．我们找到了一组区间满足 $a_j \leq b_j \leq c_j < d_j$．考虑将这两个分拆重新组合的结果．考虑分拆 $[b_{k+1},c_{k+1}],\cdots,[b_{j+1},c_{j+1}],[b_j,d_j],[a_{j-1},d_{j-1}],\cdots,[a_1,d_1]$，共 $(k+1)$ 段，于是由前设的最优性可推知，
+    Bất đẳng thức thứ nhất cũng có thể chứng minh theo cách khác như sau. Vẫn xét hai phân hoạch trong chứng minh trên. Nếu mệnh đề cần chứng minh không đúng, ta có $a_1 > b_1$, nhưng vì $a_{k} < b_{k}$, ta có thể tìm $j>1$ nhỏ nhất sao cho $a_j \leq b_j$. Khi đó $a_{j-1} > b_{j-1}$, nên $d_j>c_j$. Ta tìm được một nhóm khoảng thỏa mãn $a_j \leq b_j \leq c_j < d_j$. Xét kết quả ghép lại hai cách tách này. Xét cách tách $[b_{k+1},c_{k+1}],\cdots,[b_{j+1},c_{j+1}],[b_j,d_j],[a_{j-1},d_{j-1}],\cdots,[a_1,d_1]$, gồm $(k+1)$ đoạn; từ tính tối ưu giả thiết có
     
     $$
     \begin{aligned}
@@ -220,7 +232,7 @@ $$
     \end{aligned}
     $$
     
-    同样地，考虑分拆 $[a_{k},d_{k}],\cdots,[a_{j+1},d_{j+1}],[a_j,c_j],[b_{j-1},c_{j-1}],\cdots,[b_1,c_1]$，共 $k$ 段，则有
+    Tương tự, xét cách tách $[a_{k},d_{k}],\cdots,[a_{j+1},d_{j+1}],[a_j,c_j],[b_{j-1},c_{j-1}],\cdots,[b_1,c_1]$, gồm $k$ đoạn, ta có
     
     $$
     \begin{aligned}
@@ -229,20 +241,20 @@ $$
     \end{aligned}
     $$
     
-    此时，不等号是严格的，因为 $a_1 > b_1$，但是按假设，$a_1$ 是所有 $k$ 段分拆最末一段的左端点中最小最优的．两个不等式条件相加，得到 $w(b_j,c_j) + w(a_j,d_j) < w(b_j,d_j) + w(a_j,c_j)$，这有悖于四边形不等式．故而原结论得证．
+    Ở đây dấu bất đẳng thức là nghiêm ngặt, vì $a_1 > b_1$, nhưng theo giả thiết, $a_1$ là đầu trái tối ưu nhỏ nhất của đoạn cuối trong mọi cách tách thành $k$ đoạn. Cộng hai bất đẳng thức lại, ta được $w(b_j,c_j) + w(a_j,d_j) < w(b_j,d_j) + w(a_j,c_j)$, mâu thuẫn với bất đẳng thức tứ giác. Vậy kết luận ban đầu được chứng minh.
 
-利用这一结果，我们可以限制决策 $j$ 的搜索范围．算法实现时，对 $k$ 正向遍历，对 $i$ 逆向遍历，在之前已确定的上下界范围内暴力搜索 $j$ 就可以保证 $O(n(n+m))$ 的算法复杂度．
+Nhờ kết quả này, ta có thể giới hạn phạm vi tìm kiếm của quyết định $j$. Khi cài đặt thuật toán, duyệt $k$ theo chiều tăng và duyệt $i$ theo chiều giảm; trong phạm vi cận trên và cận dưới đã biết trước đó, tìm kiếm vét cạn $j$ là đủ để bảo đảm độ phức tạp thuật toán $O(n(n+m))$.
 
-??? warning "注意"
-    这里算法复杂度不是 $O(nm)$ 的．正确的复杂度计算需要考虑 $n\times m$ 维状态矩阵．因为对于问题 $(i,k)$ 只需要考虑 $\operatorname{opt}(k-1,i) \leq j \leq \operatorname{opt}(k,i+1)$ 中的决策，所以每条次对角线上（即 $i-k$ 为一定值）的问题所需遍历的决策总数为 $O(n)$ 的．这样的对角线共计 $(n+m)$ 条，故而总的时间复杂度为 $O(n(n+m))$．
+??? warning "Chú ý"
+    Độ phức tạp thuật toán ở đây không phải $O(nm)$. Cách tính độ phức tạp đúng cần xét ma trận trạng thái $n\times m$. Vì với bài toán $(i,k)$, ta chỉ cần xét các quyết định trong $\operatorname{opt}(k-1,i) \leq j \leq \operatorname{opt}(k,i+1)$, nên trên mỗi đường chéo phụ (tức $i-k$ là hằng số), tổng số quyết định cần duyệt là $O(n)$. Có tổng cộng $(n+m)$ đường chéo như vậy, nên tổng độ phức tạp thời gian là $O(n(n+m))$.
 
-最后一种优化方法来源于如下的观察．
+Phương pháp tối ưu cuối cùng đến từ quan sát sau.
 
-???+ note "定理 3"
-    若 $w$ 满足四边形不等式，则问题 (2) 的最优解 $g(k):=f(n,k)$ 是关于 $k$ 的凸函数．
+???+ note "Định lý 3"
+    Nếu $w$ thỏa mãn bất đẳng thức tứ giác, thì nghiệm tối ưu $g(k):=f(n,k)$ của bài toán (2) là một hàm lồi theo $k$.
 
-??? note "证明"
-    下证 $g(k-1) + g(k+1) \ge 2g(k)$．为此，考虑长度为 $(k-1)$ 段和 $(k+1)$ 段的最优分划，分别是 $[a_1,d_1],\cdots,[a_{k-1},d_{k-1}]$ 和 $[b_1,c_1],\cdots,[b_{k+1},c_{k+1}]$．取最小的 $1 \leq j \leq k-1$ 使得 $c_{j+1} \leq d_j$，其存在性可由 $c_{k} < n = d_{k-1}$ 推知．根据其最小性得知，$b_{j+1} > a_j$．所以，$a_j < b_{j+1} \leq c_{j+1} \leq d_j$．与上文类似，交换两个现有分拆的后半段，可以得到如下两个区间分拆：
+??? note "Chứng minh"
+    Ta chứng minh $g(k-1) + g(k+1) \ge 2g(k)$. Để làm vậy, xét phân hoạch tối ưu có độ dài $(k-1)$ đoạn và $(k+1)$ đoạn, lần lượt là $[a_1,d_1],\cdots,[a_{k-1},d_{k-1}]$ và $[b_1,c_1],\cdots,[b_{k+1},c_{k+1}]$. Lấy $1 \leq j \leq k-1$ nhỏ nhất sao cho $c_{j+1} \leq d_j$; sự tồn tại của nó suy ra từ $c_{k} < n = d_{k-1}$. Theo tính nhỏ nhất này, ta có $b_{j+1} > a_j$. Vì vậy $a_j < b_{j+1} \leq c_{j+1} \leq d_j$. Tương tự phần trên, hoán đổi nửa sau của hai cách tách hiện có sẽ thu được hai cách tách khoảng sau:
     
     $$
     \begin{aligned}
@@ -251,7 +263,7 @@ $$
     \end{aligned}
     $$
     
-    两个所得区间都是 $k$ 段的，所以由最优性条件可知
+    Hai khoảng thu được đều gồm $k$ đoạn, nên từ điều kiện tối ưu có
     
     $$
     \begin{aligned}
@@ -263,69 +275,71 @@ $$
     \end{aligned}
     $$
     
-    这里第二个不等式正是四边形不等式．所求凸性由此得证．
+    Ở đây bất đẳng thức thứ hai chính là bất đẳng thức tứ giác. Từ đó suy ra tính lồi cần chứng minh.
 
-这一结论保证了可以通过 WQS 二分（国外称 Aliens Trick）的方法解决此问题．具体来说，考虑带参的成本函数 $w_c(j,i):=w(j,i)+c$，解决不限制区间个数的问题，求得其最优解为 $f_c(n)$．随着实数 $c$ 递增，相应的最优区间的数目单调递减，故而可以通过二分的方法找到恰使得最优区间个数等于 $m$ 的参数 $c$，则原题最优解为 $f(n,m) = f_c(n)-cm$．这里的实数 $c$ 可以看作区间个数限制的 Lagrange 乘子．该算法的实现有很多细节，可以参考 [WQS 二分](./wqs-binary-search.md) 页面．这一算法的时间复杂度为 $O(n\log n\log C)$，这里 $C$ 为某一常数．
+Kết luận này bảo đảm có thể dùng WQS binary search (ở nước ngoài gọi là Aliens Trick) để giải bài toán này. Cụ thể, xét hàm chi phí có tham số $w_c(j,i):=w(j,i)+c$, giải bài toán không giới hạn số khoảng và thu được nghiệm tối ưu $f_c(n)$. Khi số thực $c$ tăng, số khoảng tối ưu tương ứng giảm đơn điệu, nên có thể dùng tìm kiếm nhị phân để tìm tham số $c$ làm cho số khoảng tối ưu đúng bằng $m$. Khi đó nghiệm tối ưu của bài gốc là $f(n,m) = f_c(n)-cm$. Số thực $c$ ở đây có thể xem như nhân tử Lagrange của ràng buộc số khoảng. Cài đặt thuật toán này có nhiều chi tiết; có thể tham khảo trang [WQS binary search](./wqs-binary-search.md). Độ phức tạp thời gian của thuật toán là $O(n\log n\log C)$, trong đó $C$ là một hằng số nào đó.
 
-对于限制区间个数的区间分拆问题的三种算法，在不同的数据范围时表现各有优劣，需要结合具体的题目选择合适的算法．
+Với ba thuật toán cho bài toán phân tách khoảng có giới hạn số khoảng, hiệu quả của chúng khác nhau theo từng phạm vi dữ liệu; cần chọn thuật toán phù hợp theo bài cụ thể.
 
-???+ example "例题 3：[P4767 \[IOI2000\] 邮局 加强版](https://www.luogu.com.cn/problem/P4767)  [P6246 \[IOI2000\] 邮局 加强版 加强版](https://www.luogu.com.cn/problem/P6246)"
-    高速公路旁边有一些村庄．高速公路表示为整数轴，每个村庄的位置用单个整数坐标标识．没有两个在同样地方的村庄．两个位置之间的距离是其整数坐标差的绝对值．
+???+ example "Ví dụ 3: [P4767 \[IOI2000\] Post Office bản tăng cường](https://www.luogu.com.cn/problem/P4767)  [P6246 \[IOI2000\] Post Office bản tăng cường hơn](https://www.luogu.com.cn/problem/P6246)"
+    Có một số ngôi làng bên cạnh đường cao tốc. Đường cao tốc được biểu diễn bằng trục số nguyên, và vị trí của mỗi làng được đánh dấu bằng một tọa độ nguyên đơn. Không có hai làng ở cùng một vị trí. Khoảng cách giữa hai vị trí là trị tuyệt đối hiệu hai tọa độ nguyên của chúng.
     
-    邮局将建在一些，但不一定是所有的村庄中．为了建立邮局，应选择他们建造的位置，使每个村庄与其最近的邮局之间的距离总和最小．
+    Bưu cục sẽ được xây tại một số, nhưng không nhất thiết là tất cả, các làng. Để xây bưu cục, cần chọn vị trí xây sao cho tổng khoảng cách từ mỗi làng đến bưu cục gần nhất là nhỏ nhất.
     
-    你要编写一个程序，已知村庄的位置和邮局的数量，计算每个村庄和最近的邮局之间所有距离的最小可能的总和．
+    Hãy viết chương trình: biết vị trí các làng và số lượng bưu cục, tính tổng khoảng cách nhỏ nhất có thể từ mọi làng đến bưu cục gần nhất.
 
-??? note "思路"
-    每个村庄有其最近的邮局，那么每个邮局也有其管辖的村庄，易知这是一个区间．
+??? note "Ý tưởng"
+    Mỗi làng có bưu cục gần nhất của nó, vậy mỗi bưu cục cũng có các làng do nó phụ trách; dễ thấy đó là một khoảng.
     
-    考虑把这 $n$ 个村庄分成 $m$ 个区间，再在每个区间中决出一个邮局．
+    Xét việc chia $n$ làng này thành $m$ khoảng, rồi trong mỗi khoảng chọn ra một bưu cục.
     
-    根据数学知识，对于区间 $[i,j]$，邮局应该建在第 $\left\lfloor\dfrac{i+j}2\right\rfloor$ 个村庄处．使用前缀和容易算出 $w(i,j)$．
+    Theo kiến thức toán học, với khoảng $[i,j]$, bưu cục nên được xây tại làng thứ $\left\lfloor\dfrac{i+j}2\right\rfloor$. Dùng tổng tiền tố có thể dễ dàng tính $w(i,j)$.
     
-    问题转化为限制区间个数的区间分拆问题．可以证明，$w$ 函数满足四边形不等式．直接应用上述优化方法即可．
+    Bài toán được chuyển thành bài toán phân tách khoảng có giới hạn số khoảng. Có thể chứng minh hàm $w$ thỏa mãn bất đẳng thức tứ giác. Áp dụng trực tiếp phương pháp tối ưu trên là được.
 
-??? note "实现 1，前文第二种优化，复杂度 $O(n(n+m))$"
+??? note "Cài đặt 1, phương pháp tối ưu thứ hai ở trên, độ phức tạp $O(n(n+m))$"
     ```cpp
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle_2.cpp"
     ```
 
-??? note "实现 2，WQS 二分，复杂度 $O(n\log n\log C)$"
+??? note "Cài đặt 2, WQS binary search, độ phức tạp $O(n\log n\log C)$"
     ```cpp
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle_3.cpp"
     ```
 
-## 区间合并问题
+## Bài toán gộp khoảng
 
-另一类可以通过四边形不等式优化的动态规划问题是区间合并问题，即要将 $n$ 个长度为一的区间 $[i,i]$ 两两合并起来，直到得到区间 $[1,n]$．每次合并 $[j,k]$ 和 $[k+1,i]$ 时都需要支付成本 $w(j,i)$．问题要求找到成本最低的合并方式．对于此类问题，有如下 2D1D 状态转移方程：
+<span id="&#21306;&#38388;&#21512;&#24182;&#38382;&#39064;"></span>
+
+Một loại bài toán quy hoạch động khác có thể tối ưu bằng bất đẳng thức tứ giác là bài toán gộp khoảng: cần gộp đôi một $n$ khoảng độ dài một $[i,i]$ cho đến khi thu được khoảng $[1,n]$. Mỗi lần gộp $[j,k]$ và $[k+1,i]$ cần trả chi phí $w(j,i)$. Bài toán yêu cầu tìm cách gộp có chi phí thấp nhất. Với loại bài toán này, có công thức chuyển trạng thái 2D1D sau:
 
 $$
 f(j,i) = \min_{j \leq k < i} f(j,k) + f(k+1,i) + w(j,i) \qquad (1\le j< i\le n) \tag{3}
 $$
 
-其中，初始成本 $f(i,i)=0$．暴力算法的总复杂度为 $O(n^3)$，而当存在决策单调性时，可以优化至 $O(n^2)$ 的算法复杂度．这一算法最早由 Knuth 在解决最优二叉搜索树问题时提出，并由姚储枫进一步研究总结，在国外称为 Knuth's optimization 或 Knuth-Yao speedup．
+Trong đó chi phí ban đầu $f(i,i)=0$. Thuật toán vét cạn có tổng độ phức tạp $O(n^3)$; khi có tính đơn điệu quyết định, có thể tối ưu xuống $O(n^2)$. Thuật toán này được Knuth đề xuất đầu tiên khi giải bài toán cây tìm kiếm nhị phân tối ưu, rồi được Yao Chi-Feng nghiên cứu và tổng kết thêm; ở nước ngoài thường gọi là Knuth's optimization hoặc Knuth-Yao speedup.
 
-除了四边形不等式以外，区间合并问题的决策单调性还要求成本函数满足区间包含单调性．
+Ngoài bất đẳng thức tứ giác, tính đơn điệu quyết định của bài toán gộp khoảng còn yêu cầu hàm chi phí thỏa mãn tính đơn điệu theo bao hàm khoảng.
 
--   **区间包含单调性**：如果对于任意 $a \leq b \leq c \leq d$ 均成立
+-   **Tính đơn điệu theo bao hàm khoảng**: nếu với mọi $a \leq b \leq c \leq d$ đều có
 
     $$
     w(b,c) \leq w(a,d),
     $$
 
-    则称函数 $w$ 对于区间包含关系具有单调性．
+    thì ta nói hàm $w$ có tính đơn điệu theo quan hệ bao hàm khoảng.
 
-这实质是成本函数的一阶条件，即 $w(j,i)$ 关于 $j$ 递减，关于 $i$ 递增．
+Về bản chất, đây là điều kiện bậc nhất của hàm chi phí, tức $w(j,i)$ giảm theo $j$ và tăng theo $i$.
 
-???+ note "引理 1"
-    若 $w$ 满足区间包含单调性和四边形不等式，则状态 $f(j,i)$ 满足四边形不等式．
+???+ note "Bổ đề 1"
+    Nếu $w$ thỏa mãn tính đơn điệu theo bao hàm khoảng và bất đẳng thức tứ giác, thì trạng thái $f(j,i)$ thỏa mãn bất đẳng thức tứ giác.
 
-??? note "证明"
-    不妨设 $a \leq b \leq c \leq d$．下证 $f(a,d) + f(b,c) \geq f(a,c) + f(b,d)$．考虑依 $d-a$ 归纳．当 $a=b$ 或 $c=d$ 时，所求即一等式．对于一般的情形，根据 $d'=\operatorname{opt}(a,d)$ 的位置分类讨论．
+??? note "Chứng minh"
+    Không mất tính tổng quát, giả sử $a \leq b \leq c \leq d$. Ta chứng minh $f(a,d) + f(b,c) \geq f(a,c) + f(b,d)$. Xét quy nạp theo $d-a$. Khi $a=b$ hoặc $c=d$, điều cần chứng minh là một đẳng thức. Với trường hợp tổng quát, phân loại theo vị trí của $d'=\operatorname{opt}(a,d)$.
     
-    第一种情况，$c \leq d'$ 或 $d' < b$，即 $[b,c]$ 包含于 $[a,d']$ 或 $[d'+1,d]$ 之中．
+    Trường hợp thứ nhất: $c \leq d'$ hoặc $d' < b$, tức $[b,c]$ nằm trong $[a,d']$ hoặc trong $[d'+1,d]$.
     
-    不妨假设 $c \leq d'$，另一种情形同理．此时有
+    Giả sử $c \leq d'$, trường hợp còn lại tương tự. Khi đó có
     
     $$
     \begin{aligned}
@@ -337,11 +351,11 @@ $$
     \end{aligned}
     $$
     
-    这里，第一个不等式来自于归纳假设 $f(a,c) + f(b,d') \leq f(a,d') + f(b,c)$，第二个不等式来自于区间包含单调性 $w(b,d) \leq w(a,d)$，第三个不等式来自于最优性条件 $f(b,d) \leq f(b,d') + f(d'+1,d) + w(b,d)$．
+    Ở đây, bất đẳng thức thứ nhất đến từ giả thiết quy nạp $f(a,c) + f(b,d') \leq f(a,d') + f(b,c)$, bất đẳng thức thứ hai đến từ tính đơn điệu theo bao hàm khoảng $w(b,d) \leq w(a,d)$, và bất đẳng thức thứ ba đến từ điều kiện tối ưu $f(b,d) \leq f(b,d') + f(d'+1,d) + w(b,d)$.
     
-    第二种情况，$b \leq d' < c$，即 $d'$ 位于 $[b,c]$ 之中．此时，考虑 $c'=\operatorname{opt}(b,c)$ 的位置．
+    Trường hợp thứ hai: $b \leq d' < c$, tức $d'$ nằm trong $[b,c]$. Khi đó xét vị trí của $c'=\operatorname{opt}(b,c)$.
     
-    不妨假设 $c' \leq d'$，即 $[b,c']$ 包含于 $[a,d']$ 之中，另一种情形同理．此时有
+    Giả sử $c' \leq d'$, tức $[b,c']$ nằm trong $[a,d']$; trường hợp còn lại tương tự. Khi đó có
     
     $$
     \begin{aligned}
@@ -353,43 +367,45 @@ $$
     \end{aligned}
     $$
     
-    这里，第一个不等式来自于归纳假设 $f(a,c') + f(b,d') \leq f(a,d') + f(b,c')$，第二个不等式来自于四边形不等式 $w(a,c) + w(b,d) \leq w(a,d) + w(b,c)$，第三个不等式来自于 $f(a,c)$ 和 $f(b,d)$ 的最优性条件．
+    Ở đây, bất đẳng thức thứ nhất đến từ giả thiết quy nạp $f(a,c') + f(b,d') \leq f(a,d') + f(b,c')$, bất đẳng thức thứ hai đến từ bất đẳng thức tứ giác $w(a,c) + w(b,d) \leq w(a,d) + w(b,c)$, và bất đẳng thức thứ ba đến từ điều kiện tối ưu của $f(a,c)$ và $f(b,d)$.
 
-???+ note "定理 4"
-    若 $w$ 满足区间包含单调性和四边形不等式，则问题 (3) 中最小最优决策 $\operatorname{opt}(j,i)$ 满足
+???+ note "Định lý 4"
+    Nếu $w$ thỏa mãn tính đơn điệu theo bao hàm khoảng và bất đẳng thức tứ giác, thì quyết định tối ưu nhỏ nhất $\operatorname{opt}(j,i)$ trong bài toán (3) thỏa mãn
     
     $$
     \operatorname{opt}(j,i-1) \leq \operatorname{opt}(j,i) \leq \operatorname{opt}(j+1,i). \qquad (j + 1 < i)
     $$
 
-??? note "证明"
-    引理 1 已经证得 $f(j,i)$ 满足四边形不等式，所以目标函数 $f(j,k) + f(k+1,i) + w(j,i)$ 对于给定 $j$ 作为 $(k,i)$ 的函数满足四边形不等式，所以由定理 1 有，$\operatorname{opt}(j,i-1) \leq \operatorname{opt}(j,i)$．注意，不同时含有 $(k,i)$ 的项并不影响四边形不等式成立．类似地，它对于给定 $i$ 作为 $(k,j)$ 的函数也满足四边形不等式，所以 $\operatorname{opt}(j,i) \leq \operatorname{opt}(j+1,i)$．即得所证．
+??? note "Chứng minh"
+    Bổ đề 1 đã chứng minh $f(j,i)$ thỏa mãn bất đẳng thức tứ giác, nên hàm mục tiêu $f(j,k) + f(k+1,i) + w(j,i)$, với $j$ cố định và xem như hàm theo $(k,i)$, cũng thỏa mãn bất đẳng thức tứ giác. Vì vậy theo Định lý 1 có $\operatorname{opt}(j,i-1) \leq \operatorname{opt}(j,i)$. Chú ý rằng các hạng không đồng thời chứa $(k,i)$ không ảnh hưởng đến việc bất đẳng thức tứ giác có đúng hay không. Tương tự, với $i$ cố định và xem như hàm theo $(k,j)$, nó cũng thỏa mãn bất đẳng thức tứ giác, nên $\operatorname{opt}(j,i) \leq \operatorname{opt}(j+1,i)$. Từ đó suy ra điều cần chứng minh.
 
-利用这一结论，同样可以限制决策点 $k$ 的搜索范围．在这里，正序遍历区间长度 $i-j+1$，再遍历具有同样长度的所有区间 $[j,i]$，暴力搜索 $\operatorname{opt}(j,i-1)$ 和 $\operatorname{opt}(j+1,i)$ 之间的所有 $k$ 求得最优解 $f(j,i)$ 并记录最小最优决策 $\operatorname{opt}(j,i)$．对于同样长度的所有区间，此算法中决策空间总长度是 $O(n)$ 的，而可能的区间长度的数目同样是 $O(n)$ 的，故而总的算法复杂度为 $O(n^2)$ 的．
+Nhờ kết luận này, ta cũng có thể giới hạn phạm vi tìm kiếm của điểm quyết định $k$. Ở đây, duyệt độ dài khoảng $i-j+1$ theo thứ tự tăng, rồi duyệt mọi khoảng $[j,i]$ có cùng độ dài; tìm kiếm vét cạn mọi $k$ giữa $\operatorname{opt}(j,i-1)$ và $\operatorname{opt}(j+1,i)$ để thu được nghiệm tối ưu $f(j,i)$, đồng thời ghi lại quyết định tối ưu nhỏ nhất $\operatorname{opt}(j,i)$. Với mọi khoảng cùng độ dài, tổng độ dài không gian quyết định trong thuật toán này là $O(n)$, và số độ dài khoảng có thể có cũng là $O(n)$, nên tổng độ phức tạp thuật toán là $O(n^2)$.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle-knuth-optimization.cpp:core"
     ```
 
-## 满足四边形不等式的函数类
+## Các lớp hàm thỏa mãn bất đẳng thức tứ giác
 
-为了更方便地证明一个函数满足四边形不等式，我们有以下几条性质：
+<span id="&#28385;&#36275;&#22235;&#36793;&#24418;&#19981;&#31561;&#24335;&#30340;&#20989;&#25968;&#31867;"></span>
 
-**性质 1**：若函数 $w_1(j,i)$ 和 $w_2(j,i)$ 均满足四边形不等式（或区间包含单调性），则对于任意 $c_1,c_2\geq 0$，函数 $c_1w_1+c_2w_2$ 也满足四边形不等式（或区间包含单调性）．
+Để chứng minh một hàm thỏa mãn bất đẳng thức tứ giác thuận tiện hơn, ta có các tính chất sau:
 
-**性质 2**：若存在函数 $f(x)$ 和 $g(x)$ 使得 $w(j,i) = f(j)-g(i)$，则函数 $w$ 满足四边形恒等式．当函数 $f$ 和 $g$ 单调增加时，函数 $w$ 还满足区间包含单调性．
+**Tính chất 1**: Nếu các hàm $w_1(j,i)$ và $w_2(j,i)$ đều thỏa mãn bất đẳng thức tứ giác (hoặc tính đơn điệu theo bao hàm khoảng), thì với mọi $c_1,c_2\geq 0$, hàm $c_1w_1+c_2w_2$ cũng thỏa mãn bất đẳng thức tứ giác (hoặc tính đơn điệu theo bao hàm khoảng).
 
-**性质 3**：设 $h(x)$ 是一个单调增加的凸函数，若函数 $w(j,i)$ 满足四边形不等式并且对区间包含关系具有单调性，则复合函数 $h(w(j,i))$ 也满足四边形不等式和区间包含单调性．
+**Tính chất 2**: Nếu tồn tại các hàm $f(x)$ và $g(x)$ sao cho $w(j,i) = f(j)-g(i)$, thì hàm $w$ thỏa mãn đẳng thức tứ giác. Khi các hàm $f$ và $g$ tăng đơn điệu, hàm $w$ còn thỏa mãn tính đơn điệu theo bao hàm khoảng.
 
-**性质 4**：设 $h(x)$ 是一个凸函数，若函数 $w(j,i)$ 满足四边形恒等式并且对区间包含关系具有单调性，则复合函数 $h(w(j,i))$ 也满足四边形不等式．
+**Tính chất 3**: Giả sử $h(x)$ là một hàm lồi tăng đơn điệu. Nếu hàm $w(j,i)$ thỏa mãn bất đẳng thức tứ giác và có tính đơn điệu theo bao hàm khoảng, thì hàm hợp $h(w(j,i))$ cũng thỏa mãn bất đẳng thức tứ giác và tính đơn điệu theo bao hàm khoảng.
 
-首先需要澄清一点，凸函数（Convex Function）的定义在国内教材中有分歧，此处的凸函数指的是下凸函数，即（可微时）一阶导数单调增加的函数．
+**Tính chất 4**: Giả sử $h(x)$ là một hàm lồi. Nếu hàm $w(j,i)$ thỏa mãn đẳng thức tứ giác và có tính đơn điệu theo bao hàm khoảng, thì hàm hợp $h(w(j,i))$ cũng thỏa mãn bất đẳng thức tứ giác.
 
-??? note "证明"
-    前两条性质根据定义很容易证明，下面证明第三条性质，性质四的证明过程类似．由于 $h(x)$ 单调，$h(w(j,i))$ 自然保持对区间包含的单调性．关键在于四边形不等式的证明．
+Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex Function) trong các giáo trình Trung Quốc có sự khác biệt. Ở đây hàm lồi chỉ hàm lồi xuống theo cách gọi tại đó, tức hàm có đạo hàm bậc nhất tăng đơn điệu (khi khả vi).
+
+??? note "Chứng minh"
+    Hai tính chất đầu rất dễ chứng minh theo định nghĩa. Dưới đây chứng minh tính chất thứ ba; quá trình chứng minh tính chất thứ tư tương tự. Vì $h(x)$ đơn điệu, $h(w(j,i))$ tự nhiên giữ được tính đơn điệu theo bao hàm khoảng. Điểm mấu chốt là chứng minh bất đẳng thức tứ giác.
     
-    为此，下面考虑 $a \leq j \leq b \leq c \leq i \leq d$ 上的二阶混合差分．
+    Để làm vậy, xét sai phân hỗn hợp bậc hai trên $a \leq j \leq b \leq c \leq i \leq d$.
     
     $$
     \begin{aligned}
@@ -400,17 +416,19 @@ $$
     \end{aligned}
     $$
     
-    这里，根据区间单调性，$\Delta_iw(a,i) := w(a,d) - w(a,c) \geq 0$ 和 $\Delta_jw(j,c) := w(b,c) - w(a,c) \leq 0$．由于 $h(x)$ 具有凸性，对于 $t_1,t_2\geq 0$ 成立 $h(x + t_1 - t_2) - h(x + t_1) \leq h(x - t_2) - h(x)$，所以后两行必然非正．同时，由于四边形不等式，$w(b,d) \leq w(a,c) + \Delta_jw(j,c) + \Delta_iw(a,i) = w(b,c) + w(a,d) - w(a,c)$，故而，第一行的差在 $h(x)$ 单调增加的情况下必然也非正．所以，总的二阶混合差分非正．此即四边形不等式．
+    Ở đây, theo tính đơn điệu theo bao hàm khoảng, $\Delta_iw(a,i) := w(a,d) - w(a,c) \geq 0$ và $\Delta_jw(j,c) := w(b,c) - w(a,c) \leq 0$. Vì $h(x)$ có tính lồi, với $t_1,t_2\geq 0$ ta có $h(x + t_1 - t_2) - h(x + t_1) \leq h(x - t_2) - h(x)$, nên hai dòng sau chắc chắn không dương. Đồng thời, do bất đẳng thức tứ giác, $w(b,d) \leq w(a,c) + \Delta_jw(j,c) + \Delta_iw(a,i) = w(b,c) + w(a,d) - w(a,c)$; vì vậy hiệu ở dòng đầu tiên cũng chắc chắn không dương khi $h(x)$ tăng đơn điệu. Do đó, tổng sai phân hỗn hợp bậc hai không dương. Đây chính là bất đẳng thức tứ giác.
     
-    这一证明实际是如下导数证明的离散版本．
+    Chứng minh này thực ra là phiên bản rời rạc của chứng minh bằng đạo hàm sau.
     
     $$
     \frac{\partial^2}{\partial x\partial y}h(w(x,y)) = h''(w(x,y))\frac{\partial }{\partial x}w(x,y)\frac{\partial}{\partial y}w(x,y) + h'(w(x,y))\frac{\partial^2}{\partial x\partial y}w(x,y) \leq 0.
     $$
     
-    这在 $h' \geq 0$，$h'' \geq 0$，$w_x \leq 0$，$w_y \geq 0$ 以及 $w_{xy} \leq 0$ 的条件下显然成立．其中，区间包含单调性给出了 $w$ 的一阶条件，而四边形不等式给出了其二阶条件．
+    Điều này hiển nhiên đúng dưới các điều kiện $h' \geq 0$, $h'' \geq 0$, $w_x \leq 0$, $w_y \geq 0$ và $w_{xy} \leq 0$. Trong đó, tính đơn điệu theo bao hàm khoảng cho điều kiện bậc nhất của $w$, còn bất đẳng thức tứ giác cho điều kiện bậc hai.
 
-## 习题
+## Bài tập
+
+<span id="&#20064;&#39064;"></span>
 
 -   [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E)(Be careful with I/O!)
 -   [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/)
@@ -418,18 +436,20 @@ $$
 -   [Hackerrank - Guardians of the Lunatics](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
 -   [ACM ICPC World Finals 2017 - Money](https://open.kattis.com/problems/money)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
+
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
 
 -   [Quora Answer by Michael Levin](https://www.quora.com/What-is-divide-and-conquer-optimization-in-dynamic-programming)
 -   [Video Tutorial by "Sothe" the Algorithm Wolf](https://www.youtube.com/watch?v=wLXEWuDWnzI)
 -   [Divide and Conquer DP](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html)
 -   [Knuth's Optimization](https://cp-algorithms.com/dynamic_programming/knuth-optimization.html)
 -   [Quadrangle Inequality Properties](https://codeforces.com/blog/entry/86306)
--   [王钦石《浅析一类二分方法》](https://github.com/hzwer/shareOI/blob/master/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B5%85%E6%9E%90%E4%B8%80%E7%B1%BB%E4%BA%8C%E5%88%86%E6%96%B9%E6%B3%95_%E7%8E%8B%E9%92%A6%E7%9F%B3.pdf)
--   [簡易版 LARSCH Algorithm by noshi91](https://noshi91.hatenablog.com/entry/2023/02/18/005856)
--   [四边形不等式和决策单调性 by b6e0\_ - 洛谷专栏](https://www.luogu.com.cn/article/h81hh5lk)
--   [在线决策单调性的丐版 LARSCH 算法 by Register\_int - 洛谷专栏](https://www.luogu.com.cn/article/vqf42hah)
+-   [Wang Qinshi, Phân tích sơ lược một lớp phương pháp nhị phân](https://github.com/hzwer/shareOI/blob/master/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B5%85%E6%9E%90%E4%B8%80%E7%B1%BB%E4%BA%8C%E5%88%86%E6%96%B9%E6%B3%95_%E7%8E%8B%E9%92%A6%E7%9F%B3.pdf)
+-   [Simplified LARSCH Algorithm by noshi91](https://noshi91.hatenablog.com/entry/2023/02/18/005856)
+-   [Bất đẳng thức tứ giác và tính đơn điệu quyết định by b6e0\_ - Luogu Column](https://www.luogu.com.cn/article/h81hh5lk)
+-   [Thuật toán LARSCH giản lược cho tính đơn điệu quyết định trực tuyến by Register\_int - Luogu Column](https://www.luogu.com.cn/article/vqf42hah)
 
-[^cmp-min-opt]: 算法描述中提到的「更劣」和「更优」都应看做是在描述先比较函数值大小再比较决策点大小的字典序．在这一字典序下，「更优」意味着要么函数值更小，要么函数值一样但是决策点更小．
+[^cmp-min-opt]: Các cụm "kém hơn" và "tốt hơn" trong mô tả thuật toán đều nên được hiểu là đang mô tả thứ tự từ điển: trước hết so sánh giá trị hàm, rồi so sánh điểm quyết định. Trong thứ tự từ điển này, "tốt hơn" nghĩa là hoặc giá trị hàm nhỏ hơn, hoặc giá trị hàm bằng nhau nhưng điểm quyết định nhỏ hơn.
 
 [^larsch]: Larmore, Lawrence L., and Baruch Schieber. "On-line dynamic programming with applications to the prediction of RNA secondary structure." Journal of Algorithms 12, no. 3 (1991): 490-515.

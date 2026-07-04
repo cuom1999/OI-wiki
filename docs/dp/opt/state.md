@@ -1,21 +1,21 @@
 author: Marcythm, partychicken, Xeonacid, hhc0001
 
-## 概述
+## Tổng quan
 
-优化 dp 时，不止可以从转移过程入手，加速转移．有时，也可以从状态定义入手，通过改变设计状态的方式实现复杂度上的优化．
+Khi tối ưu DP, không chỉ có thể bắt đầu từ quá trình chuyển trạng thái để tăng tốc chuyển. Đôi khi cũng có thể bắt đầu từ định nghĩa trạng thái, thay đổi cách thiết kế trạng thái để giảm độ phức tạp.
 
-令人比较头疼的是，这类优化大多不具有通用性，即不能很套路地应用于多个题目中．因此，下文将从具体例题出发，力求提供思路上的启发，希望可以对读者有一定帮助．
+Điểm khó là phần lớn kiểu tối ưu này không có tính phổ quát cao, tức không thể áp dụng theo khuôn mẫu cho nhiều bài khác nhau. Vì vậy, phần dưới sẽ đi từ các ví dụ cụ thể, cố gắng gợi mở cách nghĩ để người đọc tham khảo.
 
-## 例 1
+## Ví dụ 1
 
-???+ note "题面"
-    给定两个长度分别为 $n,m$ 且仅由小写字母构成的字符串 $A,B$, 求 $A,B$ 的最长公共子序列．$(n\le 10^6,m\le 10^3)$
+???+ note "Đề bài"
+    Cho hai chuỗi $A,B$ có độ dài lần lượt là $n,m$ và chỉ gồm chữ cái thường. Hãy tìm dãy con chung dài nhất của $A,B$. $(n\le 10^6,m\le 10^3)$
 
-### 朴素的解法
+### Cách giải đơn giản
 
-您一眼秒了它，这不是板子吗？
+Thoạt nhìn đây là một bài mẫu rất quen thuộc.
 
-定义状态 $f_{i,j}$ 为 $A$ 的前 $i$ 位与 $B$ 的前 $j$ 位最长公共子序列，则有
+Định nghĩa trạng thái $f_{i,j}$ là độ dài dãy con chung dài nhất của $i$ ký tự đầu của $A$ và $j$ ký tự đầu của $B$. Khi đó:
 
 $$
 f_{i,j}=
@@ -25,66 +25,66 @@ f_{i-1,j-1}+1 & ,A_i = B_j
 \end{cases}
 $$
 
-上述做法的时间复杂度 $O(nm)$，无法通过本题．
+Cách làm trên có độ phức tạp thời gian $O(nm)$, không thể vượt qua bài này.
 
-### 更优的解法
+### Cách giải tốt hơn
 
-我们仔细一想，发现了一个性质：最终答案不会超过 $m$．
+Suy nghĩ kỹ hơn, ta thấy một tính chất: đáp án cuối cùng không vượt quá $m$.
 
-我们又仔细一想，发现 LCS 满足贪心的性质．
+Tiếp tục xét kỹ, LCS có một tính chất tham lam nhất định.
 
-更改状态定义 $f_{i,j}$ 为与 $B$ 前 $i$ 位的最长公共子序列长度为 $j$ 的 $A$ 的最短前缀长度（即将朴素做法的答案与第一维状态对调）
+Đổi định nghĩa trạng thái: $f_{i,j}$ là độ dài tiền tố ngắn nhất của $A$ sao cho LCS với $i$ ký tự đầu của $B$ có độ dài $j$ (tức là hoán đổi đáp án trong cách đơn giản với chiều trạng thái thứ nhất).
 
-可以通过预处理 $A$ 的每一位的下一个 $a,b,\cdots,z$ 的出现位置进行 $O(1)$ 的顺推转移．
+Có thể tiền xử lý, với mỗi vị trí của $A$, vị trí xuất hiện tiếp theo của từng ký tự $a,b,\cdots,z$, rồi chuyển xuôi trong $O(1)$.
 
-复杂度 $O(m^2+26n)$，可以通过本题．
+Độ phức tạp là $O(m^2+26n)$, đủ để vượt qua bài này.
 
-## 例 2
+## Ví dụ 2
 
-???+ note "题面"
-    给定一个 $n$ 个点的无权有向图，判断该图是否存在哈密顿回路．$(2\le n\le 20)$
+???+ note "Đề bài"
+    Cho một đồ thị có hướng không trọng số gồm $n$ đỉnh. Hãy xác định đồ thị có tồn tại chu trình Hamilton hay không. $(2\le n\le 20)$
 
-### 朴素的解法
+### Cách giải đơn giản
 
-看到数据范围，我们考虑状压．
+Nhìn vào giới hạn dữ liệu, ta nghĩ tới nén trạng thái.
 
-设 $f_{s,i}$ 表示从点 $1$ 出发，仅经过点集 $s$ 中的点能否到达点 $i$．记 $g$ 为原图的邻接矩阵．则有
+Đặt $f_{s,i}$ biểu thị liệu có thể xuất phát từ đỉnh $1$, chỉ đi qua các đỉnh trong tập $s$, và tới được đỉnh $i$ hay không. Gọi $g$ là ma trận kề của đồ thị ban đầu. Khi đó:
 
 $$
 f_{s, i} = \bigvee_{j\in s, j\neq i}f_{s \setminus \{i\}, j}\wedge g_{j, i} \left(i\in s\right)
 $$
 
-时间复杂度 $O(n^2 \times 2^n)$，写得好看或许能过，但是并不优美．
+Độ phức tạp thời gian là $O(n^2\times 2^n)$; nếu cài đặt tốt có thể qua, nhưng chưa đẹp.
 
-### 更优的解法
+### Cách giải tốt hơn
 
-上面的状态设计中，每个 $dp$ 值只代表一个 `bool` 值，这让我们觉得有些浪费．
+Trong thiết kế trạng thái trên, mỗi giá trị `dp` chỉ biểu diễn một giá trị `bool`, khá lãng phí.
 
-我们可以考虑对于每个状态 $s$ 将 $f_{s,1},f_{s,2},\dots,f_{s,n}$ 压成一个 `int`，发现我们可以将邻接矩阵同样压缩后进行 $O(1)$ 转移．
+Có thể với mỗi trạng thái $s$, nén $f_{s,1},f_{s,2},\dots,f_{s,n}$ vào một `int`. Khi đó ma trận kề cũng có thể được nén tương tự, và chuyển trạng thái trong $O(1)$.
 
-时间复杂度 $O(n^2/w\times 2^n)$, 可以通过这道题，其中 $w$ 为 `int` 的位数．
+Độ phức tạp thời gian là $O(n^2/w\times 2^n)$, đủ để qua bài này, trong đó $w$ là số bit của `int`.
 
-## 例 3
+## Ví dụ 3
 
-???+ note "题面"
-    常规的背包问题．$n$ 为物品数量，$m$ 为背包容量，$v_i, w_i$ 为第 $i$ 个物品的体积、价值，$1 \le n \le 10^3$，$1 \le m, v_i \le \color{red}{10^{18}}$，$1 \le \sum w_i \le 10^3$．
+???+ note "Đề bài"
+    Một bài ba lô thông thường. $n$ là số vật phẩm, $m$ là dung lượng ba lô, $v_i,w_i$ lần lượt là thể tích và giá trị của vật phẩm thứ $i$, với $1 \le n \le 10^3$, $1 \le m, v_i \le \color{red}{10^{18}}$, $1 \le \sum w_i \le 10^3$.
 
-### 朴素的解法
+### Cách giải đơn giản
 
-这是一个模板背包题．
+Đây là một bài ba lô mẫu.
 
-定义状态 $f_{i, j}$ 为选了前 $i$ 个物品，目前背包里塞了 $j$ 的容量的最大价值和．
+Định nghĩa trạng thái $f_{i,j}$ là tổng giá trị lớn nhất khi xét $i$ vật phẩm đầu tiên và hiện đã dùng dung lượng $j$ trong ba lô.
 
-易得 $f_{i, j} = \max(f_{i - 1, j}, f_{i - 1, j - v_i} + w_i)$．
+Dễ có $f_{i,j}=\max(f_{i-1,j}, f_{i-1,j-v_i}+w_i)$.
 
-$v_i \le 10^{18}$，无法通过此题．
+Do $v_i\le 10^{18}$, cách này không thể vượt qua bài.
 
-### 更优的解法
+### Cách giải tốt hơn
 
-交换答案和状态的第二维，设 $f_{i, j}$ 为选了前 $i$ 个物品，目前背包里的物品 **的价值为 $j$** 的最小体积和．
+Hoán đổi đáp án với chiều thứ hai của trạng thái. Đặt $f_{i,j}$ là tổng thể tích nhỏ nhất khi xét $i$ vật phẩm đầu tiên và các vật phẩm trong ba lô có **giá trị bằng $j$**.
 
-依然，易得 $f_{i, j} = \min(f_{i - 1, j}, f_{i - 1, j - w_i} + v_i)$．
+Tương tự, dễ có $f_{i,j}=\min(f_{i-1,j}, f_{i-1,j-w_i}+v_i)$.
 
-注意状态的第二维改变之后转移也要一起改变．
+Chú ý rằng sau khi đổi chiều thứ hai của trạng thái, công thức chuyển cũng phải đổi theo.
 
-时间复杂度 $O(n \sum w_i)$，可以通过此题．
+Độ phức tạp thời gian là $O(n\sum w_i)$, đủ để vượt qua bài.

@@ -20,14 +20,14 @@ int main() {
   }
   for (int i = 1; i <= n; i++) {
     for (int y = 0; y < w[i]; y++) {
-      // 清空队列
+      // Xóa hàng đợi
       deque<int>().swap(q);
       for (int x = 0; x * w[i] + y <= W; x++) {
-        // 弹出不在范围的元素
+        // Loại bỏ các phần tử ngoài phạm vi
         while (!q.empty() && q.front() < x - k[i]) {
           q.pop_front();
         }
-        // 保证队列单调
+        // Bảo đảm hàng đợi đơn điệu
         while (!q.empty() && f[last][q.back() * w[i] + y] - q.back() * v[i] <
                                  f[last][x * w[i] + y] - x * v[i]) {
           q.pop_back();
