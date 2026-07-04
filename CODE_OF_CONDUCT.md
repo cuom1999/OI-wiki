@@ -1,75 +1,113 @@
-# 贡献者公约
+# Quy tắc ứng xử dành cho người đóng góp
 
-## 我们的承诺
+## Cam kết của chúng tôi
 
-身为社区成员、贡献者和领袖，我们承诺使社区参与者不受骚扰，无论其年龄、体型、可见或不可见的缺陷、族裔、性征、性别认同和表达、经验水平、教育程度、社会与经济地位、国籍、相貌、种族、种姓、肤色、宗教信仰、性倾向或性取向如何。
+Với tư cách là thành viên, người đóng góp và người điều hành cộng đồng, chúng
+tôi cam kết xây dựng một môi trường không có quấy rối cho mọi người tham gia,
+bất kể tuổi tác, vóc dáng, khuyết tật hữu hình hoặc vô hình, dân tộc, đặc điểm
+giới tính, bản dạng và biểu hiện giới, mức độ kinh nghiệm, trình độ học vấn,
+địa vị kinh tế - xã hội, quốc tịch, ngoại hình, chủng tộc, đẳng cấp, màu da,
+tôn giáo, khuynh hướng tình dục hay xu hướng tính dục.
 
-我们承诺以有助于建立开放、友善、多样化、包容、健康社区的方式行事和互动。
+Chúng tôi cam kết hành xử và tương tác theo cách góp phần xây dựng một cộng
+đồng cởi mở, thân thiện, đa dạng, bao dung và lành mạnh.
 
-## 我们的准则
+## Chuẩn mực của chúng tôi
 
-有助于为我们的社区创造积极环境的行为例子包括但不限于：
+Những hành vi góp phần tạo ra môi trường tích cực cho cộng đồng bao gồm nhưng
+không giới hạn ở:
 
-+ 表现出对他人的同情和善意
++ Thể hiện sự cảm thông và tử tế với người khác
 
-+ 尊重不同的主张、观点和感受
++ Tôn trọng các quan điểm, góc nhìn và cảm xúc khác biệt
 
-+ 提出和大方接受建设性意见
++ Đưa ra và sẵn sàng tiếp nhận góp ý mang tính xây dựng
 
-+ 承担责任并向受我们错误影响的人道歉
++ Chịu trách nhiệm và xin lỗi những người bị ảnh hưởng bởi sai sót của mình
 
-+ 注重社区共同诉求，而非个人得失
++ Đặt lợi ích chung của cộng đồng lên trên được mất cá nhân
 
-不当行为例子包括：
+Ví dụ về hành vi không phù hợp bao gồm:
 
-+ 使用情色化的语言或图像，及性引诱或挑逗
-+ 嘲弄、侮辱或诋毁性评论，以及人身或政治攻击
-+ 公开或私下的骚扰行为
-+ 未经他人明确许可，公布他人的私人信息，如物理或电子邮件地址
-+ 其他有理由认定为违反职业操守的不当行为
++ Sử dụng ngôn ngữ hoặc hình ảnh mang tính tình dục, gợi ý hoặc quấy rối tình dục
++ Bình luận chế giễu, xúc phạm hoặc hạ thấp người khác, cũng như công kích cá nhân hoặc chính trị
++ Quấy rối công khai hoặc riêng tư
++ Công bố thông tin riêng tư của người khác, chẳng hạn như địa chỉ thực hoặc địa chỉ email, khi chưa được họ cho phép rõ ràng
++ Những hành vi khác có thể được xem là vi phạm chuẩn mực nghề nghiệp một cách hợp lý
 
-## 责任和权力
+## Trách nhiệm và quyền hạn
 
-社区领袖有责任解释和落实我们所认可的行为准则，并妥善公正地对他们认为不当、威胁、冒犯或有害的任何行为采取纠正措施。
+Người điều hành cộng đồng có trách nhiệm giải thích và thực thi các chuẩn mực
+hành vi đã được cộng đồng chấp nhận, đồng thời xử lý một cách phù hợp và công
+bằng đối với mọi hành vi mà họ cho là không phù hợp, đe dọa, xúc phạm hoặc gây
+hại.
 
-社区领导有权力和责任删除、编辑或拒绝与本行为准则不相符的评论（comment）、提交（commits）、代码、维基（wiki）编辑、议题（issues）或其他贡献，并在适当时机知采取措施的理由。
+Người điều hành cộng đồng có quyền và trách nhiệm xóa, chỉnh sửa hoặc từ chối
+các bình luận (comment), commit, mã nguồn, chỉnh sửa wiki, issue hoặc đóng góp
+khác không phù hợp với quy tắc ứng xử này, và khi thích hợp cần giải thích lý
+do của biện pháp đã áp dụng.
 
-## 适用范围
+## Phạm vi áp dụng
 
-本行为准则适用于所有社区场合，也适用于在公共场所代表社区时的个人。
+Quy tắc ứng xử này áp dụng trong mọi không gian cộng đồng, đồng thời áp dụng
+cho cá nhân khi họ đại diện cho cộng đồng ở nơi công cộng.
 
-代表社区的情形包括使用官方电子邮件地址、通过官方社交媒体帐户发帖或在线上或线下活动中担任指定代表。
+Các trường hợp đại diện cho cộng đồng bao gồm sử dụng địa chỉ email chính
+thức, đăng bài qua tài khoản mạng xã hội chính thức, hoặc giữ vai trò đại diện
+được chỉ định trong các sự kiện trực tuyến hay trực tiếp.
 
-### 监督
+### Giám sát
 
-辱骂、骚扰或其他不可接受的行为可通过 [hi@oi-wiki.org](mailto:hi@oi-wiki.org) 向负责监督的社区领袖报告。 所有投诉都将得到及时和公平的审查和调查。
+Các hành vi lăng mạ, quấy rối hoặc không thể chấp nhận khác có thể được báo
+cáo tới người điều hành cộng đồng phụ trách giám sát qua
+[hi@oi-wiki.org](mailto:hi@oi-wiki.org). Mọi khiếu nại sẽ được xem xét và điều
+tra kịp thời, công bằng.
 
-所有社区领袖都有义务尊重任何事件报告者的隐私和安全。
+Mọi người điều hành cộng đồng có nghĩa vụ tôn trọng quyền riêng tư và sự an
+toàn của người báo cáo sự việc.
 
-### 处理方针
+### Nguyên tắc xử lý
 
-社区领袖将遵循下列社区处理方针来明确他们所认定违反本行为准则的行为的处理方式：
+Người điều hành cộng đồng sẽ tuân theo các nguyên tắc xử lý dưới đây khi xác
+định cách xử lý hành vi mà họ cho là vi phạm quy tắc ứng xử này:
 
-1. 纠正
+1. Chỉnh sửa
 
-社区影响：使用不恰当的语言或其他在社区中被认定为不符合职业道德或不受欢迎的行为。
+Ảnh hưởng tới cộng đồng: sử dụng ngôn ngữ không phù hợp hoặc có hành vi khác
+được cộng đồng nhận định là thiếu chuyên nghiệp hoặc không được chào đón.
 
-处理意见：由社区领袖发出非公开的书面警告，明确说明违规行为的性质，并解释举止如何不妥。或将要求公开道歉。
+Biện pháp xử lý: người điều hành cộng đồng gửi cảnh báo bằng văn bản không
+công khai, nêu rõ bản chất của vi phạm và giải thích vì sao hành vi đó không
+phù hợp. Có thể yêu cầu xin lỗi công khai.
 
-2. 警告
+2. Cảnh báo
 
-社区影响：单个或一系列违规行为。
+Ảnh hưởng tới cộng đồng: một hành vi vi phạm riêng lẻ hoặc một chuỗi hành vi vi
+phạm.
 
-处理意见：警告并对连续性行为进行处理。在指定时间内，不得与相关人员互动，包括主动与行为准则执行者互动。这包括避免在社区场所和外部渠道中的互动。违反这些条款可能会导致临时或永久封禁。
+Biện pháp xử lý: đưa ra cảnh báo và xử lý hành vi tiếp diễn. Trong một khoảng
+thời gian được chỉ định, người vi phạm không được tương tác với những người
+liên quan, bao gồm cả việc chủ động tương tác với người thực thi quy tắc ứng
+xử. Điều này bao gồm việc tránh tương tác trong không gian cộng đồng và trên
+các kênh bên ngoài. Vi phạm các điều khoản này có thể dẫn đến cấm tạm thời
+hoặc vĩnh viễn.
 
-3. 临时封禁
+3. Cấm tạm thời
 
-社区影响: 严重违反社区准则，包括持续的不当行为。
+Ảnh hưởng tới cộng đồng: vi phạm nghiêm trọng chuẩn mực cộng đồng, bao gồm cả
+hành vi không phù hợp kéo dài.
 
-处理意见: 在指定时间内，暂时禁止与社区进行任何形式的互动或公开交流。在此期间，不得与相关人员进行公开或私下互动，包括主动与行为准则执行者互动。违反这些条款可能会导致永久封禁。
+Biện pháp xử lý: tạm thời cấm mọi hình thức tương tác hoặc trao đổi công khai
+với cộng đồng trong một khoảng thời gian được chỉ định. Trong thời gian này,
+người vi phạm không được tương tác công khai hoặc riêng tư với những người liên
+quan, bao gồm cả việc chủ động tương tác với người thực thi quy tắc ứng xử. Vi
+phạm các điều khoản này có thể dẫn đến cấm vĩnh viễn.
 
-4. 永久封禁
+4. Cấm vĩnh viễn
 
-社区影响：行为模式表现出违反社区准则，包括持续的不当行为、骚扰个人或攻击或贬低某个类别的个体。
+Ảnh hưởng tới cộng đồng: mô thức hành vi thể hiện sự vi phạm chuẩn mực cộng
+đồng, bao gồm hành vi không phù hợp kéo dài, quấy rối cá nhân, hoặc công kích
+hay hạ thấp một nhóm người.
 
-处理意见：永久禁止在社区内进行任何形式的公开互动。
+Biện pháp xử lý: cấm vĩnh viễn mọi hình thức tương tác công khai trong cộng
+đồng.

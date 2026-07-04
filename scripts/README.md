@@ -1,26 +1,37 @@
 # scripts
 
-本目录存放了用于测试、构建和整理代码的一些脚本。
+Thư mục này chứa các script dùng để kiểm thử, xây dựng và sắp xếp mã nguồn.
 
--   `pre-build` 运行于构建前的脚本
-    - `install-theme.sh, install-theme-vendor.sh` 安装 mkdocs 主题，与主题中所用的第三方库
-    - `pre-build.sh` 在 CI 上构建生产环境站点时所运行的脚本，包括安装主题与调整配置
--   `post-build` 运行于构建后的脚本
-    - `commits-info` 渲染每个页面中与 Git commits 有关的信息（更新时间，贡献者列表等）
-    - `math` 渲染每个页面中的数学公式（**注：** 在预览构建中，公式在前端渲染）
-    - `redirect` 生成跳转页面
--   `post-deploy` 运行于主站生产环境部署后的脚本
-    - `baidu-push.sh, convert-sitemap.py` 将 sitemap 转换并推送到百度搜索
--   `netlify` 用于 Netlify 上的预览构建的脚本（参见 `/netlify.toml`）
-    - `build.sh` 在 Netlify 上的构建全过程（手动安装依赖）
-    - `install-python.sh` 在 Netlify 上安装指定版本的 Python
+-   `pre-build`: các script chạy trước khi build
+    - `install-theme.sh, install-theme-vendor.sh`: cài đặt theme mkdocs và các
+      thư viện bên thứ ba mà theme sử dụng
+    - `pre-build.sh`: script chạy khi CI build site production, bao gồm cài đặt
+      theme và điều chỉnh cấu hình
+-   `post-build`: các script chạy sau khi build
+    - `commits-info`: render thông tin liên quan đến Git commits trên từng
+      trang, chẳng hạn thời gian cập nhật và danh sách người đóng góp
+    - `math`: render công thức toán học trên từng trang (**lưu ý:** trong bản
+      build preview, công thức được render ở frontend)
+    - `redirect`: tạo các trang chuyển hướng
+-   `post-deploy`: các script chạy sau khi triển khai production cho site chính
+    - `baidu-push.sh, convert-sitemap.py`: chuyển đổi sitemap và đẩy lên Baidu
+      Search
+-   `netlify`: các script dùng cho bản build preview trên Netlify (xem
+    `/netlify.toml`)
+    - `build.sh`: toàn bộ quy trình build trên Netlify, với bước cài đặt phụ
+      thuộc thủ công
+    - `install-python.sh`: cài đặt phiên bản Python được chỉ định trên Netlify
 
-以下是与构建无关的脚本：
+Các script dưới đây không liên quan trực tiếp đến build:
 
-- `test.py` 测试文档中的实例代码正常编译
-- `check-characters.py` 扫描修改的 Markdown 与 TeX 文件中的异常非可见字符与可替换为对应 CJK 字符的部首（和笔画字符）
-- `celebration.py` 自动创建庆祝 star 数量的 issue
-- `linter_patch.py` 用于协助 bot 修正错误的文档格式化结果
--   `linter` `linter_patch.py` 的一部分，详见 `linter/README.md`
--   `utils` 一些工具
-    - `find_jk.py` 寻找源文件中非中文码位的汉字字符
+- `test.py`: kiểm tra các đoạn mã ví dụ trong tài liệu có biên dịch bình thường
+  hay không
+- `check-characters.py`: quét các tệp Markdown và TeX đã sửa để tìm ký tự không
+  hiển thị bất thường và các bộ thủ hoặc nét có thể thay bằng ký tự CJK tương
+  ứng
+- `celebration.py`: tự động tạo issue mừng số lượng star
+- `linter_patch.py`: hỗ trợ bot sửa kết quả định dạng tài liệu bị lỗi
+-   `linter`: một phần của `linter_patch.py`; xem `linter/README.md` để biết
+    chi tiết
+-   `utils`: một số công cụ
+    - `find_jk.py`: tìm các Hán tự nằm ngoài codepoint tiếng Trung trong tệp nguồn

@@ -6,6 +6,9 @@ MkDocs source layout intact.
 ## Current Scope
 
 - `README.md`: translated and annotated for this fork.
+- `CODE_OF_CONDUCT.md`, `scripts/README.md`, `patches/README.md`,
+  `mkdocs.yml`: translated root project metadata, tooling notes, patch notes,
+  and rendered copyright conjunctions.
 - `docs/index.md`: translated landing page.
 - `docs/edit-landing.md`: translated the in-browser edit landing prompt.
 - `docs/intro/about.md`: translated project overview.

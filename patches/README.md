@@ -1,7 +1,8 @@
 # Patches
 
-为了保证与 mkdocs 的兼容性，我们 patch 了 `mdast-util-to-markdown`。具体变化如下
+Để bảo đảm tương thích với mkdocs, chúng tôi đã patch
+`mdast-util-to-markdown`. Các thay đổi cụ thể như sau:
 
-- 使用 2 space style 的 hardbreak
-- 避免 escape `&`
-- 避免将等号视为 heading
+- Dùng hardbreak theo kiểu 2 dấu cách
+- Tránh escape `&`
+- Tránh xem dấu bằng là heading
