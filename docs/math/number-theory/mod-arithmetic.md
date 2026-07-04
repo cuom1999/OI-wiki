@@ -1,22 +1,36 @@
 author: 383494, buuzzing, c-forrest, cr4c1an, Emp7iness, Enter-tainer, Great-designer, HeRaNO, jifbt, Kaiser-Yang, Koishilll, ksyx, Marcythm, Qiu-Quanzhi, Saisyc, sshwy, StarryReverie, StudyingFather, Tiphereth-A, Xeonacid, xyf007
 
-Trong lap trinh thi dau, mot phan quan trong cua so hoc la **so hoc modulo** (modular arithmetic), tuc la thuc hien cac phep toan tren so nguyen duoi mot modulo nao do. Ngoai bon phep toan co ban va phep luy thua, ta con co the thuan tien tinh logarit roi rac, khai can bac bat ky, tinh giai thua, to hop va nhieu phep toan khac.
+Trong lập trình thi đấu, một phần quan trọng của số học là **số học modulo**
+(modular arithmetic), tức là thực hiện các phép toán trên số nguyên dưới một
+modulo nào đó. Ngoài bốn phép toán cơ bản và phép lũy thừa, ta còn có thể
+thuận tiện tính logarit rời rạc, khai căn bậc bất kỳ, tính giai thừa, tổ hợp
+và nhiều phép toán khác.
 
-So hoc modulo xuat hien trong nhieu loai bai toan, khong chi trong phan so hoc. Dap an that su cua nhieu bai toan co the rat lon, vuot qua mien luu tru cua cac kieu so nguyen thong dung. Khi do, de tranh dung so nguyen lon va in ra chuoi chu so dai, de bai thuong yeu cau in dap an sau khi lay modulo. Vi vay can nam vung cac ky thuat so hoc modulo.
+Số học modulo xuất hiện trong nhiều loại bài toán, không chỉ trong phần số học.
+Đáp án thật sự của nhiều bài toán có thể rất lớn, vượt quá miền lưu trữ của các
+kiểu số nguyên thông dụng. Khi đó, để tránh dùng số nguyên lớn và in ra chuỗi
+chữ số dài, đề bài thường yêu cầu in đáp án sau khi lấy modulo. Vì vậy cần nắm
+vững các kỹ thuật số học modulo.
 
 <span id="c/c++-&#x7684;&#x6574;&#x6570;&#x9664;&#x6CD5;&#x548C;&#x53D6;&#x6A21;&#x8FD0;&#x7B97;"></span>
-## Phep chia nguyen va phep modulo trong C/C++
+## Phép chia nguyên và phép modulo trong C/C++
 
-Trong C/C++, phep chia nguyen va phep modulo khong trung voi phep modulo va phep chia quen dung trong toan hoc.
+Trong C/C++, phép chia nguyên và phép modulo không trùng với phép modulo và
+phép chia quen dùng trong toán học.
 
-Trong moi phien ban tieu chuan C/C++, phep chia nguyen duoc quy dinh nhu sau:
+Trong mọi phiên bản tiêu chuẩn C/C++, phép chia nguyên được quy định như sau:
 
-1.  Neu so chia bang 0, hanh vi la khong xac dinh;
-2.  Neu khong, ket qua cua `(a / b) * b + a % b` bang `a`.
+1.  Nếu số chia bằng 0, hành vi là không xác định;
+2.  Nếu không, kết quả của `(a / b) * b + a % b` bằng `a`.
 
-Noi cach khac, dau cua ket qua modulo phu thuoc vao cach lam tron thuong; con cach lam tron thuong tung la hanh vi do cai dat quyet dinh (do trinh bien dich quyet dinh).
+Nói cách khác, dấu của kết quả modulo phụ thuộc vào cách làm tròn thương; còn
+cách làm tròn thương từng là hành vi do cài đặt quyết định (do trình biên dịch
+quyết định).
 
-Tu tieu chuan [C99](https://en.cppreference.com/w/c/language/operator_arithmetic) va [C++11](https://en.cppreference.com/w/cpp/language/operator_arithmetic) tro di, **thuong duoc lam tron ve 0** (bo phan thap phan); vi vay dau cua phep modulo trung voi dau cua so bi chia. Tu do, cac khang dinh sau luon dung:
+Từ tiêu chuẩn [C99](https://en.cppreference.com/w/c/language/operator_arithmetic)
+và [C++11](https://en.cppreference.com/w/cpp/language/operator_arithmetic) trở
+đi, **thương được làm tròn về 0** (bỏ phần thập phân); vì vậy dấu của phép
+modulo trùng với dấu của số bị chia. Từ đó, các khẳng định sau luôn đúng:
 
 ```c
 assert(5 % 3 == 2);
@@ -26,67 +40,109 @@ assert(-5 % -3 == -2);
 ```
 
 <span id="&#x6A21;&#x6574;&#x6570;&#x7C7B;"></span>
-## Lop so nguyen modulo
+## Lớp số nguyên modulo
 
-So hoc modulo co the xem la viec thuc hien cac phep toan tren [lop dong du](./basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB) theo mot modulo. Neu dung mot struct de bieu dien mot lop dong du, va dong goi phep cong, tru, nhan giua cac lop dong du thanh phuong thuc cua struct hoac toan tu nap chong, so hoc modulo co the duoc cai dat tu nhien thanh mot lop so nguyen modulo. Vi du don gian sau ho tro cong, tru, nhan va luy thua nhanh tren so nguyen co dau $32$ bit voi modulo $M < 2^{30}$:
+Số học modulo có thể xem là việc thực hiện các phép toán trên [lớp đồng
+dư](./basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB)
+theo một modulo. Nếu dùng một struct để biểu diễn một lớp đồng dư, rồi đóng
+gói phép cộng, trừ, nhân giữa các lớp đồng dư thành phương thức của struct hoặc
+toán tử nạp chồng, số học modulo có thể được cài đặt tự nhiên thành một lớp số
+nguyên modulo. Ví dụ đơn giản sau hỗ trợ cộng, trừ, nhân và lũy thừa nhanh trên
+số nguyên có dấu $32$ bit với modulo $M < 2^{30}$:
 
-???+ example "Mot lop so nguyen modulo don gian"
+???+ example "Một lớp số nguyên modulo đơn giản"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/mod-arithmetic.cpp:core"
     ```
 
-Cach cai dat nay co y giam so lan thuc hien modulo, vi phep modulo thuong ton thoi gian hon phep cong, tru, nhan hoac so sanh thong thuong. Trong chu thich ma nguon co dua ra cach cai dat tuong duong va truc tiep hon. Y tuong chinh cua cac toi uu don gian nay la: khi cong tru hai so nguyen trong $[0,M)$, ket qua chac chan nam trong khoang $(-M,2M)$, nen co the dua ve lai $[0,M)$ bang mot lan cong hoac tru. Phep luy thua trong cai dat nay dung ky thuat [luy thua nhanh](../binary-exponentiation.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%8F%96%E5%B9%82).
+Cách cài đặt này cố ý giảm số lần thực hiện modulo, vì phép modulo thường tốn
+thời gian hơn phép cộng, trừ, nhân hoặc so sánh thông thường. Trong chú thích
+mã nguồn có đưa ra cách cài đặt tương đương và trực tiếp hơn. Ý tưởng chính của
+các tối ưu đơn giản này là: khi cộng trừ hai số nguyên trong $[0,M)$, kết quả
+chắc chắn nằm trong khoảng $(-M,2M)$, nên có thể đưa về lại $[0,M)$ bằng một
+lần cộng hoặc trừ. Phép lũy thừa trong cài đặt này dùng kỹ thuật [lũy thừa
+nhanh](../binary-exponentiation.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%8F%96%E5%B9%82).
 
-Ngoai cac phep toan co ban nay, ta con co the thuc hien cac phep sau duoi nhieu modulo:
+Ngoài các phép toán cơ bản này, ta còn có thể thực hiện các phép sau dưới nhiều
+modulo:
 
--   [Nghich dao](./inverse.md)
--   [Phep chia](./linear-equation.md)
--   [Giai thua](./factorial.md)
--   [To hop](./lucas.md)
--   [Khai can bac hai](./quad-residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E5%B9%B3%E6%96%B9)
--   [Logarit roi rac](./discrete-logarithm.md)
--   [Khai can](./residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E6%96%B9)
+-   [Nghịch đảo](./inverse.md)
+-   [Phép chia](./linear-equation.md)
+-   [Giai thừa](./factorial.md)
+-   [Tổ hợp](./lucas.md)
+-   [Khai căn bậc hai](./quad-residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E5%B9%B3%E6%96%B9)
+-   [Logarit rời rạc](./discrete-logarithm.md)
+-   [Khai căn](./residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E6%96%B9)
 
-Cac phep toan nay thuong de hon khi modulo la so nguyen to. Voi modulo hop so, thuong can dung cac phien ban mo rong cua thuat toan tuong ung va [dinh ly phan du Trung Hoa](./crt.md). Phan lon cac phep toan duoi modulo co the xem la bai toan giai mot loai phuong trinh dong du. Ve phuong phap chung de giai phuong trinh dong du, co the tham khao trang [Phuong trinh dong du](./congruence-equation.md).
+Các phép toán này thường dễ hơn khi modulo là số nguyên tố. Với modulo hợp số,
+thường cần dùng các phiên bản mở rộng của thuật toán tương ứng và [định lý phần
+dư Trung Hoa](./crt.md). Phần lớn các phép toán dưới modulo có thể xem là bài
+toán giải một loại phương trình đồng dư. Về phương pháp chung để giải phương
+trình đồng dư, có thể tham khảo trang [Phương trình đồng dư](./congruence-equation.md).
 
 <span id="&#x76F8;&#x5173;&#x7B97;&#x6CD5;"></span>
-## Thuat toan lien quan
+## Thuật toán liên quan
 
-Muc nay gioi thieu mot vai phuong phap toi uu phep modulo, phep nhan va luy thua nhanh duoi modulo. Voi dai da so bai toan, cach cai dat don gian o tren da du nhanh. Tuy nhien, khi bai toan yeu cau chat ve hang so thoi gian, cac toi uu nay co the phat huy tac dung bang cach giam tinh toan va thao tac modulo khong can thiet.
+Mục này giới thiệu một vài phương pháp tối ưu phép modulo, phép nhân và lũy
+thừa nhanh dưới modulo. Với đại đa số bài toán, cách cài đặt đơn giản ở trên
+đã đủ nhanh. Tuy nhiên, khi bài toán yêu cầu chặt về hằng số thời gian, các tối
+ưu này có thể phát huy tác dụng bằng cách giảm tính toán và thao tác modulo
+không cần thiết.
 
 <span id="&#x5FEB;&#x901F;&#x4E58;"></span>
-### Nhan nhanh
+### Nhân nhanh
 
-Trong kiem tra tinh nguyen to va phan tich thua so, ta thuong gap phep nhan lay modulo voi modulo nam trong pham vi `long long`. De tranh tran so nguyen trong qua trinh tinh, muc nay gioi thieu mot cach "nhan nhanh" xu ly duoc modulo trong pham vi `long long`, khong can dung `__int128`, va co do phuc tap $O(1)$. Thuat toan yeu cau tren he thong cham, `long double` it nhat phai duoc bieu dien bang so dau phay dong mo rong $80$ bit[^long-double-80bit].
+Trong kiểm tra tính nguyên tố và phân tích thừa số, ta thường gặp phép nhân lấy
+modulo với modulo nằm trong phạm vi `long long`. Để tránh tràn số nguyên trong
+quá trình tính, mục này giới thiệu một cách "nhân nhanh" xử lý được modulo
+trong phạm vi `long long`, không cần dùng `__int128`, và có độ phức tạp
+$O(1)$. Thuật toán yêu cầu trên hệ thống chấm, `long double` ít nhất phải được
+biểu diễn bằng số dấu phẩy động mở rộng $80$ bit[^long-double-80bit].
 
-Gia su $0 \le a, b < m$, can tinh $ab\bmod m$. Luu y:
+Giả sử $0 \le a, b < m$, cần tính $ab\bmod m$. Lưu ý:
 
 $$
 ab\bmod m=ab-\left\lfloor \dfrac{ab}m \right\rfloor m.
 $$
 
-Dung tran tu nhien cua `unsigned long long`:
+Dùng tràn tự nhiên của `unsigned long long`:
 
 $$
 ab\bmod m=ab-\left\lfloor \dfrac{ab}m \right\rfloor m=\left(ab-\left\lfloor \dfrac{ab}m \right\rfloor m\right)\bmod 2^{64}.
 $$
 
-Chi can tinh duoc thuong $\left\lfloor\dfrac{ab}m\right\rfloor$, cac phep nhan va tru trong bieu thuc ben phai deu co the tinh truc tiep bang `unsigned long long`.
+Chỉ cần tính được thương $\left\lfloor\dfrac{ab}m\right\rfloor$, các phép nhân
+và trừ trong biểu thức bên phải đều có thể tính trực tiếp bằng
+`unsigned long long`.
 
-Bay gio chi con can xet cach tinh $\left\lfloor\dfrac {ab}m\right\rfloor$. Cach lam la dung `long double` de tinh $\dfrac am$ truoc roi nhan voi $b$. Da dung `long double` thi chac chan co sai so do chinh xac. Gia su `long double` duoc bieu dien bang so dau phay dong mo rong $80$ bit (gom $1$ bit dau, $15$ bit mu va $64$ bit tri), thi so chu so co nghia toi da ma `long double` co the bieu dien chinh xac la $64$[^floating-format]. Vi vay $\dfrac am$ trong truong hop xau nhat bat dau sai tu bit thu $65$, voi mien sai so[^ld-mul-err] la $\left(-2^{-64},2^{-64}\right)$. Nhan voi $b$, mot so nguyen co dau $64$ bit, mien sai so thanh $(-0.5,0.5)$. De don gian hoa phan thao luan sau, ta cong them $0.5$ roi lay phan nguyen; mien sai so cuoi cung la $\{0,1\}$.
+Bây giờ chỉ còn cần xét cách tính $\left\lfloor\dfrac {ab}m\right\rfloor$.
+Cách làm là dùng `long double` để tính $\dfrac am$ trước rồi nhân với $b$. Đã
+dùng `long double` thì chắc chắn có sai số do độ chính xác. Giả sử
+`long double` được biểu diễn bằng số dấu phẩy động mở rộng $80$ bit (gồm $1$
+bit dấu, $15$ bit mũ và $64$ bit trị), thì số chữ số có nghĩa tối đa mà
+`long double` có thể biểu diễn chính xác là $64$[^floating-format]. Vì vậy
+$\dfrac am$ trong trường hợp xấu nhất bắt đầu sai từ bit thứ $65$, với miền sai
+số[^ld-mul-err] là $\left(-2^{-64},2^{-64}\right)$. Nhân với $b$, một số nguyên
+có dấu $64$ bit, miền sai số thành $(-0.5,0.5)$. Để đơn giản hóa phần thảo luận
+sau, ta cộng thêm $0.5$ rồi lấy phần nguyên; miền sai số cuối cùng là
+$\{0,1\}$.
 
-Cuoi cung, khi thay vao cong thuc tren can nhan voi $-m$, nen mien sai so cuoi cung la $\{0,-m\}$. Vi $m$ nam trong pham vi `long long`, khi ket qua $r\in[0,m)$ thi tra ve truc tiep $r$, neu khong thi tra ve $r+m$.
+Cuối cùng, khi thay vào công thức trên cần nhân với $-m$, nên miền sai số cuối
+cùng là $\{0,-m\}$. Vì $m$ nằm trong phạm vi `long long`, khi kết quả
+$r\in[0,m)$ thì trả về trực tiếp $r$, nếu không thì trả về $r+m$.
 
-Cai dat nhu sau:
+Cài đặt như sau:
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/i64-mul.cpp:ld-mul"
     ```
 
-Hien nay, hau het trinh bien dich C/C++ tren cac he thong cham deu ho tro kieu `__int128`[^int128], vi vay cung co the nang kieu cua thua so len `__int128` roi lay modulo truc tiep:
+Hiện nay, hầu hết trình biên dịch C/C++ trên các hệ thống chấm đều hỗ trợ kiểu
+`__int128`[^int128], vì vậy cũng có thể nâng kiểu của thừa số lên `__int128`
+rồi lấy modulo trực tiếp:
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/i64-mul.cpp:i128-mul"
     ```

@@ -1,25 +1,38 @@
 author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, iamtwz, ksyx, Marcythm, MegaOwIer, 383494, Alpacabla, HeRaNO, abc1763613206, alphagocc, Backl1ght, CCXXXI, drkelo, Early0v0, Great-designer, greyqz, GuanghaoYe, H-J-Granger, HHH2309, isdanni, kenlig, lazyasn, Menci, ouuan, r-value, shawlleyw, shopee-jin, shuzhouliu, Siger Young, TrisolarisHD, untitledunrevised, void-mian, Voileexperiments, weilycoder, xtlsoft, yusancky, YuzhenQin1, sun2snow
 
-Dinh nghia so nguyen to va hop so xem tai [co so ly thuyet so](./basic.md).
+Định nghĩa số nguyên tố và hợp số xem tại [cơ sở lý thuyết số](./basic.md).
 
-Ham dem so nguyen to: so luong so nguyen to nho hon hoac bang $x$, ky hieu la $\pi(x)$. Khi $x$ tang, ta co xap xi: $\pi(x) \sim \dfrac{x}{\ln(x)}$.
+Hàm đếm số nguyên tố: số lượng số nguyên tố nhỏ hơn hoặc bằng $x$, ký hiệu là
+$\pi(x)$. Khi $x$ tăng, ta có xấp xỉ: $\pi(x) \sim \dfrac{x}{\ln(x)}$.
 
 <span id="&#x7D20;&#x6027;&#x6D4B;&#x8BD5;"></span>
-## Kiem tra tinh nguyen to
+## Kiểm tra tính nguyên tố
 
-**Kiem tra tinh nguyen to** (Primality test) dung de xac dinh mot so tu nhien cho truoc co phai la so nguyen to hay khong.
+**Kiểm tra tính nguyên tố** (Primality test) dùng để xác định một số tự nhiên
+cho trước có phải là số nguyên tố hay không.
 
-Co hai loai kiem tra tinh nguyen to:
+Có hai loại kiểm tra tính nguyên tố:
 
-1.  Kiem tra tat dinh: xac dinh chac chan mot so co phai so nguyen to hay khong. Cac vi du thuong gap gom phep thu chia, kiem tra Lucas-Lehmer va chung minh tinh nguyen to bang duong cong elliptic.
-2.  Kiem tra xac suat: thuong nhanh hon rat nhieu so voi kiem tra tat dinh, nhung co kha nang, du rat nho, nhan nham [hop so](../number-theory/basic.md#%E7%B4%A0%E6%95%B0%E4%B8%8E%E5%90%88%E6%95%B0) thanh so nguyen to; chieu nguoc lai thi khong xay ra. Vi vay, nhung so vuot qua kiem tra xac suat duoc goi la **so co kha nang nguyen to** cho den khi tinh nguyen to cua chung duoc chung minh mot cach tat dinh. Nhung so vuot qua kiem tra nhung thuc ra la hop so duoc goi la **gia nguyen to**. Co nhieu kieu gia nguyen to cu the, thuong gap nhat la gia nguyen to Fermat, tuc cac hop so thoa man dinh ly nho Fermat. Vi du thuong gap cua kiem tra xac suat la kiem tra Miller-Rabin.
+1.  Kiểm tra tất định: xác định chắc chắn một số có phải số nguyên tố hay
+    không. Các ví dụ thường gặp gồm phép thử chia, kiểm tra Lucas-Lehmer và
+    chứng minh tính nguyên tố bằng đường cong elliptic.
+2.  Kiểm tra xác suất: thường nhanh hơn rất nhiều so với kiểm tra tất định,
+    nhưng có khả năng, dù rất nhỏ, nhận nhầm [hợp số](../number-theory/basic.md#%E7%B4%A0%E6%95%B0%E4%B8%8E%E5%90%88%E6%95%B0)
+    thành số nguyên tố; chiều ngược lại thì không xảy ra. Vì vậy, những số vượt
+    qua kiểm tra xác suất được gọi là **số có khả năng nguyên tố** cho đến khi
+    tính nguyên tố của chúng được chứng minh một cách tất định. Những số vượt
+    qua kiểm tra nhưng thực ra là hợp số được gọi là **giả nguyên tố**. Có
+    nhiều kiểu giả nguyên tố cụ thể, thường gặp nhất là giả nguyên tố Fermat,
+    tức các hợp số thỏa mãn định lý nhỏ Fermat. Ví dụ thường gặp của kiểm tra
+    xác suất là kiểm tra Miller-Rabin.
 
 <span id="&#x8BD5;&#x9664;&#x6CD5;"></span>
-### Thu chia
+### Thử chia
 
-Cach lam vét can tu nhien la liet ke moi so tu nho den lon va xem no co chia het hay khong.
+Cách làm vét cạn tự nhiên là liệt kê mọi số từ nhỏ đến lớn và xem nó có chia
+hết hay không.
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         bool isPrime(int a) {
@@ -41,20 +54,22 @@ Cach lam vét can tu nhien la liet ke moi so tu nho den lon va xem no co chia he
             return True
         ```
 
-Cach nay rat chac chan, nhung co can kiem tra tung so hay khong?
+Cách này rất chắc chắn, nhưng có cần kiểm tra từng số hay không?
 
-De thay rang: neu $x$ la uoc cua $a$ thi $\frac{a}{x}$ cung la uoc cua $a$.
+Dễ thấy rằng: nếu $x$ là ước của $a$ thì $\frac{a}{x}$ cũng là ước của $a$.
 
-Ket luan nay cho biet voi moi cap $(x, \frac{a}{x} )$, chi can kiem tra mot trong hai so. De thuan tien, ta chi xet so nho hon trong moi cap. Khong kho thay tat ca cac so nho hon do deu nam trong khoang $[1, \sqrt{a}]$.
+Kết luận này cho biết với mỗi cặp $(x, \frac{a}{x} )$, chỉ cần kiểm tra một
+trong hai số. Để thuận tiện, ta chỉ xét số nhỏ hơn trong mỗi cặp. Không khó
+thấy tất cả các số nhỏ hơn đó đều nằm trong khoảng $[1, \sqrt{a}]$.
 
-Vi $1$ chac chan la uoc nen ta khong can kiem tra no.
+Vì $1$ chắc chắn là ước nên ta không cần kiểm tra nó.
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         bool isPrime(int a) {
           if (a < 2) return 0;
-          for (int i = 2; (long long)i * i <= a; ++i)  // tranh tran so
+          for (int i = 2; (long long)i * i <= a; ++i)  // tránh tràn số
             if (a % i == 0) return 0;
           return 1;
         }
@@ -72,21 +87,24 @@ Vi $1$ chac chan la uoc nen ta khong can kiem tra no.
         ```
 
 <span id="fermat-&#x7D20;&#x6027;&#x6D4B;&#x8BD5;"></span>
-### Kiem tra tinh nguyen to Fermat
+### Kiểm tra tính nguyên tố Fermat
 
-**Kiem tra tinh nguyen to Fermat** la phep kiem tra tinh nguyen to xac suat don gian nhat.
+**Kiểm tra tính nguyên tố Fermat** là phép kiểm tra tính nguyên tố xác suất đơn
+giản nhất.
 
-Tu [dinh ly nho Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), ta co mot y tuong de kiem tra so nguyen to:
+Từ [định lý nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86),
+ta có một ý tưởng để kiểm tra số nguyên tố:
 
-Y tuong co ban la lien tuc chon co so $a$ trong $[2, n-1]$ va kiem tra moi lan co $a^{n-1} \equiv 1 \pmod n$ hay khong.
+Ý tưởng cơ bản là liên tục chọn cơ số $a$ trong $[2, n-1]$ và kiểm tra mỗi lần
+có $a^{n-1} \equiv 1 \pmod n$ hay không.
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         bool fermat(int n) {
           if (n < 3) return n == 2;
-          // test_time la so lan kiem tra; nen dat khong nho hon 8
-          // de bao dam do chinh xac, nhung cung khong nen qua lon de tranh cham
+          // test_time là số lần kiểm tra; nên đặt không nhỏ hơn 8
+          // để bảo đảm độ chính xác, nhưng cũng không nên quá lớn để tránh chậm
           for (int i = 1; i <= test_time; ++i) {
             int a = rand() % (n - 2) + 2;
             if (quickPow(a, n - 1, n) != 1) return false;
@@ -100,8 +118,8 @@ Y tuong co ban la lien tuc chon co so $a$ trong $[2, n-1]$ va kiem tra moi lan c
         def fermat(n):
             if n < 3:
                 return n == 2
-            # test_time la so lan kiem tra; nen dat khong nho hon 8
-            # de bao dam do chinh xac, nhung cung khong nen qua lon de tranh cham
+            # test_time là số lần kiểm tra; nên đặt không nhỏ hơn 8
+            # để bảo đảm độ chính xác, nhưng cũng không nên quá lớn để tránh chậm
             for i in range(1, test_time + 1):
                 a = random.randint(0, 32767) % (n - 2) + 2
                 if quickPow(a, n - 1, n) != 1:
@@ -109,24 +127,51 @@ Y tuong co ban la lien tuc chon co so $a$ trong $[2, n-1]$ va kiem tra moi lan c
             return True
         ```
 
-Neu $a^{n−1} \equiv 1 \pmod n$ nhung $n$ khong phai so nguyen to, ta goi $n$ la **gia nguyen to Fermat** co co so $a$. Trong thuc te, khi $a^{n−1} \equiv 1 \pmod n$, $n$ thuong la so nguyen to. Tuy nhien co phan vi du: voi $n = 341$ va $a = 2$, tuy $2^{340}\equiv 1 {\pmod {341}}$, nhung $341 = 11 \cdot 31$ la hop so. Thuc ra, voi moi co so co dinh $a$, co vo han phan vi du nhu vay[^inf-fermat-pp].
+Nếu $a^{n−1} \equiv 1 \pmod n$ nhưng $n$ không phải số nguyên tố, ta gọi $n$
+là **giả nguyên tố Fermat** có cơ số $a$. Trong thực tế, khi
+$a^{n−1} \equiv 1 \pmod n$, $n$ thường là số nguyên tố. Tuy nhiên có phản ví
+dụ: với $n = 341$ và $a = 2$, tuy $2^{340}\equiv 1 {\pmod {341}}$, nhưng
+$341 = 11 \cdot 31$ là hợp số. Thực ra, với mỗi cơ số cố định $a$, có vô hạn
+phản ví dụ như vậy[^inf-fermat-pp].
 
-Vi kiem tra Fermat khong bao dam dung voi mot co so don le, mot y tuong tu nhien la kiem tra nhieu co so. Tuy nhien, ngay ca khi kiem tra tat ca co so $a$ nguyen to cung nhau voi $n$, van khong the bao dam $n$ la so nguyen to. Noi cach khac, menh de dao cua dinh ly nho Fermat khong dung: ngay ca khi voi moi $a\perp n$ deu co $a^{n-1}\equiv 1\pmod n$, $n$ van co the khong phai so nguyen to. Cac so nhu vay duoc goi la [so Carmichael](./primitive-root.md#carmichael-%E6%95%B0), va cung co vo han so. Dieu nay buoc ta tim phep kiem tra tinh nguyen to chat che hon.
+Vì kiểm tra Fermat không bảo đảm đúng với một cơ số đơn lẻ, một ý tưởng tự
+nhiên là kiểm tra nhiều cơ số. Tuy nhiên, ngay cả khi kiểm tra tất cả cơ số $a$
+nguyên tố cùng nhau với $n$, vẫn không thể bảo đảm $n$ là số nguyên tố. Nói cách
+khác, mệnh đề đảo của định lý nhỏ Fermat không đúng: ngay cả khi với mọi
+$a\perp n$ đều có $a^{n-1}\equiv 1\pmod n$, $n$ vẫn có thể không phải số nguyên
+tố. Các số như vậy được gọi là [số Carmichael](./primitive-root.md#carmichael-%E6%95%B0),
+và cũng có vô hạn số. Điều này buộc ta tìm phép kiểm tra tính nguyên tố chặt
+chẽ hơn.
 
 <span id="miller–rabin-&#x7D20;&#x6027;&#x6D4B;&#x8BD5;"></span>
-### Kiem tra tinh nguyen to Miller-Rabin
+### Kiểm tra tính nguyên tố Miller-Rabin
 
-**Kiem tra tinh nguyen to Miller-Rabin** (Miller-Rabin primality test) la mot phuong phap xac dinh so nguyen to tot hon. No do Miller va Rabin cai tien tu kiem tra Fermat. Giong cac kiem tra so nguyen to xac suat khac, no chi co the phat hien gia nguyen to. Neu can chac chan la so nguyen to, phai dung cac thuat toan tat dinh cham hon nhieu. Tuy vay, tren thuc te chua biet so nao vuot qua Miller-Rabin va cac kiem tra xac suat manh khac nhung lai la hop so, nen ta co the yen tam su dung.
+**Kiểm tra tính nguyên tố Miller-Rabin** (Miller-Rabin primality test) là một
+phương pháp xác định số nguyên tố tốt hơn. Nó do Miller và Rabin cải tiến từ
+kiểm tra Fermat. Giống các kiểm tra số nguyên tố xác suất khác, nó chỉ có thể
+phát hiện giả nguyên tố. Nếu cần chắc chắn là số nguyên tố, phải dùng các thuật
+toán tất định chậm hơn nhiều. Tuy vậy, trên thực tế chưa biết số nào vượt qua
+Miller-Rabin và các kiểm tra xác suất mạnh khác nhưng lại là hợp số, nên ta có
+thể yên tâm sử dụng.
 
-Neu khong xet do phuc tap cua phep nhan, thuc hien $k$ vong kiem tra cho so $n$ co do phuc tap thoi gian $O(k \log n)$. Kiem tra Miller-Rabin thuong dung cho so do chinh xac cao; khi do do phuc tap thoi gian la $O(k \log^3n)$, va co the toi uu bang FFT cung cac ky thuat khac thanh [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity).
+Nếu không xét độ phức tạp của phép nhân, thực hiện $k$ vòng kiểm tra cho số
+$n$ có độ phức tạp thời gian $O(k \log n)$. Kiểm tra Miller-Rabin thường dùng
+cho số độ chính xác cao; khi đó độ phức tạp thời gian là $O(k \log^3n)$, và có
+thể tối ưu bằng FFT cùng các kỹ thuật khác thành
+[$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity).
 
-De xu ly thach thuc tu cac so Carmichael, kiem tra Miller-Rabin xet them tinh chat sau cua so nguyen to:
+Để xử lý thách thức từ các số Carmichael, kiểm tra Miller-Rabin xét thêm tính
+chất sau của số nguyên tố:
 
-???+ note "Dinh ly can bac hai"
-    Neu $p$ la so nguyen to le, nghiem cua $x^2 \equiv 1 \pmod p$ la $x \equiv 1 \pmod p$ hoac $x \equiv p - 1 \pmod p$.
+???+ note "Định lý căn bậc hai"
+    Nếu $p$ là số nguyên tố lẻ, nghiệm của $x^2 \equiv 1 \pmod p$ là
+    $x \equiv 1 \pmod p$ hoặc $x \equiv p - 1 \pmod p$.
 
-??? note "Chung minh"
-    De kiem tra truc tiep rang khi $p$ la so nguyen to le, ca $x\equiv 1\pmod p$ va $x\equiv p-1\pmod p$ deu lam cong thuc tren dung. Theo [dinh ly Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86), day la tat ca nghiem cua phuong trinh.
+??? note "Chứng minh"
+    Dễ kiểm tra trực tiếp rằng khi $p$ là số nguyên tố lẻ, cả
+    $x\equiv 1\pmod p$ và $x\equiv p-1\pmod p$ đều làm công thức trên đúng.
+    Theo [định lý Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86),
+    đây là tất cả nghiệm của phương trình.
 
 Ket hop dinh ly nho Fermat voi dinh ly can bac hai, ta thu duoc kiem tra tinh nguyen to Miller-Rabin:
 
@@ -318,45 +363,64 @@ Nhung do phuc tap cua phan tich thua so nguyen to ro rang rat cao, va ket qua cu
 
 Hay quan sat dac diem cua so phan nguyen to.
 
-1.  So phan nguyen to chac chan la tich cua cac luy thua cua cac so nguyen to lien tiep bat dau tu $2$.
+1.  Số phản nguyên tố chắc chắn là tích của các lũy thừa của các số nguyên tố
+    liên tiếp bắt đầu từ $2$.
 
-2.  So mu cua so nguyen to co gia tri nho hon phai lon hon hoac bang so mu cua so nguyen to co gia tri lon hon. Tuc trong $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ co $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$.
+2.  Số mũ của số nguyên tố có giá trị nhỏ hơn phải lớn hơn hoặc bằng số mũ của
+    số nguyên tố có giá trị lớn hơn. Tức trong
+    $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ có
+    $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$.
 
-Giai thich:
+Giải thích:
 
-1.  Neu khong phai cac so nguyen to lien tiep bat dau tu $2$, thi giu nguyen so mu va thay mot so nguyen to bang so nguyen to nho hon se giu nguyen so uoc nhung lam gia tri $n$ nho di. Khi doi den day cac so nguyen to lien tiep bat dau tu $2$, gia tri $n$ la nho nhat.
+1.  Nếu không phải các số nguyên tố liên tiếp bắt đầu từ $2$, thì giữ nguyên số
+    mũ và thay một số nguyên tố bằng số nguyên tố nhỏ hơn sẽ giữ nguyên số ước
+    nhưng làm giá trị $n$ nhỏ đi. Khi đổi đến dãy các số nguyên tố liên tiếp
+    bắt đầu từ $2$, giá trị $n$ là nhỏ nhất.
 
-2.  Neu so mu cua so nguyen to nho hon lai nho hon so mu cua so nguyen to lon hon, thi doi cho hai so nguyen to do (giu nguyen so mu) se giu nguyen so uoc cua $n$ nhung lam gia tri $n$ nho di.
+2.  Nếu số mũ của số nguyên tố nhỏ hơn lại nhỏ hơn số mũ của số nguyên tố lớn
+    hơn, thì đổi chỗ hai số nguyên tố đó (giữ nguyên số mũ) sẽ giữ nguyên số
+    ước của $n$ nhưng làm giá trị $n$ nhỏ đi.
 
-Con hai cau hoi:
+Còn hai câu hỏi:
 
-1.  Voi $n$ cho truoc, can liet ke den so nguyen to nao?
+1.  Với $n$ cho trước, cần liệt kê đến số nguyên tố nào?
 
-    Truong hop cuc doan nhat chi la $n=p_{1}p_{2} \cdots p_{n}$, nen chi can nhan lien tiep cac so nguyen to den khi tich vua khong vuot qua $n$. Neu liet ke den so nguyen to lon hon nua, nghia la bat buoc co mot so nguyen to truoc do co so mu bang $0$, khi do khong the tao thanh so phan nguyen to.
+    Trường hợp cực đoan nhất chỉ là $n=p_{1}p_{2} \cdots p_{n}$, nên chỉ cần
+    nhân liên tiếp các số nguyên tố đến khi tích vừa không vượt quá $n$. Nếu
+    liệt kê đến số nguyên tố lớn hơn nữa, nghĩa là bắt buộc có một số nguyên tố
+    trước đó có số mũ bằng $0$, khi đó không thể tạo thành số phản nguyên tố.
 
-2.  Can liet ke so mu den bao nhieu?
+2.  Cần liệt kê số mũ đến bao nhiêu?
 
-    Xet truong hop cuc doan: khi mot luy thua nao do cua so nguyen to nho nhat da lon hon $n$ cho truoc (gia tri lon nhat cua $n$), thi neu khai trien thanh cac dang khac, so mu lon nhat chac chan nho hon so mu do. Trong truong hop cuc doan $n$ la luy thua cua $2$, chi can liet ke den $\lfloor\log_2 n\rfloor$.
+    Xét trường hợp cực đoan: khi một lũy thừa nào đó của số nguyên tố nhỏ nhất
+    đã lớn hơn $n$ cho trước (giá trị lớn nhất của $n$), thì nếu khai triển
+    thành các dạng khác, số mũ lớn nhất chắc chắn nhỏ hơn số mũ đó. Trong
+    trường hợp cực đoan $n$ là lũy thừa của $2$, chỉ cần liệt kê đến
+    $\lfloor\log_2 n\rfloor$.
 
-Da co cac chi tiet tren, ta cai dat cu the ra sao?
+Đã có các chi tiết trên, ta cài đặt cụ thể ra sao?
 
-Co the xem trang thai truoc khi di den moi so nguyen to nhu mot nut goc cua cay, roi tim dan theo tung tang. Khi nao dung?
+Có thể xem trạng thái trước khi đi đến mỗi số nguyên tố như một nút gốc của
+cây, rồi tìm dần theo từng tầng. Khi nào dừng?
 
-1.  Gia tri hien tai da lon hon gia tri can xet;
+1.  Giá trị hiện tại đã lớn hơn giá trị cần xét;
 
-2.  Thua so dang liet ke khong con can dung;
+2.  Thừa số đang liệt kê không còn cần dùng;
 
-3.  So uoc hien tai da lon hon so uoc mong muon;
+3.  Số ước hiện tại đã lớn hơn số ước mong muốn;
 
-4.  So uoc hien tai vua bang so uoc mong muon; khi do xet co can cap nhat $\mathit{ans}$ nho nhat hay khong.
+4.  Số ước hiện tại vừa bằng số ước mong muốn; khi đó xét có cần cập nhật
+    $\mathit{ans}$ nhỏ nhất hay không.
 
-Sau do trong dfs, lien tuc liet ke so mu theo tung tang va de quy xuong duoi.
+Sau đó trong DFS, liên tục liệt kê số mũ theo từng tầng và đệ quy xuống dưới.
 
 <span id="&#x4F8B;&#x9898;"></span>
-### Bai tap vi du
+### Bài tập ví dụ
 
 ???+ example "[Codeforces 27E. A number with a given number of divisors](https://codeforces.com/problemset/problem/27/E)"
-    Tim so tu nhien nho nhat co so luong uoc cho truoc. Dap an duoc dam bao khong vuot qua $10^{18}$.
+    Tìm số tự nhiên nhỏ nhất có số lượng ước cho trước. Đáp án được đảm bảo
+    không vượt quá $10^{18}$.
 
 ??? note "Y tuong giai"
     Voi dang bai nay, chi can lay so uoc lam dieu kien dung cua dfs, lien tuc cap nhat gia tri nho nhat tim duoc.

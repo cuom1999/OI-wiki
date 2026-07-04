@@ -1,220 +1,295 @@
-Bai viet nay gioi thieu phan mo dau cua so hoc.
+Bài viết này giới thiệu phần mở đầu của số học.
 
 <span id="&#x6574;&#x9664;"></span>
-## Tinh chia het
+## Tính chia hết
 
-???+ note "Dinh nghia"
-    Cho $a,b\in\mathbf{Z}$, $a\ne 0$. Neu $\exists q\in\mathbf{Z}$ sao cho $b=aq$, ta noi $b$ **chia het** cho $a$, ki hieu $a\mid b$; $b$ khong chia het cho $a$ duoc ki hieu $a\nmid b$.
+???+ note "Định nghĩa"
+    Cho $a,b\in\mathbf{Z}$, $a\ne 0$. Nếu $\exists q\in\mathbf{Z}$ sao cho
+    $b=aq$, ta nói $b$ **chia hết** cho $a$, kí hiệu $a\mid b$; $b$ không chia
+    hết cho $a$ được kí hiệu $a\nmid b$.
 
-Tinh chat cua quan he chia het:
+Tính chất của quan hệ chia hết:
 
 -   $a\mid b\iff-a\mid b\iff a\mid-b\iff|a|\mid|b|$
 -   $a\mid b\land b\mid c\implies a\mid c$
 -   $a\mid b\land a\mid c\iff\forall x,y\in\mathbf{Z}, a\mid(xb+yc)$
 -   $a\mid b\land b\mid a\implies b=\pm a$
--   Cho $m\ne0$, khi do $a\mid b\iff ma\mid mb$.
--   Cho $b\ne0$, khi do $a\mid b\implies|a|\le|b|$.
--   Cho $a\ne0,b=qa+c$, khi do $a\mid b\iff a\mid c$.
+-   Cho $m\ne0$, khi đó $a\mid b\iff ma\mid mb$.
+-   Cho $b\ne0$, khi đó $a\mid b\implies|a|\le|b|$.
+-   Cho $a\ne0,b=qa+c$, khi đó $a\mid b\iff a\mid c$.
 
 <span id="&#x7EA6;&#x6570;"></span>
-### Uoc so
+### Ước số
 
-???+ note "Dinh nghia"
-    Neu $a\mid b$, thi $b$ duoc goi la **boi so** cua $a$, con $a$ duoc goi la **uoc so** cua $b$.
+???+ note "Định nghĩa"
+    Nếu $a\mid b$, thì $b$ được gọi là **bội số** của $a$, còn $a$ được gọi là
+    **ước số** của $b$.
 
-$0$ la boi so cua moi so nguyen khac $0$. Voi so nguyen $b\ne0$, $b$ chi co huu han uoc so.
+$0$ là bội số của mọi số nguyên khác $0$. Với số nguyên $b\ne0$, $b$ chỉ có
+hữu hạn ước số.
 
-Uoc so tam thuong (nhan tu tam thuong): voi so nguyen $b\ne0$, $\pm1$, $\pm b$ la cac uoc so tam thuong cua $b$. Khi $b=\pm1$, $b$ chi co hai uoc so tam thuong.
+Ước số tầm thường (nhân tử tầm thường): với số nguyên $b\ne0$, $\pm1$, $\pm b$
+là các ước số tầm thường của $b$. Khi $b=\pm1$, $b$ chỉ có hai ước số tầm
+thường.
 
-Voi so nguyen $b\ne 0$, cac uoc so con lai cua $b$ duoc goi la uoc so thuc su (nhan tu thuc su, uoc so khong tam thuong, nhan tu khong tam thuong).
+Với số nguyên $b\ne 0$, các ước số còn lại của $b$ được gọi là ước số thực sự
+(nhân tử thực sự, ước số không tầm thường, nhân tử không tầm thường).
 
-Tinh chat cua uoc so:
+Tính chất của ước số:
 
--   Cho so nguyen $b\ne0$. Khi $d$ chay qua tat ca cac uoc so cua $b$, $\dfrac{b}{d}$ cung chay qua tat ca cac uoc so cua $b$.
--   Cho so nguyen $b\gt 0$. Khi $d$ chay qua tat ca cac uoc so duong cua $b$, $\dfrac{b}{d}$ cung chay qua tat ca cac uoc so duong cua $b$.
+-   Cho số nguyên $b\ne0$. Khi $d$ chạy qua tất cả các ước số của $b$,
+    $\dfrac{b}{d}$ cũng chạy qua tất cả các ước số của $b$.
+-   Cho số nguyên $b\gt 0$. Khi $d$ chạy qua tất cả các ước số dương của $b$,
+    $\dfrac{b}{d}$ cũng chạy qua tất cả các ước số dương của $b$.
 
-Trong cac bai toan cu the, **neu khong noi ro, uoc so luon duoc hieu la uoc so duong.**
+Trong các bài toán cụ thể, **nếu không nói rõ, ước số luôn được hiểu là ước số
+dương.**
 
 <span id="&#x5E26;&#x4F59;&#x6570;&#x9664;&#x6CD5;"></span>
-## Phep chia co du
+## Phép chia có dư
 
-???+ note "So du"
-    Cho $a,b$ la hai so nguyen da cho, $a\ne0$. Cho $d$ la mot so nguyen da cho. Khi do ton tai duy nhat mot cap so nguyen $q$ va $r$ thoa man $b=qa+r,d\le r<|a|+d$.
+???+ note "Số dư"
+    Cho $a,b$ là hai số nguyên đã cho, $a\ne0$. Cho $d$ là một số nguyên đã
+    cho. Khi đó tồn tại duy nhất một cặp số nguyên $q$ và $r$ thỏa mãn
+    $b=qa+r,d\le r<|a|+d$.
 
-Voi moi gia tri nguyen cua $d$, $r$ duoc goi chung la so du. $a\mid b$ tuong duong voi $a\mid r$.
+Với mọi giá trị nguyên của $d$, $r$ được gọi chung là số dư. $a\mid b$ tương
+đương với $a\mid r$.
 
-Thong thuong lay $d=0$; khi do dang $b=qa+r,0\le r<|a|$ duoc goi la phep chia co du. So du $r$ o day duoc goi la so du khong am nho nhat.
+Thông thường lấy $d=0$; khi đó dạng $b=qa+r,0\le r<|a|$ được gọi là phép chia
+có dư. Số dư $r$ ở đây được gọi là số dư không âm nhỏ nhất.
 
-So du con co hai cach chon thuong gap:
+Số dư còn có hai cách chọn thường gặp:
 
--   So du co tri tuyet doi nho nhat: lay $d$ bang so doi cua mot nua $|a|$, tuc la $b=qa+r,-\dfrac{|a|}{2}\le r<|a|-\dfrac{|a|}{2}$.
--   So du duong nho nhat: lay $d=1$, tuc la $b=qa+r,1\le r<|a|+1$.
+-   Số dư có trị tuyệt đối nhỏ nhất: lấy $d$ bằng số đối của một nửa $|a|$, tức
+    là $b=qa+r,-\dfrac{|a|}{2}\le r<|a|-\dfrac{|a|}{2}$.
+-   Số dư dương nhỏ nhất: lấy $d=1$, tức là $b=qa+r,1\le r<|a|+1$.
 
-So du trong phep chia co du chi la so du khong am nho nhat. **Neu khong noi ro, so du luon duoc hieu la so du khong am nho nhat.**
+Số dư trong phép chia có dư chỉ là số dư không âm nhỏ nhất. **Nếu không nói rõ,
+số dư luôn được hiểu là số dư không âm nhỏ nhất.**
 
-Tinh chat cua so du:
+Tính chất của số dư:
 
--   Mot so nguyen bat ky khi chia cho so nguyen duong $a$ co so du chac chan va chi co the la mot trong $a$ so $0$ den $a-1$.
--   $a$ so nguyen lien tiep khi chia cho so nguyen duong $a$ se nhan dung mot lan moi so du noi tren. Dac biet, chac chan co dung mot so chia het cho $a$.
+-   Một số nguyên bất kỳ khi chia cho số nguyên dương $a$ có số dư chắc chắn và
+    chỉ có thể là một trong $a$ số $0$ đến $a-1$.
+-   $a$ số nguyên liên tiếp khi chia cho số nguyên dương $a$ sẽ nhận đúng một
+    lần mỗi số dư nói trên. Đặc biệt, chắc chắn có đúng một số chia hết cho
+    $a$.
 
 <span id="&#x6700;&#x5927;&#x516C;&#x7EA6;&#x6570;&#x4E0E;&#x6700;&#x5C0F;&#x516C;&#x500D;&#x6570;"></span>
-## Uoc chung lon nhat va boi chung nho nhat
+## Ước chung lớn nhất và bội chung nhỏ nhất
 
-Ve cac dinh nghia uoc chung, boi chung, uoc chung lon nhat va boi chung nho nhat, xem [Uoc chung lon nhat](./gcd.md).
+Về các định nghĩa ước chung, bội chung, ước chung lớn nhất và bội chung nhỏ
+nhất, xem [Ước chung lớn nhất](./gcd.md).
 
-???+ warning "Canh bao"
-    Mot so tac gia xem uoc chung lon nhat cua $0$ va $0$ la khong duoc dinh nghia; cac tac gia khac thuong xem no bang $0$. Cach cai dat trong C++ STL dung quan diem sau, tuc la uoc chung lon nhat cua $0$ va $0$ bang $0$[^gcdcpp].
+???+ warning "Cảnh báo"
+    Một số tác giả xem ước chung lớn nhất của $0$ và $0$ là không được định
+    nghĩa; các tác giả khác thường xem nó bằng $0$. Cách cài đặt trong C++ STL
+    dùng quan điểm sau, tức là ước chung lớn nhất của $0$ và $0$ bằng
+    $0$[^gcdcpp].
 
-Uoc chung lon nhat co cac tinh chat sau:
+Ước chung lớn nhất có các tính chất sau:
 
 -   $(a_1,\dots,a_n)=(|a_1|,\dots,|a_n|)$;
 -   $(a,b)=(b,a)$;
--   Neu $a\ne 0$, thi $(a,0)=(a,a)=|a|$;
+-   Nếu $a\ne 0$, thì $(a,0)=(a,a)=|a|$;
 -   $(bq+r,b)=(r,b)$;
 -   $(a_1,\dots,a_n)=((a_1,a_2),a_3,\dots,a_n)$. Suy ra $\forall 1<k<n-1,~(a_1,\dots,a_n)=((a_1,\dots,a_k),(a_{k+1},\dots,a_n))$;
--   Voi cac so nguyen $a_1,\dots,a_n$ khong dong thoi bang $0$ va so nguyen khac khong $m$, $(ma_1,\dots,ma_n)=|m|(a_1,\dots,a_n)$;
--   Voi cac so nguyen $a_1,\dots,a_n$ khong dong thoi bang $0$, neu $(a_1,\dots,a_n)=d$, thi $(a_1/d,\dots,a_n/d)=1$;
+-   Với các số nguyên $a_1,\dots,a_n$ không đồng thời bằng $0$ và số nguyên
+    khác không $m$, $(ma_1,\dots,ma_n)=|m|(a_1,\dots,a_n)$;
+-   Với các số nguyên $a_1,\dots,a_n$ không đồng thời bằng $0$, nếu
+    $(a_1,\dots,a_n)=d$, thì $(a_1/d,\dots,a_n/d)=1$;
 -   $(a^n,b^n)=(a,b)^n$.
 
-Uoc chung lon nhat con co cac tinh chat lien quan den tinh nguyen to cung nhau:
+Ước chung lớn nhất còn có các tính chất liên quan đến tính nguyên tố cùng nhau:
 
--   Neu $b|ac$ va $(a,b)=1$, thi $b\mid c$;
--   Neu $b|c$, $a|c$ va $(a,b)=1$, thi $ab\mid c$;
--   Neu $(a,b)=1$, thi $(a,bc)=(a,c)$;
--   Neu $(a_i,b_j)=1,~\forall 1\leq i\leq n,1\leq j\leq m$, thi $\left(\prod_i a_i,\prod_j b_j\right)=1$. Dac biet, neu $(a,b)=1$, thi $(a^n,b^m)=1$;
--   Voi cac so nguyen $a_1,\dots,a_n$, neu $\exists v\in \mathbf{Z},~\prod_i a_i=v^m$, va $(a_i,a_j)=1,~\forall i\ne j$, thi $\forall 1\leq i\leq n,~\sqrt[m]{a_i}\in\mathbf{Z}$.
+-   Nếu $b|ac$ và $(a,b)=1$, thì $b\mid c$;
+-   Nếu $b|c$, $a|c$ và $(a,b)=1$, thì $ab\mid c$;
+-   Nếu $(a,b)=1$, thì $(a,bc)=(a,c)$;
+-   Nếu $(a_i,b_j)=1,~\forall 1\leq i\leq n,1\leq j\leq m$, thì
+    $\left(\prod_i a_i,\prod_j b_j\right)=1$. Đặc biệt, nếu $(a,b)=1$, thì
+    $(a^n,b^m)=1$;
+-   Với các số nguyên $a_1,\dots,a_n$, nếu
+    $\exists v\in \mathbf{Z},~\prod_i a_i=v^m$, và
+    $(a_i,a_j)=1,~\forall i\ne j$, thì
+    $\forall 1\leq i\leq n,~\sqrt[m]{a_i}\in\mathbf{Z}$.
 
-Boi chung nho nhat co cac tinh chat sau:
+Bội chung nhỏ nhất có các tính chất sau:
 
 -   $[a_1,\dots,a_n]=[|a_1|,\dots,|a_n|]$;
 -   $[a,b]=[b,a]$;
--   Neu $a\ne 0$, thi $[a,1]=[a,a]=|a|$;
--   Neu $a\mid b$, thi $[a,b]=|b|$;
+-   Nếu $a\ne 0$, thì $[a,1]=[a,a]=|a|$;
+-   Nếu $a\mid b$, thì $[a,b]=|b|$;
 -   $[a_1,\dots,a_n]=[[a_1,a_2],a_3,\dots,a_n]$. Suy ra $\forall 1<k<n-1,~[a_1,\dots,a_n]=[[a_1,\dots,a_k],[a_{k+1},\dots,a_n]]$;
--   Neu $a_i\mid m,~\forall 1\leq i\leq n$, thi $[a_1,\dots,a_n]\mid m$;
+-   Nếu $a_i\mid m,~\forall 1\leq i\leq n$, thì $[a_1,\dots,a_n]\mid m$;
 -   $[ma_1,\dots,ma_n]=|m|[a_1,\dots,a_n]$;
 -   $[a,b,c][ab,bc,ca]=[a,b][b,c][c,a]$;
 -   $[a^n,b^n]=[a,b]^n$.
 
-Uoc chung lon nhat va boi chung nho nhat co the ket hop thanh nhieu dang thuc dep, chang han:
+Ước chung lớn nhất và bội chung nhỏ nhất có thể kết hợp thành nhiều đẳng thức
+đẹp, chẳng hạn:
 
 -   $(a,b)[a,b]=|ab|$;
 -   $(ab,bc,ca)[a,b,c]=|abc|$;
 -   $\dfrac{(a,b,c)^2}{(a,b)(b,c)(a,c)}=\dfrac{[a,b,c]^2}{[a,b][b,c][a,c]}$.
 
-Tat ca cac tinh chat nay deu co the chung minh tu dinh nghia hoac tu [dinh ly phan tich duy nhat](#%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86); chung minh dung dinh ly phan tich duy nhat thuong de hieu hon.
+Tất cả các tính chất này đều có thể chứng minh từ định nghĩa hoặc từ [định lý
+phân tích duy nhất](#%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86);
+chứng minh dùng định lý phân tích duy nhất thường dễ hiểu hơn.
 
 <span id="&#x4E92;&#x7D20;"></span>
-### Nguyen to cung nhau
+### Nguyên tố cùng nhau
 
-???+ note "Dinh nghia"
-    Neu $(a_1,a_2)=1$, thi $a_1$ va $a_2$ duoc goi la **nguyen to cung nhau** (**toi gian**).
+???+ note "Định nghĩa"
+    Nếu $(a_1,a_2)=1$, thì $a_1$ và $a_2$ được gọi là **nguyên tố cùng nhau**
+    (**tối giản**).
     
-    Neu $(a_1,\ldots,a_k)=1$, thi $a_1,\ldots,a_k$ duoc goi la **nguyen to cung nhau** (**toi gian**).
+    Nếu $(a_1,\ldots,a_k)=1$, thì $a_1,\ldots,a_k$ được gọi là **nguyên tố
+    cùng nhau** (**tối giản**).
 
-Nhieu so nguyen nguyen to cung nhau khong nhat thiet phai nguyen to cung nhau tung doi. Vi du $6$, $10$ va $15$ nguyen to cung nhau, nhung bat ky hai so nao trong do cung khong nguyen to cung nhau.
+Nhiều số nguyên nguyên tố cùng nhau không nhất thiết phải nguyên tố cùng nhau
+từng đôi. Ví dụ $6$, $10$ và $15$ nguyên tố cùng nhau, nhưng bất kỳ hai số nào
+trong đó cũng không nguyên tố cùng nhau.
 
-Tinh chat cua nguyen to cung nhau va ly thuyet uoc chung lon nhat: dinh ly Bezout (Bézout's identity). Xem [Dinh ly Bezout](./bezouts.md).
+Tính chất của nguyên tố cùng nhau và lý thuyết ước chung lớn nhất: định lý
+Bézout (Bézout's identity). Xem [Định lý Bézout](./bezouts.md).
 
 <span id="&#x8F97;&#x8F6C;&#x76F8;&#x9664;&#x6CD5;"></span>
-### Thuat toan Euclid
+### Thuật toán Euclid
 
-Thuat toan Euclid la mot thuat toan, con goi la phep chia lien tiep. Xem [Uoc chung lon nhat](./gcd.md).
+Thuật toán Euclid là một thuật toán, còn gọi là phép chia liên tiếp. Xem [Ước
+chung lớn nhất](./gcd.md).
 
 <span id="&#x7D20;&#x6570;&#x4E0E;&#x5408;&#x6570;"></span>
-## So nguyen to va hop so
+## Số nguyên tố và hợp số
 
-Ve cac thuat toan lien quan den so nguyen to, xem [So nguyen to](./prime.md).
+Về các thuật toán liên quan đến số nguyên tố, xem [Số nguyên tố](./prime.md).
 
-???+ note "Dinh nghia"
-    Cho so nguyen $p\ne0,\pm1$. Neu $p$ khong co uoc so nao ngoai cac uoc so tam thuong, thi $p$ duoc goi la **so nguyen to** (**so bat kha quy**).
+???+ note "Định nghĩa"
+    Cho số nguyên $p\ne0,\pm1$. Nếu $p$ không có ước số nào ngoài các ước số
+    tầm thường, thì $p$ được gọi là **số nguyên tố** (**số bất khả quy**).
     
-    Neu so nguyen $a\ne0,\pm 1$ va $a$ khong phai so nguyen to, thi $a$ duoc goi la **hop so**.
+    Nếu số nguyên $a\ne0,\pm 1$ và $a$ không phải số nguyên tố, thì $a$ được
+    gọi là **hợp số**.
 
-$p$ va $-p$ luon dong thoi la so nguyen to hoac dong thoi la hop so. **Neu khong noi ro, so nguyen to luon duoc hieu la so nguyen to duong.**
+$p$ và $-p$ luôn đồng thời là số nguyên tố hoặc đồng thời là hợp số. **Nếu
+không nói rõ, số nguyên tố luôn được hiểu là số nguyên tố dương.**
 
-Neu mot nhan tu cua so nguyen la so nguyen to, thi so nguyen to do duoc goi la thua so nguyen to (uoc nguyen to) cua so nguyen ay.
+Nếu một nhân tử của số nguyên là số nguyên tố, thì số nguyên tố đó được gọi là
+thừa số nguyên tố (ước nguyên tố) của số nguyên ấy.
 
-Tinh chat don gian cua so nguyen to va hop so:
+Tính chất đơn giản của số nguyên tố và hợp số:
 
--   So nguyen $a$ lon hon $1$ la hop so khi va chi khi $a$ co the bieu dien thanh tich cua hai so nguyen $d$ va $e$ voi $1<d,e<a$.
--   Neu so nguyen to $p$ co uoc so $d$ lon hon $1$, thi $d=p$.
--   Moi so nguyen lon hon $1$ deu co the bieu dien thanh tich cac so nguyen to.
--   Voi hop so $a$, chac chan ton tai so nguyen to $p\le\sqrt{a}$ sao cho $p\mid a$.
--   Co vo han so nguyen to.
--   Moi so nguyen to lon hon $3$ deu co dang $6n\pm 1$[^ref1].
+-   Số nguyên $a$ lớn hơn $1$ là hợp số khi và chỉ khi $a$ có thể biểu diễn
+    thành tích của hai số nguyên $d$ và $e$ với $1<d,e<a$.
+-   Nếu số nguyên tố $p$ có ước số $d$ lớn hơn $1$, thì $d=p$.
+-   Mọi số nguyên lớn hơn $1$ đều có thể biểu diễn thành tích các số nguyên tố.
+-   Với hợp số $a$, chắc chắn tồn tại số nguyên tố $p\le\sqrt{a}$ sao cho
+    $p\mid a$.
+-   Có vô hạn số nguyên tố.
+-   Mọi số nguyên tố lớn hơn $3$ đều có dạng $6n\pm 1$[^ref1].
 
 <span id="&#x7B97;&#x672F;&#x57FA;&#x672C;&#x5B9A;&#x7406;"></span>
-## Dinh ly co ban cua so hoc
+## Định lý cơ bản của số học
 
-???+ note "Bo de co ban cua so hoc"
-    Cho $p$ la so nguyen to, $p\mid a_1a_2$. Khi do it nhat mot trong hai menh de $p\mid a_1$ va $p\mid a_2$ dung.
+???+ note "Bổ đề cơ bản của số học"
+    Cho $p$ là số nguyên tố, $p\mid a_1a_2$. Khi đó ít nhất một trong hai mệnh
+    đề $p\mid a_1$ và $p\mid a_2$ đúng.
 
-Menh de dao cua bo de co ban cua so hoc, sau khi dieu chinh nhe, cung cho mot dinh nghia khac cua so nguyen to.
+Mệnh đề đảo của bổ đề cơ bản của số học, sau khi điều chỉnh nhẹ, cũng cho một
+định nghĩa khác của số nguyên tố.
 
-???+ note "Mot dinh nghia khac cua so nguyen to"
-    Voi so nguyen $p\ne 0,\pm 1$, neu voi moi cap so nguyen $a_1,a_2$ thoa man $p\mid a_1a_2$ deu co $p\mid a_1$ hoac $p\mid a_2$, thi $p$ la so nguyen to.
+???+ note "Một định nghĩa khác của số nguyên tố"
+    Với số nguyên $p\ne 0,\pm 1$, nếu với mọi cặp số nguyên $a_1,a_2$ thỏa mãn
+    $p\mid a_1a_2$ đều có $p\mid a_1$ hoặc $p\mid a_2$, thì $p$ là số nguyên
+    tố.
 
-??? tip "Meo"
-    Dong co cua dinh nghia nay co the tim thay trong [ideal nguyen to](../algebra/ring-theory.md#%E7%B4%A0%E7%90%86%E6%83%B3).
+??? tip "Mẹo"
+    Động cơ của định nghĩa này có thể tìm thấy trong [ideal nguyên tố](../algebra/ring-theory.md#%E7%B4%A0%E7%90%86%E6%83%B3).
 
-???+ note "Dinh ly co ban cua so hoc (dinh ly phan tich duy nhat)"
-    Cho so nguyen duong $a$, khi do luon co bieu dien:
+???+ note "Định lý cơ bản của số học (định lý phân tích duy nhất)"
+    Cho số nguyên dương $a$, khi đó luôn có biểu diễn:
     
     $$
     a=p_1p_2\cdots p_s
     $$
     
-    trong do $p_j(1\le j\le s)$ la cac so nguyen to. Hon nua, bieu dien nay la duy nhat neu khong ke den thu tu cac thua so.
+    trong đó $p_j(1\le j\le s)$ là các số nguyên tố. Hơn nữa, biểu diễn này là
+    duy nhất nếu không kể đến thứ tự các thừa số.
 
-???+ note "Dang phan tich thua so nguyen to chuan"
-    Gom cac so nguyen to giong nhau trong bieu dien tren, ta duoc:
+???+ note "Dạng phân tích thừa số nguyên tố chuẩn"
+    Gom các số nguyên tố giống nhau trong biểu diễn trên, ta được:
     
     $$
     a={p_1}^{\alpha_1}{p_2}^{\alpha_2}\cdots{p_s}^{\alpha_s},p_1<p_2<\cdots<p_s
     $$
     
-    Day duoc goi la dang phan tich thua so nguyen to chuan cua so nguyen duong $a$.
+    Đây được gọi là dạng phân tích thừa số nguyên tố chuẩn của số nguyên dương
+    $a$.
 
-Dinh ly co ban cua so hoc va bo de co ban cua so hoc la hai dinh ly tuong duong.
+Định lý cơ bản của số học và bổ đề cơ bản của số học là hai định lý tương
+đương.
 
 <span id="&#x540C;&#x4F59;"></span>
-## Dong du
+## Đồng dư
 
-???+ note "Dinh nghia"
-    Cho so nguyen $m\ne0$. Neu $m\mid(a-b)$, ta goi $m$ la **modun** (**modulo**), noi $a$ dong du voi $b$ theo modulo $m$, va $b$ la **thang du** cua $a$ theo modulo $m$. Ki hieu $a\equiv b\pmod m$.
+???+ note "Định nghĩa"
+    Cho số nguyên $m\ne0$. Nếu $m\mid(a-b)$, ta gọi $m$ là **modun**
+    (**modulo**), nói $a$ đồng dư với $b$ theo modulo $m$, và $b$ là **thặng
+    dư** của $a$ theo modulo $m$. Kí hiệu $a\equiv b\pmod m$.
     
-    Nguoc lai, $a$ khong dong du voi $b$ theo modulo $m$, va $b$ khong phai thang du cua $a$ theo modulo $m$. Ki hieu $a\not\equiv b\pmod m$.
+    Ngược lại, $a$ không đồng dư với $b$ theo modulo $m$, và $b$ không phải
+    thặng dư của $a$ theo modulo $m$. Kí hiệu $a\not\equiv b\pmod m$.
     
-    Mot dang thuc nhu vay duoc goi la dong du thuc modulo $m$, goi tat la **dong du thuc**.
+    Một đẳng thức như vậy được gọi là đồng dư thức modulo $m$, gọi tắt là
+    **đồng dư thức**.
 
-Theo tinh chat chia het, dong du thuc tren cung tuong duong voi $a\equiv b\pmod{(-m)}$.
+Theo tính chất chia hết, đồng dư thức trên cũng tương đương với
+$a\equiv b\pmod{(-m)}$.
 
-Trong phan sau, neu khong noi ro, modun luon la **so nguyen duong**.
+Trong phần sau, nếu không nói rõ, modun luôn là **số nguyên dương**.
 
-$b$ trong bieu thuc la thang du cua $a$ theo modulo $m$; khai niem nay hoan toan trung voi so du. Bang cach gioi han pham vi cua $b$, ta co thang du khong am nho nhat, thang du co tri tuyet doi nho nhat, va thang du duong nho nhat cua $a$ theo modulo $m$.
+$b$ trong biểu thức là thặng dư của $a$ theo modulo $m$; khái niệm này hoàn
+toàn trùng với số dư. Bằng cách giới hạn phạm vi của $b$, ta có thặng dư không
+âm nhỏ nhất, thặng dư có trị tuyệt đối nhỏ nhất, và thặng dư dương nhỏ nhất của
+$a$ theo modulo $m$.
 
-Tinh chat cua dong du:
+Tính chất của đồng dư:
 
--   Dong du la mot [quan he tuong duong](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB), nghia la dong du co:
-    -   Tinh phan xa: $a\equiv a\pmod m$.
-    -   Tinh doi xung: neu $a\equiv b\pmod m$, thi $b\equiv a\pmod m$.
-    -   Tinh bac cau: neu $a\equiv b\pmod m,b\equiv c\pmod m$, thi $a\equiv c\pmod m$.
--   Phep toan tuyen tinh: neu $a,b,c,d\in\mathbf{Z},m\in\mathbf{N}^*,a\equiv b\pmod m,c\equiv d\pmod m$ thi:
+-   Đồng dư là một [quan hệ tương đương](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB),
+    nghĩa là đồng dư có:
+    -   Tính phản xạ: $a\equiv a\pmod m$.
+    -   Tính đối xứng: nếu $a\equiv b\pmod m$, thì $b\equiv a\pmod m$.
+    -   Tính bắc cầu: nếu $a\equiv b\pmod m,b\equiv c\pmod m$, thì
+        $a\equiv c\pmod m$.
+-   Phép toán tuyến tính: nếu
+    $a,b,c,d\in\mathbf{Z},m\in\mathbf{N}^*,a\equiv b\pmod m,c\equiv d\pmod m$
+    thì:
     -   $a\pm c\equiv b\pm d\pmod m$.
     -   $a\times c\equiv b\times d\pmod m$.
--   Cho $f(x)=\sum_{i=0}^n a_ix^i$ va $g(x)=\sum_{i=0}^n b_ix^i$ la hai da thuc he so nguyen, $m\in\mathbf{N}^*$, va $a_i\equiv b_i\pmod m,~0\leq i\leq n$. Khi do voi moi so nguyen $x$ deu co $f(x)\equiv g(x)\pmod m$. Hon nua, neu $s\equiv t\pmod m$, thi $f(s)\equiv g(t)\pmod m$.
--   Neu $a,b\in\mathbf{Z},k,m\in\mathbf{N}^*,a\equiv b\pmod m$, thi $ak\equiv bk\pmod{mk}$.
--   Neu $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid a,d\mid b,d\mid m$, thi khi $a\equiv b\pmod m$ dung, ta co $\dfrac{a}{d}\equiv\dfrac{b}{d}\left(\bmod\;{\dfrac{m}{d}}\right)$.
--   Neu $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid m$, thi khi $a\equiv b\pmod m$ dung, ta co $a\equiv b\pmod d$.
--   Neu $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*$, thi khi $a\equiv b\pmod m$ dung, ta co $(a,m)=(b,m)$. Neu $d$ chia het $m$ va chia het mot trong hai so $a,b$, thi $d$ cung chia het so con lai.
+-   Cho $f(x)=\sum_{i=0}^n a_ix^i$ và $g(x)=\sum_{i=0}^n b_ix^i$ là hai đa
+    thức hệ số nguyên, $m\in\mathbf{N}^*$, và
+    $a_i\equiv b_i\pmod m,~0\leq i\leq n$. Khi đó với mọi số nguyên $x$ đều có
+    $f(x)\equiv g(x)\pmod m$. Hơn nữa, nếu $s\equiv t\pmod m$, thì
+    $f(s)\equiv g(t)\pmod m$.
+-   Nếu $a,b\in\mathbf{Z},k,m\in\mathbf{N}^*,a\equiv b\pmod m$, thì
+    $ak\equiv bk\pmod{mk}$.
+-   Nếu $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid a,d\mid b,d\mid m$, thì khi
+    $a\equiv b\pmod m$ đúng, ta có
+    $\dfrac{a}{d}\equiv\dfrac{b}{d}\left(\bmod\;{\dfrac{m}{d}}\right)$.
+-   Nếu $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid m$, thì khi
+    $a\equiv b\pmod m$ đúng, ta có $a\equiv b\pmod d$.
+-   Nếu $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*$, thì khi $a\equiv b\pmod m$ đúng,
+    ta có $(a,m)=(b,m)$. Nếu $d$ chia hết $m$ và chia hết một trong hai số
+    $a,b$, thì $d$ cũng chia hết số còn lại.
 
-Con mot tinh chat khac la nghich dao nhan. Xem [Nghich dao nhan](./inverse.md).
+Còn một tính chất khác là nghịch đảo nhân. Xem [Nghịch đảo nhân](./inverse.md).
 
 <span id="&#x540C;&#x4F59;&#x7C7B;&#x4E0E;&#x5269;&#x4F59;&#x7CFB;"></span>
-## Lop dong du va he thang du
+## Lớp đồng dư và hệ thặng dư
 
-De thuan tien thao luan, voi tap hop $A,B$ va phan tu $r$, ta dung cac ki hieu sau:
+Để thuận tiện thảo luận, với tập hợp $A,B$ và phần tử $r$, ta dùng các kí hiệu
+sau:
 
 -   $r+A:=\{r+a:a\in A\}$;
 -   $rA:=\{ra:a\in A\}$;
