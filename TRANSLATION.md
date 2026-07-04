@@ -241,6 +241,10 @@ MkDocs source layout intact.
   WBLT, left-leaning red-black tree, and persistent data-structure material,
   including rendered code comments for Treap and persistent segment tree
   examples.
+- `docs/ds/persistent-balanced.md`, `docs/ds/persistent-trie.md`,
+  `docs/ds/persistent-heap.md`: translated persistent balanced tree, Trie,
+  and mergeable heap pages, plus rendered comments in the persistent Trie
+  example.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

@@ -1,69 +1,69 @@
-## 可持久化无旋转 Treap
+## Treap không xoay bền vững
 
-### 前置知识
+### Kiến thức cần có
 
-**OI 常用的可持久化平衡树** 一般就是 **可持久化无旋转 Treap** 所以推荐首先学习 [**无旋转 Treap**](./treap.md)．
+**Cây cân bằng bền vững thường dùng trong OI** nhìn chung chính là **Treap không xoay bền vững**, nên trước tiên nên học [**Treap không xoay**](./treap.md).
 
-### 思想/做法
+### Ý tưởng/cách làm
 
-对于非旋转 Treap，可通过 **Merge** 和 **Split** 操作过程中复制路径上经过的节点（一般在 **Split** 操作中复制，确保不影响以前的版本）就可完成可持久化．
+Với Treap không xoay, có thể bền vững hóa bằng cách sao chép các nút đi qua trên đường trong quá trình thực hiện **Merge** và **Split** (thường sao chép trong thao tác **Split** để bảo đảm không ảnh hưởng đến phiên bản trước).
 
-对于旋转 Treap，在复制路径上经过的节点同时，还需复制受旋转影响的节点（若其已为这次操作中复制的节点，则无需再复制），对于一次旋转一般只影响两个节点，那么不会增加其时间复杂度．
+Với Treap xoay, ngoài việc sao chép các nút đi qua trên đường, còn cần sao chép các nút bị ảnh hưởng bởi phép xoay (nếu nút đó đã được sao chép trong thao tác hiện tại thì không cần sao chép lại). Một phép xoay thường chỉ ảnh hưởng đến hai nút, nên điều này không làm tăng độ phức tạp thời gian.
 
-上述方法一般被称为 path copying．
+Phương pháp trên thường được gọi là path copying.
 
-「一切可支持操作都可以通过 **Merge Split Newnode Build** 完成」，而 **Build** 操作只用于建造无需理会，**Newnode**（新建节点）就是用来可持久化的工具．
+"Mọi thao tác được hỗ trợ đều có thể hoàn thành thông qua **Merge Split Newnode Build**"; trong đó **Build** chỉ dùng để xây dựng ban đầu nên không cần quan tâm nhiều, còn **Newnode** (tạo nút mới) chính là công cụ để bền vững hóa.
 
-我们来观察一下 **Merge** 和 **Split**，我们会发现它们都是由上而下的操作！
+Quan sát **Merge** và **Split**, ta sẽ thấy chúng đều là các thao tác từ trên xuống dưới.
 
-因此我们完全可以 **参考线段树的可持久化操作** 对它进行可持久化．
+Do đó hoàn toàn có thể **tham khảo thao tác bền vững hóa cây phân đoạn** để bền vững hóa nó.
 
-### 可持久化操作
+### Thao tác bền vững hóa
 
-**可持久化** 是对 **数据结构** 的一种操作，即保留历史信息，使得在后面可以调用之前的历史版本．
+**Bền vững hóa** là một thao tác trên **cấu trúc dữ liệu**, tức giữ lại thông tin lịch sử để về sau có thể gọi lại các phiên bản trước đó.
 
-对于 **可持久化线段树** 来说，每一次新建历史版本就是把 **沿途的修改路径** 复制出来
+Với **cây phân đoạn bền vững**, mỗi lần tạo phiên bản lịch sử mới chính là sao chép **đường đi bị sửa đổi**.
 
-那么对可持久化 Treap（目前国内 OI 常用的版本）来说：
+Với Treap bền vững (phiên bản hiện thường dùng trong OI tại Trung Quốc), ta làm như sau:
 
-在复制一个节点 $X_{a}$（$X$ 节点的第 $a$ 个版本）的新版本 $X_{a+1}$（$X$ 节点的第 $a+1$ 个版本）以后：
+Sau khi sao chép một nút $X_{a}$ (phiên bản thứ $a$ của nút $X$) thành phiên bản mới $X_{a+1}$ (phiên bản thứ $a+1$ của nút $X$):
 
--   如果某个儿子节点 $Y$ 不用修改信息，那么就把 $X_{a+1}$ 的指针直接指向 $Y_{a}$（$Y$ 节点的第 $a$ 个版本）即可．
--   反之，如果要修改 $Y$，那么就在 **递归到下层** 时 **新建**  $Y_{a+1}$（$Y$ 节点的第 $a+1$ 个版本）这个新节点用于 **存储新的信息**，同时把 $X_{a+1}$ 的指针指向 $Y_{a+1}$（$Y$ 节点的第 $a+1$ 个版本）．
+-   Nếu một nút con $Y$ không cần sửa thông tin, chỉ cần cho con trỏ của $X_{a+1}$ trỏ trực tiếp đến $Y_{a}$ (phiên bản thứ $a$ của nút $Y$).
+-   Ngược lại, nếu cần sửa $Y$, thì khi **đệ quy xuống tầng dưới**, hãy **tạo mới** nút $Y_{a+1}$ (phiên bản thứ $a+1$ của nút $Y$) để **lưu thông tin mới**, đồng thời cho con trỏ của $X_{a+1}$ trỏ đến $Y_{a+1}$.
 
-### 可持久化
+### Cần những gì
 
-需要的东西：
+Những thứ cần có:
 
--   一个 `struct` 数组 存 **每个节点** 的信息（一般叫做 `tree` 数组）；（当然写 **指针版** 平衡树的大佬就可以考虑不用这个数组了）
+-   Một mảng `struct` để lưu thông tin của **mỗi nút** (thường gọi là mảng `tree`); dĩ nhiên nếu viết cây cân bằng **bản con trỏ** thì có thể cân nhắc không dùng mảng này.
 
--   一个 **根节点数组**，存每个版本的*树根*，每次查询版本信息时就从 **根数组存的节点** 开始；
+-   Một **mảng nút gốc**, lưu *gốc cây* của từng phiên bản; mỗi khi truy vấn thông tin phiên bản, bắt đầu từ **nút lưu trong mảng gốc**.
 
--   `split()` 分裂 **从树中分裂出两棵树**
+-   `split()` để tách, tức **tách một cây thành hai cây**.
 
--   `merge()` 合并 **把两棵树按照随机权值合并**
+-   `merge()` để hợp nhất, tức **hợp nhất hai cây theo khóa ngẫu nhiên**.
 
--   `newNode()` 新建一个节点
+-   `newNode()` để tạo một nút mới.
 
--   `build()` 建树
+-   `build()` để xây cây.
 
 #### Split
 
-对于 **分裂操作**，每次分裂路径时 **新建节点** 指向分出来的路径，用 `std::pair` 存新分裂出来的两棵树的根．
+Với **thao tác tách**, mỗi khi đi qua đường tách thì **tạo nút mới** trỏ đến đường được tách ra, và dùng `std::pair` để lưu gốc của hai cây mới được tách.
 
-`split(x,k)` 返回一个 `std::pair`;
+`split(x,k)` trả về một `std::pair`.
 
-表示把 $_x$ 为根的树的前 $k$ 个元素放在 **一棵树** 中，剩下的节点构成在另一棵树中，返回这两棵树的根（first 是第一棵树的根，second 是第二棵树的）．
+Nó biểu thị việc đưa $k$ phần tử đầu tiên của cây gốc $_x$ vào **một cây**, các nút còn lại tạo thành cây kia, rồi trả về gốc của hai cây đó (`first` là gốc cây thứ nhất, `second` là gốc cây thứ hai).
 
--   如果 $x$ 的 **左子树** 的 $key \geq k$，那么 **直接递归进左子树**，把左子树分出来的第二颗树和当前的 $x$  **右子树** 合并．
--   否则递归 **右子树**．
+-   Nếu $key$ của **cây con trái** của $x$ thỏa $key \geq k$, thì **đệ quy trực tiếp vào cây con trái**, rồi hợp nhất cây thứ hai tách ra từ cây con trái với **cây con phải** hiện tại của $x$.
+-   Ngược lại, đệ quy vào **cây con phải**.
 
 ```cpp
 static std::pair<int, int> _split(int _x, int k) {
   if (_x == 0)
     return std::make_pair(0, 0);
   else {
-    int _vs = ++_cnt;  // 新建节点（可持久化的精髓）
+    int _vs = ++_cnt;  // Tao nut moi (cot loi cua ben vung hoa)
     _trp[_vs] = _trp[_x];
     std::pair<int, int> _y;
     if (_trp[_vs].key <= k) {
@@ -83,9 +83,9 @@ static std::pair<int, int> _split(int _x, int k) {
 
 #### Merge
 
-`merge(x,y)` 返回 merge 出的树的根．
+`merge(x,y)` trả về gốc của cây sau khi merge.
 
-同样递归实现．如果 **x 的随机权值**>**y 的随机权值**，则 `merge(x_{rc},y)`，否则 `merge(x,y_{lc})`．
+Cũng cài đặt bằng đệ quy. Nếu **khóa ngẫu nhiên của x** > **khóa ngẫu nhiên của y** thì gọi `merge(x_{rc},y)`, ngược lại gọi `merge(x,y_{lc})`.
 
 ```cpp
 static int _merge(int _x, int _y) {
@@ -105,63 +105,63 @@ static int _merge(int _x, int _y) {
 }
 ```
 
-## 可持久化 WBLT
+## WBLT bền vững
 
-### 前置知识
+### Kiến thức cần có
 
-可持久化 WBLT 由 WBLT 改动而来，所以首先学习 [WBLT](./wblt.md)．
+WBLT bền vững được sửa đổi từ WBLT, nên trước tiên hãy học [WBLT](./wblt.md).
 
-### 思想/做法
+### Ý tưởng/cách làm
 
-使用 **路径复制** 的方法，将一次操作中 **修改过** 的节点复制下来，不能影响之前的节点．
+Dùng phương pháp **sao chép đường đi**, sao chép các nút **bị sửa đổi** trong một thao tác để không ảnh hưởng đến các nút ở phiên bản trước.
 
-### 处理懒标记
+### Xử lý nhãn lười
 
-为了处理懒标记，我们这样考虑：在一棵持久化的 WBLT 上，一个点可能有多个父亲，但是儿子数量只能是 $0$ 或 $2$ 个．pushdown 的下放懒标记的操作，只会影响它的儿子，我们对一个点进行 pushdown，是没有影响的；反而是它的儿子，它的儿子可能不止它一个父亲，将它的标记下放到儿子，可能导致在别的父亲的版本上，多了一个不属于那个版本的懒标记，这就错了；除非它的儿子只有它一个父亲．所以我们应该在 pushdown 的时候，复制一遍儿子，把懒标记打到新的儿子上．
+Để xử lý nhãn lười, xét như sau: trên một WBLT bền vững, một nút có thể có nhiều cha, nhưng số con của nó chỉ có thể là $0$ hoặc $2$. Thao tác `pushdown` đẩy nhãn lười xuống chỉ ảnh hưởng đến các con của nút. Việc `pushdown` trên bản thân một nút không gây vấn đề; vấn đề nằm ở các con của nó, vì con của nó có thể có nhiều hơn một cha. Nếu đẩy nhãn xuống con, có thể khiến một phiên bản thuộc cha khác xuất hiện thêm nhãn lười không thuộc phiên bản đó, dẫn đến sai, trừ khi con đó chỉ có một cha. Vì vậy khi `pushdown`, nên sao chép các con một lần rồi gắn nhãn lười lên các con mới.
 
-### 实现路径复制
+### Cài đặt sao chép đường đi
 
-在进行路径复制的时候，我们可以定义一个 refresh 函数，它接受一个节点 $p$ 的引用，表示把节点 $p$ 复制一下，产生一个新的节点，重新赋值给 $p$．使用 refresh 函数的原则是，如果它将要被修改，或者它拥有的儿子即将发生变动（而不是它的儿子的信息将要被修改），那么就 refresh 它，否则不需要．
+Khi thực hiện sao chép đường đi, có thể định nghĩa một hàm `refresh` nhận tham chiếu đến một nút $p$, biểu thị việc sao chép nút $p$ để tạo một nút mới rồi gán lại cho $p$. Nguyên tắc dùng `refresh` là: nếu nút sắp bị sửa, hoặc các con mà nó sở hữu sắp thay đổi (không phải thông tin của con sắp bị sửa), thì `refresh` nó; nếu không thì không cần.
 
-对于静态的查询，除了 pushdown 之外都不用 refresh．如果保证什么操作都做路径复制，那么 pushdown 和 refresh 的顺序是无所谓的．
+Với truy vấn tĩnh, ngoài `pushdown` ra thì không cần `refresh`. Nếu bảo đảm mọi thao tác đều sao chép đường đi, thứ tự giữa `pushdown` và `refresh` không quan trọng.
 
-### 针对持久化 WBLT 的小优化
+### Tối ưu nhỏ cho WBLT bền vững
 
-这里有一个优化．观察到 pushdown 的时候要复制两个节点，可以写标记永久化，但是刚才说了，如果它的儿子只有它一个父亲，可以不用复制．针对这一个性质，可以进行优化，以减少复制多余的节点．
+Có một tối ưu ở đây. Quan sát rằng khi `pushdown` cần sao chép hai nút; cũng có thể dùng cách vĩnh viễn hóa nhãn. Nhưng như đã nói, nếu con của nó chỉ có một cha thì không cần sao chép. Dựa trên tính chất này, có thể tối ưu để giảm các nút bị sao chép dư thừa.
 
-考虑记录每个节点有多少个父亲（认为每个版本的根都有一个父亲），记为 $use$．每次 refresh 的时候，如果 $use\leq 1$ 则不需要重新复制节点，否则新建节点，并且 $use$ 自减 $1$，表示父亲带着这个儿子跑了，这样父亲就可以随意修改新的节点而不影响其它版本．另外每次复制节点的时候，如果节点有儿子，那么两个儿子的 $use$ 自增 $1$；合并两个子树时，返回的节点对两个儿子也有一个父亲的 $use$；删除节点时，两个子节点都丢失一个父亲：这样能优化一些时空．
+Xét việc ghi lại mỗi nút có bao nhiêu cha (xem gốc của mỗi phiên bản cũng có một cha), ký hiệu là $use$. Mỗi lần `refresh`, nếu $use\leq 1$ thì không cần sao chép lại nút; ngược lại tạo nút mới và giảm $use$ đi $1$, biểu thị cha đã mang nút con này sang bản sao mới. Như vậy cha có thể tùy ý sửa nút mới mà không ảnh hưởng đến các phiên bản khác. Ngoài ra, mỗi khi sao chép một nút, nếu nút đó có con thì $use$ của hai con tăng thêm $1$; khi hợp nhất hai cây con, nút được trả về cũng tạo thêm một cha cho hai con; khi xóa nút, hai nút con đều mất đi một cha. Cách này có thể tối ưu một phần thời gian và không gian.
 
-### 代码实现
+### Cài đặt
 
-??? note "完整代码（可持久化文艺平衡树）"
+??? note "Code đầy đủ (cây cân bằng văn nghệ bền vững)"
     ```cpp
     --8<-- "docs/ds/code/persistent-balanced/persistent-wblt.cpp"
     ```
 
-## 例题
+## Bài ví dụ
 
-???+ note "[洛谷 P3835【模版】可持久化平衡树](https://www.luogu.com.cn/problem/P3835)"
-    你需要实现一个数据结构，要求提供如下操作（最开始时数据结构内无数据）：
+???+ note "[Luogu P3835 [Mẫu] Cây cân bằng bền vững](https://www.luogu.com.cn/problem/P3835)"
+    Cần cài đặt một cấu trúc dữ liệu hỗ trợ các thao tác sau (ban đầu cấu trúc dữ liệu rỗng):
     
-    1.  插入 $x$ 数；
-    2.  删除 $x$ 数（若有多个相同的数，应只删除一个，如果没有请忽略该操作）；
-    3.  查询 $x$ 数的排名（排名定义为比当前数小的数的个数 + 1）；
-    4.  查询排名为 $x$ 的数；
-    5.  求 $x$ 的前驱（前驱定义为小于 $x$，且最大的数，如不存在输出 $-2\,147\,483\,647$）；
-    6.  求 $x$ 的后继（后继定义为大于 $x$，且最小的数，如不存在输出 $2\,147\,483\,647$）．
+    1.  Chèn số $x$.
+    2.  Xóa số $x$ (nếu có nhiều số giống nhau thì chỉ xóa một; nếu không có thì bỏ qua thao tác).
+    3.  Truy vấn thứ hạng của số $x$ (thứ hạng được định nghĩa là số lượng số nhỏ hơn số hiện tại cộng $1$).
+    4.  Truy vấn số có thứ hạng $x$.
+    5.  Tìm tiền nhiệm của $x$ (tiền nhiệm là số nhỏ hơn $x$ và lớn nhất; nếu không tồn tại thì xuất $-2\,147\,483\,647$).
+    6.  Tìm kế nhiệm của $x$ (kế nhiệm là số lớn hơn $x$ và nhỏ nhất; nếu không tồn tại thì xuất $2\,147\,483\,647$).
     
-    以上操作均基于某一个历史版本，同时生成一个新的版本（操作 3, 4, 5, 6 即保持原版本无变化）．而每个版本的编号则为操作的序号．特别地，最初的版本编号为 0．
+    Các thao tác trên đều dựa trên một phiên bản lịch sử nào đó, đồng thời sinh ra một phiên bản mới (với thao tác 3, 4, 5, 6 thì phiên bản gốc được giữ nguyên). Mã số của mỗi phiên bản chính là số thứ tự thao tác. Đặc biệt, phiên bản ban đầu có mã số 0.
 
-就是 **普通平衡树** 一题的可持久化版，操作和该题类似．
+Đây chính là phiên bản bền vững của bài **cây cân bằng thông thường**, các thao tác tương tự bài đó.
 
-只是使用了可持久化的 merge 和 split 操作．
+Điểm khác là sử dụng các thao tác `merge` và `split` bền vững.
 
-## 推荐的练手题
+## Bài luyện tập đề xuất
 
-1.  [「Luogu P3919」可持久化数组（模板题）](https://www.luogu.com.cn/problem/P3919)
+1.  ["Luogu P3919" Mảng bền vững (bài mẫu)](https://www.luogu.com.cn/problem/P3919)
 
-2.  [「Codeforces 702F」T-shirt](http://codeforces.com/problemset/problem/702/F)
+2.  ["Codeforces 702F" T-shirt](http://codeforces.com/problemset/problem/702/F)
 
-3.  [「Luogu P5055」可持久化文艺平衡树](https://www.luogu.com.cn/problem/P5055)
+3.  ["Luogu P5055" Cây cân bằng văn nghệ bền vững](https://www.luogu.com.cn/problem/P5055)
 
-4.  [「Luogu P5350」序列](https://www.luogu.com.cn/problem/P5350)
+4.  ["Luogu P5350" Dãy](https://www.luogu.com.cn/problem/P5350)
