@@ -369,7 +369,7 @@ nav:
     - Bảng thưa (Sparse Table): ds/sparse-table.md
     - Cây Fenwick: ds/fenwick.md
     - Cây phân đoạn:
-      - 线段树基础: ds/seg.md
+      - Cơ sở cây phân đoạn: ds/seg.md
       - Hợp nhất & tách cây phân đoạn: ds/seg-merge-split.md
       - Cây phân đoạn Li Chao: ds/li-chao-tree.md
       - Cây mèo: ds/cat-tree.md

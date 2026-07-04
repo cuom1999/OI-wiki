@@ -221,6 +221,10 @@ MkDocs source layout intact.
   `docs/ds/kinetic-tournament-tree.md`: translated segment-tree subpages
   covering merge/split techniques, Li Chao trees, cat trees, Segment Tree
   Beats, historical extrema, and Kinetic Tournament Trees.
+- `docs/ds/seg.md`: translated the foundational segment tree page covering
+  construction, range queries, lazy propagation, dynamic opening nodes,
+  templates, examples, extensions, and graph-building optimization, plus
+  explanatory comments in included snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

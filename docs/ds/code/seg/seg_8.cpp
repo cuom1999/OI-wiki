@@ -20,15 +20,15 @@ struct seg {
   int l, r, lson, rson;
 } t[N << 3];
 
-int ls(int u) {  // 左儿子
+int ls(int u) {  // Con trái.
   return t[u].lson;
 }
 
-int rs(int u) {  // 右儿子
+int rs(int u) {  // Con phải.
   return t[u].rson;
 }
 
-void build(int &u, int l, int r) {  // 动态开点建造入树
+void build(int &u, int l, int r) {  // Mở nút động để xây cây vào.
   u = ++tot;
   t[u] = seg{l, r};
   if (l == r) {
@@ -42,7 +42,7 @@ void build(int &u, int l, int r) {  // 动态开点建造入树
   e[u].emplace_back(rs(u), 0);
 }
 
-void build2(int &u, int l, int r) {  // 动态开点建造出树
+void build2(int &u, int l, int r) {  // Mở nút động để xây cây ra.
   if (l == r) {
     u = pos[l];
     return;
@@ -56,7 +56,7 @@ void build2(int &u, int l, int r) {  // 动态开点建造出树
   e[rs(u)].emplace_back(u, 0);
 }
 
-void add1(int u, int lr, int rr, int v, ll w) {  // 点向区间连边
+void add1(int u, int lr, int rr, int v, ll w) {  // Nối cạnh từ điểm tới đoạn.
   if (lr <= t[u].l && t[u].r <= rr) {
     e[v].emplace_back(u, w);
     return;
@@ -70,7 +70,7 @@ void add1(int u, int lr, int rr, int v, ll w) {  // 点向区间连边
   }
 }
 
-void add2(int u, int lr, int rr, int v, ll w) {  // 区间向点连边
+void add2(int u, int lr, int rr, int v, ll w) {  // Nối cạnh từ đoạn tới điểm.
   if (lr <= t[u].l && t[u].r <= rr) {
     e[u].emplace_back(v, w);
     return;

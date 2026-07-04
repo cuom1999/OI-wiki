@@ -2,7 +2,7 @@
 
 int n, a[100005], d[270000], b[270000];
 
-void build(int l, int r, int p) {  // 建树
+void build(int l, int r, int p) {  // Xây cây.
   if (l == r) {
     d[p] = a[l];
     return;
@@ -13,7 +13,7 @@ void build(int l, int r, int p) {  // 建树
 }
 
 void update(int l, int r, int c, int s, int t,
-            int p) {  // 更新，可以参考前面两个例题
+            int p) {  // Cập nhật; có thể tham khảo hai ví dụ trước.
   if (l <= s && t <= r) {
     d[p] = (t - s + 1) * c, b[p] = c;
     return;
@@ -29,7 +29,7 @@ void update(int l, int r, int c, int s, int t,
   d[p] = d[p << 1] + d[(p << 1) | 1];
 }
 
-int getsum(int l, int r, int s, int t, int p) {  // 取得答案，和前面一样
+int getsum(int l, int r, int s, int t, int p) {  // Lấy đáp án, giống như phía trước.
   if (l <= s && t <= r) return d[p];
   int m = s + ((t - s) >> 1);
   if (b[p]) {
