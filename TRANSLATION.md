@@ -41,6 +41,10 @@ MkDocs source layout intact.
   `docs/intro/docker-deploy.md`, `docs/intro/symbol.md`: translated OI contest
   formats, common contest mistakes, Docker deployment instructions, and the
   mathematical symbol reference.
+- `docs/contest/interaction.md`, `docs/contest/problemsetting.md`: translated
+  the remaining contest pages on interactive problems and problem setting.
+- `docs/lang/helloworld.md`, `docs/lang/struct.md`, `docs/lang/union.md`:
+  translated the first beginner C++ language pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

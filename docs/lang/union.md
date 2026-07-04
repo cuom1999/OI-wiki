@@ -1,10 +1,12 @@
-**联合体**（union）是特殊的类类型，它在一个时刻只能保有其一个非静态数据成员．
+**Liên hiệp** (`union`) là một loại lớp đặc biệt; tại một thời điểm nó chỉ có
+thể lưu giữ một thành viên dữ liệu không tĩnh.
 
-联合体在 2023 年正式被加入 NOI 大纲入门级中．
+Liên hiệp chính thức được thêm vào đề cương NOI cấp nhập môn từ năm 2023.
 
-## 定义联合体
+## Định nghĩa liên hiệp
 
-联合体声明的类说明符与类或 [结构体](./struct.md) 的声明相似：
+Class-specifier trong khai báo liên hiệp tương tự khai báo lớp hoặc
+[cấu trúc](./struct.md):
 
 ```cpp
 union MyUnion {
@@ -13,12 +15,19 @@ union MyUnion {
 } x;
 ```
 
-联合体的定义与结构体类似．按照上述定义，`MyUnion` 同样可以当作一种自定义类型使用．名称 `MyUnion` 可以省略．
+Cách định nghĩa liên hiệp tương tự cấu trúc. Theo định nghĩa trên, `MyUnion`
+cũng có thể được dùng như một kiểu tự định nghĩa. Tên `MyUnion` có thể được bỏ
+qua.
 
-## 访问/修改成员元素
+## Truy cập/sửa phần tử thành viên
 
-与结构体类似，同样可以使用 `变量名.成员名` 进行访问．
+Tương tự cấu trúc, cũng có thể dùng `tên_biến.tên_thành_viên` để truy cập.
 
-联合体所占用的内存空间大小 **不小于** 其最大的成员的大小，所有成员 **共用内存空间与地址**．当一个成员被赋值，由于内存共享，该联合体中的其他成员都会被覆盖．即同一时刻联合体中只能保存一个成员的值．
+Kích thước vùng nhớ mà liên hiệp chiếm **không nhỏ hơn** kích thước thành viên
+lớn nhất của nó; mọi thành viên **dùng chung vùng nhớ và địa chỉ**. Khi một
+thành viên được gán giá trị, do bộ nhớ được chia sẻ, các thành viên khác trong
+liên hiệp sẽ bị ghi đè. Nói cách khác, tại cùng một thời điểm, liên hiệp chỉ có
+thể lưu giá trị của một thành viên.
 
-联合体的更多用法可以参见 [cppreference：联合体声明](https://zh.cppreference.com/w/cpp/language/union)．
+Xem thêm các cách dùng liên hiệp tại
+[cppreference: khai báo union](https://zh.cppreference.com/w/cpp/language/union).

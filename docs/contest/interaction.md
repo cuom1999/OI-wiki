@@ -1,20 +1,20 @@
 author: countercurrent-time, StudyingFather
 
-上个世纪的 IOI 就已涉及交互题．虽然交互题近年来没有在省选以下的比赛中出现，不过 2019 年里 NOI 系列比赛中连续出现《P5208\[WC2019]I 君的商店》、《P5473\[NOI2019]I 君的探险》两道交互题，这可能代表着交互题重新回到 NOI 系列比赛中．
+Từ thế kỷ trước, IOI đã có các bài tương tác. Dù những năm gần đây dạng bài tương tác không xuất hiện trong các kỳ thi dưới cấp tuyển chọn tỉnh, nhưng trong hệ thống kỳ thi NOI năm 2019 đã liên tiếp xuất hiện hai bài tương tác 《P5208\[WC2019]I 君的商店》 và 《P5473\[NOI2019]I 君的探险》. Điều này có thể cho thấy bài tương tác đang quay trở lại hệ thống kỳ thi NOI.
 
-交互题没有很高的前置算法要求，一般也没有严格的时间限制，程序的优秀程度往往仅取决于交互次数限制．所以学习交互题时，建议按照难度循序渐进．要是有意锻炼算法思维而不只是单纯地学习算法，那么完成交互题是很不错的方法．虽然交互题对选手已掌握算法的要求通常较低，但仍建议掌握一定提高和省选算法后再尝试做交互题，因为此时自己的算法思维水平和知识面已经达到了一定水平．基础的交互题介绍可以参考 **OI Wiki** 的 [题型介绍 - 交互题](./problems.md#交互题)．
+Bài tương tác không đòi hỏi quá nhiều thuật toán nền tảng, thường cũng không có giới hạn thời gian quá chặt; mức độ tốt của chương trình thường chỉ phụ thuộc vào giới hạn số lần tương tác. Vì vậy khi học bài tương tác, nên đi từ dễ đến khó. Nếu muốn rèn tư duy thuật toán chứ không chỉ đơn thuần học thuật toán, làm bài tương tác là một cách rất tốt. Tuy yêu cầu về các thuật toán đã nắm của thí sinh thường khá thấp, vẫn nên nắm được một số thuật toán nâng cao và thuật toán cấp tuyển chọn tỉnh rồi mới thử bài tương tác, vì lúc đó tư duy thuật toán và phạm vi kiến thức của bản thân đã đạt đến một mức nhất định. Phần giới thiệu cơ bản về bài tương tác có thể tham khảo [Giới thiệu dạng bài - Bài tương tác](./problems.md#交互题) của **OI Wiki**.
 
-交互题的特殊错误：
+Các lỗi đặc thù của bài tương tác:
 
--   选手每一次输出后都需要刷新缓冲区，否则会引起 Idleness limit exceeded 错误．另外，如果题目含多组数据并且程序可以在未读入所有数据前就知道答案，也仍然要读入所有数据，否则同样会因为读入混乱引起 ILE（可以一次提出多次询问，一次接收所有询问的回答）．同时尽量不要使用快读．
--   如果程序查询次数过多，则在 Codeforces 上会给出 Wrong Answer 的评测结果（不过评测系统会说明 Wrong Answer 的原因），而 UVa 会给出 Protocol Limit Exceeded (PLE) 的评测结果．
--   如果程序交互格式错误，UVa 会给出 Protocol Violation (PV) 的评测结果．
+-   Sau mỗi lần thí sinh xuất dữ liệu đều cần flush bộ đệm, nếu không sẽ gây lỗi Idleness limit exceeded. Ngoài ra, nếu bài có nhiều bộ dữ liệu và chương trình có thể biết đáp án trước khi đọc hết mọi dữ liệu, vẫn phải đọc hết toàn bộ dữ liệu; nếu không, việc đọc bị rối cũng sẽ gây ILE (có thể đưa ra nhiều truy vấn một lần rồi nhận toàn bộ câu trả lời của các truy vấn đó cùng lúc). Đồng thời, cố gắng không dùng fast input.
+-   Nếu chương trình truy vấn quá nhiều lần, Codeforces sẽ trả kết quả Wrong Answer (nhưng hệ thống chấm sẽ nêu nguyên nhân của Wrong Answer), còn UVa sẽ trả kết quả Protocol Limit Exceeded (PLE).
+-   Nếu định dạng tương tác của chương trình sai, UVa sẽ trả kết quả Protocol Violation (PV).
 
-由于交互题输入输出较为繁琐，所以建议分别封装输入和输出函数．
+Vì nhập xuất của bài tương tác khá rườm rà, nên đóng gói riêng các hàm nhập và xuất.
 
-比赛时如果出题人给出了 grader 头文件（用于 grader 交互题的调试）或者 checker 程序（用于 stdio 交互题的调试），则交互题的调试比较简单，因为交互题的对拍会比普通题目的对拍困难很多．没有 `testlib.h` 的情况下．交互细节较多的题目的 stdio 交互库会一般有 3k 代码量，再加上 3k 长度的对拍器，至少需要一小时实现．但是，无论是否有调试程序，调试交互题的代码都往往需要选手模拟与程序的交互过程，因此交互题需要选手能设计出高质量的程序，尽量保证一遍做对，同时拥有较强的静态查错能力．
+Khi thi, nếu tác giả bài cho sẵn header grader (dùng để debug bài tương tác kiểu grader) hoặc chương trình checker (dùng để debug bài tương tác kiểu stdio), việc debug bài tương tác sẽ tương đối đơn giản, vì đối chiếu kiểm thử bài tương tác khó hơn nhiều so với bài thông thường. Khi không có `testlib.h`, thư viện tương tác stdio cho một bài có nhiều chi tiết tương tác thường đã có khoảng 3k dòng code; cộng thêm một bộ đối chiếu dài khoảng 3k nữa thì ít nhất cần một giờ để cài đặt. Tuy nhiên, bất kể có chương trình debug hay không, khi debug code bài tương tác, thí sinh thường phải tự mô phỏng quá trình tương tác với chương trình. Vì vậy bài tương tác đòi hỏi thí sinh thiết kế được chương trình chất lượng cao, cố gắng làm đúng ngay từ đầu, đồng thời có năng lực kiểm lỗi tĩnh tốt.
 
-例题：
+Ví dụ:
 
 -   [CF679A Bear and Prime 100](https://codeforces.com/problemset/problem/679/A)
 -   [CF843B Interactive LowerBound](https://codeforces.com/problemset/problem/843/B)
@@ -24,11 +24,11 @@ author: countercurrent-time, StudyingFather
 
 ## CF679A Bear and Prime 100
 
-每个质数都有且只有两个因数，所以直接枚举要猜的数的因数．由于限制最多询问 20 次，并且对于较大的数（如 92）尝试分解质因数时发现需要最多枚举到 $\lfloor\frac{n}{2}\rfloor$ 的质数．所以我们先筛出 50 以内的质数，每次把所有这些数都询问一遍．
+Mỗi số nguyên tố có đúng hai ước, nên ta có thể trực tiếp liệt kê các ước của số cần đoán. Vì giới hạn tối đa 20 truy vấn, và với các số lớn hơn (như 92), khi thử phân tích thừa số nguyên tố sẽ thấy cần liệt kê các số nguyên tố đến tận $\lfloor\frac{n}{2}\rfloor$ trong trường hợp xấu nhất. Vì vậy trước tiên ta sàng các số nguyên tố không vượt quá 50, rồi lần lượt hỏi tất cả các số đó.
 
-由于本题对拍比较容易，可以直接把值域内的数都尝试一遍．我们会发现程序无法有效处理质数的平方．所以我们要把 2,3,5,7 的平方 4,9,25,49 都放进去，总共 19 个数字，符合题意．
+Do bài này khá dễ đối chiếu kiểm thử, có thể trực tiếp thử mọi số trong miền giá trị. Ta sẽ thấy chương trình không xử lý hiệu quả bình phương của số nguyên tố. Vì vậy cần thêm bình phương của 2,3,5,7, tức 4,9,25,49, tổng cộng 19 số, thỏa mãn yêu cầu đề bài.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     #include <cstdio>
     constexpr int prime[] = {2,  3,  4,  5,  7,  9,  11, 13, 17, 19,
@@ -50,15 +50,15 @@ author: countercurrent-time, StudyingFather
 
 ## CF843B Interactive LowerBound
 
-链表最多有 $5 \times 10 ^ 4$ 个元素，但我们只能询问 $1999$ 次，并且只能获取元素的后一个元素，所以普通的遍历整个链表的方法不可用．直接设法逼近目标元素的位置只有一种方法：随机撒点．
+Danh sách liên kết có tối đa $5 \times 10 ^ 4$ phần tử, nhưng ta chỉ được truy vấn $1999$ lần và chỉ lấy được phần tử kế tiếp của một phần tử, nên cách duyệt toàn bộ danh sách liên kết thông thường không dùng được. Chỉ có một cách trực tiếp để tìm cách tiến gần đến vị trí của phần tử mục tiêu: rải điểm ngẫu nhiên.
 
-对于 $n < 2000$ 的情况直接枚举，$n \ge 2000$ 时，我们直接撒 1000 个点，这时这些点之间的期望距离很小，我们可以直接从小于 $x$ 的最大值开始向后遍历，可以证明在到达下一个点之前我们就已得到答案．遍历的过程中一旦找到大于等于 $x$ 的元素，就可以直接推出．
+Với trường hợp $n < 2000$ thì liệt kê trực tiếp. Khi $n \ge 2000$, ta rải trực tiếp 1000 điểm; lúc này khoảng cách kỳ vọng giữa các điểm này rất nhỏ, và ta có thể bắt đầu duyệt về sau từ giá trị lớn nhất nhỏ hơn $x$. Có thể chứng minh rằng trước khi đến điểm tiếp theo, ta đã thu được đáp án. Trong quá trình duyệt, hễ tìm được phần tử lớn hơn hoặc bằng $x$ thì có thể suy ra trực tiếp.
 
-虽然整体思路简单，但实际情况下，如果没有学习过模拟退火等非完美随机算法，思考起来很可能会困难一些．
+Tuy ý tưởng tổng thể đơn giản, nhưng trên thực tế nếu chưa từng học các thuật toán ngẫu nhiên không hoàn hảo như simulated annealing, việc nghĩ ra có thể sẽ khó hơn một chút.
 
-同时由于 Codeforces 具有 hack 机制，很多人会刻意卡掉没有初始化随机种子的代码，所以在 `random_shuffle()` 函数前需要 `srand((size_t)new char)`．
+Đồng thời, vì Codeforces có cơ chế hack, nhiều người sẽ cố tình hack các code không khởi tạo hạt giống ngẫu nhiên, nên trước hàm `random_shuffle()` cần gọi `srand((size_t)new char)`.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -106,23 +106,23 @@ author: countercurrent-time, StudyingFather
 
 ## UOJ206\[APIO2016]Gap
 
-分两个子任务讨论：
+Chia thành hai subtasks để thảo luận:
 
-1.  查询次数限制．
+1.  Giới hạn số lần truy vấn.
 
-    我们考虑第一次查询．因为我们一开始不知道任何数，所以我们需要询问范围 $[1, 10 ^ {18}]$，获得最大最小值．
+    Ta xét truy vấn đầu tiên. Vì ban đầu không biết bất kỳ số nào, ta cần hỏi đoạn $[1, 10 ^ {18}]$ để nhận giá trị lớn nhất và nhỏ nhất.
 
-    由于查询次数限制刚好为 $\frac{N + 1}{2}$，所以考虑怎么每一次都能获取之前没有获取过的值，这样能大概在次数范围内获取序列内的所有数．方法也很简单：每次查询 $[s, t]$ 后，设获得的值为 $mn, mx$，则下一次查询 $[mn + 1, mx - 1]$．
+    Do giới hạn số lần truy vấn vừa đúng là $\frac{N + 1}{2}$, ta xét làm thế nào để mỗi lần đều lấy được những giá trị chưa từng lấy trước đó, nhờ vậy đại khái có thể lấy được toàn bộ các số trong dãy trong giới hạn số lần. Cách làm cũng rất đơn giản: sau mỗi lần truy vấn $[s, t]$, giả sử nhận được các giá trị $mn, mx$, thì truy vấn tiếp theo là $[mn + 1, mx - 1]$.
 
-2.  询问区间大小限制．
+2.  Giới hạn kích thước đoạn truy vấn.
 
-    由于题目要求询问区间内的数的数量之和不能超过 $3N$，所以考虑最小化询问区间．上面的方法不再可用，因为其询问区间内的数数量之和规模为 $O(N ^ 2)$．我们可以考虑二分值域，但这种方法并不可靠，最坏可能会被卡到 $O(N ^ 2)$．所以我们需要更有效的划分值域的方法，避免查询区间内的点重复查询，浪费机会．
+    Vì đề bài yêu cầu tổng số lượng các số trong những đoạn được truy vấn không vượt quá $3N$, ta xét cách tối thiểu hóa đoạn truy vấn. Cách ở trên không còn dùng được, vì tổng số lượng các số trong các đoạn truy vấn có quy mô $O(N ^ 2)$. Ta có thể xét chặt nhị phân miền giá trị, nhưng cách này không đáng tin cậy, trường hợp xấu nhất có thể bị chặn đến $O(N ^ 2)$. Vì vậy cần một cách chia miền giá trị hiệu quả hơn để tránh truy vấn lặp lại các điểm trong đoạn, gây lãng phí cơ hội.
 
-    考虑到答案不会小于 $\lfloor\frac{a_n - a_1}{N - 1}\rfloor$，所以我们可以考虑按这个值划分值域，设 $i$ 初始为 0，$ans$ 初始为上述值，每次询问 $[i, i + ans]$ 并且更新 $ans$，之后再以 $ans$ 为步长让 $i$ 自增．
+    Nhận thấy đáp án không nhỏ hơn $\lfloor\frac{a_n - a_1}{N - 1}\rfloor$, nên có thể xét chia miền giá trị theo giá trị này. Đặt $i$ ban đầu là 0, $ans$ ban đầu là giá trị vừa nêu; mỗi lần truy vấn $[i, i + ans]$ và cập nhật $ans$, sau đó lại tăng $i$ với bước nhảy là $ans$.
 
-    不过这种方法也不能很好地适用于子任务 1，因为最坏可能很多询问的值域内一个数都没有．
+    Tuy nhiên cách này cũng không áp dụng tốt cho subtask 1, vì trong trường hợp xấu nhất có thể có rất nhiều truy vấn mà trong miền giá trị không chứa số nào.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -156,37 +156,37 @@ author: countercurrent-time, StudyingFather
 
 ## CF750F New Year and Finding Roots
 
-看到 $h \le 7$，询问次数 $\le 16$ 的严格要求，我们需要非常严格地最大化利用访问获得的信息．
+Thấy yêu cầu chặt chẽ $h \le 7$, số lần truy vấn $\le 16$, ta cần tận dụng tối đa thông tin thu được từ mỗi lần thăm.
 
-$h \le 4$ 时可以直接暴力枚举．然而 $h > 4$ 时需要很高效的遍历算法．
+Khi $h \le 4$ có thể brute force trực tiếp. Tuy nhiên khi $h > 4$ cần một thuật toán duyệt rất hiệu quả.
 
-随机撒点不是好方法，因为随机撒点无法确定自己是否足够接近根节点了，并且单纯随机撒点，至少有一次碰到根节点的概率为 $1 - (\frac{2 ^ h - 2}{2 ^ h - 1})$，即使排除重复撒点的情况后，碰到根节点的概率仍然非常小．
+Rải điểm ngẫu nhiên không phải cách tốt, vì nó không thể xác định bản thân đã đủ gần nút gốc hay chưa. Nếu chỉ rải điểm ngẫu nhiên đơn thuần, xác suất ít nhất một lần chạm nút gốc là $1 - (\frac{2 ^ h - 2}{2 ^ h - 1})$; ngay cả khi loại bỏ trường hợp rải trùng điểm, xác suất chạm nút gốc vẫn rất nhỏ.
 
-由于 $1 \le k \le 3$，并且我们并不知道哪一边更接近根节点，所以我们考虑最坏的情况，即如果 $k = 3$ 时，前两次我们的遍历方向都是远离根节点的，第三次遍历方向是接近根节点的．所以我们必须往三个方向都遍历．
+Vì $1 \le k \le 3$ và ta không biết phía nào gần nút gốc hơn, ta xét trường hợp xấu nhất: khi $k = 3$, hai lần đầu hướng duyệt của ta đều đi xa nút gốc, lần thứ ba mới đi gần nút gốc. Vì vậy ta buộc phải duyệt theo cả ba hướng.
 
-考虑 bfs 和 dfs 两种遍历方法．由于 bfs 搜索树可能很大，所以我们优先考虑 dfs．当然，如果我们知道当前的深度，并且当前深度小到深度范围内的搜索树规模小于等于剩余次数，我们就可以直接 bfs．
+Xét hai cách duyệt bfs và dfs. Do cây tìm kiếm của bfs có thể rất lớn, ta ưu tiên xét dfs. Tất nhiên, nếu biết độ sâu hiện tại và độ sâu hiện tại nhỏ đến mức kích thước cây tìm kiếm trong phạm vi độ sâu đó không vượt quá số lần còn lại, ta có thể bfs trực tiếp.
 
-知道当前节点的深度，以及当前遍历的方向会获得很大优势．然而知道当前在往根节点还是在往叶子节点遍历是非常困难的事情．如果使用 dfs，只有当遍历到根节点（$k = 2$）或者叶子节点（$k = 1$）时才知道当前方向．所以我们需要尽可能知道当前节点深度，并且不能采用类似迭代加深搜索的方法，遍历中途停下来．
+Biết độ sâu của nút hiện tại và hướng đang duyệt sẽ đem lại lợi thế rất lớn. Tuy nhiên việc biết hiện tại đang đi về phía nút gốc hay đi về phía lá là rất khó. Nếu dùng dfs, chỉ khi duyệt đến nút gốc ($k = 2$) hoặc nút lá ($k = 1$) mới biết được hướng hiện tại. Vì vậy ta cần biết độ sâu của nút hiện tại nhiều nhất có thể, đồng thời không thể dùng những cách như iterative deepening rồi dừng giữa chừng trong quá trình duyệt.
 
-考虑随机一个初始节点，从初始节点出发可能碰到上面的最坏情况．
+Xét chọn ngẫu nhiên một nút ban đầu; xuất phát từ nút ban đầu có thể gặp trường hợp xấu nhất ở trên.
 
-如果 $k = 1$，我们就可以直接知道当前节点的深度．
+Nếu $k = 1$, ta có thể biết trực tiếp độ sâu của nút hiện tại.
 
-如果 $k = 2$，那当前节点即根节点．
+Nếu $k = 2$, nút hiện tại chính là nút gốc.
 
-如果 $k = 3$，我们直接考虑往三个方向 dfs．考虑到其中两个方向是直接往叶子节点的方向，遍历路径长度相同；另一个方向是往根节点的方向，不过可能中途不小心往叶子节点的方向走了，遍历路径长度会较大．此时我们就可以计算出当前节点的深度．
+Nếu $k = 3$, ta trực tiếp xét dfs theo cả ba hướng. Vì hai hướng trong đó đi thẳng về phía lá nên độ dài đường duyệt bằng nhau; hướng còn lại đi về phía nút gốc, nhưng có thể giữa chừng vô tình đi về phía lá, khiến độ dài đường duyệt lớn hơn. Khi đó ta có thể tính được độ sâu của nút hiện tại.
 
-当 $k = 1$ 或者 $k = 3$ 时，我们需要考虑较长的遍历路径．我们可以知道路径上深度最小的点（必定比初始节点深度小）．如果我们为访问过的节点打标记，不再遍历，此时从该节点开始就只有一条遍历路径．虽然这条路径可能还是会走向叶子节点，但是这条路径上同样必然存在深度比起点小的节点，我们就可以从这个节点开始继续重复上面的步骤．
+Khi $k = 1$ hoặc $k = 3$, ta cần xét đường duyệt dài hơn. Ta có thể biết điểm có độ sâu nhỏ nhất trên đường đi (chắc chắn nhỏ hơn độ sâu của nút ban đầu). Nếu đánh dấu các nút đã thăm và không duyệt lại, từ nút đó trở đi chỉ còn một đường duyệt. Dù đường này vẫn có thể đi về phía lá, trên đường đó chắc chắn cũng tồn tại nút có độ sâu nhỏ hơn điểm xuất phát, và ta có thể bắt đầu từ nút này để tiếp tục lặp lại các bước ở trên.
 
-当然，我们考虑 $h = 7$ 的最坏情况时（每次只往根节点走一步，就直接往叶子节点走），会发现如果只 dfs，最坏需要 $\frac{(1 + 7) \times 7}{2} = 28$ 次询问．不过我们已经知道初始节点的深度，所以我们可以算出所有已遍历节点的深度，并且根据我们开始时对 bfs 的讨论，判断是否可以从深度最小的点直接 bfs．
+Tất nhiên, khi xét trường hợp xấu nhất với $h = 7$ (mỗi lần chỉ đi một bước về phía nút gốc rồi lập tức đi về phía lá), ta sẽ thấy nếu chỉ dfs thì trường hợp xấu nhất cần $\frac{(1 + 7) \times 7}{2} = 28$ lần truy vấn. Nhưng ta đã biết độ sâu của nút ban đầu, nên có thể tính được độ sâu của mọi nút đã duyệt, và dựa trên thảo luận về bfs ban đầu để phán đoán liệu có thể bfs trực tiếp từ nút có độ sâu nhỏ nhất hay không.
 
-这时，我们可以算出最坏需要 17 次．所以我们考虑从搜索树上去掉一个节点（根据 dfs 只能盲目遍历的性质，我们考虑 bfs）：即当进行深度为 $k$ 的 bfs 时，搜索树节点最坏有 $2 ^ k - 1$ 个，可能需要 $2 ^ k - 1$ 次询问才能确定哪个节点的邻居恰有 2 个．不过我们如果已经对其中 $2 ^ k - 2$ 个节点询问后，可以知道最后一个节点肯定是根节点．
+Lúc này ta có thể tính được trường hợp xấu nhất cần 17 lần. Vì vậy ta xét loại bỏ một nút khỏi cây tìm kiếm (dựa trên tính chất dfs chỉ có thể duyệt mù, ta xét bfs): khi thực hiện bfs ở độ sâu $k$, cây tìm kiếm trong trường hợp xấu nhất có $2 ^ k - 1$ nút, có thể cần $2 ^ k - 1$ lần truy vấn mới xác định được nút nào có đúng 2 hàng xóm. Tuy nhiên nếu ta đã truy vấn $2 ^ k - 2$ nút trong số đó, có thể biết chắc nút cuối cùng là nút gốc.
 
-此时最坏情况下的最优解为：$h = 7$ 时，从叶子节点 dfs，每次都是只往根节点走一步，就直接往叶子节点走，询问 10 次后，当前已知最小深度的节点深度为 4，由于已知其父亲，直接从其父亲开始 bfs（搜索树深度为 3，节点数为 $2 ^ 3 - 1 = 7$）．在 bfs 时询问了 $2 ^ 3 - 2 = 6$ 次后，确定 bfs 搜索树上最后一个节点为根节点．
+Khi đó lời giải tối ưu trong trường hợp xấu nhất là: với $h = 7$, bắt đầu dfs từ một nút lá; mỗi lần đều chỉ đi một bước về phía nút gốc rồi lập tức đi về phía lá. Sau 10 lần truy vấn, độ sâu của nút có độ sâu nhỏ nhất hiện đã biết là 4. Vì đã biết cha của nó, ta bfs trực tiếp từ cha của nó (độ sâu cây tìm kiếm là 3, số nút là $2 ^ 3 - 1 = 7$). Trong lúc bfs, sau khi truy vấn $2 ^ 3 - 2 = 6$ lần, xác định nút cuối cùng trên cây tìm kiếm bfs là nút gốc.
 
-此时我们的算法可以刚好卡到最坏 16 次．
+Khi đó thuật toán của ta vừa khít trường hợp xấu nhất 16 lần.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -280,24 +280,24 @@ $h \le 4$ 时可以直接暴力枚举．然而 $h > 4$ 时需要很高效的遍�
 
 ## UVa12731 太空站之谜 Mysterious Space Station
 
-由于唯一的反馈是移动时是否撞墙，所以我们应该考虑在机器人不走丢的情况下，尽量接近墙边走路，这样有几个好处：
+Vì phản hồi duy nhất là khi di chuyển có va vào tường hay không, ta nên xét cách đi sát mép tường nhiều nhất có thể trong khi vẫn không để robot bị lạc. Cách này có vài lợi ích:
 
--   靠近墙边走路时，很容易知道自己会不会撞墙，获取到尽量多的信息．
--   墙边都是不会出现传送门的格子，可以避免机器人走丢．
+-   Khi đi sát mép tường, rất dễ biết mình có va vào tường hay không, nhờ đó thu được nhiều thông tin nhất có thể.
+-   Các ô sát tường đều không thể là ô có cổng dịch chuyển, nhờ vậy có thể tránh để robot bị lạc.
 
-所以，我们如果已知机器人可能在墙边的某个位置，要确定机器人是不是真的在这个位置，就可以通过 [「单手扶墙法」](https://en.wikipedia.org/wiki/Maze_solving_algorithm) 确定自己是不是真的在这个位置．根据拓扑学原理，在两边都是墙的迷宫中，如果从入口进入，并且总是用一只手扶着同一边墙，就可以保证找到出口．由于本题中的墙是闭合的，所以只需要沿着墙边的道路走，就可以保证可以回到原点而不会撞墙．另外，由于墙边的道路是地图上的最大闭合回路，所以实际代码中并不需要特意撞墙以保证机器人在墙边，可以使用标记在地图中标明墙边道路．而且一旦撞了墙，就需要赶快沿着原路返回，可以在避免机器人走丢的同时减少步数．
+Vì vậy, nếu đã biết robot có thể đang ở một vị trí nào đó sát tường, để xác định robot có thật sự ở vị trí này hay không, có thể dùng [phương pháp "một tay men tường"](https://en.wikipedia.org/wiki/Maze_solving_algorithm). Theo nguyên lý tô pô, trong mê cung có tường ở hai bên, nếu đi vào từ cửa vào và luôn dùng một tay men theo cùng một bên tường, có thể đảm bảo tìm được lối ra. Vì tường trong bài này khép kín, chỉ cần đi dọc theo đường sát tường là có thể đảm bảo quay về điểm xuất phát mà không va tường. Ngoài ra, vì đường sát tường là chu trình khép kín lớn nhất trên bản đồ, trong code thực tế không cần cố tình đâm vào tường để đảm bảo robot đang ở sát tường; có thể dùng đánh dấu để chỉ ra đường sát tường trên bản đồ. Hơn nữa, một khi va vào tường thì cần nhanh chóng quay lại theo đường cũ, vừa tránh để robot bị lạc vừa giảm số bước.
 
-由上，可以推断出确定机器人是否在特定格子的试错法：将机器人在不走到未知格子或已知传送门的情况下走到墙边的道路上，然后绕着墙边道路走一圈．这个过程中如果没有撞墙，就可以确定机器人确实是在特定格子．
+Từ đó có thể suy ra phương pháp thử sai để xác định robot có ở một ô cụ thể hay không: đưa robot, trong điều kiện không đi vào ô chưa biết hoặc cổng dịch chuyển đã biết, đến đường sát tường, rồi đi một vòng quanh đường sát tường. Nếu trong quá trình này không va tường, có thể xác định robot đúng là đang ở ô cụ thể đó.
 
-我们可以采用上面的方法，一开始标出图中所有未知格子，然后从上到下，从左到右依次判断每个未知格子是否是传送门．可以先走到未知格子上方，然后向下、向左走．再用上面的方法判断机器人是不是在未知格子的左侧．如果不是，说明机器人不在应该在的位置，即未知格子是传送门．
+Ta có thể dùng phương pháp trên: ban đầu đánh dấu toàn bộ các ô chưa biết trong hình, sau đó lần lượt xét từng ô chưa biết từ trên xuống dưới, từ trái sang phải để phán đoán ô đó có phải cổng dịch chuyển hay không. Có thể đi đến phía trên ô chưa biết trước, sau đó đi xuống và sang trái. Rồi dùng phương pháp trên để phán đoán robot có đang ở bên trái ô chưa biết hay không. Nếu không, nghĩa là robot không ở vị trí lẽ ra phải ở, tức ô chưa biết là cổng dịch chuyển.
 
-找出未知格子后就需要判断 2k 个未知格子的配对关系，实际方法也很简单：只需要暴力配对就可以了．由于 $k \le 5$，所以最多只需要 $9 + 7 + 5 + 3$ 次试错法．作为对比，判断图中全部未知格子的情况最多需要 $121 - 40$ 次试错法．
+Sau khi tìm ra các ô chưa biết, cần phán đoán quan hệ ghép cặp của $2k$ ô chưa biết. Cách làm thực tế cũng rất đơn giản: chỉ cần ghép cặp brute force. Vì $k \le 5$, nên nhiều nhất chỉ cần $9 + 7 + 5 + 3$ lần thử sai. Để so sánh, trường hợp phán đoán toàn bộ ô chưa biết trong hình nhiều nhất cần $121 - 40$ lần thử sai.
 
-由于目前下面这一份代码只能通过 UOJ 的镜像题：[#247.【Rujia Liu's Present 7】Mysterious Space Station](http://uoj.ac/problem/247)，而无法通过 UVa 原题．修改了 UOJ 上刘汝佳的标程后还是无法通过，并且暂时无法联系到刘汝佳．所以下面的代码以 UOJ 为准．
+Hiện tại, code dưới đây chỉ qua được bài mirror trên UOJ: [#247.【Rujia Liu's Present 7】Mysterious Space Station](http://uoj.ac/problem/247), nhưng không qua được đề gốc UVa. Sau khi sửa standard solution của Liu Rujia trên UOJ vẫn không qua, và tạm thời chưa liên hệ được với Liu Rujia. Vì vậy code dưới đây lấy UOJ làm chuẩn.
 
-不过刘汝佳的标程质量还是比下面这份代码质量高很多的，可以在 UOJ 上查看到 [通过了 UOJ 镜像题的标程](http://uoj.ac/submission/105789)．同一份数据下，标程使用的移动次数非常少．
+Tuy nhiên chất lượng standard solution của Liu Rujia vẫn cao hơn code dưới đây rất nhiều; có thể xem [standard solution đã qua bài mirror UOJ](http://uoj.ac/submission/105789) trên UOJ. Với cùng một bộ dữ liệu, số lần di chuyển mà standard solution dùng là rất ít.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -378,8 +378,8 @@ $h \le 4$ 时可以直接暴力枚举．然而 $h > 4$ 时需要很高效的遍�
       fflush(stdout);
     }
     
-    // 单手扶墙法，因为靠墙的 Path 是极大闭合环，所以只需要在沿着 Path
-    // 走的过程中没有碰到障碍就可以了
+    // Phương pháp một tay men tường: vì Path sát tường là một vòng khép kín
+    // cực đại, chỉ cần trong quá trình đi dọc Path không gặp chướng ngại là đủ
     void wall_follower_init(point x, int last, int wallside, point s) {
       if (x == s && !path.empty()) return;
       if (x.check(wallside) == Path) {
@@ -452,9 +452,9 @@ $h \le 4$ 时可以直接暴力枚举．然而 $h > 4$ 时需要很高效的遍�
       return ok;
     }
     
-    // 确定自己当前在
-    // x，使用「摸着石头过河」的方法，只需要沿着可以避开障碍、未知格子和传送门的方向走到
-    // Path 就行． 在找传送门和配对传送门时使用
+    // Xác định hiện tại mình đang ở x. Dùng cách "dò từng bước":
+    // chỉ cần đi theo các hướng có thể tránh chướng ngại, ô chưa biết và cổng
+    // dịch chuyển cho đến khi tới Path. Dùng khi tìm cổng và ghép cặp cổng.
     void bfs(point s, point t, std::vector<int>& v) {
       static int map[N][N] = {};
       memset(map, -1, sizeof(map));
@@ -479,7 +479,7 @@ $h \le 4$ 时可以直接暴力枚举．然而 $h > 4$ 时需要很高效的遍�
       std::reverse(v.begin(), v.end());
     }
     
-    bool move(point s, point t, std::stack<int>& st) {  // 在靠近传送门时使用
+    bool move(point s, point t, std::stack<int>& st) {  // Dùng khi tới gần cổng
       static std::vector<int> v;
       v.clear();
       bfs(s, t, v);
@@ -488,7 +488,7 @@ $h \le 4$ 时可以直接暴力枚举．然而 $h > 4$ 时需要很高效的遍�
       return true;
     }
     
-    // 尽可能快地向墙边移动
+    // Di chuyển về phía mép tường nhanh nhất có thể
     bool make_sure(point x, int last) {
       if (a[x.x][x.y] == Path) return wall_follower(x);
       for (int i = 0; i < 4; i++)
@@ -564,12 +564,12 @@ $h \le 4$ 时可以直接暴力枚举．然而 $h > 4$ 时需要很高效的遍�
     }
     ```
 
-## 习题
+## Bài tập
 
--   [刘汝佳的交互题专场比赛 Rujia Liu's Present 7 质量非常高，推荐一做．](https://onlinejudge.org/contests/328-9976a2e2/)
+-   [Chuyên đề bài tương tác Rujia Liu's Present 7 của Liu Rujia có chất lượng rất cao, rất đáng làm thử.](https://onlinejudge.org/contests/328-9976a2e2/)
 -   [P5473\[NOI2019\]I 君的探险](https://www.luogu.com.cn/problem/P5473)
 -   [P5208\[WC2019\]I 君的商店](https://www.luogu.com.cn/problem/P5208)
 
-## 参考资料与拓展阅读
+## Tài liệu tham khảo và đọc thêm
 
--   [用 Linux 管道实现 online judge 的交互题功能](https://www.cnblogs.com/tsreaper/p/pipe-interactive.html)
+-   [Dùng pipe Linux để cài đặt chức năng bài tương tác của online judge](https://www.cnblogs.com/tsreaper/p/pipe-interactive.html)
