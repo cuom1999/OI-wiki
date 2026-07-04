@@ -54,7 +54,7 @@ $$
 \end{cases}
 $$
 
-Cần chú ý rằng không nên duyệt trực tiếp các tập rồi kiểm tra có phải tập con hay không. Thay vào đó, hãy dùng [duyệt tập con](../math/binary-set.md#%E9%81%8D%E5%8E%86%E6%89%80%E6%9C%89%E6%8E%A9%E7%A0%81%E7%9A%84%E5%AD%90%E6%8E%A9%E7%A0%81), nhờ đó độ phức tạp thời gian là $O(3^n)$.
+Cần chú ý rằng không nên duyệt trực tiếp các tập rồi kiểm tra có phải tập con hay không. Thay vào đó, hãy dùng [duyệt tập con](../math/binary-set.md#duyệt-submask-của-mọi-mask), nhờ đó độ phức tạp thời gian là $O(3^n)$.
 
 ### Cài đặt
 

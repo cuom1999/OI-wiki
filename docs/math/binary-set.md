@@ -12,7 +12,7 @@ Biểu diễn nhị phân của một số có thể được xem như một t�
 
 Trước khi giới thiệu thao tác duyệt tập con của tập hợp, hãy xem một vài ứng dụng liên quan của phép toán bit.
 
-<span id="&#27169;-2-&#30340;&#24130;"></span>
+<span id="lấy-modulo-lũy-thừa-của-2"></span>
 ### Lấy modulo lũy thừa của 2
 
 Lấy một số modulo một lũy thừa không âm của $2$ tương đương với lấy một số bit cuối trong biểu diễn nhị phân của số đó, cũng tương đương với phép AND với $mod-1$.
@@ -45,7 +45,7 @@ Dựa vào đó có thể kiểm tra một số có phải là lũy thừa khôn
         return n > 0 and (n & (n - 1)) == 0
     ```
 
-<span id="&#23376;&#38598;&#36941;&#21382;"></span>
+<span id="duyệt-tập-con"></span>
 ### Duyệt tập con
 
 Duyệt mọi tập con của một tập được biểu diễn bằng số nhị phân tương đương với liệt kê mọi submask của mask tương ứng.
@@ -97,7 +97,7 @@ Trường hợp đặc biệt là $s=0$. Sau khi thực hiện $s-1$, ta nhận 
 
 Ký hiệu $\text{popcount}(m)$ là số bit `1` trong biểu diễn nhị phân của $m$. Với cách này, có thể duyệt các tập con của tập $m$ trong thời gian $O(2^{\text{popcount}(m)})$.
 
-<span id="&#36941;&#21382;&#25152;&#26377;&#25513;&#30721;&#30340;&#23376;&#25513;&#30721;"></span>
+<span id="duyệt-submask-của-mọi-mask"></span>
 ### Duyệt submask của mọi mask
 
 Trong các bài toán DP trạng thái nén, đôi khi cần duyệt mọi submask của mỗi mask:
@@ -131,12 +131,12 @@ $$
 
 Tổng trên bằng khai triển của $(1+2)^n$ theo định lý nhị thức, do đó có $3^n$ tổ hợp khác nhau.
 
-<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ### Tài liệu tham khảo
 
 **Trang này chủ yếu được dịch từ bài viết [Перебор всех подмасок данной маски](http://e-maxx.ru/algo/all_submasks) và bản dịch tiếng Anh [Submask Enumeration](https://cp-algorithms.com/algebra/all-submasks.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ### Bài tập
 
 - [Atcoder - Close Group](https://atcoder.jp/contests/abc187/tasks/abc187_f)
