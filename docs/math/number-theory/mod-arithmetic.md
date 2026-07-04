@@ -389,23 +389,40 @@ Làm ví dụ, cài đặt tham khảo cho phép lấy nghịch đảo modulo $2
     --8<-- "docs/math/code/mod-arithmetic/mod-32-inv-pow.cpp:inv"
     ```
 
-Tiep theo, xet phep luy thua: cho $x,a,b$ va modulo $m=2^e~(e > 2)$, can tinh $xa^b\bmod m$, trong do $a$ la so le. Theo [phan tich](./primitive-root.md#mod-pow-2) cau truc nhan cua cac so nguyen modulo $2^e$, $a$ luon co the viet duoi dang $\pm g^{\ell}$[^mod-2-g], va dau tru xuat hien khi va chi khi $a\equiv 3\pmod 4$. Trong truong hop nay, co the thay $a$ bang $-a$, roi nhan ket qua cuoi cung voi $(-1)^b$. Vi vay, tiep theo co the gia su $a\equiv 1\pmod 4$. Y tuong cot loi cua thuat toan la viet $a$ thanh $g^{L(a)}\bmod m$, roi dung $xg^{bL(a)}\bmod m$ de tinh luy thua can tim.
+Tiếp theo, xét phép lũy thừa: cho $x,a,b$ và modulo $m=2^e~(e > 2)$, cần tính
+$xa^b\bmod m$, trong đó $a$ là số lẻ. Theo
+[phân tích](./primitive-root.md#mod-pow-2) cấu trúc nhân của các số nguyên
+modulo $2^e$, $a$ luôn có thể viết dưới dạng $\pm g^{\ell}$[^mod-2-g], và dấu
+trừ xuất hiện khi và chỉ khi $a\equiv 3\pmod 4$. Trong trường hợp này, có thể
+thay $a$ bằng $-a$, rồi nhân kết quả cuối cùng với $(-1)^b$. Vì vậy, tiếp theo
+có thể giả sử $a\equiv 1\pmod 4$. Ý tưởng cốt lõi của thuật toán là viết $a$
+thành $g^{L(a)}\bmod m$, rồi dùng $xg^{bL(a)}\bmod m$ để tính lũy thừa cần tìm.
 
-Tinh $L(a)$ chinh la tinh logarit roi rac $\operatorname{ind}_ga$. Luu y rang neu $a\equiv 1\pmod 4$, thi $a$ luon co the viet duoi dang
+Việc tính $L(a)$ chính là tính logarit rời rạc $\operatorname{ind}_ga$. Lưu ý
+rằng nếu $a\equiv 1\pmod 4$, thì $a$ luôn có thể viết dưới dạng
 
 $$
 a \equiv (2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1) \pmod{m},
 $$
 
-trong do $1 < e_1 < e_2 < \cdots < e_s < e$. Ly do la khi khai trien truc tiep tich nay, bit bang $1$ thap thu hai trong bieu dien nhi phan cua $a$ chinh la bit thu $e_1$ (chi so bat dau tu $0$), tu do co the tim bieu dien nay mot cach de quy. Theo [tinh chat](./discrete-logarithm.md#%E6%80%A7%E8%B4%A8) cua logarit roi rac, ta co
+trong đó $1 < e_1 < e_2 < \cdots < e_s < e$. Lý do là khi khai triển trực tiếp
+tích này, bit bằng $1$ thấp thứ hai trong biểu diễn nhị phân của $a$ chính là
+bit thứ $e_1$ (chỉ số bắt đầu từ $0$), từ đó có thể tìm biểu diễn này một cách
+đệ quy. Theo [tính chất](./discrete-logarithm.md#%E6%80%A7%E8%B4%A8) của
+logarit rời rạc, ta có
 
 $$
-4L(a) \equiv 4L(2^{e_1}+1) + 4L(2^{e_2}+1) + \cdots + 4L(2^{e_s}+1) \pmod{m}. 
+4L(a) \equiv 4L(2^{e_1}+1) + 4L(2^{e_2}+1) + \cdots + 4L(2^{e_s}+1) \pmod{m}.
 $$
 
-Vi modulo cua logarit roi rac bang bac $\delta_m(g)=2^{e-2}=m/4$, o day nhan ca dong du thuc voi $4$ de bao dam qua trinh tinh co the thuc hien trong cac lop thang du modulo $m$. Do do, chi can tien xu ly tat ca gia tri $4L(2^d+1)$ voi $1 < d < e$, la co the tinh nhanh $4L(a)$.
+Vì modulo của logarit rời rạc bằng bậc $\delta_m(g)=2^{e-2}=m/4$, ở đây nhân cả
+đồng dư thức với $4$ để bảo đảm quá trình tính có thể thực hiện trong các lớp
+thặng dư modulo $m$. Do đó, chỉ cần tiền xử lý tất cả giá trị $4L(2^d+1)$ với
+$1 < d < e$, là có thể tính nhanh $4L(a)$.
 
-Nguoc lai, tu $L(a)$ cung de thu duoc gia tri $g^a\bmod{m}$. Theo [dinh ly nhi thuc](../combinatorics/combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86), voi $1 < d < e$ deu co
+Ngược lại, từ $L(a)$ cũng dễ thu được giá trị $g^a\bmod{m}$. Theo
+[định lý nhị thức](../combinatorics/combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86),
+với $1 < d < e$ đều có
 
 $$
 \begin{aligned}
@@ -414,13 +431,18 @@ $$
 \end{aligned}
 $$
 
-nen $\delta_m(2^d+1) = 2^{e-d}$. Theo tinh chat cua bac,
+nên $\delta_m(2^d+1) = 2^{e-d}$. Theo tính chất của bậc,
 
 $$
 \delta_m(2^d+1) = \dfrac{\delta_m(g)}{\gcd(\delta_m(g), \operatorname{ind}_g(2^d+1))}.
 $$
 
-Do do, $\gcd(\delta_m(g), \operatorname{ind}_g(2^d+1)) = 2^{d-2}$. Dieu nay cho thay $L(2^d+1) = \operatorname{ind}_g(2^d+1) = 2^{d-2}r$, trong do $2\nmid r$. Vi vay, bit bang $1$ thap nhat trong bieu dien nhi phan cua $4L(2^d+1)$ chinh la bit thu $d$ (chi so bat dau tu $0$). Nho do, cung co the dua vao bieu dien nhi phan de de quy phan tich $4L(a)$ thanh tong cac so co dang $4L(2^d+1)$, tu do thu duoc gia tri cua $a$.
+Do đó, $\gcd(\delta_m(g), \operatorname{ind}_g(2^d+1)) = 2^{d-2}$. Điều này cho
+thấy $L(2^d+1) = \operatorname{ind}_g(2^d+1) = 2^{d-2}r$, trong đó $2\nmid r$.
+Vì vậy, bit bằng $1$ thấp nhất trong biểu diễn nhị phân của $4L(2^d+1)$ chính
+là bit thứ $d$ (chỉ số bắt đầu từ $0$). Nhờ đó, cũng có thể dựa vào biểu diễn
+nhị phân để đệ quy phân tích $4L(a)$ thành tổng các số có dạng $4L(2^d+1)$, từ
+đó thu được giá trị của $a$.
 
 Khi cai dat cu the, co mot vai diem co the toi uu them. Truoc het, viec phan tich $a$ thanh dang tich van can dung phep chia. Cach thuan tien hon la tinh phan tich cua $a^{-1}$, tuc la tim $1 < e_1 < e_2 < \cdots < e_s < e$ sao cho
 
