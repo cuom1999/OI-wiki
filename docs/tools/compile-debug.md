@@ -1,89 +1,89 @@
 author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, Enter-tainer, mcendu, Tiphereth-A, ayalhw, CCXXXI, Early0v0, HeRaNO, ouuan, swiftqwq, Xeonacid, xiaofu-15191
 
-阅读本节之前，请先安装 GCC 和 gdb，具体方法参见 [编译器](compiler.md) 一文．
+Trước khi đọc mục này, hãy cài GCC và gdb trước; cách cài đặt cụ thể xem trong bài [trình biên dịch](compiler.md).
 
-## 命令行使用 g++ 编译 cpp 文件
+## Dùng g++ trên dòng lệnh để biên dịch tệp cpp
 
-### 手动编译
+### Biên dịch thủ công
 
-在命令行下输入 `g++ a.cpp` 就可以编译 `a.cpp` 这个文件了（Windows 系统需提前把编译器所在目录加入到 `PATH` 中）．
+Nhập `g++ a.cpp` trong dòng lệnh là có thể biên dịch tệp `a.cpp` (trên Windows cần thêm trước thư mục chứa trình biên dịch vào `PATH`).
 
-编译过程中可以加入一些编译选项：
+Có thể thêm một số tùy chọn biên dịch trong quá trình biên dịch:
 
--   `-o <文件名>`：指定编译器输出可执行文件的文件名．
--   `-g`：在编译时添加调试信息（使用 gdb 调试时需要）．
--   `-Wall`：显示所有编译警告信息．
--   `-O1`，`-O2`，`-O3`，`-Ofast`：对编译的程序进行优化，越往后的优化级别表示采用的优化手段越多（开启优化会影响使用 gdb 调试）．
--   `-DDEBUG`：在编译时定义 `DEBUG` 符号（符号可以随意更换，例如 `-DONLINE_JUDGE` 定义了 `ONLINE_JUDGE` 符号）．
--   `-UDEBUG`：在编译时取消定义 `DEBUG` 符号．
--   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）．
+-   `-o <tên tệp>`: chỉ định tên tệp thực thi mà trình biên dịch xuất ra.
+-   `-g`: thêm thông tin gỡ lỗi khi biên dịch (cần khi dùng gdb để gỡ lỗi).
+-   `-Wall`: hiển thị toàn bộ thông tin cảnh báo khi biên dịch.
+-   `-O1`, `-O2`, `-O3`, `-Ofast`: tối ưu hóa chương trình được biên dịch; mức càng về sau biểu thị càng dùng nhiều biện pháp tối ưu hơn (bật tối ưu hóa sẽ ảnh hưởng đến việc gỡ lỗi bằng gdb).
+-   `-DDEBUG`: định nghĩa ký hiệu `DEBUG` khi biên dịch (ký hiệu có thể thay tùy ý; ví dụ `-DONLINE_JUDGE` định nghĩa ký hiệu `ONLINE_JUDGE`).
+-   `-UDEBUG`: hủy định nghĩa ký hiệu `DEBUG` khi biên dịch.
+-   `-lm`, `-lgmp`: liên kết một thư viện nào đó (ở đây là math và gmp; tên cụ thể cần dùng phải tra tài liệu của thư viện, nhưng thường giống tên thư viện).
 
-???+ note "Note"
-    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数．[^have-to-link-libm-in-gcc]
+???+ note "Ghi chú"
+    Trên Unix, nếu dùng thư viện math trong thư viện C chuẩn (`math.h`), cần thêm tham số `-lm` khi biên dịch.[^have-to-link-libm-in-gcc]
 
-???+ note "如何开大栈空间？"
-    在 Windows 下，可以使用编译选项 `-Wl,--stack=536870912` 将栈空间开大到 512 MB，其中等号后面的数字为 **字节数**．
-    
-    在 Unix 下，使用 `ulimit -s [num]` 将 **当前终端** 的栈空间调为 `[num]` **KiB**．
+???+ note "Làm thế nào để tăng kích thước stack?"
+    Trên Windows, có thể dùng tùy chọn biên dịch `-Wl,--stack=536870912` để tăng stack lên 512 MB; số sau dấu bằng là **số byte**.
 
-### 使用 GNU Make 的内置规则[^gnu-make-built-in-rules]
+    Trên Unix, dùng `ulimit -s [num]` để đặt stack của **terminal hiện tại** thành `[num]` **KiB**.
 
-对于名为 `qwq.c/cpp` 的 C/C++ 程序源代码，可以使用 `make qwq` 自动编译成对应名为 `qwq` 的程序．
+### Dùng quy tắc tích hợp của GNU Make[^gnu-make-built-in-rules]
 
-如需添加额外的编译选项，可使用 `export CFLAGS="xxx"`（C 程序）或 `export CXXFLAGS="xxx"`（C++ 程序）指定．如需添加额外的预编译选项，可使用 `export CPPFLAGS="xxx"` 指定．上述设置方法也可以写做类似 `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` 来指定单次命令执行中使用的环境变量．
+Với mã nguồn C/C++ tên `qwq.c/cpp`, có thể dùng `make qwq` để tự động biên dịch thành chương trình tương ứng tên `qwq`.
+
+Nếu cần thêm tùy chọn biên dịch, có thể dùng `export CFLAGS="xxx"` (chương trình C) hoặc `export CXXFLAGS="xxx"` (chương trình C++) để chỉ định. Nếu cần thêm tùy chọn tiền xử lý, có thể dùng `export CPPFLAGS="xxx"` để chỉ định. Các thiết lập trên cũng có thể viết dưới dạng như `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` để chỉ định biến môi trường dùng trong một lần chạy lệnh.
 
 ### Sanitizers
 
-#### 介绍
+#### Giới thiệu
 
-sanitizers 是一种集成于编译器中，用于调试 C/C++ 代码的工具，通过在编译过程中插入检查代码来检查代码运行时出现的内存访问越界、未定义行为等错误．
+Sanitizer là một loại công cụ được tích hợp trong trình biên dịch để gỡ lỗi mã C/C++. Công cụ này chèn mã kiểm tra trong quá trình biên dịch để phát hiện các lỗi khi chạy như truy cập bộ nhớ vượt biên, hành vi không xác định, v.v.
 
-它分为以下几种：
+Nó được chia thành các loại sau:
 
--   AddressSanitizer[^address-sanitizer]：检测对堆、栈、全局变量的越界访问，无效的释放内存、内存泄漏（实验性）．
--   ThreadSanitizer[^thread-sanitizer]：检测多线程的数据竞争．
--   MemorySanitizer[^memory-sanitizer]：检测对未初始化内存的读取．
--   UndefinedBehaviorSanitizer[^ub-san]：检测未定义行为．
+-   AddressSanitizer[^address-sanitizer]: phát hiện truy cập vượt biên trên heap, stack và biến toàn cục, giải phóng bộ nhớ không hợp lệ, rò rỉ bộ nhớ (thử nghiệm).
+-   ThreadSanitizer[^thread-sanitizer]: phát hiện tranh chấp dữ liệu trong đa luồng.
+-   MemorySanitizer[^memory-sanitizer]: phát hiện việc đọc bộ nhớ chưa được khởi tạo.
+-   UndefinedBehaviorSanitizer[^ub-san]: phát hiện hành vi không xác định.
 
-#### 使用方式
+#### Cách sử dụng
 
-最新版本的 clang++、g++ 以及 MSVC（部分支持）均已内置 sanitizers，但功能和使用方法有所不同，这里以 clang++ 为例，它的使用方法如下：
+Các phiên bản mới của clang++, g++ và MSVC (hỗ trợ một phần) đều đã tích hợp sanitizers, nhưng chức năng và cách dùng có khác nhau. Ở đây lấy clang++ làm ví dụ; cách dùng như sau:
 
 ```console
 $ clang++ -fsanitize=<name> test.cc
 ```
 
-其中 `<name>` 即为要启用的功能（一个 sanitizer 可理解为一些功能的集合），例如：
+Trong đó `<name>` là chức năng cần bật (có thể hiểu một sanitizer là một tập hợp chức năng), ví dụ:
 
 ```console
-$ clang++ -fsanitize=memory test.cc # 启用 MemorySanitizer
-$ clang++ -fsanitize=signed-integer-overflow test.cc # 启用有符号整型溢出检测
+$ clang++ -fsanitize=memory test.cc # Bật MemorySanitizer
+$ clang++ -fsanitize=signed-integer-overflow test.cc # Bật kiểm tra tràn số nguyên có dấu
 ```
 
-之后直接像平常一样运行可执行文件即可，如果 sanitizer 检测到错误，则会输出到 `stderr` 流，例如：
+Sau đó chỉ cần chạy tệp thực thi như bình thường. Nếu sanitizer phát hiện lỗi, nó sẽ xuất thông tin ra luồng `stderr`, ví dụ:
 
 ```console
 $ ./a.out
 test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'
 ```
 
-???+ warning "Warning"
-    Windows 下的 g++ 不支持 sanitizers，需要使用 [修改过后的 MinGW64](https://github.com/ssbssa/gcc/releases) 或使用其它编译器．
-    
-    MSVC 从 16.0 截至版本 17.14 仅支持 AddressSanitizer．
+???+ warning "Cảnh báo"
+    g++ trên Windows không hỗ trợ sanitizers; cần dùng [MinGW64 đã được chỉnh sửa](https://github.com/ssbssa/gcc/releases) hoặc dùng trình biên dịch khác.
 
-#### 时间/内存代价
+    Từ MSVC 16.0 đến phiên bản 17.14, MSVC chỉ hỗ trợ AddressSanitizer.
 
-显而易见，这些调试工具会严重拖慢代码的运行时间和增大所用内存，以下为使用它们的时间/内存代价：
+#### Chi phí thời gian/bộ nhớ
 
-| 名称                         | 所增大内存倍数 | 所增大时间倍数 |
-| :------------------------- | :------ | :------ |
-| AddressSanitizer           | N/A     | 2       |
-| ThreadSanitizer            | 5\~15   | 5\~10   |
-| MemorySanitizer            | N/A     | 3       |
-| UndefinedBehaviorSanitizer | N/A     | N/A     |
+Hiển nhiên, các công cụ gỡ lỗi này sẽ làm chương trình chạy chậm hơn đáng kể và tăng lượng bộ nhớ sử dụng. Bảng dưới đây là chi phí thời gian/bộ nhớ khi dùng chúng:
 
-## 命令行使用 gdb 调试
+| Tên | Hệ số tăng bộ nhớ | Hệ số tăng thời gian |
+| :-- | :---------------- | :------------------- |
+| AddressSanitizer | N/A | 2 |
+| ThreadSanitizer | 5\~15 | 5\~10 |
+| MemorySanitizer | N/A | 3 |
+| UndefinedBehaviorSanitizer | N/A | N/A |
+
+## Dùng gdb trên dòng lệnh để gỡ lỗi
 
 ```console
 $ g++ a.cpp -o a -g
@@ -103,103 +103,103 @@ Find the GDB manual and other documentation resources online at:
 --Type <RET> for more, q to quit, c to continue without paging--
 ```
 
-按下 `c` 继续．接着提示 `Reading symbols from [filename]...`，出现 `(gdb)` 字样时，就可以输入命令调试了．
+Nhấn `c` để tiếp tục. Sau đó sẽ hiện thông báo `Reading symbols from [filename]...`; khi xuất hiện `(gdb)`, bạn có thể nhập lệnh để gỡ lỗi.
 
-以下是按照分类列表的常用命令：
+Dưới đây là các lệnh thường dùng được liệt kê theo phân loại:
 
-### gdb 基础命令
+### Lệnh gdb cơ bản
 
-| 命令                | 描述                    |
-| ----------------- | --------------------- |
-| `help`            | 显示帮助信息                |
-| `quit`            | 退出 gdb                |
-| `file [filename]` | 加载要调试的程序 `[filename]` |
+| Lệnh | Mô tả |
+| ---- | ----- |
+| `help` | Hiển thị thông tin trợ giúp |
+| `quit` | Thoát gdb |
+| `file [filename]` | Nạp chương trình `[filename]` cần gỡ lỗi |
 
-### 运行控制命令
+### Lệnh điều khiển chạy
 
-| 命令                   | 描述                                         |
-| -------------------- | ------------------------------------------ |
-| `run`                | 运行程序，直到遇到断点或程序结束                           |
-| `continue`           | 继续运行，直到遇到断点或程序结束                           |
-| `next`               | 单步执行，遇到函数调用则进入函数                           |
-| `step`               | 单步执行，遇到函数调用则进入函数                           |
-| `finish`             | 运行到当前函数返回为止，然后停下来等待命令                      |
-| `until [num]`        | 运行到指定行号 `[num]` 为止，然后停下来等待命令               |
-| `break [num]`        | 在第 `[num]` 行设置断点，程序运行到该行时停下来等待命令           |
-| `condition [id] [p]` | 设置编号为 `[id]` 的断点条件，只有满足表达式 `[p]` 条件时，断点被启用 |
-| `ignore [id] [num]`  | 忽略前 `[num]` 次触发断点                          |
-| `delete [id]`        | 删除指定编号的断点                                  |
-| `disable [id]`       | 禁用指定编号的断点                                  |
-| `enable [id]`        | 启用指定编号的断点                                  |
-| `list`               | 列出源代码，接着上次的位置往下列，每次列 10 行                  |
-| `list [num]`         | 列出以第 `[num]` 行为中间行的源代码                     |
-| `list [func-name]`   | 列出某个函数为中间行的源代码                             |
-| `call [function]`    | 调用函数，并打印返回值                                |
+| Lệnh | Mô tả |
+| ---- | ----- |
+| `run` | Chạy chương trình cho đến khi gặp breakpoint hoặc chương trình kết thúc |
+| `continue` | Tiếp tục chạy cho đến khi gặp breakpoint hoặc chương trình kết thúc |
+| `next` | Thực thi từng bước; nếu gặp lời gọi hàm thì bước qua lời gọi đó |
+| `step` | Thực thi từng bước; nếu gặp lời gọi hàm thì đi vào hàm |
+| `finish` | Chạy đến khi hàm hiện tại trả về, rồi dừng lại chờ lệnh |
+| `until [num]` | Chạy đến dòng số `[num]`, rồi dừng lại chờ lệnh |
+| `break [num]` | Đặt breakpoint tại dòng `[num]`; khi chương trình chạy đến dòng đó thì dừng lại chờ lệnh |
+| `condition [id] [p]` | Đặt điều kiện cho breakpoint số `[id]`; breakpoint chỉ được kích hoạt khi biểu thức `[p]` thỏa mãn |
+| `ignore [id] [num]` | Bỏ qua `[num]` lần đầu breakpoint được kích hoạt |
+| `delete [id]` | Xóa breakpoint có số chỉ định |
+| `disable [id]` | Tắt breakpoint có số chỉ định |
+| `enable [id]` | Bật breakpoint có số chỉ định |
+| `list` | Liệt kê mã nguồn, tiếp tục từ vị trí trước đó; mỗi lần liệt kê 10 dòng |
+| `list [num]` | Liệt kê mã nguồn với dòng `[num]` ở giữa |
+| `list [func-name]` | Liệt kê mã nguồn với một hàm nào đó ở giữa |
+| `call [function]` | Gọi hàm và in giá trị trả về |
 
-`break [num]` 会输出断点的编号，也可以使用 `break [func-name]` 设置函数断点；
+`break [num]` sẽ xuất ra số hiệu của breakpoint; cũng có thể dùng `break [func-name]` để đặt breakpoint tại hàm.
 
-你也可以使用 `break [num] [p]` 在设置断点时实现与 `condition [id] [p]` 接近的效果．
+Bạn cũng có thể dùng `break [num] [p]` khi đặt breakpoint để đạt hiệu quả gần giống `condition [id] [p]`.
 
-### 栈帧命令
+### Lệnh stack frame
 
-| 命令          | 描述          |
-| ----------- | ----------- |
-| `info args` | 查看函数的参数     |
-| `backtrace` | 查看各级函数调用及参数 |
-| `frame`     | 选择栈帧        |
-| `up`        | 向上移动一级栈帧    |
-| `down`      | 向下移动一级栈帧    |
+| Lệnh | Mô tả |
+| ---- | ----- |
+| `info args` | Xem tham số của hàm |
+| `backtrace` | Xem các cấp lời gọi hàm và tham số |
+| `frame` | Chọn stack frame |
+| `up` | Di chuyển lên một cấp stack frame |
+| `down` | Di chuyển xuống một cấp stack frame |
 
-### 变量命令
+### Lệnh biến
 
-| 命令                 | 描述                                 |
-| ------------------ | ---------------------------------- |
-| `print [p]`        | 打印表达式 `[p]` 的值，通过表达式可以修改变量的值       |
-| `display [p]`      | 每次暂停时打印表达式 `[p]` 的值，但不进入函数         |
-| `watch [var]`      | 监视变量 `[var]` 的值，当变量被写入时，会自动打印出来并暂停 |
-| `rwatch [var]`     | 监视变量 `[var]` 的值，当变量被读取时，会自动打印出来    |
-| `awatch [var]`     | 当变量 `[var]` 被修改或写入时，会自动打印出来并暂停     |
-| `set [assignment]` | 执行赋值语句                             |
+| Lệnh | Mô tả |
+| ---- | ----- |
+| `print [p]` | In giá trị của biểu thức `[p]`; có thể sửa giá trị biến thông qua biểu thức |
+| `display [p]` | In giá trị của biểu thức `[p]` mỗi khi chương trình tạm dừng |
+| `watch [var]` | Theo dõi giá trị của biến `[var]`; khi biến bị ghi, gdb sẽ tự động in ra và tạm dừng |
+| `rwatch [var]` | Theo dõi giá trị của biến `[var]`; khi biến bị đọc, gdb sẽ tự động in ra |
+| `awatch [var]` | Khi biến `[var]` bị sửa hoặc bị ghi, gdb sẽ tự động in ra và tạm dừng |
+| `set [assignment]` | Thực hiện câu lệnh gán |
 
-`display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `print/display [var]`（按照十进制打印变量 `[var]` 的值），支持的格式字符有：
+Cả hai lệnh `display` và `print` đều hỗ trợ điều khiển định dạng xuất. Cách làm là thêm ngay sau lệnh ký tự `/` và ký tự định dạng; ví dụ `print/display [var]` (in giá trị biến `[var]` theo hệ thập phân). Các ký tự định dạng được hỗ trợ gồm:
 
-| 格式字符 | 对应格式          |
-| ---- | ------------- |
-| `d`  | 按十进制格式显示变量    |
-| `x`  | 按十六进制格式显示变量   |
-| `a`  | 按十六进制格式显示变量   |
-| `t`  | 按二进制格式显示变量    |
-| `c`  | 按字符格式显示变量     |
-| `f`  | 按浮点数格式显示变量    |
-| `u`  | 按十进制格式显示无符号整型 |
-| `o`  | 按八进制格式显示变量    |
+| Ký tự định dạng | Định dạng tương ứng |
+| --------------- | ------------------- |
+| `d` | Hiển thị biến theo hệ thập phân |
+| `x` | Hiển thị biến theo hệ thập lục phân |
+| `a` | Hiển thị biến theo hệ thập lục phân |
+| `t` | Hiển thị biến theo hệ nhị phân |
+| `c` | Hiển thị biến theo dạng ký tự |
+| `f` | Hiển thị biến theo dạng số thực |
+| `u` | Hiển thị số nguyên không dấu theo hệ thập phân |
+| `o` | Hiển thị biến theo hệ bát phân |
 
-### 信息命令
+### Lệnh thông tin
 
-| 命令                 | 描述          |
-| ------------------ | ----------- |
-| `info breakpoints` | 列出所有断点      |
-| `info locals`      | 列出当前栈帧的局部变量 |
-| `info args`        | 列出当前栈帧的函数参数 |
-| `info threads`     | 列出所有线程      |
-| `info program`     | 显示程序的当前状态   |
-| `info registers`   | 显示当前寄存器的值   |
-| `info frame`       | 显示当前栈帧的信息   |
+| Lệnh | Mô tả |
+| ---- | ----- |
+| `info breakpoints` | Liệt kê tất cả breakpoint |
+| `info locals` | Liệt kê biến cục bộ của stack frame hiện tại |
+| `info args` | Liệt kê tham số hàm của stack frame hiện tại |
+| `info threads` | Liệt kê tất cả luồng |
+| `info program` | Hiển thị trạng thái hiện tại của chương trình |
+| `info registers` | Hiển thị giá trị thanh ghi hiện tại |
+| `info frame` | Hiển thị thông tin của stack frame hiện tại |
 
-### 其他命令
+### Lệnh khác
 
-| 命令                            | 描述                                    |
-| ----------------------------- | ------------------------------------- |
-| `enable pretty-printer`       | 启用 pretty-printer，可以以人类可读的方式打印 STL 容器 |
-| `checkpoint`[^checkpoint]     | 创建检查点，可以回滚到检查点                        |
-| `restart [num]`[^checkpoint]  | 回滚到第 `[num]` 个检查点                     |
-| `save breakpoints [filename]` | 保存断点到文件                               |
-| `source [filename]`           | 导入断点文件                                |
+| Lệnh | Mô tả |
+| ---- | ----- |
+| `enable pretty-printer` | Bật pretty-printer, có thể in container STL theo cách con người dễ đọc |
+| `checkpoint`[^checkpoint] | Tạo checkpoint, có thể quay lại checkpoint đó |
+| `restart [num]`[^checkpoint] | Quay lại checkpoint thứ `[num]` |
+| `save breakpoints [filename]` | Lưu breakpoint vào tệp |
+| `source [filename]` | Nhập tệp breakpoint |
 
-???+ tip "提示"
-    gdb 调试时的命令大多都可以被简写为可以唯一确定的字母缩写，例如 `breakpoint` 简写为 `b`，`step` 简写为 `s`，`info args` 简写为 `i ar`．详见 `help` 命令．
+???+ tip "Mẹo"
+    Phần lớn lệnh khi gỡ lỗi bằng gdb có thể được viết tắt thành một dạng rút gọn bằng chữ cái đủ để xác định duy nhất, ví dụ `breakpoint` viết tắt thành `b`, `step` viết tắt thành `s`, `info args` viết tắt thành `i ar`. Xem lệnh `help` để biết chi tiết.
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
 [^have-to-link-libm-in-gcc]: [Why do you have to link the math library in C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c)
 
@@ -213,4 +213,4 @@ Find the GDB manual and other documentation resources online at:
 
 [^gnu-make-built-in-rules]: [Catalogue of Built-In Rules](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)
 
-[^checkpoint]: 与检查点相关的指令仅适用于 GNU/Linux 平台．详见 [GDB 官方手册](https://sourceware.org/gdb/current/onlinedocs/gdb#Checkpoint_002fRestart)．
+[^checkpoint]: Các lệnh liên quan đến checkpoint chỉ dùng được trên nền tảng GNU/Linux. Xem [sổ tay chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb#Checkpoint_002fRestart) để biết chi tiết.
