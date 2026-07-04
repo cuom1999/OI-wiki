@@ -1,10 +1,10 @@
-本页介绍图上随机游走问题．主要从网格图、稀疏图、一般图三个角度进行探究，介绍了解决这类问题的各种方法，并对比了它们在解决各种问题时的优缺点．
+Trang này giới thiệu các bài toán bước đi ngẫu nhiên trên đồ thị. Nội dung chủ yếu khảo sát từ ba góc độ: đồ thị lưới, đồ thị thưa và đồ thị tổng quát; đồng thời trình bày nhiều phương pháp giải loại bài toán này và so sánh ưu, nhược điểm của chúng trong các tình huống khác nhau.
 
-## 定义
+## Định nghĩa
 
-给定一张有向简单图 $G=(V, E)(V=\{v_1, v_2, \cdots, v_{|V|}\})$ 和起点 $s \in V$，终点 $t \in V$，每条边 $e=\left(x, y\right)$ 有正权值 $w_e$，满足 $\forall x \in V \backslash\left\{t\right\}$，$\sum_{\left(x, y\right) \in E} w_{\left(x, y\right)}=1$，且对于任意点 $x$ 都存在一条从 $x$ 出发到达 $t$ 的路径．有一枚棋子从起点出发，每秒从当前所在点 $x$ 以 $w_{(x, y)}$ 的概率选择出边 $\left(x, y\right)$ 并走向 $y$，到达终点则停止，求期望花费时间．
+Cho một đồ thị đơn có hướng $G=(V, E)(V=\{v_1, v_2, \cdots, v_{|V|}\})$, đỉnh xuất phát $s \in V$ và đỉnh kết thúc $t \in V$. Mỗi cạnh $e=\left(x, y\right)$ có trọng số dương $w_e$, thỏa mãn $\forall x \in V \backslash\left\{t\right\}$, $\sum_{\left(x, y\right) \in E} w_{\left(x, y\right)}=1$, và với mọi đỉnh $x$ đều tồn tại một đường đi từ $x$ đến $t$. Một quân cờ xuất phát từ đỉnh đầu; mỗi giây, nếu đang ở đỉnh $x$, nó chọn cạnh ra $\left(x, y\right)$ với xác suất $w_{(x, y)}$ rồi đi tới $y$. Khi đến đỉnh kết thúc thì dừng lại. Hãy tính kỳ vọng thời gian cần dùng.
 
-事实上，这个问题也可以写成矩阵的形式．定义矩阵 $P$：
+Thực ra, bài toán này cũng có thể viết dưới dạng ma trận. Định nghĩa ma trận $P$:
 
 $$
 P_{x, y}=
@@ -14,27 +14,27 @@ w_{(x, y)} & \text{if } (x, y) \in E \text{ and } x \neq t \\
 \end{cases}
 $$
 
-要求的答案即为：
+Đáp án cần tìm là:
 
 $$
 \sum_{k \geq 0} k \times\left(P^k\right)_{s, t}
 $$
 
-其中 $\left(P^k\right)_{s, t}$ 表示走了 $k$ 步第一次到达终点的概率．当图有限且所有点都能到达终点时，由 $P$ 的定义可以证明其特征值都小于 1，所以答案一定是收敛的．
+Trong đó $\left(P^k\right)_{s, t}$ biểu thị xác suất lần đầu đến đỉnh kết thúc sau đúng $k$ bước. Khi đồ thị hữu hạn và mọi đỉnh đều đi được đến đỉnh kết thúc, từ định nghĩa của $P$ có thể chứng minh mọi giá trị riêng của nó đều nhỏ hơn 1, nên đáp án chắc chắn hội tụ.
 
-为了方便描述，在本页中如无特殊说明，均用 $n$ 代指 $|V|$，$m$ 代指 $|E|$．
+Để tiện trình bày, trong trang này nếu không nói gì thêm, ta dùng $n$ để chỉ $|V|$ và $m$ để chỉ $|E|$.
 
-另外，在本页中，稀疏图指边数和点数同阶的图．
+Ngoài ra, trong trang này, đồ thị thưa là đồ thị có số cạnh cùng bậc với số đỉnh.
 
-## 网格图
+## Đồ thị lưới
 
-???+ note "例题 1 [Circles of Waiting](https://codeforces.com/problemset/problem/963/E)"
-    有一枚棋子起始被放在平面直角坐标系的 $(0,0)$ 点．每秒棋子会随机移动．假设它当前在 $(x, y)$，它下一秒有 $p_1$ 的概率移动到 $(x-1, y)$，$p_2$ 的概率移动到 $(x, y-1)$，$p_3$ 的概率移动到 $(x+1, y)$，$p_4$ 的概率移动到 $(x, y+1)$．保证 $p_1+p_2+p_3+p_4=1$．
-    求期望经过多少时间它会移动到一个离原点的欧几里得距离大于 $R$ 的位置．$0 \leq R \leq 50$，$p_1, p_2, p_3, p_4>0$，答案对 $10^9+7$ 取模．
+???+ note "Bài ví dụ 1 [Circles of Waiting](https://codeforces.com/problemset/problem/963/E)"
+    Ban đầu có một quân cờ được đặt tại điểm $(0,0)$ trên mặt phẳng tọa độ Descartes. Mỗi giây quân cờ sẽ di chuyển ngẫu nhiên. Giả sử hiện tại nó ở $(x, y)$; trong giây tiếp theo, nó di chuyển đến $(x-1, y)$ với xác suất $p_1$, đến $(x, y-1)$ với xác suất $p_2$, đến $(x+1, y)$ với xác suất $p_3$, và đến $(x, y+1)$ với xác suất $p_4$. Đảm bảo $p_1+p_2+p_3+p_4=1$.
+    Hãy tính kỳ vọng thời gian để nó di chuyển đến một vị trí có khoảng cách Euclid tới gốc tọa độ lớn hơn $R$. $0 \leq R \leq 50$, $p_1, p_2, p_3, p_4>0$, đáp án lấy modulo $10^9+7$.
 
-### 朴素做法
+### Cách làm đơn giản
 
-记 $f(i, j)$ 表示在棋子在 $(i, j)$ 时移动到一个离原点的欧几里得距离大于 $R$ 的位置的期望时间，转移方程为：
+Gọi $f(i, j)$ là kỳ vọng thời gian để quân cờ, khi đang ở $(i, j)$, di chuyển đến một vị trí có khoảng cách Euclid tới gốc tọa độ lớn hơn $R$. Phương trình chuyển là:
 
 $$
 f(i, j)=
@@ -44,185 +44,180 @@ p_1 f(i-1, j) + p_2 f(i, j-1) + p_3 f(i+1, j) + p_4 f(i, j+1) + 1 & i^2 + j^2 \l
 \end{cases}
 $$
 
-由于转移并不存在拓扑序，需要使用高斯消元求解．时间复杂度 $O\left(R^6\right)$，无法通过本题．
+Do các chuyển trạng thái không có thứ tự topo, ta cần dùng khử Gauss để giải. Độ phức tạp thời gian là $O\left(R^6\right)$, không đủ để qua bài này.
 
-### 直接消元法
+### Phương pháp khử trực tiếp
 
-注意到需要消元的方程的系数大多数都是 0，消元时只对值非 0 的位置进行计算就可以降低复杂度．
+Nhận thấy hầu hết các hệ số trong những phương trình cần khử đều bằng 0; khi khử, nếu chỉ tính trên các vị trí có giá trị khác 0 thì có thể giảm độ phức tạp.
 
-考虑消元的过程，将方程按照在坐标系中从上到下，同一层中从左到右的顺序进行消元，将已经消元过的方程染成黄色，与黄色点相邻的点染成绿色，其余点染成黑色，如下图：
+Xét quá trình khử. Ta khử các phương trình theo thứ tự từ trên xuống dưới trong hệ tọa độ, và trong cùng một lớp thì từ trái sang phải. Tô các phương trình đã khử màu vàng, các điểm kề với điểm vàng màu xanh lá, còn lại màu đen, như hình dưới:
 
 ![graph-random-walk-1](images/graph-random-walk-1.svg)
 
-接下来要对下一个绿色格子对应的方程进行消元．在这个方程中，只有绿色格子和它下方的第一个黑色格子对应的变量系数可能不为 0 ; 而只有绿色格子和它下方的第一个黑色格子对应的方程中，当前格子对应的变量系数可能不为 0．
+Tiếp theo cần khử phương trình tương ứng với ô xanh lá kế tiếp. Trong phương trình này, chỉ các hệ số của biến tương ứng với các ô xanh lá và ô đen đầu tiên bên dưới nó mới có thể khác 0; ngược lại, chỉ trong các phương trình tương ứng với các ô xanh lá và ô đen đầu tiên bên dưới nó thì hệ số của biến ứng với ô hiện tại mới có thể khác 0.
 
-注意到绿色格子只有 $O(R)$ 个，所以单个方程消元的时间复杂度为 $O\left(R^2\right)$．一共只有 $O\left(R^2\right)$ 个方程，所以时间复杂度降低为 $O\left(R^4\right)$，可以通过本题．
+Vì chỉ có $O(R)$ ô xanh lá, độ phức tạp khử cho một phương trình là $O\left(R^2\right)$. Tổng cộng chỉ có $O\left(R^2\right)$ phương trình, nên độ phức tạp thời gian giảm xuống $O\left(R^4\right)$ và có thể qua bài này.
 
-### 主元法
+### Phương pháp phần tử trụ
 
-方程和变量都有 $O\left(R^2\right)$ 个，如果能将规模缩小至 $O(R)$，那么朴素的高斯消元就能通过了．
+Cả số phương trình lẫn số biến đều là $O\left(R^2\right)$. Nếu có thể thu nhỏ quy mô xuống $O(R)$, khử Gauss đơn giản sẽ đủ để qua bài.
 
-将每行从左到右第一个格子对应的变量设为主元，共 $2 R+1$ 个，设法将其他格子对应的变量用关于这些主元的线性函数表示．从左到右逐列考虑，对于当前列的每个格子 $(i, j)$，注意到 $f(i, j)， f(i-1, j)， f(i, j-1)， f(i, j+1)$ 都是已知的关于主元的线性函数，将转移方程移项，有：
+Đặt biến tương ứng với ô đầu tiên từ trái sang phải trên mỗi hàng làm phần tử trụ, tổng cộng có $2 R+1$ phần tử trụ, rồi tìm cách biểu diễn các biến tương ứng với những ô khác dưới dạng hàm tuyến tính theo các phần tử trụ này. Xét từng cột từ trái sang phải; với mỗi ô $(i, j)$ trong cột hiện tại, nhận thấy $f(i, j)$, $f(i-1, j)$, $f(i, j-1)$, $f(i, j+1)$ đều đã là các hàm tuyến tính đã biết theo các phần tử trụ. Chuyển vế phương trình chuyển, ta có:
 
 $$
 f(i+1, j)=\frac{f(i, j)-p_1 f(i-1, j)-p_2 f(i, j-1)-p_4 f(i, j+1)-1}{p_3}
 $$
 
-这样我们就能得到 $f(i+1, j)$ 关于主元的线性函数表示．如果 $(i+1, j)$ 已经离原点欧几里得距离超过 $R$ 了，则可以得到一个方程：$f(i+1, j)=0$．最终，会得到 $2 R+1$ 个方程，对这些方程进行高斯消元即可．
+Như vậy ta có thể nhận được biểu diễn tuyến tính của $f(i+1, j)$ theo các phần tử trụ. Nếu $(i+1, j)$ đã có khoảng cách Euclid tới gốc tọa độ vượt quá $R$, ta nhận được một phương trình: $f(i+1, j)=0$. Cuối cùng sẽ thu được $2 R+1$ phương trình, chỉ cần khử Gauss trên các phương trình này.
 
-在递推关于主元的线性函数的阶段，共有 $O\left(R^2\right)$ 个变量，递推单个变量需要花费 $O(R)$ 的时间；之后，将问题的规模缩减到了 $O(R)$．两部分的时间复杂度均为 $O\left(R^3\right)$，总的时间复杂度也为 $O\left(R^3\right)$，可以通过本题．
+Ở giai đoạn truy hồi các hàm tuyến tính theo phần tử trụ, có tổng cộng $O\left(R^2\right)$ biến, và việc truy hồi một biến tốn $O(R)$ thời gian. Sau đó, quy mô bài toán đã được giảm xuống $O(R)$. Độ phức tạp thời gian của cả hai phần đều là $O\left(R^3\right)$, nên tổng độ phức tạp cũng là $O\left(R^3\right)$ và có thể qua bài này.
 
-### 两种做法的对比
+### So sánh hai cách làm
 
-下面从多种方面对比两种做法：
+Dưới đây so sánh hai cách làm trên nhiều khía cạnh:
 
-从时间复杂度方面，主元法在网格图上的最坏时间复杂度为 $O(n \sqrt{n})$（当网格图长和宽都为 $O(\sqrt{n})$ 级别时时间复杂度最高），直接消元法在网格图上最坏时间复杂度为 $O\left(n^2\right)$，主元法较优．
+Về độ phức tạp thời gian, phương pháp phần tử trụ trên đồ thị lưới có độ phức tạp xấu nhất là $O(n \sqrt{n})$ (đạt cao nhất khi cả chiều dài và chiều rộng của đồ thị lưới đều ở mức $O(\sqrt{n})$), còn phương pháp khử trực tiếp trên đồ thị lưới có độ phức tạp xấu nhất là $O\left(n^2\right)$. Vì vậy phương pháp phần tử trụ tốt hơn.
 
-从精度方面，对于一些需要进行实数计算而不是取模的题目，直接消元法的精度优于主元法．
+Về độ chính xác, với một số bài cần tính số thực thay vì lấy modulo, phương pháp khử trực tiếp có độ chính xác tốt hơn phương pháp phần tử trụ.
 
-从适用性方面，两种做法适用于不同的方面．
+Về phạm vi áp dụng, hai cách làm phù hợp với các tình huống khác nhau.
 
-当网格图中存在障碍或者走某些边的概率为 $0$ 时，对于每个障碍或者概率为 $0$ 的边主元法需要增加一个主元，当障碍或者概率为 $0$ 的边的数量多于 $O(R)$ 时，主元法的时间复杂度会增加，而直接消元法的时间复杂度仍然不变．
+Khi trong đồ thị lưới có chướng ngại, hoặc xác suất đi qua một số cạnh bằng $0$, phương pháp phần tử trụ cần thêm một phần tử trụ cho mỗi chướng ngại hoặc mỗi cạnh có xác suất bằng $0$. Khi số lượng chướng ngại hoặc cạnh xác suất $0$ vượt quá $O(R)$, độ phức tạp thời gian của phương pháp phần tử trụ sẽ tăng, còn độ phức tạp của phương pháp khử trực tiếp vẫn không đổi.
 
-但主元法还可以做类似于网格图的转移方程的消元，例如 $f(i, j)=p_1 f(i+1, j)+p_2 f(i, j+1)+p_3 f(\operatorname{pre}(i, j))+1$，其中 $\operatorname{pre}(i, j)=(x, y)(x \leq i, y \leq j)$ 是问题给定的值，而直接消元法的复杂度分析在这种模型中并不适用．
+Tuy nhiên, phương pháp phần tử trụ còn có thể khử các phương trình chuyển tương tự đồ thị lưới, chẳng hạn $f(i, j)=p_1 f(i+1, j)+p_2 f(i, j+1)+p_3 f(\operatorname{pre}(i, j))+1$, trong đó $\operatorname{pre}(i, j)=(x, y)(x \leq i, y \leq j)$ là giá trị do đề bài cho; còn phân tích độ phức tạp của phương pháp khử trực tiếp không áp dụng được trong mô hình này.
 
-除此以外，网格图邻接矩阵行列式的计算，也不能使用主元法，只能用直接消元法来优化时间复杂度．
+Ngoài ra, việc tính định thức của ma trận kề của đồ thị lưới cũng không thể dùng phương pháp phần tử trụ, mà chỉ có thể dùng phương pháp khử trực tiếp để tối ưu độ phức tạp thời gian.
 
-综上，两种做法各有所长，需要根据具体题目分析采用不同的做法．
+Tóm lại, hai cách làm đều có sở trường riêng; cần phân tích theo từng bài cụ thể để chọn phương pháp phù hợp.
 
-## 稀疏图
+## Đồ thị thưa
 
-???+ note "例题 2 Expected Value"
-    给定一张简单无向连通稀疏图 $G=(V, E)$，有一枚棋子起始被放在 $v_1$，每秒棋子会从与当前点相连的边中等概率选择一条走到出边指向的点，求到达 $v_n$ 的期望时间．$n \leq 2000$，答案对 $p$ 取模，$p$ 是在区间 $\left[10^9, 1.01 \times 10^9\right]$ 内随机生成的一个质数．
+???+ note "Bài ví dụ 2 Expected Value"
+    Cho một đồ thị đơn vô hướng liên thông và thưa $G=(V, E)$. Ban đầu có một quân cờ được đặt tại $v_1$; mỗi giây, quân cờ chọn đều ngẫu nhiên một cạnh trong các cạnh nối với đỉnh hiện tại rồi đi đến đỉnh mà cạnh đó dẫn tới. Hãy tính kỳ vọng thời gian để đến $v_n$. $n \leq 2000$, đáp án lấy modulo $p$, trong đó $p$ là một số nguyên tố được sinh ngẫu nhiên trong khoảng $\left[10^9, 1.01 \times 10^9\right]$.
 
-### 基础知识
+### Kiến thức cơ sở
 
-**定义 4.1.** 所有满足 $p(A) = 0$ 的多项式 $p(λ)$ 称为矩阵 $A$ 的零化多项式．
+**Định nghĩa 4.1.** Mọi đa thức $p(λ)$ thỏa mãn $p(A) = 0$ được gọi là đa thức triệt tiêu của ma trận $A$.
 
-**定义 4.2.** 记 $I_n$ 表示 $n$ 阶单位矩阵，定义一个 $n × n$ 矩阵 $A$ 的特征多项式为 $p(λ) = \det(λI_n - A)$，其中 $\det$ 表示一个矩阵的行列式．
-不难发现，一个 $n$ 阶矩阵 $A$ 的特征多项式的次数不超过 $n$．
+**Định nghĩa 4.2.** Gọi $I_n$ là ma trận đơn vị cấp $n$. Đa thức đặc trưng của một ma trận $n × n$ $A$ được định nghĩa là $p(λ) = \det(λI_n - A)$, trong đó $\det$ biểu thị định thức của một ma trận.
+Dễ thấy bậc của đa thức đặc trưng của một ma trận cấp $n$ $A$ không vượt quá $n$.
 
-**定理 4.2.**（Cayley–Hamilton 定理）任意矩阵的特征多项式是它的零化多项式．
+**Định lý 4.2.** (Định lý Cayley–Hamilton) Đa thức đặc trưng của một ma trận bất kỳ là đa thức triệt tiêu của nó.
 
-所以，一个 $n$ 阶矩阵的次数最小的零化多项式的次数也不超过 $n$．
+Do đó, bậc của đa thức triệt tiêu có bậc nhỏ nhất của một ma trận cấp $n$ cũng không vượt quá $n$.
 
-### 求解原问题
+### Giải bài toán ban đầu
 
-注意到，期望走的时间 $E(t)=\sum_{i\geq0}\Pr[t>i]$，如果我们能求出走了 $i$ 步还没有结束的概率，对所有 $i ≥ 0$ 求和即为答案．
+Nhận thấy kỳ vọng thời gian đi là $E(t)=\sum_{i\geq0}\Pr[t>i]$. Nếu ta tính được xác suất sau $i$ bước vẫn chưa kết thúc, thì tổng trên mọi $i ≥ 0$ chính là đáp án.
 
-记 $f(i, j)$ 表示走了 $i$ 步，当前停留在 $j$，且没有走到过 $n$ 的概率，那么有：
+Gọi $f(i, j)$ là xác suất sau khi đi $i$ bước, quân cờ đang ở $j$ và chưa từng đi tới $n$. Khi đó:
 
 $$
 f(i,j)=\sum_{(k,j)\in E}\frac{f(i-1,k)}{\deg_k}(j\neq n)
 $$
 
-其中 $\deg_k$ 表示 $k$ 的度数．
+Trong đó $\deg_k$ biểu thị bậc của $k$.
 
-注意到 $f$ 的转移与 $i$ 无关，可以认为一次转移是乘上了一个矩阵，即 $f{i+1}=f_iM$．由于 $M$ 的最小零化多项式次数不超过 $n$，所以 $f$ 的最短递推式长度也不超过 $n$，故 $\Pr[t>i]=\sum_{j=1}^{n-1}f(i,j)$ 的最短递推式长度也不超过 $n$．我们可以在 $O(nm)$ 的时间求出 $\Pr[t>0],\Pr[t>1],\cdots,\Pr[t>3n]$，然后使用*Berlekamp–Massey*算法，在 $O(n^2)$ 的时间内求解出 $\Pr[t > i]$ 的最短递推式．
+Nhận thấy chuyển trạng thái của $f$ không phụ thuộc vào $i$, có thể xem một lần chuyển là nhân với một ma trận, tức $f_{i+1}=f_iM$. Vì đa thức triệt tiêu bậc nhỏ nhất của $M$ có bậc không vượt quá $n$, độ dài công thức truy hồi ngắn nhất của $f$ cũng không vượt quá $n$. Do đó độ dài công thức truy hồi ngắn nhất của $\Pr[t>i]=\sum_{j=1}^{n-1}f(i,j)$ cũng không vượt quá $n$. Ta có thể tính $\Pr[t>0],\Pr[t>1],\cdots,\Pr[t>3n]$ trong $O(nm)$ thời gian, rồi dùng thuật toán *Berlekamp–Massey* để tìm công thức truy hồi ngắn nhất của $\Pr[t > i]$ trong $O(n^2)$ thời gian.
 
-考虑求一个 $k$ 阶线性递推序列 $a$ 的生成函数．不妨设 $i ≥ i_0$ 时 $a_i=\sum_{j=1}^kc_ja_{i-j}$，记 $a$ 和 $c$ 的生成函数为 $A(x)$ 和 $C(x)$，那么 $A(x)=A(x)C(x)+A_0(x)$，其中 $A_0(x)$ 是由 $i < i_0$ 的项决定的．
+Xét việc tìm hàm sinh của một dãy truy hồi tuyến tính bậc $k$ là $a$. Giả sử khi $i ≥ i_0$ thì $a_i=\sum_{j=1}^kc_ja_{i-j}$. Gọi hàm sinh của $a$ và $c$ lần lượt là $A(x)$ và $C(x)$, khi đó $A(x)=A(x)C(x)+A_0(x)$, trong đó $A_0(x)$ được quyết định bởi các hạng tử có $i < i_0$.
 
-回到原问题，由于我们能求出 $\Pr[t > i]$ 的最短递推式，则我们可以求出 $C(x)$ 和 $A_0(x)$（定义与上一段相同），移项得 $A(x)=\frac{A_0(x)}{1-C(x)}$．我们要求的是 $\sum_{i\geq0}[x^i]A(x)$，不难发现这个值就等于 $A(1)$，将 $x = 1$ 带入原问题求解即可．由于模数是随机质数，可以认为分母不会为 $0$．
+Quay lại bài toán ban đầu, vì ta có thể tìm công thức truy hồi ngắn nhất của $\Pr[t > i]$, nên có thể tính $C(x)$ và $A_0(x)$ (định nghĩa như đoạn trước). Chuyển vế được $A(x)=\frac{A_0(x)}{1-C(x)}$. Đại lượng cần tìm là $\sum_{i\geq0}[x^i]A(x)$; dễ thấy giá trị này bằng $A(1)$, vì vậy chỉ cần thay $x = 1$ vào để giải bài toán ban đầu. Do modulo là một số nguyên tố ngẫu nhiên, có thể xem như mẫu số sẽ không bằng $0$.
 
-这样，我们就在 $O(nm+n^2)$ 的时间复杂度内解决了本题．如果图 $G$ 的点数与边数同阶，本题中时间复杂度可以认为是 $O(n^2)$．
+Như vậy, ta giải được bài này với độ phức tạp thời gian $O(nm+n^2)$. Nếu số đỉnh và số cạnh của đồ thị $G$ cùng bậc, trong bài này có thể xem độ phức tạp thời gian là $O(n^2)$.
 
-## 一般图
+## Đồ thị tổng quát
 
-???+ note "例题 3 Frank"
-    给定一张简单强连通有向图 $G = (V, E)$，对于所有 $1 ≤ s ≤ n$，$1 ≤ t ≤ n$，$s ≠ t$．回答下面的问题：
-    有一枚棋子起始被放在 $v_s$，每秒棋子会从当前点的出边中等概率选择一条走到出边指向的点，求到达 $v_t$ 的期望时间．$3 ≤ n ≤ 400$．
+???+ note "Bài ví dụ 3 Frank"
+    Cho một đồ thị đơn có hướng liên thông mạnh $G = (V, E)$. Với mọi $1 ≤ s ≤ n$, $1 ≤ t ≤ n$, $s ≠ t$, hãy trả lời câu hỏi sau:
+    Ban đầu có một quân cờ được đặt tại $v_s$; mỗi giây, quân cờ chọn đều ngẫu nhiên một cạnh trong các cạnh ra của đỉnh hiện tại rồi đi đến đỉnh mà cạnh đó chỉ tới. Hãy tính kỳ vọng thời gian để đến $v_t$. $3 ≤ n ≤ 400$.
 
-### 分析和转化
+### Phân tích và biến đổi
 
-记 $p_{i, j}$ 表示棋子在 $i$ 时，选择出边 $(i, j)$ 走到 $j$ 的概率，特别地，当出边不存在时概率为 $0$．记 $f_{i,j}$ 表示 $i$ 随机游走到 $j$ 的期望时间，特别地，$f_{i,i} = 0$．当 $i ≠ j$ 时，转移方程为：
+Gọi $p_{i, j}$ là xác suất quân cờ, khi đang ở $i$, chọn cạnh ra $(i, j)$ để đi tới $j$; đặc biệt, nếu cạnh ra không tồn tại thì xác suất là $0$. Gọi $f_{i,j}$ là kỳ vọng thời gian để bước đi ngẫu nhiên từ $i$ đến $j$; đặc biệt, $f_{i,i} = 0$. Khi $i ≠ j$, phương trình chuyển là:
 
 $$
 f_{i,j}=1+\sum_{1\leq k\leq n}p_{i,k}f_{k,j}
 $$
 
-当 $i = j$ 时，记 $g_i$ 表示从 $i$ 开始随机游走，第一次回到 $i$ 的期望时间，那么：
+Khi $i = j$, gọi $g_i$ là kỳ vọng thời gian để bắt đầu bước đi ngẫu nhiên từ $i$ rồi lần đầu quay lại $i$. Khi đó:
 
 $$
 f_{i,i}=1-g_i+\sum_{1\le k\le n}p_{i,k}f_{k,i}
 $$
 
-为了方便观察，我们将转移方程写成矩阵的形式．记 $P$ 表示这个图的转移矩阵，$F$ 表示答案矩阵，$I$ 表示 $n$ 阶单位矩阵，$J$ 表示 $n$ 阶全 $1$ 矩阵，$G$ 是一个 $n$ 阶矩阵，满足 $G_{i,i} = g_i$，其他位置为 $0$，则：
+Để dễ quan sát, ta viết phương trình chuyển dưới dạng ma trận. Gọi $P$ là ma trận chuyển của đồ thị này, $F$ là ma trận đáp án, $I$ là ma trận đơn vị cấp $n$, $J$ là ma trận cấp $n$ toàn số $1$, và $G$ là một ma trận cấp $n$ thỏa mãn $G_{i,i} = g_i$, còn các vị trí khác bằng $0$. Khi đó:
 
 $$
 F=J-G+PF
 $$
 
-如果我们能求出 $G$，那么我们只需要解方程：
+Nếu tìm được $G$, ta chỉ cần giải phương trình:
 
 $$
 (I − P)F = J − G
 $$
 
-### G 的求法
+### Cách tìm G
 
-**定义 5.1.** 定义一个 $n$ 阶转移矩阵 $P$ 的稳态分布为一个 $n$ 维向量 $π$，满足 $\sum_{i=1}^{n}\pi_{i}=1$，$πP = π$．其中，$π$ 每一维的值都在区间 $[0,1]$ 内．
+**Định nghĩa 5.1.** Phân phối dừng của một ma trận chuyển cấp $n$ $P$ được định nghĩa là một vector $n$ chiều $π$, thỏa mãn $\sum_{i=1}^{n}\pi_{i}=1$, $πP = π$. Trong đó, giá trị ở mỗi chiều của $π$ đều nằm trong khoảng $[0,1]$.
 
-我们很容易找出稳态分布的实际意义．如果某个时刻棋子有 $π_i$ 的概率停留在 $v_i$，则在之后的任意时刻，棋子仍然满足这个概率分布．我们可以在 $O(n^3)$ 的时间通过高斯消元解方程来求出 $π$，那么 $π$ 与 $G$ 有什么关系呢？
+Ta dễ dàng thấy ý nghĩa thực tế của phân phối dừng. Nếu tại một thời điểm nào đó, quân cờ ở $v_i$ với xác suất $π_i$, thì tại mọi thời điểm về sau, quân cờ vẫn thỏa mãn phân phối xác suất này. Ta có thể giải hệ phương trình bằng khử Gauss trong $O(n^3)$ thời gian để tìm $π$. Vậy $π$ có quan hệ gì với $G$?
 
-**定理 5.1.** 对于任意 $1 ≤ i ≤ n$，有 $π_ig_i = 1$．
+**Định lý 5.1.** Với mọi $1 ≤ i ≤ n$, có $π_ig_i = 1$.
 
-???+ note "证明"
-    由 $F = J - G + PF$，移项得：
-    
+???+ note "Chứng minh"
+    Từ $F = J - G + PF$, chuyển vế được:
+
     $$
     G = PF + J − F
     $$
-    
-    两边同时在左边乘上 $π$ 有：
-    
+
+    Nhân đồng thời hai vế ở bên trái với $π$, ta có:
+
     $$
     πG = πPF + πJ − πF
     $$
-    
-    由 $π$ 的定义有 $πP = π$，故：
-    
+
+    Theo định nghĩa của $π$, có $πP = π$, do đó:
+
     $$
     πG = πJ
     $$
-    
-    所以：
-    
+
+    Vì vậy:
+
     $$
-    \pi_ig_i=\sum_{j=1}^n\pi_j=1  
+    \pi_ig_i=\sum_{j=1}^n\pi_j=1
     $$
 
-原命题得证．
+Mệnh đề ban đầu được chứng minh.
 
-所以，通过引入稳态分布，我们可以在 $O(n^3)$ 的时间内求解 $G$．
+Vì vậy, bằng cách đưa vào phân phối dừng, ta có thể tìm $G$ trong $O(n^3)$ thời gian.
 
-### 求解原问题
+### Giải bài toán ban đầu
 
-在解方程的过程中，我们发现一个问题：$(I - P)$ 并不满秩，不能通过乘逆矩阵的方法求解．
+Trong quá trình giải phương trình, ta gặp một vấn đề: $(I - P)$ không đầy hạng, nên không thể giải bằng cách nhân với ma trận nghịch đảo.
 
-**定义 5.2.** 定义一个有向图 $G = (V,E)$ 的以 $r\in V$ 为根的有向生成树是 $G$ 的一个子图 $T = (V,A)$，满足：
+**Định nghĩa 5.2.** Cây khung có hướng của đồ thị có hướng $G = (V,E)$ với gốc $r\in V$ được định nghĩa là một đồ thị con $T = (V,A)$ của $G$, thỏa mãn:
 
-1.  对于任意 $i ≠ r$，$i$ 的出度为 $1$．
-2.  $r$ 的出度为 $0$．
-3.  $T$ 中不存在环．
+1.  Với mọi $i ≠ r$, bậc ra của $i$ là $1$.
+2.  Bậc ra của $r$ là $0$.
+3.  Trong $T$ không tồn tại chu trình.
 
-**引理 5.1.**（有向图上的矩阵树定理）对于一个有向图 $G$，记 $D$ 表示其出度矩阵，即 $D_{i,i} = d_i$，$D_{i,j} = 0(i ≠ j)$，其中 $d_i$ 表示 $i$ 的出度，记 $A$ 表示其邻接矩阵，则其以 $r$ 为根的有向生成树个数为 $D - A$ 去掉第 $r$ 行第 $r$ 列后的行列式．
+**Bổ đề 5.1.** (Định lý ma trận-cây trên đồ thị có hướng) Với một đồ thị có hướng $G$, gọi $D$ là ma trận bậc ra của nó, tức $D_{i,i} = d_i$, $D_{i,j} = 0(i ≠ j)$, trong đó $d_i$ là bậc ra của $i$; gọi $A$ là ma trận kề của nó. Khi đó số cây khung có hướng gốc $r$ bằng định thức của ma trận thu được từ $D - A$ sau khi xóa hàng $r$ và cột $r$.
 
-**定理 5.2.** 对于一个强连通图 $G = (V,E)$ 的转移矩阵 $P$，$(I - P)$ 的秩为 $n - 1$．
+**Định lý 5.2.** Với ma trận chuyển $P$ của một đồ thị liên thông mạnh $G = (V,E)$, hạng của $(I - P)$ là $n - 1$.
 
-???+ note "证明"
-    因为对矩阵某一行乘上一个非零常数其秩不改变，所以我们将 $(I - P)$ 的第 $i$ 行乘上 $v_i$ 的出度，得到一个新的矩阵 $L$，只需证明 $L$ 的秩为 $n - 1$ 即可．  
-    由于 $L$ 每行的和均为 $0$，对 $L$ 的所有列向量求和，会得到零向量，即这些向量线性相
-    关，所以 $L$ 的秩不为 $n$．  
-    不难发现 $L$ 等于图 $G$ 的出度矩阵减去其邻接矩阵，由引理 5.1 得 $L$ 去掉第 $i$ 行第 $i$ 列
-    后行列式表示以 $v_i$ 为根的有向生成树个数．  
-    由于 G 是强连通的，所以以任意点为根的有向生成树个数均不为 $0$，即 $L$ 去掉第 $i$ 行
-    第 $i$ 列之后仍然满秩．  
-    因为加上一列秩不会变小，所以 $L$ 去掉第 $i$ 行后所有行向量线性无关．故 $L$ 的秩为 $n - 1$．  
-    回到原问题，考虑求解原问题中的方程．为了方便，我们将方程写成 $AX = B$ 的形式，
-    其中 $A$，$B$ 已知，需要求解 $X$．由于 $A$ 不满秩，解有无数个，我们首先求出一组特解．
-    将 $A$ 和 $B$ 一起做高斯消元．把 $A$ 的前 $n - 1$ 行消成只有主对角线和第 $n$ 列有值的形
-    式，最后一行消成全 $0$，即下列形式：
-    
+???+ note "Chứng minh"
+    Vì nhân một hàng của ma trận với một hằng số khác 0 không làm thay đổi hạng, ta nhân hàng thứ $i$ của $(I - P)$ với bậc ra của $v_i$ để nhận được một ma trận mới $L$. Khi đó chỉ cần chứng minh hạng của $L$ là $n - 1$.
+    Do tổng trên mỗi hàng của $L$ đều bằng $0$, khi lấy tổng tất cả các vector cột của $L$ sẽ thu được vector không, tức các vector này phụ thuộc tuyến tính, nên hạng của $L$ không phải là $n$.
+    Dễ thấy $L$ bằng ma trận bậc ra của đồ thị $G$ trừ đi ma trận kề của nó. Theo Bổ đề 5.1, định thức của $L$ sau khi xóa hàng thứ $i$ và cột thứ $i$ biểu thị số cây khung có hướng gốc $v_i$.
+    Vì G liên thông mạnh, số cây khung có hướng gốc ở bất kỳ đỉnh nào đều khác $0$, tức $L$ sau khi xóa hàng thứ $i$ và cột thứ $i$ vẫn đầy hạng.
+    Vì thêm một cột không thể làm hạng giảm, tất cả các vector hàng của $L$ sau khi xóa hàng thứ $i$ là độc lập tuyến tính. Do đó hạng của $L$ là $n - 1$.
+    Quay lại bài toán ban đầu, xét việc giải phương trình trong bài toán ban đầu. Để tiện, ta viết phương trình dưới dạng $AX = B$, trong đó $A$, $B$ đã biết và cần tìm $X$. Vì $A$ không đầy hạng, phương trình có vô số nghiệm; trước hết ta tìm một nghiệm riêng.
+    Thực hiện khử Gauss đồng thời trên $A$ và $B$. Khử $n - 1$ hàng đầu của $A$ thành dạng chỉ có đường chéo chính và cột thứ $n$ có giá trị, còn hàng cuối cùng toàn $0$, tức dạng sau:
+
     $$
     \begin{bmatrix}
     1 & 0 & 0 & \cdots & 0 & a_1 \\0&1&0&\cdots&0&a_2\\0&0&1&\cdots&0&a_3\\
@@ -239,11 +234,11 @@ $$
     \\0&0&0&\cdots&0&0
     \end{bmatrix}
     $$
-    
-    令 $X_{n,i} = 0$，可以解出一组特解，记为 $Y$．接下来将特解调整为真正的解．  
-    注意到 $X_{n,i} = 0$，考虑组合意义有 $Y_{i,j} = 1 + Y_{j,j} + P_{i,k}X_{k,j}$，不难解出 $X_{i,j} = Y_{i,j} - Y_{j,j}$．
-    最终在 $O(n^3)$ 的时间复杂度内解决了这个问题．
 
-## 参考
+    Đặt $X_{n,i} = 0$, ta có thể giải ra một nghiệm riêng, ký hiệu là $Y$. Tiếp theo điều chỉnh nghiệm riêng thành nghiệm thực sự.
+    Chú ý $X_{n,i} = 0$; xét ý nghĩa tổ hợp, có $Y_{i,j} = 1 + Y_{j,j} + P_{i,k}X_{k,j}$, từ đó không khó để giải ra $X_{i,j} = Y_{i,j} - Y_{j,j}$.
+    Cuối cùng, bài toán này được giải trong độ phức tạp thời gian $O(n^3)$.
 
-1.  浅谈图模型上的随机游走问题．IOI2019 中国国家候选队论文集（pp. 17-26)
+## Tham khảo
+
+1.  Bàn sơ lược về bài toán bước đi ngẫu nhiên trên mô hình đồ thị. Tuyển tập luận văn đội tuyển ứng viên quốc gia Trung Quốc IOI2019 (pp. 17-26)

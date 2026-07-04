@@ -1,178 +1,178 @@
 author: pw384, s0cks5, Watersail2005, Xeonacid
 
-矩阵树定理解决了一张图的生成树个数计数问题．
+Định lý ma trận cây giải quyết bài toán đếm số cây khung của một đồ thị.
 
-## 本篇记号声明
+## Quy ước ký hiệu trong bài này
 
-本篇中的图，无论无向还是有向，都允许重边，但是默认没有自环．
+Trong bài này, đồ thị, dù vô hướng hay có hướng, đều cho phép cạnh bội, nhưng mặc định không có khuyên.
 
-??? note "有自环的情形"
-    自环并不影响生成树的个数，也不影响下文中 Laplace 矩阵的计算，故而矩阵树定理对有自环的情形依然成立．计算时不必删去自环．如果删去自环，会影响根据 BEST 定理应用矩阵树定理统计有向图的欧拉回路个数．
+??? note "Trường hợp có khuyên"
+    Khuyên không ảnh hưởng đến số cây khung, cũng không ảnh hưởng đến cách tính ma trận Laplace bên dưới, nên định lý ma trận cây vẫn đúng trong trường hợp có khuyên. Khi tính toán không cần xóa khuyên. Nếu xóa khuyên, việc áp dụng định lý ma trận cây dựa trên định lý BEST để đếm số chu trình Euler trong đồ thị có hướng sẽ bị ảnh hưởng.
 
-### 无向图情况
+### Trường hợp đồ thị vô hướng
 
-设 $G$ 是一个有 $n$ 个顶点的无向图．定义度数矩阵 $D(G)$ 为
+Giả sử $G$ là đồ thị vô hướng có $n$ đỉnh. Định nghĩa ma trận bậc $D(G)$ bởi
 
 $$
 D_{ii}(G) = \mathrm{deg}(i),\ D_{ij} = 0,\ i\neq j.
 $$
 
-设 $\#e(i,j)$ 为点 $i$ 与点 $j$ 相连的边数，并定义邻接矩阵 $A$ 为
+Gọi $\#e(i,j)$ là số cạnh nối đỉnh $i$ và đỉnh $j$, và định nghĩa ma trận kề $A$ bởi
 
 $$
 A_{ij}(G)=A_{ji}(G)=\#e(i,j),\ i\neq j.
 $$
 
-定义 Laplace 矩阵（亦称 Kirchhoff 矩阵）$L$ 为
+Định nghĩa ma trận Laplace, còn gọi là ma trận Kirchhoff, $L$ bởi
 
 $$
 L(G) = D(G) - A(G).
 $$
 
-记图 $G$ 的所有生成树个数为 $t(G)$．
+Ký hiệu số cây khung của đồ thị $G$ là $t(G)$.
 
-### 有向图情况
+### Trường hợp đồ thị có hướng
 
-设 $G$ 是一个有 $n$ 个顶点的有向图．定义出度矩阵 $D^{out}(G)$ 为
+Giả sử $G$ là đồ thị có hướng có $n$ đỉnh. Định nghĩa ma trận bậc ra $D^{out}(G)$ bởi
 
 $$
 D^\mathrm{out}_{ii}(G) = \mathrm{deg}^\mathrm{out}(i),\ D^\mathrm{out}_{ij} = 0,\ i\neq j.
 $$
 
-类似地定义入度矩阵 $D^\mathrm{in}(G)$．
+Tương tự, định nghĩa ma trận bậc vào $D^\mathrm{in}(G)$.
 
-设 $\#e(i,j)$ 为点 $i$ 指向点 $j$ 的有向边数，并定义邻接矩阵 $A$ 为
+Gọi $\#e(i,j)$ là số cạnh có hướng từ đỉnh $i$ đến đỉnh $j$, và định nghĩa ma trận kề $A$ bởi
 
 $$
 A_{ij}(G)=\#e(i,j),\ i\neq j.
 $$
 
-定义出度 Laplace 矩阵 $L^\mathrm{out}$ 为
+Định nghĩa ma trận Laplace bậc ra $L^\mathrm{out}$ bởi
 
 $$
 L^\mathrm{out}(G) = D^\mathrm{out}(G) - A(G).
 $$
 
-定义入度 Laplace 矩阵 $L^\mathrm{in}$ 为
+Định nghĩa ma trận Laplace bậc vào $L^\mathrm{in}$ bởi
 
 $$
 L^\mathrm{in}(G) = D^\mathrm{in}(G) - A(G).
 $$
 
-记图 $G$ 的以 $k$ 为根的所有根向树形图个数为 $t^\mathrm{root}(G,k)$．所谓根向树形图，是说这张图的基图是一棵树，所有的边全部指向父亲．
+Ký hiệu số cây khung có hướng lấy $k$ làm gốc và hướng về gốc của đồ thị $G$ là $t^\mathrm{root}(G,k)$. Cây khung có hướng hướng về gốc nghĩa là đồ thị nền của nó là một cây, và mọi cạnh đều hướng về phía cha.
 
-记图 $G$ 的以 $k$ 为根的所有叶向树形图个数为 $t^\mathrm{leaf}(G,k)$．所谓叶向树形图，是说这张图的基图是一棵树，所有的边全部指向儿子．
+Ký hiệu số cây khung có hướng lấy $k$ làm gốc và hướng ra lá của đồ thị $G$ là $t^\mathrm{leaf}(G,k)$. Cây khung có hướng ra lá nghĩa là đồ thị nền của nó là một cây, và mọi cạnh đều hướng về phía con.
 
-## 定理叙述
+## Phát biểu định lý
 
-矩阵树定理具有多种形式．
+Định lý ma trận cây có nhiều dạng.
 
-定义 $[n]=\{1,2,\cdots,n\}$，矩阵 $A$ 的子矩阵 $A_{S,T}$ 为选取 $A_{i,j}\pod{i\in S,j\in T}$ 的元素得到的子矩阵．
+Định nghĩa $[n]=\{1,2,\cdots,n\}$. Với ma trận $A$, ma trận con $A_{S,T}$ là ma trận thu được bằng cách chọn các phần tử $A_{i,j}\pod{i\in S,j\in T}$.
 
-???+ note "定理 1（矩阵树定理，无向图，行列式形式）"
-    对于无向图 $G$ 和任意的 $k$，都有
-    
+???+ note "Định lý 1 (định lý ma trận cây, đồ thị vô hướng, dạng định thức)"
+    Với đồ thị vô hướng $G$ và $k$ bất kỳ, ta có
+
     $$
     t(G) = \det L(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
-    
-    也就是说，无向图的 Laplace 矩阵所有 $n-1$ 阶主子式都相等，且都等于图的生成树的个数．
 
-???+ note "推论 1（矩阵树定理，无向图，特征值形式）"
-    设 $\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_{n-1}\ge\lambda_n=0$ 为 $L(G)$ 的 $n$ 个特征值，那么有
-    
+    Nói cách khác, mọi định thức con chính cấp $n-1$ của ma trận Laplace của đồ thị vô hướng đều bằng nhau, và đều bằng số cây khung của đồ thị.
+
+???+ note "Hệ quả 1 (định lý ma trận cây, đồ thị vô hướng, dạng trị riêng)"
+    Giả sử $\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_{n-1}\ge\lambda_n=0$ là $n$ trị riêng của $L(G)$. Khi đó
+
     $$
     t(G) = \frac{1}{n}\lambda_1\lambda_2\cdots\lambda_{n-1}.
     $$
 
-???+ note "定理 2（矩阵树定理，有向图根向树，行列式形式）"
-    对于有向图 $G$ 和任意的 $k$，都有
-    
+???+ note "Định lý 2 (định lý ma trận cây, cây hướng về gốc trong đồ thị có hướng, dạng định thức)"
+    Với đồ thị có hướng $G$ và $k$ bất kỳ, ta có
+
     $$
     t^\mathrm{root}(G,k) = \det L^\mathrm{out}(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
-    
-    也就是说，有向图的出度 Laplace 矩阵删去第 $k$ 行第 $k$ 列得到的主子式等于以 $k$ 为根的根向树形图的个数．
 
-因此如果要统计一张图所有的根向树形图，只要枚举所有的根 $k$ 并对 $t^\mathrm{root}(G,k)$ 求和即可．
+    Nói cách khác, định thức con chính thu được từ ma trận Laplace bậc ra của đồ thị có hướng sau khi xóa hàng $k$ và cột $k$ bằng số cây khung có hướng lấy $k$ làm gốc và hướng về gốc.
 
-???+ note "定理 3（矩阵树定理，有向图叶向树，行列式形式）"
-    对于有向图 $G$ 和任意的 $k$，都有
-    
+Vì vậy, nếu muốn đếm tất cả cây khung có hướng hướng về gốc của một đồ thị, chỉ cần duyệt mọi gốc $k$ và lấy tổng các giá trị $t^\mathrm{root}(G,k)$.
+
+???+ note "Định lý 3 (định lý ma trận cây, cây hướng ra lá trong đồ thị có hướng, dạng định thức)"
+    Với đồ thị có hướng $G$ và $k$ bất kỳ, ta có
+
     $$
     t^\mathrm{leaf}(G,k) = \det L^\mathrm{in}(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
-    
-    也就是说，有向图的入度 Laplace 矩阵删去第 $k$ 行第 $k$ 列得到的主子式等于以 $k$ 为根的叶向树形图的个数．
 
-因此如果要统计一张图所有的叶向树形图，只要枚举所有的根 $k$ 并对 $t^\mathrm{leaf}(G,k)$ 求和即可．
+    Nói cách khác, định thức con chính thu được từ ma trận Laplace bậc vào của đồ thị có hướng sau khi xóa hàng $k$ và cột $k$ bằng số cây khung có hướng lấy $k$ làm gốc và hướng ra lá.
 
-???+ note "注"
-    根向树形图也被称为内向树形图，但因为计算内向树形图用的是出度，为了不引起 $\mathrm{in}$ 和 $\mathrm{out}$ 的混淆，所以采用了根向这一说法．
+Vì vậy, nếu muốn đếm tất cả cây khung có hướng hướng ra lá của một đồ thị, chỉ cần duyệt mọi gốc $k$ và lấy tổng các giá trị $t^\mathrm{leaf}(G,k)$.
 
-## 定理证明
+???+ note "Ghi chú"
+    Cây khung có hướng hướng về gốc cũng được gọi là cây hướng vào, nhưng vì việc tính cây hướng vào lại dùng bậc ra, để tránh nhầm lẫn giữa $\mathrm{in}$ và $\mathrm{out}$, bài này dùng cách gọi hướng về gốc.
 
-观察上述定理形式极为相似，这里给出一种统一的证明方式，并且将之前的结论拓展到带权的图上．
+## Chứng minh định lý
 
-证明的大致思路如下：
+Quan sát các phát biểu trên, ta thấy chúng rất giống nhau. Phần này đưa ra một cách chứng minh thống nhất, đồng thời mở rộng các kết luận trước đó sang đồ thị có trọng số.
 
--   首先，所有情形都可以转化为计数有向图上根向树形图的情形；
--   利用矩阵语言给出选出的若干边可以构成根向树形图的充要条件；
--   将选边的操作利用 Cauchy–Binet 公式和 Laplace 矩阵的行列式联系起来；
--   最后，将行列式形式的结论转化为特征值形式的结论．
+Ý tưởng chính của chứng minh như sau:
 
-### 引理：Cauchy–Binet 公式
+-   Trước hết, mọi trường hợp đều có thể chuyển về bài toán đếm cây khung có hướng hướng về gốc trên đồ thị có hướng;
+-   Dùng ngôn ngữ ma trận để mô tả điều kiện cần và đủ để một số cạnh được chọn tạo thành cây khung có hướng hướng về gốc;
+-   Liên hệ thao tác chọn cạnh với định thức của ma trận Laplace bằng công thức Cauchy-Binet;
+-   Cuối cùng, chuyển kết luận dạng định thức thành kết luận dạng trị riêng.
 
-???+ note "引理 1（Cauchy–Binet）"
-    给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
-    
+### Bổ đề: công thức Cauchy-Binet
+
+???+ note "Bổ đề 1 (Cauchy-Binet)"
+    Cho ma trận $A$ kích thước $n\times m$ và ma trận $B$ kích thước $m\times n$. Khi đó
+
     $$
     \det(AB)=\sum_{S\subset[m];~|S|=n}\det A_{[n],S}\det B_{S,[n]},
     $$
-    
-    这里求和记号的含义是，$S$ 取遍所有 $[m]$ 中大小为 $n$ 的子集．如果 $n>m$，必然有 $\det(AB)=0$．
 
-??? note "证明（组合视角）"
-    参考 [「NOI2021」路径交点](https://loj.ac/p/3533) 的模型，首先考虑行列式的如下组合意义．对于 $n\times n$ 阶矩阵 $C$，建立有向无环图 $G=(V,E)$．其中，顶点集为 $V=[2]\times[n]\subset\mathbb R^2$，亦即平面上的两列点．记左侧一列点为 $L=\{l_i=(1,i):i\in[n]\}$，右侧的一列点为 $R=\{r_i=(2,i):i\in[n]\}$；而有向边集为 $E=\{(l_i,r_j):i,j\in[n]\}$，并赋有边权 $w(l_i,r_j)=C_{i,j}$．在图中，称大小为 $n$ 的边的子集 $E^\sigma\subset E$ 为一个路径组，如果它的起点互不相同，且终点也互不相同．显然，路径组 $E^\sigma$ 和 $[n]$ 上的置换 $\sigma$ 可以一一对应．注意到，如果将一个路径组在平面上画出，这些边之间可能会两两相交，而这些交点的数目（计重数）就等于 $\sigma$ 的逆序数．这是因为边 $(l_i,r_{\sigma(i)})$ 和边 $(l_j,r_{\sigma(j)})$ 相交，当且仅当 $(i-j)(\sigma(i)-\sigma(j))< 0$，即这是一个逆序对．为方便，称对应置换的逆序数的奇偶性，亦即该路径组交点个数的奇偶性，为该路径组的奇偶性．所以，如果将这些路径组按照权重计数，且用偶数交点的路径组数减去奇数交点的路径组数，就会得到行列式的 Leibniz 展开：
-    
+    trong đó ký hiệu tổng nghĩa là $S$ chạy qua mọi tập con kích thước $n$ của $[m]$. Nếu $n>m$, tất nhiên $\det(AB)=0$.
+
+??? note "Chứng minh (góc nhìn tổ hợp)"
+    Tham khảo mô hình trong bài [NOI2021 - Giao điểm đường đi](https://loj.ac/p/3533). Trước hết xét ý nghĩa tổ hợp sau của định thức. Với ma trận vuông $C$ cấp $n\times n$, dựng đồ thị có hướng không chu trình $G=(V,E)$. Trong đó, tập đỉnh là $V=[2]\times[n]\subset\mathbb R^2$, tức hai cột điểm trên mặt phẳng. Ký hiệu cột điểm bên trái là $L=\{l_i=(1,i):i\in[n]\}$, cột điểm bên phải là $R=\{r_i=(2,i):i\in[n]\}$; tập cạnh có hướng là $E=\{(l_i,r_j):i,j\in[n]\}$, với trọng số cạnh $w(l_i,r_j)=C_{i,j}$. Trong đồ thị, gọi một tập con cạnh $E^\sigma\subset E$ có kích thước $n$ là một nhóm đường đi nếu các điểm đầu đôi một khác nhau và các điểm cuối cũng đôi một khác nhau. Rõ ràng, các nhóm đường đi $E^\sigma$ tương ứng một-một với các hoán vị $\sigma$ trên $[n]$. Chú ý rằng nếu vẽ một nhóm đường đi trên mặt phẳng, các cạnh có thể cắt nhau từng đôi một, và số giao điểm đó, tính cả bội, chính bằng số nghịch thế của $\sigma$. Lý do là cạnh $(l_i,r_{\sigma(i)})$ và cạnh $(l_j,r_{\sigma(j)})$ cắt nhau khi và chỉ khi $(i-j)(\sigma(i)-\sigma(j))< 0$, tức đó là một cặp nghịch thế. Để tiện, gọi tính chẵn lẻ của số nghịch thế của hoán vị tương ứng, hay tương đương tính chẵn lẻ của số giao điểm của nhóm đường đi, là tính chẵn lẻ của nhóm đường đi. Do đó, nếu đếm các nhóm đường đi theo trọng số, rồi lấy số nhóm có số giao điểm chẵn trừ đi số nhóm có số giao điểm lẻ, ta thu được khai triển Leibniz của định thức:
+
     $$
     \det(C)=\sum_{\sigma\in S_n}\mathrm{sgn}(\sigma)\prod_{i\in[n]}C_{i,\sigma(i)},
     $$
-    
-    其中，$S_n$ 为 $[n]$ 上的置换群，而 $\mathrm{sgn}(\sigma)$ 为置换 $\sigma$ 的符号（当逆序数为偶数时，它等于 $1$；当逆序数为奇数时，它等于 $-1$）．
-    
-    在理解行列式的组合意义后，可以利用如下的组合模型证明 Cauchy–Binet 公式．对于 $n\times m$ 阶矩阵 $A$ 和 $m\times n$ 阶矩阵 $B$，建立有向无环图 $G=(V,E)$．其中，顶点集为 $V=L\cup D\cup R$，这里，$L=\{l_i=(1,i):i\in[n]\}$，$D=\{d_i=(2,i):i\in[m]\}$ 和 $R=\{r_i=(3,i):i\in[n]\}$；而有向边集为 $E=E_L\cup E_R$，其中，$E_L=\{(l_i,d_j):i\in[n],j\in[m]\}$ 和 $E_R=\{(d_j,r_i):j\in[m],i\in[n]\}$，分别赋以边权 $w(l_i,d_j)=A_{i,j}$ 和 $w(d_j,r_i)=B_{j,i}$．同样考虑自 $L$ 经 $D$ 到 $R$ 的路径组（路径间两两不共用顶点），按照权重计数，并用偶数交点的路径组数减去奇数交点的路径组数．下面说明，Cauchy–Binet 公式的左右两侧分别用两种方式计算了这一数目．
-    
-    对于左侧，基于上面描述的图 $G$，建立新图 $G'$，其顶点集为 $V'=L\cup R$，边集为 $E'=\{(l_i,r_j):i,j\in[n]\}$，且对于边 $(l_i,r_j)$ 赋以边权 $\sum_{k\in[m]}A_{i,k}B_{k,j}$，即在原图 $G$ 中自 $l_i$ 到 $r_j$ 的简单路径的加权计数．这一边权正是 $(AB)_{i,j}$．这相当于把上述的三层图简化成了两层图．但是，两层图 $G'$ 中的路径组（按权重计）并非和三层图 $G$ 中的路径组一一对应．由于在两层图中，每个路径都对应三层图中若干条简单路径，在对两层图进行路径组的计数时，需要将权重相乘，这相当于对它们对应的三层图中的路径集合两两组合，这必然会造成出现共用中间经停点的情形．但是，这些共用中间经停点的路径对并不会对最后的答案有贡献，因为对于 $i_1< i_2$ 和 $j_1< j_2$ 和任意中间点 $d$，都存在两种简单路径对 $(l_{i_1}\rightarrow d\rightarrow r_{j_1}, l_{i_2}\rightarrow d\rightarrow r_{j_2})$ 和 $(l_{i_1}\rightarrow d\rightarrow r_{j_2}, l_{i_2}\rightarrow d\rightarrow r_{j_1})$，但是这两组路径在三层图中的交点数目奇偶性必然相反，因为如果只看起点和终点，两组路径交换了终点．所以，这些共用中间经停点的路径在简化后的两层图计数时，贡献会两两抵消．对于剩下的情形，如果给定两条路径的起点和终点，那么无论中间的点如何选取（只要不选择同一个点），则这两条路径的交点个数的奇偶性不会变．故而，$G'$ 中每一个路径组对应的所有原图 $G$ 中的路径组都具有相同的奇偶性．因而，$\det(AB)$ 提供了前文所述路径组数差值的一种计算方式．
-    
-    对于右侧，它相当于枚举了所有可能的中间点的组合．给定任何中间点集合 $S\subset D=[m]$ 且 $|S|=n$，分别考虑自 $L$ 到 $S$ 的路径组和自 $S$ 到 $R$ 的路径组，可以连接得到 $L$ 到 $R$ 的路径组，且前两个路径组对应的置换的复合就等于之后的路径组对应的置换，故而前两个路径的奇偶性的乘积等于之后的路径组的奇偶性．所以，所有中间点集合为 $S$ 的路径组的计数的差值正等于自 $L$ 到 $S$ 的路径组的计数的差值和自 $S$ 到 $R$ 的路径组的计数的差值的乘积．对所有可能的 $S$ 求和，即得到右式，故而它正是前文所述路径组数差值．
 
-??? note "证明（代数视角）"
-    上述组合证明其实可以逐字逐句地翻译成代数证明．这里转而提供另一种技巧性较强的代数证明，但用到了几个常见结论．当 $m< n$ 时，行列式为零，因为
-    
+    trong đó $S_n$ là nhóm hoán vị trên $[n]$, còn $\mathrm{sgn}(\sigma)$ là dấu của hoán vị $\sigma$; nó bằng $1$ khi số nghịch thế chẵn và bằng $-1$ khi số nghịch thế lẻ.
+
+    Sau khi hiểu ý nghĩa tổ hợp của định thức, ta có thể dùng mô hình tổ hợp sau để chứng minh công thức Cauchy-Binet. Với ma trận $A$ cấp $n\times m$ và ma trận $B$ cấp $m\times n$, dựng đồ thị có hướng không chu trình $G=(V,E)$. Trong đó, tập đỉnh là $V=L\cup D\cup R$, với $L=\{l_i=(1,i):i\in[n]\}$, $D=\{d_i=(2,i):i\in[m]\}$ và $R=\{r_i=(3,i):i\in[n]\}$; tập cạnh có hướng là $E=E_L\cup E_R$, trong đó $E_L=\{(l_i,d_j):i\in[n],j\in[m]\}$ và $E_R=\{(d_j,r_i):j\in[m],i\in[n]\}$, lần lượt có trọng số cạnh $w(l_i,d_j)=A_{i,j}$ và $w(d_j,r_i)=B_{j,i}$. Tương tự, xét các nhóm đường đi từ $L$ qua $D$ đến $R$ mà các đường đi đôi một không dùng chung đỉnh, đếm theo trọng số, rồi lấy số nhóm có số giao điểm chẵn trừ đi số nhóm có số giao điểm lẻ. Ta sẽ chỉ ra rằng hai vế của công thức Cauchy-Binet tính số này theo hai cách.
+
+    Với vế trái, dựa trên đồ thị $G$ mô tả ở trên, dựng đồ thị mới $G'$ có tập đỉnh $V'=L\cup R$, tập cạnh $E'=\{(l_i,r_j):i,j\in[n]\}$, và gán cho cạnh $(l_i,r_j)$ trọng số $\sum_{k\in[m]}A_{i,k}B_{k,j}$, tức số đếm có trọng số của các đường đi đơn từ $l_i$ đến $r_j$ trong đồ thị gốc $G$. Trọng số cạnh này chính là $(AB)_{i,j}$. Điều này tương đương với việc rút gọn đồ thị ba lớp ở trên thành đồ thị hai lớp. Tuy nhiên, các nhóm đường đi trong đồ thị hai lớp $G'$, khi tính theo trọng số, không tương ứng một-một với các nhóm đường đi trong đồ thị ba lớp $G$. Vì trong đồ thị hai lớp, mỗi đường đi tương ứng với nhiều đường đi đơn trong đồ thị ba lớp, nên khi đếm nhóm đường đi của đồ thị hai lớp, ta phải nhân các trọng số, tương đương với việc ghép đôi các tập đường đi tương ứng trong đồ thị ba lớp. Điều này chắc chắn tạo ra các trường hợp dùng chung điểm trung gian. Nhưng các cặp đường đi dùng chung điểm trung gian không đóng góp vào đáp án cuối cùng, vì với $i_1< i_2$, $j_1< j_2$ và điểm trung gian $d$ bất kỳ, luôn tồn tại hai cặp đường đi đơn $(l_{i_1}\rightarrow d\rightarrow r_{j_1}, l_{i_2}\rightarrow d\rightarrow r_{j_2})$ và $(l_{i_1}\rightarrow d\rightarrow r_{j_2}, l_{i_2}\rightarrow d\rightarrow r_{j_1})$, nhưng hai nhóm đường đi này trong đồ thị ba lớp có tính chẵn lẻ số giao điểm đối nhau, bởi nếu chỉ nhìn điểm đầu và điểm cuối thì hai nhóm đã hoán đổi điểm cuối. Vì vậy, khi đếm trên đồ thị hai lớp đã rút gọn, các đường đi dùng chung điểm trung gian sẽ triệt tiêu theo từng cặp. Với những trường hợp còn lại, nếu cố định điểm đầu và điểm cuối của hai đường đi, thì bất kể chọn các điểm trung gian thế nào, miễn là không chọn cùng một điểm, tính chẵn lẻ của số giao điểm của hai đường đi không đổi. Do đó, mọi nhóm đường đi trong đồ thị gốc $G$ tương ứng với cùng một nhóm đường đi trong $G'$ đều có cùng tính chẵn lẻ. Vì thế, $\det(AB)$ cung cấp một cách tính hiệu số nhóm đường đi nói trên.
+
+    Với vế phải, nó tương đương với việc duyệt mọi tổ hợp điểm trung gian có thể. Cho một tập điểm trung gian bất kỳ $S\subset D=[m]$ với $|S|=n$, xét riêng nhóm đường đi từ $L$ đến $S$ và nhóm đường đi từ $S$ đến $R$. Ghép chúng lại sẽ thu được nhóm đường đi từ $L$ đến $R$, và hợp thành của hai hoán vị ứng với hai nhóm đường đi trước chính là hoán vị ứng với nhóm đường đi sau, nên tích tính chẵn lẻ của hai nhóm đường đi trước bằng tính chẵn lẻ của nhóm đường đi sau. Do đó, với mọi nhóm đường đi có tập điểm trung gian là $S$, hiệu số đếm được đúng bằng tích của hiệu số đếm nhóm đường đi từ $L$ đến $S$ và hiệu số đếm nhóm đường đi từ $S$ đến $R$. Lấy tổng trên mọi $S$ có thể, ta thu được vế phải, và nó chính là hiệu số nhóm đường đi đã nêu ở trên.
+
+??? note "Chứng minh (góc nhìn đại số)"
+    Chứng minh tổ hợp ở trên thực ra có thể dịch gần như từng câu thành chứng minh đại số. Ở đây ta đưa ra một chứng minh đại số khác có tính kỹ thuật hơn, nhưng dùng vài kết quả quen thuộc. Khi $m< n$, định thức bằng không, vì
+
     $$
     \mathrm{rank}(AB)\le \min\{\mathrm{rank}(A),\mathrm{rank}(B)\}\le m< n.
     $$
-    
-    当 $m=n$ 时，Cauchy–Binet 公式就是，方阵的积的行列式等于方阵的行列式的积．
-    
-    当 $m>n$ 时，注意到
-    
+
+    Khi $m=n$, công thức Cauchy-Binet chính là mệnh đề định thức của tích hai ma trận vuông bằng tích các định thức của chúng.
+
+    Khi $m>n$, chú ý rằng
+
     $$
     x^{m-n}\det(xI_n+AB) = \det(xI_m+BA).
     $$
-    
-    又已知结论，$\det(xI_n+C)$ 中 $x^{n-k}$ 的系数是 $C$ 的所有 $k$ 阶主子式的和．故而，比较上式中两侧系数，有
-    
+
+    Lại dùng kết quả đã biết: hệ số của $x^{n-k}$ trong $\det(xI_n+C)$ là tổng mọi định thức con chính cấp $k$ của $C$. Vì vậy, so sánh hệ số hai vế của đẳng thức trên, ta có
+
     $$
     \det(AB) = \sum_{S\subset[m];~|S|=n}\det(BA)_{S,S} = \sum_{S\subset[m];~|S|=n}\det(B)_{S,[n]}\det(A)_{[n],S} = \sum_{S\subset[m];~|S|=n}\det(A)_{[n],S}\det(B)_{S,[n]}.
     $$
-    
-    这里，第二个等号用到了 $m=n$ 的情形的结论．
 
-### 用关联矩阵刻画图的结构
+    Ở đây, dấu bằng thứ hai dùng kết quả của trường hợp $m=n$.
 
-对于有向图 $G=(V,E)$，顶点数为 $n$，边数为 $m$，且边 $e$ 赋有边权 $w(e)$．由此，可以定义 $m\times n$ 阶出度关联矩阵
+### Mô tả cấu trúc đồ thị bằng ma trận liên thuộc
+
+Với đồ thị có hướng $G=(V,E)$, số đỉnh là $n$, số cạnh là $m$, và cạnh $e$ có trọng số $w(e)$. Từ đó, ta có thể định nghĩa ma trận liên thuộc bậc ra cấp $m\times n$
 
 $$
 M^\mathrm{out}_{ij}=\begin{cases}
@@ -181,7 +181,7 @@ M^\mathrm{out}_{ij}=\begin{cases}
 \end{cases}
 $$
 
-和 $m\times n$ 阶入度关联矩阵
+và ma trận liên thuộc bậc vào cấp $m\times n$
 
 $$
 M^\mathrm{in}_{ij}=\begin{cases}
@@ -190,224 +190,224 @@ M^\mathrm{in}_{ij}=\begin{cases}
 \end{cases}
 $$
 
-它们每行都记录了一条边：出度关联矩阵 $M^\mathrm{out}$ 记录了边的起点，入度关联矩阵 $M^\mathrm{in}$ 记录了边的终点．
+Mỗi hàng của chúng ghi lại một cạnh: ma trận liên thuộc bậc ra $M^\mathrm{out}$ ghi lại điểm đầu của cạnh, còn ma trận liên thuộc bậc vào $M^\mathrm{in}$ ghi lại điểm cuối của cạnh.
 
-简单计算可知
+Tính toán đơn giản cho thấy
 
 $$
 D^\mathrm{out}(G) = (M^\mathrm{out})^T M^\mathrm{out},\ A(G) = (M^\mathrm{out})^T M^\mathrm{in},\ D^\mathrm{in}(G) = (M^\mathrm{in})^T M^\mathrm{in}.
 $$
 
-进而有
+Do đó
 
 $$
 L^\mathrm{out}(G) = (M^\mathrm{out})^T (M^\mathrm{out}-M^\mathrm{in}),\ L^\mathrm{in}(G) = (M^\mathrm{in}-M^\mathrm{out})^T M^\mathrm{in}.
 $$
 
-前文的 Cauchy–Binet 公式表明，Laplace 矩阵的主子式其实是一系列子结构的和．每个子结构都反映了对应的子图的性质．
+Công thức Cauchy-Binet ở trên cho thấy định thức con chính của ma trận Laplace thực chất là tổng của một loạt cấu trúc con. Mỗi cấu trúc con phản ánh tính chất của đồ thị con tương ứng.
 
-???+ note "引理 2"
-    对于 $G$ 的一个子图 $(W,S)$，若它满足 $|W|=|S|\le n$，则子图 $T=(V,S)$ 是一个以 $V\setminus W$ 为根的根向森林，当且仅当对应的算式
-    
+???+ note "Bổ đề 2"
+    Với một đồ thị con $(W,S)$ của $G$, nếu nó thỏa mãn $|W|=|S|\le n$, thì đồ thị con $T=(V,S)$ là một rừng hướng về gốc với tập gốc $V\setminus W$ khi và chỉ khi biểu thức tương ứng
+
     $$
     \det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})
     $$
-    
-    不为零．而且，该式当不为零时，必然等于 $\prod_{e\in S}w(e)$，记作 $w(T)$．
 
-??? note "证明"
-    不妨设 $w(e)=1$．这是根据行列式的多重线性，每个行列式的每行都可以提取因子 $\sqrt{w(e)}$，这些因子的乘积为 $w(T)$．
-    
-    首先分析两个因子等于零的条件．前一个因子 $\det(M^\mathrm{out}_{S,W})$ 每行至多一个不为零的数字，即 $+1$．如果有任何一行全为零，则该行列式必然为零．所以，该行列式不为零，当且仅当每行恰好一个 $+1$，亦即 $W$ 中每个点都恰好是 $S$ 中一条边的起点，且没有两个边共用同一个起点．已知 $T$ 成为以 $V\setminus W$ 为根的根向森林，一个必要条件就是除了根之外，所有顶点有且只有一个父节点，这必然使得该因子不为零；但反过来并不一定成立，因为不能保证不存在环，所以还需要考察第二个因子．注意，$S$ 的终点未必在 $W$ 中．
-    
-    假定前一个因子不为零，则此时子图 $T$ 成为根向森林，当且仅当 $T$ 中没有环．此时，后一项 $\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})$ 每行中都有一个 $+1$，但可能有一个或零个 $-1$．对于终点也在 $W$ 中的边，如果 $e_i$ 的终点是 $e_j$ 的起点，则将 $e_i$ 对应的行加上 $e_j$ 对应的行，可以消去 $e_i$ 行中的 $-1$．可以想象，此时该行描述的是 $e_i$ 和 $e_j$ 首尾相接的简单路径．如果该行出现了新的 $-1$，那么说明 $e_j$ 的终点也在 $W$ 内，$-1$ 的位置就是 $e_j$ 的终点，于事，可以继续找到以 $e_j$ 的终点为起点的边，再次加到该行上．这样的边总是存在的，因为上一段论述说明，$W$ 中每个点都恰好是 $S$ 中一条边的起点．这一过程一直持续到该行不在出现 $-1$ 为止，相当于不断添加新的边到简单路径 $e_i\rightarrow e_j\rightarrow \cdots\rightarrow e_k$ 中．此时，如果该行只剩下一个 $+1$，那么说明 $e_k$ 的终点不在所选顶点 $W$ 中，过程终止；如果上次加入的边恰巧抵消了现有的 $+1$，即该行只剩下零，那么说明新边 $e_k$ 的终点就是最开始的边 $e_i$ 的起点，即出现了一个环．所以，没有环的充要条件是该一行列式经上述操作可以变形成每行都恰好只有一个 $+1$ 的形式．由于这些 $+1$ 的位置是各行对应边的起点，此时得到的矩阵实际上就是 $\det(M^\mathrm{out}_{S,W})$．
-    
-    综上所述，如果 $T$ 不是根向森林，则要么 $\det(M^\mathrm{out}_{S,W})=0$，要么 $\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})=0$；否则，两者均不为零，且乘积等于 $\left(\det(M^\mathrm{out}_{S,W})\right)^2=1$．
+    khác không. Hơn nữa, khi biểu thức này khác không, nó nhất định bằng $\prod_{e\in S}w(e)$, ký hiệu là $w(T)$.
 
-### 带权有向图的矩阵树定理
+??? note "Chứng minh"
+    Không mất tính tổng quát, giả sử $w(e)=1$. Điều này suy ra từ tính đa tuyến tính của định thức: từ mỗi hàng của mỗi định thức đều có thể tách ra một thừa số $\sqrt{w(e)}$, và tích các thừa số này là $w(T)$.
 
-现在可以证明本文的主要结果．前文所述矩阵树定理均为该定理的特殊情形．
+    Trước hết phân tích điều kiện để hai nhân tử bằng không. Nhân tử thứ nhất $\det(M^\mathrm{out}_{S,W})$ có mỗi hàng chứa nhiều nhất một số khác không, tức $+1$. Nếu có hàng nào toàn số không, định thức này chắc chắn bằng không. Do đó, định thức này khác không khi và chỉ khi mỗi hàng có đúng một $+1$, tức mỗi điểm trong $W$ đúng là điểm đầu của một cạnh trong $S$, và không có hai cạnh dùng chung cùng một điểm đầu. Để $T$ là rừng hướng về gốc với tập gốc $V\setminus W$, một điều kiện cần là mọi đỉnh không phải gốc có đúng một cha; điều này chắc chắn làm nhân tử trên khác không. Nhưng chiều ngược lại chưa chắc đúng, vì còn phải bảo đảm không có chu trình, nên cần xét nhân tử thứ hai. Chú ý rằng điểm cuối của các cạnh trong $S$ không nhất thiết nằm trong $W$.
 
-???+ note "定理 4（矩阵树定理，带权有向图根向树，行列式形式）"
-    对于任意的 $k$，都有
-    
+    Giả sử nhân tử thứ nhất khác không. Khi đó, đồ thị con $T$ là rừng hướng về gốc khi và chỉ khi trong $T$ không có chu trình. Lúc này, mỗi hàng của hạng tử sau $\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})$ đều có một $+1$, nhưng có thể có một hoặc không có $-1$. Với cạnh có điểm cuối cũng nằm trong $W$, nếu điểm cuối của $e_i$ là điểm đầu của $e_j$, thì cộng hàng ứng với $e_j$ vào hàng ứng với $e_i$ có thể khử $-1$ trong hàng của $e_i$. Có thể hình dung rằng khi đó hàng này mô tả đường đi đơn nối tiếp đầu-cuối $e_i$ và $e_j$. Nếu hàng này xuất hiện một $-1$ mới, điều đó nghĩa là điểm cuối của $e_j$ cũng nằm trong $W$, và vị trí của $-1$ chính là điểm cuối của $e_j$. Khi đó có thể tiếp tục tìm cạnh có điểm đầu là điểm cuối của $e_j$, rồi cộng tiếp hàng đó vào hàng hiện tại. Cạnh như vậy luôn tồn tại, vì đoạn trước đã chỉ ra rằng mỗi điểm trong $W$ đúng là điểm đầu của một cạnh trong $S$. Quá trình này tiếp tục cho đến khi hàng đó không còn xuất hiện $-1$, tương đương với việc liên tục thêm cạnh mới vào đường đi đơn $e_i\rightarrow e_j\rightarrow \cdots\rightarrow e_k$. Khi đó, nếu hàng chỉ còn một $+1$, nghĩa là điểm cuối của $e_k$ không thuộc tập đỉnh đã chọn $W$, và quá trình dừng lại. Nếu cạnh vừa thêm vào đúng lúc triệt tiêu $+1$ hiện có, tức hàng chỉ còn toàn số không, nghĩa là điểm cuối của cạnh mới $e_k$ chính là điểm đầu của cạnh ban đầu $e_i$, tức đã xuất hiện một chu trình. Vì vậy, điều kiện cần và đủ để không có chu trình là định thức này có thể được biến đổi bằng các thao tác trên về dạng mỗi hàng đều có đúng một $+1$. Vì vị trí các $+1$ này là điểm đầu của cạnh tương ứng với từng hàng, ma trận thu được thực chất chính là $\det(M^\mathrm{out}_{S,W})$.
+
+    Tóm lại, nếu $T$ không phải rừng hướng về gốc, thì hoặc $\det(M^\mathrm{out}_{S,W})=0$, hoặc $\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})=0$. Ngược lại, cả hai đều khác không, và tích của chúng bằng $\left(\det(M^\mathrm{out}_{S,W})\right)^2=1$.
+
+### Định lý ma trận cây cho đồ thị có hướng có trọng số
+
+Bây giờ có thể chứng minh kết quả chính của bài viết. Các dạng định lý ma trận cây đã nêu ở trên đều là trường hợp đặc biệt của định lý này.
+
+???+ note "Định lý 4 (định lý ma trận cây, cây hướng về gốc trong đồ thị có hướng có trọng số, dạng định thức)"
+    Với $k$ bất kỳ, ta có
+
     $$
     \sum_{T\in\mathcal T^\mathrm{root}(G,k)}w(T)=\det L^\mathrm{out}(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
-    
-    这里，$\mathcal T^\mathrm{root}(G,k)$ 是 $G$ 的以 $k$ 为根的根向树形图的集合．
 
-??? note "证明"
-    记 $W=[n]\setminus\{k\}$ 为除去 $k$ 点外的剩余顶点的集合．那么，根据 Cauchy–Binet 公式，右式可以写作
-    
+    Ở đây, $\mathcal T^\mathrm{root}(G,k)$ là tập các cây khung có hướng của $G$ lấy $k$ làm gốc và hướng về gốc.
+
+??? note "Chứng minh"
+    Ký hiệu $W=[n]\setminus\{k\}$ là tập các đỉnh còn lại sau khi bỏ đỉnh $k$. Theo công thức Cauchy-Binet, vế phải có thể viết thành
+
     $$
     \det L^\mathrm{out}(G)_{W,W} = \sum_{S\subset[m];~|S|=n-1}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
     $$
-    
-    遍历所有的 $S$，由引理 2，当且仅当 $T=(V,S)$ 构成一个以 $V\setminus W=\{k\}$ 为根的根向森林时，亦即 $T$ 是一个以 $k$ 为根的根向树形图时，右侧累加一个 $w(T)$．
 
-当 $w(e)=1$ 时，每个树的权值都是 $1$，则左侧就是所有树的计数，即 $t^\mathrm{root}(G,k)$，这就得到定理 2．类比上文，可以将结论直接推广于叶向树形图，这就得到定理 3．最后，要得到无向图上的生成树计数，可以应用如下推论．
+    Duyệt mọi $S$. Theo Bổ đề 2, khi và chỉ khi $T=(V,S)$ tạo thành một rừng hướng về gốc với tập gốc $V\setminus W=\{k\}$, tức $T$ là cây khung có hướng lấy $k$ làm gốc và hướng về gốc, vế phải cộng thêm một lượng $w(T)$.
 
-???+ note "推论 4（矩阵树定理，带权无向图，行列式形式）"
-    对于无向图 $G$ 和任意的 $k$，都有
-    
+Khi $w(e)=1$, trọng số của mỗi cây đều là $1$, nên vế trái chính là số đếm tất cả các cây, tức $t^\mathrm{root}(G,k)$. Như vậy ta thu được Định lý 2. Tương tự như trên, có thể mở rộng trực tiếp kết luận sang cây khung có hướng hướng ra lá, từ đó thu được Định lý 3. Cuối cùng, để đếm cây khung trên đồ thị vô hướng, ta có thể dùng hệ quả sau.
+
+???+ note "Hệ quả 4 (định lý ma trận cây, đồ thị vô hướng có trọng số, dạng định thức)"
+    Với đồ thị vô hướng $G$ và $k$ bất kỳ, ta có
+
     $$
     \sum_{T\in\mathcal T(G)}w(T) = \det L(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
-    
-    这里，$\mathcal T(G)$ 是 $G$ 的生成树的集合．这也说明，$L(G)$ 的所有 $(n-1)$ 阶主子式都相等．
 
-??? note "证明"
-    对于无向图 $G=(V,E)$，可以构建有向图 $G'=(V,E')$，其中，$E'=\{(v_i,v_j):(v_i,v_j)\in E\}\cup\{(v_j,v_i):(v_i,v_j)\in E\}$，即每条 $G$ 中的无向边都拆成有向图中方向相反的两条有向边．任取 $k$，则 $G'$ 中以 $k$ 为根的根向树形图和 $G$ 中的生成树一一对应．由前者向后者，只需要移除边的定向和根的选取；由后者向前者，只需要从选定的根 $k$ 开始逐边选取根向作为边的定向．所以，此时有
-    
+    Ở đây, $\mathcal T(G)$ là tập các cây khung của $G$. Điều này cũng cho thấy mọi định thức con chính cấp $(n-1)$ của $L(G)$ đều bằng nhau.
+
+??? note "Chứng minh"
+    Với đồ thị vô hướng $G=(V,E)$, ta có thể xây dựng đồ thị có hướng $G'=(V,E')$, trong đó $E'=\{(v_i,v_j):(v_i,v_j)\in E\}\cup\{(v_j,v_i):(v_i,v_j)\in E\}$, tức mỗi cạnh vô hướng trong $G$ được tách thành hai cạnh có hướng ngược chiều nhau trong đồ thị có hướng. Chọn tùy ý $k$. Khi đó, cây khung có hướng lấy $k$ làm gốc và hướng về gốc trong $G'$ tương ứng một-một với cây khung trong $G$. Từ đối tượng trước sang đối tượng sau, chỉ cần bỏ hướng cạnh và bỏ lựa chọn gốc; từ đối tượng sau sang đối tượng trước, chỉ cần bắt đầu từ gốc đã chọn $k$ và định hướng từng cạnh theo chiều hướng về gốc. Do đó, lúc này
+
     $$
     \sum_{T\in\mathcal T(G)}w(T) = \sum_{T\in\mathcal T^\mathrm{root}(G',k)}w(T) = \det L^\mathrm{out}(G')_{[n]\setminus\{k\},[n]\setminus\{k\}} = \det L(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
-    
-    此处用到了结论 $L^\mathrm{out}(G')=L(G)$，这容易直接验证．
 
-### 特征值形式
+    Ở đây dùng kết luận $L^\mathrm{out}(G')=L(G)$, điều này có thể kiểm tra trực tiếp.
 
-仍然首先考虑有向图上的结论．
+### Dạng trị riêng
 
-???+ note "定理 5"
-    对于有向图 $G$，定义多元多项式
-    
+Vẫn bắt đầu bằng kết luận trên đồ thị có hướng.
+
+???+ note "Định lý 5"
+    Với đồ thị có hướng $G$, định nghĩa đa thức nhiều biến
+
     $$
     \chi(x_1,\cdots,x_n)=\det(\mathrm{diag}(x_1,\cdots,x_n)-L^\mathrm{out}(G)).
     $$
-    
-    这里，$\mathrm{diag}(x_1,\cdots,x_n)$ 是指以 $x_1,\cdots,x_n$ 为对角线元素的对角矩阵．那么，
-    
+
+    Ở đây, $\mathrm{diag}(x_1,\cdots,x_n)$ chỉ ma trận đường chéo có các phần tử đường chéo là $x_1,\cdots,x_n$. Khi đó,
+
     $$
     (-1)^{n-r}[x_{k_1},\cdots,x_{k_r}]\chi(x_1,\cdots,x_n)
     $$
-    
-    就等于 $G$ 的以 $\{k_1,\cdots,k_r\}$ 为根的根向森林的（带权的）计数．
 
-??? note "证明"
-    仿照定理 4 的证明，注意到如果令 $W=[n]\setminus\{k_1,\cdots,k_r\}$，那么，定理中的系数就是 $\det L^\mathrm{out}(G)_{W,W}$（这一点不妨直接观察行列式的 Leibniz 展开式）．根据 Cauchy–Binet 公式，它等于
-    
+    bằng số đếm có trọng số của các rừng hướng về gốc của $G$ với tập gốc $\{k_1,\cdots,k_r\}$.
+
+??? note "Chứng minh"
+    Làm tương tự chứng minh Định lý 4. Chú ý rằng nếu đặt $W=[n]\setminus\{k_1,\cdots,k_r\}$, thì hệ số trong định lý chính là $\det L^\mathrm{out}(G)_{W,W}$; có thể thấy trực tiếp điều này từ khai triển Leibniz của định thức. Theo công thức Cauchy-Binet, nó bằng
+
     $$
     \det L^\mathrm{out}(G)_{W,W} = \sum_{S\subset[m];~|S|=n-r}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
     $$
-    
-    遍历所有的 $S$，由引理 2，当且仅当 $T=(V,S)$ 构成一个以 $V\setminus W=\{k_1,\cdots,k_r\}$ 为根的根向森林时，右侧累加一个 $w(T)$．
 
-将 $x$ 代入所有的未知元，得到 Laplace 矩阵的特征多项式
+    Duyệt mọi $S$. Theo Bổ đề 2, khi và chỉ khi $T=(V,S)$ tạo thành một rừng hướng về gốc với tập gốc $V\setminus W=\{k_1,\cdots,k_r\}$, vế phải cộng thêm một lượng $w(T)$.
+
+Thay $x$ vào mọi biến chưa biết, ta thu được đa thức đặc trưng của ma trận Laplace
 
 $$
 P(x) = \det(xI-L^\mathrm{out}(G)) = \chi(x,\cdots,x).
 $$
 
-???+ note "引理 3"
-    Laplace 矩阵 $L^\mathrm{out}(G)$ 至少有一个特征值为零．
+???+ note "Bổ đề 3"
+    Ma trận Laplace $L^\mathrm{out}(G)$ có ít nhất một trị riêng bằng không.
 
-??? note "证明"
-    只要证明它的行列式为零即可．仿照定理 4 和 5 的证明，取 $W=\varnothing$，则这个行列式的大小应该等于有零棵树的根向森林的数目．这并不存在，所以该行列式等于零．
+??? note "Chứng minh"
+    Chỉ cần chứng minh định thức của nó bằng không. Tương tự chứng minh Định lý 4 và 5, lấy $W=\varnothing$, khi đó độ lớn của định thức này đáng lẽ bằng số rừng hướng về gốc có không cây nào. Đối tượng này không tồn tại, nên định thức bằng không.
 
-???+ note "推论 5"
-    对于有向图 $G$，所有由 $k$ 棵树构成的根向森林的权值的总和等于系数
-    
+???+ note "Hệ quả 5"
+    Với đồ thị có hướng $G$, tổng trọng số của mọi rừng hướng về gốc gồm $k$ cây bằng hệ số
+
     $$
     (-1)^{n-k}[x^k]P(x).
     $$
 
-??? note "证明"
-    对所有可能的 $k$ 个根的选择求和即可．
+??? note "Chứng minh"
+    Chỉ cần lấy tổng trên mọi cách chọn $k$ gốc.
 
-定义 $k$- 生成森林 是图的一个生成子图，使得这个子图有 $k$ 个连通分量且无环．
+Định nghĩa rừng khung $k$ thành phần là một đồ thị con khung của đồ thị, sao cho đồ thị con này có $k$ thành phần liên thông và không có chu trình.
 
-???+ note "推论 6"
-    记无向图 $G$ 的 $k$- 生成森林 的集合为 $\mathcal T_k(G)$，则
-    
+???+ note "Hệ quả 6"
+    Ký hiệu tập các rừng khung $k$ thành phần của đồ thị vô hướng $G$ là $\mathcal T_k(G)$. Khi đó
+
     $$
     \sum_{T\in\mathcal T_k(G)}w(T)Q(T) = (-1)^{n-k}[x^k]P(x).
     $$
-    
-    这里，$Q(T)$ 为森林 $T$ 中每个连通分量的顶点数目的乘积．特别地，当 $k=1$ 时，有 $Q(T)=n$，故而
-    
+
+    Ở đây, $Q(T)$ là tích số đỉnh của từng thành phần liên thông trong rừng $T$. Đặc biệt, khi $k=1$, ta có $Q(T)=n$, nên
+
     $$
     n\sum_{T\in\mathcal T(G)}w(T) = \lambda_1\lambda_2\cdots\lambda_{n-1}.
     $$
 
-??? note "证明"
-    仿照推论 4 的证明，可以直接利用推论 5 的结论．有向图中每一个由 $k$ 棵树构成的根向森林都对应一个无向图中的 $k$- 生成森林．但是，由于每个 $k$- 生成森林 $T$ 有 $Q(T)$ 种选择根的方法，它会出现在 $Q(T)$ 个有向图的根向森林中．
+??? note "Chứng minh"
+    Làm tương tự chứng minh Hệ quả 4, ta có thể dùng trực tiếp kết luận của Hệ quả 5. Mỗi rừng hướng về gốc gồm $k$ cây trong đồ thị có hướng đều tương ứng với một rừng khung $k$ thành phần trong đồ thị vô hướng. Tuy nhiên, do mỗi rừng khung $k$ thành phần $T$ có $Q(T)$ cách chọn gốc, nó sẽ xuất hiện trong $Q(T)$ rừng hướng về gốc của đồ thị có hướng.
 
-## 应用
+## Ứng dụng
 
-### Cayley 公式
+### Công thức Cayley
 
-???+ note "推论 7（Cayley）"
-    大小为 $n$ 的带标号的无根树有 $n^{n-2}$ 个．
+???+ note "Hệ quả 7 (Cayley)"
+    Số cây không gốc có nhãn kích thước $n$ là $n^{n-2}$.
 
-??? note "证明"
-    等价地，只要求得 $n$ 个顶点的完全图的生成树的数目为 $n^{n-2}$ 即可．为此，写出 Laplace 矩阵
-    
+??? note "Chứng minh"
+    Tương đương, chỉ cần tính số cây khung của đồ thị đầy đủ trên $n$ đỉnh là $n^{n-2}$. Để làm điều này, viết ma trận Laplace
+
     $$
     L(G) = \left(\begin{matrix} n-1 & -1 & \cdots & -1 \\ -1 & n-1 & \cdots & -1 \\ \vdots & \vdots & \ddots & \vdots \\ -1 & -1 & \cdots & n-1  \end{matrix}\right)_{n\times n}.
     $$
-    
-    计算它的任意主子式，有
-    
+
+    Tính một định thức con chính bất kỳ của nó, ta có
+
     $$
     \det(nI_{n-1}-{\bf 1}{\bf 1}^T) = n^{n-1}\det(I_{n-1}-n^{-1}{\bf 1}{\bf 1}^T) = n^{n-1}(1-n^{-1}{\bf 1}^T{\bf 1}) = n^{n-1}(1-(n-1)/n) = n^{n-2}.
     $$
-    
-    应用定理 1 即得到结论．
 
-### BEST 定理
+    Áp dụng Định lý 1 sẽ thu được kết luận.
 
-前置知识：[欧拉图](./euler.md)
+### Định lý BEST
 
-这一定理将有向欧拉图中欧拉回路的数目和该图的根向树形图的数目联系起来，从而解决了有向图中的欧拉回路的计数问题．注意，任意无向图中的欧拉回路的计数问题是 NP 完全的．
+Kiến thức chuẩn bị: [đồ thị Euler](./euler.md)
 
-在实现该算法时，应当首先判定给定图是否是欧拉图，移除所有零度顶点，然后建图计算根向树形图的个数，并由 BEST 定理得到欧拉回路的计数．注意，如果所求欧拉回路个数要求以给定点作为起点，需要将答案再乘上该点出度，相当于枚举回路中首条边．
+Định lý này liên hệ số chu trình Euler trong đồ thị Euler có hướng với số cây khung có hướng hướng về gốc của đồ thị đó, từ đó giải quyết bài toán đếm chu trình Euler trong đồ thị có hướng. Chú ý rằng bài toán đếm chu trình Euler trong đồ thị vô hướng bất kỳ là NP-đầy đủ.
 
-在证明 BEST 定理之前，需要知道如下结论．
+Khi cài đặt thuật toán này, trước hết nên kiểm tra đồ thị đã cho có phải đồ thị Euler hay không, loại bỏ mọi đỉnh bậc không, sau đó dựng đồ thị để tính số cây khung có hướng hướng về gốc, rồi dùng định lý BEST để lấy số chu trình Euler. Chú ý rằng nếu số chu trình Euler cần tìm yêu cầu bắt đầu từ một đỉnh cho trước, cần nhân đáp án thêm với bậc ra của đỉnh đó, tương đương với việc duyệt cạnh đầu tiên trong chu trình.
 
-???+ note "性质（有向图具有欧拉回路的判定）"
-    一个有向图具有欧拉回路，当且仅当非零度顶点是强连通的，且所有顶点的出度和入度相等．
+Trước khi chứng minh định lý BEST, cần biết kết luận sau.
 
-对于欧拉图，因为出度和入度相等，可以将它们略去上标，记作 $\mathrm{deg}(v)$．BEST 定理可以叙述如下．
+???+ note "Tính chất (điều kiện để đồ thị có hướng có chu trình Euler)"
+    Một đồ thị có hướng có chu trình Euler khi và chỉ khi các đỉnh có bậc khác không liên thông mạnh, và mọi đỉnh đều có bậc ra bằng bậc vào.
 
-???+ note "定理 6（BEST 定理）"
-    设 $G$ 是有向欧拉图，$k$ 为任意顶点，那么 $G$ 的不同欧拉回路总数 $\mathrm{ec}(G)$ 是
-    
+Với đồ thị Euler, vì bậc ra và bậc vào bằng nhau, có thể bỏ chỉ số trên và ký hiệu là $\mathrm{deg}(v)$. Định lý BEST có thể phát biểu như sau.
+
+???+ note "Định lý 6 (định lý BEST)"
+    Giả sử $G$ là đồ thị Euler có hướng, và $k$ là đỉnh bất kỳ. Khi đó tổng số chu trình Euler khác nhau của $G$, ký hiệu $\mathrm{ec}(G)$, là
+
     $$
     \mathrm{ec}(G) = t^\mathrm{root}(G,k)\prod_{v\in V}(\deg (v) - 1)!.
     $$
-    
-    这也说明，对欧拉图 $G$ 的任意两个节点 $k, k'$，都有 $t^\mathrm{root}(G,k)=t^\mathrm{root}(G,k')$．
 
-??? note "证明"
-    证明的大致思路是建立以 $k$ 为起点的欧拉回路和以 $k$ 为根的根向树形图以及各个顶点处出边的排列的对应关系．在指定欧拉回路的顶点后，需要证明的计数应当等于
-    
+    Điều này cũng cho thấy với mọi hai đỉnh $k, k'$ của đồ thị Euler $G$, ta đều có $t^\mathrm{root}(G,k)=t^\mathrm{root}(G,k')$.
+
+??? note "Chứng minh"
+    Ý tưởng chính của chứng minh là xây dựng một tương ứng giữa chu trình Euler bắt đầu từ $k$, cây khung có hướng lấy $k$ làm gốc và hướng về gốc, cùng các hoán vị của các cạnh ra tại từng đỉnh. Sau khi chỉ định đỉnh bắt đầu của chu trình Euler, số cần chứng minh phải bằng
+
     $$
     \mathrm{deg}(k)\mathrm{ec}(G) = t^\mathrm{root}(G,k)\deg(k)!\prod_{v\neq k}(\deg (v) - 1)!.
     $$
-    
-    这一计数的组合含义对应的构造如下．对于起点为 $k$ 的欧拉回路，根据回路中每条边的出现顺序，可以构造出
-    
-    -   一个以 $k$ 为根的根向树形图，由所有非根顶点处的最后一条出边组成，即 $t^\mathrm{root}(G,k)$，
-    -   根 $k$ 处所有出边的排列顺序，即 $\mathrm{deg}(k)!$，和
-    -   非根顶点 $v\neq k$ 处除去最后一条出边之外的其他所有出边的排列顺序，即 $(\mathrm{deg}(v)-1)!$．
-    
-    下面说明，这样的构造得到的映射是双射．
-    
-    一方面，给定欧拉回路，要证明所有非根顶点处的最后一条出边组成了一个根向树形图．根据构造，树中每个非根顶点的确只有一条出边，所以只需要证明这些出边不会成环．注意到，如果将所有顶点根据它在欧拉回路最后一次出现的顺序排序，那么非根顶点的最后一次出边必然指向顺序严格更靠后的顶点．如果存在环，那么环中就有一个顺序最靠后的顶点，因为它在环中，所以它指向了一个顺序并不靠后的点，这与上文矛盾．所以，非根顶点的最后一次出边必然构成根向树形图．
-    
-    另一方面，给定任意根向树形图和其余出边的排列顺序，可以复原出一条欧拉回路，使得该欧拉回路经上述构造后可以得到给定的根向树形图和其余出边的排列顺序．对此，只需要从根 $k$ 出发，每当到达一个顶点时，都根据给定的该顶点的出边排列顺序，选择顺序最靠前的、尚未经过的出边作为欧拉回路中本次的出边；如果该顶点处的排列中所有出边都已经经过了，就选择根向树形图中该顶点的出边作为欧拉回路中本次的出边．因为图是欧拉图，每个顶点的入度都等于出度，所以，这一过程不会在非根顶点处终止，即所得路径的确是回路．要证明所得路径是合法的欧拉回路，只需要证明这一过程能够遍历所有边就可以．
-    
-    如果不能，则必然有某个顶点 $v$ 的某个出边没有遍历到．考察顶点 $v$．顶点 $v$ 不能是根，因为最后会终止在根，如果根仍有出边剩余，这与过程终止矛盾．所以，$v$ 必然不是根．根据前文描述的过程，只要非根顶点 $v$ 有任何出边剩余，那么非根顶点在树中的出边 $e$ 必然剩余．记 $e=(v,u)$．因为 $u$ 的某个入边没有遍历到，根据 $u$ 的出度等于入度，必然有 $u$ 的某条出边没有遍历到．然后，可以类似地考察顶点 $u$．这些推理将考察的顶点从 $v$ 移动到了 $u$，即沿着根向树形图向树的根移动了一步．可以归纳地证明，此时必有根 $k$ 的某个出边没有遍历到．前文已经说明这不可能，故得到矛盾．这说明，上一段所得路径的确是合法的欧拉回路．
-    
-    可以验证这些映射都是单射，则必然同为双射．原命题得证．
 
-## 实现
+    Ý nghĩa tổ hợp của số đếm này ứng với cấu trúc sau. Với một chu trình Euler bắt đầu tại $k$, dựa trên thứ tự xuất hiện của từng cạnh trong chu trình, ta có thể xây dựng
 
-根据图写出 Laplace 矩阵，删去一行一列，求所得矩阵的行列式即可．求行列式可以使用 Gauss–Jordan 消元法．
+    -   một cây khung có hướng lấy $k$ làm gốc và hướng về gốc, gồm các cạnh ra cuối cùng tại mọi đỉnh không phải gốc, tức $t^\mathrm{root}(G,k)$,
+    -   thứ tự hoán vị của mọi cạnh ra tại gốc $k$, tức $\mathrm{deg}(k)!$, và
+    -   thứ tự hoán vị của mọi cạnh ra còn lại tại đỉnh không phải gốc $v\neq k$ sau khi bỏ cạnh ra cuối cùng, tức $(\mathrm{deg}(v)-1)!$.
 
-例如，一个正方形图的生成树个数
+    Ta sẽ chỉ ra rằng ánh xạ do cấu trúc này tạo ra là song ánh.
+
+    Một mặt, cho một chu trình Euler, cần chứng minh các cạnh ra cuối cùng tại mọi đỉnh không phải gốc tạo thành một cây khung có hướng hướng về gốc. Theo cách dựng, trong cây mỗi đỉnh không phải gốc đúng là chỉ có một cạnh ra, nên chỉ cần chứng minh các cạnh ra này không tạo chu trình. Chú ý rằng nếu sắp xếp tất cả đỉnh theo thứ tự xuất hiện lần cuối trong chu trình Euler, thì cạnh ra cuối cùng của một đỉnh không phải gốc chắc chắn trỏ đến một đỉnh đứng sau nó một cách nghiêm ngặt trong thứ tự này. Nếu tồn tại chu trình, thì trong chu trình đó có một đỉnh đứng sau cùng theo thứ tự; vì nó nằm trong chu trình, nó lại trỏ đến một đỉnh không đứng sau nó, mâu thuẫn với lập luận trên. Vì vậy, các cạnh ra cuối cùng của các đỉnh không phải gốc chắc chắn tạo thành cây khung có hướng hướng về gốc.
+
+    Mặt khác, cho một cây khung có hướng hướng về gốc bất kỳ và thứ tự hoán vị của các cạnh ra còn lại, ta có thể khôi phục một chu trình Euler sao cho sau khi áp dụng cấu trúc trên, chu trình Euler đó cho lại đúng cây khung có hướng và thứ tự cạnh ra đã cho. Để làm điều này, chỉ cần xuất phát từ gốc $k$; mỗi khi đến một đỉnh, dựa trên thứ tự hoán vị các cạnh ra đã cho tại đỉnh đó, chọn cạnh ra chưa đi qua và đứng sớm nhất làm cạnh lần này của chu trình Euler. Nếu mọi cạnh ra trong hoán vị tại đỉnh đó đều đã đi qua, thì chọn cạnh ra của đỉnh đó trong cây khung có hướng làm cạnh lần này của chu trình Euler. Vì đồ thị là đồ thị Euler, bậc vào của mỗi đỉnh bằng bậc ra, nên quá trình này không dừng ở đỉnh không phải gốc, tức đường đi thu được đúng là một chu trình. Để chứng minh đường đi thu được là chu trình Euler hợp lệ, chỉ cần chứng minh quá trình này có thể đi qua mọi cạnh.
+
+    Nếu không, chắc chắn có một cạnh ra nào đó của một đỉnh $v$ chưa được đi qua. Xét đỉnh $v$. Đỉnh $v$ không thể là gốc, vì cuối cùng quá trình dừng ở gốc; nếu gốc vẫn còn cạnh ra chưa dùng, điều đó mâu thuẫn với việc quá trình đã dừng. Vì vậy, $v$ chắc chắn không phải gốc. Theo quá trình mô tả ở trên, chỉ cần đỉnh không phải gốc $v$ còn bất kỳ cạnh ra nào chưa dùng, thì cạnh ra $e$ của đỉnh không phải gốc đó trong cây chắc chắn còn chưa dùng. Ký hiệu $e=(v,u)$. Vì có một cạnh vào của $u$ chưa được đi qua, và bậc ra của $u$ bằng bậc vào, chắc chắn $u$ có một cạnh ra chưa được đi qua. Sau đó, có thể xét đỉnh $u$ theo cách tương tự. Lập luận này chuyển đỉnh đang xét từ $v$ sang $u$, tức đi một bước dọc theo cây khung có hướng về phía gốc của cây. Bằng quy nạp, có thể chứng minh lúc này chắc chắn tồn tại một cạnh ra của gốc $k$ chưa được đi qua. Ở trên đã chỉ ra điều này là không thể, nên thu được mâu thuẫn. Điều này chứng minh đường đi ở đoạn trước đúng là chu trình Euler hợp lệ.
+
+    Có thể kiểm tra các ánh xạ này đều là đơn ánh, nên chúng cũng là song ánh. Mệnh đề được chứng minh.
+
+## Cài đặt
+
+Dựa vào đồ thị, viết ma trận Laplace, xóa một hàng và một cột, rồi tính định thức của ma trận thu được. Có thể tính định thức bằng khử Gauss-Jordan.
+
+Ví dụ, số cây khung của một đồ thị hình vuông:
 
 $$
 \begin{pmatrix}
@@ -432,9 +432,9 @@ $$
 0 & -1 & 2 \end{vmatrix} = 4
 $$
 
-可以用 Gauss–Jordan 消元解决，时间复杂度为 $O(n^3)$．
+Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian là $O(n^3)$.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     #include <algorithm>
     #include <cassert>
@@ -445,14 +445,14 @@ $$
     using namespace std;
     constexpr int MOD = 100000007;
     constexpr double eps = 1e-7;
-    
+
     struct matrix {
       static constexpr int MAXN = 20;
       int n, m;
       double mat[MAXN][MAXN];
-    
+
       matrix() { memset(mat, 0, sizeof(mat)); }
-    
+
       void print() {
         cout << "MATRIX " << n << " " << m << endl;
         for (int i = 0; i < n; i++) {
@@ -462,14 +462,14 @@ $$
           cout << endl;
         }
       }
-    
+
       void random(int n) {
         this->n = n;
         this->m = n;
         for (int i = 0; i < n; i++)
           for (int j = 0; j < n; j++) mat[i][j] = rand() % 100;
       }
-    
+
       void initSquare() {
         this->n = 4;
         this->m = 4;
@@ -479,10 +479,10 @@ $$
         mat[2][1] = mat[2][3] = 1;
         mat[3][0] = mat[3][2] = 1;
         mat[0][0] = mat[1][1] = mat[2][2] = mat[3][3] = -2;
-        this->n--;  // 去一行
-        this->m--;  // 去一列
+        this->n--;  // xoa mot hang
+        this->m--;  // xoa mot cot
       }
-    
+
       double gauss() {
         double ans = 1;
         for (int i = 0; i < n; i++) {
@@ -510,7 +510,7 @@ $$
         return abs(ans);
       }
     };
-    
+
     int main() {
       srand(1);
       matrix T;
@@ -523,14 +523,14 @@ $$
     }
     ```
 
-## 例题
+## Bài tập ví dụ
 
-???+ note "例题 1：[「HEOI2015」小 Z 的房间](https://loj.ac/problem/2122)"
-    **解** 矩阵树定理的裸题．将每个空房间看作一个结点，根据输入的信息建图，得到 Laplace 矩阵后，任意删掉 $L$ 的第 $i$ 行第 $i$ 列，求这个子式的行列式即可．求行列式的方法就是高斯消元成上三角阵然后算对角线积．另外本题需要在模 $k$ 的整数子环 $\mathbb{Z}_k$ 上进行高斯消元，采用辗转相除法即可．
+???+ note "Ví dụ 1: [HEOI2015 - Phòng của Z nhỏ](https://loj.ac/problem/2122)"
+    **Lời giải** Đây là bài áp dụng trực tiếp định lý ma trận cây. Xem mỗi phòng trống là một nút, dựng đồ thị theo thông tin đầu vào, thu được ma trận Laplace rồi xóa tùy ý hàng $i$ và cột $i$ của $L$, sau đó tính định thức của định thức con này. Cách tính định thức là khử Gauss về ma trận tam giác trên rồi lấy tích đường chéo. Ngoài ra, bài này cần khử Gauss trên vành con số nguyên modulo $k$, tức $\mathbb{Z}_k$, nên có thể dùng thuật toán Euclid.
 
-???+ note "例题 2：[「FJOI2007」轮状病毒](https://www.luogu.com.cn/problem/P2144)"
-    **解** 本题的解法很多，这里用矩阵树定理是最直接的解法．当输入为 $n$ 时，容易写出其 $n+1$ 阶的 Laplace 矩阵为：
-    
+???+ note "Ví dụ 2: [FJOI2007 - Virus hình bánh xe](https://www.luogu.com.cn/problem/P2144)"
+    **Lời giải** Bài này có nhiều cách giải; ở đây dùng định lý ma trận cây là cách trực tiếp nhất. Khi đầu vào là $n$, dễ viết ma trận Laplace cấp $n+1$ của nó như sau:
+
     $$
     L_n = \begin{bmatrix}
     n&  -1&  -1&  -1&  \cdots&  -1&  -1\\
@@ -542,18 +542,18 @@ $$
     -1&  -1&  0&  0&  \cdots&  -1&  3\\
     \end{bmatrix}_{n+1}
     $$
-    
-    求出它的 $n$ 阶子式的行列式即可，剩下的只有高精度计算了．
 
-??? note "例题 2+"
-    将例题 2 的数据加强，要求 $n\leq 100000$，但是答案对 1000007 取模．（本题求解需要一些线性代数知识）
-    
-    **解** 推导递推式后利用矩阵快速幂即可求得．
-    
-    推导递推式的过程：
-    
-    注意到 $L_n$ 删掉第 1 行第 1 列以后得到的矩阵很有规律，因此其实就是在求矩阵
-    
+    Chỉ cần tính định thức con cấp $n$ của nó; phần còn lại là tính toán số lớn.
+
+??? note "Ví dụ 2+"
+    Tăng cường dữ liệu của Ví dụ 2: yêu cầu $n\leq 100000$, nhưng đáp án lấy modulo 1000007. Bài này cần một số kiến thức đại số tuyến tính.
+
+    **Lời giải** Sau khi suy ra công thức truy hồi, dùng lũy thừa ma trận nhanh là có thể tính đáp án.
+
+    Quá trình suy ra công thức truy hồi:
+
+    Chú ý rằng ma trận thu được sau khi xóa hàng 1 và cột 1 của $L_n$ có quy luật rõ ràng, nên thực chất ta đang tính định thức của ma trận
+
     $$
     M_n = \begin{bmatrix}
     3&  -1&  0&  \cdots&  0&  -1\\
@@ -564,9 +564,9 @@ $$
     -1&  0&  0&  \cdots&  -1&  3\\
     \end{bmatrix}_{n}
     $$
-    
-    的行列式．对 $M_n$ 的行列式按第一列展开，得到
-    
+
+    Khai triển định thức của $M_n$ theo cột đầu tiên, thu được
+
     $$
     \det M_n = 3\det \begin{bmatrix}
     3&  -1&  \cdots&  0&  0\\
@@ -588,36 +588,34 @@ $$
     0&  0&  \cdots&  3&  -1\\
     \end{bmatrix}_{n-1}
     $$
-    
-    上述三个矩阵的行列式记为 $d_{n-1}, a_{n-1}, b_{n-1}$．  
-    注意到 $d_n$ 是三对角行列式，采用类似的展开的方法可以得到 $d_n$ 具有递推公式 $d_n=3d_{n-1}-d_{n-2}$．类似地，采用展开的方法可以得到 $a_{n-1}=-d_{n-2}-1$，以及 $(-1)^n b_{n-1}=-d_{n-2}-1$．  
-    将这些递推公式代入上式，得到：
-    
+
+    Ký hiệu định thức của ba ma trận trên lần lượt là $d_{n-1}, a_{n-1}, b_{n-1}$.
+
+    Chú ý rằng $d_n$ là định thức ba đường chéo. Dùng cách khai triển tương tự, có thể thu được công thức truy hồi $d_n=3d_{n-1}-d_{n-2}$. Tương tự, khai triển cũng cho $a_{n-1}=-d_{n-2}-1$ và $(-1)^n b_{n-1}=-d_{n-2}-1$.
+    Thay các công thức truy hồi này vào biểu thức trên, ta được:
+
     $$
     \det M_n = 3d_{n-1}-2d_{n-2}-2
     $$
-    
+
     $$
     d_n = 3d_{n-1}-d_{n-2}
     $$
-    
-    于是猜测 $\det M_n$ 也是非齐次的二阶线性递推．采用待定系数法可以得到最终的递推公式为
-    
+
+    Từ đó đoán rằng $\det M_n$ cũng là một truy hồi tuyến tính bậc hai không thuần nhất. Dùng phương pháp hệ số bất định, ta thu được công thức truy hồi cuối cùng:
+
     $$
     \det M_n = 3\det M_{n-1} - \det M_{n-2} + 2
     $$
-    
-    改写成 $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$ 后，采用矩阵快速幂即可求出答案．
 
-???+ note "例题 3：[「BZOJ3659」WHICH DREAMED IT](https://hydro.ac/p/bzoj-P3659)"
-    **解** 本题是 BEST 定理的直接应用，但是要注意，由于题目规定「两种完成任务的方式算作不同当且仅当使用钥匙的顺序不同」，对每个欧拉回路，1 号房间可以沿着任意一条出边出发，从而答案还要乘以 1 号房间的出度．
+    Viết lại thành $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$, rồi dùng lũy thừa ma trận nhanh để tính đáp án.
 
-???+ note "例题 4：[「联合省选 2020 A」作业题](https://loj.ac/p/3304)"
-    **解** 首先需要用莫比乌斯反演转化成计算所有生成树的边权和，因为与本文关系不大所以略去．
-    
-    将行列式的项写成 $w_ix+1$，最后答案是行列式的一次项系数，因为答案实际上是钦定一条边之后的生成树个数 $\times$ 这条边的边权之和，那么被乘上一次项系数的边就是被钦定的边．此时可以把高于一次的项忽略掉，复杂度 $O(n^3)$．
-    
-    [「北京省选集训 2019」生成树计数](https://www.luogu.com.cn/problem/P5296) 是较为一般化的情况：计算生成树权值之和的 $k$ 次方之和，用类似方法构造行列式的项即可，具体见洛谷题解．
+???+ note "Ví dụ 3: [BZOJ3659 - WHICH DREAMED IT](https://hydro.ac/p/bzoj-P3659)"
+    **Lời giải** Bài này áp dụng trực tiếp định lý BEST, nhưng cần chú ý rằng do đề bài quy định hai cách hoàn thành nhiệm vụ được xem là khác nhau khi và chỉ khi thứ tự sử dụng chìa khóa khác nhau, nên với mỗi chu trình Euler, phòng số 1 có thể xuất phát theo bất kỳ cạnh ra nào. Vì vậy đáp án còn phải nhân với bậc ra của phòng số 1.
 
-???+ note "例题 5：[AGC051D C4](https://atcoder.jp/contests/agc051/tasks/agc051_d)"
-    **解** 无向图欧拉回路计数是 NPC 问题，但这题的图较为简单，确定了 $S-T$ 的边中从 $S$ 指向 $T$ 的有多少条，就可以确定其他三条边的定向方案，然后直接套用 BEST 定理就得到 $O(a+b+c+d)$ 的做法．
+???+ note "Ví dụ 4: [Liên tuyển tỉnh 2020 A - Bài tập](https://loj.ac/p/3304)"
+    **Lời giải** Trước hết cần dùng đảo ngược Mobius để chuyển thành bài toán tính tổng trọng số cạnh của mọi cây khung. Vì phần này không liên quan nhiều đến bài viết nên lược bỏ.
+
+    Viết các hạng tử của định thức dưới dạng $w_ix+1$. Đáp án cuối cùng là hệ số bậc nhất của định thức, vì về bản chất đáp án là tổng của số cây khung sau khi chỉ định một cạnh nhân với trọng số của cạnh đó. Khi đó cạnh được nhân vào hệ số bậc nhất chính là cạnh được chỉ định. Lúc này có thể bỏ qua các hạng tử bậc cao hơn một, độ phức tạp $O(n^3)$.
+
+    [Tập huấn tuyển chọn tỉnh Bắc Kinh 2019 - Đếm cây khung](https://www.luogu.com.cn/problem/P5296) là trường hợp tổng quát hơn: tính tổng lũy thừa bậc $k$ của tổng trọng số cây khung. Có thể dùng cách tương tự để xây dựng các hạng tử của định thức; xem lời giải trên Luogu để biết chi tiết.

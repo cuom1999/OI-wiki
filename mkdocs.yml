@@ -474,12 +474,12 @@ nav:
       - Ghép cặp lớn nhất trên đồ thị tổng quát: graph/graph-matching/general-match.md
       - Ghép cặp trọng số lớn nhất trên đồ thị tổng quát: graph/graph-matching/general-weight-match.md
       - Ghép cặp ổn định: graph/graph-matching/stable-match.md
-    - Prüfer 序列: graph/prufer.md
-    - 矩阵树定理: graph/matrix-tree.md
-    - LGV 引理: graph/lgv.md
-    - 最大团搜索算法: graph/max-clique.md
-    - 支配树: graph/dominator-tree.md
-    - 图上随机游走: graph/graph-random-walk.md
+    - Dãy Prüfer: graph/prufer.md
+    - Định lý ma trận cây: graph/matrix-tree.md
+    - Bổ đề LGV: graph/lgv.md
+    - Thuật toán tìm clique lớn nhất: graph/max-clique.md
+    - Cây thống trị: graph/dominator-tree.md
+    - Bước đi ngẫu nhiên trên đồ thị: graph/graph-random-walk.md
   - Hình Học Tính Toán:
     - Tổng quan hình học tính toán: geometry/index.md
     - 二维计算几何基础: geometry/2d.md

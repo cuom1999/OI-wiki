@@ -1,61 +1,61 @@
-## 前言
+## Lời nói đầu
 
-1959 年，「支配」这一概念由 Reese T. Prosser 在 [一篇关于网络流的论文](http://portal.acm.org/ft_gateway.cfm?id=1460314&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747) 中提出，但并未提出具体的求解算法；直到 1969 年，Edward S. Lowry 和 C. W. Medlock 才首次提出了 [有效的求解算法](http://portal.acm.org/ft_gateway.cfm?id=362838&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747)．而目前使用最为广泛的 Lengauer–Tarjan 算法则由 Lengauer 和 Tarjan 于 1979 年在 [一篇论文](https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/a%20fast%20algorithm%20for%20finding.pdf) 中提出．
+Năm 1959, khái niệm "thống trị" được Reese T. Prosser đưa ra trong [một bài báo về luồng mạng](http://portal.acm.org/ft_gateway.cfm?id=1460314&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747), nhưng bài báo chưa đưa ra thuật toán cụ thể để giải quyết; đến năm 1969, Edward S. Lowry và C. W. Medlock mới lần đầu đề xuất [một thuật toán hiệu quả](http://portal.acm.org/ft_gateway.cfm?id=362838&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747). Thuật toán Lengauer-Tarjan, hiện là thuật toán được sử dụng rộng rãi nhất, được Lengauer và Tarjan đề xuất vào năm 1979 trong [một bài báo](https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/a%20fast%20algorithm%20for%20finding.pdf).
 
-在 OI 界中，支配树的概念最早在 [ZJOI2012 灾难](https://www.luogu.com.cn/problem/P2597) 中被引入，当时也被称为「灭绝树」；陈孙立也在 2020 年的国家集训队论文中介绍了这一算法．
+Trong giới OI, khái niệm cây thống trị được đưa vào sớm nhất qua bài [ZJOI2012 Thảm họa](https://www.luogu.com.cn/problem/P2597), khi đó còn được gọi là "cây tuyệt chủng"; Chen Sunli cũng giới thiệu thuật toán này trong luận văn đội tuyển quốc gia năm 2020.
 
-目前支配树在竞赛界并不流行，其相关习题并不多见；但支配树在工业上，尤其是编译器相关领域，已有广泛运用．
+Hiện nay cây thống trị không thật sự phổ biến trong lập trình thi đấu, và các bài tập liên quan cũng không nhiều; tuy vậy trong công nghiệp, đặc biệt là các lĩnh vực liên quan đến trình biên dịch, cây thống trị đã được ứng dụng rộng rãi.
 
-本文将介绍支配树的概念及几种求解方法．
+Bài viết này sẽ giới thiệu khái niệm cây thống trị và một vài phương pháp xây dựng.
 
-## 支配关系
+## Quan hệ thống trị
 
-我们在任意的一个有向图上钦定一个入口结点 $s$，对于一个结点 $u$，若从 $s$ 到 $u$ 的每一条路径都经过某一个结点 $v$，那么我们称 $v$  **支配**  $u$，也称 $v$ 是 $u$ 的一个 **支配点**，记作 $v\ dom\ u$．
+Trên một đồ thị có hướng bất kỳ, ta chọn cố định một đỉnh vào $s$. Với một đỉnh $u$, nếu mọi đường đi từ $s$ đến $u$ đều đi qua một đỉnh $v$ nào đó, ta nói $v$ **thống trị** $u$, hay $v$ là một **đỉnh thống trị** của $u$, ký hiệu $v\ dom\ u$.
 
-对于从 $s$ 出发无法到达的结点，讨论其支配关系是没有意义的，因此在没有特殊说明的情况下，本文默认 $s$ 能到达图上任何一个结点．
+Đối với các đỉnh không thể đạt tới từ $s$, việc xét quan hệ thống trị là không có ý nghĩa. Vì vậy, nếu không có ghi chú đặc biệt, bài viết này mặc định rằng từ $s$ có thể đi tới mọi đỉnh trong đồ thị.
 
 ![](images/dom-tree1.png)
 
-例如这张有向图中，$2$ 被 $1$ 支配，$3$ 被 $1, 2$ 支配，4 被 $1, 2, 3$ 支配，5 被 $1, 2$ 支配，etc．
+Ví dụ trong đồ thị có hướng này, $2$ bị $1$ thống trị, $3$ bị $1, 2$ thống trị, $4$ bị $1, 2, 3$ thống trị, $5$ bị $1, 2$ thống trị, v.v.
 
-### 引理
+### Bổ đề
 
-在下文的引理中，默认 $u, v, w\ne s$
+Trong các bổ đề dưới đây, mặc định $u, v, w\ne s$.
 
-**引理 1：** $s$ 是其所有结点的支配点；任意一个结点都是其自身的支配点．
+**Bổ đề 1:** $s$ là đỉnh thống trị của tất cả các đỉnh; mọi đỉnh đều là đỉnh thống trị của chính nó.
 
-**证明：** 显然任何一条从 $s$ 到 $u$ 的路径都必须经过 $s$ 和 $u$ 这两个结点．
+**Chứng minh:** Hiển nhiên mọi đường đi từ $s$ đến $u$ đều phải đi qua hai đỉnh $s$ và $u$.
 
-**引理 2：** 仅考虑简单路径得出的支配关系与考虑所有路径得出的关系相同．
+**Bổ đề 2:** Quan hệ thống trị thu được khi chỉ xét các đường đi đơn giống với quan hệ thu được khi xét tất cả các đường đi.
 
-**证明：** 对于非简单路径，我们设两次经过某个结点之间经过的所有结点的点集为 $S$，若将 $S$ 中的结点删去，便能将每个非简单路径与一个简单路径对应．
+**Chứng minh:** Với một đường đi không đơn, giả sử $S$ là tập các đỉnh đi qua giữa hai lần xuất hiện của cùng một đỉnh. Nếu xóa các đỉnh trong $S$, ta có thể tương ứng mỗi đường đi không đơn với một đường đi đơn.
 
-在 $S$ 中，在非简单路径而不在简单路径上的点一定不可能成为支配点，因为至少有一条 $s$ 到 $u$ 的简单路径不包括这个点；同时在简单路径和非简单路径上的点只需在简单路径上讨论即可．
+Trong $S$, các đỉnh nằm trên đường đi không đơn nhưng không nằm trên đường đi đơn chắc chắn không thể trở thành đỉnh thống trị, vì tồn tại ít nhất một đường đi đơn từ $s$ đến $u$ không chứa đỉnh đó; đồng thời, các đỉnh nằm trên cả đường đi đơn và đường đi không đơn chỉ cần được xét trên đường đi đơn.
 
-综上，删去非简单路径对支配关系没有影响．
+Tóm lại, việc loại bỏ các đường đi không đơn không ảnh hưởng đến quan hệ thống trị.
 
-**引理 3：** 如果 $u$  $dom$  $v$，$v$  $dom$  $w$，则 $u$  $dom$  $w$．
+**Bổ đề 3:** Nếu $u$  $dom$  $v$, $v$  $dom$  $w$, thì $u$  $dom$  $w$.
 
-**证明：** 经过 $w$ 的路径必定经过 $v$，经过 $v$ 的路径必定经过 $u$，因此经过 $w$ 的路径必定经过 $u$，即 $u \ dom \ w$．
+**Chứng minh:** Mọi đường đi qua $w$ chắc chắn đi qua $v$, và mọi đường đi qua $v$ chắc chắn đi qua $u$, do đó mọi đường đi qua $w$ chắc chắn đi qua $u$, tức là $u \ dom \ w$.
 
-**引理 4：** 如果 $u \ dom \ v$，$v \ dom\ u$，则 $u=v$．
+**Bổ đề 4:** Nếu $u \ dom \ v$, $v \ dom\ u$, thì $u=v$.
 
-**证明：** 假设 $u \ne v$，则任意一个到达 $v$ 的路径都已经到达过 $u$，同时任意一个到达 $u$ 的路径都已经到达过 $v$，矛盾．
+**Chứng minh:** Giả sử $u \ne v$. Khi đó mọi đường đi đến $v$ đều đã đi qua $u$, đồng thời mọi đường đi đến $u$ đều đã đi qua $v$, mâu thuẫn.
 
-**引理 5：** 若 $u \ne v \ne w$,$u \ dom \ w$ 且 $v \ dom \ w$，则有 $u \ dom \ v$ 或 $v \ dom \ u$．
+**Bổ đề 5:** Nếu $u \ne v \ne w$, $u \ dom \ w$ và $v \ dom \ w$, thì có $u \ dom \ v$ hoặc $v \ dom \ u$.
 
-**证明：** 考虑一条 $s \rightarrow \dots \rightarrow u \rightarrow \dots \rightarrow v \rightarrow \dots \rightarrow w$ 的路径，若 $u$,$v$ 不存在支配关系，则一定存在一条不经过 $u$ 的从 $s$ 到 $v$ 的路径，即存在一条 $s \rightarrow \dots \rightarrow v \rightarrow \dots \rightarrow w$ 的路径，与 $u\ dom\ w$ 矛盾．
+**Chứng minh:** Xét một đường đi $s \rightarrow \dots \rightarrow u \rightarrow \dots \rightarrow v \rightarrow \dots \rightarrow w$. Nếu $u$ và $v$ không có quan hệ thống trị, thì chắc chắn tồn tại một đường đi từ $s$ đến $v$ không đi qua $u$, tức là tồn tại một đường đi $s \rightarrow \dots \rightarrow v \rightarrow \dots \rightarrow w$, mâu thuẫn với $u\ dom\ w$.
 
-### 求解支配关系
+### Tìm quan hệ thống trị
 
-#### 结点删除法
+#### Phương pháp xóa đỉnh
 
-一个和定义等价的结论：如果我们删去图中的某一个结点后，有一些结点变得不可到达，那么这个被删去的结点支配这些变得不可到达的结点．
+Một kết luận tương đương với định nghĩa: nếu sau khi xóa một đỉnh nào đó trong đồ thị, một số đỉnh trở nên không thể đạt tới, thì đỉnh bị xóa này thống trị các đỉnh trở nên không thể đạt tới đó.
 
-因此我们只要尝试将每一个结点删去后 dfs 即可，代码复杂度为 $O(n^3)$．下面给出核心代码．
+Vì vậy ta chỉ cần thử xóa từng đỉnh rồi chạy dfs, độ phức tạp của mã là $O(n^3)$. Dưới đây là phần mã cốt lõi.
 
 ```cpp
-// 假设图中有 n 个结点, 起始点 s = 1
+// Gia su do thi co n dinh, dinh bat dau s = 1
 std::bitset<N> vis;
 std::vector<int> edge[N];
 std::vector<int> dom[N];
@@ -83,29 +83,29 @@ void getdom() {
 }
 ```
 
-#### 数据流迭代法
+#### Phương pháp lặp luồng dữ liệu
 
-数据流迭代法也是 OI 中不常见的一个知识点，这里先做简要介绍．
+Phương pháp lặp luồng dữ liệu cũng là một kiến thức không thường gặp trong OI, nên ở đây ta giới thiệu ngắn gọn trước.
 
-数据流分析是编译原理中的概念，用于分析数据如何在程序执行路径上的流动；而数据流迭代法是在程序的流程图的结点上列出方程并不断迭代求解，从而求得程序的某些点的数据流值的一种方法．这里我们就是把有向图看成了一个程序流程图．
+Phân tích luồng dữ liệu là một khái niệm trong nguyên lý trình biên dịch, dùng để phân tích dữ liệu chảy như thế nào trên các đường thực thi của chương trình. Phương pháp lặp luồng dữ liệu là cách lập các phương trình trên các đỉnh của đồ thị luồng điều khiển của chương trình rồi liên tục lặp để giải, từ đó thu được giá trị luồng dữ liệu tại một số điểm của chương trình. Ở đây ta xem đồ thị có hướng như một đồ thị luồng điều khiển của chương trình.
 
-这个问题中，方程为：
+Trong bài toán này, phương trình là:
 
 $$
 dom(u)=\{u\} \cup \left(\bigcap_{v\in pre(u)}{dom(v)}\right)
 $$
 
-其中 $pre(u)$ 定义为 $u$ 的前驱结点组成的点集．这个方程可以通过引理 3 得到．
+Trong đó $pre(u)$ được định nghĩa là tập các đỉnh tiền nhiệm của $u$. Phương trình này có thể suy ra từ bổ đề 3.
 
-翻译成人话就是，一个点的支配点的点集为它所有前驱结点的支配点集的交集，再并上它本身．根据这个方程将每个结点上的支配点集不断迭代直至答案不变即可．
+Nói một cách dễ hiểu, tập các đỉnh thống trị của một đỉnh bằng giao của các tập đỉnh thống trị của tất cả các đỉnh tiền nhiệm của nó, rồi hợp thêm chính nó. Theo phương trình này, ta liên tục lặp tập đỉnh thống trị trên mỗi đỉnh cho đến khi đáp án không còn thay đổi.
 
-为了提高效率，我们希望每轮迭代时，当前迭代的结点的所有前驱结点尽可能都已经执行完了这次迭代，因此我们要利用深度优先排序得出这个图的逆后序，根据这个顺序进行迭代．
+Để nâng cao hiệu suất, ta mong rằng trong mỗi vòng lặp, mọi đỉnh tiền nhiệm của đỉnh đang được lặp đều đã hoàn thành vòng lặp hiện tại càng nhiều càng tốt. Vì vậy ta cần dùng thứ tự duyệt sâu để lấy thứ tự hậu tố ngược của đồ thị, rồi lặp theo thứ tự đó.
 
-下面给出核心代码的参考实现．这里需要预先处理每个点的前驱结点集和图的逆后序，但这不是本文讨论的主要内容，故这里不提供参考实现．
+Dưới đây là một cài đặt tham khảo của phần mã cốt lõi. Ở đây cần tiền xử lý tập đỉnh tiền nhiệm của mỗi đỉnh và thứ tự hậu tố ngược của đồ thị, nhưng đó không phải nội dung chính của bài viết này nên không cung cấp cài đặt tham khảo.
 
 ```cpp
-std::vector<int> pre[N];  // 每个结点的前驱结点
-std::vector<int> ord;     // 图的逆后序
+std::vector<int> pre[N];  // Cac dinh tien nhiem cua moi dinh
+std::vector<int> ord;     // Thu tu hau to nguoc cua do thi
 std::bitset<N> dom[N];
 std::vector<int> Dom[N];
 
@@ -136,25 +136,25 @@ void getdom() {
 }
 ```
 
-不难看出上述算法的复杂度为 $O(n^2)$．
+Dễ thấy độ phức tạp của thuật toán trên là $O(n^2)$.
 
-## 支配树
+## Cây thống trị
 
-上一节我们发现，除 $s$ 外，一个点的支配点至少有两个，$s$ 和其自身．
+Ở phần trước ta thấy rằng, ngoài $s$ ra, một đỉnh có ít nhất hai đỉnh thống trị: $s$ và chính nó.
 
-我们将任意一个结点 $u$ 的支配点中，除自身外与自己距离最近的结点 $v$ 称作 $u$ 的直接支配点，记作 $idom(u) = v$．显然除了 $s$ 没有直接支配点外，每个结点都有唯一一个直接支配点．
+Trong các đỉnh thống trị của một đỉnh bất kỳ $u$, ta gọi đỉnh $v$ gần $u$ nhất sau khi loại trừ chính $u$ là đỉnh thống trị trực tiếp của $u$, ký hiệu $idom(u) = v$. Hiển nhiên, ngoài $s$ không có đỉnh thống trị trực tiếp, mỗi đỉnh đều có duy nhất một đỉnh thống trị trực tiếp.
 
-我们考虑对于除 $s$ 外每一个结点 $u$ 从 $idom(u)$ 向 $u$ 连边，便构成了一个有 $n$ 个结点，$n - 1$ 条边的有向图．根据引理 3 和引理 4，我们知道支配关系一定不会构成循环，也就是这些边一定不构成环，因此我们得到的图事实上是一棵树．我们称这颗树为原图的 **支配树**．
+Xét việc nối cạnh từ $idom(u)$ đến $u$ cho mỗi đỉnh $u$ khác $s$, ta thu được một đồ thị có hướng với $n$ đỉnh và $n - 1$ cạnh. Theo bổ đề 3 và bổ đề 4, ta biết quan hệ thống trị chắc chắn không tạo thành chu trình, tức là các cạnh này chắc chắn không tạo thành vòng. Vì vậy đồ thị thu được thực chất là một cây. Ta gọi cây này là **cây thống trị** của đồ thị ban đầu.
 
-## 求解支配树
+## Tìm cây thống trị
 
-### 根据 dom 求解
+### Tìm từ dom
 
-不妨考虑某个结点的支配点集 $\{s_1, s_2, \dots, s_k\}$，则一定存在一条路径 $s \rightarrow \dots \rightarrow s_1 \rightarrow \dots \rightarrow s_2 \rightarrow \dots \rightarrow \dots \rightarrow s_k \rightarrow\dots \rightarrow u$．显然 $u$ 的直接支配点为 $s_k$．因此直接支配点的定义等价于：
+Xét tập đỉnh thống trị $\{s_1, s_2, \dots, s_k\}$ của một đỉnh nào đó. Khi đó chắc chắn tồn tại một đường đi $s \rightarrow \dots \rightarrow s_1 \rightarrow \dots \rightarrow s_2 \rightarrow \dots \rightarrow \dots \rightarrow s_k \rightarrow\dots \rightarrow u$. Hiển nhiên đỉnh thống trị trực tiếp của $u$ là $s_k$. Vì vậy định nghĩa của đỉnh thống trị trực tiếp tương đương với:
 
-对于一个结点 $u$ 的支配点集 $S$，若 $v \in S$ 满足 $\forall w \in S\setminus\{u,v\}, w\ dom \ v$，则 $idom(u)=v$．
+Với tập đỉnh thống trị $S$ của một đỉnh $u$, nếu $v \in S$ thỏa mãn $\forall w \in S\setminus\{u,v\}, w\ dom \ v$, thì $idom(u)=v$.
 
-因此，利用前文所述的算法得到每个结点的支配点集之后，我们根据上述定义便能很轻松地得到每个点的直接支配点，从而构造出支配树．下面给出参考代码．
+Vì vậy, sau khi dùng thuật toán đã nêu ở trên để thu được tập đỉnh thống trị của mỗi đỉnh, ta có thể dựa vào định nghĩa trên để dễ dàng tìm đỉnh thống trị trực tiếp của từng đỉnh, từ đó xây dựng cây thống trị. Dưới đây là mã tham khảo.
 
 ```cpp
 std::bitset<N> dom[N];
@@ -177,31 +177,31 @@ void getidom() {
 }
 ```
 
-### 树上的特例
+### Trường hợp đặc biệt trên cây
 
-显然树型图的支配树就是它本身．
+Hiển nhiên cây thống trị của một đồ thị dạng cây chính là bản thân nó.
 
-### DAG 上的特例
+### Trường hợp đặc biệt trên DAG
 
-我们发现 DAG 有一个很好的性质：根据拓扑序求解，先求得的解不会对后续的解产生影响．我们可以利用这个特点快速求得 DAG 的支配树．
+Ta nhận thấy DAG có một tính chất rất tốt: khi giải theo thứ tự topo, nghiệm đã tìm được trước đó sẽ không ảnh hưởng đến các nghiệm về sau. Ta có thể lợi dụng đặc điểm này để nhanh chóng tìm cây thống trị của DAG.
 
-???+ warning "提醒"
-    值得注意的是此处的 DAG 只能有一个起点，如果有多个起点，受起点支配的点在支配树上出现有多个父亲的情况，从而使支配关系不能简单的用支配树来表达．
+???+ warning "Nhắc nhở"
+    Cần chú ý rằng DAG ở đây chỉ được có một điểm xuất phát. Nếu có nhiều điểm xuất phát, các đỉnh bị điểm xuất phát thống trị có thể xuất hiện nhiều cha trên cây thống trị, khiến quan hệ thống trị không thể được biểu diễn đơn giản bằng cây thống trị.
 
-**引理 6：** 在有向图上，$v\ dom\ u$ 当且仅当 $\forall w \in pre(u), v\ dom \ w$．
+**Bổ đề 6:** Trên đồ thị có hướng, $v\ dom\ u$ khi và chỉ khi $\forall w \in pre(u), v\ dom \ w$.
 
-**证明：** 首先来证明充分性．考虑任意一条从 $s$ 到 $u$ 的路径都一定经过一个结点 $w \in pre(u)$，而 $v$ 支配这个结点，因此任意一条从 $s$ 到 $u$ 的路径都一定经过 $v$，因此我们得到 $v \ dom \ u$．
+**Chứng minh:** Trước hết chứng minh chiều đủ. Xét một đường đi bất kỳ từ $s$ đến $u$, đường đi đó chắc chắn đi qua một đỉnh $w \in pre(u)$, mà $v$ thống trị đỉnh này, nên mọi đường đi từ $s$ đến $u$ chắc chắn đi qua $v$. Do đó ta có $v \ dom \ u$.
 
-然后是必要性．如果 $\exists w\in pre(u)$，$v$ 不支配 $w$，则一定有一条不经过 $v$ 的路径 $s \rightarrow \cdots \rightarrow w \rightarrow \cdots \rightarrow u$，因此 $v$ 不支配 $u$．
+Tiếp theo là chiều cần. Nếu $\exists w\in pre(u)$ mà $v$ không thống trị $w$, thì chắc chắn tồn tại một đường đi không qua $v$ là $s \rightarrow \cdots \rightarrow w \rightarrow \cdots \rightarrow u$, do đó $v$ không thống trị $u$.
 
-我们发现，$u$ 的支配点一定是其所有前驱结点在支配树上的公共祖先，那么显然 $u$ 的直接支配点是所有前驱结点在支配树上的 LCA．考虑倍增求解 LCA 可以支持每次添加一个结点，上述算法显然是可行的．
+Ta nhận thấy đỉnh thống trị của $u$ chắc chắn là tổ tiên chung của tất cả các đỉnh tiền nhiệm của nó trên cây thống trị, nên hiển nhiên đỉnh thống trị trực tiếp của $u$ là LCA của tất cả các đỉnh tiền nhiệm trên cây thống trị. Xét việc dùng nhân đôi để tìm LCA, ta có thể hỗ trợ mỗi lần thêm một đỉnh, nên thuật toán trên rõ ràng là khả thi.
 
-下面给出参考实现：
+Dưới đây là cài đặt tham khảo:
 
 ```cpp
 std::stack<int> sta;
-std::vector<int> e[N], g[N], tree[N];  // g 是原图的反图，tree 是支配树
-int n, s, in[N], tpn[N], dep[N], idom[N];  // n 为总点数，s 为起始点，in 为入度
+std::vector<int> e[N], g[N], tree[N];  // g la do thi dao cua do thi goc, tree la cay thong tri
+int n, s, in[N], tpn[N], dep[N], idom[N];  // n la tong so dinh, s la dinh bat dau, in la bac vao
 int fth[N][17];
 
 void topo(int s) {
@@ -263,55 +263,55 @@ void build() {
 
 ```
 
-### Lengauer–Tarjan 算法
+### Thuật toán Lengauer-Tarjan
 
-Lengauer–Tarjan 算法是求解支配树最有名的算法之一，可以在 $O(n\alpha(n, m))$ 的时间复杂度内求出一个有向图的支配树．这一算法引入了 **半支配点** 的概念，并通过半支配点辅助求得直接支配点．
+Thuật toán Lengauer-Tarjan là một trong những thuật toán nổi tiếng nhất để tìm cây thống trị, có thể tìm cây thống trị của một đồ thị có hướng trong độ phức tạp thời gian $O(n\alpha(n, m))$. Thuật toán này đưa vào khái niệm **bán thống trị**, rồi dùng bán thống trị để hỗ trợ tìm đỉnh thống trị trực tiếp.
 
-#### 约定
+#### Quy ước
 
-首先，我们从 $s$ 出发对这个有向图进行 dfs，所经过的点和边形成了一颗树 $T$．我们称走过的边为树边，其余的为非树边；令 $dfn(u)$ 表示结点 $u$ 被第几个遍历到；定义 $u<v$ 当且仅当 $dfn(u) < dfn(v)$．
+Trước hết, ta xuất phát từ $s$ và chạy dfs trên đồ thị có hướng này. Các đỉnh và cạnh đi qua tạo thành một cây $T$. Ta gọi các cạnh đã đi qua là cạnh cây, các cạnh còn lại là cạnh không thuộc cây; đặt $dfn(u)$ là thứ tự đỉnh $u$ được duyệt tới; định nghĩa $u<v$ khi và chỉ khi $dfn(u) < dfn(v)$.
 
-#### 半支配点
+#### Bán thống trị
 
-一个结点 $u$ 的半支配点，是满足从这个结点 $v$ 出发有一条路径，路径上除了 $u, v$ 之外每个结点都大于 $u$ 的结点中最小的那一个．形式化的说，$u$ 的半支配点 $sdom(u)$ 定义为：
+Bán thống trị của một đỉnh $u$ là đỉnh nhỏ nhất trong các đỉnh $v$ sao cho từ $v$ có một đường đi đến $u$ mà trên đường đi đó, ngoài $u, v$ ra, mọi đỉnh đều lớn hơn $u$. Nói một cách hình thức, bán thống trị $sdom(u)$ của $u$ được định nghĩa là:
 
 $sdom(u) = \min(v|\exists v=v_0 \rightarrow v_1 \rightarrow\dots \rightarrow v_k = u, \forall 1\le i\le k - 1, v_i > u)$
 
-我们发现半支配点有一些有用的性质：
+Ta nhận thấy bán thống trị có một số tính chất hữu ích:
 
-**引理 7：** 对于任意结点 $u$，$sdom(u) < u$．
+**Bổ đề 7:** Với mọi đỉnh $u$, $sdom(u) < u$.
 
-**证明：** 根据定义不难发现，$u$ 在 $T$ 上的父亲 $fa(u)$ 也满足成为半支配点的条件，且 $fa(u) < u$，因此任何大于 $u$ 的结点都不可能成为其半支配点．
+**Chứng minh:** Theo định nghĩa, không khó để thấy cha $fa(u)$ của $u$ trên $T$ cũng thỏa mãn điều kiện trở thành bán thống trị, và $fa(u) < u$, vì vậy mọi đỉnh lớn hơn $u$ đều không thể trở thành bán thống trị của nó.
 
-**引理 8：** 对于任意结点 $u$，$idom(u)$ 是其在 $T$ 上的祖先．
+**Bổ đề 8:** Với mọi đỉnh $u$, $idom(u)$ là tổ tiên của $u$ trên $T$.
 
-**证明：** $T$ 上从 $s$ 到 $u$ 的路径对应了原图上的一条路径，则 $idom(u)$ 必定在这个路径上．
+**Chứng minh:** Đường đi từ $s$ đến $u$ trên $T$ tương ứng với một đường đi trong đồ thị ban đầu, nên $idom(u)$ chắc chắn nằm trên đường đi này.
 
-**引理 9：** 对于任意结点 $u$，$sdom(u)$ 是其在 $T$ 上的祖先．
+**Bổ đề 9:** Với mọi đỉnh $u$, $sdom(u)$ là tổ tiên của $u$ trên $T$.
 
-**证明：** 假设 $sdom(u)$ 不是 $u$ 的祖先，那么 $sdom(u)$ 不可能连向任何 $\mathrm{dfs}$ 序大于等于 $u$ 的结点（否则这个点应在 $sdom(u)$ 的子树内而非其他子树内），矛盾．
+**Chứng minh:** Giả sử $sdom(u)$ không phải là tổ tiên của $u$. Khi đó $sdom(u)$ không thể nối đến bất kỳ đỉnh nào có thứ tự $\mathrm{dfs}$ lớn hơn hoặc bằng $u$ (nếu không, đỉnh đó phải nằm trong cây con của $sdom(u)$ chứ không phải trong cây con khác), mâu thuẫn.
 
-**引理 10：** 对于任意结点 $u$，$idom(u)$ 是 $sdom(u)$ 的祖先．
+**Bổ đề 10:** Với mọi đỉnh $u$, $idom(u)$ là tổ tiên của $sdom(u)$.
 
-**证明：** 考虑可以从 $s$ 到 $sdom(u)$ 再从定义中的路径走到 $u$．根据定义，$sdom(u)$ 到 $u$ 的路径上的点均不支配 $u$，故 $idom(u)$ 一定是 $sdom(u)$ 的祖先．
+**Chứng minh:** Xét việc đi từ $s$ đến $sdom(u)$, rồi đi theo đường đi trong định nghĩa đến $u$. Theo định nghĩa, các đỉnh trên đường đi từ $sdom(u)$ đến $u$ đều không thống trị $u$, nên $idom(u)$ chắc chắn là tổ tiên của $sdom(u)$.
 
-**引理 11：** 对于任意结点 $u \ne v$ 满足 $v$ 是 $u$ 的祖先，则要么有 $v$ 是 $idom(u)$ 的祖先，要么 $idom(u)$ 是 $idom(v)$ 的祖先．
+**Bổ đề 11:** Với mọi cặp đỉnh $u \ne v$ sao cho $v$ là tổ tiên của $u$, hoặc $v$ là tổ tiên của $idom(u)$, hoặc $idom(u)$ là tổ tiên của $idom(v)$.
 
-**证明：** 对于任意在 $v$ 和 $idom(v)$ 之间的结点 $w$，根据直接支配点的定义，一定存在一条不经过 $w$ 的，从 $s$ 到 $idom(v)$ 再到 $v$ 的路径．因此这些结点 $w$ 一定不是 $idom(u)$，因此 $idom(u)$ 要么是 $v$ 的后代，要么是 $idom(v)$ 的祖先．
+**Chứng minh:** Với mọi đỉnh $w$ nằm giữa $v$ và $idom(v)$, theo định nghĩa của đỉnh thống trị trực tiếp, chắc chắn tồn tại một đường đi từ $s$ đến $idom(v)$ rồi đến $v$ mà không đi qua $w$. Vì vậy các đỉnh $w$ này chắc chắn không phải là $idom(u)$, do đó $idom(u)$ hoặc là hậu duệ của $v$, hoặc là tổ tiên của $idom(v)$.
 
-根据以上引理，我们可以得到以下定理：
+Từ các bổ đề trên, ta có thể thu được định lý sau:
 
-**定理 1：** 一个点 $u$ 的半支配点是其前驱与其支配点在 $T$ 上的，大于 $u$ 的所有祖先的半支配点中最小的节点．形式化地说，$sdom(u)=\min(\{v|\exists v \rightarrow u, v < u \} \cup \{sdom(w) | w > u\ and\ \exists w \rightarrow \dots \rightarrow v \rightarrow u \})$．
+**Định lý 1:** Bán thống trị của một đỉnh $u$ là đỉnh nhỏ nhất trong các đỉnh tiền nhiệm của nó và trong các bán thống trị của mọi tổ tiên lớn hơn $u$ trên $T$ của các đỉnh thống trị của nó. Nói một cách hình thức, $sdom(u)=\min(\{v|\exists v \rightarrow u, v < u \} \cup \{sdom(w) | w > u\ and\ \exists w \rightarrow \dots \rightarrow v \rightarrow u \})$.
 
-**证明：** 令 $x$ 等于上式右侧．
+**Chứng minh:** Đặt $x$ bằng vế phải của công thức trên.
 
-我们首先证明 $sdom(u) \le x$．根据引理 7 我们知道这个命题等价于证明上述的两种都满足成为半支配点的条件．$x$ 是 $u$ 的前驱时的情况是显然的，对于后半部分，我们考虑将半支配点定义中所述路径 $x=v_0\rightarrow\dots\rightarrow v_j=w$ 和 $T$ 上的一条满足 $\forall i\in[j, k-1], v_i\ge w > u$ 的路径 $w=v_j \rightarrow\dots\rightarrow v_k=v$ 以及路径 $v \rightarrow u$ 拼接，从而我们构造出一条满足半支配点定义的路径．
+Trước hết ta chứng minh $sdom(u) \le x$. Theo bổ đề 7, ta biết mệnh đề này tương đương với việc chứng minh cả hai loại lựa chọn nêu trên đều thỏa mãn điều kiện trở thành bán thống trị. Trường hợp $x$ là một đỉnh tiền nhiệm của $u$ là hiển nhiên. Với nửa sau, ta xét việc nối đường đi $x=v_0\rightarrow\dots\rightarrow v_j=w$ nêu trong định nghĩa bán thống trị với một đường đi trên $T$ thỏa mãn $\forall i\in[j, k-1], v_i\ge w > u$ là $w=v_j \rightarrow\dots\rightarrow v_k=v$, rồi nối thêm đường đi $v \rightarrow u$. Nhờ đó ta xây dựng được một đường đi thỏa mãn định nghĩa bán thống trị.
 
-然后我们证明 $sdom(u)\ge x$．考虑 $u$ 到其半支配点的定义中所述路径 $sdom(u)=v_0\rightarrow v_1 \rightarrow\dots\rightarrow v_k=u$．不难看出 $k=1$ 和 $k > 1$ 分别对应了定义中的两个选取方法．若 $k = 1$，则存在有向边 $sdom(u) \rightarrow u$，根据引理 7 即可得证；若 $k>1$，令 $j$ 是满足 $j \ge 1$ 且 $v_j$ 是 $v_{k-1}$ 在 $T$ 上祖先的最小数．考虑到 $k$ 满足上述条件，这样的 $j$ 一定存在．
+Tiếp theo ta chứng minh $sdom(u)\ge x$. Xét đường đi nêu trong định nghĩa bán thống trị từ $sdom(u)$ đến $u$: $sdom(u)=v_0\rightarrow v_1 \rightarrow\dots\rightarrow v_k=u$. Dễ thấy $k=1$ và $k > 1$ lần lượt tương ứng với hai cách lựa chọn trong định nghĩa. Nếu $k = 1$, thì tồn tại cạnh có hướng $sdom(u) \rightarrow u$, và theo bổ đề 7 ta chứng minh được điều cần chứng minh; nếu $k>1$, đặt $j$ là số nhỏ nhất thỏa mãn $j \ge 1$ và $v_j$ là tổ tiên của $v_{k-1}$ trên $T$. Do $k$ thỏa mãn điều kiện trên, một $j$ như vậy chắc chắn tồn tại.
 
-考虑证明 $v_0 \rightarrow \dots \rightarrow v_j$ 是满足成为 $v_j$ 半支配点条件的一条路径，即证明 $\forall i \in [1, j), v_i>v_j$．若不是，则令 $i$ 为满足 $v_i < v_j$ 中使 $v_i$ 最小的数，根据引理 11 我们知道 $v_i$ 是 $v_j$ 的祖先，这和 $j$ 的定义矛盾．于是 $sdom(v_j)\le sdom(u)$．综上 $sdom(u) \le x$，故 $x=sdom(u)$．
+Xét việc chứng minh $v_0 \rightarrow \dots \rightarrow v_j$ là một đường đi thỏa mãn điều kiện trở thành bán thống trị của $v_j$, tức là chứng minh $\forall i \in [1, j), v_i>v_j$. Nếu không, đặt $i$ là chỉ số sao cho $v_i < v_j$ và $v_i$ là nhỏ nhất. Theo bổ đề 11, ta biết $v_i$ là tổ tiên của $v_j$, mâu thuẫn với định nghĩa của $j$. Vì vậy $sdom(v_j)\le sdom(u)$. Tóm lại $sdom(u) \le x$, nên $x=sdom(u)$.
 
-根据定理 1 我们便可以求出每个点的半支配点了．不难发现计算半支配点的复杂度瓶颈在第二种情况上，我们考虑利用带权并查集优化，每次路径压缩时更新最小值即可．
+Theo định lý 1, ta có thể tìm bán thống trị của mỗi đỉnh. Không khó để thấy nút thắt độ phức tạp khi tính bán thống trị nằm ở trường hợp thứ hai, nên ta xét tối ưu bằng DSU có trọng số, cập nhật giá trị nhỏ nhất mỗi khi nén đường đi.
 
 ```cpp
 void dfs(int u) {
@@ -364,39 +364,39 @@ void getsdom() {
 
 ```
 
-#### 求解直接支配点
+#### Tìm đỉnh thống trị trực tiếp
 
-##### 转化为 DAG
+##### Chuyển thành DAG
 
-可是我还是不知道半支配点有什么用！
+Nhưng ta vẫn chưa biết bán thống trị dùng để làm gì!
 
-我们考虑在 $T$ 上对每一个 $u$ 加入 $sdom(u) \rightarrow u$ 的有向边．根据引理 9，新得到的这张图 $G$ 一定是有向无环图；又根据引理 10，我们还发现这样加边不会改变支配关系，因此我们把原图转化为了一张 DAG，利用上文的算法求解即可．
+Xét việc thêm cạnh có hướng $sdom(u) \rightarrow u$ vào $T$ cho mỗi $u$. Theo bổ đề 9, đồ thị mới $G$ chắc chắn là đồ thị có hướng không chu trình; theo bổ đề 10, ta còn thấy việc thêm cạnh như vậy không làm thay đổi quan hệ thống trị. Vì vậy ta đã chuyển đồ thị ban đầu thành một DAG, rồi có thể dùng thuật toán ở trên để giải.
 
-##### 通过半支配点求解
+##### Tìm bằng bán thống trị
 
-建一堆图也太不优雅了！
+Xây cả đống đồ thị như vậy thì thật không tinh gọn!
 
-**定理 2：** 对于任意节点 $u$，若 $T$ 上从 $sdom(u)$ 到 $w$ 的路径上的任意节点 $v$ 都满足 $sdom(v)\ge sdom(w)$，则 $idom(u) =sdom(u)$．
+**Định lý 2:** Với một đỉnh bất kỳ $u$, nếu mọi đỉnh $v$ trên đường đi từ $sdom(u)$ đến $u$ trên $T$ đều thỏa mãn $sdom(v)\ge sdom(u)$, thì $idom(u) =sdom(u)$.
 
-**证明：** 根据引理 10 我们知道 $idom(u)$ 是 $sdom(u)$ 或其祖先，因此只需证明 $sdom(u) \ dom \ u$．
+**Chứng minh:** Theo bổ đề 10, ta biết $idom(u)$ là $sdom(u)$ hoặc tổ tiên của nó, nên chỉ cần chứng minh $sdom(u) \ dom \ u$.
 
-考虑任意一条 $s$ 到 $u$ 的路径 $P$，我们需要证明 $sdom(u)$ 一定在 $P$ 中．令 $v$ 为 $P$ 中最后一个满足 $v<sdom(u)$ 的节点．如果 $v$ 不存在则必有 $sdom(u)=idom(u) =s$，否则令 $w$ 是 $P$ 中 $v$ 之后在 DFS 树中从 $sdom(u)$ 到 $u$ 的路径上的第一个点．
+Xét một đường đi bất kỳ $P$ từ $s$ đến $u$, ta cần chứng minh $sdom(u)$ chắc chắn nằm trong $P$. Đặt $v$ là đỉnh cuối cùng trong $P$ thỏa mãn $v<sdom(u)$. Nếu $v$ không tồn tại thì chắc chắn có $sdom(u)=idom(u) =s$, ngược lại đặt $w$ là điểm đầu tiên trong $P$ sau $v$ nằm trên đường đi từ $sdom(u)$ đến $u$ trong cây DFS.
 
-我们接下来证明 $sdom(w)\le v <sdom(v)$．考虑 $T$ 上 $v$ 到 $w$ 的路径 $v = v_0 \rightarrow \dots v_k = w$，若不成立，则存在 $i\in[1, k- 1], v_i < w$．此时一定存在某个 $j\in [i, k - 1]$ 满足 $v_j$ 是 $w$ 的祖先．由 $v$ 的取值可知 $sdom(u)\le v_j$，于是 $v_j$ 也在 DFS 树中从 $sdom(u)$ 到 $u$ 的路径上，与 $w$ 的定义矛盾，因此 $sdom(w)\le v < sdom(v)$，结合定理的条件有 $y=sdom(u)$，即路径 $P$ 包含 $sdom(u)$．
+Tiếp theo ta chứng minh $sdom(w)\le v <sdom(u)$. Xét đường đi từ $v$ đến $w$ trên $T$: $v = v_0 \rightarrow \dots v_k = w$. Nếu điều này không đúng, thì tồn tại $i\in[1, k- 1], v_i < w$. Khi đó chắc chắn tồn tại một $j\in [i, k - 1]$ sao cho $v_j$ là tổ tiên của $w$. Từ cách chọn $v$, ta có $sdom(u)\le v_j$, nên $v_j$ cũng nằm trên đường đi từ $sdom(u)$ đến $u$ trong cây DFS, mâu thuẫn với định nghĩa của $w$. Vì vậy $sdom(w)\le v < sdom(u)$; kết hợp với điều kiện của định lý, ta suy ra $w=sdom(u)$, tức là đường đi $P$ chứa $sdom(u)$.
 
-**定理 3：** 对于任意节点 $u$，$T$ 上从 $sdom(u)$ 到 $u$ 的路径上的所有节点中半支配点最小的节点 $v$ 一定满足 $sdom(v)\le sdom(u)$ 和 $idom(v) = idom(u)$．
+**Định lý 3:** Với một đỉnh bất kỳ $u$, trong tất cả các đỉnh trên đường đi từ $sdom(u)$ đến $u$ trên $T$, đỉnh $v$ có bán thống trị nhỏ nhất chắc chắn thỏa mãn $sdom(v)\le sdom(u)$ và $idom(v) = idom(u)$.
 
-**证明：** 考虑到 $u$ 本身也满足 $v$ 的条件，因此 $sdom(v)\le sdom(u)$．
+**Chứng minh:** Vì bản thân $u$ cũng thỏa mãn điều kiện của $v$, nên $sdom(v)\le sdom(u)$.
 
-由于 $idom(u)$ 是 $v$ 在 $T$ 上的祖先，由引理 11 可知 $idom(u)$ 也是 $idom(v)$ 的祖先，因此只需证明 $idom(v)$ 支配 $u$．
+Do $idom(u)$ là tổ tiên của $v$ trên $T$, theo bổ đề 11 ta biết $idom(u)$ cũng là tổ tiên của $idom(v)$, vì vậy chỉ cần chứng minh $idom(v)$ thống trị $u$.
 
-考虑任意一条 $s$ 到 $u$ 的路径 $P$，我们需要证明 $sdom(u)$ 一定在 $P$ 中．令 $x$ 为 $P$ 中最后一个满足 $x<sdom(u)$ 的节点．如果 $x$ 不存在则必有 $sdom(u)=idom(u) =s$，否则令 $y$ 是 $P$ 中 $x$ 之后在 DFS 树中从 $sdom(u)$ 到 $u$ 的路径上的第一个点．
+Xét một đường đi bất kỳ $P$ từ $s$ đến $u$, ta cần chứng minh $sdom(u)$ chắc chắn nằm trong $P$. Đặt $x$ là đỉnh cuối cùng trong $P$ thỏa mãn $x<sdom(u)$. Nếu $x$ không tồn tại thì chắc chắn có $sdom(u)=idom(u) =s$, ngược lại đặt $y$ là điểm đầu tiên trong $P$ sau $x$ nằm trên đường đi từ $sdom(u)$ đến $u$ trong cây DFS.
 
-与定理 2 的证明过程同理，我们可以得到 $sdom(y) \le x$．根据引理 10 有 $sdom(y)\le x<idom(v) \le sdom(v)$．至此，由 $v$ 的定义可知 $y$ 不能是 $sdom(u)$ 的后代；另一方面，$y$ 不能既是 $idom(v)$ 的后代也是 $v$ 的祖先，否则沿 DFS 树从 $s$ 到 $sdom(y)$ 再沿 P 走到 $y$，最后沿 DFS 树走到 $v$ 的这条路径不经过 $idom(v)$，与支配点的定义矛盾．因此 $y=idom(v)$，即 $P$ 包含 $idom(v)$．
+Tương tự quá trình chứng minh định lý 2, ta có thể thu được $sdom(y) \le x$. Theo bổ đề 10, có $sdom(y)\le x<idom(v) \le sdom(v)$. Đến đây, từ định nghĩa của $v$, ta biết $y$ không thể là hậu duệ của $sdom(u)$; mặt khác, $y$ không thể vừa là hậu duệ của $idom(v)$ vừa là tổ tiên của $v$, nếu không thì đường đi men theo cây DFS từ $s$ đến $sdom(y)$, rồi men theo $P$ đến $y$, cuối cùng men theo cây DFS đến $v$ sẽ không đi qua $idom(v)$, mâu thuẫn với định nghĩa của đỉnh thống trị. Vì vậy $y=idom(v)$, tức là $P$ chứa $idom(v)$.
 
-根据以上两个定理我们能够得到 $sdom(u)$ 与 $idom(u)$ 之间的关系．
+Từ hai định lý trên, ta có thể thu được quan hệ giữa $sdom(u)$ và $idom(u)$.
 
-令 $v$ 是满足 $v$ 在 $sdom(u)$ 与 $u$ 之间的结点的所有节点中，$sdom(v)$ 最小的一个节点，那么：
+Đặt $v$ là một đỉnh có $sdom(v)$ nhỏ nhất trong tất cả các đỉnh nằm giữa $sdom(u)$ và $u$. Khi đó:
 
 $$
 idom(u) =
@@ -409,7 +409,7 @@ idom(u) =
 \right.
 $$
 
-只要对上面求解半支配点的代码稍作修改即可．
+Chỉ cần sửa nhẹ mã tìm bán thống trị ở trên là được.
 
 ```cpp
 struct E {
@@ -495,24 +495,24 @@ void tar(int st) {
 
 ```
 
-## 例题
+## Bài tập ví dụ
 
-### [洛谷 P5180【模板】支配树](https://www.luogu.com.cn/problem/P5180)
+### [Luogu P5180 [Mẫu] Cây thống trị](https://www.luogu.com.cn/problem/P5180)
 
-可以仅求解支配关系，求解过程中记录各个点支配了多少节点，也可以建出支配树求解每个节点的 size．
+Có thể chỉ cần tìm quan hệ thống trị và trong quá trình đó ghi lại mỗi đỉnh thống trị bao nhiêu đỉnh; cũng có thể xây cây thống trị rồi tìm kích thước cây con của từng đỉnh.
 
-这里给出后一种解法的代码．
+Ở đây đưa ra mã cho cách giải thứ hai.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/graph/code/dom-tree/dom-tree_1.cpp"
     ```
 
-### [ZJOI2012 灾难](https://www.luogu.com.cn/problem/P2597)
+### [ZJOI2012 Thảm họa](https://www.luogu.com.cn/problem/P2597)
 
-在 DAG 上求支配树然后求节点 size 即可．
+Trên DAG, chỉ cần tìm cây thống trị rồi tính kích thước cây con của các đỉnh.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/graph/code/dom-tree/dom-tree_2.cpp"
     ```

@@ -307,6 +307,11 @@ MkDocs source layout intact.
   `docs/graph/graph-matching/general-weight-match.md`,
   `docs/graph/graph-matching/stable-match.md`: translated graph matching,
   bipartite/general matching, weighted matching, and stable matching material.
+- `docs/graph/prufer.md`, `docs/graph/matrix-tree.md`,
+  `docs/graph/lgv.md`, `docs/graph/max-clique.md`,
+  `docs/graph/dominator-tree.md`, `docs/graph/graph-random-walk.md`:
+  translated Prüfer sequence, Matrix-Tree theorem, LGV lemma, maximum clique,
+  dominator tree, and graph random-walk material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

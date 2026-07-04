@@ -1,45 +1,45 @@
 author: Persdre
 
-前置知识：[团](./concept.md)
+Kiến thức chuẩn bị: [clique](./concept.md)
 
-## 引入
+## Dẫn nhập
 
-在计算机科学中，团问题指的是在给定的图中找到团（顶点的子集，都彼此相邻，也称为完全子图）的计算问题．
+Trong khoa học máy tính, bài toán clique là bài toán tính toán nhằm tìm một clique trong đồ thị đã cho, tức một tập con các đỉnh mà mọi cặp đỉnh đều kề nhau, còn được gọi là đồ thị con đầy đủ.
 
-团的问题在现实生活中也有体现．例如我们考虑一个社交网络，其中图的点代表用户，图的边代表其所连接的两个用户互相认识．那么我们找到了一个团，也就找到了一群互相认识的人．
+Bài toán clique cũng xuất hiện trong đời sống thực tế. Ví dụ, xét một mạng xã hội trong đó các đỉnh của đồ thị biểu thị người dùng, còn cạnh của đồ thị biểu thị hai người dùng được nối bởi cạnh đó quen biết nhau. Khi tìm được một clique, ta cũng tìm được một nhóm người đều quen biết lẫn nhau.
 
-我们如果想要找到这个社交网络中最大的一群互相认识的人，那么就需要用到最大团搜索算法．
+Nếu muốn tìm nhóm người quen biết lẫn nhau có kích thước lớn nhất trong mạng xã hội này, ta cần dùng thuật toán tìm clique lớn nhất.
 
-我们已经介绍了 [极大团](./concept.md) 的概念，最大团指的是点数量最多的极大团．
+Ta đã giới thiệu khái niệm [clique cực đại](./concept.md). Clique lớn nhất là clique cực đại có số đỉnh nhiều nhất.
 
-## 解释
+## Giải thích
 
-想法是利用递归和回溯，用一个列表存储点，每次加入点进来都检查这些点是否仍在一个团中．如果加入进来这个点后就无法还是一个团了，就回溯到满足条件的位置，重新加入别的点．
+Ý tưởng là dùng đệ quy và quay lui, lưu các đỉnh bằng một danh sách; mỗi lần thêm một đỉnh mới vào thì kiểm tra xem các đỉnh này có còn tạo thành một clique hay không. Nếu sau khi thêm đỉnh này vào mà không còn là clique, ta quay lui về vị trí thỏa mãn điều kiện và thử thêm đỉnh khác.
 
-采用回溯策略的原因是，我们并不知道某个顶点 $v$  **最终** 是否是最大团中的成员．如果递归算法选择 $v$ 作为最大团的成员时，并没有找到最大团，那么应该回溯，并查找最大团中没有 $v$ 的解．
+Lý do sử dụng chiến lược quay lui là ta không biết một đỉnh $v$ nào đó **cuối cùng** có phải là thành viên của clique lớn nhất hay không. Nếu thuật toán đệ quy chọn $v$ làm thành viên của clique lớn nhất nhưng không tìm được clique lớn nhất, thì cần quay lui và tìm nghiệm không chứa $v$ trong clique lớn nhất.
 
-## 过程
+## Quy trình
 
-**Bron–Kerbosch** 算法对于这种想法进行了优化实现．它的基础形式是通过给定三个集合：$R$、$P$、$X$ 来递归地进行搜索．步骤如下：
+Thuật toán **Bron–Kerbosch** hiện thực tối ưu hóa cho ý tưởng này. Dạng cơ bản của thuật toán tìm kiếm đệ quy với ba tập đã cho: $R$, $P$, $X$. Các bước như sau:
 
-1.  初始化集合 $R,X$ 分别为空，集合 $P$ 是图中所有点的集合．
-2.  每次从集合 $P$ 中取顶点 $v$，当集合中没有顶点时，有两种情况：
-    1.  集合 $R$ 是最大团，此时集合 $X$ 为空
-    2.  无最大团，此时回溯
-3.  对于每一个从集合 $P$ 中取得的顶点 $v$，有如下处理：
-    1.  将顶点 $v$ 加到集合 $R$ 中，之后递归集合 $R,P,X$
-    2.  从集合 $P$ 中删除顶点 $v$，并将顶点 $v$ 添加到集合 $X$ 中
-    3.  若集合 $P,X$ 都为空，则集合 $R$ 即为最大团
+1.  Khởi tạo hai tập $R,X$ là rỗng, còn tập $P$ là tập tất cả các đỉnh trong đồ thị.
+2.  Mỗi lần lấy một đỉnh $v$ từ tập $P$; khi trong tập không còn đỉnh nào, có hai trường hợp:
+    1.  Tập $R$ là clique lớn nhất, khi đó tập $X$ rỗng
+    2.  Không có clique lớn nhất, khi đó quay lui
+3.  Với mỗi đỉnh $v$ lấy từ tập $P$, xử lý như sau:
+    1.  Thêm đỉnh $v$ vào tập $R$, rồi đệ quy trên các tập $R,P,X$
+    2.  Xóa đỉnh $v$ khỏi tập $P$, và thêm đỉnh $v$ vào tập $X$
+    3.  Nếu cả hai tập $P,X$ đều rỗng, thì tập $R$ chính là clique lớn nhất
 
-此方法也可继续优化．为了节省时间让算法更快的回溯，可以通过设定关键点（pivot vertex）来进行搜索．另一种优化思路是在开始时把所有点排序，枚举时按照下标顺序，防止重复．
+Phương pháp này còn có thể tiếp tục tối ưu. Để tiết kiệm thời gian và giúp thuật toán quay lui nhanh hơn, có thể tìm kiếm bằng cách chọn đỉnh chốt (pivot vertex). Một hướng tối ưu khác là sắp xếp tất cả các đỉnh ngay từ đầu, rồi khi liệt kê thì đi theo thứ tự chỉ số để tránh lặp.
 
-## 实现
+## Hiện thực
 
-### 伪代码
+### Mã giả
 
 ```text
 R := {}
-P := node set of G 
+P := node set of G
 X := {}
 
 BronKerbosch1(R, P, X):
@@ -51,59 +51,59 @@ BronKerbosch1(R, P, X):
         X := X ⋃ {v}
 ```
 
-### C++ 实现
+### Hiện thực C++
 
-??? note "实现代码"
+??? note "Mã hiện thực"
     ```cpp
     --8<-- "docs/graph/code/max-clique/max-clique_1.cpp"
     ```
 
-## 例题
+## Ví dụ
 
 ???+ note "[POJ 2989: All Friends](http://poj.org/problem?id=2989)"
-    题目大意：给出 $n$ 个人，其中有 $m$ 对朋友，求最大团数量．
+    Tóm tắt đề bài: Cho $n$ người, trong đó có $m$ cặp bạn bè. Hãy tính số lượng clique cực đại.
 
-思路：模版题，要用 Bron–Kerbosch 算法
+Ý tưởng: Bài mẫu, cần dùng thuật toán Bron–Kerbosch.
 
-伪代码：
+Mã giả:
 
 ```text
- BronKerbosch(All, Some, None):  
-     if Some and None are both empty:  
-         report All as a maximal clique // 所有点已选完，且没有不能选的点，累加答案  
-     for each vertex v in Some: // 枚举 Some 中的每一个元素  
-         BronKerbosch1(All ⋃ {v}, Some ⋂ N(v), None ⋂ N(v))   
-         // 将 v 加入 All，显然只有与 v 为朋友的人才能作为备选，None 中也只有与 v 为朋友的才会对接下来造成影响  
-         Some := Some - {v} // 已经搜过，从 Some 中删除，加入 None  
-         None := None ⋃ {v} 
+ BronKerbosch(All, Some, None):
+     if Some and None are both empty:
+         report All as a maximal clique // Tất cả các đỉnh đã được chọn, và không còn đỉnh bị cấm chọn; cộng vào đáp án
+     for each vertex v in Some: // Liệt kê từng phần tử trong Some
+         BronKerbosch1(All ⋃ {v}, Some ⋂ N(v), None ⋂ N(v))
+         // Thêm v vào All; rõ ràng chỉ những người là bạn của v mới có thể tiếp tục là ứng viên, và trong None cũng chỉ những người là bạn của v mới ảnh hưởng đến bước tìm kiếm tiếp theo
+         Some := Some - {v} // Đã tìm kiếm xong; xóa khỏi Some và thêm vào None
+         None := None ⋃ {v}
 ```
 
-为了节省时间和让算法更快的回溯，我们可以通过设定关键点（pivot vertex）$v$ 进行优化．
+Để tiết kiệm thời gian và giúp thuật toán quay lui nhanh hơn, ta có thể tối ưu bằng cách chọn đỉnh chốt (pivot vertex) $v$.
 
-我们知道在上述的算法中必然有许多重复计算之前计算过的极大团，然后回溯的过程．
+Ta biết trong thuật toán ở trên chắc chắn có nhiều lần tính lặp lại các clique cực đại đã từng được tính trước đó, rồi sau đó quay lui.
 
-以前文提到的 $R$、$P$、$X$ 三个集合为例：
+Lấy ba tập $R$, $P$, $X$ đã nhắc ở trên làm ví dụ:
 
-我们考虑如下问题，取集合 $P\cup X$ 中的一个点 $u$，要与 $R$ 集合构成极大团，那么取的点必然是 $P\cap N(u)$ 中一个点（$N(u)$ 代表与 $u$ 相邻的点）．
+Xét bài toán sau: chọn một đỉnh $u$ trong tập $P\cup X$ để cùng với tập $R$ tạo thành một clique cực đại. Khi đó đỉnh được chọn chắc chắn là một đỉnh trong $P\cap N(u)$ ($N(u)$ biểu thị các đỉnh kề với $u$).
 
-如果取完 $u$ 之后我们再取与 $u$ 相邻的点 $v$ 也能加入到极大团，那么我们只取 $u$ 就好了．这样做可以减少之后对 $v$ 的重复计算．我们之后只需要取与 $u$ 不相邻的点．
+Nếu sau khi chọn $u$, ta tiếp tục chọn một đỉnh $v$ kề với $u$ và $v$ cũng có thể được thêm vào clique cực đại, thì chỉ chọn $u$ là đủ. Cách làm này có thể giảm các tính toán lặp lại về sau đối với $v$. Sau đó ta chỉ cần chọn các đỉnh không kề với $u$.
 
-加入优化后的 C++ 代码实现：
+Hiện thực C++ sau khi thêm tối ưu:
 
-??? note "实现代码"
+??? note "Mã hiện thực"
     ```cpp
     --8<-- "docs/graph/code/max-clique/max-clique_2.cpp"
     ```
 
-## 习题
+## Bài tập
 
 -   [ZOJ 1492 Maximum Clique](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=4&problemSetProblemId=91827364991)
--   [POJ 1419 无向图最大团](http://poj.org/problem?id=1419)
--   [POJ 1129 广播电台](http://poj.org/problem?id=1129)
+-   [POJ 1419 Clique lớn nhất trên đồ thị vô hướng](http://poj.org/problem?id=1419)
+-   [POJ 1129 Đài phát thanh](http://poj.org/problem?id=1129)
 
-## 参考资料
+## Tài liệu tham khảo
 
--   [团问题 - 维基百科](https://en.wikipedia.org/wiki/Clique_problem)
--   [无向图的极大团、最大团（Bron–Kerbosch 算法）](https://blog.csdn.net/yo_bc/article/details/77453478)
--   [最大团问题——Bron–Kerbosch 算法](https://hallelujahjeff.github.io/2018/04/12/34/)
--   [最大团问题](https://www.cnblogs.com/zhj5chengfeng/archive/2013/07/29/3224092.html)
+-   [Clique problem - Wikipedia](https://en.wikipedia.org/wiki/Clique_problem)
+-   [Clique cực đại và clique lớn nhất trong đồ thị vô hướng (thuật toán Bron–Kerbosch)](https://blog.csdn.net/yo_bc/article/details/77453478)
+-   [Bài toán clique lớn nhất - thuật toán Bron–Kerbosch](https://hallelujahjeff.github.io/2018/04/12/34/)
+-   [Bài toán clique lớn nhất](https://www.cnblogs.com/zhj5chengfeng/archive/2013/07/29/3224092.html)
