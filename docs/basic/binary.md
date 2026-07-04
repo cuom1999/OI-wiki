@@ -48,7 +48,7 @@ int binary_search(int start, int end, int key) {
 ```
 
 ???+ note "Ghi chú"
-    Tham khảo [tối ưu biên dịch #dùng dịch bit thay cho phép nhân](../lang/optimizations.md#移位代替乘法). Với trường hợp $n$ là số có dấu, khi có thể bảo đảm $n\ge 0$, `n >> 1` dùng ít lệnh hơn `n / 2`.
+    Tham khảo [tối ưu biên dịch #dùng dịch bit thay cho phép nhân](../lang/optimizations.md#dùng-dịch-bit-thay-cho-phép-nhân). Với trường hợp $n$ là số có dấu, khi có thể bảo đảm $n\ge 0$, `n >> 1` dùng ít lệnh hơn `n / 2`.
 
 ### Tối thiểu hóa giá trị lớn nhất
 
@@ -331,8 +331,8 @@ $$
 
 -   [UVa 1476 - Error Curves](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
 -   [UVa 10385 - Duathlon](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
--   [UOJ 162 -【Tập huấn Thanh Hoa 2015】Kiểm tra bóng đèn](https://uoj.ac/problem/162)
--   [Luogu P7579 -「RdOI R2」Cân khối lượng (weigh)](https://www.luogu.com.cn/problem/P7579)
+-   [UOJ 162 - Tập huấn Thanh Hoa 2015: Kiểm tra bóng đèn](https://uoj.ac/problem/162)
+-   [Luogu P7579 - RdOI R2: Cân khối lượng (weigh)](https://www.luogu.com.cn/problem/P7579)
 
 ## Quy hoạch phân số
 

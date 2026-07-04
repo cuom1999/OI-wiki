@@ -6,4 +6,4 @@ còn cạnh nối hai đỉnh biểu diễn việc hai đối tượng có quan 
 
 ## Tài liệu tham khảo
 
-[Lý thuyết đồ thị - Wikipedia](https://zh.wikipedia.org/wiki/图论)
+[Lý thuyết đồ thị - Wikipedia](https://vi.wikipedia.org/wiki/L%C3%BD_thuy%E1%BA%BFt_%C4%91%E1%BB%93_th%E1%BB%8B)

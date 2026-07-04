@@ -117,7 +117,7 @@ Hỏi: Thêm một topic như thế nào?
     [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml),
     đồng thời tạo một tệp `.md` trống ở vị trí tương ứng trong thư mục
     [docs](https://github.com/OI-wiki/OI-wiki/tree/master/docs). Chi tiết định
-    dạng tài liệu vui lòng tham khảo [sổ tay định dạng](./format.md#贡献文档要求).
+    dạng tài liệu vui lòng tham khảo [sổ tay định dạng](./format.md#yêu-cầu-khi-đóng-góp-tài-liệu).
 
 ***
 
@@ -342,7 +342,7 @@ Hỏi: Vì sao phần thống kê tác giả không có tên tôi?
 
 Đáp: Nếu bạn phát hiện mình đã viết một phần nội dung trong một trang nhưng
 chưa được ghi vào danh sách tác giả, bạn có thể thêm GitHub ID của mình vào
-[trường author](./htc.md#author-字段) ở đầu tệp.
+[trường author](./htc.md#trường-author) ở đầu tệp.
 
 ***
 
@@ -357,7 +357,7 @@ Nhóm dự án **OI Wiki**
 
 [^ref1]: [GitHub520](https://gitee.com/klmahuaw/GitHub520)
 
-[^ref2]: [Đổi pip source sang mirror trong nước - L 瑜 - CSDN Blog](https://blog.csdn.net/lambert310/article/details/52412059)
+[^ref2]: [Đổi nguồn pip sang mirror trong nước - L Yu - CSDN Blog](https://blog.csdn.net/lambert310/article/details/52412059)
 
 [^ref3]: [GIT--- Xem tôi nhập môn từng bước (Windows Git Bash)](https://blog.csdn.net/FreeApe/article/details/46845555)
 

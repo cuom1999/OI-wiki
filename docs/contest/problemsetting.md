@@ -68,13 +68,13 @@ Các ngoại lệ có thể nới lỏng yêu cầu:
 >
 > Một bài hay nên mới mẻ. Bài thật sự hay nên là bài có thể khiến người ta mở ra một cách nghĩ mới.
 >
-> --[vfk《UOJ 精神之源流》][1]
+> --[vfk, *Nguồn gốc tinh thần của UOJ*][1]
 
 Ví dụ: [「XR-1」柯南家族](https://www.luogu.com.cn/problem/P5346), hai nửa trước sau của lời giải hoàn toàn tách rời. Nửa đầu là [「模板」树上后缀排序](https://www.luogu.com.cn/problem/P5353), nửa sau là một bài toán kinh điển trên cây. Ngay cả khi nhập tùy ý trọng số các đỉnh của cây, vẫn có thể làm phần thứ hai; hai phần trước sau không có liên hệ.
 
 > Một loại bài OI lấy toán học làm chính; dù là mô tả đề hay lời giải đều mang đặc trưng của bài toán học, và lời giải không chứa kiến thức liên quan đến thuật toán. Những bài OI kiểu này được gọi chung là bài thuần toán.
 >
-> --[王天懿《论偏题的危害》][2]
+> --[Wang Tianyi, *Bàn về tác hại của đề lệch*][2]
 
 Ví dụ kinh điển: [NOIP2017 小凯的疑惑](https://uoj.ac/problem/329)
 
@@ -82,7 +82,7 @@ Ví dụ kinh điển: [NOIP2017 小凯的疑惑](https://uoj.ac/problem/329)
 
 > Một số bài lệch hướng có liên quan đến nội dung vật lý đại học, khiến thí sinh khi đối mặt với những kiến thức vật lý chưa từng tiếp xúc trở nên lúng túng, tạo ra rào cản về kiến thức.
 >
-> --[王天懿《论偏题的危害》][2]
+> --[Wang Tianyi, *Bàn về tác hại của đề lệch*][2]
 
 Ví dụ kinh điển: [「清华集训 2015」多边形下海](https://uoj.ac/problem/159)
 
@@ -92,7 +92,7 @@ Không chỉ vật lý, bài OI cũng không nên liên quan quá nhiều đến
 >
 > Mã của một bài hay có thể dài, nhưng nhất định không phải dài vì cố tình lồng ghép hoặc thêm điều kiện một cách gượng ép; nó phải dài một cách tự nhiên, khiến người ta cảm thấy mã của bài này vốn nên dài như vậy.
 >
-> --[王天懿《论偏题的危害》][2]
+> --[Wang Tianyi, *Bàn về tác hại của đề lệch*][2]
 
 Ví dụ kinh điển: [「SDOI2010」猪国杀](https://loj.ac/problem/2885), [「集训队互测 2015」未来程序·改](https://uoj.ac/problem/98)
 
@@ -104,9 +104,9 @@ Trong các cuộc thi OI thông thường, độ khó tư duy nên chiếm phầ
 
 Trên mạng có rất nhiều hướng dẫn LaTeX, chẳng hạn:
 
--   [LaTeX 入门](../tools/latex.md#图表)
--   [LaTeX 数学公式大全](https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan)
--   [LaTeX 各种命令，符号](https://blog.csdn.net/anxiaoxi45/article/details/39449445)
+-   [Nhập môn LaTeX](../tools/latex.md)
+-   [Tổng hợp công thức toán LaTeX](https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan)
+-   [Các lệnh và ký hiệu LaTeX](https://blog.csdn.net/anxiaoxi45/article/details/39449445)
 
 Khi sử dụng, hãy chú ý [yêu cầu định dạng công thức LaTeX](../intro/format.md).
 
@@ -136,7 +136,7 @@ Bạn cần bảo đảm đề bài không thể bị hiểu sai mà vẫn tự 
 
 ### Định dạng vào ra
 
-Định dạng vào ra chỉ cần rõ ràng và **đầy đủ**, không có yêu cầu cứng nhắc. Cá nhân người viết khuyên nên tham khảo cách viết đề của CF; chi tiết có thể xem [CF 出题人须知][3].
+Định dạng vào ra chỉ cần rõ ràng và **đầy đủ**, không có yêu cầu cứng nhắc. Cá nhân người viết khuyên nên tham khảo cách viết đề của CF; chi tiết có thể xem [những điều người ra đề CF cần biết][3].
 
 Để thuận tiện cho thí sinh làm bài, trong định dạng vào ra tốt nhất nên giải thích ý nghĩa cụ thể của từng biến, trừ khi ý nghĩa của biến rất dài và không thể nói rõ trong một câu (lúc này có thể viết "ý nghĩa xem trong mô tả bài toán").
 
@@ -259,13 +259,13 @@ Thông thường, giới hạn thời gian nên thỏa mãn các yêu cầu sau:
 
 Trong thể thức có điểm thành phần, còn có thể dùng các bộ dữ liệu có phân tầng, hoặc dữ liệu có giới hạn nhỏ hơn một chút, để khiến các lời giải sai tương đối tốt và lời giải đúng có hằng số lớn không qua toàn bộ, nhưng vẫn nhận được điểm thành phần khá cao.
 
-Cần chú ý rằng khi giới hạn dữ liệu nhỏ hơn $5\cdot 10^5$, nên cân nhắc liệu có thể dùng [tối ưu bằng tập lệnh CPU](https://ouuan.github.io/post/n方过百万-暴力碾标算——指令集优化的基础使用) để vượt qua hay không.
+Cần chú ý rằng khi giới hạn dữ liệu nhỏ hơn $5\cdot 10^5$, nên cân nhắc liệu có thể dùng [tối ưu bằng tập lệnh CPU](https://ouuan.github.io/post/n%E6%96%B9%E8%BF%87%E7%99%BE%E4%B8%87-%E6%9A%B4%E5%8A%9B%E7%A2%BE%E6%A0%87%E7%AE%97%E2%80%94%E2%80%94%E6%8C%87%E4%BB%A4%E9%9B%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8) để vượt qua hay không.
 
 Thông thường, giới hạn bộ nhớ nên đặt đủ lớn, trừ khi lời giải có độ phức tạp bộ nhớ tốt hơn thật sự rất khéo và đáng để chặn các lời giải dùng nhiều bộ nhớ. Trong trường hợp này có thể cân nhắc đặt một phần điểm với giới hạn bộ nhớ rộng hơn. Cần lưu ý rằng nếu không muốn chặn các lời giải tiêu tốn nhiều bộ nhớ, các bài về cấu trúc dữ liệu thường cần đặt giới hạn bộ nhớ lớn hơn.
 
 > Một bài hay nên có tính tuyển chọn, có đủ độ phân hóa. Nên có ít nhất 4 mức điểm thành phần, để người mới có thể lấy điểm và người giỏi có thể thể hiện năng lực.
 >
-> --vfk《UOJ 精神之源流》
+> --vfk, *Nguồn gốc tinh thần của UOJ*
 
 Điểm thành phần thường được chia thành hai loại: giới hạn dữ liệu nhỏ hơn và tính chất đặc biệt.
 
@@ -438,7 +438,7 @@ Thông thường có thể sinh dữ liệu có xuống dòng kiểu Linux bằn
 1.  Trực tiếp sinh dữ liệu trong môi trường Linux.
 2.  Dùng công cụ [`dos2unix`](https://dos2unix.sourceforge.io/) để chuyển đổi file input/output; công cụ này có trong các bộ công cụ như Cygwin, MinGW.
 3.  Mở file output ở chế độ nhị phân và dùng định dạng xuống dòng `\n`.
-4.  Tham khảo mã `dos2unix.cpp` trong [trang này](https://help.luogu.com.cn/manual/luogu/problem/testcase-format#附录windows-环境下造数据注意事项) để tự viết công cụ.
+4.  Tham khảo mã `dos2unix.cpp` trong [trang này](https://help.luogu.com.cn/manual/luogu/problem/testcase-format#%E9%99%84%E5%BD%95windows-%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%80%A0%E6%95%B0%E6%8D%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9) để tự viết công cụ.
 
 ## Special Judge
 
@@ -576,7 +576,7 @@ Nền tảng thi đấu thuật toán của Nhật Bản, liên hệ ra đề: <
 
 Các OJ ở Trung Quốc không có nhiều cuộc thi.
 
-### 洛谷
+### Luogu
 
 Nhân sự tham gia ra đề cần có cấp chứng nhận giải thưởng nhất định; sau khi tạo cuộc thi, người phụ trách gửi yêu cầu trong [hệ thống ticket](https://www.luogu.com.cn/ticket).
 
@@ -584,20 +584,20 @@ Quy chuẩn cuộc thi công khai: <https://help.luogu.com.cn/rules/academic/ope
 
 ## Tài liệu tham khảo
 
-1.  [vfk《UOJ 精神之源流》][1]
+1.  [vfk, *Nguồn gốc tinh thần của UOJ*][1]
 
-2.  [王天懿《论偏题的危害》][2]
+2.  [Wang Tianyi, *Bàn về tác hại của đề lệch*][2]
 
-3.  [CF 出题人须知][3] ([bản ảnh có thể truy cập tại Trung Quốc](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg))
+3.  [Những điều người ra đề CF cần biết][3] ([bản ảnh có thể truy cập tại Trung Quốc](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg))
 
-4.  [CF 出题人的自我修养][4]
+4.  [Tự tu dưỡng của người ra đề CF][4]
 
-Bài viết này được chính tác giả chuyển sang từ [ouuan 的出题规范](https://ouuan.github.io/post/ouuan-的出题规范/), có chỉnh sửa và bổ sung.
+Bài viết này được chính tác giả chuyển sang từ [quy chuẩn ra đề của ouuan](https://ouuan.github.io/post/ouuan-%E7%9A%84%E5%87%BA%E9%A2%98%E8%A7%84%E8%8C%83/), có chỉnh sửa và bổ sung.
 
-[1]: https://vfleaking.blog.uoj.ac/blog/909 "vfk《UOJ 精神之源流》"
+[1]: https://vfleaking.blog.uoj.ac/blog/909 "vfk, Nguồn gốc tinh thần của UOJ"
 
-[2]: https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt "王天懿《论偏题的危害》"
+[2]: https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt "Wang Tianyi, Bàn về tác hại của đề lệch"
 
-[3]: https://docs.google.com/document/d/e/2PACX-1vRhazTXxSdj7JEIC7dp-nOWcUFiY8bXi9lLju-k6vVMKf4IiBmweJoOAMI-ZEZxatXF08I9wMOQpMqC/pub "CF 出题人须知"
+[3]: https://docs.google.com/document/d/e/2PACX-1vRhazTXxSdj7JEIC7dp-nOWcUFiY8bXi9lLju-k6vVMKf4IiBmweJoOAMI-ZEZxatXF08I9wMOQpMqC/pub "Những điều người ra đề CF cần biết"
 
-[4]: https://github.com/OI-wiki/libs/blob/master/topic/CF%E5%87%BA%E9%A2%98%E4%BA%BA%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB.md "CF 出题人的自我修养"
+[4]: https://github.com/OI-wiki/libs/blob/master/topic/CF%E5%87%BA%E9%A2%98%E4%BA%BA%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB.md "Tự tu dưỡng của người ra đề CF"

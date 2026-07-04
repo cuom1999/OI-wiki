@@ -80,7 +80,7 @@ Hàm `std::sort` là hàm so sánh trong thư viện C++ được dùng phổ bi
 
 Trong các chuẩn C++ cũ, hàm này chỉ được yêu cầu đạt độ phức tạp thời gian **trung bình** $O(n\log n)$. Từ chuẩn C++11 trở đi, hàm này được yêu cầu đạt độ phức tạp thời gian **xấu nhất** $O(n\log n)$.
 
-Chuẩn C++ không quy định chặt chẽ thuật toán cài đặt của hàm này; cài đặt cụ thể phụ thuộc vào trình biên dịch. Các cài đặt trong [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) và [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) đều dùng [sắp xếp nội quan](./quick-sort.md#内省排序).
+Chuẩn C++ không quy định chặt chẽ thuật toán cài đặt của hàm này; cài đặt cụ thể phụ thuộc vào trình biên dịch. Các cài đặt trong [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) và [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) đều dùng [sắp xếp nội quan](./quick-sort.md#sắp-xếp-nội-quan).
 
 ## std::nth\_element
 
@@ -173,9 +173,9 @@ std::sort(da + 1, da + 1 + 10, cmp);  // Dùng hàm cmp để so sánh, sắp x�
 
 ### Thứ tự yếu nghiêm ngặt
 
-Xem thêm: [Ứng dụng trong C++ - Lý thuyết thứ tự](../math/order-theory.md#c-中的应用)
+Xem thêm: [Ứng dụng trong C++ - Lý thuyết thứ tự](../math/order-theory.md#ứng-dụng-trong-c)
 
-Toán tử dùng để sắp xếp phải thỏa mãn [thứ tự yếu nghiêm ngặt](../math/order-theory.md#二元关系), nếu không có thể xuất hiện tình huống không thể dự đoán (như lỗi khi chạy, hoặc không sắp xếp đúng).
+Toán tử dùng để sắp xếp phải thỏa mãn [thứ tự yếu nghiêm ngặt](../math/order-theory.md#quan-hệ-hai-ngôi), nếu không có thể xuất hiện tình huống không thể dự đoán (như lỗi khi chạy, hoặc không sắp xếp đúng).
 
 Các cách làm sai thường gặp:
 
@@ -185,7 +185,7 @@ Các cách làm sai thường gặp:
 
 ## Liên kết ngoài
 
--   [Bàn về ứng dụng của sắp xếp đổi chỗ phần tử kề nhau và những điểm cần lưu ý](https://ouuan.github.io/浅谈邻项交换排序的应用以及需要注意的问题/)
+-   [Bàn về ứng dụng của sắp xếp đổi chỗ phần tử kề nhau và những điểm cần lưu ý](https://ouuan.github.io/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
 
 ## Tài liệu tham khảo và chú thích
 

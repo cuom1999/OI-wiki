@@ -16,4 +16,4 @@ tương đồng; khi học, bạn nên chú ý cả điểm giống và khác nh
 
 ## Tài liệu tham khảo
 
-[Quy hoạch động - Wikipedia](https://zh.wikipedia.org/wiki/动态规划)
+[Quy hoạch động - Wikipedia](https://vi.wikipedia.org/wiki/Quy_ho%E1%BA%A1ch_%C4%91%E1%BB%99ng)

@@ -196,7 +196,7 @@ Những lỗi này compiler không phát hiện được, chỉ có thể tự t
 
 -   Khi hash không dùng `unsigned`, dẫn đến lỗi tính toán.
     -   Dịch phải số âm sẽ bù 1 ở bit cao nhất. Xem thêm:
-        [toán tử bit](../lang/op.md#位操作符).
+        [toán tử bit](../lang/op.md#toán-tử-bit).
 
 -   Quên xóa hoặc comment câu lệnh debug output.
 
@@ -261,7 +261,7 @@ Những lỗi này compiler không phát hiện được, chỉ có thể tự t
 
     Phần này chỉ áp dụng cho các tình huống như contest mô phỏng. Chúng tôi
     cũng khuyến nghị người ra đề cố gắng để dữ liệu tuân thủ
-    [định dạng dữ liệu](problemsetting.md#数据的格式).
+    [định dạng dữ liệu](problemsetting.md#định-dạng-dữ-liệu).
 
 Các hệ điều hành khác nhau dùng ký hiệu khác nhau để đánh dấu xuống dòng. Dưới
 đây là một số ký tự xuống dòng thường gặp:

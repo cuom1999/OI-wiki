@@ -404,6 +404,9 @@ MkDocs source layout intact.
   customization, editing, build/run, and workflow guide.
 - `docs/tools/editor/xcode.md`: translated the Xcode setup, single-file C/C++
   workflow, and `bits/stdc++.h` compatibility notes.
+- Residual cross-links and general reference labels in translated basic,
+  contest, intro, language, DP, and graph pages were aligned with Vietnamese
+  headings while preserving compatibility anchors and original problem names.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

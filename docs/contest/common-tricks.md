@@ -6,7 +6,7 @@ Trang này chủ yếu liệt kê một số mẹo nhỏ trong thi đấu.
 
 Tính cục bộ là xu hướng chương trình tham chiếu tới các mục dữ liệu nằm gần những mục dữ liệu vừa được tham chiếu gần đây, hoặc tham chiếu lại chính các mục dữ liệu vừa được tham chiếu gần đây. Tính cục bộ được chia thành tính cục bộ theo thời gian và tính cục bộ theo không gian.
 
-Có thể xem cụ thể hơn ở các phần [mở vòng lặp (Loop Unroll)](../lang/optimizations.md#循环展开-loop-unroll), [tối ưu bố trí mã (Code Layout Optimizations)](../lang/optimizations.md#代码布局优化-code-layout-optimizations), v.v.
+Có thể xem cụ thể hơn ở các phần [mở vòng lặp (Loop Unroll)](../lang/optimizations.md#mở-vòng-lặp-loop-unroll), [tối ưu bố trí mã (Code Layout Optimizations)](../lang/optimizations.md#tối-ưu-hóa-bố-cục-mã-code-layout-optimizations), v.v.
 
 ## Định nghĩa macro cho vòng lặp
 
@@ -35,9 +35,9 @@ Ngoài ra, có thể khuyến nghị một macro khá hữu ích:
 
 Dùng namespace có thể giúp chương trình dễ đọc hơn và thuận tiện cho việc gỡ lỗi.
 
-??? note "Ví dụ: NOI 2018 屠龙勇士"
+??? note "Ví dụ: NOI 2018 Chiến binh diệt rồng"
     ```cpp
-    // Mã lấy 40 điểm thành phần của NOI 2018 屠龙勇士
+    // Mã lấy 40 điểm thành phần của NOI 2018 Chiến binh diệt rồng
     #include <algorithm>
     #include <cmath>
     #include <cstring>
@@ -177,6 +177,6 @@ Node* newnode() {
 
 ## Tài liệu tham khảo
 
-[洛谷日报 #86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers)
+[Luogu Daily #86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers)
 
-《算法竞赛入门经典 习题与解答》
+*Bài tập và lời giải chọn lọc cho Nhập môn kinh điển về lập trình thi đấu*

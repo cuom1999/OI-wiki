@@ -180,11 +180,11 @@ Lặp lại quá trình trên cho đến khi trong mảng chỉ còn một đo�
 
 ## Nghịch thế
 
-Bài đọc liên quan và cài đặt tham khảo: [nghịch thế](../math/permutation.md#逆序数)
+Bài đọc liên quan và cài đặt tham khảo: [nghịch thế](../math/permutation.md#số-nghịch-thế)
 
 Nghịch thế là cặp có thứ tự $(i, j)$ thỏa mãn $i < j$ và $a_i > a_j$.
 
-Mảng sau khi sắp xếp không còn nghịch thế. Trong thao tác trộn của sắp xếp trộn, mỗi khi phần tử đầu của đoạn sau được lấy ra làm giá trị nhỏ nhất hiện tại, tổng số phần tử còn lại ở đoạn trước chính là số nghịch thế mà thao tác trộn đã loại bỏ; vì vậy, độ phức tạp thời gian để dùng sắp xếp trộn tính số nghịch thế là $\Theta (n \log n)$. Ngoài ra, bài toán đếm nghịch thế cũng có thể được giải bằng cây Fenwick hoặc cây phân đoạn (segment tree), với độ phức tạp thời gian cũng là $O(n \log n)$; phần giải thích chi tiết của thuật toán này nằm trong mô tả tương ứng ở trang [cây Fenwick](../ds/fenwick.md#全局逆序对全局二维偏序). Cài đặt tham khảo của cả hai thuật toán đều có trong mục [nghịch thế](../math/permutation.md#逆序数).
+Mảng sau khi sắp xếp không còn nghịch thế. Trong thao tác trộn của sắp xếp trộn, mỗi khi phần tử đầu của đoạn sau được lấy ra làm giá trị nhỏ nhất hiện tại, tổng số phần tử còn lại ở đoạn trước chính là số nghịch thế mà thao tác trộn đã loại bỏ; vì vậy, độ phức tạp thời gian để dùng sắp xếp trộn tính số nghịch thế là $\Theta (n \log n)$. Ngoài ra, bài toán đếm nghịch thế cũng có thể được giải bằng cây Fenwick hoặc cây phân đoạn (segment tree), với độ phức tạp thời gian cũng là $O(n \log n)$; phần giải thích chi tiết của thuật toán này nằm trong mô tả tương ứng ở trang [cây Fenwick](../ds/fenwick.md#cặp-nghịch-thế-toàn-cục-thứ-tự-bộ-phận-hai-chiều-toàn-cục). Cài đặt tham khảo của cả hai thuật toán đều có trong mục [nghịch thế](../math/permutation.md#số-nghịch-thế).
 
 ## Liên kết ngoài
 

@@ -38,10 +38,10 @@ tính theo tính kết hợp của toán tử; dấu ngoặc làm tăng độ ư
 ### Chuyển đổi kiểu trong phép toán số học
 
 Với toán tử số học hai ngôi, nếu hai biến tham gia phép toán có cùng kiểu, sẽ
-không xảy ra [chuyển đổi kiểu](./var.md#类型转换), và kết quả phép toán được chứa
+không xảy ra [chuyển đổi kiểu](./var.md#chuyển-đổi-kiểu), và kết quả phép toán được chứa
 bằng kiểu của các biến tham gia. Nếu không cùng kiểu, chuyển đổi kiểu sẽ xảy ra
 để làm cho hai biến có kiểu thống nhất. Quy tắc chuyển đổi xem tại
-[chuyển đổi kiểu](./var.md#类型转换).
+[chuyển đổi kiểu](./var.md#chuyển-đổi-kiểu).
 
 Ví dụ, với một biến số nguyên (`int`) $x$ và một biến số thực dấu phẩy động độ
 chính xác kép (`double`) $y$:
@@ -56,7 +56,7 @@ chính xác kép (`double`) $y$:
 
 ## Toán tử bit
 
-Xem thêm: [phép toán bit](../math/bit.md#位运算).
+Xem thêm: [phép toán bit](../math/bit.md#phép-toán-bit).
 
 | Toán tử       | Chức năng |
 | ------------- | --------- |
@@ -70,7 +70,7 @@ Xem thêm: [phép toán bit](../math/bit.md#位运算).
 Ý nghĩa của phép toán bit xem tại trang [phép toán bit](../math/bit.md). Cần
 chú ý rằng độ ưu tiên của phép toán bit thấp hơn toán tử số học (trừ phép đảo
 bit), còn AND theo bit, OR theo bit và XOR thấp hơn toán tử so sánh (xem
-[bảng tổng hợp độ ưu tiên toán tử C++](#c-运算符优先级总表)), vì vậy khi dùng cần
+[bảng tổng hợp độ ưu tiên toán tử C++](#bảng-tổng-hợp-độ-ưu-tiên-toán-tử-c)), vì vậy khi dùng cần
 cẩn thận và thêm ngoặc khi cần thiết.
 
 Trong phép dịch bit, nếu xuất hiện các trường hợp sau thì hành vi là không xác
@@ -311,18 +311,18 @@ không gây nhập nhằng.
 
 [^note1]: Trước C++20, nếu giá trị ban đầu thuộc kiểu có dấu và kết quả sau khi
     dịch có thể được chứa bởi phiên bản không dấu của kiểu ban đầu, kết quả đó
-    được [chuyển đổi](../lang/var.md#类型转换) thành giá trị có dấu tương ứng;
+    được [chuyển đổi](../lang/var.md#chuyển-đổi-kiểu) thành giá trị có dấu tương ứng;
     nếu không thì hành vi không xác định. Với số không dấu, dịch trái sẽ loại bỏ
     các bit bị dịch ra khỏi kiểu kết quả. Từ C++20, `a << b` được quy định là
     giá trị của $a\cdot 2^b$ theo modulo $2^N$ ($N$ là độ rộng bit của kiểu kết
     quả), tức dù là số có dấu hay không dấu, dịch trái đều trực tiếp loại bỏ các
-    bit bị dịch ra khỏi kiểu kết quả (tức [dịch trái số học/dịch trái logic](../math/bit.md#移位)).
+    bit bị dịch ra khỏi kiểu kết quả (tức [dịch trái số học/dịch trái logic](../math/bit.md#dịch-bit)).
 
 [^note2]: Trước C++20. Hành vi từ C++20 trở đi xem [^note1].
 
-[^note3]: Tức [dịch phải logic](../math/bit.md#移位).
+[^note3]: Tức [dịch phải logic](../math/bit.md#dịch-bit).
 
-[^note4]: Tức [dịch phải số học](../math/bit.md#移位). Trước C++20, dịch phải
+[^note4]: Tức [dịch phải số học](../math/bit.md#dịch-bit). Trước C++20, dịch phải
     số có dấu là hành vi do triển khai quyết định; trong phần lớn triển khai,
     dịch phải số học được dùng. Từ C++20, `a >> b` được quy định là
     $\lfloor a/2^b\rfloor$, nên phép dịch phải trên số có dấu là dịch phải số
