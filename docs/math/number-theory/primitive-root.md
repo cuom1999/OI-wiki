@@ -277,68 +277,102 @@ Kết luận này thường được dùng để xây dựng phần tử có b�
 
 <span id="&#x539F;&#x6839;"></span>
 
-## Can nguyen thuy
+## Căn nguyên thủy
 
-Can nguyen thuy la cac phan tu dac biet: bac cua no bang dung so phan tu cua he thang du thu gon modulo $m$.
+Căn nguyên thủy là các phần tử đặc biệt: bậc của nó đúng bằng số phần tử của
+hệ thặng dư thu gọn modulo $m$.
 
-???+ abstract "Can nguyen thuy"
-    Voi $m\in\mathbf N_+$, neu ton tai $g\in\mathbf Z$ va $g\perp m$ sao cho $\delta_m(g)=|\mathbf Z_m^*|=\varphi(m)$, thi $g$ duoc goi la **can nguyen thuy modulo $m$** (primitive root modulo $m$). O day, $\varphi(m)$ la [ham Euler](./euler-totient.md).
+???+ abstract "Căn nguyên thủy"
+    Với $m\in\mathbf N_+$, nếu tồn tại $g\in\mathbf Z$ và $g\perp m$ sao cho
+    $\delta_m(g)=|\mathbf Z_m^*|=\varphi(m)$, thì $g$ được gọi là **căn nguyên
+    thủy modulo $m$** (primitive root modulo $m$). Ở đây, $\varphi(m)$ là
+    [hàm Euler](./euler-totient.md).
 
-Khong phai moi so nguyen duong $m$ deu co can nguyen thuy modulo $m$. Theo [Tinh chat 1](#ord-prop-1), neu can nguyen thuy $g$ modulo $m$ ton tai, thi cac lop dong du chua $g,g^2,\cdots,g^{\varphi(m)}$ doi mot khac nhau va tao thanh he thang du thu gon modulo $m$. Dac biet, voi so nguyen to $p$, cac thang du $g^i\bmod p$ doi mot khac nhau voi $i=1,2,\cdots,p-1$.
+Không phải mọi số nguyên dương $m$ đều có căn nguyên thủy modulo $m$. Theo
+[Tính chất 1](#ord-prop-1), nếu căn nguyên thủy $g$ modulo $m$ tồn tại, thì các
+lớp đồng dư chứa $g,g^2,\cdots,g^{\varphi(m)}$ đôi một khác nhau và tạo thành
+hệ thặng dư thu gọn modulo $m$. Đặc biệt, với số nguyên tố $p$, các thặng dư
+$g^i\bmod p$ đôi một khác nhau với $i=1,2,\cdots,p-1$.
 
-???+ tip "Ghi chu"
-    Trong [dai so truu tu](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4), can nguyen thuy chinh la phan tu sinh cua nhom cyclic. Khai niem nay chi co ten "can nguyen thuy" trong nhom tao boi he thang du thu gon modulo $m$ theo phep nhan; trong nhom cyclic tong quat, no duoc goi la "phan tu sinh". Khong phai moi nhom tao boi he thang du thu gon modulo $m$ theo phep nhan deu la nhom cyclic; viec ton tai can nguyen thuy cho thay no dang cau voi mot nhom cyclic, con neu khong ton tai can nguyen thuy thi khong dang cau.
+???+ tip "Ghi chú"
+    Trong [đại số trừu tượng](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4),
+    căn nguyên thủy chính là phần tử sinh của nhóm cyclic. Khái niệm này chỉ có
+    tên "căn nguyên thủy" trong nhóm tạo bởi hệ thặng dư thu gọn modulo $m$ theo
+    phép nhân; trong nhóm cyclic tổng quát, nó được gọi là "phần tử sinh".
+    Không phải mọi nhóm tạo bởi hệ thặng dư thu gọn modulo $m$ theo phép nhân
+    đều là nhóm cyclic; việc tồn tại căn nguyên thủy cho thấy nó đẳng cấu với
+    một nhóm cyclic, còn nếu không tồn tại căn nguyên thủy thì không đẳng cấu.
 
-Khi modulo bang $1$, nhom nhan cac so nguyen modulo $1$ la $\{0\}$. Hien nhien day la nhom cyclic, nen can nguyen thuy la $0$.
+Khi modulo bằng $1$, nhóm nhân các số nguyên modulo $1$ là $\{0\}$. Hiển nhiên
+đây là nhóm cyclic, nên căn nguyên thủy là $0$.
 
 <span id="&#x539F;&#x6839;&#x5224;&#x5B9A;&#x5B9A;&#x7406;"></span>
 
-### Dinh ly kiem tra can nguyen thuy
+### Định lí kiểm tra căn nguyên thủy
 
-Neu da biet tat ca cac thua so nguyen to cua $\varphi(m)$, ta co the de dang kiem tra can nguyen thuy modulo $m$ co ton tai hay khong.
+Nếu đã biết tất cả các thừa số nguyên tố của $\varphi(m)$, ta có thể dễ dàng
+kiểm tra một số có phải căn nguyên thủy modulo $m$ hay không.
 
-???+ note "Dinh ly"
-    Voi so nguyen $m\ge 3$ va $g\perp m$, $g$ la can nguyen thuy modulo $m$ khi va chi khi voi moi thua so nguyen to $p$ cua $\varphi(m)$, ta deu co
-    
+???+ note "Định lí"
+    Với số nguyên $m\ge 3$ và $g\perp m$, $g$ là căn nguyên thủy modulo $m$ khi
+    và chỉ khi với mọi thừa số nguyên tố $p$ của $\varphi(m)$, ta đều có
+
     $$
     g^{\frac{\varphi(m)}{p}}\not\equiv 1 \pmod m.
     $$
 
-??? note "Chung minh"
-    Chieu can la hien nhien. De chung minh chieu du, ta dung phan chung. Neu $g$ khong phai la can nguyen thuy modulo $m$, thi chac chan $\delta_m(g)< \varphi(m)$. Theo [Tinh chat 2](#ord-prop-2) va dinh ly Euler, $\delta_m(g)\mid\varphi(m)$. Do do, lay $p$ la mot thua so nguyen to cua $\dfrac{\varphi(m)}{\delta_m(g)}$, ta co $\delta_m(g)\mid\dfrac{\varphi(m)}{p}$. Ap dung lai Tinh chat 2, suy ra
-    
+??? note "Chứng minh"
+    Chiều cần là hiển nhiên. Để chứng minh chiều đủ, ta dùng phản chứng. Nếu
+    $g$ không phải là căn nguyên thủy modulo $m$, thì chắc chắn
+    $\delta_m(g)< \varphi(m)$. Theo [Tính chất 2](#ord-prop-2) và định lí
+    Euler, $\delta_m(g)\mid\varphi(m)$. Do đó, lấy $p$ là một thừa số nguyên tố
+    của $\dfrac{\varphi(m)}{\delta_m(g)}$, ta có
+    $\delta_m(g)\mid\dfrac{\varphi(m)}{p}$. Áp dụng lại Tính chất 2, suy ra
+
     $$
     g^{\frac{\varphi(m)}{p}} \equiv 1 \pmod m.
     $$
-    
-    Nhung $p$ cung la mot uoc cua $\varphi(m)$, mau thuan voi gia thiet. Vi vay chieu du cua menh de duoc chung minh.
+
+    Nhưng $p$ cũng là một ước của $\varphi(m)$, mâu thuẫn với giả thiết. Vì vậy
+    chiều đủ của mệnh đề được chứng minh.
 
 <span id="&#x539F;&#x6839;&#x4E2A;&#x6570;"></span>
 
-### So luong can nguyen thuy
+### Số lượng căn nguyên thủy
 
-Can nguyen thuy neu ton tai thi cung khong nhat thiet duy nhat. Tong quat hon, voi cac bac co the co cua moi phan tu trong he thang du thu gon modulo $m$ va so phan tu co mot bac nao do, ta co ket luan sau:
+Căn nguyên thủy nếu tồn tại thì cũng không nhất thiết duy nhất. Tổng quát hơn,
+với các bậc có thể có của mỗi phần tử trong hệ thặng dư thu gọn modulo $m$ và
+số phần tử có một bậc nào đó, ta có kết luận sau:
 
-???+ note "Dinh ly"
-    Neu so nguyen duong $m$ co can nguyen thuy $g$, thi phan tu bac $d$ modulo $m$ ton tai khi va chi khi $d\mid\varphi(m)$, va khi ton tai thi co dung $\varphi(d)$ phan tu nhu vay. Dac biet, so can nguyen thuy modulo $m$ bang $\varphi(\varphi(m))$.
+???+ note "Định lí"
+    Nếu số nguyên dương $m$ có căn nguyên thủy $g$, thì phần tử bậc $d$ modulo
+    $m$ tồn tại khi và chỉ khi $d\mid\varphi(m)$, và khi tồn tại thì có đúng
+    $\varphi(d)$ phần tử như vậy. Đặc biệt, số căn nguyên thủy modulo $m$ bằng
+    $\varphi(\varphi(m))$.
 
-??? note "Chung minh"
-    Theo dinh nghia can nguyen thuy, moi lop dong du thu gon modulo $m$ deu co the viet duoi dang $g^k\bmod m$, trong do $k$ la mot trong cac so $1,2,\cdots,\varphi(m)$. Theo [Tinh chat 3](#ord-prop-3), bac cua cac phan tu nay bang
-    
+??? note "Chứng minh"
+    Theo định nghĩa căn nguyên thủy, mọi lớp đồng dư thu gọn modulo $m$ đều có
+    thể viết dưới dạng $g^k\bmod m$, trong đó $k$ là một trong các số
+    $1,2,\cdots,\varphi(m)$. Theo [Tính chất 3](#ord-prop-3), bậc của các phần
+    tử này bằng
+
     $$
     \delta_m(g^k) = \dfrac{\varphi(m)}{(\varphi(m),k)}.
     $$
-    
-    Do do phan tu bac $d$ ton tai khi va chi khi $d\mid\varphi(m)$. Hon nua, voi $d\mid\varphi(m)$, dat $d'=\varphi(m)/d$, tap cac phan tu do la
-    
+
+    Do đó phần tử bậc $d$ tồn tại khi và chỉ khi $d\mid\varphi(m)$. Hơn nữa,
+    với $d\mid\varphi(m)$, đặt $d'=\varphi(m)/d$, tập các phần tử đó là
+
     $$
     \begin{aligned}
     A &= \{g^k : (\varphi(m),k)=d',~1\le k \le\varphi(m)\} \\
     &= \{g^k : d'\mid k,~ (d, k/d') = 1,~ 1 \le k/d' \le d\}.
     \end{aligned}
     $$
-    
-    Cac $k'=k/d'$ ung voi nhung phan tu nay chinh la cac so nguyen duong khong vuot qua $d$ va nguyen to cung nhau voi $d$. Theo dinh nghia ham Euler, so luong do la $\varphi(d)$.
+
+    Các $k'=k/d'$ ứng với những phần tử này chính là các số nguyên dương không
+    vượt quá $d$ và nguyên tố cùng nhau với $d$. Theo định nghĩa hàm Euler, số
+    lượng đó là $\varphi(d)$.
 
 <span id="&#x539F;&#x6839;&#x5B58;&#x5728;&#x5B9A;&#x7406;"></span>
 
