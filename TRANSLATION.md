@@ -137,6 +137,14 @@ MkDocs source layout intact.
   `docs/math/number-theory/sqrt-decomposition.md`: translated primitive-root,
   discrete-logarithm, higher-residue/unit-root, and number-theory block
   decomposition material, plus explanatory comments in included snippets.
+- `docs/math/number-theory/dirichlet.md`,
+  `docs/math/number-theory/mobius.md`, `docs/math/number-theory/du.md`,
+  `docs/math/number-theory/powerful-number.md`,
+  `docs/math/number-theory/min-25.md`, `docs/math/number-theory/zhou.md`,
+  `docs/math/number-theory/meissel-lehmer.md`: translated multiplicative
+  function, Möbius inversion, Dujiao/Powerful Number/Min_25/Zhouge sieve, and
+  Meissel-Lehmer prime-counting material, plus explanatory comments in included
+  snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

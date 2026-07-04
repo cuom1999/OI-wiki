@@ -1,75 +1,77 @@
 author: billchenchina, c-forrest, CCXXXI, danielqfmai, Enter-tainer, Great-designer, HeRaNO, lychees, Menci, Nanarikom, ouuan, shuzhouliu, sshwy, Tiphereth-A
 
-本文介绍 Dirichlet 卷积和 Dirichlet 生成函数．
+Bài viết này giới thiệu tích chập Dirichlet và hàm sinh Dirichlet.
 
-## Dirichlet 卷积
+<span id="dirichlet-&#x5377;&#x79ef;"></span>
+## Tích chập Dirichlet
 
-数论函数 $f(n)$ 和 $g(n)$ 的 **Dirichlet 卷积**（Dirichlet convolution），记作 $f \ast g$，定义为数论函数
+Với hai hàm số học $f(n)$ và $g(n)$, **tích chập Dirichlet** (Dirichlet convolution), ký hiệu là $f \ast g$, được định nghĩa là hàm số học
 
 $$
 (f \ast g)(n) = \sum_{k\mid n}f(k)g\left(\dfrac{n}{k}\right) = \sum_{k\ell=n}f(k)g(\ell).
 $$
 
-Dirichlet 卷积是数论函数的重要运算．数论函数的许多性质都是通过这个运算挖掘出来的．
+Tích chập Dirichlet là một phép toán quan trọng trên các hàm số học. Nhiều tính chất của hàm số học được khai thác thông qua phép toán này.
 
-???+ example "例子"
-    1.  单位函数 $\varepsilon$ 是莫比乌斯函数 $\mu$ 和常数函数 $1$ 的 Dirichlet 卷积：
+???+ example "Ví dụ"
+    1.  Hàm đơn vị $\varepsilon$ là tích chập Dirichlet của hàm Mobius $\mu$ và hàm hằng $1$:
     
         $$
         \varepsilon=\mu \ast 1 \iff\varepsilon(n)=\sum_{d\mid n}\mu(d).
         $$
     
-    2.  除数个数函数 $\tau$ 是常数函数 $1$ 和它自身的 Dirichlet 卷积：
+    2.  Hàm đếm số ước $\tau$ là tích chập Dirichlet của hàm hằng $1$ với chính nó:
     
         $$
         \tau=1 \ast 1 \iff \tau(n)=\sum_{d\mid n}1.
         $$
     
-    3.  除数和函数 $\sigma$ 是恒等函数 $\mathrm{id}$ 和常数函数 $1$ 的 Dirichlet 卷积：
+    3.  Hàm tổng ước $\sigma$ là tích chập Dirichlet của hàm đồng nhất $\mathrm{id}$ và hàm hằng $1$:
     
         $$
         \sigma=\mathrm{id} \ast 1 \iff\sigma(n)=\sum_{d\mid n}d.
         $$
     
-    4.  欧拉函数 $\varphi$ 是恒等函数 $\mathrm{id}$ 和莫比乌斯函数 $\mu$ 的 Dirichlet 卷积：
+    4.  Hàm Euler $\varphi$ là tích chập Dirichlet của hàm đồng nhất $\mathrm{id}$ và hàm Mobius $\mu$:
     
         $$
         \varphi=\mathrm{id}\ast \mu \iff\varphi(n)=\sum_{d\mid n}d\cdot\mu\left(\frac{n}{d}\right).
         $$
 
-[莫比乌斯反演](./mobius.md) 就是利用 $\varepsilon=\mu \ast 1$ 对数论函数恒等式进行变形．
+[Phép đảo Mobius](./mobius.md) chính là việc dùng $\varepsilon=\mu \ast 1$ để biến đổi các đồng nhất thức giữa hàm số học.
 
-### 性质
+<span id="&#x6027;&#x8d28;"></span>
+### Tính chất
 
-Dirichlet 卷积具有一系列代数性质．
+Tích chập Dirichlet có một loạt tính chất đại số.
 
-???+ note "定理"
-    设 $f,g,h$ 都是数论函数．那么，有：
+???+ note "Định lý"
+    Giả sử $f,g,h$ đều là hàm số học. Khi đó:
     
-    1.  **交换律**：$f\ast g=g\ast f$．
-    2.  **结合律**：$(f\ast g)\ast h=f\ast(g\ast h)$．
-    3.  **分配律**：$(f+g)\ast h = f\ast h + g\ast h$．
-    4.  **单位元**：$f\ast\varepsilon = \varepsilon \ast f = f$，其中，$\varepsilon(n) = [n=1]$ 是卷积单位元，$[\cdot]$ 是 Iverson 括号．
-    5.  **逆元**：当且仅当 $f(1)\neq 0$ 时，存在 $g$ 使得 $f\ast g=g\ast f=\varepsilon$，且 $g$ 称为 $f$ 的 **Dirichlet 逆元**（Dirichlet inverse），可以记作 $f^{-1}$．而且，逆元 $g$ 满足递推公式
+    1.  **Giao hoán**: $f\ast g=g\ast f$.
+    2.  **Kết hợp**: $(f\ast g)\ast h=f\ast(g\ast h)$.
+    3.  **Phân phối**: $(f+g)\ast h = f\ast h + g\ast h$.
+    4.  **Đơn vị**: $f\ast\varepsilon = \varepsilon \ast f = f$, trong đó $\varepsilon(n) = [n=1]$ là phần tử đơn vị của tích chập, còn $[\cdot]$ là ngoặc Iverson.
+    5.  **Nghịch đảo**: tồn tại $g$ sao cho $f\ast g=g\ast f=\varepsilon$ khi và chỉ khi $f(1)\neq 0$; khi đó $g$ được gọi là **nghịch đảo Dirichlet** (Dirichlet inverse) của $f$, có thể ký hiệu là $f^{-1}$. Hơn nữa, nghịch đảo $g$ thỏa công thức truy hồi
     
         $$
         g(n) = \dfrac{\varepsilon(n) - \sum_{k\ell = n,~k\neq 1}f(k)g(\ell)}{f(1)}.
         $$
 
-??? note "证明"
-    为验证交换律，直接计算可知
+??? note "Chứng minh"
+    Để kiểm tra tính giao hoán, tính trực tiếp ta có
     
     $$
     (f\ast g)(n) = \sum_{k\ell=n}f(k)g(\ell) = (g\ast f)(n).
     $$
     
-    为验证结合律，直接计算可知
+    Để kiểm tra tính kết hợp, tính trực tiếp ta có
     
     $$
     ((f\ast g)\ast h)(n) = \sum_{k\ell m = n}f(k)g(\ell)h(m) = (f\ast (g\ast h))(n).
     $$
     
-    为验证分配律，直接计算可知
+    Để kiểm tra tính phân phối, tính trực tiếp ta có
     
     $$
     \begin{aligned}
@@ -78,37 +80,37 @@ Dirichlet 卷积具有一系列代数性质．
     \end{aligned}
     $$
     
-    为验证 $\varepsilon(n)$ 是单位元，直接计算可知
+    Để kiểm tra $\varepsilon(n)$ là phần tử đơn vị, tính trực tiếp ta có
     
     $$
     (f\ast\varepsilon)(n) = \sum_{k\ell = n}f(k)\varepsilon(\ell) = f(n).
     $$
     
-    第二个等号是因为 $\varepsilon(\ell)$ 仅在 $\ell=1$ 即 $k=n$ 时取得非零值．
+    Dấu bằng thứ hai đúng vì $\varepsilon(\ell)$ chỉ khác không khi $\ell=1$, tức là khi $k=n$.
     
-    最后，需要证明 $f^{-1}$ 存在，当且仅当 $f(1)\neq 0$．对于任意 $f$，假设存在 $g$ 使得 $f\ast g=\varepsilon$．这意味着
+    Cuối cùng, cần chứng minh $f^{-1}$ tồn tại khi và chỉ khi $f(1)\neq 0$. Với một hàm $f$ bất kỳ, giả sử tồn tại $g$ sao cho $f\ast g=\varepsilon$. Điều này nghĩa là
     
     $$
     (f\ast g)(n) = \sum_{k\ell = n}f(k)g(\ell) = \varepsilon(n).
     $$
     
-    这实际上给出了一系列关于 $g(n)$ 取值的方程组，从中可以直接求出 $g(n)$．特别地，当 $n=1$ 时，等式变为 $f(1)g(1)=1$，所以 $g$ 存在，至少要求 $f(1)\neq 0$．而只要 $f(1)\neq 0$，可以直接解出
+    Thực chất, đây là một hệ các phương trình về giá trị của $g(n)$, từ đó có thể giải trực tiếp $g(n)$. Đặc biệt, khi $n=1$, đẳng thức trở thành $f(1)g(1)=1$, nên để $g$ tồn tại thì tối thiểu phải có $f(1)\neq 0$. Ngược lại, chỉ cần $f(1)\neq 0$, ta có thể giải trực tiếp
     
     $$
     g(n) = \dfrac{\varepsilon(n) - \sum_{k\ell = n,~k\neq 1}f(k)g(\ell)}{f(1)}.
     $$
     
-    它可以用于递归计算 $g(n)$ 的取值．因此，逆元 $g$ 存在，当且仅当 $f(1)\neq 0$．
+    Công thức này có thể dùng để tính đệ quy các giá trị của $g(n)$. Vì vậy, nghịch đảo $g$ tồn tại khi và chỉ khi $f(1)\neq 0$.
 
-用抽象代数的语言说，这些代数性质说明，全体数论函数在（逐点）加法运算和 Dirichlet 卷积运算下构成 [交换环](../algebra/basic.md#环)，且它的全体可逆元就是那些在 $n=1$ 处取非零值的函数．这个环称为 **Dirichlet 环**（Dirichlet ring）．
+Theo ngôn ngữ đại số trừu tượng, các tính chất đại số này nói rằng toàn bộ các hàm số học, với phép cộng theo điểm và tích chập Dirichlet, tạo thành một [vành giao hoán](../algebra/basic.md#%E7%8E%AF); tập các phần tử khả nghịch của vành này chính là các hàm nhận giá trị khác không tại $n=1$. Vành này được gọi là **vành Dirichlet** (Dirichlet ring).
 
-积性函数是一类特殊的数论函数．它对于 Dirichlet 卷积和 Dirichlet 逆都是封闭的．
+Hàm nhân tính là một lớp hàm số học đặc biệt. Lớp này đóng với tích chập Dirichlet và nghịch đảo Dirichlet.
 
-???+ note "定理"
-    设 $f,g$ 是积性函数，那么，$f\ast g$ 也是积性函数．而且，逆元 $f^{-1}$ 一定存在，它也是积性函数．
+???+ note "Định lý"
+    Giả sử $f,g$ là các hàm nhân tính. Khi đó $f\ast g$ cũng là hàm nhân tính. Hơn nữa, nghịch đảo $f^{-1}$ chắc chắn tồn tại và cũng là hàm nhân tính.
 
-??? note "证明"
-    对于第一点，设 $h=f\ast g$，直接验证可知，对于 $n_1\perp n_2$，都有
+??? note "Chứng minh"
+    Với ý thứ nhất, đặt $h=f\ast g$. Kiểm tra trực tiếp cho thấy, với $n_1\perp n_2$, ta luôn có
     
     $$
     \begin{aligned}
@@ -119,15 +121,15 @@ Dirichlet 卷积具有一系列代数性质．
     \end{aligned}
     $$
     
-    其中，第三个等号改变求和顺序的逻辑是：当 $k$ 遍历 $n_1n_2$ 的因数时，$k$ 的素因子可以根据它是 $n_1$ 还是 $n_2$ 的素因子分为两类，将两类中的素因子（计重复）分别乘起来得到 $k_1$ 和 $k_2$，它们将分别遍历 $n_1$ 和 $n_2$ 的因数；反过来，根据 $n_1$ 和 $n_2$ 的因数 $k_1$ 和 $k_2$，总是可以得到 $n_1n_2$ 的因数 $k=k_1k_2$．
+    Trong đó, logic đổi thứ tự lấy tổng ở dấu bằng thứ ba là: khi $k$ chạy qua các ước của $n_1n_2$, các thừa số nguyên tố của $k$ có thể được chia thành hai loại tùy theo chúng là thừa số nguyên tố của $n_1$ hay của $n_2$; nhân riêng các thừa số nguyên tố trong hai loại đó, kể cả bội số lặp lại, ta thu được $k_1$ và $k_2$, lần lượt chạy qua các ước của $n_1$ và $n_2$. Ngược lại, từ các ước $k_1$ của $n_1$ và $k_2$ của $n_2$, luôn thu được một ước $k=k_1k_2$ của $n_1n_2$.
     
-    对于第二点，设 $g=f^{-1}$，考虑应用数学归纳法．首先，$g(1)=1/f(1)=1$．此时，逆元的递归公式可以写作
+    Với ý thứ hai, đặt $g=f^{-1}$ và dùng quy nạp toán học. Trước hết, $g(1)=1/f(1)=1$. Lúc này, công thức truy hồi của nghịch đảo có thể viết là
     
     $$
     g(n) = \varepsilon(n) - \sum_{k\ell = n,~k\neq 1} f(k)g(\ell).
     $$
     
-    所以，对于 $n_1\perp n_2$ 且 $n_1n_2 > 1$，有
+    Vì vậy, với $n_1\perp n_2$ và $n_1n_2 > 1$, ta có
     
     $$
     \begin{aligned}
@@ -140,21 +142,21 @@ Dirichlet 卷积具有一系列代数性质．
     \end{aligned}
     $$
     
-    其中，第二个等号用到了归纳假设，即对于 $\ell_1\ell_2 < n_1n_2$ 且 $\ell_1\perp\ell_2$，条件 $g(\ell_1\ell_2)=g(\ell_1)g(\ell_2)$ 成立．
+    Trong đó, dấu bằng thứ hai dùng giả thiết quy nạp: với $\ell_1\ell_2 < n_1n_2$ và $\ell_1\perp\ell_2$, điều kiện $g(\ell_1\ell_2)=g(\ell_1)g(\ell_2)$ đã đúng.
 
-用抽象代数的语言说，全体积性函数在 Dirichlet 卷积运算下构成 Dirichlet 环乘法群的 [子群](../algebra/group-theory.md#子群)．
+Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, với phép toán tích chập Dirichlet, tạo thành một [nhóm con](../algebra/group-theory.md#%E5%AD%90%E7%BE%A4) của nhóm nhân các phần tử khả nghịch trong vành Dirichlet.
 
-更为特殊的是完全积性函数．
+Đặc biệt hơn nữa là các hàm hoàn toàn nhân tính.
 
-???+ note "定理"
-    设 $\alpha$ 是完全积性函数，$f,g$ 是数论函数．那么，有：
+???+ note "Định lý"
+    Giả sử $\alpha$ là hàm hoàn toàn nhân tính, còn $f,g$ là các hàm số học. Khi đó:
     
-    1.  分配律：$(\alpha f)\ast(\alpha g) = \alpha\cdot(f\ast g)$．
-    2.  逆元：$(\alpha f)^{-1}=\alpha f^{-1}$，只要 $f^{-1}$ 存在．
-    3.  积性函数 $f$ 是完全积性函数，当且仅当 $f^{-1}=\mu f$，其中，$\mu$ 是 [莫比乌斯函数](./mobius.md#莫比乌斯函数)．
+    1.  Luật phân phối: $(\alpha f)\ast(\alpha g) = \alpha\cdot(f\ast g)$.
+    2.  Nghịch đảo: $(\alpha f)^{-1}=\alpha f^{-1}$, miễn là $f^{-1}$ tồn tại.
+    3.  Hàm nhân tính $f$ là hàm hoàn toàn nhân tính khi và chỉ khi $f^{-1}=\mu f$, trong đó $\mu$ là [hàm Mobius](./mobius.md#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0).
 
-??? note "证明"
-    对于第一条，直接验证可知
+??? note "Chứng minh"
+    Với ý thứ nhất, kiểm tra trực tiếp ta có
     
     $$
     \begin{aligned}
@@ -165,23 +167,23 @@ Dirichlet 卷积具有一系列代数性质．
     \end{aligned}
     $$
     
-    其中，第三个等号用到了完全积性函数的性质：$\alpha(n)=\alpha(k)\alpha(\ell)$ 对所有 $n=k\ell$ 都成立．
+    Trong đó, dấu bằng thứ ba dùng tính chất của hàm hoàn toàn nhân tính: $\alpha(n)=\alpha(k)\alpha(\ell)$ đúng với mọi $n=k\ell$.
     
-    对于第二条，利用第一条就有
+    Với ý thứ hai, dùng ý thứ nhất ta có
     
     $$
     (\alpha f)\ast(\alpha f^{-1}) = \alpha(f\ast f^{-1}) = \alpha\varepsilon = \varepsilon.
     $$
     
-    其中，最后一个等号只利用了 $\alpha(1)=1$．由逆元定义，$(\alpha f)^{-1}=\alpha f^{-1}$．
+    Trong đó, dấu bằng cuối chỉ dùng $\alpha(1)=1$. Theo định nghĩa nghịch đảo, $(\alpha f)^{-1}=\alpha f^{-1}$.
     
-    对于第三条，利用第二条和 $1^{-1}=\mu$ 可知，如果 $f$ 是完全积性函数，那么
+    Với ý thứ ba, dùng ý thứ hai và $1^{-1}=\mu$, ta thấy nếu $f$ là hàm hoàn toàn nhân tính thì
     
     $$
     f^{-1} = (1f)^{-1} = 1^{-1}\cdot f = \mu f.
     $$
     
-    其中，$1$ 是常数函数．反过来，如果 $f$ 是积性函数且 $f^{-1}=\mu f$，那么只需要证明对于所有素数 $p$ 和 $e\in\mathbf N_+$，都有 $f(p^e)=f(p)^e$ 成立，就能证明 $f$ 是完全积性函数．为此，对 $e\in\mathbf N_+$ 应用数学归纳法．归纳起点 $e=1$ 处命题显然成立．对于任意 $e > 1$，应用逆元递推公式，都有
+    Trong đó, $1$ là hàm hằng. Ngược lại, nếu $f$ là hàm nhân tính và $f^{-1}=\mu f$, thì chỉ cần chứng minh với mọi số nguyên tố $p$ và $e\in\mathbf N_+$, ta đều có $f(p^e)=f(p)^e$; khi đó suy ra $f$ là hàm hoàn toàn nhân tính. Để làm điều này, áp dụng quy nạp toán học theo $e\in\mathbf N_+$. Cơ sở quy nạp tại $e=1$ là hiển nhiên. Với $e > 1$ bất kỳ, áp dụng công thức truy hồi của nghịch đảo, ta có
     
     $$
     \begin{aligned}
@@ -192,41 +194,42 @@ Dirichlet 卷积具有一系列代数性质．
     \end{aligned}
     $$
     
-    其中，最后一个等号用到了归纳假设 $f(p^{e-1})=f(p)^{e-1}$．应用 $f^{-1}=\mu f$，就得到
+    Trong đó, dấu bằng cuối dùng giả thiết quy nạp $f(p^{e-1})=f(p)^{e-1}$. Áp dụng $f^{-1}=\mu f$, ta thu được
     
     $$
     f^{-1}(p^e) = \mu(p^e)f(p^e) = 0.
     $$
     
-    代入前式，就得到
+    Thay vào công thức trước, ta được
     
     $$
     f(p^e) = f(p)^e.
     $$
     
-    所以，归纳步骤成立．原命题得证．
+    Vì vậy, bước quy nạp đúng. Mệnh đề ban đầu được chứng minh.
 
-用抽象代数的语言说，如果 $\alpha$ 是完全积性函数，映射 $f\mapsto \alpha f$ 是 Dirichlet 环的 [自同态](../algebra/ring-theory.md#理想)．
+Theo ngôn ngữ đại số trừu tượng, nếu $\alpha$ là hàm hoàn toàn nhân tính, ánh xạ $f\mapsto \alpha f$ là một [tự đồng cấu](../algebra/ring-theory.md#%E7%90%86%E6%83%B3) của vành Dirichlet.
 
-## Dirichlet 生成函数
+<span id="dirichlet-&#x751f;&#x6210;&#x51fd;&#x6570;"></span>
+## Hàm sinh Dirichlet
 
-与 Dirichlet 卷积紧密相关的是 Dirichlet 生成函数．
+Liên hệ chặt chẽ với tích chập Dirichlet là hàm sinh Dirichlet.
 
-数论函数 $f(n)$——也就是数列 $\{f(n)\}$——对应的 **Dirichlet 生成函数**（Dirichlet series generating function，DGF）定义为形式 Dirichlet 级数（formal Dirichlet series）：
+Với hàm số học $f(n)$, tức dãy $\{f(n)\}$, **hàm sinh Dirichlet** (Dirichlet series generating function, DGF) tương ứng được định nghĩa là chuỗi Dirichlet hình thức (formal Dirichlet series):
 
 $$
 F(s) = \sum_{n=1}^{\infty}\dfrac{f(n)}{n^s}.
 $$
 
-级数中的 $s$ 是形式变元．常见的 Dirichlet 生成函数中，$s$ 往往可以看作是复变量，进而讨论 Dirichlet 级数的解析性质，但这超出了算法竞赛的范围．
+Trong chuỗi này, $s$ là biến hình thức. Với các hàm sinh Dirichlet thường gặp, $s$ nhiều khi có thể xem là biến phức, rồi tiếp tục xét tính chất giải tích của chuỗi Dirichlet; tuy nhiên phần đó vượt ra ngoài phạm vi thi lập trình.
 
-Dirichlet 生成函数的乘积对应着相应的数论函数的 Dirichlet 卷积：
+Tích của các hàm sinh Dirichlet tương ứng với tích chập Dirichlet của các hàm số học tương ứng:
 
-???+ note "定理"
-    对于数论函数 $f,g$ 及其 Dirichlet 生成函数 $F,G$，它们的 Dirichlet 卷积 $f\ast g$ 的生成函数等于 $F\cdot G$．
+???+ note "Định lý"
+    Với các hàm số học $f,g$ và các hàm sinh Dirichlet $F,G$ của chúng, hàm sinh của tích chập Dirichlet $f\ast g$ bằng $F\cdot G$.
 
-??? note "证明"
-    直接验证：
+??? note "Chứng minh"
+    Kiểm tra trực tiếp:
     
     $$
     \begin{aligned}
@@ -235,11 +238,12 @@ Dirichlet 生成函数的乘积对应着相应的数论函数的 Dirichlet 卷�
     \end{aligned}
     $$
 
-利用 Dirichlet 卷积和 Dirichlet 生成函数乘积之间的对应关系，可以从 Dirichlet 生成函数的角度理解 Dirichlet 卷积的性质．由于形式 Dirichlet 级数的乘法运算满足交换律、结合律、对加法的分配律，数论函数的 Dirichlet 卷积运算满足同样的代数性质．
+Dựa vào sự tương ứng giữa tích chập Dirichlet và phép nhân hàm sinh Dirichlet, ta có thể hiểu các tính chất của tích chập Dirichlet từ góc nhìn hàm sinh Dirichlet. Vì phép nhân các chuỗi Dirichlet hình thức thỏa luật giao hoán, luật kết hợp và luật phân phối đối với phép cộng, tích chập Dirichlet của các hàm số học cũng thỏa các tính chất đại số tương tự.
 
-### Euler 乘积
+<span id="euler-&#x4e58;&#x79ef;"></span>
+### Tích Euler
 
-积性函数的特殊性同样反映在 Dirichlet 生成函数上．由于整数有 [唯一分解定理](./basic.md#算术基本定理)，积性函数 $f(n)$ 的生成函数 $F(s)$ 可写成如下形式：
+Tính đặc biệt của hàm nhân tính cũng được phản ánh trên hàm sinh Dirichlet. Do số nguyên có [định lý phân tích duy nhất](./basic.md#%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86), hàm sinh $F(s)$ của hàm nhân tính $f(n)$ có thể viết dưới dạng sau:
 
 $$
 \begin{aligned}
@@ -248,42 +252,42 @@ F(s) &= \sum_{n=1}^{\infty}\dfrac{f(n)}{n^s} = \sum_{n=1}^{\infty}\prod_{p\in\ma
 \end{aligned}
 $$
 
-这意味着，$F(s)$ 可以分解为若干 $F_p(s)$ 的乘积，且每个 $F_p(s)$ 对应的数论函数都只在 $p$ 的幂次处可能取非零值．这一无穷乘积也称为 **Euler 乘积**（Euler product）．如果 $F(s)$ 和 $G(s)$ 都能分解成类似的形式，那么它们的乘积同样如此；将这一观察对应到数论函数上，就是积性函数的 Dirichlet 卷积仍然是积性函数．
+Điều này nghĩa là $F(s)$ có thể phân tích thành tích của nhiều $F_p(s)$, trong đó mỗi $F_p(s)$ tương ứng với một hàm số học chỉ có thể khác không tại các lũy thừa của $p$. Tích vô hạn này cũng được gọi là **tích Euler** (Euler product). Nếu $F(s)$ và $G(s)$ đều có thể phân tích thành dạng tương tự, thì tích của chúng cũng có dạng đó; chuyển quan sát này về phía hàm số học, ta thu được kết luận rằng tích chập Dirichlet của các hàm nhân tính vẫn là hàm nhân tính.
 
-进一步地，如果 $f(n)$ 还是完全积性函数，那么 $f(p^e)=f(p)^e$，上式可以继续简化：
+Hơn nữa, nếu $f(n)$ còn là hàm hoàn toàn nhân tính, thì $f(p^e)=f(p)^e$, nên công thức trên có thể tiếp tục rút gọn:
 
 $$
 F(s) = \prod_{p\in\mathbf P}\sum_{e=0}^{\infty}\dfrac{f(p)^e}{p^{es}} = \prod_{p\in\mathbf P}\left(1-\dfrac{f(p)}{p^s}\right)^{-1}.
 $$
 
-与积性函数不同，完全积性函数的 Dirichlet 生成函数的形式在乘法运算下并不具有封闭性，因此，完全积性函数的 Dirichlet 卷积和 Dirichlet 逆都未必是完全积性函数，但一定是积性函数．
+Khác với hàm nhân tính, dạng hàm sinh Dirichlet của hàm hoàn toàn nhân tính không đóng dưới phép nhân. Vì vậy, tích chập Dirichlet và nghịch đảo Dirichlet của các hàm hoàn toàn nhân tính chưa chắc là hàm hoàn toàn nhân tính, nhưng chắc chắn là hàm nhân tính.
 
-???+ example "例子"
-    1.  单位函数 $\varepsilon(n)$ 是完全积性函数．它的 Dirichlet 生成函数是关于不定元 $s$ 的常值函数
+???+ example "Ví dụ"
+    1.  Hàm đơn vị $\varepsilon(n)$ là hàm hoàn toàn nhân tính. Hàm sinh Dirichlet của nó là hàm hằng theo biến bất định $s$:
     
         $$
         E(s) = \sum_{n=1}^{\infty}\dfrac{\varepsilon(n)}{n^s} = 1.
         $$
     
-    2.  常数函数 $1(n)$ 是完全积性函数．它的 Dirichlet 生成函数是 Riemann 函数
+    2.  Hàm hằng $1(n)$ là hàm hoàn toàn nhân tính. Hàm sinh Dirichlet của nó là hàm zeta Riemann
     
         $$
         I(s) = \sum_{n=1}^{\infty}\dfrac{1}{n^s} = \prod_{p\in\mathbf P}\dfrac{1}{1-p^{-s}} = \zeta(s).
         $$
     
-    3.  莫比乌斯函数 $\mu(n)$ 是常数函数的 Dirichlet 逆．它的 Dirichlet 生成函数是 $\zeta(s)$ 的倒数：
+    3.  Hàm Mobius $\mu(n)$ là nghịch đảo Dirichlet của hàm hằng. Hàm sinh Dirichlet của nó là nghịch đảo của $\zeta(s)$:
     
         $$
         M(s) = \sum_{n=1}^{\infty}\dfrac{\mu(n)}{n^s} = \prod_{p\in\mathbf P}(1-p^{-s}) = \dfrac{1}{\zeta(s)}.
         $$
     
-    4.  幂函数 $\operatorname{id}_k(n)=n^k$ 是完全积性函数．特别地，当 $k=0$ 时，它就是常数函数；当 $k=1$ 时，它就是恒等函数．它的 Dirichlet 生成函数是
+    4.  Hàm lũy thừa $\operatorname{id}_k(n)=n^k$ là hàm hoàn toàn nhân tính. Đặc biệt, khi $k=0$, nó chính là hàm hằng; khi $k=1$, nó chính là hàm đồng nhất. Hàm sinh Dirichlet của nó là
     
         $$
         I_k(s) = \sum_{n=1}^{\infty}\dfrac{n^k}{n^s} = \prod_{p\in\mathbf P}\dfrac{1}{1-p^{k-s}} = \zeta(s-k).
         $$
     
-    5.  欧拉函数 $\varphi(n)$ 是积性函数．它的 Dirichlet 生成函数是
+    5.  Hàm Euler $\varphi(n)$ là hàm nhân tính. Hàm sinh Dirichlet của nó là
     
         $$
         \begin{aligned}
@@ -292,9 +296,9 @@ $$
         \end{aligned}
         $$
     
-        结合幂函数的 Dirichlet 函数表达式，就得到 $\mathrm{id} = \varphi\ast 1$．
+        Kết hợp với biểu thức hàm sinh Dirichlet của hàm lũy thừa, ta thu được $\mathrm{id} = \varphi\ast 1$.
     
-    6.  约数函数 $\sigma_k(n)=\sum_{d\mid n}d^k$ 是积性函数．它的 Dirichlet 生成函数是
+    6.  Hàm tổng ước $\sigma_k(n)=\sum_{d\mid n}d^k$ là hàm nhân tính. Hàm sinh Dirichlet của nó là
     
         $$
         \begin{aligned}
@@ -305,93 +309,98 @@ $$
         \end{aligned}
         $$
     
-        结合幂函数的 Dirichlet 表达式，就得到 $\sigma_k = \mathrm{id}_k\ast 1$．这正是 $\sigma_k$ 的定义式．
+        Kết hợp với biểu thức Dirichlet của hàm lũy thừa, ta thu được $\sigma_k = \mathrm{id}_k\ast 1$. Đây chính là công thức định nghĩa của $\sigma_k$.
     
-    7.  无平方因子数的指示函数 $u(n)=|\mu(n)|$ 是积性函数．它的 Dirichlet 生成函数是
+    7.  Hàm chỉ thị của các số không có thừa số chính phương $u(n)=|\mu(n)|$ là hàm nhân tính. Hàm sinh Dirichlet của nó là
     
         $$
         U(s) = \prod_{p\in\mathbf P}(1+p^{-s}) = \prod_{p\in\mathbf P}\dfrac{1-p^{-2s}}{1-p^{-s}} = \dfrac{\zeta(s)}{\zeta(2s)}.
         $$
 
-### 应用
+<span id="&#x5e94;&#x7528;"></span>
+### Ứng dụng
 
-Dirichlet 生成函数可以用于将积性函数表示为 Dirichlet 卷积．
+Hàm sinh Dirichlet có thể dùng để biểu diễn hàm nhân tính dưới dạng tích chập Dirichlet.
 
-例如在杜教筛的过程中，要计算积性函数 $f$ 的前缀和，需要找到另一个积性函数 $g$ 使得 $f\ast g$ 和 $g$ 都可以快速求前缀和．可以利用 Dirichlet 生成函数推导这一过程．
+Ví dụ, trong quá trình dùng sàng Du, để tính tổng tiền tố của một hàm nhân tính $f$, cần tìm một hàm nhân tính khác $g$ sao cho cả $f\ast g$ và $g$ đều có thể tính tổng tiền tố nhanh. Có thể dùng hàm sinh Dirichlet để suy ra quá trình này.
 
-以杜教筛一节的例题 [Luogu P3768 简单的数学题](../number-theory/du.md#问题二) 为例，需要对 $f(n)=n^2\varphi(n)$ 构造满足上述条件的数论函数 $g(n)$．由于 $f$ 是积性函数，它的 Dirichlet 生成函数为
+Lấy bài ví dụ [Luogu P3768 Bài toán đơn giản](../number-theory/du.md#%E9%97%AE%E9%A2%98%E4%BA%8C) trong mục sàng Du làm ví dụ. Ta cần xây dựng hàm số học $g(n)$ thỏa điều kiện trên cho $f(n)=n^2\varphi(n)$. Vì $f$ là hàm nhân tính, hàm sinh Dirichlet của nó là
 
 $$
 F(s) = \prod_{p\in\mathbf P}\left(1 + \sum_{k=1}^{\infty}\dfrac{p^{3k-1}(p-1)}{p^{ks}}\right) = \prod_{p\in\mathbf P}\dfrac{1-p^{2-s}}{1-p^{3-s}} = \dfrac{\zeta(s-3)}{\zeta(s-2)}.
 $$
 
-对比幂函数的 Dirichlet 生成函数可知，只要取 $g = \mathrm{id}_2$，就有 $f \ast g = \mathrm{id}_3$．两者都是可以快速计算前缀和的．
+So sánh với hàm sinh Dirichlet của hàm lũy thừa, chỉ cần lấy $g = \mathrm{id}_2$ thì ta có $f \ast g = \mathrm{id}_3$. Cả hai đều có thể tính tổng tiền tố nhanh.
 
-## Dirichlet 卷积的计算
+<span id="dirichlet-&#x5377;&#x79ef;&#x7684;&#x8ba1;&#x7b97;"></span>
+## Tính tích chập Dirichlet
 
-本节讨论 Dirichlet 卷积的计算问题，即给定序列 $\{f(k)\}_{k=1}^n$ 和 $\{g(k)\}_{k=1}^n$，求解 Dirichlet 卷积 $h=f\ast g$ 的前若干项 $\{h(k)\}_{k=1}^n$ 的问题．根据涉及到的函数性质，算法的复杂度也略有不同．
+Mục này thảo luận bài toán tính tích chập Dirichlet: cho hai dãy $\{f(k)\}_{k=1}^n$ và $\{g(k)\}_{k=1}^n$, cần tìm một số hạng đầu của tích chập Dirichlet $h=f\ast g$, tức $\{h(k)\}_{k=1}^n$. Tùy theo tính chất của các hàm liên quan, độ phức tạp thuật toán cũng hơi khác nhau.
 
-### 一般情形
+<span id="&#x4e00;&#x822c;&#x60c5;&#x5f62;"></span>
+### Trường hợp tổng quát
 
-如果 $f,g,h$ 都没有特殊性质，那么 Dirichlet 卷积的计算只能利用其定义：
+Nếu $f,g,h$ đều không có tính chất đặc biệt, thì việc tính tích chập Dirichlet chỉ có thể dựa vào định nghĩa:
 
 $$
 h(n) = \sum_{k\ell = n}f(k)g(\ell).
 $$
 
-枚举 $k$ 和 $\ell$，将贡献 $f(k)g(\ell)$ 累加到 $h(k\ell)$ 上即可．枚举复杂度为
+Liệt kê $k$ và $\ell$, rồi cộng đóng góp $f(k)g(\ell)$ vào $h(k\ell)$ là đủ. Độ phức tạp liệt kê là
 
 $$
 O\left(\sum_{k=1}^{n}\dfrac{n}{k}\right) = O(n\log n).
 $$
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/dirichlet/dirichlet-1.cpp:core"
     ```
 
-### 与积性函数卷积的情形
+<span id="&#x4e0e;&#x79ef;&#x6027;&#x51fd;&#x6570;&#x5377;&#x79ef;&#x7684;&#x60c5;&#x5f62;"></span>
+### Trường hợp chập với hàm nhân tính
 
-如果 $g$ 是积性函数，那么可以利用 Euler 乘积加速 Dirichlet 卷积的计算．计算 $h$ 相当于计算它的 Dirichlet 生成函数 $H$ 中各项的系数．由于
+Nếu $g$ là hàm nhân tính, ta có thể dùng tích Euler để tăng tốc việc tính tích chập Dirichlet. Tính $h$ tương đương với tính các hệ số trong hàm sinh Dirichlet $H$ của nó. Vì
 
 $$
 H(s) = F(s)G(s) = F(s)\prod_{p\in\mathbf P}G_p(s).
 $$
 
-其中，$G_p(s)$ 是 $G(s)$ 的 Euler 乘积分解中的因式，它只包含 $p$ 的幂次处的系数：
+Trong đó, $G_p(s)$ là thừa số trong phân tích tích Euler của $G(s)$, chỉ chứa các hệ số tại lũy thừa của $p$:
 
 $$
 G_p(s) = \sum_{p^k\le n}\dfrac{f(p^k)}{p^{ks}} = 1 + \dfrac{f(p)}{p^s} + \dfrac{f(p^2)}{p^{2s}} + \cdots.
 $$
 
-那么，从 $F(s)$ 开始，遍历所有不超过 $n$ 的素数 $p$，将 $G_p(s)$ 逐一乘上去，同样可以得到最终结果 $H(s)$．将 $G_p(s)$ 乘上去时，直接应用一般情形中的暴力枚举算法即可．总枚举次数
+Vậy, bắt đầu từ $F(s)$, duyệt tất cả số nguyên tố $p$ không vượt quá $n$ và lần lượt nhân thêm $G_p(s)$, ta cũng thu được kết quả cuối cùng $H(s)$. Khi nhân thêm $G_p(s)$, chỉ cần áp dụng trực tiếp thuật toán liệt kê vét cạn trong trường hợp tổng quát. Tổng số lần liệt kê là
 
 $$
 \sum_{p\in\mathbf P,~p\le n}\sum_{k=1}^{\infty}\left\lfloor\dfrac{n}{p^k}\right\rfloor \le \sum_{p\in\mathbf P,~p\le n}\dfrac{n}{p-1} \le \sum_{p\in\mathbf P,~p\le n}\dfrac{2n}{p} \in O(n\log\log n).
 $$
 
-最后一步复杂度的估计与 [Eratosthenes 筛法](./sieve.md#埃拉托斯特尼筛法) 复杂度的证明一致．所以，本算法的时间复杂度为 $O(n\log\log n)$．
+Ước lượng độ phức tạp ở bước cuối giống với chứng minh độ phức tạp của [sàng Eratosthenes](./sieve.md#%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95). Vì vậy, độ phức tạp thời gian của thuật toán này là $O(n\log\log n)$.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/dirichlet/dirichlet-2.cpp:core"
     ```
 
-特别地，当积性函数 $g$ 是完全积性函数或其 Dirichlet 逆时，例如当 $g = 1$ 或 $g = \mu$ 时，那么算法可以进一步简化．此时，Dirichlet 卷积 $h = f\ast g$ 的计算可以采用常数更小的 [Dirichlet 前缀和/差分](./mobius.md#dirichlet-前缀和) 算法，但是算法时间复杂度仍为 $O(n\log\log n)$．
+Đặc biệt, khi hàm nhân tính $g$ là hàm hoàn toàn nhân tính hoặc là nghịch đảo Dirichlet của một hàm hoàn toàn nhân tính, chẳng hạn $g = 1$ hoặc $g = \mu$, thuật toán còn có thể được đơn giản hóa hơn nữa. Lúc này, việc tính tích chập Dirichlet $h = f\ast g$ có thể dùng thuật toán [tổng tiền tố/sai phân Dirichlet](./mobius.md#dirichlet-%E5%89%8D%E7%BC%80%E5%92%8C) với hằng số nhỏ hơn, nhưng độ phức tạp thời gian vẫn là $O(n\log\log n)$.
 
-### 结果为积性函数的情形
+<span id="&#x7ed3;&#x679c;&#x4e3a;&#x79ef;&#x6027;&#x51fd;&#x6570;&#x7684;&#x60c5;&#x5f62;"></span>
+### Trường hợp kết quả là hàm nhân tính
 
-最后，考虑 $h$ 是积性函数的情形．特别地，当 $f,g$ 都是积性函数时，$h=f \ast g$ 就是积性函数．要计算 $h$，只需要确定它在素数幂处的取值，就可以通过 [线性筛](./sieve.md#线性筛法) 在 $O(n)$ 时间内计算．而对于素数幂 $p^e$ 处的取值 $h(p^e)$ 直接暴力计算即可：
+Cuối cùng, xét trường hợp $h$ là hàm nhân tính. Đặc biệt, khi $f,g$ đều là hàm nhân tính, $h=f \ast g$ sẽ là hàm nhân tính. Để tính $h$, chỉ cần xác định giá trị của nó tại các lũy thừa nguyên tố, rồi dùng [sàng tuyến tính](./sieve.md#%E7%BA%BF%E6%80%A7%E7%AD%9B%E6%B3%95) để tính trong thời gian $O(n)$. Với giá trị $h(p^e)$ tại lũy thừa nguyên tố $p^e$, ta cứ tính vét cạn trực tiếp:
 
 $$
 h(p^e) = \sum_{i=0}^e f(p^i)g(p^{e-i}).
 $$
 
-这些暴力计算需要的枚举次数为
+Số lần liệt kê cần thiết cho các phép tính vét cạn này là
 
 $$
 \begin{aligned}
@@ -400,18 +409,19 @@ $$
 \end{aligned}
 $$
 
-因此，这一算法的总时间复杂度为 $O(n)$．
+Do đó, tổng độ phức tạp thời gian của thuật toán này là $O(n)$.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/dirichlet/dirichlet-3.cpp:core"
     ```
 
-## 参考资料与注释
+<span id="&#x53c2;&#x8003;&#x8d44;&#x6599;&#x4e0e;&#x6ce8;&#x91ca;"></span>
+## Tài liệu tham khảo và ghi chú
 
 -   [Dirichlet convolution - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_convolution)
 -   [Dirichlet series - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_series)
 -   [Euler product - Wikipedia](https://en.wikipedia.org/wiki/Euler_product)
--   [Dirichlet 積と、数論関数の累積和 by maspy](https://maspypy.com/dirichlet-%e7%a9%8d%e3%81%a8%e3%80%81%e6%95%b0%e8%ab%96%e9%96%a2%e6%95%b0%e3%81%ae%e7%b4%af%e7%a9%8d%e5%92%8c)
+-   [Tích Dirichlet và tổng tích lũy của hàm số học by maspy](https://maspypy.com/dirichlet-%e7%a9%8d%e3%81%a8%e3%80%81%e6%95%b0%e8%ab%96%e9%96%a2%e6%95%b0%e3%81%ae%e7%b4%af%e7%a9%8d%e5%92%8c)

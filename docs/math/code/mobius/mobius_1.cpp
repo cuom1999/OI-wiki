@@ -29,7 +29,7 @@ int solve(int n, int m) {
   int res = 0;
   for (int i = 1, j; i <= min(n, m); i = j + 1) {
     j = min(n / (n / i), m / (m / i));
-    res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);  // 代推出来的式子
+    res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);  // Công thức suy ra ở trên
   }
   return res;
 }
@@ -37,14 +37,16 @@ int solve(int n, int m) {
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   int T, a, b, c, d, k;
-  init();  // 预处理mu数组
+  init();  // Tiền xử lý mảng mu
   cin >> T;
   for (int i = 1; i <= T; i++) {
     cin >> a >> b >> c >> d >> k;
-    // 根据容斥原理，1<=x<=b&&1<=y<=d范围中的答案数减去1<=x<=b&&1<=y<=c-1范围中的答案数和
-    //   1<=x<=a-1&&1<=y<=d范围中的答案数再加上1<=x<=a-1&&1<=y<=c-1范围中的答案数
-    //   即可得到a<=x<=b&&c<=y<=d范围中的答案数
-    // 这一步如果不懂可以画坐标图进行理解
+    // Theo nguyên lý bao hàm - loại trừ, lấy số đáp án trong miền
+    //   1<=x<=b&&1<=y<=d trừ số đáp án trong hai miền
+    //   1<=x<=b&&1<=y<=c-1 và 1<=x<=a-1&&1<=y<=d,
+    //   rồi cộng lại miền 1<=x<=a-1&&1<=y<=c-1.
+    //   Khi đó thu được số đáp án trong miền a<=x<=b&&c<=y<=d.
+    // Có thể vẽ hệ trục tọa độ để hiểu bước này.
     cout << solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
                 solve((a - 1) / k, d / k) + solve((a - 1) / k, (c - 1) / k)
          << '\n';

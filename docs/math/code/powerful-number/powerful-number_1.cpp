@@ -16,7 +16,7 @@ int add(int x, int y) { return x + y >= MOD ? x + y - MOD : x + y; }
 int mul(int x, int y) { return (long long)1 * x * y % MOD; }
 
 int sub(int x, int y) {
-  return x < y ? x - y + MOD : x - y;  // 防止负数
+  return x < y ? x - y + MOD : x - y;  // Tránh số âm
 }
 
 int qp(int x, int y) {
@@ -48,7 +48,7 @@ bool isp[N];
 
 void sieve(int n) {
   pcnt = 0;
-  for (int i = 2; i <= n; ++i) isp[i] = true;  // 判断质数数组
+  for (int i = 2; i <= n; ++i) isp[i] = true;  // Mảng đánh dấu số nguyên tố
   phi[1] = 1;
   for (int i = 2; i <= n; ++i) {
     if (isp[i]) {
@@ -56,11 +56,11 @@ void sieve(int n) {
       prime[pcnt] = i;
       phi[i] = i - 1;
     }
-    for (int j = 1; j <= pcnt; ++j) {  // 筛去非质数
+    for (int j = 1; j <= pcnt; ++j) {  // Sàng bỏ các hợp số
       long long nxt = (long long)1 * i * prime[j];
       if (nxt > n) break;
       isp[nxt] = false;
-      if (i % prime[j] == 0) {  // i是非质数的情况
+      if (i % prime[j] == 0) {  // Trường hợp i chia hết cho prime[j]
         phi[nxt] = phi[i] * prime[j];
         break;
       }
@@ -71,7 +71,7 @@ void sieve(int n) {
   for (int i = 1; i <= n; ++i) g[i] = mul(i, phi[i]);
 
   sg[0] = 0;
-  for (int i = 1; i <= n; ++i) sg[i] = add(sg[i - 1], g[i]);  // g函数的前缀和
+  for (int i = 1; i <= n; ++i) sg[i] = add(sg[i - 1], g[i]);  // Tổng tiền tố của hàm g
 }
 
 int inv2, inv6;
@@ -109,11 +109,11 @@ void dfs(long long d, int hd, int pid) {
   ans = add(ans, mul(hd, G(global_n / d)));
 
   for (int i = pid; i <= pcnt; ++i) {
-    if (i > 1 && d > global_n / prime[i] / prime[i]) break;  // 剪枝
+    if (i > 1 && d > global_n / prime[i] / prime[i]) break;  // Cắt nhanh
 
     int c = 2;
     for (long long x = d * prime[i] * prime[i]; x <= global_n;
-         x *= prime[i], ++c) {  // 计算f.g函数
+         x *= prime[i], ++c) {  // Tính các giá trị của hàm f và g
       if (!vis_h[i][c]) {
         int f = qp(prime[i], c);
         f = mul(f, sub(f, 1));

@@ -3,12 +3,12 @@
 using namespace std;
 constexpr long long N = 5e4 + 5;
 long long n, m, T, pr[N], mu[N], d[N], t[N],
-    cnt;  // t 表示 i 的最小质因子出现的次数
+    cnt;  // t là số lần xuất hiện của thừa số nguyên tố nhỏ nhất của i
 bool bp[N];
 
 void prime_work(long long k) {
   bp[0] = bp[1] = true, mu[1] = 1, d[1] = 1;
-  for (long long i = 2; i <= k; i++) {  // 线性筛
+  for (long long i = 2; i <= k; i++) {  // Sàng tuyến tính
     if (!bp[i]) pr[++cnt] = i, mu[i] = -1, d[i] = 2, t[i] = 1;
     for (long long j = 1; j <= cnt && i * pr[j] <= k; j++) {
       bp[i * pr[j]] = true;
@@ -25,12 +25,12 @@ void prime_work(long long k) {
     }
   }
   for (long long i = 2; i <= k; i++)
-    mu[i] += mu[i - 1], d[i] += d[i - 1];  // 求前缀和
+    mu[i] += mu[i - 1], d[i] += d[i - 1];  // Tính tổng tiền tố
 }
 
 long long solve() {
   long long res = 0, mxi = min(n, m);
-  for (long long i = 1, j; i <= mxi; i = j + 1) {  // 整除分块
+  for (long long i = 1, j; i <= mxi; i = j + 1) {  // Phân khối số học
     j = min(n / (n / i), m / (m / i));
     res += d[n / i] * d[m / i] * (mu[j] - mu[i - 1]);
   }
@@ -40,7 +40,7 @@ long long solve() {
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   cin >> T;
-  prime_work(50000);  // 预处理
+  prime_work(50000);  // Tiền xử lý
   while (T--) {
     cin >> n >> m;
     cout << solve() << '\n';

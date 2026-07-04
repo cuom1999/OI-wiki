@@ -2,7 +2,7 @@
 constexpr int N = 1000000;
 int tot, p[N + 5];
 long long g[N + 5];
-bool flg[N + 5];  // 标记数组
+bool flg[N + 5];  // Mảng đánh dấu
 
 void solve() {
   g[1] = 1;
@@ -15,7 +15,7 @@ void solve() {
       flg[i * p[j]] = true;
       if (i % p[j] == 0) {
         g[i * p[j]] =
-            g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];  // 代入推出来的式子
+            g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];  // Thế công thức đã suy ra
         break;
       }
       g[i * p[j]] = g[i] * g[p[j]];
@@ -29,7 +29,7 @@ using std::cout;
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   int T, n;
-  solve();  // 预处理g数组
+  solve();  // Tiền xử lý mảng g
   cin >> T;
   for (int i = 1; i <= T; ++i) {
     cin >> n;

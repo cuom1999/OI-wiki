@@ -5,12 +5,12 @@ def mu(n):
     while i * i <= n:
         if n % i == 0:
             n //= i
-            # Check if square-free
+            # Kiem tra n co chua binh phuong cua so nguyen to hay khong
             if n % i == 0:
                 return 0
             res = -res
         i += 1
-    # The remaining factor must be prime
+    # Thua so con lai neu co thi phai la so nguyen to
     if n > 1:
         res = -res
     return res

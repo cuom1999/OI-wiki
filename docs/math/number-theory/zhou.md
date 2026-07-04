@@ -1,91 +1,99 @@
 author: Early0v0
 
-## 前置知识
+<span id="&#x524D;&#x7F6E;&#x77E5;&#x8BC6;"></span>
+## Kiến thức chuẩn bị
 
--   [积性函数](./basic.md#积性函数)
+-   [Hàm nhân](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0)
 
-## 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+## Định nghĩa
 
-洲阁筛是一种能在亚线性时间复杂度内求出大多数积性函数前缀和的筛法．
+Sàng Zhouge là một phương pháp sàng có thể tính tổng tiền tố của phần lớn hàm nhân trong độ phức tạp dưới tuyến tính.
 
-下面将以求解 $\displaystyle\sum_{i=1}^nf(i)$ 为例，具体阐述洲阁筛的原理．
+Dưới đây lấy việc tính $\displaystyle\sum_{i=1}^nf(i)$ làm ví dụ để trình bày cụ thể nguyên lí của sàng Zhouge.
 
-## 约定
+<span id="&#x7EA6;&#x5B9A;"></span>
+## Quy ước
 
--   $\mathbb P$ 表示质数集，$p_i$ 表示第 $i$ 个质数．
--   $m$ 表示 $\sqrt n$ 内的质数个数．
+-   $\mathbb P$ biểu thị tập số nguyên tố, $p_i$ biểu thị số nguyên tố thứ $i$.
+-   $m$ biểu thị số lượng số nguyên tố không vượt quá $\sqrt n$.
 
-## 要求
+<span id="&#x8981;&#x6C42;"></span>
+## Yêu cầu
 
-当 $p\in\mathbb P,c\in\mathbb N$ 时，$f(p^c)$ 为一个关于 $p$ 的低阶多项式．
+Khi $p\in\mathbb P,c\in\mathbb N$, $f(p^c)$ là một đa thức bậc thấp theo $p$.
 
-## 思想
+<span id="&#x601D;&#x60F3;"></span>
+## Ý tưởng
 
--   对于任意 $[1,n]$ 内的整数，其至多只有一个 $>\sqrt n$ 的质因子．
--   利用 $\left\lfloor\dfrac ni\right\rfloor(i\in[1,n]\cap\mathbb N)$ 只有 $\sqrt n$ 级别个取值的性质来降低时间复杂度．
+-   Với một số nguyên bất kì trong $[1,n]$, nó có nhiều nhất một thừa số nguyên tố $>\sqrt n$.
+-   Tận dụng tính chất rằng $\left\lfloor\dfrac ni\right\rfloor(i\in[1,n]\cap\mathbb N)$ chỉ có cỡ $\sqrt n$ giá trị khác nhau để giảm độ phức tạp thời gian.
 
-## 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
+## Quy trình
 
-将 $[1,n]$ 内的所有整数按是否有 $>\sqrt n$ 的质因子分为两类：
+Chia mọi số nguyên trong $[1,n]$ thành hai loại theo việc có thừa số nguyên tố $>\sqrt n$ hay không:
 
 $$
 \sum_{i=1}^nf(i)=\sum_{i=1}^n\left[\exists d\in(\sqrt n,n]\cap\mathbb P,d\mid i\right]f(i)+\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)
 $$
 
-对于前半部分，枚举最大因子，根据积性函数的性质可以转换：
+Với nửa đầu, liệt kê thừa số lớn nhất, rồi dùng tính chất của hàm nhân để biến đổi:
 
 $$
 \sum_{i=1}^nf(i)=\sum_{i=1}^{\sqrt n}f(i)\cdot\left(\sum_{d=\lfloor\sqrt n\rfloor+1}^{\lfloor\frac ni\rfloor}[d\in\mathbb P]f(d)\right)+\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)
 $$
 
-前后部分可以分别计算．
+Hai phần trước và sau có thể được tính riêng.
 
 ### Part 1
 
-> 计算 $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot\left(\sum_{d=\lfloor\sqrt n\rfloor+1}^{\lfloor\frac ni\rfloor}[d\in\mathbb P]f(d)\right)$．
+> Tính $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot\left(\sum_{d=\lfloor\sqrt n\rfloor+1}^{\lfloor\frac ni\rfloor}[d\in\mathbb P]f(d)\right)$.
 
-考虑枚举 $i$，然后 $O(1)$ 计算括号内部分．
+Xét việc liệt kê $i$, sau đó tính phần trong ngoặc trong $O(1)$.
 
-记 $\displaystyle g(t,l)=\sum_{i=1}^l[\forall j\in[1,t],\gcd(i,p_j)=1]f(i)$，即 $[1,l]$ 中与 $p_1,p_2,\dots,p_t$ 均互质的数的 $f$ 值之和．
+Kí hiệu $\displaystyle g(t,l)=\sum_{i=1}^l[\forall j\in[1,t],\gcd(i,p_j)=1]f(i)$, tức là tổng giá trị $f$ của các số trong $[1,l]$ cùng nguyên tố với mọi $p_1,p_2,\dots,p_t$.
 
-这样 Part 1 的计算就变成了 $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot g\left(m,\left\lfloor\frac ni\right\rfloor\right)$．
+Như vậy, việc tính Part 1 trở thành $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot g\left(m,\left\lfloor\frac ni\right\rfloor\right)$.
 
-边界 $g(0,l)=\sum_{i=1}^lf(i)$，转移 $g(t,l)=g(t-1,l)-f(p_t)\cdot g\left(t-1,\left\lfloor\frac l{p_t}\right\rfloor\right)$．
+Biên là $g(0,l)=\sum_{i=1}^lf(i)$, chuyển trạng thái $g(t,l)=g(t-1,l)-f(p_t)\cdot g\left(t-1,\left\lfloor\frac l{p_t}\right\rfloor\right)$.
 
-$l$ 共有 $\sqrt n$ 级别种取值，对于每种取值则需要枚举其质因子，所以复杂度为 $\displaystyle O\left(\frac{\sqrt n}{\ln\sqrt n}\cdot\sqrt n\right)= O\left(\frac n{\log n}\right)$，需要优化．
+$l$ có cỡ $\sqrt n$ giá trị khác nhau, và với mỗi giá trị cần liệt kê các thừa số nguyên tố của nó, nên độ phức tạp là $\displaystyle O\left(\frac{\sqrt n}{\ln\sqrt n}\cdot\sqrt n\right)= O\left(\frac n{\log n}\right)$; cần tối ưu.
 
-注意到 $p_{t+1}^2>l$ 时符合条件的数只有 $1$，所以此时 $g(t,l)=f(1)=1$．
+Chú ý rằng khi $p_{t+1}^2>l$, các số thỏa điều kiện chỉ có $1$, nên khi đó $g(t,l)=f(1)=1$.
 
-代入递推式可得：当 $p_t^2>l$ 时，$g(t,l)=g(t-1,l)-f(p_t)$．
+Thay vào công thức truy hồi được: khi $p_t^2>l$, $g(t,l)=g(t-1,l)-f(p_t)$.
 
-所以一旦发现 $p_t^2>l$ 就停止转移，记此时的 $t$ 为 $t_l$，则 $\forall t>t_l,g(t,l)=g(t_l,l)-\sum_{i=t_l}^{t-1}f(p_i)$．
+Vì vậy, một khi phát hiện $p_t^2>l$ thì dừng chuyển trạng thái. Gọi $t$ tại thời điểm này là $t_l$, khi đó $\forall t>t_l,g(t,l)=g(t_l,l)-\sum_{i=t_l}^{t-1}f(p_i)$.
 
-预处理质数的 $f$ 值前缀和即可快速求出 $g$，时间复杂度被优化至 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$．
+Tiền xử lí tổng tiền tố giá trị $f$ trên các số nguyên tố là có thể tính nhanh $g$, độ phức tạp thời gian được tối ưu xuống $O\left(\dfrac{n^{\frac34}}{\log n}\right)$.
 
 ### Part 2
 
-> 计算 $\displaystyle\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)$．
+> Tính $\displaystyle\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)$.
 
-记 $\displaystyle h(t,l)=\sum_{i=1}^l\left[i=\prod_{j=t}^mp_j^{c_j},c_j\in\mathbb N\right]f(i)$，即 $[1,l]$ 中所有只含 $p_t,p_{t+1},\dots,p_m$ 质因子的数的 $f$ 值之和．
+Kí hiệu $\displaystyle h(t,l)=\sum_{i=1}^l\left[i=\prod_{j=t}^mp_j^{c_j},c_j\in\mathbb N\right]f(i)$, tức là tổng giá trị $f$ của mọi số trong $[1,l]$ chỉ chứa các thừa số nguyên tố $p_t,p_{t+1},\dots,p_m$.
 
-Part 2 即为求 $h(0,n)$．
+Part 2 chính là tính $h(0,n)$.
 
-边界 $h(m+1,l)=1$，转移 $\displaystyle h(t,l)=h(t+1,l)+\sum_{c\in\mathbb N^*}f(p_t^c)\cdot h\left(t+1,\left\lfloor\frac l{p_t^c}\right\rfloor\right)$．
+Biên là $h(m+1,l)=1$, chuyển trạng thái $\displaystyle h(t,l)=h(t+1,l)+\sum_{c\in\mathbb N^*}f(p_t^c)\cdot h\left(t+1,\left\lfloor\frac l{p_t^c}\right\rfloor\right)$.
 
-$l$ 共有 $\sqrt n$ 级别种取值，所以直接转移复杂度为 $\displaystyle O\left(\sqrt n\cdot\frac{\sqrt n}{\ln\sqrt n}\right)= O\left(\frac n{\log n}\right)$，需要优化．
+$l$ có cỡ $\sqrt n$ giá trị khác nhau, nên chuyển trạng thái trực tiếp có độ phức tạp $\displaystyle O\left(\sqrt n\cdot\frac{\sqrt n}{\ln\sqrt n}\right)= O\left(\frac n{\log n}\right)$; cần tối ưu.
 
-与 $g$ 的优化方式类似，注意到 $p_t>l$ 时，能用 $p_t,p_{t+1},\dots,p_m$ 组成的数只有 $1$，此时的 $h(t,l)=f(1)=1$．
+Tương tự cách tối ưu của $g$, chú ý rằng khi $p_t>l$, những số có thể tạo bởi $p_t,p_{t+1},\dots,p_m$ chỉ có $1$, khi đó $h(t,l)=f(1)=1$.
 
-类似的，推出 $\forall p_t^2>l,h(t,l)=h(t+1,l)+f(p_t)$．
+Tương tự, suy ra $\forall p_t^2>l,h(t,l)=h(t+1,l)+f(p_t)$.
 
-所以一旦发现 $p_t^2>l$ 就停止转移，记此时的 $t$ 为 $t_l$，之后用到 $h$ 时，把此时的 $h$ 值加上 $\displaystyle\sum_{i=p_{t_l}}^{\min(l,\sqrt n)}[i\in\mathbb P]f(i)$ 即可．
+Vì vậy, một khi phát hiện $p_t^2>l$ thì dừng chuyển trạng thái. Gọi $t$ tại thời điểm này là $t_l$; về sau khi dùng $h$, chỉ cần cộng giá trị $h$ tại thời điểm đó với $\displaystyle\sum_{i=p_{t_l}}^{\min(l,\sqrt n)}[i\in\mathbb P]f(i)$.
 
-时间复杂度被优化至 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$．
+Độ phức tạp thời gian được tối ưu xuống $O\left(\dfrac{n^{\frac34}}{\log n}\right)$.
 
-### 求和
+<span id="&#x6C42;&#x548C;"></span>
+### Tính tổng
 
-算出了 Part 1 和 Part 2 的答案，将其相加即为 $\displaystyle\sum_{i=1}^nf(i)$．
+Sau khi tính được đáp án của Part 1 và Part 2, cộng chúng lại là $\displaystyle\sum_{i=1}^nf(i)$.
 
-## 参考
+<span id="&#x53C2;&#x8003;"></span>
+## Tham khảo
 
-[积性函数线性筛/杜教筛/洲阁筛学习笔记 | Bill Yang's Blog](https://blog.bill.moe/multiplicative-function-sieves-notes)
+[Ghi chú học tập về sàng tuyến tính hàm nhân / sàng Dujiao / sàng Zhouge | Bill Yang's Blog](https://blog.bill.moe/multiplicative-function-sieves-notes)

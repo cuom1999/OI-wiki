@@ -2,8 +2,8 @@
 #include <vector>
 
 // --8<-- [start:core]
-// Compute the Dirichlet convolution h = f * g.
-// Assume that h is multiplicative.
+// Tính tích chập Dirichlet h = f * g.
+// Giả sử h là hàm nhân tính.
 auto dirichlet_convolute(const std::vector<int>& f, const std::vector<int>& g) {
   int n = f.size() - 1;
   std::vector<int> h(n + 1), primes, rem(n + 1), lpf(n + 1);
@@ -22,11 +22,11 @@ auto dirichlet_convolute(const std::vector<int>& f, const std::vector<int>& g) {
       lpf[x * p] = p;
       if (x % p == 0) break;
     }
-    if (rem[x] == 1) {  // prime powers.
+    if (rem[x] == 1) {  // Lũy thừa nguyên tố.
       for (int k = x; k; k /= lpf[x]) {
         h[x] += f[k] * g[x / k];
       }
-    } else {  // other cases.
+    } else {  // Các trường hợp khác.
       h[x] = h[rem[x]] * h[x / rem[x]];
     }
   }

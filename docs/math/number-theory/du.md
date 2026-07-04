@@ -1,12 +1,13 @@
 author: hsfzLZH1, sshwy, StudyingFather, Marcythm
 
-杜教筛被用于处理一类数论函数的前缀和问题．对于数论函数 $f$，杜教筛可以在低于线性时间的复杂度内计算 $S(n)=\sum_{i=1}^{n}f(i)$．
+Sàng Dujiao được dùng để xử lí một lớp bài toán tính tổng tiền tố của hàm số học. Với hàm số học $f$, sàng Dujiao có thể tính $S(n)=\sum_{i=1}^{n}f(i)$ với độ phức tạp thấp hơn tuyến tính.
 
-## 算法思想
+<span id="&#x7B97;&#x6CD5;&#x601D;&#x60F3;"></span>
+## Ý tưởng thuật toán
 
-我们想办法构造一个 $S(n)$ 关于 $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 的递推式．
+Ta tìm cách xây dựng một công thức truy hồi của $S(n)$ theo $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$.
 
-对于任意一个数论函数 $g$，必满足：
+Với một hàm số học bất kì $g$, luôn có:
 
 $$
 \begin{aligned}
@@ -15,11 +16,11 @@ $$
 \end{aligned}
 $$
 
-其中 $f*g$ 为数论函数 $f$ 和 $g$ 的 [狄利克雷卷积](./dirichlet.md#dirichlet-卷积)．
+Trong đó $f*g$ là [tích chập Dirichlet](./dirichlet.md#dirichlet-%E5%8D%B7%E7%A7%AF) của hai hàm số học $f$ và $g$.
 
-???+ note "略证"
-    $g(d)f\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d$,$\frac{i}{d}$（分别对应新的 $i,j$）
-    
+???+ note "Chứng minh sơ lược"
+    $g(d)f\left(\frac{i}{d}\right)$ chính là phần đóng góp của mọi $i\leq n$. Vì vậy ta đổi thứ tự liệt kê, lần lượt liệt kê $d$ và $\frac{i}{d}$ (tương ứng với $i,j$ mới):
+
     $$
     \begin{aligned}
         \sum_{i=1}^n\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right) & =\sum_{i=1}^n\sum_{j=1}^{\left\lfloor n/i \right\rfloor}g(i)f(j) \\
@@ -28,7 +29,7 @@ $$
     \end{aligned}
     $$
 
-那么可以得到递推式：
+Từ đó có công thức truy hồi:
 
 $$
 \begin{aligned}
@@ -37,29 +38,30 @@ $$
 \end{aligned}
 $$
 
-假如我们可以构造恰当的数论函数 $g$ 使得：
+Nếu ta xây dựng được một hàm số học $g$ thích hợp sao cho:
 
-1.  可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
-2.  可以快速计算 $g$ 的前缀和，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$．
+1.  Có thể tính nhanh $\sum_{i=1}^n(f * g)(i)$;
+2.  Có thể tính nhanh tổng tiền tố của $g$, để dùng chia đoạn số học tính $\sum_{i=2}^ng(i)S\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$.
 
-则我们可以在较短时间内求得 $g(1)S(n)$．
+Khi đó ta có thể tính $g(1)S(n)$ trong thời gian ngắn.
 
-???+ warning "注意"
-    无论数论函数 $f$ 是否为积性函数，只要可以构造出恰当的数论函数 $g$, 便都可以考虑用杜教筛求 $f$ 的前缀和．
-    
-    如考虑 $f(n)=\mathrm{i}\varphi(n)$, 显然 $f$ 不是积性函数，但可取 $g(n)=1$, 从而：
-    
+???+ warning "Lưu ý"
+    Bất kể hàm số học $f$ có là hàm nhân hay không, miễn là xây dựng được hàm số học $g$ thích hợp thì đều có thể cân nhắc dùng sàng Dujiao để tính tổng tiền tố của $f$.
+
+    Chẳng hạn xét $f(n)=\mathrm{i}\varphi(n)$. Rõ ràng $f$ không phải hàm nhân, nhưng có thể lấy $g(n)=1$, do đó:
+
     $$
     \sum_{k=1}^n (f*g)(k)=\mathrm{i}\frac{n(n+1)}{2}
     $$
-    
-    计算 $\sum_{k\leq m} (f*g)(k)$ 和 $\sum_{k \leq m} g(k)$ 的时间复杂度均为 $O(1)$, 故可以考虑使用杜教筛．
 
-## 时间复杂度
+    Độ phức tạp để tính $\sum_{k\leq m} (f*g)(k)$ và $\sum_{k \leq m} g(k)$ đều là $O(1)$, nên có thể cân nhắc dùng sàng Dujiao.
 
-令 $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$．利用数论分块的 [性质](./sqrt-decomposition.md#性质) 可知，对任意的 $m\in R(n)$，都有 $R(m)\subseteq R(n)$．也就是说，使用记忆化之后，只需要对所有 $k\in R(n)$ 计算一次 $S(k)$ 就可以得到 $R(n)$ 的值．而这些点的数目 $|R(n)|=O(\sqrt{n})$．
+<span id="&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;"></span>
+## Độ phức tạp thời gian
 
-设计算 $\sum_{i=1}^n(f * g)(i)$ 和 $\sum_{i=1}^n g(i)$ 的时间复杂度均为 $O(1)$. 设计算 $S(n)$ 的时间复杂度为 $T(n)$, 则：
+Đặt $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$. Từ [tính chất](./sqrt-decomposition.md#%E6%80%A7%E8%B4%A8) của chia đoạn số học, với mọi $m\in R(n)$ đều có $R(m)\subseteq R(n)$. Nói cách khác, sau khi dùng ghi nhớ, chỉ cần tính $S(k)$ một lần với mọi $k\in R(n)$ là có thể thu được giá trị trên $R(n)$. Số lượng điểm này là $|R(n)|=O(\sqrt{n})$.
+
+Giả sử độ phức tạp để tính $\sum_{i=1}^n(f * g)(i)$ và $\sum_{i=1}^n g(i)$ đều là $O(1)$. Gọi độ phức tạp tính $S(n)$ là $T(n)$, khi đó:
 
 $$
 \begin{aligned}
@@ -70,7 +72,7 @@ $$
 \end{aligned}
 $$
 
-若我们可以预处理出一部分 $S(k)$, 其中 $k=1,2,\dots,m$，$m\geq \lfloor\sqrt n\rfloor$．设预处理的时间复杂度为 $T_0(m)$，则此时的 $T(n)$ 为：
+Nếu ta có thể tiền xử lí một phần $S(k)$, với $k=1,2,\dots,m$ và $m\geq \lfloor\sqrt n\rfloor$. Giả sử độ phức tạp tiền xử lí là $T_0(m)$, thì lúc này $T(n)$ là:
 
 $$
 \begin{aligned}
@@ -81,24 +83,24 @@ $$
 \end{aligned}
 $$
 
-若 $T_0(m)=O(m)$（如线性筛），由均值不等式可知：当 $m=\Theta\left(n^{2/3}\right)$ 时，$T(n)$ 取得最小值 $O\left(n^{2/3}\right)$.
+Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức trung bình ta có: khi $m=\Theta\left(n^{2/3}\right)$, $T(n)$ đạt giá trị nhỏ nhất $O\left(n^{2/3}\right)$.
 
-??? failure "伪证一例"
-    设计算 $S(n)$ 的复杂度为 $T(n)$, 则有：
-    
+??? failure "Một chứng minh sai"
+    Giả sử độ phức tạp tính $S(n)$ là $T(n)$, ta có:
+
     $$
     T(n)=\Theta\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\right)
     $$
-    
+
     $$
     \begin{aligned}
         T\left(\left\lfloor\frac{n}{i}\right\rfloor\right) & = \Theta\left(\sqrt{\frac{n}{i}}\right)+O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right) \\
                                                            & = O\left(\sqrt{\frac{n}{i}}\right)
     \end{aligned}
     $$
-    
-    其中，$O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去．故：
-    
+
+    Ở đây, $O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ bị xem như vô cùng bé bậc cao rồi bỏ đi. Vì vậy:
+
     $$
     \begin{aligned}
         T(n) & = \Theta\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} \sqrt{\frac{n}{i}}\right) \\
@@ -107,10 +109,10 @@ $$
              & = O\left(n^{3/4}\right)
     \end{aligned}
     $$
-    
-    ??? bug "Bug"
-        问题在于「视作高阶无穷小，从而可以舍去」这一处．我们将 $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ 代入 $T(n)$ 的式子里，有：
-        
+
+    ??? bug "Lỗi"
+        Vấn đề nằm ở chỗ "xem như vô cùng bé bậc cao rồi bỏ đi". Thay $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ vào công thức của $T(n)$, ta có:
+
         $$
         \begin{aligned}
             T(n) & = \Theta\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} \sqrt{\frac{n}{i}}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right)\\
@@ -118,65 +120,67 @@ $$
                  & = O\left(n^{3/4}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right)\\
         \end{aligned}
         $$
-        
-        我们考虑 $\displaystyle\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)$ 这部分，不难发现：
-        
+
+        Xét phần $\displaystyle\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)$, không khó thấy rằng:
+
         $$
         \begin{aligned}
             \sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right) & = \Omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\cdot\left\lfloor\sqrt\frac{n}{i}\right\rfloor^{-1}\right\rfloor\right)\right) \\
                                                                                                                                          & = \Omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\sqrt\frac{n}{i}\right\rfloor\right)\right)
         \end{aligned}
         $$
-        
-        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{\dfrac{n}{i}}\right\rfloor\right)$ 仍然是 $\Omega\left(\left(\dfrac{n}{i}\right)^{1/4}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的．
-        
-        实际上杜教筛的亚线性时间复杂度是由记忆化保证的．只有使用了记忆化之后才能保证不会出现那个多重求和的项．
 
-## 例题
+        Do chưa đưa ghi nhớ vào, $T\left(\left\lfloor\sqrt{\dfrac{n}{i}}\right\rfloor\right)$ trong công thức trên vẫn là $\Omega\left(\left(\dfrac{n}{i}\right)^{1/4}\right)$, nên phần được gọi là "vô cùng bé bậc cao" không thể bị bỏ đi.
 
-### 问题一
+        Trên thực tế, độ phức tạp dưới tuyến tính của sàng Dujiao được bảo đảm bởi ghi nhớ. Chỉ sau khi dùng ghi nhớ mới bảo đảm không xuất hiện hạng tổng nhiều tầng đó.
 
-???+ note "[P4213【模板】杜教筛（Sum）](https://www.luogu.com.cn/problem/P4213)"
-    求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leq n<2^{31}$.
+<span id="&#x4F8B;&#x9898;"></span>
+## Ví dụ
 
-=== "莫比乌斯函数前缀和"
-    我们知道：
-    
+<span id="&#x95EE;&#x9898;&#x4E00;"></span>
+### Bài toán 1
+
+???+ note "[P4213 mẫu sàng Dujiao (Sum)](https://www.luogu.com.cn/problem/P4213)"
+    Tính giá trị của $S_1(n)= \sum_{i=1}^{n} \mu(i)$ và $S_2(n)= \sum_{i=1}^{n} \varphi(i)$, với $1\leq n<2^{31}$.
+
+=== "Tổng tiền tố của hàm Mobius"
+    Ta biết:
+
     $$
     \epsilon = [n=1] = \mu * 1 = \sum_{d \mid n} \mu(d)
     $$
-    
+
     $$
     \begin{aligned}
         S_1(n) & =\sum_{i=1}^n \epsilon (i)-\sum_{i=2}^n S_1 \left(\left\lfloor \frac n i \right\rfloor\right) \\
                & = 1-\sum_{i=2}^n S_1\left(\left\lfloor \frac n i \right\rfloor\right)
     \end{aligned}
     $$
-    
-    时间复杂度的推导见 [时间复杂度](#时间复杂度) 一节．
-    
-    对于较大的值，需要用 `map`/`unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果．
 
-=== "欧拉函数前缀和"
-    当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演．
-    
-    === "莫比乌斯反演"
+    Phần suy ra độ phức tạp thời gian xem tại mục [Độ phức tạp thời gian](#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6).
+
+    Với các giá trị lớn, cần dùng `map`/`unordered_map` để lưu giá trị tương ứng, thuận tiện cho việc dùng lại kết quả đã tính trước đó.
+
+=== "Tổng tiền tố của hàm Euler"
+    Dĩ nhiên cũng có thể dùng sàng Dujiao để tính tổng tiền tố của $\varphi (x)$, nhưng cách tốt hơn là áp dụng đảo Mobius.
+
+    === "Đảo Mobius"
         $$
         \begin{aligned}
             \sum_{i=1}^n \sum_{j=1}^n [\gcd(i,j)=1] & =\sum_{i=1}^n \sum_{j=1}^n \sum_{d \mid i,d \mid j} \mu(d)    \\
                                                     & =\sum_{d=1}^n \mu(d) {\left\lfloor \frac n d \right\rfloor}^2
         \end{aligned}
         $$
-        
-        由于题目所求的是 $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$, 所以我们排除掉 $i=1,j=1$ 的情况，并将结果除以 $2$ 即可．
-        
-        观察到，只需求出莫比乌斯函数的前缀和，就可以快速计算出欧拉函数的前缀和了．时间复杂度 $O\left(n^{\frac 2 3}\right)$.
-    
-    === "杜教筛"
-        求 $S(n)=\sum_{i=1}^n\varphi(i)$.
-        
-        同样的，$\varphi * 1=\operatorname{id}$, 从而：
-        
+
+        Vì đề bài yêu cầu $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$, ta chỉ cần loại trường hợp $i=1,j=1$ rồi chia kết quả cho $2$.
+
+        Có thể thấy chỉ cần tính tổng tiền tố của hàm Mobius là có thể nhanh chóng tính được tổng tiền tố của hàm Euler. Độ phức tạp thời gian là $O\left(n^{\frac 2 3}\right)$.
+
+    === "Sàng Dujiao"
+        Tính $S(n)=\sum_{i=1}^n\varphi(i)$.
+
+        Tương tự, $\varphi * 1=\operatorname{id}$, do đó:
+
         $$
             \begin{aligned}
                 S(n) & =\sum_{i=1}^n i - \sum_{i=2}^n S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)    \\
@@ -184,31 +188,32 @@ $$
             \end{aligned}
         $$
 
-??? note "代码实现"
+??? note "Cài đặt"
     ```cpp
     --8<-- "docs/math/code/du/du_1.cpp"
     ```
 
-### 问题二
+<span id="&#x95EE;&#x9898;&#x4E8C;"></span>
+### Bài toán 2
 
-???+ note "[「LuoguP3768」简单的数学题](https://www.luogu.com.cn/problem/P3768)"
-    大意：求
-    
+???+ note "[Luogu P3768: Bài toán toán học đơn giản](https://www.luogu.com.cn/problem/P3768)"
+    Tóm tắt: tính
+
     $$
     \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot\gcd(i,j)\pmod p
     $$
-    
-    其中 $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$,$p$ 是质数．
 
-利用 $\varphi * 1=\operatorname{id}$ 做莫比乌斯反演化为：
+    Trong đó $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$, và $p$ là số nguyên tố.
+
+Dùng $\varphi * 1=\operatorname{id}$ để biến đổi bằng đảo Mobius:
 
 $$
 \sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 $$
 
-其中 $F(n)=\dfrac{1}{2}n(n+1)$
+Trong đó $F(n)=\dfrac{1}{2}n(n+1)$.
 
-对 $\sum_{d=1}^nF\left(\left\lfloor\dfrac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
+Chia đoạn số học trên $\sum_{d=1}^nF\left(\left\lfloor\dfrac{n}{d}\right\rfloor\right)^2$, còn tổng tiền tố của $d^2\varphi(d)$ được xử lí bằng sàng Dujiao:
 
 $$
 f(n)=n^2\varphi(n)=(\operatorname{id}^2\varphi)(n)
@@ -218,15 +223,15 @@ $$
 S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(\operatorname{id}^2\varphi)(i)
 $$
 
-需要构造积性函数 $g$，使得 $f\times g$ 和 $g$ 能快速求和．
+Cần xây dựng một hàm nhân $g$ sao cho $f\times g$ và $g$ đều có thể tính tổng nhanh.
 
-单纯的 $\varphi$ 的前缀和可以用 $\varphi * 1$ 的杜教筛处理，但是这里的 $f$ 多了一个 $\operatorname{id}^2$，那么我们就卷一个 $\operatorname{id}^2$ 上去，让它变成常数：
+Tổng tiền tố của riêng $\varphi$ có thể xử lí bằng sàng Dujiao cho $\varphi * 1$, nhưng ở đây $f$ có thêm một thừa số $\operatorname{id}^2$. Vì vậy ta chập thêm một $\operatorname{id}^2$ để biến nó thành hằng số:
 
 $$
 S(n)=\sum_{i=1}^n\left(\left(\operatorname{id}^2\varphi\right) * \operatorname{id}^2\right)(i)-\sum_{i=2}^n\operatorname{id}^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
-化一下卷积：
+Biến đổi tích chập:
 
 $$
 \begin{aligned}
@@ -237,7 +242,7 @@ $$
 \end{aligned}
 $$
 
-再化一下 $S(n)$:
+Tiếp tục biến đổi $S(n)$:
 
 $$
 \begin{aligned}
@@ -247,14 +252,15 @@ $$
 \end{aligned}
 $$
 
-分块求解即可．
+Sau đó chỉ cần chia đoạn để tính.
 
-??? note "代码实现"
+??? note "Cài đặt"
     ```cpp
     --8<-- "docs/math/code/du/du_2.cpp"
     ```
 
-### 参考资料
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+### Tài liệu tham khảo
 
-1.  任之洲，2016，《积性函数求和的几种方法》，2016 年信息学奥林匹克中国国家队候选队员论文
-2.  [杜教筛的时空复杂度分析 - riteme.site](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)
+1.  Ren Zhizhou, 2016, "Một số phương pháp tính tổng hàm nhân", luận văn đội tuyển dự bị Olympic Tin học Quốc gia Trung Quốc năm 2016
+2.  [Phân tích độ phức tạp thời gian và không gian của sàng Dujiao - riteme.site](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)

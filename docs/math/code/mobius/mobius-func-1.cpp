@@ -6,12 +6,12 @@ int mu(int n) {
   for (int i = 2; i * i <= n; ++i) {
     if (n % i == 0) {
       n /= i;
-      // Check if square-free.
+      // Kiểm tra n có chứa bình phương của số nguyên tố hay không.
       if (n % i == 0) return 0;
       res = -res;
     }
   }
-  // The remaining factor must be prime.
+  // Thừa số còn lại nếu có thì phải là số nguyên tố.
   if (n > 1) res = -res;
   return res;
 }

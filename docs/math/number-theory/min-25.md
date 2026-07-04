@@ -1,32 +1,36 @@
 author: Marcythm, Xeonacid, CSPNOIP
 
-## 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+## Định nghĩa
 
-从此种筛法的思想方法来说，其又被称为「Extended Eratosthenes Sieve」．
+Xét theo ý tưởng của phương pháp sàng này, nó còn được gọi là "Extended Eratosthenes Sieve".
 
-由于其由 [Min\_25](https://web.archive.org/web/20211104125457/http://min-25.hatenablog.com/) 发明并最早开始使用，故称「Min\_25 筛」．
+Vì phương pháp này do [Min_25](https://web.archive.org/web/20211104125457/http://min-25.hatenablog.com/) phát minh và sử dụng sớm nhất, nên được gọi là "sàng Min_25".
 
-## 性质
+<span id="&#x6027;&#x8D28;"></span>
+## Tính chất
 
-其可以在 $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ 或 $\Theta\left(n^{1 - \epsilon}\right)$ 的时间复杂度下解决一类 **积性函数** 的前缀和问题．
+Sàng này có thể giải một lớp bài toán tính tổng tiền tố của **hàm nhân** với độ phức tạp thời gian $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ hoặc $\Theta\left(n^{1 - \epsilon}\right)$.
 
-要求：$f(p)$ 是一个关于 $p$ 可以快速求值的完全积性函数之和（例如多项式）；$f(p^{c})$ 可以快速求值．
+Yêu cầu: $f(p)$ là tổng của các hàm hoàn toàn nhân theo $p$ có thể tính nhanh (ví dụ đa thức); $f(p^{c})$ có thể tính nhanh.
 
-## 记号
+<span id="&#x8BB0;&#x53F7;"></span>
+## Kí hiệu
 
--   **如无特别说明，本节中所有记为 $p$ 的变量的取值集合均为全体质数．**
+-   **Nếu không có giải thích đặc biệt, mọi biến được kí hiệu là $p$ trong mục này đều lấy giá trị trên tập tất cả số nguyên tố.**
 -   $x / y := \left\lfloor\frac{x}{y}\right\rfloor$
--   $\operatorname{isprime}(n) := [ |\{d : d \mid n\}| = 2 ]$，即 $n$ 为质数时其值为 $1$，否则为 $0$．
--   $p_{k}$：全体质数中第 $k$ 小的质数（如：$p_{1} = 2, p_{2} = 3$）．特别地，令 $p_{0} = 1$．
--   $\operatorname{lpf}(n) := [1 < n] \min\{p : p \mid n\} + [1 = n]$，即 $n$ 的最小质因数．特别地，$n=1$ 时，其值为 $1$．
+-   $\operatorname{isprime}(n) := [ |\{d : d \mid n\}| = 2 ]$, tức là giá trị bằng $1$ khi $n$ là số nguyên tố, ngược lại bằng $0$.
+-   $p_{k}$: số nguyên tố nhỏ thứ $k$ trong tập tất cả số nguyên tố (ví dụ: $p_{1} = 2, p_{2} = 3$). Đặc biệt, đặt $p_{0} = 1$.
+-   $\operatorname{lpf}(n) := [1 < n] \min\{p : p \mid n\} + [1 = n]$, tức là thừa số nguyên tố nhỏ nhất của $n$. Đặc biệt, khi $n=1$, giá trị này bằng $1$.
 -   $F_{\mathrm{prime}}(n) := \sum_{2 \le p \le n} f(p)$
 -   $F_{k}(n) := \sum_{i = 2}^{n} [p_{k} \le \operatorname{lpf}(i)] f(i)$
 
-## 解释
+<span id="&#x89E3;&#x91CA;"></span>
+## Giải thích
 
-观察 $F_{k}(n)$ 的定义，可以发现答案即为 $F_{1}(n) + f(1) = F_{1}(n) + 1$．
+Quan sát định nghĩa của $F_{k}(n)$, có thể thấy đáp án chính là $F_{1}(n) + f(1) = F_{1}(n) + 1$.
 
-考虑如何求出 $F_{k}(n)$．通过枚举每个 $i$ 的最小质因子及其次数可以得到递推式：
+Xét cách tính $F_{k}(n)$. Bằng cách liệt kê thừa số nguyên tố nhỏ nhất của mỗi $i$ và số lần xuất hiện của nó, ta thu được công thức truy hồi:
 
 $$
 \begin{aligned}
@@ -38,45 +42,46 @@ $$
 \end{aligned}
 $$
 
-最后一步推导基于这样一个事实：对于满足 $p_{i}^{c} \le n < p_{i}^{c + 1}$ 的 $c$，有 $p_{i}^{c + 1} > n \iff n / p_{i}^{c} < p_{i} < p_{i + 1}$，故 $F_{i + 1}\left(n / p_{i}^{c}\right) = 0$．  
-其边界值即为 $F_{k}(n) = 0 (p_{k} > n)$．
+Bước suy diễn cuối cùng dựa trên sự thật sau: với $c$ thỏa mãn $p_{i}^{c} \le n < p_{i}^{c + 1}$, ta có $p_{i}^{c + 1} > n \iff n / p_{i}^{c} < p_{i} < p_{i + 1}$, nên $F_{i + 1}\left(n / p_{i}^{c}\right) = 0$.
+Giá trị biên là $F_{k}(n) = 0 (p_{k} > n)$.
 
-假设现在已经求出了所有的 $F_{\mathrm{prime}}(n)$，那么有两种方式可以求出所有的 $F_{k}(n)$：
+Giả sử hiện đã tính được mọi $F_{\mathrm{prime}}(n)$, có hai cách để tính mọi $F_{k}(n)$:
 
-1.  直接按照递推式计算．
-2.  从大到小枚举 $p$ 转移，仅当 $p^{2} < n$ 时转移增加值不为零，故按照递推式后缀和优化即可．
+1.  Tính trực tiếp theo công thức truy hồi.
+2.  Liệt kê $p$ từ lớn xuống nhỏ để chuyển trạng thái; chỉ khi $p^{2} < n$ thì phần tăng thêm của chuyển trạng thái mới khác không, nên có thể tối ưu bằng tổng hậu tố theo công thức truy hồi.
 
-现在考虑如何计算 $F_{\mathrm{prime}}{(n)}$．  
-观察求 $F_{k}(n)$ 的过程，容易发现 $F_{\mathrm{prime}}$ 有且仅有 $1, 2, \dots, \left\lfloor\sqrt{n}\right\rfloor, n / \sqrt{n}, \dots, n / 2, n$ 这 $O(\sqrt{n})$ 处的点值是有用的．  
-一般情况下，$f(p)$ 是一个关于 $p$ 的低次多项式，可以表示为 $f(p) = \sum a_{i} p^{c_{i}}$．  
-那么对于每个 $p^{c_{i}}$，其对 $F_{\mathrm{prime}}(n)$ 的贡献即为 $a_{i} \sum_{2 \le p \le n} p^{c_{i}}$．  
-分开考虑每个 $p^{c_{i}}$ 的贡献，问题就转变为了：给定 $n, s, g(p) = p^{s}$，对所有的 $m = n / i$，求 $\sum_{p \le m} g(p)$．
+Bây giờ xét cách tính $F_{\mathrm{prime}}{(n)}$.
+Quan sát quá trình tính $F_{k}(n)$, dễ thấy $F_{\mathrm{prime}}$ chỉ cần các giá trị tại $1, 2, \dots, \left\lfloor\sqrt{n}\right\rfloor, n / \sqrt{n}, \dots, n / 2, n$, tổng cộng $O(\sqrt{n})$ điểm hữu dụng.
+Thông thường, $f(p)$ là một đa thức bậc thấp theo $p$, có thể viết thành $f(p) = \sum a_{i} p^{c_{i}}$.
+Khi đó, với mỗi $p^{c_{i}}$, phần đóng góp của nó vào $F_{\mathrm{prime}}(n)$ là $a_{i} \sum_{2 \le p \le n} p^{c_{i}}$.
+Xét riêng phần đóng góp của từng $p^{c_{i}}$, bài toán chuyển thành: cho $n, s, g(p) = p^{s}$, với mọi $m = n / i$, hãy tính $\sum_{p \le m} g(p)$.
 
-???+ tip "注意"
-    $g(p) = p^{s}$ 是完全积性函数！
+???+ tip "Lưu ý"
+    $g(p) = p^{s}$ là hàm hoàn toàn nhân!
 
-于是设 $G_{k}(n) := \sum_{i = 2}^{n} \left[p_{k} < \operatorname{lpf}(i) \lor \operatorname{isprime}(i)\right] g(i)$，即埃筛第 $k$ 轮筛完后剩下的数的 $g$ 值之和．  
-对于一个合数 $x \le n$，必定有 $\operatorname{lpf}(x) \le \sqrt{x} \le \sqrt{n}$．设 $p_{\ell(n)}$ 为不大于 $\sqrt{n}$ 的最大质数，则 $\sum_{2\le p\le n}g(p) = G_{\ell(n)}(n)$，即在埃筛进行 $\ell$ 轮之后剩下的均为质数．
-考虑 $G$ 的边界值，显然为 $G_{0}(n) = \sum_{i = 2}^{n} g(i)$．（还记得吗？特别约定了 $p_{0} = 1$）  
-对于转移，考虑埃筛的过程，分开讨论每部分的贡献，有：
+Do đó đặt $G_{k}(n) := \sum_{i = 2}^{n} \left[p_{k} < \operatorname{lpf}(i) \lor \operatorname{isprime}(i)\right] g(i)$, tức là tổng các giá trị $g$ của những số còn lại sau vòng sàng Eratosthenes thứ $k$.
+Với một hợp số $x \le n$, chắc chắn có $\operatorname{lpf}(x) \le \sqrt{x} \le \sqrt{n}$. Gọi $p_{\ell(n)}$ là số nguyên tố lớn nhất không vượt quá $\sqrt{n}$, khi đó $\sum_{2\le p\le n}g(p) = G_{\ell(n)}(n)$, tức là sau khi sàng Eratosthenes chạy $\ell$ vòng, các số còn lại đều là số nguyên tố.
+Xét giá trị biên của $G$, hiển nhiên $G_{0}(n) = \sum_{i = 2}^{n} g(i)$. (Còn nhớ không? Ta đã quy ước riêng $p_{0} = 1$.)
+Với chuyển trạng thái, xét quá trình của sàng Eratosthenes và tách riêng đóng góp của từng phần:
 
-1.  对于 $n < p_{k}^{2}$ 的部分，$G$ 值不变，即 $G_{k}(n) = G_{k - 1}(n)$．
-2.  对于 $p_{k}^{2} \le n$ 的部分，被筛掉的数必有质因子 $p_{k}$，即 $-g(p_{k}) G_{k - 1}(n / p_{k})$．
-3.  对于第二部分，由于 $p_{k}^{2} \le n \iff p_{k} \le n / p_{k}$，满足 $\operatorname{lpf}(i) < p_{k}$ 的 $i$ 会被额外减去．这部分应当加回来，即 $g(p_{k}) G_{k - 1}(p_{k - 1})$．
+1.  Với phần $n < p_{k}^{2}$, giá trị $G$ không đổi, tức $G_{k}(n) = G_{k - 1}(n)$.
+2.  Với phần $p_{k}^{2} \le n$, các số bị sàng đi chắc chắn có thừa số nguyên tố $p_{k}$, tức là $-g(p_{k}) G_{k - 1}(n / p_{k})$.
+3.  Với phần thứ hai, do $p_{k}^{2} \le n \iff p_{k} \le n / p_{k}$, các $i$ thỏa mãn $\operatorname{lpf}(i) < p_{k}$ sẽ bị trừ thừa. Phần này cần được cộng lại, tức là $g(p_{k}) G_{k - 1}(p_{k - 1})$.
 
-则有：
+Vậy có:
 
 $$
 G_{k}(n) = G_{k - 1}(n) - \left[p_{k}^{2} \le n\right] g(p_{k}) (G_{k - 1}(n / p_{k}) - G_{k - 1}(p_{k - 1}))
 $$
 
-## 复杂度分析
+<span id="&#x590D;&#x6742;&#x5EA6;&#x5206;&#x6790;"></span>
+## Phân tích độ phức tạp
 
-对于 $F_{k}(n)$ 的计算，其第一种方法的时间复杂度被证明为 $O\left(n^{1 - \epsilon}\right)$（见朱震霆集训队论文 [《一些特殊的数论函数求和问题》](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2018%E8%AE%BA%E6%96%87%E9%9B%86.pdf) 2.3）；  
-对于第二种方法，其本质即为洲阁筛的第二部分，在任之洲论文 [《积性函数求和的几种方法》](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf) 中也有提及（6.5.4），其时间复杂度被证明为 $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$．
+Với việc tính $F_{k}(n)$, độ phức tạp thời gian của phương pháp thứ nhất được chứng minh là $O\left(n^{1 - \epsilon}\right)$ (xem mục 2.3 trong luận văn đội tuyển tập huấn của Zhu Zhenting, ["Một số bài toán tính tổng hàm số học đặc biệt"](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2018%E8%AE%BA%E6%96%87%E9%9B%86.pdf));
+Với phương pháp thứ hai, bản chất của nó chính là phần thứ hai của sàng Zhouge, cũng được nhắc đến trong luận văn của Ren Zhizhou ["Một số phương pháp tính tổng hàm nhân"](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf) (6.5.4); độ phức tạp thời gian được chứng minh là $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$.
 
-对于 $F_{\mathrm{prime}}(n)$ 的计算，事实上，其实现与洲阁筛第一部分是相同的．  
-考虑对于每个 $m = n / i$，只有在枚举满足 $p_{k}^{2} \le m$ 的 $p_{k}$ 转移时会对时间复杂度产生贡献，则时间复杂度可估计为：
+Với việc tính $F_{\mathrm{prime}}(n)$, trên thực tế cách cài đặt giống phần thứ nhất của sàng Zhouge.
+Xét từng $m = n / i$, chỉ khi liệt kê $p_{k}$ thỏa mãn $p_{k}^{2} \le m$ để chuyển trạng thái thì mới phát sinh đóng góp vào độ phức tạp thời gian, do đó có thể ước lượng:
 
 $$
 \begin{aligned}
@@ -88,48 +93,50 @@ $$
 \end{aligned}
 $$
 
-对于空间复杂度，可以发现不论是 $F_{k}$ 还是 $F_{\mathrm{prime}}$，其均只在 $n / i$ 处取有效点值，共 $O(\sqrt{n})$ 个，仅记录有效值即可将空间复杂度优化至 $O(\sqrt{n})$．
+Về độ phức tạp không gian, có thể thấy dù là $F_{k}$ hay $F_{\mathrm{prime}}$, giá trị hữu hiệu của chúng chỉ xuất hiện tại các điểm $n / i$, tổng cộng $O(\sqrt{n})$ điểm. Chỉ ghi lại các giá trị hữu hiệu là có thể tối ưu độ phức tạp không gian xuống $O(\sqrt{n})$.
 
-首先，通过一次数论分块可以得到所有的有效值，用一个大小为 $O(\sqrt{n})$ 的数组 $\text{lis}$ 记录．对于有效值 $v$，记 $\text{id}(v)$ 为 $v$ 在 $\text{lis}$ 中的下标，易得：对于所有有效值 $v$，$\text{id}(v) \le \sqrt{n}$．
+Trước hết, dùng một lần chia đoạn số học để lấy mọi giá trị hữu hiệu, lưu bằng một mảng $\text{lis}$ kích thước $O(\sqrt{n})$. Với giá trị hữu hiệu $v$, kí hiệu $\text{id}(v)$ là chỉ số của $v$ trong $\text{lis}$. Dễ thấy với mọi giá trị hữu hiệu $v$, $\text{id}(v) \le \sqrt{n}$.
 
-然后分开考虑小于等于 $\sqrt{n}$ 的有效值和大于 $\sqrt{n}$ 的有效值：对于小于等于 $\sqrt{n}$ 的有效值 $v$，用一个数组 $\text{le}$ 记录其 $\text{id}(v)$，即 $\text{le}_v = \text{id}(v)$；对于大于 $\sqrt{n}$ 的有效值 $v$，用一个数组 $\text{ge}$ 记录 $\text{id}(v)$，由于 $v$ 过大所以借助 $v' = n / v < \sqrt{n}$ 记录 $\text{id}(v)$，即 $\text{ge}_{v'} = \text{id}(v)$．
+Sau đó xét riêng các giá trị hữu hiệu không lớn hơn $\sqrt{n}$ và lớn hơn $\sqrt{n}$: với giá trị hữu hiệu $v$ không lớn hơn $\sqrt{n}$, dùng mảng $\text{le}$ ghi $\text{id}(v)$, tức $\text{le}_v = \text{id}(v)$; với giá trị hữu hiệu $v$ lớn hơn $\sqrt{n}$, dùng mảng $\text{ge}$ ghi $\text{id}(v)$. Vì $v$ quá lớn, ta mượn $v' = n / v < \sqrt{n}$ để ghi $\text{id}(v)$, tức $\text{ge}_{v'} = \text{id}(v)$.
 
-这样，就可以使用两个大小为 $O(\sqrt{n})$ 的数组记录所有有效值的 $\text{id}$ 并 $O(1)$ 查询．在计算 $F_{k}$ 或 $F_{\mathrm{prime}}$ 时，使用有效值的 $\text{id}$ 代替有效值作为下标，即可将空间复杂度优化至 $O(\sqrt{n})$．
+Như vậy, có thể dùng hai mảng kích thước $O(\sqrt{n})$ để ghi $\text{id}$ của mọi giá trị hữu hiệu và truy vấn trong $O(1)$. Khi tính $F_{k}$ hoặc $F_{\mathrm{prime}}$, dùng $\text{id}$ của giá trị hữu hiệu thay cho chính giá trị hữu hiệu làm chỉ số, từ đó tối ưu độ phức tạp không gian xuống $O(\sqrt{n})$.
 
-## 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
+## Quy trình
 
-对于 $F_{k}(n)$ 的计算，我们实现时一般选择实现难度较低的第一种方法，其在数据规模较小时往往比第二种方法的表现要好；
+Khi tính $F_{k}(n)$, trong cài đặt ta thường chọn phương pháp thứ nhất vì dễ hiện thực hơn; với dữ liệu quy mô nhỏ, nó thường chạy tốt hơn phương pháp thứ hai.
 
-对于 $F_{\mathrm{prime}}(n)$ 的计算，直接按递推式实现即可．
+Với việc tính $F_{\mathrm{prime}}(n)$, chỉ cần cài đặt trực tiếp theo công thức truy hồi.
 
-对于 $p_{k}^{2} \le n$，可以用线性筛预处理出 $s_{k} := F_{\mathrm{prime}}(p_{k})$ 来替代 $F_{k}$ 递推式中的 $F_{\mathrm{prime}}(p_{k - 1})$．  
-相应地，$G$ 递推式中的 $G_{k - 1}(p_{k - 1}) = \sum_{i = 1}^{k - 1} g(p_{i})$ 也可以用此方法预处理．
+Với $p_{k}^{2} \le n$, có thể dùng sàng tuyến tính tiền xử lí $s_{k} := F_{\mathrm{prime}}(p_{k})$ để thay thế $F_{\mathrm{prime}}(p_{k - 1})$ trong công thức truy hồi của $F_{k}$.
+Tương tự, $G_{k - 1}(p_{k - 1}) = \sum_{i = 1}^{k - 1} g(p_{i})$ trong công thức truy hồi của $G$ cũng có thể được tiền xử lí theo cách này.
 
-用 Extended Eratosthenes Sieve 求 **积性函数**  $f$ 的前缀和时，应当明确以下几点：
+Khi dùng Extended Eratosthenes Sieve để tính tổng tiền tố của **hàm nhân** $f$, cần xác định rõ các điểm sau:
 
--   如何快速（一般是线性时间复杂度）筛出前 $\sqrt{n}$ 个 $f$ 值；
--   $f(p)$ 的多项式表示；
--   如何快速求出 $f(p^{c})$．
+-   Cách sàng nhanh (thường là độ phức tạp tuyến tính) ra các giá trị $f$ đầu tiên trên đoạn đến $\sqrt{n}$;
+-   Biểu diễn đa thức của $f(p)$;
+-   Cách tính nhanh $f(p^{c})$.
 
-明确上述几点之后按顺序实现以下几部分即可：
+Sau khi xác định rõ các điểm trên, chỉ cần lần lượt cài đặt các phần sau:
 
-1.  筛出 $[1, \sqrt{n}]$ 内的质数与前 $\sqrt{n}$ 个 $f$ 值；
-2.  对 $f(p)$ 多项式表示中的每一项筛出对应的 $G$，合并得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个有用点值；
-3.  按照 $F_{k}$ 的递推式实现递归，求出 $F_{1}(n)$．
+1.  Sàng các số nguyên tố và các giá trị $f$ đầu tiên trên đoạn $[1, \sqrt{n}]$;
+2.  Với từng hạng tử trong biểu diễn đa thức của $f(p)$, sàng ra $G$ tương ứng, rồi gộp để thu được mọi giá trị hữu dụng $O(\sqrt{n})$ của $F_{\mathrm{prime}}$;
+3.  Cài đặt đệ quy theo công thức truy hồi của $F_{k}$ để tính $F_{1}(n)$.
 
-## 例题
+<span id="&#x4F8B;&#x9898;"></span>
+## Ví dụ
 
-???+ example "[Luogu P4213【模板】杜教筛](https://www.luogu.com.cn/problem/P4213)"
-    求 $\displaystyle \sum_{i = 1}^{n} \varphi(i)$ 和 $\displaystyle \sum_{i = 1}^{n} \mu(i)$．
+???+ example "[Luogu P4213 mẫu sàng Dujiao](https://www.luogu.com.cn/problem/P4213)"
+    Tính $\displaystyle \sum_{i = 1}^{n} \varphi(i)$ và $\displaystyle \sum_{i = 1}^{n} \mu(i)$.
 
-??? note "解答"
-    对于求 $\varphi(i)$ 的前缀和，首先易知 $f(p) = p - 1$．对于 $f(p)$ 的一次项 $(p)$，有 $g(p) = p, G_{0}(n) = \sum_{i = 2}^{n} g(i) = \frac{(n + 2) (n - 1)}{2}$；对于 $f(p)$ 的常数项 $(-1)$，有 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$．筛两次加起来即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值．
-    
-    对于求 $\mu(i)$ 的前缀和，易知 $f(p) = -1$．则 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$．直接筛即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值．
+??? note "Lời giải"
+    Để tính tổng tiền tố của $\varphi(i)$, trước hết dễ biết $f(p) = p - 1$. Với hạng tử bậc nhất $(p)$ của $f(p)$, có $g(p) = p, G_{0}(n) = \sum_{i = 2}^{n} g(i) = \frac{(n + 2) (n - 1)}{2}$; với hạng tử hằng $(-1)$, có $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$. Sàng hai lần rồi cộng lại là thu được mọi giá trị cần thiết $O(\sqrt{n})$ của $F_{\mathrm{prime}}$.
 
-???+ example "[LOJ 6053 简单的函数](https://loj.ac/p/6053)"
-    给定 $f(n)$：
-    
+    Để tính tổng tiền tố của $\mu(i)$, dễ biết $f(p) = -1$. Khi đó $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$. Sàng trực tiếp là thu được mọi giá trị cần thiết $O(\sqrt{n})$ của $F_{\mathrm{prime}}$.
+
+???+ example "[LOJ 6053: Hàm đơn giản](https://loj.ac/p/6053)"
+    Cho $f(n)$:
+
     $$
     f(n) = \begin{cases}
         1 & n = 1 \\
@@ -137,13 +144,13 @@ $$
         f(a)f(b) & n = ab \land a \perp b
     \end{cases}
     $$
-    
-    求 $\displaystyle \sum_{i = 1}^{n} f(i)$．
 
-??? note "解答"
-    易知 $f(p) = p - 1 + 2[p = 2]$．则按照筛 $\varphi$ 的方法筛，对 $2$ 讨论一下即可．
+    Tính $\displaystyle \sum_{i = 1}^{n} f(i)$.
 
-??? note "参考代码"
+??? note "Lời giải"
+    Dễ biết $f(p) = p - 1 + 2[p = 2]$. Vậy có thể sàng theo cách sàng $\varphi$, chỉ cần thảo luận riêng trường hợp $2$.
+
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/min-25/min-25_1.cpp"
     ```

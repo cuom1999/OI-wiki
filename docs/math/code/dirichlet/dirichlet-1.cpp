@@ -2,7 +2,7 @@
 #include <vector>
 
 // --8<-- [start:core]
-// Compute the Dirichlet convolution h = f * g.
+// Tính tích chập Dirichlet h = f * g.
 auto dirichlet_convolute(const std::vector<int>& f, const std::vector<int>& g) {
   int n = f.size() - 1;
   std::vector<int> h(n + 1);

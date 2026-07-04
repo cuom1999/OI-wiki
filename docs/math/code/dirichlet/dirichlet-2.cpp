@@ -2,15 +2,15 @@
 #include <vector>
 
 // --8<-- [start:core]
-// Compute the Dirichlet convolution h = f * g.
-// Assume that g is multiplicative.
+// Tính tích chập Dirichlet h = f * g.
+// Giả sử g là hàm nhân tính.
 auto dirichlet_convolute(const std::vector<int>& f, const std::vector<int>& g) {
   int n = f.size() - 1;
   std::vector<int> h(f);
   std::vector<bool> vis(n + 1);
   for (int i = 2; i <= n; ++i) {
     if (vis[i]) continue;
-    // Reverse the order for in-place computation.
+    // Đảo thứ tự để tính tại chỗ.
     for (int k = n / i * i; k; k -= i) {
       vis[k] = true;
       int d = k;

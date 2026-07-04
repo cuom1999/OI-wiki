@@ -1,67 +1,70 @@
 author: hydingsy, hyp1231, ranwen, 383494
 
-前置知识：[数论分块](./sqrt-decomposition.md)、[狄利克雷卷积](./dirichlet.md#dirichlet-卷积)
+Kiến thức cần biết trước: [phân khối số học](./sqrt-decomposition.md), [tích chập Dirichlet](./dirichlet.md#dirichlet-%E5%8D%B7%E7%A7%AF)
 
-莫比乌斯反演是数论中的重要内容．对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值．
+Đảo Möbius là một nội dung quan trọng trong lý thuyết số. Với một số hàm $f(n)$, nếu khó tính trực tiếp giá trị của nó nhưng dễ tính tổng trên các bội hoặc tổng trên các ước $g(n)$, ta có thể dùng đảo Möbius để đơn giản hóa phép tính và tìm được giá trị của $f(n)$.
 
-## 莫比乌斯函数
+<span id="&#33707;&#27604;&#20044;&#26031;&#20989;&#25968;"></span>
+## Hàm Möbius
 
-莫比乌斯函数（Möbius 函数）定义为
+Hàm Möbius được định nghĩa là
 
 $$
 \mu(n)=
 \begin{cases}
 1,&n=1,\\
-0,&n\text{ is divisible by a square }>1,\\
-(-1)^k,&n\text{ is the product of }k\text{ distinct primes}.\\
+0,&n\text{ chia hết cho một số chính phương }>1,\\
+(-1)^k,&n\text{ là tích của }k\text{ số nguyên tố phân biệt}.
 \end{cases}
 $$
 
-具体地，假设正整数 $n$ 有素因数分解 $n=\prod_{i=1}^kp_i^{e_i}$，其中，$p_i$ 是素数，$e_i$ 是正整数．那么，三种情形分别对应：
+Cụ thể, giả sử số nguyên dương $n$ có phân tích thừa số nguyên tố $n=\prod_{i=1}^kp_i^{e_i}$, trong đó $p_i$ là số nguyên tố và $e_i$ là số nguyên dương. Khi đó ba trường hợp tương ứng là:
 
-1.  $\mu(1) = 1$；
-2.  当存在 $i$ 使得 $e_i > 1$，即存在任何素因数出现超过一次时，$\mu(n)=0$；
-3.  否则，对于所有 $i$ 都有 $e_i = 1$，即任何素因数都只出现一次时，$\mu(n)=(-1)^k$，其中，$k$ 就是互异素因子的个数．
+1.  $\mu(1) = 1$;
+2.  nếu tồn tại $i$ sao cho $e_i > 1$, tức có một thừa số nguyên tố nào đó xuất hiện hơn một lần, thì $\mu(n)=0$;
+3.  ngược lại, với mọi $i$ đều có $e_i = 1$, tức mọi thừa số nguyên tố đều chỉ xuất hiện một lần, thì $\mu(n)=(-1)^k$, trong đó $k$ là số lượng thừa số nguyên tố phân biệt.
 
-### 性质
+<span id="&#24615;&#36136;"></span>
+### Tính chất
 
-根据定义容易验证，莫比乌斯函数 $\mu(n)$ 是积性函数，但不是完全积性函数．除此之外，最为重要的性质是下述恒等式：
+Từ định nghĩa có thể kiểm tra dễ dàng rằng hàm Möbius $\mu(n)$ là hàm nhân tính, nhưng không phải hàm hoàn toàn nhân tính. Ngoài ra, tính chất quan trọng nhất là hằng đẳng thức sau:
 
-???+ note "性质"
-    对于正整数 $n$，有
+???+ note "Tính chất"
+    Với số nguyên dương $n$, ta có
     
     $$
     \sum_{d\mid n}\mu(d) = [n = 1] =
     \begin{cases}
     1,&n=1,\\
-    0,&n\neq 1.\\
+    0,&n\neq 1.
     \end{cases}
     $$
     
-    其中 $[\cdot]$ 是 Iverson 括号．
+    Trong đó $[\cdot]$ là ngoặc Iverson.
 
-??? note "证明"
-    令 $n=\prod_{i=1}^kp_i^{e_i}$，设 $n' = \prod_{i=1}^kp_i$．根据 [二项式定理](../combinatorics/combination.md#二项式定理)，有
+??? note "Chứng minh"
+    Đặt $n=\prod_{i=1}^kp_i^{e_i}$ và $n' = \prod_{i=1}^kp_i$. Theo [định lý nhị thức](../combinatorics/combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86), ta có
     
     $$
     \sum_{d\mid n}\mu(d) = \sum_{d\mid n'}\mu(d) = \sum_{i=0}^k\binom{k}{i}(-1)^i = (1 + (-1))^k = [k = 0] = [n = 1].
     $$
 
-利用 Dirichlet 卷积，该表达式可以写作 $\varepsilon = 1 * \mu$．也就是说，莫比乌斯函数是常值函数 $1$ 的 Dirichlet 逆．
+Dùng tích chập Dirichlet, biểu thức này có thể viết thành $\varepsilon = 1 * \mu$. Nói cách khác, hàm Möbius là nghịch đảo Dirichlet của hàm hằng $1$.
 
-这一性质有一个很常见的应用：
+Tính chất này có một ứng dụng rất thường gặp:
 
 $$
 [i\perp j] = [\gcd(i,j) = 1] = \sum_{d\mid\gcd(i,j)} \mu(d) = \sum_{d}[d\mid i][d\mid j]\mu(d).
 $$
 
-它将互素的条件转化为关于莫比乌斯函数的求和式，方便进一步推导．
+Nó biến điều kiện nguyên tố cùng nhau thành một tổng theo hàm Möbius, thuận tiện cho các bước suy luận tiếp theo.
 
-### 求法
+<span id="&#27714;&#27861;"></span>
+### Cách tính
 
-如果需要对单个 $n$ 计算莫比乌斯函数 $\mu(n)$ 的值，可以利用它的 [质因数分解](./pollard-rho.md)．例如，在 $n$ 不太大时，可以在 $O(\sqrt{n})$ 时间内求出 $\mu(n)$ 的值．
+Nếu cần tính giá trị hàm Möbius $\mu(n)$ cho một $n$ riêng lẻ, có thể dùng [phân tích thừa số nguyên tố](./pollard-rho.md). Chẳng hạn, khi $n$ không quá lớn, ta có thể tính $\mu(n)$ trong thời gian $O(\sqrt{n})$.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/math/code/mobius/mobius-func-1.cpp:core"
@@ -72,9 +75,9 @@ $$
         --8<-- "docs/math/code/mobius/mobius-func-1.py:core"
         ```
 
-如果需要对前 $n$ 个正整数预处理出 $\mu(n)$ 的值，可以利用它是积性函数，通过 [线性筛](./sieve.md#筛法求莫比乌斯函数) 在 $O(n)$ 时间内计算．
+Nếu cần tiền xử lý giá trị $\mu(n)$ cho $n$ số nguyên dương đầu tiên, có thể dùng tính nhân tính của nó và tính bằng [sàng tuyến tính](./sieve.md#%E7%AD%9B%E6%B3%95%E6%B1%82%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0) trong thời gian $O(n)$.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/math/code/mobius/mobius-func-2.cpp:core"
@@ -85,19 +88,20 @@ $$
         --8<-- "docs/math/code/mobius/mobius-func-2.py:core"
         ```
 
-## 莫比乌斯反演
+<span id="&#33707;&#27604;&#20044;&#26031;&#21453;&#28436;"></span>
+## Đảo Möbius
 
-莫比乌斯函数最重要的应用就是莫比乌斯反演．
+Ứng dụng quan trọng nhất của hàm Möbius là đảo Möbius.
 
-???+ note "莫比乌斯反演"
-    设 $f(n),g(n)$ 是两个数论函数．那么，有
+???+ note "Đảo Möbius"
+    Giả sử $f(n),g(n)$ là hai hàm số học. Khi đó
     
     $$
     f(n) = \sum_{d\mid n}g(d) \iff g(n) = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)f(d).
     $$
 
-??? note "证明一"
-    直接验证，有：
+??? note "Chứng minh 1"
+    Kiểm tra trực tiếp:
     
     $$
     \begin{aligned}
@@ -110,40 +114,40 @@ $$
     \end{aligned}
     $$
     
-    式子变形的关键在于交换求和次序，并注意到 $k\mid d\mid n$ 就等价于 $\dfrac{n}{d}\mid\dfrac{n}{k}$．倒数第二个等号相当于对 $\dfrac{n}{k}$ 的因子 $\dfrac{n}{d}$ 处的莫比乌斯函数求和，所以就等于 $\left[\dfrac{n}{k} = 1\right]$．这一表达式仅在 $n=k$ 处不是 $0$，最后就会得到 $g(n)$．
+    Điểm then chốt của phép biến đổi là đổi thứ tự lấy tổng và chú ý rằng $k\mid d\mid n$ tương đương với $\dfrac{n}{d}\mid\dfrac{n}{k}$. Dấu bằng áp chót chính là tổng hàm Möbius trên các ước $\dfrac{n}{d}$ của $\dfrac{n}{k}$, nên bằng $\left[\dfrac{n}{k} = 1\right]$. Biểu thức này chỉ khác $0$ tại $n=k$, do đó cuối cùng thu được $g(n)$.
 
-??? note "证明二"
-    利用 Dirichlet 卷积，命题等价于
+??? note "Chứng minh 2"
+    Dùng tích chập Dirichlet, mệnh đề tương đương với
     
     $$
     f = 1 * g \iff g = \mu * f.
     $$
     
-    利用 $1 * \mu = \varepsilon$，在左式的等号两侧同时对 $\mu$ 做卷积，就得到
+    Dùng $1 * \mu = \varepsilon$, lấy tích chập với $\mu$ ở hai vế của đẳng thức bên trái, ta được
     
     $$
     f * \mu = (1 * g) * \mu = (1 * \mu) * g = \varepsilon * g = g.
     $$
 
-在涉及各种整除关系的数论函数求和中，莫比乌斯反演是有力的变形工具．
+Trong các tổng hàm số học liên quan đến quan hệ chia hết, đảo Möbius là một công cụ biến đổi rất mạnh.
 
-???+ example "例子"
-    1.  [欧拉函数](./euler-totient.md) $\varphi(n)$ 满足关系式 $n = \sum_{d\mid n}\varphi(d)$，亦即 $\mathrm{id}=1*\varphi$．对它进行反演，就得到 $\varphi = \mu * \mathrm{id}$，亦即
+???+ example "Ví dụ"
+    1.  [Hàm Euler](./euler-totient.md) $\varphi(n)$ thỏa quan hệ $n = \sum_{d\mid n}\varphi(d)$, tức $\mathrm{id}=1*\varphi$. Đảo công thức này, ta được $\varphi = \mu * \mathrm{id}$, tức
     
         $$
         \varphi(n) = \sum_{d\mid n}d\mu\left(\dfrac{n}{d}\right).
         $$
-    2.  除数函数 $\sigma_k(n) = \sum_{d\mid n}d^k$，亦即 $\sigma_k = 1 * \mathrm{id}_k$．对它进行反演，就得到 $\mathrm{id}_k = \mu * \sigma_k$，亦即
+    2.  Hàm tổng lũy thừa các ước $\sigma_k(n) = \sum_{d\mid n}d^k$, tức $\sigma_k = 1 * \mathrm{id}_k$. Đảo công thức này, ta được $\mathrm{id}_k = \mu * \sigma_k$, tức
     
         $$
         n^k = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\sigma_k(d).
         $$
-    3.  互异素因子数目函数 $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$，亦即 $\omega = 1* \mathbf{1}_{\mathbf P}$，其中 $\mathbf{1}_{\mathbf P}$ 是素数集 $\mathbf P$ 的指示函数．对它进行反演，就得到 $\mathbf{1}_{\mathbf P} = \mu * \omega$，亦即
+    3.  Hàm đếm số thừa số nguyên tố phân biệt $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$, tức $\omega = 1* \mathbf{1}_{\mathbf P}$, trong đó $\mathbf{1}_{\mathbf P}$ là hàm chỉ thị của tập số nguyên tố $\mathbf P$. Đảo công thức này, ta được $\mathbf{1}_{\mathbf P} = \mu * \omega$, tức
     
         $$
         [n\in\mathbf P] = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\omega(d).
         $$
-    4.  考察满足 $\log n = \sum_{d\mid n}\Lambda(d)$ 的数论函数 $\Lambda(n)$．它就是对数函数的莫比乌斯反演，也称为 von Mangoldt 函数：
+    4.  Xét hàm số học $\Lambda(n)$ thỏa $\log n = \sum_{d\mid n}\Lambda(d)$. Nó chính là đảo Möbius của hàm logarit, còn gọi là hàm von Mangoldt:
     
         $$
         \Lambda(n) = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\log d = 
@@ -153,40 +157,41 @@ $$
         \end{cases}
         $$
 
-??? note "附：$\Lambda(n)$ 表达式的证明"
-    对于素数幂 $n=p^e~(e\in\mathbf N_+)$，有
+??? note "Phụ lục: chứng minh biểu thức của $\Lambda(n)$"
+    Với lũy thừa nguyên tố $n=p^e~(e\in\mathbf N_+)$, ta có
     
     $$
     \Lambda(n) = \sum_{i=0}^e\mu(p^{e-i})\log p^i = \log p^{e} - \log p^{e-1} = \log p.
     $$
     
-    对于 $n=1$，显然有 $\Lambda(n)=\log 1=0$．对于其他合数 $n$，有
+    Với $n=1$, hiển nhiên $\Lambda(n)=\log 1=0$. Với hợp số $n$ khác, ta có
     
     $$
     \Lambda(n) = \sum_{d\mid n}\mu(d)(\log n-\log d) = \left(\sum_{d\mid n}\mu(d)\right)\log n-\sum_{d\mid n}\mu(d)\log d.
     $$
     
-    根据莫比乌斯函数的性质，$\log n$ 一项的系数为 $[n=1]=0$．对于后面的一项，可以进一步将 $d$ 分解为素因数之积．对于任何素数 $p\mid n$，考察 $\log p$ 的系数，都有：
+    Theo tính chất của hàm Möbius, hệ số của hạng $\log n$ là $[n=1]=0$. Với hạng phía sau, có thể tiếp tục phân tích $d$ thành tích các thừa số nguyên tố. Với mọi số nguyên tố $p\mid n$, xét hệ số của $\log p$, ta đều có:
     
     $$
     -\sum_{p\mid d\mid n}\mu(d) = \sum_{(d/p)\mid(n/p)}\mu\left(\dfrac{d}{p}\right) = \left[\dfrac{n}{p}=1\right]=0.
     $$
     
-    由此，对于不止一个素因子的合数 $n$，都有 $\Lambda(n)=0$．
+    Do đó, với mọi hợp số $n$ có nhiều hơn một thừa số nguyên tố, ta đều có $\Lambda(n)=0$.
 
-### 拓展形式
+<span id="&#25299;&#23637;&#24418;&#24335;"></span>
+### Các dạng mở rộng
 
-除了上述基本形式外，莫比乌斯反演还有一些常见的拓展形式．首先，可以考虑它的倍数和形式．
+Ngoài dạng cơ bản trên, đảo Möbius còn có một số dạng mở rộng thường gặp. Trước hết, có thể xét dạng tổng trên các bội.
 
-???+ note "拓展一"
-    设 $f(n),g(n)$ 是两个数论函数．那么，有
+???+ note "Mở rộng 1"
+    Giả sử $f(n),g(n)$ là hai hàm số học. Khi đó
     
     $$
     f(n) = \sum_{n\mid d}g(d) \iff g(n) = \sum_{n\mid d}\mu\left(\dfrac{d}{n}\right)f(d).
     $$
 
-??? note "证明"
-    直接验证，有：
+??? note "Chứng minh"
+    Kiểm tra trực tiếp:
     
     $$
     \begin{aligned}
@@ -199,19 +204,19 @@ $$
     \end{aligned}
     $$
     
-    这和基本形式的推导完全对偶．
+    Suy luận này hoàn toàn đối ngẫu với dạng cơ bản.
 
-其次，莫比乌斯反演并不仅限于加法，它实际上对于任何 [Abel 群](../algebra/basic.md#群) 中的运算都成立．例如，它有如下的乘法形式：
+Tiếp theo, đảo Möbius không chỉ giới hạn ở phép cộng; thực ra nó đúng với phép toán trong bất kỳ [nhóm Abel](../algebra/basic.md#%E7%BE%A4) nào. Chẳng hạn, nó có dạng nhân sau:
 
-???+ note "拓展二"
-    设 $f(n),g(n)$ 是两个数论函数．那么，有
+???+ note "Mở rộng 2"
+    Giả sử $f(n),g(n)$ là hai hàm số học. Khi đó
     
     $$
     f(n) = \prod_{d\mid n}g(d) \iff g(n) = \prod_{d\mid n}f(d)^{\mu(n/d)}.
     $$
 
-??? note "证明"
-    直接验证，有：
+??? note "Chứng minh"
+    Kiểm tra trực tiếp:
     
     $$
     \begin{aligned}
@@ -224,25 +229,25 @@ $$
     \end{aligned}
     $$
     
-    其中，$a\uparrow b = a^b$ 是 Knuth 箭头．对比基本形式的证明可以发现，唯一的区别就是加法换成了乘法，且乘法换成了取幂．
+    Trong đó $a\uparrow b = a^b$ là ký hiệu mũi tên Knuth. So sánh với chứng minh của dạng cơ bản, ta thấy khác biệt duy nhất là phép cộng được thay bằng phép nhân, còn phép nhân được thay bằng phép lũy thừa.
 
-从 Dirichlet 卷积的角度看，莫比乌斯反演只是利用了「莫比乌斯函数是常值函数的 Dirichlet 逆」这一点．容易想象，类似莫比乌斯反演的关系对于一般的 [Dirichlet 逆](./dirichlet.md#dirichlet-卷积) 同样成立．
+Nhìn từ góc độ tích chập Dirichlet, đảo Möbius chỉ dùng sự thật rằng "hàm Möbius là nghịch đảo Dirichlet của hàm hằng". Có thể hình dung các quan hệ tương tự đảo Möbius cũng đúng với [nghịch đảo Dirichlet](./dirichlet.md#dirichlet-%E5%8D%B7%E7%A7%AF) tổng quát.
 
-???+ note "拓展三"
-    设 $f(n),g(n),\alpha(n)$ 都是数论函数，且 $\alpha^{-1}(n)$ 是 $\alpha(n)$ 的 Dirichlet 逆，即
+???+ note "Mở rộng 3"
+    Giả sử $f(n),g(n),\alpha(n)$ đều là các hàm số học, và $\alpha^{-1}(n)$ là nghịch đảo Dirichlet của $\alpha(n)$, tức
     
     $$
     [n=1] = \sum_{d\mid n}\alpha\left(\dfrac{n}{d}\right)\alpha^{-1}(d).
     $$
     
-    那么，有
+    Khi đó
     
     $$
     f(n) = \sum_{d\mid n}\alpha\left(\dfrac{n}{d}\right)g(d) \iff g(n) = \sum_{d\mid n}\alpha^{-1}\left(\dfrac{n}{d}\right)f(d).
     $$
 
-??? note "证明"
-    直接验证，有：
+??? note "Chứng minh"
+    Kiểm tra trực tiếp:
     
     $$
     \begin{aligned}
@@ -255,37 +260,37 @@ $$
     \end{aligned}
     $$
     
-    和基本形式的证明相比较，只需要将倒数第二个等号替换成 Dirichlet 逆的定义式．
+    So với chứng minh của dạng cơ bản, chỉ cần thay dấu bằng áp chót bằng định nghĩa của nghịch đảo Dirichlet.
 
-???+ note "推论"
-    设 $f(n),g(n)$ 是数论函数，且 $t(n)$ 是完全积性函数．那么，有
+???+ note "Hệ quả"
+    Giả sử $f(n),g(n)$ là các hàm số học và $t(n)$ là hàm hoàn toàn nhân tính. Khi đó
     
     $$
     f(n) = \sum_{d\mid n}t\left(\dfrac{n}{d}\right)g(d) \iff g(n) = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)t\left(\dfrac{n}{d}\right)f(d).
     $$
 
-??? note "证明"
-    由 Dirichlet 卷积的 [性质](./dirichlet.md#性质) 可知，对于完全积性函数 $t(n)$，它的 Dirichlet 逆就是 $\mu(n)t(n)$．
+??? note "Chứng minh"
+    Từ [tính chất](./dirichlet.md#%E6%80%A7%E8%B4%A8) của tích chập Dirichlet, với hàm hoàn toàn nhân tính $t(n)$, nghịch đảo Dirichlet của nó chính là $\mu(n)t(n)$.
 
-最后，莫比乌斯反演还可以推广到 $[1,+\infty)$ 上的复值函数，而不仅仅局限于数论函数．基本形式的莫比乌斯反演可以看作是复值函数在所有非整数点处均取零值的特殊情形．
+Cuối cùng, đảo Möbius còn có thể được mở rộng cho các hàm phức trên $[1,+\infty)$, chứ không chỉ giới hạn trong các hàm số học. Dạng cơ bản của đảo Möbius có thể xem là trường hợp đặc biệt trong đó hàm phức nhận giá trị bằng không tại mọi điểm không nguyên.
 
-???+ note "拓展四"
-    设 $F(x)$ 和 $G(x)$ 都是 $[1,+\infty)$ 上的复值函数．那么，有
+???+ note "Mở rộng 4"
+    Giả sử $F(x)$ và $G(x)$ đều là các hàm phức trên $[1,+\infty)$. Khi đó
     
     $$
     F(x) = \sum_{n = 1}^{\lfloor x\rfloor}G\left(\dfrac{x}{n}\right) \iff G(x) = \sum_{n = 1}^{\lfloor x\rfloor}\mu(n)F\left(\dfrac{x}{n}\right).
     $$
 
-??? note "证明"
-    不妨对 $F$ 和 $G$ 补充定义，设当 $x < 1$ 时，恒有 $F(x)=G(x)=0$．那么，命题就等价于：
+??? note "Chứng minh"
+    Ta có thể bổ sung định nghĩa cho $F$ và $G$: khi $x < 1$, luôn có $F(x)=G(x)=0$. Khi đó mệnh đề tương đương với:
     
     $$
     F(x) = \sum_n G\left(\dfrac{x}{n}\right) \iff G(x) = \sum_n \mu(n)F\left(\dfrac{x}{n}\right).
     $$
     
-    这些求和式都是对 $n\in\mathbf N_+$ 求和．
+    Các tổng này đều lấy trên $n\in\mathbf N_+$.
     
-    直接验证，有：
+    Kiểm tra trực tiếp:
     
     $$
     \begin{aligned}
@@ -297,131 +302,133 @@ $$
     \end{aligned}
     $$
     
-    其中，为得到第二个等号，需要令 $k = nd$．
+    Trong đó, để thu được dấu bằng thứ hai, đặt $k = nd$.
 
-???+ note "推论"
-    设 $f(n),g(n)$ 是数论函数．那么，有
+???+ note "Hệ quả"
+    Giả sử $f(n),g(n)$ là các hàm số học. Khi đó
     
     $$
     f(n) = \sum_{k=1}^ng\left(\left\lfloor\dfrac{n}{k}\right\rfloor\right) \iff g(n)=\sum_{k=1}^n\mu(k)f\left(\left\lfloor\dfrac{n}{k}\right\rfloor\right).
     $$
 
-??? note "证明"
-    只需要取 $F(x)=f(\lfloor x\rfloor)$ 和 $G(x)=g(\lfloor x\rfloor)$ 即可．
+??? note "Chứng minh"
+    Chỉ cần lấy $F(x)=f(\lfloor x\rfloor)$ và $G(x)=g(\lfloor x\rfloor)$.
 
-这些拓展形式之间可以互相组合，进而得到更为复杂的反演关系．
+Các dạng mở rộng này có thể kết hợp với nhau, từ đó thu được những quan hệ đảo phức tạp hơn.
 
-### Dirichlet 前缀和
+<span id="dirichlet-&#21069;&#32512;&#21644;"></span>
+### Tổng tiền tố Dirichlet
 
-前置知识：[前缀和与差分](../../basic/prefix-sum.md)
+Kiến thức cần biết trước: [tổng tiền tố và sai phân](../../basic/prefix-sum.md)
 
-考虑基本形式的莫比乌斯反演关系：
+Xét quan hệ đảo Möbius dạng cơ bản:
 
 $$
 f(n) = \sum_{d\mid n}g(d) \iff g(n) = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)f(d).
 $$
 
-左侧等式中，$f(n)$ 的值是 $n$ 的所有因数处 $g(n)$ 的值之和．如果将 $a\mid b$ 理解为 $a$ 排在 $b$ 之前，那么 $f(n)$ 就可以理解为某种意义下 $g(n)$ 的前缀和．因此，在国内竞赛圈，由 $\{g(k)\}_{k=1}^n$ 求出 $\{f(k)\}_{k=1}^n$ 的过程也称为 **Dirichlet 前缀和**，相应的逆过程则称为 Dirichlet 差分．这些方法大多出现在需要预处理某个数论函数在前 $N$ 个点处取值的情形．
+Ở đẳng thức bên trái, giá trị $f(n)$ là tổng các giá trị của $g(n)$ tại mọi ước của $n$. Nếu hiểu $a\mid b$ là $a$ đứng trước $b$, thì $f(n)$ có thể được xem như một dạng tổng tiền tố của $g(n)$. Vì vậy, trong giới thi lập trình Trung Quốc, quá trình tính $\{f(k)\}_{k=1}^n$ từ $\{g(k)\}_{k=1}^n$ còn được gọi là **tổng tiền tố Dirichlet**, còn quá trình ngược lại được gọi là sai phân Dirichlet. Các phương pháp này chủ yếu xuất hiện khi cần tiền xử lý giá trị của một hàm số học tại $N$ điểm đầu tiên.
 
-接下来，讨论 Dirichlet 前缀和的计算．如果将每一个素数都看作一个维度，这就是一种高维前缀和．回忆高维前缀和的 [逐维前缀和算法](../../basic/prefix-sum.md#逐维前缀和)：逐个遍历所有的维度，并将每个位置的值都累加到该位置在该维度上的后继位置．对于数论函数，这相当于说，从小到大遍历所有素数 $p$，并将 $n$ 处的函数值累加到 $np$ 处．这和 [Eratosthenes 筛法](./sieve.md#埃拉托斯特尼筛法) 的遍历顺序是一致的．因此，这一算法可以在 $O(n\log\log n)$ 时间内计算出长度为 $n$ 的数列的 Dirichlet 前缀和．类似地，利用逐维差分就可以在相同时间复杂度内求出数列的 Dirichlet 差分．
+Tiếp theo, xét cách tính tổng tiền tố Dirichlet. Nếu xem mỗi số nguyên tố là một chiều, đây chính là một dạng tổng tiền tố nhiều chiều. Nhắc lại [thuật toán tổng tiền tố theo từng chiều](../../basic/prefix-sum.md#%E9%80%90%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C) của tổng tiền tố nhiều chiều: lần lượt duyệt mọi chiều và cộng giá trị của mỗi vị trí sang vị trí kế tiếp theo chiều đó. Với hàm số học, điều này tương đương với việc duyệt các số nguyên tố $p$ theo thứ tự tăng dần, rồi cộng giá trị hàm tại $n$ sang $np$. Thứ tự duyệt này trùng với [sàng Eratosthenes](./sieve.md#%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95). Do đó, thuật toán này có thể tính tổng tiền tố Dirichlet của một dãy độ dài $n$ trong thời gian $O(n\log\log n)$. Tương tự, dùng sai phân theo từng chiều cũng có thể tính sai phân Dirichlet của dãy trong cùng độ phức tạp.
 
-???+ example "参考实现"
-    === "Dirichlet 前缀和"
+???+ example "Cài đặt tham khảo"
+    === "Tổng tiền tố Dirichlet"
         ```cpp
         --8<-- "docs/math/code/mobius/mobius-func-3.cpp:presum"
         ```
     
-    === "Dirichlet 差分"
+    === "Sai phân Dirichlet"
         ```cpp
         --8<-- "docs/math/code/mobius/mobius-func-3.cpp:diff"
         ```
 
-这一计算方法可以推广到倍数和（拓展一）、乘积形式（拓展二）、利用完全积性函数代替常值函数（拓展三的推论）等拓展形式中．
+Cách tính này có thể mở rộng sang tổng trên các bội (mở rộng 1), dạng tích (mở rộng 2), hoặc dạng dùng hàm hoàn toàn nhân tính thay cho hàm hằng (hệ quả của mở rộng 3).
 
-## 例题
+<span id="&#20363;&#39064;"></span>
+## Bài tập ví dụ
 
-本节通过例题展示莫比乌斯反演的应用方法以及一些常见变形技巧．首先，通过一道例题熟悉处理求和式中最大公因数条件的基本技巧．
+Phần này dùng các bài tập để minh họa cách ứng dụng đảo Möbius và một số kỹ thuật biến đổi thường gặp. Trước hết, hãy làm quen với kỹ thuật cơ bản để xử lý điều kiện ước chung lớn nhất trong tổng.
 
 ???+ example "[Luogu P2522 \[HAOI 2011\] Problem b](https://www.luogu.com.cn/problem/P2522)"
-    $T$ 组数据．对每组数据，求值：
+    Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, hãy tính:
     
     $$
     \sum_{i=x}^{n}\sum_{j=y}^{m}[\gcd(i,j)=k].
     $$
     
-    数据范围：$1\le T,x,y,n,m,k\le 5\times 10^4$．
+    Giới hạn dữ liệu: $1\le T,x,y,n,m,k\le 5\times 10^4$.
 
-??? note "解答"
-    根据容斥原理，原式可以分成 $4$ 块来处理，且每一块的式子都具有形式
+??? note "Lời giải"
+    Theo nguyên lý bao hàm - loại trừ, biểu thức ban đầu có thể tách thành $4$ phần, và mỗi phần đều có dạng
     
     $$
     f(n,m,k)=\sum_{i=1}^{n}\sum_{j=1}^{m}[\gcd(i,j)=k].
     $$
     
-    对于这类式子，接下来是一段标准的推导流程：提取公因数，应用莫比乌斯函数性质，交换求和次序．
+    Với loại biểu thức này, tiếp theo là một quy trình suy luận chuẩn: tách ước chung, áp dụng tính chất của hàm Möbius, rồi đổi thứ tự lấy tổng.
     
-    首先，由于 $i,j$ 都只能取 $k$ 的倍数，可以先将这个因子提出来——这相当于代入 $i=ki'$ 和 $j=kj'$，就得到：
+    Trước hết, vì $i,j$ đều chỉ có thể nhận các bội của $k$, ta có thể tách nhân tử này ra trước, tương đương với thay $i=ki'$ và $j=kj'$, thu được:
     
     $$
     f(n,m,k)=\sum_{i=1}^{\lfloor n/k\rfloor}\sum_{j=1}^{\lfloor m/k\rfloor}[\gcd(i,j)=1].
     $$
     
-    再利用莫比乌斯函数的性质可知：
+    Lại dùng tính chất của hàm Möbius:
     
     $$
     [\gcd(i,j)=1] = \sum_{d\mid\gcd(i,j)}\mu(d) = \sum_d[d\mid i][d\mid j]\mu(d).
     $$
     
-    将它代入表达式，并交换求和次序，就得到：
+    Thay nó vào biểu thức và đổi thứ tự lấy tổng, ta được:
     
     $$
     f(n,m,k)=\sum_d\mu(d)\left(\sum_{i=1}^{\lfloor n/k\rfloor}[d\mid i]\right)\left(\sum_{j=1}^{\lfloor m/k\rfloor}[d\mid j]\right).
     $$
     
-    这样一段操作的好处是，固定 $d$ 时，求和式中关于 $i$ 和 $j$ 的项相互分离，可以分别求和．接下来，因为
+    Lợi ích của bước biến đổi này là khi cố định $d$, các hạng liên quan đến $i$ và $j$ trong tổng được tách rời và có thể tính riêng. Tiếp theo, vì
     
     $$
     \sum_{i=1}^{\lfloor n/k\rfloor}[d\mid i] = \left\lfloor\dfrac{\lfloor n/k\rfloor}{d}\right\rfloor,~\sum_{j=1}^{\lfloor m/k\rfloor}[d\mid j]=\left\lfloor\dfrac{\lfloor m/k\rfloor}{d}\right\rfloor,
     $$
     
-    所以，有
+    nên
     
     $$
     f(n,m,k)=\sum_d\mu(d)\left\lfloor\dfrac{\lfloor n/k\rfloor}{d}\right\rfloor\left\lfloor\dfrac{\lfloor m/k\rfloor}{d}\right\rfloor.
     $$
     
-    用线性筛预处理完 $\mu(d)$，并预处理其前缀和后，就可以通过数论分块求解．总的时间复杂度为 $O(N + T\sqrt{N})$，其中，$N$ 为 $n,m$ 的上界，$T$ 为数据组数．
+    Sau khi dùng sàng tuyến tính để tiền xử lý $\mu(d)$ và tổng tiền tố của nó, có thể giải bằng phân khối số học. Tổng độ phức tạp thời gian là $O(N + T\sqrt{N})$, trong đó $N$ là cận trên của $n,m$, còn $T$ là số bộ dữ liệu.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_1.cpp"
     ```
 
-接下来的两道例题展示了枚举公因数的处理方法，并利用 [筛法](./sieve.md#一般的积性函数) 计算一般积性函数的值．
+Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước chung, đồng thời dùng [sàng](./sieve.md#%E4%B8%80%E8%88%AC%E7%9A%84%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0) để tính giá trị của hàm nhân tính tổng quát.
 
 ???+ example "[SPOJ LCMSUM](https://www.spoj.com/problems/LCMSUM/)"
-    $T$ 组数据．对每组数据，求值：
+    Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, hãy tính:
     
     $$
     \sum_{i=1}^n \operatorname{lcm}(i,n).
     $$
     
-    数据范围：$1\le T\le 3\times 10^5,~1\le n\le 10^6$．
+    Giới hạn dữ liệu: $1\le T\le 3\times 10^5,~1\le n\le 10^6$.
 
-??? note "解答一"
-    题目提供的是最小公倍数，但往往最大公因数更容易处理．所以，首先做变形：
+??? note "Lời giải 1"
+    Đề bài cho bội chung nhỏ nhất, nhưng ước chung lớn nhất thường dễ xử lý hơn. Vì vậy trước hết biến đổi:
     
     $$
     f(n)=\sum_{i=1}^n \operatorname{lcm}(i,n) = \sum_{i=1}^n \frac{i\cdot n}{\gcd(i,n)}.
     $$
     
-    将 $n$ 提出，并枚举最大公因数 $k$：
+    Tách $n$ ra ngoài và liệt kê ước chung lớn nhất $k$:
     
     $$
     f(n)=n\sum_{k\mid n}\sum_{i=1}^n\dfrac{i}{k}[\gcd(i,n)=k].
     $$
     
-    对于内层的求和式，这是最常见的含有最大公因数的情形，重复标准的处理流程，就有：
+    Với tổng bên trong, đây là dạng thường gặp nhất có chứa ước chung lớn nhất. Lặp lại quy trình chuẩn, ta có:
     
     $$
     \begin{aligned}
@@ -431,43 +438,43 @@ $$
     \end{aligned}
     $$
     
-    再次地，关于 $i$ 的求和式与其他部分分离，可以单独处理．最后的求和式实际上是一个等差数列求和：（取 $i=di'$）
+    Một lần nữa, tổng theo $i$ được tách khỏi phần còn lại và có thể xử lý riêng. Tổng cuối thực chất là tổng cấp số cộng: lấy $i=di'$, ta có
     
     $$
     \sum_{i=1}^{n/k}i[d\mid i] = d\frac{1}{2}\left(\dfrac{n}{kd}+1\right)\dfrac{n}{kd}=:dG\left(\dfrac{n}{kd}\right).
     $$
     
-    由此，就得到如下表达式：
+    Từ đó thu được biểu thức:
     
     $$
     f(n) = n\sum_{k\mid n}\sum_d\mu(d)\left[d\mid \dfrac{n}{k}\right]dG\left(\dfrac{n}{kd}\right).
     $$
     
-    在枚举公因数之后，这样形式的二重求和式很常见．对于它，同样有固定的处理方法：将乘积设为新变量 $\ell=kd$，然后再次交换求和次序．因为 $d\mid(n/k)$ 就相当于 $d\mid\ell\mid n$，所以，原式变形为：
+    Sau khi liệt kê ước chung, dạng tổng kép như vậy rất thường gặp. Với nó, cũng có một cách xử lý cố định: đặt tích thành biến mới $\ell=kd$, rồi lại đổi thứ tự lấy tổng. Vì $d\mid(n/k)$ tương đương với $d\mid\ell\mid n$, biểu thức ban đầu biến thành:
     
     $$
     f(n) = n\sum_{\ell\mid n}G\left(\dfrac{n}{\ell}\right)\sum_{d\mid\ell}\mu(d)d.
     $$
     
-    设 $F(\ell)=\sum_{d\mid\ell}\mu(d)d$，则原式具有形式：
+    Đặt $F(\ell)=\sum_{d\mid\ell}\mu(d)d$, biểu thức ban đầu có dạng:
     
     $$
     f(n) = n\sum_{\ell\mid n}G\left(\dfrac{n}{\ell}\right)F(\ell).
     $$
     
-    因为 $\mu(d)d$ 是积性函数，所以它和常值函数 $1$ 的卷积 $F(n)$ 也是积性函数．尽管上述表达式中，求和式呈现 Dirichlet 卷积的形式，但是 $G(n)$ 并非积性函数，所以这一求和式的整体并非积性函数．但是，$G(n)$ 是多项式，所以它其实是若干完全积性函数的线性组合．所以，有
+    Vì $\mu(d)d$ là hàm nhân tính, tích chập của nó với hàm hằng $1$, tức $F(n)$, cũng là hàm nhân tính. Dù tổng trên có dạng tích chập Dirichlet, $G(n)$ không phải hàm nhân tính, nên toàn bộ tổng không phải hàm nhân tính. Tuy nhiên, $G(n)$ là đa thức, nên thực ra nó là tổ hợp tuyến tính của một số hàm hoàn toàn nhân tính. Do đó
     
     $$
     f(n) = \dfrac{1}{2}n\left(\sum_{\ell}\left(\dfrac{n}{\ell}\right)^2F(\ell) + \sum_{\ell}\dfrac{n}{\ell}F(\ell)\right).
     $$
     
-    这两项（不包含系数）都是积性函数，可以直接通过线性筛预处理（或者也可以线性筛出内层函数后，用 Dirichlet 前缀和在 $O(N\log\log N)$ 时间内预处理）．具体地，设
+    Hai hạng này (không tính hệ số) đều là hàm nhân tính, có thể tiền xử lý trực tiếp bằng sàng tuyến tính; cũng có thể sàng tuyến tính hàm bên trong trước rồi dùng tổng tiền tố Dirichlet để tiền xử lý trong thời gian $O(N\log\log N)$. Cụ thể, đặt
     
     $$
     H_s(n) = \sum_{\ell}\left(\dfrac{n}{\ell}\right)^sF(\ell),~s=1,2.
     $$
     
-    要推导它们的表达式，只需要确定它们在素数幂处的取值即可．为此，对于素数 $p$ 和正指数 $e$，有
+    Để suy ra biểu thức của chúng, chỉ cần xác định giá trị tại lũy thừa nguyên tố. Với số nguyên tố $p$ và số mũ dương $e$, ta có
     
     $$
     \begin{aligned}
@@ -476,62 +483,62 @@ $$
     \end{aligned}
     $$
     
-    特别地，$H_1(p^e)\equiv 1$ 是常值函数，而
+    Đặc biệt, $H_1(p^e)\equiv 1$ là hàm hằng, còn
     
     $$
     H_2(p^e) = p^{2e} + (1-p)\dfrac{1-p^{2e}}{1-p^2} = H_2(p^{e-1}) + p^{2e} - p^{2e-1}.
     $$
     
-    这就很容易通过线性筛求解．在线性筛预处理出 $H_2(n)$ 后，单次询问可以通过表达式 $f(n)=(n/2)(H_2(n)+1)$ 在 $O(1)$ 时间内求解．总的时间复杂度为 $O(N+T)$，其中，$N$ 为 $n$ 的上界，$T$ 为数据组数．
+    Công thức này rất dễ tính bằng sàng tuyến tính. Sau khi sàng tuyến tính tiền xử lý $H_2(n)$, mỗi truy vấn có thể được trả lời trong $O(1)$ bằng biểu thức $f(n)=(n/2)(H_2(n)+1)$. Tổng độ phức tạp thời gian là $O(N+T)$, trong đó $N$ là cận trên của $n$, còn $T$ là số bộ dữ liệu.
     
-    参考实现中，利用本题表达式的特殊性，对线性筛部分做了进一步推导，这并非必须的．仅利用素数幂处的取值，仍然可以在 $O(N)$ 时间内完成预处理．这些推导详见解答二．
+    Trong cài đặt tham khảo, do tính đặc biệt của biểu thức trong bài này, phần sàng tuyến tính được suy luận sâu hơn; điều này không bắt buộc. Chỉ dùng giá trị tại lũy thừa nguyên tố vẫn có thể hoàn thành tiền xử lý trong $O(N)$. Các suy luận này được trình bày trong lời giải 2.
 
-??? note "解答二"
-    就本题而言，有着更为灵活的处理方法．从解答一可以看出
+??? note "Lời giải 2"
+    Riêng với bài này, có một cách xử lý linh hoạt hơn. Từ lời giải 1 có thể thấy
     
     $$
     f(n) = n\sum_{k\mid n}\sum_{i=1}^{n/k}i\left[\gcd\left(i,\dfrac{n}{k}\right)=1\right] = n\sum_{k\mid n}F\left(\dfrac{n}{k}\right).
     $$
     
-    如果在这一步不继续做莫比乌斯反演，而是观察后面的求和式实际上是不超过 $d=n/k$ 且与之互素的整数之和．对于 $d>1$，因为与 $d$ 互素的整数成对出现，即 $i$ 和 $d-i$ 必定同时与 $d$ 互素，所以，有
+    Nếu ở bước này không tiếp tục dùng đảo Möbius, mà quan sát rằng tổng phía sau thực chất là tổng các số nguyên không vượt quá $d=n/k$ và nguyên tố cùng nhau với nó. Với $d>1$, vì các số nguyên tố cùng nhau với $d$ xuất hiện thành cặp, tức $i$ và $d-i$ chắc chắn đồng thời nguyên tố cùng nhau với $d$, nên
     
     $$
-    F(d)=\sum_{i=1}^{n'}i[i\perp d] = \sum_{i=1}^{d}(d-i)[i\perp d] = \dfrac{1}{2}d\sum_{i=1}^{d}[i\perp d] = \dfrac{1}{2}d\varphi(d).
+    F(d)=\sum_{i=1}^{d}i[i\perp d] = \sum_{i=1}^{d}(d-i)[i\perp d] = \dfrac{1}{2}d\sum_{i=1}^{d}[i\perp d] = \dfrac{1}{2}d\varphi(d).
     $$
     
-    对于 $d=1$，则有
+    Với $d=1$, ta có
     
     $$
     F(d)=1=\dfrac{1}{2}+\dfrac{1}{2}d\varphi(d).
     $$
     
-    进而，原式可以表示为
+    Suy ra biểu thức ban đầu có thể viết thành
     
     $$
     f(n) = \dfrac{1}{2}n\left(\sum_{d\mid n}d\varphi(d) + 1\right).
     $$
     
-    由于 $G(n)=\sum_{d\mid n}d\varphi(d)$ 是积性函数 $n\varphi(n)$ 与常值函数 $1$ 的 Dirichlet 卷积，所以它也是积性函数，可以通过线性筛预处理．为此，只需要确定它在素数幂处的取值．对于素数 $p$ 和正指数 $e$，有
+    Vì $G(n)=\sum_{d\mid n}d\varphi(d)$ là tích chập Dirichlet của hàm nhân tính $n\varphi(n)$ với hàm hằng $1$, nên nó cũng là hàm nhân tính và có thể tiền xử lý bằng sàng tuyến tính. Để làm điều đó, chỉ cần xác định giá trị của nó tại lũy thừa nguyên tố. Với số nguyên tố $p$ và số mũ dương $e$, ta có
     
     $$
     G(p^e) = 1 + \sum_{i=1}^ep^e(p^e-1) = G(p^{e-1}) + p^{2e} - p^{2e-1}.
     $$
     
-    可以看出，这一表达式和解答一推导的结果是一致的．这一方法的总时间复杂度仍然是 $O(N+T)$．
+    Có thể thấy biểu thức này nhất quán với kết quả suy ra ở lời giải 1. Độ phức tạp thời gian tổng thể của phương pháp này vẫn là $O(N+T)$.
     
-    最后，利用本题积性函数的表达式，可以进一步优化线性筛的计算过程．对于素数 $p$，有
+    Cuối cùng, dùng biểu thức hàm nhân tính của bài này, ta có thể tối ưu thêm quá trình tính bằng sàng tuyến tính. Với số nguyên tố $p$, ta có
     
     $$
     G(p) = 1 - p + p^2.
     $$
     
-    线性筛的关键在于对于一般的 $n$，需要求出 $G(pn)$ 的取值．这进一步分为两种情形．当 $p\perp n$ 时，因为 $G$ 是积性函数，所以
+    Điểm then chốt của sàng tuyến tính là với $n$ tổng quát, cần tính giá trị $G(pn)$. Việc này lại chia thành hai trường hợp. Khi $p\perp n$, vì $G$ là hàm nhân tính nên
     
     $$
     G(pn) = G(p)G(n).
     $$
     
-    否则，当 $p\mid n$ 时，设 $n=p^em$ 且 $p\perp m$，就有
+    Ngược lại, khi $p\mid n$, đặt $n=p^em$ và $p\perp m$, ta có
     
     $$
     \begin{aligned}
@@ -541,42 +548,42 @@ $$
     \end{aligned}
     $$
     
-    直接验证可知，这一表达式对于 $p\perp n$ 的情形也成立．因此，就有
+    Kiểm tra trực tiếp cho thấy biểu thức này cũng đúng trong trường hợp $p\perp n$. Vì vậy
     
     $$
     G(n) - G\left(\dfrac{n}{p}\right) = (p^{2e}-p^{2e-1})G(m).
     $$
     
-    代入上式，就得到
+    Thay vào biểu thức trên, ta được
     
     $$
     G(pn) = G(n) + p^2\left(G(n) - G\left(\dfrac{n}{p}\right)\right).
     $$
     
-    这简化了线性筛部分的计算．当然，这一推导并非必需，对于没有特殊性质的积性函数，直接利用 $G(pn)=G(p^{e+1})G(m)$ 就可以完成线性筛的计算．
+    Điều này đơn giản hóa phần tính sàng tuyến tính. Tất nhiên, suy luận này không bắt buộc; với hàm nhân tính không có tính chất đặc biệt, dùng trực tiếp $G(pn)=G(p^{e+1})G(m)$ vẫn có thể hoàn thành sàng tuyến tính.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_2.cpp"
     ```
 
-???+ example "[BZOJ 2154 \[国家集训队\] Crash 的数字表格](https://hydro.ac/p/bzoj-P2154)"
-    求值：
+???+ example "[BZOJ 2154 \[National Training Team\] Number Table of Crash](https://hydro.ac/p/bzoj-P2154)"
+    Tính:
     
     $$
     \sum_{i=1}^n\sum_{j=1}^m\operatorname{lcm}(i,j)\mod{20101009}.
     $$
     
-    数据范围：$1\le n,m\le 10^7$．
+    Giới hạn dữ liệu: $1\le n,m\le 10^7$.
 
-??? note "解答"
-    推导过程中忽略模数．设
+??? note "Lời giải"
+    Trong quá trình suy luận, tạm bỏ qua modulo. Đặt
     
     $$
     f(n,m) = \sum_{i=1}^n\sum_{j=1}^m\operatorname{lcm}(i,j).
     $$
     
-    依然是将最小公倍数转换为最大公因数，枚举公因数，并应用标准的处理流程，就得到
+    Vẫn chuyển bội chung nhỏ nhất thành ước chung lớn nhất, liệt kê ước chung và áp dụng quy trình xử lý chuẩn, ta được
     
     $$
     \begin{aligned}
@@ -588,72 +595,72 @@ $$
     \end{aligned}
     $$
     
-    再次地，求和式对于 $i$ 和 $j$ 分离．首先计算这些内层的求和式，提取因数（即取 $i=di'$），就有
+    Một lần nữa, tổng được tách rời theo $i$ và $j$. Trước hết tính các tổng bên trong này; tách nhân tử, tức lấy $i=di'$, ta có
     
     $$
     \sum_{i=1}^{\lfloor n/k\rfloor}i[d\mid i] = d\sum_{i=1}^{\lfloor\lfloor n/k\rfloor/d\rfloor}i = dG\left(\left\lfloor\dfrac{\lfloor n/k\rfloor}{d}\right\rfloor\right) = dG\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right).
     $$
     
-    其中，$G(n)=\dfrac{1}{2}n(n+1)$ 就是等差数列求和，最后一个等号利用了 [下取整函数](./basic.md#取整函数) 的性质．对称地，对于另一个和式可以类似计算．代回前文表达式，就有
+    Trong đó $G(n)=\dfrac{1}{2}n(n+1)$ là tổng cấp số cộng, còn dấu bằng cuối dùng tính chất của [hàm lấy phần nguyên dưới](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0). Tổng còn lại được tính tương tự. Thay trở lại biểu thức trước đó, ta có
     
     $$
     f(n,m) = \sum_k k\sum_{d}\mu(d)d^2G\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right)G\left(\left\lfloor\dfrac{m}{kd}\right\rfloor\right).
     $$
     
-    和前文的情形一致，对于这类枚举公因数的式子，往往都需要枚举乘积 $\ell = kd$，再次交换求和次序：
+    Giống trường hợp trước, với các biểu thức liệt kê ước chung kiểu này, thường cần liệt kê tích $\ell = kd$ rồi đổi thứ tự lấy tổng lần nữa:
     
     $$
     f(n,m) = \sum_{\ell}\left(\sum_{d\mid\ell}\mu(d)d\ell\right)G\left(\left\lfloor\dfrac{n}{\ell}\right\rfloor\right)G\left(\left\lfloor\dfrac{m}{\ell}\right\rfloor\right).
     $$
     
-    设
+    Đặt
     
     $$
     F(\ell) = \sum_{d\mid\ell}\mu(d)d\ell.
     $$
     
-    这是积性函数 $\ell$ 与积性函数 $\sum_{d\mid\ell}\mu(d)d$ 的乘积，所以也是积性函数，可以直接用线性筛预处理，并预处理出它的前缀和．然后，就可以用数论分块计算 $f(n,m)$ 的值．总的时间复杂度为 $O(\min\{n,m\})$．
+    Đây là tích của hàm nhân tính $\ell$ và hàm nhân tính $\sum_{d\mid\ell}\mu(d)d$, nên cũng là hàm nhân tính. Có thể dùng sàng tuyến tính để tiền xử lý trực tiếp, đồng thời tiền xử lý tổng tiền tố của nó. Sau đó, dùng phân khối số học để tính giá trị $f(n,m)$. Tổng độ phức tạp thời gian là $O(\min\{n,m\})$.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_3.cpp"
     ```
 
-接下来的一道例题较为特殊，需要对乘积的约数个数函数进行转换．
+Bài ví dụ tiếp theo tương đối đặc biệt, cần biến đổi hàm đếm số ước của một tích.
 
-???+ example "[LOJ 2185. \[SDOI2015\] 约数个数和](https://loj.ac/problem/2185)"
-    $T$ 组数据．对每组数据，求值：
+???+ example "[LOJ 2185. \[SDOI2015\] Sum of Divisor Counts](https://loj.ac/problem/2185)"
+    Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, hãy tính:
     
     $$
     \sum_{i=1}^n\sum_{j=1}^m\sigma_0(ij).
     $$
     
-    其中，$\sigma_0(n)=\sum_{d \mid n}1$ 表示 $n$ 的约数个数．
+    Trong đó $\sigma_0(n)=\sum_{d \mid n}1$ biểu thị số lượng ước của $n$.
     
-    数据范围：$1\le n,m,T\le 5\times 10^4$．
+    Giới hạn dữ liệu: $1\le n,m,T\le 5\times 10^4$.
 
-??? note "解答"
-    这道题目的难点在于将 $\sigma_0(ij)$ 转换为关于最大公因数的表达式．由于 $\sigma_0$ 是积性函数，可以首先考虑素数幂的情形．对于素数 $p$ 和非负指数 $e_1,e_2$，设 $i=p^{e_1},~j=p^{e_2}$，就有
+??? note "Lời giải"
+    Điểm khó của bài này là biến đổi $\sigma_0(ij)$ thành biểu thức theo ước chung lớn nhất. Vì $\sigma_0$ là hàm nhân tính, trước hết có thể xét trường hợp lũy thừa nguyên tố. Với số nguyên tố $p$ và các số mũ không âm $e_1,e_2$, đặt $i=p^{e_1},~j=p^{e_2}$, ta có
     
     $$
     \sigma_0(ij) = 1 + e_1 + e_2 = \sum_{x\mid i}\sum_{y\mid j}[x\perp y].
     $$
     
-    对于一般情形，不妨设 $i=\prod_p i_p$ 且 $j=\prod_p j_p$，其中，$i_p,j_p$ 分别是 $i,j$ 的素因数分解中 $p$ 的幂次．进而，有
+    Với trường hợp tổng quát, giả sử $i=\prod_p i_p$ và $j=\prod_p j_p$, trong đó $i_p,j_p$ lần lượt là lũy thừa của $p$ trong phân tích thừa số nguyên tố của $i,j$. Khi đó
     
     $$
     \sigma_0(ij) = \prod_p\sigma_0(i_pj_p)= \prod_p\sum_{x_p\mid i_p}\sum_{y_p\mid j_p}[x_p\perp y_p].
     $$
     
-    注意到，对于 $i$ 的每个素数幂因子 $i_p$ 都枚举它的因数 $x_p$，就相当于对 $i$ 枚举它的因数 $x$ 再分解出所有素数幂因子 $x_p$；对 $j$ 同理．因此，利用乘法分配律，该式就有
+    Chú ý rằng với mỗi thừa số lũy thừa nguyên tố $i_p$ của $i$, liệt kê ước $x_p$ của nó tương đương với liệt kê một ước $x$ của $i$ rồi tách ra mọi thừa số lũy thừa nguyên tố $x_p$; với $j$ cũng tương tự. Do đó, dùng luật phân phối của phép nhân, biểu thức trên trở thành
     
     $$
     \sigma_0(ij) = \sum_{x\mid i}\sum_{y\mid j}\prod_p[x_p\perp y_p] = \sum_{x\mid i}\sum_{y\mid j}[x\perp y].
     $$
     
-    最后一步用到了结论：$x\perp y$，当且仅当对于每个素因子 $p$，都有 $x_p\perp y_p$ 成立．
+    Bước cuối dùng kết luận: $x\perp y$ khi và chỉ khi với mỗi thừa số nguyên tố $p$, đều có $x_p\perp y_p$.
     
-    得到这一表达式后，就可以应用标准的处理流程：
+    Sau khi có biểu thức này, có thể áp dụng quy trình xử lý chuẩn:
     
     $$
     \begin{aligned}
@@ -665,9 +672,9 @@ $$
     \end{aligned}
     $$
     
-    最后一步推导的含义是：函数只有在 $d\mid i$ 且 $d\mid j$ 时才取非零值，且此时，枚举满足 $d\mid x\mid i$ 的 $x$ 就相当于枚举 $\dfrac{i}{d}$ 的因数 $\dfrac{x}{d}$，枚举满足 $d\mid y\mid j$ 的 $y$ 同理．
+    Ý nghĩa của bước suy luận cuối là: hàm chỉ nhận giá trị khác không khi $d\mid i$ và $d\mid j$; khi đó, liệt kê $x$ thỏa $d\mid x\mid i$ tương đương với liệt kê ước $\dfrac{x}{d}$ của $\dfrac{i}{d}$, và với $y$ cũng tương tự.
     
-    将这一表达式再代回原式，并交换求和次序：
+    Thay biểu thức này trở lại công thức ban đầu và đổi thứ tự lấy tổng:
     
     $$
     \begin{aligned}
@@ -679,56 +686,56 @@ $$
     \end{aligned}
     $$
     
-    令 $G(n)=\sum_{i=1}^n\sigma_0(i)$，就有
+    Đặt $G(n)=\sum_{i=1}^n\sigma_0(i)$, ta có
     
     $$
     f(n,m)=\sum_{d}\mu(d)G\left(\left\lfloor\dfrac{n}{d}\right\rfloor\right)G\left(\left\lfloor\dfrac{m}{d}\right\rfloor\right).
     $$
     
-    这可以通过数论分块求解．只需要预处理出 $\mu(n)$ 和 $\sigma_0(n)$ 的前缀和即可．总时间复杂度为 $O(N+T\sqrt{N})$，其中，$N$ 为 $n,m$ 的上界，$T$ 为数据组数．
+    Công thức này có thể giải bằng phân khối số học. Chỉ cần tiền xử lý $\mu(n)$ và tổng tiền tố của $\sigma_0(n)$. Tổng độ phức tạp thời gian là $O(N+T\sqrt{N})$, trong đó $N$ là cận trên của $n,m$, còn $T$ là số bộ dữ liệu.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_4.cpp"
     ```
 
-最后一道例题展示了如何应用乘法版本的莫比乌斯反演．
+Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của đảo Möbius.
 
 ???+ example "[Luogu P5221 Product](https://www.luogu.com.cn/problem/P5221)"
-    求值：
+    Tính:
     
     $$
     \prod_{i=1}^n\prod_{j=1}^n\dfrac{\operatorname{lcm}(i,j)}{\gcd(i,j)}\pmod{104857601}.
     $$
     
-    数据范围：$1\le n\le 1\times 10^6$．
+    Giới hạn dữ liệu: $1\le n\le 1\times 10^6$.
 
-??? note "解答一"
-    推导过程中忽略模数．设
+??? note "Lời giải 1"
+    Trong quá trình suy luận, tạm bỏ qua modulo. Đặt
     
     $$
     f(n) = \prod_{i=1}^n\prod_{j=1}^n\dfrac{\operatorname{lcm}(i,j)}{\gcd(i,j)}.
     $$
     
-    依然是将最小公倍数转换为最大公因数：
+    Vẫn chuyển bội chung nhỏ nhất thành ước chung lớn nhất:
     
     $$
     f(n) = \prod_{i=1}^n\prod_{j=1}^n\dfrac{ij}{(\gcd(i,j))^2}.
     $$
     
-    注意，对这些因子的乘积是相互独立的，可以分别计算．令
+    Chú ý rằng tích của các nhân tử này độc lập với nhau và có thể tính riêng. Đặt
     
     $$
     g(n) = \prod_{i=1}^n\prod_{j=1}^n\gcd(i,j).
     $$
     
-    原式就等于：
+    Biểu thức ban đầu bằng
     
     $$
     f(n) = \dfrac{(n!)^{2n}}{g(n)^2}.
     $$
     
-    重点是解决 $g(n)$ 的计算问题．对它的处理流程和前文描述的相仿，但是需要换成相应的乘法版本．首先，枚举并提取公因数：
+    Trọng tâm là tính $g(n)$. Quy trình xử lý nó tương tự như đã mô tả ở trên, nhưng cần chuyển sang phiên bản nhân tương ứng. Trước hết liệt kê và tách ước chung:
     
     $$
     \begin{aligned}
@@ -737,25 +744,25 @@ $$
     \end{aligned}
     $$
     
-    其中，$a\uparrow b=a^b$ 是 Knuth 箭头．然后，代入 $[\gcd(i,j)=1]=\sum_d\mu(d)[d\mid i][d\mid j]$，并将指数上的和式转换为幂的乘积式，得到：
+    Trong đó $a\uparrow b=a^b$ là ký hiệu mũi tên Knuth. Sau đó, thay $[\gcd(i,j)=1]=\sum_d\mu(d)[d\mid i][d\mid j]$ và chuyển tổng ở số mũ thành tích các lũy thừa, thu được:
     
     $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/k\rfloor}\prod_{j=1}^{\lfloor n/k\rfloor}k\uparrow(\mu(d)[d\mid i][d\mid j]).
     $$
     
-    进一步地提取因数（即令 $i=di'$，$j=dj'$），并应用 [下取整函数](./basic.md#取整函数) 的性质，就得到：
+    Tiếp tục tách nhân tử, tức đặt $i=di'$, $j=dj'$, và áp dụng tính chất của [hàm lấy phần nguyên dưới](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0), ta được:
     
     $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/(kd)\rfloor}\prod_{j=1}^{\lfloor n/(kd)\rfloor}k\uparrow\mu(d).
     $$
     
-    然后分离关于 $i,j$ 的乘积，就发现乘式中并不含有 $i,j$，因此它就相当于对乘式取幂：
+    Sau đó tách tích theo $i,j$. Ta thấy trong tích không còn chứa $i,j$, nên điều này tương đương với lấy lũy thừa của tích:
     
     $$
     g(n) = \prod_k\prod_d k\uparrow\left(\mu(d)\left\lfloor\dfrac{n}{kd}\right\rfloor^2\right).
     $$
     
-    因为前面枚举了公因数，所以对于这个式子需要再次交换求乘积的次序．令 $\ell = kd$，有：
+    Vì phía trước đã liệt kê ước chung, với biểu thức này cần đổi thứ tự lấy tích một lần nữa. Đặt $\ell = kd$, ta có:
     
     $$
     \begin{aligned}
@@ -764,13 +771,13 @@ $$
     \end{aligned}
     $$
     
-    设
+    Đặt
     
     $$
     F(n) = \prod_{d\mid n}\left(\dfrac{n}{d}\right)\uparrow\mu(d).
     $$
     
-    容易发现这是关于 $\tilde F(n)=n$ 的乘积形式莫比乌斯反演．即使不知道它的表达式，也可以应用 [Dirichlet 差分](#dirichlet-前缀和) 方法在 $O(n\log\log n)$ 时间内预处理．当然，由于 $\tilde F(n)$ 的形式非常简单，$F(n)$ 的表达式可以直接求出：
+    Dễ thấy đây là đảo Möbius dạng tích đối với $\tilde F(n)=n$. Ngay cả khi không biết biểu thức của nó, ta vẫn có thể dùng phương pháp [sai phân Dirichlet](#dirichlet-%E5%89%8D%E7%BC%80%E5%92%8C) để tiền xử lý trong thời gian $O(n\log\log n)$. Tất nhiên, vì dạng của $\tilde F(n)$ rất đơn giản, biểu thức của $F(n)$ có thể tính trực tiếp:
     
     $$
     F(n) = 
@@ -780,56 +787,58 @@ $$
     \end{cases}
     $$
     
-    [von Mangoldt 函数](#莫比乌斯反演) 就是它的自然对数．得到 $F(n)$ 的取值后，直接应用乘积版本的数论分块就可以在 $O(\sqrt{n})$ 时间内求出 $g(n)$ 的取值，进而得到 $f(n)$ 的取值．总的时间复杂度为 $O(n)$．
+    [Hàm von Mangoldt](#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94) chính là logarit tự nhiên của nó. Sau khi có giá trị của $F(n)$, dùng trực tiếp phân khối số học phiên bản nhân là có thể tính giá trị của $g(n)$ trong thời gian $O(\sqrt{n})$, rồi từ đó tính được $f(n)$. Tổng độ phức tạp thời gian là $O(n)$.
     
-    值得注意的是，涉及乘积的计算时，往往需要用到 [欧拉定理](./fermat.md)，因此指数部分取模用到的模数与题目所给的模数并不相同．
+    Cần chú ý rằng khi tính các tích, ta thường phải dùng [định lý Euler](./fermat.md), nên modulo dùng cho phần số mũ không giống modulo đề bài cho.
 
-??? note "解答二"
-    乘积版本推导的难点在于对乘积和幂次的处理相对陌生，因此，对于这类问题，也可以取对数后再推导．对于本题，仅考虑 $g(n)$ 的推导．将它取对数后，有：
+??? note "Lời giải 2"
+    Điểm khó của suy luận phiên bản nhân nằm ở việc xử lý tích và lũy thừa còn khá lạ. Vì vậy, với loại bài này cũng có thể lấy logarit rồi suy luận. Trong bài này, chỉ xét phần suy luận cho $g(n)$. Lấy logarit, ta có:
     
     $$
     \log g(n) = \sum_{i=1}^n\sum_{j=1}^n\log\gcd(i,j).
     $$
     
-    对于这类含有最大公因数的式子，直接应用标准的推导流程，就得到：
+    Với dạng biểu thức chứa ước chung lớn nhất như vậy, áp dụng trực tiếp quy trình suy luận chuẩn, ta được:
     
     $$
     \begin{aligned}
     \log g(n) 
     &= \sum_k\log k\sum_{i=1}^n\sum_{j=1}^n[\gcd(i,j)=k]\\
     &= \sum_k\log k\sum_{i=1}^{\lfloor n/k\rfloor}\sum_{j=1}^{\lfloor n/k\rfloor}[\gcd(i,j)=1]\\
-    &= \sum_k\log k\sum_d\mu(d)\left(\sum_{i=1}^{\lfloor n/k\rfloor}[i\mid d]\right)\left(\sum_{j=1}^{\lfloor n/k\rfloor}[j\mid d]\right)\\
+    &= \sum_k\log k\sum_d\mu(d)\left(\sum_{i=1}^{\lfloor n/k\rfloor}[d\mid i]\right)\left(\sum_{j=1}^{\lfloor n/k\rfloor}[d\mid j]\right)\\
     &= \sum_k\log k\sum_d\mu(d)\left\lfloor\dfrac{n}{kd}\right\rfloor^2\\
     &= \sum_{\ell}\left(\sum_d\mu(d)\log\dfrac{\ell}{d}\right)\left\lfloor\dfrac{n}{\ell}\right\rfloor^2\\
     &= \sum_{\ell}\Lambda(\ell)\left\lfloor\dfrac{n}{\ell}\right\rfloor^2.
     \end{aligned}
     $$
     
-    其中，$\Lambda(n)$ 是 [von Mangoldt 函数](#莫比乌斯反演)．将这一推导结果取幂，就得到解答一的结果．
+    Trong đó $\Lambda(n)$ là [hàm von Mangoldt](#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94). Lấy mũ kết quả suy luận này, ta thu được kết quả của lời giải 1.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_5.cpp"
     ```
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
--   [Luogu P3312 \[SDOI2014\] 数表](https://www.luogu.com.cn/problem/P3312)
--   [Luogu P3700 \[CQOI2017\] 小 Q 的表格](https://www.luogu.com.cn/problem/P3700)
--   [Luogu P3704 \[SDOI2017\] 数字表格](https://www.luogu.com.cn/problem/P3704)
--   [Luogu P3768 简单的数学题](https://www.luogu.com.cn/problem/P3768)
--   [Luogu P4464 \[国家集训队\] JZPKIL](https://www.luogu.com.cn/problem/P4464)
--   [Luogu P4619 \[SDOI2018\] 旧试题](https://www.luogu.com.cn/problem/P4619)
--   [Luogu P5518 \[MtOI2019\] 幽灵乐团](https://www.luogu.com.cn/problem/P5518)
--   [Luogu P6222 简单题 加强版](https://www.luogu.com.cn/problem/P6222)
--   [Luogu P6825「EZEC-4」求和](https://www.luogu.com.cn/problem/P6825)
--   [Luogu P7486「Stoi2031」彩虹](https://www.luogu.com.cn/problem/P7486)
+-   [Luogu P3312 \[SDOI2014\] Number Table](https://www.luogu.com.cn/problem/P3312)
+-   [Luogu P3700 \[CQOI2017\] Table of Little Q](https://www.luogu.com.cn/problem/P3700)
+-   [Luogu P3704 \[SDOI2017\] Number Table](https://www.luogu.com.cn/problem/P3704)
+-   [Luogu P3768 Simple Math Problem](https://www.luogu.com.cn/problem/P3768)
+-   [Luogu P4464 \[National Training Team\] JZPKIL](https://www.luogu.com.cn/problem/P4464)
+-   [Luogu P4619 \[SDOI2018\] Old Problem](https://www.luogu.com.cn/problem/P4619)
+-   [Luogu P5518 \[MtOI2019\] Ghost Orchestra](https://www.luogu.com.cn/problem/P5518)
+-   [Luogu P6222 Simple Problem, Enhanced Version](https://www.luogu.com.cn/problem/P6222)
+-   [Luogu P6825 \[EZEC-4\] Sum](https://www.luogu.com.cn/problem/P6825)
+-   [Luogu P7486 \[Stoi2031\] Rainbow](https://www.luogu.com.cn/problem/P7486)
 -   [AtCoder Grand Contest 038 C - LCMs](https://atcoder.jp/contests/agc038/tasks/agc038_c)
--   [Codeforeces 1139 D. Steps to One](https://codeforces.com/problemset/problem/1139/D)
+-   [Codeforces 1139 D. Steps to One](https://codeforces.com/problemset/problem/1139/D)
 
-## 参考文献
+<span id="&#21442;&#32771;&#25991;&#29486;"></span>
+## Tài liệu tham khảo
 
 -   [Möbius function - Wikipedia](https://en.wikipedia.org/wiki/M%C3%B6bius_function)
 -   [Möbius inversion formula - Wikipedia](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
 -   [Von Mangoldt function - Wikipedia](https://en.wikipedia.org/wiki/Von_Mangoldt_function)
--   [algocode 算法博客](https://web.archive.org/web/20190523150159/https://algocode.net/2018/04/18/20180418-KB-Mobius-Inversion-Formula/)
+-   [algocode algorithm blog](https://web.archive.org/web/20190523150159/https://algocode.net/2018/04/18/20180418-KB-Mobius-Inversion-Formula/)

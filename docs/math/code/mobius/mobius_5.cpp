@@ -15,7 +15,7 @@ int main() {
   constexpr int M = 104857601;
   int n;
   std::cin >> n;
-  // Get F(n), i.e., exp(Lambda(n)).
+  // Tính F(n), tức exp(Lambda(n)).
   std::vector<int> vis(n + 1), prime, pf(n + 1), rem(n + 1);
   prime.reserve(n);
   for (int x = 2; x <= n; ++x) {
@@ -36,7 +36,7 @@ int main() {
   for (int x = 2; x <= n; ++x) {
     pf[x] = rem[x] == 1 ? pf[x] : 1;
   }
-  // Prefix products and their inverses.
+  // Tích tiền tố và nghịch đảo của chúng.
   std::vector<int> pm(n + 1), ip(n + 1);
   pm[0] = 1;
   for (int x = 1; x <= n; ++x) {
@@ -48,7 +48,7 @@ int main() {
     ip[x] = inv;
     inv = 1LL * inv * pf[x] % M;
   }
-  // Calculate g(n).
+  // Tính g(n).
   int res = 1;
   for (int l = 1, r; l <= n; l = r + 1) {
     r = n / (n / l);
@@ -56,14 +56,14 @@ int main() {
     int b = 1LL * (n / l) * (n / l) % (M - 1);
     res = 1LL * res * pow(a, b, M) % M;
   }
-  // Take square and then inverse.
+  // Lấy bình phương rồi lấy nghịch đảo.
   res = pow(res, M - 3, M);
-  // Get factorials.
+  // Tính giai thừa.
   int fac = 1;
   for (int x = 1; x <= n; ++x) {
     fac = 1LL * fac * x % M;
   }
-  // Final answer.
+  // Đáp án cuối cùng.
   res = 1LL * res * pow(fac, 2 * n, M) % M;
   std::cout << res << std::endl;
   return 0;

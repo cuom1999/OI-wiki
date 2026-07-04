@@ -257,14 +257,14 @@ nav:
       - Logarithm rời rạc: math/number-theory/discrete-logarithm.md
       - Thặng dư bậc cao & căn đơn vị: math/number-theory/residue.md
       - Phân khối trong lý thuyết số: math/number-theory/sqrt-decomposition.md
-      - 狄利克雷卷积: math/number-theory/dirichlet.md
-      - 莫比乌斯反演: math/number-theory/mobius.md
-      - 杜教筛: math/number-theory/du.md
-      - Powerful Number 筛: math/number-theory/powerful-number.md
-      - Min_25 筛: math/number-theory/min-25.md
-      - 洲阁筛: math/number-theory/zhou.md
+      - Tích chập Dirichlet: math/number-theory/dirichlet.md
+      - Đảo Möbius: math/number-theory/mobius.md
+      - Sàng Dujiao: math/number-theory/du.md
+      - Sàng Powerful Number: math/number-theory/powerful-number.md
+      - Sàng Min_25: math/number-theory/min-25.md
+      - Sàng Zhouge: math/number-theory/zhou.md
       - 类欧几里德算法: math/number-theory/euclidean.md
-      - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
+      - Thuật toán Meissel–Lehmer: math/number-theory/meissel-lehmer.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
