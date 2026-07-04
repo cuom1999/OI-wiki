@@ -169,21 +169,21 @@ Các đỉnh có vertex labeling bằng $0$ cuối cùng sẽ trở thành đỉ
     struct edge {
       int u, v, w;
     
-      // Bieu thi (u,v) la mot canh co trong so w
+      // Biểu thị (u,v) là một cạnh có trọng số w
       edge() {}
     
       edge(int u, int v, int w) : u(u), v(v), w(w) {}
     };
     
     int n, n_x;
-    // Co n dinh, danh so tu 1 den n
-    // n_x bieu thi tong so dinh hien tai cong voi so hoa,
-    // cac dinh hoa duoc danh so tu n+1 den n_x
+    // Có n đỉnh, đánh số từ 1 đến n
+    // n_x biểu thị tổng số đỉnh hiện tại cộng với số hoa,
+    // các đỉnh hoa được đánh số từ n+1 đến n_x
     edge g[MAXN * 2 + 1][MAXN * 2 + 1];
-    // Do thi duoc luu bang ma tran ke, vi toi da co n-1 hoa nen kich thuoc la MAXN*2
+    // Đồ thị được lưu bằng ma trận kề, vì tối đa có n-1 hoa nên kích thước là MAXN*2
     vector<int> flower[MAXN * 2 + 1];
-    // flower[b] ghi lai nhung dinh nao nam trong hoa b
-    // Cach ghi cac dinh trong hoa chi ghi cac hoa ngoai cung nam trong hoa do
+    // flower[b] ghi lại những đỉnh nào nằm trong hoa b
+    // Cách ghi các đỉnh trong hoa chỉ ghi các hoa ngoài cùng nằm trong hoa đó
     ```
 
 Dưới đây là ví dụ về hoa lồng nhau.
@@ -206,24 +206,24 @@ flower[b1] = {5, 8, 6}
 
 ```cpp
 int lab[MAXN * 2 + 1];
-// lab[u] dung de ghi z_u, lab[b] dung de ghi z_B
+// lab[u] dùng để ghi z_u, lab[b] dùng để ghi z_B
 int match[MAXN * 2 + 1], slack[MAXN * 2 + 1], st[MAXN * 2 + 1],
     pa[MAXN * 2 + 1];
-// match[x]=y bieu thi (x,y) la cap ghep, o day x va y co the la hoa
-// slack[x]=u bieu thi z(x,u) la nho nhat trong cac canh ke voi x
-// st[x]=b bieu thi hoa chua nut x la b. Neu x=b va b<=n thi x
-// la mot nut thong thuong khong thuoc bat ky hoa nao.
-// pa[v]=u bieu thi trong cay luan phien, nut cha cua v la u
+// match[x]=y biểu thị (x,y) là cặp ghép, ở đây x và y có thể là hoa
+// slack[x]=u biểu thị z(x,u) là nhỏ nhất trong các cạnh kề với x
+// st[x]=b biểu thị hoa chứa nút x là b. Nếu x=b và b<=n thì x
+// là một nút thông thường không thuộc bất kỳ hoa nào.
+// pa[v]=u biểu thị trong cây luân phiên, nút cha của v là u
 int flower_from[MAXN * 2 + 1][MAXN + 1], S[MAXN * 2 + 1], vis[MAXN * 2 + 1];
 /*
-flower_from[b][x]=xs bieu thi hoa con lon nhat cua b co chua x la xs
-x la mot dinh trong b, xs la mot hoa hoac mot dinh trong b,
-dong thoi x=xs hoac x la mot trong cac dinh cua xs
+flower_from[b][x]=xs biểu thị hoa con lớn nhất của b có chứa x là xs
+x là một đỉnh trong b, xs là một hoa hoặc một đỉnh trong b,
+đồng thời x=xs hoặc x là một trong các đỉnh của xs
 */
-// S[u]={-1: chua tham, 0: dinh chan, 1: dinh le}
-// vis chi duoc dung khi tim lca de kiem tra da di qua hay chua
+// S[u]={-1: chưa thăm, 0: đỉnh chẵn, 1: đỉnh lẻ}
+// vis chỉ được dùng khi tìm lca để kiểm tra đã đi qua hay chưa
 queue<int> q;
-// queue dung cho BFS tim duong tang cuong
+// queue dùng cho BFS tìm đường tăng cường
 ```
 
 ![general-weight-match-4](images/general-weight-match-4.png)
@@ -233,25 +233,25 @@ flower_from[b2][6] = b1
 flower_from[b2][5] = b1 
 flower_from[b2][9] = 9 
 flower_from[b1][6] = 6 
-Va cu the tiep
+Và cứ thế tiếp
 ```
 
 ```cpp
 int e_delta(const edge &e) {
-  // Tinh ze. De tien loi, truoc do nhan trong so moi canh voi hai
-  // Tinh truc tiep gia tri e_delta ben trong hoa se gay loi
+  // Tính ze. Để tiện lợi, trước đó nhân trọng số mỗi cạnh với hai
+  // Tính trực tiếp giá trị e_delta bên trong hoa sẽ gây lỗi
   return lab[e.u] + lab[e.v] - g[e.u][e.v].w * 2;
 }
 
 void update_slack(int u, int x) {
-  // Dung u de cap nhat gia tri slack[x]
+  // Dùng u để cập nhật giá trị slack[x]
   if (!slack[x] || e_delta(g[u][x]) < e_delta(g[slack[x]][x])) {
     slack[x] = u;
   }
 }
 
 void set_slack(int x) {
-  // Tinh gia tri slack[x], slack[x]=0 bieu thi x la nut trong cay luan phien
+  // Tính giá trị slack[x], slack[x]=0 biểu thị x là nút trong cây luân phiên
   slack[x] = 0;
   for (int u = 1; u <= n; ++u) {
     if (g[u][x].w > 0 && st[u] != x && S[st[u]] == 0) {
@@ -263,11 +263,11 @@ void set_slack(int x) {
 
 ```cpp
 void q_push(int x) {
-  // Dua x vao queue, ta quy dinh queue khong the push truc tiep mot hoa
+  // Đưa x vào queue, ta quy định queue không thể push trực tiếp một hoa
   if (x <= n)
     q.push(x);
   else {
-    // Neu muon push mot hoa thi phai them tat ca dinh cua do thi goc trong hoa vao queue
+    // Nếu muốn push một hoa thì phải thêm tất cả đỉnh của đồ thị gốc trong hoa vào queue
     for (size_t i = 0; i < flower[x].size(); i++) {
       q_push(flower[x][i]);
     }
@@ -275,10 +275,10 @@ void q_push(int x) {
 }
 
 void set_st(int x, int b) {
-  // Dat hoa chua x thanh b
+  // Đặt hoa chứa x thành b
   st[x] = b;
   if (x > n) {
-    // Neu x cung la hoa, phai dat hoa chua cac dinh ben trong x thanh b
+    // Nếu x cũng là hoa, phải đặt hoa chứa các đỉnh bên trong x thành b
     for (size_t i = 0; i < flower[x].size(); ++i) {
       set_st(flower[x][i], b);
     }
@@ -288,13 +288,13 @@ void set_st(int x, int b) {
 
 ```cpp
 int get_pr(int b, int xr) {
-  // xr la mot dinh trong flower[b], gia tri tra ve pr la vi tri cua no
-  // De chuong trinh chay thuan tien, ta de flower[b][0]~flower[b][pr] la duong luan phien trong hoa
+  // xr là một đỉnh trong flower[b], giá trị trả về pr là vị trí của nó
+  // Để chương trình chạy thuận tiện, ta để flower[b][0]~flower[b][pr] là đường luân phiên trong hoa
   int pr = find(flower[b].begin(), flower[b].end(), xr) - flower[b].begin();
   if (pr % 2 == 1) {
-    // Kiem tra vi tri cua no trong hoa. Neu flower[b][0]~flower[b][pr] khong phai duong luan phien
-    // thi dao nguoc ca hoa va tinh lai pr
-    // De flower[b][0]~flower[b][pr] thanh duong luan phien trong hoa
+    // Kiểm tra vị trí của nó trong hoa. Nếu flower[b][0]~flower[b][pr] không phải đường luân phiên
+    // thì đảo ngược cả hoa và tính lại pr
+    // Để flower[b][0]~flower[b][pr] thành đường luân phiên trong hoa
     reverse(flower[b].begin() + 1, flower[b].end());
     return (int)flower[b].size() - pr;
   } else
@@ -310,25 +310,25 @@ Nếu dùng `get_pr(b2,2)`, `flower[b2]` sẽ trở thành `{9,b1,4,3,2,11,10}` 
 
 ```cpp
 void set_match(int u, int v) {
-  // Dat u va v thanh canh ghep cap, u va v co the la hoa
+  // Đặt u và v thành cạnh ghép cặp, u và v có thể là hoa
   match[u] = g[u][v].v;
   if (u > n) {
-    // Neu u la hoa
+    // Nếu u là hoa
     edge e = g[u][v];
-    int xr = flower_from[u][e.u];  // Tim e.u nam tren hoa nao trong flower[u]
-    int pr = get_pr(u, xr);  // Tim vi tri cua xr va de 0~pr la duong luan phien trong hoa
-    for (int i = 0; i < pr; ++i) {  // Dao cac canh ghep va khong ghep tren duong luan phien trong hoa
+    int xr = flower_from[u][e.u];  // Tìm e.u nằm trên hoa nào trong flower[u]
+    int pr = get_pr(u, xr);  // Tìm vị trí của xr và để 0~pr là đường luân phiên trong hoa
+    for (int i = 0; i < pr; ++i) {  // Đảo các cạnh ghép và không ghép trên đường luân phiên trong hoa
       set_match(flower[u][i], flower[u][i ^ 1]);
     }
-    set_match(xr, v);  // Dat (xr,v) thanh canh ghep cap
+    set_match(xr, v);  // Đặt (xr,v) thành cạnh ghép cặp
     rotate(flower[u].begin(), flower[u].begin() + pr, flower[u].end());
-    // Cuoi cung dat pr thanh de hoa, vi cach luu hoa la flower[u][0] se la de hoa cua u
-    // Nen can rotate flower[u][pr] ve dau
+    // Cuối cùng đặt pr thành đế hoa, vì cách lưu hoa là flower[u][0] sẽ là đế hoa của u
+    // Nên cần rotate flower[u][pr] về đầu
   }
 }
 
 void augment(int u, int v) {
-  // Tang cuong toan bo u va cac to tien cua u, dong thoi dat (u,v) thanh canh ghep cap
+  // Tăng cường toàn bộ u và các tổ tiên của u, đồng thời đặt (u,v) thành cạnh ghép cặp
   for (;;) {
     int xnv = st[match[u]];
     set_match(u, v);
@@ -340,12 +340,12 @@ void augment(int u, int v) {
 }
 
 int get_lca(int u, int v) {
-  // Tim lca cua u, v tren cay luan phien
+  // Tìm lca của u, v trên cây luân phiên
   static int t = 0;
   for (++t; u || v; swap(u, v)) {
     if (u == 0) continue;
     if (vis[u] == t) return u;
-    vis[u] = t;  // Cach nay giup khong can xoa mang vis
+    vis[u] = t;  // Cách này giúp không cần xóa mảng vis
     u = st[match[u]];
     if (u) u = st[pa[u]];
   }
@@ -356,15 +356,15 @@ int get_lca(int u, int v) {
 ???+ note "Thêm một hoa lẻ"
     ```cpp
     void add_blossom(int u, int lca, int v) {
-      // Co hoa tao boi u, v, lca thanh mot dinh b
-      // lca cua u, v tren cay luan phien chinh la de hoa
+      // Co hoa tạo bởi u, v, lca thành một đỉnh b
+      // lca của u, v trên cây luân phiên chính là đế hoa
       int b = n + 1;
       while (b <= n_x && st[b]) ++b;
       if (b > n_x) ++n_x;
-      // Tim chi so hoa hien chua duoc dung
-      lab[b] = 0;             // Dat zB=0
-      S[b] = 0;               // Ca hoa la mot dinh chan
-      match[b] = match[lca];  // Dat canh ghep cua hoa thanh canh ghep cua de hoa
+      // Tìm chỉ số hoa hiện chưa được dùng
+      lab[b] = 0;             // Đặt zB=0
+      S[b] = 0;               // Cả hoa là một đỉnh chẵn
+      match[b] = match[lca];  // Đặt cạnh ghép của hoa thành cạnh ghép của đế hoa
       flower[b].clear();
       flower[b].push_back(lca);
       for (int x = u, y; x != lca; x = st[pa[y]]) {
@@ -380,8 +380,8 @@ int get_lca(int u, int v) {
         flower[b].push_back(y);
         q_push(y);
       }
-      // Dua tat ca dinh trong b vao flower[b] theo dang vong, va dat de hoa lam phan tu dau tien
-      set_st(b, b);  // Dat hoa chua moi phan tu trong ca hoa thanh b
+      // Đưa tất cả đỉnh trong b vào flower[b] theo dạng vòng, và đặt đế hoa làm phần tử đầu tiên
+      set_st(b, b);  // Đặt hoa chứa mỗi phần tử trong cả hoa thành b
       for (int x = 1; x <= n_x; ++x) {
         g[b][x].w = 0;
         g[x][b].w = 0;
@@ -392,7 +392,7 @@ int get_lca(int u, int v) {
       for (size_t i = 0; i < flower[b].size(); ++i) {
         int xs = flower[b][i];
         for (int x = 1; x <= n_x; ++x) {
-          // Dat canh ke giua b va x thanh canh trong b ke voi x co e_delta nho nhat
+          // Đặt cạnh kề giữa b và x thành cạnh trong b kề với x có e_delta nhỏ nhất
           if (g[b][x].w == 0 || e_delta(g[xs][x]) < e_delta(g[b][x])) {
             g[b][x] = g[xs][x];
             g[x][b] = g[x][xs];
@@ -400,33 +400,33 @@ int get_lca(int u, int v) {
         }
         for (int x = 1; x <= n; ++x) {
           if (flower_from[xs][x]) {
-            // Neu dinh xs ben trong b co chua x
-            // Thi flower_from[b][x] se la xs
+            // Nếu đỉnh xs bên trong b có chứa x
+            // Thì flower_from[b][x] sẽ là xs
             flower_from[b][x] = xs;
           }
         }
       }
       set_slack(b);
-      // Cuoi cung phai dat gia tri slack cua b
+      // Cuối cùng phải đặt giá trị slack của b
     }
     ```
 
 ???+ note "Bung hoa"
     ```cpp
     void expand_blossom(int b) {
-      // Khi b la hoa le va zB=0, phai bung b ra
-      // Vi chi bung b, nen neu ben trong b co chua cac hoa khac
-      // thi khong can bung chung ra
+      // Khi b là hoa lẻ và zB=0, phải bung b ra
+      // Vì chỉ bung b, nên nếu bên trong b có chứa các hoa khác
+      // thì không cần bung chúng ra
       for (size_t i = 0; i < flower[b].size(); ++i) {
         set_st(flower[b][i], flower[b][i]);
-        // Truoc tien dat hoa chua moi phan tu trong flower[b] thanh chinh no
+        // Trước tiên đặt hoa chứa mỗi phần tử trong flower[b] thành chính nó
       }
       int xr = flower_from[b][g[b][pa[b]].u];
-      // xr bieu thi nut cha cua b tren duong luan phien nam tren hoa nao trong flower[b]
-      int pr = get_pr(b, xr);  // Tim vi tri cua xr va de 0~pr la duong luan phien trong hoa
+      // xr biểu thị nút cha của b trên đường luân phiên nằm trên hoa nào trong flower[b]
+      int pr = get_pr(b, xr);  // Tìm vị trí của xr và để 0~pr là đường luân phiên trong hoa
       for (int i = 0; i < pr; i += 2) {
-        // Bung duong luan phien vao trong cay luan phien
-        // Va dua cac dinh chan trong duong luan phien vao queue
+        // Bung đường luân phiên vào trong cây luân phiên
+        // Và đưa các đỉnh chẵn trong đường luân phiên vào queue
         int xs = flower[b][i];
         int xns = flower[b][i + 1];
         pa[xs] = g[xns][xs].u;
@@ -436,10 +436,10 @@ int get_lca(int u, int v) {
         set_slack(xns);
         q_push(xns);
       }
-      S[xr] = 1;  // Luc nay xr se la dinh le hoac hoa le
+      S[xr] = 1;  // Lúc này xr sẽ là đỉnh lẻ hoặc hoa lẻ
       pa[xr] = pa[b];
       for (size_t i = pr + 1; i < flower[b].size(); ++i) {
-        // Dat moi dinh trong hoa khong nam tren duong luan phien thanh chua tham
+        // Đặt mỗi đỉnh trong hoa không nằm trên đường luân phiên thành chưa thăm
         int xs = flower[b][i];
         S[xs] = -1;
         set_slack(xs);
@@ -451,12 +451,12 @@ int get_lca(int u, int v) {
 ???+ note "Thử tăng cường một cạnh đẳng thức"
     ```cpp
     bool on_found_edge(const edge &e) {
-      // Tim thay mot canh dang thuc e trong BFS
-      // Can xu ly no theo cac buoc sau
-      // O day u nhat dinh la dinh chan
+      // Tìm thấy một cạnh đẳng thức e trong BFS
+      // Cần xử lý nó theo các bước sau
+      // Ở đây u nhất định là đỉnh chẵn
       int u = st[e.u], v = st[e.v];
       if (S[v] == -1) {
-        // v la nut chua tham
+        // v là nút chưa thăm
         pa[v] = e.u;
         S[v] = 1;
         int nu = st[match[v]];
@@ -465,15 +465,15 @@ int get_lca(int u, int v) {
         S[nu] = 0;
         q_push(nu);
       } else if (S[v] == 0) {
-        // v la dinh chan
+        // v là đỉnh chẵn
         int lca = get_lca(u, v);
-        if (!lca) {  // lca=0 bieu thi u, v o hai cay luan phien khac nhau, co duong tang cuong
+        if (!lca) {  // lca=0 biểu thị u, v ở hai cây luân phiên khác nhau, có đường tăng cường
           augment(u, v);
           augment(v, u);
-          return true;  // Tim thay duong tang cuong
+          return true;  // Tìm thấy đường tăng cường
         } else
           add_blossom(u, lca, v);
-        // Nguoc lai, u va v o cung mot cay thi se tao thanh mot hoa, can co hoa
+        // Ngược lại, u và v ở cùng một cây thì sẽ tạo thành một hoa, cần co hoa
       }
       return false;
     }
@@ -484,16 +484,16 @@ int get_lca(int u, int v) {
     bool matching() {
       memset(S + 1, -1, sizeof(int) * n_x);
       memset(slack + 1, 0, sizeof(int) * n_x);
-      q = queue<int>();  // Xoa rong queue
+      q = queue<int>();  // Xóa rỗng queue
       for (int x = 1; x <= n_x; ++x) {
         if (st[x] == x && !match[x]) {
-          // Dua tat ca dinh chua ghep cap vao queue va dat thanh dinh chan
+          // Đưa tất cả đỉnh chưa ghép cặp vào queue và đặt thành đỉnh chẵn
           pa[x] = 0;
           S[x] = 0;
           q_push(x);
         }
       }
-      if (q.empty()) return false;  // Tat ca dinh deu da duoc ghep cap
+      if (q.empty()) return false;  // Tất cả đỉnh đều đã được ghép cặp
       for (;;) {
         while (q.size()) {
           // BFS
@@ -509,11 +509,11 @@ int get_lca(int u, int v) {
             }
           }
         }
-        // Sua gia tri lab
+        // Sửa giá trị lab
         int d = INF;
         for (int u = 1; u <= n; ++u) {
-          // De tranh xay ra truong hop lab<0
-          // Chi can co bat ky lab[u]=0 nao thi ket thuc chuong trinh
+          // Để tránh xảy ra trường hợp lab<0
+          // Chỉ cần có bất kỳ lab[u]=0 nào thì kết thúc chương trình
           if (S[st[u]] == 0) d = min(d, lab[u]);
         }
         for (int b = n + 1; b <= n_x; ++b) {
@@ -529,7 +529,7 @@ int get_lca(int u, int v) {
         for (int u = 1; u <= n; ++u) {
           if (S[st[u]] == 0) {
             if (lab[u] == d) return false;
-            // Neu lab[u]=0 thi ket thuc truc tiep chuong trinh
+            // Nếu lab[u]=0 thì kết thúc trực tiếp chương trình
             lab[u] -= d;
           } else if (S[st[u]] == 1)
             lab[u] += d;
@@ -542,15 +542,15 @@ int get_lca(int u, int v) {
               lab[b] -= d * 2;
           }
         }
-        q = queue<int>();  // Xoa rong queue
+        q = queue<int>();  // Xóa rỗng queue
         for (int x = 1; x <= n_x; ++x) {
-          // Kiem tra xem co sinh ra duong tang cuong hay khong
+          // Kiểm tra xem có sinh ra đường tăng cường hay không
           if (st[x] == x && slack[x] && st[slack[x]] != x &&
               e_delta(g[slack[x]][x]) == 0)
             if (on_found_edge(g[slack[x]][x])) return true;
         }
         for (int b = n + 1; b <= n_x; ++b) {
-          // Thao tac EXPAND, bung moi hoa le co lab[b]=0
+          // Thao tác EXPAND, bung mỗi hoa lẻ có lab[b]=0
           if (st[b] == b && S[b] == 1 && lab[b] == 0) expand_blossom(b);
         }
       }
@@ -561,27 +561,27 @@ int get_lca(int u, int v) {
 ???+ note "Hàm chính"
     ```cpp
     pair<long long, int> weight_blossom() {
-      // Ham chinh, ban dau khoi tao truoc
+      // Hàm chính, ban đầu khởi tạo trước
       memset(match + 1, 0, sizeof(int) * n);
-      n_x = n;  // Ban dau chua co hoa
+      n_x = n;  // Ban đầu chưa có hoa
       int n_matches = 0;
       long long tot_weight = 0;
       for (int u = 0; u <= n; ++u) {
-        // Truoc tien dat hoa chua chinh no thanh chinh no
+        // Trước tiên đặt hoa chứa chính nó thành chính nó
         st[u] = u;
         flower[u].clear();
       }
       int w_max = 0;
       for (int u = 1; u <= n; ++u)
         for (int v = 1; v <= n; ++v) {
-          // Khi u la mot dinh, cac dinh ma no chua chi co chinh no
+          // Khi u là một đỉnh, các đỉnh mà nó chứa chỉ có chính nó
           flower_from[u][v] = (u == v ? u : 0);
           w_max = max(w_max, g[u][v].w);
-          // Tim trong so canh lon nhat
+          // Tìm trọng số cạnh lớn nhất
         }
       for (int u = 1; u <= n; ++u) lab[u] = w_max;
-      // Dat moi lab bang trong so canh lon nhat
-      // Vi phan cai dat nay dung trong so canh nhan hai de tinh ze, nen khong can chia hai
+      // Đặt mỗi lab bằng trọng số cạnh lớn nhất
+      // Vì phần cài đặt này dùng trọng số cạnh nhân hai để tính ze, nên không cần chia hai
       while (matching()) ++n_matches;
       for (int u = 1; u <= n; ++u)
         if (match[u] && match[u] < u) tot_weight += g[u][match[u]].w;
@@ -594,8 +594,8 @@ int get_lca(int u, int v) {
     
     ```cpp
     void init_weight_graph() {
-      // Phai khoi tao truoc khi nhap canh vao do thi
-      // Vi day la ghep cap trong so lon nhat, dat canh khong ton tai bang 0
+      // Phải khởi tạo trước khi nhập cạnh vào đồ thị
+      // Vì đây là ghép cặp trọng số lớn nhất, đặt cạnh không tồn tại bằng 0
       for (int u = 1; u <= n; ++u)
         for (int v = 1; v <= n; ++v) g[u][v] = edge(u, v, 0);
     }
