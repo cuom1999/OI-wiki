@@ -1,7 +1,9 @@
-本章将会介绍编程相关的知识，包括 C++ 从入门到进阶教程和一些其它语言的简介．
+Chương này giới thiệu các kiến thức liên quan đến lập trình, bao gồm C++ từ cơ
+bản đến nâng cao và phần nhập môn ngắn cho một số ngôn ngữ khác.
 
-程序是算法与数据结构的载体，是解决 OI 问题的工具．
+Chương trình là phương tiện hiện thực hóa thuật toán và cấu trúc dữ liệu, đồng
+thời là công cụ để giải các bài toán OI.
 
-在 OI 中，最常用的编程语言是 C++．
+Trong OI, ngôn ngữ lập trình được dùng phổ biến nhất là C++.
 
-学习编程是学习 OI 最基础的部分．
+Học lập trình là một trong những phần nền tảng nhất khi bắt đầu học OI.

@@ -1,49 +1,49 @@
 # Project Information
-site_name: OI Wiki
-site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
+site_name: OI Wiki tiếng Việt
+site_description: OI Wiki tiếng Việt là kho tri thức lập trình thi đấu, cung cấp kiến thức thuật toán, cấu trúc dữ liệu, công cụ và kinh nghiệm học tập hữu ích cho cộng đồng lập trình thi đấu.
 site_author: OI Wiki Team
-site_url: https://oi-wiki.org
+site_url: https://cuom1999.github.io/OI-wiki/
 strict: false
 
 # Repository
-repo_name: 'OI-wiki/OI-wiki'
-repo_url: 'https://github.com/OI-wiki/OI-wiki'
+repo_name: 'cuom1999/OI-wiki'
+repo_url: 'https://github.com/cuom1999/OI-wiki'
 edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2026 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2026 OI Wiki Team. Bản dịch tiếng Việt giữ cùng giấy phép.'
 
 # Contents
 nav:
-  - 简介:
-    - Getting Started: index.md
-    - 关于本项目: intro/about.md
-    - 如何参与: intro/htc.md
-    - OI Wiki 不是什么: intro/what-oi-wiki-is-not.md
-    - 格式手册: intro/format.md
-    - 数学符号表: intro/symbol.md
+  - Giới Thiệu:
+    - Bắt đầu: index.md
+    - Về dự án: intro/about.md
+    - Cách tham gia: intro/htc.md
+    - OI Wiki không phải là gì: intro/what-oi-wiki-is-not.md
+    - Sổ tay định dạng: intro/format.md
+    - Bảng ký hiệu toán học: intro/symbol.md
     - F.A.Q.: intro/faq.md
-    - 镜像站列表: intro/mirrors.md
-    - 致谢: intro/thanks.md
-  - 比赛相关:
-    - 比赛相关简介: contest/index.md
-    - 赛事:
-      - OI 赛事与赛制: contest/oi.md
-      - ICPC/CCPC 赛事与赛制: contest/icpc.md
-    - 题型:
-      - 题型概述: contest/problems.md
-      - 交互题: contest/interaction.md
-    - 学习路线: contest/roadmap.md
-    - 学习资源: contest/resources.md
-    - 技巧:
-      - 读入、输出优化: contest/io.md
-      - 分段打表: contest/dictionary.md
-      - 常见错误: contest/common-mistakes.md
-      - 常见技巧: contest/common-tricks.md
-    - 出题: contest/problemsetting.md
-  - 工具软件:
-    - 工具软件简介: tools/index.md
-    - 代码编辑工具:
+    - Danh sách mirror: intro/mirrors.md
+    - Ghi nhận: intro/thanks.md
+  - Thi Đấu:
+    - Tổng quan thi đấu: contest/index.md
+    - Kỳ thi:
+      - OI và thể thức thi: contest/oi.md
+      - ICPC/CCPC và thể thức thi: contest/icpc.md
+    - Dạng bài:
+      - Tổng quan dạng bài: contest/problems.md
+      - Bài tương tác: contest/interaction.md
+    - Lộ trình học: contest/roadmap.md
+    - Tài nguyên học tập: contest/resources.md
+    - Kỹ thuật:
+      - Tối ưu nhập xuất: contest/io.md
+      - Bảng chia đoạn: contest/dictionary.md
+      - Lỗi thường gặp: contest/common-mistakes.md
+      - Mẹo thường gặp: contest/common-tricks.md
+    - Ra đề: contest/problemsetting.md
+  - Công Cụ:
+    - Tổng quan công cụ: tools/index.md
+    - Trình soạn thảo:
       - Vim: tools/editor/vim.md
       - Emacs: tools/editor/emacs.md
       - VS Code: tools/editor/vscode.md
@@ -59,15 +59,15 @@ nav:
       - Sublime Text: tools/editor/sublime.md
       - CP Editor: tools/editor/cpeditor.md
       - Code::Blocks: tools/editor/codeblocks.md
-    - 评测工具: 
-      - 评测工具简介: tools/judger/index.md
+    - Công cụ chấm:
+      - Tổng quan công cụ chấm: tools/judger/index.md
       - Arbiter: tools/judger/arbiter.md
       - Cena: tools/judger/cena.md
       - CCR Plus: tools/judger/ccr-plus.md
       - Lemon: tools/judger/lemon.md
-    - 命令行: tools/cmd.md
-    - 命令行编译与调试: tools/compile-debug.md
-    - 编译器: tools/compiler.md
+    - Dòng lệnh: tools/cmd.md
+    - Biên dịch và gỡ lỗi bằng dòng lệnh: tools/compile-debug.md
+    - Trình biên dịch: tools/compiler.md
     - WSL (Windows 10): tools/wsl.md
     - Special Judge: tools/special-judge.md
     - Testlib:
@@ -78,12 +78,12 @@ nav:
       - Interactor: tools/testlib/interactor.md
       - Checker: tools/testlib/checker.md
     - Polygon: tools/polygon.md
-    - OJ 工具: tools/oj-tool.md
-    - LaTeX 入门: tools/latex.md
+    - Công cụ OJ: tools/oj-tool.md
+    - Nhập môn LaTeX: tools/latex.md
     - Git: tools/git.md
-  - 语言基础:
-    - 语言基础简介: lang/index.md
-    - C++ 基础:
+  - Ngôn Ngữ:
+    - Tổng quan ngôn ngữ: lang/index.md
+    - C++ cơ bản:
       - Hello, World!: lang/helloworld.md
       - C++ 语法基础: lang/basic.md
       - 变量: lang/var.md
@@ -130,8 +130,8 @@ nav:
     - Python 速成: lang/python.md
     - Java 速成: lang/java.md
     - Java 进阶: lang/java-pro.md
-  - 算法基础:
-    - 算法基础简介: basic/index.md
+  - Thuật Toán Cơ Bản:
+    - Tổng quan thuật toán cơ bản: basic/index.md
     - 复杂度: 
       - 复杂度简介: basic/complexity.md
       - 均摊复杂度: basic/amortized-analysis.md
@@ -159,8 +159,8 @@ nav:
     - 二分: basic/binary.md
     - 倍增: basic/binary-lifting.md
     - 构造: basic/construction.md
-  - 搜索:
-    - 搜索部分简介: search/index.md
+  - Tìm Kiếm:
+    - Tổng quan tìm kiếm: search/index.md
     - DFS（搜索）: search/dfs.md
     - BFS（搜索）: search/bfs.md
     - 双向搜索: search/bidirectional.md
@@ -172,8 +172,8 @@ nav:
     - Dancing Links: search/dlx.md
     - Alpha–Beta 剪枝: search/alpha-beta.md
     - 优化: search/opt.md
-  - 动态规划:
-    - 动态规划部分简介: dp/index.md
+  - Quy Hoạch Động:
+    - Tổng quan quy hoạch động: dp/index.md
     - 动态规划基础: dp/basic.md
     - 记忆化搜索: dp/memo.md
     - 背包 DP: dp/knapsack.md
@@ -196,8 +196,8 @@ nav:
       - WQS 二分: dp/opt/wqs-binary-search.md
       - 状态设计优化: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
-  - 字符串:
-    - 字符串部分简介: string/index.md
+  - Xâu:
+    - Tổng quan xâu: string/index.md
     - 字符串基础: string/basic.md
     - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
@@ -220,7 +220,7 @@ nav:
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
     - Main–Lorentz 算法: string/main-lorentz.md
-  - 数学:
+  - Toán:
     - 数学部分简介: math/index.md
     - 布尔代数: math/boolean-algebra.md
     - 数字系统:
@@ -344,7 +344,7 @@ nav:
     - 杨氏矩阵: math/young-tableau.md
     - 拟阵: math/matroid.md
     - Berlekamp–Massey 算法: math/berlekamp-massey.md
-  - 数据结构:
+  - Cấu Trúc Dữ Liệu:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
     - 队列: ds/queue.md
@@ -412,7 +412,7 @@ nav:
     - PQ 树: ds/pq-tree.md
     - 手指树: ds/finger-tree.md
     - 霍夫曼树: ds/huffman-tree.md
-  - 图论:
+  - Lý Thuyết Đồ Thị:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
     - 图的存储: graph/save.md
@@ -480,7 +480,7 @@ nav:
     - 最大团搜索算法: graph/max-clique.md
     - 支配树: graph/dominator-tree.md
     - 图上随机游走: graph/graph-random-walk.md
-  - 计算几何:
+  - Hình Học Tính Toán:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
@@ -495,7 +495,7 @@ nav:
     - 随机增量法: geometry/random-incremental.md
     - 反演变换: geometry/inverse.md
     - 计算几何杂项: geometry/misc.md
-  - 杂项:
+  - Khác:
     - 杂项简介: misc/index.md
     - 离散化: misc/discrete.md
     - 双指针: misc/two-pointer.md
@@ -531,7 +531,7 @@ nav:
     - Kahan 求和: misc/kahan-summation.md
     - 珂朵莉树/颜色段均摊: misc/odt.md
     - 空间优化简介: misc/space-optimization.md
-  - 专题:
+  - Chuyên Đề:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md
     - 括号序列: topic/bracket.md

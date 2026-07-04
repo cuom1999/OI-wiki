@@ -1,5 +1,9 @@
-本章主要介绍计算机编程比赛直接相关的知识，包括各种赛事、赛制、题型，以及赛场上常见的坑点与技巧．
+Chương này giới thiệu các kiến thức trực tiếp liên quan đến thi đấu lập trình:
+các kỳ thi, thể thức thi, dạng bài thường gặp, cùng những lỗi và kỹ thuật hay
+gặp trong phòng thi.
 
-学习路线，与常用的学习资源也可以在本章找到．
+Bạn cũng có thể tìm thấy lộ trình học và các nguồn tài liệu thường dùng trong
+chương này.
 
-本章亦设出题板块，介绍出竞赛题的相关知识．
+Chương này còn có phần dành cho việc ra đề, giới thiệu những kiến thức liên
+quan đến thiết kế bài thi lập trình.

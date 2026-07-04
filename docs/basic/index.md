@@ -1,3 +1,13 @@
-**算法**，顾名思义，即计算的方法．算法通常用于解决特定的计算任务，但与可以直接在计算机上运行的程序不同，算法使用数学化的描述，更加侧重于思想，可以被看作抽象的程序．同一个算法可以有许多种不同的实现方式，两个不同的程序里也可能使用了同一种算法．
+**Thuật toán** là phương pháp tính toán. Thuật toán thường dùng để giải một
+nhiệm vụ tính toán cụ thể, nhưng khác với chương trình có thể chạy trực tiếp
+trên máy tính, thuật toán được mô tả bằng ngôn ngữ toán học hơn và nhấn mạnh
+vào ý tưởng. Có thể xem thuật toán như một chương trình ở mức trừu tượng.
+Cùng một thuật toán có thể có nhiều cách cài đặt khác nhau, và hai chương
+trình khác nhau cũng có thể sử dụng cùng một thuật toán.
 
-本章介绍一些基础算法．当一个计算任务足够通用，在各种问题中广泛出现时，解决该任务的算法就会被更多的算法所调用，拥有相当的重要性和基础性．同时，越通用的算法，通常越是简洁，越近似于思想而非程序．本章中介绍的算法具备足够的优美及趣味性，在之后的进阶内容中也常常会出现．
+Chương này giới thiệu một số thuật toán cơ bản. Khi một nhiệm vụ tính toán đủ
+phổ biến và xuất hiện trong nhiều bài toán, thuật toán giải nó thường được các
+thuật toán khác gọi tới, vì vậy có vai trò nền tảng. Đồng thời, thuật toán càng
+tổng quát thường càng cô đọng, gần với tư tưởng hơn là chương trình cụ thể.
+Những thuật toán trong chương này có tính đẹp và thú vị, đồng thời sẽ xuất
+hiện nhiều lần trong các phần nâng cao.

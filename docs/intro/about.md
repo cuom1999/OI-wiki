@@ -1,16 +1,25 @@
-## 关于本项目
+## Về dự án
 
-**OI Wiki** 致力于成为一个免费开放且持续更新的 **编程竞赛 (competitive programming)** 知识整合站点．
+**OI Wiki** hướng tới việc trở thành một kho tri thức **lập trình thi đấu
+(competitive programming)** miễn phí, mở và được cập nhật liên tục.
 
-## 交流方式
+Bản tiếng Việt này dịch dần nội dung của dự án gốc, giữ nguyên cấu trúc trang,
+đường dẫn và cách tổ chức nguồn để thuận tiện theo dõi upstream.
 
-本项目主要使用 [Issues](https://github.com/OI-wiki/OI-wiki/issues)/[QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K)/[Telegram](https://t.me/OI_wiki) 进行交流沟通．
+## Trao đổi
 
-Telegram 群组链接为 [@OI\_wiki](https://t.me/OI_wiki)，QQ 群号码为 [588793226](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入．
+Dự án gốc chủ yếu trao đổi qua
+[Issues](https://github.com/OI-wiki/OI-wiki/issues),
+[QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) và
+[Telegram](https://t.me/OI_wiki).
 
-???+ note "Note"
-    原则上来说，上述群组是 **OI Wiki 讨论群**，所以请尽量不要在群组中发表过多与 **OI Wiki** 无关的内容．
+Nhóm Telegram là [@OI\_wiki](https://t.me/OI_wiki), nhóm QQ là
+[588793226](https://jq.qq.com/?_wv=1027&k=5EfkM6K).
 
-## 项目方针
+???+ note "Ghi chú"
+    Các nhóm trên là nhóm thảo luận của **OI Wiki**, vì vậy nên hạn chế gửi
+    nội dung không liên quan đến **OI Wiki**.
 
--   [OI Wiki 不是什么](./what-oi-wiki-is-not.md)
+## Định hướng dự án
+
+-   [OI Wiki không phải là gì](./what-oi-wiki-is-not.md)
