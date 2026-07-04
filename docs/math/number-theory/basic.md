@@ -296,86 +296,117 @@ sau:
 -   $A+B:=\{a+b:a\in A,b\in B\}$;
 -   $AB:=\{ab:a\in A,b\in B\}$.
 
-???+ note "Lop dong du"
-    Voi so nguyen khac khong $m$, chia tat ca cac so nguyen thanh $|m|$ tap hop doi mot khong giao nhau, sao cho hai so bat ky trong cung mot tap hop deu dong du theo modulo $m$. Moi tap hop trong $|m|$ tap hop do duoc goi la **lop dong du** hoac **lop thang du** modulo $m$. Dung $r\bmod m$ de chi lop dong du modulo $m$ chua so nguyen $r$.
-    
-    Khong kho de chung minh voi moi so nguyen khac khong $m$, cach phan hoach tren luon ton tai va duy nhat.
+???+ note "Lớp đồng dư"
+    Với số nguyên khác không $m$, chia tất cả các số nguyên thành $|m|$ tập hợp
+    đôi một không giao nhau, sao cho hai số bất kỳ trong cùng một tập hợp đều
+    đồng dư theo modulo $m$. Mỗi tập hợp trong $|m|$ tập hợp đó được gọi là
+    **lớp đồng dư** hoặc **lớp thặng dư** modulo $m$. Dùng $r\bmod m$ để chỉ lớp
+    đồng dư modulo $m$ chứa số nguyên $r$.
 
-Tu dinh nghia lop dong du, ta co:
+    Không khó để chứng minh với mọi số nguyên khác không $m$, cách phân hoạch
+    trên luôn tồn tại và duy nhất.
+
+Từ định nghĩa lớp đồng dư, ta có:
 
 -   $r\bmod m=\{r+km:k\in\mathbf{Z}\}$;
 -   $r\bmod m=s\bmod m\iff r\equiv s\pmod m$;
--   Voi moi $r,s\in\mathbf{Z}$, hoac $r\bmod m=s\bmod m$, hoac $(r\bmod m)\cap (s\bmod m)=\varnothing$;
--   Neu $m_1\mid m$, thi voi moi so nguyen $r$ deu co $r+m\mathbf{Z}\subseteq r+m_1\mathbf{Z}$.
+-   Với mọi $r,s\in\mathbf{Z}$, hoặc $r\bmod m=s\bmod m$, hoặc
+    $(r\bmod m)\cap (s\bmod m)=\varnothing$;
+-   Nếu $m_1\mid m$, thì với mọi số nguyên $r$ đều có
+    $r+m\mathbf{Z}\subseteq r+m_1\mathbf{Z}$.
 
-Vi dong du la quan he tuong duong, lop dong du chinh la lop tuong duong cua quan he dong du.
+Vì đồng dư là quan hệ tương đương, lớp đồng dư chính là lớp tương đương của quan
+hệ đồng dư.
 
-Ta ki hieu tap hop tat ca cac lop dong du modulo $m$ la $\mathbf{Z}_m$, tuc la
+Ta kí hiệu tập hợp tất cả các lớp đồng dư modulo $m$ là $\mathbf{Z}_m$, tức là
 
 $$
 \mathbf{Z}_m:=\{r\bmod m:0\leq r<m\}
 $$
 
-De thay rang:
+Dễ thấy rằng:
 
--   Voi moi so nguyen $a$, $a+\mathbf{Z}_m=\mathbf{Z}_m$;
--   Voi moi so nguyen $b$ nguyen to cung nhau voi $m$, $b\mathbf{Z}_m=\mathbf{Z}_m$.
+-   Với mọi số nguyên $a$, $a+\mathbf{Z}_m=\mathbf{Z}_m$;
+-   Với mọi số nguyên $b$ nguyên tố cùng nhau với $m$,
+    $b\mathbf{Z}_m=\mathbf{Z}_m$.
 
-Theo dinh nghia [nhom thuong](../algebra/group-theory.md#%E5%95%86%E7%BE%A4), $\mathbf{Z}_m=\mathbf{Z}/m\mathbf{Z}$, vi vay doi khi ta cung dung $\mathbf{Z}/m\mathbf{Z}$ de bieu dien $\mathbf{Z}_m$.
+Theo định nghĩa [nhóm thương](../algebra/group-theory.md#%E5%95%86%E7%BE%A4),
+$\mathbf{Z}_m=\mathbf{Z}/m\mathbf{Z}$, vì vậy đôi khi ta cũng dùng
+$\mathbf{Z}/m\mathbf{Z}$ để biểu diễn $\mathbf{Z}_m$.
 
-Theo [nguyen ly chuong chim](../combinatorics/drawer-principle.md), ta co:
+Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), ta có:
 
--   Lay tuy y $m+1$ so nguyen, chac chan co hai so dong du theo modulo $m$.
--   Ton tai $m$ so nguyen doi mot khong dong du theo modulo $m$.
+-   Lấy tùy ý $m+1$ số nguyên, chắc chắn có hai số đồng dư theo modulo $m$.
+-   Tồn tại $m$ số nguyên đôi một không đồng dư theo modulo $m$.
 
-Tu do ta dua ra dinh nghia he thang du day du:
+Từ đó ta đưa ra định nghĩa hệ thặng dư đầy đủ:
 
-???+ note "He thang du (day du)"
-    Voi $m$ so nguyen $a_1,a_2,\dots,a_m$, neu voi moi so $x$ co dung mot so $a_i$ sao cho $x$ dong du voi $a_i$ theo modulo $m$, thi $m$ so nguyen $a_1,a_2,\dots,a_m$ duoc goi la **he thang du day du** modulo $m$, goi tat la **he thang du**.
+???+ note "Hệ thặng dư (đầy đủ)"
+    Với $m$ số nguyên $a_1,a_2,\dots,a_m$, nếu với mọi số $x$ có đúng một số
+    $a_i$ sao cho $x$ đồng dư với $a_i$ theo modulo $m$, thì $m$ số nguyên
+    $a_1,a_2,\dots,a_m$ được gọi là **hệ thặng dư đầy đủ** modulo $m$, gọi tắt
+    là **hệ thặng dư**.
 
-Ta con co the dinh nghia cac he sau modulo $m$:
+Ta còn có thể định nghĩa các hệ sau modulo $m$:
 
--   He thang du khong am nho nhat (day du): $0,\dots,m-1$;
--   He thang du duong nho nhat (day du): $1,\dots,m$;
--   He thang du co tri tuyet doi nho nhat (day du): $-\lfloor m/2\rfloor,\dots,-\lfloor -m/2\rfloor-1$;
--   He thang du khong duong lon nhat (day du): $-m+1,\dots,0$;
--   He thang du am lon nhat (day du): $-m,\dots,-1$.
+-   Hệ thặng dư không âm nhỏ nhất (đầy đủ): $0,\dots,m-1$;
+-   Hệ thặng dư dương nhỏ nhất (đầy đủ): $1,\dots,m$;
+-   Hệ thặng dư có trị tuyệt đối nhỏ nhất (đầy đủ):
+    $-\lfloor m/2\rfloor,\dots,-\lfloor -m/2\rfloor-1$;
+-   Hệ thặng dư không dương lớn nhất (đầy đủ): $-m+1,\dots,0$;
+-   Hệ thặng dư âm lớn nhất (đầy đủ): $-m,\dots,-1$.
 
-Neu khong co ghi chu dac biet, thong thuong ta chi dung he thang du khong am nho nhat.
+Nếu không có ghi chú đặc biệt, thông thường ta chỉ dùng hệ thặng dư không âm nhỏ
+nhất.
 
-Ta luu y menh de sau la dung:
+Ta lưu ý mệnh đề sau là đúng:
 
--   Trong mot lop dong du bat ky modulo $m$, lay tuy y hai so nguyen $a_1,a_2$ deu co $(a_1,m)=(a_2,m)$.
+-   Trong một lớp đồng dư bất kỳ modulo $m$, lấy tùy ý hai số nguyên $a_1,a_2$
+    đều có $(a_1,m)=(a_2,m)$.
 
-Xet lop dong du $r\bmod m$. Neu $(r,m)=1$, thi moi phan tu cua lop dong du nay deu nguyen to cung nhau voi $m$; dieu nay cho thay co the dung cach tuong tu de tim cau truc cua tap hop cac so nguyen nguyen to cung nhau voi $m$.
+Xét lớp đồng dư $r\bmod m$. Nếu $(r,m)=1$, thì mọi phần tử của lớp đồng dư này
+đều nguyên tố cùng nhau với $m$; điều này cho thấy có thể dùng cách tương tự để
+tìm cấu trúc của tập hợp các số nguyên nguyên tố cùng nhau với $m$.
 
-???+ note "Lop dong du thu gon"
-    Voi lop dong du $r\bmod m$, neu $(r,m)=1$, thi lop dong du nay duoc goi la **lop dong du thu gon** hoac **lop thang du thu gon**.
-    
-    So luong lop thang du thu gon modulo $m$ duoc ki hieu la $\varphi(m)$ va duoc goi la [ham Euler](./euler-totient.md).
+???+ note "Lớp đồng dư thu gọn"
+    Với lớp đồng dư $r\bmod m$, nếu $(r,m)=1$, thì lớp đồng dư này được gọi là
+    **lớp đồng dư thu gọn** hoặc **lớp thặng dư thu gọn**.
 
-Ta ki hieu tap hop tat ca cac lop dong du thu gon modulo $m$ la $\mathbf{Z}_m^*$, tuc la
+    Số lượng lớp thặng dư thu gọn modulo $m$ được kí hiệu là $\varphi(m)$ và
+    được gọi là [hàm Euler](./euler-totient.md).
+
+Ta kí hiệu tập hợp tất cả các lớp đồng dư thu gọn modulo $m$ là
+$\mathbf{Z}_m^*$, tức là
 
 $$
 \mathbf{Z}_m^*:=\{r\bmod m:0\leq r<m,(r,m)=1\}
 $$
 
-???+ warning "Canh bao"
-    Voi so nguyen bat ky $a$ va so nguyen $b$ nguyen to cung nhau voi $m$, ta co $b\mathbf{Z}_m^*=\mathbf{Z}_m^*$, nhung $a+\mathbf{Z}_m^*$ khong nhat thiet bang $\mathbf{Z}_m^*$. Diem nay khac voi $\mathbf{Z}_m$.
+???+ warning "Cảnh báo"
+    Với số nguyên bất kỳ $a$ và số nguyên $b$ nguyên tố cùng nhau với $m$, ta có
+    $b\mathbf{Z}_m^*=\mathbf{Z}_m^*$, nhưng $a+\mathbf{Z}_m^*$ không nhất thiết
+    bằng $\mathbf{Z}_m^*$. Điểm này khác với $\mathbf{Z}_m$.
 
-Theo [nguyen ly chuong chim](../combinatorics/drawer-principle.md), ta co:
+Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), ta có:
 
--   Lay tuy y $\varphi(m)+1$ so nguyen nguyen to cung nhau voi $m$, chac chan co hai so dong du theo modulo $m$.
--   Ton tai $\varphi(m)$ so nguyen nguyen to cung nhau voi $m$ va doi mot khong dong du theo modulo $m$.
+-   Lấy tùy ý $\varphi(m)+1$ số nguyên nguyên tố cùng nhau với $m$, chắc chắn có
+    hai số đồng dư theo modulo $m$.
+-   Tồn tại $\varphi(m)$ số nguyên nguyên tố cùng nhau với $m$ và đôi một không
+    đồng dư theo modulo $m$.
 
-Tu do ta dua ra dinh nghia he thang du thu gon:
+Từ đó ta đưa ra định nghĩa hệ thặng dư thu gọn:
 
-???+ note "He thang du thu gon"
-    Voi $t=\varphi(m)$ so nguyen $a_1,a_2,\dots,a_t$, neu $(a_i,m)=1,~\forall 1\leq i\leq t$, va voi moi so $x$ thoa man $(x,m)=1$ co dung mot so $a_i$ sao cho $x$ dong du voi $a_i$ theo modulo $m$, thi $t$ so nguyen $a_1,a_2,\dots,a_t$ duoc goi la **he thang du thu gon** modulo $m$.
+???+ note "Hệ thặng dư thu gọn"
+    Với $t=\varphi(m)$ số nguyên $a_1,a_2,\dots,a_t$, nếu
+    $(a_i,m)=1,~\forall 1\leq i\leq t$, và với mọi số $x$ thỏa mãn $(x,m)=1$ có
+    đúng một số $a_i$ sao cho $x$ đồng dư với $a_i$ theo modulo $m$, thì $t$ số
+    nguyên $a_1,a_2,\dots,a_t$ được gọi là **hệ thặng dư thu gọn** modulo $m$.
 
-Tuong tu, ta cung co the dinh nghia he thang du thu gon khong am nho nhat va cac khai niem khac.
+Tương tự, ta cũng có thể định nghĩa hệ thặng dư thu gọn không âm nhỏ nhất và các
+khái niệm khác.
 
-Neu khong co ghi chu dac biet, thong thuong ta chi dung he thang du thu gon khong am nho nhat.
+Nếu không có ghi chú đặc biệt, thông thường ta chỉ dùng hệ thặng dư thu gọn không
+âm nhỏ nhất.
 
 <span id="&#x5269;&#x4F59;&#x7CFB;&#x7684;&#x590D;&#x5408;"></span>
 ### Phep ghep he thang du
