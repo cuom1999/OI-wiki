@@ -6,7 +6,7 @@ using namespace std;
 int q[MAXN], a[MAXN];
 int n, k;
 
-void getmin() {  // 得到这个队列里的最小值，直接找到最后的就行了
+void getmin() {  // Lấy giá trị nhỏ nhất trong hàng đợi, chỉ cần tìm ở đầu.
   int head = 0, tail = -1;
   for (int i = 1; i < k; i++) {
     while (head <= tail && a[q[tail]] >= a[i]) tail--;
@@ -20,7 +20,7 @@ void getmin() {  // 得到这个队列里的最小值，直接找到最后的就
   }
 }
 
-void getmax() {  // 和上面同理
+void getmax() {  // Tương tự như trên.
   int head = 0, tail = -1;
   for (int i = 1; i < k; i++) {
     while (head <= tail && a[q[tail]] <= a[i]) tail--;

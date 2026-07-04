@@ -1,50 +1,50 @@
 author: Xarfa
 
-## 引入
+## Giới thiệu
 
-划分树是一种来解决区间第 $K$ 大的一种数据结构，其常数、理解难度都要比主席树低很多．同时，划分树紧贴「第 $K$ 大」，所以是一种基于排序的一种数据结构．
+Cây phân hoạch là một cấu trúc dữ liệu dùng để xử lý truy vấn phần tử nhỏ thứ $k$ trong đoạn (tùy quy ước cũng có thể viết dưới dạng phần tử lớn thứ $K$). Hằng số và độ khó khi hiểu của nó đều thấp hơn cây phân đoạn bền vững khá nhiều. Đồng thời, cây phân hoạch gắn chặt với bài toán "phần tử nhỏ thứ $k$", nên đây là một cấu trúc dữ liệu dựa trên sắp xếp.
 
-前置知识：[主席树](persistent-seg.md#主席树)
+Kiến thức cần có: [cây phân đoạn bền vững](persistent-seg.md#%E4%B8%BB%E5%B8%AD%E6%A0%91)
 
-## 过程
+## Quy trình
 
-### 建树
+### Xây cây
 
-划分树的建树比较简单，但是相对于其他树来说比较复杂．
+Việc xây cây phân hoạch khá đơn giản, nhưng vẫn phức tạp hơn so với nhiều loại cây khác.
 
 ![](./images/dividing-1.svg)
 
-如图，每一层都有一个看似无序的数组．其实，每一个被红色标记的数字都是 **要分配到左儿子的**．而分配的规则是什么？就是与 **这一层的中位数** 做比较，如果小于等于中位数，则分到左边，否则分到右边．但是这里要注意一下：并不是严格的 **小于等于就分到左边，否则分到右边**．因为中位数可能有相同，而且与 $N$ 的奇偶有一定关系．下面的代码展示会有一个巧妙的运用，大家可以参照代码．
+Như hình trên, mỗi tầng đều có một mảng trông có vẻ không có thứ tự. Thực ra, mỗi số được đánh dấu màu đỏ đều là số **sẽ được đưa vào con trái**. Quy tắc phân chia là gì? Ta so sánh với **trung vị của tầng hiện tại**: nếu nhỏ hơn hoặc bằng trung vị thì đưa sang trái, ngược lại đưa sang phải. Tuy nhiên cần chú ý: quy tắc không phải lúc nào cũng cứng nhắc là **nhỏ hơn hoặc bằng thì sang trái, ngược lại sang phải**. Lý do là trung vị có thể xuất hiện nhiều lần, và cách chia còn liên quan đến tính chẵn lẻ của $N$. Đoạn mã dưới đây dùng một cách xử lý khéo léo cho trường hợp đó, bạn có thể tham khảo.
 
-我们不可能每一次都对每一层排序，这样子不说常数，就算是理论复杂度也过不去．我们想，找中位数，一次排序就够了．为什么？比如，我们求 $l,r$ 的中位数，其实就是在排完序过后的 `num[mid]`．
+Ta không thể sắp xếp lại từng tầng ở mỗi lần xây dựng; chưa nói đến hằng số, ngay cả độ phức tạp lý thuyết cũng không đạt. Để tìm trung vị, chỉ cần sắp xếp một lần. Vì sao? Chẳng hạn, trung vị của đoạn $l,r$ chính là `num[mid]` sau khi mảng đã được sắp xếp.
 
-两个关键数组：
+Hai mảng then chốt:
 
-tree\[log(N),N]: 也就是树，要存下所有的值，空间复杂度 $O(n\log n)$．
-toleft\[log(N),n]: 也就是每一层 1\~i 进入左儿子的数量，这里需要理解一下，这是一个前缀和．
+tree\[log(N),N]: chính là cây, dùng để lưu toàn bộ giá trị; độ phức tạp không gian là $O(n\log n)$.
+toleft\[log(N),n]: số lượng phần tử trong đoạn 1\~i của mỗi tầng được đưa vào con trái. Cần hiểu đây là một mảng tổng tiền tố.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```pascal
-    procedure Build(left,right,deep:longint); // left,right 表示区间左右端点,deep是第几层
+    procedure Build(left,right,deep:longint); // left,right là hai đầu mút đoạn, deep là tầng hiện tại
     var
-      i,mid,same,ls,rs,flag:longint; // 其中 flag 是用来平衡左右两边的数量的
+      i,mid,same,ls,rs,flag:longint; // flag dùng để cân bằng số lượng hai bên
     begin
-      if left=right then exit; // 到底层了
+      if left=right then exit; // đã tới tầng đáy
       mid:=(left+right) >> 1;
       same:=mid-left+1;
-      for i:=left to right do 
+      for i:=left to right do
         if tree[deep,i]<num[mid] then
           dec(same);
-      
-      ls:=left; // 分配到左儿子的第一个指针
-      rs:=mid+1; // 分配到右儿子的第一个指针
+
+      ls:=left; // con trỏ đầu tiên cho phần đưa vào con trái
+      rs:=mid+1; // con trỏ đầu tiên cho phần đưa vào con phải
       for i:=left to right do
       begin
         flag:=0;
-        if (tree[deep,i]<num[mid])or((tree[deep,i]=num[mid])and(same>0)) then // 分配到左边的条件
+        if (tree[deep,i]<num[mid])or((tree[deep,i]=num[mid])and(same>0)) then // điều kiện để đưa sang trái
         begin
           flag:=1; tree[deep+1,ls]:=tree[deep,i]; inc(ls);
-          if tree[deep,i]=num[mid] then // 平衡左右个数
+          if tree[deep,i]=num[mid] then // cân bằng số lượng hai bên
             dec(same);
         end
         else
@@ -53,91 +53,91 @@ toleft\[log(N),n]: 也就是每一层 1\~i 进入左儿子的数量，这里需�
         end;
         toleft[deep,i]:=toleft[deep,i-1]+flag;
       end;
-      Build(left,mid,deep+1); // 继续
+      Build(left,mid,deep+1); // tiếp tục
       Build(mid+1,right,deep+1);
     end;
     ```
 
-### 查询
+### Truy vấn
 
-那我们先扯一下主席树的内容．在用主席树求区间第 $K$ 小的时候，我们以 $K$ 为基准，向左就向左，向右要减去向左的值，在划分树中也是这样子的．
+Trước hết nhắc lại một chút về cây phân đoạn bền vững. Khi dùng cây phân đoạn bền vững để tìm phần tử nhỏ thứ $K$ trong đoạn, ta lấy $K$ làm mốc: nếu đi sang trái thì giữ nguyên $K$, còn nếu đi sang phải thì phải trừ đi số lượng phần tử đã đi sang trái. Trong cây phân hoạch cũng tương tự.
 
-查询难理解的，在于 **区间缩小** 这种东西．下图，查询的是 $3$ 到 $7$, 那么下一层就只需要查询 $2$ 到 $3$ 了．当然，我们定义 $[\text{left},\text{right}]$ 为缩小后的区间（目标区间），$[l,r]$ 还是所在节点的区间．那为什么要标出目标区间呢？因为那是 **判定答案在左边还是右边的基准**．
+Phần khó hiểu của truy vấn nằm ở thao tác **thu hẹp đoạn**. Trong hình dưới, đoạn cần truy vấn là từ $3$ đến $7$, nên ở tầng tiếp theo chỉ cần truy vấn từ $2$ đến $3$. Ở đây, ta định nghĩa $[\text{left},\text{right}]$ là đoạn sau khi thu hẹp (đoạn mục tiêu), còn $[l,r]$ vẫn là đoạn của nút hiện tại. Vì sao cần đánh dấu đoạn mục tiêu? Vì đó là **cơ sở để phán đoán đáp án nằm ở bên trái hay bên phải**.
 
 ![](./images/dividing-2.svg)
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```pascal
     function Query(left,right,k,l,r,deep:longint):longint;
     var
       mid,x,y,cnt,rx,ry:longint;
     begin
-      if left=right then // 写成 l=r 也无妨,因为目标区间也一定有答案
+      if left=right then // viết là l=r cũng được, vì đoạn mục tiêu chắc chắn có đáp án
         exit(tree[deep,left]);
       mid:=(l+r) >> 1;
-      x:=toleft[deep,left-1]-toleft[deep,l-1]; // l 到 left 的去左儿子的个数
-      y:=toleft[deep,right]-toleft[deep,l-1]; // l 到 right 的去左儿子的个数
-      ry:=right-l-y; rx:=left-l-x; // ry 是 l 到 right 去右儿子的个数,rx 则是 l 到 left 去右儿子的个数
-      cnt:=y-x; // left 到 right 左儿子的个数
-      if cnt>=k then // 主席树常识啦
-        Query:=Query(l+x,l+y-1,k,l,mid,deep+1) // l+x 就是缩小左边界,l+y-1 就是缩小右区间．对于上图来说,就是把节点 1 和 2 放弃了．
+      x:=toleft[deep,left-1]-toleft[deep,l-1]; // số phần tử từ l đến left đi vào con trái
+      y:=toleft[deep,right]-toleft[deep,l-1]; // số phần tử từ l đến right đi vào con trái
+      ry:=right-l-y; rx:=left-l-x; // ry là số phần tử từ l đến right đi vào con phải, rx là số phần tử từ l đến left đi vào con phải
+      cnt:=y-x; // số phần tử từ left đến right đi vào con trái
+      if cnt>=k then // kiến thức cơ bản của cây phân đoạn bền vững
+        Query:=Query(l+x,l+y-1,k,l,mid,deep+1) // l+x là biên trái sau khi thu hẹp, l+y-1 là biên phải sau khi thu hẹp. Với hình trên, tức là bỏ các nút 1 và 2.
       else
-        Query:=Query(mid+rx+1,mid+ry+1,k-cnt,mid+1,r,deep+1); // 同样是缩小区间,只不过变成了右边而已．注意要将 k 减去 cnt．
+        Query:=Query(mid+rx+1,mid+ry+1,k-cnt,mid+1,r,deep+1); // cũng là thu hẹp đoạn, chỉ khác là chuyển sang bên phải. Chú ý cần trừ cnt khỏi k.
     end;
     ```
 
-## 性质
+## Tính chất
 
-时间复杂度 : 一次查询只需要 $O(\log n)$，$m$ 次询问，就是 $O(m\log n)$．
+Độ phức tạp thời gian: một lần truy vấn chỉ cần $O(\log n)$, nên $m$ truy vấn cần $O(m\log n)$.
 
-空间复杂度 : 只需要存储 $O(n\log n)$ 个数字．
+Độ phức tạp không gian: chỉ cần lưu $O(n\log n)$ số.
 
-亲测结果：主席树 :$1482 \text{ms}$、划分树 :$889 \text{ms}$．（非递归，常数比较小）
+Kết quả đo thử: cây phân đoạn bền vững: $1482 \text{ms}$, cây phân hoạch: $889 \text{ms}$. (Bản không đệ quy, hằng số khá nhỏ.)
 
-## 划分树的应用
+## Ứng dụng của cây phân hoạch
 
-例题：[Luogu P3157\[CQOI2011\] 动态逆序对](https://www.luogu.com.cn/problem/P3157)
+Bài ví dụ: [Luogu P3157\[CQOI2011\] Cặp nghịch thế động](https://www.luogu.com.cn/problem/P3157)
 
-> 题意简述：给定一个 $n$ 个元素的排列（$n\leq 10^5$），有 m 次询问（$m\leq 5\times 10^4$），每次删去排列中的一个数，求删去这个数之后排列的逆序对个数．
+> Tóm tắt đề bài: cho một hoán vị gồm $n$ phần tử ($n\leq 10^5$), có $m$ truy vấn ($m\leq 5\times 10^4$). Mỗi lần xóa một số trong hoán vị, hãy tính số cặp nghịch thế của hoán vị sau khi xóa số đó.
 
-这题可以使用 CDQ 在 $\Theta(n\log^2n)$ 的时间及 $\Theta(n)$ 的空间内解决，并且 CDQ 的常数也很优秀．
+Bài này có thể được giải bằng CDQ trong thời gian $\Theta(n\log^2n)$ và không gian $\Theta(n)$, hơn nữa hằng số của CDQ cũng rất tốt.
 
-如果这道题改为强制在线，则一般使用树状数组 + 主席树的树套树解法解决，时间复杂度为 $\Theta(n\log^2n)$，空间复杂度为 $\Theta(n\log^2n)$，常数略大，同样可以过此题．
+Nếu bài này được đổi thành bắt buộc online, cách thường dùng là cây Fenwick + cây phân đoạn bền vững theo dạng cây lồng cây. Độ phức tạp thời gian là $\Theta(n\log^2n)$, độ phức tạp không gian là $\Theta(n\log^2n)$, hằng số hơi lớn nhưng vẫn có thể qua bài này.
 
-而使用划分树的话就可以在 $\Theta(n\log^2n)$ 的时间及 $\Theta(n\log n)$ 的空间内在线解决本题，同时常数也比树套树解法少很多．（大致与 CDQ 相当．）
+Còn nếu dùng cây phân hoạch, ta có thể giải online bài này trong thời gian $\Theta(n\log^2n)$ và không gian $\Theta(n\log n)$; đồng thời hằng số cũng nhỏ hơn rất nhiều so với cách cây lồng cây. (Xấp xỉ với CDQ.)
 
-???+ warning "注意"
-    为了编程实现方便，本文依照位置的中间值将大数组划分为两个小数组，即下文中的划分树相当于是归并排序的过程，而非快速排序的过程．最顶层的大数组为有序数组，最底层为原数组．
+???+ warning "Lưu ý"
+    Để thuận tiện khi cài đặt, bài viết này chia mảng lớn thành hai mảng nhỏ theo vị trí giữa. Nói cách khác, cây phân hoạch trong phần dưới tương đương với quá trình của merge sort, chứ không phải quá trình của quicksort. Mảng lớn ở tầng trên cùng là mảng đã sắp xếp, còn tầng dưới cùng là mảng ban đầu.
 
-对于每一个划分树中的节点，我们称他为右节点当且仅当他在下一层会被划分到右孩子，即原数组中位置比较靠后的那些数，相似的可以定义左节点．如果在建树的过程中将最顶层排为有序的，类似于归并排序求逆序对，可以发现一个数组的逆序对个数就是在每个左节点之前的右节点的个树和．
+Với mỗi nút trong cây phân hoạch, ta gọi nó là nút phải khi và chỉ khi ở tầng tiếp theo nó sẽ được phân vào con phải, tức là những số có vị trí tương đối về sau trong mảng ban đầu; nút trái được định nghĩa tương tự. Nếu trong quá trình xây cây ta sắp xếp tầng trên cùng, tương tự cách merge sort tính số cặp nghịch thế, có thể thấy số cặp nghịch thế của một mảng chính là tổng số nút phải đứng trước mỗi nút trái.
 
-再考虑删除操作．删除一个左节点会将整个数组的逆序对减少在他之前右结点的个数，而删除一个右节点会减少在他之后的左节点个数．那么可以考虑每次动态维护「每一个左节点之前的右结点个数」和「每一个右节点之后的左节点个数」．这可以使用树状数组简单维护．
+Tiếp theo xét thao tác xóa. Khi xóa một nút trái, số cặp nghịch thế của toàn bộ mảng sẽ giảm đi số nút phải đứng trước nó; khi xóa một nút phải, số cặp nghịch thế sẽ giảm đi số nút trái đứng sau nó. Vì vậy, ta có thể động duy trì "số nút phải đứng trước mỗi nút trái" và "số nút trái đứng sau mỗi nút phải". Việc này có thể được duy trì đơn giản bằng cây Fenwick.
 
-需要注意的是，在使用树状数组维护时只能计算在划分树中同一块内的贡献，而不能跳出块．对于树状数组来说有一个较为巧妙的处理方式．
+Cần chú ý rằng khi dùng cây Fenwick để duy trì, ta chỉ được tính đóng góp trong cùng một khối của cây phân hoạch, không được nhảy ra ngoài khối. Với cây Fenwick, có một cách xử lý khá khéo léo cho việc này.
 
-考虑划分树上每一块的下标范围肯定为 $[c\times 2^k+1,(c+1)\times 2^k]$ 的形式，列举如下（由于代码中不会涉及到划分树最底层的处理，因此只枚举到倒数第二层）：
+Xét rằng phạm vi chỉ số của mỗi khối trên cây phân hoạch chắc chắn có dạng $[c\times 2^k+1,(c+1)\times 2^k]$, liệt kê như sau (vì mã nguồn không xử lý tầng dưới cùng của cây phân hoạch, nên chỉ liệt kê đến tầng áp chót):
 
     [0001 0010] [0011 0100] [0101 0110] [0111 1000] [1001 1010] [1011 1100] [1101 1110] [1111 10000]  lev=1
     [0001 0010 0011 0100]   [0101 0110 0111 1000]   [1001 1010 1011 1100]   [1101 1110 1111 10000]    lev=2
     [0001 0010 0011 0100 0101 0110 0111 1000]       [1001 1010 1011 1100 1101 1110 1111 10000]        lev=3
     [0001 0010 0011 0100 0101 0110 0111 1000 1001 1010 1011 1100 1101 1110 1111 10000]                lev=4
 
-回忆一下树状数组的原理，在向上跳的时候，我们每次 `x += lowbit(x)`．如果在向上跳的时候可以保证不跳出块，就可以保证只会影响到块内元素的值．向上查询也类似．
+Nhắc lại nguyên lý của cây Fenwick: khi nhảy lên, mỗi lần ta thực hiện `x += lowbit(x)`. Nếu khi nhảy lên ta bảo đảm không nhảy ra khỏi khối, thì có thể bảo đảm chỉ ảnh hưởng đến giá trị của các phần tử trong khối. Truy vấn theo hướng lên cũng tương tự.
 
-而如果要在向上跳的同时保证不跳出块，只需要保证在跳的时候满足 $lowbit(x)<2^{lev}$ 即可．
+Để vừa nhảy lên vừa bảo đảm không ra khỏi khối, chỉ cần bảo đảm tại thời điểm nhảy có $lowbit(x)<2^{lev}$.
 
-而向下跳则是完全不同的处理方式．每一块的下标如果使用 0-index 表示的话，即为 $[c\times 2^k,(c+1)\times 2^k)$ 的形式．那么，只需将某一个下标的值右位移 k，即可得出它在哪一块中．在向下跳的时候时刻判断是否跳出块即可．
+Còn nhảy xuống là một cách xử lý hoàn toàn khác. Nếu dùng chỉ số 0-index, phạm vi chỉ số của mỗi khối có dạng $[c\times 2^k,(c+1)\times 2^k)$. Do đó, chỉ cần dịch phải giá trị của một chỉ số đi k bit là có thể biết nó thuộc khối nào. Khi nhảy xuống, ta chỉ cần liên tục kiểm tra xem có nhảy ra khỏi khối hay không.
 
-需要注意的是，按这一方法实现的树状数组会访问到的最大下标是距离 n 最近的 2 的整次幂，因此数组下标不能开 n．
+Cần chú ý rằng cây Fenwick được cài đặt theo cách này sẽ truy cập tới chỉ số lớn nhất là lũy thừa của 2 gần $n$ nhất, vì vậy không thể chỉ cấp phát mảng đến chỉ số $n$.
 
-由于需要在 $\log n$ 层修改，在第 $k$ 层修改的时间复杂度为 $\Theta(k)$，最终时间复杂度即为 $\Theta(n\log n+m\log^2n)$．
+Vì cần sửa đổi trên $\log n$ tầng, và độ phức tạp khi sửa đổi ở tầng thứ $k$ là $\Theta(k)$, độ phức tạp cuối cùng là $\Theta(n\log n+m\log^2n)$.
 
-附代码：
+Mã nguồn:
 
 ```cpp
 --8<-- "docs/ds/code/dividing/dividing_1.cpp"
 ```
 
-## 后记
+## Ghi chú cuối
 
-参考博文 :[传送门](https://blog.csdn.net/littlewhite520/article/details/70250722)．
+Bài viết tham khảo: [liên kết](https://blog.csdn.net/littlewhite520/article/details/70250722).

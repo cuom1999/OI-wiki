@@ -5,7 +5,7 @@ constexpr int N = 100000 + 5;
 constexpr int logN = 16;  // ⌊ log_2 N ⌋
 int f[logN + 1][N], Logn[N];
 
-// 初始化对数值
+// Khởi tạo giá trị logarit
 void pre() {
   Logn[2] = 1;
   for (int i = 3; i < N; i++) {
@@ -21,7 +21,7 @@ int main() {
   for (int i = 1; i <= n; i++) cin >> f[0][i];
   for (int j = 1; j <= logN; j++)
     for (int i = 1; i + (1 << j) - 1 <= n; i++)
-      f[j][i] = max(f[j - 1][i], f[j - 1][i + (1 << (j - 1))]);  // ST表具体实现
+      f[j][i] = max(f[j - 1][i], f[j - 1][i + (1 << (j - 1))]);  // Cài đặt bảng ST
   for (int i = 1; i <= m; i++) {
     int x, y;
     cin >> x >> y;

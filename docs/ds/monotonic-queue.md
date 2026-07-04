@@ -1,86 +1,86 @@
 author: Link-cute, Xeonacid, ouuan, Alphnia, Lyccrius
 
-## 引入
+## Giới thiệu
 
-在学习单调队列前，让我们先来看一道例题．
+Trước khi học hàng đợi đơn điệu, hãy xem một bài ví dụ.
 
-???+ note "例题"
+???+ note "Ví dụ"
     [Sliding Window](http://poj.org/problem?id=2823)
     
-    本题大意是给出一个长度为 $n$ 的数组，编程输出每 $k$ 个连续的数中的最大值和最小值．
+    Nội dung chính của bài là: cho một mảng độ dài $n$, hãy viết chương trình in ra giá trị lớn nhất và nhỏ nhất trong mỗi đoạn gồm $k$ số liên tiếp.
 
-最暴力的想法很简单，对于每一段 $i \sim i+k-1$ 的序列，逐个比较来找出最大值（和最小值），时间复杂度约为 $O(n \times k)$．
+Cách vét cạn rất đơn giản: với mỗi đoạn $i \sim i+k-1$, so sánh từng phần tử để tìm giá trị lớn nhất (và nhỏ nhất), độ phức tạp thời gian khoảng $O(n \times k)$.
 
-很显然，这其中进行了大量重复工作，除了开头 $k-1$ 个和结尾 $k-1$ 个数之外，每个数都进行了 $k$ 次比较，而题中 $100\%$ 的数据为 $n \le 1000000$，当 $k$ 稍大的情况下，显然会 TLE．
+Rõ ràng cách này thực hiện rất nhiều công việc lặp lại. Ngoài $k-1$ số ở đầu và $k-1$ số ở cuối, mỗi số đều bị so sánh $k$ lần; trong khi $100\%$ dữ liệu của bài có $n \le 1000000$, nên khi $k$ hơi lớn thì chắc chắn sẽ TLE.
 
-这时所用到的就是单调队列了．
+Lúc này ta cần dùng hàng đợi đơn điệu.
 
-## 定义
+## Định nghĩa
 
-顾名思义，单调队列的重点分为「单调」和「队列」．
+Đúng như tên gọi, trọng tâm của hàng đợi đơn điệu nằm ở hai phần: "đơn điệu" và "hàng đợi".
 
-「单调」指的是元素的「规律」——递增（或递减）．
+"Đơn điệu" chỉ quy luật của các phần tử: tăng dần (hoặc giảm dần).
 
-「队列」指的是元素只能从队头和队尾进行操作．
+"Hàng đợi" nghĩa là các phần tử chỉ được thao tác ở đầu hàng đợi và cuối hàng đợi.
 
-Ps. 单调队列中的 "队列" 与正常的队列有一定的区别，稍后会提到
+P.S. "Hàng đợi" trong hàng đợi đơn điệu có một số khác biệt so với hàng đợi thông thường; phần sau sẽ nhắc tới.
 
-## 例题分析
+## Phân tích ví dụ
 
-### 解释
+### Giải thích
 
-有了上面「单调队列」的概念，很容易想到用单调队列进行优化．
+Với khái niệm "hàng đợi đơn điệu" ở trên, ta dễ nghĩ tới việc dùng nó để tối ưu.
 
-要求的是每连续的 $k$ 个数中的最大（最小）值，很明显，当一个数进入所要 "寻找" 最大值的范围中时，若这个数比其前面（先进队）的数要大，显然，前面的数会比这个数先出队且不再可能是最大值．
+Ta cần tìm giá trị lớn nhất (nhỏ nhất) trong mỗi $k$ số liên tiếp. Rõ ràng, khi một số đi vào phạm vi đang "tìm" giá trị lớn nhất, nếu số này lớn hơn những số đứng trước nó (vào hàng đợi trước), thì các số phía trước sẽ rời hàng đợi trước số này và không còn khả năng trở thành giá trị lớn nhất nữa.
 
-也就是说——当满足以上条件时，可将前面的数 "弹出"，再将该数真正 push 进队尾．
+Nói cách khác, khi thỏa mãn điều kiện trên, ta có thể "bật ra" các số phía trước, rồi mới thật sự push số hiện tại vào cuối hàng đợi.
 
-这就相当于维护了一个递减的队列，符合单调队列的定义，减少了重复的比较次数，不仅如此，由于维护出的队伍是查询范围内的且是递减的，队头必定是该查询区域内的最大值，因此输出时只需输出队头即可．
+Điều này tương đương với việc duy trì một hàng đợi giảm dần, phù hợp với định nghĩa hàng đợi đơn điệu và giảm số lần so sánh lặp lại. Hơn nữa, vì hàng đợi được duy trì chỉ gồm các phần tử trong phạm vi truy vấn và đang giảm dần, đầu hàng đợi chắc chắn là giá trị lớn nhất trong vùng truy vấn, nên khi in kết quả chỉ cần in đầu hàng đợi.
 
-显而易见的是，在这样的算法中，每个数只要进队与出队各一次，因此时间复杂度被降到了 $O(n)$．
+Dễ thấy trong thuật toán này, mỗi số chỉ vào hàng đợi và ra khỏi hàng đợi nhiều nhất một lần, vì vậy độ phức tạp thời gian giảm xuống $O(n)$.
 
-而由于查询区间长度是固定的，超出查询空间的值再大也不能输出，因此还需要 site 数组记录第 $i$ 个队中的数在原数组中的位置，以弹出越界的队头．
+Do độ dài đoạn truy vấn là cố định, một giá trị dù lớn đến đâu cũng không được in nếu đã vượt ra ngoài phạm vi truy vấn. Vì vậy, còn cần mảng `site` ghi lại vị trí trong mảng gốc của phần tử thứ $i$ trong hàng đợi, để bật ra đầu hàng đợi đã nằm ngoài phạm vi.
 
-### 过程
+### Quá trình
 
-例如我们构造一个单调递增的队列会如下：
+Ví dụ, quá trình xây dựng một hàng đợi đơn điệu tăng như sau:
 
-原序列为：
+Dãy ban đầu là:
 
 ```text
 1 3 -1 -3 5 3 6 7
 ```
 
-因为我们始终要维护队列保证其 **递增** 的特点，所以会有如下的事情发生：（假设 $k = 3$）
+Vì ta luôn phải duy trì đặc tính **tăng dần** của hàng đợi, nên các thao tác sẽ diễn ra như sau (giả sử $k = 3$):
 
-| 操作                              | 队列状态      |
-| ------------------------------- | --------- |
-| 1 入队                            | `{1}`     |
-| 3 比 1 大，3 入队                    | `{1 3}`   |
-| -1 比队列中所有元素小，所以清空队列 -1 入队       | `{-1}`    |
-| -3 比队列中所有元素小，所以清空队列 -3 入队       | `{-3}`    |
-| 5 比 -3 大，直接入队                   | `{-3 5}`  |
-| 3 比 5 小，5 出队，3 入队               | `{-3 3}`  |
-| -3 已经在窗体外，所以 -3 出队；6 比 3 大，6 入队 | `{3 6}`   |
-| 7 比 6 大，7 入队                    | `{3 6 7}` |
+| Thao tác                                                     | Trạng thái hàng đợi |
+| ------------------------------------------------------------ | ------------------- |
+| 1 vào hàng đợi                                               | `{1}`               |
+| 3 lớn hơn 1, 3 vào hàng đợi                                  | `{1 3}`             |
+| -1 nhỏ hơn mọi phần tử trong hàng đợi, nên xóa hàng đợi rồi cho -1 vào hàng đợi | `{-1}`              |
+| -3 nhỏ hơn mọi phần tử trong hàng đợi, nên xóa hàng đợi rồi cho -3 vào hàng đợi | `{-3}`              |
+| 5 lớn hơn -3, vào hàng đợi trực tiếp                         | `{-3 5}`            |
+| 3 nhỏ hơn 5, 5 ra khỏi hàng đợi, 3 vào hàng đợi              | `{-3 3}`            |
+| -3 đã nằm ngoài cửa sổ, nên -3 ra khỏi hàng đợi; 6 lớn hơn 3, 6 vào hàng đợi | `{3 6}`             |
+| 7 lớn hơn 6, 7 vào hàng đợi                                  | `{3 6 7}`           |
 
-???+ note "例题参考代码"
+???+ note "Mã tham khảo cho ví dụ"
     ```cpp
     --8<-- "docs/ds/code/monotonic-queue/monotonic-queue_1.cpp"
     ```
 
-Ps. 此处的 "队列" 跟普通队列的一大不同就在于可以从队尾进行操作，STL 中有类似的数据结构 deque．
+P.S. Một khác biệt lớn giữa "hàng đợi" ở đây và hàng đợi thông thường là ta có thể thao tác ở cuối hàng đợi; trong STL có cấu trúc dữ liệu tương tự là `deque`.
 
-???+ note "例题 2 [Luogu P2698 Flowerpot S](https://www.luogu.com.cn/problem/P2698)"
-    给出 $N$ 滴水的坐标，$y$ 表示水滴的高度，$x$ 表示它下落到 $x$ 轴的位置．每滴水以每秒 1 个单位长度的速度下落．你需要把花盆放在 $x$ 轴上的某个位置，使得从被花盆接着的第 1 滴水开始，到被花盆接着的最后 1 滴水结束，之间的时间差至少为 $D$．
-    我们认为，只要水滴落到 $x$ 轴上，与花盆的边沿对齐，就认为被接住．给出 $N$ 滴水的坐标和 $D$ 的大小，请算出最小的花盆的宽度 $W$．$1\leq N \leq 100000 , 1 \leq D \leq 1000000, 0 \leq x,y\leq 10^6$
+???+ note "Ví dụ 2 [Luogu P2698 Flowerpot S](https://www.luogu.com.cn/problem/P2698)"
+    Cho tọa độ của $N$ giọt nước, trong đó $y$ biểu thị độ cao của giọt nước, còn $x$ biểu thị vị trí nó rơi xuống trục $x$. Mỗi giọt nước rơi với tốc độ 1 đơn vị độ dài mỗi giây. Bạn cần đặt chậu hoa ở một vị trí nào đó trên trục $x$ sao cho từ lúc giọt nước đầu tiên được chậu hứng đến lúc giọt nước cuối cùng được chậu hứng, độ chênh lệch thời gian ít nhất là $D$.
+    Ta coi một giọt nước là được hứng nếu khi nó rơi xuống trục $x$, nó thẳng hàng với mép chậu hoa. Cho tọa độ của $N$ giọt nước và giá trị $D$, hãy tính chiều rộng nhỏ nhất $W$ của chậu hoa. $1\leq N \leq 100000 , 1 \leq D \leq 1000000, 0 \leq x,y\leq 10^6$
 
-将所有水滴按照 $x$ 坐标排序之后，题意可以转化为求一个 $x$ 坐标差最小的区间使得这个区间内 $y$ 坐标的最大值和最小值之差至少为 $D$．我们发现这道题和上一道例题有相似之处，就是都与一个区间内的最大值最小值有关，但是这道题区间的大小不确定，而且区间大小本身还是我们要求的答案．
+Sau khi sắp xếp tất cả giọt nước theo tọa độ $x$, bài toán có thể chuyển thành tìm một đoạn có hiệu tọa độ $x$ nhỏ nhất sao cho trong đoạn đó, hiệu giữa giá trị lớn nhất và nhỏ nhất của tọa độ $y$ ít nhất là $D$. Ta thấy bài này giống ví dụ trước ở chỗ đều liên quan tới giá trị lớn nhất và nhỏ nhất trong một đoạn, nhưng ở bài này kích thước đoạn không cố định, và chính kích thước đoạn cũng là đáp án cần tìm.
 
-我们依然可以使用一个递增，一个递减两个单调队列在 $R$ 不断后移时维护 $[L,R]$ 内的最大值和最小值，不过此时我们发现，如果 $L$ 固定，那么 $[L,R]$ 内的最大值只会越来越大，最小值只会越来越小，所以设 $f(R) = \max[L,R]-\min[L,R]$，则 $f(R)$ 是个关于 $R$ 的递增函数，故 $f(R)\geq D \implies f(r)\geq D,R\lt r \leq N$．这说明对于每个固定的 $L$，向右第一个满足条件的 $R$ 就是最优答案．
-所以我们整体求解的过程就是，先固定 $L$，从前往后移动 $R$，使用两个单调队列维护 $[L,R]$ 的最值．当找到了第一个满足条件的 $R$，就更新答案并将 $L$ 也向后移动．随着 $L$ 向后移动，两个单调队列都需及时弹出队头．这样，直到 $R$ 移到最后，每个元素依然是各进出队列一次，保证了 $O(n)$ 的时间复杂度．
+Ta vẫn có thể dùng hai hàng đợi đơn điệu, một tăng và một giảm, để duy trì giá trị lớn nhất và nhỏ nhất trong $[L,R]$ khi $R$ liên tục dịch sang phải. Lúc này ta nhận thấy: nếu cố định $L$, thì giá trị lớn nhất trong $[L,R]$ chỉ có thể ngày càng lớn, còn giá trị nhỏ nhất chỉ có thể ngày càng nhỏ. Do đó, đặt $f(R) = \max[L,R]-\min[L,R]$, thì $f(R)$ là một hàm tăng theo $R$, nên $f(R)\geq D \implies f(r)\geq D,R\lt r \leq N$. Điều này cho thấy với mỗi $L$ cố định, $R$ đầu tiên ở bên phải thỏa mãn điều kiện chính là lựa chọn tối ưu.
+Vì vậy, toàn bộ quá trình giải là: trước hết cố định $L$, rồi di chuyển $R$ từ trước ra sau, dùng hai hàng đợi đơn điệu để duy trì các giá trị cực trị của $[L,R]$. Khi tìm được $R$ đầu tiên thỏa mãn điều kiện, cập nhật đáp án và cũng dịch $L$ sang phải. Khi $L$ dịch sang phải, cả hai hàng đợi đơn điệu đều cần kịp thời bật đầu hàng đợi. Như vậy, cho tới khi $R$ đi tới cuối, mỗi phần tử vẫn chỉ vào và ra khỏi hàng đợi một lần, bảo đảm độ phức tạp thời gian $O(n)$.
 
-???+ note "参考代码"
+???+ note "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/monotonic-queue/monotonic-queue_2.cpp"
     ```

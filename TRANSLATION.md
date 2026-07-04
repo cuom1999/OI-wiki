@@ -208,6 +208,10 @@ MkDocs source layout intact.
   `docs/ds/sqrt-tree.md`: translated block-based data-structure material
   covering sqrt decomposition, block arrays/lists, tree decomposition, and
   Sqrt Tree, plus explanatory comments in included snippets.
+- `docs/ds/monotonic-stack.md`, `docs/ds/monotonic-queue.md`,
+  `docs/ds/sparse-table.md`, `docs/ds/dividing.md`: translated short
+  range-query data-structure pages covering monotonic stack/queue, Sparse
+  Table, and dividing tree, plus explanatory comments in included snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

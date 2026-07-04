@@ -364,9 +364,9 @@ nav:
       - Danh sách liên kết chia khối: ds/block-list.md
       - Chia khối trên cây: ds/tree-decompose.md
       - Sqrt Tree: ds/sqrt-tree.md
-    - 单调栈: ds/monotonic-stack.md
-    - 单调队列: ds/monotonic-queue.md
-    - ST 表: ds/sparse-table.md
+    - Ngăn xếp đơn điệu: ds/monotonic-stack.md
+    - Hàng đợi đơn điệu: ds/monotonic-queue.md
+    - Bảng thưa (Sparse Table): ds/sparse-table.md
     - 树状数组: ds/fenwick.md
     - 线段树:
       - 线段树基础: ds/seg.md
@@ -375,7 +375,7 @@ nav:
       - 猫树: ds/cat-tree.md
       - 区间最值操作 & 区间历史最值: ds/seg-beats.md
       - Kinetic Tournament Tree: ds/kinetic-tournament-tree.md
-    - 划分树: ds/dividing.md
+    - Cây phân hoạch: ds/dividing.md
     - 二叉搜索树 & 平衡树:
       - 二叉搜索树 & 平衡树: ds/bst.md
       - Treap: ds/treap.md
