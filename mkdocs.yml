@@ -367,7 +367,7 @@ nav:
     - Ngăn xếp đơn điệu: ds/monotonic-stack.md
     - Hàng đợi đơn điệu: ds/monotonic-queue.md
     - Bảng thưa (Sparse Table): ds/sparse-table.md
-    - 树状数组: ds/fenwick.md
+    - Cây Fenwick: ds/fenwick.md
     - 线段树:
       - 线段树基础: ds/seg.md
       - 线段树合并 & 分裂: ds/seg-merge-split.md

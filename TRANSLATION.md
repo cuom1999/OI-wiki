@@ -212,6 +212,10 @@ MkDocs source layout intact.
   `docs/ds/sparse-table.md`, `docs/ds/dividing.md`: translated short
   range-query data-structure pages covering monotonic stack/queue, Sparse
   Table, and dividing tree, plus explanatory comments in included snippets.
+- `docs/ds/fenwick.md`: translated the Fenwick tree page covering one- and
+  two-dimensional BIT operations, range-add/range-sum transformations, value
+  Fenwick applications, non-differentiable information, and implementation
+  tricks.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

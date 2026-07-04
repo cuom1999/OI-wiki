@@ -1,124 +1,124 @@
 author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicun, Ycrpro, dbxxx-oi, HowieHz, y-kx-b
 
-## 引入
+## Giới thiệu
 
-树状数组是一种支持 **单点修改** 和 **区间查询** 的，代码量小的数据结构．
+Cây Fenwick (Binary Indexed Tree, BIT) là một cấu trúc dữ liệu có lượng mã nhỏ, hỗ trợ **sửa đổi một điểm** và **truy vấn đoạn**.
 
-??? note "什么是「单点修改」和「区间查询」？"
-    假设有这样一道题：
+??? note ""Sửa đổi một điểm" và "truy vấn đoạn" là gì?"
+    Giả sử có bài toán như sau:
     
-    已知一个数列 $a$，你需要进行下面两种操作：
+    Cho một dãy $a$, cần thực hiện hai loại thao tác:
     
-    -   给定 $x, y$，将 $a[x]$ 自增 $y$．
-    -   给定 $l, r$，求解 $a[l \ldots r]$ 的和．
+    -   Cho $x, y$, tăng $a[x]$ thêm $y$.
+    -   Cho $l, r$, tính tổng của $a[l \ldots r]$.
     
-    其中第一种操作就是「单点修改」，第二种操作就是「区间查询」．
+    Thao tác thứ nhất là "sửa đổi một điểm", thao tác thứ hai là "truy vấn đoạn".
     
-    类似地，还有：「区间修改」、「单点查询」．它们分别的一个例子如下：
+    Tương tự, còn có "sửa đổi đoạn" và "truy vấn một điểm". Ví dụ:
     
-    -   区间修改：给定 $l, r, x$，将 $a[l \ldots r]$ 中的每个数都分别自增 $x$；
-    -   单点查询：给定 $x$，求解 $a[x]$ 的值．
+    -   Sửa đổi đoạn: cho $l, r, x$, tăng mỗi số trong $a[l \ldots r]$ thêm $x$;
+    -   Truy vấn một điểm: cho $x$, tính giá trị của $a[x]$.
     
-    注意到，区间问题一般严格强于单点问题，因为对单点的操作相当于对一个长度为 $1$ 的区间操作．
+    Cần chú ý rằng bài toán trên đoạn thường mạnh hơn hẳn bài toán trên một điểm, vì thao tác trên một điểm có thể xem là thao tác trên đoạn độ dài $1$.
 
-普通树状数组维护的信息及运算要满足 **结合律** 且 **可差分**，如加法（和）、乘法（积）、异或等．
+Cây Fenwick thông thường yêu cầu thông tin và phép toán được duy trì phải thỏa mãn **tính kết hợp** và **có thể lấy sai phân**, chẳng hạn phép cộng (tổng), phép nhân (tích), xor, v.v.
 
--   结合律：$(x \circ y) \circ z = x \circ (y \circ z)$，其中 $\circ$ 是一个二元运算符．
--   可差分：具有逆运算的运算，即已知 $x \circ y$ 和 $x$ 可以求出 $y$．
+-   Tính kết hợp: $(x \circ y) \circ z = x \circ (y \circ z)$, trong đó $\circ$ là một toán tử hai ngôi.
+-   Có thể lấy sai phân: phép toán có phép nghịch đảo, tức biết $x \circ y$ và $x$ thì có thể suy ra $y$.
 
-需要注意的是：
+Cần chú ý:
 
--   模意义下的乘法若要可差分，需保证每个数都存在逆元（模数为质数时一定存在）；
--   例如 $\gcd$，$\max$ 这些信息不可差分，所以不能用普通树状数组处理，但是：
-    -   使用两个树状数组可以用于处理区间最值，见 [Efficient Range Minimum Queries using Binary Indexed Trees](http://history.ioinformatics.org/oi/files/volume9.pdf#page=41)．
-    -   本页面也会介绍一种支持不可差分信息查询的，$\Theta(\log^2n)$ 时间复杂度的拓展树状数组．
+-   Với phép nhân theo modulo, để có thể lấy sai phân thì cần bảo đảm mỗi số đều có nghịch đảo (luôn tồn tại khi modulo là số nguyên tố).
+-   Các thông tin như $\gcd$, $\max$ không thể lấy sai phân, nên không thể xử lý bằng cây Fenwick thông thường. Tuy nhiên:
+    -   Có thể dùng hai cây Fenwick để xử lý cực trị trên đoạn, xem [Efficient Range Minimum Queries using Binary Indexed Trees](http://history.ioinformatics.org/oi/files/volume9.pdf#page=41).
+    -   Trang này cũng sẽ giới thiệu một mở rộng của cây Fenwick hỗ trợ truy vấn thông tin không thể lấy sai phân với độ phức tạp thời gian $\Theta(\log^2n)$.
 
-事实上，树状数组能解决的问题是线段树能解决的问题的子集：树状数组能做的，线段树一定能做；线段树能做的，树状数组不一定可以．然而，树状数组的代码要远比线段树短，时间效率常数也更小，因此仍有学习价值．
+Trên thực tế, tập bài toán mà cây Fenwick giải được là một tập con của tập bài toán mà cây phân đoạn giải được: những gì cây Fenwick làm được thì cây phân đoạn chắc chắn làm được; nhưng những gì cây phân đoạn làm được thì cây Fenwick chưa chắc làm được. Tuy vậy, mã của cây Fenwick ngắn hơn cây phân đoạn rất nhiều và hằng số thời gian cũng nhỏ hơn, nên vẫn rất đáng học.
 
-有时，在差分数组和辅助数组的帮助下，树状数组还可解决更强的 **区间加单点值** 和 **区间加区间和** 问题．
+Đôi khi, với sự hỗ trợ của mảng sai phân và mảng phụ, cây Fenwick còn có thể giải các bài toán mạnh hơn như **cộng đoạn, hỏi giá trị một điểm** và **cộng đoạn, hỏi tổng đoạn**.
 
-## 树状数组
+## Cây Fenwick
 
-### 初步感受
+### Cảm nhận ban đầu
 
-先来举个例子：我们想知道 $a[1 \ldots 7]$ 的前缀和，怎么做？
+Trước hết xét một ví dụ: nếu muốn biết tổng tiền tố $a[1 \ldots 7]$, ta làm thế nào?
 
-一种做法是：$a_1 + a_2 + a_3 + a_4 + a_5 + a_6 + a_7$，需要求 $7$ 个数的和．
+Một cách là tính $a_1 + a_2 + a_3 + a_4 + a_5 + a_6 + a_7$, tức phải cộng $7$ số.
 
-但是如果已知三个数 $A$，$B$，$C$，$A = a[1 \ldots 4]$ 的和，$B = a[5 \ldots 6]$ 的总和，$C = a[7 \ldots 7]$ 的总和（其实就是 $a[7]$ 自己）．你会怎么算？你一定会回答：$A + B + C$，只需要求 $3$ 个数的和．
+Nhưng nếu đã biết ba số $A$, $B$, $C$, trong đó $A$ là tổng của $a[1 \ldots 4]$, $B$ là tổng của $a[5 \ldots 6]$, còn $C$ là tổng của $a[7 \ldots 7]$ (thực ra chính là $a[7]$), ta sẽ tính thế nào? Chắc chắn là $A + B + C$, chỉ cần cộng $3$ số.
 
-这就是树状数组能快速求解信息的原因：我们总能将一段前缀 $[1, n]$ 拆成 **不多于 $\boldsymbol{\log n}$ 段区间**，使得这 $\log n$ 段区间的信息是 **已知的**．
+Đó là lý do cây Fenwick có thể trả lời nhanh: ta luôn có thể tách một tiền tố $[1, n]$ thành **không quá $\boldsymbol{\log n}$ đoạn**, sao cho thông tin của các đoạn này đều **đã biết**.
 
-于是，我们只需合并这 $\log n$ 段区间的信息，就可以得到答案．相比于原来直接合并 $n$ 个信息，效率有了很大的提高．
+Khi đó, chỉ cần gộp thông tin của các đoạn này là có đáp án. So với việc gộp trực tiếp $n$ thông tin ban đầu, hiệu quả được cải thiện rất nhiều.
 
-不难发现信息必须满足结合律，否则就不能像上面这样合并了．
+Dễ thấy thông tin cần thỏa mãn tính kết hợp; nếu không, ta không thể gộp như trên.
 
-下面这张图展示了树状数组的工作原理：
+Hình dưới minh họa nguyên lý hoạt động của cây Fenwick:
 
 ![](./images/fenwick.svg)
 
-最下面的八个方块代表原始数据数组 $a$．上面参差不齐的方块（与最上面的八个方块是同一个数组）代表数组 $a$ 的上级——$c$ 数组．
+Tám ô ở dưới cùng biểu diễn mảng dữ liệu ban đầu $a$. Các ô không đều ở phía trên (cùng là mảng với tám ô ở hàng trên cùng) biểu diễn mảng cấp trên của $a$, tức mảng $c$.
 
-$c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是说，这些区间的信息是已知的，我们的目标就是把查询前缀拆成这些小区间．
+Mảng $c$ dùng để lưu tổng của một số đoạn trong mảng ban đầu $a$. Nói cách khác, thông tin của các đoạn này đã biết; mục tiêu của ta là tách tiền tố cần hỏi thành các đoạn nhỏ đó.
 
-例如，从图中可以看出：
+Ví dụ, từ hình có thể thấy:
 
--   $c_2$ 管辖的是 $a[1 \ldots 2]$；
--   $c_4$ 管辖的是 $a[1 \ldots 4]$；
--   $c_6$ 管辖的是 $a[5 \ldots 6]$；
--   $c_8$ 管辖的是 $a[1 \ldots 8]$；
--   剩下的 $c[x]$ 管辖的都是 $a[x]$ 自己（可以看做 $a[x \ldots x]$ 的长度为 $1$ 的小区间）．
+-   $c_2$ quản lý $a[1 \ldots 2]$;
+-   $c_4$ quản lý $a[1 \ldots 4]$;
+-   $c_6$ quản lý $a[5 \ldots 6]$;
+-   $c_8$ quản lý $a[1 \ldots 8]$;
+-   các $c[x]$ còn lại đều quản lý chính $a[x]$ (có thể xem là đoạn nhỏ độ dài $1$, tức $a[x \ldots x]$).
 
-不难发现，$c[x]$ 管辖的一定是一段右边界是 $x$ 的区间总信息．我们先不关心左边界，先来感受一下树状数组是如何查询的．
+Dễ thấy $c[x]$ luôn quản lý tổng thông tin của một đoạn có biên phải là $x$. Tạm thời chưa cần quan tâm biên trái; trước hết hãy xem cây Fenwick truy vấn như thế nào.
 
-举例：计算 $a[1 \ldots 7]$ 的和．
+Ví dụ: tính tổng $a[1 \ldots 7]$.
 
-过程：从 $c_{7}$ 开始往前跳，发现 $c_{7}$ 只管辖 $a_{7}$ 这个元素；然后找 $c_{6}$，发现 $c_{6}$ 管辖的是 $a[5 \ldots 6]$，然后跳到 $c_{4}$，发现 $c_{4}$ 管辖的是 $a[1 \ldots 4]$ 这些元素，然后再试图跳到 $c_0$，但事实上 $c_0$ 不存在，不跳了．
+Quá trình: bắt đầu nhảy lùi từ $c_{7}$, thấy $c_{7}$ chỉ quản lý phần tử $a_{7}$; tiếp theo tìm $c_{6}$, thấy $c_{6}$ quản lý $a[5 \ldots 6]$; sau đó nhảy tới $c_{4}$, thấy $c_{4}$ quản lý $a[1 \ldots 4]$; cuối cùng thử nhảy tới $c_0$, nhưng $c_0$ không tồn tại nên dừng.
 
-我们刚刚找到的 $c$ 是 $c_7, c_6, c_4$，事实上这就是 $a[1 \ldots 7]$ 拆分出的三个小区间，合并得到答案是 $c_7 + c_6 + c_4$．
+Các phần tử $c$ vừa tìm được là $c_7, c_6, c_4$; thực ra đó chính là ba đoạn nhỏ tách ra từ $a[1 \ldots 7]$. Gộp lại ta được đáp án $c_7 + c_6 + c_4$.
 
-举例：计算 $a[4 \ldots 7]$ 的和．
+Ví dụ: tính tổng $a[4 \ldots 7]$.
 
-我们还是从 $c_7$ 开始跳，跳到 $c_6$ 再跳到 $c_4$．此时我们发现它管理了 $a[1 \ldots 4]$ 的和，但是我们不想要 $a[1 \ldots 3]$ 这一部分，怎么办呢？很简单，减去 $a[1 \ldots 3]$ 的和就行了．
+Ta vẫn bắt đầu từ $c_7$, nhảy tới $c_6$ rồi tới $c_4$. Lúc này ta thấy $c_4$ quản lý tổng của $a[1 \ldots 4]$, nhưng ta không muốn phần $a[1 \ldots 3]$. Xử lý rất đơn giản: trừ đi tổng $a[1 \ldots 3]$.
 
-那不妨考虑最开始，就将查询 $a[4 \ldots 7]$ 的和转化为查询 $a[1 \ldots 7]$ 的和，以及查询 $a[1 \ldots 3]$ 的和，最终将两个结果作差．
+Vì vậy, ngay từ đầu có thể chuyển truy vấn tổng $a[4 \ldots 7]$ thành hai truy vấn tổng $a[1 \ldots 7]$ và $a[1 \ldots 3]$, rồi lấy hiệu hai kết quả.
 
 ![](images/fenwick-query.svg)
 
-### 管辖区间
+### Đoạn quản lý
 
-那么问题来了，$c[x](x \ge 1)$ 管辖的区间到底往左延伸多少？也就是说，区间长度是多少？
+Vậy câu hỏi đặt ra là: đoạn mà $c[x](x \ge 1)$ quản lý kéo dài sang trái bao xa? Nói cách khác, độ dài đoạn là bao nhiêu?
 
-树状数组中，规定 $c[x]$ 管辖的区间长度为 $2^{k}$，其中：
+Trong cây Fenwick, quy ước độ dài đoạn mà $c[x]$ quản lý là $2^{k}$, trong đó:
 
--   设二进制最低位为第 $0$ 位，则 $k$ 恰好为 $x$ 二进制表示中，最低位的 `1` 所在的二进制位数；
--   $2^k$（$c[x]$ 的管辖区间长度）恰好为 $x$ 二进制表示中，最低位的 `1` 以及后面所有 `0` 组成的数．
+-   Nếu đánh số bit thấp nhất là bit $0$, thì $k$ chính là vị trí của bit `1` thấp nhất trong biểu diễn nhị phân của $x$;
+-   $2^k$ (độ dài đoạn do $c[x]$ quản lý) chính là số tạo bởi bit `1` thấp nhất trong biểu diễn nhị phân của $x$ cùng toàn bộ các bit `0` phía sau nó.
 
-举个例子，$c_{88}$ 管辖的是哪个区间？
+Lấy ví dụ, $c_{88}$ quản lý đoạn nào?
 
-因为 $88_{(10)}=01011000_{(2)}$，其二进制最低位的 `1` 以及后面的 `0` 组成的二进制是 `1000`，即 $8$，所以 $c_{88}$ 管辖 $8$ 个 $a$ 数组中的元素．
+Vì $88_{(10)}=01011000_{(2)}$, bit `1` thấp nhất cùng các bit `0` phía sau tạo thành nhị phân `1000`, tức $8$, nên $c_{88}$ quản lý $8$ phần tử trong mảng $a$.
 
-因此，$c_{88}$ 代表 $a[81 \ldots 88]$ 的区间信息．
+Do đó, $c_{88}$ biểu diễn thông tin đoạn $a[81 \ldots 88]$.
 
-我们记 $x$ 二进制最低位 `1` 以及后面的 `0` 组成的数为 $\operatorname{lowbit}(x)$，那么 $c[x]$ 管辖的区间就是 $[x-\operatorname{lowbit}(x)+1, x]$．
+Ký hiệu số tạo bởi bit `1` thấp nhất trong nhị phân của $x$ và các bit `0` phía sau là $\operatorname{lowbit}(x)$. Khi đó đoạn do $c[x]$ quản lý là $[x-\operatorname{lowbit}(x)+1, x]$.
 
-???+ warning "注意"
-    $\operatorname{lowbit}$ 指的不是最低位 `1` 所在的位数 $k$，而是这个 `1` 和后面所有 `0` 组成的 $2^k$．
+???+ warning "Lưu ý"
+    $\operatorname{lowbit}$ không chỉ vị trí $k$ của bit `1` thấp nhất, mà chỉ giá trị $2^k$ do bit `1` đó và toàn bộ các bit `0` phía sau tạo thành.
 
-怎么计算 `lowbit`？根据位运算知识，可以得到 `lowbit(x) = x & -x`．
+Tính `lowbit` thế nào? Từ kiến thức phép toán bit, ta có `lowbit(x) = x & -x`.
 
-??? note "lowbit 的原理"
-    将 `x` 的二进制所有位全部取反，再加 1，就可以得到 `-x` 的二进制编码．例如，$6$ 的二进制编码是 `110`，全部取反后得到 `001`，加 `1` 得到 `010`．
+??? note "Nguyên lý của lowbit"
+    Đảo tất cả bit trong biểu diễn nhị phân của `x`, rồi cộng thêm 1, ta nhận được mã nhị phân của `-x`. Ví dụ, mã nhị phân của $6$ là `110`; đảo toàn bộ bit được `001`, cộng `1` được `010`.
     
-    设原先 `x` 的二进制编码是 `(...)10...00`，全部取反后得到 `[...]01...11`，加 `1` 后得到 `[...]10...00`，也就是 `-x` 的二进制编码了．这里 `x` 二进制表示中第一个 `1` 是 `x` 最低位的 `1`．
+    Giả sử mã nhị phân ban đầu của `x` là `(...)10...00`; đảo toàn bộ bit được `[...]01...11`, cộng `1` được `[...]10...00`, tức mã nhị phân của `-x`. Ở đây bit `1` đầu tiên trong biểu diễn của `x` chính là bit `1` thấp nhất của `x`.
     
-    `(...)` 和 `[...]` 中省略号的每一位分别相反，所以 `x & -x = (...)10...00 & [...]10...00 = 10...00`，得到的结果就是 `lowbit`．
+    Các bit bị lược trong `(...)` và `[...]` đối nhau từng cặp, nên `x & -x = (...)10...00 & [...]10...00 = 10...00`; kết quả thu được chính là `lowbit`.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         int lowbit(int x) {
-          // x 的二进制中，最低位的 1 以及后面所有 0 组成的数．
+          // Số tạo bởi bit 1 thấp nhất trong nhị phân của x và mọi bit 0 phía sau.
           // lowbit(0b01011000) == 0b00001000
           //          ~~~~^~~~
           // lowbit(0b01110010) == 0b00000010
@@ -131,7 +131,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
         ```python
         def lowbit(x):
             """
-            x 的二进制中，最低位的 1 以及后面所有 0 组成的数．
+            Số tạo bởi bit 1 thấp nhất trong nhị phân của x và mọi bit 0 phía sau.
             lowbit(0b01011000) == 0b00001000
                     ~~~~~^~~
             lowbit(0b01110010) == 0b00000010
@@ -140,38 +140,38 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
             return x & -x
         ```
 
-### 区间查询
+### Truy vấn đoạn
 
-接下来我们来看树状数组具体的操作实现，先来看区间查询．
+Tiếp theo hãy xem cách cài đặt các thao tác cụ thể của cây Fenwick, bắt đầu từ truy vấn đoạn.
 
-回顾查询 $a[4 \ldots 7]$ 的过程，我们是将它转化为两个子过程：查询 $a[1 \ldots 7]$ 和查询 $a[1 \ldots 3]$ 的和，最终作差．
+Nhắc lại quá trình truy vấn $a[4 \ldots 7]$: ta chuyển nó thành hai bài toán con, truy vấn tổng $a[1 \ldots 7]$ và truy vấn tổng $a[1 \ldots 3]$, rồi lấy hiệu.
 
-其实任何一个区间查询都可以这么做：查询 $a[l \ldots r]$ 的和，就是 $a[1 \ldots r]$ 的和减去 $a[1 \ldots l - 1]$ 的和，从而把区间问题转化为前缀问题，更方便处理．
+Thực ra truy vấn đoạn nào cũng có thể làm như vậy: tổng của $a[l \ldots r]$ bằng tổng của $a[1 \ldots r]$ trừ tổng của $a[1 \ldots l - 1]$. Nhờ đó, bài toán trên đoạn được chuyển thành bài toán tiền tố, thuận tiện hơn để xử lý.
 
-事实上，将有关 $l \ldots r$ 的区间询问转化为 $1 \ldots r$ 和 $1 \ldots l - 1$ 的前缀询问再差分，在竞赛中是一个非常常用的技巧．
+Trong thi lập trình, việc chuyển truy vấn đoạn $l \ldots r$ thành hai truy vấn tiền tố $1 \ldots r$ và $1 \ldots l - 1$ rồi lấy sai phân là một kỹ thuật rất thường dùng.
 
-那前缀查询怎么做呢？回顾下查询 $a[1 \ldots 7]$ 的过程：
+Vậy truy vấn tiền tố làm thế nào? Nhắc lại quá trình truy vấn $a[1 \ldots 7]$:
 
-> 从 $c_{7}$ 往前跳，发现 $c_{7}$ 只管辖 $a_{7}$ 这个元素；然后找 $c_{6}$，发现 $c_{6}$ 管辖的是 $a[5 \ldots 6]$，然后跳到 $c_{4}$，发现 $c_{4}$ 管辖的是 $a[1 \ldots 4]$ 这些元素，然后再试图跳到 $c_0$，但事实上 $c_0$ 不存在，不跳了．
+> Nhảy lùi từ $c_{7}$, thấy $c_{7}$ chỉ quản lý phần tử $a_{7}$; sau đó tìm $c_{6}$, thấy $c_{6}$ quản lý $a[5 \ldots 6]$; tiếp tục nhảy tới $c_{4}$, thấy $c_{4}$ quản lý $a[1 \ldots 4]$; cuối cùng thử nhảy tới $c_0$, nhưng $c_0$ không tồn tại nên dừng.
 >
-> 我们刚刚找到的 $c$ 是 $c_7, c_6, c_4$，事实上这就是 $a[1 \ldots 7]$ 拆分出的三个小区间，合并一下，答案是 $c_7 + c_6 + c_4$．
+> Các $c$ vừa tìm được là $c_7, c_6, c_4$; đó chính là ba đoạn nhỏ tách ra từ $a[1 \ldots 7]$. Gộp lại, đáp án là $c_7 + c_6 + c_4$.
 
-观察上面的过程，每次往前跳，一定是跳到现区间的左端点的左一位，作为新区间的右端点，这样才能将前缀不重不漏地拆分．比如现在 $c_6$ 管的是 $a[5 \ldots 6]$，下一次就跳到 $5 - 1 = 4$，即访问 $c_4$．
+Quan sát quá trình trên, mỗi lần nhảy lùi phải nhảy tới vị trí ngay bên trái biên trái của đoạn hiện tại, lấy nó làm biên phải của đoạn mới. Như vậy mới tách tiền tố thành các đoạn không trùng và không thiếu. Ví dụ, hiện tại $c_6$ quản lý $a[5 \ldots 6]$, nên lần sau nhảy tới $5 - 1 = 4$, tức truy cập $c_4$.
 
-我们可以写出查询 $a[1 \ldots x]$ 的过程：
+Ta có thể viết quá trình truy vấn $a[1 \ldots x]$ như sau:
 
--   从 $c[x]$ 开始往前跳，有 $c[x]$ 管辖 $a[x-\operatorname{lowbit}(x)+1 \ldots x]$；
--   令 $x \gets x - \operatorname{lowbit}(x)$，如果 $x = 0$ 说明已经跳到尽头了，终止循环；否则回到第一步．
--   将跳到的 $c$ 合并．
+-   Bắt đầu nhảy lùi từ $c[x]$, trong đó $c[x]$ quản lý $a[x-\operatorname{lowbit}(x)+1 \ldots x]$;
+-   Gán $x \gets x - \operatorname{lowbit}(x)$. Nếu $x = 0$ nghĩa là đã nhảy tới cuối, kết thúc vòng lặp; nếu không thì quay lại bước đầu.
+-   Gộp các $c$ đã nhảy tới.
 
-实现时，我们不一定要先把 $c$ 都跳出来然后一起合并，可以边跳边合并．
+Khi cài đặt, không nhất thiết phải lưu hết các $c$ rồi mới gộp; có thể vừa nhảy vừa gộp.
 
-比如我们要维护的信息是和，直接令初始 $\mathrm{ans} = 0$，然后每跳到一个 $c[x]$ 就 $\mathrm{ans} \gets \mathrm{ans} + c[x]$，最终 $\mathrm{ans}$ 就是所有合并的结果．
+Ví dụ nếu thông tin cần duy trì là tổng, đặt ban đầu $\mathrm{ans} = 0$, rồi mỗi khi nhảy tới một $c[x]$ thì cập nhật $\mathrm{ans} \gets \mathrm{ans} + c[x]$. Cuối cùng $\mathrm{ans}$ chính là kết quả gộp.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
-        int getsum(int x) {  // a[1]..a[x]的和
+        int getsum(int x) {  // Tổng của a[1]..a[x]
           int ans = 0;
           while (x > 0) {
             ans = ans + c[x];
@@ -183,7 +183,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
     
     === "Python"
         ```python
-        def getsum(x):  # a[1]..a[x]的和
+        def getsum(x):  # Tổng của a[1]..a[x]
             ans = 0
             while x > 0:
                 ans = ans + c[x]
@@ -191,147 +191,147 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
             return ans
         ```
 
-### 树状数组与其树形态的性质
+### Cây Fenwick và các tính chất của dạng cây
 
-在讲解单点修改之前，先讲解树状数组的一些基本性质，以及其树形态来源，这有助于更好理解树状数组的单点修改．
+Trước khi trình bày sửa đổi một điểm, hãy nói về một số tính chất cơ bản của cây Fenwick và nguồn gốc dạng cây của nó. Điều này giúp hiểu thao tác sửa đổi một điểm tốt hơn.
 
-我们约定：
+Ta quy ước:
 
--   $l(x) = x - \operatorname{lowbit}(x) + 1$．即，$l(x)$ 是 $c[x]$ 管辖范围的左端点．
--   对于任意正整数 $x$，总能将 $x$ 表示成 $s \times 2^{k + 1} + 2^k$ 的形式，其中 $\operatorname{lowbit}(x) = 2^k$．
--   下面「$c[x]$ 和 $c[y]$ 不交」指 $c[x]$ 的管辖范围和 $c[y]$ 的管辖范围不相交，即 $[l(x), x]$ 和 $[l(y), y]$ 不相交．「$c[x]$ 包含于 $c[y]$」等表述同理．
+-   $l(x) = x - \operatorname{lowbit}(x) + 1$. Tức $l(x)$ là biên trái của phạm vi do $c[x]$ quản lý.
+-   Với mọi số nguyên dương $x$, luôn có thể biểu diễn $x$ dưới dạng $s \times 2^{k + 1} + 2^k$, trong đó $\operatorname{lowbit}(x) = 2^k$.
+-   Bên dưới, "$c[x]$ và $c[y]$ không giao nhau" nghĩa là phạm vi quản lý của $c[x]$ và $c[y]$ không giao nhau, tức $[l(x), x]$ và $[l(y), y]$ không giao nhau. Các cách nói như "$c[x]$ nằm trong $c[y]$" được hiểu tương tự.
 
-**性质 $\boldsymbol{1}$：对于 $\boldsymbol{x \le y}$，要么有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交，要么有 $\boldsymbol{c[x]}$ 包含于 $\boldsymbol{c[y]}$．**
+**Tính chất $\boldsymbol{1}$: với $\boldsymbol{x \le y}$, hoặc $\boldsymbol{c[x]}$ và $\boldsymbol{c[y]}$ không giao nhau, hoặc $\boldsymbol{c[x]}$ nằm trong $\boldsymbol{c[y]}$.**
 
-??? note "证明"
-    证明：假设 $c[x]$ 和 $c[y]$ 相交，即 $[l(x), x]$ 和 $[l(y), y]$ 相交，则一定有 $l(y) \le x \le y$．
+??? note "Chứng minh"
+    Giả sử $c[x]$ và $c[y]$ giao nhau, tức $[l(x), x]$ và $[l(y), y]$ giao nhau, khi đó chắc chắn có $l(y) \le x \le y$.
     
-    将 $y$ 表示为 $s \times 2^{k +1} + 2^k$，则 $l(y) = s \times 2^{k + 1} + 1$．所以，$x$ 可以表示为 $s \times 2^{k +1} + b$，其中 $1 \le b \le 2^k$．
+    Biểu diễn $y$ thành $s \times 2^{k +1} + 2^k$, khi đó $l(y) = s \times 2^{k + 1} + 1$. Vì vậy, $x$ có thể biểu diễn thành $s \times 2^{k +1} + b$, trong đó $1 \le b \le 2^k$.
     
-    不难发现 $\operatorname{lowbit}(x) = \operatorname{lowbit}(b)$．又因为 $b - \operatorname{lowbit}(b) \ge 0$，
+    Dễ thấy $\operatorname{lowbit}(x) = \operatorname{lowbit}(b)$. Lại vì $b - \operatorname{lowbit}(b) \ge 0$,
     
-    所以 $l(x) = x - \operatorname{lowbit}(x) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + 1 = l(y)$，即 $l(y) \le l(x) \le x \le y$．
+    nên $l(x) = x - \operatorname{lowbit}(x) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + 1 = l(y)$, tức $l(y) \le l(x) \le x \le y$.
     
-    所以，如果 $c[x]$ 和 $c[y]$ 相交，那么 $c[x]$ 的管辖范围一定完全包含于 $c[y]$．
+    Vì vậy, nếu $c[x]$ và $c[y]$ giao nhau, phạm vi quản lý của $c[x]$ chắc chắn nằm hoàn toàn trong phạm vi quản lý của $c[y]$.
 
-**性质 $\boldsymbol{2}$：$\boldsymbol{c[x]}$ 真包含于 $\boldsymbol{c[x + \operatorname{lowbit}(x)]}$．**
+**Tính chất $\boldsymbol{2}$: $\boldsymbol{c[x]}$ là tập con thực sự của $\boldsymbol{c[x + \operatorname{lowbit}(x)]}$.**
 
-??? note "证明"
-    证明：设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，$l(x) = s \times 2^{k + 1} + 1$．
+??? note "Chứng minh"
+    Đặt $y = x + \operatorname{lowbit}(x)$, $x = s \times 2^{k + 1} + 2^k$, khi đó $y = (s + 1) \times 2^{k +1}$ và $l(x) = s \times 2^{k + 1} + 1$.
     
-    不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1}$，所以 $l(y) = (s + 1) \times 2^{k + 1} - \operatorname{lowbit}(y) + 1 \le s \times 2^{k +1} + 1= l(x)$，即 $l(y) \le l(x) \le x < y$．
+    Dễ thấy $\operatorname{lowbit}(y) \ge 2^{k + 1}$, nên $l(y) = (s + 1) \times 2^{k + 1} - \operatorname{lowbit}(y) + 1 \le s \times 2^{k +1} + 1= l(x)$, tức $l(y) \le l(x) \le x < y$.
     
-    所以，$c[x]$ 真包含于 $c[x + \operatorname{lowbit}(x)]$．
+    Vì vậy, $c[x]$ là tập con thực sự của $c[x + \operatorname{lowbit}(x)]$.
 
-**性质 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交．**
+**Tính chất $3$: với mọi $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$, $\boldsymbol{c[x]}$ và $\boldsymbol{c[y]}$ không giao nhau.**
 
-??? note "证明"
-    证明：设 $x = s \times 2^{k + 1} + 2^k$，则 $y = x + b = s \times 2^{k + 1} + 2^k + b$，其中 $1 \le b < 2^k$．
+??? note "Chứng minh"
+    Đặt $x = s \times 2^{k + 1} + 2^k$, khi đó $y = x + b = s \times 2^{k + 1} + 2^k + b$, trong đó $1 \le b < 2^k$.
     
-    不难发现 $\operatorname{lowbit}(y) = \operatorname{lowbit}(b)$．又因为 $b - \operatorname{lowbit}(b) \ge 0$，
+    Dễ thấy $\operatorname{lowbit}(y) = \operatorname{lowbit}(b)$. Lại vì $b - \operatorname{lowbit}(b) \ge 0$,
     
-    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + b - \operatorname{lowbit}(b) + 1 > x$，即 $l(x) \le x < l(y) \le y$．
+    nên $l(y) = y - \operatorname{lowbit}(y) + 1 = x + b - \operatorname{lowbit}(b) + 1 > x$, tức $l(x) \le x < l(y) \le y$.
     
-    所以，$c[x]$ 和 $c[y]$ 不交．
+    Vì vậy, $c[x]$ và $c[y]$ không giao nhau.
 
-有了这三条性质的铺垫，我们接下来看树状数组的树形态（请忽略 $a$ 向 $c$ 的连边）．
+Sau ba tính chất làm nền, hãy xem dạng cây của cây Fenwick (bỏ qua các cạnh từ $a$ tới $c$).
 
 ![](./images/fenwick.svg)
 
-事实上，树状数组的树形态是 $x$ 向 $x + \operatorname{lowbit}(x)$ 连边得到的图，其中 $x + \operatorname{lowbit}(x)$ 是 $x$ 的父亲．
+Thực ra dạng cây của cây Fenwick là đồ thị thu được bằng cách nối cạnh từ $x$ tới $x + \operatorname{lowbit}(x)$, trong đó $x + \operatorname{lowbit}(x)$ là cha của $x$.
 
-注意，在考虑树状数组的树形态时，我们不考虑树状数组大小的影响，即我们认为这是一棵无限大的树，方便分析．实际实现时，我们只需用到 $x \le n$ 的 $c[x]$，其中 $n$ 是原数组长度．
+Cần chú ý rằng khi xét dạng cây của cây Fenwick, ta không xét ảnh hưởng của kích thước cây, tức xem nó như một cây vô hạn để tiện phân tích. Khi cài đặt thực tế, ta chỉ cần dùng các $c[x]$ với $x \le n$, trong đó $n$ là độ dài mảng ban đầu.
 
-这棵树天然满足了很多美好性质，下面列举若干（设 $fa[u]$ 表示 $u$ 的直系父亲）：
+Cây này tự nhiên thỏa mãn nhiều tính chất đẹp. Dưới đây là một số tính chất (đặt $fa[u]$ là cha trực tiếp của $u$):
 
--   $u < fa[u]$．
--   $u$ 大于任何一个 $u$ 的后代，小于任何一个 $u$ 的祖先．
--   点 $u$ 的 $\operatorname{lowbit}$ 严格小于 $fa[u]$ 的 $\operatorname{lowbit}$．
+-   $u < fa[u]$.
+-   $u$ lớn hơn mọi hậu duệ của $u$ và nhỏ hơn mọi tổ tiên của $u$.
+-   $\operatorname{lowbit}$ của điểm $u$ nhỏ hơn nghiêm ngặt $\operatorname{lowbit}$ của $fa[u]$.
 
-??? note "证明"
-    设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1} > \operatorname{lowbit}(x)$，证毕．
+??? note "Chứng minh"
+    Đặt $y = x + \operatorname{lowbit}(x)$, $x = s \times 2^{k + 1} + 2^k$, khi đó $y = (s + 1) \times 2^{k +1}$. Dễ thấy $\operatorname{lowbit}(y) \ge 2^{k + 1} > \operatorname{lowbit}(x)$, chứng minh xong.
 
--   点 $x$ 的高度是 $\log_2\operatorname{lowbit}(x)$，即 $x$ 二进制最低位 `1` 的位数．
+-   Chiều cao của điểm $x$ là $\log_2\operatorname{lowbit}(x)$, tức vị trí của bit `1` thấp nhất trong biểu diễn nhị phân của $x$.
 
-??? note "高度的定义"
-    点 $x$ 的高度 $h(x)$ 满足：如果 $x \bmod 2 = 1$，则 $h(x) = 0$，否则 $h(x) = \max(h(y)) + 1$，其中 $y$ 代表 $x$ 的所有儿子（此时 $x$ 至少存在一个儿子 $x - 1$）．
+??? note "Định nghĩa chiều cao"
+    Chiều cao $h(x)$ của điểm $x$ thỏa mãn: nếu $x \bmod 2 = 1$, thì $h(x) = 0$; ngược lại $h(x) = \max(h(y)) + 1$, trong đó $y$ chạy qua mọi con của $x$ (lúc này $x$ có ít nhất một con là $x - 1$).
     
-    也就是说，一个点的高度恰好比它最高的那个儿子再高 $1$．如果一个点没有儿子，它的高度是 $0$．
+    Nói cách khác, chiều cao của một điểm đúng bằng chiều cao lớn nhất trong các con của nó cộng thêm $1$. Nếu một điểm không có con, chiều cao của nó là $0$.
     
-    这里引出高度这一概念，是为后面解释复杂度更方便．
+    Khái niệm chiều cao được đưa ra ở đây để phần giải thích độ phức tạp phía sau thuận tiện hơn.
 
--   $c[u]$ 真包含于 $c[fa[u]]$（性质 $2$）．
--   $c[u]$ 真包含于 $c[v]$，其中 $v$ 是 $u$ 的任一祖先（在上一条性质上归纳）．
--   $c[u]$ 真包含 $c[v]$，其中 $v$ 是 $u$ 的任一后代（上面那条性质 $u$，$v$ 颠倒）．
--   对于任意 $v' > u$，若 $v'$ 不是 $u$ 的祖先，则 $c[u]$ 和 $c[v']$ 不交．
+-   $c[u]$ là tập con thực sự của $c[fa[u]]$ (tính chất $2$).
+-   $c[u]$ là tập con thực sự của $c[v]$, trong đó $v$ là một tổ tiên bất kỳ của $u$ (quy nạp từ tính chất trước).
+-   $c[u]$ chứa thực sự $c[v]$, trong đó $v$ là một hậu duệ bất kỳ của $u$ (đảo $u$, $v$ trong tính chất trên).
+-   Với mọi $v' > u$, nếu $v'$ không phải tổ tiên của $u$, thì $c[u]$ và $c[v']$ không giao nhau.
 
-??? note "证明"
-    $u$ 和 $u$ 的祖先中，一定存在一个点 $v$ 使得 $v < v' < fa[v]$，根据性质 $3$ 得 $c[v']$ 不相交于 $c[v]$，而 $c[v]$ 包含 $c[u]$，因此 $c[v']$ 不交于 $c[u]$．
+??? note "Chứng minh"
+    Trong $u$ và các tổ tiên của $u$, chắc chắn tồn tại một điểm $v$ sao cho $v < v' < fa[v]$. Theo tính chất $3$, $c[v']$ không giao với $c[v]$; mà $c[v]$ chứa $c[u]$, nên $c[v']$ không giao với $c[u]$.
 
--   对于任意 $v < u$，如果 $v$ 不在 $u$ 的子树上，则 $c[u]$ 和 $c[v]$ 不交（上面那条性质 $u$，$v'$ 颠倒）．
--   对于任意 $v > u$，当且仅当 $v$ 是 $u$ 的祖先，$c[u]$ 真包含于 $c[v]$（上面几条性质的总结）．这就是树状数组单点修改的核心原理．
--   设 $u = s \times 2^{k + 1} + 2^k$，则其儿子数量为 $k = \log_2\operatorname{lowbit}(u)$，编号分别为 $u - 2^t(0 \le t < k)$．
-    -   举例：假设 $k = 3$，$u$ 的二进制编号为 `...1000`，则 $u$ 有三个儿子，二进制编号分别为 `...0111`、`...0110`、`...0100`．
+-   Với mọi $v < u$, nếu $v$ không nằm trong cây con của $u$, thì $c[u]$ và $c[v]$ không giao nhau (đảo $u$, $v'$ trong tính chất trên).
+-   Với mọi $v > u$, $c[u]$ là tập con thực sự của $c[v]$ khi và chỉ khi $v$ là tổ tiên của $u$ (tổng hợp các tính chất trên). Đây là nguyên lý cốt lõi của thao tác sửa đổi một điểm trong cây Fenwick.
+-   Đặt $u = s \times 2^{k + 1} + 2^k$. Khi đó số con của nó là $k = \log_2\operatorname{lowbit}(u)$, được đánh số lần lượt là $u - 2^t(0 \le t < k)$.
+    -   Ví dụ: giả sử $k = 3$, mã nhị phân của $u$ là `...1000`, thì $u$ có ba con với mã nhị phân lần lượt là `...0111`, `...0110`, `...0100`.
 
-??? note "证明"
-    在一个数 $x$ 的基础上减去 $2^t$，$x$ 二进制第 $t$ 位会反转，而更低的位保持不变．
+??? note "Chứng minh"
+    Khi trừ $2^t$ khỏi một số $x$, bit thứ $t$ trong biểu diễn nhị phân của $x$ sẽ đảo, còn các bit thấp hơn giữ nguyên.
     
-    考虑 $u$ 的儿子 $v$，有 $v + \operatorname{lowbit}(v) = u$，即 $v = u - 2^t$ 且 $\operatorname{lowbit}(v) = 2^t$．设 $u = s \times 2^{k + 1} + 2^k$．
+    Xét một con $v$ của $u$, ta có $v + \operatorname{lowbit}(v) = u$, tức $v = u - 2^t$ và $\operatorname{lowbit}(v) = 2^t$. Đặt $u = s \times 2^{k + 1} + 2^k$.
     
-    **考虑 $\boldsymbol{0 \le t < k}$**，$u$ 的第 $t$ 位及后方均为 $0$，所以 $v = u - 2^t$ 的第 $t$ 位变为 $1$，后面仍为 $0$，**满足** $\operatorname{lowbit}(v) = 2^t$．
+    **Xét $\boldsymbol{0 \le t < k}$**, bit thứ $t$ của $u$ và các bit phía sau đều là $0$, nên bit thứ $t$ của $v = u - 2^t$ trở thành $1$, các bit phía sau vẫn là $0$, do đó **thỏa mãn** $\operatorname{lowbit}(v) = 2^t$.
     
-    **考虑 $\boldsymbol{t = k}$**，则 $v = u - 2^k$，$v$ 的第 $k$ 位变为 $0$，**不满足** $\operatorname{lowbit}(v) = 2^t$．
+    **Xét $\boldsymbol{t = k}$**, khi đó $v = u - 2^k$, bit thứ $k$ của $v$ trở thành $0$, nên **không thỏa mãn** $\operatorname{lowbit}(v) = 2^t$.
     
-    **考虑 $\boldsymbol{t > k}$**，则 $v = u - 2^t$，$v$ 的第 $k$ 位是 $1$，所以 $\operatorname{lowbit}(v) = 2^k$，**不满足** $\operatorname{lowbit}(v) = 2^t$．
+    **Xét $\boldsymbol{t > k}$**, khi đó $v = u - 2^t$, bit thứ $k$ của $v$ là $1$, nên $\operatorname{lowbit}(v) = 2^k$, **không thỏa mãn** $\operatorname{lowbit}(v) = 2^t$.
 
--   $u$ 的所有儿子对应 $c$ 的管辖区间恰好拼接成 $[l(u), u - 1]$．
-    -   举例：假设 $k = 3$，$u$ 的二进制编号为 `...1000`，则 $u$ 有三个儿子，二进制编号分别为 `...0111`、`...0110`、`...0100`．
-    -   `c[...0100]` 表示 `a[...0001 ~ ...0100]`．
-    -   `c[...0110]` 表示 `a[...0101 ~ ...0110]`．
-    -   `c[...0111]` 表示 `a[...0111 ~ ...0111]`．
-    -   不难发现上面是三个管辖区间的并集恰好是 `a[...0001 ~ ...0111]`，即 $[l(u), u - 1]$．
+-   Các đoạn quản lý bởi $c$ ứng với mọi con của $u$ ghép lại đúng bằng $[l(u), u - 1]$.
+    -   Ví dụ: giả sử $k = 3$, mã nhị phân của $u$ là `...1000`, thì $u$ có ba con với mã nhị phân lần lượt là `...0111`, `...0110`, `...0100`.
+    -   `c[...0100]` biểu diễn `a[...0001 ~ ...0100]`.
+    -   `c[...0110]` biểu diễn `a[...0101 ~ ...0110]`.
+    -   `c[...0111]` biểu diễn `a[...0111 ~ ...0111]`.
+    -   Dễ thấy hợp của ba đoạn quản lý trên đúng bằng `a[...0001 ~ ...0111]`, tức $[l(u), u - 1]$.
 
-??? note "证明"
-    $u$ 的儿子总能表示成 $u - 2^t(0 \le t < k)$，不难发现，$t$ 越小，$u - 2^t$ 越大，代表的区间越靠右．我们设 $f(t) = u - 2^t$，则 $f(k - 1), f(k - 2), \ldots, f(0)$ 分别构成 $u$ 从左到右的儿子．
+??? note "Chứng minh"
+    Con của $u$ luôn biểu diễn được dưới dạng $u - 2^t(0 \le t < k)$. Dễ thấy $t$ càng nhỏ thì $u - 2^t$ càng lớn, đoạn tương ứng càng nằm về bên phải. Đặt $f(t) = u - 2^t$, khi đó $f(k - 1), f(k - 2), \ldots, f(0)$ lần lượt là các con của $u$ từ trái sang phải.
     
-    不难发现 $\operatorname{lowbit}(f(t)) = 2^t$，所以 $l(f(t)) = u - 2^t - 2^t + 1 = u - 2^{t + 1} + 1$．
+    Dễ thấy $\operatorname{lowbit}(f(t)) = 2^t$, nên $l(f(t)) = u - 2^t - 2^t + 1 = u - 2^{t + 1} + 1$.
     
-    考虑相邻的两个儿子 $f(t + 1)$ 和 $f(t)$．前者管辖区间的右端点是 $f(t + 1) = u - 2^{t + 1}$，后者管辖区间的左端点是 $l(f(t)) = u - 2^{t + 1} + 1$，恰好相接．
+    Xét hai con kề nhau $f(t + 1)$ và $f(t)$. Biên phải của đoạn do con trước quản lý là $f(t + 1) = u - 2^{t + 1}$, còn biên trái của đoạn do con sau quản lý là $l(f(t)) = u - 2^{t + 1} + 1$, vừa đúng liền nhau.
     
-    考虑最左面的儿子 $f(k - 1)$，其管辖左边界 $l(f(k - 1)) = u - 2^k + 1$ 恰为 $l(u)$．
+    Xét con ngoài cùng bên trái $f(k - 1)$, biên trái quản lý của nó là $l(f(k - 1)) = u - 2^k + 1$, đúng bằng $l(u)$.
     
-    考虑最右面的儿子 $f(0)$，其管辖右边界就是 $u - 1$．
+    Xét con ngoài cùng bên phải $f(0)$, biên phải quản lý của nó chính là $u - 1$.
     
-    因此，这些儿子的管辖区间可以恰好拼成 $[l(u), u - 1]$．
+    Do đó, các đoạn quản lý của những con này ghép lại vừa đúng thành $[l(u), u - 1]$.
 
-### 单点修改
+### Sửa đổi một điểm
 
-现在来考虑如何单点修改 $a[x]$．
+Bây giờ xét cách sửa đổi một điểm $a[x]$.
 
-我们的目标是快速正确地维护 $c$ 数组．为保证效率，我们只需遍历并修改管辖了 $a[x]$ 的所有 $c[y]$，因为其他的 $c$ 显然没有发生变化．
+Mục tiêu là duy trì mảng $c$ nhanh và đúng. Để bảo đảm hiệu quả, ta chỉ cần duyệt và sửa mọi $c[y]$ có quản lý $a[x]$, vì các $c$ khác rõ ràng không thay đổi.
 
-管辖 $a[x]$ 的 $c[y]$ 一定包含 $c[x]$（根据性质 $1$），所以 $y$ 在树状数组树形态上是 $x$ 的祖先．因此我们从 $x$ 开始不断跳父亲，直到跳得超过了原数组长度为止．
+Mọi $c[y]$ quản lý $a[x]$ chắc chắn chứa $c[x]$ (theo tính chất $1$), nên $y$ là tổ tiên của $x$ trên dạng cây Fenwick. Vì vậy, ta bắt đầu từ $x$ và liên tục nhảy lên cha cho tới khi vượt quá độ dài mảng ban đầu.
 
-设 $n$ 表示 $a$ 的大小，不难写出单点修改 $a[x]$ 的过程：
+Gọi $n$ là kích thước của $a$. Có thể viết quá trình sửa đổi một điểm $a[x]$ như sau:
 
--   初始令 $x' = x$．
--   修改 $c[x']$．
--   令 $x' \gets x' + \operatorname{lowbit}(x')$，如果 $x' > n$ 说明已经跳到尽头了，终止循环；否则回到第二步．
+-   Ban đầu đặt $x' = x$.
+-   Sửa $c[x']$.
+-   Gán $x' \gets x' + \operatorname{lowbit}(x')$. Nếu $x' > n$ nghĩa là đã nhảy tới cuối, kết thúc vòng lặp; nếu không, quay lại bước thứ hai.
 
-区间信息和单点修改的种类，共同决定 $c[x']$ 的修改方式．下面给几个例子：
+Thông tin đoạn và loại sửa đổi một điểm cùng quyết định cách sửa $c[x']$. Một vài ví dụ:
 
--   若 $c[x']$ 维护区间和，修改种类是将 $a[x]$ 加上 $p$，则修改方式则是将所有 $c[x']$ 也加上 $p$．
--   若 $c[x']$ 维护区间积，修改种类是将 $a[x]$ 乘上 $p$，则修改方式则是将所有 $c[x']$ 也乘上 $p$．
+-   Nếu $c[x']$ duy trì tổng đoạn, còn thao tác sửa là cộng $p$ vào $a[x]$, thì cách sửa là cộng $p$ vào mọi $c[x']$.
+-   Nếu $c[x']$ duy trì tích đoạn, còn thao tác sửa là nhân $a[x]$ với $p$, thì cách sửa là nhân mọi $c[x']$ với $p$.
 
-然而，单点修改的自由性使得修改的种类和维护的信息不一定是同种运算，比如，若 $c[x']$ 维护区间和，修改种类是将 $a[x]$ 赋值为 $p$，可以考虑转化为将 $a[x]$ 加上 $p - a[x]$．如果是将 $a[x]$ 乘上 $p$，就考虑转化为 $a[x]$ 加上 $a[x] \times p - a[x]$．
+Tuy nhiên, do sửa đổi một điểm khá linh hoạt, loại sửa đổi và thông tin được duy trì không nhất thiết phải là cùng một phép toán. Ví dụ, nếu $c[x']$ duy trì tổng đoạn, còn thao tác sửa là gán $a[x]$ thành $p$, ta có thể chuyển thành cộng $p - a[x]$ vào $a[x]$. Nếu thao tác là nhân $a[x]$ với $p$, có thể chuyển thành cộng $a[x] \times p - a[x]$ vào $a[x]$.
 
-下面以维护区间和，单点加为例给出实现．
+Dưới đây là cài đặt mẫu cho trường hợp duy trì tổng đoạn và cộng một điểm.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         void add(int x, int k) {
-          while (x <= n) {  // 不能越界
+          while (x <= n) {  // Không được vượt biên.
             c[x] = c[x] + k;
             x = x + lowbit(x);
           }
@@ -341,39 +341,39 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
     === "Python"
         ```python
         def add(x, k):
-            while x <= n:  # 不能越界
+            while x <= n:  # Không được vượt biên.
                 c[x] = c[x] + k
                 x = x + lowbit(x)
         ```
 
-### 建树
+### Xây cây
 
-也就是根据最开始给出的序列，将树状数组建出来（$c$ 全部预处理好）．
+Tức xây cây Fenwick từ dãy ban đầu (tiền xử lý toàn bộ $c$).
 
-一般可以直接转化为 $n$ 次单点修改，时间复杂度 $\Theta(n \log n)$（复杂度分析在后面）．
+Thông thường có thể chuyển trực tiếp thành $n$ lần sửa đổi một điểm, độ phức tạp thời gian $\Theta(n \log n)$ (phân tích độ phức tạp ở phần sau).
 
-比如给定序列 $a = (5, 1, 4)$ 要求建树，直接看作对 $a[1]$ 单点加 $5$，对 $a[2]$ 单点加 $1$，对 $a[3]$ 单点加 $4$ 即可．
+Ví dụ, nếu cần xây cây cho dãy $a = (5, 1, 4)$, có thể xem như cộng $5$ vào $a[1]$, cộng $1$ vào $a[2]$, và cộng $4$ vào $a[3]$.
 
-也有 $\Theta(n)$ 的建树方法，见本页面 [$\Theta(n)$ 建树](#thetan-建树) 一节．
+Cũng có cách xây cây $\Theta(n)$, xem phần [$\Theta(n)$ xây cây](#thetan-xây-cây) trên trang này.
 
-### 复杂度分析
+### Phân tích độ phức tạp
 
-空间复杂度显然 $\Theta(n)$．
+Độ phức tạp không gian rõ ràng là $\Theta(n)$.
 
-时间复杂度：
+Độ phức tạp thời gian:
 
--   对于区间查询操作：整个 $x \gets x - \operatorname{lowbit}(x)$ 的迭代过程，可看做将 $x$ 二进制中的所有 $1$，从低位到高位逐渐改成 $0$ 的过程，拆分出的区间数等于 $x$ 二进制中 $1$ 的数量（即 $\operatorname{popcount}(x)$）．因此，单次查询时间复杂度是 $\Theta(\log n)$；
--   对于单点修改操作：跳父亲时，访问到的高度一直严格增加，且始终有 $x \le n$．由于点 $x$ 的高度是 $\log_2\operatorname{lowbit}(x)$，所以跳到的高度不会超过 $\log_2n$，所以访问到的 $c$ 的数量是 $\log n$ 级别．因此，单次单点修改复杂度是 $\Theta(\log n)$．
+-   Với thao tác truy vấn đoạn: toàn bộ quá trình lặp $x \gets x - \operatorname{lowbit}(x)$ có thể xem là quá trình đổi dần mọi bit `1` trong nhị phân của $x$ thành `0` từ thấp lên cao. Số đoạn tách ra bằng số bit `1` trong biểu diễn nhị phân của $x$ (tức $\operatorname{popcount}(x)$). Vì vậy, độ phức tạp mỗi truy vấn là $\Theta(\log n)$.
+-   Với thao tác sửa đổi một điểm: khi nhảy lên cha, chiều cao của các điểm được truy cập luôn tăng nghiêm ngặt và luôn có $x \le n$. Vì chiều cao của điểm $x$ là $\log_2\operatorname{lowbit}(x)$, nên chiều cao nhảy tới không vượt quá $\log_2n$, số lượng $c$ được truy cập ở cấp $\log n$. Vì vậy, độ phức tạp mỗi lần sửa đổi một điểm là $\Theta(\log n)$.
 
-## 区间加区间和
+## Cộng đoạn, hỏi tổng đoạn
 
-前置知识：[前缀和 & 差分](../basic/prefix-sum.md)．
+Kiến thức cần có: [tổng tiền tố & sai phân](../basic/prefix-sum.md).
 
-该问题可以使用两个树状数组维护差分数组解决．
+Bài toán này có thể được giải bằng hai cây Fenwick duy trì mảng sai phân.
 
-考虑序列 $a$ 的差分数组 $d$，其中 $d[i] = a[i] - a[i - 1]$．由于差分数组的前缀和就是原数组，所以 $a_i=\sum_{j=1}^i d_j$．
+Xét mảng sai phân $d$ của dãy $a$, trong đó $d[i] = a[i] - a[i - 1]$. Vì tổng tiền tố của mảng sai phân chính là mảng ban đầu, nên $a_i=\sum_{j=1}^i d_j$.
 
-一样地，我们考虑将查询区间和通过差分转化为查询前缀和．那么考虑查询 $a[1 \ldots r]$ 的和，即 $\sum_{i=1}^{r} a_i$，进行推导：
+Tương tự, ta xét việc chuyển truy vấn tổng đoạn thành truy vấn tổng tiền tố bằng sai phân. Với truy vấn tổng của $a[1 \ldots r]$, tức $\sum_{i=1}^{r} a_i$, ta suy diễn:
 
 $$
 \begin{aligned}
@@ -381,7 +381,7 @@ $$
 \end{aligned}
 $$
 
-观察这个式子，不难发现每个 $d_j$ 总共被加了 $r - j + 1$ 次．接着推导：
+Quan sát công thức này, dễ thấy mỗi $d_j$ được cộng tổng cộng $r - j + 1$ lần. Tiếp tục suy diễn:
 
 $$
 \begin{aligned}
@@ -390,23 +390,23 @@ $$
 \end{aligned}
 $$
 
-$\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以要用两个树状数组分别维护 $d_i$ 和 $d_i \times i$ 的和信息．
+Từ $\sum_{i=1}^r d_i$ không thể suy ra giá trị của $\sum_{i=1}^r d_i \times i$, nên cần dùng hai cây Fenwick để lần lượt duy trì thông tin tổng của $d_i$ và $d_i \times i$.
 
-那么怎么做区间加呢？考虑给原数组 $a[l \ldots r]$ 区间加 $x$ 给 $d$ 带来的影响．
+Vậy cộng đoạn làm thế nào? Xét ảnh hưởng của việc cộng $v$ vào đoạn $a[l \ldots r]$ của mảng ban đầu đối với $d$.
 
-因为差分是 $d[i] = a[i] - a[i - 1]$，
+Vì sai phân là $d[i] = a[i] - a[i - 1]$:
 
--   $a[l]$ 多了 $v$ 而 $a[l - 1]$ 不变，所以 $d[l]$ 的值多了 $v$．
--   $a[r + 1]$ 不变而 $a[r]$ 多了 $v$，所以 $d[r + 1]$ 的值少了 $v$．
--   对于不等于 $l$ 且不等于 $r+1$ 的任意 $i$，$a[i]$ 和 $a[i - 1]$ 要么都没发生变化，要么都加了 $v$，$a[i] + v - (a[i - 1] + v)$ 还是 $a[i] - a[i - 1]$，所以其它的 $d[i]$ 均不变．
+-   $a[l]$ tăng thêm $v$ còn $a[l - 1]$ không đổi, nên giá trị $d[l]$ tăng thêm $v$.
+-   $a[r + 1]$ không đổi còn $a[r]$ tăng thêm $v$, nên giá trị $d[r + 1]$ giảm đi $v$.
+-   Với mọi $i$ khác $l$ và khác $r+1$, $a[i]$ và $a[i - 1]$ hoặc đều không đổi, hoặc đều tăng thêm $v$; $a[i] + v - (a[i - 1] + v)$ vẫn là $a[i] - a[i - 1]$, nên các $d[i]$ khác đều không đổi.
 
-那就不难想到维护方式了：对于维护 $d_i$ 的树状数组，对 $l$ 单点加 $v$，$r + 1$ 单点加 $-v$；对于维护 $d_i \times i$ 的树状数组，对 $l$ 单点加 $v \times l$，$r + 1$ 单点加 $-v \times (r + 1)$．
+Từ đó dễ nghĩ ra cách duy trì: với cây Fenwick duy trì $d_i$, cộng một điểm $v$ tại $l$ và cộng một điểm $-v$ tại $r + 1$; với cây Fenwick duy trì $d_i \times i$, cộng một điểm $v \times l$ tại $l$ và cộng một điểm $-v \times (r + 1)$ tại $r + 1$.
 
-而更弱的问题，「区间加求单点值」，只需用树状数组维护一个差分数组 $d_i$．询问 $a[x]$ 的单点值，直接求 $d[1 \ldots x]$ 的和即可．
+Bài toán yếu hơn, "cộng đoạn, hỏi giá trị một điểm", chỉ cần dùng một cây Fenwick duy trì mảng sai phân $d_i$. Khi hỏi giá trị một điểm $a[x]$, chỉ cần tính tổng của $d[1 \ldots x]$.
 
-这里直接给出「区间加区间和」的代码：
+Dưới đây là mã cho bài toán "cộng đoạn, hỏi tổng đoạn":
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         int t1[MAXN], t2[MAXN], n;
@@ -417,7 +417,7 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
           int v1 = k * v;
           while (k <= n) {
             t1[k] += v, t2[k] += v1;
-            // 注意不能写成 t2[k] += k * v，因为 k 的值已经不是原数组的下标了
+            // Chú ý không được viết t2[k] += k * v, vì k không còn là chỉ số ban đầu.
             k += lowbit(k);
           }
         }
@@ -432,7 +432,7 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
         }
         
         void add1(int l, int r, int v) {
-          add(l, v), add(r + 1, -v);  // 将区间加差分为两个前缀加
+          add(l, v), add(r + 1, -v);  // Tách cộng đoạn thành hai lần cộng tiền tố.
         }
         
         long long getsum1(int l, int r) {
@@ -481,72 +481,72 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
             )
         ```
 
-根据这个原理，应该可以实现「区间乘区间积」，「区间异或一个数，求区间异或值」等，只要满足维护的信息和区间操作是同种运算即可，感兴趣的读者可以自己尝试．
+Theo nguyên lý này, ta cũng có thể cài đặt "nhân đoạn, hỏi tích đoạn", "xor một số trên đoạn, hỏi xor đoạn", v.v., miễn là thông tin được duy trì và thao tác trên đoạn thuộc cùng một phép toán. Bạn đọc quan tâm có thể tự thử.
 
-## 二维树状数组
+## Cây Fenwick hai chiều
 
-### 单点修改，子矩阵查询
+### Sửa đổi một điểm, truy vấn ma trận con
 
-二维树状数组，也被称作树状数组套树状数组，用来维护二维数组上的单点修改和前缀信息问题．
+Cây Fenwick hai chiều còn được gọi là cây Fenwick lồng cây Fenwick, dùng để duy trì các bài toán sửa đổi một điểm và thông tin tiền tố trên mảng hai chiều.
 
-与一维树状数组类似，我们用 $c(x, y)$ 表示 $a(x - \operatorname{lowbit}(x) + 1, y - \operatorname{lowbit}(y) + 1) \ldots a(x, y)$ 的矩阵总信息，即一个以 $a(x, y)$ 为右下角，高 $\operatorname{lowbit}(x)$，宽 $\operatorname{lowbit}(y)$ 的矩阵的总信息．
+Tương tự cây Fenwick một chiều, ta dùng $c(x, y)$ để biểu diễn tổng thông tin của ma trận $a(x - \operatorname{lowbit}(x) + 1, y - \operatorname{lowbit}(y) + 1) \ldots a(x, y)$, tức ma trận có góc dưới phải là $a(x, y)$, cao $\operatorname{lowbit}(x)$ và rộng $\operatorname{lowbit}(y)$.
 
-对于单点修改，设：
+Với thao tác sửa đổi một điểm, đặt:
 
 $$
 f(x, i) = \begin{cases}x &i = 0\\f(x, i - 1) + \operatorname{lowbit}(f(x, i - 1)) & i > 0\\\end{cases}
 $$
 
-即 $f(x, i)$ 为 $x$ 在树状数组树形态上的第 $i$ 级祖先（第 $0$ 级祖先是自己）．
+Tức $f(x, i)$ là tổ tiên cấp $i$ của $x$ trên dạng cây Fenwick (tổ tiên cấp $0$ là chính nó).
 
-则只有 $c(f(x, i), f(y, j))$ 中的元素管辖 $a(x, y)$，修改 $a(x, y)$ 时只需修改所有 $c(f(x, i), f(y, j))$，其中 $f(x, i) \le n$，$f(y, j) \le m$．
+Khi đó chỉ các phần tử $c(f(x, i), f(y, j))$ mới quản lý $a(x, y)$. Khi sửa $a(x, y)$, chỉ cần sửa tất cả $c(f(x, i), f(y, j))$ với $f(x, i) \le n$, $f(y, j) \le m$.
 
-??? note "正确性证明"
-    $c(p, q)$ 管辖 $a(x, y)$，求 $p$ 和 $q$ 的取值范围．
+??? note "Chứng minh tính đúng đắn"
+    Giả sử $c(p, q)$ quản lý $a(x, y)$, ta cần tìm phạm vi giá trị của $p$ và $q$.
     
-    考虑一个大小为 $n$ 的一维树状数组 $c_1$（对应原数组 $a_1$）和一个大小为 $m$ 的一维树状数组 $c_2$（对应原数组 $a_2$）．
+    Xét một cây Fenwick một chiều $c_1$ kích thước $n$ (ứng với mảng gốc $a_1$) và một cây Fenwick một chiều $c_2$ kích thước $m$ (ứng với mảng gốc $a_2$).
     
-    则命题等价为：$c_1(p)$ 管辖 $a_1[x]$ 且 $c_2(q)$ 管辖 $a_2[y]$ 的条件．
+    Khi đó mệnh đề tương đương với điều kiện: $c_1(p)$ quản lý $a_1[x]$ và $c_2(q)$ quản lý $a_2[y]$.
     
-    也就是说，在树状数组树形态上，$p$ 是 $x$ 及其祖先中的一个点，$q$ 是 $y$ 及其祖先中的一个点．
+    Nói cách khác, trên dạng cây Fenwick, $p$ là một điểm trong $x$ và các tổ tiên của nó, còn $q$ là một điểm trong $y$ và các tổ tiên của nó.
     
-    所以 $p = f(x, i)$，$q = f(y, j)$．
+    Vì vậy $p = f(x, i)$, $q = f(y, j)$.
 
-对于查询，我们设：
+Với truy vấn, đặt:
 
 $$
 g(x, i) = \begin{cases}x &i = 0\\g(x, i - 1) - \operatorname{lowbit}(g(x, i - 1)) & i, g(x, i - 1) > 0\\0&\text{otherwise.}\end{cases}
 $$
 
-则合并所有 $c(g(x, i), g(y, j))$，其中 $g(x, i), g(y, j) > 0$．
+Khi đó gộp mọi $c(g(x, i), g(y, j))$ với $g(x, i), g(y, j) > 0$.
 
-??? note "正确性证明"
-    设 $\circ$ 表示合并两个信息的运算符（比如，如果信息是区间和，则 $\circ = +$）．
+??? note "Chứng minh tính đúng đắn"
+    Gọi $\circ$ là toán tử gộp hai thông tin (ví dụ, nếu thông tin là tổng đoạn thì $\circ = +$).
     
-    考虑一个一维树状数组 $c_1$，$c_1[g(x, 0)] \circ c_1[g(x, 1)] \circ c_1[g(x, 2)] \circ \cdots$ 恰好表示原数组上 $[1 \ldots x]$ 这段区间信息．
+    Xét một cây Fenwick một chiều $c_1$. Biểu thức $c_1[g(x, 0)] \circ c_1[g(x, 1)] \circ c_1[g(x, 2)] \circ \cdots$ biểu diễn đúng thông tin đoạn $[1 \ldots x]$ trên mảng gốc.
     
-    类似地，设 $t(x) = c(x, g(y, 0)) \circ c(x, g(y, 1)) \circ c(x, g(y, 2)) \circ \cdots$，则 $t(x)$ 恰好表示 $a(x - \operatorname{lowbit}(x) + 1, 1) \ldots a(x, y)$ 这个矩阵信息．
+    Tương tự, đặt $t(x) = c(x, g(y, 0)) \circ c(x, g(y, 1)) \circ c(x, g(y, 2)) \circ \cdots$, khi đó $t(x)$ biểu diễn đúng thông tin của ma trận $a(x - \operatorname{lowbit}(x) + 1, 1) \ldots a(x, y)$.
     
-    又类似地，就有 $t(g(x, 0)) \circ t(g(x, 1)) \circ t(g(x, 2)) \circ \cdots$ 表示 $a(1, 1) \ldots a(x, y)$ 这个矩阵信息．
+    Tương tự thêm lần nữa, $t(g(x, 0)) \circ t(g(x, 1)) \circ t(g(x, 2)) \circ \cdots$ biểu diễn thông tin của ma trận $a(1, 1) \ldots a(x, y)$.
     
-    其实这里 $t(x)$ 这个函数如果看成一个树状数组，相当于一个树状数组套了一个树状数组，这也就是「树状数组套树状数组」这个名字的来源．
+    Nếu xem hàm $t(x)$ ở đây như một cây Fenwick, thì cấu trúc này tương đương với một cây Fenwick lồng trong một cây Fenwick khác; đây chính là nguồn gốc của tên gọi "cây Fenwick lồng cây Fenwick".
 
-下面给出单点加、查询子矩阵和的代码．
+Dưới đây là mã cho thao tác cộng một điểm và truy vấn tổng ma trận con.
 
-???+ note "实现"
-    === "单点加"
+???+ note "Cài đặt"
+    === "Cộng một điểm"
         ```cpp
         void add(int x, int y, int v) {
           for (int i = x; i <= n; i += lowbit(i)) {
             for (int j = y; j <= m; j += lowbit(j)) {
-              // 注意这里必须得建循环变量，不能像一维数组一样直接 while (x <= n) 了
+              // Ở đây phải tạo biến vòng lặp, không thể dùng trực tiếp while (x <= n) như mảng một chiều.
               c[i][j] += v;
             }
           }
         }
         ```
     
-    === "查询子矩阵和"
+    === "Truy vấn tổng ma trận con"
         ```cpp
         int sum(int x, int y) {
           int res = 0;
@@ -559,65 +559,65 @@ $$
         }
         
         int ask(int x1, int y1, int x2, int y2) {
-          // 查询子矩阵和
+          // Truy vấn tổng ma trận con
           return sum(x2, y2) - sum(x2, y1 - 1) - sum(x1 - 1, y2) + sum(x1 - 1, y1 - 1);
         }
         ```
 
-### 子矩阵加，求子矩阵和
+### Cộng ma trận con, hỏi tổng ma trận con
 
-前置知识：[前缀和 & 差分](../basic/prefix-sum.md) 和本页面 [区间加区间和](#区间加区间和) 一节．
+Kiến thức cần có: [tổng tiền tố & sai phân](../basic/prefix-sum.md) và phần [cộng đoạn, hỏi tổng đoạn](#cộng-đoạn-hỏi-tổng-đoạn) trên trang này.
 
-和一维树状数组的「区间加区间和」问题类似，考虑维护差分数组．
+Tương tự bài toán "cộng đoạn, hỏi tổng đoạn" của cây Fenwick một chiều, ta xét việc duy trì mảng sai phân.
 
-二维数组上的差分数组是这样的：
+Mảng sai phân trên mảng hai chiều được định nghĩa như sau:
 
 $$
-d(i, j) = a(i, j) - a(i - 1, j) - a(i, j - 1) + a(i - 1, j - 1)．
+d(i, j) = a(i, j) - a(i - 1, j) - a(i, j - 1) + a(i - 1, j - 1).
 $$
 
-??? note "为什么这么定义？"
-    这是因为，理想规定状态下，在差分矩阵上做二维前缀和应该得到原矩阵，因为这是一对逆运算．
+??? note "Vì sao định nghĩa như vậy?"
+    Lý do là trong trạng thái lý tưởng, lấy tổng tiền tố hai chiều trên ma trận sai phân phải thu được ma trận ban đầu, vì đây là một cặp phép toán nghịch đảo.
     
-    二维前缀和的公式是这样的：
+    Công thức tổng tiền tố hai chiều là:
     
-    $s(i, j) = s(i - 1, j) + s(i, j - 1) - s(i - 1, j - 1) + a(i, j)$．
+    $s(i, j) = s(i - 1, j) + s(i, j - 1) - s(i - 1, j - 1) + a(i, j)$.
     
-    所以，设 $a$ 是原数组，$d$ 是差分数组，有：
+    Vì vậy, nếu $a$ là mảng gốc và $d$ là mảng sai phân, ta có:
     
     $a(i, j) = a(i - 1, j) + a(i, j - 1) - a(i - 1, j - 1) + d(i, j)$
     
-    移项就得到二维差分的公式了．
+    Chuyển vế sẽ thu được công thức sai phân hai chiều.
     
-    $d(i, j) = a(i, j) - a(i - 1, j) - a(i, j - 1) + a(i - 1, j - 1)$．
+    $d(i, j) = a(i, j) - a(i - 1, j) - a(i, j - 1) + a(i - 1, j - 1)$.
 
-这样以来，对左上角 $(x_1, y_1)$，右下角 $(x_2, y_2)$ 的子矩阵区间加 $v$，相当于在差分数组上，对 $d(x_1, y_1)$ 和 $d(x_2 + 1, y_2 + 1)$ 分别单点加 $v$，对 $d(x_2 + 1, y_1)$ 和 $d(x_1, y_2 + 1)$ 分别单点加 $-v$．
+Như vậy, cộng $v$ vào ma trận con có góc trên trái $(x_1, y_1)$ và góc dưới phải $(x_2, y_2)$ tương đương với việc cộng một điểm $v$ vào $d(x_1, y_1)$ và $d(x_2 + 1, y_2 + 1)$, đồng thời cộng một điểm $-v$ vào $d(x_2 + 1, y_1)$ và $d(x_1, y_2 + 1)$ trên mảng sai phân.
 
-至于原因，把这四个 $d$ 分别用定义式表示出来，分析一下每项的变化即可．
+Lý do là chỉ cần viết bốn giá trị $d$ này theo định nghĩa rồi phân tích biến thiên của từng hạng.
 
-举个例子吧，初始差分数组为 $0$，给 $a(2, 2) \ldots a(3, 4)$ 子矩阵加 $v$ 后差分数组会变为：
+Lấy ví dụ, ban đầu mảng sai phân toàn $0$. Sau khi cộng $v$ vào ma trận con $a(2, 2) \ldots a(3, 4)$, mảng sai phân trở thành:
 
 $$
 \begin{pmatrix}0&0&0&0&0\\0&v&0&0&-v\\0&0&0&0&0\\0&-v&0&0&v\end{pmatrix}
 $$
 
-（其中 $a(2, 2) \ldots a(3, 4)$ 这个子矩阵恰好是上面位于中心的 $2 \times 3$ 大小的矩阵．）
+(Trong đó ma trận con $a(2, 2) \ldots a(3, 4)$ đúng là ma trận kích thước $2 \times 3$ nằm ở trung tâm phía trên.)
 
-因此，子矩阵加的做法是：转化为差分数组上的四个单点加操作．
+Do đó, cách làm cộng ma trận con là chuyển thành bốn thao tác cộng một điểm trên mảng sai phân.
 
-现在考虑查询子矩阵和：
+Bây giờ xét truy vấn tổng ma trận con.
 
-对于点 $(x, y)$，它的二维前缀和可以表示为：
+Với điểm $(x, y)$, tổng tiền tố hai chiều của nó có thể biểu diễn là:
 
 $$
 \sum_{i = 1}^x\sum_{j = 1}^y\sum_{h = 1}^i\sum_{k = 1}^j d(h, k)
 $$
 
-原因就是差分的前缀和的前缀和就是原本的前缀和．
+Lý do là tổng tiền tố của tổng tiền tố trên sai phân chính là tổng tiền tố ban đầu.
 
-和一维树状数组的「区间加区间和」问题类似，统计 $d(h, k)$ 的出现次数，为 $(x - h + 1) \times (y - k + 1)$．
+Tương tự bài toán "cộng đoạn, hỏi tổng đoạn" của cây Fenwick một chiều, số lần xuất hiện của $d(h, k)$ là $(x - h + 1) \times (y - k + 1)$.
 
-然后接着推导：
+Tiếp tục suy diễn:
 
 $$
 \begin{aligned}
@@ -627,13 +627,13 @@ $$
 \end{aligned}
 $$
 
-所以我们需维护四个树状数组，分别维护 $d(i, j)$，$d(i, j) \times i$，$d(i, j) \times j$，$d(i, j) \times i \times j$ 的和信息．
+Vì vậy, ta cần duy trì bốn cây Fenwick, lần lượt duy trì thông tin tổng của $d(i, j)$, $d(i, j) \times i$, $d(i, j) \times j$, $d(i, j) \times i \times j$.
 
-当然了，和一维同理，如果只需要子矩阵加求单点值，维护一个差分数组然后询问前缀和就足够了．
+Dĩ nhiên, tương tự trường hợp một chiều, nếu chỉ cần cộng ma trận con và hỏi giá trị một điểm, duy trì một mảng sai phân rồi truy vấn tiền tố là đủ.
 
-下面给出代码：
+Dưới đây là mã:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     using ll = long long;
     ll t1[N][N], t2[N][N], t3[N][N], t4[N][N];
@@ -642,14 +642,14 @@ $$
       for (int X = x; X <= n; X += lowbit(X))
         for (int Y = y; Y <= m; Y += lowbit(Y)) {
           t1[X][Y] += z;
-          t2[X][Y] += z * x;  // 注意是 z * x 而不是 z * X，后面同理
+          t2[X][Y] += z * x;  // Chú ý là z * x chứ không phải z * X; phía sau tương tự.
           t3[X][Y] += z * y;
           t4[X][Y] += z * x * y;
         }
     }
     
     void range_add(ll xa, ll ya, ll xb, ll yb,
-                   ll z) {  //(xa, ya) 到 (xb, yb) 子矩阵
+                   ll z) {  // Ma trận con từ (xa, ya) tới (xb, yb)
       add(xa, ya, z);
       add(xa, yb + 1, -z);
       add(xb + 1, ya, -z);
@@ -670,156 +670,156 @@ $$
     }
     ```
 
-## 权值树状数组及应用
+## Cây Fenwick theo giá trị và ứng dụng
 
-我们知道，普通树状数组直接在原序列的基础上构建，$c_6$ 表示的就是 $a[5 \ldots 6]$ 的区间信息．
+Ta biết rằng cây Fenwick thông thường được xây trực tiếp trên dãy ban đầu; $c_6$ biểu diễn thông tin đoạn $a[5 \ldots 6]$.
 
-然而事实上，我们还可以在原序列的权值数组上构建树状数组，这就是权值树状数组．
+Tuy nhiên, ta cũng có thể xây cây Fenwick trên mảng tần suất giá trị của dãy ban đầu; đây chính là cây Fenwick theo giá trị.
 
-??? note "什么是权值数组？"
-    一个序列 $a$ 的权值数组 $b$，满足 $b[x]$ 的值为 $x$ 在 $a$ 中的出现次数．
+??? note "Mảng tần suất giá trị là gì?"
+    Mảng tần suất giá trị $b$ của một dãy $a$ thỏa mãn: giá trị $b[x]$ là số lần $x$ xuất hiện trong $a$.
     
-    例如：$a = (1, 3, 4, 3, 4)$ 的权值数组为 $b = (1, 0, 2, 2)$．
+    Ví dụ: với $a = (1, 3, 4, 3, 4)$, mảng tần suất giá trị là $b = (1, 0, 2, 2)$.
     
-    很明显，$b$ 的大小和 $a$ 的值域有关．
+    Rõ ràng kích thước của $b$ liên quan tới miền giá trị của $a$.
     
-    若原数列值域过大，且重要的不是具体值而是值与值之间的相对大小关系，常 [离散化](../misc/discrete.md) 原数组后再建立权值数组．
+    Nếu miền giá trị của dãy ban đầu quá lớn, và điều quan trọng không phải giá trị cụ thể mà là quan hệ thứ tự tương đối giữa các giá trị, ta thường [rời rạc hóa](../misc/discrete.md) mảng ban đầu rồi mới xây mảng tần suất giá trị.
     
-    另外，权值数组是原数组无序性的一种表示：它重点描述数组的元素内容，忽略了数组的顺序，若两数组只是顺序不同，所含内容一致，则它们的权值数组相同．
+    Ngoài ra, mảng tần suất giá trị là một cách biểu diễn bỏ qua thứ tự của mảng gốc: nó tập trung mô tả nội dung phần tử của mảng và bỏ qua thứ tự. Nếu hai mảng chỉ khác thứ tự nhưng chứa cùng các phần tử, mảng tần suất giá trị của chúng giống nhau.
     
-    因此，对于给定数组的顺序不影响答案的问题，在权值数组的基础上思考一般更直观，比如 [\[NOIP2021\] 数列](https://www.luogu.com.cn/problem/P7961)．
+    Vì vậy, với các bài toán mà thứ tự của mảng cho trước không ảnh hưởng đến đáp án, suy nghĩ dựa trên mảng tần suất giá trị thường trực quan hơn, ví dụ [\[NOIP2021\] Dãy số](https://www.luogu.com.cn/problem/P7961).
 
-运用权值树状数组，我们可以解决一些经典问题．
+Dùng cây Fenwick theo giá trị, ta có thể giải một số bài toán kinh điển.
 
-### 单点修改，查询全局第 $k$ 小
+### Sửa đổi một điểm, truy vấn phần tử nhỏ thứ $k$ toàn cục
 
-在此处只讨论第 $k$ 小，第 $k$ 大问题可以通过简单计算转化为第 $k$ 小问题．
+Ở đây chỉ thảo luận phần tử nhỏ thứ $k$; bài toán phần tử lớn thứ $k$ có thể chuyển thành phần tử nhỏ thứ $k$ bằng tính toán đơn giản.
 
-该问题可离散化，如果原序列 $a$ 值域过大，离散化后再建立权值数组 $b$．注意，还要把单点修改中的涉及到的值也一起离散化，不能只离散化原数组 $a$ 中的元素．
+Bài toán này có thể rời rạc hóa. Nếu miền giá trị của dãy gốc $a$ quá lớn, hãy rời rạc hóa rồi xây mảng tần suất giá trị $b$. Chú ý cũng phải rời rạc hóa cả các giá trị xuất hiện trong thao tác sửa đổi một điểm, không thể chỉ rời rạc hóa các phần tử ban đầu của mảng $a$.
 
-对于单点修改，只需将对原数列的单点修改转化为对权值数组的单点修改即可．具体来说，原数组 $a[x]$ 从 $y$ 修改为 $z$，转化为对权值数组 $b$ 的单点修改就是 $b[y]$ 单点减 $1$，$b[z]$ 单点加 $1$．
+Với sửa đổi một điểm, chỉ cần chuyển thao tác sửa trên dãy gốc thành thao tác sửa trên mảng tần suất giá trị. Cụ thể, nếu $a[x]$ trong mảng gốc được đổi từ $y$ thành $z$, thì trên mảng tần suất $b$ ta giảm $b[y]$ đi $1$ và tăng $b[z]$ thêm $1$.
 
-对于查询第 $k$ 小，考虑二分 $x$，查询权值数组中 $[1, x]$ 的前缀和，找到 $x_0$ 使得 $[1, x_0]$ 的前缀和 $< k$ 而 $[1, x_0 + 1]$ 的前缀和 $\ge k$，则第 $k$ 大的数是 $x_0 + 1$（注：这里认为 $[1, 0]$ 的前缀和是 $0$）．
+Với truy vấn phần tử nhỏ thứ $k$, có thể nhị phân $x$, truy vấn tổng tiền tố $[1, x]$ trong mảng tần suất giá trị, rồi tìm $x_0$ sao cho tổng tiền tố $[1, x_0] < k$ còn tổng tiền tố $[1, x_0 + 1] \ge k$. Khi đó phần tử nhỏ thứ $k$ là $x_0 + 1$ (quy ước tổng tiền tố $[1, 0]$ là $0$).
 
-这样做时间复杂度是 $\Theta(\log^2n)$ 的．
+Cách này có độ phức tạp thời gian $\Theta(\log^2n)$.
 
-考虑用倍增替代二分．
+Xét dùng nhân đôi thay cho nhị phân.
 
-设 $x = 0$，$\mathrm{sum} = 0$，枚举 $i$ 从 $\log_2n$ 降为 $0$：
+Đặt $x = 0$, $\mathrm{sum} = 0$, duyệt $i$ từ $\log_2n$ giảm xuống $0$:
 
--   查询权值数组中 $[x + 1 \ldots x + 2^i]$ 的区间和 $t$．
--   如果 $\mathrm{sum} + t < k$，扩展成功，$x \gets x + 2^i$，$\mathrm{sum} \gets \mathrm{sum} + t$；否则扩展失败，不操作．
+-   Truy vấn tổng đoạn $[x + 1 \ldots x + 2^i]$ trong mảng tần suất giá trị, gọi là $t$.
+-   Nếu $\mathrm{sum} + t < k$, mở rộng thành công, đặt $x \gets x + 2^i$, $\mathrm{sum} \gets \mathrm{sum} + t$; nếu không, mở rộng thất bại và không làm gì.
 
-这样得到的 $x$ 是满足 $[1 \ldots x]$ 前缀和 $< k$ 的最大值，所以最终 $x + 1$ 就是答案．
+Giá trị $x$ thu được là giá trị lớn nhất sao cho tổng tiền tố $[1 \ldots x] < k$, nên cuối cùng $x + 1$ là đáp án.
 
-看起来这种方法时间效率没有任何改善，但事实上，查询 $[x + 1 \ldots x + 2^i]$ 的区间和只需访问 $c[x + 2^i]$ 的值即可．
+Thoạt nhìn cách này không cải thiện thời gian, nhưng thực ra truy vấn tổng đoạn $[x + 1 \ldots x + 2^i]$ chỉ cần truy cập giá trị $c[x + 2^i]$.
 
-原因很简单，考虑 $\operatorname{lowbit}(x + 2^i)$，它一定是 $2^i$，因为 $x$ 之前只累加过 $2^j$ 满足 $j > i$．因此 $c[x + 2^i]$ 表示的区间就是 $[x + 1 \ldots x + 2^i]$．
+Lý do rất đơn giản: xét $\operatorname{lowbit}(x + 2^i)$, nó chắc chắn là $2^i$, vì trước đó $x$ chỉ cộng các $2^j$ với $j > i$. Do đó, đoạn mà $c[x + 2^i]$ biểu diễn chính là $[x + 1 \ldots x + 2^i]$.
 
-如此一来，时间复杂度降低为 $\Theta(\log n)$．
+Như vậy, độ phức tạp thời gian giảm xuống $\Theta(\log n)$.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
-        // 权值树状数组查询第 k 小
+        // Cây Fenwick theo giá trị truy vấn phần tử nhỏ thứ k
         int kth(int k) {
           int sum = 0, x = 0;
           for (int i = log2(n); ~i; --i) {
-            x += 1 << i;                   // 尝试扩展
-            if (x > n || sum + t[x] >= k)  // 如果扩展失败
+            x += 1 << i;                   // Thử mở rộng.
+            if (x > n || sum + t[x] >= k)  // Nếu mở rộng thất bại.
               x -= 1 << i;
             else
               sum += t[x];
           }
-          return x + 1;  // 找不到就返回 n + 1
+          return x + 1;  // Nếu không tìm được thì trả về n + 1.
         }
         ```
     
     === "Python"
         ```python
-        # 权值树状数组查询第 k 小
+        # Cây Fenwick theo giá trị truy vấn phần tử nhỏ thứ k
         def kth(k):
             sum = 0
             x = 0
             i = int(log2(n))
             while ~i:
-                x = x + (1 << i)  # 尝试扩展
-                if x > n or sum + t[x] >= k:  # 如果扩展失败
+                x = x + (1 << i)  # Thử mở rộng.
+                if x > n or sum + t[x] >= k:  # Nếu mở rộng thất bại.
                     x = x - (1 << i)
                 else:
                     sum = sum + t[x]
                 i = i - 1
-            return x + 1  # 找不到就返回 n + 1
+            return x + 1  # Nếu không tìm được thì trả về n + 1.
         ```
 
-### 全局逆序对（全局二维偏序）
+### Cặp nghịch thế toàn cục (thứ tự bộ phận hai chiều toàn cục)
 
-相关阅读和参考实现：[逆序对](../math/permutation.md#逆序数)
+Đọc thêm và cài đặt tham khảo: [cặp nghịch thế](../math/permutation.md#%E9%80%86%E5%BA%8F%E6%95%B0)
 
-全局逆序对也可以用权值树状数组巧妙解决．问题是这样的：给定长度为 $n$ 的序列 $a$，求 $a$ 中满足 $i < j$ 且 $a[i] > a[j]$ 的数对 $(i, j)$ 的数量．
+Cặp nghịch thế toàn cục cũng có thể được giải khéo léo bằng cây Fenwick theo giá trị. Bài toán như sau: cho dãy $a$ độ dài $n$, hãy tính số cặp $(i, j)$ trong $a$ thỏa mãn $i < j$ và $a[i] > a[j]$.
 
-该问题可离散化，如果原序列 $a$ 值域过大，离散化后再建立权值数组 $b$．
+Bài toán này có thể rời rạc hóa. Nếu miền giá trị của dãy gốc $a$ quá lớn, hãy rời rạc hóa rồi xây mảng tần suất giá trị $b$.
 
-我们考虑从 $n$ 到 $1$ 倒序枚举 $i$，作为逆序对中第一个元素的索引，然后计算有多少个 $j > i$ 满足 $a[j] < a[i]$，最后累计答案即可．
+Ta xét duyệt ngược $i$ từ $n$ về $1$, xem $i$ là chỉ số của phần tử đầu tiên trong cặp nghịch thế, rồi tính có bao nhiêu $j > i$ thỏa mãn $a[j] < a[i]$, cuối cùng cộng dồn vào đáp án.
 
-事实上，我们只需要这样做（设当前 $a[i] = x$）：
+Thực ra chỉ cần làm như sau (giả sử hiện tại $a[i] = x$):
 
--   查询 $b[1 \ldots x - 1]$ 的前缀和，即为左端点为 $a[i]$ 的逆序对数量．
--   $b[x]$ 自增 $1$；
+-   Truy vấn tổng tiền tố $b[1 \ldots x - 1]$, đó chính là số cặp nghịch thế có đầu trái là $a[i]$.
+-   Tăng $b[x]$ thêm $1$.
 
-原因十分自然：出现在 $b[1 \ldots x-1]$ 中的元素一定比当前的 $x = a[i]$ 小，而 $i$ 的倒序枚举，自然使得这些已在权值数组中的元素，在原数组上的索引 $j$ 大于当前遍历到的索引 $i$．
+Lý do rất tự nhiên: các phần tử xuất hiện trong $b[1 \ldots x-1]$ chắc chắn nhỏ hơn $x = a[i]$ hiện tại, còn việc duyệt ngược $i$ bảo đảm những phần tử đã có trong mảng tần suất giá trị có chỉ số $j$ trong mảng gốc lớn hơn chỉ số $i$ đang duyệt.
 
-用例子说明，$a = (4, 3, 1, 2, 1)$．
+Minh họa bằng ví dụ $a = (4, 3, 1, 2, 1)$.
 
-$i$ 按照 $5 \to 1$ 扫：
+Quét $i$ theo thứ tự $5 \to 1$:
 
--   $a[5] = 1$，查询 $b[1 \ldots 0]$ 前缀和，为 $0$，$b[1]$ 自增 $1$，$b = (1, 0, 0, 0)$．
--   $a[4] = 2$，查询 $b[1 \ldots 1]$ 前缀和，为 $1$，$b[2]$ 自增 $1$，$b = (1, 1, 0, 0)$．
--   $a[3] = 1$，查询 $b[1 \ldots 0]$ 前缀和，为 $0$，$b[1]$ 自增 $1$，$b = (2, 1, 0, 0)$．
--   $a[2] = 3$，查询 $b[1 \ldots 2]$ 前缀和，为 $3$，$b[3]$ 自增 $1$，$b = (2, 1, 1, 0)$．
--   $a[1] = 4$，查询 $b[1 \ldots 3]$ 前缀和，为 $4$，$b[4]$ 自增 $1$，$b = (2, 1, 1, 1)$．
+-   $a[5] = 1$, truy vấn tổng tiền tố $b[1 \ldots 0]$ được $0$, tăng $b[1]$ thêm $1$, $b = (1, 0, 0, 0)$.
+-   $a[4] = 2$, truy vấn tổng tiền tố $b[1 \ldots 1]$ được $1$, tăng $b[2]$ thêm $1$, $b = (1, 1, 0, 0)$.
+-   $a[3] = 1$, truy vấn tổng tiền tố $b[1 \ldots 0]$ được $0$, tăng $b[1]$ thêm $1$, $b = (2, 1, 0, 0)$.
+-   $a[2] = 3$, truy vấn tổng tiền tố $b[1 \ldots 2]$ được $3$, tăng $b[3]$ thêm $1$, $b = (2, 1, 1, 0)$.
+-   $a[1] = 4$, truy vấn tổng tiền tố $b[1 \ldots 3]$ được $4$, tăng $b[4]$ thêm $1$, $b = (2, 1, 1, 1)$.
 
-所以最终答案为 $0 + 1 + 0 + 3 + 4 = 8$．
+Vì vậy đáp án cuối cùng là $0 + 1 + 0 + 3 + 4 = 8$.
 
-注意到，遍历 $i$ 后的查询 $b[1 \ldots x - 1]$ 和自增 $b[x]$ 的两个步骤可以颠倒，变成先自增 $b[x]$ 再查询 $b[1 \ldots x - 1]$，不影响答案．两个角度来解释：
+Chú ý rằng hai bước truy vấn $b[1 \ldots x - 1]$ và tăng $b[x]$ sau khi duyệt $i$ có thể đổi thứ tự thành tăng $b[x]$ trước rồi truy vấn $b[1 \ldots x - 1]$, mà không ảnh hưởng đáp án. Có thể giải thích từ hai góc độ:
 
--   对 $b[x]$ 的修改不影响对 $b[1 \ldots x - 1]$ 的查询．
--   颠倒后，实质是在查询 $i \le j$ 且 $a[i] > a[j]$ 的数对数量，而 $i = j$ 时不存在 $a[i] > a[j]$，所以 $i \le j$ 相当于 $i < j$，所以这与原来的逆序对问题是等价的．
+-   Việc sửa $b[x]$ không ảnh hưởng tới truy vấn $b[1 \ldots x - 1]$.
+-   Sau khi đổi thứ tự, thực chất ta đang đếm số cặp thỏa mãn $i \le j$ và $a[i] > a[j]$; nhưng khi $i = j$ không thể có $a[i] > a[j]$, nên $i \le j$ tương đương $i < j$. Vì vậy nó tương đương với bài toán nghịch thế ban đầu.
 
-如果查询非严格逆序对（$i < j$ 且 $a[i] \ge a[j]$）的数量，那就要改为查询 $b[1 \ldots x]$ 的和，这时就不能颠倒两步了，还是两个角度来解释：
+Nếu cần đếm số cặp nghịch thế không nghiêm ngặt ($i < j$ và $a[i] \ge a[j]$), thì phải đổi thành truy vấn tổng $b[1 \ldots x]$. Lúc này không thể đổi thứ tự hai bước. Vẫn có hai cách giải thích:
 
--   对 $b[x]$ 的修改 **影响** 对 $b[1 \ldots x]$ 的查询．
--   颠倒后，实质是在查询 $i \le j$ 且 $a[i] \ge a[j]$ 的数对数量，而 $i = j$ 时恒有 $a[i] \ge a[j]$，所以 $i \le j$  **不相当于**  $i < j$，与原问题 **不等价**．
+-   Việc sửa $b[x]$ **ảnh hưởng** tới truy vấn $b[1 \ldots x]$.
+-   Sau khi đổi thứ tự, thực chất ta đang đếm số cặp thỏa mãn $i \le j$ và $a[i] \ge a[j]$; nhưng khi $i = j$ luôn có $a[i] \ge a[j]$, nên $i \le j$ **không tương đương** với $i < j$, và **không tương đương** với bài toán gốc.
 
-如果查询 $i \le j$ 且 $a[i] \ge a[j]$ 的数对数量，那这两步就需要颠倒了．
+Nếu cần đếm số cặp thỏa mãn $i \le j$ và $a[i] \ge a[j]$, thì hai bước này cần được đổi thứ tự.
 
-另外，对于原逆序对问题，还有一种做法是正着枚举 $j$，查询有多少 $i < j$ 满足 $a[i] > a[j]$．做法如下（设 $x = a[j]$）：
+Ngoài ra, với bài toán nghịch thế ban đầu còn có một cách khác: duyệt xuôi $j$, truy vấn có bao nhiêu $i < j$ thỏa mãn $a[i] > a[j]$. Cách làm như sau (đặt $x = a[j]$):
 
--   查询 $b[x + 1 \ldots V]$（$V$ 是 $b$ 的大小，即 $a$ 的值域（或离散化后的值域））的区间和．
--   将 $b[x]$ 自增 $1$．
+-   Truy vấn tổng đoạn $b[x + 1 \ldots V]$ ($V$ là kích thước của $b$, tức miền giá trị của $a$ hoặc miền giá trị sau rời rạc hóa).
+-   Tăng $b[x]$ thêm $1$.
 
-原因：出现在 $b[x + 1 \ldots V]$ 中的元素一定比当前的 $x = a[j]$ 大，而 $j$ 的正序枚举，自然使得这些已在权值数组中的元素，在原数组上的索引 $i$ 小于当前遍历到的索引 $j$．
+Lý do: các phần tử xuất hiện trong $b[x + 1 \ldots V]$ chắc chắn lớn hơn $x = a[j]$ hiện tại, còn việc duyệt xuôi $j$ bảo đảm những phần tử đã có trong mảng tần suất giá trị có chỉ số $i$ trong mảng gốc nhỏ hơn chỉ số $j$ đang duyệt.
 
-此外，逆序对的计数还可以通过 [归并排序](../basic/merge-sort.md#逆序对) 解决．这一方法可以避免离散化．时间复杂度同样为 $O(n\log n)$．两种算法的参考实现都在 [逆序对](../math/permutation.md#逆序数) 章节．
+Ngoài ra, việc đếm nghịch thế cũng có thể giải bằng [sắp xếp trộn](../basic/merge-sort.md#%E9%80%86%E5%BA%8F%E5%AF%B9). Cách này tránh được rời rạc hóa, và độ phức tạp thời gian cũng là $O(n\log n)$. Cài đặt tham khảo của cả hai thuật toán đều nằm trong chương [nghịch thế](../math/permutation.md#%E9%80%86%E5%BA%8F%E6%95%B0).
 
-## 树状数组维护不可差分信息
+## Cây Fenwick duy trì thông tin không thể lấy sai phân
 
-比如维护区间最值等．
+Ví dụ như duy trì cực trị trên đoạn.
 
-注意，这种方法虽然码量小，但单点修改和区间查询的时间复杂度均为 $\Theta(\log^2n)$，比使用线段树的时间复杂度 $\Theta(\log n)$ 劣．
+Chú ý rằng tuy phương pháp này có lượng mã nhỏ, độ phức tạp thời gian của cả sửa đổi một điểm và truy vấn đoạn đều là $\Theta(\log^2n)$, kém hơn độ phức tạp $\Theta(\log n)$ khi dùng cây phân đoạn.
 
-### 区间查询
+### Truy vấn đoạn
 
-我们还是基于之前的思路，从 $r$ 沿着 $\operatorname{lowbit}$ 一直向前跳，但是我们不能跳到 $l$ 的左边．
+Ta vẫn dựa trên ý tưởng trước đó: từ $r$ liên tục nhảy lùi theo $\operatorname{lowbit}$, nhưng không được nhảy sang bên trái $l$.
 
-因此，如果我们跳到了 $c[x]$，先判断下一次要跳到的 $x - \operatorname{lowbit}(x)$ 是否小于 $l$：
+Do đó, nếu ta nhảy tới $c[x]$, trước hết kiểm tra vị trí lần sau sẽ nhảy tới, $x - \operatorname{lowbit}(x)$, có nhỏ hơn $l$ hay không:
 
--   如果小于 $l$，我们直接把 **$\boldsymbol{a[x]}$ 单点** 合并到总信息里，然后跳到 $c[x - 1]$．
--   如果大于等于 $l$，说明没越界，正常合并 $c[x]$，然后跳到 $c[x - \operatorname{lowbit}(x)]$ 即可．
+-   Nếu nhỏ hơn $l$, ta gộp trực tiếp **một điểm $\boldsymbol{a[x]}$** vào tổng thông tin, rồi nhảy tới $c[x - 1]$.
+-   Nếu lớn hơn hoặc bằng $l$, nghĩa là không vượt biên, cứ gộp $c[x]$ bình thường rồi nhảy tới $c[x - \operatorname{lowbit}(x)]$.
 
-下面以查询区间最大值为例，给出代码：
+Dưới đây là mã ví dụ cho truy vấn giá trị lớn nhất trên đoạn:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     int getmax(int l, int r) {
       int ans = 0;
@@ -827,8 +827,8 @@ $i$ 按照 $5 \to 1$ 扫：
         ans = max(ans, a[r]);
         --r;
         for (; r - lowbit(r) >= l; r -= lowbit(r)) {
-          // 注意，循环条件不要写成 r - lowbit(r) + 1 >= l
-          // 否则 l = 1 时，r 跳到 0 会死循环
+          // Chú ý, điều kiện vòng lặp không được viết thành r - lowbit(r) + 1 >= l.
+          // Nếu không, khi l = 1, r nhảy tới 0 sẽ gây vòng lặp vô hạn.
           ans = max(ans, C[r]);
         }
       }
@@ -836,43 +836,43 @@ $i$ 按照 $5 \to 1$ 扫：
     }
     ```
 
-可以证明，上述算法的时间复杂度是 $\Theta(\log^2n)$．
+Có thể chứng minh độ phức tạp thời gian của thuật toán trên là $\Theta(\log^2n)$.
 
-??? note "时间复杂度证明"
-    考虑 $r$ 和 $l$ 不同的最高位，一定有 $r$ 在这一位上为 $1$，$l$ 在这一位上为 $0$（因为 $r \ge l$）．
+??? note "Chứng minh độ phức tạp thời gian"
+    Xét bit cao nhất mà $r$ và $l$ khác nhau. Chắc chắn $r$ có bit này bằng $1$, còn $l$ có bit này bằng $0$ (vì $r \ge l$).
     
-    如果 $r$ 在这一位的后面仍然有 $1$，一定有 $r - \operatorname{lowbit}(r) \ge l$，所以下一步一定是把 $r$ 的最低位 $1$ 填为 $0$；
+    Nếu phía sau bit này của $r$ vẫn còn bit $1$, chắc chắn có $r - \operatorname{lowbit}(r) \ge l$, nên bước tiếp theo chắc chắn đổi bit `1` thấp nhất của $r$ thành `0`.
     
-    如果 $r$ 的这一位 $1$ 就是 $r$ 的最低位 $1$，无论是 $r \gets r - \operatorname{lowbit}(r)$ 还是 $r \gets r - 1$，$r$ 的这一位 $1$ 一定会变为 $0$．
+    Nếu bit $1$ này của $r$ chính là bit `1` thấp nhất của $r$, thì dù thực hiện $r \gets r - \operatorname{lowbit}(r)$ hay $r \gets r - 1$, bit $1$ này của $r$ chắc chắn sẽ trở thành $0$.
     
-    因此，$r$ 经过至多 $\log n$ 次变换后，$r$ 和 $l$ 不同的最高位一定可以下降一位．所以，总时间复杂度是 $\Theta(\log^2n)$．
+    Vì vậy, sau nhiều nhất $\log n$ lần biến đổi, bit cao nhất mà $r$ và $l$ khác nhau chắc chắn có thể giảm xuống một vị trí. Do đó, tổng độ phức tạp thời gian là $\Theta(\log^2n)$.
 
-### 单点更新
+### Cập nhật một điểm
 
-???+ note "注"
-    请先理解树状数组树形态的以下两条性质，再学习本节．
+???+ note "Chú ý"
+    Hãy hiểu hai tính chất sau của dạng cây Fenwick trước khi học phần này.
     
-    -   设 $u = s \times 2^{k + 1} + 2^k$，则其儿子数量为 $k = \log_2\operatorname{lowbit}(u)$，编号分别为 $u - 2^t(0 \le t < k)$．
-    -   $u$ 的所有儿子对应 $c$ 的管辖区间恰好拼接成 $[l(u), u - 1]$．
+    -   Đặt $u = s \times 2^{k + 1} + 2^k$. Khi đó số con của nó là $k = \log_2\operatorname{lowbit}(u)$, được đánh số lần lượt là $u - 2^t(0 \le t < k)$.
+    -   Các đoạn quản lý bởi $c$ ứng với mọi con của $u$ ghép lại đúng bằng $[l(u), u - 1]$.
     
-    关于这两条性质的含义及证明，都可以在本页面的 [树状数组与其树形态的性质](#树状数组与其树形态的性质) 一节找到．
+    Ý nghĩa và chứng minh của hai tính chất này đều có trong phần [cây Fenwick và các tính chất của dạng cây](#cây-fenwick-và-các-tính-chất-của-dạng-cây) trên trang này.
 
-更新 $a[x]$ 后，我们只需要更新满足在树状数组树形态上，满足 $y$ 是 $x$ 的祖先的 $c[y]$．
+Sau khi cập nhật $a[x]$, ta chỉ cần cập nhật các $c[y]$ sao cho trên dạng cây Fenwick, $y$ là tổ tiên của $x$.
 
-对于最值（以最大值为例），一种常见的错误想法是，如果 $a[x]$ 修改成 $p$，则将所有 $c[y]$ 更新为 $\max(c[y], p)$．下面是一个反例：$(1, 2, 3, 4, 5)$ 中将 $5$ 修改成 $4$，最大值是 $4$，但按照上面的修改这样会得到 $5$．将 $c[y]$ 直接修改为 $p$ 也是错误的，一个反例是，将上面例子中的 $3$ 修改为 $4$．
+Với cực trị (lấy giá trị lớn nhất làm ví dụ), một suy nghĩ sai thường gặp là: nếu sửa $a[x]$ thành $p$, thì cập nhật mọi $c[y]$ thành $\max(c[y], p)$. Phản ví dụ: trong $(1, 2, 3, 4, 5)$, sửa $5$ thành $4$ thì giá trị lớn nhất là $4$, nhưng cách cập nhật trên vẫn cho kết quả $5$. Cập nhật trực tiếp $c[y]$ thành $p$ cũng sai; một phản ví dụ là sửa $3$ trong ví dụ trên thành $4$.
 
-事实上，对于不可差分信息，不存在通过 $p$ 直接修改 $c[y]$ 的方式．这是因为修改本身就相当于是把旧数从原区间「移除」，然后加入一个新数．「移除」时对区间信息的影响，相当于做「逆运算」，而不可差分信息不存在「逆运算」，所以无法直接修改 $c[y]$．
+Thực ra với thông tin không thể lấy sai phân, không tồn tại cách sửa trực tiếp $c[y]$ chỉ dựa vào $p$. Lý do là thao tác sửa tương đương với việc "loại bỏ" số cũ khỏi đoạn gốc rồi thêm một số mới. Ảnh hưởng của bước "loại bỏ" lên thông tin đoạn tương đương với thực hiện "phép nghịch đảo"; nhưng thông tin không thể lấy sai phân không có "phép nghịch đảo", nên không thể sửa trực tiếp $c[y]$.
 
-换句话说，对每个受影响的 $c[y]$，这个区间的信息我们必定要重构了．
+Nói cách khác, với mỗi $c[y]$ bị ảnh hưởng, ta bắt buộc phải dựng lại thông tin của đoạn đó.
 
-考虑 $c[y]$ 的儿子们，它们的信息一定是正确的（因为我们先更新儿子再更新父亲），而这些儿子又恰好组成了 $[l(y), y - 1]$ 这一段管辖区间，那再合并一个单点 $a[y]$ 就可以合并出 $[l(y), y]$，也就是 $c[y]$ 了．这样，我们能用至多 $\log n$ 个区间重构合并出每个需要修改的 $c$．
+Xét các con của $c[y]$. Thông tin của chúng chắc chắn đúng (vì ta cập nhật con trước rồi cập nhật cha), và các con này ghép lại đúng đoạn quản lý $[l(y), y - 1]$. Khi gộp thêm một điểm $a[y]$, ta thu được thông tin của $[l(y), y]$, tức $c[y]$. Như vậy, mỗi $c$ cần sửa có thể được dựng lại bằng cách gộp nhiều nhất $\log n$ đoạn.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void update(int x, int v) {
       a[x] = v;
       for (int i = x; i <= n; i += lowbit(i)) {
-        // 枚举受影响的区间
+        // Duyệt các đoạn bị ảnh hưởng.
         C[i] = a[i];
         for (int j = 1; j < lowbit(i); j *= 2) {
           C[i] = max(C[i], C[i - j]);
@@ -881,28 +881,28 @@ $i$ 按照 $5 \to 1$ 扫：
     }
     ```
 
-容易看出上述算法时间复杂度为 $\Theta(\log^2n)$．
+Dễ thấy thuật toán trên có độ phức tạp thời gian $\Theta(\log^2n)$.
 
-### 建树
+### Xây cây
 
-可以考虑拆成 $n$ 个单点修改，$\Theta(n\log^2n)$ 建树．
+Có thể tách thành $n$ lần sửa đổi một điểm, xây cây trong $\Theta(n\log^2n)$.
 
-也有 $\Theta(n)$ 的建树方法，见本页面 [$\Theta(n)$ 建树](#thetan-建树) 一节的方法一．
+Cũng có cách xây cây $\Theta(n)$, xem phương pháp một trong phần [$\Theta(n)$ xây cây](#thetan-xây-cây) trên trang này.
 
 ## Tricks
 
-### $\Theta(n)$ 建树
+### $\Theta(n)$ xây cây
 
-以维护区间和为例．
+Lấy việc duy trì tổng đoạn làm ví dụ.
 
-方法一：
+Phương pháp một:
 
-每一个节点的值是由所有与自己直接相连的儿子的值求和得到的．因此可以倒着考虑贡献，即每次确定完儿子的值后，用自己的值更新自己的直接父亲．
+Giá trị của mỗi nút thu được bằng cách cộng giá trị của mọi con trực tiếp của nó. Vì vậy, có thể xét đóng góp theo chiều ngược: mỗi khi xác định xong giá trị của một con, dùng giá trị của nó để cập nhật cha trực tiếp.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
-        // Θ(n) 建树
+        // Xây cây Θ(n)
         void init() {
           for (int i = 1; i <= n; ++i) {
             t[i] += a[i];
@@ -914,7 +914,7 @@ $i$ 按照 $5 \to 1$ 扫：
     
     === "Python"
         ```python
-        # Θ(n) 建树
+        # Xây cây Θ(n)
         def init():
             for i in range(1, n + 1):
                 t[i] = t[i] + a[i]
@@ -923,14 +923,14 @@ $i$ 按照 $5 \to 1$ 扫：
                     t[j] = t[j] + t[i]
         ```
 
-方法二：
+Phương pháp hai:
 
-前面讲到 $c[i]$ 表示的区间是 $[i-\operatorname{lowbit}(i)+1, i]$，那么我们可以先预处理一个 $\mathrm{sum}$ 前缀和数组，再计算 $c$ 数组．
+Phía trước đã nói đoạn mà $c[i]$ biểu diễn là $[i-\operatorname{lowbit}(i)+1, i]$, nên ta có thể tiền xử lý một mảng tổng tiền tố $\mathrm{sum}$ rồi tính mảng $c$.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
-        // Θ(n) 建树
+        // Xây cây Θ(n)
         void init() {
           for (int i = 1; i <= n; ++i) {
             t[i] = sum[i] - sum[i - lowbit(i)];
@@ -940,20 +940,20 @@ $i$ 按照 $5 \to 1$ 扫：
     
     === "Python"
         ```python
-        # Θ(n) 建树
+        # Xây cây Θ(n)
         def init():
             for i in range(1, n + 1):
                 t[i] = sum[i] - sum[i - lowbit(i)]
         ```
 
-### 时间戳优化
+### Tối ưu bằng dấu thời gian
 
-对付多组数据很常见的技巧．若每次输入新数据都暴力清空树状数组，就可能会造成超时．因此使用 $\mathrm{tag}$ 标记，存储当前节点上次使用时间（即最近一次是被第几组数据使用）．每次操作时判断这个位置 $\mathrm{tag}$ 中的时间和当前时间是否相同，就可以判断这个位置应该是 $0$ 还是数组内的值．
+Đây là kỹ thuật rất thường gặp khi xử lý nhiều bộ dữ liệu. Nếu mỗi lần nhập dữ liệu mới đều xóa thô toàn bộ cây Fenwick, có thể bị quá thời gian. Vì vậy, ta dùng nhãn $\mathrm{tag}$ để lưu thời điểm sử dụng gần nhất của nút hiện tại (tức lần gần nhất nó được dùng ở bộ dữ liệu thứ mấy). Mỗi lần thao tác, kiểm tra thời gian trong $\mathrm{tag}$ tại vị trí này có bằng thời gian hiện tại hay không, từ đó biết vị trí này nên được xem là $0$ hay là giá trị trong mảng.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
-        // 时间戳优化
+        // Tối ưu bằng dấu thời gian
         int tag[MAXN], t[MAXN], Tag;
         
         void reset() { ++Tag; }
@@ -978,7 +978,7 @@ $i$ 按照 $5 \to 1$ 扫：
     
     === "Python"
         ```python
-        # 时间戳优化
+        # Tối ưu bằng dấu thời gian
         tag = [0] * MAXN
         t = [0] * MAXN
         Tag = 0
@@ -1006,11 +1006,11 @@ $i$ 按照 $5 \to 1$ 扫：
             return ret
         ```
 
-## 例题
+## Bài tập
 
--   [树状数组 1：单点修改，区间查询](https://loj.ac/problem/130)
--   [树状数组 2：区间修改，单点查询](https://loj.ac/problem/131)
--   [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132)
--   [二维树状数组 1：单点修改，区间查询](https://loj.ac/problem/133)
--   [二维树状数组 2：区间修改，单点查询](https://loj.ac/problem/134)
--   [二维树状数组 3：区间修改，区间查询](https://loj.ac/problem/135)
+-   [Cây Fenwick 1: sửa đổi một điểm, truy vấn đoạn](https://loj.ac/problem/130)
+-   [Cây Fenwick 2: sửa đổi đoạn, truy vấn một điểm](https://loj.ac/problem/131)
+-   [Cây Fenwick 3: sửa đổi đoạn, truy vấn đoạn](https://loj.ac/problem/132)
+-   [Cây Fenwick hai chiều 1: sửa đổi một điểm, truy vấn đoạn](https://loj.ac/problem/133)
+-   [Cây Fenwick hai chiều 2: sửa đổi đoạn, truy vấn một điểm](https://loj.ac/problem/134)
+-   [Cây Fenwick hai chiều 3: sửa đổi đoạn, truy vấn đoạn](https://loj.ac/problem/135)
