@@ -1,20 +1,21 @@
 author: ouuan, ChungZH, partychicken, Xeonacid, Find-NICK
 
-Atom，GitHub 家的编辑器．
+Atom, trình soạn thảo của GitHub.
 
-## 简介
+## Giới thiệu
 
-Atom 是一个免费、开源、跨平台的文本编辑器，由 GitHub 开发．它是用 JavaScript 编写的，并且采用 Electron 架构．它的一个较大缺点就是性能差．
+Atom là một trình soạn thảo văn bản miễn phí, mã nguồn mở, đa nền tảng, do GitHub phát triển. Nó được viết bằng JavaScript và dùng kiến trúc Electron. Một nhược điểm khá lớn của Atom là hiệu năng kém.
 
-???+ warning "Warning"
-    在 2022 年 6 月 8 日，[Github 宣布将放弃 Atom 编辑器](https://github.blog/2022-06-08-sunsetting-atom/)，并于 2022 年 12 月 15 日对 Atom 编辑器存档．
-    如果你仍然喜欢 Atom 的界面，可以使用 [Pulsar](https://pulsar-edit.dev/) 作为替代品，它的用户界面与 Atom 基本相似，目标是让他们最喜欢的编辑器保持活力 "keep their favorite editor alive"[^1]．
+???+ warning "Cảnh báo"
+    Vào ngày 8 tháng 6 năm 2022, [GitHub thông báo sẽ ngừng phát triển Atom](https://github.blog/2022-06-08-sunsetting-atom/) và đã lưu trữ dự án Atom vào ngày 15 tháng 12 năm 2022.
 
-## 外部链接
+    Nếu bạn vẫn thích giao diện của Atom, có thể dùng [Pulsar](https://pulsar-edit.dev/) làm lựa chọn thay thế. Giao diện người dùng của Pulsar về cơ bản giống Atom, với mục tiêu "keep their favorite editor alive"[^1].
 
--   [Atom 官网](https://atom.io)
--   [Pulsar 官网](https://pulsar-edit.dev/)
+## Liên kết ngoài
 
-## 参考资料
+-   [Trang chủ Atom](https://atom.io)
+-   [Trang chủ Pulsar](https://pulsar-edit.dev/)
 
-[^1]: 来源：<https://pulsar-edit.dev/about.html#the-team>
+## Tài liệu tham khảo
+
+[^1]: Nguồn: <https://pulsar-edit.dev/about.html#the-team>

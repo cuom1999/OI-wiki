@@ -1,28 +1,28 @@
 author: ouuan, Doveqise, partychicken, Xeonacid, StudyingFather
 
-## 介绍
+## Giới thiệu
 
-Eclipse 是著名的跨平台开源集成开发环境（IDE）．最初主要用来 Java 语言开发，当前亦有人通过插件使其作为 C++、Python、PHP 等其他语言的开发工具．
+Eclipse là một môi trường phát triển tích hợp (IDE) mã nguồn mở, đa nền tảng nổi tiếng. Ban đầu nó chủ yếu được dùng để phát triển bằng ngôn ngữ Java; hiện nay cũng có người dùng plugin để biến nó thành công cụ phát triển cho C++, Python, PHP và các ngôn ngữ khác.
 
-Eclipse 的本身只是一个框架平台，但是众多插件的支持，使得 Eclipse 拥有较佳的灵活性，所以许多软件开发商以 Eclipse 为框架开发自己的 IDE．
+Bản thân Eclipse chỉ là một nền tảng khung, nhưng nhờ được rất nhiều plugin hỗ trợ, Eclipse có tính linh hoạt khá tốt. Vì vậy, nhiều nhà phát triển phần mềm dùng Eclipse làm khung để phát triển IDE của riêng mình.
 
-Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（Eclipse Foundation）管理．[^ref1]
+Eclipse ban đầu được IBM phát triển như môi trường IDE thế hệ tiếp theo thay thế phần mềm thương mại Visual Age for Java. Tháng 11 năm 2001, IBM đóng góp nó cho cộng đồng mã nguồn mở; hiện nay Eclipse được quản lý bởi Eclipse Foundation, một liên minh nhà cung cấp phần mềm phi lợi nhuận.[^ref1]
 
-缺点：
+Nhược điểm:
 
--   实测这个 IDE 打开速度比 Visual Studio 慢
--   更新速度玄学，插件更新速度跟不上 IDE 的更新速度，对于经常更新的同学很不友好．
+-   Theo thử nghiệm thực tế, IDE này khởi động chậm hơn Visual Studio.
+-   Tốc độ cập nhật khó đoán; tốc độ cập nhật plugin không theo kịp tốc độ cập nhật của IDE, khá bất tiện với người thường xuyên cập nhật.
 
-优点：
+Ưu điểm:
 
--   使用体验较好
--   能够快速上手，所以比较推荐 OIer 用这个 IDE．
+-   Trải nghiệm sử dụng khá tốt.
+-   Có thể làm quen nhanh, nên tương đối khuyến nghị OIer dùng IDE này.
 
-## 安装 & 配置指南
+## Hướng dẫn cài đặt & cấu hình
 
-安装可参照 [Eclipse/Installation - Eclipsepedia](https://wiki.eclipse.org/Eclipse/Installation)．
+Cài đặt có thể tham khảo [Eclipse/Installation - Eclipsepedia](https://wiki.eclipse.org/Eclipse/Installation).
 
-安装后如图填写目录信息以建造项目：
+Sau khi cài đặt, điền thông tin thư mục như hình để tạo project:
 
 ![](./images/eclipse4.png)
 
@@ -32,14 +32,14 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ![](./images/eclipse7.png)
 
-## 拓展
+## Mở rộng
 
-这个软件的帮助手册很详细，建议刚接触的同学多看帮助手册，多百度，并且这个 IDE 的使用手感与 Visual Studio 相近．
+Tài liệu trợ giúp của phần mềm này rất chi tiết. Người mới tiếp xúc nên đọc thêm tài liệu trợ giúp, tìm kiếm thêm, và cảm giác sử dụng IDE này khá gần với Visual Studio.
 
-和 [VS Code](./vscode.md) 类似，Eclipse 中也提供了很多插件，这些插件可以让 Eclipse 变得更加易用．[^ref2]
+Tương tự [VS Code](./vscode.md), Eclipse cũng cung cấp nhiều plugin; các plugin này có thể làm Eclipse dễ dùng hơn.[^ref2]
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Eclipse - 维基百科](https://zh.wikipedia.org/wiki/Eclipse)
+[^ref1]: [Eclipse - Wikipedia](https://zh.wikipedia.org/wiki/Eclipse)
 
-[^ref2]: [曾经的 Java IDE 王者 Eclipse 真的没落了？21 款插件让它强大起来！](https://blog.csdn.net/csdnnews/article/details/78495979)
+[^ref2]: [Eclipse, Java IDE từng là số một, đã thật sự xuống dốc chưa? 21 plugin giúp nó mạnh hơn](https://blog.csdn.net/csdnnews/article/details/78495979)

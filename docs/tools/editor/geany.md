@@ -1,67 +1,67 @@
 author: xingjiapeng, MingqiHuang
 
-Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者较为友好．
+Geany là một trình soạn thảo nhẹ và tiện lợi, khá thân thiện với người mới trong môi trường Linux.
 
-与 Dev-C++ 一样，它可以编译运行单个文件．
+Giống Dev-C++, nó có thể biên dịch và chạy một tệp đơn lẻ.
 
-不过，它可以在 Linux/Windows/macOS 下运行．
+Tuy nhiên, nó có thể chạy trên Linux/Windows/macOS.
 
-其官网为：<https://geany.org/>
+Trang chủ: <https://geany.org/>
 
-## 优缺点
+## Ưu và nhược điểm
 
-### 优点
+### Ưu điểm
 
-1.  轻量；
-2.  可以编译运行单个文件；
-3.  不需要太多配置；
-4.  跨平台．
+1.  Nhẹ.
+2.  Có thể biên dịch và chạy một tệp đơn lẻ.
+3.  Không cần quá nhiều cấu hình.
+4.  Đa nền tảng.
 
-### 缺点
+### Nhược điểm
 
-1.  没有太多人使用；
-2.  在 macOS Catalina 下有一些权限问题[^1]；
-3.  新建文件时，默认不会有语法高亮，需要手动切换文件类型．
+1.  Không có quá nhiều người dùng.
+2.  Có một số vấn đề quyền hạn trên macOS Catalina[^1].
+3.  Khi tạo tệp mới, mặc định không có tô sáng cú pháp; cần tự chuyển loại tệp.
 
-## 安装
+## Cài đặt
 
-参见 [Download | Geany](https://geany.org/download/)
+Xem [Download | Geany](https://geany.org/download/)
 
-## 使用技巧
+## Mẹo sử dụng
 
-### 切换文件类型
+### Chuyển loại tệp
 
-在*文档 -> 设置文件类型*中进行切换．
+Chuyển trong *Document -> Set Filetype*.
 
-如 C++ 语言，点击*文档 -> 设置文件类型 -> 编程语言 -> C++ 源文件*，即可看到文件已被转换为 C++ 语言的语法高亮了．
+Ví dụ với ngôn ngữ C++, nhấp *Document -> Set Filetype -> Programming Languages -> C++ Source File*, bạn sẽ thấy tệp đã được chuyển sang tô sáng cú pháp của ngôn ngữ C++.
 
-### 设置文件模板
+### Đặt template tệp
 
-在配置文件目录下建立 templates/files 文件夹，建立在其中的文件即为模板文件，再次打开 Geany，就可以在*文件 -> 从模板新建*中找到它了．
+Tạo thư mục `templates/files` trong thư mục cấu hình; các tệp được tạo trong đó sẽ là tệp template. Sau khi mở lại Geany, bạn có thể tìm thấy chúng trong *File -> New (with Template)*.
 
-配置文件目录可以通过*帮助 -> 调试信息*的第二、三行找出．
+Thư mục cấu hình có thể được tìm thấy qua dòng thứ hai và thứ ba trong *Help -> Debug Messages*.
 
-这里给出 macOS 和 Linux 下的默认模板配置文件目录：
+Dưới đây là thư mục cấu hình template mặc định trên macOS và Linux:
 
--   系统目录：`/usr/share/geany/templates/files/`
--   用户目录：`~/.config/geany/templates/files/`[^2]
+-   Thư mục hệ thống: `/usr/share/geany/templates/files/`
+-   Thư mục người dùng: `~/.config/geany/templates/files/`[^2]
 
-## 常见问题
+## Câu hỏi thường gặp
 
-### 兼容深度终端
+### Tương thích với Deepin Terminal
 
-在*首选项 -> 工具 -> 虚拟终端*，修改终端的命令为：
+Trong *Preferences -> Tools -> Virtual Terminal*, sửa lệnh terminal thành:
 
 ```bash
 deepin-terminal -x "/bin/sh" %c
 ```
 
-点击「应用」按钮即可．[^3]
+Nhấp nút "Apply" là được.[^3]
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^1]: 详见：<https://github.com/geany/geany/issues/2344>
+[^1]: Xem chi tiết: <https://github.com/geany/geany/issues/2344>
 
-[^2]: 来源：<https://wiki.geany.org/config/templates>
+[^2]: Nguồn: <https://wiki.geany.org/config/templates>
 
-[^3]: 来源：Deepin Wiki <https://wiki.deepin.org/>
+[^3]: Nguồn: Deepin Wiki <https://wiki.deepin.org/>
