@@ -1,16 +1,18 @@
 author: Enter-tainer, Falicitas, HeRaNO, iamtwz, ImpleLee, Tiphereth-A, Xeonacid, Yanjun-Zhao
 
-## 定义
+<span id="&#23450;&#20041;"></span>
+## Định nghĩa
 
-平衡三进制，也称为对称三进制．这是一个广义进位系统．
+Hệ tam phân cân bằng, còn gọi là hệ tam phân đối xứng, là một hệ cơ số tổng quát.
 
-正规的三进制的数字都是由 `0`,`1`,`2` 构成的，而平衡三进制的数字是由 `-1`,`0`,`1` 构成的．它的基数也是 `3`（因为有三个可能的值）．由于将 `-1` 写成数字不方便，我们将使用字母 `Z` 来代替 `-1`．
+Trong hệ tam phân thông thường, các chữ số gồm `0`, `1`, `2`; còn trong hệ tam phân cân bằng, các chữ số gồm `-1`, `0`, `1`. Cơ số của nó vẫn là `3` (vì có ba giá trị có thể có). Do viết `-1` dưới dạng một chữ số không tiện, ta dùng chữ cái `Z` để thay cho `-1`.
 
-## 解释
+<span id="&#35299;&#37322;"></span>
+## Giải thích
 
-这里有几个例子：
+Một vài ví dụ:
 
-| 十进制 | 平衡三进制 | 十进制 | 平衡三进制 |
+| Thập phân | Tam phân cân bằng | Thập phân | Tam phân cân bằng |
 | --- | ----- | --- | ----- |
 | `0` | `0`   | `5` | `1ZZ` |
 | `1` | `1`   | `6` | `1Z0` |
@@ -18,9 +20,9 @@ author: Enter-tainer, Falicitas, HeRaNO, iamtwz, ImpleLee, Tiphereth-A, Xeonacid
 | `3` | `10`  | `8` | `10Z` |
 | `4` | `11`  | `9` | `100` |
 
-该数字系统的负数表示起来很容易：只需要将正数的数字倒转即可（`Z` 变成 `1`,`1` 变成 `Z`）．
+Hệ ghi số này biểu diễn số âm rất dễ: chỉ cần đảo từng chữ số của số dương (`Z` thành `1`, `1` thành `Z`).
 
-| 十进制  | 平衡三进制 |
+| Thập phân | Tam phân cân bằng |
 | ---- | ----- |
 | `-1` | `Z`   |
 | `-2` | `Z1`  |
@@ -28,84 +30,89 @@ author: Enter-tainer, Falicitas, HeRaNO, iamtwz, ImpleLee, Tiphereth-A, Xeonacid
 | `-4` | `ZZ`  |
 | `-5` | `Z11` |
 
-很容易就可以看到，负数最高位是 `Z`，正数最高位是 `1`．
+Dễ thấy chữ số cao nhất của số âm là `Z`, còn chữ số cao nhất của số dương là `1`.
 
-## 过程
+<span id="&#36807;&#31243;"></span>
+## Quy trình
 
-在平衡三进制的转转换法中，需要先写出一个给定的数 `x` 在标准三进制中的表示．当 `x` 是用标准三进制表示时，其数字的每一位都是 `0`、`1` 或 `2`．从最低的数字开始迭代，我们可以先跳过任何的 `0` 和 `1`，但是如果遇到 `2` 就应该先将其变成 `Z`，下一位数字再加上 `1`．而遇到数字 `3` 则应该转换为 `0` 下一位数字再加上 `1`．
+Khi chuyển đổi sang tam phân cân bằng, trước hết cần viết số đã cho `x` trong hệ tam phân chuẩn. Khi `x` được biểu diễn bằng tam phân chuẩn, mỗi chữ số của nó là `0`, `1` hoặc `2`. Bắt đầu từ chữ số thấp nhất, ta có thể bỏ qua mọi `0` và `1`; nếu gặp `2`, đổi nó thành `Z` và cộng `1` vào chữ số kế tiếp. Nếu gặp chữ số `3`, đổi nó thành `0` và cộng `1` vào chữ số kế tiếp.
 
-### 应用一
+<span id="&#24212;&#29992;&#19968;"></span>
+### Ví dụ 1
 
-把 `64` 转换成平衡三进制．
+Chuyển `64` sang tam phân cân bằng.
 
-首先，我们用标准三进制数来重写这个数：
+Trước hết viết lại số này dưới dạng tam phân chuẩn:
 
 $$
 \text 64_{10} = 02101_3
 $$
 
-让我们从对整个数影响最小的数字（最低位）进行处理：
+Xử lý từ chữ số có ảnh hưởng nhỏ nhất lên toàn bộ số (chữ số thấp nhất):
 
--   `101` 被跳过（因为在平衡三进制中允许 `0` 和 `1`）；
--   `2` 变成了 `Z`，它左边的数字加 `1`，得到 `1Z101`；
--   `1` 被跳过，得到 `1Z101`．
+-   bỏ qua `101` (vì `0` và `1` được phép trong tam phân cân bằng);
+-   đổi `2` thành `Z`, cộng `1` vào chữ số bên trái nó, thu được `1Z101`;
+-   bỏ qua `1`, thu được `1Z101`.
 
-最终的结果是 `1Z101`．
+Kết quả cuối cùng là `1Z101`.
 
-我们再把它转换回十进制：
+Chuyển ngược lại về thập phân:
 
 $$
 \texttt {1Z101}=81 \times 1 +27 \times (-1) + 9 \times 1 + 3 \times 0 + 1 \times 1 = 64_{10}
 $$
 
-### 应用二
+<span id="&#24212;&#29992;&#20108;"></span>
+### Ví dụ 2
 
-把 `237` 转换成平衡三进制．
+Chuyển `237` sang tam phân cân bằng.
 
-首先，我们用标准三进制数来重写这个数：
+Trước hết viết lại số này dưới dạng tam phân chuẩn:
 
 $$
 \text 237_{10} = 22210_3
 $$
 
--   `0` 和 `1` 被跳过（因为在平衡三进制中允许 `0` 和 `1`）；
--   `2` 变成 `Z`，左边的数字加 `1`，得到 `23Z10`；
--   `3` 变成 `0`，左边的数字加 `1`，得到 `30Z10`；
--   `3` 变成 `0`，左边的数字（默认是 `0`）加 `1`，得到 `100Z10`；
--   `1` 被跳过，得到 `100Z10`．
+-   bỏ qua `0` và `1` (vì `0` và `1` được phép trong tam phân cân bằng);
+-   đổi `2` thành `Z`, cộng `1` vào chữ số bên trái, thu được `23Z10`;
+-   đổi `3` thành `0`, cộng `1` vào chữ số bên trái, thu được `30Z10`;
+-   đổi `3` thành `0`, cộng `1` vào chữ số bên trái (mặc định là `0`), thu được `100Z10`;
+-   bỏ qua `1`, thu được `100Z10`.
 
-最终的结果是 `100Z10`．
+Kết quả cuối cùng là `100Z10`.
 
-我们再把它转换回十进制：
+Chuyển ngược lại về thập phân:
 
 $$
 \texttt{100Z10} = 243 \cdot 1 + 81 \cdot 0 + 27 \cdot 0 + 9 \cdot (-1) + 3 \cdot 1 + 1 \cdot 0 = 237_{10}
 $$
 
-## 性质
+<span id="&#24615;&#36136;"></span>
+## Tính chất
 
-对于一个平衡三进制数 $X_3$ 来说，其可以按照每一位 $x_i$ 乘上对应的权值 $3^i$ 来唯一得到一个十进制数 $Y_{10}$．
+Với một số tam phân cân bằng $X_3$, ta có thể nhân từng chữ số $x_i$ với trọng số tương ứng $3^i$ để nhận được duy nhất một số thập phân $Y_{10}$.
 
-那对于一个十进制数 $Y_{10}$，是否 **唯一对应一个平衡三进制数** 呢？
+Vậy với một số thập phân $Y_{10}$, liệu có **duy nhất một số tam phân cân bằng tương ứng** hay không?
 
-答案是肯定的，这种性质被叫做平衡三进制的唯一性．
+Câu trả lời là có. Tính chất này được gọi là tính duy nhất của hệ tam phân cân bằng.
 
-???+ note "证明"
-    我们利用 **反证法** 来求证：
+???+ note "Chứng minh"
+    Ta chứng minh bằng **phản chứng**:
     
-    假设一个十进制数 $Y_{10}$，存在两个 **不同的平衡三进制数**  $A_3,B_3$ 转化成十进制时等于 $Y_{10}$，即证 $A_3 = B_3$．分情况讨论：
+    Giả sử một số thập phân $Y_{10}$ có hai **số tam phân cân bằng khác nhau** $A_3,B_3$ khi chuyển sang thập phân đều bằng $Y_{10}$; cần chứng minh $A_3 = B_3$. Xét các trường hợp:
     
-    1.  当 $Y_{10}=0$，显然 $A_3 = B_3 = 0_3$，与假设矛盾．
-    2.  当 $Y_{10}>0$：
+    1.  Khi $Y_{10}=0$, hiển nhiên $A_3 = B_3 = 0_3$, mâu thuẫn với giả thiết.
+    2.  Khi $Y_{10}>0$:
     
-        -   将 $A_3$，$B_3$ 的数位按低位到高位编号，记 $a_i$ 为 $A_3$ 的第 $i$ 位，$b_i$ 为 $B$ 的第 $i$ 位．在 $A_3,B_3$ 中，必存在 $i$ 使得 $a_i\neq b_i$．可以发现第 $i-1,i-2,\dots,0$ 位均与证明无关．因此，将 $A_3,B_3$ 按位右移 $i$ 位，得到 $A_3',B_3'$，原问题等价于证明 $A_3'=B_3'$．
-        -   对于 $A_3',B_3'$ 第 $0$ 位，$a_0 \neq b_0$．假设 $b_0 > a_0$（$a_0>b_0$ 时结果相同），易知 $b_0 - a_0 \in \{1,2\}$．$A_3'$ 的位 $i=1,2,3,\dots$ 对于 $A_3'$ 的值的贡献为 $S_1 = a_1 \times 3^1 + a_2 \times 3^2+ \dots$，$B_3'$ 的位 $i=1,2,3,\dots$ 对于 $B_3'$ 的值的贡献为 $S_2 = b_1 \times 3^1 + b_2 \times 3^2 + \dots$．由于 $A_3' = B_3'$，得 $S_1 - S_2 = b_0 - a_0$．$S_1,S_2$ 有公因子 $3$，而 $b_0 - a_0$ 不能被 $3$ 整除，与假设矛盾，因此 $A_3'\neq B_3'$
-    3.  当 $Y_{10}<0$，证法与 $Y_{10}>0$ 相同．
+        -   Đánh số các chữ số của $A_3$, $B_3$ từ thấp đến cao, gọi $a_i$ là chữ số thứ $i$ của $A_3$, $b_i$ là chữ số thứ $i$ của $B$. Trong $A_3,B_3$, chắc chắn tồn tại $i$ sao cho $a_i\neq b_i$. Có thể thấy các chữ số $i-1,i-2,\dots,0$ không liên quan đến chứng minh. Do đó dịch phải $A_3,B_3$ theo từng chữ số $i$ vị trí, thu được $A_3',B_3'$; bài toán ban đầu tương đương với việc chứng minh $A_3'=B_3'$.
+        -   Với chữ số thứ $0$ của $A_3',B_3'$, ta có $a_0 \neq b_0$. Giả sử $b_0 > a_0$ (trường hợp $a_0>b_0$ tương tự), dễ thấy $b_0 - a_0 \in \{1,2\}$. Đóng góp của các chữ số $i=1,2,3,\dots$ trong $A_3'$ vào giá trị của $A_3'$ là $S_1 = a_1 \times 3^1 + a_2 \times 3^2+ \dots$, và đóng góp của các chữ số $i=1,2,3,\dots$ trong $B_3'$ vào giá trị của $B_3'$ là $S_2 = b_1 \times 3^1 + b_2 \times 3^2 + \dots$. Vì $A_3' = B_3'$, suy ra $S_1 - S_2 = b_0 - a_0$. Hai số $S_1,S_2$ đều có nhân tử chung $3$, trong khi $b_0 - a_0$ không chia hết cho $3$, mâu thuẫn. Do đó $A_3'\neq B_3'$.
+    3.  Khi $Y_{10}<0$, chứng minh tương tự trường hợp $Y_{10}>0$.
     
-    故对于任意十进制 $Y_{10}$，均有唯一对应的平衡三进制 $X_3$．
+    Vì vậy với mọi số thập phân $Y_{10}$, luôn có duy nhất một số tam phân cân bằng $X_3$ tương ứng.
 
-## 练习题
+<span id="&#32451;&#20064;&#39064;"></span>
+## Bài tập
 
 [Topcoder SRM 604 PowerOfThree](https://archive.topcoder.com/ProblemStatement/pm/12917)
 
-**本页面部分内容译自博文 [Троичная сбалансированная система счисления](http://e-maxx.ru/algo/balanced_ternary) 与其英文翻译版 [Balanced Ternary](https://cp-algorithms.com/algebra/balanced-ternary.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+**Một phần nội dung trang này được dịch từ bài viết [Троичная сбалансированная система счисления](http://e-maxx.ru/algo/balanced_ternary) và bản dịch tiếng Anh [Balanced Ternary](https://cp-algorithms.com/algebra/balanced-ternary.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**

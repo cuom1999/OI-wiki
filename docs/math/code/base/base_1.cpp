@@ -11,9 +11,9 @@ std::string from_dec(int x, int base) {
     int r = x % base;
     x /= base;
 
-    // 写法 1
+    // Cách 1
     res.push_back(r < 10 ? '0' + r : 'A' + r - 10);
-    // 写法 2
+    // Cách 2
     // const static std::string digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // res.push_back(digits[r]);
   }
@@ -35,9 +35,9 @@ std::string from_dec_bi(int x, int base) {
     int q = (x + base - 1) / base - 1, r = x - q * base;
     x = q;
 
-    // 写法 1
+    // Cách 1
     res.push_back(r < 10 ? '0' + r : 'A' + r - 10);
-    // 写法 2
+    // Cách 2
     // const static std::string digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // res.push_back(digits[r]);
   }
@@ -60,9 +60,9 @@ std::string from_dec_factorial(int x) {
     int r = x % base;
     x /= base++;
 
-    // 写法 1
+    // Cách 1
     res.push_back(r < 10 ? '0' + r : 'A' + r - 10);
-    // 写法 2
+    // Cách 2
     // const static std::string digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // res.push_back(digits[r]);
   }

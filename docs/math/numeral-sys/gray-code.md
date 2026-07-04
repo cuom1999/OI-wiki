@@ -1,31 +1,34 @@
 author: CCXXXI, danni, Early0v0, Enter-tainer, frank-xjh, Henry-ZHR, infiWang, Ir1d, mingyEx, ouuan, sshwy, StudyingFather, Tiphereth-A, Yanjun-Zhao
 
-格雷码是一个二进制数字系统，其中两个相邻数的二进制位只有一位不同．举个例子，$3$ 位二进制数的格雷码序列为
+Mã Gray là một hệ số nhị phân trong đó hai số kề nhau chỉ khác nhau đúng một bit. Ví dụ, dãy mã Gray của số nhị phân $3$ bit là
 
 $$
 000,001,011,010,110,111,101,100
 $$
 
-注意序列的下标我们以 $0$ 为起点，也就是说 $G(0)=000,G(4)=110$．
+Chú ý rằng chỉ số của dãy bắt đầu từ $0$, tức $G(0)=000,G(4)=110$.
 
-格雷码由贝尔实验室的 Frank Gray 于 1940 年代提出，并于 1953 年获得专利．
+Mã Gray do Frank Gray ở Bell Labs đề xuất vào thập niên 1940 và được cấp bằng sáng chế năm 1953.
 
-## 构造格雷码（变换）
+<span id="&#26500;&#36896;&#26684;&#38647;&#30721;&#21464;&#25442;"></span>
+## Xây dựng mã Gray (biến đổi)
 
-格雷码的构造方法很多．我们首先介绍手动构造方法，然后会给出构造的代码以及正确性证明．
+Có nhiều cách xây dựng mã Gray. Trước hết giới thiệu cách xây thủ công, sau đó đưa ra mã và chứng minh tính đúng đắn.
 
-### 手动构造
+<span id="&#25163;&#21160;&#26500;&#36896;"></span>
+### Xây thủ công
 
-$k$ 位的格雷码可以通过以下方法构造．我们从全 $0$ 格雷码开始，按照下面策略：
+Mã Gray $k$ bit có thể được xây dựng như sau. Bắt đầu từ mã Gray toàn `0`, rồi luân phiên theo chiến lược:
 
-1.  翻转最低位得到下一个格雷码，（例如 $000\to 001$）；
-2.  把最右边的 $1$ 的左边的位翻转得到下一个格雷码，（例如 $001\to 011$）；
+1.  lật bit thấp nhất để nhận mã Gray tiếp theo, ví dụ $000\to 001$;
+2.  lật bit ở bên trái bit `1` ngoài cùng bên phải để nhận mã Gray tiếp theo, ví dụ $001\to 011$.
 
-交替按照上述策略生成 $2^{k-1}$ 次，可得到 $k$ 位的格雷码序列．
+Luân phiên thực hiện các chiến lược trên $2^{k-1}$ lần sẽ nhận được dãy mã Gray $k$ bit.
 
-### 镜像构造
+<span id="&#38236;&#20687;&#26500;&#36896;"></span>
+### Xây bằng phản chiếu
 
-$k$ 位的格雷码可以从 $k-1$ 位的格雷码以上下镜射后加上新位的方式快速得到，如下图：
+Mã Gray $k$ bit có thể được suy ra nhanh từ mã Gray $k-1$ bit bằng cách phản chiếu trên dưới rồi thêm bit mới, như hình dưới:
 
 $$
 \begin{matrix}
@@ -48,9 +51,10 @@ k=3\\
 \end{matrix}
 $$
 
-### 计算方法
+<span id="&#35745;&#31639;&#26041;&#27861;"></span>
+### Cách tính
 
-我们观察一下 $n$ 的二进制和 $G(n)$．可以发现，如果 $G(n)$ 的二进制第 $i$ 位为 $1$，仅当 $n$ 的二进制第 $i$ 位为 $1$，第 $i+1$ 位为 $0$ 或者第 $i$ 位为 $0$，第 $i+1$ 位为 $1$．于是我们可以当成一个异或的运算，即
+Quan sát biểu diễn nhị phân của $n$ và $G(n)$. Có thể thấy bit thứ $i$ trong biểu diễn nhị phân của $G(n)$ bằng $1$ khi và chỉ khi bit thứ $i$ của $n$ bằng $1$ còn bit thứ $i+1$ bằng $0$, hoặc bit thứ $i$ bằng $0$ còn bit thứ $i+1$ bằng $1$. Vì vậy có thể xem đây là phép xor:
 
 $$
 G(n)=n\oplus \left\lfloor\frac{n}{2}\right\rfloor
@@ -60,26 +64,28 @@ $$
 int g(int n) { return n ^ (n >> 1); }
 ```
 
-### 正确性证明
+<span id="&#27491;&#30830;&#24615;&#35777;&#26126;"></span>
+### Chứng minh tính đúng đắn
 
-接下来我们证明一下，按照上述公式生成的格雷码序列，相邻两个格雷码的二进制位有且仅有一位不同．
+Tiếp theo chứng minh dãy mã Gray sinh theo công thức trên có đúng một bit khác nhau giữa hai mã kề nhau.
 
-我们考虑 $n$ 和 $n+1$ 的区别．把 $n$ 加 $1$，相当于把 $n$ 的二进制下末位的连续的 $1$ 全部变成取反，然后把最低位的 $0$ 变成 $1$．我们这样表示 $n$ 和 $n+1$ 的二进制位：
+Xét sự khác biệt giữa $n$ và $n+1$. Cộng $1$ vào $n$ tương đương với việc đảo toàn bộ đoạn `1` liên tiếp ở cuối biểu diễn nhị phân của $n$, rồi đổi bit `0` thấp nhất thành `1`. Ta biểu diễn các bit của $n$ và $n+1$ như sau:
 
 $$
 \begin{aligned}
-(n)_2 &= \cdots0\underbrace{11\cdots11}_{k\text{个}}\\
-(n+1)_2 &= \cdots1\underbrace{00\cdots00}_{k\text{个}}
+(n)_2 &= \cdots0\underbrace{11\cdots11}_{k\text{ bit}}\\
+(n+1)_2 &= \cdots1\underbrace{00\cdots00}_{k\text{ bit}}
 \end{aligned}
 $$
 
-于是我们在计算 $g(n)$ 和 $g(n+1)$ 的时候，后 $k$ 位都会变成 $\displaystyle\underbrace{100\cdots00}_{k\text{个}}$ 的形式，而第 $k+1$ 位是不同的，因为 $n$ 和 $n+1$ 除了后 $k+1$ 位，其他位都是相同的．因此第 $k+1$ 位要么同时异或 $1$，要么同时异或 $0$．两种情况，第 $k+1$ 位都是不同的．而除了后 $k+1$ 位以外的二进制位也是做相同的异或运算，结果是相同的．
+Khi tính $g(n)$ và $g(n+1)$, $k$ bit cuối đều trở thành dạng $\displaystyle\underbrace{100\cdots00}_{k\text{ bit}}$, còn bit thứ $k+1$ là khác nhau, vì ngoài $k+1$ bit cuối, $n$ và $n+1$ có các bit giống nhau. Do đó bit thứ $k+1$ hoặc cùng xor với `1`, hoặc cùng xor với `0`; trong cả hai trường hợp, bit thứ $k+1$ vẫn khác nhau. Các bit ngoài $k+1$ bit cuối cũng thực hiện cùng một phép xor, nên kết quả giống nhau.
 
-证毕．
+Chứng minh hoàn tất.
 
-## 通过格雷码构造原数（逆变换）
+<span id="&#36890;&#36807;&#26684;&#38647;&#30721;&#26500;&#36896;&#21407;&#25968;&#36870;&#21464;&#25442;"></span>
+## Khôi phục số gốc từ mã Gray (biến đổi ngược)
 
-接下来我们考虑格雷码的逆变换，即给你一个格雷码 $g$，要求你找到原数 $n$．我们考虑从二进制最高位遍历到最低位（最低位下标为 $1$，即个位；最高位下标为 $k$）．则 $n$ 的二进制第 $i$ 位与 $g$ 的二进制第 $i$ 位 $g_i$ 的关系如下：
+Bây giờ xét biến đổi ngược của mã Gray: cho một mã Gray $g$, cần tìm số gốc $n$. Duyệt từ bit cao nhất xuống bit thấp nhất (bit thấp nhất có chỉ số $1$, tức hàng đơn vị; bit cao nhất có chỉ số $k$). Quan hệ giữa bit thứ $i$ của $n$ và bit thứ $i$ của $g$ là:
 
 $$
 \begin{aligned}
@@ -100,30 +106,32 @@ int rev_g(int g) {
 }
 ```
 
-## 实际应用
+<span id="&#23454;&#38469;&#24212;&#29992;"></span>
+## Ứng dụng thực tế
 
-格雷码有一些十分有用的应用，有些应用让人意想不到：
+Mã Gray có nhiều ứng dụng rất hữu ích, một số ứng dụng khá bất ngờ:
 
--   $k$ 位二进制数的格雷码序列可以当作 $k$ 维空间中的一个超立方体（二维里的正方形，一维里的单位向量）顶点的哈密尔顿回路，其中格雷码的每一位代表一个维度的坐标．
+-   Dãy mã Gray của số nhị phân $k$ bit có thể xem như một chu trình Hamilton trên các đỉnh của siêu lập phương $k$ chiều (hình vuông trong hai chiều, vector đơn vị trong một chiều), trong đó mỗi bit của mã Gray biểu thị tọa độ ở một chiều.
 
--   格雷码被用于最小化数字模拟转换器（比如传感器）的信号传输中出现的错误，因为它每次只改变一个位．
+-   Mã Gray được dùng để giảm lỗi trong truyền tín hiệu của bộ chuyển đổi số-tương tự (ví dụ cảm biến), vì mỗi lần nó chỉ thay đổi một bit.
 
--   格雷码可以用来解决汉诺塔的问题．
+-   Mã Gray có thể dùng để giải bài toán Tháp Hà Nội.
 
-    设盘的数量为 $n$．我们从 $n$ 位全 $0$ 的格雷码 $G(0)$ 开始，依次移向下一个格雷码（$G(i)$ 移向 $G(i+1)$）．当前格雷码的二进制第 $i$ 位表示从小到大第 $i$ 个盘子．
+    Gọi số đĩa là $n$. Bắt đầu từ mã Gray toàn `0` dài $n$ bit $G(0)$, rồi lần lượt chuyển sang mã Gray kế tiếp ($G(i)$ sang $G(i+1)$). Bit thứ $i$ trong biểu diễn nhị phân của mã Gray hiện tại biểu thị đĩa thứ $i$ theo thứ tự từ nhỏ đến lớn.
 
-    由于每一次只有一个二进制位会改变，因此当第 $i$ 位改变时，我们移动第 $i$ 个盘子．在移动盘子的过程中，除了最小的盘子，其他任意一个盘子在移动的时候，只能有一个放置选择．在移动第一个盘子的时候，我们总是有两个放置选择．于是我们的策略如下：
+    Vì mỗi lần chỉ có một bit nhị phân thay đổi, khi bit thứ $i$ thay đổi, ta di chuyển đĩa thứ $i$. Trong quá trình di chuyển, ngoài đĩa nhỏ nhất, mọi đĩa khác khi cần di chuyển chỉ có một lựa chọn đặt hợp lệ. Khi di chuyển đĩa thứ nhất, luôn có hai lựa chọn đặt. Vì vậy chiến lược là:
 
-    如果 $n$ 是一个奇数，那么盘子的移动路径为 $f\to t\to r\to f\to t\to r\to\cdots$，其中 $f$ 是最开始的柱子，$t$ 是最终我们把所有盘子放到的柱子，$r$ 是中间的柱子．
+    Nếu $n$ là số lẻ, đường đi của đĩa là $f\to t\to r\to f\to t\to r\to\cdots$, trong đó $f$ là cọc ban đầu, $t$ là cọc đích, $r$ là cọc trung gian.
 
-    如果 $n$ 是偶数：$f \to r \to t \to f \to r \to t \to \cdots$
+    Nếu $n$ là số chẵn: $f \to r \to t \to f \to r \to t \to \cdots$.
 
--   格雷码也在遗传算法理论中得到应用．
+-   Mã Gray cũng được ứng dụng trong lý thuyết thuật toán di truyền.
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
 -   [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) Difficulty: easy
 
 -   [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Difficulty: medium
 
-> 本页面部分内容译自博文 [Код Грея](http://e-maxx.ru/algo/gray_code) 与其英文翻译版 [Gray code](https://cp-algorithms.com/algebra/gray-code.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．
+> Một phần nội dung trang này được dịch từ bài viết [Код Грея](http://e-maxx.ru/algo/gray_code) và bản dịch tiếng Anh [Gray code](https://cp-algorithms.com/algebra/gray-code.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.

@@ -1,9 +1,9 @@
 // --8<-- [start:mul]
-int mulPowerOfTwo(int n, int m) {  // 计算 n*(2^m)
+int mulPowerOfTwo(int n, int m) {  // Tính n*(2^m)
   return n << m;
 }
 
-int divPowerOfTwo(int n, int m) {  // 计算 n/(2^m)
+int divPowerOfTwo(int n, int m) {  // Tính n/(2^m)
   return n >> m;
 }
 
@@ -11,22 +11,22 @@ int divPowerOfTwo(int n, int m) {  // 计算 n/(2^m)
 // --8<-- [start:abs]
 int Abs(int n) {
   return (n ^ (n >> 31)) - (n >> 31);
-  /* n>>31 取得 n 的符号，若 n 为正数，n>>31 等于 0，若 n 为负数，n>>31 等于 -1
-    若 n 为正数 n^0=n, 数不变，若 n 为负数有 n^(-1)
-    需要计算 n 和 -1 的补码，然后进行异或运算，
-    结果 n 变号并且为 n 的绝对值减 1，再减去 -1 就是绝对值 */
+  /* n>>31 lấy dấu của n; nếu n dương thì n>>31 bằng 0, nếu n âm thì bằng -1.
+    Nếu n dương thì n^0=n, giá trị không đổi; nếu n âm thì có n^(-1).
+    Cần tính mã bù hai của n và -1, rồi thực hiện phép XOR.
+    Kết quả đổi dấu n và bằng giá trị tuyệt đối của n trừ 1; trừ tiếp -1 sẽ ra giá trị tuyệt đối. */
 }
 
 // --8<-- [end:abs]
 // --8<-- [start:minmax]
-// 如果 a >= b, (a - b) >> 31 为 0，否则为 -1
+// Nếu a >= b, (a - b) >> 31 bằng 0; ngược lại bằng -1.
 int max(int a, int b) { return (b & ((a - b) >> 31)) | (a & (~(a - b) >> 31)); }
 
 int min(int a, int b) { return (a & ((a - b) >> 31)) | (b & (~(a - b) >> 31)); }
 
 // --8<-- [end:minmax]
 // --8<-- [start:sgn]
-bool isSameSign(int x, int y) {  // 有 0 的情况例外
+bool isSameSign(int x, int y) {  // Ngoại trừ trường hợp có 0
   return (x ^ y) >= 0;
 }
 
@@ -36,28 +36,28 @@ void swap(int& a, int& b) { a ^= b ^= a ^= b; }
 
 // --8<-- [end:swap]
 // --8<-- [start:get_bit]
-// 获取 a 的第 b 位，最低位编号为 0
+// Lấy bit thứ b của a, bit thấp nhất có chỉ số 0
 int getBit(int a, int b) { return (a >> b) & 1; }
 
 // --8<-- [end:get_bit]
 // --8<-- [start:unset_bit]
-// 将 a 的第 b 位设置为 0 ，最低位编号为 0
+// Đặt bit thứ b của a thành 0, bit thấp nhất có chỉ số 0
 int unsetBit(int a, int b) { return a & ~(1 << b); }
 
 // --8<-- [end:unset_bit]
 // --8<-- [start:set_bit]
-// 将 a 的第 b 位设置为 1 ，最低位编号为 0
+// Đặt bit thứ b của a thành 1, bit thấp nhất có chỉ số 0
 int setBit(int a, int b) { return a | (1 << b); }
 
 // --8<-- [end:set_bit]
 // --8<-- [start:flap_bit]
-// 将 a 的第 b 位取反 ，最低位编号为 0
+// Đảo bit thứ b của a, bit thấp nhất có chỉ số 0
 int flapBit(int a, int b) { return a ^ (1 << b); }
 
 // --8<-- [end:flap_bit]
 namespace popcnt1 {
 // --8<-- [start:popcnt1]
-// 求 x 的汉明权重
+// Tính trọng số Hamming của x
 int popcount(int x) {
   int cnt = 0;
   while (x) {
@@ -72,7 +72,7 @@ int popcount(int x) {
 
 namespace popcnt2 {
 // --8<-- [start:popcnt2]
-// 求 x 的汉明权重
+// Tính trọng số Hamming của x
 int popcount(int x) {
   int cnt = 0;
   while (x) {

@@ -223,15 +223,15 @@ nav:
   - Toán:
     - Tổng quan toán học: math/index.md
     - 布尔代数: math/boolean-algebra.md
-    - 数字系统:
-      - 数字系统简介: math/numeral-sys/intro.md
-      - 进位制: math/numeral-sys/base.md
-      - 平衡三进制: math/numeral-sys/balanced-ternary.md
-      - 格雷码: math/numeral-sys/gray-code.md
-    - 位操作: math/bit.md
+    - Hệ ghi số:
+      - Giới thiệu hệ ghi số: math/numeral-sys/intro.md
+      - Hệ cơ số: math/numeral-sys/base.md
+      - Tam phân cân bằng: math/numeral-sys/balanced-ternary.md
+      - Mã Gray: math/numeral-sys/gray-code.md
+    - Phép toán bit: math/bit.md
     - 二进制集合操作: math/binary-set.md
     - 高精度计算: math/bignum.md
-    - 快速幂: math/binary-exponentiation.md
+    - Lũy thừa nhị phân: math/binary-exponentiation.md
     - 置换和排列: math/permutation.md
     - 弧度制与坐标系: math/coordinate.md
     - 复数: math/complex.md

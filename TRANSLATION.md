@@ -101,6 +101,12 @@ MkDocs source layout intact.
 - `docs/string/sam.md`, `docs/string/manacher.md`, `docs/string/pam.md`:
   translated the remaining suffix automaton, Manacher, and palindromic-tree
   pages, plus explanatory comments in the palindromic-tree snippets.
+- `docs/math/numeral-sys/intro.md`, `docs/math/numeral-sys/base.md`,
+  `docs/math/numeral-sys/balanced-ternary.md`,
+  `docs/math/numeral-sys/gray-code.md`, `docs/math/bit.md`,
+  `docs/math/binary-exponentiation.md`: translated numeral-system basics, bit
+  operations, and binary exponentiation, plus explanatory comments in included
+  snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

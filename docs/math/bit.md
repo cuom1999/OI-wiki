@@ -1,28 +1,30 @@
-位操作指的是对整数二进制表示的一元和二元操作，分为 **位运算** 和 **移位** 两类．位操作是 CPU 中最基础的一类运算，其速度往往是相当快的．
+Thao tác bit là các phép toán một ngôi và hai ngôi trên biểu diễn nhị phân của số nguyên, gồm hai nhóm: **phép toán bit** và **dịch bit**. Đây là một trong những loại phép tính cơ bản nhất trong CPU, nên thường có tốc độ rất nhanh.
 
-## 整数与位序列
+<span id="&#25972;&#25968;&#19982;&#20301;&#24207;&#21015;"></span>
 
-另请参阅：[整数类型](../lang/var.md#整数类型)、[补数法](./numeral-sys/base.md#补数法)
+## Số nguyên và chuỗi bit
 
-我们将只由 `0` 或 `1` 构成的长度固定的序列称为位序列．最左边的位称为最高位，最右边的位称为最低位．
+Xem thêm: [kiểu số nguyên](../lang/var.md#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B), [phương pháp biểu diễn bù](./numeral-sys/base.md#%E8%A1%A5%E6%95%B0%E6%B3%95)
 
-计算机中用位序列表示一定范围内的整数．长度为 $N$ 的位序列只有 $2^N$ 种，所以只能和 $2^N$ 个整数建立一一对应关系．这种一一对应关系可以分为两类：**有符号** 和 **无符号**．有符号指的是对应的整数有负数，无符号指的是对应的整数全部为非负数．
+Ta gọi một dãy có độ dài cố định chỉ gồm `0` và `1` là chuỗi bit. Bit ngoài cùng bên trái được gọi là bit cao nhất, bit ngoài cùng bên phải được gọi là bit thấp nhất.
 
--   对于无符号的对应关系，我们可以直接将整数的二进制表示作为位序列，长度不足就在高位补 `0`．
+Máy tính dùng chuỗi bit để biểu diễn các số nguyên trong một phạm vi nhất định. Một chuỗi bit độ dài $N$ chỉ có $2^N$ khả năng, nên nó chỉ có thể tạo quan hệ một-một với $2^N$ số nguyên. Quan hệ một-một này có thể chia thành hai loại: **có dấu** và **không dấu**. Có dấu nghĩa là các số nguyên tương ứng có thể có số âm; không dấu nghĩa là tất cả số nguyên tương ứng đều không âm.
 
-    在无符号的对应关系下，长度为 $N$ 的位序列可以表示 $[0,2^N-1]$ 内的整数．
+-   Với cách biểu diễn không dấu, ta có thể dùng trực tiếp biểu diễn nhị phân của số nguyên làm chuỗi bit; nếu chưa đủ độ dài thì thêm `0` vào các bit cao.
 
--   对于有符号的对应关系，我们有两种表示规则：**反码**（ones' complement）和 **补码**（two's complement）．
+    Theo cách biểu diễn không dấu, chuỗi bit độ dài $N$ có thể biểu diễn các số nguyên trong $[0,2^N-1]$.
 
-    对于非负整数来说，其表示规则和无符号的规则一致；对于负整数来说，我们将其相反数对应的位序列 **按位取反**（即将 `0` 变为 `1`，将 `1` 变为 `0`）后的结果称为反码，将反码按无符号的对应关系转为整数，然后加一，最后按无符号的对应关系转为位序列，超出原位序列长度的部分舍弃，得到的新序列称为补码．
+-   Với cách biểu diễn có dấu, ta có hai quy tắc biểu diễn: **mã bù một** (ones' complement) và **mã bù hai** (two's complement).
 
-    在反码的对应关系下，长度为 $N$ 的位序列可以表示 $[-2^{N-1}+1,2^{N-1}-1]$ 内的整数．
+    Với số nguyên không âm, quy tắc biểu diễn giống trường hợp không dấu. Với số nguyên âm, lấy chuỗi bit tương ứng với số đối của nó rồi **đảo từng bit** (biến `0` thành `1`, biến `1` thành `0`) thì thu được mã bù một. Nếu xem mã bù một như một số không dấu, cộng thêm một, rồi chuyển ngược lại thành chuỗi bit theo quy tắc không dấu và bỏ phần vượt quá độ dài ban đầu, ta thu được mã bù hai.
 
-    在补码的对应关系下，长度为 $N$ 的位序列可以表示 $[-2^{N-1},2^{N-1}-1]$ 内的整数．
+    Theo cách biểu diễn bằng mã bù một, chuỗi bit độ dài $N$ có thể biểu diễn các số nguyên trong $[-2^{N-1}+1,2^{N-1}-1]$.
 
-以 $3$ 位的位序列为例：
+    Theo cách biểu diễn bằng mã bù hai, chuỗi bit độ dài $N$ có thể biểu diễn các số nguyên trong $[-2^{N-1},2^{N-1}-1]$.
 
-| 位序列   | 无符号整数 | 有符号整数（反码） | 有符号整数（补码） |
+Ví dụ với chuỗi bit $3$ bit:
+
+| Chuỗi bit | Số nguyên không dấu | Số nguyên có dấu (mã bù một) | Số nguyên có dấu (mã bù hai) |
 | ----- | ----- | --------- | --------- |
 | `000` | $0$   | $0$       | $0$       |
 | `001` | $1$   | $1$       | $1$       |
@@ -33,13 +35,15 @@
 | `110` | $6$   | $-1$      | $-2$      |
 | `111` | $7$   | $-0$      | $-1$      |
 
-可以看到反码的最大问题是会出现 $-0$ 这个实际上不存在的「负数」，所以一般情况下我们只用补码．由于表示有符号整数时，其正负号仅由位序列的最高位决定，所以我们将这一位称为 **符号位**．
+Có thể thấy vấn đề lớn nhất của mã bù một là xuất hiện $-0$, một "số âm" thực tế không tồn tại; vì vậy thông thường ta chỉ dùng mã bù hai. Khi biểu diễn số nguyên có dấu, dấu âm hay dương chỉ do bit cao nhất của chuỗi bit quyết định, nên bit này được gọi là **bit dấu**.
 
-将位序列转为整数也是容易做到的：对非负数来说不需要特别操作，对反码来说取反即可得到对应的相反数，对补码来说取反加一即可得到对应的相反数．
+Chuyển chuỗi bit về số nguyên cũng rất đơn giản: với số không âm thì không cần thao tác đặc biệt; với mã bù một, đảo bit sẽ thu được số đối tương ứng; với mã bù hai, đảo bit rồi cộng một sẽ thu được số đối tương ứng.
 
-## 位运算
+<span id="&#20301;&#36816;&#31639;"></span>
 
-位运算指的是对位序列逐位应用某些 [布尔函数](./boolean-algebra.md#布尔函数) 的运算．形式化地说，对布尔函数 $f:\mathbf{B}^k\to \mathbf{B}$，位运算即为形如
+## Phép toán bit
+
+Phép toán bit là phép toán áp dụng một [hàm Boolean](./boolean-algebra.md#%E5%B8%83%E5%B0%94%E5%87%BD%E6%95%B0) nào đó trên từng bit của chuỗi bit. Một cách hình thức, với hàm Boolean $f:\mathbf{B}^k\to \mathbf{B}$, phép toán bit là hàm có dạng
 
 $$
 \begin{aligned}
@@ -48,30 +52,30 @@ $$
 \end{aligned}
 $$
 
-的函数，其中 $m$ 为位序列的长度．同样的，我们一般只研究一元和二元的位运算．如无特殊说明，下文的位运算仅限于一元和二元的情况．
+trong đó $m$ là độ dài của chuỗi bit. Tương tự, ta thường chỉ xét các phép toán bit một ngôi và hai ngôi. Nếu không nói rõ thêm, các phép toán bit ở phần sau chỉ giới hạn trong hai trường hợp này.
 
-一般来说，我们把 **按位取反**、**按位与**、**按位或**、**按位异或** 视作基本的位运算，其余的位运算均可以通过这些运算组合得到．
+Thông thường, ta xem **đảo bit**, **AND bit**, **OR bit**, **XOR bit** là các phép toán bit cơ bản; các phép toán bit khác đều có thể được tạo bằng cách kết hợp những phép toán này.
 
-| 位运算  | 数学符号表示                        | 对应的布尔函数  | C++ 运算符         | 解释                      |
+| Phép toán bit | Ký hiệu toán học                | Hàm Boolean tương ứng | Toán tử C++       | Giải thích |
 | ---- | ----------------------------- | -------- | --------------- | ----------------------- |
-| 按位取反 | $\operatorname{NOT}$          | $\lnot$  | `~`             | $0$ 变为 $1$，$1$ 变为 $0$   |
-| 按位与  | $\operatorname{AND}$          | $\land$  | `&`             | 只有两个对应位都为 $1$ 时才为 $1$   |
-| 按位或  | $\operatorname{OR}$           | $\lor$   | <code>\|</code> | 只要两个对应位中有一个 $1$ 时就为 $1$ |
-| 按位异或 | $\oplus$、$\operatorname{XOR}$ | $\oplus$ | `^`             | 只有两个对应位不同时才为 $1$        |
+| Đảo bit | $\operatorname{NOT}$          | $\lnot$  | `~`             | $0$ thành $1$, $1$ thành $0$ |
+| AND bit | $\operatorname{AND}$          | $\land$  | `&`             | Chỉ bằng $1$ khi cả hai bit tương ứng đều là $1$ |
+| OR bit  | $\operatorname{OR}$           | $\lor$   | <code>\|</code> | Bằng $1$ nếu ít nhất một trong hai bit tương ứng là $1$ |
+| XOR bit | $\oplus$, $\operatorname{XOR}$ | $\oplus$ | `^`             | Chỉ bằng $1$ khi hai bit tương ứng khác nhau |
 
-???+ warning "Warning"
-    注意区分位运算与布尔函数．
+???+ warning "Cảnh báo"
+    Cần phân biệt phép toán bit với hàm Boolean.
 
-例如：
+Ví dụ:
 
--   $\operatorname{NOT} 01010111=10101000$，
--   $01010011 \operatorname{AND} 00110010=00010010$，
--   $01010011 \operatorname{OR}  00110010=01110011$，
--   $01010011 \operatorname{XOR} 00110010=01100001$．
+-   $\operatorname{NOT} 01010111=10101000$,
+-   $01010011 \operatorname{AND} 00110010=00010010$,
+-   $01010011 \operatorname{OR}  00110010=01110011$,
+-   $01010011 \operatorname{XOR} 00110010=01100001$.
 
-由于上述四种位运算在运算时，各个位的运算独立，所以这四种位运算能直接继承其对应布尔函数的性质．
+Vì trong bốn phép toán bit trên, phép tính trên mỗi bit độc lập với nhau, bốn phép toán này có thể kế thừa trực tiếp các tính chất của hàm Boolean tương ứng.
 
-为方便起见，在位序列长度已知时，我们也可以直接对整数做位运算，例如：
+Để tiện lợi, khi đã biết độ dài chuỗi bit, ta cũng có thể thực hiện phép toán bit trực tiếp trên số nguyên, ví dụ:
 
 $$
 \begin{aligned}
@@ -83,7 +87,7 @@ $$
 \end{aligned}
 $$
 
-假设 $x,y\geq 0$，我们也可以将位运算用求和的方式表示：
+Giả sử $x,y\geq 0$, ta cũng có thể biểu diễn các phép toán bit bằng tổng:
 
 $$
 \begin{aligned}
@@ -96,53 +100,59 @@ $$
 \end{aligned}
 $$
 
-在不引起歧义的情况下，下文中省略「按位」．
+Khi không gây nhầm lẫn, từ phần sau ta sẽ lược bỏ từ "bit".
 
-## 移位
+<span id="&#31227;&#20301;"></span>
 
-另请参阅：[C++ 位操作符](../lang/op.md#位操作符)．
+## Dịch bit
 
-移位为一类将位序列「按位向左或向右移动」的二元运算，第一个参数为位序列，第二个参数一般为非负整数．向左移动称为 **左移**，向右移动称为 **右移**．根据对移动后的空位填充方式，可将移位操作分为 **算术移位**、**逻辑移位**、**循环移位**．其中
+Xem thêm: [toán tử bit trong C++](../lang/op.md#%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6).
 
--   逻辑移位用 0 填充空位，
--   算术右移用符号位填充空位，算术左移和逻辑左移相同，
--   循环移位用溢出位填充空位．
+Dịch bit là một lớp phép toán hai ngôi "di chuyển chuỗi bit sang trái hoặc sang phải theo từng bit"; tham số thứ nhất là chuỗi bit, tham số thứ hai thường là một số nguyên không âm. Dịch sang trái được gọi là **dịch trái**, dịch sang phải được gọi là **dịch phải**. Dựa trên cách lấp các vị trí trống sau khi dịch, thao tác dịch bit có thể chia thành **dịch số học**, **dịch logic**, và **dịch vòng**. Trong đó:
 
-例如对 $8$ 位的位序列 `10 01 01 10`：
+-   Dịch logic lấp các vị trí trống bằng 0.
+-   Dịch phải số học lấp các vị trí trống bằng bit dấu; dịch trái số học giống dịch trái logic.
+-   Dịch vòng lấp các vị trí trống bằng các bit bị tràn ra ngoài.
 
-| 操作         | 结果            |
+Ví dụ với chuỗi bit $8$ bit `10 01 01 10`:
+
+| Thao tác | Kết quả |
 | ---------- | ------------- |
-| 算术左移 $2$ 位 | `01 01 10 00` |
-| 算术右移 $2$ 位 | `11 10 01 01` |
-| 逻辑左移 $2$ 位 | `01 01 10 00` |
-| 逻辑右移 $2$ 位 | `00 10 01 01` |
-| 循环左移 $2$ 位 | `01 01 10 10` |
-| 循环右移 $2$ 位 | `10 10 01 01` |
+| Dịch trái số học $2$ bit | `01 01 10 00` |
+| Dịch phải số học $2$ bit | `11 10 01 01` |
+| Dịch trái logic $2$ bit | `01 01 10 00` |
+| Dịch phải logic $2$ bit | `00 10 01 01` |
+| Dịch vòng trái $2$ bit | `01 01 10 10` |
+| Dịch vòng phải $2$ bit | `10 10 01 01` |
 
-在 C++ 中，我们用 `a << b` 表示左移，`a >> b` 表示右移，具体采用何种移位规则参见 [C++ 位操作符](../lang/op.md#位操作符)．
+Trong C++, ta dùng `a << b` để biểu diễn dịch trái và `a >> b` để biểu diễn dịch phải; quy tắc dịch cụ thể được áp dụng ra sao thì xem [toán tử bit trong C++](../lang/op.md#%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6).
 
-我们可以用如下代码实现循环移位：
+Ta có thể dùng đoạn mã sau để thực hiện dịch vòng:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     --8<-- "docs/math/code/bit/bit_1.cpp:core"
     ```
 
-## 位操作的应用
+<span id="&#20301;&#25805;&#20316;&#30340;&#24212;&#29992;"></span>
 
-位操作一般有三种作用：
+## Ứng dụng của thao tác bit
 
-1.  高效地进行某些运算，代替其它低效的方式．参见 [编译优化 #强度削减](../lang/optimizations.md#强度削减-strength-reduction)．
-2.  [表示集合](./binary-set.md)（常用于 [状压 DP](../dp/state.md)）．
-3.  题目本来就要求进行位操作．
+Thao tác bit thường có ba công dụng:
 
-需要注意的是，用位操作代替其它运算方式在很多时候并不能带来太大的优化，反而会使代码变得复杂，使用时需要斟酌．
+1.  Thực hiện một số phép tính hiệu quả hơn, thay cho các cách kém hiệu quả hơn. Xem [tối ưu biên dịch #giảm cường độ](../lang/optimizations.md#%E5%BC%BA%E5%BA%A6%E5%89%8A%E5%87%8F-strength-reduction).
+2.  [Biểu diễn tập hợp](./binary-set.md) (thường dùng trong [DP nén trạng thái](../dp/state.md)).
+3.  Bản thân bài toán yêu cầu thực hiện thao tác bit.
 
-### 有关 2 的幂的应用
+Cần chú ý rằng việc dùng thao tác bit để thay thế các phép tính khác trong nhiều trường hợp không tối ưu được bao nhiêu, mà còn làm mã nguồn phức tạp hơn; cần cân nhắc khi sử dụng.
 
-由于位操作针对的是二进制表示，因此可以推广出许多与 2 的整数次幂有关的应用．
+<span id="&#26377;&#20851;-2-&#30340;&#24130;&#30340;&#24212;&#29992;"></span>
 
-将一个数乘（除）2 的非负整数次幂：
+### Các ứng dụng liên quan đến lũy thừa của 2
+
+Vì thao tác bit làm việc trên biểu diễn nhị phân, ta có thể suy ra nhiều ứng dụng liên quan đến lũy thừa nguyên của 2.
+
+Nhân (chia) một số với lũy thừa nguyên không âm của 2:
 
 === "C++"
     ```cpp
@@ -154,12 +164,14 @@ $$
     --8<-- "docs/math/code/bit/bit_2.py:mul"
     ```
 
-??? warning "Warning"
-    我们平常写的除法是向 $0$ 取整，而这里的右移是向下取整（注意这里的区别），即当数大于等于 $0$ 时两种方法等价，当数小于 $0$ 时会有区别，如：`-1 / 2` 的值为 $0$，而 `-1 >> 1` 的值为 $-1$．
+??? warning "Cảnh báo"
+    Phép chia ta thường viết được làm tròn về $0$, còn dịch phải ở đây được làm tròn xuống (cần chú ý sự khác nhau này). Nghĩa là khi số lớn hơn hoặc bằng $0$ thì hai cách tương đương, còn khi số nhỏ hơn $0$ thì sẽ khác nhau, ví dụ: `-1 / 2` có giá trị là $0$, còn `-1 >> 1` có giá trị là $-1$.
 
-### 取绝对值
+<span id="&#21462;&#32477;&#23545;&#20540;"></span>
 
-在某些机器上，效率比 `n > 0 ? n : -n` 高．
+### Lấy giá trị tuyệt đối
+
+Trên một số máy, cách này hiệu quả hơn `n > 0 ? n : -n`.
 
 === "C++"
     ```cpp
@@ -171,9 +183,11 @@ $$
     --8<-- "docs/math/code/bit/bit_2.py:abs"
     ```
 
-### 取两个数的最大/最小值
+<span id="&#21462;&#20004;&#20010;&#25968;&#30340;&#26368;&#22823;&#26368;&#23567;&#20540;"></span>
 
-在某些机器上，效率比 `a > b ? a : b` 高．
+### Lấy giá trị lớn nhất/nhỏ nhất của hai số
+
+Trên một số máy, cách này hiệu quả hơn `a > b ? a : b`.
 
 === "C++"
     ```cpp
@@ -185,7 +199,9 @@ $$
     --8<-- "docs/math/code/bit/bit_2.py:minmax"
     ```
 
-### 判断两非零数符号是否相同
+<span id="&#21028;&#26029;&#20004;&#38750;&#38646;&#25968;&#31526;&#21495;&#26159;&#21542;&#30456;&#21516;"></span>
+
+### Kiểm tra hai số khác không có cùng dấu hay không
 
 === "C++"
     ```cpp
@@ -197,20 +213,24 @@ $$
     --8<-- "docs/math/code/bit/bit_2.py:sgn"
     ```
 
-### 交换两个数
+<span id="&#20132;&#25442;&#20004;&#20010;&#25968;"></span>
 
-???+ note "该方法具有局限性"
-    这种方式只能用来交换两个整数，使用范围有限．
-    
-    对于一般情况下的交换操作，推荐直接调用 `algorithm` 库中的 `std::swap` 函数．
+### Hoán đổi hai số
+
+???+ note "Phương pháp này có giới hạn"
+    Cách này chỉ có thể dùng để hoán đổi hai số nguyên, phạm vi sử dụng khá hạn chế.
+
+    Với thao tác hoán đổi trong trường hợp tổng quát, nên gọi trực tiếp hàm `std::swap` trong thư viện `algorithm`.
 
 ```cpp
 --8<-- "docs/math/code/bit/bit_2.cpp:swap"
 ```
 
-### 操作一个数的二进制位
+<span id="&#25805;&#20316;&#19968;&#20010;&#25968;&#30340;&#20108;&#36827;&#21046;&#20301;"></span>
 
-获取一个数二进制的某一位：
+### Thao tác trên các bit nhị phân của một số
+
+Lấy một bit trong biểu diễn nhị phân của một số:
 
 === "C++"
     ```cpp
@@ -222,7 +242,7 @@ $$
     --8<-- "docs/math/code/bit/bit_2.py:get_bit"
     ```
 
-将一个数二进制的某一位设置为 $0$：
+Đặt một bit trong biểu diễn nhị phân của một số thành $0$:
 
 === "C++"
     ```cpp
@@ -234,7 +254,7 @@ $$
     --8<-- "docs/math/code/bit/bit_2.py:unset_bit"
     ```
 
-将一个数二进制的某一位设置为 $1$：
+Đặt một bit trong biểu diễn nhị phân của một số thành $1$:
 
 === "C++"
     ```cpp
@@ -246,7 +266,7 @@ $$
     --8<-- "docs/math/code/bit/bit_2.py:set_bit"
     ```
 
-将一个数二进制的某一位取反：
+Đảo một bit trong biểu diễn nhị phân của một số:
 
 === "C++"
     ```cpp
@@ -258,91 +278,105 @@ $$
     --8<-- "docs/math/code/bit/bit_2.py:flap_bit"
     ```
 
-这些操作相当于将一个 $32$ 位整型变量当作一个长度为 $32$ 的布尔数组．
+Những thao tác này tương đương với việc xem một biến số nguyên $32$ bit như một mảng Boolean có độ dài $32$.
 
-## 汉明权重
+<span id="&#27721;&#26126;&#26435;&#37325;"></span>
 
-汉明权重是一串符号中不同于（定义在其所使用的字符集上的）零符号（zero-symbol）的个数．对于一个二进制数，它的汉明权重就等于它 $1$ 的个数（即 `popcount`）．
+## Trọng số Hamming
 
-求一个数的汉明权重可以循环求解：我们不断地去掉这个数在二进制下的最后一位（即右移 $1$ 位），维护一个答案变量，在除的过程中根据最低位是否为 $1$ 更新答案．
+Trọng số Hamming là số ký hiệu trong một chuỗi ký hiệu khác với ký hiệu không (zero-symbol, được định nghĩa trên bộ ký tự đang dùng). Với một số nhị phân, trọng số Hamming của nó chính là số lượng bit $1$ (tức `popcount`).
 
-代码如下：
+Có thể tính trọng số Hamming của một số bằng vòng lặp: ta liên tục loại bỏ bit cuối cùng trong biểu diễn nhị phân của số đó (tức dịch phải $1$ bit), duy trì một biến đáp án, và trong quá trình đó cập nhật đáp án theo việc bit thấp nhất có phải là $1$ hay không.
+
+Mã nguồn như sau:
 
 ```cpp
 --8<-- "docs/math/code/bit/bit_2.cpp:popcnt1"
 ```
 
-求一个数的汉明权重还可以使用 `lowbit` 操作：我们将这个数不断地减去它的 `lowbit`[^note1]，直到这个数变为 $0$．
+Có thể tính trọng số Hamming của một số bằng thao tác `lowbit`: ta liên tục trừ `lowbit`[^note1] của số đó cho đến khi nó trở thành $0$.
 
-代码如下：
+Mã nguồn như sau:
 
 ```cpp
 --8<-- "docs/math/code/bit/bit_2.cpp:popcnt2"
 ```
 
-### 构造汉明权重递增的排列
+<span id="&#26500;&#36896;&#27721;&#26126;&#26435;&#37325;&#36882;&#22686;&#30340;&#25490;&#21015;"></span>
 
-在 [状压 DP](../dp/state.md) 中，按照 popcount 递增的顺序枚举有时可以避免重复枚举状态．这是构造汉明权重递增的排列的一大作用．
+### Xây dựng hoán vị có trọng số Hamming tăng dần
 
-下面我们来具体探究如何在 $O(n)$ 时间内构造汉明权重递增的排列．
+Trong [DP nén trạng thái](../dp/state.md), việc liệt kê theo thứ tự `popcount` tăng dần đôi khi có thể tránh liệt kê lặp trạng thái. Đây là một ứng dụng quan trọng của việc xây dựng hoán vị có trọng số Hamming tăng dần.
 
-我们知道，一个汉明权重为 $n$ 的最小的整数为 $2^n-1$．只要可以在常数时间构造出一个整数汉明权重相等的后继，我们就可以通过枚举汉明权重，从 $2^n-1$ 开始不断寻找下一个数的方式，在 $O(n)$ 时间内构造出 $0\sim n$ 的符合要求的排列．
+Sau đây ta sẽ xem cụ thể cách xây dựng một hoán vị có trọng số Hamming tăng dần trong thời gian $O(n)$.
 
-而找出一个数 $x$ 汉明权重相等的后继有这样的思路，以 $(10110)_2$ 为例：
+Ta biết số nguyên nhỏ nhất có trọng số Hamming bằng $n$ là $2^n-1$. Nếu có thể xây dựng trong thời gian hằng số phần tử kế tiếp có cùng trọng số Hamming với một số nguyên, thì bằng cách liệt kê trọng số Hamming, bắt đầu từ $2^n-1$ và liên tục tìm số tiếp theo, ta có thể xây dựng trong thời gian $O(n)$ một hoán vị của $0\sim n$ thỏa mãn yêu cầu.
 
--   把 $(10110)_2$ 最右边的 $1$ 向左移动，如果不能移动，移动它左边的 $1$，以此类推，得到 $(11010)_2$．
+Ý tưởng tìm phần tử kế tiếp có cùng trọng số Hamming với một số $x$ như sau; lấy $(10110)_2$ làm ví dụ:
 
--   把得到的 $(11010)_2$ 最后移动的 $1$ 原先的位置一直到最低位的所有 $1$ 都移到最右边．这里最后移动的 $1$ 原来在第三位，所以最后三位 $010$ 要变成 $001$，得到 $(11001)_2$．
+-   Dịch bit $1$ ngoài cùng bên phải của $(10110)_2$ sang trái; nếu không dịch được thì dịch bit $1$ bên trái nó, và cứ tiếp tục như vậy, thu được $(11010)_2$.
 
-这个过程可以用位操作优化：
+-   Đưa tất cả các bit $1$ từ vị trí ban đầu của bit $1$ vừa được dịch cuối cùng trong $(11010)_2$ cho đến bit thấp nhất về phía ngoài cùng bên phải. Ở đây bit $1$ vừa được dịch cuối cùng ban đầu nằm ở vị trí thứ ba, nên ba bit cuối $010$ cần biến thành $001$, thu được $(11001)_2$.
+
+Quá trình này có thể được tối ưu bằng thao tác bit:
 
 ```cpp
 --8<-- "docs/math/code/bit/bit_3.cpp:hamming1"
 ```
 
--   第一个步骤中，我们把数 $x$ 加上它的 `lowbit`，在二进制表示下，就相当于把 $x$ 最右边的连续一段 $1$ 换成它左边的一个 $1$．如刚才提到的二进制数 $(10110)_2$，它在加上它的 `lowbit` 后是 $(11000)_2$．这其实得到了我们答案的前半部分．
--   我们接下来要把答案后面的 $1$ 补齐，$t$ 的 `lowbit` 是 $x$ 最右边连续一段 $1$ 最左边的 $1$ 移动后的位置，而 $x$ 的 `lowbit` 则是 $x$ 最右边连续一段 $1$ 最右边的位置．还是以 $(10110)_2$ 为例，$t = (11000)_2$，$\operatorname{lowbit}(t) = (01000)_2$，$\operatorname{lowbit}(x)=(00010)_2$．
--   接下来的除法操作是这种位操作中最难理解的部分，但也是最关键的部分．我们设 **原数** 最右边连续一段 $1$ 最高位的 $1$ 在第 $r$ 位上（位数从 $0$ 开始），最低位的 $1$ 在第 $l$ 位，$t$ 的 `lowbit` 等于 `1 << (r+1)`，$x$ 的 `lowbit` 等于 `1 << l`，`(((t&-t)/(x&-x))>>1)` 得到的，就是 `(1<<(r+1))/(1<<l)/2 = (1<<r)/(1<<l) = 1<<(r-l)`，在二进制表示下就是 $1$ 后面跟上 $r-l$ 个零，零的个数正好等于连续 $1$ 的个数减去 $1$．举我们刚才的数为例，$\frac{\operatorname{lowbit(t)/2}}{\operatorname{lowbit(x)}} = \frac{(00100)_2}{(00010)_2} = (00010)_2$．把这个数减去 $1$ 得到的就是我们要补全的低位，或上原来的数就可以得到答案．
+-   Ở bước đầu tiên, ta cộng số $x$ với `lowbit` của nó. Trên biểu diễn nhị phân, thao tác này tương đương với việc thay đoạn bit $1$ liên tiếp ngoài cùng bên phải của $x$ bằng một bit $1$ ở bên trái đoạn này. Theo số nhị phân vừa nêu $(10110)_2$, sau khi cộng với `lowbit` của nó ta được $(11000)_2$. Đây thực chất là nửa đầu của đáp án.
+-   Tiếp theo ta cần bổ sung các bit $1$ ở phần sau của đáp án. `lowbit` của $t$ là vị trí sau khi bit $1$ bên trái nhất trong đoạn bit $1$ liên tiếp ngoài cùng bên phải của $x$ được dịch, còn `lowbit` của $x$ là vị trí bit $1$ bên phải nhất trong đoạn đó. Vẫn với ví dụ $(10110)_2$, ta có $t = (11000)_2$, $\operatorname{lowbit}(t) = (01000)_2$, $\operatorname{lowbit}(x)=(00010)_2$.
+-   Phép chia tiếp theo là phần khó hiểu nhất trong thủ thuật bit này, nhưng cũng là phần then chốt. Giả sử bit $1$ cao nhất trong đoạn bit $1$ liên tiếp ngoài cùng bên phải của **số ban đầu** nằm ở bit thứ $r$ (đánh số bit từ $0$), còn bit $1$ thấp nhất nằm ở bit thứ $l$. Khi đó `lowbit` của $t$ bằng `1 << (r+1)`, `lowbit` của $x$ bằng `1 << l`, và `(((t&-t)/(x&-x))>>1)` cho ta `(1<<(r+1))/(1<<l)/2 = (1<<r)/(1<<l) = 1<<(r-l)`, tức trên biểu diễn nhị phân là một bit $1$ theo sau bởi $r-l$ bit $0$; số bit $0$ này đúng bằng số lượng bit $1$ liên tiếp trừ đi $1$. Với ví dụ ở trên, $\frac{\operatorname{lowbit(t)/2}}{\operatorname{lowbit(x)}} = \frac{(00100)_2}{(00010)_2} = (00010)_2$. Trừ số này đi $1$ sẽ thu được các bit thấp cần bổ sung, rồi OR với số ban đầu là được đáp án.
 
-所以枚举 $0\sim n$ 按汉明权重递增的排列的完整代码为：
+Do đó, mã nguồn đầy đủ để liệt kê hoán vị của $0\sim n$ theo thứ tự trọng số Hamming tăng dần là:
 
 ```cpp
 --8<-- "docs/math/code/bit/bit_3.cpp:hamming2_begin"
 --8<-- "docs/math/code/bit/bit_3.cpp:hamming2_end"
 ```
 
-其中要注意 $0$ 的特判，因为 $0$ 没有相同汉明权重的后继．
+Trong đó cần chú ý xử lý riêng $0$, vì $0$ không có phần tử kế tiếp có cùng trọng số Hamming.
 
-## C++ 中的相关类与函数
+<span id="c-&#20013;&#30340;&#30456;&#20851;&#31867;&#19982;&#20989;&#25968;"></span>
 
-### GCC 内建函数
+## Các lớp và hàm liên quan trong C++
 
-GCC 中还有一些用于位操作的内建函数：
+<span id="gcc-&#20869;&#24314;&#20989;&#25968;"></span>
 
--   `int __builtin_ffs(int x)`：返回 $x$ 的二进制末尾最后一个 $1$ 的位置，位置的编号从 $1$ 开始（最低位编号为 $1$）．当 $x$ 为 $0$ 时返回 $0$．
--   `int __builtin_clz(unsigned int x)`：返回 $x$ 的二进制的前导 $0$ 的个数．当 $x$ 为 $0$ 时，结果未定义．
--   `int __builtin_ctz(unsigned int x)`：返回 $x$ 的二进制末尾连续 $0$ 的个数．当 $x$ 为 $0$ 时，结果未定义．
--   `int __builtin_clrsb(int x)`：当 $x$ 的符号位为 $0$ 时返回 $x$ 的二进制的前导 $0$ 的个数减一，否则返回 $x$ 的二进制的前导 $1$ 的个数减一．
--   `int __builtin_popcount(unsigned int x)`：返回 $x$ 的二进制中 $1$ 的个数．
--   `int __builtin_parity(unsigned int x)`：判断 $x$ 的二进制中 $1$ 个数的奇偶性．
+### Hàm nội tại của GCC
 
-这些函数都可以在函数名末尾添加 `l` 或 `ll`（如 `__builtin_popcountll`）来使参数类型变为 (`unsigned`)`long` 或 (`unsigned`)`long long`（返回值仍然是 `int` 类型）．
-例如，我们有时候希望求出一个数以二为底的对数，如果不考虑 `0` 的特殊情况，就相当于这个数二进制的位数 `-1`，而一个 `N` 位整数 `n` 的二进制表示的位数可以使用 `N - __builtin_clz(n)` 表示，因此 `N - 1 - __builtin_clz(n)` 就可以求出 `n` 以二为底的对数．
+GCC còn có một số hàm nội tại dùng cho thao tác bit:
 
-由于这些函数是内建函数，经过了编译器的高度优化，运行速度十分快（有些甚至只需要一条指令）．
+-   `int __builtin_ffs(int x)`: trả về vị trí của bit $1$ cuối cùng ở phần đuôi biểu diễn nhị phân của $x$; vị trí được đánh số từ $1$ (bit thấp nhất có chỉ số $1$). Khi $x$ bằng $0$, hàm trả về $0$.
+-   `int __builtin_clz(unsigned int x)`: trả về số lượng bit $0$ ở đầu biểu diễn nhị phân của $x$. Khi $x$ bằng $0$, kết quả không được định nghĩa.
+-   `int __builtin_ctz(unsigned int x)`: trả về số lượng bit $0$ liên tiếp ở cuối biểu diễn nhị phân của $x$. Khi $x$ bằng $0$, kết quả không được định nghĩa.
+-   `int __builtin_clrsb(int x)`: nếu bit dấu của $x$ là $0$, trả về số lượng bit $0$ ở đầu biểu diễn nhị phân của $x$ trừ một; ngược lại, trả về số lượng bit $1$ ở đầu biểu diễn nhị phân của $x$ trừ một.
+-   `int __builtin_popcount(unsigned int x)`: trả về số lượng bit $1$ trong biểu diễn nhị phân của $x$.
+-   `int __builtin_parity(unsigned int x)`: kiểm tra tính chẵn lẻ của số lượng bit $1$ trong biểu diễn nhị phân của $x$.
 
-### 更多位数
+Tất cả các hàm này đều có thể thêm `l` hoặc `ll` vào cuối tên hàm (ví dụ `__builtin_popcountll`) để đổi kiểu tham số thành (`unsigned`)`long` hoặc (`unsigned`)`long long` (giá trị trả về vẫn có kiểu `int`).
+Chẳng hạn, đôi khi ta muốn tính logarit cơ số hai của một số; nếu không xét riêng trường hợp `0`, giá trị đó tương đương với số bit trong biểu diễn nhị phân của số này `-1`. Số bit trong biểu diễn nhị phân của một số nguyên `n` có `N` bit có thể được biểu diễn bằng `N - __builtin_clz(n)`, nên `N - 1 - __builtin_clz(n)` có thể tính được logarit cơ số hai của `n`.
 
-如果需要操作的位序列非常长，可以使用 [`std::bitset`](../lang/csl/bitset.md)．
+Vì các hàm này là hàm nội tại và đã được trình biên dịch tối ưu mạnh, tốc độ chạy của chúng rất nhanh (một số hàm thậm chí chỉ cần một lệnh máy).
 
-## 题目推荐
+<span id="&#26356;&#22810;&#20301;&#25968;"></span>
 
--   [Luogu P1225 黑白棋游戏](https://www.luogu.com.cn/problem/P1225)
+### Nhiều bit hơn
 
-## 参考资料与注释
+Nếu cần thao tác trên chuỗi bit rất dài, có thể dùng [`std::bitset`](../lang/csl/bitset.md).
 
-1.  [位运算技巧](https://graphics.stanford.edu/~seander/bithacks.html)
+<span id="&#39064;&#30446;&#25512;&#33616;"></span>
+
+## Bài tập gợi ý
+
+-   [Luogu P1225 Trò chơi cờ đen trắng](https://www.luogu.com.cn/problem/P1225)
+
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+
+## Tài liệu tham khảo và ghi chú
+
+1.  [Bit hacks](https://graphics.stanford.edu/~seander/bithacks.html)
 2.  [Bit Operation Builtins (Using the GNU Compiler Collection (GCC))](https://gcc.gnu.org/onlinedocs/gcc/Bit-Operation-Builtins.html)
 3.  [Bitwise operation - Wikipedia](https://en.wikipedia.org/wiki/Bitwise_operation)
 
-[^note1]: 一个数二进制表示从低往高的第一个 $1$ 连同后面的零，如 $(1010)_2$ 的 `lowbit` 是 $(0010)_2$，详见 [树状数组](../ds/fenwick.md)．
+[^note1]: `lowbit` của một số là bit $1$ đầu tiên tính từ thấp lên cao trong biểu diễn nhị phân của số đó, kèm các bit $0$ phía sau; ví dụ `lowbit` của $(1010)_2$ là $(0010)_2$. Xem thêm [Fenwick tree](../ds/fenwick.md).

@@ -16,7 +16,7 @@ void main(int n) {
   for (int i = 0; (1 << i) - 1 <= n; i++) {
     for (int x = (1 << i) - 1, t; x <= n; t = x + (x & -x),
              x = x ? (t | ((((t & -t) / (x & -x)) >> 1) - 1)) : (n + 1)) {
-      // 写下需要完成的操作
+      // Viết thao tác cần thực hiện tại đây
       // --8<-- [end:hamming2_begin]
       std::cout << x << ' ';
       // --8<-- [start:hamming2_end]

@@ -7,7 +7,7 @@ const int M = 500;
 
 int a[505], b[505], t[505];
 
-// 大整数乘法
+// Nhân số nguyên lớn
 void mult(int x[], int y[]) {
   memset(t, 0, sizeof(t));
   for (int i = 1; i <= x[0]; i++) {
@@ -22,14 +22,14 @@ void mult(int x[], int y[]) {
   memcpy(b, t, sizeof(b));
 }
 
-// 快速幂
+// Lũy thừa nhanh
 void binpow(int p) {
   if (p == 1) {
     memcpy(b, a, sizeof(b));
     return;
   }
   binpow(p / 2);  // (2^(p/2))^2=2^p
-  mult(b, b);     // 对 b 平方
+  mult(b, b);     // Bình phương b
   if (p % 2 == 1) mult(b, a);
 }
 
@@ -37,13 +37,13 @@ int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   int p;
   cin >> p;
-  a[0] = 1;  // 记录 a 数组的位数
-  a[1] = 2;  // 对 2 进行平方
-  b[0] = 1;  // 记录 b 数组的位数
-  b[1] = 1;  // 答案数组
+  a[0] = 1;  // Ghi số chữ số của mảng a
+  a[1] = 2;  // Cơ số 2
+  b[0] = 1;  // Ghi số chữ số của mảng b
+  b[1] = 1;  // Mảng đáp án
   binpow(p);
   cout << (int)(log10(2) * p) + 1 << '\n';
-  b[1] -= 1;  // 最后一位减 1
+  b[1] -= 1;  // Trừ 1 ở chữ số cuối
   for (int i = M; i >= 1; i--) {
     cout << b[i];
     if ((i - 1) % 50 == 0) {

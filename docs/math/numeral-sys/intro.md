@@ -1,12 +1,13 @@
-???+ warning "Warning"
-    此处讨论的不是 [number system](https://en.wikipedia.org/wiki/Number#Classification)，数学中的数字系统（number system）指的是一类集合，如整数集 $\mathbf{Z}$、复数集 $\mathbf{C}$ 等．
+???+ warning "Cảnh báo"
+    Phần này không nói về [number system](https://en.wikipedia.org/wiki/Number#Classification). Trong toán học, "hệ số" (number system) chỉ một lớp tập hợp, chẳng hạn tập số nguyên $\mathbf{Z}$, tập số phức $\mathbf{C}$, v.v.
 
-**数字系统**（numeral system），又称 **记数系统**，指的是用以表示数字的书写系统，如 [印度–阿拉伯数字系统](https://en.wikipedia.org/wiki/Hindu%E2%80%93Arabic_numeral_system)、[罗马数字](https://en.wikipedia.org/wiki/Roman_numerals)、[苏州码子](https://en.wikipedia.org/wiki/Suzhou_numerals) 等．数字系统是我们给数做编码的工具．
+**Hệ ghi số** (numeral system), còn gọi là **hệ ký số**, là hệ thống ký hiệu dùng để biểu diễn số, chẳng hạn [hệ chữ số Hindu-Arabic](https://en.wikipedia.org/wiki/Hindu%E2%80%93Arabic_numeral_system), [số La Mã](https://en.wikipedia.org/wiki/Roman_numerals), [mã số Tô Châu](https://en.wikipedia.org/wiki/Suzhou_numerals), v.v. Hệ ghi số là công cụ để mã hóa các số.
 
-一般来说，一个数字系统下的数字都是一串符号，同时有一套规则将这串符号和对应的数一一对应起来，例如罗马数字 $\text{XLII}$、二进制数 $101010_{(2)}$ 和十进制数 $42$ 均能对应到相同的数．
+Nói chung, một số trong một hệ ghi số là một chuỗi ký hiệu, đi kèm một bộ quy tắc ánh xạ chuỗi ký hiệu đó với một số tương ứng. Ví dụ số La Mã $\text{XLII}$, số nhị phân $101010_{(2)}$ và số thập phân $42$ đều có thể tương ứng với cùng một số.
 
-算法竞赛中，我们一般只关注不同数字系统间的转化关系，详见 [进位制](./base.md)．
+Trong lập trình thi đấu, ta thường chỉ quan tâm đến quan hệ chuyển đổi giữa các hệ ghi số khác nhau; xem chi tiết tại [hệ cơ số](./base.md).
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
 -   [Numeral system - Wikipedia](https://en.wikipedia.org/wiki/Numeral_system)
