@@ -1,295 +1,295 @@
-本文介绍（可）平面图及其相关概念．
+Bài viết này giới thiệu đồ thị phẳng, đồ thị phẳng đã nhúng và các khái niệm liên quan.
 
-## 平面图
+## Đồ thị phẳng
 
-如果图 $G$ 能画在平面 $S$ 上，即除顶点处外无边相交，则称 $G$ 可嵌入平面 $S$，$G$ 为 **可平面图**（planar graph）．画出的没有边相交的图称为 $G$ 的平面表示或 **平面嵌入**（planar embedding）．可平面图的这个平面嵌入也称为 **平面图**（plane graph）．
+Nếu đồ thị $G$ có thể được vẽ trên mặt phẳng $S$, tức là không có hai cạnh nào cắt nhau ngoài tại các đỉnh, thì ta nói $G$ nhúng được vào mặt phẳng $S$, và $G$ là **đồ thị phẳng** (planar graph). Hình vẽ không có cạnh cắt nhau như vậy được gọi là biểu diễn phẳng của $G$, hay **phép nhúng phẳng** (planar embedding). Phép nhúng phẳng cụ thể của một đồ thị phẳng còn được gọi là **đồ thị phẳng đã nhúng** (plane graph).
 
-???+ info "「平面图」"
-    不同中文文本中，「平面图」的含义可能不同．在本文的定义中，可平面图是一个图论对象，它可能以不同的方式嵌入平面中；平面图则是一个几何对象，除了图论结构外，它还需要指定图的绘制方式．同一个可平面图往往对应着多个平面图．因此，本文叙述的结论如果只依赖于图论结构，将使用「可平面图」一词；如果还依赖于图的平面嵌入方式，将使用「平面图」一词．
+???+ info "Thuật ngữ đồ thị phẳng"
+    Trong các tài liệu khác nhau, thuật ngữ "đồ thị phẳng" có thể được hiểu theo những cách khác nhau. Theo định nghĩa trong bài này, đồ thị phẳng là một đối tượng của lý thuyết đồ thị, và nó có thể được nhúng vào mặt phẳng theo nhiều cách khác nhau; còn đồ thị phẳng đã nhúng là một đối tượng hình học, ngoài cấu trúc đồ thị còn cần chỉ rõ cách vẽ đồ thị. Cùng một đồ thị phẳng thường tương ứng với nhiều đồ thị phẳng đã nhúng. Vì vậy, nếu một kết luận trong bài chỉ phụ thuộc vào cấu trúc đồ thị, ta sẽ dùng cụm từ "đồ thị phẳng"; nếu kết luận còn phụ thuộc vào cách nhúng trên mặt phẳng, ta sẽ dùng cụm từ "đồ thị phẳng đã nhúng".
 
-以下是平面图的简单例子：
+Dưới đây là các ví dụ đơn giản về đồ thị phẳng đã nhúng:
 
 ![](images/planar-1.svg)
 
-（左：蝴蝶图；右：$4$ 阶完全图 $K_4$）
+(trái: đồ thị bướm; phải: đồ thị đầy đủ cấp $4$, $K_4$)
 
-以下是不可平面图的简单例子：
+Dưới đây là các ví dụ đơn giản về đồ thị không phẳng:
 
 ![](images/planar-2.svg)
 
-（左：$5$ 阶完全图 $K_5$；右：两部分各 $3$ 个顶点的完全二分图 $K_{3,3}$）
+(trái: đồ thị đầy đủ cấp $5$, $K_5$; phải: đồ thị hai phía đầy đủ $K_{3,3}$ với mỗi phía có $3$ đỉnh)
 
-## 性质
+## Tính chất
 
-本节介绍平面图的性质．
+Phần này giới thiệu các tính chất của đồ thị phẳng đã nhúng.
 
-### 面及其次数
+### Mặt và bậc của mặt
 
-设 $G$ 是平面图，由 $G$ 的边将 $G$ 所在的平面划分成若干个区域，每个区域称为 $G$ 的一个 **面**（face）．其中，无界的面称为 **无限面**（unbounded face）或 **外部面**（external face），有界的称为有限面或内部面．每一个平面图有且仅有一个外部面．
+Giả sử $G$ là một đồ thị phẳng đã nhúng. Các cạnh của $G$ chia mặt phẳng chứa $G$ thành một số miền; mỗi miền được gọi là một **mặt** (face) của $G$. Trong đó, mặt không bị chặn được gọi là **mặt vô hạn** (unbounded face) hoặc **mặt ngoài** (external face), còn các mặt bị chặn được gọi là mặt hữu hạn hoặc mặt trong. Mỗi đồ thị phẳng đã nhúng có đúng một mặt ngoài.
 
-包围每个面的所有边组成的回路称为该面的 **边界**（boundary），并称边界中的边与该面 **关联**（incident）．边界的长度称为该面的 **次数**（degree）．计算面的次数时，每条割边都算作两次．平面图中所有面的次数之和等于边数 $|E|$ 的 $2$ 倍．
+Chu trình tạo bởi tất cả các cạnh bao quanh một mặt được gọi là **biên** (boundary) của mặt đó, và ta nói các cạnh trên biên **liên thuộc** (incident) với mặt đó. Độ dài của biên được gọi là **bậc** (degree) của mặt. Khi tính bậc của mặt, mỗi cạnh cầu được tính hai lần. Tổng bậc của tất cả các mặt trong một đồ thị phẳng đã nhúng bằng $2$ lần số cạnh $|E|$.
 
-平面图中，$1$ 次面的边界对应于图的自环，$2$ 次面的边界通常对应于图的一对重边[^face-2]．顶点数 $|V|\ge 3$ 的简单连通平面图中，所有面次数都至少为 $3$．
+Trong một đồ thị phẳng đã nhúng, biên của mặt bậc $1$ tương ứng với một khuyên; biên của mặt bậc $2$ thường tương ứng với một cặp cạnh song song[^face-2]. Trong một đồ thị phẳng đơn liên thông có số đỉnh $|V|\ge 3$, mọi mặt đều có bậc ít nhất là $3$.
 
-### 欧拉公式
+### Công thức Euler
 
-平面图的一个重要性质是 **欧拉公式**（Euler's formula）．它给出了图的顶点数 $|V|$、边数 $|E|$ 和面数 $|F|$ 之间的关系．
+Một tính chất quan trọng của đồ thị phẳng đã nhúng là **công thức Euler** (Euler's formula). Công thức này cho quan hệ giữa số đỉnh $|V|$, số cạnh $|E|$ và số mặt $|F|$ của đồ thị.
 
-???+ note "欧拉公式"
-    对于连通的平面图 $G$，有
+???+ note "Công thức Euler"
+    Với đồ thị phẳng đã nhúng liên thông $G$, ta có
     
     $$
     |V| - |E| + |F| = 2.
     $$
 
-??? note "证明"
-    对于面数 $|F|$ 应用数学归纳法．归纳起点是 $|F|=1$．此时，平面图有且只有一个外部面，全部边都是割边．所以，图 $G$ 是一棵树，必然有 $|E|=|V|-1$，代入欧拉公式就可以发现它成立．假设欧拉公式对于面数 $|F| = k$ 的平面图成立．对于面数 $|F|=k + 1$ 的平面图 $G$，必然存在非割边 $e$，它是两个不同的面的公共边．将边 $e$ 从图中删除，得到图 $G-e$，它有 $|V|$ 个顶点、$|E|-1$ 条边和 $|F|-1$ 个面．由归纳假设，对图 $G-e$ 成立欧拉公式，即 $|V|-(|E|-1)+(|F|-1)=2$，整理就得到关于图 $G$ 的欧拉公式．所以，根据数学归纳法，欧拉公式对于所有平面图都成立．
+??? note "Chứng minh"
+    Ta quy nạp theo số mặt $|F|$. Cơ sở quy nạp là $|F|=1$. Khi đó, đồ thị phẳng đã nhúng chỉ có đúng một mặt ngoài, và mọi cạnh đều là cạnh cầu. Vì thế, $G$ là một cây, nên tất yếu $|E|=|V|-1$; thay vào công thức Euler thì thấy công thức đúng. Giả sử công thức Euler đúng với mọi đồ thị phẳng đã nhúng có $|F| = k$ mặt. Xét một đồ thị phẳng đã nhúng $G$ có $|F|=k + 1$ mặt. Khi đó chắc chắn tồn tại một cạnh không phải cạnh cầu $e$, là cạnh chung của hai mặt khác nhau. Xóa cạnh $e$ khỏi đồ thị, ta được đồ thị $G-e$ có $|V|$ đỉnh, $|E|-1$ cạnh và $|F|-1$ mặt. Theo giả thiết quy nạp, công thức Euler đúng với $G-e$, tức là $|V|-(|E|-1)+(|F|-1)=2$. Biến đổi lại ta thu được công thức Euler cho $G$. Do đó, theo nguyên lý quy nạp toán học, công thức Euler đúng với mọi đồ thị phẳng đã nhúng liên thông.
 
-???+ note "推论"
-    对于有 $k$ 个连通分支的平面图 $G$，有
+???+ note "Hệ quả"
+    Với đồ thị phẳng đã nhúng $G$ có $k$ thành phần liên thông, ta có
     
     $$
     |V| - |E| + |F| = k + 1.
     $$
 
-??? note "证明"
-    图 $G$ 的每个连通分支都是平面图，但是这些连通分支共用同一个外部面．所以，直接对这些连通分支应用欧拉公式，并累加到一起，总顶点数和总边数都是正确的，但是总面数多了 $(k-1)$，因为唯一的外部面总共计数了 $k$ 次．将这一修正考虑在内，就得到 $|V|-|E|+|F| = 2k - (k-1) = k+1$．
+??? note "Chứng minh"
+    Mỗi thành phần liên thông của $G$ đều là một đồ thị phẳng đã nhúng, nhưng các thành phần liên thông này dùng chung cùng một mặt ngoài. Vì vậy, nếu áp dụng trực tiếp công thức Euler cho từng thành phần rồi cộng lại, tổng số đỉnh và tổng số cạnh là đúng, nhưng tổng số mặt bị thừa $(k-1)$, vì mặt ngoài duy nhất đã bị đếm tổng cộng $k$ lần. Tính đến phần hiệu chỉnh này, ta được $|V|-|E|+|F| = 2k - (k-1) = k+1$.
 
-由此，可以推出平面图的边与顶点的数量关系．
+Từ đó, ta có thể suy ra quan hệ giữa số cạnh và số đỉnh của đồ thị phẳng đã nhúng.
 
-???+ note "定理"
-    对于有 $k$ 个连通分支的平面图 $G$，如果图 $G$ 的每个面次数都至少为 $l \ge 3$，那么有
+???+ note "Định lý"
+    Với đồ thị phẳng đã nhúng $G$ có $k$ thành phần liên thông, nếu mỗi mặt của $G$ đều có bậc ít nhất là $l \ge 3$, thì
     
     $$
     |E| \le \dfrac{l}{l-2}(|V|-k-1).
     $$
 
-??? note "证明"
-    因为 $G$ 的各面的次数至少为 $l$，所以所有面的次数和至少为 $l|F|$，亦即 $2|E| \ge l|F|$．代入欧拉公式的推论 $|V| - |E| + |F| = k + 1$，就得到
+??? note "Chứng minh"
+    Vì bậc của mỗi mặt trong $G$ đều ít nhất là $l$, nên tổng bậc của tất cả các mặt ít nhất là $l|F|$, tức là $2|E| \ge l|F|$. Thay hệ quả của công thức Euler $|V| - |E| + |F| = k + 1$ vào, ta được
     
     $$
     2|E| \ge l(k + 1 - |V| + |E|).
     $$
     
-    利用 $l \ge 2$ 解出 $|E|$，就得到
+    Dùng $l \ge 2$ để giải theo $|E|$, ta thu được
     
     $$
     |E| \le \dfrac{l}{l-2}(|V|-k-1).
     $$
 
-???+ note "推论"
-    设 $G$ 是简单可平面图，且 $|V|\ge 3$，那么，有
+???+ note "Hệ quả"
+    Giả sử $G$ là đồ thị phẳng đơn và $|V|\ge 3$. Khi đó
     
     $$
     |E| \le 3|V|-6.
     $$
 
-??? note "证明"
-    当 $G$ 连通时，所有面次数都至少是 $3$．在上述定理中，取 $k=1$ 且 $l=3$，就得到 $|E|\le 3|V|-6$．
+??? note "Chứng minh"
+    Khi $G$ liên thông, mọi mặt đều có bậc ít nhất là $3$. Trong định lý trên, lấy $k=1$ và $l=3$, ta được $|E|\le 3|V|-6$.
     
-    当 $G$ 不连通时，分为两种情形：
+    Khi $G$ không liên thông, chia thành hai trường hợp:
     
-    -   如果存在连通分支顶点数至少是 $3$，那么对这些顶点数至少为 $3$ 的连通分支可以分别建立不等式 $|E_i|\le 3|V_i|-6$．因为那些顶点数小于 $3$ 的连通分支一定有 $|E_i|\le |V_i| \le 3|V_i|$．将所有连通分支对应的不等式相加，就得到 $|E|\le 3|V|-6$．
-    -   如果所有连通分支顶点数都小于 $3$，那么整体一定有 $|E|\le |V|$．又因为 $|V|\ge 3$ 时，$|V|\le 3|V|-6$，所以 $|E|\le 3|V|-6$ 仍然成立．
+    -   Nếu tồn tại thành phần liên thông có số đỉnh ít nhất là $3$, thì với từng thành phần liên thông có ít nhất $3$ đỉnh, ta có bất đẳng thức $|E_i|\le 3|V_i|-6$. Còn các thành phần liên thông có ít hơn $3$ đỉnh chắc chắn thỏa $|E_i|\le |V_i| \le 3|V_i|$. Cộng các bất đẳng thức ứng với mọi thành phần liên thông lại, ta được $|E|\le 3|V|-6$.
+    -   Nếu mọi thành phần liên thông đều có ít hơn $3$ đỉnh, thì toàn bộ đồ thị chắc chắn thỏa $|E|\le |V|$. Lại vì khi $|V|\ge 3$ thì $|V|\le 3|V|-6$, nên vẫn có $|E|\le 3|V|-6$.
     
-    综上，命题得证．
+    Tóm lại, mệnh đề được chứng minh.
 
-这一推论说明，简单可平面图是稀疏图．
+Hệ quả này cho thấy đồ thị phẳng đơn là đồ thị thưa.
 
-### 对偶图
+### Đồ thị đối ngẫu
 
-平面图都有相应的（几何）对偶图．
+Mọi đồ thị phẳng đã nhúng đều có đồ thị đối ngẫu hình học tương ứng.
 
 ![](images/planar-dual-1.svg)
 
-设 $G$ 是平面图，可以绘制图 $G^*$ 如下：
+Giả sử $G$ là một đồ thị phẳng đã nhúng. Ta có thể vẽ đồ thị $G^*$ như sau:
 
-1.  在 $G$ 的每个面 $f_i$ 内部都绘制一个点 $v_i^*$．
-2.  对 $G$ 的每条边 $e$，如果 $e$ 在面 $f_i$ 和 $f_j$ 的公共边界上，就绘制一条连接 $v_i^*$ 和 $v_j^*$ 的边 $e^*$，使之与 $e$ 恰相交一次，且不与其他图 $G$ 或图 $G^*$ 的边相交．特别地，当 $e$ 只出现在一个面 $f_i$ 的边界上时，需要绘制一条与 $v_i^*$ 关联的自环，使之与 $e$ 相交．
+1.  Trong mỗi mặt $f_i$ của $G$, vẽ một điểm $v_i^*$.
+2.  Với mỗi cạnh $e$ của $G$, nếu $e$ nằm trên biên chung của hai mặt $f_i$ và $f_j$, vẽ một cạnh $e^*$ nối $v_i^*$ với $v_j^*$ sao cho cạnh này cắt $e$ đúng một lần và không cắt các cạnh khác của $G$ hoặc $G^*$. Đặc biệt, khi $e$ chỉ xuất hiện trên biên của một mặt $f_i$, cần vẽ một khuyên liên thuộc với $v_i^*$ sao cho khuyên này cắt $e$.
 
-这样得到的图 $G^*$ 就称作图 $G$ 的 **对偶图**（dual graph）．
+Đồ thị $G^*$ thu được theo cách đó được gọi là **đồ thị đối ngẫu** (dual graph) của đồ thị $G$.
 
-???+ note "定理"
-    设图 $G^*$ 是平面图 $G$ 的对偶图．那么，图 $G^*$ 是连通的平面图．而且，图 $G^{**}$ 与 $G$ 同构，当且仅当 $G$ 是连通图．
+???+ note "Định lý"
+    Giả sử $G^*$ là đồ thị đối ngẫu của đồ thị phẳng đã nhúng $G$. Khi đó, $G^*$ là một đồ thị phẳng đã nhúng liên thông. Hơn nữa, $G^{**}$ đẳng cấu với $G$ khi và chỉ khi $G$ liên thông.
 
-??? note "证明"
-    图 $G^*$ 是平面图这一点可以由它的构造过程保证．还需要证明图 $G^*$ 是连通的．对于图 $G^*$ 中任意两个顶点 $v^*_i,v^*_j$，设平面中连接 $v^*_i$ 和 $v^*_j$ 的直线段经过图 $G$ 中的面和边依次为 $f_i,e_{s_1},f_{s_1},\cdots,f_{s_{r-1}},e_{s_r},f_j$，它们分别对应对偶图中的顶点和边 $v_i^*,e_{s_1}^*,v^*_{s_1},\cdots,v^*_{s_{r-1}},e^*_{s_r},v^*_j$．由图 $G^*$ 的构造可知，序列中相邻的顶点和边是相关联的，所以，这描述了图 $G^*$ 中的一条途径．所以，图 $G^*$ 是连通的．
+??? note "Chứng minh"
+    Việc $G^*$ là đồ thị phẳng đã nhúng được đảm bảo bởi chính quá trình dựng nó. Ta còn cần chứng minh $G^*$ liên thông. Với hai đỉnh bất kỳ $v^*_i,v^*_j$ trong $G^*$, giả sử đoạn thẳng trong mặt phẳng nối $v^*_i$ và $v^*_j$ lần lượt đi qua các mặt và cạnh của $G$ là $f_i,e_{s_1},f_{s_1},\cdots,f_{s_{r-1}},e_{s_r},f_j$. Chúng lần lượt tương ứng với các đỉnh và cạnh $v_i^*,e_{s_1}^*,v^*_{s_1},\cdots,v^*_{s_{r-1}},e^*_{s_r},v^*_j$ trong đồ thị đối ngẫu. Từ cách dựng $G^*$, các đỉnh và cạnh kề nhau trong dãy này là liên thuộc với nhau, nên dãy đó mô tả một đường đi trong $G^*$. Vì vậy, $G^*$ liên thông.
     
-    图 $G^{**}$ 是图 $G^*$ 的对偶图，必然是连通的．所以，$G$ 与 $G^{**}$ 同构，必要条件是图 $G$ 连通．接下来，需要证明这一条件也是充分的．为此，只需要证明当图 $G$ 连通时，图 $G$ 满足图 $G^*$ 的对偶图的构造要求．因为图 $G^*$ 的边和图 $G$ 的边天然是对应的，所以，只需要证明图 $G^*$ 的每一个面都恰好包含图 $G$ 的一个顶点．对于图 $G^*$ 的任一个面 $f^*$，设 $e^*$ 是它边界上的一条边，那么图 $G$ 中相对应的边 $e$ 的端点之一必然在面 $f^*$ 之内；因此，面 $f^*$ 中至少存在图 $G$ 的一个顶点．由于图 $G^*$ 和图 $G$ 都是连通的，欧拉公式成立；而图 $G$ 和图 $G^*$ 边数相同，图 $G$ 的面数等于图 $G^*$ 的顶点数，所以图 $G$ 的顶点数就等于图 $G^*$ 的面数．所以，图 $G^*$ 的每个面都恰好只有图 $G$ 的一个顶点．命题得证．
+    Đồ thị $G^{**}$ là đồ thị đối ngẫu của $G^*$, nên chắc chắn liên thông. Do đó, điều kiện cần để $G$ đẳng cấu với $G^{**}$ là $G$ liên thông. Tiếp theo, ta chứng minh điều kiện này cũng đủ. Để làm vậy, chỉ cần chứng minh rằng khi $G$ liên thông, đồ thị $G$ thỏa các yêu cầu trong phép dựng đồ thị đối ngẫu của $G^*$. Vì các cạnh của $G^*$ và các cạnh của $G$ tương ứng tự nhiên với nhau, ta chỉ cần chứng minh mỗi mặt của $G^*$ chứa đúng một đỉnh của $G$. Với một mặt bất kỳ $f^*$ của $G^*$, lấy một cạnh $e^*$ trên biên của nó; khi đó, một trong hai đầu mút của cạnh tương ứng $e$ trong $G$ chắc chắn nằm bên trong mặt $f^*$. Vì vậy, trong $f^*$ có ít nhất một đỉnh của $G$. Do cả $G^*$ và $G$ đều liên thông, công thức Euler áp dụng được; mà $G$ và $G^*$ có cùng số cạnh, số mặt của $G$ bằng số đỉnh của $G^*$, nên số đỉnh của $G$ bằng số mặt của $G^*$. Vì thế, mỗi mặt của $G^*$ chứa đúng một đỉnh của $G$. Mệnh đề được chứng minh.
 
-平面图与其对偶图的结构之间有很多对应关系：
+Giữa cấu trúc của một đồ thị phẳng đã nhúng và đồ thị đối ngẫu của nó có nhiều quan hệ tương ứng:
 
--   $G$ 中的面对应 $G^*$ 中的点，$G$ 中的边对应 $G^*$ 中的边，$G$ 中的点对应 $G^*$ 中的面．
--   $G$ 中的自环对应 $G^*$ 中的割边，$G^*$ 中的自环对应 $G$ 中的割边．
--   $G$ 中的边割集对应 $G^*$ 中的回路，$G^*$ 中的回路对应 $G$ 中的边割集．
+-   Mặt trong $G$ tương ứng với đỉnh trong $G^*$; cạnh trong $G$ tương ứng với cạnh trong $G^*$; đỉnh trong $G$ tương ứng với mặt trong $G^*$.
+-   Khuyên trong $G$ tương ứng với cạnh cầu trong $G^*$; khuyên trong $G^*$ tương ứng với cạnh cầu trong $G$.
+-   Tập cắt cạnh trong $G$ tương ứng với chu trình trong $G^*$; chu trình trong $G^*$ tương ứng với tập cắt cạnh trong $G$.
 
-需要注意的是，对偶图的概念仅对具体的平面图成立，而无法定义在任意可平面图上．事实上，两个同构的平面图的对偶图未必是同构的．也就是说，同一个图的不同平面嵌入的对偶图可能并不相同．
+Cần chú ý rằng khái niệm đồ thị đối ngẫu chỉ có nghĩa đối với một đồ thị phẳng đã nhúng cụ thể, chứ không thể định nghĩa trên một đồ thị phẳng tùy ý nếu chưa chỉ rõ phép nhúng. Thật vậy, hai đồ thị phẳng đã nhúng đẳng cấu chưa chắc có đồ thị đối ngẫu đẳng cấu. Nói cách khác, các phép nhúng phẳng khác nhau của cùng một đồ thị có thể cho các đồ thị đối ngẫu khác nhau.
 
-???+ example "例子"
-    下图画了两个同构的平面图，它们的对偶图并不同构．
+???+ example "Ví dụ"
+    Hình dưới đây vẽ hai đồ thị phẳng đã nhúng đẳng cấu, nhưng đồ thị đối ngẫu của chúng không đẳng cấu.
     
     ![](images/planar-dual-2.svg)
     
-    对偶图不同构的原因是，右图有一次面，它的对偶图有一度顶点，而左图没有．
+    Lý do đồ thị đối ngẫu không đẳng cấu là hình bên phải có một mặt bậc một, nên đồ thị đối ngẫu của nó có một đỉnh bậc một, còn hình bên trái thì không.
 
-将可平面图的问题转化到对偶图上，有时更容易解决．一个典型的例子是，可平面图 [最小割](./flow/min-cut.md) 问题可以转化为对偶图 [最短路](./shortest-path.md) 问题．设 $G$ 是带边权的可平面图，$s,t$ 是它的两个顶点，需要求最小的 $s$-$t$ 割．
+Chuyển một bài toán trên đồ thị phẳng sang đồ thị đối ngẫu đôi khi giúp bài toán dễ giải hơn. Một ví dụ điển hình là bài toán [lát cắt nhỏ nhất](./flow/min-cut.md) trên đồ thị phẳng có thể chuyển thành bài toán [đường đi ngắn nhất](./shortest-path.md) trên đồ thị đối ngẫu. Giả sử $G$ là đồ thị phẳng có trọng số trên cạnh, $s,t$ là hai đỉnh của nó, và cần tìm lát cắt $s$-$t$ nhỏ nhất.
 
 ![](images/planar-dual-3.svg)
 
-如图所示，通过选取合适的平面嵌入，使得 $s,t$ 出现在图 $G$ 外部面边界上．另外，添加自 $s$ 和 $t$ 延伸出去的射线，将外部面分为两部分 $f_{+}$ 和 $f_{-}$．基于该图，建立对偶图，并将边权赋给对偶图中的对应边．那么，对偶图 $G^*$ 中面 $f_{+}$ 和 $f_{-}$ 对应顶点之间的路径（红色粗线）就和图 $G$ 的 $s$-$t$ 边割集（黑色粗线）之间一一对应，且二者权值相同．这样，求解对偶图中的最短路，就得到了图 $G$ 中的最小 $s$-$t$ 割．
+Như hình minh họa, ta chọn một phép nhúng phẳng phù hợp sao cho $s,t$ nằm trên biên mặt ngoài của $G$. Ngoài ra, thêm các tia kéo dài từ $s$ và $t$ ra ngoài để chia mặt ngoài thành hai phần $f_{+}$ và $f_{-}$. Dựa trên hình này, dựng đồ thị đối ngẫu và gán trọng số cho các cạnh tương ứng trong đồ thị đối ngẫu. Khi đó, các đường đi giữa hai đỉnh tương ứng với hai mặt $f_{+}$ và $f_{-}$ trong đồ thị đối ngẫu $G^*$ (nét đỏ đậm) tương ứng một-một với các tập cắt cạnh $s$-$t$ của đồ thị $G$ (nét đen đậm), và hai bên có cùng trọng số. Vì vậy, tìm đường đi ngắn nhất trong đồ thị đối ngẫu sẽ cho lát cắt $s$-$t$ nhỏ nhất trong $G$.
 
-一个常见的误区是根据上述转化方法宣称平面图最小割等于对偶图最短路．事实上，它只适用于存在 $G$ 的平面嵌入使得 $s,t$ 共面的情况，只是在考察此知识点的算法竞赛题目中，给出的图往往具有并且附带这样的平面嵌入．这里给出一个可以用于判定其存在性的定理．
+Một hiểu lầm thường gặp là từ phép chuyển đổi trên mà kết luận rằng lát cắt nhỏ nhất trong đồ thị phẳng luôn bằng đường đi ngắn nhất trong đồ thị đối ngẫu. Thật ra, điều này chỉ áp dụng khi tồn tại một phép nhúng phẳng của $G$ sao cho $s,t$ cùng nằm trên một mặt; trong các bài lập trình thi đấu kiểm tra kiến thức này, đồ thị được cho thường có, và kèm theo, một phép nhúng như vậy. Dưới đây là một định lý có thể dùng để kiểm tra sự tồn tại của nó.
 
-???+ note "定理"
-    对于可平面图 $G=(V,E)$ 的两个顶点 $s,t$，存在 $G$ 的平面嵌入使得 $s,t$ 处于同一个面上，当且仅当 $(V,E \cup \{(s,t)\}$ 是可平面图．
+???+ note "Định lý"
+    Với hai đỉnh $s,t$ của đồ thị phẳng $G=(V,E)$, tồn tại một phép nhúng phẳng của $G$ sao cho $s,t$ nằm trên cùng một mặt khi và chỉ khi $(V,E \cup \{(s,t)\})$ là đồ thị phẳng.
 
-??? note "证明"
-    如果存在 $G$ 的平面嵌入使得 $s,t$ 处于同一个面上，那么就可以在这个面内添加一条边 $(s,t)$，保持图的平面性．
+??? note "Chứng minh"
+    Nếu tồn tại một phép nhúng phẳng của $G$ sao cho $s,t$ nằm trên cùng một mặt, thì ta có thể thêm cạnh $(s,t)$ bên trong mặt đó mà vẫn giữ được tính phẳng.
     
-    如果 $(V, E \cup \{(s,t)\})$ 是可平面图，那么任取它的一个平面嵌入，$s,t$ 都同处边 $(s,t)$ 所处的面．删除 $(s,t)$ 之后，$s,t$ 仍然同处一面．命题得证．
+    Nếu $(V, E \cup \{(s,t)\})$ là đồ thị phẳng, thì lấy tùy ý một phép nhúng phẳng của nó, $s,t$ cùng nằm trên mặt chứa cạnh $(s,t)$. Sau khi xóa $(s,t)$, $s,t$ vẫn cùng nằm trên một mặt. Mệnh đề được chứng minh.
 
-例如，下图中添加边 $(s,t)$ 之后得到非平面图 $K_5$，故而不具有这样的平面嵌入，上述转化不适用．
+Chẳng hạn, trong hình dưới đây, sau khi thêm cạnh $(s,t)$ ta thu được đồ thị không phẳng $K_5$, nên không tồn tại phép nhúng phẳng như vậy, và phép chuyển đổi trên không áp dụng được.
 
 ![](images/planar-st.svg)
 
-### 更多结果
+### Một số kết quả khác
 
-当然，平面图还有很多著名的结果．本节简单列举它们，但并不做出讨论．
+Dĩ nhiên, đồ thị phẳng còn có nhiều kết quả nổi tiếng khác. Phần này chỉ liệt kê ngắn gọn mà không thảo luận thêm.
 
-???+ note "四色定理"
-    （没有自环的）平面图都是可 $4$‑着色的．
+???+ note "Định lý bốn màu"
+    Mọi đồ thị phẳng không có khuyên đều tô được bằng $4$ màu.
 
-???+ note "Fáry 定理"
-    简单可平面图总是存在一种平面嵌入，使得图的所有边都是直线段．
+???+ note "Định lý Fáry"
+    Mọi đồ thị phẳng đơn luôn có một phép nhúng phẳng sao cho tất cả các cạnh của đồ thị đều là đoạn thẳng.
 
-???+ note "定理（Wood）"
-    可平面图至多只有 $8|V|-16$ 个极大团．
+???+ note "Định lý Wood"
+    Đồ thị phẳng có nhiều nhất $8|V|-16$ clique cực đại.
 
-???+ note "定理（Tutte）"
-    $4$‑点连通的可平面图都是哈密顿图．
+???+ note "Định lý Tutte"
+    Mọi đồ thị phẳng $4$-liên thông theo đỉnh đều là đồ thị Hamilton.
 
-## 判定
+## Nhận biết
 
-本节讨论给定一个图，判定它是不是可平面图的方法．
+Phần này thảo luận các phương pháp xác định một đồ thị cho trước có phải là đồ thị phẳng hay không.
 
-### 禁用图
+### Đồ thị cấm
 
-可平面图最经典的刻画方式是利用 **禁用图**（forbidden graph）给出的．
+Đặc trưng kinh điển nhất của đồ thị phẳng được phát biểu bằng **đồ thị cấm** (forbidden graph).
 
-首先，$K_5$ 和 $K_{3,3}$ 不是可平面图．
+Trước hết, $K_5$ và $K_{3,3}$ không phải là đồ thị phẳng.
 
-???+ note "定理"
-    $K_5$ 和 $K_{3,3}$ 不是可平面图．
+???+ note "Định lý"
+    $K_5$ và $K_{3,3}$ không phải là đồ thị phẳng.
 
-??? note "证明"
-    前文说明，$|V|\ge 3$ 的简单连通平面图都需要满足
+??? note "Chứng minh"
+    Ở trên ta đã thấy rằng đồ thị phẳng đơn liên thông với $|V|\ge 3$ phải thỏa
     
     $$
     |E| \le \dfrac{l}{l-2}(|V|-2).
     $$
     
-    其中，$l$ 是面次数的最小值．对于 $K_5$，有 $l=3,~|V|=5,~|E|=10$，所以 $K_5$ 不可能画成平面图．对于 $K_{3,3}$，有 $l=4,~|V|=6,~|E|=9$，所以 $K_{3,3}$ 不可能画成平面图．
+    Trong đó, $l$ là bậc nhỏ nhất của các mặt. Với $K_5$, ta có $l=3,~|V|=5,~|E|=10$, nên $K_5$ không thể vẽ thành đồ thị phẳng đã nhúng. Với $K_{3,3}$, ta có $l=4,~|V|=6,~|E|=9$, nên $K_{3,3}$ cũng không thể vẽ thành đồ thị phẳng đã nhúng.
 
-事实上，它们就是使得一个图不可平面的最小结构．也就是说，只要图不（以某种方式）包含这两个图为子结构，该图就一定是可平面的．
+Thật ra, chúng chính là các cấu trúc nhỏ nhất làm cho một đồ thị không phẳng. Nói cách khác, miễn là đồ thị không chứa hai đồ thị này làm cấu trúc con theo một nghĩa nào đó, thì đồ thị đó chắc chắn phẳng.
 
-第一个可平面性判定定理是 Kuratowski 定理．它用到了图同胚的概念：若两个图 $G_1$ 与 $G_2$ 同构，或通过反复插入或消去 $2$ 度顶点后是同构的，则称二者是 **同胚的**（homeomorphic）．由此，可以叙述如下结果：
+Định lý kiểm tra tính phẳng đầu tiên là định lý Kuratowski. Định lý này dùng khái niệm đồng phôi đồ thị: nếu hai đồ thị $G_1$ và $G_2$ đẳng cấu, hoặc trở nên đẳng cấu sau khi lặp lại thao tác chèn hoặc xóa đỉnh bậc $2$, thì ta nói chúng **đồng phôi** (homeomorphic). Từ đó, có thể phát biểu kết quả sau:
 
-???+ note "Kuratowski 定理"
-    图 $G$ 是可平面图，当且仅当 $G$ 不含与 $K_5$ 或 $K_{3,3}$ 同胚的子图．
+???+ note "Định lý Kuratowski"
+    Đồ thị $G$ là đồ thị phẳng khi và chỉ khi $G$ không chứa đồ thị con đồng phôi với $K_5$ hoặc $K_{3,3}$.
 
-另外一个与此相关的定理是 Wagner 定理．它利用收缩操作来刻画可平面图．收缩操作是指，重复多次将图的一条边收缩为一个点．由此，可以叙述如下结果：
+Một định lý liên quan khác là định lý Wagner. Định lý này dùng thao tác co cạnh để đặc trưng đồ thị phẳng. Thao tác co cạnh là việc lặp nhiều lần thao tác co một cạnh của đồ thị thành một điểm. Từ đó, có thể phát biểu kết quả sau:
 
-???+ note "Wagner 定理"
-    图 $G$ 是可平面图，当且仅当 $G$ 中没有可以收缩到 $K_5$ 或 $K_{3,3}$ 的子图．
+???+ note "Định lý Wagner"
+    Đồ thị $G$ là đồ thị phẳng khi và chỉ khi $G$ không có đồ thị con nào có thể co về $K_5$ hoặc $K_{3,3}$.
 
-可平面图不包含这些类型的子图相对显然，所以这两个定理的关键部分都在于相应的禁用图条件的充分性．由于与 $K_5$ 或 $K_{3,3}$ 同胚的子图一定可以收缩到它们，反过来却未必成立，所以 Kuratowski 定理提供了一个更弱的也更容易检验的判定可平面图的条件．
+Việc đồ thị phẳng không chứa các loại đồ thị con này là tương đối hiển nhiên, nên phần then chốt của cả hai định lý nằm ở tính đủ của điều kiện đồ thị cấm tương ứng. Vì một đồ thị con đồng phôi với $K_5$ hoặc $K_{3,3}$ chắc chắn có thể co về chúng, nhưng chiều ngược lại không nhất thiết đúng, nên định lý Kuratowski cung cấp một điều kiện kiểm tra tính phẳng yếu hơn nhưng cũng dễ kiểm tra hơn.
 
-### 平面性判定算法
+### Thuật toán kiểm tra tính phẳng
 
-尽管看起来并不容易，平面性判定问题实际上有很多线性算法．但是，由于这些算法的实现通常都比较复杂，它们几乎从未出现在算法竞赛中．
+Dù trông có vẻ không dễ, bài toán kiểm tra tính phẳng thực ra có nhiều thuật toán tuyến tính. Tuy nhiên, do các thuật toán này thường khá phức tạp khi cài đặt, chúng gần như không xuất hiện trong lập trình thi đấu.
 
-最早的线性算法是 Hopcroft–Tarjan 算法[^ht74]，但它的实现相当复杂．de Fraysseix–Ossona de Mendez–Rosenstiehl 算法（也称为 LR 平面性算法）[^dor06][^df08][^bra09]进一步改进了 Hopcroft–Tarjan 算法的流程，是目前最优秀的平面性判定算法之一．Python 的 NetworkX 库中就 [实现](https://github.com/networkx/networkx/blob/main/networkx/algorithms/planarity.py) 了这一算法．
+Thuật toán tuyến tính sớm nhất là thuật toán Hopcroft-Tarjan[^ht74], nhưng cách cài đặt của nó khá phức tạp. Thuật toán de Fraysseix-Ossona de Mendez-Rosenstiehl, còn gọi là thuật toán kiểm tra tính phẳng LR[^dor06][^df08][^bra09], cải tiến thêm quy trình của thuật toán Hopcroft-Tarjan và là một trong các thuật toán kiểm tra tính phẳng tốt nhất hiện nay. Thư viện NetworkX của Python có [cài đặt](https://github.com/networkx/networkx/blob/main/networkx/algorithms/planarity.py) thuật toán này.
 
-另外一个同样优秀的算法是 Boyer–Myrvold 算法[^bm99][^bm04]．它可以在线性时间内判定给定图是否可平面．而且，如果图是可平面的，算法将输出一个平面嵌入；否则，算法将输出一个 Kuratowski 子图（即与 $K_5$ 或 $K_{3,3}$ 同胚的子图）．C++ 的 Boost 库就 [实现](https://www.boost.org/doc/libs/1_67_0/boost/graph/planar_detail/boyer_myrvold_impl.hpp) 了这一算法．
+Một thuật toán rất tốt khác là thuật toán Boyer-Myrvold[^bm99][^bm04]. Nó có thể xác định trong thời gian tuyến tính một đồ thị cho trước có phẳng hay không. Hơn nữa, nếu đồ thị phẳng, thuật toán sẽ xuất ra một phép nhúng phẳng; nếu không, thuật toán sẽ xuất ra một đồ thị con Kuratowski, tức là một đồ thị con đồng phôi với $K_5$ hoặc $K_{3,3}$. Thư viện Boost của C++ có [cài đặt](https://www.boost.org/doc/libs/1_67_0/boost/graph/planar_detail/boyer_myrvold_impl.hpp) thuật toán này.
 
-更多相关算法可以参考文末提供的文献．
+Có thể tham khảo thêm các thuật toán liên quan trong phần tài liệu ở cuối bài.
 
-## 特殊的平面图
+## Các đồ thị phẳng đặc biệt
 
-本节介绍几类特殊的可平面图．
+Phần này giới thiệu một vài lớp đồ thị phẳng đặc biệt.
 
-### 极大平面图
+### Đồ thị phẳng cực đại
 
-对于简单可平面图 $G$，如果在它的任意不相邻顶点间添加边，所得图都不再是可平面图，就称 $G$ 为 **极大可平面图**（maximal planar graph）．极大可平面图的平面嵌入称为 **极大平面图**．
+Với đồ thị phẳng đơn $G$, nếu thêm cạnh giữa hai đỉnh không kề nhau bất kỳ của nó đều làm cho đồ thị thu được không còn phẳng, thì $G$ được gọi là **đồ thị phẳng cực đại** (maximal planar graph). Một phép nhúng phẳng của đồ thị phẳng cực đại được gọi là **đồ thị phẳng đã nhúng cực đại**.
 
-???+ note "定理"
-    极大可平面图 $G$ 必然连通．而且，当顶点数 $|V|\ge 3$ 时，图 $G$ 没有割边．
+???+ note "Định lý"
+    Đồ thị phẳng cực đại $G$ chắc chắn liên thông. Hơn nữa, khi số đỉnh $|V|\ge 3$, đồ thị $G$ không có cạnh cầu.
 
-??? note "证明"
-    如果可平面图 $G$ 不连通，那么任选它的一个平面嵌入，都可以选择属于不同连通分支的两个顶点，在外部面内连接起来，得到的图显然仍然是平面图，这说明图 $G$ 不是极大可平面图．所以，图 $G$ 是极大可平面图，就一定连通．
+??? note "Chứng minh"
+    Nếu đồ thị phẳng $G$ không liên thông, thì với bất kỳ phép nhúng phẳng nào của nó, ta đều có thể chọn hai đỉnh thuộc hai thành phần liên thông khác nhau và nối chúng trong mặt ngoài; đồ thị thu được rõ ràng vẫn phẳng. Điều này cho thấy $G$ không phải là đồ thị phẳng cực đại. Vì vậy, nếu $G$ là đồ thị phẳng cực đại thì $G$ chắc chắn liên thông.
     
-    如果可平面图 $G$ 顶点数 $|V|\ge 3$，且 $G$ 有割边 $e=(u,v)$，那么，删去边 $e$ 后的图 $G - e$ 中恰有两个连通分支，且 $u,v$ 属于不同的连通分支．假设 $v$ 所在连通分支至少有两个顶点．那么，可以先将 $u$ 所在连通分支 $G_1$ 画在平面上，并选取图 $G_1$ 中边界含有 $u$ 的任意面 $f$，并将另一个连通分支 $G_2$ 画在面 $f$ 中．由于 $G_2$ 是简单图，它的外部面的边界一定不是一个自环，故而至少还存在另一个顶点 $w\neq u,v$．将 $v,w$ 分别连接到 $u$ 上，就得到包含 $G$ 为子图的平面图．所以，图 $G$ 不是极大可平面图．因此，顶点数 $|V|\ge 3$ 的极大可平面图一定没有割边．
+    Nếu đồ thị phẳng $G$ có số đỉnh $|V|\ge 3$ và có cạnh cầu $e=(u,v)$, thì đồ thị $G - e$ sau khi xóa cạnh $e$ có đúng hai thành phần liên thông, và $u,v$ thuộc hai thành phần khác nhau. Giả sử thành phần liên thông chứa $v$ có ít nhất hai đỉnh. Khi đó, ta có thể vẽ thành phần liên thông $G_1$ chứa $u$ trên mặt phẳng, chọn một mặt bất kỳ $f$ của $G_1$ có biên chứa $u$, rồi vẽ thành phần liên thông còn lại $G_2$ bên trong mặt $f$. Vì $G_2$ là đồ thị đơn, biên mặt ngoài của nó chắc chắn không phải là một khuyên, nên còn tồn tại ít nhất một đỉnh khác $w\neq u,v$. Nối lần lượt $v,w$ với $u$, ta được một đồ thị phẳng chứa $G$ làm đồ thị con. Vì vậy, $G$ không phải là đồ thị phẳng cực đại. Do đó, đồ thị phẳng cực đại có $|V|\ge 3$ chắc chắn không có cạnh cầu.
 
-极大平面图的结构可以更准确地描述．
+Cấu trúc của đồ thị phẳng đã nhúng cực đại có thể được mô tả chính xác hơn.
 
-???+ note "定理"
-    对于顶点数 $|V|\ge 3$ 的平面图 $G$，它是极大平面图当且仅当它是简单图，且它的每个面次数均为 $3$．
+???+ note "Định lý"
+    Với đồ thị phẳng đã nhúng $G$ có số đỉnh $|V|\ge 3$, $G$ là đồ thị phẳng đã nhúng cực đại khi và chỉ khi $G$ là đồ thị đơn và mọi mặt của $G$ đều có bậc $3$.
 
-??? note "证明"
-    条件的充分性显然．只需要说明必要性，即要证明：顶点数 $|V|\ge 3$ 的极大平面图 $G$ 中，每个面次数都是 $3$．由于图 $G$ 是连通简单平面图且 $|V|\ge 3$，所以全部面的次数都至少是 $3$．所以，假设命题不成立，就一定存在一个面 $f$ 的边界长度至少是 $4$．又因为图 $G$ 不存在割边，该边界只能是一个环．设这个环是 $v_1v_2v_3v_4\cdots v_1$．那么，如果 $v_1$ 与 $v_3$ 不相邻，那么在面 $f$ 内连接 $v_1$ 和 $v_3$ 不会破坏平面性，与 $G$ 的极大性矛盾，所以 $v_1$ 与 $v_3$ 相邻；同理，$v_2$ 与 $v_4$ 相邻．但是，边 $(v_1,v_3)$ 和 $(v_2,v_4)$ 都不会出现在面 $f$ 中．这意味着，两条边必然在面 $f$ 的外部．但这是不可能的：无论如何绘制，这两条边都必然相交．所以，图 $G$ 中不存在高于 $3$ 次的面．原命题得证．
+??? note "Chứng minh"
+    Tính đủ là hiển nhiên. Ta chỉ cần chứng minh tính cần, tức là: trong một đồ thị phẳng đã nhúng cực đại $G$ có $|V|\ge 3$, mọi mặt đều có bậc $3$. Vì $G$ là đồ thị phẳng đơn liên thông và $|V|\ge 3$, bậc của mọi mặt đều ít nhất là $3$. Do đó, giả sử mệnh đề sai, thì tồn tại một mặt $f$ có độ dài biên ít nhất là $4$. Lại vì $G$ không có cạnh cầu, biên này chỉ có thể là một chu trình. Giả sử chu trình đó là $v_1v_2v_3v_4\cdots v_1$. Nếu $v_1$ và $v_3$ không kề nhau, thì nối $v_1$ với $v_3$ bên trong mặt $f$ sẽ không phá vỡ tính phẳng, mâu thuẫn với tính cực đại của $G$; vậy $v_1$ và $v_3$ kề nhau. Tương tự, $v_2$ và $v_4$ kề nhau. Tuy nhiên, cả hai cạnh $(v_1,v_3)$ và $(v_2,v_4)$ đều không nằm trong mặt $f$. Điều này có nghĩa là hai cạnh đó phải nằm bên ngoài mặt $f$. Nhưng đó là điều không thể: dù vẽ thế nào, hai cạnh này cũng tất yếu cắt nhau. Vì vậy, trong $G$ không tồn tại mặt có bậc lớn hơn $3$. Mệnh đề ban đầu được chứng minh.
 
-???+ note "推论"
-    对于顶点数 $|V|\ge 3$ 的图 $G$，总是有边数 $|E|=3|V|-6$ 且面数 $|F|=2|V|-4$．
+???+ note "Hệ quả"
+    Với đồ thị $G$ có số đỉnh $|V|\ge 3$, luôn có số cạnh $|E|=3|V|-6$ và số mặt $|F|=2|V|-4$.
 
-由于极大平面图中，每个面都是由三条边围成，所以极大平面图也称为 **平面三角剖分**（plane triangulation）．
+Do trong đồ thị phẳng đã nhúng cực đại, mỗi mặt đều được bao bởi ba cạnh, đồ thị phẳng đã nhúng cực đại còn được gọi là **tam giác phân phẳng** (plane triangulation).
 
-### 外平面图
+### Đồ thị ngoài phẳng
 
-设 $G$ 为可平面图，若 $G$ 存在平面嵌入 $\tilde{G}$，使得 $G$ 中所有顶点都在 $\tilde{G}$ 的一个面的边界上，则称 $G$ 为 **外可平面图**（outerplanar graph）．这一嵌入也称为外平面嵌入或 **外平面图**．通常将边界经过所有顶点的那个面绘制为外部面．
+Giả sử $G$ là một đồ thị phẳng. Nếu $G$ có một phép nhúng phẳng $\tilde{G}$ sao cho mọi đỉnh của $G$ đều nằm trên biên của cùng một mặt trong $\tilde{G}$, thì $G$ được gọi là **đồ thị ngoài phẳng** (outerplanar graph). Phép nhúng này còn được gọi là phép nhúng ngoài phẳng, hay **đồ thị ngoài phẳng đã nhúng**. Thông thường, mặt có biên đi qua tất cả các đỉnh được vẽ thành mặt ngoài.
 
 ![](images/planar-outer.svg)
 
-外可平面图都是可平面图，反之未必成立．外可平面图同样可以使用禁用图刻画．
+Mọi đồ thị ngoài phẳng đều là đồ thị phẳng, nhưng chiều ngược lại không đúng. Đồ thị ngoài phẳng cũng có thể được đặc trưng bằng đồ thị cấm.
 
-???+ note "定理"
-    一个图 $G$ 是外平面图有当且仅当 $G$ 中不含与 $K_4$ 或 $K_{2,3}$ 同胚的子图．
+???+ note "Định lý"
+    Một đồ thị $G$ là đồ thị ngoài phẳng khi và chỉ khi $G$ không chứa đồ thị con đồng phôi với $K_4$ hoặc $K_{2,3}$.
 
-对于外可平面图，同样可以讨论极大外可平面图的概念．对于简单外可平面图 $G$，如果在它的任意不相邻顶点间添加边，所得图都不再是外可平面图，就称 $G$ 为 **极大外可平面图**（maximal outerplanar graph）．极大外可平面图的外平面嵌入称为 **极大外平面图**．极大外平面图其实就是平面上多边形的三角剖分．
+Với đồ thị ngoài phẳng, ta cũng có thể xét khái niệm đồ thị ngoài phẳng cực đại. Với đồ thị ngoài phẳng đơn $G$, nếu thêm cạnh giữa hai đỉnh không kề nhau bất kỳ đều làm cho đồ thị thu được không còn ngoài phẳng, thì $G$ được gọi là **đồ thị ngoài phẳng cực đại** (maximal outerplanar graph). Một phép nhúng ngoài phẳng của đồ thị ngoài phẳng cực đại được gọi là **đồ thị ngoài phẳng đã nhúng cực đại**. Đồ thị ngoài phẳng đã nhúng cực đại thực chất chính là một phép tam giác phân của đa giác trên mặt phẳng.
 
-???+ note "定理"
-    对于顶点数 $|V|\ge 3$ 的极大外平面图 $G$，且所有顶点都在外部面的边界上，那么图 $G$ 恰有 $|V|-2$ 个内部面．
+???+ note "Định lý"
+    Với đồ thị ngoài phẳng đã nhúng cực đại $G$ có số đỉnh $|V|\ge 3$, nếu mọi đỉnh đều nằm trên biên mặt ngoài, thì $G$ có đúng $|V|-2$ mặt trong.
 
-??? note "证明"
-    对 $|V|$ 应用数学归纳法．归纳起点是 $|V|=3$．此时，图 $G$ 是三元环，只有 $1$ 个内部面，命题成立．假设命题对于 $|V| = k$ 成立．现在要证明，当 $|V| = k+1$ 时，命题仍然成立．
+??? note "Chứng minh"
+    Ta quy nạp theo $|V|$. Cơ sở quy nạp là $|V|=3$. Khi đó, $G$ là chu trình tam giác và chỉ có $1$ mặt trong, nên mệnh đề đúng. Giả sử mệnh đề đúng với $|V| = k$. Ta chứng minh rằng khi $|V| = k+1$, mệnh đề vẫn đúng.
     
-    首先，图 $G$ 一定存在 $2$ 度顶点．否则，除了外部面边界上相邻的顶点外，所有顶点都需要和第三个顶点相连接．不妨将外部面边界上的顶点顺次编号，并对每一个 $i = 1,2,\cdots,k+1$，都定义 $f(i)$ 为与顶点 $i$ 连接且编号不与之相邻的顶点的最小编号．考虑 $f(i)$ 的可能取值．首先，$1 < f(1)$．由于点 $1$ 已经和 $f(1)$ 连接，点 $2$ 与 $f(2)$ 的连线不能越过边 $(1,f(1))$，就必然有 $1 < 2 < f(2) < f(1)$．同理，$2 < 3 < f(3) < f(2)$．由于顶点只有有限多个，这个逐渐缩小的过程必然在有限步后终止．令 $i^*$ 为满足 $1 < \cdots < i-1 < i < f(i) < f(i-1) < \cdots < f(1)$ 的编号 $i$ 最大值．那么，由于点 $i^*$ 和点 $f(i^*)$ 不相邻，必然有 $i^* < i^* + 1 < f(i^*)$．而重复之前的论述，仍应该有 $i^* < i^*+1 < f(i^*+1) < f(i^*)$，这与 $i^*$ 的最大性矛盾．这一矛盾说明，图 $G$ 必然存在 $2$ 度顶点．
+    Trước hết, đồ thị $G$ chắc chắn có đỉnh bậc $2$. Nếu không, ngoài các đỉnh kề nhau trên biên mặt ngoài, mọi đỉnh đều cần nối với một đỉnh thứ ba. Không mất tính tổng quát, đánh số các đỉnh trên biên mặt ngoài theo thứ tự, và với mỗi $i = 1,2,\cdots,k+1$, định nghĩa $f(i)$ là chỉ số nhỏ nhất của một đỉnh nối với đỉnh $i$ và có chỉ số không kề với $i$. Xét các giá trị có thể của $f(i)$. Trước hết, $1 < f(1)$. Vì đỉnh $1$ đã nối với $f(1)$, đoạn nối giữa đỉnh $2$ và $f(2)$ không thể vượt qua cạnh $(1,f(1))$, nên tất yếu $1 < 2 < f(2) < f(1)$. Tương tự, $2 < 3 < f(3) < f(2)$. Vì số đỉnh là hữu hạn, quá trình thu hẹp dần này chắc chắn dừng sau hữu hạn bước. Gọi $i^*$ là giá trị lớn nhất của chỉ số $i$ thỏa $1 < \cdots < i-1 < i < f(i) < f(i-1) < \cdots < f(1)$. Khi đó, do đỉnh $i^*$ và đỉnh $f(i^*)$ không kề nhau, chắc chắn có $i^* < i^* + 1 < f(i^*)$. Lặp lại lập luận trước đó, vẫn phải có $i^* < i^*+1 < f(i^*+1) < f(i^*)$, mâu thuẫn với tính lớn nhất của $i^*$. Mâu thuẫn này cho thấy $G$ chắc chắn có đỉnh bậc $2$.
     
-    设 $v$ 就是一个 $2$ 度顶点．将这一顶点从图 $G$ 中删除，就得到顶点数为 $k$ 的外平面图 $G-v$．它必然是极大外平面图，否则在它上面合法添加边的方法，必然对图 $G$ 也适用．由归纳假设，图 $G-v$ 恰有 $k-2$ 个内部面，而删去顶点 $v$ 时，恰好减少了一个图 $G$ 的内部面．所以，图 $G$ 内部面数目为 $k-1$．命题得证．
+    Gọi $v$ là một đỉnh bậc $2$. Xóa đỉnh này khỏi $G$, ta được một đồ thị ngoài phẳng $G-v$ có $k$ đỉnh. Nó chắc chắn là đồ thị ngoài phẳng cực đại, vì nếu có cách thêm cạnh hợp lệ vào nó, thì cách đó cũng áp dụng được cho $G$. Theo giả thiết quy nạp, $G-v$ có đúng $k-2$ mặt trong; khi xóa đỉnh $v$, ta vừa làm mất đúng một mặt trong của $G$. Vì vậy, số mặt trong của $G$ là $k-1$. Mệnh đề được chứng minh.
 
-???+ note "定理"
-    对于顶点数 $|V|\ge 3$ 的外平面图 $G$，且所有顶点都在外部面的边界上，那么图 $G$ 是极大外平面图，当且仅当图 $G$ 的外部面边界是长为 $|V|$ 的环，且所有内部面边界均是长为 $3$ 的环．
+???+ note "Định lý"
+    Với đồ thị ngoài phẳng đã nhúng $G$ có số đỉnh $|V|\ge 3$ và mọi đỉnh đều nằm trên biên mặt ngoài, $G$ là đồ thị ngoài phẳng đã nhúng cực đại khi và chỉ khi biên mặt ngoài của $G$ là một chu trình độ dài $|V|$, và biên của mọi mặt trong đều là chu trình độ dài $3$.
 
-??? note "证明"
-    充分性显然．事实上，考虑连接外部面边界上的两个不相邻顶点．如果连接发生在外部面中，那么，所有顶点无法都出现在一个面的边界上；否则，它们的连线必然与内部面的边界相交．
+??? note "Chứng minh"
+    Tính đủ là hiển nhiên. Thật vậy, xét việc nối hai đỉnh không kề nhau trên biên mặt ngoài. Nếu nối trong mặt ngoài, thì không thể để mọi đỉnh cùng nằm trên biên của một mặt; nếu không nối trong mặt ngoài, đoạn nối đó tất yếu cắt biên của một mặt trong.
     
-    接下来，证明必要性．假设图 $G$ 的外部面边界 $v_1v_2v_3\cdots v_nv_1~(n = |V|)$ 不是一个环．那么，它会重复经过一个顶点多次，亦即存在 $i\neq j$ 且 $i-j\neq\pm 1\pmod{n}$ 使得 $v_i=v_j$．不妨设 $1 < i < j < n$．此时，与 $v_{i-1}$ 相关联的边只能出现在回路 $v_jv_{j+1}\cdots v_nv_1\cdots v_{i-1}v_i$ 围成的有界区域内部，与 $v_{i+1}$ 相关联的边只能出现在回路 $v_iv_{i+1}\cdots v_{j-1}v_{j}$ 围成的有界区域内部，所以 $v_{i-1}$ 和 $v_{i+1}$ 无法相邻．可以在外部面内添加一条连接 $v_{i-1}$ 和 $v_{i+1}$ 的边 $e$，得到图 $G+e$．这显然也是平面图，且外部面边界上包含所有顶点．这就与图 $G$ 的极大外平面性矛盾．所以，图 $G$ 的外部面必然是长度为 $|V|$ 的环．而图 $G$ 内部面边界均为长为 $3$ 的环的原因，和极大平面图一致，不再赘述．
+    Tiếp theo, ta chứng minh tính cần. Giả sử biên mặt ngoài của $G$ là $v_1v_2v_3\cdots v_nv_1~(n = |V|)$ nhưng không phải là một chu trình. Khi đó, biên này đi qua một đỉnh nhiều lần, tức là tồn tại $i\neq j$ và $i-j\neq\pm 1\pmod{n}$ sao cho $v_i=v_j$. Không mất tính tổng quát, giả sử $1 < i < j < n$. Khi đó, các cạnh liên thuộc với $v_{i-1}$ chỉ có thể nằm trong miền bị chặn bởi mạch $v_jv_{j+1}\cdots v_nv_1\cdots v_{i-1}v_i$, còn các cạnh liên thuộc với $v_{i+1}$ chỉ có thể nằm trong miền bị chặn bởi mạch $v_iv_{i+1}\cdots v_{j-1}v_{j}$. Vì vậy, $v_{i-1}$ và $v_{i+1}$ không thể kề nhau. Ta có thể thêm một cạnh $e$ nối $v_{i-1}$ với $v_{i+1}$ bên trong mặt ngoài, thu được đồ thị $G+e$. Rõ ràng đây vẫn là một đồ thị phẳng đã nhúng, và biên mặt ngoài của nó vẫn chứa mọi đỉnh. Điều này mâu thuẫn với tính cực đại ngoài phẳng của $G$. Do đó, mặt ngoài của $G$ chắc chắn là một chu trình độ dài $|V|$. Lý do biên của mọi mặt trong của $G$ đều là chu trình độ dài $3$ giống với trường hợp đồ thị phẳng cực đại, nên không nhắc lại.
 
-???+ note "推论"
-    对于顶点数 $|V|\ge 3$ 的极大外平面图 $G$，有：
+???+ note "Hệ quả"
+    Với đồ thị ngoài phẳng đã nhúng cực đại $G$ có số đỉnh $|V|\ge 3$, ta có:
     
-    1.  $|E|=2|V|-3$．
-    2.  $G$ 中至少有 $3$ 个顶点度数小于等于 $3$，且至少有 $2$ 个顶点度数为 $2$．
-    3.  $G$ 的点连通度为 $2$．
+    1.  $|E|=2|V|-3$.
+    2.  Trong $G$ có ít nhất $3$ đỉnh có bậc không quá $3$, và ít nhất $2$ đỉnh có bậc đúng bằng $2$.
+    3.  Độ liên thông đỉnh của $G$ bằng $2$.
 
-## 习题
+## Bài tập
 
--   [Luogu P3209 \[HNOI2010\] 平面图判定](https://www.luogu.com.cn/problem/P3209)
--   [Luogu P3249 \[HNOI2016\] 矿区](https://www.luogu.com.cn/problem/P3249)
--   [Luogu P4001 \[ICPC-Beijing 2006\] 狼抓兔子](https://www.luogu.com.cn/problem/P4001)
--   [Luogu P4073 \[WC2013\] 平面图](https://www.luogu.com.cn/problem/P4073)
+-   [Luogu P3209 \[HNOI2010\] Kiểm tra tính phẳng của đồ thị](https://www.luogu.com.cn/problem/P3209)
+-   [Luogu P3249 \[HNOI2016\] Khu mỏ](https://www.luogu.com.cn/problem/P3249)
+-   [Luogu P4001 \[ICPC-Beijing 2006\] Sói bắt thỏ](https://www.luogu.com.cn/problem/P4001)
+-   [Luogu P4073 \[WC2013\] Đồ thị phẳng](https://www.luogu.com.cn/problem/P4073)
 -   [Luogu P7295 \[USACO21JAN\] Paint by Letters P](https://www.luogu.com.cn/problem/P7295)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
 -   [Planar graph - Wikipedia](https://en.wikipedia.org/wiki/Planar_graph)
 -   [Planarity testing - Wikipedia](https://en.wikipedia.org/wiki/Planarity_testing)
@@ -297,7 +297,7 @@
 -   Diestel, Reinhard. Graph theory. Vol. 173. Springer Nature, 2025.
 -   Patrignani, Maurizio. "Planarity Testing and Embedding." (2013): 1-42.
 
-[^face-2]: 但这并非唯一的可能．两个嵌套的自环也会形成二次面．另外，有二次面未必意味着图不是简单的，例如，一个只有一条边的图中，唯一的面（即外部面）也是二次的．
+[^face-2]: Nhưng đây không phải là khả năng duy nhất. Hai khuyên lồng nhau cũng tạo thành một mặt bậc hai. Ngoài ra, có mặt bậc hai không nhất thiết nghĩa là đồ thị không đơn; chẳng hạn, trong một đồ thị chỉ có một cạnh, mặt duy nhất, tức mặt ngoài, cũng có bậc hai.
 
 [^ht74]: Hopcroft, John, and Robert Tarjan. "Efficient planarity testing." Journal of the ACM (JACM) 21, no. 4 (1974): 549-568.
 

@@ -292,6 +292,9 @@ MkDocs source layout intact.
   `docs/graph/hamilton.md`, `docs/graph/bi-graph.md`: translated cycle
   counting, minimum cycle, 2-SAT, Euler/Hamilton graph, and bipartite graph
   material.
+- `docs/graph/planar.md`, `docs/graph/chord.md`,
+  `docs/graph/color.md`: translated planar graph, chordal graph, and graph
+  coloring material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

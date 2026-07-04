@@ -55,7 +55,7 @@ Nhờ cấu trúc đơn giản, nhiều bài toán tối ưu trong lý thuyết 
 
 -   Clique cực đại (hiển nhiên)
 -   Tô màu đỉnh tối thiểu (hiển nhiên)
--   [Tô màu cạnh tối thiểu](./color.md#%E4%BA%8C%E5%88%86%E5%9B%BE-vizing-%E5%AE%9A%E7%90%86%E7%9A%84%E6%9E%84%E9%80%A0%E6%80%A7%E8%AF%81%E6%98%8E)
+-   [Tô màu cạnh tối thiểu](./color.md#chứng-minh-mang-tính-xây-dựng-của-định-lý-vizing-cho-đồ-thị-hai-phía)
 -   [Ghép cặp cực đại](./graph-matching/bigraph-match.md)
 -   [Phủ cạnh nhỏ nhất](./graph-matching/graph-match.md#%E6%9C%80%E5%B0%8F%E6%9D%83%E8%BE%B9%E8%A6%86%E7%9B%96)
 -   [Phủ đỉnh nhỏ nhất](./graph-matching/bigraph-match.md#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%B0%8F%E7%82%B9%E8%A6%86%E7%9B%96)

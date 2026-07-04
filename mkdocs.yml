@@ -457,9 +457,9 @@ nav:
     - Đồ thị Euler: graph/euler.md
     - Đồ thị Hamilton: graph/hamilton.md
     - Đồ thị hai phía: graph/bi-graph.md
-    - 平面图: graph/planar.md
-    - 弦图: graph/chord.md
-    - 图的着色: graph/color.md
+    - Đồ thị phẳng: graph/planar.md
+    - Đồ thị dây cung: graph/chord.md
+    - Tô màu đồ thị: graph/color.md
     - 网络流:
       - 网络流简介: graph/flow.md
       - 最大流: graph/flow/max-flow.md
