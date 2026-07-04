@@ -1,4 +1,4 @@
-<a id="&#25968;&#25454;&#31867;&#22411;"></a>
+<a id="kiểu-dữ-liệu"></a>
 
 ## Kiểu dữ liệu
 
@@ -14,7 +14,7 @@ Hệ thống kiểu của C++ gồm các phần sau:
         4.  Kiểu số thực dấu phẩy động (`float`,`double`)
 2.  Kiểu hợp thành[^note11]
 
-<a id="&#24067;&#23572;&#31867;&#22411;"></a>
+<a id="kiểu-luận-lý"></a>
 
 ### Kiểu luận lý
 
@@ -45,7 +45,7 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ (thông
 
     Ngoài ra, từ C23 cũng có thể lấy độ rộng bit của kiểu luận lý thông qua hằng macro `BOOL_WIDTH` trong `<limits.h>`.
 
-<a id="&#25972;&#25968;&#31867;&#22411;"></a>
+<a id="kiểu-số-nguyên"></a>
 
 ### Kiểu số nguyên
 
@@ -60,7 +60,7 @@ Các kiểu số nguyên thường được chia thành 5 mức theo độ rộn
 
 Chuẩn C++ bảo đảm `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)`.
 
-Do nguyên nhân lịch sử, độ rộng bit của kiểu số nguyên có nhiều mô hình phổ biến khác nhau. Để giải quyết vấn đề này, C99/C++11 đã đưa vào [kiểu số nguyên có độ rộng cố định](#%E5%AE%9A%E5%AE%BD%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B).
+Do nguyên nhân lịch sử, độ rộng bit của kiểu số nguyên có nhiều mô hình phổ biến khác nhau. Để giải quyết vấn đề này, C99/C++11 đã đưa vào [kiểu số nguyên có độ rộng cố định](#kiểu-số-nguyên-có-độ-rộng-cố-định).
 
 ???+ note "Kích thước của kiểu `int`"
     Trong chuẩn C++, số bit của `int` được quy định là **ít nhất** $16$ bit.
@@ -187,7 +187,7 @@ Ngoài ra, một số trình biên dịch có hiện thực các kiểu số ngu
         }
         ```
 
-<a id="&#23383;&#31526;&#31867;&#22411;"></a>
+<a id="kiểu-ký-tự"></a>
 
 ### Kiểu ký tự
 
@@ -208,7 +208,7 @@ Kiểu ký tự hẹp thường có $8$ bit. Thực chất cách lưu trữ ở 
 
     Nói chung, không nên dùng `signed char`,`unsigned char` để lưu ký tự. Trong tuyệt đại đa số trường hợp, hai kiểu này đều được xem như kiểu số nguyên.
 
-<a id="&#28014;&#28857;&#31867;&#22411;"></a>
+<a id="kiểu-số-thực-dấu-phẩy-động"></a>
 
 ### Kiểu số thực dấu phẩy động
 
@@ -235,19 +235,19 @@ Ngoài ra, kiểu dấu phẩy động có thể hỗ trợ một số giá tr�
 -   Âm không: `-0.0`, ví dụ `1.0 / 0.0 == INFINITY`,`1.0 / -0.0 == -INFINITY`.
 -   Không phải số (NaN): `std::nan`,`NAN`, thường có thể sinh ra bởi các phép tính như `0.0 / 0.0`. Nó không bằng bất kỳ giá trị nào khi so sánh (kể cả chính nó); từ C++11 có thể dùng `std::isnan` để kiểm tra một số dấu phẩy động có phải NaN hay không.
 
-<a id="&#26080;&#31867;&#22411;"></a>
+<a id="kiểu-không-có-giá-trị"></a>
 
 ### Kiểu không có giá trị
 
 Kiểu `void` là kiểu không có giá trị. Khác với các kiểu ở trên, không thể khai báo một biến có kiểu `void`. Tuy nhiên, giá trị trả về của hàm được phép có kiểu `void`, biểu thị rằng hàm đó không trả về giá trị.
 
-<a id="&#31354;&#25351;&#38024;&#31867;&#22411;"></a>
+<a id="kiểu-con-trỏ-null"></a>
 
 ### Kiểu con trỏ null
 
-Vui lòng xem [phần tương ứng](./pointer.md#%E7%A9%BA%E6%8C%87%E9%92%88) của bài về con trỏ.
+Vui lòng xem [phần tương ứng](./pointer.md#con-trỏ-null) của bài về con trỏ.
 
-<a id="&#23450;&#23485;&#25972;&#25968;&#31867;&#22411;"></a>
+<a id="kiểu-số-nguyên-có-độ-rộng-cố-định"></a>
 
 ## Kiểu số nguyên có độ rộng cố định
 
@@ -319,7 +319,7 @@ std::numeric_limits<double>::epsilon();  // hiệu giữa 1.0 và giá trị k�
                                          // khoảng 2.22045e-16
 ```
 
-<a id="&#31867;&#22411;&#36716;&#25442;"></a>
+<a id="chuyển-đổi-kiểu"></a>
 
 ## Chuyển đổi kiểu
 
@@ -327,7 +327,7 @@ Trong một số trường hợp (chẳng hạn một hàm nhận tham số ki�
 
 Cơ chế chuyển đổi kiểu trong C++ khá phức tạp. Ở đây chủ yếu giới thiệu hai loại chuyển đổi đối với kiểu dữ liệu cơ bản: nâng hạng số học và chuyển đổi số học.
 
-<a id="&#25968;&#20540;&#25552;&#21319;"></a>
+<a id="nâng-hạng-số-học"></a>
 
 ### Nâng hạng số học
 
@@ -395,7 +395,7 @@ Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
 
     Điều này cũng giải thích vì sao `%f` của `printf` có thể khớp cả `float` lẫn `double`.
 
-<a id="&#25972;&#25968;&#25552;&#21319;"></a>
+<a id="nâng-hạng-số-nguyên"></a>
 
 #### Nâng hạng số nguyên
 
@@ -420,13 +420,13 @@ Ví dụ (sau đây giả sử `int` là 32 bit, `unsigned short` là 16 bit, `s
 -   `(unsigned char)'\0' - (unsigned char)'\xff'` trước hết sẽ nâng `(unsigned char)'\0'` thành `(int)0`, nâng `(unsigned char)'\xff'` thành `(int)255`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là `(int)-255`.
 -   `false - (unsigned short)12` trước hết sẽ nâng `false` thành `(int)0`, nâng `(unsigned short)12` thành `(int)12`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là `(int)-12`.
 
-<a id="&#28014;&#28857;&#25552;&#21319;"></a>
+<a id="nâng-hạng-dấu-phẩy-động"></a>
 
 #### Nâng hạng dấu phẩy động
 
 Số dấu phẩy động có độ rộng bit nhỏ hơn có thể được nâng hạng thành số dấu phẩy động có độ rộng bit lớn hơn (ví dụ khi một biến kiểu `float` và một biến kiểu `double` tham gia phép toán số học, biến kiểu `float` sẽ được nâng hạng thành biến kiểu `double`), và giá trị của nó không đổi.
 
-<a id="&#25968;&#20540;&#36716;&#25442;"></a>
+<a id="chuyển-đổi-số-học"></a>
 
 ### Chuyển đổi số học
 
@@ -435,7 +435,7 @@ Trong quá trình chuyển đổi số học, giá trị có thể thay đổi.
 ???+ warning "Chú ý"
     Nâng hạng số học có độ ưu tiên cao hơn chuyển đổi số học. Ví dụ, `bool`->`int` là nâng hạng số học chứ không phải chuyển đổi số học.
 
-<a id="&#25972;&#25968;&#36716;&#25442;"></a>
+<a id="chuyển-đổi-số-nguyên"></a>
 
 #### Chuyển đổi số nguyên
 
@@ -464,25 +464,25 @@ Trong quá trình chuyển đổi số học, giá trị có thể thay đổi.
 
     Ví dụ, khi chuyển `(unsigned int)4'294'967'295` (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`) sang kiểu `short`, kết quả là `(short)-1` (`(short)0b1111'1111'1111'1111`).
 
--   Nếu kiểu đích là `bool`, đó là [chuyển đổi luận lý](#%E5%B8%83%E5%B0%94%E8%BD%AC%E6%8D%A2).
+-   Nếu kiểu đích là `bool`, đó là [chuyển đổi luận lý](#chuyển-đổi-luận-lý).
 
 -   Nếu kiểu nguồn là `bool`, thì `false` chuyển thành 0 của kiểu tương ứng, còn `true` chuyển thành 1 của kiểu tương ứng.
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-<a id="&#28014;&#28857;&#36716;&#25442;"></a>
+<a id="chuyển-đổi-dấu-phẩy-động"></a>
 
 #### Chuyển đổi dấu phẩy động
 
 Khi số dấu phẩy động có độ rộng bit lớn hơn được chuyển sang số dấu phẩy động có độ rộng bit nhỏ hơn, số đó sẽ được làm tròn về giá trị gần nhất trong kiểu đích.
 
-<a id="&#28014;&#28857;&#25972;&#25968;&#36716;&#25442;"></a>
+<a id="chuyển-đổi-giữa-dấu-phẩy-động-và-số-nguyên"></a>
 
 #### Chuyển đổi giữa dấu phẩy động và số nguyên
 
 -   Khi chuyển số dấu phẩy động sang số nguyên, toàn bộ phần thập phân của số dấu phẩy động sẽ bị bỏ đi.
 
-    Nếu kiểu đích là `bool`, đó là [chuyển đổi luận lý](#%E5%B8%83%E5%B0%94%E8%BD%AC%E6%8D%A2).
+    Nếu kiểu đích là `bool`, đó là [chuyển đổi luận lý](#chuyển-đổi-luận-lý).
 
 -   Khi chuyển số nguyên sang số dấu phẩy động, giá trị sẽ được làm tròn về giá trị gần nhất trong kiểu đích.
 
@@ -490,13 +490,13 @@ Khi số dấu phẩy động có độ rộng bit lớn hơn được chuyển 
 
     Nếu kiểu nguồn là `bool`, thì `false` chuyển thành không, còn `true` chuyển thành một.
 
-<a id="&#24067;&#23572;&#36716;&#25442;"></a>
+<a id="chuyển-đổi-luận-lý"></a>
 
 #### Chuyển đổi luận lý
 
 Khi chuyển các kiểu khác sang kiểu `bool`, giá trị bằng không chuyển thành `false`, giá trị khác không chuyển thành `true`.
 
-<a id="&#23450;&#20041;&#21464;&#37327;"></a>
+<a id="định-nghĩa-biến"></a>
 
 ## Định nghĩa biến
 
@@ -514,7 +514,7 @@ Trong các đoạn chương trình hiện tại mà chúng ta tiếp xúc, biế
 
 Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$. Biến cục bộ không có đặc tính này, cần được gán giá trị ban đầu thủ công; nếu không có thể gây ra lỗi khó phát hiện.
 
-<a id="&#21464;&#37327;&#20316;&#29992;&#22495;"></a>
+<a id="phạm-vi-của-biến"></a>
 
 ## Phạm vi của biến
 
@@ -540,7 +540,7 @@ Nếu trong khối lồng bên trong của một khối mã có định nghĩa b
 
 Ví dụ trong đoạn mã trên, giá trị $g$ được in ra sẽ là $10$. Vì vậy, để tránh lỗi ngoài dự kiến, hãy cố gắng tránh để biến cục bộ trùng tên với biến toàn cục.
 
-<a id="&#24120;&#37327;"></a>
+<a id="hằng"></a>
 
 ## Hằng
 
@@ -555,30 +555,30 @@ a = 3;
 
 Nếu sửa giá trị của hằng, lỗi sẽ xuất hiện ở giai đoạn biên dịch: `error: assignment of read-only variable 'a'`.
 
-<a id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></a>
+<a id="tài-liệu-tham-khảo-và-chú-thích"></a>
 
 ## Tài liệu tham khảo và chú thích
 
 1.  [Working Draft, Standard for Programming Language C++](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4917.pdf)
-2.  [Kiểu - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
-3.  [Kiểu số học - cppreference.com](https://zh.cppreference.com/w/c/language/arithmetic_types) của ngôn ngữ C
-4.  [Kiểu cơ bản - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)
-5.  [Kiểu số nguyên có độ rộng cố định (từ C++11) - cppreference.com](https://zh.cppreference.com/w/cpp/types/integer)
+2.  [Kiểu - cppreference.com](https://en.cppreference.com/w/cpp/language/type)
+3.  [Kiểu số học - cppreference.com](https://en.cppreference.com/w/c/language/arithmetic_types) của ngôn ngữ C
+4.  [Kiểu cơ bản - cppreference.com](https://en.cppreference.com/w/cpp/language/types)
+5.  [Kiểu số nguyên có độ rộng cố định (từ C++11) - cppreference.com](https://en.cppreference.com/w/cpp/types/integer)
 6.  William Kahan (1 October 1997).["Lecture Notes on the Status of IEEE Standard 754 for Binary Floating-Point Arithmetic"](https://people.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF).
-7.  [Chuyển đổi ngầm định - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
-8.  [Khai báo - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
-9.  [Phạm vi - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
+7.  [Chuyển đổi ngầm định - cppreference.com](https://en.cppreference.com/w/cpp/language/implicit_conversion)
+8.  [Khai báo - cppreference](https://en.cppreference.com/w/cpp/language/declarations)
+9.  [Phạm vi - cppreference.com](https://en.cppreference.com/w/cpp/language/scope)
 
 [^note10]: Xem <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf>
 
-[^note11]: Bao gồm kiểu mảng, kiểu tham chiếu, kiểu con trỏ, kiểu lớp, kiểu hàm, v.v. Vì bài viết này hướng tới người mới bắt đầu, nên các kiểu đó không được giới thiệu cụ thể tại đây. Xem chi tiết tại [Kiểu - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
+[^note11]: Bao gồm kiểu mảng, kiểu tham chiếu, kiểu con trỏ, kiểu lớp, kiểu hàm, v.v. Vì bài viết này hướng tới người mới bắt đầu, nên các kiểu đó không được giới thiệu cụ thể tại đây. Xem chi tiết tại [Kiểu - cppreference.com](https://en.cppreference.com/w/cpp/language/type)
 
-[^note12]: Không bao gồm kiểu ký tự rộng, trường bit và kiểu liệt kê; xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2).
+[^note12]: Không bao gồm kiểu ký tự rộng, trường bit và kiểu liệt kê; xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
 
-[^note13]: Có hiệu lực từ C++20. Trước C++20, kết quả là do hiện thực định nghĩa. Xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2).
+[^note13]: Có hiệu lực từ C++20. Trước C++20, kết quả là do hiện thực định nghĩa. Xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
 
-[^note14]: Khi định nghĩa một biến, ngoài bộ mô tả kiểu, còn có thể chứa các bộ mô tả khác. Xem chi tiết tại [khai báo - cppreference](https://zh.cppreference.com/w/cpp/language/declarations).
+[^note14]: Khi định nghĩa một biến, ngoài bộ mô tả kiểu, còn có thể chứa các bộ mô tả khác. Xem chi tiết tại [khai báo - cppreference](https://en.cppreference.com/w/cpp/language/declarations).
 
-[^note15]: Nói chính xác hơn là [điểm khai báo](https://zh.cppreference.com/w/cpp/language/scope#.E5.A3.B0.E6.98.8E.E7.82.B9).
+[^note15]: Nói chính xác hơn là [điểm khai báo](https://en.cppreference.com/w/cpp/language/scope#Point_of_declaration).
 
 [^note16]: Trước C++20, chuẩn quy định số nguyên có dấu ít nhất phải bao phủ phạm vi biểu diễn của [mã bù một](../math/bit.md#số-nguyên-và-chuỗi-bit) (tức $-2^{x-1}+1\sim 2^{x-1}-1$), nhưng trên thực tế tuyệt đại đa số hiện thực đều dùng [mã bù hai](../math/bit.md#số-nguyên-và-chuỗi-bit); từ C++20, chuẩn quy định thêm rằng số nguyên có dấu bắt buộc phải dùng mã bù hai. Xem chi tiết tại [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values).

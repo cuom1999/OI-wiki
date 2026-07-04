@@ -30,7 +30,7 @@ lại bằng [toán tử `*` và `&`](./op.md).
 
 ### bool
 
-Xem thêm [kiểu luận lý](var.md#%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B).
+Xem thêm [kiểu luận lý](var.md#kiểu-luận-lý).
 
 Khác với C++, ban đầu ngôn ngữ C không có kiểu luận lý.
 

@@ -141,7 +141,7 @@ int a = 0, b = 0, c = 0;
 
 Đến đây, bạn đã nắm được một số nội dung cơ bản nhất. Phần còn lại là tìm các cú pháp tương ứng giữa Pascal và C++, cũng như các đặc điểm khác nhau của hai ngôn ngữ.
 
-Tuy vậy, trước khi tiếp tục, rất nên đọc trước phần [Phạm vi biến: biến toàn cục và biến cục bộ](#%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F).
+Tuy vậy, trước khi tiếp tục, rất nên đọc trước phần [Phạm vi biến: biến toàn cục và biến cục bộ](#phạm-vi-biến-biến-toàn-cục-và-biến-cục-bộ).
 
 Hãy tận dụng <kbd>Alt</kbd>+<kbd>←</kbd> và <kbd>Alt</kbd>+<kbd>→</kbd> để quay lại hoặc đi tới sau khi nhảy giữa các trang.
 
@@ -162,7 +162,7 @@ C++ về cơ bản khá giống Pascal. Các kiểu thường gặp gồm:
 
 Trong C++, dấu nháy đơn được dùng riêng để biểu diễn một ký tự đơn (kiểu ký tự), chẳng hạn `'a'`; còn chuỗi (mảng ký tự) phải dùng dấu nháy kép.
 
-C++ còn có nhiều kiểu dữ liệu bổ sung. Xem [Fundamental types - cppreference.com](https://zh.cppreference.com/w/cpp/language/types).
+C++ còn có nhiều kiểu dữ liệu bổ sung. Xem [Fundamental types - cppreference.com](https://en.cppreference.com/w/cpp/language/types).
 
 #### Khai báo hằng
 
@@ -387,11 +387,9 @@ Mảng kiểu C có quan hệ rất chặt chẽ với con trỏ, nên ở đây
 
 ## Những điểm khác biệt quan trọng
 
-<a id="&#21464;&#37327;&#20316;&#29992;&#22495;&#65306;&#20840;&#23616;&#21464;&#37327;&#19982;&#23616;&#37096;&#21464;&#37327;"></a>
-<a id="&#21464;&#37327;&#20316;&#29992;&#22495;&#20840;&#23616;&#21464;&#37327;&#19982;&#23616;&#37096;&#21464;&#37327;"></a>
 ### Phạm vi biến: biến toàn cục và biến cục bộ
 
-C++ gần như có thể khai báo biến ở **bất kỳ đâu**. Hãy tham khảo [Phạm vi biến](var.md#%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F).
+C++ gần như có thể khai báo biến ở **bất kỳ đâu**. Hãy tham khảo [Phạm vi biến](var.md#phạm-vi-của-biến).
 
 Khi viết thủ tục/hàm Pascal, bạn rất dễ quên khai báo biến cục bộ `i` hoặc `j`. Thông thường chương trình chính lại có vòng lặp, nên trong đa số trường hợp `i` và `j` đều là biến toàn cục. Khi đó, việc thao tác với `i` trong thủ tục/hàm rất dễ gây lỗi. Tệ hơn nữa, nếu quên khai báo các biến cục bộ kiểu này, trình biên dịch không báo lỗi và chương trình vẫn chạy. (Rất nhiều bug khó tìm xuất phát từ đây.)
 
@@ -442,7 +440,7 @@ std::cout << (a == '0');  // true xuất ra 1
 
 Thực ra trong C++, `char` và `bool` về bản chất đều là kiểu số nguyên.
 
-Chi tiết xem bài [Implicit conversions - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion).
+Chi tiết xem bài [Implicit conversions - cppreference.com](https://en.cppreference.com/w/cpp/language/implicit_conversion).
 
 ### Nhiều câu lệnh C++ có giá trị trả về: ví dụ cách đọc dữ liệu với số lượng không cố định
 
@@ -668,7 +666,7 @@ Ngoài ra còn có container STL, chẳng hạn mảng, vector (mảng có kích
 
 Nếu muốn tìm các hàm thao tác chuỗi, xem:
 
--   [std::basic\_string - cppreference.com](https://zh.cppreference.com/w/cpp/string/basic_string)
+-   [std::basic\_string - cppreference.com](https://en.cppreference.com/w/cpp/string/basic_string)
 -   [`<string>` - C++ Reference](https://www.cplusplus.com/reference/string/)
 
 Con trỏ trong C/C++ là một thứ rất linh hoạt; có thể tham khảo trang [Con trỏ](pointer.md). Nếu muốn hiểu thật kỹ con trỏ, nên tìm một cuốn sách hoặc sổ tay tham khảo để đọc cẩn thận.
@@ -681,7 +679,7 @@ Con trỏ trong C/C++ là một thứ rất linh hoạt; có thể tham khảo t
 ### Tài liệu về ngôn ngữ C++
 
 -   [Tài nguyên học tập](../contest/resources.md)
--   [cppreference.com](https://zh.cppreference.com/): tài liệu tham khảo C/C++ quan trọng nhất
+-   [cppreference.com](https://en.cppreference.com/): tài liệu tham khảo C/C++ quan trọng nhất
 -   [C++ Tutorial - Runoob](https://www.runoob.com/cplusplus/cpp-tutorial.html)
 -   [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/)
 -   [Reference - C++ Reference](https://www.cplusplus.com/reference/)
@@ -776,4 +774,4 @@ Cần nạp thư viện `<cmath>` trước khi dùng.
 
 Các hàm khác, xem:
 
--   [Các hàm toán học thường dùng - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/math)
+-   [Các hàm toán học thường dùng - cppreference.com](https://en.cppreference.com/w/cpp/numeric/math)
