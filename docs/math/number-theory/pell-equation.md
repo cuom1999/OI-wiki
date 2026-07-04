@@ -792,21 +792,26 @@ thời chẵn, nên luôn tương ứng với nghiệm nguyên của phương tr
 $x^2-Dy^2=\pm 1$. Nếu nghiệm nguyên dương nhỏ nhất $(x_1,y_1)$ đồng thời lẻ, ta
 có kết quả sau:
 
-???+ note "Dinh li"
-    Gia su nghiem nguyen duong nho nhat cua phuong trinh $x^2-Dy^2=\pm 4$ la $(x_1,y_1)$. Neu $x_1$ va $y_1$ dong thoi le, thi $D\equiv 5\pmod 8$, va nghiem nguyen $(x,y)$ cua phuong trinh do dong thoi chan khi va chi khi
+???+ note "Định lý"
+    Giả sử nghiệm nguyên dương nhỏ nhất của phương trình $x^2-Dy^2=\pm 4$ là
+    $(x_1,y_1)$. Nếu $x_1$ và $y_1$ đồng thời lẻ, thì $D\equiv 5\pmod 8$, và
+    nghiệm nguyên $(x,y)$ của phương trình đó đồng thời chẵn khi và chỉ khi
 
     $$
     \dfrac{x+y\sqrt{D}}{2} = \pm\left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^{3k},k\in\mathbf Z.
     $$
 
-??? note "Chung minh"
-    Lay modulo $8$ hai ve cua dang thuc $x_1^2-Dy_1^2=\pm 4$, ta duoc $D\equiv 5\pmod 8$. De chung minh ket qua thu hai, truoc het chung minh $(x_3,y_3)$ deu chan, vi
+??? note "Chứng minh"
+    Lấy modulo $8$ hai vế của đẳng thức $x_1^2-Dy_1^2=\pm 4$, ta được
+    $D\equiv 5\pmod 8$. Để chứng minh kết quả thứ hai, trước hết chứng minh
+    $(x_3,y_3)$ đều chẵn, vì
 
     $$
     \dfrac{x_3+y_3\sqrt{D}}{2} = \left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^{3} = \dfrac{x_1^3+3Dx_1y_1^2}{8}+\dfrac{3x_1^2y_1+Dy_1^3}{8}\sqrt{D},
     $$
 
-    nen chi can chung minh ve phai la so nguyen. Vi binh phuong cua so le dong du $1$ modulo $8$, ta co
+    nên chỉ cần chứng minh vế phải là số nguyên. Vì bình phương của số lẻ đồng
+    dư $1$ modulo $8$, ta có
 
     $$
     \begin{aligned}
@@ -815,29 +820,43 @@ có kết quả sau:
     \end{aligned}
     $$
 
-    Dieu nay cho thay $x_3,y_3$ deu chan. Do do, voi moi $k\in\mathbf Z$,
+    Điều này cho thấy $x_3,y_3$ đều chẵn. Do đó, với mọi $k\in\mathbf Z$,
 
     $$
-    \dfrac{x+y\sqrt{D}}{2} = \pm\left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^{3k} = \pm\left(\dfrac{x_3+y_3\sqrt{D}}{2}\right)^k \in \mathbf Z,
+    \dfrac{x+y\sqrt{D}}{2} = \pm\left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^{3k} = \pm\left(\dfrac{x_3+y_3\sqrt{D}}{2}\right)^k \in \mathbf Z[\sqrt D],
     $$
 
-    nen $(x,y)$ khi do deu chan. Nguoc lai, voi $r=1,2$, luon co
+    nên $(x,y)$ khi đó đều chẵn. Ngược lại, với $r=1,2$, luôn có
 
     $$
     \pm\left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^{3k+r} = \pm\left(\dfrac{x_3+y_3\sqrt{D}}{2}\right)^k\left(\dfrac{x_r+y_r\sqrt{D}}{2}\right).
     $$
 
-    De chung minh $(x,y)$ tuong ung khong phai so nguyen, chi can chung minh bieu thuc nay khong phai so nguyen, tuc thua so thu hai trong tich ben phai khong phai so nguyen. Voi $r=1$ day la gia thiet; voi $r=2$, vi
+    Để chứng minh $(x,y)$ tương ứng không phải cặp số nguyên đồng thời chẵn, chỉ
+    cần chứng minh biểu thức này không thuộc $\mathbf Z[\sqrt D]$, tức thừa số
+    thứ hai trong tích bên phải không thuộc $\mathbf Z[\sqrt D]$. Với $r=1$ đây
+    là giả thiết; với $r=2$, vì
 
     $$
     \dfrac{x_2+y_2\sqrt{D}}{2} = \left(\dfrac{x_1+y_1\sqrt{D}}{2}\right)^2 = \dfrac{x_1^2+Dy_1^2}{4} + \dfrac{x_1y_1}{2}\sqrt{D},
     $$
 
-    va $x_1^2+Dy_1^2\equiv 1+1\times 1=2\pmod 4$, $x_1y_1\equiv 1\pmod 2$, nen bieu thuc nay cung khong phai so nguyen. Vay chi khi so mu la boi cua $3$, nghiem tuong ung moi deu chan.
+    và $x_1^2+Dy_1^2\equiv 1+1\times 1=2\pmod 4$, $x_1y_1\equiv 1\pmod 2$,
+    nên biểu thức này cũng không thuộc $\mathbf Z[\sqrt D]$. Vậy chỉ khi số mũ
+    là bội của $3$, nghiệm tương ứng mới đều chẵn.
 
-Noi cach khac, trong moi ba nghiem cua phuong trinh $x^2-Dy^2=\pm 4$ co mot nghiem dong thoi chan, va no tuong ung voi nghiem nguyen cua $x^2-Dy^2=\pm 1$. Dieu nay cung cho thay voi $D\equiv 1\pmod 4$, phuong trinh $x^2-Dy^2=-4$ co nghiem khi va chi khi phuong trinh $x^2-Dy^2=-1$ co nghiem.
+Nói cách khác, trong mỗi ba nghiệm của phương trình $x^2-Dy^2=\pm 4$ có một
+nghiệm đồng thời chẵn, và nó tương ứng với nghiệm nguyên của $x^2-Dy^2=\pm 1$.
+Điều này cũng cho thấy với $D\equiv 1\pmod 4$, phương trình $x^2-Dy^2=-4$ có
+nghiệm khi và chỉ khi phương trình $x^2-Dy^2=-1$ có nghiệm.
 
-Den day, cac thao luan da du de tinh don vi co ban cua vanh so nguyen bac hai thuc. Gia su $D$ la so nguyen duong khong chua nhan tu chinh phuong. Voi $D\equiv 2,3\pmod 4$, chi can tim nghiem nguyen duong nho nhat cua $x^2-Dy^2=\pm 1$; con voi $D\equiv 1\pmod 4$, chi can tim nghiem nguyen duong nho nhat cua $x^2-Dy^2=\pm 4$. Khi thu duoc nghiem nguyen duong nho nhat $(x,y)$, voi $D\equiv 2,3\pmod 4$, don vi co ban la $\pm x\pm y\sqrt{D}$; voi $D\equiv 1\pmod 4$, don vi co ban la $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
+Đến đây, các thảo luận đã đủ để tính đơn vị cơ bản của vành số nguyên bậc hai
+thực. Giả sử $D$ là số nguyên dương không chứa nhân tử chính phương. Với
+$D\equiv 2,3\pmod 4$, chỉ cần tìm nghiệm nguyên dương nhỏ nhất của
+$x^2-Dy^2=\pm 1$; còn với $D\equiv 1\pmod 4$, chỉ cần tìm nghiệm nguyên dương
+nhỏ nhất của $x^2-Dy^2=\pm 4$. Khi thu được nghiệm nguyên dương nhỏ nhất
+$(x,y)$, với $D\equiv 2,3\pmod 4$, đơn vị cơ bản là $\pm x\pm y\sqrt{D}$; với
+$D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
 
 ??? example "Vi du"
     1.  Giai phuong trinh $x^2-14y^2=\pm 4$.
