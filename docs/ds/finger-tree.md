@@ -1,40 +1,40 @@
 author: isdanni
 
-???+ warning "注意"
-    此章是选读内容，在阅读前请确定你对函数式编程（Functional Programming）有一定了解．
+???+ warning "Chú ý"
+    Chương này là nội dung đọc thêm. Trước khi đọc, hãy chắc chắn rằng bạn đã có hiểu biết nhất định về lập trình hàm (Functional Programming).
 
-## 简介
+## Giới thiệu
 
-**手指树**（Finger Tree）是一种 **纯函数式** 数据结构，由 Ralf Hinze 和 Ross Paterson 提出．
+**Cây ngón tay** (Finger Tree) là một cấu trúc dữ liệu **thuần hàm** do Ralf Hinze và Ross Paterson đề xuất.
 
-## 为什么需要手指树
+## Vì sao cần cây ngón tay
 
-在函数式编程中，列表是十分常见的数据类型．对于基于序列的操作，包括在两端添加和删除元素（双端队列操作），在任意节点插入、连接、删除，查找某个满足要求的元素，将序列拆分为子序列，几乎所有的函数型语言都支持．但是对于高效的更多操作，这些语言很难做到．即使有相对应的实现，通常也都非常复杂，实际很难使用．
+Trong lập trình hàm, danh sách là một kiểu dữ liệu rất phổ biến. Với các thao tác dựa trên dãy, bao gồm thêm và xóa phần tử ở hai đầu (thao tác hàng đợi hai đầu), chèn vào một nút bất kỳ, nối, xóa, tìm một phần tử thỏa điều kiện, và tách dãy thành các dãy con, hầu như mọi ngôn ngữ hàm đều hỗ trợ. Tuy nhiên, các ngôn ngữ này khó thực hiện thêm nhiều thao tác một cách hiệu quả. Ngay cả khi có cách cài đặt tương ứng, chúng thường rất phức tạp và khó dùng trong thực tế.
 
-而指状树提供了一种纯函数式的序列数据结构，它可以在均摊常量时间（amortized constant time）内完成访问，添加到序列的前端和末尾等操作，以及在对数时间（logarithmic time）内完成串联和随机访问．除了良好的渐近运行时边界外，手指树还非常灵活：当与元素上的幺半群标记（[monoidal tag](https://en.wikipedia.org/wiki/Monoidal_category)）结合时，指状树可用于实现高效的随机访问序列、有序序列、间隔树和优先级队列．
+Finger Tree cung cấp một cấu trúc dữ liệu dãy thuần hàm: nó có thể thực hiện các thao tác như truy cập, thêm vào đầu và cuối dãy trong thời gian hằng số khấu hao (amortized constant time), đồng thời thực hiện phép nối và truy cập ngẫu nhiên trong thời gian lôgarit (logarithmic time). Ngoài các cận tiệm cận tốt về thời gian chạy, cây ngón tay còn rất linh hoạt: khi kết hợp với nhãn monoid ([monoidal tag](https://en.wikipedia.org/wiki/Monoidal_category)) trên các phần tử, cây ngón tay có thể dùng để cài đặt hiệu quả dãy truy cập ngẫu nhiên, dãy có thứ tự, cây khoảng và hàng đợi ưu tiên.
 
-## 基本结构
+## Cấu trúc cơ bản
 
-手指树在树的「手指」（叶子）的地方存储数据，访问时间为分摊常量．手指是一个可以访问部分数据结构的点．在命令式语言（imperative language）中，这被称做指针．在手指树中，「手指」是指向序列末端或叶节点的结构．手指树还在每个内部节点中存储对其后代应用一些关联操作的结果．存储在内部节点中的数据可用于提供除树类数据结构之外的功能．
+Cây ngón tay lưu dữ liệu tại các "ngón tay" (lá) của cây, với thời gian truy cập khấu hao là hằng số. Ngón tay là một điểm có thể truy cập một phần của cấu trúc dữ liệu. Trong ngôn ngữ mệnh lệnh (imperative language), khái niệm này được gọi là con trỏ. Trong cây ngón tay, "ngón tay" là cấu trúc trỏ tới đầu mút của dãy hoặc tới nút lá. Cây ngón tay cũng lưu trong mỗi nút trong kết quả của việc áp dụng một số phép toán kết hợp lên các hậu duệ của nút đó. Dữ liệu được lưu trong các nút trong có thể dùng để cung cấp những chức năng ngoài phạm vi của một cấu trúc dữ liệu dạng cây.
 
-1.  手指树的深度由下到上计算．
-2.  手指树的第一级，即树的叶节点，仅包含值，深度为 $0$．第二级为深度 $1$．第三级为深度 $2$，依此类推．
-3.  离根越近，节点指向的原始树（在它是手指树之前的树）的子树越深．这样，沿着树向下工作就是从叶子到树的根，这与典型的树数据结构相反．为了获得这种的结构，我们必须确保原始树具有统一的深度．在声明节点对象时，必须通过子节点的类型进行参数化．深度为 $1$ 及以上的脊椎上的节点指向树，通过这种参数化，它们可以由嵌套节点表示．
+1.  Độ sâu của cây ngón tay được tính từ dưới lên trên.
+2.  Cấp thứ nhất của cây ngón tay, tức các nút lá của cây, chỉ chứa giá trị và có độ sâu $0$. Cấp thứ hai có độ sâu $1$. Cấp thứ ba có độ sâu $2$, và cứ tiếp tục như vậy.
+3.  Càng gần gốc, các nút càng trỏ tới các cây con sâu hơn của cây ban đầu (trước khi nó trở thành cây ngón tay). Vì vậy, đi xuống dọc theo cây tương ứng với việc đi từ lá tới gốc của cây, ngược với cấu trúc cây điển hình. Để có được cấu trúc này, ta phải bảo đảm rằng cây ban đầu có độ sâu đồng nhất. Khi khai báo đối tượng nút, cần tham số hóa nó bằng kiểu của các nút con. Các nút trên xương sống có độ sâu từ $1$ trở lên trỏ tới các cây; nhờ cách tham số hóa này, chúng có thể được biểu diễn bằng các nút lồng nhau.
 
-### 将一棵树变成手指树
+### Biến một cây thành cây ngón tay
 
-???+ note "注释"
-    **2-3 树** 是一种树状数据结构，其中每个带有子节点（内部节点）的节点具有两个子节点（$2$ 节点）和一个数据元素或三个子节点（$3$ 节点）和两个数据元素．2-3 树是 $3$ 阶 B 树．树外部的节点（叶节点）没有子节点和一两个数据元素．
+???+ note "Ghi chú"
+    **Cây 2-3** là một cấu trúc dữ liệu dạng cây, trong đó mỗi nút có nút con (nút trong) có hai nút con (nút $2$) và một phần tử dữ liệu, hoặc có ba nút con (nút $3$) và hai phần tử dữ liệu. Cây 2-3 là cây B bậc $3$. Các nút ngoài của cây (nút lá) không có nút con và có một hoặc hai phần tử dữ liệu.
 
-我们将从平衡 2-3 树开始这个过程．为了使手指树正常工作，所有的叶节点需要是水平的．如下图所示（图片取自手指树论文）：
+Ta sẽ bắt đầu quá trình này từ một cây 2-3 cân bằng. Để cây ngón tay hoạt động đúng, tất cả các nút lá cần nằm trên cùng một mức. Như hình dưới đây (hình lấy từ bài báo về cây ngón tay):
 
 ![](./images/finger-tree-1.png)
 
-手指是「一种结构，可以有效地访问靠近特定位置的树的节点．」要制作手指树，我们需要将手指放在树的左右两端，取树的最左边和最右边的内部节点并将它们拉起来，使树的其余部分悬在它们之间，这为我们提供了对序列末尾的均摊常量访问时间．
+Ngón tay là "một cấu trúc cho phép truy cập hiệu quả tới các nút của cây ở gần một vị trí cụ thể". Để tạo cây ngón tay, ta cần đặt các ngón tay ở hai đầu trái và phải của cây, lấy các nút trong ngoài cùng bên trái và ngoài cùng bên phải của cây rồi kéo chúng lên, để phần còn lại của cây treo giữa chúng. Điều này cho ta thời gian truy cập hằng số khấu hao tới các đầu mút của dãy.
 
 ![](./images/finger-tree-2.png)
 
-这种新的数据结构被称为手指树．手指树由沿其树脊（棕色线）分布的几层（下方蓝色框）组成：
+Cấu trúc dữ liệu mới này được gọi là cây ngón tay. Cây ngón tay gồm nhiều tầng (các khung màu xanh bên dưới) phân bố dọc theo xương sống của cây (đường màu nâu):
 
 ![](./images/finger-tree-3.png)
 
@@ -47,20 +47,20 @@ data Digit a = One a | Two a a | Three a a a | Four a a a a
 data Node a = Node2 a a | Node3 a a a
 ```
 
-示例中的数字是带有字母的节点．每个列表由树脊上每个节点的前缀或后缀划分．在转换后的 2-3 树中，顶层的数字列表似乎可以有两个或三个长度，而较低级别的长度只有一或两个．为了使手指树的某些应用程序能够如此高效地运行，手指树允许在每个级别上有 $1$ 到 $4$ 个子树．手指树的数字可以转换成一个列表，如：
+Các Digit trong ví dụ là các nút có chữ cái. Mỗi danh sách được chia bởi tiền tố hoặc hậu tố của từng nút trên xương sống của cây. Trong cây 2-3 sau khi chuyển đổi, các danh sách Digit ở tầng trên cùng dường như có thể có độ dài hai hoặc ba, còn ở các tầng thấp hơn chỉ có độ dài một hoặc hai. Để một số ứng dụng của cây ngón tay có thể chạy hiệu quả như vậy, cây ngón tay cho phép có từ $1$ tới $4$ cây con ở mỗi cấp. Các Digit của cây ngón tay có thể được chuyển thành một danh sách, chẳng hạn:
 
 ```haskell
 type Digit a = One a | Two a a | Three a a a | Four a a a a
 ```
 
-顶层具有类型 $a$ 的元素，下一层具有类型节点 $a$ 的元素，因为树脊和叶子之间的节点，这通常意味着树的第 $n$ 层具有元素类型为 $Node^{n}$ $a$，或 2-3 个深度为 $n$ 的树．这意味着 $n$ 个元素的序列由深度为 `Θ(log n)` 的树表示．距离最近端 $d$ 的元素存储在树中 `Θ(log d)` 深度处．
+Tầng trên cùng có các phần tử kiểu $a$; tầng tiếp theo có các phần tử kiểu nút $a$, vì đây là các nút nằm giữa xương sống và lá. Điều này thường có nghĩa là tầng thứ $n$ của cây có kiểu phần tử là $Node^{n}$ $a$, hoặc là các cây 2-3 có độ sâu $n$. Vì vậy, một dãy gồm $n$ phần tử được biểu diễn bằng một cây có độ sâu `Θ(log n)`. Phần tử cách đầu mút gần nhất một khoảng $d$ được lưu trong cây ở độ sâu `Θ(log d)`.
 
-### 双向队列操作
+### Thao tác hàng đợi hai đầu
 
-指状树也可以制作高效的双向队列．无论结构是否持久，所有操作都需要 `Θ(1)` 时间．它可以被看作是的隐式双端队列的扩展[^okasaki1999purely]：
+Cây ngón tay cũng có thể tạo ra một hàng đợi hai đầu hiệu quả. Dù cấu trúc có tính bền vững (persistent) hay không, mọi thao tác đều cần thời gian `Θ(1)`. Có thể xem nó là một phần mở rộng của hàng đợi hai đầu ẩn[^okasaki1999purely]:
 
-1.  用 2-3 个节点替换对提供了足够的灵活性来支持有效的串联．（为了保持恒定时间的双端队列操作，必须将 Digit 扩展为四．）
-2.  用幺半群（monoid）注释内部节点允许有效的分裂．
+1.  Thay thế cặp bằng các nút 2-3 cung cấp đủ độ linh hoạt để hỗ trợ phép nối hiệu quả. (Để giữ các thao tác hàng đợi hai đầu trong thời gian hằng số, cần mở rộng Digit thành bốn.)
+2.  Chú thích các nút trong bằng monoid cho phép tách hiệu quả.
 
 ```haskell
 data ImplicitDeque a = Empty
@@ -70,30 +70,30 @@ data ImplicitDeque a = Empty
 data Digit a = One a | Two a a | Three a a a
 ```
 
-## 时间复杂度
+## Độ phức tạp thời gian
 
-手指树提供了对树的「手指」（叶子）的分摊常量时间访问，这是存储数据的地方，以及在较小部分的大小中连接和拆分对数时间．它还在每个内部节点中存储对其后代应用一些关联操作的结果．存储在内部节点中的「摘要」数据可用于提供除树之外的数据结构的功能．
+Cây ngón tay cung cấp truy cập thời gian hằng số khấu hao tới các "ngón tay" (lá) của cây, nơi lưu dữ liệu, đồng thời cung cấp phép nối và tách trong thời gian lôgarit theo kích thước của phần nhỏ hơn. Nó cũng lưu trong mỗi nút trong kết quả của việc áp dụng một số phép toán kết hợp lên các hậu duệ của nút đó. Dữ liệu "tóm tắt" lưu trong các nút trong có thể dùng để cung cấp chức năng của những cấu trúc dữ liệu khác ngoài cây.
 
-| 操作                            | 手指树                    | 注释 2-3 树 (annotated 2-3 tree) | 列表（list）             | 向量（vector） |
-| ----------------------------- | ---------------------- | ----------------------------- | -------------------- | ---------- |
-| `const`,`snoc`                | $O(1)$                 | $O(\log n)$                   | $O(1)$/$O(n)$        | $O(n)$     |
-| `viewl`,`viewr`               | $O(1)$                 | $O(\log n)$                   | $O(1)$/$O(n)$        | $O(1)$     |
-| `measure`/`length`            | $O(1)$                 | $O(1)$                        | $O(n)$               | $O(1)$     |
-| `append`                      | $O(\log \min(l1, l2))$ | $O(\log n)$                   | $O(n)$               | $O(m+n)$   |
-| `split`                       | $O(\log \min(n, l-n))$ | $O(\log n)$                   | $O(n)$               | $O(1)$     |
-| `replicate`                   | $O(\log n)$            | $O(\log n)$                   | $O(n)$               | $O(n)$     |
-| `fromList`,`toList`,`reverse` | $O(l)$/$O(l)$/$O(l)$   | $O(l)$                        | $O(1)$/$O(1)$/$O(n)$ | $O(n)$     |
-| `index`                       | $O(\log \min(n, l-n))$ | $O(\log n)$                   | $O(n)$               | $O(1)$     |
+| Thao tác                      | Cây ngón tay             | Cây 2-3 có chú thích (annotated 2-3 tree) | Danh sách (list)     | Vector     |
+| ----------------------------- | ------------------------ | ----------------------------------------- | -------------------- | ---------- |
+| `const`,`snoc`                | $O(1)$                   | $O(\log n)$                               | $O(1)$/$O(n)$        | $O(n)$     |
+| `viewl`,`viewr`               | $O(1)$                   | $O(\log n)$                               | $O(1)$/$O(n)$        | $O(1)$     |
+| `measure`/`length`            | $O(1)$                   | $O(1)$                                    | $O(n)$               | $O(1)$     |
+| `append`                      | $O(\log \min(l1, l2))$   | $O(\log n)$                               | $O(n)$               | $O(m+n)$   |
+| `split`                       | $O(\log \min(n, l-n))$   | $O(\log n)$                               | $O(n)$               | $O(1)$     |
+| `replicate`                   | $O(\log n)$              | $O(\log n)$                               | $O(n)$               | $O(n)$     |
+| `fromList`,`toList`,`reverse` | $O(l)$/$O(l)$/$O(l)$     | $O(l)$                                    | $O(1)$/$O(1)$/$O(n)$ | $O(n)$     |
+| `index`                       | $O(\log \min(n, l-n))$   | $O(\log n)$                               | $O(n)$               | $O(1)$     |
 
-## 应用
+## Ứng dụng
 
-指状树可用于建造其他树．例如，优先级队列可以通过树中子节点的最小优先级标记内部节点来实现，或者索引列表/数组可以通过节点的子节点中叶子的计数来标记节点来实现．其他应用包括随机访问序列（如下所述）、有序序列和区间树．
+Cây ngón tay có thể dùng để xây dựng các cây khác. Ví dụ, có thể cài đặt hàng đợi ưu tiên bằng cách đánh dấu các nút trong theo độ ưu tiên nhỏ nhất của các nút con trong cây, hoặc cài đặt danh sách/mảng có chỉ số bằng cách đánh dấu nút theo số lượng lá trong các nút con của nó. Các ứng dụng khác bao gồm dãy truy cập ngẫu nhiên (như mô tả dưới đây), dãy có thứ tự và cây khoảng.
 
-手指树可以提供平均 $O(1)$ 的推、反转、弹出，$O(\log n)$ 追加和拆分；并且可以适应索引或排序序列．和所有函数式数据结构一样，它本质上是持久的；也就是说，始终保留旧版本的树．
+Cây ngón tay có thể cung cấp thao tác đẩy, đảo ngược và lấy ra với thời gian trung bình $O(1)$, cùng với nối và tách trong $O(\log n)$; đồng thời có thể thích nghi với dãy được đánh chỉ số hoặc được sắp thứ tự. Giống như mọi cấu trúc dữ liệu hàm, về bản chất nó có tính bền vững (persistent); nghĩa là các phiên bản cũ của cây luôn được giữ lại.
 
-对于代码实现，Haskell 核心库中的有限序列 `Seq` 的实现使用了 2-3 手指树（[Data.Sequence](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html)），OCaml 中 `BatFingerTree` 模块的 [实现](https://ocaml-batteries-team.github.io/batteries-included/hdoc2/BatFingerTree.html) 也使用了通用手指树数据结构．手指树可以使用或不使用惰性求值来实现，但惰性允许更简单的实现．
+Về cài đặt mã, cài đặt dãy hữu hạn `Seq` trong thư viện lõi Haskell sử dụng cây ngón tay 2-3 ([Data.Sequence](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html)); [cài đặt](https://ocaml-batteries-team.github.io/batteries-included/hdoc2/BatFingerTree.html) mô-đun `BatFingerTree` trong OCaml cũng sử dụng cấu trúc dữ liệu cây ngón tay tổng quát. Cây ngón tay có thể được cài đặt có hoặc không có đánh giá lười, nhưng tính lười cho phép một cài đặt đơn giản hơn.
 
-## 参考资料与拓展阅读
+## Tài liệu tham khảo và đọc thêm
 
 1.  Ralf Hinze and Ross Paterson, "[Finger trees: a simple general-purpose data structure](http://www.staff.city.ac.uk/~ross/papers/FingerTree.html)", Journal of Functional Programming 16:2 (2006) pp 197-217.
 2.  [Finger Tree - Wikipedia](https://en.wikipedia.org/wiki/Finger_tree)

@@ -253,6 +253,11 @@ MkDocs source layout intact.
   `docs/ds/global-bst.md`, `docs/ds/ett.md`: translated block-with-Fenwick,
   K-D Tree, global balanced binary tree, and Euler Tour Tree pages, including
   rendered comments in the Euler Tour Tree example.
+- `docs/ds/divide-combine.md`, `docs/ds/pq-tree.md`,
+  `docs/ds/finger-tree.md`, `docs/ds/huffman-tree.md`: translated
+  miscellaneous data-structure pages covering divide-combine trees, PQ trees,
+  finger trees, and Huffman trees, including rendered comments and output
+  strings in the Huffman examples.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

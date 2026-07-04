@@ -408,10 +408,10 @@ nav:
       - Cây nhị phân cân bằng toàn cục: ds/global-bst.md
       - Euler Tour Tree: ds/ett.md
       - Top Tree: ds/top-tree.md
-    - 析合树: ds/divide-combine.md
-    - PQ 树: ds/pq-tree.md
-    - 手指树: ds/finger-tree.md
-    - 霍夫曼树: ds/huffman-tree.md
+    - Cây phân hợp: ds/divide-combine.md
+    - PQ Tree: ds/pq-tree.md
+    - Cây ngón tay: ds/finger-tree.md
+    - Cây Huffman: ds/huffman-tree.md
   - Lý Thuyết Đồ Thị:
     - Tổng quan lý thuyết đồ thị: graph/index.md
     - 图论相关概念: graph/concept.md

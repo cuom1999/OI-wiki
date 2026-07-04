@@ -1,160 +1,160 @@
 author: isdanni,xyf007
 
-PQ 树是一种基于树的数据结构，代表一组元素上的一系列排列，由 Kellogg S. Booth 和 George S. Lueker 于 1976 年发现命名，用来解决以下问题
+PQ tree là một cấu trúc dữ liệu dựa trên cây, biểu diễn một tập các hoán vị trên một tập phần tử. Nó được Kellogg S. Booth và George S. Lueker phát hiện và đặt tên vào năm 1976, dùng để giải bài toán sau:
 
-> 给出 $m$ 个集合 $S_i$，你要找到一个 $1\sim n$ 的排列，使得每个集合内的元素都相邻．
+> Cho $m$ tập hợp $S_i$, hãy tìm một hoán vị của $1\sim n$ sao cho các phần tử trong mỗi tập hợp đều nằm kề nhau.
 
-PQ 树可以在 $O(n+\sum|S_i|)$ 时间内构建．本文中介绍的构建方法时间复杂度为 $O(nm)$．
+PQ tree có thể được xây dựng trong thời gian $O(n+\sum|S_i|)$. Phương pháp xây dựng được giới thiệu trong bài này có độ phức tạp thời gian $O(nm)$.
 
-## 定义
+## Định nghĩa
 
-PQ 树有三种结点：**叶子结点**、**P 结点** 和 **Q 结点**．其中叶子结点代表排列中的一个元素，P 结点表示它的子结点可以任意排列，Q 结点表示它的儿子顺序可以反转．所有非叶子结点都是 P 结点或 Q 结点中的一种．P 结点至少有 2 个儿子，Q 结点至少有 3 个儿子．  
-由于结点的定义，PQ 树本身代表了 **所有的** 合法方案，其先序遍历就是其中之一．  
-下图是一棵 PQ 树．  
+PQ tree có ba loại nút: **nút lá**, **nút P** và **nút Q**. Trong đó, nút lá biểu diễn một phần tử trong hoán vị, nút P cho biết các nút con của nó có thể được sắp xếp theo thứ tự bất kỳ, còn nút Q cho biết thứ tự các con của nó có thể bị đảo ngược. Mọi nút không phải nút lá đều là một nút P hoặc một nút Q. Một nút P có ít nhất 2 con, còn một nút Q có ít nhất 3 con.
+Theo định nghĩa của các nút, bản thân PQ tree biểu diễn **tất cả** các phương án hợp lệ; phép duyệt tiền thứ tự của nó là một trong các phương án đó.
+Hình dưới đây là một PQ tree.
 ![](https://gregable.com/2008/11/i/pq-tree.webp)  
-其先序遍历 1,2,3,4,5 代表了一个合法方案．如果 P 结点的儿子重排列为 4,2,3，我们得到了另一个合法方案 1,4,2,3,5．保持 P 结点儿子顺序不变，Q 结点的儿子顺序反转，得到了另一个合法方案 5,3,2,4,1．
+Duyệt tiền thứ tự của nó là 1,2,3,4,5, biểu diễn một phương án hợp lệ. Nếu sắp xếp lại các con của nút P thành 4,2,3, ta nhận được một phương án hợp lệ khác là 1,4,2,3,5. Nếu giữ nguyên thứ tự các con của nút P và đảo ngược thứ tự các con của nút Q, ta nhận được một phương án hợp lệ khác là 5,3,2,4,1.
 
-## 构建
+## Xây dựng
 
-**PQ 树使用儿子 - 兄弟表示法．**
+**PQ tree dùng cách biểu diễn con - anh em.**
 
-我们增量构建一棵 PQ 树．
+Ta xây dựng PQ tree theo kiểu tăng dần.
 
-首先建立一棵树，其根为 P，总共 $n$ 个儿子，分别是 $1,2,\ldots,n$，代表没有任何限制时的 PQ 树．随着限制的不断加入，我们不断修改这棵树．
+Trước hết, tạo một cây có gốc là P và có tổng cộng $n$ con, lần lượt là $1,2,\ldots,n$; cây này biểu diễn PQ tree khi chưa có ràng buộc nào. Khi các ràng buộc được thêm vào, ta liên tục sửa cây này.
 
-当加入一个新的限制集合 $S$ 时，我们把所有属于这个集合的叶子结点标记为 **黑色**，不在这个集合内的叶子结点标记为 **白色**．对于所有非叶子结点，如果其所有儿子均为黑色，将其也标记为黑色；如果其所有儿子均为白色，将其也标记为白色；否则将其标记为 **灰色**．在下面的图中，黑色结点、白色结点、灰色结点分别用黑色、灰色、一半黑一半灰来表示．
+Khi thêm một tập ràng buộc mới $S$, ta đánh dấu mọi nút lá thuộc tập này là **đen**, còn các nút lá không thuộc tập này là **trắng**. Với mọi nút không phải lá, nếu tất cả con của nó đều đen thì cũng đánh dấu nó là đen; nếu tất cả con của nó đều trắng thì cũng đánh dấu nó là trắng; nếu không thì đánh dấu nó là **xám**. Trong các hình bên dưới, nút đen, nút trắng và nút xám lần lượt được biểu diễn bằng màu đen, màu xám, và nửa đen nửa xám.
 
-我们要求 PQ 树中的结点按照颜色排序．
+Ta yêu cầu các nút trong PQ tree được sắp xếp theo màu.
 
-### 自底向上法
+### Phương pháp từ dưới lên
 
-包含所有黑色结点的最小子树被称为 **相关子树**，相关子树的根（不一定是整棵树的根）被称为 **相关根**．
+Cây con nhỏ nhất chứa tất cả các nút đen được gọi là **cây con liên quan**, và gốc của cây con liên quan (không nhất thiết là gốc của toàn bộ cây) được gọi là **gốc liên quan**.
 
-添加一个限制的过程被称为 reduction．一次 reduction 分为两个阶段：冒泡阶段和减少阶段．
+Quá trình thêm một ràng buộc được gọi là một lần rút gọn. Một lần rút gọn gồm hai giai đoạn: giai đoạn nổi bọt và giai đoạn rút gọn.
 
-#### 冒泡阶段
+#### Giai đoạn nổi bọt
 
-冒泡阶段只处理相关子树．我们将相关子树中的所有结点标记为黑色或灰色，并为每个结点计算其拥有的相关子结点数量．为了高效地完成这个过程，我们从叶子往根处理相关子树．这需要记录每个点的父亲结点，但在减少阶段一个点的父亲结点经常要被修改．为了在线性时间内构造，只有 P 结点的儿子和 **Q 结点的最后一个儿子** 始终记录正确的父亲结点．对于 Q 结点的其他儿子，在冒泡阶段用最后一个儿子的父亲更新他们的父亲．
+Giai đoạn nổi bọt chỉ xử lý cây con liên quan. Ta đánh dấu mọi nút trong cây con liên quan là đen hoặc xám, đồng thời tính cho mỗi nút số nút con liên quan mà nó có. Để thực hiện quá trình này hiệu quả, ta xử lý cây con liên quan từ lá lên gốc. Việc này cần ghi lại nút cha của mỗi điểm, nhưng trong giai đoạn rút gọn, nút cha của một điểm thường phải bị sửa. Để xây dựng trong thời gian tuyến tính, chỉ các con của nút P và **con cuối cùng của nút Q** luôn ghi đúng nút cha. Với các con khác của nút Q, trong giai đoạn nổi bọt ta dùng nút cha của con cuối cùng để cập nhật nút cha của chúng.
 
-当遇到一个中间的结点时，我们看一下它的兄弟是否已经有合法的父亲结点．如果没有，将其标记为 **阻塞** 的．如果后面它的兄弟有了合法的父亲，那么修改这个结点的父亲并且取消标记．如果在冒泡阶段结束时，仍然有一段连续的阻塞结点（如下面的情况 Q3），一个没有父结点的「伪结点」成为该块的父结点，并在减少阶段时被去除．
+Khi gặp một nút ở giữa, ta kiểm tra xem nút anh em của nó đã có nút cha hợp lệ hay chưa. Nếu chưa, đánh dấu nó là **bị chặn**. Nếu về sau nút anh em của nó có nút cha hợp lệ, ta sửa nút cha của nút này và bỏ đánh dấu. Nếu khi giai đoạn nổi bọt kết thúc mà vẫn còn một đoạn liên tiếp các nút bị chặn (như trường hợp Q3 bên dưới), một "nút giả" không có nút cha sẽ trở thành nút cha của khối này, rồi bị loại bỏ trong giai đoạn rút gọn.
 
-#### 减少阶段
+#### Giai đoạn rút gọn
 
-减少阶段用一个队列来处理结点．首先将所有限制内的叶子结点加入队列．每次取出队首的结点 $u$ 并处理．如果 $u$ 的父亲也是相关子树内的结点，那么将 $\mathit{fa}_u$ 入队．  
-对于每一个结点 $u$，我们分情况讨论．如果不属于其中任何一种情况，则无解．
+Giai đoạn rút gọn dùng một hàng đợi để xử lý các nút. Trước hết, đưa mọi nút lá nằm trong ràng buộc vào hàng đợi. Mỗi lần lấy nút đầu hàng đợi $u$ ra và xử lý. Nếu cha của $u$ cũng là một nút trong cây con liên quan, đưa $\mathit{fa}_u$ vào hàng đợi.
+Với mỗi nút $u$, ta xét theo từng trường hợp. Nếu không thuộc bất kỳ trường hợp nào trong số đó thì vô nghiệm.
 
-##### 叶子结点
+##### Nút lá
 
-将 $u$ 标记为黑色．
+Đánh dấu $u$ là đen.
 
-##### P 结点
+##### Nút P
 
-如果所有儿子均为黑色，将 $u$ 标记为黑色．  
+Nếu tất cả con đều đen, đánh dấu $u$ là đen.
 ![](https://gregable.com/2008/11/i/p1-template.png)  
 ![](https://gregable.com/2008/11/i/p1-replacement.png)
 
-如果 $u$ 有黑色儿子和白色儿子，且 $u$ 是相关根，那么新建一个 P 结点 $v$ 成为它所有黑色儿子的根．  
+Nếu $u$ có cả con đen và con trắng, đồng thời $u$ là gốc liên quan, tạo một nút P mới $v$ làm gốc của tất cả các con đen của nó.
 ![](https://gregable.com/2008/11/i/p2-template.png)  
 ![](https://gregable.com/2008/11/i/p2-replacement.png)
 
-如果 $u$ 有黑色儿子和白色儿子，且 $u$ 不是相关根，那么做以下操作：
+Nếu $u$ có cả con đen và con trắng, đồng thời $u$ không phải gốc liên quan, thực hiện các thao tác sau:
 
--   新建一个 P 结点 $f$ 成为所有黑色儿子的根．
--   新建一个 P 结点 $e$ 成为所有白色儿子的根．
--   如果 $e$（和/或 $f$）只有一个儿子，那么不要新建结点，而是将 $e$（和/或 $f$）直接赋值成那个儿子．
--   将 $u$ 改成 Q 结点并把其儿子设为 $e$ 和 $f$，将其标记为灰色．
+-   Tạo một nút P mới $f$ làm gốc của tất cả các con đen.
+-   Tạo một nút P mới $e$ làm gốc của tất cả các con trắng.
+-   Nếu $e$ (và/hoặc $f$) chỉ có một con, không tạo nút mới, mà gán trực tiếp $e$ (và/hoặc $f$) thành con đó.
+-   Đổi $u$ thành nút Q, đặt các con của nó là $e$ và $f$, rồi đánh dấu nó là xám.
 
-注意到根据之前的定义，Q 结点至少有 3 个儿子，因此这里的 $u$ 被视为一个「伪结点」，并且将在后面被继续处理．  
+Lưu ý rằng theo định nghĩa ở trên, nút Q có ít nhất 3 con, nên $u$ ở đây được xem là một "nút giả" và sẽ tiếp tục được xử lý về sau.
 ![](https://gregable.com/2008/11/i/p3-template.png)  
 ![](https://gregable.com/2008/11/i/p3-replacement.png)
 
-如果 $u$ 有一个灰色儿子 $p$，且 $u$ 是相关根，那么新建一个 P 结点 $v$ 作为其所有黑色儿子的根，将 $v$ 的兄弟设为 $p$ 最后一个一个黑色儿子，然后把 $v$ 设为 $p$ 的最后一个儿子．  
+Nếu $u$ có một con xám $p$, đồng thời $u$ là gốc liên quan, tạo một nút P mới $v$ làm gốc của tất cả các con đen của nó, đặt anh em của $v$ là con đen cuối cùng của $p$, rồi đặt $v$ làm con cuối cùng của $p$.
 ![](https://gregable.com/2008/11/i/p4-template.png)  
 ![](https://gregable.com/2008/11/i/p4-replacement.png)
 
-如果 $u$ 有一个灰色儿子 $p$，且 $u$ 不是相关根，那么进行以下操作：
+Nếu $u$ có một con xám $p$, đồng thời $u$ không phải gốc liên quan, thực hiện các thao tác sau:
 
--   新建一个 P 结点 $f$ 成为所有黑色儿子的根．
--   新建一个 P 结点 $e$ 成为所有白色儿子的根．
--   如果 $e$（和/或 $f$）只有一个儿子，那么不要新建结点，而是将 $e$（和/或 $f$）直接赋值成那个儿子．
--   将 $e$ 的兄弟设为 $p$ 最后一个白色儿子，然后把 $e$ 设为 $p$ 的最后一个儿子．
--   将 $f$ 的兄弟设为 $p$ 最后一个黑色儿子，然后把 $f$ 设为 $p$ 的最后一个儿子．
+-   Tạo một nút P mới $f$ làm gốc của tất cả các con đen.
+-   Tạo một nút P mới $e$ làm gốc của tất cả các con trắng.
+-   Nếu $e$ (và/hoặc $f$) chỉ có một con, không tạo nút mới, mà gán trực tiếp $e$ (và/hoặc $f$) thành con đó.
+-   Đặt anh em của $e$ là con trắng cuối cùng của $p$, rồi đặt $e$ làm con cuối cùng của $p$.
+-   Đặt anh em của $f$ là con đen cuối cùng của $p$, rồi đặt $f$ làm con cuối cùng của $p$.
 
 ![](https://gregable.com/2008/11/i/p5-template.png)  
 ![](https://gregable.com/2008/11/i/p5-replacement.png)
 
-如果 $u$ 恰有两个灰色儿子 $p_1,p_2$，那么进行以下操作：
+Nếu $u$ có đúng hai con xám $p_1,p_2$, thực hiện các thao tác sau:
 
--   新建一个 P 结点 $f$ 成为所有黑色儿子的根．
--   如果 $f$ 只有一个儿子，那么不要新建结点，而是将 $f$ 直接赋值成那个儿子．
--   把 $p_1$ 的最后一个黑色儿子的兄弟设为 $f$．
--   把 $f$ 的兄弟设为 $p_2$ 的最后一个黑色儿子．
--   把 $p_2$ 的最后一个儿子设为 $p_2$ 的最后一个白色儿子．
+-   Tạo một nút P mới $f$ làm gốc của tất cả các con đen.
+-   Nếu $f$ chỉ có một con, không tạo nút mới, mà gán trực tiếp $f$ thành con đó.
+-   Đặt anh em của con đen cuối cùng của $p_1$ là $f$.
+-   Đặt anh em của $f$ là con đen cuối cùng của $p_2$.
+-   Đặt con cuối cùng của $p_2$ thành con trắng cuối cùng của $p_2$.
 
-可以发现这样 $p_2$ 就被合并进了 $p_1$．  
+Có thể thấy rằng bằng cách này, $p_2$ đã được gộp vào $p_1$.
 ![](https://gregable.com/2008/11/i/p6-template.png)  
 ![](https://gregable.com/2008/11/i/p6-replacement.png)
 
-##### Q 结点
+##### Nút Q
 
-如果 $u$ 只有黑色儿子，那么将 $u$ 标记成黑色．（下面的图的形状错了．）  
+Nếu $u$ chỉ có con đen, đánh dấu $u$ là đen. (Hình dạng trong hình bên dưới bị sai.)
 ![](https://gregable.com/2008/11/i/q1-template.png)  
 ![](https://gregable.com/2008/11/i/q1-replacement.png)
 
-如果 $u$ 有一个灰色儿子 $p$，且所有标记相同的儿子均连续出现，那么进行如下操作：
+Nếu $u$ có một con xám $p$, và mọi con có cùng màu đều xuất hiện liên tiếp, thực hiện như sau:
 
--   设 $p_f$ 为 $p$ 最后一个黑色儿子，$p_e$ 为 $p$ 最后一个白色儿子，$f$ 为 $p$ 的黑色兄弟，$e$ 为 $p$ 的白色兄弟．
--   将 $f$ 的兄弟设为 $p_f$，$e$ 的兄弟设为 $p_e$．
--   如果 $p$ 没有一个白色兄弟或黑色兄弟，将 $u$ 的最后一个儿子设成 $p$ 的最后一个儿子．
--   删除 $p$．
+-   Gọi $p_f$ là con đen cuối cùng của $p$, $p_e$ là con trắng cuối cùng của $p$, $f$ là anh em đen của $p$, và $e$ là anh em trắng của $p$.
+-   Đặt anh em của $f$ là $p_f$, và anh em của $e$ là $p_e$.
+-   Nếu $p$ không có anh em trắng hoặc anh em đen, đặt con cuối cùng của $u$ thành con cuối cùng của $p$.
+-   Xóa $p$.
 
 ![](https://gregable.com/2008/11/i/q2-template.png)  
 ![](https://gregable.com/2008/11/i/q2-replacement.png)
 
-如果 $u$ 恰有两个灰色儿子 $p_1,p_2$，且所有标记相同的儿子均连续出现，那么对 $p_1,p_2$ 都进行上一种操作即可．  
+Nếu $u$ có đúng hai con xám $p_1,p_2$, và mọi con có cùng màu đều xuất hiện liên tiếp, chỉ cần thực hiện thao tác ở trường hợp trước cho cả $p_1,p_2$.
 ![](https://gregable.com/2008/11/i/q3-template.png)  
 ![](https://gregable.com/2008/11/i/q3-replacement.png)
 
-该构建方法是原论文中的，但是实现较为不便．
+Phương pháp xây dựng này đến từ bài báo gốc, nhưng khá bất tiện khi cài đặt.
 
-### 自顶向下法
+### Phương pháp từ trên xuống
 
-目前 OI 中的实现大多采用该方法．其实方法类似，下面出现的情况基本都能在上面找到．
+Hiện nay, phần lớn các cài đặt trong OI dùng phương pháp này. Thực ra phương pháp là tương tự; các trường hợp xuất hiện bên dưới về cơ bản đều có thể tìm thấy ở trên.
 
-注意到根据之前的染色过程，所有黑色和白色的点都已经满足条件，因此我们 **只需要处理灰色结点**．
+Lưu ý rằng theo quá trình tô màu ở trên, mọi điểm đen và trắng đều đã thỏa mãn điều kiện, vì vậy ta **chỉ cần xử lý các nút xám**.
 
-#### P 结点
+#### Nút P
 
--   如果 $u$ 有多于两个灰色儿子，无解．
--   如果 $u$ 只有一个灰色儿子，且没有黑色儿子，递归处理灰色儿子．
--   否则先清空 $u$ 的儿子，然后加入所有的白色儿子．新建一个 Q 结点 $q_1$ 并成为 $u$ 的儿子．在 $q_1$ 中加入所有的灰色儿子．新建一个 P 结点 $p$ 作为所有黑色儿子的根，将 $p$ 插入 $q_1$ 的中间．（对应了自底向上法 P 结点的所有情况．）
+-   Nếu $u$ có nhiều hơn hai con xám, vô nghiệm.
+-   Nếu $u$ chỉ có một con xám và không có con đen, xử lý đệ quy con xám đó.
+-   Nếu không, trước hết xóa rỗng danh sách con của $u$, rồi thêm tất cả các con trắng vào. Tạo một nút Q mới $q_1$ và cho nó trở thành con của $u$. Thêm tất cả các con xám vào $q_1$. Tạo một nút P mới $p$ làm gốc của tất cả các con đen, rồi chèn $p$ vào giữa $q_1$. (Tương ứng với tất cả các trường hợp nút P trong phương pháp từ dưới lên.)
 
-注意到我们会要求两个灰色节点白色全在左侧，黑色全在右侧（或相反），因此我们需要实现一个分裂函数 `split`，可以把这个子树的点分裂成黑白部分，并同时保留分裂成的子树的节点的 **所有可能**．
+Lưu ý rằng ta sẽ yêu cầu hai nút xám có toàn bộ phần trắng ở bên trái và toàn bộ phần đen ở bên phải (hoặc ngược lại), vì vậy ta cần cài đặt một hàm tách `split`, có thể tách các điểm trong cây con này thành phần đen và phần trắng, đồng thời giữ lại **tất cả khả năng** của các nút trong các cây con thu được sau khi tách.
 
-#### Q 结点
+#### Nút Q
 
--   找到最左边和最右边的非白色节点位置 $l,r$．如果 $[l+1,r-1]$ 内有非黑色节点，无解．
--   如果没有黑色节点，只有一个灰色节点，递归处理这个灰色节点，否则只需要将 $l$ 和 $r$ 位置的节点分裂．
+-   Tìm vị trí của nút không trắng ngoài cùng bên trái và ngoài cùng bên phải, lần lượt là $l,r$. Nếu trong $[l+1,r-1]$ có nút không đen, vô nghiệm.
+-   Nếu không có nút đen và chỉ có một nút xám, xử lý đệ quy nút xám đó; nếu không, chỉ cần tách các nút ở vị trí $l$ và $r$.
 
-#### 分裂函数
+#### Hàm tách
 
-令要分裂的点为 $u$，我们想把 $u$ 分裂成左边全是白色，右边全是黑色的森林．如果 $u$ 不是灰色结点则直接返回子树．只考虑灰色结点的情况．
-如果 $u$ 是 P 类结点：
+Gọi điểm cần tách là $u$. Ta muốn tách $u$ thành một rừng mà bên trái toàn trắng, bên phải toàn đen. Nếu $u$ không phải nút xám, trả về trực tiếp cây con đó. Chỉ xét trường hợp nút xám.
+Nếu $u$ là nút loại P:
 
--   如果 $u$ 有至少两个灰色儿子，则无解．
--   否则左边是所有白色儿子，中间递归处理灰色儿子，右边是所有黑色儿子．注意到要保留所有的可能，因此要新建两个 P 结点分别作为白色儿子和黑色儿子的根．（对应自底向上法的 P4 情况．）
--   删除 $u$．
+-   Nếu $u$ có ít nhất hai con xám, vô nghiệm.
+-   Nếu không, bên trái là tất cả các con trắng, ở giữa là kết quả xử lý đệ quy con xám, và bên phải là tất cả các con đen. Lưu ý rằng để giữ lại tất cả khả năng, cần tạo hai nút P mới lần lượt làm gốc của các con trắng và các con đen. (Tương ứng với trường hợp P4 trong phương pháp từ dưới lên.)
+-   Xóa $u$.
 
-如果 $u$ 是 Q 类结点：
+Nếu $u$ là nút loại Q:
 
--   如果正序和反序都不满足白 - 灰 - 黑，则无解．
--   如果有至少两个灰色儿子，也无解．
--   否则递归分裂灰色儿子即可．
--   删除 $u$．
+-   Nếu cả thứ tự xuôi và thứ tự ngược đều không thỏa dạng trắng - xám - đen, vô nghiệm.
+-   Nếu có ít nhất hai con xám, cũng vô nghiệm.
+-   Nếu không, chỉ cần tách đệ quy con xám.
+-   Xóa $u$.
 
-最后把所有多余的结点（只有一个儿子的结点）删除．
+Cuối cùng, xóa tất cả các nút thừa (các nút chỉ có một con).
 
-## 代码实现
+## Cài đặt
 
 ```cpp
 class PQTree {
@@ -353,12 +353,12 @@ class PQTree {
 } T;
 ```
 
-## 习题
+## Bài tập
 
 -   [CF243E Matrix](https://codeforces.com/problemset/problem/243/E)
 -   [CF1552I Organizing a Music Festival](https://codeforces.com/contest/1552/problem/I)
 
-## 参考资料
+## Tài liệu tham khảo
 
 -   Booth, Kellogg S. & Lueker, George S. (1976).["Testing for the consecutive ones property, interval graphs, and graph planarity using PQ-tree algorithms"](https://www.sciencedirect.com/science/article/pii/S0022000076800451?via%3Dihub).*[Journal of Computer and System Sciences](https://en.wikipedia.org/wiki/Journal_of_Computer_and_System_Sciences)*.**13**(3): 335–379.[doi](https://en.wikipedia.org/wiki/Doi_%28identifier%29):[10.1016/S0022-0000(76)80045-1](https://doi.org/10.1016%2FS0022-0000%2876%2980045-1).
 -   [PQ Tree Algorithm and Consecutive Ones Problem](https://gregable.com/2008/11/pq-tree-algorithm.html)
