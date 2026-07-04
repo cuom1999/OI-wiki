@@ -1,30 +1,30 @@
 author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris, SkyeYoung, 383494, danielqfmai
 
-Vim - 无处不在的文本编辑器．
+Vim - trình soạn thảo văn bản có mặt ở khắp nơi.
 
-## 简介
+## Giới thiệu
 
-Vim 是从 vi 发展出来的一个文本编辑器．其代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员群体中被广泛使用．
+Vim là một trình soạn thảo văn bản phát triển từ vi. Các chức năng tiện cho lập trình như hoàn thành mã, biên dịch, nhảy tới lỗi, v.v. rất phong phú, nên Vim được dùng rộng rãi trong cộng đồng lập trình viên.
 
-## 安装
+## Cài đặt
 
-Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用．
+Hệ thống Linux thường có sẵn Vim; mở terminal và nhập `vim` là có thể dùng.
 
-若需手动安装，Vim 的 [官方网站](https://www.vim.org/) 提供了下载的 [说明文档](https://www.vim.org/download.php)，按照需求编译安装即可．
+Nếu cần cài thủ công, [trang web chính thức](https://www.vim.org/) của Vim có [tài liệu hướng dẫn tải xuống](https://www.vim.org/download.php); hãy biên dịch và cài đặt theo nhu cầu.
 
-## Vim 的模式与常用键位
+## Chế độ và phím thường dùng của Vim
 
-Vim 的基础操作在 Vim 自带的教程里将会讲述．打开终端输入 `vimtutor` 即可进入教程．
+Các thao tác cơ bản của Vim sẽ được giới thiệu trong tutorial đi kèm Vim. Mở terminal và nhập `vimtutor` để vào tutorial.
 
-这些操作通常需要二三十分钟来大致熟悉．
+Thông thường cần khoảng hai đến ba mươi phút để làm quen sơ bộ với các thao tác này.
 
-### 命令模式 (Command Mode)
+### Chế độ lệnh (Command Mode)
 
-进入 Vim 后的默认模式．
+Đây là chế độ mặc định sau khi vào Vim.
 
-此状态下敲击键盘动作会被 Vim 识别为命令，而非输入字符，比如我们此时按下<kbd>i</kbd>，并不会输入一个字符，<kbd>i</kbd>被当作了一个命令．
+Ở trạng thái này, thao tác gõ phím sẽ được Vim nhận diện là lệnh chứ không phải nhập ký tự. Ví dụ, lúc này nếu ta nhấn <kbd>i</kbd>, nó sẽ không nhập một ký tự; <kbd>i</kbd> được xem là một lệnh.
 
-Vim 的方向键是<kbd>↑</kbd>、<kbd>↓</kbd>、<kbd>←</kbd>、<kbd>→</kbd>，或者<kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>．
+Phím di chuyển của Vim là <kbd>↑</kbd>, <kbd>↓</kbd>, <kbd>←</kbd>, <kbd>→</kbd>, hoặc <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd>.
 
 ```text
         ↑(k)
@@ -34,123 +34,123 @@ Vim 的方向键是<kbd>↑</kbd>、<kbd>↓</kbd>、<kbd>←</kbd>、<kbd>→</
         ↓(j)
 ```
 
-以下是命令模式常用的命令：
+Dưới đây là các lệnh thường dùng trong chế độ lệnh:
 
--   `i` 切换到输入模式，在光标当前位置开始输入文本．按<kbd>Esc</kbd>键可回到普通模式．
--   `x` 用于删除光标后的一个字符．
--   `:` 切换到底线命令模式，以在最底一行输入命令．
--   `a` 切换到输入模式，在光标后开始输入文本．
--   `o` 切换到输入模式，在光标下插入新的一行；`O` 切换到输入模式，在光标上插入新的一行．
--   `p` 粘贴剪贴板内容到光标下方；`P` 粘贴剪贴板内容到光标上方．
--   `dd` 删除光标所在的一整行．
--   `d` 命令也是删除，通常配合其他键使用．
--   `u` 撤销上一次对文本的更改．
--   `y` 命令可以复制被选中的区域．需要按 `v` 进入可视模式操作．
--   `yy` 复制当前行．
--   `Ctrl + r` 重做上次撤销的操作．
--   `:w` 保存文件，常配合 q 保存退出．
--   `:q` 退出 Vim．
--   `:q!` 强制退出 Vim，不保存修改．
+-   `i` chuyển sang chế độ nhập, bắt đầu nhập văn bản tại vị trí con trỏ hiện tại. Nhấn <kbd>Esc</kbd> để quay lại chế độ thường.
+-   `x` dùng để xóa một ký tự phía sau con trỏ.
+-   `:` chuyển sang chế độ lệnh dòng cuối để nhập lệnh ở dòng dưới cùng.
+-   `a` chuyển sang chế độ nhập, bắt đầu nhập văn bản phía sau con trỏ.
+-   `o` chuyển sang chế độ nhập và chèn một dòng mới bên dưới con trỏ; `O` chuyển sang chế độ nhập và chèn một dòng mới bên trên con trỏ.
+-   `p` dán nội dung clipboard xuống bên dưới con trỏ; `P` dán nội dung clipboard lên bên trên con trỏ.
+-   `dd` xóa cả dòng nơi con trỏ đang đứng.
+-   Lệnh `d` cũng dùng để xóa, thường kết hợp với phím khác.
+-   `u` hoàn tác lần sửa văn bản trước đó.
+-   Lệnh `y` có thể sao chép vùng đã chọn. Cần nhấn `v` để vào chế độ trực quan rồi thao tác.
+-   `yy` sao chép dòng hiện tại.
+-   `Ctrl + r` làm lại thao tác vừa hoàn tác.
+-   `:w` lưu tệp, thường kết hợp với `q` để lưu rồi thoát.
+-   `:q` thoát Vim.
+-   `:q!` buộc thoát Vim, không lưu sửa đổi.
 
-部分其他命令：
+Một số lệnh khác:
 
--   `c` 命令用于修改，相当于 `di`．
--   `=` 命令可以以默认格式对选中行应用自动缩进．
--   `==` 自动缩进当前行．
--   `.` 命令可以重复上次执行的命令．
--   `gg` 命令可跳至代码的开头；`G` 命令可跳至代码最后一行的开头；`G` 命令前加数字可跳至指定行．
--   `w` 可以跳到下个单词的开头；`e` 可以跳到当前单词或下一单词的结尾；`b` 可以跳到当前单词或上一单词的开头；`0` 可以跳至行首；`$` 可以跳至行尾．`w`、`e`、-`0`、`$` 还可以与其他命令组合，比如 `de`、`dw`、`d0` 和 `d$` 分别对应删至单词尾、删至下个单词头、删至行首和删至行尾．
+-   Lệnh `c` dùng để sửa, tương đương `di`.
+-   Lệnh `=` có thể áp dụng tự động thụt lề theo định dạng mặc định cho các dòng đã chọn.
+-   `==` tự động thụt lề dòng hiện tại.
+-   Lệnh `.` có thể lặp lại lệnh vừa thực hiện.
+-   Lệnh `gg` nhảy tới đầu mã; lệnh `G` nhảy tới đầu dòng cuối cùng của mã; thêm số trước lệnh `G` để nhảy tới dòng chỉ định.
+-   `w` nhảy tới đầu từ tiếp theo; `e` nhảy tới cuối từ hiện tại hoặc từ tiếp theo; `b` nhảy tới đầu từ hiện tại hoặc từ trước đó; `0` nhảy tới đầu dòng; `$` nhảy tới cuối dòng. `w`, `e`, `0`, `$` cũng có thể kết hợp với lệnh khác, chẳng hạn `de`, `dw`, `d0` và `d$` lần lượt tương ứng với xóa đến cuối từ, xóa đến đầu từ tiếp theo, xóa đến đầu dòng và xóa đến cuối dòng.
 
-命令模式下按<kbd>/</kbd>，下方即会出现查找框，输入需要查找的字符，按回车后就能查看搜索结果．如果有多个查找结果，按<kbd>n</kbd>即可跳至下一个查找结果；按<kbd>N</kbd>可跳至上一个．
+Trong chế độ lệnh, nhấn <kbd>/</kbd>, phía dưới sẽ xuất hiện ô tìm kiếm. Nhập ký tự cần tìm rồi nhấn Enter để xem kết quả tìm kiếm. Nếu có nhiều kết quả, nhấn <kbd>n</kbd> để nhảy tới kết quả tiếp theo; nhấn <kbd>N</kbd> để nhảy tới kết quả trước đó.
 
-命令模式下按<kbd>\*</kbd>可以查找当前光标下的单词．
+Trong chế độ lệnh, nhấn <kbd>\*</kbd> để tìm từ dưới con trỏ hiện tại.
 
-在输入某个命令前，输入一个数字 n 的话，命令就会重复 n 次．
+Nếu trước khi nhập một lệnh bạn nhập một số `n`, lệnh đó sẽ được lặp lại `n` lần.
 
-### 输入模式 (Insert Mode)
+### Chế độ nhập (Insert Mode)
 
-在命令模式下按下<kbd>i</kbd>就进入了输入模式，按<kbd>Esc</kbd>键可以返回到命令模式．
+Trong chế độ lệnh, nhấn <kbd>i</kbd> để vào chế độ nhập; nhấn <kbd>Esc</kbd> để quay lại chế độ lệnh.
 
-在输入模式中，可以使用以下按键：
+Trong chế độ nhập, có thể dùng các phím sau:
 
--   字符按键以及<kbd>Shift</kbd>组合，输入字符
--   <kbd>ENTER</kbd>，回车键，换行
--   <kbd>BACK SPACE</kbd>，退格键，删除光标前一个字符
--   <kbd>DEL</kbd>，删除键，删除光标后一个字符
--   方向键，在文本中移动光标
--   <kbd>HOME/END</kbd>，移动光标到行首/行尾
--   <kbd>Page Up/Page Down</kbd>，上/下翻页
--   <kbd>Insert</kbd>，切换光标为输入/替换模式，光标将变成竖线/下划线
--   <kbd>ESC</kbd>，退出输入模式，切换到命令模式
+-   Phím ký tự và tổ hợp với <kbd>Shift</kbd> để nhập ký tự.
+-   <kbd>ENTER</kbd>, phím Enter, xuống dòng.
+-   <kbd>BACK SPACE</kbd>, phím Backspace, xóa ký tự trước con trỏ.
+-   <kbd>DEL</kbd>, phím Delete, xóa ký tự sau con trỏ.
+-   Phím mũi tên, di chuyển con trỏ trong văn bản.
+-   <kbd>HOME/END</kbd>, di chuyển con trỏ tới đầu/cuối dòng.
+-   <kbd>Page Up/Page Down</kbd>, lật trang lên/xuống.
+-   <kbd>Insert</kbd>, chuyển con trỏ giữa chế độ nhập/thay thế; con trỏ sẽ đổi thành vạch dọc/gạch dưới.
+-   <kbd>ESC</kbd>, thoát chế độ nhập và chuyển sang chế độ lệnh.
 
-在输入模式下按<kbd>Ctrl</kbd>+<kbd>o</kbd>即可进入「输入 - 命令模式」，执行完一次操作后又会自动回到输入模式．
+Trong chế độ nhập, nhấn <kbd>Ctrl</kbd>+<kbd>o</kbd> để vào "chế độ nhập - lệnh"; sau khi thực hiện xong một thao tác, Vim sẽ tự quay lại chế độ nhập.
 
-### 底线命令行模式
+### Chế độ dòng lệnh cuối
 
-命令模式下按<kbd>:</kbd>，进入底线命令模式．
+Trong chế độ lệnh, nhấn <kbd>:</kbd> để vào chế độ dòng lệnh cuối.
 
-底线命令模式可以输入单个或多个字符的命令，可用的命令非常多．
+Chế độ dòng lệnh cuối có thể nhập các lệnh gồm một hoặc nhiều ký tự; số lệnh có thể dùng rất nhiều.
 
-在底线命令模式中，基本的命令有：
+Trong chế độ dòng lệnh cuối, các lệnh cơ bản gồm:
 
--   `:help`/`:h` 查看英文版 Vim 在线帮助文档．
--   `:w` 保存文件．
--   `:q` 退出 Vim．
--   `:wq` 保存文件，退出 Vim．
--   `:q!`/`:!q` 强制退出 Vim，不保存修改．
--   `:e filename` 可以打开当前目录下的指定文件．
--   `:s` 命令是替换．
+-   `:help`/`:h` xem tài liệu trợ giúp trực tuyến tiếng Anh của Vim.
+-   `:w` lưu tệp.
+-   `:q` thoát Vim.
+-   `:wq` lưu tệp rồi thoát Vim.
+-   `:q!`/`:!q` buộc thoát Vim, không lưu sửa đổi.
+-   `:e filename` mở tệp chỉ định trong thư mục hiện tại.
+-   Lệnh `:s` là thay thế.
 
 ```vim
-" 把当前行第一个匹配的 str1 替换成 str2
+" Thay the ket qua khop str1 dau tien trong dong hien tai bang str2
 :s/str1/str2/
-" 把当前行所有的 str1 替换成 str2
+" Thay the tat ca str1 trong dong hien tai bang str2
 :s/str1/str2/g
-" 把当前行所有的 str1 替换成 str2，在替换前询问
+" Thay the tat ca str1 trong dong hien tai bang str2, hoi truoc khi thay
 :s/str1/str2/gc
-" 把第 x1 行至 x2 行中，每一行第一个匹配的 str1 替换成 str2
+" Trong cac dong tu x1 den x2, thay the ket qua khop str1 dau tien moi dong bang str2
 :x1,x2 s/str1/str2/
-" 把第 x1 行至 x2 行中所有的 str1 替换成 str2
+" Trong cac dong tu x1 den x2, thay the tat ca str1 bang str2
 :x1,x2 s/str1/str2/g
-" 第 x1 行至 x2 行中所有的 str1 替换成 str2，在替换前询问
+" Trong cac dong tu x1 den x2, thay the tat ca str1 bang str2, hoi truoc khi thay
 :x1,x2 s/str1/str2/gc
-" 把所有行第一个匹配的 str1 替换成 str2
+" Thay the ket qua khop str1 dau tien tren moi dong bang str2
 :%s/str1/str2/
-" 把全文件所有的 str1 替换成 str2
+" Thay the tat ca str1 trong toan bo tep bang str2
 :%s/str1/str2/g
-" 把全文件所有的 str1 替换成 str2，在替换前询问
+" Thay the tat ca str1 trong toan bo tep bang str2, hoi truoc khi thay
 :%s/str1/str2/gc
 ```
 
-如果命令形式是 `:! command`，则命令将在 bash 终端执行．
+Nếu dạng lệnh là `:! command`, lệnh đó sẽ được thực thi trong terminal bash.
 
-按<kbd>Esc</kbd>键可以退出底线命令模式．
+Nhấn <kbd>Esc</kbd> để thoát chế độ dòng lệnh cuối.
 
-### 可视模式 (Visual mode)
+### Chế độ trực quan (Visual mode)
 
-按 `v` 进入可视模式，多用于选中区域．按 `V`（`Shift+v`）进入行可视模式，用于选中行．
+Nhấn `v` để vào chế độ trực quan, thường dùng để chọn vùng. Nhấn `V` (`Shift+v`) để vào chế độ trực quan theo dòng, dùng để chọn dòng.
 
-按<kbd>Ctrl</kbd>+<kbd>v</kbd>或<kbd>Ctrl</kbd>+<kbd>q</kbd>进入块可视模式 (visual block)．
+Nhấn <kbd>Ctrl</kbd>+<kbd>v</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>q</kbd> để vào chế độ trực quan theo khối (visual block).
 
-进入块可视模式后，按<kbd>I</kbd>或<kbd>A</kbd>进入插入模式（相当于 `i` 和 `a`），退出插入模式后对本行所做的改动将被应用到选中的每一行同一位置．常用于批量添加注释．
+Sau khi vào chế độ trực quan theo khối, nhấn <kbd>I</kbd> hoặc <kbd>A</kbd> để vào chế độ chèn (tương đương `i` và `a`); sau khi thoát chế độ chèn, thay đổi đã thực hiện trên dòng hiện tại sẽ được áp dụng vào cùng vị trí trên mọi dòng được chọn. Cách này thường dùng để thêm chú thích hàng loạt.
 
-选中后输入 `y` 或 `d` 亦可执行相应命令．
+Sau khi chọn, nhập `y` hoặc `d` cũng có thể thực hiện lệnh tương ứng.
 
-三种可视模式可以通过按键相互转化．
+Ba chế độ trực quan có thể chuyển đổi qua lại bằng phím.
 
-## Vim 的快捷键
+## Phím tắt của Vim
 
-可参考 [史上最全 Vim 快捷键键位图—入门到进阶](https://cenalulu.github.io/linux/all-vim-cheatsheat/)
+Có thể tham khảo [sơ đồ phím tắt Vim đầy đủ từ nhập môn đến nâng cao](https://cenalulu.github.io/linux/all-vim-cheatsheat/).
 
-## 进阶知识
+## Kiến thức nâng cao
 
-### `.` 命令
+### Lệnh `.`
 
-Vim 的使用者不可避免地会抗拒重复的文本修改，因为 Vim 注定比其他编辑器会多出两次按键——<kbd>Esc</kbd>与<kbd>i</kbd>．但是，Vim 其实提供了重复命令 `.`，它适用于重复的添加、修改、删除文本操作．
+Người dùng Vim khó tránh khỏi cảm giác ngại khi phải lặp lại các sửa đổi văn bản, vì so với trình soạn thảo khác, Vim thường phải thêm hai lần nhấn phím: <kbd>Esc</kbd> và <kbd>i</kbd>. Tuy nhiên, Vim cung cấp lệnh lặp `.`; lệnh này phù hợp để lặp các thao tác thêm, sửa, xóa văn bản.
 
-`.` 命令可以重复上次执行的命令．但是这个「命令」并不只限于单一的命令，它也可以是 `数字 + 命令` 的组合；`进入插入模式 + 输入文本 + Esc` 也是命令的一种．所以，适当使用 `.` 命令才能达到最高的效率．
+Lệnh `.` có thể lặp lại lệnh vừa thực hiện. Nhưng "lệnh" này không chỉ giới hạn ở một lệnh đơn lẻ; nó cũng có thể là tổ hợp `số + lệnh`; `vào chế độ nhập + nhập văn bản + Esc` cũng là một dạng lệnh. Vì vậy, dùng `.` hợp lý mới đạt hiệu suất cao nhất.
 
-例如，如下代码的每一行末尾都少了分号：
+Ví dụ, mỗi dòng trong đoạn mã sau đều thiếu dấu chấm phẩy ở cuối:
 
 ```text
 int a, b
@@ -159,15 +159,15 @@ cout << a + b
 return 0
 ```
 
-将 `.` 与搭配移动到行尾插入命令 `A` 使用，就能高效地补上末尾的分号．
+Kết hợp `.` với lệnh `A` để di chuyển tới cuối dòng rồi chèn, ta có thể thêm dấu chấm phẩy ở cuối dòng rất hiệu quả.
 
 ```vim
 A;<Esc>
-" 重复下面的命令
+" Lap lai lenh ben duoi
 j.
 ```
 
-再例如，如下代码中，后面五个赋值语句的数组名全部写错了：
+Ví dụ khác, trong đoạn mã sau, tên mảng ở năm phép gán phía sau đều bị viết sai:
 
 ```cpp
 int check() {
@@ -177,64 +177,64 @@ int check() {
 }
 ```
 
-一个个改过于麻烦，而命令行模式的 `s` 命令又会全部改掉．
+Sửa từng chỗ một thì phiền, còn lệnh `s` trong chế độ dòng lệnh lại sẽ sửa tất cả.
 
-第一种改法是搭配普通模式下的 `s` 命令（删除光标处字符并进入插入模式）使用．来到第一个错误的数组名首字母处，按下 `3s`/`cw`，输入正确的数组名并退出．之后把光标一个个移过去，再使用 `.` 命令．
+Cách sửa thứ nhất là dùng kết hợp với lệnh `s` trong chế độ thường (xóa ký tự tại con trỏ rồi vào chế độ nhập). Tới chữ cái đầu của tên mảng sai đầu tiên, nhấn `3s`/`cw`, nhập tên mảng đúng rồi thoát. Sau đó lần lượt di chuyển con trỏ tới từng chỗ và dùng lệnh `.`.
 
-第二种比较节省时间的改法是利用查找模式修改．键入 `/bok`，接着按下回车，并使用 `n` 键来到第一个错误的数组名首字母处，键入 `3s 新数组名 <Esc>`，最后重复 `n.`．
+Cách sửa thứ hai tiết kiệm thời gian hơn là dùng chế độ tìm kiếm để sửa. Gõ `/bok`, nhấn Enter, dùng phím `n` tới chữ cái đầu của tên mảng sai đầu tiên, gõ `3s tên_mảng_mới <Esc>`, cuối cùng lặp lại `n.`.
 
-第三种改法是简易查找命令 `f`．在一行中普通模式下，`f + 单个字符` 即可查找此行中出现的这个字符并将光标移至字符处；按 `;` 查找下一个，`,` 查找上一个．所以对于上面的代码，只需键入 `fb;;;` 之后进入插入模式修改，然后 `;.` 即可．这种改法适用于只需行内移动的情况．
+Cách sửa thứ ba là lệnh tìm kiếm đơn giản `f`. Trong chế độ thường trên một dòng, `f + một ký tự` sẽ tìm ký tự đó trong dòng này và đưa con trỏ tới vị trí ký tự; nhấn `;` để tìm tiếp, `,` để tìm trước đó. Vì vậy với đoạn mã trên, chỉ cần gõ `fb;;;`, sau đó vào chế độ nhập để sửa, rồi dùng `;.` là được. Cách này phù hợp khi chỉ cần di chuyển trong cùng một dòng.
 
-### 宏
+### Macro
 
-Vim 的宏功能可以重复任意长的命令．
+Chức năng macro của Vim có thể lặp lại một chuỗi lệnh dài tùy ý.
 
-使用宏之前要先「录制」，即把一串按键操作录下来再回放，这样就达到了重复的效果．录制的方法很简单，普通模式下键入 `q` 开始录制．下一步，为录制的宏指定一个执行的命令键，可以按下 26 个字母中的任意一个来指定．这时左下方会显示 `记录中 @刚刚选择的字母`．然后就可以开始录制命令了．同理，普通模式下按 `q` 暂停录制．
+Trước khi dùng macro cần "ghi" nó, tức là ghi lại một chuỗi thao tác phím rồi phát lại để đạt hiệu quả lặp. Cách ghi rất đơn giản: trong chế độ thường, gõ `q` để bắt đầu ghi. Bước tiếp theo là chỉ định một phím lệnh cho macro được ghi; có thể nhấn bất kỳ chữ cái nào trong 26 chữ cái. Lúc này góc dưới bên trái sẽ hiển thị `recording @chữ_cái_vừa_chọn`. Sau đó có thể bắt đầu ghi lệnh. Tương tự, trong chế độ thường nhấn `q` để dừng ghi.
 
-使用方法为按下 `:` 进入命令行模式，键入 `@选择的记录字母`，然后之前录制的命令就被调用了．
+Cách dùng là nhấn `:` để vào chế độ dòng lệnh, gõ `@chữ_cái_đã_chọn`, rồi lệnh đã ghi trước đó sẽ được gọi.
 
-将 `.` 和宏组合，即录制宏 → 调用宏 →`.` 重复命令 → 数字 +`.`，可以达到非常高的效率．
+Kết hợp `.` và macro, tức là ghi macro -> gọi macro -> dùng `.` lặp lệnh -> dùng `số + .`, có thể đạt hiệu suất rất cao.
 
-### normal 命令
+### Lệnh normal
 
-该命令与普通模式有关，效果是在指定行重复命令．
+Lệnh này liên quan đến chế độ thường; hiệu quả của nó là lặp lệnh trên các dòng chỉ định.
 
-按 `:` 进入命令行模式，输入如下命令：
+Nhấn `:` để vào chế độ dòng lệnh, rồi nhập lệnh sau:
 
 ```vim
 :a,b normal command
 ```
 
-或者：
+hoặc:
 
 ```vim
 :a,b norm command
 ```
 
-以上命令的意思是在普通模式下，对 a\~b 行执行 `command` 命令．
+Ý nghĩa của các lệnh trên là thực thi lệnh `command` trong chế độ thường trên các dòng từ `a` đến `b`.
 
-由于 `normal` 命令可以被 `.` 命令重复调用，且其易于理解，它的使用频率甚至更高于宏．
+Vì lệnh `normal` có thể được lệnh `.` gọi lặp lại, lại dễ hiểu, tần suất sử dụng của nó thậm chí còn cao hơn macro.
 
-### 数字 +`.`+ 宏 + normal
+### Số + `.` + macro + normal
 
-以上三种命令可以组合使用．例如：
+Ba loại lệnh trên có thể kết hợp với nhau. Ví dụ:
 
-> 我下载了一本书，我需要它的每一个章节都变成「标题」，以方便转换成 mobi 之类的格式，或者方便生成 TOC 目录跳转，怎么办呢？
+> Tôi tải một cuốn sách, cần biến mỗi chương của nó thành "tiêu đề" để tiện chuyển thành định dạng như mobi, hoặc tiện sinh mục lục TOC để nhảy tới. Làm thế nào?
 
-以下是用 Vim 处理的过程：
+Dưới đây là quá trình xử lý bằng Vim:
 
-1.  按下<kbd>/</kbd>调出查找框，输入正则表达式进行查找；
-2.  用 `q` 命令开始录制宏；
-3.  键入 `I#` 命令，然后按下<kbd>ESC</kbd>；
-4.  用 `q` 命令结束宏录制；
-5.  键入 `normal n@字母` 转到下一处并重复上一步操作；
-6.  键入 `数字 + .` 多次重复．
+1.  Nhấn <kbd>/</kbd> để mở ô tìm kiếm, nhập biểu thức chính quy để tìm.
+2.  Dùng lệnh `q` bắt đầu ghi macro.
+3.  Gõ lệnh `I#`, rồi nhấn <kbd>ESC</kbd>.
+4.  Dùng lệnh `q` kết thúc ghi macro.
+5.  Gõ `normal n@chữ_cái` để chuyển tới vị trí tiếp theo và lặp lại bước trước đó.
+6.  Gõ `số + .` để lặp lại nhiều lần.
 
-## 外部链接
+## Liên kết ngoài
 
--   [Vim 官网](https://www.vim.org/)
--   [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)
--   [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/)
+-   [Trang chủ Vim](https://www.vim.org/)
+-   [Cấu hình do tác giả gốc cung cấp](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)
+-   [Gỡ lỗi Vim: nhập môn termdebug](https://fzheng.me/2018/05/28/termdebug/)
 -   [Vim scripting cheatsheet](https://devhints.io/vimscript)
 -   [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com)
--   [Linux vi/vim | 菜鸟教程](https://www.runoob.com/linux/linux-vim.html)
+-   [Linux vi/vim | Runoob Tutorial](https://www.runoob.com/linux/linux-vim.html)

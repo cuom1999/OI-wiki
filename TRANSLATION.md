@@ -386,6 +386,8 @@ MkDocs source layout intact.
   setup page.
 - `docs/tools/editor/vscode.md`: translated the VS Code compile/run, debugging,
   clangd, and editing workflow page.
+- `docs/tools/editor/vim.md`: translated the Vim editor introduction and
+  command tutorial.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
