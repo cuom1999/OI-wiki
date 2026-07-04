@@ -34,11 +34,11 @@ double simplex() {
     int e = 0, l = 0;
     for (e = 1; e <= n; e++)
       if (c[e] > (double)0) break;
-    if (e == n + 1) return v;  // Khi do v chinh la nghiem toi uu.
+    if (e == n + 1) return v;  // Khi đó v chính là nghiệm tối ưu.
     double mn = INF;
     for (int i = 1; i <= m; i++) {
       if (a[i][e] > (double)0 && mn > b[i] / a[i][e]) {
-        mn = b[i] / a[i][e];  // Tim l rang buoc chat nhat voi e nay.
+        mn = b[i] / a[i][e];  // Tìm l ràng buộc chặt nhất với e này.
         l = i;
       }
     }

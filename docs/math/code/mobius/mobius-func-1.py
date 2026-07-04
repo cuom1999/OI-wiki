@@ -5,12 +5,12 @@ def mu(n):
     while i * i <= n:
         if n % i == 0:
             n //= i
-            # Kiem tra n co chua binh phuong cua so nguyen to hay khong
+            # Kiểm tra n có chứa bình phương của số nguyên tố hay không
             if n % i == 0:
                 return 0
             res = -res
         i += 1
-    # Thua so con lai neu co thi phai la so nguyen to
+    # Thừa số còn lại nếu có thì phải là số nguyên tố
     if n > 1:
         res = -res
     return res
