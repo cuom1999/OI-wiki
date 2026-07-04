@@ -10,10 +10,10 @@
     left: if calc.rem(x, (8 / (calc.pow(2, y)))) == 1 { 0.6pt },
     right: if calc.rem(x, (8 / (calc.pow(2, y)))) == 0 { 0.6pt },
   ),
-  [*原数组*], text(red)[$1$], $5$, $6$, text(red)[$3$], $8$, text(red)[$4$], $4$, text(red)[$2$],
-  [*第一层*], text(red)[$1$], $3$, $4$, text(red)[$2$], text(red)[$5$], $6$, $8$, text(red)[$4$],
-  [*第二层*], text(red)[$1$], $2$, text(red)[$3$], $4$, $5$, text(red)[$4$], text(red)[$6$], $8$,
-  [#text(8pt)[（$log n$）]*第三层*], $1$, $2$, $3$, $4$, $4$, $5$, $6$, $8$,
+  [*Mảng gốc*], text(red)[$1$], $5$, $6$, text(red)[$3$], $8$, text(red)[$4$], $4$, text(red)[$2$],
+  [*Tầng 1*], text(red)[$1$], $3$, $4$, text(red)[$2$], text(red)[$5$], $6$, $8$, text(red)[$4$],
+  [*Tầng 2*], text(red)[$1$], $2$, text(red)[$3$], $4$, $5$, text(red)[$4$], text(red)[$6$], $8$,
+  [#text(8pt)[($log n$)]*Tầng 3*], $1$, $2$, $3$, $4$, $4$, $5$, $6$, $8$,
 )
 
 #pagebreak()

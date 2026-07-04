@@ -57,7 +57,7 @@
     create_edge("D", "G", style: (stroke: red + 2pt)),
     create_edge("G", "H", style: (stroke: red + 2pt)),
   ),
-  [原树T],
+  [Cây gốc T],
 )
 
 #let compress_g = graph(

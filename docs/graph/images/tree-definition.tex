@@ -17,18 +17,18 @@
                 child {node (G) {}}
                 child {node (H) {}
                     child {node (I) {}
-                        node[left=5mm,rectangle,draw=none,color=red] {$a$ 的后代}}
+                        node[left=5mm,rectangle,draw=none,color=red] {Hậu duệ của $a$}}
                     child {node (J) {}}}}
-            node[right=5mm,rectangle,draw=none] {$a$ 的父节点}}
-        node[right=5mm,rectangle,draw=none,text=teal] {$a$ 的祖先};
+            node[right=5mm,rectangle,draw=none] {Cha của $a$}}
+        node[right=5mm,rectangle,draw=none,text=teal] {Tổ tiên của $a$};
 
     \draw[dash pattern=on 4pt off 2pt] (0,-3cm)
         circle[x radius=1.5cm,y radius=0.75cm]
-        node[left=1.5cm] {$a$ 的兄弟};
+        node[left=1.5cm] {Anh em của $a$};
 
     \draw[dash pattern=on 4pt off 2pt] (2.25cm,-4.5cm)
         circle[x radius=1.5cm,y radius=0.75cm]
-        node[left=1.5cm] {$a$ 的子节点};
+        node[left=1.5cm] {Con của $a$};
 
 \end{tikzpicture}
 \end{document}

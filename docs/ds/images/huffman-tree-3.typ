@@ -44,7 +44,7 @@
       inset: 10pt,
       align: (center, center, center),
       table.header(
-        [#zh("字符")], [#zh("频率")], [#zh("编码")]
+        [#zh("Ký tự")], [#zh("Tần suất")], [#zh("Mã")]
       ),
       [A], [35], [11],
       [B], [25], [00],

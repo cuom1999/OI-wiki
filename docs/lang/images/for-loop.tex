@@ -17,18 +17,18 @@
 \begin{document}
 \begin{tikzpicture}
 
-\node[start] (init) {初始化};
-\node[decision, right=1cm of init] (condition) {判断条件成立};
-\node[process, above=1cm of condition] (increment) {更新};
-\node[process, above=1cm of increment] (body) {循环体};
-\node[stop, below=1cm of condition] (end) {结束};
+\node[start] (init) {Khởi tạo};
+\node[decision, right=1cm of init] (condition) {Điều kiện đúng};
+\node[process, above=1cm of condition] (increment) {Cập nhật};
+\node[process, above=1cm of increment] (body) {Thân vòng lặp};
+\node[stop, below=1cm of condition] (end) {Kết thúc};
 
 \draw[->] (init) -- (condition);
 \draw[->] (body) -- (increment);
 \draw[->] (increment) -- (condition);
 \draw[->] (condition.east)
-    -- ++(1cm,0) |- node[right, pos=0.25] {是} (body);
-\draw[->] (condition) -- node[right] {否} (end);
+    -- ++(1cm,0) |- node[right, pos=0.25] {Đúng} (body);
+\draw[->] (condition) -- node[right] {Sai} (end);
 
 \end{tikzpicture}
 \end{document}

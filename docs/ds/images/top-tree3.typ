@@ -57,7 +57,7 @@
     create_edge("D", "G"),
     create_edge("G", "H"),
   ),
-  [原树T],
+  [Cây gốc T],
 )
 
 #let compress_g = graph(

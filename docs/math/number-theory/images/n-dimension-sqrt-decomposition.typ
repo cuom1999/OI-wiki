@@ -58,6 +58,6 @@
     top + left,
     dx: (dx0 * 1cm - 9 * 7.2pt) / 2,
     dy: 1.8cm,
-    text()[蓝色细线代表数论分\ 块的边界\ 这样分就可以让每一\ 块里面的 $floor(n_j / i)$ 相同],
+    text()[Các đường mảnh màu xanh\ biểu thị biên của chia khối\ trong số học; chia như vậy\ giúp $floor(n_j / i)$ giống nhau\ trong mỗi khối],
   )
 ]

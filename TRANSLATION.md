@@ -358,6 +358,12 @@ MkDocs source layout intact.
   algorithm variants, hill climbing, simulated annealing, fractional
   programming, majority element, DSU space optimization, and two-pointer cycle
   detection examples.
+- `docs/**/images/*.tex` and `docs/**/images/*.typ`: translated visible labels
+  and explanatory source comments in the first text-based diagram source batch,
+  covering loop flowcharts, prefix sums, tree terminology, virtual trees, DSU
+  compression, Splay rotations, Huffman coding, Top Tree, block decomposition,
+  half-plane intersection, n-dimensional sqrt decomposition, and KMP prefix
+  function diagrams.
 - `docs/topic/rmq.md`, `docs/topic/dsu-app.md`, `docs/topic/bracket.md`,
   `docs/topic/segment-tree-offline.md`: translated topic pages for RMQ, DSU
   applications, bracket sequences, and segment-tree divide-and-conquer over
