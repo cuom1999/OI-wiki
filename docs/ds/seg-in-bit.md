@@ -1,37 +1,37 @@
 author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, xyf007
 
-[静态区间 k 小值（POJ 2104 K-th Number）](http://poj.org/problem?id=2104) 的问题可以用 [权值线段树](./persistent-seg.md) 在 $O(n\log n)$ 的时间复杂度内解决．
+[Giá trị nhỏ thứ k trên đoạn tĩnh (POJ 2104 K-th Number)](http://poj.org/problem?id=2104) có thể được giải bằng [cây phân đoạn theo giá trị](./persistent-seg.md) với độ phức tạp thời gian $O(n\log n)$.
 
-如果区间变成动态的呢？即，如果还要求支持一种操作：单点修改某一位上的值，又该怎么办呢？
+Nếu đoạn trở thành động thì sao? Nói cách khác, nếu còn phải hỗ trợ thao tác sửa giá trị tại một vị trí đơn lẻ thì cần làm thế nào?
 
-??? note "例题 [二逼平衡树（树套树）](https://loj.ac/problem/106)"
-    维护一个有序数列，其中需要提供以下操作：
-    
-    -   查询 $x$ 在区间内的排名；
-    -   查询区间内排名为 $k$ 的值；
-    -   修改某一位置上的数值；
-    -   查询 $x$ 在区间内的前驱（前驱定义为小于 $x$，且最大的数）；
-    -   查询 $x$ 在区间内的后继（后继定义为大于 $x$，且最小的数）．
+??? note "Bài ví dụ [LOJ 106 Cây cân bằng (cây lồng cây)](https://loj.ac/problem/106)"
+    Duy trì một dãy số có thứ tự, trong đó cần hỗ trợ các thao tác sau:
 
-??? note "例题 [洛谷 P2617 Dynamic Rankings](https://www.luogu.com.cn/problem/P2617)"
-    给定一个含有 $n$ 个数的序列 $a_1,a_2 \dots a_n$，需要支持两种操作：
-    
-    -   `Q l r k` 表示查询下标在区间 $[l,r]$ 中的第 $k$ 小的数
-    -   `C x y` 表示将 $a_x$ 改为 $y$
+    -   Truy vấn thứ hạng của $x$ trong đoạn;
+    -   Truy vấn giá trị có thứ hạng $k$ trong đoạn;
+    -   Sửa giá trị tại một vị trí nào đó;
+    -   Truy vấn tiền nhiệm của $x$ trong đoạn (tiền nhiệm được định nghĩa là số lớn nhất nhỏ hơn $x$);
+    -   Truy vấn kế nhiệm của $x$ trong đoạn (kế nhiệm được định nghĩa là số nhỏ nhất lớn hơn $x$).
 
-如果用 [线段树套平衡树](./balanced-in-seg.md) 中所论述的，用线段树套平衡树，即对于线段树的每一个节点，对于其所表示的区间维护一个平衡树，然后用二分来查找 $k$ 小值．由于每次查询操作都要覆盖多个区间，即有多个节点，但是平衡树并不能多个值一起查找，所以时间复杂度是 $O(n\log^3 n)$，并不是最优的．
+??? note "Bài ví dụ [Luogu P2617 Dynamic Rankings](https://www.luogu.com.cn/problem/P2617)"
+    Cho một dãy $a_1,a_2 \dots a_n$ gồm $n$ số, cần hỗ trợ hai thao tác:
 
-优化的思路是把二分答案的操作和查询小于一个值的数的数量两种操作结合起来，使用 **线段树套动态开点权值线段树**，由于所有线段树的结构是相同的，可以在多棵树上同时进行线段树上二分．
+    -   `Q l r k` biểu thị truy vấn số nhỏ thứ $k$ trong các phần tử có chỉ số thuộc đoạn $[l,r]$
+    -   `C x y` biểu thị đổi $a_x$ thành $y$
 
-在修改操作进行时，先在线段树上从上往下跳到被修改的点，删除所经过的点所指向的动态开点权值线段树上的原来的值，然后插入新的值，要经过 $O(\log n)$ 个线段树上的节点，在动态开点权值线段树上一次修改操作是 $O(\log n)$ 的，所以修改操作的时间复杂度为 $O(\log^2 n)$．
+Nếu dùng cách [cây phân đoạn lồng cây cân bằng](./balanced-in-seg.md) đã thảo luận, tức là với mỗi nút của cây phân đoạn, duy trì một cây cân bằng cho đoạn mà nút đó biểu diễn, rồi dùng tìm kiếm nhị phân để tìm giá trị nhỏ thứ $k$. Vì mỗi thao tác truy vấn phải phủ nhiều đoạn, tức là liên quan đến nhiều nút, nhưng cây cân bằng không thể tìm đồng thời nhiều giá trị, nên độ phức tạp thời gian là $O(n\log^3 n)$, chưa phải tối ưu.
 
-在查询答案时，先取出该区间覆盖在线段树上的所有点，然后用类似于静态区间 $k$ 小值的方法，将这些点一起向左儿子或向右儿子跳．如果所有这些点左儿子存储的值大于等于 $k$，则往左跳，否则往右跳．由于最多只能覆盖 $O(\log n)$ 个节点，所以最多一次只有这么多个节点向下跳，时间复杂度为 $O(\log^2 n)$．
+Ý tưởng tối ưu là kết hợp thao tác tìm kiếm nhị phân trên đáp án với thao tác truy vấn số lượng phần tử nhỏ hơn một giá trị, sử dụng **cây phân đoạn lồng cây phân đoạn theo giá trị mở nút động**. Vì cấu trúc của tất cả các cây phân đoạn là giống nhau, ta có thể thực hiện tìm kiếm nhị phân trên cây phân đoạn đồng thời trên nhiều cây.
 
-由于线段树的常数较大，在实现中往往使用常数更小且更方便处理前缀和的 **树状数组** 实现．另外空间复杂度是 $O(n\log^2 n)$ 的，使用时 **注意空间限制**．
+Khi thực hiện thao tác sửa, trước hết đi từ trên xuống dưới trên cây phân đoạn đến điểm cần sửa, xóa giá trị cũ trong cây phân đoạn theo giá trị mở nút động mà mỗi nút đi qua trỏ tới, rồi chèn giá trị mới. Quá trình này đi qua $O(\log n)$ nút trên cây phân đoạn; một lần sửa trên cây phân đoạn theo giá trị mở nút động mất $O(\log n)$, nên độ phức tạp thời gian của thao tác sửa là $O(\log^2 n)$.
 
-给出一种代码实现：
+Khi truy vấn đáp án, trước hết lấy ra tất cả các nút trên cây phân đoạn được đoạn truy vấn phủ, sau đó dùng phương pháp tương tự bài giá trị nhỏ thứ $k$ trên đoạn tĩnh để cho các nút này cùng đi sang con trái hoặc con phải. Nếu tổng các giá trị được lưu ở con trái của tất cả các nút này lớn hơn hoặc bằng $k$, thì đi sang trái, ngược lại đi sang phải. Vì nhiều nhất chỉ phủ $O(\log n)$ nút, nên mỗi lần cũng chỉ có bấy nhiêu nút đi xuống, độ phức tạp thời gian là $O(\log^2 n)$.
 
-??? note "实现"
+Do hằng số của cây phân đoạn khá lớn, trong cài đặt người ta thường dùng **cây Fenwick**, có hằng số nhỏ hơn và xử lý tổng tiền tố thuận tiện hơn. Ngoài ra, độ phức tạp bộ nhớ là $O(n\log^2 n)$, vì vậy khi sử dụng cần **chú ý giới hạn bộ nhớ**.
+
+Dưới đây là một cách cài đặt:
+
+??? note "Cài đặt"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -48,7 +48,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     set<int> ST;
     map<int, int> mp;
     
-    struct segment_tree  // 封装的动态开点权值线段树
+    struct segment_tree  // Cay phan doan theo gia tri mo nut dong duoc dong goi
     {
       int cur, rt[MAXN * 4], sum[MAXN * 60], lc[MAXN * 60], rc[MAXN * 60];
     
@@ -74,7 +74,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
       }
     } st;
     
-    // 树状数组实现
+    // Cai dat cay Fenwick
     namepace fenwick_impl {
       int lowbit(int o) { return (o & (-o)); }
     
@@ -106,7 +106,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     }
     using namespace fenwick_impl;
     
-    // 线段树实现
+    // Cai dat cay phan doan
     namespace segtree_impl {
     void build(int o, int l, int r) {
       st.build(st.rt[o]);

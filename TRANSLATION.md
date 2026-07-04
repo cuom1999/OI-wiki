@@ -245,6 +245,10 @@ MkDocs source layout intact.
   `docs/ds/persistent-heap.md`: translated persistent balanced tree, Trie,
   and mergeable heap pages, plus rendered comments in the persistent Trie
   example.
+- `docs/ds/seg-in-seg.md`, `docs/ds/balanced-in-seg.md`,
+  `docs/ds/seg-in-bit.md`: translated tree-of-data-structures pages covering
+  segment-tree nesting, segment-tree-with-balanced-tree operations, and
+  Fenwick-tree-with-value-segment-tree dynamic ranking.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

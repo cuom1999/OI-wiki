@@ -1,31 +1,31 @@
 author: Chrogeek, HeRaNO, Dev-XYS, Dev-jqe
 
-## 常见用途
+## Công dụng thường gặp
 
-在算法竞赛中，我们有时需要维护多维度信息．在这种时候，我们经常需要树套树来记录信息．
+Trong lập trình thi đấu, đôi khi ta cần duy trì thông tin nhiều chiều. Khi đó, ta thường cần dùng cấu trúc "cây lồng cây" để ghi lại thông tin.
 
-## 实现原理
+## Nguyên lý cài đặt
 
-我们考虑用树套树如何实现在二维平面上进行单点修改，区域查询．我们考虑外层的线段树，最底层的 $1$ 到 $n$ 个节点的子树，分别代表第 $1$ 到第 $n$ 行的线段树．那么这些底层的节点对应的父节点，就代表其两个子节点的子树所在的一片区域．
+Xét cách dùng cây lồng cây để thực hiện sửa một điểm và truy vấn vùng trên mặt phẳng hai chiều. Ta dùng cây phân đoạn ở tầng ngoài; các cây con tại $1$ đến $n$ nút đáy lần lượt biểu diễn cây phân đoạn của hàng thứ $1$ đến hàng thứ $n$. Khi đó, nút cha tương ứng của các nút đáy này biểu diễn một vùng bao gồm hai vùng con của nó.
 
-## 性质
+## Tính chất
 
-### 空间复杂度
+### Độ phức tạp không gian
 
-通常情况下，我们不可能对于外层线段树的每一个结点都建立一颗子线段树，空间需求过大．树套树一般采取动态开点的策略．单次修改，我们会涉及到外层线段树的 $\log{n}$ 个节点，且对于每个节点的子树涉及 $\log{n}$ 个节点，所以单次修改产生的空间最多为 $\log^2{n}$．
+Thông thường, ta không thể xây một cây phân đoạn con cho mọi nút của cây phân đoạn ngoài, vì yêu cầu không gian quá lớn. Cây lồng cây thường dùng chiến lược mở nút động. Với một lần sửa, ta đi qua $\log{n}$ nút của cây phân đoạn ngoài; với mỗi nút đó, cây con của nó lại đi qua $\log{n}$ nút, nên không gian phát sinh bởi một lần sửa nhiều nhất là $\log^2{n}$.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-对于询问操作，我们考虑我们在外层线段树上进行 $\log{n}$ 次操作，每次操作会在一个内层线段树上进行 $\log{n}$ 次操作，所以时间复杂度为 $\log^2{n}$．
-修改操作，与询问操作复杂度相同，也为 $\log^2{n}$．
+Với thao tác truy vấn, ta thực hiện $\log{n}$ thao tác trên cây phân đoạn ngoài; mỗi thao tác lại thực hiện $\log{n}$ thao tác trên một cây phân đoạn trong, nên độ phức tạp thời gian là $\log^2{n}$.
+Thao tác sửa có cùng độ phức tạp với truy vấn, cũng là $\log^2{n}$.
 
-## 经典例题
+## Bài ví dụ kinh điển
 
-[陌上花开](https://www.luogu.com.cn/problem/P3810) 将第一维排序处理，然后用树套树维护第二维和第三维．
+[Mạch thượng hoa khai](https://www.luogu.com.cn/problem/P3810) sắp xếp theo chiều thứ nhất, rồi dùng cây lồng cây để duy trì chiều thứ hai và chiều thứ ba.
 
-## 示例代码
+## Mã ví dụ
 
-第二维查询
+Truy vấn chiều thứ hai
 
 ```cpp
 int tree_query(int k, int l, int r, int x) {
@@ -38,7 +38,7 @@ int tree_query(int k, int l, int r, int x) {
 }
 ```
 
-第二维修改
+Sửa chiều thứ hai
 
 ```cpp
 void tree_insert(int &k, int l, int r, int x) {
@@ -53,7 +53,7 @@ void tree_insert(int &k, int l, int r, int x) {
 }
 ```
 
-第三维查询
+Truy vấn chiều thứ ba
 
 ```cpp
 int vec_query(int k, int l, int r, int x, int y) {
@@ -66,7 +66,7 @@ int vec_query(int k, int l, int r, int x, int y) {
 }
 ```
 
-第三维修改
+Sửa chiều thứ ba
 
 ```cpp
 void vec_insert(int &k, int l, int r, int loc) {
@@ -79,6 +79,6 @@ void vec_insert(int &k, int l, int r, int loc) {
 }
 ```
 
-## 相关算法
+## Thuật toán liên quan
 
-面对多维度信息的题目时，如果题目没有要求强制在线，我们还可以考虑 **CDQ 分治**，或者 **整体二分** 等分治算法，来避免使用高级数据结构，减少代码实现难度．
+Khi gặp bài toán có thông tin nhiều chiều, nếu đề không bắt buộc xử lý trực tuyến, ta cũng có thể cân nhắc các thuật toán chia để trị như **chia để trị CDQ** hoặc **nhị phân song song** để tránh dùng cấu trúc dữ liệu nâng cao và giảm độ khó cài đặt.

@@ -1,43 +1,43 @@
 author: Dev-jqe, HeRaNO, huaruoji
 
-## 常见用途
+## Công dụng thường gặp
 
-在算法竞赛中，我们有时需要维护多维度信息．在这种时候，我们经常需要树套树来记录信息．当需要维护前驱，后继，第 $k$ 大，某个数的排名，或者插入删除的时候，我们通常需要使用平衡树来满足我们的需求，即线段树套平衡树．
+Trong lập trình thi đấu, đôi khi ta cần duy trì thông tin nhiều chiều. Khi đó, ta thường cần dùng cấu trúc "cây lồng cây" để ghi lại thông tin. Khi cần duy trì tiền nhiệm, kế nhiệm, phần tử lớn thứ $k$, thứ hạng của một số, hoặc thao tác chèn/xóa, ta thường dùng cây cân bằng để đáp ứng nhu cầu đó, tức cây phân đoạn lồng cây cân bằng.
 
-## 过程
+## Quy trình
 
-我们以 **二逼平衡树** 为例，来解释实现原理．
+Ta lấy bài **cây cân bằng thông thường nâng cao** làm ví dụ để giải thích nguyên lý cài đặt.
 
-关于树套树的构建，我们对于外层线段树正常建树，对于线段树上的某一个节点，建立一棵平衡树，包含该节点所覆盖的序列．具体操作时我们可以将序列元素一个个插入，每经过一个线段树节点，就将该元素加入到该节点的平衡树中．
+Khi xây cây lồng cây, ta xây cây phân đoạn ngoài như bình thường. Với mỗi nút trên cây phân đoạn, xây một cây cân bằng chứa đoạn dãy mà nút đó bao phủ. Khi thao tác cụ thể, có thể lần lượt chèn từng phần tử của dãy; mỗi khi đi qua một nút cây phân đoạn, thêm phần tử đó vào cây cân bằng của nút này.
 
-操作一，求某区间中某值的排名：我们对于外层线段树正常操作，对于在某区间中的节点的平衡树，我们返回平衡树中比该值小的元素个数，合并区间时，我们将小的元素个数求和即可．最后将返回值 $+1$，即为某值在某区间中的排名．
+Thao tác 1, tìm thứ hạng của một giá trị trong một khoảng: thao tác bình thường trên cây phân đoạn ngoài. Với cây cân bằng của các nút nằm trong khoảng cần xét, trả về số phần tử nhỏ hơn giá trị đó trong cây cân bằng. Khi gộp các đoạn, chỉ cần cộng các số lượng phần tử nhỏ hơn. Cuối cùng lấy giá trị trả về cộng $1$, đó là thứ hạng của giá trị trong khoảng.
 
-操作二，求某区间中排名为 $k$ 的值：我们可以采用二分策略．因为一个元素可能存在多个，其排名为一区间，且有些元素原序列不存在．所以我们采取和操作一类似的思路，我们用小于该值的元素个数作为参考进行二分，即可得解．
+Thao tác 2, tìm giá trị có thứ hạng $k$ trong một khoảng: có thể dùng chiến lược nhị phân. Vì một phần tử có thể xuất hiện nhiều lần, thứ hạng của nó là một đoạn, và một số giá trị có thể không tồn tại trong dãy ban đầu. Do đó ta dùng ý tưởng tương tự thao tác 1: dùng số phần tử nhỏ hơn giá trị đang xét làm căn cứ để nhị phân, từ đó tìm được đáp án.
 
-操作三，将某个数替换为另外一个数：我们只要在所有包含某数的平衡树中删除某数，然后再插入另外一个数即可．外层依旧正常线段树操作．
+Thao tác 3, thay một số bằng một số khác: chỉ cần xóa số cũ khỏi mọi cây cân bằng chứa nó, rồi chèn số mới vào. Tầng ngoài vẫn thao tác trên cây phân đoạn như bình thường.
 
-操作四，求某区间中某值的前驱：我们对于外层线段树正常操作，对于在某区间中的节点的平衡树，我们返回某值在该平衡树中的前驱，线段树的区间结果合并时，我们取最大值即可．
+Thao tác 4, tìm tiền nhiệm của một giá trị trong một khoảng: thao tác bình thường trên cây phân đoạn ngoài. Với cây cân bằng của các nút nằm trong khoảng cần xét, trả về tiền nhiệm của giá trị đó trong cây cân bằng. Khi gộp kết quả của các đoạn cây phân đoạn, lấy giá trị lớn nhất.
 
-## 性质
+## Tính chất
 
-### 空间复杂度
+### Độ phức tạp không gian
 
-我们每个元素加入 $O(\log n)$ 个平衡树，所以空间复杂度为 $O((n + q)\log{n})$．
+Mỗi phần tử được thêm vào $O(\log n)$ cây cân bằng, nên độ phức tạp không gian là $O((n + q)\log{n})$.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
--   对于 1，3，4 操作，我们考虑我们在外层线段树上进行 $O(\log{n})$ 次操作，每次操作会在一个内层平衡树树上进行 $O(\log{n})$ 次操作，所以时间复杂度为 $O(\log^2{n})$．
--   对于 2 操作，多一个二分过程，为 $O(\log^3{n})$．
+-   Với các thao tác 1, 3, 4, ta thực hiện $O(\log{n})$ thao tác trên cây phân đoạn ngoài; mỗi thao tác lại thực hiện $O(\log{n})$ thao tác trên một cây cân bằng trong, nên độ phức tạp thời gian là $O(\log^2{n})$.
+-   Với thao tác 2, có thêm một quá trình nhị phân, nên độ phức tạp là $O(\log^3{n})$.
 
-## 经典例题
+## Bài ví dụ kinh điển
 
-[二逼平衡树](https://loj.ac/problem/106) 外层线段树，内层平衡树．
+[Cây cân bằng thông thường nâng cao](https://loj.ac/problem/106): tầng ngoài là cây phân đoạn, tầng trong là cây cân bằng.
 
-## 实现
+## Cài đặt
 
-平衡树部分代码请参考 [Splay](./splay.md) 等其他条目．
+Mã phần cây cân bằng có thể tham khảo các mục khác như [Splay](./splay.md).
 
-操作一：
+Thao tác 1:
 
 ```cpp
 int vec_rank(int k, int l, int r, int x, int y, int t) {
@@ -53,7 +53,7 @@ int vec_rank(int k, int l, int r, int x, int y, int t) {
 }
 ```
 
-操作二：
+Thao tác 2:
 
 ```cpp
 int el = 0, er = 100000001, emid;
@@ -67,7 +67,7 @@ while (el != er) {
 printf("%d\n", el - 1);
 ```
 
-操作三：
+Thao tác 3:
 
 ```cpp
 void vec_chg(int k, int l, int r, int loc, int x) {
@@ -81,7 +81,7 @@ void vec_chg(int k, int l, int r, int loc, int x) {
 }
 ```
 
-操作四：
+Thao tác 4:
 
 ```cpp
 int vec_front(int k, int l, int r, int x, int y, int t) {
@@ -94,6 +94,6 @@ int vec_front(int k, int l, int r, int x, int y, int t) {
 }
 ```
 
-## 相关算法
+## Thuật toán liên quan
 
-面对多维度信息的题目时，如果题目没有要求强制在线，我们还可以考虑 [CDQ 分治](../misc/cdq-divide.md)，或者 [整体二分](../misc/parallel-binsearch.md) 等分治算法，来避免使用高级数据结构，减少代码实现难度．
+Khi gặp bài toán có thông tin nhiều chiều, nếu đề không bắt buộc xử lý trực tuyến, ta cũng có thể cân nhắc các thuật toán chia để trị như [chia để trị CDQ](../misc/cdq-divide.md) hoặc [nhị phân song song](../misc/parallel-binsearch.md) để tránh dùng cấu trúc dữ liệu nâng cao và giảm độ khó cài đặt.

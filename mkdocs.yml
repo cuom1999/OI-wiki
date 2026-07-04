@@ -396,11 +396,11 @@ nav:
       - Cây cân bằng bền vững: ds/persistent-balanced.md
       - Trie bền vững: ds/persistent-trie.md
       - Heap có thể hợp nhất bền vững: ds/persistent-heap.md
-    - 树套树:
-      - 线段树套线段树: ds/seg-in-seg.md
-      - 平衡树套线段树: ds/seg-in-balanced.md
-      - 线段树套平衡树: ds/balanced-in-seg.md
-      - 树状数组套权值线段树: ds/seg-in-bit.md
+    - Cây lồng cây:
+      - Cây phân đoạn lồng cây phân đoạn: ds/seg-in-seg.md
+      - Cây cân bằng lồng cây phân đoạn: ds/seg-in-balanced.md
+      - Cây phân đoạn lồng cây cân bằng: ds/balanced-in-seg.md
+      - Cây Fenwick lồng cây phân đoạn theo giá trị: ds/seg-in-bit.md
       - 分块套树状数组: ds/bit-in-block-array.md
     - K-D Tree: ds/kdt.md
     - 动态树:
