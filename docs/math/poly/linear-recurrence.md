@@ -1,30 +1,34 @@
-## 简介
+<span id="&#x7B80;&#x4ECB;"></span>
 
-常系数齐次线性递推数列（又称为 C-finite 或 C-recursive 数列）是常见的一类基础的递推数列．
+## Giới thiệu
 
-对于数列 $\left(a_j\right)_{j\geq 0}$ 和其递推式
+Dãy truy hồi tuyến tính thuần nhất hệ số hằng, còn gọi là dãy C-finite hoặc C-recursive, là một lớp dãy truy hồi cơ bản thường gặp.
+
+Với dãy $\left(a_j\right)_{j\geq 0}$ và công thức truy hồi
 
 $$
 a_n=\sum_{j=1}^{d}c_ja_{n-j},\qquad (n\geq d)
 $$
 
-其中 $c_j$ 不全为零，我们的目标是在给出初值 $a_0,\dots ,a_{d-1}$ 和递推式中的 $c_1,\dots ,c_d$ 后求出 $a_k$．如果 $k\gg d$，我们想要更快速的算法．
+trong đó các $c_j$ không đồng thời bằng không, mục tiêu là tính $a_k$ khi đã biết các giá trị đầu $a_0,\dots ,a_{d-1}$ và các hệ số $c_1,\dots ,c_d$ trong công thức truy hồi. Nếu $k\gg d$, ta muốn có thuật toán nhanh hơn.
 
-这里 $\left(a_j\right)_{j\geq 0}$ 被称为 $d$ 阶的常系数齐次线性递推数列．
+Ở đây $\left(a_j\right)_{j\geq 0}$ được gọi là dãy truy hồi tuyến tính thuần nhất hệ số hằng bậc $d$.
 
-### Fiduccia 算法
+<span id="fiduccia-&#x7B97;&#x6CD5;"></span>
 
-Fiduccia 算法使用多项式取模和快速幂来计算 $a_k$，时间为 $O(\mathsf{M}(d)\log k)$，其中 $O(\mathsf{M}(d))$ 表示两个次数为 $O(d)$ 的多项式相乘的时间．
+### Thuật toán Fiduccia
 
-**算法**：构造多项式 $\Gamma(x):=x^d-\sum_{j=0}^{d-1}c_{d-j}x^j$ 和 $A(x):=\sum_{j=0}^{d-1}a_jx^j$，那么
+Thuật toán Fiduccia dùng phép lấy dư đa thức và lũy thừa nhanh để tính $a_k$ trong thời gian $O(\mathsf{M}(d)\log k)$, trong đó $O(\mathsf{M}(d))$ là thời gian nhân hai đa thức bậc $O(d)$.
+
+**Thuật toán**: xây dựng đa thức $\Gamma(x):=x^d-\sum_{j=0}^{d-1}c_{d-j}x^j$ và $A(x):=\sum_{j=0}^{d-1}a_jx^j$. Khi đó
 
 $$
 a_k=\left\langle x^k\bmod{\Gamma(x)},A(x)\right\rangle
 $$
 
-其中定义 $\left\langle \left(\sum_{j=0}^{n-1}f_jx^j\right),\left(\sum_{j=0}^{n-1}g_jx^j\right) \right\rangle :=\sum_{j=0}^{n-1}f_jg_j$ 为内积．
+trong đó định nghĩa $\left\langle \left(\sum_{j=0}^{n-1}f_jx^j\right),\left(\sum_{j=0}^{n-1}g_jx^j\right) \right\rangle :=\sum_{j=0}^{n-1}f_jg_j$ là tích vô hướng.
 
-**证明**：我们定义 $\Gamma(x)$ 的友矩阵为
+**Chứng minh**: ta định nghĩa ma trận đồng hành của $\Gamma(x)$ là
 
 $$
 C_\Gamma:=
@@ -36,13 +40,13 @@ C_\Gamma:=
 \end{bmatrix}
 $$
 
-我们定义多项式 $b(x):=\sum_{j=0}^{d-1}b_jx^j$ 和
+Ta định nghĩa đa thức $b(x):=\sum_{j=0}^{d-1}b_jx^j$ và
 
 $$
 B_b:=\begin{bmatrix}b_0&b_1&\cdots &b_{d-1}\end{bmatrix}^{\intercal}
 $$
 
-观察到
+Quan sát rằng
 
 $$
 \underbrace{\begin{bmatrix}
@@ -65,18 +69,18 @@ b_{d-2}+c_1b_{d-1}
 \end{bmatrix}} _ {B_{xb\bmod{\Gamma}}}
 $$
 
-且
+và
 
 $$
 \begin{aligned}
 C_\Gamma&=\begin{bmatrix}B_{x\bmod{\Gamma}}&B_{x^2\bmod{\Gamma}}&\cdots &B_{x^d\bmod{\Gamma}}\end{bmatrix}, \\
 \left(C_\Gamma\right)^2&=\begin{bmatrix}B_{x^2\bmod{\Gamma}}&B_{x^3\bmod{\Gamma}}&\cdots &B_{x^{d+1}\bmod{\Gamma}}\end{bmatrix}, \\
 \cdots \\
-\left(C_\Gamma\right)^k&=\begin{bmatrix}B_{x^k\bmod{\Gamma}}&B_{x^{k+1}\bmod{\Gamma}}&\cdots &B_{x^{k+d}\bmod{\Gamma}}\end{bmatrix}
+\left(C_\Gamma\right)^k&=\begin{bmatrix}B_{x^k\bmod{\Gamma}}&B_{x^{k+1}\bmod{\Gamma}}&\cdots &B_{x^{k+d}\bmod{\Gamma}}\end{bmatrix}.
 \end{aligned}
 $$
 
-我们将这个递推用矩阵表示有
+Viết truy hồi này dưới dạng ma trận, ta có
 
 $$
 \begin{bmatrix}
@@ -95,22 +99,24 @@ a_0 \\
 a_{1} \\
 \vdots \\
 a_{d-1}
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
-可知 $\left(\left(C_\Gamma\right)^{k}\right)^{\intercal}$ 的第一行为 $B_{x^k\bmod{\Gamma}}$，根据矩阵乘法的定义得证．
+Do đó hàng đầu tiên của $\left(\left(C_\Gamma\right)^{k}\right)^{\intercal}$ là $B_{x^k\bmod{\Gamma}}$. Kết luận suy ra trực tiếp từ định nghĩa của phép nhân ma trận.
 
-### 表示为有理函数
+<span id="&#x8868;&#x793A;&#x4E3A;&#x6709;&#x7406;&#x51FD;&#x6570;"></span>
 
-对于上述数列 $\left(a_j\right)_{j\geq 0}$ 一定存在有理函数
+### Biểu diễn bằng hàm hữu tỉ
+
+Với dãy $\left(a_j\right)_{j\geq 0}$ ở trên, luôn tồn tại hàm hữu tỉ
 
 $$
 \frac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j
 $$
 
-且 $Q(x)=x^d\Gamma\left(x^{-1}\right)$，$\deg{P}<d$．我们称其为「**有理函数**」是因为 $P(x),Q(x)$ 是「**多项式**」．
+với $Q(x)=x^d\Gamma\left(x^{-1}\right)$ và $\deg{P}<d$. Ta gọi nó là "**hàm hữu tỉ**" vì $P(x),Q(x)$ là "**đa thức**".
 
-**证明**：对于 $P(x)=\sum_{j=0}^{d-1}p_jx^j$ 和 $Q(x):=\sum_{j=0}^{d}q_jx^j$ 考虑 $\dfrac{P(x)}{Q(x)}=\sum_{j\geq 0}\tilde{q}_jx^j$ 的系数定义，这几乎就是形式幂级数「**除法**」的定义，
+**Chứng minh**: với $P(x)=\sum_{j=0}^{d-1}p_jx^j$ và $Q(x):=\sum_{j=0}^{d}q_jx^j$, xét định nghĩa hệ số của $\dfrac{P(x)}{Q(x)}=\sum_{j\geq 0}\tilde{q}_jx^j$. Điều này gần như chính là định nghĩa phép "**chia**" chuỗi lũy thừa hình thức:
 
 $$
 \tilde{q}_N=
@@ -121,73 +127,79 @@ p_0q_0^{-1},&\text{ if }N=0, \\
 \end{cases}
 $$
 
-我们只需要令
+Ta chỉ cần đặt
 
 $$
-P(x)=\left(\left(\sum_{j\geq 0}a_jx^j\right)\cdot x^d\Gamma\left(x^{-1}\right)\right)\bmod{x^d}
+P(x)=\left(\left(\sum_{j\geq 0}a_jx^j\right)\cdot x^d\Gamma\left(x^{-1}\right)\right)\bmod{x^d}.
 $$
 
-那么根据 $\tilde{q}_N$ 的定义，必然有 $\dfrac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j$．
+Khi đó theo định nghĩa của $\tilde{q}_N$, tất yếu có $\dfrac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j$.
 
-### Bostan–Mori 算法
+<span id="bostan&#x2013;mori-&#x7B97;&#x6CD5;"></span>
 
-#### 计算单项
+### Thuật toán Bostan-Mori
 
-我们的目标仍然是给出上述多项式 $P(x),Q(x)$，求算 $\left\lbrack x^k\right\rbrack\dfrac{P(x)}{Q(x)}$．
+<span id="&#x8BA1;&#x7B97;&#x5355;&#x9879;"></span>
 
-Bostan–Mori 算法基于 Graeffe 迭代，对于上述多项式 $P(x),Q(x)$ 有
+#### Tính một hạng
 
-$$
-\frac{P(x)}{Q(x)}=\frac{P(x)Q(-x)}{Q(x)Q(-x)}=\frac{U_0(x^2)+xU_1(x^2)}{V(x^2)}
-$$
+Mục tiêu vẫn là: cho các đa thức $P(x),Q(x)$ như trên, tính $\left\lbrack x^k\right\rbrack\dfrac{P(x)}{Q(x)}$.
 
-因为分母 $V(x^2)$ 是偶函数，所以子问题只需考虑其中的一侧
+Thuật toán Bostan-Mori dựa trên lặp Graeffe. Với các đa thức $P(x),Q(x)$ ở trên, ta có
 
 $$
-\left\lbrack x^k\right\rbrack\dfrac{P(x)}{Q(x)}=\left\lbrack x^{\left\lfloor k/2\right\rfloor}\right\rbrack \frac{U_{k\bmod{2}}(x)}{V(x)}
+\frac{P(x)}{Q(x)}=\frac{P(x)Q(-x)}{Q(x)Q(-x)}=\frac{U_0(x^2)+xU_1(x^2)}{V(x^2)}.
 $$
 
-我们付出两次多项式乘法的代价使得问题至少减少为原先的一半，而当 $k=0$ 时显然有 $\left\lbrack x^0\right\rbrack \dfrac{P(x)}{Q(x)}=\dfrac{P(0)}{Q(0)}$，时间复杂度同上．
-
-#### 计算连续若干项
-
-目标是给出上述多项式 $P(x),Q(x)$，求算 $\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\dfrac{P(x)}{Q(x)}$．下面的计算中我们只需考虑对答案「**有影响**」的系数，这是 Bostan–Mori 算法的关键．
-
-我们不妨假设 $\deg{P}<\deg{Q}$，否则我们也可以通过一次带余除法使问题回到这种情况．
-
-我们先考虑更简单的问题：
+Vì mẫu số $V(x^2)$ là hàm chẵn, bài toán con chỉ cần xét một nửa tương ứng:
 
 $$
-\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\frac{1}{Q(x)}=\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\frac{1}{Q(x)Q(-x)}\cdot Q(-x)
+\left\lbrack x^k\right\rbrack\dfrac{P(x)}{Q(x)}=\left\lbrack x^{\left\lfloor k/2\right\rfloor}\right\rbrack \frac{U_{k\bmod{2}}(x)}{V(x)}.
 $$
 
-我们需要求出 $\left\lbrack x^{\left\lbrack L-\deg{Q},R\right)}\right\rbrack\dfrac{1}{Q(x)Q(-x)}$ 然后作一次乘法并取出 $x^L,\dots ,x^{R-1}$ 的系数．令 $V(x^2)=Q(x)Q(-x)$ 那么我们只需求出
+Ta trả giá bằng hai phép nhân đa thức để giảm kích thước bài toán xuống ít nhất một nửa. Khi $k=0$ thì hiển nhiên $\left\lbrack x^0\right\rbrack \dfrac{P(x)}{Q(x)}=\dfrac{P(0)}{Q(0)}$, nên độ phức tạp thời gian giống như trên.
+
+<span id="&#x8BA1;&#x7B97;&#x8FDE;&#x7EED;&#x82E5;&#x5E72;&#x9879;"></span>
+
+#### Tính một đoạn nhiều hạng liên tiếp
+
+Mục tiêu là: cho các đa thức $P(x),Q(x)$ như trên, tính $\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\dfrac{P(x)}{Q(x)}$. Trong các phép tính dưới đây, ta chỉ cần xét những hệ số "**có ảnh hưởng**" tới đáp án; đây là điểm then chốt của thuật toán Bostan-Mori.
+
+Ta có thể giả sử $\deg{P}<\deg{Q}$. Nếu không, chỉ cần chia đa thức có dư một lần để đưa bài toán về trường hợp này.
+
+Trước hết xét bài toán đơn giản hơn:
 
 $$
-\left\lbrack x^{\left\lbrack \left\lceil\frac{L-\deg{Q}}{2}\right\rceil,\left\lceil\frac{R}{2}\right\rceil\right)}\right\rbrack\frac{1}{V(x)}
+\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\frac{1}{Q(x)}=\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\frac{1}{Q(x)Q(-x)}\cdot Q(-x).
 $$
 
-就可以还原出 $\left\lbrack x^{\left\lbrack L-\deg{Q},R\right)}\right\rbrack\dfrac{1}{Q(x)Q(-x)}$．进而我们只需求出 $\left\lbrack x^{\left\lbrack L-\deg{P},R\right)}\right\rbrack\dfrac{1}{Q(x)}$ 再和 $P(x)$ 作一次乘法即可求出 $\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\dfrac{P(x)}{Q(x)}$．
-
-上面的算法虽然已经可以工作，但是每一次的递归的时间复杂度与 $R-L$ 相关，我们希望能至少在递归求算时摆脱 $R-L$，更具体的，我们先考虑求算 $\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)}$，考虑
+Ta cần tính $\left\lbrack x^{\left\lbrack L-\deg{Q},R\right)}\right\rbrack\dfrac{1}{Q(x)Q(-x)}$, sau đó nhân một lần và lấy các hệ số của $x^L,\dots ,x^{R-1}$. Đặt $V(x^2)=Q(x)Q(-x)$, khi đó ta chỉ cần tính
 
 $$
-\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \frac{1}{Q(x)}=\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)Q(-x)}\cdot Q(-x)
+\left\lbrack x^{\left\lbrack \left\lceil\frac{L-\deg{Q}}{2}\right\rceil,\left\lceil\frac{R}{2}\right\rceil\right)}\right\rbrack\frac{1}{V(x)}.
 $$
 
-我们需要求出
+Từ đó có thể khôi phục $\left\lbrack x^{\left\lbrack L-\deg{Q},R\right)}\right\rbrack\dfrac{1}{Q(x)Q(-x)}$. Tiếp theo, ta chỉ cần tính $\left\lbrack x^{\left\lbrack L-\deg{P},R\right)}\right\rbrack\dfrac{1}{Q(x)}$ rồi nhân với $P(x)$ một lần là thu được $\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\dfrac{P(x)}{Q(x)}$.
+
+Thuật toán trên đã chạy được, nhưng độ phức tạp của mỗi lần đệ quy còn phụ thuộc vào $R-L$. Ta muốn, ít nhất trong phần đệ quy, thoát khỏi sự phụ thuộc vào $R-L$. Cụ thể hơn, trước hết xét việc tính $\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)}$. Xét
 
 $$
-\left\lbrack x^{\left\lbrack L-\deg Q,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)Q(-x)}
+\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \frac{1}{Q(x)}=\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)Q(-x)}\cdot Q(-x).
 $$
 
-那么对于 $V(x^2)=Q(x)Q(-x)$ 而言，我们只需求出
+Ta cần tính
+
+$$
+\left\lbrack x^{\left\lbrack L-\deg Q,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)Q(-x)}.
+$$
+
+Với $V(x^2)=Q(x)Q(-x)$, ta chỉ cần tính
 
 $$
 \left\lbrack x^{\left\lbrack \lceil (L-\deg Q)/2 \rceil,\lceil (L+\deg Q+1)/2 \rceil\right)}\right\rbrack \frac{1}{V(x)}
 $$
 
-这是因为
+vì
 
 $$
 \left\lbrack x^{k}\right\rbrack\dfrac{1}{Q(x)Q(-x)}=
@@ -197,7 +209,7 @@ $$
 \end{cases}
 $$
 
-我们知道 $L+\deg Q$ 和 $L-\deg Q$ 的奇偶性是一样的，所以
+Ta biết $L+\deg Q$ và $L-\deg Q$ có cùng tính chẵn lẻ, nên
 
 $$
 \left\lceil \frac{L+\deg Q+1}{2}\right\rceil -\left\lceil \frac{L-\deg Q}{2}\right\rceil =
@@ -207,7 +219,7 @@ $$
 \end{cases}
 $$
 
-这样我们可以写出伪代码
+Như vậy có thể viết mã giả:
 
 $$
 \begin{array}{ll}
@@ -224,32 +236,36 @@ $$
 \end{array}
 $$
 
-但是只有这个算法还不够，我们需要重新找到一个有理函数并求算更多系数．
+Tuy nhiên chỉ thuật toán này vẫn chưa đủ; ta cần tìm lại một biểu diễn hàm hữu tỉ và tính thêm nhiều hệ số hơn.
 
-#### 找到新的有理函数表示
+<span id="&#x627E;&#x5230;&#x65B0;&#x7684;&#x6709;&#x7406;&#x51FD;&#x6570;&#x8868;&#x793A;"></span>
 
-我们知道 $Q(x)$ 本身和 $Q(x)^{-1}$ 的一部分连续的系数比如 $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$ 和 $L\geq 0$，我们希望求出 $\left\lbrack x^{\left\lbrack L+\deg Q,L+2\deg Q\right)}\right\rbrack Q(x)^{-1}$，这等价于我们要求某个 $P(x)$ 且 $\deg P< \deg Q$ 使得 $\dfrac{P(x)}{Q(x)}$ 的前 $\deg Q$ 项与 $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$ 相同．简单来说：递推关系（有理函数的分母）是不变的，我们所做的只是更换初值（有理函数的分子）．
+#### Tìm biểu diễn hàm hữu tỉ mới
 
-具体的，考虑
+Ta biết chính $Q(x)$ và một đoạn hệ số liên tiếp của $Q(x)^{-1}$, chẳng hạn $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$ với $L\geq 0$. Ta muốn tính $\left\lbrack x^{\left\lbrack L+\deg Q,L+2\deg Q\right)}\right\rbrack Q(x)^{-1}$. Điều này tương đương với việc tìm một $P(x)$ nào đó, $\deg P< \deg Q$, sao cho $\dfrac{P(x)}{Q(x)}$ có $\deg Q$ hạng đầu bằng $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$. Nói ngắn gọn: quan hệ truy hồi, tức mẫu số của hàm hữu tỉ, không đổi; việc ta làm chỉ là thay các giá trị đầu, tức tử số của hàm hữu tỉ.
 
-$$
-\frac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j
-$$
-
-我们现在希望将递推前进 $n$ 项，那么就是
+Cụ thể, xét
 
 $$
-\sum_{j\geq n}a_jx^{j-n}=\frac{P(x)}{Q(x)x^n}-\frac{Q(x)\sum_{j=0}^{n-1}a_jx^j}{Q(x)x^n}
+\frac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j.
 $$
 
-我们先用一次 $\operatorname{Slice-Coefficients}(Q,L-\deg{P})$ 计算出 $\left\lbrack x^{\left\lbrack L-\deg{P},L-\deg{P}+\deg{Q}+1\right)}\right\rbrack Q(x)^{-1}$，然后我们扩展合并出 $\left\lbrack x^{\left\lbrack L-\deg{P},L+\deg{Q}\right)}\right\rbrack Q(x)^{-1}$，再重新计算一个分子使得
+Nay ta muốn đẩy truy hồi tiến thêm $n$ hạng, tức là
 
 $$
-\frac{\widetilde{P}(x)}{Q(x)}=\sum_{j\geq 0}\left(\left\lbrack x^{L+j}\right\rbrack \frac{P(x)}{Q(x)}\right)x^j
+\sum_{j\geq n}a_jx^{j-n}=\frac{P(x)}{Q(x)x^n}-\frac{Q(x)\sum_{j=0}^{n-1}a_jx^j}{Q(x)x^n}.
 $$
 
-最后我们使用形式幂级数的除法计算出 $\left\lbrack x^{\left\lbrack 0,R-L\right)}\right\rbrack\dfrac{\widetilde{P}(x)}{Q(x)}$，时间为 $O(\mathsf{M}(d)\log L+\mathsf{M}(R-L))$．
+Trước hết dùng một lần $\operatorname{Slice-Coefficients}(Q,L-\deg{P})$ để tính $\left\lbrack x^{\left\lbrack L-\deg{P},L-\deg{P}+\deg{Q}+1\right)}\right\rbrack Q(x)^{-1}$. Sau đó mở rộng và ghép để có $\left\lbrack x^{\left\lbrack L-\deg{P},L+\deg{Q}\right)}\right\rbrack Q(x)^{-1}$, rồi tính lại một tử số sao cho
 
-## 参考文献
+$$
+\frac{\widetilde{P}(x)}{Q(x)}=\sum_{j\geq 0}\left(\left\lbrack x^{L+j}\right\rbrack \frac{P(x)}{Q(x)}\right)x^j.
+$$
 
-1.  Alin Bostan, Ryuhei Mori.[A Simple and Fast Algorithm for Computing the $N$-th Term of a Linearly Recurrent Sequence](https://arxiv.org/abs/2008.08822).
+Cuối cùng dùng phép chia chuỗi lũy thừa hình thức để tính $\left\lbrack x^{\left\lbrack 0,R-L\right)}\right\rbrack\dfrac{\widetilde{P}(x)}{Q(x)}$. Độ phức tạp thời gian là $O(\mathsf{M}(d)\log L+\mathsf{M}(R-L))$.
+
+<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+
+## Tài liệu tham khảo
+
+1.  Alin Bostan, Ryuhei Mori. [A Simple and Fast Algorithm for Computing the $N$-th Term of a Linearly Recurrent Sequence](https://arxiv.org/abs/2008.08822).

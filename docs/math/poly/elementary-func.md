@@ -1,42 +1,42 @@
 author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps5283, Great-designer, H-J-Granger, hly1204, hsfzLZH1, huayucaiji, Ir1d, kenlig, Marcythm, ouuan, SamZhangQingChuan, shuzhouliu, sshwy, StudyingFather, test12345-pupil, Tiphereth-A, TrisolarisHD, untitledunrevised
 
-本页面包含多项式常见的初等函数操作．具体而言，本页面包含如下内容：
+Trang này trình bày các phép toán hàm sơ cấp thường gặp trên đa thức. Cụ thể, trang này gồm các nội dung sau:
 
-1.  多项式求逆
-2.  多项式开方
-3.  多项式除法
-4.  多项式取模
-5.  多项式指数函数
-6.  多项式对数函数
-7.  多项式三角函数
-8.  多项式反三角函数
+1.  Nghịch đảo đa thức
+2.  Khai căn đa thức
+3.  Chia đa thức
+4.  Lấy dư đa thức
+5.  Hàm mũ của đa thức
+6.  Hàm logarit của đa thức
+7.  Hàm lượng giác của đa thức
+8.  Hàm lượng giác ngược của đa thức
 
-??? note "初等函数与非初等函数"
-    初等函数的定义如下[^ref1]：
+??? note "Hàm sơ cấp và hàm không sơ cấp"
+    Định nghĩa hàm sơ cấp như sau[^ref1]:
     
-    若域 $F$ 中存在映射 $u\to \partial u$ 满足：
+    Nếu trên trường $F$ tồn tại ánh xạ $u\to \partial u$ thỏa:
     
     1.  $\partial(u+v)=\partial u+\partial v$
     2.  $\partial(uv)=u\partial v+v\partial u$
     
-    则称这个域为 **微分域**．
+    thì trường đó được gọi là **trường vi phân**.
     
-    若微分域 $F$ 上的函数 $u$ 满足以下的任意一条条件，则称该函数 $u$ 为初等函数：
+    Nếu một hàm $u$ trên trường vi phân $F$ thỏa bất kỳ điều kiện nào sau đây, thì $u$ được gọi là hàm sơ cấp:
     
-    1.  $u$ 是 $F$ 上的代数函数．
-    2.  $u$ 是 $F$ 上的指数性函数，即存在 $a\in F$ 使得 $\partial u=u\partial a$.
-    3.  $u$ 是 $F$ 上的对数性函数，即存在 $a\in F$ 使得 $\partial u=\frac{\partial a}{a}$.
+    1.  $u$ là một hàm đại số trên $F$.
+    2.  $u$ là một hàm kiểu mũ, tức tồn tại $a\in F$ sao cho $\partial u=u\partial a$.
+    3.  $u$ là một hàm kiểu logarit, tức tồn tại $a\in F$ sao cho $\partial u=\frac{\partial a}{a}$.
     
-    以下是常见的初等函数：
+    Các hàm sơ cấp thường gặp gồm:
     
-    1.  代数函数：存在有限次多项式 $P$ 使得 $P(f(x))=0$ 的函数 $f(x)$，如 $2x+1$,$\sqrt{x}$,$(1+x^2)^{-1}$,$|x|$.
-    2.  指数函数
-    3.  对数函数
-    4.  三角函数
-    5.  反三角函数
-    6.  双曲函数
-    7.  反双曲函数
-    8.  以上函数的复合，如：
+    1.  Hàm đại số: hàm $f(x)$ sao cho tồn tại đa thức hữu hạn bậc $P$ thỏa $P(f(x))=0$, chẳng hạn $2x+1$,$\sqrt{x}$,$(1+x^2)^{-1}$,$|x|$.
+    2.  Hàm mũ
+    3.  Hàm logarit
+    4.  Hàm lượng giác
+    5.  Hàm lượng giác ngược
+    6.  Hàm hyperbol
+    7.  Hàm hyperbol ngược
+    8.  Hợp của các hàm trên, ví dụ:
     
         $$
         \frac{\mathrm{e}^{\tan x}}{1+x^2}\sin\left(\sqrt{1+\ln^2 x}\right)
@@ -46,30 +46,32 @@ author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps52
         -\mathrm{i} \ln\left(x+\mathrm{i}\sqrt{1-x^2}\right)
         $$
     
-    以下是常见的非初等函数：
+    Các hàm không sơ cấp thường gặp gồm:
     
-    1.  误差函数：
+    1.  Hàm sai số:
     
         $$
         \operatorname{erf}(x):=\frac{2}{\sqrt{\pi}}\int_{0}^{x}\exp\left(-t^2\right)\mathrm{d}t
         $$
 
-## 多项式求逆
+<span id="&#x591A;&#x9879;&#x5F0F;&#x6C42;&#x9006;"></span>
+## Nghịch đảo đa thức
 
-给定多项式 $f\left(x\right)$，求 $f^{-1}\left(x\right)$．
+Cho đa thức $f\left(x\right)$, hãy tìm $f^{-1}\left(x\right)$.
 
-### 解法
+<span id="&#x89E3;&#x6CD5;"></span>
+### Cách giải
 
-#### 倍增法
+<span id="&#x500D;&#x589E;&#x6CD5;"></span>
+#### Phương pháp nhân đôi
 
-首先，易知
+Trước hết, dễ thấy
 
 $$
 \left[x^{0}\right]f^{-1}\left(x\right)=\left(\left[x^{0}\right]f\left(x\right)\right)^{-1}
 $$
 
-假设现在已经求出了 $f\left(x\right)$ 在模 $x^{\left\lceil\frac{n}{2}\right\rceil}$ 意义下的逆元 $f^{-1}_{0}\left(x\right)$．
-有：
+Giả sử hiện đã tìm được nghịch đảo $f^{-1}_{0}\left(x\right)$ của $f\left(x\right)$ theo modulo $x^{\left\lceil\frac{n}{2}\right\rceil}$. Khi đó:
 
 $$
 \begin{aligned}
@@ -79,21 +81,21 @@ $$
 \end{aligned}
 $$
 
-两边平方可得：
+Bình phương hai vế, ta được:
 
 $$
 f^{-2}\left(x\right)-2f^{-1}\left(x\right)f^{-1}_{0}\left(x\right)+f^{-2}_{0}\left(x\right)\equiv 0 \pmod{x^{n}}
 $$
 
-两边同乘 $f\left(x\right)$ 并移项可得：
+Nhân hai vế với $f\left(x\right)$ rồi chuyển vế:
 
 $$
 f^{-1}\left(x\right)\equiv f^{-1}_{0}\left(x\right)\left(2-f\left(x\right)f^{-1}_{0}\left(x\right)\right) \pmod{x^{n}}
 $$
 
-递归计算即可．
+Sau đó tính đệ quy.
 
-**时间复杂度**
+**Độ phức tạp thời gian**
 
 $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
@@ -101,11 +103,12 @@ $$
 
 #### Newton's Method
 
-参见 [Newton's Method](./newton.md#newtons-method).
+Xem [Newton's Method](./newton.md#newtons-method).
 
-#### Graeffe 法
+<span id="graeffe-&#x6CD5;"></span>
+#### Phương pháp Graeffe
 
-欲求 $f^{-1}(x)\bmod x^{2n}$ 考虑
+Để tìm $f^{-1}(x)\bmod x^{2n}$, xét
 
 $$
 \begin{aligned}
@@ -114,11 +117,12 @@ f^{-1}(x)\bmod x^{2n}&= f(-x)(f(x)f(-x))^{-1}\bmod x^{2n}\\
 \end{aligned}
 $$
 
-只需求出 $g^{-1}(x)\bmod x^n$ 即可还原出 $g^{-1}(x^2)\bmod x^{2n}$ 因为 $f(x)f(-x)$ 是偶函数，时间复杂度同上．
+Chỉ cần tìm $g^{-1}(x)\bmod x^n$ rồi khôi phục $g^{-1}(x^2)\bmod x^{2n}$, vì $f(x)f(-x)$ là hàm chẵn. Độ phức tạp thời gian như trên.
 
-### 代码
+<span id="&#x4EE3;&#x7801;"></span>
+### Mã nguồn
 
-??? note "多项式求逆"
+??? note "Nghịch đảo đa thức"
     ```cpp
     constexpr int MAXN = 262144;
     constexpr int mod = 998244353;
@@ -148,35 +152,39 @@ $$
     }
     ```
 
-### 例题
+<span id="&#x4F8B;&#x9898;"></span>
+### Ví dụ
 
-1.  有标号简单无向连通图计数：[「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)
+1.  Đếm số đồ thị vô hướng đơn liên thông có nhãn: [POJ 1737 - Connected Graph](http://poj.org/problem?id=1737)
 
-## 多项式开方
+<span id="&#x591A;&#x9879;&#x5F0F;&#x5F00;&#x65B9;"></span>
+## Khai căn đa thức
 
-给定多项式 $g\left(x\right)$，求 $f\left(x\right)$，满足：
+Cho đa thức $g\left(x\right)$, hãy tìm $f\left(x\right)$ thỏa:
 
 $$
 f^{2}\left(x\right)\equiv g\left(x\right) \pmod{x^{n}}
 $$
 
-### 解法
+<span id="&#x89E3;&#x6CD5;_1"></span>
+### Cách giải
 
-#### 倍增法
+<span id="&#x500D;&#x589E;&#x6CD5;_1"></span>
+#### Phương pháp nhân đôi
 
-首先讨论 $\left[x^0\right]g(x)$ 不为 $0$ 的情况．
+Trước hết xét trường hợp $\left[x^0\right]g(x)$ khác $0$.
 
-易知：
+Dễ thấy:
 
 $$
 \left[x^0\right]f(x) = \sqrt{\left[x^0\right]g(x)}
 $$
 
-若 $\left[x^0\right]g(x)$ 没有平方根，则多项式 $g(x)$ 没有平方根．
+Nếu $\left[x^0\right]g(x)$ không có căn bậc hai, thì đa thức $g(x)$ không có căn bậc hai.
 
-> $\left[x^0\right]g(x)$ 可能有多个平方根，选取不同的根会求出不同的 $f(x)$．
+> $\left[x^0\right]g(x)$ có thể có nhiều căn bậc hai; chọn các căn khác nhau sẽ cho các $f(x)$ khác nhau.
 
-假设现在已经求出了 $g\left(x\right)$ 在模 $x^{\left\lceil\frac{n}{2}\right\rceil}$ 意义下的平方根 $f_{0}\left(x\right)$，则有：
+Giả sử hiện đã tìm được căn bậc hai $f_{0}\left(x\right)$ của $g\left(x\right)$ theo modulo $x^{\left\lceil\frac{n}{2}\right\rceil}$, khi đó:
 
 $$
 \begin{aligned}
@@ -190,58 +198,61 @@ $$
 \end{aligned}
 $$
 
-倍增计算即可．
+Sau đó tính bằng cách nhân đôi.
 
-**时间复杂度**
+**Độ phức tạp thời gian**
 
 $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-还有一种常数较小的写法就是在倍增维护 $f\left(x\right)$ 的时候同时维护 $f^{-1}\left(x\right)$ 而不是每次都求逆．
+Còn một cách viết có hằng số nhỏ hơn: khi nhân đôi và duy trì $f\left(x\right)$, đồng thời duy trì luôn $f^{-1}\left(x\right)$ thay vì mỗi lần đều tính nghịch đảo.
 
-> 当 $\left[x^{0}\right]g\left(x\right)\neq 1$ 时，可能需要使用二次剩余来计算 $\left[x^{0}\right]f\left(x\right)$．
+> Khi $\left[x^{0}\right]g\left(x\right)\neq 1$, có thể cần dùng thặng dư bậc hai để tính $\left[x^{0}\right]f\left(x\right)$.
 
-上述方法需要知道 $f_{0}(x)$ 的逆，所以常数项不能为 $0$．
+Phương pháp trên cần biết nghịch đảo của $f_{0}(x)$, nên hệ số tự do không được bằng $0$.
 
-若 $\left[x^0\right]g(x) = 0$，则将 $g(x)$ 分解成 $x^{k}h(x)$，其中 $\left[x^0\right]h(x) \not = 0$．
+Nếu $\left[x^0\right]g(x) = 0$, hãy phân tích $g(x)$ thành $x^{k}h(x)$, trong đó $\left[x^0\right]h(x) \not = 0$.
 
--   若 $k$ 是奇数，则 $g(x)$ 没有平方根．
+-   Nếu $k$ lẻ, thì $g(x)$ không có căn bậc hai.
 
--   若 $k$ 是偶数，则求出 $h(x)$ 的平方根 $\sqrt{h(x)}$，然后得到 $f(x) \equiv x^{k/2} \sqrt{h(x)} \pmod{x^{n}}$．
+-   Nếu $k$ chẵn, tìm căn bậc hai $\sqrt{h(x)}$ của $h(x)$, rồi thu được $f(x) \equiv x^{k/2} \sqrt{h(x)} \pmod{x^{n}}$.
 
-??? note "洛谷模板题 [P5205【模板】多项式开根](https://www.luogu.com.cn/problem/P5205) 参考代码"
+??? note "Mã tham khảo cho bài mẫu Luogu [P5205 [Mẫu] Khai căn đa thức](https://www.luogu.com.cn/problem/P5205)"
     ```cpp
     --8<-- "docs/math/code/poly/sqrt/sqrt_1.cpp"
     ```
 
 #### Newton's Method
 
-参见 [Newton's Method](./newton.md#newtons-method).
+Xem [Newton's Method](./newton.md#newtons-method).
 
-### 例题
+<span id="&#x4F8B;&#x9898;_1"></span>
+### Ví dụ
 
-1.  [「Codeforces Round #250」E. The Child and Binary Tree](https://codeforces.com/contest/438/problem/E)
+1.  [Codeforces Round #250 - E. The Child and Binary Tree](https://codeforces.com/contest/438/problem/E)
 
-## 多项式除法 & 取模
+<span id="&#x591A;&#x9879;&#x5F0F;&#x9664;&#x6CD5;--&#x53D6;&#x6A21;"></span>
+## Chia đa thức và lấy dư
 
-给定多项式 $f\left(x\right),g\left(x\right)$，求 $g\left(x\right)$ 除 $f\left(x\right)$ 的商 $Q\left(x\right)$ 和余数 $R\left(x\right)$．
+Cho hai đa thức $f\left(x\right),g\left(x\right)$, hãy tìm thương $Q\left(x\right)$ và dư $R\left(x\right)$ khi chia $f\left(x\right)$ cho $g\left(x\right)$.
 
-### 解法
+<span id="&#x89E3;&#x6CD5;_2"></span>
+### Cách giải
 
-发现若能消除 $R\left(x\right)$ 的影响则可直接 [多项式求逆](#多项式求逆) 解决．
+Nhận thấy nếu có thể khử ảnh hưởng của $R\left(x\right)$ thì có thể trực tiếp dùng [nghịch đảo đa thức](#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86) để giải.
 
-考虑构造变换
+Xét phép biến đổi
 
 $$
 f^{R}\left(x\right)=x^{\operatorname{deg}{f}}f\left(\frac{1}{x}\right)
 $$
 
-观察可知其实质为反转 $f\left(x\right)$ 的系数．
+Quan sát cho thấy bản chất của nó là đảo ngược thứ tự hệ số của $f\left(x\right)$.
 
-设 $n=\operatorname{deg}{f},m=\operatorname{deg}{g}$．
+Đặt $n=\operatorname{deg}{f},m=\operatorname{deg}{g}$.
 
-将 $f\left(x\right)=Q\left(x\right)g\left(x\right)+R\left(x\right)$ 中的 $x$ 替换成 $\frac{1}{x}$ 并将其两边都乘上 $x^{n}$，得到：
+Thay $x$ trong $f\left(x\right)=Q\left(x\right)g\left(x\right)+R\left(x\right)$ bằng $\frac{1}{x}$ rồi nhân cả hai vế với $x^{n}$, ta được:
 
 $$
 \begin{aligned}
@@ -250,36 +261,39 @@ $$
 \end{aligned}
 $$
 
-注意到上式中 $R^{R}\left(x\right)$ 的系数为 $x^{n-m+1}$，则将其放到模 $x^{n-m+1}$ 意义下即可消除 $R^{R}\left(x\right)$ 带来的影响．
+Chú ý rằng trong công thức trên, $R^{R}\left(x\right)$ được nhân với $x^{n-m+1}$, nên khi xét theo modulo $x^{n-m+1}$ thì có thể khử ảnh hưởng do $R^{R}\left(x\right)$ gây ra.
 
-又因 $Q^{R}\left(x\right)$ 的次数为 $\left(n-m\right)<\left(n-m+1\right)$，故 $Q^{R}\left(x\right)$ 不会受到影响．
+Lại vì bậc của $Q^{R}\left(x\right)$ là $\left(n-m\right)<\left(n-m+1\right)$, nên $Q^{R}\left(x\right)$ không bị ảnh hưởng.
 
-则：
+Do đó:
 
 $$
 f^{R}\left(x\right)\equiv Q^{R}\left(x\right)g^{R}\left(x\right)\pmod{x^{n-m+1}}
 $$
 
-使用多项式求逆即可求出 $Q\left(x\right)$，将其反代即可得到 $R\left(x\right)$．
+Dùng nghịch đảo đa thức là có thể tìm $Q\left(x\right)$; thay ngược lại sẽ thu được $R\left(x\right)$.
 
-**时间复杂度**  $O\left(n\log{n}\right)$．
+**Độ phức tạp thời gian**  $O\left(n\log{n}\right)$.
 
-## 多项式对数函数 & 指数函数
+<span id="&#x591A;&#x9879;&#x5F0F;&#x5BF9;&#x6570;&#x51FD;&#x6570;--&#x6307;&#x6570;&#x51FD;&#x6570;"></span>
+## Hàm logarit và hàm mũ của đa thức
 
-给定多项式 $f(x)$，求模 $x^{n}$ 意义下的 $\ln{f(x)}$ 与 $\exp{f(x)}$．
+Cho đa thức $f(x)$, hãy tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo modulo $x^{n}$.
 
-### 解法
+<span id="&#x89E3;&#x6CD5;_3"></span>
+### Cách giải
 
-#### 普通方法
+<span id="&#x666E;&#x901A;&#x65B9;&#x6CD5;"></span>
+#### Phương pháp thông thường
 
-=== "多项式对数函数"
-    首先，对于多项式 $f(x)$，若 $\ln{f(x)}$ 存在，则由其 [定义](./intro.md#复合)，其必须满足：
+=== "Hàm logarit của đa thức"
+    Trước hết, với đa thức $f(x)$, nếu $\ln{f(x)}$ tồn tại, thì theo [định nghĩa](./intro.md#%E5%A4%8D%E5%90%88), nó phải thỏa:
     
     $$
     [x^{0}]f(x)=1
     $$
     
-    对 $\ln{f(x)}$ 求导再积分，可得：
+    Lấy đạo hàm của $\ln{f(x)}$ rồi tích phân, ta được:
     
     $$
     \begin{aligned}
@@ -288,24 +302,24 @@ $$
     \end{aligned}
     $$
     
-    多项式的求导，积分时间复杂度为 $O(n)$，求逆时间复杂度为 $O(n\log{n})$，故多项式求 $\ln$ 时间复杂度 $O(n\log{n})$．
+    Đạo hàm và tích phân đa thức có độ phức tạp $O(n)$, nghịch đảo đa thức có độ phức tạp $O(n\log{n})$, nên tính $\ln$ của đa thức có độ phức tạp $O(n\log{n})$.
 
-=== "多项式指数函数"
-    首先，对于多项式 $f(x)$，若 $\exp{f(x)}$ 存在，则其必须满足：
+=== "Hàm mũ của đa thức"
+    Trước hết, với đa thức $f(x)$, nếu $\exp{f(x)}$ tồn tại, thì nó phải thỏa:
     
     $$
     [x^{0}]f(x)=0
     $$
     
-    否则 $\exp{f(x)}$ 的常数项不收敛．
+    Nếu không, hệ số tự do của $\exp{f(x)}$ sẽ không hội tụ.
     
-    对 $\exp{f(x)}$ 求导，可得：
+    Lấy đạo hàm của $\exp{f(x)}$, ta được:
     
     $$
     \frac{\mathrm{d} \exp{f(x)}}{\mathrm{d} x} \equiv \exp{f(x)}f'(x)\pmod{x^{n}}
     $$
     
-    比较两边系数可得：
+    So sánh hệ số hai vế:
     
     $$
     [x^{n-1}]\frac{\mathrm{d} \exp{f(x)}}{\mathrm{d} x} = \sum_{i = 0}^{n - 1} \left([x^{i}]\exp{f(x)}\right) \left([x^{n-i-1}]f'(x)\right)
@@ -315,17 +329,18 @@ $$
     n[x^{n}]\exp{f(x)} = \sum_{i = 0}^{n - 1} \left([x^{i}]\exp{f(x)}\right) \left((n - i)[x^{n - i}]f(x)\right)
     $$
     
-    使用分治 FFT 即可解决．
+    Dùng chia để trị FFT là có thể giải.
     
-    **时间复杂度**  $O(n\log^{2}{n})$．
+    **Độ phức tạp thời gian**  $O(n\log^{2}{n})$.
 
 #### Newton's Method
 
-使用 [Newton's Method](./newton.md#newtons-method) 即可在 $O(n\log{n})$ 的时间复杂度内解决多项式 $\exp$．
+Dùng [Newton's Method](./newton.md#newtons-method) có thể giải $\exp$ của đa thức trong độ phức tạp $O(n\log{n})$.
 
-### 代码
+<span id="&#x4EE3;&#x7801;_1"></span>
+### Mã nguồn
 
-??? note "多项式 ln/exp"
+??? note "Logarit/mũ của đa thức"
     ```cpp
     constexpr int MAXN = 262144;
     constexpr int mod = 998244353;
@@ -386,33 +401,36 @@ $$
     }
     ```
 
-### 例题
+<span id="&#x4F8B;&#x9898;_2"></span>
+### Ví dụ
 
-1.  计算 $f^{k}(x)$
+1.  Tính $f^{k}(x)$
 
-    普通做法为多项式快速幂，时间复杂度 $O(n\log{n}\log{k})$．
+    Cách thông thường là lũy thừa nhanh đa thức, độ phức tạp thời gian $O(n\log{n}\log{k})$.
 
-    当 $[x^{0}]f(x)=1$ 时，有：
+    Khi $[x^{0}]f(x)=1$, ta có:
 
     $$
     f^{k}(x)=\exp{\left(k\ln{f(x)}\right)}
     $$
 
-    当 $[x^{0}]f(x)\neq 1$ 时，设 $f(x)$ 的最低次项为 $f_{i}x^{i}$，则：
+    Khi $[x^{0}]f(x)\neq 1$, giả sử hạng bậc thấp nhất của $f(x)$ là $f_{i}x^{i}$, khi đó:
 
     $$
     f^{k}(x)=f_{i}^{k}x^{ik}\exp{\left(k\ln{\frac{f(x)}{f_{i}x^{i}}}\right)}
     $$
 
-    **时间复杂度**  $O(n\log{n})$．
+    **Độ phức tạp thời gian**  $O(n\log{n})$.
 
-## 多项式三角函数
+<span id="&#x591A;&#x9879;&#x5F0F;&#x4E09;&#x89D2;&#x51FD;&#x6570;"></span>
+## Hàm lượng giác của đa thức
 
-给定多项式 $f\left(x\right)$，求模 $x^{n}$ 意义下的 $\sin{f\left(x\right)}, \cos{f\left(x\right)}$ 与 $\tan{f\left(x\right)}$．
+Cho đa thức $f\left(x\right)$, hãy tìm $\sin{f\left(x\right)}, \cos{f\left(x\right)}$ và $\tan{f\left(x\right)}$ theo modulo $x^{n}$.
 
-### 解法
+<span id="&#x89E3;&#x6CD5;_4"></span>
+### Cách giải
 
-首先由 [Euler's formula](../complex.md#欧拉公式) $\left(\mathrm{e}^{\mathrm{i}x} = \cos{x} + \mathrm{i}\sin{x}\right)$ 可以得到 [三角函数的另一个表达式](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers)：
+Trước hết, từ [Euler's formula](../complex.md#%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F) $\left(\mathrm{e}^{\mathrm{i}x} = \cos{x} + \mathrm{i}\sin{x}\right)$, ta có thể suy ra [một biểu diễn khác của hàm lượng giác](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers):
 
 $$
 \begin{aligned}
@@ -421,7 +439,7 @@ $$
 \end{aligned}
 $$
 
-那么代入 $f\left(x\right)$ 就有：
+Thay $f\left(x\right)$ vào, ta có:
 
 $$
 \begin{aligned}
@@ -430,12 +448,13 @@ $$
 \end{aligned}
 $$
 
-直接按上述表达式编写程序即可得到模 $x^{n}$ 意义下的 $\sin{f\left(x\right)}$ 与 $\cos{f\left(x\right)}$．再由 $\tan{f\left(x\right)} = \frac{\sin{f\left(x\right)}}{\cos{f\left(x\right)}}$ 可求得 $\tan{f\left(x\right)}$．
+Viết chương trình trực tiếp theo các biểu thức trên là có thể thu được $\sin{f\left(x\right)}$ và $\cos{f\left(x\right)}$ theo modulo $x^{n}$. Sau đó dùng $\tan{f\left(x\right)} = \frac{\sin{f\left(x\right)}}{\cos{f\left(x\right)}}$ để tính $\tan{f\left(x\right)}$.
 
-### 代码
+<span id="&#x4EE3;&#x7801;_2"></span>
+### Mã nguồn
 
-??? note "多项式三角函数"
-    注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $\mathrm{i}$ 应该被换成 $86583718$ 或 $911660635$：
+??? note "Hàm lượng giác của đa thức"
+    Lưu ý rằng ta đang làm NTT trên $\mathbb{Z}_{998244353}$, nên tương ứng, đơn vị ảo $\mathrm{i}$ cần được thay bằng $86583718$ hoặc $911660635$:
     
     $$
     \begin{aligned}
@@ -476,13 +495,15 @@ $$
     }
     ```
 
-## 多项式反三角函数
+<span id="&#x591A;&#x9879;&#x5F0F;&#x53CD;&#x4E09;&#x89D2;&#x51FD;&#x6570;"></span>
+## Hàm lượng giác ngược của đa thức
 
-给定多项式 $f\left(x\right)$，求模 $x^{n}$ 意义下的 $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ 与 $\arctan{f\left(x\right)}$．
+Cho đa thức $f\left(x\right)$, hãy tìm $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ và $\arctan{f\left(x\right)}$ theo modulo $x^{n}$.
 
-### 解法
+<span id="&#x89E3;&#x6CD5;_5"></span>
+### Cách giải
 
-仿照求多项式 $\ln$ 的方法，对反三角函数求导再积分可得：
+Mô phỏng cách tính $\ln$ của đa thức: lấy đạo hàm của hàm lượng giác ngược rồi tích phân, ta được:
 
 $$
 \begin{aligned}
@@ -495,7 +516,7 @@ $$
 \end{aligned}
 $$
 
-那么代入 $f\left(x\right)$ 就有：
+Thay $f\left(x\right)$ vào, ta có:
 
 $$
 \begin{aligned}
@@ -508,11 +529,12 @@ $$
 \end{aligned}
 $$
 
-直接按式子求就可以了．
+Chỉ cần tính trực tiếp theo các công thức này.
 
-### 代码
+<span id="&#x4EE3;&#x7801;_3"></span>
+### Mã nguồn
 
-??? note "多项式反三角函数"
+??? note "Hàm lượng giác ngược của đa thức"
     ```cpp
     constexpr int MAXN = 262144;
     constexpr int mod = 998244353;
@@ -590,6 +612,7 @@ $$
     }
     ```
 
-## 参考资料与链接
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x94FE;&#x63A5;"></span>
+## Tài liệu tham khảo và liên kết
 
-[^ref1]: [Elementary function——Wikipedia](https://en.wikipedia.org/wiki/Elementary_function)
+[^ref1]: [Elementary function - Wikipedia](https://en.wikipedia.org/wiki/Elementary_function)

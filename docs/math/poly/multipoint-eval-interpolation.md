@@ -1,18 +1,21 @@
-## 多项式的多点求值
+<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x591A;&#x70B9;&#x6C42;&#x503C;"></span>
+## Tính giá trị đa thức tại nhiều điểm
 
-### 描述
+<span id="&#x63CF;&#x8FF0;"></span>
+### Mô tả
 
-给出一个多项式 $f\left(x\right)$ 和 $n$ 个点 $x_{1},x_{2},\dots,x_{n}$，求
+Cho một đa thức $f\left(x\right)$ và $n$ điểm $x_{1},x_{2},\dots,x_{n}$, hãy tính
 
 $$
 f\left(x_{1}\right),f\left(x_{2}\right),\dots,f\left(x_{n}\right)
 $$
 
-### 解法
+<span id="&#x89E3;&#x6CD5;"></span>
+### Cách giải
 
-考虑使用分治来将问题规模减半．
+Xét dùng chia để trị để giảm một nửa kích thước bài toán.
 
-将给定的点分为两部分：
+Chia các điểm đã cho thành hai phần:
 
 $$
 \begin{aligned}
@@ -21,65 +24,68 @@ $$
 \end{aligned}
 $$
 
-构造多项式
+Xây dựng đa thức
 
 $$
 g_{0}\left(x\right)=\prod_{x_{i}\in X_{0}}\left(x-x_{i}\right)
 $$
 
-则有 $\forall x\in X_{0}:g_{0}\left(x\right)=0$．
+Khi đó $\forall x\in X_{0}:g_{0}\left(x\right)=0$.
 
-考虑将 $f\left(x\right)$ 表示为 $g_{0}\left(x\right)Q\left(x\right)+f_{0}\left(x\right)$ 的形式，即：
+Xét biểu diễn $f\left(x\right)$ dưới dạng $g_{0}\left(x\right)Q\left(x\right)+f_{0}\left(x\right)$, tức là:
 
 $$
 f_{0}\left(x\right)\equiv f\left(x\right)\pmod{g_{0}\left(x\right)}
 $$
 
-则有 $\forall x\in X_{0}:f\left(x\right)=g_{0}\left(x\right)Q\left(x\right)+f_{0}\left(x\right)=f_{0}\left(x\right)$，$X_{1}$ 同理．
+Khi đó $\forall x\in X_{0}:f\left(x\right)=g_{0}\left(x\right)Q\left(x\right)+f_{0}\left(x\right)=f_{0}\left(x\right)$; với $X_{1}$ ta làm tương tự.
 
-至此，问题的规模被减半，可以使用分治 + 多项式取模解决．
+Đến đây, kích thước bài toán đã bị giảm một nửa, nên có thể giải bằng chia để trị + lấy dư đa thức.
 
-时间复杂度
+Độ phức tạp thời gian
 
 $$
 T\left(n\right)=2T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log^{2}{n}\right)
 $$
 
-## 多项式的快速插值
+<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x5FEB;&#x901F;&#x63D2;&#x503C;"></span>
+## Nội suy nhanh đa thức
 
-### 描述
+<span id="&#x63CF;&#x8FF0;_1"></span>
+### Mô tả
 
-给出一个 $n+1$ 个点的集合
+Cho tập gồm $n+1$ điểm
 
 $$
 X=\left\{\left(x_{0},y_{0}\right),\left(x_{1},y_{1}\right),\dots,\left(x_{n},y_{n}\right)\right\}
 $$
 
-求一个 $n$ 次多项式 $f\left(x\right)$ 使得其满足 $\forall\left(x,y\right)\in X:f\left(x\right)=y$．
+Hãy tìm một đa thức bậc $n$ là $f\left(x\right)$ sao cho nó thỏa mãn $\forall\left(x,y\right)\in X:f\left(x\right)=y$.
 
-### 解法
+<span id="&#x89E3;&#x6CD5;_1"></span>
+### Cách giải
 
-考虑拉格朗日插值公式
+Xét công thức nội suy Lagrange
 
 $$
 f(x) = \sum_{i=1}^{n} \prod_{j\neq i }\frac{x-x_j}{x_i-x_j} y_i
 $$
 
-记多项式 $M(x) = \prod_{i=1}^n (x - x_i)$，由洛必达法则可知
+Đặt đa thức $M(x) = \prod_{i=1}^n (x - x_i)$. Theo quy tắc L'Hopital,
 
 $$
 \prod_{j\neq i} (x_i - x_j) = \lim_{x\rightarrow x_i} \frac{\prod_{j=1}^n (x - x_j)}{x - x_i} = M'(x_i)
 $$
 
-因此多项式被表示为
+Vậy đa thức có thể được biểu diễn thành
 
 $$
 f(x) = \sum_{i = 1}^n \frac{y_i}{M'(x_i)}\prod_{j \neq i}(x - x_j)
 $$
 
-我们首先通过分治计算出 $M(x)$ 的系数表示，接着可以通过多点求值在 $O(n\log^2 n)$ 时间内计算出所有的 $M'(x_i)$．
+Trước hết, ta dùng chia để trị để tính biểu diễn hệ số của $M(x)$; sau đó có thể tính tất cả $M'(x_i)$ bằng tính giá trị tại nhiều điểm trong thời gian $O(n\log^2 n)$.
 
-我们令 $v_i = \frac{y_i}{M'(x_i)}$，接下来考虑计算出 $f(x)$．对于 $n = 1$ 的情况，有 $f(x) = v_1, M(x) = x - x_1$．否则令
+Đặt $v_i = \frac{y_i}{M'(x_i)}$. Tiếp theo xét cách tính $f(x)$. Với trường hợp $n = 1$, ta có $f(x) = v_1, M(x) = x - x_1$. Nếu không, đặt
 
 $$
 \begin{aligned}
@@ -90,4 +96,4 @@ M_1(x) & = \prod_{i = \left\lfloor \frac n2 \right \rfloor+1}^n (x - x_i)
 \end{aligned}
 $$
 
-可得 $f(x) = f_0(x)M_1(x) + f_1(x)M_0(x), M(x) = M_0(x)M_1(x)$，因此可以分治计算，这一部分的复杂度同样是 $O(n\log^2 n)$．
+Suy ra $f(x) = f_0(x)M_1(x) + f_1(x)M_0(x), M(x) = M_0(x)M_1(x)$. Do đó có thể tính bằng chia để trị; phần này cũng có độ phức tạp $O(n\log^2 n)$.

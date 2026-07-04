@@ -276,16 +276,16 @@ nav:
       - Biến đổi số học nhanh: math/poly/ntt.md
       - Biến đổi Walsh nhanh: math/poly/fwt.md
       - Biến đổi Chirp Z: math/poly/czt.md
-      - 多项式牛顿迭代: math/poly/newton.md
-      - 多项式多点求值|快速插值: math/poly/multipoint-eval-interpolation.md
-      - 多项式初等函数: math/poly/elementary-func.md
-      - 常系数齐次线性递推: math/poly/linear-recurrence.md
-      - 多项式平移|连续点值平移: math/poly/shift.md
-      - 符号化方法: math/poly/symbolic-method.md
-      - Lagrange 反演: math/poly/lagrange-inversion.md
-      - 形式幂级数复合|复合逆: math/poly/comp-rev.md
-      - 普通生成函数: math/poly/ogf.md
-      - 指数生成函数: math/poly/egf.md
+      - Lặp Newton cho đa thức: math/poly/newton.md
+      - Tính giá trị nhiều điểm | nội suy nhanh: math/poly/multipoint-eval-interpolation.md
+      - Hàm sơ cấp của đa thức: math/poly/elementary-func.md
+      - Truy hồi tuyến tính hệ số hằng: math/poly/linear-recurrence.md
+      - Dịch đa thức | dịch giá trị tại điểm liên tiếp: math/poly/shift.md
+      - Phương pháp ký hiệu: math/poly/symbolic-method.md
+      - Đảo Lagrange: math/poly/lagrange-inversion.md
+      - Hợp thành chuỗi lũy thừa hình thức | nghịch đảo hợp thành: math/poly/comp-rev.md
+      - Hàm sinh thường: math/poly/ogf.md
+      - Hàm sinh mũ: math/poly/egf.md
     - 组合数学:
       - 排列组合: math/combinatorics/combination.md
       - 抽屉原理: math/combinatorics/drawer-principle.md

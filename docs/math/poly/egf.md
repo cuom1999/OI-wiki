@@ -1,16 +1,17 @@
 author: sshwy, ComeIntoCalm
 
-序列 $a$ 的指数生成函数（exponential generating function，EGF）定义为形式幂级数：
+Hàm sinh mũ (exponential generating function, EGF) của dãy $a$ được định nghĩa là chuỗi lũy thừa hình thức:
 
 $$
 \hat{F}(x)=\sum_{n}a_n \frac{x^n}{n!}
 $$
 
-## 基本运算
+<span id="&#x57fa;&#x672c;&#x8fd0;&#x7b97;"></span>
+## Phép toán cơ bản
 
-指数生成函数的加减法与普通生成函数是相同的，也就是对应项系数相加．
+Phép cộng và trừ của hàm sinh mũ giống với hàm sinh thường, tức là cộng các hệ số tương ứng.
 
-考虑指数生成函数的乘法运算．对于两个序列 $a,b$，设它们的指数生成函数分别为 $\hat{F}(x),\hat{G}(x)$，那么
+Xét phép nhân của hàm sinh mũ. Với hai dãy $a,b$, giả sử hàm sinh mũ của chúng lần lượt là $\hat{F}(x),\hat{G}(x)$. Khi đó
 
 $$
 \begin{aligned}
@@ -21,74 +22,75 @@ $$
 \end{aligned}
 $$
 
-因此 $\hat{F}(x)\hat{G}(x)$ 是序列
+Do đó $\hat{F}(x)\hat{G}(x)$ là hàm sinh mũ của dãy
 
 $$
 \left\langle \sum_{i=0}^n \binom{n}{i}a_ib_{n-i} \right\rangle
 $$
 
-的指数生成函数．
+<span id="&#x5c01;&#x95ed;&#x5f62;&#x5f0f;"></span>
+## Dạng đóng
 
-## 封闭形式
+Ta cũng xét dạng đóng của hàm sinh mũ.
 
-我们同样考虑指数生成函数的封闭形式．
-
-序列 $\langle 1,1,1,\cdots\rangle$ 的指数生成函数是：
+Hàm sinh mũ của dãy $\langle 1,1,1,\cdots\rangle$ là:
 
 $$
 \hat{F}(x) = \sum_{n \ge 0}\frac{x^n}{n!} = \mathrm{e}^x
 $$
 
-因为你将 $\mathrm{e}^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式．
+Vì khai triển Taylor của $\mathrm{e}^x$ tại $x = 0$ chính là chuỗi vô hạn này.
 
-类似地，等比数列 $\langle 1,p,p^2,\cdots\rangle$ 的指数生成函数是：
+Tương tự, hàm sinh mũ của cấp số nhân $\langle 1,p,p^2,\cdots\rangle$ là:
 
 $$
 \hat{F}(x) = \sum_{n\ge 0}\frac{p^nx^n}{n!}=\mathrm{e}^{px}
 $$
 
-## 指数生成函数与普通生成函数
+<span id="&#x6307;&#x6570;&#x751f;&#x6210;&#x51fd;&#x6570;&#x4e0e;&#x666e;&#x901a;&#x751f;&#x6210;&#x51fd;&#x6570;"></span>
+## Hàm sinh mũ và hàm sinh thường
 
-如何理解指数生成函数？我们定义序列 $a$ 的指数生成函数是：
+Hiểu hàm sinh mũ như thế nào? Ta định nghĩa hàm sinh mũ của dãy $a$ là:
 
 $$
 F(x)=\sum_{n\ge 0}a_n\frac{x^n}{n!}
 $$
 
-但 $F(x)$ 实际上也是序列 $\left\langle \dfrac{a_n}{n!} \right\rangle$ 的普通生成函数．
+Nhưng thực ra $F(x)$ cũng là hàm sinh thường của dãy $\left\langle \dfrac{a_n}{n!} \right\rangle$.
 
-这两种理解没有任何问题．也就是说，不同的生成函数只是对问题理解方式的转变．
+Cả hai cách hiểu đều không có vấn đề. Nói cách khác, các loại hàm sinh khác nhau chỉ là những cách chuyển đổi góc nhìn đối với bài toán.
 
-## EGF 中多项式 exp 的组合意义
+<span id="egf-&#x4e2d;&#x591a;&#x9879;&#x5f0f;-exp-&#x7684;&#x7ec4;&#x5408;&#x610f;&#x4e49;"></span>
+## Ý nghĩa tổ hợp của exp đa thức trong EGF
 
-如果您还没有学习多项式 exp 请先跳过这里，这是由 exp 理解引出的意义，从某种意义上来说可以加深对 EGF 的理解．
+Nếu bạn chưa học exp đa thức, hãy tạm bỏ qua phần này. Đây là ý nghĩa được rút ra từ cách hiểu exp, và ở một mức độ nào đó có thể giúp hiểu EGF sâu hơn.
 
-EGF 中 $f^n(x)$ 的 $f$ 默认是一个 EGF，那么我们首先考虑任意两个 EGF 的乘积
+Trong EGF, $f$ trong $f^n(x)$ mặc định là một EGF. Trước hết xét tích của hai EGF bất kỳ:
 
 $$
 \hat{H}(x) = \hat{F}(x)\hat{G}(x) = \sum_{n\geq 0} \left[ \sum_{i = 0}^n\binom {n}{i}f_ig_{n-i} \right] \frac{x^n}{n!}
 $$
 
-对于两个 EGF 相乘得到的 $[x^k]\hat{H}(x)$，实际上是一个卷积．而如果考虑多个 EGF 相乘得到的 $[x^k]\hat{H}(x)$，实际上就是对每个 EGF 选择一项 $x^{a_i}$ 使得 $\sum_ia_i=k$ 时每种情况系数的和．
-从集合的角度来理解就是把 $n$ 个有标号元素划分为 $k>0$ 个有标号集合的方案数．
+Với $[x^k]\hat{H}(x)$ thu được từ tích của hai EGF, về bản chất đó là một tích chập. Nếu xét $[x^k]\hat{H}(x)$ thu được từ tích của nhiều EGF, thì đó là tổng hệ số của mọi cách chọn một hạng tử $x^{a_i}$ từ mỗi EGF sao cho $\sum_ia_i=k$.
+Nhìn theo góc độ tập hợp, đó là số cách chia $n$ phần tử có nhãn thành $k>0$ tập hợp có nhãn.
 
-> 如果 $k=0$ 则系数显然为原 EGF 各项常数的积，但是多项式 $\exp$ 中某些要求导致 $\exp$ 的 $f(x)$ 常数项必须为 $0$，具体的原因在下文中会做出一些说明．
+> Nếu $k=0$ thì hệ số hiển nhiên bằng tích các hằng số của từng EGF. Tuy nhiên, một số yêu cầu trong exp đa thức khiến hằng số của $f(x)$ trong $\exp$ phải bằng $0$; nguyên nhân cụ thể sẽ được giải thích ở bên dưới.
 
-多项式系数定义（具体请参考排列组合一栏中的多项式系数组合意义）里是默认集合有序的，但是 $\exp(f(x))$ 中 $f^k(x)$，$k$ 个 $f(x)$ 相乘得到的 EGF 相同，而集合划分显然是无序的，因此其系数应该乘上 $\dfrac{1}{k!}$．
+Trong định nghĩa hệ số đa thức (xem ý nghĩa tổ hợp của hệ số đa thức trong phần hoán vị và tổ hợp), mặc định các tập hợp có thứ tự. Nhưng trong $\exp(f(x))$, các EGF thu được từ $f^k(x)$, tức tích của $k$ bản sao $f(x)$, là như nhau; còn phép chia tập hợp rõ ràng là không có thứ tự. Vì vậy hệ số phải nhân thêm $\dfrac{1}{k!}$.
 
-设 $F_k(n)$ 为 $n$ 个有标号元素划分成 $k$ 个非空无序集合（因为是 $\exp$ 所以有非空要求）的情况，$f_i$ 为 $i$ 个元素组成一个集合时，$i$ 个元素的有限集上特定组合结构的数量（是原有的 EGF，对这一个集合元素计数的方案，仅仅与该集合大小有关），那么 $F_k(n)$
+Gọi $F_k(n)$ là số cách chia $n$ phần tử có nhãn thành $k$ tập con không rỗng, không thứ tự (vì là $\exp$ nên yêu cầu không rỗng). Gọi $f_i$ là số cấu trúc tổ hợp cụ thể trên một tập hữu hạn gồm $i$ phần tử khi một tập có $i$ phần tử (đây là EGF ban đầu, đếm phương án trên phần tử của một tập, chỉ phụ thuộc vào kích thước tập). Khi đó
 
 $$
 F_k(n)=\frac{n!}{k!}\sum_{\sum_{i}^ka_i=n}\prod_{j=1}^{k}\frac{f_{a_j}}{a_j!}
 $$
 
-设 $f_n$ 的 EGF 为 $\hat{F}(x)$，即：
+Gọi EGF của $f_n$ là $\hat{F}(x)$, tức là:
 
 $$
 \hat{F}(x) = \sum_{n \geq 0} f_n\frac{x^n}{n!}
 $$
 
-设 $F_k(n)$ 的 EGF 为 $G_k(x)$，则：
+Gọi EGF của $F_k(n)$ là $G_k(x)$, ta có:
 
 $$
 \begin{aligned}
@@ -99,17 +101,17 @@ G_k(x)&=\sum_{n \geq 0} F_k(n)\frac{x^n}{n!}\\
 \end{aligned}
 $$
 
-对于所有的 $k \geq 0$：
+Với mọi $k \geq 0$:
 
 $$
 \sum_{k \geq 0}G_k(x) = \sum_{k \geq 0}\frac{\hat{F}^k(x)}{k!} = \exp{\hat{F}(x)}
 $$
 
-上面是从组合角度直接列式理解，我们也可以从递推方面来证明 $\exp(f(x))$ 和 $f(x)$ 两者间的关系．
+Phần trên là cách lập biểu thức trực tiếp từ góc độ tổ hợp. Ta cũng có thể chứng minh quan hệ giữa $\exp(f(x))$ và $f(x)$ bằng truy hồi.
 
-同样设 $F_k(n)$ 为 $n$ 个有标号元素划分成 $k$ 个非空集合（无标号）的情况，$g_i$ 为 $i$ 个元素组成一个集合内部的方案数（意义同上文中的 $f_i$），并令 $G(x)$ 为 $\{g_i\}$ 的 EGF，$H_k(x)$ 为 $\{F_k(n)\}$ 的 EGF．
+Tương tự, gọi $F_k(n)$ là số cách chia $n$ phần tử có nhãn thành $k$ tập con không rỗng (không có nhãn), $g_i$ là số phương án bên trong một tập gồm $i$ phần tử (ý nghĩa giống $f_i$ ở trên). Đặt $G(x)$ là EGF của $\{g_i\}$ và $H_k(x)$ là EGF của $\{F_k(n)\}$.
 
-$n$ 个元素中取出 $i$ 个元素作为一个单独划分出去的集合共有 $g_i$ 种方案，剩下的 $n-i$ 个元素构成 $k-1$ 个集合共 $F_{k-1}(n-i)$ 种方案，但最后的划分方案中，一个方案里的每个集合都会被枚举为单独划分出去的集合，所以重复计算了 $k$ 次，故还需要除以 $k$．
+Trong $n$ phần tử, chọn $i$ phần tử làm một tập riêng biệt có $g_i$ phương án. $n-i$ phần tử còn lại tạo thành $k-1$ tập, có $F_{k-1}(n-i)$ phương án. Nhưng trong phương án chia cuối cùng, mỗi tập đều sẽ được liệt kê như tập riêng được tách ra, nên bị đếm lặp $k$ lần; do đó cần chia thêm cho $k$.
 
 $$
 \begin{aligned}
@@ -120,9 +122,9 @@ H_k(x) &= \sum_{n\ge 0}\cfrac{x^n}{n!}F_k(n)\\
 \end{aligned}
 $$
 
-上界是由非空集合划分推出的 $n-(k-1)\geq i$（前 $k-1$ 个集合每个集合最少有一个元素），但是如果超过枚举上界涉及的 $F_{k-1}(n-i)$ 设为 $0$，那么就没有影响．
+Cận trên xuất phát từ điều kiện chia thành các tập không rỗng: $n-(k-1)\geq i$ (mỗi tập trong $k-1$ tập trước ít nhất có một phần tử). Nếu đặt $F_{k-1}(n-i)=0$ khi vượt quá cận liệt kê, kết quả không đổi.
 
-得到递推式之后可递归展开，边界为 $k=1$ 时 $H_1(x)=G(x)$．
+Sau khi có truy hồi, ta khai triển đệ quy với biên $H_1(x)=G(x)$ khi $k=1$.
 
 $$
 \begin{aligned}
@@ -134,7 +136,7 @@ H_k(x) &= \cfrac{1}{k}\cdot   H_{k-1}(x)G(x)\\
 \end{aligned}
 $$
 
-同样的有：
+Tương tự:
 
 $$
 \begin{aligned}
@@ -142,152 +144,156 @@ $$
 \end{aligned}
 $$
 
-显然 **定义成划分为非空集合**（$g_0=0$）是符合本身的意义的，如果 **包含空集**（$g_0=1$），那么对应 $[x^n]G^k$ 中就会有 $[x^n]G^y,y>k$ 的贡献（在至少一个 $G$ 中选择常数项），有计重，得不到所求量．
+Rõ ràng, **định nghĩa là chia thành các tập không rỗng** ($g_0=0$) phù hợp với ý nghĩa vốn có. Nếu **cho phép tập rỗng** ($g_0=1$), thì trong $[x^n]G^k$ sẽ có đóng góp từ $[x^n]G^y,y>k$ (do chọn hằng số ở ít nhất một $G$), gây đếm lặp và không thu được đại lượng cần tìm.
 
-从递推式的角度讲，多个 EGF 的乘积也可以看作一个类似于背包的组合（合并两组计数对象的过程）．
+Từ góc độ truy hồi, tích của nhiều EGF cũng có thể xem như một dạng tổ hợp giống bài toán ba lô (quá trình gộp hai nhóm đối tượng đếm).
 
-总结多项式 $\exp$ 的意义就是：**有标号元素构成的集合的生成集族有多少种情况**，或划分为任意个非空子集的总方案数．
+Tóm lại, ý nghĩa của $\exp$ đa thức là: **số cách tạo một họ tập hợp từ các phần tử có nhãn**, hoặc tổng số phương án chia thành tùy ý số tập con không rỗng.
 
-## 排列与圆排列
+<span id="&#x6392;&#x5217;&#x4e0e;&#x5706;&#x6392;&#x5217;"></span>
+## Hoán vị và hoán vị vòng
 
-长度为 $n$ 的排列数的指数生成函数是
+Hàm sinh mũ của số hoán vị độ dài $n$ là
 
 $$
 \hat{P}(x)=\sum_{n\ge 0}\frac{n!x^n}{n!}=\sum_{n\ge 0}x^n=\frac{1}{1-x}
 $$
 
-圆排列的定义是把 $1,2,\cdots,n$ 排成一个环的方案数．也就是说旋转后的方案的等价的（但翻转是不等价的）．
+Hoán vị vòng được định nghĩa là số cách xếp $1,2,\cdots,n$ thành một vòng. Nói cách khác, các cách chỉ khác nhau bởi phép quay là tương đương (nhưng phép lật thì không tương đương).
 
-$n$ 个数的圆排列数显然是 $(n-1)!$．因此 $n$ 个数的圆排列数的指数生成函数是
+Số hoán vị vòng của $n$ số rõ ràng là $(n-1)!$. Vì vậy hàm sinh mũ của số hoán vị vòng của $n$ số là
 
 $$
 \hat{Q}(x)=\sum_{n\ge 1}\frac{(n-1)!x^n}{n!}=\sum_{n\ge 1}\frac{x^n}{n}=-\ln(1-x)=\ln\left( \frac{1}{1-x} \right)
 $$
 
-也就是说 $\exp \hat{Q}(x)=\hat{P}(x)$．但这只是数学层面的推导．我们该怎样直观理解：圆排列数的 EGF 的 $\exp$ 是排列数的 EGF？
+Nói cách khác, $\exp \hat{Q}(x)=\hat{P}(x)$. Nhưng đó chỉ là suy luận ở mức toán học. Trực giác nên hiểu thế nào: vì sao $\exp$ của EGF của hoán vị vòng lại là EGF của hoán vị?
 
-一个排列，是由若干个置换环构成的．例如 $p=[4,3,2,5,1]$ 有两个置换环：
+Một hoán vị được tạo bởi một số chu trình hoán vị. Ví dụ $p=[4,3,2,5,1]$ có hai chu trình hoán vị:
 
 ![](./images/p1.png)
 
-（也就是说我们从 $p_i$ 向 $i$ 连有向边）
+(tức là ta nối cạnh có hướng từ $p_i$ tới $i$)
 
-而不同的置换环，会导出不同的排列．例如将第二个置换环改成
+Các chu trình hoán vị khác nhau sẽ dẫn đến các hoán vị khác nhau. Ví dụ đổi chu trình hoán vị thứ hai thành
 
 ![](./images/p2.png)
 
-那么它对应的排列就是 $[5,3,2,1,4]$．
+thì hoán vị tương ứng là $[5,3,2,1,4]$.
 
-也就是说，长度为 $n$ 的排列的方案数是
+Nói cách khác, số phương án của hoán vị độ dài $n$ là:
 
-1.  把 $1,2,\cdots,n$ 分成若干个集合
-2.  每个集合形成一个置换环
+1.  Chia $1,2,\cdots,n$ thành một số tập.
+2.  Mỗi tập tạo thành một chu trình hoán vị.
 
-的方案数．而一个集合的数形成置换环的方案数显然就是这个集合大小的圆排列方案数．因此长度为 $n$ 的排列的方案数就是：把 $1,2,\cdots,n$ 分成若干个集合，每个集合的圆排列方案数之积．
+Số cách để các phần tử trong một tập tạo thành chu trình hoán vị rõ ràng chính là số hoán vị vòng theo kích thước của tập đó. Vì vậy số hoán vị độ dài $n$ bằng số cách chia $1,2,\cdots,n$ thành một số tập, rồi lấy tích số phương án hoán vị vòng của từng tập.
 
-这就是多项式 $\exp$ 的直观理解．
+Đó là trực giác của $\exp$ đa thức.
 
-推广之
+Tổng quát hơn:
 
--   如果 $n$ 个点 **带标号** 生成树的 EGF 是 $\hat{F}(x)$，那么 $n$ 个点 **带标号** 生成森林的 EGF 就是 $\exp \hat{F}(x)$——直观理解为，将 $n$ 个点分成若干个集合，每个集合构成一个生成树的方案数之积．
--   如果 $n$ 个点带标号无向连通图的 EGF 是 $\hat{F}(x)$，那么 $n$ 个点带标号无向图的 EGF 就是 $\exp \hat{F}(x)$，后者可以很容易计算得到
+-   Nếu EGF của cây sinh **có nhãn** trên $n$ đỉnh là $\hat{F}(x)$, thì EGF của rừng sinh **có nhãn** trên $n$ đỉnh là $\exp \hat{F}(x)$: trực giác là chia $n$ đỉnh thành một số tập, mỗi tập tạo thành một cây sinh, rồi nhân số phương án của từng tập.
+-   Nếu EGF của đồ thị vô hướng liên thông có nhãn trên $n$ đỉnh là $\hat{F}(x)$, thì EGF của đồ thị vô hướng có nhãn trên $n$ đỉnh là $\exp \hat{F}(x)$. EGF sau có thể tính rất dễ:
 
     $$
     \exp \hat{F}(x)=\sum_{n\ge 0}2^{\binom{n}{2}}\frac{x^n}{n!}
     $$
 
-    因此要计算前者，只需要一次多项式 $\ln$ 即可．
+    Vì vậy muốn tính EGF trước, chỉ cần thực hiện một lần $\ln$ đa thức.
 
-接下来我们来看一些指数生成函数的应用．
+Tiếp theo ta xem một số ứng dụng của hàm sinh mũ.
 
-## 应用
+<span id="&#x5e94;&#x7528;"></span>
+## Ứng dụng
 
-### 错排数
+<span id="&#x9519;&#x6392;&#x6570;"></span>
+### Số derangement
 
-???+ note "错排数"
-    定义长度为 $n$ 的一个错排是满足 $p_i\ne i$ 的排列．
+???+ note "Số derangement"
+    Định nghĩa một derangement độ dài $n$ là một hoán vị thỏa mãn $p_i\ne i$.
     
-    求错排数的指数生成函数．
+    Hãy tìm hàm sinh mũ của số derangement.
 
-从置换环的角度考虑，错排就是指置换环中不存在自环的排列．也就是说不存在长度为 $1$ 的置换环．后者的指数生成函数是
+Xét theo góc độ chu trình hoán vị, derangement nghĩa là trong các chu trình hoán vị không tồn tại vòng tự thân. Nói cách khác, không có chu trình hoán vị độ dài $1$. Hàm sinh mũ của phần còn lại là
 
 $$
 \sum_{n\ge 2}\frac{x^n}{n}=-\ln\left(1-x\right)-x
 $$
 
-因此错排数的指数生成函数就是 $\exp(-\ln(1-x)-x)$．
+Do đó hàm sinh mũ của số derangement là $\exp(-\ln(1-x)-x)$.
 
-### 不动点
+<span id="&#x4e0d;&#x52a8;&#x70b9;"></span>
+### Điểm bất động
 
-???+ note "[不动点](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1728)"
-    题意：求有多少个映射 $f:\{1,2,\cdots,n\}\to \{1,2,\cdots,n\}$，使得
+???+ note "[Điểm bất động](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1728)"
+    Đề bài: hỏi có bao nhiêu ánh xạ $f:\{1,2,\cdots,n\}\to \{1,2,\cdots,n\}$ sao cho
     
     $$
     \underbrace{f\circ f\circ\cdots\circ f}_{k}=\underbrace{f\circ f\circ\cdots\circ f}_{k-1}
     $$
     
-    $nk\le 2\times 10^6,1\le k\le 3$．
+    $nk\le 2\times 10^6,1\le k\le 3$.
 
-考虑 $i$ 向 $f(i)$ 连边．相当于我们从任意一个 $i$ 走 $k$ 步和走 $k-1$ 步到达的是同一个点．也就是说基环树的环是自环且深度不超过 $k$（根结点深度为 $1$）．把这个基环树当成有根树是一样的．因此我们的问题转化为：$n$ 个点带标号，深度不超过 $k$ 的有根树森林的计数．
+Xét cạnh từ $i$ tới $f(i)$. Điều kiện tương đương với việc từ một $i$ bất kỳ, đi $k$ bước và đi $k-1$ bước đều đến cùng một điểm. Nói cách khác, chu trình trong cây có chu trình cơ sở là vòng tự thân và độ sâu không vượt quá $k$ (độ sâu của gốc là $1$). Xem cây có chu trình cơ sở này như một cây có gốc cũng tương đương. Vì vậy bài toán chuyển thành: đếm rừng cây có gốc, có nhãn trên $n$ đỉnh, với độ sâu không vượt quá $k$.
 
-考虑 $n$ 个点带标号深度不超过 $k$ 的有根树，假设它的生成函数是：
+Xét cây có gốc có nhãn trên $n$ đỉnh và độ sâu không vượt quá $k$. Giả sử hàm sinh của nó là:
 
 $$
 \hat{F_k}(x)=\sum_{n\ge 0}f_{n,k}\frac{x^n}{n!}
 $$
 
-考虑递推求 $\hat{F_k}(x)$．深度不超过 $k$ 的有根树，实际上就是深度不超过 $k-1$ 的若干棵有根树，把它们的根结点全部连到一个结点上去．因此
+Xét cách truy hồi để tìm $\hat{F_k}(x)$. Một cây có gốc với độ sâu không vượt quá $k$ thực chất là một số cây có gốc với độ sâu không vượt quá $k-1$, rồi nối toàn bộ gốc của chúng vào một đỉnh mới. Do đó
 
 $$
 \hat{F_k}(x)=x\exp \hat{F}_{k-1}(x)
 $$
 
-那么答案的指数生成函数就是 $\exp \hat{F}_k(x)$．求它的第 $n$ 项即可．
+Khi đó hàm sinh mũ của đáp án là $\exp \hat{F}_k(x)$. Chỉ cần lấy hạng tử thứ $n$ của nó.
 
 ### Lust
 
 ???+ note "[Lust](https://codeforces.com/contest/891/problem/E)"
-    给你一个 $n$ 个数的序列 $a_1,a_2,\cdots,a_n$，和一个初值为 $0$ 的变量 $s$，要求你重复以下操作 $k$ 次：
+    Cho một dãy $n$ số $a_1,a_2,\cdots,a_n$ và một biến $s$ ban đầu bằng $0$. Yêu cầu lặp thao tác sau $k$ lần:
     
-    -   在 $1,2,\cdots,n$ 中等概率随机选择一个 $x$．
-    -   令 $s$ 加上 $\prod_{i\ne x}a_i$．
-    -   令 $a_x$ 减一．
+    -   Chọn ngẫu nhiên đều một $x$ trong $1,2,\cdots,n$.
+    -   Cộng $\prod_{i\ne x}a_i$ vào $s$.
+    -   Giảm $a_x$ đi một.
     
-    求 $k$ 次操作后 $s$ 的期望．
+    Hãy tính kỳ vọng của $s$ sau $k$ thao tác.
     
-    $1\le n\le 5000,1\le k\le 10^9,0\le a_i\le 10^9$．
+    $1\le n\le 5000,1\le k\le 10^9,0\le a_i\le 10^9$.
 
-假设 $k$ 次操作后 $a_i$ 减少了 $b_i$，那么实际上
+Giả sử sau $k$ thao tác, $a_i$ đã giảm đi $b_i$. Khi đó thực ra
 
 $$
 s=\prod_{i=1}^n a_i-\prod_{i=1}^n(a_i- b_i)
 $$
 
-因此实际上我们的问题转化为，求 $k$ 次操作后 $\prod_{i=1}^n (a_i- b_i)$ 的期望．
+Vì vậy bài toán chuyển thành tìm kỳ vọng của $\prod_{i=1}^n (a_i- b_i)$ sau $k$ thao tác.
 
-不妨考虑计算每种方案的 $\prod_{i=1}^n (a_i- b_i)$ 的和，最后除以 $n^k$．
+Ta xét việc tính tổng $\prod_{i=1}^n (a_i- b_i)$ trên mọi phương án, rồi cuối cùng chia cho $n^k$.
 
-而 $k$ 次操作序列中，要使得 $i$ 出现了 $b_i$ 次的方案数是
+Trong chuỗi $k$ thao tác, số phương án để $i$ xuất hiện $b_i$ lần là
 
 $$
 \frac{k!}{b_1!b_2!\cdots b_n!}
 $$
 
-这与指数生成函数乘法的系数类似．
+Điều này tương tự hệ số trong phép nhân hàm sinh mũ.
 
-设 $a_j$ 的指数生成函数是
+Đặt hàm sinh mũ của $a_j$ là
 
 $$
 F_j(x)=\sum_{i\ge 0}(a_j-i)\frac{x^i}{i!}
 $$
 
-那么答案就是
+Khi đó đáp án là
 
 $$
 [x^k]\prod_{j=1}^nF_j(x)
 $$
 
-为了快速计算答案，我们需要将 $F_j(x)$ 转化为封闭形式：
+Để tính nhanh đáp án, ta cần chuyển $F_j(x)$ sang dạng đóng:
 
 $$
 \begin{aligned}
@@ -297,13 +303,13 @@ F_j(x)&=\sum_{i\ge 0}a_j\frac{x^i}{i!}-\sum_{i\ge 1}\frac{x^i}{(i-1)!}\\
 \end{aligned}
 $$
 
-因此我们得到
+Do đó
 
 $$
 \prod_{j=1}^nF_j(x)=\mathrm{e}^{nx}\prod_{j=1}^n(a_j-x)
 $$
 
-其中 $\prod_{j=1}^n(a_j-x)$ 是一个 $n$ 次多项式，可以暴力计算出来．假设它的展开式是 $\sum_{i=0}^nc_ix^i$，那么
+Trong đó $\prod_{j=1}^n(a_j-x)$ là một đa thức bậc $n$, có thể tính trực tiếp. Giả sử khai triển của nó là $\sum_{i=0}^nc_ix^i$, khi đó
 
 $$
 \begin{aligned}
@@ -314,4 +320,4 @@ $$
 \end{aligned}
 $$
 
-计算这个多项式的 $x^k$ 项系数即可．
+Chỉ cần tính hệ số của hạng tử $x^k$ trong đa thức này.

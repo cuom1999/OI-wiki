@@ -23,7 +23,7 @@ constexpr int LOG2_ORD = 23;  // __builtin_ctz(MOD - 1)
 constexpr uint ZETA = PowMod(QUAD_NONRESIDUE, (MOD - 1) >> LOG2_ORD);
 constexpr uint INV_ZETA = InvMod(ZETA);
 
-// 返回做 n 长 FFT 所需的单位根数组，长度为一半
+// Trả về mảng căn bậc đơn vị cần cho FFT độ dài n, có độ dài bằng một nửa
 std::pair<std::vector<uint>, std::vector<uint>> GetFFTRoot(int n) {
   assert((n & (n - 1)) == 0);
   if (n / 2 == 0) return {};
@@ -70,7 +70,7 @@ void InvFFT(int n, uint a[], const uint root[]) {
   for (int i = 0; i < n; ++i) a[i] = (ull)a[i] * inv_n % MOD;
 }
 
-// 形式幂级数复合，求出 f(g) mod x^n 要求 g(0) = 0
+// Hợp thành chuỗi lũy thừa hình thức, tính f(g) mod x^n, yêu cầu g(0) = 0
 std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
                                  int n) {
   assert(g.empty() || g[0] == 0);
@@ -122,7 +122,7 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
   return res;
 }
 
-// Power Projection: [x^(n-1)] (fg^i) for i=0,..,n-1 要求 g(0) = 0
+// Power Projection: [x^(n-1)] (fg^i) for i=0,..,n-1, yêu cầu g(0) = 0
 std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
                                   int n) {
   assert(g.empty() || g[0] == 0);
@@ -176,7 +176,7 @@ std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
   return res;
 }
 
-// 形式幂级数幂函数，计算 g^e mod x^n 要求 g(0) = 1
+// Hàm lũy thừa của chuỗi lũy thừa hình thức, tính g^e mod x^n, yêu cầu g(0) = 1
 std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
   assert(!g.empty() && g[0] == 1);
   if (n == 1) return std::vector<uint>{1u};
@@ -190,8 +190,8 @@ std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
   return FPSComposition(f, g, n);
 }
 
-// 形式幂级数复合逆
-// 计算 g mod x^n 满足 g(f) = f(g) = x 要求 g(0) = 0 且 g'(0) ≠ 0
+// Nghịch đảo hợp thành của chuỗi lũy thừa hình thức
+// Tính g mod x^n thỏa mãn g(f) = f(g) = x, yêu cầu g(0) = 0 và g'(0) != 0
 std::vector<uint> FPSReversion(std::vector<uint> f, int n) {
   assert(f.size() >= 2 && f[0] == 0 && f[1] != 0);
   if (n == 1) return std::vector<uint>{0u};

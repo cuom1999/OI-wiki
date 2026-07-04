@@ -1,93 +1,101 @@
-符号化方法（symbolic method）是将组合对象快速转换成生成函数的一种方法，我们将考虑对于集合上定义的特定运算，然后导出其对应的生成函数的运算．
+Phương pháp kí hiệu (symbolic method) là một cách nhanh để chuyển các đối tượng tổ hợp thành hàm sinh. Ta sẽ xét một số phép toán cụ thể được định nghĩa trên các tập hợp, rồi suy ra phép toán tương ứng trên hàm sinh.
 
-我们称一个组合类（或简称为类）为 $(\mathcal{A},\lvert \cdot \rvert)$，其中 $\mathcal{A}$ 为组合对象的集合，函数 $\lvert \cdot \rvert$ 将每一个组合对象映射为一个非负整数，一般称为大小函数．需要注意的是这个非负整数不能是无限大的．例如对于字符集为 $\lbrace 0,1\rbrace$ 的字符串，可以将字符串的长度设置为其大小函数；对于树或图可将节点的数量设置为其大小函数，注意这并非绝对，也可能将某些特定节点的大小函数设置为 $0$ 等．
+Ta gọi một lớp tổ hợp, hoặc gọi tắt là lớp, là $(\mathcal{A},\lvert \cdot \rvert)$, trong đó $\mathcal{A}$ là tập các đối tượng tổ hợp, còn hàm $\lvert \cdot \rvert$ ánh xạ mỗi đối tượng tổ hợp tới một số nguyên không âm, thường gọi là hàm kích thước. Cần chú ý rằng số nguyên không âm này không được là vô hạn. Ví dụ, với chuỗi trên bảng chữ cái $\lbrace 0,1\rbrace$, có thể lấy độ dài chuỗi làm hàm kích thước; với cây hoặc đồ thị, có thể lấy số đỉnh làm hàm kích thước. Điều này không phải tuyệt đối: đôi khi ta cũng có thể gán kích thước $0$ cho một vài loại đỉnh đặc biệt.
 
-本文是基于 Analytic Combinatorics 一书第一章的简化．
+Bài viết này là một bản giản lược dựa trên chương 1 của sách Analytic Combinatorics.
 
-## 无标号体系
+<span id="&#x65E0;&#x6807;&#x53F7;&#x4F53;&#x7CFB;"></span>
 
-在无标号体系中将使用普通生成函数（OGF）．对于集合 $\mathcal{A}$ 其对应 OGF 记为
+## Hệ không gắn nhãn
 
-$$
-A(z)=\sum_{\alpha\in\mathcal{A}}z^{\lvert \alpha \rvert}=\sum_{n\geq 0}a_nz^n
-$$
-
-我们约定使用同一组的字母表示同一个类对应的生成函数等，例如用 $a_n$ 表示 $\lbrack z^n\rbrack A(z)$ 即 $A(z)$ 中 $z^n$ 的系数，用 $\mathcal{A}_n$ 表示 $\mathcal{A}$ 中大小函数为 $n$ 的对象的集合（所以 $a_n=\operatorname{card}(\mathcal{A}_n)$ 其中 $\operatorname{card}$ 为基数（cardinality））．
-
-本文将不讨论可容许性（admissibility），读者可参考文献中的内容．
-
-下面将引入两种特殊的组合类和组合对象：
-
--   记 $\epsilon$ 为中性对象（neutral object）和 $\mathcal{E}=\lbrace \epsilon \rbrace$ 为中性类（neutral class），中性对象的大小为 $0$，中性类的 OGF 为 $E(z)=1$．
--   记 $\circ$ 或 $\bullet$ 为原子对象（atom object）和 $\mathcal{Z}_{\circ}=\lbrace \circ\rbrace$ 或 $\mathcal{Z}_{\bullet}=\lbrace \bullet\rbrace$ 或简写为 $\mathcal{Z}$ 为原子类（atom class），原子对象的大小为 $1$，原子类的 OGF 为 $Z(z)=z$．
-
-对于两个组合类 $\mathcal{A}$ 和 $\mathcal{B}$ 在组合意义上同构记为 $\mathcal{A}=\mathcal{B}$ 或 $\mathcal{A}\cong\mathcal{B}$，但仅当该同构不平凡时才使用后者的记号．
-
-我们有
+Trong hệ không gắn nhãn, ta dùng hàm sinh thường (OGF). Với tập $\mathcal{A}$, OGF tương ứng được kí hiệu là
 
 $$
-\mathcal{A}\cong\mathcal{E}\times \mathcal{A}\cong\mathcal{A}\times\mathcal{E}
+A(z)=\sum_{\alpha\in\mathcal{A}}z^{\lvert \alpha \rvert}=\sum_{n\geq 0}a_nz^n.
 $$
 
-其中 $\times$ 为二元运算，表示集合的笛卡尔积．
+Ta quy ước dùng cùng một nhóm chữ cái để biểu thị hàm sinh của cùng một lớp. Ví dụ, dùng $a_n$ để biểu thị $\lbrack z^n\rbrack A(z)$, tức hệ số của $z^n$ trong $A(z)$, và dùng $\mathcal{A}_n$ để biểu thị tập các đối tượng trong $\mathcal{A}$ có hàm kích thước bằng $n$; do đó $a_n=\operatorname{card}(\mathcal{A}_n)$, trong đó $\operatorname{card}$ là lực lượng (cardinality).
 
-### 集合的（不相交）并构造
+Bài viết này không thảo luận về tính chấp nhận được (admissibility); độc giả có thể tham khảo nội dung trong tài liệu tham khảo.
 
-对于类 $\mathcal{A}$ 和 $\mathcal{B}$ 的并记为
+Dưới đây ta đưa vào hai lớp tổ hợp và đối tượng tổ hợp đặc biệt:
 
-$$
-\mathcal{A}+\mathcal{B}=(\mathcal{E}_{1}\times\mathcal{A})+(\mathcal{E}_2\times\mathcal{B})
-$$
+-   Kí hiệu $\epsilon$ là đối tượng trung hòa (neutral object), và $\mathcal{E}=\lbrace \epsilon \rbrace$ là lớp trung hòa (neutral class). Kích thước của đối tượng trung hòa là $0$, và OGF của lớp trung hòa là $E(z)=1$.
+-   Kí hiệu $\circ$ hoặc $\bullet$ là đối tượng nguyên tử (atom object), và $\mathcal{Z}_{\circ}=\lbrace \circ\rbrace$, $\mathcal{Z}_{\bullet}=\lbrace \bullet\rbrace$, hoặc viết tắt $\mathcal{Z}$, là lớp nguyên tử (atom class). Kích thước của đối tượng nguyên tử là $1$, và OGF của lớp nguyên tử là $Z(z)=z$.
 
-如此定义可以不违背集合论中集合不相交的要求，我们可以想象成将 $\mathcal{A}$ 中的对象染色成红色，将 $\mathcal{B}$ 中的对象染色成蓝色．
+Với hai lớp tổ hợp $\mathcal{A}$ và $\mathcal{B}$, quan hệ đẳng cấu theo nghĩa tổ hợp được kí hiệu là $\mathcal{A}=\mathcal{B}$ hoặc $\mathcal{A}\cong\mathcal{B}$, nhưng kí hiệu sau chỉ được dùng khi đẳng cấu đó không tầm thường.
 
-对应 OGF 为
-
-$$
-A(z)+B(z)
-$$
-
-考虑
+Ta có
 
 $$
-A(z)+B(z)=\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert} + \sum _ {\beta\in\mathcal{B}}z^{\lvert \beta\rvert}=\sum_{n\geq 0}(a_n+b_n)z^n
+\mathcal{A}\cong\mathcal{E}\times \mathcal{A}\cong\mathcal{A}\times\mathcal{E},
 $$
 
-对应形式幂级数的加法．
+trong đó $\times$ là phép toán hai ngôi, biểu thị tích Descartes của các tập hợp.
 
-### 集合的笛卡尔积构造
+<span id="&#x96C6;&#x5408;&#x7684;&#xFF08;&#x4E0D;&#x76F8;&#x4EA4;&#xFF09;&#x5E76;&#x6784;&#x9020;"></span>
 
-对于类 $\mathcal{A}$ 和 $\mathcal{B}$ 的笛卡尔积记为
+### Cấu trúc hợp rời nhau của tập hợp
 
-$$
-\mathcal{A}\times \mathcal{B}=\left\lbrace (\alpha, \beta)\mid \alpha \in \mathcal{A},\beta\in\mathcal{B}\right\rbrace
-$$
-
-对应 OGF 为
+Với hai lớp $\mathcal{A}$ và $\mathcal{B}$, hợp của chúng được kí hiệu là
 
 $$
-A(z)\cdot B(z)
+\mathcal{A}+\mathcal{B}=(\mathcal{E}_{1}\times\mathcal{A})+(\mathcal{E}_2\times\mathcal{B}).
 $$
 
-我们定义 $(\alpha,\beta)$ 的大小为其组成部分的大小之和，那么显然也有
+Cách định nghĩa như vậy không trái với yêu cầu các tập phải rời nhau trong lí thuyết tập hợp. Ta có thể tưởng tượng là tô màu đỏ cho các đối tượng trong $\mathcal{A}$ và tô màu xanh cho các đối tượng trong $\mathcal{B}$.
+
+OGF tương ứng là
 
 $$
-\gamma =(\alpha_1,\alpha_2,\dots ,\alpha_n)\implies \lvert \gamma\rvert =\lvert \alpha_1\rvert +\lvert \alpha_2\rvert +\cdots +\lvert \alpha_n\rvert
+A(z)+B(z).
 $$
 
-所以
+Xét
 
 $$
-A(z)\cdot B(z)=\left(\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert}\right)\left(\sum _ {\beta\in\mathcal{B}}z^{\lvert \beta\rvert}\right)=\sum _ {(\alpha, \beta)\in(\mathcal{A}\times \mathcal{B})}z^{\lvert \alpha\rvert +\lvert \beta\rvert}=\sum_{n\geq 0}\sum_{i+j=n}a_ib_jz^n
+A(z)+B(z)=\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert} + \sum _ {\beta\in\mathcal{B}}z^{\lvert \beta\rvert}=\sum_{n\geq 0}(a_n+b_n)z^n,
 $$
 
-对应形式幂级数的乘法．
+tương ứng với phép cộng chuỗi lũy thừa hình thức.
 
-### 集合的 Sequence 构造
+<span id="&#x96C6;&#x5408;&#x7684;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#x6784;&#x9020;"></span>
 
-Sequence 构造生成了所有可能的组合．
+### Cấu trúc tích Descartes của tập hợp
 
-???+ note "例"
+Với hai lớp $\mathcal{A}$ và $\mathcal{B}$, tích Descartes của chúng được kí hiệu là
+
+$$
+\mathcal{A}\times \mathcal{B}=\left\lbrace (\alpha, \beta)\mid \alpha \in \mathcal{A},\beta\in\mathcal{B}\right\rbrace.
+$$
+
+OGF tương ứng là
+
+$$
+A(z)\cdot B(z).
+$$
+
+Ta định nghĩa kích thước của $(\alpha,\beta)$ là tổng kích thước của các thành phần. Khi đó hiển nhiên cũng có
+
+$$
+\gamma =(\alpha_1,\alpha_2,\dots ,\alpha_n)\implies \lvert \gamma\rvert =\lvert \alpha_1\rvert +\lvert \alpha_2\rvert +\cdots +\lvert \alpha_n\rvert.
+$$
+
+Do đó
+
+$$
+A(z)\cdot B(z)=\left(\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert}\right)\left(\sum _ {\beta\in\mathcal{B}}z^{\lvert \beta\rvert}\right)=\sum _ {(\alpha, \beta)\in(\mathcal{A}\times \mathcal{B})}z^{\lvert \alpha\rvert +\lvert \beta\rvert}=\sum_{n\geq 0}\sum_{i+j=n}a_ib_jz^n,
+$$
+
+tương ứng với phép nhân chuỗi lũy thừa hình thức.
+
+<span id="&#x96C6;&#x5408;&#x7684;-sequence-&#x6784;&#x9020;"></span>
+
+### Cấu trúc Sequence của tập hợp
+
+Cấu trúc Sequence sinh ra tất cả các tổ hợp có thể.
+
+???+ note "Ví dụ"
     $$
     \begin{aligned}
     \operatorname{SEQ}(\lbrace a\rbrace)&=\lbrace \epsilon\rbrace +\lbrace a\rbrace +\lbrace (a,a)\rbrace +\lbrace (a,a,a)\rbrace +\cdots\\
@@ -98,44 +106,46 @@ Sequence 构造生成了所有可能的组合．
     \end{aligned}
     $$
     
-    可以看到 $\lbrace (a,b)\rbrace ,\lbrace (b,a)\rbrace$ 这样组成部分的顺序不同的元素被生成了，可以认为 Sequence 构造生成了有序的组合．
+    Có thể thấy các phần tử như $\lbrace (a,b)\rbrace$ và $\lbrace (b,a)\rbrace$, tức các phần tử có thứ tự thành phần khác nhau, đều được sinh ra. Vì vậy có thể xem cấu trúc Sequence sinh ra các tổ hợp có thứ tự.
 
-我们定义
+Ta định nghĩa
 
 $$
 \operatorname{SEQ}(\mathcal{A})=\mathcal{E}+\mathcal{A}+(\mathcal{A}\times \mathcal{A})+(\mathcal{A}\times \mathcal{A}\times \mathcal{A})+\cdots
 $$
 
-且要求 $\mathcal{A}_0=\varnothing$，也就是 $\mathcal{A}$ 中没有大小为 $0$ 的对象．
+và yêu cầu $\mathcal{A}_0=\varnothing$, tức là trong $\mathcal{A}$ không có đối tượng kích thước $0$.
 
-对应 OGF 为
+OGF tương ứng là
 
 $$
-Q(A(z))=1+A(z)+A(z)^2+A(z)^3+\cdots =\frac{1}{1-A(z)}
+Q(A(z))=1+A(z)+A(z)^2+A(z)^3+\cdots =\frac{1}{1-A(z)},
 $$
 
-其中 $Q$ 为 Pólya 准逆（quasi-inversion）．
+trong đó $Q$ là giả nghịch đảo Pólya (quasi-inversion).
 
-???+ note "例：有序有根树（ordered rooted tree）"
-    我们可以使用 Sequence 构造来定义有序有根树，即孩子之间的顺序有意义的有根树，设该组合类为 $\mathcal{T}$ 那么一棵树为一个根节点和树的 Sequence，即
+???+ note "Ví dụ: cây có gốc có thứ tự (ordered rooted tree)"
+    Ta có thể dùng cấu trúc Sequence để định nghĩa cây có gốc có thứ tự, tức cây có gốc mà thứ tự giữa các con có ý nghĩa. Gọi lớp tổ hợp này là $\mathcal{T}$. Khi đó một cây gồm một nút gốc và một Sequence các cây, tức là
     
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{SEQ}(\mathcal{T})
     $$
     
-    对应 OGF 为
+    OGF tương ứng là
     
     $$
-    T(z)=\frac{z}{1-T(z)}
+    T(z)=\frac{z}{1-T(z)}.
     $$
     
-    前几项系数为 `0 1 1 2 5 14 42 132 429 1430 4862 16796`，忽略常数项即 OEIS [A000108](http://oeis.org/A000108)．
+    Các hệ số đầu tiên là `0 1 1 2 5 14 42 132 429 1430 4862 16796`; bỏ qua hằng số thì chính là OEIS [A000108](http://oeis.org/A000108).
 
-### 集合的 Multiset 构造
+<span id="&#x96C6;&#x5408;&#x7684;-multiset-&#x6784;&#x9020;"></span>
 
-Multiset 构造生成了所有可能的组合，但不区分组成部分的元素之间的顺序．
+### Cấu trúc Multiset của tập hợp
 
-???+ note "例"
+Cấu trúc Multiset sinh ra tất cả các tổ hợp có thể, nhưng không phân biệt thứ tự giữa các phần tử thành phần.
+
+???+ note "Ví dụ"
     $$
     \begin{aligned}
     \operatorname{MSET}(\lbrace a\rbrace)&=\lbrace \epsilon\rbrace +\lbrace a\rbrace +\lbrace (a,a)\rbrace +\lbrace (a,a,a)\rbrace +\cdots\\
@@ -146,90 +156,92 @@ Multiset 构造生成了所有可能的组合，但不区分组成部分的元�
     \end{aligned}
     $$
     
-    注意到 $\lbrace (b,a)\rbrace,\lbrace (a,b,a)\rbrace$ 在 $\operatorname{SEQ}(\lbrace a,b\rbrace)$ 中出现，但在 $\operatorname{MSET}(\lbrace a,b\rbrace)$ 没有出现，可以认为 Multiset 生成了无序的组合．
+    Chú ý rằng $\lbrace (b,a)\rbrace$ và $\lbrace (a,b,a)\rbrace$ xuất hiện trong $\operatorname{SEQ}(\lbrace a,b\rbrace)$, nhưng không xuất hiện trong $\operatorname{MSET}(\lbrace a,b\rbrace)$. Có thể xem Multiset sinh ra các tổ hợp không thứ tự.
 
-我们定义其递推式为
+Ta định nghĩa truy hồi của nó là
 
 $$
-\operatorname{MSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_n\rbrace)=\operatorname{MSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_{n-1}\rbrace)\times \operatorname{SEQ}(\lbrace \alpha_n\rbrace)
+\operatorname{MSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_n\rbrace)=\operatorname{MSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_{n-1}\rbrace)\times \operatorname{SEQ}(\lbrace \alpha_n\rbrace).
 $$
 
-即
+Tức là
 
 $$
 \operatorname{MSET}(\mathcal{A})=\prod _ {\alpha\in\mathcal{A}}\operatorname{SEQ}(\lbrace \alpha\rbrace)
 $$
 
-且要求 $\mathcal{A}_0=\varnothing$．或者也可以给出等价的
+và yêu cầu $\mathcal{A}_0=\varnothing$. Hoặc cũng có thể đưa ra định nghĩa tương đương:
 
 $$
-\operatorname{MSET}(\mathcal{A})=\operatorname{SEQ}(\mathcal{A})/\mathbf{R}
+\operatorname{MSET}(\mathcal{A})=\operatorname{SEQ}(\mathcal{A})/\mathbf{R}.
 $$
 
-其中 $\mathbf{R}$ 为等价关系，我们说 $(\alpha_1,\dots,\alpha_n)\mathbf{R}(\beta_1,\dots,\beta_n)$ 当且仅当存在任一置换 $\sigma$ 对于所有 $j$ 满足 $\beta_{j}=\alpha_{\sigma(j)}$．
+Trong đó $\mathbf{R}$ là một quan hệ tương đương. Ta nói $(\alpha_1,\dots,\alpha_n)\mathbf{R}(\beta_1,\dots,\beta_n)$ khi và chỉ khi tồn tại một hoán vị $\sigma$ sao cho với mọi $j$, $\beta_{j}=\alpha_{\sigma(j)}$.
 
-对应 OGF 为
+OGF tương ứng là
 
 $$
-\operatorname{Exp}(A(z))=\prod _ {\alpha \in\mathcal{A}}\left(1-z^{\lvert \alpha \rvert}\right)^{-1}=\prod _ {n\geq 1}\left(1-z^n\right)^{-a_n}
+\operatorname{Exp}(A(z))=\prod _ {\alpha \in\mathcal{A}}\left(1-z^{\lvert \alpha \rvert}\right)^{-1}=\prod _ {n\geq 1}\left(1-z^n\right)^{-a_n}.
 $$
 
-注意到
+Chú ý rằng
 
 $$
 \ln(1+z)=\frac{z}{1}-\frac{z^2}{2}+\frac{z^3}{3}-\cdots =\sum_{n\geq 1}\frac{(-1)^{n-1}z^n}{n}
 $$
 
-且 $A(z)=\exp(\ln(A(z)))$ 所以
+và $A(z)=\exp(\ln(A(z)))$, nên
 
 $$
 \begin{aligned}
 \operatorname{Exp}(A(z))&=\exp\left(\sum _ {n\geq 1}-a_n\cdot \ln\left(1-z^n\right)\right)\\
 &=\exp\left(\sum _ {n\geq 1}-a_n\cdot \sum _ {m\geq 1}\frac{-z^{nm}}{m}\right)\\
-&=\exp\left(\frac{A(z)}{1}+\frac{A(z^2)}{2}+\frac{A(z^3)}{3}+\cdots \right)
+&=\exp\left(\frac{A(z)}{1}+\frac{A(z^2)}{2}+\frac{A(z^3)}{3}+\cdots \right).
 \end{aligned}
 $$
 
-其中 $\operatorname{Exp}$ 为 Pólya 指数，也被称为 Euler 变换．
+Trong đó $\operatorname{Exp}$ là chỉ số Pólya, cũng được gọi là biến đổi Euler.
 
-???+ note "例题 [LOJ 6268. 分拆数](https://loj.ac/p/6268)"
-    **题意**：令 $f(n)$ 表示将 $n$ 进行分拆的方案数，求 $f(1),f(2),\dots,f(10^5)$ 对 $998244353$ 取模的值．
+???+ note "Bài tập [LOJ 6268. Số phân hoạch](https://loj.ac/p/6268)"
+    **Đề bài**: gọi $f(n)$ là số cách phân hoạch $n$. Hãy tính $f(1),f(2),\dots,f(10^5)$ modulo $998244353$.
     
-    **解**：设全体正整数类为 $\mathcal{I}$，那么 $\mathcal{I}=\operatorname{SEQ}_{\geq 1}(\mathcal{Z})=\mathcal{Z}\times \operatorname{SEQ}(\mathcal{Z})$（下标 $\geq 1$ 为有限制的构造，见后文）．所求即
+    **Lời giải**: gọi lớp của toàn bộ các số nguyên dương là $\mathcal{I}$, khi đó $\mathcal{I}=\operatorname{SEQ}_{\geq 1}(\mathcal{Z})=\mathcal{Z}\times \operatorname{SEQ}(\mathcal{Z})$, trong đó chỉ số dưới $\geq 1$ là cấu trúc có ràng buộc, xem phần sau. Đại lượng cần tìm là
     
     $$
     \operatorname{MSET}(\mathcal{I})
     $$
     
-    对应 OGF 前几项系数为 `1 2 3 5 7 11 15 22 30 42`（忽略常数项）即 OEIS [A000041](https://oeis.org/A000041)．
+    Các hệ số đầu tiên của OGF tương ứng là `1 2 3 5 7 11 15 22 30 42`; bỏ qua hằng số thì chính là OEIS [A000041](https://oeis.org/A000041).
 
-???+ note "例题 [洛谷 P4389 付公主的背包](https://www.luogu.com.cn/problem/P4389)"
-    **题意**：给出 $n$ 种体积分别为 $v_1,\dots ,v_n$ 的商品和正整数 $m$，求体积为 $1,2,\dots,m$ 的背包装满的方案数（商品数量不限，有同体积的不同种商品）对 $998244353$ 取模的值．约定 $1\leq n,m\leq 10^5$ 且 $1\leq v_i\leq m$．
+???+ note "Bài tập [Luogu P4389. Balo của công chúa Fu](https://www.luogu.com.cn/problem/P4389)"
+    **Đề bài**: cho $n$ loại hàng hóa có thể tích lần lượt là $v_1,\dots ,v_n$ và số nguyên dương $m$. Hãy tính số cách lấp đầy balo có thể tích $1,2,\dots,m$ modulo $998244353$, trong đó số lượng hàng hóa không bị giới hạn và các hàng hóa khác loại nhưng cùng thể tích vẫn được phân biệt. Quy ước $1\leq n,m\leq 10^5$ và $1\leq v_i\leq m$.
     
-    **解**：设商品的组合类为 $\mathcal{A}$，所求即 $\operatorname{MSET}(\mathcal{A})$ 对应 OGF 的系数．
+    **Lời giải**: gọi lớp tổ hợp của các hàng hóa là $\mathcal{A}$. Đại lượng cần tìm chính là các hệ số của OGF tương ứng với $\operatorname{MSET}(\mathcal{A})$.
 
-???+ note "例题 [洛谷 P5900 无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
-    **题意**：求出 $n$ 个节点的无标号无根树的个数对 $998244353$ 取模的值．约定 $1\leq n\leq 2\times 10^5$．
+???+ note "Bài tập [Luogu P5900. Đếm cây không gốc không gắn nhãn](https://www.luogu.com.cn/problem/P5900)"
+    **Đề bài**: tính số cây không gắn nhãn, không gốc, có $n$ đỉnh modulo $998244353$. Quy ước $1\leq n\leq 2\times 10^5$.
     
-    **解**：设无标号有根树的组合类为 $\mathcal{T}$，那么
+    **Lời giải**: gọi lớp tổ hợp của cây có gốc không gắn nhãn là $\mathcal{T}$. Khi đó
     
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{MSET}(\mathcal{T})
     $$
     
-    根据 Richard Otter 的论文 [The Number of Trees](https://users.math.msu.edu/users/magyarp/Math482/Otter-Trees.pdf) 中的描述，对应无根树的 OGF 为
+    Theo mô tả trong bài báo [The Number of Trees](https://users.math.msu.edu/users/magyarp/Math482/Otter-Trees.pdf) của Richard Otter, OGF tương ứng với cây không gốc là
     
     $$
-    T(z)-\frac{1}{2}T^2(z)+\frac{1}{2}T(z^2)
+    T(z)-\frac{1}{2}T^2(z)+\frac{1}{2}T(z^2).
     $$
     
-    前几项系数为 `1 1 1 2 3 6 11 23 47 106`（忽略常数项）即 OEIS [A000055](https://oeis.org/A000055)．
+    Các hệ số đầu tiên là `1 1 1 2 3 6 11 23 47 106`; bỏ qua hằng số thì chính là OEIS [A000055](https://oeis.org/A000055).
 
-### 集合的 Powerset 构造
+<span id="&#x96C6;&#x5408;&#x7684;-powerset-&#x6784;&#x9020;"></span>
 
-Powerset 构造生成了所有子集．
+### Cấu trúc Powerset của tập hợp
 
-???+ note "例"
+Cấu trúc Powerset sinh ra tất cả các tập con.
+
+???+ note "Ví dụ"
     $$
     \begin{aligned}
     \operatorname{PSET}(\lbrace a\rbrace)&=\lbrace \epsilon\rbrace +\lbrace a\rbrace \\
@@ -238,124 +250,128 @@ Powerset 构造生成了所有子集．
     \end{aligned}
     $$
 
-我们定义其递推式为
+Ta định nghĩa truy hồi của nó là
 
 $$
-\operatorname{PSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_n\rbrace)=\operatorname{PSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_{n-1}\rbrace)\times (\lbrace \epsilon\rbrace +\lbrace \alpha_n\rbrace)
+\operatorname{PSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_n\rbrace)=\operatorname{PSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_{n-1}\rbrace)\times (\lbrace \epsilon\rbrace +\lbrace \alpha_n\rbrace).
 $$
 
-即
+Tức là
 
 $$
 \operatorname{PSET}(\mathcal{A})\cong \prod _ {\alpha\in\mathcal{A}}\left(\lbrace \epsilon \rbrace +\lbrace \alpha\rbrace\right)
 $$
 
-且要求 $\mathcal{A}_0=\varnothing$．
+và yêu cầu $\mathcal{A}_0=\varnothing$.
 
-对应 OGF 为
+OGF tương ứng là
 
 $$
 \begin{aligned}
 \overline{\operatorname{Exp}}(A(z))&=\prod _ {\alpha\in\mathcal{A}}\left(1+z^{\lvert \alpha \rvert}\right)=\prod _ {n\geq 1}\left(1+z^n\right)^{a_n}\\
 &=\exp\left(\sum _ {n\geq 1}a_n\cdot \ln\left(1+z^n\right)\right)\\
 &=\exp\left(\sum _ {n\geq 1}a_n\cdot \sum _ {m\geq 1}\frac{(-1)^{m-1}z^{nm}}{m}\right)\\
-&=\exp\left(\frac{A(z)}{1}-\frac{A(z^2)}{2}+\frac{A(z^3)}{3}-\cdots \right)
+&=\exp\left(\frac{A(z)}{1}-\frac{A(z^2)}{2}+\frac{A(z^3)}{3}-\cdots \right).
 \end{aligned}
 $$
 
-其中 $\overline{\operatorname{Exp}}$ 为 Pólya 指数·改．
+Trong đó $\overline{\operatorname{Exp}}$ là chỉ số Pólya sửa đổi.
 
-容易发现 $\operatorname{PSET}(\mathcal{A})\subset \operatorname{MSET}(\mathcal{A})$．
+Dễ thấy $\operatorname{PSET}(\mathcal{A})\subset \operatorname{MSET}(\mathcal{A})$.
 
-### 集合的 Cycle 构造
+<span id="&#x96C6;&#x5408;&#x7684;-cycle-&#x6784;&#x9020;"></span>
 
-Cycle 构造生成了所有可能的组合，但不区分仅轮换不同的组合．
+### Cấu trúc Cycle của tập hợp
 
-我们定义为
+Cấu trúc Cycle sinh ra tất cả các tổ hợp có thể, nhưng không phân biệt các tổ hợp chỉ khác nhau bởi phép quay vòng.
+
+Ta định nghĩa
 
 $$
-\operatorname{CYC}(\mathcal{A})=\left(\operatorname{SEQ}(\mathcal{A})\setminus\lbrace \epsilon\rbrace\right)/\mathbf{S}
+\operatorname{CYC}(\mathcal{A})=\left(\operatorname{SEQ}(\mathcal{A})\setminus\lbrace \epsilon\rbrace\right)/\mathbf{S}.
 $$
 
-其中 $\mathbf{S}$ 为等价关系，我们说 $(\alpha_1,\dots,\alpha_n)\mathbf{S}(\beta_1,\dots,\beta_n)$ 当且仅当存在任一循环移位 $\tau$ 对于所有 $j$ 都满足 $\beta_j=\alpha_{\tau(j)}$．
+Trong đó $\mathbf{S}$ là một quan hệ tương đương. Ta nói $(\alpha_1,\dots,\alpha_n)\mathbf{S}(\beta_1,\dots,\beta_n)$ khi và chỉ khi tồn tại một phép dịch vòng $\tau$ sao cho với mọi $j$, $\beta_j=\alpha_{\tau(j)}$.
 
-???+ note "例"
-    为了简便我们令 $\texttt{a},\texttt{b}$ 均为大小为 $1$ 的字符，这里仅列举大小为 $3$ 和 $4$ 的字符串：
+???+ note "Ví dụ"
+    Để đơn giản, đặt $\texttt{a},\texttt{b}$ đều là kí tự có kích thước $1$. Ở đây chỉ liệt kê các chuỗi có kích thước $3$ và $4$:
     
     $$
     \operatorname{CYC}(\lbrace \texttt{a},\texttt{b}\rbrace)_3=\lbrace \texttt{aaa}\rbrace +\lbrace \texttt{aab}\rbrace+\lbrace \texttt{abb}\rbrace+\lbrace \texttt{bbb}\rbrace
     $$
     
-    其中 $\texttt{aab}\mathbf{S}\texttt{baa}\mathbf{S}\texttt{aba}$ 只保留其一，同样的 $\texttt{abb}\mathbf{S}\texttt{bab}\mathbf{S}\texttt{bba}$ 只保留其一．
+    Trong đó $\texttt{aab}\mathbf{S}\texttt{baa}\mathbf{S}\texttt{aba}$ nên chỉ giữ lại một đại diện; tương tự, $\texttt{abb}\mathbf{S}\texttt{bab}\mathbf{S}\texttt{bba}$ cũng chỉ giữ lại một đại diện.
     
     $$
     \operatorname{CYC}(\lbrace \texttt{a},\texttt{b}\rbrace)_4=\lbrace \texttt{aaaa}\rbrace +\lbrace \texttt{aaab}\rbrace+\lbrace \texttt{aabb}\rbrace+\lbrace \texttt{abbb}\rbrace+\lbrace \texttt{bbbb}\rbrace +\lbrace \texttt{abab}\rbrace
     $$
     
-    其中 $\texttt{aaab}\mathbf{S}\texttt{baaa}\mathbf{S}\texttt{abaa}\mathbf{S}\texttt{aaba}$，$\texttt{aabb}\mathbf{S}\texttt{baab}\mathbf{S}\texttt{bbaa}\mathbf{S}\texttt{abba}$，$\texttt{abbb}\mathbf{S}\texttt{babb}\mathbf{S}\texttt{bbab}\mathbf{S}\texttt{bbba}$ 和 $\texttt{abab}\mathbf{S}\texttt{baba}$．
+    Trong đó $\texttt{aaab}\mathbf{S}\texttt{baaa}\mathbf{S}\texttt{abaa}\mathbf{S}\texttt{aaba}$, $\texttt{aabb}\mathbf{S}\texttt{baab}\mathbf{S}\texttt{bbaa}\mathbf{S}\texttt{abba}$, $\texttt{abbb}\mathbf{S}\texttt{babb}\mathbf{S}\texttt{bbab}\mathbf{S}\texttt{bbba}$ và $\texttt{abab}\mathbf{S}\texttt{baba}$.
 
-对应 OGF 为
-
-$$
-\operatorname{Log}(A(z))=\sum _ {n\geq 1}\frac{\varphi(n)}{n}\ln\frac{1}{1-A(z^n)}
-$$
-
-其中 $\varphi$ 为 Euler 函数，$\operatorname{Log}$ 为 Pólya 对数．
-
-由于证明较复杂，读者可参考 Flajolet 的论文 [The Cycle Construction](https://epubs.siam.org/doi/10.1137/0404006) 或 Analytic Combinatorics 的附录．
-
-### 有限制的构造
-
-对于上述所有构造，我们都没有限制其「组成部分」的个数，若在 $\operatorname{SEQ}$ 的下标给一个作用于整数的谓词用于约束其组成部分，如
+OGF tương ứng là
 
 $$
-\operatorname{SEQ}_{=k}(\mathcal{B}),\quad \operatorname{SEQ}_{\geq k}(\mathcal{B}),\quad \operatorname{SEQ}_{1..k}(\mathcal{B})
+\operatorname{Log}(A(z))=\sum _ {n\geq 1}\frac{\varphi(n)}{n}\ln\frac{1}{1-A(z^n)},
 $$
 
-其中 $\operatorname{SEQ}_{=k}(\mathcal{B})$ 也常简写为 $\operatorname{SEQ}_k(\mathcal{B})$，$\operatorname{SEQ}_{1..k}(\mathcal{B})$ 表示在区间 $\lbrack 1..k\rbrack$ 上．
+trong đó $\varphi$ là hàm Euler, còn $\operatorname{Log}$ là logarit Pólya.
 
-令 $\mathfrak{K}$ 为任意上述 $\operatorname{SEQ},\operatorname{PSET},\operatorname{MSET},\operatorname{CYC}$ 之一，以及
+Vì chứng minh khá phức tạp, độc giả có thể tham khảo bài báo [The Cycle Construction](https://epubs.siam.org/doi/10.1137/0404006) của Flajolet hoặc phụ lục của Analytic Combinatorics.
 
-$$
-\mathcal{A}=\mathfrak{K}_k(\mathcal{B})
-$$
+<span id="&#x6709;&#x9650;&#x5236;&#x7684;&#x6784;&#x9020;"></span>
 
-即我们需要对于 $\alpha\in\mathcal{A}$ 有
+### Cấu trúc có ràng buộc
 
-$$
-\alpha =\lbrace (\beta_1,\beta_2,\dots ,\beta_k)\mid \beta\in\mathcal{B}\rbrace
-$$
-
-设 $\chi$ 函数作用于组合对象上为其组成部分的个数，也就是要令 $\chi(\alpha)=k$，不妨增加一元来「跟踪」组成部分的个数．
-
-令
+Với tất cả các cấu trúc nói trên, ta đều chưa ràng buộc số lượng "thành phần". Nếu ở chỉ số dưới của $\operatorname{SEQ}$ ta đặt một vị từ tác động lên số nguyên để ràng buộc số thành phần, chẳng hạn
 
 $$
-A _ {n,k}=\operatorname{card}\left\lbrace \alpha\in\mathcal{A}\mid \lvert \alpha\rvert =n,\chi(\alpha)=k\right\rbrace
+\operatorname{SEQ}_{=k}(\mathcal{B}),\quad \operatorname{SEQ}_{\geq k}(\mathcal{B}),\quad \operatorname{SEQ}_{1..k}(\mathcal{B}),
 $$
 
-那么
+trong đó $\operatorname{SEQ}_{=k}(\mathcal{B})$ cũng thường được viết tắt là $\operatorname{SEQ}_k(\mathcal{B})$, còn $\operatorname{SEQ}_{1..k}(\mathcal{B})$ biểu thị ràng buộc trên đoạn $\lbrack 1..k\rbrack$.
+
+Đặt $\mathfrak{K}$ là một trong các cấu trúc $\operatorname{SEQ},\operatorname{PSET},\operatorname{MSET},\operatorname{CYC}$ nói trên, và
 
 $$
-A(z,u)=\sum _ {n,k}A _ {n,k}u^kz^n=\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert}u^{\chi(\alpha)}
+\mathcal{A}=\mathfrak{K}_k(\mathcal{B}).
 $$
 
-然后我们只要提取出 $u^k$ 的系数即可获得对应表达式，例如 $\mathcal{A}=\operatorname{SEQ}_k(\mathcal{B})$ 可直接导出
+Tức là ta cần với $\alpha\in\mathcal{A}$ có
+
+$$
+\alpha =\lbrace (\beta_1,\beta_2,\dots ,\beta_k)\mid \beta\in\mathcal{B}\rbrace.
+$$
+
+Gọi $\chi$ là hàm tác động lên đối tượng tổ hợp và trả về số lượng thành phần của nó, tức là yêu cầu $\chi(\alpha)=k$. Ta có thể thêm một biến để "theo dõi" số lượng thành phần.
+
+Đặt
+
+$$
+A _ {n,k}=\operatorname{card}\left\lbrace \alpha\in\mathcal{A}\mid \lvert \alpha\rvert =n,\chi(\alpha)=k\right\rbrace.
+$$
+
+Khi đó
+
+$$
+A(z,u)=\sum _ {n,k}A _ {n,k}u^kz^n=\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert}u^{\chi(\alpha)}.
+$$
+
+Sau đó ta chỉ cần trích hệ số của $u^k$ là thu được biểu thức tương ứng. Ví dụ, với $\mathcal{A}=\operatorname{SEQ}_k(\mathcal{B})$, ta có thể trực tiếp suy ra
 
 $$
 \begin{aligned}
 &{}A(z,u)=\sum _ {k\geq 0}u^kB(z)^k=\frac{1}{1-uB(z)}\\
-\implies &{}A(z)=B(z)^k
+\implies &{}A(z)=B(z)^k.
 \end{aligned}
 $$
 
-显然也有
+Hiển nhiên cũng có
 
 $$
-\mathcal{A}=\operatorname{SEQ}_{\geq k}(\mathcal{B})\implies A(z)=\frac{B(z)^k}{1-B(z)}
+\mathcal{A}=\operatorname{SEQ}_{\geq k}(\mathcal{B})\implies A(z)=\frac{B(z)^k}{1-B(z)}.
 $$
 
-而对于 $\operatorname{MSET} _ k(\mathcal{B})$ 和 $\operatorname{PSET} _ k(\mathcal{B})$ 已经有
+Còn với $\operatorname{MSET} _ k(\mathcal{B})$ và $\operatorname{PSET} _ k(\mathcal{B})$ thì đã có
 
 $$
 \begin{aligned}
@@ -364,19 +380,19 @@ $$
 \end{aligned}
 $$
 
-和
+và
 
 $$
 \begin{aligned}
 &{}A(z,u)=\prod_n\left(1+uz^n\right)^{b_n}\\
-\implies &{}A(z)=\lbrack u^k\rbrack \exp\left(\frac{u}{1}B(z)-\frac{u^2}{2}B(z^2)+\frac{u^3}{3}B(z^3)-\cdots\right)
+\implies &{}A(z)=\lbrack u^k\rbrack \exp\left(\frac{u}{1}B(z)-\frac{u^2}{2}B(z^2)+\frac{u^3}{3}B(z^3)-\cdots\right).
 \end{aligned}
 $$
 
-对于 $\operatorname{CYC}_k(\mathcal{B})$ 同理．
+Với $\operatorname{CYC}_k(\mathcal{B})$ cũng tương tự.
 
-??? note "使用上式计算 $\operatorname{MSET}_3(\mathcal{B})$ 和 $\operatorname{MSET}_4(\mathcal{B})$ 对应 OGF"
-    尝试计算 $\mathcal{A}=\operatorname{MSET}_3(\mathcal{B})$ 为
+??? note "Dùng công thức trên để tính OGF tương ứng với $\operatorname{MSET}_3(\mathcal{B})$ và $\operatorname{MSET}_4(\mathcal{B})$"
+    Thử tính $\mathcal{A}=\operatorname{MSET}_3(\mathcal{B})$:
     
     $$
     \begin{aligned}
@@ -387,7 +403,7 @@ $$
     \end{aligned}
     $$
     
-    尝试计算 $\mathcal{A}=\operatorname{MSET}_4(\mathcal{B})$ 为
+    Thử tính $\mathcal{A}=\operatorname{MSET}_4(\mathcal{B})$:
     
     $$
     \begin{aligned}
@@ -400,11 +416,11 @@ $$
     \end{aligned}
     $$
 
-我们发现 $\mathcal{A}=\mathfrak{K}_k(\mathcal{B})$ 中 $A(z)$ 是关于 $B(z),B(z^2),\dots ,B(z^k)$ 的一个表达式．
+Ta thấy với $\mathcal{A}=\mathfrak{K}_k(\mathcal{B})$, $A(z)$ là một biểu thức theo $B(z),B(z^2),\dots ,B(z^k)$.
 
-需要注意的是对于有限制的构造 $\mathfrak{K}_k(\mathcal{B})$ 并没有要求 $\mathcal{B}_0=\varnothing$．
+Cần chú ý rằng với cấu trúc có ràng buộc $\mathfrak{K}_k(\mathcal{B})$, không yêu cầu $\mathcal{B}_0=\varnothing$.
 
-???+ note "常用有限制的构造"
+???+ note "Các cấu trúc có ràng buộc thường dùng"
     $$
     \begin{aligned}
     \operatorname{PSET} _ {2}(\mathcal{A})&:\quad \frac{A(z)^2}{2}-\frac{A(z^2)}{2}\\
@@ -429,25 +445,27 @@ $$
     \end{aligned}
     $$
 
-上面的计算方法虽然有效但比较麻烦，读者可阅读 WolframMathWorld 网站的 [Pólya Enumeration Theorem](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) 和 [Cycle Index](https://mathworld.wolfram.com/CycleIndex.html) 等相关资料，后者 Cycle Index 在 OEIS 的生成函数表达式中也经常出现．
+Cách tính trên tuy hiệu quả nhưng khá rườm rà. Độc giả có thể đọc thêm các mục [Pólya Enumeration Theorem](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) và [Cycle Index](https://mathworld.wolfram.com/CycleIndex.html) trên Wolfram MathWorld; Cycle Index cũng thường xuất hiện trong biểu thức hàm sinh trên OEIS.
 
-???+ note "例题 [LOJ 6538. 烷基计数 加强版 加强版](https://loj.ac/p/6538)"
-    **题意**：求出 $n$ 个节点的有根且根节点度数不超过 $3$，其余节点度数不超过 $4$ 的无序树的个数对 $998244353$ 取模的值．约定 $1\leq n\leq 10^5$．
+???+ note "Bài tập [LOJ 6538. Đếm alkyl, bản tăng cường hai lần](https://loj.ac/p/6538)"
+    **Đề bài**: tính số cây không thứ tự có $n$ đỉnh, có gốc và bậc của nút gốc không vượt quá $3$, còn bậc của các nút còn lại không vượt quá $4$, modulo $998244353$. Quy ước $1\leq n\leq 10^5$.
     
-    **解**：设组合类为 $\mathcal{T}$ 那么
+    **Lời giải**: gọi lớp tổ hợp là $\mathcal{T}$. Khi đó
     
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{MSET}_{0,1,2,3}(\mathcal{T})
     $$
     
-    或令组合类 $\hat{\mathcal{T}}=\mathcal{T}+\lbrace \epsilon\rbrace$ 那么
+    Hoặc đặt lớp tổ hợp $\hat{\mathcal{T}}=\mathcal{T}+\lbrace \epsilon\rbrace$. Khi đó
     
     $$
     \hat{\mathcal{T}}=\lbrace \epsilon\rbrace +\lbrace \bullet\rbrace\times\operatorname{MSET}_{3}(\hat{\mathcal{T}})
     $$
     
-    可得到相同的结果．
+    và sẽ thu được cùng một kết quả.
 
-## 参考文献
+<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
 
--   Philippe Flajolet and Robert Sedgewick.[Analytic Combinatorics](http://algo.inria.fr/flajolet/Publications/books.html).
+## Tài liệu tham khảo
+
+-   Philippe Flajolet and Robert Sedgewick. [Analytic Combinatorics](http://algo.inria.fr/flajolet/Publications/books.html).

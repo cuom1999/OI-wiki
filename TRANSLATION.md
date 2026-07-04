@@ -159,6 +159,15 @@ MkDocs source layout intact.
   polynomial/generating-function pages and Fourier/number-theoretic/Walsh/Chirp
   Z transform material, plus explanatory comments in included FFT and CZT
   snippets.
+- `docs/math/poly/newton.md`,
+  `docs/math/poly/multipoint-eval-interpolation.md`,
+  `docs/math/poly/elementary-func.md`,
+  `docs/math/poly/linear-recurrence.md`, `docs/math/poly/shift.md`,
+  `docs/math/poly/symbolic-method.md`,
+  `docs/math/poly/lagrange-inversion.md`, `docs/math/poly/comp-rev.md`,
+  `docs/math/poly/ogf.md`, `docs/math/poly/egf.md`: translated the remaining
+  polynomial and generating-function pages, plus explanatory comments in
+  included polynomial square-root and composition snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

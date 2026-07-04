@@ -1,39 +1,40 @@
-## 描述
+<span id="&#x63CF;&#x8FF0;"></span>
+## Mô tả
 
-给定多项式 $G\left(x, y\right)$，已知多项式 $f\left(x\right)$ 满足：
+Cho đa thức $G\left(x, y\right)$. Biết đa thức $f\left(x\right)$ thỏa mãn:
 
 $$
 G\left(x, f\left(x\right)\right)\equiv 0\pmod{x^{n}}
 $$
 
-且存在数值 $f_1$ 使 $G\left(x, y\right)$ 满足以下条件：
+và tồn tại một giá trị $f_1$ sao cho $G\left(x, y\right)$ thỏa các điều kiện sau:
 
--   $G(0, f_1) = 0$；
--   $\dfrac{\partial G}{\partial y}(0, f_1) \neq 0$．
+-   $G(0, f_1) = 0$;
+-   $\dfrac{\partial G}{\partial y}(0, f_1) \neq 0$.
 
-求出模 $x^{n}$ 意义下的 $f\left(x\right)$．
+Hãy tìm $f\left(x\right)$ theo modulo $x^{n}$.
 
 ## Newton's Method
 
-考虑倍增．
+Xét cách nhân đôi độ dài.
 
-首先当 $n=1$ 时，$\left[x^{0}\right]G\left(x, f\left(x\right)\right)=0$ 的解需要单独求出，假设中的 $f_1$ 即为一个解．
+Trước hết, khi $n=1$, nghiệm của $\left[x^{0}\right]G\left(x, f\left(x\right)\right)=0$ cần được tìm riêng; $f_1$ trong giả thiết chính là một nghiệm như vậy.
 
-假设现在已经得到了模 $x^{\left\lceil\frac{n}{2}\right\rceil}$ 意义下的解 $f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)$，要求模 $x^{n}$ 意义下的解 $f\left(x\right) = f_n\left(x\right)$．
+Giả sử hiện đã có nghiệm $f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)$ theo modulo $x^{\left\lceil\frac{n}{2}\right\rceil}$, và cần tìm nghiệm $f\left(x\right) = f_n\left(x\right)$ theo modulo $x^{n}$.
 
-将 $G\left(x, f(x)\right)$ 对 $f(x)$ 在 $f(x)=f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)$ 处进行泰勒展开，有：
+Khai triển Taylor $G\left(x, f(x)\right)$ theo $f(x)$ tại $f(x)=f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)$, ta có:
 
 $$
 \sum_{i=0}^{+\infty}\frac{\frac{\partial^i G}{\partial y^i}\left(x, f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)\right)}{i!}\left(f\left(x\right)-f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)\right)^{i}\equiv 0\pmod{x^{n}}
 $$
 
-因为 $f\left(x\right)-f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)$ 的最低非零项次数最低为 $\left\lceil\frac{n}{2}\right\rceil$，故有：
+Vì hạng khác không bậc thấp nhất của $f\left(x\right)-f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)$ có bậc ít nhất là $\left\lceil\frac{n}{2}\right\rceil$, nên:
 
 $$
 \forall 2\leqslant i:\left(f\left(x\right)-f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)\right)^{i}\equiv 0\pmod{x^{n}}
 $$
 
-则：
+Do đó:
 
 $$
 \begin{aligned}
@@ -46,23 +47,25 @@ $$
 f_n\left(x\right)\equiv f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)-\frac{G\left(x, f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)\right)}{\frac{\partial G}{\partial y}\left(x, f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)\right)}\pmod{x^{n}}
 $$
 
-或者
+hoặc
 
 $$
 f_{2n}\left(x\right)\equiv f_n\left(x\right)-\frac{G\left(x, f_n\left(x\right)\right)}{\frac{\partial G}{\partial y}\left(x, f_n\left(x\right)\right)}\pmod{x^{2n}}
 $$
 
-## 例题
+<span id="&#x4F8B;&#x9898;"></span>
+## Ví dụ
 
-### [多项式求逆](./elementary-func.md#多项式求逆)
+<span id="&#x591A;&#x9879;&#x5F0F;&#x6C42;&#x9006;"></span>
+### [Nghịch đảo đa thức](./elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86)
 
-设给定函数为 $h\left(x\right)$，有：
+Giả sử hàm đã cho là $h\left(x\right)$, đặt:
 
 $$
 G\left(x, y\right)=\frac{1}{y}-h\left(x\right)
 $$
 
-应用 Newton's Method 可得：
+Áp dụng Newton's Method, ta được:
 
 $$
 \begin{aligned}
@@ -71,21 +74,22 @@ $$
 \end{aligned}
 $$
 
-时间复杂度
+Độ phức tạp thời gian:
 
 $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-### [多项式开方](./elementary-func.md#多项式开方)
+<span id="&#x591A;&#x9879;&#x5F0F;&#x5F00;&#x65B9;"></span>
+### [Khai căn đa thức](./elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%BC%80%E6%96%B9)
 
-设给定函数为 $h\left(x\right)$，有：
+Giả sử hàm đã cho là $h\left(x\right)$, đặt:
 
 $$
 G\left(x, y\right)=y^{2}-h\left(x\right)\equiv 0
 $$
 
-应用 Newton's Method 可得：
+Áp dụng Newton's Method, ta được:
 
 $$
 \begin{aligned}
@@ -94,135 +98,141 @@ $$
 \end{aligned}
 $$
 
-时间复杂度
+Độ phức tạp thời gian:
 
 $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-### [多项式指数函数](./elementary-func.md#多项式对数函数--指数函数)
+<span id="&#x591A;&#x9879;&#x5F0F;&#x6307;&#x6570;&#x51FD;&#x6570;"></span>
+### [Hàm mũ của đa thức](./elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AF%B9%E6%95%B0%E5%87%BD%E6%95%B0--%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0)
 
-设给定函数为 $h\left(x\right)$，有：
+Giả sử hàm đã cho là $h\left(x\right)$, đặt:
 
 $$
 G\left(x, y\right)=\ln{y}-h\left(x\right)
 $$
 
-应用 Newton's Method 可得：
+Áp dụng Newton's Method, ta được:
 
 $$
 \begin{aligned}
     f_{2n}\left(x\right)&\equiv f_{n}\left(x\right)-\frac{\ln{f_{n}\left(x\right)}-h\left(x\right)}{1/f_{n}\left(x\right)}&\pmod{x^{2n}}\\
-    &\equiv f_{n}\left(x\right)\left(1-\ln{f_{n}\left(x\right)+h\left(x\right)}\right)&\pmod{x^{2n}}
+    &\equiv f_{n}\left(x\right)\left(1-\ln{f_{n}\left(x\right)}+h\left(x\right)\right)&\pmod{x^{2n}}
 \end{aligned}
 $$
 
-时间复杂度
+Độ phức tạp thời gian:
 
 $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-## 手算演示
+<span id="&#x624B;&#x7B97;&#x6F14;&#x793A;"></span>
+## Minh họa tính tay
 
-为了方便理解，这里举几个例子演示一下算法流程．
+Để dễ hiểu, phần này đưa ra vài ví dụ minh họa quy trình thuật toán.
 
-### 复数多项式模多项式的平方根
+<span id="&#x590D;&#x6570;&#x591A;&#x9879;&#x5F0F;&#x6A21;&#x591A;&#x9879;&#x5F0F;&#x7684;&#x5E73;&#x65B9;&#x6839;"></span>
+### Căn bậc hai của đa thức hệ số phức theo modulo một lũy thừa đa thức
 
-假设 $h$ 是一个不被 $x$ 整除（有常数项）的复数多项式，求它对模 $x^n$ 的平方根．
+Giả sử $h$ là một đa thức phức không chia hết cho $x$ (tức có hệ số tự do). Hãy tìm căn bậc hai của nó theo modulo $x^n$.
 
-我们有方程：
+Ta có phương trình:
 
 $$
 G\left(f(x)\right) = f^2(x)-h(x) \equiv 0\pmod{x^{n}}
 $$
 
-Taylor 展开 $G$ 得到下式．注意这里是对 $f$ 的展开，所以导数都是对 $f$ 的偏导数，$x$ 在这里是当成常数算的．
+Khai triển Taylor $G$ thu được công thức sau. Lưu ý ở đây là khai triển theo $f$, nên các đạo hàm đều là đạo hàm riêng theo $f$; $x$ được xem là hằng số.
 
 $$
 G(f(x)) = \sum_{i=0}^{+\infty}\frac{G^{\left(i\right)}\left(f_{0}(x)\right)}{i!}\left(f(x)-f_{0}(x)\right)^{i}
 = G(f_0(x)) + 2f_0(x)(f(x)-f_0(x)) + (f(x)-f_0(x))^2
 $$
 
-用倍增计算．假设倍增中的中间结果是 $f_0(x), f_1(x), \ldots, f_j(x)$，或者数学严谨地说 $f_j(x)$ 是满足 $G(f_j(x))\equiv 0\pmod{x^{2^j}}$ 的一个复数多项式，且为了唯一性它同时满足以下两个条件：
+Tính bằng cách nhân đôi. Giả sử các kết quả trung gian trong quá trình nhân đôi là $f_0(x), f_1(x), \ldots, f_j(x)$; nói chặt chẽ hơn, $f_j(x)$ là một đa thức phức thỏa $G(f_j(x))\equiv 0\pmod{x^{2^j}}$, đồng thời để bảo đảm tính duy nhất nó thỏa hai điều kiện sau:
 
--   $f_{j}(x)$ 次数不超过 $x^{2^j}$；
--   $f_{j+k}(x)-f_j(x)\equiv 0\pmod{x^{2^j}}$，对所有 $k$．
+-   bậc của $f_{j}(x)$ nhỏ hơn $2^j$;
+-   $f_{j+k}(x)-f_j(x)\equiv 0\pmod{x^{2^j}}$ với mọi $k$.
 
-把 $f_{j+1}(x)$ 和 $f_j(x)$ 代入上面的式子就有：
+Thay $f_{j+1}(x)$ và $f_j(x)$ vào công thức trên, ta có:
 
 $$
 G(f_{j+1}(x)) = G(f_j(x)) + 2f_j(f_{j+1}(x)-f_j(x)) + (f_{j+1}(x)-f_{j}(x))^2  \equiv 0 \pmod{x^{2^{j+1}}}
 $$
 
-显然 $f_{j+1}(x)-f_j(x)$ 必然是 $x^{2^j}$ 的倍数．于是得到
+Rõ ràng $f_{j+1}(x)-f_j(x)$ phải là bội của $x^{2^j}$. Vì vậy:
 
 $$
 f_{j+1}(x) \equiv f_j(x) - \frac{f_j^2(x)-h(x)}{2f_j(x)} \equiv \frac{f_j(x)^2 + h(x)}{2f_j(x)} \pmod{x^{2^{j+1}}}
 $$
 
-如果 $f_j(x)$ 存在，那么 $2f_j(x)$ 不被 $x$ 整除（有常数项），所以必然有模 $x^{2^{j+1}}$ 的逆元．因此数列 $f_0,f_1\ldots,f_j$ 存在当且仅当 $f_0$ 存在．不被 $x$ 整除的复数多项式 $h(x)$ 模 $x$ 的平方根是一定存在的，因为 $h(x)$ 模掉 $x$ 就是个普通非零复数，一定有两个平方根．所以可以对所有有常数项的 $h(x)$ 用这个算法．
+Nếu $f_j(x)$ tồn tại, thì $2f_j(x)$ không chia hết cho $x$ (có hệ số tự do), nên chắc chắn có nghịch đảo theo modulo $x^{2^{j+1}}$. Do đó dãy $f_0,f_1\ldots,f_j$ tồn tại khi và chỉ khi $f_0$ tồn tại. Với đa thức phức $h(x)$ không chia hết cho $x$, căn bậc hai của nó theo modulo $x$ luôn tồn tại, vì $h(x)$ sau khi lấy modulo $x$ chỉ là một số phức khác $0$ thông thường, luôn có hai căn bậc hai. Vì vậy thuật toán này dùng được cho mọi $h(x)$ có hệ số tự do.
 
-选 $h(x)=x+1$ 举例计算如下：
+Lấy $h(x)=x+1$ làm ví dụ:
 
 -   $f_0(x)=1$,$f_1(x)=\dfrac{1^2+x+1}{2\times 1}\mod x^2 = \dfrac{1}{2}x+1$,$f_2(x)=\dfrac{\left(\dfrac{1}{2}x+1\right)^2+x+1}{2\times \left(\dfrac{1}{2}x+1\right)}\mod x^4 = \dfrac{1}{16}x^3-\dfrac{1}{8}x^2+\dfrac{1}{2}x+1$,$\ldots$
--   $f_0(x)=-1$,$f_1(x)=\dfrac{(-1)^2+x+1}{2\times (-1)}\mod x^2 = -\dfrac{1}{2}x-1$,$\ldots$（等于前一个取负）
+-   $f_0(x)=-1$,$f_1(x)=\dfrac{(-1)^2+x+1}{2\times (-1)}\mod x^2 = -\dfrac{1}{2}x-1$,$\ldots$ (bằng đối của dãy trước)
 
-可以验证两个都是正确的模平方根多项式列．
+Có thể kiểm chứng cả hai đều là các dãy đa thức căn bậc hai đúng theo modulo tương ứng.
 
-### 整数模素数幂的平方根
+<span id="&#x6574;&#x6570;&#x6A21;&#x7D20;&#x6570;&#x5E42;&#x7684;&#x5E73;&#x65B9;&#x6839;"></span>
+### Căn bậc hai của số nguyên theo modulo lũy thừa của số nguyên tố
 
-牛顿迭代算法还可以迁移到整数模素数的幂的情况．
-假设 $h$ 是一个不被 3 整除的「方便的」整数．（「方便」指「必然有解」，具体条件后文再言）假设要算 $h$ 在模 $3^n$ 意义下的平方根 $f$．有方程：
+Thuật toán lặp Newton cũng có thể chuyển sang trường hợp số nguyên modulo lũy thừa của một số nguyên tố.
+Giả sử $h$ là một số nguyên "thuận tiện" không chia hết cho $3$. ("Thuận tiện" nghĩa là "chắc chắn có nghiệm"; điều kiện cụ thể sẽ nói ở sau.) Giả sử cần tính căn bậc hai $f$ của $h$ theo modulo $3^n$. Ta có phương trình:
 
 $$
 G\left(f\right) = f^2-h \equiv 0\pmod{3^{n}}
 $$
 
-Taylor 展开 $G$ 得到：
+Khai triển Taylor $G$:
 
 $$
 G(f) = \sum_{i=0}^{+\infty}\frac{G^{\left(i\right)}\left(f_{0}\right)}{i!}\left(f-f_{0}\right)^{i}
 = G(f_0) + 2f_0(f-f_0) + (f-f_0)^2
 $$
 
-用倍增计算．假设倍增中得到的中间结果是 $f_0, f_1, \ldots, f_j$，或者严谨地说 $f_j$ 是满足 $G(f_j)\equiv 0\pmod{3^{2^j}}$ 的一个整数，且为了唯一性它同时满足以下两个条件：
+Tính bằng cách nhân đôi. Giả sử các kết quả trung gian thu được là $f_0, f_1, \ldots, f_j$; nói chặt chẽ hơn, $f_j$ là một số nguyên thỏa $G(f_j)\equiv 0\pmod{3^{2^j}}$, đồng thời để bảo đảm tính duy nhất nó thỏa hai điều kiện sau:
 
--   $0 < f_{j} < 3^{2^j}$；
--   $f_{j+k}-f_j\equiv 0\pmod{3^{2^j}}$，对所有 $k$．
+-   $0 < f_{j} < 3^{2^j}$;
+-   $f_{j+k}-f_j\equiv 0\pmod{3^{2^j}}$ với mọi $k$.
 
-把 $f_{j+1}$ 和 $f_j$ 代入上面的式子就有：
+Thay $f_{j+1}$ và $f_j$ vào công thức trên:
 
 $$
 G(f_{j+1}) = G(f_j) + 2f_j(f_{j+1}-f_j) + (f_{j+1}-f_{j})^2  \equiv 0 \pmod{3^{2^{j+1}}}
 $$
 
-显然 $f_{j+1}-f_j$ 必然是 $3^{2^j}$ 的倍数．于是得到
+Rõ ràng $f_{j+1}-f_j$ phải là bội của $3^{2^j}$. Vì vậy:
 
 $$
 f_{j+1} \equiv f_j - \frac{f_j^2-h}{2f_j} \equiv \frac{f_j^2 + h}{2f_j} \pmod{3^{2^{j+1}}}
 $$
 
-如果 $f_j$ 存在，那么 $2f_j$ 不被 $3$ 整除，所以必然有模 $3^{2^{j+1}}$ 的逆元．因此数列 $f_0,f_1\ldots,f_j$ 存在当且仅当 $f_0$ 存在．不被 3 整除的整数 $h$ 模 $3$ 的平方根要么不存在，要么有两个．所以 $h$ 有模 $3$ 平方根就是整个算法能跑的唯一条件．
+Nếu $f_j$ tồn tại, thì $2f_j$ không chia hết cho $3$, nên chắc chắn có nghịch đảo modulo $3^{2^{j+1}}$. Do đó dãy $f_0,f_1\ldots,f_j$ tồn tại khi và chỉ khi $f_0$ tồn tại. Một số nguyên $h$ không chia hết cho $3$ hoặc không có căn bậc hai modulo $3$, hoặc có hai căn. Vì vậy việc $h$ có căn bậc hai modulo $3$ là điều kiện duy nhất để toàn bộ thuật toán chạy được.
 
-这里选 $h=46$ 实际计算示例．
+Ví dụ tính cụ thể với $h=46$.
 
 -   $f_0=1$,$f_1=\dfrac{1^2+46}{2\times 1}\mod 9 = 1$,$f_2=\dfrac{1^2+46}{2\times 1}\mod 81 = 64$,$f_3=\dfrac{64^2+46}{2\times 64}\mod 6561 = 955$,$\ldots$
--   $f_0=2$,$f_1=\dfrac{2^2+46}{2\times 2}\mod 9 = 8$,$f_2=\dfrac{8^2+46}{2\times 8}\mod 81 = 17$,$f_3=\dfrac{17^2+46}{2\times 17}\mod 6561 = 5606$,$\ldots$（等于前一个取负）
+-   $f_0=2$,$f_1=\dfrac{2^2+46}{2\times 2}\mod 9 = 8$,$f_2=\dfrac{8^2+46}{2\times 8}\mod 81 = 17$,$f_3=\dfrac{17^2+46}{2\times 17}\mod 6561 = 5606$,$\ldots$ (bằng đối của dãy trước)
 
-可以验证一下两个都是正确的模平方根数列．
+Có thể kiểm chứng cả hai đều là các dãy căn bậc hai đúng theo modulo tương ứng.
 
-## 代数证明
+<span id="&#x4EE3;&#x6570;&#x8BC1;&#x660E;"></span>
+## Chứng minh đại số
 
-这一节对前文进行引申，用抽象代数的语言证明只要 $f$ 满足初始解条件，牛顿法对所有的 $n$ 都能给出解，并且可以得到全部的解．
+Phần này mở rộng nội dung phía trên và dùng ngôn ngữ đại số trừu tượng để chứng minh rằng chỉ cần $f$ thỏa điều kiện nghiệm ban đầu, phương pháp Newton sẽ cho nghiệm với mọi $n$, đồng thời có thể thu được toàn bộ nghiệm.
 
-### 有解的证明
+<span id="&#x6709;&#x89E3;&#x7684;&#x8BC1;&#x660E;"></span>
+### Chứng minh sự tồn tại nghiệm
 
-???+ note "引理 1"
-    设 [整环](../algebra/ring-theory.md#整环)  $R$ 有多项式或 [形式幂级数](../algebra/ring-theory.md#形式幂级数环)  $f(X) = \sum_{i\geq 0}a_iX^i$ 和 $r,p\in R$ 使得 $f(r)\in Rp$（亦即 $r$ 是 $f(X)$ 在模 $p$ 意义下的根）且 $f'(r)\in R$ 在模 $p$ 意义下是可逆的．这里 $f'(X) := \sum_{i\geq 0}(i+1)a_{i+1}X^i$ 是 $f(X)$ 的 **形式导数**．那么 $f\left(r-\dfrac{f(r)}{f'(r)}\right) \equiv 0\pmod {p^2}$．
+???+ note "Bổ đề 1"
+    Cho [miền nguyên](../algebra/ring-theory.md#%E6%95%B4%E7%8E%AF) $R$ có đa thức hoặc [chuỗi lũy thừa hình thức](../algebra/ring-theory.md#%E5%BD%A2%E5%BC%8F%E5%B9%82%E7%BA%A7%E6%95%B0%E7%8E%AF) $f(X) = \sum_{i\geq 0}a_iX^i$ và $r,p\in R$ sao cho $f(r)\in Rp$ (tức $r$ là nghiệm của $f(X)$ theo modulo $p$) và $f'(r)\in R$ khả nghịch theo modulo $p$. Ở đây $f'(X) := \sum_{i\geq 0}(i+1)a_{i+1}X^i$ là **đạo hàm hình thức** của $f(X)$. Khi đó $f\left(r-\dfrac{f(r)}{f'(r)}\right) \equiv 0\pmod {p^2}$.
 
-??? note "证明"
-    对所有 $s\in R$，
+??? note "Chứng minh"
+    Với mọi $s\in R$,
     
     $$
     \begin{aligned}
@@ -232,44 +242,45 @@ $$
     \end{aligned}
     $$
     
-    所以
+    nên
     
     $$
     f(r+sp) \in Rp^2 \iff f(r)+f'(r)sp \in Rp^2
     $$
     
-    因为 $f(r)\in Rp$，且 $f'(r)$ 可逆，所以取 $sp = -\dfrac{f(r)}{f'(r)}$ 即可，这里 $\dfrac{1}{f'(r)}$ 是模 $p^2$ 意义下的逆元．因为 $f'(r)$ 在模 $p$ 意义下可逆，所以它在模 $p^2$ 意义下也必定存在逆元：设有 $a,b,c\in R$ 使 $af'(r) = bp+1$ 和 $f(r)=cp$，那么 $\left(a^2f'(r)-2\right)f'(r) = b^2p^2+1$，故可以取 $s=c(2-a^2f'(r))$．
+    Vì $f(r)\in Rp$ và $f'(r)$ khả nghịch, chỉ cần lấy $sp = -\dfrac{f(r)}{f'(r)}$; ở đây $\dfrac{1}{f'(r)}$ là nghịch đảo theo modulo $p^2$. Do $f'(r)$ khả nghịch theo modulo $p$, nó cũng chắc chắn có nghịch đảo theo modulo $p^2$: giả sử tồn tại $a,b,c\in R$ sao cho $af'(r) = bp+1$ và $f(r)=cp$, khi đó $\left(a^2f'(r)-2\right)f'(r) = b^2p^2+1$, nên có thể lấy $s=c(2-a^2f'(r))$.
 
-对于域 $k$ 上的多项式环 $k[X]$，设有 $G(X, Y)\in k[X, Y]$ 和 $f_n\in k[X]$ 使 $G(X, f_n(X))\in k[X]X^n$，那么应用引理 1 就可得到
+Với vành đa thức $k[X]$ trên trường $k$, giả sử có $G(X, Y)\in k[X, Y]$ và $f_n\in k[X]$ sao cho $G(X, f_n(X))\in k[X]X^n$. Áp dụng bổ đề 1, ta được
 
 $$
 G\left(X, f_n(X) - \frac{G(X, f_n(X))}{\frac{\partial G}{\partial Y}(X, f_n(X))} \right)\equiv 0 \pmod {X^{2n}}
 $$
 
-而倍增的初始条件只要有 $f_1\in k$ 使得 $G(X, f_1)\equiv 0\pmod X$ 和 $\dfrac{\partial G}{\partial Y}(X, f_1)\not\equiv 0\pmod X$．后一个条件保证了 $\dfrac{\partial G}{\partial Y}$ 有非零常数项，同时因为 $X\left| \dfrac{G(X, f_n(X))}{\frac{\partial G}{\partial Y}(X, f_n(X))} \right.$，故而对所有的 $n$，$\dfrac{\partial G}{\partial Y}(X, f_n)$ 总是模 $X^n$ 意义下可逆的，也就满足了下一次迭代的条件．
+Điều kiện ban đầu cho phép nhân đôi chỉ cần tồn tại $f_1\in k$ sao cho $G(X, f_1)\equiv 0\pmod X$ và $\dfrac{\partial G}{\partial Y}(X, f_1)\not\equiv 0\pmod X$. Điều kiện sau bảo đảm $\dfrac{\partial G}{\partial Y}$ có hệ số tự do khác không; đồng thời vì $X\left| \dfrac{G(X, f_n(X))}{\frac{\partial G}{\partial Y}(X, f_n(X))} \right.$, nên với mọi $n$, $\dfrac{\partial G}{\partial Y}(X, f_n)$ luôn khả nghịch theo modulo $X^n$, tức thỏa điều kiện của lần lặp tiếp theo.
 
-### 得到全部解的证明
+<span id="&#x5F97;&#x5230;&#x5168;&#x90E8;&#x89E3;&#x7684;&#x8BC1;&#x660E;"></span>
+### Chứng minh thu được toàn bộ nghiệm
 
-???+ note "引理 2"
-    若 $R$ 为 [UFD](../algebra/ring-theory.md#唯一分解整环)，$f,r,p$ 定义同引理 1．则引理 1 给出的 $r-\dfrac{f(r)}{f'(r)}$ 是模 $p^{2}$ 意义下唯一满足以下两条件的 $x$ 的值：
+???+ note "Bổ đề 2"
+    Nếu $R$ là [UFD](../algebra/ring-theory.md#%E5%94%AF%E4%B8%80%E5%88%86%E8%A7%A3%E6%95%B4%E7%8E%AF), và $f,r,p$ được định nghĩa như trong bổ đề 1, thì $r-\dfrac{f(r)}{f'(r)}$ do bổ đề 1 đưa ra là giá trị $x$ duy nhất theo modulo $p^{2}$ thỏa hai điều kiện sau:
     
     -   $f(x)\in Rp^{2}$
     -   $x-r\in Rp$
     
-    亦即
+    tức là
     
     $$
     \forall x\in R,\qquad p^2\mid f(x)\wedge p\mid (x-r) \implies x\equiv r-\dfrac{f(r)}{f'(r)} \pmod {p^2}
     $$
 
-??? note "证明"
-    令 $s = -\dfrac{f(r)}{f'(r)p}$ 和 $u = r+sp$，引理 1 保证 $u$ 满足两个条件，且 $f(r) + f'(r)sp \in Rp^{2}$．
-    设 $v$ 是满足上述条件的值，则有 $v = r+tp$ 和 $f(r) + f'(r)tp \in Rp^{2}$．
-    于是有 $f'(r)(t-s)p\in Rp^{2}$ 和 $v-u\in Rp^{2}$．
+??? note "Chứng minh"
+    Đặt $s = -\dfrac{f(r)}{f'(r)p}$ và $u = r+sp$. Bổ đề 1 bảo đảm $u$ thỏa hai điều kiện, và $f(r) + f'(r)sp \in Rp^{2}$.
+    Giả sử $v$ là một giá trị thỏa các điều kiện trên, khi đó $v = r+tp$ và $f(r) + f'(r)tp \in Rp^{2}$.
+    Do đó $f'(r)(t-s)p\in Rp^{2}$ và $v-u\in Rp^{2}$.
 
-牛顿法可以保证得到模 $X^{2^n}$ 的全部解．假设 $G(X, h)\equiv 0\pmod {X^{2^n}}$，那么令 $h_{2^i} := h\pmod {X^{2^i}}$，然后取 $f_1 = h_1$ 并用牛顿法，根据引理 2 可得 $f_{2^i} \equiv h_{2^i}\pmod {X^{2^i}}$，所以一定有 $f_{2^n} = h$．
+Phương pháp Newton bảo đảm thu được toàn bộ nghiệm modulo $X^{2^n}$. Giả sử $G(X, h)\equiv 0\pmod {X^{2^n}}$. Đặt $h_{2^i} := h\pmod {X^{2^i}}$, rồi lấy $f_1 = h_1$ và áp dụng phương pháp Newton. Theo bổ đề 2, ta có $f_{2^i} \equiv h_{2^i}\pmod {X^{2^i}}$, nên chắc chắn $f_{2^n} = h$.
 
-上面的论证也说明了，在 $\dfrac{\partial G}{\partial y}(0, y)$ 永远可逆时，$G(X, f)\equiv 0\pmod {X^n}$ 的解的个数等于 $G(0, f)\equiv 0\pmod X$ 的解的个数．这个结论并非平凡．请看下面的例子．
+Lập luận trên cũng cho thấy, khi $\dfrac{\partial G}{\partial y}(0, y)$ luôn khả nghịch, số nghiệm của $G(X, f)\equiv 0\pmod {X^n}$ bằng số nghiệm của $G(0, f)\equiv 0\pmod X$. Kết luận này không hề tầm thường; xem ví dụ dưới đây.
 
-??? example "牛顿法无效时解的个数随次数而变多的例子"
-    模 $X$ 意义下 $X^2$ 的平方根只有 $0$，但是模 $X^4$ 意义下 $X^2$ 的平方根有 $X, -X, X^3+X, \ldots$．
+??? example "Ví dụ số nghiệm tăng theo bậc khi phương pháp Newton không áp dụng được"
+    Theo modulo $X$, $X^2$ chỉ có một căn bậc hai là $0$, nhưng theo modulo $X^4$, các căn bậc hai của $X^2$ gồm $X, -X, X^3+X, \ldots$.

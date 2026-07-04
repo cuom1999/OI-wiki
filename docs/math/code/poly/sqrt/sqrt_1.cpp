@@ -6,7 +6,7 @@ constexpr int MAXN = 1 << 20, mod = 998244353;
 
 int a[MAXN], b[MAXN], g[MAXN], gg[MAXN];
 
-int qpow(int x, int y) {  // 快速幂
+int qpow(int x, int y) {  // Lũy thừa nhanh
   int ans = 1;
 
   while (y) {
@@ -19,7 +19,7 @@ int qpow(int x, int y) {  // 快速幂
   return ans;
 }
 
-int inv2 = qpow(2, mod - 2);  // 逆元
+int inv2 = qpow(2, mod - 2);  // Nghịch đảo
 
 void change(int *f, int len) {
   for (int i = 1, j = len / 2; i < len - 1; i++) {
@@ -67,7 +67,7 @@ void NTT(int *f, int len, int type) {  // NTT
   }
 }
 
-void inv(int deg, int *f, int *h) {  // 求逆元
+void inv(int deg, int *f, int *h) {  // Tìm nghịch đảo
   if (deg == 1) {
     h[0] = qpow(f[0], mod - 2);
     return;
@@ -76,7 +76,7 @@ void inv(int deg, int *f, int *h) {  // 求逆元
   inv((deg + 1) >> 1, f, h);
 
   int len = 1;
-  while (len < deg * 2) {  // 倍增
+  while (len < deg * 2) {  // Nhân đôi
     len *= 2;
   }
 
@@ -96,9 +96,9 @@ void inv(int deg, int *f, int *h) {  // 求逆元
 
 int n, t[MAXN];
 
-// deg:次数
-// f:被开根数组
-// h:答案数组
+// deg: bậc
+// f: mảng cần khai căn
+// h: mảng đáp án
 void sqrt(int deg, int *f, int *h) {
   if (deg == 1) {
     h[0] = 1;
@@ -108,7 +108,7 @@ void sqrt(int deg, int *f, int *h) {
   sqrt((deg + 1) >> 1, f, h);
 
   int len = 1;
-  while (len < deg * 2) {  // 倍增
+  while (len < deg * 2) {  // Nhân đôi
     len *= 2;
   }
   fill(g, g + len, 0);
