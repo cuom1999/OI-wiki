@@ -1,146 +1,146 @@
-本页面将介绍使用 Docker 部署 **OI Wiki** 环境的方式．
+Trang này giới thiệu cách triển khai môi trường **OI Wiki** bằng Docker.
 
 ???+ warning "Warning"
-    以下步骤须在 root 用户下或 docker 组用户下执行．
+    Các bước sau cần được thực hiện với quyền root hoặc bằng người dùng thuộc nhóm docker.
 
-## 拉取 **OI Wiki** 镜像
+## Kéo image **OI Wiki**
 
 ```bash
-# 以下命令在主机中运行其中一个即可
-# Docker Hub 镜像（官方镜像仓库）
+# Chỉ cần chạy một trong các lệnh sau trên máy chủ
+# Image Docker Hub (kho image chính thức)
 docker pull 24oi/oi-wiki
-# DaoCloud Hub 镜像（国内镜像仓库）
+# Image DaoCloud Hub (kho image trong nước)
 docker pull daocloud.io/sirius/oi-wiki
-# Tencent Hub 镜像（国内镜像仓库）
+# Image Tencent Hub (kho image trong nước)
 docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 ```
 
-## 自行构建镜像
+## Tự build image
 
 ```bash
-# 以下命令在主机中运行
-# 克隆 Git 仓库
+# Chạy các lệnh sau trên máy chủ
+# Clone Git repository
 git clone https://github.com/OI-wiki/OI-wiki.git
 cd OI-wiki/
-# 构建镜像
+# Build image
 docker build -t [name][:tag] . --build-arg [variable1]=[value1] [variable2]=[value2]...
 ```
 
--   （必须）设置 `[name]` 以设置镜像名，（可选）设置 `[tag]` 以设置镜像标签（若设置，则运行时镜像名由两部分构成）．
--   可以通过 `--build-arg` 参数设置环境变量．
+-   (Bắt buộc) đặt `[name]` để đặt tên image; (tùy chọn) đặt `[tag]` để đặt nhãn image. Nếu đặt tag, tên image khi chạy sẽ gồm hai phần.
+-   Có thể đặt biến môi trường thông qua tham số `--build-arg`.
 
-可以使用的环境变量：
+Các biến môi trường có thể dùng:
 
--   可以设置 `WIKI_REPO` 来使用 Wiki 仓库的镜像站点（当未设置时自动使用 GitHub）
--   可以设置 `PYPI_MIRROR` 来使用 PyPI 仓库的镜像站点（当未设置时自动使用官方 PyPI）
-    -   在国内建议使用 TUNA 镜像站 `https://pypi.tuna.tsinghua.edu.cn/simple/`
--   可以设置 `LISTEN_IP` 来更改监听 IP（当未设置时为 `0.0.0.0`，即监听所有 IP 的访问）
--   可以设置 `LISTEN_PORT` 来更改监听端口（当未设置时为 `8000`）
+-   Có thể đặt `WIKI_REPO` để dùng mirror site của kho Wiki (nếu không đặt thì tự động dùng GitHub)
+-   Có thể đặt `PYPI_MIRROR` để dùng mirror site của kho PyPI (nếu không đặt thì tự động dùng PyPI chính thức)
+    -   Ở Trung Quốc, nên dùng mirror TUNA `https://pypi.tuna.tsinghua.edu.cn/simple/`
+-   Có thể đặt `LISTEN_IP` để đổi IP lắng nghe (nếu không đặt thì là `0.0.0.0`, tức lắng nghe truy cập từ mọi IP)
+-   Có thể đặt `LISTEN_PORT` để đổi cổng lắng nghe (nếu không đặt thì là `8000`)
 
-示例：
+Ví dụ:
 
 ```bash
 docker build -t OI_Wiki . --build-arg WIKI_REPO=https://hub.fastgit.xyz/OI-wiki/OI-wiki.git PYPI_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple/
-# 构建一个名为 OI_Wiki （标签默认）的镜像，使用 FastGit 服务加速克隆，使用 TUNA 镜像站．
+# Xây dựng một image tên là OI_Wiki (tag mặc định), dùng dịch vụ FastGit để tăng tốc clone và dùng mirror TUNA.
 ```
 
-## 运行容器
+## Chạy container
 
 ```bash
-# 以下命令在主机中运行
+# Chạy lệnh sau trên máy chủ
 docker run -d -it [image]
 ```
 
--   （必须）设置 `[image]` 以设置镜像．例如，从 Docker Hub 拉取的为 `24oi/oi-wiki`；DaoCloud Hub 拉取的则为 `daocloud.io/sirius/oi-wiki`．
--   （必须）设置 `-p [port]:8000` 以映射容器端口至主机端口（不写该语句则默认为不暴露端口．设置时请替换 `[port]` 为主机端口）．设置后可以在主机使用 `http://127.0.0.1:[port]` 访问 **OI Wiki**．
--   设置 `--name [name]` 以设置容器名字．（默认空．设置时请替换 `[name]` 为自定义的容器名字．若想查看容器 id，则输入 `docker ps`）
+-   (Bắt buộc) đặt `[image]` để chỉ định image. Ví dụ, image kéo từ Docker Hub là `24oi/oi-wiki`; image kéo từ DaoCloud Hub là `daocloud.io/sirius/oi-wiki`.
+-   (Bắt buộc) đặt `-p [port]:8000` để ánh xạ cổng container sang cổng trên máy chủ. Nếu không viết tùy chọn này thì mặc định không công khai cổng. Khi đặt, hãy thay `[port]` bằng cổng trên máy chủ. Sau khi đặt, có thể truy cập **OI Wiki** trên máy chủ qua `http://127.0.0.1:[port]`.
+-   Đặt `--name [name]` để đặt tên container. Mặc định để trống. Khi đặt, hãy thay `[name]` bằng tên container tự chọn. Nếu muốn xem container id, hãy nhập `docker ps`.
 
-## 使用容器
+## Sử dụng container
 
 ???+ note "Note"
-    示例基于 Ubuntu latest 部署．
+    Ví dụ dựa trên triển khai bằng Ubuntu latest.
 
-进入容器：
+Vào container:
 
 ```bash
-# 以下命令在主机中运行
+# Chạy lệnh sau trên máy chủ
 docker exec -it [name] /bin/bash
 ```
 
-若在上述运行容器中去掉 `-d`，则可以直接进入容器 bash，退出后容器停止，加上 `-d` 则后台运行，请手动停止．上述进入容器针对加上 `-d` 的方法运行．
+Nếu bỏ `-d` trong lệnh chạy container ở trên, bạn có thể vào thẳng bash của container; sau khi thoát thì container sẽ dừng. Khi thêm `-d`, container chạy nền và cần dừng thủ công. Cách vào container ở trên dành cho container được chạy với `-d`.
 
-特殊用法：
+Cách dùng đặc biệt:
 
 ```bash
-# 以下命令在容器中运行
-# 更新 git 仓库
+# Chạy các lệnh sau trong container
+# Cập nhật Git repository
 wiki-upd
 
-# 使用我们的自定义主题
+# Dùng theme tùy chỉnh của chúng tôi
 wiki-theme
 
-# 构建 mkdocs ，会在 site 文件夹下得到静态页面
+# Build mkdocs, trang tĩnh sẽ được tạo trong thư mục site
 wiki-bld
 
-# 构建 mkdocs 并渲染 MathJax ，会在 site 文件夹下得到静态页面
+# Build mkdocs và render MathJax, trang tĩnh sẽ được tạo trong thư mục site
 wiki-bld-math
 
-# 运行一个服务器，访问容器中 http://127.0.0.1:8000 或访问主机中 http://127.0.0.1:[port] 可以查看效果
+# Chạy một server; truy cập http://127.0.0.1:8000 trong container hoặc http://127.0.0.1:[port] trên máy chủ để xem kết quả
 wiki-svr
 
-# 修正 Markdown
+# Sửa Markdown
 wiki-o
 ```
 
-退出容器：
+Thoát container:
 
 ```bash
-# 以下命令在容器中运行
-# 退出
+# Chạy các lệnh sau trong container
+# Thoát
 exit
 ```
 
-## 停止容器
+## Dừng container
 
 ```bash
-# 以下命令在主机中运行
+# Chạy lệnh sau trên máy chủ
 docker stop [name]
 ```
 
-## 启动容器
+## Khởi động container
 
 ```bash
-# 以下命令在主机中运行
+# Chạy lệnh sau trên máy chủ
 docker start [name]
 ```
 
-## 重启容器
+## Khởi động lại container
 
 ```bash
-# 以下命令在主机中运行
+# Chạy lệnh sau trên máy chủ
 docker restart [name]
 ```
 
-## 删除容器
+## Xóa container
 
 ```bash
-# 以下命令在主机中运行
-# 删除前请先停止容器
+# Chạy các lệnh sau trên máy chủ
+# Hãy dừng container trước khi xóa
 docker rm [name]
 ```
 
-## 更新镜像
+## Cập nhật image
 
-重新再 `pull` 一次即可，通常不会更新．
+Chỉ cần `pull` lại một lần nữa; thông thường image sẽ không được cập nhật.
 
-## 删除镜像
+## Xóa image
 
 ```bash
-# 以下命令在主机中运行
-# 删除前请先删除使用 oi-wiki 镜像构建的容器
+# Chạy các lệnh sau trên máy chủ
+# Trước khi xóa, hãy xóa các container được tạo từ image oi-wiki
 docker rmi [image]
 ```
 
-## 疑问
+## Câu hỏi
 
-如果您有疑问，欢迎提出 [issue](https://github.com/OI-wiki/OI-wiki/issues/new/choose)！
+Nếu có câu hỏi, bạn có thể mở [issue](https://github.com/OI-wiki/OI-wiki/issues/new/choose)!

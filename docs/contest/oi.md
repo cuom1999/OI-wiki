@@ -1,326 +1,326 @@
 author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456, Re-Ori, hcx1204
 
-## 赛事简介
+## Giới thiệu cuộc thi
 
-**信息学奥林匹克竞赛**（英语：Olympiad in Informatics，简称：OI）是一门在中学生中广泛开展的学科竞赛，和物理、数学等竞赛性质相同．OI 考察的内容是参赛者运用算法、数据结构和数学知识，通过编写计算机程序解决实际问题的能力．
+**Olympic Tin học** (tiếng Anh: Olympiad in Informatics, viết tắt: OI) là một cuộc thi học thuật được tổ chức rộng rãi trong học sinh trung học, có tính chất tương tự các kỳ thi Olympic Vật lý, Toán học, v.v. Nội dung OI đánh giá năng lực của thí sinh trong việc vận dụng thuật toán, cấu trúc dữ liệu và kiến thức toán học để viết chương trình máy tính giải quyết các bài toán thực tế.
 
-OI 竞赛种类繁多，仅中国就包括：
+Các loại cuộc thi OI rất đa dạng; chỉ riêng Trung Quốc đã có:
 
--   全国青少年信息学奥林匹克联赛（NOIP）
--   全国青少年信息学奥林匹克竞赛（NOI）
--   全国青少年信息学奥林匹克竞赛冬令营（WC）
--   国际信息学奥林匹克竞赛中国队选拔赛（CTSC）
+-   National Olympiad in Informatics in Provinces (NOIP)
+-   National Olympiad in Informatics (NOI)
+-   Winter Camp (WC)
+-   China Team Selection Competition (CTSC)
 
-国际性的 OI 竞赛包括：
+Các cuộc thi OI quốc tế bao gồm:
 
--   国际信息学奥林匹克（IOI）
--   美国计算机奥林匹克竞赛（USACO）
--   日本信息学奥林匹克（JOI）
--   亚太地区信息学奥林匹克（APIO）
+-   International Olympiad in Informatics (IOI)
+-   USA Computing Olympiad (USACO)
+-   Japanese Olympiad in Informatics (JOI)
+-   Asia-Pacific Informatics Olympiad (APIO)
 
     ……
 
-对于大部分选手而言，每年的新赛季从 9 月的 CSP-J/S 第一轮开始．
+Với phần lớn thí sinh, mùa thi mới hằng năm bắt đầu từ vòng đầu tiên CSP-J/S vào tháng 9.
 
-在中国，OI 竞赛允许使用的语言只有 C++（曾经也开放过 C 和 Pascal 语言，但都已停止支持）．其中，不同的竞赛对 C++ 的版本有不同的规定．考试题目一般为算法或者数据结构相关的内容，题目形式包括传统题（最常见的规定输入和输出到文件的题目）和非传统题（提交答案题、交互题、补全代码题……等等）．
+Ở Trung Quốc, ngôn ngữ được phép dùng trong các cuộc thi OI chỉ có C++ (trước đây từng mở cho C và Pascal, nhưng đều đã ngừng hỗ trợ). Trong đó, các cuộc thi khác nhau có quy định khác nhau về phiên bản C++. Đề thi thường liên quan đến thuật toán hoặc cấu trúc dữ liệu; hình thức bài gồm bài truyền thống (phổ biến nhất là bài quy định nhập và xuất qua tệp) và bài phi truyền thống (bài nộp đáp án, bài tương tác, bài điền hoàn chỉnh mã nguồn, v.v.).
 
-## 赛制介绍
+## Giới thiệu thể thức
 
-### OI 赛制
+### Thể thức OI
 
-选手仅有一次提交机会．比赛时无法看到评测结果，评分会在赛后公布．每道题都有多个测试点，根据每道题通过的测试点的数量获得相应的分数；每个测试点还可能会有部分分，即使只有部分数据通过也能拿到分数．
+Thí sinh chỉ có một cơ hội nộp bài. Trong lúc thi không thể xem kết quả chấm; điểm số sẽ được công bố sau cuộc thi. Mỗi bài có nhiều test point, và điểm tương ứng được tính theo số test point mà lời giải vượt qua; mỗi test point cũng có thể có điểm thành phần, nên ngay cả khi chỉ qua một phần dữ liệu vẫn có thể nhận điểm.
 
-???+ note "自评测工具 selfEval"
-    现如今，在一些 NOI 系列赛中，提供了 selfEval 自评测工具．selfEval 内置于全国赛定制版 NOI Linux 中．自 NOI2023 正式公布并投入使用后，selfEval 陆续用于其后的 NOI 全国赛、APIO（中国区）和 NOI 冬令营等．选手可以使用 selfEval 在一组测试数据（称为预测试数据）上测试自己的程序，并得到反馈结果．选手在每场比赛中的自测次数有指定上限（NOI2024 自测次数上限为 50 次，NOI2025 自测次数上限为 30 次），而且预测试数据也是选手不可见的．由于预测试数据不同于正式测试数据，因此自测结果仅用于调试，不能被视作正式评测成绩．选手在同一题目上多次进行预测试，所使用的预测试数据是相同的．
+???+ note "Công cụ tự chấm selfEval"
+    Hiện nay, trong một số cuộc thi thuộc hệ thống NOI, công cụ tự chấm selfEval được cung cấp. selfEval được tích hợp trong bản NOI Linux tùy chỉnh cho các kỳ thi toàn quốc. Sau khi được công bố chính thức và đưa vào sử dụng từ NOI2023, selfEval lần lượt được dùng trong các kỳ NOI toàn quốc, APIO (khu vực Trung Quốc), NOI Winter Camp, v.v. Thí sinh có thể dùng selfEval để kiểm thử chương trình của mình trên một bộ dữ liệu kiểm thử (gọi là dữ liệu pretest) và nhận phản hồi. Số lần tự kiểm thử của thí sinh trong mỗi buổi thi có giới hạn cụ thể (NOI2024 giới hạn 50 lần tự kiểm thử, NOI2025 giới hạn 30 lần tự kiểm thử), và dữ liệu pretest cũng không hiển thị cho thí sinh. Vì dữ liệu pretest khác với dữ liệu chấm chính thức, kết quả tự kiểm thử chỉ dùng cho việc gỡ lỗi, không thể xem là điểm chấm chính thức. Nếu thí sinh pretest nhiều lần trên cùng một bài, bộ dữ liệu pretest được sử dụng là như nhau.
 
-CSP-J/S 第二轮、NOIP、省选、NOI 都是 OI 赛制．
+CSP-J/S vòng hai, NOIP, vòng tuyển chọn cấp tỉnh và NOI đều dùng thể thức OI.
 
-### IOI 赛制
+### Thể thức IOI
 
-选手在比赛时有多次提交机会．比赛实时评测并返回结果，如果提交的结果是错误的，不会有任何惩罚．每道题都有多个测试点，根据每道题通过的测试点的数量获得相应的分数．
+Thí sinh có nhiều cơ hội nộp bài trong lúc thi. Bài nộp được chấm theo thời gian thực và trả về kết quả; nếu kết quả nộp sai thì không có hình phạt nào. Mỗi bài có nhiều test point, và điểm tương ứng được tính theo số test point mà lời giải vượt qua.
 
-APIO、IOI 都是 IOI 赛制．目前国内比赛也在逐渐向 IOI 赛制靠拢．
+APIO và IOI đều dùng thể thức IOI. Hiện nay các cuộc thi trong nước Trung Quốc cũng đang dần tiến gần hơn đến thể thức IOI.
 
-### Codeforces (CF) 赛制
+### Thể thức Codeforces (CF)
 
-[Codeforces](https://codeforces.com) 是一个在线评测系统，会定期举办比赛．
+[Codeforces](https://codeforces.com) là một hệ thống chấm trực tuyến, định kỳ tổ chức các cuộc thi.
 
-它的比赛特点是在比赛过程中只测试一部分数据（Pretests），而在比赛结束后返回完整的所有测试点的测试结果（System Tests）．比赛时可以多次提交，允许 Hack 别人的代码（此处 Hack 的意思是提交一个测试数据，使得别人的代码无法给出正确答案）．如果想要 Hack，选手必须要锁定自己的代码（换言之，比赛时无法重新提交该题）．Hack 时不允许将选手程序拷贝到本地进行测试，源代码会被转换成图片．
+Đặc điểm của cuộc thi trên Codeforces là trong lúc thi chỉ kiểm thử trên một phần dữ liệu (Pretests), còn sau khi cuộc thi kết thúc mới trả về kết quả kiểm thử trên toàn bộ test point đầy đủ (System Tests). Trong lúc thi có thể nộp nhiều lần và được phép Hack mã nguồn của người khác (ở đây Hack có nghĩa là nộp một bộ dữ liệu kiểm thử khiến mã nguồn của người khác không thể đưa ra đáp án đúng). Nếu muốn Hack, thí sinh phải khóa mã nguồn của mình (nói cách khác, trong lúc thi không thể nộp lại bài đó nữa). Khi Hack, không được sao chép chương trình của thí sinh khác về máy cục bộ để kiểm thử; mã nguồn sẽ được chuyển thành hình ảnh.
 
-Codeforces 同时提供另外一种赛制，称作扩展 ICPC（Extended ICPC 或 ICPC+）．在这一赛制中，在比赛过程中会测试全部数据，但比赛结束以后会有 12 小时的全网 Hack 时间．Hack 时允许将选手程序拷贝到本地进行测试．
+Codeforces đồng thời cung cấp một thể thức khác, gọi là Extended ICPC (Extended ICPC hoặc ICPC+). Trong thể thức này, toàn bộ dữ liệu được kiểm thử trong lúc thi, nhưng sau khi cuộc thi kết thúc sẽ có 12 giờ Hack toàn mạng. Khi Hack được phép sao chép chương trình của thí sinh khác về máy cục bộ để kiểm thử.
 
-## 主要比赛
+## Các cuộc thi chính
 
 ### CSP-J/S
 
-**CSP-J/S**（英文：Certified Software Professional Junior/Senior）是 NOIP 在 2019 年被取消之后，CCF 开设的非专业级软件能力认证测试，在 2025 年以前面向全年龄段，[后改为 12 周岁以上](https://www.noi.cn/xw/2025-02-13/837984.shtml)．
+**CSP-J/S** (tiếng Anh: Certified Software Professional Junior/Senior) là kỳ chứng nhận năng lực phần mềm cấp không chuyên do CCF mở ra sau khi NOIP bị hủy vào năm 2019; trước năm 2025 kỳ này dành cho mọi lứa tuổi, [sau đó đổi thành từ 12 tuổi trở lên](https://www.noi.cn/xw/2025-02-13/837984.shtml).
 
-CSP-J/S 分为入门级（Junior，简写为 CSP-J）与提高级（Senior，简写为 CSP-S）两组，赛程分为第一轮（一般在每年 9 月）和第二轮（一般在每年 10 月）两场．第一轮为笔试，考察计算机理论和操作常识和基本的算法与数学知识；第二轮为上机考试，入门组与提高组都为 4 题，其中入门组考试时间 3.5 个小时，提高组 4 个小时（CSP-S 2019 除外，该场比赛使用旧 NOIP 提高组赛制，赛程分为两天，一天 3 题 3.5 小时）．第一轮面向社会全体 12 周岁以上学生报名，经过一定的排名筛选后成绩优秀者有机会参加第二轮．
+CSP-J/S được chia thành hai nhóm: cấp nhập môn (Junior, viết tắt là CSP-J) và cấp nâng cao (Senior, viết tắt là CSP-S). Lịch thi gồm hai vòng: vòng một (thường vào tháng 9 hằng năm) và vòng hai (thường vào tháng 10 hằng năm). Vòng một là thi viết, kiểm tra lý thuyết máy tính, kiến thức thao tác thông thường, cùng kiến thức cơ bản về thuật toán và toán học; vòng hai là thi trên máy, cả nhóm nhập môn và nhóm nâng cao đều có 4 bài, trong đó nhóm nhập môn thi 3,5 giờ, nhóm nâng cao thi 4 giờ (ngoại trừ CSP-S 2019, kỳ này dùng thể thức cũ của nhóm nâng cao NOIP, lịch thi chia thành hai ngày, mỗi ngày 3 bài trong 3,5 giờ). Vòng một cho phép toàn bộ học sinh trong xã hội từ 12 tuổi trở lên đăng ký; sau một bước sàng lọc theo thứ hạng, những người có thành tích tốt có cơ hội tham gia vòng hai.
 
-报名参加第一/二轮、第二轮后进行题目申诉等都需要向 CCF 缴费．
+Đăng ký tham gia vòng một/vòng hai, cũng như khi khiếu nại bài sau vòng hai, đều cần nộp phí cho CCF.
 
-两轮测试都会以省为单位按照排名对选手成绩进行评级认证，分为一、二、三等．
+Cả hai vòng thi đều đánh giá chứng nhận kết quả của thí sinh theo thứ hạng trong từng tỉnh, chia thành giải nhất, giải nhì và giải ba.
 
 ### NOIP
 
-**NOIP**（英语：National Olympiad in Informatics in Provinces，中文：全国青少年信息学奥林匹克联赛）是中华人民共和国组织的、面向中国（含港澳）中学生的信息学竞赛．
+**NOIP** (tiếng Anh: National Olympiad in Informatics in Provinces, tiếng Trung: 全国青少年信息学奥林匹克联赛) là cuộc thi tin học do Cộng hòa Nhân dân Trung Hoa tổ chức, dành cho học sinh trung học ở Trung Quốc (bao gồm Hồng Kông và Ma Cao).
 
-2018 年及以前的旧赛制：NOIP 按参赛对象分为普及组和提高组，2018 年于上海试点入门组；按阶段分为初赛和复赛两个阶段．初赛会考察一些计算机基础知识和算法基础，复赛为上机考试．时间上一般是 11 月的第二个周末，周六上午提高组一试 8:30-12:00（3.5 小时，共 3 题），下午 14:30-18:00 普及组（3.5 小时，共 4 题），周日上午提高组二试 8:30-12:00（3.5 小时，共 3 题）．全国使用同一套试卷，但是评奖规则按照省内情况由 CCF（中国计算机学会）统一指定，并于赛后在 [NOI 官方网站](http://www.noi.cn) 上公布．各省的一等奖分数线略有不同．
+Thể thức cũ từ năm 2018 trở về trước: NOIP chia theo đối tượng dự thi thành nhóm phổ cập và nhóm nâng cao; năm 2018 thí điểm nhóm nhập môn tại Thượng Hải; chia theo giai đoạn thành vòng sơ khảo và vòng phúc khảo. Vòng sơ khảo kiểm tra một số kiến thức cơ bản về máy tính và nền tảng thuật toán, còn vòng phúc khảo là thi trên máy. Về thời gian, thường diễn ra vào cuối tuần thứ hai của tháng 11: sáng thứ Bảy, nhóm nâng cao bài thi thứ nhất từ 8:30-12:00 (3,5 giờ, tổng cộng 3 bài); chiều từ 14:30-18:00 là nhóm phổ cập (3,5 giờ, tổng cộng 4 bài); sáng Chủ nhật, nhóm nâng cao bài thi thứ hai từ 8:30-12:00 (3,5 giờ, tổng cộng 3 bài). Cả nước dùng chung một bộ đề, nhưng quy tắc trao giải do CCF (China Computer Federation) quy định thống nhất theo tình hình từng tỉnh, và được công bố trên [trang web chính thức của NOI](http://www.noi.cn) sau cuộc thi. Điểm chuẩn giải nhất của các tỉnh có khác nhau đôi chút.
 
-NOIP 于 2019 年 8 月 16 日 [被 CCF 暂停](http://www.noi.cn/xw/2019-08-16/715365.shtml)，于 2020 年 1 月 21 日 [被宣布恢复](http://www.noi.cn/xw/2020-01-21/715520.shtml)．2020 年起的 NOIP 赛制与以往有所不同，具体如下：
+NOIP [bị CCF tạm dừng](http://www.noi.cn/xw/2019-08-16/715365.shtml) vào ngày 16 tháng 8 năm 2019, và [được tuyên bố khôi phục](http://www.noi.cn/xw/2020-01-21/715520.shtml) vào ngày 21 tháng 1 năm 2020. Từ năm 2020, thể thức NOIP khác trước đây ở các điểm sau:
 
--   取消初赛，由 CSP-J/S 第一轮替代；
--   取消普及组，由 CSP-J 替代，此后 NOIP 仅有一个组别，面向提高组水平选手；
--   赛程由以往的两天共 6 题、每天 3.5 个小时，缩减为一天 4 题、共 4.5 个小时．
--   选手需要在 CSP-S 第二轮中取得一定名次才能获得 NOIP 参赛资格，具体名额各省有所差异．NOIP 省级参赛资格由该省在去年赛季中的参赛人数和成绩等有关．
+-   Hủy vòng sơ khảo, thay bằng vòng một CSP-J/S;
+-   Hủy nhóm phổ cập, thay bằng CSP-J; từ đó NOIP chỉ còn một nhóm, dành cho thí sinh ở trình độ nhóm nâng cao;
+-   Lịch thi được rút từ 6 bài trong 2 ngày, mỗi ngày 3,5 giờ, xuống còn 4 bài trong 1 ngày, tổng cộng 4,5 giờ.
+-   Thí sinh cần đạt thứ hạng nhất định trong vòng hai CSP-S mới có tư cách tham gia NOIP; chỉ tiêu cụ thể khác nhau theo từng tỉnh. Tư cách tham gia NOIP cấp tỉnh liên quan đến số lượng thí sinh và thành tích của tỉnh đó trong mùa thi năm trước.
 
-报名参加 NOIP 和进行题目申诉不需要额外缴费．
+Đăng ký tham gia NOIP và khiếu nại bài không cần nộp thêm phí.
 
-NOIP 以省为单位排名评奖．截至 2019 年，大部分高校的选手获得提高组省一等奖可以得到自主招生资格．
+NOIP xếp hạng và trao giải theo đơn vị tỉnh. Tính đến năm 2019, ở phần lớn trường đại học, thí sinh đạt giải nhất cấp tỉnh nhóm nâng cao có thể nhận tư cách tuyển sinh tự chủ.
 
-> 2020 年 1 月，中华人民共和国教育部发布 [关于在部分高校开展基础学科招生改革试点工作的意见](http://www.moe.gov.cn/srcsite/A15/moe_776/s3258/202001/t20200115_415589.html)．意见指出，2020 年起，不再组织开展高校自主招生工作，并在部分一流大学建设高校开展基础学科招生改革试点（强基计划）．
+> Tháng 1 năm 2020, Bộ Giáo dục Cộng hòa Nhân dân Trung Hoa ban hành [Ý kiến về việc triển khai thí điểm cải cách tuyển sinh các ngành khoa học cơ bản tại một số trường đại học](http://www.moe.gov.cn/srcsite/A15/moe_776/s3258/202001/t20200115_415589.html). Văn bản nêu rằng từ năm 2020 sẽ không còn tổ chức công tác tuyển sinh tự chủ ở các trường đại học, đồng thời triển khai thí điểm cải cách tuyển sinh các ngành khoa học cơ bản tại một số trường đại học xây dựng đại học hạng nhất (强基计划).
 
-### 省队选拔赛
+### Vòng tuyển chọn đội tuyển cấp tỉnh
 
-**省队选拔赛**（简称：省选）用于选拔各省参加全国赛的代表队，一般举行于每年的 1\~4 月．赛程上一般分为两天，每天 3 题 4.5 小时．
+**Vòng tuyển chọn đội tuyển cấp tỉnh** (gọi tắt: vòng tuyển tỉnh) dùng để chọn đội đại diện của các tỉnh tham gia kỳ thi toàn quốc, thường được tổ chức từ tháng 1 đến tháng 4 hằng năm. Về lịch thi, thường chia thành hai ngày, mỗi ngày 3 bài trong 4,5 giờ.
 
-省选题目由各个省自行决定，目前的趋势是很多省份选择联合命题．
+Đề của vòng tuyển tỉnh do từng tỉnh tự quyết định; xu hướng hiện nay là nhiều tỉnh chọn ra đề chung.
 
-各个省队的名额有复杂的计算公式，一般和之前的成绩和参赛人数有关．通常来讲，NOIP 分数需要在省选的指标中占一定比例．根据规则，初中选手只能被选拔为 E 类选手，不能参加 A、B 类选拔．A 类选手有 5 人（[至少 1 女](https://www.noi.cn/xw/2024-08-26/829152.shtml)），其他选手根据给定名额和所得分数依次进入 B 队．一个学校参加 NOI 的名额不超过本省 A、B 名额总数的三分之一（四舍五入），得分最高且入选 A 队的女选手不占该比例（简称 1/3 限制或 1/3 淘汰，详见 [CCF 官方说明](https://www.noi.cn/xw/2022-12-14/781364.shtml)）．
+Chỉ tiêu của các đội tuyển tỉnh có công thức tính phức tạp, thường liên quan đến thành tích trước đó và số lượng thí sinh. Thông thường, điểm NOIP cần chiếm một tỷ lệ nhất định trong chỉ số của vòng tuyển tỉnh. Theo quy định, thí sinh trung học cơ sở chỉ có thể được chọn làm thí sinh loại E, không thể tham gia tuyển chọn loại A, B. Thí sinh loại A có 5 người ([ít nhất 1 nữ](https://www.noi.cn/xw/2024-08-26/829152.shtml)); các thí sinh khác lần lượt vào đội B theo chỉ tiêu cho sẵn và điểm đạt được. Số suất tham gia NOI của một trường không vượt quá một phần ba tổng chỉ tiêu A, B của tỉnh đó (làm tròn), và thí sinh nữ có điểm cao nhất đồng thời được chọn vào đội A không tính vào tỷ lệ này (gọi tắt là giới hạn 1/3 hoặc loại trừ 1/3; xem chi tiết trong [giải thích chính thức của CCF](https://www.noi.cn/xw/2022-12-14/781364.shtml)).
 
-自 2020 年起，NOI 省队选拔由 CCF 统一命题和评测，有能力命题的省可自行命题，但选拔方式需得到 CCF 的批准．自 2024 年起，NOI 省队选拔恢复各省自主命题，有需求的省份可组织联考或使用他省试题，但具体方案需要得到 CCF 的批准．
+Từ năm 2020, vòng tuyển đội tuyển tỉnh NOI do CCF thống nhất ra đề và chấm; tỉnh có năng lực ra đề có thể tự ra đề, nhưng phương thức tuyển chọn cần được CCF phê duyệt. Từ năm 2024, vòng tuyển đội tuyển tỉnh NOI khôi phục việc các tỉnh tự ra đề; tỉnh có nhu cầu có thể tổ chức thi liên tỉnh hoặc dùng đề của tỉnh khác, nhưng phương án cụ thể cần được CCF phê duyệt.
 
 ### NOI
 
-**NOI**（英文：National Olympiad in Informatics，中文：全国信息学奥林匹克竞赛）是国内包括港澳在内的省级代表队最高水平的大赛．
+**NOI** (tiếng Anh: National Olympiad in Informatics, tiếng Trung: 全国信息学奥林匹克竞赛) là cuộc thi cấp cao nhất trong nước dành cho các đội đại diện cấp tỉnh, bao gồm cả Hồng Kông và Ma Cao.
 
-NOI 一般在七月份举行，选手分为正式选手与夏令营选手两类．正式选手又分为三类，其中 A、B 类为省队正式选手，C 类选手为邀请赛选手．A、B 类对应省队的 A、B 类选手（其中 A 类在计算成绩时会有 5 分加分）；C 类名义上是学校对 CCF 做出突出贡献后的奖励名额．夏令营选手分为 D、E 类，分别对应以非正式选手身份参赛的高中组与初中组选手．夏令营选手如果成绩超过分数线的话，只有成绩证明而没有奖牌（同等分数含金量要低一些）．排名前 50 的正式选手组成国家集训队，获得保送资格．
+NOI thường được tổ chức vào tháng 7, thí sinh được chia thành hai loại: thí sinh chính thức và thí sinh trại hè. Thí sinh chính thức lại chia thành ba loại, trong đó loại A, B là thí sinh chính thức của đội tuyển tỉnh, loại C là thí sinh được mời. Loại A, B tương ứng với thí sinh loại A, B của đội tuyển tỉnh (trong đó loại A được cộng 5 điểm khi tính thành tích); loại C trên danh nghĩa là suất thưởng sau khi trường có đóng góp nổi bật cho CCF. Thí sinh trại hè chia thành loại D, E, lần lượt tương ứng với thí sinh nhóm trung học phổ thông và trung học cơ sở tham gia với tư cách không chính thức. Nếu thí sinh trại hè có thành tích vượt điểm chuẩn, họ chỉ có giấy chứng nhận thành tích chứ không có huy chương (với cùng mức điểm thì giá trị thấp hơn đôi chút). 50 thí sinh chính thức đứng đầu tạo thành đội tuyển tập huấn quốc gia và nhận tư cách tuyển thẳng.
 
-在国际平台上，为了与其他同样称作 NOI 的比赛区分，有时会被称作 CNOI．
+Trên các nền tảng quốc tế, để phân biệt với các cuộc thi khác cũng gọi là NOI, kỳ này đôi khi được gọi là CNOI.
 
 ### CTT
 
-**CTT**（英文：China Team Training，中文：国际信息学奥林匹克国家集训队培训）是每年冬天为 IOI 国家集训队选手举办的集训与选拔活动，由 3-4 场测试组成．除国家集训队外，部分在当年 NOI 中取得优异成绩的选手也可以「精英集训」的名义参加 CTT．
+**CTT** (tiếng Anh: China Team Training, tiếng Trung: 国际信息学奥林匹克国家集训队培训) là hoạt động tập huấn và tuyển chọn tổ chức mỗi mùa đông cho thí sinh đội tuyển tập huấn quốc gia IOI, gồm 3-4 bài kiểm tra. Ngoài đội tuyển tập huấn quốc gia, một số thí sinh đạt thành tích xuất sắc trong NOI năm đó cũng có thể tham gia CTT dưới danh nghĩa "tập huấn tinh anh".
 
-CTT 与平时作业等其他流程共同组成了国家队选拔的第一阶段．自 2021 年起，在第一阶段排名前 30 的选手将成为国家候选队，进入第二阶段的选拔（WC）．
+CTT cùng với bài tập thường kỳ và các quy trình khác tạo thành giai đoạn thứ nhất của tuyển chọn đội tuyển quốc gia. Từ năm 2021, 30 thí sinh đứng đầu ở giai đoạn thứ nhất sẽ trở thành đội dự tuyển quốc gia và bước vào giai đoạn tuyển chọn thứ hai (WC).
 
 ### WC
 
-**WC**（英文：Winter Camp，中文：全国青少年信息学奥林匹克竞赛冬令营）是每年冬天在当年 NOI 举办地进行的一项活动．虽然该活动主要用于集训队培训与国家队选拔，但是前一年 NOIP 与 CSP-S 第二轮取得较好成绩的选手也可作为非正式营员参加．
+**WC** (tiếng Anh: Winter Camp, tiếng Trung: 全国青少年信息学奥林匹克竞赛冬令营) là một hoạt động được tổ chức vào mỗi mùa đông tại địa điểm đăng cai NOI của năm đó. Dù hoạt động này chủ yếu dùng cho tập huấn đội tuyển và tuyển chọn đội tuyển quốc gia, các thí sinh đạt thành tích khá tốt ở NOIP và vòng hai CSP-S năm trước cũng có thể tham gia với tư cách trại viên không chính thức.
 
-WC 的内容包括若干天的培训和测试，测试成绩将和先前阶段的成绩汇总，算出集训队选手的综合排名．在 2020 年前，测试仅有一场，且集训队与非正式营员的测试题目相同，集训队综合成绩前 15 的选手将成为国家候选队，参与最后阶段的选拔（CTS 等）；而自 2021 年起，随着 CTS 的国家队选拔功能并入到 WC 中，国家候选队的测试变为两场，而非正式营员的测试仍为一场，且非正式营员的测试题目和候选队测试题目有部分重合．候选队中综合排名前 6 的选手将进入到最终的面试，并选出 4 名正式选手和 2 名替补选手参与当年的 IOI 比赛．
+Nội dung WC gồm nhiều ngày tập huấn và kiểm tra; điểm kiểm tra sẽ được tổng hợp với thành tích của các giai đoạn trước để tính ra xếp hạng tổng hợp của thí sinh đội tuyển tập huấn. Trước năm 2020, chỉ có một bài kiểm tra, và đề kiểm tra của đội tuyển tập huấn giống đề của trại viên không chính thức; 15 thí sinh đứng đầu thành tích tổng hợp của đội tuyển tập huấn sẽ trở thành đội dự tuyển quốc gia, tham gia giai đoạn tuyển chọn cuối cùng (CTS, v.v.). Từ năm 2021, khi chức năng tuyển chọn đội tuyển quốc gia của CTS được gộp vào WC, bài kiểm tra của đội dự tuyển quốc gia chuyển thành hai buổi, còn trại viên không chính thức vẫn thi một buổi, và đề của trại viên không chính thức có một phần trùng với đề của đội dự tuyển. 6 thí sinh đứng đầu xếp hạng tổng hợp trong đội dự tuyển sẽ bước vào phỏng vấn cuối cùng, từ đó chọn ra 4 thí sinh chính thức và 2 thí sinh dự bị tham gia IOI năm đó.
 
 ### APIO
 
-**APIO**（英文：Asia-Pacific Informatics Olympiad，中文：亚太地区信息学奥林匹克竞赛）是一个面向亚太地区在校中学生的信息学学科竞赛．CCF 每年会在五月初举办中国赛区镜像赛．在比赛日前后会有培训活动．
+**APIO** (tiếng Anh: Asia-Pacific Informatics Olympiad, tiếng Trung: 亚太地区信息学奥林匹克竞赛) là một cuộc thi môn tin học dành cho học sinh trung học đang học tại khu vực châu Á - Thái Bình Dương. Hằng năm CCF tổ chức cuộc thi mirror cho khu vực Trung Quốc vào đầu tháng 5. Xung quanh ngày thi sẽ có các hoạt động tập huấn.
 
-APIO 参赛选手可分为 A 类和 B 类，A 类选手中的前六名（含并列）可参与 APIO 的国际奖项评选；而 B 类选手只能参与中国赛区的奖项评选．
+Thí sinh APIO có thể chia thành loại A và loại B; sáu thí sinh đứng đầu loại A (bao gồm đồng hạng) có thể tham gia xét giải quốc tế của APIO, còn thí sinh loại B chỉ có thể tham gia xét giải của khu vực Trung Quốc.
 
 ### CTS
 
-**CTS**（旧称：CTSC, 英文：China Team Selection Competition，中文：国际信息学奥林匹克竞赛中国队选拔赛）用来从国家候选队（15 人）中选拔国家队（6 人）准备参加当年夏天的 IOI 比赛，其中正式选手 4 人，替补选手 2 人．与 WC 一样，前一年 NOIP 取得较好成绩的选手也可以参加（不参与选拔）．
+**CTS** (tên cũ: CTSC, tiếng Anh: China Team Selection Competition, tiếng Trung: 国际信息学奥林匹克竞赛中国队选拔赛) dùng để chọn đội tuyển quốc gia (6 người) từ đội dự tuyển quốc gia (15 người), chuẩn bị tham gia IOI vào mùa hè năm đó; trong đó có 4 thí sinh chính thức và 2 thí sinh dự bị. Tương tự WC, thí sinh có thành tích khá tốt ở NOIP năm trước cũng có thể tham gia (không tham gia tuyển chọn).
 
-APIO 和 CTS 都以省为单位报名，一般按照 NOIP 的成绩排序来确定参加 APIO 和 CTS 的人员（二者一般时间上非常接近）．
+APIO và CTS đều đăng ký theo đơn vị tỉnh, thường dựa trên thứ hạng thành tích NOIP để xác định người tham gia APIO và CTS (hai kỳ này thường diễn ra rất gần nhau về thời gian).
 
-2020 年的 CTS 因为疫情而停办，当年的国家集训队通过 NOI 选出；2021 年起，CTS 的选拔流程被 WC 取代．
+CTS năm 2020 bị dừng vì dịch bệnh; đội tuyển tập huấn quốc gia năm đó được chọn thông qua NOI. Từ năm 2021, quy trình tuyển chọn của CTS được WC thay thế.
 
 ### IOI
 
-**IOI**（英文：International Olympiad in Informatics，中文：国际信息学奥林匹克竞赛）是一年一度的面向全球中学生的信息学科竞赛．每个国家有四人参赛，比赛一般会有直播．IOI 赛制中每个题目会有 Subtask（子任务），每个子任务对应一定的分数．
+**IOI** (tiếng Anh: International Olympiad in Informatics, tiếng Trung: 国际信息学奥林匹克竞赛) là cuộc thi môn tin học hằng năm dành cho học sinh trung học trên toàn thế giới. Mỗi quốc gia có bốn người tham gia; cuộc thi thường có phát trực tiếp. Trong thể thức IOI, mỗi bài có các Subtask (bài con), mỗi Subtask tương ứng với một số điểm nhất định.
 
-### 学科营
+### Trại học thuật
 
-#### 北京大学（PKU）
+#### Peking University (PKU)
 
--   北京大学信息学冬季体验营（PKUWC）：在冬令营前后举行．
--   北京大学信息学体验营（PKUSC）：一般在六月份在校内举行．由于在学校机房比赛，机房环境是 Windows，比赛系统是 OpenJudge．
--   北京大学中学生暑期课堂（信息学）：在暑假举行，面向高二年级理科学生．
+-   Peking University Informatics Winter Camp (PKUWC): tổ chức vào khoảng thời gian trước hoặc sau Winter Camp.
+-   Peking University Informatics Experience Camp (PKUSC): thường tổ chức trong khuôn viên trường vào tháng 6. Do thi trong phòng máy của trường, môi trường phòng máy là Windows, hệ thống thi là OpenJudge.
+-   Peking University Summer School for High School Students (Informatics): tổ chức trong kỳ nghỉ hè, dành cho học sinh khối 11 ban khoa học tự nhiên.
 
-#### 清华大学（THU）
+#### Tsinghua University (THU)
 
--   计算机系 "大中衔接" 冬季研讨与教学活动：相当于信息学冬令营，有时也会用英文简写为 THUWC．一般共两天，上午为竞赛（第一天是标准 OI 竞赛，第二天为清华独创的 "工程题" 竞赛），下午为课程培训．
+-   Hoạt động hội thảo và giảng dạy mùa đông "chuyển tiếp trung học - đại học" của Khoa Khoa học Máy tính: tương đương Winter Camp tin học, đôi khi cũng dùng viết tắt tiếng Anh là THUWC. Thường kéo dài tổng cộng hai ngày; buổi sáng là thi đấu (ngày đầu là cuộc thi OI chuẩn, ngày thứ hai là cuộc thi "bài kỹ thuật" do Tsinghua tự sáng tạo), buổi chiều là đào tạo theo khóa học.
 
-## 其他国家和地区的 OI 竞赛
+## Các cuộc thi OI ở quốc gia và khu vực khác
 
-### 美国：USACO
+### Hoa Kỳ: USACO
 
-官网地址：<http://www.usaco.org/>
+Trang web chính thức: <http://www.usaco.org/>
 
-USACO 或许是国内选手最熟悉的外国 OI 竞赛（可能也是中文题解最多的外国 OI 竞赛）．
+USACO có lẽ là cuộc thi OI nước ngoài quen thuộc nhất với thí sinh trong nước Trung Quốc (có thể cũng là cuộc thi OI nước ngoài có nhiều lời giải tiếng Trung nhất).
 
-每年冬季到初春，USACO 会每月举办一场网络赛．一场比赛持续 3\~5 个小时．
+Từ mùa đông đến đầu mùa xuân hằng năm, USACO tổ chức một cuộc thi trực tuyến mỗi tháng. Một cuộc thi kéo dài 3\~5 giờ.
 
-根据官网的介绍，USACO 的比赛分成这 4 档难度（2015\~2016 学年之前为 3 档）：
+Theo giới thiệu trên trang web chính thức, cuộc thi USACO được chia thành 4 mức độ khó sau (trước năm học 2015\~2016 là 3 mức):
 
--   铜牌组，适合编程初学者，尤其是只学了最最基础的算法（如：排序，二分查找）的学生；
--   银牌组，适合开始学习基本的算法技巧（如：递归，搜索，贪心算法）和基础数据结构的学生；
--   金牌组，学生会遇到更复杂的算法（如：最短路径，DP）和更高级的数据结构；
--   铂金组，适合有着扎实的算法设计能力的选手，铂金组可以帮助他们以复杂且更开放的问题来挑战自我．
+-   Bronze Division, phù hợp với người mới học lập trình, nhất là học sinh mới chỉ học các thuật toán cơ bản nhất (như: sắp xếp, tìm kiếm nhị phân);
+-   Silver Division, phù hợp với học sinh bắt đầu học các kỹ thuật thuật toán cơ bản (như: đệ quy, tìm kiếm, thuật toán tham lam) và cấu trúc dữ liệu nền tảng;
+-   Gold Division, học sinh sẽ gặp các thuật toán phức tạp hơn (như: đường đi ngắn nhất, DP) và cấu trúc dữ liệu nâng cao hơn;
+-   Platinum Division, phù hợp với thí sinh có năng lực thiết kế thuật toán vững chắc; Platinum Division có thể giúp họ thử thách bản thân bằng các bài toán phức tạp và mở hơn.
 
-在国内，目前 USACO 题目最齐全的 OJ 平台是洛谷．
+Ở Trung Quốc, hiện nền tảng OJ có đầy đủ bài USACO nhất là Luogu.
 
-### 波兰：POI
+### Ba Lan: POI
 
-官网地址：<https://oi.edu.pl/>
+Trang web chính thức: <https://oi.edu.pl/>
 
-官方提交地址：<https://szkopul.edu.pl/p/default/problemset/>
+Địa chỉ nộp bài chính thức: <https://szkopul.edu.pl/p/default/problemset/>
 
-POI 是不少省选选手最常刷的外国 OI 比赛．
+POI là cuộc thi OI nước ngoài mà khá nhiều thí sinh vòng tuyển tỉnh luyện nhiều nhất.
 
-根据 [POI 官网](https://oi.edu.pl/l/42/) 的描述，POI 的流程如下：
+Theo mô tả trên [trang web chính thức của POI](https://oi.edu.pl/l/42/), quy trình POI như sau:
 
--   第一轮：六题（第 31 届及以前为五题），网络赛；
--   第二轮：包含一场练习赛，和两场正式赛，其中练习赛一题，正式赛每场两题；
--   第三轮：包含一场练习赛，和两场正式赛，其中练习赛一题，正式赛每场三题．
+-   Vòng một: sáu bài (từ kỳ thứ 31 trở về trước là năm bài), thi trực tuyến;
+-   Vòng hai: gồm một cuộc thi luyện tập và hai cuộc thi chính thức, trong đó cuộc thi luyện tập có một bài, mỗi cuộc thi chính thức có hai bài;
+-   Vòng ba: gồm một cuộc thi luyện tập và hai cuộc thi chính thức, trong đó cuộc thi luyện tập có một bài, mỗi cuộc thi chính thức có ba bài.
 
-在部分年份，曾举办名为 ONTAK 的比赛，其正式名称为 POI 训练营，对标国内的国家集训队集训赛（CTT）．
+Trong một số năm, từng có cuộc thi tên là ONTAK; tên chính thức của nó là trại tập huấn POI, tương ứng với các kỳ tập huấn đội tuyển tập huấn quốc gia trong nước Trung Quốc (CTT).
 
-另外，波兰国内还举办名为 PA 的公开比赛，大意为「算法大战」，其官网地址是：<https://potyczki.mimuw.edu.pl/>．
+Ngoài ra, Ba Lan còn tổ chức một cuộc thi mở tên là PA, đại ý là "Algorithmic Battles"; trang web chính thức là: <https://potyczki.mimuw.edu.pl/>.
 
-目前在国内 OJ 中，POI 题目最全的是 BZOJ．
+Hiện nay trong các OJ ở Trung Quốc, nơi có bài POI đầy đủ nhất là BZOJ.
 
-### 克罗地亚：COCI
+### Croatia: COCI
 
-官网地址（英文）：<http://www.hsin.hr/coci/>
+Trang web chính thức (tiếng Anh): <http://www.hsin.hr/coci/>
 
-官网地址（克罗地亚语）：<http://www.hsin.hr/honi/>
+Trang web chính thức (tiếng Croatia): <http://www.hsin.hr/honi/>
 
-难度跨度很大的比赛，大约是从普及 - 到省选 -．
+Đây là cuộc thi có dải độ khó rất rộng, khoảng từ mức Phổ cập - đến mức tuyển chọn cấp tỉnh -.
 
-以往 COCI 所有的题目均提供题目、数据、题解和标程．2017 年底起，COCI 的题解和标程停止了更新．2019-2020 赛季重新开始更新题解和标程．
+Trước đây, toàn bộ bài của COCI đều cung cấp đề bài, dữ liệu, lời giải và mã chuẩn. Từ cuối năm 2017, lời giải và mã chuẩn của COCI ngừng được cập nhật. Đến mùa 2019-2020, lời giải và mã chuẩn bắt đầu được cập nhật trở lại.
 
-洛谷、BZOJ 和 LibreOJ 都有少量的 COCI 题目．
+Luogu, BZOJ và LibreOJ đều có một lượng nhỏ bài COCI.
 
-### 日本：JOI
+### Nhật Bản: JOI
 
-官网地址：<https://www.ioi-jp.org/>
+Trang web chính thức: <https://www.ioi-jp.org/>
 
-JOI（日文：日本情報オリンピック，中文：日本信息学奥赛）所有的题目都提供题目、数据、题解和标程．近两年的 JOI 决赛和春训营提供了英语题面，但并没有英语题解．历年的 JOI Open 都提供了英语版题面和题解．
+JOI (tiếng Nhật: 日本情報オリンピック, tiếng Trung: 日本信息学奥赛) cung cấp đề bài, dữ liệu, lời giải và mã chuẩn cho tất cả bài. Trong hai năm gần đây, JOI Final và JOI Spring Camp cung cấp đề tiếng Anh, nhưng không có lời giải tiếng Anh. JOI Open qua các năm đều cung cấp phiên bản đề bài và lời giải bằng tiếng Anh.
 
-JOI 的流程：
+Quy trình JOI:
 
--   预赛（予選）
--   决赛（本選/JOI Final）
--   春训营（春季トレーニング合宿/JOI Spring Camp/JOISC）
--   公开赛（通信教育/JOI Open Contest）
+-   Vòng sơ tuyển (予選)
+-   Chung kết (本選/JOI Final)
+-   Trại tập huấn mùa xuân (春季トレーニング合宿/JOI Spring Camp/JOISC)
+-   Cuộc thi mở (通信教育/JOI Open Contest)
 
-预赛难度较低，自 2019/2020 赛季起，预赛分为多轮．JOI Final 的难度从提高 - 到 提高 + 左右．JOISC 和 JOI Open 的题目的难度从提高到 NOI - 不等．
+Vòng sơ tuyển có độ khó thấp; từ mùa 2019/2020, vòng sơ tuyển được chia thành nhiều vòng. Độ khó của JOI Final khoảng từ Nâng cao - đến Nâng cao +. Độ khó các bài của JOISC và JOI Open dao động từ Nâng cao đến NOI -.
 
-绝大部分 JOI 题可以前往 [AtCoder](https://atcoder.jp/) 提交．你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题（日文题面）．
+Đa số bài JOI có thể nộp trên [AtCoder](https://atcoder.jp/). Bạn có thể tìm thêm bài JOI (đề tiếng Nhật) trên trang web chính thức của JOI hoặc trên AtCoder.
 
-目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目．
+Hiện nay LibreOJ và BZOJ có các bài JOI Final, JOISC và JOI Open trong những năm gần đây.
 
-### 俄罗斯：ROI
+### Nga: ROI
 
-官网地址：<http://neerc.ifmo.ru/school/archive/index.html>
+Trang web chính thức: <http://neerc.ifmo.ru/school/archive/index.html>
 
-在线提交地址：<https://contest.yandex.ru/roiarchive/> 和 Codeforces（部分）．
+Địa chỉ nộp trực tuyến: <https://contest.yandex.ru/roiarchive/> và Codeforces (một phần).
 
-ROI（俄文：олимпиадная информатика，中文：俄罗斯信息学奥赛）是俄罗斯的信息学竞赛．
+ROI (tiếng Nga: олимпиадная информатика, tiếng Trung: 俄罗斯信息学奥赛) là cuộc thi tin học của Nga.
 
-流程：
+Quy trình:
 
--   市级比赛（Municipal Stage/Муниципальный этап）
--   州级比赛（Regional Stage/Региональный этап）
--   决赛（Final Stage/Заключительный этап）
+-   Municipal Stage/Муниципальный этап
+-   Regional Stage/Региональный этап
+-   Final Stage/Заключительный этап
 
-目前 LibreOJ 有近几年的 ROI 决赛题的译文．
+Hiện LibreOJ có bản dịch các bài vòng chung kết ROI trong vài năm gần đây.
 
-除此之外，俄罗斯较大型的、面向中学生的比赛还有：
+Ngoài ra, Nga còn có các cuộc thi quy mô khá lớn dành cho học sinh trung học:
 
--   信息学网络奥赛（俄文：Интернет-олимпиады по информатике）
-    -   官网地址：<http://neerc.ifmo.ru/school/io/index.html>
-    -   该比赛由 ROI 出题人举办．
--   全国中学生团队信息学竞赛（俄文：Всероссийской командной олимпиады школьников）
-    -   官网地址：<http://neerc.ifmo.ru/school/russia-team/index.html>
-    -   该比赛的预选赛 Moscow Team Olympiad 可以在 Codeforces 上提交．
+-   Internet Olympiads in Informatics (tiếng Nga: Интернет-олимпиады по информатике)
+    -   Trang web chính thức: <http://neerc.ifmo.ru/school/io/index.html>
+    -   Cuộc thi này do các tác giả đề ROI tổ chức.
+-   All-Russian Team Olympiad for Schoolchildren in Informatics (tiếng Nga: Всероссийской командной олимпиады школьников)
+    -   Trang web chính thức: <http://neerc.ifmo.ru/school/russia-team/index.html>
+    -   Vòng sơ tuyển Moscow Team Olympiad của cuộc thi này có thể nộp trên Codeforces.
 -   Innopolis Open
-    -   官网地址 <https://olymp.innopolis.ru/en/ooui/information/>
--   中学生编程公开赛（Открытая олимпиада школьников по программированию）
-    -   官网地址：<https://olympiads.ru/zaoch/>
-    -   官网称该比赛对标 ROI．
+    -   Trang web chính thức <https://olymp.innopolis.ru/en/ooui/information/>
+-   Open Olympiad for Schoolchildren in Programming (Открытая олимпиада школьников по программированию)
+    -   Trang web chính thức: <https://olympiads.ru/zaoch/>
+    -   Trang web chính thức cho biết cuộc thi này tương ứng với ROI.
 
-### 加拿大：CCC & CCO
+### Canada: CCC & CCO
 
-CCC（英文：Canadian Computing Competition），CCO（英文：Canadian Computing Olympiad），可在其 [官网](https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc) 查询历届的信息和试题等．
+CCC (tiếng Anh: Canadian Computing Competition), CCO (tiếng Anh: Canadian Computing Olympiad), có thể tra cứu thông tin và đề thi các năm trên [trang web chính thức](https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc).
 
-在 DMOJ 上可以提交 [CCC](https://dmoj.ca/problems/?category=4) 和 [CCO](https://dmoj.ca/problems/?category=24)，该 OJ 上还有 CCC 题解．
+Có thể nộp [CCC](https://dmoj.ca/problems/?category=4) và [CCO](https://dmoj.ca/problems/?category=24) trên DMOJ; OJ này cũng có lời giải CCC.
 
-CCC Junior/Senior 贴近 NOIP 普及组/提高组难度．CCO 想要拿到金牌可能得有 NOI 银牌的水平．
+CCC Junior/Senior gần với độ khó nhóm phổ cập/nhóm nâng cao của NOIP. Muốn đạt huy chương vàng CCO có lẽ cần trình độ huy chương bạc NOI.
 
-### 新加坡：NOI SG
+### Singapore: NOI SG
 
-官网地址：<https://noisg.comp.nus.edu.sg/noi/>
+Trang web chính thức: <https://noisg.comp.nus.edu.sg/noi/>
 
-全称 Singapore National Olympiad in Informatics，在新加坡国内语境且不引起歧义的情况下也作 NOI．赛制上分为 Online Qualification Contest（在线资格赛）和 Final Contest（全国决赛）．在线资格赛以学校为单位报名参加，选手在本校参赛，通过网络进行远程提交．资格赛成绩只在校内排名，前 5 名且非零分选手有资格作为校代表队参加全国决赛．
+Tên đầy đủ là Singapore National Olympiad in Informatics; trong ngữ cảnh nội bộ Singapore và khi không gây nhập nhằng, cũng gọi là NOI. Về thể thức, cuộc thi chia thành Online Qualification Contest (vòng loại trực tuyến) và Final Contest (chung kết toàn quốc). Vòng loại trực tuyến đăng ký tham gia theo đơn vị trường; thí sinh thi tại trường mình và nộp bài từ xa qua mạng. Thành tích vòng loại chỉ xếp hạng trong nội bộ trường; 5 thí sinh đứng đầu và có điểm khác 0 đủ tư cách đại diện trường tham gia chung kết toàn quốc.
 
-目前国内 OJ 对于 NOI SG 的题目收录比较匮乏，可以在 [官方的 GitHub 账号](https://github.com/noisg) 上找到历年题面、测试数据和官方标准程序．
+Hiện nay các OJ trong nước Trung Quốc thu thập bài NOI SG còn khá ít; có thể tìm đề bài, dữ liệu kiểm thử và chương trình chuẩn chính thức qua các năm trên [tài khoản GitHub chính thức](https://github.com/noisg).
 
-### 台湾地区：資訊奧林匹亞競賽
+### Khu vực Đài Loan: 資訊奧林匹亞競賽
 
-台湾地区把 OI 中的 informatics 翻译成「資訊」而非大陆通用的翻译「信息」．
+Khu vực Đài Loan dịch "informatics" trong OI là "資訊" thay vì cách dịch "信息" thông dụng ở đại lục.
 
-台湾地区的选手如果想参加 IOI，需要经过这几轮比赛：
+Thí sinh ở khu vực Đài Loan nếu muốn tham gia IOI cần trải qua các vòng thi sau:
 
 -   區域資訊學科能力競賽
 -   全國資訊學科能力競賽
 -   資訊研習營（TOI）
 
-### 其他国家
+### Các quốc gia khác
 
--   澳大利亚：AIO：<https://orac.amt.edu.au/hub/aio/>
+-   Úc: AIO: <https://orac.amt.edu.au/hub/aio/>
 
-    -   难度与 NOI 类似．
+    -   Độ khó tương tự NOI.
 
--   英国：British Informatics Olympiad：<https://www.olympiad.org.uk/>
+-   Vương quốc Anh: British Informatics Olympiad: <https://www.olympiad.org.uk/>
 
-    -   难度太低．
+    -   Độ khó quá thấp.
 
--   捷克：Matematická olympiáda–kategorie P：<http://mo.mff.cuni.cz/p/archiv.html>
+-   Czech: Matematická olympiáda–kategorie P: <http://mo.mff.cuni.cz/p/archiv.html>
 
--   罗马尼亚：Olimpiada Nationala de Informatica：<http://olimpiada.info/>
-    -   题面、测试数据、题解请在含有 Subiecte 字样的标签页中寻找．
+-   Romania: Olimpiada Nationala de Informatica: <http://olimpiada.info/>
+    -   Đề bài, dữ liệu kiểm thử và lời giải có thể tìm trong thẻ có chữ Subiecte.
 
-## 其它国际 OI 竞赛
+## Các cuộc thi OI quốc tế khác
 
 ### BalticOI
 
-**BalticOI** 面向的是波罗的海周边各国．BalticOI 2018 的参赛国有立陶宛、波兰、爱沙尼亚、芬兰等 9 国．题目难度大．
+**BalticOI** hướng đến các quốc gia quanh biển Baltic. Các nước tham gia BalticOI 2018 gồm Lithuania, Ba Lan, Estonia, Phần Lan, v.v., tổng cộng 9 nước. Đề có độ khó cao.
 
-除了 2017 年，BalticOI 每年都公开题面、测试数据和题解．BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站．历年的官网地址见 [帖子](https://loj.ac/article/416)．
+Ngoại trừ năm 2017, BalticOI công khai đề bài, dữ liệu kiểm thử và lời giải hằng năm. BalticOI không có một trang web chính thức cố định; ban tổ chức từng năm sẽ tạo một trang web mới. Địa chỉ trang web chính thức các năm xem trong [bài viết](https://loj.ac/article/416).
 
-目前 LibreOJ 有近十年的 BalticOI 题．
+Hiện LibreOJ có bài BalticOI của gần mười năm gần đây.
 
 ### BalkanOI
 
-**BalkanOI** 面向巴尔干地区周边各国．BalkanOI 2018 的参赛国有罗马尼亚、希腊、保加利亚、塞尔维亚等 12 国．题目难度大．
+**BalkanOI** hướng đến các quốc gia quanh khu vực Balkan. Các nước tham gia BalkanOI 2018 gồm Romania, Hy Lạp, Bulgaria, Serbia, v.v., tổng cộng 12 nước. Đề có độ khó cao.
 
-BalkanOI 只有某几年公开题面、测试数据和题解，官网地址见 [帖子](https://loj.ac/article/416)．
+BalkanOI chỉ công khai đề bài, dữ liệu kiểm thử và lời giải trong một số năm; địa chỉ trang web chính thức xem trong [bài viết](https://loj.ac/article/416).
 
 ### CEOI
 
-CEOI 2018 的参赛国与上面两个比赛有部分重叠，包括波兰、罗马尼亚、格鲁吉亚、克罗地亚等国．题目难度大．
+Các nước tham gia CEOI 2018 có một phần trùng với hai cuộc thi phía trên, gồm Ba Lan, Romania, Georgia, Croatia, v.v. Đề có độ khó cao.
 
-CEOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](https://loj.ac/article/416)．
+CEOI công khai đề bài, dữ liệu kiểm thử và lời giải hằng năm; địa chỉ trang web chính thức xem trong [bài viết](https://loj.ac/article/416).
 
 ### eJOI
 
-**eJOI** 全名 European Junior Olympiad in Informatics．参赛国包含俄罗斯、亚美尼亚、保加利亚、波兰等国．题目难度较大．
+**eJOI** có tên đầy đủ là European Junior Olympiad in Informatics. Các nước tham gia gồm Nga, Armenia, Bulgaria, Ba Lan, v.v. Đề có độ khó khá cao.
 
-eJOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](https://loj.ac/article/416)．
+eJOI công khai đề bài, dữ liệu kiểm thử và lời giải hằng năm; địa chỉ trang web chính thức xem trong [bài viết](https://loj.ac/article/416).
 
 ### NOI
 
 ???+ warning "Warning"
-    此处介绍的不是「全国信息学奥林匹克竞赛」．
+    Phần này không giới thiệu "全国信息学奥林匹克竞赛".
 
-**NOI** 全名 Nordic Olympiads in Informatics．
+**NOI** có tên đầy đủ là Nordic Olympiads in Informatics.
 
-官网地址：<http://nordic.progolymp.se>
+Trang web chính thức: <http://nordic.progolymp.se>
 
-近两年才开始举办的比赛，面向北欧各国．
+Đây là cuộc thi mới bắt đầu tổ chức trong khoảng hai năm gần đây, hướng đến các nước Bắc Âu.
 
-## 参考资料
+## Tài liệu tham khảo
 
--   [ICPC/CCPC 赛事与赛制](./icpc.md)
--   [「翻译组」一些大洲级 OI 比赛的地址](https://loj.ac/article/416)
+-   [Cuộc thi và thể thức ICPC/CCPC](./icpc.md)
+-   ["Nhóm dịch thuật" địa chỉ của một số cuộc thi OI cấp châu lục](https://loj.ac/article/416)

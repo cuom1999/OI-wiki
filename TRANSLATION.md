@@ -37,6 +37,10 @@ MkDocs source layout intact.
   resources and roadmap pages.
 - `docs/intro/htc.md`, `docs/intro/faq.md`: translated contributor guide and
   FAQ, while preserving compatibility anchors for existing upstream links.
+- `docs/contest/oi.md`, `docs/contest/common-mistakes.md`,
+  `docs/intro/docker-deploy.md`, `docs/intro/symbol.md`: translated OI contest
+  formats, common contest mistakes, Docker deployment instructions, and the
+  mathematical symbol reference.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
