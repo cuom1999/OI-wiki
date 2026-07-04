@@ -158,7 +158,8 @@ MkDocs source layout intact.
   discrete-logarithm, higher-residue/unit-root, and number-theory block
   decomposition material, plus explanatory comments in included snippets;
   quality-passed `docs/math/number-theory/primitive-root.md` through the
-  Carmichael-number section and footnotes.
+  Carmichael-number section and footnotes, and the opening high-order-residue
+  section of `docs/math/number-theory/residue.md`.
 - `docs/math/number-theory/dirichlet.md`,
   `docs/math/number-theory/mobius.md`, `docs/math/number-theory/du.md`,
   `docs/math/number-theory/powerful-number.md`,

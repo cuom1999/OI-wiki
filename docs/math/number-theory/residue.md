@@ -8,117 +8,174 @@ Bài viết này thảo luận về thặng dư bậc cao và căn đơn vị th
 Thặng dư bậc cao trong phép toán modulo có thể được hiểu là việc xét khả năng khai lũy thừa bậc cao theo modulo. Đây là một sự tổng quát hóa của [thặng dư bậc hai](./quad-residue.md).
 
 ???+ abstract "Thặng dư bậc $k$"
-    Cho so nguyen $k\geq 2$, so nguyen $a$ va so nguyen duong $m$ nguyen to cung nhau. Neu ton tai so nguyen $x$ sao cho
-    
+    Cho số nguyên $k\geq 2$, số nguyên $a$ và số nguyên dương $m$ nguyên tố
+    cùng nhau. Nếu tồn tại số nguyên $x$ sao cho
+
     $$
     x^k\equiv a\pmod m,
     $$
-    
-    thi $a$ duoc goi la **thang du bac $k$** ($k$-th residue) modulo $m$, va $x$ duoc goi la **can bac $k$** ($k$-th root) cua $a$ modulo $m$; nguoc lai, $a$ duoc goi la **bat thang du bac $k$** ($k$-th nonresidue) modulo $m$.
 
-Noi cach khac, can bac $k$ cua $a$ modulo $m$ ton tai khi va chi khi $a$ la thang du bac $k$ modulo $m$.
+    thì $a$ được gọi là **thặng dư bậc $k$** ($k$-th residue) modulo $m$, và
+    $x$ được gọi là **căn bậc $k$** ($k$-th root) của $a$ modulo $m$; ngược lại,
+    $a$ được gọi là **bất thặng dư bậc $k$** ($k$-th nonresidue) modulo $m$.
+
+Nói cách khác, căn bậc $k$ của $a$ modulo $m$ tồn tại khi và chỉ khi $a$ là
+thặng dư bậc $k$ modulo $m$.
 
 <span id="&#24615;&#36136;"></span>
 ### Tính chất
 
-Tuong tu thang du bac hai, ta co the thao luan ve bai toan kiem tra thang du bac $k$, so luong nghiem va so lop thang du bac $k$. Giong cac bai toan [phuong trinh dong du](./congruence-equation.md) khac, co the dung [dinh ly thang du Trung Hoa](./crt.md) de dua chung ve truong hop modulo luy thua cua so nguyen to. Tuy theo viec co ton tai can nguyen thuy hay khong, truong hop nay tiep tuc tach thanh modulo luy thua cua so nguyen to le va modulo luy thua cua $2$.
+Tương tự thặng dư bậc hai, ta có thể thảo luận bài toán kiểm tra thặng dư bậc
+$k$, số lượng nghiệm và số lớp thặng dư bậc $k$. Giống các bài toán
+[phương trình đồng dư](./congruence-equation.md) khác, có thể dùng
+[định lí thặng dư Trung Hoa](./crt.md) để đưa chúng về trường hợp modulo lũy
+thừa của số nguyên tố. Tùy theo việc căn nguyên thủy có tồn tại hay không,
+trường hợp này tiếp tục tách thành modulo lũy thừa của số nguyên tố lẻ và
+modulo lũy thừa của $2$.
 
-Truong hop modulo luy thua cua so le tuong doi don gian. Thuc ra, trong moi truong hop co can nguyen thuy, ta co ket qua sau:
+Trường hợp modulo lũy thừa của số lẻ tương đối đơn giản. Thực ra, trong mọi
+trường hợp có căn nguyên thủy, ta có kết quả sau:
 
-???+ note "Định lý"
-    Cho so nguyen $k\geq 2$, so nguyen $a$ va so nguyen duong $m$ nguyen to cung nhau. Gia su ton tai can nguyen thuy modulo $m$, va $g$ la mot can nguyen thuy modulo $m$. Dat $d=\gcd(k,\varphi(m))$ va $d'=\dfrac{\varphi(m)}{d}$, trong do $\varphi(m)$ la [ham Euler](./euler-totient.md). Khi do:
-    
-    1.  $a$ la thang du bac $k$ modulo $m$ khi va chi khi
-    
+???+ note "Định lí"
+    Cho số nguyên $k\geq 2$, số nguyên $a$ và số nguyên dương $m$ nguyên tố cùng
+    nhau. Giả sử căn nguyên thủy modulo $m$ tồn tại, và $g$ là một căn nguyên
+    thủy modulo $m$. Đặt $d=\gcd(k,\varphi(m))$ và
+    $d'=\dfrac{\varphi(m)}{d}$, trong đó $\varphi(m)$ là
+    [hàm Euler](./euler-totient.md). Khi đó:
+
+    1.  $a$ là thặng dư bậc $k$ modulo $m$ khi và chỉ khi
+
         $$
         a^{d'} \equiv 1 \pmod m.
         $$
-    2.  Khi $a$ la thang du bac $k$ modulo $m$, xet theo dong du, $a$ co dung $d$ can bac $k$ phan biet modulo $m$, va chung co dang
-    
+    2.  Khi $a$ là thặng dư bậc $k$ modulo $m$, xét theo đồng dư, $a$ có đúng
+        $d$ căn bậc $k$ phân biệt modulo $m$, và chúng có dạng
+
         $$
-        x \equiv g^{y_0+id'}\pmod{\varphi(m)},~0\le y_0 < d',~i=0,1,\cdots,d-1.
+        x \equiv g^{y_0+id'}\pmod{m},~0\le y_0 < d',~i=0,1,\cdots,d-1.
         $$
-    3.  So lop thang du bac $k$ modulo $m$ la $d'$, va toan bo cac lop do la
-    
+    3.  Số lớp thặng dư bậc $k$ modulo $m$ là $d'$, và toàn bộ các lớp đó là
+
         $$
         \{g^{di}\bmod m : 0 \le i < d'\}.
         $$
 
 ??? note "Chứng minh"
-    Vi $a\perp m$, nen $x\perp m$. Vi $g$ la can nguyen thuy modulo $m$, ca $x$ va $a$ deu dong du voi mot luy thua nao do cua $g$. Dat $x\equiv g^y\pmod m$, phuong trinh $x^k\equiv a\pmod m$ tuong duong voi
-    
+    Vì $a\perp m$, nên $x\perp m$. Vì $g$ là căn nguyên thủy modulo $m$, cả $x$
+    và $a$ đều đồng dư với một lũy thừa nào đó của $g$. Đặt
+    $x\equiv g^y\pmod m$, phương trình $x^k\equiv a\pmod m$ tương đương với
+
     $$
     g^{ky} \equiv g^{\operatorname{ind}_g a}\pmod m.
     $$
-    
-    Trong do, $\operatorname{ind}_g a$ la logarit roi rac. Theo [tinh chat cua cap](./primitive-root.md#%E5%B9%82%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84) va $\delta_m(g)=\varphi(m)$, dieu nay tuong duong voi phuong trinh dong du
-    
+
+    Trong đó, $\operatorname{ind}_g a$ là logarit rời rạc. Theo
+    [tính chất của bậc](./primitive-root.md#%E5%B9%82%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84)
+    và $\delta_m(g)=\varphi(m)$, điều này tương đương với phương trình đồng dư
+
     $$
     ky \equiv \operatorname{ind}_g a \pmod{\varphi(m)}.
     $$
-    
-    Day la [phuong trinh dong du tuyen tinh](./linear-equation.md) theo $y$. Ap dung phan tich ve cau truc nghiem o trang do, phuong trinh co nghiem khi va chi khi $d\mid\operatorname{ind}_g a$, va nghiem tong quat co dang
-    
+
+    Đây là [phương trình đồng dư tuyến tính](./linear-equation.md) theo $y$. Áp
+    dụng phân tích về cấu trúc nghiệm ở trang đó, phương trình có nghiệm khi và
+    chỉ khi $d\mid\operatorname{ind}_g a$, và nghiệm tổng quát có dạng
+
     $$
     y = y_0 + id' \pmod{\varphi(m)},~0\le y_0 < d',~i=0,1,\cdots,d-1.
     $$
-    
-    Tu day gan nhu suy ra toan bo noi dung dinh ly; diem duy nhat can giai thich them la tieu chuan $a^{d'} \equiv 1 \pmod m$. Theo [tinh chat 3 cua cap](./primitive-root.md#ord-prop-3), ta co
-    
-    $$
-    \delta_m(a) = \delta_m(g^{\operatorname{ind}_g a}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_g a)} = \dfrac{\varphi(m)}{\operatorname{ind}_g a}.
-    $$
-    
-    Mat khac, da biet phuong trinh co nghiem khi va chi khi $d\mid \operatorname{ind}_g a$, tuc la $\delta_m(a)\mid d'$. Theo [tinh chat 2 cua cap](./primitive-root.md#ord-prop-2), dieu nay tuong duong voi tieu chuan tren.
 
-Truong hop modulo luy thua cua $2$ dac biet hon. De xu ly truong hop nay, can dung mot [ket qua](./primitive-root.md#mod-pow-2) ve cau truc he thang du thu gon modulo $2^e$: moi so le $a$ deu dong du duy nhat voi mot so co dang $(-1)^s5^r\bmod 2^e$, trong do $s\in\{0,1\}$ va $0\le r < 2^{e-2}$. Nho ket qua nay, ta co ket luan sau:
+    Từ đây gần như suy ra toàn bộ nội dung định lí; điểm duy nhất cần giải thích
+    thêm là tiêu chuẩn $a^{d'} \equiv 1 \pmod m$. Theo
+    [tính chất 3 của bậc](./primitive-root.md#ord-prop-3), ta có
 
-???+ note "Định lý"
-    Cho so nguyen $k\ge 2$, so le $a$ va so nguyen duong $m=2^e$ voi $e \ge 2$. Khi $k$ la so le:
-    
-    1.  $a$ luon la thang du bac $k$ modulo $m$.
-    2.  $a$ co dung mot can bac $k$ modulo $m$.
-    3.  So lop thang du bac $k$ modulo $m$ la $2^{e-1}$, va chung chinh la toan bo cac lop thang du thu gon.
-    
-    Khi $k$ la so chan, dat $d=\gcd(k,2^{e-2})$ va $d'=\dfrac{2^{e-2}}{d}$, ta co:
-    
-    1.  $a$ la thang du bac $k$ modulo $m$ khi va chi khi $a\equiv 1\pmod 4$ va $a^{d'}\equiv 1\pmod m$.
-    2.  Khi $a$ la thang du bac $k$ modulo $m$, xet theo dong du, $a$ co dung $2d$ can bac $k$ phan biet modulo $m$, va chung co dang
-    
+    $$
+    \delta_m(a) = \delta_m(g^{\operatorname{ind}_g a}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_g a)}.
+    $$
+
+    Mặt khác, đã biết phương trình có nghiệm khi và chỉ khi
+    $d\mid \operatorname{ind}_g a$, tức là $\delta_m(a)\mid d'$. Theo
+    [tính chất 2 của bậc](./primitive-root.md#ord-prop-2), điều này tương đương
+    với tiêu chuẩn trên.
+
+Trường hợp modulo lũy thừa của $2$ đặc biệt hơn. Để xử lý trường hợp này, cần
+dùng một [kết quả](./primitive-root.md#mod-pow-2) về cấu trúc hệ thặng dư thu
+gọn modulo $2^e$: mọi số lẻ $a$ đều đồng dư duy nhất với một số có dạng
+$(-1)^s5^r\bmod 2^e$, trong đó $s\in\{0,1\}$ và $0\le r < 2^{e-2}$. Nhờ kết quả
+này, ta có kết luận sau:
+
+???+ note "Định lí"
+    Cho số nguyên $k\ge 2$, số lẻ $a$ và số nguyên dương $m=2^e$ với
+    $e \ge 2$. Khi $k$ là số lẻ:
+
+    1.  $a$ luôn là thặng dư bậc $k$ modulo $m$.
+    2.  $a$ có đúng một căn bậc $k$ modulo $m$.
+    3.  Số lớp thặng dư bậc $k$ modulo $m$ là $2^{e-1}$, và chúng chính là toàn
+        bộ các lớp thặng dư thu gọn.
+
+    Khi $k$ là số chẵn, đặt $d=\gcd(k,2^{e-2})$ và
+    $d'=\dfrac{2^{e-2}}{d}$, ta có:
+
+    1.  $a$ là thặng dư bậc $k$ modulo $m$ khi và chỉ khi
+        $a\equiv 1\pmod 4$ và $a^{d'}\equiv 1\pmod m$.
+    2.  Khi $a$ là thặng dư bậc $k$ modulo $m$, xét theo đồng dư, $a$ có đúng
+        $2d$ căn bậc $k$ phân biệt modulo $m$, và chúng có dạng
+
         $$
-        x \equiv \pm 5^{y_0 + id'} \pmod{2^{e-1}},~ 0 \le y_0 < d',~i = 0, 1,\cdots,d-1. 
+        x \equiv \pm 5^{y_0 + id'} \pmod{2^e},~ 0 \le y_0 < d',~i = 0, 1,\cdots,d-1.
         $$
-    3.  So lop thang du bac $k$ modulo $m$ la $d'$, va toan bo cac lop do la
-    
+    3.  Số lớp thặng dư bậc $k$ modulo $m$ là $d'$, và toàn bộ các lớp đó là
+
         $$
         \{5^{di}\bmod m : 0 \le i < d'\}.
         $$
 
 ??? note "Chứng minh"
-    Vi $a\perp m$, nen $x\perp m$. Vi $x$ va $a$ deu la so le, theo ket qua vua neu, co the dat $a\equiv (-1)^s5^r\pmod{2^e}$ va $x=(-1)^z5^{y}\pmod{2^e}$. Do bieu dien la duy nhat, phuong trinh dong du $x^k\equiv a\pmod{2^e}$ tuong duong voi he [phuong trinh dong du tuyen tinh](./linear-equation.md)
-    
+    Vì $a\perp m$, nên $x\perp m$. Vì $x$ và $a$ đều là số lẻ, theo kết quả vừa
+    nêu, có thể đặt $a\equiv (-1)^s5^r\pmod{2^e}$ và
+    $x=(-1)^z5^{y}\pmod{2^e}$. Do biểu diễn là duy nhất, phương trình đồng dư
+    $x^k\equiv a\pmod{2^e}$ tương đương với hệ
+    [phương trình đồng dư tuyến tính](./linear-equation.md)
+
     $$
     \begin{aligned}
     kz &\equiv s \pmod{2},\\
     ky &\equiv r \pmod{2^{e-2}}.
     \end{aligned}
     $$
-    
-    Ket hop voi phan tich ve nghiem cua phuong trinh dong du tuyen tinh o trang do, ta thu duoc cau truc nghiem cua phuong trinh dong du $x^k\equiv a\pmod{2^e}$. Tuy theo tinh chan le cua $k$, co hai truong hop:
-    
-    -   Khi $k$ la so le, vi $\gcd(k,2)=\gcd(k,2^{e-2})=1$, ca hai phuong trinh dong du tuyen tinh deu co nghiem voi moi $s,r$, nen phuong trinh ban dau luon co nghiem voi moi so le $a$.
-    -   Khi $k$ la so chan, phuong trinh thu nhat co nghiem khi va chi khi $2\mid s$, phuong trinh thu hai co nghiem khi va chi khi $d=\gcd(k,2^{e-2})\mid r$. Ket hop hai dieu kien nay se cho toan bo cac lop thang du bac $k$. Tinh truc tiep thay dieu kien thu nhat tuong duong voi $a\equiv 1\pmod 4$; lap lai phan tich trong truong hop modulo luy thua cua so nguyen to le, dieu kien thu hai tuong duong voi $a^{d'}=1$. Ket hop hai diem nay se cho tieu chuan trong dinh ly. Nghiem tong quat cua hai phuong trinh dong du tuyen tinh cung da biet:
-    
+
+    Kết hợp với phân tích về nghiệm của phương trình đồng dư tuyến tính ở trang
+    đó, ta thu được cấu trúc nghiệm của phương trình đồng dư
+    $x^k\equiv a\pmod{2^e}$. Tùy theo tính chẵn lẻ của $k$, có hai trường hợp:
+
+    -   Khi $k$ là số lẻ, vì $\gcd(k,2)=\gcd(k,2^{e-2})=1$, cả hai phương trình
+        đồng dư tuyến tính đều có nghiệm với mọi $s,r$, nên phương trình ban đầu
+        luôn có nghiệm với mọi số lẻ $a$.
+    -   Khi $k$ là số chẵn, phương trình thứ nhất có nghiệm khi và chỉ khi
+        $2\mid s$, phương trình thứ hai có nghiệm khi và chỉ khi
+        $d=\gcd(k,2^{e-2})\mid r$. Kết hợp hai điều kiện này sẽ cho toàn bộ các
+        lớp thặng dư bậc $k$. Tính trực tiếp thấy điều kiện thứ nhất tương đương
+        với $a\equiv 1\pmod 4$; lặp lại phân tích trong trường hợp modulo lũy
+        thừa của số nguyên tố lẻ, điều kiện thứ hai tương đương với $a^{d'}=1$.
+        Kết hợp hai điểm này sẽ cho tiêu chuẩn trong định lí. Nghiệm tổng quát
+        của hai phương trình đồng dư tuyến tính cũng đã biết:
+
         $$
         \begin{aligned}
         z &\equiv0,1\pmod 2, \\
-        y &\equiv y_0 + id' \pmod{2^{e-2}},~ 0\le y_0 < 2^{e-2}.
+        y &\equiv y_0 + id' \pmod{2^{e-2}},~ 0\le y_0 < d',~i=0,1,\cdots,d-1.
         \end{aligned}
         $$
-    
-        Ket hop chung se thu duoc nghiem tong quat cua phuong trinh ban dau.
 
-Nhu vay bai toan kiem tra thang du bac $k$ voi cac modulo khac nhau da duoc giai quyet day du. Ky hieu Legendre va luat tuong ho bac hai trong thang du bac hai cung co the tong quat hoa sang thang du bac cao, nhung dieu nay khong de va can den cac khai niem nhu [truong chia duong tron](../algebra/field-theory.md#%E5%88%86%E5%9C%86%E5%9F%9F). Trong ly thuyet so dai so, luat tuong ho bac hai cuoi cung co the duoc tong quat thanh [luat tuong ho Artin](https://en.wikipedia.org/wiki/Artin_reciprocity).
+        Kết hợp chúng sẽ thu được nghiệm tổng quát của phương trình ban đầu.
+
+Như vậy, bài toán kiểm tra thặng dư bậc $k$ với các modulo khác nhau đã được
+giải quyết đầy đủ. Ký hiệu Legendre và luật tương hỗ bậc hai trong thặng dư bậc
+hai cũng có thể tổng quát hóa sang thặng dư bậc cao, nhưng điều này không dễ và
+cần đến các khái niệm như
+[trường chia đường tròn](../algebra/field-theory.md#%E5%88%86%E5%9C%86%E5%9F%9F).
+Trong lý thuyết số đại số, luật tương hỗ bậc hai cuối cùng có thể được tổng
+quát thành [luật tương hỗ Artin](https://en.wikipedia.org/wiki/Artin_reciprocity).
 
 <span id="&#21333;&#20301;&#26681;"></span>
 ## Căn đơn vị
