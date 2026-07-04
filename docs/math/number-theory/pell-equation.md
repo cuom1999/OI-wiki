@@ -570,46 +570,99 @@ vừa dễ tính[^solubility-neg-pell]. Ở đây chỉ đưa ra một kết qu�
     thừa số nguyên tố dạng $4k+3$. Ngược lại, nếu $D=2$ hoặc $D$ là số nguyên tố
     dạng $4k+1$, thì phương trình nhất định có nghiệm.
 
-??? note "Chung minh"
-    Truoc het, phuong trinh Pell am co nghiem co nghia $-1$ la thang du bac hai modulo $D$, nen $-1$ cung la thang du bac hai modulo moi uoc $d$ cua $D$; do do $d\neq 4$ va $d$ khong phai so nguyen to dang $4k+3$. Nguoc lai, phuong trinh $x^2-2y^2=-1$ co nghiem khong tam thuong $(1,1)$. Phan con lai la truong hop $D$ la so nguyen to dang $4k+1$.
+??? note "Chứng minh"
+    Trước hết, phương trình Pell âm có nghiệm có nghĩa $-1$ là thặng dư bậc hai
+    modulo $D$, nên $-1$ cũng là thặng dư bậc hai modulo mọi ước $d$ của $D$; do
+    đó $d\neq 4$ và $d$ không phải số nguyên tố dạng $4k+3$. Ngược lại, phương
+    trình $x^2-2y^2=-1$ có nghiệm không tầm thường $(1,1)$. Phần còn lại là
+    trường hợp $D$ là số nguyên tố dạng $4k+1$.
 
-    Gia su $D$ la so nguyen to dang $4k+1$, can chung minh phuong trinh $x^2-Dy^2=-1$ co nghiem. Y tuong la bat dau tu nghiem co ban $(u,v)$ cua phuong trinh Pell $x^2-Dy^2=1$, roi xay dung nghiem $(\alpha,\beta)$ cua $x^2-Dy^2=-1$. Neu $u$ chan, lay dong du hai ve cua $u^2-Dv^2=1$ modulo $4$ se duoc $v^2\equiv -1\pmod 4$, nhung $-1$ khong phai thang du bac hai modulo $4$. Mau thuan nay cho thay $u$ le. Xet dang thuc $Dv^2=u^2-1=(u+1)(u-1)$. Vi $u$ le, $\gcd(u+1,u-1)=\gcd(u+1,2)=2$. Dua vao dieu nay, khi phan bo cac thua so cua $Dv^2$ vao $u+1$ va $u-1$, nhat dinh mot trong hai la $2\alpha^2$, so con lai la $2D\beta^2$, trong do $\alpha$ va $\beta$ la cac so nguyen duong nguyen to cung nhau va $v=2\alpha\beta$. Thay $u=\alpha^2+D\beta^2$ va $v=2\alpha\beta$ vao $u^2-Dv^2=1$, ta duoc $\alpha^2-D\beta^2=\pm 1$. Vi $(u,v)$ la nghiem co ban cua phuong trinh Pell va $(\alpha,\beta)$ la cap so nguyen duong nho hon $(u,v)$, ve phai cua dang thuc nay khong the la $+1$, nen chi co the la $-1$. Dieu nay chung minh $x^2-Dy^2=-1$ co nghiem $(\alpha,\beta)$.
+    Giả sử $D$ là số nguyên tố dạng $4k+1$, cần chứng minh phương trình
+    $x^2-Dy^2=-1$ có nghiệm. Ý tưởng là bắt đầu từ nghiệm cơ bản $(u,v)$ của
+    phương trình Pell $x^2-Dy^2=1$, rồi xây dựng nghiệm $(\alpha,\beta)$ của
+    $x^2-Dy^2=-1$. Nếu $u$ chẵn, lấy đồng dư hai vế của $u^2-Dv^2=1$ modulo $4$
+    sẽ được $v^2\equiv -1\pmod 4$, nhưng $-1$ không phải thặng dư bậc hai modulo
+    $4$. Mâu thuẫn này cho thấy $u$ lẻ. Xét đẳng thức
+    $Dv^2=u^2-1=(u+1)(u-1)$. Vì $u$ lẻ,
+    $\gcd(u+1,u-1)=\gcd(u+1,2)=2$. Dựa vào điều này, khi phân bổ các thừa số của
+    $Dv^2$ vào $u+1$ và $u-1$, nhất định một trong hai là $2\alpha^2$, số còn
+    lại là $2D\beta^2$, trong đó $\alpha$ và $\beta$ là các số nguyên dương
+    nguyên tố cùng nhau và $v=2\alpha\beta$. Thay $u=\alpha^2+D\beta^2$ và
+    $v=2\alpha\beta$ vào $u^2-Dv^2=1$, ta được
+    $\alpha^2-D\beta^2=\pm 1$. Vì $(u,v)$ là nghiệm cơ bản của phương trình Pell
+    và $(\alpha,\beta)$ là cặp số nguyên dương nhỏ hơn $(u,v)$, vế phải của đẳng
+    thức này không thể là $+1$, nên chỉ có thể là $-1$. Điều này chứng minh
+    $x^2-Dy^2=-1$ có nghiệm $(\alpha,\beta)$.
 
-Neu $D$ la hop so, dieu kien khong chua thua so nguyen to dang $4k+3$ va khong chua nhan tu chinh phuong cung khong dam bao phuong trinh $x^2-Dy^2=-1$ co nghiem; chang han $x^2-34y^2=-1$ vo nghiem.
+Nếu $D$ là hợp số, điều kiện không chứa thừa số nguyên tố dạng $4k+3$ và không
+chứa nhân tử chính phương cũng không đảm bảo phương trình $x^2-Dy^2=-1$ có
+nghiệm; chẳng hạn $x^2-34y^2=-1$ vô nghiệm.
 
-??? example "Vi du"
-    Tu ket qua tinh toan trong cac vi du tren, phuong trinh $x^2-14y^2=-1$ vo nghiem, va nghiem nguyen duong nho nhat cua phuong trinh $x^2-41y^2=-1$ la $(G_2,B_2)=(32,5)$.
+??? example "Ví dụ"
+    Từ kết quả tính toán trong các ví dụ trên, phương trình $x^2-14y^2=-1$ vô
+    nghiệm, và nghiệm nguyên dương nhỏ nhất của phương trình $x^2-41y^2=-1$ là
+    $(G_2,B_2)=(32,5)$.
 
 <span id="&#x8303;&#x6570;&#x4e3a;-4-&#x7684;&#x60c5;&#x5f62;"></span>
-### Truong hop chuan bang ±4
+### Trường hợp chuẩn bằng ±4
 
-Tiep theo thao luan nghiem cua phuong trinh $x^2-Dy^2=\pm 4$. Luc nay tinh chat cua nghiem phu thuoc vao gia tri cua $D\bmod 4$.
+Tiếp theo thảo luận nghiệm của phương trình $x^2-Dy^2=\pm 4$. Lúc này tính
+chất của nghiệm phụ thuộc vào giá trị của $D\bmod 4$.
 
-Mot so truong hop rat de xu li. Neu $D\equiv 0\pmod 4$, thi $x$ chan, nen $(x/2,y)$ la nghiem cua phuong trinh $u^2-(D/4)v^2=\pm 1$. Cac truong hop con lai, nhat dinh $x,y$ dong thoi le hoac dong thoi chan. Neu $x,y$ dong thoi le, lay modulo $4$ hai ve phuong trinh cho $D\equiv 1\pmod 4$. Vi vay, neu $D\equiv 2,3\pmod 4$, thi $x,y$ chi co the dong thoi chan, nen $(x/2,y/2)$ la nghiem cua phuong trinh $u^2-Dv^2=\pm 1$. Do do, ngoai tru truong hop $D\equiv 1\pmod 4$, nghiem cua phuong trinh $x^2-Dy^2=\pm 4$ deu co the thu duoc tu nghiem cua phuong trinh Pell (am) tuong ung.
+Một số trường hợp rất dễ xử lý. Nếu $D\equiv 0\pmod 4$, thì $x$ chẵn, nên
+$(x/2,y)$ là nghiệm của phương trình $u^2-(D/4)v^2=\pm 1$. Các trường hợp còn
+lại, nhất định $x,y$ đồng thời lẻ hoặc đồng thời chẵn. Nếu $x,y$ đồng thời lẻ,
+lấy modulo $4$ hai vế phương trình cho $D\equiv 1\pmod 4$. Vì vậy, nếu
+$D\equiv 2,3\pmod 4$, thì $x,y$ chỉ có thể đồng thời chẵn, nên $(x/2,y/2)$ là
+nghiệm của phương trình $u^2-Dv^2=\pm 1$. Do đó, ngoài trừ trường hợp
+$D\equiv 1\pmod 4$, nghiệm của phương trình $x^2-Dy^2=\pm 4$ đều có thể thu
+được từ nghiệm của phương trình Pell (âm) tương ứng.
 
-Bay gio xet truong hop $D\equiv 1\pmod 4$; no khong the chuyen don gian ve cac truong hop da giai. De tim nghiem co ban, co the ap dung thuat toan PQa cho $(P_0,Q_0,D)=(1,2,D)$. Khi lan dau thu duoc $Q_\ell=2$, ta den cuoi chu ki dau tien. Neu do dai chu ki $\ell$ chan, $(G_{\ell-1},B_{\ell-1})$ la nghiem co ban cua phuong trinh $x^2-Dy^2=4$; neu khong, $(G_{\ell-1},B_{\ell-1})$ la nghiem co ban cua phuong trinh $x^2-Dy^2=-4$. Tu $(G_{\ell-1},B_{\ell-1})$, co the thu tat ca nghiem cua phuong trinh $x^2-Dy^2=\pm 4$:
+Bây giờ xét trường hợp $D\equiv 1\pmod 4$; nó không thể chuyển đơn giản về các
+trường hợp đã giải. Để tìm nghiệm cơ bản, có thể áp dụng thuật toán PQa cho
+$(P_0,Q_0,D)=(1,2,D)$. Khi lần đầu thu được $Q_\ell=2$, ta đến cuối chu kỳ đầu
+tiên. Nếu độ dài chu kỳ $\ell$ chẵn, $(G_{\ell-1},B_{\ell-1})$ là nghiệm cơ bản
+của phương trình $x^2-Dy^2=4$; nếu không, $(G_{\ell-1},B_{\ell-1})$ là nghiệm
+cơ bản của phương trình $x^2-Dy^2=-4$. Từ $(G_{\ell-1},B_{\ell-1})$, có thể thu
+tất cả nghiệm của phương trình $x^2-Dy^2=\pm 4$:
 
 $$
 \left\{(x,y):\dfrac{x+y\sqrt{D}}{2}=\pm\left(\dfrac{G_{\ell-1}+B_{\ell-1}\sqrt{D}}{2}\right)^k,k\in\mathbf Z\right\}.
 $$
 
-Neu do dai chu ki $\ell$ chan, tat ca chung deu la nghiem cua phuong trinh $x^2-Dy^2=4$; neu khong, khi $k$ le thi $(x,y)$ la nghiem cua phuong trinh $x^2-Dy^2=-4$, con khi $k$ chan thi $(x,y)$ la nghiem cua phuong trinh $x^2-Dy^2=4$.
+Nếu độ dài chu kỳ $\ell$ chẵn, tất cả chúng đều là nghiệm của phương trình
+$x^2-Dy^2=4$; nếu không, khi $k$ lẻ thì $(x,y)$ là nghiệm của phương trình
+$x^2-Dy^2=-4$, còn khi $k$ chẵn thì $(x,y)$ là nghiệm của phương trình
+$x^2-Dy^2=4$.
 
-Tinh dung dan cua thuat toan nay dua tren cac su kien sau:
+Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
 
-???+ note "Dinh li"
-    Gia su phuong trinh $x^2-Dy^2=\pm 4$ co nghiem nguyen duong $(x,y)$. Neu $D\equiv 1\pmod 4$, thi $\dfrac{(x+y)/2}{y}$ nhat dinh la mot phan so gan dung cua $\dfrac{1+\sqrt{D}}{2}$.
+???+ note "Định lý"
+    Giả sử phương trình $x^2-Dy^2=\pm 4$ có nghiệm nguyên dương $(x,y)$. Nếu
+    $D\equiv 1\pmod 4$, thì $\dfrac{(x+y)/2}{y}$ nhất định là một phân số gần
+    đúng của $\dfrac{1+\sqrt{D}}{2}$.
 
-??? note "Chung minh"
-    Truoc het chu y rang khi do $x,y$ nhat dinh cung tinh chan le, nen $(x+y)/2$ la so nguyen. Neu $(x,y)$ la nghiem cua phuong trinh $x^2-Dy^2=4$, thi $x>y\sqrt{D}>2y$, do do
+??? note "Chứng minh"
+    Trước hết chú ý rằng khi đó $x,y$ nhất định cùng tính chẵn lẻ, nên
+    $(x+y)/2$ là số nguyên. Nếu $(x,y)$ là nghiệm của phương trình
+    $x^2-Dy^2=4$, thì $x>y\sqrt{D}>2y$, do đó
 
     $$
     \left|\dfrac{(x+y)/2}{y}-\dfrac{1+\sqrt{D}}{2}\right| = \dfrac{2}{y(x+y\sqrt{D})}<\dfrac{1}{2y^2}.
     $$
 
-    Theo [tieu chuan Legendre](./continued-fraction.md#%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E7%9A%84%E5%88%A4%E5%AE%9A), $\dfrac{(x+y)/2}{y}$ la phan so gan dung cua $\dfrac{1+\sqrt{D}}{2}$.
+    Theo [tiêu chuẩn Legendre](./continued-fraction.md#%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E7%9A%84%E5%88%A4%E5%AE%9A),
+    $\dfrac{(x+y)/2}{y}$ là phân số gần đúng của $\dfrac{1+\sqrt{D}}{2}$.
 
-    Neu $(x,y)$ la nghiem cua phuong trinh $x^2-Dy^2=-4$, de thiet lap bat dang thuc tren chi can chung minh $4y<x+y\sqrt{D}$. Dieu nay dung it nhat voi moi truong hop ngoai $D=5,13$. Voi $D=5,13$, thay $x=\sqrt{Dy^2-4}$ vao bat dang thuc cho thay no tuong duong voi $2(\sqrt{D}-2)y^2>1$. Ngoai $(D,y)=(5,1)$, bat dang thuc nay dung voi moi $D=5,13$ va so nguyen duong $y$. Con lai chi can kiem tra truong hop $(D,y)=(5,1)$; khi do nghiem cua phuong trinh $x^2-5y^2=-4$ la $(x,y)=(1,1)$, va can kiem tra $\dfrac{1}{1}$ la phan so gan dung cua $\dfrac{1+\sqrt{5}}{2}=[\overline{1}]$, dieu nay hien nhien dung.
+    Nếu $(x,y)$ là nghiệm của phương trình $x^2-Dy^2=-4$, để thiết lập bất đẳng
+    thức trên chỉ cần chứng minh $4y<x+y\sqrt{D}$. Điều này đúng ít nhất với mọi
+    trường hợp ngoài $D=5,13$. Với $D=5,13$, thay $x=\sqrt{Dy^2-4}$ vào bất đẳng
+    thức cho thấy nó tương đương với $2(\sqrt{D}-2)y^2>1$. Ngoài
+    $(D,y)=(5,1)$, bất đẳng thức này đúng với mọi $D=5,13$ và số nguyên dương
+    $y$. Còn lại chỉ cần kiểm tra trường hợp $(D,y)=(5,1)$; khi đó nghiệm của
+    phương trình $x^2-5y^2=-4$ là $(x,y)=(1,1)$, và cần kiểm tra $\dfrac{1}{1}$
+    là phân số gần đúng của $\dfrac{1+\sqrt{5}}{2}=[\overline{1}]$, điều này
+    hiển nhiên đúng.
 
 ???+ note "Dinh li"
     Gia su $D$ la so nguyen duong khong phai so chinh phuong. Khai trien phan so lien tuc cua so vo ti bac hai $\omega=\dfrac{1+\sqrt{D}}{2}$ co dang

@@ -182,7 +182,8 @@ MkDocs source layout intact.
   theorem/existence proof and nontrivial-solution proof, generalized-Pell
   equivalence-class structure, the PQa theorem block and Pell-solving
   derivation/examples, the negative-Pell theorem around the missing quadratic
-  factor, and the general Lagrange–Matthews–Mollin argument in
+  factor, the negative-Pell solubility proof, the opening norm-±4 reduction and
+  Legendre criterion, and the general Lagrange–Matthews–Mollin argument in
   `docs/math/number-theory/pell-equation.md`, including its LMM examples and
   closing notes.
 - `docs/math/poly/intro.md`, `docs/math/poly/fundamental.md`,
