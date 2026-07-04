@@ -1,68 +1,68 @@
-## 简介
+## Giới thiệu
 
-在阅读下列内容之前，请务必了解 [图论相关概念](./concept.md) 中的基础部分．
+Trước khi đọc nội dung dưới đây, hãy nắm phần cơ bản trong [các khái niệm đồ thị](./concept.md).
 
-强连通的定义是：有向图 G 强连通是指，G 中任意两个结点连通．
+Định nghĩa liên thông mạnh là: đồ thị có hướng $G$ được gọi là liên thông mạnh nếu hai đỉnh bất kỳ trong $G$ đều đến được nhau.
 
-强连通分量（Strongly Connected Components，SCC）的定义是：极大的强连通子图．
+Thành phần liên thông mạnh (Strongly Connected Components, SCC) được định nghĩa là: đồ thị con liên thông mạnh cực đại.
 
-这里要介绍的是如何来求强连通分量．
+Trang này giới thiệu cách tìm các thành phần liên thông mạnh.
 
-## Tarjan 算法
+## Thuật toán Tarjan
 
-### 引入
+### Dẫn nhập
 
-Robert E. Tarjan（罗伯特·塔扬，1948\~），生于美国加州波莫纳，计算机科学家．
+Robert E. Tarjan (1948\~), sinh tại Pomona, California, Hoa Kỳ, là một nhà khoa học máy tính.
 
-Tarjan 发明了很多算法和数据结构．不少他发明的算法都以他的名字命名，以至于有时会让人混淆几种不同的算法．比如求各种连通分量的 Tarjan 算法，求 LCA（Lowest Common Ancestor，最近公共祖先）的 Tarjan 算法．并查集、Splay、Toptree 也是 Tarjan 发明的．
+Tarjan đã phát minh nhiều thuật toán và cấu trúc dữ liệu. Không ít thuật toán do ông phát minh được đặt theo tên ông, đến mức đôi khi dễ nhầm lẫn giữa vài thuật toán khác nhau. Ví dụ: thuật toán Tarjan để tìm các loại thành phần liên thông, thuật toán Tarjan để tìm LCA (Lowest Common Ancestor, tổ tiên chung gần nhất). Disjoint Set Union, Splay và Toptree cũng do Tarjan phát minh.
 
-我们这里要介绍的是在有向图中求强连通分量的 Tarjan 算法．
+Ở đây ta giới thiệu thuật toán Tarjan để tìm thành phần liên thông mạnh trong đồ thị có hướng.
 
-### DFS 生成树
+### Cây sinh DFS
 
-在介绍该算法之前，先来了解 **DFS 生成树**，我们以下面的有向图为例：
+Trước khi giới thiệu thuật toán, ta xét **cây sinh DFS**. Lấy đồ thị có hướng dưới đây làm ví dụ:
 
-![DFS 生成树](./images/dfs-tree.svg)
+![Cây sinh DFS](./images/dfs-tree.svg)
 
-在有向图 $G$ 上运行 DFS 算法时，由于边具有方向性，从单个结点出发可能无法访问到图中的全部结点．因此，我们需要遍历整个顶点集：对每个尚未被访问的结点，都重新发起一次 DFS．在每一次从某个起始结点出发并完成的 DFS 过程中，其所经过的树边（见下文）会构成一棵树，称为 **DFS 生成树**．当所有结点都被访问后，得到的 DFS 生成树的全体构成了该有向图的 **DFS 生成森林**．
+Khi chạy thuật toán DFS trên đồ thị có hướng $G$, do cạnh có hướng, xuất phát từ một đỉnh đơn lẻ có thể không thăm được toàn bộ các đỉnh trong đồ thị. Vì vậy, ta cần duyệt toàn bộ tập đỉnh: với mỗi đỉnh chưa được thăm, khởi động lại một lần DFS. Trong mỗi lần DFS bắt đầu từ một đỉnh xuất phát và kết thúc, các cạnh cây (xem bên dưới) mà quá trình tìm kiếm đi qua sẽ tạo thành một cây, gọi là **cây sinh DFS**. Sau khi mọi đỉnh đã được thăm, toàn bộ các cây sinh DFS thu được tạo thành **rừng sinh DFS** của đồ thị có hướng đó.
 
-需要注意的是，生成树（以及生成森林）的具体结构，以及下文中的边分类，都依赖于 DFS 的起始结点选择和邻接点的访问顺序．
+Cần lưu ý rằng cấu trúc cụ thể của cây sinh (và rừng sinh), cũng như cách phân loại cạnh dưới đây, đều phụ thuộc vào cách chọn đỉnh bắt đầu DFS và thứ tự thăm các đỉnh kề.
 
-有向图 $G$ 的边可分为四类：
+Các cạnh của đồ thị có hướng $G$ có thể được chia thành bốn loại:
 
-1.  树边（tree edge）：示意图中以黑色边表示，每次搜索找到一个还没有访问过的结点的时候就形成了一条树边．所有相邻的树边组成 DFS 生成树．
-2.  反祖边（back edge）：也称回边，示意图中以红色边表示（即 $7 \rightarrow 1$），指在搜索过程中，从某个结点指向其祖先结点的非树边．
-3.  前向边（forward edge）：示意图中以绿色边表示（即 $3 \rightarrow 6$），指在搜索过程中，从某个结点指向其子树中后代结点的非树边．
-4.  横叉边（cross edge）：示意图中以蓝色边表示（即 $9 \rightarrow 7$），指在搜索过程中，从某个结点指向非祖先、非后代且已访问的结点的边，即不属于上述三类的边．
+1.  Cạnh cây (tree edge): được biểu diễn bằng cạnh màu đen trong hình minh họa. Mỗi khi quá trình tìm kiếm gặp một đỉnh chưa từng được thăm, một cạnh cây được tạo ra. Các cạnh cây kề nhau tạo thành cây sinh DFS.
+2.  Cạnh ngược lên tổ tiên (back edge): còn gọi là cạnh ngược, được biểu diễn bằng cạnh màu đỏ trong hình minh họa (tức $7 \rightarrow 1$). Đây là cạnh không thuộc cây, đi từ một đỉnh tới một tổ tiên của nó trong quá trình tìm kiếm.
+3.  Cạnh xuôi (forward edge): được biểu diễn bằng cạnh màu xanh lá trong hình minh họa (tức $3 \rightarrow 6$). Đây là cạnh không thuộc cây, đi từ một đỉnh tới một hậu duệ trong cây con của nó trong quá trình tìm kiếm.
+4.  Cạnh chéo (cross edge): được biểu diễn bằng cạnh màu xanh dương trong hình minh họa (tức $9 \rightarrow 7$). Đây là cạnh đi từ một đỉnh tới một đỉnh đã thăm không phải tổ tiên cũng không phải hậu duệ, tức không thuộc ba loại trên.
 
-我们考虑 DFS 生成树与强连通分量之间的关系．
+Ta xét quan hệ giữa cây sinh DFS và thành phần liên thông mạnh.
 
-如果结点 $u$ 是某个强连通分量在搜索树中遇到的第一个结点，那么这个强连通分量的其余结点肯定是在搜索树中以 $u$ 为根的子树中．结点 $u$ 被称为这个强连通分量的根．
+Nếu đỉnh $u$ là đỉnh đầu tiên của một thành phần liên thông mạnh được gặp trong cây tìm kiếm, thì các đỉnh còn lại của thành phần liên thông mạnh đó chắc chắn nằm trong cây con gốc $u$ của cây tìm kiếm. Đỉnh $u$ được gọi là gốc của thành phần liên thông mạnh này.
 
-反证法：假设有个结点 $v$ 在该强连通分量中但是不在以 $u$ 为根的子树中，那么 $u$ 到 $v$ 的路径中肯定有一条离开子树的边．但是这样的边只可能是横叉边或者反祖边，然而这两条边都要求指向的结点已经被访问过了，这就和 $v$ 不在以 $u$ 为根的子树中矛盾了．得证．
+Chứng minh phản chứng: giả sử có một đỉnh $v$ thuộc thành phần liên thông mạnh đó nhưng không nằm trong cây con gốc $u$. Khi đó trên đường đi từ $u$ tới $v$ chắc chắn có một cạnh rời khỏi cây con. Nhưng cạnh như vậy chỉ có thể là cạnh chéo hoặc cạnh ngược lên tổ tiên; cả hai loại cạnh này đều yêu cầu đỉnh được trỏ tới đã được thăm. Điều này mâu thuẫn với việc $v$ không nằm trong cây con gốc $u$. Suy ra điều phải chứng minh.
 
-### Tarjan 算法求强连通分量
+### Dùng thuật toán Tarjan tìm thành phần liên thông mạnh
 
-Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个连通分量为搜索树中的一棵子树，在搜索过程中，维护一个栈，每次把搜索树中尚未处理的节点加入栈中．
+Thuật toán Tarjan dựa trên [tìm kiếm theo chiều sâu](./dfs.md) trên đồ thị. Ta xem mỗi thành phần liên thông là một cây con trong cây tìm kiếm; trong quá trình tìm kiếm, thuật toán duy trì một ngăn xếp và đưa các đỉnh chưa xử lý trong cây tìm kiếm vào ngăn xếp.
 
-在 Tarjan 算法中为每个结点 $u$ 维护了以下几个变量：
+Trong thuật toán Tarjan, với mỗi đỉnh $u$ ta duy trì các biến sau:
 
-1.  $\textit{dfn}_u$：深度优先搜索遍历时结点 $u$ 被搜索的次序．
-2.  $\textit{low}_u$：在 $u$ 的子树中能够回溯到的最早的已经在栈中的结点．设以 $u$ 为根的子树为 $\textit{Subtree}_u$．$\textit{low}_u$ 定义为以下结点的 $\textit{dfn}$ 的最小值：$\textit{Subtree}_u$ 中的结点；从 $\textit{Subtree}_u$ 通过一条不在搜索树上的边能到达的结点．
+1.  $\textit{dfn}_u$: thứ tự mà đỉnh $u$ được thăm trong quá trình DFS.
+2.  $\textit{low}_u$: giá trị $\textit{dfn}$ nhỏ nhất của một đỉnh đã nằm trong ngăn xếp mà cây con của $u$ có thể lần ngược tới. Gọi cây con gốc $u$ là $\textit{Subtree}_u$. $\textit{low}_u$ được định nghĩa là giá trị $\textit{dfn}$ nhỏ nhất trong các đỉnh sau: các đỉnh thuộc $\textit{Subtree}_u$; các đỉnh có thể đến được từ $\textit{Subtree}_u$ thông qua một cạnh không nằm trong cây tìm kiếm.
 
-一个结点的子树内结点的 dfn 都大于该结点的 dfn．
+Giá trị dfn của các đỉnh trong cây con của một đỉnh đều lớn hơn dfn của đỉnh đó.
 
-从根开始的一条路径上的 dfn 严格递增，low 严格非降．
+Trên một đường đi bắt đầu từ gốc, dfn tăng nghiêm ngặt, còn low không giảm.
 
-按照深度优先搜索算法搜索的次序对图中所有的结点进行搜索，维护每个结点的 `dfn` 与 `low` 变量，且让搜索到的结点入栈．每当找到一个强连通元素，就按照该元素包含结点数目让栈中元素出栈．在搜索过程中，对于结点 $u$ 和与其相邻的结点 $v$（$v$ 不是 $u$ 的父节点）考虑 3 种情况：
+Ta tìm kiếm tất cả các đỉnh trong đồ thị theo thứ tự của thuật toán DFS, duy trì hai biến `dfn` và `low` cho từng đỉnh, đồng thời đưa các đỉnh được thăm vào ngăn xếp. Mỗi khi tìm được một thành phần liên thông mạnh, ta lấy khỏi ngăn xếp số đỉnh tương ứng với thành phần đó. Trong quá trình tìm kiếm, với đỉnh $u$ và một đỉnh kề $v$ của nó ($v$ không phải cha của $u$), xét ba trường hợp:
 
-1.  $v$ 未被访问：继续对 $v$ 进行深度搜索．在回溯过程中，用 $\textit{low}_v$ 更新 $\textit{low}_u$．因为存在从 $u$ 到 $v$ 的直接路径，所以 $v$ 能够回溯到的已经在栈中的结点，$u$ 也一定能够回溯到．
-2.  $v$ 被访问过，已经在栈中：根据 low 值的定义，用 $\textit{dfn}_v$ 更新 $\textit{low}_u$．
-3.  $v$ 被访问过，已不在栈中：说明 $v$ 已搜索完毕，其所在连通分量已被处理，所以不用对其做操作．
+1.  $v$ chưa được thăm: tiếp tục DFS từ $v$. Trong quá trình quay lui, dùng $\textit{low}_v$ để cập nhật $\textit{low}_u$. Vì tồn tại đường đi trực tiếp từ $u$ tới $v$, những đỉnh đã nằm trong ngăn xếp mà $v$ có thể lần ngược tới thì $u$ cũng có thể lần ngược tới.
+2.  $v$ đã được thăm và vẫn nằm trong ngăn xếp: theo định nghĩa của giá trị low, dùng $\textit{dfn}_v$ để cập nhật $\textit{low}_u$.
+3.  $v$ đã được thăm nhưng không còn nằm trong ngăn xếp: điều này cho biết quá trình tìm kiếm ở $v$ đã kết thúc và thành phần liên thông chứa $v$ đã được xử lý, nên không cần thao tác gì thêm.
 
-将上述算法写成伪代码：
+Viết thuật toán trên thành giả mã:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```text
     TARJAN_SEARCH(int u)
         vis[u]=true
@@ -70,23 +70,23 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
         push u to the stack
         for each (u,v) then do
             if v hasn't been searched then
-                TARJAN_SEARCH(v) // 搜索
-                low[u]=min(low[u],low[v]) // 回溯
+                TARJAN_SEARCH(v) // Tìm kiếm
+                low[u]=min(low[u],low[v]) // Quay lui
             else if v has been in the stack then
                 low[u]=min(low[u],dfn[v])
     ```
 
-对于一个连通分量图，我们很容易想到，在该连通图中有且仅有一个 $u$ 使得 $\textit{dfn}_u=\textit{low}_u$．该结点一定是在深度遍历的过程中，该连通分量中第一个被访问过的结点，因为它的 dfn 和 low 值最小，不会被该连通分量中的其他结点所影响．
+Với một thành phần liên thông mạnh, ta dễ nhận thấy trong thành phần đó có đúng một đỉnh $u$ sao cho $\textit{dfn}_u=\textit{low}_u$. Đỉnh này chắc chắn là đỉnh đầu tiên của thành phần liên thông mạnh đó được thăm trong quá trình DFS, vì dfn và low của nó là nhỏ nhất, không bị các đỉnh khác trong cùng thành phần liên thông mạnh làm giảm thêm.
 
-因此，在回溯的过程中，判定 $\textit{dfn}_u=\textit{low}_u$ 是否成立，如果成立，则栈中 $u$ 及其上方的结点构成一个 SCC．
+Do đó, trong quá trình quay lui, ta kiểm tra $\textit{dfn}_u=\textit{low}_u$ có đúng hay không. Nếu đúng, thì $u$ cùng các đỉnh nằm phía trên $u$ trong ngăn xếp tạo thành một SCC.
 
-### 实现
+### Cài đặt
 
 === "C++"
     ```cpp
     int dfn[N], low[N], dfncnt, s[N], in_stack[N], tp;
-    int scc[N], sc;  // 结点 i 所在 SCC 的编号
-    int sz[N];       // 强连通 i 的大小
+    int scc[N], sc;  // Số hiệu SCC chứa đỉnh i
+    int sz[N];       // Kích thước của thành phần liên thông mạnh i
     
     void tarjan(int u) {
       low[u] = dfn[u] = ++dfncnt, s[++tp] = u, in_stack[u] = 1;
@@ -119,8 +119,8 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
     in_stack = [0] * N
     tp = 0
     scc = [0] * N
-    sc = 0  # 结点 i 所在 SCC 的编号
-    sz = [0] * N  # 强连通 i 的大小
+    sc = 0  # Số hiệu SCC chứa đỉnh i
+    sz = [0] * N  # Kích thước của thành phần liên thông mạnh i
     
     
     def tarjan(u):
@@ -151,37 +151,37 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
             tp = tp - 1
     ```
 
-时间复杂度 $O(n + m)$．
+Độ phức tạp thời gian là $O(n + m)$.
 
-### 分量标号和拓扑序的关系
+### Quan hệ giữa số hiệu thành phần và thứ tự topo
 
-Tarjan 算法在处理过程中，实际上是按照某种 **逆拓扑序** 来发现强连通分量的，这是因为算法在深度优先搜索的过程中会先访问完那些没有出边的节点，而这与拓扑排序的过程是相反的．
+Trong quá trình xử lý, thuật toán Tarjan thực chất phát hiện các thành phần liên thông mạnh theo một dạng **thứ tự topo ngược**, vì khi DFS thuật toán sẽ xử lý xong trước các đỉnh không có cạnh đi ra, trái với quá trình sắp xếp topo.
 
-如果我们将图中的所有强连通分量缩成单个节点，那么在这些缩点后的节点形成的 DAG 中进行拓扑排序，得到的顺序将与 Tarjan 算法给出的强连通分量的标号顺序相反．
+Nếu ta co mỗi thành phần liên thông mạnh trong đồ thị thành một đỉnh đơn, thì trên DAG tạo bởi các đỉnh sau khi co, thứ tự sắp xếp topo sẽ ngược với thứ tự đánh số thành phần liên thông mạnh mà thuật toán Tarjan tạo ra.
 
-因此，可以说，在缩点后的 DAG 中，**强连通分量（缩点后）的标号顺序是其拓扑序的逆序**．但要注意的是，这种说法仅在考虑了强连通分量之间的依赖关系（即从一个强连通分量到另一个强连通分量的有向边）时才成立．单个强连通分量内部的节点由于存在环，所以内部并不满足拓扑序的定义．
+Vì vậy, có thể nói rằng trong DAG sau khi co, **thứ tự số hiệu của các thành phần liên thông mạnh (sau khi co) là thứ tự ngược của thứ tự topo**. Tuy nhiên cần chú ý rằng phát biểu này chỉ đúng khi xét quan hệ phụ thuộc giữa các thành phần liên thông mạnh (tức các cạnh có hướng đi từ một thành phần liên thông mạnh tới thành phần liên thông mạnh khác). Các đỉnh bên trong một thành phần liên thông mạnh có chu trình, nên nội bộ thành phần không thỏa định nghĩa thứ tự topo.
 
-## Kosaraju 算法
+## Thuật toán Kosaraju
 
-### 引入
+### Dẫn nhập
 
-Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文上提出，但 Micha Sharir 最早发表了它．
+Thuật toán Kosaraju được S. Rao Kosaraju đề xuất sớm nhất vào năm 1978 trong một bài báo chưa xuất bản, nhưng Micha Sharir là người công bố nó đầu tiên.
 
-### 过程
+### Quy trình
 
-该算法依靠两次简单的 DFS 实现：
+Thuật toán này dựa vào hai lần DFS đơn giản:
 
-第一次 DFS，选取任意顶点作为起点，遍历所有未访问过的顶点，并在回溯之前给顶点编号，也就是后序遍历．
+Lần DFS thứ nhất chọn một đỉnh bất kỳ làm điểm bắt đầu, duyệt mọi đỉnh chưa được thăm, và đánh số đỉnh trước khi quay lui, tức duyệt hậu tự.
 
-第二次 DFS，对于反向后的图，以标号最大的顶点作为起点开始 DFS．这样遍历到的顶点集合就是一个强连通分量．对于所有未访问过的结点，选取标号最大的，重复上述过程．
+Lần DFS thứ hai chạy trên đồ thị đảo chiều, chọn đỉnh có số hiệu lớn nhất làm điểm bắt đầu DFS. Tập đỉnh được duyệt tới theo cách này chính là một thành phần liên thông mạnh. Với mọi đỉnh chưa được thăm, tiếp tục chọn đỉnh có số hiệu lớn nhất và lặp lại quy trình trên.
 
-两次 DFS 结束后，强连通分量就找出来了，Kosaraju 算法的时间复杂度为 $O(n+m)$．
+Sau hai lần DFS, ta tìm được các thành phần liên thông mạnh. Độ phức tạp thời gian của thuật toán Kosaraju là $O(n+m)$.
 
-### 实现
+### Cài đặt
 
 === "C++"
     ```cpp
-    // g 是原图，g2 是反图
+    // g là đồ thị gốc, g2 là đồ thị đảo
     
     void dfs1(int u) {
       vis[u] = true;
@@ -236,15 +236,15 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
                 dfs2(s[i])
     ```
 
-## Garbow 算法
+## Thuật toán Garbow
 
-### 过程
+### Quy trình
 
-Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 low 来计算强连通分量的根，Garbow 维护一个节点栈，并用第二个栈来确定何时从第一个栈中弹出属于同一个强连通分量的节点．从节点 $w$ 开始的 DFS 过程中，当一条路径显示这组节点都属于同一个强连通分量时，只要栈顶节点的访问时间大于根节点 $w$ 的访问时间，就从第二个栈中弹出这个节点，那么最后只留下根节点 $w$．在这个过程中每一个被弹出的节点都属于同一个强连通分量．
+Thuật toán Garbow là một cách cài đặt khác của thuật toán Tarjan. Tarjan dùng dfn và low để tính gốc của thành phần liên thông mạnh; Garbow duy trì một ngăn xếp đỉnh, đồng thời dùng một ngăn xếp thứ hai để xác định khi nào cần lấy khỏi ngăn xếp thứ nhất các đỉnh thuộc cùng một thành phần liên thông mạnh. Trong quá trình DFS bắt đầu từ đỉnh $w$, khi một đường đi cho thấy nhóm đỉnh này đều thuộc cùng một thành phần liên thông mạnh, chỉ cần phần tử trên đỉnh ngăn xếp có thời điểm thăm lớn hơn thời điểm thăm của gốc $w$, ta lấy phần tử đó khỏi ngăn xếp thứ hai; cuối cùng chỉ còn lại gốc $w$. Trong quá trình này, mọi đỉnh bị lấy ra đều thuộc cùng một thành phần liên thông mạnh.
 
-当回溯到某一个节点 $w$ 时，如果这个节点在第二个栈的顶部，就说明这个节点是强连通分量的起始节点，在这个节点之后搜索到的那些节点都属于同一个强连通分量，于是从第一个栈中弹出那些节点，构成强连通分量．
+Khi quay lui tới một đỉnh $w$, nếu đỉnh này nằm ở đỉnh của ngăn xếp thứ hai, điều đó cho biết đỉnh này là đỉnh bắt đầu của một thành phần liên thông mạnh. Các đỉnh được thăm sau đỉnh này đều thuộc cùng một thành phần liên thông mạnh, vì vậy ta lấy các đỉnh đó khỏi ngăn xếp thứ nhất để tạo thành thành phần liên thông mạnh.
 
-### 实现
+### Cài đặt
 
 === "C++"
     ```cpp
@@ -315,16 +315,16 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
                 garbow(i)
     ```
 
-## 应用
+## Ứng dụng
 
-我们可以将一张图的每个强连通分量都缩成一个点．
+Ta có thể co mỗi thành phần liên thông mạnh của một đồ thị thành một đỉnh.
 
-然后这张图会变成一个 DAG，可以进行拓扑排序以及更多其他操作．
+Khi đó đồ thị sẽ trở thành một DAG, nên có thể sắp xếp topo và thực hiện nhiều thao tác khác.
 
-举个简单的例子，求一条路径，可以经过重复结点，要求经过的不同结点数量最多．
+Một ví dụ đơn giản: tìm một đường đi có thể đi qua các đỉnh lặp lại, sao cho số lượng đỉnh phân biệt đã đi qua là lớn nhất.
 
-## 习题
+## Bài tập
 
-[USACO Fall/HAOI 2006 受欢迎的牛](https://loj.ac/problem/10091)
+[USACO Fall/HAOI 2006 Những con bò được yêu thích](https://loj.ac/problem/10091)
 
 [POJ1236 Network of Schools](http://poj.org/problem?id=1236)

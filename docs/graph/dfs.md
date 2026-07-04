@@ -175,4 +175,4 @@ Chú ý: dãy DFS của cây cũng không duy nhất.
 
 Trong quá trình DFS, bằng cách ghi lại mỗi đỉnh được thăm từ đỉnh nào, ta có thể xây dựng một cấu trúc cây gọi là cây DFS. Cây DFS là một cây khung của đồ thị ban đầu.
 
-[Cây DFS](./scc.md#dfs-%E7%94%9F%E6%88%90%E6%A0%91) có nhiều tính chất, chẳng hạn có thể dùng để tìm [thành phần liên thông mạnh](./scc.md).
+[Cây DFS](./scc.md#cây-sinh-dfs) có nhiều tính chất, chẳng hạn có thể dùng để tìm [thành phần liên thông mạnh](./scc.md).

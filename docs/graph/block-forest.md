@@ -1,99 +1,99 @@
 author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenlig, Menci, Enter-tainer, CCXXXI, hcx2012Git
 
-在阅读下列内容之前，请务必了解 [图论相关概念](./concept.md) 部分．
+Trước khi đọc nội dung dưới đây, hãy nắm chắc phần [các khái niệm liên quan đến đồ thị](./concept.md).
 
-相关阅读：[割点和桥](./cut.md)．
+Đọc thêm: [đỉnh khớp và cầu](./cut.md).
 
-## 引入
+## Dẫn nhập
 
-众所周知，树（或森林）有很好的性质，并且容易通过很多常见数据结构维护．
+Ai cũng biết cây (hoặc rừng) có nhiều tính chất tốt, và dễ được duy trì bằng nhiều cấu trúc dữ liệu thông dụng.
 
-而一般图则没有那么好的性质，所幸有时我们可以把一般图上的某些问题转化到树上考虑．
+Ngược lại, đồ thị tổng quát không có những tính chất tốt như vậy. May mắn là trong một số trường hợp, ta có thể chuyển một số bài toán trên đồ thị tổng quát về bài toán trên cây.
 
-而圆方树（Block forest 或 Round-square tree）[^ref1]就是一种将图变成树的方法．本文将介绍圆方树的构建，性质和一些应用．
+Cây tròn-vuông (Block forest hoặc Round-square tree) [^ref1] là một cách biến đồ thị thành cây. Bài viết này sẽ giới thiệu cách xây dựng, các tính chất và một số ứng dụng của cây tròn-vuông.
 
-限于篇幅，本文中有一些结论未经证明，读者可以自行理解或证明．
+Vì giới hạn dung lượng, một số kết luận trong bài không được chứng minh; bạn đọc có thể tự lý giải hoặc tự chứng minh.
 
-## 定义
+## Định nghĩa
 
-圆方树最初是处理「仙人掌图」（每条边在不超过一个简单环中的无向图）的一种工具，不过发掘它的更多性质，有时我们可以在一般无向图上使用它．
+Cây tròn-vuông ban đầu là một công cụ để xử lý "đồ thị cactus" (đồ thị vô hướng mà mỗi cạnh nằm trong không quá một chu trình đơn). Tuy nhiên, khi khai thác thêm các tính chất của nó, đôi khi ta cũng có thể dùng nó trên đồ thị vô hướng tổng quát.
 
-要介绍圆方树，首先要介绍 **点双连通分量**．
+Để giới thiệu cây tròn-vuông, trước hết cần giới thiệu **thành phần song liên thông theo đỉnh**.
 
-一个 **点双连通图** 的一个定义是：图中任意两不同点之间都有至少两条点不重复的路径．  
-点不重复既指路径上点不重复（简单路径），也指两条路径的交集为空（当然，路径必然都经过出发点和到达点，这不在考虑范围内）．
+Một cách định nghĩa **đồ thị song liên thông theo đỉnh** là: giữa hai đỉnh phân biệt bất kỳ trong đồ thị luôn có ít nhất hai đường đi không lặp đỉnh.
+"Không lặp đỉnh" vừa có nghĩa là các đỉnh trên một đường đi không lặp lại (đường đi đơn), vừa có nghĩa là giao của hai đường đi là rỗng (tất nhiên hai đường đi đều phải đi qua đỉnh bắt đầu và đỉnh kết thúc; hai đỉnh này không tính vào phạm vi đang xét).
 
-可以发现对于只有一个点的图比较难定义它是不是一个点双，这里先不考虑节点数为 $1$ 的图．
+Có thể thấy khá khó định nghĩa đồ thị chỉ có một đỉnh có phải là một thành phần song liên thông theo đỉnh hay không; ở đây tạm thời không xét các đồ thị có số đỉnh bằng $1$.
 
-一个近乎等价的定义是：不存在割点的图．  
-这个定义只在图中只有两个点，一条连接它们的边时失效．它没有割点，但是并不能找到两条不相交的路径，因为只有一条路径．  
-（也可以理解为那一条路径可以算两次，的确没有交，因为不经过其他点）
+Một định nghĩa gần tương đương là: đồ thị không có đỉnh khớp.
+Định nghĩa này chỉ sai trong trường hợp đồ thị có đúng hai đỉnh và một cạnh nối chúng. Đồ thị này không có đỉnh khớp, nhưng không thể tìm được hai đường đi rời nhau, vì chỉ có một đường đi.
+(Cũng có thể hiểu là đường đi đó được tính hai lần; quả thật chúng không giao nhau vì không đi qua đỉnh nào khác.)
 
-虽然原始的定义的确是前者，但是为了方便，我们规定点双图的定义采用后者．
+Mặc dù định nghĩa gốc thực sự là định nghĩa đầu tiên, để tiện lợi, ta quy ước dùng định nghĩa thứ hai cho đồ thị song liên thông theo đỉnh.
 
-而一个图的 **点双连通分量** 则是一个 **极大点双连通子图**．  
-与强连通分量等不同，一个点可能属于多个点双，但是一条边属于恰好一个点双（如果定义采用前者则有可能不属于任何点双）．
+**Thành phần song liên thông theo đỉnh** của một đồ thị là một **đồ thị con cực đại song liên thông theo đỉnh**.
+Khác với thành phần liên thông mạnh và các khái niệm tương tự, một đỉnh có thể thuộc nhiều thành phần song liên thông theo đỉnh, nhưng một cạnh thuộc đúng một thành phần song liên thông theo đỉnh (nếu dùng định nghĩa đầu tiên thì có thể có cạnh không thuộc thành phần nào).
 
-在圆方树中，原来的每个点对应一个 **圆点**，每一个点双对应一个 **方点**．  
-所以共有 $n+c$ 个点，其中 $n$ 是原图点数，$c$ 是原图点双连通分量的个数．
+Trong cây tròn-vuông, mỗi đỉnh gốc tương ứng với một **đỉnh tròn**, mỗi thành phần song liên thông theo đỉnh tương ứng với một **đỉnh vuông**.
+Vì vậy tổng cộng có $n+c$ đỉnh, trong đó $n$ là số đỉnh của đồ thị gốc, còn $c$ là số thành phần song liên thông theo đỉnh của đồ thị gốc.
 
-而对于每一个点双连通分量，它对应的方点向这个点双连通分量中的每个点连边．  
-每个点双形成一个「菊花图」，多个「菊花图」通过原图中的割点连接在一起（因为点双的分隔点是割点）．
+Với mỗi thành phần song liên thông theo đỉnh, đỉnh vuông tương ứng của nó nối cạnh đến mỗi đỉnh trong thành phần đó.
+Mỗi thành phần song liên thông theo đỉnh tạo thành một "đồ thị hoa cúc"; nhiều "đồ thị hoa cúc" được nối với nhau qua các đỉnh khớp trong đồ thị gốc (vì điểm phân tách giữa các thành phần song liên thông theo đỉnh là đỉnh khớp).
 
-显然，圆方树中每条边连接一个圆点和一个方点．
+Rõ ràng mỗi cạnh trong cây tròn-vuông nối một đỉnh tròn với một đỉnh vuông.
 
-下面的图显示了一张图对应的点双和圆方树形态．[^ref2]
+Hình dưới đây cho thấy các thành phần song liên thông theo đỉnh và dạng cây tròn-vuông tương ứng của một đồ thị. [^ref2]
 
 ![](./images/block-forest1.svg)![](./images/block-forest2.svg)![](./images/block-forest3.svg)
 
-圆方树的点数小于 $2n$，这是因为割点的数量小于 $n$，所以请注意各种数组大小要开两倍．
+Số đỉnh của cây tròn-vuông nhỏ hơn $2n$, vì số đỉnh khớp nhỏ hơn $n$. Do đó cần chú ý khai báo các mảng với kích thước gấp đôi.
 
-其实，如果原图连通，则「圆方树」才是一棵树，如果原图有 $k$ 个连通分量，则它的圆方树也会形成 $k$ 棵树形成的森林．
+Thực ra, chỉ khi đồ thị gốc liên thông thì "cây tròn-vuông" mới là một cây. Nếu đồ thị gốc có $k$ thành phần liên thông, cây tròn-vuông của nó cũng sẽ tạo thành một rừng gồm $k$ cây.
 
-如果原图中某个连通分量只有一个点，则需要具体情况具体分析，我们在后续讨论中不考虑孤立点．
+Nếu một thành phần liên thông nào đó trong đồ thị gốc chỉ có một đỉnh, cần phân tích tùy tình huống cụ thể; trong các thảo luận tiếp theo, ta không xét đỉnh cô lập.
 
-## 过程
+## Quá trình
 
-对于一个图，如何构造出它的圆方树呢？首先可以发现如果图不连通，可以拆分成每个连通子图考虑，所以我们只考虑连通图．
+Với một đồ thị, làm thế nào để xây dựng cây tròn-vuông của nó? Trước hết có thể thấy nếu đồ thị không liên thông, ta có thể tách thành từng đồ thị con liên thông để xét, vì vậy ta chỉ xét đồ thị liên thông.
 
-因为圆方树是基于点双连通分量的，而点双连通分量又基于割点，所以只需要用类似求割点的方法即可．
+Vì cây tròn-vuông dựa trên các thành phần song liên thông theo đỉnh, còn các thành phần này lại dựa trên đỉnh khớp, nên chỉ cần dùng phương pháp tương tự cách tìm đỉnh khớp.
 
-求割点的常用算法是 Tarjan 算法，如果你会了理解下面的内容就很简单了，如果你不会也没关系．
+Thuật toán thường dùng để tìm đỉnh khớp là Tarjan. Nếu bạn đã biết thuật toán này thì nội dung bên dưới sẽ rất dễ hiểu; nếu chưa biết cũng không sao.
 
-我们跳过 Tarjan 求割点，直接介绍圆方树使用的算法（其实是 Tarjan 的变体）：
+Ta bỏ qua phần Tarjan tìm đỉnh khớp và đi thẳng vào thuật toán dùng cho cây tròn-vuông (thực chất là một biến thể của Tarjan):
 
-对图进行 DFS，并且中间用到了两个关键数组 `dfn` 和 `low`（类似于 Tarjan）．
+Thực hiện DFS trên đồ thị, đồng thời dùng hai mảng then chốt `dfn` và `low` (tương tự Tarjan).
 
-`dfn[u]` 存储的是节点 $u$ 的 DFS 序，即第一次访问到 $u$ 时它是第几个被访问的节点．  
-`low[u]` 存储的是节点 $u$ 的 DFS 树中的子树中的某个点 $v$ 通过 **最多一次返祖边或向父亲的树边** 能访问到的点的 **最小** DFS 序．  
-如果没有听说过 Tarjan 算法可能会有点难理解，让我们举个例子吧：
+`dfn[u]` lưu thứ tự DFS của đỉnh $u$, tức $u$ là đỉnh được thăm thứ mấy trong lần đầu tiên được thăm.
+`low[u]` lưu thứ tự DFS **nhỏ nhất** của một đỉnh có thể được đi đến từ một đỉnh $v$ nào đó trong cây con của $u$ trên cây DFS, bằng cách dùng **tối đa một cạnh ngược lên tổ tiên hoặc cạnh cây đi lên cha**.
+Nếu chưa từng nghe về thuật toán Tarjan, điều này có thể hơi khó hiểu; hãy xem một ví dụ:
 
 ![](./images/block-forest4.svg)
 
-（可以发现这张图其实和上面图片中的图等价）  
-这里树边从上至下用直线画出，返祖边从下至上用曲线画出．节点的编号便是它的 DFS 序．
+(Có thể thấy đồ thị này thực ra tương đương với đồ thị trong các hình bên trên.)
+Ở đây, cạnh cây được vẽ bằng đường thẳng từ trên xuống dưới, cạnh ngược lên tổ tiên được vẽ bằng đường cong từ dưới lên trên. Số hiệu của đỉnh chính là thứ tự DFS của nó.
 
-则有 `low` 数组如下：
+Khi đó mảng `low` như sau:
 
 |        $i$        | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ |
 | :---------------: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | $\mathrm{low}[i]$ | $1$ | $1$ | $1$ | $3$ | $3$ | $4$ | $3$ | $3$ | $7$ |
 
-并不是很难理解吧，注意这里 $9$ 的 `low` 是 $7$，与一些求割点的做法有差异，因为为了方便，我们规定了可以通过父边向上，但主要思想是相同的．
+Điều này không quá khó hiểu. Chú ý rằng `low` của $9$ là $7$; nó khác một vài cách tìm đỉnh khớp, vì để tiện lợi ta quy ước có thể đi lên bằng cạnh cha, nhưng ý tưởng chính vẫn giống nhau.
 
-我们可以很容易地写出计算 `dfn` 和 `low` 的 DFS 函数（初始时 `dfn` 数组清零）：
+Ta có thể viết hàm DFS tính `dfn` và `low` rất dễ dàng (ban đầu mảng `dfn` được gán bằng không):
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         void Tarjan(int u) {
-          low[u] = dfn[u] = ++dfc;                // low 初始化为当前节点 dfn
-          for (int v : G[u]) {                    // 遍历 u 的相邻节点
-            if (!dfn[v]) {                        // 如果未访问过
-              Tarjan(v);                          // 递归
-              low[u] = std::min(low[u], low[v]);  // 未访问的和 low 取 min
+          low[u] = dfn[u] = ++dfc;                // Khởi tạo low bằng dfn của đỉnh hiện tại
+          for (int v : G[u]) {                    // Duyệt các đỉnh kề của u
+            if (!dfn[v]) {                        // Nếu chưa được thăm
+              Tarjan(v);                          // Đệ quy
+              low[u] = std::min(low[u], low[v]);  // Lấy min với low của đỉnh chưa thăm
             } else
-              low[u] = std::min(low[u], dfn[v]);  // 已访问的和 dfn 取 min
+              low[u] = std::min(low[u], dfn[v]);  // Lấy min với dfn của đỉnh đã thăm
           }
         }
         ```
@@ -101,42 +101,42 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     === "Python"
         ```python
         def Tarjan(u):
-            low[u] = dfn[u] = dfc  # low 初始化为当前节点 dfn
+            low[u] = dfn[u] = dfc  # Khởi tạo low bằng dfn của đỉnh hiện tại
             dfc = dfc + 1
-            for v in G[u]:  # 遍历 u 的相邻节点
-                if dfn[v] == False:  # 如果未访问过
-                    Tarjan(v)  # 递归
-                    low[u] = min(low[u], low[v])  # 未访问的和 low 取 min
+            for v in G[u]:  # Duyệt các đỉnh kề của u
+                if dfn[v] == False:  # Nếu chưa được thăm
+                    Tarjan(v)  # Đệ quy
+                    low[u] = min(low[u], low[v])  # Lấy min với low của đỉnh chưa thăm
                 else:
-                    low[u] = min(low[u], dfn[v])  # 已访问的和 dfn 取 min
+                    low[u] = min(low[u], dfn[v])  # Lấy min với dfn của đỉnh đã thăm
         ```
 
-接下来，我们考虑点双和 DFS 树以及这两个数组之间的关联．
+Tiếp theo, ta xét mối liên hệ giữa thành phần song liên thông theo đỉnh, cây DFS và hai mảng này.
 
-可以发现，每个点双在 DFS 树上是一棵连通子树，并至少包含两个点；特别地，最顶端节点仅往下接一个点．
+Có thể thấy mỗi thành phần song liên thông theo đỉnh là một cây con liên thông trên cây DFS và chứa ít nhất hai đỉnh; đặc biệt, đỉnh trên cùng chỉ nối xuống một đỉnh trong thành phần đó.
 
-同时还可以发现每条树边恰好在一个点双内．
+Đồng thời, có thể thấy mỗi cạnh cây nằm đúng trong một thành phần song liên thông theo đỉnh.
 
-我们考虑一个点双在 DFS 树中的最顶端节点 $u$，在 $u$ 处确定这个点双，因为 $u$ 的子树包含了整个点双的信息．
+Xét đỉnh trên cùng $u$ của một thành phần song liên thông theo đỉnh trong cây DFS. Ta sẽ xác định thành phần này tại $u$, vì cây con của $u$ đã chứa toàn bộ thông tin của thành phần đó.
 
-因为至少有两个点，考虑这个点双的下一个点 $v$，则有 $u$，$v$ 之间存在一条树边．
+Vì thành phần có ít nhất hai đỉnh, xét đỉnh tiếp theo $v$ của thành phần này; khi đó giữa $u$ và $v$ tồn tại một cạnh cây.
 
-不难发现，此时一定有 $\mathrm{low}[v]=\mathrm{dfn}[u]$．  
-更准确地说，对于一条树边 $u\to v$，$u,v$ 在同一个点双中，且 $u$ 是这个点双中深度最浅的节点 **当且仅当** $\mathrm{low}[v]=\mathrm{dfn}[u]$．
+Không khó để thấy lúc này nhất định có $\mathrm{low}[v]=\mathrm{dfn}[u]$.
+Chính xác hơn, với một cạnh cây $u\to v$, hai đỉnh $u,v$ nằm trong cùng một thành phần song liên thông theo đỉnh, và $u$ là đỉnh có độ sâu nhỏ nhất trong thành phần đó **khi và chỉ khi** $\mathrm{low}[v]=\mathrm{dfn}[u]$.
 
-那么我们可以在 DFS 的过程中确定哪些地方存在点双，但是还不能准确确定一个点双所包含的点集．
+Như vậy ta có thể xác định trong quá trình DFS những chỗ nào tồn tại thành phần song liên thông theo đỉnh, nhưng vẫn chưa thể xác định chính xác tập đỉnh của từng thành phần.
 
-这并不难处理，我们可以在 DFS 过程中维护一个栈，存储还未确定所属点双（可能有多个）的节点．
+Vấn đề này không khó xử lý. Ta có thể duy trì một ngăn xếp trong quá trình DFS, lưu các đỉnh chưa được xác định thuộc thành phần song liên thông theo đỉnh nào (có thể là nhiều thành phần).
 
-在找到点双时，点双中除了 $u$ 以外的其他的点都集中在栈顶端，只需要不断弹栈直到弹出 $v$ 为止即可．
+Khi tìm thấy một thành phần song liên thông theo đỉnh, các đỉnh trong thành phần đó ngoài $u$ đều tập trung ở đầu ngăn xếp; chỉ cần liên tục pop cho đến khi pop ra $v$.
 
-当然，我们可以同时处理被弹出的节点，只要将其和新建的方点连边即可．最后还要让 $u$ 和方点连边．
+Tất nhiên, ta có thể xử lý các đỉnh bị pop ra ngay lúc đó: chỉ cần nối chúng với đỉnh vuông mới tạo. Cuối cùng còn phải nối $u$ với đỉnh vuông.
 
-这样就很自然地完成了圆方树的构建，我们可以给方点标号为 $n+1$ 开始的整数，这样可以有效区分圆点和方点．
+Như vậy việc xây dựng cây tròn-vuông được hoàn tất một cách tự nhiên. Ta có thể đánh số các đỉnh vuông bằng các số nguyên bắt đầu từ $n+1$, nhờ đó phân biệt hiệu quả đỉnh tròn và đỉnh vuông.
 
-这部分可能讲述得不够清晰，下面贴出一份代码，附有详尽注释以及帮助理解的输出语句和一份样例，建议读者复制代码并自行实践理解，毕竟代码才是最能帮助理解的（不要忘记开 `c++11`）．
+Phần này có thể được trình bày chưa đủ rõ. Bên dưới là một đoạn mã kèm chú thích chi tiết, các câu lệnh in giúp hiểu quá trình và một ví dụ. Khuyến nghị bạn đọc sao chép mã và tự thực hành để hiểu, vì mã nguồn thường là cách giúp hiểu rõ nhất (đừng quên bật `c++11`).
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -152,29 +152,29 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     
     void Tarjan(int u) {
       printf("  Enter : #%d\n", u);
-      low[u] = dfn[u] = ++dfc;                // low 初始化为当前节点 dfn
-      stk[++tp] = u;                          // 加入栈中
-      for (int v : G[u]) {                    // 遍历 u 的相邻节点
-        if (!dfn[v]) {                        // 如果未访问过
-          Tarjan(v);                          // 递归
-          low[u] = std::min(low[u], low[v]);  // 未访问的和 low 取 min
-          if (low[v] == dfn[u]) {  // 标志着找到一个以 u 为根的点双连通分量
-            ++cnt;                 // 增加方点个数
+      low[u] = dfn[u] = ++dfc;                // Khởi tạo low bằng dfn của đỉnh hiện tại
+      stk[++tp] = u;                          // Đưa vào ngăn xếp
+      for (int v : G[u]) {                    // Duyệt các đỉnh kề của u
+        if (!dfn[v]) {                        // Nếu chưa được thăm
+          Tarjan(v);                          // Đệ quy
+          low[u] = std::min(low[u], low[v]);  // Lấy min với low của đỉnh chưa thăm
+          if (low[v] == dfn[u]) {  // Đánh dấu đã tìm thấy một thành phần song liên thông theo đỉnh có gốc u
+            ++cnt;                 // Tăng số đỉnh vuông
             printf("  Found a New BCC #%d.\n", cnt - N);
-            // 将点双中除了 u 的点退栈，并在圆方树中连边
+            // Pop các đỉnh khác u trong thành phần và nối cạnh trong cây tròn-vuông
             for (int x = 0; x != v; --tp) {
               x = stk[tp];
               T[cnt].push_back(x);
               T[x].push_back(cnt);
               printf("    BCC #%d has vertex #%d\n", cnt - N, x);
             }
-            // 注意 u 自身也要连边（但不退栈）
+            // Chú ý rằng bản thân u cũng cần nối cạnh (nhưng không pop)
             T[cnt].push_back(u);
             T[u].push_back(cnt);
             printf("    BCC #%d has vertex #%d\n", cnt - N, u);
           }
         } else
-          low[u] = std::min(low[u], dfn[v]);  // 已访问的和 dfn 取 min
+          low[u] = std::min(low[u], dfn[v]);  // Lấy min với dfn của đỉnh đã thăm
       }
       printf("  Exit : #%d : low = %d\n", u, low[u]);
       printf("  Stack:\n    ");
@@ -184,22 +184,22 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     
     int main() {
       scanf("%d%d", &N, &M);
-      cnt = N;  // 点双 / 方点标号从 N 开始
+      cnt = N;  // Số hiệu thành phần song liên thông theo đỉnh / đỉnh vuông bắt đầu từ N
       for (int i = 1; i <= M; ++i) {
         int u, v;
         scanf("%d%d", &u, &v);
-        G[u].push_back(v);  // 加双向边
+        G[u].push_back(v);  // Thêm cạnh hai chiều
         G[v].push_back(u);
       }
-      // 处理非连通图
+      // Xử lý đồ thị không liên thông
       for (int u = 1; u <= N; ++u)
         if (!dfn[u]) Tarjan(u), --tp;
-      // 注意到退出 Tarjan 时栈中还有一个元素即根，将其退栈
+      // Chú ý khi thoát Tarjan, trong ngăn xếp vẫn còn một phần tử là gốc; pop nó ra
       return 0;
     }
     ```
 
-提供一个测试用例：
+Cung cấp một test case:
 
 ```text
 13 15
@@ -220,127 +220,127 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
 11 12
 ```
 
-这个例子对应的图（包含了重边和孤立点的情况）：
+Ví dụ này tương ứng với đồ thị sau (bao gồm cả trường hợp cạnh song song và đỉnh cô lập):
 
 ![](./images/block-forest5.svg)
 
-## 例题
+## Ví dụ
 
-我们讲一些可以使用圆方树求解的例题．
+Ta trình bày một vài bài tập có thể giải bằng cây tròn-vuông.
 
-???+ note "[「APIO2018」铁人两项](https://loj.ac/p/2587)"
-    ??? note "题意简述"
-        给定一张简单无向图，问有多少对三元组 $\langle s, c, f \rangle$（$s, c, f$ 互不相同）使得存在一条简单路径从 $s$ 出发，经过 $c$ 到达 $f$．
+???+ note "[APIO2018 Ironman Triathlon](https://loj.ac/p/2587)"
+    ??? note "Tóm tắt đề bài"
+        Cho một đồ thị vô hướng đơn. Hỏi có bao nhiêu bộ ba $\langle s, c, f \rangle$ ($s, c, f$ đôi một khác nhau) sao cho tồn tại một đường đi đơn bắt đầu từ $s$, đi qua $c$ rồi đến $f$.
     
-    ??? note "题解"
-        说到简单路径，就必须提一个关于点双很好的性质：对于一个点双中的两点，它们之间简单路径的并集，恰好完全等于这个点双．  
-        即同一个点双中的两不同点 $u,v$ 之间一定存在一条简单路径经过给定的在同一个点双内的另一点 $w$．
+    ??? note "Lời giải"
+        Nhắc đến đường đi đơn, cần nêu một tính chất rất tốt của thành phần song liên thông theo đỉnh: với hai đỉnh trong cùng một thành phần song liên thông theo đỉnh, hợp của các đường đi đơn giữa chúng vừa đúng bằng toàn bộ thành phần đó.
+        Tức là giữa hai đỉnh phân biệt $u,v$ trong cùng một thành phần song liên thông theo đỉnh, luôn tồn tại một đường đi đơn đi qua một đỉnh $w$ cho trước khác cùng nằm trong thành phần đó.
         
-        这个性质的证明：
+        Chứng minh tính chất này:
         
-        -   显然如果简单路径出了点双，就不可能再回到这个点双中，否则会和点双的定义冲突．
-        -   所以我们只需考虑证明一个点双连通图中任意三不同点 $u,v,c$，必存在一条从 $u$ 到 $v$ 的简单路径经过 $c$．
-        -   首先排除点数为 $2$ 的情况，它满足这个性质，但是无法取出 $3$ 个不同点．
-        -   对于余下的情况，考虑建立网络流模型，源点向 $c$ 连容量为 $2$ 的边，$u$ 和 $v$ 向汇点连容量为 $1$ 的边．
-        -   原图中的双向边 $\langle x,y\rangle$，变成 $x$ 向 $y$ 连一条容量为 $1$ 的边，$y$ 也向 $x$ 连一条容量为 $1$ 的边．
-        -   最后，给除了源点，汇点和 $c$ 之外的每个点赋上 $1$ 的容量，这可以通过拆点实现．
-        -   因为源点到 $c$ 的边的容量为 $2$，那么如果这个网络最大流为 $2$，则证明一定有路径经过 $c$．
-        -   考虑最大流最小割定理，显然最小割小于等于 $2$，接下来只要证最小割大于 $1$．
-        -   这等价于证明割掉任意一条容量为 $1$ 的边，是无法使源点和汇点不连通的．
-        -   考虑割掉 $u$ 或 $v$ 与汇点连接的点，根据点双的第一种定义，必然存在简单路径从 $c$ 到另一个没割掉的点．
-        -   考虑割掉一个节点拆点形成的边，这等价于删除一个点，根据点双的第二种定义，余下的图仍然连通．
-        -   考虑割掉一条由原先的边建出的边，这等价于删除一条边，这比删除一个点更弱，显然存在路径．
-        -   所以我们证明了最小割大于 $1$，即最大流等于 $2$．证毕．
+        -   Rõ ràng nếu đường đi đơn đi ra khỏi thành phần song liên thông theo đỉnh thì không thể quay lại thành phần đó, nếu không sẽ mâu thuẫn với định nghĩa của thành phần song liên thông theo đỉnh.
+        -   Vì vậy ta chỉ cần chứng minh trong một đồ thị song liên thông theo đỉnh, với ba đỉnh phân biệt bất kỳ $u,v,c$, tồn tại một đường đi đơn từ $u$ đến $v$ đi qua $c$.
+        -   Trước hết loại trường hợp có $2$ đỉnh: nó thỏa mãn tính chất này, nhưng không thể chọn ra $3$ đỉnh phân biệt.
+        -   Với các trường hợp còn lại, xét mô hình luồng trên mạng: nguồn nối đến $c$ bằng một cạnh dung lượng $2$, $u$ và $v$ nối đến đích bằng các cạnh dung lượng $1$.
+        -   Mỗi cạnh vô hướng $\langle x,y\rangle$ trong đồ thị gốc được biến thành một cạnh có hướng từ $x$ đến $y$ dung lượng $1$ và một cạnh có hướng từ $y$ đến $x$ dung lượng $1$.
+        -   Cuối cùng, gán dung lượng $1$ cho mỗi đỉnh ngoài nguồn, đích và $c$; có thể thực hiện bằng tách đỉnh.
+        -   Vì cạnh từ nguồn đến $c$ có dung lượng $2$, nếu luồng cực đại của mạng này bằng $2$ thì chứng minh được chắc chắn có đường đi qua $c$.
+        -   Theo định lý luồng cực đại - lát cắt cực tiểu, rõ ràng lát cắt cực tiểu không vượt quá $2$; tiếp theo chỉ cần chứng minh lát cắt cực tiểu lớn hơn $1$.
+        -   Điều này tương đương với việc chứng minh cắt bỏ một cạnh bất kỳ có dung lượng $1$ không thể làm nguồn và đích mất liên thông.
+        -   Nếu cắt bỏ cạnh nối $u$ hoặc $v$ với đích, theo định nghĩa thứ nhất của song liên thông theo đỉnh, chắc chắn tồn tại đường đi đơn từ $c$ đến đỉnh còn lại chưa bị cắt.
+        -   Nếu cắt bỏ một cạnh sinh ra khi tách đỉnh, điều này tương đương với xóa một đỉnh; theo định nghĩa thứ hai của song liên thông theo đỉnh, đồ thị còn lại vẫn liên thông.
+        -   Nếu cắt bỏ một cạnh được tạo từ cạnh ban đầu, điều này tương đương với xóa một cạnh; đây là thao tác yếu hơn xóa một đỉnh, nên rõ ràng vẫn tồn tại đường đi.
+        -   Vì vậy ta đã chứng minh lát cắt cực tiểu lớn hơn $1$, tức luồng cực đại bằng $2$. Chứng minh hoàn tất.
         
-        这个结论能告诉我们什么呢？它告诉了我们：考虑两圆点在圆方树上的路径，与路径上经过的方点相邻的圆点的集合，就等于原图中两点简单路径上的点集．
+        Kết luận này cho ta biết điều gì? Nó cho biết: xét đường đi giữa hai đỉnh tròn trên cây tròn-vuông, tập các đỉnh tròn kề với các đỉnh vuông nằm trên đường đi đó chính là tập đỉnh nằm trên các đường đi đơn giữa hai đỉnh trong đồ thị gốc.
         
-        回到题目，考虑固定 $s$ 和 $f$，求合法的 $c$ 的数量，显然有合法 $c$ 的数量等于 $s,f$ 之间简单路径的并集的点数减 $2$（去掉 $s,f$ 本身）．
+        Quay lại bài toán, cố định $s$ và $f$, cần tính số lượng $c$ hợp lệ. Rõ ràng số lượng $c$ hợp lệ bằng số đỉnh trong hợp các đường đi đơn giữa $s,f$ trừ đi $2$ (loại chính $s,f$).
         
-        那么，对原图建出圆方树后，两点之间简单路径的点数，就和它们在圆方树上路径经过的方点（点双）和圆点的个数有关．
+        Như vậy, sau khi xây dựng cây tròn-vuông của đồ thị gốc, số đỉnh trên các đường đi đơn giữa hai đỉnh sẽ liên quan đến số đỉnh vuông (thành phần song liên thông theo đỉnh) và đỉnh tròn mà đường đi giữa chúng trên cây tròn-vuông đi qua.
         
-        接下来是圆方树的一个常用技巧：路径统计时，点赋上合适的权值．  
-        本题中，每个方点的权值为对应点双的大小，而每个圆点权值为 $-1$．
+        Tiếp theo là một kỹ thuật thông dụng trên cây tròn-vuông: khi thống kê đường đi, gán trọng số phù hợp cho đỉnh.
+        Trong bài này, mỗi đỉnh vuông có trọng số bằng kích thước thành phần song liên thông theo đỉnh tương ứng, còn mỗi đỉnh tròn có trọng số $-1$.
         
-        这样赋权后则有两圆点间圆方树上路径点权和，恰好等于原图中简单路径并集大小减 $2$．
+        Sau cách gán trọng số này, tổng trọng số trên đường đi giữa hai đỉnh tròn trong cây tròn-vuông vừa đúng bằng kích thước hợp các đường đi đơn trong đồ thị gốc trừ đi $2$.
         
-        问题转化为统计圆方树上 $\sum$ 两圆点路径权值和．
+        Bài toán chuyển thành thống kê $\sum$ tổng trọng số đường đi giữa mọi cặp đỉnh tròn trên cây tròn-vuông.
         
-        换个角度考虑，改为统计每一个点对答案的贡献，即权值乘以经过它的路径条数，这可以通过简单的树形 DP 求出．
+        Đổi góc nhìn, ta thống kê đóng góp của mỗi đỉnh vào đáp án, tức trọng số nhân với số đường đi đi qua nó; việc này có thể tính bằng DP trên cây đơn giản.
         
-        最后，不要忘记处理图不连通的情况．下面是对应代码：
+        Cuối cùng, đừng quên xử lý trường hợp đồ thị không liên thông. Bên dưới là mã tương ứng:
     
-    ??? note "参考代码"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/graph/code/block-forest/block-forest_1.cpp"
         ```
     
-    顺带一提，刚刚的测试用例在这题的答案是 $212$．
+    Tiện thể, test case vừa rồi có đáp án $212$ trong bài này.
 
 ???+ note "[Codeforces #487 E. Tourists](https://codeforces.com/contest/487/problem/E)"
-    ??? note "题意简述"
-        给定一张简单无向连通图，要求支持两种操作：
+    ??? note "Tóm tắt đề bài"
+        Cho một đồ thị vô hướng đơn liên thông, cần hỗ trợ hai loại thao tác:
         
-        1.  修改一个点的点权．
+        1.  Sửa trọng số của một đỉnh.
         
-        2.  询问两点之间所有简单路径上点权的最小值．
+        2.  Hỏi giá trị nhỏ nhất của trọng số đỉnh trên tất cả các đường đi đơn giữa hai đỉnh.
     
-    ??? note "题解"
-        同样地，我们建出原图的圆方树，令方点权值为相邻圆点权值的最小值，问题转化为求路径上最小值．
+    ??? note "Lời giải"
+        Tương tự, ta xây dựng cây tròn-vuông của đồ thị gốc, cho trọng số của đỉnh vuông bằng giá trị nhỏ nhất trong các đỉnh tròn kề với nó; bài toán chuyển thành tìm giá trị nhỏ nhất trên đường đi.
         
-        路径最小值可以使用树链剖分和线段树维护，但是修改呢？
+        Giá trị nhỏ nhất trên đường đi có thể được duy trì bằng heavy-light decomposition và cây phân đoạn, nhưng còn thao tác sửa thì sao?
         
-        一次修改一个圆点的点权，需要修改所有和它相邻的方点，这样很容易被卡到 $O(n)$ 个修改．
+        Mỗi lần sửa trọng số của một đỉnh tròn, ta cần sửa tất cả các đỉnh vuông kề với nó; khi đó rất dễ bị chạm đến $O(n)$ lần sửa.
         
-        这时我们利用圆方树是棵树的性质，令方点权值为自己的儿子圆点的权值最小值，这样的话修改时只需要修改父亲方点．
+        Lúc này ta tận dụng tính chất cây tròn-vuông là một cây: đặt trọng số của đỉnh vuông bằng giá trị nhỏ nhất trong các đỉnh tròn con của nó. Khi sửa, ta chỉ cần sửa đỉnh vuông cha.
         
-        对于方点的维护，只需要对每个方点开一个 `multiset` 维护权值集合即可．
+        Để duy trì các đỉnh vuông, chỉ cần mở một `multiset` cho mỗi đỉnh vuông để lưu tập trọng số.
         
-        需要注意的是查询时若 LCA 是方点，则还需要查 LCA 的父亲圆点的权值．
+        Cần chú ý khi truy vấn: nếu LCA là đỉnh vuông, còn cần xét thêm trọng số của đỉnh tròn cha của LCA.
         
-        注意：圆方树点数要开原图的两倍，否则会数组越界．
+        Lưu ý: số đỉnh của cây tròn-vuông phải khai báo gấp đôi số đỉnh đồ thị gốc, nếu không sẽ truy cập vượt mảng.
     
-    ??? note "参考代码"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/graph/code/block-forest/block-forest_2.cpp"
         ```
 
-???+ note "[「SDOI2018」战略游戏](https://loj.ac/p/2562)"
-    ??? note "题意简述"
-        给出一个简单无向连通图．有 $q$ 次询问：
+???+ note "[SDOI2018 Strategic Game](https://loj.ac/p/2562)"
+    ??? note "Tóm tắt đề bài"
+        Cho một đồ thị vô hướng đơn liên thông. Có $q$ truy vấn:
         
-        每次给出一个点集 $S$（$2 \le |S| \le n$），问有多少个点 $u$ 满足 $u \notin S$ 且删掉 $u$ 之后 $S$ 中的点不全在一个连通分量中．
+        Mỗi lần cho một tập đỉnh $S$ ($2 \le |S| \le n$), hỏi có bao nhiêu đỉnh $u$ thỏa mãn $u \notin S$ và sau khi xóa $u$, các đỉnh trong $S$ không còn nằm tất cả trong cùng một thành phần liên thông.
         
-        每个测试点有多组数据．
+        Mỗi test point có nhiều bộ dữ liệu.
     
-    ??? note "题解"
-        先建出圆方树，则变为询问 $S$ 在圆方树上对应的连通子图中的圆点个数减去 $|S|$．
+    ??? note "Lời giải"
+        Trước hết xây dựng cây tròn-vuông. Bài toán trở thành hỏi số đỉnh tròn trong đồ thị con liên thông tương ứng với $S$ trên cây tròn-vuông, rồi trừ đi $|S|$.
         
-        如何计算连通子图中的圆点个数？有一个方法：
+        Tính số đỉnh tròn trong đồ thị con liên thông như thế nào? Có một cách:
         
-        把圆点的权值放到它和它的父亲方点的边上，问题转化为求边权和，这个问题可以参考 [「SDOI2015」寻宝游戏](https://loj.ac/p/2182) 的一种解法．  
-        即把 $S$ 中的点按照 DFS 序排序，计算排序后相邻两点的距离和（还包括首尾两点之间的距离），答案就是距离和的一半，因为每条边只被经过两次．
+        Đưa trọng số của đỉnh tròn lên cạnh nối nó với đỉnh vuông cha; bài toán chuyển thành tính tổng trọng số cạnh. Bài toán này có thể tham khảo một cách giải của [SDOI2015 Treasure Hunt](https://loj.ac/p/2182).
+        Cụ thể, sắp xếp các đỉnh trong $S$ theo thứ tự DFS, tính tổng khoảng cách giữa hai đỉnh liền kề sau khi sắp xếp (đồng thời tính cả khoảng cách giữa đỉnh cuối và đỉnh đầu). Đáp án là một nửa tổng khoảng cách, vì mỗi cạnh chỉ được đi qua hai lần.
         
-        最后，如果子图中的深度最浅的节点是圆点，答案还要加上 $1$，因为我们没有统计到它．
+        Cuối cùng, nếu đỉnh có độ sâu nhỏ nhất trong đồ thị con là đỉnh tròn, đáp án còn phải cộng thêm $1$, vì ta chưa thống kê đến nó.
         
-        因为有多组数据，要注意初始化数组．
+        Vì có nhiều bộ dữ liệu, cần chú ý khởi tạo mảng.
     
-    ??? note "参考代码"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/graph/code/block-forest/block-forest_3.cpp"
         ```
 
-## 习题
+## Bài tập
 
 -   [UVa 1464 Traffic Real Time Query](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4210)
--   [洛谷 P4320 道路相遇](https://www.luogu.com.cn/problem/P4320)
--   [洛谷 P10517 国土规划](https://www.luogu.com.cn/problem/P10517)
+-   [Luogu P4320 Road Encounters](https://www.luogu.com.cn/problem/P4320)
+-   [Luogu P10517 Land-use Planning](https://www.luogu.com.cn/problem/P10517)
 
-## 外部链接
+## Liên kết ngoài
 
-immortalCO，[圆方树——处理仙人掌的利器](https://immortalco.blog.uoj.ac/blog/1955)，Universal OJ．
+immortalCO, [Cây tròn-vuông - công cụ sắc bén để xử lý cactus](https://immortalco.blog.uoj.ac/blog/1955), Universal OJ.
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^ref1]: 2017 年陈俊锟同学在他的 IOI2017 中国国家集训队论文《〈神奇的子图〉命题报告及其拓展》中定义并命名了圆方树这一结构．
+[^ref1]: Năm 2017, bạn Chen Junkun đã định nghĩa và đặt tên cấu trúc cây tròn-vuông trong báo cáo đội tuyển tập huấn quốc gia Trung Quốc cho IOI2017, "Báo cáo đề bài và mở rộng của 'Đồ thị con kỳ diệu'".
 
-[^ref2]: 陈俊锟，《平凡的圆方树和神奇的（~~动态~~）动态规划》，NOI2018 冬令营，第 4 页．
+[^ref2]: Chen Junkun, "Cây tròn-vuông bình thường và quy hoạch động (~~động~~) kỳ diệu", Trại đông NOI2018, trang 4.

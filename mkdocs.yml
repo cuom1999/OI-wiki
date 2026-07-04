@@ -445,12 +445,12 @@ nav:
       - Cây khung đường kính nhỏ nhất: graph/mdst.md
     - Cây Steiner: graph/steiner-tree.md
     - Tách đỉnh: graph/node.md
-    - 连通性相关:
-      - 强连通分量: graph/scc.md
-      - 双连通分量: graph/bcc.md
-      - 割点和桥: graph/cut.md
-      - 圆方树: graph/block-forest.md
-      - 点/边连通度: graph/connectivity.md
+    - Liên thông:
+      - Thành phần liên thông mạnh: graph/scc.md
+      - Thành phần song liên thông: graph/bcc.md
+      - Đỉnh khớp và cầu: graph/cut.md
+      - Cây tròn-vuông: graph/block-forest.md
+      - Độ liên thông đỉnh/cạnh: graph/connectivity.md
     - 环计数问题: graph/rings-count.md
     - 最小环: graph/min-cycle.md
     - 2-SAT: graph/2-sat.md

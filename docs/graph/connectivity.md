@@ -1,55 +1,55 @@
 author: jifbt, Mayuri0v0
 
-## 定义
+## Định nghĩa
 
-以下内容的定义，请参见 [图论相关概念](./concept.md)：
+Định nghĩa của các nội dung sau có thể xem tại [các khái niệm liên quan đến lý thuyết đồ thị](./concept.md):
 
--   边连通度、边割集；
--   点连通度、点割集；
--   团．
+-   độ liên thông cạnh, tập cắt cạnh;
+-   độ liên thông đỉnh, tập cắt đỉnh;
+-   clique.
 
-## 性质
+## Tính chất
 
-### Whitney 不等式
+### Bất đẳng thức Whitney
 
-**Whitney 不等式**（1932）给出了点连通度 $\kappa$、边连通度 $\lambda$ 和最小度 $\delta$ 之间的关系：
+**Bất đẳng thức Whitney** (1932) cho biết quan hệ giữa độ liên thông đỉnh $\kappa$, độ liên thông cạnh $\lambda$ và bậc nhỏ nhất $\delta$:
 
 $$
 \kappa \le \lambda \le \delta
 $$
 
-???+ note "证明"
-    直觉上，如果有一个大小为 $\lambda$ 的边割集，其中每一条边任选一个端点，就可以得到一个大小为 $\lambda$ 的点割集，所以第一个不等式成立．
-    
-    与度最小的结点（如有多个，任选一个）相邻的所有边构成大小为 $\delta$ 的边割集，所以第二个不等式也成立．
+???+ note "Chứng minh"
+    Trực giác là: nếu có một tập cắt cạnh kích thước $\lambda$, chọn tùy ý một đầu mút của mỗi cạnh trong đó thì ta có thể thu được một tập cắt đỉnh kích thước $\lambda$. Vì vậy bất đẳng thức thứ nhất đúng.
 
-这个不等式不能改进；换言之，对每个满足它的三元组，均可以找出满足这个三元组的图．
+    Tất cả các cạnh kề với một đỉnh có bậc nhỏ nhất (nếu có nhiều đỉnh như vậy thì chọn tùy ý một đỉnh) tạo thành một tập cắt cạnh kích thước $\delta$, nên bất đẳng thức thứ hai cũng đúng.
 
-???+ note "构造"
-    把两个大小为 $\delta + 1$ 的团用 $\lambda$ 条边连起来，使两个团分别有 $\lambda$ 和 $\kappa$ 个不同的结点被连在这些边上．
+Bất đẳng thức này không thể cải thiện thêm. Nói cách khác, với mọi bộ ba thỏa mãn nó, đều có thể tìm được một đồ thị có đúng bộ ba giá trị đó.
 
-### Menger 定理
+???+ note "Cấu dựng"
+    Nối hai clique kích thước $\delta + 1$ bằng $\lambda$ cạnh, sao cho trong hai clique lần lượt có $\lambda$ và $\kappa$ đỉnh khác nhau được nối bởi các cạnh này.
 
-由 [最大流最小割定理](./flow/min-cut.md)（又名 Ford–Fulkerson 定理）可推出，两点间的不相交（指两两没有公共边）路径的最大数量等于割集的最小大小（这个推论又叫 **Menger 定理**——译者注）．
+### Định lý Menger
 
-## 计算
+Từ [định lý luồng cực đại - cắt nhỏ nhất](./flow/min-cut.md) (còn gọi là định lý Ford-Fulkerson), ta có thể suy ra rằng số lượng đường đi không giao nhau (tức là đôi một không có cạnh chung) lớn nhất giữa hai đỉnh bằng kích thước nhỏ nhất của tập cắt. Hệ quả này còn được gọi là **định lý Menger**.
 
-以下图的边权均为 $1$．
+## Tính toán
 
-### 用最大流计算边连通度
+Trong các đồ thị dưới đây, trọng số của mọi cạnh đều là $1$.
 
-枚举点对 $(s, t)$，以 $s$ 为源点，$t$ 为汇点跑边权为 $1$ 的最大流．需要 $O(n^2)$ 次最大流，如果使用 Edmonds–Karp 算法，复杂度为 $O(|V|^3 |E|^2)$．使用 Dinic 算法可以更优，复杂度为 $O(|V|^2 |E| \min(|V|^{2/3}, |E|^{1/2}))$．
+### Tính độ liên thông cạnh bằng luồng cực đại
 
-### 全局最小割
+Liệt kê mọi cặp đỉnh $(s, t)$, lấy $s$ làm nguồn và $t$ làm đích, rồi chạy luồng cực đại với trọng số cạnh bằng $1$. Cần chạy luồng cực đại $O(n^2)$ lần. Nếu dùng thuật toán Edmonds-Karp, độ phức tạp là $O(|V|^3 |E|^2)$. Dùng thuật toán Dinic sẽ tốt hơn, với độ phức tạp $O(|V|^2 |E| \min(|V|^{2/3}, |E|^{1/2}))$.
 
-使用 [Stoer–Wagner 算法](./stoer-wagner.md) 只需跑一次无源汇最小割即可．复杂度为 $O(|V||E| + |V|^{2}\log|V|)$，一般可近似看作 $O(|V|^3)$．
+### Cắt nhỏ nhất toàn cục
 
-### 点连通度
+Dùng [thuật toán Stoer-Wagner](./stoer-wagner.md), ta chỉ cần chạy một lần bài toán cắt nhỏ nhất không có nguồn và đích. Độ phức tạp là $O(|V||E| + |V|^{2}\log|V|)$, thường có thể xấp xỉ là $O(|V|^3)$.
 
-仍然枚举点对，这次把每个非源汇的点 $x$ 拆成两个点 $x_1$ 和 $x_2$，并连边 $(x_1, x_2)$．把原图中所有边 $(u, v)$ 换成两条边 $(u_2, v_1)$ 和 $(v_2, u_1)$．此时最大流等于 $s$、$t$ 之间的最小点割集大小（又称局部点连通度）．复杂度与用最大流计算边连通度相同．
+### Độ liên thông đỉnh
 
-**本页面译自博文 [Рёберная связность. Свойства и нахождение](http://e-maxx.ru/algo/rib_connectivity)、[Вершинная связность. Свойства и нахождение](http://e-maxx.ru/algo/vertex_connectivity) 与其英文翻译版 [Edge connectivity/Vertex connectivity](https://cp-algorithms.com/graph/edge_vertex_connectivity.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+Ta vẫn liệt kê các cặp đỉnh. Lần này, với mỗi đỉnh $x$ không phải nguồn hoặc đích, tách nó thành hai đỉnh $x_1$ và $x_2$, rồi nối cạnh $(x_1, x_2)$. Thay mọi cạnh $(u, v)$ trong đồ thị ban đầu bằng hai cạnh $(u_2, v_1)$ và $(v_2, u_1)$. Khi đó, giá trị luồng cực đại bằng kích thước của tập cắt đỉnh nhỏ nhất giữa $s$ và $t$ (còn gọi là độ liên thông đỉnh cục bộ). Độ phức tạp giống với cách dùng luồng cực đại để tính độ liên thông cạnh.
 
-## 延伸阅读
+**Trang này được dịch từ các bài blog [Рёберная связность. Свойства и нахождение](http://e-maxx.ru/algo/rib_connectivity), [Вершинная связность. Свойства и нахождение](http://e-maxx.ru/algo/vertex_connectivity) và bản dịch tiếng Anh của chúng [Edge connectivity/Vertex connectivity](https://cp-algorithms.com/graph/edge_vertex_connectivity.html). Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**
 
--   论文 [*Connectivity Algorithms*](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) 介绍了近年来连通度计算算法的进展．感兴趣的读者可以自行浏览．
+## Đọc thêm
+
+-   Bài báo [*Connectivity Algorithms*](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) giới thiệu những tiến triển trong các thuật toán tính liên thông trong những năm gần đây. Bạn đọc quan tâm có thể tự tham khảo.

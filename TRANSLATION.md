@@ -283,6 +283,10 @@ MkDocs source layout intact.
   `docs/graph/steiner-tree.md`, `docs/graph/node.md`: translated spanning-tree
   algorithms, directed and minimum-diameter spanning trees, Steiner tree, and
   node-splitting graph modeling material.
+- `docs/graph/scc.md`, `docs/graph/bcc.md`, `docs/graph/cut.md`,
+  `docs/graph/block-forest.md`, `docs/graph/connectivity.md`: translated
+  connectivity material covering SCCs, biconnected components, articulation
+  points, bridges, block-cut trees, and vertex/edge connectivity.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
