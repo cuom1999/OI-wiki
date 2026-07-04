@@ -178,9 +178,10 @@ MkDocs source layout intact.
   number-theory tail covering Euclidean-like algorithms, continued fractions,
   Stern-Brocot/Farey structures, quadratic fields, and Pell equations, plus
   explanatory comments in included Stern-Brocot snippets; quality-passed the
-  opening solution-structure discussion, the PQa theorem block, the
-  negative-Pell theorem around the missing quadratic factor, and the general
-  Lagrange–Matthews–Mollin argument in
+  opening solution-structure discussion, first Pell solution-structure
+  theorem/existence proof, the PQa theorem block, the negative-Pell theorem
+  around the missing quadratic factor, and the general Lagrange–Matthews–Mollin
+  argument in
   `docs/math/number-theory/pell-equation.md`, including its LMM examples and
   closing notes.
 - `docs/math/poly/intro.md`, `docs/math/poly/fundamental.md`,

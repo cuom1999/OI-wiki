@@ -75,61 +75,96 @@ phương trình Pell có vai trò quan trọng đối với cấu trúc nghiệm
 Pell tổng quát.
 
 <span id="pell-&#x65b9;&#x7a0b;"></span>
-### Phuong trinh Pell
+### Phương trình Pell
 
-Y nghia hinh hoc cua phuong trinh $x^2-Dy^2=1$ la mot hyperbol co truc thuc theo truc $x$ va truc ao theo truc $y$. Moi diem tren hyperbol tuong ung duy nhat voi mot gia tri khac khong cua $x+y\sqrt{D}$: nhanh trai cua hyperbol tuong ung voi gia tri am cua $x+y\sqrt{D}$, nhanh phai tuong ung voi gia tri duong. Hon nua, tren moi nhanh, gia tri $x+y\sqrt{D}$ tuong ung voi cac diem tren hyperbol tang nghiem ngat tu duoi len tren. Gia tri cua so nguyen bac hai tao ra mot thu tu tu nhien cho cac nghiem cua phuong trinh Pell.
+Ý nghĩa hình học của phương trình $x^2-Dy^2=1$ là một hyperbol có trục thực
+theo trục $x$ và trục ảo theo trục $y$. Mỗi điểm trên hyperbol tương ứng duy
+nhất với một giá trị khác không của $x+y\sqrt{D}$: nhánh trái của hyperbol tương
+ứng với giá trị âm của $x+y\sqrt{D}$, nhánh phải tương ứng với giá trị dương.
+Hơn nữa, trên mỗi nhánh, giá trị $x+y\sqrt{D}$ tương ứng với các điểm trên
+hyperbol tăng nghiêm ngặt từ dưới lên trên. Giá trị của số nguyên bậc hai tạo ra
+một thứ tự tự nhiên cho các nghiệm của phương trình Pell.
 
-Hyperbol dong thoi doi xung qua truc $x$ va truc $y$, nen khi thao luan nghiem cua phuong trinh Pell chi can xet doan nam trong goc phan tu thu nhat; cac nghiem con lai thu duoc bang doi xung. Dieu nay tuong duong voi chi xet cac nghiem $x+y\sqrt{D}>1$. Neu ngoai $(\pm 1,0)$ phuong trinh con co nghiem khong tam thuong, thi trong goc phan tu thu nhat nhat dinh ton tai nghiem $(x_1,y_1)$ co gia tri $x+y\sqrt{D}$ nho nhat; day cung la diem nguyen trong goc phan tu thu nhat (khong ke truc toa do) co ca hoanh do va tung do nho nhat. No duoc goi la nghiem co ban (fundamental solution) cua phuong trinh Pell[^fundamental-solution]. Theo thao luan o tren, moi cap so nguyen $(x_k,y_k)$ thoa man $x_k+y_k\sqrt{D}=(x_1+y_1\sqrt{D})^k$ deu la nghiem cua phuong trinh Pell va deu nam trong goc phan tu thu nhat. Nguoc lai, day thuc su la tat ca nghiem cua phuong trinh Pell trong goc phan tu thu nhat. Ket hop voi doi xung, ta co ket luan sau:
+Hyperbol đồng thời đối xứng qua trục $x$ và trục $y$, nên khi thảo luận nghiệm
+của phương trình Pell chỉ cần xét đoạn nằm trong góc phần tư thứ nhất; các
+nghiệm còn lại thu được bằng đối xứng. Điều này tương đương với chỉ xét các
+nghiệm $x+y\sqrt{D}>1$. Nếu ngoài $(\pm 1,0)$ phương trình còn có nghiệm không
+tầm thường, thì trong góc phần tư thứ nhất nhất định tồn tại nghiệm $(x_1,y_1)$
+có giá trị $x+y\sqrt{D}$ nhỏ nhất; đây cũng là điểm nguyên trong góc phần tư thứ
+nhất (không kể trục tọa độ) có cả hoành độ và tung độ nhỏ nhất. Nó được gọi là
+nghiệm cơ bản (fundamental solution) của phương trình Pell[^fundamental-solution].
+Theo thảo luận ở trên, mọi cặp số nguyên $(x_k,y_k)$ thỏa mãn
+$x_k+y_k\sqrt{D}=(x_1+y_1\sqrt{D})^k$ đều là nghiệm của phương trình Pell và đều
+nằm trong góc phần tư thứ nhất. Ngược lại, đây thực sự là tất cả nghiệm của
+phương trình Pell trong góc phần tư thứ nhất. Kết hợp với đối xứng, ta có kết
+luận sau:
 
-???+ note "Dinh li"
-    Gia su nghiem co ban cua phuong trinh Pell $x^2-Dy^2=1$ la $(x_1,y_1)$. Khi do toan bo nghiem cua no la
+???+ note "Định lý"
+    Giả sử nghiệm cơ bản của phương trình Pell $x^2-Dy^2=1$ là $(x_1,y_1)$.
+    Khi đó toàn bộ nghiệm của nó là
 
     $$
     \{(x,y):x+y\sqrt{D}=\pm(x_1+y_1\sqrt{D})^k,k\in\mathbf Z\}.
     $$
 
-??? note "Chung minh"
-    Truoc het chung minh trong goc phan tu thu nhat khong co nghiem nao khac. Gia su nguoc lai ton tai nghiem khac $x+y\sqrt{D}$ va voi mot $k\ge 0$ nao do co
+??? note "Chứng minh"
+    Trước hết chứng minh trong góc phần tư thứ nhất không có nghiệm nào khác.
+    Giả sử ngược lại tồn tại nghiệm khác $x+y\sqrt{D}$ và với một $k\ge 0$ nào
+    đó có
 
     $$
     x_k+y_k\sqrt{D}< x+y\sqrt{D}< x_{k+1}+y_{k+1}\sqrt{D}.
     $$
 
-    Ve hinh hoc, dieu nay co nghia diem nguyen $(x,y)$ nam tren hyperbol giua $(x_k,y_k)$ va $(x_{k+1},y_{k+1})$ (khong ke hai dau mut). Nhan dong thoi bat dang thuc voi $x_k-y_k\sqrt{D}=(x_k+y_k\sqrt{D})^{-1}$, ta duoc
+    Về hình học, điều này có nghĩa điểm nguyên $(x,y)$ nằm trên hyperbol giữa
+    $(x_k,y_k)$ và $(x_{k+1},y_{k+1})$ (không kể hai đầu mút). Nhân đồng thời
+    bất đẳng thức với $x_k-y_k\sqrt{D}=(x_k+y_k\sqrt{D})^{-1}$, ta được
 
     $$
     1< (x+y\sqrt{D})(x_k-y_k\sqrt{D})=(xx_k-Dyy_k)+(x_ky-xy_k)\sqrt{D} < x_1+y_1\sqrt{D}.
     $$
 
-    Theo tinh don dieu da neu o tren, bat dang thuc nay cho thay $(xx_k-Dyy_k,x_ky-xy_k)$ la diem nguyen nam giua $(1,0)$ va $(x_1,y_1)$. Dieu nay mau thuan voi cach chon $(x_1,y_1)$.
+    Theo tính đơn điệu đã nêu ở trên, bất đẳng thức này cho thấy
+    $(xx_k-Dyy_k,x_ky-xy_k)$ là điểm nguyên nằm giữa $(1,0)$ và $(x_1,y_1)$.
+    Điều này mâu thuẫn với cách chọn $(x_1,y_1)$.
 
-    Khi mo rong nghiem tu goc phan tu thu nhat ra toan bo mat phang, doi dau so mu $k$ (tuc lay nghich dao toan bo) chinh la doi xung qua truc $x$, con doi dau toan bo la doi xung qua goc toa do. Them nghiem tam thuong khi $k=0$, ta thu duoc tat ca nghiem cua phuong trinh Pell.
+    Khi mở rộng nghiệm từ góc phần tư thứ nhất ra toàn bộ mặt phẳng, đổi dấu số
+    mũ $k$ (tức lấy nghịch đảo toàn bộ) chính là đối xứng qua trục $x$, còn đổi
+    dấu toàn bộ là đối xứng qua gốc tọa độ. Thêm nghiệm tầm thường khi $k=0$, ta
+    thu được tất cả nghiệm của phương trình Pell.
 
-Thao luan tren chi gia su ton tai nghiem co ban. Bay gio can chi ra phuong trinh Pell luon co nghiem khong tam thuong.
+Thảo luận trên chỉ giả sử tồn tại nghiệm cơ bản. Bây giờ cần chỉ ra phương trình
+Pell luôn có nghiệm không tầm thường.
 
-???+ note "Dinh li"
-    Phuong trinh Pell $x^2-Dy^2=1$ luon co nghiem nguyen khac $(\pm 1,0)$.
+???+ note "Định lý"
+    Phương trình Pell $x^2-Dy^2=1$ luôn có nghiệm nguyên khác $(\pm 1,0)$.
 
-??? note "Chung minh"
-    Truoc het, [dinh li Dirichlet](./continued-fraction.md#%E7%94%A8%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E9%80%BC%E8%BF%91%E5%AE%9E%E6%95%B0) cho biet ton tai vo han cap so nguyen duong $(x,y)$ sao cho
+??? note "Chứng minh"
+    Trước hết, [định lý Dirichlet](./continued-fraction.md#%E7%94%A8%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E9%80%BC%E8%BF%91%E5%AE%9E%E6%95%B0)
+    cho biết tồn tại vô hạn cặp số nguyên dương $(x,y)$ sao cho
 
     $$
     \left|\dfrac{x}{y}-\sqrt{D}\right| \le \dfrac{1}{y^2}
     $$
 
-    dung. Chung deu thoa man bat dang thuc
+    đúng. Chúng đều thỏa mãn bất đẳng thức
 
     $$
     |x^2-Dy^2|=y^2\left|\dfrac{x}{y}-\sqrt{D}\right|\left|\dfrac{x}{y}+\sqrt{D}\right| \le \dfrac{1}{y^2}+2\sqrt{D}<1+2\sqrt{D}.
     $$
 
-    Do do, nhat dinh ton tai so nguyen $m\in(-1-2\sqrt{D},1+2\sqrt{D})$ sao cho co vo han cap $(x,y)$ thoa man $x^2-Dy^2 = m$. Phan loai cac cap $(x,y)$ nay theo phan du modulo $m$, ta biet voi mot cap so nguyen $(x_0,y_0)$ nao do, nhat dinh ton tai vo han cap $(x,y)$ sao cho $x\equiv x_0\pmod m$ va $y\equiv y_0\pmod m$. Chon hai cap phan biet bat ki $(x_1,y_1)$ va $(x_2,y_2)$ thoa man cac dieu kien nay, khi do
+    Do đó, nhất định tồn tại số nguyên $m\in(-1-2\sqrt{D},1+2\sqrt{D})$ sao cho
+    có vô hạn cặp $(x,y)$ thỏa mãn $x^2-Dy^2 = m$. Phân loại các cặp $(x,y)$
+    này theo phần dư modulo $m$, ta biết với một cặp số nguyên $(x_0,y_0)$ nào
+    đó, nhất định tồn tại vô hạn cặp $(x,y)$ sao cho $x\equiv x_0\pmod m$ và
+    $y\equiv y_0\pmod m$. Chọn hai cặp phân biệt bất kỳ $(x_1,y_1)$ và
+    $(x_2,y_2)$ thỏa mãn các điều kiện này, khi đó
 
     $$
     \dfrac{x_1+y_1\sqrt{D}}{x_2+y_2\sqrt{D}}=\dfrac{x_1x_2-Dy_1y_2}{m}+\dfrac{x_2y_1-x_1y_2}{m}\sqrt{D}.
     $$
 
-    Vi theo quan he dong du co
+    Vì theo quan hệ đồng dư có
 
     $$
     \begin{aligned}
@@ -138,9 +173,18 @@ Thao luan tren chi gia su ton tai nghiem co ban. Bay gio can chi ra phuong trinh
     \end{aligned}
     $$
 
-    nen ve phai cua cong thuc tren la mot nghiem nguyen. Hon nua, vi $(x_1,y_1)\neq(x_2,y_2)$, nghiem nay khong tam thuong. Dieu nay chung minh phuong trinh Pell thuc su co nghiem khong tam thuong.
+    nên vế phải của công thức trên là một nghiệm nguyên. Hơn nữa, vì
+    $(x_1,y_1)\neq(x_2,y_2)$, nghiệm này không tầm thường. Điều này chứng minh
+    phương trình Pell thực sự có nghiệm không tầm thường.
 
-Tat nhien, phan nay dua ra chung minh khong xay dung. O phan duoi khi thao luan cach giai phuong trinh Pell, ta se truc tiep dung cac phan so gan dung cua phan so lien tuc de xay dung nghiem, qua do dua ra mot chung minh khac cho su ton tai nghiem khong tam thuong cua phuong trinh Pell. Ngoai ra, mac du cau truc nghiem cua phuong trinh Pell thu duoc o day phu hop voi cau truc don vi cua vanh so nguyen bac hai thuc, nhung voi truong hop $D\equiv 1\pmod 4$, phan nay van chua giai quyet hoan toan cau truc don vi cua vanh so nguyen bac hai tuong ung; phan duoi se thao luan tiep.
+Tất nhiên, phần này đưa ra chứng minh không xây dựng. Ở phần dưới khi thảo luận
+cách giải phương trình Pell, ta sẽ trực tiếp dùng các phân số gần đúng của phân
+số liên tục để xây dựng nghiệm, qua đó đưa ra một chứng minh khác cho sự tồn
+tại nghiệm không tầm thường của phương trình Pell. Ngoài ra, mặc dù cấu trúc
+nghiệm của phương trình Pell thu được ở đây phù hợp với cấu trúc đơn vị của
+vành số nguyên bậc hai thực, nhưng với trường hợp $D\equiv 1\pmod 4$, phần này
+vẫn chưa giải quyết hoàn toàn cấu trúc đơn vị của vành số nguyên bậc hai tương
+ứng; phần dưới sẽ thảo luận tiếp.
 
 <span id="&#x5e7f;&#x4e49;-pell-&#x65b9;&#x7a0b;"></span>
 ### Phuong trinh Pell tong quat
