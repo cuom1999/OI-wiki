@@ -372,38 +372,63 @@ tính logarit rời rạc trong phép khai căn.
 <span id="&#27169;&#24847;&#20041;&#19979;&#24320;&#26041;"></span>
 ## Khai căn theo modulo
 
-Cuoi cung, bai viet thao luan cach tim can bac $k$. Voi $k=2$, co [nhieu thuat toan hieu qua](./quad-residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E5%B9%B3%E6%96%B9) de khai can bac hai theo modulo. Tuy nhien, voi $k$ tong quat, hien chua biet thuat toan thoi gian da thuc. Muc nay gioi thieu hai thuat toan pho bien, lan luot co the tim mot can bac $k$ trong thoi gian $O(m^{1/2})$ va $O(m^{1/4+\varepsilon})$. Dung dinh ly thang du Trung Hoa luon co the dua bai toan ve truong hop modulo luy thua cua so nguyen to, vi vay muc nay chu yeu thao luan loi giai trong truong hop modulo luy thua cua so nguyen to.
+Cuối cùng, bài viết thảo luận cách tìm căn bậc $k$. Với $k=2$, có
+[nhiều thuật toán hiệu quả](./quad-residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E5%B9%B3%E6%96%B9)
+để khai căn bậc hai theo modulo. Tuy nhiên, với $k$ tổng quát, hiện chưa biết
+thuật toán thời gian đa thức. Mục này giới thiệu hai thuật toán phổ biến, lần
+lượt có thể tìm một căn bậc $k$ trong thời gian $O(m^{1/2})$ và
+$O(m^{1/4+\varepsilon})$. Dùng định lí thặng dư Trung Hoa luôn có thể đưa bài
+toán về trường hợp modulo lũy thừa của số nguyên tố, vì vậy mục này chủ yếu
+thảo luận lời giải trong trường hợp modulo lũy thừa của số nguyên tố.
 
 <span id="&#26420;&#32032;&#31639;&#27861;"></span>
 ### Thuật toán trực tiếp
 
-[Phan tich](#%E6%80%A7%E8%B4%A8) ve tinh chat cua thang du bac $k$ o tren thuc ra da chi ra mot cach tim can bac $k$ theo modulo luy thua cua so nguyen to. Noi chinh xac, phan tren da giai quyet truong hop so duoc khai can $a$ nguyen to cung nhau voi modulo $m$. Qua trinh thuat toan tom tat nhu sau:
+[Phân tích](#%E6%80%A7%E8%B4%A8) về tính chất của thặng dư bậc $k$ ở trên thực
+ra đã chỉ ra một cách tìm căn bậc $k$ theo modulo lũy thừa của số nguyên tố.
+Nói chính xác, phần trên đã giải quyết trường hợp số được khai căn $a$ nguyên tố
+cùng nhau với modulo $m$. Quá trình thuật toán tóm tắt như sau:
 
--   Khi $m=p^e$ la luy thua cua so nguyen to le, gia su $g$ la mot can nguyen thuy modulo $m$. Khi do, phuong trinh $x^k\equiv a\pmod m$ co the chuyen thanh phuong trinh dong du tuyen tinh
+-   Khi $m=p^e$ là lũy thừa của số nguyên tố lẻ, giả sử $g$ là một căn nguyên
+    thủy modulo $m$. Khi đó, phương trình $x^k\equiv a\pmod m$ có thể chuyển
+    thành phương trình đồng dư tuyến tính
 
     $$
     ky \equiv \operatorname{ind}_g a \pmod{\varphi(m)}.
     $$
 
-    Trong do, $\operatorname{ind}_g a$ co the duoc tinh bang [thuat toan BSGS](./discrete-logarithm.md#%E5%A4%A7%E6%AD%A5%E5%B0%8F%E6%AD%A5%E7%AE%97%E6%B3%95), con toan bo nghiem cua [phuong trinh dong du tuyen tinh](./linear-equation.md) thi de tim. Tu do thu duoc tat ca can bac $k$ cua $a$, co dang $x\equiv g^y\pmod m$.
+    Trong đó, $\operatorname{ind}_g a$ có thể được tính bằng
+    [thuật toán BSGS](./discrete-logarithm.md#%E5%A4%A7%E6%AD%A5%E5%B0%8F%E6%AD%A5%E7%AE%97%E6%B3%95),
+    còn toàn bộ nghiệm của
+    [phương trình đồng dư tuyến tính](./linear-equation.md) thì dễ tìm. Từ đó
+    thu được tất cả căn bậc $k$ của $a$, có dạng $x\equiv g^y\pmod m$.
 
-    Ngoai ra con mot y tuong tuong tu. Van dat $x\equiv g^y\pmod m$, co the bien doi
+    Ngoài ra còn một ý tưởng tương tự. Vẫn đặt $x\equiv g^y\pmod m$, có thể
+    biến đổi
 
     $$
     x^k \equiv (g^k)^y \equiv a \pmod m
     $$
 
-    thanh bai toan tim logarit roi rac cua $a$ voi co so $g^k$. Bai toan nay cung co the dung BSGS de tim mot nghiem rieng. Nghiem tong quat cua no co the suy ra tu bieu thuc nghiem o phan tren, tuc la nhan nghiem rieng lan luot voi toan bo can don vi bac $k$.
+    thành bài toán tìm logarit rời rạc của $a$ với cơ số $g^k$. Bài toán này
+    cũng có thể dùng BSGS để tìm một nghiệm riêng. Nghiệm tổng quát của nó có
+    thể suy ra từ biểu thức nghiệm ở phần trên, tức là nhân nghiệm riêng lần
+    lượt với toàn bộ căn đơn vị bậc $k$.
 
-    Du dung y tuong nao, khi da biet can nguyen thuy, do phuc tap de tim mot nghiem cua thuat toan nay la $O(m^{1/2})$. Vi co the tim mot can nguyen thuy trong thoi gian $o(m^{1/2})$, tong do phuc tap van la $O(m^{1/2})$.
+    Dù dùng ý tưởng nào, khi đã biết căn nguyên thủy, độ phức tạp để tìm một
+    nghiệm của thuật toán này là $O(m^{1/2})$. Vì có thể tìm một căn nguyên thủy
+    trong thời gian $o(m^{1/2})$, tổng độ phức tạp vẫn là $O(m^{1/2})$.
 
--   Khi $m=2^e$ va $e\in\mathbf N_+$, truoc het co the tim $s,r$ trong $a\equiv (-1)^s5^r\pmod m$. Trong hai so mu nay, $s$ co the xac dinh trong $O(1)$:
+-   Khi $m=2^e$ và $e\in\mathbf N_+$, trước hết có thể tìm $s,r$ trong
+    $a\equiv (-1)^s5^r\pmod m$. Trong hai số mũ này, $s$ có thể xác định trong
+    $O(1)$:
 
     $$
     s = \begin{cases}0, & a\equiv 1\pmod 4, \\ 1, & a\equiv 3\pmod 4.\end{cases}
     $$
 
-    Con $r=\operatorname{ind}_5((-1)^sa)$ co the tinh bang thuat toan BSGS trong $O(m^{1/2})$. Tiep theo chi can giai he phuong trinh dong du tuyen tinh:
+    Còn $r=\operatorname{ind}_5((-1)^sa)$ có thể tính bằng thuật toán BSGS trong
+    $O(m^{1/2})$. Tiếp theo chỉ cần giải hệ phương trình đồng dư tuyến tính:
 
     $$
     \begin{aligned}
@@ -412,11 +437,16 @@ Cuoi cung, bai viet thao luan cach tim can bac $k$. Voi $k=2$, co [nhieu thuat t
     \end{aligned}
     $$
 
-    Nghiem tong quat $(z,y)$ cua he tuyen tinh nay de tim, va $x=(-1)^z5^y$ chinh la can can tim. Do phuc tap de tim mot nghiem cua thuat toan nay van la $O(m^{1/2})$.
+    Nghiệm tổng quát $(z,y)$ của hệ tuyến tính này dễ tìm, và $x=(-1)^z5^y$
+    chính là căn cần tìm. Độ phức tạp để tìm một nghiệm của thuật toán này vẫn
+    là $O(m^{1/2})$.
 
-Tat nhien, voi truong hop vo nghiem, thuc ra co the dung tieu chuan da neu o tren de kiem tra nhanh trong $O(\log m)$, khong can doi den qua trinh giai moi phat hien.
+Tất nhiên, với trường hợp vô nghiệm, thực ra có thể dùng tiêu chuẩn đã nêu ở
+trên để kiểm tra nhanh trong $O(\log m)$, không cần đợi đến quá trình giải mới
+phát hiện.
 
-Ma tham khao de tim can bac $k$ modulo so nguyen to nhu sau: (ma chi mang tinh minh hoa; do do phuc tap qua cao, khong the vuot qua bai nay)
+Mã tham khảo để tìm căn bậc $k$ modulo số nguyên tố như sau: mã chỉ mang tính
+minh họa; do độ phức tạp quá cao, không đủ để AC bài mẫu này.
 
 ??? example "Bài mẫu [Library Checker - Kth Root (Mod)](https://judge.yosupo.jp/problem/kth_root_mod), mã tham khảo"
     ```cpp
