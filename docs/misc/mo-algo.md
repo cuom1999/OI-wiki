@@ -1,18 +1,18 @@
 author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan
 
-## 形式
+## Dạng bài
 
-假设 $n=m$，那么对于序列上的区间询问问题，如果从 $[l,r]$ 的答案能够 $O(1)$ 扩展到 $[l-1,r],[l+1,r],[l,r+1],[l,r-1]$（即与 $[l,r]$ 相邻的区间）的答案，那么可以在 $O(n\sqrt{n})$ 的复杂度内求出所有询问的答案．
+Giả sử $n=m$. Với bài toán truy vấn đoạn trên dãy, nếu từ đáp án của $[l,r]$ ta có thể mở rộng trong $O(1)$ để thu được đáp án của $[l-1,r],[l+1,r],[l,r+1],[l,r-1]$ - tức các đoạn kề với $[l,r]$ - thì có thể tính đáp án của tất cả truy vấn trong độ phức tạp $O(n\sqrt{n})$.
 
-## 解释
+## Giải thích
 
-离线后排序，顺序处理每个询问，暴力从上一个区间的答案转移到下一个区间答案（一步一步移动即可）．
+Sau khi đưa các truy vấn về dạng offline, ta sắp xếp rồi xử lý lần lượt từng truy vấn, chuyển đáp án từ đoạn trước sang đoạn sau một cách trực tiếp bằng cách di chuyển từng bước.
 
-## 排序方法
+## Cách sắp xếp
 
-对于区间 $[l,r]$, 以 $l$ 所在块的编号为第一关键字，$r$ 为第二关键字从小到大排序．
+Với đoạn $[l,r]$, sắp xếp tăng dần theo khóa thứ nhất là chỉ số khối chứa $l$, và khóa thứ hai là $r$.
 
-## 实现
+## Cài đặt
 
 ```cpp
 void move(int pos, int sign) {
@@ -33,30 +33,30 @@ void solve() {
 }
 ```
 
-## 复杂度分析
+## Phân tích độ phức tạp
 
-以下的情况在 $n$ 和 $m$ 同阶的前提下讨论．
+Phần dưới đây xét trong giả thiết $n$ và $m$ cùng bậc.
 
-首先是分块这一步，这一步的时间复杂度是 $O(\sqrt{n}\cdot\sqrt{n}\log\sqrt{n}+n\log n)=O(n\log n)$．
+Trước hết là bước chia khối, có độ phức tạp thời gian $O(\sqrt{n}\cdot\sqrt{n}\log\sqrt{n}+n\log n)=O(n\log n)$.
 
-接着就到了莫队算法的精髓了，下面我们用通俗易懂的初中方法来证明它的时间复杂度是 $O(n\sqrt{n})$．
+Tiếp theo là phần cốt lõi của thuật toán Mo. Dưới đây ta dùng một cách chứng minh sơ cấp, dễ hiểu để chỉ ra độ phức tạp thời gian là $O(n\sqrt{n})$.
 
-???+ note "证明"
-    证：令每一块中 $L$ 的最大值为 $\max_1,\max_2,\max_3, \cdots , \max_{\lceil\sqrt{n}\rceil}$．
+???+ note "Chứng minh"
+    Chứng minh: Gọi giá trị lớn nhất của $L$ trong từng khối lần lượt là $\max_1,\max_2,\max_3, \cdots , \max_{\lceil\sqrt{n}\rceil}$.
     
-    由第一次排序可知，$\max_1 \le \max_2 \le \cdots \le \max_{\lceil\sqrt{n}\rceil}$．
+    Từ lần sắp xếp thứ nhất, ta có $\max_1 \le \max_2 \le \cdots \le \max_{\lceil\sqrt{n}\rceil}$.
     
-    显然，对于每一块暴力求出第一个询问的时间复杂度为 $O(n)$．
+    Hiển nhiên, với mỗi khối, thời gian để tính trực tiếp truy vấn đầu tiên là $O(n)$.
     
-    考虑最坏的情况，在每一块中，$R$ 的最大值均为 $n$，每次修改操作均要将 $L$ 由 $\max_{i - 1}$ 修改至 $\max_i$ 或由 $\max_i$ 修改至 $\max_{i - 1}$．
+    Xét trường hợp xấu nhất: trong mỗi khối, giá trị lớn nhất của $R$ đều là $n$, và mỗi thao tác sửa đổi đều phải chuyển $L$ từ $\max_{i - 1}$ sang $\max_i$, hoặc từ $\max_i$ sang $\max_{i - 1}$.
     
-    考虑 $R$：因为 $R$ 在块中已经排好序，所以在同一块修改完它的时间复杂度为 $O(n)$．对于所有块就是 $O(n\sqrt{n})$．
+    Xét $R$: vì $R$ đã được sắp xếp trong cùng một khối, tổng thời gian thay đổi $R$ trong một khối là $O(n)$. Với tất cả các khối, phần này là $O(n\sqrt{n})$.
     
-    重点分析 $L$：因为每一次改变的时间复杂度都是 $O(\max_i-\max_{i-1})$ 的，所以在同一块中时间复杂度为 $O(\sqrt{n}\cdot(\max_i-\max_{i-1}))$．
+    Trọng tâm là phân tích $L$: vì độ phức tạp của mỗi lần thay đổi là $O(\max_i-\max_{i-1})$, nên trong cùng một khối, độ phức tạp thời gian là $O(\sqrt{n}\cdot(\max_i-\max_{i-1}))$.
     
-    将每一块 $L$ 的时间复杂度合在一起，可以得到：
+    Cộng độ phức tạp theo $L$ của từng khối lại, ta được:
     
-    对于 $L$ 的总时间复杂度为
+    Tổng độ phức tạp thời gian đối với $L$ là
     
     $$
     \begin{aligned}
@@ -66,123 +66,123 @@ void solve() {
     \end{aligned}
     $$
     
-    （裂项求和）
+    Phép cộng khử dạng telescoping.
     
-    由题可知 $\max_{\lceil\sqrt{n}\rceil}$ 最大为 $n$，所以 $L$ 的总时间复杂度最坏情况下为 $O(n\sqrt{n})$．
+    Theo đề bài, giá trị lớn nhất của $\max_{\lceil\sqrt{n}\rceil}$ là $n$, nên trong trường hợp xấu nhất, tổng độ phức tạp thời gian của $L$ là $O(n\sqrt{n})$.
 
-综上所述，莫队算法的时间复杂度为 $O(n\sqrt{n})$．
+Tóm lại, độ phức tạp thời gian của thuật toán Mo là $O(n\sqrt{n})$.
 
-但是对于 $m$ 的其他取值，如 $m<n$，分块方式需要改变才能变的更优．
+Tuy nhiên, với các giá trị khác của $m$, chẳng hạn $m<n$, cần thay đổi cách chia khối để đạt kết quả tốt hơn.
 
-怎么分块呢？
+Vậy chia khối như thế nào?
 
-我们设块长度为 $S$，那么对于任意多个在同一块内的询问，挪动的距离就是 $n$，一共 $\displaystyle \frac{n}{S}$ 个块，移动的总次数就是 $\displaystyle \frac{n^2}{S}$，移动可能跨越块，所以还要加上一个 $mS$ 的复杂度，总复杂度为 $\displaystyle O\left(\frac{n^2}{S}+mS\right)$，我们要让这个值尽量小，那么就要将这两个项尽量相等，发现 $S$ 取 $\displaystyle \frac{n}{\sqrt{m}}$ 是最优的，此时复杂度为 $\displaystyle O\left(\frac{n^2}{\displaystyle \frac{n}{\sqrt{m}}}+m\left(\frac{n}{\sqrt{m}}\right)\right)=O(n\sqrt{m})$．
+Đặt độ dài khối là $S$. Với một số lượng bất kỳ truy vấn nằm trong cùng một khối, quãng đường di chuyển là $n$; tổng cộng có $\displaystyle \frac{n}{S}$ khối, nên tổng số lần di chuyển là $\displaystyle \frac{n^2}{S}$. Việc di chuyển có thể vượt qua biên khối, vì vậy cần cộng thêm độ phức tạp $mS$. Tổng độ phức tạp là $\displaystyle O\left(\frac{n^2}{S}+mS\right)$. Để giá trị này nhỏ nhất, ta muốn hai hạng tử xấp xỉ bằng nhau, từ đó thấy rằng chọn $S=\displaystyle \frac{n}{\sqrt{m}}$ là tối ưu. Khi đó độ phức tạp là $\displaystyle O\left(\frac{n^2}{\displaystyle \frac{n}{\sqrt{m}}}+m\left(\frac{n}{\sqrt{m}}\right)\right)=O(n\sqrt{m})$.
 
-事实上，如果块长度的设定不准确，则莫队的时间复杂度会受到很大影响．例如，如果 $m$ 与 $\sqrt n$ 同阶，并且块长误设为 $\sqrt n$，则可以很容易构造出一组数据使其时间复杂度为 $O(n \sqrt n)$ 而不是正确的 $O(n^{5/4})$．
+Thực tế, nếu đặt độ dài khối không chính xác, độ phức tạp thời gian của Mo sẽ bị ảnh hưởng đáng kể. Ví dụ, nếu $m$ cùng bậc với $\sqrt n$ nhưng lại đặt nhầm độ dài khối là $\sqrt n$, ta có thể dễ dàng dựng một bộ dữ liệu khiến độ phức tạp trở thành $O(n \sqrt n)$ thay vì giá trị đúng $O(n^{5/4})$.
 
-莫队算法看起来十分暴力，很大程度上是因为莫队算法的分块排序方法看起来很粗糙．我们会想到通过看上去更精细的排序方法对所有区间排序．一种方法是把所有区间 $[l, r]$ 看成平面上的点 $(l, r)$，并对所有点建立曼哈顿最小生成树，每次沿着曼哈顿最小生成树的边在询问之间转移答案．这样看起来可以改善莫队算法的时间复杂度，但是实际上对询问分块排序的方法的时间复杂度上界已经是最优的了．
+Thuật toán Mo trông khá trực tiếp, phần lớn vì cách sắp xếp theo khối của nó có vẻ thô. Ta có thể nghĩ đến việc dùng một cách sắp xếp tinh vi hơn cho mọi đoạn. Một cách là xem mỗi đoạn $[l, r]$ như một điểm $(l, r)$ trên mặt phẳng, dựng cây khung nhỏ nhất theo khoảng cách Manhattan trên tất cả các điểm, rồi mỗi lần chuyển đáp án giữa các truy vấn dọc theo cạnh của cây đó. Cách này trông có vẻ cải thiện được độ phức tạp của thuật toán Mo, nhưng thực tế cận trên độ phức tạp của cách sắp xếp truy vấn theo khối đã là tối ưu.
 
-假设 $n, m$ 同阶且 $n$ 是完全平方数．我们考虑形如 $[a \sqrt n, b \sqrt n](1 \le a, b \le \sqrt n)$ 的区间，这样的区间一共有 $n$ 个．如果把所有的区间看成平面上的点，则两点之间的曼哈顿距离恰好为两区间的转移代价，并且任意两个区间之间的最小曼哈顿距离为 $\sqrt n$，所以处理所有询问的时间复杂度最小为 $O(n \sqrt n)$．其它情况的数据构造方法与之类似．
+Giả sử $n, m$ cùng bậc và $n$ là số chính phương. Xét các đoạn có dạng $[a \sqrt n, b \sqrt n](1 \le a, b \le \sqrt n)$; có tổng cộng $n$ đoạn như vậy. Nếu xem mọi đoạn là điểm trên mặt phẳng, khoảng cách Manhattan giữa hai điểm đúng bằng chi phí chuyển giữa hai đoạn, và khoảng cách Manhattan nhỏ nhất giữa hai đoạn bất kỳ là $\sqrt n$. Do đó độ phức tạp thời gian tối thiểu để xử lý tất cả truy vấn là $O(n \sqrt n)$. Cách dựng dữ liệu cho các trường hợp khác cũng tương tự.
 
-莫队算法还有一个特点：当 $n$ 不变时，$m$ 越大，处理每次询问的平均转移代价就越小．一些其他的离线算法也具有同样的特点（如求 LCA 的 Tarjan 算法），但是莫队算法的平均转移代价随 $m$ 的变化最明显．
+Thuật toán Mo còn có một đặc điểm: khi $n$ không đổi, $m$ càng lớn thì chi phí chuyển trung bình cho mỗi truy vấn càng nhỏ. Một số thuật toán offline khác cũng có đặc điểm tương tự, chẳng hạn thuật toán Tarjan để tìm LCA, nhưng với thuật toán Mo, chi phí chuyển trung bình thay đổi theo $m$ rõ rệt nhất.
 
-## 例题 & 代码
+## Bài mẫu & mã nguồn
 
-???+ note "例题 [「国家集训队」小 Z 的袜子](https://www.luogu.com.cn/problem/P1494)"
-    题目大意：
+???+ note "Bài mẫu [Đội tuyển tập huấn quốc gia - Tất của Tiểu Z](https://www.luogu.com.cn/problem/P1494)"
+    Tóm tắt đề bài:
     
-    有一个长度为 $n$ 的序列 $\{c_i\}$．现在给出 $m$ 个询问，每次给出两个数 $l,r$，从编号在 $l$ 到 $r$ 之间的数中随机选出两个不同的数，求两个数相等的概率．
+    Cho một dãy $\{c_i\}$ có độ dài $n$. Có $m$ truy vấn, mỗi truy vấn cho hai số $l,r$. Chọn ngẫu nhiên hai số khác nhau trong các số có chỉ số từ $l$ đến $r$, hãy tính xác suất hai số đó bằng nhau.
 
-### 过程
+### Quy trình
 
-思路：莫队算法模板题．
+Ý tưởng: đây là bài mẫu của thuật toán Mo.
 
-对于区间 $[l,r]$，以 $l$ 所在块的编号为第一关键字，$r$ 为第二关键字从小到大排序．
+Với đoạn $[l,r]$, sắp xếp tăng dần theo khóa thứ nhất là chỉ số khối chứa $l$, và khóa thứ hai là $r$.
 
-然后从序列的第一个询问开始计算答案，第一个询问通过直接暴力算出，复杂度为 $O(n)$，后面的询问在前一个询问的基础上得到答案．
+Sau đó bắt đầu tính đáp án từ truy vấn đầu tiên trong thứ tự đã sắp xếp. Truy vấn đầu tiên được tính trực tiếp với độ phức tạp $O(n)$; các truy vấn sau được tính dựa trên đáp án của truy vấn trước.
 
-具体做法：
+Cách làm cụ thể:
 
-对于区间 $[i,i]$，由于区间只有一个元素，我们很容易就能知道答案．然后一步一步从当前区间（已知答案）向下一个区间靠近．
+Với đoạn $[i,i]$, vì đoạn chỉ có một phần tử nên ta dễ dàng biết đáp án. Sau đó từng bước dịch chuyển từ đoạn hiện tại, nơi đáp án đã biết, sang đoạn tiếp theo.
 
-我们设 $col[i]$ 表示当前颜色 $i$ 出现了多少次，$ans$ 表示当前共有多少种可行的配对方案（有多少种可以选到一双颜色相同的袜子）．然后每次移动的时候更新答案：设当前颜色为 $k$，如果是增长区间就是 $ans$ 加上 $\dbinom{col[k]+1}{2}-\dbinom{col[k]}{2}$；如果是缩短就是 $ans$ 减去 $\dbinom{col[k]}{2}-\dbinom{col[k]-1}{2}$．这个询问的答案就是 $\displaystyle \frac{ans}{\dbinom{r-l+1}{2}}$．
+Đặt $col[i]$ là số lần màu $i$ xuất hiện trong đoạn hiện tại, và $ans$ là số cách ghép cặp hợp lệ hiện tại, tức số cách chọn được một đôi tất cùng màu. Mỗi lần di chuyển, ta cập nhật đáp án như sau: giả sử màu hiện tại là $k$. Nếu đoạn được mở rộng, cộng vào $ans$ giá trị $\dbinom{col[k]+1}{2}-\dbinom{col[k]}{2}$; nếu đoạn bị thu hẹp, trừ khỏi $ans$ giá trị $\dbinom{col[k]}{2}-\dbinom{col[k]-1}{2}$. Đáp án của truy vấn này là $\displaystyle \frac{ans}{\dbinom{r-l+1}{2}}$.
 
-这里有个优化：$\displaystyle \dbinom{a}{2}=\frac{a (a-1)}{2}$．
+Ở đây có một tối ưu: $\displaystyle \dbinom{a}{2}=\frac{a (a-1)}{2}$.
 
-所以 $\displaystyle \dbinom{a+1}{2}-\dbinom{a}{2}=\frac{(a+1) a}{2}-\frac{a (a-1)}{2}=\frac{a}{2}\cdot (a+1-a+1)=\frac{a}{2}\cdot 2=a$．
+Do đó $\displaystyle \dbinom{a+1}{2}-\dbinom{a}{2}=\frac{(a+1) a}{2}-\frac{a (a-1)}{2}=\frac{a}{2}\cdot (a+1-a+1)=\frac{a}{2}\cdot 2=a$.
 
-所以 $\dbinom{col[k]+1}{2}-\dbinom{col[k]}{2}=col[k]$．
+Vì vậy $\dbinom{col[k]+1}{2}-\dbinom{col[k]}{2}=col[k]$.
 
-算法总复杂度：$O(n\sqrt{n} )$
+Tổng độ phức tạp của thuật toán: $O(n\sqrt{n} )$
 
-下面的代码中 `deno` 表示答案的分母 (denominator)，`nume` 表示分子 (numerator)，`sqn` 表示块的大小：$\sqrt{n}$，`arr` 是输入的数组，`node` 是存储询问的结构体，`tab` 是询问序列（排序后的），`col` 同上所述．
+Trong đoạn mã dưới đây, `deno` biểu thị mẫu số của đáp án (denominator), `nume` biểu thị tử số (numerator), `sqn` biểu thị kích thước khối: $\sqrt{n}$, `arr` là mảng đầu vào, `node` là cấu trúc lưu truy vấn, `tab` là dãy truy vấn sau khi sắp xếp, và `col` giống như đã mô tả ở trên.
 
-**注意：由于 `++l` 和 `--r` 的存在，下面代码中的移动区间的 4 个 while 循环的位置很关键，不能随意改变它们之间的位置关系．**
+**Chú ý: do có `++l` và `--r`, vị trí của 4 vòng lặp while dùng để di chuyển đoạn trong đoạn mã dưới đây là rất quan trọng; không được tùy tiện thay đổi quan hệ thứ tự giữa chúng.**
 
-??? note "关于四个循环位置的讨论"
-    莫队区间的移动过程，就相当于加入了 $[1,r]$ 的元素，并删除了 $[1,l-1]$ 的元素．因此，
+??? note "Thảo luận về vị trí của bốn vòng lặp"
+    Quá trình di chuyển đoạn trong Mo tương đương với việc thêm các phần tử của $[1,r]$ và xóa các phần tử của $[1,l-1]$. Vì vậy,
     
-    -   对于 $l\le r$ 的情况，$[1,l-1]$ 的元素相当于被加入了一次又被删除了一次，$[l,r]$ 的元素被加入一次，$[r+1,+\infty)$ 的元素没有被加入．这个区间是合法区间．
-    -   对于 $l=r+1$ 的情况，$[1,r]$ 的元素相当于被加入了一次又被删除了一次，$[r+1,+\infty)$ 的元素没有被加入．这时这个区间表示空区间．
-    -   对于 $l>r+1$ 的情况，那么 $[r+1,l-1]$（这个区间非空）的元素被删除了一次但没有被加入，因此这个元素被加入的次数是负数．
+    -   Với trường hợp $l\le r$, các phần tử của $[1,l-1]$ tương đương với việc được thêm một lần rồi bị xóa một lần, các phần tử của $[l,r]$ được thêm một lần, còn các phần tử của $[r+1,+\infty)$ không được thêm. Đây là một đoạn hợp lệ.
+    -   Với trường hợp $l=r+1$, các phần tử của $[1,r]$ tương đương với việc được thêm một lần rồi bị xóa một lần, còn các phần tử của $[r+1,+\infty)$ không được thêm. Khi đó đoạn này biểu diễn đoạn rỗng.
+    -   Với trường hợp $l>r+1$, các phần tử của $[r+1,l-1]$ - một đoạn không rỗng - đã bị xóa một lần nhưng chưa được thêm, nên số lần phần tử đó được thêm là số âm.
     
-    因此，如果某时刻出现 $l>r+1$ 的情况，那么会存在一个元素，它的加入次数是负数．这在某些题目会出现问题，例如我们如果用一个 `set` 维护区间中的所有数，就会出现「需要删除 `set` 中不存在的元素」的问题．
+    Vì vậy, nếu tại một thời điểm nào đó xuất hiện $l>r+1$, sẽ tồn tại một phần tử có số lần được thêm là âm. Điều này gây lỗi trong một số bài toán; ví dụ nếu dùng một `set` để duy trì tất cả các số trong đoạn, ta sẽ gặp tình huống cần xóa một phần tử không tồn tại trong `set`.
     
-    代码中的四个 while 循环一共有 $4!=24$ 种排列顺序．不妨设第一个循环用于操作左端点，就有以下 $12$ 种排列（另外 $12$ 种是对称的）．下表列出了这 12 种写法的正确性，还给出了错误写法的反例．
+    Bốn vòng lặp while trong mã có tổng cộng $4!=24$ thứ tự sắp xếp. Giả sử vòng lặp đầu tiên thao tác với đầu trái, ta có $12$ thứ tự sau; $12$ thứ tự còn lại là đối xứng. Bảng dưới đây liệt kê tính đúng đắn của 12 cách viết này và đưa ra phản ví dụ cho các cách sai.
     
-    | 循环顺序              | 正确性 | 反例或注释       |
-    | ----------------- | --- | ----------- |
-    | `l--,l++,r--,r++` | 错误  | $l<r<l'<r'$ |
-    | `l--,l++,r++,r--` | 错误  | $l<r<l'<r'$ |
-    | `l--,r--,l++,r++` | 错误  | $l<r<l'<r'$ |
-    | `l--,r--,r++,l++` | 正确  | 证明较繁琐       |
-    | `l--,r++,l++,r--` | 正确  |             |
-    | `l--,r++,r--,l++` | 正确  |             |
-    | `l++,l--,r--,r++` | 错误  | $l<r<l'<r'$ |
-    | `l++,l--,r++,r--` | 错误  | $l<r<l'<r'$ |
-    | `l++,r++,l--,r--` | 错误  | $l<r<l'<r'$ |
-    | `l++,r++,r--,l--` | 错误  | $l<r<l'<r'$ |
-    | `l++,r--,l--,r++` | 错误  | $l<r<l'<r'$ |
-    | `l++,r--,r++,l--` | 错误  | $l<r<l'<r'$ |
+    | Thứ tự vòng lặp  | Tính đúng | Phản ví dụ hoặc ghi chú |
+    | ----------------- | --------- | ----------------------- |
+    | `l--,l++,r--,r++` | Sai       | $l<r<l'<r'$             |
+    | `l--,l++,r++,r--` | Sai       | $l<r<l'<r'$             |
+    | `l--,r--,l++,r++` | Sai       | $l<r<l'<r'$             |
+    | `l--,r--,r++,l++` | Đúng      | Chứng minh khá dài      |
+    | `l--,r++,l++,r--` | Đúng      |                         |
+    | `l--,r++,r--,l++` | Đúng      |                         |
+    | `l++,l--,r--,r++` | Sai       | $l<r<l'<r'$             |
+    | `l++,l--,r++,r--` | Sai       | $l<r<l'<r'$             |
+    | `l++,r++,l--,r--` | Sai       | $l<r<l'<r'$             |
+    | `l++,r++,r--,l--` | Sai       | $l<r<l'<r'$             |
+    | `l++,r--,l--,r++` | Sai       | $l<r<l'<r'$             |
+    | `l++,r--,r++,l--` | Sai       | $l<r<l'<r'$             |
     
-    全部 24 种排列中只有 6 种是正确的，其中有 2 种的证明较繁琐，这里只给出其中 4 种的证明．
+    Trong toàn bộ 24 thứ tự, chỉ có 6 thứ tự đúng. Trong đó có 2 thứ tự có chứng minh khá dài, nên ở đây chỉ đưa ra chứng minh cho 4 thứ tự.
     
-    这 4 种正确写法的共同特点是，前两步先扩大区间（`l--` 或 `r++`），后两步再缩小区间（`l++` 或 `r--`）．这样写，前两步是扩大区间，可以保持 $l\le r+1$；执行完前两步后，$l\le l'\le r'\le r$ 一定成立，再执行后两步只会把区间缩小到 $[l',r']$，依然有 $l\le r+1$，因此这样写是正确的．
+    Điểm chung của 4 cách viết đúng này là hai bước đầu mở rộng đoạn trước (`l--` hoặc `r++`), hai bước sau mới thu hẹp đoạn (`l++` hoặc `r--`). Viết như vậy thì hai bước đầu là mở rộng đoạn, có thể giữ $l\le r+1$; sau khi thực hiện xong hai bước đầu, chắc chắn có $l\le l'\le r'\le r$, và hai bước sau chỉ thu hẹp đoạn về $[l',r']$, vẫn giữ được $l\le r+1$. Do đó cách viết này là đúng.
 
-### 实现
+### Cài đặt
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/mo-algo/mo-algo_1.cpp"
     ```
 
-## 普通莫队的优化
+## Tối ưu Mo thông thường
 
-### 过程
+### Quy trình
 
-我们看一下下面这组数据
+Hãy xét bộ dữ liệu sau:
 
 ```text
-// 设块的大小为 2 (假设)
+// Gia su kich thuoc khoi la 2
 1 1
 2 100
 3 1
 4 100
 ```
 
-手动模拟一下可以发现，r 指针的移动次数大概为 300 次，我们处理完第一个块之后，$l = 2, r = 100$，此时只需要移动两次 l 指针就可以得到第四个询问的答案，但是我们却将 r 指针移动到 1 来获取第三个询问的答案，再移动到 100 获取第四个询问的答案，这样多了九十几次的指针移动．我们怎么优化这个地方呢？这里我们就要用到奇偶化排序．
+Mô phỏng thủ công sẽ thấy con trỏ r di chuyển khoảng 300 lần. Sau khi xử lý xong khối đầu tiên, $l = 2, r = 100$; lúc này chỉ cần di chuyển con trỏ l hai lần là có thể thu được đáp án của truy vấn thứ tư. Tuy nhiên, ta lại đưa con trỏ r về 1 để lấy đáp án của truy vấn thứ ba, rồi lại đưa r đến 100 để lấy đáp án của truy vấn thứ tư, dẫn đến thêm hơn 90 lần di chuyển con trỏ. Làm sao tối ưu chỗ này? Ta sẽ dùng sắp xếp chẵn lẻ.
 
-什么是奇偶化排序？奇偶化排序即对于属于奇数块的询问，r 按从小到大排序，对于属于偶数块的排序，r 从大到小排序，这样我们的 r 指针在处理完这个奇数块的问题后，将在返回的途中处理偶数块的问题，再向 n 移动处理下一个奇数块的问题，优化了 r 指针的移动次数，一般情况下，这种优化能让程序快 30% 左右．
+Sắp xếp chẵn lẻ là gì? Nghĩa là với các truy vấn thuộc khối lẻ, sắp xếp r tăng dần; với các truy vấn thuộc khối chẵn, sắp xếp r giảm dần. Nhờ vậy, sau khi con trỏ r xử lý xong một khối lẻ, nó sẽ xử lý các truy vấn của khối chẵn trên đường quay lại, rồi lại di chuyển về phía n để xử lý khối lẻ tiếp theo. Cách này tối ưu số lần di chuyển của con trỏ r; thông thường tối ưu này có thể giúp chương trình nhanh hơn khoảng 30%.
 
-### 实现
+### Cài đặt
 
-排序代码：
+Mã sắp xếp:
 
-=== "压行"
+=== "Bản viết gọn"
     ```cpp
     // clang-format off
-    // 这里有个小细节等下会讲
-    int unit; // 块的大小
+    // Có một chi tiết nhỏ sẽ được nói ở phần sau
+    int unit; // kích thước khối
     struct node {
       int l, r, id;
       bool operator < (const node &x) const {
@@ -191,25 +191,25 @@ void solve() {
     };
     ```
 
-=== "不压行"
+=== "Bản viết rõ"
     ```cpp
     struct node {
       int l, r, id;
     
       bool operator<(const node &x) const {
         if (l / unit != x.l / unit) return l < x.l;
-        // 注意下面两行不能写小于（大于）等于，否则会出错（详见下面的小细节）
+        // Chú ý hai dòng dưới không được viết <= hoặc >=, nếu không sẽ lỗi
         if ((l / unit) & 1) return r < x.r;
         return r > x.r;
       }
     };
     ```
 
-???+ warning "小细节"
-    如果使用 `sort` 比较两个结构体，不能出现 $a < b$ 和 $b < a$ 同时为真的情况，否则会运行错误，详见 [常见错误](../contest/common-mistakes.md#会导致-re)．
+???+ warning "Chi tiet nho"
+    Khi dùng `sort` để so sánh hai cấu trúc, không được để xảy ra trường hợp $a < b$ và $b < a$ cùng đúng; nếu không chương trình sẽ lỗi khi chạy. Xem thêm [lỗi thường gặp](../contest/common-mistakes.md#%E4%BC%9A%E5%AF%BC%E8%87%B4-re).
 
-对于压行版，如果没有 `r == x.r` 的特判，当 l 属于同一奇数块且 r 相等时，会出现上面小细节中的问题（自己手动模拟一下），对于不压行版，如果写成小于（大于）等于，则也会出现同样的问题．
+Với bản viết gọn, nếu không có trường hợp đặc biệt `r == x.r`, khi l thuộc cùng một khối lẻ và r bằng nhau, vấn đề trong chi tiết nhỏ ở trên sẽ xuất hiện; bạn có thể tự mô phỏng thủ công. Với bản viết rõ, nếu viết thành nhỏ hơn hoặc bằng, hoặc lớn hơn hoặc bằng, thì cũng sẽ xuất hiện vấn đề tương tự.
 
-## 参考资料
+## Tài liệu tham khảo
 
--   [莫队算法学习笔记 | Sengxian's Blog](https://blog.sengxian.com/algorithms/mo-s-algorithm)
+-   [Ghi chú học thuật toán Mo | Sengxian's Blog](https://blog.sengxian.com/algorithms/mo-s-algorithm)

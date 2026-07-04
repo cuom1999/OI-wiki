@@ -1,54 +1,54 @@
 author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, Linky
 
-## 括号序树上莫队
+## Thuật toán Mo trên cây theo thứ tự ngoặc
 
-一般的莫队只能处理线性问题，我们要把树强行压成序列．
+Thuật toán Mo thông thường chỉ xử lý được bài toán tuyến tính, vì vậy ta cần ép cây thành một dãy.
 
-我们可以将树的括号序跑下来，把括号序分块，在括号序上跑莫队．
+Ta có thể duyệt thứ tự ngoặc của cây, chia khối trên thứ tự ngoặc rồi chạy thuật toán Mo trên dãy đó.
 
-具体怎么做呢？
+Cụ thể làm như sau.
 
-### 过程
+### Quy trình
 
-dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点，就直接 `push_back(-x)`，然后我们在挪动指针的时候，
+DFS cây. Khi DFS tới đỉnh x thì `push_back(x)`, khi DFS x xong thì `push_back(-x)`. Khi di chuyển con trỏ:
 
--   新加入的值是 x  --->`add(x)`
--   新加入的值是 - x --->`del(x)`
--   新删除的值是 x  --->`del(x)`
--   新删除的值是 - x --->`add(x)`
+-   Giá trị mới được thêm là x --->`add(x)`
+-   Giá trị mới được thêm là -x --->`del(x)`
+-   Giá trị mới bị xóa là x --->`del(x)`
+-   Giá trị mới bị xóa là -x --->`add(x)`
 
-这样的话，我们就把一棵树处理成了序列．
+Như vậy, ta đã biến một cây thành một dãy.
 
-### 例题
+### Ví dụ
 
-???+ note "例题 [「WC2013」糖果公园](https://uoj.ac/problem/58)"
-    题意：给你一棵树，树上第 $i$ 个点颜色为 $c_i$，每次询问一条路径 $u_i$,$v_i$, 求这条路径上的
+???+ note "Ví dụ [WC2013 Candy Park](https://uoj.ac/problem/58)"
+    Đề bài: cho một cây, đỉnh thứ $i$ trên cây có màu $c_i$. Mỗi truy vấn cho một đường đi $u_i$,$v_i$, hãy tính trên đường đi đó:
     
     $\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$
     
-    其中：$val$ 表示该颜色的价值，$cnt$ 表示颜色出现的次数，$w$ 表示该颜色出现 $i$ 次后的价值
+    Trong đó: $val$ biểu thị giá trị của màu, $cnt$ biểu thị số lần màu xuất hiện, còn $w$ biểu thị giá trị sau khi màu đó xuất hiện $i$ lần.
 
-#### 过程
+#### Quy trình
 
-先把树变成序列，然后每次添加/删除一个点，这个点的对答案的贡献是可以在 $O(1)$ 时间内获得的，即 $val_c\times w_{cnt_{c+1}}$
+Trước hết biến cây thành một dãy. Sau đó, mỗi lần thêm/xóa một đỉnh, đóng góp của đỉnh này vào đáp án có thể tính trong $O(1)$, tức là $val_c\times w_{cnt_{c+1}}$.
 
-发现因为他会把起点的子树也扫了一遍，产生多余的贡献，怎么办呢？
+Ta thấy quá trình này cũng quét qua cây con của điểm bắt đầu, tạo ra đóng góp thừa. Xử lý thế nào?
 
-因为扫的过程中起点的子树里的点肯定会被扫两次，但贡献为 0．
+Trong quá trình quét, các đỉnh trong cây con của điểm bắt đầu chắc chắn bị quét hai lần, nên đóng góp của chúng là 0.
 
-所以可以开一个 $vis$ 数组，每次扫到点 x，就把 $vis_x$ 异或上 1．
+Vì vậy có thể dùng một mảng $vis$; mỗi lần quét tới đỉnh x, ta XOR $vis_x$ với 1.
 
-如果 $vis_x=0$，那这个点的贡献就可以不计．
+Nếu $vis_x=0$, đóng góp của đỉnh này có thể bỏ qua.
 
-所以可以用树上莫队来求．
+Do đó có thể dùng thuật toán Mo trên cây để giải.
 
-修改的话，加上一维时间维即可，变成带修改树上莫队．
+Với thao tác sửa đổi, chỉ cần thêm một chiều thời gian, ta được thuật toán Mo trên cây có sửa đổi.
 
-然后因为所包含的区间内可能没有 LCA，对于没有的情况要将多余的贡献删除，然后就完事了．
+Ngoài ra, đoạn đang xét có thể không chứa LCA. Với trường hợp này, cần loại bỏ phần đóng góp thừa là xong.
 
-#### 实现
+#### Cài đặt
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     #include <algorithm>
     #include <cmath>
@@ -68,7 +68,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       int to, nxt;
     } e[MAXN];
     
-    int cnt1 = 0, cnt2 = 0;  // 时间戳
+    int cnt1 = 0, cnt2 = 0;  // Moc thoi gian
     
     struct query {
       int l, r, t, id;
@@ -93,12 +93,12 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
           dfs(e[i].to);
         }
       }
-      id[g[x] = ++index] = x;  // 括号序
+      id[g[x] = ++index] = x;  // Thu tu ngoac
     }
     
     int lca(int x, int y) {
       if (dep[x] < dep[y]) swap(x, y);
-      if (dep[x] != dep[y]) {  // 爬到同一高度
+      if (dep[x] != dep[y]) {  // Dua len cung do sau
         int dis = dep[x] - dep[y];
         for (int i = 20; i >= 0; i--)
           if (dis >= (1 << i)) dis -= 1 << i, x = fa[x][i];
@@ -118,7 +118,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       vis[x] ^= 1;
     }
     
-    // 在时间维上移动
+    // Di chuyen tren chieu thoi gian
     void modify(int x, int t) {
       if (vis[x]) {
         add(x);
@@ -145,7 +145,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       dfs(1);
       for (int j = 1; j <= 20; j++)
         for (int i = 1; i <= n; i++)
-          fa[i][j] = fa[fa[i][j - 1]][j - 1];  // 预处理祖先
+          fa[i][j] = fa[fa[i][j - 1]][j - 1];  // Tien xu ly to tien
       int block = pow(index, 2.0 / 3);
       for (int i = 1; i <= index; i++) {
         pos[i] = (i - 1) / block;
@@ -163,7 +163,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
         }
       }
       sort(a + 1, a + cnt1 + 1);
-      int L, R, T;  // 指针坐标
+      int L, R, T;  // Toa do con tro
       L = R = 0;
       T = 1;
       for (int i = 1; i <= cnt1; i++) {
@@ -207,67 +207,67 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
     }
     ```
 
-## 真·树上莫队
+## Thuật toán Mo thật sự trên cây
 
-上面的树上莫队只是将树转化成了链，下面的才是真正的树上莫队．
+Thuật toán Mo trên cây ở trên chỉ biến cây thành một chuỗi. Phần dưới đây mới là thuật toán Mo đúng nghĩa trên cây.
 
-由于莫队相关的问题都是模板题，因此实现部分不做太多解释
+Vì các bài liên quan tới thuật toán Mo thường là bài mẫu, phần cài đặt sẽ không giải thích quá nhiều.
 
-### 询问的排序
+### Sắp xếp truy vấn
 
-首先我们知道莫队的是基于分块的算法，所以我们需要找到一种树上的分块方法来保证时间复杂度．
+Trước hết, ta biết thuật toán Mo dựa trên chia khối, nên cần tìm một cách chia khối trên cây để bảo đảm độ phức tạp thời gian.
 
-条件：
+Các điều kiện:
 
--   属于同一块的节点之间的距离不超过给定块的大小
--   每个块中的节点不能太多也不能太少
--   每个节点都要属于一个块
--   编号相邻的块之间的距离不能太大
+-   Khoảng cách giữa các đỉnh thuộc cùng một khối không vượt quá kích thước khối cho trước.
+-   Số đỉnh trong mỗi khối không được quá nhiều cũng không được quá ít.
+-   Mỗi đỉnh đều phải thuộc một khối.
+-   Khoảng cách giữa các khối có chỉ số kề nhau không được quá lớn.
 
-了解了这些条件后，我们看到这样一道题 [「SCOI2005」王室联邦](https://loj.ac/problem/2152)．
+Sau khi nắm các điều kiện này, hãy xét bài [SCOI2005 Royal Federation](https://loj.ac/problem/2152).
 
-在这道题的基础上我们只要保证最后一个条件就可以解决分块的问题了．
+Dựa trên bài này, chỉ cần bảo đảm thêm điều kiện cuối cùng là có thể giải quyết vấn đề chia khối.
 
-??? note "思路"
-    令 lim 为希望块的大小，首先，对于整个树 dfs，当子树的大小大于 lim 时，就将它们分在一块，容易想到：对于根，可能会剩下一些点，于是将这些点分在最后一个块里．
+??? note "Ý tưởng"
+    Gọi lim là kích thước khối mong muốn. Trước hết DFS toàn bộ cây; khi kích thước một cây con lớn hơn lim, đưa các đỉnh đó vào cùng một khối. Dễ thấy với gốc có thể còn dư một số đỉnh, khi đó đưa các đỉnh này vào khối cuối cùng.
 
-做法：用栈维护当前节点作为父节点访问它的子节点，当从栈顶到父节点的距离大于希望块的大小时，弹出这部分元素分为一块，最后剩余的一块单独作为一块．
+Cách làm: dùng một ngăn xếp để duy trì các đỉnh con được thăm khi đỉnh hiện tại đóng vai trò cha. Khi khoảng cách từ đỉnh trên cùng của ngăn xếp tới đỉnh cha lớn hơn kích thước khối mong muốn, lấy phần tử của đoạn này ra để tạo thành một khối. Phần còn lại cuối cùng tạo thành một khối riêng.
 
-最后的排序方法：若第一维时间戳大于第二维，交换它们，按第一维所属块为第一关键字，第二维时间戳为第二关键字排序．
+Cách sắp xếp cuối cùng: nếu mốc thời gian ở chiều thứ nhất lớn hơn chiều thứ hai thì hoán đổi chúng; sau đó sắp theo khối chứa chiều thứ nhất làm khóa chính, và mốc thời gian của chiều thứ hai làm khóa phụ.
 
-### 指针的移动
+### Di chuyển con trỏ
 
-#### 过程
+#### Quy trình
 
-容易想到，我们可以标记被计入答案的点，让指针直接向目标移动，同时取反路径上的点．
+Dễ nghĩ tới cách đánh dấu các đỉnh đang được tính vào đáp án, cho con trỏ di chuyển thẳng tới mục tiêu, đồng thời đảo trạng thái các đỉnh trên đường đi.
 
-但是，这样有一个问题，若指针一开始都在 x 上，显然 x 被标记，当两个指针向同一子节点移动（还有许多情况）时，x 应该不被标记，但实际情况是 x 被标记，因为两个指针分别标记了一次，抵消了．
+Tuy nhiên cách này có một vấn đề. Nếu ban đầu cả hai con trỏ đều ở x, rõ ràng x được đánh dấu. Khi hai con trỏ cùng di chuyển tới một đỉnh con giống nhau, hoặc trong nhiều trường hợp tương tự, x lẽ ra không được đánh dấu, nhưng thực tế x vẫn bị đánh dấu, vì hai con trỏ mỗi bên đã đánh dấu một lần và triệt tiêu lẫn nhau.
 
-如何解决呢？
+Giải quyết thế nào?
 
-有一个很显然的性质：这些点肯定是某些 LCA，因为 LCA 处才有可能被重复撤销导致撤销失败．
+Có một tính chất rất rõ ràng: các đỉnh này chắc chắn là một số LCA, vì chỉ tại LCA mới có khả năng bị hủy lặp lại khiến việc hủy thất bại.
 
-所以我们每次不标记 LCA，到需要询问答案时再将 LCA 标记，然后再撤销．
+Vì vậy mỗi lần ta không đánh dấu LCA ngay; chỉ khi cần trả lời truy vấn mới đánh dấu LCA, rồi hủy đánh dấu lại.
 
-#### 实现
+#### Cài đặt
 
 ```cpp
-// 取反路径上除LCA以外的所有节点
+// Dao trang thai tat ca dinh tren duong di, tru LCA
 void move(int x, int y) {
   if (dp[x] < dp[y]) swap(x, y);
   while (dp[x] > dp[y]) update(x), x = fa[x];
   while (x != y) update(x), update(y), x = fa[x], y = fa[y];
-  // x!=y保证LCA没被取反
+  // x!=y dam bao LCA khong bi dao trang thai
 }
 ```
 
-对于求 LCA，我们可以用树剖，然后我们就可以把分块的步骤放到树剖的第一次 dfs 里面，时间戳也可以直接用第二次 dfs 的 dfs 序．
+Để tìm LCA, ta có thể dùng phân rã nặng nhẹ. Khi đó có thể đặt bước chia khối vào lần DFS đầu tiên của phân rã nặng nhẹ, còn mốc thời gian có thể trực tiếp dùng thứ tự DFS của lần DFS thứ hai.
 
 ```cpp
-int bl[100002], bls = 0;  // 属于的块，块的数量
-unsigned step;            // 块大小
+int bl[100002], bls = 0;  // Khoi chua dinh, so luong khoi
+unsigned step;            // Kich thuoc khoi
 int fa[100002], dp[100002], hs[100002] = {0}, sz[100002] = {0};
-// 父节点，深度，重儿子，大小
+// Cha, do sau, con nang, kich thuoc
 stack<int> sta;
 
 void dfs1(int x) {
@@ -290,27 +290,27 @@ void dfs1(int x) {
 
 // main
 if (!sta.empty()) {
-  bls++;  // 这一行可写可不写
+  bls++;  // Dong nay co the co hoac khong
   while (!sta.empty()) bl[sta.top()] = bls, sta.pop();
 }
 ```
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-重点到了，这里关系到块的大小取值．
+Tới phần quan trọng: cách chọn kích thước khối.
 
-设块的大小为 $unit$：
+Giả sử kích thước khối là $unit$:
 
--   对于 x 指针，由于每个块中节点的距离在 $unit$ 左右，每个块中 x 指针移动 $unit^2$ 次（$unit\times dis_{\max}$），共计 $n\times unit$ 次（$unit^2 \times (\frac{n}{unit})$）；
--   对于 y 指针，每个块中最多移动 $O(n)$ 次，共计 $\frac{n^2}{unit}$ 次（$n \times (\frac{n}{unit})$）．
+-   Với con trỏ x, do khoảng cách giữa các đỉnh trong mỗi khối vào khoảng $unit$, trong mỗi khối con trỏ x di chuyển $unit^2$ lần ($unit\times dis_{\max}$), tổng cộng $n\times unit$ lần ($unit^2 \times (\frac{n}{unit})$).
+-   Với con trỏ y, trong mỗi khối nó di chuyển nhiều nhất $O(n)$ lần, tổng cộng $\frac{n^2}{unit}$ lần ($n \times (\frac{n}{unit})$).
 
-加起来大概在根号处取得最小值（由于树上莫队块的大小不固定，所以不一定要严格按照）．
+Cộng hai phần lại, giá trị nhỏ nhất xấp xỉ đạt được tại căn bậc hai. Do kích thước khối trong thuật toán Mo trên cây không cố định, không nhất thiết phải theo đúng tuyệt đối.
 
-### 例题「WC2013」糖果公园
+### Ví dụ WC2013 Candy Park
 
-由于多了时间维，块的大小取到 $n^{0.6}$ 的样子就差不多了．
+Vì có thêm chiều thời gian, lấy kích thước khối khoảng $n^{0.6}$ là tương đối ổn.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     #include <algorithm>
     #include <cmath>

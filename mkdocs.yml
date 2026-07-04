@@ -503,15 +503,15 @@ nav:
       - Giới thiệu thuật toán offline: misc/offline.md
       - Chia để trị CDQ: misc/cdq-divide.md
       - Chặt nhị phân tổng thể: misc/parallel-binsearch.md
-      - 莫队算法:
-        - 莫队算法简介: misc/mo-algo-intro.md
-        - 普通莫队算法: misc/mo-algo.md
-        - 带修改莫队: misc/modifiable-mo-algo.md
-        - 树上莫队: misc/mo-algo-on-tree.md
-        - 回滚莫队: misc/rollback-mo-algo.md
-        - 二维莫队: misc/mo-algo-2dimen.md
-        - 莫队二次离线: misc/mo-algo-secondary-offline.md
-        - 莫队配合 bitset: misc/mo-algo-with-bitset.md
+      - Thuật toán Mo:
+        - Giới thiệu thuật toán Mo: misc/mo-algo-intro.md
+        - Thuật toán Mo thông thường: misc/mo-algo.md
+        - Thuật toán Mo có sửa đổi: misc/modifiable-mo-algo.md
+        - Thuật toán Mo trên cây: misc/mo-algo-on-tree.md
+        - Thuật toán Mo rollback: misc/rollback-mo-algo.md
+        - Thuật toán Mo hai chiều: misc/mo-algo-2dimen.md
+        - Thuật toán Mo với offline lần hai: misc/mo-algo-secondary-offline.md
+        - Thuật toán Mo kết hợp bitset: misc/mo-algo-with-bitset.md
     - 分数规划: misc/frac-programming.md
     - 随机化:
       - 随机函数: misc/random.md

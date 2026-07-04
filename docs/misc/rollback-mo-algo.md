@@ -1,43 +1,43 @@
 author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, YOYO-UIAT
 
-## 引入
+## Giới thiệu
 
-有些题目在区间转移时，可能会出现增加或者删除无法实现的问题．在只有增加不可实现或者只有删除不可实现的时候，就可以使用回滚莫队在 $O(n \sqrt m)$ 的时间内解决问题．回滚莫队的核心思想就是：既然只能实现一个操作，那么就只使用一个操作，剩下的交给回滚解决．
+Trong một số bài toán, khi chuyển trạng thái giữa các đoạn, có thể thao tác thêm hoặc xóa không hiện thực được. Khi chỉ thao tác thêm không hiện thực được, hoặc chỉ thao tác xóa không hiện thực được, ta có thể dùng Mo rollback để giải trong thời gian $O(n \sqrt m)$. Ý tưởng cốt lõi của Mo rollback là: nếu chỉ hiện thực được một thao tác, thì chỉ dùng thao tác đó, phần còn lại giao cho cơ chế rollback xử lý.
 
-回滚莫队分为只使用增加操作的回滚莫队和只使用删除操作的回滚莫队．以下仅介绍只使用增加操作的回滚莫队，只使用删除操作的回滚莫队和只使用增加操作的回滚莫队只在算法实现上有一点区别，故不再赘述．
+Mo rollback được chia thành loại chỉ dùng thao tác thêm và loại chỉ dùng thao tác xóa. Phần dưới chỉ giới thiệu Mo rollback chỉ dùng thao tác thêm; loại chỉ dùng thao tác xóa chỉ khác đôi chút trong hiện thực thuật toán, nên không trình bày thêm.
 
-## 例题 [JOISC 2014 Day1 历史研究](https://loj.ac/problem/2874)
+## Ví dụ [JOISC 2014 Day1 Historical Research](https://loj.ac/problem/2874)
 
-给你一个长度为 $n$ 的数组 $A$ 和 $m$ 个询问 $(1 \leq n, m \leq 10^5)$，每次询问一个区间 $[L, R]$ 内重要度最大的数字，要求 **输出其重要度**．一个数字 $i$ 重要度的定义为 $i$ 乘上 $i$ 在区间内出现的次数．
+Cho một mảng $A$ độ dài $n$ và $m$ truy vấn $(1 \leq n, m \leq 10^5)$. Mỗi truy vấn hỏi số có độ quan trọng lớn nhất trong đoạn $[L, R]$, và yêu cầu **in ra độ quan trọng đó**. Độ quan trọng của một số $i$ được định nghĩa là $i$ nhân với số lần $i$ xuất hiện trong đoạn.
 
-在这个问题中，在增加的过程中更新答案是很好实现的，但是在删除的过程中更新答案是不好实现的．因为如果增加会影响答案，那么新答案必定是刚刚增加的数字的重要度，而如果删除过后区间重要度最大的数字改变，我们很难确定新的重要度最大的数字是哪一个．所以，普通的莫队很难解决这个问题．
+Trong bài toán này, cập nhật đáp án khi thêm phần tử rất dễ hiện thực, nhưng cập nhật đáp án khi xóa phần tử lại khó. Nếu thao tác thêm làm thay đổi đáp án, đáp án mới chắc chắn là độ quan trọng của số vừa được thêm. Còn nếu sau khi xóa, số có độ quan trọng lớn nhất trong đoạn thay đổi, ta khó xác định số mới có độ quan trọng lớn nhất là số nào. Vì vậy Mo thông thường khó giải được bài này.
 
-## 过程
+## Quy trình
 
--   对原序列进行分块，对询问按以左端点所属块编号升序为第一关键字，右端点升序为第二关键字的方式排序．
--   按顺序处理询问：
-    -   如果询问左端点所属块 $B$ 和上一个询问左端点所属块的不同，那么将莫队区间的左端点初始化为 $B$ 的右端点加 $1$, 将莫队区间的右端点初始化为 $B$ 的右端点；
-    -   如果询问的左右端点所属的块相同，那么直接扫描区间回答询问；
-    -   如果询问的左右端点所属的块不同：
-        -   如果询问的右端点大于莫队区间的右端点，那么不断扩展右端点直至莫队区间的右端点等于询问的右端点；
-        -   不断扩展莫队区间的左端点直至莫队区间的左端点等于询问的左端点；
-        -   回答询问；
-        -   撤销莫队区间左端点的改动，使莫队区间的左端点回滚到 $B$ 的右端点加 $1$．
+-   Chia khối dãy ban đầu, rồi sắp xếp các truy vấn với khóa thứ nhất là chỉ số khối chứa đầu trái theo thứ tự tăng dần, khóa thứ hai là đầu phải theo thứ tự tăng dần.
+-   Xử lý các truy vấn theo thứ tự:
+    -   Nếu khối $B$ chứa đầu trái của truy vấn khác khối chứa đầu trái của truy vấn trước đó, khởi tạo đầu trái của đoạn Mo bằng đầu phải của khối $B$ cộng $1$, và khởi tạo đầu phải của đoạn Mo bằng đầu phải của khối $B$.
+    -   Nếu hai đầu mút của truy vấn nằm trong cùng một khối, quét trực tiếp đoạn để trả lời truy vấn.
+    -   Nếu hai đầu mút của truy vấn nằm trong hai khối khác nhau:
+        -   Nếu đầu phải của truy vấn lớn hơn đầu phải của đoạn Mo, liên tục mở rộng đầu phải cho đến khi đầu phải của đoạn Mo bằng đầu phải của truy vấn.
+        -   Liên tục mở rộng đầu trái của đoạn Mo cho đến khi đầu trái của đoạn Mo bằng đầu trái của truy vấn.
+        -   Trả lời truy vấn.
+        -   Hủy các thay đổi trên đầu trái của đoạn Mo, để đầu trái rollback về đầu phải của khối $B$ cộng $1$.
 
-## 复杂度证明
+## Chứng minh độ phức tạp
 
-假设回滚莫队的分块大小是 $b$：
+Giả sử kích thước khối của Mo rollback là $b$:
 
--   对于左、右端点在同一个块内的询问，可以在 $O(b)$ 时间内计算；
--   对于其他询问，考虑左端点在相同块内的询问，它们的右端点单调递增，移动右端点的时间复杂度是 $O(n)$，而左端点单次询问的移动不超过 $b$，因为有 $\frac{n}{b}$ 个块，所以总复杂度是 $O(mb+\frac{n^2}{b})$，取 $b=\frac{n}{\sqrt{m}}$ 最优，时间复杂度为 $O(n\sqrt{m})$．
+-   Với truy vấn có đầu trái và đầu phải nằm trong cùng một khối, có thể tính trong thời gian $O(b)$.
+-   Với các truy vấn còn lại, xét các truy vấn có đầu trái nằm trong cùng một khối. Đầu phải của chúng tăng đơn điệu, nên độ phức tạp để di chuyển đầu phải là $O(n)$; còn đầu trái của mỗi truy vấn di chuyển không quá $b$. Vì có $\frac{n}{b}$ khối, tổng độ phức tạp là $O(mb+\frac{n^2}{b})$. Lấy $b=\frac{n}{\sqrt{m}}$ là tối ưu, cho độ phức tạp thời gian $O(n\sqrt{m})$.
 
-## 实现
+## Hiện thực
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/rollback-mo-algo/rollback-mo-algo_1.cpp"
     ```
 
-## 参考资料
+## Tài liệu tham khảo
 
--   [回滚莫队及其简单运用 | Parsnip's Blog](https://www.cnblogs.com/Parsnip/p/10969989.html)
+-   [Mo rollback và ứng dụng đơn giản | Parsnip's Blog](https://www.cnblogs.com/Parsnip/p/10969989.html)

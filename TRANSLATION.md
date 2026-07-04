@@ -325,6 +325,13 @@ MkDocs source layout intact.
   `docs/misc/parallel-binsearch.md`: translated discretization, two-pointer,
   offline algorithm, CDQ divide-and-conquer, and overall binary search
   material.
+- `docs/misc/mo-algo-intro.md`, `docs/misc/mo-algo.md`,
+  `docs/misc/modifiable-mo-algo.md`, `docs/misc/mo-algo-on-tree.md`,
+  `docs/misc/rollback-mo-algo.md`, `docs/misc/mo-algo-2dimen.md`,
+  `docs/misc/mo-algo-secondary-offline.md`,
+  `docs/misc/mo-algo-with-bitset.md`: translated Mo's algorithm and its
+  modification, tree, rollback, two-dimensional, secondary-offline, and bitset
+  variants.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
