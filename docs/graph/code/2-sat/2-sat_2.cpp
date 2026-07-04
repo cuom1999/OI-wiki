@@ -23,7 +23,7 @@ void addedge(int u, int v) {
 
 int dfn[MAXN], low[MAXN], color[MAXN], stk[MAXN], ins[MAXN], top, dfs_clock, c;
 
-void tarjan(int x) {  // tarjan算法求强联通
+void tarjan(int x) {  // Thuật toán Tarjan tìm SCC.
   stk[++top] = x;
   ins[x] = 1;
   dfn[x] = low[x] = ++dfs_clock;

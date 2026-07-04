@@ -14,8 +14,8 @@ class Edge {
 }
 
 public class Main {
-    static int[] parent = new int[1010];  // 定义父亲
-    static int m, n, k;  // n 表示点的数量， m 表示边的数量，k 表示需要的棉花糖个数
+    static int[] parent = new int[1010];  // Định nghĩa mảng cha.
+    static int m, n, k;  // n là số đỉnh, m là số cạnh, k là số kẹo bông cần có.
 
     static Edge[] edges = new Edge[10010];
     static int l;
@@ -24,7 +24,7 @@ public class Main {
         edges[++l] = new Edge(u, v, w);
     }
 
-    // 标准并查集
+    // DSU chuẩn.
     static int findroot(int x) {
         if (parent[x] != x) {
             parent[x] = findroot(parent[x]);
@@ -42,25 +42,25 @@ public class Main {
         return A.w < B.w;
     }
 
-    // Kruskal 算法
+    // Thuật toán Kruskal.
     static void kruskal() {
-        int tot = 0;  // 存已选了的边数
-        int ans = 0;  // 存总的代价
+        int tot = 0;  // Lưu số cạnh đã chọn.
+        int ans = 0;  // Lưu tổng chi phí.
 
         for (int i = 1; i <= m; i++) {
             int xr = findroot(edges[i].u);
             int yr = findroot(edges[i].v);
-            if (xr != yr) {   // 如果父亲不一样
-                Merge(xr, yr); // 合并
-                tot++; // 边数增加
-                ans += edges[i].w; // 代价增加
-                if (tot == n - k) {  // 检查选的边数是否满足 k 个棉花糖
+            if (xr != yr) {   // Nếu hai gốc khác nhau.
+                Merge(xr, yr); // Hợp nhất.
+                tot++; // Tăng số cạnh.
+                ans += edges[i].w; // Tăng chi phí.
+                if (tot == n - k) {  // Kiểm tra số cạnh đã chọn có thỏa k kẹo bông không.
                     System.out.println(ans);
                     return;
                 }
             }
         }
-        System.out.println("No Answer");  // 无法连成
+        System.out.println("No Answer");  // Không thể nối thành công.
     }
 
     public static void main(String[] args) {
@@ -69,12 +69,12 @@ public class Main {
         m = scanner.nextInt();
         k = scanner.nextInt();
 
-        if (n == k) { // 特判边界情况
+        if (n == k) { // Xử lý riêng trường hợp biên.
             System.out.println("0");
             return;
         }
 
-        // 初始化
+        // Khởi tạo.
         for (int i = 1; i <= n; i++) {
             parent[i] = i;
         }
@@ -82,9 +82,9 @@ public class Main {
             int u = scanner.nextInt();
             int v = scanner.nextInt();
             int w = scanner.nextInt();
-            addEdge(u, v, w);  // 添加边
+            addEdge(u, v, w);  // Thêm cạnh.
         }
-        Arrays.sort(edges, 1, m + 1, (a, b) -> Integer.compare(a.w, b.w));  // 先按边权排序
+        Arrays.sort(edges, 1, m + 1, (a, b) -> Integer.compare(a.w, b.w));  // Trước hết sắp xếp theo trọng số cạnh.
         kruskal();
         scanner.close();
     }

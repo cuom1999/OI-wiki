@@ -18,7 +18,7 @@ int cnt[505];
 constexpr int dn = 500;
 stack<int> ans;
 
-void Hierholzer(int x) {  // 关键函数
+void Hierholzer(int x) {  // Hàm then chốt.
   for (int& i = cnt[x]; i < (int)beg[x].size();) {
     if (beg[x][i].exists) {
       edge e = beg[x][i];
@@ -38,7 +38,7 @@ int reftop[505];
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   for (int i = 1; i <= dn; ++i) {
-    beg[i].reserve(1050);  // vector 用 reserve 避免动态分配空间，加快速度
+    beg[i].reserve(1050);  // Dùng reserve để tránh cấp phát động, tăng tốc vector.
   }
 
   int m;
@@ -54,7 +54,7 @@ int main() {
 
   for (int i = 1; i <= dn; ++i) {
     if (!beg[i].empty()) {
-      sort(beg[i].begin(), beg[i].end());  // 为了要按字典序贪心，必须排序
+      sort(beg[i].begin(), beg[i].end());  // Cần sắp xếp để tham lam theo thứ tự từ điển.
     }
   }
 

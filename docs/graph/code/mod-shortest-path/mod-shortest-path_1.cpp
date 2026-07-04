@@ -20,7 +20,7 @@ void add(ll u, ll v, ll w) {
   head[u] = tot;
 }
 
-void spfa() {  // spfa算法，可看最短路部分
+void spfa() {  // Thuật toán SPFA; xem thêm phần đường đi ngắn nhất.
   dis[0] = 0;
   vis[0] = 1;
   q.push(0);

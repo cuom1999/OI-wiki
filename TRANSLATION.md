@@ -418,6 +418,9 @@ MkDocs source layout intact.
   were translated without changing the algorithms.
 - Chinese comments in `docs/geometry/code` snippets were translated while
   preserving geometry implementations.
+- Chinese comments in foundational `docs/graph/code` snippets covering 2-SAT,
+  BFS, difference constraints, Euler paths, MST, modular shortest paths, Steiner
+  trees, and tree centroids were translated.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

@@ -5,7 +5,7 @@ class Edge:
         self.w = w
 
 
-fa = [0] * 1010  # 定义父亲
+fa = [0] * 1010  # Định nghĩa mảng cha.
 g = []
 
 
@@ -13,7 +13,7 @@ def add(u, v, w):
     g.append(Edge(u, v, w))
 
 
-# 标准并查集
+# DSU chuẩn.
 def findroot(x):
     if fa[x] == x:
         return x
@@ -27,32 +27,32 @@ def Merge(x, y):
     fa[x] = y
 
 
-# Kruskal 算法
+# Thuật toán Kruskal.
 def kruskal():
-    tot = 0  # 存已选了的边数
-    ans = 0  # 存总的代价
+    tot = 0  # Lưu số cạnh đã chọn.
+    ans = 0  # Lưu tổng chi phí.
     for e in g:
         x = findroot(e.u)
         y = findroot(e.v)
-        if x != y:  # 如果父亲不一样
-            fa[x] = y  # 合并
-            tot += 1  # 边数增加
-            ans += e.w  # 代价增加
-            if tot == n - k:  # 检查选的边数是否满足 k 个棉花糖
+        if x != y:  # Nếu hai gốc khác nhau.
+            fa[x] = y  # Hợp nhất.
+            tot += 1  # Tăng số cạnh.
+            ans += e.w  # Tăng chi phí.
+            if tot == n - k:  # Kiểm tra số cạnh đã chọn có thỏa k kẹo bông không.
                 print(ans)
                 return
-    print("No Answer")  # 无法连成
+    print("No Answer")  # Không thể nối thành công.
 
 
 if __name__ == "__main__":
     n, m, k = map(int, input().split())
-    if n == k:  # 特判边界情况
+    if n == k:  # Xử lý riêng trường hợp biên.
         print("0")
         exit()
-    for i in range(1, n + 1):  # 初始化
+    for i in range(1, n + 1):  # Khởi tạo.
         fa[i] = i
     for i in range(1, m + 1):
         u, v, w = map(int, input().split())
-        add(u, v, w)  # 添加边
-    g.sort(key=lambda edge: edge.w)  # 先按边权排序
+        add(u, v, w)  # Thêm cạnh.
+    g.sort(key=lambda edge: edge.w)  # Trước hết sắp xếp theo trọng số cạnh.
     kruskal()

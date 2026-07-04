@@ -8,24 +8,24 @@ using namespace std;
 const int MAXN = 50005;
 
 int n;
-// 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]
-int siz[MAXN],  // 这个节点的「大小」（所有子树上节点数 + 该节点）
-    weight[MAXN];  // 这个节点的「重量」，即所有子树「大小」的最大值
-vector<int> centroids;  // 用于记录树的重心（存的是节点编号）
+// Đoạn code này mặc định đánh số đỉnh từ 1, tức i ∈ [1,n].
+int siz[MAXN],  // "Kích thước" của đỉnh này: số đỉnh trong mọi cây con + chính nó.
+    weight[MAXN];  // "Trọng lượng" của đỉnh: kích thước lớn nhất trong các cây con.
+vector<int> centroids;  // Ghi lại trọng tâm của cây, lưu bằng số hiệu đỉnh.
 vector<int> g[MAXN];
 
-void dfs(int cur, int fa) {  // cur 表示当前节点 (current)
+void dfs(int cur, int fa) {  // cur biểu diễn đỉnh hiện tại (current).
   siz[cur] = 1;
   weight[cur] = 0;
   for (int v : g[cur]) {
-    if (v != fa) {  // v 表示这条有向边所通向的节点
+    if (v != fa) {  // v là đỉnh mà cạnh có hướng này trỏ tới.
       dfs(v, cur);
       siz[cur] += siz[v];
       weight[cur] = max(weight[cur], siz[v]);
     }
   }
   weight[cur] = max(weight[cur], n - siz[cur]);
-  if (weight[cur] <= n / 2) {  // 依照树的重心的定义统计
+  if (weight[cur] <= n / 2) {  // Thống kê theo định nghĩa trọng tâm của cây.
     centroids.push_back(cur);
   }
 }
