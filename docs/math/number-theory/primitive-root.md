@@ -376,84 +376,128 @@ số phần tử có một bậc nào đó, ta có kết luận sau:
 
 <span id="&#x539F;&#x6839;&#x5B58;&#x5728;&#x5B9A;&#x7406;"></span>
 
-### Dinh ly ton tai can nguyen thuy
+### Định lí tồn tại căn nguyên thủy
 
-Muc nay se thiet lap dinh ly ton tai can nguyen thuy sau:
+Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
 
-???+ note "Dinh ly"
-    Can nguyen thuy modulo $m$ ton tai khi va chi khi $m=1,2,4,p^e,2p^e$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
+???+ note "Định lí"
+    Căn nguyên thủy modulo $m$ tồn tại khi và chỉ khi
+    $m=1,2,4,p^e,2p^e$, trong đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$.
 
-De chung minh ket luan nay, can lan luot xet bon truong hop sau:
+Để chứng minh kết luận này, cần lần lượt xét bốn trường hợp sau:
 
-1.  $m=1,2,4$, cac can nguyen thuy lan luot la $g=0,1,3$, hien nhien ton tai.
+1.  $m=1,2,4$, các căn nguyên thủy lần lượt là $g=0,1,3$, hiển nhiên tồn tại.
 
-2.  $m=p^{e}$ la luy thua cua mot so nguyen to le, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
+2.  $m=p^{e}$ là lũy thừa của một số nguyên tố lẻ, trong đó $p$ là số nguyên
+    tố lẻ và $e\in\mathbf N_+$.
 
-    ???+ note "Bo de 1"
-        Voi so nguyen to le $p$, can nguyen thuy modulo $p$ ton tai.
+    ???+ note "Bổ đề 1"
+        Với số nguyên tố lẻ $p$, căn nguyên thủy modulo $p$ tồn tại.
 
-    ??? note "Chung minh"
-        Chung minh chia thanh hai buoc.
-        
-        **Buoc 1**: Voi $d\mid(p-1)$, phuong trinh dong du $x^d\equiv 1\pmod p$ co dung $d$ nghiem doi mot khac nhau.
-        
-        Dat $p-1=kd$, xet da thuc
-        
+    ??? note "Chứng minh"
+        Chứng minh chia thành hai bước.
+
+        **Bước 1**: Với $d\mid(p-1)$, phương trình đồng dư
+        $x^d\equiv 1\pmod p$ có đúng $d$ nghiệm đôi một khác nhau.
+
+        Đặt $p-1=kd$, xét đa thức
+
         $$
-        f(x) = x^{d(k-1)} + x^{d(k-2)} + \cdots + x^d + 1. 
+        f(x) = x^{d(k-1)} + x^{d(k-2)} + \cdots + x^d + 1.
         $$
-        
-        Theo [dinh ly Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), phuong trinh dong du $(x^d-1)f(x)=x^{p-1}-1\equiv 0\pmod{p}$ co dung $p-1$ nghiem doi mot khac nhau. Cac nghiem nay lan luot la nghiem cua $x^d-1$ va $f(x)$. Theo [dinh ly Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86), chung lan luot co nhieu nhat $d$ va $d(k-1)$ nghiem doi mot khac nhau. Vi $d+d(k-1)=p-1$, truong hop dau chi co the co dung $d$ nghiem doi mot khac nhau. Dieu nay chung minh phuong trinh dong du $x^d\equiv 1\pmod p$ co dung $d$ nghiem doi mot khac nhau.
-        
-        **Buoc 2**: Voi $d\mid(p-1)$, so phan tu bac $d$ dung bang $\varphi(d)$.
-        
-        Sap xep tat ca cac uoc cua $\varphi(p)$, roi dung quy nap. Vi phan tu bac $1$ chi co the la $1$, nen co dung mot phan tu va co so quy nap dung. Voi $d\mid(p-1)$, theo [Tinh chat 2](#ord-prop-2) o tren, moi nghiem cua phuong trinh dong du $x^d\equiv 1\pmod p$ deu thoa man $\delta_p(x)\mid d$. Do do, so phan tu bac $d$ trong do la
-        
+
+        Theo [định lí Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86),
+        phương trình đồng dư
+        $(x^d-1)f(x)=x^{p-1}-1\equiv 0\pmod{p}$ có đúng $p-1$ nghiệm đôi một
+        khác nhau. Các nghiệm này lần lượt là nghiệm của $x^d-1$ và $f(x)$.
+        Theo [định lí Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86),
+        chúng lần lượt có nhiều nhất $d$ và $d(k-1)$ nghiệm đôi một khác nhau.
+        Vì $d+d(k-1)=p-1$, trường hợp đầu chỉ có thể có đúng $d$ nghiệm đôi một
+        khác nhau. Điều này chứng minh phương trình đồng dư
+        $x^d\equiv 1\pmod p$ có đúng $d$ nghiệm đôi một khác nhau.
+
+        **Bước 2**: Với $d\mid(p-1)$, số phần tử bậc $d$ đúng bằng
+        $\varphi(d)$.
+
+        Sắp xếp tất cả các ước của $\varphi(p)$, rồi dùng quy nạp. Vì phần tử
+        bậc $1$ chỉ có thể là $1$, nên có đúng một phần tử và cơ sở quy nạp
+        đúng. Với $d\mid(p-1)$, theo [Tính chất 2](#ord-prop-2) ở trên, mọi
+        nghiệm của phương trình đồng dư $x^d\equiv 1\pmod p$ đều thỏa mãn
+        $\delta_p(x)\mid d$. Do đó, số phần tử bậc $d$ trong đó là
+
         $$
         N(d) = d - \sum_{e\mid d,~e\neq d} N(e) =  d - \sum_{e\mid d,~e\neq d} \varphi(e) = \varphi(d).
         $$
-        
-        Dau bang thu hai dung theo gia thiet quy nap, dau bang thu ba la tinh chat cua ham Euler. Theo quy nap toan hoc, voi moi $d\mid(p-1)$ deu co dung $\varphi(d)$ phan tu bac $d$.
-        
-        Dac biet, voi $d=p-1$, co dung $\varphi(p-1)$ phan tu bac $(p-1)$. Vi vay can nguyen thuy modulo $p$ ton tai.
 
-    ???+ note "Bo de 2"
-        Voi so nguyen to le $p$ va $e \in \mathbf{N}_+$, can nguyen thuy modulo $p^e$ ton tai.
+        Dấu bằng thứ hai đúng theo giả thiết quy nạp, dấu bằng thứ ba là tính
+        chất của hàm Euler. Theo quy nạp toán học, với mọi $d\mid(p-1)$ đều có
+        đúng $\varphi(d)$ phần tử bậc $d$.
 
-    ??? note "Chung minh"
-        Chung minh chia thanh ba buoc.
-        
-        **Buoc 1**: Ton tai can nguyen thuy $g$ modulo $p$ sao cho $g^{p-1}\not\equiv 1\pmod{p^2}$.
-        
-        Lay tuy y mot can nguyen thuy $g$ modulo $p$. Neu no khong thoa man dieu kien, tuc la $g^{p-1}\equiv 1\pmod{p^2}$, thi co the chung minh $g+p$ thoa man dieu kien: $g+p$ cung la can nguyen thuy modulo $p$, va
-        
+        Đặc biệt, với $d=p-1$, có đúng $\varphi(p-1)$ phần tử bậc $(p-1)$. Vì
+        vậy căn nguyên thủy modulo $p$ tồn tại.
+
+    ???+ note "Bổ đề 2"
+        Với số nguyên tố lẻ $p$ và $e \in \mathbf{N}_+$, căn nguyên thủy modulo
+        $p^e$ tồn tại.
+
+    ??? note "Chứng minh"
+        Chứng minh chia thành ba bước.
+
+        **Bước 1**: Tồn tại căn nguyên thủy $g$ modulo $p$ sao cho
+        $g^{p-1}\not\equiv 1\pmod{p^2}$.
+
+        Lấy tùy ý một căn nguyên thủy $g$ modulo $p$. Nếu nó không thỏa mãn điều
+        kiện, tức là $g^{p-1}\equiv 1\pmod{p^2}$, thì có thể chứng minh $g+p$
+        thỏa mãn điều kiện: $g+p$ cũng là căn nguyên thủy modulo $p$, và
+
         $$
         \begin{aligned}
         (g+p)^{p-1} &\equiv \binom{p-1}{0}g^{p-1} + \binom{p-1}{1}g^{p-2}p \\
-        &= g^{p-1} + g^{p-2}p(p-1) \\ 
+        &= g^{p-1} + g^{p-2}p(p-1) \\
         &\equiv 1 - pg^{p-2} \not\equiv 1 \pmod{p^2}.
         \end{aligned}
         $$
-        
-        **Buoc 2**: Voi $g$ da chon o tren, voi moi $e\ge 1$ deu co $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$.
-        
-        Cach chon $g$ bao dam bieu thuc nay dung khi $e=1$. Gia su bieu thuc dung voi truong hop $e$, ta chung minh no cung dung voi truong hop $e+1$. Voi moi $e \ge 1$, theo dinh ly Euler ton tai $\lambda$ sao cho
-        
+
+        **Bước 2**: Với $g$ đã chọn ở trên, với mọi $e\ge 1$ đều có
+        $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$.
+
+        Cách chọn $g$ bảo đảm biểu thức này đúng khi $e=1$. Giả sử biểu thức
+        đúng với trường hợp $e$, ta chứng minh nó cũng đúng với trường hợp
+        $e+1$. Với mọi $e \ge 1$, theo định lí Euler tồn tại $\lambda$ sao cho
+
         $$
         g^{\varphi(p^e)} = 1 + \lambda p^e
         $$
-        
-        dung. Theo gia thiet quy nap, $\lambda\perp p$. Vi $\varphi(p^{e+1})=p\varphi(p^e)$, nen
-        
+
+        đúng. Theo giả thiết quy nạp, $\lambda\perp p$. Vì
+        $\varphi(p^{e+1})=p\varphi(p^e)$, nên
+
         $$
         g^{\varphi(p^{e+1})} = \left(g^{\varphi(p^{e})}\right)^p = (1 + \lambda p^e)^p \equiv 1 + \lambda p^{e+1} \pmod{p^{e+2}}.
         $$
-        
-        Ket hop voi $\lambda\perp p$, ta duoc $g^{\varphi(p^{e+1})}\not\equiv 1\pmod{p^{e+2}}$. Theo quy nap toan hoc, menh de dung.
-        
-        **Buoc 3**: Voi $g$ da chon o tren, voi moi $e\ge 1$, $g$ deu la can nguyen thuy modulo $p^e$.
-        
-        Cach chon $g$ bao dam menh de dung khi $e=1$. Gia su menh de dung voi $e$, ta chung minh no dung voi $e+1$. Viet gon $\delta_{p^{e+1}}(g)$ la $\delta$. Vi $g^\delta\equiv 1\pmod{p^{e+1}}$, tat yeu cung co $g^\delta\equiv 1\pmod{p^e}$. Theo gia thiet quy nap, $\delta_{p^e}(g) = \varphi(p^e)$. Do do, theo [Tinh chat 2](#ord-prop-2) ve bac o tren, $\varphi(p^e)\mid\delta$. Lai theo dinh ly Euler, $\delta\mid\varphi(p^{e+1})$. Nhung $\varphi(p^{e+1})=p\varphi(p^e)$. Vi vay chi co hai kha nang: $\delta=\varphi(p^e)$ hoac $\delta=\varphi(p^{e+1})$. Tuy nhien, ket luan o buoc 2 cho thay $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$. Do do kha nang $\delta=\varphi(p^e)$ khong dung. Kha nang duy nhat la $\delta=\varphi(p^{e+1})$. Dieu nay chung minh $g$ la can nguyen thuy modulo $p^{e+1}$. Theo quy nap toan hoc, menh de dung voi moi $e\ge 1$.
+
+        Kết hợp với $\lambda\perp p$, ta được
+        $g^{\varphi(p^{e+1})}\not\equiv 1\pmod{p^{e+2}}$. Theo quy nạp toán
+        học, mệnh đề đúng.
+
+        **Bước 3**: Với $g$ đã chọn ở trên, với mọi $e\ge 1$, $g$ đều là căn
+        nguyên thủy modulo $p^e$.
+
+        Cách chọn $g$ bảo đảm mệnh đề đúng khi $e=1$. Giả sử mệnh đề đúng với
+        $e$, ta chứng minh nó đúng với $e+1$. Viết gọn $\delta_{p^{e+1}}(g)$ là
+        $\delta$. Vì $g^\delta\equiv 1\pmod{p^{e+1}}$, tất yếu cũng có
+        $g^\delta\equiv 1\pmod{p^e}$. Theo giả thiết quy nạp,
+        $\delta_{p^e}(g) = \varphi(p^e)$. Do đó, theo
+        [Tính chất 2](#ord-prop-2) về bậc ở trên, $\varphi(p^e)\mid\delta$.
+        Lại theo định lí Euler, $\delta\mid\varphi(p^{e+1})$. Nhưng
+        $\varphi(p^{e+1})=p\varphi(p^e)$. Vì vậy chỉ có hai khả năng:
+        $\delta=\varphi(p^e)$ hoặc $\delta=\varphi(p^{e+1})$. Tuy nhiên, kết
+        luận ở bước 2 cho thấy
+        $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$. Do đó khả năng
+        $\delta=\varphi(p^e)$ không đúng. Khả năng duy nhất là
+        $\delta=\varphi(p^{e+1})$. Điều này chứng minh $g$ là căn nguyên thủy
+        modulo $p^{e+1}$. Theo quy nạp toán học, mệnh đề đúng với mọi
+        $e\ge 1$.
 
 3.  $m=2p^{e}$, trong do $p$ la so nguyen to le va $e\in\mathbf N_+$.
 
