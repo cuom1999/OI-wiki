@@ -16,12 +16,12 @@
     <g>
         <ellipse cx="150" cy="100" rx="145" ry="95"/>
         <path d="M 150 5 v 190"/>
-        <text x="225" y="104">实数集</text>
-        <text x="90" y="60">虚数集</text>
+        <text x="225" y="104">Tập số thực</text>
+        <text x="90" y="60">Tập số ảo</text>
         <g>
             <ellipse cx="90" cy="140" rx="50" ry="20"/>
-            <text x="90" y="145">纯虚数集</text>
+            <text x="90" y="145">Tập số thuần ảo</text>
         </g>
     </g>
-    <text x="150" y="220">复数集</text>
+    <text x="150" y="220">Tập số phức</text>
 </svg>

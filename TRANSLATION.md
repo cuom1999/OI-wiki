@@ -364,6 +364,10 @@ MkDocs source layout intact.
   compression, Splay rotations, Huffman coding, Top Tree, block decomposition,
   half-plane intersection, n-dimensional sqrt decomposition, and KMP prefix
   function diagrams.
+- `docs/**/images/*.svg`: translated visible text labels and safe metadata in
+  the remaining text-based SVG diagrams, including Fenwick query, topological
+  prerequisite, complex-number set, Young tableau, finite-state-machine, Poker,
+  and segment-tree diagram sources.
 - `docs/topic/rmq.md`, `docs/topic/dsu-app.md`, `docs/topic/bracket.md`,
   `docs/topic/segment-tree-offline.md`: translated topic pages for RMQ, DSU
   applications, bracket sequences, and segment-tree divide-and-conquer over
