@@ -94,7 +94,8 @@ MkDocs source layout intact.
   `docs/dp/opt/state.md`, `docs/dp/opt/wqs-binary-search.md`: translated
   plug DP and DP optimization pages, plus explanatory comments in their
   included snippets; quality-passed the Slope Trick introduction, convex
-  function definitions, and slope/epigraph characterizations in
+  function definitions, slope/epigraph characterizations, and convex
+  transformation material in
   `docs/dp/opt/slope-trick.md`.
 - `docs/string/basic.md`, `docs/string/lib-func.md`,
   `docs/string/match.md`: translated the introductory string material covering

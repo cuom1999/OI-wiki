@@ -281,44 +281,67 @@ Tiếp theo, bài viết giới thiệu một số phép biến đổi bảo to�
 trong Slope Trick.
 
 <span id="&#x975E;&#x8D1F;&#x7EBF;&#x6027;&#x7EC4;&#x5408;"></span>
-### To hop tuyen tinh khong am
+### Tổ hợp tuyến tính không âm
 
-Voi hai ham loi $f$ va $g$, cung cac so thuc khong am $\alpha,\beta\ge0$, ham $\alpha f+\beta g$ cung la ham loi. Hon nua,
+Với hai hàm lồi $f$ và $g$, cùng các số thực không âm $\alpha,\beta\ge0$, hàm
+$\alpha f+\beta g$ cũng là hàm lồi. Hơn nữa,
 
 $$
 \Delta(\alpha f+\beta g) = \alpha\Delta f + \beta\Delta g.
 $$
 
-Vi vay, neu da duy tri do doc cua cac ham loi $f$ va $g$, de thu duoc do doc cua to hop tuyen tinh khong am $\alpha f+\beta g$, chi can tinh theo tung doan.
+Vì vậy, nếu đã duy trì độ dốc của các hàm lồi $f$ và $g$, để thu được độ dốc
+của tổ hợp tuyến tính không âm $\alpha f+\beta g$, chỉ cần tính theo từng đoạn.
 
-Trong cac bai toan duy tri do doc, thuong co mot ham co dang kha don gian; khi do co the giam do phuc tap sua doi bang lazy tag. Trong cac bai toan duy tri diem gay, de tinh cac diem gay cua do doc cua $f+g$, chi can tron cac diem gay do doc cua $f$ va $g$.
+Trong các bài toán duy trì độ dốc, thường có một hàm có dạng khá đơn giản; khi
+đó có thể giảm độ phức tạp sửa đổi bằng lazy tag. Trong các bài toán duy trì
+điểm gãy, để tính các điểm gãy của độ dốc của $f+g$, chỉ cần trộn các điểm gãy
+độ dốc của $f$ và $g$.
 
 <span id="&#x5377;&#x79EF;&#x4E0B;&#x786E;&#x754C;minkowski-&#x548C;"></span>
-### Tich chap duoi dung (tong Minkowski)
+### Tích chập dưới đúng (tổng Minkowski)
 
-Mot phep toan thuong gap khac tren ham loi la tich chap duoi dung. Voi hai ham $f$ va $g$, ham
+Một phép toán thường gặp khác trên hàm lồi là tích chập dưới đúng. Với hai hàm
+$f$ và $g$, hàm
 
 $$
 h(x) = \inf_{y\in\mathbf R}f(y)+g(x-y)
 $$
 
-duoc goi la **tich chap duoi dung**[^inf-conv] (infimal convolution) cua $f$ va $g$. Neu $f$ va $g$ deu la ham loi, tich chap duoi dung cua chung cung la ham loi.
+được gọi là **tích chập dưới đúng**[^inf-conv] (infimal convolution) của $f$ và
+$g$. Nếu $f$ và $g$ đều là hàm lồi, tích chập dưới đúng của chúng cũng là hàm
+lồi.
 
 ![](../images/slope-trick/epigraph-convex-minkowski.svg)
 
-??? example "Giai thich hinh ve"
-    Nhu trong hinh, de tim tich chap duoi dung $h$ cua $f$ va $g$, co the xem moi diem thuong do thi cua $f$ (duong dut net mau do trong hinh thu ba) la goc toa do, roi ve do thi cua $g$ (duong dut net mau xanh trong hinh thu ba) trong he toa do tuong ung. Khi goc toa do di chuyen doc theo do thi cua $f$, bien dang quy dao ma do thi (thuong do thi) cua $g$ quet ra, cu the la bao loi duoi, chinh la do thi cua $h$. Co the thay moi doan do doc cua $h$ hoac la doan do doc cua $f$, hoac la doan do doc cua $g$: chung chi duoc sap xep lai theo do lon do doc. Trong qua trinh nay, vai tro cua $f$ va $g$ co the hoan doi; neu cho do thi cua $f$ di chuyen doc theo do thi cua $g$, ket qua van nhu nhau.
+??? example "Giải thích hình vẽ"
+    Như trong hình, để tìm tích chập dưới đúng $h$ của $f$ và $g$, có thể xem
+    mỗi điểm thượng đồ thị của $f$ (đường đứt nét màu đỏ trong hình thứ ba) là
+    gốc tọa độ, rồi vẽ đồ thị của $g$ (đường đứt nét màu xanh trong hình thứ ba)
+    trong hệ tọa độ tương ứng. Khi gốc tọa độ di chuyển dọc theo đồ thị của
+    $f$, biến dạng quỹ đạo mà đồ thị (thượng đồ thị) của $g$ quét ra, cụ thể là
+    bao lồi dưới, chính là đồ thị của $h$. Có thể thấy mỗi đoạn độ dốc của $h$
+    hoặc là đoạn độ dốc của $f$, hoặc là đoạn độ dốc của $g$: chúng chỉ được sắp
+    xếp lại theo độ lớn độ dốc. Trong quá trình này, vai trò của $f$ và $g$ có
+    thể hoán đổi; nếu cho đồ thị của $f$ di chuyển dọc theo đồ thị của $g$, kết
+    quả vẫn như nhau.
 
-Ve truc giac hinh hoc, $\operatorname{epi}h$ chinh la [tong Minkowski](../../geometry/convex-hull.md#tổng-minkowski) cua $\operatorname{epi}f$ va $\operatorname{epi}g$. Neu $f$ va $g$ deu la ham tuyen tinh tung doan, thi $h$ cung la ham tuyen tinh tung doan, va cac doan do doc cua no co the xem la ket qua tron (roi sap xep lai) cac doan do doc cua $f$ va $g$.
+Về trực giác hình học, $\operatorname{epi}h$ chính là
+[tổng Minkowski](../../geometry/convex-hull.md#tổng-minkowski) của
+$\operatorname{epi}f$ và $\operatorname{epi}g$. Nếu $f$ và $g$ đều là hàm tuyến
+tính từng đoạn, thì $h$ cũng là hàm tuyến tính từng đoạn, và các đoạn độ dốc của
+nó có thể xem là kết quả trộn (rồi sắp xếp lại) các đoạn độ dốc của $f$ và $g$.
 
-??? note "Chung minh"
-    Gia su $f,g$ deu la ham loi, va $h$ la tich chap duoi dung cua chung. Lay $x_1<x_2$ va $\alpha\in(0,1)$. Theo dinh nghia tich chap duoi dung, voi moi $\varepsilon>0$, ton tai $y_i,z_i\in\mathbf R$ sao cho $y_i+z_i=x_i$ va
+??? note "Chứng minh"
+    Giả sử $f,g$ đều là hàm lồi, và $h$ là tích chập dưới đúng của chúng. Lấy
+    $x_1<x_2$ và $\alpha\in(0,1)$. Theo định nghĩa tích chập dưới đúng, với mọi
+    $\varepsilon>0$, tồn tại $y_i,z_i\in\mathbf R$ sao cho $y_i+z_i=x_i$ và
     
     $$
     h(x_i) + \varepsilon > f(y_i) + g(z_i).
     $$
     
-    Do do, ket hop tinh loi cua $f,g$ va dinh nghia cua $h$, ta co
+    Do đó, kết hợp tính lồi của $f,g$ và định nghĩa của $h$, ta có
     
     $$
     \begin{aligned}
@@ -329,71 +352,108 @@ Ve truc giac hinh hoc, $\operatorname{epi}h$ chinh la [tong Minkowski](../../geo
     \end{aligned}
     $$
     
-    Vi $\varepsilon>0$ duoc chon tuy y, suy ra
+    Vì $\varepsilon>0$ được chọn tùy ý, suy ra
     
     $$
     \alpha h(x_1)+(1-\alpha)h(x_2) \ge h(\alpha x_1+(1-\alpha)x_2).
     $$
     
-    Tu do thu duoc tinh loi cua $h$.
+    Từ đó thu được tính lồi của $h$.
     
-    Tiep theo, doi voi truc giac hinh hoc, noi mot cach chat che thi chi co the chung minh ket luan sau:
+    Tiếp theo, đối với trực giác hình học, nói một cách chặt chẽ thì chỉ có thể
+    chứng minh kết luận sau:
     
     $$
     \operatorname{epi} f + \operatorname{epi} g\subseteq \operatorname{epi}h \subseteq \operatorname{cl}(\operatorname{epi} f + \operatorname{epi} g).
     $$
     
-    Trong do, $\operatorname{cl}$ bieu thi bao dong.
+    Trong đó, $\operatorname{cl}$ biểu thị bao đóng.
     
-    Voi moi $(x,y)\in\operatorname{epi} f + \operatorname{epi} g$, ton tai $(x_1,y_1)\in\operatorname{epi} f$ va $(x_2,y_2)\in\operatorname{epi} g$ sao cho $x=x_1+x_2$ va
+    Với mọi $(x,y)\in\operatorname{epi} f + \operatorname{epi} g$, tồn tại
+    $(x_1,y_1)\in\operatorname{epi} f$ và $(x_2,y_2)\in\operatorname{epi} g$ sao
+    cho $x=x_1+x_2$ và
     
     $$
     y = y_1+y_2 \ge f(x_1)+g(x_2) \ge h(x_1+x_2)=h(x).
     $$
     
-    Do do, $(x,y)\in\operatorname{epi}h$. Dieu nay cho thay $\operatorname{epi} f + \operatorname{epi} g\subseteq \operatorname{epi}h$.
+    Do đó, $(x,y)\in\operatorname{epi}h$. Điều này cho thấy
+    $\operatorname{epi} f + \operatorname{epi} g\subseteq \operatorname{epi}h$.
     
-    Nguoc lai, voi moi $(x,y)\in\operatorname{epi}h$, ta co $y\ge h(x)$. Theo dinh nghia cua $h$, voi moi $\varepsilon>0$, ton tai $x_1+x_2=x$ sao cho
+    Ngược lại, với mọi $(x,y)\in\operatorname{epi}h$, ta có $y\ge h(x)$. Theo
+    định nghĩa của $h$, với mọi $\varepsilon>0$, tồn tại $x_1+x_2=x$ sao cho
     
     $$
     y + \varepsilon > f(x_1) + g(x_2).
     $$
     
-    Dat $y_1=f(x_1)$ va $y_2=g(x_2)$, ta co $y+\varepsilon>y_1+y_2$. Dieu nay noi rang voi moi $\varepsilon>0$, diem $(x_1,y_1)+(x_2,y_2)\in\operatorname{epi} f + \operatorname{epi} g$ nam tren doan thang noi $(x,y)$ va $(x,y+\varepsilon)$. Cho $\varepsilon\rightarrow 0$, ta duoc $\operatorname{epi}h \subseteq \operatorname{cl}(\operatorname{epi} f + \operatorname{epi} g)$.
+    Đặt $y_1=f(x_1)$ và $y_2=g(x_2)$, ta có $y+\varepsilon>y_1+y_2$. Điều này
+    nói rằng với mọi $\varepsilon>0$, điểm
+    $(x_1,y_1)+(x_2,y_2)\in\operatorname{epi} f + \operatorname{epi} g$ nằm trên
+    đoạn thẳng nối $(x,y)$ và $(x,y+\varepsilon)$. Cho
+    $\varepsilon\rightarrow 0$, ta được
+    $\operatorname{epi}h \subseteq \operatorname{cl}(\operatorname{epi} f + \operatorname{epi} g)$.
     
-    Vi vay, $\operatorname{epi} f + \operatorname{epi} g = \operatorname{epi}h$ khi va chi khi no la tap loi dong. Mot dieu kien de dieu nay dung la $f$ va $g$ deu la ham loi dung va [nua lien tuc duoi](https://en.wikipedia.org/wiki/Semi-continuity). Voi cac ung dung trong lap trinh thi dau, dieu nay da du, chang han ham tuyen tinh tung doan luon thoa man cac dieu kien nay.
+    Vì vậy, $\operatorname{epi} f + \operatorname{epi} g = \operatorname{epi}h$
+    khi và chỉ khi nó là tập lồi đóng. Một điều kiện để điều này đúng là $f$ và
+    $g$ đều là hàm lồi đúng và
+    [nửa liên tục dưới](https://en.wikipedia.org/wiki/Semi-continuity). Với các
+    ứng dụng trong lập trình thi đấu, điều này đã đủ, chẳng hạn hàm tuyến tính
+    từng đoạn luôn thỏa mãn các điều kiện này.
 
-Trong bai toan thuc te, neu mot trong hai ham $f$ va $g$ co it doan do doc, co the chen truc tiep cac doan do doc it hon vao tap doan do doc nhieu hon; neu khong, co the can dung cac ky thuat nhu [gop theo heuristic](../../graph/dsu-on-tree.md) hoac [heap co the gop](../../ds/heap.md) de giam do phuc tap tong the cua phep gop, hoac tim cach xu ly rieng theo bai toan cu the.
+Trong bài toán thực tế, nếu một trong hai hàm $f$ và $g$ có ít đoạn độ dốc, có
+thể chèn trực tiếp các đoạn độ dốc ít hơn vào tập đoạn độ dốc nhiều hơn; nếu
+không, có thể cần dùng các kỹ thuật như
+[gộp theo heuristic](../../graph/dsu-on-tree.md) hoặc
+[heap có thể gộp](../../ds/heap.md) để giảm độ phức tạp tổng thể của phép gộp,
+hoặc tìm cách xử lý riêng theo bài toán cụ thể.
 
 <span id="&#x6700;&#x503C;&#x64CD;&#x4F5C;"></span>
-### Phep toan cuc tri
+### Phép toán cực trị
 
-Gia tri lon nhat cua hai ham loi van la ham loi, nhung gia tri nho nhat cua hai ham loi chua chac con la ham loi.
+Giá trị lớn nhất của hai hàm lồi vẫn là hàm lồi, nhưng giá trị nhỏ nhất của hai
+hàm lồi chưa chắc còn là hàm lồi.
 
-Nhieu phep lay nho nhat thuong gap co the chuyen thanh tich chap duoi dung:
+Nhiều phép lấy nhỏ nhất thường gặp có thể chuyển thành tích chập dưới đúng:
 
-???+ example "Vi du"
-    -   $f(x)=\min_{y\in [x+a,x+b]}g(y)$ van la ham loi, vi no co the xem la tich chap duoi dung:
+???+ example "Ví dụ"
+    -   $f(x)=\min_{y\in [x+a,x+b]}g(y)$ vẫn là hàm lồi, vì nó có thể xem là
+        tích chập dưới đúng:
     
         $$
         f(x) = \min_{y\in\mathbf R}g(y) + 0_{[-b,-a]}(x-y).
         $$
-    -   $f(x)=\min\{g(x-a_i)+b_i\}$ la ham loi tren $\mathbf Z$, mien la $g(x)$ la ham loi tren $\mathbf Z$, va ham $h:a_i\mapsto b_i$ duoc dinh nghia tren tap huu han $\{a_i\}\subset\mathbf Z$ cung la ham loi tren tap roi rac do. Ly do la sau khi mo rong, ham $\tilde f(x)$ co the xem la tich chap duoi dung:
+    -   $f(x)=\min\{g(x-a_i)+b_i\}$ là hàm lồi trên $\mathbf Z$, miễn là
+        $g(x)$ là hàm lồi trên $\mathbf Z$, và hàm $h:a_i\mapsto b_i$ được định
+        nghĩa trên tập hữu hạn $\{a_i\}\subset\mathbf Z$ cũng là hàm lồi trên
+        tập rời rạc đó. Lý do là sau khi mở rộng, hàm $\tilde f(x)$ có thể xem
+        là tích chập dưới đúng:
     
         $$
         \tilde f(x) = \min_{y\in\mathbf R}\tilde h(y)+\tilde g(x-y).
         $$
     
-        Do do, ham $f(x)$ truoc khi mo rong cung la ham loi.
+        Do đó, hàm $f(x)$ trước khi mở rộng cũng là hàm lồi.
 
-Nhung khong phai moi phep lay nho nhat deu bao toan tinh loi.
+Nhưng không phải mọi phép lấy nhỏ nhất đều bảo toàn tính lồi.
 
-???+ example "Phan vi du"
-    Cho $g(x)$ la ham loi. Ham $f(x)=\min\{g(x-1)+kx,g(x)\}$ khong nhat thiet la ham loi.
+???+ example "Phản ví dụ"
+    Cho $g(x)$ là hàm lồi. Hàm $f(x)=\min\{g(x-1)+kx,g(x)\}$ không nhất thiết là
+    hàm lồi.
 
-Trong mot so bai toan dac biet, mac du phuong trinh chuyen trang thai cua quy hoach dong co the viet duoi dang gia tri nho nhat cua hai ham loi, va kho chuyen thanh dang tich chap duoi dung, ham gia tri van co the giu tinh loi. Khi xu ly thuc te, thuong can ket hop lap bang va du doan de tim cach chuyen do doc hop ly cho loai bai nay.
+Trong một số bài toán đặc biệt, mặc dù phương trình chuyển trạng thái của quy
+hoạch động có thể viết dưới dạng giá trị nhỏ nhất của hai hàm lồi, và khó chuyển
+thành dạng tích chập dưới đúng, hàm giá trị vẫn có thể giữ tính lồi. Khi xử lý
+thực tế, thường cần kết hợp lập bảng và dự đoán để tìm cách chuyển độ dốc hợp
+lý cho loại bài này.
 
-Sau khi hieu ham loi va cac phep bien doi thuong gap cua no, ta co the thong qua cac bai toan cu the de nam cach toi uu hoa DP bang Slope Trick. Cac vi du trong bai viet duoc chia dai khai thanh hai nhom: duy tri diem gay va duy tri do doc, nham giup hieu cac thao tac thuong gap va chi tiet cai dat cua hai cach duy tri nay. Tuy nhien, nhu da nhan manh o tren, cach duy tri khong phai la ban chat cua Slope Trick; can chon cach duy tri doan do doc phu hop theo yeu cau cua tung bai toan.
+Sau khi hiểu hàm lồi và các phép biến đổi thường gặp của nó, ta có thể thông qua
+các bài toán cụ thể để nắm cách tối ưu hóa DP bằng Slope Trick. Các ví dụ trong
+bài viết được chia đại khái thành hai nhóm: duy trì điểm gãy và duy trì độ dốc,
+nhằm giúp hiểu các thao tác thường gặp và chi tiết cài đặt của hai cách duy trì
+này. Tuy nhiên, như đã nhấn mạnh ở trên, cách duy trì không phải là bản chất của
+Slope Trick; cần chọn cách duy trì đoạn độ dốc phù hợp theo yêu cầu của từng bài
+toán.
 
 <span id="&#x7EF4;&#x62A4;&#x62D0;&#x70B9;"></span>
 ## Duy tri diem gay
