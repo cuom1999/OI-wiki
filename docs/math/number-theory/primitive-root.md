@@ -1,221 +1,279 @@
-Kien thuc nen: [dinh ly nho Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), [dinh ly Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), [dinh ly Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86)
+Kiến thức nền: [định lí nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), [định lí Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), [định lí Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86)
 
-Bac va can nguyen thuy la cac cong cu quan trong de hieu cau truc nhan cua [he thang du thu gon](./basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB) $\mathbf Z_m^*$ modulo $m$. Dua tren do, ta co the dinh nghia cac khai niem nhu [logarit roi rac](./discrete-logarithm.md). Phan thao luan tong quat hon co the xem o cac muc lien quan trong phan dai so truu tu, chang han [ly thuyet nhom](../algebra/group-theory.md#%E9%98%B6) va [ly thuyet vanh](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4).
+Bậc và căn nguyên thủy là các công cụ quan trọng để hiểu cấu trúc nhân của
+[hệ thặng dư thu gọn](./basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB)
+$\mathbf Z_m^*$ modulo $m$. Dựa trên chúng, ta có thể định nghĩa các khái niệm
+như [logarit rời rạc](./discrete-logarithm.md). Phần thảo luận tổng quát hơn có
+thể xem ở các mục liên quan trong phần đại số trừu tượng, chẳng hạn
+[lý thuyết nhóm](../algebra/group-theory.md#%E9%98%B6) và
+[lý thuyết vành](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4).
 
 <span id="&#x9636;"></span>
 
-## Bac
+## Bậc
 
-Trong muc nay, ta luon gia su modulo $m\in\mathbf N_+$ va co so $a\in\mathbf Z$ nguyen to cung nhau, tuc la $(a,m)=1$, cung viet la $a\perp m$.
+Trong mục này, ta luôn giả sử modulo $m\in\mathbf N_+$ và cơ số
+$a\in\mathbf Z$ nguyên tố cùng nhau, tức là $(a,m)=1$, cũng viết là
+$a\perp m$.
 
-Voi $n\in\mathbf Z$, luy thua $a^n\bmod m$ the hien mot cau truc tuan hoan. Do dai nho nhat cua chu ky nay chinh la bac cua $a$ modulo $m$. Bac duoc dinh nghia la so mu tai do luy thua $a^n \bmod m$ lan dau quay ve diem dau $a^0\bmod m = 1$:
+Với $n\in\mathbf Z$, lũy thừa $a^n\bmod m$ thể hiện một cấu trúc tuần hoàn. Độ
+dài nhỏ nhất của chu kỳ này chính là bậc của $a$ modulo $m$. Bậc được định
+nghĩa là số mũ tại đó lũy thừa $a^n \bmod m$ lần đầu quay về điểm đầu
+$a^0\bmod m = 1$:
 
-???+ abstract "Bac"
-    Voi $a\in\mathbf Z,m\in\mathbf N_+$ va $a\perp m$, so nguyen duong nho nhat $n$ thoa man dong du $a^n \equiv 1 \pmod m$ duoc goi la **bac cua $a$ modulo $m$** (the order of $a$ modulo $m$), ky hieu la $\delta_m(a)$ hoac $\operatorname{ord}_m(a)$.
+???+ abstract "Bậc"
+    Với $a\in\mathbf Z,m\in\mathbf N_+$ và $a\perp m$, số nguyên dương nhỏ nhất
+    $n$ thỏa mãn đồng dư $a^n \equiv 1 \pmod m$ được gọi là **bậc của $a$
+    modulo $m$** (the order of $a$ modulo $m$), ký hiệu là $\delta_m(a)$ hoặc
+    $\operatorname{ord}_m(a)$.
 
-???+ tip "Ghi chu"
-    Trong [dai so truu tu](../algebra/group-theory.md#%E9%98%B6), "bac" o day chinh la bac cua phan tu $a$ trong nhom tao boi he thang du thu gon modulo $m$ theo phep nhan. Ky hieu $\delta$ de bieu dien bac chi dung cho nhom dac biet nay. Nhieu tinh chat ben duoi co the mo rong truc tiep thanh tinh chat ve bac cua phan tu trong nhom o dai so truu tu.
-    
-    Ngoai ra con co khai niem "nua bac", trong so hoc thuong dung ky hieu $\delta^-$. Do la so nguyen duong nho nhat thoa man dong du $a^n \equiv -1 \pmod m$. Nua bac khong phai la khai niem trong ly thuyet nhom. Bac luon ton tai, con nua bac thi khong nhat thiet ton tai.
+???+ tip "Ghi chú"
+    Trong [đại số trừu tượng](../algebra/group-theory.md#%E9%98%B6), "bậc" ở
+    đây chính là bậc của phần tử $a$ trong nhóm tạo bởi hệ thặng dư thu gọn
+    modulo $m$ theo phép nhân. Ký hiệu $\delta$ để biểu diễn bậc chỉ dùng cho
+    nhóm đặc biệt này. Nhiều tính chất bên dưới có thể mở rộng trực tiếp thành
+    tính chất về bậc của phần tử trong nhóm ở đại số trừu tượng.
+
+    Ngoài ra còn có khái niệm "nửa bậc", trong số học thường dùng ký hiệu
+    $\delta^-$. Đó là số nguyên dương nhỏ nhất thỏa mãn đồng dư
+    $a^n \equiv -1 \pmod m$. Nửa bậc không phải là khái niệm trong lý thuyết
+    nhóm. Bậc luôn tồn tại, còn nửa bậc thì không nhất thiết tồn tại.
 
 <span id="&#x5E42;&#x7684;&#x5FAA;&#x73AF;&#x7ED3;&#x6784;"></span>
 
-### Cau truc tuan hoan cua luy thua
+### Cấu trúc tuần hoàn của lũy thừa
 
-Dung bac, ta co the mo ta cau truc tuan hoan cua luy thua. Voi luy thua $a^n\bmod m$, chia so mu $n$ cho bac $\delta_m(a)$ co du:
+Dùng bậc, ta có thể mô tả cấu trúc tuần hoàn của lũy thừa. Với lũy thừa
+$a^n\bmod m$, chia số mũ $n$ cho bậc $\delta_m(a)$ có dư:
 
 $$
-n = \delta_m(a)q + r, ~ 0\le r < \delta_m(a). 
+n = \delta_m(a)q + r, ~ 0\le r < \delta_m(a).
 $$
 
-Tiep theo, dung cac quy tac tinh luy thua, ta co
+Tiếp theo, dùng các quy tắc tính lũy thừa, ta có
 
 $$
 a^n = a^{\delta_m(a)q + r} = (a^{\delta_m(a)})^q \cdot a^r \equiv a^r \pmod m.
 $$
 
-Dieu nay cho thay voi luy thua co so mu bat ky, ta co the tinh tien no ve chu ky khong am dau tien. Tu do suy ra mot loat tinh chat ve bac.
+Điều này cho thấy với lũy thừa có số mũ bất kỳ, ta có thể tiến nó về chu kỳ
+không âm đầu tiên. Từ đó suy ra một loạt tính chất về bậc.
 
 <a id="ord-prop-1"></a>
 
-???+ note "Tinh chat 1"
-    Voi $a\in\mathbf Z,m\in\mathbf N_+$ va $a\perp m$, cac luy thua $a^0(=1),a,a^2,\cdots,a^{\delta_m(a)-1}$ doi mot khong dong du modulo $m$.
+???+ note "Tính chất 1"
+    Với $a\in\mathbf Z,m\in\mathbf N_+$ và $a\perp m$, các lũy thừa
+    $a^0(=1),a,a^2,\cdots,a^{\delta_m(a)-1}$ đôi một không đồng dư modulo $m$.
 
-??? note "Chung minh"
-    Xet phan chung. Gia su ton tai hai so $0\le i< j<\delta_m(a)$ sao cho $a^i\equiv a^j\pmod m$. Khi do $a^{j - i}\equiv 1\pmod m$. Nhung $0 < j - i < \delta_m(a)$. Dieu nay mau thuan voi tinh nho nhat trong dinh nghia bac, nen menh de dung.
+??? note "Chứng minh"
+    Xét phản chứng. Giả sử tồn tại hai số $0\le i< j<\delta_m(a)$ sao cho
+    $a^i\equiv a^j\pmod m$. Khi đó $a^{j - i}\equiv 1\pmod m$. Nhưng
+    $0 < j - i < \delta_m(a)$. Điều này mâu thuẫn với tính nhỏ nhất trong định
+    nghĩa bậc, nên mệnh đề đúng.
 
 <a id="ord-prop-2"></a>
 
-???+ note "Tinh chat 2"
-    Voi $a,n\in\mathbf Z,m\in\mathbf N_+$ va $a\perp m$, dong du $a^n \equiv 1 \pmod m$ dung khi va chi khi $\delta_m(a)\mid n$.
+???+ note "Tính chất 2"
+    Với $a,n\in\mathbf Z,m\in\mathbf N_+$ và $a\perp m$, đồng dư
+    $a^n \equiv 1 \pmod m$ đúng khi và chỉ khi $\delta_m(a)\mid n$.
 
-??? note "Chung minh"
-    Nhu da noi o tren, $a^{n}\equiv a^{n\bmod\delta_m(a)}\pmod m$. Theo [Tinh chat 1](#ord-prop-1), trong cac $r$ thoa man $0\le r < \delta_m(a)$, gia tri duy nhat khien $a^r\equiv 1\pmod m$ la $r=0$. Do do $a^n \equiv 1 \pmod m$ khi va chi khi $n\bmod \delta_m(a) = 0$, tuc la $\delta_m(a)\mid n$.
+??? note "Chứng minh"
+    Như đã nói ở trên, $a^{n}\equiv a^{n\bmod\delta_m(a)}\pmod m$. Theo
+    [Tính chất 1](#ord-prop-1), trong các $r$ thỏa mãn
+    $0\le r < \delta_m(a)$, giá trị duy nhất khiến $a^r\equiv 1\pmod m$ là
+    $r=0$. Do đó $a^n \equiv 1 \pmod m$ khi và chỉ khi
+    $n\bmod \delta_m(a) = 0$, tức là $\delta_m(a)\mid n$.
 
-Trong [dinh ly Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), dong du $a^{\varphi(m)}\equiv 1\pmod m$ dung voi moi $a\perp m$. Ket hop voi [Tinh chat 2](#ord-prop-2), dieu nay cho thay voi moi $a\perp m$ deu co $\delta_m(a)\mid\varphi(m)$. Noi cach khac, $\varphi(m)$ la mot boi chung cua bac cua tat ca cac $a\perp m$. Voi mot so nguyen duong $m$, boi chung nho nhat cua tat ca cac bac $\delta_m(a)$ voi $a\perp m$, ky hieu la $\lambda(m)$, chinh la [ham Carmichael](#carmichael-%E5%87%BD%E6%95%B0) cua $m$. Phan sau se thao luan chi tiet cac tinh chat cua no.
+Trong [định lí Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), đồng
+dư $a^{\varphi(m)}\equiv 1\pmod m$ đúng với mọi $a\perp m$. Kết hợp với
+[Tính chất 2](#ord-prop-2), điều này cho thấy với mọi $a\perp m$ đều có
+$\delta_m(a)\mid\varphi(m)$. Nói cách khác, $\varphi(m)$ là một bội chung của
+bậc của tất cả các $a\perp m$. Với một số nguyên dương $m$, bội chung nhỏ nhất
+của tất cả các bậc $\delta_m(a)$ với $a\perp m$, ký hiệu là $\lambda(m)$, chính
+là [hàm Carmichael](#carmichael-%E5%87%BD%E6%95%B0) của $m$. Phần sau sẽ thảo
+luận chi tiết các tính chất của nó.
 
-Tuong tu cac cau truc tuan hoan khac, ta co the tinh bac cua $a^k$ dua tren bac cua $a$.
+Tương tự các cấu trúc tuần hoàn khác, ta có thể tính bậc của $a^k$ dựa trên
+bậc của $a$.
 
 <a id="ord-prop-3"></a>
 
-???+ note "Tinh chat 3"
-    Voi $k,a\in\mathbf Z,m\in\mathbf N_+$ va $a\perp m$, ta co
-    
+???+ note "Tính chất 3"
+    Với $k,a\in\mathbf Z,m\in\mathbf N_+$ và $a\perp m$, ta có
+
     $$
     \delta_m(a^k) = \dfrac{\delta_m(a)}{(\delta_m(a),k)}.
     $$
 
-??? note "Chung minh"
-    Theo [Tinh chat 2](#ord-prop-2), dong du $(a^k)^n = a^{kn} \equiv 1\pmod m$ dung khi va chi khi $\delta_m(a) \mid kn$. Dieu kien nay tuong duong voi
-    
+??? note "Chứng minh"
+    Theo [Tính chất 2](#ord-prop-2), đồng dư
+    $(a^k)^n = a^{kn} \equiv 1\pmod m$ đúng khi và chỉ khi
+    $\delta_m(a) \mid kn$. Điều kiện này tương đương với
+
     $$
     \dfrac{\delta_m(a)}{\left(\delta_m(a),k\right)} \mid n.
     $$
-    
-    So nguyen duong nho nhat khien dieu kien nay dung la
-    
+
+    Số nguyên dương nhỏ nhất khiến điều kiện này đúng là
+
     $$
     \delta_m(a^k)=\dfrac{\delta_m(a)}{\left(\delta_m(a),k\right)}.
     $$
 
 <span id="&#x4E58;&#x79EF;&#x7684;&#x9636;"></span>
 
-### Bac cua tich
+### Bậc của tích
 
-Gia su $a,b$ la cac so nguyen khac nhau va cung nguyen to voi $m$. Neu da biet cac bac $\delta_m(a)$ va $\delta_m(b)$, ta cung co the thu duoc mot so thong tin ve bac $\delta_{m}(ab)$ cua tich $ab$.
+Giả sử $a,b$ là các số nguyên khác nhau và cùng nguyên tố với $m$. Nếu đã biết
+các bậc $\delta_m(a)$ và $\delta_m(b)$, ta cũng có thể thu được một số thông
+tin về bậc $\delta_{m}(ab)$ của tích $ab$.
 
 <a id="ord-prop-4"></a>
 
-???+ note "Tinh chat 4"
-    Voi $a,b\in\mathbf Z,m\in\mathbf N_+$ va $a,b\perp m$, ta co
-    
+???+ note "Tính chất 4"
+    Với $a,b\in\mathbf Z,m\in\mathbf N_+$ và $a,b\perp m$, ta có
+
     $$
     \dfrac{[\delta_m(a),\delta_m(b)]}{(\delta_m(a),\delta_m(b))} \mid \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
     $$
 
-??? note "Chung minh"
-    Vi $[\delta_m(a),\delta_m(b)]$ la boi cua ca $\delta_m(a)$ lan $\delta_m(b)$, theo [Tinh chat 2](#ord-prop-2) ta co
-    
+??? note "Chứng minh"
+    Vì $[\delta_m(a),\delta_m(b)]$ là bội của cả $\delta_m(a)$ lẫn
+    $\delta_m(b)$, theo [Tính chất 2](#ord-prop-2) ta có
+
     $$
     (ab)^{[\delta_m(a),\delta_m(b)]} = a^{[\delta_m(a),\delta_m(b)]} b^{[\delta_m(a),\delta_m(b)]} \equiv 1 \pmod m.
     $$
-    
-    Ap dung Tinh chat 2 mot lan nua, ta duoc
-    
+
+    Áp dụng Tính chất 2 một lần nữa, ta được
+
     $$
     \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
     $$
-    
-    Day la quan he chia het o phia phai.
-    
-    Nguoc lai, vi
-    
+
+    Đây là quan hệ chia hết ở phía phải.
+
+    Ngược lại, vì
+
     $$
     1 \equiv (ab)^{\delta_m(ab)\delta_m(b)} \equiv a^{\delta_m(ab)\delta_m(b)} \pmod m,
     $$
-    
-    nen ap dung Tinh chat 2 ta duoc $\delta_m(a)\mid\delta_m(ab)\delta_m(b)$. Rut gon $(\delta_m(a),\delta_m(b))$ o hai phia, ta co
-    
+
+    nên áp dụng Tính chất 2 ta được $\delta_m(a)\mid\delta_m(ab)\delta_m(b)$.
+    Rút gọn $(\delta_m(a),\delta_m(b))$ ở hai phía, ta có
+
     $$
     \dfrac{\delta_m(a)}{(\delta_m(a),\delta_m(b))}\mid\delta_m(ab)\dfrac{\delta_m(b)}{(\delta_m(a),\delta_m(b))}.
     $$
-    
-    Sau khi rut gon uoc chung, hai phan so la nguyen to cung nhau, nen
-    
+
+    Sau khi rút gọn ước chung, hai phân số là nguyên tố cùng nhau, nên
+
     $$
     \dfrac{\delta_m(a)}{(\delta_m(a),\delta_m(b))}\mid\delta_m(ab).
     $$
-    
-    Tuong tu, ta cung co
-    
+
+    Tương tự, ta cũng có
+
     $$
     \dfrac{\delta_m(b)}{(\delta_m(a),\delta_m(b))}\mid\delta_m(ab).
     $$
-    
-    Vi hai ve trai cua hai quan he chia het nay nguyen to cung nhau, ta co
-    
+
+    Vì hai vế trái của hai quan hệ chia hết này nguyên tố cùng nhau, ta có
+
     $$
     \dfrac{[\delta_m(a),\delta_m(b)]}{(\delta_m(a),\delta_m(b))} =\dfrac{\delta_m(a)\delta_m(b)}{(\delta_m(a),\delta_m(b))^2}\mid\delta_m(ab).
     $$
-    
-    Day la quan he chia het o phia trai.
 
-Voi truong hop bac cua $a$ va $b$ nguyen to cung nhau, ket luan nay co dang don gian hon.
+    Đây là quan hệ chia hết ở phía trái.
+
+Với trường hợp bậc của $a$ và $b$ nguyên tố cùng nhau, kết luận này có dạng đơn
+giản hơn.
 
 <a id="ord-prop-4p"></a>
 
-???+ note "Tinh chat 4'"
-    Voi $a,b\in\mathbf Z,m\in\mathbf N_+$ va $a,b\perp m$, ta co
-    
+???+ note "Tính chất 4'"
+    Với $a,b\in\mathbf Z,m\in\mathbf N_+$ và $a,b\perp m$, ta có
+
     $$
     \delta_m(ab) = \delta_m(a)\delta_m(b) \iff \delta_m(a)\perp\delta_m(b).
     $$
 
-??? note "Chung minh"
-    Neu $\delta_m(a)\perp\delta_m(b)$, thi moi quan he chia het trong [Tinh chat 4](#ord-prop-4) deu la dang bang, nen
-    
+??? note "Chứng minh"
+    Nếu $\delta_m(a)\perp\delta_m(b)$, thì mọi quan hệ chia hết trong
+    [Tính chất 4](#ord-prop-4) đều là dạng bằng, nên
+
     $$
     \delta_m(ab) = [\delta_m(a),\delta_m(b)] = \delta_m(a)\delta_m(b).
     $$
-    
-    Nguoc lai, neu $\delta_m(ab)=\delta_m(a)\delta_m(b)$, theo Tinh chat 4 ta co
-    
+
+    Ngược lại, nếu $\delta_m(ab)=\delta_m(a)\delta_m(b)$, theo Tính chất 4 ta có
+
     $$
     \delta_m(a)\delta_m(b) = \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
     $$
-    
-    Dieu nay lap tuc cho thay $(\delta_m(a),\delta_m(b))=1$, tuc la $\delta_m(a)\perp\delta_m(b)$.
 
-Trong truong hop tong quat, cac can thu duoc tu [Tinh chat 4](#ord-prop-4) da la chat. Truong hop bac cua tich dat can duoi rat de xay dung: chang han voi $(a,b,m)=(3,5,7)$, ta co $\delta_m(a)=\delta_m(b)=6$, nhung bac cua tich la $\delta_m(ab)=1$.
+    Điều này lập tức cho thấy $(\delta_m(a),\delta_m(b))=1$, tức là
+    $\delta_m(a)\perp\delta_m(b)$.
 
-Mac du trong truong hop tong quat, bac cua tich $ab$ khong nhat thiet la boi chung nho nhat cua cac bac cua chung, ta luon co the tim mot phan tu co bac bang boi chung nho nhat do.
+Trong trường hợp tổng quát, các cận thu được từ [Tính chất 4](#ord-prop-4) đã
+là chặt. Trường hợp bậc của tích đạt cận dưới rất dễ xây dựng: chẳng hạn với
+$(a,b,m)=(3,5,7)$, ta có $\delta_m(a)=\delta_m(b)=6$, nhưng bậc của tích là
+$\delta_m(ab)=1$.
+
+Mặc dù trong trường hợp tổng quát, bậc của tích $ab$ không nhất thiết là bội
+chung nhỏ nhất của các bậc của chúng, ta luôn có thể tìm một phần tử có bậc
+bằng bội chung nhỏ nhất đó.
 
 <a id="ord-prop-5"></a>
 
-???+ note "Tinh chat 5"
-    Voi $a,b\in\mathbf Z,m\in\mathbf N_+$ va $a,b\perp m$, luon ton tai $c\in\mathbf Z$ va $c\perp m$ sao cho
-    
+???+ note "Tính chất 5"
+    Với $a,b\in\mathbf Z,m\in\mathbf N_+$ và $a,b\perp m$, luôn tồn tại
+    $c\in\mathbf Z$ và $c\perp m$ sao cho
+
     $$
     \delta_m(c) = [\delta_m(a),\delta_m(b)].
     $$
 
-??? note "Chung minh"
-    Xet phan tich thua so nguyen to:
-    
+??? note "Chứng minh"
+    Xét phân tích thừa số nguyên tố:
+
     $$
     \delta_m(a) = \prod_p p^{\alpha_p},~ \delta_m(b) = \prod_p p^{\beta_p}.
     $$
-    
-    Dua tren quan he lon nho giua $\alpha_p$ va $\beta_p$, chia tat ca cac thua so nguyen to thanh hai loai:
-    
+
+    Dựa trên quan hệ lớn nhỏ giữa $\alpha_p$ và $\beta_p$, chia tất cả các thừa
+    số nguyên tố thành hai loại:
+
     $$
     A = \{p : \alpha_p \ge \beta_p\}, ~ B = \{p : \alpha_p < \beta_p\}.
     $$
-    
-    Tu do, dat lan luot
-    
+
+    Từ đó, lần lượt đặt
+
     $$
     \gamma_A = \prod_{p\in A}p^{\alpha_p},~\gamma_B = \prod_{p\in B}p^{\alpha_p},~\eta_A = \prod_{p\in A}p^{\beta_p},~\eta_B = \prod_{p\in B}p^{\beta_p},
     $$
-    
-    thi $\delta_m(a) = \gamma_A\gamma_B$ va $\delta_m(b)=\eta_A\eta_B$. Theo [Tinh chat 3](#ord-prop-3), ta co
-    
+
+    thì $\delta_m(a) = \gamma_A\gamma_B$ và $\delta_m(b)=\eta_A\eta_B$. Theo
+    [Tính chất 3](#ord-prop-3), ta có
+
     $$
     \begin{aligned}
     \delta_m(a^{\gamma_B}) &= \dfrac{\delta_m(a)}{(\delta_m(a),\gamma_B)} = \dfrac{\delta_m(a)}{\gamma_B} = \gamma_A,\\
     \delta_m(b^{\eta_A}) &= \dfrac{\delta_m(b)}{(\delta_m(b),\eta_A)} = \dfrac{\delta_m(b)}{\eta_A} = \eta_B.
     \end{aligned}
     $$
-    
-    Vi $\gamma_A\perp\eta_B$, theo [Tinh chat 4'](#ord-prop-4p), ta co
-    
+
+    Vì $\gamma_A\perp\eta_B$, theo [Tính chất 4'](#ord-prop-4p), ta có
+
     $$
     \delta_m(a^{\gamma_B}b^{\eta_A}) = \gamma_A\eta_B = \prod_p p^{\max\{\alpha_p,\beta_p\}} = [\delta_m(a),\delta_m(b)].
     $$
-    
-    Do do $c=a^{\gamma_B}b^{\eta_A}$ la phan tu co bac bang $[\delta_m(a),\delta_m(b)]$.
 
-Ket luan nay thuong duoc dung de xay dung phan tu co bac chi dinh.
+    Do đó $c=a^{\gamma_B}b^{\eta_A}$ là phần tử có bậc bằng
+    $[\delta_m(a),\delta_m(b)]$.
+
+Kết luận này thường được dùng để xây dựng phần tử có bậc chỉ định.
 
 <span id="&#x539F;&#x6839;"></span>
 

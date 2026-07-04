@@ -156,7 +156,9 @@ MkDocs source layout intact.
   `docs/math/number-theory/residue.md`,
   `docs/math/number-theory/sqrt-decomposition.md`: translated primitive-root,
   discrete-logarithm, higher-residue/unit-root, and number-theory block
-  decomposition material, plus explanatory comments in included snippets.
+  decomposition material, plus explanatory comments in included snippets;
+  quality-passed the opening order and product-order sections of
+  `docs/math/number-theory/primitive-root.md`.
 - `docs/math/number-theory/dirichlet.md`,
   `docs/math/number-theory/mobius.md`, `docs/math/number-theory/du.md`,
   `docs/math/number-theory/powerful-number.md`,
