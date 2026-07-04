@@ -356,6 +356,8 @@ MkDocs source layout intact.
   translated the Testlib validator and interactor pages.
 - `docs/tools/testlib/generator.md`: translated the Testlib generator page,
   including sample-code comments.
+- `docs/tools/testlib/checker.md`: translated the Testlib checker page,
+  including explanatory sample-code comments.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
