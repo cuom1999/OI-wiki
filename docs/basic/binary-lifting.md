@@ -1,113 +1,165 @@
 author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsfzLZH1, orzAtalod, NachtgeistW
 
-本页面将简要介绍倍增法．
+Trang này giới thiệu ngắn gọn về kỹ thuật nhảy nhị phân.
 
-## 定义
+## Định nghĩa
 
-倍增法（英语：binary lifting），顾名思义就是「成倍增长」．我们在进行递推时，如果状态空间很大，通常的线性递推无法满足时间与空间复杂度的要求，那么我们可以通过成倍增长的方式，只递推状态空间中在 $k$ 的整数次幂位置上的值作为代表．当需要其他位置上的值时，我们通过「任意整数可以表示成若干个 $k$ 的次幂项的和」这一性质，使用之前求出的代表值拼成所需的值．所以使用倍增算法也要求我们递推的问题的状态空间关于 $k$ 的次幂具有可划分性．通常情况下 $k$ 取 $2$．[^ref1]
+Nhảy nhị phân (binary lifting), đúng như tên gọi, là cách "tăng theo bội".
+Khi thực hiện truy hồi, nếu không gian trạng thái rất lớn và truy hồi tuyến
+tính thông thường không đáp ứng được yêu cầu về thời gian hoặc bộ nhớ, ta có
+thể chỉ truy hồi các giá trị đại diện tại những vị trí là lũy thừa nguyên của
+$k$. Khi cần giá trị ở vị trí khác, ta dùng tính chất "mọi số nguyên đều có thể
+biểu diễn thành tổng của một số lũy thừa của $k$" để ghép từ các giá trị đại
+diện đã tính trước. Vì vậy, bài toán muốn dùng được nhảy nhị phân thì không
+gian trạng thái phải có tính chia tách theo các lũy thừa của $k$. Thông thường
+ta chọn $k=2$.[^ref1]
 
-这个方法在很多算法中均有应用，其中最常用的是 RMQ 问题和求 [LCA（最近公共祖先）](../graph/lca.md)．
+Kỹ thuật này xuất hiện trong nhiều thuật toán. Hai ứng dụng phổ biến nhất là
+bài toán RMQ và tìm [LCA (tổ tiên chung gần nhất)](../graph/lca.md).
 
-## 应用
+## Ứng dụng
 
-### RMQ 问题
+### Bài toán RMQ
 
-参见：[RMQ 专题](../topic/rmq.md)
+Xem thêm: [chuyên đề RMQ](../topic/rmq.md)
 
-RMQ 是 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值．使用倍增思想解决 RMQ 问题的方法是 [ST 表](../ds/sparse-table.md)．
+RMQ là viết tắt của Range Maximum/Minimum Query, nghĩa là truy vấn giá trị lớn
+nhất hoặc nhỏ nhất trên một đoạn. Cách dùng tư tưởng nhảy nhị phân để giải RMQ
+là [bảng ST](../ds/sparse-table.md).
 
-### 树上倍增求 LCA
+### Nhảy nhị phân trên cây để tìm LCA
 
-参见：[最近公共祖先](../graph/lca.md)
+Xem thêm: [tổ tiên chung gần nhất](../graph/lca.md)
 
-## 例题
+## Bài ví dụ
 
-### 题 1
+### Bài 1
 
-???+ note "例题"
-    如何用尽可能少的砝码称量出 $[0,31]$ 之间的所有重量？（只能在天平的一端放砝码）
+???+ note "Bài ví dụ"
+    Làm thế nào để dùng ít quả cân nhất có thể để cân mọi khối lượng trong
+    đoạn $[0,31]$? Chỉ được đặt quả cân ở một bên của cân thăng bằng.
 
-??? note "解题思路"
-    答案是使用 1 2 4 8 16 这五个砝码，可以称量出 $[0,31]$ 之间的所有重量．同样，如果要称量 $[0,127]$ 之间的所有重量，可以使用 1 2 4 8 16 32 64 这七个砝码．每次我们都选择 2 的整次幂作砝码的重量，就可以使用极少的砝码个数量出任意我们所需要的重量．
-    
-    为什么说是极少呢？因为如果我们要量出 $[0,1023]$ 之间的所有重量，只需要 10 个砝码，需要量出 $[0,1048575]$ 之间的所有重量，只需要 20 个．如果我们的目标重量翻倍，砝码个数只需要增加 1．这叫「对数级」的增长速度，因为砝码的所需个数与目标重量的范围的对数成正比．
+??? note "Ý tưởng giải"
+    Đáp án là dùng năm quả cân có khối lượng 1, 2, 4, 8, 16. Chúng có thể cân
+    được mọi khối lượng trong $[0,31]$. Tương tự, nếu cần cân mọi khối lượng
+    trong $[0,127]$, ta có thể dùng bảy quả cân 1, 2, 4, 8, 16, 32, 64. Mỗi
+    lần ta chọn khối lượng là lũy thừa nguyên của 2, nhờ đó có thể dùng rất ít
+    quả cân để tạo ra bất kỳ khối lượng cần thiết nào.
 
-### 题 2
+    Vì sao gọi là rất ít? Nếu cần đo mọi khối lượng trong $[0,1023]$, ta chỉ
+    cần 10 quả cân; nếu cần đo mọi khối lượng trong $[0,1048575]$, ta chỉ cần
+    20 quả. Khi phạm vi khối lượng mục tiêu tăng gấp đôi, số quả cân chỉ tăng
+    thêm 1. Đây là tốc độ tăng "cấp logarit", vì số quả cân cần dùng tỉ lệ với
+    logarit của phạm vi khối lượng mục tiêu.
 
-???+ note "例题"
-    给出一个长度为 $n$ 的环和一个常数 $k$，每次会从第 $i$ 个点跳到第 $(i+k)\bmod n+1$ 个点，总共跳了 $m$ 次．每个点都有一个权值，记为 $a_i$，求 $m$ 次跳跃的起点的权值之和对 $10^9+7$ 取模的结果．
-    
-    数据范围：$1\leq n\leq 10^6$，$1\leq m\leq 10^{18}$，$1\leq k\leq n$，$0\le a_i\le 10^9$．
+### Bài 2
 
-??? note "解题思路"
-    这里显然不能暴力模拟跳 $m$ 次．因为 $m$ 最大可到 $10^{18}$ 级别，如果暴力模拟的话，时间承受不住．
-    
-    所以就需要进行一些预处理，提前整合一些信息，以便于在查询的时候更快得出结果．如果记录下来每一个可能的跳跃次数的结果的话，不论是时间还是空间都难以承受．
-    
-    那么应该如何预处理呢？看看第一道例题．有思路了吗？
-    
-    回到本题．我们要预处理一些信息，然后用预处理的信息尽量快的整合出答案．同时预处理的信息也不能太多．所以可以预处理出以 2 的整次幂为单位的信息，这样的话在预处理的时候只需要处理少量信息，在整合的时候也不需要大费周章．
-    
-    在这题上，就是我们预处理出从每个点开始跳 1、2、4、8 等等步之后的结果（所处点和点权和），然后如果要跳 13 步，只需要跳 1+4+8 步就好了．也就是说先在起始点跳 1 步，然后再在跳了之后的终点跳 4 步，再接着跳 8 步，同时统计一下预先处理好的点权和，就可以知道跳 13 步的点权和了．
-    
-    对于每一个点开始的 $2^i$ 步，记录一个 `go[i][x]` 表示第 $x$ 个点跳 $2^i$ 步之后的终点，而 `sum[i][x]` 表示第 $x$ 个点跳 $2^i$ 步之后能获得的点权和．预处理的时候，开两重循环，对于跳 $2^i$ 步的信息，我们可以看作是先跳了 $2^{i-1}$ 步，再跳 $2^{i-1}$ 步，因为显然有 $2^{i-1}+2^{i-1}=2^i$．即我们有 `sum[i][x] = sum[i-1][x]+sum[i-1][go[i-1][x]]`，且 `go[i][x] = go[i-1][go[i-1][x]]`．
-    
-    当然还有一些实现细节需要注意．为了保证统计的时候不重不漏，我们一般预处理出「左闭右开」的点权和．亦即，对于跳 1 步的情况，我们只记录该点的点权和；对于跳 2 步的情况，我们只记录该点及其下一个点的点权和．相当于总是不将终点的点权和计入 sum．这样在预处理的时候，只需要将两部分的点权和直接相加就可以了，不需要担心第一段的终点和第二段的起点会被重复计算．
-    
-    这题的 $m\leq 10^{18}$，虽然看似恐怖，但是实际上只需要预处理出 $65$ 以内的 $i$，就可以轻松解决，比起暴力枚举快了很多．用行话讲，这个做法的 [时间复杂度](./complexity.md) 是预处理 $\Theta(n\log m)$，查询每次 $\Theta(\log m)$．
+???+ note "Bài ví dụ"
+    Cho một vòng độ dài $n$ và một hằng số $k$. Mỗi lần nhảy từ điểm thứ $i$
+    sang điểm thứ $(i+k)\bmod n+1$, tổng cộng nhảy $m$ lần. Mỗi điểm có một
+    trọng số $a_i$. Hãy tính tổng trọng số của các điểm xuất phát trong $m$ lần
+    nhảy, lấy modulo $10^9+7$.
 
-??? note "参考代码"
+    Giới hạn: $1\leq n\leq 10^6$, $1\leq m\leq 10^{18}$,
+    $1\leq k\leq n$, $0\le a_i\le 10^9$.
+
+??? note "Ý tưởng giải"
+    Rõ ràng không thể mô phỏng vét cạn $m$ lần nhảy. Vì $m$ có thể lớn đến
+    $10^{18}$, mô phỏng trực tiếp sẽ không chịu nổi về thời gian.
+
+    Do đó ta cần tiền xử lý một số thông tin, gộp sẵn dữ liệu để trả lời nhanh
+    hơn khi truy vấn. Nếu ghi lại kết quả cho mọi số lần nhảy có thể, cả thời
+    gian lẫn bộ nhớ đều không khả thi.
+
+    Vậy nên tiền xử lý thế nào? Hãy nhìn lại bài ví dụ đầu tiên. Bạn đã thấy
+    hướng làm chưa?
+
+    Quay lại bài này. Ta cần tiền xử lý một lượng thông tin không quá lớn, rồi
+    dùng thông tin đó để ghép đáp án nhanh nhất có thể. Vì vậy có thể tiền xử
+    lý thông tin theo các đơn vị là lũy thừa của 2. Khi tiền xử lý chỉ cần xử
+    lý ít lớp thông tin, và khi ghép đáp án cũng không phức tạp.
+
+    Cụ thể trong bài này, ta tiền xử lý kết quả khi bắt đầu từ mỗi điểm rồi
+    nhảy 1, 2, 4, 8,... bước, gồm điểm kết thúc và tổng trọng số. Nếu cần nhảy
+    13 bước, ta chỉ cần nhảy $1+4+8$ bước: đầu tiên nhảy 1 bước từ điểm xuất
+    phát, sau đó nhảy 4 bước từ điểm vừa đến, rồi tiếp tục nhảy 8 bước, đồng
+    thời cộng các tổng trọng số đã tiền xử lý. Như vậy ta biết được tổng trọng
+    số của 13 bước nhảy.
+
+    Với mỗi điểm và mỗi độ dài $2^i$, ghi `go[i][x]` là điểm kết thúc sau khi
+    nhảy $2^i$ bước từ điểm $x$, còn `sum[i][x]` là tổng trọng số nhận được
+    khi nhảy $2^i$ bước từ điểm $x$. Khi tiền xử lý, dùng hai vòng lặp. Thông
+    tin của $2^i$ bước có thể xem là nhảy $2^{i-1}$ bước rồi nhảy tiếp
+    $2^{i-1}$ bước, vì $2^{i-1}+2^{i-1}=2^i$. Do đó
+    `sum[i][x] = sum[i-1][x]+sum[i-1][go[i-1][x]]` và
+    `go[i][x] = go[i-1][go[i-1][x]]`.
+
+    Tất nhiên vẫn có vài chi tiết cài đặt cần chú ý. Để tránh đếm thiếu hoặc
+    đếm trùng, ta thường tiền xử lý tổng trọng số theo đoạn "đóng trái, mở
+    phải". Nghĩa là khi nhảy 1 bước, chỉ ghi trọng số của điểm hiện tại; khi
+    nhảy 2 bước, chỉ ghi trọng số của điểm hiện tại và điểm kế tiếp. Nói cách
+    khác, điểm kết thúc không được tính vào `sum`. Nhờ vậy khi tiền xử lý, chỉ
+    cần cộng trực tiếp hai phần tổng trọng số, không phải lo điểm cuối của đoạn
+    đầu và điểm đầu của đoạn sau bị tính lặp.
+
+    Trong bài này $m\leq 10^{18}$ trông có vẻ rất lớn, nhưng thực tế chỉ cần
+    tiền xử lý $i$ đến khoảng $65$ là giải được dễ dàng, nhanh hơn rất nhiều so
+    với liệt kê vét cạn. Theo thuật ngữ độ phức tạp, cách làm này có
+    [độ phức tạp thời gian](./complexity.md) tiền xử lý $\Theta(n\log m)$ và
+    mỗi truy vấn $\Theta(\log m)$.
+
+??? note "Mã tham khảo"
     ```cpp
     #include <cstdio>
     using namespace std;
-    
+
     constexpr int mod = 1000000007;
-    
+
     int modadd(int a, int b) {
-      if (a + b >= mod) return a + b - mod;  // 减法代替取模，加快运算
+      if (a + b >= mod) return a + b - mod;  // dùng phép trừ thay modulo để chạy nhanh hơn
       return a + b;
     }
-    
+
     int vi[1000005];
-    
-    int go[75][1000005];  // 将数组稍微开大以避免越界，小的一维尽量定义在前面
+
+    int go[75][1000005];  // mở mảng lớn hơn một chút để tránh vượt biên; chiều nhỏ nên đặt trước
     int sum[75][1000005];
-    
+
     int main() {
       int n, k;
       scanf("%d%d", &n, &k);
       for (int i = 1; i <= n; ++i) {
         scanf("%d", vi + i);
       }
-    
+
       for (int i = 1; i <= n; ++i) {
         go[0][i] = (i + k) % n + 1;
         sum[0][i] = vi[i];
       }
-    
-      int logn = 31 - __builtin_clz(n);  // 一个快捷的取对数的方法
+
+      int logn = 31 - __builtin_clz(n);  // cách lấy log nhanh
       for (int i = 1; i <= logn; ++i) {
         for (int j = 1; j <= n; ++j) {
           go[i][j] = go[i - 1][go[i - 1][j]];
           sum[i][j] = modadd(sum[i - 1][j], sum[i - 1][go[i - 1][j]]);
         }
       }
-    
+
       long long m;
       scanf("%lld", &m);
-    
+
       int ans = 0;
       int curx = 1;
       for (int i = 0; m; ++i) {
-        if (m & (1ll << i)) {  // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
+        if (m & (1ll << i)) {  // xem phần bit operation: bit thứ i của m có bằng 1 hay không
           ans = modadd(ans, sum[i][curx]);
           curx = go[i][curx];
-          m ^= 1ll << i;  // 将第 i 位置零
+          m ^= 1ll << i;  // đặt bit thứ i về 0
         }
       }
-    
+
       printf("%d\n", ans);
     }
     ```
 
-[^ref1]: 引用自李煜东《算法竞赛进阶指南》0x06. 倍增一节
+[^ref1]: Trích từ mục 0x06 "Binary lifting" trong *Advanced Guide to Algorithmic Contests* của Li Yudong.

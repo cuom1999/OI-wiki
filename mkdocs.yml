@@ -33,7 +33,7 @@ nav:
     - Dạng bài:
       - Tổng quan dạng bài: contest/problems.md
       - Bài tương tác: contest/interaction.md
-    - Lộ trình học: contest/roadmap.md
+    - Lộ trình học tập: contest/roadmap.md
     - Tài nguyên học tập: contest/resources.md
     - Kỹ thuật:
       - Tối ưu nhập xuất: contest/io.md
@@ -139,12 +139,12 @@ nav:
     - Mô phỏng: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
     - 贪心: basic/greedy.md
-    - 排序:
-      - 排序简介: basic/sort-intro.md
-      - 选择排序: basic/selection-sort.md
-      - 冒泡排序: basic/bubble-sort.md
-      - 插入排序: basic/insertion-sort.md
-      - 计数排序: basic/counting-sort.md
+    - Sắp xếp:
+      - Tổng quan sắp xếp: basic/sort-intro.md
+      - Selection sort: basic/selection-sort.md
+      - Bubble sort: basic/bubble-sort.md
+      - Insertion sort: basic/insertion-sort.md
+      - Counting sort: basic/counting-sort.md
       - 基数排序: basic/radix-sort.md
       - 快速排序: basic/quick-sort.md
       - 归并排序: basic/merge-sort.md
@@ -154,11 +154,11 @@ nav:
       - 锦标赛排序: basic/tournament-sort.md
       - Tim 排序: basic/tim-sort.md
       - 排序相关 STL: basic/stl-sort.md
-      - 排序应用: basic/use-of-sort.md
+      - Ứng dụng của sắp xếp: basic/use-of-sort.md
     - 前缀和 & 差分: basic/prefix-sum.md
     - 二分: basic/binary.md
-    - 倍增: basic/binary-lifting.md
-    - 构造: basic/construction.md
+    - Nhảy nhị phân: basic/binary-lifting.md
+    - Xây dựng: basic/construction.md
   - Tìm Kiếm:
     - Tổng quan tìm kiếm: search/index.md
     - DFS（搜索）: search/dfs.md

@@ -1,32 +1,32 @@
-本页面将简要介绍冒泡排序．
+Trang này giới thiệu ngắn gọn về sắp xếp nổi bọt.
 
-## 定义
+## Định nghĩa
 
-冒泡排序（英语：Bubble sort）是一种简单的排序算法．由于在算法的执行过程中，较小的元素像是气泡般慢慢「浮」到数列的顶端，故叫做冒泡排序．
+Sắp xếp nổi bọt (tiếng Anh: Bubble sort) là một thuật toán sắp xếp đơn giản. Trong quá trình chạy thuật toán, các phần tử nhỏ hơn dần "nổi" lên đầu dãy giống như bọt khí, vì vậy thuật toán này được gọi là sắp xếp nổi bọt.
 
-## 过程
+## Quy trình
 
-它的工作原理是每次检查相邻两个元素，如果前面的元素与后面的元素满足给定的排序条件，就将相邻两个元素交换．当没有相邻的元素需要交换时，排序就完成了．
+Nguyên lý hoạt động của thuật toán là mỗi lần kiểm tra hai phần tử kề nhau; nếu phần tử đứng trước và phần tử đứng sau thỏa điều kiện cần đổi theo thứ tự sắp xếp đã cho, thì hoán đổi hai phần tử kề nhau đó. Khi không còn cặp phần tử kề nhau nào cần hoán đổi, quá trình sắp xếp hoàn tất.
 
-经过 $i$ 次扫描后，数列的末尾 $i$ 项必然是最大的 $i$ 项，因此冒泡排序最多需要扫描 $n-1$ 遍数组就能完成排序．
+Sau $i$ lượt quét, $i$ phần tử ở cuối dãy chắc chắn là $i$ phần tử lớn nhất. Vì vậy, sắp xếp nổi bọt chỉ cần quét mảng nhiều nhất $n-1$ lần để hoàn tất.
 
-## 性质
+## Tính chất
 
-### 稳定性
+### Tính ổn định
 
-冒泡排序是一种稳定的排序算法．
+Sắp xếp nổi bọt là một thuật toán sắp xếp ổn định.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-在序列完全有序时，冒泡排序只需遍历一遍数组，不用执行任何交换操作，时间复杂度为 $O(n)$．
+Khi dãy đã hoàn toàn có thứ tự, sắp xếp nổi bọt chỉ cần duyệt mảng một lần và không thực hiện thao tác hoán đổi nào, nên độ phức tạp thời gian là $O(n)$.
 
-在最坏情况下，冒泡排序要执行 $\frac{(n-1)n}{2}$ 次交换操作，时间复杂度为 $O(n^2)$．
+Trong trường hợp xấu nhất, sắp xếp nổi bọt phải thực hiện $\frac{(n-1)n}{2}$ thao tác hoán đổi, với độ phức tạp thời gian là $O(n^2)$.
 
-冒泡排序的平均时间复杂度为 $O(n^2)$．
+Độ phức tạp thời gian trung bình của sắp xếp nổi bọt là $O(n^2)$.
 
-## 代码实现
+## Cài đặt
 
-### 伪代码
+### Mã giả
 
 $$
 \begin{array}{ll}
@@ -55,7 +55,7 @@ $$
 
 === "Java"
     ```java
-    // 假设数组的大小是 n + 1，冒泡排序从数组下标 1 开始
+    // Giả sử kích thước mảng là n + 1, sắp xếp nổi bọt bắt đầu từ chỉ số 1
     static void bubble_sort(int[] a, int n) {
         boolean flag = true;
         while (flag) {

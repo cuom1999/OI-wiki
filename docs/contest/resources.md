@@ -1,133 +1,133 @@
 author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS, ZsgsDesign, CB-X2-Jun, tallnutliu
 
-本页面主要列举了一些与算法竞赛有关的在线评测网站、题目合集、书籍、工具等资源．
+Trang này chủ yếu liệt kê một số tài nguyên liên quan đến lập trình thi đấu, như các trang chấm trực tuyến, bộ bài tập, sách và công cụ.
 
-## 在线评测平台
+## Nền tảng chấm trực tuyến
 
-在线评测平台（英语：Online Judging System，简称：OJ），一般用于刷题训练，参与和组织比赛，以及用户之间的交流分享．
+Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết tắt: OJ) thường được dùng để luyện giải bài, tham gia và tổ chức cuộc thi, cũng như trao đổi và chia sẻ giữa người dùng.
 
-### 国内
+### Trung Quốc
 
--   [51Nod](https://www.51nod.com/)：有许多值得尝试的数学题和思维题．
--   [Comet OJ](https://www.cometoj.com)：始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库．
--   [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目．
--   [HydroOJ](https://hydro.ac/)：始于 2021 年，为开源项目 [Hydro](https://hydro.js.org/) 的官方站．用户可以创建自己的 [域](https://hydro.ac/discuss/6087cc44e098b0cd7dde1a0c)，域中可以使用题库、比赛、讨论等主站可以使用的功能．
--   [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck)，可以将评测程序的运行时间精确到微秒．（题目较少）
--   [LibreOJ](https://loj.ac/)：始于 2017 年．基于开源项目 [Lyrio](https://github.com/lyrio-dev/lyrio)，Libre 取自由之意．题目所有测试数据以及提交的代码均对所有用户开放．目前由 [Menci](https://github.com/Menci) 维护．
--   [CDOJ](https://cdoj.site/d/lutece/)：电子科技大学在线评测系统，始于 2012 年．
--   [洛谷](https://www.luogu.com.cn/)：始于 2013 年，社区群体庞大，各类 OI 的真题和习题较全．提供有偿教育服务．
--   [牛客网](https://www.nowcoder.com/)：始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务．
--   [OpenJudge](http://openjudge.cn/)：始于 2005 年，由 POJ 团队开发的小组评测平台．
--   [POJ](http://poj.org/)：北京大学在线评测系统，始于 2003 年，国内历史最悠久的 OJ 之一．内有很多英文题，既有基础题，也有值得一试的好题．可以在 [百练](http://bailian.openjudge.cn/practice/) 题库提交 POJ 的题目．
--   [PTA（拼题 A）](https://pintia.cn/)：始于 2016 年，浙江大学衍生的杭州百腾教育科技有限公司产品．
--   [QOJ](https://qoj.ac/)：收集了很多国内外 OI 和 ICPC 竞赛题目，具有训练价值．
--   [Universal Online Judge](https://uoj.ac/)：始于 2014 年，Universal 取通用之意，[项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高．
--   [Vijos](https://vijos.org/)：始于 2005 年．[服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源．
--   [WZOI](https://wzoi.cn)：始于 2017 年，由浙江省温州中学维护的 [开源](https://github.com/massimodong/wzoj) 评测系统．
--   [ZOJ](https://zoj.pintia.cn/home)：浙江大学在线评测系统，始于 2001 年．
+-   [51Nod](https://www.51nod.com/): có nhiều bài toán và bài tư duy đáng thử.
+-   [Comet OJ](https://www.cometoj.com): bắt đầu từ năm 2018, hướng đến việc cung cấp cho đông đảo người yêu thích thuật toán một nền tảng thi đấu, luyện tập và trao đổi; thường tổ chức các cuộc thi nguyên bản chất lượng cao và có kho bài phong phú.
+-   [HDU Online Judge](http://acm.hdu.edu.cn/) bắt đầu từ năm 2005, là hệ thống chấm trực tuyến của Hangzhou Dianzi University, có các bài trong huấn luyện nhiều trường.
+-   [HydroOJ](https://hydro.ac/): bắt đầu từ năm 2021, là trang chính thức của dự án mã nguồn mở [Hydro](https://hydro.js.org/). Người dùng có thể tạo [miền](https://hydro.ac/discuss/6087cc44e098b0cd7dde1a0c) của riêng mình; trong miền có thể dùng các chức năng như kho bài, cuộc thi, thảo luận giống như trên trang chính.
+-   [Judge Duck Online](https://duck.ac/) dựa trên dự án mã nguồn mở [JudgeDuck](https://github.com/JudgeDuck) do [松松松](https://github.com/wangyisong1996) phát triển, có thể đo thời gian chạy của trình chấm chính xác đến micro giây. (Số lượng bài còn ít)
+-   [LibreOJ](https://loj.ac/): bắt đầu từ năm 2017. Dựa trên dự án mã nguồn mở [Lyrio](https://github.com/lyrio-dev/lyrio); Libre mang nghĩa tự do. Tất cả dữ liệu kiểm thử của bài và mã nộp đều mở cho mọi người dùng. Hiện do [Menci](https://github.com/Menci) duy trì.
+-   [CDOJ](https://cdoj.site/d/lutece/): hệ thống chấm trực tuyến của University of Electronic Science and Technology of China, bắt đầu từ năm 2012.
+-   [洛谷](https://www.luogu.com.cn/): bắt đầu từ năm 2013, có cộng đồng rất lớn, tập hợp khá đầy đủ đề thật và bài luyện thuộc nhiều loại OI. Có cung cấp dịch vụ giáo dục trả phí.
+-   [牛客网](https://www.nowcoder.com/): bắt đầu từ năm 2014, cung cấp các dịch vụ như ôn luyện tuyển dụng kỹ thuật, giao lưu cộng đồng và tuyển dụng doanh nghiệp.
+-   [OpenJudge](http://openjudge.cn/): bắt đầu từ năm 2005, là nền tảng chấm theo nhóm do đội POJ phát triển.
+-   [POJ](http://poj.org/): hệ thống chấm trực tuyến của Peking University, bắt đầu từ năm 2003, là một trong những OJ lâu đời nhất ở Trung Quốc. Có nhiều bài tiếng Anh, gồm cả bài nền tảng lẫn các bài hay đáng thử. Có thể nộp bài POJ trong kho bài [百练](http://bailian.openjudge.cn/practice/).
+-   [PTA（拼题 A）](https://pintia.cn/): bắt đầu từ năm 2016, là sản phẩm của Hangzhou Baiteng Education Technology Co., Ltd. tách ra từ Zhejiang University.
+-   [QOJ](https://qoj.ac/): thu thập nhiều bài từ các kỳ thi OI và ICPC trong và ngoài Trung Quốc, có giá trị luyện tập.
+-   [Universal Online Judge](https://uoj.ac/): bắt đầu từ năm 2014, Universal mang nghĩa thông dụng, [dự án mã nguồn mở](https://github.com/UniversalOJ/UOJ-System); OJ của [VFK](https://github.com/vfleaking): có nhiều bài thi nguyên bản và bài CCF/THU, độ khó cao.
+-   [Vijos](https://vijos.org/): bắt đầu từ năm 2005. Các dự án như [máy chủ](https://github.com/vijos/vj4) và [máy chấm](https://github.com/vijos/jd4) đều là mã nguồn mở.
+-   [WZOI](https://wzoi.cn): bắt đầu từ năm 2017, là hệ thống chấm [mã nguồn mở](https://github.com/massimodong/wzoj) do Wenzhou High School, Zhejiang duy trì.
+-   [ZOJ](https://zoj.pintia.cn/home): hệ thống chấm trực tuyến của Zhejiang University, bắt đầu từ năm 2001.
 
-### 国外
+### Quốc tế
 
--   [AizuOJ](https://onlinejudge.u-aizu.ac.jp)：日本会津大学在线评测系统，始于 2004 年．包含日本若干高中和大学编程比赛的题目，自带编程/数据结构/算法的入门课程．
--   [AtCoder](https://atcoder.jp/)：日本 OJ，日文版里会有日本高校的比赛，英文内不会显示．题目有趣，质量较高．
--   [CodeChef](https://codechef.com/)：印度 OJ，周期举办比赛．系统基于 SPOJ 的 Sphere Engine．
--   [Codeforces](https://codeforces.com/)：俄罗斯 OJ，始于 2010 年，创始人是 [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/)．有多种系列的比赛，并支持个人出题、申请组织比赛．题目质量较高．
--   [CSES](https://cses.fi/problemset/)(Code Submission Evaluation System)，按专题划分的题库，[旨在](https://cses.fi/problemset/text/2433) 成为综合的高质量题库，主要由 [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf) 作者 Antti Laaksonen 开发，始于 2013 年．
+-   [AizuOJ](https://onlinejudge.u-aizu.ac.jp): hệ thống chấm trực tuyến của University of Aizu, Nhật Bản, bắt đầu từ năm 2004. Bao gồm bài từ một số cuộc thi lập trình cấp trung học và đại học ở Nhật, đồng thời có sẵn khóa nhập môn lập trình/cấu trúc dữ liệu/thuật toán.
+-   [AtCoder](https://atcoder.jp/): OJ của Nhật Bản; bản tiếng Nhật có các cuộc thi của các trường đại học Nhật, còn bản tiếng Anh không hiển thị. Bài thú vị và chất lượng cao.
+-   [CodeChef](https://codechef.com/): OJ của Ấn Độ, tổ chức thi định kỳ. Hệ thống dựa trên Sphere Engine của SPOJ.
+-   [Codeforces](https://codeforces.com/): OJ của Nga, bắt đầu từ năm 2010, người sáng lập là [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/). Có nhiều chuỗi cuộc thi, hỗ trợ cá nhân ra đề và đăng ký tổ chức thi. Chất lượng bài cao.
+-   [CSES](https://cses.fi/problemset/)(Code Submission Evaluation System), kho bài được chia theo chuyên đề, [mục tiêu](https://cses.fi/problemset/text/2433) là trở thành một kho bài tổng hợp chất lượng cao, chủ yếu do Antti Laaksonen, tác giả của [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf), phát triển; bắt đầu từ năm 2013.
 -   [CS Academy](https://csacademy.com/)
--   [DMOJ](https://dmoj.ca/) 加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛．
--   [HackerRank](https://www.hackerrank.com/) 有很多比赛
--   [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 [ELO 等级分](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86) 系统来评估．
--   [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站：[LeetCode China](https://leetcode.cn)．
+-   [DMOJ](https://dmoj.ca/) là OJ mã nguồn mở của Canada, hỗ trợ nhiều ngôn ngữ; kho bài lưu trữ đề của nhiều cuộc thi lớn và cũng có các cuộc thi tự tổ chức định kỳ.
+-   [HackerRank](https://www.hackerrank.com/) có nhiều cuộc thi.
+-   [Kattis](https://open.kattis.com/) có kho bài chủ yếu gồm các bài giống phong cách ICPC; hệ thống đánh giá cấp độ người dùng dựa trên tình hình giải bài và gợi ý các bài ở bốn mức trivial/easy/medium/hard phù hợp với trình độ, trong đó độ khó bài được đánh giá bằng hệ thống tương tự [điểm xếp hạng ELO](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86).
+-   [LeetCode](https://leetcode.com/) là trang luyện bài phỏng vấn cho lập trình viên, có nhánh tiếng Trung: [LeetCode China](https://leetcode.cn).
 -   [Light OJ](https://lightoj.com)
--   [Open Trains](https://opentrains.opencup.org/) 俄罗斯 Open Cup 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛；题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目．
--   [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能．
--   [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包．
--   [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营．
--   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/)）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html)，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge．现在该平台的维护者 [正在 GitHub 上构建新的评测平台](https://github.com/TheOnlineJudge/ojudge)．
--   [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛．
+-   [Open Trains](https://opentrains.opencup.org/) là nền tảng luyện tập cho Russian Open Cup, xây dựng trên hệ thống mã nguồn mở [ejudge](https://ejudge.ru/), hỗ trợ virtual contest; kho bài gồm đề Open Cup qua các năm và bài từ Petrozavodsk training camp.
+-   [SPOJ](http://www.spoj.com) bắt đầu từ năm 2003; hệ thống nền [Sphere Engine](https://sphere-engine.com/) được thương mại hóa vào năm 2008; hỗ trợ chức năng thích bài và gắn thẻ.
+-   [TopCoder](https://www.topcoder.com/) bắt đầu từ năm 2001; [cộng đồng lập trình thi đấu](https://www.topcoder.com/community/competitive-programming/) của nền tảng này có nhiều cuộc thi; hiện mảng kinh doanh chính là crowdsourcing kỹ thuật.
+-   [TimusOJ](http://acm.timus.ru/) bắt đầu từ năm 2000, do Ural Federal University phát triển, sở hữu kho bài chấm trực tuyến lớn nhất của Nga; bài chủ yếu đến từ các cuộc thi nội bộ Ural Federal University, Ural Championship, ICPC Ural Regional Contest và Petrozavodsk training camp.
+-   Online Judge (trước đây là [UVaOJ](https://uva.onlinejudge.org/)) bắt đầu từ năm 1995, là OJ nổi tiếng quốc tế sớm nhất; người sáng lập là giáo sư Miguel Ángel Revilla của University of Valladolid (UVa), Tây Ban Nha. Do [giáo sư Revilla không may qua đời năm 2018](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) và University of Valladolid dừng bảo trì, UVaOJ đổi tên thành Online Judge từ tháng 7 năm 2019. Hiện người duy trì nền tảng này [đang xây dựng nền tảng chấm mới trên GitHub](https://github.com/TheOnlineJudge/ojudge).
+-   [Yandex](https://contest.yandex.ru/) lưu trữ đề của Russian Olympiad in Informatics trong vài năm gần đây.
 
-## 教程资料
+## Tài liệu hướng dẫn
 
 -   [**OI Wiki**](https://oi-wiki.org)
--   [Codeforces 上网友整理的一份教程合集](https://codeforces.com/blog/entry/125623)
--   [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
--   [演算法筆記](https://web.ntnu.edu.tw/~algo/)：台湾师范大学总结的教程
--   [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
--   [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/)
--   [校招面试指南](https://github.com/jwasham/coding-interview-university)
--   [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/shareOI)
--   [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides)
--   [huzecong 的课件](https://github.com/huzecong/oi-slides)
--   [Open Data Structure](https://opendatastructures.org/)：内含众多数据结构讲稿
+-   [Một bộ sưu tập tutorial do người dùng Codeforces tổng hợp](https://codeforces.com/blog/entry/125623)
+-   [E-Maxx Algorithms bản tiếng Anh](https://cp-algorithms.com/)
+-   [演算法筆記](https://web.ntnu.edu.tw/~algo/): tài liệu hướng dẫn do National Taiwan Normal University tổng hợp
+-   [How to prepare for ACM-ICPC? - geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
+-   [Tutorials do Topcoder tổng hợp](https://www.topcoder.com/community/competitive-programming/tutorials/)
+-   [Coding Interview University](https://github.com/jwasham/coding-interview-university)
+-   [Slide bài giảng do hzwer thu thập và tổng hợp từ Internet](https://github.com/hzwer/shareOI)
+-   [Slide bài giảng của Trinkle23897](https://github.com/Trinkle23897/oi_slides)
+-   [Slide bài giảng của huzecong](https://github.com/huzecong/oi-slides)
+-   [Open Data Structure](https://opendatastructures.org/): chứa nhiều bài giảng về cấu trúc dữ liệu
 -   [IOI Syllabus (2020)](https://ioinformatics.org/files/ioi-syllabus-2020.pdf)
 
-## 书籍
+## Sách
 
-本列表内注明了书籍作者，译者未列其中．因无重名书籍且易于寻找，故不标明 ISBN．
+Danh sách này ghi tác giả của sách, không liệt kê dịch giả. Vì không có sách trùng tên và tương đối dễ tìm, ISBN không được ghi kèm.
 
--   刘汝佳系列
+-   Loạt sách của 刘汝佳
     -   《算法竞赛入门经典》（紫）
-        -   [第一版 配套资源仓库（镜像）](https://github.com/sukhoeing/aoapc-book/)
-        -   [第二版 配套资源仓库](https://github.com/aoapc-book/aoapc-bac2nd)
-        -   [第二版 习题选解](https://github.com/sukhoeing/aoapc-bac2nd-keys)
-    -   《算法竞赛入门经典 - 训练指南》（白/蓝）- 陈锋 合著
+        -   [Kho tài nguyên đi kèm bản thứ nhất (mirror)](https://github.com/sukhoeing/aoapc-book/)
+        -   [Kho tài nguyên đi kèm bản thứ hai](https://github.com/aoapc-book/aoapc-bac2nd)
+        -   [Lời giải chọn lọc cho bài tập bản thứ hai](https://github.com/sukhoeing/aoapc-bac2nd-keys)
+    -   《算法竞赛入门经典 - 训练指南》（白/蓝）- đồng tác giả 陈锋
     -   《算法艺术与信息学竞赛》（蓝/黑）
 -   《算法竞赛进阶指南》- 李煜东
-    -   [配套资源仓库](https://github.com/lydrainbowcat/tedukuri)
+    -   [Kho tài nguyên đi kèm](https://github.com/lydrainbowcat/tedukuri)
 -   《啊哈算法》- 纪磊
-    -   面向初学者或有初步兴趣的人群，有幽默配图．
+    -   Hướng đến người mới bắt đầu hoặc người mới có hứng thú, có hình minh họa hài hước.
 -   CCF 中学生计算机程序设计系列
     -   《CCF 中学生计算机程序设计 - 入门篇》- 陈颖，邱桂香，朱全民
-        -   [建议配合勘误使用．](https://zhuanlan.zhihu.com/p/85215961)
+        -   [Nên đọc kèm bản đính chính.](https://zhuanlan.zhihu.com/p/85215961)
     -   《CCF 中学生计算机程序设计 - 基础篇》- 江涛，宋新波，朱全民
     -   《CCF 中学生计算机程序设计 - 提高篇》- 徐先友，朱全民
-    -   《CCF 中学生计算机程序设计 - 专业篇》（未出）
--   深入浅出系列
+    -   《CCF 中学生计算机程序设计 - 专业篇》（chưa xuất bản）
+-   Loạt 深入浅出
     -   《深入浅出程序设计竞赛 - 基础篇》- 洛谷网校教研组
--   一本通系列
+-   Loạt 一本通
     -   《信息学奥赛一本通》- 董永建
     -   《信息学奥赛一本通 - 提高篇》- 黄新军，董永建
-        -   [建议选择性阅读．](https://www.zhihu.com/question/292926937)
+        -   [Nên đọc có chọn lọc.](https://www.zhihu.com/question/292926937)
     -   《信息学奥赛一本通 - 高手训练》- 黄新军，董永建
--   其他由国内著名 OI 教练写的教材
+-   Các giáo trình khác do những huấn luyện viên OI nổi tiếng ở Trung Quốc viết
     -   《信息学奥赛课课通》- 林厚从
     -   《聪明人的游戏：信息学探秘 - 提高篇》- 江涛，陈茂贤
     -   《计算概论：C++ 编程与信息学竞赛入门》- 金靖
     -   《算法竞赛宝典》- 张新华
--   ACM 国际大学生程序设计竞赛系列
+-   Loạt ACM 国际大学生程序设计竞赛
     -   《ACM 国际大学生程序设计竞赛系列 知识与入门》- 俞勇
     -   《ACM 国际大学生程序设计竞赛系列 算法与实现》- 俞勇
     -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 -   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
--   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein  
-    黑书，大学经典教材．英文版原名*Introduction to Algorithms*
-    -   [答案解析 (English)](https://github.com/walkccc/CLRS)
--   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik  
-    英文版原名*Concrete Mathematics*
--   《组合数学》第五版 - Richard A.Brualdi  
-    英文版原名*Introductory Combinatorics*
--   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
-    通俗易懂．
+-   《算法导论》 bản thứ ba - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein
+    Sách đen, giáo trình kinh điển ở bậc đại học. Tên bản tiếng Anh là *Introduction to Algorithms*
+    -   [Lời giải (English)](https://github.com/walkccc/CLRS)
+-   《具体数学》 bản thứ hai - Ronald L. Graham/Donald E. Knuth/Oren Patashnik
+    Tên bản tiếng Anh là *Concrete Mathematics*
+-   《组合数学》 bản thứ năm - Richard A.Brualdi
+    Tên bản tiếng Anh là *Introductory Combinatorics*
+-   Trọn bộ 《挑战程序设计竞赛》 - 秋叶拓哉，岩田阳一，北川宜稔
+    Dễ hiểu, phù hợp đại chúng.
 -   《算法概论》- Sanjoy Dasgupta/Christos Papadimitriou/Umesh Vazirani
-    -   提纲挚领，但内容较少．
--   [Legend-K 的数据结构与算法的笔记](http://web.archive.org/web/20180826111306/http://www.legend-k.com/Algorithm/Algorithm.pdf)
+    -   Nội dung bao quát tốt các ý chính, nhưng khá ngắn.
+-   [Ghi chú về cấu trúc dữ liệu và thuật toán của Legend-K](http://web.archive.org/web/20180826111306/http://www.legend-k.com/Algorithm/Algorithm.pdf)
 -   [acm-cheat-sheet](https://github.com/soulmachine/acm-cheat-sheet)
 -   [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf)- Antti Laaksonen
-    -   作者花了三年个人时间完成．面向算法竞赛，覆盖面广，详略得当．
+    -   Tác giả dành ba năm thời gian cá nhân để hoàn thành. Sách hướng đến lập trình thi đấu, phạm vi rộng và mức độ chi tiết hợp lý.
 -   [《挑战编程：程序设计竞赛训练手册》](http://acm.cs.buap.mx/downloads/Programming_Challenges.pdf)- Steven S. Skiena/Miguel A. Revilla
-    -   由西班牙 University of Valladolid 的两位教授编写．
-    -   阅读 [经过翻译的在线电子版图书](http://www.tup.com.cn/upload/books/yz/030502-01.pdf)
-    -   购买 [纸质版图书](http://www.tup.tsinghua.edu.cn/booksCenter/book_03050201.html)
+    -   Do hai giáo sư của University of Valladolid, Tây Ban Nha biên soạn.
+    -   Đọc [sách điện tử trực tuyến đã được dịch](http://www.tup.com.cn/upload/books/yz/030502-01.pdf)
+    -   Mua [sách bản giấy](http://www.tup.tsinghua.edu.cn/booksCenter/book_03050201.html)
 -   《C++，挑战编程——程序设计竞赛进阶训练指南》- 邱秋
-    -   [作者博客的介绍页](https://blog.csdn.net/metaphysis/article/details/90288252)
+    -   [Trang giới thiệu trên blog tác giả](https://blog.csdn.net/metaphysis/article/details/90288252)
 -   [《数据结构（C++ 语言版 第 3 版）》- 邓俊辉](https://dsa.cs.tsinghua.edu.cn/~deng/ds/dsacpp/index.htm)
-    -   建议随配套课程、配套课件和习题解析一起使用．
--   《计算几何：算法与应用》- 伯格（Berg,M.D.）著，邓俊辉 译  
-    英文版原名*Computational Geometry: Algorithms and Applications*
+    -   Nên dùng cùng khóa học, slide bài giảng và lời giải bài tập đi kèm.
+-   《计算几何：算法与应用》- tác giả 伯格 (Berg, M.D.), dịch bởi 邓俊辉
+    Tên bản tiếng Anh là *Computational Geometry: Algorithms and Applications*
 -   [《Handbook of Data Structures and Applications, 2nd Edition》](https://www.routledge.com/Handbook-of-Data-Structures-and-Applications/Mehta-Sahni/p/book/9780367572006)
-    -   由许多著名教授如 Sartaj Sahni、Hanan Samet、Weiss 等合著，内容较多，建议有一定基础的数据结构爱好者阅读．
--   [算法详解 系列](https://www.algorithmsilluminated.org/)
-    -   面向有语言基础的初学者的教材，建议同配套课程一起使用
+    -   Do nhiều giáo sư nổi tiếng như Sartaj Sahni, Hanan Samet, Weiss cùng viết; nội dung khá nhiều, nên đọc khi đã có nền tảng nhất định về cấu trúc dữ liệu.
+-   [Loạt 算法详解](https://www.algorithmsilluminated.org/)
+    -   Giáo trình hướng đến người mới bắt đầu đã có nền tảng ngôn ngữ, nên dùng kèm khóa học đi kèm.
     -   《Algorithms Illuminated, Part 1: The Basics》- Tim Roughgarden
     -   《算法详解，卷 1：算法基础》- 徐波 译
     -   《Algorithms Illuminated, Part 2: Graph Algorithms and Data Structures》- Tim Roughgarden
@@ -135,7 +135,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     -   《Algorithms Illuminated, Part 3: Greedy Algorithms and Dynamic Programming》- Tim Roughgarden
     -   《Algorithms Illuminated, Part 4: Algorithms for NP-Hard Problems》- Tim Roughgarden
 
-## 课程
+## Khóa học
 
 -   [CMU 15-295 (2025)](https://contest.cs.cmu.edu/295/)
 -   [LSU: CSC 2700 (2024)](http://isaac.lsu.edu/class/)
@@ -149,39 +149,39 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [THU: 计算几何](https://www.xuetangx.com/course/THU08091000327/)
 -   [StanfordOnline: Algorithms: Design and Analysis](https://www.algorithmsilluminated.org/)
 
-## 工具
+## Công cụ
 
 -   [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips)
 -   [Algorithm Visualizer](http://algorithm-visualizer.org)
--   [cppreference](https://zh.cppreference.com/w/)：一个全面的 C 和 C++ 语言及其标准库的在线参考资料
--   [Compiler Explorer](https://godbolt.org)：在线查看编译后代码块对应的汇编语句，支持选择不同的编译器
--   [C++ Insights](https://cppinsights.io/)：以编译器的视角去查看你的 C++ 源码
--   [Inverse Symbolic Calculator](http://wayback.cecm.sfu.ca/projects/ISC/ISCmain.html)：实数反查表达式，适用于反推常数
--   [$\rm\LaTeX$ 手写符号识别](http://detexify.kirelabs.org/classify.html)
--   [$\rm\LaTeX$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
--   [Mathpix](https://mathpix.com/)：截图转 $\rm\LaTeX{}$
--   [OEIS](https://oeis.org)：整数数列搜索引擎
--   [Python Tutor](https://pythontutor.com/): 代码执行过程可视化
--   [Quick C++ Benchmark](https://quick-bench.com/)：在线比较两个及以上函数的运行速度
--   [Try It Online](https://tio.run)：在线运行 600+ 种语言的代码，支持 IO 交互，超时 60s，可以分享代码
--   [图论画板](https://csacademy.com/app/graph_editor/) 与 [GraphViz](http://www.graphviz.org/)
--   [uDebug](https://www.udebug.com)：提供一些 OJ 题目的调试辅助
--   [USF](https://www.cs.usfca.edu/~galles/visualization/) 与 [VisuAlgo](https://visualgo.net/zh)：算法可视化
--   [Wandbox](https://wandbox.org/): 在线代码运行，支持 30+ 种语言，可以分享代码，支持不同编译器版本
--   [Wolfram Alpha](https://www.wolframalpha.com/)：可以计算包括数学、科学技术、社会文化……等多个主题的问题
+-   [cppreference](https://zh.cppreference.com/w/): tài liệu tham khảo trực tuyến toàn diện về ngôn ngữ C/C++ và thư viện chuẩn
+-   [Compiler Explorer](https://godbolt.org): xem trực tuyến mã hợp ngữ tương ứng với khối mã sau khi biên dịch, hỗ trợ chọn nhiều trình biên dịch khác nhau
+-   [C++ Insights](https://cppinsights.io/): xem mã nguồn C++ của bạn từ góc nhìn của trình biên dịch
+-   [Inverse Symbolic Calculator](http://wayback.cecm.sfu.ca/projects/ISC/ISCmain.html): tra ngược biểu thức cho số thực, hữu ích khi suy đoán hằng số
+-   [Nhận dạng ký hiệu viết tay $\rm\LaTeX$](http://detexify.kirelabs.org/classify.html)
+-   [Tham khảo công thức toán $\rm\LaTeX$](http://www.mohu.org/info/symbols/symbols.htm)
+-   [Mathpix](https://mathpix.com/): chuyển ảnh chụp màn hình thành $\rm\LaTeX{}$
+-   [OEIS](https://oeis.org): công cụ tìm kiếm dãy số nguyên
+-   [Python Tutor](https://pythontutor.com/): trực quan hóa quá trình thực thi mã
+-   [Quick C++ Benchmark](https://quick-bench.com/): so sánh trực tuyến tốc độ chạy của hai hàm trở lên
+-   [Try It Online](https://tio.run): chạy trực tuyến hơn 600 ngôn ngữ, hỗ trợ tương tác IO, giới hạn thời gian 60s và có thể chia sẻ mã
+-   [Graph Editor](https://csacademy.com/app/graph_editor/) và [GraphViz](http://www.graphviz.org/)
+-   [uDebug](https://www.udebug.com): cung cấp hỗ trợ gỡ lỗi cho một số bài OJ
+-   [USF](https://www.cs.usfca.edu/~galles/visualization/) và [VisuAlgo](https://visualgo.net/zh): trực quan hóa thuật toán
+-   [Wandbox](https://wandbox.org/): chạy mã trực tuyến, hỗ trợ hơn 30 ngôn ngữ, có thể chia sẻ mã và hỗ trợ nhiều phiên bản trình biên dịch khác nhau
+-   [Wolfram Alpha](https://www.wolframalpha.com/): có thể tính toán các vấn đề thuộc nhiều chủ đề như toán học, khoa học kỹ thuật, xã hội và văn hóa
 
-## 题集和资源
+## Bộ bài và tài nguyên
 
--   [POJ 训练计划](https://blog.csdn.net/skywalkert/article/details/46594541)
+-   [Kế hoạch luyện tập POJ](https://blog.csdn.net/skywalkert/article/details/46594541)
 -   [USACO](http://train.usaco.org/usacogate)
--   [洛谷题单](https://www.luogu.com.cn/training/list)
--   [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274)
--   Codeforces 社区高质量算法文章合集 [之一](https://codeforces.com/blog/entry/57282)  [之二](https://codeforces.com/blog/entry/13529)
--   [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446)
--   [北京大学 ICPC 暑期课课件](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE)
+-   [Danh sách bài 洛谷](https://www.luogu.com.cn/training/list)
+-   [Danh sách bài của -Morass- đăng trên Codeforces](https://codeforces.com/blog/entry/55274)
+-   Các bài viết thuật toán chất lượng cao từ cộng đồng Codeforces: [phần một](https://codeforces.com/blog/entry/57282)  [phần hai](https://codeforces.com/blog/entry/13529)
+-   [Bài ví dụ trong slide khóa hè ICPC của Peking University](https://vjudge.net/article/446)
+-   [Slide khóa hè ICPC của Peking University](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE)
 -   [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs)
--   [多校联合训练](http://acm.hdu.edu.cn) 关键词：`Multi-University Training Contest`
+-   [Huấn luyện nhiều trường](http://acm.hdu.edu.cn) từ khóa: `Multi-University Training Contest`
 -   [Vjudge](https://vjudge.net/)
 -   [Project Euler](https://projecteuler.net/)
--   [Junior Training Sheet](https://goo.gl/unDETI)：对新手友好的训练计划
--   [USACO Guide](https://usaco.guide/)：针对 USACO 的各个级别分类的训练资源
+-   [Junior Training Sheet](https://goo.gl/unDETI): kế hoạch luyện tập thân thiện với người mới
+-   [USACO Guide](https://usaco.guide/): tài nguyên luyện tập được phân loại theo từng cấp độ của USACO

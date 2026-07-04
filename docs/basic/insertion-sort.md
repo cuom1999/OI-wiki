@@ -1,28 +1,28 @@
-本页面将简要介绍插入排序．
+Trang này giới thiệu ngắn gọn về sắp xếp chèn.
 
-## 定义
+## Định nghĩa
 
-插入排序（英语：Insertion sort）是一种简单直观的排序算法．它的工作原理为将待排列元素划分为「已排序」和「未排序」两部分，每次从「未排序的」元素中选择一个插入到「已排序的」元素中的正确位置．
+Sắp xếp chèn (tiếng Anh: Insertion sort) là một thuật toán sắp xếp đơn giản và trực quan. Nguyên lý của nó là chia các phần tử cần sắp xếp thành hai phần "đã sắp xếp" và "chưa sắp xếp"; mỗi lần chọn một phần tử từ phần "chưa sắp xếp" rồi chèn vào đúng vị trí trong phần "đã sắp xếp".
 
-一个与插入排序相同的操作是打扑克牌时，从牌桌上抓一张牌，按牌面大小插到手牌后，再抓下一张牌．
+Một thao tác tương tự sắp xếp chèn là khi chơi bài: lấy một lá bài từ bàn, chèn nó vào tay bài theo thứ tự giá trị, rồi mới lấy lá tiếp theo.
 
 ![insertion sort animate example](images/insertion-sort-animate.svg)
 
-## 性质
+## Tính chất
 
-### 稳定性
+### Tính ổn định
 
-插入排序是一种稳定的排序算法．
+Sắp xếp chèn là một thuật toán sắp xếp ổn định.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-插入排序的最优时间复杂度为 $O(n)$，在数列几乎有序时效率很高．
+Độ phức tạp thời gian tốt nhất của sắp xếp chèn là $O(n)$; thuật toán rất hiệu quả khi dãy gần như đã có thứ tự.
 
-插入排序的最坏时间复杂度和平均时间复杂度都为 $O(n^2)$．
+Độ phức tạp thời gian xấu nhất và trung bình của sắp xếp chèn đều là $O(n^2)$.
 
-## 代码实现
+## Cài đặt
 
-### 伪代码
+### Mã giả
 
 $$
 \begin{array}{ll}
@@ -54,15 +54,15 @@ $$
     --8<-- "docs/basic/code/insertion-sort/insertion-sort_1.java"
     ```
 
-## 折半插入排序
+## Sắp xếp chèn nhị phân
 
-插入排序还可以通过二分算法优化性能，在排序元素数量较多时优化的效果比较明显．
+Sắp xếp chèn còn có thể dùng tìm kiếm nhị phân để tối ưu hiệu năng; khi số phần tử cần sắp xếp lớn, hiệu quả tối ưu sẽ rõ rệt hơn.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-折半插入排序与直接插入排序的基本思想是一致的，折半插入排序仅对插入排序时间复杂度中的常数进行了优化，所以优化后的时间复杂度仍然不变．
+Tư tưởng cơ bản của sắp xếp chèn nhị phân giống với sắp xếp chèn trực tiếp. Sắp xếp chèn nhị phân chỉ tối ưu hằng số trong độ phức tạp thời gian của sắp xếp chèn, nên độ phức tạp sau tối ưu vẫn không đổi.
 
-### 代码实现
+### Cài đặt
 
 === "C++"
     ```cpp
@@ -71,7 +71,7 @@ $$
       for (int i = 1; i != len; ++i) {
         int key = arr[i];
         auto index = upper_bound(arr, arr + i, key) - arr;
-        // 使用 memmove 移动元素，比使用 for 循环速度更快，时间复杂度仍为 O(n)
+        // Dùng memmove để di chuyển phần tử nhanh hơn vòng lặp for, độ phức tạp vẫn là O(n)
         memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
         arr[index] = key;
       }

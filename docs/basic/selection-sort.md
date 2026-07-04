@@ -1,30 +1,30 @@
-本页面将简要介绍选择排序．
+Trang này giới thiệu ngắn gọn về sắp xếp chọn.
 
-## 定义
+## Định nghĩa
 
-选择排序（英语：Selection sort）是一种简单直观的排序算法．它的工作原理是每次找出第 $i$ 小的元素（也就是 $A_{i..n}$ 中最小的元素），然后将这个元素与数组第 $i$ 个位置上的元素交换．
+Sắp xếp chọn (tiếng Anh: Selection sort) là một thuật toán sắp xếp đơn giản và trực quan. Nguyên lý của nó là mỗi lần tìm phần tử nhỏ thứ $i$ (tức phần tử nhỏ nhất trong $A_{i..n}$), rồi hoán đổi phần tử này với phần tử ở vị trí thứ $i$ của mảng.
 
 ![selection sort animate example](images/selection-sort-animate.svg)
 
-## 性质
+## Tính chất
 
-### 稳定性
+### Tính ổn định
 
-选择排序的稳定性取决于其具体实现．
+Tính ổn định của sắp xếp chọn phụ thuộc vào cách cài đặt cụ thể.
 
-倘若使用链表实现，由于链表的任意位置插入和删除均为 $O(1)$，故无需使用 swap（交换两个元素）操作：每次从未排序部分选择最小元素（若有多个，选取第 1 个）后，将其插入到未排序部分的第 1 个元素之前，这样就能够保证稳定性．
+Nếu cài đặt bằng danh sách liên kết, do thao tác chèn và xóa tại vị trí bất kỳ trong danh sách liên kết đều là $O(1)$, ta không cần dùng thao tác swap (hoán đổi hai phần tử): mỗi lần chọn phần tử nhỏ nhất trong phần chưa sắp xếp (nếu có nhiều phần tử như vậy thì chọn phần tử đầu tiên), rồi chèn nó vào trước phần tử đầu tiên của phần chưa sắp xếp. Cách này bảo đảm được tính ổn định.
 
-假如使用数组实现（OI 中一般的实现方式），由于数组任意位置插入和删除均为 $O(n)$，故只能使用 swap 将未排序部分的元素移到已排序部分．swap 操作使得数组实现的选择排序不稳定．
+Nếu cài đặt bằng mảng (cách cài đặt thường gặp trong OI), do thao tác chèn và xóa tại vị trí bất kỳ trong mảng đều là $O(n)$, ta thường chỉ có thể dùng swap để đưa phần tử từ phần chưa sắp xếp sang phần đã sắp xếp. Thao tác swap làm cho sắp xếp chọn cài đặt bằng mảng không ổn định.
 
-下面给出的实现示例均是基于数组元素的交换，因此均为 **不稳定的**．
+Các ví dụ cài đặt dưới đây đều dựa trên việc hoán đổi phần tử trong mảng, nên đều **không ổn định**.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-选择排序的最优时间复杂度、平均时间复杂度和最坏时间复杂度均为 $O(n^2)$．
+Độ phức tạp thời gian tốt nhất, trung bình và xấu nhất của sắp xếp chọn đều là $O(n^2)$.
 
-## 代码实现
+## Cài đặt
 
-### 伪代码
+### Mã giả
 
 $$
 \begin{array}{ll}
@@ -52,7 +52,7 @@ $$
 
 === "Java"
     ```java
-    // arr代码下标从 1 开始索引
+    // Chỉ số của arr trong mã bắt đầu từ 1
     static void selection_sort(int[] arr, int n) {
         for (int i = 1; i < n; i++) {
             int ith = i;

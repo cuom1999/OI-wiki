@@ -19,6 +19,15 @@ MkDocs source layout intact.
 - `docs/basic/complexity.md`, `docs/basic/amortized-analysis.md`,
   `docs/basic/enumerate.md`, `docs/basic/simulate.md`: translated basic
   algorithm foundation pages.
+- `docs/basic/binary-lifting.md`, `docs/basic/construction.md`,
+  `docs/basic/sort-intro.md`, `docs/basic/selection-sort.md`,
+  `docs/basic/bubble-sort.md`, `docs/basic/insertion-sort.md`,
+  `docs/basic/counting-sort.md`, `docs/basic/use-of-sort.md`: translated
+  additional basic algorithm and sorting pages.
+- `docs/contest/resources.md`, `docs/contest/roadmap.md`: translated learning
+  resources and roadmap pages.
+- `docs/intro/htc.md`, `docs/intro/faq.md`: translated contributor guide and
+  FAQ, while preserving compatibility anchors for existing upstream links.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

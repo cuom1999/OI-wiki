@@ -1,91 +1,129 @@
-本页面主要解答一些常见的问题．
+Trang này chủ yếu trả lời một số câu hỏi thường gặp.
 
-## 我想问点与这个 Wiki 相关的问题
+## Tôi muốn hỏi vài điều liên quan đến Wiki này
 
-Q：你们是为什么想要做这个 Wiki 的呢？
+Hỏi: Vì sao các bạn muốn làm Wiki này?
 
-A：不知道你在学 **OI** 的时候，面对庞大的知识体系，有没有感到过迷茫无助的时候？**OI Wiki** 想要做的事情可能类似于「让更多竞赛资源不充裕的同学能方便地接触到训练资源」．当然这么表述也不完全，做 Wiki 的动机可能也很纯粹，只是简单地想要对 **OI** 的发展做出一点点微小的贡献吧．XD
-
-***
-
-Q：我很感兴趣，怎么参与？
-
-A：**OI Wiki** 现在托管在 GitHub 上，你可以直接访问这个 [repo](https://github.com/OI-wiki/OI-wiki) 来查看最新进展．参与的途径包括在 GitHub 上面开 [Issue](https://github.com/OI-wiki/OI-wiki/issues)、[Pull Request](https://github.com/OI-wiki/OI-wiki/pulls)，或者在交流群中分享你的想法、直接向管理员投稿．目前，我们使用的框架是用 Python 开发的 [MkDocs](https://mkdocs.readthedocs.io)，支持 Markdown 格式（也支持插入数学公式）．
-
-***
-
-Q：可是我比较弱……不知道我能做点什么．
-
-A：一切源于热爱．你可以协助其他人审核修改稿件，帮助我们宣传 **OI Wiki**，为社区营造良好学习交流氛围！
+Đáp: Không biết khi học **OI**, đứng trước một hệ thống kiến thức đồ sộ, bạn đã
+từng thấy mơ hồ và bất lực chưa? Việc **OI Wiki** muốn làm có lẽ gần với
+"giúp nhiều bạn thiếu tài nguyên thi đấu có thể tiếp cận tài nguyên luyện tập
+một cách thuận tiện hơn". Tất nhiên, cách nói này cũng chưa đầy đủ; động lực
+làm Wiki có thể rất thuần túy, chỉ đơn giản là muốn đóng góp một chút nhỏ bé
+cho sự phát triển của **OI** thôi. XD
 
 ***
 
-Q：现在主要是谁在做这件事啊？感觉这是个大坑，真的能做好吗？
+Hỏi: Tôi rất quan tâm, làm sao để tham gia?
 
-A：最开始主要是一些退役老年选手在做这件事，后来遇到了很多志同道合的小伙伴：有现役选手，退役玩家，也有从未参加过 **OI** 的朋友．目前，这个项目主要是由 **OI Wiki** 项目组来维护（下面是一张合影）．
+Đáp: **OI Wiki** hiện được lưu trữ trên GitHub; bạn có thể truy cập trực tiếp
+[repo](https://github.com/OI-wiki/OI-wiki) này để xem tiến độ mới nhất. Các
+cách tham gia gồm mở [Issue](https://github.com/OI-wiki/OI-wiki/issues),
+[Pull Request](https://github.com/OI-wiki/OI-wiki/pulls) trên GitHub, chia sẻ
+ý tưởng trong nhóm trao đổi, hoặc gửi bài trực tiếp cho quản trị viên. Hiện tại,
+framework chúng tôi dùng là [MkDocs](https://mkdocs.readthedocs.io), được phát
+triển bằng Python, hỗ trợ định dạng Markdown (cũng hỗ trợ chèn công thức toán).
+
+***
+
+Hỏi: Nhưng tôi còn yếu quá... không biết mình có thể làm gì.
+
+Đáp: Mọi thứ bắt đầu từ niềm yêu thích. Bạn có thể hỗ trợ người khác review bản
+sửa, giúp chúng tôi giới thiệu **OI Wiki**, và cùng xây dựng bầu không khí học
+tập, trao đổi lành mạnh trong cộng đồng!
+
+***
+
+Hỏi: Hiện ai là người chính làm việc này? Cảm giác đây là một hố rất lớn, thật
+sự có thể làm tốt không?
+
+Đáp: Ban đầu việc này chủ yếu do một số tuyển thủ lớn tuổi đã nghỉ thi làm. Về
+sau, chúng tôi gặp rất nhiều người bạn cùng chí hướng: có tuyển thủ đang thi,
+có người đã nghỉ thi, cũng có những bạn chưa từng tham gia **OI**. Hiện tại dự
+án chủ yếu do nhóm dự án **OI Wiki** duy trì (dưới đây là một ảnh tập thể).
 
 <a href="https://github.com/OI-wiki/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false"/></a>
 
-当然，这个项目只靠我们的力量是很难做得十全十美的，我们诚挚地邀请你一起来完善 **OI Wiki**．
+Tất nhiên, chỉ dựa vào sức của chúng tôi thì rất khó làm dự án này hoàn hảo về
+mọi mặt. Chúng tôi chân thành mời bạn cùng hoàn thiện **OI Wiki**.
 
 ***
 
-Q：你们怎么保证我们添加的内容不会突然消失？
+Hỏi: Các bạn bảo đảm nội dung chúng tôi thêm vào không đột nhiên biến mất bằng
+cách nào?
 
-A：我们把内容托管在 [GitHub](https://github.com/OI-wiki/OI-wiki) 上面，即使我们的服务器翻车了，内容也不会丢失．另外，我们也会定期备份大家的心血，即使有一天 GitHub 倒闭了（？），我们的内容也不会丢失．
-
-***
-
-Q：**OI Wiki** 好像有空的页面啊！
-
-A：是的．受限于项目组成员的水平和时间，我们暂时无法完成这些空页面．所以我们在这里进行征稿和招募，希望可以遇到有同样想法的朋友，我们一起把 **OI Wiki** 完善起来．
+Đáp: Chúng tôi lưu trữ nội dung trên [GitHub](https://github.com/OI-wiki/OI-wiki),
+nên dù máy chủ của chúng tôi có sự cố thì nội dung cũng không bị mất. Ngoài ra,
+chúng tôi cũng định kỳ sao lưu công sức của mọi người; ngay cả một ngày nào đó
+GitHub đóng cửa (?), nội dung của chúng ta vẫn không bị mất.
 
 ***
 
-Q：为什么不直接去写 [中文维基百科](https://zh.wikipedia.org/) 呢？
+Hỏi: Hình như **OI Wiki** có những trang còn trống!
 
-A：因为我们希望可以真正帮到更多的选手或者对这些内容感兴趣的人．而且由于众所周知的原因，中文维基上的内容并不是无门槛就可以获取到的．
-
-## 我想参与进来！
-
-Q：我要怎么与项目组交流？
-
-A：可以通过 [关于本项目里的交流方式](./about.md#交流方式) 联系我们．
+Đáp: Đúng vậy. Do trình độ và thời gian của thành viên nhóm dự án có hạn, tạm
+thời chúng tôi chưa thể hoàn thành các trang trống này. Vì vậy, chúng tôi kêu
+gọi bài viết và tuyển cộng tác viên ở đây, hy vọng gặp được những người bạn có
+cùng suy nghĩ để cùng hoàn thiện **OI Wiki**.
 
 ***
 
-Q：我要怎么贡献代码或者内容？
+Hỏi: Vì sao không viết thẳng lên [Wikipedia tiếng Trung](https://zh.wikipedia.org/)?
 
-请参考 [如何参与](./htc.md) 页面．
+Đáp: Vì chúng tôi hy vọng có thể thật sự giúp được nhiều tuyển thủ hơn, hoặc
+những người quan tâm đến các nội dung này. Hơn nữa, vì những lý do ai cũng biết,
+nội dung trên Wikipedia tiếng Trung không phải lúc nào cũng có thể truy cập
+không rào cản.
 
-***
+## Tôi muốn tham gia!
 
-Q：目录在哪？
+Hỏi: Tôi trao đổi với nhóm dự án bằng cách nào?
 
-A：目录在项目根目录下的 [mkdocs.yml](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml#L17) 文件中．
-
-***
-
-Q：如何修改一个 topic 的内容？
-
-A：在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，点击并确认阅读了 [如何贡献](./htc.md) 之后会跳转到 GitHub 上对应文件的位置．
-
-或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml) 查找文件位置．
+Đáp: Bạn có thể liên hệ với chúng tôi qua [các kênh trao đổi trong phần giới
+thiệu dự án](./about.md#trao-đổi).
 
 ***
 
-Q：如何添加一个 topic？
+Hỏi: Tôi đóng góp mã nguồn hoặc nội dung bằng cách nào?
 
-A：有两种选择：
-
--   可以开一个 Issue，注明希望能添加的内容．
--   可以开一个 Pull Request，在目录 [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml) 中加上新的 topic，并在 [docs](https://github.com/OI-wiki/OI-wiki/tree/master/docs) 文件夹下对应位置创建一个空的 `.md` 文件．文档的格式细节请参考 [格式手册](./format.md#贡献文档要求)．
+Vui lòng tham khảo trang [cách tham gia](./htc.md).
 
 ***
 
-Q：我尝试访问 GitHub 的时候遇到了困难．
+Hỏi: Mục lục ở đâu?
 
-A：推荐在 hosts 文件中加入如下几行[^ref1]：
+Đáp: Mục lục nằm trong tệp [mkdocs.yml](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml#L17)
+ở thư mục gốc của dự án.
+
+***
+
+Hỏi: Sửa nội dung của một topic như thế nào?
+
+Đáp: Ở góc trên bên phải của trang tương ứng có nút chỉnh sửa
+<i class="md-icon">edit</i>. Sau khi nhấn và xác nhận đã đọc
+[cách đóng góp](./htc.md), bạn sẽ được chuyển đến vị trí tệp tương ứng trên
+GitHub.
+
+Hoặc bạn cũng có thể tự đọc mục lục [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml)
+để tìm vị trí tệp.
+
+***
+
+Hỏi: Thêm một topic như thế nào?
+
+Đáp: Có hai lựa chọn:
+
+-   Có thể mở một Issue, ghi rõ nội dung mong muốn được thêm.
+-   Có thể mở một Pull Request, thêm topic mới vào mục lục
+    [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml),
+    đồng thời tạo một tệp `.md` trống ở vị trí tương ứng trong thư mục
+    [docs](https://github.com/OI-wiki/OI-wiki/tree/master/docs). Chi tiết định
+    dạng tài liệu vui lòng tham khảo [sổ tay định dạng](./format.md#贡献文档要求).
+
+***
+
+Hỏi: Tôi gặp khó khăn khi thử truy cập GitHub.
+
+Đáp: Nên thêm các dòng sau vào tệp hosts[^ref1]:
 
 ```text
 # GitHub Start
@@ -131,19 +169,28 @@ A：推荐在 hosts 文件中加入如下几行[^ref1]：
 # GitHub End
 ```
 
-可以在 [GitHub520](https://gitee.com/klmahuaw/GitHub520) 上了解到最新内容和更多信息．
+Bạn có thể tìm nội dung mới nhất và thêm thông tin trên
+[GitHub520](https://gitee.com/klmahuaw/GitHub520).
 
-Linux 和 macOS 用户可以尝试使用 [依云](https://github.com/lilydjwg/) 的 [gh-check 脚本](https://gist.github.com/lilydjwg/93d33ed04547e1b9f7a86b64ef2ed058) 获取访问最快的 IP，使用 `--hosts` 参数可以直接更新 hosts 文件．使用 `--help` 参数可以获取使用帮助．使用先需要安装 Python3 和 aiohttp（`pip install aiohttp -i https://pypi.tuna.tsinghua.edu.cn/simple/`）．依云博客的介绍：[寻找最快的 GitHub IP](https://blog.lilydjwg.me/2019/8/16/gh-check.214730.html)．
+Người dùng Linux và macOS có thể thử dùng [script gh-check](https://gist.github.com/lilydjwg/93d33ed04547e1b9f7a86b64ef2ed058)
+của [lilydjwg](https://github.com/lilydjwg/) để lấy IP truy cập nhanh nhất.
+Dùng tham số `--hosts` có thể cập nhật trực tiếp tệp hosts. Dùng tham số
+`--help` để xem trợ giúp. Trước khi dùng, cần cài Python3 và aiohttp
+(`pip install aiohttp -i https://pypi.tuna.tsinghua.edu.cn/simple/`). Bài giới
+thiệu trên blog của lilydjwg: [Tìm IP GitHub nhanh nhất](https://blog.lilydjwg.me/2019/8/16/gh-check.214730.html).
 
-同时，您可以使用 [Gitclone](https://www.gitclone.com/) 服务加速 Clone，可以阅读其首页上的说明．
+Đồng thời, bạn có thể dùng dịch vụ [Gitclone](https://www.gitclone.com/) để
+tăng tốc Clone; có thể đọc phần hướng dẫn trên trang chủ của dịch vụ này.
 
-如果您仅仅是想 Clone **OI Wiki** 的仓库，那么：
+Nếu bạn chỉ muốn Clone kho **OI Wiki**, hãy dùng:
 
 ```bash
 git clone https://gitclone.com/github.com/OI-wiki/OI-wiki
 ```
 
-如果您需要向 **OI Wiki** 贡献，那么首先 fork **OI Wiki** 的仓库，然后（将 `username` 替换为您的用户名），需要注意的是提供的示例将使您使用 SSH 连接到 GitHub[^only-ssh-connect]：
+Nếu bạn cần đóng góp cho **OI Wiki**, trước hết hãy fork kho của **OI Wiki**,
+sau đó (thay `username` bằng tên người dùng của bạn). Cần chú ý rằng ví dụ dưới
+đây sẽ khiến bạn dùng SSH để kết nối tới GitHub[^only-ssh-connect]:
 
 ```bash
 git clone https://gitclone.com/github.com/username/OI-wiki
@@ -152,9 +199,9 @@ git remote set-url origin git@github.com:username/OI-wiki.git
 
 ***
 
-Q：我这里 pip 也太慢了！
+Hỏi: pip ở chỗ tôi chậm quá!
 
-A：可以选择更换国内源[^ref2]，或者：
+Đáp: Có thể chọn đổi sang mirror trong nước[^ref2], hoặc dùng:
 
 ```bash
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
@@ -162,9 +209,10 @@ pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 ***
 
-Q：我在客户端 clone 了这个项目，速度太慢．
+Hỏi: Tôi clone dự án này bằng client, tốc độ quá chậm.
 
-A：如果有安装 `git bash`，可以加几个限制来减少下载量．[^ref3]
+Đáp: Nếu đã cài `git bash`, bạn có thể thêm vài giới hạn để giảm dung lượng tải
+xuống.[^ref3]
 
 ```bash
 git clone https://github.com/OI-wiki/OI-wiki.git --depth=1 -b master
@@ -172,15 +220,16 @@ git clone https://github.com/OI-wiki/OI-wiki.git --depth=1 -b master
 
 ***
 
-Q：我没装过 Python 3．
+Hỏi: Tôi chưa từng cài Python 3.
 
-A：可以访问 [Python 官网](https://www.python.org/downloads/) 了解更多信息．
+Đáp: Bạn có thể truy cập [trang chủ Python](https://www.python.org/downloads/)
+để biết thêm thông tin.
 
 ***
 
-Q：好像提示我 pip 版本过低．
+Hỏi: Hình như có thông báo phiên bản pip của tôi quá thấp.
 
-A：进入 cmd/shell 之后，执行以下命令：
+Đáp: Sau khi vào cmd/shell, chạy lệnh sau:
 
 ```bash
 python -m pip install --upgrade pip
@@ -188,27 +237,28 @@ python -m pip install --upgrade pip
 
 ***
 
-Q：我安装依赖失败了．
+Hỏi: Tôi cài dependencies thất bại.
 
-A：检查一下：网络？权限？查看错误信息？
-
-***
-
-Q：我已经 clone 下来了，为什么部署不了？
-
-A：检查一下是否安装好了依赖？
+Đáp: Hãy kiểm tra: mạng? quyền truy cập? thông báo lỗi?
 
 ***
 
-Q：我 clone 了很久之前的 repo，怎么更新到新版本呢？
+Hỏi: Tôi đã clone xong, vì sao không deploy được?
 
-A：请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)．
+Đáp: Hãy kiểm tra xem dependencies đã được cài đầy đủ chưa.
 
 ***
 
-Q：如果是装了之前的依赖怎么更新？
+Hỏi: Tôi clone repo từ rất lâu trước rồi, làm sao cập nhật lên phiên bản mới?
 
-A：请输入以下命令：
+Đáp: Vui lòng tham khảo trang trợ giúp chính thức của GitHub
+[Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork).
+
+***
+
+Hỏi: Nếu đã cài dependencies cũ trước đây thì cập nhật thế nào?
+
+Đáp: Vui lòng nhập lệnh sau:
 
 ```bash
 pip install -U -r requirements.txt
@@ -216,88 +266,104 @@ pip install -U -r requirements.txt
 
 ***
 
-Q：为什么我的 markdown 格式乱了？
+Hỏi: Vì sao định dạng markdown của tôi bị rối?
 
-A：可以查阅 [cyent 的笔记](https://web.archive.org/web/20221103014610/https://cyent.github.io/markdown-with-mkdocs-material/)，或者 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)．
+Đáp: Bạn có thể tham khảo [ghi chú của cyent](https://web.archive.org/web/20221103014610/https://cyent.github.io/markdown-with-mkdocs-material/),
+hoặc [hướng dẫn sử dụng MkDocs](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E).
 
-我们目前使用 [remark-lint](https://github.com/remarkjs/remark-lint) 来自动化修正格式，可能还有一些 [配置](https://github.com/OI-wiki/OI-wiki/blob/master/.remarkrc) 不够好的地方，欢迎指出．
-
-***
-
-Q：GitHub 是不是不显示我的数学公式？
-
-A：是的，GitHub 的预览不显示数学公式．但是请放心，MkDocs 是支持数学公式的，可以正常使用，只要是 MathJax 支持的句式都可以使用．
+Hiện chúng tôi dùng [remark-lint](https://github.com/remarkjs/remark-lint) để
+tự động sửa định dạng. Có thể vẫn còn một số [cấu hình](https://github.com/OI-wiki/OI-wiki/blob/master/.remarkrc)
+chưa đủ tốt, rất mong bạn chỉ ra.
 
 ***
 
-Q：我的数学公式怎么乱码了？
+Hỏi: Có phải GitHub không hiển thị công thức toán của tôi?
 
-A：如果是行间公式（用的 `$$`），目前已知的问题是需要在 `$$` 两侧留有空行，且 `$$` 要 **单独** 放在一行里（且不要在前加空格）．格式如下：
+Đáp: Đúng vậy, phần xem trước của GitHub không hiển thị công thức toán. Nhưng
+bạn có thể yên tâm, MkDocs hỗ trợ công thức toán và có thể hiển thị bình thường;
+miễn là cú pháp được MathJax hỗ trợ thì đều có thể dùng.
+
+***
+
+Hỏi: Công thức của tôi bị lỗi ký tự là vì sao?
+
+Đáp: Nếu là công thức hiển thị riêng dòng (dùng `$$`), vấn đề đã biết hiện tại
+là cần để dòng trống ở hai bên `$$`, và `$$` phải được đặt **riêng** trên một
+dòng (đồng thời không thêm dấu cách ở phía trước). Định dạng như sau:
 
 ```text
-// 空行
+// dòng trống
 $$
 a_i
 $$
-// 空行
+// dòng trống
 ```
 
 ***
 
-Q：我的公式为什么在目录里没有正常显示？好像双倍了．
+Hỏi: Vì sao công thức của tôi không hiển thị bình thường trong mục lục? Hình như
+bị lặp đôi.
 
-A：是的，这个是 python-markdown 的一个 bug，可能近期会修复．
+Đáp: Đúng vậy, đây là một bug của python-markdown, có thể sẽ được sửa trong
+tương lai gần.
 
-如果想要避免目录中出现双倍公式，可以参考 [string 分类下 SAM 的目录写法](https://github.com/OI-wiki/OI-wiki/blame/master/docs/string/sam.md#L73)．
-
-```text
-结束位置 <script type="math/tex">endpos</script>
-```
-
-在目录中会变成
+Nếu muốn tránh công thức bị lặp đôi trong mục lục, bạn có thể tham khảo cách
+viết mục lục của SAM trong phân loại [string](https://github.com/OI-wiki/OI-wiki/blame/master/docs/string/sam.md#L73).
 
 ```text
-结束位置 endpos
+Vị trí kết thúc <script type="math/tex">endpos</script>
 ```
 
-注：现在请尽量避免在目录中引入 MathJax 公式．
+Trong mục lục sẽ trở thành
+
+```text
+Vị trí kết thúc endpos
+```
+
+Lưu ý: hiện tại vui lòng cố gắng tránh đưa công thức MathJax vào mục lục.
 
 ***
 
-Q：如何给一个页面单独声明版权信息？
+Hỏi: Làm thế nào để khai báo riêng thông tin bản quyền cho một trang?
 
-A：在页面开头加一行即可．[^ref4]
+Đáp: Chỉ cần thêm một dòng ở đầu trang.[^ref4]
 
-比如：
+Ví dụ:
 
 ```text
 copyright: SATA
 ```
 
-注：默认的是 CC BY-SA 4.0 和 SATA．
+Lưu ý: mặc định là CC BY-SA 4.0 và SATA.
 
 ***
 
-Q：为什么作者信息统计处没有我的名字？
+Hỏi: Vì sao phần thống kê tác giả không có tên tôi?
 
-A：如果你发现自己写过一个页面中的部分内容，但是你没有被记录进作者列表，可以把自己的 GitHub ID 加入到文件头的 [author 字段](./htc.md#author-字段)．
+Đáp: Nếu bạn phát hiện mình đã viết một phần nội dung trong một trang nhưng
+chưa được ghi vào danh sách tác giả, bạn có thể thêm GitHub ID của mình vào
+[trường author](./htc.md#author-字段) ở đầu tệp.
 
 ***
 
-感谢你看到了最后，我们现在亟需的，就是你的帮助．
+Cảm ơn bạn đã đọc đến cuối. Điều chúng tôi đang rất cần chính là sự giúp đỡ của
+bạn.
 
-**OI Wiki** 项目组
+Nhóm dự án **OI Wiki**
 
 2018.8
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
 [^ref1]: [GitHub520](https://gitee.com/klmahuaw/GitHub520)
 
-[^ref2]: [更改 pip 源至国内镜像 - L 瑜 - CSDN 博客](https://blog.csdn.net/lambert310/article/details/52412059)
+[^ref2]: [Đổi pip source sang mirror trong nước - L 瑜 - CSDN Blog](https://blog.csdn.net/lambert310/article/details/52412059)
 
-[^ref3]: [GIT--- 看我一步步入门（Windows Git Bash）](https://blog.csdn.net/FreeApe/article/details/46845555)
+[^ref3]: [GIT--- Xem tôi nhập môn từng bước (Windows Git Bash)](https://blog.csdn.net/FreeApe/article/details/46845555)
 
 [^ref4]: [Metadata - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage)
 
-[^only-ssh-connect]: GitHub 弃用了基于密码身份验证的 HTTPS 协议，连接必须使用 SSH 或者 Personal Access Token，参见 [我应使用哪个远程 URL？](https://docs.github.com/cn/github/using-git/which-remote-url-should-i-use)，[创建个人访问令牌](https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token) 和 [使用 SSH 连接到 GitHub](https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh)．
+[^only-ssh-connect]: GitHub đã ngừng xác thực HTTPS bằng mật khẩu; kết nối cần
+    dùng SSH hoặc Personal Access Token. Xem [Tôi nên dùng remote URL nào?](https://docs.github.com/cn/github/using-git/which-remote-url-should-i-use),
+    [Tạo personal access token](https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token)
+    và [Kết nối với GitHub bằng SSH](https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh).
