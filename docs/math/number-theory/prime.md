@@ -392,41 +392,64 @@ là số nguyên tố không vượt quá $1/4^k$.
     Kết hợp ba bước trên, $|S|\le |S'|\le \varphi(n)/4$ đúng với mọi hợp số lẻ
     $n>9$.
 
-Ngoai ra, neu gia su [gia thuyet Riemann tong quat](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis) (generalized Riemann hypothesis, GRH) dung, thi voi so $n$ chi can kiem tra tat ca cac so nguyen trong $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ la co the **xac dinh tat dinh** tinh nguyen to cua $n$.[^deterministic-proof]
+Ngoài ra, nếu giả sử
+[giả thuyết Riemann tổng quát](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)
+(generalized Riemann hypothesis, GRH) đúng, thì với số $n$ chỉ cần kiểm tra tất
+cả các số nguyên trong $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ là có thể
+**xác định tất định** tính nguyên tố của $n$.[^deterministic-proof]
 
-Trong pham vi OI, ta thuong kiem tra tinh nguyen to cua cac so trong khoang $[1, 2^{64})$. Voi khoang $[1, 2^{32})$, chon ba so $\{2, 7, 61\}$ lam co so cho kiem tra Miller-Rabin la du de xac dinh tat dinh tinh nguyen to; voi khoang $[1, 2^{64})$, chon bay so $\{2, 325, 9375, 28178, 450775, 9780504, 1795265022\}$ lam co so la du de xac dinh tat dinh tinh nguyen to.[^witnesses]
+Trong phạm vi OI, ta thường kiểm tra tính nguyên tố của các số trong khoảng
+$[1, 2^{64})$. Với khoảng $[1, 2^{32})$, chọn ba số $\{2, 7, 61\}$ làm cơ sở
+cho kiểm tra Miller-Rabin là đủ để xác định tất định tính nguyên tố; với khoảng
+$[1, 2^{64})$, chọn bảy số
+$\{2, 325, 9375, 28178, 450775, 9780504, 1795265022\}$ làm cơ sở là đủ để xác
+định tất định tính nguyên tố.[^witnesses]
 
-Cung co the chon $\{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37\}$, tuc $12$ so nguyen to dau tien, de kiem tra cac so trong khoang $[1, 2^{64})$.
+Cũng có thể chọn $\{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37\}$, tức $12$
+số nguyên tố đầu tiên, để kiểm tra các số trong khoảng $[1, 2^{64})$.
 
-Luu y neu dung cac so $a$ trong day tren lam co so de xet tinh nguyen to cua $n$:
+Lưu ý nếu dùng các số $a$ trong dãy trên làm cơ sở để xét tính nguyên tố của
+$n$:
 
--   Phai thu het tat ca cac so, khong chi chon nhung so nho hon $n$;
--   Thay $a$ bang $a \bmod n$;
--   Neu $a \equiv 0 \pmod n$ hoac $a \equiv \pm 1 \pmod n$, thi vong kiem tra do vuot qua truc tiep.
+-   Phải thử hết tất cả các số, không chỉ chọn những số nhỏ hơn $n$;
+-   Thay $a$ bằng $a \bmod n$;
+-   Nếu $a \equiv 0 \pmod n$ hoặc $a \equiv \pm 1 \pmod n$, thì vòng kiểm tra
+    đó vượt qua trực tiếp.
 
 <span id="&#x53CD;&#x7D20;&#x6570;"></span>
-## So phan nguyen to
+## Số phản nguyên tố
 
-Theo ten goi, so nguyen to la so chi co hai uoc, con so phan nguyen to la so co nhieu uoc nhat, va neu so uoc bang nhau thi lay gia tri nho nhat. Vi vay, so phan nguyen to duoc dinh nghia tuong doi voi mot tap hop.
+Theo tên gọi, số nguyên tố là số chỉ có hai ước, còn số phản nguyên tố là số có
+nhiều ước nhất, và nếu số ước bằng nhau thì lấy giá trị nhỏ nhất. Vì vậy, số
+phản nguyên tố được định nghĩa tương đối với một tập hợp.
 
-Mot dinh nghia truc quan la: trong mot tap so nguyen duong, so co nhieu uoc nhat va gia tri nho nhat la so phan nguyen to.
+Một định nghĩa trực quan là: trong một tập số nguyên dương, số có nhiều ước nhất
+và giá trị nhỏ nhất là số phản nguyên tố.
 
-???+ abstract "So phan nguyen to"
-    Voi mot so nguyen duong $n$, neu moi so nguyen duong nho hon $n$ deu co so uoc nho hon so uoc cua $n$, thi $n$ duoc goi la **so phan nguyen to** (anti-prime, a.k.a., highly compositive numbers).
+???+ abstract "Số phản nguyên tố"
+    Với một số nguyên dương $n$, nếu mọi số nguyên dương nhỏ hơn $n$ đều có số
+    ước nhỏ hơn số ước của $n$, thì $n$ được gọi là **số phản nguyên tố**
+    (anti-prime, a.k.a., highly composite numbers).
 
-???+ warning "Luu y"
-    Can phan biet voi [emirp](https://en.wikipedia.org/wiki/Emirp), la so nguyen to ma khi dao nguoc cac chu so thi thu duoc mot so nguyen to khac (vi du 149 va 941 deu la emirp, con 101 khong phai emirp).
+???+ warning "Lưu ý"
+    Cần phân biệt với [emirp](https://en.wikipedia.org/wiki/Emirp), là số
+    nguyên tố mà khi đảo ngược các chữ số thì thu được một số nguyên tố khác (ví
+    dụ 149 và 941 đều là emirp, còn 101 không phải emirp).
 
 <span id="&#x8FC7;&#x7A0B;"></span>
-### Qua trinh
+### Quá trình
 
-Vay tinh so phan nguyen to nhu the nao?
+Vậy tính số phản nguyên tố như thế nào?
 
-Truoc het, vi can tinh so uoc nen can phan tich thua so nguyen to. Viet $n$ duoi dang $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$, trong do $p$ la so nguyen to va $k$ la so mu cua no. Khi do tong so uoc la $(k_1+1) \times (k_2+1) \times (k_3+1) \cdots \times (k_n+1)$.
+Trước hết, vì cần tính số ước nên cần phân tích thừa số nguyên tố. Viết $n$ dưới
+dạng $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$, trong đó $p$ là số
+nguyên tố và $k$ là số mũ của nó. Khi đó tổng số ước là
+$(k_1+1) \times (k_2+1) \times (k_3+1) \cdots \times (k_n+1)$.
 
-Nhung do phuc tap cua phan tich thua so nguyen to ro rang rat cao, va ket qua cua so truoc khong dung lai duoc cho so sau. Vi vay can doi cach lam.
+Nhưng độ phức tạp của phân tích thừa số nguyên tố rõ ràng rất cao, và kết quả
+của số trước không dùng lại được cho số sau. Vì vậy cần đổi cách làm.
 
-Hay quan sat dac diem cua so phan nguyen to.
+Hãy quan sát đặc điểm của số phản nguyên tố.
 
 1.  Số phản nguyên tố chắc chắn là tích của các lũy thừa của các số nguyên tố
     liên tiếp bắt đầu từ $2$.

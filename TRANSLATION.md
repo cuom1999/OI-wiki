@@ -143,6 +143,7 @@ MkDocs source layout intact.
   `docs/math/number-theory/mod-arithmetic.md`, and
   `docs/math/number-theory/prime.md` sections, including the Miller-Rabin
   algorithm outline, reference implementation comments, and probability proof,
+  deterministic-base notes and anti-prime introduction,
   then fully cleaned
   `docs/math/number-theory/gcd.md` and
   `docs/math/number-theory/sieve.md`, plus the opening concept sections of
