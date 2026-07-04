@@ -49,14 +49,14 @@ class undirectedgraph : public graph<T> {
 // blossom / find_max_unweighted_matching
 template <typename T>
 vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
-  std::mt19937 rng(114514);  // 这里随机种子是无关紧要的
-  // 也可以用 chrono::steady_clock::now().time_since_epoch().count()
-  // 获取当前时间
-  vector<int> match(g.n, -1);   // 匹配
-  vector<int> aux(g.n, -1);     // 时间戳记
+  std::mt19937 rng(114514);  // Seed ngẫu nhiên ở đây không quan trọng.
+  // Cũng có thể dùng chrono::steady_clock::now().time_since_epoch().count()
+  // để lấy thời gian hiện tại.
+  vector<int> match(g.n, -1);   // Ghép cặp.
+  vector<int> aux(g.n, -1);     // Dấu timestamp.
   vector<int> label(g.n);       // "o" or "i"
-  vector<int> orig(g.n);        // 花根
-  vector<int> parent(g.n, -1);  // 父节点
+  vector<int> orig(g.n);        // Gốc blossom.
+  vector<int> parent(g.n, -1);  // Đỉnh cha.
   queue<int> q;
   int aux_time = -1;
 
@@ -64,14 +64,14 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     aux_time++;
     while (true) {
       if (v != -1) {
-        if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
+        if (aux[v] == aux_time) {  // Tìm được đỉnh đã thăm, tức LCA.
           return v;
         }
         aux[v] = aux_time;
         if (match[v] == -1) {
           v = -1;
         } else {
-          v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
+          v = orig[parent[match[v]]];  // Tiếp tục tìm từ cha của đỉnh được ghép.
         }
       }
       swap(v, u);
@@ -82,11 +82,11 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     while (orig[v] != a) {
       parent[v] = u;
       u = match[v];
-      if (label[u] == 1) {  // 初始点设为"o" 找增广路
+      if (label[u] == 1) {  // Đặt điểm ban đầu là "o" để tìm đường tăng.
         label[u] = 0;
         q.push(u);
       }
-      orig[v] = orig[u] = a;  // 缩花
+      orig[v] = orig[u] = a;  // Co blossom.
       v = parent[u];
     }
   };  // blossom
@@ -108,7 +108,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       q.pop();
     }
     q.push(root);
-    // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
+    // Đặt điểm ban đầu là "o"; ở đây dùng "0" thay "o", "1" thay "i".
     label[root] = 0;
     while (!q.empty()) {
       int v = q.front();
@@ -116,21 +116,21 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       for (int id : g.g[v]) {
         auto &e = g.edges[id];
         int u = e.from ^ e.to ^ v;
-        if (label[u] == -1) {  // 找到未拜访点
-          label[u] = 1;        // 标记 "i"
+        if (label[u] == -1) {  // Tìm được đỉnh chưa thăm.
+          label[u] = 1;        // Đánh dấu "i".
           parent[u] = v;
-          if (match[u] == -1) {  // 找到未匹配点
-            augment(u);          // 寻找增广路径
+          if (match[u] == -1) {  // Tìm được đỉnh chưa ghép.
+            augment(u);          // Tìm đường tăng.
             return true;
           }
-          // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
+          // Tìm được đỉnh đã ghép; đưa đỉnh ghép với nó vào queue để mở rộng cây xen kẽ.
           label[match[u]] = 0;
           q.push(match[u]);
           continue;
         } else if (label[u] == 0 && orig[v] != orig[u]) {
-          // 找到已拜访点 且标记同为"o" 代表找到"花"
+          // Tìm được đỉnh đã thăm và cùng nhãn "o", tức đã tìm được blossom.
           int a = lca(orig[v], orig[u]);
-          // 找LCA 然后缩花
+          // Tìm LCA rồi co blossom.
           blossom(u, v, a);
           blossom(v, u, a);
         }
@@ -141,11 +141,11 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
 
   auto greedy = [&]() {
     vector<int> order(g.n);
-    // 随机打乱 order
+    // Xáo trộn ngẫu nhiên order.
     iota(order.begin(), order.end(), 0);
     shuffle(order.begin(), order.end(), rng);
 
-    // 将可以匹配的点匹配
+    // Ghép các đỉnh có thể ghép.
     for (int i : order) {
       if (match[i] == -1) {
         for (auto id : g.g[i]) {
@@ -161,9 +161,9 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     }
   };  // greedy
 
-  // 一开始先随机匹配
+  // Ban đầu ghép ngẫu nhiên trước.
   greedy();
-  // 对未匹配点找增广路
+  // Tìm đường tăng cho các đỉnh chưa ghép.
   for (int i = 0; i < g.n; i++) {
     if (match[i] == -1) {
       bfs(i);

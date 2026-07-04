@@ -34,7 +34,7 @@ struct hungarian {  // km
   }
 
   void addEdge(int u, int v, int w) {
-    g[u][v] = max(w, 0);  // 负值还不如不匹配 因此设为0不影响
+    g[u][v] = max(w, 0);  // Giá trị âm còn tệ hơn không ghép, nên đặt 0 không ảnh hưởng.
   }
 
   bool check(int v) {
@@ -75,7 +75,7 @@ struct hungarian {  // km
           }
         }
       }
-      // 没有增广路 修改顶标
+      // Không có đường tăng, sửa nhãn đỉnh.
       T a = inf;
       for (int j = 0; j < n; j++) {
         if (!visy[j]) {
@@ -101,7 +101,7 @@ struct hungarian {  // km
   }
 
   void solve() {
-    // 初始顶标
+    // Nhãn đỉnh ban đầu.
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
         lx[i] = max(lx[i], g[i][j]);

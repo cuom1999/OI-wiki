@@ -18,8 +18,8 @@ int qpow(int a, int b) {
 
 int A[MAXN][MAXN], B[MAXN][MAXN], t[MAXN][MAXN], id[MAXN];
 
-// 高斯消元 O(n^3)
-// 在传入 B 时表示计算逆矩阵, 传入 nullptr 则只需计算矩阵的秩
+// Khử Gauss O(n^3).
+// Nếu truyền B thì tính ma trận nghịch đảo; nếu truyền nullptr thì chỉ tính hạng ma trận.
 void Gauss(int A[][MAXN], int B[][MAXN], int n) {
   if (B) {
     memset(B, 0, sizeof(t));
@@ -68,11 +68,11 @@ void Gauss(int A[][MAXN], int B[][MAXN], int n) {
 
 bool row_marked[MAXN] = {false}, col_marked[MAXN] = {false};
 
-int sub_n;  // 极大满秩子矩阵的大小
+int sub_n;  // Kích thước ma trận con đầy hạng cực đại.
 
-// 消去一行一列 O(n^2)
+// Khử một hàng và một cột O(n^2).
 void eliminate(int r, int c) {
-  row_marked[r] = col_marked[c] = true;  // 已经被消掉
+  row_marked[r] = col_marked[c] = true;  // Đã bị khử.
 
   int inv = qpow(B[r][c], p - 2);
 
@@ -86,30 +86,30 @@ void eliminate(int r, int c) {
     }
 }
 
-int vertices[MAXN], girl[MAXN];  // girl 是匹配点, 用来输出方案
+int vertices[MAXN], girl[MAXN];  // girl là đỉnh được ghép, dùng để xuất phương án.
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   auto rng = mt19937(random_device{}());
 
   int n, m;
-  cin >> n >> m;  // 点数和边数
+  cin >> n >> m;  // Số đỉnh và số cạnh.
 
   while (m--) {
     int x, y;
     cin >> x >> y;
     A[x][y] = rng() % p;
-    A[y][x] = -A[x][y];  // Tutte 矩阵
+    A[y][x] = -A[x][y];  // Ma trận Tutte.
   }
 
   for (int i = 1; i <= n; i++)
-    id[i] = i;  // 输出方案用的，因为高斯消元的时候会交换列
+    id[i] = i;  // Dùng để xuất phương án, vì khi khử Gauss sẽ hoán đổi cột.
   memcpy(t, A, sizeof(t));
 
   Gauss(A, nullptr, n);
 
   for (int i = 1; i <= n; i++)
-    if (A[id[i]][id[i]]) vertices[++sub_n] = i;  // 找出一个极大满秩子矩阵
+    if (A[id[i]][id[i]]) vertices[++sub_n] = i;  // Tìm một ma trận con đầy hạng cực đại.
 
   for (int i = 1; i <= sub_n; i++)
     for (int j = 1; j <= sub_n; j++) A[i][j] = t[vertices[i]][vertices[j]];
@@ -120,8 +120,8 @@ int main() {
     if (!girl[vertices[i]])
       for (int j = i + 1; j <= sub_n; j++)
         if (!girl[vertices[j]] && t[vertices[i]][vertices[j]] && B[j][i]) {
-          // 注意上面那句 if 的写法, 现在 t 是邻接矩阵的备份，
-          // 逆矩阵 j 行 i 列不为 0 当且仅当这条边可行
+          // Chú ý cách viết câu if phía trên; hiện t là bản sao của ma trận kề,
+          // phần tử hàng j cột i trong ma trận nghịch đảo khác 0 khi và chỉ khi cạnh này hợp lệ.
           girl[vertices[i]] = vertices[j];
           girl[vertices[j]] = vertices[i];
 

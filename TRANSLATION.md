@@ -424,6 +424,9 @@ MkDocs source layout intact.
 - Chinese comments in structural graph/tree snippets covering BCC, block
   forests, cut vertices, DSU-on-tree, dynamic tree divide, HLD/LCA, tree AHU,
   and tree divide were translated.
+- The remaining Chinese comments in `docs/graph/code` matching, max-clique,
+  and MST snippets were translated, leaving graph code snippets free of Han
+  characters.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

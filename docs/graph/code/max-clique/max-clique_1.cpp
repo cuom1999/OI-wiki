@@ -7,8 +7,8 @@ struct MaxClique {
   bool g[MAXN][MAXN];
   int n, dp[MAXN], st[MAXN][MAXN], ans;
 
-  // dp[i]表示第i个点之后能组成的最大团的大小，
-  // st[i][j]表示算法中第i层dfs所需要的点的集合，保存有可能是最大团其中之一的点
+  // dp[i] biểu diễn kích thước clique lớn nhất có thể tạo từ sau đỉnh i.
+  // st[i][j] biểu diễn tập đỉnh cần cho tầng DFS thứ i, lưu các đỉnh có thể thuộc một maximum clique.
 
   void init(int n) {
     this->n = n;
@@ -25,14 +25,14 @@ struct MaxClique {
       }
       return false;
     }
-    for (int i = 0; i < sz; i++) {  // 在第num层的集合中枚举一个点i
-      if (sz - i + num <= ans) return false;  // 剪枝1
+    for (int i = 0; i < sz; i++) {  // Liệt kê một đỉnh i trong tập ở tầng num.
+      if (sz - i + num <= ans) return false;  // Cắt tỉa 1.
       int u = st[num][i];
-      if (dp[u] + num <= ans) return false;  // 剪枝2
+      if (dp[u] + num <= ans) return false;  // Cắt tỉa 2.
       int cnt = 0;
       for (
           int j = i + 1; j < sz;
-          j++) {  // 在第num层遍历在i之后的且与i所相连的点，并且加入第num+1层集合
+          j++) {  // Ở tầng num, duyệt các đỉnh sau i và kề với i, rồi đưa vào tập tầng num+1.
         if (g[u][st[num][j]]) st[num + 1][cnt++] = st[num][j];
       }
       if (dfs(cnt, num + 1)) return true;
@@ -45,7 +45,7 @@ struct MaxClique {
     memset(dp, 0, sizeof(dp));
     for (int i = n; i >= 1; i--) {
       int cnt = 0;
-      for (int j = i + 1; j <= n; j++) {  // 初始化第1层集合
+      for (int j = i + 1; j <= n; j++) {  // Khởi tạo tập tầng 1.
         if (g[i][j]) st[1][cnt++] = j;
       }
       dfs(cnt, 1);
