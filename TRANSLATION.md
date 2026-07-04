@@ -361,6 +361,7 @@ MkDocs source layout intact.
 - `docs/tools/judger/index.md`, `docs/tools/judger/cena.md`,
   `docs/tools/judger/ccr-plus.md`: translated the local judging-tool overview
   and short Cena/CCR Plus pages.
+- `docs/tools/judger/lemon.md`: translated the Lemon judging-tool page.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

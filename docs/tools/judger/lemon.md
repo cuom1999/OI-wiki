@@ -2,39 +2,39 @@ author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, CoelacanthusHex
 
 ## Lemon
 
-???+ warning "Warning"
-    macOS 下 Lemon 可能会出现内存测试不准确的情况，因为 macOS 缺少部分 Linux 的监测工具，且 Lemon-Linux 也没有针对 macOS 进行优化．
+???+ warning "Cảnh báo"
+    Trên macOS, Lemon có thể đo bộ nhớ không chính xác, vì macOS thiếu một số công cụ giám sát của Linux và Lemon-Linux cũng chưa được tối ưu riêng cho macOS.
 
-**Lemon** 是 zhipeng-jia 编写的开源评测工具，源代码托管于 [zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon)．
+**Lemon** là một công cụ chấm mã nguồn mở do zhipeng-jia viết. Mã nguồn được lưu trữ tại [zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon).
 
-### 可直接运行的版本
+### Phiên bản có thể chạy trực tiếp
 
--   Ir1d 提供了一份 Linux 下编译好的版本，源代码托管于 [FreestyleOJ/Project\_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)．
--   （已停止维护）Menci 提供了一份更新的版本，源代码托管于 [Menci/Lemon](https://github.com/Menci/Lemon/)．
--   （已停止维护）Dust1404 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Dust1404/Project\_LemonPlus](https://github.com/Dust1404/Project_LemonPlus)．
--   iotang 和 Coelacanthus 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Project-LemonLime/Project\_LemonLime](https://github.com/Project-LemonLime/Project_LemonLime)．
+-   Ir1d cung cấp một bản đã biên dịch cho Linux; mã nguồn được lưu trữ tại [FreestyleOJ/Project\_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built).
+-   (Đã ngừng bảo trì) Menci cung cấp một phiên bản mới hơn; mã nguồn được lưu trữ tại [Menci/Lemon](https://github.com/Menci/Lemon/).
+-   (Đã ngừng bảo trì) Dust1404 duy trì một phiên bản hỗ trợ thư mục con, kiểm thử từng bài và một số tính năng khác; mã nguồn được lưu trữ tại [Dust1404/Project\_LemonPlus](https://github.com/Dust1404/Project_LemonPlus).
+-   iotang và Coelacanthus duy trì một phiên bản hỗ trợ thư mục con, kiểm thử từng bài và một số tính năng khác; mã nguồn được lưu trữ tại [Project-LemonLime/Project\_LemonLime](https://github.com/Project-LemonLime/Project_LemonLime).
 
-### 自行编译
+### Tự biên dịch
 
-Ubuntu：
+Ubuntu:
 
 ```bash
 sudo apt update
 sudo apt install qt5-default build-essential git -y
 git clone --depth=1 https://github.com/Menci/Lemon.git
 cd lemon
-# 可以修改 -j 后面的数字来调整 make job 的线程数
+# Có thể sửa số sau -j để điều chỉnh số luồng make job
 ./make -j2
 sudo install -Dm755 -t /usr/bin/ Lemon
 ```
 
-如要编译 LemonLime，请参阅 LemonLime 的 [编译手册](https://github.com/Project-LemonLime/Project_LemonLime/blob/master/BUILD.md)．
+Nếu muốn biên dịch LemonLime, hãy tham khảo [sổ tay biên dịch](https://github.com/Project-LemonLime/Project_LemonLime/blob/master/BUILD.md) của LemonLime.
 
-### 数据格式
+### Định dạng dữ liệu
 
-首先打开 lemon 选择「新建试题」，然后打开新建试题的文件夹．
+Trước hết, mở Lemon và chọn "Tạo bài mới", rồi mở thư mục của bài vừa tạo.
 
-题目和数据应该如以下格式所示：
+Đề và dữ liệu nên có định dạng như sau:
 
 ```text
 ├── data
@@ -48,4 +48,4 @@ sudo install -Dm755 -t /usr/bin/ Lemon
 ...
 ```
 
-当所有试题添加完成后，回到 lemon 选择「自动添加试题」．此时题目和数据点将显示在 lemon 当中．
+Sau khi thêm xong tất cả bài, quay lại Lemon và chọn "Tự động thêm bài". Lúc này, các bài và test sẽ xuất hiện trong Lemon.
