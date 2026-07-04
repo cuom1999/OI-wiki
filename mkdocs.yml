@@ -88,11 +88,11 @@ nav:
       - C++ 语法基础: lang/basic.md
       - 变量: lang/var.md
       - 运算: lang/op.md
-      - 流程控制语句:
-        - 分支: lang/branch.md
-        - 循环: lang/loop.md
+      - Câu lệnh điều khiển luồng:
+        - Rẽ nhánh: lang/branch.md
+        - Vòng lặp: lang/loop.md
       - 高级数据类型:
-        - 数组: lang/array.md
+        - Mảng: lang/array.md
         - Cấu trúc: lang/struct.md
         - Liên hiệp: lang/union.md
         - 指针: lang/pointer.md

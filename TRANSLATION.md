@@ -45,6 +45,8 @@ MkDocs source layout intact.
   the remaining contest pages on interactive problems and problem setting.
 - `docs/lang/helloworld.md`, `docs/lang/struct.md`, `docs/lang/union.md`:
   translated the first beginner C++ language pages.
+- `docs/lang/array.md`, `docs/lang/branch.md`, `docs/lang/loop.md`:
+  translated beginner C++ array and control-flow pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
