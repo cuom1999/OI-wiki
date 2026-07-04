@@ -1,26 +1,70 @@
-## C++ 标准
+## Chuẩn C++
 
-首先需要介绍的是 C++ 本身的版本．由于 C++ 本身只是一门语言，而不同的编译器对 C++ 的实现方法各不一致，因此需要标准化来约束编译器的实现，使得 C++ 代码在不同的编译器下表现一致．C++ 自 1985 年诞生以来，一共由国际标准化组织（ISO）发布了 7 个正式的 C++ 标准，依次为 C++98、C++03、C++11（亦称 C++0x）、C++14（亦称 C++1y）、C++17（亦称 C++1z）、C++20（亦称 C++2a）、C++23（亦称 C++2b）．C++ 标准草案在 [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/) 网站上，最新标准的制定进度可以在 [Current Status : Standard C++](https://isocpp.org/std/status) 查看．此外还有一些补充标准，例如 C++ TR1．
+Trước hết cần giới thiệu các phiên bản của chính C++. Vì C++ chỉ là một ngôn
+ngữ, còn các trình biên dịch khác nhau có cách hiện thực C++ không hoàn toàn
+giống nhau, nên cần chuẩn hóa để ràng buộc cách trình biên dịch hiện thực, giúp
+mã C++ có hành vi nhất quán trên các trình biên dịch khác nhau. Từ khi ra đời
+năm 1985, C++ đã có 7 chuẩn chính thức do Tổ chức Tiêu chuẩn hóa Quốc tế (ISO)
+công bố, lần lượt là C++98, C++03, C++11 (còn gọi là C++0x), C++14 (còn gọi là
+C++1y), C++17 (còn gọi là C++1z), C++20 (còn gọi là C++2a), C++23 (còn gọi là
+C++2b). Dự thảo chuẩn C++ có trên trang [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/);
+tiến độ xây dựng chuẩn mới nhất có thể xem tại [Current Status : Standard C++](https://isocpp.org/std/status).
+Ngoài ra còn có một số chuẩn bổ sung, chẳng hạn C++ TR1.
 
-每一个版本的 C++ 标准不仅规定了 C++ 的语法、语言特性，还规定了一套 C++ 内置库的实现规范，这个库便是 C++ 标准库．C++ 标准库中包含大量常用代码的实现，如输入输出、基本数据结构、内存管理、多线程支持等．掌握 C++ 标准库是编写更现代的 C++ 代码必要的一步．C++ 标准库的详细文档在 [cppreference](https://zh.cppreference.com/) 网站上，文档对标准库中的类型函数的用法、效率、注意事项等都有介绍，请善用．
+Mỗi phiên bản chuẩn C++ không chỉ quy định cú pháp và đặc tính ngôn ngữ của C++,
+mà còn quy định đặc tả hiện thực cho một bộ thư viện dựng sẵn của C++; đó chính
+là thư viện chuẩn C++. Thư viện chuẩn C++ chứa rất nhiều hiện thực mã thường
+dùng, như nhập xuất, cấu trúc dữ liệu cơ bản, quản lý bộ nhớ, hỗ trợ đa luồng,
+v.v. Nắm được thư viện chuẩn C++ là bước cần thiết để viết mã C++ hiện đại hơn.
+Tài liệu chi tiết của thư viện chuẩn C++ có trên [cppreference](https://zh.cppreference.com/);
+tài liệu này giới thiệu cách dùng, hiệu suất, điểm cần chú ý, v.v. của các kiểu
+và hàm trong thư viện chuẩn, nên hãy tận dụng.
 
-需要指出的是，不同的 OJ 平台对 C++ 版本均不相同，例如 [最新的 ICPC 比赛规则](https://docs.icpc.global/worldfinals-programming-environment/) 支持 C++20 标准．根据 NOI 科学委员会决议，自 2021 年 9 月 1 日起 [NOI Linux 2.0](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml) 作为 NOI 系列比赛和 CSP-J/S 等活动的标准环境使用．NOI Linux 2.0 中指定的 g++ 9.3.0 [默认支持标准](https://gcc.gnu.org/projects/cxx-status.html#cxx14) 为 C++14，并支持 C++17 标准，可以满足绝大部分竞赛选手的需求．因此在学习 C++ 时要注意比赛支持的标准，避免在赛场上时编译报错．
+Cần chú ý rằng các nền tảng OJ khác nhau hỗ trợ phiên bản C++ khác nhau. Ví dụ,
+[quy tắc ICPC mới nhất](https://docs.icpc.global/worldfinals-programming-environment/)
+hỗ trợ chuẩn C++20. Theo nghị quyết của Ủy ban Khoa học NOI, từ ngày 1 tháng 9
+năm 2021, [NOI Linux 2.0](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
+được dùng làm môi trường chuẩn cho hệ thống cuộc thi NOI và các hoạt động như
+CSP-J/S. g++ 9.3.0 được chỉ định trong NOI Linux 2.0 [mặc định hỗ trợ](https://gcc.gnu.org/projects/cxx-status.html#cxx14)
+chuẩn C++14, đồng thời hỗ trợ C++17, đủ đáp ứng nhu cầu của tuyệt đại đa số thí
+sinh. Vì vậy khi học C++, cần chú ý chuẩn mà cuộc thi hỗ trợ để tránh lỗi biên
+dịch trên sân thi.
 
-## 标准模板库（STL）
+## Thư viện mẫu chuẩn (STL)
 
-STL 即标准模板库（Standard Template Library），是 C++ 标准库的一部分，里面包含了一些模板化的通用的数据结构和算法．由于其模板化的特点，它能够兼容自定义的数据类型，避免大量的造轮子工作．NOI 和 ICPC 赛事都支持 STL 库的使用，因此合理利用 STL 可以避免编写无用算法，并且充分利用编译器对模板库优化提高效率．STL 库的详细介绍请参见对应的页面：[STL 容器](./container.md) 和 [STL 算法](./algorithm.md)．
+STL, tức Thư viện mẫu chuẩn (Standard Template Library), là một phần của thư
+viện chuẩn C++ và chứa một số cấu trúc dữ liệu cùng thuật toán tổng quát được
+template hóa. Nhờ đặc điểm template, nó tương thích với kiểu dữ liệu tự định
+nghĩa và tránh rất nhiều việc "tự chế lại" mã có sẵn. Các cuộc thi NOI và ICPC
+đều cho phép dùng STL, vì vậy sử dụng STL hợp lý có thể tránh viết các thuật
+toán không cần thiết, đồng thời tận dụng tối ưu hóa của trình biên dịch cho thư
+viện template để cải thiện hiệu suất. Giới thiệu chi tiết về STL nằm ở các trang
+tương ứng: [STL container](./container.md) và [STL algorithm](./algorithm.md).
 
-??? note "什么是造轮子"
-    造轮子（[Reinventing\_the\_wheel](https://en.wikipedia.org/wiki/Reinventing_the_wheel)）指的是重复发明已有的算法，或者重复编写现成优化过的代码．造轮子通常耗时耗力，同时效果还没有别人好．但若是为了学习或者练习，造轮子则是必要的．
+??? note "Tự chế lại bánh xe là gì?"
+    Tự chế lại bánh xe ([Reinventing\_the\_wheel](https://en.wikipedia.org/wiki/Reinventing_the_wheel))
+    nghĩa là phát minh lại thuật toán đã có, hoặc viết lại đoạn mã đã được tối ưu
+    sẵn. Việc này thường tốn thời gian và công sức, mà hiệu quả lại không tốt
+    bằng mã đã có. Tuy nhiên, nếu mục đích là học tập hoặc luyện tập thì tự viết
+    lại vẫn cần thiết.
 
-## Boost 库
+## Thư viện Boost
 
-[Boost](https://www.boost.org/) 是除了标准库外，另一个久副盛名的开源 C++ 工具库，其代码具有可移植、高质量、高性能、高可靠性等特点．Boost 中的模块数量非常之大，功能全面，并且拥有完备的跨平台支持，因此被看作 C++ 的准标准库．C++ 标准中的不少特性也都来自于 Boost，如智能指针、元编程、日期和时间等．尽管在 OI 中无法使用 Boost，但是 Boost 中有不少轮子可以用来验证算法或者对拍，如 Boost.Geometry 有 R 树的实现，Boost.Graph 有图的相关算法，Boost.Intrusive 则提供了一套与 STL 容器用法相似的侵入式容器．有兴趣的读者可以自行在网络搜索教程．
+[Boost](https://www.boost.org/) là một thư viện công cụ C++ mã nguồn mở nổi
+tiếng bên cạnh thư viện chuẩn. Mã của Boost có tính khả chuyển, chất lượng cao,
+hiệu năng cao và độ tin cậy cao. Boost có số lượng module rất lớn, chức năng
+toàn diện và hỗ trợ đa nền tảng đầy đủ, nên thường được xem như một thư viện gần
+chuẩn của C++. Không ít đặc tính trong chuẩn C++ cũng bắt nguồn từ Boost, như
+smart pointer, metaprogramming, ngày giờ, v.v. Dù trong OI không thể dùng Boost,
+Boost vẫn có nhiều "bánh xe" hữu ích để kiểm chứng thuật toán hoặc đối chiếu
+kết quả, như Boost.Geometry có hiện thực R-tree, Boost.Graph có các thuật toán
+đồ thị, Boost.Intrusive cung cấp một bộ container xâm nhập có cách dùng tương tự
+STL container. Bạn đọc quan tâm có thể tự tìm hướng dẫn trên mạng.
 
-## 参考资料
+## Tài liệu tham khảo
 
 1.  [C++ reference](https://en.cppreference.com/)
-2.  [C++ 参考手册](https://zh.cppreference.com/)
-3.  [维基百科 - C++](https://zh.wikipedia.org/wiki/C%2B%2B)
-4.  [Boost 官方网站](https://www.boost.org/)
-5.  [Boost 教程网站](https://theboostcpplibraries.com/)
+2.  [Sổ tay tham khảo C++](https://zh.cppreference.com/)
+3.  [Wikipedia - C++](https://zh.wikipedia.org/wiki/C%2B%2B)
+4.  [Trang chính thức Boost](https://www.boost.org/)
+5.  [Trang hướng dẫn Boost](https://theboostcpplibraries.com/)

@@ -1,151 +1,182 @@
 author: johnvp22, Ir1d
 
-## `string` 是什么
+## `string` là gì
 
-`std::string` 是在标准库 `<string>`（注意不是 C 语言中的 `<string.h>` 库）中提供的一个类，本质上是 `std::basic_string<char>` 的别称．
+`std::string` là một lớp được cung cấp trong thư viện chuẩn `<string>` (chú ý
+không phải thư viện `<string.h>` của ngôn ngữ C); về bản chất nó là alias của
+`std::basic_string<char>`.
 
-## 为什么要使用 `string`
+## Vì sao nên dùng `string`
 
-在 C 语言中，提供了字符串的操作，但只能通过字符数组的方式来实现字符串．而 `string` 则是一个简单的类，使用简单，在 OI 竞赛中被广泛使用．并且相较于其他 STL 容器，`string` 的常数可以算是非常优秀的，基本与字符数组不相上下．
+Trong ngôn ngữ C, có các thao tác xử lý chuỗi, nhưng chỉ có thể hiện thực chuỗi
+bằng mảng ký tự. Còn `string` là một lớp đơn giản, dễ dùng và được sử dụng rộng
+rãi trong các cuộc thi OI. So với các STL container khác, hằng số của `string`
+có thể xem là rất tốt, gần như không thua mảng ký tự.
 
-### `string` 可以动态分配空间
+### `string` có thể cấp phát bộ nhớ động
 
-和许多 STL 容器相同，`string` 能动态分配空间，这使得我们可以直接使用 `std::cin` 来输入，但其速度则同样较慢．这一点也同样让我们不必为内存而烦恼．
+Giống nhiều STL container khác, `string` có thể cấp phát bộ nhớ động, nhờ đó ta
+có thể dùng trực tiếp `std::cin` để nhập, dù tốc độ nhập như vậy cũng chậm. Điều
+này cũng giúp ta không phải lo quá nhiều về bộ nhớ.
 
-### `string` 重载了加法运算符和比较运算符
+### `string` nạp chồng toán tử cộng và toán tử so sánh
 
-`string` 的加法运算符可以直接拼接两个字符串或一个字符串和一个字符．和 `std::vector` 类似，`string` 重载了比较运算符，同样是按字典序比较的，所以我们可以直接调用 `std::sort` 对若干字符串进行排序．
+Toán tử cộng của `string` có thể nối trực tiếp hai chuỗi, hoặc một chuỗi với một
+ký tự. Tương tự `std::vector`, `string` nạp chồng toán tử so sánh theo thứ tự từ
+điển, nên ta có thể gọi trực tiếp `std::sort` để sắp xếp nhiều chuỗi.
 
-## 使用方法
+## Cách dùng
 
-下面介绍 `string` 的基本操作，具体可看 [C++ 文档](https://zh.cppreference.com/w/cpp/string/basic_string)．
+Dưới đây giới thiệu các thao tác cơ bản của `string`; chi tiết có thể xem trong
+[tài liệu C++](https://zh.cppreference.com/w/cpp/string/basic_string).
 
-### 声明
+### Khai báo
 
 ```cpp
 std::string s;
 ```
 
-### 转 char 数组
+### Chuyển sang mảng char
 
-在 C 语言里，也有很多字符串的函数，但是它们的参数都是 char 指针类型的，为了方便使用，`string` 有两个成员函数能够将自己转换为 char 指针——`data()`/`c_str()`（它们几乎是一样的，但最好使用 `c_str()`，因为 `c_str()` 保证末尾有空字符，而 `data()` 则不保证），如：
-
-```cpp
-printf("%s", s);          // 编译错误
-printf("%s", s.data());   // 编译通过，但是是 undefined behavior
-printf("%s", s.c_str());  // 一定能够正确输出
-```
-
-### 获取长度
-
-很多函数都可以返回 string 的长度：
+Trong ngôn ngữ C cũng có nhiều hàm xử lý chuỗi, nhưng tham số của chúng đều là
+kiểu con trỏ char. Để tiện dùng, `string` có hai hàm thành viên có thể chuyển
+bản thân nó thành con trỏ char: `data()`/`c_str()` (hai hàm gần như giống nhau,
+nhưng tốt nhất dùng `c_str()`, vì `c_str()` bảo đảm cuối chuỗi có ký tự rỗng,
+còn `data()` thì không bảo đảm). Ví dụ:
 
 ```cpp
-printf("s 的长度为 %zu", s.size());
-printf("s 的长度为 %zu", s.length());
-printf("s 的长度为 %zu", strlen(s.c_str()));
+printf("%s", s);          // lỗi biên dịch
+printf("%s", s.data());   // biên dịch được, nhưng là undefined behavior
+printf("%s", s.c_str());  // chắc chắn xuất đúng
 ```
 
-???+ note "这些函数的复杂度"
-    `strlen()` 的复杂度一定是与字符串长度线性相关的．
+### Lấy độ dài
+
+Nhiều hàm có thể trả về độ dài của string:
+
+```cpp
+printf("độ dài của s là %zu", s.size());
+printf("độ dài của s là %zu", s.length());
+printf("độ dài của s là %zu", strlen(s.c_str()));
+```
+
+???+ note "Độ phức tạp của các hàm này"
+    Độ phức tạp của `strlen()` chắc chắn tuyến tính theo độ dài chuỗi.
     
-    `size()` 和 `length()` 的复杂度在 C++98 中没有指定，在 C++11 中被指定为常数复杂度．但在常见的编译器上，即便是 C++98，这两个函数的复杂度也是常数．
+    Độ phức tạp của `size()` và `length()` không được chỉ định trong C++98, và
+    được chỉ định là hằng số trong C++11. Nhưng trên các trình biên dịch phổ
+    biến, ngay cả với C++98, độ phức tạp của hai hàm này cũng là hằng số.
 
-???+ warning "Warning"
-    这三个函数（以及下面将要提到的 `find` 函数）的返回值类型都是 `size_t`（`unsigned long`）．因此，这些返回值不支持直接与负数比较或运算，建议在需要时进行强制转换．
+???+ warning "Cảnh báo"
+    Kiểu trả về của ba hàm này (và hàm `find` sẽ nhắc tới bên dưới) đều là
+    `size_t` (`unsigned long`). Vì vậy, các giá trị trả về này không hỗ trợ so
+    sánh hoặc tính toán trực tiếp với số âm; nên ép kiểu khi cần.
 
-### 寻找某字符（串）第一次出现的位置
+### Tìm vị trí xuất hiện đầu tiên của ký tự/chuỗi
 
-`find(str,pos)` 函数可以用来查找字符串中一个字符/字符串在 `pos`（含）之后第一次出现的位置（若不传参给 `pos` 则默认为 `0`）．如果没有出现，则返回 `string::npos`（被定义为 `-1`，但类型仍为 `size_t`/`unsigned long`）．
+Hàm `find(str,pos)` có thể dùng để tìm vị trí xuất hiện đầu tiên của một ký tự
+hoặc chuỗi trong chuỗi, bắt đầu từ sau `pos` (bao gồm `pos`; nếu không truyền
+tham số `pos` thì mặc định là `0`). Nếu không xuất hiện thì trả về
+`string::npos` (được định nghĩa là `-1`, nhưng kiểu vẫn là
+`size_t`/`unsigned long`).
 
-示例：
+Ví dụ:
 
 ```cpp
 string s = "OI Wiki", t = "OI", u = "i";
 int pos = 5;
-printf("字符 I 在 s 的 %lu 位置第一次出现\n", s.find('I'));
-printf("字符 a 在 s 的 %lu 位置第一次出现\n", s.find('a'));
-printf("字符 a 在 s 的 %d 位置第一次出现\n", s.find('a'));
-printf("字符串 t 在 s 的 %lu 位置第一次出现\n", s.find(t));
-printf("在 s 中自 pos 位置起字符串 u 第一次出现在 %lu 位置", s.find(u, pos));
+printf("ký tự I xuất hiện lần đầu ở vị trí %lu trong s\n", s.find('I'));
+printf("ký tự a xuất hiện lần đầu ở vị trí %lu trong s\n", s.find('a'));
+printf("ký tự a xuất hiện lần đầu ở vị trí %d trong s\n", s.find('a'));
+printf("chuỗi t xuất hiện lần đầu ở vị trí %lu trong s\n", s.find(t));
+printf("trong s, chuỗi u xuất hiện lần đầu từ vị trí pos ở vị trí %lu", s.find(u, pos));
 ```
 
-输出：
+Kết quả:
 
 ```text
-字符 I 在 s 的 1 位置第一次出现
-字符 a 在 s 的 18446744073709551615 位置第一次出现 // 即为 size_t(-1)，具体数值与平台有关．
-字符 a 在 s 的 -1 位置第一次出现 // 强制转换为 int 类型则正常输出 -1
-字符串 t 在 s 的 0 位置第一次出现
-在 s 中自 pos 位置起字符串 u 第一次出现在 6 位置
+ký tự I xuất hiện lần đầu ở vị trí 1 trong s
+ký tự a xuất hiện lần đầu ở vị trí 18446744073709551615 trong s // tức size_t(-1), giá trị cụ thể phụ thuộc nền tảng.
+ký tự a xuất hiện lần đầu ở vị trí -1 trong s // ép sang kiểu int thì xuất bình thường -1
+chuỗi t xuất hiện lần đầu ở vị trí 0 trong s
+trong s, chuỗi u xuất hiện lần đầu từ vị trí pos ở vị trí 6
 ```
 
-### 截取子串
+### Cắt chuỗi con
 
-`substr(pos, len)` 函数的参数返回从 `pos` 位置开始截取最多 `len` 个字符组成的字符串（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）．
+Hàm `substr(pos, len)` trả về chuỗi gồm tối đa `len` ký tự được cắt từ vị trí
+`pos` (nếu hậu tố bắt đầu từ `pos` có độ dài nhỏ hơn `len` thì cắt toàn bộ hậu
+tố đó).
 
-示例：
+Ví dụ:
 
 ```cpp
 string s = "OI Wiki", t = "OI";
-printf("从字符串 s 的第四位开始的最多三个字符构成的子串是 %s\n",
+printf("chuỗi con gồm tối đa ba ký tự bắt đầu từ vị trí thứ tư của s là %s\n",
        s.substr(3, 3).c_str());
-printf("从字符串 t 的第二位开始的最多三个字符构成的子串是 %s",
+printf("chuỗi con gồm tối đa ba ký tự bắt đầu từ vị trí thứ hai của t là %s",
        t.substr(1, 3).c_str());
 ```
 
-输出：
+Kết quả:
 
 ```text
-从字符串 s 的第四位开始的最多三个字符构成的子串是 Wik
-从字符串 t 的第二位开始的最多三个字符构成的子串是 I
+chuỗi con gồm tối đa ba ký tự bắt đầu từ vị trí thứ tư của s là Wik
+chuỗi con gồm tối đa ba ký tự bắt đầu từ vị trí thứ hai của t là I
 ```
 
-### 插入/删除字符（串）
+### Chèn/xóa ký tự hoặc chuỗi
 
-`insert(index,count,ch)` 和 `insert(index,str)` 是比较常见的插入函数．它们分别表示在 `index` 处连续插入 `count` 次字符串 `ch` 和插入字符串 `str`．
+`insert(index,count,ch)` và `insert(index,str)` là hai hàm chèn thường gặp.
+Chúng lần lượt biểu thị chèn liên tiếp `count` lần chuỗi `ch` tại `index`, và
+chèn chuỗi `str` tại `index`.
 
-`erase(index,count)` 函数将字符串 `index` 位置开始（含）的 `count` 个字符删除（若不传参给 `count` 则表示删去 `index` 位置及以后的所有字符）．
+Hàm `erase(index,count)` xóa `count` ký tự bắt đầu từ vị trí `index` của chuỗi
+(bao gồm `index`; nếu không truyền tham số `count` thì xóa toàn bộ ký tự từ
+`index` trở đi).
 
-示例：
+Ví dụ:
 
 ```cpp
 string s = "OI Wiki", t = " Wiki";
 char u = '!';
 s.erase(2);
-printf("从字符串 s 的第三位开始删去所有字符后得到的字符串是 %s\n", s.c_str());
+printf("sau khi xóa mọi ký tự từ vị trí thứ ba của s, chuỗi thu được là %s\n", s.c_str());
 s.insert(2, t);
-printf("在字符串 s 的第三位处插入字符串 t 后得到的字符串是 %s\n", s.c_str());
+printf("sau khi chèn chuỗi t vào vị trí thứ ba của s, chuỗi thu được là %s\n", s.c_str());
 s.insert(7, 3, u);
-printf("在字符串 s 的第八位处连续插入 3 次字符串 u 后得到的字符串是 %s",
+printf("sau khi chèn liên tiếp 3 lần ký tự u vào vị trí thứ tám của s, chuỗi thu được là %s",
        s.c_str());
 ```
 
-输出：
+Kết quả:
 
 ```text
-从字符串 s 的第三位开始删去所有字符后得到的字符串是 OI
-在字符串 s 的第三位处插入字符串 t 后得到的字符串是 OI Wiki
-在字符串 s 的第八位处连续插入 3 次字符串 u 后得到的字符串是 OI Wiki!!!
+sau khi xóa mọi ký tự từ vị trí thứ ba của s, chuỗi thu được là OI
+sau khi chèn chuỗi t vào vị trí thứ ba của s, chuỗi thu được là OI Wiki
+sau khi chèn liên tiếp 3 lần ký tự u vào vị trí thứ tám của s, chuỗi thu được là OI Wiki!!!
 ```
 
-### 替换字符（串）
+### Thay thế ký tự hoặc chuỗi
 
-`replace(pos,count,str)` 和 `replace(first,last,str)` 是比较常见的替换函数．它们分别表示将从 `pos` 位置开始 `count` 个字符的子串替换为 `str` 以及将以 `first` 开始（含）、`last` 结束（不含）的子串替换为 `str`，其中 `first` 和 `last` 均为迭代器．
+`replace(pos,count,str)` và `replace(first,last,str)` là hai hàm thay thế thường
+gặp. Chúng lần lượt biểu thị thay chuỗi con gồm `count` ký tự bắt đầu từ `pos`
+bằng `str`, và thay chuỗi con bắt đầu từ `first` (bao gồm) đến `last` (không bao
+gồm) bằng `str`, trong đó `first` và `last` đều là iterator.
 
-示例：
+Ví dụ:
 
 ```cpp
 string s = "OI Wiki";
 s.replace(2, 5, "");
-printf("将字符串 s 的第 3~7 位替换为空串后得到的字符串是 %s\n", s.c_str());
+printf("sau khi thay vị trí thứ 3~7 của s bằng chuỗi rỗng, chuỗi thu được là %s\n", s.c_str());
 s.replace(s.begin(), s.begin() + 2, "NOI");
-printf("将字符串 s 的前两位替换为 NOI 后得到的字符串是 %s", s.c_str());
+printf("sau khi thay hai vị trí đầu của s bằng NOI, chuỗi thu được là %s", s.c_str());
 ```
 
-输出：
+Kết quả:
 
 ```text
-将字符串 s 的第 3~7 位替换为空串后得到的字符串是 OI
-将字符串 s 的前两位替换为 NOI 后得到的字符串是 NOI
+sau khi thay vị trí thứ 3~7 của s bằng chuỗi rỗng, chuỗi thu được là OI
+sau khi thay hai vị trí đầu của s bằng NOI, chuỗi thu được là NOI
 ```

@@ -1,34 +1,44 @@
 author: Xeonacid, ksyx, Early0v0
 
-## 栈
+<span id="&#26632;"></span>
 
-STL [栈](../../ds/stack.md)(`std::stack`) 是一种后进先出 (Last In, First Out) 的容器适配器，仅支持查询或删除最后一个加入的元素（栈顶元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器．
+## Ngăn xếp
 
-### 头文件
+STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một container adapter theo nguyên tắc vào sau ra trước (Last In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ iterator.
+
+<span id="&#22836;&#25991;&#20214;"></span>
+
+### Tệp tiêu đề
 
 ```cpp
 #include <stack>
 ```
 
-### 定义
+<span id="&#23450;&#20041;"></span>
+
+### Định nghĩa
 
 ```cpp
-std::stack<TypeName> s;  // 使用默认底层容器 deque，数据类型为 TypeName
-std::stack<TypeName, Container> s;  // 使用 Container 作为底层容器
-std::stack<TypeName> s2(s1);        // 将 s1 复制一份用于构造 s2
+std::stack<TypeName> s;  // dùng container nền mặc định là deque, kiểu dữ liệu là TypeName
+std::stack<TypeName, Container> s;  // dùng Container làm container nền
+std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 ```
 
-### 成员函数
+<span id="&#25104;&#21592;&#20989;&#25968;"></span>
 
-**以下所有函数均为常数复杂度**
+### Hàm thành viên
 
--   `top()` 访问栈顶元素（如果栈为空，此处会出错）
--   `push(x)` 向栈中插入元素 x
--   `pop()` 删除栈顶元素
--   `size()` 查询容器中的元素数量
--   `empty()` 询问容器是否为空
+**Tất cả các hàm sau đều có độ phức tạp hằng số**
 
-### 简单示例
+-   `top()` truy cập phần tử đỉnh ngăn xếp (nếu ngăn xếp rỗng thì thao tác này gây lỗi)
+-   `push(x)` chèn phần tử `x` vào ngăn xếp
+-   `pop()` xóa phần tử đỉnh ngăn xếp
+-   `size()` truy vấn số lượng phần tử trong container
+-   `empty()` kiểm tra container có rỗng hay không
+
+<span id="&#31616;&#21333;&#31034;&#20363;"></span>
+
+### Ví dụ đơn giản
 
 ```cpp
 std::stack<int> s1;
@@ -42,36 +52,46 @@ s1.pop();
 std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 ```
 
-## 队列
+<span id="&#38431;&#21015;"></span>
 
-STL [队列](../../ds/queue.md)(`std::queue`) 是一种先进先出 (First In, First Out) 的容器适配器，仅支持查询或删除第一个加入的元素（队首元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器．
+## Hàng đợi
 
-### 头文件
+STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một container adapter theo nguyên tắc vào trước ra trước (First In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ iterator.
+
+<span id="&#22836;&#25991;&#20214;_1"></span>
+
+### Tệp tiêu đề
 
 ```cpp
 #include <queue>
 ```
 
-### 定义
+<span id="&#23450;&#20041;_1"></span>
+
+### Định nghĩa
 
 ```cpp
-std::queue<TypeName> q;  // 使用默认底层容器 deque，数据类型为 TypeName
-std::queue<TypeName, Container> q;  // 使用 Container 作为底层容器
+std::queue<TypeName> q;  // dùng container nền mặc định là deque, kiểu dữ liệu là TypeName
+std::queue<TypeName, Container> q;  // dùng Container làm container nền
 
-std::queue<TypeName> q2(q1);  // 将 s1 复制一份用于构造 q2
+std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
 ```
 
-### 成员函数
+<span id="&#25104;&#21592;&#20989;&#25968;_1"></span>
 
-**以下所有函数均为常数复杂度**
+### Hàm thành viên
 
--   `front()` 访问队首元素（如果队列为空，此处会出错）
--   `push(x)` 向队列中插入元素 x
--   `pop()` 删除队首元素
--   `size()` 查询容器中的元素数量
--   `empty()` 询问容器是否为空
+**Tất cả các hàm sau đều có độ phức tạp hằng số**
 
-### 简单示例
+-   `front()` truy cập phần tử đầu hàng đợi (nếu hàng đợi rỗng thì thao tác này gây lỗi)
+-   `push(x)` chèn phần tử `x` vào hàng đợi
+-   `pop()` xóa phần tử đầu hàng đợi
+-   `size()` truy vấn số lượng phần tử trong container
+-   `empty()` kiểm tra container có rỗng hay không
+
+<span id="&#31616;&#21333;&#31034;&#20363;_1"></span>
+
+### Ví dụ đơn giản
 
 ```cpp
 std::queue<int> q1;
@@ -85,31 +105,37 @@ q1.pop();
 std::cout << q1.empty() << " " << q2.empty() << std::endl;  // 1 0
 ```
 
-## 优先队列
+<span id="&#20248;&#20808;&#38431;&#21015;"></span>
 
-优先队列 `std::priority_queue` 是一种 [堆](../../ds/heap.md)，一般为 [二叉堆](../../ds/binary-heap.md)．
+## Hàng đợi ưu tiên
 
-### 头文件
+Hàng đợi ưu tiên `std::priority_queue` là một dạng [heap](../../ds/heap.md), thường là [heap nhị phân](../../ds/binary-heap.md).
+
+<span id="&#22836;&#25991;&#20214;_2"></span>
+
+### Tệp tiêu đề
 
 ```cpp
 #include <queue>
 ```
 
-### 定义
+<span id="&#23450;&#20041;_2"></span>
+
+### Định nghĩa
 
 ```cpp
-std::priority_queue<TypeName> q;             // 数据类型为 TypeName
-std::priority_queue<TypeName, Container> q;  // 使用 Container 作为底层容器
+std::priority_queue<TypeName> q;             // kiểu dữ liệu là TypeName
+std::priority_queue<TypeName, Container> q;  // dùng Container làm container nền
 std::priority_queue<TypeName, Container, Compare> q;
-// 使用 Container 作为底层容器，使用 Compare 作为比较类型
+// dùng Container làm container nền, dùng Compare làm kiểu so sánh
 
-// 默认使用底层容器 vector
-// 比较类型 less<TypeName>（此时为它的 top() 返回为最大值）
-// 若希望 top() 返回最小值，可令比较类型为 greater<TypeName>
-// 注意：不可跳过 Container 直接传入 Compare
+// Mặc định dùng vector làm container nền
+// Kiểu so sánh là less<TypeName> (khi đó top() trả về giá trị lớn nhất)
+// Nếu muốn top() trả về giá trị nhỏ nhất, có thể đặt kiểu so sánh là greater<TypeName>
+// Lưu ý: không thể bỏ qua Container để truyền trực tiếp Compare
 
-// 从 C++11 开始，如果使用 lambda 函数自定义 Compare
-// 则需要将其作为构造函数的参数代入，如：
+// Từ C++11 trở đi, nếu dùng hàm lambda để tự định nghĩa Compare
+// thì cần truyền nó vào dưới dạng tham số của hàm khởi tạo, ví dụ:
 auto cmp = [](const std::pair<int, int> &l, const std::pair<int, int> &r) {
   return l.second < r.second;
 };
@@ -118,37 +144,41 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
     pq(cmp);
 ```
 
-### 成员函数
+<span id="&#25104;&#21592;&#20989;&#25968;_2"></span>
 
-**以下所有函数均为常数复杂度**
+### Hàm thành viên
 
--   `top()` 访问堆顶元素（此时优先队列不能为空）
--   `empty()` 询问容器是否为空
--   `size()` 查询容器中的元素数量
+**Tất cả các hàm sau đều có độ phức tạp hằng số**
 
-**以下所有函数均为对数复杂度**
+-   `top()` truy cập phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
+-   `empty()` kiểm tra container có rỗng hay không
+-   `size()` truy vấn số lượng phần tử trong container
 
--   `push(x)` 插入元素，并对底层容器排序
--   `pop()` 删除堆顶元素（此时优先队列不能为空）
+**Tất cả các hàm sau đều có độ phức tạp logarit**
 
-### 简单示例
+-   `push(x)` chèn phần tử và sắp xếp container nền
+-   `pop()` xóa phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
+
+<span id="&#31616;&#21333;&#31034;&#20363;_2"></span>
+
+### Ví dụ đơn giản
 
 ```cpp
 std::priority_queue<int> q1;
 std::priority_queue<int, std::vector<int>> q2;
-// C++11 后空格可省略
+// Sau C++11 có thể bỏ khoảng trắng
 std::priority_queue<int, std::deque<int>, std::greater<int>> q3;
-// q3 为小根堆
+// q3 là min-heap
 for (int i = 1; i <= 5; i++) q1.push(i);
-// q1 中元素 :  [1, 2, 3, 4, 5]
+// Các phần tử trong q1: [1, 2, 3, 4, 5]
 std::cout << q1.top() << std::endl;
-// 输出结果 : 5
+// Kết quả xuất ra: 5
 q1.pop();
-// 堆中元素 : [1, 2, 3, 4]
+// Các phần tử trong heap: [1, 2, 3, 4]
 std::cout << q1.size() << std::endl;
-// 输出结果 ：4
+// Kết quả xuất ra: 4
 for (int i = 1; i <= 5; i++) q3.push(i);
-// q3 中元素 :  [1, 2, 3, 4, 5]
+// Các phần tử trong q3: [1, 2, 3, 4, 5]
 std::cout << q3.top() << std::endl;
-// 输出结果 : 1
+// Kết quả xuất ra: 1
 ```

@@ -2,55 +2,68 @@ author: MingqiHuang, Xeonacid, greyqz, i-Yirannn, ChenZ01
 
 ## `vector`
 
-`std::vector` 是 STL 提供的 **内存连续的**、**可变长度** 的数组（亦称列表）数据结构．能够提供线性复杂度的插入和删除，以及常数复杂度的随机访问．
+`std::vector` là cấu trúc mảng **có bộ nhớ liên tục**, **độ dài thay đổi được** (cũng có thể xem là một danh sách) do STL cung cấp. Nó hỗ trợ chèn và xóa với độ phức tạp tuyến tính, đồng thời hỗ trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
 
-### 为什么要使用 `vector`
+<span id="&#20026;&#20160;&#20040;&#35201;&#20351;&#29992;-vector"></span>
 
-作为 OIer，对程序效率的追求远比对工程级别的稳定性要高得多，而 `vector` 由于其对内存的动态处理，时间效率在部分情况下低于静态数组，并且在 OJ 服务器不一定开全优化的情况下更加糟糕．所以在正常存储数据的时候，通常不选择 `vector`．下面给出几个 `vector` 优秀的特性，在需要用到这些特性的情况下，`vector` 能给我们带来很大的帮助．
+### Vì sao nên dùng `vector`
 
-#### `vector` 可以动态分配内存
+Với OIer, yêu cầu về hiệu năng chương trình thường cao hơn rất nhiều so với độ ổn định ở mức dự án phần mềm. Do `vector` xử lý bộ nhớ động, trong một số trường hợp hiệu năng thời gian của nó kém hơn mảng tĩnh, và còn tệ hơn nếu máy chủ OJ không bật tối ưu hóa đầy đủ. Vì vậy khi chỉ cần lưu trữ dữ liệu thông thường, ta thường không chọn `vector`. Dưới đây là một số đặc tính nổi bật của `vector`; khi cần dùng đến các đặc tính này, `vector` có thể giúp ích rất nhiều.
 
-很多时候我们不能提前开好那么大的空间（eg：预处理 1\~n 中所有数的约数）．尽管我们能知道数据总量在空间允许的级别，但是单份数据还可能非常大，这种时候我们就需要 `vector` 来把内存占用量控制在合适的范围内．`vector` 还支持动态扩容，在内存非常紧张的时候这个特性就能派上用场了．
+<span id="vector-&#21487;&#20197;&#21160;&#24577;&#20998;&#37197;&#20869;&#23384;"></span>
 
-#### `vector` 重写了比较运算符及赋值运算符
+#### `vector` có thể cấp phát bộ nhớ động
 
-`vector` 重载了六个比较运算符，以字典序实现，这使得我们可以方便的判断两个容器是否相等（复杂度与容器大小成线性关系）．例如可以利用 `vector<char>` 实现字符串比较（当然，还是用 `std::string` 会更快更方便）．另外 `vector` 也重载了赋值运算符，使得数组拷贝更加方便．
+Nhiều khi ta không thể mở sẵn một vùng nhớ lớn như vậy (ví dụ: tiền xử lý tất cả ước của các số từ 1 đến n). Dù biết tổng lượng dữ liệu vẫn nằm trong giới hạn bộ nhớ, từng phần dữ liệu riêng lẻ vẫn có thể rất lớn; khi đó ta cần `vector` để khống chế mức sử dụng bộ nhớ trong phạm vi phù hợp. `vector` cũng hỗ trợ mở rộng dung lượng động, đặc tính này rất hữu ích khi bộ nhớ thật sự căng thẳng.
 
-#### `vector` 便利的初始化
+<span id="vector-&#37325;&#20889;&#20102;&#27604;&#36739;&#36816;&#31639;&#31526;&#21450;&#36171;&#20540;&#36816;&#31639;&#31526;"></span>
 
-由于 `vector` 重载了 `=` 运算符，所以我们可以方便地进行 `vector` 的整体赋值操作．此外从 C++11 起 `vector` 还支持 [列表初始化](https://zh.cppreference.com/w/cpp/language/list_initialization)，例如 `vector<int> data {1, 2, 3};`．
+#### `vector` nạp chồng toán tử so sánh và toán tử gán
 
-### `vector` 的使用方法
+`vector` nạp chồng sáu toán tử so sánh, được cài đặt theo thứ tự từ điển. Điều này giúp ta dễ dàng kiểm tra hai container có bằng nhau hay không (độ phức tạp tuyến tính theo kích thước container). Chẳng hạn có thể dùng `vector<char>` để so sánh xâu (tất nhiên, dùng `std::string` vẫn nhanh và tiện hơn). Ngoài ra, `vector` cũng nạp chồng toán tử gán, giúp việc sao chép mảng thuận tiện hơn.
 
-以下介绍常用用法，详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/vector)．
+<span id="vector-&#20415;&#21033;&#30340;&#21021;&#22987;&#21270;"></span>
 
-#### 构造函数
+#### Khởi tạo `vector` thuận tiện
 
-用例参见如下代码（假设你已经 `using` 了 `std` 命名空间相关类型）：
+Vì `vector` nạp chồng toán tử `=`, ta có thể thực hiện phép gán toàn bộ `vector` một cách thuận tiện. Ngoài ra, từ C++11, `vector` còn hỗ trợ [khởi tạo bằng danh sách](https://zh.cppreference.com/w/cpp/language/list_initialization), ví dụ `vector<int> data {1, 2, 3};`.
+
+<span id="vector-&#30340;&#20351;&#29992;&#26041;&#27861;"></span>
+
+### Cách dùng `vector`
+
+Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết [xem tại tài liệu C++](https://zh.cppreference.com/w/cpp/container/vector).
+
+<span id="&#26500;&#36896;&#20989;&#25968;"></span>
+
+#### Hàm khởi tạo
+
+Ví dụ cách dùng như đoạn mã sau (giả sử bạn đã `using` các kiểu liên quan trong namespace `std`):
 
 ```cpp
-// 1. 创建空vector; 常数复杂度
+// 1. Tạo vector rỗng; độ phức tạp hằng số
 vector<int> v0;
-// 1+. 这句代码可以使得向vector中插入前3个元素时，保证常数时间复杂度
+// 1+. Câu lệnh này bảo đảm khi chèn 3 phần tử đầu tiên vào vector,
+//     độ phức tạp thời gian vẫn là hằng số
 v0.reserve(3);
-// 2. 创建一个初始空间为3的vector，其元素的默认值是0; 线性复杂度
+// 2. Tạo vector có kích thước ban đầu là 3, giá trị mặc định của mỗi phần tử là 0; độ phức tạp tuyến tính
 vector<int> v1(3);
-// 3. 创建一个初始空间为3的vector，其元素的默认值是2; 线性复杂度
+// 3. Tạo vector có kích thước ban đầu là 3, giá trị mặc định của mỗi phần tử là 2; độ phức tạp tuyến tính
 vector<int> v2(3, 2);
-// 4. 创建一个初始空间为3的vector，其元素的默认值是1，
-// 并且使用v2的空间配置器; 线性复杂度
+// 4. Tạo vector có kích thước ban đầu là 3, giá trị mặc định của mỗi phần tử là 1,
+// và dùng bộ cấp phát bộ nhớ của v2; độ phức tạp tuyến tính
 vector<int> v3(3, 1, v2.get_allocator());
-// 5. 创建一个v2的拷贝vector v4， 其内容元素和v2一样; 线性复杂度
+// 5. Tạo vector v4 là bản sao của v2, các phần tử giống v2; độ phức tạp tuyến tính
 vector<int> v4(v2);
-// 6. 创建一个v4的拷贝vector v5，其内容是{v4[1], v4[2]}; 线性复杂度
+// 6. Tạo vector v5 là bản sao một đoạn của v4, nội dung là {v4[1], v4[2]}; độ phức tạp tuyến tính
 vector<int> v5(v4.begin() + 1, v4.begin() + 3);
-// 7. 移动v2到新创建的vector v6，不发生拷贝; 常数复杂度; 需要 C++11
-vector<int> v6(std::move(v2));  // 或者 v6 = std::move(v2);
+// 7. Di chuyển v2 sang vector v6 mới tạo, không sao chép; độ phức tạp hằng số; cần C++11
+vector<int> v6(std::move(v2));  // hoặc v6 = std::move(v2);
 ```
 
-??? note "测试代码"
+??? note "Mã kiểm thử"
     ```cpp
-    // 以下是测试代码，有兴趣的同学可以自己编译运行一下本代码．
+    // Dưới đây là mã kiểm thử; bạn nào quan tâm có thể tự biên dịch và chạy thử.
     cout << "v1 = ";
     copy(v1.begin(), v1.end(), ostream_iterator<int>(cout, " "));
     cout << endl;
@@ -71,247 +84,293 @@ vector<int> v6(std::move(v2));  // 或者 v6 = std::move(v2);
     cout << endl;
     ```
 
-可以利用上述的方法构造一个 `vector`，足够我们使用了．
+Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông thường.
 
-#### 元素访问
+<span id="&#20803;&#32032;&#35775;&#38382;"></span>
 
-`vector` 提供了如下几种方法进行元素访问
+#### Truy cập phần tử
+
+`vector` cung cấp các cách sau để truy cập phần tử:
 
 1.  `at()`
 
-    `v.at(pos)` 返回容器中下标为 `pos` 的引用．如果数组越界抛出 `std::out_of_range` 类型的异常．
+    `v.at(pos)` trả về tham chiếu đến phần tử có chỉ số `pos` trong container. Nếu vượt biên mảng, nó ném ngoại lệ kiểu `std::out_of_range`.
 
 2.  `operator[]`
 
-    `v[pos]` 返回容器中下标为 `pos` 的引用．不执行越界检查．
+    `v[pos]` trả về tham chiếu đến phần tử có chỉ số `pos` trong container. Không kiểm tra vượt biên.
 
 3.  `front()`
 
-    `v.front()` 返回首元素的引用．
+    `v.front()` trả về tham chiếu đến phần tử đầu tiên.
 
 4.  `back()`
 
-    `v.back()` 返回末尾元素的引用．
+    `v.back()` trả về tham chiếu đến phần tử cuối cùng.
 
 5.  `data()`
 
-    `v.data()` 返回 `v` 内部存储数据使用的连续内存空间中首元素的指针．
+    `v.data()` trả về con trỏ đến phần tử đầu tiên trong vùng bộ nhớ liên tục mà `v` dùng để lưu dữ liệu nội bộ.
 
-#### 迭代器
+<span id="&#36845;&#20195;&#22120;"></span>
 
-vector 提供了如下几种 [迭代器](./iterator.md)
+#### Iterator
+
+`vector` cung cấp các loại [iterator](./iterator.md) sau:
 
 1.  `begin()/cbegin()`
 
-    返回指向首元素的迭代器，其中 `*begin = front`．
+    Trả về iterator trỏ đến phần tử đầu tiên, trong đó `*begin = front`.
 
 2.  `end()/cend()`
 
-    返回指向容器尾端占位符的迭代器，注意是没有元素的．
+    Trả về iterator trỏ đến vị trí lính canh ở cuối container; lưu ý vị trí này không có phần tử.
 
 3.  `rbegin()/crbegin()`
 
-    返回指向逆向数组的首元素的逆向迭代器，可以理解为正向容器的末元素．
+    Trả về reverse iterator trỏ đến phần tử đầu tiên của dãy đảo ngược, có thể hiểu là phần tử cuối của container theo chiều xuôi.
 
 4.  `rend()/crend()`
 
-    返回指向逆向数组末元素后一位置的迭代器，对应容器首的前一个位置，没有元素．
+    Trả về iterator trỏ đến vị trí sau phần tử cuối của dãy đảo ngược, tương ứng với vị trí trước phần tử đầu của container; vị trí này không có phần tử.
 
-以上列出的迭代器中，含有字符 `c` 的为只读迭代器，你不能通过只读迭代器去修改 `vector` 中的元素的值．如果一个 `vector` 本身就是只读的，那么它的一般迭代器和只读迭代器完全等价．只读迭代器自 C++11 开始支持．
+Trong các iterator liệt kê trên, những hàm có ký tự `c` trả về iterator chỉ đọc; bạn không thể dùng iterator chỉ đọc để sửa giá trị phần tử trong `vector`. Nếu bản thân một `vector` là chỉ đọc, iterator thông thường và iterator chỉ đọc của nó hoàn toàn tương đương. Iterator chỉ đọc được hỗ trợ từ C++11.
 
-#### 长度和容量
+<span id="&#38271;&#24230;&#21644;&#23481;&#37327;"></span>
 
-`vector` 有以下几个与容器长度和容量相关的函数．注意，`vector` 的长度（size）指有效元素数量，而容量（capacity）指其实际分配的内存长度，相关细节请参见后文的实现细节介绍．
+#### Độ dài và dung lượng
 
-**与长度相关**：
+`vector` có các hàm sau liên quan đến độ dài và dung lượng container. Lưu ý, độ dài (size) của `vector` là số phần tử hợp lệ, còn dung lượng (capacity) là độ dài vùng nhớ thực tế đã cấp phát; chi tiết xem phần về cách cài đặt ở bên dưới.
 
--   `empty()` 返回一个 `bool` 值，即 `v.begin() == v.end()`，`true` 为空，`false` 为非空．
+**Liên quan đến độ dài**:
 
--   `size()` 返回容器长度（元素数量），即 `std::distance(v.begin(), v.end())`．
+-   `empty()` trả về một giá trị `bool`, tức `v.begin() == v.end()`; `true` nghĩa là rỗng, `false` nghĩa là không rỗng.
 
--   `resize(n)` 改变 `vector` 的长度为 `n`．如果 `n` 大于当前长度，则会补充元素，如果参数中提供了要补充的元素，则使用参数，否则使用默认值；如果 `n` 小于当前长度，则保留前 `n` 个元素，后续元素删除．
+-   `size()` trả về độ dài container (số phần tử), tức `std::distance(v.begin(), v.end())`.
 
--   `max_size()` 返回容器的最大可能长度．
+-   `resize(n)` thay đổi độ dài của `vector` thành `n`. Nếu `n` lớn hơn độ dài hiện tại, các phần tử sẽ được bổ sung; nếu tham số có cung cấp giá trị cần bổ sung thì dùng giá trị đó, nếu không thì dùng giá trị mặc định. Nếu `n` nhỏ hơn độ dài hiện tại, giữ lại `n` phần tử đầu và xóa các phần tử phía sau.
 
-    **与容量相关**：
+-   `max_size()` trả về độ dài tối đa có thể có của container.
 
--   `reserve()` 使得 `vector` 预留一定的内存空间，避免不必要的内存分配与拷贝．
+**Liên quan đến dung lượng**:
 
--   `capacity()` 返回容器的容量，即当前 `vector` 已经为多少个元素分配了空间．
+-   `reserve()` yêu cầu `vector` dự trữ một lượng bộ nhớ nhất định, tránh cấp phát và sao chép bộ nhớ không cần thiết.
 
--   `shrink_to_fit()` 使得 `vector` 的容量与长度一致，去除该 `vector` 没有用到的容量．
+-   `capacity()` trả về dung lượng container, tức số phần tử mà `vector` hiện đã cấp phát đủ chỗ.
 
-### 元素增删及修改
+-   `shrink_to_fit()` làm cho dung lượng của `vector` bằng độ dài, loại bỏ phần dung lượng chưa dùng đến.
 
--   `clear()` 清除所有元素
--   `insert()` 支持在某个迭代器位置插入元素、可以插入多个．**复杂度与 `pos` 距离末尾长度成线性而非常数的**
--   `erase()` 删除某个迭代器或者区间的元素，返回最后被删除的迭代器．复杂度与 `insert` 一致．
--   `push_back()` 在末尾插入一个元素，均摊复杂度为 **常数**，最坏为线性复杂度．
--   `pop_back()` 删除末尾元素，常数复杂度．
--   `swap()` 与另一个容器进行交换，此操作是 **常数复杂度** 而非线性的．
+<span id="&#20803;&#32032;&#22686;&#21024;&#21450;&#20462;&#25913;"></span>
 
-### `vector` 的实现细节
+### Thêm, xóa và sửa phần tử
 
-`vector` 的底层其实仍然是定长数组，它能够实现动态扩容的原因是增加了避免数量溢出的操作．首先需要指明的是 `vector` 中元素的数量（长度）$n$ 与它已分配内存最多能包含元素的数量（容量）$N$ 是不一致的，`vector` 会分开存储这两个量．当向 `vector` 中添加元素时，如发现 $n>N$，那么容器会分配一个尺寸为 $2N$ 的数组，然后将旧数据从原本的位置拷贝到新的数组中，再将原来的内存释放．尽管这个操作的渐近复杂度是 $O(n)$，但是可以证明其均摊复杂度为 $O(1)$．而在末尾删除元素和访问元素则都仍然是 $O(1)$ 的开销．
-因此，只要对 `vector` 的尺寸估计得当并善用 `resize()` 和 `reserve()`，就能使得 `vector` 的效率与定长数组不会有太大差距．
+-   `clear()` xóa tất cả phần tử.
+-   `insert()` hỗ trợ chèn một hoặc nhiều phần tử tại một vị trí iterator. **Độ phức tạp tuyến tính theo khoảng cách từ `pos` đến cuối, không phải hằng số**.
+-   `erase()` xóa một phần tử tại iterator hoặc một đoạn phần tử, trả về iterator sau phần tử cuối cùng bị xóa. Độ phức tạp giống `insert`.
+-   `push_back()` chèn một phần tử vào cuối; độ phức tạp khấu hao là **hằng số**, trường hợp xấu nhất là tuyến tính.
+-   `pop_back()` xóa phần tử cuối, độ phức tạp hằng số.
+-   `swap()` trao đổi với một container khác; thao tác này có **độ phức tạp hằng số**, không phải tuyến tính.
 
-### `vector<bool>`
+<span id="vector-&#30340;&#23454;&#29616;&#32454;&#33410;"></span>
 
-标准库特别提供了对 `bool` 的 `vector` 特化，每个「`bool`」只占 1 bit，且支持动态增长．但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference`．因此，使用 `vector<bool>` 使需谨慎，可以考虑使用 `deque<bool>` 或 `vector<char>` 替代．而如果你需要节省空间，请直接使用 [`bitset`](./bitset.md)．
+### Chi tiết cài đặt của `vector`
+
+Tầng dưới của `vector` thực ra vẫn là mảng có độ dài cố định. Lý do nó mở rộng động được là vì có thêm thao tác để tránh tràn số lượng. Trước hết cần nói rõ: số phần tử (độ dài) $n$ trong `vector` và số phần tử tối đa mà vùng nhớ đã cấp phát có thể chứa (dung lượng) $N$ không nhất thiết giống nhau; `vector` lưu riêng hai đại lượng này. Khi thêm phần tử vào `vector`, nếu thấy $n>N$, container sẽ cấp phát một mảng kích thước $2N$, sao chép dữ liệu cũ từ vị trí ban đầu sang mảng mới, rồi giải phóng vùng nhớ cũ. Dù độ phức tạp tiệm cận của thao tác này là $O(n)$, có thể chứng minh độ phức tạp khấu hao của nó là $O(1)$. Xóa phần tử ở cuối và truy cập phần tử vẫn tốn chi phí $O(1)$.
+Vì vậy, chỉ cần ước lượng kích thước `vector` hợp lý và tận dụng `resize()` cùng `reserve()`, hiệu năng của `vector` sẽ không thua mảng có độ dài cố định quá nhiều.
+
+## `vector<bool>`
+
+Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bool`: mỗi "`bool`" chỉ chiếm 1 bit và vẫn hỗ trợ tăng kích thước động. Tuy nhiên kiểu trả về của `operator[]` không phải `bool&` mà là `vector<bool>::reference`. Vì vậy cần thận trọng khi dùng `vector<bool>`; có thể cân nhắc thay bằng `deque<bool>` hoặc `vector<char>`. Nếu bạn cần tiết kiệm bộ nhớ, hãy dùng trực tiếp [`bitset`](./bitset.md).
 
 ## `array`(C++11)
 
-`std::array` 是 STL 提供的 **内存连续的**、**固定长度** 的数组数据结构．其本质是对原生数组的直接封装．
+`std::array` là cấu trúc mảng **có bộ nhớ liên tục**, **độ dài cố định** do STL cung cấp. Bản chất của nó là lớp bọc trực tiếp quanh mảng nguyên thủy.
 
-### 为什么要用 `array`
+<span id="&#20026;&#20160;&#20040;&#35201;&#29992;-array"></span>
 
-`array` 实际上是 STL 对数组的封装．它相比 `vector` 牺牲了动态扩容的特性，但是换来了与原生数组几乎一致的性能（在开满优化的前提下）．因此如果能使用 C++11 特性的情况下，能够使用原生数组的地方几乎都可以直接把定长数组都换成 `array`，而动态分配的数组可以替换为 `vector`．
+### Vì sao nên dùng `array`
 
-### 成员函数
+`array` thực chất là lớp bọc mảng của STL. So với `vector`, nó hy sinh đặc tính mở rộng động, đổi lại hiệu năng gần như tương đương mảng nguyên thủy (với điều kiện bật tối ưu hóa đầy đủ). Vì vậy nếu có thể dùng đặc tính C++11, gần như mọi nơi dùng được mảng nguyên thủy đều có thể thay mảng độ dài cố định bằng `array`, còn mảng cấp phát động có thể thay bằng `vector`.
 
-#### 隐式定义的成员函数
+<span id="&#25104;&#21592;&#20989;&#25968;"></span>
 
-| 函数          | 作用                                  |
-| ----------- | ----------------------------------- |
-| `operator=` | 以来自另一 `array` 的每个元素重写 `array` 的对应元素 |
+### Hàm thành viên
 
-#### 元素访问
+<span id="&#38544;&#24335;&#23450;&#20041;&#30340;&#25104;&#21592;&#20989;&#25968;"></span>
 
-| 函数           | 作用                   |
-| ------------ | -------------------- |
-| `at`         | 访问指定的元素，同时进行越界检查     |
-| `operator[]` | 访问指定的元素，**不** 进行越界检查 |
-| `front`      | 访问第一个元素              |
-| `back`       | 访问最后一个元素             |
-| `data`       | 返回指向内存中数组第一个元素的指针    |
+#### Hàm thành viên được định nghĩa ngầm định
 
-`at` 若遇 `pos >= size()` 的情况会抛出 `std::out_of_range`．
+| Hàm          | Tác dụng                                                        |
+| ------------ | --------------------------------------------------------------- |
+| `operator=` | Ghi đè từng phần tử từ một `array` khác lên phần tử tương ứng của `array` |
 
-#### 容量
+<span id="&#20803;&#32032;&#35775;&#38382;_1"></span>
 
-| 函数         | 作用          |
-| ---------- | ----------- |
-| `empty`    | 检查容器是否为空    |
-| `size`     | 返回容纳的元素数    |
-| `max_size` | 返回可容纳的最大元素数 |
+#### Truy cập phần tử
 
-由于每个 `array` 都是固定大小容器，`size()` 返回的值等于 `max_size()` 返回的值．
+| Hàm          | Tác dụng                                             |
+| ------------ | ---------------------------------------------------- |
+| `at`         | Truy cập phần tử chỉ định, đồng thời kiểm tra vượt biên |
+| `operator[]` | Truy cập phần tử chỉ định, **không** kiểm tra vượt biên |
+| `front`      | Truy cập phần tử đầu tiên                            |
+| `back`       | Truy cập phần tử cuối cùng                           |
+| `data`       | Trả về con trỏ đến phần tử đầu tiên của mảng trong bộ nhớ |
 
-### 操作
+`at` sẽ ném `std::out_of_range` nếu gặp trường hợp `pos >= size()`.
 
-| 函数     | 作用       |
-| ------ | -------- |
-| `fill` | 以指定值填充容器 |
-| `swap` | 交换内容     |
+<span id="&#23481;&#37327;"></span>
 
-**注意，交换两个 `array` 是 $\Theta(\text{size})$ 的，而非与常规 STL 容器一样为 $O(1)$．**
+#### Dung lượng
 
-### 非成员函数
+| Hàm        | Tác dụng                         |
+| ---------- | -------------------------------- |
+| `empty`    | Kiểm tra container có rỗng không |
+| `size`     | Trả về số phần tử đang chứa      |
+| `max_size` | Trả về số phần tử tối đa có thể chứa |
 
-| 函数             | 作用                  |
-| -------------- | ------------------- |
-| `operator==` 等 | 按照字典序比较 `array` 中的值 |
-| `std::get`     | 访问 `array` 的一个元素    |
-| `std::swap`    | 特化的 `std::swap` 算法  |
+Vì mỗi `array` đều là container kích thước cố định, giá trị `size()` trả về bằng giá trị `max_size()` trả về.
 
-下面是一个 `array` 的使用示例：
+<span id="&#25805;&#20316;"></span>
+
+### Thao tác
+
+| Hàm    | Tác dụng                         |
+| ------ | -------------------------------- |
+| `fill` | Điền container bằng giá trị chỉ định |
+| `swap` | Trao đổi nội dung                |
+
+**Lưu ý, trao đổi hai `array` có độ phức tạp $\Theta(\text{size})$, không phải $O(1)$ như các container STL thông thường.**
+
+<span id="&#38750;&#25104;&#21592;&#20989;&#25968;"></span>
+
+### Hàm không phải thành viên
+
+| Hàm             | Tác dụng                              |
+| --------------- | ------------------------------------- |
+| `operator==` và tương tự | So sánh các giá trị trong `array` theo thứ tự từ điển |
+| `std::get`     | Truy cập một phần tử của `array`       |
+| `std::swap`    | Thuật toán `std::swap` đã được chuyên biệt hóa |
+
+Dưới đây là một ví dụ sử dụng `array`:
 
 ```cpp
-// 1. 创建空array，长度为3; 常数复杂度
+// 1. Tạo array rỗng, độ dài là 3; độ phức tạp hằng số
 std::array<int, 3> v0;
-// 2. 用指定常数创建array; 常数复杂度
+// 2. Tạo array bằng các hằng số chỉ định; độ phức tạp hằng số
 std::array<int, 3> v1{1, 2, 3};
 
-v0.fill(1);  // 填充数组
+v0.fill(1);  // điền mảng
 
-// 访问数组
+// Truy cập mảng
 for (int i = 0; i != arr.size(); ++i) cout << arr[i] << " ";
 ```
 
 ## `deque`
 
-`std::deque` 是 STL 提供的 [双端队列](../../ds/queue.md#双端队列) 数据结构．能够提供线性复杂度的插入和删除，以及常数复杂度的随机访问．
+`std::deque` là cấu trúc [hàng đợi hai đầu](../../ds/queue.md#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97) do STL cung cấp. Nó hỗ trợ chèn và xóa với độ phức tạp tuyến tính, đồng thời hỗ trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
 
-### `deque` 的使用方法
+<span id="deque-&#30340;&#20351;&#29992;&#26041;&#27861;"></span>
 
-以下介绍常用用法，详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/deque)．`deque` 的迭代器函数与 `vector` 相同，因此不作详细介绍．
+### Cách dùng `deque`
 
-#### 构造函数
+Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết [xem tại tài liệu C++](https://zh.cppreference.com/w/cpp/container/deque). Các hàm iterator của `deque` giống `vector`, nên không trình bày chi tiết.
 
-参见如下代码（假设你已经 `using` 了 `std` 命名空间相关类型）：
+<span id="&#26500;&#36896;&#20989;&#25968;_1"></span>
+
+#### Hàm khởi tạo
+
+Xem đoạn mã sau (giả sử bạn đã `using` các kiểu liên quan trong namespace `std`):
 
 ```cpp
-// 1. 定义一个int类型的空双端队列 v0
+// 1. Định nghĩa hàng đợi hai đầu rỗng kiểu int tên v0
 deque<int> v0;
-// 2. 定义一个int类型的双端队列 v1，并设置初始大小为10; 线性复杂度
+// 2. Định nghĩa hàng đợi hai đầu kiểu int tên v1, đặt kích thước ban đầu là 10; độ phức tạp tuyến tính
 deque<int> v1(10);
-// 3. 定义一个int类型的双端队列 v2，并初始化为10个1; 线性复杂度
+// 3. Định nghĩa hàng đợi hai đầu kiểu int tên v2, khởi tạo bằng 10 phần tử 1; độ phức tạp tuyến tính
 deque<int> v2(10, 1);
-// 4. 复制已有的双端队列 v1; 线性复杂度
+// 4. Sao chép hàng đợi hai đầu v1 đã có; độ phức tạp tuyến tính
 deque<int> v3(v1);
-// 5. 创建一个v2的拷贝deque v4，其内容是v4[0]至v4[2]; 线性复杂度
+// 5. Tạo deque v4 là bản sao một đoạn của v2, nội dung từ v2[0] đến v2[2]; độ phức tạp tuyến tính
 deque<int> v4(v2.begin(), v2.begin() + 3);
-// 6. 移动v2到新创建的deque v5，不发生拷贝; 常数复杂度; 需要 C++11
+// 6. Di chuyển v2 sang deque v5 mới tạo, không sao chép; độ phức tạp hằng số; cần C++11
 deque<int> v5(std::move(v2));
 ```
 
-#### 元素访问
+<span id="&#20803;&#32032;&#35775;&#38382;_2"></span>
 
-与 `vector` 一致，但无法访问底层内存．其高效的元素访问速度可参考实现细节部分．
+#### Truy cập phần tử
 
--   `at()` 返回容器中指定位置元素的引用，执行越界检查，**常数复杂度**．
--   `operator[]` 返回容器中指定位置元素的引用．不执行越界检查，**常数复杂度**．
--   `front()` 返回首元素的引用．
--   `back()` 返回末尾元素的引用．
+Giống `vector`, nhưng không thể truy cập bộ nhớ tầng dưới. Tốc độ truy cập phần tử hiệu quả của nó được giải thích trong phần chi tiết cài đặt.
 
-#### 迭代器
+-   `at()` trả về tham chiếu đến phần tử tại vị trí chỉ định trong container, có kiểm tra vượt biên, **độ phức tạp hằng số**.
+-   `operator[]` trả về tham chiếu đến phần tử tại vị trí chỉ định trong container. Không kiểm tra vượt biên, **độ phức tạp hằng số**.
+-   `front()` trả về tham chiếu đến phần tử đầu tiên.
+-   `back()` trả về tham chiếu đến phần tử cuối cùng.
 
-与 `vector` 一致．
+<span id="&#36845;&#20195;&#22120;_1"></span>
 
-#### 长度
+#### Iterator
 
-与 `vector` 一致，但是没有 `reserve()` 和 `capacity()` 函数．（仍然有 `shrink_to_fit()` 函数）
+Giống `vector`.
 
-#### 元素增删及修改
+<span id="&#38271;&#24230;"></span>
 
-与 `vector` 一致，并额外有向队列头部增加元素的函数．
+#### Độ dài
 
--   `clear()` 清除所有元素
--   `insert()` 支持在某个迭代器位置插入元素、可以插入多个．**复杂度与 `pos` 与两端距离较小者成线性**．
--   `erase()` 删除某个迭代器或者区间的元素，返回最后被删除的迭代器．复杂度与 `insert` 一致．
--   `push_front()` 在头部插入一个元素，**常数复杂度**．
--   `pop_front()` 删除头部元素，**常数复杂度**．
--   `push_back()` 在末尾插入一个元素，**常数复杂度**．
--   `pop_back()` 删除末尾元素，**常数复杂度**．
--   `swap()` 与另一个容器进行交换，此操作是 **常数复杂度** 而非线性的．
+Giống `vector`, nhưng không có hàm `reserve()` và `capacity()`. (Vẫn có hàm `shrink_to_fit()`.)
 
-### `deque` 的实现细节
+<span id="&#20803;&#32032;&#22686;&#21024;&#21450;&#20462;&#25913;_1"></span>
 
-`deque` 通常的底层实现是多个不连续的缓冲区，而缓冲区中的内存是连续的．而每个缓冲区还会记录首指针和尾指针，用来标记有效数据的区间．当一个缓冲区填满之后便会在之前或者之后分配新的缓冲区来存储更多的数据．更详细的说明可以参考 [《STL 源码剖析》deque 实现原理](https://www.cnblogs.com/q1076452761/p/16903229.html)．
+#### Thêm, xóa và sửa phần tử
+
+Giống `vector`, và có thêm các hàm chèn phần tử vào đầu hàng đợi.
+
+-   `clear()` xóa tất cả phần tử.
+-   `insert()` hỗ trợ chèn một hoặc nhiều phần tử tại một vị trí iterator. **Độ phức tạp tuyến tính theo khoảng cách nhỏ hơn giữa `pos` và hai đầu**.
+-   `erase()` xóa một phần tử tại iterator hoặc một đoạn phần tử, trả về iterator sau phần tử cuối cùng bị xóa. Độ phức tạp giống `insert`.
+-   `push_front()` chèn một phần tử vào đầu, **độ phức tạp hằng số**.
+-   `pop_front()` xóa phần tử đầu, **độ phức tạp hằng số**.
+-   `push_back()` chèn một phần tử vào cuối, **độ phức tạp hằng số**.
+-   `pop_back()` xóa phần tử cuối, **độ phức tạp hằng số**.
+-   `swap()` trao đổi với một container khác; thao tác này có **độ phức tạp hằng số**, không phải tuyến tính.
+
+<span id="deque-&#30340;&#23454;&#29616;&#32454;&#33410;"></span>
+
+### Chi tiết cài đặt của `deque`
+
+Tầng dưới của `deque` thường được cài đặt bằng nhiều buffer không liên tục, nhưng bộ nhớ bên trong mỗi buffer là liên tục. Mỗi buffer còn ghi lại con trỏ đầu và con trỏ cuối để đánh dấu đoạn dữ liệu hợp lệ. Khi một buffer đầy, `deque` sẽ cấp phát buffer mới ở phía trước hoặc phía sau để lưu thêm dữ liệu. Có thể tham khảo giải thích chi tiết hơn tại bài [nguyên lý cài đặt `deque` trong "STL source code analysis"](https://www.cnblogs.com/q1076452761/p/16903229.html).
 
 ## `list`
 
-`std::list` 是 STL 提供的 [双向链表](../../ds/linked-list.md) 数据结构．能够提供线性复杂度的随机访问，以及常数复杂度的插入和删除．
+`std::list` là cấu trúc [danh sách liên kết đôi](../../ds/linked-list.md) do STL cung cấp. Có thể truy cập phần tử bằng cách duyệt tuyến tính, còn thao tác chèn và xóa có độ phức tạp hằng số.
 
-### `list` 的使用方法
+<span id="list-&#30340;&#20351;&#29992;&#26041;&#27861;"></span>
 
-`list` 的使用方法与 `deque` 基本相同，但是增删操作和访问的复杂度不同．详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/list)．`list` 的迭代器、长度、元素增删及修改相关的函数与 `deque` 相同，因此不作详细介绍．
+### Cách dùng `list`
 
-#### 元素访问
+Cách dùng `list` về cơ bản giống `deque`, nhưng độ phức tạp của thao tác thêm xóa và truy cập khác nhau. Nội dung chi tiết [xem tại tài liệu C++](https://zh.cppreference.com/w/cpp/container/list). Các hàm liên quan đến iterator, độ dài, thêm xóa và sửa phần tử của `list` giống `deque`, nên không trình bày chi tiết.
 
-由于 `list` 的实现是链表，因此它不提供随机访问的接口．若需要访问中间元素，则需要使用迭代器．
+<span id="&#20803;&#32032;&#35775;&#38382;_3"></span>
 
--   `front()` 返回首元素的引用．
--   `back()` 返回末尾元素的引用．
+#### Truy cập phần tử
 
-#### 操作
+Vì `list` được cài đặt bằng danh sách liên kết, nó không cung cấp giao diện truy cập ngẫu nhiên. Nếu cần truy cập phần tử ở giữa, cần dùng iterator.
 
-`list` 类型还提供了一些针对其特性实现的 STL 算法函数．由于这些算法需要 [随机访问迭代器](./iterator.md)，因此 `list` 提供了特别的实现以便于使用．这些算法有 `splice()`、`remove()`、`sort()`、`unique()`、`merge()` 等．
+-   `front()` trả về tham chiếu đến phần tử đầu tiên.
+-   `back()` trả về tham chiếu đến phần tử cuối cùng.
 
-## `forward_list`（C++11）
+<span id="&#25805;&#20316;_1"></span>
 
-`std::forward_list` 是 STL 提供的 [单向链表](../../ds/linked-list.md) 数据结构，相比于 `std::list` 减小了空间开销．
+#### Thao tác
 
-### `forward_list` 的使用方法
+Kiểu `list` còn cung cấp một số hàm thuật toán STL được cài đặt riêng theo đặc tính của nó. Vì các thuật toán này cần [random-access iterator](./iterator.md), `list` cung cấp các phiên bản đặc biệt để tiện sử dụng. Các thuật toán này gồm `splice()`, `remove()`, `sort()`, `unique()`, `merge()` và các hàm tương tự.
 
-`forward_list` 的使用方法与 `list` 几乎一致，但是迭代器只有单向的，因此其具体用法不作详细介绍．详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/forward_list)
+## `forward_list` (C++11)
+
+`std::forward_list` là cấu trúc [danh sách liên kết đơn](../../ds/linked-list.md) do STL cung cấp; so với `std::list`, nó giảm chi phí bộ nhớ.
+
+<span id="forward_list-&#30340;&#20351;&#29992;&#26041;&#27861;"></span>
+
+### Cách dùng `forward_list`
+
+Cách dùng `forward_list` gần như giống `list`, nhưng iterator chỉ là một chiều, nên ở đây không trình bày chi tiết. Nội dung chi tiết [xem tại tài liệu C++](https://zh.cppreference.com/w/cpp/container/forward_list).

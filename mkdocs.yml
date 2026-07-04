@@ -98,16 +98,16 @@ nav:
         - Con trỏ: lang/pointer.md
       - Hàm: lang/func.md
       - Thao tác tệp: lang/file-op.md
-    - C++ 标准库:
-      - C++ 标准库简介: lang/csl/index.md
-      - STL 容器:
-        - STL 容器简介: lang/csl/container.md
-        - 迭代器: lang/csl/iterator.md
-        - 序列式容器: lang/csl/sequence-container.md
-        - 关联式容器: lang/csl/associative-container.md
-        - 无序关联式容器: lang/csl/unordered-container.md
-        - 容器适配器: lang/csl/container-adapter.md
-      - STL 算法: lang/csl/algorithm.md
+    - Thư viện chuẩn C++:
+      - Giới thiệu thư viện chuẩn C++: lang/csl/index.md
+      - STL container:
+        - Giới thiệu STL container: lang/csl/container.md
+        - Iterator: lang/csl/iterator.md
+        - Container tuần tự: lang/csl/sequence-container.md
+        - Container kết hợp: lang/csl/associative-container.md
+        - Container kết hợp không thứ tự: lang/csl/unordered-container.md
+        - Container adaptor: lang/csl/container-adapter.md
+      - STL algorithm: lang/csl/algorithm.md
       - bitset: lang/csl/bitset.md
       - string: lang/csl/string.md
       - pair: lang/csl/pair.md
