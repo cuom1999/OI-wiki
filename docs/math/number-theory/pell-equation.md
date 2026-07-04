@@ -187,34 +187,65 @@ vẫn chưa giải quyết hoàn toàn cấu trúc đơn vị của vành số n
 ứng; phần dưới sẽ thảo luận tiếp.
 
 <span id="&#x5e7f;&#x4e49;-pell-&#x65b9;&#x7a0b;"></span>
-### Phuong trinh Pell tong quat
+### Phương trình Pell tổng quát
 
-Do thi cua phuong trinh Pell tong quat $x^2-Dy^2=N$ cung la hyperbol tren mat phang, cung nhan truc $x$ va truc $y$ lam truc doi xung. Nhu da chi ra, mot so nghiem cua phuong trinh $x^2-Dy^2=N$ co the chi khac nhau boi mot thua so la nghiem cua phuong trinh Pell, dieu nay co nghia ta co the chia nghiem cua phuong trinh $x^2-Dy^2=N$ thanh cac lop tuong duong. Voi hai nghiem $(x_1,y_1)$ va $(x_2,y_2)$ cua phuong trinh $x^2-Dy^2=N$, neu ton tai nghiem $(u,v)$ cua phuong trinh Pell sao cho $x_2+y_2\sqrt{D}=(x_1+y_1\sqrt{D})(u+v\sqrt{D})$, thi noi nghiem $(x_1,y_1)$ va $(x_2,y_2)$ tuong duong. Dieu kien can va du de hai nghiem tuong duong la
+Đồ thị của phương trình Pell tổng quát $x^2-Dy^2=N$ cũng là hyperbol trên mặt
+phẳng, cũng nhận trục $x$ và trục $y$ làm trục đối xứng. Như đã chỉ ra, một số
+nghiệm của phương trình $x^2-Dy^2=N$ có thể chỉ khác nhau bởi một thừa số là
+nghiệm của phương trình Pell, điều này có nghĩa ta có thể chia nghiệm của
+phương trình $x^2-Dy^2=N$ thành các lớp tương đương. Với hai nghiệm $(x_1,y_1)$
+và $(x_2,y_2)$ của phương trình $x^2-Dy^2=N$, nếu tồn tại nghiệm $(u,v)$ của
+phương trình Pell sao cho
+$x_2+y_2\sqrt{D}=(x_1+y_1\sqrt{D})(u+v\sqrt{D})$, thì nói nghiệm $(x_1,y_1)$ và
+$(x_2,y_2)$ tương đương. Điều kiện cần và đủ để hai nghiệm tương đương là
 
 $$
 N\mid (x_1x_2-Dy_1y_2),\ N\mid (x_2y_1-x_1y_2).
 $$
 
-Vi nghiem cua phuong trinh Pell tuong doi de tim, mot y tuong tu nhien la tim mot nghiem trong moi lop tuong duong noi tren. Mot khi biet cac nghiem nay, ta co the dung nghiem cua phuong trinh Pell tuong ung de thu tat ca nghiem cua phuong trinh Pell tong quat can tim. Trong cac lop tuong duong cua nghiem phuong trinh Pell tong quat, do tinh doi xung, moi lop deu ton tai nghiem co tung do $y$ khong am nhung nho nhat co the. Neu nghiem nhu vay duy nhat, no duoc goi la nghiem co ban cua lop tuong duong; neu khong, lop tuong duong do nhat dinh co hai nghiem co $y$ khong am va nho nhat, va chung doi xung qua truc $y$, khi do chon nghiem co $x>0$ lam nghiem co ban. Vi vay, giai phuong trinh Pell tong quat $x^2-Dy^2=N$ tuong duong voi tim tap nghiem co ban $U$ cua no. Gia su nghiem co ban cua phuong trinh Pell tuong ung la $(r,s)$, thi tap tat ca nghiem cua phuong trinh Pell tong quat la
+Vì nghiệm của phương trình Pell tương đối dễ tìm, một ý tưởng tự nhiên là tìm
+một nghiệm trong mỗi lớp tương đương nói trên. Một khi biết các nghiệm này, ta
+có thể dùng nghiệm của phương trình Pell tương ứng để thu tất cả nghiệm của
+phương trình Pell tổng quát cần tìm. Trong các lớp tương đương của nghiệm
+phương trình Pell tổng quát, do tính đối xứng, mỗi lớp đều tồn tại nghiệm có
+tung độ $y$ không âm nhưng nhỏ nhất có thể. Nếu nghiệm như vậy duy nhất, nó được
+gọi là nghiệm cơ bản của lớp tương đương; nếu không, lớp tương đương đó nhất
+định có hai nghiệm có $y$ không âm và nhỏ nhất, và chúng đối xứng qua trục $y$,
+khi đó chọn nghiệm có $x>0$ làm nghiệm cơ bản. Vì vậy, giải phương trình Pell
+tổng quát $x^2-Dy^2=N$ tương đương với tìm tập nghiệm cơ bản $U$ của nó. Giả sử
+nghiệm cơ bản của phương trình Pell tương ứng là $(r,s)$, thì tập tất cả nghiệm
+của phương trình Pell tổng quát là
 
 $$
 \{(x,y):x+y\sqrt{D}=\pm(r+s\sqrt{D})^k(u+v\sqrt{D}),k\in\mathbf Z,u+v\sqrt{D}\in U\}.
 $$
 
-So nghiem co ban cua phuong trinh Pell tong quat nhat dinh huu han. Vi tu bieu thuc nghiem tong quat o tren, gia tri tuyet doi $|u+v\sqrt{D}|$ nhat dinh nam giua $r-s\sqrt{D}$ va $r+s\sqrt{D}$. Tai lieu tham khao o cuoi bai cung cap cac uoc luong chat hon ve mien toa do cua nghiem co ban. Di nhien, khac voi truong hop phuong trinh Pell, phuong trinh Pell tong quat co the vo nghiem.
+Số nghiệm cơ bản của phương trình Pell tổng quát nhất định hữu hạn. Vì từ biểu
+thức nghiệm tổng quát ở trên, giá trị tuyệt đối $|u+v\sqrt{D}|$ nhất định nằm
+giữa $r-s\sqrt{D}$ và $r+s\sqrt{D}$. Tài liệu tham khảo ở cuối bài cung cấp các
+ước lượng chặt hơn về miền tọa độ của nghiệm cơ bản. Dĩ nhiên, khác với trường
+hợp phương trình Pell, phương trình Pell tổng quát có thể vô nghiệm.
 
-Ngoai viec dung phep ghep nghiem, de thu tat ca nghiem trong cung mot lop tuong duong tu mot nghiem $(u,v)$ cua phuong trinh Pell tong quat va nghiem co ban $(r,s)$ cua phuong trinh Pell, ta cung co the dung he thuc truy hoi
+Ngoài việc dùng phép ghép nghiệm, để thu tất cả nghiệm trong cùng một lớp tương
+đương từ một nghiệm $(u,v)$ của phương trình Pell tổng quát và nghiệm cơ bản
+$(r,s)$ của phương trình Pell, ta cũng có thể dùng hệ thức truy hồi
 
 $$
 x_{k} = 2rx_{k-1} - x_{k-2},\ y_{k} = 2ry_{k-1} - y_{k-2},
 $$
 
-trong do $x_k+y_k\sqrt{D}=(r+s\sqrt{D})^k(u+v\sqrt{D})$. Ly do la $x_n$ va $y_n$ deu co the viet duoi dang $A(r+s\sqrt{D})^k+B(r-s\sqrt{D})^k$ voi mot cap so thuc $(A,B)$ nao do; theo dinh li Vieta, $r\pm s\sqrt{D}$ la hai nghiem thuc cua phuong trinh $x^2-2rx+1=0$, nen $x_n$ va $y_n$ deu thoa man truy hoi tuyen tinh he so hang bac hai tren. So voi phep ghep nghiem, cong thuc truy hoi nay can it phep nhan hon.
+trong đó $x_k+y_k\sqrt{D}=(r+s\sqrt{D})^k(u+v\sqrt{D})$. Lý do là $x_n$ và
+$y_n$ đều có thể viết dưới dạng $A(r+s\sqrt{D})^k+B(r-s\sqrt{D})^k$ với một cặp
+số thực $(A,B)$ nào đó; theo định lý Vieta, $r\pm s\sqrt{D}$ là hai nghiệm thực
+của phương trình $x^2-2rx+1=0$, nên $x_n$ và $y_n$ đều thỏa mãn truy hồi tuyến
+tính hệ số hằng bậc hai trên. So với phép ghép nghiệm, công thức truy hồi này
+cần ít phép nhân hơn.
 
 <span id="&#x6c42;&#x89e3;&#x65b9;&#x6cd5;"></span>
-## Phuong phap giai
+## Phương pháp giải
 
-Viec giai phuong trinh Pell va phuong trinh Pell tong quat deu co the dua tren phan so lien tuc.
+Việc giải phương trình Pell và phương trình Pell tổng quát đều có thể dựa trên
+phân số liên tục.
 
 <span id="pqa-&#x7b97;&#x6cd5;"></span>
 ### Thuật toán PQa
