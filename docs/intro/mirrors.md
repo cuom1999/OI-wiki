@@ -1,19 +1,24 @@
-**OI Wiki** 部署在国外服务器上，有时可能会因为各种原因，出现访问不通畅的情况．
+**OI Wiki** được triển khai trên máy chủ ở nước ngoài, nên đôi khi việc truy
+cập có thể không ổn định vì nhiều lý do.
 
-我们搭建了一个状态页：<https://status.oi-wiki.org>，用于监控 **OI Wiki** 站点的在线情况．如果你遇到了无法访问的问题，可以打开状态页，寻找可以连接的镜像站．
+Dự án có một trang trạng thái tại <https://status.oi-wiki.org> để theo dõi
+tình trạng hoạt động của các site **OI Wiki**. Nếu gặp vấn đề truy cập, bạn có
+thể mở trang trạng thái và chọn một mirror kết nối được.
 
-以下是一个 **OI Wiki** 的镜像站列表，可供选用：
+Dưới đây là danh sách mirror của **OI Wiki**:
 
--   **OI Wiki** 主站，线路：DMIT
+-   Site chính của **OI Wiki**, tuyến: DMIT
     -   <https://oi-wiki.org>
 
--   维护者：**OI Wiki**，线路：阿里云，同步频率：与主站相同
+-   Maintainer: **OI Wiki**, tuyến: Alibaba Cloud, tần suất đồng bộ: giống site
+    chính
     -   <http://oi-wiki.com>
 
--   维护者：**OI Wiki**，线路：Netlify，同步频率：与主站相同
+-   Maintainer: **OI Wiki**, tuyến: Netlify, tần suất đồng bộ: giống site chính
     -   <https://demo.oi-wiki.org>
 
--   维护者：琴春（[vx.st](https://vx.st)），线路：AWS，同步频率：与主站相同
+-   Maintainer: 琴春 ([vx.st](https://vx.st)), tuyến: AWS, tần suất đồng bộ:
+    giống site chính
     -   <https://oi-wiki.net>
     -   <https://oi-wiki.wiki>
     -   <https://oi-wiki.win>
@@ -26,5 +31,6 @@
     -   <https://oiwiki.win>
     -   <https://oiwiki.com>
 
--   维护者：Menci（[men.ci](https://men.ci)），线路：Azure + 阿里云 CDN，同步频率：与主站相同
+-   Maintainer: Menci ([men.ci](https://men.ci)), tuyến: Azure + Alibaba Cloud
+    CDN, tần suất đồng bộ: giống site chính
     -   <https://oi.wiki>

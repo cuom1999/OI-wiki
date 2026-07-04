@@ -10,8 +10,20 @@ MkDocs source layout intact.
 - `docs/intro/about.md`: translated project overview.
 - `docs/contest/index.md`, `docs/lang/index.md`, `docs/basic/index.md`:
   translated section introductions.
+- `docs/intro/what-oi-wiki-is-not.md`, `docs/intro/mirrors.md`,
+  `docs/intro/thanks.md`: translated project policy and metadata pages.
+- `docs/contest/problems.md`, `docs/contest/icpc.md`,
+  `docs/contest/io.md`, `docs/contest/dictionary.md`,
+  `docs/contest/common-tricks.md`: translated contest overview and technique
+  pages.
+- `docs/basic/complexity.md`, `docs/basic/amortized-analysis.md`,
+  `docs/basic/enumerate.md`, `docs/basic/simulate.md`: translated basic
+  algorithm foundation pages.
+- Section introductions for search, dynamic programming, strings, mathematics,
+  data structures, graph theory, computational geometry, and miscellaneous
+  topics are translated.
 - `mkdocs.yml`: Vietnamese project metadata and translated top-level
-  navigation labels for the first-pass site shell.
+  navigation labels for translated sections and pages.
 
 The rest of `docs/` is intentionally left in the upstream structure and should
 be translated page by page.

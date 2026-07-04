@@ -1,181 +1,181 @@
-前置知识：[时间复杂度](./complexity.md)
+Kiến thức tiên quyết: [Độ phức tạp thời gian](./complexity.md)
 
-本页面将介绍均摊复杂度的基础知识．
+Trang này giới thiệu các kiến thức cơ bản về độ phức tạp khấu hao.
 
-## 引入
+## Dẫn nhập
 
-均摊分析（Amortized Analysis）是一种用于分析算法和动态数据结构性能的技术．它不仅仅关注单次操作的成本，还通过评估一系列操作的平均成本，为整体性能提供更加准确的评估．均摊分析不涉及概率，且只能确保最坏情况性能的每次操作耗费的平均时间，并不能确认系统的平均性能．在最坏情况下，均摊分析通过将高成本操作的开销分摊到低成本操作上，确保整体操作的平均成本保持在合理范围内．
+Phân tích khấu hao (Amortized Analysis) là một kỹ thuật dùng để phân tích hiệu năng của thuật toán và cấu trúc dữ liệu động. Nó không chỉ quan tâm đến chi phí của một thao tác đơn lẻ, mà còn đánh giá chi phí trung bình trên một chuỗi thao tác để đưa ra nhận định chính xác hơn về hiệu năng tổng thể. Phân tích khấu hao không liên quan đến xác suất; nó chỉ bảo đảm thời gian trung bình cho mỗi thao tác trong trường hợp xấu nhất, chứ không xác nhận hiệu năng trung bình của hệ thống. Trong trường hợp xấu nhất, phân tích khấu hao phân bổ chi phí của các thao tác đắt đỏ sang các thao tác rẻ hơn, từ đó bảo đảm chi phí trung bình của toàn bộ chuỗi thao tác vẫn nằm trong phạm vi hợp lý.
 
-均摊分析通常采用三种主要分析方法：聚合分析、记账分析和势能分析．这些方法各有侧重，分别适用于不同的场景，但它们的共同目标是通过均衡操作成本，优化数据结构在最坏情况下的整体性能表现．
+Phân tích khấu hao thường dùng ba phương pháp chính: phân tích gộp, phân tích kế toán và phân tích thế năng. Mỗi phương pháp có trọng tâm riêng và phù hợp với các tình huống khác nhau, nhưng mục tiêu chung của chúng là cân bằng chi phí thao tác, qua đó tối ưu hiệu năng tổng thể của cấu trúc dữ liệu trong trường hợp xấu nhất.
 
-## 内容
+## Nội dung
 
-考虑一个可扩展的数组，例如 C++ 中的 `vector`，其初始容量为 $m = 1$．每次插入新元素时，如果数组已满，则需要将数组的大小加倍，然后将原数组中的元素复制到新数组中，最后插入新元素．
+Xét một mảng có thể mở rộng, chẳng hạn `vector` trong C++, với dung lượng ban đầu $m = 1$. Mỗi khi chèn một phần tử mới, nếu mảng đã đầy, ta cần nhân đôi kích thước mảng, sao chép các phần tử từ mảng cũ sang mảng mới, rồi cuối cùng chèn phần tử mới.
 
-接下来，将以动态数组的插入操作为例，通过聚合分析、记账分析和势能分析三种方法，分析其均摊成本．
+Tiếp theo, ta dùng thao tác chèn vào mảng động làm ví dụ và phân tích chi phí khấu hao của nó bằng ba phương pháp: phân tích gộp, phân tích kế toán và phân tích thế năng.
 
-### 聚合分析
+### Phân tích gộp
 
-聚合分析（Aggregate Analysis）通过计算一系列操作的总成本，并将其平均到每次操作上，从而得出每次操作的均摊时间复杂度．
+Phân tích gộp (Aggregate Analysis) tính tổng chi phí của một chuỗi thao tác rồi chia đều cho từng thao tác, từ đó thu được độ phức tạp thời gian khấu hao của mỗi thao tác.
 
-以动态数组为例，首先，可以得到插入操作的两个关键成本：
+Với ví dụ mảng động, trước hết ta có hai loại chi phí chính của thao tác chèn:
 
--   如果数组未满，插入操作的成本为 $O(1)$．
--   如果数组已满，则插入操作需要扩容，扩容后复制元素的成本为 $O(m)$，其中 $m$ 为当前数组的大小．
+-   Nếu mảng chưa đầy, chi phí chèn là $O(1)$.
+-   Nếu mảng đã đầy, thao tác chèn cần mở rộng dung lượng; chi phí sao chép phần tử sau khi mở rộng là $O(m)$, trong đó $m$ là kích thước hiện tại của mảng.
 
-所以，为了计算 n 次插入操作的总成本，可以将其分开为两部分计算：
+Vì vậy, để tính tổng chi phí của $n$ thao tác chèn, ta có thể tách thành hai phần:
 
-1.  **插入操作的成本**：每次插入新元素的直接成本是常数时间 $O(1)$，对于 $n$ 次操作，总成本是 $O(n)$．
-2.  **数组扩容的成本**：每次扩容涉及到复制原数组元素到新数组．这些操作发生在数组大小为 $1, 2, 4, \ldots , 2^k$ 的时刻，其中 $2^k$ 是小于等于 $n$ 的最大幂．扩容操作的成本分别是 $1, 2, 4, \ldots , 2^{k-1}$，总和为 $1 + 2 + 4 + \ldots  + 2^{k-1} = 2^k - 1$，这是一个等比数列的和，其结果为 $O(n)$．
+1.  **Chi phí thao tác chèn**: chi phí trực tiếp của mỗi lần chèn phần tử mới là thời gian hằng số $O(1)$; với $n$ thao tác, tổng chi phí là $O(n)$.
+2.  **Chi phí mở rộng mảng**: mỗi lần mở rộng cần sao chép các phần tử của mảng cũ sang mảng mới. Các thao tác này xảy ra khi kích thước mảng là $1, 2, 4, \ldots , 2^k$, trong đó $2^k$ là lũy thừa lớn nhất không vượt quá $n$. Chi phí của các lần mở rộng lần lượt là $1, 2, 4, \ldots , 2^{k-1}$, tổng là $1 + 2 + 4 + \ldots  + 2^{k-1} = 2^k - 1$. Đây là tổng của một cấp số nhân, nên kết quả là $O(n)$.
 
-因此，该数组总的插入成本为 $O(n)$，均摊到每次操作的成本为 $O(1)$．即使在最坏情况下，平均每次插入操作的成本依然是常数时间．
+Do đó, tổng chi phí chèn của mảng là $O(n)$, và chi phí khấu hao trên mỗi thao tác là $O(1)$. Ngay cả trong trường hợp xấu nhất, chi phí trung bình cho mỗi lần chèn vẫn là thời gian hằng số.
 
-### 记账分析
+### Phân tích kế toán
 
-记账法（Accounting Method）通过为每次操作预先分配一个固定的均摊成本来确保所有操作的总成本不超过这些预分配的成本总和．记账法类似于一种 **费用前置支付** 的机制，其中较低成本的操作会存储部分费用，以支付未来高成本的操作．
+Phương pháp kế toán (Accounting Method) gán trước một chi phí khấu hao cố định cho mỗi thao tác để bảo đảm tổng chi phí thực tế của mọi thao tác không vượt quá tổng chi phí đã phân bổ trước. Phương pháp kế toán giống một cơ chế **trả trước chi phí**: các thao tác có chi phí thấp sẽ lưu lại một phần “tín dụng” để trả cho các thao tác có chi phí cao trong tương lai.
 
-以动态数组为例，可以为每次插入操作分配一个固定的均摊成本，以确保在需要扩容时已经预留了足够的费用．
+Với ví dụ mảng động, ta có thể phân bổ một chi phí khấu hao cố định cho mỗi thao tác chèn để bảo đảm khi cần mở rộng dung lượng, ta đã dự trữ đủ chi phí.
 
-1.  **费用分配**：
-    -   假设每次插入操作的实际成本为 $1$，均摊成本设为 $3$．
-    -   其中 $1$ 用于当前插入操作，$2$ 用于未来可能的扩容操作．
+1.  **Phân bổ chi phí**:
+    -   Giả sử chi phí thực tế của mỗi thao tác chèn là $1$, và đặt chi phí khấu hao là $3$.
+    -   Trong đó $1$ dùng cho thao tác chèn hiện tại, $2$ dùng cho các thao tác mở rộng có thể xảy ra trong tương lai.
 
-2.  **费用使用**：
-    -   当数组已满时，需要进行扩容操作，实际成本为 $O(m)$，其中 $m$ 是当前数组的大小．
-    -   假设扩容前数组的元素数量为 $n$，由于原数组的后半部分 $n/2$ 个元素在插入时共预存了 $n$ 单位的均摊成本，恰好足够支付扩容操作的成本．
+2.  **Sử dụng chi phí**:
+    -   Khi mảng đã đầy, cần thực hiện thao tác mở rộng, với chi phí thực tế là $O(m)$, trong đó $m$ là kích thước hiện tại của mảng.
+    -   Giả sử trước khi mở rộng, số phần tử trong mảng là $n$. Vì $n/2$ phần tử ở nửa sau của mảng cũ đã dự trữ tổng cộng $n$ đơn vị chi phí khấu hao khi được chèn, khoản này vừa đủ trả chi phí mở rộng.
 
-以下是一个具体的示例：
+Dưới đây là một ví dụ cụ thể:
 
 ```text
-初始状态：
-arr    = [1, 2, 3, 4]  // 初始数组
-amount = [2, 2, 2, 2]  // 每个元素预存的费用
+Trạng thái ban đầu:
+arr    = [1, 2, 3, 4]  // mảng ban đầu
+amount = [2, 2, 2, 2]  // chi phí dự trữ của từng phần tử
 
-// 第一轮扩容：数组已满，需要扩容
-arr    = [1, 2, 3, 4, null, null, null, null]  // 扩容后数组
-amount = [2, 2, 0, 0, 0, 0, 0, 0]  // 3, 4的费用用于支付扩容
+// Lần mở rộng thứ nhất: mảng đã đầy, cần mở rộng
+arr    = [1, 2, 3, 4, null, null, null, null]  // mảng sau khi mở rộng
+amount = [2, 2, 0, 0, 0, 0, 0, 0]  // chi phí của 3, 4 dùng để trả cho mở rộng
 
-// 继续插入新元素，直至再次满载
-arr    = [1, 2, 3, 4, 5, 6, 7, 8]  // 继续填充数组
-amount = [2, 2, 0, 0, 2, 2, 2, 2]  // 新插入的元素同样预存费用
+// Tiếp tục chèn phần tử mới cho đến khi lại đầy
+arr    = [1, 2, 3, 4, 5, 6, 7, 8]  // tiếp tục lấp đầy mảng
+amount = [2, 2, 0, 0, 2, 2, 2, 2]  // các phần tử mới chèn cũng dự trữ chi phí
 
-// 第二轮扩容：数组再次满载，需要更大的空间
-arr    = [1, 2, 3, 4, 5, 6, 7, 8, null, null, null, null, null, null, null, null]  // 扩容后数组
-amount = [2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  // 5, 6, 7, 8的费用用于支付扩容
+// Lần mở rộng thứ hai: mảng lại đầy, cần không gian lớn hơn
+arr    = [1, 2, 3, 4, 5, 6, 7, 8, null, null, null, null, null, null, null, null]  // mảng sau khi mở rộng
+amount = [2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  // chi phí của 5, 6, 7, 8 dùng để trả cho mở rộng
 ```
 
-以上过程表明，每次插入操作所存储的均摊成本足够支付未来的扩容操作，从而确保了每次操作的均摊成本维持在 $O(1)$．
+Quá trình trên cho thấy chi phí khấu hao được lưu lại từ mỗi thao tác chèn đủ để trả cho các thao tác mở rộng trong tương lai, nhờ đó bảo đảm chi phí khấu hao của mỗi thao tác duy trì ở $O(1)$.
 
-### 势能分析
+### Phân tích thế năng
 
-势能分析（Potential Method）通过定义一个势能函数（通常表示为 $\Phi$），度量数据结构的 **潜在能量**，即系统状态中的预留资源，这些资源可以用来支付未来的高成本操作．势能的变化用于平衡操作序列的总成本，从而确保整个算法的均摊成本在合理范围内．
+Phân tích thế năng (Potential Method) định nghĩa một hàm thế năng (thường ký hiệu là $\Phi$) để đo **năng lượng tiềm ẩn** của cấu trúc dữ liệu, tức các tài nguyên dự trữ trong trạng thái hệ thống có thể dùng để trả cho các thao tác đắt đỏ trong tương lai. Sự thay đổi thế năng được dùng để cân bằng tổng chi phí của chuỗi thao tác, từ đó bảo đảm chi phí khấu hao của toàn bộ thuật toán nằm trong phạm vi hợp lý.
 
-#### 原理
+#### Nguyên lý
 
-首先，定义 **状态**  $S$ 为某一时刻数据结构的状态，该状态可能包含元素数量、容量、指针等信息，其中定义初始状态为 $S_0$，即未进行任何操作时的状态．
+Trước hết, định nghĩa **trạng thái** $S$ là trạng thái của cấu trúc dữ liệu tại một thời điểm; trạng thái này có thể chứa số lượng phần tử, dung lượng, con trỏ, v.v. Trạng thái ban đầu được ký hiệu là $S_0$, tức trạng thái khi chưa thực hiện thao tác nào.
 
-其次，定义势能函数 $\Phi(S)$ 用于度量数据结构状态 $S$ 的势能，其满足以下两个性质：
+Tiếp theo, định nghĩa hàm thế năng $\Phi(S)$ để đo thế năng của trạng thái cấu trúc dữ liệu $S$. Hàm này thỏa hai tính chất sau:
 
-1.  **初始势能**：在数据结构的初始状态 $S_0$ 下，势能 $\Phi(S_0) = 0$．
-2.  **非负性**：在任意状态 $S$ 下，势能 $\Phi(S) \geq 0$．
+1.  **Thế năng ban đầu**: ở trạng thái ban đầu $S_0$ của cấu trúc dữ liệu, thế năng $\Phi(S_0) = 0$.
+2.  **Không âm**: ở mọi trạng thái $S$, thế năng $\Phi(S) \geq 0$.
 
-对于每个操作，其均摊成本 $\hat{c}$ 定义为：
+Với mỗi thao tác, chi phí khấu hao $\hat{c}$ được định nghĩa là:
 
 $$
 \hat{c} = c + \Phi(S') - \Phi(S)
 $$
 
-其中 $c$ 为操作的实际成本，$S$ 和 $S'$ 分别表示操作前后的数据结构状态．该公式表明，均摊成本等于实际成本加上势能的变化．如果操作增加了势能（即 $\Phi(S') > \Phi(S)$），则均摊成本上升；如果操作消耗了势能（即 $\Phi(S') < \Phi(S)$），则均摊成本下降．
+Trong đó $c$ là chi phí thực tế của thao tác, còn $S$ và $S'$ lần lượt là trạng thái cấu trúc dữ liệu trước và sau thao tác. Công thức này cho thấy chi phí khấu hao bằng chi phí thực tế cộng với độ thay đổi của thế năng. Nếu thao tác làm tăng thế năng (tức $\Phi(S') > \Phi(S)$), chi phí khấu hao tăng; nếu thao tác tiêu hao thế năng (tức $\Phi(S') < \Phi(S)$), chi phí khấu hao giảm.
 
-我们可以通过势能函数来分析一系列操作的总成本．设 $S_1, S_2, \dots, S_m$ 为从初始状态 $S_0$ 开始，经过 $m$ 次操作后产生的状态序列，$c_i$ 为第 $i$ 次操作的实际开销，那么第 $i$ 次操作的均摊成本 $p_i$ 为：
+Ta có thể dùng hàm thế năng để phân tích tổng chi phí của một chuỗi thao tác. Gọi $S_1, S_2, \dots, S_m$ là chuỗi trạng thái sinh ra sau $m$ thao tác bắt đầu từ trạng thái ban đầu $S_0$, và $c_i$ là chi phí thực tế của thao tác thứ $i$. Khi đó chi phí khấu hao $p_i$ của thao tác thứ $i$ là:
 
 $$
 p_i = c_i + \Phi(S_i) - \Phi(S_{i-1})
 $$
 
-因此，$m$ 次操作的总时间花销为：
+Do đó, tổng chi phí thời gian của $m$ thao tác là:
 
 $$
 \sum_{i=1}^m c_i = \sum_{i=1}^m p_i + \Phi(S_0) - \Phi(S_m)
 $$
 
-由于 $\Phi(S) \geq \Phi(S_0)$，总时间花销的上界为：
+Vì $\Phi(S) \geq \Phi(S_0)$, cận trên của tổng chi phí thời gian là:
 
 $$
 \sum_{i=1}^m p_i \geq \sum_{i=1}^m c_i
 $$
 
-因此，若 $p_i = O(T(n))$，则 $O(T(n))$ 是均摊复杂度的一个上界．
+Vì vậy, nếu $p_i = O(T(n))$, thì $O(T(n))$ là một cận trên của độ phức tạp khấu hao.
 
-#### 示例：动态数组的扩容分析
+#### Ví dụ: phân tích mở rộng mảng động
 
-以动态数组 `vector` 的插入操作为例，定义如下的势能函数 $\Phi(h)$：
+Với thao tác chèn của mảng động `vector`, định nghĩa hàm thế năng $\Phi(h)$ như sau:
 
 $$
 \Phi(h) = 2n - m
 $$
 
-其中，$n$ 是数组中的元素数量，$m$ 是数组的当前容量．这个势能函数反映了数组中剩余可用空间的数量，即当前容量和实际使用空间之间的差异．
+Trong đó $n$ là số phần tử trong mảng, còn $m$ là dung lượng hiện tại của mảng. Hàm thế năng này phản ánh lượng không gian còn khả dụng trong mảng, tức chênh lệch giữa dung lượng hiện tại và không gian thực sự đã dùng.
 
-1.  **插入操作（无需扩容）**：
-    -   **操作成本**：$O(1)$，因为只需插入一个元素．
-    -   **势能变化**：插入后，元素数量增加 1，势能增加 $2$．
+1.  **Thao tác chèn (không cần mở rộng)**:
+    -   **Chi phí thao tác**: $O(1)$, vì chỉ cần chèn một phần tử.
+    -   **Độ thay đổi thế năng**: sau khi chèn, số phần tử tăng thêm 1, thế năng tăng $2$.
         -   $\Phi(h') - \Phi(h) = 2(n + 1) - m - (2n - m) = 2$
-    -   **均摊成本**：$1 + 2 = 3$
+    -   **Chi phí khấu hao**: $1 + 2 = 3$
 
-2.  **插入操作（触发扩容）**：
-    -   假设当前容量 $m = n$，插入一个新元素时触发扩容，新的容量变为 $2n$．
-    -   **操作成本**：$O(n)$，因为需要将所有元素复制到新数组中，并插入新元素．
-    -   **势能变化**：扩容后，容量增加，势能减少，变化大小为 $2 - n$．
+2.  **Thao tác chèn (kích hoạt mở rộng)**:
+    -   Giả sử dung lượng hiện tại $m = n$; khi chèn một phần tử mới, thao tác mở rộng được kích hoạt và dung lượng mới trở thành $2n$.
+    -   **Chi phí thao tác**: $O(n)$, vì cần sao chép tất cả phần tử sang mảng mới và chèn phần tử mới.
+    -   **Độ thay đổi thế năng**: sau khi mở rộng, dung lượng tăng, thế năng giảm, độ thay đổi là $2 - n$.
         -   $\Phi(h') - \Phi(h) = 2(n + 1) - 2n - (2n - n) = 2 - n$
-    -   **均摊成本**：$n + 1 + (2 - n) = 3$
+    -   **Chi phí khấu hao**: $n + 1 + (2 - n) = 3$
 
-通过上述分析可以看出，尽管扩容操作的实际成本较高，但由于势能函数的设计，整体均摊成本仍然保持在常数级别 $O(1)$．
+Từ phân tích trên có thể thấy, dù chi phí thực tế của thao tác mở rộng khá cao, nhờ cách thiết kế hàm thế năng, chi phí khấu hao tổng thể vẫn giữ ở mức hằng số $O(1)$.
 
-## 扩展示例：堆栈操作
+## Ví dụ mở rộng: thao tác ngăn xếp
 
-堆栈操作是均摊分析的经典应用场景之一．假设堆栈 `S` 支持以下三种操作：
+Thao tác trên ngăn xếp là một trong những ứng dụng kinh điển của phân tích khấu hao. Giả sử ngăn xếp `S` hỗ trợ ba thao tác sau:
 
-| 操作               | 说明         | 实际成本 $c_i$                   |
-| ---------------- | ---------- | ---------------------------- |
-| `S.push(x)`      | 将元素 x 入栈   | $1$                          |
-| `S.pop()`        | 弹出栈顶元素     | $1$                          |
-| `S.multi-pop(k)` | 弹出栈顶 k 个元素 | $O(\min{\lvert S\rvert, k})$ |
+| Thao tác         | Mô tả                       | Chi phí thực tế $c_i$          |
+| ---------------- | --------------------------- | ------------------------------ |
+| `S.push(x)`      | Đưa phần tử x vào ngăn xếp   | $1$                            |
+| `S.pop()`        | Lấy phần tử ở đỉnh           | $1$                            |
+| `S.multi-pop(k)` | Lấy k phần tử ở đỉnh         | $O(\min{\lvert S\rvert, k})$   |
 
-我们将通过聚合分析、记账分析和势能分析三种方法来分析这些堆栈操作的均摊成本．
+Ta sẽ phân tích chi phí khấu hao của các thao tác ngăn xếp này bằng ba phương pháp: phân tích gộp, phân tích kế toán và phân tích thế năng.
 
-### 聚合分析法
+### Phương pháp phân tích gộp
 
-聚合分析将计算所有操作的总成本，并将其平均分摊到每个操作上，从而得出均摊成本．
+Phân tích gộp tính tổng chi phí của tất cả thao tác rồi chia đều cho từng thao tác, từ đó thu được chi phí khấu hao.
 
-1.  对于 $n_{push}$ 次 `push(x)` 操作，每次的成本为 $O(1)$，因此总成本为 $O(n_{push})$．
-2.  对于 $n_{pop}$ 次 `pop()` 操作，每次的成本为 $O(1)$，总成本为 $O(n_{pop})$．
-3.  对于 $n_{multi-pop}$ 次 `multi-pop(k)` 操作，尽管每次的实际成本为 $O(\min(\lvert S \rvert, k))$，但这些操作弹出的元素数量不会超过之前 `push(x)` 的元素数量，因此总成本仍受 $n_{push}$ 的约束．
+1.  Với $n_{push}$ thao tác `push(x)`, mỗi thao tác có chi phí $O(1)$, nên tổng chi phí là $O(n_{push})$.
+2.  Với $n_{pop}$ thao tác `pop()`, mỗi thao tác có chi phí $O(1)$, nên tổng chi phí là $O(n_{pop})$.
+3.  Với $n_{multi-pop}$ thao tác `multi-pop(k)`, dù chi phí thực tế của mỗi thao tác là $O(\min(\lvert S \rvert, k))$, tổng số phần tử bị lấy ra bởi các thao tác này không vượt quá số phần tử đã được `push(x)` trước đó, nên tổng chi phí vẫn bị chặn bởi $n_{push}$.
 
-由于总操作次数 $n = n_{push} + n_{pop} + n_{multi-pop} \leq 2 \times n_{push}$，所以总成本为 $O(n_{push}) = O(n)$，每次操作的均摊成本为 $O(n)/n = O(1)$．
+Vì tổng số thao tác $n = n_{push} + n_{pop} + n_{multi-pop} \leq 2 \times n_{push}$, tổng chi phí là $O(n_{push}) = O(n)$, và chi phí khấu hao của mỗi thao tác là $O(n)/n = O(1)$.
 
-### 记账分析法
+### Phương pháp phân tích kế toán
 
-记账分析为每次 `push(x)` 操作预留一部分费用，以支付未来可能的 `pop()` 或 `multi-pop(k)` 操作．
+Phân tích kế toán dự trữ một phần chi phí cho mỗi thao tác `push(x)` để trả cho các thao tác `pop()` hoặc `multi-pop(k)` có thể xảy ra trong tương lai.
 
-1.  **`S.push(x)`**：假设每次 `push(x)` 操作的均摊成本为 $2$，其中 $1$ 单位用于当前操作，另 $1$ 单位存储为费用，用于支付未来的 `pop()` 或 `multi-pop(k)` 操作．
-2.  **`S.pop()`**：实际成本为 $1$，但由于之前的 `push(x)` 操作已为其预存了 $1$ 单位费用，因此均摊成本为 $0$．
-3.  **`S.multi-pop(k)`**：每个弹出的元素的实际成本为 $1$，可以由之前该元素的 `push(x)` 操作预存的费用支付，因此均摊成本为 $0$．
+1.  **`S.push(x)`**: giả sử chi phí khấu hao của mỗi thao tác `push(x)` là $2$, trong đó $1$ đơn vị dùng cho thao tác hiện tại, và $1$ đơn vị còn lại được lưu làm chi phí để trả cho thao tác `pop()` hoặc `multi-pop(k)` trong tương lai.
+2.  **`S.pop()`**: chi phí thực tế là $1$, nhưng vì thao tác `push(x)` trước đó đã dự trữ $1$ đơn vị chi phí cho phần tử này, nên chi phí khấu hao là $0$.
+3.  **`S.multi-pop(k)`**: chi phí thực tế của mỗi phần tử bị lấy ra là $1$, có thể được trả bằng chi phí đã dự trữ từ thao tác `push(x)` của chính phần tử đó, nên chi phí khấu hao là $0$.
 
-通过以上分析，入栈操作预存的费用足以支付未来该元素的出栈操作，因此每次操作的均摊成本为 $O(1)$．
+Qua phân tích trên, chi phí dự trữ khi đưa phần tử vào ngăn xếp đủ để trả cho thao tác lấy phần tử đó ra trong tương lai, nên chi phí khấu hao của mỗi thao tác là $O(1)$.
 
-### 势能分析法
+### Phương pháp phân tích thế năng
 
-势能分析定义了一个势能函数来衡量堆栈的状态，并利用势能的变化来平衡操作成本．
+Phân tích thế năng định nghĩa một hàm thế năng để đo trạng thái của ngăn xếp và dùng sự thay đổi thế năng để cân bằng chi phí thao tác.
 
-1.  **势能函数**：设 $\Phi(h)$ 为堆栈中的元素数量，即 $\Phi(h) = \lvert S \rvert$．每个元素贡献 $1$ 单位的势能．
-2.  **`S.push(x)`**：每次 `push(x)` 操作增加堆栈中的元素数量，势能增加 $1$，因此均摊成本为 $1 + 1 = 2$．
-3.  **`S.pop()`**：每次 `pop()` 操作减少堆栈中的元素数量，势能减少 $1$，因此均摊成本为 $1 - 1 = 0$．
-4.  **`S.multi-pop(k)`**：`multi-pop(k)` 操作弹出 $k$ 个元素，势能减少 $k$，因此均摊成本为 $k - k = 0$．
+1.  **Hàm thế năng**: đặt $\Phi(h)$ là số phần tử trong ngăn xếp, tức $\Phi(h) = \lvert S \rvert$. Mỗi phần tử đóng góp $1$ đơn vị thế năng.
+2.  **`S.push(x)`**: mỗi thao tác `push(x)` làm tăng số phần tử trong ngăn xếp, thế năng tăng $1$, nên chi phí khấu hao là $1 + 1 = 2$.
+3.  **`S.pop()`**: mỗi thao tác `pop()` làm giảm số phần tử trong ngăn xếp, thế năng giảm $1$, nên chi phí khấu hao là $1 - 1 = 0$.
+4.  **`S.multi-pop(k)`**: thao tác `multi-pop(k)` lấy ra $k$ phần tử, thế năng giảm $k$, nên chi phí khấu hao là $k - k = 0$.
 
-通过以上势能函数设计，`push(x)` 操作的均摊成本为 $2$，而 `pop()` 和 `multi-pop(k)` 操作的均摊成本为 $0$．因此，所有堆栈操作的均摊成本均为 $O(1)$．
+Với cách thiết kế hàm thế năng trên, chi phí khấu hao của thao tác `push(x)` là $2$, còn chi phí khấu hao của `pop()` và `multi-pop(k)` là $0$. Vì vậy, chi phí khấu hao của mọi thao tác ngăn xếp đều là $O(1)$.
 
-## 参考资料
+## Tài liệu tham khảo
 
 -   [Amortized Analysis - Wikipedia](https://en.wikipedia.org/wiki/Amortized_analysis)
 -   [Cornell CS 3110 - Lecture 20: Amortized Analysis](https://www.cs.cornell.edu/courses/cs3110/2011sp/Lectures/lec20-amortized/amortized.htm)

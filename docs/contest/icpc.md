@@ -1,58 +1,80 @@
 author: NachtgeistW, Ir1d, Xeonacid, H-J-Granger, abc1763613206, YuzhenQin
 
-## 赛事介绍
+## Giới thiệu kỳ thi
 
 ### ICPC
 
-**ICPC**（英文：International Collegiate Programming Contest，中文：国际大学生程序设计竞赛）由 ICPC 基金会（英文：ICPC Foundation）举办，是最具影响力的大学生计算机竞赛．由于以前 ACM 赞助这个竞赛，也有很多人习惯叫它 ACM 竞赛．
+**ICPC** (International Collegiate Programming Contest) do ICPC Foundation tổ
+chức và là một trong những cuộc thi lập trình đại học có ảnh hưởng nhất. Vì
+trước đây ACM từng tài trợ cuộc thi này, nhiều người vẫn quen gọi là cuộc thi
+ACM.
 
-ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分．
+ICPC chủ yếu gồm hai phần: vòng khu vực (Regionals) và vòng chung kết thế giới
+(World Finals).
 
-官网地址：<https://icpc.global>
+Trang chính thức: <https://icpc.global>
 
 ### CCPC
 
-官网地址：<https://ccpc.io>
+Trang chính thức: <https://ccpc.io>
 
-中国大学生程序设计竞赛．
+CCPC là China Collegiate Programming Contest, cuộc thi lập trình dành cho sinh
+viên đại học Trung Quốc.
 
-和 ICPC 显著的区别是很多学校是不报销的．
+Một khác biệt đáng chú ý so với ICPC là nhiều trường không hỗ trợ chi phí tham
+gia.
 
-## 赛制介绍
+## Thể thức thi
 
-一般是三个人组成一队使用一台机器，在比赛时有多次提交机会．比赛实时评测并返回结果，如果提交的结果错误会有 20 分钟的罚时，错误次数越多，加罚的时间也越长．每个题目只有在所有数据点全部正确后才能得到分数．比赛排名根据做题数来评判，做题数相同的，根据总用时来评判．总用时是每题用时的和．每题的用时是从比赛开始到做出该题的分钟数与该题的罚时之和．
+Thông thường, mỗi đội gồm ba người dùng chung một máy tính và có thể nộp bài
+nhiều lần trong khi thi. Hệ thống chấm theo thời gian thực và trả kết quả ngay.
+Nếu một lần nộp sai, đội bị phạt 20 phút; số lần sai càng nhiều thì tổng thời
+gian phạt càng lớn. Một bài chỉ được tính là giải được khi vượt qua toàn bộ dữ
+liệu kiểm tra.
 
-一些 ICPC 相关赛事中，比赛结束前一小时进行封榜，封榜后的提交和排名将无法被其他选手看见．
+Bảng xếp hạng trước hết dựa trên số bài giải được. Nếu số bài bằng nhau, thứ
+hạng được quyết định bằng tổng thời gian. Tổng thời gian là tổng thời gian của
+các bài đã giải; thời gian của một bài là số phút từ lúc bắt đầu cuộc thi đến
+lúc giải được bài đó, cộng với thời gian phạt của bài.
 
-在 ICPC 相关赛事中，选手允许带一定量的纸质资料．
+Trong một số sự kiện ICPC, bảng xếp hạng bị đóng băng trong một giờ cuối. Các
+lần nộp và thứ hạng sau khi đóng băng sẽ không hiển thị cho thí sinh khác.
 
-除 ICPC 和 CCPC 外，众多比赛也采用该赛制，如 LeetCode 周赛及全国编程大赛、牛客小白赛练习赛挑战赛等．
+Trong các sự kiện liên quan đến ICPC, thí sinh thường được mang một lượng tài
+liệu giấy nhất định.
 
-## 赛季赛程
+Ngoài ICPC và CCPC, nhiều cuộc thi khác cũng dùng thể thức này, chẳng hạn
+LeetCode Weekly Contest và National Programming Contest, các contest luyện tập
+trên Nowcoder,...
 
--   ICPC/CCPC 网络赛（8 月底至 9 月初）
--   ICPC/CCPC 区域赛（9 月底至 11 月底）
--   ICPC EC Final/CCPC Final（12 月中旬）
--   ICPC World Finals（次年 4 月至 6 月）
+## Lịch mùa thi
 
-## 训练指南
+-   ICPC/CCPC online contest: cuối tháng 8 đến đầu tháng 9.
+-   ICPC/CCPC regional contest: cuối tháng 9 đến cuối tháng 11.
+-   ICPC EC Final/CCPC Final: giữa tháng 12.
+-   ICPC World Finals: tháng 4 đến tháng 6 năm sau.
 
-### 多校联合训练
+## Hướng dẫn luyện tập
 
-暑期在 [HDU OJ](http://acm.hdu.edu.cn) 举行的训练赛．有奖金，题目质量高，历经多年积累已有丰富资源．
+### Multi-University Training
 
-OJ 里查询用的关键词：`Multi-University Training Contest`．
+Đây là loạt contest mùa hè trên [HDU OJ](http://acm.hdu.edu.cn). Contest có
+giải thưởng, chất lượng đề cao và đã tích lũy nhiều tài nguyên qua nhiều năm.
 
-### 国内区域赛
+Từ khóa để tìm trong OJ: `Multi-University Training Contest`.
 
-在 [Virtual Judge](https://vjudge.net/) 里可以搜到精选题集．
+### Regional trong nước
 
-### 训练营
+Bạn có thể tìm các bộ đề chọn lọc trên
+[Virtual Judge](https://vjudge.net/).
 
--   寒假的时候头条/清华/CCPC (Wannafly Camp) 举办的 Camp
--   Wannafly Camp
+### Training camp
 
-## 训练资源
+-   Các camp mùa đông do Toutiao/Tsinghua/CCPC tổ chức, chẳng hạn Wannafly
+    Camp.
+-   Wannafly Camp.
 
--   QOJ：<https://qoj.ac>
--   Codeforces Gym：<https://codeforces.com/gyms>
+## Tài nguyên luyện tập
+
+-   QOJ: <https://qoj.ac>
+-   Codeforces Gym: <https://codeforces.com/gyms>

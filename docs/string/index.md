@@ -1,3 +1,4 @@
-字符串，就是由字符连接而成的序列．
+Xâu là một dãy được tạo thành bằng cách nối các ký tự.
 
-常见的字符串问题包括字符串匹配问题、子串相关问题、前缀/后缀相关问题、回文串相关问题、子序列相关问题等．
+Các bài toán xâu thường gặp gồm khớp xâu, bài toán liên quan đến xâu con,
+tiền tố/hậu tố, xâu đối xứng, dãy con, v.v.

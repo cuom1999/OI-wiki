@@ -1,32 +1,32 @@
-本页面将简要介绍模拟算法．
+Trang này giới thiệu ngắn gọn về thuật toán mô phỏng.
 
-## 简介
+## Giới thiệu
 
-模拟就是用计算机来模拟题目中要求的操作．
+Mô phỏng là dùng máy tính để mô phỏng các thao tác mà đề bài yêu cầu.
 
-模拟题目通常具有码量大、操作多、思路繁复的特点．由于它码量大，经常会出现难以查错的情况，如果在考试中写错是相当浪费时间的．
+Các bài mô phỏng thường có đặc điểm là lượng mã lớn, nhiều thao tác và luồng xử lý phức tạp. Vì lượng mã lớn nên lỗi thường khó tìm; nếu viết sai trong phòng thi thì sẽ rất tốn thời gian.
 
-## 技巧
+## Kỹ thuật
 
-写模拟题时，遵循以下的建议有可能会提升做题速度：
+Khi làm bài mô phỏng, làm theo các gợi ý sau có thể giúp tăng tốc độ giải bài:
 
--   在动手写代码之前，在草纸上尽可能地写好要实现的流程．
--   在代码中，尽量把每个部分模块化，写成函数、结构体或类．
--   对于一些可能重复用到的概念，可以统一转化，方便处理：如，某题给你 "YY-MM-DD 时：分" 把它抽取到一个函数，处理成秒，会减少概念混淆．
--   调试时分块调试．模块化的好处就是可以方便的单独调某一部分．
--   写代码的时候一定要思路清晰，不要想到什么写什么，要按照落在纸上的步骤写．
+-   Trước khi bắt tay viết mã, hãy ghi càng rõ càng tốt luồng xử lý cần cài đặt ra giấy nháp.
+-   Trong mã, cố gắng mô-đun hóa từng phần thành hàm, struct hoặc class.
+-   Với một số khái niệm có thể được dùng lặp lại, có thể chuyển đổi thống nhất để dễ xử lý. Ví dụ, nếu đề bài cho `"YY-MM-DD giờ:phút"`, hãy tách việc xử lý này thành một hàm và chuyển thành giây; làm vậy sẽ giảm nhầm lẫn giữa các khái niệm.
+-   Khi gỡ lỗi, hãy gỡ lỗi theo từng khối. Lợi ích của việc mô-đun hóa là có thể kiểm tra riêng từng phần một cách thuận tiện.
+-   Khi viết mã, cần giữ mạch suy nghĩ rõ ràng; đừng nghĩ đến đâu viết đến đó, mà hãy viết theo các bước đã ghi trên giấy.
 
-实际上，上述步骤在解决其它类型的题目时也是很有帮助的．
+Trên thực tế, các bước trên cũng rất hữu ích khi giải những dạng bài khác.
 
-## 例题详解
+## Phân tích ví dụ
 
 ???+ note "[Climbing Worm](https://open.kattis.com/problems/climbingworm)"
-    一只长度不计的蠕虫位于 $n$ 英寸深的井的底部．它每次向上爬 $u$ 英寸，但是必须休息一次才能再次向上爬．在休息的时候，它滑落了 $d$ 英寸．之后它将重复向上爬和休息的过程．蠕虫爬出井口需要至少爬多少次？如果蠕虫爬完后刚好到达井的顶部，我们也设作蠕虫已经爬出井口．
+    Một con sâu có chiều dài không đáng kể đang ở đáy một cái giếng sâu $n$ inch. Mỗi lần nó bò lên $u$ inch, nhưng phải nghỉ một lần trước khi có thể bò tiếp. Trong lúc nghỉ, nó trượt xuống $d$ inch. Sau đó nó lặp lại quá trình bò lên và nghỉ. Con sâu cần bò ít nhất bao nhiêu lần để ra khỏi miệng giếng? Nếu sau một lần bò, con sâu vừa đúng chạm tới đỉnh giếng, ta cũng xem như nó đã ra khỏi miệng giếng.
 
-??? note "解题思路"
-    直接使用程序模拟蠕虫爬井的过程就可以了．用一个循环重复蠕虫的爬井过程，当攀爬的长度超过或者等于井的深度时跳出．
+??? note "Ý tưởng giải"
+    Chỉ cần dùng chương trình mô phỏng trực tiếp quá trình con sâu bò trong giếng. Dùng một vòng lặp để lặp lại quá trình bò; khi độ cao đã bò được lớn hơn hoặc bằng độ sâu của giếng thì thoát vòng lặp.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/basic/code/simulate/simulate_1.cpp"
@@ -42,8 +42,8 @@
         --8<-- "docs/basic/code/simulate/simulate_1.java"
         ```
 
-## 习题
+## Bài tập
 
--   [「NOIP2014」生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15)
--   [「OpenJudge 3750」魔兽世界](http://bailian.openjudge.cn/practice/3750/)
--   [「SDOI2010」猪国杀 - LibreOJ](https://loj.ac/problem/2885)
+-   [「NOIP2014」Oẳn tù tì phiên bản Big Bang Theory - Universal Online Judge](https://uoj.ac/problem/15)
+-   [「OpenJudge 3750」World of Warcraft](http://bailian.openjudge.cn/practice/3750/)
+-   [「SDOI2010」Sát Tam Quốc - LibreOJ](https://loj.ac/problem/2885)

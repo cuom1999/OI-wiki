@@ -1,160 +1,160 @@
 author: StudyingFather, NachtgeistW, countercurrent-time, Ir1d, H-J-Granger, Chrogeek, sshwy, Suyun514, hsfzLZH1, CBW2007, Xeonacid, kawa-yoiko, Konano
 
-在算法竞赛中，有多种多样的问题类型．
+Trong lập trình thi đấu, có rất nhiều kiểu bài toán khác nhau.
 
-## 传统题
+## Bài truyền thống
 
-**传统题** 是目前算法竞赛中较为常见的题型．
+**Bài truyền thống** là dạng bài hiện khá phổ biến trong lập trình thi đấu.
 
-选手需要提交源代码，评测系统会使用事先准备好一些输入数据和相应的输出数据作为测试点[^note1]，将选手提交的源代码编译后[^note2]，让选手程序读入输入数据，通过将选手输出与事先准备好的输出比较，来判断选手程序是否正确．这种评测方式被称之为 **黑盒评测**[^note3]．
+Thí sinh cần nộp mã nguồn. Hệ thống chấm sẽ dùng một số dữ liệu vào và dữ liệu ra tương ứng đã được chuẩn bị trước làm các test[^note1], biên dịch mã nguồn thí sinh nộp[^note2], cho chương trình của thí sinh đọc dữ liệu vào, rồi so sánh dữ liệu thí sinh xuất ra với dữ liệu ra đã chuẩn bị trước để phán định chương trình có đúng hay không. Cách chấm này được gọi là **chấm hộp đen**[^note3].
 
-对于一个测试点，往往还会设置时间限制和空间限制．
+Với một test, thường sẽ có thêm giới hạn thời gian và giới hạn bộ nhớ.
 
-时间限制，指的是程序运行时间的限制[^note4]．选手程序在一个测试点上的运行时间不能超过给定的时间限制．
+Giới hạn thời gian là giới hạn về thời gian chạy của chương trình[^note4]. Thời gian chạy của chương trình thí sinh trên một test không được vượt quá giới hạn đã cho.
 
-空间限制，指的是程序使用的内存量的限制．选手程序在运行时占用的最大空间不能超过给定的空间限制．
+Giới hạn bộ nhớ là giới hạn về lượng bộ nhớ mà chương trình sử dụng. Lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng khi chạy không được vượt quá giới hạn đã cho.
 
-在程序正常运行结束后，选手的输出会和测试点输出进行比对．这种比对一般采用过滤文末换行和行末空格之后，进行全文比对的方式．对于某些特殊的题目，会使用 [Special Judge](../tools/special-judge.md) 来进行比对．
+Sau khi chương trình kết thúc bình thường, dữ liệu xuất ra của thí sinh sẽ được so sánh với dữ liệu ra của test. Việc so sánh này thường bỏ qua dòng mới ở cuối file và khoảng trắng cuối dòng, rồi so sánh toàn văn. Với một số bài đặc biệt, hệ thống sẽ dùng [Special Judge](../tools/special-judge.md) để so sánh.
 
-这一过程结束后，评测系统会根据程序的运行状态，给出不同的 **评测结果**[^note5]：
+Khi quá trình này kết thúc, hệ thống chấm sẽ căn cứ vào trạng thái chạy của chương trình để đưa ra các **kết quả chấm** khác nhau[^note5]:
 
--   Accepted（AC）：选手程序被接受．
--   Compile Error（CE）：选手程序无法正常编译．
--   Wrong Answer（WA）：选手程序正常结束，但是选手程序的输出与测试点输出不符．
--   Presentation Error（PE）：选手程序正常结束，但是格式不符合要求[^note6]．
--   Runtime Error（RE）：选手程序非正常结束（选手程序结束时的返回值不为零）．
--   Time Limit Exceeded（TLE）：选手程序运行的时间超过了给定的时间限制．
--   Memory Limit Exceeded（MLE）：选手程序占用的最大空间超过了给定的空间限制．
--   Output Limit Exceeded（OLE）：选手程序输出的内容的量超过了最大限制．
+-   Accepted (AC): chương trình của thí sinh được chấp nhận.
+-   Compile Error (CE): chương trình của thí sinh không thể biên dịch bình thường.
+-   Wrong Answer (WA): chương trình của thí sinh kết thúc bình thường, nhưng dữ liệu xuất ra không khớp với dữ liệu ra của test.
+-   Presentation Error (PE): chương trình của thí sinh kết thúc bình thường, nhưng định dạng không đúng yêu cầu[^note6].
+-   Runtime Error (RE): chương trình của thí sinh kết thúc bất thường (giá trị trả về khi chương trình kết thúc không bằng không).
+-   Time Limit Exceeded (TLE): thời gian chạy của chương trình thí sinh vượt quá giới hạn thời gian đã cho.
+-   Memory Limit Exceeded (MLE): lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng vượt quá giới hạn bộ nhớ đã cho.
+-   Output Limit Exceeded (OLE): lượng nội dung chương trình thí sinh xuất ra vượt quá giới hạn tối đa.
 
-在 ICPC 赛事中，你的程序需要在一道题目的所有测试点上都取得 AC 状态，才能视为通过相应的题目．在 OI 赛事中，在一个测试点中取得 AC 状态，即可拿到该测试点的分数[^note7]．
+Trong các kỳ thi ICPC, chương trình của bạn cần đạt trạng thái AC trên tất cả test của một bài thì mới được xem là giải được bài đó. Trong các kỳ thi OI, đạt trạng thái AC trên một test là có thể nhận điểm của test đó[^note7].
 
-## 提交答案题
+## Bài nộp đáp án
 
-**提交答案题** 是直接提交答案的题目．该种题目一般会给出输入文件，要求提交包含有 `XXX1.out`、`XXX2.out`、`XXX3.out`…`XXXn.out` 的压缩包、文件夹或纯文件．
+**Bài nộp đáp án** là dạng bài nộp trực tiếp đáp án. Dạng bài này thường cung cấp các file dữ liệu vào và yêu cầu nộp một file nén, thư mục hoặc các file thuần chứa `XXX1.out`, `XXX2.out`, `XXX3.out`…`XXXn.out`.
 
-提交答案后，评测系统会比较答案文件与标准答案，根据选手答案的优劣情况和任务完成度，给予一定的分数．
+Sau khi nộp đáp án, hệ thống chấm sẽ so sánh các file đáp án với đáp án chuẩn, rồi cho một số điểm nhất định dựa trên chất lượng đáp án của thí sinh và mức độ hoàn thành nhiệm vụ.
 
-因为提交答案题不需要运行源程序，故提交答案题不存在时间和空间限制．
+Vì bài nộp đáp án không cần chạy chương trình nguồn, dạng bài này không có giới hạn thời gian và bộ nhớ.
 
-做这种题目一般有两种方法：
+Thông thường có hai cách làm dạng bài này:
 
--   手玩．这种方法简单粗暴，但是遇到较大的数据就没辙了．
--   编写一个程序来获得答案文件．
+-   Làm thủ công. Cách này đơn giản và trực diện, nhưng gặp dữ liệu lớn thì gần như không xử lý được.
+-   Viết một chương trình để sinh các file đáp án.
 
-## 交互题
+## Bài tương tác
 
-**交互题** 是需要选手程序与测评程序交互来完成任务的题目．一类常见的情形是，选手程序向测评程序发出询问，并得到其反馈．测评程序可能对选手的询问作出限制，或调整应答策略来尽可能增加询问次数，这也给题目带来了更多变化．
+**Bài tương tác** là dạng bài yêu cầu chương trình của thí sinh tương tác với chương trình chấm để hoàn thành nhiệm vụ. Một tình huống phổ biến là chương trình của thí sinh gửi truy vấn đến chương trình chấm và nhận phản hồi. Chương trình chấm có thể đặt giới hạn lên các truy vấn của thí sinh, hoặc điều chỉnh chiến lược trả lời để cố gắng làm tăng số lượt truy vấn, từ đó tạo thêm nhiều biến thể cho bài toán.
 
-更详细的交互题讲解可以看 [交互题](./interaction.md)．
+Có thể xem phần giải thích chi tiết hơn ở [bài tương tác](./interaction.md).
 
-交互方式主要有如下两种．虽然技术上有不小的差异，但在考察算法的本质上它们并没有实际区别．
+Các phương thức tương tác chủ yếu gồm hai loại sau. Dù khác nhau khá nhiều về mặt kỹ thuật, về bản chất kiểm tra thuật toán thì chúng không có khác biệt thực sự.
 
-### STDIO 交互
+### Tương tác STDIO
 
-STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的交互手段，也是 ICPC 系列赛事中的标准．Codeforces 提供了一个更加简要的 [说明（英文）](https://codeforces.com/blog/entry/45307)．
+Tương tác STDIO (tương tác I/O chuẩn) là phương thức tương tác trên các nền tảng trực tuyến như Codeforces, AtCoder, đồng thời cũng là chuẩn trong các kỳ thi thuộc hệ ICPC. Codeforces có một [hướng dẫn ngắn gọn hơn (tiếng Anh)](https://codeforces.com/blog/entry/45307).
 
-???+ note "例题 [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559)"
-    请注意最下方添加内容．
-    
-    本题是一道交互题．
-    
-    位于 $n \times m$ 个方格组成的黑暗迷宫的你，需要走到这个迷宫的终点，以完成迷宫挑战．
-    
-    最开始，你位于迷宫的起点即 $(1,1)$ 处，且面向右侧，终点位于 $(n,m)$ 处．迷宫中任意两个方格之间均连通，且仅有唯一的一条路径，两个相邻（即上、下、左、右四连通）方格间长度为一个单位长度．两个相邻方格之间可能会有墙壁，墙壁厚度相对于方格而言非常小，粗略不计．迷宫的边界均有墙壁，且每一堵墙壁均与边界连通．迷宫是完全黑暗的，这意味着，你无法得到除 $(n,m)$ 以外的任何信息．
-    
-    为了在黑暗条件下尽量不迷路，每次前进时你只能从当前格子出发，沿着左侧或右侧墙壁，左手或右手扶着墙壁前进，并且使扶着墙壁的手移动距离恰好为一个单位长度．需要注意的是，若左侧或右侧墙壁不存在，则沿该侧方向无法前进．
-    
-    在黑暗中过久的你会感到恐惧，因此你需要在你尽早走出迷宫．如果你没有在限定步数内走出迷宫，挑战将会失败．
+???+ note "Ví dụ [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559)"
+    Hãy chú ý phần được thêm ở cuối.
 
-对于这类题目，选手只需像往常一样将询问写到标准输出，**刷新输出缓冲** 后从标准输入读取结果．选手程序刷新输出缓冲后，通过管道连接它的测评程序（称为交互器）才能立刻接收到这些数据．在 C/C++ 中，`fflush(stdout)` 和 `std::cout << std::flush` 可以实现这个操作（使用 `std::cout << std::endl` 换行时也会自动刷新缓冲区，但是 `std::cout << '\n'` 不会）；Pascal 则是 `flush(output)`．
+    Đây là một bài tương tác.
 
-### Grader 交互
+    Bạn đang ở trong một mê cung tối gồm $n \times m$ ô vuông và cần đi tới đích của mê cung để hoàn thành thử thách.
 
-Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平台的竞赛）．
+    Ban đầu, bạn ở điểm xuất phát của mê cung, tức ô $(1,1)$, và quay mặt sang phải; điểm đích nằm ở ô $(n,m)$. Giữa hai ô bất kỳ trong mê cung đều liên thông, và chỉ có đúng một đường đi duy nhất; độ dài giữa hai ô kề nhau (tức kề theo bốn hướng trên, dưới, trái, phải) là một đơn vị. Giữa hai ô kề nhau có thể có tường; độ dày của tường rất nhỏ so với ô vuông nên có thể bỏ qua trong mô hình xấp xỉ. Biên của mê cung đều có tường, và mỗi bức tường đều nối với biên. Mê cung hoàn toàn tối, nghĩa là ngoài $(n,m)$ ra, bạn không thể nhận được bất kỳ thông tin nào.
 
-???+ note "例题 [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206)"
-    有 $N$ 个严格递增的非负整数 $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$．你需要找出 $a_{i+1}−a_i (0\leq i\leq N−1)$ 里的最大的值．
-    
-    你的程序不能直接读入这个整数序列，但是你可以通过给定的函数来查询该序列的信息．关于查询函数的细节，请根据你所使用的语言，参考下面的实现细节部分．
-    
-    你需要实现一个函数，该函数返回 $a_{i+1}−a_i (0\leq i\leq N−1)$ 中的最大值．
+    Để cố gắng không bị lạc trong bóng tối, mỗi lần đi tiếp bạn chỉ có thể xuất phát từ ô hiện tại, men theo bức tường bên trái hoặc bên phải, dùng tay trái hoặc tay phải chạm vào tường để đi, và làm cho khoảng cách tay chạm tường di chuyển đúng bằng một đơn vị. Cần chú ý rằng nếu phía bên trái hoặc bên phải không có tường, thì không thể đi theo hướng phía đó.
 
-对于这类题目，选手只需编写一个特定的函数完成某项任务，它通过调用给定的若干辅助函数来进行交互．为了便于选手在本地测试，题目会下发一个头文件与一个参考测评程序 `grader.cpp`（对于 Pascal 语言是一个库 `graderlib`），选手将自己的程序与 `grader.cpp` 一同编译方可得到可执行文件．
+    Ở trong bóng tối quá lâu sẽ khiến bạn sợ hãi, vì vậy bạn cần ra khỏi mê cung càng sớm càng tốt. Nếu bạn không ra khỏi mê cung trong số bước giới hạn, thử thách sẽ thất bại.
+
+Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩn như bình thường, **xả bộ đệm đầu ra** rồi đọc kết quả từ đầu vào chuẩn. Sau khi chương trình của thí sinh xả bộ đệm đầu ra, chương trình chấm được nối với nó qua pipe (gọi là interactor) mới có thể nhận ngay các dữ liệu này. Trong C/C++, có thể dùng `fflush(stdout)` và `std::cout << std::flush` để thực hiện thao tác này (khi xuống dòng bằng `std::cout << std::endl` thì bộ đệm cũng được tự động xả, nhưng `std::cout << '\n'` thì không); trong Pascal là `flush(output)`.
+
+### Tương tác Grader
+
+Phương thức tương tác Grader thường gặp trong các kỳ thi OI quốc tế như IOI, APIO (đặc biệt là các kỳ thi trên nền tảng CMS).
+
+???+ note "Ví dụ [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206)"
+    Có $N$ số nguyên không âm tăng nghiêm ngặt $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$. Bạn cần tìm giá trị lớn nhất trong các hiệu $a_{i+1}−a_i (0\leq i\leq N−1)$.
+
+    Chương trình của bạn không thể trực tiếp đọc dãy số nguyên này, nhưng bạn có thể truy vấn thông tin của dãy thông qua các hàm đã cho. Về chi tiết của hàm truy vấn, hãy tham khảo phần chi tiết cài đặt bên dưới theo ngôn ngữ bạn sử dụng.
+
+    Bạn cần cài đặt một hàm trả về giá trị lớn nhất trong $a_{i+1}−a_i (0\leq i\leq N−1)$.
+
+Với dạng bài này, thí sinh chỉ cần viết một hàm cụ thể để hoàn thành một nhiệm vụ; hàm này tương tác bằng cách gọi một số hàm phụ trợ được cho sẵn. Để thí sinh tiện kiểm thử cục bộ, đề bài sẽ phát một file header và một chương trình chấm tham khảo `grader.cpp` (với Pascal là một thư viện `graderlib`); thí sinh cần biên dịch chương trình của mình cùng với `grader.cpp` để thu được file thực thi.
 
 ```sh
 g++ grader.cpp my_solution.cpp -o my_solution -Wall -O2
-./my_solution   # 执行程序
+./my_solution   # Thực thi chương trình
 ```
 
-编译得到的程序表现与传统题程序类似．它会打开固定的文件，以固定的格式读取数据，调用选手编写的函数，并将结果和若干信息（例如询问的次数、答案正确性）显示在标准输出上．
+Chương trình sau khi biên dịch có hành vi giống chương trình của bài truyền thống. Nó sẽ mở các file cố định, đọc dữ liệu theo định dạng cố định, gọi hàm do thí sinh viết, rồi hiển thị kết quả và một số thông tin (ví dụ số lần truy vấn, tính đúng sai của đáp án) ra đầu ra chuẩn.
 
-实际测评时，选手的程序会与一个不同的 `grader.cpp` 编译．这个 `grader.cpp` 将以类似的方式调用选手编写的函数，并记录其得分．一般来说，这个版本的 `grader.cpp` 所有全局符号都会设为 `static`，也即不能通过冲突命名的方式破解它，但是任何尝试突破 grader 限制的行为都会被判失格 (disqualification)．
+Khi chấm thật, chương trình của thí sinh sẽ được biên dịch với một `grader.cpp` khác. `grader.cpp` này sẽ gọi hàm do thí sinh viết theo cách tương tự và ghi nhận điểm số. Nói chung, mọi ký hiệu toàn cục trong phiên bản `grader.cpp` này đều được đặt là `static`, tức không thể phá bằng cách đặt tên xung đột; tuy nhiên mọi hành vi cố gắng vượt qua giới hạn của grader đều sẽ bị truất quyền (disqualification).
 
-### 差别
+### Khác biệt
 
-STDIO 交互的一个明显优势在于它可以支持任何编程语言，但是输入输出的耗时容易成为问题设计的瓶颈，导致有时无法区分程序的时间效率差别；Grader 交互则恰好相反，由于函数调用的开销不大，常常可以允许 $10^6$ 数量级的询问次数，但是语言的限制是其短板．
+Một ưu điểm rõ ràng của tương tác STDIO là nó hỗ trợ được mọi ngôn ngữ lập trình, nhưng chi phí thời gian của nhập xuất dễ trở thành nút thắt khi thiết kế bài, khiến đôi khi khó phân biệt chênh lệch hiệu quả thời gian giữa các chương trình. Tương tác Grader thì ngược lại: vì chi phí gọi hàm không lớn, nó thường cho phép số lượt truy vấn ở cỡ $10^6$, nhưng điểm yếu là bị hạn chế về ngôn ngữ.
 
-如果自己设计题目或举办比赛，需要对二者认真权衡和比较．
+Nếu tự thiết kế bài hoặc tổ chức kỳ thi, cần cân nhắc và so sánh hai phương thức này một cách nghiêm túc.
 
-## 通信题
+## Bài truyền tin
 
-**通信题** 是需要两个选手程序进行通信，合作完成某项任务的题目．第一个程序接收问题的输入，并产生某些输出；第二个程序的输入会与第一个的输出相关（有时是原封不动地作为一个参数，有时会由评测端处理得到），它需要产生问题的解．
+**Bài truyền tin** là dạng bài yêu cầu hai chương trình của thí sinh giao tiếp với nhau và phối hợp hoàn thành một nhiệm vụ. Chương trình thứ nhất nhận dữ liệu vào của bài toán và sinh một số dữ liệu ra; dữ liệu vào của chương trình thứ hai sẽ liên quan đến dữ liệu ra của chương trình thứ nhất (đôi khi được giữ nguyên làm một tham số, đôi khi được phía chấm xử lý rồi tạo ra), và chương trình thứ hai cần sinh lời giải của bài toán.
 
-通信题的例子有：[UOJ #178. 新年的贺电](https://uoj.ac/problem/178)，[#454.【UER #8】打雪仗](https://uoj.ac/problem/454) 等．
+Ví dụ về bài truyền tin có: [UOJ #178. 新年的贺电](https://uoj.ac/problem/178), [#454.【UER #8】打雪仗](https://uoj.ac/problem/454), v.v.
 
-本地测试的方法由于题目设定的不同而多种多样，常用的形式如：
+Phương pháp kiểm thử cục bộ rất đa dạng tùy theo thiết lập của bài, các hình thức thường dùng gồm:
 
--   手工输入
--   编写一个辅助程序，转换第一个程序的输出到第二个程序的输入
--   用双向管道将两个程序的标准输入/输出连接起来
+-   Nhập thủ công
+-   Viết một chương trình phụ trợ để chuyển đổi đầu ra của chương trình thứ nhất thành đầu vào của chương trình thứ hai
+-   Dùng pipe hai chiều để nối đầu vào/đầu ra chuẩn của hai chương trình với nhau
 
-由于评测平台对于通信题的支持有限，因而目前为止，通信题只常见于 IOI 系列赛和 UOJ 等少数在线平台举办的比赛．它仍是一个有待探索的领域．
+Do các nền tảng chấm còn hỗ trợ hạn chế cho bài truyền tin, đến nay dạng bài này chỉ thường gặp trong các kỳ thi hệ IOI và các cuộc thi do một số ít nền tảng trực tuyến như UOJ tổ chức. Đây vẫn là một lĩnh vực còn cần được khám phá.
 
-## 函数补全题
+## Bài hoàn thiện hàm
 
-**函数补全题** 是需要选手补全程序的题目．可以理解为在一道交互题中，题目给定了选手代码，要求编写辅助函数．
+**Bài hoàn thiện hàm** là dạng bài yêu cầu thí sinh hoàn thiện chương trình. Có thể hiểu là trong một bài tương tác, đề bài đã cho sẵn mã của thí sinh và yêu cầu viết các hàm phụ trợ.
 
-通常有以下几种形式：
+Thông thường có một số hình thức sau:
 
--   给定一个程序，并告知要求补全的代码块将被嵌入在哪里．
--   不给出程序，而将输入信息作为待提交函数的参数．
+-   Cho sẵn một chương trình và cho biết khối mã cần hoàn thiện sẽ được nhúng vào đâu.
+-   Không cho chương trình, mà truyền thông tin đầu vào dưới dạng tham số của hàm cần nộp.
 
-这种题在 [LeetCode](https://leetcode.com/) 和 [PTA - 拼题 A](https://pintia.cn/problem-sets) 上比较多见．
+Dạng bài này khá thường gặp trên [LeetCode](https://leetcode.com/) và [PTA - 拼题 A](https://pintia.cn/problem-sets).
 
-## 其他类型
+## Các dạng khác
 
-???+ note "例题 [Quine](https://loj.ac/problem/4)"
-    写一个程序，使其能输出自己的源代码．
-    
-    代码中必须至少包含十个可见字符．
+???+ note "Ví dụ [Quine](https://loj.ac/problem/4)"
+    Viết một chương trình có thể in ra chính mã nguồn của nó.
 
-题目很经典，但是在绝大多数 OJ 上都很难实现．
+    Mã nguồn phải chứa ít nhất mười ký tự hiển thị được.
 
-??? note "参考代码"
-    **注意**：源代码不包含下方第一行（即 `// clang-format off`）．
-    
+Bài toán này rất kinh điển, nhưng trên phần lớn OJ thì rất khó triển khai.
+
+??? note "Mã tham khảo"
+    **Chú ý**: mã nguồn không chứa dòng đầu tiên bên dưới (tức `// clang-format off`).
+
     ```cpp
     // clang-format off
     #include<cstdio>
-    
+
     char *s={"#include<cstdio>%cchar *s={%c%s%c};%cint main(){printf(s,10,34,s,34,10);return 0;}"};
-    
+
     int main(){printf(s,10,34,s,34,10);return 0;}
     ```
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^note1]: 因为技术上和资源上的限制，一道题目的测试点大多数情况下不能覆盖满足数据范围的全部数据．
+[^note1]: Do hạn chế về kỹ thuật và tài nguyên, trong đa số trường hợp, các test của một bài không thể bao phủ toàn bộ dữ liệu thỏa mãn phạm vi dữ liệu.
 
-[^note2]: 对于 Python 这样的解释性语言则直接由解释器解释运行程序．
+[^note2]: Với các ngôn ngữ thông dịch như Python, chương trình sẽ được trình thông dịch trực tiếp thông dịch và chạy.
 
-[^note3]: 事实上评测系统的实现远比这个复杂，这里只是大概介绍了评测系统的评测过程．
+[^note3]: Trên thực tế, cài đặt của hệ thống chấm phức tạp hơn điều này rất nhiều; ở đây chỉ giới thiệu sơ lược quá trình chấm của hệ thống.
 
-[^note4]: 准确来说，一般是程序的用户态时间．
+[^note4]: Nói chính xác hơn, thường là thời gian ở chế độ người dùng của chương trình.
 
-[^note5]: 这里的评测结果大多也适用于其他类型题目．
+[^note5]: Phần lớn kết quả chấm ở đây cũng áp dụng cho các dạng bài khác.
 
-[^note6]: 大多数评测系统会将 PE 状态归到 WA 状态当中．
+[^note6]: Hầu hết hệ thống chấm sẽ quy trạng thái PE vào trạng thái WA.
 
-[^note7]: 一些测试点可能会有部分分，选手在完成一个测试点的部分任务，或者选手的输出正确但不够优的情况下，可以获得一定比例的分数．
+[^note7]: Một số test có thể có điểm thành phần; khi thí sinh hoàn thành một phần nhiệm vụ của một test, hoặc dữ liệu xuất ra của thí sinh đúng nhưng chưa đủ tối ưu, thí sinh có thể nhận một tỷ lệ điểm nhất định.

@@ -1,40 +1,40 @@
 author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Saisyc, shuzhouliu, Xeonacid, xyf007
 
-本页面将简要介绍枚举算法．
+Trang này giới thiệu ngắn gọn về thuật toán liệt kê.
 
-## 简介
+## Giới thiệu
 
-枚举（英语：Enumerate）是基于已有知识来猜测答案的一种问题求解策略．
+Liệt kê (tiếng Anh: Enumerate) là một chiến lược giải bài toán bằng cách dựa trên kiến thức đã có để đoán đáp án.
 
-枚举的思想是不断地猜测，从可能的集合中一一尝试，然后再判断题目的条件是否成立．
+Ý tưởng của liệt kê là liên tục thử các khả năng: lần lượt xét từng phần tử trong tập ứng viên, rồi kiểm tra điều kiện của bài toán có được thỏa mãn hay không.
 
-## 要点
+## Điểm chính
 
-### 给出解空间
+### Xác định không gian nghiệm
 
-建立简洁的数学模型．
+Xây dựng một mô hình toán học gọn gàng.
 
-枚举的时候要想清楚：可能的情况是什么？要枚举哪些要素？
+Khi liệt kê, cần nghĩ rõ: các trường hợp có thể là gì? Cần liệt kê những yếu tố nào?
 
-### 减少枚举的空间
+### Thu hẹp không gian liệt kê
 
-枚举的范围是什么？是所有的内容都需要枚举吗？
+Phạm vi liệt kê là gì? Có cần liệt kê toàn bộ mọi thứ hay không?
 
-在用枚举法解决问题的时候，一定要想清楚这两件事，否则会带来不必要的时间开销．
+Khi giải bài toán bằng phương pháp liệt kê, nhất định phải suy nghĩ kỹ hai câu hỏi này; nếu không sẽ phát sinh chi phí thời gian không cần thiết.
 
-### 选择合适的枚举顺序
+### Chọn thứ tự liệt kê phù hợp
 
-根据题目判断．比如例题中要求的是最大的符合条件的素数，那自然是从大到小枚举比较合适．
+Cần quyết định theo yêu cầu của bài toán. Chẳng hạn nếu bài ví dụ yêu cầu số nguyên tố lớn nhất thỏa điều kiện, thì hiển nhiên liệt kê từ lớn đến nhỏ sẽ phù hợp hơn.
 
-## 例题
+## Ví dụ
 
-以下是一个使用枚举解题与优化枚举范围的例子．
+Dưới đây là một ví dụ về cách dùng liệt kê để giải bài và tối ưu phạm vi liệt kê.
 
-??? note "例题"
-    给定一个数组，其所有元素互不相同且均不为 $0$．求该数组中和为 $0$ 的数对个数．
+??? note "Đề bài"
+    Cho một mảng có tất cả phần tử đôi một khác nhau và đều khác $0$. Hãy tìm số cặp số trong mảng có tổng bằng $0$.
 
-??? note "解题思路"
-    枚举两个数的代码很容易就可以写出来．
+??? note "Ý tưởng giải"
+    Rất dễ viết đoạn mã liệt kê hai số.
     
     === "C++"
         ```cpp
@@ -58,9 +58,9 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
             if (a[i] + a[j] == 0) ++ans;
         ```
     
-    来看看枚举的范围如何优化．由于题中没要求数对是有序的，答案就是有序的情况的两倍（考虑如果 `(a, b)` 是答案，那么 `(b, a)` 也是答案）．对于这种情况，只需统计人为要求有顺序之后的答案，最后再乘上 $2$ 就好了．
+    Hãy xem cách tối ưu phạm vi liệt kê. Vì đề bài không yêu cầu cặp số có thứ tự, đáp án bằng hai lần số trường hợp có thứ tự (vì nếu `(a, b)` là đáp án, thì `(b, a)` cũng là đáp án). Với tình huống này, ta chỉ cần đếm đáp án sau khi tự đặt thêm một thứ tự, rồi cuối cùng nhân với $2$.
     
-    不妨要求第一个数要出现在靠后的位置．代码如下：
+    Chẳng hạn, ta yêu cầu số thứ nhất phải xuất hiện ở vị trí phía sau. Đoạn mã như sau:
     
     === "C++"
         ```cpp
@@ -87,11 +87,11 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
         ans *= 2;
         ```
     
-    不难发现这里已经减少了 $j$ 的枚举范围，减少了这段代码的时间开销．
+    Có thể thấy phạm vi liệt kê của $j$ đã được giảm, nhờ đó giảm chi phí thời gian của đoạn mã này.
     
-    我们可以在此之上进一步优化．
+    Ta còn có thể tối ưu thêm.
     
-    两个数是否都一定要枚举出来呢？枚举其中一个数之后，题目的条件已经确定了其他的要素（另一个数）的条件，如果能找到一种方法直接判断题目要求的那个数是否存在，就可以省掉枚举后一个数的时间了．较为进阶地，在数据范围允许的情况下，我们可以使用桶[^1]记录遍历过的数．
+    Có nhất thiết phải liệt kê cả hai số không? Sau khi liệt kê một số, điều kiện của bài toán đã xác định điều kiện cho yếu tố còn lại (số kia). Nếu tìm được cách trực tiếp kiểm tra số mà đề bài cần có tồn tại hay không, ta có thể bỏ qua thời gian liệt kê số thứ hai. Tiến thêm một bước, khi phạm vi dữ liệu cho phép, ta có thể dùng thùng[^1] để ghi lại các số đã duyệt.
     
     === "C++"
         ```cpp
@@ -118,15 +118,15 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
         ans *= 2;
         ```
 
-### 复杂度分析
+### Phân tích độ phức tạp
 
--   时间复杂度分析：对 $a$ 数组遍历了一遍就能完成题目要求，当 $n$ 足够大的时候时间复杂度为 $O(n)$．
--   空间复杂度分析：$O(n+\max\{|x|:x\in a\})$．
+-   Phân tích độ phức tạp thời gian: chỉ cần duyệt mảng $a$ một lần để hoàn thành yêu cầu của bài toán; khi $n$ đủ lớn, độ phức tạp thời gian là $O(n)$.
+-   Phân tích độ phức tạp bộ nhớ: $O(n+\max\{|x|:x\in a\})$.
 
-## 习题
+## Bài tập
 
--   [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
+-   [2811: Bài toán tắt đèn - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
 
-## 脚注
+## Chú thích
 
-[^1]: [桶排序](../basic/bucket-sort.md) 以及 [主元素问题](../misc/main-element.md#离线算法) 以及 [Stack Overflow 上对桶数据结构的讲解](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure)（英文）
+[^1]: [Sắp xếp thùng](../basic/bucket-sort.md), [Bài toán phần tử chính](../misc/main-element.md#离线算法) và [phần giải thích về cấu trúc dữ liệu thùng trên Stack Overflow](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure) (tiếng Anh)

@@ -132,11 +132,11 @@ nav:
     - Java 进阶: lang/java-pro.md
   - Thuật Toán Cơ Bản:
     - Tổng quan thuật toán cơ bản: basic/index.md
-    - 复杂度: 
-      - 复杂度简介: basic/complexity.md
-      - 均摊复杂度: basic/amortized-analysis.md
-    - 枚举: basic/enumerate.md
-    - 模拟: basic/simulate.md
+    - Độ phức tạp:
+      - Tổng quan độ phức tạp: basic/complexity.md
+      - Phân tích khấu hao: basic/amortized-analysis.md
+    - Liệt kê: basic/enumerate.md
+    - Mô phỏng: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
     - 贪心: basic/greedy.md
     - 排序:
@@ -221,7 +221,7 @@ nav:
     - Lyndon 分解: string/lyndon.md
     - Main–Lorentz 算法: string/main-lorentz.md
   - Toán:
-    - 数学部分简介: math/index.md
+    - Tổng quan toán học: math/index.md
     - 布尔代数: math/boolean-algebra.md
     - 数字系统:
       - 数字系统简介: math/numeral-sys/intro.md
@@ -345,7 +345,7 @@ nav:
     - 拟阵: math/matroid.md
     - Berlekamp–Massey 算法: math/berlekamp-massey.md
   - Cấu Trúc Dữ Liệu:
-    - 数据结构部分简介: ds/index.md
+    - Tổng quan cấu trúc dữ liệu: ds/index.md
     - 栈: ds/stack.md
     - 队列: ds/queue.md
     - 链表: ds/linked-list.md
@@ -413,7 +413,7 @@ nav:
     - 手指树: ds/finger-tree.md
     - 霍夫曼树: ds/huffman-tree.md
   - Lý Thuyết Đồ Thị:
-    - 图论部分简介: graph/index.md
+    - Tổng quan lý thuyết đồ thị: graph/index.md
     - 图论相关概念: graph/concept.md
     - 图的存储: graph/save.md
     - DFS（图论）: graph/dfs.md
@@ -481,7 +481,7 @@ nav:
     - 支配树: graph/dominator-tree.md
     - 图上随机游走: graph/graph-random-walk.md
   - Hình Học Tính Toán:
-    - 计算几何部分简介: geometry/index.md
+    - Tổng quan hình học tính toán: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
     - 距离: geometry/distance.md
@@ -496,7 +496,7 @@ nav:
     - 反演变换: geometry/inverse.md
     - 计算几何杂项: geometry/misc.md
   - Khác:
-    - 杂项简介: misc/index.md
+    - Tổng quan mục khác: misc/index.md
     - 离散化: misc/discrete.md
     - 双指针: misc/two-pointer.md
     - 离线算法:

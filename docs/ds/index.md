@@ -1,5 +1,11 @@
 author: HeRaNO, Zhoier, hsfzLZH1
 
-数据结构是在计算机中存储、组织数据的方式．小到变量、数组，大到线段树、平衡树，都是数据结构．
+Cấu trúc dữ liệu là cách lưu trữ và tổ chức dữ liệu trong máy tính. Từ biến,
+mảng cho đến cây phân đoạn (segment tree), cây cân bằng, tất cả đều là cấu trúc
+dữ liệu.
 
-程序运行离不开数据结构，不同的数据结构又各有优劣，能够处理的问题各不相同，而根据具体问题选取合适的数据结构，可以大大提升程序的效率．所以，学习各种各样的数据结构是很有必要的．
+Chương trình không thể vận hành nếu thiếu cấu trúc dữ liệu. Mỗi cấu trúc dữ
+liệu có ưu và nhược điểm riêng, phù hợp với những dạng bài khác nhau; chọn cấu
+trúc dữ liệu thích hợp cho từng bài toán cụ thể có thể cải thiện đáng kể hiệu
+suất chương trình. Vì vậy, việc học nhiều loại cấu trúc dữ liệu là rất cần
+thiết.

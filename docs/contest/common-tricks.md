@@ -1,52 +1,52 @@
 author: H-J-Granger, Ir1d, ChungZH, Marcythm, StudyingFather, billchenchina, Suyun514, Psycho7, greyqz, Xeonacid, partychicken
 
-本页面主要列举一些竞赛中的小技巧．
+Trang này chủ yếu liệt kê một số mẹo nhỏ trong thi đấu.
 
-## 利用局部性
+## Tận dụng tính cục bộ
 
-局部性是指程序倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身．局部性分为时间局部性和空间局部性．
+Tính cục bộ là xu hướng chương trình tham chiếu tới các mục dữ liệu nằm gần những mục dữ liệu vừa được tham chiếu gần đây, hoặc tham chiếu lại chính các mục dữ liệu vừa được tham chiếu gần đây. Tính cục bộ được chia thành tính cục bộ theo thời gian và tính cục bộ theo không gian.
 
-具体可参见 [循环展开 (Loop Unroll)](../lang/optimizations.md#循环展开-loop-unroll)、[代码布局优化 (Code Layout Optimizations)](../lang/optimizations.md#代码布局优化-code-layout-optimizations) 等内容
+Có thể xem cụ thể hơn ở các phần [mở vòng lặp (Loop Unroll)](../lang/optimizations.md#循环展开-loop-unroll), [tối ưu bố trí mã (Code Layout Optimizations)](../lang/optimizations.md#代码布局优化-code-layout-optimizations), v.v.
 
-## 循环宏定义
+## Định nghĩa macro cho vòng lặp
 
-如下代码可使用宏定义简化：
+Đoạn mã sau có thể dùng macro để rút gọn:
 
 ```cpp
 for (int i = 0; i < N; i++) {
-  // 循环内容略
+  // Nội dung vòng lặp được lược bỏ
 }
 
-// 使用宏简化
+// Dùng macro để rút gọn
 #define f(x, y, z) for (int x = (y), __ = (z); x < __; ++x)
 
-// 这样写循环代码时，就可以简化成 `f(i, 0, N)` ．例如：
-// a is a STL container
+// Khi viết vòng lặp như vậy, có thể rút gọn thành `f(i, 0, N)`. Ví dụ:
+// a là một STL container
 f(i, 0, a.size()) { ... }
 ```
 
-另外推荐一个比较有用的宏定义：
+Ngoài ra, có thể khuyến nghị một macro khá hữu ích:
 
 ```cpp
 #define _rep(i, a, b) for (int i = (a); i <= (b); ++i)
 ```
 
-## 善用 namespace
+## Tận dụng namespace
 
-使用 namespace 能使程序可读性更好，便于调试．
+Dùng namespace có thể giúp chương trình dễ đọc hơn và thuận tiện cho việc gỡ lỗi.
 
-??? note "例题：NOI 2018 屠龙勇士"
+??? note "Ví dụ: NOI 2018 屠龙勇士"
     ```cpp
-    // NOI 2018 屠龙勇士 40分部分分代码
+    // Mã lấy 40 điểm thành phần của NOI 2018 屠龙勇士
     #include <algorithm>
     #include <cmath>
     #include <cstring>
     #include <iostream>
     using namespace std;
     long long n, m, a[100005], p[100005], aw[100005], atk[100005];
-    
+
     namespace one_game {
-    // 其实namespace里也可以声明变量
+    // Thực ra trong namespace cũng có thể khai báo biến
     void solve() {
       for (int y = 0;; y++)
         if ((a[1] + p[1] * y) % atk[1] == 0) {
@@ -55,14 +55,14 @@ f(i, 0, a.size()) { ... }
         }
     }
     }  // namespace one_game
-    
+
     namespace p_1 {
     void solve() {
-      if (atk[1] == 1) {  // solve 1-2
+      if (atk[1] == 1) {  // giải 1-2
         sort(a + 1, a + n + 1);
         cout << a[n] << endl;
         return;
-      } else if (m == 1) {  // solve 3-4
+      } else if (m == 1) {  // giải 3-4
         long long k = atk[1], kt = ceil(a[1] * 1.0 / k);
         for (int i = 2; i <= n; i++)
           k = aw[i - 1], kt = max(kt, (long long)ceil(a[i] * 1.0 / k));
@@ -70,7 +70,7 @@ f(i, 0, a.size()) { ... }
       }
     }
     }  // namespace p_1
-    
+
     int main() {
       int T;
       cin >> T;
@@ -85,9 +85,9 @@ f(i, 0, a.size()) { ... }
         for (int i = 1; i <= n; i++) cin >> aw[i];
         for (int i = 1; i <= m; i++) cin >> atk[i];
         if (n == 1 && m == 1)
-          one_game::solve();  // solve 8-13
+          one_game::solve();  // giải 8-13
         else if (p[1] == 1)
-          p_1::solve();  // solve 1-4 or 14-15
+          p_1::solve();  // giải 1-4 hoặc 14-15
         else
           cout << -1 << endl;
       }
@@ -95,9 +95,9 @@ f(i, 0, a.size()) { ... }
     }
     ```
 
-## 使用宏进行调试
+## Dùng macro để gỡ lỗi
 
-编程者在本地测试的时候，往往要加入一些调试语句．而在需要提交到 OJ 时，为了不使调试语句的输出影响到系统对程序输出结果的判断，就要把它们全部删除，耗时较多．这种情况下，可以通过定义宏的方式来节省时间．大致的程序框架是这样的：
+Khi kiểm thử cục bộ, lập trình viên thường cần thêm một số câu lệnh gỡ lỗi. Nhưng khi cần nộp lên OJ, để đầu ra của các câu lệnh gỡ lỗi không ảnh hưởng đến việc hệ thống phán định kết quả chương trình, ta phải xóa hết chúng, khá tốn thời gian. Trong tình huống này, có thể tiết kiệm thời gian bằng cách định nghĩa macro. Khung chương trình đại khái như sau:
 
 ```cpp
 #define DEBUG
@@ -110,23 +110,23 @@ f(i, 0, a.size()) { ... }
 #endif
 ```
 
-`#ifdef` 会检查程序中是否有 `#define` 定义的对应标识符，如果有定义，就会执行后面的语句．而 `#ifndef` 会在没有定义相应标识符的情况下执行后面的语句．
+`#ifdef` sẽ kiểm tra trong chương trình có định nghĩa định danh tương ứng bằng `#define` hay không; nếu có định nghĩa thì thực thi các câu lệnh phía sau. Còn `#ifndef` sẽ thực thi các câu lệnh phía sau khi không có định nghĩa định danh tương ứng.
 
-这样，只需在 `#ifdef DEBUG` 里写好调试用代码，`#ifndef DEBUG` 里写好真正提交的代码，就能方便地进行本地测试．提交程序的时候，只需要将 `#define DEBUG` 一行注释掉即可．也可以不在程序中定义标识符，而是通过 `-DDEBUG` 的编译选项在编译的时候定义 `DEBUG` 标识符．这样就可以在提交的时候不用修改程序了．
+Như vậy, chỉ cần viết mã gỡ lỗi trong `#ifdef DEBUG` và viết mã thật để nộp trong `#ifndef DEBUG`, ta có thể kiểm thử cục bộ thuận tiện. Khi nộp chương trình, chỉ cần chú thích dòng `#define DEBUG` là được. Cũng có thể không định nghĩa định danh trong chương trình, mà dùng tùy chọn biên dịch `-DDEBUG` để định nghĩa định danh `DEBUG` lúc biên dịch. Cách này giúp không cần sửa chương trình khi nộp.
 
-不少 OJ 都开启了 `-DONLINE_JUDGE` 这一编译选项，善用这一特性可以节约不少时间．
+Nhiều OJ đều bật tùy chọn biên dịch `-DONLINE_JUDGE`; tận dụng tốt đặc tính này có thể tiết kiệm khá nhiều thời gian.
 
-## 对拍
+## Đối chiếu chương trình
 
-对拍是一种进行检验或调试的方法，通过对比两个程序的输出来检验程序的正确性．可以将自己程序的输出与其他程序的输出进行对比，从而判断自己的程序是否正确．
+Đối chiếu chương trình (stress test) là một phương pháp kiểm nghiệm hoặc gỡ lỗi bằng cách so sánh đầu ra của hai chương trình để kiểm tra tính đúng đắn của chương trình. Có thể so sánh đầu ra của chương trình của mình với đầu ra của chương trình khác, từ đó phán đoán chương trình của mình có đúng hay không.
 
-对拍过程要多次进行，因此需要通过批处理的方法来实现对拍的自动化．
+Quá trình đối chiếu cần thực hiện nhiều lần, vì vậy cần dùng phương pháp xử lý hàng loạt để tự động hóa.
 
-具体而言，对拍需要一个 [数据生成器](../tools/testlib/generator.md) 和两个要进行输出结果比对的程序．
+Cụ thể, đối chiếu chương trình cần một [bộ sinh dữ liệu](../tools/testlib/generator.md) và hai chương trình cần so sánh kết quả đầu ra.
 
-每运行一次数据生成器都将生成的数据写入输入文件，通过重定向的方法使两个程序读入数据，并将输出写入指定文件，最后利用 Windows 下的 `fc` 命令比对文件（Linux 下为 `diff` 命令）来检验程序的正确性．如果发现程序出错，可以直接利用刚刚生成的数据进行调试．
+Mỗi lần chạy bộ sinh dữ liệu sẽ ghi dữ liệu được sinh ra vào file đầu vào. Sau đó dùng redirect để cho hai chương trình đọc dữ liệu và ghi đầu ra vào các file chỉ định, cuối cùng dùng lệnh `fc` trên Windows (trên Linux là lệnh `diff`) để so sánh file và kiểm tra tính đúng đắn của chương trình. Nếu phát hiện chương trình sai, có thể trực tiếp dùng dữ liệu vừa sinh ra để gỡ lỗi.
 
-对拍程序的大致框架如下：
+Khung đại khái của chương trình đối chiếu như sau:
 
 ```cpp
 #include <cstdio>
@@ -134,48 +134,48 @@ f(i, 0, a.size()) { ... }
 
 int main() {
   // For Windows
-  // 对拍时不开文件输入输出
-  // 当然，这段程序也可以改写成批处理的形式
+  // Khi đối chiếu không bật nhập xuất file
+  // Tất nhiên, đoạn chương trình này cũng có thể viết lại thành batch script
   while (true) {
-    system("gen > test.in");  // 数据生成器将生成数据写入输入文件
-    system("test1.exe < test.in > a.out");  // 获取程序1输出
-    system("test2.exe < test.in > b.out");  // 获取程序2输出
+    system("gen > test.in");  // Bộ sinh dữ liệu ghi dữ liệu sinh ra vào file đầu vào
+    system("test1.exe < test.in > a.out");  // Lấy đầu ra chương trình 1
+    system("test2.exe < test.in > b.out");  // Lấy đầu ra chương trình 2
     if (system("fc a.out b.out")) {
-      // 该行语句比对输入输出
-      // fc返回0时表示输出一致，否则表示有不同处
-      system("pause");  // 方便查看不同处
+      // Câu lệnh này so sánh các file đầu ra
+      // Khi fc trả về 0 nghĩa là đầu ra giống nhau, ngược lại là có chỗ khác
+      system("pause");  // Tiện xem chỗ khác nhau
       return 0;
-      // 该输入数据已经存放在test.in文件中，可以直接利用进行调试
+      // Dữ liệu đầu vào này đã được lưu trong file test.in, có thể dùng trực tiếp để gỡ lỗi
     }
   }
 }
 ```
 
-## 内存池
+## Vùng nhớ cấp phát sẵn (memory pool)
 
-当动态分配内存时，频繁使用 `new`/`malloc` 会占用大量的时间和空间，甚至生成大量的内存碎片从而降低程序的性能，可能会使原本正确的程序 TLE/MLE．
+Khi cấp phát bộ nhớ động, việc thường xuyên dùng `new`/`malloc` sẽ tốn rất nhiều thời gian và không gian, thậm chí tạo ra nhiều mảnh bộ nhớ rời rạc làm giảm hiệu năng chương trình, có thể khiến chương trình vốn đúng bị TLE/MLE.
 
-这时候需要使用到「内存池」这种技巧：在真正使用内存之前，先申请分配一定大小的内存作为备用．当需要动态分配时直接从备用内存中分配一块即可．
+Lúc này cần dùng kỹ thuật "memory pool": trước khi thật sự sử dụng bộ nhớ, cấp phát trước một vùng bộ nhớ kích thước nhất định để dự phòng. Khi cần cấp phát động, chỉ cần lấy trực tiếp một khối từ vùng bộ nhớ dự phòng đó.
 
-在大多数 OI 题当中，可以预先算出需要使用到的最大内存并一次性申请分配．
+Trong phần lớn bài OI, có thể tính trước lượng bộ nhớ tối đa cần dùng và cấp phát một lần.
 
-示例：
+Ví dụ:
 
 ```cpp
-// 申请动态分配 32 位有符号整数数组：
+// Cấp phát động mảng số nguyên có dấu 32 bit:
 int* newarr(int sz) {
   static int pool[MAXN], *allocp = pool;
   return allocp += sz, allocp - sz;
 }
 
-// 线段树动态开点的代码：
+// Mã cấp phát nút động cho cây phân đoạn (segment tree):
 Node* newnode() {
   static Node pool[MAXN << 1], *allocp = pool - 1;
   return ++allocp;
 }
 ```
 
-## 参考资料
+## Tài liệu tham khảo
 
 [洛谷日报 #86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers)
 
