@@ -68,10 +68,10 @@ int build(int l, int r) {  // Xay cay
   int mid = l + r >> 1;
   ls[root] = build(l, mid);
   rs[root] = build(mid + 1, r);
-  return root;  // Tra ve nut goc cua cay con nay
+  return root;  // Trả về nút gốc của cây con này
 }
 
-int update(int k, int l, int r, int root) {  // Thao tac chen
+int update(int k, int l, int r, int root) {  // Thao tác chèn
   int dir = ++tot;
   ls[dir] = ls[root], rs[dir] = rs[root], sum[dir] = sum[root] + 1;
   if (l == r) return dir;
@@ -83,13 +83,13 @@ int update(int k, int l, int r, int root) {  // Thao tac chen
   return dir;
 }
 
-int query(int u, int v, int l, int r, int k) {  // Thao tac truy van
+int query(int u, int v, int l, int r, int k) {  // Thao tác truy vấn
   int mid = l + r >> 1,
-      x = sum[ls[v]] - sum[ls[u]];  // So gia tri nam trong con trai, tinh bang phep tru doan
+      x = sum[ls[v]] - sum[ls[u]];  // Số giá trị nằm trong con trái, tính bằng phép trừ đoạn
   if (l == r) return l;
-  if (k <= x)  // Neu k <= x, so nho thu k nam trong con trai
+  if (k <= x)  // Nếu k <= x, số nhỏ thứ k nằm trong con trái
     return query(ls[u], ls[v], l, mid, k);
-  else  // Nguoc lai, no nam trong con phai
+  else  // Ngược lại, nó nằm trong con phải
     return query(rs[u], rs[v], mid + 1, r, k - x);
 }
 

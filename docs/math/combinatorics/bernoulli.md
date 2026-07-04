@@ -228,24 +228,24 @@ Do đó điều phải chứng minh được suy ra.
     using ll = long long;
     constexpr int MAXN = 10000;
     constexpr int mod = 1e9 + 7;
-    ll B[MAXN];        // So Bernoulli
-    ll C[MAXN][MAXN];  // So to hop
-    ll inv[MAXN];      // Nghich dao (de tinh so Bernoulli)
+    ll B[MAXN];        // Số Bernoulli
+    ll C[MAXN][MAXN];  // Số tổ hợp
+    ll inv[MAXN];      // Nghịch đảo (để tính số Bernoulli)
     
     void init() {
-      // Tien xu ly so to hop
+      // Tiền xử lý số tổ hợp
       for (int i = 0; i < MAXN; i++) {
         C[i][0] = C[i][i] = 1;
         for (int k = 1; k < i; k++) {
           C[i][k] = (C[i - 1][k] % mod + C[i - 1][k - 1] % mod) % mod;
         }
       }
-      // Tien xu ly nghich dao
+      // Tiền xử lý nghịch đảo
       inv[1] = 1;
       for (int i = 2; i < MAXN; i++) {
         inv[i] = (mod - mod / i) * inv[mod % i] % mod;
       }
-      // Tien xu ly so Bernoulli
+      // Tiền xử lý số Bernoulli
       B[0] = 1;
       for (int i = 1; i < MAXN; i++) {
         ll ans = 0;

@@ -45,56 +45,56 @@ Thông thường không cần giữ các điểm nằm trên cạnh của bao l�
 ???+ note "Cài đặt"
     === "C++"
         ```cpp
-        // stk[] la so nguyen, luu chi so
-        // p[] luu vector hoac diem
-        tp = 0;                       // khoi tao stack
-        std::sort(p + 1, p + 1 + n);  // sap xep cac diem
+        // stk[] là số nguyên, lưu chỉ số
+        // p[] lưu vector hoặc điểm
+        tp = 0;                       // khởi tạo stack
+        std::sort(p + 1, p + 1 + n);  // sắp xếp các điểm
         stk[++tp] = 1;
-        // Them phan tu dau tien vao stack va khong cap nhat used, de diem 1 van
-        // cap nhat stack don dieu khi khep kin bao loi cuoi cung
+        // Thêm phần tử đầu tiên vào stack và không cập nhật used, để điểm 1 vẫn
+        // cập nhật stack đơn điệu khi khép kín bao lồi cuối cùng
         for (int i = 2; i <= n; ++i) {
-          while (tp >= 2  // dong tiep theo: toan tu * duoc nap chong thanh tich co huong
+          while (tp >= 2  // dòng tiếp theo: toán tử * được nạp chồng thành tích có hướng
                  && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
             used[stk[tp--]] = 0;
-          used[i] = 1;  // used cho biet diem nam tren vo loi
+          used[i] = 1;  // used cho biết điểm nằm trên vỏ lồi
           stk[++tp] = i;
         }
-        int tmp = tp;  // tmp la kich thuoc vo loi duoi
+        int tmp = tp;  // tmp là kích thước vỏ lồi dưới
         for (int i = n - 1; i > 0; --i)
           if (!used[i]) {
-            // Khi tinh vo loi tren, khong anh huong den vo loi duoi
+            // Khi tính vỏ lồi trên, không ảnh hưởng đến vỏ lồi dưới
             while (tp > tmp && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
               used[stk[tp--]] = 0;
             used[i] = 1;
             stk[++tp] = i;
           }
-        for (int i = 1; i <= tp; ++i)  // sao chep sang mang moi
+        for (int i = 1; i <= tp; ++i)  // sao chép sang mảng mới
           h[i] = p[stk[i]];
         int ans = tp - 1;
         ```
     
     === "Python"
         ```python
-        stk = []  # la so nguyen, luu chi so
-        p = []  # luu vector hoac diem
-        tp = 0  # khoi tao stack
-        p.sort()  # sap xep cac diem
+        stk = []  # là số nguyên, lưu chỉ số
+        p = []  # lưu vector hoặc điểm
+        tp = 0  # khởi tạo stack
+        p.sort()  # sắp xếp các điểm
         tp = tp + 1
         stk[tp] = 1
-        # Them phan tu dau tien vao stack va khong cap nhat used, de diem 1 van
-        # cap nhat stack don dieu khi khep kin bao loi cuoi cung
+        # Thêm phần tử đầu tiên vào stack và không cập nhật used, để điểm 1 vẫn
+        # cập nhật stack đơn điệu khi khép kín bao lồi cuối cùng
         for i in range(2, n + 1):
             while tp >= 2 and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
-                # Dong tiep theo: toan tu * duoc nap chong thanh tich co huong
+                # Dòng tiếp theo: toán tử * được nạp chồng thành tích có hướng
                 used[stk[tp]] = 0
                 tp = tp - 1
-            used[i] = 1  # used cho biet diem nam tren vo loi
+            used[i] = 1  # used cho biết điểm nằm trên vỏ lồi
             tp = tp + 1
             stk[tp] = i
-        tmp = tp  # tmp la kich thuoc vo loi duoi
+        tmp = tp  # tmp là kích thước vỏ lồi dưới
         for i in range(n - 1, 0, -1):
             if used[i] == False:
-                # Khi tinh vo loi tren, khong anh huong den vo loi duoi
+                # Khi tính vỏ lồi trên, không ảnh hưởng đến vỏ lồi dưới
                 while tp > tmp and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
                     used[stk[tp]] = 0
                     tp = tp - 1

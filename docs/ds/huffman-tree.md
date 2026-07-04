@@ -102,8 +102,8 @@ Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn
         forest[i] = temp;
       }
     
-      for (int i = 1; i < n; i++) {  // Lap n-1 lan de xay dung cay Huffman
-        int minn = -1, minnSub;  // minn la chi so goc cay nho nhat, minnSub la chi so goc cay nho thu hai
+      for (int i = 1; i < n; i++) {  // Lặp n-1 lần để xây dựng cây Huffman
+        int minn = -1, minnSub;  // minn là chỉ số gốc cây nhỏ nhất, minnSub là chỉ số gốc cây nhỏ thứ hai
         for (int j = 0; j < n; j++) {
           if (forest[j] != NULL && minn == -1) {
             minn = j;

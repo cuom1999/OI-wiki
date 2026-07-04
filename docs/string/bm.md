@@ -370,7 +370,7 @@ Trước khi giới thiệu thuật toán xây dựng $delta_2$ của Knuth, the
             }
             
             for j in (-subpatlen..(i + 1) as isize).rev() {
-                // subpat khop
+                // subpat khớp
                 if (j..j + subpatlen)
                 .zip(i + 1..patlen)
                 .all(|(rpr_index, subpat_index)| {
@@ -505,17 +505,17 @@ Giống hàm tiền tố, ta cần một mảng phụ để lùi trạng thái; 
         let lastpos = patlen - 1;
         let mut delta_2 = Vec::with_capacity(patlen);
         
-        // Truong hop thu nhat
+        // Trường hợp thứ nhất
         // delta_2[j] = lastpos * 2 - j
         for i in 0..patlen {
             delta_2.push(lastpos * 2 - i);
         }
         
-        // Truong hop thu hai
+        // Trường hợp thứ hai
         // lastpos <= delata2[j] = lastpos * 2 - j
-        let pi = compute_pi(p);  // Tinh ham tien to
+        let pi = compute_pi(p);  // Tính hàm tiền tố
         let mut i = lastpos;
-        let mut last_i = lastpos; // Chi de khoi tao
+        let mut last_i = lastpos; // Chỉ để khởi tạo
         while pi[i] > 0 {
             let start;
             let end;
@@ -536,7 +536,7 @@ Giống hàm tiền tố, ta cần một mảng phụ để lùi trạng thái; 
             i = pi[i] - 1;
         }
         
-        // Truong hop thu ba
+        // Trường hợp thứ ba
         // delata2[j] < lastpos
         let mut j = lastpos;
         let mut t = patlen;
@@ -637,9 +637,9 @@ Khi biết cặp tiền tố - hậu tố bằng nhau dài nhất của $pat$, t
                 
                 string_index -= LARGE;
                 
-                // Neu string_index di chuyen, nghia la sau lan khop thanh cong truoc do
-                // da co it nhat mot lan khop that bai.
-                // Luc nay can dua do lech khop lan hai cua quy tac Galil ve 0.
+                // Nếu string_index di chuyển, nghĩa là sau lần khớp thành công trước đó
+                // đã có ít nhất một lần khớp thất bại.
+                // Lúc này cần đưa độ lệch khớp lần hai của quy tắc Galil về 0.
                 if old_string_index < string_index {
                     l = 0;
                 }
