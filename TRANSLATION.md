@@ -177,7 +177,8 @@ MkDocs source layout intact.
   `docs/math/number-theory/pell-equation.md`: translated the remaining
   number-theory tail covering Euclidean-like algorithms, continued fractions,
   Stern-Brocot/Farey structures, quadratic fields, and Pell equations, plus
-  explanatory comments in included Stern-Brocot snippets.
+  explanatory comments in included Stern-Brocot snippets; quality-passed the
+  PQa theorem block in `docs/math/number-theory/pell-equation.md`.
 - `docs/math/poly/intro.md`, `docs/math/poly/fundamental.md`,
   `docs/math/poly/fft.md`, `docs/math/poly/ntt.md`,
   `docs/math/poly/fwt.md`, `docs/math/poly/czt.md`: translated the opening

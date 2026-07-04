@@ -142,61 +142,76 @@ trong do $x_k+y_k\sqrt{D}=(r+s\sqrt{D})^k(u+v\sqrt{D})$. Ly do la $x_n$ va $y_n$
 Viec giai phuong trinh Pell va phuong trinh Pell tong quat deu co the dua tren phan so lien tuc.
 
 <span id="pqa-&#x7b97;&#x6cd5;"></span>
-### Thuat toan PQa
+### Thuật toán PQa
 
-Nhung thuat toan duoc thao luan trong bai nay deu dua tren thuat toan PQa, dung de tim khai trien phan so lien tuc cua mot so vo ti bac hai cu the.
+Những thuật toán được thảo luận trong bài này đều dựa trên thuật toán PQa, dùng
+để tìm khai triển phân số liên tục của một số vô tỉ bậc hai cụ thể.
 
-Gia su cac so nguyen $P_0,Q_0,D$ thoa man $Q_0\neq 0$, $D>0$ khong phai so chinh phuong, va $P_0^2\equiv D\pmod{Q_0}$. Khi do so vo ti bac hai
+Giả sử các số nguyên $P_0,Q_0,D$ thỏa mãn $Q_0\neq 0$, $D>0$ không phải số chính
+phương, và $P_0^2\equiv D\pmod{Q_0}$. Khi đó số vô tỉ bậc hai
 
 $$
 \omega=\dfrac{P_0+\sqrt{D}}{Q_0}
 $$
 
-co khai trien phan so lien tuc $[a_0,a_1,\cdots]$ tinh duoc bang [cong thuc truy hoi](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0) sau:
+có khai triển phân số liên tục $[a_0,a_1,\cdots]$ tính được bằng
+[công thức truy hồi](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0)
+sau:
 
 $$
 a_k = \left\lfloor\dfrac{P_k+\sqrt{D}}{Q_k}\right\rfloor,\ P_{k+1} = a_kQ_k - P_k,\ Q_{k+1} = \dfrac{D-P_{k+1}^2}{Q_k}.
 $$
 
-Tiep theo, tu so va mau so $A_k$ va $B_k$ cua phan so gan dung thu $k$ cua $\omega$ duoc cho boi [cong thuc truy hoi](./continued-fraction.md#%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB)
+Tiếp theo, tử số và mẫu số $A_k$ và $B_k$ của phân số gần đúng thứ $k$ của
+$\omega$ được cho bởi [công thức truy hồi](./continued-fraction.md#%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB)
 
 $$
 A_k = a_kA_{k-1} + A_{k-2},\ B_k = a_kB_{k-1} + B_{k-2}
 $$
 
-voi $A_{-1} = 1$, $A_{-2}=0$, $B_{-1}=0$, $B_{-2}=1$.
+với $A_{-1} = 1$, $A_{-2}=0$, $B_{-1}=0$, $B_{-2}=1$.
 
-Tinh dung dan cua cac cong thuc nay da duoc chung minh trong bai phan so lien tuc. O do cung da giai thich rang vi so vo ti bac hai la [phan so lien tuc tuan hoan](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0), nen bo ba $(P_k,Q_k,a_k)$ cuoi cung se di vao chu ki, va thuat toan luon ket thuc sau huu han buoc. Gia su do dai nho nhat cua chu ki la $\ell$, va vi tri bat dau som nhat cua chu ki la $k_0$, khi do khai trien phan so lien tuc cua so vo ti bac hai co the viet la
+Tính đúng đắn của các công thức này đã được chứng minh trong bài phân số liên
+tục. Ở đó cũng đã giải thích rằng vì số vô tỉ bậc hai là
+[phân số liên tục tuần hoàn](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0),
+nên bộ ba $(P_k,Q_k,a_k)$ cuối cùng sẽ đi vào chu kỳ, và thuật toán luôn kết
+thúc sau hữu hạn bước. Giả sử độ dài nhỏ nhất của chu kỳ là $\ell$, và vị trí
+bắt đầu sớm nhất của chu kỳ là $k_0$, khi đó khai triển phân số liên tục của số
+vô tỉ bậc hai có thể viết là
 
 $$
 \omega=[a_0,\cdots,a_{k_0-1},\overline{a_{k_0},\cdots,a_{k_0+\ell-1}}].
 $$
 
-De dung thuat toan PQa giai phuong trinh Pell, can thiet lap ket qua sau:
+Để dùng thuật toán PQa giải phương trình Pell, cần thiết lập kết quả sau:
 
-???+ note "Dinh li"
-    Tiep tuc dung ki hieu tren. Dat $G_k=Q_0A_k-P_0B_k$. Khi do cap so nguyen $(G_{k-1},B_{k-1})$ thoa man
+???+ note "Định lý"
+    Tiếp tục dùng ký hiệu trên. Đặt $G_k=Q_0A_k-P_0B_k$. Khi đó cặp số nguyên
+    $(G_{k-1},B_{k-1})$ thỏa mãn
     
     $$
     G_{k-1}^2-DB_{k-1}^2=(-1)^{k}Q_0Q_{k},
     $$
     
-    va uoc chung lon nhat cua chung $\gcd(G_{k-1},B_{k-1})$ chia het $Q_{k}$.
+    và ước chung lớn nhất của chúng $\gcd(G_{k-1},B_{k-1})$ là ước của $Q_{k}$.
 
-??? note "Chung minh"
-    Gia su trong khai trien phan so lien tuc cua $\omega$, thuong hoan toan thu $k$ la $\omega_{k}$, tuc
+??? note "Chứng minh"
+    Giả sử trong khai triển phân số liên tục của $\omega$, thương hoàn toàn thứ
+    $k$ là $\omega_{k}$, tức
     
     $$
     \omega = [a_0,a_1,\cdots,a_{k-1},\omega_k] = \dfrac{\omega_k A_{k-1}+A_{k-2}}{\omega_k B_{k-1}+B_{k-2}}.
     $$
     
-    Thay $\omega=(P_0+\sqrt{D})/Q_0$ va $\omega_k=(P_k+\sqrt{D})/Q_k$ vao cong thuc tren, ta duoc
+    Thay $\omega=(P_0+\sqrt{D})/Q_0$ và $\omega_k=(P_k+\sqrt{D})/Q_k$ vào công
+    thức trên, ta được
     
     $$
     \dfrac{P_0+\sqrt{D}}{Q_0} = \dfrac{(P_k+\sqrt{D})A_{k-1}+Q_kA_{k-2}}{(P_k+\sqrt{D})B_{k-1}+Q_kB_{k-2}}.
     $$
     
-    Khu mau hai ve va so sanh he so cua phan huu ti va phan vo ti, roi thay bieu thuc cua $G_k$, thu duoc cac dang thuc
+    Khử mẫu hai vế và so sánh hệ số của phần hữu tỉ và phần vô tỉ, rồi thay biểu
+    thức của $G_k$, thu được các đẳng thức
     
     $$
     \begin{aligned}
@@ -205,7 +220,8 @@ De dung thuat toan PQa giai phuong trinh Pell, can thiet lap ket qua sau:
     \end{aligned}
     $$
     
-    Do do, nhan dang thuc thu nhat voi $G_{k-1}$ roi tru dang thuc thu hai nhan voi $B_{k-1}$, ta co
+    Do đó, nhân đẳng thức thứ nhất với $G_{k-1}$ rồi trừ đẳng thức thứ hai nhân
+    với $B_{k-1}$, ta có
     
     $$
     \begin{aligned}
@@ -215,9 +231,11 @@ De dung thuat toan PQa giai phuong trinh Pell, can thiet lap ket qua sau:
     \end{aligned}
     $$
     
-    Buoc cuoi dung [cong thuc sai phan](./continued-fraction.md#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1) cua phan so gan dung. Ket qua dau tien da duoc chung minh.
+    Bước cuối dùng [công thức sai phân](./continued-fraction.md#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1)
+    của phân số gần đúng. Kết quả đầu tiên đã được chứng minh.
     
-    De chung minh ket qua thu hai, thay bieu thuc cua $G_k$ vao ket qua dau tien:
+    Để chứng minh kết quả thứ hai, thay biểu thức của $G_k$ vào kết quả đầu
+    tiên:
     
     $$
     (Q_0A_{k-1}-P_0B_{k-1})^2 - DB_{k-1}^2 = (-1)^kQ_0Q_k.
@@ -229,11 +247,20 @@ De dung thuat toan PQa giai phuong trinh Pell, can thiet lap ket qua sau:
     Q_0A_{k-1}^2 +\left(\dfrac{P_0^2-D}{Q_0}B_{k-1}- 2P_0A_{k-1}\right)B_{k-1} = (-1)^kQ_k.
     $$
     
-    Vi vay, $\gcd(G_{k-1},B_{k-1}) = \gcd(Q_0A_{k-1},B_{k-1})$ chia het $Q_k$.
+    Vì vậy, $\gcd(G_{k-1},B_{k-1}) = \gcd(Q_0A_{k-1},B_{k-1})$ là ước của
+    $Q_k$.
 
-Ket qua nay cung cap mot cach tim nghiem cua phuong trinh $x^2-Dy^2=N$. Neu chon hop li $Q_0>0$ va chon $P_0$ la mot nghiem cua dong du $P_0^2\equiv D\pmod{Q_0}$, roi chay thuat toan PQa tren $(P_0+\sqrt{D})/Q_0$ cho den khi tim duoc $(-1)^kQ_0Q_{k}=N$, thi $(G_{k-1},B_{k-1})$ tro thanh mot nghiem cua phuong trinh ban dau. Hon nua, neu $Q_k=\pm 1$, nghiem thu duoc theo cach nay nhat dinh la nghiem nguyen thuy, tuc $G_{k-1}$ va $B_{k-1}$ nhat dinh nguyen to cung nhau.
+Kết quả này cung cấp một cách tìm nghiệm của phương trình $x^2-Dy^2=N$. Nếu
+chọn hợp lý $Q_0>0$ và chọn $P_0$ là một nghiệm của đồng dư
+$P_0^2\equiv D\pmod{Q_0}$, rồi chạy thuật toán PQa trên
+$(P_0+\sqrt{D})/Q_0$ cho đến khi tìm được $(-1)^kQ_0Q_{k}=N$, thì
+$(G_{k-1},B_{k-1})$ trở thành một nghiệm của phương trình ban đầu. Hơn nữa, nếu
+$Q_k=\pm 1$, nghiệm thu được theo cách này nhất định là nghiệm nguyên thủy, tức
+$G_{k-1}$ và $B_{k-1}$ nhất định nguyên tố cùng nhau.
 
-Y tuong nay la cot loi de giai phuong trinh Pell va phuong trinh Pell tong quat. Sau khi hieu y tuong nay, ta xu li mot so chi tiet cua thuat toan va chung minh moi nghiem deu co the thu duoc theo cach nay.
+Ý tưởng này là cốt lõi để giải phương trình Pell và phương trình Pell tổng quát.
+Sau khi hiểu ý tưởng này, ta xử lý một số chi tiết của thuật toán và chứng minh
+mọi nghiệm đều có thể thu được theo cách này.
 
 <span id="pell-&#x65b9;&#x7a0b;_1"></span>
 ### Phuong trinh Pell
