@@ -258,6 +258,10 @@ MkDocs source layout intact.
   miscellaneous data-structure pages covering divide-combine trees, PQ trees,
   finger trees, and Huffman trees, including rendered comments and output
   strings in the Huffman examples.
+- `docs/graph/concept.md`, `docs/graph/save.md`, `docs/graph/dfs.md`,
+  `docs/graph/bfs.md`: translated foundational graph-theory pages covering
+  graph terminology, graph storage formats, DFS, and BFS, including pseudocode
+  and rendered code comments.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

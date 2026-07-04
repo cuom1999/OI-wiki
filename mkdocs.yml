@@ -414,10 +414,10 @@ nav:
     - Cây Huffman: ds/huffman-tree.md
   - Lý Thuyết Đồ Thị:
     - Tổng quan lý thuyết đồ thị: graph/index.md
-    - 图论相关概念: graph/concept.md
-    - 图的存储: graph/save.md
-    - DFS（图论）: graph/dfs.md
-    - BFS（图论）: graph/bfs.md
+    - Khái niệm liên quan: graph/concept.md
+    - Lưu trữ đồ thị: graph/save.md
+    - DFS: graph/dfs.md
+    - BFS: graph/bfs.md
     - 树上问题:
       - 树基础: graph/tree-basic.md
       - 树的直径: graph/tree-diameter.md
