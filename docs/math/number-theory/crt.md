@@ -1,18 +1,20 @@
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Dẫn nhập
 
-> 「物不知数」问题：有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二．问物几何？
+> Bài toán "không biết số vật": Có một số vật chưa rõ là bao nhiêu. Đếm theo nhóm $3$ thì dư $2$, theo nhóm $5$ thì dư $3$, theo nhóm $7$ thì dư $2$. Hỏi có bao nhiêu vật?
 
-即求满足以下条件的整数：除以 $3$ 余 $2$，除以 $5$ 余 $3$，除以 $7$ 余 $2$．
+Tức là cần tìm số nguyên thỏa các điều kiện: chia cho $3$ dư $2$, chia cho $5$ dư $3$, chia cho $7$ dư $2$.
 
-该问题最早见于《孙子算经》中，并有该问题的具体解法．宋朝数学家秦九韶于 1247 年《数书九章》卷一、二《大衍类》对「物不知数」问题做出了完整系统的解答．上面具体问题的解答口诀由明朝数学家程大位在《算法统宗》中给出：
+Bài toán này xuất hiện sớm nhất trong *Sunzi Suanjing*, kèm theo lời giải cụ thể. Năm 1247, nhà toán học Tần Cửu Thiều thời Tống đã đưa ra lời giải đầy đủ và có hệ thống cho bài toán này trong phần "Đại diễn" của quyển một và quyển hai sách *Shushu Jiuzhang*. Với bài toán cụ thể ở trên, bài quyết do nhà toán học Trình Đại Vị thời Minh nêu trong *Suanfa Tongzong* có thể diễn giải như sau:
 
-> 三人同行七十希，五树梅花廿一支，七子团圆正半月，除百零五便得知．
+> Ba người đi cùng: bảy mươi hiếm; năm cây mai: hai mươi mốt cành; bảy con sum họp: đúng nửa tháng; trừ đi một trăm linh năm là biết.
 
-$2\times 70+3\times 21+2\times 15=233=2\times 105+23$，故答案为 $23$．
+$2\times 70+3\times 21+2\times 15=233=2\times 105+23$, nên đáp án là $23$.
 
-## 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+## Định nghĩa
 
-中国剩余定理 (Chinese Remainder Theorem, CRT) 可求解如下形式的一元线性同余方程组（其中 $n_1, n_2, \cdots, n_k$ 两两互质）：
+Định lý số dư Trung Hoa (Chinese Remainder Theorem, CRT) có thể giải hệ phương trình đồng dư tuyến tính một ẩn có dạng sau, trong đó $n_1, n_2, \cdots, n_k$ đôi một nguyên tố cùng nhau:
 
 $$
 \begin{cases}
@@ -23,18 +25,20 @@ x &\equiv a_k \pmod {n_k} \\
 \end{cases}
 $$
 
-上面的「物不知数」问题就是一元线性同余方程组的一个实例．
+Bài toán "không biết số vật" ở trên là một ví dụ của hệ phương trình đồng dư tuyến tính một ẩn.
 
-## 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
+## Quy trình
 
-1.  计算所有模数的积 $n$；
-2.  对于第 $i$ 个方程：
-    1.  计算 $m_i=\frac{n}{n_i}$；
-    2.  计算 $m_i$ 在模 $n_i$ 意义下的 [逆元](./inverse.md)  $m_i^{-1}$；
-    3.  计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）．
-3.  方程组在模 $n$ 意义下的唯一解为：$x=\sum_{i=1}^k a_ic_i \pmod n$．
+1.  Tính tích $n$ của tất cả các modulo.
+2.  Với phương trình thứ $i$:
+    1.  Tính $m_i=\frac{n}{n_i}$.
+    2.  Tính [nghịch đảo](./inverse.md) $m_i^{-1}$ của $m_i$ theo modulo $n_i$.
+    3.  Tính $c_i=m_im_i^{-1}$ (**không lấy modulo theo $n_i$**).
+3.  Nghiệm duy nhất của hệ phương trình theo modulo $n$ là: $x=\sum_{i=1}^k a_ic_i \pmod n$.
 
-## 实现
+<span id="&#x5B9E;&#x73B0;"></span>
+## Cài đặt
 
 === "C++"
     ```cpp
@@ -65,11 +69,12 @@ $$
         return (ans % n + n) % n
     ```
 
-## 证明
+<span id="&#x8BC1;&#x660E;"></span>
+## Chứng minh
 
-我们需要证明上面算法计算所得的 $x$ 对于任意 $i=1,2,\cdots,k$ 满足 $x\equiv a_i \pmod {n_i}$．
+Cần chứng minh rằng $x$ do thuật toán trên tính được thỏa $x\equiv a_i \pmod {n_i}$ với mọi $i=1,2,\cdots,k$.
 
-当 $i\neq j$ 时，有 $m_j \equiv 0 \pmod {n_i}$，故 $c_j \equiv m_j \equiv 0 \pmod {n_i}$．又有 $c_i \equiv m_i \cdot (m_i^{-1} \bmod {n_i}) \equiv 1 \pmod {n_i}$，所以我们有：
+Khi $i\neq j$, ta có $m_j \equiv 0 \pmod {n_i}$, nên $c_j \equiv m_j \equiv 0 \pmod {n_i}$. Lại có $c_i \equiv m_i \cdot (m_i^{-1} \bmod {n_i}) \equiv 1 \pmod {n_i}$, vì vậy:
 
 $$
 \begin{aligned}
@@ -80,25 +85,27 @@ x&\equiv \sum_{j=1}^k a_jc_j                      &\pmod {n_i} \\
 \end{aligned}
 $$
 
-即对于任意 $i=1,2,\cdots,k$，上面算法得到的 $x$ 总是满足 $x\equiv a_i \pmod{n_i}$，即证明了解同余方程组的算法的正确性．
+Tức là với mọi $i=1,2,\cdots,k$, giá trị $x$ thu được từ thuật toán luôn thỏa $x\equiv a_i \pmod{n_i}$; do đó tính đúng đắn của thuật toán giải hệ đồng dư đã được chứng minh.
 
-因为我们没有对输入的 $a_i$ 作特殊限制，所以任何一组输入 $\{a_i\}$ 都对应一个解 $x$．另外，若 $x\neq y$，则总存在 $i$ 使得 $x$ 和 $y$ 在模 $n_i$ 下不同余．故系数列表 $\{a_i\}$ 与解 $x$ 之间是一一映射关系，方程组总是有唯一解．
+Vì không đặt ràng buộc đặc biệt nào lên đầu vào $a_i$, mọi bộ đầu vào $\{a_i\}$ đều tương ứng với một nghiệm $x$. Ngoài ra, nếu $x\neq y$ thì luôn tồn tại $i$ sao cho $x$ và $y$ không đồng dư modulo $n_i$. Vì vậy danh sách hệ số $\{a_i\}$ và nghiệm $x$ tạo thành một ánh xạ một-một, nên hệ phương trình luôn có nghiệm duy nhất.
 
-## 解释
+<span id="&#x89E3;&#x91CA;"></span>
+## Giải thích
 
-下面演示 CRT 如何解「物不知数」问题．
+Dưới đây minh họa cách CRT giải bài toán "không biết số vật".
 
-1.  $n=3\times 5\times 7=105$；
-2.  三人同行 **七十** 希：$n_1=3, m_1=n/n_1=35, m_1^{-1}\equiv 2\pmod 3$，故 $c_1=35\times 2=70$；
-3.  五树梅花 **廿一** 支：$n_2=5, m_2=n/n_2=21, m_2^{-1}\equiv 1\pmod 5$，故 $c_2=21\times 1=21$；
-4.  七子团圆正 **半月**：$n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$，故 $c_3=15\times 1=15$；
-5.  所以方程组的唯一解为 $x\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$．（除 **百零五** 便得知）
+1.  $n=3\times 5\times 7=105$.
+2.  "Ba người đi cùng: **bảy mươi** hiếm": $n_1=3, m_1=n/n_1=35, m_1^{-1}\equiv 2\pmod 3$, nên $c_1=35\times 2=70$.
+3.  "Năm cây mai: **hai mươi mốt** cành": $n_2=5, m_2=n/n_2=21, m_2^{-1}\equiv 1\pmod 5$, nên $c_2=21\times 1=21$.
+4.  "Bảy con sum họp: đúng **nửa tháng**": $n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$, nên $c_3=15\times 1=15$.
+5.  Do đó nghiệm duy nhất của hệ là $x\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$. (Trừ đi **một trăm linh năm** là biết.)
 
-## Garner 算法
+<span id="garner-&#x7B97;&#x6CD5;"></span>
+## Thuật toán Garner
 
-CRT 的另一个用途是用一组比较小的质数表示一个大的整数．
+Một ứng dụng khác của CRT là dùng một nhóm số nguyên tố tương đối nhỏ để biểu diễn một số nguyên lớn.
 
-例如，若 $a$ 满足如下线性方程组，且 $a < \prod_{i=1}^k p_i$（其中 $p_i$ 为质数）：
+Ví dụ, nếu $a$ thỏa hệ phương trình tuyến tính sau và $a < \prod_{i=1}^k p_i$, trong đó $p_i$ là số nguyên tố:
 
 $$
 \begin{cases}
@@ -109,33 +116,33 @@ a &\equiv a_k \pmod {p_k} \\
 \end{cases}
 $$
 
-我们可以用以下形式的式子（称作 $a$ 的混合基数表示）表示 $a$：
+ta có thể biểu diễn $a$ dưới dạng sau, gọi là biểu diễn cơ số hỗn hợp của $a$:
 
 $$
 a = x_1 + x_2 p_1 + x_3 p_1 p_2 + \ldots + x_k p_1 \ldots p_{k-1}
 $$
 
-**Garner 算法** 将用来计算系数 $x_1, \ldots, x_k$．
+**Thuật toán Garner** dùng để tính các hệ số $x_1, \ldots, x_k$.
 
-令 $r_{ij}$ 为 $p_i$ 在模 $p_j$ 意义下的 [逆](./inverse.md)：
+Gọi $r_{ij}$ là [nghịch đảo](./inverse.md) của $p_i$ theo modulo $p_j$:
 
 $$
 p_i \cdot r_{i,j} \equiv 1 \pmod{p_j}
 $$
 
-把 $a$ 代入我们得到的第一个方程：
+Thay $a$ vào phương trình thứ nhất, ta được:
 
 $$
 a_1 \equiv x_1 \pmod{p_1}
 $$
 
-代入第二个方程得出：
+Thay vào phương trình thứ hai, ta được:
 
 $$
 a_2 \equiv x_1 + x_2 p_1 \pmod{p_2}
 $$
 
-方程两边减 $x_1$，除 $p_1$ 后得
+Trừ $x_1$ hai vế rồi chia cho $p_1$, ta có
 
 $$
 \begin{aligned}
@@ -145,13 +152,13 @@ $$
 \end{aligned}
 $$
 
-类似地，我们可以得到：
+Tương tự, ta có:
 
 $$
 x_k=(\dots((a_k-x_1)r_{1,k}-x_2)r_{2,k})-\dots)r_{k-1,k} \bmod p_k
 $$
 
-??? note "实现"
+??? note "Cài đặt"
     === "C++"
         ```cpp
         for (int i = 0; i < k; ++i) {
@@ -175,7 +182,7 @@ $$
                     x[i] = x[i] + p[i]
         ```
 
-该算法的时间复杂度为 $O(k^2)$．实际上 Garner 算法并不要求模数为质数，只要求模数两两互质，我们有如下伪代码：
+Độ phức tạp thời gian của thuật toán này là $O(k^2)$. Thực ra thuật toán Garner không yêu cầu các modulo là số nguyên tố; chỉ cần chúng đôi một nguyên tố cùng nhau. Ta có mã giả sau:
 
 $$
 \begin{array}{ll}
@@ -193,44 +200,45 @@ $$
 \end{array}
 $$
 
-可以发现在第六行中的计算过程对应上述混合基数的表示．
+Có thể thấy phép tính ở dòng 6 tương ứng với biểu diễn cơ số hỗn hợp ở trên.
 
-## 应用
+<span id="&#x5E94;&#x7528;"></span>
+## Ứng dụng
 
-某些计数问题或数论问题出于加长代码、增加难度、或者是一些其他原因，给出的模数：**不是质数**！
+Trong một số bài toán đếm hoặc bài toán số học, để kéo dài mã nguồn, tăng độ khó, hoặc vì một lý do khác nào đó, modulo được cho **không phải số nguyên tố**.
 
-但是对其质因数分解会发现它没有平方因子，也就是该模数是由一些不重复的质数相乘得到．
+Tuy nhiên, khi phân tích thừa số nguyên tố của nó, ta thấy nó không có thừa số chính phương; tức modulo đó là tích của một số nguyên tố khác nhau.
 
-那么我们可以分别对这些模数进行计算，最后用 CRT 合并答案．
+Khi đó, ta có thể tính riêng theo các modulo này, rồi dùng CRT để ghép đáp án cuối cùng.
 
-下面这道题就是一个不错的例子．
+Bài sau là một ví dụ tốt.
 
-???+ note "[洛谷 P2480 \[SDOI2010\] 古代猪文](https://www.luogu.com.cn/problem/P2480)"
-    给出 $G,n$（$1 \leq G,n \leq 10^9$），求：
+???+ note "[Luogu P2480, SDOI2010: văn bản lợn cổ đại](https://www.luogu.com.cn/problem/P2480)"
+    Cho $G,n$ ($1 \leq G,n \leq 10^9$), hãy tính:
     
     $$
     G^{\sum_{k\mid n}\binom{n}{k}} \bmod 999~911~659
     $$
 
-首先，当 $G=999~911~659$ 时，所求显然为 $0$．
+Trước hết, khi $G=999~911~659$, giá trị cần tìm hiển nhiên bằng $0$.
 
-否则，根据 [欧拉定理](./fermat.md)，可知所求为：
+Ngược lại, theo [định lý Euler](./fermat.md), giá trị cần tìm là:
 
 $$
 G^{\sum_{k\mid n}\binom{n}{k} \bmod 999~911~658} \bmod 999~911~659
 $$
 
-现在考虑如何计算：
+Bây giờ xét cách tính:
 
 $$
 \sum_{k\mid n}\binom{n}{k} \bmod 999~911~658
 $$
 
-因为 $999~911~658$ 不是质数，无法保证 $\forall x \in [1,999~911~657]$，$x$ 都有逆元存在，上面这个式子我们无法直接计算．
+Vì $999~911~658$ không phải số nguyên tố, không thể bảo đảm mọi $x \in [1,999~911~657]$ đều có nghịch đảo, nên biểu thức trên không thể được tính trực tiếp theo cách thông thường.
 
-注意到 $999~911~658=2 \times 3 \times 4679 \times 35617$，其中每个质因子的最高次数均为一，我们可以考虑分别求出 $\sum_{k\mid n}\binom{n}{k}$ 在模 $2$，$3$，$4679$，$35617$ 这几个质数下的结果，最后用中国剩余定理来合并答案．
+Chú ý $999~911~658=2 \times 3 \times 4679 \times 35617$, trong đó bậc cao nhất của mỗi thừa số nguyên tố đều bằng một. Vì vậy có thể lần lượt tính $\sum_{k\mid n}\binom{n}{k}$ theo các modulo nguyên tố $2$, $3$, $4679$, $35617$, rồi dùng định lý số dư Trung Hoa để ghép đáp án.
 
-也就是说，我们实际上要求下面一个线性方程组的解：
+Nói cách khác, thực chất ta cần tìm nghiệm của hệ phương trình tuyến tính sau:
 
 $$
 \begin{cases}
@@ -241,31 +249,35 @@ x \equiv a_4 \pmod {35617}
 \end{cases}
 $$
 
-而计算一个组合数对较小的质数取模后的结果，可以利用 [卢卡斯定理](./lucas.md)．
+Để tính một tổ hợp modulo một số nguyên tố nhỏ hơn, có thể dùng [định lý Lucas](./lucas.md).
 
-## 扩展：模数不互质的情况
+<span id="&#x6269;&#x5C55;&#xFF1A;&#x6A21;&#x6570;&#x4E0D;&#x4E92;&#x8D28;&#x7684;&#x60C5;&#x51B5;"></span>
+## Mở rộng: trường hợp các modulo không nguyên tố cùng nhau
 
-### 两个方程
+<span id="&#x4E24;&#x4E2A;&#x65B9;&#x7A0B;"></span>
+### Hai phương trình
 
-设两个方程分别是 $x\equiv a_1 \pmod {m_1}$、$x\equiv a_2 \pmod {m_2}$；
+Giả sử hai phương trình là $x\equiv a_1 \pmod {m_1}$ và $x\equiv a_2 \pmod {m_2}$.
 
-将它们转化为不定方程：$x=m_1p+a_1=m_2q+a_2$，其中 $p, q$ 是整数，则有 $m_1p-m_2q=a_2-a_1$．
+Chuyển chúng thành phương trình nghiệm nguyên: $x=m_1p+a_1=m_2q+a_2$, trong đó $p, q$ là các số nguyên. Khi đó $m_1p-m_2q=a_2-a_1$.
 
-由 [裴蜀定理](./bezouts.md)，当 $a_2-a_1$ 不能被 $\gcd(m_1,m_2)$ 整除时，无解；
+Theo [định lý Bezout](./bezouts.md), nếu $a_2-a_1$ không chia hết cho $\gcd(m_1,m_2)$ thì hệ vô nghiệm.
 
-其他情况下，可以通过 [扩展欧几里得算法](./gcd.md) 解出来一组可行解 $(p, q)$；
+Trong các trường hợp còn lại, có thể dùng [thuật toán Euclid mở rộng](./gcd.md) để tìm một nghiệm khả thi $(p, q)$.
 
-则原来的两方程组成的模方程组的解为 $x\equiv b\pmod M$，其中 $b=m_1p+a_1$，$M=\text{lcm}(m_1, m_2)$．
+Khi đó nghiệm của hệ modulo gồm hai phương trình ban đầu là $x\equiv b\pmod M$, trong đó $b=m_1p+a_1$ và $M=\text{lcm}(m_1, m_2)$.
 
-### 多个方程
+<span id="&#x591A;&#x4E2A;&#x65B9;&#x7A0B;"></span>
+### Nhiều phương trình
 
-用上面的方法两两合并即可．
+Dùng phương pháp trên để ghép từng cặp phương trình.
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
+## Bài tập
 
--   [【模板】中国剩余定理（CRT）/曹冲养猪](https://www.luogu.com.cn/problem/P1495)
--   [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777)
--   [「NOI2018」屠龙勇士](https://uoj.ac/problem/396)
--   [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868)
+-   [Mẫu: định lý số dư Trung Hoa (CRT) / Cao Chong nuôi lợn](https://www.luogu.com.cn/problem/P1495)
+-   [Mẫu: định lý số dư Trung Hoa mở rộng](https://www.luogu.com.cn/problem/P4777)
+-   [NOI2018: Dũng sĩ diệt rồng](https://uoj.ac/problem/396)
+-   [TJOI2009: đoán số](https://www.luogu.com.cn/problem/P3868)
 
-    **本页面部分内容译自博文 [Китайская теорема об остатках](http://e-maxx.ru/algo/chinese_theorem) 与其英文翻译版 [Chinese Remainder Theorem](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+    **Một phần nội dung trang này được dịch từ bài viết [Russian: Chinese Remainder Theorem](http://e-maxx.ru/algo/chinese_theorem) và bản dịch tiếng Anh [Chinese Remainder Theorem](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**

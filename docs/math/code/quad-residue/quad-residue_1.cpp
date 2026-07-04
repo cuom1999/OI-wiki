@@ -1,7 +1,7 @@
 #include <iostream>
 #include <random>
 
-long long p, v;  // 分别是模数和 r^2 - a 的值
+long long p, v;  // Lần lượt là modulo và giá trị r^2 - a
 
 struct Poly {
   long long a, b;
@@ -10,12 +10,12 @@ struct Poly {
 };
 
 Poly operator*(const Poly& x, const Poly& y) {
-  // 重载乘法，可以参考上面有关运算性质的说明
+  // Nạp chồng phép nhân; tham khảo phần giải thích tính chất phép toán ở trên
   return Poly((x.a * y.a + v * (x.b * y.b % p)) % p,
               (x.a * y.b + x.b * y.a) % p);
 }
 
-// 多项式的快速幂，用于计算答案
+// Lũy thừa nhanh cho đa thức, dùng để tính đáp án
 Poly modpow(Poly a, long long b) {
   Poly res(1, 0);
   while (b) {
@@ -26,7 +26,7 @@ Poly modpow(Poly a, long long b) {
   return res;
 }
 
-// 普通的快速幂，用于判断二次非剩余
+// Lũy thừa nhanh thông thường, dùng để kiểm tra bất thặng dư bậc hai
 long long modpow(long long a, long long b) {
   long long res = 1;
   while (b) {
@@ -37,23 +37,23 @@ long long modpow(long long a, long long b) {
   return res;
 }
 
-// 用于生成随机数
+// Dùng để sinh số ngẫu nhiên
 std::mt19937 rng(std::random_device{}());
 
 long long cipolla(long long a, long long _p) {
   p = _p;
   if (a == 0)
-    return 0;  // 特判一下 0 的情况
+    return 0;  // Xử lý riêng trường hợp 0
   else if (modpow(a, (p - 1) / 2) == p - 1)
-    return -1;  // 判断二次非剩余，此时无解
+    return -1;  // Là bất thặng dư bậc hai, nên vô nghiệm
   else {
-    // 随机 r，使得 r^2 - a 是一个二次非剩余
+    // Chọn ngẫu nhiên r sao cho r^2 - a là bất thặng dư bậc hai
     long long r;
     for (r = rng() % p;; r = rng() % p) {
       if (modpow((r * r - a + p) % p, (p - 1) / 2) == p - 1) break;
     }
     v = (r * r - a + p) % p;
-    return modpow(Poly(r, 1), (p + 1) / 2).a;  // 根据结论式计算结果
+    return modpow(Poly(r, 1), (p + 1) / 2).a;  // Tính kết quả theo công thức kết luận
   }
 }
 
@@ -68,7 +68,7 @@ int main() {
     else if (ans == 0)
       std::cout << 0 << std::endl;
     else {
-      // 相反数是另一个解
+      // Số đối modulo là nghiệm còn lại
       int ans2 = (p - ans) % p;
       if (ans2 < ans) std::swap(ans, ans2);
       std::cout << ans << " " << ans2 << std::endl;

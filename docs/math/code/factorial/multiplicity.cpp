@@ -1,7 +1,7 @@
 #include <iostream>
 
 // --8<-- [start:core]
-// Obtain multiplicity of p in n!.
+// Tính số mũ của p trong n!.
 int multiplicity_factorial(int n, int p) {
   int count = 0;
   do {

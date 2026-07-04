@@ -1,60 +1,63 @@
-## 内容
+<span id="&#x5185;&#x5BB9;"></span>
+## Nội dung
 
-升幂（Lift the Exponent，LTE）引理是初等数论中比较常用的一个定理．
+Bổ đề nâng số mũ (Lift the Exponent, LTE) là một định lý khá thường dùng trong số học sơ cấp.
 
-定义 $\nu_p(n)$ 为整数 $n$ 的标准分解中素因子 $p$ 的幂次，即 $\nu_p(n)$ 满足 $p^{\nu_p(n)}\mid n$ 且 $p^{\nu_p(n)+1}\nmid n$.
+Định nghĩa $\nu_p(n)$ là số mũ của thừa số nguyên tố $p$ trong phân tích chuẩn của số nguyên $n$, tức là $\nu_p(n)$ thỏa mãn $p^{\nu_p(n)}\mid n$ và $p^{\nu_p(n)+1}\nmid n$.
 
-由于升幂引理内容较长，我们将其分为三部分介绍：
+Vì nội dung của bổ đề nâng số mũ tương đối dài, ta chia thành ba phần để trình bày.
 
-以下内容设 $p$ 为素数，$x,y$ 为满足 $p\nmid x$ 且 $p\nmid y$ 的整数，$n$ 为正整数．
+Trong phần dưới đây, giả sử $p$ là số nguyên tố, $x,y$ là các số nguyên thỏa mãn $p\nmid x$ và $p\nmid y$, còn $n$ là số nguyên dương.
 
-### 第一部分
+<span id="&#x7B2C;&#x4E00;&#x90E8;&#x5206;"></span>
+### Phần thứ nhất
 
-对所有的素数 $p$ 和满足 $(n,p)=1$ 的整数 $n$，
+Với mọi số nguyên tố $p$ và số nguyên $n$ thỏa mãn $(n,p)=1$:
 
-1.  若 $p\mid x-y$，则：
+1.  Nếu $p\mid x-y$, thì:
 
     $$
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)
     $$
 
-2.  若 $p\mid x+y$，则对奇数 $n$ 有：
+2.  Nếu $p\mid x+y$, thì với $n$ lẻ ta có:
 
     $$
     \nu_p\left(x^n+y^n\right)=\nu_p(x+y)
     $$
 
-???+ note "证明"
-    若 $p\mid x-y$，则不难发现 $p\mid x-y\iff x\equiv y\pmod p$，则显然有：
+???+ note "Chứng minh"
+    Nếu $p\mid x-y$, dễ thấy $p\mid x-y\iff x\equiv y\pmod p$, nên hiển nhiên:
     
     $$
     \sum_{i=0}^{n-1}x^iy^{n-1-i}\equiv nx^{n-1}\not\equiv 0\pmod p
     $$
     
-    进而由 $x^n-y^n=(x-y)\sum_{i=0}^{n-1}x^iy^{n-1-i}$ 可知命题得证．
+    Từ $x^n-y^n=(x-y)\sum_{i=0}^{n-1}x^iy^{n-1-i}$, suy ra mệnh đề cần chứng minh.
     
-    对 $p\mid x+y$ 的情况证明方法类似．
+    Trường hợp $p\mid x+y$ được chứng minh tương tự.
 
-### 第二部分
+<span id="&#x7B2C;&#x4E8C;&#x90E8;&#x5206;"></span>
+### Phần thứ hai
 
-若 $p$ 是奇素数，
+Nếu $p$ là số nguyên tố lẻ:
 
-1.  若 $p\mid x-y$，则：
+1.  Nếu $p\mid x-y$, thì:
 
     $$
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+\nu_p(n)
     $$
 
-2.  若 $p\mid x+y$，则对奇数 $n$ 有：
+2.  Nếu $p\mid x+y$, thì với $n$ lẻ ta có:
 
     $$
     \nu_p\left(x^n+y^n\right)=\nu_p(x+y)+\nu_p(n)
     $$
 
-???+ note "证明"
-    若 $p\mid x-y$，令 $y=x+kp$，我们只需证明 $p\mid n$ 的情况．
+???+ note "Chứng minh"
+    Nếu $p\mid x-y$, đặt $y=x+kp$. Ta chỉ cần chứng minh trường hợp $p\mid n$.
     
-    -   若 $n=p$，则由二项式定理：
+    -   Nếu $n=p$, theo định lý nhị thức:
     
         $$
         \begin{aligned}
@@ -63,48 +66,49 @@
         \end{aligned}
         $$
     
-        从而
+        Do đó
     
         $$
         \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+1
         $$
-    -   若 $n=p^a$，则由数学归纳法可得
+    -   Nếu $n=p^a$, dùng quy nạp toán học suy ra
     
         $$
         \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+a
         $$
     
-    因此命题得证．
+    Vì vậy mệnh đề được chứng minh.
     
-    对 $p\mid x+y$ 的情况证明方法类似．
+    Trường hợp $p\mid x+y$ được chứng minh tương tự.
 
-### 第三部分
+<span id="&#x7B2C;&#x4E09;&#x90E8;&#x5206;"></span>
+### Phần thứ ba
 
-若 $p=2$ 且 $p\mid x-y$，
+Nếu $p=2$ và $p\mid x-y$:
 
-1.  对奇数 $n$ 有（与第一部分的 1 相同）：
+1.  Với $n$ lẻ, ta có như phần thứ nhất:
 
     $$
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)
     $$
 
-2.  对偶数 $n$ 有：
+2.  Với $n$ chẵn, ta có:
 
     $$
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+\nu_p(x+y)+\nu_p(n)-1
     $$
 
-另外对上述的 $x,y,n$，我们有：
+Ngoài ra, với $x,y,n$ như trên, ta có:
 
-若 $4\mid x-y$，则：
+Nếu $4\mid x-y$, thì:
 
 -   $\nu_2(x+y)=1$
 -   $\nu_2\left(x^n-y^n\right)=\nu_2(x-y)+\nu_2(n)$
 
-???+ note "证明"
-    我们只需证明 $n$ 为偶数的情况．由于此时 $p\nmid \dbinom{p}{2}$，故我们不能用第二部分的方法证明．
+???+ note "Chứng minh"
+    Ta chỉ cần chứng minh trường hợp $n$ chẵn. Vì lúc này $p\nmid \dbinom{p}{2}$, ta không thể dùng phương pháp ở phần thứ hai.
     
-    令 $n=2^a b$，其中 $a=\nu_p(n)$，$2\nmid b$，从而
+    Đặt $n=2^a b$, trong đó $a=\nu_p(n)$ và $2\nmid b$. Khi đó
     
     $$
     \begin{aligned}
@@ -113,14 +117,15 @@
     \end{aligned}
     $$
     
-    注意到 $2\mid x-y\implies 4\mid x^2-y^2$，从而 $(\forall i\geq 1),~~x^{2^i}+y^{2^i}\equiv 2\pmod 4$，进而上式可变为：
+    Chú ý rằng $2\mid x-y\implies 4\mid x^2-y^2$, nên $(\forall i\geq 1),~~x^{2^i}+y^{2^i}\equiv 2\pmod 4$. Do đó biểu thức trên trở thành:
     
     $$
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+\nu_p(x+y)+\nu_p(n)-1
     $$
     
-    因此命题得证．
+    Vậy mệnh đề được chứng minh.
 
-## 参考资料
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+## Tài liệu tham khảo
 
 1.  [Lifting-the-exponent lemma - Wikipedia](https://en.wikipedia.org/wiki/Lifting-the-exponent_lemma)

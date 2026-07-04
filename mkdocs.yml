@@ -242,17 +242,17 @@ nav:
       - Ước chung lớn nhất: math/number-theory/gcd.md
       - Hàm Euler: math/number-theory/euler-totient.md
       - Sàng số: math/number-theory/sieve.md
-      - 分解质因数: math/number-theory/pollard-rho.md
-      - 裴蜀定理 & 一次不定方程: math/number-theory/bezouts.md
-      - 费马小定理 & 欧拉定理: math/number-theory/fermat.md
+      - Phân tích thừa số nguyên tố: math/number-theory/pollard-rho.md
+      - Định lý Bézout & phương trình vô định tuyến tính: math/number-theory/bezouts.md
+      - Định lý nhỏ Fermat & định lý Euler: math/number-theory/fermat.md
       - Nghịch đảo modulo: math/number-theory/inverse.md
       - Phương trình đồng dư tuyến tính: math/number-theory/linear-equation.md
-      - 中国剩余定理: math/number-theory/crt.md
-      - 升幂引理: math/number-theory/lift-the-exponent.md
-      - 阶乘取模: math/number-theory/factorial.md
-      - 卢卡斯定理: math/number-theory/lucas.md
-      - 同余方程: math/number-theory/congruence-equation.md
-      - 二次剩余: math/number-theory/quad-residue.md
+      - Định lý thặng dư Trung Hoa: math/number-theory/crt.md
+      - Bổ đề nâng số mũ: math/number-theory/lift-the-exponent.md
+      - Giai thừa modulo: math/number-theory/factorial.md
+      - Định lý Lucas: math/number-theory/lucas.md
+      - Phương trình đồng dư: math/number-theory/congruence-equation.md
+      - Thặng dư bậc hai: math/number-theory/quad-residue.md
       - 阶 & 原根: math/number-theory/primitive-root.md
       - 离散对数: math/number-theory/discrete-logarithm.md
       - 高次剩余 & 单位根: math/number-theory/residue.md

@@ -1,119 +1,124 @@
 author: aofall, c-forrest, CoelacanthusHex, Early0v0, Enter-tainer, Great-designer, iamtwz, Marcythm, Persdre, shuzhouliu, Tiphereth-A, wsyhb, Xeonacid
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Mở đầu
 
-本文讨论了某一模数下阶乘计算的相关结论，并提供一种时间复杂度线性相关于模数大小的计算方法，因而该方法主要适用于模数不太大（$\sim 10^6$）的情形．除了本文介绍的方法外，根据场景不同，还可以应用 [多项式技术](../poly/shift.md#模素数意义下阶乘) 进行快速计算．
+Bài viết này thảo luận các kết quả liên quan đến việc tính giai thừa theo một modulo, đồng thời đưa ra một phương pháp có độ phức tạp thời gian tuyến tính theo kích thước modulo. Vì vậy, phương pháp này chủ yếu phù hợp khi modulo không quá lớn ($\sim 10^6$). Ngoài phương pháp được trình bày ở đây, tùy ngữ cảnh cũng có thể dùng [kỹ thuật đa thức](../poly/shift.md#%E6%A8%A1%E7%B4%A0%E6%95%B0%E6%84%8F%E4%B9%89%E4%B8%8B%E9%98%B6%E4%B9%98) để tính nhanh.
 
-根据 [中国剩余定理](./crt.md)，阶乘取模问题可以转化为模数为素数幂 $p^\alpha$ 的情形．在处理这类问题时，常常需要对于素数 $p$ 和正整数 $n$，将阶乘 $n!$ 中的所有因子 $p$ 都提取出来，进而得到分解：
+Theo [định lý phần dư Trung Hoa](./crt.md), bài toán lấy modulo của giai thừa có thể chuyển về trường hợp modulo là lũy thừa nguyên tố $p^\alpha$. Khi xử lý dạng bài này, với số nguyên tố $p$ và số nguyên dương $n$, ta thường cần tách toàn bộ các thừa số $p$ trong giai thừa $n!$ ra, từ đó thu được phân tích:
 
 $$
 n! = p^{\nu_p(n!)}(n!)_p.
 $$
 
-其中，$\nu_p(n!)$ 表示阶乘 $n!$ 的素因数分解中 $p$ 的幂次，$(n!)_p$ 表示在阶乘 $n!$ 的结果中去除所有 $p$ 的幂次得到的整数．本文将讨论 $(n!)_p$ 在素数（幂）模下的余数以及幂次 $\nu_p(n!)$ 的具体计算方法．
+Trong đó, $\nu_p(n!)$ biểu thị số mũ của $p$ trong phân tích thừa số nguyên tố của $n!$, còn $(n!)_p$ biểu thị số nguyên thu được sau khi loại bỏ mọi lũy thừa của $p$ khỏi giá trị của $n!$. Bài viết này sẽ thảo luận phần dư của $(n!)_p$ theo modulo số nguyên tố hoặc lũy thừa nguyên tố, cũng như cách tính cụ thể số mũ $\nu_p(n!)$.
 
-这种分解在解决阶乘同时出现在所求表达式的分子和分母的问题时尤为有用，比如 [计算某一模数下的二项式系数](./lucas.md)．对于这类问题，分子和分母中 $p$ 的幂次可以直接相减，而与 $p$ 互素的部分 $(n!)_p$ 则可以利用 [乘法逆元](./inverse.md) 计算．
+Phân tích này đặc biệt hữu ích khi giai thừa xuất hiện đồng thời ở tử số và mẫu số của biểu thức cần tính, chẳng hạn khi [tính hệ số nhị thức theo một modulo](./lucas.md). Với những bài toán như vậy, số mũ của $p$ ở tử và mẫu có thể trừ trực tiếp cho nhau; còn phần nguyên tố cùng nhau với $p$, tức $(n!)_p$, có thể xử lý bằng [nghịch đảo nhân](./inverse.md).
 
-本文还介绍了与上述问题相关的 Wilson 定理及其推广、Legendre 公式和 Kummer 定理等内容．
+Bài viết cũng giới thiệu định lý Wilson và mở rộng của nó, công thức Legendre, định lý Kummer cùng một số nội dung liên quan.
 
-## Wilson 定理
+<span id="wilson-&#x5B9A;&#x7406;"></span>
+## Định lý Wilson
 
-Wilson 定理给出了判断某个自然数是素数的一个充分必要条件．
+Định lý Wilson cho một điều kiện cần và đủ để kiểm tra một số tự nhiên có phải số nguyên tố hay không.
 
-???+ note "Wilson 定理"
-    对于自然数 $n>1$，当且仅当 $n$ 是素数时，$(n-1)!\equiv -1\pmod n$．
+???+ note "Định lý Wilson"
+    Với số tự nhiên $n>1$, ta có $(n-1)!\equiv -1\pmod n$ khi và chỉ khi $n$ là số nguyên tố.
 
-??? note "证明"
-    首先，证明对于素数 $p$ 有 $(p-1)!\equiv -1\pmod{p}$．对于这一点，可以利用 [同余方程](./congruence-equation.md#推论-2) 或 [原根](./primitive-root.md) 得到两种简洁的证明，此处略去不表．下面提供前置知识较少的一种证明方法：
+??? note "Chứng minh"
+    Trước hết, chứng minh rằng với số nguyên tố $p$ thì $(p-1)!\equiv -1\pmod{p}$. Điều này có thể được chứng minh ngắn gọn bằng [phương trình đồng dư](./congruence-equation.md#%E6%8E%A8%E8%AE%BA-2) hoặc [căn nguyên thủy](./primitive-root.md); ở đây không trình bày hai cách đó. Sau đây là một chứng minh cần ít kiến thức chuẩn bị hơn.
     
-    当 $p=2$ 时，命题显然成立．下面设 $p\geq 3$，继而要证明 $\mathbf{Z}_p$ 中所有非零元素（即同余类）的积为 $\overline{-1}$．因为 $\mathbf{Z}_p$ 中所有非零元素 $\overline{a}$ 都有逆元 $\overline{a}^{-1}$，于是 $\mathbf{Z}_p$ 中彼此互逆的元素乘积为 $\overline{1}$．但是要注意 $\overline{a}$ 和 $\overline{a}^{-1}$ 可能相等：$\overline{a}=\overline{a}^{-1}$，当且仅当 $a^2\equiv 1\pmod p$，即
+    Khi $p=2$, mệnh đề hiển nhiên đúng. Xét $p\geq 3$. Ta cần chứng minh tích của tất cả phần tử khác không trong $\mathbf{Z}_p$ (tức các lớp đồng dư khác không) bằng $\overline{-1}$. Vì mọi phần tử khác không $\overline{a}$ trong $\mathbf{Z}_p$ đều có nghịch đảo $\overline{a}^{-1}$, tích của các cặp phần tử nghịch đảo nhau trong $\mathbf{Z}_p$ bằng $\overline{1}$. Tuy nhiên, cần chú ý rằng $\overline{a}$ có thể bằng $\overline{a}^{-1}$: $\overline{a}=\overline{a}^{-1}$ khi và chỉ khi $a^2\equiv 1\pmod p$, tức là
     
     $$
     0\equiv a^2-1\equiv (a+1)(a-1),\pmod p
     $$
     
-    从而，$a\equiv 1\pmod p$ 或 $a\equiv -1\pmod p$．这说明 $\mathbf{Z}_p\setminus\{\overline{0},\overline{1},\overline{-1}\}$ 中所有元素的乘积为 $\overline{1}$，进而 $\mathbf{Z}_p$ 中所有非零元素的积为 $\overline{-1}$．
+    Do đó $a\equiv 1\pmod p$ hoặc $a\equiv -1\pmod p$. Điều này cho thấy tích của tất cả phần tử trong $\mathbf{Z}_p\setminus\{\overline{0},\overline{1},\overline{-1}\}$ bằng $\overline{1}$, suy ra tích của tất cả phần tử khác không trong $\mathbf{Z}_p$ bằng $\overline{-1}$.
     
-    反过来，对于合数 $n$ 的情形，要证明 $(n-1)!\not\equiv-1\pmod{n}$．利用反证法，不妨设 $(n-1)!\equiv -1\pmod{n}$，亦即存在整数 $k$ 使得 $(n-1)!=kn-1$ 成立．因为 $n$ 是合数，必然存在素数 $p<n$ 使得 $n=pm$，所以 $(n-1)!=kpm-1\equiv -1\pmod{p}$．但是，乘积 $(n-1)!$ 中必然已经出现 $p$，故而一定有 $(n-1)!\equiv 0\pmod{p}$．这一矛盾就说明了 $(n-1)!\not\equiv-1\pmod{n}$．
+    Ngược lại, với trường hợp $n$ là hợp số, ta cần chứng minh $(n-1)!\not\equiv-1\pmod{n}$. Dùng phản chứng, giả sử $(n-1)!\equiv -1\pmod{n}$, tức tồn tại số nguyên $k$ sao cho $(n-1)!=kn-1$. Vì $n$ là hợp số, chắc chắn tồn tại số nguyên tố $p<n$ sao cho $n=pm$, nên $(n-1)!=kpm-1\equiv -1\pmod{p}$. Nhưng trong tích $(n-1)!$ chắc chắn đã có thừa số $p$, do đó $(n-1)!\equiv 0\pmod{p}$. Mâu thuẫn này chứng minh $(n-1)!\not\equiv-1\pmod{n}$.
 
-利用本文的记号，Wilson 定理可以写作 $(p!)_p\equiv -1\pmod{p}$．
+Theo ký hiệu của bài viết này, định lý Wilson có thể viết thành $(p!)_p\equiv -1\pmod{p}$.
 
-### 推广
+<span id="&#x63A8;&#x5E7F;"></span>
+### Mở rộng
 
-Wilson 定理可以推广到一般模数的情形．
+Định lý Wilson có thể được mở rộng cho modulo tổng quát.
 
-???+ note "定理（Gauss）"
-    对于自然数 $m>1$，有
+???+ note "Định lý (Gauss)"
+    Với số tự nhiên $m>1$, ta có
     
     $$
     \prod_{1\le k<m,\ k\perp m} k \equiv \pm 1 \pmod{m}.
     $$
     
-    而且，余数中的 $\pm 1$ 取值为 $-1$ 当且仅当模 $m$ 的 [原根存在](./primitive-root.md#原根存在定理)，即 $m=2,4,p^\alpha,2p^\alpha$ 时，其中 $p$ 是奇素数且 $\alpha$ 是正整数．
+    Hơn nữa, giá trị $\pm 1$ của phần dư bằng $-1$ khi và chỉ khi [căn nguyên thủy modulo $m$ tồn tại](./primitive-root.md#%E5%8E%9F%E6%A0%B9%E5%AD%98%E5%9C%A8%E5%AE%9A%E7%90%86), tức $m=2,4,p^\alpha,2p^\alpha$, trong đó $p$ là số nguyên tố lẻ và $\alpha$ là số nguyên dương.
 
-??? note "证明"
-    这个定理可以通过 [模 $n$ 整数乘法群](../algebra/ring-theory.md#应用整数同余类的乘法群) 的结构简单地证明．此处给出思路相仿，但是较为初等的证明．
+??? note "Chứng minh"
+    Định lý này có thể được chứng minh đơn giản bằng cấu trúc của [nhóm nhân các lớp đồng dư nguyên modulo $n$](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4). Dưới đây là một chứng minh có ý tưởng tương tự nhưng sơ cấp hơn.
     
-    对于 $m=2$ 的情形，有 $1!=1\equiv -1\pmod{2}$．对于其他存在原根的情形，设原根为 $g$，则所有满足小于 $m$ 且与它互素的正整数 $k$ 都可以唯一地表示为 $g^i\bmod m$ 的形式，其中 $0\le i<\varphi(m)$ 且 $\varphi(m)$ 是 [Euler 函数](./euler-totient.md)．直接验证可知，$\varphi(m)$ 一定是偶数．因为 $g^i$ 和 $g^{\varphi(m)-i}$ 互为乘法逆元，所以在乘积中将它们两两配对，就有
+    Với $m=2$, ta có $1!=1\equiv -1\pmod{2}$. Với các trường hợp còn lại có căn nguyên thủy, gọi một căn nguyên thủy là $g$. Khi đó mọi số nguyên dương $k<m$ và nguyên tố cùng nhau với $m$ đều có thể biểu diễn duy nhất dưới dạng $g^i\bmod m$, trong đó $0\le i<\varphi(m)$ và $\varphi(m)$ là [hàm Euler](./euler-totient.md). Kiểm tra trực tiếp cho thấy $\varphi(m)$ luôn chẵn. Vì $g^i$ và $g^{\varphi(m)-i}$ là nghịch đảo nhân của nhau, ghép cặp chúng trong tích sẽ cho
     
     $$
     \prod_{1\le k<m,\ k\perp m} k \equiv \prod_{i=0}^{\varphi(m)-1}g^i = g^{\varphi(m)/2}\prod_{i=1}^{\varphi(m)/2-1}g^{i}g^{\varphi(m)-i} \equiv g^{\varphi(m)/2} \pmod{m}.
     $$
     
-    因为 $g^{\varphi(m)/2}\bmod m$ 是唯一的不等于 $1\bmod{m}$ 且乘法逆元就是它自身的元素，所以它就等于 $-1\bmod{m}$．这就说明了此时的余数等于 $-1$．
+    Vì $g^{\varphi(m)/2}\bmod m$ là phần tử duy nhất khác $1\bmod{m}$ và có nghịch đảo nhân bằng chính nó, nên nó bằng $-1\bmod{m}$. Do đó phần dư trong trường hợp này bằng $-1$.
     
-    对于模 $m$ 的原根不存在的情形，要证明余数等于 $1$．为此，可以首先做质因数分解 $m=p_1^{e_1}p_2^{e_2}\cdots p_s^{e_s}$，然后应用 [中国剩余定理](./crt.md) 可知，只需要证明
+    Khi modulo $m$ không có căn nguyên thủy, ta cần chứng minh phần dư bằng $1$. Trước hết phân tích thừa số nguyên tố $m=p_1^{e_1}p_2^{e_2}\cdots p_s^{e_s}$, rồi áp dụng [định lý phần dư Trung Hoa](./crt.md). Khi đó chỉ cần chứng minh
     
     $$
     \prod_{1\le k<m,\ k\perp m} k\equiv 1\pmod{p_j^{e_j}}
     $$
     
-    对所有因子 $p_j^{e_j}$ 都成立．中国剩余定理说明，每一个可能的余数组合 $(r_1,r_2,\cdots,r_s)$，其中，$1\le r_j<p_j^{e_j}$ 且 $p_j\perp r_j$，都唯一地对应着一个 $1\le k<m$ 且 $k\perp m$ 使得 $k\equiv r_j\pmod{p_j^{e_j}}$ 成立．所以，对于某个余数 $r_j$，都恰好有 ${\varphi(m)}/{\varphi(p_j^{e_j})}$ 个 $k$ 使得 $k\equiv r_j\pmod{p_j^{e_j}}$ 成立．利用这一点，可以对乘积进行分组，就有
+    với mọi thừa số $p_j^{e_j}$. Định lý phần dư Trung Hoa cho biết mỗi tổ hợp phần dư khả dĩ $(r_1,r_2,\cdots,r_s)$, trong đó $1\le r_j<p_j^{e_j}$ và $p_j\perp r_j$, tương ứng duy nhất với một số $1\le k<m$ thỏa mãn $k\perp m$ và $k\equiv r_j\pmod{p_j^{e_j}}$. Vì vậy, với một phần dư $r_j$ cố định, có đúng ${\varphi(m)}/{\varphi(p_j^{e_j})}$ số $k$ sao cho $k\equiv r_j\pmod{p_j^{e_j}}$. Dùng điều này để nhóm tích, ta có
     
     $$
     \prod_{1\le k<m,\ k\perp m} k\equiv\left(\prod_{1\le r_j<p_j^{e_j},\ r_j\perp p_j} r_j\right)^{{\varphi(m)}/{\varphi(p_j^{e_j})}}\pmod{p_j^{e_j}}.
     $$
     
-    此处的指数 ${\varphi(m)}/{\varphi(p_j^{e_j})}=\varphi(m/p_j^{e_j})$ 要成为奇数，必然要求 $m/p_j^{e_j}=1,2$，因为欧拉函数 $\varphi(n)$ 对于 $n\ge 3$ 都是偶数．如果 $p_j$ 是奇素数，因为模 $m$ 的原根不存在，必然有 $m/p_j^{e_j}\neq 1,2$；如果 $p_j^{e_j}=2,4$，因为模 $m$ 的原根不存在，必然有 $m/p_j^{e_j}$ 含有某个奇素因子，故而大于 $2$：这两种情形指数 ${\varphi(m)}/{\varphi(p_j^{e_j})}$ 都是偶数．而上式中括号里的项已经证明是模 $p_j^{e_j}$ 余 $-1$ 的，所以这个幂模 $p_j^{e_j}$ 的余数一定是 $1$．剩余的情形只有 $p_j=2$ 且 $e_j>2$ 时，对于这个情形，可以直接证明 \`
+    Để số mũ ${\varphi(m)}/{\varphi(p_j^{e_j})}=\varphi(m/p_j^{e_j})$ là số lẻ thì bắt buộc $m/p_j^{e_j}=1,2$, vì hàm Euler $\varphi(n)$ là số chẵn với mọi $n\ge 3$. Nếu $p_j$ là số nguyên tố lẻ, do modulo $m$ không có căn nguyên thủy, chắc chắn $m/p_j^{e_j}\neq 1,2$. Nếu $p_j^{e_j}=2,4$, cũng do modulo $m$ không có căn nguyên thủy, $m/p_j^{e_j}$ chắc chắn chứa một thừa số nguyên tố lẻ, nên lớn hơn $2$. Trong cả hai trường hợp, số mũ ${\varphi(m)}/{\varphi(p_j^{e_j})}$ đều chẵn. Mặt khác, thừa số trong ngoặc ở công thức trên đã được chứng minh có phần dư $-1$ modulo $p_j^{e_j}$, nên lũy thừa đó có phần dư $1$ modulo $p_j^{e_j}$. Trường hợp còn lại chỉ là $p_j=2$ và $e_j>2$; với trường hợp này, có thể chứng minh trực tiếp rằng
     
     $$
     \prod_{1\le r_j<2^{e_j},\ r_j\perp 2}r_j \equiv 1\pmod{2^{e_j}}.
     $$
     
-    仿照前文的证明思路，可以将所有 $1\le r_j<2^{e_j}$ 的奇数 $r_j$ 两两配对而消去，那些无法配对的必然是方程 $x^2\equiv 1\pmod{2^{e_j}}$ 的解．该方程意味着 $2^{e_j}\mid (x-1)(x+1)$．令 $x=2y+1$，就必然有 $2^{e_j-2}\mid y(y+1)$，而 $y$ 和 $y+1$ 必然一奇一偶，所以 $y=t2^{e_j-2}$ 或 $y=t2^{e_j-2}-1$．故而，有 $x=t2^{e_j-1}\pm 1$ 且 $t$ 是整数．模 $2^{e_j}$ 的余数中，只有 $\pm 1$ 和 $2^{e_j-1}\pm 1$ 四个．因此，有
+    Tương tự ý tưởng chứng minh ở trên, ghép cặp các số lẻ $r_j$ thỏa $1\le r_j<2^{e_j}$ với nghịch đảo của chúng. Những số không ghép cặp được phải là nghiệm của phương trình $x^2\equiv 1\pmod{2^{e_j}}$. Phương trình này có nghĩa là $2^{e_j}\mid (x-1)(x+1)$. Đặt $x=2y+1$, ta có $2^{e_j-2}\mid y(y+1)$. Vì $y$ và $y+1$ luôn có một số lẻ, một số chẵn, nên $y=t2^{e_j-2}$ hoặc $y=t2^{e_j-2}-1$. Do đó $x=t2^{e_j-1}\pm 1$, với $t$ là số nguyên. Trong các phần dư modulo $2^{e_j}$, chỉ có bốn giá trị $\pm 1$ và $2^{e_j-1}\pm 1$. Vì thế
     
     $$
     \prod_{1\le r_j<2^{e_j},\ r_j\perp 2}r_j \equiv (-1)(2^{e_j-1}-1)(2^{e_j-1}+1) \equiv 1\pmod{2^{e_j}}.
     $$
     
-    这就完成了所有情形的证明．
+    Như vậy mọi trường hợp đều đã được chứng minh.
 
-在计算中，尤为重要的是模数为素数幂的情形：
+Trong tính toán, trường hợp modulo là lũy thừa nguyên tố đặc biệt quan trọng:
 
-???+ note "推论"
-    对于素数 $p$ 和正整数 $\alpha$，有
+???+ note "Hệ quả"
+    Với số nguyên tố $p$ và số nguyên dương $\alpha$, ta có
     
     $$
     \prod_{1\le k<p^\alpha,\ k\perp p}k \equiv 
     \begin{cases}
-    1, & p=2\text{ and }\alpha\ge3,\\
+    1, & p=2\text{ và }\alpha\ge3,\\
     -1, &\text{otherwise}
     \end{cases}
     \pmod{p^\alpha}.
     $$
 
-注意，左侧并非 $(p^\alpha!)_p$，因为后者还需要统计 $p$ 的倍数的贡献．
+Chú ý rằng vế trái không phải $(p^\alpha!)_p$, vì biểu thức sau còn cần tính cả đóng góp của các bội của $p$.
 
-## 阶乘余数的计算
+<span id="&#x9636;&#x4E58;&#x4F59;&#x6570;&#x7684;&#x8BA1;&#x7B97;"></span>
+## Tính phần dư của giai thừa
 
-本节讨论余数 $(n!)_p\bmod p^{\alpha}$ 的计算．
+Phần này thảo luận cách tính phần dư $(n!)_p\bmod p^{\alpha}$.
 
-### 素数模的情形
+<span id="&#x7D20;&#x6570;&#x6A21;&#x7684;&#x60C5;&#x5F62;"></span>
+### Trường hợp modulo số nguyên tố
 
-算式 $(n!)_p$ 有明显的递归结构．为注意到这一点，首先考察一个具体的例子：
+Biểu thức $(n!)_p$ có cấu trúc đệ quy rõ ràng. Để thấy điều đó, trước hết xét một ví dụ cụ thể:
 
-???+ example "例子"
-    要计算 $(32!)_5 \bmod{5}$，可以做如下递归计算：
+???+ example "Ví dụ"
+    Để tính $(32!)_5 \bmod{5}$, có thể thực hiện phép tính đệ quy như sau:
     
     $$
     \begin{aligned}
@@ -127,19 +132,19 @@ Wilson 定理可以推广到一般模数的情形．
     \end{aligned}
     $$
     
-    可以看出，利用模 $5$ 余数的周期性，可以将这一乘积划分为若干个长度为 $5$ 的块，每一块的唯一差异就是最后一个元素的余数．因为 $32$ 除以 $5$ 得到的商是 $6$ 且余数是 $2$，所以，该乘积可以划分为 $6$ 个完整的块和最后一段长度为 $2$ 的不完整的块．因此，可以将前 $6$ 个块除了最后一个元素之外的部分提取出来（这一部分恰好是 Wilson 定理能够解决的），再乘上最后一个不完整的块的乘积，最后乘上前 $6$ 个块的最后一个元素的连乘积．每个块的最后一个元素都是 $5$ 的倍数，去掉 $5$ 的幂次后，它们的连乘积恰好是 $(6!)_{5}\pmod{5}$．这就将原来的问题转化为了规模更小的问题．
+    Có thể thấy rằng nhờ tính chu kỳ của phần dư modulo $5$, ta chia được tích này thành các khối độ dài $5$; điểm khác nhau duy nhất giữa các khối là phần dư của phần tử cuối. Vì $32$ chia cho $5$ được thương $6$ và dư $2$, tích này gồm $6$ khối đầy đủ và một đoạn cuối không đầy đủ có độ dài $2$. Do đó, ta tách phần trước phần tử cuối của $6$ khối đầu tiên ra (phần này được xử lý đúng bằng định lý Wilson), nhân thêm tích của khối cuối không đầy đủ, rồi nhân với tích các phần tử cuối của $6$ khối đầu tiên. Mỗi phần tử cuối của một khối đều là bội của $5$; sau khi bỏ các lũy thừa của $5$, tích của chúng đúng bằng $(6!)_{5}\pmod{5}$. Nhờ vậy, bài toán ban đầu được chuyển thành một bài toán nhỏ hơn.
 
-将该例子中的递归的结构一般化，就得到如下递推公式：
+Tổng quát hóa cấu trúc đệ quy trong ví dụ này, ta thu được công thức truy hồi sau:
 
-???+ note "递推公式"
-    对于素数 $p$ 和正整数 $n$，有
+???+ note "Công thức truy hồi"
+    Với số nguyên tố $p$ và số nguyên dương $n$, ta có
     
     $$
     (n!)_p \equiv (-1)^{\left\lfloor n/p\right\rfloor}\cdot (n\bmod p)!\cdot\left(\left\lfloor n/p\right\rfloor!\right)_p\pmod{p}.
     $$
 
-??? note "证明"
-    记 $(n)_p$ 为 $n$ 的素因数分解中去除所有 $p$ 的幂次的结果．于是，有
+??? note "Chứng minh"
+    Ký hiệu $(n)_p$ là kết quả sau khi loại bỏ mọi lũy thừa của $p$ trong phân tích thừa số nguyên tố của $n$. Khi đó
     
     $$
     \begin{aligned}
@@ -150,9 +155,9 @@ Wilson 定理可以推广到一般模数的情形．
     \end{aligned}
     $$
     
-    这就完成了证明．下面对于该形式证明提供具体的解释．
+    Như vậy công thức đã được chứng minh. Sau đây là một cách giải thích cụ thể hơn cho dạng chứng minh này.
     
-    要计算 $(n!)_p\bmod p$ 的值．仿照上面的例子，有
+    Ta cần tính giá trị của $(n!)_p\bmod p$. Tương tự ví dụ ở trên, có
     
     $$
     \begin{aligned}
@@ -163,7 +168,7 @@ Wilson 定理可以推广到一般模数的情形．
     \end{aligned}
     $$
     
-    可以清楚地看到，除了最后一个块外，阶乘被划分为几个长度相同的完整的块．
+    Có thể thấy rõ rằng, ngoài khối cuối cùng, giai thừa được chia thành nhiều khối đầy đủ có cùng độ dài.
     
     $$
     \begin{aligned}
@@ -172,56 +177,57 @@ Wilson 定理可以推广到一般模数的情形．
     \end{aligned}
     $$
     
-    除了块的最后一个元素外，完整的块的主要部分 $(p-1)!\ \mathrm{mod}\ p$ 很容易计算，可以应用 Wilson 定理：
+    Ngoại trừ phần tử cuối của mỗi khối, phần chính của mỗi khối đầy đủ là $(p-1)!\ \mathrm{mod}\ p$, có thể tính dễ dàng bằng định lý Wilson:
     
     $$
     (p-1)!\equiv -1\pmod p.
     $$
     
-    总共有 $\left\lfloor \dfrac{n}{p} \right\rfloor$ 个完整的块，因此需要将 $\left\lfloor \dfrac{n}{p} \right\rfloor$ 写到 $-1$ 的指数上．
+    Tổng cộng có $\left\lfloor \dfrac{n}{p} \right\rfloor$ khối đầy đủ, nên cần đưa $\left\lfloor \dfrac{n}{p} \right\rfloor$ lên làm số mũ của $-1$.
     
-    最后一个部分块的值就是 $(n\bmod p)!\bmod p$，可以单独计算．
+    Giá trị của khối cuối không đầy đủ là $(n\bmod p)!\bmod p$, có thể tính riêng.
     
-    剩下的就是每个块的最后一个元素．如果隐藏已处理的元素，可以看到以下模式：
+    Phần còn lại là phần tử cuối của mỗi khối. Nếu ẩn các phần tử đã xử lý, ta thấy mẫu sau:
     
     $$
     (n!)_p = \underbrace{ \ldots \cdot 1 } \cdot \underbrace{ \ldots \cdot 2} \cdot \ldots \cdot \underbrace{ \ldots \cdot (p-1)} \cdot \underbrace{ \ldots \cdot 1 } \cdot \underbrace{ \ldots \cdot 1} \cdot \underbrace{ \ldots \cdot 2} \cdots
     $$
     
-    这也是一个修正的阶乘，只是长度短得多．它是：
+    Đây cũng là một giai thừa đã chỉnh sửa, chỉ có độ dài ngắn hơn nhiều. Nó là:
     
     $$
     \left(\left\lfloor \frac{n}{p} \right\rfloor !\right)_p.
     $$
     
-    将各部分乘起来，就得到上面的递推公式．
+    Nhân các phần lại với nhau, ta thu được công thức truy hồi ở trên.
 
-利用该递推式做计算，递归深度为 $O(\log_p n)$．如果每次都重新计算中间那一项，那么每层计算的复杂度都是 $O(p)$ 的，总的时间复杂度是 $O(p\log_p n)$；如果对所有 $n=1,2,\cdots,p-1$ 都预先处理了 $n!\bmod p$，那么预处理的复杂度是 $O(p)$ 的，每层计算的复杂度都是 $O(1)$ 的，总的时间复杂度是 $O(p+\log_p n)$ 的．
+Dùng công thức truy hồi này, độ sâu đệ quy là $O(\log_p n)$. Nếu mỗi lần đều tính lại hạng tử ở giữa, độ phức tạp mỗi tầng là $O(p)$, nên tổng độ phức tạp thời gian là $O(p\log_p n)$. Nếu tiền xử lý trước mọi giá trị $n!\bmod p$ với $n=1,2,\cdots,p-1$, độ phức tạp tiền xử lý là $O(p)$, mỗi tầng tính trong $O(1)$, và tổng độ phức tạp là $O(p+\log_p n)$.
 
-在实现时，因为是尾递归，可以用迭代实现．下面的实现对前 $p-1$ 个阶乘做了预计算，如果需要多次调用，可以将预计算放到函数外进行．
+Khi cài đặt, vì đây là đệ quy đuôi nên có thể viết bằng vòng lặp. Cài đặt dưới đây tiền xử lý giai thừa của $p-1$ giá trị đầu tiên; nếu cần gọi nhiều lần, có thể đưa phần tiền xử lý ra ngoài hàm.
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/factorial/fact-mod-p.cpp:core"
     ```
 
-如果空间有限，无法存储所有阶乘，也可以将函数调用中实际用到的阶乘 $n!\bmod p$ 中的 $n$ 都计算出来，然后对它们进行排序，从而可以在最后一次性计算出来这些阶乘的值，汇总到最终结果中，而避免存储所有阶乘的值．
+Nếu bộ nhớ hạn chế và không thể lưu toàn bộ giai thừa, cũng có thể chỉ tính các giá trị $n$ thực sự được dùng trong những lần gọi hàm cho $n!\bmod p$, sau đó sắp xếp chúng để tính tất cả các giai thừa cần thiết trong một lượt cuối cùng và gộp vào kết quả, tránh phải lưu mọi giá trị giai thừa.
 
-### 素数幂模的情形
+<span id="&#x7D20;&#x6570;&#x5E42;&#x6A21;&#x7684;&#x60C5;&#x5F62;"></span>
+### Trường hợp modulo lũy thừa nguyên tố
 
-对于素数幂模的情形，可以仿照素数模的情形解决，只需要将 Wilson 定理替换成它的推广形式．本节两个结论中的 $\pm 1$，均特指这样的定义：当模数 $p=2$ 且 $\alpha\ge 3$ 时取 $1$，其余情形取 $-1$．
+Với trường hợp modulo là lũy thừa nguyên tố, có thể giải tương tự trường hợp modulo số nguyên tố, chỉ cần thay định lý Wilson bằng dạng mở rộng của nó. Trong hai kết quả của phần này, ký hiệu $\pm 1$ luôn được hiểu theo định nghĩa sau: lấy $1$ khi modulo có $p=2$ và $\alpha\ge 3$, còn các trường hợp khác lấy $-1$.
 
-???+ note "递推公式"
-    对于素数 $p$ 和正整数 $\alpha,n$，有
+???+ note "Công thức truy hồi"
+    Với số nguyên tố $p$ và các số nguyên dương $\alpha,n$, ta có
     
     $$
     (n!)_{p} \equiv (\pm 1)^{\lfloor n/p^\alpha\rfloor}\cdot\left(\prod_{1\le j\le (n\bmod p^\alpha),\ j\perp p}j\right)\cdot(\lfloor n/p\rfloor!)_p\pmod{p^\alpha}.
     $$
     
-    其中，$\pm 1$ 的取值如同 [Wilson 定理的推广](#推广) 中规定的那样．
+    Trong đó, giá trị của $\pm 1$ được quy định như trong [mở rộng của định lý Wilson](#%E6%8E%A8%E5%B9%BF).
 
-??? note "证明"
-    证明思路和素数模的情形完全一致．记 $(k)_p$ 为去除 $k$ 的素因数分解中 $p$ 的全部幂次的结果，则
+??? note "Chứng minh"
+    Ý tưởng chứng minh hoàn toàn giống trường hợp modulo số nguyên tố. Ký hiệu $(k)_p$ là kết quả sau khi loại bỏ mọi lũy thừa của $p$ trong phân tích thừa số nguyên tố của $k$. Khi đó
     
     $$
     \begin{aligned}
@@ -233,18 +239,18 @@ Wilson 定理可以推广到一般模数的情形．
     \end{aligned}
     $$
 
-与素数模的情形不同之处，除了 $-1$ 可能需要替换为 $\pm 1$ 之外，还需要注意预处理的数据的不同．对于素数幂模的情形，需要对所有不超过 $p^\alpha$ 的正整数 $n$ 预处理自 $1$ 至 $n$ 但并非 $p$ 的倍数的所有整数的乘积，即
+Khác với trường hợp modulo số nguyên tố, ngoài việc $-1$ có thể cần thay bằng $\pm 1$, còn phải chú ý dữ liệu tiền xử lý cũng khác. Với modulo lũy thừa nguyên tố, cần tiền xử lý tích của mọi số nguyên dương từ $1$ đến $n$ nhưng không phải bội của $p$, với mọi $n$ không vượt quá $p^\alpha$, tức là
 
 $$
 \prod_{1\le k\le n,\ k\perp p} k\bmod{p^\alpha}.
 $$
 
-在素数模的情形，它退化为 $n!\bmod p$，但是该表达式在一般的素数幂的情形不再适用．
+Trong trường hợp modulo số nguyên tố, biểu thức này suy biến thành $n!\bmod p$, nhưng với lũy thừa nguyên tố tổng quát thì không còn dùng được biểu thức đó.
 
-下面提供了在素数幂模的情形下计算阶乘余数的例子，以便理解上述方法：
+Dưới đây là ví dụ tính phần dư giai thừa theo modulo lũy thừa nguyên tố, giúp hiểu phương pháp trên:
 
-???+ example "例子"
-    要计算 $(32!)_3\bmod 9$，可以做如下递归计算：
+???+ example "Ví dụ"
+    Để tính $(32!)_3\bmod 9$, có thể thực hiện phép tính đệ quy như sau:
     
     $$
     \begin{aligned}
@@ -262,73 +268,75 @@ $$
     \end{aligned}
     $$
     
-    将 $(32!)_3\bmod 9$ 的算式分解的结果同样可以分为三部分：
+    Kết quả phân tách biểu thức $(32!)_3\bmod 9$ cũng gồm ba phần:
     
-    -   完整的块：由 $1\sim 9$ 之间所有不被 $3$ 整除的整数的乘积，共 $\lfloor 32/9\rfloor=3$ 块；
-    -   尾部不完整的块：所有不被 $3$ 整除的整数从 $1$ 一直乘到 $32\bmod 9$；
-    -   所有被 $3$ 整除的整数的乘积，对比倒数第二个等号的结果可知，这就是它的前 $\lfloor 32/3\rfloor=10$ 项，亦即 $(\lfloor 32/3\rfloor!)_3\bmod 9$．
+    -   Các khối đầy đủ: tích của mọi số nguyên trong khoảng $1\sim 9$ không chia hết cho $3$, có tổng cộng $\lfloor 32/9\rfloor=3$ khối;
+    -   Khối cuối không đầy đủ: tích của các số nguyên không chia hết cho $3$ từ $1$ đến $32\bmod 9$;
+    -   Tích của mọi số nguyên chia hết cho $3$. So với kết quả ở dấu bằng áp chót, có thể thấy đây chính là $10$ hạng tử đầu của nó, tức $(\lfloor 32/3\rfloor!)_3\bmod 9$.
     
-    最后一个括号里的递归求解即可，这样就将原问题转化为了更小的问题．
+    Chỉ cần tiếp tục giải đệ quy phần trong ngoặc cuối cùng, bài toán ban đầu sẽ được chuyển thành bài toán nhỏ hơn.
 
-由此，就可以得到如下递推结果：
+Từ đó, ta thu được kết quả truy hồi sau:
 
-???+ note "递推结果"
-    对于素数 $p$ 和正整数 $\alpha,n$，有
+???+ note "Kết quả truy hồi"
+    Với số nguyên tố $p$ và các số nguyên dương $\alpha,n$, ta có
     
     $$
     (n!)_p \equiv (\pm 1)^{\sum_{j\ge\alpha}\lfloor{n}/{p^j}\rfloor}\prod_{j\ge 0}F(\lfloor n/p^j\rfloor\bmod p^\alpha),
     $$
     
-    其中，$F(m) = \prod_{1\le k\le m,\ k\perp p} k\bmod{p^\alpha}$ 且 $\pm 1$ 的取值与上文所述相同．
+    trong đó $F(m) = \prod_{1\le k\le m,\ k\perp p} k\bmod{p^\alpha}$ và giá trị của $\pm 1$ giống như đã nêu ở trên.
 
-素数幂模的情形的实现和素数模的情形类似，只有一些细节上的区别．与上文类似，同样可以将预处理放到函数外进行．
+Cài đặt cho trường hợp modulo lũy thừa nguyên tố tương tự trường hợp modulo số nguyên tố, chỉ khác một vài chi tiết. Tương tự phần trên, cũng có thể đưa tiền xử lý ra ngoài hàm.
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/factorial/fact-mod-pa.cpp:core"
     ```
 
-预处理的时间复杂度为 $O(p^\alpha)$，单次询问的时间复杂度为 $O(\log_p n)$．
+Độ phức tạp tiền xử lý là $O(p^\alpha)$, độ phức tạp cho mỗi truy vấn là $O(\log_p n)$.
 
-## 幂次的计算
+<span id="&#x5E42;&#x6B21;&#x7684;&#x8BA1;&#x7B97;"></span>
+## Tính số mũ
 
-本节讨论阶乘 $n!$ 中 $p$ 的幂次 $\nu_p(n!)$ 的计算，它可以用于计算二项式系数的余数．因为二项式系数中，分子和分母都会出现阶乘，而分子和分母中素数 $p$ 能否互相抵消，就成为了决定最后的余数的重要因素．
+Phần này thảo luận cách tính số mũ $\nu_p(n!)$ của $p$ trong giai thừa $n!$, có thể dùng để tính phần dư của hệ số nhị thức. Vì trong hệ số nhị thức, cả tử và mẫu đều chứa giai thừa, việc thừa số nguyên tố $p$ ở tử và mẫu có triệt tiêu được nhau hay không trở thành yếu tố quan trọng quyết định phần dư cuối cùng.
 
-### Legendre 公式
+<span id="legendre-&#x516C;&#x5F0F;"></span>
+### Công thức Legendre
 
-阶乘 $n!$ 中素数 $p$ 的幂次可以通过 Legendre 公式计算，而且与 $n$ 在 $p$ 进制下的表示有关．
+Số mũ của số nguyên tố $p$ trong giai thừa $n!$ có thể được tính bằng công thức Legendre, và có liên quan đến biểu diễn của $n$ trong hệ cơ số $p$.
 
-???+ note "Legendre 公式"
-    对于正整数 $n$，阶乘 $n!$ 中含有的素数 $p$ 的幂次 $\nu_p(n!)$ 为
+???+ note "Công thức Legendre"
+    Với số nguyên dương $n$, số mũ $\nu_p(n!)$ của số nguyên tố $p$ trong giai thừa $n!$ là
     
     $$
     \nu_p(n!) = \sum_{i=1}^{\infty} \left\lfloor \dfrac{n}{p^i} \right\rfloor = \dfrac{n-S_p(n)}{p-1},
     $$
     
-    其中，$S_p(n)$ 为 $p$ 进制下 $n$ 的各个数位的和．特别地，阶乘中 $2$ 的幂次是 $\nu_2(n!)=n-S_2(n)$．
+    trong đó $S_p(n)$ là tổng các chữ số của $n$ trong hệ cơ số $p$. Đặc biệt, số mũ của $2$ trong giai thừa là $\nu_2(n!)=n-S_2(n)$.
 
-??? note "证明"
-    因为
+??? note "Chứng minh"
+    Vì
     
     $$
     n! = 1\times 2\times \cdots \times p\times \cdots \times 2p\times \cdots \times \lfloor n/p\rfloor p\times \cdots \times n.
     $$
     
-    其中，$p$ 的倍数的乘积为 $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$，而 $\lfloor n/p\rfloor !$ 可能继续出现 $p$ 的倍数．所以，对于幂次，有递推关系：
+    Tích các bội của $p$ là $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$, còn $\lfloor n/p\rfloor !$ có thể tiếp tục chứa các bội của $p$. Vì vậy, với số mũ ta có quan hệ truy hồi:
     
     $$
     \nu_p(n!) = \lfloor n/p\rfloor + \nu_p(\lfloor n/p\rfloor!).
     $$
     
-    将它展开就得到 Legendre 公式．
+    Khai triển quan hệ này sẽ cho công thức Legendre.
     
-    要证明第二个等号，首先将 $n$ 展开为 $p$ 进制，这相当于将它写作如下和式：
+    Để chứng minh dấu bằng thứ hai, trước hết khai triển $n$ trong hệ cơ số $p$, tức viết nó thành tổng:
     
     $$
     n = n_\ell p^{\ell} + \cdots + n_1 p + n_0 = \sum_{k=0}^\ell n_kp^k.
     $$
     
-    因此，有
+    Do đó
     
     $$
     \begin{aligned}
@@ -342,32 +350,33 @@ $$
     \end{aligned}
     $$
 
-求阶乘中素数幂次的参考实现如下：
+Cài đặt tham khảo để tính số mũ của số nguyên tố trong giai thừa như sau:
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/factorial/multiplicity.cpp:core"
     ```
 
-它的时间复杂度为 $O(\log n)$．
+Độ phức tạp thời gian là $O(\log n)$.
 
-### Kummer 定理
+<span id="kummer-&#x5B9A;&#x7406;"></span>
+### Định lý Kummer
 
-组合数对一个数取模的结果，往往构成分形结构，例如谢尔宾斯基三角形就可以通过组合数模 $2$ 得到．
+Kết quả lấy modulo của hệ số nhị thức thường tạo thành cấu trúc phân hình; ví dụ tam giác Sierpinski có thể thu được từ hệ số nhị thức modulo $2$.
 
-如果仔细分析，$p$ 是否整除组合数其实和上下标在 $p$ 进制下减法是否需要借位有关．这就有了 **Kummer 定理**．
+Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay không thực ra liên quan đến việc phép trừ hai chỉ số trong hệ cơ số $p$ có cần mượn hay không. Từ đó ta có **định lý Kummer**.
 
-???+ note "Kummer 定理"
-    素数 $p$ 在组合数 $\dbinom{m}{n}$ 中的幂次，恰好是 $p$ 进制下 $m$ 减掉 $n$ 需要借位的次数，亦即
+???+ note "Định lý Kummer"
+    Số mũ của số nguyên tố $p$ trong hệ số nhị thức $\dbinom{m}{n}$ đúng bằng số lần cần mượn khi lấy $m$ trừ $n$ trong hệ cơ số $p$, tức là
     
     $$
     \nu_p\left(\dbinom{m}{n}\right)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}.
     $$
     
-    特别地，组合数中 $2$ 的幂次是 $\nu_2\left(\dbinom{m}{n}\right)=S_2(n)+S_2(m-n)-S_2(m)$.
+    Đặc biệt, số mũ của $2$ trong hệ số nhị thức là $\nu_2\left(\dbinom{m}{n}\right)=S_2(n)+S_2(m-n)-S_2(m)$.
 
-??? note "证明"
-    首先证明下面的表达式．为此，利用 Legendre 公式，有
+??? note "Chứng minh"
+    Trước hết chứng minh biểu thức dưới đây. Dùng công thức Legendre, ta có
     
     $$
     \begin{aligned}
@@ -378,65 +387,67 @@ $$
     \end{aligned}
     $$
     
-    该表达式可以理解为 $p$ 进制下 $m$ 减掉 $n$ 需要借位的次数．因为如果在计算第 $i$ 位（最低位下标是 $1$）时存在不够减需要借位的情况，那么相减的结果中第 $i$ 位之前的数字 $\left\lfloor\dfrac{m-n}{p^i}\right\rfloor$，其实是 $m$ 中第 $i$ 位之前的数字 $\left\lfloor\dfrac{m}{p^i}\right\rfloor$，减去一（即借掉的一），再减去 $n$ 中第 $i$ 位之前的数字得到的差值 $\left\lfloor\dfrac{n}{p^i}\right\rfloor$，所以，差值
+    Biểu thức này có thể hiểu là số lần cần mượn khi lấy $m$ trừ $n$ trong hệ cơ số $p$. Nếu khi tính chữ số thứ $i$ (chữ số thấp nhất có chỉ số $1$) xảy ra trường hợp không đủ để trừ và phải mượn, thì phần trước chữ số thứ $i$ trong hiệu, tức $\left\lfloor\dfrac{m-n}{p^i}\right\rfloor$, thực chất bằng phần trước chữ số thứ $i$ của $m$, tức $\left\lfloor\dfrac{m}{p^i}\right\rfloor$, trừ đi một (đơn vị đã mượn), rồi trừ tiếp phần trước chữ số thứ $i$ của $n$, tức $\left\lfloor\dfrac{n}{p^i}\right\rfloor$. Vì vậy hiệu
     
     $$
     \left\lfloor\dfrac{m}{p^i}\right\rfloor-\left\lfloor\dfrac{n}{p^i}\right\rfloor-\left\lfloor\dfrac{m-n}{p^i}\right\rfloor = 1
     $$
     
-    当且仅当发生了一次借位；否则，该差值为 $0$．因此，上述表达式中的求和式就可以理解为借位发生的次数．这就得到了 Kummer 定理的文字表述．
+    khi và chỉ khi có một lần mượn xảy ra; nếu không, hiệu này bằng $0$. Do đó tổng ở biểu thức trên chính là số lần mượn. Đây là phát biểu bằng lời của định lý Kummer.
 
-## 例题
+<span id="&#x4F8B;&#x9898;"></span>
+## Bài tập ví dụ
 
-???+ example "例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
-    给定 $n$, 计算
+???+ example "Bài tập [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
+    Cho $n$, hãy tính
     
     $$
     \sum_{k=1}^n\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor
     $$
 
-??? note "解题思路"
-    若 $3k+7$ 是质数，则
+??? note "Ý tưởng giải"
+    Nếu $3k+7$ là số nguyên tố, thì
     
     $$
     (3k+6)!\equiv-1\pmod{3k+7}
     $$
     
-    设 $(3k+6)!+1=k(3k+7)$
+    Đặt $(3k+6)!+1=k(3k+7)$.
     
-    则
+    Khi đó
     
     $$
     \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor k-\left\lfloor k-\frac{1}{3k+7}\right\rfloor\right\rfloor=1
     $$
     
-    若 $3k+7$ 不是质数，则有 $(3k+7)\mid(3k+6)!$，即
+    Nếu $3k+7$ không phải số nguyên tố, thì $(3k+7)\mid(3k+6)!$, tức
     
     $$
     (3k+6)!\equiv 0\pmod{3k+7}
     $$
     
-    设 $(3k+6)!=k(3k+7)$，则
+    Đặt $(3k+6)!=k(3k+7)$, ta có
     
     $$
     \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor k+\frac{1}{3k+7}-k\right\rfloor=0
     $$
     
-    因此
+    Vì vậy
     
     $$
-    \sum_{k=1}^n\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\sum_{k=1}^n[3k+7\text{ is prime}]
+    \sum_{k=1}^n\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\sum_{k=1}^n[3k+7\text{ là số nguyên tố}]
     $$
 
-??? example "参考代码"
+??? example "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/factorial/wilson_1.cpp"
     ```
 
-## 参考资料
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+## Tài liệu tham khảo
 
--   冯克勤．《初等数论及其应用》．
+-   Feng Keqin, *Elementary Number Theory and Its Applications*.
 -   [Wilson's theorem - Wikipedia](https://en.wikipedia.org/wiki/Wilson%27s_theorem)
 -   [Legendre's formula - Wikipedia](https://en.wikipedia.org/wiki/Legendre%27s_formula)
 
-**本页面主要译自博文 [Вычисление факториала по модулю](http://e-maxx.ru/algo/modular_factorial) 与其英文翻译版 [Factorial modulo p](https://cp-algorithms.com/algebra/factorial-modulo.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．内容有改动．**
+**Trang này chủ yếu được dịch từ bài viết [Вычисление факториала по модулю](http://e-maxx.ru/algo/modular_factorial) và bản dịch tiếng Anh [Factorial modulo p](https://cp-algorithms.com/algebra/factorial-modulo.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0. Nội dung đã được chỉnh sửa.**

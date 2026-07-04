@@ -1,6 +1,6 @@
 #include <iostream>
 
-// Calculate Euler's totient for n.
+// Tính hàm phi Euler của n.
 int phi(int n) {
   int res = n;
   for (int i = 2; i * i <= n; ++i) {
@@ -13,10 +13,10 @@ int phi(int n) {
   return res;
 }
 
-// Find remainder as in the exponent of extended Euler theorem.
+// Tìm phần dư theo số mũ trong định lý Euler mở rộng.
 int mod(long long v, int m) { return v >= m ? v % m + m : v; }
 
-// Modular power.
+// Lũy thừa modulo.
 int pow(int a, int b, int m) {
   long long res = 1, po = a;
   for (; b; b >>= 1) {
@@ -26,7 +26,7 @@ int pow(int a, int b, int m) {
   return res;
 }
 
-// Modular tetration.
+// Tháp lũy thừa modulo.
 int tetra(int a, int b, int m) {
   if (a == 0) return !(b & 1);
   if (b == 0 || m == 1) return 1;

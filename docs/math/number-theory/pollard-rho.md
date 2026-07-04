@@ -1,26 +1,28 @@
-## 引入
+<span id="&#x5f15;&#x5165;"></span>
+## Mở đầu
 
-给定一个正整数 $N \in \mathbf{N}_{+}$，试快速找到它的一个 [非平凡因数](basic.md)．
+Cho một số nguyên dương $N \in \mathbf{N}_{+}$, hãy nhanh chóng tìm một [ước không tầm thường](basic.md) của nó.
 
-考虑朴素算法，因数是成对分布的，$N$ 的所有因数可以被分成两块，即 $[2, \sqrt N]$ 和 $[\sqrt N+1,N)$．只需要把 $[2, \sqrt N]$ 里的数遍历一遍，再根据除法就可以找出至少两个因数了．这个方法的时间复杂度为 $O(\sqrt N)$．
+Xét thuật toán đơn giản: các ước xuất hiện theo từng cặp, nên mọi ước của $N$ có thể chia thành hai phần, tức $[2, \sqrt N]$ và $[\sqrt N+1,N)$. Chỉ cần duyệt các số trong $[2, \sqrt N]$, rồi dùng phép chia là có thể tìm được ít nhất hai ước. Cách này có độ phức tạp thời gian $O(\sqrt N)$.
 
-当 $N\ge10^{18}$ 时，这个算法的运行时间我们是无法接受的，希望有更优秀的算法．一种想法是通过随机的方法，猜测一个数是不是 $N$ 的因数，如果运气好可以在 $O(1)$ 的时间复杂度下求解答案，但是对于 $N\ge10^{18}$ 的数据，成功猜测的概率是 $\frac{1}{10^{18}}$, 期望猜测的次数是 $10^{18}$．如果是在 $[2,\sqrt N]$ 里进行猜测，成功率会大一些．我们希望有方法来优化猜测．
+Khi $N\ge10^{18}$, thời gian chạy của thuật toán này là không chấp nhận được, nên ta cần một thuật toán tốt hơn. Một ý tưởng là dùng phương pháp ngẫu nhiên để đoán xem một số có phải là ước của $N$ hay không. Nếu may mắn, ta có thể tìm được đáp án trong $O(1)$, nhưng với dữ liệu $N\ge10^{18}$, xác suất đoán trúng chỉ là $\frac{1}{10^{18}}$, nên số lần đoán kỳ vọng là $10^{18}$. Nếu chỉ đoán trong $[2,\sqrt N]$ thì xác suất thành công lớn hơn một chút. Ta muốn có cách tối ưu hóa quá trình đoán này.
 
-## 朴素算法
+<span id="&#x6734;&#x7d20;&#x7b97;&#x6cd5;"></span>
+## Thuật toán đơn giản
 
-最简单的算法即为从 $[2, \sqrt N]$ 进行遍历．
+Thuật toán đơn giản nhất là duyệt trong khoảng $[2, \sqrt N]$.
 
 === "C++"
     ```cpp
     vector<int> breakdown(int N) {
       vector<int> result;
       for (int i = 2; i * i <= N; i++) {
-        if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子．
+        if (N % i == 0) {  // Nếu i chia hết N, i là một thừa số nguyên tố của N.
           while (N % i == 0) N /= i;
           result.push_back(i);
         }
       }
-      if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
+      if (N != 1) {  // Sau các bước trên, phần còn lại của N là một số nguyên tố.
         result.push_back(N);
       }
       return result;
@@ -32,124 +34,130 @@
     def breakdown(N):
         result = []
         for i in range(2, int(sqrt(N)) + 1):
-            if N % i == 0:  # 如果 i 能够整除 N，说明 i 为 N 的一个质因子．
+            if N % i == 0:  # Nếu i chia hết N, i là một thừa số nguyên tố của N.
                 while N % i == 0:
                     N //= i
                 result.append(i)
-        if N != 1:  # 说明再经过操作之后 N 留下了一个素数
+        if N != 1:  # Sau các bước trên, phần còn lại của N là một số nguyên tố.
             result.append(N)
         return result
     ```
 
-我们能够证明 `result` 中的所有元素即为 `N` 的全体素因数．
+Ta có thể chứng minh rằng mọi phần tử trong `result` chính là toàn bộ các thừa số nguyên tố của `N`.
 
-??? note "证明 `result` 中即为 $N$ 的全体素因数"
-    首先考察 `N` 的变化．当循环进行到 `i` 结束时，由于刚执行结束 `while(N % i == 0) N /= i` 部分，`i` 不再整除 `N`．而且，每次除去一个因子，都能够保证 `N` 仍整除 $N$．这两点保证了，当循环进行到 `i` 开始时，`N` 是 $N$ 的一个因子，且不被任何小于 `i` 的整数整除．
-    
-    其次证明 `result` 中的元素均为 $N$ 的因子．当循环进行到 `i` 时，能够在 `result` 中存入 `i` 的条件是 `N % i == 0`，这说明 `i` 整除 `N`，且已经说明 `N` 是 $N$ 的因子，故而有 `i` 是 $N$ 的因子．当对 `i` 的循环结束时，若 `N` 不为一，也会存入 `result`．此时它根据前文，也必然是 $N$ 的一个因子．
-    
-    其次证明 `result` 中均为素数．我们假设存在一个在 `result` 中的合数 $K$，则必然存在 `i` 不超过 $\sqrt K$，满足 `i` 是 `K` 的一个因子．这样的 $K$ 不可能作为循环中的某个 `i` 存入 `result`，因为第一段已经说明，当循环到 $K$ 时，`N` 不被任何小于 $K$ 的 `i` 整除．这样的 $K$ 也不可能在循环结束后加入，因为循环退出的条件是 `i * i > N`，故而已经遍历完了所有不超过 $\sqrt K$ 的 `i`，而且据上文所说，这些 `i` 绝不能整除目前的 `N`，亦即 $K$．
-    
-    最后证明，所有 $N$ 的素因子必然出现在 `result` 中．不妨假设 $p$ 是 $N$ 的一个素因子，但并没有出现在 `result` 中．根据上文的讨论，$p$ 不可能是循环中出现过的 `i`．设 `i` 是退出循环前最后的 `i`，则 `i` 严格小于 $p$，而退出循环后的 `N` 不被之前的 `i` 整除，故而 $p$ 整除 `N`．所以最后的 `N` 大于一，则根据前文所述，它必然是素数，则 `N` 就等于 $p$，必会在最后加入 `result`，与假设矛盾．
+??? note "Chứng minh rằng `result` chứa toàn bộ thừa số nguyên tố của $N$"
+    Trước hết xét sự thay đổi của `N`. Khi vòng lặp kết thúc tại `i`, vì vừa thực hiện xong đoạn `while(N % i == 0) N /= i`, nên `i` không còn chia hết `N`. Hơn nữa, mỗi lần loại bỏ một thừa số đều bảo đảm `N` vẫn là ước của $N$ ban đầu. Hai điểm này bảo đảm rằng khi vòng lặp bắt đầu tại `i`, `N` là một ước của $N$ ban đầu và không chia hết cho bất kỳ số nguyên nào nhỏ hơn `i`.
 
-值得指出的是，如果开始已经打了一个素数表的话，时间复杂度将从 $O(\sqrt N)$ 下降到 $O(\frac {\sqrt{N}} {\ln N})$．去 [筛法](./sieve.md) 处查阅更多打表的信息．
+    Tiếp theo, chứng minh các phần tử trong `result` đều là ước của $N$ ban đầu. Khi vòng lặp đang xét `i`, điều kiện để đưa `i` vào `result` là `N % i == 0`; điều này cho thấy `i` chia hết `N` hiện tại. Do đã biết `N` hiện tại là ước của $N$ ban đầu, suy ra `i` là ước của $N$ ban đầu. Khi vòng lặp trên `i` kết thúc, nếu `N` khác một thì cũng đưa `N` vào `result`; theo lập luận phía trên, giá trị này cũng là một ước của $N$ ban đầu.
 
-例题：[CF 1445C](https://codeforces.com/problemset/problem/1445/C)
+    Tiếp theo, chứng minh mọi phần tử trong `result` đều là số nguyên tố. Giả sử tồn tại một hợp số $K$ trong `result`; khi đó phải có một `i` không vượt quá $\sqrt K$ sao cho `i` là một ước của `K`. Một $K$ như vậy không thể được đưa vào `result` dưới dạng một giá trị `i` trong vòng lặp, vì đoạn đầu đã cho thấy khi vòng lặp đến $K$, `N` không chia hết cho bất kỳ `i` nào nhỏ hơn $K$. $K$ cũng không thể được thêm sau khi vòng lặp kết thúc, vì điều kiện thoát vòng lặp là `i * i > N`, tức là đã duyệt hết mọi `i` không vượt quá $\sqrt K$; theo lập luận trên, các `i` này chắc chắn không thể chia hết `N` hiện tại, tức $K$.
 
-## Pollard Rho 算法
+    Cuối cùng, chứng minh mọi thừa số nguyên tố của $N$ ban đầu chắc chắn xuất hiện trong `result`. Giả sử $p$ là một thừa số nguyên tố của $N$ ban đầu nhưng không xuất hiện trong `result`. Theo các lập luận phía trên, $p$ không thể là một `i` đã xuất hiện trong vòng lặp. Gọi `i` là giá trị cuối cùng trước khi thoát vòng lặp, khi đó `i` nhỏ hơn hẳn $p$, và `N` sau khi thoát vòng lặp không chia hết cho các `i` trước đó, nên $p$ chia hết `N`. Vì vậy `N` cuối cùng lớn hơn một; theo phần trên nó phải là số nguyên tố, tức `N` bằng $p$, và chắc chắn sẽ được thêm vào `result`, mâu thuẫn với giả thiết.
 
-### 引入
+Cần lưu ý rằng nếu đã có sẵn bảng số nguyên tố, độ phức tạp thời gian sẽ giảm từ $O(\sqrt N)$ xuống $O(\frac {\sqrt{N}} {\ln N})$. Xem thêm thông tin về cách lập bảng tại [sàng](./sieve.md).
 
-利用暴力算法获得一个非平凡因子的复杂度为 $O(p)=O(\sqrt N)$，这里，$p$ 是 $N$ 的最小素因子．而下面要介绍的 Pollard-Rho 算法是一种随机化算法，可以在 $O(\sqrt p)=O(N^{1/4})$ 的期望复杂度获得一个非平凡因子（**注意**！非平凡因子不一定是素因子）．
+Bài tập ví dụ: [CF 1445C](https://codeforces.com/problemset/problem/1445/C)
 
-它的核心想法是，对于一个随机自映射 $f: \mathbb Z_p \rightarrow \mathbb Z_p$，从任何一点 $x_1$ 出发，迭代计算 $x_n = f(x_{n-1})$，将在 $O(\sqrt p)$ 期望时间内进入循环．如果能够找到 $x_i \equiv x_j \pmod p$，则 $p$ 整除 $\gcd(|x_i-x_j|, N)$，这一最大公约数就是 $N$ 的一个非平凡因子．
+<span id="pollard-rho-&#x7b97;&#x6cd5;"></span>
+## Thuật toán Pollard Rho
 
-要理解进入循环的期望时间为 $O(\sqrt p)$，可以从生日悖论中获得启发．
+<span id="&#x5f15;&#x5165;_1"></span>
+### Mở đầu
 
-### 生日悖论
+Dùng thuật toán vét cạn để tìm một ước không tầm thường có độ phức tạp $O(p)=O(\sqrt N)$, trong đó $p$ là thừa số nguyên tố nhỏ nhất của $N$. Thuật toán Pollard-Rho được giới thiệu dưới đây là một thuật toán ngẫu nhiên hóa, có thể tìm được một ước không tầm thường trong độ phức tạp kỳ vọng $O(\sqrt p)=O(N^{1/4})$ (**chú ý**: ước không tầm thường không nhất thiết là thừa số nguyên tố).
 
-不考虑出生年份（假设每年都是 365 天），问：一个房间中至少多少人，才能使其中两个人生日相同的概率达到 $50\%$?
+Ý tưởng cốt lõi là: với một ánh xạ tự thân ngẫu nhiên $f: \mathbb Z_p \rightarrow \mathbb Z_p$, xuất phát từ một điểm bất kỳ $x_1$ và lặp $x_n = f(x_{n-1})$, dãy sẽ đi vào chu trình trong thời gian kỳ vọng $O(\sqrt p)$. Nếu có thể tìm được $x_i \equiv x_j \pmod p$, thì $p$ chia hết $\gcd(|x_i-x_j|, N)$, và ước chung lớn nhất này là một ước không tầm thường của $N$.
 
-解：假设一年有 $n$ 天，房间中有 $k$ 人，用整数 $1, 2,\dots, k$ 对这些人进行编号．假定每个人的生日均匀分布于 $n$ 天之中，且两个人的生日相互独立．
+Để hiểu vì sao thời gian kỳ vọng để đi vào chu trình là $O(\sqrt p)$, có thể lấy cảm hứng từ nghịch lý ngày sinh.
 
-设 $k$ 个人生日互不相同为事件 $A$, 则事件 $A$ 的概率为
+<span id="&#x751f;&#x65e5;&#x6096;&#x8bba;"></span>
+### Nghịch lý ngày sinh
+
+Bỏ qua năm sinh (giả sử mỗi năm có 365 ngày), hỏi: trong một căn phòng cần ít nhất bao nhiêu người để xác suất có hai người cùng ngày sinh đạt $50\%$?
+
+Lời giải: giả sử một năm có $n$ ngày, trong phòng có $k$ người, đánh số những người này bằng các số nguyên $1, 2,\dots, k$. Giả định ngày sinh của mỗi người phân bố đều trên $n$ ngày và ngày sinh của hai người bất kỳ độc lập với nhau.
+
+Gọi $A$ là sự kiện $k$ người có ngày sinh đôi một khác nhau. Khi đó xác suất của sự kiện $A$ là
 
 $$
 P(A)=\prod_{i=0}^{k-1}\frac{n-i}{n}
 $$
 
-至少有两个人生日相同的概率为 $P(\overline A)=1-P(A)$．根据题意可知 $P(\overline A)\ge\frac{1}{2}$, 那么就有
+Xác suất có ít nhất hai người cùng ngày sinh là $P(\overline A)=1-P(A)$. Theo yêu cầu đề bài, $P(\overline A)\ge\frac{1}{2}$, nên ta có
 
 $$
 P(A)=\prod_{i=0}^{k-1}\frac{n-i}{n} \le \frac{1}{2}
 $$
 
-由不等式 $1+x\le \mathrm{e}^x$ 可得
+Từ bất đẳng thức $1+x\le \mathrm{e}^x$, suy ra
 
 $$
 P(A) \le \prod_{i=1}^{k-1}\exp\left({-\frac{i}{n}}\right)=\exp \left({-\frac{k(k-1)}{2n}}\right)
 $$
 
-因此
+Do đó
 
 $$
 \exp\left({-\dfrac{k(k-1)}{2n}}\right) \le \frac{1}{2}\implies P(A) \le \frac{1}{2}
 $$
 
-将 $n=365$ 代入，解得 $k\geq 23$．所以一个房间中至少 $23$ 人，使其中两个人生日相同的概率达到 $50\%$, 但这个数学事实十分反直觉，故称之为一个悖论．
+Thay $n=365$, ta giải được $k\geq 23$. Vì vậy, chỉ cần ít nhất $23$ người trong một căn phòng là xác suất có hai người cùng ngày sinh đã đạt $50\%$; sự thật toán học này khá trái trực giác, nên được gọi là một nghịch lý.
 
-当 $k>56$，$n=365$ 时，出现两个人同一天生日的概率将大于 $99\%$[^ref1]．那么在一年有 $n$ 天的情况下，当房间中有 $\frac{1}{2}(\sqrt{8n\ln 2+1}+1)\approx \sqrt{2n\ln 2}$ 个人时，至少有两个人的生日相同的概率约为 $50\%$．
+Khi $k>56$ và $n=365$, xác suất có hai người sinh cùng ngày sẽ lớn hơn $99\%$[^ref1]. Nói chung, khi một năm có $n$ ngày, nếu trong phòng có $\frac{1}{2}(\sqrt{8n\ln 2+1}+1)\approx \sqrt{2n\ln 2}$ người thì xác suất có ít nhất hai người cùng ngày sinh xấp xỉ $50\%$.
 
-类似地可以计算，随机均匀地选取一列生日，首次获得重复生日需要的人数的期望也是 $O(\sqrt n)$．设这一人数为 $X$，则
+Tương tự, ta có thể tính rằng nếu chọn ngẫu nhiên đều một dãy ngày sinh, số người kỳ vọng cần chọn để lần đầu gặp một ngày sinh bị lặp cũng là $O(\sqrt n)$. Gọi số người đó là $X$, ta có
 
 $$
 E(X) = \sum_{x=1}^{n+1}P(X\ge x+1) = \sum_{x=0}^n\frac{n!}{(n-x)!n^x} = \sqrt{\frac{\pi n}{2}}-\frac13+o(1).
 $$
 
-这启发我们，如果可以随机选取一列数字，出现重复数字需要的抽样规模的期望也是 $O(\sqrt n)$ 的．
+Điều này gợi ý rằng nếu có thể chọn ngẫu nhiên một dãy số, kích thước mẫu kỳ vọng để xuất hiện số bị lặp cũng là $O(\sqrt n)$.
 
-### 利用最大公约数求出一个约数
+<span id="&#x5229;&#x7528;&#x6700;&#x5927;&#x516c;&#x7ea6;&#x6570;&#x6c42;&#x51fa;&#x4e00;&#x4e2a;&#x7ea6;&#x6570;"></span>
+### Dùng ước chung lớn nhất để tìm một ước
 
-实际构建一列模 $p$ 的随机数列并不现实，因为 $p$ 正是需要求的．所以，我们通过 $f(x)=(x^2+c)\bmod N$ 来生成一个伪随机数序列 $\{x_i\}$：随机取一个 $x_1$，令 $x_2=f(x_1),\ x_3=f(x_2),\ \dots,\ x_i=f(x_{i-1})$，其中 $c\in[1,N)$ 是一个随机选取的常数．
+Việc thật sự xây dựng một dãy số ngẫu nhiên modulo $p$ là không thực tế, vì $p$ chính là thứ cần tìm. Vì vậy, ta dùng $f(x)=(x^2+c)\bmod N$ để sinh một dãy giả ngẫu nhiên $\{x_i\}$: chọn ngẫu nhiên một $x_1$, đặt $x_2=f(x_1),\ x_3=f(x_2),\ \dots,\ x_i=f(x_{i-1})$, trong đó $c\in[1,N)$ là một hằng số được chọn ngẫu nhiên.
 
-这里选取的函数容易计算，且往往可以生成相当随机的序列．但它并不是完全随机的．举个例子，设 $n=50,\ c=6,\ x_1=1$，$f(x)$ 生成的数据为
+Hàm được chọn ở đây dễ tính và thường sinh ra dãy khá ngẫu nhiên, nhưng nó không hoàn toàn ngẫu nhiên. Ví dụ, đặt $n=50,\ c=6,\ x_1=1$, dữ liệu do $f(x)$ sinh ra là
 
 $$
 1, 7, 5, 31, 17, 45, 31, 17, 45, 31,\dots
 $$
 
-可以发现数据在 $x_4$ 以后都在 $31,17,45$ 之间循环．如果将这些数如下图一样排列起来，会发现这个图像酷似一个 $\rho$，算法也因此得名 rho．
+Có thể thấy từ sau $x_4$, dãy chỉ tuần hoàn giữa $31,17,45$. Nếu sắp các số này như hình dưới, ta sẽ thấy hình dạng rất giống chữ $\rho$, và đó cũng là nguồn gốc tên gọi rho của thuật toán.
 
 ![pollard-rho](./images/pollard-rho.svg)
 
-更重要的是，这样的函数确实提供了 $\mathbb Z_p$ 上一个自映射．也就是说，它满足性质：如果 $x\equiv y\pmod p$，则 $f(x)\equiv f(y)\pmod p$．
+Quan trọng hơn, hàm như vậy đúng là cung cấp một ánh xạ tự thân trên $\mathbb Z_p$. Nói cách khác, nó thỏa mãn tính chất: nếu $x\equiv y\pmod p$ thì $f(x)\equiv f(y)\pmod p$.
 
-???+ note "证明"
-    若 $x\equiv y\pmod p$，则 $x^2+c\equiv y^2+c\pmod p$．注意到，$f(x)=x^2+c-k_xN$，这里 $k_x$ 是一个依赖于 $x$ 的整数，且 $p|N$，所以有 $f(x)=x^2+c\pmod p$，因而 $f(x)=f(y)\pmod p$．
+???+ note "Chứng minh"
+    Nếu $x\equiv y\pmod p$, thì $x^2+c\equiv y^2+c\pmod p$. Chú ý rằng $f(x)=x^2+c-k_xN$, trong đó $k_x$ là một số nguyên phụ thuộc vào $x$, và $p|N$, nên $f(x)=x^2+c\pmod p$. Vì vậy $f(x)=f(y)\pmod p$.
 
-作为 $\mathbb Z_p$ 上的伪随机自映射反复迭代得到的序列，$\{x_n\bmod p\}$ 在 $O(\sqrt p)$ 的期望时间内就会出现重复．只要我们观察到这样的重复 $x_i\equiv x_j\pmod p$，就可以根据 $\gcd(|x_i-x_j|,N)$ 求出一个 $N$ 的非平凡因子．注意到，由于 $p$ 未知，我们并没有办法直接判断重复的发生，一个简单的判断方法正是 $\gcd(|x_i-x_j|,N)$ 严格大于一．
+Dãy thu được bằng cách lặp ánh xạ tự thân giả ngẫu nhiên trên $\mathbb Z_p$, tức $\{x_n\bmod p\}$, sẽ xuất hiện giá trị lặp trong thời gian kỳ vọng $O(\sqrt p)$. Chỉ cần quan sát được một lần lặp như vậy $x_i\equiv x_j\pmod p$, ta có thể tìm một ước không tầm thường của $N$ bằng $\gcd(|x_i-x_j|,N)$. Lưu ý rằng vì $p$ chưa biết, ta không thể trực tiếp kiểm tra việc lặp có xảy ra hay không; một cách kiểm tra đơn giản chính là xem $\gcd(|x_i-x_j|,N)$ có lớn hơn một hay không.
 
-这一算法并不是总能成功的，因为 $\gcd(|x_i-x_j|,N)$ 可能等于 $N$．也就是说，$x_i\equiv x_j\pmod N$．此时，$\{x_n\bmod p\}$ 首次发生重复时，恰好 $\{x_n\}$ 也发生重复了．我们没有得到一个非平凡因子．而且，$\{x_n\}$ 开始循环后，再继续迭代也没有意义了，因为之后只会重复这一循环．该算法应输出分解失败，需要更换 $f(x)$ 中选取的 $c$ 重新分解．
+Thuật toán này không phải lúc nào cũng thành công, vì $\gcd(|x_i-x_j|,N)$ có thể bằng $N$. Nói cách khác, $x_i\equiv x_j\pmod N$. Khi đó, đúng vào thời điểm $\{x_n\bmod p\}$ lần đầu bị lặp, bản thân $\{x_n\}$ cũng bị lặp. Ta không thu được một ước không tầm thường. Hơn nữa, sau khi $\{x_n\}$ bắt đầu tuần hoàn, tiếp tục lặp cũng không còn ý nghĩa vì sau đó chỉ lặp lại chu trình này. Thuật toán nên trả về việc phân tích thất bại; khi đó cần thay hằng số ngẫu nhiên $c$ trong $f(x)$ rồi phân tích lại.
 
-根据上文分析，理论上，任何满足 $\forall x \equiv y \pmod p, f(x) \equiv f(y) \pmod p$，且能够保证一定伪随机性的函数 $f(x)$（例如某些多项式函数）都可以用在此处．实践中，主要使用 $f(x)=x^2+c\ (c\neq 0,-2)$．[^pseudo]
+Theo phân tích trên, về mặt lý thuyết, mọi hàm $f(x)$ thỏa mãn $\forall x \equiv y \pmod p, f(x) \equiv f(y) \pmod p$ và bảo đảm được một mức giả ngẫu nhiên nhất định (ví dụ một số hàm đa thức) đều có thể dùng ở đây. Trong thực tế, ta chủ yếu dùng $f(x)=x^2+c\ (c\neq 0,-2)$.[^pseudo]
 
-### 实现
+<span id="&#x5b9e;&#x73b0;"></span>
+### Cài đặt
 
-我们需要实现的算法，能够在迭代过程中快速判断 $\{x_n\bmod p\}$ 是否已经出现重复．将 $f$ 看成以 $\mathbb Z_p$ 为顶点的有向图上的边，我们实际要实现的是一个判环算法．只是将判等改为了判断 $\gcd(|x_i-x_j|,N)$ 是否大于一．
+Thuật toán cần cài đặt phải nhanh chóng phát hiện trong quá trình lặp xem $\{x_n\bmod p\}$ đã xuất hiện giá trị lặp hay chưa. Nếu xem $f$ là các cạnh trên đồ thị có hướng với tập đỉnh $\mathbb Z_p$, việc ta cần làm thực chất là phát hiện chu trình. Khác biệt là phép kiểm tra bằng nhau được thay bằng kiểm tra liệu $\gcd(|x_i-x_j|,N)$ có lớn hơn một hay không.
 
-#### Floyd 判环
+<span id="floyd-&#x5224;&#x73af;"></span>
+#### Phát hiện chu trình bằng Floyd
 
-假设两个人在赛跑，A 的速度快，B 的速度慢，经过一定时间后，A 一定会和 B 相遇，且相遇时 A 跑过的总距离减去 B 跑过的总距离一定是圈长的倍数．
+Giả sử có hai người đang chạy đua, A chạy nhanh còn B chạy chậm. Sau một khoảng thời gian, A chắc chắn sẽ gặp B, và tại thời điểm gặp nhau, hiệu giữa tổng quãng đường A đã chạy và tổng quãng đường B đã chạy chắc chắn là bội của độ dài vòng.
 
-设 $a=f(0),b=f(f(0))$，每一次更新 $a=f(a),b=f(f(b))$，只要检查在更新过程中 $a$ 和 $b$ 是否相等，如果相等了，那么就出现了环．
+Đặt $a=f(0),b=f(f(0))$. Mỗi lần cập nhật $a=f(a),b=f(f(b))$, chỉ cần kiểm tra trong quá trình cập nhật xem $a$ và $b$ có bằng nhau hay không; nếu bằng nhau thì đã xuất hiện chu trình.
 
-我们每次令 $d=\gcd(|x_i-x_j|,N)$，判断 d 是否满足 $1< d< N$，若满足则可直接返回 $d$．如果 $d=N$，则说明 $\{x_i\}$ 已经形成环，在形成环时就不能再继续操作了，直接返回 $N$ 本身，并且在后续操作里调整随机常数 $c$，重新分解．
+Mỗi lần ta đặt $d=\gcd(|x_i-x_j|,N)$ và kiểm tra liệu $d$ có thỏa $1< d< N$ hay không. Nếu có, có thể trả về ngay $d$. Nếu $d=N$, điều đó cho thấy $\{x_i\}$ đã tạo thành chu trình; khi chu trình đã hình thành thì không thể tiếp tục thao tác có ích, nên trả về chính $N$, rồi trong bước sau điều chỉnh hằng số ngẫu nhiên $c$ và phân tích lại.
 
-??? note "基于 Floyd 判环的 Pollard-Rho 算法"
+??? note "Thuật toán Pollard-Rho dựa trên phát hiện chu trình Floyd"
     === "C++"
         ```cpp
         ll Pollard_Rho(ll N) {
-          if (N == 4) return 2;  // 因为一开始跳了两步，所以需要特判一下 4
+          if (N == 4) return 2;  // Vì ban đầu nhảy hai bước, cần xử lý riêng 4.
           ll c = rand() % (N - 1) + 1;
           ll t = f(0, c, N);
           ll r = f(f(0, c, N), c, N);
@@ -162,15 +170,15 @@ $$
           return N;
         }
         ```
-    
+
     === "Python"
         ```python
         import random
-        
-        
+
+
         def Pollard_Rho(N):
             if N == 4:
-                return 2  # 因为一开始跳了两步，所以需要特判一下 4
+                return 2  # Vì ban đầu nhảy hai bước, cần xử lý riêng 4.
             c = random.randint(1, N - 1)
             t = f(0, c, N)
             r = f(f(0, c, N), c, N)
@@ -183,23 +191,25 @@ $$
             return N
         ```
 
-#### Brent 判环
+<span id="brent-&#x5224;&#x73af;"></span>
+#### Phát hiện chu trình bằng Brent
 
-实际上，Floyd 判环算法可以有常数上的改进．Brent 判环从 $k=1$ 开始递增 $k$，在第 $k$ 轮，让 A 等在原地，B 向前移动 $2^k$ 步，如果在过程中 B 遇到了 A，则说明已经得到环，否则让 A 瞬移到 B 的位置，然后继续下一轮．
+Thực ra, thuật toán phát hiện chu trình Floyd có thể được cải thiện về hằng số. Phát hiện chu trình Brent bắt đầu với $k=1$ rồi tăng dần $k$; ở vòng thứ $k$, để A đứng yên, cho B đi tiếp $2^k$ bước. Nếu trong quá trình đó B gặp A thì đã tìm được chu trình; nếu không, cho A nhảy đến vị trí của B rồi tiếp tục vòng tiếp theo.
 
-可以证明[^brent]，这样得到环之前需要调用 $f$ 的次数永远不大于 Floyd 判环算法．原论文中的测试表明，Brent 判环需要的平均时间相较于 Floyd 判环减少了 $24\%$．
+Có thể chứng minh[^brent] rằng số lần gọi $f$ trước khi tìm được chu trình theo cách này luôn không lớn hơn thuật toán Floyd. Thử nghiệm trong bài báo gốc cho thấy thời gian trung bình của Brent giảm $24\%$ so với Floyd.
 
-#### 倍增优化
+<span id="&#x500d;&#x589e;&#x4f18;&#x5316;"></span>
+#### Tối ưu nhân đôi
 
-无论是 Floyd 判环还是 Brent 判环，迭代次数都是 $O(\sqrt p)$ 的．但是每次迭代都用 $\gcd$ 判断是否成环会拖慢算法运行速度．可以通过乘法累积来减少求 $\gcd$ 的次数．
+Dù dùng Floyd hay Brent để phát hiện chu trình, số lần lặp đều là $O(\sqrt p)$. Tuy nhiên, nếu mỗi lần lặp đều dùng $\gcd$ để kiểm tra chu trình thì thuật toán sẽ chậm đi. Có thể dùng phép tích lũy bằng nhân để giảm số lần tính $\gcd$.
 
-简单来说，如果 $\gcd(a,N)>1$，那么 $\gcd(ab\bmod N,N)=\gcd(ab,N)>1$ 对于任意 $b\in\mathbb N_+$ 都成立．也就是说，如果计算得到 $\gcd(\prod |x_i-x_j| \bmod N,N)>1$，那么必然有其中一对 $(x_i,x_j)$ 满足 $\gcd(|x_i-x_j|,N)>1$．如果该乘积在某一时刻得到零，则分解失败，退出并返回 $N$ 本身．
+Nói đơn giản, nếu $\gcd(a,N)>1$ thì $\gcd(ab\bmod N,N)=\gcd(ab,N)>1$ đúng với mọi $b\in\mathbb N_+$. Nghĩa là nếu tính được $\gcd(\prod |x_i-x_j| \bmod N,N)>1$, thì chắc chắn tồn tại một cặp $(x_i,x_j)$ thỏa $\gcd(|x_i-x_j|,N)>1$. Nếu tích này tại một thời điểm nào đó bằng không, phép phân tích thất bại; thoát ra và trả về chính $N$.
 
-如果每 $k$ 对计算一次 $\gcd$，则算法复杂度降低到 $O(\sqrt p+k^{-1}\sqrt p\log N)$，这里，$\log N$ 为单次计算 $\gcd$ 的开销．注意到 $k$ 和 $\log N$ 大致同阶时，可以得到 $O(\sqrt p)$ 的期望复杂度．具体实现中，大多选取 $k=128$．
+Nếu cứ mỗi $k$ cặp mới tính $\gcd$ một lần, độ phức tạp của thuật toán giảm xuống $O(\sqrt p+k^{-1}\sqrt p\log N)$, trong đó $\log N$ là chi phí của một lần tính $\gcd$. Lưu ý rằng khi $k$ cùng bậc với $\log N$, ta có thể đạt độ phức tạp kỳ vọng $O(\sqrt p)$. Trong cài đặt cụ thể, thường chọn $k=128$.
 
-这里提供 Brent 判环且加上倍增优化的 Pollard-Rho 算法实现．
+Dưới đây là cài đặt Pollard-Rho dùng phát hiện chu trình Brent kèm tối ưu nhân đôi.
 
-??? note "实现"
+??? note "Cài đặt"
     === "C++"
         ```cpp
         ll Pollard_Rho(ll x) {
@@ -212,7 +222,7 @@ $$
             for (step = 1; step <= goal; ++step) {
               t = f(t, c, x);
               val = val * abs(t - s) % x;
-              // 如果 val 为 0，退出重新分解
+              // Nếu val bằng 0, thoát ra để phân tích lại.
               if (!val) return x;
               if (step % 127 == 0) {
                 ll d = gcd(val, x);
@@ -224,13 +234,13 @@ $$
           }
         }
         ```
-    
+
     === "Python"
         ```python
         from random import randint
         from math import gcd
-        
-        
+
+
         def Pollard_Rho(x):
             c = randint(1, x - 1)
             s = t = f(0, c, x)
@@ -240,7 +250,7 @@ $$
                     t = f(t, c, x)
                     val = val * abs(t - s) % x
                     if val == 0:
-                        return x  # 如果 val 为 0，退出重新分解
+                        return x  # Nếu val bằng 0, thoát ra để phân tích lại.
                     if step % 127 == 0:
                         d = gcd(val, x)
                         if d > 1:
@@ -253,27 +263,30 @@ $$
                 val = 1
         ```
 
-#### 复杂度
+<span id="&#x590d;&#x6742;&#x5ea6;"></span>
+#### Độ phức tạp
 
-Pollard-Rho 算法中的期望迭代次数为 $O(\sqrt p)$，这里 $p$ 是 $N$ 的最小素因子．具体实现无论是采用 Floyd 判环还是 Brent 判环，如果不使用倍增优化，期望复杂度都是 $O(\sqrt p\log N)$；在加上倍增优化后，可以近似得到 $O(\sqrt p)$ 的期望复杂度．
+Số lần lặp kỳ vọng trong thuật toán Pollard-Rho là $O(\sqrt p)$, trong đó $p$ là thừa số nguyên tố nhỏ nhất của $N$. Trong cài đặt cụ thể, dù dùng Floyd hay Brent để phát hiện chu trình, nếu không dùng tối ưu nhân đôi thì độ phức tạp kỳ vọng đều là $O(\sqrt p\log N)$; sau khi thêm tối ưu nhân đôi, có thể xấp xỉ đạt độ phức tạp kỳ vọng $O(\sqrt p)$.
 
-值得一提的是，前文分析基于的是完全随机的自映射函数，但 Pollard-Rho 算法实际使用的是伪随机函数，所以该算法并没有严格的复杂度分析，实践中通常跑得较快．
+Cần nói thêm rằng phân tích phía trên dựa trên hàm ánh xạ tự thân hoàn toàn ngẫu nhiên, trong khi thuật toán Pollard-Rho thực tế dùng hàm giả ngẫu nhiên. Vì vậy thuật toán này không có phân tích độ phức tạp chặt chẽ, nhưng trong thực tế thường chạy nhanh.
 
-#### 例题：求一个数的最大素因子
+<span id="&#x4f8b;&#x9898;&#xff1a;&#x6c42;&#x4e00;&#x4e2a;&#x6570;&#x7684;&#x6700;&#x5927;&#x7d20;&#x56e0;&#x5b50;"></span>
+#### Bài tập ví dụ: tìm thừa số nguyên tố lớn nhất của một số
 
-例题：[P4718【模板】Pollard-Rho 算法](https://www.luogu.com.cn/problem/P4718)
+Bài tập ví dụ: [P4718 - Mẫu thuật toán Pollard-Rho](https://www.luogu.com.cn/problem/P4718)
 
-对于一个数 $n$，用 [Miller Rabin 算法](./prime.md#millerrabin-素性测试) 判断是否为素数，如果是就可以直接返回了，否则用 Pollard-Rho 算法找一个因子 $p$，将 $n$ 除去因子 $p$．再递归分解 $n$ 和 $p$，用 Miller Rabin 判断是否出现质因子，并用 max\_factor 更新就可以求出最大质因子了．由于这个题目的数据过于庞大，用 Floyd 判环的方法是不够的，这里采用倍增优化的方法．
+Với một số $n$, dùng [thuật toán Miller Rabin](./prime.md#kiem-tra-tinh-nguyen-to-miller-rabin) để kiểm tra nó có phải số nguyên tố hay không. Nếu có thì có thể trả về trực tiếp; nếu không, dùng thuật toán Pollard-Rho để tìm một thừa số $p$, rồi chia $n$ cho thừa số $p$. Sau đó tiếp tục phân tích đệ quy $n$ và $p$, dùng Miller Rabin để nhận biết các thừa số nguyên tố xuất hiện, và cập nhật `max_factor` để tìm thừa số nguyên tố lớn nhất. Vì dữ liệu của bài này rất lớn, cách phát hiện chu trình Floyd là chưa đủ; ở đây ta dùng phương pháp tối ưu nhân đôi.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     --8<-- "docs/math/code/pollard-rho/pollard-rho_1.cpp"
     ```
 
-## 参考资料与链接
+<span id="&#x53c2;&#x8003;&#x8d44;&#x6599;&#x4e0e;&#x94fe;&#x63a5;"></span>
+## Tài liệu tham khảo và liên kết
 
 [^ref1]: <https://en.wikipedia.org/wiki/Birthday_problem#Reverse_problem>
 
 [^pseudo]: Menezes, Alfred J.; van Oorschot, Paul C.; Vanstone, Scott A. (2001). Handbook of Applied Cryptography. Section 3.11 and 3.12.
 
-[^brent]: Brent, R. P. (1980), An improved Monte Carlo factorization algorithm, BIT Numerical Mathematics, 20(2): 176–184, doi:10.1007/BF01933190
+[^brent]: Brent, R. P. (1980), An improved Monte Carlo factorization algorithm, BIT Numerical Mathematics, 20(2): 176-184, doi:10.1007/BF01933190

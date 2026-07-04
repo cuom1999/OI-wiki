@@ -1,44 +1,46 @@
-前置知识：[阶乘取模](./factorial.md)
+Kiến thức nền: [Giai thừa theo modulo](./factorial.md)
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Mở đầu
 
-本文讨论大组合数取模的求解．组合数，又称二项式系数，指表达式：
+Bài viết này thảo luận cách tính hệ số tổ hợp lớn theo modulo. Hệ số tổ hợp, còn gọi là hệ số nhị thức, là biểu thức:
 
 $$
 \binom{n}{k} = \dfrac{n!}{k!(n-k)!}.
 $$
 
-规模不大时，组合数可以通过 [递推公式](../combinatorics/combination.md#组合数性质--二项式推论) 求解，时间复杂度为 $O(nk)$；也可以在较大的素数模数 $p>n$ 下，通过计算分子和分母的阶乘在 $O(n)$ 时间内求解．但当问题规模很大（$n\sim 10^{18}$）时，这些方法不再适用．
+Khi quy mô không lớn, hệ số tổ hợp có thể được tính bằng [công thức truy hồi](../combinatorics/combination.md#%E7%BB%84%E5%90%88%E6%95%B0%E6%80%A7%E8%B4%A8--%E4%BA%8C%E9%A1%B9%E5%BC%8F%E6%8E%A8%E8%AE%BA) với độ phức tạp thời gian $O(nk)$. Nếu modulo là số nguyên tố lớn $p>n$, cũng có thể tính giai thừa của tử số và mẫu số trong $O(n)$ thời gian. Tuy nhiên, khi quy mô bài toán rất lớn ($n\sim 10^{18}$), các phương pháp này không còn phù hợp.
 
-基于 Lucas 定理及其推广，本文讨论一种可以在模数不太大 ($m \sim 10^6$) 时求解组合数的方法．更准确地说，只要模数的唯一分解 $m=\prod p_i^{e_i}$ 中所有素数幂的和（即 $\sum p_i^{e_i}$）在 $10^6$ 规模时就可以使用该方法，因为算法的预处理大致相当于这一规模．
+Dựa trên định lý Lucas và các mở rộng của nó, bài viết này trình bày một phương pháp tính hệ số tổ hợp khi modulo không quá lớn ($m \sim 10^6$). Chính xác hơn, chỉ cần tổng các lũy thừa nguyên tố trong phân tích duy nhất $m=\prod p_i^{e_i}$, tức $\sum p_i^{e_i}$, ở cỡ $10^6$ là có thể dùng phương pháp này, vì phần tiền xử lý của thuật toán có quy mô xấp xỉ như vậy.
 
-## Lucas 定理
+<span id="lucas-&#x5B9A;&#x7406;"></span>
+## Định lý Lucas
 
-首先讨论模数为素数 $p$ 的情形．此时，有 Lucas 定理：
+Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó ta có định lý Lucas:
 
-???+ note "Lucas 定理"
-    对于素数 $p$，有
+???+ note "Định lý Lucas"
+    Với số nguyên tố $p$, ta có
     
     $$
     \binom{n}{k}\equiv \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\pmod p.
     $$
     
-    其中，当 $n<k$ 时，二项式系数 $\dbinom{n}{k}$ 规定为 $0$．
+    Trong đó, khi $n<k$, hệ số nhị thức $\dbinom{n}{k}$ được quy ước bằng $0$.
 
-??? note "利用生成函数证明"
-    考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值．因为
+??? note "Chứng minh bằng hàm sinh"
+    Xét giá trị của $\displaystyle\binom{p}{n} \bmod p$. Vì
     
     $$
     \binom{p}{n} = \frac{p!}{n!(p-n)!},
     $$
     
-    所以，当 $n\neq 0,p$ 时，分母中都没有因子 $p$，但分子中有因子 $p$，所以分式一定是 $p$ 的倍数，模 $p$ 的余数是 $0$；当 $n=0,p$ 时，分式就是 $1$．因此，
+    nên khi $n\neq 0,p$, mẫu số không có thừa số $p$ nhưng tử số có thừa số $p$, do đó phân thức chắc chắn là bội của $p$ và có phần dư $0$ modulo $p$. Khi $n=0,p$, phân thức bằng $1$. Vì vậy
     
     $$
     \binom{p}{n} \equiv [n=0\lor n=p] \pmod p.
     $$
     
-    记 $f(x) = ax^n + bx^m$．一般地，由 [二项式展开](../combinatorics/combination.md#二项式定理) 和 [费马小定理](./fermat.md#费马小定理) 有
+    Đặt $f(x) = ax^n + bx^m$. Tổng quát hơn, theo [khai triển nhị thức](../combinatorics/combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86) và [định lý nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), ta có
     
     $$
     \begin{aligned}
@@ -51,9 +53,9 @@ $$
     \end{aligned}
     $$
     
-    其中，第三行的同余利用了前文说明的结论，即只有 $k=0,p$ 时，组合数才不是 $p$ 的倍数．
+    Trong đó, phép đồng dư ở dòng thứ ba dùng kết luận vừa nêu: chỉ khi $k=0,p$ thì hệ số tổ hợp mới không phải bội của $p$.
     
-    利用这一结论，考察二项式展开：
+    Dùng kết luận này, xét khai triển nhị thức:
     
     $$
     \begin{aligned}
@@ -62,40 +64,40 @@ $$
     \end{aligned}
     $$
     
-    等式左侧中，项 $x^k$ 的系数为
+    Ở vế trái, hệ số của hạng tử $x^k$ là
     
     $$
     \binom{n}{k}\bmod p.
     $$
     
-    转而计算等式右侧中项 $x^k$ 的系数．第一个因子中各项的次数必然是 $p$ 的倍数，第二个因子中各项的次数必然小于 $p$，而 $k$ 分解成这样两部分的和的方式是唯一的，即带余除法：$k=p\lfloor k/p\rfloor +(k\bmod p)$．因此，第一个因子只能贡献其 $p\lfloor k/p\rfloor$ 次项，第二个因子只能贡献其 $k\bmod p$ 次项．所以，右侧等式中 $x^k$ 系数为两个因子各自贡献的项的系数的乘积：
+    Bây giờ tính hệ số của $x^k$ ở vế phải. Bậc của mọi hạng tử trong nhân tử thứ nhất đều là bội của $p$; bậc của mọi hạng tử trong nhân tử thứ hai đều nhỏ hơn $p$. Cách phân tích $k$ thành tổng của hai phần như vậy là duy nhất, chính là phép chia có dư: $k=p\lfloor k/p\rfloor +(k\bmod p)$. Vì thế nhân tử thứ nhất chỉ có thể đóng góp hạng tử bậc $p\lfloor k/p\rfloor$, còn nhân tử thứ hai chỉ có thể đóng góp hạng tử bậc $k\bmod p$. Do đó hệ số của $x^k$ ở vế phải là tích của hai hệ số tương ứng trong hai nhân tử:
     
     $$
     \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\bmod p.
     $$
     
-    令两侧系数相等，就得到 Lucas 定理．
+    Cho hai hệ số ở hai vế bằng nhau, ta thu được định lý Lucas.
 
-??? note "利用阶乘取模的结论证明"
-    此处提供一种基于 [阶乘取模](./factorial.md#素数模的情形) 相关结论的证明方法，以方便和后文 exLucas 部分的方法建立联系．已知二项式系数
+??? note "Chứng minh bằng kết quả về giai thừa theo modulo"
+    Ở đây đưa ra một chứng minh dựa trên các kết quả liên quan đến [giai thừa theo modulo](./factorial.md#%E7%B4%A0%E6%95%B0%E6%A8%A1%E7%9A%84%E6%83%85%E5%BD%A2), nhằm liên hệ thuận tiện với phương pháp ở phần exLucas phía sau. Ta biết hệ số nhị thức là
     
     $$
     \binom{n}{k} = \dfrac{n!}{k!(n-k)!}.
     $$
     
-    将阶乘 $n!$ 中 $p$ 的幂次和其他因子分离，得到分解：
+    Tách số mũ của $p$ trong giai thừa $n!$ và các thừa số còn lại, ta được phân tích:
     
     $$
     n! = p^{\nu_p(n!)}(n!)_p.
     $$
     
-    就得到二项式系数的表达式：
+    Từ đó hệ số nhị thức có dạng:
     
     $$
     \binom{n}{k} = p^{\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)}\dfrac{(n!)_p}{(k!)_p((n-k)!)_p}.
     $$
     
-    幂次 $\nu_p(n!)$ 和阶乘余数 $(n!)_p\bmod p$ 都有递推公式：
+    Số mũ $\nu_p(n!)$ và phần dư giai thừa $(n!)_p\bmod p$ đều có công thức truy hồi:
     
     $$
     \begin{aligned}
@@ -104,9 +106,9 @@ $$
     \end{aligned}
     $$
     
-    前者是 Legendre 公式的推论，后者是 Wilson 定理的推论．
+    Công thức thứ nhất là hệ quả của công thức Legendre, công thức thứ hai là hệ quả của định lý Wilson.
     
-    将递推公式代入二项式系数的表达式并整理，就得到：
+    Thay các công thức truy hồi vào biểu thức của hệ số nhị thức rồi rút gọn, ta được:
     
     $$
     \begin{aligned}
@@ -115,7 +117,7 @@ $$
     \end{aligned}
     $$
     
-    现在考察 $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$ 的取值．因为有
+    Bây giờ xét giá trị của $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$. Vì
     
     $$
     \begin{aligned}
@@ -125,28 +127,28 @@ $$
     \end{aligned}
     $$
     
-    所以，利用第一式减去后两式，就得到
+    nên lấy công thức thứ nhất trừ hai công thức sau sẽ cho
     
     $$
     (\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor)p = (k\bmod p)+((n-k)\bmod p)-(n\bmod p).
     $$
     
-    等式右侧，前两项的和严格小于 $2p$，而第三项 $n\bmod p$ 正是前两项的和的余数，所以右侧必然非负，但小于 $2p$，又需要是 $p$ 的倍数，就只能是 $0$ 或 $p$．这说明 $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$ 只能是 $0$ 或 $1$：
+    Ở vế phải, tổng của hai hạng tử đầu nhỏ hơn $2p$, còn hạng tử thứ ba $n\bmod p$ chính là phần dư của tổng hai hạng tử đầu. Vì vậy vế phải không âm, nhỏ hơn $2p$, đồng thời phải là bội của $p$, nên chỉ có thể là $0$ hoặc $p$. Điều này cho thấy $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$ chỉ có thể bằng $0$ hoặc $1$:
     
-    -   如果它是 $0$，那么此时也成立 $(n\bmod p) = (k\bmod p)+((n-k)\bmod p)$．因此，上式中的第一个因子的指数为 $0$，该因子就等于一；第二个因子就是 $\dbinom{n\bmod p}{k\bmod p}$；第三个因子则由前文的展开式可知，就等于 $\dbinom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}$．此时，Lucas 公式成立；
-    -   如果它是 $1$，那么第一个因子的指数为 $1$，该因子就等于零，所以二项式系数的余数为零．同时，Lucas 定理所要证明的等式右侧的 $\dbinom{n\bmod p}{k\bmod p}$ 也必然是零，因为此时必然有 $(n\bmod p)<(k\bmod p)$；否则，将有
+    -   Nếu nó bằng $0$, khi đó cũng có $(n\bmod p) = (k\bmod p)+((n-k)\bmod p)$. Vì thế số mũ của nhân tử thứ nhất trong công thức trên bằng $0$, nhân tử đó bằng một; nhân tử thứ hai là $\dbinom{n\bmod p}{k\bmod p}$; nhân tử thứ ba, theo khai triển phía trên, bằng $\dbinom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}$. Khi đó công thức Lucas đúng;
+    -   Nếu nó bằng $1$, số mũ của nhân tử thứ nhất bằng $1$, nhân tử đó bằng không, nên phần dư của hệ số nhị thức bằng không. Đồng thời, $\dbinom{n\bmod p}{k\bmod p}$ ở vế phải của đẳng thức trong định lý Lucas cũng chắc chắn bằng không, vì lúc này nhất định có $(n\bmod p)<(k\bmod p)$. Nếu không, ta sẽ có
     
         $$
         ((n-k)\bmod p) = p + (n\bmod p)  - (k\bmod p) \ge p.
         $$
     
-        这显然与余数的定义矛盾．
+        Điều này mâu thuẫn rõ ràng với định nghĩa của phần dư.
     
-    综合两种情形，就得到了所要求证的 Lucas 定理．这一证明说明，在求解素数模下组合数时，利用 Lucas 定理和利用 exLucas 算法得到的结果是等价的．
+    Kết hợp hai trường hợp, ta thu được định lý Lucas cần chứng minh. Chứng minh này cũng cho thấy khi tính hệ số tổ hợp theo modulo số nguyên tố, dùng định lý Lucas và dùng thuật toán exLucas cho cùng một kết quả.
 
-Lucas 定理指出，模数为素数 $p$ 时，大组合数的计算可以转化为规模更小的组合数的计算．在右式中，第一个组合数可以继续递归，直到 $n,k<p$ 为止；第二个组合数则可以直接计算，或者提前预处理出来．写成代码的形式就是：
+Định lý Lucas chỉ ra rằng khi modulo là số nguyên tố $p$, việc tính hệ số tổ hợp lớn có thể chuyển thành tính các hệ số tổ hợp có quy mô nhỏ hơn. Ở vế phải, hệ số tổ hợp thứ nhất có thể tiếp tục xử lý đệ quy cho đến khi $n,k<p$; hệ số tổ hợp thứ hai có thể tính trực tiếp hoặc tiền xử lý trước. Viết dưới dạng mã:
 
-???+ example "示意"
+???+ example "Minh họa"
     ```cpp
     long long Lucas(long long n, long long k, long long p) {
       if (k == 0) return 1;
@@ -154,52 +156,56 @@ Lucas 定理指出，模数为素数 $p$ 时，大组合数的计算可以转化
     }
     ```
 
-其中，`C(n, k, p)` 用于计算小规模的组合数．
+Trong đó, `C(n, k, p)` dùng để tính hệ số tổ hợp quy mô nhỏ.
 
-递归至多进行 $O(\log_p n)$ 次，因而算法的复杂度为 $O(f(p)+g(p)\log_p n)$，其中，$f(p)$ 为预处理组合数的复杂度，$g(p)$ 为单次计算组合数的复杂度．
+Đệ quy thực hiện nhiều nhất $O(\log_p n)$ lần, nên độ phức tạp của thuật toán là $O(f(p)+g(p)\log_p n)$, trong đó $f(p)$ là độ phức tạp tiền xử lý hệ số tổ hợp, còn $g(p)$ là độ phức tạp cho một lần tính hệ số tổ hợp.
 
-### 参考实现
+<span id="&#x53C2;&#x8003;&#x5B9E;&#x73B0;"></span>
+### Cài đặt tham khảo
 
-此处给出的参考实现在 $O(p)$ 时间内预处理 $p$ 以内的阶乘及其逆元后，可以在 $O(1)$ 时间内计算单个组合数：
+Cài đặt tham khảo dưới đây tiền xử lý giai thừa và nghịch đảo của chúng trong phạm vi $p$ trong $O(p)$ thời gian, rồi tính một hệ số tổ hợp trong $O(1)$ thời gian:
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/lucas/lucas.cpp"
     ```
 
-该实现的时间复杂度为 $O(p+T\log_p n)$，其中，$T$ 为询问次数．
+Độ phức tạp thời gian của cài đặt này là $O(p+T\log_p n)$, trong đó $T$ là số truy vấn.
 
-## exLucas 算法
+<span id="exlucas-&#x7B97;&#x6CD5;"></span>
+## Thuật toán exLucas
 
-Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 算法．虽然名字如此，该算法实际操作时并没有用到 Lucas 定理．它的关键步骤是 [计算素数幂模下的阶乘](./factorial.md)．上文的第二个证明指出了它与 Lucas 定理的联系．
+Trong định lý Lucas, modulo $p$ bắt buộc phải là số nguyên tố. Khi $p$ không phải số nguyên tố, ta cần dùng thuật toán exLucas. Dù tên gọi là vậy, khi vận hành thuật toán này không thực sự dùng định lý Lucas. Bước mấu chốt của nó là [tính giai thừa theo modulo lũy thừa nguyên tố](./factorial.md). Chứng minh thứ hai ở trên đã chỉ ra mối liên hệ giữa nó và định lý Lucas.
 
-### 素数幂模的情形
+<span id="&#x7D20;&#x6570;&#x5E42;&#x6A21;&#x7684;&#x60C5;&#x5F62;"></span>
+### Trường hợp modulo lũy thừa nguyên tố
 
-首先考虑模数为素数幂 $p^\alpha$ 的情形．将阶乘 $n!$ 中的 $p$ 的幂次和其他幂次分开，可以得到分解：
+Trước hết xét trường hợp modulo là lũy thừa nguyên tố $p^\alpha$. Tách số mũ của $p$ trong giai thừa $n!$ và các thừa số còn lại, ta thu được phân tích:
 
 $$
 n! = p^{\nu_p(n!)}(n!)_p.
 $$
 
-其中，$\nu_p(n!)$ 为 $n!$ 的素因数分解中 $p$ 的幂次，而 $(n!)_p$ 显然与 $p$ 互素．因此，组合数可以写作：
+Trong đó, $\nu_p(n!)$ là số mũ của $p$ trong phân tích thừa số nguyên tố của $n!$, còn $(n!)_p$ hiển nhiên nguyên tố cùng nhau với $p$. Vì vậy hệ số tổ hợp có thể viết thành:
 
 $$
 \binom{n}{k} = p^{\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)}\dfrac{(n!)_p}{(k!)_p((n-k)!)_p}.
 $$
 
-式子中的 $\nu_p(n!)$ 等可以通过 [Legendre 公式](./factorial.md#legendre-公式) 计算，$(n!)_p$ 等则可以通过 [递推关系](./factorial.md#素数幂模的情形) 计算．因为后者与 $p^\alpha$ 互素，所以分母上的乘积的逆元可以通过 [扩展欧几里得算法](./inverse.md#扩展欧几里得算法) 计算．问题就得以解决．
+Các giá trị $\nu_p(n!)$ có thể tính bằng [công thức Legendre](./factorial.md#legendre-%E5%85%AC%E5%BC%8F), còn các giá trị $(n!)_p$ có thể tính bằng [quan hệ truy hồi](./factorial.md#%E7%B4%A0%E6%95%B0%E5%B9%82%E6%A8%A1%E7%9A%84%E6%83%85%E5%BD%A2). Vì phần sau nguyên tố cùng nhau với $p^\alpha$, nghịch đảo của tích ở mẫu số có thể tính bằng [thuật toán Euclid mở rộng](./inverse.md#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95). Như vậy bài toán được giải quyết.
 
-注意，如果幂次 $\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)\ge\alpha$，余数一定为零，不必再做更多计算．
+Chú ý rằng nếu số mũ $\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)\ge\alpha$, phần dư chắc chắn bằng không và không cần tính tiếp.
 
-### 一般模数的情形
+<span id="&#x4E00;&#x822C;&#x6A21;&#x6570;&#x7684;&#x60C5;&#x5F62;"></span>
+### Trường hợp modulo tổng quát
 
-对于 $m$ 是一般的合数的情形，只需要首先对它做 [素因数分解](./pollard-rho.md)：
+Với trường hợp $m$ là hợp số tổng quát, trước hết chỉ cần [phân tích thừa số nguyên tố](./pollard-rho.md) của nó:
 
 $$
 m = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_s^{\alpha_s}.
 $$
 
-然后，分别计算出模 $p_i^{\alpha_i}$ 下组合数 $\dbinom{n}{k}$ 的余数，就得到 $s$ 个同余方程：
+Sau đó, lần lượt tính phần dư của hệ số tổ hợp $\dbinom{n}{k}$ theo modulo $p_i^{\alpha_i}$, thu được $s$ phương trình đồng dư:
 
 $$
 \begin{cases}
@@ -210,22 +216,24 @@ $$
 \end{cases}
 $$
 
-最后，利用 [中国剩余定理](./crt.md) 求出模 $m$ 的余数．
+Cuối cùng, dùng [định lý phần dư Trung Hoa](./crt.md) để tìm phần dư modulo $m$.
 
-### 参考实现
+<span id="&#x53C2;&#x8003;&#x5B9E;&#x73B0;_1"></span>
+### Cài đặt tham khảo
 
-最后，给出模板题目 [二项式系数](https://loj.ac/p/181) 的参考实现．
+Cuối cùng là cài đặt tham khảo cho bài mẫu [Hệ số nhị thức](https://loj.ac/p/181).
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/lucas/exlucas.cpp"
     ```
 
-该算法在预处理时将模数 $m$ 分解为素数幂，然后对所有 $p^\alpha$ 预处理了自 $1$ 至 $p^\alpha$ 所有非 $p$ 倍数的自然数的乘积，以及它在中国剩余定理合并答案时对应的系数．预处理的时间复杂度为 $O(\sqrt{m}+\sum_ip_i^{\alpha_i})$．每次询问时，复杂度为 $O(\log m+\sum_i\log_{p_i}n)$，复杂度中的两项分别是计算逆元和计算幂次、阶乘余数的复杂度．
+Thuật toán này phân tích modulo $m$ thành các lũy thừa nguyên tố trong bước tiền xử lý, sau đó với mọi $p^\alpha$ tiền xử lý tích của các số tự nhiên từ $1$ đến $p^\alpha$ không phải bội của $p$, cũng như hệ số tương ứng khi gộp đáp án bằng định lý phần dư Trung Hoa. Độ phức tạp tiền xử lý là $O(\sqrt{m}+\sum_ip_i^{\alpha_i})$. Với mỗi truy vấn, độ phức tạp là $O(\log m+\sum_i\log_{p_i}n)$; hai hạng trong độ phức tạp lần lượt đến từ việc tính nghịch đảo và việc tính số mũ, phần dư giai thừa.
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
+## Bài tập
 
--   [Luogu3807【模板】卢卡斯定理](https://www.luogu.com.cn/problem/P3807)
--   [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229)
--   [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720)
--   [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)
+-   [Luogu P3807 [Template] Định lý Lucas](https://www.luogu.com.cn/problem/P3807)
+-   [SDOI2010 Ancient Pig Script - Định lý Lucas](https://loj.ac/problem/10229)
+-   [Luogu P4720 [Template] Lucas mở rộng](https://www.luogu.com.cn/problem/P4720)
+-   [Ceizenpok's formula](http://codeforces.com/gym/100633/problem/J)

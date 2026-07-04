@@ -15,13 +15,13 @@ ll gcd(ll a, ll b) {
   return gcd(b, a % b);
 }
 
-ll bmul(ll a, ll b, ll m) {  // 快速乘
+ll bmul(ll a, ll b, ll m) {  // Nhân nhanh
   ull c = (ull)a * (ull)b - (ull)((long double)a / m * b + 0.5L) * (ull)m;
   if (c < (ull)m) return c;
   return c + m;
 }
 
-ll qpow(ll x, ll p, ll mod) {  // 快速幂
+ll qpow(ll x, ll p, ll mod) {  // Lũy thừa nhanh
   ll ans = 1;
   while (p) {
     if (p & 1) ans = bmul(ans, x, mod);
@@ -31,12 +31,12 @@ ll qpow(ll x, ll p, ll mod) {  // 快速幂
   return ans;
 }
 
-bool Miller_Rabin(ll p) {  // 判断素数
+bool Miller_Rabin(ll p) {  // Kiểm tra số nguyên tố
   if (p < 2) return false;
   if (p == 2) return true;
   if (p == 3) return true;
   ll d = p - 1, r = 0;
-  while (!(d & 1)) ++r, d >>= 1;  // 将d处理为奇数
+  while (!(d & 1)) ++r, d >>= 1;  // Đưa d về dạng số lẻ
   for (ll k = 0; k < 10; ++k) {
     ll a = rand() % (p - 2) + 2;
     ll x = qpow(a, d, p);
@@ -55,7 +55,7 @@ ll Pollard_Rho(ll x) {
   ll c = (ll)rand() % (x - 1) + 1;
   int step = 0, goal = 1;
   ll val = 1;
-  for (goal = 1;; goal *= 2, s = t, val = 1) {  // 倍增优化
+  for (goal = 1;; goal *= 2, s = t, val = 1) {  // Tối ưu nhân đôi
     for (step = 1; step <= goal; ++step) {
       t = (bmul(t, t, x) + c) % x;
       val = bmul(val, abs(t - s), x);
@@ -71,14 +71,14 @@ ll Pollard_Rho(ll x) {
 
 void fac(ll x) {
   if (x <= max_factor || x < 2) return;
-  if (Miller_Rabin(x)) {              // 如果x为质数
-    max_factor = max(max_factor, x);  // 更新答案
+  if (Miller_Rabin(x)) {              // Nếu x là số nguyên tố
+    max_factor = max(max_factor, x);  // Cập nhật đáp án
     return;
   }
   ll p = x;
-  while (p >= x) p = Pollard_Rho(x);  // 使用该算法
+  while (p >= x) p = Pollard_Rho(x);  // Dùng thuật toán này
   while ((x % p) == 0) x /= p;
-  fac(x), fac(p);  // 继续向下分解x和p
+  fac(x), fac(p);  // Tiếp tục phân tích x và p
 }
 
 int main() {
@@ -88,7 +88,7 @@ int main() {
     max_factor = 0;
     cin >> n;
     fac(n);
-    if (max_factor == n)  // 最大的质因数即自己
+    if (max_factor == n)  // Thừa số nguyên tố lớn nhất chính là nó
       cout << "Prime\n";
     else
       cout << max_factor << '\n';

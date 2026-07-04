@@ -121,6 +121,16 @@ MkDocs source layout intact.
   arithmetic and the first number-theory pages, plus explanatory comments in
   the included modular arithmetic, prime, inverse, and linear congruence
   snippets.
+- `docs/math/number-theory/pollard-rho.md`,
+  `docs/math/number-theory/bezouts.md`,
+  `docs/math/number-theory/fermat.md`, `docs/math/number-theory/crt.md`,
+  `docs/math/number-theory/lift-the-exponent.md`,
+  `docs/math/number-theory/factorial.md`,
+  `docs/math/number-theory/lucas.md`,
+  `docs/math/number-theory/congruence-equation.md`,
+  `docs/math/number-theory/quad-residue.md`: translated factorization, Bézout,
+  Fermat/Euler, CRT, LTE, factorial modulo, Lucas, congruence-equation, and
+  quadratic-residue material, plus explanatory comments in included snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

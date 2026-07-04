@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-// Extended Euclid.
+// Euclid mở rộng.
 void ex_gcd(int a, int b, int& x, int& y) {
   if (!b) {
     x = 1;
@@ -12,26 +12,26 @@ void ex_gcd(int a, int b, int& x, int& y) {
   }
 }
 
-// Inverse of a mod m.
+// Nghịch đảo của a modulo m.
 int inverse(int a, int m) {
   int x, y;
   ex_gcd(a, m, x, y);
   return (x % m + m) % m;
 }
 
-// Coefficient in CRT.
+// Hệ số trong định lý phần dư Trung Hoa.
 int crt_coeff(int m_i, int m) {
   long long mm = m / m_i;
   mm *= inverse(mm, m_i);
   return mm % m;
 }
 
-// Binominal Coefficient Calculator Modulo Prime Power.
+// Bộ tính hệ số nhị thức modulo lũy thừa nguyên tố.
 class BinomModPrimePower {
   int p, a, pa;
   std::vector<int> f;
 
-  // Obtain multiplicity of p in n!.
+  // Tính số mũ của p trong n!.
   long long nu(long long n) {
     long long count = 0;
     do {
@@ -41,7 +41,7 @@ class BinomModPrimePower {
     return count;
   }
 
-  // Calculate (n!)_p mod pa.
+  // Tính (n!)_p modulo pa.
   long long fact_mod(long long n) {
     bool neg = p != 2 || pa <= 4;
     long long res = 1;
@@ -55,14 +55,14 @@ class BinomModPrimePower {
 
  public:
   BinomModPrimePower(int p, int a, int pa) : p(p), a(a), pa(pa), f(pa) {
-    // Pretreatment.
+    // Tiền xử lý.
     f[0] = 1;
     for (int i = 1; i < pa; ++i) {
       f[i] = i % p ? (long long)f[i - 1] * i % pa : f[i - 1];
     }
   }
 
-  // Calculate Binom(n, k) mod pa.
+  // Tính Binom(n, k) modulo pa.
   int binomial(long long n, long long k) {
     long long v = nu(n) - nu(n - k) - nu(k);
     if (v >= a) return 0;
@@ -73,7 +73,7 @@ class BinomModPrimePower {
   }
 };
 
-// Binominal Coefficient Calculator.
+// Bộ tính hệ số nhị thức.
 class BinomMod {
   int m;
   std::vector<BinomModPrimePower> bp;
@@ -81,7 +81,7 @@ class BinomMod {
 
  public:
   BinomMod(int n) : m(n) {
-    // Factorize.
+    // Phân tích thừa số.
     for (int p = 2; p * p <= n; ++p) {
       if (n % p == 0) {
         int a = 0, pa = 1;
@@ -96,7 +96,7 @@ class BinomMod {
     }
   }
 
-  // Calculate Binom(n, k) mod m.
+  // Tính Binom(n, k) modulo m.
   int binomial(long long n, long long k) {
     long long res = 0;
     for (size_t i = 0; i != bp.size(); ++i) {

@@ -2,15 +2,15 @@
 #include <vector>
 
 // --8<-- [start:core]
-// Calculate (n!)_p mod p.
+// Tính (n!)_p modulo p.
 int factmod(int n, int p) {
-  // Pretreatment.
+  // Tiền xử lý.
   std::vector<int> f(p);
   f[0] = 1;
   for (int i = 1; i < p; ++i) {
     f[i] = (long long)f[i - 1] * i % p;
   }
-  // Recursion.
+  // Đệ quy bằng vòng lặp.
   int res = 1;
   while (n > 1) {
     if ((n / p) & 1) res = p - res;
