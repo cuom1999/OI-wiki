@@ -456,88 +456,133 @@ minh họa; do độ phức tạp quá cao, không đủ để AC bài mẫu nà
 <span id="&#25913;&#33391; Tonelli&#8211;Shanks &#31639;&#27861;"></span>
 ### Thuật toán Tonelli-Shanks cải tiến
 
-Mo rong phu hop [thuat toan Tonelli-Shanks](./quad-residue.md#tonellishanks-%E7%AE%97%E6%B3%95) dung cho khai can bac hai theo modulo se giai quyet duoc phep khai can theo modulo luy thua cua so nguyen to. Mot cach mo rong truc tiep hon la thuat toan Adleman-Manders-Miller[^amm], nhung do phuc tap cua no van chua du tot[^amm-comp]. Muc nay gioi thieu thuat toan Tonelli-Shanks cai tien do sugarknri, Min\_25, 37zigen va nhung nguoi khac de xuat. No co the tim mot can bac $k$ trong thoi gian $O(m^{1/4+\varepsilon})$.
+Mở rộng phù hợp [thuật toán Tonelli-Shanks](./quad-residue.md#tonellishanks-%E7%AE%97%E6%B3%95)
+dùng cho khai căn bậc hai theo modulo sẽ giải quyết được phép khai căn theo
+modulo lũy thừa của số nguyên tố. Một cách mở rộng trực tiếp hơn là thuật toán
+Adleman-Manders-Miller[^amm], nhưng độ phức tạp của nó vẫn chưa đủ tốt[^amm-comp].
+Mục này giới thiệu thuật toán Tonelli-Shanks cải tiến do sugarknri, Min\_25,
+37zigen và những người khác đề xuất. Nó có thể tìm một căn bậc $k$ trong thời
+gian $O(m^{1/4+\varepsilon})$.
 
-Y tuong cot loi cua thuat toan Tonelli-Shanks la dua viec tinh logarit roi rac vao nhom co cap $2^e$, tu do giam do phuc tap. Tuong tu, logarit roi rac trong nhom co cap la luy thua nguyen to bat ky $p^e$ cung co the duoc giai kha hieu qua, nhung do phuc tap cua thuat toan la $\Omega\left(\sqrt{p}\right)$. Thuat toan Adleman-Manders-Miller tach viec tim can bac $k$ thanh nhieu phep tinh logarit roi rac trong cac nhom co cap la luy thua nguyen to, nhung do bi gioi han boi kich thuoc cua thua so nguyen to lon nhat $p_\text{max}(k)$ cua $k$, do phuc tap van la $\Omega\left(\sqrt{p_\text{max}(k)}\right)$. Thuat toan trong muc nay cai tien them qua trinh do, tranh tinh logarit roi rac voi cac thua so nguyen to lon, va khong che tong do phuc tap o muc $O(m^{1/4+\varepsilon})$.
+Ý tưởng cốt lõi của thuật toán Tonelli-Shanks là đưa việc tính logarit rời rạc
+vào nhóm có bậc $2^e$, từ đó giảm độ phức tạp. Tương tự, logarit rời rạc trong
+nhóm có bậc là lũy thừa nguyên tố bất kỳ $p^e$ cũng có thể được giải khá hiệu
+quả, nhưng độ phức tạp của thuật toán là $\Omega\left(\sqrt{p}\right)$. Thuật
+toán Adleman-Manders-Miller tách việc tìm căn bậc $k$ thành nhiều phép tính
+logarit rời rạc trong các nhóm có bậc là lũy thừa nguyên tố, nhưng do bị giới
+hạn bởi kích thước của thừa số nguyên tố lớn nhất $p_\text{max}(k)$ của $k$, độ
+phức tạp vẫn là $\Omega\left(\sqrt{p_\text{max}(k)}\right)$. Thuật toán trong
+mục này cải tiến thêm quá trình đó, tránh tính logarit rời rạc với các thừa số
+nguyên tố lớn, và khống chế tổng độ phức tạp ở mức $O(m^{1/4+\varepsilon})$.
 
 <span id="&#36807;&#31243;"></span>
 #### Quy trình
 
-Xet viec tinh can bac $k$ cua $a$ modulo luy thua so nguyen to $m$, tuc la giai phuong trinh dong du:
+Xét việc tính căn bậc $k$ của $a$ modulo lũy thừa số nguyên tố $m$, tức là giải
+phương trình đồng dư:
 
 $$
 x^k \equiv a \pmod m.
 $$
 
-Dac biet, voi truong hop $m=2^e$, con can bao dam $a\equiv 1\pmod{4}$, de $a$ co the viet thanh luy thua cua $g=5$. Tuong tu phan da thao luan, viec tinh can bac $k$ modulo $2^e$ luon co the chuyen ve truong hop nay. Khi xu ly truong hop modulo $2^e$, moi $\varphi(m)$ duoc nhac den trong muc nay deu nen thay bang $\delta_m(5)=2^{e-2}$.
+Đặc biệt, với trường hợp $m=2^e$, còn cần bảo đảm $a\equiv 1\pmod{4}$, để $a$
+có thể viết thành lũy thừa của $g=5$. Tương tự phần đã thảo luận, việc tính căn
+bậc $k$ modulo $2^e$ luôn có thể chuyển về trường hợp này. Khi xử lý trường hợp
+modulo $2^e$, mọi $\varphi(m)$ được nhắc đến trong mục này đều nên thay bằng
+$\delta_m(5)=2^{e-2}$.
 
-Truoc het, bai toan co the duoc dua ve truong hop bac khai can chia het $\varphi(m)$. Dat $d=\gcd(k,\varphi(m))$. Khi do, theo tinh chat cua thang du bac $k$, neu $a$ la thang du bac $k$ modulo $m$, thi $a$ luon la can don vi bac $\dfrac{\varphi(m)}{d}$ modulo $m$. Theo tinh chat cua can don vi, voi moi $\ell\perp\dfrac{\varphi(m)}{d}$, anh xa $x\mapsto x^{\ell}$ deu la song anh tren cac can don vi bac $\dfrac{\varphi(m)}{d}$. Vi vay co the chon
+Trước hết, bài toán có thể được đưa về trường hợp bậc khai căn chia hết
+$\varphi(m)$. Đặt $d=\gcd(k,\varphi(m))$. Khi đó, theo tính chất của thặng dư
+bậc $k$, nếu $a$ là thặng dư bậc $k$ modulo $m$, thì $a$ luôn là căn đơn vị bậc
+$\dfrac{\varphi(m)}{d}$ modulo $m$. Theo tính chất của căn đơn vị, với mọi
+$\ell\perp\dfrac{\varphi(m)}{d}$, ánh xạ $x\mapsto x^{\ell}$ đều là song ánh
+trên các căn đơn vị bậc $\dfrac{\varphi(m)}{d}$. Vì vậy có thể chọn
 
 $$
 \ell = \left(\dfrac{k}{d}\right)^{-1}\bmod\dfrac{\varphi(m)}{d}.
 $$
 
-Lay luy thua bac $\ell$ hai ve cua phuong trinh dong du ban dau, ta duoc
+Lấy lũy thừa bậc $\ell$ hai vế của phương trình đồng dư ban đầu, ta được
 
 $$
 x^d\equiv x^{k\ell} \equiv a^{\ell} =: b \pmod{m}.
 $$
 
-Dong du dau tien dung [dinh ly Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86) va quan he dong du sau: ($c\in\mathbf Z$)
+Đồng dư đầu tiên dùng [định lí Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86)
+và quan hệ đồng dư sau: ($c\in\mathbf Z$)
 
 $$
 k\ell = d\left(\frac{k}{d}\ell\right) = d\left(c\dfrac{\varphi(m)}{d}+1\right) \equiv d \pmod{\varphi(m)}.
 $$
 
-Voi bai toan da chuyen doi, xet phan tich thua so nguyen to cua $d$:
+Với bài toán đã chuyển đổi, xét phân tích thừa số nguyên tố của $d$:
 
 $$
 d = \prod_{p\in\mathbf P}p^e.
 $$
 
-Co the bat dau tu $b=a^\ell$, voi moi $p^e\neq 1$ thi lan luot khai can bac $p^e$; cuoi cung se thu duoc can bac $d$ cua $b$, cung chinh la can bac $k$ cua $a$.
+Có thể bắt đầu từ $b=a^\ell$, với mỗi $p^e\neq 1$ thì lần lượt khai căn bậc
+$p^e$; cuối cùng sẽ thu được căn bậc $d$ của $b$, cũng chính là căn bậc $k$ của
+$a$.
 
-Sau cung, bai toan chuyen thanh cach tim nghiem cua phuong trinh
+Sau cùng, bài toán chuyển thành cách tìm nghiệm của phương trình
 
 $$
 x^{p^e} \equiv b \pmod m.
 $$
 
-Khong mat tinh tong quat, gia su $\varphi(m)=p^sr$ va $p\perp r$. Goi $q\in\mathbf N_+$ la nghiem cua phuong trinh $qr\equiv -1\pmod{p^e}$. Khi do, vi $b$ la can don vi bac $rp^{s-e}$, $b^{qr}$ chac chan la can don vi bac $p^{s-e}$. Lai goi $\zeta$ la can don vi nguyen thuy bac $p^s$ modulo $m$. Khi do $\zeta^{p^e}$ la can don vi nguyen thuy bac $p^{s-e}$, nen ton tai $h\in\mathbf N$ sao cho $b^{qr}\equiv \zeta^{hp^{e}}\pmod{m}$. Vi vay, kiem tra truc tiep cho thay
+Không mất tính tổng quát, giả sử $\varphi(m)=p^sr$ và $p\perp r$. Gọi
+$q\in\mathbf N_+$ là nghiệm của phương trình $qr\equiv -1\pmod{p^e}$. Khi đó,
+vì $b$ là căn đơn vị bậc $rp^{s-e}$, $b^{qr}$ chắc chắn là căn đơn vị bậc
+$p^{s-e}$. Lại gọi $\zeta$ là căn đơn vị nguyên thủy bậc $p^s$ modulo $m$. Khi
+đó $\zeta^{p^e}$ là căn đơn vị nguyên thủy bậc $p^{s-e}$, nên tồn tại
+$h\in\mathbf N$ sao cho $b^{qr}\equiv \zeta^{hp^{e}}\pmod{m}$. Vì vậy, kiểm tra
+trực tiếp cho thấy
 
 $$
 x\equiv b^{(qr+1)/p^e}\zeta^{-h} \pmod{m}
 $$
 
-la mot can bac $p^e$ cua $b$ modulo $m$.
+là một căn bậc $p^e$ của $b$ modulo $m$.
 
-De tinh $x$, can tim mot bat thang du bac $p$ la $\eta$ modulo $m$. Theo cac tinh chat da neu, chi can chon ngau nhien $\eta\perp m$ va kiem tra $\eta^{\varphi(m)/p}\bmod{m}\neq 1$. Mat do cua cac so nhu vay la
+Để tính $x$, cần tìm một bất thặng dư bậc $p$ là $\eta$ modulo $m$. Theo các
+tính chất đã nêu, chỉ cần chọn ngẫu nhiên $\eta\perp m$ và kiểm tra
+$\eta^{\varphi(m)/p}\bmod{m}\neq 1$. Mật độ của các số như vậy là
 
 $$
 \dfrac{\varphi(m)}{m}\left(1-\dfrac{1}{p}\right) \ge \dfrac{1}{4}.
 $$
 
-Do do, ky vong chi can thu khong qua $4$ so nguyen de tim duoc no. Chu y rang $\eta^{rp^{s-1}}\not\equiv 1\pmod m$ va $\eta^{rp^s}\equiv 1\pmod m$, nen neu dat $\zeta=\eta^r\bmod m$ va $\xi=\eta^{rp^{s-1}}\bmod m$, thi chung lan luot la can don vi nguyen thuy bac $p^s$ va bac $p$.
+Do đó, kỳ vọng chỉ cần thử không quá $4$ số nguyên để tìm được nó. Chú ý rằng
+$\eta^{rp^{s-1}}\not\equiv 1\pmod m$ và $\eta^{rp^s}\equiv 1\pmod m$, nên nếu
+đặt $\zeta=\eta^r\bmod m$ và $\xi=\eta^{rp^{s-1}}\bmod m$, thì chúng lần lượt
+là căn đơn vị nguyên thủy bậc $p^s$ và bậc $p$.
 
-Cuoi cung, can tinh $h\in\mathbf N$. Hien nhien co the lay $h < p^{s-e}$. Xet bieu dien co so $p$ cua $h$:
+Cuối cùng, cần tính $h\in\mathbf N$. Hiển nhiên có thể lấy $h < p^{s-e}$. Xét
+biểu diễn cơ số $p$ của $h$:
 
 $$
 h = \sum_{j=0}^{s-e-1}h_jp^j = h_0 + h_1p + h_2p^2 +\cdots.
 $$
 
-Tinh tung chu so nay. Khi $j$ chu so dau da duoc tinh xong, tat yeu co
+Ta tính lần lượt từng chữ số. Khi đã tính xong $j$ chữ số đầu, tất yếu có
 
 $$
 \left(b^{qr}\zeta^{-p^e(h_0+h_1p+\cdots + h_{j-1}p^{j-1})}\right)^{p^{s-e-j-1}} \equiv \zeta^{h_jp^{s-1}} \equiv \xi^{h_j} \pmod{m}.
 $$
 
-Vi vay, $h_j$ co the tim bang cach tinh logarit roi rac theo co so $\xi$. De co do phuc tap tot hon, can dung thuat toan BSGS. Tong cong can tinh logarit roi rac $(s-e)$ lan; gia su tien xu ly $B$ luy thua cua $\xi$, thi thoi gian cho mot lan giai logarit roi rac la $O(p/B)$, va tong do phuc tap la
+Vì vậy, có thể tìm $h_j$ bằng cách tính logarit rời rạc theo cơ số $\xi$. Để có
+độ phức tạp tốt hơn, cần dùng thuật toán BSGS. Tổng cộng cần tính logarit rời
+rạc $(s-e)$ lần; giả sử tiền xử lý $B$ lũy thừa của $\xi$, thì thời gian cho
+một lần giải logarit rời rạc là $O(p/B)$, và tổng độ phức tạp là
 
 $$
 O\left(B+(s-e)\dfrac{p}{B}\right).
 $$
 
-Khi $B=\sqrt{(s-e)p}$, tong do phuc tap dat nho nhat, bang $O\left(\sqrt{(s-e)p}\right)$. Sau khi thu duoc $h$, thay vao bieu thuc cua $x$ o tren se tim duoc mot nghiem rieng.
+Khi $B=\sqrt{(s-e)p}$, tổng độ phức tạp đạt nhỏ nhất, bằng
+$O\left(\sqrt{(s-e)p}\right)$. Sau khi thu được $h$, thay vào biểu thức của $x$
+ở trên sẽ tìm được một nghiệm riêng.
 
 <span id="&#26102;&#38388;&#22797;&#26434;&#24230;"></span>
 #### Độ phức tạp thời gian
