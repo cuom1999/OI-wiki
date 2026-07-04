@@ -1,12 +1,12 @@
 author: Xeonacid, ksyx, Early0v0
 
-<span id="&#26632;"></span>
+<span id="ngăn-xếp"></span>
 
 ## Ngăn xếp
 
 STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một container adapter theo nguyên tắc vào sau ra trước (Last In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ iterator.
 
-<span id="&#22836;&#25991;&#20214;"></span>
+<span id="tệp-tiêu-đề-ngăn-xếp"></span>
 
 ### Tệp tiêu đề
 
@@ -14,7 +14,7 @@ STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một container adapter 
 #include <stack>
 ```
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa-ngăn-xếp"></span>
 
 ### Định nghĩa
 
@@ -24,7 +24,7 @@ std::stack<TypeName, Container> s;  // dùng Container làm container nền
 std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 ```
 
-<span id="&#25104;&#21592;&#20989;&#25968;"></span>
+<span id="hàm-thành-viên-ngăn-xếp"></span>
 
 ### Hàm thành viên
 
@@ -36,7 +36,7 @@ std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 -   `size()` truy vấn số lượng phần tử trong container
 -   `empty()` kiểm tra container có rỗng hay không
 
-<span id="&#31616;&#21333;&#31034;&#20363;"></span>
+<span id="ví-dụ-đơn-giản-ngăn-xếp"></span>
 
 ### Ví dụ đơn giản
 
@@ -52,13 +52,13 @@ s1.pop();
 std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 ```
 
-<span id="&#38431;&#21015;"></span>
+<span id="hàng-đợi"></span>
 
 ## Hàng đợi
 
 STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một container adapter theo nguyên tắc vào trước ra trước (First In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ iterator.
 
-<span id="&#22836;&#25991;&#20214;_1"></span>
+<span id="tệp-tiêu-đề-hàng-đợi"></span>
 
 ### Tệp tiêu đề
 
@@ -66,7 +66,7 @@ STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một container adapter
 #include <queue>
 ```
 
-<span id="&#23450;&#20041;_1"></span>
+<span id="định-nghĩa-hàng-đợi"></span>
 
 ### Định nghĩa
 
@@ -77,7 +77,7 @@ std::queue<TypeName, Container> q;  // dùng Container làm container nền
 std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
 ```
 
-<span id="&#25104;&#21592;&#20989;&#25968;_1"></span>
+<span id="hàm-thành-viên-hàng-đợi"></span>
 
 ### Hàm thành viên
 
@@ -89,7 +89,7 @@ std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
 -   `size()` truy vấn số lượng phần tử trong container
 -   `empty()` kiểm tra container có rỗng hay không
 
-<span id="&#31616;&#21333;&#31034;&#20363;_1"></span>
+<span id="ví-dụ-đơn-giản-hàng-đợi"></span>
 
 ### Ví dụ đơn giản
 
@@ -105,13 +105,13 @@ q1.pop();
 std::cout << q1.empty() << " " << q2.empty() << std::endl;  // 1 0
 ```
 
-<span id="&#20248;&#20808;&#38431;&#21015;"></span>
+<span id="hàng-đợi-ưu-tiên"></span>
 
 ## Hàng đợi ưu tiên
 
 Hàng đợi ưu tiên `std::priority_queue` là một dạng [heap](../../ds/heap.md), thường là [heap nhị phân](../../ds/binary-heap.md).
 
-<span id="&#22836;&#25991;&#20214;_2"></span>
+<span id="tệp-tiêu-đề-hàng-đợi-ưu-tiên"></span>
 
 ### Tệp tiêu đề
 
@@ -119,7 +119,7 @@ Hàng đợi ưu tiên `std::priority_queue` là một dạng [heap](../../ds/he
 #include <queue>
 ```
 
-<span id="&#23450;&#20041;_2"></span>
+<span id="định-nghĩa-hàng-đợi-ưu-tiên"></span>
 
 ### Định nghĩa
 
@@ -144,7 +144,7 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
     pq(cmp);
 ```
 
-<span id="&#25104;&#21592;&#20989;&#25968;_2"></span>
+<span id="hàm-thành-viên-hàng-đợi-ưu-tiên"></span>
 
 ### Hàm thành viên
 
@@ -159,7 +159,7 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
 -   `push(x)` chèn phần tử và sắp xếp container nền
 -   `pop()` xóa phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
 
-<span id="&#31616;&#21333;&#31034;&#20363;_2"></span>
+<span id="ví-dụ-đơn-giản-hàng-đợi-ưu-tiên"></span>
 
 ### Ví dụ đơn giản
 

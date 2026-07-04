@@ -2,7 +2,7 @@ author: ouuan, HeRaNO
 
 Heap là một cây mà mỗi nút có một khóa, và khóa của mỗi nút đều lớn hơn hoặc bằng / nhỏ hơn hoặc bằng khóa của cha nó.
 
-Heap trong đó khóa của mỗi nút đều lớn hơn hoặc bằng khóa của cha được gọi là heap nhỏ; ngược lại gọi là heap lớn. [`priority_queue` trong STL](../lang/csl/container-adapter.md#%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97) thực chất là một heap lớn.
+Heap trong đó khóa của mỗi nút đều lớn hơn hoặc bằng khóa của cha được gọi là heap nhỏ; ngược lại gọi là heap lớn. [`priority_queue` trong STL](../lang/csl/container-adapter.md#hàng-đợi-ưu-tiên) thực chất là một heap lớn.
 
 Heap nhỏ chủ yếu hỗ trợ các thao tác: chèn một số, truy vấn giá trị nhỏ nhất, xóa giá trị nhỏ nhất, hợp nhất hai heap, và giảm khóa của một phần tử.
 
@@ -10,7 +10,7 @@ Một số heap mạnh hơn (heap có thể hợp nhất) còn hỗ trợ hiệu
 
 Một số heap mạnh hơn nữa còn hỗ trợ tính bền vững, tức là có thể truy vấn hoặc thao tác trên bất kỳ phiên bản lịch sử nào và sinh ra phiên bản mới.
 
-<span id="&#22534;&#30340;&#20998;&#31867;"></span>
+<span id="phân-loại-heap"></span>
 
 ## Phân loại heap
 
