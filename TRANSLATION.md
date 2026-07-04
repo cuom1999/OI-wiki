@@ -182,6 +182,9 @@ MkDocs source layout intact.
 - `docs/math/probability/*.md`: translated probability basics, conditional
   probability and independence, random variables, expectation/variance, and
   concentration inequalities.
+- `docs/math/game-theory/*.md`: translated game-theory overview, impartial
+  combinatorial games, zero-sum games, and explanatory comments in included
+  game-theory snippets; the upstream partizan-game page is currently empty.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

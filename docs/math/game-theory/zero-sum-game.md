@@ -1,16 +1,17 @@
-前置知识：[博弈论简介](./intro.md)
+Kiến thức cần có: [Giới thiệu về lý thuyết trò chơi](./intro.md)
 
-本文讨论（二人）[零和游戏](./intro.md#零和非零和博弈)．
+Bài viết này thảo luận về [trò chơi tổng bằng không](./intro.md#%E9%9B%B6%E5%92%8C%E9%9D%9E%E9%9B%B6%E5%92%8C%E5%8D%9A%E5%BC%88) hai người.
 
-在零和游戏中，两名玩家的收益之和恒为零，一方的收益必然意味着另一方的损失．零和游戏可以视为常和游戏的特殊情形．不过，任何常和游戏都可以通过对某一方的收益整体加上或减去一个常数，等价地转化为零和游戏，所以仅需要讨论零和游戏．
+Trong trò chơi tổng bằng không, tổng lợi ích của hai người chơi luôn bằng không; lợi ích của một bên tất yếu tương ứng với tổn thất của bên còn lại. Trò chơi tổng bằng không có thể xem là một trường hợp đặc biệt của trò chơi tổng hằng. Tuy nhiên, bất kỳ trò chơi tổng hằng nào cũng có thể được chuyển đổi tương đương thành trò chơi tổng bằng không bằng cách cộng hoặc trừ cùng một hằng số vào toàn bộ lợi ích của một bên, vì vậy ta chỉ cần xét trò chơi tổng bằng không.
 
-在算法竞赛中常见的零和游戏大致可分为两类：序贯零和游戏与同时零和游戏．
+Trong thi thuật toán, các trò chơi tổng bằng không thường gặp có thể chia đại khái thành hai loại: trò chơi tuần tự tổng bằng không và trò chơi đồng thời tổng bằng không.
 
-## 序贯零和游戏
+<span id="&#24207;&#36143;&#38646;&#21644;&#28216;&#25103;"></span>
+## Trò chơi tuần tự tổng bằng không
 
-序贯零和游戏中，两名玩家轮流行动，直到游戏终止．
+Trong trò chơi tuần tự tổng bằng không, hai người chơi luân phiên hành động cho đến khi trò chơi kết thúc.
 
-序贯零和游戏中，玩家的收益函数呈现递归结构．游戏局面 $S$ 可以分为三类，即终止局面 $S_0$、玩家 $1$ 行动的局面 $S_1$ 和玩家 $2$ 行动的局面 $S_2$．假设终止局面 $s\in S_0$ 处，玩家 $1$ 的收益为 $v(s)$，相应地，玩家 $2$ 的收益为 $-v(s)$．因此，轮到玩家 $2$ 行动时，最大化它的收益就相当于最小化玩家 $1$ 的收益．由此，假设双方都采取最优策略，玩家 $1$ 在局面 $s\in S$ 处能够获得的最大收益 $V(s)$ 满足如下递推关系：
+Trong trò chơi tuần tự tổng bằng không, hàm lợi ích của người chơi có cấu trúc đệ quy. Các trạng thái trò chơi $S$ có thể chia thành ba loại: trạng thái kết thúc $S_0$, trạng thái đến lượt người chơi $1$ hành động $S_1$, và trạng thái đến lượt người chơi $2$ hành động $S_2$. Giả sử tại trạng thái kết thúc $s\in S_0$, lợi ích của người chơi $1$ là $v(s)$, tương ứng lợi ích của người chơi $2$ là $-v(s)$. Do đó, khi đến lượt người chơi $2$ hành động, tối đa hóa lợi ích của họ tương đương với tối thiểu hóa lợi ích của người chơi $1$. Từ đó, nếu giả sử cả hai bên đều dùng chiến lược tối ưu, lợi ích lớn nhất $V(s)$ mà người chơi $1$ có thể đạt được tại trạng thái $s\in S$ thỏa mãn truy hồi sau:
 
 $$
 V(s) = \begin{cases}
@@ -20,23 +21,23 @@ v(s), & s \in S_0,\\
 \end{cases}
 $$
 
-其中，$t\in s$ 表示 $t$ 是 $s$ 的后继局面．这就是 [极小化极大思想](../../search/alpha-beta.md#minimax-算法)．
+Trong đó, $t\in s$ nghĩa là $t$ là một trạng thái kế tiếp của $s$. Đây chính là [tư tưởng minimax](../../search/alpha-beta.md#minimax-%E7%AE%97%E6%B3%95).
 
-将这一算法应用于实际问题中，通常有如下具体方法：
+Khi áp dụng thuật toán này vào bài toán thực tế, thường có các cách cụ thể sau:
 
--   如果游戏中涉及的局面数量较少，直接暴力实现这一算法即可．
+-   Nếu số lượng trạng thái xuất hiện trong trò chơi tương đối ít, có thể cài đặt trực tiếp thuật toán này bằng vét cạn.
 
--   如果游戏中涉及的局面数量较为庞大且没有特殊结构，可以考虑 [Alpha–Beta 剪枝](../../search/alpha-beta.md#alphabeta-剪枝) 并结合其他搜索剪枝算法使用．
+-   Nếu số lượng trạng thái xuất hiện trong trò chơi rất lớn và không có cấu trúc đặc biệt, có thể cân nhắc dùng [cắt tỉa Alpha-Beta](../../search/alpha-beta.md#alphabeta-%E5%89%AA%E6%9E%9D) kết hợp với các thuật toán cắt tỉa tìm kiếm khác.
 
--   如果游戏中单个局面经常是多个局面的后继局面，为避免重复搜索，可以考虑记忆化搜索或其他动态规划算法．
+-   Nếu một trạng thái trong trò chơi thường là trạng thái kế tiếp của nhiều trạng thái khác, để tránh tìm kiếm lặp lại, có thể dùng tìm kiếm có nhớ hoặc các thuật toán quy hoạch động khác.
 
--   如果游戏中玩家的最终收益是终局前所有行动的收益和，可以适当优化建模方式．具体地，假设到达终局 $s\in S_0$ 时，玩家 $i=1,2$ 的行动序列分别为 $\{a^{(i)}_j\}_{j=1}^{k_i}$，行动 $a$ 对应的收益为 $w(a)$，玩家 $1$ 的收益函数为
+-   Nếu lợi ích cuối cùng của người chơi trong trò chơi là tổng lợi ích của mọi hành động trước khi kết thúc, có thể tối ưu cách mô hình hóa một cách phù hợp. Cụ thể, giả sử khi đến trạng thái kết thúc $s\in S_0$, dãy hành động của người chơi $i=1,2$ lần lượt là $\{a^{(i)}_j\}_{j=1}^{k_i}$, lợi ích tương ứng với hành động $a$ là $w(a)$, và hàm lợi ích của người chơi $1$ là
 
     $$
     v(s) = \sum_{j=1}^{k_1}w(a_j^{(1)}) - \sum_{j=1}^{k_2}w(a_j^{(2)}).
     $$
 
-    那么，可以设 $\tilde V(s)$ 为当前玩家在局面 $s\in S$ 之后的游戏中能够取得的最大分数．对于初始状态 $s_0$，有 $V(s_0)=\tilde V(s_0)$，因此求出 $\tilde V(\cdot)$ 足以求解原问题．对于 $\tilde V(\cdot)$，有如下递推关系：
+    Khi đó, có thể đặt $\tilde V(s)$ là điểm số lớn nhất mà người chơi hiện tại có thể đạt được trong phần trò chơi sau trạng thái $s\in S$. Với trạng thái ban đầu $s_0$, ta có $V(s_0)=\tilde V(s_0)$, nên chỉ cần tính được $\tilde V(\cdot)$ là đủ để giải bài toán gốc. Với $\tilde V(\cdot)$, ta có truy hồi sau:
 
     $$
     \tilde V(s) = \begin{cases}
@@ -45,21 +46,22 @@ $$
     \end{cases}
     $$
 
-    其中，$a_{s\to t}$ 表示可以使得状态从 $s$ 转移到 $t$ 的行动，如果有多个这样的行动，取收益 $w(a)$ 最高的那个．
+    Trong đó, $a_{s\to t}$ biểu thị một hành động có thể chuyển trạng thái từ $s$ sang $t$; nếu có nhiều hành động như vậy, lấy hành động có lợi ích $w(a)$ lớn nhất.
 
--   公平组合游戏都是序贯零和游戏，只需要设游戏中胜利方和失败方的收益分别为 $+1$ 和 $-1$．此时，收益函数 $V(\cdot)$ 的递推关系其实就是判定必胜状态和必败状态的 [引理](./impartial-game.md#博弈图和状态)．
+-   Mọi trò chơi tổ hợp công bằng đều là trò chơi tuần tự tổng bằng không; chỉ cần đặt lợi ích của bên thắng và bên thua trong trò chơi lần lượt là $+1$ và $-1$. Khi đó, truy hồi của hàm lợi ích $V(\cdot)$ thực chất chính là [bổ đề](./impartial-game.md#%E5%8D%9A%E5%BC%88%E5%9B%BE%E5%92%8C%E7%8A%B6%E6%80%81) dùng để xác định trạng thái thắng chắc và trạng thái thua chắc.
 
-    这类问题还有一种常见的变形，即求胜利方最少需要的回合数和失败方最多可以坚持的回合数．为此，只需要注意到从终止状态开始做 BFS 并按照引理判定必胜状态和必败状态时，记录判定必胜状态和必败状态时 BFS 进行到的轮次数，就是所求的回合数．这是因为判定为必胜状态只需要一个后继状态是必败状态即可，它总是由后继状态中轮次数最小的必败状态转移而来；而判定为必败状态需要所有后继状态都是必胜状态，它总是由后继状态中轮次数最大的必胜状态转移而来．
+    Dạng bài này còn có một biến thể thường gặp: tìm số lượt ít nhất mà bên thắng cần dùng, và số lượt nhiều nhất mà bên thua có thể cầm cự. Để làm điều đó, chỉ cần chú ý rằng khi bắt đầu BFS từ trạng thái kết thúc và dùng bổ đề để xác định trạng thái thắng chắc, thua chắc, số vòng BFS tại thời điểm trạng thái được xác định chính là số lượt cần tìm. Lý do là một trạng thái được xác định là thắng chắc chỉ cần có một trạng thái kế tiếp là thua chắc, nên nó luôn được chuyển từ trạng thái thua chắc có số vòng nhỏ nhất trong các trạng thái kế tiếp; còn một trạng thái được xác định là thua chắc cần mọi trạng thái kế tiếp đều là thắng chắc, nên nó luôn được chuyển từ trạng thái thắng chắc có số vòng lớn nhất trong các trạng thái kế tiếp.
 
-    这一方法同样可以推广到一般的 [有向图游戏](./impartial-game.md#有向图游戏)．
+    Phương pháp này cũng có thể mở rộng cho [trò chơi trên đồ thị có hướng](./impartial-game.md#%E6%9C%89%E5%90%91%E5%9B%BE%E6%B8%B8%E6%88%8F) nói chung.
 
-### 例题
+<span id="&#20363;&#39064;"></span>
+### Ví dụ
 
 ???+ example "[Codeforces 794 E. Choosing Carrot](https://codeforces.com/problemset/problem/794/E)"
-    设有一个长度为 $n$ 的数列 ${a_i}$．两名玩家 $1$ 和 $2$ 轮流从数列的两端取走一个数，直到数列中仅剩下最后一个数字为止．玩家 $1$ 的目标是最大化这个最后剩下的数字，玩家 $2$ 的目标是最小化它．在游戏正式开始前，玩家 $1$ 还可以先进行 $k$ 次行动．假设两名玩家在整个过程中都采取最优策略．对于每一个 $k = 0,1,2,\cdots,n-1$，求出游戏结束时最后剩下的数字．其中，$1 \le n \le 3\times 10^5$．
+    Cho một dãy số ${a_i}$ có độ dài $n$. Hai người chơi $1$ và $2$ luân phiên lấy đi một số ở một trong hai đầu dãy, cho đến khi trong dãy chỉ còn lại đúng một số cuối cùng. Mục tiêu của người chơi $1$ là tối đa hóa số cuối cùng còn lại này, còn mục tiêu của người chơi $2$ là tối thiểu hóa nó. Trước khi trò chơi chính thức bắt đầu, người chơi $1$ còn có thể thực hiện trước $k$ hành động. Giả sử cả hai người chơi đều dùng chiến lược tối ưu trong suốt quá trình. Với mỗi $k = 0,1,2,\cdots,n-1$, hãy tìm số cuối cùng còn lại khi trò chơi kết thúc. Trong đó, $1 \le n \le 3\times 10^5$.
 
-??? note "解答"
-    因为无论双方怎样取走数字，数列剩余部分都是一段完整的区间．所以，游戏中的局面可以仅由区间 $[l,r]$ 和当前行动的玩家 $i=1,2$ 描述，可以使用动态规划算法求解．设 $f(l,r,i)$ 为局面由 $(l,r,i)$ 描述时，游戏最后剩下的数字．由前文分析可知，当 $l < r$ 时，这一函数满足状态转移方程：
+??? note "Lời giải"
+    Vì dù hai bên lấy số như thế nào, phần còn lại của dãy luôn là một đoạn liên tiếp. Do đó, trạng thái trong trò chơi có thể chỉ được mô tả bằng đoạn $[l,r]$ và người chơi hiện đang hành động $i=1,2$, và có thể dùng quy hoạch động để giải. Đặt $f(l,r,i)$ là số cuối cùng còn lại khi trạng thái được mô tả bởi $(l,r,i)$. Theo phân tích ở trên, khi $l < r$, hàm này thỏa mãn phương trình chuyển trạng thái:
     
     $$
     \begin{aligned}
@@ -68,49 +70,51 @@ $$
     \end{aligned}
     $$
     
-    终值条件为 $f(l,l,1)=f(l,l,2) = a_l$．据此，可以在 $\Theta(n^2)$ 时间内求出所有可能局面的函数值．对于每个 $k$，答案就是
+    Điều kiện biên là $f(l,l,1)=f(l,l,2) = a_l$. Từ đó, có thể tính giá trị hàm của mọi trạng thái có thể trong thời gian $\Theta(n^2)$. Với mỗi $k$, đáp án là
     
     $$
     g(k) = \max f(l,r,1) \text{ subject to } r - l + 1 = k.
     $$
     
-    这一算法无法通过原题所设的数据范围，因此需要考虑优化转移．此处有很多种处理方法，本文只提供其中一种．
+    Thuật toán này không thể vượt qua phạm vi dữ liệu của đề gốc, nên cần tối ưu phép chuyển. Có nhiều cách xử lý; bài viết này chỉ trình bày một cách.
     
-    将状态转移方程看作是对数列整体的操作．两个转移方程分别表示将相邻数字取最大值和最小值得到新数列，将它们分别称为「最大化操作」和「最小化操作」．每次操作都会使得数列长度减一．所有长度为 $d$ 的区间对应结果共计 $(n-d+1)$ 个，这就相当于对序列进行 $(d-1)$ 次操作得到的序列．另外，要得到 $f(l,r,1)$ 的结果，就需要保证最后一次操作是最大化操作．因此，这些操作序列的结尾总是最大化操作．
+    Xem phương trình chuyển trạng thái như một thao tác trên toàn bộ dãy số. Hai phương trình chuyển lần lượt biểu thị việc lấy giá trị lớn nhất và giá trị nhỏ nhất của các số kề nhau để tạo thành dãy mới; gọi chúng lần lượt là "thao tác cực đại hóa" và "thao tác cực tiểu hóa". Mỗi thao tác làm độ dài dãy giảm đi một. Tổng cộng có $(n-d+1)$ kết quả ứng với các đoạn có độ dài $d$, tương đương với dãy thu được sau khi thực hiện $(d-1)$ thao tác trên dãy ban đầu. Ngoài ra, để thu được kết quả $f(l,r,1)$, cần bảo đảm thao tác cuối cùng là thao tác cực đại hóa. Vì vậy, các dãy thao tác này luôn kết thúc bằng thao tác cực đại hóa.
     
-    考虑连续两次操作给数列带来的变化．不妨考虑首先做最小化操作，再做最大化操作．此时，数列 $a_1,a_2,a_3$ 将变为
+    Xét thay đổi do hai thao tác liên tiếp gây ra cho dãy. Không mất tính tổng quát, xét trường hợp trước hết thực hiện thao tác cực tiểu hóa, rồi thực hiện thao tác cực đại hóa. Khi đó, dãy $a_1,a_2,a_3$ sẽ trở thành
     
     $$
     \max\{\min\{a_1,a_2\},\min\{a_2,a_3\}\}.
     $$
     
-    枚举 $a_1,a_2,a_3$ 三个数字之间所有可能的大小关系可知，除了 $a_1 < a_2$ 且 $a_2 > a_3$（即 $a_2$ 是严格极大值）这种情形外，这一表达式总是等于 $a_2$．也就是说，如果一个数列不存在任何严格极大值点，那么，连续两次操作对它的唯一影响就是删去了数列首尾各一个数字．这显然大幅简化了转移．剩下唯一的问题就是：如何保证数列不存在任何严格极大值点？事实上，只要对序列做一次最大化操作，就能保证不存在严格极大值点．故而，所有偶数次操作的结果，可以通过对初始数列进行两次操作得到的序列，逐对删去首尾数字得到；所有奇数次操作的结果，可以通过对初始数列进行一次操作得到的序列，逐对删去首尾数字得到．
+    Liệt kê mọi quan hệ thứ tự có thể giữa ba số $a_1,a_2,a_3$ cho thấy, ngoại trừ trường hợp $a_1 < a_2$ và $a_2 > a_3$ (tức $a_2$ là một cực đại nghiêm ngặt), biểu thức này luôn bằng $a_2$. Nói cách khác, nếu một dãy không có bất kỳ điểm cực đại nghiêm ngặt nào, thì ảnh hưởng duy nhất của hai thao tác liên tiếp lên nó là xóa đi một số ở đầu và một số ở cuối dãy. Điều này rõ ràng đơn giản hóa phép chuyển rất nhiều. Vấn đề duy nhất còn lại là: làm thế nào để bảo đảm dãy không có bất kỳ điểm cực đại nghiêm ngặt nào? Thực ra, chỉ cần thực hiện một thao tác cực đại hóa trên dãy là có thể bảo đảm không tồn tại điểm cực đại nghiêm ngặt. Vì vậy, mọi kết quả sau số thao tác chẵn có thể được thu bằng cách thực hiện hai thao tác trên dãy ban đầu, rồi lần lượt xóa từng cặp số ở hai đầu; mọi kết quả sau số thao tác lẻ có thể được thu bằng cách thực hiện một thao tác trên dãy ban đầu, rồi lần lượt xóa từng cặp số ở hai đầu.
     
-    由于对序列的完整操作至多只需要进行 $3$ 次，而后续统计答案只需要 $2$ 次遍历，所以该算法的总时间复杂度为 $\Theta(n)$．
+    Vì toàn bộ thao tác đầy đủ trên dãy chỉ cần thực hiện nhiều nhất $3$ lần, còn phần thống kê đáp án sau đó chỉ cần $2$ lần duyệt, độ phức tạp thời gian tổng cộng của thuật toán là $\Theta(n)$.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/zero-sum-game/zero-sum-game-1.cpp"
     ```
 
-### 习题
+<span id="&#20064;&#39064;"></span>
+### Bài tập
 
--   [Luogu P2734 \[USACO3.3\] 游戏 A Game](https://www.luogu.com.cn/problem/P2734)
--   [Luogu P4576 \[CQOI2013\] 棋盘游戏](https://www.luogu.com.cn/problem/P4576)
--   [Luogu P7097 \[yLOI2020\] 牵丝戏](https://www.luogu.com.cn/problem/P7097)
+-   [Luogu P2734 \[USACO3.3\] Trò chơi A Game](https://www.luogu.com.cn/problem/P2734)
+-   [Luogu P4576 \[CQOI2013\] Trò chơi bàn cờ](https://www.luogu.com.cn/problem/P4576)
+-   [Luogu P7097 \[yLOI2020\] Múa rối dây](https://www.luogu.com.cn/problem/P7097)
 -   [Codeforces 388 C. Fox and Card Game](https://codeforces.com/problemset/problem/388/C)
 -   [Codeforces 794 E. Choosing Carrot](https://codeforces.com/problemset/problem/794/E)
 -   [Codeforces 1628 D2. Game on Sum (Hard Version)](https://codeforces.com/problemset/problem/1628/D2)
--   [Luogu P3210 \[HNOI2010\] 取石头游戏](https://www.luogu.com.cn/problem/P3210)
+-   [Luogu P3210 \[HNOI2010\] Trò chơi lấy đá](https://www.luogu.com.cn/problem/P3210)
 
-## 同时零和游戏
+<span id="&#21516;&#26102;&#38646;&#21644;&#28216;&#25103;"></span>
+## Trò chơi đồng thời tổng bằng không
 
-同时零和博弈中，两名玩家同时行动．
+Trong trò chơi đồng thời tổng bằng không, hai người chơi hành động cùng lúc.
 
-同时零和游戏通常采用收益矩阵表示．假设玩家 $i=1,2$ 的行动集合为 $A_i$，且当玩家 $i=1,2$ 分别采取行动 $a_i\in A_i$ 时，两人的收益分别是 $v(a_1,a_2)$ 和 $-v(a_1,a_2)$．
+Trò chơi đồng thời tổng bằng không thường được biểu diễn bằng ma trận lợi ích. Giả sử tập hành động của người chơi $i=1,2$ là $A_i$, và khi người chơi $i=1,2$ lần lượt chọn hành động $a_i\in A_i$, lợi ích của hai người lần lượt là $v(a_1,a_2)$ và $-v(a_1,a_2)$.
 
-???+ example "例子"
-    考虑石头剪刀布游戏．假定胜利得 $1$ 分，失败得 $-1$ 分，平局得 $0$ 分．那么，游戏中两人的收益可以表示为
+???+ example "Ví dụ"
+    Xét trò chơi kéo búa bao. Giả sử thắng được $1$ điểm, thua được $-1$ điểm, hòa được $0$ điểm. Khi đó, lợi ích của hai người trong trò chơi có thể biểu diễn bằng
     
     $$
     \begin{pmatrix}
@@ -120,7 +124,7 @@ $$
     \end{pmatrix}.
     $$
     
-    一般的二人同时游戏也可以表示为类似形式，故而也称为 [双矩阵游戏](https://en.wikipedia.org/wiki/Bimatrix_game)（bimatrix game）．对于零和博弈，由于玩家 $1$ 的收益矩阵和玩家 $2$ 的收益矩阵互为相反数，所以可以只考虑玩家 $1$ 的收益矩阵：
+    Trò chơi đồng thời hai người nói chung cũng có thể được biểu diễn dưới dạng tương tự, nên còn được gọi là [trò chơi song ma trận](https://en.wikipedia.org/wiki/Bimatrix_game) (bimatrix game). Với trò chơi tổng bằng không, do ma trận lợi ích của người chơi $1$ và ma trận lợi ích của người chơi $2$ là hai ma trận đối nhau, ta có thể chỉ xét ma trận lợi ích của người chơi $1$:
     
     $$
     V = (v(a_1,a_2))_{(a_1,a_2)\in A_1\times A_2} = \begin{pmatrix}
@@ -130,78 +134,80 @@ $$
     \end{pmatrix}.
     $$
 
-需要解决的问题是：给定收益矩阵 $V = (v(a_1,a_2))_{(a_1,a_2)\in A_1\times A_2}$，如何求出两名玩家的最优策略和最大收益？
+Vấn đề cần giải quyết là: cho ma trận lợi ích $V = (v(a_1,a_2))_{(a_1,a_2)\in A_1\times A_2}$, làm thế nào để tìm chiến lược tối ưu và lợi ích lớn nhất của hai người chơi?
 
-### 混合策略
+<span id="&#28151;&#21512;&#31574;&#30053;"></span>
+### Chiến lược hỗn hợp
 
-相较于序贯零和游戏，同时游戏中两名玩家的角色是对称的．但是，既然已经解决了序贯零和游戏，那么不妨考虑同时游戏的序贯版本．例如，如果假定玩家 $1$ 首先做出行动，玩家 $2$ 再做出行动，那么，根据前文讨论，游戏结束时玩家 $1$ 的收益将由
+So với trò chơi tuần tự tổng bằng không, vai trò của hai người chơi trong trò chơi đồng thời là đối xứng. Tuy nhiên, vì ta đã giải quyết trò chơi tuần tự tổng bằng không, có thể xét phiên bản tuần tự của trò chơi đồng thời. Chẳng hạn, nếu giả định người chơi $1$ hành động trước, rồi người chơi $2$ hành động sau, thì theo phần thảo luận ở trên, lợi ích của người chơi $1$ khi trò chơi kết thúc sẽ được cho bởi
 
 $$
 w_-=\max_{a_1\in A_1}\min_{a_2\in A_2} v(a_1,a_2)
 $$
 
-给出．由于玩家 $1$ 的行动对于玩家 $2$ 单向透明，这应该是玩家 $1$ 所能获得的最差结果．对称地，如果假定玩家 $2$ 首先行动，那么，玩家 $1$ 的收益将由
+Vì người chơi $2$ quan sát được hành động của người chơi $1$, đây nên là kết quả xấu nhất mà người chơi $1$ có thể đạt được. Đối xứng lại, nếu giả định người chơi $2$ hành động trước, thì lợi ích của người chơi $1$ sẽ được cho bởi
 
 $$
 w_+ = \min_{a_2\in A_2}\max_{a_1\in A_1} v(a_1,a_2)
 $$
 
-给出．由于玩家 $2$ 的行动对于玩家 $1$ 单向透明，这应该是玩家 $1$ 所能获得的最好结果．玩家 $1$ 应该期待实际进行游戏时，所能获得的收益 $w\in[w_-,w_+]$．尽管不等式 $w_-\le w_+$ 总是成立（证明参见 [弱对偶定理](../linear-programming.md#对偶原理)），但是由于等号未必成立，所以，仅采用序贯游戏的分析手段，一般情况下没有办法唯一确定游戏结果．
+Vì người chơi $1$ quan sát được hành động của người chơi $2$, đây nên là kết quả tốt nhất mà người chơi $1$ có thể đạt được. Người chơi $1$ nên kỳ vọng rằng trong trò chơi thực tế, lợi ích đạt được là $w\in[w_-,w_+]$. Mặc dù bất đẳng thức $w_-\le w_+$ luôn đúng (chứng minh xem tại [định lý đối ngẫu yếu](../linear-programming.md#%E5%AF%B9%E5%81%B6%E5%8E%9F%E7%90%86)), nhưng vì dấu bằng chưa chắc xảy ra, chỉ dùng phương pháp phân tích của trò chơi tuần tự thì nói chung không thể xác định duy nhất kết quả trò chơi.
 
-???+ example "例子（续）"
-    石头剪刀布游戏中，如果出手有先后，那么先手必输，后手必赢．转换为数学语言，这就是下列不等式：
+???+ example "Ví dụ (tiếp)"
+    Trong trò chơi kéo búa bao, nếu có thứ tự ra tay trước sau, người đi trước chắc chắn thua, người đi sau chắc chắn thắng. Chuyển sang ngôn ngữ toán học, đó chính là bất đẳng thức sau:
     
     $$
     w_- = -1 \le +1 = w_+.
     $$
     
-    此时，$w_-\neq w_+$ 并不成立．
+    Khi đó, $w_-=w_+$ không đúng.
 
-上述分析过程遗漏了同时游戏的一个关键因素，就是玩家无法准确预测对手的行动．形式上，这意味着双方可以采取某种随机策略．这一想法在序贯博弈的语境下并不成立，因为无论先手玩家如何随机选择行动，后手玩家总能准确地观测到这一行动，并有针对性地回应．但是，对于同时游戏，随机策略引入的战略模糊将使得对手无法有效地针对己方的行动．
+Phân tích trên đã bỏ sót một yếu tố then chốt của trò chơi đồng thời: người chơi không thể dự đoán chính xác hành động của đối thủ. Về hình thức, điều này có nghĩa là hai bên có thể dùng một loại chiến lược ngẫu nhiên nào đó. Ý tưởng này không đúng trong ngữ cảnh trò chơi tuần tự, vì dù người chơi đi trước chọn hành động ngẫu nhiên như thế nào, người chơi đi sau luôn có thể quan sát chính xác hành động đó và đáp trả có mục tiêu. Nhưng với trò chơi đồng thời, sự mơ hồ chiến lược do chiến lược ngẫu nhiên đưa vào sẽ khiến đối thủ không thể đối phó hiệu quả với hành động của ta.
 
-???+ example "例子（续）"
-    石头剪刀布游戏中，如果玩家 $1$ 均匀随机地选择剪刀、石头、布三个行动之一，那么，根据玩家 $2$ 的行动不同，玩家 $1$ 可能获得的收益是
+???+ example "Ví dụ (tiếp)"
+    Trong trò chơi kéo búa bao, nếu người chơi $1$ chọn ngẫu nhiên đều một trong ba hành động kéo, búa, bao, thì tùy theo hành động của người chơi $2$, lợi ích có thể nhận được của người chơi $1$ là
     
     $$
     \dfrac{1}{3}(0,1,-1)^T + \dfrac{1}{3}(-1,0,1)^T + \dfrac{1}{3}(1,-1,0)^T = (0,0,0)^T.
     $$
     
-    此时，无论玩家 $2$ 如何选择行动，玩家 $1$ 的期望收益总是 $0$．这显然好于确定性地选择单个行动．
+    Khi đó, bất kể người chơi $2$ chọn hành động nào, kỳ vọng lợi ích của người chơi $1$ luôn là $0$. Điều này rõ ràng tốt hơn việc chọn cố định một hành động đơn lẻ.
 
-由此，就引入了混合策略的概念．
+Từ đó, ta đưa vào khái niệm chiến lược hỗn hợp.
 
-???+ abstract "混合策略"
-    同时游戏中，玩家 $i$ 的 **混合策略**（mixed strategy），简称 **策略**，是指函数 $s_i:A_i\to[0,1]$，且它满足 $\sum_{a_i\in A_i}s_i(a_i)=1$．也就是说，策略 $s_i$ 就是玩家 $i$ 的行动集合 $A_i$ 上的一个概率分布．玩家 $i$ 全体混合策略的集合记作 $S_i=\Delta(A_i)$，其中，$\Delta(A_i)$ 表示 $A_i$ 上的全体概率分布的集合．如果 $s_i$ 是退化的概率分布，即存在 $a\in A_i$ 使得 $s_i(a)=1$，那么，也称策略 $s_i$ 为 **纯策略**（pure strategy）．
+???+ abstract "Chiến lược hỗn hợp"
+    Trong trò chơi đồng thời, **chiến lược hỗn hợp** (mixed strategy), gọi tắt là **chiến lược**, của người chơi $i$ là một hàm $s_i:A_i\to[0,1]$ thỏa mãn $\sum_{a_i\in A_i}s_i(a_i)=1$. Nói cách khác, chiến lược $s_i$ chính là một phân phối xác suất trên tập hành động $A_i$ của người chơi $i$. Tập mọi chiến lược hỗn hợp của người chơi $i$ được ký hiệu là $S_i=\Delta(A_i)$, trong đó $\Delta(A_i)$ biểu thị tập mọi phân phối xác suất trên $A_i$. Nếu $s_i$ là một phân phối xác suất suy biến, tức tồn tại $a\in A_i$ sao cho $s_i(a)=1$, thì chiến lược $s_i$ còn được gọi là **chiến lược thuần** (pure strategy).
 
-混合策略的收益就是单个行动收益的期望：
+Lợi ích của chiến lược hỗn hợp chính là kỳ vọng của lợi ích từ từng hành động đơn lẻ:
 
 $$
 v(s_1,s_2) = \sum_{a_1\in A_1}\sum_{a_2\in A_2}s_1(a_1)s_2(a_2)v(a_1,a_2).
 $$
 
-将单个行动看作对应的纯策略，那么，就可以将行动集合 $A_i$ 嵌入（混合）策略集合 $S_i$ 中，且上式定义的 $v(s_1,s_2)$ 就可以看作是将 $v(a_1,a_2)$ 从 $A_1\times A_2$ 延拓到 $S_1\times S_2$ 上．
+Nếu xem mỗi hành động đơn lẻ như chiến lược thuần tương ứng, ta có thể nhúng tập hành động $A_i$ vào tập chiến lược hỗn hợp $S_i$, và $v(s_1,s_2)$ được định nghĩa ở trên có thể được xem là phần mở rộng của $v(a_1,a_2)$ từ $A_1\times A_2$ lên $S_1\times S_2$.
 
-### von Neumann 定理
+<span id="von Neumann &#23450;&#29702;"></span>
+### Định lý von Neumann
 
-引入混合策略后，极大化极小思想和极小化极大思想得到的结果是一致的，由此，同时零和游戏的结果也是唯一确定的．
+Sau khi đưa vào chiến lược hỗn hợp, kết quả thu được từ tư tưởng cực đại hóa cực tiểu và cực tiểu hóa cực đại là nhất quán; do đó, kết quả của trò chơi đồng thời tổng bằng không cũng được xác định duy nhất.
 
-???+ note "定理（von Neumann）"
-    允许混合策略的同时零和游戏中，如果双方都采取最优策略，那么，玩家 $1$ 的最大收益为
+???+ note "Định lý (von Neumann)"
+    Trong trò chơi đồng thời tổng bằng không cho phép chiến lược hỗn hợp, nếu cả hai bên đều dùng chiến lược tối ưu, thì lợi ích lớn nhất của người chơi $1$ là
     
     $$
     w = \max_{s_1\in S_1}\min_{s_2\in S_2} v(s_1,s_2) = \min_{s_2\in S_2}\max_{s_1\in S_1} v(s_1,s_2),
     $$
     
-    玩家 $2$ 的最大收益为 $-w$．
+    lợi ích lớn nhất của người chơi $2$ là $-w$.
 
-??? note "证明"
-    设 $w = \max_{s_1\in S_1}\min_{s_2\in S_2} v(s_1,s_2)$．考虑内层最小化问题，因为 $v(s_1,s_2)=\sum_{a_2\in A_2}s_2(a_2)v(s_1,a_2)$，所以，$\max_{s_2\in S_2}v(s_1,s_2)=\max_{a_2\in A_2}v(s_1,a_2)$，前者的最优解就是后者的最优解对应的纯策略．因此，有 $w = \max_{s_1\in S_1}\min_{a_2\in A_2} v(s_1,a_2)$．进而，引入辅助变量 $u$，问题就可以改写为
+??? note "Chứng minh"
+    Đặt $w = \max_{s_1\in S_1}\min_{s_2\in S_2} v(s_1,s_2)$. Xét bài toán tối thiểu hóa ở lớp trong. Vì $v(s_1,s_2)=\sum_{a_2\in A_2}s_2(a_2)v(s_1,a_2)$, nên $\min_{s_2\in S_2}v(s_1,s_2)=\min_{a_2\in A_2}v(s_1,a_2)$; nghiệm tối ưu của vế trước chính là chiến lược thuần tương ứng với nghiệm tối ưu của vế sau. Do đó, $w = \max_{s_1\in S_1}\min_{a_2\in A_2} v(s_1,a_2)$. Tiếp theo, đưa vào biến phụ $u$, bài toán có thể viết lại thành
     
     $$
     w = \max_{s_1\in S_1} u \text{ subject to }u \le \min_{a_2\in A_2} v(s_1,a_2).
     $$
     
-    因为这个约束就等价于 $u\le v(s_1,a_2)$ 对于所有 $a_2\in A_2$ 都成立．最后，引入混合策略 $s_1$ 的定义和收益函数 $v(s_1,a_2)$ 的表达式，原问题就等价于 [线性规划问题](../linear-programming.md)
+    Ràng buộc này tương đương với $u\le v(s_1,a_2)$ đúng với mọi $a_2\in A_2$. Cuối cùng, đưa vào định nghĩa của chiến lược hỗn hợp $s_1$ và biểu thức của hàm lợi ích $v(s_1,a_2)$, bài toán gốc tương đương với [bài toán quy hoạch tuyến tính](../linear-programming.md)
     
     $$
     (P) \qquad
@@ -213,7 +219,7 @@ $$
     \end{aligned}
     $$
     
-    这个问题显然是可行的，且最优解有解．根据 [对偶原理](../linear-programming.md#对偶原理) 可知，它的最优解就等于对偶问题的最优解：
+    Bài toán này hiển nhiên khả thi và có nghiệm tối ưu. Theo [nguyên lý đối ngẫu](../linear-programming.md#%E5%AF%B9%E5%81%B6%E5%8E%9F%E7%90%86), nghiệm tối ưu của nó bằng nghiệm tối ưu của bài toán đối ngẫu:
     
     $$
     (D) \qquad
@@ -225,13 +231,14 @@ $$
     \end{aligned}
     $$
     
-    重复前文的步骤，这一问题就等价于 $\min_{s_2\in A_2}\min_{s_1\in S_1}v(s_1,s_2)$．定理得证．
+    Lặp lại các bước ở trên, bài toán này tương đương với $\min_{s_2\in S_2}\max_{s_1\in S_1}v(s_1,s_2)$. Định lý được chứng minh.
 
-这一结果正是这一游戏的 [Nash 均衡](https://en.wikipedia.org/wiki/Nash_equilibrium)．也就是说，假定双方都选择均衡中的最优策略，那么，没有任何玩家能够从偏离均衡策略中严格获益．
+Kết quả này chính là [cân bằng Nash](https://en.wikipedia.org/wiki/Nash_equilibrium) của trò chơi này. Nói cách khác, giả sử hai bên đều chọn chiến lược tối ưu trong cân bằng, thì không người chơi nào có thể thu lợi nghiêm ngặt bằng cách lệch khỏi chiến lược cân bằng.
 
-### 转化为线性规划问题
+<span id="&#36716;&#21270;&#20026;&#32447;&#24615;&#35268;&#21010;&#38382;&#39064;"></span>
+### Chuyển thành bài toán quy hoạch tuyến tính
 
-von Neumann 定理的证明同时也指出了同时零和游戏的求解方法．设 $n$ 和 $m$ 分别是玩家 $1$ 和 $2$ 可采取的行动数目．给定玩家 $1$ 的收益矩阵 $V\in\mathbf R^{n\times m}$，可以求解如下线性规划问题：
+Chứng minh của định lý von Neumann đồng thời cũng chỉ ra cách giải trò chơi đồng thời tổng bằng không. Gọi $n$ và $m$ lần lượt là số hành động mà người chơi $1$ và $2$ có thể chọn. Cho ma trận lợi ích $V\in\mathbf R^{n\times m}$ của người chơi $1$, có thể giải bài toán quy hoạch tuyến tính sau:
 
 $$
 \begin{aligned}
@@ -242,13 +249,15 @@ w = \max_{(u,s)\in\mathbf R\times\mathbf R^n}\; & u\\
 \end{aligned}
 $$
 
-这是一个规模为 $\Theta(n+m)$ 的线性规划问题，可以用 [单纯形法](../simplex.md) 高效求解．算法得到的最优解 $s$ 就是玩家 $1$ 的最优（混合）策略．要求得玩家 $2$ 的最优策略，只需要从单纯形表中获得该问题最优解的对偶变量（即影子价格）即可．
+Đây là một bài toán quy hoạch tuyến tính có kích thước $\Theta(n+m)$, có thể giải hiệu quả bằng [phương pháp đơn hình](../simplex.md). Nghiệm tối ưu $s$ mà thuật toán thu được chính là chiến lược hỗn hợp tối ưu của người chơi $1$. Để tìm chiến lược tối ưu của người chơi $2$, chỉ cần lấy biến đối ngẫu (tức giá bóng) của nghiệm tối ưu bài toán này từ bảng đơn hình.
 
-### 习题
+<span id="&#20064;&#39064;_1"></span>
+### Bài tập
 
--   [Luogu P4232 无意识之外的捉迷藏](https://www.luogu.com.cn/problem/P4232)
+-   [Luogu P4232 Trốn tìm ngoài vô thức](https://www.luogu.com.cn/problem/P4232)
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
 -   [Zero-sum game - Wikipedia](https://en.wikipedia.org/wiki/Zero-sum_game)
 -   [Minimax theorem - Wikipedia](https://en.wikipedia.org/wiki/Minimax_theorem)

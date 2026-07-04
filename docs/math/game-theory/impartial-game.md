@@ -1,102 +1,107 @@
 author: cutekibry, woruo27, tinjyu, 2008verser, Backl1ght, billchenchina, Enter-tainer, FFjet, Ir1d, Molmin, orzAtalod, ouuan, SaMiiKaaaa, SamZhangQingChuan, Tiphereth-A, chu-yuehan
 
-前置知识：[博弈论简介](./intro.md)
+Kiến thức cần có: [giới thiệu lý thuyết trò chơi](./intro.md)
 
-本文讨论 [公平组合游戏](./intro.md#公平组合博弈)．
+Bài viết này thảo luận về [trò chơi tổ hợp công bằng](./intro.md#%E5%85%AC%E5%B9%B3%E7%BB%84%E5%90%88%E5%8D%9A%E5%BC%88).
 
-公平组合游戏中，最基础也最重要的是正常 Nim 游戏．Sprague–Grundy 定理指出，所有正常规则的公平组合游戏都等价于一个单堆 Nim 游戏．由此，可以发展出 Sprague–Grundy 函数和 Nim 数的概念，它们完全地刻画了一个正常规则的公平组合游戏．因此，本文首先建立了正常 Nim 游戏的结论和 Sprague–Grundy 理论．随后，本文讨论了算法竞赛中常见的一些公平组合游戏．
+Trong các trò chơi tổ hợp công bằng, trò chơi cơ bản nhất và quan trọng nhất là Nim theo luật bình thường. Định lý Sprague-Grundy chỉ ra rằng mọi trò chơi tổ hợp công bằng theo luật bình thường đều tương đương với một trò chơi Nim chỉ có một đống. Từ đó có thể phát triển các khái niệm hàm Sprague-Grundy và số Nim; chúng mô tả đầy đủ một trò chơi tổ hợp công bằng theo luật bình thường. Vì vậy, bài viết trước hết xây dựng các kết luận cho Nim bình thường và lý thuyết Sprague-Grundy. Sau đó, bài viết thảo luận một số trò chơi tổ hợp công bằng thường gặp trong lập trình thi đấu.
 
-最后，本文简单地讨论了反常 Nim 游戏．反常游戏相对于正常游戏来说要复杂得多，也很少在算法竞赛中出现．本文提到的游戏，如果没有特别说明，均默认为正常的公平组合游戏．
+Cuối cùng, bài viết giới thiệu ngắn gọn Nim luật ngược. Trò chơi luật ngược phức tạp hơn nhiều so với luật bình thường và cũng hiếm gặp trong lập trình thi đấu. Nếu không nói rõ thêm, mọi trò chơi được nhắc tới trong bài đều mặc định là trò chơi tổ hợp công bằng theo luật bình thường.
 
-???+ info "「状态」、「局面」与「游戏」"
-    本文会交替地使用这三个词语．在博弈论中，游戏的状态（state）通常包括到游戏的某一时刻为止，所有可能与游戏有关的信息．在一般的情形下，游戏的状态通常包括双方玩家过往的行动、已经实现的随机变量值、双方已知信息的内容等．游戏的局面（position）相对来说并非博弈论的标准术语，通常指在游戏的某一时刻，双方玩家面对的局势，例如棋类游戏中各棋子的位置等．仅对于公平组合游戏（或更一般的零和、确定、完美信息游戏）而言，由于游戏不涉及随机性，且玩家未来的行动集合与收益函数均与到达当前局面的历史路径（即之前双方的行为）无关，所以，游戏的状态（state）和局面（position）没有区别，且都可以看作博弈图上的一个结点（node）．由于一个游戏（game）总是可以由它的初始局面描述，所以有时也会直接使用「局面」一词代指游戏本身．
+???+ info "\"Trạng thái\", \"cục diện\" và \"trò chơi\""
+    Bài viết sẽ dùng xen kẽ ba thuật ngữ này. Trong lý thuyết trò chơi, trạng thái (state) của trò chơi thường bao gồm mọi thông tin có thể liên quan tới trò chơi tính đến một thời điểm nào đó. Trong trường hợp tổng quát, trạng thái trò chơi thường bao gồm các hành động đã qua của hai người chơi, các giá trị ngẫu nhiên đã được hiện thực hóa, nội dung thông tin mà hai bên biết, v.v. Cục diện (position) không hẳn là thuật ngữ chuẩn trong lý thuyết trò chơi; nó thường chỉ tình thế mà hai người chơi đang đối mặt tại một thời điểm, chẳng hạn vị trí các quân trong trò chơi cờ. Riêng với trò chơi tổ hợp công bằng, hoặc rộng hơn là trò chơi tổng bằng không, xác định và có thông tin hoàn hảo, trò chơi không có tính ngẫu nhiên, đồng thời tập hành động tương lai và hàm lợi ích của người chơi đều không phụ thuộc vào đường đi lịch sử dẫn tới cục diện hiện tại, tức các hành vi trước đó của hai bên. Do đó trạng thái (state) và cục diện (position) không khác nhau, và cả hai đều có thể xem là một đỉnh (node) trên đồ thị trò chơi. Vì một trò chơi (game) luôn có thể được mô tả bằng cục diện ban đầu của nó, đôi khi bài viết cũng dùng trực tiếp từ "cục diện" để chỉ bản thân trò chơi.
 
-## Nim 游戏
+<span id="Nim &#28216;&#25103;"></span>
+## Trò chơi Nim
 
-Nim 游戏的规则很简单：
+Luật của trò chơi Nim rất đơn giản:
 
-???+ abstract "Nim 游戏"
-    共有 $n$ 堆石子，第 $i$ 堆有 $a_i$ 枚石子．两名玩家轮流取走任意一堆中的任意多枚石子，但不能不取．取走最后一枚石子的玩家获胜．
+???+ abstract "Trò chơi Nim"
+    Có $n$ đống đá, đống thứ $i$ có $a_i$ viên đá. Hai người chơi lần lượt lấy đi một số viên đá tùy ý từ một đống tùy ý, nhưng không được không lấy. Người lấy viên đá cuối cùng thắng.
 
-容易验证，Nim 游戏是正常规则的公平组合游戏．
+Dễ kiểm tra rằng Nim là một trò chơi tổ hợp công bằng theo luật bình thường.
 
-???+ example "例子"
-    举个例子．当前，有 $3$ 堆石子，石子的数量分别为 $2,5,4$．那么，可以取走第 $1$ 堆中的 $2$ 个物品，局面就变成了 $0, 5, 4$；也可以取走第 $2$ 堆的 $4$ 个物品，局面就变成了 $2, 1, 4$．如果某一时刻的局面变为了 $0, 0, 5$，甲取走了第 $3$ 堆的 $5$ 个物品，也就是取走了最后一个物品，此时甲获胜．
+???+ example "Ví dụ"
+    Chẳng hạn, hiện có $3$ đống đá với số lượng lần lượt là $2,5,4$. Khi đó có thể lấy đi $2$ vật từ đống thứ $1$, cục diện trở thành $0, 5, 4$; cũng có thể lấy đi $4$ vật từ đống thứ $2$, cục diện trở thành $2, 1, 4$. Nếu tại một thời điểm nào đó cục diện trở thành $0, 0, 5$, người chơi A lấy đi $5$ vật ở đống thứ $3$, tức lấy đi vật cuối cùng, thì người chơi A thắng.
 
-### 博弈图和状态
+<span id="&#21338;&#24328;&#22270;&#21644;&#29366;&#24577;"></span>
+### Đồ thị trò chơi và trạng thái
 
-Nim 游戏中，局面可能的变化可以用博弈图来描述．
+Trong trò chơi Nim, các biến đổi có thể xảy ra của cục diện có thể được mô tả bằng đồ thị trò chơi.
 
-将每一个可能的状态都看作是图中的一个结点，并将状态向它的后继状态（即通过一次操作可以达到的状态）连边，就得到一个有向无环图，这就是博弈图．图是无环的，因为 Nim 游戏中，每次操作，石子的总数量都是严格减少的．
+Xem mỗi trạng thái có thể có là một đỉnh của đồ thị, rồi nối cạnh từ một trạng thái tới các trạng thái kế tiếp của nó, tức các trạng thái có thể đạt được sau một thao tác. Khi đó ta thu được một đồ thị có hướng không chu trình, gọi là đồ thị trò chơi. Đồ thị không có chu trình vì trong Nim, sau mỗi thao tác, tổng số đá đều giảm nghiêm ngặt.
 
-???+ example "例子"
-    例如，对于初始局面有 $3$ 堆石子，且每堆石子的数量分别为 $1,1,2$ 的 Nim 游戏，可以绘制如下的博弈图：
+???+ example "Ví dụ"
+    Ví dụ, với trò chơi Nim có cục diện ban đầu gồm $3$ đống đá, mỗi đống lần lượt có $1,1,2$ viên, có thể vẽ đồ thị trò chơi như sau:
     
-    ![博弈图的例子](./images/nim.svg)
+    ![Ví dụ về đồ thị trò chơi](./images/nim.svg)
     
-    马上就会提到，图中的红色结点表示必胜状态，黑色结点表示必败状态．
+    Ngay sau đây ta sẽ thấy các đỉnh màu đỏ trong hình biểu thị trạng thái tất thắng, còn các đỉnh màu đen biểu thị trạng thái tất bại.
 
-由于 Nim 游戏是公平组合游戏，每个玩家是否有必胜策略，只取决当前游戏所处的状态，而与玩家的身份无关．因此，所有状态可以分为（先手）**必胜状态** 和（先手）**必败状态**，分别记为 $\mathcal N$ 态和 $\mathcal P$ 态[^n-vs-p]．这个定义适用于所有公平组合游戏．
+Vì Nim là trò chơi tổ hợp công bằng, việc mỗi người chơi có chiến lược thắng hay không chỉ phụ thuộc vào trạng thái hiện tại của trò chơi, không phụ thuộc vào danh tính người chơi. Do đó, mọi trạng thái có thể được chia thành **trạng thái tất thắng** của người đi trước và **trạng thái tất bại** của người đi trước, lần lượt ký hiệu là trạng thái $\mathcal N$ và trạng thái $\mathcal P$[^n-vs-p]. Định nghĩa này áp dụng cho mọi trò chơi tổ hợp công bằng.
 
-通过下述引理，可以归纳地将所有状态标记为必胜状态和必败状态：<a id="np-lem"></a>
+Nhờ bổ đề sau, ta có thể đánh dấu quy nạp mọi trạng thái là tất thắng hoặc tất bại:<a id="np-lem"></a>
 
-???+ note "引理"
-    正常规则的公平组合游戏中，
+???+ note "Bổ đề"
+    Trong trò chơi tổ hợp công bằng theo luật bình thường,
     
-    1.  没有后继状态的状态是必败状态 $\mathcal P$，
-    2.  一个状态是必胜状态 $\mathcal N$ 当且仅当存在至少一个它的后继状态为必败状态 $\mathcal P$，
-    3.  一个状态是必败状态 $\mathcal P$ 当且仅当它的所有后继状态均为必胜状态 $\mathcal N$．
+    1.  trạng thái không có trạng thái kế tiếp là trạng thái tất bại $\mathcal P$,
+    2.  một trạng thái là trạng thái tất thắng $\mathcal N$ khi và chỉ khi tồn tại ít nhất một trạng thái kế tiếp của nó là trạng thái tất bại $\mathcal P$,
+    3.  một trạng thái là trạng thái tất bại $\mathcal P$ khi và chỉ khi mọi trạng thái kế tiếp của nó đều là trạng thái tất thắng $\mathcal N$.
 
-??? note "证明"
-    对于第一条，如果玩家当前已经没有可选的行动，那么玩家已经输掉了游戏．
+??? note "Chứng minh"
+    Với mệnh đề thứ nhất, nếu người chơi hiện không còn hành động nào có thể chọn, người chơi đó đã thua.
     
-    对于第二条，如果该状态至少有一个后继状态为必败状态，那么玩家可以操作到该必败状态；此时，对手面临了先手必败状态，玩家自己就获得了胜利．
+    Với mệnh đề thứ hai, nếu trạng thái này có ít nhất một trạng thái kế tiếp là trạng thái tất bại, người chơi có thể đi tới trạng thái tất bại đó; lúc này đối thủ đối mặt với một trạng thái người đi trước tất bại, nên người chơi hiện tại giành thắng lợi.
     
-    对于第三条，如果不存在一个后继状态为必败状态，那么无论如何，玩家只能操作到必胜状态；此时，对手面临了先手必胜状态，玩家自己就输掉了游戏．
+    Với mệnh đề thứ ba, nếu không tồn tại trạng thái kế tiếp nào là tất bại, dù đi thế nào người chơi cũng chỉ có thể đi tới trạng thái tất thắng; khi đó đối thủ đối mặt với trạng thái người đi trước tất thắng, nên người chơi hiện tại sẽ thua.
 
-所有公平组合游戏中，博弈图都是有向无环图．所以，通过这三条性质，可以在绘制出博弈图后，在 $O(|V|+|E|)$ 的时间内，计算出每个状态是必胜状态还是必败状态．其中，$|V|$ 为博弈图的状态数目，$|E|$ 为边数，即所有状态可以采取的行动的数量的总和．
+Trong mọi trò chơi tổ hợp công bằng, đồ thị trò chơi đều là đồ thị có hướng không chu trình. Vì vậy, sau khi dựng đồ thị trò chơi, dựa vào ba tính chất trên có thể tính trong thời gian $O(|V|+|E|)$ xem mỗi trạng thái là tất thắng hay tất bại. Ở đây $|V|$ là số trạng thái của đồ thị trò chơi, còn $|E|$ là số cạnh, tức tổng số hành động có thể thực hiện trên mọi trạng thái.
 
-这一引理可以推广到反常游戏和有向图可能有环的情形．相关讨论详见 [有向图游戏](#有向图游戏) 一节．
+Bổ đề này có thể mở rộng cho trò chơi luật ngược và trường hợp đồ thị có hướng có thể có chu trình. Thảo luận liên quan xem trong phần [trò chơi trên đồ thị có hướng](#tro-choi-tren-do-thi-co-huong).
 
-### Nim 和
+<span id="Nim &#21644;"></span>
+### Tổng Nim
 
-继续考察 Nim 游戏．
+Tiếp tục xét trò chơi Nim.
 
-通过绘制博弈图，可以在 $\Omega(\prod_{i=1}^na_i)$ 的时间内求出某一局面是否是先手必胜．但是，这样做的复杂度过高，无法实际应用．实际上，可以发现 Nim 游戏的状态是否先手必胜，只与当前局面的石子数目的 Nim 和有关．
+Bằng cách dựng đồ thị trò chơi, có thể xác định một cục diện có phải là tất thắng cho người đi trước hay không trong thời gian $\Omega(\prod_{i=1}^na_i)$. Nhưng độ phức tạp như vậy quá cao để áp dụng thực tế. Thật ra, có thể thấy việc trạng thái của Nim có tất thắng cho người đi trước hay không chỉ phụ thuộc vào tổng Nim của số đá trong cục diện hiện tại.
 
-???+ abstract "Nim 和"
-    自然数 $a_1,a_2,\cdots,a_n$ 的 **Nim 和**（Nim sum）定义为 $a_1\oplus a_2\oplus\cdots\oplus a_n$．
+???+ abstract "Tổng Nim"
+    **Tổng Nim** (Nim sum) của các số tự nhiên $a_1,a_2,\cdots,a_n$ được định nghĩa là $a_1\oplus a_2\oplus\cdots\oplus a_n$.
 
-所谓 Nim 和，就是 [异或运算](../bit.md#位运算)．
+Cái gọi là tổng Nim chính là [phép toán XOR](../bit.md#%E4%BD%8D%E8%BF%90%E7%AE%97).
 
-???+ note "定理"
-    Nim 游戏中，状态 $(a_1,a_2,\cdots,a_n)$ 是必败状态 $\mathcal P$，当且仅当 Nim 和
+???+ note "Định lý"
+    Trong trò chơi Nim, trạng thái $(a_1,a_2,\cdots,a_n)$ là trạng thái tất bại $\mathcal P$ khi và chỉ khi tổng Nim
     
     $$
     a_1\oplus a_2\oplus\cdots\oplus a_n = 0.
     $$
 
-??? note "证明"
-    对所有可能的状态应用归纳法：
+??? note "Chứng minh"
+    Áp dụng quy nạp cho mọi trạng thái có thể có:
     
-    1.  如果 $a_i=0$ 对所有 $i=1,\cdots,n$ 都成立，该状态没有后继状态，且 Nim 和等于 $0$，命题成立．
-    2.  如果 $k = a_1\oplus a_2\oplus\cdots\oplus a_n\neq 0$，那么，需要证明该状态是必胜状态．也就是说，需要构造一个合法移动，使得后继状态为必败状态；由归纳假设，只需要证明后继状态满足 $a'_1\oplus a'_2\oplus\cdots\oplus a'_n=0$．利用 Nim 和（即异或）的性质，这等价于说，存在一堆石子，将 $a_i$ 拿走若干颗石子，可以得到 $a_i\oplus k$，亦即 $a_i>a_i\oplus k$．
+    1.  Nếu $a_i=0$ với mọi $i=1,\cdots,n$, trạng thái này không có trạng thái kế tiếp và tổng Nim bằng $0$, nên mệnh đề đúng.
+    2.  Nếu $k = a_1\oplus a_2\oplus\cdots\oplus a_n\neq 0$, cần chứng minh trạng thái này là tất thắng. Nói cách khác, cần dựng một nước đi hợp lệ sao cho trạng thái kế tiếp là tất bại; theo giả thiết quy nạp, chỉ cần chứng minh trạng thái kế tiếp thỏa $a'_1\oplus a'_2\oplus\cdots\oplus a'_n=0$. Dựa vào tính chất của tổng Nim, tức XOR, điều này tương đương với việc tồn tại một đống đá sao cho lấy đi một số viên từ $a_i$ sẽ nhận được $a_i\oplus k$, tức $a_i>a_i\oplus k$.
     
-        实际上，设 $k$ 的二进制表示中，最高位的 $1$ 是第 $d$ 位．那么，一定存在某个 $a_i$，使得它的二进制第 $d$ 位是 $1$．对于相应的石子堆，就一定有 $a_i>a_i\oplus k$，因为 $a_i\oplus k$ 中第 $d$ 位为 $0$，更高位和 $a_i$ 一样．
-    3.  如果 $a_1\oplus a_2\oplus\cdots\oplus a_n= 0$，那么，需要证明该状态是必败状态．由归纳假设可知，只要证明它的所有后继状态的 Nim 和都不是 $0$．这是必然的，任何合法移动将 $a_i$ 变为 $a'_i\neq a_i$，就必然会使得 Nim 和变为 $a'_i\oplus a_i\neq 0$．
+        Thật vậy, giả sử trong biểu diễn nhị phân của $k$, bit $1$ cao nhất nằm ở vị trí $d$. Khi đó chắc chắn tồn tại một $a_i$ có bit thứ $d$ trong biểu diễn nhị phân bằng $1$. Với đống đá tương ứng, nhất định có $a_i>a_i\oplus k$, vì trong $a_i\oplus k$ bit thứ $d$ bằng $0$, còn các bit cao hơn giống với $a_i$.
+    3.  Nếu $a_1\oplus a_2\oplus\cdots\oplus a_n= 0$, cần chứng minh trạng thái này là tất bại. Theo giả thiết quy nạp, chỉ cần chứng minh tổng Nim của mọi trạng thái kế tiếp đều khác $0$. Điều này hiển nhiên: mọi nước đi hợp lệ biến $a_i$ thành $a'_i\neq a_i$, nên tổng Nim tất yếu trở thành $a'_i\oplus a_i\neq 0$.
 
-由此，可以在 $O(n)$ 时间内判断 Nim 游戏的一个状态是否为先手必胜状态．
+Từ đó có thể xác định trong thời gian $O(n)$ xem một trạng thái của Nim có tất thắng cho người đi trước hay không.
 
-## Sprague–Grundy 理论
+<span id="Sprague&#8211;Grundy &#29702;&#35770;"></span>
+## Lý thuyết Sprague-Grundy
 
-Sprague–Grundy 理论指出，所有公平组合游戏都等价于单堆 Nim 游戏．这一结论主要应用的场景，就是游戏由多个相互独立的子游戏组成的情形．此时，游戏的状态判定可以通过计算子游戏的 SG 函数值的 Nim 和来完成．如果游戏本身没有这样的结构，那么，判定必胜状态和必败状态只需要应用前文博弈图一节的 [引理](#np-lem)．
+Lý thuyết Sprague-Grundy chỉ ra rằng mọi trò chơi tổ hợp công bằng đều tương đương với trò chơi Nim một đống. Kết luận này chủ yếu được áp dụng trong tình huống trò chơi gồm nhiều trò chơi con độc lập với nhau. Khi đó, việc phán định trạng thái có thể được thực hiện bằng cách tính tổng Nim của các giá trị hàm SG của những trò chơi con. Nếu bản thân trò chơi không có cấu trúc như vậy, thì để phán định trạng thái tất thắng và tất bại chỉ cần áp dụng [bổ đề](#np-lem) trong phần đồ thị trò chơi ở trên.
 
-### 游戏的记法
+<span id="&#28216;&#25103;&#30340;&#35760;&#27861;"></span>
+### Ký hiệu trò chơi
 
-前文已经说明，所有公平组合游戏都可以通过绘制博弈图来描述．由于博弈图中，每个状态的性质只由它的后继状态决定，所以，可以将博弈图中的一个状态 $S$ 用它的后继状态的集合来表示．
+Như đã nói ở trên, mọi trò chơi tổ hợp công bằng đều có thể được mô tả bằng đồ thị trò chơi. Vì trong đồ thị trò chơi, tính chất của mỗi trạng thái chỉ do các trạng thái kế tiếp của nó quyết định, nên ta có thể biểu diễn một trạng thái $S$ trong đồ thị trò chơi bằng tập các trạng thái kế tiếp của nó.
 
-???+ example "例子（续）"
-    以上文的博弈图为例，可以得到如下状态表示：
+???+ example "Ví dụ (tiếp)"
+    Với đồ thị trò chơi ở trên, ta nhận được cách biểu diễn trạng thái như sau:
     
     $$
     \begin{aligned}
@@ -109,20 +114,20 @@ Sprague–Grundy 理论指出，所有公平组合游戏都等价于单堆 Nim �
     \end{aligned}
     $$
     
-    其中，$S_{0,1,0}=S_{0,0,1}$，$S_{0,0,2}=S_{0,1,1}$．
+    Trong đó $S_{0,1,0}=S_{0,0,1}$ và $S_{0,0,2}=S_{0,1,1}$.
 
-一个游戏可以用它的初始状态表示．
+Một trò chơi có thể được biểu diễn bằng trạng thái ban đầu của nó.
 
-尽管公平游戏的表示可能相当复杂，单堆 Nim 游戏相对来说简单很多．只有一堆石子，石子数量为 $n$ 时，它可以表示为
+Dù biểu diễn của trò chơi công bằng có thể khá phức tạp, trò chơi Nim một đống lại đơn giản hơn nhiều. Khi chỉ có một đống đá với số đá là $n$, nó có thể được biểu diễn là
 
 $$
 *0 = \{\},~*n = \{*m : m<n,~m\in\mathbf N\} = \{*0,*1,\cdots,*(n-1)\}.
 $$
 
-其中，记号 $*n$ 表示石子数量为 $n$ 时的单堆 Nim 游戏（的初始状态）．
+Trong đó, ký hiệu $*n$ biểu thị trò chơi Nim một đống, hay trạng thái ban đầu của nó, khi số đá bằng $n$.
 
-???+ example "例子（续）"
-    利用这一记号，上面的例子中的状态可以简单地表示为
+???+ example "Ví dụ (tiếp)"
+    Dùng ký hiệu này, các trạng thái trong ví dụ trên có thể được biểu diễn gọn thành
     
     $$
     S_{0,0,0} = *0,~
@@ -131,138 +136,140 @@ $$
     S_{0,1,2} = \{*1, *2\}.
     $$
 
-在随后的讨论中，记号 $T\in S$ 应当理解为状态 $T$ 是状态 $S$ 的后继状态．
+Trong các phần sau, ký hiệu $T\in S$ nên được hiểu là trạng thái $T$ là trạng thái kế tiếp của trạng thái $S$.
 
-### 游戏的和与等价
+<span id="&#28216;&#25103;&#30340;&#21644;&#19982;&#31561;&#20215;"></span>
+### Tổng và tương đương của trò chơi
 
-游戏的等价关系，依赖于游戏的和[^more-sums]的概念．
+Quan hệ tương đương giữa các trò chơi phụ thuộc vào khái niệm tổng[^more-sums] của trò chơi.
 
-???+ note "游戏的和"
-    游戏 $G$ 和 $H$ 的 **和**（sum），或称 **游戏组合**（combined game），记作 $G+H$，是指游戏
+???+ note "Tổng của trò chơi"
+    **Tổng** (sum) của hai trò chơi $G$ và $H$, hay còn gọi là **trò chơi kết hợp** (combined game), ký hiệu $G+H$, là trò chơi
     
     $$
     G + H = \{g + H : g \in G\} \cup \{G + h : h \in H\}.
     $$
 
-游戏的和，可以理解为由两个同时进行且互不干扰的子游戏组成的游戏，玩家在每一步能且只能选择其中一个子游戏移动一步，且游戏在两个子游戏都无法移动时结束．游戏的和的概念，可以推广到任意多个游戏的情形，且满足结合律和交换律——也就是说，多个游戏组合的结果，和组合进行的次序以及游戏的顺序都无关．Nim 游戏就是多个单堆 Nim 游戏的和．
+Tổng của trò chơi có thể hiểu là trò chơi gồm hai trò chơi con diễn ra đồng thời và không can thiệp lẫn nhau; ở mỗi bước, người chơi có thể và chỉ có thể chọn một trong hai trò chơi con để đi một bước, và trò chơi kết thúc khi cả hai trò chơi con đều không thể đi tiếp. Khái niệm tổng của trò chơi có thể mở rộng cho tùy ý nhiều trò chơi, đồng thời thỏa tính kết hợp và tính giao hoán. Nói cách khác, kết quả của việc kết hợp nhiều trò chơi không phụ thuộc vào thứ tự kết hợp hay thứ tự các trò chơi. Trò chơi Nim chính là tổng của nhiều trò chơi Nim một đống.
 
-一个观察是，尽管单堆 Nim 游戏中，除了没有石子的情形，都是先手必胜状态，但是这些不同的单堆 Nim 游戏在和其他的单堆 Nim 游戏组合起来时，得到的游戏并不相同．比如，游戏 $*n$ 只有在和另一个 $*n$ 组合时，才能得到一个必败游戏；和所有其他的游戏 $*n'\neq *n$ 组合，得到的游戏都是必胜游戏．
+Một quan sát là: mặc dù trong Nim một đống, ngoại trừ trường hợp không có đá, mọi trạng thái đều tất thắng cho người đi trước, các trò chơi Nim một đống khác nhau này khi kết hợp với những trò chơi Nim một đống khác lại không cho cùng một trò chơi. Ví dụ, trò chơi $*n$ chỉ tạo thành một trò chơi tất bại khi kết hợp với một $*n$ khác; khi kết hợp với mọi trò chơi $*n'\neq *n$ khác, kết quả đều là trò chơi tất thắng.
 
-这个观察带来的启示是，可以通过考察与其他游戏的和来研究某个游戏的性质．这就引出了游戏的等价的概念．
+Quan sát này gợi ý rằng ta có thể nghiên cứu tính chất của một trò chơi bằng cách xét tổng của nó với các trò chơi khác. Điều này dẫn tới khái niệm tương đương giữa các trò chơi.
 
-???+ abstract "游戏的等价关系"
-    如果对于所有游戏 $H$，游戏 $G_1+H$ 和 $G_2+H$ 都同处于必败状态或必胜状态，那么，称游戏 $G_1$ 和 $G_2$  **等价**（equivalent），记作 $G_1\approx G_2$．
+???+ abstract "Quan hệ tương đương của trò chơi"
+    Nếu với mọi trò chơi $H$, hai trò chơi $G_1+H$ và $G_2+H$ luôn cùng là trạng thái tất bại hoặc cùng là trạng thái tất thắng, thì gọi $G_1$ và $G_2$ là **tương đương** (equivalent), ký hiệu $G_1\approx G_2$.
 
-容易验证，这样定义的 $\approx$ 确实是全体公平游戏上的 [等价关系](../order-theory.md#二元关系)．
+Dễ kiểm tra rằng $\approx$ được định nghĩa như trên thực sự là một [quan hệ tương đương](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB) trên tập tất cả trò chơi công bằng.
 
-### Sprague–Grundy 函数
+<span id="Sprague&#8211;Grundy &#20989;&#25968;"></span>
+### Hàm Sprague-Grundy
 
-对 Nim 游戏的分析说明，不同的单堆 Nim 游戏互不等价．但是，所有的公平游戏都等价于某个单堆 Nim 游戏．由此，可以给每个公平游戏都分配一个数字，这就是 Sprague–Grundy 函数．
+Phân tích trò chơi Nim cho thấy các trò chơi Nim một đống khác nhau không tương đương với nhau. Tuy nhiên, mọi trò chơi công bằng đều tương đương với một trò chơi Nim một đống nào đó. Từ đó, có thể gán cho mỗi trò chơi công bằng một con số; đây chính là hàm Sprague-Grundy.
 
-为了证明这些结论，首先需要建立关于游戏等价关系的两个引理．第一，将必败游戏和任何游戏组合到一起，都和原来的游戏等价．
+Để chứng minh các kết luận này, trước hết cần thiết lập hai bổ đề về quan hệ tương đương giữa trò chơi. Thứ nhất, kết hợp một trò chơi tất bại với bất kỳ trò chơi nào cũng tương đương với trò chơi ban đầu.
 
-???+ note "引理 1"
-    对于游戏 $G$ 和任何必败游戏 $A\in\mathcal P$，都有 $G\approx G + A$．
+???+ note "Bổ đề 1"
+    Với trò chơi $G$ và bất kỳ trò chơi tất bại $A\in\mathcal P$, ta có $G\approx G + A$.
 
-??? note "证明"
-    按照定义，只需要证明对于任何游戏 $H$ 都有 $G+H\approx G+A+H$ 成立．
+??? note "Chứng minh"
+    Theo định nghĩa, chỉ cần chứng minh với mọi trò chơi $H$ đều có $G+H\approx G+A+H$.
     
-    如果游戏 $G+H$ 有必胜策略，那么，游戏 $G+A+H$ 也有必胜策略．如果对手在子游戏 $A$ 中进行了移动，就进行移动，将它恢复至必败状态；否则，按照游戏 $G+H$ 中的必胜策略移动．这样一定能保证最终的胜利．
+    Nếu trò chơi $G+H$ có chiến lược thắng, thì trò chơi $G+A+H$ cũng có chiến lược thắng. Nếu đối thủ đi trong trò chơi con $A$, ta đi để đưa nó trở lại trạng thái tất bại; nếu không, ta đi theo chiến lược thắng trong trò chơi $G+H$. Như vậy chắc chắn bảo đảm thắng cuối cùng.
     
-    如果游戏 $G+H$ 是必败游戏，那么，游戏 $G+A+H$ 也同样是必败游戏．因为无论这一回合进行的是子游戏 $G+H$ 和子游戏 $A$ 中的移动，对手都可以在下一回合将相应子游戏恢复至必败状态．最终，先手玩家一定无法获胜．
+    Nếu trò chơi $G+H$ là trò chơi tất bại, thì trò chơi $G+A+H$ cũng là trò chơi tất bại. Bởi dù lượt này đi trong trò chơi con $G+H$ hay trong trò chơi con $A$, đối thủ đều có thể ở lượt tiếp theo đưa trò chơi con tương ứng trở lại trạng thái tất bại. Cuối cùng, người đi trước nhất định không thể thắng.
 
-第二，两个游戏等价，当且仅当它们的和是必败游戏．这一引理提供了证明两个游戏等价的方法．
+Thứ hai, hai trò chơi tương đương khi và chỉ khi tổng của chúng là trò chơi tất bại. Bổ đề này cung cấp một cách chứng minh hai trò chơi tương đương.
 
 <a id="sg-lem-2"></a>
 
-???+ note "引理 2"
-    游戏 $G$ 和 $G'$ 等价，当且仅当 $G+G'\in\mathcal P$ 是必败游戏．
+???+ note "Bổ đề 2"
+    Hai trò chơi $G$ và $G'$ tương đương khi và chỉ khi $G+G'\in\mathcal P$ là trò chơi tất bại.
 
-??? note "证明"
-    如果游戏 $G$ 和 $G'$ 等价，那么，$G+G'$ 与 $G+G$ 同时必胜或同时必败，而游戏 $G+G$ 是必败游戏．这是因为，对于先手玩家的任何操作，后手玩家都可以在另一个子游戏中采取相同的行动，最后一定是先手玩家无法移动．
+??? note "Chứng minh"
+    Nếu $G$ và $G'$ tương đương, thì $G+G'$ và $G+G$ cùng tất thắng hoặc cùng tất bại, trong khi $G+G$ là trò chơi tất bại. Lý do là với bất kỳ nước đi nào của người đi trước, người đi sau đều có thể thực hiện hành động giống hệt trong trò chơi con còn lại, và cuối cùng người đi trước nhất định không thể đi tiếp.
     
-    反过来，如果 $G+G'$ 是必败游戏，那么，由引理 1 可知，$G\approx G+(G+G') = (G+G)+G' \approx G'$．
+    Ngược lại, nếu $G+G'$ là trò chơi tất bại, theo bổ đề 1 ta có $G\approx G+(G+G') = (G+G)+G' \approx G'$.
 
-利用这些引理，可以得到如下定理：
+Dùng các bổ đề này, ta thu được định lý sau:
 
-???+ note "定理（Sprague–Grundy）"
-    对于任何一个（有限）公平游戏 $G$，都存在 $n\in\mathbf N$，使得 $G\approx *n$ 成立．
+???+ note "Định lý (Sprague-Grundy)"
+    Với bất kỳ trò chơi công bằng hữu hạn $G$, tồn tại $n\in\mathbf N$ sao cho $G\approx *n$.
 
-??? note "证明"
-    要证明定理的结论，可以应用数学归纳法．设游戏 $G = \{G_1,G_2,\cdots,G_k\}$．根据归纳假设可知，存在 $n_1,n_2,\cdots,n_k$ 使得 $G_i\approx *n_i$，那么，可以考察游戏
+??? note "Chứng minh"
+    Có thể chứng minh kết luận bằng quy nạp toán học. Giả sử trò chơi $G = \{G_1,G_2,\cdots,G_k\}$. Theo giả thiết quy nạp, tồn tại $n_1,n_2,\cdots,n_k$ sao cho $G_i\approx *n_i$. Khi đó xét trò chơi
     
     $$
     G' = \{*n_1,*n_2,\cdots,*n_k\}.
     $$
     
-    将要证明的是，$G'\approx *m$，其中，$m=\operatorname{mex}\{n_1,n_2,\cdots,n_k\}$ 是没有出现在集合中的最小自然数．
+    Ta sẽ chứng minh $G'\approx *m$, trong đó $m=\operatorname{mex}\{n_1,n_2,\cdots,n_k\}$ là số tự nhiên nhỏ nhất không xuất hiện trong tập.
     
-    第一步，需要说明 $G\approx G'$．根据 [引理 2](#sg-lem-2)，只需要证明游戏 $G+G'$ 是必败游戏．不妨假设 $G\neq *0$．如果先手玩家选择 $G_i$，那么后手玩家就可以选择 $*n_i$；反过来，如果先手玩家选择了 $*n_i$，后手玩家就可以选择 $G_i$．总之，在这两步操作后，游戏变为 $G_i+*n_i$，根据引理 2 和 $G_i\approx *n_i$，这是必败游戏．这就证明了 $G\approx G'$．
+    Bước thứ nhất, cần chứng minh $G\approx G'$. Theo [bổ đề 2](#sg-lem-2), chỉ cần chứng minh trò chơi $G+G'$ là tất bại. Giả sử không mất tính tổng quát rằng $G\neq *0$. Nếu người đi trước chọn $G_i$, thì người đi sau có thể chọn $*n_i$; ngược lại, nếu người đi trước chọn $*n_i$, người đi sau có thể chọn $G_i$. Nói chung, sau hai nước đi này, trò chơi trở thành $G_i+*n_i$; theo bổ đề 2 và $G_i\approx *n_i$, đây là trò chơi tất bại. Điều này chứng minh $G\approx G'$.
     
-    第二步，需要说明 $G'\approx*m$．根据 [引理 2](#sg-lem-2)，只需要证明 $G'+*m$ 是必败游戏．不妨假设 $G'\neq *0$．如果先手玩家选择了 $*n_i\in *m$，那么根据 $m$ 的定义，后手玩家就可以选择 $*n_i\in G'$，将游戏局面变为 $*n_i + *n_i\in\mathcal P$，先手必败．如果先手玩家选择了 $*n_i\in G'$ 且 $n_i<m$，那么，后手玩家可以选择 $*n_i\in *m$，游戏局面同样变为 $*n_i+*n_i\in\mathcal P$，先手必败．最后，如果先手玩家选择了 $*n_i\in G'$ 且 $n_i>m$，那么，后手玩家可以选择 $*m\in *n_i$，游戏局面变为 $*m+*m\in\mathcal P$，先手必败．这就证明了 $G'\approx *m$．
+    Bước thứ hai, cần chứng minh $G'\approx*m$. Theo [bổ đề 2](#sg-lem-2), chỉ cần chứng minh $G'+*m$ là trò chơi tất bại. Giả sử không mất tính tổng quát rằng $G'\neq *0$. Nếu người đi trước chọn $*n_i\in *m$, thì theo định nghĩa của $m$, người đi sau có thể chọn $*n_i\in G'$, đưa cục diện trò chơi thành $*n_i + *n_i\in\mathcal P$, nên người đi trước tất bại. Nếu người đi trước chọn $*n_i\in G'$ và $n_i<m$, người đi sau có thể chọn $*n_i\in *m$, cục diện trò chơi cũng trở thành $*n_i+*n_i\in\mathcal P$, nên người đi trước tất bại. Cuối cùng, nếu người đi trước chọn $*n_i\in G'$ và $n_i>m$, người đi sau có thể chọn $*m\in *n_i$, cục diện trò chơi trở thành $*m+*m\in\mathcal P$, nên người đi trước tất bại. Điều này chứng minh $G'\approx *m$.
     
-    由等价关系的传递性可知，$G\approx *m$．这就完成了归纳，证明所有游戏 $G$ 都等价于一个单堆 Nim 游戏．
+    Theo tính bắc cầu của quan hệ tương đương, $G\approx *m$. Như vậy quy nạp hoàn tất, chứng minh mọi trò chơi $G$ đều tương đương với một trò chơi Nim một đống.
 
-这一结论说明，可以为每一个公平游戏 $G$ 都分配一个自然数 $n$，使得 $G\approx *n$．
+Kết luận này cho thấy có thể gán cho mỗi trò chơi công bằng $G$ một số tự nhiên $n$ sao cho $G\approx *n$.
 
-???+ abstract "Nim 数"
-    一个公平游戏 $G$ 对应的 **Nim 数**（nimber）就是使得 $G\approx *n$ 成立的唯一自然数 $n$．
+???+ abstract "Số Nim"
+    **Số Nim** (nimber) ứng với một trò chơi công bằng $G$ là số tự nhiên duy nhất $n$ sao cho $G\approx *n$.
 
-这个将公平游戏映射到 Nim 数的函数称为 **Sprague–Grundy 函数**（Sprague–Grundy function），简称 **SG 函数**，记作 $\operatorname{SG}(\cdot)$．由于每个公平游戏的状态都是另一个公平游戏，所以，对于公平游戏的每一个状态都可以计算相应的 Nim 数，也称为相应的 SG 函数值．
+Hàm ánh xạ trò chơi công bằng tới số Nim này được gọi là **hàm Sprague-Grundy** (Sprague-Grundy function), viết tắt là **hàm SG**, ký hiệu $\operatorname{SG}(\cdot)$. Vì mỗi trạng thái của một trò chơi công bằng cũng là một trò chơi công bằng khác, nên với mỗi trạng thái của trò chơi công bằng đều có thể tính số Nim tương ứng, còn gọi là giá trị hàm SG tương ứng.
 
-根据本节定理的证明过程可知，Sprague–Grundy 函数可以递归地计算如下：
+Từ quá trình chứng minh định lý trong phần này, có thể tính đệ quy hàm Sprague-Grundy như sau:
 
-???+ note "推论"
-    公平游戏 $G$ 中的一个状态 $x$ 对应的 Sprague–Grundy 函数值 $\operatorname{SG}(x)$ 满足
+???+ note "Hệ quả"
+    Trong trò chơi công bằng $G$, giá trị hàm Sprague-Grundy $\operatorname{SG}(x)$ ứng với một trạng thái $x$ thỏa
     
     $$
     \operatorname{SG}(x) = \operatorname{mex}\{\operatorname{SG}(x'): x'\in x\}.
     $$
     
-    其中，$\operatorname{mex}(A):=\min\{n\in\mathbf N:n\notin A\}$ 是没有出现在集合 $A$ 中的最小自然数．
+    Trong đó, $\operatorname{mex}(A):=\min\{n\in\mathbf N:n\notin A\}$ là số tự nhiên nhỏ nhất không xuất hiện trong tập $A$.
 
-也就是说，一个状态的 SG 函数值，等于它的所有后继状态的 SG 函数值的 $\operatorname{mex}$ 值．
+Nói cách khác, giá trị hàm SG của một trạng thái bằng giá trị $\operatorname{mex}$ của các giá trị hàm SG của mọi trạng thái kế tiếp của nó.
 
-利用 SG 函数值（即 Nim 数），可以判断一个状态是否为先手必胜状态．
+Dựa vào giá trị hàm SG, tức số Nim, có thể xác định một trạng thái có tất thắng cho người đi trước hay không.
 
-???+ note "推论"
-    公平游戏 $G$ 中的一个状态 $x$ 是先手必胜状态，当且仅当 $\operatorname{SG}(x)\neq 0$．
+???+ note "Hệ quả"
+    Một trạng thái $x$ trong trò chơi công bằng $G$ là trạng thái tất thắng cho người đi trước khi và chỉ khi $\operatorname{SG}(x)\neq 0$.
 
-最后，游戏的和的 SG 函数值，就是子游戏的 SG 函数值的 Nim 和（即异或）．
+Cuối cùng, giá trị hàm SG của tổng các trò chơi chính là tổng Nim, tức XOR, của các giá trị hàm SG của những trò chơi con.
 
-???+ note "定理（Sprague–Grundy）"
-    对于公平游戏 $G_1,G_2,\cdots,G_n$，有
+???+ note "Định lý (Sprague-Grundy)"
+    Với các trò chơi công bằng $G_1,G_2,\cdots,G_n$, ta có
     
     $$
     \operatorname{SG}(G_1+ G_2+\cdots + G_n) = \operatorname{SG}(G_1)\oplus \operatorname{SG}(G_2)\oplus\cdots\oplus\operatorname{SG}(G_n).
     $$
 
-??? note "证明"
-    因为 $*a_1+ *a_2 + \cdots + *a_n$ 就是石子数量为 $(a_1,a_2,\cdots,a_n)$ 的 Nim 游戏，所以，根据 Nim 游戏的结论可知，游戏
+??? note "Chứng minh"
+    Vì $*a_1+ *a_2 + \cdots + *a_n$ chính là trò chơi Nim có số đá là $(a_1,a_2,\cdots,a_n)$, nên theo kết luận của trò chơi Nim, trò chơi
     
     $$
     *a_1+ *a_2 + \cdots + *a_n + *(a_1\oplus a_2\oplus\cdots\oplus a_n)
     $$
     
-    是先手必败的．根据 [引理 2](#sg-lem-2)，有
+    là tất bại cho người đi trước. Theo [bổ đề 2](#sg-lem-2), ta có
     
     $$
     *a_1+ *a_2 + \cdots + *a_n \approx *(a_1\oplus a_2\oplus\cdots\oplus a_n).
     $$
     
-    所以，有
+    Do đó
     
     $$
     \operatorname{SG}(*a_1 + *a_2 + \cdots + *a_n) = a_1\oplus a_2\oplus\cdots\oplus a_n.
     $$
     
-    设 $a_i=\operatorname{SG}(G_i)$，就有 $G_i\approx *a_i$，那么，利用 $\approx$ 的代数性质，有
+    Đặt $a_i=\operatorname{SG}(G_i)$, khi đó $G_i\approx *a_i$. Dùng các tính chất đại số của $\approx$, ta có
     
     $$
     (G_1+ G_2+\cdots + G_n) + (*a_1 + *a_2 + \cdots + *a_n) = \sum_{i=1}^n(G_i+*a_i) \in\mathcal P.
     $$
     
-    所以，就有
+    Vì vậy
     
     $$
     \begin{aligned}
@@ -272,282 +279,294 @@ $$
     \end{aligned}
     $$
 
-利用这一定理，在计算游戏的和的 SG 函数值时，可以大幅简化计算．
+Dùng định lý này, việc tính giá trị hàm SG của tổng các trò chơi có thể được đơn giản hóa đáng kể.
 
-由此，可以总结出 SG 函数值的计算方法：
+Từ đó, có thể tóm tắt phương pháp tính giá trị hàm SG như sau:
 
--   对于多个独立的游戏，可以分别计算它们的 SG 函数值，再求 Nim 和；
--   对于单个游戏，每个状态的 SG 函数值都是它的所有后继状态的 SG 函数值的 $\operatorname{mex}$ 值；
--   特别地，终止状态（即没有后继状态的状态）的 SG 函数值为 $\operatorname{mex}\varnothing = 0$．
+-   Với nhiều trò chơi độc lập, có thể tính riêng giá trị hàm SG của từng trò chơi rồi lấy tổng Nim;
+-   Với một trò chơi đơn lẻ, giá trị hàm SG của mỗi trạng thái là giá trị $\operatorname{mex}$ của các giá trị hàm SG của mọi trạng thái kế tiếp;
+-   Đặc biệt, trạng thái kết thúc, tức trạng thái không có trạng thái kế tiếp, có giá trị hàm SG bằng $\operatorname{mex}\varnothing = 0$.
 
-### Nim 数
+<span id="Nim &#25968;"></span>
+### Số Nim
 
-所有的公平游戏都唯一对应一个 Nim 数．（有限）Nim 数的集合就是自然数集 $\mathbf N$．但是，它的代数性质和自然数集不同．具体来说，Nim 数上可以定义 Nim 和 $\oplus$、Nim 乘积 $\otimes$ 两种运算：
+Mọi trò chơi công bằng đều tương ứng duy nhất với một số Nim. Tập các số Nim hữu hạn chính là tập số tự nhiên $\mathbf N$. Tuy nhiên, tính chất đại số của nó khác với tập số tự nhiên. Cụ thể, trên các số Nim có thể định nghĩa hai phép toán: tổng Nim $\oplus$ và tích Nim $\otimes$.
 
-???+ abstract "Nim 数的运算"
-    对于 Nim 数 $a,b$，可以定义：
+???+ abstract "Phép toán trên số Nim"
+    Với các số Nim $a,b$, có thể định nghĩa:
     
-    -   Nim 和 $a\oplus b=\operatorname{mex}(\{a'\oplus b:a'<a,~a'\in\mathbf N\}\cup\{a\oplus b':b'<b,~b'\in\mathbf N\})$，
-    -   Nim 积 $a\otimes b=\operatorname{mex}(\{(a'\otimes b)\oplus(a\otimes b')\oplus(a'\otimes b'):a'<a,~b'<b,~a',b'\in\mathbf N\})$．
+    -   tổng Nim $a\oplus b=\operatorname{mex}(\{a'\oplus b:a'<a,~a'\in\mathbf N\}\cup\{a\oplus b':b'<b,~b'\in\mathbf N\})$,
+    -   tích Nim $a\otimes b=\operatorname{mex}(\{(a'\otimes b)\oplus(a\otimes b')\oplus(a'\otimes b'):a'<a,~b'<b,~a',b'\in\mathbf N\})$.
 
-全体 Nim 数在运算 $\oplus$ 和 $\otimes$ 下构成一个特征为 $2$ 的 [域](../algebra/basic.md#域)．而且，这些运算以及它们的逆运算，对于前 $2^{2^n}$ 个 Nim 数是封闭的；这就得到一系列大小为 $2^{2^n}$ 的 [有限域](../algebra/field-theory.md#有限域) $\mathbf F_{2^{2^n}}$．
+Tập tất cả số Nim với hai phép toán $\oplus$ và $\otimes$ tạo thành một [trường](../algebra/basic.md#%E5%9F%9F) có đặc số $2$. Hơn nữa, các phép toán này và các phép toán nghịch đảo của chúng đóng trên $2^{2^n}$ số Nim đầu tiên; từ đó nhận được một dãy các [trường hữu hạn](../algebra/field-theory.md#%E6%9C%89%E9%99%90%E5%9F%9F) $\mathbf F_{2^{2^n}}$ có kích thước $2^{2^n}$.
 
-## 常见的公平游戏
+<span id="&#24120;&#35265;&#30340;&#20844;&#24179;&#28216;&#25103;"></span>
+## Các trò chơi công bằng thường gặp
 
-尽管 Sprague–Grundy 理论完全解决了公平游戏的问题，但是，处理实际的公平游戏时，直接应用 Sprague–Grundy 定理计算效率仍然不高．比如，Nim 游戏中，暴力计算 Sprague–Grundy 值的复杂度是指数级的．因此，往往需要通过打表的方式猜测具体的公平游戏的结论．
+Dù lý thuyết Sprague-Grundy giải quyết hoàn toàn bài toán của trò chơi công bằng, khi xử lý các trò chơi công bằng thực tế, việc trực tiếp áp dụng định lý Sprague-Grundy thường vẫn không hiệu quả. Ví dụ, trong trò chơi Nim, độ phức tạp của cách tính vét cạn giá trị Sprague-Grundy là cấp số mũ. Vì vậy, thường cần lập bảng để phỏng đoán kết luận cụ thể cho từng trò chơi công bằng.
 
-本节列举了一些常见的公平游戏及其结论．叙述结论时，本节只给出了必胜和必败状态的判断法则．至于必胜策略，就是进行恰当的操作，使得留给对手的局面恰好为必败状态．由于算法竞赛中经常出现这些游戏的变体，所以，掌握每个游戏的结论的证明过程也很重要．
+Phần này liệt kê một số trò chơi công bằng thường gặp và kết luận tương ứng. Khi trình bày kết luận, phần này chỉ nêu quy tắc phán định trạng thái tất thắng và tất bại. Còn chiến lược thắng là thực hiện thao tác thích hợp sao cho cục diện để lại cho đối thủ đúng là trạng thái tất bại. Vì các biến thể của những trò chơi này thường xuất hiện trong lập trình thi đấu, việc nắm được quá trình chứng minh kết luận của từng trò chơi cũng rất quan trọng.
 
-???+ info "本节结论的证明方法"
-    本节结论的证明都是验证性的．对于一个游戏，结论中会描述它的先手必败状态和先手必胜状态．证明中，只需要验证从一个先手必败状态出发，只能得到先手必胜状态；而从先手必胜状态出发，总能得到至少一个先手必败状态．要将这些证明改写为严格的证明，需要建立博弈图，然后对博弈图上的状态应用数学归纳法，而这些验证的步骤就是其中的归纳部分．
+???+ info "Phương pháp chứng minh các kết luận trong phần này"
+    Các chứng minh kết luận trong phần này đều mang tính kiểm chứng. Với một trò chơi, kết luận sẽ mô tả các trạng thái người đi trước tất bại và tất thắng. Trong chứng minh, chỉ cần kiểm tra rằng từ một trạng thái người đi trước tất bại chỉ có thể đi tới trạng thái người đi trước tất thắng; còn từ một trạng thái người đi trước tất thắng luôn có thể đi tới ít nhất một trạng thái người đi trước tất bại. Để viết các chứng minh này thành chứng minh chặt chẽ, cần xây dựng đồ thị trò chơi rồi áp dụng quy nạp toán học trên đồ thị đó; các bước kiểm chứng nói trên chính là phần quy nạp.
 
-### Bachet 游戏
+<span id="Bachet &#28216;&#25103;"></span>
+### Trò chơi Bachet
 
-相较于单堆 Nim 游戏，Bachet 游戏限制了每次可以取走的石子的数量．
+So với Nim một đống, trò chơi Bachet giới hạn số đá có thể lấy trong mỗi lượt.
 
-???+ abstract "Bachet 游戏"
-    有一堆石子，共计 $n$ 枚．两名玩家轮流取走至少 $1$ 枚、至多 $k$ 枚石子．取走最后一枚石子的玩家获胜．
+???+ abstract "Trò chơi Bachet"
+    Có một đống đá gồm $n$ viên. Hai người chơi lần lượt lấy đi ít nhất $1$ viên và nhiều nhất $k$ viên đá. Người lấy viên đá cuối cùng thắng.
 
-对此，有如下结论：
+Với trò chơi này, có kết luận sau:
 
-???+ note "定理"
-    游戏先手必败，当且仅当 $n\equiv 0\pmod {k+1}$．
+???+ note "Định lý"
+    Người đi trước tất bại khi và chỉ khi $n\equiv 0\pmod {k+1}$.
 
-??? note "证明一"
-    当 $n\not\equiv 0\pmod {k+1}$ 时，只要取走 $n\bmod{(k+1)}\in[1,k]$ 枚石子，就能保证对手处于必败状态．因此，此时是先手必胜状态．
+??? note "Chứng minh 1"
+    Khi $n\not\equiv 0\pmod {k+1}$, chỉ cần lấy đi $n\bmod{(k+1)}\in[1,k]$ viên đá là có thể bảo đảm đối thủ ở trạng thái tất bại. Do đó lúc này là trạng thái tất thắng cho người đi trước.
     
-    反过来，当 $n\equiv 0\pmod {k+1}$ 时，那么，要么已经没有选择，要么自己取走 $k'$ 枚石子后，对手紧接着可以取走 $k+1-k'$ 枚石子，让自己回到必败状态．
+    Ngược lại, khi $n\equiv 0\pmod {k+1}$, hoặc đã không còn lựa chọn nào, hoặc sau khi ta lấy đi $k'$ viên đá, đối thủ có thể lập tức lấy đi $k+1-k'$ viên đá để đưa ta trở lại trạng thái tất bại.
 
-??? note "证明二"
-    作为 Sprague–Grundy 定理的应用，可以计算 $f(n)$ 为只剩下 $n$ 枚石子时，对应局面的 SG 函数值．
+??? note "Chứng minh 2"
+    Như một ứng dụng của định lý Sprague-Grundy, gọi $f(n)$ là giá trị hàm SG của cục diện khi còn lại $n$ viên đá.
     
-    对于 $n\le k$，可以归纳地证明 $f(n)=n$．这与单堆 Nim 游戏相同，因为取走石子数目的限制没有发挥作用．对于 $n>k$ 时，可以证明 $f(n)=n\bmod{(k+1)}$，所以，有
+    Với $n\le k$, có thể chứng minh quy nạp rằng $f(n)=n$. Điều này giống Nim một đống, vì giới hạn số đá được lấy chưa phát huy tác dụng. Với $n>k$, có thể chứng minh $f(n)=n\bmod{(k+1)}$, nên
     
     $$
     f(n) = \operatorname{mex}\{f(n-k),f(n-k+1),\cdots,f(n-1)\}.
     $$
     
-    这遍历了模 $k+1$ 的全体余数，除了 $n\bmod{(k+1)}$．因此，就有 $f(n) = n\bmod{(k+1)}$．
+    Tập này duyệt qua mọi số dư modulo $k+1$, ngoại trừ $n\bmod{(k+1)}$. Vì vậy $f(n) = n\bmod{(k+1)}$.
 
-### Moore's Nim-k 游戏
+<span id="Moore's Nim-k &#28216;&#25103;"></span>
+### Trò chơi Nim-$k$ của Moore
 
-相较于 Nim 游戏，Moore's Nim-$k$ 游戏允许一次性从 $k$ 个石子堆中取石子．
+So với Nim, trò chơi Nim-$k$ của Moore cho phép lấy đá từ $k$ đống cùng lúc.
 
-???+ abstract "Moore's Nim-$k$ 游戏"
-    共有 $n$ 堆石子，第 $i$ 堆有 $a_i$ 枚石子．两名玩家轮流取走至少 $1$ 堆、至多 $k$ 堆中的任意多枚石子，但不能不取．取走最后一枚石子的玩家获胜．
+???+ abstract "Trò chơi Nim-$k$ của Moore"
+    Có $n$ đống đá, đống thứ $i$ có $a_i$ viên đá. Hai người chơi lần lượt lấy đi một số viên đá tùy ý từ ít nhất $1$ đống và nhiều nhất $k$ đống, nhưng không được không lấy. Người lấy viên đá cuối cùng thắng.
 
-对此，有如下结论：
+Với trò chơi này, có kết luận sau:
 
-???+ note "定理"
-    将每一堆石子的数目都表示为二进制数，并对每个数位 $d$，都统计有多少堆石子数目的第 $d$ 位是 $1$，并计算这个数目对于 $(k+1)$ 的余数．如果对于每个数位，这个余数都等于 $0$，那么先手必败；否则，先手必胜．
+???+ note "Định lý"
+    Biểu diễn số đá của mỗi đống dưới dạng nhị phân. Với mỗi vị trí bit $d$, đếm có bao nhiêu đống mà bit thứ $d$ của số đá bằng $1$, rồi lấy số đếm này modulo $(k+1)$. Nếu với mọi vị trí bit, số dư này đều bằng $0$, thì người đi trước tất bại; nếu không, người đi trước tất thắng.
 
-??? note "证明"
-    仿照 Nim 游戏的结论的证明，很容易证明本结论．设 $d$ 为余数不为 $0$ 的最高二进制位，且对应的余数为 $k'\le k$．那么，必胜策略为，在石子数目二进制第 $d$ 位为 $1$ 的石子堆中，选择 $k$ 堆，并选择移走的石子数目恰好使得对手局面中，每个数位的余数都是 $0$．唯一需要说明的是，最后取走石子数量的选择总是可行的．
+??? note "Chứng minh"
+    Có thể chứng minh kết luận này rất dễ bằng cách mô phỏng chứng minh cho Nim. Gọi $d$ là vị trí bit nhị phân cao nhất có số dư khác $0$, và số dư tương ứng là $k'\le k$. Khi đó chiến lược thắng là chọn $k'$ đống trong số các đống có bit thứ $d$ của số đá bằng $1$, rồi chọn số đá cần lấy sao cho trong cục diện của đối thủ, số dư ở mỗi vị trí bit đều bằng $0$. Điều duy nhất cần giải thích là việc chọn số đá cuối cùng luôn khả thi.
     
-    实际上，只要选定 $k'$ 堆石子，每堆都取走 $2^d$ 枚石子，就能使得结果中，第 $d$ 位余数变为 $0$．对于更低的数位的余数，将这些余数随意摊派给某一个堆即可．
+    Thật vậy, chỉ cần chọn $k'$ đống đá và ở mỗi đống lấy đi $2^d$ viên là có thể làm số dư ở bit thứ $d$ trong kết quả trở thành $0$. Với số dư ở các bit thấp hơn, có thể phân bổ tùy ý các số dư này cho một đống nào đó.
 
-### 阶梯 Nim 游戏
+<span id="&#38454;&#26799; Nim &#28216;&#25103;"></span>
+### Trò chơi Nim bậc thang
 
-阶梯 Nim 游戏稍微复杂一些，它允许石子在相邻的堆之间移动．
+Trò chơi Nim bậc thang phức tạp hơn một chút: nó cho phép di chuyển đá giữa các đống kề nhau.
 
-???+ abstract "阶梯 Nim 游戏"
-    共有 $n$ 堆石子，第 $i$ 堆有 $a_i$ 枚石子．两名玩家轮流操作，每次操作中，要么取走第 $1$ 堆石子中的任意多枚，要么将第 $i>1$ 堆石子中的任意多枚移动到第 $i-1$ 堆，但不能不做任何操作．取走最后一枚石子的玩家取胜．
+???+ abstract "Trò chơi Nim bậc thang"
+    Có $n$ đống đá, đống thứ $i$ có $a_i$ viên đá. Hai người chơi lần lượt thao tác. Trong mỗi thao tác, hoặc lấy đi tùy ý nhiều viên đá từ đống thứ $1$, hoặc chuyển tùy ý nhiều viên đá từ đống thứ $i>1$ sang đống thứ $i-1$, nhưng không được không làm gì. Người lấy viên đá cuối cùng thắng.
 
-对此，有如下结论：
+Với trò chơi này, có kết luận sau:
 
-???+ note "定理"
-    游戏先手必败，当且仅当奇数堆石子数量的 Nim 和 $a_1\oplus a_3\oplus\cdots\oplus a_{n-1+(n\bmod 2)}=0$．
+???+ note "Định lý"
+    Người đi trước tất bại khi và chỉ khi tổng Nim của số đá ở các đống lẻ $a_1\oplus a_3\oplus\cdots\oplus a_{n-1+(n\bmod 2)}=0$.
 
-??? note "证明"
-    任何玩家将偶数堆的石子移动到奇数堆时，对手都可以将这些石子继续移动到下一个偶数堆（或移走），因此，这样的移动不会影响奇数堆的局面．此时，每一个奇数堆向下移动到相邻的偶数堆（或移走）都可以看作独立的单堆 Nim 游戏．根据 Sprague–Grundy 定理关于游戏的和的结论，阶梯 Nim 游戏的 SG 函数值，是这些子游戏的 SG 函数值的 Nim 和．这就得到上述结论．
+??? note "Chứng minh"
+    Khi một người chơi chuyển đá từ đống chẵn sang đống lẻ, đối thủ có thể tiếp tục chuyển số đá đó sang đống chẵn tiếp theo, hoặc lấy đi, nên nước đi như vậy không ảnh hưởng tới cục diện của các đống lẻ. Lúc này, mỗi việc chuyển một đống lẻ xuống đống chẵn kề dưới, hoặc lấy đi, có thể xem như một trò chơi Nim một đống độc lập. Theo kết luận của định lý Sprague-Grundy về tổng trò chơi, giá trị hàm SG của Nim bậc thang là tổng Nim của các giá trị hàm SG của những trò chơi con này. Từ đó nhận được kết luận trên.
 
-### Fibonacci Nim 游戏
+<span id="Fibonacci Nim &#28216;&#25103;"></span>
+### Trò chơi Fibonacci Nim
 
-Fibonacci Nim 游戏类似 Bachet 游戏，只有一堆石子，且限制了每次取走的数量．与 Bachet 游戏不同，Fibonacci Nim 游戏中，每次取走的数量的限制是动态的．
+Fibonacci Nim giống trò chơi Bachet ở chỗ chỉ có một đống đá và giới hạn số lượng được lấy mỗi lượt. Khác với Bachet, trong Fibonacci Nim, giới hạn số lượng được lấy là động.
 
-???+ abstract "Fibonacci Nim 游戏"
-    有一堆石子，共计 $n$ 枚．两名玩家轮流取石子．第一个行动的玩家不限制取走的石子数目，但是不能取完石子；随后，每次取走的石子数目不得超过上次（指对手回合）取走的石子数目的二倍．每次取走的石子的数目不得为 $0$．取走最后一枚石子的玩家获胜．
+???+ abstract "Trò chơi Fibonacci Nim"
+    Có một đống đá gồm $n$ viên. Hai người chơi lần lượt lấy đá. Người hành động đầu tiên không bị giới hạn số đá được lấy, nhưng không được lấy hết đá; sau đó, mỗi lượt không được lấy quá hai lần số đá đã được lấy ở lượt trước, tức lượt của đối thủ. Số đá lấy mỗi lượt không được bằng $0$. Người lấy viên đá cuối cùng thắng.
 
-对此，有如下结论：
+Với trò chơi này, có kết luận sau:
 
-???+ note "定理"
-    游戏开始时，先手必败，当且仅当石子数目 $n$ 是 [Fibonacci 数](../combinatorics/fibonacci.md)．
+???+ note "Định lý"
+    Khi trò chơi bắt đầu, người đi trước tất bại khi và chỉ khi số đá $n$ là một [số Fibonacci](../combinatorics/fibonacci.md).
 
-??? note "证明"
-    设 $q$ 为当前局面可移走石子数量的限额（quota）．那么，第一回合中，$q=n-1$；而之后的回合中，$q$ 是上次（对手）移走的石子数目的二倍．考察剩余石子数目 $n$ 的 [Fibonacci 编码](../combinatorics/fibonacci.md#斐波那契编码)，也就是将 $n$ 唯一地分解为一系列不相邻的、正的 Fibonacci 数的和．需要证明的是，当前状态是必胜状态，当且仅当 $q$ 大于等于 $n$ 的分解中的最小 Fibonacci 数．
+??? note "Chứng minh"
+    Gọi $q$ là hạn mức (quota) số đá có thể lấy ở cục diện hiện tại. Trong lượt đầu tiên, $q=n-1$; còn ở các lượt sau, $q$ bằng hai lần số đá mà đối thủ lấy ở lượt trước. Xét [mã hóa Fibonacci](../combinatorics/fibonacci.md#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E7%BC%96%E7%A0%81) của số đá còn lại $n$, tức phân rã duy nhất $n$ thành tổng của một dãy các số Fibonacci dương không kề nhau. Cần chứng minh rằng trạng thái hiện tại là tất thắng khi và chỉ khi $q$ lớn hơn hoặc bằng số Fibonacci nhỏ nhất trong phân rã của $n$.
     
-    必胜策略是：如果可以，移走所有剩余石子；否则，移走分解中最小的 Fibonacci 数．由于分解中，次小的 Fibonacci 数一定严格大于最小的 Fibonacci 数的两倍，所以，只要处于必胜状态的当前回合取不走所有石子，对手在下一回合也取不走次小的 Fibonacci 数（也就是下一回合最小的 Fibonacci 数），对手一定处于必败状态．
+    Chiến lược thắng là: nếu có thể thì lấy hết số đá còn lại; nếu không thì lấy đi số Fibonacci nhỏ nhất trong phân rã. Vì trong phân rã, số Fibonacci nhỏ thứ hai luôn lớn nghiêm ngặt hơn hai lần số Fibonacci nhỏ nhất, nên nếu lượt hiện tại ở trạng thái tất thắng không thể lấy hết đá, thì ở lượt sau đối thủ cũng không thể lấy số Fibonacci nhỏ thứ hai, tức số Fibonacci nhỏ nhất của lượt sau; đối thủ nhất định ở trạng thái tất bại.
     
-    反过来，如果当前处于必败状态，那么，设当前取走的数目为 $k$，它一定严格小于当前分解中的最小 Fibonacci 数 $F$．假设下一回合最小的 Fibonacci 数是 $F'$，它一定也是 $F - k$ 对应的分解中最小的 Fibonacci 数．设 $F'=F''+F'''$ 且 $F''>F'''$，也就是说，$F''',F'',F'$ 是 Fibonacci 数列中相邻三项．如果 $k<F''$，那么，利用 Fibonacci 编码计算 $k + (F-k)$ 时，不需要进位，自然得不到 $F$．所以，一定有 $k\ge F''$．这就说明，下一回合的限额 $2k>F''+F'''=F'$，是必胜状态．
+    Ngược lại, nếu hiện tại là trạng thái tất bại, giả sử số đá được lấy hiện tại là $k$, thì nó chắc chắn nhỏ nghiêm ngặt hơn số Fibonacci nhỏ nhất $F$ trong phân rã hiện tại. Giả sử số Fibonacci nhỏ nhất ở lượt sau là $F'$, nó cũng nhất định là số Fibonacci nhỏ nhất trong phân rã ứng với $F - k$. Đặt $F'=F''+F'''$ và $F''>F'''$, tức $F''',F'',F'$ là ba số Fibonacci kề nhau. Nếu $k<F''$, thì khi dùng mã hóa Fibonacci để tính $k + (F-k)$, không cần nhớ, nên không thể thu được $F$. Vì vậy nhất định có $k\ge F''$. Điều này cho thấy hạn mức lượt sau $2k>F''+F'''=F'$, nên đó là trạng thái tất thắng.
 
-### Wythoff 游戏
+<span id="Wythoff &#28216;&#25103;"></span>
+### Trò chơi Wythoff
 
-Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除相同数量的石子．
+Trò chơi Wythoff cho phép loại bỏ đá đồng thời từ nhiều đống, nhưng yêu cầu mỗi đống bị loại bỏ cùng một số lượng đá.
 
-???+ abstract "Wythoff 游戏"
-    有两堆石子，分别有 $a_1$ 和 $a_2$ 枚石子．两名玩家轮流从其中一堆或两堆中取石子，不能不取，但要求从两堆都取石子时，取走的石子数量必须相同．取走最后一枚石子的玩家获胜．
+???+ abstract "Trò chơi Wythoff"
+    Có hai đống đá, lần lượt có $a_1$ và $a_2$ viên đá. Hai người chơi lần lượt lấy đá từ một đống hoặc hai đống; không được không lấy, và nếu lấy từ cả hai đống thì số đá lấy từ hai đống phải bằng nhau. Người lấy viên đá cuối cùng thắng.
 
-对此，有如下结论：
+Với trò chơi này, có kết luận sau:
 
-???+ note "定理"
-    不妨设 $a_1\le a_2$，那么，先手必败，当且仅当 $a_1 = \lfloor(a_2-a_1)\phi\rfloor$，其中，$\phi=(\sqrt{5}+1)/2$ 是黄金分割比．
+???+ note "Định lý"
+    Không mất tính tổng quát, giả sử $a_1\le a_2$. Khi đó người đi trước tất bại khi và chỉ khi $a_1 = \lfloor(a_2-a_1)\phi\rfloor$, trong đó $\phi=(\sqrt{5}+1)/2$ là tỉ lệ vàng.
 
-为了证明这一结论，需要用到如下引理：
+Để chứng minh kết luận này, cần dùng bổ đề sau:
 
-???+ abstract "Beatty 序列"
-    设 $r > 1$ 为无理数．它生成的 Beatty 序列是 $\mathcal B_r = \{\lfloor kr\rfloor : k \in\mathbf N_+\}$．
+???+ abstract "Dãy Beatty"
+    Cho $r > 1$ là số vô tỉ. Dãy Beatty do nó sinh ra là $\mathcal B_r = \{\lfloor kr\rfloor : k \in\mathbf N_+\}$.
 
-???+ note "Rayleigh 定理"
-    设 $r,s > 1$ 是两个无理数，且 $\dfrac{1}{r}+\dfrac{1}{s}=1$．那么，序列 $\mathcal B_r$ 和 $\mathcal B_s$ 构成正整数集 $\mathbf N_+$ 的一个分划．此时，它们也称为互补的 Beatty 序列．
+???+ note "Định lý Rayleigh"
+    Cho $r,s > 1$ là hai số vô tỉ và $\dfrac{1}{r}+\dfrac{1}{s}=1$. Khi đó hai dãy $\mathcal B_r$ và $\mathcal B_s$ tạo thành một phân hoạch của tập số nguyên dương $\mathbf N_+$. Lúc này chúng còn được gọi là hai dãy Beatty bổ sung.
 
-??? note "证明"
-    设 $\mathcal A_r=\{kr:k\in\mathbf N_+\}$．考虑将集合 $\mathcal A=\mathcal A_r\cup\mathcal A_\ell$ 里的元素排序得到序列 $\{a_i\}_{i\in\mathbf N_+}$．需要证明的是，$i=\lfloor a_i\rfloor$ 对所有 $i\in\mathbf N_+$ 都成立，就能得到 $\mathcal B_r\cup\mathcal B_s$ 是正整数集 $\mathbf N_+$ 的一个分划．
+??? note "Chứng minh"
+    Đặt $\mathcal A_r=\{kr:k\in\mathbf N_+\}$. Xét việc sắp xếp các phần tử trong tập $\mathcal A=\mathcal A_r\cup\mathcal A_s$ để nhận được dãy $\{a_i\}_{i\in\mathbf N_+}$. Cần chứng minh $i=\lfloor a_i\rfloor$ với mọi $i\in\mathbf N_+$; khi đó sẽ suy ra $\mathcal B_r\cup\mathcal B_s$ là một phân hoạch của tập số nguyên dương $\mathbf N_+$.
     
-    首先，证明序列里没有重复的元素．假设不然，存在 $k,\ell\in\mathbf N_+$ 使得 $kr=\ell s$ 成立．那么，有
+    Trước hết, chứng minh dãy không có phần tử trùng nhau. Giả sử ngược lại, tồn tại $k,\ell\in\mathbf N_+$ sao cho $kr=\ell s$. Khi đó
     
     $$
     \dfrac{\ell}{k} = \dfrac{r}{s} = r - 1.
     $$
     
-    但是，等式左侧是有理数，等式右侧是无理数，矛盾．因此，序列的数字各不相同．
+    Nhưng vế trái là số hữu tỉ, còn vế phải là số vô tỉ, mâu thuẫn. Vì vậy các số trong dãy đôi một khác nhau.
     
-    然后，证明集合 $\mathcal A$ 中小于等于 $a_i$ 的数恰有 $\lfloor a_i\rfloor$ 个．不妨设 $a_i\in\mathcal A_r$，即 $a_i=kr$，那么，对集合 $\mathcal A_r$ 和 $\mathcal A_\ell$ 中的元素分别计数，就得到小于等于 $a_i$ 的正整数恰有
+    Tiếp theo, chứng minh trong tập $\mathcal A$ có đúng $\lfloor a_i\rfloor$ số nhỏ hơn hoặc bằng $a_i$. Không mất tính tổng quát, giả sử $a_i\in\mathcal A_r$, tức $a_i=kr$. Đếm riêng các phần tử trong $\mathcal A_r$ và $\mathcal A_s$, ta được số phần tử nhỏ hơn hoặc bằng $a_i$ là
     
     $$
-    k + \left\lfloor\dfrac{kr}{s}\right\rfloor = k + \lfloor k(r-1)\rfloor = \lfloor kr\rfloor = \lfloor a_i\rfloor
+    k + \left\lfloor\dfrac{kr}{s}\right\rfloor = k + \lfloor k(r-1)\rfloor = \lfloor kr\rfloor = \lfloor a_i\rfloor.
     $$
     
-    个．进而，由于序列 $\{a_i\}$ 是严格递增的，小于等于 $a_i$ 的数恰有 $i$ 个．这就得到 $i=\lfloor a_i\rfloor$．
+    Mặt khác, vì dãy $\{a_i\}$ tăng nghiêm ngặt, số phần tử nhỏ hơn hoặc bằng $a_i$ đúng bằng $i$. Do đó $i=\lfloor a_i\rfloor$.
 
-由此，可以得到前述结论的证明．
+Từ đây có thể chứng minh kết luận đã nêu.
 
-??? note "Wythoff 游戏结论的证明"
-    对于所有 $a_1 < a_2$ 且先手必败的状态 $(a_1,a_2)$，令 $k = a_2 - a_1 \in\mathbf N_+$，都有 $a_1=\lfloor k\phi\rfloor$ 且 $a_2=\lfloor k(\phi+1)\rfloor$．由于 $\phi$ 是黄金分割比，所以 $\dfrac{1}{\phi}+\dfrac{1}{\phi+1}=1$．由 Rayleigh 定理可知，序列 $\{\lfloor k\phi\rfloor\}$ 和 $\lfloor k(\phi+1)\rfloor$ 构成正整数集 $\mathbf N_+$ 的一个分划．这其实说明，所有 $a_1 < a_2$ 且先手必败的状态 $(a_1,a_2)$ 中，分量 $a_1$ 和 $a_2$ 恰取遍全体正整数一次，且它们的差 $a_2-a_1$ 也恰取遍全体正整数一次．
+??? note "Chứng minh kết luận của trò chơi Wythoff"
+    Với mọi trạng thái $(a_1,a_2)$ thỏa $a_1 < a_2$ và người đi trước tất bại, đặt $k = a_2 - a_1 \in\mathbf N_+$. Khi đó $a_1=\lfloor k\phi\rfloor$ và $a_2=\lfloor k(\phi+1)\rfloor$. Vì $\phi$ là tỉ lệ vàng, ta có $\dfrac{1}{\phi}+\dfrac{1}{\phi+1}=1$. Theo định lý Rayleigh, các dãy $\{\lfloor k\phi\rfloor\}$ và $\lfloor k(\phi+1)\rfloor$ tạo thành một phân hoạch của tập số nguyên dương $\mathbf N_+$. Điều này thực ra nói rằng trong mọi trạng thái $(a_1,a_2)$ thỏa $a_1 < a_2$ và người đi trước tất bại, hai thành phần $a_1$ và $a_2$ lấy đúng một lần mọi số nguyên dương, và hiệu của chúng $a_2-a_1$ cũng lấy đúng một lần mọi số nguyên dương.
     
-    由于 Wythoff 游戏中，一次合法的操作要么保持分量之一不变，要么保持分量之差不变，所以，从一个先手必败状态开始，确实无法由一次合法的操作中得到另一个先手必败状态．反过来，对于任何先手必胜状态 $(a_1,a_2)$，不妨设 $a_1\le a_2$，并令 $k=a_2-a_1$．如果 $a_1>\lfloor k\phi\rfloor$，那么，先手玩家可以从两堆石子各取 $(a_1 - \lfloor k\phi\rfloor)$ 枚，将局面变为必败状态．反过来，由前一段的结论，对于这个 $a_1$ 必然存在唯一一个必败状态 $(a_1,a_2')$．进而，如果 $a_1 > a_2'$，显然有 $a_2' < a_2$；否则，如果 $a_1 < a_2'$，那么，可以取 $k'=a_2'-a_1$ 使得 $a_1=\lfloor k'\phi\rfloor$，又有 $a_1 < \lfloor k\phi\rfloor$，故而 $k' < k$，因此 $a_2'=a_1 + k' < a_1+k = a_2$．所以，只要 $a_1 < \lfloor k\phi\rfloor$，就一定有 $a_2' < a_2$，先手玩家只需要从第二堆石子中取走 $(a_2-a'_2)$ 枚石子就可以使得局面变为必败状态．
+    Trong trò chơi Wythoff, một thao tác hợp lệ hoặc giữ nguyên một trong hai thành phần, hoặc giữ nguyên hiệu của hai thành phần. Vì vậy, từ một trạng thái người đi trước tất bại, đúng là không thể nhận được một trạng thái người đi trước tất bại khác chỉ bằng một thao tác hợp lệ. Ngược lại, với bất kỳ trạng thái người đi trước tất thắng $(a_1,a_2)$, giả sử không mất tính tổng quát rằng $a_1\le a_2$ và đặt $k=a_2-a_1$. Nếu $a_1>\lfloor k\phi\rfloor$, người đi trước có thể lấy từ mỗi đống $(a_1 - \lfloor k\phi\rfloor)$ viên đá để biến cục diện thành trạng thái tất bại. Ngược lại, theo kết luận ở đoạn trước, với $a_1$ này tất nhiên tồn tại duy nhất một trạng thái tất bại $(a_1,a_2')$. Tiếp đó, nếu $a_1 > a_2'$ thì hiển nhiên $a_2' < a_2$; còn nếu $a_1 < a_2'$, lấy $k'=a_2'-a_1$ sao cho $a_1=\lfloor k'\phi\rfloor$. Lại có $a_1 < \lfloor k\phi\rfloor$, nên $k' < k$, do đó $a_2'=a_1 + k' < a_1+k = a_2$. Vì vậy, miễn là $a_1 < \lfloor k\phi\rfloor$, nhất định có $a_2' < a_2$; người đi trước chỉ cần lấy đi $(a_2-a'_2)$ viên đá từ đống thứ hai là có thể biến cục diện thành trạng thái tất bại.
 
-### 翻硬币游戏
+<span id="&#32763;&#30828;&#24065;&#28216;&#25103;"></span>
+### Trò chơi lật đồng xu
 
-翻硬币游戏也是一类常见的公平组合游戏．
+Trò chơi lật đồng xu cũng là một lớp trò chơi tổ hợp công bằng thường gặp.
 
-???+ abstract "翻硬币游戏"
-    设 $(S,\preceq)$ 是一个 [良基偏序集](../order-theory.md)，映射 $f:S\rightarrow\mathcal P\mathcal PS$ 满足对于所有 $s\in S$ 集合都有 $f(s)$ 非空，对于 $T\in f(s)$ 都有 $s\in T$，而且对于所有 $t\in T$，都有 $t\preceq s$．集合 $S$ 的每个元素处都有一枚硬币，可能正面朝上也可能背面朝上．玩家轮流行动，选择一枚正面朝上的硬币 $s$ 和集合 $T\in f(s)$，并将集合 $T$ 中所有硬币翻转．将所有硬币都翻转到背面朝上的玩家获胜．
+???+ abstract "Trò chơi lật đồng xu"
+    Cho $(S,\preceq)$ là một [tập có thứ tự bộ phận nền tảng](../order-theory.md), ánh xạ $f:S\rightarrow\mathcal P\mathcal PS$ thỏa với mọi $s\in S$, tập $f(s)$ không rỗng; với mọi $T\in f(s)$ đều có $s\in T$; hơn nữa với mọi $t\in T$ đều có $t\preceq s$. Tại mỗi phần tử của tập $S$ đặt một đồng xu, có thể ngửa hoặc sấp. Hai người chơi lần lượt hành động: chọn một đồng xu ngửa $s$ và một tập $T\in f(s)$, rồi lật tất cả đồng xu trong tập $T$. Người lật tất cả đồng xu thành mặt sấp thắng.
 
-翻硬币游戏其实是一大类游戏．取决于具体的偏序集 $S$ 和映射 $f$ 的选择，翻硬币游戏的具体形式也有所不同．游戏描述中，映射 $f$ 需要满足的条件是在说，每次玩家选择翻转硬币的集合 $T$ 中，一定存在一枚正面朝上的硬币 $s$，使得集合 $T$ 中所有元素都排在 $s$ 前面．这保证了游戏可以在若干步后终止．
+Trò chơi lật đồng xu thực ra là một lớp lớn các trò chơi. Tùy theo lựa chọn cụ thể của tập thứ tự bộ phận $S$ và ánh xạ $f$, hình thức cụ thể của trò chơi lật đồng xu cũng khác nhau. Trong mô tả trò chơi, các điều kiện mà ánh xạ $f$ cần thỏa đang nói rằng trong tập đồng xu $T$ được người chơi chọn để lật mỗi lượt, nhất định tồn tại một đồng xu ngửa $s$ sao cho mọi phần tử trong $T$ đều đứng trước $s$. Điều này bảo đảm trò chơi có thể kết thúc sau hữu hạn bước.
 
-???+ example "例子"
-    1.  设 $S=\{1,2,\cdots,n\}$ 且 $f(s)=\{\{t,s\}:t \le s\}$．这相当于说，有一排 $n$ 枚硬币，每次翻转一枚正面朝上的硬币，并且可以选择一枚它左侧的硬币翻转．
-    2.  设 $S=\{1,2,\cdots,n\}$ 且 $f(s)=\{[t,s]:t \le s\}$．这相当于说，有一排 $n$ 枚硬币，每次翻转一段连续的硬币，但是必须保证这些硬币中最右侧的那枚硬币在翻转前是正面朝上的．
-    3.  设 $S=\{1,2,\cdots,n\}^2$ 且 $f(s)=\{\{s\}\}$．这相当于说，有 $n$ 行 $n$ 列硬币，每次只能翻转一枚正面朝上的硬币．
-    4.  设 $S$ 是一棵有根树的结点集合，且 $f(s)$ 是顶点 $s$ 到树根的路径经过的结点集合的子集中，所有包含 $s$ 自身的子集的集合．这相当于说，有一棵有根树，每个结点处放置一枚硬币，每次翻转一枚正面朝上的硬币，并且可以选择它的若干个祖先结点处的硬币翻转．
+???+ example "Ví dụ"
+    1.  Cho $S=\{1,2,\cdots,n\}$ và $f(s)=\{\{t,s\}:t \le s\}$. Điều này tương đương với việc có một hàng $n$ đồng xu; mỗi lần lật một đồng xu đang ngửa và có thể chọn thêm một đồng xu ở bên trái nó để lật.
+    2.  Cho $S=\{1,2,\cdots,n\}$ và $f(s)=\{[t,s]:t \le s\}$. Điều này tương đương với việc có một hàng $n$ đồng xu; mỗi lần lật một đoạn đồng xu liên tiếp, nhưng phải bảo đảm đồng xu ngoài cùng bên phải trong đoạn đó đang ngửa trước khi lật.
+    3.  Cho $S=\{1,2,\cdots,n\}^2$ và $f(s)=\{\{s\}\}$. Điều này tương đương với việc có $n$ hàng và $n$ cột đồng xu; mỗi lần chỉ được lật một đồng xu đang ngửa.
+    4.  Cho $S$ là tập đỉnh của một cây có gốc, và $f(s)$ là tập gồm mọi tập con chứa chính $s$ trong các tập con của tập đỉnh trên đường đi từ đỉnh $s$ tới gốc. Điều này tương đương với việc có một cây có gốc, tại mỗi đỉnh đặt một đồng xu; mỗi lần lật một đồng xu đang ngửa và có thể chọn thêm một số đồng xu ở các tổ tiên của nó để lật.
 
-尽管翻硬币游戏种类繁多，但是它们的求解思路是一致的．对于翻硬币游戏 $(S,f)$，设 $G_s$ 为只有元素 $s$ 处的硬币正面朝上的局面．这些局面称为基础局面．那么，任意一个局面 $G$ 都可以看做是这些基础局面对应的游戏的和．也就是说，以下结论成立：
+Dù có rất nhiều loại trò chơi lật đồng xu, hướng giải của chúng là thống nhất. Với trò chơi lật đồng xu $(S,f)$, gọi $G_s$ là cục diện chỉ có đồng xu tại phần tử $s$ ngửa. Các cục diện này được gọi là cục diện cơ sở. Khi đó, một cục diện bất kỳ $G$ đều có thể xem là tổng của các trò chơi tương ứng với những cục diện cơ sở này. Nói cách khác, kết luận sau đúng:
 
-???+ note "定理"
-    对于翻硬币游戏 $(S,f)$ 和局面 $G$，设其中正面朝上的硬币所处位置的集合为 $H(G)\subseteq S$．那么，局面 $G$ 的 SG 函数值就是
+???+ note "Định lý"
+    Với trò chơi lật đồng xu $(S,f)$ và cục diện $G$, gọi tập vị trí của các đồng xu ngửa trong đó là $H(G)\subseteq S$. Khi đó giá trị hàm SG của cục diện $G$ là
     
     $$
     \operatorname{SG}(G) = \bigoplus_{s\in H(G)}\operatorname{SG}(G_s).
     $$
 
-??? note "证明"
-    考虑一个相关的游戏：一个局面 $G'$ 中，集合 $S$ 的每个元素处都放置有若干枚石子；玩家每次行动时，都可以取走 $s$ 处的一枚石子，并选取集合 $T\in f(s)$，再在集合 $T\setminus\{s\}$ 中的各个元素处均放置一枚石子．对于这类游戏，仍然可以定义基础局面 $G'_s$，即仅在位置 $s$ 处放置有一枚石子的局面．这类游戏中，每个局面均为其所有石子对应基础局面的和．这是因为只要放置新石子时将它对应到取走的石子上，就可以将游戏过程中出现的每枚石子都对应到初始局面中的各个石子上，进而对应初始局面不同石子的子游戏进程互不干扰，整个游戏就可以看作是这些子游戏的和．由于相同位置石子对应基础局面的 SG 值是一样的，所以利用异或值的特性可知，局面 $G'$ 的 SG 值仅由各堆石子数量的奇偶性决定，而与具体数量无关．因此，对于游戏局面 $G'$，如果记其石子数量为奇数的位置集合为 $H(G')$，那么，本段的分析可以总结为公式：
+??? note "Chứng minh"
+    Xét một trò chơi liên quan: trong một cục diện $G'$, tại mỗi phần tử của tập $S$ đặt một số viên đá; mỗi lượt, người chơi có thể lấy đi một viên đá tại $s$, chọn một tập $T\in f(s)$, rồi đặt thêm một viên đá tại mỗi phần tử trong $T\setminus\{s\}$. Với loại trò chơi này, vẫn có thể định nghĩa cục diện cơ sở $G'_s$, tức cục diện chỉ đặt một viên đá tại vị trí $s$. Trong loại trò chơi này, mỗi cục diện đều là tổng của các cục diện cơ sở ứng với mọi viên đá của nó. Lý do là khi đặt đá mới, ta gắn nó với viên đá vừa bị lấy đi; như vậy mỗi viên đá xuất hiện trong quá trình chơi đều có thể được gắn với một viên đá ở cục diện ban đầu. Tiếp đó, tiến trình trò chơi con ứng với các viên đá khác nhau ở cục diện ban đầu không can thiệp lẫn nhau, nên toàn bộ trò chơi có thể xem là tổng của các trò chơi con này. Vì các viên đá ở cùng vị trí ứng với cùng một giá trị SG của cục diện cơ sở, dựa vào tính chất của XOR, giá trị SG của cục diện $G'$ chỉ phụ thuộc vào tính chẵn lẻ của số đá ở từng đống, không phụ thuộc vào số lượng cụ thể. Vì vậy, với cục diện $G'$, nếu ký hiệu tập các vị trí có số đá lẻ là $H(G')$, thì phân tích trong đoạn này có thể tóm tắt bằng công thức:
     
     $$
     \operatorname{SG}(G') = \bigoplus_{s\in H(G')} \operatorname{SG}(G'_s).
     $$
     
-    由此，下文只需要建立游戏 $G'$ 与游戏 $G$ 的等价性就可以证明定理中的公式．
+    Từ đó, phần còn lại chỉ cần thiết lập tính tương đương giữa trò chơi $G'$ và trò chơi $G$ là chứng minh được công thức trong định lý.
     
-    需要说明的是，对于新游戏的局面 $G'$ 与翻硬币游戏的局面 $G$，只要 $G'$ 中石子数量为奇数的位置与 $G$ 中硬币正面朝上的位置处相同，就有 $G'$ 与 $G$ 等价．根据 [Sprague–Grundy 定理的引理 2](#sg-lem-2)，这等价于证明局面 $G+G'$ 是必败状态．后手玩家的胜利策略很简单：如果先手玩家选择取走 $s$ 处的石子且该处不止一枚石子，那么后手玩家直接模仿先手玩家的行为；否则，后手玩家选择和先手玩家同样的 $s$ 和 $T\in f(s)$，但是选择和先手玩家不同的子游戏，即先手取石子后手就取硬币，先手取硬币后手就翻石子．由于先手玩家无论任何操作，后手玩家就可以继续操作，并保证残余局面中石子数量为奇数的位置与硬币正面朝上的位置相同．这样，游戏必然结束在先手玩家没有合法操作时，因此，先手必败．定理由此得证．
+    Cần chứng minh rằng với cục diện $G'$ của trò chơi mới và cục diện $G$ của trò chơi lật đồng xu, nếu các vị trí có số đá lẻ trong $G'$ đúng bằng các vị trí có đồng xu ngửa trong $G$, thì $G'$ và $G$ tương đương. Theo [bổ đề 2 của định lý Sprague-Grundy](#sg-lem-2), điều này tương đương với việc chứng minh cục diện $G+G'$ là trạng thái tất bại. Chiến lược thắng của người đi sau rất đơn giản: nếu người đi trước chọn lấy đi một viên đá tại $s$ và ở đó có hơn một viên đá, người đi sau trực tiếp bắt chước hành vi của người đi trước; nếu không, người đi sau chọn cùng $s$ và cùng $T\in f(s)$ với người đi trước, nhưng chọn trò chơi con khác với người đi trước, tức người đi trước lấy đá thì người đi sau lật xu, còn người đi trước lật xu thì người đi sau lấy đá. Với bất kỳ thao tác nào của người đi trước, người đi sau đều có thể tiếp tục thao tác và bảo đảm trong cục diện còn lại, các vị trí có số đá lẻ trùng với các vị trí có đồng xu ngửa. Như vậy trò chơi tất yếu kết thúc khi người đi trước không có thao tác hợp lệ, nên người đi trước tất bại. Định lý được chứng minh.
 
-利用这一结论，判断某一局面是否必胜，只需要计算其中所有正面朝上的硬币对应的基础局面的 SG 函数值，再求 Nim 和即可．这些基础局面的 SG 函数值也不难计算，因为它们的后继局面已经由映射 $f$ 给出，且后继局面的 SG 值可以归纳地计算：
+Dùng kết luận này, để phán định một cục diện có tất thắng hay không, chỉ cần tính giá trị hàm SG của các cục diện cơ sở ứng với mọi đồng xu đang ngửa, rồi lấy tổng Nim. Các giá trị hàm SG của cục diện cơ sở cũng không khó tính, vì các cục diện kế tiếp của chúng đã được ánh xạ $f$ cho trước, và giá trị SG của cục diện kế tiếp có thể được tính quy nạp:
 
 $$
 \operatorname{SG}(G_s) = \operatorname{mex}\limits_{T\in f(s)}\bigoplus_{t\in T\setminus\{s\}}\operatorname{SG}(G_t).
 $$
 
-这相当于提供了一个基础局面 SG 函数值的递推公式．
+Điều này tương đương với việc cung cấp một công thức truy hồi cho giá trị hàm SG của cục diện cơ sở.
 
-### 二分图博弈
+<span id="&#20108;&#20998;&#22270;&#21338;&#24328;"></span>
+### Trò chơi trên đồ thị hai phía
 
-前置知识：[二分图最大匹配](../../graph/graph-matching/bigraph-match.md)
+Kiến thức cần có: [ghép cực đại trên đồ thị hai phía](../../graph/graph-matching/bigraph-match.md)
 
-本节的最后，讨论二分图博弈．尽管这个游戏常称作二分图博弈，但是它的描述和结论的证明都与二分图的结构无关，所以，它的结论实际上对于一般的无向图都成立．但是，一般图的最大匹配较为复杂，所以这一结论常出现在二分图的题目中．
+Phần cuối của mục này thảo luận trò chơi trên đồ thị hai phía. Mặc dù trò chơi này thường được gọi là trò chơi trên đồ thị hai phía, mô tả và chứng minh kết luận của nó đều không phụ thuộc vào cấu trúc hai phía của đồ thị, nên kết luận thực ra đúng với đồ thị vô hướng tổng quát. Tuy nhiên, ghép cực đại trên đồ thị tổng quát phức tạp hơn, vì vậy kết luận này thường xuất hiện trong các bài về đồ thị hai phía.
 
-???+ abstract "二分图博弈"
-    两个玩家轮流行动．每个玩家面临的局面都由一个无向图 $G=(V,E)$ 和它的一个顶点 $v\in V$ 构成．在一名玩家的回合中，若当前局面为 $(G,v)$，则该玩家必须选择一个与 $v$ 相邻的顶点 $u$．随后，将顶点 $v$ 及其所有关联边从图 $G$ 中删除，得到残余图 $G'$．新的局面即为 $(G',u)$，交由下一位玩家．若某位玩家在其回合开始时，当前顶点 $v$ 在图中没有相邻顶点（即不存在合法选择），则该玩家无法行动，并因此输掉游戏．
+???+ abstract "Trò chơi trên đồ thị hai phía"
+    Hai người chơi lần lượt hành động. Cục diện mà mỗi người chơi đối mặt gồm một đồ thị vô hướng $G=(V,E)$ và một đỉnh $v\in V$ của nó. Trong lượt của một người chơi, nếu cục diện hiện tại là $(G,v)$, người chơi đó phải chọn một đỉnh $u$ kề với $v$. Sau đó, xóa đỉnh $v$ và mọi cạnh liên thuộc với nó khỏi đồ thị $G$, thu được đồ thị còn lại $G'$. Cục diện mới là $(G',u)$ và được giao cho người chơi tiếp theo. Nếu một người chơi bắt đầu lượt của mình mà đỉnh hiện tại $v$ không có đỉnh kề trong đồ thị, tức không tồn tại lựa chọn hợp lệ, thì người chơi đó không thể hành động và thua.
 
-对此，有如下结论：
+Với trò chơi này, có kết luận sau:
 
-???+ note "定理"
-    游戏先手必胜，当且仅当顶点 $v$ 是图 $G$ 的最大匹配关键点，也就是说，在图 $G$ 的所有最大匹配中，顶点 $v$ 都是匹配点．
+???+ note "Định lý"
+    Người đi trước tất thắng khi và chỉ khi đỉnh $v$ là điểm then chốt của ghép cực đại trong đồ thị $G$, nghĩa là trong mọi ghép cực đại của đồ thị $G$, đỉnh $v$ đều là đỉnh được ghép.
 
-??? note "证明"
-    首先，顶点 $v$ 是图 $G$ 的最大匹配关键点．设 $G$ 的一个最大匹配为 $M$．此时，先手可以将局面移动到在 $M$ 中与顶点 $v$ 匹配的顶点 $u$．由于顶点 $v$ 出现在所有图 $G$ 的最大匹配中，所以，残余图 $G'$ 的最大匹配的大小至多是 $|M|-1$；而且将 $M$ 去掉边 $(v,v)$ 就能得到图 $G'$ 的一个大小为 $|M|-1$ 的匹配 $M'$：结合这两点就知道，$M'$ 是图 $G'$ 的一个最大匹配．但是，后手玩家所处的局面中，顶点 $u$ 并不是匹配 $M'$ 的一个匹配点．因此，后手玩家必然处于一个必败状态．
+??? note "Chứng minh"
+    Trước hết, giả sử đỉnh $v$ là điểm then chốt của ghép cực đại trong đồ thị $G$. Gọi $M$ là một ghép cực đại của $G$. Khi đó, người đi trước có thể chuyển cục diện tới đỉnh $u$ được ghép với $v$ trong $M$. Vì đỉnh $v$ xuất hiện trong mọi ghép cực đại của đồ thị $G$, kích thước ghép cực đại của đồ thị còn lại $G'$ nhiều nhất là $|M|-1$; hơn nữa, bỏ cạnh $(v,u)$ khỏi $M$ sẽ thu được một ghép $M'$ của đồ thị $G'$ có kích thước $|M|-1$. Kết hợp hai điểm này, $M'$ là một ghép cực đại của đồ thị $G'$. Tuy nhiên, trong cục diện của người đi sau, đỉnh $u$ không phải là đỉnh được ghép trong ghép $M'$. Vì vậy, người đi sau tất yếu ở trạng thái tất bại.
     
-    反过来，假设存在最大匹配 $M$ 使得 $v$ 是未匹配点．由于 $M$ 是最大匹配，与顶点 $v$ 相邻的顶点一定是匹配点；否则，就可以将它们之间的连边添加到 $M$ 中，得到一个更大的匹配．因此，无论先手怎么选择，后手都处于一个必胜状态．
+    Ngược lại, giả sử tồn tại một ghép cực đại $M$ sao cho $v$ là đỉnh chưa ghép. Vì $M$ là ghép cực đại, mọi đỉnh kề với $v$ nhất định là đỉnh được ghép; nếu không, có thể thêm cạnh giữa chúng vào $M$ để nhận được một ghép lớn hơn. Do đó, bất kể người đi trước chọn thế nào, người đi sau đều ở trạng thái tất thắng.
 
-求出二分图最大匹配关键点的算法详见 [二分图最大匹配页面](../../graph/graph-matching/bigraph-match.md#最大匹配关键点)．
+Thuật toán tìm các điểm then chốt của ghép cực đại trên đồ thị hai phía xem tại [trang ghép cực đại trên đồ thị hai phía](../../graph/graph-matching/bigraph-match.md#%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E5%85%B3%E9%94%AE%E7%82%B9).
 
-另外，二分图博弈还有一个变体：
+Ngoài ra, trò chơi trên đồ thị hai phía còn có một biến thể:
 
-???+ abstract "二分图博弈的变体"
-    设 $G=(V,E)$ 是一个无向图，且图的每个顶点上都放置了一枚石子．两名玩家轮流行动取走石子．游戏开始时，先手玩家可以取走任何一枚石子；后续的回合中，每名玩家取走石子的顶点必须与上一回合中对方取走石子的顶点相邻．最先无法取走石子的玩家输掉游戏．
+???+ abstract "Biến thể của trò chơi trên đồ thị hai phía"
+    Cho $G=(V,E)$ là một đồ thị vô hướng, và trên mỗi đỉnh của đồ thị đặt một viên đá. Hai người chơi lần lượt hành động để lấy đá. Khi trò chơi bắt đầu, người đi trước có thể lấy đi bất kỳ viên đá nào; ở các lượt sau, mỗi người chơi phải lấy viên đá tại một đỉnh kề với đỉnh mà đối phương đã lấy đá ở lượt trước. Người đầu tiên không thể lấy đá thua.
 
-显然，这个变体相当于在前文所述二分图博弈中，让先手玩家选择初始局面，然后从后手玩家开始二分图博弈．因此，这个变体中，先手玩家必败，当且仅当每个顶点都是最大匹配关键点，亦即图 $G$ 存在 [完美匹配](../../graph/graph-matching/graph-match.md#定义)．
+Rõ ràng, biến thể này tương đương với việc trong trò chơi trên đồ thị hai phía ở trên, cho người đi trước chọn cục diện ban đầu, rồi để người đi sau bắt đầu trò chơi trên đồ thị hai phía. Vì vậy, trong biến thể này, người đi trước tất bại khi và chỉ khi mọi đỉnh đều là điểm then chốt của ghép cực đại, tức đồ thị $G$ tồn tại [ghép hoàn hảo](../../graph/graph-matching/graph-match.md#%E5%AE%9A%E4%B9%89).
 
-## 反常 Nim 游戏
+<span id="&#21453;&#24120; Nim &#28216;&#25103;"></span>
+## Trò chơi Nim luật ngược
 
-本节讨论反常 Nim 游戏的求解．
+Phần này thảo luận cách giải Nim luật ngược.
 
-???+ abstract "Nim 游戏"
-    共有 $n$ 堆石子，第 $i$ 堆有 $a_i$ 枚石子．两名玩家轮流取走任意一堆中的任意多枚石子，但不能不取．取走最后一枚石子的玩家失败．
+???+ abstract "Trò chơi Nim"
+    Có $n$ đống đá, đống thứ $i$ có $a_i$ viên đá. Hai người chơi lần lượt lấy đi một số viên đá tùy ý từ một đống tùy ý, nhưng không được không lấy. Người lấy viên đá cuối cùng thua.
 
-对此，有如下结论：
+Với trò chơi này, có kết luận sau:
 
-???+ note "定理"
-    反常 Nim 游戏中，状态 $(a_1,a_2,\cdots,a_n)$ 是必败状态 $\mathcal P$，当且仅当
+???+ note "Định lý"
+    Trong Nim luật ngược, trạng thái $(a_1,a_2,\cdots,a_n)$ là trạng thái tất bại $\mathcal P$ khi và chỉ khi
     
-    1.  存在 $i$ 使得 $a_i>1$，且 Nim 和 $a_1\oplus a_2\oplus\cdots\oplus a_n=0$，或者
-    2.  对于所有 $i$ 都有 $a_i\le 1$，且剩余的非空石子堆数是奇数．
+    1.  tồn tại $i$ sao cho $a_i>1$, và tổng Nim $a_1\oplus a_2\oplus\cdots\oplus a_n=0$; hoặc
+    2.  với mọi $i$ đều có $a_i\le 1$, và số đống đá còn lại không rỗng là số lẻ.
 
-??? note "证明"
-    由于无法操作是先手必胜态 $\mathcal N$，所以，可以归纳地证明，如果每堆石子都只有一枚，那么石子堆数是奇数就对应着先手必败态 $\mathcal N$，石子堆数是偶数就对应着先手必胜态 $\mathcal N$．
+??? note "Chứng minh"
+    Vì không thể thao tác là trạng thái tất thắng cho người đi trước $\mathcal N$, có thể chứng minh quy nạp rằng nếu mỗi đống đá đều chỉ có một viên, thì số đống đá lẻ tương ứng với trạng thái tất bại cho người đi trước $\mathcal P$, còn số đống đá chẵn tương ứng với trạng thái tất thắng cho người đi trước $\mathcal N$.
     
-    接下来，考察有些堆石子的数量严格大于 $1$ 的情况．
+    Tiếp theo, xét trường hợp có một số đống đá có số lượng lớn hơn nghiêm ngặt $1$.
     
-    情形 A：如果只有一堆石子的数量严格大于 $1$，那么，此时 Nim 和一定不为 $0$．而且，由于先手玩家可以选择转移到全部堆的石子数量均不超过 $1$ 的局面，而且可以控制剩余的非空石子堆的奇偶性．因此，此时为先手必胜态 $\mathcal N$．
+    Trường hợp A: nếu chỉ có một đống đá có số lượng lớn hơn nghiêm ngặt $1$, thì lúc này tổng Nim chắc chắn khác $0$. Hơn nữa, vì người đi trước có thể chọn chuyển sang cục diện mà số đá ở mọi đống đều không vượt quá $1$, đồng thời có thể kiểm soát tính chẵn lẻ của số đống đá không rỗng còn lại, nên đây là trạng thái tất thắng cho người đi trước $\mathcal N$.
     
-    情形 B：现在，有不止一堆石子的数量严格大于 $1$，那么，无论怎么操作，下一个局面中，都至少有一堆石子的数量严格大于 $1$．根据归纳假设，下一局面中，先手必败对应着 Nim 和为零，先手必胜对应着 Nim 和不为零．这与正常 Nim 游戏的归纳假设完全相同．因此，重复 Nim 游戏的论证，就能知道，当前局面同样符合 Nim 和为零对应先手必败状态的结论．
+    Trường hợp B: hiện có hơn một đống đá có số lượng lớn hơn nghiêm ngặt $1$. Khi đó dù thao tác thế nào, trong cục diện tiếp theo vẫn có ít nhất một đống đá có số lượng lớn hơn nghiêm ngặt $1$. Theo giả thiết quy nạp, trong cục diện tiếp theo, người đi trước tất bại tương ứng với tổng Nim bằng không, còn người đi trước tất thắng tương ứng với tổng Nim khác không. Điều này hoàn toàn giống giả thiết quy nạp của Nim bình thường. Vì vậy, lặp lại lập luận của trò chơi Nim, ta biết cục diện hiện tại cũng thỏa kết luận rằng tổng Nim bằng không tương ứng với trạng thái người đi trước tất bại.
 
-## 有向图游戏
+<span id="&#26377;&#21521;&#22270;&#28216;&#25103;"></span>
+## Trò chơi trên đồ thị có hướng
 
-本文讨论的公平组合游戏，要求同一局面不能出现两次，也不存在平局的可能性．因此，对应的博弈图总是有向无环图．本节放宽了这一限制，讨论如何在一般的有向图上判定各个状态是先手必胜、先手必败或平局．
+Các trò chơi tổ hợp công bằng được thảo luận trong bài này yêu cầu cùng một cục diện không thể xuất hiện hai lần, và không có khả năng hòa. Do đó, đồ thị trò chơi tương ứng luôn là đồ thị có hướng không chu trình. Phần này nới lỏng hạn chế đó và thảo luận cách phán định từng trạng thái trên một đồ thị có hướng tổng quát là người đi trước tất thắng, người đi trước tất bại hay hòa.
 
-有向图游戏的规则和其他的公平组合游戏大体一致：从起始状态出发，轮流沿着有向图的边移动一步，直到无路可走．根据游戏是正常规则还是反常规则，最后一个不能移动的玩家分别是败者和胜者．在这样的游戏里，每个状态的胜负情况共有三种可能性：先手必胜、先手必败、平局．平局中游戏永远不会终止．尽管稍微复杂一些，但是关于必败状态和必胜状态的 [引理](#np-lem) 依然成立，而剩下的状态就是平局状态：
+Luật của trò chơi trên đồ thị có hướng về cơ bản giống các trò chơi tổ hợp công bằng khác: bắt đầu từ trạng thái khởi đầu, hai người chơi lần lượt di chuyển một bước dọc theo cạnh có hướng cho tới khi không còn đường đi. Tùy theo trò chơi là luật bình thường hay luật ngược, người chơi cuối cùng không thể di chuyển lần lượt là người thua hoặc người thắng. Trong trò chơi như vậy, tình trạng thắng thua của mỗi trạng thái có ba khả năng: người đi trước tất thắng, người đi trước tất bại, hoặc hòa. Khi hòa, trò chơi sẽ không bao giờ kết thúc. Dù phức tạp hơn một chút, [bổ đề](#np-lem) về trạng thái tất bại và tất thắng vẫn đúng, còn các trạng thái còn lại là trạng thái hòa:
 
--   一个状态有后继状态先手必胜，当且仅当后继状态之一是必败状态；
--   如果一个状态有后继状态，那么它先手必败，当且仅当所有后继状态都是必胜状态；
--   如果一个状态无法分类为必胜状态和必败状态，那么它就是平局状态．
+-   Một trạng thái có trạng thái kế tiếp mà người đi trước tất thắng khi và chỉ khi một trong các trạng thái kế tiếp là tất bại;
+-   Nếu một trạng thái có trạng thái kế tiếp, thì người đi trước tất bại khi và chỉ khi mọi trạng thái kế tiếp đều là tất thắng;
+-   Nếu một trạng thái không thể được phân loại là tất thắng hay tất bại, thì nó là trạng thái hòa.
 
-要将所有状态分类为这三种状态，只需要采用类似 [拓扑排序](../../graph/topo.md) 的思路：
+Để phân loại mọi trạng thái thành ba loại này, chỉ cần dùng ý tưởng tương tự [sắp xếp tô pô](../../graph/topo.md):
 
-1.  初始化时，记录所有状态的出度，将所有出度为零的状态压入队列，并根据游戏是正常规则或是反常规则分别设为必败状态或必胜状态．
-2.  弹出队首状态．如果是必败状态，则设前驱状态为必胜状态；否则，当前状态是必胜状态，将它的所有前驱状态的出度减一，并将出度为零的前驱状态设为必败状态．将可以判断是必胜或必败状态的前驱状态压入队列．
-3.  算法在队列为空时终止．尚未判断为必胜或必败状态的状态均为平局状态．
+1.  Khi khởi tạo, ghi lại bậc ra của mọi trạng thái, đẩy mọi trạng thái có bậc ra bằng không vào hàng đợi, và tùy theo trò chơi là luật bình thường hay luật ngược mà lần lượt đặt chúng là trạng thái tất bại hoặc tất thắng.
+2.  Lấy trạng thái đầu hàng đợi ra. Nếu đó là trạng thái tất bại, đặt trạng thái tiền nhiệm là tất thắng; nếu không, trạng thái hiện tại là tất thắng, giảm bậc ra của mọi trạng thái tiền nhiệm của nó đi một, và đặt trạng thái tiền nhiệm có bậc ra bằng không là tất bại. Đẩy các trạng thái tiền nhiệm đã có thể xác định là tất thắng hoặc tất bại vào hàng đợi.
+3.  Thuật toán kết thúc khi hàng đợi rỗng. Mọi trạng thái chưa được xác định là tất thắng hoặc tất bại đều là trạng thái hòa.
 
-这一算法可以在 $O(|V|+|E|)$ 时间内将所有状态分类．
+Thuật toán này có thể phân loại mọi trạng thái trong thời gian $O(|V|+|E|)$.
 
-## 例题
+<span id="&#20363;&#39064;"></span>
+## Bài tập ví dụ
 
-本节讨论一些典型的例题．
+Phần này thảo luận một số bài tập điển hình.
 
 ???+ example "[Luogu P2148 \[SDOI2009\] E&D](https://www.luogu.com.cn/problem/P2148)"
-    有 $2n$ 堆石子．对于 $k=1,2,\cdots,n$，石子堆 $2k-1$ 和 $2k$ 分为一组．两名玩家轮流操作，每次选择一组石子堆，将其中一堆移走，并将另一堆分为非空的两堆，放到该组石子堆所在的两个位置．如果所有石子堆都只有一枚石子，当前玩家就没有合法操作，输掉游戏．给定每堆石子的数量 $\{a_i\}_{i=1}^{2n}$，问是否为先手必胜状态．
+    Có $2n$ đống đá. Với $k=1,2,\cdots,n$, hai đống đá $2k-1$ và $2k$ tạo thành một nhóm. Hai người chơi lần lượt thao tác: mỗi lần chọn một nhóm đống đá, bỏ đi một trong hai đống, rồi chia đống còn lại thành hai đống không rỗng và đặt vào hai vị trí của nhóm đó. Nếu mọi đống đá đều chỉ có một viên, người chơi hiện tại không có thao tác hợp lệ và thua. Cho số đá của mỗi đống $\{a_i\}_{i=1}^{2n}$, hỏi cục diện có tất thắng cho người đi trước hay không.
 
-??? note "解答"
-    显然，不同组石子堆的游戏相互独立，所以，只要计算每组游戏的 SG 函数值，就能计算出整个游戏的 SG 值，进而判断是否为必胜状态．关键在于如何计算每组石子堆的 SG 函数值．这并不容易．解决这类博弈论问题的常见思路是打表．设一组石子堆中石子数量分别为 $(i,j)$ 时，SG 值为 $f(i,j)$．那么，写一个暴力打表的程序，就得到如下结果：
+??? note "Lời giải"
+    Rõ ràng, trò chơi ở các nhóm đống đá khác nhau độc lập với nhau. Vì vậy, chỉ cần tính giá trị hàm SG của mỗi nhóm là có thể tính giá trị SG của toàn bộ trò chơi, từ đó phán định có phải trạng thái tất thắng hay không. Điểm mấu chốt là tính giá trị hàm SG của mỗi nhóm đống đá như thế nào. Điều này không dễ. Một hướng thường gặp khi giải các bài lý thuyết trò chơi loại này là lập bảng. Gọi giá trị SG là $f(i,j)$ khi trong một nhóm, số đá ở hai đống lần lượt là $(i,j)$. Viết một chương trình vét cạn lập bảng sẽ nhận được kết quả sau:
     
     ```text
     0 1 0 2 0 1 0 3 0 1 0 2 0 1 0 4 
@@ -568,7 +587,7 @@ $$
     4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
     ```
     
-    这个表很具有规律性．有一个简单的观察：表格分成若干个 $2\times 2$ 的矩阵，且左上角处总是 $0$，而其余三个值总是一样的．于是，不妨将这个表格压缩，将每个 $2\times 2$ 的矩阵都压缩为除了左上角之外那个共同的数值：
+    Bảng này có quy luật rất rõ. Một quan sát đơn giản là bảng được chia thành nhiều ma trận $2\times 2$, trong đó góc trái trên luôn là $0$, còn ba giá trị còn lại luôn giống nhau. Vì vậy, có thể nén bảng này bằng cách nén mỗi ma trận $2\times 2$ thành giá trị chung ngoài góc trái trên:
     
     ```text
     1 2 1 3 1 2 1 4 
@@ -581,7 +600,7 @@ $$
     4 4 4 4 4 4 4 4 
     ```
     
-    可以发现，这个压缩的表格是前面完整表格相同位置的值加一．其实问题已经解决了．设下标从 $0$ 开始，那么表格中 $(i,j)$ 处的值 $g(i,j)$ 可以由如下递推公式给出：
+    Có thể thấy bảng nén này bằng giá trị ở cùng vị trí trong bảng đầy đủ phía trước cộng thêm một. Thực ra bài toán đã được giải quyết. Giả sử chỉ số bắt đầu từ $0$, giá trị $g(i,j)$ tại vị trí $(i,j)$ của bảng có thể được cho bởi công thức truy hồi:
     
     $$
     g(i,j) =
@@ -591,41 +610,41 @@ $$
     \end{cases}
     $$
     
-    要求的 SG 函数 $f(i,j)=g(i-1,j-1)$．利用这一递推公式，算法可以在 $O(\log\min\{i,j\})$ 时间内求出 $f(i,j)$ 的取值．
+    Hàm SG cần tìm là $f(i,j)=g(i-1,j-1)$. Dùng công thức truy hồi này, thuật toán có thể tính giá trị $f(i,j)$ trong thời gian $O(\log\min\{i,j\})$.
     
-    当然，可以通过简单的归纳法得到 $g(i,j)$ 其实就是将 $i$ 和 $j$ 反复同时除以 $2$ 得到两个偶数的最少次数．换句话说，它就是 $i$ 与 $j$ 的按位或中末尾 $1$ 的个数．由此，也可以直接利用 `__builtin_ctz(~(i | j))` 算出该值．
+    Tất nhiên, bằng quy nạp đơn giản có thể thấy $g(i,j)$ thực ra là số lần ít nhất cần đồng thời chia $i$ và $j$ cho $2$ cho tới khi nhận được hai số chẵn. Nói cách khác, nó chính là số bit $1$ liên tiếp ở cuối trong phép OR bit của $i$ và $j$. Từ đó cũng có thể trực tiếp dùng `__builtin_ctz(~(i | j))` để tính giá trị này.
     
-    这类题目中，只要通过打表观察的方法得到 SG 函数表达式，它都很容易通过归纳法证明，因而解题的关键在于以某种形式获得这些结论而非推导．例如，已知结论后，本题中的递推关系可以归纳证明如下．设 $S_k$ 为将 $k$ 枚石子分成非空的两堆能得到的局面的 SG 值集合，那么，$f(i,j) = \operatorname{mex}(S_i \cup S_j)$．故而，$S_k$ 有递推关系：
+    Trong loại bài này, sau khi quan sát từ bảng và nhận được biểu thức hàm SG, biểu thức đó thường rất dễ chứng minh bằng quy nạp; vì vậy điểm mấu chốt khi giải bài là thu được các kết luận này bằng một hình thức nào đó, chứ không phải suy diễn từ đầu. Ví dụ, sau khi biết kết luận, quan hệ truy hồi trong bài này có thể được chứng minh quy nạp như sau. Gọi $S_k$ là tập các giá trị SG của các cục diện có thể nhận được khi chia $k$ viên đá thành hai đống không rỗng. Khi đó $f(i,j) = \operatorname{mex}(S_i \cup S_j)$. Vì vậy $S_k$ có quan hệ truy hồi:
     
     $$
     S_k = \{\operatorname{mex}(S_i \cup S_j) : i + j = k,~i,j\in\mathbf N_+\}.
     $$
     
-    需要证明的是，$d\in S_k$ 当且仅当 $(k-1)$ 的二进制表示中第 $d$ 位（最低位是第 $0$ 位）是 $1$．
+    Cần chứng minh rằng $d\in S_k$ khi và chỉ khi trong biểu diễn nhị phân của $(k-1)$, bit thứ $d$ với bit thấp nhất là bit thứ $0$ bằng $1$.
     
-    利用数学归纳法．归纳起点 $S_1=\varnothing$ 显然成立．假设命题对小于 $k$ 的正整数都成立．那么，$d\in S_k$，当且仅当存在 $i,j\in\mathbf N_+$ 使得 $i+j=k$ 且 $(i-1)$ 和 $(j-1)$ 两个数的第 $d' < d$ 位至少有一个为 $1$，且第 $d$ 位均为 $0$．显然，存在这样一种拆分，当且仅当只考虑第 $0\sim d$ 位的部分，即模 $2^{d+1}$ 时，$(k-1)=(i-1)+(j-1)+1$ 的取值范围为 $[2^d,2^{d+1}-1)$ 之间．这一条件就等价于 $(k-1)$ 的第 $d$ 位是 $1$．由此，归纳步骤成立．原命题得证．
+    Dùng quy nạp toán học. Cơ sở quy nạp $S_1=\varnothing$ hiển nhiên đúng. Giả sử mệnh đề đúng với mọi số nguyên dương nhỏ hơn $k$. Khi đó $d\in S_k$ khi và chỉ khi tồn tại $i,j\in\mathbf N_+$ sao cho $i+j=k$, đồng thời trong hai số $(i-1)$ và $(j-1)$, ở mỗi bit $d' < d$ có ít nhất một số có bit bằng $1$, còn bit thứ $d$ của cả hai đều bằng $0$. Hiển nhiên, tồn tại một cách chia như vậy khi và chỉ khi nếu chỉ xét phần gồm các bit $0\sim d$, tức xét modulo $2^{d+1}$, giá trị của $(k-1)=(i-1)+(j-1)+1$ nằm trong khoảng $[2^d,2^{d+1}-1)$. Điều kiện này tương đương với bit thứ $d$ của $(k-1)$ bằng $1$. Từ đó bước quy nạp đúng, và mệnh đề ban đầu được chứng minh.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/impartial-game/impartial-game-1.cpp"
     ```
 
-???+ example "[Luogu P5675 \[GZOI2017\] 取石子游戏](https://www.luogu.com.cn/problem/P5675)"
-    有 $n$ 堆石子，第 $i$ 堆有 $a_i$ 枚．两人玩 Nim 游戏．现在，可以任意指定若干堆石子作为初始局面，并指定其中一堆石子要求先手玩家首轮必须从中取走石子，但不能指定取走石子的数目．问有多少种指定方式，使得先手无法获得胜利．数据满足 $n,a_i\le 200$．
+???+ example "[Luogu P5675 \[GZOI2017\] Trò chơi lấy đá](https://www.luogu.com.cn/problem/P5675)"
+    Có $n$ đống đá, đống thứ $i$ có $a_i$ viên. Hai người chơi chơi trò Nim. Giờ có thể tùy ý chỉ định một số đống đá làm cục diện ban đầu, đồng thời chỉ định một trong các đống đó là đống mà người đi trước bắt buộc phải lấy đá ở lượt đầu, nhưng không được chỉ định số đá cần lấy. Hỏi có bao nhiêu cách chỉ định sao cho người đi trước không thể giành thắng lợi. Dữ liệu thỏa $n,a_i\le 200$.
 
-??? note "解答"
-    对于这类问题，需要利用常见游戏的结论，并结合其他部分知识来进行解答．假设指定先手必须取走第 $i$ 堆石子，且指定的所有石子堆数量 Nim 和为 $v$，那么，先手无法获得胜利，当且仅当 $a_i \le a_i\oplus v$，也就是说，第 $i$ 堆石子数量 $a_i$ 不超过除第 $i$ 堆外剩余石子堆数量 Nim 和 $a_i\oplus v$．由于数据范围很小，直接枚举指定首轮取石子的堆；枚举到第 $i$ 堆时，剩余每个堆选或不选，可以得到不同 Nim 和的方案数可以通过 DP 计算出来，将最后得到的方案数中大于等于 $a_i$ 的部分加总起来即可．
+??? note "Lời giải"
+    Với loại bài này, cần dùng kết luận của các trò chơi thường gặp và kết hợp kiến thức ở phần khác để giải. Giả sử chỉ định người đi trước phải lấy đá từ đống thứ $i$, và tổng Nim của mọi đống đá được chỉ định là $v$. Khi đó người đi trước không thể giành thắng lợi khi và chỉ khi $a_i \le a_i\oplus v$, tức số đá $a_i$ của đống thứ $i$ không vượt quá tổng Nim $a_i\oplus v$ của số đá ở các đống còn lại ngoài đống thứ $i$. Vì phạm vi dữ liệu rất nhỏ, có thể trực tiếp liệt kê đống được chỉ định để lấy đá ở lượt đầu; khi xét tới đống thứ $i$, với mỗi đống còn lại chọn hoặc không chọn, số phương án tạo ra từng tổng Nim khác nhau có thể được tính bằng DP, rồi cộng phần số phương án cuối cùng có giá trị lớn hơn hoặc bằng $a_i$.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/impartial-game/impartial-game-2.cpp"
     ```
 
-???+ example "[Luogu P2599 \[ZJOI2009\] 取石子游戏](https://www.luogu.com.cn/problem/P2599)"
-    有 $n$ 堆石子，第 $i$ 堆有 $a_i$ 枚．两人轮流取走石子，每次都只能从最左或最右的两堆中选择一堆取走任意枚石子，但不能不取．取走最后一枚石子的玩家胜利．问先手是否必胜．
+???+ example "[Luogu P2599 \[ZJOI2009\] Trò chơi lấy đá](https://www.luogu.com.cn/problem/P2599)"
+    Có $n$ đống đá, đống thứ $i$ có $a_i$ viên. Hai người chơi lần lượt lấy đá; mỗi lần chỉ được chọn một đống ở ngoài cùng bên trái hoặc ngoài cùng bên phải để lấy đi tùy ý nhiều viên đá, nhưng không được không lấy. Người lấy viên đá cuối cùng thắng. Hỏi người đi trước có tất thắng hay không.
 
-??? note "解答"
-    由于本题中并不存在相互独立的子游戏，所有这道题目原则上只用到 [判断必败和必胜状态的引理](#博弈图和状态)．从最简单的情形开始分析．当 $n\le 2$ 时，就是 Nim 游戏．当 $n \ge 3$ 时，问题变得复杂．但是，由于可操作的石子堆只能是两端的石子堆，不妨设它们中石子数量分别为 $x$ 和 $y$．进一步地，设 $f(x,y)$ 为先手必胜状态的指示函数，即先手必胜时 $f(x,y)=1$，否则 $f(x,y)=0$．容易发现，$f(x,y)$ 的取值满足递推关系：$f(x,y)=0$，当且仅当对于所有 $s < x$ 和 $t < y$ 都有 $f(x,t)=f(s,y)=1$．递推起点在 $x=0$ 或 $y=0$ 时，此时，游戏已经不足 $n$ 堆石子，需要进一步考虑中间石子堆的数量．因此，不妨暂时假设 $f(x,0)$ 和 $f(0,y)$ 是已知的，考虑如何从它们的取值推出所有 $f(x,y)$ 的取值．这并不困难．考虑下标集合为 $\mathbf N\times\mathbf N$ 的无穷大矩阵，求 $f(x,y)$ 相当于向里面填 $0$ 和 $1$，需要满足的条件是，每行和每列都至多一个 $0$，且如果同行或同列中之前的位置都没有出现过 $0$，该位置一定是 $0$．每行中 $0$ 的位置实际上定义了一个从行号 $x$ 到列号 $y$ 的函数．简单尝试几个例子（即打表）之后就可以发现，如果设使得 $f(x,0)=0$ 的唯一的 $x$ 是 $x_0$，使得 $f(0,y)=0$ 的唯一的 $y$ 是 $y_0$，那么，对于任何 $x$，使得 $f(x,y)=0$ 成立的
+??? note "Lời giải"
+    Vì bài này không tồn tại các trò chơi con độc lập với nhau, về nguyên tắc chỉ dùng [bổ đề phán định trạng thái tất bại và tất thắng](#np-lem). Bắt đầu phân tích từ trường hợp đơn giản nhất. Khi $n\le 2$, đây là trò chơi Nim. Khi $n \ge 3$, bài toán trở nên phức tạp. Tuy nhiên, vì các đống đá có thể thao tác chỉ là hai đống ở hai đầu, giả sử số đá của chúng lần lượt là $x$ và $y$. Tiếp đó, gọi $f(x,y)$ là hàm chỉ thị trạng thái người đi trước tất thắng, tức $f(x,y)=1$ nếu người đi trước tất thắng, ngược lại $f(x,y)=0$. Dễ thấy giá trị của $f(x,y)$ thỏa quan hệ truy hồi: $f(x,y)=0$ khi và chỉ khi với mọi $s < x$ và $t < y$ đều có $f(x,t)=f(s,y)=1$. Cơ sở truy hồi nằm ở $x=0$ hoặc $y=0$; khi đó trò chơi đã còn chưa tới $n$ đống đá, nên cần xét thêm số đá ở các đống giữa. Vì vậy, tạm giả sử $f(x,0)$ và $f(0,y)$ đã biết, rồi xét cách suy ra toàn bộ giá trị $f(x,y)$ từ chúng. Điều này không khó. Xét ma trận vô hạn có tập chỉ số là $\mathbf N\times\mathbf N$; việc tính $f(x,y)$ tương đương với điền $0$ và $1$ vào ma trận, cần thỏa điều kiện rằng mỗi hàng và mỗi cột có nhiều nhất một số $0$, và nếu các vị trí trước đó trong cùng hàng hoặc cùng cột đều chưa xuất hiện số $0$, thì vị trí này nhất định là $0$. Vị trí của số $0$ trong mỗi hàng thực ra định nghĩa một hàm từ số hàng $x$ tới số cột $y$. Sau khi thử một vài ví dụ đơn giản, tức lập bảng, có thể thấy rằng nếu $x_0$ là $x$ duy nhất sao cho $f(x,0)=0$, và $y_0$ là $y$ duy nhất sao cho $f(0,y)=0$, thì với mọi $x$, giá trị $y$ làm $f(x,y)=0$ là
     
     $$
     y = \begin{cases}
@@ -636,38 +655,39 @@ $$
     \end{cases}
     $$
     
-    也就是说，只要知道 $x_0$ 和 $y_0$，就可以在 $O(1)$ 时间内计算出任意 $f(x,y)$ 的值，判断当前状态是否为先手必胜状态．而 $x_0$ 和 $y_0$ 可以递归计算．例如，$x_0$ 是使得 $f(x,0)=0$ 的唯一解，但同时，$f(x,0)$ 的取值可以通过移除最右侧石子堆后，只考虑剩下的 $n-1$ 堆石子来计算；也就是说，只考虑前 $n-1$ 堆石子，同样可以计算一个 $f_{1,n-1}(x,y)$，那么，显然有 $f(x,0)=f_{1,n-1}(x,a_{n-1})$；类似地，移除最左侧石子堆并计算得出 $f_{2,n}(x,y)$ 后，就得到 $f(0,y)=f_{2,n}(a_1,y)$．当然，内层的函数 $f_{1,n-1}(x,y)$ 和 $f_{2,n}(x,y)$ 的计算依赖于更内层的函数．这是典型的 [区间 DP](../../dp/interval.md)．每层只需要维护相应函数的 $x_0$ 和 $y_0$ 即可．
+    Nói cách khác, chỉ cần biết $x_0$ và $y_0$ là có thể tính giá trị của mọi $f(x,y)$ trong thời gian $O(1)$, từ đó phán định trạng thái hiện tại có tất thắng cho người đi trước hay không. Còn $x_0$ và $y_0$ có thể được tính đệ quy. Ví dụ, $x_0$ là nghiệm duy nhất làm $f(x,0)=0$, nhưng đồng thời giá trị của $f(x,0)$ có thể được tính bằng cách bỏ đống đá ngoài cùng bên phải rồi chỉ xét $n-1$ đống còn lại; nói cách khác, chỉ xét $n-1$ đống đá đầu cũng có thể tính một hàm $f_{1,n-1}(x,y)$, khi đó hiển nhiên có $f(x,0)=f_{1,n-1}(x,a_{n-1})$. Tương tự, sau khi bỏ đống đá ngoài cùng bên trái và tính được $f_{2,n}(x,y)$, ta nhận được $f(0,y)=f_{2,n}(a_1,y)$. Tất nhiên, việc tính các hàm bên trong $f_{1,n-1}(x,y)$ và $f_{2,n}(x,y)$ lại phụ thuộc vào các hàm ở lớp sâu hơn. Đây là [DP đoạn](../../dp/interval.md) điển hình. Ở mỗi lớp, chỉ cần duy trì $x_0$ và $y_0$ của hàm tương ứng.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/impartial-game/impartial-game-3.cpp"
     ```
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
-首先是一些模板题．它们是对本页面的结论的简单应用：
+Trước hết là một số bài mẫu. Chúng là các ứng dụng đơn giản của những kết luận trong trang này:
 
--   [Luogu P2197【模板】Nim 游戏](https://www.luogu.com.cn/problem/P2197)
--   [Luogu P2252 \[SHOI2002\] 取石子游戏](https://www.luogu.com.cn/problem/P2252)
--   [Luogu P2594 \[ZJOI2009\] 染色游戏](https://www.luogu.com.cn/problem/P2594)
--   [Luogu P3185 \[HNOI2007\] 分裂游戏](https://www.luogu.com.cn/problem/P3185)
+-   [Luogu P2197 [Mẫu] Trò chơi Nim](https://www.luogu.com.cn/problem/P2197)
+-   [Luogu P2252 \[SHOI2002\] Trò chơi lấy đá](https://www.luogu.com.cn/problem/P2252)
+-   [Luogu P2594 \[ZJOI2009\] Trò chơi tô màu](https://www.luogu.com.cn/problem/P2594)
+-   [Luogu P3185 \[HNOI2007\] Trò chơi tách](https://www.luogu.com.cn/problem/P3185)
 -   [Luogu P3480 \[POI 2009\] KAM-Pebbles](https://www.luogu.com.cn/problem/P3480)
--   [Luogu P4101 \[HEOI2014\] 人人尽说江南好](https://www.luogu.com.cn/problem/P4101)
--   [Luogu P4279 \[SHOI2008\] 小约翰的游戏](https://www.luogu.com.cn/problem/P4279)
+-   [Luogu P4101 \[HEOI2014\] Ai cũng khen Giang Nam đẹp](https://www.luogu.com.cn/problem/P4101)
+-   [Luogu P4279 \[SHOI2008\] Trò chơi của Little John](https://www.luogu.com.cn/problem/P4279)
 -   [Luogu P6487 \[COCI 2010/2011 #4\] HRPA](https://www.luogu.com.cn/problem/P6487)
--   [Luogu P6560 \[SBCOI2020\] 时光的流逝](https://www.luogu.com.cn/problem/P6560)
--   [Luogu P7589 黑白棋（2021 CoE-II B）](https://www.luogu.com.cn/problem/P7589)
+-   [Luogu P6560 \[SBCOI2020\] Thời gian trôi qua](https://www.luogu.com.cn/problem/P6560)
+-   [Luogu P7589 Cờ đen trắng (2021 CoE-II B)](https://www.luogu.com.cn/problem/P7589)
 -   [AtCoder Regular Contest 168 B - Arbitrary Nim](https://atcoder.jp/contests/arc168/tasks/arc168_b)
 
-然后是一些思维性更强或更为综合的题目：
+Sau đó là một số bài đòi hỏi tư duy hơn hoặc tổng hợp hơn:
 
--   [Luogu P2490 \[SDOI2011\] 黑白棋](https://www.luogu.com.cn/problem/P2490)
--   [Luogu P3179 \[HAOI2015\] 数组游戏](https://www.luogu.com.cn/problem/P3179)
--   [Luogu P5363 \[SDOI2019\] 移动金币](https://www.luogu.com.cn/problem/P5363)
+-   [Luogu P2490 \[SDOI2011\] Cờ đen trắng](https://www.luogu.com.cn/problem/P2490)
+-   [Luogu P3179 \[HAOI2015\] Trò chơi mảng](https://www.luogu.com.cn/problem/P3179)
+-   [Luogu P5363 \[SDOI2019\] Di chuyển đồng vàng](https://www.luogu.com.cn/problem/P5363)
 -   [Luogu P5970 \[POI 2016\] Nim z utrudnieniem](https://www.luogu.com.cn/problem/P5970)
--   [Luogu P6791 \[SNOI2020\] 取石子](https://www.luogu.com.cn/problem/P6791)
--   [Luogu P7864「EVOI-RD1」摘叶子](https://www.luogu.com.cn/problem/P7864)
--   [Luogu P8347「Wdoi-6」另一侧的月](https://www.luogu.com.cn/problem/P8347)
+-   [Luogu P6791 \[SNOI2020\] Lấy đá](https://www.luogu.com.cn/problem/P6791)
+-   [Luogu P7864 "EVOI-RD1" Hái lá](https://www.luogu.com.cn/problem/P7864)
+-   [Luogu P8347 "Wdoi-6" Mặt trăng phía bên kia](https://www.luogu.com.cn/problem/P8347)
 -   [AtCoder Grand Contest 002 E - Candy Piles](https://atcoder.jp/contests/agc002/tasks/agc002_e)
 -   [AtCoder Grand Contest 010 F - Tree Game](https://atcoder.jp/contests/agc010/tasks/agc010_f)
 -   [AtCoder Grand Contest 017 D - Game on Tree](https://atcoder.jp/contests/agc017/tasks/agc017_d)
@@ -678,27 +698,28 @@ $$
 -   [Codeforces 1451 F. Nullify The Matrix](https://codeforces.com/problemset/problem/1451/F)
 -   [Codeforces 1704 F. Colouring Game](https://codeforces.com/problemset/problem/1704/F)
 
-最后是一些二分图博弈的题目．由于需要用到一些二分图匹配的算法，故将它们单独列出：
+Cuối cùng là một số bài về trò chơi trên đồ thị hai phía. Vì cần dùng một số thuật toán ghép trên đồ thị hai phía, nên chúng được liệt kê riêng:
 
--   [Luogu P4136 谁能赢呢？](https://www.luogu.com.cn/problem/P4136)
+-   [Luogu P4136 Ai sẽ thắng?](https://www.luogu.com.cn/problem/P4136)
 -   [Luogu P4617 \[COCI 2017/2018 #5\] Planinarenje](https://www.luogu.com.cn/problem/P4617)
--   [Luogu P4055 \[JSOI2009\] 游戏](https://www.luogu.com.cn/problem/P4055)
--   [Luogu P1971 \[NOI2011\] 兔兔与蛋蛋游戏](https://www.luogu.com.cn/problem/P1971)
+-   [Luogu P4055 \[JSOI2009\] Trò chơi](https://www.luogu.com.cn/problem/P4055)
+-   [Luogu P1971 \[NOI2011\] Trò chơi của Thỏ Thỏ và Đản Đản](https://www.luogu.com.cn/problem/P1971)
 -   [Codeforces 1147 F. Zigzag Game](https://codeforces.com/problemset/problem/1147/F)
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
--   [（转载）Nim 游戏博弈（收集完全版）by exponent - 博客园](http://www.cnblogs.com/exponent/articles/2141477.html)
--   [\[组合游戏与博弈论\]【学习笔记】by Candy? - 博客园](https://www.cnblogs.com/candy99/p/6548836.html)
+-   [(Đăng lại) Lý thuyết trò chơi Nim (bản sưu tầm đầy đủ) by exponent - Blog Garden](http://www.cnblogs.com/exponent/articles/2141477.html)
+-   [[Trò chơi tổ hợp và lý thuyết trò chơi] Ghi chú học tập by Candy? - Blog Garden](https://www.cnblogs.com/candy99/p/6548836.html)
 -   [Nim - Wikipedia](https://en.wikipedia.org/wiki/Nim)
--   [Sprague–Grundy theorem - Wikipedia](https://en.wikipedia.org/wiki/Sprague%E2%80%93Grundy_theorem)
+-   [Sprague-Grundy theorem - Wikipedia](https://en.wikipedia.org/wiki/Sprague%E2%80%93Grundy_theorem)
 -   [Nimber - Wikipedia](https://en.wikipedia.org/wiki/Nimber)
 -   [Beatty Sequence - Wikipedia](https://en.wikipedia.org/wiki/Beatty_sequence)
 -   [Games on arbitrary graphs - CP Algorithms](https://cp-algorithms.com/game_theory/games_on_graphs.html)
--   [算法学习笔记（74): 二分图博弈 by Pecco - 知乎](https://zhuanlan.zhihu.com/p/359334008)
+-   [Ghi chú học thuật toán (74): Trò chơi trên đồ thị hai phía by Pecco - Zhihu](https://zhuanlan.zhihu.com/p/359334008)
 -   Conway, John H. On numbers and games. AK Peters/CRC Press, 2000.
 -   Berlekamp, Elwyn R., John H. Conway, and Richard K. Guy. Winning ways for your mathematical plays, volume 1-4. AK Peters/CRC Press, 2001-2004.
 
-[^n-vs-p]: 「$\mathcal N$ 态」和「$\mathcal P$ 态」这两个名称分别表示「下一名玩家胜利」（Next player wins）和「前一名玩家胜利」（Previous player wins）．
+[^n-vs-p]: Hai tên gọi "trạng thái $\mathcal N$" và "trạng thái $\mathcal P$" lần lượt biểu thị "người chơi tiếp theo thắng" (Next player wins) và "người chơi trước đó thắng" (Previous player wins).
 
-[^more-sums]: 本文讨论的「和」都是 **长规则**（long rule）下的 **析取和**（disjunctive sum）．这也是最常见的一种游戏组合方式．除此之外，还有其他可能的游戏组合方式．关于它们的详细讨论，可以参考 Conway, John H. On numbers and games. AK Peters/CRC Press, 2000. 一书的第 14 章．
+[^more-sums]: Các "tổng" được thảo luận trong bài này đều là **tổng rời rạc** (disjunctive sum) theo **luật dài** (long rule). Đây cũng là cách kết hợp trò chơi thường gặp nhất. Ngoài ra còn có những cách kết hợp trò chơi khác. Để đọc thảo luận chi tiết về chúng, có thể tham khảo chương 14 của sách Conway, John H. On numbers and games. AK Peters/CRC Press, 2000.

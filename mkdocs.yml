@@ -330,11 +330,11 @@ nav:
       - Biến ngẫu nhiên: math/probability/random-variable.md
       - Đặc trưng số của biến ngẫu nhiên: math/probability/exp-var.md
       - Bất đẳng thức xác suất: math/probability/concentration-inequality.md
-    - 博弈论: 
-      - 博弈论简介: math/game-theory/intro.md
-      - 公平组合游戏: math/game-theory/impartial-game.md
-      - 零和游戏: math/game-theory/zero-sum-game.md
-      - 非公平组合游戏: math/game-theory/partizan-game.md
+    - Lý thuyết trò chơi:
+      - Giới thiệu lý thuyết trò chơi: math/game-theory/intro.md
+      - Trò chơi tổ hợp công bằng: math/game-theory/impartial-game.md
+      - Trò chơi tổng bằng không: math/game-theory/zero-sum-game.md
+      - Trò chơi tổ hợp không công bằng: math/game-theory/partizan-game.md
     - 数值算法:
       - 插值: math/numerical/interp.md
       - 数值积分: math/numerical/integral.md
