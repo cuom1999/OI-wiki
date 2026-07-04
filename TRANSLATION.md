@@ -228,6 +228,9 @@ MkDocs source layout intact.
 - `docs/ds/cartesian-tree.md`, `docs/ds/avl.md`, `docs/ds/aa-tree.md`,
   `docs/ds/sgt.md`: translated smaller balanced-tree pages covering
   Cartesian trees, AVL trees, AA trees, and scapegoat trees.
+- `docs/ds/sbt.md`: translated the Size Balanced Tree page covering node
+  fields, balance invariants, rotations, insertion/deletion, rank queries, and
+  the included map implementation reference.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

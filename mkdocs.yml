@@ -383,7 +383,7 @@ nav:
       - WBLT: ds/wblt.md
       - Cây scapegoat: ds/sgt.md
       - Cây Descartes: ds/cartesian-tree.md
-      - Size Balanced Tree: ds/sbt.md
+      - Size Balanced Tree (SBT): ds/sbt.md
       - Cây AVL: ds/avl.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
