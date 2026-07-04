@@ -409,64 +409,81 @@ Nếu không có ghi chú đặc biệt, thông thường ta chỉ dùng hệ th
 âm nhỏ nhất.
 
 <span id="&#x5269;&#x4F59;&#x7CFB;&#x7684;&#x590D;&#x5408;"></span>
-### Phep ghep he thang du
+### Phép ghép hệ thặng dư
 
-Voi so nguyen duong $m$, ta co dinh ly sau:
+Với số nguyên dương $m$, ta có định lý sau:
 
--   Neu $m=m_1m_2,~1\leq m_1,m_2$, goi $Z_{m_1},Z_{m_2}$ lan luot la cac he thang du **day du** modulo $m_1,m_2$, thi voi moi $a$ nguyen to cung nhau voi $m_1$ ta co:
+-   Nếu $m=m_1m_2,~1\leq m_1,m_2$, gọi $Z_{m_1},Z_{m_2}$ lần lượt là các hệ
+    thặng dư **đầy đủ** modulo $m_1,m_2$, thì với mọi $a$ nguyên tố cùng nhau
+    với $m_1$ ta có:
 
     $$
     Z_m=aZ_{m_1}+m_1Z_{m_2}.
     $$
 
-    Day la mot he thang du **day du** modulo $m$. Hon nua, neu $m=\prod_{i=1}^k m_i,~1\leq m_1,m_2,\dots,m_k$, goi $Z_{m_1},\dots,Z_{m_k}$ lan luot la cac he thang du **day du** modulo $m_1,\dots,m_k$, thi:
+    Đây là một hệ thặng dư **đầy đủ** modulo $m$. Hơn nữa, nếu
+    $m=\prod_{i=1}^k m_i,~1\leq m_1,m_2,\dots,m_k$, gọi
+    $Z_{m_1},\dots,Z_{m_k}$ lần lượt là các hệ thặng dư **đầy đủ** modulo
+    $m_1,\dots,m_k$, thì:
 
     $$
     Z_m=\sum_{i=1}^k\left(\prod_{j=1}^{i-1}m_j\right)Z_{m_i}.
     $$
 
-    Day la mot he thang du **day du** modulo $m$.
+    Đây là một hệ thặng dư **đầy đủ** modulo $m$.
 
-???+ note "Chung minh"
-    Chi can chung minh voi moi $x,x'\in Z_{m_1}$, $y,y'\in Z_{m_2}$ thoa man $ax+m_1y\equiv ax'+m_1y'\pmod{m_1m_2}$, ta deu co:
+???+ note "Chứng minh"
+    Chỉ cần chứng minh với mọi $x,x'\in Z_{m_1}$, $y,y'\in Z_{m_2}$ thỏa mãn
+    $ax+m_1y\equiv ax'+m_1y'\pmod{m_1m_2}$, ta đều có:
     
     $$
     ax+m_1y=ax'+m_1y'.
     $$
     
-    Thuc vay, tu $m_1\mid m_1m_2$, ta co $ax+m_1y\equiv ax'+m_1y'\pmod{m_1}$, suy ra $ax\equiv ax'\pmod{m_1}$. Do $(a,m_1)=1$, suy ra $x\equiv x'\pmod{m_1}$, nen $x=x'$.
+    Thật vậy, từ $m_1\mid m_1m_2$, ta có
+    $ax+m_1y\equiv ax'+m_1y'\pmod{m_1}$, suy ra
+    $ax\equiv ax'\pmod{m_1}$. Do $(a,m_1)=1$, suy ra
+    $x\equiv x'\pmod{m_1}$, nên $x=x'$.
     
-    Tiep theo, $m_1y\equiv m_1y'\pmod{m_1m_2}$, nen $y\equiv y'\pmod{m_2}$, tuc la $y=y'$.
+    Tiếp theo, $m_1y\equiv m_1y'\pmod{m_1m_2}$, nên
+    $y\equiv y'\pmod{m_2}$, tức là $y=y'$.
     
-    Vi vay,
+    Vì vậy,
     
     $$
     ax+m_1y=ax'+m_1y'.
     $$
 
--   Neu $m=m_1m_2,~1\leq m_1,m_2,(m_1,m_2)=1$, goi $Z_{m_1}^*,Z_{m_2}^*$ lan luot la cac he thang du **thu gon** modulo $m_1,m_2$, thi:
+-   Nếu $m=m_1m_2,~1\leq m_1,m_2,(m_1,m_2)=1$, gọi
+    $Z_{m_1}^*,Z_{m_2}^*$ lần lượt là các hệ thặng dư **thu gọn** modulo
+    $m_1,m_2$, thì:
 
     $$
     Z_m^*=m_2Z_{m_1}^*+m_1Z_{m_2}^*.
     $$
 
-    Day la mot he thang du **thu gon** modulo $m$.
+    Đây là một hệ thặng dư **thu gọn** modulo $m$.
 
-???+ tip "Meo"
-    Dinh ly nay tuong duong voi viec chung minh ham Euler la [ham nhan tinh](#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0).
+???+ tip "Mẹo"
+    Định lý này tương đương với việc chứng minh hàm Euler là
+    [hàm nhân tính](#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0).
 
-???+ note "Chung minh"
-    Goi $Z_{m_1},Z_{m_2}$ lan luot la cac he thang du day du modulo $m_1,m_2$. Ta da chung minh
+???+ note "Chứng minh"
+    Gọi $Z_{m_1},Z_{m_2}$ lần lượt là các hệ thặng dư đầy đủ modulo $m_1,m_2$.
+    Ta đã chứng minh
     
     $$
     Z_m=m_2Z_{m_1}+m_1Z_{m_2}
     $$
     
-    la mot he thang du day du modulo $m$. Dat $M=\{a\in Z_m:(a,m)=1\}\subseteq Z_m$; ro rang $M$ la mot he thang du thu gon modulo $m$, nen chi can chung minh $M=Z_m^*$.
+    là một hệ thặng dư đầy đủ modulo $m$. Đặt
+    $M=\{a\in Z_m:(a,m)=1\}\subseteq Z_m$; rõ ràng $M$ là một hệ thặng dư thu
+    gọn modulo $m$, nên chỉ cần chứng minh $M=Z_m^*$.
     
-    Hien nhien $Z_m^*\subseteq Z_m$.
+    Hiển nhiên $Z_m^*\subseteq Z_m$.
     
-    Lay tuy y $m_2x+m_1y\in M$, trong do $x\in Z_{m_1}$ va $y\in Z_{m_2}$. Ta co $(m_2x+m_1y,m_1m_2)=1$. Tu $(m_1,m_2)=1$ suy ra
+    Lấy tùy ý $m_2x+m_1y\in M$, trong đó $x\in Z_{m_1}$ và $y\in Z_{m_2}$.
+    Ta có $(m_2x+m_1y,m_1m_2)=1$. Từ $(m_1,m_2)=1$ suy ra
     
     $$
     1=(m_2x+m_1y,m_1)=(m_2x,m_1)=(x,m_1),
@@ -476,27 +493,29 @@ Voi so nguyen duong $m$, ta co dinh ly sau:
     1=(m_2x+m_1y,m_2)=(m_1y,m_2)=(y,m_2).
     $$
     
-    Do do $x\in Z_{m_1}^*$ va $y\in Z_{m_2}^*$, tuc la $M\subseteq Z_m^*$.
+    Do đó $x\in Z_{m_1}^*$ và $y\in Z_{m_2}^*$, tức là
+    $M\subseteq Z_m^*$.
     
-    Lay tuy y $m_2x+m_1y\in Z_m^*$, trong do $x\in Z_{m_1}^*$ va $y\in Z_{m_2}^*$. Ta co $(x,m_1)=1$ va $(y,m_2)=1$. Tu $(m_1,m_2)=1$ suy ra
+    Lấy tùy ý $m_2x+m_1y\in Z_m^*$, trong đó $x\in Z_{m_1}^*$ và
+    $y\in Z_{m_2}^*$. Ta có $(x,m_1)=1$ và $(y,m_2)=1$. Từ $(m_1,m_2)=1$ suy ra
     
     $$
     (m_2x+m_1y,m_1)=(m_2x,m_1)=(x,m_1)=1,
     $$
     
     $$
-    (m_2x+m_1y,m_2)=(m_1y,m_2)=(x,m_2)=1,
+    (m_2x+m_1y,m_2)=(m_1y,m_2)=(y,m_2)=1,
     $$
     
-    nen $(m_2x+m_1y,m_1m_2)=1$, tuc la $Z_m^*\subseteq M$.
+    nên $(m_2x+m_1y,m_1m_2)=1$, tức là $Z_m^*\subseteq M$.
     
-    Tong hop lai,
+    Tổng hợp lại,
     
     $$
     Z_m^*=m_2Z_{m_1}^*+m_1Z_{m_2}^*.
     $$
     
-    Day la mot he thang du **thu gon** modulo $m$.
+    Đây là một hệ thặng dư **thu gọn** modulo $m$.
 
 <span id="&#x6570;&#x8BBA;&#x51FD;&#x6570;"></span>
 ## Ham so hoc

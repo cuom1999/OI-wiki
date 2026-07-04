@@ -144,7 +144,8 @@ MkDocs source layout intact.
   `docs/math/number-theory/prime.md` sections, including the Miller-Rabin
   algorithm outline, reference implementation comments, and probability proof,
   deterministic-base notes, anti-prime introduction, examples, and references,
-  the residue-class and residue-system definitions in `basic.md`, then fully cleaned
+  the residue-class, residue-system, and residue-system composition definitions
+  in `basic.md`, then fully cleaned
   `docs/math/number-theory/gcd.md` and
   `docs/math/number-theory/sieve.md`, plus the opening concept sections of
   `docs/math/number-theory/quadratic.md` through the Eisenstein integer
