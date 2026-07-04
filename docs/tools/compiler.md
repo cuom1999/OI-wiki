@@ -1,47 +1,47 @@
-本页面主要介绍了各系统下各类编译器/解释器的安装步骤．
+Trang này chủ yếu giới thiệu các bước cài đặt những loại trình biên dịch/trình thông dịch trên từng hệ điều hành.
 
 ## GCC
 
 ### Windows
 
-#### 手动下载安装
+#### Tải xuống và cài đặt thủ công
 
-访问 [MinGW-w64](https://www.mingw-w64.org/downloads) 的下载页面，有多个构建版本．方便起见，我们使用由 WinLibs 提供的构建版本．
+Truy cập trang tải xuống của [MinGW-w64](https://www.mingw-w64.org/downloads), nơi có nhiều bản build. Để thuận tiện, ta dùng bản build do WinLibs cung cấp.
 
-首先前往 [WinLibs](https://winlibs.com) 下载最新的安装包，选择合适的版本，本文选择了 GCC 12.3.0 + LLVM/Clang/LLD/LLDB 16.0.4 + MinGW-w64 11.0.0 (UCRT)：
+Trước hết, vào [WinLibs](https://winlibs.com) để tải gói cài đặt mới nhất và chọn phiên bản phù hợp. Bài viết này chọn GCC 12.3.0 + LLVM/Clang/LLD/LLDB 16.0.4 + MinGW-w64 11.0.0 (UCRT):
 
-默认会附带安装 LLVM Clang，如果不想安装，你也可以选择右边的 without LLVM/Clang/LLD/LLDB．
+Mặc định gói này sẽ cài kèm LLVM Clang. Nếu không muốn cài, bạn cũng có thể chọn bản without LLVM/Clang/LLD/LLDB ở bên phải.
 
 ![](./images/compiler1.png)
 
-下载好后将其解压到电脑中的某个位置，教程中将其解压到了 C 盘的根目录．目录名中最好不要包含非英文字符和空格，否则可能会在后期导致一些问题．
+Sau khi tải xong, giải nén vào một vị trí nào đó trên máy tính. Trong hướng dẫn này, gói được giải nén vào thư mục gốc của ổ C. Tên thư mục tốt nhất không nên chứa ký tự ngoài tiếng Anh hoặc dấu cách, nếu không về sau có thể phát sinh một số vấn đề.
 
 ![](./images/compiler2.png)
 
-接下来我们需要将编译器的可执行文件目录添加到系统环境变量中，这样在编译时就不需要指定编译器的路径了，方便使用．上方我们将 MinGW 解压到了 `C:\mingw64` 目录中，那么可执行文件所在的目录就是 `C:\mingw64\bin`．
+Tiếp theo, ta cần thêm thư mục chứa tệp thực thi của trình biên dịch vào biến môi trường hệ thống. Như vậy khi biên dịch sẽ không cần chỉ định đường dẫn trình biên dịch, thuận tiện hơn khi sử dụng. Ở trên, ta đã giải nén MinGW vào thư mục `C:\mingw64`, nên thư mục chứa tệp thực thi là `C:\mingw64\bin`.
 
-按下 Windows 徽标 + R 组合键，输入 `rundll32.exe sysdm.cpl,EditEnvironmentVariables`，打开系统环境变量设置窗口，并在「系统变量」一节中选中名为「Path」的变量，然后点击「编辑」按钮：
+Nhấn tổ hợp phím Windows logo + R, nhập `rundll32.exe sysdm.cpl,EditEnvironmentVariables`, mở cửa sổ thiết lập biến môi trường hệ thống, chọn biến tên `Path` trong mục "Biến hệ thống", rồi nhấn nút "Chỉnh sửa":
 
 ![](./images/compiler3.png)
 
-在编辑窗口中点击右侧的「新建」按钮，为「Path」变量新建一个条目，并填入上文中记录下的可执行文件所在的目录（教程中为 `C:\mingw64\bin`）．
+Trong cửa sổ chỉnh sửa, nhấn nút "Mới" ở bên phải, tạo một mục mới cho biến `Path`, rồi điền thư mục chứa tệp thực thi đã ghi lại ở trên (trong hướng dẫn này là `C:\mingw64\bin`).
 
 ![](./images/compiler4.png)
 
-??? note "对部分老版本系统的提示"
-    部分老版本系统只能手动修改变量的文本值，那么需要在变量的值的末尾插入一个 **半角分号**，再将可执行文件所在的目录粘贴到这个半角分号的后面，如图所示：
+??? note "Lưu ý cho một số hệ thống phiên bản cũ"
+    Một số hệ thống phiên bản cũ chỉ có thể sửa thủ công giá trị văn bản của biến. Khi đó cần chèn một **dấu chấm phẩy ASCII** vào cuối giá trị của biến, rồi dán thư mục chứa tệp thực thi vào sau dấu chấm phẩy đó, như hình minh họa:
     
     ![](./images/compiler5.png)
 
-完成后一路点击「确定」按钮退出即可．
+Sau khi hoàn tất, nhấn "OK" liên tiếp để thoát.
 
-接下来打开终端，输入 `g++ --version` 并按下回车，如果出现如图所示的提示则代表安装成功．
+Tiếp theo, mở terminal, nhập `g++ --version` rồi nhấn Enter. Nếu xuất hiện thông báo như hình minh họa thì nghĩa là cài đặt thành công.
 
 ![](./images/compiler6.png)
 
-#### Scoop 安装
+#### Cài bằng Scoop
 
-打开 PowerShell，运行以下脚本：
+Mở PowerShell và chạy script sau:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -53,13 +53,13 @@ scoop install mingw-winlibs
 
 #### Debian/Ubuntu
 
-首先先更新软件包列表：
+Trước hết, cập nhật danh sách gói:
 
 ```bash
 sudo apt update
 ```
 
-再使用命令直接安装即可：
+Sau đó dùng lệnh để cài đặt trực tiếp:
 
 ```bash
 sudo apt install g++
@@ -67,7 +67,7 @@ sudo apt install g++
 
 #### Arch Linux
 
-使用命令直接安装即可：
+Dùng lệnh để cài đặt trực tiếp:
 
 ```bash
 sudo pacman -Syu gcc
@@ -75,7 +75,7 @@ sudo pacman -Syu gcc
 
 #### openSUSE
 
-使用命令直接安装即可：
+Dùng lệnh để cài đặt trực tiếp:
 
 ```bash
 sudo zypper in gcc-c++
@@ -83,14 +83,14 @@ sudo zypper in gcc-c++
 
 ### macOS
 
-首先更新包管理器：
+Trước hết, cập nhật trình quản lý gói:
 
 ```bash
 brew upgrade
 brew update
 ```
 
-再使用命令直接安装即可：
+Sau đó dùng lệnh để cài đặt trực tiếp:
 
 ```bash
 brew install gcc
@@ -98,31 +98,31 @@ brew install gcc
 
 ## JDK
 
-JDK 的发行版有很多，以下介绍两种：
+JDK có nhiều bản phân phối. Dưới đây giới thiệu hai loại:
 
--   OpenJDK 中的 [Eclipse Temurin](https://adoptium.net/zh-cn/)[^temurin]：参见 [Install Eclipse Temurin™ | Adoptium](https://adoptium.net/zh-CN/installation/)．
--   Oracle JDK：可参见 [JDK Installation Guide（JDK 17）](https://docs.oracle.com/en/java/javase/17/install/overview-jdk-installation.html)．
+-   [Eclipse Temurin](https://adoptium.net/zh-cn/) trong OpenJDK[^temurin]: xem [Install Eclipse Temurin™ | Adoptium](https://adoptium.net/zh-CN/installation/).
+-   Oracle JDK: có thể tham khảo [JDK Installation Guide (JDK 17)](https://docs.oracle.com/en/java/javase/17/install/overview-jdk-installation.html).
 
 ## Python 3
 
-Python 的实现也有很多[^pythonimpl]，以 CPython 3 为例，参见 [Download Python | Python.org](https://www.python.org/downloads/)．
+Python cũng có nhiều bản hiện thực[^pythonimpl]. Lấy CPython 3 làm ví dụ, xem [Download Python | Python.org](https://www.python.org/downloads/).
 
 ## LLVM
 
 ### Windows
 
-??? note "LLVM 在 Windows 上的坑"
-    由于 LLVM 在 Windows 上缺失标准库，所以你仍需安装 MSVC 或 GCC．
+??? note "Một điểm cần chú ý về LLVM trên Windows"
+    Do LLVM trên Windows thiếu thư viện chuẩn, bạn vẫn cần cài MSVC hoặc GCC.
 
-#### 直接安装
+#### Cài đặt trực tiếp
 
-访问 [LLVM](https://github.com/llvm/llvm-project/releases/latest) 的下载页面，选择 LLVM-\*-win64.exe 下载．
+Truy cập trang tải xuống của [LLVM](https://github.com/llvm/llvm-project/releases/latest), chọn LLVM-\*-win64.exe để tải.
 
-如果你的网络质量不佳，你也可以选择访问 [清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LatestRelease/) 进行下载．
+Nếu chất lượng mạng không tốt, bạn cũng có thể truy cập [Tsinghua University Open Source Software Mirror](https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LatestRelease/) để tải.
 
-打开 .exe 文件，安装时勾选 Add LLVM to system PATH for current user，随后一直点击下一步即可安装完成．
+Mở tệp .exe, khi cài đặt hãy chọn Add LLVM to system PATH for current user, sau đó cứ nhấn Next cho đến khi cài đặt hoàn tất.
 
-打开终端，输入 `clang++ --version` 并回车，出现
+Mở terminal, nhập `clang++ --version` rồi nhấn Enter. Nếu xuất hiện nội dung tương tự:
 
 ```text
 clang version 15.0.1
@@ -131,11 +131,11 @@ Thread model: posix
 InstalledDir: <omitted>
 ```
 
-类似物即代表成功．
+thì nghĩa là cài đặt thành công.
 
-#### Scoop 安装
+#### Cài bằng Scoop
 
-打开 PowerShell，运行以下脚本：
+Mở PowerShell và chạy script sau:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -147,7 +147,7 @@ scoop install llvm
 
 #### openSUSE
 
-使用命令直接安装即可：
+Dùng lệnh để cài đặt trực tiếp:
 
 ```bash
 sudo zypper in llvm clang
@@ -155,10 +155,10 @@ sudo zypper in llvm clang
 
 ## MSVC (Visual Studio)
 
-访问 [下载 Visual Studio](https://visualstudio.microsoft.com/zh-hans/downloads/) 页面，找到「下载」一节中的「社区」部分，点击「免费下载」．下载完成后打开安装器选择「Community 2022 安装」．在随后弹出来的窗口中仅选择「使用 C++ 的桌面开发」，然后单击安装．
+Truy cập trang [Tải xuống Visual Studio](https://visualstudio.microsoft.com/zh-hans/downloads/), tìm phần "Community" trong mục "Tải xuống", rồi nhấn "Tải miễn phí". Sau khi tải xong, mở trình cài đặt và chọn "Cài đặt Community 2022". Trong cửa sổ hiện ra sau đó, chỉ chọn "Desktop development with C++", rồi nhấn cài đặt.
 
-如果你不想安装完整的 Visual Studio，可以滚动到下方「所有下载」一节，在「用于 Visual Studio 的工具」中找到「Visual Studio 生成工具」，点击后方的「下载」．下载完成后打开安装器，按照提示步骤选择「使用 C++ 的桌面开发」后安装即可．也可以使用 [PortableBuildTools](https://github.com/Data-Oriented-House/PortableBuildTools) 工具以仅安装 MSVC 编译器．
+Nếu không muốn cài Visual Studio đầy đủ, bạn có thể cuộn xuống mục "Tất cả tải xuống", tìm "Build Tools for Visual Studio" trong phần "Tools for Visual Studio", rồi nhấn nút "Download" phía sau. Sau khi tải xong, mở trình cài đặt, làm theo hướng dẫn để chọn "Desktop development with C++" rồi cài đặt. Cũng có thể dùng công cụ [PortableBuildTools](https://github.com/Data-Oriented-House/PortableBuildTools) để chỉ cài trình biên dịch MSVC.
 
-[^temurin]: [Eclipse Temurin](https://adoptium.net/) 即为原 [AdoptOpenJDK](https://adoptopenjdk.net/)，后者已于 2021 年 7 月移交至 [Eclipse 基金会](https://www.eclipse.org/org/foundation/)．具体可见 [本声明](https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/)．
+[^temurin]: [Eclipse Temurin](https://adoptium.net/) chính là [AdoptOpenJDK](https://adoptopenjdk.net/) trước đây; dự án sau đã được chuyển giao cho [Eclipse Foundation](https://www.eclipse.org/org/foundation/) vào tháng 7 năm 2021. Xem chi tiết trong [thông báo này](https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/).
 
 [^pythonimpl]: [Alternative Python Implementations | Python.org](https://www.python.org/download/alternatives/)

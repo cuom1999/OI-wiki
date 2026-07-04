@@ -365,6 +365,8 @@ MkDocs source layout intact.
 - `docs/tools/judger/arbiter.md`: translated the Arbiter judging-tool guide.
 - `docs/tools/index.md`, `docs/tools/oj-tool.md`: translated the tools
   overview and OJ tool roundup.
+- `docs/tools/compiler.md`: translated the compiler/interpreter installation
+  guide.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
