@@ -12,7 +12,7 @@ long long ans1[N], ans2[N];
 struct query {
   int l, r, id;
 
-  bool operator<(const query &x) const {  // 重载<运算符
+  bool operator<(const query &x) const {  // Nạp chồng toán tử <
     if (l / maxn != x.l / maxn) return l < x.l;
     return (l / maxn) & 1 ? r < x.r : r > x.r;
   }
@@ -37,7 +37,7 @@ int main() {
   for (int i = 1; i <= n; i++) cin >> c[i];
   for (int i = 0; i < m; i++) cin >> a[i].l >> a[i].r, a[i].id = i;
   sort(a, a + m);
-  for (int i = 0, l = 1, r = 0; i < m; i++) {  // 具体实现
+  for (int i = 0, l = 1, r = 0; i < m; i++) {  // Cài đặt cụ thể
     if (a[i].l == a[i].r) {
       ans1[a[i].id] = 0, ans2[a[i].id] = 1;
       continue;

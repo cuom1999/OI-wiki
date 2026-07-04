@@ -4,12 +4,12 @@
 using namespace std;
 
 int n, q, a[501][501], ans[60001];
-int disc[250001], cntdisc;  // 离散化用
+int disc[250001], cntdisc;  // Dùng cho rời rạc hóa
 int nn;
 
-int blockId[501], blocklen;               // 分块
-int rangeblockId[250001], rangeblocklen;  // 值域分块
-int counts[250001], countsum[501];        // 该值次数及值域块总和
+int blockId[501], blocklen;               // Chia khối
+int rangeblockId[250001], rangeblocklen;  // Chia khối trên miền giá trị
+int counts[250001], countsum[501];        // Số lần của giá trị và tổng của khối miền giá trị
 
 struct Position {
   int x, y;

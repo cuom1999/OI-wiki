@@ -1,5 +1,6 @@
-// 一道二维最长上升子序列的题
-// 为了确定某一个元素是否在最长上升子序列中可以正反跑两遍 CDQ
+// Một bài toán dãy con tăng dài nhất hai chiều
+// Để xác định một phần tử có nằm trong LIS hay không, có thể chạy CDQ hai lần
+// theo chiều xuôi và chiều ngược
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
@@ -18,7 +19,7 @@ struct data_ {
 int n;
 bool tr;
 
-// 底下是重写比较
+// Bên dưới là các hàm so sánh được viết lại
 bool cmp1(const data_& a, const data_& b) {
   if (tr)
     return a.h > b.h;
@@ -78,7 +79,7 @@ struct treearray {
 
 int rk[2][N];
 
-void solve(int l, int r, int t) {  // 递归跑
+void solve(int l, int r, int t) {  // Chạy đệ quy
   if (r - l == 1) {
     return;
   }

@@ -39,7 +39,7 @@ void simulateAnneal() {
 
 int main() {
   std::cin.tie(nullptr)->sync_with_stdio(false);
-  srand(0);  // 注意，在实际使用中，不应使用固定的随机种子。
+  srand(0);  // Lưu ý: khi dùng thực tế, không nên cố định seed ngẫu nhiên.
   std::cin >> n;
   for (int i = 1; i <= n; ++i) {
     std::cin >> x[i] >> y[i] >> w[i];

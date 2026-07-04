@@ -1,4 +1,5 @@
-// 仔细推一下就是和三维偏序差不多的式子了，基本就是一个三维偏序的板子
+// Suy luận kỹ sẽ ra công thức gần giống bài toán thứ tự bộ phận 3 chiều;
+// về cơ bản đây là một khuôn mẫu cho thứ tự bộ phận 3 chiều.
 #include <algorithm>
 #include <iostream>
 using namespace std;
@@ -33,12 +34,12 @@ struct data_ {
 int rv[100010];
 ll res;
 
-// 重写两个比较
+// Viết lại hai hàm so sánh
 bool cmp1(const data_& a, const data_& b) { return a.val < b.val; }
 
 bool cmp2(const data_& a, const data_& b) { return a.del < b.del; }
 
-void solve(int l, int r) {  // 底下是具体的式子，套用
+void solve(int l, int r) {  // Bên dưới là công thức cụ thể, áp dụng trực tiếp
   if (r - l == 1) {
     return;
   }

@@ -25,7 +25,7 @@ struct bcj {
 
   int f(int x) { return (fa[x] == x) ? x : f(fa[x]); }
 
-  void u(int x, int y) {  // 带撤回
+  void u(int x, int y) {  // Có hỗ trợ rollback
     int u = f(x);
     int v = f(y);
     if (u == v) return;
@@ -52,7 +52,7 @@ struct bcj {
   }
 } s, s1;
 
-struct edge  // 静态边
+struct edge  // Cạnh tĩnh
 {
   int u;
   int v;
@@ -65,7 +65,7 @@ struct edge  // 静态边
 struct moved {
   int u;
   int v;
-};  // 动态边
+};  // Cạnh động
 
 struct query {
   int num;
@@ -73,21 +73,21 @@ struct query {
   ll ans;
 } q[50010];
 
-bool book[50010];  // 询问
+bool book[50010];  // Truy vấn
 vector<edge> ve[30];
 vector<moved> vq;
 vector<edge> tr;
 ll res[30];
 int tim[30];
 
-void pushdown(int dep)  // 缩边
+void pushdown(int dep)  // Co cạnh
 {
-  tr.clear();  // 这里要复制一份，以免无法回撤操作
+  tr.clear();  // Cần sao chép một bản ở đây để vẫn có thể rollback
   for (int i = 0; i < ve[dep].size(); i++) {
     tr.push_back(ve[dep][i]);
   }
   sort(tr.begin(), tr.end());
-  for (int i = 0; i < tr.size(); i++) {  // 无用边
+  for (int i = 0; i < tr.size(); i++) {  // Cạnh vô dụng
     if (s1.f(tr[i].u) == s1.f(tr[i].v)) {
       tr[i].mrk = -1;
       continue;
@@ -100,7 +100,7 @@ void pushdown(int dep)  // 缩边
     s1.u(vq[i].u, vq[i].v);
   }
   vq.clear();
-  for (int i = 0; i < tr.size(); i++) {  // 必须边
+  for (int i = 0; i < tr.size(); i++) {  // Cạnh bắt buộc
     if (tr[i].mrk == -1 || s1.f(tr[i].u) == s1.f(tr[i].v)) continue;
     tr[i].mrk = 1;
     s1.u(tr[i].u, tr[i].v);
@@ -109,7 +109,7 @@ void pushdown(int dep)  // 缩边
   }
   s1.clear(0);
   ve[dep + 1].clear();
-  for (int i = 0; i < tr.size(); i++) {  // 缩边
+  for (int i = 0; i < tr.size(); i++) {  // Co cạnh
     if (tr[i].mrk != 0) continue;
     edge p;
     p.u = s.f(tr[i].u);
@@ -125,7 +125,7 @@ void pushdown(int dep)  // 缩边
 void solve(int l, int r, int dep) {
   tim[dep] = s.st.size();
   int mid = (l + r) / 2;
-  if (r - l == 1) {  // 终止条件
+  if (r - l == 1) {  // Điều kiện dừng
     edge p;
     p.u = s.f(e[q[r].num].u);
     p.v = s.f(e[q[r].num].v);
@@ -141,7 +141,7 @@ void solve(int l, int r, int dep) {
   for (int i = l + 1; i <= mid; i++) {
     book[q[i].num] = true;
   }
-  for (int i = mid + 1; i <= r; i++) {  // 动转静
+  for (int i = mid + 1; i <= r; i++) {  // Chuyển động sang tĩnh
     if (book[q[i].num]) continue;
     edge p;
     p.u = s.f(e[q[i].num].u);
@@ -150,13 +150,13 @@ void solve(int l, int r, int dep) {
     p.mrk = 0;
     ve[dep].push_back(p);
   }
-  for (int i = l + 1; i <= mid; i++) {  // 询问转动态
+  for (int i = l + 1; i <= mid; i++) {  // Chuyển truy vấn sang cạnh động
     moved p;
     p.u = s.f(e[q[i].num].u);
     p.v = s.f(e[q[i].num].v);
     vq.push_back(p);
   }
-  pushdown(dep);  // 下面的是回撤
+  pushdown(dep);  // Bên dưới là rollback
   for (int i = mid + 1; i <= r; i++) {
     if (book[q[i].num]) continue;
     ve[dep].pop_back();
@@ -171,7 +171,7 @@ void solve(int l, int r, int dep) {
   for (int i = mid + 1; i <= r; i++) {
     book[q[i].num] = true;
   }
-  for (int i = l + 1; i <= mid; i++) {  // 动转静
+  for (int i = l + 1; i <= mid; i++) {  // Chuyển động sang tĩnh
     if (book[q[i].num]) continue;
     edge p;
     p.u = s.f(e[q[i].num].u);
@@ -180,7 +180,7 @@ void solve(int l, int r, int dep) {
     p.mrk = 0;
     ve[dep].push_back(p);
   }
-  for (int i = mid + 1; i <= r; i++) {  // 询问转动
+  for (int i = mid + 1; i <= r; i++) {  // Chuyển truy vấn sang động
     book[q[i].num] = false;
     moved p;
     p.u = s.f(e[q[i].num].u);
@@ -190,7 +190,7 @@ void solve(int l, int r, int dep) {
   pushdown(dep);
   solve(mid, r, dep + 1);
   s.clear(tim[dep - 1]);
-  return;  // 时间倒流至上一层
+  return;  // Quay thời gian về tầng trước
 }
 
 int main() {
@@ -204,14 +204,14 @@ int main() {
   for (int i = 1; i <= ask; i++) {
     cin >> q[i].num >> q[i].val;
   }
-  for (int i = 1; i <= ask; i++) {  // 初始动态边
+  for (int i = 1; i <= ask; i++) {  // Các cạnh động ban đầu
     book[q[i].num] = true;
     moved p;
     p.u = e[q[i].num].u;
     p.v = e[q[i].num].v;
     vq.push_back(p);
   }
-  for (int i = 1; i <= m; i++) {  // 初始静态
+  for (int i = 1; i <= m; i++) {  // Các cạnh tĩnh ban đầu
     if (book[i]) continue;
     ve[1].push_back(e[i]);
   }

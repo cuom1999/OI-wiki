@@ -11,7 +11,7 @@ int n, m;
 double dis[N];
 vector<pair<int, double>> g[N];
 
-bool check(double mid) {  // 如果有负环返回 true
+bool check(double mid) {  // Trả về true nếu có chu trình âm
   bool flag = false;
   dis[0] = 0;
   for (int i = 1; i <= n; ++i) dis[i] = 1e9;

@@ -5,25 +5,26 @@ using namespace std;
 // --8<-- [start:core]
 pair<bool, vector<int>> findCycle(
     vector<int>
-        nxt)  // nxt[i]表示i在单向链表中指向的节点（0-indexed），-1表示没有指向任何节点
+        nxt)  // nxt[i] là nút mà i trỏ tới trong danh sách liên kết đơn
+              // (0-indexed), -1 nghĩa là không trỏ tới nút nào
 {
   int fast = 0, slow = 0;
-  do  // 先判断有没有环
+  do  // Trước hết kiểm tra có chu trình hay không
   {
     if (nxt[fast] == -1 || nxt[nxt[fast]] == -1) {
-      return make_pair(false, vector<int>());  // 没有环
+      return make_pair(false, vector<int>());  // Không có chu trình
     }
     fast = nxt[nxt[fast]];
     slow = nxt[slow];
   } while (fast != slow);
   slow = 0;
-  while (slow != fast)  // 再找入环位置
+  while (slow != fast)  // Sau đó tìm vị trí bắt đầu chu trình
   {
     slow = nxt[slow];
     fast = nxt[fast];
   }
   vector<int> cycle;
-  do  // 最后找出整个环
+  do  // Cuối cùng liệt kê toàn bộ chu trình
   {
     cycle.push_back(slow);
     slow = nxt[slow];

@@ -49,12 +49,12 @@ int main() {
 
   build();
 
-  // 对询问进行排序
+  // Sắp xếp các truy vấn
   for (int i = 1; i <= tot; i++)
     for (int j = L[i]; j <= R[i]; j++) pos[j] = i;
   sort(Q + 1, Q + 1 + q, cmp);
 
-  // 离散化
+  // Rời rạc hóa
   sort(t + 1, t + 1 + m);
   m = unique(t + 1, t + 1 + m) - (t + 1);
   for (int i = 1; i <= n; i++) x[i] = lower_bound(t + 1, t + 1 + m, x[i]) - t;
@@ -62,7 +62,7 @@ int main() {
   int l = 1, r = 0, last_block = 0, __l;
   ll Ans = 0, tmp;
   for (int i = 1; i <= q; i++) {
-    // 询问的左右端点同属于一个块则暴力扫描回答
+    // Nếu hai đầu mút của truy vấn nằm trong cùng một khối, quét trực tiếp
     if (pos[Q[i].l] == pos[Q[i].r]) {
       for (int j = Q[i].l; j <= Q[i].r; j++) ++__cnt[x[j]];
       for (int j = Q[i].l; j <= Q[i].r; j++)
@@ -71,7 +71,7 @@ int main() {
       continue;
     }
 
-    // 访问到了新的块则重新初始化莫队区间
+    // Khi sang khối mới, khởi tạo lại đoạn của Mo
     if (pos[Q[i].l] != last_block) {
       while (r > R[pos[Q[i].l]]) Del(x[r]), --r;
       while (l < R[pos[Q[i].l]] + 1) Del(x[l]), ++l;
@@ -79,16 +79,16 @@ int main() {
       last_block = pos[Q[i].l];
     }
 
-    // 扩展右端点
+    // Mở rộng đầu mút phải
     while (r < Q[i].r) ++r, Add(x[r], Ans);
     __l = l;
     tmp = Ans;
 
-    // 扩展左端点
+    // Mở rộng đầu mút trái
     while (__l > Q[i].l) --__l, Add(x[__l], tmp);
     ans[Q[i].id] = tmp;
 
-    // 回滚
+    // Rollback
     while (__l < l) Del(x[__l]), ++__l;
   }
   for (int i = 1; i <= q; i++) cout << ans[i] << '\n';

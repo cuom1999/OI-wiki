@@ -5,7 +5,7 @@ using namespace std;
 
 int n, m, q, a[201][201];
 long long ans[100001];
-int disc[250001], cntdisc;  // 离散化用
+int disc[250001], cntdisc;  // Dùng cho rời rạc hóa
 
 int blocklen, counts[40001];
 long long now;

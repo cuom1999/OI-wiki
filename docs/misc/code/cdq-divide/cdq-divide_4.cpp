@@ -41,7 +41,7 @@ int cnt;
 
 bool cmp(const qry& a, const qry& b) { return a.t < b.t; }
 
-void modify(int pos, int co)  // 修改函数
+void modify(int pos, int co)  // Hàm sửa đổi
 {
   if (npre[pos] == co) return;
   md[++tp1] = modi{++cnt, pos, npre[pos], -1};
@@ -50,7 +50,7 @@ void modify(int pos, int co)  // 修改函数
 
 namespace prew {
 int lst[2 * N];
-map<int, int> mp;  // 提前离散化
+map<int, int> mp;  // Rời rạc hóa trước
 
 void prew() {
   cin.tie(nullptr)->sync_with_stdio(false);
@@ -92,7 +92,7 @@ struct nod {
 set<nod> c[2 * N];
 set<int> bd;
 
-void split(int mid) {  // 将一个节点拆成两个节点
+void split(int mid) {  // Tách một nút thành hai nút
   SDI it = s.lower_bound(data{0, mid, 0});
   data p = *it;
   if (mid == p.r) return;
@@ -104,7 +104,7 @@ void split(int mid) {  // 将一个节点拆成两个节点
   c[p.x].insert(nod{mid + 1, p.r});
 }
 
-void del(set<data>::iterator it) {  // 删除一个迭代器
+void del(set<data>::iterator it) {  // Xóa một iterator
   bd.insert(it->l);
   SNI it1, it2;
   it1 = it2 = c[it->x].find(nod{it->l, it->r});
@@ -114,7 +114,7 @@ void del(set<data>::iterator it) {  // 删除一个迭代器
   s.erase(it);
 }
 
-void ins(data p) {  // 插入一个节点
+void ins(data p) {  // Chèn một nút
   s.insert(p);
   SNI it = c[p.x].insert(nod{p.l, p.r}).first;
   ++it;
@@ -123,16 +123,16 @@ void ins(data p) {  // 插入一个节点
   }
 }
 
-void stv(int l, int r, int x) {  // 区间赋值
+void stv(int l, int r, int x) {  // Gán giá trị cho đoạn
   if (l != 1) split(l - 1);
   split(r);
-  int p = l;  // split两下之后删掉所有区间
+  int p = l;  // Sau hai lần split, xóa toàn bộ các đoạn
   while (p != r + 1) {
     SDI it = s.lower_bound(data{0, p, 0});
     p = it->r + 1;
     del(it);
   }
-  ins(data{l, r, x});  // 扫一遍set处理所有变化的pre值
+  ins(data{l, r, x});  // Quét set một lượt để xử lý mọi giá trị pre thay đổi
   for (set<int>::iterator it = bd.begin(); it != bd.end(); ++it) {
     SDI it1 = s.lower_bound(data{0, *it, 0});
     if (*it != it1->l)
@@ -150,7 +150,7 @@ void stv(int l, int r, int x) {  // 区间赋值
 
 void ih() {
   int nc = a[1];
-  int ccnt = 1;  // 将连续的一段插入到set中
+  int ccnt = 1;  // Chèn một đoạn liên tiếp vào set
   for (int i = 2; i <= n; i++)
     if (nc != a[i]) {
       s.insert(data{i - ccnt, i - 1, nc}), c[nc].insert(nod{i - ccnt, i - 1});
@@ -164,7 +164,7 @@ void ih() {
 }  // namespace colist
 
 namespace CDQ {
-struct treearray  // 树状数组
+struct treearray  // Cây Fenwick
 {
   int ta[N];
 
@@ -203,7 +203,7 @@ void solve(int l1, int r1, int l2, int r2, int L, int R) {  // CDQ
   if (l1 != mid1 && mid2 != r2) {
     sort(md + l1 + 1, md + mid1 + 1);
     sort(qr + mid2 + 1, qr + r2 + 1);
-    for (int i = mid2 + 1, j = l1 + 1; i <= r2; i++) {  // 考虑左侧对右侧贡献
+    for (int i = mid2 + 1, j = l1 + 1; i <= r2; i++) {  // Xét đóng góp của nửa trái cho nửa phải
       while (j <= mid1 && md[j].pre < qr[i].l) ta.c(md[j].pos, md[j].va), j++;
       qr[i].ans += ta.q(qr[i].r) - ta.q(qr[i].l - 1);
     }
@@ -221,7 +221,7 @@ void mainsolve() {
   sort(qr + 1, qr + tp2 + 1);
   for (int i = 1; i <= n; i++) srt[i] = i;
   sort(srt + 1, srt + n + 1, cmp1);
-  for (int i = 1, j = 1; i <= tp2; i++) {  // 初始化一下每个询问的值
+  for (int i = 1, j = 1; i <= tp2; i++) {  // Khởi tạo giá trị cho từng truy vấn
     while (j <= n && pre[srt[j]] < qr[i].l) ta.c(srt[j], 1), j++;
     qr[i].ans += ta.q(qr[i].r) - ta.q(qr[i].l - 1);
   }

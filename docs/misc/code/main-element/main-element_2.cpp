@@ -6,7 +6,8 @@ using namespace std;
 class Solution {
  public:
   vector<int> majorityElement(vector<int>& nums) {
-    // 将多数投票算法的「抵消2个不同元素」变为「抵消3个两两不同的元素」
+    // Biến thao tác "triệt tiêu 2 phần tử khác nhau" của thuật toán bỏ phiếu đa số
+    // thành "triệt tiêu 3 phần tử đôi một khác nhau"
     int maj1, maj2;
     int cnt1 = 0, cnt2 = 0;
     for (int num : nums) {
@@ -26,7 +27,8 @@ class Solution {
       }
     }
 
-    // 由于题目没有保证存在2个超过 ⌊ n/3 ⌋ 次的元素，故需检验
+    // Vì đề bài không bảo đảm tồn tại 2 phần tử xuất hiện quá floor(n/3) lần,
+    // cần kiểm tra lại
     vector<int> ans;
     cnt1 = 0, cnt2 = 0;
     for (int num : nums) {

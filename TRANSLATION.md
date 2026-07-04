@@ -350,6 +350,11 @@ MkDocs source layout intact.
   `docs/misc/expression.md`, `docs/misc/odt.md`: translated finite-state
   automata, computation theory basics, expression evaluation, and Chtholly
   Tree material.
+- `docs/misc/code/*`: translated the remaining explanatory comments in
+  miscellaneous algorithm snippets, including CDQ divide-and-conquer, Mo's
+  algorithm variants, hill climbing, simulated annealing, fractional
+  programming, majority element, DSU space optimization, and two-pointer cycle
+  detection examples.
 - `docs/topic/rmq.md`, `docs/topic/dsu-app.md`, `docs/topic/bracket.md`,
   `docs/topic/segment-tree-offline.md`: translated topic pages for RMQ, DSU
   applications, bracket sequences, and segment-tree divide-and-conquer over
