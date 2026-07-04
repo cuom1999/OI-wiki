@@ -1,51 +1,51 @@
 author: littleparrot12345
 
-## 定义
+## Định nghĩa
 
-在树中，如果节点 $x$ 作为根节点时，从 $x$ 出发的最长链最短，那么称 $x$ 为这棵树的中心．
+Trong một cây, nếu khi chọn đỉnh $x$ làm gốc, đường đi dài nhất xuất phát từ $x$ là ngắn nhất có thể, thì $x$ được gọi là tâm của cây.
 
-## 性质
+## Tính chất
 
--   树的中心不一定唯一，但最多有 $2$ 个，且这两个中心是相邻的．
--   树的中心一定位于树的直径上．
--   树上所有点到其最远点的路径一定交会于树的中心．
--   当树的中心为根节点时，其到达直径端点的两条链分别为最长链和次长链．
--   当通过在两棵树间连一条边以合并为一棵树时，连接两棵树的中心可以使新树的直径最小．
--   树的中心到其他任意节点的距离不超过树直径的一半．
+-   Tâm của cây không nhất thiết là duy nhất, nhưng có nhiều nhất $2$ tâm, và nếu có hai tâm thì chúng kề nhau.
+-   Tâm của cây chắc chắn nằm trên đường kính của cây.
+-   Với mọi đỉnh trên cây, đường đi từ đỉnh đó đến đỉnh xa nhất của nó chắc chắn giao nhau tại tâm của cây.
+-   Khi lấy tâm của cây làm gốc, hai đường đi từ tâm đến hai đầu mút của đường kính lần lượt là đường dài nhất và đường dài thứ hai.
+-   Khi nối hai cây bằng một cạnh để gộp thành một cây, nối hai tâm của hai cây sẽ làm đường kính của cây mới nhỏ nhất.
+-   Khoảng cách từ tâm của cây đến bất kỳ đỉnh nào khác không vượt quá một nửa đường kính của cây.
 
-## 求法
+## Cách tìm
 
-寻找一个点 $x$，使其作为根节点时，最长链的长度最短．
+Tìm một đỉnh $x$ sao cho khi chọn nó làm gốc, độ dài đường đi dài nhất là nhỏ nhất.
 
-### 具体步骤
+### Các bước cụ thể
 
-1.  维护 $len1_x$，表示节点 $x$ 子树内的最长链．
-2.  维护 $len2_x$，表示不与 $len1_x$ 重叠的最长链．
-3.  维护 $up_x$，表示节点 $x$ 子树外的最长链，该链必定经过 $x$ 的父节点．
-4.  找到点 $x$ 使得 $\max(len1_x, up_x)$ 最小，那么 $x$ 即为树的中心．
+1.  Duy trì $len1_x$, biểu thị đường đi dài nhất trong cây con của đỉnh $x$.
+2.  Duy trì $len2_x$, biểu thị đường đi dài nhất không trùng với $len1_x$.
+3.  Duy trì $up_x$, biểu thị đường đi dài nhất nằm ngoài cây con của đỉnh $x$; đường đi này chắc chắn đi qua cha của $x$.
+4.  Tìm đỉnh $x$ sao cho $\max(len1_x, up_x)$ nhỏ nhất; khi đó $x$ chính là tâm của cây.
 
-???+ note "参考代码"
+???+ note "Mã tham khảo"
     ```cpp
-    // 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]，使用vector存图
-    int d1[N], d2[N], up[N], x, y, mini = 1e9;  // d1,d2对应上文中的len1,len2
+    // Đoạn mã này giả định các đỉnh được đánh số từ 1, tức i thuộc [1,n], và dùng vector để lưu đồ thị
+    int d1[N], d2[N], up[N], x, y, mini = 1e9;  // d1,d2 tương ứng với len1,len2 ở trên
     
     struct node {
-      int to, val;  // to为边指向的节点，val为边权
+      int to, val;  // to là đỉnh mà cạnh trỏ tới, val là trọng số cạnh
     };
     
     vector<node> nbr[N];
     
-    void dfsd(int cur, int fa) {  // 求取len1和len2
+    void dfsd(int cur, int fa) {  // Tính len1 và len2
       for (node nxtn : nbr[cur]) {
-        int nxt = nxtn.to, w = nxtn.val;  // nxt为这条边通向的节点，val为边权
+        int nxt = nxtn.to, w = nxtn.val;  // nxt là đỉnh mà cạnh này đi tới, val là trọng số cạnh
         if (nxt == fa) {
           continue;
         }
         dfsd(nxt, cur);
-        if (d1[nxt] + w > d1[cur]) {  // 可以更新最长链
+        if (d1[nxt] + w > d1[cur]) {  // Có thể cập nhật đường đi dài nhất
           d2[cur] = d1[cur];
           d1[cur] = d1[nxt] + w;
-        } else if (d1[nxt] + w > d2[cur]) {  // 不能更新最长链，但可更新次长链
+        } else if (d1[nxt] + w > d2[cur]) {  // Không cập nhật được đường dài nhất, nhưng cập nhật được đường dài thứ hai
           d2[cur] = d1[nxt] + w;
         }
       }
@@ -58,33 +58,33 @@ author: littleparrot12345
           continue;
         }
         up[nxt] = up[cur] + w;
-        if (d1[nxt] + w != d1[cur]) {  // 如果自己子树里的最长链不在nxt子树里
+        if (d1[nxt] + w != d1[cur]) {  // Nếu đường dài nhất trong cây con hiện tại không nằm trong cây con nxt
           up[nxt] = max(up[nxt], d1[cur] + w);
-        } else {  // 自己子树里的最长链在nxt子树里，只能使用次长链
+        } else {  // Đường dài nhất trong cây con hiện tại nằm trong cây con nxt, nên chỉ có thể dùng đường dài thứ hai
           up[nxt] = max(up[nxt], d2[cur] + w);
         }
         dfsu(nxt, cur);
       }
     }
     
-    void GetTreeCenter() {  // 统计树的中心，记为x和y（若存在）
+    void GetTreeCenter() {  // Tìm tâm của cây, lưu vào x và y nếu có
       dfsd(1, 0);
       dfsu(1, 0);
       for (int i = 1; i <= n; i++) {
-        if (max(d1[i], up[i]) < mini) {  // 找到了当前max(len1[x],up[x])最小点
+        if (max(d1[i], up[i]) < mini) {  // Tìm được đỉnh hiện tại có max(len1[x],up[x]) nhỏ nhất
           mini = max(d1[i], up[i]);
           x = i;
           y = 0;
-        } else if (max(d1[i], up[i]) == mini) {  // 另一个中心
+        } else if (max(d1[i], up[i]) == mini) {  // Tâm còn lại
           y = i;
         }
       }
     }
     ```
 
-### 示例
+### Ví dụ
 
-假设我们有一棵树，如下所示：
+Giả sử ta có một cây như sau:
 
 ```text
            A
@@ -94,15 +94,15 @@ author: littleparrot12345
        D   E   F
 ```
 
--   树的直径为 $D \rightarrow B \rightarrow A \rightarrow C \rightarrow F$．直径长度为 $4$．
--   树的中心为节点 $A$，因为从 $A$ 出发的最长链（到 $D$ 或 $F$）均为 $2$．
--   如果将 $B$ 或 $C$ 作为树的根，则从这些节点出发的最长链将增加，因此它们不是树的中心．
+-   Đường kính của cây là $D \rightarrow B \rightarrow A \rightarrow C \rightarrow F$. Độ dài đường kính là $4$.
+-   Tâm của cây là đỉnh $A$, vì đường đi dài nhất xuất phát từ $A$ (đến $D$ hoặc $F$) đều có độ dài $2$.
+-   Nếu chọn $B$ hoặc $C$ làm gốc của cây, đường đi dài nhất xuất phát từ các đỉnh đó sẽ dài hơn, nên chúng không phải là tâm của cây.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-上述算法的时间复杂度为 $O(n)$，其中 $n$ 是树中节点的数量．
+Độ phức tạp thời gian của thuật toán trên là $O(n)$, trong đó $n$ là số lượng đỉnh trong cây.
 
-## 参考
+## Tham khảo
 
 -   [TutorialsPoint: Centers of a Tree](https://www.tutorialspoint.com/centers-of-a-tree)
 -   [ProofWiki: Definition of Center of Tree](https://proofwiki.org/wiki/Definition:Center_of_Tree)

@@ -1,105 +1,105 @@
-树上任意两节点之间最长的简单路径即为树的「直径」．
+Đường đi đơn dài nhất giữa hai đỉnh bất kỳ trên cây được gọi là "đường kính" của cây.
 
-前置知识：[树基础](./tree-basic.md)．
+Kiến thức cần biết trước: [Cơ bản về cây](./tree-basic.md).
 
-## 引入
+## Dẫn nhập
 
-显然，一棵树可以有多条直径，他们的长度相等．
+Hiển nhiên, một cây có thể có nhiều đường kính và độ dài của chúng bằng nhau.
 
-可以用两次 DFS 或者树形 DP 的方法在 $O(n)$ 时间求出树的直径．
+Có thể tìm đường kính của cây trong thời gian $O(n)$ bằng hai lần DFS hoặc bằng DP trên cây.
 
-## 两次 DFS
+## Hai lần DFS
 
-首先从任意节点 $y$ 开始进行第一次 DFS，到达距离其最远的节点，记为 $z$，然后再从 $z$ 开始做第二次 DFS，到达距离 $z$ 最远的节点，记为 $z'$，则 $\delta(z,z')$ 即为树的直径．
+Trước hết, bắt đầu lần DFS thứ nhất từ một đỉnh bất kỳ $y$, đi tới đỉnh xa nó nhất và ký hiệu đỉnh đó là $z$. Sau đó bắt đầu lần DFS thứ hai từ $z$, đi tới đỉnh xa $z$ nhất và ký hiệu đỉnh đó là $z'$. Khi đó $\delta(z,z')$ chính là đường kính của cây.
 
-显然，如果第一次 DFS 到达的节点 $z$ 是直径的一端，那么第二次 DFS 到达的节点 $z'$ 一定是直径的一端．我们只需证明在任意情况下，$z$ 必为直径的一端．
+Rõ ràng, nếu đỉnh $z$ mà lần DFS thứ nhất tìm được là một đầu mút của đường kính, thì đỉnh $z'$ mà lần DFS thứ hai tìm được chắc chắn là một đầu mút của đường kính. Ta chỉ cần chứng minh rằng trong mọi trường hợp, $z$ luôn là một đầu mút của đường kính.
 
-定理：在一棵树上，从任意节点 $y$ 开始进行一次 DFS，到达的距离其最远的节点 $z$ 必为直径的一端．
+Định lý: Trên một cây, nếu bắt đầu DFS từ một đỉnh bất kỳ $y$, thì đỉnh $z$ xa $y$ nhất tìm được chắc chắn là một đầu mút của đường kính.
 
-???+ note "证明"
-    使用反证法．记出发节点为 $y$．设真实的直径是 $\delta(s,t)$，而从 $y$ 进行的第一次 DFS 到达的距离其最远的节点 $z$ 不为 $t$ 或 $s$．共分三种情况：
+???+ note "Chứng minh"
+    Dùng phản chứng. Gọi đỉnh xuất phát là $y$. Giả sử đường kính thật sự là $\delta(s,t)$, còn đỉnh $z$ xa $y$ nhất do lần DFS thứ nhất từ $y$ tìm được không phải là $t$ hay $s$. Xét ba trường hợp:
     
-    -   若 $y$ 在 $\delta(s,t)$ 上：
+    -   Nếu $y$ nằm trên $\delta(s,t)$:
     
-    ![y 在 s-t 上](./images/tree-diameter1.svg)
+    ![y nam tren s-t](./images/tree-diameter1.svg)
     
-    有 $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$，与 $\delta(s,t)$ 为树上任意两节点之间最长的简单路径矛盾．
+    Ta có $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$, mâu thuẫn với việc $\delta(s,t)$ là đường đi đơn dài nhất giữa hai đỉnh bất kỳ trên cây.
     
-    -   若 $y$ 不在 $\delta(s,t)$ 上，且 $\delta(y,z)$ 与 $\delta(s,t)$ 存在重合路径：
+    -   Nếu $y$ không nằm trên $\delta(s,t)$ và $\delta(y,z)$ có đoạn đường trùng với $\delta(s,t)$:
     
-    ![y 不在 s-t 上，y-z 与 s-t 存在重合路径](./images/tree-diameter2.svg)
+    ![y khong nam tren s-t, y-z co doan trung voi s-t](./images/tree-diameter2.svg)
     
-    有 $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$，与 $\delta(s,t)$ 为树上任意两节点之间最长的简单路径矛盾．
+    Ta có $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$, mâu thuẫn với việc $\delta(s,t)$ là đường đi đơn dài nhất giữa hai đỉnh bất kỳ trên cây.
     
-    -   若 $y$ 不在 $\delta(s,t)$ 上，且 $\delta(y,z)$ 与 $\delta(s,t)$ 不存在重合路径：
+    -   Nếu $y$ không nằm trên $\delta(s,t)$ và $\delta(y,z)$ không có đoạn đường nào trùng với $\delta(s,t)$:
     
-    ![y 不在 s-t 上，y-z 与 s-t 不存在重合路径](./images/tree-diameter3.svg)
+    ![y khong nam tren s-t, y-z khong co doan trung voi s-t](./images/tree-diameter3.svg)
     
-    有 $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x',z) > \delta(x',t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$，与 $\delta(s,t)$ 为树上任意两节点之间最长的简单路径矛盾．
+    Ta có $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x',z) > \delta(x',t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$, mâu thuẫn với việc $\delta(s,t)$ là đường đi đơn dài nhất giữa hai đỉnh bất kỳ trên cây.
     
-    综上，三种情况下假设均会产生矛盾，故原定理得证．
+    Tóm lại, trong cả ba trường hợp giả thiết đều dẫn tới mâu thuẫn, nên định lý được chứng minh.
 
-???+ warning "负权边"
-    上述证明过程建立在所有路径均不为负的前提下．如果树上存在负权边，则上述证明不成立．故若存在负权边，则无法使用两次 DFS 的方式求解直径．
+???+ warning "Cạnh có trọng số âm"
+    Chứng minh ở trên dựa trên tiền đề rằng mọi đường đi đều không âm. Nếu trên cây có cạnh trọng số âm thì chứng minh trên không còn đúng. Vì vậy, khi tồn tại cạnh trọng số âm, không thể dùng cách hai lần DFS để tìm đường kính.
 
-如果需要求出一条直径上所有的节点，则可以在第二次 DFS 的过程中，记录每个点的前序节点，即可从直径的一端一路向前，遍历直径上所有的节点．
+Nếu cần tìm tất cả các đỉnh trên một đường kính, trong quá trình DFS lần thứ hai ta có thể ghi lại đỉnh trước của mỗi đỉnh. Khi đó chỉ cần bắt đầu từ một đầu mút của đường kính và lần theo các đỉnh trước là có thể duyệt tất cả các đỉnh trên đường kính.
 
-## 树形 DP
+## DP trên cây
 
-### 方法 1
+### Phương pháp 1
 
-我们记录当 $1$ 为树的根时，每个节点作为子树的根向下，所能延伸的最长路径长度 $d_1$ 与次长路径（与最长路径无公共边）长度 $d_2$，那么直径就是对于每一个点，该点 $d_1 + d_2$ 能取到的值中的最大值．
+Khi lấy $1$ làm gốc của cây, với mỗi đỉnh đóng vai trò là gốc của một cây con, ta ghi lại độ dài đường đi dài nhất có thể kéo dài xuống dưới từ đỉnh đó là $d_1$ và độ dài đường đi dài thứ hai là $d_2$ (không có cạnh chung với đường đi dài nhất). Khi đó đường kính là giá trị lớn nhất trong các giá trị $d_1 + d_2$ tại mỗi đỉnh.
 
-树形 DP 可以在存在负权边的情况下求解出树的直径．
+DP trên cây có thể tìm đường kính của cây cả khi tồn tại cạnh trọng số âm.
 
-如果需要求出一条直径上所有的节点，则可以在 DP 的过程中，记录下每个节点能向下延伸的最长路径与次长路径（定义同上）所对应的子节点，在求 $d$ 的同时记下对应的节点 $u$，使得 $d = d_1[u] + d_2[u]$，即可分别沿着从 $u$ 开始的最长路径的次长路径对应的子节点一路向某个方向（对于无根树，虽然这里指定了 $1$ 为树的根，但仍需记录每点跳转的方向；对于有根树，一路向上跳即可），遍历直径上所有的节点．
+Nếu cần tìm tất cả các đỉnh trên một đường kính, trong quá trình DP ta có thể ghi lại đỉnh con tương ứng với đường đi dài nhất và đường đi dài thứ hai có thể kéo dài xuống dưới từ mỗi đỉnh (định nghĩa như trên). Khi tính $d$, đồng thời ghi lại đỉnh tương ứng $u$ sao cho $d = d_1[u] + d_2[u]$. Sau đó lần theo các đỉnh con tương ứng với đường đi dài nhất và đường đi dài thứ hai bắt đầu từ $u$ theo từng hướng (với cây không gốc, tuy ở đây đã chọn $1$ làm gốc, vẫn cần ghi lại hướng nhảy của từng đỉnh; với cây có gốc, chỉ cần lần ngược lên trên), ta có thể duyệt tất cả các đỉnh trên đường kính.
 
-### 方法 2
+### Phương pháp 2
 
-这里提供一种只使用一个数组进行的树形 DP 方法．
+Ở đây giới thiệu một cách DP trên cây chỉ dùng một mảng.
 
-我们定义 $dp[u]$ 为以 $u$ 为根的子树中，从 $u$ 出发的最长路径．那么容易得出转移方程：$dp[u] = \max(dp[u], dp[v] + w(u, v))$，其中的 $v$ 为 $u$ 的子节点，$w(u, v)$ 表示所经过边的权重．
+Ta định nghĩa $dp[u]$ là đường đi dài nhất bắt đầu từ $u$ trong cây con gốc $u$. Khi đó dễ suy ra công thức chuyển: $dp[u] = \max(dp[u], dp[v] + w(u, v))$, trong đó $v$ là đỉnh con của $u$, còn $w(u, v)$ biểu thị trọng số của cạnh đi qua.
 
-对于树的直径，实际上是可以通过枚举从某个节点出发不同的两条路径相加的最大值求出．因此，在 DP 求解的过程中，我们只需要在更新 $dp[u]$ 之前，计算 $d = \max(d, dp[u] + dp[v] + w(u, v))$ 即可算出直径 $d$．
+Với đường kính của cây, thực chất có thể tìm bằng cách xét giá trị lớn nhất của tổng hai đường đi khác nhau xuất phát từ cùng một đỉnh. Vì vậy, trong quá trình DP, trước khi cập nhật $dp[u]$, chỉ cần tính $d = \max(d, dp[u] + dp[v] + w(u, v))$ là có thể tính được đường kính $d$.
 
-## 例题
+## Ví dụ
 
-???+ example "[Luogu B4016 树的直径](https://www.luogu.com.cn/problem/B4016)"
-    给定一棵 $n$ 个节点的树，求其直径的长度．$1\leq n\leq 10^5$．
+???+ example "[Luogu B4016 Đường kính của cây](https://www.luogu.com.cn/problem/B4016)"
+    Cho một cây có $n$ đỉnh, hãy tìm độ dài đường kính của nó. $1\leq n\leq 10^5$.
 
-??? note "两次 DFS 的参考实现"
+??? note "Cài đặt tham khảo dùng hai lần DFS"
     ```cpp
     --8<-- "docs/graph/code/tree-diameter/tree-diameter_1.cpp"
     ```
 
-??? note "使用两个数组的树形 DP 参考实现"
+??? note "Cài đặt tham khảo DP trên cây dùng hai mảng"
     ```cpp
     --8<-- "docs/graph/code/tree-diameter/tree-diameter_2.cpp"
     ```
 
-??? note "使用一个数组的树形 DP 参考实现"
+??? note "Cài đặt tham khảo DP trên cây dùng một mảng"
     ```cpp
     --8<-- "docs/graph/code/tree-diameter/tree-diameter_3.cpp"
     ```
 
-## 性质
+## Tính chất
 
-树的直径具有如下性质：若树上所有边边权均为正，则树的所有直径中点重合．
+Đường kính của cây có tính chất sau: nếu tất cả các cạnh của cây đều có trọng số dương, thì trung điểm của mọi đường kính của cây trùng nhau.
 
-???+ note "证明"
-    证明：使用反证法．设两条中点不重合的直径分别为 $\delta(s,t)$ 与 $\delta(s',t')$，中点分别为 $x$ 与 $x'$．显然，$\delta(s,x) = \delta(x,t) = \delta(s',x') = \delta(x',t')$．
+???+ note "Chứng minh"
+    Chứng minh: Dùng phản chứng. Giả sử có hai đường kính có trung điểm không trùng nhau, lần lượt là $\delta(s,t)$ và $\delta(s',t')$, với trung điểm tương ứng là $x$ và $x'$. Hiển nhiên, $\delta(s,x) = \delta(x,t) = \delta(s',x') = \delta(x',t')$.
     
-    ![无负权边的树所有直径的中点重合](./images/tree-diameter4.svg)
+    ![trung diem cua moi duong kinh trong cay khong co canh am trung nhau](./images/tree-diameter4.svg)
     
-    有 $\delta(s,t') = \delta(s,x) + \delta(x,x') + \delta(x',t') > \delta(s,x) + \delta(x,t) = \delta(s,t)$，与 $\delta(s,t)$ 为树上任意两节点之间最长的简单路径矛盾，故性质得证．
+    Ta có $\delta(s,t') = \delta(s,x) + \delta(x,x') + \delta(x',t') > \delta(s,x) + \delta(x,t) = \delta(s,t)$, mâu thuẫn với việc $\delta(s,t)$ là đường đi đơn dài nhất giữa hai đỉnh bất kỳ trên cây. Do đó tính chất được chứng minh.
 
-## 习题
+## Bài tập
 
 -   [CodeChef, Diameter of Tree](https://www.codechef.com/problems/DTREE)
 -   [Educational Codeforces Round 35, Problem F, Tree Destruction](https://codeforces.com/contest/911/problem/F)
 -   [ZOJ 3820 Building Fire Stations](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827369872&page=28)
 -   [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B)
--   [ICPC 2019 上海赛区网络赛 Lightning Routing I](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A2290)
--   [NOIP2007 提高组 树网的核](https://www.luogu.com.cn/problem/P1099)
--   [SDOI2011 消防](https://www.luogu.com.cn/problem/P2491)
--   [APIO2010 巡逻](https://www.luogu.com.cn/problem/P3629)
+-   [ICPC 2019 Shanghai Regional Online Contest, Lightning Routing I](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A2290)
+-   [NOIP2007 Advanced Group, Core of Tree Network](https://www.luogu.com.cn/problem/P1099)
+-   [SDOI2011 Firefighting](https://www.luogu.com.cn/problem/P2491)
+-   [APIO2010 Patrol](https://www.luogu.com.cn/problem/P3629)

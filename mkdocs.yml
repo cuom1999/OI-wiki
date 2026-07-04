@@ -418,12 +418,12 @@ nav:
     - Lưu trữ đồ thị: graph/save.md
     - DFS: graph/dfs.md
     - BFS: graph/bfs.md
-    - 树上问题:
-      - 树基础: graph/tree-basic.md
-      - 树的直径: graph/tree-diameter.md
-      - 树的中心: graph/tree-center.md
-      - 树的重心: graph/tree-centroid.md
-      - 最近公共祖先: graph/lca.md
+    - Bài toán trên cây:
+      - Cơ bản về cây: graph/tree-basic.md
+      - Đường kính của cây: graph/tree-diameter.md
+      - Tâm của cây: graph/tree-center.md
+      - Trọng tâm của cây: graph/tree-centroid.md
+      - Tổ tiên chung gần nhất: graph/lca.md
       - 树链剖分: graph/hld.md
       - 树上启发式合并: graph/dsu-on-tree.md
       - 虚树: graph/virtual-tree.md

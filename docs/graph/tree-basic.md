@@ -1,146 +1,146 @@
-## 引入
+## Giới thiệu
 
-图论中的树和现实生活中的树长得一样，只不过我们习惯于处理问题的时候把树根放到上方来考虑．这种数据结构看起来像是一个倒挂的树，因此得名．
+Cây trong lý thuyết đồ thị trông giống cây trong đời thực, chỉ khác là khi xử lý bài toán, ta thường đặt gốc cây ở phía trên để xét. Cấu trúc dữ liệu này nhìn giống một cái cây bị treo ngược, nên được gọi là cây.
 
-## 定义
+## Định nghĩa
 
-一个没有固定根结点的树称为 **无根树**（unrooted tree）．无根树有几种等价的形式化定义：
+Một cây không có nút gốc cố định được gọi là **cây không gốc** (unrooted tree). Cây không gốc có một số định nghĩa hình thức tương đương:
 
--   有 $n$ 个结点，$n-1$ 条边的连通无向图
+-   Đồ thị vô hướng liên thông có $n$ nút và $n-1$ cạnh.
 
--   无向无环的连通图
+-   Đồ thị vô hướng, không có chu trình và liên thông.
 
--   任意两个结点之间有且仅有一条简单路径的无向图
+-   Đồ thị vô hướng trong đó giữa hai nút bất kỳ có đúng một đường đi đơn.
 
--   任何边均为桥的连通图
+-   Đồ thị liên thông mà mọi cạnh đều là cầu.
 
--   没有圈，且在任意不同两点间添加一条边之后所得图含唯一的一个圈的图
+-   Đồ thị không có chu trình, và nếu thêm một cạnh giữa hai điểm khác nhau bất kỳ thì đồ thị thu được chứa đúng một chu trình.
 
-在无根树的基础上，指定一个结点称为 **根**，则形成一棵 **有根树**（rooted tree）．有根树在很多时候仍以无向图表示，只是规定了结点之间的上下级关系，详见下文．
+Trên cơ sở cây không gốc, nếu chỉ định một nút làm **gốc** thì ta thu được một **cây có gốc** (rooted tree). Cây có gốc trong nhiều trường hợp vẫn được biểu diễn bằng đồ thị vô hướng, chỉ là có quy ước quan hệ trên dưới giữa các nút. Xem chi tiết ở phần dưới.
 
-## 有关树的定义
+## Các định nghĩa liên quan đến cây
 
-### 适用于无根树和有根树
+### Áp dụng cho cây không gốc và cây có gốc
 
--   **森林（forest）**：每个连通分量（连通块）都是树的图．按照定义，一棵树也是森林．
+-   **Rừng** (forest): đồ thị mà mỗi thành phần liên thông đều là một cây. Theo định nghĩa, một cây cũng là một rừng.
 
--   **生成树（spanning tree）**：一个连通无向图的生成子图，同时要求是树．也即在图的边集中选择 $n - 1$ 条，将所有顶点连通．
+-   **Cây khung** (spanning tree): đồ thị con sinh của một đồ thị vô hướng liên thông, đồng thời phải là một cây. Nói cách khác, chọn $n - 1$ cạnh từ tập cạnh của đồ thị để làm cho tất cả các đỉnh liên thông.
 
--   **无根树的叶结点（leaf node）**：度数不超过 $1$ 的结点．
+-   **Nút lá của cây không gốc** (leaf node): nút có bậc không vượt quá $1$.
 
-    ???+ question "为什么不是度数恰为 $1$？"
-        考虑 $n = 1$．
+    ???+ question "Tại sao không phải bậc đúng bằng $1$?"
+        Hãy xét $n = 1$.
 
--   **有根树的叶结点（leaf node）**：没有子结点的结点．
+-   **Nút lá của cây có gốc** (leaf node): nút không có nút con.
 
-### 只适用于有根树
+### Chỉ áp dụng cho cây có gốc
 
--   **父亲（parent node）**：对于除根以外的每个结点，定义为从该结点到根路径上的第二个结点．  
-    根结点没有父结点．
--   **祖先（ancestor）**：一个结点到根结点的路径上，除了它本身外的结点．  
-    根结点的祖先集合为空．
--   **子结点（child node）**：如果 $u$ 是 $v$ 的父亲，那么 $v$ 是 $u$ 的子结点．  
-    子结点的顺序一般不加以区分，二叉树是一个例外．
--   **结点的深度（depth）**：到根结点的路径上的边数．
--   **树的高度（height）**：所有结点的深度的最大值．
--   **兄弟（sibling）**：同一个父亲的多个子结点互为兄弟．
--   **后代（descendant）**：子结点和子结点的后代．  
-    或者理解成：如果 $u$ 是 $v$ 的祖先，那么 $v$ 是 $u$ 的后代．
+-   **Cha** (parent node): với mỗi nút ngoài gốc, được định nghĩa là nút thứ hai trên đường đi từ nút đó đến gốc.
+    Nút gốc không có nút cha.
+-   **Tổ tiên** (ancestor): các nút trên đường đi từ một nút đến nút gốc, ngoại trừ chính nó.
+    Tập tổ tiên của nút gốc là rỗng.
+-   **Nút con** (child node): nếu $u$ là cha của $v$, thì $v$ là nút con của $u$.
+    Thứ tự của các nút con thường không được phân biệt, ngoại trừ cây nhị phân.
+-   **Độ sâu của nút** (depth): số cạnh trên đường đi đến nút gốc.
+-   **Chiều cao của cây** (height): giá trị lớn nhất trong các độ sâu của mọi nút.
+-   **Anh em** (sibling): nhiều nút con có cùng một cha là anh em của nhau.
+-   **Hậu duệ** (descendant): nút con và các hậu duệ của nút con.
+    Cũng có thể hiểu là: nếu $u$ là tổ tiên của $v$, thì $v$ là hậu duệ của $u$.
 
 ![tree-definition.svg](images/tree-definition.svg)
 
--   **子树（subtree）**：删掉与父亲相连的边后，该结点所在的子图．
+-   **Cây con** (subtree): sau khi xóa cạnh nối với cha, đó là đồ thị con chứa nút này.
 
     ![tree-definition-subtree.svg](images/tree-definition-subtree.svg)
 
-## 特殊的树
+## Các loại cây đặc biệt
 
--   **链（chain/path graph）**：满足与任一结点相连的边不超过 $2$ 条的树称为链．
+-   **Chuỗi/đồ thị đường đi** (chain/path graph): cây trong đó số cạnh kề với mỗi nút không vượt quá $2$ được gọi là chuỗi.
 
--   **菊花/星星（star）**：满足存在 $u$ 使得所有除 $u$ 以外结点均与 $u$ 相连的树称为菊花．
+-   **Cây sao** (star): cây mà tồn tại một nút $u$ sao cho mọi nút khác $u$ đều kề với $u$ được gọi là cây sao.
 
--   **有根二叉树（rooted binary tree）**：每个结点最多只有两个儿子（子结点）的有根树称为二叉树．常常对两个子结点的顺序加以区分，分别称之为左子结点和右子结点．  
-    大多数情况下，**二叉树** 一词均指有根二叉树．
+-   **Cây nhị phân có gốc** (rooted binary tree): cây có gốc mà mỗi nút có nhiều nhất hai con được gọi là cây nhị phân. Thường phân biệt thứ tự của hai nút con, lần lượt gọi là nút con trái và nút con phải.
+    Trong phần lớn trường hợp, thuật ngữ **cây nhị phân** đều chỉ cây nhị phân có gốc.
 
--   **完整二叉树（full/proper binary tree）**：每个结点的子结点数量均为 0 或者 2 的二叉树．换言之，每个结点或者是树叶，或者左右子树均非空．
+-   **Cây nhị phân đầy đủ** (full/proper binary tree): cây nhị phân trong đó số nút con của mỗi nút đều là 0 hoặc 2. Nói cách khác, mỗi nút hoặc là lá, hoặc có cả cây con trái và cây con phải đều không rỗng.
 
     ![](images/tree-binary-proper.svg)
 
--   **完全二叉树（complete binary tree）**：只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上．
+-   **Cây nhị phân hoàn chỉnh** (complete binary tree): chỉ các nút ở hai tầng dưới cùng có thể có bậc nhỏ hơn 2, và các nút ở tầng dưới cùng đều tập trung tại các vị trí liên tiếp ngoài cùng bên trái của tầng đó.
 
     ![](images/tree-binary-complete.svg)
 
--   **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同，且所有非叶节点的子节点数量均为 2 的二叉树称为完美二叉树．
+-   **Cây nhị phân hoàn hảo** (perfect binary tree): cây nhị phân trong đó mọi nút lá có cùng độ sâu, và mọi nút không phải lá đều có đúng 2 nút con được gọi là cây nhị phân hoàn hảo.
 
     ![](images/tree-binary-perfect.svg)
 
-???+ warning "Warning"
-    Proper binary tree 的汉译名称不固定，且完全二叉树和满二叉树的定义在不同教材中定义不同，遇到的时候需根据上下文加以判断．
+???+ warning "Cảnh báo"
+    Cách dịch proper binary tree không thống nhất; ngoài ra, định nghĩa của complete binary tree và full binary tree cũng khác nhau giữa các giáo trình. Khi gặp các thuật ngữ này, cần phán đoán theo ngữ cảnh.
 
-OIers 所说的「满二叉树」多指完美二叉树．
+Trong cộng đồng OI, cách gọi full binary tree thường chỉ perfect binary tree.
 
-## 存储
+## Lưu trữ
 
-### 只记录父结点
+### Chỉ ghi lại nút cha
 
-用一个数组 `parent[N]` 记录每个结点的父亲结点．
+Dùng một mảng `parent[N]` để ghi nút cha của mỗi nút.
 
-这种方式可以获得的信息较少，不便于进行自顶向下的遍历．常用于自底向上的递推问题中．
+Cách này cung cấp được khá ít thông tin, không thuận tiện cho việc duyệt từ trên xuống. Nó thường được dùng trong các bài toán quy hoạch truy hồi từ dưới lên.
 
-### 邻接表
+### Danh sách kề
 
--   对于无根树：为每个结点开辟一个线性列表，记录所有与之相连的结点．
+-   Với cây không gốc: tạo một danh sách tuyến tính cho mỗi nút để ghi lại mọi nút kề với nó.
     ```cpp
     std::vector<int> adj[N];
     ```
--   对于有根树：
-    -   方法一：若给定的是无向图，则仍可以上述形式存储．下文将介绍如何区分结点的上下关系．
-    -   方法二：若输入数据能够确保结点的上下关系，则可以利用这个信息．为每个结点开辟一个线性列表，记录其所有子结点；若有需要，还可在另一个数组中记录其父结点．
+-   Với cây có gốc:
+    -   Cách 1: nếu dữ liệu cho là đồ thị vô hướng, vẫn có thể lưu bằng dạng trên. Phần dưới sẽ giới thiệu cách phân biệt quan hệ trên dưới giữa các nút.
+    -   Cách 2: nếu dữ liệu đầu vào có thể đảm bảo quan hệ trên dưới giữa các nút, thì có thể tận dụng thông tin này. Tạo một danh sách tuyến tính cho mỗi nút để ghi lại tất cả nút con của nó; nếu cần, cũng có thể ghi nút cha của nó trong một mảng khác.
         ```cpp
         std::vector<int> children[N];
         int parent[N];
         ```
-        当然也可以用其他方式（如链表）替代 `std::vector`．
+        Tất nhiên cũng có thể dùng cách khác, chẳng hạn danh sách liên kết, để thay thế `std::vector`.
 
-### 左孩子右兄弟表示法
+### Biểu diễn con trái, anh em phải
 
-#### 过程
+#### Quy trình
 
-对于有根树，存在一种简单的表示方法．
+Với cây có gốc, tồn tại một cách biểu diễn đơn giản.
 
-首先，给每个结点的所有子结点任意确定一个顺序．
+Trước hết, xác định một thứ tự tùy ý cho tất cả nút con của mỗi nút.
 
-此后为每个结点记录两个值：其 **第一个子结点**  `child[u]` 和其 **下一个兄弟结点**  `sib[u]`．若没有子结点，则 `child[u]` 为空；若该结点是其父结点的最后一个子结点，则 `sib[u]` 为空．
+Sau đó, với mỗi nút, ghi lại hai giá trị: **nút con đầu tiên** `child[u]` của nó và **nút anh em kế tiếp** `sib[u]` của nó. Nếu không có nút con thì `child[u]` rỗng; nếu nút đó là nút con cuối cùng của nút cha, thì `sib[u]` rỗng.
 
-#### 实现
+#### Cài đặt
 
-遍历一个结点的所有子结点可由如下方式实现．
+Có thể duyệt tất cả nút con của một nút như sau.
 
 ```cpp
-int v = child[u];  // 从第一个子结点开始
+int v = child[u];  // Bat dau tu nut con dau tien
 while (v != EMPTY_NODE) {
   // ...
-  // 处理子结点 v
+  // Xu ly nut con v
   // ...
-  v = sib[v];  // 转至下一个子结点，即 v 的一个兄弟
+  v = sib[v];  // Chuyen sang nut con ke tiep, tuc mot anh em cua v
 }
 ```
 
-也可简写为以下形式．
+Cũng có thể viết gọn thành dạng sau.
 
 ```cpp
 for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
   // ...
-  // 处理子结点 v
+  // Xu ly nut con v
   // ...
 }
 ```
 
-### 二叉树
+### Cây nhị phân
 
-需要记录每个结点的左右子结点．
+Cần ghi lại nút con trái và nút con phải của mỗi nút.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     int parent[N];
     int lch[N], rch[N];
@@ -148,23 +148,23 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
     int child[N][2];
     ```
 
-## 树的遍历
+## Duyệt cây
 
-### 树上 DFS
+### DFS trên cây
 
-在树上 DFS 是这样的一个过程：先访问根节点，然后分别访问根节点每个儿子的子树．
+DFS trên cây là một quá trình như sau: trước tiên thăm nút gốc, sau đó lần lượt thăm cây con của từng con của nút gốc.
 
-可以用来求出每个节点的深度、父亲等信息．
+Có thể dùng để tìm độ sâu, nút cha và các thông tin khác của mỗi nút.
 
-### 二叉树 DFS 遍历
+### Duyệt DFS trên cây nhị phân
 
-#### 先序遍历
+#### Duyệt tiền thứ tự
 
 ![preorder](images/tree-basic-preorder.svg)
 
-按照 **根，左，右** 的顺序遍历二叉树．
+Duyệt cây nhị phân theo thứ tự **gốc, trái, phải**.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void preorder(BiTree* root) {
       if (root) {
@@ -175,13 +175,13 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
     }
     ```
 
-#### 中序遍历
+#### Duyệt trung thứ tự
 
 ![inorder](images/tree-basic-inorder.svg)
 
-按照 **左，根，右** 的顺序遍历二叉树．
+Duyệt cây nhị phân theo thứ tự **trái, gốc, phải**.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void inorder(BiTree* root) {
       if (root) {
@@ -192,13 +192,13 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
     }
     ```
 
-#### 后序遍历
+#### Duyệt hậu thứ tự
 
 ![postorder](images/tree-basic-postorder.svg)
 
-按照 **左，右，根** 的顺序遍历二叉树．
+Duyệt cây nhị phân theo thứ tự **trái, phải, gốc**.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void postorder(BiTree* root) {
       if (root) {
@@ -209,31 +209,31 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
     }
     ```
 
-#### 反推
+#### Suy ngược
 
-已知中序遍历序列和另外一个序列可以求第三个序列．
+Khi đã biết dãy duyệt trung thứ tự và một dãy duyệt khác, có thể suy ra dãy duyệt thứ ba.
 
 ![reverse](images/tree-basic-reverse.svg)
 
-1.  前序的第一个是 `root`，后序的最后一个是 `root`．
-2.  先确定根节点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树．
-3.  对于每一个子树可以看成一个全新的树，仍然遵循上面的规律．
+1.  Phần tử đầu tiên của tiền thứ tự là `root`, phần tử cuối cùng của hậu thứ tự là `root`.
+2.  Trước hết xác định nút gốc, sau đó dựa vào duyệt trung thứ tự: phần nằm bên trái gốc là cây con trái, phần nằm bên phải gốc là cây con phải.
+3.  Với mỗi cây con, có thể xem nó là một cây hoàn toàn mới và vẫn tuân theo quy luật trên.
 
-### 树上 BFS
+### BFS trên cây
 
-从树根开始，严格按照层次来访问节点．
+Bắt đầu từ gốc cây và thăm các nút nghiêm ngặt theo từng tầng.
 
-BFS 过程中也可以顺便求出各个节点的深度和父亲节点．
+Trong quá trình BFS, cũng có thể đồng thời tìm độ sâu và nút cha của từng nút.
 
-#### 树的层序遍历
+#### Duyệt cây theo mức
 
-树层序遍历是指按照从根节点到叶子节点的层次关系，一层一层的横向遍历各个节点．根据 BFS 的定义可以知道，BFS 所得到的遍历顺序就是一种层序遍历．但层序遍历要求将不同的层次区分开来，所以其结果通常以二维数组的形式表示．
+Duyệt cây theo mức là duyệt ngang từng nút theo từng tầng, dựa trên quan hệ tầng từ nút gốc đến nút lá. Theo định nghĩa của BFS, ta biết thứ tự duyệt thu được bằng BFS chính là một dạng duyệt theo mức. Tuy nhiên, duyệt theo mức yêu cầu phân biệt các tầng khác nhau, nên kết quả thường được biểu diễn dưới dạng mảng hai chiều.
 
-例如，下图的树的层序遍历的结果是 `[[1], [2, 3, 4], [5, 6]]`（每一层从左向右）．
+Ví dụ, kết quả duyệt theo mức của cây trong hình dưới là `[[1], [2, 3, 4], [5, 6]]`, với mỗi tầng đi từ trái sang phải.
 
 ![tree-basic-levelOrder](images/tree-basic-levelOrder.svg)
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     vector<vector<int>> levelOrder(Node* root) {
       if (!root) {
@@ -243,13 +243,13 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点．
       queue<Node*> q;
       q.push(root);
       while (!q.empty()) {
-        int currentLevelSize = q.size();  // 当前层的节点个数
+        int currentLevelSize = q.size();  // So nut cua tang hien tai
         res.push_back(vector<int>());
         for (int i = 0; i < currentLevelSize; ++i) {
           Node* cur = q.front();
           q.pop();
           res.back().push_back(cur->val);
-          for (Node* child : cur->children) {  // 把子节点都加入
+          for (Node* child : cur->children) {  // Dua tat ca nut con vao hang doi
             q.push(child);
           }
         }
@@ -258,58 +258,58 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点．
     }
     ```
 
-### 二叉树 Morris 遍历
+### Duyệt Morris trên cây nhị phân
 
-二叉树遍历的核心问题是，当遍历当前节点的子节点后，如何返回当前节点并继续遍历．遍历二叉树的递归方法和非递归方法都使用了栈结构，记录返回路径，来实现从下层到上层的移动．其空间复杂度最好时为 $O(\log n)$，最坏时为 $O(n)$（二叉树呈线性）．
+Vấn đề cốt lõi khi duyệt cây nhị phân là: sau khi duyệt các nút con của nút hiện tại, làm thế nào để quay lại nút hiện tại và tiếp tục duyệt. Cả phương pháp đệ quy và phương pháp không đệ quy để duyệt cây nhị phân đều dùng cấu trúc ngăn xếp để ghi lại đường quay về, nhờ đó thực hiện việc di chuyển từ tầng dưới lên tầng trên. Độ phức tạp không gian của chúng tốt nhất là $O(\log n)$, xấu nhất là $O(n)$ khi cây nhị phân có dạng tuyến tính.
 
-Morris 遍历的实质是避免使用栈，利用底层节点空闲的 `right` 指针指回上层的某个节点，从而完成下层到上层的移动．
+Bản chất của duyệt Morris là tránh dùng ngăn xếp, tận dụng con trỏ `right` đang rỗng của các nút tầng dưới để trỏ ngược về một nút nào đó ở tầng trên, từ đó hoàn thành việc di chuyển từ tầng dưới lên tầng trên.
 
-#### Morris 遍历的过程
+#### Quy trình duyệt Morris
 
-假设来到当前节点 `cur`，开始时来到根节点位置．
+Giả sử ta đang ở nút hiện tại `cur`; ban đầu `cur` ở vị trí nút gốc.
 
-1.  如果 `cur` 为空时遍历停止，否则进行以下过程．
-2.  如果 `cur` 没有左子树，`cur` 向右移动（`cur = cur->right`）．
-3.  如果 `cur` 有左子树，找到左子树上最右的节点，记为 `mostRight`．
-    -   如果 `mostRight` 的 `right` 指针指向空，让其指向 `cur`，然后 `cur` 向左移动（`cur = cur->left`）．
-    -   如果 `mostRight` 的 `right` 指针指向 `cur`，将其修改为 `null`，然后 `cur` 向右移动（`cur = cur->right`）．
+1.  Nếu `cur` rỗng thì dừng duyệt, nếu không thì thực hiện các bước sau.
+2.  Nếu `cur` không có cây con trái, di chuyển `cur` sang phải (`cur = cur->right`).
+3.  Nếu `cur` có cây con trái, tìm nút ngoài cùng bên phải trên cây con trái, gọi là `mostRight`.
+    -   Nếu con trỏ `right` của `mostRight` trỏ đến rỗng, cho nó trỏ đến `cur`, rồi di chuyển `cur` sang trái (`cur = cur->left`).
+    -   Nếu con trỏ `right` của `mostRight` trỏ đến `cur`, đổi nó thành `null`, rồi di chuyển `cur` sang phải (`cur = cur->right`).
 
-例如，`cur` 从节点 1 开始访问．
+Ví dụ, `cur` bắt đầu thăm từ nút 1.
 
 ![tree-basic-morris-1](images/tree-basic-morris-1.svg)
 
-`cur` 第一次访问节点 2 时，找到左子树上最右的节点 4，将 4 的 `right` 指针指向 `cur`（节点 2)．
+Khi `cur` thăm nút 2 lần đầu, tìm nút ngoài cùng bên phải trên cây con trái là 4, rồi cho con trỏ `right` của 4 trỏ đến `cur`, tức nút 2.
 
 ![tree-basic-morris-2](images/tree-basic-morris-2.svg)
 
-`cur` 通过 4 的 `right` 指针返回上层，第二次访问节点 2 时，找到左子树上最右节点 4，将 4 的 `right` 指针修改为 `null`，然后继续访问右子树．之后的过程省略．
+`cur` thông qua con trỏ `right` của 4 để quay lại tầng trên. Khi thăm nút 2 lần thứ hai, tìm nút ngoài cùng bên phải trên cây con trái là 4, đổi con trỏ `right` của 4 thành `null`, rồi tiếp tục thăm cây con phải. Các bước sau được lược bỏ.
 
 ![tree-basic-morris-1](images/tree-basic-morris-1.svg)
 
-整棵树的访问顺序是 `1242513637`．可以发现有左子树的节点访问两次，没有左子树的节点只访问一次．
+Thứ tự thăm toàn bộ cây là `1242513637`. Có thể thấy các nút có cây con trái được thăm hai lần, còn các nút không có cây con trái chỉ được thăm một lần.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void morris(TreeNode* root) {
       TreeNode* cur = root;
       while (cur) {
         if (!cur->left) {
-          // 如果当前节点没有左子节点，则输出当前节点的值并进入右子树
+          // Neu nut hien tai khong co nut con trai, in gia tri cua no roi vao cay con phai
           std::cout << cur->val << " ";
           cur = cur->right;
           continue;
         }
-        // 找到当前节点的左子树的最右节点
+        // Tim nut ngoai cung ben phai cua cay con trai cua nut hien tai
         TreeNode* mostRight = cur->left;
         while (mostRight->right && mostRight->right != cur) {
           mostRight = mostRight->right;
         }
         if (!mostRight->right) {
-          // 如果最右节点的right指针为空，将其指向当前节点，并进入左子树
+          // Neu con tro right cua nut ngoai cung ben phai rong, cho no tro den nut hien tai roi vao cay con trai
           mostRight->right = cur;
           cur = cur->left;
         } else {
-          // 如果最右节点的right指针指向当前节点，说明左子树已经遍历完毕，输出当前节点的值并进入右子树
+          // Neu con tro right cua nut ngoai cung ben phai tro den nut hien tai, cay con trai da duoc duyet xong; in gia tri cua nut hien tai roi vao cay con phai
           mostRight->right = nullptr;
           std::cout << cur->val << " ";
           cur = cur->right;
@@ -318,37 +318,37 @@ Morris 遍历的实质是避免使用栈，利用底层节点空闲的 `right` �
     }
     ```
 
-### 无根树
+### Cây không gốc
 
-#### 过程
+#### Quy trình
 
-树的遍历一般为深度优先遍历，这个过程中最需要注意的是避免重复访问结点．
+Duyệt cây nói chung là duyệt theo chiều sâu. Trong quá trình này, điều quan trọng nhất cần chú ý là tránh thăm lặp lại các nút.
 
-由于树是无环图，因此只需记录当前结点是由哪个结点访问而来，此后进入除该结点外的所有相邻结点，即可避免重复访问．
+Vì cây là đồ thị không có chu trình, chỉ cần ghi lại nút hiện tại được thăm từ nút nào, rồi sau đó đi vào tất cả các nút kề ngoại trừ nút đó, là có thể tránh thăm lặp lại.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void dfs(int u, int from) {
-      // 递归进入除了 from 之外的所有子结点
-      // 对于出发结点，from 为空，故会访问所有相邻结点，这与期望一致
+      // De quy vao tat ca nut con ngoai tru from
+      // Voi nut xuat phat, from rong, nen moi nut ke deu duoc tham; dieu nay dung voi mong doi
       for (int v : adj[u])
         if (v != from) {
           dfs(v, u);
         }
     }
     
-    // 开始遍历时
-    int EMPTY_NODE = -1;  // 一个不存在的编号
-    int root = 0;         // 任取一个结点作为出发点
+    // Khi bat dau duyet
+    int EMPTY_NODE = -1;  // Mot chi so khong ton tai
+    int root = 0;         // Chon tuy y mot nut lam diem xuat phat
     dfs(root, EMPTY_NODE);
     ```
 
-### 有根树
+### Cây có gốc
 
-对于有根树，需要区分结点的上下关系．
+Với cây có gốc, cần phân biệt quan hệ trên dưới giữa các nút.
 
-考察上面的遍历过程，若从根开始遍历，则访问到一个结点时 `from` 的值，就是其父结点的编号．
+Xét quá trình duyệt ở trên: nếu bắt đầu duyệt từ gốc, thì khi thăm đến một nút, giá trị của `from` chính là chỉ số của nút cha của nó.
 
-通过这个方式，可以对于无向的输入求出所有结点的父结点，以及子结点列表．
+Thông qua cách này, với đầu vào vô hướng, ta có thể tìm được nút cha của mọi nút, cũng như danh sách nút con.
 
-**本页面部分内容引用自博文 [二叉树：前序遍历、中序遍历、后续遍历](https://blog.csdn.net/weixin_43357638/article/details/99730284)，遵循 CC 4.0 BY-SA 版权协议．**
+**Một phần nội dung của trang này được trích dẫn từ bài viết [Cây nhị phân: duyệt tiền thứ tự, duyệt trung thứ tự, duyệt hậu thứ tự](https://blog.csdn.net/weixin_43357638/article/details/99730284), tuân theo giấy phép CC 4.0 BY-SA.**

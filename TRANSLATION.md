@@ -262,6 +262,10 @@ MkDocs source layout intact.
   `docs/graph/bfs.md`: translated foundational graph-theory pages covering
   graph terminology, graph storage formats, DFS, and BFS, including pseudocode
   and rendered code comments.
+- `docs/graph/tree-basic.md`, `docs/graph/tree-diameter.md`,
+  `docs/graph/tree-center.md`, `docs/graph/tree-centroid.md`,
+  `docs/graph/lca.md`: translated the first tree-theory pages covering tree
+  terminology, diameter, center, centroid, and LCA methods.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
