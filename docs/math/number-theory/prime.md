@@ -173,21 +173,30 @@ chất sau của số nguyên tố:
     Theo [định lý Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86),
     đây là tất cả nghiệm của phương trình.
 
-Ket hop dinh ly nho Fermat voi dinh ly can bac hai, ta thu duoc kiem tra tinh nguyen to Miller-Rabin:
+Kết hợp định lý nhỏ Fermat với định lý căn bậc hai, ta thu được kiểm tra tính
+nguyên tố Miller-Rabin:
 
-1.  Phan tich so mu $n−1$ trong $a^{n-1} \equiv 1 \pmod n$ thanh $n−1=u \times 2^t$;
-2.  Trong moi vong kiem tra, voi $a$ duoc chon ngau nhien, tinh truoc $v = a^{u} \bmod n$, sau do binh phuong gia tri nay toi da $t$ lan;
-3.  Trong qua trinh do, neu phat hien can bac hai khong tam thuong cua $1$ (tuc nghiem khac $\pm 1$), co the ket luan so do khong phai so nguyen to;
-4.  Neu khong, dung tiep kiem tra tinh nguyen to Fermat de phan dinh.
+1.  Phân tích số mũ $n-1$ trong $a^{n-1} \equiv 1 \pmod n$ thành
+    $n-1=u \times 2^t$;
+2.  Trong mỗi vòng kiểm tra, với $a$ được chọn ngẫu nhiên, tính trước
+    $v = a^{u} \bmod n$, sau đó bình phương giá trị này tối đa $t$ lần;
+3.  Trong quá trình đó, nếu phát hiện căn bậc hai không tầm thường của $1$ (tức
+    nghiệm khác $\pm 1$), có thể kết luận số đó không phải số nguyên tố;
+4.  Nếu không, dùng tiếp kiểm tra tính nguyên tố Fermat để phán định.
 
-Mot vai chi tiet khi cai dat:
+Một vài chi tiết khi cài đặt:
 
--   Trong mot vong kiem tra, neu tai thoi diem nao do $a^{u \times 2^s} \equiv n-1 \pmod n$, cac lan binh phuong sau do deu cho $1$, nen co the cho vong nay vuot qua ngay.
--   Neu tim duoc mot can bac hai khong tam thuong $a^{u \times 2^s} \not\equiv n-1 \pmod n$, cac lan binh phuong sau do deu cho $1$. Co the tra ve `false` ngay, hoac doi den sau $t$ lan binh phuong moi tra ve `false`.
+-   Trong một vòng kiểm tra, nếu tại thời điểm nào đó
+    $a^{u \times 2^s} \equiv n-1 \pmod n$, các lần bình phương sau đó đều cho
+    $1$, nên có thể cho vòng này vượt qua ngay.
+-   Nếu tìm được một căn bậc hai không tầm thường
+    $a^{u \times 2^s} \not\equiv n-1 \pmod n$, các lần bình phương sau đó đều
+    cho $1$. Có thể trả về `false` ngay, hoặc đợi đến sau $t$ lần bình phương
+    mới trả về `false`.
 
-Ta thu duoc phien ban Miller-Rabin kha dung sau (tu fjzzq2002):
+Ta thu được phiên bản Miller-Rabin khá đúng sau (từ fjzzq2002):
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         bool millerRabin(int n) {
@@ -195,19 +204,19 @@ Ta thu duoc phien ban Miller-Rabin kha dung sau (tu fjzzq2002):
           if (n % 3 == 0) return n == 3;
           int u = n - 1, t = 0;
           while (u % 2 == 0) u /= 2, ++t;
-          // test_time la so lan kiem tra; nen dat khong nho hon 8
-          // de bao dam do chinh xac, nhung cung khong nen qua lon de tranh cham
+          // test_time là số lần kiểm tra; nên đặt không nhỏ hơn 8
+          // để bảo đảm độ chính xác, nhưng cũng không nên quá lớn để tránh chậm
           for (int i = 0; i < test_time; ++i) {
-            // 0, 1, n-1 co the vuot qua truc tiep; a nam trong [2, n-2]
+            // 0, 1, n-1 có thể vượt qua trực tiếp; a nằm trong [2, n-2]
             int a = rand() % (n - 3) + 2, v = quickPow(a, u, n);
             if (v == 1) continue;
             int s;
             for (s = 0; s < t; ++s) {
-              if (v == n - 1) break;  // gap can tam thuong n-1, vong nay dat
+              if (v == n - 1) break;  // gặp căn tầm thường n-1, vòng này đạt
               v = (long long)v * v % n;
             }
-            // Neu gap can khong tam thuong thi khong break som va chay den s == t
-            // Neu kiem tra Fermat khong dat, truoc s == t thi v se khong bang -1
+            // Nếu gặp căn không tầm thường thì không break sớm và chạy đến s == t
+            // Nếu kiểm tra Fermat không đạt, trước s == t thì v sẽ không bằng -1
             if (s == t) return 0;
           }
           return 1;
@@ -225,10 +234,10 @@ Ta thu duoc phien ban Miller-Rabin kha dung sau (tu fjzzq2002):
             while u % 2 == 0:
                 u = u // 2
                 t = t + 1
-            # test_time la so lan kiem tra; nen dat khong nho hon 8
-            # de bao dam do chinh xac, nhung cung khong nen qua lon de tranh cham
+            # test_time là số lần kiểm tra; nên đặt không nhỏ hơn 8
+            # để bảo đảm độ chính xác, nhưng cũng không nên quá lớn để tránh chậm
             for i in range(test_time):
-                # 0, 1, n-1 co the vuot qua truc tiep; a nam trong [2, n-2]
+                # 0, 1, n-1 có thể vượt qua trực tiếp; a nằm trong [2, n-2]
                 a = random.randint(2, n - 2)
                 v = pow(a, u, n)
                 if v == 1:
@@ -239,14 +248,17 @@ Ta thu duoc phien ban Miller-Rabin kha dung sau (tu fjzzq2002):
                         break
                     v = v * v % n
                     s = s + 1
-                # Neu gap can khong tam thuong thi khong break som va chay den s == t
-                # Neu kiem tra Fermat khong dat, truoc s == t thi v se khong bang -1
+                # Nếu gặp căn không tầm thường thì không break sớm và chạy đến s == t
+                # Nếu kiểm tra Fermat không đạt, trước s == t thì v sẽ không bằng -1
                 if s == t:
                     return False
             return True
         ```
 
-Co the chung minh[^millerrabinproof] rang voi hop so le $n > 9$, xac suat de $n$ vuot qua kiem tra Miller-Rabin voi mot co so $a$ chon ngau nhien khong qua $1/4$. Do do, sau khi chon ngau nhien $k$ co so, xac suat van nhan nham hop so la so nguyen to khong vuot qua $1/4^k$.
+Có thể chứng minh[^millerrabinproof] rằng với hợp số lẻ $n > 9$, xác suất để
+$n$ vượt qua kiểm tra Miller-Rabin với một cơ sở $a$ chọn ngẫu nhiên không quá
+$1/4$. Do đó, sau khi chọn ngẫu nhiên $k$ cơ sở, xác suất vẫn nhận nhầm hợp số
+là số nguyên tố không vượt quá $1/4^k$.
 
 ??? note "Chung minh"
     Dat $n-1=u2^t$, trong do $u$ la so le va $t$ la so nguyen duong. Viec so nguyen $n$ vuot qua kiem tra Miller-Rabin voi co so $a$ co nghia la
