@@ -28,7 +28,7 @@ void init() {
   tr[0].init();
 }
 
-void insert(char s[], int idx) {  // 将第 idx 个字符串 s 插入
+void insert(char s[], int idx) {  // Chèn xâu s thứ idx
   int u = 0;
   for (int i = 1; s[i]; i++) {
     int &son = tr[u].son[s[i] - 'a'];
@@ -60,7 +60,7 @@ int query(char t[], int cnt[]) {
   for (int i = 1; t[i]; i++) {
     u = tr[u].son[t[i] - 'a'];
     for (int j = u; j; j = tr[j].fail)
-      ++cnt[tr[j].idx];  // 统计每个字符串出现的次数
+      ++cnt[tr[j].idx];  // Đếm số lần xuất hiện của mỗi xâu
   }
   for (int i = 0; i <= tot; ++i)
     if (tr[i].idx) res = max(res, cnt[tr[i].idx]);
@@ -69,7 +69,7 @@ int query(char t[], int cnt[]) {
 }  // namespace AC
 
 char s[N][75], t[LEN];
-int cnt[N];  // 每一个字符串出现的次数
+int cnt[N];  // Số lần xuất hiện của mỗi xâu
 
 int main() {
   while (scanf("%d", &n) != EOF && n != 0) {

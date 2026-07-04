@@ -1,67 +1,75 @@
+---
 author: Ir1d, LeoJacob, Xeonacid, greyqz, StudyingFather, Marcythm, minghu6, Backl1ght
+---
 
-## 字符串前缀和后缀定义
+<span id="&#23383;&#31526;&#20018;&#21069;&#32512;&#21644;&#21518;&#32512;&#23450;&#20041;"></span>
+## Định nghĩa tiền tố và hậu tố của chuỗi
 
-关于字符串前缀、真前缀，后缀、真后缀的定义详见 [字符串基础](./basic.md)
+Về định nghĩa tiền tố, tiền tố thực sự, hậu tố và hậu tố thực sự của chuỗi, xem chi tiết tại [Cơ sở về chuỗi](./basic.md).
 
-## 前缀函数
+<span id="&#21069;&#32512;&#20989;&#25968;"></span>
+## Hàm tiền tố
 
-### 定义
+<span id="&#23450;&#20041;"></span>
+### Định nghĩa
 
-给定一个长度为 $n$ 的字符串 $s$，其 **前缀函数** 被定义为一个长度为 $n$ 的数组 $\pi$．
-其中 $\pi[i]$ 的定义是：
+Cho một chuỗi $s$ có độ dài $n$, **hàm tiền tố** của nó được định nghĩa là một mảng $\pi$ có độ dài $n$.
+Trong đó $\pi[i]$ được định nghĩa như sau:
 
-1.  如果子串 $s[0\dots i]$ 有一对相等的真前缀与真后缀：$s[0\dots k-1]$ 和 $s[i - (k - 1) \dots i]$，那么 $\pi[i]$ 就是这个相等的真前缀（或者真后缀，因为它们相等）的长度，也就是 $\pi[i]=k$；
-2.  如果不止有一对相等的，那么 $\pi[i]$ 就是其中最长的那一对的长度；
-3.  如果没有相等的，那么 $\pi[i]=0$．
+1.  Nếu xâu con $s[0\dots i]$ có một cặp tiền tố thực sự và hậu tố thực sự bằng nhau: $s[0\dots k-1]$ và $s[i - (k - 1) \dots i]$, thì $\pi[i]$ là độ dài của tiền tố thực sự bằng nhau đó (hoặc hậu tố thực sự, vì chúng bằng nhau), tức là $\pi[i]=k$;
+2.  Nếu có nhiều hơn một cặp như vậy, thì $\pi[i]$ là độ dài của cặp dài nhất trong số đó;
+3.  Nếu không có cặp nào bằng nhau, thì $\pi[i]=0$.
 
-简单来说 $\pi[i]$ 就是，子串 $s[0\dots i]$ 最长的相等的真前缀与真后缀的长度．
+Nói ngắn gọn, $\pi[i]$ là độ dài của tiền tố thực sự dài nhất đồng thời là hậu tố thực sự của xâu con $s[0\dots i]$.
 
-用数学语言描述如下：
+Biểu diễn bằng ngôn ngữ toán học như sau:
 
 $$
 \pi[i] = \max_{k = 0 \dots i}\{k: s[0 \dots k - 1] = s[i - (k - 1) \dots i]\}
 $$
 
-特别地，规定 $\pi[0]=0$．
+Đặc biệt, quy ước $\pi[0]=0$.
 
-### 过程
+<span id="&#36807;&#31243;"></span>
+### Quá trình
 
-举例来说，对于字符串 `abcabcd`，
+Ví dụ, với chuỗi `abcabcd`,
 
-$\pi[0]=0$，因为 `a` 没有真前缀和真后缀，根据规定为 0
+$\pi[0]=0$, vì `a` không có tiền tố thực sự và hậu tố thực sự, nên theo quy ước là 0.
 
-$\pi[1]=0$，因为 `ab` 无相等的真前缀和真后缀
+$\pi[1]=0$, vì `ab` không có tiền tố thực sự và hậu tố thực sự bằng nhau.
 
-$\pi[2]=0$，因为 `abc` 无相等的真前缀和真后缀
+$\pi[2]=0$, vì `abc` không có tiền tố thực sự và hậu tố thực sự bằng nhau.
 
-$\pi[3]=1$，因为 `abca` 只有一对相等的真前缀和真后缀：`a`，长度为 1
+$\pi[3]=1$, vì `abca` chỉ có một cặp tiền tố thực sự và hậu tố thực sự bằng nhau: `a`, độ dài là 1.
 
-$\pi[4]=2$，因为 `abcab` 相等的真前缀和真后缀只有 `ab`，长度为 2
+$\pi[4]=2$, vì tiền tố thực sự và hậu tố thực sự bằng nhau của `abcab` chỉ là `ab`, độ dài là 2.
 
-$\pi[5]=3$，因为 `abcabc` 相等的真前缀和真后缀只有 `abc`，长度为 3
+$\pi[5]=3$, vì tiền tố thực sự và hậu tố thực sự bằng nhau của `abcabc` chỉ là `abc`, độ dài là 3.
 
-$\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
+$\pi[6]=0$, vì `abcabcd` không có tiền tố thực sự và hậu tố thực sự bằng nhau.
 
-同理可以计算字符串 `aabaaab` 的前缀函数为 $[0, 1, 0, 1, 2, 2, 3]$．
+Tương tự, có thể tính được hàm tiền tố của chuỗi `aabaaab` là $[0, 1, 0, 1, 2, 2, 3]$.
 
-## 计算前缀函数的朴素算法
+<span id="&#35745;&#31639;&#21069;&#32512;&#20989;&#25968;&#30340;&#26420;&#32032;&#31639;&#27861;"></span>
+## Thuật toán ngây thơ để tính hàm tiền tố
 
-### 过程
+<span id="&#36807;&#31243;_1"></span>
+### Quá trình
 
-一个直接按照定义计算前缀函数的算法流程：
+Một thuật toán trực tiếp tính hàm tiền tố theo đúng định nghĩa có quy trình như sau:
 
--   在一个循环中以 $i = 1\to n - 1$ 的顺序计算前缀函数 $\pi[i]$ 的值（$\pi[0]$ 被赋值为 $0$）．
--   为了计算当前的前缀函数值 $\pi[i]$，我们令变量 $j$ 从最大的真前缀长度 $i$ 开始尝试．
--   如果当前长度下真前缀和真后缀相等，则此时长度为 $\pi[i]$，否则令 j 自减 1，继续匹配，直到 $j=0$．
--   如果 $j = 0$ 并且仍没有任何一次匹配，则置 $\pi[i] = 0$ 并移至下一个下标 $i + 1$．
+-   Trong một vòng lặp, tính các giá trị của hàm tiền tố $\pi[i]$ theo thứ tự $i = 1\to n - 1$ ($\pi[0]$ được gán bằng $0$).
+-   Để tính giá trị hàm tiền tố hiện tại $\pi[i]$, ta cho biến $j$ bắt đầu thử từ độ dài tiền tố thực sự lớn nhất là $i$.
+-   Nếu với độ dài hiện tại, tiền tố thực sự và hậu tố thực sự bằng nhau, thì độ dài đó chính là $\pi[i]$; nếu không, giảm j đi 1 và tiếp tục so khớp cho đến khi $j=0$.
+-   Nếu $j = 0$ mà vẫn không có lần so khớp nào thành công, đặt $\pi[i] = 0$ rồi chuyển sang chỉ số tiếp theo $i + 1$.
 
-???+ note "实现"
-    具体实现如下：
+???+ note "Cài đặt"
+    Cài đặt cụ thể như sau:
     
     === "C++"
         ```cpp
-        // 注：
+        // Note:
         // string substr (size_t pos = 0, size_t len = npos) const;
         vector<int> prefix_function(string s) {
           int n = (int)s.length();
@@ -106,24 +114,26 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
         }
         ```
 
-显见该算法的时间复杂度为 $O(n^3)$，具有很大的改进空间．
+Rõ ràng thuật toán này có độ phức tạp thời gian $O(n^3)$, nên còn rất nhiều không gian để cải tiến.
 
-## 计算前缀函数的高效算法
+<span id="&#35745;&#31639;&#21069;&#32512;&#20989;&#25968;&#30340;&#39640;&#25928;&#31639;&#27861;"></span>
+## Thuật toán hiệu quả để tính hàm tiền tố
 
-### 第一个优化
+<span id="&#31532;&#19968;&#20010;&#20248;&#21270;"></span>
+### Tối ưu thứ nhất
 
-第一个重要的观察是 **相邻的前缀函数值至多增加 $1$**．
+Quan sát quan trọng đầu tiên là **hai giá trị hàm tiền tố kề nhau tăng nhiều nhất $1$**.
 
-参照下图所示，只需如此考虑：当取一个尽可能大的 $\pi[i+1]$ 时，必然要求新增的 $s[i+1]$ 也与之对应的字符匹配，即 $s[i+1]=s[\pi[i]]$, 此时 $\pi[i+1] = \pi[i]+1$．
+Tham khảo hình dưới đây, chỉ cần lập luận như sau: khi lấy một giá trị $\pi[i+1]$ lớn nhất có thể, ký tự mới thêm $s[i+1]$ bắt buộc cũng phải khớp với ký tự tương ứng, tức là $s[i+1]=s[\pi[i]]$; khi đó $\pi[i+1] = \pi[i]+1$.
 
 $$
 \underbrace{\overbrace{s_0 ~ s_1 ~ s_2}^{\pi[i] = 3} ~ s_3}_{\pi[i+1] = 4} ~ \dots ~ \underbrace{\overbrace{s_{i-2} ~ s_{i-1} ~ s_{i}}^{\pi[i] = 3} ~ s_{i+1}}_{\pi[i+1] = 4}
 $$
 
-所以当移动到下一个位置时，前缀函数的值要么增加一，要么维持不变，要么减少．
+Vì vậy khi chuyển sang vị trí tiếp theo, giá trị của hàm tiền tố hoặc tăng thêm một, hoặc giữ nguyên, hoặc giảm đi.
 
-???+ note "实现"
-    此时的改进的算法为：
+???+ note "Cài đặt"
+    Thuật toán đã cải tiến ở thời điểm này là:
     
     === "C++"
         ```cpp
@@ -170,51 +180,53 @@ $$
         }
         ```
 
-在这个初步改进的算法中，在计算每个 $\pi[i]$ 时，最好的情况是第一次字符串比较就完成了匹配，也就是说基础的字符串比较次数是 $n-1$ 次．
+Trong thuật toán cải tiến sơ bộ này, khi tính mỗi $\pi[i]$, trường hợp tốt nhất là lần so sánh chuỗi đầu tiên đã khớp; tức là số lần so sánh chuỗi cơ bản là $n-1$.
 
-而由于存在 `j = pi[i-1]+1`（`pi[0]=0`）对于最大字符串比较次数的限制，可以看出每次只有在最好情况才会为字符串比较次数的上限积累 $1$，而每次超过一次的字符串比较消耗的是之后次数的增长空间．
+Do ràng buộc `j = pi[i-1]+1` (`pi[0]=0`) lên số lần so sánh chuỗi tối đa, có thể thấy rằng chỉ trong trường hợp tốt nhất mỗi bước mới tích lũy thêm $1$ vào cận trên của số lần so sánh chuỗi, còn mỗi phép so sánh vượt quá một lần sẽ tiêu hao phần tăng trưởng của các bước về sau.
 
-由此我们可以得出字符串比较次数最多的一种情况：至少 $1$ 次字符串比较次数的消耗和最多 $n-2$ 次比较次数的积累，此时字符串比较次数为 $n-1 + n-2 = 2n-3$．
+Từ đó ta có thể suy ra một tình huống đạt số lần so sánh chuỗi nhiều nhất: ít nhất $1$ lần so sánh bị tiêu hao và nhiều nhất $n-2$ lần so sánh được tích lũy; khi đó số lần so sánh chuỗi là $n-1 + n-2 = 2n-3$.
 
-可见经过此次优化，计算前缀函数只需要进行 $O(n)$ 次字符串比较，总复杂度降为了 $O(n^2)$．
+Như vậy sau tối ưu này, việc tính hàm tiền tố chỉ cần thực hiện $O(n)$ lần so sánh chuỗi, và tổng độ phức tạp giảm xuống $O(n^2)$.
 
-### 第二个优化
+<span id="&#31532;&#20108;&#20010;&#20248;&#21270;"></span>
+### Tối ưu thứ hai
 
-在第一个优化中，我们讨论了计算 $\pi[i+1]$ 时的最好情况：$s[i+1]=s[\pi[i]]$，此时 $\pi[i+1] = \pi[i]+1$．现在让我们沿着这个思路走得更远一点：讨论当 $s[i+1] \neq s[\pi[i]]$ 时如何跳转．
+Trong tối ưu thứ nhất, ta đã thảo luận trường hợp tốt nhất khi tính $\pi[i+1]$: $s[i+1]=s[\pi[i]]$, khi đó $\pi[i+1] = \pi[i]+1$. Bây giờ hãy đi xa hơn theo hướng này: xét cách nhảy khi $s[i+1] \neq s[\pi[i]]$.
 
 ![](images/prefix_str_1.svg)
 
-如上图所示，失配时，我们希望找到对于子串 $s[0\dots i]$，仅次于 $\pi[i]$ 的第二长度 $j$，使得在位置 $i$ 的前缀性质仍得以保持，也即 $s[0 \dots j - 1] = s[i - j + 1 \dots i]$：
+Như hình trên, khi xảy ra không khớp, ta muốn tìm độ dài lớn thứ hai $j$ sau $\pi[i]$ đối với xâu con $s[0\dots i]$, sao cho tính chất tiền tố tại vị trí $i$ vẫn được giữ, tức là $s[0 \dots j - 1] = s[i - j + 1 \dots i]$:
 
 $$
 \overbrace{\underbrace{s_0 ~ s_1}_j ~ s_2 ~ s_3}^{\pi[i]} ~ \dots ~ \overbrace{s_{i-3} ~ s_{i-2} ~ \underbrace{s_{i-1} ~ s_{i}}_j}^{\pi[i]} ~ s_{i+1}
 $$
 
-如果我们找到了这样的长度 $j$，那么仅需要再次比较 $s[i + 1]$ 和 $s[j]$．如果它们相等，那么就有 $\pi[i + 1] = j + 1$．否则，我们需要找到子串 $s[0\dots i]$ 仅次于 $j$ 的第二长度 $j^{(2)}$，使得前缀性质得以保持，如此反复，直到 $j = 0$．如果 $s[i + 1] \neq s[0]$，则 $\pi[i + 1] = 0$．第二次比较的示意图如下所示
+Nếu tìm được một độ dài $j$ như vậy, ta chỉ cần so sánh lại $s[i + 1]$ với $s[j]$. Nếu chúng bằng nhau, ta có $\pi[i + 1] = j + 1$. Nếu không, ta cần tìm độ dài lớn thứ hai $j^{(2)}$ sau $j$ của xâu con $s[0\dots i]$ sao cho tính chất tiền tố vẫn được giữ, rồi lặp lại như vậy cho đến khi $j = 0$. Nếu $s[i + 1] \neq s[0]$, thì $\pi[i + 1] = 0$. Sơ đồ cho lần so sánh thứ hai như sau:
 
 ![](images/prefix_str_2.svg)
 
-观察上图可以发现，因为 $s[0\dots \pi[i]-1] = s[i-\pi[i]+1\dots i]$，所以对于 $s[0\dots i]$ 的第二长度 $j$，有这样的性质：
+Quan sát hình trên có thể thấy, vì $s[0\dots \pi[i]-1] = s[i-\pi[i]+1\dots i]$, nên độ dài lớn thứ hai $j$ của $s[0\dots i]$ có tính chất:
 
 $$
 s[0 \dots j - 1] = s[i - j + 1 \dots i]= s[\pi[i]-j\dots \pi[i]-1]
 $$
 
-该公式的示意图如下所示：
+Sơ đồ của công thức này như sau:
 
 ![](images/prefix_str_3.svg)
 
-也就是说 $j$ 等价于子串 $s[\pi[i]-1]$ 的前缀函数值，对应于上图下半部分，即 $j=\pi[\pi[i]-1]$．同理，次于 $j$ 的第二长度等价于 $s[j-1]$ 的前缀函数值，$j^{(2)}=\pi[j-1]$.
+Nói cách khác, $j$ tương đương với giá trị hàm tiền tố của xâu con $s[\pi[i]-1]$, ứng với phần dưới của hình trên, tức là $j=\pi[\pi[i]-1]$. Tương tự, độ dài lớn thứ hai sau $j$ tương đương với giá trị hàm tiền tố của $s[j-1]$, $j^{(2)}=\pi[j-1]$.
 
-显然我们可以得到一个关于 $j$ 的状态转移方程：$j^{(n)}=\pi[j^{(n-1)}-1], \ \ (j^{(n-1)}>0)$
+Rõ ràng ta có thể thu được phương trình chuyển trạng thái theo $j$: $j^{(n)}=\pi[j^{(n-1)}-1], \ \ (j^{(n-1)}>0)$.
 
-### 最终算法
+<span id="&#26368;&#32456;&#31639;&#27861;"></span>
+### Thuật toán cuối cùng
 
-所以最终我们可以构建一个不需要进行任何字符串比较，并且只进行 $O(n)$ 次操作的算法．
+Vì vậy cuối cùng ta có thể xây dựng một thuật toán không cần thực hiện bất kỳ phép so sánh chuỗi nào và chỉ thực hiện $O(n)$ thao tác.
 
-而且该算法的实现出人意料的短且直观：
+Hơn nữa, phần cài đặt của thuật toán này ngắn và trực quan một cách bất ngờ:
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         vector<int> prefix_function(string s) {
@@ -264,31 +276,34 @@ $$
         }
         ```
 
-这是一个 **在线** 算法，即其当数据到达时处理它——举例来说，你可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值．该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 $M$，那么我们仅需要存储该字符串的前 $M + 1$ 个字符以及对应的前缀函数值．
+Đây là một thuật toán **trực tuyến**, tức là nó xử lý dữ liệu khi dữ liệu đến. Chẳng hạn, bạn có thể đọc chuỗi từng ký tự một và xử lý ngay để tính giá trị hàm tiền tố cho từng ký tự. Thuật toán vẫn cần lưu trữ chính chuỗi và các giá trị hàm tiền tố đã tính trước đó; nhưng nếu ta biết trước giá trị lớn nhất có thể của hàm tiền tố của chuỗi là $M$, thì chỉ cần lưu $M + 1$ ký tự đầu của chuỗi và các giá trị hàm tiền tố tương ứng.
 
-## 应用
+<span id="&#24212;&#29992;"></span>
+## Ứng dụng
 
-### 在字符串中查找子串：Knuth–Morris–Pratt 算法
+<span id="&#22312;&#23383;&#31526;&#20018;&#20013;&#26597;&#25214;&#23376;&#20018;&#65306;Knuth–Morris–Pratt &#31639;&#27861;"></span>
+### Tìm xâu con trong chuỗi: thuật toán Knuth-Morris-Pratt
 
-该算法由 Knuth、Pratt 和 Morris 在 1977 年共同发布[^kmp]．该任务是前缀函数的一个典型应用．
+Thuật toán này được Knuth, Pratt và Morris cùng công bố vào năm 1977[^kmp]. Đây là một ứng dụng điển hình của hàm tiền tố.
 
-#### 过程
+<span id="&#36807;&#31243;_2"></span>
+#### Quá trình
 
-给定一个文本 $t$ 和一个字符串 $s$，我们尝试找到并展示 $s$ 在 $t$ 中的所有出现（occurrence）．
+Cho một văn bản $t$ và một chuỗi $s$, ta muốn tìm và hiển thị tất cả các lần xuất hiện (occurrence) của $s$ trong $t$.
 
-为了简便起见，我们用 $n$ 表示字符串 $s$ 的长度，用 $m$ 表示文本 $t$ 的长度．
+Để đơn giản, ta dùng $n$ để chỉ độ dài của chuỗi $s$, và $m$ để chỉ độ dài của văn bản $t$.
 
-我们构造一个字符串 $s + \# + t$，其中 $\#$ 为一个既不出现在 $s$ 中也不出现在 $t$ 中的分隔符．接下来计算该字符串的前缀函数．现在考虑该前缀函数除去最开始 $n + 1$ 个值（即属于字符串 $s$ 和分隔符的函数值）后其余函数值的意义．根据定义，$\pi[i]$ 为右端点在 $i$ 且同时为一个前缀的最长真子串的长度，具体到我们的这种情况下，其值为与 $s$ 的前缀相同且右端点位于 $i$ 的最长子串的长度．由于分隔符的存在，该长度不可能超过 $n$．而如果等式 $\pi[i] = n$ 成立，则意味着 $s$ 完整出现在该位置（即其右端点位于位置 $i$）．注意该位置的下标是对字符串 $s + \# + t$ 而言的．
+Ta xây dựng chuỗi $s + \# + t$, trong đó $\#$ là một ký tự phân tách không xuất hiện trong $s$ cũng như trong $t$. Tiếp theo, tính hàm tiền tố của chuỗi này. Bây giờ xét ý nghĩa của các giá trị hàm tiền tố sau khi bỏ đi $n + 1$ giá trị đầu tiên (tức là các giá trị thuộc chuỗi $s$ và ký tự phân tách). Theo định nghĩa, $\pi[i]$ là độ dài xâu con thực sự dài nhất có đầu mút phải tại $i$ và đồng thời là một tiền tố; trong trường hợp cụ thể này, giá trị đó là độ dài xâu con dài nhất có đầu mút phải tại $i$ và trùng với một tiền tố của $s$. Do có ký tự phân tách, độ dài này không thể vượt quá $n$. Nếu đẳng thức $\pi[i] = n$ đúng, điều đó có nghĩa là $s$ xuất hiện trọn vẹn tại vị trí này (tức là đầu mút phải của nó nằm ở vị trí $i$). Lưu ý rằng chỉ số này được tính trên chuỗi $s + \# + t$.
 
-因此如果在某一位置 $i$ 有 $\pi[i] = n$ 成立，则字符串 $s$ 在字符串 $t$ 的 $i - (n - 1) - (n + 1) = i - 2n$ 处出现．下图所示为索引的示意图．
+Vì vậy nếu tại một vị trí $i$ có $\pi[i] = n$, thì chuỗi $s$ xuất hiện trong chuỗi $t$ tại vị trí $i - (n - 1) - (n + 1) = i - 2n$. Hình dưới đây minh họa cách đánh chỉ số.
 
 ![](./images/strstr_kmp_indices.svg)
 
-正如在前缀函数的计算中已经提到的那样，如果我们知道前缀函数的值永远不超过一特定值，那么我们不需要存储整个字符串以及整个前缀函数，而只需要二者开头的一部分．在我们这种情况下这意味着只需要存储字符串 $s + \#$ 以及相应的前缀函数值即可．我们可以一次读入字符串 $t$ 的一个字符并计算当前位置的前缀函数值．
+Như đã đề cập khi tính hàm tiền tố, nếu ta biết giá trị hàm tiền tố không bao giờ vượt quá một giá trị nhất định, thì không cần lưu toàn bộ chuỗi và toàn bộ hàm tiền tố, mà chỉ cần lưu phần đầu của cả hai. Trong trường hợp này, điều đó có nghĩa là chỉ cần lưu chuỗi $s + \#$ cùng các giá trị hàm tiền tố tương ứng. Ta có thể đọc từng ký tự của chuỗi $t$ và tính giá trị hàm tiền tố tại vị trí hiện tại.
 
-因此 Knuth–Morris–Pratt 算法（简称 KMP 算法）用 $O(n + m)$ 的时间以及 $O(n)$ 的内存解决了该问题．
+Do đó thuật toán Knuth-Morris-Pratt (viết tắt là KMP) giải bài toán này trong thời gian $O(n + m)$ và bộ nhớ $O(n)$.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         vector<int> find_occurrences(string text, string pattern) {
@@ -332,25 +347,27 @@ $$
         }
         ```
 
-### 字符串的周期
+<span id="&#23383;&#31526;&#20018;&#30340;&#21608;&#26399;"></span>
+### Chu kỳ của chuỗi
 
-对字符串 $s$ 和 $0 < p \le |s|$，若 $s[i] = s[i+p]$ 对所有 $i \in [0, |s| - p - 1]$ 成立，则称 $p$ 是 $s$ 的周期．
+Với chuỗi $s$ và $0 < p \le |s|$, nếu $s[i] = s[i+p]$ đúng với mọi $i \in [0, |s| - p - 1]$, thì gọi $p$ là một chu kỳ của $s$.
 
-对字符串 $s$ 和 $0 \le r < |s|$，若 $s$ 长度为 $r$ 的前缀和长度为 $r$ 的后缀相等，就称 $s$ 长度为 $r$ 的前缀是 $s$ 的 border．
+Với chuỗi $s$ và $0 \le r < |s|$, nếu tiền tố độ dài $r$ của $s$ bằng hậu tố độ dài $r$ của $s$, thì tiền tố độ dài $r$ đó được gọi là một border của $s$.
 
-由 $s$ 有长度为 $r$ 的 border 可以推导出 $|s|-r$ 是 $s$ 的周期．
+Từ việc $s$ có một border độ dài $r$, có thể suy ra $|s|-r$ là một chu kỳ của $s$.
 
-根据前缀函数的定义，可以得到 $s$ 所有的 border 长度，即 $\pi[n-1],\pi[\pi[n-1]-1], \ldots$．[^ref1]
+Theo định nghĩa của hàm tiền tố, ta có thể nhận được mọi độ dài border của $s$, tức là $\pi[n-1],\pi[\pi[n-1]-1], \ldots$.[^ref1]
 
-所以根据前缀函数可以在 $O(n)$ 的时间内计算出 $s$ 所有的周期．其中，由于 $\pi[n-1]$ 是 $s$ 最长 border 的长度，所以 $n - \pi[n-1]$ 是 $s$ 的最小周期．
+Vì vậy, dựa vào hàm tiền tố, ta có thể tính mọi chu kỳ của $s$ trong thời gian $O(n)$. Trong đó, vì $\pi[n-1]$ là độ dài border dài nhất của $s$, nên $n - \pi[n-1]$ là chu kỳ nhỏ nhất của $s$.
 
-### 统计每个前缀的出现次数
+<span id="&#32479;&#35745;&#27599;&#20010;&#21069;&#32512;&#30340;&#20986;&#29616;&#27425;&#25968;"></span>
+### Đếm số lần xuất hiện của mỗi tiền tố
 
-在该节我们将同时讨论两个问题．给定一个长度为 $n$ 的字符串 $s$，在问题的第一个变种中我们希望统计每个前缀 $s[0 \dots i]$ 在同一个字符串的出现次数，在问题的第二个变种中我们希望统计每个前缀 $s[0 \dots i]$ 在另一个给定字符串 $t$ 中的出现次数．
+Trong phần này ta sẽ thảo luận đồng thời hai bài toán. Cho một chuỗi $s$ có độ dài $n$; ở biến thể thứ nhất, ta muốn đếm số lần xuất hiện của mỗi tiền tố $s[0 \dots i]$ trong chính chuỗi đó; ở biến thể thứ hai, ta muốn đếm số lần xuất hiện của mỗi tiền tố $s[0 \dots i]$ trong một chuỗi $t$ cho trước khác.
 
-首先让我们来解决第一个问题．考虑位置 $i$ 的前缀函数值 $\pi[i]$．根据定义，其意味着字符串 $s$ 一个长度为 $\pi[i]$ 的前缀在位置 $i$ 出现并以 $i$ 为右端点，同时不存在一个更长的前缀满足前述定义．与此同时，更短的前缀可能以该位置为右端点．容易看出，我们遇到了在计算前缀函数时已经回答过的问题：给定一个长度为 $j$ 的前缀，同时其也是一个右端点位于 $i$ 的后缀，下一个更小的前缀长度 $k < j$ 是多少？该长度的前缀需同时也是一个右端点为 $i$ 的后缀．因此以位置 $i$ 为右端点，有长度为 $\pi[i]$ 的前缀，有长度为 $\pi[\pi[i] - 1]$ 的前缀，有长度为 $\pi[\pi[\pi[i] - 1] - 1]$ 的前缀，等等，直到长度变为 $0$．故而我们可以通过下述方式计算答案．
+Trước hết hãy giải bài toán thứ nhất. Xét giá trị hàm tiền tố $\pi[i]$ tại vị trí $i$. Theo định nghĩa, nó có nghĩa là một tiền tố độ dài $\pi[i]$ của chuỗi $s$ xuất hiện tại vị trí $i$ và có đầu mút phải là $i$, đồng thời không tồn tại tiền tố dài hơn nào thỏa mãn định nghĩa trên. Trong khi đó, các tiền tố ngắn hơn vẫn có thể có đầu mút phải tại vị trí này. Dễ thấy ta gặp lại câu hỏi đã được trả lời khi tính hàm tiền tố: cho một tiền tố độ dài $j$ đồng thời là hậu tố có đầu mút phải tại $i$, độ dài tiền tố nhỏ hơn tiếp theo $k < j$ là bao nhiêu? Tiền tố có độ dài đó cũng phải đồng thời là một hậu tố có đầu mút phải tại $i$. Vì vậy, với đầu mút phải tại vị trí $i$, ta có tiền tố độ dài $\pi[i]$, tiền tố độ dài $\pi[\pi[i] - 1]$, tiền tố độ dài $\pi[\pi[\pi[i] - 1] - 1]$, v.v. cho đến khi độ dài trở thành $0$. Do đó ta có thể tính đáp án theo cách sau.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         vector<int> ans(n + 1);
@@ -370,42 +387,45 @@ $$
             ans[i] += 1
         ```
 
-#### 解释
+<span id="&#35299;&#37322;"></span>
+#### Giải thích
 
-在上述代码中我们首先统计每个前缀函数值在数组 $\pi$ 中出现了多少次，然后再计算最后答案：如果我们知道长度为 $i$ 的前缀出现了恰好 $\text{ans}[i]$ 次，那么该值必须被叠加至其最长的既是后缀也是前缀的子串的出现次数中．在最后，为了统计原始的前缀，我们对每个结果加 $1$．
+Trong đoạn mã trên, trước hết ta đếm mỗi giá trị hàm tiền tố xuất hiện bao nhiêu lần trong mảng $\pi$, rồi tính đáp án cuối cùng: nếu ta biết tiền tố độ dài $i$ xuất hiện đúng $\text{ans}[i]$ lần, thì giá trị này phải được cộng dồn vào số lần xuất hiện của xâu con dài nhất vừa là hậu tố vừa là tiền tố của nó. Cuối cùng, để tính cả chính các tiền tố ban đầu, ta cộng thêm $1$ vào mỗi kết quả.
 
-现在考虑第二个问题．我们应用来自 Knuth–Morris–Pratt 的技巧：构造一个字符串 $s + \# + t$ 并计算其前缀函数．与第一个问题唯一的不同之处在于，我们只关心与字符串 $t$ 相关的前缀函数值，即 $i \ge n + 1$ 的 $\pi[i]$．有了这些值之后，我们可以同样应用在第一个问题中的算法来解决该问题．
+Bây giờ xét bài toán thứ hai. Ta áp dụng thủ thuật từ Knuth-Morris-Pratt: xây dựng chuỗi $s + \# + t$ và tính hàm tiền tố của nó. Điểm khác biệt duy nhất so với bài toán thứ nhất là ta chỉ quan tâm đến các giá trị hàm tiền tố liên quan đến chuỗi $t$, tức là các $\pi[i]$ với $i \ge n + 1$. Sau khi có các giá trị này, ta có thể áp dụng cùng thuật toán như trong bài toán thứ nhất để giải bài toán.
 
-### 一个字符串中本质不同子串的数目
+<span id="&#19968;&#20010;&#23383;&#31526;&#20018;&#20013;&#26412;&#36136;&#19981;&#21516;&#23376;&#20018;&#30340;&#25968;&#30446;"></span>
+### Số xâu con khác nhau trong một chuỗi
 
-给定一个长度为 $n$ 的字符串 $s$，我们希望计算其本质不同子串的数目．
+Cho một chuỗi $s$ có độ dài $n$, ta muốn tính số xâu con khác nhau của nó.
 
-我们将迭代的解决该问题．换句话说，在知道了当前的本质不同子串的数目的情况下，我们要找出一种在 $s$ 末尾添加一个字符后重新计算该数目的方法．
+Ta sẽ giải bài toán này theo cách lặp. Nói cách khác, khi đã biết số xâu con khác nhau hiện tại, ta cần tìm cách tính lại số đó sau khi thêm một ký tự vào cuối $s$.
 
-令 $k$ 为当前 $s$ 的本质不同子串数量．我们添加一个新的字符 $c$ 至 $s$．显然，会有一些新的子串以字符 $c$ 结尾．我们希望对这些以该字符结尾且我们之前未曾遇到的子串计数．
+Gọi $k$ là số xâu con khác nhau hiện tại của $s$. Ta thêm một ký tự mới $c$ vào $s$. Rõ ràng sẽ có một số xâu con mới kết thúc bằng ký tự $c$. Ta muốn đếm các xâu con kết thúc bằng ký tự này mà trước đó chưa từng gặp.
 
-构造字符串 $t = s + c$ 并将其反转得到字符串 $t^{\sim}$．现在我们的任务变为计算有多少 $t^{\sim}$ 的前缀未在 $t^{\sim}$ 的其余任何地方出现．如果我们计算了 $t^{\sim}$ 的前缀函数最大值 $\pi_{\max}$，那么最长的出现在 $s$ 中的前缀其长度为 $\pi_{\max}$．自然的，所有更短的前缀也出现了．
+Xây dựng chuỗi $t = s + c$ rồi đảo ngược nó để được chuỗi $t^{\sim}$. Bây giờ nhiệm vụ của ta trở thành tính xem có bao nhiêu tiền tố của $t^{\sim}$ không xuất hiện ở bất kỳ vị trí nào khác trong $t^{\sim}$. Nếu ta tính giá trị lớn nhất của hàm tiền tố của $t^{\sim}$ là $\pi_{\max}$, thì tiền tố dài nhất xuất hiện trong $s$ có độ dài $\pi_{\max}$. Hiển nhiên, mọi tiền tố ngắn hơn cũng đã xuất hiện.
 
-因此，当添加了一个新字符后新出现的子串数目为 $|s| + 1 - \pi_{\max}$．
+Vì vậy, sau khi thêm một ký tự mới, số xâu con mới xuất hiện là $|s| + 1 - \pi_{\max}$.
 
-所以对于每个添加的字符，我们可以在 $O(n)$ 的时间内计算新子串的数目，故最终复杂度为 $O(n^2)$．
+Do đó với mỗi ký tự được thêm vào, ta có thể tính số xâu con mới trong thời gian $O(n)$, nên độ phức tạp cuối cùng là $O(n^2)$.
 
-值得注意的是，我们也可以重新计算在头部添加一个字符，或者从尾或者头移除一个字符时的本质不同子串数目．
+Đáng chú ý là ta cũng có thể tính lại số xâu con khác nhau khi thêm một ký tự vào đầu, hoặc khi xóa một ký tự ở cuối hay ở đầu.
 
-### 字符串压缩
+<span id="&#23383;&#31526;&#20018;&#21387;&#32553;"></span>
+### Nén chuỗi
 
-给定一个长度为 $n$ 的字符串 $s$，我们希望找到其最短的「压缩」表示，也即我们希望寻找一个最短的字符串 $t$，使得 $s$ 可以被 $t$ 的一份或多份拷贝的拼接表示．
+Cho một chuỗi $s$ có độ dài $n$, ta muốn tìm biểu diễn "nén" ngắn nhất của nó, tức là muốn tìm một chuỗi $t$ ngắn nhất sao cho $s$ có thể được biểu diễn bằng cách ghép một hoặc nhiều bản sao của $t$.
 
-显然，我们只需要找到 $t$ 的长度即可．知道了该长度，该问题的答案即为长度为该值的 $s$ 的前缀．
+Rõ ràng ta chỉ cần tìm độ dài của $t$. Khi đã biết độ dài đó, đáp án của bài toán chính là tiền tố của $s$ có độ dài bằng giá trị này.
 
-让我们计算 $s$ 的前缀函数．通过使用该函数的最后一个值 $\pi[n - 1]$，我们定义值 $k = n - \pi[n - 1]$．我们将证明，如果 $k$ 整除 $n$，那么 $k$ 就是答案，否则不存在一个有效的压缩，故答案为 $n$．
+Hãy tính hàm tiền tố của $s$. Dùng giá trị cuối cùng của hàm này $\pi[n - 1]$, ta định nghĩa $k = n - \pi[n - 1]$. Ta sẽ chứng minh rằng nếu $k$ là ước của $n$, thì $k$ chính là đáp án; nếu không, không tồn tại một cách nén hợp lệ, nên đáp án là $n$.
 
-假定 $n$ 可被 $k$ 整除．那么字符串可被划分为长度为 $k$ 的若干块．根据前缀函数的定义，该字符串长度为 $n - k$ 的前缀等于其后缀．但是这意味着最后一个块同倒数第二个块相等，并且倒数第二个块同倒数第三个块相等，等等．作为其结果，所有块都是相等的，因此我们可以将字符串 $s$ 压缩至长度 $k$．
+Giả sử $n$ chia hết cho $k$. Khi đó chuỗi có thể được chia thành các khối độ dài $k$. Theo định nghĩa của hàm tiền tố, tiền tố độ dài $n - k$ của chuỗi bằng hậu tố của nó. Nhưng điều này có nghĩa là khối cuối cùng bằng khối áp chót, khối áp chót bằng khối ngay trước nó, và cứ tiếp tục như vậy. Kết quả là mọi khối đều bằng nhau, do đó ta có thể nén chuỗi $s$ xuống độ dài $k$.
 
-???+ note "证明"
-    诚然，我们仍需证明该值为最优解．实际上，如果有一个比 $k$ 更小的压缩表示，那么前缀函数的最后一个值 $\pi[n - 1]$ 必定比 $n - k$ 要大．因此 $k$ 就是答案．
+???+ note "Chứng minh"
+    Tất nhiên, ta vẫn cần chứng minh giá trị này là tối ưu. Thực ra, nếu tồn tại một biểu diễn nén ngắn hơn $k$, thì giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ chắc chắn phải lớn hơn $n - k$. Vì vậy $k$ chính là đáp án.
     
-    现在假设 $n$ 不可以被 $k$ 整除，我们将通过反证法证明这意味着答案为 $n$[^1]．假设其最小压缩表示 $r$ 的长度为 $p$（$p$ 整除 $n$），字符串 $s$ 被划分为 $n / p \ge 2$ 块．那么前缀函数的最后一个值 $\pi[n - 1]$ 必定大于 $n - p$（如果等于则 $n$ 可被 $k$ 整除），也即其所表示的后缀将部分的覆盖第一个块．现在考虑字符串的第二个块．该块有两种解释：第一种为 $r_0 r_1 \dots r_{p - 1}$，另一种为 $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$．由于两种解释对应同一个字符串，因此可得到 $p$ 个方程组成的方程组，该方程组可简写为 $r_{(i + k) \bmod p} = r_{i \bmod p}$，其中 $\cdot \bmod p$ 表示模 $p$ 意义下的最小非负剩余．
+    Bây giờ giả sử $n$ không chia hết cho $k$, ta sẽ chứng minh bằng phản chứng rằng điều này có nghĩa đáp án là $n$[^1]. Giả sử biểu diễn nén nhỏ nhất của nó là $r$ có độ dài $p$ ($p$ là ước của $n$), và chuỗi $s$ được chia thành $n / p \ge 2$ khối. Khi đó giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ chắc chắn phải lớn hơn $n - p$ (nếu bằng thì $n$ sẽ chia hết cho $k$), tức là hậu tố mà nó biểu diễn sẽ phủ một phần lên khối đầu tiên. Bây giờ xét khối thứ hai của chuỗi. Khối này có hai cách diễn giải: cách thứ nhất là $r_0 r_1 \dots r_{p - 1}$, cách thứ hai là $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$. Vì hai cách diễn giải tương ứng với cùng một chuỗi, ta thu được một hệ gồm $p$ phương trình, có thể viết gọn là $r_{(i + k) \bmod p} = r_{i \bmod p}$, trong đó $\cdot \bmod p$ biểu thị phần dư không âm nhỏ nhất theo modulo $p$.
     
     $$
     \begin{gathered}
@@ -414,29 +434,30 @@ $$
     \end{gathered}
     $$
     
-    根据扩展欧几里得算法我们可以得到一组 $x$ 和 $y$ 使得 $xk + yp = \gcd(k, p)$．通过与等式 $pk - kp = 0$ 适当叠加我们可以得到一组 $x' > 0$ 和 $y' < 0$ 使得 $x'k + y'p = \gcd(k, p)$．这意味着通过不断应用前述方程组中的方程我们可以得到新的方程组 $r_{(i + \gcd(k, p)) \bmod p} = r_{i \bmod p}$．
+    Theo thuật toán Euclid mở rộng, ta có thể tìm được một cặp $x$ và $y$ sao cho $xk + yp = \gcd(k, p)$. Bằng cách cộng thêm thích hợp đẳng thức $pk - kp = 0$, ta có thể thu được một cặp $x' > 0$ và $y' < 0$ sao cho $x'k + y'p = \gcd(k, p)$. Điều này có nghĩa là bằng cách liên tục áp dụng các phương trình trong hệ trên, ta có thể thu được hệ phương trình mới $r_{(i + \gcd(k, p)) \bmod p} = r_{i \bmod p}$.
     
-    由于 $\gcd(k, p)$ 整除 $p$，这意味着 $\gcd(k, p)$ 是 $r$ 的一个周期．又因为 $\pi[n - 1] > n - p$，故有 $n - \pi[n - 1] = k < p$，所以 $\gcd(k, p)$ 是一个比 $p$ 更小的 $r$ 的周期．因此字符串 $s$ 有一个长度为 $\gcd(k, p) < p$ 的压缩表示，同 $p$ 的最小性矛盾．
+    Vì $\gcd(k, p)$ là ước của $p$, điều này có nghĩa $\gcd(k, p)$ là một chu kỳ của $r$. Lại vì $\pi[n - 1] > n - p$, nên $n - \pi[n - 1] = k < p$; do đó $\gcd(k, p)$ là một chu kỳ của $r$ nhỏ hơn $p$. Vì thế chuỗi $s$ có một biểu diễn nén độ dài $\gcd(k, p) < p$, mâu thuẫn với tính nhỏ nhất của $p$.
     
-    综上所述，不存在一个长度小于 $k$ 的压缩表示，因此答案为 $k$．
+    Tóm lại, không tồn tại biểu diễn nén nào có độ dài nhỏ hơn $k$, vì vậy đáp án là $k$.
 
-[^1]: 在俄文版及英文版中该部分证明均疑似有误．本文章中的该部分证明由作者自行添加．
+[^1]: Phần chứng minh này trong bản tiếng Nga và bản tiếng Anh đều có vẻ có sai sót. Phần chứng minh trong bài viết này do tác giả tự bổ sung.
 
-### 根据前缀函数构建一个自动机
+<span id="&#26681;&#25454;&#21069;&#32512;&#20989;&#25968;&#26500;&#24314;&#19968;&#20010;&#33258;&#21160;&#26426;"></span>
+### Xây dựng một ô-tô-mát từ hàm tiền tố
 
-让我们重新回到通过一个分隔符将两个字符串拼接的新字符串．对于字符串 $s$ 和 $t$ 我们计算 $s + \# + t$ 的前缀函数．显然，因为 $\#$ 是一个分隔符，前缀函数值永远不会超过 $|s|$．因此我们只需要存储字符串 $s + \#$ 和其对应的前缀函数值，之后就可以动态计算对于之后所有字符的前缀函数值：
+Hãy quay lại chuỗi mới được tạo bằng cách nối hai chuỗi qua một ký tự phân tách. Với các chuỗi $s$ và $t$, ta tính hàm tiền tố của $s + \# + t$. Rõ ràng, vì $\#$ là một ký tự phân tách, giá trị hàm tiền tố không bao giờ vượt quá $|s|$. Do đó ta chỉ cần lưu chuỗi $s + \#$ và các giá trị hàm tiền tố tương ứng của nó; sau đó có thể tính động giá trị hàm tiền tố cho mọi ký tự tiếp theo:
 
 $$
 \underbrace{s_0 ~ s_1 ~ \dots ~ s_{n-1} ~ \#}_{\text{need to store}} ~ \underbrace{t_0 ~ t_1 ~ \dots ~ t_{m-1}}_{\text{do not need to store}}
 $$
 
-实际上在这种情况下，知道 $t$ 的下一个字符 $c$ 以及之前位置的前缀函数值便足以计算下一个位置的前缀函数值，而不需要用到任何其它 $t$ 的字符和对应的前缀函数值．
+Thực ra trong trường hợp này, chỉ cần biết ký tự tiếp theo $c$ của $t$ và giá trị hàm tiền tố ở vị trí trước đó là đủ để tính giá trị hàm tiền tố ở vị trí tiếp theo, không cần dùng đến bất kỳ ký tự nào khác của $t$ hay giá trị hàm tiền tố tương ứng của chúng.
 
-换句话说，我们可以构造一个 **自动机**（一个有限状态机）：其状态为当前的前缀函数值，而从一个状态到另一个状态的转移则由下一个字符确定．
+Nói cách khác, ta có thể xây dựng một **ô-tô-mát** (một máy trạng thái hữu hạn): trạng thái của nó là giá trị hàm tiền tố hiện tại, còn chuyển tiếp từ trạng thái này sang trạng thái khác được xác định bởi ký tự tiếp theo.
 
-因此，即使没有字符串 $t$，我们同样可以应用构造转移表的算法构造一个转移表 $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$：
+Vì vậy, ngay cả khi không có chuỗi $t$, ta vẫn có thể áp dụng thuật toán xây dựng bảng chuyển tiếp để tạo một bảng chuyển tiếp $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void compute_automaton(string s, vector<vector<int>>& aut) {
       s += '#';
@@ -454,9 +475,9 @@ $$
     }
     ```
 
-然而在这种形式下，对于小写字母表，算法的时间复杂度为 $O(|\Sigma|n^2)$．注意到我们可以应用动态规划来利用表中已计算过的部分．只要我们从值 $j$ 变化到 $\pi[j - 1]$，那么我们实际上在说转移 $(j, c)$ 所到达的状态同转移 $(\pi[j - 1], c)$ 一样，但该答案我们之前已经精确计算过了．
+Tuy nhiên ở dạng này, với bảng chữ cái chữ thường, độ phức tạp thời gian của thuật toán là $O(|\Sigma|n^2)$. Nhận thấy ta có thể áp dụng quy hoạch động để tận dụng các phần đã tính trong bảng. Mỗi khi ta chuyển từ giá trị $j$ sang $\pi[j - 1]$, thực chất ta đang nói rằng chuyển tiếp $(j, c)$ đi đến cùng trạng thái với chuyển tiếp $(\pi[j - 1], c)$, mà đáp án này trước đó ta đã tính chính xác.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void compute_automaton(string s, vector<vector<int>>& aut) {
       s += '#';
@@ -474,17 +495,17 @@ $$
     }
     ```
 
-最终我们可在 $O(|\Sigma|n)$ 的时间复杂度内构造该自动机．
+Cuối cùng, ta có thể xây dựng ô-tô-mát này trong độ phức tạp thời gian $O(|\Sigma|n)$.
 
-该自动机在什么时候有用呢？首先，记得大部分时候我们为了一个目的使用字符串 $s + \# + t$ 的前缀函数：寻找字符串 $s$ 在字符串 $t$ 中的所有出现．
+Ô-tô-mát này hữu ích khi nào? Trước hết, hãy nhớ rằng phần lớn thời gian ta dùng hàm tiền tố của chuỗi $s + \# + t$ cho một mục đích: tìm mọi lần xuất hiện của chuỗi $s$ trong chuỗi $t$.
 
-因此使用该自动机的最直接的好处是 **加速计算字符串 $s + \# + t$ 的前缀函数**．
+Vì vậy lợi ích trực tiếp nhất của việc dùng ô-tô-mát này là **tăng tốc việc tính hàm tiền tố của chuỗi $s + \# + t$**.
 
-通过构建 $s + \#$ 的自动机，我们不再需要存储字符串 $s$ 以及其对应的前缀函数值．所有转移已经在表中计算过了．
+Bằng cách xây dựng ô-tô-mát của $s + \#$, ta không còn cần lưu chuỗi $s$ và các giá trị hàm tiền tố tương ứng của nó. Mọi chuyển tiếp đã được tính sẵn trong bảng.
 
-但除此以外，还有第二个不那么直接的应用．我们可以在字符串 $t$ 是 **某些通过一些规则构造的巨型字符串** 时，使用该自动机加速计算．Gray 字符串，或者一个由一些短的输入串的递归组合所构造的字符串都是这种例子．
+Ngoài ra còn có một ứng dụng thứ hai ít trực tiếp hơn. Ta có thể dùng ô-tô-mát này để tăng tốc tính toán khi chuỗi $t$ là **một chuỗi khổng lồ được xây dựng theo một số quy tắc**. Chuỗi Gray, hoặc một chuỗi được tạo bằng cách tổ hợp đệ quy một số chuỗi đầu vào ngắn, là các ví dụ như vậy.
 
-出于完整性考虑，我们来解决这样一个问题：给定一个数 $k \le 10^5$，以及一个长度 $\le 10^5$ 的字符串 $s$，我们需要计算 $s$ 在第 $k$ 个 Gray 字符串中的出现次数．回想起 Gray 字符串以下述方式定义：
+Để đầy đủ, ta giải bài toán sau: cho một số $k \le 10^5$ và một chuỗi $s$ có độ dài $\le 10^5$, cần tính số lần xuất hiện của $s$ trong chuỗi Gray thứ $k$. Nhắc lại rằng chuỗi Gray được định nghĩa như sau:
 
 $$
 \begin{aligned}
@@ -495,11 +516,11 @@ g_4 &= \mathtt{abacabadabacaba}
 \end{aligned}
 $$
 
-由于其天文数字般的长度，在这种情况下即使构造字符串 $t$ 都是不可能的：第 $k$ 个 Gray 字符串有 $2^k - 1$ 个字符．然而我们可以在仅仅知道开头若干前缀函数值的情况下，有效计算该字符串末尾的前缀函数值．
+Do độ dài lớn đến mức thiên văn, trong trường hợp này ngay cả việc dựng chuỗi $t$ cũng là không thể: chuỗi Gray thứ $k$ có $2^k - 1$ ký tự. Tuy nhiên ta có thể tính hiệu quả giá trị hàm tiền tố ở cuối chuỗi này khi chỉ biết một số giá trị hàm tiền tố ban đầu.
 
-除了自动机之外，我们同时需要计算值 $G[i][j]$：在从状态 $j$ 开始处理 $g_i$ 后的自动机的状态，以及值 $K[i][j]$：当从状态 $j$ 开始处理 $g_i$ 后，$s$ 在 $g_i$ 中的出现次数．实际上 $K[i][j]$ 为在执行操作时前缀函数取值为 $|s|$ 的次数．易得问题的答案为 $K[k][0]$．
+Bên cạnh ô-tô-mát, ta còn cần tính giá trị $G[i][j]$: trạng thái của ô-tô-mát sau khi xử lý $g_i$ bắt đầu từ trạng thái $j$, và giá trị $K[i][j]$: số lần xuất hiện của $s$ trong $g_i$ khi xử lý $g_i$ bắt đầu từ trạng thái $j$. Thực chất, $K[i][j]$ là số lần trong quá trình thực hiện mà giá trị hàm tiền tố bằng $|s|$. Dễ thấy đáp án của bài toán là $K[k][0]$.
 
-我们该如何计算这些值呢？首先根据定义，初始条件为 $G[0][j] = j$ 以及 $K[0][j] = 0$．之后所有值可以通过先前的值以及使用自动机计算得到．为了对某个 $i$ 计算相应值，回想起字符串 $g_i$ 由 $g_{i - 1}$，字母表中第 $i$ 个字符，以及 $g_{i - 1}$ 三者拼接而成．因此自动机会途径下列状态：
+Ta tính các giá trị này như thế nào? Trước hết, theo định nghĩa, điều kiện ban đầu là $G[0][j] = j$ và $K[0][j] = 0$. Sau đó mọi giá trị có thể được tính từ các giá trị trước đó và bằng cách dùng ô-tô-mát. Để tính giá trị tương ứng cho một $i$ nào đó, nhớ rằng chuỗi $g_i$ được tạo bằng cách ghép $g_{i - 1}$, ký tự thứ $i$ trong bảng chữ cái, và $g_{i - 1}$. Vì vậy ô-tô-mát sẽ đi qua các trạng thái sau:
 
 $$
 \begin{gathered}
@@ -508,13 +529,13 @@ G[i][j] = G[i - 1][\text{mid}]
 \end{gathered}
 $$
 
-$K[i][j]$ 的值同样可被简单计算．
+Giá trị $K[i][j]$ cũng có thể được tính đơn giản.
 
 $$
 K[i][j] = K[i - 1][j] + [\text{mid} == |s|] + K[i - 1][\text{mid}]
 $$
 
-其中 $[\cdot]$ 当其中表达式取值为真时值为 $1$，否则为 $0$．综上，我们已经可以解决关于 Gray 字符串的问题，以及一大类与之类似的问题．举例来说，应用同样的方法可以解决下列问题：给定一个字符串 $s$ 以及一些模式 $t_i$，其中每个模式以下列方式给出：该模式由普通字符组成，当中可能以 $t_{k}^{\text{cnt}}$ 的形式递归插入先前的字符串，也即在该位置我们必须插入字符串 $t_k$ $\text{cnt}$ 次．以下是这些模式的一个例子：
+Trong đó $[\cdot]$ có giá trị $1$ khi biểu thức bên trong là đúng, ngược lại có giá trị $0$. Tóm lại, ta đã có thể giải bài toán về chuỗi Gray, cũng như một lớp lớn các bài toán tương tự. Chẳng hạn, có thể áp dụng cùng phương pháp để giải bài toán sau: cho một chuỗi $s$ và một số mẫu $t_i$, trong đó mỗi mẫu được cho theo cách sau: mẫu gồm các ký tự thông thường, đồng thời có thể chèn đệ quy các chuỗi trước đó dưới dạng $t_{k}^{\text{cnt}}$, tức là tại vị trí đó ta phải chèn chuỗi $t_k$ đúng $\text{cnt}$ lần. Dưới đây là một ví dụ về các mẫu như vậy:
 
 $$
 \begin{aligned}
@@ -525,11 +546,12 @@ t_4 &= t_2^{10} + t_3^{100}
 \end{aligned}
 $$
 
-递归代入会使字符串长度爆炸式增长，他们的长度甚至可以达到 $100^{100}$ 的数量级．而我们必须找到字符串 $s$ 在每个字符串中的出现次数．
+Việc thay thế đệ quy sẽ khiến độ dài chuỗi tăng bùng nổ; độ dài của chúng thậm chí có thể đạt cỡ $100^{100}$. Ta cần tìm số lần xuất hiện của chuỗi $s$ trong từng chuỗi.
 
-该问题同样可通过构造前缀函数的自动机解决．同之前一样，我们利用先前计算过的结果对每个模式计算其转移然后相应统计答案即可．
+Bài toán này cũng có thể được giải bằng cách xây dựng ô-tô-mát của hàm tiền tố. Tương tự như trước, ta tận dụng các kết quả đã tính để tính chuyển tiếp cho mỗi mẫu rồi thống kê đáp án tương ứng.
 
-## 练习题目
+<span id="&#32451;&#20064;&#39064;&#30446;"></span>
+## Bài tập
 
 -   [UVa 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
 -   [UVa 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
@@ -541,10 +563,11 @@ $$
 -   [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
 -   [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và ghi chú
 
-**本页面主要译自博文 [Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function) 与其英文翻译版 [Prefix function. Knuth–Morris–Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+**Trang này chủ yếu được dịch từ bài viết [Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function) và bản dịch tiếng Anh của nó, [Prefix function. Knuth-Morris-Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html). Giấy phép của bản tiếng Nga là Public Domain + Leave a Link; giấy phép của bản tiếng Anh là CC-BY-SA 4.0.**
 
-[^ref1]: [金策 - 字符串算法选讲](https://github.com/hzwer/shareOI/blob/master/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%80%89%E8%AE%B2_%E9%87%91%E7%AD%96.pdf)
+[^ref1]: [Jin Ce - Bài giảng chuyên đề thuật toán chuỗi](https://github.com/hzwer/shareOI/blob/master/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%80%89%E8%AE%B2_%E9%87%91%E7%AD%96.pdf)
 
 [^kmp]: Knuth, Donald E., James H. Morris, Jr, and Vaughan R. Pratt. "Fast pattern matching in strings." SIAM journal on computing 6.2 (1977): 323-350.[doi: 10.1137/0206024](https://epubs.siam.org/doi/abs/10.1137/0206024)

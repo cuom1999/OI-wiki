@@ -51,13 +51,13 @@ void build() {
     int u = q.front();
     q.pop();
     int v = tr[u].fail;
-    // 对状态的更新在这里
+    // Cập nhật trạng thái tại đây
     tr[u].stat = tr[v].stat;
     if (tr[u].idx) tr[u].stat |= 1 << tr[u].depth;
     for (int i = 0; i < 26; i++) {
       if (tr[u].son[i]) {
         tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];
-        tr[tr[u].son[i]].depth = tr[u].depth + 1;  // 记录深度
+        tr[tr[u].son[i]].depth = tr[u].depth + 1;  // Ghi lại độ sâu
         q.push(tr[u].son[i]);
       } else
         tr[u].son[i] = tr[tr[u].fail].son[i];

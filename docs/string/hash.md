@@ -1,72 +1,78 @@
-## 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+## Định nghĩa
 
-我们定义一个把字符串映射到整数的函数 $f$，这个 $f$ 称为是 Hash 函数．
+Ta định nghĩa một hàm $f$ ánh xạ chuỗi thành số nguyên; hàm $f$ này được gọi là hàm Hash.
 
-我们希望这个函数 $f$ 可以方便地帮我们判断两个字符串是否相等．
+Ta mong hàm $f$ có thể giúp kiểm tra hai chuỗi có bằng nhau hay không một cách thuận tiện.
 
-## Hash 的思想
+<span id="hash-&#x7684;&#x601D;&#x60F3;"></span>
+## Ý tưởng của Hash
 
-Hash 的核心思想在于，将输入映射到一个值域较小、可以方便比较的范围．
+Ý tưởng cốt lõi của Hash là ánh xạ dữ liệu đầu vào vào một miền giá trị nhỏ hơn và dễ so sánh.
 
-??? warning "Warning"
-    这里的「值域较小」在不同情况下意义不同．
+??? warning "Cảnh báo"
+    "Miền giá trị nhỏ hơn" có ý nghĩa khác nhau trong từng tình huống.
     
-    在 [哈希表](../ds/hash.md) 中，值域需要小到能够接受线性的空间与时间复杂度．
+    Trong [bảng băm](../ds/hash.md), miền giá trị cần đủ nhỏ để chấp nhận được độ phức tạp không gian và thời gian tuyến tính.
     
-    在字符串哈希中，值域需要小到能够快速比较（$10^9$、$10^{18}$ 都是可以快速比较的）．
+    Trong hash chuỗi, miền giá trị cần đủ nhỏ để so sánh nhanh ($10^9$, $10^{18}$ đều có thể so sánh nhanh).
     
-    同时，为了降低哈希冲突率，值域也不能太小．
+    Đồng thời, để giảm tỉ lệ va chạm hash, miền giá trị cũng không được quá nhỏ.
 
-## 性质
+<span id="&#x6027;&#x8D28;"></span>
+## Tính chất
 
-具体来说，哈希函数最重要的性质可以概括为下面两条：
+Cụ thể, hai tính chất quan trọng nhất của hàm hash có thể tóm tắt như sau:
 
-1.  在 Hash 函数值不一样的时候，两个字符串一定不一样；
+1.  Khi giá trị của hàm Hash khác nhau, hai chuỗi chắc chắn khác nhau;
 
-2.  在 Hash 函数值一样的时候，两个字符串不一定一样（但有大概率一样，且我们当然希望它们总是一样的）．
+2.  Khi giá trị của hàm Hash bằng nhau, hai chuỗi chưa chắc bằng nhau (nhưng xác suất cao là bằng nhau, và tất nhiên ta mong chúng luôn bằng nhau).
 
-    我们将 Hash 函数值一样但原字符串不一样的现象称为哈希碰撞．
+    Hiện tượng giá trị hàm Hash bằng nhau nhưng chuỗi gốc khác nhau được gọi là va chạm hash.
 
-## 解释
+<span id="&#x89E3;&#x91CA;"></span>
+## Giải thích
 
-我们需要关注的是什么？
+Ta cần quan tâm điều gì?
 
-时间复杂度和 Hash 的准确率．
+Độ phức tạp thời gian và độ chính xác của Hash.
 
-通常我们采用的是多项式 Hash 的方法，对于一个长度为 $l$ 的字符串 $s$ 来说，我们可以这样定义多项式 Hash 函数：$f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$．例如，对于字符串 $xyz$，其哈希函数值为 $xb^2+yb+z$．
+Thông thường ta dùng phương pháp Hash đa thức. Với một chuỗi $s$ có độ dài $l$, ta có thể định nghĩa hàm Hash đa thức như sau: $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$. Ví dụ, với chuỗi $xyz$, giá trị hash của nó là $xb^2+yb+z$.
 
-特别要说明的是，也有很多人使用的是另一种 Hash 函数的定义，即 $f(s) = \sum_{i=1}^{l} s[i] \times b^{i-1} \pmod M$，这种定义下，同样的字符串 $xyz$ 的哈希值就变为了 $x+yb+zb^2$ 了．
+Cần đặc biệt lưu ý rằng cũng có nhiều người dùng một định nghĩa khác cho hàm Hash, cụ thể là $f(s) = \sum_{i=1}^{l} s[i] \times b^{i-1} \pmod M$. Theo định nghĩa này, cùng chuỗi $xyz$ sẽ có giá trị hash là $x+yb+zb^2$.
 
-显然，上面这两种哈希函数的定义函数都是可行的，但二者在之后会讲到的计算子串哈希值时所用的计算式是不同的，因此千万注意 **不要弄混了这两种不同的 Hash 方式**．
+Rõ ràng cả hai cách định nghĩa hàm hash trên đều khả thi, nhưng công thức dùng để tính hash của chuỗi con (sẽ trình bày ở phần sau) sẽ khác nhau. Vì vậy cần đặc biệt chú ý **không nhầm lẫn hai cách Hash khác nhau này**.
 
-由于前者的 Hash 定义计算更简便、使用人数更多、且可以类比为一个 $b$ 进制数来帮助理解，所以本文下面所将要讨论的都是使用 $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$ 来定义的 Hash 函数．
+Do định nghĩa Hash đầu tiên tính toán gọn hơn, được dùng phổ biến hơn, và có thể hiểu như một số trong hệ cơ số $b$, phần còn lại của bài viết sẽ thảo luận hàm Hash được định nghĩa bằng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$.
 
-还有，有时为了方便和扩大模数，我们在 C++ 中我们会使用 `unsigned long long` 来定义 Hash 函数的结果．由于 C++ 的特性，我们相当于把模数 $M$ 定为 $2^{64}$，也是一个不错的选择．
+Ngoài ra, để tiện lợi và để mở rộng modulo, trong C++ đôi khi ta dùng `unsigned long long` để lưu kết quả của hàm Hash. Do đặc tính của C++, điều này tương đương với việc đặt modulo $M$ là $2^{64}$, cũng là một lựa chọn tốt.
 
-准确率会在后面讨论．
+Độ chính xác sẽ được thảo luận ở phần sau.
 
-## Hash 的错误率分析
+<span id="hash-&#x7684;&#x9519;&#x8BEF;&#x7387;&#x5206;&#x6790;"></span>
+## Phân tích tỉ lệ lỗi của Hash
 
-### Hash 冲突
+<span id="hash-&#x51B2;&#x7A81;"></span>
+### Va chạm Hash
 
-Hash 冲突是指两个不同的字符串映射到相同的 Hash 值．
+Va chạm Hash chỉ việc hai chuỗi khác nhau được ánh xạ đến cùng một giá trị Hash.
 
-我们设 Hash 的取值空间（所有可能出现的字符串的数量）为 $d$，计算次数（要计算的字符串数量）为 $n$．
+Giả sử không gian giá trị của Hash (số lượng tất cả chuỗi có thể xuất hiện) là $d$, và số lần tính (số chuỗi cần tính) là $n$.
 
-则 Hash 冲突的概率为：
+Khi đó xác suất xảy ra va chạm Hash là:
 
 $$
 p(n,d) = 1 - \frac{d!}{d^n\left(d-n\right)!} \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
-??? note "证明"
-    当 Hash 中每个值生成概率相同时，Hash 不冲突的概率为：
+??? note "Chứng minh"
+    Khi mỗi giá trị Hash được sinh ra với xác suất như nhau, xác suất không xảy ra va chạm Hash là:
     
     $$
     \overline{p}(n,d) = 1 \cdot \left (1 - \frac{1}{d} \right) \cdot \left ( 1- \frac{2}{d}\right) \cdots \left ( 1- \frac{n-1}{d}\right)
     $$
     
-    化简得到：
+    Rút gọn được:
     
     $$
     \begin{aligned}
@@ -77,29 +83,29 @@ $$
     \end{aligned}
     $$
     
-    则 Hash 冲突的概率为：
+    Vậy xác suất xảy ra va chạm Hash là:
     
     $$
     p(n,d) = 1 - \frac{d!}{d^n\left(d-n\right)!}
     $$
     
-    这个公式还是太复杂了，我们进一步化简．
+    Công thức này vẫn quá phức tạp, ta rút gọn thêm.
     
-    根据泰勒公式：
+    Theo công thức Taylor:
     
     $$
     \exp(x) = \sum_{k=0}^{\infty}\frac{x^k}{k!}=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+\cdots
     $$
     
-    当 $x$ 为一个极小值时，$\exp(x)$ 趋近于 $1+x$．
+    Khi $x$ là một giá trị rất nhỏ, $\exp(x)$ tiến gần đến $1+x$.
     
-    将它带入 Hash 不冲突的原始公式：
+    Thay vào công thức gốc của xác suất không va chạm Hash:
     
     $$
     \overline{p}(n,d) \approx 1 \cdot \exp(-\frac{1}{d}) \cdot \exp(-\frac{2}{d}) \cdots \exp(-\frac{n-1}{d})
     $$
     
-    化简：
+    Rút gọn:
     
     $$
     \begin{aligned}
@@ -108,75 +114,79 @@ $$
     \end{aligned}
     $$
     
-    则 Hash 冲突的概率为：
+    Do đó xác suất xảy ra va chạm Hash là:
     
     $$
     p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d})
     $$
 
-### 卡大模数 Hash
+<span id="&#x5361;&#x5927;&#x6A21;&#x6570;-hash"></span>
+### Đánh bại Hash modulo lớn
 
-注意到这个公式：
+Xét công thức:
 
 $$
 p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
-为了卡掉 Hash，我们要满足以下条件：
+Để đánh bại Hash, ta cần thỏa mãn các điều kiện sau:
 
-1.  $d$ 要大于模数．
-2.  $1-p(d,n)$ 要尽量小．
+1.  $d$ phải lớn hơn modulo.
+2.  $1-p(d,n)$ càng nhỏ càng tốt.
 
-举个例子：
+Lấy một ví dụ:
 
-若字符集为 **大小写字母和数字**，模数为 $10^9+7$ 时：
+Nếu bảng chữ cái gồm **chữ cái hoa, chữ cái thường và chữ số**, và modulo là $10^9+7$:
 
 $\log_{62}10^9+7\approx 6$
 
 $p(10^6,62^{6}) \approx 0.9$
 
-所以对于这个范围，我们随机生成 $10^6$ 个长度为 $6$ 的字符串，它们 Hash 值相同的概率高达 $90\%$．
+Vì vậy trong phạm vi này, nếu sinh ngẫu nhiên $10^6$ chuỗi có độ dài $6$, xác suất chúng có cùng giá trị Hash có thể cao đến $90\%$.
 
-### 卡自然溢出 Hash
+<span id="&#x5361;&#x81EA;&#x7136;&#x6EA2;&#x51FA;-hash"></span>
+### Đánh bại Hash tràn tự nhiên
 
-这种 Hash 由于模数太大，用上面的方法卡不了，所以我们需要另一种方法．
+Vì loại Hash này có modulo quá lớn, không thể đánh bại bằng cách trên, nên ta cần một phương pháp khác.
 
-首先，这种 Hash 是形如 $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i}$，我们根据 $b$ 来分类讨论．
+Trước hết, dạng Hash này có dạng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i}$; ta phân loại theo $b$ để thảo luận.
 
-#### b 为偶数
+<span id="b-&#x4E3A;&#x5076;&#x6570;"></span>
+#### Khi b là số chẵn
 
-此时 $f(s) = s_1\cdot b^l + s_2\cdot b^{l-1} + \cdots + s_l\cdot b \pmod M$，其中 $M$ 为 $2^{64}$．
+Lúc này $f(s) = s_1\cdot b^l + s_2\cdot b^{l-1} + \cdots + s_l\cdot b \pmod M$, trong đó $M$ là $2^{64}$.
 
-容易发现若 $l \ge 64$，$s_i\cdot b^l \equiv 0 \pmod M$．
+Dễ thấy rằng nếu $l \ge 64$ thì $s_i\cdot b^l \equiv 0 \pmod M$.
 
-所以我们只要构造形如：
+Vậy chỉ cần xây dựng các chuỗi có dạng:
 
 `aaa...a`
 
 `baa...a`
 
-且长度大于 $64$ 的字符串就能冲突．
+và có độ dài lớn hơn $64$ là có thể tạo va chạm.
 
-#### b 为奇数
+<span id="b-&#x4E3A;&#x5947;&#x6570;"></span>
+#### Khi b là số lẻ
 
-定义 $!s_i$ 为把 $s_i$ 中所有字符反转．
+Định nghĩa $!s_i$ là chuỗi thu được khi đổi từng ký tự trong $s_i$.
 
-例：
+Ví dụ:
 
 $s_i = abaab$
 
 $!s_i = babba$
 
-即把 `a` 变成 `b`，把 `b` 变成 `a`．
+Tức là biến `a` thành `b`, và biến `b` thành `a`.
 
-再定义 $hash_i$ 为 $s_i$ 的 Hash 值，$!hash_i$ 为 $!s_i$ 的 Hash 值．
+Tiếp theo, định nghĩa $hash_i$ là giá trị Hash của $s_i$, và $!hash_i$ là giá trị Hash của $!s_i$.
 
-不断构造 $s_i = s_{i-1} + !s_{i-1}$．
+Liên tục xây dựng $s_i = s_{i-1} + !s_{i-1}$.
 
-$s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
+$s_{12}$ và $!s_{12}$ chính là hai chuỗi ta cần.
 
-??? note "推导"
-    首先，有：
+??? note "Suy luận"
+    Trước hết, có:
     
     $$
     \begin{aligned}
@@ -185,7 +195,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
     \end{aligned}
     $$
     
-    尝试相减：
+    Thử lấy hiệu:
     
     $$
     \begin{aligned}
@@ -195,9 +205,9 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
     \end{aligned}
     $$
     
-    发现出现了 $2^i$，但是原式太复杂，尝试换元：
+    Xuất hiện $2^i$, nhưng biểu thức gốc quá phức tạp, nên thử đổi biến:
     
-    设：
+    Đặt:
     
     $$
     \begin{aligned}
@@ -206,7 +216,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
     \end{aligned}
     $$
     
-    根据原式得：
+    Từ biểu thức gốc suy ra:
     
     $$
     \begin{aligned}
@@ -215,23 +225,23 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
     \end{aligned}
     $$
     
-    因为 $base^{2^{i-2}}$ 一定是奇数，所以 $g_i$ 一定是偶数．
+    Vì $base^{2^{i-2}}$ chắc chắn là số lẻ, nên $g_i$ chắc chắn là số chẵn.
     
-    所以：
+    Do đó:
     
     $$
     2^{i-1} | f_i
     $$
     
-    但这样太大了，$i-1\ge 64$ 才能卡掉，继续化简：
+    Nhưng như vậy vẫn quá lớn, phải có $i-1\ge 64$ mới đánh bại được; tiếp tục rút gọn:
     
     $$
-    g_i = base^{2^{i-2}}-1 = (base^{2^{i-3}}-1)\cdot(base^{2^{i-3}}+1)\\
+    g_i = base^{2^{i-2}}-1 = (base^{2^{i-3}}-1)\cdot(base^{2^{i-3}}+1)
     $$
     
-    即 $g_i$ 为 $g_{i-1} \cdot c\ (c \equiv 0 \pmod 2)$ 的形式．
+    Tức là $g_i$ có dạng $g_{i-1} \cdot c\ (c \equiv 0 \pmod 2)$.
     
-    所以 $2 | s_1$，$4 | s_2$，……，即
+    Vậy $2 | s_1$, $4 | s_2$, ..., tức là
     
     $$
     \begin{aligned}
@@ -241,48 +251,54 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
     \end{aligned}
     $$
     
-    即当 $i=12$ 时就可以使 $2^{64} | hash_i - !hash_i$ 达到要求．
+    Nghĩa là khi $i=12$, ta đã có thể làm cho $2^{64} | hash_i - !hash_i$ và đạt yêu cầu.
 
-### 例题
+<span id="&#x4F8B;&#x9898;"></span>
+### Bài tập ví dụ
 
-???+ note "[例题：BZOJ 3097 Hash Killer I](https://hydro.ac/p/bzoj-P3097)"
-    给定一个用 **自然溢出** 实现的 Hash，要求构造一个字符串来卡掉它．
+???+ note "[Ví dụ: BZOJ 3097 Hash Killer I](https://hydro.ac/p/bzoj-P3097)"
+    Cho một Hash được cài đặt bằng **tràn tự nhiên**; yêu cầu xây dựng một chuỗi để đánh bại nó.
 
-???+ note "[例题：BZOJ 3097 Hash Killer II](https://hydro.ac/p/bzoj-P3098)"
-    给定一个用 **大模数** 实现的 Hash，要求构造一个字符串来卡掉它．
+???+ note "[Ví dụ: BZOJ 3097 Hash Killer II](https://hydro.ac/p/bzoj-P3098)"
+    Cho một Hash được cài đặt bằng **modulo lớn**; yêu cầu xây dựng một chuỗi để đánh bại nó.
 
-???+ note "[例题：洛谷 U461211 字符串 Hash（数据加强）](https://www.luogu.com.cn/problem/U461211)"
-    给定 $n$ 个字符串，判断不同的字符串有多少个．
+???+ note "[Ví dụ: Luogu U461211 String Hash (dữ liệu tăng cường)](https://www.luogu.com.cn/problem/U461211)"
+    Cho $n$ chuỗi, hãy xác định có bao nhiêu chuỗi khác nhau.
 
-## Hash 的改进
+<span id="hash-&#x7684;&#x6539;&#x8FDB;"></span>
+## Cải tiến Hash
 
-### 多值 Hash
+<span id="&#x591A;&#x503C;-hash"></span>
+### Hash nhiều giá trị
 
-看了上面这么多的卡法，当然也有解决办法．
+Sau khi xem nhiều cách đánh bại Hash ở trên, tất nhiên cũng có cách khắc phục.
 
-多值 Hash，就是有多个 Hash 函数，每个 Hash 函数的模数不一样，这样就能解决 Hash 冲突的问题．
+Hash nhiều giá trị nghĩa là dùng nhiều hàm Hash, mỗi hàm Hash có modulo khác nhau; như vậy có thể giải quyết vấn đề va chạm Hash.
 
-判断时只要有其中一个的 Hash 值不同，就认为两个字符串不同，若 Hash 值都相同，则认为两个字符串相同．
+Khi so sánh, chỉ cần một trong các giá trị Hash khác nhau thì coi hai chuỗi là khác nhau; nếu tất cả giá trị Hash đều giống nhau thì coi hai chuỗi là giống nhau.
 
-一般来说，双值 Hash 就够用了．
+Thông thường, Hash hai giá trị là đủ dùng.
 
-### 多次询问子串哈希
+<span id="&#x591A;&#x6B21;&#x8BE2;&#x95EE;&#x5B50;&#x4E32;&#x54C8;&#x5E0C;"></span>
+### Nhiều truy vấn hash chuỗi con
 
-单次计算一个字符串的哈希值复杂度是 $O(n)$，其中 $n$ 为串长，与暴力匹配没有区别，如果需要多次询问一个字符串的子串的哈希值，每次重新计算效率非常低下．
+Tính hash của một chuỗi một lần có độ phức tạp $O(n)$, trong đó $n$ là độ dài chuỗi; điều này không khác gì so khớp vét cạn. Nếu cần truy vấn hash của các chuỗi con trong cùng một chuỗi nhiều lần, tính lại mỗi lần sẽ rất kém hiệu quả.
 
-一般采取的方法是对整个字符串先预处理出每个前缀的哈希值，将哈希值看成一个 $b$ 进制的数对 $M$ 取模的结果，这样的话每次就能快速求出子串的哈希了：
+Cách làm thông dụng là tiền xử lý giá trị hash của mỗi tiền tố trong toàn bộ chuỗi. Xem giá trị hash như kết quả của một số hệ cơ số $b$ lấy modulo $M$, khi đó mỗi lần có thể tính nhanh hash của chuỗi con:
 
-令 $f_i(s)$ 表示 $f(s[1..i])$，即原串长度为 $i$ 的前缀的哈希值，那么按照定义有 $f_i(s)=s[1]\cdot b^{i-1}+s[2]\cdot b^{i-2}+\dots+s[i-1]\cdot b+s[i]$
+Gọi $f_i(s)$ là $f(s[1..i])$, tức giá trị hash của tiền tố độ dài $i$ của chuỗi gốc. Theo định nghĩa, ta có $f_i(s)=s[1]\cdot b^{i-1}+s[2]\cdot b^{i-2}+\dots+s[i-1]\cdot b+s[i]$.
 
-现在，我们想要用类似前缀和的方式快速求出 $f(s[l..r])$，按照定义有字符串 $s[l..r]$ 的哈希值为 $f(s[l..r])=s[l]\cdot b^{r-l}+s[l+1]\cdot b^{r-l-1}+\dots+s[r-1]\cdot b+s[r]$
+Bây giờ ta muốn tính nhanh $f(s[l..r])$ theo cách tương tự tổng tiền tố. Theo định nghĩa, giá trị hash của chuỗi $s[l..r]$ là $f(s[l..r])=s[l]\cdot b^{r-l}+s[l+1]\cdot b^{r-l-1}+\dots+s[r-1]\cdot b+s[r]$.
 
-对比观察上述两个式子，我们发现 $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ 成立（可以手动代入验证一下），因此我们用这个式子就可以快速得到子串的哈希值．其中 $b^{r-l+1}$ 可以 $O(n)$ 的预处理出来然后 $O(1)$ 的回答每次询问（当然也可以快速幂 $O(\log n)$ 的回答每次询问）．
+So sánh hai công thức trên, ta thấy $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ là đúng (có thể tự thay giá trị vào để kiểm tra). Vì vậy có thể dùng công thức này để tính nhanh hash của chuỗi con. Trong đó, $b^{r-l+1}$ có thể được tiền xử lý trong $O(n)$ rồi trả lời mỗi truy vấn trong $O(1)$ (tất nhiên cũng có thể dùng lũy thừa nhanh để trả lời mỗi truy vấn trong $O(\log n)$).
 
-## 实现
+<span id="&#x5B9E;&#x73B0;"></span>
+## Cài đặt
 
-### 模数 Hash：
+<span id="&#x6A21;&#x6570;-hash"></span>
+### Hash modulo:
 
-注：效率较低，实际使用中不推荐．
+Ghi chú: hiệu năng thấp, không khuyến nghị dùng trong thực tế.
 
 === "C++"
     ```cpp
@@ -323,7 +339,8 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
         return get_hash(s) == get_hash(t)
     ```
 
-### 双值 Hash：
+<span id="&#x53CC;&#x503C;-hash"></span>
+### Hash hai giá trị:
 
 === "C++"
     ```cpp
@@ -378,47 +395,53 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
         return f1 or f2
     ```
 
-## Hash 的应用
+<span id="hash-&#x7684;&#x5E94;&#x7528;"></span>
+## Ứng dụng của Hash
 
-### 字符串匹配
+<span id="&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;"></span>
+### So khớp chuỗi
 
-求出模式串的哈希值后，求出文本串每个长度为模式串长度的子串的哈希值，分别与模式串的哈希值比较即可．
+Sau khi tính giá trị hash của mẫu, tính giá trị hash của mỗi chuỗi con trong văn bản có độ dài bằng độ dài mẫu, rồi lần lượt so sánh với giá trị hash của mẫu.
 
-### 允许 $k$ 次失配的字符串匹配
+<span id="&#x5141;&#x8BB8;-k-&#x6B21;&#x5931;&#x914D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;"></span>
+### So khớp chuỗi cho phép $k$ vị trí khác nhau
 
-问题：给定长为 $n$ 的源串 $s$，以及长度为 $m$ 的模式串 $p$，要求查找源串中有多少子串与模式串匹配．$s'$ 与 $s$ 匹配，当且仅当 $s'$ 与 $s$ 长度相同，且最多有 $k$ 个位置字符不同．其中 $1\leq n,m\leq 10^6$，$0\leq k\leq 5$．
+Bài toán: Cho chuỗi nguồn $s$ độ dài $n$ và chuỗi mẫu $p$ độ dài $m$, yêu cầu tìm trong chuỗi nguồn có bao nhiêu chuỗi con khớp với chuỗi mẫu. $s'$ khớp với $s$ khi và chỉ khi $s'$ và $s$ có cùng độ dài, và có nhiều nhất $k$ vị trí có ký tự khác nhau. Trong đó $1\leq n,m\leq 10^6$, $0\leq k\leq 5$.
 
-这道题无法使用 KMP 解决，但是可以通过哈希 + 二分来解决．
+Bài này không thể giải bằng KMP, nhưng có thể giải bằng hash + tìm kiếm nhị phân.
 
-枚举所有可能匹配的子串，假设现在枚举的子串为 $s'$，通过哈希 + 二分可以快速找到 $s'$ 与 $p$ 第一个不同的位置．之后将 $s'$ 与 $p$ 在这个失配位置及之前的部分删除掉，继续查找下一个失配位置．这样的过程最多发生 $k$ 次．
+Liệt kê tất cả chuỗi con có thể khớp. Giả sử chuỗi con đang xét là $s'$, ta có thể dùng hash + tìm kiếm nhị phân để nhanh chóng tìm vị trí đầu tiên mà $s'$ khác $p$. Sau đó xóa phần của $s'$ và $p$ tính đến hết vị trí sai khớp này, rồi tiếp tục tìm vị trí sai khớp tiếp theo. Quá trình này xảy ra tối đa $k$ lần.
 
-总的时间复杂度为 $O(m+kn\log_2m)$．
+Tổng độ phức tạp thời gian là $O(m+kn\log_2m)$.
 
-### 最长回文子串
+<span id="&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x4E32;"></span>
+### Chuỗi con đối xứng dài nhất
 
-二分答案，判断是否可行时枚举回文中心（对称轴），哈希判断两侧是否相等．需要分别预处理正着和倒着的哈希值．时间复杂度 $O(n\log n)$．
+Tìm kiếm nhị phân đáp án; khi kiểm tra tính khả thi, liệt kê tâm đối xứng (trục đối xứng), rồi dùng hash để kiểm tra hai phía có bằng nhau hay không. Cần tiền xử lý riêng giá trị hash xuôi và ngược. Độ phức tạp thời gian $O(n\log n)$.
 
-这个问题可以使用 [manacher 算法](./manacher.md) 在 $O(n)$ 的时间内解决．
+Bài toán này có thể được giải bằng [thuật toán Manacher](./manacher.md) trong thời gian $O(n)$.
 
-通过哈希同样可以 $O(n)$ 解决这个问题，具体方法就是记 $R_i$ 表示以 $i$ 作为结尾的最长回文的长度，那么答案就是 $\max_{i=1}^nR_i$．考虑到 $R_i\leq R_{i-1}+2$，因此我们只需要暴力从 $R_{i-1}+2$ 开始递减，直到找到第一个回文即可．记变量 $z$ 表示当前枚举的 $R_i$，初始时为 $0$，则 $z$ 在每次 $i$ 增大的时候都会增大 $2$，之后每次暴力循环都会减少 $1$，故暴力循环最多发生 $2n$ 次，总的时间复杂度为 $O(n)$．
+Hash cũng có thể giải bài này trong $O(n)$. Cách làm cụ thể là đặt $R_i$ là độ dài chuỗi đối xứng dài nhất kết thúc tại $i$, khi đó đáp án là $\max_{i=1}^nR_i$. Vì $R_i\leq R_{i-1}+2$, ta chỉ cần vét cạn giảm dần từ $R_{i-1}+2$ cho đến khi tìm được chuỗi đối xứng đầu tiên. Đặt biến $z$ là $R_i$ đang liệt kê, ban đầu bằng $0$; mỗi khi $i$ tăng, $z$ sẽ tăng thêm $2$, sau đó mỗi lần lặp vét cạn sẽ giảm $1$, nên vòng lặp vét cạn xảy ra tối đa $2n$ lần. Tổng độ phức tạp thời gian là $O(n)$.
 
-### 最长公共子字符串
+<span id="&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x5B57;&#x7B26;&#x4E32;"></span>
+### Chuỗi con chung dài nhất
 
-问题：给定 $m$ 个总长不超过 $n$ 的非空字符串，查找所有字符串的最长公共子字符串，如果有多个，任意输出其中一个．其中 $1\leq m, n\leq 10^6$．
+Bài toán: Cho $m$ chuỗi không rỗng có tổng độ dài không vượt quá $n$, tìm chuỗi con chung dài nhất của tất cả các chuỗi; nếu có nhiều đáp án, in ra một đáp án bất kỳ. Trong đó $1\leq m, n\leq 10^6$.
 
-很显然如果存在长度为 $k$ 的最长公共子字符串，那么 $k-1$ 的公共子字符串也必定存在．因此我们可以二分最长公共子字符串的长度．假设现在的长度为 $k$，`check(k)` 的逻辑为我们将所有字符串的长度为 $k$ 的子串分别进行哈希，将哈希值放入 $n$ 个哈希表中存储．之后求交集即可．
+Rõ ràng nếu tồn tại chuỗi con chung dài nhất có độ dài $k$, thì chuỗi con chung độ dài $k-1$ cũng chắc chắn tồn tại. Vì vậy có thể tìm kiếm nhị phân độ dài của chuỗi con chung dài nhất. Giả sử độ dài hiện tại là $k$, logic của `check(k)` là: ta lấy hash tất cả chuỗi con độ dài $k$ của từng chuỗi, rồi lưu các giá trị hash vào $n$ bảng băm. Sau đó lấy giao các bảng băm là đủ.
 
-时间复杂度为 $O(m+n\log n)$．
+Độ phức tạp thời gian là $O(m+n\log n)$.
 
-### 确定字符串中不同子字符串的数量
+<span id="&#x786E;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x4E0D;&#x540C;&#x5B50;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x6570;&#x91CF;"></span>
+### Xác định số lượng chuỗi con khác nhau trong một chuỗi
 
-问题：给定长为 $n$ 的字符串，仅由小写英文字母组成，查找该字符串中不同子串的数量．
+Bài toán: Cho chuỗi độ dài $n$ chỉ gồm các chữ cái thường tiếng Anh, hãy tìm số lượng chuỗi con khác nhau của chuỗi đó.
 
-为了解决这个问题，我们遍历了所有长度为 $l=1,\cdots ,n$ 的子串．对于每个长度为 $l$，我们将其 Hash 值乘以相同的 $b$ 的幂次方，并存入一个数组中．数组中不同元素的数量等于字符串中长度不同的子串的数量，并此数字将添加到最终答案中．
+Để giải bài toán này, ta duyệt tất cả chuỗi con có độ dài $l=1,\cdots ,n$. Với mỗi độ dài $l$, ta nhân giá trị Hash của chuỗi con với cùng một lũy thừa của $b$ rồi lưu vào một mảng. Số lượng phần tử khác nhau trong mảng bằng số lượng chuỗi con khác nhau có độ dài $l$ trong chuỗi; cộng số này vào đáp án cuối cùng.
 
-为了方便起见，我们将使用 $h [i]$ 作为 Hash 的前缀字符，并定义 $h[0]=0$．
+Để tiện lợi, ta dùng $h [i]$ làm giá trị hash tiền tố và định nghĩa $h[0]=0$.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     int count_unique_substrings(string const& s) {
       int n = s.size();
@@ -447,21 +470,22 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
     }
     ```
 
-### 例题
+<span id="&#x4F8B;&#x9898;_1"></span>
+### Bài tập ví dụ
 
 ???+ note "[CF1200E Compress Words](http://codeforces.com/contest/1200/problem/E)"
-    给你若干个字符串，答案串初始为空．第 $i$ 步将第 $i$ 个字符串加到答案串的后面，但是尽量地去掉重复部分（即去掉一个最长的、是原答案串的后缀、也是第 $i$ 个串的前缀的字符串），求最后得到的字符串．
+    Cho nhiều chuỗi. Chuỗi đáp án ban đầu rỗng. Ở bước thứ $i$, thêm chuỗi thứ $i$ vào cuối chuỗi đáp án, nhưng cố gắng loại bỏ phần lặp (tức loại bỏ chuỗi dài nhất vừa là hậu tố của đáp án hiện tại, vừa là tiền tố của chuỗi thứ $i$). Hãy tìm chuỗi cuối cùng thu được.
     
-    字符串个数不超过 $10^5$，总长不超过 $10^6$．
+    Số lượng chuỗi không vượt quá $10^5$, tổng độ dài không vượt quá $10^6$.
     
-    ??? note "题解"
-        每次需要求最长的、是原答案串的后缀、也是第 $i$ 个串的前缀的字符串．枚举这个串的长度，哈希比较即可．
+    ??? note "Lời giải"
+        Mỗi lần cần tìm chuỗi dài nhất vừa là hậu tố của đáp án hiện tại, vừa là tiền tố của chuỗi thứ $i$. Liệt kê độ dài của chuỗi này và so sánh bằng hash là đủ.
         
-        当然，这道题也可以使用 [KMP 算法](./kmp.md) 解决．
+        Tất nhiên, bài này cũng có thể giải bằng [thuật toán KMP](./kmp.md).
     
-    ??? note "参考代码"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/string/code/hash/hash_1.cpp"
         ```
 
-**本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+**Một phần nội dung của trang này được dịch từ bài viết [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) và bản dịch tiếng Anh [String Hashing](https://cp-algorithms.com/string/string-hashing.html). Giấy phép của bản tiếng Nga là Public Domain + Leave a Link; giấy phép của bản tiếng Anh là CC-BY-SA 4.0.**

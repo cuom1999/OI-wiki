@@ -86,6 +86,10 @@ MkDocs source layout intact.
   `docs/string/match.md`: translated the introductory string material covering
   alphabets, substrings, C/C++ string helpers, and baseline string matching
   algorithms.
+- `docs/string/hash.md`, `docs/string/trie.md`, `docs/string/kmp.md`,
+  `docs/string/z-func.md`, `docs/string/ac-automaton.md`: translated core
+  string hashing, trie, prefix-function/KMP, Z-function, and AC automaton
+  material, plus explanatory comments in their included snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

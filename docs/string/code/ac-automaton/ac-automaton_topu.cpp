@@ -11,19 +11,19 @@ int n;
 
 namespace AC {
 struct Node {
-  int son[26];  // 子结点
-  int ans;      // 匹配计数
-  int fail;     // fail 指针
-  int du;       // 入度
+  int son[26];  // Các đỉnh con
+  int ans;      // Số lần khớp
+  int fail;     // Con trỏ fail
+  int du;       // Bậc vào
   int idx;
 
-  void init() {  // 结点初始化
+  void init() {  // Khởi tạo đỉnh
     memset(son, 0, sizeof(son));
     ans = fail = idx = 0;
   }
 } tr[SIZE];
 
-int tot;  // 结点总数
+int tot;  // Tổng số đỉnh
 int ans[N], pidx;
 
 void init() {
@@ -34,13 +34,13 @@ void init() {
 void insert(char s[], int &idx) {
   int u = 0;
   for (int i = 1; s[i]; i++) {
-    int &son = tr[u].son[s[i] - 'a'];  // 下一个子结点的引用
-    if (!son) son = ++tot, tr[son].init();  // 如果没有则插入新结点，并初始化
-    u = son;                                // 从下一个结点继续
+    int &son = tr[u].son[s[i] - 'a'];  // Tham chiếu đến đỉnh con tiếp theo
+    if (!son) son = ++tot, tr[son].init();  // Nếu chưa có thì thêm đỉnh mới
+    u = son;                                // Tiếp tục từ đỉnh kế tiếp
   }
-  // 由于有可能出现相同的模式串，需要将相同的映射到同一个编号
-  if (!tr[u].idx) tr[u].idx = ++pidx;  // 第一次出现，新增编号
-  idx = tr[u].idx;  // 这个模式串的编号对应这个结点的编号
+  // Các xâu mẫu trùng nhau cần được ánh xạ về cùng một chỉ số
+  if (!tr[u].idx) tr[u].idx = ++pidx;  // Lần đầu xuất hiện, thêm chỉ số mới
+  idx = tr[u].idx;  // Chỉ số của xâu mẫu này ứng với chỉ số của đỉnh
 }
 
 void build() {
@@ -51,14 +51,14 @@ void build() {
     int u = q.front();
     q.pop();
     for (int i = 0; i < 26; i++) {
-      if (tr[u].son[i]) {                               // 存在对应子结点
-        tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];  // 只用跳一次 fail 指针
-        tr[tr[tr[u].fail].son[i]].du++;                 // 入度计数
-        q.push(tr[u].son[i]);                           // 并加入队列
+      if (tr[u].son[i]) {                               // Có đỉnh con tương ứng
+        tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];  // Chỉ cần nhảy fail một lần
+        tr[tr[tr[u].fail].son[i]].du++;                 // Đếm bậc vào
+        q.push(tr[u].son[i]);                           // Đưa vào hàng đợi
       } else
         tr[u].son[i] =
             tr[tr[u].fail]
-                .son[i];  // 将不存在的字典树的状态链接到了失配指针的对应状态
+                .son[i];  // Nối trạng thái không tồn tại tới trạng thái theo fail
     }
   }
 }
@@ -66,7 +66,7 @@ void build() {
 void query(char t[]) {
   int u = 0;
   for (int i = 1; t[i]; i++) {
-    u = tr[u].son[t[i] - 'a'];  // 转移
+    u = tr[u].son[t[i] - 'a'];  // Chuyển trạng thái
     tr[u].ans++;
   }
 }

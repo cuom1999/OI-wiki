@@ -26,7 +26,7 @@ struct Node {
 int tot;
 int ans[N], pidx;
 
-vector<int> g[SIZE];  // fail 树
+vector<int> g[SIZE];  // Cây fail
 
 void init() {
   tot = pidx = 0;
@@ -40,9 +40,9 @@ void insert(char s[], int &idx) {
     if (!son) son = ++tot, tr[son].init();
     u = son;
   }
-  // 由于有可能出现相同的模式串，需要将相同的映射到同一个编号
-  if (!tr[u].idx) tr[u].idx = ++pidx;  // 第一次出现，新增编号
-  idx = tr[u].idx;  // 这个模式串的编号对应这个结点的编号
+  // Các xâu mẫu trùng nhau cần được ánh xạ về cùng một chỉ số
+  if (!tr[u].idx) tr[u].idx = ++pidx;  // Lần đầu xuất hiện, thêm chỉ số mới
+  idx = tr[u].idx;  // Chỉ số của xâu mẫu này ứng với chỉ số của đỉnh
 }
 
 void build() {
@@ -50,7 +50,7 @@ void build() {
   for (int i = 0; i < 26; i++)
     if (tr[0].son[i]) {
       q.push(tr[0].son[i]);
-      g[0].push_back(tr[0].son[i]);  // 不要忘记这里的 fail
+      g[0].push_back(tr[0].son[i]);  // Đừng quên cạnh fail ở đây
     }
   while (!q.empty()) {
     int u = q.front();
@@ -58,7 +58,7 @@ void build() {
     for (int i = 0; i < 26; i++) {
       if (tr[u].son[i]) {
         tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];
-        g[tr[tr[u].fail].son[i]].push_back(tr[u].son[i]);  // 记录 fail 树
+        g[tr[tr[u].fail].son[i]].push_back(tr[u].son[i]);  // Ghi lại cây fail
         q.push(tr[u].son[i]);
       } else
         tr[u].son[i] = tr[tr[u].fail].son[i];

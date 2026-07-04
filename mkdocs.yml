@@ -201,12 +201,12 @@ nav:
     - Cơ sở xâu: string/basic.md
     - Thư viện chuẩn: string/lib-func.md
     - Khớp xâu: string/match.md
-    - 字符串哈希: string/hash.md
-    - 字典树 (Trie): string/trie.md
-    - 前缀函数与 KMP 算法: string/kmp.md
+    - Hash xâu: string/hash.md
+    - Cây từ điển (Trie): string/trie.md
+    - Hàm tiền tố và thuật toán KMP: string/kmp.md
     - Boyer–Moore 算法: string/bm.md
-    - Z 函数（扩展 KMP）: string/z-func.md
-    - AC 自动机: string/ac-automaton.md
+    - Hàm Z (KMP mở rộng): string/z-func.md
+    - Máy tự động AC: string/ac-automaton.md
     - 后缀数组 (SA):
       - 后缀数组简介: string/sa.md
       - 最优原地后缀排序算法: string/sa-optimal-inplace.md

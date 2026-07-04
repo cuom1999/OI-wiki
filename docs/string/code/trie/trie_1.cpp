@@ -13,11 +13,11 @@ int main() {
     int u = 1;
     for (int j = 1; s[j]; ++j) {
       int c = s[j] - 'a';
-      // 如果这个节点的子节点中没有这个字符，添加上并将该字符的节点号记录为++tot
+      // Nếu các con của đỉnh này chưa có ký tự này, thêm nó và lưu chỉ số đỉnh là ++tot
       if (!ch[u][c]) ch[u][c] = ++tot;
-      u = ch[u][c];  // 往更深一层搜索
+      u = ch[u][c];  // Tìm xuống tầng sâu hơn
     }
-    tag[u] = 1;  // 最后一个字符为节点 u 的名字未被访问到记录为 1
+    tag[u] = 1;  // Tên kết thúc tại đỉnh u chưa được truy cập, ghi nhận là 1
   }
 
   scanf("%d", &m);
@@ -28,12 +28,12 @@ int main() {
     for (int j = 1; s[j]; ++j) {
       int c = s[j] - 'a';
       u = ch[u][c];
-      if (!u) break;  // 不存在对应字符的出边说明名字不存在
+      if (!u) break;  // Không có cạnh ứng với ký tự này, tức là tên không tồn tại
     }
     if (tag[u] == 1) {
-      tag[u] = 2;  // 最后一个字符为节点 u 的名字已经被访问
+      tag[u] = 2;  // Tên kết thúc tại đỉnh u đã được truy cập
       puts("OK");
-    } else if (tag[u] == 2)  // 已经被访问，重复访问
+    } else if (tag[u] == 2)  // Đã truy cập, bị lặp lại
       puts("REPEAT");
     else
       puts("WRONG");
