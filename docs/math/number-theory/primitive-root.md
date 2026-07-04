@@ -819,44 +819,75 @@ căn nguyên thủy, đây tạo thành một chứng minh khác cho định lí
 
 <span id="carmichael-&#x6570;"></span>
 
-### So Carmichael
+### Số Carmichael
 
-Dung ham Carmichael, ta co the thao luan tinh chat va phan bo cua so Carmichael (OEIS:[A002997](https://oeis.org/A002997)). Day la cac hop so ma [kiem tra tinh nguyen to Fermat](./prime.md#fermat-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95) chac chan khong the loai bo chinh xac.
+Dùng hàm Carmichael, ta có thể thảo luận tính chất và phân bố của số Carmichael
+(OEIS:[A002997](https://oeis.org/A002997)). Đây là các hợp số mà
+[kiểm tra tính nguyên tố Fermat](./prime.md#fermat-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95)
+chắc chắn không thể loại bỏ chính xác.
 
-???+ abstract "So Carmichael"
-    Voi hop so $n$, neu voi moi so nguyen $a\perp n$ deu co dong du $a^{n-1} \equiv 1 \pmod n$, thi $n$ duoc goi la **so Carmichael**.
+???+ abstract "Số Carmichael"
+    Với hợp số $n$, nếu với mọi số nguyên $a\perp n$ đều có đồng dư
+    $a^{n-1} \equiv 1 \pmod n$, thì $n$ được gọi là **số Carmichael**.
 
-So Carmichael nho nhat la $561 = 3 \times 11 \times 17$.
+Số Carmichael nhỏ nhất là $561 = 3 \times 11 \times 17$.
 
-Theo dinh nghia ham Carmichael, hop so $n$ la so Carmichael khi va chi khi $\lambda(n)\mid n-1$, trong do $\lambda(n)$ la ham Carmichael. Hon nua, ta co phuong phap sau de xac dinh hop so $n$ co phai so Carmichael hay khong:
+Theo định nghĩa hàm Carmichael, hợp số $n$ là số Carmichael khi và chỉ khi
+$\lambda(n)\mid n-1$, trong đó $\lambda(n)$ là hàm Carmichael. Hơn nữa, ta có
+phương pháp sau để xác định hợp số $n$ có phải số Carmichael hay không:
 
-???+ note "Tieu chuan Korselt[^korselt1899probleme]"
-    Hop so $n$ la so Carmichael khi va chi khi $n$ khong co thua so chinh phuong va voi moi thua so nguyen to $p$ cua $n$ deu co $(p-1) \mid (n-1)$.
+???+ note "Tiêu chuẩn Korselt[^korselt1899probleme]"
+    Hợp số $n$ là số Carmichael khi và chỉ khi $n$ không có thừa số chính phương
+    và với mọi thừa số nguyên tố $p$ của $n$ đều có $(p-1) \mid (n-1)$.
 
-??? note "Chung minh"
-    Truoc het chung minh tinh can thiet. Gia su $\lambda(n)\mid (n-1)$. Kiem tra cong thuc truy hoi cua ham Carmichael, neu $n$ co thua so chinh phuong $p$, thi chac chan $p\mid \lambda(n)$. Nhung $p\nmid (n-1)$, mau thuan. Tuong tu, cong thuc truy hoi cua ham Carmichael cho thay $(p-1)\mid \lambda(n)$, nen cung co $(p-1) \mid (n-1)$.
-    
-    Tiep theo chung minh tinh du. Vi $n$ la hop so, no chac chan co thua so nguyen to le $p$, do do $n-1$ la so chan, va $n$ cung chac chan la so le. Voi hop so le khong co thua so chinh phuong $n$, theo cong thuc truy hoi cua ham Carmichael, $\lambda(n)=\operatorname{lcm}\{p-1:p\mid n\}$. Vi vay, chi can $(p-1) \mid (n-1)$ dung voi moi thua so nguyen to $p$, thi chac chan $\lambda(n)\mid (n-1)$.
+??? note "Chứng minh"
+    Trước hết chứng minh tính cần thiết. Giả sử $\lambda(n)\mid (n-1)$. Kiểm
+    tra công thức truy hồi của hàm Carmichael: nếu $n$ có thừa số chính phương
+    $p$, thì chắc chắn $p\mid \lambda(n)$. Nhưng $p\nmid (n-1)$, mâu thuẫn.
+    Tương tự, công thức truy hồi của hàm Carmichael cho thấy
+    $(p-1)\mid \lambda(n)$, nên cũng có $(p-1) \mid (n-1)$.
 
-Tu tieu chuan nay, co the thiet lap mot so tinh chat don gian cua so Carmichael:
+    Tiếp theo chứng minh tính đủ. Vì $n$ là hợp số, nó chắc chắn có thừa số
+    nguyên tố lẻ $p$, do đó $n-1$ là số chẵn, và $n$ cũng chắc chắn là số lẻ.
+    Với hợp số lẻ không có thừa số chính phương $n$, theo công thức truy hồi
+    của hàm Carmichael, $\lambda(n)=\operatorname{lcm}\{p-1:p\mid n\}$. Vì vậy,
+    chỉ cần $(p-1) \mid (n-1)$ đúng với mọi thừa số nguyên tố $p$, thì chắc chắn
+    $\lambda(n)\mid (n-1)$.
 
-???+ note "He qua"
-    So Carmichael la so le, khong co thua so chinh phuong, va co it nhat $3$ thua so nguyen to phan biet.
+Từ tiêu chuẩn này, có thể thiết lập một số tính chất đơn giản của số
+Carmichael:
 
-??? note "Chung minh"
-    Hai tinh chat dau co the suy truc tiep tu tieu chuan Korselt va chung minh cua no. De thu duoc tinh chat thu ba, chi can chung minh them: tich $n=p_1p_2$ cua hai so nguyen to phan biet $p_1,p_2$ chac chan khong phai so Carmichael. Gia su $n=p_1p_2$ la so Carmichael. Theo tieu chuan Korselt, $(p_i-1)\mid (n-1)$. Nhung ta co
-    
+???+ note "Hệ quả"
+    Số Carmichael là số lẻ, không có thừa số chính phương, và có ít nhất $3$
+    thừa số nguyên tố phân biệt.
+
+??? note "Chứng minh"
+    Hai tính chất đầu có thể suy trực tiếp từ tiêu chuẩn Korselt và chứng minh
+    của nó. Để thu được tính chất thứ ba, chỉ cần chứng minh thêm: tích
+    $n=p_1p_2$ của hai số nguyên tố phân biệt $p_1,p_2$ chắc chắn không phải số
+    Carmichael. Giả sử $n=p_1p_2$ là số Carmichael. Theo tiêu chuẩn Korselt,
+    $(p_i-1)\mid (n-1)$. Nhưng ta có
+
     $$
     n-1=p_1p_2-1\equiv p_2-1 \pmod{p_1-1}.
     $$
-    
-    Do do $(p_1-1)\mid(p_2-1)$. Tuong tu, $(p_2-1)\mid(p_1-1)$. Nghia la $p_1=p_2$. Dieu nay mau thuan voi gia thiet. Vi vay so Carmichael $n$ co it nhat $3$ thua so nguyen to phan biet.
 
-Dung so hoc giai tich, ta con co the thu duoc mot so tinh chat ve phan bo cua so Carmichael. Goi $C(n)$ la so luong so Carmichael khong vuot qua $n$. Alford, Granville, and Pomerance[^alford1994infinitely] chung minh rang voi $n$ du lon, ta co $C(n)>n^{2/7}$. Tu do, co vo han so Carmichael. Truoc do, Erdos[^erdos1956pseudoprimes] da chung minh $C(n) < n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$, trong do $c$ la hang so. Vi vay phan bo cua so Carmichael rat thua (so voi so nguyen to). Thuc te, co[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
+    Do đó $(p_1-1)\mid(p_2-1)$. Tương tự,
+    $(p_2-1)\mid(p_1-1)$. Nghĩa là $p_1=p_2$. Điều này mâu thuẫn với giả thiết.
+    Vì vậy số Carmichael $n$ có ít nhất $3$ thừa số nguyên tố phân biệt.
+
+Dùng số học giải tích, ta còn có thể thu được một số tính chất về phân bố của
+số Carmichael. Gọi $C(n)$ là số lượng số Carmichael không vượt quá $n$. Alford,
+Granville, and Pomerance[^alford1994infinitely] chứng minh rằng với $n$ đủ lớn,
+ta có $C(n)>n^{2/7}$. Từ đó, có vô hạn số Carmichael. Trước đó,
+Erdos[^erdos1956pseudoprimes] đã chứng minh
+$C(n) < n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$, trong đó $c$
+là hằng số. Vì vậy phân bố của số Carmichael rất thưa (so với số nguyên tố).
+Thực tế, có[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
 
 <span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
 
-## Tai lieu tham khao va ghi chu
+## Tài liệu tham khảo và ghi chú
 
 -   [Primitive root modulo n - Wikipedia](https://en.wikipedia.org/wiki/Primitive_root_modulo_n)
 -   [The order of a unit - Course Notes](https://crypto.stanford.edu/pbc/notes/numbertheory/order.html)
@@ -882,9 +913,17 @@ Dung so hoc giai tich, ta con co the thu duoc mot so tinh chat ve phan bo cua so
 
 [^elliott1997average]: Elliott, Peter DTA, and Leo Murata. "On the average of the least primitive root modulo p." Journal of The london Mathematical Society 56, no. 3 (1997): 435-454.
 
-[^more-evidence]: Co the xem them cac ket qua tai [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html).
+[^more-evidence]: Có thể xem thêm các kết quả tại [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html).
 
-[^density-prim-root]: Neu can nguyen thuy modulo $m$ ton tai, thi $\varphi(m)\ge\dfrac{1}{3}m$, va dau bang chi dat tai $m=2\times 3^e~(e\in\mathbf N_+)$. Hon nua, khi $m > 2$, co uoc luong cho ham Euler $\varphi(m)$: $\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$. Ket hop hai ket qua nay, ta thu duoc bieu thuc trong bai. Ve uoc luong nay cua ham Euler, co the tham khao bai bao Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94.
+[^density-prim-root]: Nếu căn nguyên thủy modulo $m$ tồn tại, thì
+    $\varphi(m)\ge\dfrac{1}{3}m$, và dấu bằng chỉ đạt tại
+    $m=2\times 3^e~(e\in\mathbf N_+)$. Hơn nữa, khi $m > 2$, có ước lượng cho
+    hàm Euler $\varphi(m)$:
+    $\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$. Kết hợp
+    hai kết quả này, ta thu được biểu thức trong bài. Về ước lượng này của hàm
+    Euler, có thể tham khảo bài báo Rosser, J. Barkley, and Lowell Schoenfeld.
+    "Approximate formulas for some functions of prime numbers." Illinois Journal
+    of Mathematics 6, no. 1 (1962): 64-94.
 
 [^korselt1899probleme]: Korselt, A. R. (1899). "Probleme chinois." L'Intermediaire des Mathematiciens. 6: 142-143.
 
