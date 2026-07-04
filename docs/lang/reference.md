@@ -191,11 +191,11 @@ int main() {
 }
 ```
 
-Tuy nhiên, không phải lúc nào cũng cần làm như vậy, ví dụ như khi có [tối ưu giá trị trả về của hàm](./value-category.md#%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%8C%BA).
+Tuy nhiên, không phải lúc nào cũng cần làm như vậy, ví dụ như khi có [tối ưu giá trị trả về của hàm](./value-category.md#các-hiểu-lầm-thường-gặp).
 
 ### Phải trị kéo dài thời gian sống của đối tượng tạm
 
-Về mặt ngữ nghĩa, đối tượng tạm có thể gây ra thêm các phép sao chép hoặc di chuyển. Dù trong đa số trường hợp trình biên dịch có thể tối ưu bằng [loại bỏ sao chép](./value-category.md#%E5%A4%8D%E5%88%B6%E6%B6%88%E9%99%A4), tham chiếu có thể buộc trình biên dịch không thực hiện những thao tác thừa này, tránh sự bất định.
+Về mặt ngữ nghĩa, đối tượng tạm có thể gây ra thêm các phép sao chép hoặc di chuyển. Dù trong đa số trường hợp trình biên dịch có thể tối ưu bằng [loại bỏ sao chép](./value-category.md#loại-bỏ-sao-chép), tham chiếu có thể buộc trình biên dịch không thực hiện những thao tác thừa này, tránh sự bất định.
 
 ## Nội dung tham khảo
 

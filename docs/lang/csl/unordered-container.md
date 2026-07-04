@@ -1,4 +1,4 @@
-<span id="&#x6982;&#x8FF0;"></span>
+<span id="tổng-quan"></span>
 ## Tổng quan
 
 Từ chuẩn C++11, bốn container kết hợp không có thứ tự được cài đặt dựa trên [băm](../../ds/hash.md) chính thức được đưa vào thư viện mẫu chuẩn của C++: `unordered_set`, `unordered_multiset`, `unordered_map`, `unordered_multimap`.
@@ -19,7 +19,7 @@ Nhờ cách lưu trữ bằng băm, container kết hợp không có thứ tự 
 
 Do container kết hợp không có thứ tự và container kết hợp tương ứng có nhiều điểm chung về mục đích và thao tác, phần này không giới thiệu lại từng thao tác của container kết hợp không có thứ tự. Bạn đọc có thể tham khảo [container kết hợp](./associative-container.md).
 
-<span id="&#x5236;&#x9020;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;"></span>
+<span id="tạo-va-chạm-băm"></span>
 ## Tạo va chạm băm
 
 Phần trên đã đề cập rằng trong trường hợp xấu nhất, độ phức tạp thời gian của một số thao tác trên container kết hợp không có thứ tự sẽ tuyến tính theo kích thước container.
@@ -30,7 +30,7 @@ Trong các cài đặt của thư viện chuẩn, giá trị băm của mỗi ph
 
 Vì vậy, có thể chèn vào container các bội của những modulo này để tạo ra nhiều va chạm băm.
 
-<span id="&#x81EA;&#x5B9A;&#x4E49;&#x54C8;&#x5E0C;&#x51FD;&#x6570;"></span>
+<span id="tùy-biến-hàm-băm"></span>
 ## Tùy biến hàm băm
 
 Dùng hàm băm tùy biến có thể giúp tránh hiệu quả nhiều va chạm băm do dữ liệu được xây dựng có chủ đích tạo ra.

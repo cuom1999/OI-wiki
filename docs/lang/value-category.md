@@ -65,7 +65,7 @@ C++98 gần như giống ngôn ngữ C về loại giá trị, nhưng bổ sung 
 -   Tham chiếu trái trị (`T&`) là trái trị, vì có thể lấy địa chỉ.
 -   Chỉ `const T&` mới có thể gắn với phải trị.
 
-<span id="&#x590D;&#x5236;&#x6D88;&#x9664;"></span><span id="%E5%A4%8D%E5%88%B6%E6%B6%88%E9%99%A4"></span>
+<span id="loại-bỏ-sao-chép"></span>
 
 ### Loại bỏ sao chép
 
@@ -192,7 +192,7 @@ int main() {
 
 Đồng thời, C++17 đưa vào cơ chế hiện thực hóa đối tượng tạm: khi ta cần truy cập biến thành viên, gọi hàm thành viên, hoặc gặp các tình huống khác cần giá trị tổng quát phía trái, giá trị thuần phải có thể được chuyển ngầm định thành giá trị sắp hết hạn.
 
-<span id="&#x5E38;&#x89C1;&#x8BEF;&#x533A;"></span><span id="%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%8C%BA"></span>
+<span id="các-hiểu-lầm-thường-gặp"></span>
 
 ### Các hiểu lầm thường gặp
 
