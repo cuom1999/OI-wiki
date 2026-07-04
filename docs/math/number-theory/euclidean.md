@@ -1,30 +1,33 @@
 author: sshwy, FFjet, qz-cqy
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Mở đầu
 
-类欧几里德算法是洪华敦在 2016 年冬令营营员交流中提出的内容．它常用于解决形如
+Thuật toán Euclid tương tự là nội dung do Hong Huadun đề xuất trong buổi trao đổi trại viên tại Winter Camp 2016. Nó thường được dùng để giải các bài toán tính tổng của những dãy số (chỉ số là $i$) có cấu trúc dạng
 
 $$
 \left\lfloor\dfrac{ai+b}{c}\right\rfloor
 $$
 
-结构的数列（下标为 $i$）的求和问题．它的主要想法是，利用分数自身的递归结构，将问题转化为更小规模的问题，递归求解．因为分数的递归结构和 [欧几里得算法](./gcd.md#欧几里得算法) 存在直接的 [联系](./continued-fraction.md#连分数表示的求法)，因此，这一求和方法也称为类欧几里得算法．
+Ý tưởng chính của nó là tận dụng cấu trúc đệ quy của chính phân số để chuyển bài toán thành bài toán quy mô nhỏ hơn rồi giải đệ quy. Vì cấu trúc đệ quy của phân số có [liên hệ](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%B1%82%E6%B3%95) trực tiếp với [thuật toán Euclid](./gcd.md#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95), phương pháp tính tổng này cũng được gọi là thuật toán Euclid tương tự.
 
-因为 [连分数](./continued-fraction.md) 和 [Stern–Brocot 树](./stern-brocot.md) 等方法同样刻画了分数的递归结构，所以利用类欧几里得算法可以解决的问题，通常也可以用这些方法解决．与这些方法相比，类欧几里得算法通常更容易理解，它的实现也更为简明．
+Do các phương pháp như [liên phân số](./continued-fraction.md) và [cây Stern-Brocot](./stern-brocot.md) cũng mô tả cấu trúc đệ quy của phân số, những bài toán có thể giải bằng thuật toán Euclid tương tự thường cũng có thể giải bằng các phương pháp đó. So với chúng, thuật toán Euclid tương tự thường dễ hiểu hơn và cài đặt cũng ngắn gọn hơn.
 
-## 类欧几里得算法
+<span id="&#x7C7B;&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+## Thuật toán Euclid tương tự
 
-最简单的例子，就是求和问题：
+Ví dụ đơn giản nhất là bài toán tính tổng:
 
 $$
 f(a,b,c,n)=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor,
 $$
 
-其中，$a,b,c,n$ 都是正整数．
+trong đó $a,b,c,n$ đều là số nguyên dương.
 
-### 代数解法
+<span id="&#x4EE3;&#x6570;&#x89E3;&#x6CD5;"></span>
+### Cách giải đại số
 
-首先，将 $a,b$ 对 $c$ 取模，可以简化问题，将问题转化为 $0\le a,b<c$ 的情形：
+Trước hết, lấy phần dư của $a,b$ theo $c$ để đơn giản hóa bài toán, đưa nó về trường hợp $0\le a,b<c$:
 
 $$
 \begin{aligned}
@@ -38,20 +41,20 @@ f(a,b,c,n)&=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor\\
 \end{aligned}
 $$
 
-现在，考虑转化后的问题．令
+Bây giờ xét bài toán sau khi đã biến đổi. Đặt
 
 $$
 m = \left\lfloor \frac{an+b}{c} \right\rfloor.
 $$
 
-那么，原问题可以写作二次求和式：
+Khi đó, bài toán ban đầu có thể viết thành một tổng hai lớp:
 
 $$
 \sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor
 =\sum_{i=0}^n\sum_{j=0}^{m-1}\left[j<\left\lfloor \frac{ai+b}{c} \right\rfloor\right].
 $$
 
-交换求和次序，这需要对于每个 $j$ 计算满足条件的 $i$ 的范围．为此，将条件变形：
+Đổi thứ tự lấy tổng; việc này cần tính miền giá trị của $i$ thỏa mãn điều kiện với mỗi $j$. Ta biến đổi điều kiện:
 
 $$
 \begin{aligned}
@@ -63,7 +66,7 @@ $$
 \end{aligned}
 $$
 
-变形过程中多次利用了 [取整函数](./basic.md#取整函数) 的性质．代入变形后的条件，原式可以写作：
+Trong quá trình biến đổi ta nhiều lần dùng tính chất của [hàm lấy phần nguyên](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0). Thay điều kiện đã biến đổi vào, biểu thức ban đầu trở thành:
 
 $$
 \begin{aligned}
@@ -74,79 +77,81 @@ f(a,b,c,n)&=\sum_{j=0}^{m-1}
 \end{aligned}
 $$
 
-令 $(a',b',c',n')=(c,c-b-1,a,m-1)$，这就又回到了前面讨论过的 $a'>c'$ 的情形．
+Đặt $(a',b',c',n')=(c,c-b-1,a,m-1)$, ta lại quay về trường hợp $a'>c'$ đã thảo luận ở trên.
 
-将这两步转化结合在一起，可以发现在过程中，$(a,c)$ 不断地取模后交换位置，直到 $a=0$．这就类似于对 $(a,c)$ 进行辗转相除，这也是类欧几里德算法的得名．它的时间复杂度是 $O(\log\min\{a,c\})$ 的．
+Kết hợp hai bước biến đổi này, có thể thấy trong quá trình đó $(a,c)$ liên tục được lấy modulo rồi hoán đổi vị trí cho đến khi $a=0$. Điều này tương tự phép chia Euclid trên $(a,c)$, và cũng là nguồn gốc tên gọi thuật toán Euclid tương tự. Độ phức tạp thời gian là $O(\log\min\{a,c\})$.
 
-在计算过程中，可能会出现 $m=0$ 的情形，此时内层递归会出现 $n=-1$．这并不影响最终的结果．但是，如果要求出现 $m=0$ 时，直接终止算法，那么算法的时间复杂度可以改良为 $O(\log\min\{a,c,n\})$ 的．
+Trong quá trình tính, có thể xuất hiện trường hợp $m=0$; khi đó lời gọi đệ quy bên trong sẽ có $n=-1$. Điều này không ảnh hưởng kết quả cuối cùng. Tuy nhiên, nếu yêu cầu thuật toán dừng ngay khi $m=0$, độ phức tạp thời gian có thể cải thiện thành $O(\log\min\{a,c,n\})$.
 
-??? note "对复杂度的解释"
-    利用该算法和欧几里得算法的相似性，很容易说明它的时间复杂度是 $O(\log\min\{a,c\})$ 的．因此，只需要说明，如果在 $m=0$ 时终止算法，那么它的时间复杂度也是 $O(\log n)$ 的．
+??? note "Giải thích về độ phức tạp"
+    Từ sự tương đồng giữa thuật toán này và thuật toán Euclid, rất dễ chứng minh độ phức tạp thời gian là $O(\log\min\{a,c\})$. Vì vậy, chỉ cần chứng minh rằng nếu dừng thuật toán khi $m=0$ thì độ phức tạp cũng là $O(\log n)$.
     
-    令 $m=\lfloor(an+b)/c\rfloor$，并记 $S=mn$，$k=m/n$，它们分别相当于几何直观（见下一节）中点阵图的面积和直线的斜率．对于充分大的 $n$，近似有 $k\doteq a/c$．
+    Đặt $m=\lfloor(an+b)/c\rfloor$, đồng thời ký hiệu $S=mn$, $k=m/n$; trong trực giác hình học (xem phần tiếp theo), chúng lần lượt tương ứng với diện tích của lưới điểm và hệ số góc của đường thẳng. Với $n$ đủ lớn, xấp xỉ có $k\doteq a/c$.
     
-    考察 $S$ 和 $k$ 在算法过程中的变化．第一步取模时，$n$ 保持不变，$k$ 近似由 $a/c$ 变为 $(a\bmod c)/c$，相当于斜率由 $k$ 变为 $k-\lfloor k\rfloor$，而 $S$ 也近似变为原来的 $(k-\lfloor k\rfloor)$ 倍．第二步交换横纵坐标时，$S$ 近似保持不变，$k$ 则变为它的倒数．因此，若设两步操作后，二元组 $(k,S)$ 变为 $(k',S')$，则有 $k'=(k-\lfloor k\rfloor)^{-1}$ 且 $S'=(k-\lfloor k\rfloor)S$．
+    Xét sự thay đổi của $S$ và $k$ trong quá trình thuật toán. Ở bước lấy modulo đầu tiên, $n$ không đổi, $k$ xấp xỉ chuyển từ $a/c$ thành $(a\bmod c)/c$, tương đương hệ số góc chuyển từ $k$ thành $k-\lfloor k\rfloor$, còn $S$ cũng xấp xỉ trở thành $(k-\lfloor k\rfloor)$ lần giá trị cũ. Ở bước thứ hai, khi hoán đổi trục hoành và trục tung, $S$ xấp xỉ không đổi, còn $k$ trở thành nghịch đảo của nó. Vì vậy, nếu sau hai bước thao tác, cặp $(k,S)$ biến thành $(k',S')$, thì $k'=(k-\lfloor k\rfloor)^{-1}$ và $S'=(k-\lfloor k\rfloor)S$.
     
-    因为 $1\le\lfloor k'\rfloor\le k'<\lfloor k'\rfloor+1$，所以，递归计算两轮后，乘积缩小的倍数最少为
+    Vì $1\le\lfloor k'\rfloor\le k'<\lfloor k'\rfloor+1$, nên sau hai vòng đệ quy, hệ số giảm nhỏ nhất của tích là
     
     $$
     (k'-\lfloor k'\rfloor)(k-\lfloor k\rfloor) = 1-\dfrac{\lfloor k'\rfloor}{k'} < 1-\dfrac{\lfloor k'\rfloor}{\lfloor k'\rfloor+1} = \dfrac{1}{\lfloor k'\rfloor+1}\le \dfrac{1}{2}.
     $$
     
-    因此，至多 $O(\log S)$ 轮，算法必然终止．因为从第二轮开始，每轮开始时的 $S$ 总是不超过上一轮取模结束后的 $S$，而后者大致为 $kn^2$ 且 $k<1$，因而 $O(\log S)\subseteq O(\log n)$．这就得到了上述结论．
+    Do đó sau nhiều nhất $O(\log S)$ vòng, thuật toán chắc chắn dừng. Từ vòng thứ hai trở đi, $S$ ở đầu mỗi vòng luôn không vượt quá $S$ sau khi kết thúc bước lấy modulo của vòng trước; giá trị sau này xấp xỉ $kn^2$ và $k<1$, nên $O(\log S)\subseteq O(\log n)$. Điều này cho ta kết luận trên.
 
-模板题的参考实现如下：
+Cài đặt tham khảo cho bài mẫu như sau:
 
-??? example "模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
+??? example "Cài đặt bài mẫu ([Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear))"
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-0.cpp:full-text"
     ```
 
-### 几何直观
+<span id="&#x51E0;&#x4F55;&#x76F4;&#x89C2;"></span>
+### Trực giác hình học
 
-这个算法还可以从几何的角度理解．类欧几里得算法可以解决的问题主要是直线下整点计数问题．
+Thuật toán này cũng có thể được hiểu từ góc nhìn hình học. Những bài toán mà thuật toán Euclid tương tự xử lý chủ yếu là bài toán đếm điểm nguyên nằm dưới một đường thẳng.
 
-如下图最左部分所示，该求和式相当于求直线
+Như phần ngoài cùng bên trái trong hình dưới, tổng này tương đương với việc đếm số điểm lưới nằm dưới đường thẳng
 
 $$
 y = \dfrac{ax+b}{c}
 $$
 
-下方，$x$ 轴上方（不包括 $x$ 轴），且横坐标位于 $[0,n]$ 之间的格点数目．
+nằm phía trên trục $x$ (không tính trục $x$), và có hoành độ trong đoạn $[0,n]$.
 
 ![](./images/euclidean-1.svg)
 
-首先，移除斜率和截距中的整数部分．这一步相当于将上图中间部分的蓝点数量单独计算出来．当斜率和截距都是整数时，蓝点一定构成一个梯形阵列，也就是说，不同纵列的格点形成等差数列，因而这些点的数量是容易计算的．将这些点移除后，剩余的格点和上图最右部分的红点数量一致．问题就转化成了斜率和截距都小于一的情形．因为梯形的高为 $n+1$ 且两个底边长度分别为 $\lfloor b/c\rfloor$ 和 $(\lfloor a/c\rfloor n+\lfloor b/c\rfloor)$，所以，利用梯形面积公式，这一步骤可以归纳为算式
+Trước hết, loại bỏ phần nguyên trong hệ số góc và tung độ gốc. Bước này tương đương với việc tính riêng số lượng điểm màu xanh ở phần giữa của hình trên. Khi hệ số góc và tung độ gốc đều là số nguyên, các điểm màu xanh chắc chắn tạo thành một mảng hình thang, tức số điểm lưới trong các cột khác nhau tạo thành cấp số cộng, nên số lượng các điểm này rất dễ tính. Sau khi loại bỏ chúng, số điểm lưới còn lại trùng với số điểm đỏ ở phần ngoài cùng bên phải của hình trên. Bài toán được chuyển thành trường hợp hệ số góc và tung độ gốc đều nhỏ hơn một. Vì chiều cao của hình thang là $n+1$ và độ dài hai đáy lần lượt là $\lfloor b/c\rfloor$ và $(\lfloor a/c\rfloor n+\lfloor b/c\rfloor)$, dùng công thức diện tích hình thang, bước này có thể quy về công thức
 
 $$
 f(a,b,c,n) = f(a\bmod c,b\bmod c,c,n) + \dfrac{1}{2}(n+1)\left(\left\lfloor\dfrac{b}{c}\right\rfloor+\left(\left\lfloor\dfrac{a}{c}\right\rfloor n+\left\lfloor\dfrac{b}{c}\right\rfloor\right)\right).
 $$
 
-然后，翻转横纵坐标轴．如下图最左部分所示，图中的红点和蓝点构成了一个横向长度为 $n$、纵向长度为 $m=\lfloor(an+b)/c\rfloor$ 的矩形点阵．要计算红点的数量，只需要计算蓝点的数量，再用矩形点阵的数量减去蓝点的数量即可．翻转后，上图左半部分中的蓝点点阵就变成了某条直线下的红色点阵．而且，翻转后，斜率大于一，就又回到了上文已经处理过的情形．
+Sau đó, lật trục hoành và trục tung. Như phần ngoài cùng bên trái trong hình dưới, các điểm đỏ và điểm xanh trong hình tạo thành một lưới điểm hình chữ nhật có chiều ngang $n$ và chiều dọc $m=\lfloor(an+b)/c\rfloor$. Để tính số điểm đỏ, chỉ cần tính số điểm xanh rồi lấy số điểm của lưới chữ nhật trừ đi số điểm xanh. Sau khi lật, lưới điểm xanh ở nửa trái của hình trên trở thành lưới điểm đỏ nằm dưới một đường thẳng nào đó. Hơn nữa, sau khi lật, hệ số góc lớn hơn một, tức lại quay về trường hợp đã xử lý ở trên.
 
 ![](./images/euclidean-2.svg)
 
-关键在于如何计算新的红色点阵上方的直线的方程．将上图最左部分的横纵坐标轴翻转，就得到上图中间部分．翻转后的红色点阵上方的直线（中间部分的实线），并非对应翻转前的直线（最左部分的实线），而是翻转前的直线向左上平移一点点的结果（最左部分的虚线）．这是因为，如果直接将直线（最左部分的实线）翻转，将得到中间部分的虚线，但是按照定义，它下方的格点包括恰好落在直线上的格点，这就会导致直线上的格点重复计数．为了避免这一点，需要将翻转直线 $y=(ax+b)/c$ 后得到的直线 $y=(cx-b)/a$ 向下平移一点点，得到直线 $y=(cx-b-1)/a$，这样它下方的点阵才恰为翻转前的蓝色点阵．
+Điểm mấu chốt là tính phương trình đường thẳng nằm phía trên lưới điểm đỏ mới. Lật trục hoành và trục tung của phần ngoài cùng bên trái trong hình trên, ta được phần giữa. Đường thẳng nằm phía trên lưới điểm đỏ sau khi lật (đường liền ở phần giữa) không tương ứng với đường thẳng trước khi lật (đường liền ở phần ngoài cùng bên trái), mà tương ứng với kết quả tịnh tiến đường thẳng trước khi lật một chút về phía trên bên trái (đường nét đứt ở phần ngoài cùng bên trái). Lý do là nếu lật trực tiếp đường thẳng (đường liền ở phần ngoài cùng bên trái), ta sẽ nhận được đường nét đứt ở phần giữa, nhưng theo định nghĩa, các điểm lưới dưới nó bao gồm cả những điểm nằm đúng trên đường thẳng, dẫn tới đếm lặp các điểm trên đường thẳng. Để tránh điều này, cần tịnh tiến đường thẳng thu được sau khi lật $y=(ax+b)/c$, tức $y=(cx-b)/a$, xuống dưới một chút, nhận được đường thẳng $y=(cx-b-1)/a$; khi đó lưới điểm dưới nó mới đúng là lưới điểm xanh trước khi lật.
 
-还有另一处细节需要处理．上图中间部分的直线的截距是负数，这意味着还没有回到之前的初始情形．要让截距恢复为非负数，只需要将直线（中间部分的实线）向左平移一个单位．这样做不会漏掉任何格点，因为翻转前的蓝色点阵中没有纵坐标为零的点，翻转后也就不存在横坐标为零的点．最后，直线方程就变为 $y=(cx+c-b-1)/a$；同时，点阵的横坐标的上界也从 $m$ 变成了 $m-1$．这一步骤可以归纳为算式
+Còn một chi tiết khác cần xử lý. Tung độ gốc của đường thẳng ở phần giữa của hình trên là số âm, nghĩa là ta vẫn chưa quay lại dạng ban đầu. Để đưa tung độ gốc về không âm, chỉ cần tịnh tiến đường thẳng (đường liền ở phần giữa) sang trái một đơn vị. Thao tác này không bỏ sót điểm lưới nào, vì trong lưới điểm xanh trước khi lật không có điểm nào có tung độ bằng không, nên sau khi lật cũng không có điểm nào có hoành độ bằng không. Cuối cùng, phương trình đường thẳng trở thành $y=(cx+c-b-1)/a$; đồng thời, cận trên của hoành độ trong lưới điểm cũng chuyển từ $m$ thành $m-1$. Bước này có thể quy về công thức
 
 $$
 f(a,b,c,n) = mn - f(c,c-b-1,a,m-1).
 $$
 
-这种递归的算法行得通，主要有两个原因：
+Thuật toán đệ quy này hoạt động được chủ yếu vì hai lý do:
 
--   第一，直线的斜率不断地先取小数部分再取倒数，这等价于计算直线斜率 $k=a/c$ 的 [连分数展开](./continued-fraction.md#连分数表示的求法)．因为有理分数的连分数展开的长度是 $O(\log\min\{a,c\})$ 的，所以这一过程一定在 $O(\log\min\{a,c\})$ 步后终止；
--   第二，因为每次翻转坐标轴的时候，直线斜率都是小于一的，因此，直觉上应该有 $m<n$，也就是说，经过这样一轮迭代后，横坐标的范围一直是在缩小的．前文的复杂度计算中通过严格的分析说明，每两轮迭代后，$n$ 至多为原来的一半，故而这一过程一定在 $O(\log n)$ 步后终止．
+-   Thứ nhất, hệ số góc của đường thẳng liên tục được lấy phần thập phân rồi lấy nghịch đảo, điều này tương đương với việc tính [khai triển liên phân số](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%B1%82%E6%B3%95) của hệ số góc $k=a/c$. Vì độ dài khai triển liên phân số của một phân số hữu tỉ là $O(\log\min\{a,c\})$, quá trình này chắc chắn kết thúc sau $O(\log\min\{a,c\})$ bước;
+-   Thứ hai, mỗi lần lật trục tọa độ thì hệ số góc của đường thẳng đều nhỏ hơn một, nên trực giác cho thấy phải có $m<n$, tức sau một vòng lặp như vậy, phạm vi hoành độ luôn thu nhỏ. Phần phân tích độ phức tạp ở trên đã chứng minh chặt chẽ rằng sau mỗi hai vòng lặp, $n$ nhiều nhất giảm còn một nửa, nên quá trình này chắc chắn kết thúc sau $O(\log n)$ bước.
 
-这也是斜率为有理数时的类欧几里得算法的复杂度是 $O(\log\min\{a,c,n\})$ 的原因．
+Đây cũng là lý do độ phức tạp của thuật toán Euclid tương tự khi hệ số góc là số hữu tỉ là $O(\log\min\{a,c,n\})$.
 
-利用类似的几何直观，可以将类欧几里得算法推广到斜率为无理数的情形，具体分析请参考后文的例题．
+Dùng trực giác hình học tương tự, có thể mở rộng thuật toán Euclid tương tự cho trường hợp hệ số góc là số vô tỉ; phân tích cụ thể xem trong bài ví dụ phía sau.
 
-### 例题
+<span id="&#x4F8B;&#x9898;"></span>
+### Ví dụ
 
-???+ example "[【模板】类欧几里得算法](https://www.luogu.com.cn/problem/P5170)"
-    多组询问．给定正整数 $a,b,c,n$，求
+???+ example "[Bài mẫu - Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)"
+    Có nhiều truy vấn. Cho các số nguyên dương $a,b,c,n$, hãy tính
     
     $$
     \begin{aligned}
@@ -156,10 +161,10 @@ $$
     \end{aligned}
     $$
 
-??? note "解答一"
-    类似于 $f$ 的推导，可以得到 $g,h$ 的递归表达式．
+??? note "Lời giải 1"
+    Tương tự cách suy ra công thức cho $f$, ta có thể nhận được các biểu thức đệ quy cho $g,h$.
     
-    首先，利用取模，将问题转化为 $0\le a,b<c$ 的情形：
+    Trước hết, dùng phép lấy modulo để chuyển bài toán về trường hợp $0\le a,b<c$:
     
     $$
     \begin{aligned}
@@ -173,13 +178,13 @@ $$
     \end{aligned}
     $$
     
-    然后，利用交换求和次序，可以进一步转化．同样地，令
+    Sau đó, dùng đổi thứ tự lấy tổng để tiếp tục biến đổi. Tương tự, đặt
     
     $$
     m = \left\lfloor \frac{an+b}{c} \right\rfloor.
     $$
     
-    那么，对于和式 $g$，有
+    Khi đó, với tổng $g$, ta có
     
     $$
     \begin{aligned}
@@ -193,7 +198,7 @@ $$
     \end{aligned}
     $$
     
-    对于和式 $h$，有
+    Với tổng $h$, ta có
     
     $$
     \begin{aligned}
@@ -206,29 +211,29 @@ $$
     \end{aligned}
     $$
     
-    从几何直观的角度看，这些非线性的求和式相当于给区域中的每个点 $(i,j)$ 都赋予了相应的权重 $w(i,j)$．除了这些权重之外，其余部分的计算过程是完全一致的．对于权重的选择，一般地，有
+    Từ góc nhìn trực giác hình học, những tổng phi tuyến này tương đương với việc gán cho mỗi điểm $(i,j)$ trong miền một trọng số tương ứng $w(i,j)$. Ngoài các trọng số này, phần còn lại của quá trình tính là hoàn toàn giống nhau. Với cách chọn trọng số, nói chung ta có
     
     $$
     \sum_{i=0}^ni^r\left\lfloor \frac{ai+b}{c} \right\rfloor^s = \sum_{i=0}^n\sum_{j=0}^{m-1} i^r\left((j+1)^s-j^s\right)\left[j<\left\lfloor\frac{ai+b}{c}\right\rfloor\right].
     $$
     
-    本题的另一个特点是，$g$ 和 $h$ 在递归计算时，会相互交错．因此，需要将 $(f,g,h)$ 作为三元组同时递归．
+    Một đặc điểm khác của bài này là $g$ và $h$ khi tính đệ quy sẽ đan xen với nhau. Vì vậy, cần xem $(f,g,h)$ là một bộ ba và đệ quy đồng thời.
     
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-1.cpp"
     ```
 
-???+ example "[\[清华集训 2014\] Sum](https://www.luogu.com.cn/problem/P5172)"
-    多组询问．给定正整数 $n$ 和 $r$，求
+???+ example "[Tsinghua Training 2014 - Sum](https://www.luogu.com.cn/problem/P5172)"
+    Có nhiều truy vấn. Cho các số nguyên dương $n$ và $r$, hãy tính
     
     $$
     \sum_{d=1}^n(-1)^{\lfloor d\sqrt{r}\rfloor}.
     $$
 
-??? note "解答一"
-    如果 $r$ 是完全平方数，那么当 $\sqrt{r}$ 为偶数时，和式为 $n$；否则，和式依据 $n$ 奇偶性不同，在 $0$ 和 $-1$ 之间交替变化．下面考虑 $r$ 不是完全平方数的情形．
+??? note "Lời giải 1"
+    Nếu $r$ là số chính phương, thì khi $\sqrt{r}$ chẵn, tổng bằng $n$; ngược lại, tổng luân phiên giữa $0$ và $-1$ tùy theo tính chẵn lẻ của $n$. Sau đây xét trường hợp $r$ không phải số chính phương.
     
-    为了应用类欧几里得算法，首先将求和式转化为熟悉的形式：
+    Để áp dụng thuật toán Euclid tương tự, trước hết chuyển tổng về dạng quen thuộc:
     
     $$
     \begin{aligned}
@@ -239,19 +244,19 @@ $$
     \end{aligned}
     $$
     
-    其中的函数 $f$ 具有形式
+    Hàm $f$ ở đây có dạng
     
     $$
     f(a,b,c,n) = \sum_{i=1}^n\left\lfloor\dfrac{a\sqrt{r}+b}{c}i\right\rfloor.
     $$
     
-    与正文中的算法不同的是，此处的斜率不再是有理数．设斜率
+    Khác với thuật toán trong phần chính, hệ số góc ở đây không còn là số hữu tỉ. Đặt hệ số góc
     
     $$
     k = \dfrac{a\sqrt{r}+b}{c}.
     $$
     
-    同样分为两种情形讨论．如果 $k\ge 1$，那么
+    Tương tự, ta chia thành hai trường hợp. Nếu $k\ge 1$, thì
     
     $$
     \begin{aligned}
@@ -260,7 +265,7 @@ $$
     \end{aligned}
     $$
     
-    问题转化为斜率小于一的情形．如果 $k<1$，那么设 $m=\lfloor nk\rfloor$，有
+    Bài toán được chuyển về trường hợp hệ số góc nhỏ hơn một. Nếu $k<1$, đặt $m=\lfloor nk\rfloor$, ta có
     
     $$
     \begin{aligned}
@@ -269,190 +274,193 @@ $$
     \end{aligned}
     $$
     
-    此处的推导中，交换 $i$ 和 $j$ 的条件比正文中的情形更为简单，是因为直线 $y=kx$ 上没有除了原点之外的格点．关键在于交换后的求和式写成 $f(a,b,c,n)$ 的形式，这相当于要求 $a',b',c'$ 满足
+    Trong suy luận này, điều kiện để hoán đổi $i$ và $j$ đơn giản hơn trường hợp ở phần chính, vì đường thẳng $y=kx$ không có điểm lưới nào ngoài gốc tọa độ nằm trên nó. Mấu chốt là viết tổng sau khi hoán đổi về dạng $f(a,b,c,n)$, tương đương với việc yêu cầu $a',b',c'$ thỏa mãn
     
     $$
     k^{-1} = \dfrac{a'\sqrt{r}+b'}{c'}.
     $$
     
-    这并不困难，只需要将分母有理化，就能得到
+    Điều này không khó; chỉ cần hữu tỉ hóa mẫu số, ta được
     
     $$
     k^{-1} = \dfrac{c}{a\sqrt{r}+b} = \dfrac{ca\sqrt{r}-cb}{a^2r-b^2}.
     $$
     
-    因此，有
+    Do đó,
     
     $$
     a'=ca,~b'=-cb,~c'=a^2r-b^2.
     $$
     
-    这说明
+    Suy ra
     
     $$
     f(a,b,c,n) = nm - f(ca,-cb,a^2r-b^2,m).
     $$
     
-    为了避免整数溢出，需要每次都将 $a,b,c$ 同除以它们的最大公约数．因为这个计算过程和计算 $k$ 的连分数的过程完全一致，所以根据 [连分数理论](./continued-fraction.md#二次无理数)，只要保证 $\gcd(a,b,c)=1$，它们在计算过程中必然在整型范围内．另外，尽管 $(a,b,c,n)$ 不会溢出，但是在该题数据范围下，$f(a,b,c,n)$ 可能会超过 $64$ 位整数的范围，自然溢出即可，无需额外处理，最后结果一定在 $[-n,n]$ 之间．
+    Để tránh tràn số nguyên, mỗi lần cần chia đồng thời $a,b,c$ cho ước chung lớn nhất của chúng. Vì quá trình tính này hoàn toàn giống quá trình tính liên phân số của $k$, theo [lý thuyết liên phân số](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0), chỉ cần bảo đảm $\gcd(a,b,c)=1$ thì trong quá trình tính chúng chắc chắn nằm trong phạm vi kiểu số nguyên. Ngoài ra, dù $(a,b,c,n)$ không bị tràn, trong phạm vi dữ liệu của bài này, $f(a,b,c,n)$ có thể vượt quá phạm vi số nguyên $64$ bit; cứ để tràn tự nhiên, không cần xử lý thêm, vì kết quả cuối cùng chắc chắn nằm trong $[-n,n]$.
     
-    尽管斜率不会变为零，算法的复杂度仍然是 $O(\log n)$ 的，这一点从前文关于算法复杂度的论证容易看出．
+    Dù hệ số góc không bao giờ trở thành không, độ phức tạp của thuật toán vẫn là $O(\log n)$; điều này dễ thấy từ lập luận về độ phức tạp thuật toán ở trên.
     
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-2.cpp"
     ```
 
 ???+ example "[Fraction](https://www.luogu.com.cn/problem/P5179)"
-    给定正整数 $a,b,c,d$，求所有满足 $a/b<p/q<c/d$ 的最简分数 $p/q$ 中 $(q,p)$ 的字典序最小的那个．
+    Cho các số nguyên dương $a,b,c,d$, hãy tìm trong tất cả các phân số tối giản $p/q$ thỏa mãn $a/b<p/q<c/d$ phân số có thứ tự từ điển của $(q,p)$ nhỏ nhất.
 
-??? note "解答"
-    这道题目也是 [Stern–Brocot 树](./stern-brocot.md) 的经典应用，相关题解可以在 [此处](./continued-fraction.md#连分数的树) 找到．因为它只依赖于分数的递归结构，所以它同样可以利用类似欧几里得算法的方法求解，故而也可以视作类欧几里得算法的一个应用．
+??? note "Lời giải"
+    Bài này cũng là một ứng dụng kinh điển của [cây Stern-Brocot](./stern-brocot.md); lời giải liên quan có thể tìm ở [đây](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E7%9A%84%E6%A0%91). Vì nó chỉ phụ thuộc vào cấu trúc đệ quy của phân số, nó cũng có thể được giải bằng phương pháp tương tự thuật toán Euclid, nên cũng có thể xem là một ứng dụng của thuật toán Euclid tương tự.
     
-    如果 $a/b$ 和 $c/d$ 之间（不含端点）存在至少一个自然数，可以直接取 $(q,p)=(1,\lfloor a/b\rfloor+1)$．否则，必然有
+    Nếu giữa $a/b$ và $c/d$ (không tính hai đầu mút) tồn tại ít nhất một số tự nhiên, có thể lấy trực tiếp $(q,p)=(1,\lfloor a/b\rfloor+1)$. Nếu không, chắc chắn có
     
     $$
     \left\lfloor\dfrac{a}{b}\right\rfloor \le \dfrac{a}{b} <\dfrac{p}{q} <\dfrac{c}{d}\le\left\lfloor\dfrac{a}{b}\right\rfloor+1.
     $$
     
-    从这个不等式中可以看出，$p/q$ 的整数部分可以确定为 $\lfloor a/b\rfloor$，直接消去该整数部分，然后整体取倒数，用于确定它的小数部分．这正是确定 $p/q$ 的连分数的 [基本方法](./continued-fraction.md#连分数表示的求法)．若最终的答案是 $p/q$，那么算法的时间复杂度为 $O(\log\min\{p,q\})$．
+    Từ bất đẳng thức này có thể thấy phần nguyên của $p/q$ được xác định là $\lfloor a/b\rfloor$; loại bỏ trực tiếp phần nguyên đó rồi lấy nghịch đảo toàn bộ để xác định phần thập phân của nó. Đây chính là [phương pháp cơ bản](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%B1%82%E6%B3%95) để xác định liên phân số của $p/q$. Nếu đáp án cuối cùng là $p/q$, độ phức tạp thời gian của thuật toán là $O(\log\min\{p,q\})$.
     
-    此处，有一个细节问题，即取倒数之后得到的字典序最小的分数，是否是取倒数之前的字典序最小的分数．换句话说，满足 $a/b<p/q<c/d$ 的分数 $p/q$ 中，字典序 $(q,p)$ 最小的，是否也是字典序 $(p,q)$ 最小的．假设不然，设 $p/q$ 是字典序 $(q,p)$ 最小的，但是 $r/s\neq p/q$ 是字典序 $(r,s)$ 最小的．这必然有 $r<p$ 且 $q<s$．但是，这说明
+    Ở đây có một chi tiết cần xử lý: sau khi lấy nghịch đảo, phân số nhỏ nhất theo thứ tự từ điển có còn là phân số nhỏ nhất theo thứ tự từ điển trước khi lấy nghịch đảo hay không. Nói cách khác, trong các phân số $p/q$ thỏa mãn $a/b<p/q<c/d$, phân số có thứ tự từ điển $(q,p)$ nhỏ nhất có đồng thời là phân số có thứ tự từ điển $(p,q)$ nhỏ nhất hay không. Giả sử ngược lại, đặt $p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(q,p)$, nhưng $r/s\neq p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(r,s)$. Khi đó chắc chắn có $r<p$ và $q<s$. Nhưng điều này cho thấy
     
     $$
     \dfrac{a}{b} < \dfrac{r}{s} < \dfrac{r}{q} < \dfrac{p}{q} < \dfrac{c}{d}.
     $$
     
-    因此，$r/q$ 无论按照哪个字典序怎样都是严格更小于当前解的．这与所设条件矛盾．因此，上述算法是正确的．
+    Do đó $r/q$ theo bất kỳ thứ tự từ điển nào cũng đều nhỏ hơn nghiêm ngặt lời giải hiện tại. Điều này mâu thuẫn với giả thiết. Vì vậy thuật toán trên là đúng.
     
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-3.cpp"
     ```
 
-## 万能欧几里得算法
+<span id="&#x4E07;&#x80FD;&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+## Thuật toán Euclid vạn năng
 
-上一节讨论的类欧几里得算法推导通常较为繁琐，而且能够解决的和式主要是可以转化为直线下（带权）整点计数问题的和式．本节讨论一种更为一般的方法，它进一步抽象了上述过程，从而可以解决更多的问题．因此，这一方法也称为万能欧几里得算法．它同样利用了分数的递归结构求解问题，但是与类欧几里得算法约化问题的思路稍有不同．
+Phần trước đã thảo luận cách suy ra thuật toán Euclid tương tự; quá trình đó thường khá rườm rà, và những tổng mà nó giải được chủ yếu là các tổng có thể chuyển thành bài toán đếm điểm nguyên (có trọng số) dưới một đường thẳng. Phần này thảo luận một phương pháp tổng quát hơn, trừu tượng hóa thêm quá trình trên để giải được nhiều bài toán hơn. Vì vậy, phương pháp này cũng được gọi là thuật toán Euclid vạn năng. Nó cũng tận dụng cấu trúc đệ quy của phân số để giải bài toán, nhưng cách rút gọn bài toán hơi khác với thuật toán Euclid tương tự.
 
-仍然考虑最经典的求和问题：
+Vẫn xét bài toán tính tổng kinh điển:
 
 $$
 f(a,b,c,n)=\sum_{i=1}^n\left\lfloor \frac{ai+b}{c} \right\rfloor,
 $$
 
-其中，$a,b,c,n$ 都是正整数．
+trong đó $a,b,c,n$ đều là số nguyên dương.
 
-### 问题转化
+<span id="&#x95EE;&#x9898;&#x8F6C;&#x5316;"></span>
+### Chuyển hóa bài toán
 
-设参数为 $(a,b,c,n)$ 的线段为
+Xét đoạn thẳng có tham số $(a,b,c,n)$:
 
 $$
 y = \frac{ax+b}{c},~0< x\le n.
 $$
 
-对于这条线段，可以按照如下方法定义一个由 $U$ 和 $R$ 组成的字符串 $S$，也称为 **操作序列**：
+Với đoạn thẳng này, có thể định nghĩa một chuỗi gồm $U$ và $R$ theo cách sau; chuỗi này cũng được gọi là **dãy thao tác**:
 
--   字符串恰有 $n$ 个 $R$ 和 $m=\lfloor(an+b)/c\rfloor$ 个 $U$ 组成；
--   第 $i$ 个 $R$ 前方的 $U$ 的数量恰等于 $\lfloor(ai+b)/c\rfloor$，其中，$i=1,\cdots,n$．
+-   Chuỗi có đúng $n$ ký tự $R$ và $m=\lfloor(an+b)/c\rfloor$ ký tự $U$;
+-   Số ký tự $U$ đứng trước ký tự $R$ thứ $i$ đúng bằng $\lfloor(ai+b)/c\rfloor$, với $i=1,\cdots,n$.
 
-从几何直观上看，这大致相当于从原点开始，每向右穿过一次竖向的网格线，就写下一个 $R$，每向上穿过一次横向的网格线，就写下一个 $U$．如下图所示：
+Từ trực giác hình học, điều này gần tương đương với việc bắt đầu từ gốc tọa độ: mỗi lần đi sang phải qua một đường lưới dọc thì ghi một $R$, mỗi lần đi lên qua một đường lưới ngang thì ghi một $U$. Như hình dưới:
 
 ![](./images/euclidean-universal.svg)
 
-当然，这样的定义还需要考量一系列特殊情形：
+Dĩ nhiên, định nghĩa như vậy còn cần xét một loạt trường hợp đặc biệt:
 
--   经过整点（即同时上穿和右穿）时，需要先写 $U$ 再写 $R$；
--   字符串开始时，除了在 $(0,1]$ 区间内上穿网格线的次数外，还需要格外补充 $\lfloor b/c\rfloor$ 个 $U$；
--   字符串结束时，不能有格外的 $U$．
+-   Khi đi qua điểm nguyên (tức đồng thời đi lên và đi sang phải), cần ghi $U$ trước rồi mới ghi $R$;
+-   Ở đầu chuỗi, ngoài số lần đi lên qua đường lưới trong khoảng $(0,1]$, còn cần bổ sung thêm $\lfloor b/c\rfloor$ ký tự $U$;
+-   Ở cuối chuỗi, không được có thêm ký tự $U$ dư.
 
-如果对于几何直观的描述有任何不明晰的地方，可以参考上述代数方法的定义辅助理解．几何直观的描述，有助于理解下文的算法过程．
+Nếu phần mô tả trực giác hình học còn chỗ nào chưa rõ, có thể đối chiếu với định nghĩa trong phương pháp đại số ở trên. Mô tả trực giác hình học giúp hiểu quá trình thuật toán phía dưới.
 
-万能欧几里得算法的基本思路，就是将操作序列中的 $U$ 和 $R$ 都视作某个 [幺半群](../algebra/basic.md#群) 内的元素，将整个操作序列视为幺半群内元素的乘积，而问题最终的答案与这个乘积有关．
+Ý tưởng cơ bản của thuật toán Euclid vạn năng là xem $U$ và $R$ trong dãy thao tác đều là phần tử của một [vị nhóm](../algebra/basic.md#%E7%BE%A4), xem toàn bộ dãy thao tác là tích của các phần tử trong vị nhóm, và đáp án cuối cùng của bài toán liên quan đến tích này.
 
-比如，本题中，可以定义状态向量 $v = (1,y,\sum y)$，表示自原点开始，经历了若干次上穿和右穿网格线后，当前的状态．其中，第一个分量是常数，第二个分量是纵坐标 $y$，第三个分量是要求的和式．起始时，有 $v=(1,0,0)$．每向上穿过一次网格线，纵坐标就累加一，即相当于将状态向量右乘以矩阵
+Ví dụ trong bài này, có thể định nghĩa vector trạng thái $v = (1,y,\sum y)$, biểu thị trạng thái hiện tại sau khi bắt đầu từ gốc tọa độ và trải qua một số lần đi lên, đi sang phải qua đường lưới. Trong đó, thành phần thứ nhất là hằng số, thành phần thứ hai là tung độ $y$, thành phần thứ ba là tổng cần tìm. Ban đầu, $v=(1,0,0)$. Mỗi lần đi lên qua một đường lưới ngang, tung độ tăng thêm một, tương đương với việc nhân phải vector trạng thái với ma trận
 
 $$
 U = \begin{pmatrix}1 & 1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{pmatrix}.
 $$
 
-每向右穿过一次网格线，和式就累加一次纵坐标，即相当于将状态向量右乘以矩阵
+Mỗi lần đi sang phải qua một đường lưới dọc, tổng cộng thêm một lần tung độ hiện tại, tương đương với việc nhân phải vector trạng thái với ma trận
 
 $$
 R = \begin{pmatrix}1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1\end{pmatrix}.
 $$
 
-因此，最终的状态就是乘积 $(1,0,0)S$，其中，$S$ 理解为上述矩阵的乘积．所求的答案，就是最终状态的第三个分量．
+Do đó trạng thái cuối cùng là tích $(1,0,0)S$, trong đó $S$ được hiểu là tích của các ma trận nói trên. Đáp án cần tìm chính là thành phần thứ ba của trạng thái cuối cùng.
 
-除了将幺半群中的元素定义为矩阵以外，还可以将它们定义为一段操作序列对于最终结果的贡献，然后将操作的乘积定义为两段操作序列的贡献的合并．
+Ngoài việc định nghĩa các phần tử trong vị nhóm là ma trận, ta cũng có thể định nghĩa chúng là đóng góp của một đoạn dãy thao tác vào kết quả cuối cùng, rồi định nghĩa tích của hai thao tác là phép hợp nhất đóng góp của hai đoạn dãy thao tác.
 
-本题中，可以定义每段操作序列的贡献为 $(x,y,\sum y)$．为了严谨地解释这些记号，可以将这些分量都看作是操作序列的函数，也就是说，对于操作序列 $S$，它的贡献可以写作 $(x(S),y(S),(\sum y)(S))$．其中，$x(S)$ 和 $y(S)$ 分别对应着操作序列 $S$ 中 $R$ 和 $U$ 的数量，也就是该线段右穿和上穿网格线的次数．最后一项中的求和符号，一般地，有如下定义：对于操作序列上的函数 $f(S)$，可以定义 $(\sum f)(S)$，或记作 $\sum_S f$，为下面的表达式：
+Trong bài này, có thể định nghĩa đóng góp của mỗi đoạn dãy thao tác là $(x,y,\sum y)$. Để giải thích chặt chẽ các ký hiệu này, có thể xem các thành phần đều là hàm của dãy thao tác, tức với dãy thao tác $S$, đóng góp của nó có thể viết là $(x(S),y(S),(\sum y)(S))$. Trong đó, $x(S)$ và $y(S)$ lần lượt tương ứng với số ký tự $R$ và $U$ trong dãy thao tác $S$, tức số lần đoạn thẳng đi sang phải và đi lên qua đường lưới. Với ký hiệu tổng ở thành phần cuối, nói chung ta định nghĩa như sau: với một hàm $f(S)$ trên dãy thao tác, có thể định nghĩa $(\sum f)(S)$, hoặc ký hiệu $\sum_S f$, là biểu thức
 
 $$
 \sum_S f := \sum\{f(S_{[1,r]}):S_r=R\}.
 $$
 
-其中，$S_r$ 是 $S$ 中的第 $r$ 个字符，$S_{[1,r]}$ 是 $S$ 中前 $r$ 个字符组成的前缀．也就是说，这个求和记号，可以看作是对于操作序列 $S$ 中所有以 $R$ 结尾的前缀进行的求和．比如说，有
+Trong đó, $S_r$ là ký tự thứ $r$ trong $S$, còn $S_{[1,r]}$ là tiền tố gồm $r$ ký tự đầu của $S$. Nói cách khác, ký hiệu tổng này có thể xem là phép lấy tổng trên tất cả các tiền tố của dãy thao tác $S$ kết thúc bằng $R$. Ví dụ,
 
 $$
 \sum_S 1 = x,~ \sum_S x = \dfrac{1}{2}x(x+1).
 $$
 
-再比如说，$\sum y$ 就是操作序列中，每次右穿网格线时，之前上穿网格线的次数的累加．对于整段操作序列来说，$y$ 在所有以 $R$ 结尾的前缀处的值，就是在 $i=1,\cdots,n$ 处的所有 $\lfloor(ai+b)/c\rfloor$ 的值．因此，对于整段操作序列计算的 $\sum y$，就是本题最终要求的量．
+Một ví dụ khác, $\sum y$ chính là tổng số lần đi lên qua đường lưới trước mỗi lần đi sang phải qua đường lưới trong dãy thao tác. Với cả dãy thao tác, giá trị của $y$ tại mọi tiền tố kết thúc bằng $R$ chính là các giá trị $\lfloor(ai+b)/c\rfloor$ tại $i=1,\cdots,n$. Vì vậy, $\sum y$ tính trên cả dãy thao tác chính là lượng cần tìm của bài toán này.
 
-初始时，有 $U=(0,1,0)$，$R=(1,0,0)$．进一步，可以将两个元素 $(x_1,y_1,s_1)$ 和 $(x_2,y_2,s_2)$ 的乘积定义为
+Ban đầu, $U=(0,1,0)$, $R=(1,0,0)$. Tiếp đó, có thể định nghĩa tích của hai phần tử $(x_1,y_1,s_1)$ và $(x_2,y_2,s_2)$ là
 
 $$
 (x_1,y_1,s_1)\cdot (x_2,y_2,s_2) = (x_1+x_2,y_1+y_2,s_1+s_2+x_2y_1).
 $$
 
-其中，最后一项贡献合并的结果可以通过如下计算得到：
+Trong đó, kết quả hợp nhất của hạng đóng góp cuối cùng có thể nhận được bằng tính toán sau:
 
 $$
 \sum_{S_1+S_2}y = \sum_{S_1}y + \sum_{S_2}(y+y_1) = \sum_{S_1}y + \sum_{S_2}y + y_1\sum_{S_2}1 = s_1+s_2+x_2y_1.
 $$
 
-容易验证，这个乘法运算满足结合律，且幺元为 $(0,0,0)$，所以这些元素在该乘法运算下构成幺半群．所求的答案，就是乘积的第三个分量．
+Dễ kiểm tra rằng phép nhân này thỏa mãn luật kết hợp và có đơn vị là $(0,0,0)$, nên các phần tử này tạo thành một vị nhóm dưới phép nhân đó. Đáp án cần tìm chính là thành phần thứ ba của tích.
 
-这两种方法都可以得到正确的结果．但是，因为保留了较多的冗余信息，矩阵运算的常数较大，所以第二种方法在处理实际问题时更为实用．
+Cả hai cách đều cho kết quả đúng. Tuy nhiên, vì giữ lại khá nhiều thông tin dư thừa, hằng số của phép toán ma trận lớn hơn, nên cách thứ hai thực dụng hơn khi xử lý bài toán thực tế.
 
-### 算法过程
+<span id="&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"></span>
+### Quá trình thuật toán
 
-与类欧几里得算法整体约化不同，万能欧几里得算法约化问题的手段是将这些操作分批次地合并．记字符串对应的操作的乘积为
+Khác với thuật toán Euclid tương tự, vốn rút gọn bài toán một cách tổng thể, thuật toán Euclid vạn năng rút gọn bài toán bằng cách gộp các thao tác theo từng nhóm. Ký hiệu tích của các thao tác tương ứng với chuỗi là
 
 $$
 F(a,b,c,n,U,R).
 $$
 
-约化过程具体如下：
+Quá trình rút gọn cụ thể như sau:
 
--   当 $b\ge c$ 时，操作序列的开始有 $\lfloor b/c\rfloor$ 个 $U$，直接计算它们的乘积，并将这些 $U$ 从操作序列中移除．此时，第 $i$ 个 $R$ 前方的 $U$ 的数量等于
+-   Khi $b\ge c$, ở đầu dãy thao tác có $\lfloor b/c\rfloor$ ký tự $U$; tính trực tiếp tích của chúng và loại các $U$ này khỏi dãy thao tác. Khi đó, số ký tự $U$ đứng trước ký tự $R$ thứ $i$ bằng
 
     $$
     \left\lfloor\dfrac{ai+b}{c}\right\rfloor - \left\lfloor\dfrac{b}{c}\right\rfloor = \left\lfloor\dfrac{ai+(b\bmod c)}{c}\right\rfloor.
     $$
 
-    因此，这相当于将线段参数由 $(a,b,c,n)$ 变为 $(a,b\bmod c,c,n)$．所以，对于这种情形，有
+    Vì vậy, điều này tương đương với việc biến đổi tham số đoạn thẳng từ $(a,b,c,n)$ thành $(a,b\bmod c,c,n)$. Trong trường hợp này, ta có
 
     $$
     F(a,b,c,n,U,R) = U^{\lfloor b/c\rfloor}F(a,b\bmod c,c,n,U,R).
     $$
 
--   当 $a\ge c$ 时，操作序列中每个 $R$ 的前方都至少有 $\lfloor a/c\rfloor$ 个 $U$，可以将它们合并到 $R$ 上．也就是说，可以用 $U^{\lfloor a/c\rfloor}R$ 替代 $R$．合并后的字符串中，第 $i$ 个 $R$ 前方的 $U$ 的数量等于
+-   Khi $a\ge c$, trước mỗi ký tự $R$ trong dãy thao tác đều có ít nhất $\lfloor a/c\rfloor$ ký tự $U$, nên có thể gộp chúng vào $R$. Nói cách khác, có thể thay $R$ bằng $U^{\lfloor a/c\rfloor}R$. Trong chuỗi sau khi gộp, số ký tự $U$ đứng trước ký tự $R$ thứ $i$ bằng
 
     $$
     \left\lfloor\dfrac{ai+b}{c}\right\rfloor - \left\lfloor\dfrac{a}{c}\right\rfloor i = \left\lfloor\dfrac{(a\bmod c)i+b}{c}\right\rfloor.
     $$
 
-    因此，这相当于将线段参数由 $(a,b,c,n)$ 变为 $(a\bmod c,b,c,n)$．所以，对于这种情形，有
+    Vì vậy, điều này tương đương với việc biến đổi tham số đoạn thẳng từ $(a,b,c,n)$ thành $(a\bmod c,b,c,n)$. Trong trường hợp này, ta có
 
     $$
     F(a,b,c,n,U,R) = F(a\bmod c,b,c,n,U,U^{\lfloor a/c\rfloor}R).
     $$
 
--   对于剩下的情形，需要翻转横纵坐标，这基本是在交换 $U$ 和 $R$，只是翻转后线段的参数需要仔细计算．结合操作序列的定义可知，需要确定系数 $(a',b',c',n')$ 使得变换前的操作序列中，第 $j$ 个 $U$ 前方的 $R$ 的数量恰为 $\lfloor(a'j+b')/c'\rfloor$ 且总共有 $n'$ 个 $U$．根据定义可知，
+-   Với trường hợp còn lại, cần lật trục hoành và trục tung; về cơ bản đây là hoán đổi $U$ và $R$, chỉ có điều tham số của đoạn thẳng sau khi lật cần được tính cẩn thận. Kết hợp với định nghĩa dãy thao tác, ta cần xác định các hệ số $(a',b',c',n')$ sao cho trong dãy thao tác trước khi biến đổi, số ký tự $R$ đứng trước ký tự $U$ thứ $j$ đúng bằng $\lfloor(a'j+b')/c'\rfloor$ và tổng cộng có $n'$ ký tự $U$. Theo định nghĩa,
 
     $$
     n'=\left\lfloor\dfrac{an+b}{c}\right\rfloor = m,
     $$
 
-    而第 $j$ 个 $U$ 前方的 $R$ 的数量，就等于最大的 $i$ 使得
+    còn số ký tự $R$ đứng trước ký tự $U$ thứ $j$ bằng giá trị lớn nhất của $i$ sao cho
 
     $$
     \begin{aligned}
@@ -462,49 +470,49 @@ $$
     \end{aligned}
     $$
 
-    因此，$i = \lfloor(cj-b-1)/a\rfloor$．这一推导过程与前文类欧几里得算法的推导类似，同样利用了上下取整函数的性质．
+    Do đó, $i = \lfloor(cj-b-1)/a\rfloor$. Quá trình suy luận này tương tự suy luận của thuật toán Euclid tương tự ở trên, và cũng dùng các tính chất của hàm làm tròn lên, làm tròn xuống.
 
-    有两处细节需要处理：
+    Có hai chi tiết cần xử lý:
 
-    -   截距项 $-(b+1)/a$ 为负数．注意到，如果将线段向左平移一个单位，就可以让截距项恢复为非负数，因为总有 $(c-b-1)/a\ge 0$．因此，可以将交换前的第一段 $R^{\lfloor(c-b-1)/a\rfloor}U$ 提取出来，只交换剩余操作序列中的 $U$ 和 $R$；
-    -   交换 $U$ 和 $R$ 后，结尾存在多余的 $U$．因此，交换 $U$ 和 $R$ 之前，需要首先将最后一段 $R$ 提取出来，只交换剩余操作序列中的 $U$ 和 $R$．这一段 $R$ 的数量为 $n-\lfloor(cm-b-1)/a\rfloor$．
+    -   Hạng tung độ gốc $-(b+1)/a$ là số âm. Chú ý rằng nếu tịnh tiến đoạn thẳng sang trái một đơn vị, có thể đưa tung độ gốc về không âm, vì luôn có $(c-b-1)/a\ge 0$. Do đó, có thể tách đoạn đầu $R^{\lfloor(c-b-1)/a\rfloor}U$ trước khi hoán đổi, và chỉ hoán đổi $U$ với $R$ trong phần dãy thao tác còn lại;
+    -   Sau khi hoán đổi $U$ và $R$, ở cuối tồn tại ký tự $U$ dư. Vì vậy, trước khi hoán đổi $U$ và $R$, cần tách đoạn $R$ cuối cùng ra trước, và chỉ hoán đổi $U$ với $R$ trong phần dãy thao tác còn lại. Số lượng ký tự $R$ trong đoạn này là $n-\lfloor(cm-b-1)/a\rfloor$.
 
-    去掉头尾若干个字符后，第 $j$ 个 $U$ 前方的 $R$ 的数量变为：
+    Sau khi bỏ một số ký tự ở đầu và cuối, số ký tự $R$ đứng trước ký tự $U$ thứ $j$ trở thành:
 
     $$
     \left\lfloor\dfrac{c(j+1)-b-1}{a}\right\rfloor - \left\lfloor\dfrac{c-b-1}{a}\right\rfloor = \left\lfloor\dfrac{cj+(c-b-1)\bmod a}{a}\right\rfloor.
     $$
 
-    回忆起，交换前的序列中 $U$ 的数量为 $m = \lfloor(an+b)/c\rfloor$．而上述左移一个单位的操作，要求保证交换前至少存在一个 $U$，也就是 $m>0$．利用这一条件，可以分为两种情形：
+    Nhắc lại, số lượng ký tự $U$ trong chuỗi trước khi hoán đổi là $m = \lfloor(an+b)/c\rfloor$. Thao tác tịnh tiến sang trái một đơn vị nói trên yêu cầu phải có ít nhất một ký tự $U$ trước khi hoán đổi, tức $m>0$. Dựa vào điều kiện này, ta chia thành hai trường hợp:
 
-    -   对于 $m>0$ 的情形，处理了上面的两点后，交换完 $U$ 和 $R$ 的操作序列就是对应着参数为 $(c,(c-b-1)\bmod a,a,m-1)$ 的线段的合法序列．所以，有
+    -   Với trường hợp $m>0$, sau khi xử lý hai điểm trên, dãy thao tác sau khi hoán đổi $U$ và $R$ là dãy hợp lệ ứng với đoạn thẳng có tham số $(c,(c-b-1)\bmod a,a,m-1)$. Vì vậy,
 
         $$
         F(a,b,c,n,U,R) = R^{\lfloor(c-b-1)/a\rfloor}UF(c,(c-b-1)\bmod a,a,m-1,R,U)R^{n-\lfloor(cm-b-1)/a\rfloor}.
         $$
 
-    -   特别地，对于 $m=0$ 的情形，交换前的操作序列中只包含 $n$ 个 $R$，无需交换，可以直接返回：
+    -   Riêng với trường hợp $m=0$, dãy thao tác trước khi hoán đổi chỉ chứa $n$ ký tự $R$, không cần hoán đổi, có thể trả về trực tiếp:
 
         $$
         F(a,b,c,n,U,R) = R^n.
         $$
 
-        与类欧几里得算法不同，万能欧几里得算法的这一特殊情形需要单独处理，否则会因涉及负幂次而无法正确计算．
+        Khác với thuật toán Euclid tương tự, trường hợp đặc biệt này của thuật toán Euclid vạn năng phải được xử lý riêng, nếu không sẽ liên quan đến lũy thừa âm và không thể tính đúng.
 
-利用这些讨论，就可以将问题递归地解决．
+Dựa trên các thảo luận này, ta có thể giải bài toán bằng đệ quy.
 
-假设幺半群内元素单次相乘的时间复杂度是 $O(1)$ 的．那么，如果计算过程中这些元素的幂次计算都使用 [快速幂](../binary-exponentiation.md) 进行，最终的算法复杂度就是 $O(\log\max\{a,c\}+\log(b/c))$ 的[^complexity]．
+Giả sử thời gian cho một phép nhân giữa các phần tử trong vị nhóm là $O(1)$. Khi các phép lũy thừa của những phần tử này trong quá trình tính đều dùng [lũy thừa nhị phân](../binary-exponentiation.md), độ phức tạp cuối cùng của thuật toán là $O(\log\max\{a,c\}+\log(b/c))$[^complexity].
 
-??? note "对复杂度的解释"
-    对比（类）欧几里得算法，万能欧几里得算法只是多了求快速幂的步骤．其余的计算过程的复杂度和类欧几里得算法相仿，已经说明是 $O(\log\min\{a,c,n\})$ 的．现在，需要计算这些快速幂的总复杂度．
+??? note "Giải thích về độ phức tạp"
+    So với thuật toán Euclid (tương tự), thuật toán Euclid vạn năng chỉ có thêm bước tính lũy thừa nhanh. Độ phức tạp của phần còn lại tương tự thuật toán Euclid tương tự, đã được chứng minh là $O(\log\min\{a,c,n\})$. Bây giờ cần tính tổng độ phức tạp của các phép lũy thừa nhanh này.
     
-    除了第一轮迭代，都有 $b<c$，因此这些迭代每轮都涉及三次快速幂的计算，总的复杂度是：
+    Ngoài vòng lặp đầu tiên, luôn có $b<c$, nên mỗi vòng lặp này đều liên quan đến ba lần tính lũy thừa nhanh; tổng độ phức tạp là:
     
     $$
     O\left(\log\left\lfloor\dfrac{a}{c}\right\rfloor+\log\left\lfloor\dfrac{c-b_1-1}{a_1}\right\rfloor+\log\left(n-\left\lfloor\dfrac{cm-b_1-1}{a_1}\right\rfloor\right)\right),
     $$
     
-    其中，$a_1=a\bmod c$，$b_1=b\bmod c$ 且 $m=\lfloor(a_1n+b_1)/c\rfloor$．后面两项，分别有估计：
+    trong đó $a_1=a\bmod c$, $b_1=b\bmod c$ và $m=\lfloor(a_1n+b_1)/c\rfloor$. Hai hạng sau lần lượt có các ước lượng:
     
     $$
     \begin{aligned}
@@ -515,36 +523,37 @@ $$
     \end{aligned}
     $$
     
-    因此，这两项的复杂度都是 $O(\log(c/a_1))$ 的．
+    Vì vậy, độ phức tạp của hai hạng này đều là $O(\log(c/a_1))$.
     
-    每一轮迭代中，线段的参数都由 $(a,\cdot,c,\cdot)$ 变换为 $(c,\cdot,a\bmod c,\cdot)$，且该轮总的时间复杂度为
+    Trong mỗi vòng lặp, tham số của đoạn thẳng biến đổi từ $(a,\cdot,c,\cdot)$ thành $(c,\cdot,a\bmod c,\cdot)$, và tổng độ phức tạp của vòng đó là
     
     $$
     O\left(\log\dfrac{a}{c}+\log\dfrac{c}{a\bmod c}\right).
     $$
     
-    对于全部递归的轮次，这些项可以裂项相消，因此，最后总和复杂度就是 $O(\log a+\log c)=O(\log\max\{a,c\})$ 的．
+    Xét toàn bộ các vòng đệ quy, những hạng này có thể triệt tiêu dạng telescoping, nên tổng độ phức tạp cuối cùng là $O(\log a+\log c)=O(\log\max\{a,c\})$.
     
-    最后，再加上第一轮迭代中快速幂 $U^{\lfloor b/c\rfloor}$ 的复杂度 $O(\log(b/c))$，就得到总的复杂度为 $O(\log\max\{a,c\}+\log(b/c))$．
+    Cuối cùng, cộng thêm độ phức tạp $O(\log(b/c))$ của lũy thừa nhanh $U^{\lfloor b/c\rfloor}$ trong vòng lặp đầu tiên, ta nhận được tổng độ phức tạp $O(\log\max\{a,c\}+\log(b/c))$.
 
-万能欧几里得算法的流程可以写成统一的模板，处理具体问题时只需要更改模板类型 `T` 的实现即可．
+Quy trình của thuật toán Euclid vạn năng có thể viết thành một mẫu thống nhất; khi xử lý bài toán cụ thể, chỉ cần thay đổi phần cài đặt của kiểu mẫu `T`.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-4.cpp:euclidean"
     ```
 
-利用万能欧几里得算法可以得到模板题的实现如下：
+Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như sau:
 
-??? example "模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
+??? example "Cài đặt bài mẫu ([Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear))"
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-4.cpp:full-text"
     ```
 
-### 例题
+<span id="&#x4F8B;&#x9898;_1"></span>
+### Ví dụ
 
-???+ example "[【模板】类欧几里得算法](https://www.luogu.com.cn/problem/P5170)"
-    多组询问．给定正整数 $a,b,c,n$，求
+???+ example "[Bài mẫu - Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)"
+    Có nhiều truy vấn. Cho các số nguyên dương $a,b,c,n$, hãy tính
     
     $$
     \begin{aligned}
@@ -554,10 +563,10 @@ $$
     \end{aligned}
     $$
 
-??? note "解答二"
-    为了应用万能欧几里得算法的模板，首先将 $i=0$ 的项提出来，单独考虑．对于剩下的部分，可以看作是对参数为 $(a,b,c,n)$ 的线段分别计算 $\sum y,\sum xy,\sum y^2$．如正文所言，有两种将操作序列转换为幺半群元素的方式．
+??? note "Lời giải 2"
+    Để áp dụng mẫu của thuật toán Euclid vạn năng, trước hết tách riêng hạng $i=0$ để xét độc lập. Với phần còn lại, có thể xem là tính lần lượt $\sum y,\sum xy,\sum y^2$ trên đoạn thẳng có tham số $(a,b,c,n)$. Như phần chính đã nói, có hai cách chuyển dãy thao tác thành phần tử của vị nhóm.
     
-    **矩阵运算**：状态向量定义为 $(1,x,y,xy,y^2,\sum y,\sum xy,\sum y^2)$．初始状态为 $(1,0,0,0,0,0,0,0)$，两个操作分别为
+    **Phép toán ma trận**: định nghĩa vector trạng thái là $(1,x,y,xy,y^2,\sum y,\sum xy,\sum y^2)$. Trạng thái ban đầu là $(1,0,0,0,0,0,0,0)$, hai thao tác lần lượt là
     
     $$
     U =
@@ -584,17 +593,17 @@ $$
     \end{pmatrix}.
     $$
     
-    最终答案为初始状态右乘这些操作矩阵的乘积得到的向量末尾三个分量．
+    Đáp án cuối cùng là ba thành phần cuối của vector thu được khi nhân phải trạng thái ban đầu với tích của các ma trận thao tác này.
     
-    这个做法的常数巨大，并不能通过本题，这里给出细节仅仅是为了辅助理解．
+    Cách làm này có hằng số rất lớn và không thể qua bài này; ở đây chỉ đưa chi tiết để hỗ trợ hiểu bài.
     
-    **贡献合并**：一段操作序列的贡献定义为 $(x,y,\sum y,\sum xy,\sum y^2)$．两个操作分别为
+    **Hợp nhất đóng góp**: định nghĩa đóng góp của một đoạn dãy thao tác là $(x,y,\sum y,\sum xy,\sum y^2)$. Hai thao tác lần lượt là
     
     $$
     U = (0,1,0,0,0),~ R = (1,0,0,0,0).
     $$
     
-    贡献合并时，有
+    Khi hợp nhất đóng góp, ta có
     
     $$
     \begin{aligned}
@@ -611,7 +620,7 @@ $$
     \end{aligned}
     $$
     
-    这说明，应该将操作的乘法定义为
+    Điều này cho thấy nên định nghĩa phép nhân của thao tác là
     
     $$
     \begin{aligned}
@@ -622,9 +631,9 @@ $$
     \end{aligned}
     $$
     
-    虽然直接验证较为繁琐，但是上述定义的贡献向量在该乘法下的确构成幺半群，单位元为 $(0,0,0,0,0)$．
+    Dù kiểm tra trực tiếp khá rườm rà, vector đóng góp được định nghĩa ở trên đúng là tạo thành một vị nhóm dưới phép nhân này, với đơn vị là $(0,0,0,0,0)$.
     
-    对于一般的情形，有
+    Với trường hợp tổng quát, ta có
     
     $$
     \begin{aligned}
@@ -633,90 +642,92 @@ $$
     \end{aligned}
     $$
     
-    只要维护好所有更低幂次的贡献，就可以计算一般情形的和式．
+    Chỉ cần duy trì tốt mọi đóng góp có bậc thấp hơn, ta có thể tính tổng trong trường hợp tổng quát.
     
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-5.cpp"
     ```
 
-???+ example "[\[清华集训 2014\] Sum](https://www.luogu.com.cn/problem/P5172)"
-    多组询问．给定正整数 $n$ 和 $r$，求
+???+ example "[Tsinghua Training 2014 - Sum](https://www.luogu.com.cn/problem/P5172)"
+    Có nhiều truy vấn. Cho các số nguyên dương $n$ và $r$, hãy tính
     
     $$
     \sum_{d=1}^n(-1)^{\lfloor d\sqrt{r}\rfloor}.
     $$
 
-??? note "解答二"
-    首先，单独处理 $r$ 为完全平方数的情形，与前文完全一致，从略．此处，仅考虑 $r$ 不是完全平方数的情形．
+??? note "Lời giải 2"
+    Trước hết, xử lý riêng trường hợp $r$ là số chính phương, hoàn toàn giống phần trước nên bỏ qua. Ở đây chỉ xét trường hợp $r$ không phải số chính phương.
     
-    本题应用万能欧几里得算法的方式有很多．比如说，可以为每个操作定义一个线性变换：
+    Có nhiều cách áp dụng thuật toán Euclid vạn năng cho bài này. Chẳng hạn, có thể định nghĩa một biến đổi tuyến tính cho mỗi thao tác:
     
     $$
     U(x) = -x,~ R(x) = x + 1.
     $$
     
-    操作的乘法定义为线性变换的复合．那么，最终的答案就是操作序列对应的变换的复合得到的函数在 $x=0$ 处的值．
+    Phép nhân của thao tác được định nghĩa là phép hợp thành các biến đổi tuyến tính. Khi đó, đáp án cuối cùng là giá trị tại $x=0$ của hàm thu được bằng cách hợp thành các biến đổi tương ứng với dãy thao tác.
     
-    还可以为每段操作序列定义它的贡献．贡献可以定义为 $((-1)^y,\sum(-1)^y)$．那么，两个操作分别取
+    Cũng có thể định nghĩa đóng góp cho mỗi đoạn dãy thao tác. Đóng góp có thể định nghĩa là $((-1)^y,\sum(-1)^y)$. Khi đó, hai thao tác lần lượt lấy
     
     $$
     U = (0,-1),~ R = (1,1).
     $$
     
-    贡献的合并定义为
+    Phép hợp nhất đóng góp được định nghĩa là
     
     $$
     (u_1,v_1)\cdot(u_2,v_2) = (u_1u_2,v_1+u_1v_2).
     $$
     
-    容易验证，在该乘法下，所有操作构成了幺半群，且单位元为 $(0,1)$．最终的答案就是所有元素乘积的第二个分量．
+    Dễ kiểm tra rằng dưới phép nhân này, mọi thao tác tạo thành một vị nhóm, và đơn vị là $(0,1)$. Đáp án cuối cùng chính là thành phần thứ hai của tích tất cả phần tử.
     
-    这两种方法是一致的，因为如果将线性变换写作 $f(x)=u+vx$，那么线性变换的复合对应的系数的变化，恰恰就是上述操作的乘法．也就是说，这两个幺半群是同构的．
+    Hai cách này là nhất quán, vì nếu viết biến đổi tuyến tính dưới dạng $f(x)=u+vx$, thì sự thay đổi của các hệ số khi hợp thành biến đổi tuyến tính đúng bằng phép nhân thao tác nói trên. Nói cách khác, hai vị nhóm này đẳng cấu.
     
-    本题中，线段的参数为 $(k,n)$，其中，$k\in\mathbf R$ 为直线的斜率．设操作序列对应的乘积为 $F(k,n,U,R)$．那么，有如下递归算法：
+    Trong bài này, tham số của đoạn thẳng là $(k,n)$, trong đó $k\in\mathbf R$ là hệ số góc của đường thẳng. Đặt tích tương ứng với dãy thao tác là $F(k,n,U,R)$. Khi đó có thuật toán đệ quy sau:
     
-    -   如果 $k\ge 1$，那么操作序列中每个 $R$ 前方都有至少 $\lfloor k\rfloor$ 个 $U$，所以，有
+    -   Nếu $k\ge 1$, trước mỗi ký tự $R$ trong dãy thao tác đều có ít nhất $\lfloor k\rfloor$ ký tự $U$, nên
     
         $$
         F(k,n,U,R) = F(k-\lfloor k\rfloor,n,U,U^{\lfloor k\rfloor} R).
         $$
-    -   如果 $k<1$，那么交换操作序列中的 $U$ 和 $R$，并舍去末尾的 $U$（即交换前的 $R$），所以，有
+    -   Nếu $k<1$, hoán đổi $U$ và $R$ trong dãy thao tác, đồng thời bỏ ký tự $U$ ở cuối (tức $R$ trước khi hoán đổi), nên
     
         $$
         F(k,n,U,R) = F(k^{-1},m,R,U)R^{n-\lfloor k^{-1}m\rfloor}.
         $$
     
-    算法中，$k$ 的迭代过程其实就是在求 $\sqrt{r}$ 的连分数展开．为此，可以应用 [PQa 算法](./pell-equation.md#pqa-算法)．求连分数的过程和万能欧几里得算法迭代的过程可以同时进行．
+    Trong thuật toán, quá trình lặp của $k$ thực chất là quá trình tìm khai triển liên phân số của $\sqrt{r}$. Vì vậy, có thể áp dụng [thuật toán PQa](./pell-equation.md#pqa-%E7%AE%97%E6%B3%95). Quá trình tìm liên phân số và quá trình lặp của thuật toán Euclid vạn năng có thể được thực hiện đồng thời.
     
-    和类欧几里得算法的情形一致，算法的复杂度仍然是 $O(\log n)$ 的．
+    Tương tự trường hợp của thuật toán Euclid tương tự, độ phức tạp của thuật toán vẫn là $O(\log n)$.
     
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-6.cpp"
     ```
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
+## Bài tập
 
-模板题：
+Bài mẫu:
 
 -   [Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)
--   [Luogu P5170【模板】类欧几里得算法](https://www.luogu.com.cn/problem/P5170)
+-   [Luogu P5170 - Bài mẫu: Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)
 -   [Luogu P5171 Earthquake](https://www.luogu.com.cn/problem/P5171)
--   [Luogu P5172 \[清华集训 2014\] Sum](https://www.luogu.com.cn/problem/P5172)
--   [Luogu P4132 \[BJOI2012\] 算不出的等式](https://www.luogu.com.cn/problem/P4132)
--   [LOJ 138. 类欧几里得算法](https://loj.ac/p/138)
--   [LOJ 6440. 万能欧几里得](https://loj.ac/p/6440)
+-   [Luogu P5172 - Tsinghua Training 2014: Sum](https://www.luogu.com.cn/problem/P5172)
+-   [Luogu P4132 - BJOI2012: Phuong trinh khong tinh ra duoc](https://www.luogu.com.cn/problem/P4132)
+-   [LOJ 138. Thuat toan Euclid tuong tu](https://loj.ac/p/138)
+-   [LOJ 6440. Euclid van nang](https://loj.ac/p/6440)
 -   [Luogu P5179 Fraction](https://www.luogu.com.cn/problem/P5179)
 -   [Codeforces 1182 F. Maximum Sine](https://codeforces.com/problemset/problem/1182/F)
 
-应用题：
+Bài ứng dụng:
 
--   [Luogu P4433 \[COCI 2009/2010 #1\] ALADIN](https://www.luogu.com.cn/problem/P4433)
+-   [Luogu P4433 - COCI 2009/2010 #1: ALADIN](https://www.luogu.com.cn/problem/P4433)
 -   [AtCoder Beginner Contest 372 G - Ax + By < C](https://atcoder.jp/contests/abc372/tasks/abc372_g)
 -   [AtCoder Beginner Contest 313 G - Redistribution of Piles](https://atcoder.jp/contests/abc313/tasks/abc313_g)
 -   [AtCoder Beginner Contest 283 Ex - Popcount Sum](https://atcoder.jp/contests/abc283/tasks/abc283_h)
 -   [Codeforces 1098 E. Fedya the Potter](https://codeforces.com/problemset/problem/1098/E)
 -   [Codeforces 868 G. El Toll Caves](https://codeforces.com/problemset/problem/868/G)
 
-## 参考资料与注释
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+## Tài liệu tham khảo và chú thích
 
-[^complexity]: 通常考虑的问题中，$b$ 都与 $a$ 同阶，$O(\log(b/c))$ 这一项可以忽略．而且，如果在调用万能欧几里得算法前，首先进行了一轮类欧几里得算法的取模，消除 $b$ 的影响，这一项的快速幂的复杂度是可以规避的．这其实是因为通常的问题中，$U$ 的初始形式较为特殊，它的幂次有着更简单的形式，不需要通过快速幂计算．比如正文的例子中，$U^{\lfloor b/a\rfloor}$ 的结果，就是将 $U$ 中不在对角线上的那个 $1$ 替换成 $\lfloor b/a\rfloor$，而无需用快速幂计算．
+[^complexity]: Trong những bài toán thường xét, $b$ thường cùng bậc với $a$, nên hạng $O(\log(b/c))$ có thể bỏ qua. Hơn nữa, nếu trước khi gọi thuật toán Euclid vạn năng ta thực hiện một vòng lấy modulo của thuật toán Euclid tương tự để loại bỏ ảnh hưởng của $b$, thì có thể tránh độ phức tạp của phép lũy thừa nhanh ở hạng này. Thực chất là vì trong các bài toán thông thường, dạng ban đầu của $U$ khá đặc biệt, lũy thừa của nó có dạng đơn giản hơn và không cần tính bằng lũy thừa nhanh. Chẳng hạn trong ví dụ ở phần chính, kết quả của $U^{\lfloor b/a\rfloor}$ chỉ là thay số $1$ không nằm trên đường chéo trong $U$ bằng $\lfloor b/a\rfloor$, không cần dùng lũy thừa nhanh.

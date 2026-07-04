@@ -3,7 +3,7 @@
 #include <vector>
 
 // --8<-- [start:core]
-// Locate a given fraction in the Stern-Brocot tree.
+// Tim vi tri cua mot phan so cho truoc trong cay Stern-Brocot.
 auto find(int x, int y) {
   std::vector<std::pair<int, char>> res;
   bool right = true;

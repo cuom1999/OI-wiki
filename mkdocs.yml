@@ -263,12 +263,12 @@ nav:
       - Sàng Powerful Number: math/number-theory/powerful-number.md
       - Sàng Min_25: math/number-theory/min-25.md
       - Sàng Zhouge: math/number-theory/zhou.md
-      - 类欧几里德算法: math/number-theory/euclidean.md
+      - Thuật toán Euclid mở rộng dạng tổng quát: math/number-theory/euclidean.md
       - Thuật toán Meissel–Lehmer: math/number-theory/meissel-lehmer.md
-      - 连分数: math/number-theory/continued-fraction.md
-      - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
-      - 二次域: math/number-theory/quadratic.md
-      - Pell 方程: math/number-theory/pell-equation.md
+      - Liên phân số: math/number-theory/continued-fraction.md
+      - Cây Stern–Brocot và dãy Farey: math/number-theory/stern-brocot.md
+      - Trường bậc hai: math/number-theory/quadratic.md
+      - Phương trình Pell: math/number-theory/pell-equation.md
     - 多项式与生成函数:
       - 多项式与生成函数简介: math/poly/intro.md
       - 代数基本定理: math/poly/fundamental.md

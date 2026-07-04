@@ -145,6 +145,14 @@ MkDocs source layout intact.
   function, Möbius inversion, Dujiao/Powerful Number/Min_25/Zhouge sieve, and
   Meissel-Lehmer prime-counting material, plus explanatory comments in included
   snippets.
+- `docs/math/number-theory/euclidean.md`,
+  `docs/math/number-theory/continued-fraction.md`,
+  `docs/math/number-theory/stern-brocot.md`,
+  `docs/math/number-theory/quadratic.md`,
+  `docs/math/number-theory/pell-equation.md`: translated the remaining
+  number-theory tail covering Euclidean-like algorithms, continued fractions,
+  Stern-Brocot/Farey structures, quadratic fields, and Pell equations, plus
+  explanatory comments in included Stern-Brocot snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

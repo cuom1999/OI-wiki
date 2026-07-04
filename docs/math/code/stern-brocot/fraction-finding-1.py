@@ -1,6 +1,6 @@
-# STERN-BROCOT TREE FRACTION FINDING.
+# TIM PHAN SO TRONG CAY STERN-BROCOT.
 # --8<-- [start:core]
-# Locate a given fraction in the Stern-Brocot tree.
+# Tim vi tri cua mot phan so cho truoc trong cay Stern-Brocot.
 def find(x, y, a=0, b=1, c=1, d=0):
     m = a + c
     n = b + d

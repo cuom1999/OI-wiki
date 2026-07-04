@@ -1,6 +1,6 @@
-# FAREY SEQUENCE BUILDING.
+# XAY DUNG DAY FAREY.
 # --8<-- [start:core]
-# Farey Sequence of Order N.
+# Day Farey bac N.
 def build(n, a=0, b=1, c=1, d=1, init=True):
     x, y = a + c, b + d
     if y > n:

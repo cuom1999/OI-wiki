@@ -1,6 +1,6 @@
-# STERN-BROCOT TREE BUILDING.
+# XAY DUNG CAY STERN-BROCOT.
 # --8<-- [start:core]
-# In-Order Transversal of Stern-Brocot Tree till Layer N.
+# Duyet trung tu cay Stern-Brocot den tang N.
 def build(n, a=0, b=1, c=1, d=0, level=1):
     if level > n:
         return

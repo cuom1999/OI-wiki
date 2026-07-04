@@ -1,66 +1,72 @@
 author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Menci, shawlleyw, shuzhouliu, StudyingFather, Tiphereth-A, untitledunrevised, c-forrest
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
 
-连分数可以将实数表示为一个收敛的有理数数列的极限．这个数列中的有理数易于计算，而且提供了这个实数的最佳逼近，因而在算法竞赛中常常会用到连分数．除此之外，连分数还和欧几里得算法密切相关，因而可以应用到一系列数论问题中．
+## Mở đầu
 
-???+ info "关于连分数相关的算法实现"
-    本文会提供一系列的连分数的算法实现，其中部分算法可能无法保证计算中间过程所涉及的整数都在 32 位或 64 位整型变量的取值范围内．对于这种情形，请参考相应的 Python 的实现，或将 C++ 实现中的整型变量替换为 [高精度整数类](../bignum.md)．为突出重点，本文行文过程中的部分代码可能会调用前文实现过的函数而不再重复给出实现．
+Liên phân số có thể biểu diễn một số thực dưới dạng giới hạn của một dãy số hữu tỉ hội tụ. Các số hữu tỉ trong dãy này dễ tính, đồng thời cho xấp xỉ tốt nhất của số thực đó, nên liên phân số thường xuất hiện trong lập trình thi đấu. Ngoài ra, liên phân số có quan hệ chặt chẽ với thuật toán Euclid, vì vậy có thể áp dụng cho nhiều bài toán số học.
 
-## 连分数
+???+ info "Về các cài đặt thuật toán liên quan đến liên phân số"
+    Bài viết này cung cấp một loạt cài đặt thuật toán về liên phân số. Một số thuật toán không bảo đảm mọi số nguyên trung gian đều nằm trong phạm vi của kiểu số nguyên 32 bit hoặc 64 bit. Trong các trường hợp đó, hãy tham khảo bản cài đặt Python tương ứng, hoặc thay kiểu số nguyên trong bản C++ bằng [lớp số nguyên chính xác cao](../bignum.md). Để tập trung vào ý chính, một số đoạn mã trong bài có thể gọi những hàm đã cài đặt ở phần trước mà không lặp lại phần cài đặt.
 
-**连分数**（continued fraction）本身只是一种形式记号．
+<span id="&#x8FDE;&#x5206;&#x6570;"></span>
 
-???+ abstract "有限连分数"
-    对于数列 $\{a_k\}_{i=0}^n$，连分数 $[a_0,a_1,\cdots,a_n]$ 表示展开式
+## Liên phân số
+
+**Liên phân số** (continued fraction) về bản chất chỉ là một ký hiệu hình thức.
+
+???+ abstract "Liên phân số hữu hạn"
+    Với dãy $\{a_k\}_{i=0}^n$, liên phân số $[a_0,a_1,\cdots,a_n]$ biểu thị khai triển
     
     $$
     x = a_0+\dfrac{1}{a_1+\dfrac{1}{a_2+\dfrac{1}{\cdots+\dfrac{1}{a_n}}}}.
     $$
     
-    连分数有意义，当且仅当对应的展开式有意义．这些 $a_k$ 称为连分数的 **项**（term）或 **系数**（coefficient）．
+    Liên phân số có nghĩa khi và chỉ khi khai triển tương ứng có nghĩa. Các $a_k$ này được gọi là **hạng** (term) hoặc **hệ số** (coefficient) của liên phân số.
 
-???+ info "记号"
-    更一般的连分数允许展开式中的分子不恒为 $1$，相应的连分数记号也需要修改，这超出了本文的范畴．另外，有些文献中会将第一个逗号「$,$」写作分号「$;$」，这与本文的记号在含义上没有差异．
+???+ info "Ký hiệu"
+    Liên phân số tổng quát hơn cho phép các tử số trong khai triển không luôn bằng $1$; khi đó ký hiệu liên phân số cũng cần thay đổi, và nằm ngoài phạm vi bài viết này. Ngoài ra, một số tài liệu viết dấu phẩy đầu tiên "$,$" thành dấu chấm phẩy "$;$"; cách viết đó không khác về ý nghĩa so với ký hiệu dùng trong bài này.
 
-当然，连分数还可以推广到无穷数列的情形．
+Dĩ nhiên, liên phân số cũng có thể được mở rộng cho trường hợp dãy vô hạn.
 
-???+ abstract "无限连分数"
-    对于无穷数列 $\{a_k\}_{i=0}^\infty$，连分数 $[a_0,a_1,\cdots]$ 表示极限
+???+ abstract "Liên phân số vô hạn"
+    Với dãy vô hạn $\{a_k\}_{i=0}^\infty$, liên phân số $[a_0,a_1,\cdots]$ biểu thị giới hạn
     
     $$
     x = \lim_{k\rightarrow\infty} x_k = \lim_{k\rightarrow\infty} [a_0,a_1,\cdots,a_k].
     $$
     
-    连分数有意义，当且仅当对应的极限有意义．其中，$x_k=[a_0,a_1,\cdots,a_k]$ 称为 $x$ 的第 $k$ 个 **渐近分数**（convergent）或 **收敛子**，而 $r_k=[a_k,a_{k+1},\cdots]$ 称为 $x$ 的第 $k$ 个 **余项** 或 **完全商**（complete quotient）．相应地，项 $a_k$ 有时也称为第 $k$ 个 **部分商**（partial quotient）．
+    Liên phân số có nghĩa khi và chỉ khi giới hạn tương ứng có nghĩa. Trong đó, $x_k=[a_0,a_1,\cdots,a_k]$ được gọi là **phân số tiệm cận** thứ $k$ (convergent) của $x$, còn $r_k=[a_k,a_{k+1},\cdots]$ được gọi là **phần dư** thứ $k$ hoặc **thương đầy đủ** (complete quotient) của $x$. Tương ứng, hạng $a_k$ đôi khi cũng được gọi là **thương riêng** thứ $k$ (partial quotient).
 
-### 简单连分数
+<span id="&#x7B80;&#x5355;&#x8FDE;&#x5206;&#x6570;"></span>
 
-数论中，主要考虑连分数的项都是整数的情形．
+### Liên phân số đơn giản
 
-???+ abstract "简单连分数"
-    对于连分数 $[a_0,a_1,\cdots]$，如果 $a_0$ 是整数，$a_1,a_2,\cdots$ 都是正整数，则称它为 **简单连分数**（simple continued fraction），也简称 **连分数**．如果数列 $\{a_i\}$ 有限，则称为 **有限（简单）连分数**；否则称为 **无限（简单）连分数**．而且，$a_0$ 称为它的 **整数部分**（integer part）．
+Trong số học, ta chủ yếu xét trường hợp các hạng của liên phân số đều là số nguyên.
 
-除非特别说明，本文提到的连分数都指的是简单连分数．可以证明，无限的简单连分数必然是收敛的，而且简单连分数的余项也一定是正的．
+???+ abstract "Liên phân số đơn giản"
+    Với liên phân số $[a_0,a_1,\cdots]$, nếu $a_0$ là số nguyên và $a_1,a_2,\cdots$ đều là số nguyên dương, thì nó được gọi là **liên phân số đơn giản** (simple continued fraction), hay gọi tắt là **liên phân số**. Nếu dãy $\{a_i\}$ hữu hạn, ta gọi đó là **liên phân số (đơn giản) hữu hạn**; ngược lại gọi là **liên phân số (đơn giản) vô hạn**. Ngoài ra, $a_0$ được gọi là **phần nguyên** (integer part) của nó.
 
-连分数有如下基本性质：
+Trừ khi nói rõ khác đi, "liên phân số" trong bài này đều chỉ liên phân số đơn giản. Có thể chứng minh rằng liên phân số đơn giản vô hạn luôn hội tụ, và phần dư của liên phân số đơn giản luôn dương.
 
-???+ note "性质"
-    设实数 $x=[a_0,a_1,a_2,\cdots]$．那么，成立如下性质：
+Liên phân số có các tính chất cơ bản sau:
+
+???+ note "Tính chất"
+    Giả sử số thực $x=[a_0,a_1,a_2,\cdots]$. Khi đó các tính chất sau đúng:
     
-    1.  对于任意 $k\in\mathbf Z$，有 $x+k=[a_0+k,a_1,a_2,\cdots]$；
-    2.  对实数 $x>1$，有 $a_0>0$，且它的倒数 $x^{-1}=[0,a_0,a_1,a_2,\cdots]$．
+    1.  Với mọi $k\in\mathbf Z$, ta có $x+k=[a_0+k,a_1,a_2,\cdots]$;
+    2.  Với số thực $x>1$, ta có $a_0>0$, và nghịch đảo của nó là $x^{-1}=[0,a_0,a_1,a_2,\cdots]$.
 
-有限连分数对应的是有理数．每个有理数都有且仅有两种方式可以表示成连分数，长度必然一奇一偶．这两种方式唯一的区别在于最后一项是否为 $1$，即
+Liên phân số hữu hạn tương ứng với số hữu tỉ. Mỗi số hữu tỉ có đúng hai cách biểu diễn thành liên phân số, và độ dài của hai cách này tất yếu một chẵn một lẻ. Khác biệt duy nhất giữa hai biểu diễn nằm ở việc hạng cuối có bằng $1$ hay không, tức là
 
 $$
 x = [a_0,a_1,\cdots,a_n] = [a_0,a_1,\cdots,a_n-1,1].
 $$
 
-这两个连分数称为有理数 $x$ 的 **连分数表示**（continued fraction representation）．其中，末项不为一的称为标准表示，末项为一的称为非标准表示．[^one-representation]
+Hai liên phân số này được gọi là **biểu diễn liên phân số** (continued fraction representation) của số hữu tỉ $x$. Trong đó, biểu diễn có hạng cuối khác $1$ được gọi là biểu diễn chuẩn, còn biểu diễn có hạng cuối bằng $1$ được gọi là biểu diễn không chuẩn.[^one-representation]
 
-??? example "例子"
-    有理数 $x=\dfrac{5}{3}$ 的连分数表示为
+??? example "Ví dụ"
+    Biểu diễn liên phân số của số hữu tỉ $x=\dfrac{5}{3}$ là
     
     $$
     \begin{aligned}
@@ -69,34 +75,36 @@ $$
     \end{aligned}
     $$
 
-无限连分数对应的是无理数．而且，每个无理数仅有唯一的方式表示为连分数，称为无理数的连分数表示．
+Liên phân số vô hạn tương ứng với số vô tỉ. Hơn nữa, mỗi số vô tỉ chỉ có một cách duy nhất để biểu diễn thành liên phân số, gọi là biểu diễn liên phân số của số vô tỉ đó.
 
-### 连分数表示的求法
+<span id="&#x8FDE;&#x5206;&#x6570;&#x8868;&#x793A;&#x7684;&#x6C42;&#x6CD5;"></span>
 
-要求某个实数 $x$ 的连分数表示，只需要注意到它的余项 $r_k$ 如果不是整数，就一定满足
+### Cách tìm biểu diễn liên phân số
+
+Để tìm biểu diễn liên phân số của một số thực $x$, chỉ cần chú ý rằng nếu phần dư $r_k$ của nó không phải là số nguyên, thì luôn có
 
 $$
 r_k = [a_k,a_{k+1},\cdots] = [a_k,r_{k+1}] = a_k + \dfrac{1}{r_{k+1}}.
 $$
 
-而且，$r_{k+1}>1$．因此，可以从 $r_0=x$ 开始递归地计算
+Hơn nữa, $r_{k+1}>1$. Vì vậy, ta có thể bắt đầu từ $r_0=x$ và tính đệ quy
 
 $$
 a_k = \lfloor r_k\rfloor,\ r_{k+1} = \dfrac{1}{r_k-a_k}.
 $$
 
-这个过程产生的数列 $\{a_k\}$ 总是唯一确定的，除非某个余项 $r_k$ 成为整数．如果出现了 $r_k$ 是整数，则说明过程应当终止，可以选择输出相应的标准表示或者非标准表示．
+Quá trình này luôn xác định duy nhất dãy $\{a_k\}$, trừ khi một phần dư $r_k$ trở thành số nguyên. Nếu xuất hiện $r_k$ nguyên, quá trình nên dừng lại; ta có thể chọn xuất ra biểu diễn chuẩn hoặc biểu diễn không chuẩn tương ứng.
 
-在算法竞赛中，往往处理的都是有理数 $x=\dfrac{p}{q}$ 的情形．此时，每个余项 $r_k$ 都是有理数 $\dfrac{p_k}{q_k}$，而且对于 $k>0$，因为 $r_k>1$，就总有 $p_k>q_k$．具体计算上述递推关系，可以发现
+Trong lập trình thi đấu, trường hợp thường gặp là số hữu tỉ $x=\dfrac{p}{q}$. Khi đó, mỗi phần dư $r_k$ đều là số hữu tỉ $\dfrac{p_k}{q_k}$; với $k>0$, vì $r_k>1$ nên luôn có $p_k>q_k$. Tính cụ thể công thức truy hồi trên, ta được
 
 $$
 a_k = \left\lfloor\frac{p_k}{q_k}\right\rfloor,\ r_{k+1} = \dfrac{1}{r_k-a_k} = \dfrac{q_k}{p_k-a_kq_k} = \dfrac{q_k}{p_k\bmod q_k}.
 $$
 
-此时的计算过程实际上是对 $p$ 和 $q$ 做 [辗转相除法](./gcd.md#欧几里得算法)．这也说明，对于有理数 $r=\dfrac{p}{q}$，连分数表示的长度是 $O(\log\min\{p, q\})$ 的．计算有理数 $\dfrac{p}{q}$ 的复杂度也是 $O(\log\min\{p, q\})$ 的．
+Quá trình tính toán lúc này thực chất là áp dụng [thuật toán Euclid](./gcd.md#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95) cho $p$ và $q$. Điều này cũng cho thấy, với số hữu tỉ $r=\dfrac{p}{q}$, độ dài biểu diễn liên phân số là $O(\log\min\{p, q\})$. Độ phức tạp để tính biểu diễn của $\dfrac{p}{q}$ cũng là $O(\log\min\{p, q\})$.
 
-???+ example "参考实现"
-    给定分数的分子 $p$ 和分母 $q$，输出连分数的系数序列 $[a_0,a_1,\cdots,a_n]$．
+???+ example "Cài đặt tham khảo"
+    Cho tử số $p$ và mẫu số $q$ của một phân số, xuất ra dãy hệ số $[a_0,a_1,\cdots,a_n]$ của liên phân số.
     
     === "C++"
         ```cpp
@@ -108,12 +116,14 @@ $$
         --8<-- "docs/math/code/continued-fraction/diophantine.py:fraction"
         ```
 
-## 渐近分数
+<span id="&#x6E10;&#x8FD1;&#x5206;&#x6570;"></span>
 
-在连分数的定义中介绍了渐近分数的概念．实数的渐近分数就是它的连分数表示的渐近分数：在实数 $x$ 的连分数表示中，只保留前 $k$ 个项，得到的连分数 $x_k$ 就称为实数 $x$ 的第 $k$ 个渐近分数．实数 $x$ 的渐近分数 $x_k$ 都是有理数，而且序列 $\{x_k\}$ 收敛于实数 $x$．
+## Phân số tiệm cận
 
-??? example "例子：黄金分割比的渐近分数"
-    连分数 $x=[1,1,1,1,\cdots]$ 的前几个渐近分数分别是
+Khái niệm phân số tiệm cận đã được giới thiệu trong định nghĩa liên phân số. Phân số tiệm cận của một số thực chính là phân số tiệm cận của biểu diễn liên phân số của nó: trong biểu diễn liên phân số của số thực $x$, giữ lại $k$ hạng đầu để nhận được liên phân số $x_k$; đó được gọi là phân số tiệm cận thứ $k$ của $x$. Các phân số tiệm cận $x_k$ của số thực $x$ đều là số hữu tỉ, và dãy $\{x_k\}$ hội tụ về số thực $x$.
+
+??? example "Ví dụ: phân số tiệm cận của tỉ lệ vàng"
+    Một vài phân số tiệm cận đầu tiên của liên phân số $x=[1,1,1,1,\cdots]$ là
     
     $$
     \begin{aligned}
@@ -125,34 +135,36 @@ $$
     \end{aligned}
     $$
     
-    可以归纳地证明
+    Có thể chứng minh bằng quy nạp rằng
     
     $$
     x_k = \frac{F_{k+2}}{F_{k+1}},
     $$
     
-    其中，$\{F_k\}$ 是 [斐波那契数列](../combinatorics/fibonacci.md)．根据它的通项公式可知，
+    Trong đó, $\{F_k\}$ là [dãy Fibonacci](../combinatorics/fibonacci.md). Theo công thức tổng quát của dãy này,
     
     $$
     x_k = \frac{\phi^{k+2}-(-\phi)^{-(k+2)}}{\phi^{k+1}-(-\phi)^{-(k+1)}},
     $$
     
-    其中的 $\phi=\dfrac{1+\sqrt{5}}{2}$ 是黄金分割比．当 $k$ 趋于无穷时，有
+    trong đó $\phi=\dfrac{1+\sqrt{5}}{2}$ là tỉ lệ vàng. Khi $k$ tiến tới vô hạn, ta có
     
     $$
     x=\lim_{k\rightarrow\infty}x_k=\phi.
     $$
     
-    因而，连分数 $x=[1,1,1,1,\cdots]$ 表示的是黄金分割比 $\phi$．
+    Vì vậy, liên phân số $x=[1,1,1,1,\cdots]$ biểu diễn tỉ lệ vàng $\phi$.
 
-这些渐近分数趋近于相应的实数，所以可以用于逼近该实数．为此，有必要了解渐近分数的性质．
+Các phân số tiệm cận này tiến tới số thực tương ứng, nên có thể dùng để xấp xỉ số thực đó. Do đó, ta cần hiểu các tính chất của phân số tiệm cận.
 
-### 递推关系
+<span id="&#x9012;&#x63A8;&#x5173;&#x7CFB;"></span>
 
-首先，要解决这些渐近分数的计算问题．虽然渐近分数总是在连分数的后面添加一项，但是并不需要每次都重新计算它的值．其实，渐近分数有如下递推关系：
+### Quan hệ truy hồi
 
-???+ note "递推公式"
-    对于连分数 $x=[a_0,a_1,a_2,\cdots]$，设它的第 $k$ 个渐近分数 $x_k$ 可以写成分数 $\dfrac{p_k}{q_k}$．那么，有
+Trước hết, cần giải quyết bài toán tính các phân số tiệm cận. Dù mỗi phân số tiệm cận chỉ thêm một hạng vào cuối liên phân số, ta không cần tính lại giá trị từ đầu mỗi lần. Thật ra, các phân số tiệm cận có quan hệ truy hồi sau:
+
+???+ note "Công thức truy hồi"
+    Với liên phân số $x=[a_0,a_1,a_2,\cdots]$, giả sử phân số tiệm cận thứ $k$ của nó là $x_k=\dfrac{p_k}{q_k}$. Khi đó,
     
     $$
     \begin{aligned}
@@ -161,58 +173,58 @@ $$
     \end{aligned}
     $$
     
-    递推的起点是（形式）分数
+    Điểm bắt đầu của truy hồi là các phân số hình thức
     
     $$
     x_{-1}=\frac{p_{-1}}{q_{-1}}=\frac{1}{0},\ x_{-2}=\frac{p_{-2}}{q_{-2}}=\frac{0}{1}.
     $$
 
-??? note "证明"
-    渐近分数 $x_k$ 的分子和分母可以看作 $a_0, a_1, \cdots, a_k$ 的多元多项式：
+??? note "Chứng minh"
+    Tử số và mẫu số của phân số tiệm cận $x_k$ có thể xem là các đa thức nhiều biến theo $a_0, a_1, \cdots, a_k$:
     
     $$
     r_k = \frac{P_k(a_0, a_1, \cdots, a_k)}{Q_k(a_0,a_1, \cdots, a_k)}.
     $$
     
-    根据渐近分数的定义，有
+    Theo định nghĩa phân số tiệm cận, ta có
     
     $$
     r_k = a_0 + \frac{1}{[a_1,a_2,\cdots, a_k]}= a_0 + \frac{Q_{k-1}(a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)} = \frac{a_0 P_{k-1}(a_1, \dots, a_k) + Q_{k-1}(a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)}.
     $$
     
-    和上式比较，不妨设 $Q_k(a_0, \cdots, a_k) = P_{k-1}(a_1, \cdots, a_k)$，就可以将渐近分数写作
+    So sánh với biểu thức trên, có thể đặt $Q_k(a_0, \cdots, a_k) = P_{k-1}(a_1, \cdots, a_k)$; khi đó phân số tiệm cận có thể viết thành
     
     $$
     r_k =  \frac{P_k(a_0, a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)}
     $$
     
-    且多项式 $P_k$ 有递推关系
+    và đa thức $P_k$ có quan hệ truy hồi
     
     $$
     P_k(a_0, \cdots, a_k) = a_0 P_{k-1}(a_1, \cdots, a_k) + P_{k-2}(a_2, \cdots, a_k).
     $$
     
-    因为
+    Vì
     
     $$
     r_0 = a_0,\ r_1 = a_0+\dfrac{1}{a_1} = \frac{a_0a_1+1}{a_1},
     $$
     
-    所以，递推的起点是
+    nên điểm bắt đầu của truy hồi là
     
     $$
     P_0(a_0) = a_0,\ P_1(a_0,a_1) = a_0a_1 + 1.
     $$
     
-    如果设
+    Nếu đặt
     
     $$
     P_{-1} = 1,\ P_{-2} = 0,
     $$
     
-    可以验证对于 $k=0,1$ 也成立上述递推关系．这相当于规定了形式分数 $r_{-1}=\dfrac{1}{0}$ 和 $r_{-2}=\dfrac{0}{1}$．
+    ta có thể kiểm tra rằng quan hệ truy hồi trên cũng đúng với $k=0,1$. Điều này tương đương với việc quy ước các phân số hình thức $r_{-1}=\dfrac{1}{0}$ và $r_{-2}=\dfrac{0}{1}$.
     
-    满足上述递推关系的多项式列 $P_k$ 称为 **连项式**[^continuant]（continuant）．它可以写作行列式的形式：
+    Dãy đa thức $P_k$ thỏa mãn quan hệ truy hồi trên được gọi là **continuant**[^continuant]. Nó có thể được viết dưới dạng định thức:
     
     $$
     P_k(a_0,\cdots,a_k)=\det
@@ -225,29 +237,29 @@ $$
     \end{pmatrix}.
     $$
     
-    这是一个 [三对角矩阵](https://en.wikipedia.org/wiki/Tridiagonal_matrix) 的行列式，从左上角开始展开，可以验证它具有上面的递推关系和初值条件．反过来，从右下角开始展开，则又能得到递推关系
+    Đây là định thức của một [ma trận tam đường chéo](https://en.wikipedia.org/wiki/Tridiagonal_matrix). Khai triển từ góc trên trái, ta có thể kiểm tra rằng nó có quan hệ truy hồi và điều kiện đầu như trên. Ngược lại, khai triển từ góc dưới phải lại thu được quan hệ truy hồi
     
     $$
     P_k(a_0, \cdots, a_k) = a_k P_{k-1}(a_0, \cdots, a_{k-1}) + P_{k-2}(a_0, \cdots, a_{k-2}),
     $$
     
-    这就是所要求证的．
+    Điều này chứng minh điều cần chứng minh.
 
-???+ info "记号"
-    本文将渐近分数 $x_k$ 记作 $\dfrac{p_k}{q_k}$ 时，总是默认分子 $p_k$ 和 $q_k$ 由上面的递推关系给出．下文还要说明，这样总能得到渐近分数的既约表示．
+???+ info "Ký hiệu"
+    Khi bài viết ký hiệu phân số tiệm cận $x_k$ là $\dfrac{p_k}{q_k}$, ta luôn mặc định tử số $p_k$ và mẫu số $q_k$ được cho bởi quan hệ truy hồi trên. Phần sau sẽ chỉ ra rằng cách này luôn cho biểu diễn tối giản của phân số tiệm cận.
 
-这个递推式说明
+Công thức truy hồi này cho thấy
 
 $$
 x_k=\dfrac{a_kp_{k-1}+p_{k-2}}{a_kq_{k-1}+q_{k-2}}
 $$
 
-介于 $x_{k-1}$ 和 $x_{k-2}$ 之间．
+nằm giữa $x_{k-1}$ và $x_{k-2}$.
 
-作为渐近分数的递推关系的推论，成立如下的反序定理和倒数定理：
+Từ quan hệ truy hồi của phân số tiệm cận, ta có các hệ quả sau: định lý đảo thứ tự và định lý nghịch đảo.
 
-???+ note "反序定理"
-    设实数 $x=[a_0,a_1,a_2,\cdots]$ 的第 $k$ 个渐近分数是 $\dfrac{p_k}{q_k}$，则相邻两个渐近分数的分子和分母的比值分别为
+???+ note "Định lý đảo thứ tự"
+    Giả sử phân số tiệm cận thứ $k$ của số thực $x=[a_0,a_1,a_2,\cdots]$ là $\dfrac{p_k}{q_k}$. Khi đó, tỉ số giữa tử số và mẫu số của hai phân số tiệm cận kề nhau lần lượt là
     
     $$
     \begin{aligned}
@@ -256,10 +268,10 @@ $$
     \end{aligned}
     $$
     
-    如果 $a_0=0$，则第一个连分数应当理解为在倒数第二项处截断，即 $[a_k,a_{k-1},\cdots,a_2]$．
+    Nếu $a_0=0$, liên phân số đầu tiên nên được hiểu là bị cắt tại hạng áp chót, tức $[a_k,a_{k-1},\cdots,a_2]$.
 
-??? note "证明"
-    在 $p_k$ 和 $q_k$ 的递推关系中，左右两侧分别同除以 $p_{k-1}$ 和 $q_{k-1}$，就得到
+??? note "Chứng minh"
+    Trong quan hệ truy hồi của $p_k$ và $q_k$, chia hai vế lần lượt cho $p_{k-1}$ và $q_{k-1}$, ta được
     
     $$
     \begin{aligned}
@@ -268,24 +280,24 @@ $$
     \end{aligned}
     $$
     
-    迭代这两个式子，就可以得到两个连分数．再代入初始值 $\dfrac{p_0}{p_{-1}}=a_0$ 和 $\dfrac{q_1}{q_0}=a_1$ 即可．至于 $a_0=0$ 的情形，将得到的连分数理解为形式表达式，则它的余项
+    Lặp hai công thức này sẽ thu được hai liên phân số. Sau đó chỉ cần thay các giá trị đầu $\dfrac{p_0}{p_{-1}}=a_0$ và $\dfrac{q_1}{q_0}=a_1$. Với trường hợp $a_0=0$, hiểu liên phân số thu được như một biểu thức hình thức; khi đó phần dư của nó là
     
     $$
     [a_2,a_1,0]=a_2+\dfrac{1}{a_1+\dfrac{1}{0}}=a_2+\dfrac{0}{0a_1+1}=a_2.
     $$
     
-    因而可以直接略去最后两项．如果需要严格的证明，只要注意到这个式子可以看作 $a_0\rightarrow 0$ 的极限即可．
+    Vì thế có thể bỏ trực tiếp hai hạng cuối. Nếu cần chứng minh chặt chẽ, chỉ cần chú ý rằng công thức này có thể xem là giới hạn khi $a_0\rightarrow 0$.
 
-???+ note "倒数定理"
-    实数 $x>0$ 的渐近分数的倒数是 $x^{-1}$ 的渐近分数．
+???+ note "Định lý nghịch đảo"
+    Nghịch đảo của các phân số tiệm cận của số thực $x>0$ là các phân số tiệm cận của $x^{-1}$.
 
-??? note "证明"
-    不妨设 $x>1$ 且有连分数表示 $[a_0,a_1,a_2,\cdots]$，则 $x^{-1}$ 的连分数表示是 $[0,a_0,a_1,a_2,\cdots]$．它们的渐近分数可以从递推关系中求得．而且，对于 $x$，有初值条件 $x_{-2}=\dfrac{0}{1}$ 和 $x_{-1}=\dfrac{1}{0}$；对于 $y=x^{-1}$，有初值条件 $y_{-1}=\dfrac{1}{0}$ 和 $y_{0}=\dfrac{0}{1}$．因此，有 $x_{-2}=(y_{-1})^{-1}$ 和 $x_{-1}=(y_0)^{-1}$．根据递推关系，可以得到 $x_k=y_{k+1}^{-1}$．这就说明，$x$ 的渐近分数的倒数是 $y=x^{-1}$ 的渐近分数．对于 $0<x\le 1$ 的情形，也可以做类似讨论．
+??? note "Chứng minh"
+    Không mất tính tổng quát, giả sử $x>1$ và có biểu diễn liên phân số $[a_0,a_1,a_2,\cdots]$. Khi đó biểu diễn liên phân số của $x^{-1}$ là $[0,a_0,a_1,a_2,\cdots]$. Các phân số tiệm cận của chúng có thể được tính từ quan hệ truy hồi. Hơn nữa, với $x$ có điều kiện đầu $x_{-2}=\dfrac{0}{1}$ và $x_{-1}=\dfrac{1}{0}$; với $y=x^{-1}$ có điều kiện đầu $y_{-1}=\dfrac{1}{0}$ và $y_{0}=\dfrac{0}{1}$. Do đó $x_{-2}=(y_{-1})^{-1}$ và $x_{-1}=(y_0)^{-1}$. Theo quan hệ truy hồi, ta có $x_k=y_{k+1}^{-1}$. Điều này cho thấy nghịch đảo của các phân số tiệm cận của $x$ là các phân số tiệm cận của $y=x^{-1}$. Trường hợp $0<x\le 1$ cũng có thể được thảo luận tương tự.
 
-利用本节得到的递推关系，可以得到计算渐近分数的算法如下：
+Dùng quan hệ truy hồi trong phần này, ta có thuật toán tính phân số tiệm cận như sau:
 
-???+ example "参考实现"
-    给定连分数的系数 $a_0,a_1,\cdots,a_n$，求渐近分数的分子和分母序列 $(p_0,q_0),(p_1,q_1),\cdots,(p_n,q_n)$．
+???+ example "Cài đặt tham khảo"
+    Cho các hệ số $a_0,a_1,\cdots,a_n$ của một liên phân số, tìm dãy tử số và mẫu số của các phân số tiệm cận $(p_0,q_0),(p_1,q_1),\cdots,(p_n,q_n)$.
     
     === "C++"
         ```cpp
@@ -297,27 +309,29 @@ $$
         --8<-- "docs/math/code/continued-fraction/diophantine.py:convergents"
         ```
 
-### 误差估计
+<span id="&#x8BEF;&#x5DEE;&#x4F30;&#x8BA1;"></span>
 
-利用渐近分数的递推公式，可以估计用渐近分数逼近实数产生的误差．
+### Ước lượng sai số
 
-首先，可以计算相邻的渐近分数的差值：
+Dùng công thức truy hồi của phân số tiệm cận, ta có thể ước lượng sai số khi dùng phân số tiệm cận để xấp xỉ số thực.
 
-???+ note "渐近分数的差分"
-    设 $x_k=\dfrac{p_k}{q_k}$ 是实数 $x$ 的第 $k$ 个渐近分数．那么，有
+Trước hết, có thể tính hiệu của hai phân số tiệm cận kề nhau:
+
+???+ note "Hiệu của phân số tiệm cận"
+    Giả sử $x_k=\dfrac{p_k}{q_k}$ là phân số tiệm cận thứ $k$ của số thực $x$. Khi đó,
     
     $$
     p_{k+1}q_k − p_kq_{k+1} = (−1)^k.
     $$
     
-    因此，相邻两项的渐近分数的差分是
+    Vì vậy, hiệu giữa hai phân số tiệm cận kề nhau là
     
     $$
     x_{k+1} - x_k = \dfrac{(-1)^k}{q_{k+1}q_k}.
     $$
 
-??? note "证明"
-    根据递推关系，有
+??? note "Chứng minh"
+    Theo quan hệ truy hồi, ta có
     
     $$
     \begin{aligned}
@@ -352,100 +366,100 @@ $$
     \end{aligned}
     $$
     
-    这就是 $p_{k+1}q_k − p_kq_{k+1} = (−1)^k$．对两边同除以 $q_{k+1}q_k$，就得到关于 $x_{k+1}-x_k$ 的结论．
+    Đây chính là $p_{k+1}q_k − p_kq_{k+1} = (−1)^k$. Chia hai vế cho $q_{k+1}q_k$ sẽ thu được kết luận về $x_{k+1}-x_k$.
 
-因而，奇数项渐近分数总是大于相邻两项，偶数项渐近分数总是小于相邻两项：渐近分数是交错变化的．
+Do đó, phân số tiệm cận có chỉ số lẻ luôn lớn hơn hai phân số kề nó, còn phân số tiệm cận có chỉ số chẵn luôn nhỏ hơn hai phân số kề nó: các phân số tiệm cận dao động luân phiên.
 
-如果只看偶数项（奇数项）渐近分数，序列也是单调递增（递减）的．这是因为
+Nếu chỉ xét các phân số tiệm cận chỉ số chẵn (chỉ số lẻ), dãy cũng đơn điệu tăng (giảm). Điều này là vì
 
 $$
 x_{k+2}-x_k = \dfrac{(-1)^{k+1}}{q_{k+2}q_{k+1}}+\dfrac{(-1)^{k}}{q_{k+1}q_{k}} = \dfrac{(-1)^k(q_{k+2}-q_k)}{q_{k+2}q_{k+1}q_k} = \dfrac{(-1)^ka_{k+2}}{q_{k+2}q_k}
 $$
 
-当 $k$ 为偶数（奇数）时为正（负）．同时，因为成立递推关系 $q_{k}=a_kq_{k-1}+q_{k-2}$，分母 $q_k$ 的增长速度不会慢于斐波那契数列的速度．所以，相邻两项的差一定趋近于零．这就说明，偶数项和奇数项渐近分数分别自下而上和自上而下地逼近同一极限．这就证明了无限简单连分数一定收敛．渐近分数趋近于相应实数的动态可以见下图：
+khi $k$ chẵn (lẻ) thì giá trị này dương (âm). Đồng thời, do có quan hệ truy hồi $q_{k}=a_kq_{k-1}+q_{k-2}$, tốc độ tăng của mẫu số $q_k$ không chậm hơn tốc độ tăng của dãy Fibonacci. Vì thế, hiệu giữa hai hạng kề nhau chắc chắn tiến về không. Điều này cho thấy các phân số tiệm cận chỉ số chẵn và chỉ số lẻ lần lượt xấp xỉ cùng một giới hạn từ dưới lên và từ trên xuống. Như vậy liên phân số đơn giản vô hạn chắc chắn hội tụ. Hình dưới minh họa quá trình các phân số tiệm cận tiến tới số thực tương ứng:
 
 ![](./images/golden-ratio-convergents.svg)
 
-???+ abstract "上（下）渐近分数"
-    对于实数 $x$ 和它的渐近分数 $x_k$，如果 $x_k>x$（$x_k<x$），就称 $x_k$ 为 $x$ 的 **上（下）渐近分数**（upper (lower) convergent）．
+???+ abstract "Phân số tiệm cận trên (dưới)"
+    Với số thực $x$ và phân số tiệm cận $x_k$ của nó, nếu $x_k>x$ ($x_k<x$), thì $x_k$ được gọi là **phân số tiệm cận trên (dưới)** (upper (lower) convergent) của $x$.
 
-前面已经说明，上渐近分数就是奇数项渐近分数，下渐近分数就是偶数项渐近分数．
+Ở trên đã chỉ ra rằng phân số tiệm cận trên chính là phân số tiệm cận có chỉ số lẻ, còn phân số tiệm cận dưới chính là phân số tiệm cận có chỉ số chẵn.
 
-利用差分公式，可以将实数 $x$ 写成交错级数的形式：
+Dùng công thức hiệu, có thể viết số thực $x$ dưới dạng chuỗi đan dấu:
 
 $$
 x = a_0+\sum_{k=0}^{\infty}\dfrac{(-1)^k}{q_{k+1}q_k}.
 $$
 
-连分数定义中的渐近分数和余项就是该级数的部分和和余项．
+Phân số tiệm cận và phần dư trong định nghĩa liên phân số chính là tổng riêng và phần dư của chuỗi này.
 
-利用差分公式，还可以直接对渐近分数逼近实数产生的误差做出估计：
+Dùng công thức hiệu, ta cũng có thể trực tiếp ước lượng sai số khi dùng phân số tiệm cận xấp xỉ số thực:
 
-???+ note "误差"
-    设 $x_k=\dfrac{p_k}{q_k}\neq x$ 是实数 $x$ 的第 $k$ 个渐近分数．那么，有
+???+ note "Sai số"
+    Giả sử $x_k=\dfrac{p_k}{q_k}\neq x$ là phân số tiệm cận thứ $k$ của số thực $x$. Khi đó,
     
     $$
     x_k - x = \dfrac{(-1)^k}{q_k\left(r_{k+1}q_k+q_{k-1}\right)},
     $$
     
-    其中，$r_{k+1}$ 是实数 $x$ 的第 $k+1$ 个余项．进而，有
+    trong đó $r_{k+1}$ là phần dư thứ $k+1$ của số thực $x$. Hơn nữa,
     
     $$
     \dfrac{1}{2q_{k+1}^2} \le \dfrac{1}{q_k(q_k+q_{k+1})} \le \left|x-\frac{p_k}{q_k}\right| \le \dfrac{1}{q_kq_{k+1}} \le \dfrac{1}{q_k^2}.
     $$
 
-??? note "证明"
-    因为 $x=[a_0,a_1,\cdots,a_k,r_{k+1}]$，而且对形式连分数也成立渐近分数的差分公式，所以有
+??? note "Chứng minh"
+    Vì $x=[a_0,a_1,\cdots,a_k,r_{k+1}]$, và công thức hiệu của phân số tiệm cận cũng đúng với liên phân số hình thức, nên
     
     $$
     x-x_k = \dfrac{(-1)^k}{q_k\left(r_{k+1}q_k+q_{k-1}\right)},
     $$
     
-    其中，$r_{k+1}q_k+q_{k-1}$ 就是按照递推公式得到的这个形式连分数的第 $k+1$ 个渐近分数的分母．
+    trong đó $r_{k+1}q_k+q_{k-1}$ chính là mẫu số của phân số tiệm cận thứ $k+1$ của liên phân số hình thức này, tính theo công thức truy hồi.
     
-    要完成随后的不等式估计，只需要注意到当 $x_k\neq x$ 时，总成立
+    Để hoàn tất ước lượng bất đẳng thức sau đó, chỉ cần chú ý rằng khi $x_k\neq x$, ta luôn có
     
     $$
     1\le a_{k+1}\le r_{k+1} \le a_{k+1}+1,
     $$
     
-    所以有
+    nên
     
     $$
     q_{k+1}=a_{k+1}q_k+q_{k-1}\le r_{k+1}q_k+q_{k-1} \le q_k+(a_{k+1}q_k+q_{k-1}) = q_k+q_{k+1}.
     $$
     
-    因此，有不等式
+    Do đó có bất đẳng thức
     
     $$
     \dfrac{1}{q_k(q_k+q_{k+1})} \le \left|x-\frac{p_k}{q_k}\right| = \dfrac{1}{q_k\left(r_{k+1}q_k+q_{k-1}\right)} \le \dfrac{1}{q_kq_{k+1}}.
     $$
     
-    要得到外侧的放缩，再注意到 $q_k\le q_{k+1}$ 就可以了．
+    Để có hai đánh giá ngoài cùng, chỉ cần chú ý thêm rằng $q_k\le q_{k+1}$.
 
-本节的差分公式还有一个简单推论：渐近分数 $\dfrac{p_k}{q_k}$ 都是既约的．
+Công thức hiệu trong phần này còn có một hệ quả đơn giản: các phân số tiệm cận $\dfrac{p_k}{q_k}$ đều là phân số tối giản.
 
-???+ note "推论"
-    对于任何实数 $x$，且渐近分数 $x_k=\dfrac{p_k}{q_k}$ 的分子和分母由递推公式给出，则 $\dfrac{p_k}{q_k}$ 是既约分数，即 $\gcd(p_k,q_k)=1$．
+???+ note "Hệ quả"
+    Với mọi số thực $x$, nếu tử số và mẫu số của phân số tiệm cận $x_k=\dfrac{p_k}{q_k}$ được cho bởi công thức truy hồi, thì $\dfrac{p_k}{q_k}$ là phân số tối giản, tức $\gcd(p_k,q_k)=1$.
 
-??? note "证明"
-    对差分公式应用 [裴蜀定理](./bezouts.md) 即可．
+??? note "Chứng minh"
+    Chỉ cần áp dụng [định lý Bezout](./bezouts.md) cho công thức hiệu.
 
-其实，二元一次不定方程的解可以通过连分数的方法求解．
+Thực ra, nghiệm của phương trình Diophantine tuyến tính hai ẩn cũng có thể được tìm bằng phương pháp liên phân số.
 
-???+ example "二元一次不定方程的求解"
-    给定 $A, B, C \in \mathbf Z$．查找 $x, y \in \mathbf Z$，使得 $Ax + By = C$ 成立．
+???+ example "Giải phương trình Diophantine tuyến tính hai ẩn"
+    Cho $A, B, C \in \mathbf Z$. Tìm $x, y \in \mathbf Z$ sao cho $Ax + By = C$.
 
-??? note "解答"
-    虽然这个问题通常是用 [扩展欧几里得算法](./bezouts.md#两个变量的情形) 解决的，但是同样可以通过连分数求解．
+??? note "Lời giải"
+    Dù bài toán này thường được giải bằng [thuật toán Euclid mở rộng](./bezouts.md#%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E6%83%85%E5%BD%A2), nó cũng có thể được giải bằng liên phân số.
     
-    设 $\dfrac{A}{B}=[a_0, a_1, \cdots, a_k]$．上面证明了 $p_k q_{k-1} - p_{k-1} q_k = (-1)^{k-1}$．将 $p_k$ 和 $q_k$ 替换为 $A$ 和 $B$，得到
+    Giả sử $\dfrac{A}{B}=[a_0, a_1, \cdots, a_k]$. Ở trên đã chứng minh $p_k q_{k-1} - p_{k-1} q_k = (-1)^{k-1}$. Thay $p_k$ và $q_k$ bằng $A$ và $B$, ta được
     
     $$
     Aq_{k-1} - Bp_{k-1} = (-1)^{k-1} g,
     $$
     
-    其中，$g = \gcd(A, B)$．如果 $g$ 整除 $C$，则一组解为 $x = (-1)^{k-1}\dfrac{C}{g} q_{k-1}$ 和 $y = (-1)^{k}\dfrac{C}{g} p_{k-1}$；否则无解．
+    trong đó $g = \gcd(A, B)$. Nếu $g$ chia hết $C$, một nghiệm là $x = (-1)^{k-1}\dfrac{C}{g} q_{k-1}$ và $y = (-1)^{k}\dfrac{C}{g} p_{k-1}$; ngược lại vô nghiệm.
     
     === "C++"
         ```cpp
@@ -457,47 +471,51 @@ $$
         --8<-- "docs/math/code/continued-fraction/diophantine.py:dio"
         ```
 
-## 丢番图逼近
+<span id="&#x4E22;&#x756A;&#x56FE;&#x903C;&#x8FD1;"></span>
 
-连分数理论的一个重要应用就是丢番图逼近理论．丢番图逼近（Diophantine approximation）是指用有理数逼近实数．当然，由于有理数的稠密性，如果不加以限制，可以得到误差任意小的逼近．因此，需要对可以使用的有理数做出限制，比如只能选择分母小于某个值的有理数．本节就讨论了这种限制下的最佳逼近和连分数的关系．
+## Xấp xỉ Diophantine
 
-### 用渐近分数逼近实数
+Một ứng dụng quan trọng của lý thuyết liên phân số là lý thuyết xấp xỉ Diophantine. Xấp xỉ Diophantine (Diophantine approximation) là việc dùng số hữu tỉ để xấp xỉ số thực. Dĩ nhiên, do tính trù mật của số hữu tỉ, nếu không đặt ràng buộc thì có thể đạt sai số nhỏ tùy ý. Vì vậy, cần ràng buộc các số hữu tỉ được phép dùng, chẳng hạn chỉ chọn các số hữu tỉ có mẫu nhỏ hơn một giá trị nào đó. Phần này thảo luận mối quan hệ giữa xấp xỉ tốt nhất dưới ràng buộc như vậy và liên phân số.
 
-首先，利用渐近分数的误差估计，立刻得到如下结果：
+<span id="&#x7528;&#x6E10;&#x8FD1;&#x5206;&#x6570;&#x903C;&#x8FD1;&#x5B9E;&#x6570;"></span>
 
-???+ note "定理（Dirichlet）"
-    对于无理数 $x$，存在无穷多个既约分数 $\dfrac{p}{q}$ 使得
+### Dùng phân số tiệm cận để xấp xỉ số thực
+
+Trước hết, từ ước lượng sai số của phân số tiệm cận, ta lập tức có kết quả sau:
+
+???+ note "Định lý (Dirichlet)"
+    Với số vô tỉ $x$, tồn tại vô hạn phân số tối giản $\dfrac{p}{q}$ sao cho
     
     $$
     \left|x-\dfrac{p}{q}\right| < \dfrac{1}{q^2} 
     $$
     
-    成立．
+    đúng.
 
-??? note "证明"
-    根据渐近分数的误差估计，对于无理数 $x$ 的第 $k$ 个渐近分数 $x_k=\dfrac{p_k}{q_k}$，有
+??? note "Chứng minh"
+    Theo ước lượng sai số của phân số tiệm cận, với phân số tiệm cận thứ $k$ là $x_k=\dfrac{p_k}{q_k}$ của số vô tỉ $x$, ta có
     
     $$
     \left|x-\dfrac{p_k}{q_k}\right|\le\frac{1}{q_k^2}.
     $$
     
-    检查误差公式的证明即可知，对于任一无理数 $x$，取等条件并不成立．因此，它的所有渐近分数的分子和分母都满足要求．
+    Xem lại chứng minh của công thức sai số, ta thấy với mọi số vô tỉ $x$, điều kiện để xảy ra dấu bằng không thể xảy ra. Vì vậy, tử số và mẫu số của mọi phân số tiệm cận của nó đều thỏa mãn yêu cầu.
 
-这个定理也可以看作是 [Dirichlet 逼近定理](https://en.wikipedia.org/wiki/Dirichlet%27s_approximation_theorem) 的推论．这几乎已经是最好的结果了．不等式右侧分母中的指数 $2$ 已经不能再改进，但是常数上可以做得更好．Hurwitz 定理说明，不等式右侧可以缩小到 $\dfrac{1}{\sqrt{5}q^2}$，且这是最好的界．
+Định lý này cũng có thể xem là hệ quả của [định lý xấp xỉ Dirichlet](https://en.wikipedia.org/wiki/Dirichlet%27s_approximation_theorem). Đây gần như đã là kết quả tốt nhất: số mũ $2$ ở mẫu của vế phải bất đẳng thức không thể cải thiện thêm, nhưng hằng số thì có thể tốt hơn. Định lý Hurwitz cho biết vế phải có thể giảm xuống $\dfrac{1}{\sqrt{5}q^2}$, và đây là cận tốt nhất.
 
-???+ note "Hurwitz 定理"
-    对于无理数 $x$，存在无穷多个既约分数 $\dfrac{p}{q}$ 使得
+???+ note "Định lý Hurwitz"
+    Với số vô tỉ $x$, tồn tại vô hạn phân số tối giản $\dfrac{p}{q}$ sao cho
     
     $$
     \left|x-\dfrac{p}{q}\right| < \dfrac{1}{\sqrt{5}q^2} 
     $$
     
-    成立，而且不等式右侧的 $\sqrt{5}$ 不能换成更大的实数．
+    đúng, và $\sqrt{5}$ ở vế phải của bất đẳng thức không thể thay bằng số thực lớn hơn.
 
-??? note "证明（Borel）"
-    Borel 实际上证明了，无理数 $x$ 的连续三个渐近分数中，必然有至少一个满足上述条件．因为渐近分数无穷多，且都是既约分数，那么 Hurwitz 定理的第一部分就必然成立．
+??? note "Chứng minh (Borel)"
+    Borel thật ra đã chứng minh rằng trong ba phân số tiệm cận liên tiếp của số vô tỉ $x$, chắc chắn có ít nhất một phân số thỏa mãn điều kiện trên. Vì có vô hạn phân số tiệm cận và chúng đều tối giản, phần đầu của định lý Hurwitz hiển nhiên đúng.
     
-    反证法．不妨设存在无理数 $x$ 和它的渐近分数 $x_{k-1},x_k,x_{k+1}$，使得
+    Chứng minh phản chứng. Giả sử tồn tại số vô tỉ $x$ cùng ba phân số tiệm cận $x_{k-1},x_k,x_{k+1}$ của nó sao cho
     
     $$
     \left|x-\dfrac{p_{k-1}}{q_{k-1}}\right|\ge\dfrac{1}{\sqrt{5}q_{k-1}^2},\ 
@@ -505,164 +523,166 @@ $$
     \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right|\ge\dfrac{1}{\sqrt{5}q_{k+1}^2}
     $$
     
-    成立．因为相邻的渐近分数必然位于 $x$ 两侧，所以由差分公式知
+    đúng. Vì hai phân số tiệm cận kề nhau luôn nằm ở hai phía của $x$, theo công thức hiệu ta có
     
     $$
     \dfrac{1}{q_{k-1}q_{k}}=\left|\dfrac{p_{k-1}}{q_{k-1}}-\dfrac{p_{k}}{q_{k}}\right|=\left|x-\dfrac{p_{k-1}}{q_{k-1}}\right|+\left|x-\dfrac{p_{k}}{q_{k}}\right|\ge\dfrac{1}{\sqrt{5}q_{k-1}^2}+\dfrac{1}{\sqrt{5}q_{k}^2}.
     $$
     
-    它可以写成关于商 $\dfrac{q_{k}}{q_{k-1}}$ 的不等式
+    Có thể viết lại thành bất đẳng thức theo thương $\dfrac{q_{k}}{q_{k-1}}$:
     
     $$
     \dfrac{q_k}{q_{k-1}}+\dfrac{q_{k-1}}{q_k}\le\sqrt 5.
     $$
     
-    因为左侧是有理数，右侧是无理数，等号必然无法取得．又因为 $q_k\ge q_{k-1}$，所以可以解得
+    Vì vế trái là số hữu tỉ còn vế phải là số vô tỉ, dấu bằng chắc chắn không xảy ra. Lại do $q_k\ge q_{k-1}$, ta giải được
     
     $$
     1\le \dfrac{q_{k}}{q_{k-1}} < \dfrac{\sqrt{5}+1}{2}.
     $$
     
-    同理，可以证明
+    Tương tự, có thể chứng minh
     
     $$
     1\le \dfrac{q_{k+1}}{q_{k}} < \dfrac{\sqrt{5}+1}{2}.
     $$
     
-    但是根据递推公式，并结合两式可知，
+    Nhưng theo công thức truy hồi và kết hợp hai bất đẳng thức trên,
     
     $$
     a_{k+1} = \frac{q_{k+1}}{q_k}-\frac{q_{k-1}}{q_k} < \dfrac{\sqrt{5}+1}{2}-\dfrac{\sqrt{5}-1}{2} = 1
     $$
     
-    这与简单连分数的定义矛盾．所以，Borel 的结论成立．
+    Điều này mâu thuẫn với định nghĩa liên phân số đơn giản. Vì vậy kết luận của Borel đúng.
     
-    要说明这样得到的界是最好的，只需要找到 $x$ 使得对于任何 $C>\sqrt{5}$，都只存在有限多个既约分数 $\dfrac{p}{q}$ 使得不等式
+    Để chứng minh cận thu được là tốt nhất, chỉ cần tìm $x$ sao cho với mọi $C>\sqrt{5}$, chỉ tồn tại hữu hạn phân số tối giản $\dfrac{p}{q}$ thỏa mãn bất đẳng thức
     
     $$
     \left|x-\dfrac{p}{q}\right| < \dfrac{1}{Cq^2} 
     $$
     
-    成立．下面证明 $\phi=\dfrac{\sqrt{5}+1}{2}$ 就是这样的 $x$．[^sqrt5]
+    đúng. Dưới đây chứng minh $\phi=\dfrac{\sqrt{5}+1}{2}$ chính là một $x$ như vậy.[^sqrt5]
     
-    设 $\phi'=\dfrac{-\sqrt{5}+1}{2}$ 是 $\phi$ 的共轭根．它们都是方程 $x^2-x-1=0$ 的根．因而，对任意实数 $x$，都有
+    Gọi $\phi'=\dfrac{-\sqrt{5}+1}{2}$ là nghiệm liên hợp của $\phi$. Cả hai đều là nghiệm của phương trình $x^2-x-1=0$. Do đó, với mọi số thực $x$,
     
     $$
     x^2-x-1 = (x-\phi)(x-\phi').
     $$
     
-    代入既约分数 $\dfrac{p}{q}$，就得到
+    Thay phân số tối giản $\dfrac{p}{q}$ vào, ta được
     
     $$
     \dfrac{1}{q^2}\le\frac{|p^2-pq-q^2|}{q^2}=\left|\dfrac{p}{q}-\phi\right|\left|\dfrac{p}{q}-\phi'\right|\le\left|\dfrac{p}{q}-\phi\right|\left(\left|\dfrac{p}{q}-\phi\right|+|\phi-\phi'|\right)<\dfrac{1}{Cq^2}\left(\dfrac{1}{Cq^2}+\sqrt{5}\right).
     $$
     
-    对于 $C>\sqrt{5}$，可以直接解出 $q<\sqrt{C(C-\sqrt{5})}$，因而不可能存在无穷多组解满足上述不等式．
+    Với $C>\sqrt{5}$, có thể giải trực tiếp được $q<\sqrt{C(C-\sqrt{5})}$, vì vậy không thể có vô hạn nghiệm thỏa mãn bất đẳng thức trên.
 
-这些定理的证明说明，渐近分数提供了相当好的丢番图逼近．但是，这未必是最佳逼近．要讨论最佳逼近，需要说明逼近程度的度量．这常常有两种选择．
+Các chứng minh trên cho thấy phân số tiệm cận cung cấp xấp xỉ Diophantine khá tốt. Tuy nhiên, chúng chưa chắc là xấp xỉ tốt nhất. Để thảo luận xấp xỉ tốt nhất, cần nêu rõ thước đo mức độ xấp xỉ. Thường có hai lựa chọn.
 
-???+ warning "可能存在最佳逼近相关结论不成立的情形"
-    接下来的两节，会叙述一些关于最佳逼近的结果．这些结果可能对个别无趣的情形并不成立．比如，最佳逼近的两类定义都要求严格不等号，但是对于半奇数 $x=n+\dfrac12$ 且 $n\in\mathbf Z$，它的连分数的形式可以是 $[n,1,1]$．此时，它的前两个渐近分数 $x_0=n$ 和 $x_1=n+1$ 的分母都是 $1$，而且到 $x$ 的距离是一样的．这说明，它们都不是最佳逼近．对于本节的结论的叙述，读者应当默认这样的情形已经排除在外．如果读者不关心最末尾的几个渐近分数，抑或是只关心无理数的逼近，那么不必理会这些额外的复杂情形．
+???+ warning "Có những trường hợp kết luận về xấp xỉ tốt nhất không còn đúng"
+    Hai phần tiếp theo trình bày một số kết quả về xấp xỉ tốt nhất. Các kết quả này có thể không đúng trong một vài trường hợp biên không thú vị. Chẳng hạn, cả hai định nghĩa xấp xỉ tốt nhất đều yêu cầu bất đẳng thức nghiêm ngặt, nhưng với nửa số lẻ $x=n+\dfrac12$ và $n\in\mathbf Z$, liên phân số của nó có thể có dạng $[n,1,1]$. Khi đó, hai phân số tiệm cận đầu $x_0=n$ và $x_1=n+1$ đều có mẫu bằng $1$, và khoảng cách tới $x$ bằng nhau. Điều này cho thấy chúng đều không phải là xấp xỉ tốt nhất. Khi đọc các kết luận trong phần này, nên mặc định rằng những trường hợp như vậy đã được loại trừ. Nếu không quan tâm tới vài phân số tiệm cận cuối cùng, hoặc chỉ quan tâm tới xấp xỉ số vô tỉ, thì có thể bỏ qua các trường hợp phức tạp bổ sung này.
 
-### 第一类最佳逼近：中间分数
+<span id="&#x7B2C;&#x4E00;&#x7C7B;&#x6700;&#x4F73;&#x903C;&#x8FD1;&#xFF1A;&#x4E2D;&#x95F4;&#x5206;&#x6570;"></span>
 
-第一类最佳逼近使用
+### Xấp xỉ tốt nhất loại một: phân số trung gian
+
+Xấp xỉ tốt nhất loại một dùng
 
 $$
 \left|x-\dfrac{p}{q}\right|
 $$
 
-衡量逼近的程度．
+để đo mức độ xấp xỉ.
 
-???+ abstract "第一类最佳逼近"
-    对于实数 $x$ 和有理数 $\dfrac{p}{q}$，如果对于任意的 $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ 且 $0<q'\le q$ 都有
+???+ abstract "Xấp xỉ tốt nhất loại một"
+    Với số thực $x$ và số hữu tỉ $\dfrac{p}{q}$, nếu với mọi $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ và $0<q'\le q$ ta đều có
     
     $$
     \left|x-\dfrac{p}{q}\right|<\left|x-\dfrac{p'}{q'}\right|,
     $$
     
-    就称有理数 $\dfrac{p}{q}$ 是实数 $x$ 的 **第一类最佳逼近**（best approximation of the first kind）．
+    thì số hữu tỉ $\dfrac{p}{q}$ được gọi là **xấp xỉ tốt nhất loại một** (best approximation of the first kind) của số thực $x$.
 
-第一类最佳逼近未必是渐近分数，而是一类更宽泛的分数．
+Xấp xỉ tốt nhất loại một không nhất thiết là phân số tiệm cận, mà thuộc một lớp phân số rộng hơn.
 
-???+ abstract "中间分数"
-    设实数 $x$ 有渐近分数 $x_{k+1}=[a_0,a_1,\cdots,a_k,a_{k+1}]$，且整数 $t$ 满足 $0\le t\le a_{k+1}$[^semi-range]，则分数 $x_{k,t}=[a_0,a_1,\cdots,a_{k},t]$ 称为 $x$ 的 **中间分数**（intermediate fraction）、**半收敛子**（semiconvergent）或 **次渐近分数**（secondary convergent）．[^semiconvergent]
+???+ abstract "Phân số trung gian"
+    Giả sử số thực $x$ có phân số tiệm cận $x_{k+1}=[a_0,a_1,\cdots,a_k,a_{k+1}]$, và số nguyên $t$ thỏa mãn $0\le t\le a_{k+1}$[^semi-range]. Khi đó phân số $x_{k,t}=[a_0,a_1,\cdots,a_{k},t]$ được gọi là **phân số trung gian** (intermediate fraction), **bán hội tụ** (semiconvergent), hoặc **phân số tiệm cận phụ** (secondary convergent) của $x$.[^semiconvergent]
     
-    类似于渐近分数的情形，大于（小于）$x$ 的中间分数称为 **上（下）中间分数**（upper (lower) semiconvergent）．
+    Tương tự trường hợp phân số tiệm cận, phân số trung gian lớn hơn (nhỏ hơn) $x$ được gọi là **phân số trung gian trên (dưới)** (upper (lower) semiconvergent).
 
-根据递推公式，中间分数可以写成
+Theo công thức truy hồi, phân số trung gian có thể viết thành
 
 $$
 x_{k,t} = \frac{tp_{k}+p_{k-1}}{tq_{k}+q_{k-1}}.
 $$
 
-它必然是既约分数，而且位于渐近分数 $x_{k-1}$ 和 $x_{k+1}$ 之间．随着 $t$ 增大，它也逐渐向 $x_{k+1}$ 靠拢：（以 $k$ 为偶数的情形为例）
+Nó chắc chắn là phân số tối giản và nằm giữa hai phân số tiệm cận $x_{k-1}$ và $x_{k+1}$. Khi $t$ tăng, nó cũng dần tiến tới $x_{k+1}$; ví dụ với trường hợp $k$ chẵn:
 
 $$
 x_{k-1} = x_{k,0} < x_{k,1} < x_{k,2} < \cdots < x_{k,a_{k+1}} = x_{k+1}.
 $$
 
-因为渐近分数的分子和分母都是递增的，中间分数 $x_{k,t}$（$t\neq 0$）的分子和分母落在了 $x_{k}$ 和 $x_{k+1}$ 之间．如果将这些分数按照分母大小排列，中间分数就是位于相邻的渐近分数中间的一些分数．
+Vì tử số và mẫu số của các phân số tiệm cận đều tăng, tử số và mẫu số của phân số trung gian $x_{k,t}$ ($t\neq 0$) nằm giữa các giá trị tương ứng của $x_{k}$ và $x_{k+1}$. Nếu sắp các phân số này theo mẫu số, thì phân số trung gian chính là những phân số nằm giữa hai phân số tiệm cận kề nhau.
 
-所有的第一类最佳逼近都是中间分数，但是并不是所有的中间分数都是第一类最佳逼近．
+Mọi xấp xỉ tốt nhất loại một đều là phân số trung gian, nhưng không phải mọi phân số trung gian đều là xấp xỉ tốt nhất loại một.
 
-???+ note "定理"
-    所有的第一类最佳逼近都是中间分数．
+???+ note "Định lý"
+    Mọi xấp xỉ tốt nhất loại một đều là phân số trung gian.
 
-??? note "证明"
-    因为 $a_0\le x\le a_0+1$，所以第一类最佳逼近必然位于 $x_{1,0}=a_0$ 与 $x_{0,1}=a_0+1$ 之间．所有中间分数从小到大可以排列成
+??? note "Chứng minh"
+    Vì $a_0\le x\le a_0+1$, nên xấp xỉ tốt nhất loại một chắc chắn nằm giữa $x_{1,0}=a_0$ và $x_{0,1}=a_0+1$. Tất cả phân số trung gian có thể được sắp tăng dần thành
     
     $$
     x_{1,0}<x_{1,1}< \cdots < x_{1,a_2}=x_{3,0}<\ldots<x<\ldots<x_{2,0}=x_{0,a_1}<\cdots<x_{0,1}.
     $$
     
-    同阶的中间分数是连续出现的，而不同阶的中间分数之间又没有间隔．这意味着，任何位于 $x_{1,0}=a_0$ 与 $x_{0,1}=a_0+1$ 之间的有理数 $\dfrac{p}{q}$ 必然落在两个同阶的中间分数 $x_{k,t}$ 和 $x_{k,t+1}$ 之间．不妨设它不是中间分数且小于 $x$，因而有
+    Các phân số trung gian cùng bậc xuất hiện liên tiếp, còn giữa các phân số trung gian khác bậc thì không có khoảng trống. Điều này nghĩa là mọi số hữu tỉ $\dfrac{p}{q}$ nằm giữa $x_{1,0}=a_0$ và $x_{0,1}=a_0+1$ chắc chắn rơi vào giữa hai phân số trung gian cùng bậc $x_{k,t}$ và $x_{k,t+1}$. Giả sử nó không phải phân số trung gian và nhỏ hơn $x$, khi đó
     
     $$
     x_{k,t}<\dfrac{p}{q}<x_{k,t+1}<x.
     $$
     
-    此时，一方面有
+    Khi đó, một mặt
     
     $$
     \left|x_{k,t}-\dfrac{p}{q}\right| \le \left|x_{k,t}-x_{k,t+1}\right| = \dfrac{1}{((t+1)q_k+q_{k-1})(tq_k+q_{k-1})}.
     $$
     
-    另一方面有
+    Mặt khác
     
     $$
     \left|x_{k,t}-\dfrac{p}{q}\right| = \dfrac{|q(tp_k+p_{k-1})-p((t+1)q_k+q_{k-1})|}{q(tq_k+q_{k-1})}\ge\dfrac{1}{q(tq_k+q_{k-1})}.
     $$
     
-    因此，必然有
+    Vì vậy, chắc chắn
     
     $$
     q>(t+1)q_k+q_{k-1}.
     $$
     
-    也就是说，有理数 $\dfrac{p}{q}$ 的分母一定大于 $x_{k,t+1}$ 的分母，但是它并不是更好的逼近：
+    Nói cách khác, mẫu số của số hữu tỉ $\dfrac{p}{q}$ chắc chắn lớn hơn mẫu số của $x_{k,t+1}$, nhưng nó không phải xấp xỉ tốt hơn:
     
     $$
     \left|x-\dfrac{p}{q}\right|>\left|x-x_{k,t+1}\right|
     $$
     
-    因此，它不可能是第一类最佳逼近．这就说明，不是中间分数，就不是第一类最佳逼近；亦即所有第一类最佳逼近都是中间分数．
+    Do đó, nó không thể là xấp xỉ tốt nhất loại một. Điều này cho thấy nếu không phải phân số trung gian thì không phải xấp xỉ tốt nhất loại một; tức mọi xấp xỉ tốt nhất loại một đều là phân số trung gian.
 
-反过来，并不能断言所有的中间分数都是第一类最佳逼近．但是，的确可以给出中间分数成为第一类最佳逼近的条件．
+Chiều ngược lại không đúng: không thể khẳng định mọi phân số trung gian đều là xấp xỉ tốt nhất loại một. Tuy nhiên, có thể đưa ra điều kiện để một phân số trung gian là xấp xỉ tốt nhất loại một.
 
-???+ note "定理"
-    所有渐近分数都是第一类最佳逼近．除此之外，设 $0<t<a_{k+1}$，则中间分数 $x_{k,t}$ 是第一类最佳逼近，当且仅当 $t>\dfrac{a_{k+1}}{2}$ 或者 $t=\dfrac{a_{k+1}}{2}$ 且 $r_{k+2}>\dfrac{q_k}{q_{k-1}}$．
+???+ note "Định lý"
+    Mọi phân số tiệm cận đều là xấp xỉ tốt nhất loại một. Ngoài ra, giả sử $0<t<a_{k+1}$; khi đó phân số trung gian $x_{k,t}$ là xấp xỉ tốt nhất loại một khi và chỉ khi $t>\dfrac{a_{k+1}}{2}$, hoặc $t=\dfrac{a_{k+1}}{2}$ và $r_{k+2}>\dfrac{q_k}{q_{k-1}}$.
 
-??? note "证明"
-    下面会证明，渐近分数都是第二类最佳逼近，因而必然是第一类最佳逼近．关键在于那些不是渐近分数的中间分数．
+??? note "Chứng minh"
+    Phần sau sẽ chứng minh rằng mọi phân số tiệm cận đều là xấp xỉ tốt nhất loại hai, nên chắc chắn là xấp xỉ tốt nhất loại một. Điểm chính nằm ở các phân số trung gian không phải phân số tiệm cận.
     
-    前文已经说过，中间分数 $x_{k,t}$ 的分母位于 $x_k$ 和 $x_{k+1}$ 之间，且随着 $t$ 的增加逐渐增大，但是 $x_{k,t}$ 却逐渐接近 $x_{k+1}$，因而更接近 $x$．以 $x_{k,t}<x$ 为例，它与相邻的中间分数的相对位置关系满足：
+    Như đã nói ở trên, mẫu số của phân số trung gian $x_{k,t}$ nằm giữa mẫu số của $x_k$ và $x_{k+1}$, và tăng dần theo $t$; đồng thời $x_{k,t}$ cũng tiến dần tới $x_{k+1}$, nên gần $x$ hơn. Lấy ví dụ $x_{k,t}<x$, quan hệ vị trí tương đối của nó với các phân số trung gian kề nhau là:
     
     $$
     x_{k-1} < x_{k,t} < x_{k+1} < x < x_{k}.
     $$
     
-    因为 $x_k$ 的分母小于 $x_{k,t}$，所以 $x_{k,t}$ 成为第一类最佳逼近的必要条件就是，它比 $x_k$ 更接近 $x$．这也是充分条件，因为作为渐近分数，没有比 $x_k$ 分母更小但是距离更近的了，而那些比 $x_k$ 分母还要大的中间分数，必然与 $x_{k,t}$ 同阶，但是分母更小，就必然距离 $x$ 更远．对于渐近分数和中间分数的误差，经计算可知
+    Vì mẫu số của $x_k$ nhỏ hơn mẫu số của $x_{k,t}$, điều kiện cần để $x_{k,t}$ trở thành xấp xỉ tốt nhất loại một là nó phải gần $x$ hơn $x_k$. Đây cũng là điều kiện đủ: vì $x_k$ là phân số tiệm cận, không có phân số nào có mẫu nhỏ hơn mà lại gần $x$ hơn; còn các phân số trung gian có mẫu lớn hơn $x_k$ thì tất yếu cùng bậc với $x_{k,t}$ nhưng có mẫu nhỏ hơn, nên chắc chắn xa $x$ hơn. Với sai số của phân số tiệm cận và phân số trung gian, tính toán cho thấy
     
     $$
     \begin{aligned}
@@ -672,22 +692,22 @@ $$
     \end{aligned}
     $$
     
-    其中用到了 $r_{k+1}\ge a_{k+1}>t$．因此，$x_{k,t}$ 比 $x_k$ 更接近 $x$，成为第一类最佳逼近，当且仅当
+    trong đó dùng $r_{k+1}\ge a_{k+1}>t$. Vì vậy, $x_{k,t}$ gần $x$ hơn $x_k$, tức trở thành xấp xỉ tốt nhất loại một, khi và chỉ khi
     
     $$
     \dfrac{r_{k+1}-t}{tq_{k}+q_{k-1}}<\dfrac{1}{q_k} \iff r_{k+1}<2t+\dfrac{q_{k-1}}{q_k}.
     $$
     
-    此时，有三种可能的情况：
+    Lúc này có ba khả năng:
     
-    1.  如果 $t<\dfrac{a_{t+1}}{2}$，那么 $2t<a_{t+1}$．因为两侧都是整数，所以 $2t\le a_{k+1}-1$，故而 $2t+\dfrac{q_{k-1}}{q_k}\le 2t+1\le a_{k+1}\le r_{t+1}$．此时，$x_{k,t}$ 不是第一类最佳逼近；
-    2.  如果 $t>\dfrac{a_{t+1}}{2}$，那么 $2t>a_{t+1}$．因为两侧都是整数，所以 $2t\ge a_{t+1}+1>r_{t+1}$．此时，$x_{k,t}$ 是第一类最佳逼近；
-    3.  如果 $a_{t+1}$ 是偶数，还有第三种情况，即 $t=\dfrac{a_{t+1}}{2}$．上述条件等价于 $\dfrac{1}{r_{k+1}}=r_{k+1}-a_{k+1}<\dfrac{q_{k-1}}{q_k}$，亦即 $r_{k+2}>\dfrac{q_k}{q_{k-1}}$．
+    1.  Nếu $t<\dfrac{a_{t+1}}{2}$, thì $2t<a_{t+1}$. Vì hai vế đều là số nguyên, $2t\le a_{k+1}-1$, nên $2t+\dfrac{q_{k-1}}{q_k}\le 2t+1\le a_{k+1}\le r_{t+1}$. Khi đó, $x_{k,t}$ không phải xấp xỉ tốt nhất loại một;
+    2.  Nếu $t>\dfrac{a_{t+1}}{2}$, thì $2t>a_{t+1}$. Vì hai vế đều là số nguyên, $2t\ge a_{t+1}+1>r_{t+1}$. Khi đó, $x_{k,t}$ là xấp xỉ tốt nhất loại một;
+    3.  Nếu $a_{t+1}$ là số chẵn, còn có khả năng thứ ba, tức $t=\dfrac{a_{t+1}}{2}$. Điều kiện trên tương đương với $\dfrac{1}{r_{k+1}}=r_{k+1}-a_{k+1}<\dfrac{q_{k-1}}{q_k}$, tức $r_{k+2}>\dfrac{q_k}{q_{k-1}}$.
 
-所以，如果将实数 $x$ 的所有第一类最佳逼近按照分母自小到大的顺序排列，那么它会根据与 $x$ 的大小关系分成若干段．每一段总是由若干个（可以是零个）连续的同阶的中间分数组成，且总以渐近分数结尾．段内总能保持在实数 $x$ 的一侧，段与段之间则交错排列在 $x$ 两侧．
+Vì vậy, nếu sắp tất cả xấp xỉ tốt nhất loại một của số thực $x$ theo mẫu số tăng dần, chúng sẽ được chia thành nhiều đoạn theo quan hệ lớn nhỏ với $x$. Mỗi đoạn luôn gồm một số (có thể bằng không) phân số trung gian liên tiếp cùng bậc, và luôn kết thúc bằng một phân số tiệm cận. Trong mỗi đoạn, các phân số luôn nằm cùng một phía của số thực $x$; giữa các đoạn thì chúng luân phiên nằm ở hai phía của $x$.
 
-??? example "例子：圆周率 $\pi$ 的第一类最佳逼近"
-    圆周率 $\pi=[3,7,15,1,292,\cdots]$，因而它分母最小的前 15 个第一类最佳逼近是：
+??? example "Ví dụ: xấp xỉ tốt nhất loại một của số pi $\pi$"
+    Số pi $\pi=[3,7,15,1,292,\cdots]$, nên 15 xấp xỉ tốt nhất loại một đầu tiên có mẫu nhỏ nhất của nó là:
     
     $$
     \begin{aligned}
@@ -709,62 +729,64 @@ $$
     \end{aligned}
     $$
 
-### 第二类最佳逼近
+<span id="&#x7B2C;&#x4E8C;&#x7C7B;&#x6700;&#x4F73;&#x903C;&#x8FD1;"></span>
 
-第二类最佳逼近使用 $|qx-p|$ 来衡量逼近的程度．
+### Xấp xỉ tốt nhất loại hai
 
-???+ abstract "第二类最佳逼近"
-    对于实数 $x$ 和有理数 $\dfrac{p}{q}$，如果对于任意的 $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ 且 $0<q'\le q$ 都有
+Xấp xỉ tốt nhất loại hai dùng $|qx-p|$ để đo mức độ xấp xỉ.
+
+???+ abstract "Xấp xỉ tốt nhất loại hai"
+    Với số thực $x$ và số hữu tỉ $\dfrac{p}{q}$, nếu với mọi $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ và $0<q'\le q$ ta đều có
     
     $$
     \left|qx-p\right|<\left|q'x-p'\right|,
     $$
     
-    就称有理数 $\dfrac{p}{q}$ 是实数 $x$ 的 **第二类最佳逼近**（best approximation of the second kind）．
+    thì số hữu tỉ $\dfrac{p}{q}$ được gọi là **xấp xỉ tốt nhất loại hai** (best approximation of the second kind) của số thực $x$.
 
-第二类最佳逼近的条件等价于
+Điều kiện của xấp xỉ tốt nhất loại hai tương đương với
 
 $$
 \left|x-\dfrac{p}{q}\right|<\dfrac{q'}{q}\left|x-\dfrac{p'}{q'}\right|.
 $$
 
-因为 $q'\le q$，所以第二类最佳逼近的条件比第一类最佳逼近更为严苛．
+Vì $q'\le q$, điều kiện của xấp xỉ tốt nhất loại hai nghiêm ngặt hơn điều kiện của xấp xỉ tốt nhất loại một.
 
-第二类最佳逼近能且仅能是渐近分数．
+Xấp xỉ tốt nhất loại hai chính xác là các phân số tiệm cận.
 
-???+ note "定理"
-    所有的第二类最佳逼近一定是渐近分数，所有的渐近分数也一定是第二类最佳逼近．
+???+ note "Định lý"
+    Mọi xấp xỉ tốt nhất loại hai đều là phân số tiệm cận, và mọi phân số tiệm cận đều là xấp xỉ tốt nhất loại hai.
 
-??? note "证明"
-    要证明第一部分，因为第二类最佳逼近也一定是第一类最佳逼近，所以只需要证明不是渐近分数的中间分数不能成为第二类最佳逼近就可以了．为此，设 $x_{k,t}=\dfrac{p}{q}$ 是中间分数但是不是渐近分数，那么，设 $x_{k,t}<x$，有
+??? note "Chứng minh"
+    Để chứng minh phần thứ nhất, vì xấp xỉ tốt nhất loại hai cũng chắc chắn là xấp xỉ tốt nhất loại một, chỉ cần chứng minh các phân số trung gian không phải phân số tiệm cận không thể là xấp xỉ tốt nhất loại hai. Đặt $x_{k,t}=\dfrac{p}{q}$ là phân số trung gian nhưng không phải phân số tiệm cận, và giả sử $x_{k,t}<x$, ta có
     
     $$
     x_{k-1} < x_{k,t} < x_{k+1} < x < x_{k}.
     $$
     
-    因为 $x_{k,t}$ 与 $x$ 之间的误差
+    Vì sai số giữa $x_{k,t}$ và $x$ là
     
     $$
     |x_{k,t}-x|\ge |x_{k,t}-x_{k+1}|=\left|\dfrac{p}{q}-\dfrac{p_{k+1}}{q_{k+1}}\right|=\dfrac{|pq_{k+1}-p_{k+1}q|}{qq_{k+1}}\ge\dfrac{1}{qq_{k+1}},
     $$
     
-    并利用渐近分数的误差估计，所以总是有
+    và dùng ước lượng sai số của phân số tiệm cận, nên luôn có
     
     $$
     |qx_{k,t}-p| \ge \dfrac{1}{q_{k+1}} \ge |q_kx_k-p_k|,
     $$
     
-    即 $x_{k,t}$ 的逼近程度不优于分母更小的 $x_k$ 逼近程度，所以不可能是第二类最佳逼近．
+    tức mức độ xấp xỉ của $x_{k,t}$ không tốt hơn mức độ xấp xỉ của $x_k$ có mẫu nhỏ hơn, nên nó không thể là xấp xỉ tốt nhất loại hai.
     
-    反过来，要证明第二部分，即每个渐近分数 $x_k=\dfrac{p_k}{q_k}$ 都是第二类最佳逼近．这就是要说明，对于所有分数 $\dfrac{p}{q}$ 且 $q\le q_k$，都有 $|q_kx-p_k|<|qx-p|$．不考虑半奇数的情形，则可以假定 $k>0$．首先，根据渐近分数逼近实数的误差估计，有
+    Ngược lại, để chứng minh phần thứ hai, tức mọi phân số tiệm cận $x_k=\dfrac{p_k}{q_k}$ đều là xấp xỉ tốt nhất loại hai, ta cần chỉ ra rằng với mọi phân số $\dfrac{p}{q}$ có $q\le q_k$, luôn có $|q_kx-p_k|<|qx-p|$. Bỏ qua trường hợp nửa số lẻ, có thể giả sử $k>0$. Trước hết, theo ước lượng sai số của phân số tiệm cận khi xấp xỉ số thực, ta có
     
     $$
     |q_{k-1} x-p_{k-1}| \ge \frac{1}{q_{k-1}+q_{k}} \ge \dfrac{1}{q_{k+1}}\ge |q_kx-p_k|.
     $$
     
-    不等式全部成立等号，当且仅当 $a_{k+1}=1$ 且是连分数的末项．不考虑这样的情形，那么 $x_{k-1}=\dfrac{p_{k-1}}{q_{k-1}}$ 严格劣于 $x_k=\dfrac{p_k}{q_k}$．
+    Tất cả các bất đẳng thức cùng xảy ra dấu bằng khi và chỉ khi $a_{k+1}=1$ và đó là hạng cuối của liên phân số. Bỏ qua trường hợp này, $x_{k-1}=\dfrac{p_{k-1}}{q_{k-1}}$ kém nghiêm ngặt so với $x_k=\dfrac{p_k}{q_k}$.
     
-    任取一分数 $\dfrac{p}{q}\neq x_k$ 且 $0<q\le q_k$，因为有差分公式 $p_{k}q_{k-1} − p_{k-1}q_{k} = (−1)^{k-1}$，所以由 Cramer 法则可知，线性方程组
+    Lấy tùy ý một phân số $\dfrac{p}{q}\neq x_k$ với $0<q\le q_k$. Vì có công thức hiệu $p_{k}q_{k-1} − p_{k-1}q_{k} = (−1)^{k-1}$, theo quy tắc Cramer, hệ phương trình tuyến tính
     
     $$
     \begin{cases}
@@ -773,196 +795,202 @@ $$
     \end{cases}
     $$
     
-    必然存在唯一的整数解 $(\lambda,\mu)$．如果 $\lambda\mu>0$，那么 $q>|\lambda|q_k\ge q_k$，矛盾．否则，$\lambda\mu\le 0$，即 $\lambda$ 和 $\mu$ 异号，那么因为 $q_{k-1}x-p_{k-1}$ 和 $q_kx-p_k$ 也异号，就有 $\lambda(q_{k-1}x-p_{k-1})$ 和 $\mu(q_kx-p_k)$ 同号，故而
+    chắc chắn có nghiệm nguyên duy nhất $(\lambda,\mu)$. Nếu $\lambda\mu>0$, thì $q>|\lambda|q_k\ge q_k$, mâu thuẫn. Ngược lại, $\lambda\mu\le 0$, tức $\lambda$ và $\mu$ trái dấu. Vì $q_{k-1}x-p_{k-1}$ và $q_kx-p_k$ cũng trái dấu, nên $\lambda(q_{k-1}x-p_{k-1})$ và $\mu(q_kx-p_k)$ cùng dấu, do đó
     
     $$
     |qx-p|=|\lambda||q_kx-p_k|+|\mu||q_{k-1}x-p_{k-1}|>|q_{k}x-p_{k}|.
     $$
     
-    最后的不等号是严格的，因为 $x_{k-1}$ 严格劣于 $x_k$，且 $\dfrac{p}{q}\neq x_k$．这就说明，$x_k$ 是第二类最佳逼近．
+    Bất đẳng thức cuối là nghiêm ngặt, vì $x_{k-1}$ nghiêm ngặt kém hơn $x_k$, và $\dfrac{p}{q}\neq x_k$. Điều này chứng minh $x_k$ là xấp xỉ tốt nhất loại hai.
 
-这个性质表明，渐近分数确实是相当好的丢番图逼近．
+Tính chất này cho thấy phân số tiệm cận thật sự là các xấp xỉ Diophantine rất tốt.
 
-### 渐近分数的判定
+<span id="&#x6E10;&#x8FD1;&#x5206;&#x6570;&#x7684;&#x5224;&#x5B9A;"></span>
 
-第二类最佳逼近提供了判断某个分数是否是渐近分数的充分必要条件．这说明，可以通过检查某个分数逼近的相对程度来判断它是否是渐近分数．Legendre 判别法则提供了根据逼近的绝对程度来判断渐近分数的方法．Legendre 判别法的原始表述提供了充分必要条件，但是它的形式并不实用．本节提供了 Legendre 判别法的简化版本，并说明它并没有漏掉太多的渐近分数．
+### Nhận biết phân số tiệm cận
 
-???+ note "定理（Legendre）"
-    对于实数 $x$ 与分数 $\dfrac{p}{q}$，如果有
+Xấp xỉ tốt nhất loại hai cung cấp điều kiện cần và đủ để xác định một phân số có phải là phân số tiệm cận hay không. Điều này cho thấy có thể kiểm tra mức độ xấp xỉ tương đối của một phân số để quyết định nó có phải là phân số tiệm cận hay không. Tiêu chuẩn Legendre cung cấp cách nhận biết phân số tiệm cận dựa trên mức độ xấp xỉ tuyệt đối. Phát biểu gốc của tiêu chuẩn Legendre cho điều kiện cần và đủ, nhưng dạng của nó không thực dụng. Phần này đưa ra phiên bản giản lược của tiêu chuẩn Legendre, đồng thời chỉ ra rằng nó không bỏ sót quá nhiều phân số tiệm cận.
+
+???+ note "Định lý (Legendre)"
+    Với số thực $x$ và phân số $\dfrac{p}{q}$, nếu
     
     $$
     \left|x−\dfrac{p}{q}\right|<\dfrac{1}{2q^2}
     $$
     
-    那么 $\dfrac{p}{q}$ 一定是 $x$ 的渐近分数．
+    thì $\dfrac{p}{q}$ chắc chắn là phân số tiệm cận của $x$.
 
-??? note "证明"
-    设 $\epsilon\in\{-1,1\}$ 和 $\theta\in(0,1/2)$ 是使得
+??? note "Chứng minh"
+    Gọi $\epsilon\in\{-1,1\}$ và $\theta\in(0,1/2)$ là các hằng số sao cho
     
     $$
     x−\dfrac{p}{q} = \dfrac{\epsilon\theta}{q^2}
     $$
     
-    成立的常数．将有理数 $\dfrac{p}{q}$ 展开成连分数 $[a_0,a_1,\cdots,a_n]$．此处，有理数有两种连分数表示，其中的 $n$ 恰好相差一，所以可以取连分数表示使得 $(-1)^n=\epsilon$，并记这个连分数表示的渐近分数为 $\dfrac{p_k}{q_k}$．设实数 $\omega$ 满足
+    đúng. Khai triển số hữu tỉ $\dfrac{p}{q}$ thành liên phân số $[a_0,a_1,\cdots,a_n]$. Ở đây, số hữu tỉ có hai biểu diễn liên phân số, trong đó $n$ chênh nhau đúng một; vì vậy có thể chọn biểu diễn liên phân số sao cho $(-1)^n=\epsilon$, và ký hiệu các phân số tiệm cận của biểu diễn này là $\dfrac{p_k}{q_k}$. Giả sử số thực $\omega$ thỏa mãn
     
     $$
     x = \dfrac{\omega p_n+p_{n-1}}{\omega q_n+q_{n-1}}.
     $$
     
-    那么，必然有
+    Khi đó, chắc chắn
     
     $$
     \dfrac{\epsilon\theta}{q^2} = x−\dfrac{p}{q} = x-\dfrac{p_n}{q_n} = \dfrac{p_{n-1}q_n-p_nq_{n-1}}{(\omega q_n+q_{n-1})q_n} = \dfrac{(-1)^n}{(\omega q_n+q_{n-1})q_n}.
     $$
     
-    故而，有
+    Do đó,
     
     $$
     \theta = \dfrac{q_n}{\omega q_n+q_{n-1}}.
     $$
     
-    这说明
+    Điều này cho thấy
     
     $$
     \omega=\dfrac{1}{\theta}-\dfrac{q_{n-1}}{q_n}>1.
     $$
     
-    将 $\omega$ 也展成连分数 $[b_0,b_1,\cdots]$，则
+    Khai triển cả $\omega$ thành liên phân số $[b_0,b_1,\cdots]$, ta có
     
     $$
     x = \dfrac{\omega p_n+p_{n-1}}{\omega q_n+q_{n-1}} = [a_0,a_1,\cdots,a_n,\omega] = [a_0,a_1,\cdots,a_n,b_0,b_1,\cdots].
     $$
     
-    这是合法的简单连分数，所以 $\dfrac{p}{q}$ 就是 $x$ 的渐近分数．
+    Đây là một liên phân số đơn giản hợp lệ, nên $\dfrac{p}{q}$ chính là phân số tiệm cận của $x$.
     
-    这个证明实际说明 $\dfrac{p}{q}$ 成为渐近分数的充分必要条件是上述证明中的 $\omega>1$，这正是 Legendre 判别法的原始形式．
+    Chứng minh này thật ra cho thấy điều kiện cần và đủ để $\dfrac{p}{q}$ là phân số tiệm cận chính là $\omega>1$ trong chứng minh trên; đó là dạng gốc của tiêu chuẩn Legendre.
 
-这个判别法说明，只要逼近的程度足够好，就一定是渐近分数．下一个定理说明，这样好的渐近分数足够多：至少有一半的渐近分数都符合这个条件．
+Tiêu chuẩn này cho thấy chỉ cần mức xấp xỉ đủ tốt thì phân số đó chắc chắn là phân số tiệm cận. Định lý tiếp theo cho thấy có đủ nhiều phân số tiệm cận tốt như vậy: ít nhất một nửa các phân số tiệm cận thỏa mãn điều kiện này.
 
-???+ note "定理（Valhen）"
-    实数 $x$ 的相邻两个渐近分数中至少有一个满足
+???+ note "Định lý (Valhen)"
+    Trong hai phân số tiệm cận kề nhau của số thực $x$, ít nhất một phân số thỏa mãn
     
     $$
     \left|x−\dfrac{p}{q}\right|<\dfrac{1}{2q^2}.
     $$
 
-??? note "证明"
-    假设不然．存在实数 $x$ 有两个相邻的渐近分数 $x_{k-1}$ 和 $x_k$ 满足
+??? note "Chứng minh"
+    Giả sử ngược lại. Tồn tại số thực $x$ có hai phân số tiệm cận kề nhau $x_{k-1}$ và $x_k$ thỏa mãn
     
     $$
     \left|x-\dfrac{p_k}{q_k}\right|\ge \dfrac{1}{2q_{k}^2},\ \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right|\ge \dfrac{1}{2q_{k+1}^2}.
     $$
     
-    因为 $x$ 位于 $x_{k-1}$ 和 $x_k$ 之间，所以
+    Vì $x$ nằm giữa $x_{k-1}$ và $x_k$, nên
     
     $$
     \dfrac{1}{2q_{k}^2} + \dfrac{1}{2q_{k+1}^2} \le \left|x-\dfrac{p_k}{q_k}\right| + \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right| = \left|\dfrac{p_k}{q_k}-\dfrac{p_{k+1}}{q_{k+1}}\right| = \dfrac{1}{q_kq_{k+1}}.
     $$
     
-    这说明 $q_k=q_{k+1}$．故而必然有 $k=0$ 且 $a_1=1$．此时前两个渐近分数是 $x_0=a_0$ 和 $x_1=a_0+1$．故而命题的唯一反例是半奇数，按照前文的说明，本文不考虑这种情形．
+    Điều này cho thấy $q_k=q_{k+1}$. Vì vậy chắc chắn $k=0$ và $a_1=1$. Khi đó hai phân số tiệm cận đầu là $x_0=a_0$ và $x_1=a_0+1$. Do đó phản ví dụ duy nhất của mệnh đề là nửa số lẻ; như đã nói ở trên, bài viết này không xét trường hợp đó.
 
-## 几何解释
+<span id="&#x51E0;&#x4F55;&#x89E3;&#x91CA;"></span>
 
-连分数理论有着优美的几何解释．
+## Diễn giải hình học
+
+Lý thuyết liên phân số có một diễn giải hình học đẹp.
 
 ![](./images/continued-convergents-geometry.svg)
 
-如图所示，对于实数 $\xi>0$，直线 $y=\xi x$ 将第一象限（包括 $x$ 和 $y$ 坐标轴上的点但不包括原点，下同）上的整点（lattice point）分成上下两部分．对于有理数 $\xi$ 的情形，直线 $y=\xi x$ 上的点既算作直线上方的点，又算作直线下方的点．考虑这两部分的点的凸包．那么，奇数项渐近分数是上半部分的凸包的顶点，偶数项渐近分数是下半部分的凸包的顶点．凸包上两个相邻顶点之间的连线上的整点就是中间分数．图中展示了 $\xi=\dfrac{9}{7}$ 的渐近分数和中间分数（灰点）．
+Như hình vẽ, với số thực $\xi>0$, đường thẳng $y=\xi x$ chia các điểm nguyên (lattice point) trong góc phần tư thứ nhất (bao gồm các điểm trên trục tọa độ $x$ và $y$ nhưng không bao gồm gốc tọa độ; dưới đây cũng hiểu như vậy) thành hai phần trên và dưới. Với trường hợp $\xi$ hữu tỉ, các điểm nằm trên đường thẳng $y=\xi x$ được tính vừa là điểm phía trên vừa là điểm phía dưới đường thẳng. Xét bao lồi của hai phần điểm này. Khi đó, các phân số tiệm cận chỉ số lẻ là các đỉnh của bao lồi phần trên, còn các phân số tiệm cận chỉ số chẵn là các đỉnh của bao lồi phần dưới. Các điểm nguyên trên đoạn nối giữa hai đỉnh kề nhau của bao lồi chính là các phân số trung gian. Hình vẽ minh họa các phân số tiệm cận và phân số trung gian (điểm xám) của $\xi=\dfrac{9}{7}$.
 
-前文关于连分数的大部分结论都有相应的几何解释：
+Phần lớn các kết luận ở trên về liên phân số đều có diễn giải hình học tương ứng:
 
-??? note "几何解释"
-    -   每个分数 $\nu=\dfrac{p}{q}$ 都对应着第一象限内的一个整点 $\vec\nu=(q,p)$，分数的大小对应着与原点连线的斜率．
-    -   直线 $y=\xi x$ 的方向向量是 $\vec\xi=(1,\xi)$．利用 [叉积](../linear-algebra/product.md#二维向量的情形) $(x_1,y_1)\times(x_2,y_2)=x_1y_2-x_2y_1$ 的概念，可以通过 $\vec\xi\times\vec\nu=p-q\xi$ 的正负判断点在直线上方还是下方．因而，在直线上方的点就对应着大于等于 $\xi$ 的分数，在直线下方的点就对应着小于等于 $\xi$ 的分数．叉积的绝对值 $|\vec\xi\times\vec\nu|$ 正比于点 $\vec\nu$ 与直线 $y=\xi x$ 的距离
+??? note "Diễn giải hình học"
+    -   Mỗi phân số $\nu=\dfrac{p}{q}$ tương ứng với một điểm nguyên $\vec\nu=(q,p)$ trong góc phần tư thứ nhất; độ lớn của phân số tương ứng với hệ số góc của đường nối điểm đó với gốc tọa độ.
+    -   Véc-tơ chỉ phương của đường thẳng $y=\xi x$ là $\vec\xi=(1,\xi)$. Dùng khái niệm [tích có hướng](../linear-algebra/product.md#%E4%BA%8C%E7%BB%B4%E5%90%91%E9%87%8F%E7%9A%84%E6%83%85%E5%BD%A2) $(x_1,y_1)\times(x_2,y_2)=x_1y_2-x_2y_1$, có thể xét dấu của $\vec\xi\times\vec\nu=p-q\xi$ để xác định điểm nằm phía trên hay phía dưới đường thẳng. Vì vậy, điểm phía trên đường thẳng tương ứng với phân số lớn hơn hoặc bằng $\xi$, còn điểm phía dưới đường thẳng tương ứng với phân số nhỏ hơn hoặc bằng $\xi$. Giá trị tuyệt đối của tích có hướng $|\vec\xi\times\vec\nu|$ tỉ lệ với khoảng cách từ điểm $\vec\nu$ tới đường thẳng $y=\xi x$:
     
         $$
         \dfrac{|p-qx|}{\sqrt{1+\xi^2}},
         $$
     
-        对应着分数 $\nu$ 对实数 $\xi$ 的逼近程度．
-    -   将渐近分数 $\xi_k=\dfrac{p_k}{q_k}$ 对应的点记作 $\vec\xi_k=(p_k,q_k)$，则递推公式就可以写作
+        và tương ứng với mức độ xấp xỉ số thực $\xi$ của phân số $\nu$.
+    -   Gọi điểm tương ứng với phân số tiệm cận $\xi_k=\dfrac{p_k}{q_k}$ là $\vec\xi_k=(p_k,q_k)$, khi đó công thức truy hồi có thể viết thành
     
         $$
         \vec\xi_k = a_k\vec\xi_{k-1} + \vec\xi_{k-2}.
         $$
     
-        递归的起点是 $\xi_{-2} = (1,0)$ 和 $\xi_{-1} = (0,1)$．
-    -   对于整数 $t$，如果 $0\le t\le a_k$，那么点
+        Điểm bắt đầu của đệ quy là $\xi_{-2} = (1,0)$ và $\xi_{-1} = (0,1)$.
+    -   Với số nguyên $t$, nếu $0\le t\le a_k$, thì điểm
     
         $$
         \vec\xi_{k-1,t} = t\vec\xi_{k-1} + \vec\xi_{k-2}
         $$
     
-        就落在连结点 $\vec\xi_{k-2}$ 和点 $\vec\xi_k$ 的线段上．它们对应着中间分数 $\xi_{k-1,t}$．
-    -   利用几何的方法可以构造出所有的渐近分数和中间分数．从点 $\vec\xi_{-2}=(1,0)$ 和点 $\vec\xi_{-1}=(0,1)$ 开始，两个点位于直线 $y=\xi x$ 两侧，这意味着 $\vec\xi\times\vec\xi_{-2}$ 和 $\vec\xi\times\vec\xi_{-1}$ 符号相反．将 $\vec\xi_{-1}$ 按照向量的加法添加到 $\vec\xi_{-2}$ 上，直到无法继续添加而不穿过直线 $y=\xi x$ 为止，将结果记作 $\vec\xi_0$，此时仍与 $\vec\xi_{-1}$ 不同侧．再将 $\vec\xi_0$ 添加到 $\vec\xi_{-1}$ 上，直到无法继续添加而不穿过直线 $y=\xi x$ 为止，将结果记作 $\vec\xi_1$，此时仍与 $\vec\xi_0$ 不同侧．这个过程可以一直持续到无穷，除非在有限步内某个 $\vec\xi_n$ 就恰好落在直线 $y=\xi x$ 上．后者意味着向量 $\vec\xi$ 与 $\vec\xi_n$ 共线，即 $\xi=\dfrac{p_n}{q_n}$ 为有理点．这个过程就可以得到前面示意图中的图形．Boris Delaunay 将这个过程形象地称为鼻子拉伸算法（nose-streching algorithm）[^nose-streching]．
-    -   如果需要快速计算每一步将 $\vec\xi_{k-1}$ 添加到 $\vec\xi_{k-2}$ 需要的次数，可以借助叉积．因为 $\vec\xi\times\vec\xi_{k-1}$ 与 $\vec\xi\times\vec\xi_{k-2}$ 符号相反，所以如果记 $\vec\xi_{k-1,t}=t\vec\xi_{k-1}+\vec\xi_{k-2}$ 为向 $\vec\xi_{k-2}$ 添加 $t$ 次 $\vec\xi_{k-1}$ 得到的结果，则 $\vec\xi\times\vec\xi_{k-1,t}=t(\vec\xi\times\vec\xi_{k-1})+(\vec\xi\times\vec\xi_{k-2})$ 不改变符号，就意味着没有穿过直线．在不变号之前，$\vec\xi\times\vec\xi_{k-1,t}$ 的绝对值会逐渐下降．记
+        nằm trên đoạn nối điểm $\vec\xi_{k-2}$ và điểm $\vec\xi_k$. Chúng tương ứng với các phân số trung gian $\xi_{k-1,t}$.
+    -   Có thể dùng phương pháp hình học để dựng tất cả phân số tiệm cận và phân số trung gian. Bắt đầu từ điểm $\vec\xi_{-2}=(1,0)$ và điểm $\vec\xi_{-1}=(0,1)$; hai điểm này nằm ở hai phía của đường thẳng $y=\xi x$, nghĩa là $\vec\xi\times\vec\xi_{-2}$ và $\vec\xi\times\vec\xi_{-1}$ trái dấu. Cộng $\vec\xi_{-1}$ vào $\vec\xi_{-2}$ theo phép cộng véc-tơ cho đến khi không thể cộng tiếp mà không vượt qua đường thẳng $y=\xi x$; ký hiệu kết quả là $\vec\xi_0$, lúc này nó vẫn khác phía với $\vec\xi_{-1}$. Sau đó cộng $\vec\xi_0$ vào $\vec\xi_{-1}$ cho đến khi không thể cộng tiếp mà không vượt qua đường thẳng $y=\xi x$; ký hiệu kết quả là $\vec\xi_1$, lúc này nó vẫn khác phía với $\vec\xi_0$. Quá trình này có thể tiếp tục vô hạn, trừ khi sau hữu hạn bước có một $\vec\xi_n$ nằm đúng trên đường thẳng $y=\xi x$. Trường hợp sau nghĩa là véc-tơ $\vec\xi$ cùng phương với $\vec\xi_n$, tức $\xi=\dfrac{p_n}{q_n}$ là điểm hữu tỉ. Quá trình này tạo ra hình minh họa ở trên. Boris Delaunay gọi một cách hình tượng quá trình này là thuật toán kéo dài mũi (nose-streching algorithm)[^nose-streching].
+    -   Nếu cần tính nhanh số lần phải cộng $\vec\xi_{k-1}$ vào $\vec\xi_{k-2}$ ở mỗi bước, có thể dùng tích có hướng. Vì $\vec\xi\times\vec\xi_{k-1}$ và $\vec\xi\times\vec\xi_{k-2}$ trái dấu, nếu ký hiệu $\vec\xi_{k-1,t}=t\vec\xi_{k-1}+\vec\xi_{k-2}$ là kết quả sau khi cộng $\vec\xi_{k-1}$ vào $\vec\xi_{k-2}$ đúng $t$ lần, thì việc $\vec\xi\times\vec\xi_{k-1,t}=t(\vec\xi\times\vec\xi_{k-1})+(\vec\xi\times\vec\xi_{k-2})$ không đổi dấu nghĩa là chưa vượt qua đường thẳng. Trước khi đổi dấu, giá trị tuyệt đối của $\vec\xi\times\vec\xi_{k-1,t}$ giảm dần. Ký hiệu
     
         $$
         r_{k} = \left|\dfrac{\vec\xi\times\vec\xi_{k-2}}{\vec\xi\times\vec\xi_{k-1}}\right| = -\dfrac{\vec\xi\times\vec\xi_{k-2}}{\vec\xi\times\vec\xi_{k-1}}.
         $$
     
-        那么，最大可以下降的次数就是
+        Khi đó, số lần tối đa có thể giảm là
     
         $$
         a_{k} = \lfloor r_{k}\rfloor = \left\lfloor\left|\dfrac{q_{k-1}\xi-p_{k-1}}{q_{k-2}\xi-p_{k-2}}\right|\right\rfloor.
         $$
     
-        这就是连分数展开的第 $k$ 项．而且，$r_k$ 就是连分数展开的余项，它满足关系式：
+        Đây chính là hạng thứ $k$ của khai triển liên phân số. Hơn nữa, $r_k$ là phần dư của khai triển liên phân số, và nó thỏa mãn hệ thức:
     
         $$
         r_k = -\dfrac{q_{k-1}\xi-p_{k-1}}{q_{k-2}\xi-p_{k-2}} \iff \xi = \dfrac{p_{k-1}r_k + p_{k-2}}{q_{k-1}r_k+q_{k-2}}.
         $$
     
-        这就是连分数关系式 $\xi = [a_0,a_1,\cdots,a_{k-1},r_k]$．
-    -   因为每次添加向量造成的 $\vec\xi\times\vec\xi_{k-1,t}$ 的变化的步长都是 $|\vec\xi\times\vec\xi_{k-1}|$，所以最后剩余的距离 $|\vec\xi\times\vec\xi_k|$ 必然严格小于 $|\vec\xi\times\vec\xi_{k-1}|$．这说明，渐近分数的逼近程度（由 $|qx-p|$ 衡量）是随着 $k$ 的增加严格更优的．
-    -   利用叉积的运算法则，有
+        Đây chính là hệ thức liên phân số $\xi = [a_0,a_1,\cdots,a_{k-1},r_k]$.
+    -   Vì mỗi lần cộng véc-tơ làm $\vec\xi\times\vec\xi_{k-1,t}$ thay đổi với bước đúng bằng $|\vec\xi\times\vec\xi_{k-1}|$, khoảng cách còn lại cuối cùng $|\vec\xi\times\vec\xi_k|$ chắc chắn nhỏ hơn nghiêm ngặt $|\vec\xi\times\vec\xi_{k-1}|$. Điều này cho thấy mức độ xấp xỉ của phân số tiệm cận (đo bằng $|qx-p|$) tốt lên nghiêm ngặt khi $k$ tăng.
+    -   Dùng quy tắc tính của tích có hướng, ta có
     
         $$
         \vec\xi_{k}\times\vec\xi_{k+1} = \vec\xi_{k}\times(a_{k+1}\vec\xi_k+\vec\xi_{k-1}) = \vec\xi_{k}\times\vec\xi_{k-1} = -\vec\xi_{k-1}\times\vec\xi_{k}.
         $$
     
-        归纳可知
+        Theo quy nạp,
     
         $$
         \vec\xi_{k}\times\vec\xi_{k+1} = (-1)^{k+2}\vec\xi_{k-2}\times\vec\xi_{k-1} = (-1)^{k}.
         $$
     
-        这就是渐近分数的差分公式 $p_{k+1}q_k-p_kq_{k+1}=(-1)^k$．
-    -   上下两个凸包之间的面积可以剖分成若干个（可能是无穷多个）三角形，其中每个三角形的顶点分别是 $\vec\xi_{k-2}$、$\vec\xi_k$ 和 $\vec 0$．这样的三角形的面积是
+        Đây chính là công thức hiệu của phân số tiệm cận $p_{k+1}q_k-p_kq_{k+1}=(-1)^k$.
+    -   Diện tích giữa hai bao lồi trên và dưới có thể được chia thành một số (có thể vô hạn) tam giác, trong đó mỗi tam giác có các đỉnh lần lượt là $\vec\xi_{k-2}$, $\vec\xi_k$ và $\vec 0$. Diện tích của tam giác như vậy là
     
         $$
         \dfrac12|\vec\xi_{k-2}\times\vec\xi_k| = \dfrac12|\vec\xi_{k-2}\times(a_k\vec\xi_{k-1}+\vec\xi_{k-2})| = \dfrac{a_k}{2}|\vec\xi_{k-2}\times\vec\xi_{k-1}| = \dfrac{a_k}{2}.
         $$
     
-        根据 [Pick 定理](../../geometry/pick.md)，这意味着如果设 $I$ 和 $B$ 分别为三角形内部和边界上的整点个数，则
+        Theo [định lý Pick](../../geometry/pick.md), điều này nghĩa là nếu gọi $I$ và $B$ lần lượt là số điểm nguyên bên trong và trên biên của tam giác, thì
     
         $$
         I + \dfrac{B}{2} - 1 = \dfrac{a_k}{2}.
         $$
     
-        又已知三角形边界上已经有了 $\{\vec 0\}\cup\{\vec\xi_{k-1,t}:0\le t\le a_k\}$ 这共计 $a_k+2$ 个整点．这说明，就一定有 $I=0$ 和 $B=a_k+2$．因而，三角形的边上没有更多的整点，三角形内部也没有整点．也就是说，$q_k$ 和 $p_k$ 是既约的，中间分数是连结 $\vec\xi_{k-2}$ 和 $\vec\xi_k$ 的边上的全部整点，且第一象限的所有整点都在上下两个凸包内．
+        Mặt khác, trên biên tam giác đã có tổng cộng $a_k+2$ điểm nguyên là $\{\vec 0\}\cup\{\vec\xi_{k-1,t}:0\le t\le a_k\}$. Điều này cho thấy chắc chắn $I=0$ và $B=a_k+2$. Vì vậy, trên các cạnh của tam giác không còn điểm nguyên nào khác, và bên trong tam giác cũng không có điểm nguyên. Nói cách khác, $q_k$ và $p_k$ nguyên tố cùng nhau, các phân số trung gian là toàn bộ điểm nguyên trên cạnh nối $\vec\xi_{k-2}$ và $\vec\xi_k$, và tất cả điểm nguyên trong góc phần tư thứ nhất đều nằm trong hai bao lồi trên và dưới.
 
-这样得到的上下两个凸包称为 Klein 多边形．在高维空间内也可以做类似定义，得到 [Klein 多面体](https://en.wikipedia.org/wiki/Klein_polyhedron)（Klein polyhedron），它可以将连分数的概念推广到高维空间内．
+Hai bao lồi trên và dưới thu được như vậy được gọi là đa giác Klein. Trong không gian chiều cao hơn cũng có thể định nghĩa tương tự để thu được [đa diện Klein](https://en.wikipedia.org/wiki/Klein_polyhedron) (Klein polyhedron), qua đó mở rộng khái niệm liên phân số lên không gian nhiều chiều.
 
-## 连分数的树
+<span id="&#x8FDE;&#x5206;&#x6570;&#x7684;&#x6811;"></span>
 
-主条目：[Stern–Brocot 树与 Farey 序列](./stern-brocot.md)
+## Cây của liên phân số
 
-Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二叉搜索树](../../ds/bst.md)．有限连分数实际上编码了 Stern–Brocot 树上从根到某个分数所在位置的路径．也就是说，有理数 $x$ 的连分数表示 $[a_0,a_1,\cdots,a_{n-1},1]$ 意味着从树根 $\dfrac{1}{1}$ 开始，需要先向右子节点移动 $a_0$ 次，再向左子节点移动 $a_1$ 次，交替方向移动，直到向某个方向移动了 $a_{n-1}$ 次为止．应当注意，此处只能使用末尾为 $1$ 的连分数表示．
+Bài chính: [Cây Stern-Brocot và dãy Farey](./stern-brocot.md)
 
-将连分数表示理解为 Stern–Brocot 树上的路径，可以得到比较连分数大小的算法．
+Cây Stern-Brocot là một [cây tìm kiếm nhị phân](../../ds/bst.md) lưu tất cả các phân số nằm trong $[0,\infty]$. Liên phân số hữu hạn thực chất mã hóa đường đi trên cây Stern-Brocot từ gốc tới vị trí của một phân số. Nói cách khác, biểu diễn liên phân số $[a_0,a_1,\cdots,a_{n-1},1]$ của số hữu tỉ $x$ nghĩa là bắt đầu từ gốc cây $\dfrac{1}{1}$, trước hết đi sang con phải $a_0$ lần, rồi sang con trái $a_1$ lần, luân phiên hướng đi như vậy cho tới khi đã đi $a_{n-1}$ lần theo một hướng nào đó. Cần chú ý rằng ở đây chỉ được dùng biểu diễn liên phân số kết thúc bằng $1$.
 
-???+ example "连分数大小比较"
-    给定连分数 $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$ 和 $\beta=[\beta_0,\beta_1,\cdots,\beta_m]$，比较两者大小．
+Hiểu biểu diễn liên phân số như đường đi trên cây Stern-Brocot sẽ cho thuật toán so sánh độ lớn của hai liên phân số.
 
-??? note "解答"
-    首先将两个连分数表示都转化成末尾是 $1$ 的形式．不妨设题目所给的已经是这样形式的连分数，即 $\alpha_n=\beta_m=1$．因为偶数位置（下标从 $0$ 开始）是向右移动的步数，奇数位置是向左移动的步数，所以，$\alpha<\beta$ 当且仅当按照 [字典序](../../string/basic.md#字典序) 比较时，有
+???+ example "So sánh độ lớn liên phân số"
+    Cho hai liên phân số $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$ và $\beta=[\beta_0,\beta_1,\cdots,\beta_m]$, hãy so sánh độ lớn của chúng.
+
+??? note "Lời giải"
+    Trước hết, chuyển cả hai biểu diễn liên phân số về dạng kết thúc bằng $1$. Không mất tính tổng quát, giả sử liên phân số đề bài cho đã ở dạng này, tức $\alpha_n=\beta_m=1$. Vì các vị trí chẵn (đánh số từ $0$) là số bước đi sang phải, còn các vị trí lẻ là số bước đi sang trái, nên $\alpha<\beta$ khi và chỉ khi theo so sánh [thứ tự từ điển](../../string/basic.md#%E5%AD%97%E5%85%B8%E5%BA%8F), ta có
     
     $$
     (\alpha_0,-\alpha_1,\alpha_2,\cdots,(-1)^{n-1}\alpha_{n-1},0,\cdots)<(\beta_0,-\beta_1,\beta_2,\cdots,(-1)^{m-1}\beta_{m-1},0,\cdots).
     $$
     
-    相较于连分数表示，交替地添加正负号，删去末尾的 $1$，并且长度不足的位置用 $0$ 补齐．
+    So với biểu diễn liên phân số, ta luân phiên thêm dấu dương âm, bỏ hạng $1$ cuối cùng, và điền $0$ vào các vị trí thiếu độ dài.
     
     === "C++"
         ```cpp
@@ -974,13 +1002,13 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
         --8<-- "docs/math/code/continued-fraction/compare.py:core"
         ```
 
-???+ example "最佳内点"
-    对于 $\dfrac{0}{1}\le\dfrac{p_0}{q_0}<\dfrac{p_1}{q_1}\le\dfrac{1}{0}$，求使得 $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$ 成立且 $(q,p)$ 最小的有理数 $\dfrac{p}{q}$．
+???+ example "Điểm trong tốt nhất"
+    Với $\dfrac{0}{1}\le\dfrac{p_0}{q_0}<\dfrac{p_1}{q_1}\le\dfrac{1}{0}$, tìm số hữu tỉ $\dfrac{p}{q}$ sao cho $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$ và $(q,p)$ nhỏ nhất.
 
-??? note "解答"
-    因为 Stern–Brocot 树既是 $[0,\infty]$ 中的分数的二叉搜索树，又是二元组 $(q,p)$ 的 [笛卡尔树](../../ds/cartesian-tree.md)，所以题意几乎可以转化为求 Stern–Brocot 树上两个点的 LCA（最近公共祖先）．但是，LCA 只能处理闭区间内的情形，LCA 可能是端点本身．为了避免额外的讨论，可以首先构造出 $\dfrac{p_0}{q_0}+\varepsilon$ 和 $\dfrac{p_1}{q_1}-\varepsilon$，再计算 LCA．在已经通过连分数计算出根到节点的路径的情况下，LCA 只要取最长的公共路径即可．
+??? note "Lời giải"
+    Vì cây Stern-Brocot vừa là cây tìm kiếm nhị phân của các phân số trong $[0,\infty]$, vừa là [cây Descartes](../../ds/cartesian-tree.md) của cặp $(q,p)$, nên ý bài gần như chuyển thành tìm LCA (tổ tiên chung gần nhất) của hai điểm trên cây Stern-Brocot. Tuy nhiên, LCA chỉ xử lý được trường hợp khoảng đóng, và LCA có thể chính là một đầu mút. Để tránh thảo luận phụ, trước hết có thể dựng $\dfrac{p_0}{q_0}+\varepsilon$ và $\dfrac{p_1}{q_1}-\varepsilon$, rồi tính LCA. Khi đã dùng liên phân số để tính đường đi từ gốc tới nút, LCA chỉ cần lấy đường đi chung dài nhất.
     
-    要构造出 $x\pm\varepsilon$，只需要在节点 $x$ 处首先向右（左）移动一次，再向左（右）移动 $\infty$ 次即可．转化成连分数的语言，对于分数 $x=[a_0,a_1,\cdots,a_{n-1},1]$，可以知道 $x\pm\varepsilon$ 必然是 $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ 和 $[a_0,a_1,\cdots,a_{n-1},1,\infty]$，因而只需要比较这两个连分数，将较大（小）的定义为 $x\pm\varepsilon$．
+    Để dựng $x\pm\varepsilon$, tại nút $x$ chỉ cần trước hết đi sang phải (trái) một lần, rồi đi sang trái (phải) $\infty$ lần. Chuyển sang ngôn ngữ liên phân số, với phân số $x=[a_0,a_1,\cdots,a_{n-1},1]$, ta biết $x\pm\varepsilon$ chắc chắn là $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ và $[a_0,a_1,\cdots,a_{n-1},1,\infty]$; vì vậy chỉ cần so sánh hai liên phân số này, rồi định nghĩa liên phân số lớn hơn (nhỏ hơn) là $x\pm\varepsilon$.
     
     === "C++"
         ```cpp
@@ -993,17 +1021,17 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
         ```
 
 ???+ example "[GCJ 2019, Round 2 - New Elements: Part 2](https://github.com/google/coding-competitions-archive/blob/main/codejam/2019/round_2/new_elements_part_2/statement.pdf)"
-    给定 $N$ 个正整数对 $(C_i,J_i)$，求正整数对 $(x,y)$ 使得 $\{C_ix+J_iy\}$ 严格递增．在所有符合要求的数对中，输出字典序最小的一对．
+    Cho $N$ cặp số nguyên dương $(C_i,J_i)$, tìm cặp số nguyên dương $(x,y)$ sao cho $\{C_ix+J_iy\}$ tăng nghiêm ngặt. Trong tất cả các cặp thỏa mãn, xuất cặp nhỏ nhất theo thứ tự từ điển.
 
-??? note "解答"
-    不妨设 $A_i=C_i-C_{i-1}$ 和 $B_i=J_i-J_{i-1}$．问题转化为求 $(x,y)$ 使得所有 $A_ix+B_iy$ 都是整数．这些数对可以分为四种情形：
+??? note "Lời giải"
+    Đặt $A_i=C_i-C_{i-1}$ và $B_i=J_i-J_{i-1}$. Bài toán chuyển thành tìm $(x,y)$ sao cho tất cả $A_ix+B_iy$ đều là số nguyên. Các cặp này có thể chia thành bốn trường hợp:
     
-    1.  $A_i,B_i>0$ 的情形可以忽略，因为已经假设 $(x,y)>0$；
-    2.  $A_i,B_i\le 0$ 的情形直接输出「IMPOSSIBLE」；
-    3.  $A_i>0,B_i\le 0$ 的情形相当于约束 $\dfrac{y}{x}<\dfrac{A_i}{-B_i}$；
-    4.  $A_i\le 0,B_i>0$ 的情形相当于约束 $\dfrac{y}{x}>\dfrac{-A_i}{B_i}$．
+    1.  Trường hợp $A_i,B_i>0$ có thể bỏ qua, vì đã giả sử $(x,y)>0$;
+    2.  Trường hợp $A_i,B_i\le 0$ thì xuất trực tiếp "IMPOSSIBLE";
+    3.  Trường hợp $A_i>0,B_i\le 0$ tương đương với ràng buộc $\dfrac{y}{x}<\dfrac{A_i}{-B_i}$;
+    4.  Trường hợp $A_i\le 0,B_i>0$ tương đương với ràng buộc $\dfrac{y}{x}>\dfrac{-A_i}{B_i}$.
     
-    因此，取 $\dfrac{p_0}{q_0}$ 是第四种情形中最大的 $\dfrac{-A_i}{B_i}$，再取 $\dfrac{p_1}{q_1}$ 是第三种情形中最小的 $\dfrac{A_i}{-B_i}$．原问题就变成了找到字典序最小的 $(q,p)$ 使得 $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$ 成立．
+    Vì vậy, lấy $\dfrac{p_0}{q_0}$ là giá trị lớn nhất của $\dfrac{-A_i}{B_i}$ trong trường hợp thứ tư, rồi lấy $\dfrac{p_1}{q_1}$ là giá trị nhỏ nhất của $\dfrac{A_i}{-B_i}$ trong trường hợp thứ ba. Bài toán ban đầu trở thành tìm $(q,p)$ nhỏ nhất theo thứ tự từ điển sao cho $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$.
     
     === "C++"
         ```cpp
@@ -1015,44 +1043,46 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
         --8<-- "docs/math/code/continued-fraction/gcj-2019.py:core"
         ```
 
-想要了解更多 Stern–Brocot 树的性质和应用，可以参考其主条目页面．
+Để tìm hiểu thêm về các tính chất và ứng dụng của cây Stern-Brocot, có thể tham khảo trang bài chính của nó.
 
-## 分式线性变换
+<span id="&#x5206;&#x5F0F;&#x7EBF;&#x6027;&#x53D8;&#x6362;"></span>
 
-和连分数相关的另一个重要概念是所谓的分式线性变换．
+## Biến đổi tuyến tính phân thức
 
-???+ abstract "分式线性变换"
-    **分式线性变换**（fractional linear transformation）是指函数 $L:\mathbf R\rightarrow\mathbf R$，使得
+Một khái niệm quan trọng khác liên quan tới liên phân số là biến đổi tuyến tính phân thức.
+
+???+ abstract "Biến đổi tuyến tính phân thức"
+    **Biến đổi tuyến tính phân thức** (fractional linear transformation) là hàm $L:\mathbf R\rightarrow\mathbf R$ sao cho
     
     $$
     L(x) = \dfrac{ax+b}{cx+d},
     $$
     
-    其中，$a,b,c,d\in\mathbf R$ 且 $ad-bc\neq 0$．
+    trong đó $a,b,c,d\in\mathbf R$ và $ad-bc\neq 0$.
 
-???+ info "关于条件 $ad-bc\neq 0$"
-    容易验证，当 $ad-bc=0$ 时，函数可能没有定义或者是常函数．
+???+ info "Về điều kiện $ad-bc\neq 0$"
+    Dễ kiểm tra rằng khi $ad-bc=0$, hàm có thể không xác định hoặc là hàm hằng.
 
-分式线性变换有如下性质：
+Biến đổi tuyến tính phân thức có các tính chất sau:
 
-???+ note "分式线性变换的性质"
-    设 $L_1,L_2,L_3$ 是分式线性变换，并记 $L_i$ 的系数形成的矩阵为
+???+ note "Tính chất của biến đổi tuyến tính phân thức"
+    Giả sử $L_1,L_2,L_3$ là các biến đổi tuyến tính phân thức, và ký hiệu ma trận tạo bởi các hệ số của $L_i$ là
     
     $$
     M_i=\begin{pmatrix}a_i & b_i \\ c_i & d_i\end{pmatrix}
     $$
     
-    则它们有如下性质：[^pgl2]
+    Khi đó chúng có các tính chất sau:[^pgl2]
     
-    1.  分式线性变换的复合 $L_1\circ L_2$ 和逆变换 $L_1^{-1}$ 仍然是分式线性变换，即全体分式线性变换构成 [群](../algebra/basic.md#群)；
-    2.  分式线性变换在系数同乘以非零常数后保持不变，即对于任意 $\lambda\neq 0$，如果 $M_2=\lambda M_1$，则 $L_2=L_1$；
-    3.  分式线性变换的复合的系数矩阵，对应着系数矩阵的乘积，即如果 $M_1M_2=M_3$，则 $L_1\circ L_2=L_3$；
-    4.  分式线性变换的逆变换的系数矩阵，对应着系数矩阵的逆矩阵，即如果 $M_1^{-1}=M_2$，则 $L_1^{-1}=L_2$．
+    1.  Hợp thành $L_1\circ L_2$ và biến đổi ngược $L_1^{-1}$ của biến đổi tuyến tính phân thức vẫn là biến đổi tuyến tính phân thức, tức toàn bộ các biến đổi tuyến tính phân thức tạo thành một [nhóm](../algebra/basic.md#%E7%BE%A4);
+    2.  Biến đổi tuyến tính phân thức không đổi khi các hệ số cùng nhân với một hằng số khác không, tức với mọi $\lambda\neq 0$, nếu $M_2=\lambda M_1$ thì $L_2=L_1$;
+    3.  Ma trận hệ số của hợp thành các biến đổi tuyến tính phân thức tương ứng với tích của các ma trận hệ số, tức nếu $M_1M_2=M_3$ thì $L_1\circ L_2=L_3$;
+    4.  Ma trận hệ số của biến đổi ngược tương ứng với ma trận nghịch đảo của ma trận hệ số, tức nếu $M_1^{-1}=M_2$ thì $L_1^{-1}=L_2$.
 
-??? note "证明"
-    此处仅提供分式线性变换的复合和逆变换的形式．得到这个形式后，所有性质都是容易验证的．
+??? note "Chứng minh"
+    Ở đây chỉ đưa ra dạng của hợp thành và biến đổi ngược của biến đổi tuyến tính phân thức. Sau khi có dạng này, mọi tính chất đều dễ kiểm tra.
     
-    分式线性变换 $L_1$ 和 $L_2$ 的复合：
+    Hợp thành của hai biến đổi tuyến tính phân thức $L_1$ và $L_2$:
     
     $$
     \begin{aligned}
@@ -1060,59 +1090,59 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
     \end{aligned}
     $$
     
-    分式线性变换 $L_1(x)$ 的逆变换：
+    Biến đổi ngược của biến đổi tuyến tính phân thức $L_1(x)$:
     
     $$
     y = L_1(x) = \dfrac{a_1x+b_1}{c_1x+d_1} \iff x = L_1^{-1}(y) = \dfrac{d_1y - b_1}{-c_1y + a_1}.
     $$
 
-有限连分数 $[a_0,a_1,\cdots,a_n]$ 可以看做是一系列分式线性变换复合的结果．设
+Liên phân số hữu hạn $[a_0,a_1,\cdots,a_n]$ có thể xem là kết quả hợp thành của một dãy biến đổi tuyến tính phân thức. Đặt
 
 $$
 L_i(x) = \dfrac{a_ix+1}{x} = [a_i,x]. 
 $$
 
-那么，有限连分数
+Khi đó liên phân số hữu hạn
 
 $$
 [a_0,a_1,\cdots,a_n] = L_0\circ L_1\circ \cdots L_n(\infty).
 $$
 
-其中，分式线性变换 $L(x)=\dfrac{ax+b}{cx+d}$ 变换在 $x=\infty$ 处的取值是 $\dfrac{a}{c}$，这是函数在 $x\rightarrow\pm\infty$ 时的极限值．
+Trong đó, giá trị của biến đổi tuyến tính phân thức $L(x)=\dfrac{ax+b}{cx+d}$ tại $x=\infty$ là $\dfrac{a}{c}$, tức giới hạn của hàm khi $x\rightarrow\pm\infty$.
 
-对于一般的连分数，设实数 $x$ 的余项为 $r_{k+1}$，即 $x=[a_0,\cdots,a_k,r_{k+1}]$，则有
+Với liên phân số tổng quát, giả sử phần dư của số thực $x$ là $r_{k+1}$, tức $x=[a_0,\cdots,a_k,r_{k+1}]$, ta có
 
 $$
 x = L_0\circ L_1\circ \cdots L_k(r_{k+1}) = \dfrac{p_kr_{k+1}+p_{k-1}}{q_kr_{k+1}+q_{k-1}}.
 $$
 
-这同时也给出了分式线性变换 $L_0\circ L_1\circ\cdots\circ L_k$ 的形式．
+Điều này đồng thời cho dạng của biến đổi tuyến tính phân thức $L_0\circ L_1\circ\cdots\circ L_k$.
 
-当然也可以直接验证这个表达式．最开始的时候是
+Dĩ nhiên, biểu thức này cũng có thể được kiểm tra trực tiếp. Ban đầu,
 
 $$
 x=\dfrac{x+0}{0x+1}=\dfrac{p_{-1}x+p_{-2}}{q_{-1}x+q_{-2}}.
 $$
 
-随后，如果 $L_0\circ L_1\circ\cdots\circ L_{k-1}$ 具有
+Sau đó, nếu $L_0\circ L_1\circ\cdots\circ L_{k-1}$ có dạng
 
 $$
 \dfrac{p_{k-1}x+p_{k-2}}{q_{k-1}x+q_{k-2}}
 $$
 
-的形式，那么根据分式线性变换的复合公式，有
+thì theo công thức hợp thành của biến đổi tuyến tính phân thức, ta có
 
 $$
 L_0\circ L_1\circ\cdots\circ L_{k-1}\circ L_k = \dfrac{(p_{k-1}a_k+p_{k-2})x+p_{k-1}}{(q_{k-1}a_k+q_{k-2})x+q_{k-1}} = \dfrac{p_kx+p_{k-1}}{q_kx+q_{k-1}}.
 $$
 
-这就可以归纳地得到了上述形式．分式线性变换也提供了递推公式和初值条件的另一个角度的理解．
+Từ đó có thể thu được dạng trên bằng quy nạp. Biến đổi tuyến tính phân thức cũng cung cấp một góc nhìn khác về công thức truy hồi và điều kiện đầu.
 
 ???+ example "[DMOPC '19 Contest 7 P4 - Bob and Continued Fractions](https://dmoj.ca/problem/dmopc19c7p4)"
-    给定正整数数组 $a_1,\cdots,a_n$ 和 $m$ 组查询，每次查询给定 $l\le r$，并要求计算 $[a_l,\cdots,a_r]$ 的值．
+    Cho mảng số nguyên dương $a_1,\cdots,a_n$ và $m$ truy vấn. Mỗi truy vấn cho $l\le r$ và yêu cầu tính giá trị $[a_l,\cdots,a_r]$.
 
-??? note "解答"
-    将连分数理解为一列分式线性变换的复合在 $x=\infty$ 处取值的结果，只需要能够多次查询一段分式线性变换的复合即可．因为每个分式线性变换都可以取逆，所以可以预处理前缀和再用差分的方法查询，复杂度为 $O(n+m)$ 的；如果需要修改，也可以用线段树等结构存储．
+??? note "Lời giải"
+    Hiểu liên phân số là giá trị tại $x=\infty$ của hợp thành một dãy biến đổi tuyến tính phân thức, ta chỉ cần có khả năng truy vấn nhiều lần hợp thành của một đoạn biến đổi tuyến tính phân thức. Vì mỗi biến đổi tuyến tính phân thức đều có nghịch đảo, có thể tiền xử lý tiền tố rồi truy vấn bằng phương pháp hiệu, với độ phức tạp $O(n+m)$; nếu cần hỗ trợ cập nhật, cũng có thể lưu bằng cây phân đoạn hoặc cấu trúc tương tự.
     
     === "C++"
         ```cpp
@@ -1124,104 +1154,110 @@ $$
         --8<-- "docs/math/code/continued-fraction/flt-presum.py"
         ```
 
-### 连分数的四则运算
+<span id="&#x8FDE;&#x5206;&#x6570;&#x7684;&#x56DB;&#x5219;&#x8FD0;&#x7B97;"></span>
 
-利用分式线性变换，可以完成连分数的四则运算．这个算法最早由 Gosper 提出．
+### Bốn phép toán trên liên phân số
 
-算法的基石是计算连分数的分式线性变换．本节以有限连分数为例，但是因为算法每输出一位，只需要读入有限多个连分数的项，所以对于无限连分数也是适用的，而且可以算到任意精度．结合前文的连分数比较算法，可以精确地比较任意精度的实数差异．
+Dùng biến đổi tuyến tính phân thức, có thể thực hiện bốn phép toán trên liên phân số. Thuật toán này được Gosper đề xuất đầu tiên.
 
-???+ example "连分数的分式线性变换"
-    给定分式线性变换 $L(x)=\dfrac{ax+b}{cx+d}$ 和连分数 $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$，求 $\beta=L(\alpha)$ 的连分数表示 $[\beta_0,\beta_1,\cdots,\beta_m]$．
+Nền tảng của thuật toán là tính biến đổi tuyến tính phân thức của liên phân số. Phần này lấy liên phân số hữu hạn làm ví dụ, nhưng vì mỗi lần thuật toán xuất một chữ số thì chỉ cần đọc vào hữu hạn hạng của liên phân số, nên nó cũng áp dụng được cho liên phân số vô hạn và có thể tính tới độ chính xác tùy ý. Kết hợp với thuật toán so sánh liên phân số ở trên, có thể so sánh chính xác các số thực với độ chính xác tùy ý.
 
-??? note "解答"
-    算法的基本思路就是逐个确定 $\beta_i$ 的值．记
+???+ example "Biến đổi tuyến tính phân thức của liên phân số"
+    Cho biến đổi tuyến tính phân thức $L(x)=\dfrac{ax+b}{cx+d}$ và liên phân số $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$, tìm biểu diễn liên phân số $[\beta_0,\beta_1,\cdots,\beta_m]$ của $\beta=L(\alpha)$.
+
+??? note "Lời giải"
+    Ý tưởng cơ bản của thuật toán là xác định từng giá trị $\beta_i$. Ký hiệu
     
     $$
     L_\gamma(x) = \gamma+\dfrac{1}{x} = \dfrac{\gamma x+1}{x}.
     $$
     
-    因为连分数
+    Vì liên phân số
     
     $$
     L(\alpha) = L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_n}(\infty),
     $$
     
-    所以，可以向 $L$ 通过逐步复合 $L_{\alpha_k}$ 的方式计算 $L(\alpha)$ 的大小．但是，如果是希望得到 $L(\alpha)$ 的连分数表示，那么并不需要完全计算 $L(\alpha)$ 的值再求出连分数表示．可以在复合 $L_{\alpha_i}$ 的过程中就能判断 $\beta_0,\beta_1,\cdots$ 的值．
+    nên có thể tính độ lớn của $L(\alpha)$ bằng cách lần lượt hợp thành $L_{\alpha_k}$ vào $L$. Tuy nhiên, nếu muốn nhận biểu diễn liên phân số của $L(\alpha)$, ta không cần tính hoàn toàn giá trị $L(\alpha)$ rồi mới tìm biểu diễn liên phân số. Ngay trong quá trình hợp thành các $L_{\alpha_i}$, ta đã có thể xác định các giá trị $\beta_0,\beta_1,\cdots$.
     
-    比如，假设当前计算到
+    Chẳng hạn, giả sử hiện tại đã tính tới
     
     $$
     L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x) = \dfrac{a_kx+b_k}{c_kx+d_k}
     $$
     
-    且 $c_k,d_k$ 同号．那么，$L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x)$ 在 $[0,\infty]$ 上单调，且必然取值在 $\dfrac{a_k}{c_k}$ 和 $\dfrac{b_k}{d_k}$ 之间．所以，如果
+    và $c_k,d_k$ cùng dấu. Khi đó, $L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x)$ đơn điệu trên $[0,\infty]$, và giá trị của nó chắc chắn nằm giữa $\dfrac{a_k}{c_k}$ và $\dfrac{b_k}{d_k}$. Vì vậy, nếu
     
     $$
     \left\lfloor\dfrac{a_k}{c_k}\right\rfloor = \left\lfloor\dfrac{b_k}{d_k}\right\rfloor,
     $$
     
-    就可以确定它就是 $L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x)$ 的整数部分 $\beta_0$．此时，在左侧复合 $L_{\beta_0}^{-1}$ 就可以得到
+    thì có thể xác định đó chính là phần nguyên $\beta_0$ của $L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x)$. Khi đó, hợp thành bên trái với $L_{\beta_0}^{-1}$ sẽ thu được
     
     $$
     L_{\beta_0}^{-1}\circ L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}.
     $$
     
-    此时，继续添加 $L_{\alpha_{k+1}},L_{\alpha_{k+2}},\cdots$ 就可以确定新的整数部分，即 $\beta_1$．这样计算下去，直到确定出所有的 $\beta_j$ 的值．
+    Lúc này, tiếp tục thêm $L_{\alpha_{k+1}},L_{\alpha_{k+2}},\cdots$ để xác định phần nguyên mới, tức $\beta_1$. Cứ tính như vậy cho tới khi xác định xong mọi giá trị $\beta_j$.
     
-    算法要求 $c$ 和 $d$ 同号，是因为要保证函数的不连续点不在 $[0,\infty]$ 范围内．这总是可能的，因为简单连分数的定义要求（除了 $\alpha_0$ 外的）系数都是正整数．由此可以证明，必然在有限步内成立 $c$ 和 $d$ 同号，且将在之后一直保持同号．
+    Thuật toán yêu cầu $c$ và $d$ cùng dấu để bảo đảm điểm gián đoạn của hàm không nằm trong phạm vi $[0,\infty]$. Điều này luôn có thể đạt được, vì định nghĩa liên phân số đơn giản yêu cầu các hệ số (trừ $\alpha_0$) đều là số nguyên dương. Từ đó có thể chứng minh rằng sau hữu hạn bước, $c$ và $d$ chắc chắn cùng dấu, và sau đó luôn giữ cùng dấu.
     
-    具体实现时，只需要维护当前的分式线性变换的系数矩阵 $\begin{pmatrix}a&b\\c&d\end{pmatrix}$ 并检查 $c$ 和 $d$ 是否同号以及 $\dfrac{a}{c}$ 和 $\dfrac{b}{d}$ 是否有相同的整数部分．右复合 $L_{\alpha_i}$ 时，就可以得到 $\begin{pmatrix}a\alpha_i+b&a\\ c\alpha_i+d&c\end{pmatrix}$．如果两者整数部分相同为 $\beta_j$，则在结果的连分数内添加 $\beta_j$，并且左复合 $L_{\beta_j}^{-1}$，这相当于计算 $\begin{pmatrix}c&d\\ a\bmod c & b \bmod d \end{pmatrix}$．
+    Khi cài đặt cụ thể, chỉ cần duy trì ma trận hệ số hiện tại của biến đổi tuyến tính phân thức $\begin{pmatrix}a&b\\c&d\end{pmatrix}$, rồi kiểm tra $c$ và $d$ có cùng dấu hay không, cũng như $\dfrac{a}{c}$ và $\dfrac{b}{d}$ có cùng phần nguyên hay không. Khi hợp thành bên phải với $L_{\alpha_i}$, ta thu được $\begin{pmatrix}a\alpha_i+b&a\\ c\alpha_i+d&c\end{pmatrix}$. Nếu hai phần nguyên giống nhau và bằng $\beta_j$, thì thêm $\beta_j$ vào liên phân số kết quả, rồi hợp thành bên trái với $L_{\beta_j}^{-1}$; việc này tương đương với tính $\begin{pmatrix}c&d\\ a\bmod c & b \bmod d \end{pmatrix}$.
 
-连分数的分式线性变换已经可以用于计算分数和连分数的四则运算问题：
+Biến đổi tuyến tính phân thức của liên phân số đã đủ để tính bốn phép toán giữa một phân số và một liên phân số:
 
 $$
 \dfrac{p}{q}\pm x = \dfrac{\pm qx+p}{0x+q},\ \dfrac{p}{q}x = \dfrac{px+0}{0x+q},\ \frac{p}{q}/x = \dfrac{0x+p}{qx+0}.
 $$
 
-对于一般的连分数之间的四则运算，需要用到双分式线性变换：
+Với bốn phép toán giữa hai liên phân số tổng quát, cần dùng biến đổi tuyến tính phân thức hai biến:
 
 $$
 x+y = \dfrac{0xy+x+y+0}{0xy+0x+0y+1},\ xy = \dfrac{1xy+0x+0y+0}{0xy+0x+0y+1},\ \dfrac{x}{y} = \dfrac{0xy+x+0y+0}{0xy+0x+y+0}.
 $$
 
-???+ example "连分数的双分式线性变换"
-    给定双分式线性变换 $L(x,y)=\dfrac{axy+bx+cy+d}{exy+fx+gy+h}$ 和连分数 $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$ 和 $\beta=[\beta_0,\beta_1,\cdots,\beta_m]$，求 $\gamma=L(\alpha,\beta)$ 的连分数表示 $[\gamma_0,\gamma_1,\cdots,\gamma_\ell]$．
+???+ example "Biến đổi tuyến tính phân thức hai biến của liên phân số"
+    Cho biến đổi tuyến tính phân thức hai biến $L(x,y)=\dfrac{axy+bx+cy+d}{exy+fx+gy+h}$ và hai liên phân số $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$, $\beta=[\beta_0,\beta_1,\cdots,\beta_m]$, tìm biểu diễn liên phân số $[\gamma_0,\gamma_1,\cdots,\gamma_\ell]$ của $\gamma=L(\alpha,\beta)$.
 
-??? note "解答"
-    与单变量的分式线性变换的情形类似，要确定整数部分只需要保证当前的分式线性变换在 $(x,y)\in[0,\infty]\times[0,\infty]$ 内的整数部分保持不变，即 $e,f,g,h$ 皆同号，且
+??? note "Lời giải"
+    Tương tự trường hợp biến đổi tuyến tính phân thức một biến, để xác định phần nguyên chỉ cần bảo đảm phần nguyên của biến đổi tuyến tính phân thức hiện tại không đổi trên $(x,y)\in[0,\infty]\times[0,\infty]$, tức $e,f,g,h$ đều cùng dấu và
     
     $$
     \left\lfloor\dfrac{a}{e}\right\rfloor = \left\lfloor\dfrac{b}{f}\right\rfloor = \left\lfloor\dfrac{c}{g}\right\rfloor = \left\lfloor\dfrac{d}{h}\right\rfloor.
     $$
     
-    右复合要替换成计算 $L(x,y)\mapsto L(L_{\alpha_i}(x),y)$ 和 $L(x,y)\mapsto L(x,L_{\beta_j}(y))$，这同样表示成系数的线性变换．左复合则和单变量的情形完全一致，只需要计算取模就可以了．
+    Hợp thành bên phải được thay bằng việc tính $L(x,y)\mapsto L(L_{\alpha_i}(x),y)$ và $L(x,y)\mapsto L(x,L_{\beta_j}(y))$; việc này cũng có thể biểu diễn thành biến đổi tuyến tính trên các hệ số. Hợp thành bên trái thì hoàn toàn giống trường hợp một biến, chỉ cần tính phép lấy dư.
     
-    相较于单变量的情形，双变量的情形需要决定要先复合 $L_{\alpha_i}$ 还是 $L_{\beta_j}$．因为复合的顺序与最后的结果无关，所以可以自由选择复合顺序，比如交替地复合 $L_{\alpha_i}$ 和 $L_{\beta_j}$．或者采用经验法则，优先复合比值差距更大的维度：如果 $\left|\dfrac{b}{f}-\dfrac{d}{h}\right|>\left|\dfrac{c}{g}-\dfrac{d}{h}\right|$，那么就先复合 $L_{\alpha_i}$；否则，就先复合 $L_{\beta_j}$．
+    So với trường hợp một biến, trường hợp hai biến cần quyết định nên hợp thành $L_{\alpha_i}$ hay $L_{\beta_j}$ trước. Vì thứ tự hợp thành không ảnh hưởng tới kết quả cuối cùng, có thể tự do chọn thứ tự, chẳng hạn hợp thành xen kẽ $L_{\alpha_i}$ và $L_{\beta_j}$. Hoặc dùng quy tắc kinh nghiệm: ưu tiên hợp thành theo chiều có độ chênh tỉ số lớn hơn. Nếu $\left|\dfrac{b}{f}-\dfrac{d}{h}\right|>\left|\dfrac{c}{g}-\dfrac{d}{h}\right|$, thì hợp thành $L_{\alpha_i}$ trước; ngược lại, hợp thành $L_{\beta_j}$ trước.
 
-## 循环连分数
+<span id="&#x5FAA;&#x73AF;&#x8FDE;&#x5206;&#x6570;"></span>
 
-类似于循环小数的概念，如果连分数的系数形成了循环，就称为循环连分数．
+## Liên phân số tuần hoàn
 
-???+ abstract "循环连分数"
-    设连分数 $x=[a_0,a_1,a_2,\cdots]$，且存在自然数 $K$ 和正整数 $L$ 使得对于任何 $k\ge K$，都有 $a_k=a_{k+L}$，就称连分数 $x$ 为 **循环连分数**（periodic continued fraction）．满足这个条件的最小的 $L$ 称为它的最小正周期，而在连分数中重复出现的 $a_{k},\cdots,a_{k+L-1}$ 序列就称为它的循环节．利用循环节，循环连分数可以写作 $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$．如果 $K$ 可以取作 $0$，即 $x=[\overline{a_0,\cdots,a_{L-1}}]$，就称它为 **纯循环连分数**（purely periodic continued fraction），否则称它为 **混循环连分数**（eventually periodic continued fraction）．
+Tương tự khái niệm số thập phân tuần hoàn, nếu các hệ số của liên phân số tạo thành chu kỳ thì ta gọi đó là liên phân số tuần hoàn.
 
-### 二次无理数
+???+ abstract "Liên phân số tuần hoàn"
+    Giả sử liên phân số $x=[a_0,a_1,a_2,\cdots]$, và tồn tại số tự nhiên $K$ cùng số nguyên dương $L$ sao cho với mọi $k\ge K$, ta có $a_k=a_{k+L}$. Khi đó $x$ được gọi là **liên phân số tuần hoàn** (periodic continued fraction). Giá trị nhỏ nhất của $L$ thỏa mãn điều kiện này được gọi là chu kỳ dương nhỏ nhất của nó, còn dãy $a_{k},\cdots,a_{k+L-1}$ lặp lại trong liên phân số được gọi là khối tuần hoàn. Dùng khối tuần hoàn, liên phân số tuần hoàn có thể viết là $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$. Nếu có thể lấy $K=0$, tức $x=[\overline{a_0,\cdots,a_{L-1}}]$, thì nó được gọi là **liên phân số thuần tuần hoàn** (purely periodic continued fraction); ngược lại gọi là **liên phân số hỗn tuần hoàn** (eventually periodic continued fraction).
 
-与循环连分数密切相关的概念是 [（实）二次无理数](./quadratic.md)（quadratic irrational），即整系数二次方程的无理数解．所有的二次无理数都可以表示成
+<span id="&#x4E8C;&#x6B21;&#x65E0;&#x7406;&#x6570;"></span>
+
+### Số vô tỉ bậc hai
+
+Một khái niệm liên quan mật thiết tới liên phân số tuần hoàn là [số vô tỉ bậc hai (thực)](./quadratic.md) (quadratic irrational), tức nghiệm vô tỉ của phương trình bậc hai với hệ số nguyên. Mọi số vô tỉ bậc hai đều có thể biểu diễn dưới dạng
 
 $$
 a+b\sqrt D
 $$
 
-的形式，其中，$a,b$ 是有理数且 $D$ 是无平方因子的正整数．本文提到的二次无理数都默认是实数．而且，$a+b\sqrt D$ 的共轭是指 $a-b\sqrt{D}$．
+trong đó $a,b$ là các số hữu tỉ và $D$ là số nguyên dương không chứa thừa số bình phương. Các số vô tỉ bậc hai được nhắc tới trong bài này mặc định là số thực. Ngoài ra, liên hợp của $a+b\sqrt D$ là $a-b\sqrt{D}$.
 
-Euler 的结果说明，所有循环连分数都是二次无理数．
+Kết quả của Euler cho thấy mọi liên phân số tuần hoàn đều là số vô tỉ bậc hai.
 
-???+ note "定理（Euler）"
-    循环连分数表示的都是二次无理数．
+???+ note "Định lý (Euler)"
+    Mọi liên phân số tuần hoàn đều biểu diễn số vô tỉ bậc hai.
 
-??? note "证明"
-    对于一般的循环连分数 $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$，可以设 $y=[\overline{a_k,\cdots,a_{k+L-1}}]$，则
+??? note "Chứng minh"
+    Với liên phân số tuần hoàn tổng quát $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$, đặt $y=[\overline{a_k,\cdots,a_{k+L-1}}]$. Khi đó
     
     $$
     \begin{aligned}
@@ -1230,128 +1266,128 @@ Euler 的结果说明，所有循环连分数都是二次无理数．
     \end{aligned}
     $$
     
-    其中，$L_0(\cdot)$ 和 $L_1(\cdot)$ 都是分式线性变换．于是，得到 $x$ 满足的方程
+    trong đó $L_0(\cdot)$ và $L_1(\cdot)$ đều là biến đổi tuyến tính phân thức. Do đó, ta thu được phương trình mà $x$ thỏa mãn:
     
     $$
     x = L_0\circ L_1\circ L_0^{-1}(x). 
     $$
     
-    不妨设分式线性变换 $L_0\circ L_1\circ L_0^{-1}(x) = \dfrac{ax+b}{cx+d}$，则得到 $x$ 满足的方程
+    Giả sử biến đổi tuyến tính phân thức $L_0\circ L_1\circ L_0^{-1}(x) = \dfrac{ax+b}{cx+d}$. Khi đó phương trình mà $x$ thỏa mãn là
     
     $$
     cx^2+(d-a)x-b=0.
     $$
     
-    因而，循环连分数都是整系数二次方程的解．又因为无限连分数都是无理数，所以循环连分数都表示了二次无理数．
+    Vì vậy, liên phân số tuần hoàn đều là nghiệm của phương trình bậc hai với hệ số nguyên. Lại do liên phân số vô hạn đều là số vô tỉ, nên liên phân số tuần hoàn đều biểu diễn số vô tỉ bậc hai.
 
-Lagrange 的结果说明反过来也成立，因而二次无理数和循环连分数是等价的．
+Kết quả của Lagrange cho thấy chiều ngược lại cũng đúng, nên số vô tỉ bậc hai và liên phân số tuần hoàn là hai khái niệm tương đương.
 
-???+ note "定理（Lagrange）"
-    二次无理数可以表示成循环连分数．
+???+ note "Định lý (Lagrange)"
+    Số vô tỉ bậc hai có thể biểu diễn thành liên phân số tuần hoàn.
 
-??? note "证明"
-    思路是证明余项会重复出现．设二次无理数 $x$ 可以写作
+??? note "Chứng minh"
+    Ý tưởng là chứng minh các phần dư sẽ lặp lại. Giả sử số vô tỉ bậc hai $x$ có thể viết thành
     
     $$
     x = \dfrac{P_0+\sqrt{D}}{Q_0}
     $$
     
-    的形式，其中，$P_0,Q_0,D$ 都是整数且 $Q_0\mid D-P_0^2$．这总是可能的，比如二次无理数 $x$ 总可以写成
+    trong đó $P_0,Q_0,D$ đều là số nguyên và $Q_0\mid D-P_0^2$. Điều này luôn có thể làm được; chẳng hạn, một số vô tỉ bậc hai $x$ luôn có thể viết thành
     
     $$
     a+b\sqrt{D'} = \dfrac{p_a}{q_a}+\dfrac{p_b}{q_b}\sqrt{D'} = \dfrac{p_aq_b+p_bq_a\sqrt{D'}}{q_aq_b} = \dfrac{p_ap_bq_aq_b+\sqrt{(q_aq_b)^2D'}}{(q_aq_b)^2}
     $$
     
-    再令 $P=p_ap_bq_aq_b$，$Q=(q_aq_b)^2$ 和 $D=QD'$ 即可．
+    rồi đặt $P=p_ap_bq_aq_b$, $Q=(q_aq_b)^2$ và $D=QD'$.
     
-    将它写成这种形式的好处是，可以证明它的所有余项都具有类似的形式：
+    Lợi ích của cách viết này là có thể chứng minh mọi phần dư của nó đều có dạng tương tự:
     
     $$
     r_k=\dfrac{P_k+\sqrt D}{Q_k},
     $$
     
-    其中，$P_k,Q_k$ 是整数且 $Q_k\mid D-P_k^2$．其中，条件 $Q_k\mid D-P_k^2$ 保证了所有余项的分子中，$\sqrt{D}$ 前面的系数都是 $1$．
+    trong đó $P_k,Q_k$ là các số nguyên và $Q_k\mid D-P_k^2$. Điều kiện $Q_k\mid D-P_k^2$ bảo đảm hệ số đứng trước $\sqrt{D}$ trong tử số của mọi phần dư đều bằng $1$.
     
-    为得到余项的形式，可以使用数学归纳法．当 $k=0$ 时，显然．假设已经得到了 $r_k$ 的形式，并设 $a_k=\lfloor r_k\rfloor$，就有
+    Để thu được dạng của phần dư, có thể dùng quy nạp toán học. Với $k=0$ thì hiển nhiên. Giả sử đã có dạng của $r_k$, và đặt $a_k=\lfloor r_k\rfloor$, ta có
     
     $$
     r_k = a_k+\dfrac{1}{r_{k+1}}.
     $$
     
-    设 $r_{k+1}$ 也有类似形式，并和 $r_k$ 一起代入上式，有
+    Giả sử $r_{k+1}$ cũng có dạng tương tự, rồi thay cùng với $r_k$ vào công thức trên, ta được
     
     $$
     \dfrac{P_k+\sqrt D}{Q_k} = a_k + \dfrac{Q_{k+1}}{P_{k+1}+\sqrt{D}} = a_k + \dfrac{Q_{k+1}P_{k+1}-Q_{k+1}\sqrt{D}}{P_{k+1}^2-D}.
     $$
     
-    因为二次无理数表示成 $a+b\sqrt{D}$ 的方式是唯一的，所以比较两侧系数可知
+    Vì cách biểu diễn một số vô tỉ bậc hai dưới dạng $a+b\sqrt{D}$ là duy nhất, so sánh hệ số hai vế ta được
     
     $$
     \dfrac{P_k}{Q_k} = a_k+\dfrac{Q_{k+1}P_{k+1}}{P_{k+1}^2-D},\ \dfrac{1}{Q_k}=-\dfrac{Q_{k+1}}{P_{k+1}^2-D}.
     $$
     
-    将第二个等式代入第一个等式可以解出 $P_{k+1}$：
+    Thay đẳng thức thứ hai vào đẳng thức thứ nhất, ta giải được $P_{k+1}$:
     
     $$
     \dfrac{P_k}{Q_k} = a_k-\dfrac{P_{k+1}}{Q_k} \iff P_{k+1} = a_kQ_k-P_k.
     $$
     
-    再代入第二个等式，就可以解出 $Q_{k+1}$：
+    Thay tiếp vào đẳng thức thứ hai, ta giải được $Q_{k+1}$:
     
     $$
     Q_{k+1} = \dfrac{D-P_{k+1}^2}{Q_k} = \dfrac{D-(a_kQ_k-P_k)^2}{Q_k} = -a_k^2Q_k+2a_kP_k+\dfrac{D-P_k^2}{Q_k}.
     $$
     
-    根据归纳假设，$Q_k\mid D-P_k^2$，所以确实 $P_{k+1}$ 和 $Q_{k+1}$ 都是整数，即 $r_{k+1}$ 也具有所要求的形式．
+    Theo giả thiết quy nạp, $Q_k\mid D-P_k^2$, nên đúng là $P_{k+1}$ và $Q_{k+1}$ đều là số nguyên; tức $r_{k+1}$ cũng có dạng yêu cầu.
     
-    最后，证明余项只能取得有限多个值，故而必然重复．前文已经求得余项
+    Cuối cùng, chứng minh phần dư chỉ có thể nhận hữu hạn giá trị, nên chắc chắn lặp lại. Ở trên đã tính được phần dư
     
     $$
     \dfrac{P_k+\sqrt{D}}{Q_k} = r_k = -\dfrac{q_{k-2}x-p_{k-2}}{q_{k-1}x-p_{k-1}}
     $$
     
-    而且对于无理数，总有 $r_k>1$．同时，它的共轭
+    Hơn nữa, với số vô tỉ luôn có $r_k>1$. Đồng thời, liên hợp của nó là
     
     $$
     \dfrac{P_k-\sqrt{D}}{Q_k} = r_k^* = -\dfrac{q_{k-2}x^*-p_{k-2}}{q_{k-1}x^*-p_{k-1}} = -\dfrac{q_{k-2}}{q_{k-1}}\dfrac{x^*-\dfrac{p_{k-2}}{q_{k-2}}}{x^*-\dfrac{p_{k-1}}{q_{k-1}}}
     $$
     
-    对于充分大的 $k$ 必然小于 $0$，因为
+    chắc chắn nhỏ hơn $0$ với $k$ đủ lớn, vì
     
     $$
     \dfrac{q_{k-2}}{q_{k-1}}>0,\ \lim_{k\rightarrow\infty}\dfrac{x^*-\dfrac{p_{k-2}}{q_{k-2}}}{x^*-\dfrac{p_{k-1}}{q_{k-1}}}=\dfrac{x^*-x}{x^*-x}=1.
     $$
     
-    这就说明
+    Điều này cho thấy
     
     $$
     \dfrac{2\sqrt{D}}{Q_k} = r_k-r_k^*>1 \iff 0<Q_k\le 2\sqrt{D}.
     $$
     
-    因此，$Q_k$ 只能取有限多个值．进而，
+    Do đó, $Q_k$ chỉ có thể nhận hữu hạn giá trị. Hơn nữa,
     
     $$
     D-P_{k}^2=Q_kQ_{k-1}>0 \iff |P_k|<\sqrt{D},
     $$
     
-    所以，$P_k$ 也只能取有限多个值．故而，余项 $r_k$ 只有有限多个可能的取值，必然在无限项内重复．
+    nên $P_k$ cũng chỉ có thể nhận hữu hạn giá trị. Vì vậy, phần dư $r_k$ chỉ có hữu hạn giá trị khả dĩ, nên chắc chắn lặp lại trong dãy vô hạn.
 
-定理的证明也提供了一个计算二次无理数的余项的递推公式：
+Chứng minh định lý cũng cung cấp công thức truy hồi để tính phần dư của số vô tỉ bậc hai:
 
-???+ note "二次无理数的余项递推公式"
-    二次无理数总可以表示成
+???+ note "Công thức truy hồi phần dư của số vô tỉ bậc hai"
+    Số vô tỉ bậc hai luôn có thể biểu diễn thành
     
     $$
     x=\dfrac{P_0+\sqrt{D}}{Q_0}
     $$
     
-    的形式，且 $Q_0\mid D-P^2_0$．它的余项
+    với $Q_0\mid D-P^2_0$. Phần dư của nó
     
     $$
     r_{k}=\dfrac{P_k+\sqrt{D}}{Q_k}
     $$
     
-    中，$P_k,Q_k$ 都是整数，且满足递推关系
+    có $P_k,Q_k$ đều là số nguyên, và thỏa mãn quan hệ truy hồi
     
     $$
     \begin{aligned}
@@ -1360,13 +1396,13 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     \end{aligned}
     $$
 
-这个递推公式可以直接用于二次无理数的连分数的计算，而且根据定理的证明，$|P_k|<\sqrt{D}$ 且 $Q_k\le 2\sqrt{D}$．该算法的复杂度取决于循环节的长度，而后者可以证明是 $O(\sqrt{D}\log D)$ 的[^period-surd]．
+Công thức truy hồi này có thể dùng trực tiếp để tính liên phân số của số vô tỉ bậc hai. Hơn nữa, theo chứng minh định lý, $|P_k|<\sqrt{D}$ và $Q_k\le 2\sqrt{D}$. Độ phức tạp của thuật toán phụ thuộc vào độ dài khối tuần hoàn, và có thể chứng minh độ dài này là $O(\sqrt{D}\log D)$.[^period-surd]
 
-???+ example "二次无理数"
-    给定二次无理数 $\alpha=\dfrac{x+y\sqrt{n}}{z}$，求出其连分数的表示．其中，$x,y,z,n\in\mathbf Z$ 且 $n>0$ 不是完全平方．
+???+ example "Số vô tỉ bậc hai"
+    Cho số vô tỉ bậc hai $\alpha=\dfrac{x+y\sqrt{n}}{z}$, hãy tìm biểu diễn liên phân số của nó. Trong đó $x,y,z,n\in\mathbf Z$ và $n>0$ không phải số chính phương.
 
-??? note "解答"
-    首先将二次无理数表示成上述形式，再利用递推公式计算即可．连分数的项由 $a_k=\lfloor r_k\rfloor$ 给出．为了求出循环节，需要存储 $(P_k,Q_k)$ 首次出现的下标．
+??? note "Lời giải"
+    Trước hết biểu diễn số vô tỉ bậc hai thành dạng trên, rồi dùng công thức truy hồi để tính. Các hạng của liên phân số được cho bởi $a_k=\lfloor r_k\rfloor$. Để tìm khối tuần hoàn, cần lưu chỉ số xuất hiện đầu tiên của mỗi $(P_k,Q_k)$.
     
     === "C++"
         ```cpp
@@ -1379,10 +1415,10 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
         ```
 
 ???+ example "[Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)"
-    给定 $x$ 和 $k$，且 $x$ 不是完全平方数，$0\le k\le 10^9$．求出 $\sqrt{x}$ 的第 $k$ 个渐近分数 $x_k$．
+    Cho $x$ và $k$, trong đó $x$ không phải số chính phương, $0\le k\le 10^9$. Hãy tìm phân số tiệm cận thứ $k$ là $x_k$ của $\sqrt{x}$.
 
-??? note "解答"
-    首先利用上述算法解出 $\sqrt{x}$ 的周期，将循环节表示成分式线性变换，就可以用 [快速幂](../binary-exponentiation.md) 获得 $x_k$ 的值．当然，对于没有进入循环节和不足一个循环节的部分，需要单独处理．
+??? note "Lời giải"
+    Trước hết dùng thuật toán trên để tìm chu kỳ của $\sqrt{x}$. Biểu diễn khối tuần hoàn thành biến đổi tuyến tính phân thức, rồi dùng [lũy thừa nhanh](../binary-exponentiation.md) để thu được giá trị $x_k$. Dĩ nhiên, phần chưa đi vào chu kỳ và phần chưa đủ một chu kỳ cần được xử lý riêng.
     
     === "C++"
         ```cpp
@@ -1394,29 +1430,31 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
         --8<-- "docs/math/code/continued-fraction/surd-convergent.py"
         ```
 
-### 纯循环连分数
+<span id="&#x7EAF;&#x5FAA;&#x73AF;&#x8FDE;&#x5206;&#x6570;"></span>
 
-二次无理数是有循环连分数表示的充分必要条件，本节的讨论则给出了实数具有纯循环连分数表示的充分必要条件．
+### Liên phân số thuần tuần hoàn
 
-首先，因为纯循环连分数具有类似有限连分数的形式，所以可以做「反序」操作．类似于反序定理，这样得到的连分数表示和原来的连分数表示之间有确定的关系．
+Số vô tỉ bậc hai là điều kiện cần và đủ để có biểu diễn liên phân số tuần hoàn; phần này tiếp tục đưa ra điều kiện cần và đủ để một số thực có biểu diễn liên phân số thuần tuần hoàn.
 
-???+ note "定理（Galois）"
-    对于纯循环连分数
+Trước hết, vì liên phân số thuần tuần hoàn có dạng tương tự liên phân số hữu hạn, ta có thể thực hiện thao tác "đảo thứ tự". Tương tự định lý đảo thứ tự, biểu diễn liên phân số thu được theo cách này có quan hệ xác định với biểu diễn liên phân số ban đầu.
+
+???+ note "Định lý (Galois)"
+    Với liên phân số thuần tuần hoàn
     
     $$
     x = \left[\overline{a_0,a_1,\cdots,a_{\ell}}\right],
     $$
     
-    记
+    ký hiệu
     
     $$
     x' = \left[\overline{a_{\ell},\cdots,a_1,a_0}\right].
     $$
     
-    则 $x$ 和 $x'$ 互为「倒数负共轭」，即 $x$ 的共轭的倒数的相反数是 $x'$．
+    Khi đó $x$ và $x'$ là "liên hợp nghịch đảo âm" của nhau, tức số đối của nghịch đảo của liên hợp của $x$ là $x'$.
 
-??? note "证明"
-    因为不要求 $\ell+1$ 是最小正周期，所以不妨设 $\ell>0$．利用反序定理可知，
+??? note "Chứng minh"
+    Vì không yêu cầu $\ell+1$ là chu kỳ dương nhỏ nhất, có thể giả sử $\ell>0$. Theo định lý đảo thứ tự,
     
     $$
     \begin{aligned}
@@ -1425,126 +1463,126 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     \end{aligned}
     $$
     
-    因为等式两侧都是既约分数，所以
+    Vì hai vế của các đẳng thức đều là phân số tối giản, nên
     
     $$
     p'_\ell = p_\ell,\ q'_\ell = p_{\ell-1},\ p'_{\ell-1}=q_\ell,\ q'_{\ell-1} = q_{\ell-1}.
     $$
     
-    对于纯循环连分数 $x$，它的第 $\ell+1$ 个余项就是 $x$，因此，有
+    Với liên phân số thuần tuần hoàn $x$, phần dư thứ $\ell+1$ của nó chính là $x$, do đó
     
     $$
     x = \dfrac{xp_\ell+p_{\ell-1}}{xq_\ell+q_{\ell-1}}.
     $$
     
-    所以，它满足二次方程
+    Vì vậy, nó thỏa mãn phương trình bậc hai
     
     $$
     q_\ell x^2+(q_{\ell-1}-p_\ell)x-p_{\ell-1} = 0.
     $$
     
-    同理，$x'$ 满足二次方程
+    Tương tự, $x'$ thỏa mãn phương trình bậc hai
     
     $$
     q'_\ell(x')^2+(q'_{\ell-1}-p'_\ell)x'-p'_{\ell-1} = 0.
     $$
     
-    利用系数的关系可知，这个方程可以写作
+    Dùng quan hệ giữa các hệ số, phương trình này có thể viết thành
     
     $$
     p_{\ell-1}(x')^2+(q_{\ell-1}-p_\ell)x'-q_\ell = 0.
     $$
     
-    令 $y=-\dfrac{1}{x'}$，则 $x$ 和 $y$ 满足同一个方程．但是，$x>0>y$，因此它们并非同一个根，而是互为共轭的关系，这就证明了原命题．
+    Đặt $y=-\dfrac{1}{x'}$, khi đó $x$ và $y$ thỏa mãn cùng một phương trình. Nhưng $x>0>y$, nên chúng không phải cùng một nghiệm, mà là hai nghiệm liên hợp. Điều này chứng minh mệnh đề.
 
-Galois 利用这个观察，进一步地给出了二次无理数有纯循环连分数表示的充分必要条件．
+Từ quan sát này, Galois tiếp tục đưa ra điều kiện cần và đủ để một số vô tỉ bậc hai có biểu diễn liên phân số thuần tuần hoàn.
 
-???+ note "定理（Galois）"
-    二次无理数 $x$ 可以表示为纯循环连分数，当且仅当 $x>1$ 且它的共轭 $-1<x^*<0$．
+???+ note "Định lý (Galois)"
+    Số vô tỉ bậc hai $x$ có thể biểu diễn thành liên phân số thuần tuần hoàn khi và chỉ khi $x>1$ và liên hợp của nó thỏa mãn $-1<x^*<0$.
 
-??? note "证明"
-    如果 $x$ 是纯循环连分数，那么利用前文的记号，有 $a_0=a_{\ell+1}\ge 1$，故而 $x>1$．又因为它的倒数负共轭也是循环连分数，所以它的共轭 $x^*$ 满足 $-\dfrac{1}{x^*}>1$，亦即 $-1<x^*<0$．这就证明了纯循环连分数都满足该条件．
+??? note "Chứng minh"
+    Nếu $x$ là liên phân số thuần tuần hoàn, theo ký hiệu ở trên, $a_0=a_{\ell+1}\ge 1$, nên $x>1$. Lại vì liên hợp nghịch đảo âm của nó cũng là liên phân số tuần hoàn, nên liên hợp $x^*$ của nó thỏa mãn $-\dfrac{1}{x^*}>1$, tức $-1<x^*<0$. Điều này chứng minh mọi liên phân số thuần tuần hoàn đều thỏa mãn điều kiện.
     
-    反过来，设二次无理数 $x>1$ 且 $-1<x^*<0$．对于 $x$ 的余项 $r_k$，有递推关系
+    Ngược lại, giả sử số vô tỉ bậc hai $x>1$ và $-1<x^*<0$. Với phần dư $r_k$ của $x$, có quan hệ truy hồi
     
     $$
     r_k = a_k+\dfrac{1}{r_{k+1}}.
     $$
     
-    等式两边都是二次无理数，取共轭可知
+    Hai vế đều là số vô tỉ bậc hai; lấy liên hợp, ta được
     
     $$
     r_{k}^* = a_k+\dfrac{1}{r_{k+1}^*}.
     $$
     
-    利用这个递推关系，可以证明 $-1<r_{k}^*<0$ 对所有 $k\ge 0$ 都成立．
+    Dùng quan hệ truy hồi này, có thể chứng minh $-1<r_{k}^*<0$ với mọi $k\ge 0$.
     
-    首先，对于 $k=0$，有 $-1<r_0^*=x_0^*<0$，显然．对于 $k\ge 0$，由简单连分数定义和 $x>1$ 可知，$a_k\ge 1$．故而，假设 $-1<r_k^*<0$，就有
+    Trước hết, với $k=0$, hiển nhiên $-1<r_0^*=x_0^*<0$. Với $k\ge 0$, theo định nghĩa liên phân số đơn giản và $x>1$, ta có $a_k\ge 1$. Do đó, giả sử $-1<r_k^*<0$, thì
     
     $$
     -1<-\dfrac{1}{a_k}< r_{k+1}^* = \dfrac{1}{r_k^*-a_k} < -\dfrac{1}{1+a_k} < 0.
     $$
     
-    这就归纳地证明了 $-1<r_{k}^*<0$ 对所有 $k\ge 0$ 都成立．因此，有
+    Điều này chứng minh bằng quy nạp rằng $-1<r_{k}^*<0$ với mọi $k\ge 0$. Vì vậy,
     
     $$
     a_k = -\dfrac{1}{r_{k+1}^*}+r_k^* = \left\lfloor-\dfrac{1}{r_{k+1}^*}\right\rfloor.
     $$
     
-    因为二次无理数一定是循环连分数，所以存在正整数 $L$ 和至少某个充分大的 $k$，有 $r_{k}=r_{k+L}$．但是，此时必然也有
+    Vì số vô tỉ bậc hai chắc chắn là liên phân số tuần hoàn, tồn tại số nguyên dương $L$ và ít nhất một $k$ đủ lớn sao cho $r_{k}=r_{k+L}$. Nhưng khi đó chắc chắn cũng có
     
     $$
     a_{k-1} = \left\lfloor-\dfrac{1}{r_{k}^*}\right\rfloor = \left\lfloor-\dfrac{1}{r_{k+L}^*}\right\rfloor = a_{k+L-1}.
     $$
     
-    故而，
+    Do đó,
     
     $$
     r_{k-1} = a_{k-1}+\dfrac{1}{r_k} = a_{k+L-1}+\dfrac{1}{r_{k+L}} = r_{k+L-1}.
     $$
     
-    这意味着最小的能够使得 $r_{k}=r_{k+L}$ 成立的 $k$ 必然是 $0$．也就是说，$x$ 可以表示成纯循环连分数．
+    Điều này nghĩa là $k$ nhỏ nhất để $r_{k}=r_{k+L}$ có thể xảy ra chắc chắn là $0$. Nói cách khác, $x$ có thể biểu diễn thành liên phân số thuần tuần hoàn.
 
-Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如 $\sqrt{r}$ 的二次无理数——的连分数表示的规律．
+Định lý Galois cho thấy quy luật biểu diễn liên phân số của căn thức bậc hai thuần (pure quadratic surd), tức số vô tỉ bậc hai có dạng $\sqrt{r}$.
 
-???+ note "推论"
-    对于有理数 $r>1$，如果 $\sqrt{r}$ 是无理数，那么
+???+ note "Hệ quả"
+    Với số hữu tỉ $r>1$, nếu $\sqrt{r}$ là số vô tỉ, thì
     
     $$
     \sqrt{r} = [\lfloor\sqrt{r}\rfloor,\overline{a_1,\cdots,a_{\ell},2\lfloor\sqrt{r}\rfloor}]
     $$
     
-    且对于任意 $1\le k\le\ell$，都有 $a_k = a_{\ell+1-k}$．
+    và với mọi $1\le k\le\ell$, ta có $a_k = a_{\ell+1-k}$.
 
-??? note "证明"
-    对于二次无理数 $\sqrt{r}$，因为 $\lfloor\sqrt{r}\rfloor+\sqrt{r}>1$ 且 $-1<\lfloor\sqrt{r}\rfloor-\sqrt{r}<0$，所以 $\lfloor\sqrt{r}\rfloor+\sqrt{r}$ 是纯循环连分数：
+??? note "Chứng minh"
+    Với số vô tỉ bậc hai $\sqrt{r}$, vì $\lfloor\sqrt{r}\rfloor+\sqrt{r}>1$ và $-1<\lfloor\sqrt{r}\rfloor-\sqrt{r}<0$, nên $\lfloor\sqrt{r}\rfloor+\sqrt{r}$ là liên phân số thuần tuần hoàn:
     
     $$
     \lfloor\sqrt{r}\rfloor+\sqrt{r} = [\overline{2\lfloor\sqrt{r}\rfloor,a_1,\cdots,a_\ell}].
     $$
     
-    根据上述定理，它的倒数负共轭具有形式
+    Theo định lý trên, liên hợp nghịch đảo âm của nó có dạng
     
     $$
     \dfrac{1}{\sqrt{r}-\lfloor\sqrt{r}\rfloor} = [\overline{a_\ell,\cdots,a_1,2\lfloor\sqrt{r}\rfloor}].
     $$
     
-    利用连分数的基本性质可知
+    Dùng các tính chất cơ bản của liên phân số, ta có
     
     $$
     \sqrt{r}=\lfloor\sqrt{r}\rfloor+\dfrac{1}{\dfrac{1}{\sqrt{r}-\lfloor\sqrt{r}\rfloor}}=[\lfloor\sqrt{r}\rfloor,\overline{a_\ell,\cdots,a_1,2\lfloor\sqrt{r}\rfloor}].
     $$
     
-    但是，又由 $\lfloor\sqrt{r}\rfloor+\sqrt{r}$ 的连分数表示可知，
+    Mặt khác, từ biểu diễn liên phân số của $\lfloor\sqrt{r}\rfloor+\sqrt{r}$,
     
     $$
     \sqrt{r} = -\lfloor\sqrt{r}\rfloor+\left(\lfloor\sqrt{r}\rfloor+\sqrt{r}\right) = [\lfloor\sqrt{r}\rfloor,\overline{a_1,\cdots,a_\ell,2\lfloor\sqrt{r}\rfloor}].
     $$
     
-    因为无理数的连分数表示是唯一的，所以比较中间的系数就知道，$a_k=a_{\ell+1-k}$ 对所有 $1\le k\le\ell$ 都成立．
+    Vì biểu diễn liên phân số của số vô tỉ là duy nhất, so sánh các hệ số ở giữa cho thấy $a_k=a_{\ell+1-k}$ với mọi $1\le k\le\ell$.
 
-??? example "例子：$\sqrt{74}$ 的连分数展开"
-    $\sqrt{74}$ 的连分数可以计算如下：（此处仅是为了说明，编程计算应使用前文提到的递归算法）
+??? example "Ví dụ: khai triển liên phân số của $\sqrt{74}$"
+    Liên phân số của $\sqrt{74}$ có thể tính như sau: (ở đây chỉ nhằm minh họa; khi lập trình nên dùng thuật toán truy hồi đã nêu ở trên)
     
     $$
     \begin{aligned}
@@ -1557,7 +1595,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     \end{aligned}
     $$
     
-    各个余项分别是：
+    Các phần dư lần lượt là:
     
     $$
     \begin{alignedat}{3}
@@ -1569,37 +1607,39 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     \end{alignedat}
     $$
     
-    根据 Galois 的结论，余项 $r_k$ 和 $r_{L+1-k}$ 循环部分恰好相反，因此互为倒数负共轭．如果 $\sqrt{D}$ 的循环节长度 $L$ 为奇数，那么中间的一项就与自身互为倒数负共轭；如果循环节长度 $L$ 为偶数，就不存在这样的项．Pell 方程一节的讨论会说明，循环节长度的奇偶性将决定了方程 $x^2-Dy^2=-1$ 是否有解．
+    Theo kết luận của Galois, phần tuần hoàn của hai phần dư $r_k$ và $r_{L+1-k}$ đúng là ngược nhau, nên chúng là liên hợp nghịch đảo âm của nhau. Nếu độ dài khối tuần hoàn $L$ của $\sqrt{D}$ là lẻ, thì hạng ở giữa sẽ là liên hợp nghịch đảo âm của chính nó; nếu độ dài khối tuần hoàn $L$ là chẵn thì không có hạng như vậy. Phần về phương trình Pell sẽ cho thấy tính chẵn lẻ của độ dài khối tuần hoàn quyết định phương trình $x^2-Dy^2=-1$ có nghiệm hay không.
 
-二次无理数 $\sqrt{D}$ 的连分数展开主要应用在 [Pell 方程](./pell-equation.md) 的求解中．
+Khai triển liên phân số của số vô tỉ bậc hai $\sqrt{D}$ chủ yếu được dùng để giải [phương trình Pell](./pell-equation.md).
 
-## 例题
+<span id="&#x4F8B;&#x9898;"></span>
 
-在掌握了基础概念后，需要研究一些具体的例题来理解如何在算法竞赛中应用连分数的方法．
+## Bài tập ví dụ
 
-???+ example "线下凸包"
-    给定 $r=[a_0,a_1,\cdots,a_n]$，求出满足 $0\le x\le N$ 和 $0\le y\le rx$ 的整点 $(x,y)$ 的集合的凸包．
+Sau khi nắm được các khái niệm cơ bản, cần xét một số ví dụ cụ thể để hiểu cách áp dụng phương pháp liên phân số trong lập trình thi đấu.
 
-??? note "解答"
-    对于无界集合 $x\ge 0$，上凸壳就是直线 $y=rx$ 本身．然而，如下图所示，如果还要求 $x\le N$，那么上凸壳最终会偏离直线．
+???+ example "Bao lồi dưới đường thẳng"
+    Cho $r=[a_0,a_1,\cdots,a_n]$, hãy tìm bao lồi của tập điểm nguyên $(x,y)$ thỏa mãn $0\le x\le N$ và $0\le y\le rx$.
+
+??? note "Lời giải"
+    Với tập không bị chặn $x\ge 0$, bao lồi trên chính là đường thẳng $y=rx$. Tuy nhiên, như hình dưới đây, nếu còn yêu cầu $x\le N$, thì bao lồi trên cuối cùng sẽ lệch khỏi đường thẳng.
     
     ![](./images/lattice-hull.svg)
     
-    从 $(0,0)$ 开始，可以自左向右地求出上凸壳的所有整点．假设当前已经求出的上凸壳的最后一个整点是 $(x,y)$．现在要求出下一个整点 $(x',y')$．顶点 $(x',y')$ 在 $(x,y)$ 右上方，记 $(\Delta x,\Delta y)=(x'-x,y'-y)$ 为两者的差值．那么，必然有
+    Bắt đầu từ $(0,0)$, có thể tìm tất cả điểm nguyên trên bao lồi trên từ trái sang phải. Giả sử điểm nguyên cuối cùng trên bao lồi trên đã tìm được là $(x,y)$. Ta cần tìm điểm nguyên tiếp theo $(x',y')$. Đỉnh $(x',y')$ nằm phía trên bên phải $(x,y)$; ký hiệu $(\Delta x,\Delta y)=(x'-x,y'-y)$ là hiệu giữa hai điểm. Khi đó chắc chắn
     
     $$
     0<\Delta x\le N-x,\ 0\le \Delta y\le r\Delta x.
     $$
     
-    第二个不等式成立，因为条件 $\Delta y>r\Delta x$ 与 $(x,y)$ 已经在上凸壳上这件事矛盾．观察 $(\Delta x,\Delta y)$ 需要满足的条件，对于不同的点 $(x,y)$，只有 $\Delta x$ 的上界在变化．所以，只要能解决这个子问题，就可以递归地求出原问题的所有整点．
+    Bất đẳng thức thứ hai đúng vì điều kiện $\Delta y>r\Delta x$ mâu thuẫn với việc $(x,y)$ đã nằm trên bao lồi trên. Quan sát các điều kiện mà $(\Delta x,\Delta y)$ cần thỏa mãn: với các điểm $(x,y)$ khác nhau, chỉ cận trên của $\Delta x$ thay đổi. Vì vậy, chỉ cần giải được bài toán con này là có thể tìm đệ quy mọi điểm nguyên của bài toán ban đầu.
     
-    进而，考虑子问题的解法．对比于原问题，子问题相当于将 $x$ 的上界修改为 $N'$，并求出上凸壳中与原点相邻的第一个整点．记子问题的解为 $(q,p)$．那么，$p$ 与 $q$ 必然是互素的（否则不是第一个整点），且与原点连线的斜率 $\dfrac{p}{q}$ 是所有位于直线 $y=rx$ 下方且横坐标不超过 $N'$ 的整点中最大的（否则不在凸包上）．结合前文的 [几何解释](#几何解释) 可知，这样的点 $(x,y)$ 必然对应于 $r$ 的一个下中间分数．因为分母越大的下中间分数离 $r$ 越近，所以子问题的解 $(q,p)$ 对应着所有分母不超过 $N'$ 的下中间分数中分母最大的那个．
+    Tiếp theo xét cách giải bài toán con. So với bài toán ban đầu, bài toán con tương đương với việc đổi cận trên của $x$ thành $N'$, rồi tìm điểm nguyên đầu tiên trên bao lồi trên kề với gốc tọa độ. Gọi nghiệm của bài toán con là $(q,p)$. Khi đó $p$ và $q$ chắc chắn nguyên tố cùng nhau (nếu không thì đó không phải điểm nguyên đầu tiên), và hệ số góc $\dfrac{p}{q}$ của đường nối với gốc tọa độ là lớn nhất trong các điểm nguyên nằm dưới đường thẳng $y=rx$ và có hoành độ không vượt quá $N'$ (nếu không thì điểm đó không nằm trên bao lồi). Kết hợp với [diễn giải hình học](#%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A) ở trên, điểm $(x,y)$ như vậy chắc chắn tương ứng với một phân số trung gian dưới của $r$. Vì phân số trung gian dưới có mẫu càng lớn thì càng gần $r$, nên nghiệm $(q,p)$ của bài toán con tương ứng với phân số trung gian dưới có mẫu lớn nhất trong tất cả các phân số trung gian dưới có mẫu không vượt quá $N'$.
     
-    当然，实际求解时，没必要对每个子问题都重新求出这样的下中间分数．应该首先求出所有的渐近分数，这相当于提供了遍历所有的下中间分数的方法．然后分母从大到小地遍历下中间分数，每次都尝试将它加到前一个整点 $(x,y)$ 上，直到不能添加为止才继续尝试下一个下中间分数．
+    Dĩ nhiên, khi giải thực tế, không cần tìm lại phân số trung gian dưới như vậy cho từng bài toán con. Nên tìm tất cả phân số tiệm cận trước; điều này tương đương với việc có cách duyệt tất cả phân số trung gian dưới. Sau đó duyệt các phân số trung gian dưới theo mẫu giảm dần, mỗi lần thử cộng nó vào điểm nguyên trước đó $(x,y)$, cho tới khi không thể cộng nữa thì mới thử phân số trung gian dưới tiếp theo.
     
-    此处有一些显然的优化．首先，对于下中间分数 $(q,p)$，必然存在奇数 $k$ 和 $0\le t<a_k$ 使得 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$．只要找到最大的 $t$ 使得 $q_{k-1}+tq_k+x\le N$ 满足就好了，亦即 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$．不用担心 $t$ 越界，因为更大的下渐近分数 $(q_{k+2},p_{k+2})$ 已经添加完了．而每次确定添加的次数的时候，直接计算 $\left\lfloor\dfrac{N-x}{q}\right\rfloor$ 即可，不必逐个尝试．
+    Có một số tối ưu hiển nhiên. Trước hết, với phân số trung gian dưới $(q,p)$, chắc chắn tồn tại $k$ lẻ và $0\le t<a_k$ sao cho $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$. Chỉ cần tìm $t$ lớn nhất thỏa mãn $q_{k-1}+tq_k+x\le N$, tức $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Không cần lo $t$ vượt giới hạn, vì phân số tiệm cận dưới lớn hơn $(q_{k+2},p_{k+2})$ đã được cộng xong. Mỗi lần xác định số lần cộng, chỉ cần tính trực tiếp $\left\lfloor\dfrac{N-x}{q}\right\rfloor$, không cần thử từng lần.
     
-    优化后的算法的复杂度是 $O(n)$ 的．虽然下中间分数对应的整点可能有很多，但是真正成为增量的并不多．下面要说明，所有 $0\le t<a_k$ 的下中间分数 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ 中，至多会出现两个增量．假设这些下中间分数中确实出现了增量，则此时必然有 $q_{k-1}\le N-x<q_{k+1}$．不妨设 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$．如果 $t=0$，则增量就有 $\Delta x=q_{k-1}$，故而添加完增量后，就有 $N-x'<q_{k-1}$，不会再在这些下中间分数中出现新的增量；如果 $t>0$，那么添加完增量后，必然有 $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$，即使还会在同一段下中间分数中出现新的增量，下次也只能有 $t'=0$．因此，在这样的一段下中间分数中，至多只能出现两个增量．这就说明，总的时间复杂度是 $O(n)$ 的．
+    Độ phức tạp của thuật toán sau tối ưu là $O(n)$. Dù có thể có nhiều điểm nguyên tương ứng với các phân số trung gian dưới, số điểm thật sự trở thành gia lượng không nhiều. Ta sẽ chỉ ra rằng trong tất cả phân số trung gian dưới $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ với $0\le t<a_k$, nhiều nhất chỉ có hai gia lượng xuất hiện. Giả sử trong các phân số trung gian dưới này thật sự có gia lượng, khi đó chắc chắn $q_{k-1}\le N-x<q_{k+1}$. Đặt $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Nếu $t=0$, gia lượng có $\Delta x=q_{k-1}$; sau khi cộng gia lượng, ta có $N-x'<q_{k-1}$, nên sẽ không xuất hiện gia lượng mới trong các phân số trung gian dưới này. Nếu $t>0$, sau khi cộng gia lượng, chắc chắn $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$; ngay cả nếu cùng đoạn phân số trung gian dưới này còn xuất hiện gia lượng mới, lần sau cũng chỉ có thể có $t'=0$. Vì vậy, trong một đoạn phân số trung gian dưới như vậy, nhiều nhất chỉ có hai gia lượng. Điều này chứng minh độ phức tạp tổng thể là $O(n)$.
     
     === "C++"
         ```cpp
@@ -1612,30 +1652,30 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
         ```
 
 ???+ example "[Timus - Crime and Punishment](https://timus.online/problem.aspx?space=1&num=1430)"
-    给定正整数 $A,B,N \le 2\times 10^9$，求 $x,y\ge 0$ 使得 $Ax+By\le N$ 且 $Ax+By$ 尽可能大．
+    Cho các số nguyên dương $A,B,N \le 2\times 10^9$, tìm $x,y\ge 0$ sao cho $Ax+By\le N$ và $Ax+By$ lớn nhất có thể.
 
-??? note "解答"
-    这个问题有一个复杂度为 $O(\sqrt N)$ 的解法：不妨设 $A\ge B$，因为 $A(B+x)+By=Ax+B(A+y)$，所以只需要在 $x\le\min\{N/A, B\}$ 中搜索答案即可．这足够通过本题．但是，如果应用连分数方法，那么时间复杂度就可以降低到 $O(\log N)$．
+??? note "Lời giải"
+    Bài toán này có lời giải độ phức tạp $O(\sqrt N)$: giả sử $A\ge B$, vì $A(B+x)+By=Ax+B(A+y)$, nên chỉ cần tìm đáp án trong miền $x\le\min\{N/A, B\}$. Điều này đủ để qua bài. Tuy nhiên, nếu áp dụng phương pháp liên phân số, độ phức tạp có thể giảm xuống $O(\log N)$.
     
-    为了讨论方便，首先通过代换 $x\mapsto\left\lfloor N/A\right\rfloor-x$ 来改变 $x$ 的符号．令 $C=N\bmod A$ 和 $M=\left\lfloor N/A\right\rfloor$，则原问题转化为在 $0\le x\le M$ 且 $By-Ax\le C$ 的条件下，求最优的 $(x,y)$ 使得 $By-Ax$ 最大．对于每个固定的 $x$，最优的 $y$ 的取值为 $\left\lfloor\dfrac{Ax+C}{B}\right\rfloor$．
+    Để tiện thảo luận, trước hết đổi dấu của $x$ bằng phép thế $x\mapsto\left\lfloor N/A\right\rfloor-x$. Đặt $C=N\bmod A$ và $M=\left\lfloor N/A\right\rfloor$, bài toán ban đầu chuyển thành: trong điều kiện $0\le x\le M$ và $By-Ax\le C$, tìm $(x,y)$ tối ưu sao cho $By-Ax$ lớn nhất. Với mỗi $x$ cố định, giá trị tối ưu của $y$ là $\left\lfloor\dfrac{Ax+C}{B}\right\rfloor$.
     
-    接下来要说明的是，这个问题和上一个例题具有类似的解法．但是，与上一个例题中使用下中间分数偏离直线不同，本题需要使用上中间分数来接近直线．具体来说，$C-(By-Ax)$ 的值正比于点 $(x,y)$ 与直线 $By-Ax=C$ 的距离．要最大化 $By-Ax$，就等价于最小化这个距离．算法的目标是要找到直线 $By-Ax=C$ 下方距离它最近的可行的整点．算法的思路就是从最左侧的点开始，沿着这些整点的上凸壳搜索，逐步缩小与直线的距离，直到得到最优解．
+    Tiếp theo, bài toán này có cách giải tương tự ví dụ trước. Tuy nhiên, khác với ví dụ trước dùng phân số trung gian dưới để rời khỏi đường thẳng, bài này cần dùng phân số trung gian trên để tiến gần đường thẳng. Cụ thể, giá trị $C-(By-Ax)$ tỉ lệ với khoảng cách từ điểm $(x,y)$ tới đường thẳng $By-Ax=C$. Tối đa hóa $By-Ax$ tương đương với tối thiểu hóa khoảng cách này. Mục tiêu của thuật toán là tìm điểm nguyên khả thi nằm dưới đường thẳng $By-Ax=C$ và gần đường thẳng nhất. Ý tưởng thuật toán là bắt đầu từ điểm bên trái nhất, tìm kiếm dọc bao lồi trên của các điểm nguyên này, từng bước giảm khoảng cách tới đường thẳng cho tới khi thu được nghiệm tối ưu.
     
-    在 $(x,y)$ 的坐标系内，算法从 $(0,\lfloor C/B\rfloor)$ 出发，递归地寻找并添加最优的增量 $(\Delta x,\Delta y)$，且保证添加后的点比起之前更靠近直线 $By-Ax=C$，但是不能到达直线的另一侧，也不能让横坐标大于 $M$．设已经得到的点是 $(x,y)$，那么增量 $(\Delta x,\Delta y)$ 满足的条件就是
+    Trong hệ tọa độ $(x,y)$, thuật toán bắt đầu từ $(0,\lfloor C/B\rfloor)$, đệ quy tìm và cộng gia lượng tối ưu $(\Delta x,\Delta y)$, đồng thời bảo đảm điểm sau khi cộng gần đường thẳng $By-Ax=C$ hơn trước, nhưng không đi sang phía bên kia của đường thẳng và cũng không để hoành độ vượt quá $M$. Giả sử điểm đã thu được là $(x,y)$, thì gia lượng $(\Delta x,\Delta y)$ cần thỏa mãn
     
     $$
     0<B\Delta y-A\Delta x\le C-(By-Ax),\ 0<\Delta x\le M-x.
     $$
     
-    按照沿下凸壳搜索的思路，只需要找到满足这些条件的点中 $\Delta x$ 最小的即可．将第一个不等式改写成
+    Theo ý tưởng tìm dọc bao lồi dưới, chỉ cần tìm điểm có $\Delta x$ nhỏ nhất trong các điểm thỏa mãn các điều kiện này. Viết lại bất đẳng thức đầu tiên thành
     
     $$
     \Delta y \le \dfrac{A}{B}\Delta x+\dfrac{C-(By-Ax)}{B}.
     $$
     
-    结合前文的 [几何解释](#几何解释) 可知，只要后面的常数项小于 $1$，那么满足这个不等式的整点 $(\Delta x,\Delta y)$ 中横坐标最小的，一定对应着某个上中间分数．这是因为它是所有分母不超过它的分母的分数中，从上方逼近某个实数效果最好的，这只能是上中间分数．而每次添加增量后，都会导致 $\Delta y$ 的上界变得更紧，这意味着必须考察分母更大的上中间分数．
+    Kết hợp với [diễn giải hình học](#%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A) ở trên, chỉ cần hằng số phía sau nhỏ hơn $1$, thì trong các điểm nguyên $(\Delta x,\Delta y)$ thỏa mãn bất đẳng thức này, điểm có hoành độ nhỏ nhất chắc chắn tương ứng với một phân số trung gian trên. Lý do là nó là phân số xấp xỉ một số thực từ phía trên tốt nhất trong tất cả các phân số có mẫu không vượt quá mẫu của nó, và điều đó chỉ có thể là phân số trung gian trên. Sau mỗi lần cộng gia lượng, cận trên của $\Delta y$ sẽ chặt hơn, nghĩa là phải xét các phân số trung gian trên có mẫu lớn hơn.
     
-    仿照上一个例题的思路．分母从小到大考察所有上中间分数，如果能够找到横坐标和纵坐标都不越界的上中间分数，就添加进去，并更新相应的上界．当所有可行的上中间分数都添加结束后，得到的就是最优解．相较于之前，这个题目需要同时保证横纵坐标都不越界，需要格外注意．基于和上一个例题类似的论述，不过这次是使用 $B\Delta y-A\Delta x$ 代替之前的 $\Delta x$，可以说明这个算法的复杂度是 $O(\log\min\{A,B\})$ 的．
+    Làm tương tự ví dụ trước. Xét tất cả phân số trung gian trên theo mẫu tăng dần; nếu tìm được phân số trung gian trên có cả hoành độ và tung độ không vượt giới hạn, thì cộng nó vào và cập nhật cận trên tương ứng. Khi đã cộng xong mọi phân số trung gian trên khả thi, ta thu được nghiệm tối ưu. So với trước, bài này cần đồng thời bảo đảm cả hoành độ và tung độ không vượt giới hạn, nên cần đặc biệt chú ý. Dựa trên lập luận tương tự ví dụ trước, nhưng lần này dùng $B\Delta y-A\Delta x$ thay cho $\Delta x$, có thể chỉ ra rằng độ phức tạp của thuật toán là $O(\log\min\{A,B\})$.
     
     === "C++"
         ```py
@@ -1648,14 +1688,14 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
         ```
 
 ???+ example "[June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)"
-    求 $\sum\limits_{x=1}^N \lfloor \mathrm{e}x \rfloor$ 的值，其中，$\mathrm{e}$ 是自然对数的底．
+    Tính giá trị $\sum\limits_{x=1}^N \lfloor \mathrm{e}x \rfloor$, trong đó $\mathrm{e}$ là cơ số của logarit tự nhiên.
     
-    提示：$e = [2,1,2,1,1,4,1,1,6,1,\cdots,1,2n,1, \cdots]$．[^continued-fraction-of-e]
+    Gợi ý: $e = [2,1,2,1,1,4,1,1,6,1,\cdots,1,2n,1, \cdots]$.[^continued-fraction-of-e]
 
-??? note "解答"
-    这个和等于集合 $\{(x,y):1\le x\le N,1\le y\le\mathrm{e}x\}$ 中的整点个数．在构建完直线 $y=\mathrm{e}x$ 下的整点的凸包后，可以使用 [Pick 定理](../../geometry/pick.md) 计算整点个数．时间复杂度为 $O(\log N)$．
+??? note "Lời giải"
+    Tổng này bằng số điểm nguyên trong tập $\{(x,y):1\le x\le N,1\le y\le\mathrm{e}x\}$. Sau khi dựng bao lồi của các điểm nguyên dưới đường thẳng $y=\mathrm{e}x$, có thể dùng [định lý Pick](../../geometry/pick.md) để tính số điểm nguyên. Độ phức tạp là $O(\log N)$.
     
-    原问题要求 $N \le 10^{4000}$．此处 C++ 代码仅作示意，并没有实现高精度计算类．
+    Bài gốc yêu cầu $N \le 10^{4000}$. Mã C++ ở đây chỉ mang tính minh họa và không cài đặt lớp tính toán chính xác cao.
     
     === "C++"
         ```cpp
@@ -1668,17 +1708,17 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
         ```
 
 ???+ example "[NAIPC 2019 - It's a Mod, Mod, Mod, Mod World](https://open.kattis.com/problems/itsamodmodmodmodworld)"
-    给定正整数 $p,q,n$，求 $\sum\limits_{i=1}^n [pi \bmod q]$ 的值．
+    Cho các số nguyên dương $p,q,n$, hãy tính giá trị $\sum\limits_{i=1}^n [pi \bmod q]$.
 
-??? note "解答"
-    因为和式可以变形为
+??? note "Lời giải"
+    Vì tổng có thể biến đổi thành
     
     $$
     \sum_{i=1}^n [pi \bmod q] 
     =\sum_{i=1}^n\left(pi - q\left\lfloor\dfrac{pi}{q}\right\rfloor\right) = \dfrac{pn(n+1)}{2} - q\sum_{i=1}^n\left\lfloor\dfrac{p}{q}i\right\rfloor,
     $$
     
-    这个问题可以转化为上一个问题，只要用 $\dfrac{p}{q}$ 替代 $\mathrm{e}$ 即可．单次查询的时间复杂度为 $O(\log\min\{p,q\})$．
+    Bài toán này có thể chuyển thành bài toán trước, chỉ cần thay $\mathrm{e}$ bằng $\dfrac{p}{q}$. Độ phức tạp cho một truy vấn là $O(\log\min\{p,q\})$.
     
     === "C++"
         ```cpp
@@ -1691,12 +1731,12 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
         ```
 
 ???+ example "[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)"
-    给定正整数 $N,M,A,B$，求 $\displaystyle\sum_{i=0}^{N-1} \left\lfloor \frac{A \cdot i + B}{M} \right\rfloor$ 的值．
+    Cho các số nguyên dương $N,M,A,B$, hãy tính giá trị $\displaystyle\sum_{i=0}^{N-1} \left\lfloor \frac{A \cdot i + B}{M} \right\rfloor$.
 
-??? note "解答"
-    这是到目前为止最为复杂的题目．它可以通过 [类欧几里得算法](./euclidean.md) 计算．此处给出基于连分数的算法，时间复杂度是 $O(\log\min\{A,B\})$．
+??? note "Lời giải"
+    Đây là bài toán phức tạp nhất cho tới đây. Nó có thể được tính bằng [thuật toán kiểu Euclid](./euclidean.md). Ở đây đưa ra thuật toán dựa trên liên phân số, với độ phức tạp $O(\log\min\{A,B\})$.
     
-    可以通过构造直线 $y=\dfrac{Ax+B}{M}$ 以下且 $0\le x< N$ 的全部整点的凸包，并用 Pick 定理计算整点的个数．之前已经解决 $B=0$ 的情形．对于一般的情形，可以分为两步进行．首先通过添加上中间分数来逐步接近直线（即第二个例题），直到找到最接近直线的点，再通过添加下中间分数来逐步远离直线（即第一个例题）．
+    Có thể dựng bao lồi của toàn bộ điểm nguyên nằm dưới đường thẳng $y=\dfrac{Ax+B}{M}$ và thỏa mãn $0\le x< N$, rồi dùng định lý Pick để tính số điểm nguyên. Trường hợp $B=0$ đã được giải ở trước. Với trường hợp tổng quát, có thể chia thành hai bước. Trước hết, cộng các phân số trung gian trên để từng bước tiến gần đường thẳng (ví dụ thứ hai), cho tới khi tìm được điểm gần đường thẳng nhất; sau đó cộng các phân số trung gian dưới để từng bước rời xa đường thẳng (ví dụ thứ nhất).
     
     === "C++"
         ```py
@@ -1709,18 +1749,18 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
         ```
 
 ???+ example "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
-    有个未知的有理数 $\dfrac{p}{q}$ 且 $1\le p, q\le 10^9$，可以询问对某个素数 $m\in[10^9,10^{12}]$ 取模后的 $pq^{-1}$ 的值．请在不超过十次询问内确定 $p$ 和 $q$ 的值．
+    Có một số hữu tỉ chưa biết $\dfrac{p}{q}$ với $1\le p, q\le 10^9$. Ta có thể hỏi giá trị của $pq^{-1}$ modulo một số nguyên tố $m\in[10^9,10^{12}]$. Hãy xác định $p$ và $q$ trong không quá mười lần hỏi.
     
-    这个问题等价于找到 $[1,N]$ 中使得 $Ax\bmod M$ 最小的 $x$．
+    Bài toán này tương đương với việc tìm $x$ trong $[1,N]$ sao cho $Ax\bmod M$ nhỏ nhất.
 
-??? note "解答"
-    根据 [中国剩余定理](./crt.md)，询问对多个素数取模后的结果，相当于询问对这些素数的乘积取模的结果．因此，本题可以看作是询问分数对足够大的模数 $m$ 取模后的结果，要求确定分数的分子和分母．
+??? note "Lời giải"
+    Theo [định lý phần dư Trung Hoa](./crt.md), hỏi kết quả modulo nhiều số nguyên tố tương đương với hỏi kết quả modulo tích của các số nguyên tố đó. Vì vậy, bài này có thể xem là hỏi kết quả của phân số modulo một môđun đủ lớn $m$, rồi yêu cầu xác định tử số và mẫu số của phân số.
     
-    对于某个模数 $m$，使得 $qr\equiv p\pmod m$ 成立的数对 $(p,q)$ 可能并不唯一．假设 $(p_1,q_1)$ 和 $(p_2,q_2)$ 都可以使得这个等式成立，那么必然有 $(p_1q_2-p_2q_1)r\equiv 0\pmod m$．根据 $r$ 的构造可知，$r$ 与 $m$ 互素，所以 $p_1q_2-p_2q_1\equiv 0\pmod m$，亦即 $m\mid(p_1q_2-p_2q_1)$．如果 $p_1q_2-p_2q_1$ 不为零，那么它的绝对值至少是 $m$．问题中限制了 $p,q\in[1,10^9]$，这意味着这个差值不应该超过 $10^{18}$，因此只要取 $m>10^{18}$ 就可以保证求出的 $(p,q)$ 是唯一的．
+    Với một môđun $m$, cặp $(p,q)$ làm cho $qr\equiv p\pmod m$ đúng có thể không duy nhất. Giả sử $(p_1,q_1)$ và $(p_2,q_2)$ đều làm đẳng thức này đúng, thì chắc chắn $(p_1q_2-p_2q_1)r\equiv 0\pmod m$. Theo cách dựng $r$, $r$ nguyên tố cùng nhau với $m$, nên $p_1q_2-p_2q_1\equiv 0\pmod m$, tức $m\mid(p_1q_2-p_2q_1)$. Nếu $p_1q_2-p_2q_1$ khác không, giá trị tuyệt đối của nó ít nhất là $m$. Bài toán giới hạn $p,q\in[1,10^9]$, nghĩa là hiệu này không nên vượt quá $10^{18}$; vì vậy chỉ cần lấy $m>10^{18}$ là có thể bảo đảm $(p,q)$ tìm được là duy nhất.
     
-    现在的问题归结为，给定模数 $m$ 和余数 $r$，求不超过 $n$ 的正整数对 $(p,q)$ 使得 $qr\equiv p\pmod m$．在已知这样的解是唯一的情况下，其实只要找到 $q\in[1,n]$ 时使得 $qr\bmod m$ 最小的 $q$ 即可，因为此时有且仅有一个 $q$ 使得余数不超过 $n$．这正是前面提到的等价表述．
+    Bây giờ bài toán quy về: cho môđun $m$ và phần dư $r$, tìm cặp số nguyên dương $(p,q)$ không vượt quá $n$ sao cho $qr\equiv p\pmod m$. Khi đã biết nghiệm như vậy là duy nhất, thật ra chỉ cần tìm $q\in[1,n]$ làm cho $qr\bmod m$ nhỏ nhất, vì khi đó có đúng một $q$ khiến phần dư không vượt quá $n$. Đây chính là phát biểu tương đương đã nêu ở trên.
     
-    在 $(q,k)$ 所在的平面坐标系内，这相当于要找到 $q\in[1,n]$ 时在直线 $qr-km=0$ 下方最接近它的整点，因为余数 $qr\bmod m$ 就正比于整点与直线的距离．结合前文的 [几何解释](#几何解释) 可知，这样的整点必然对应着有理分数 $\dfrac{r}{m}$ 的某个下中间分数．算法复杂度是 $O(\log\min\{r,m\})$．
+    Trong hệ tọa độ phẳng $(q,k)$, điều này tương đương với việc tìm điểm nguyên với $q\in[1,n]$ nằm dưới đường thẳng $qr-km=0$ và gần nó nhất, vì phần dư $qr\bmod m$ tỉ lệ với khoảng cách từ điểm nguyên tới đường thẳng. Kết hợp với [diễn giải hình học](#%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A) ở trên, điểm nguyên như vậy chắc chắn tương ứng với một phân số trung gian dưới của phân số hữu tỉ $\dfrac{r}{m}$. Độ phức tạp thuật toán là $O(\log\min\{r,m\})$.
     
     === "C++"
         ```cpp
@@ -1732,11 +1772,13 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
         --8<-- "docs/math/code/continued-fraction/recover-fraction.py:core"
         ```
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
+
+## Bài tập
 
 -   [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
 -   [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
--   [「LibreOJ NOI Round #2」单枪匹马](https://loj.ac/p/573)
+-   [LibreOJ NOI Round #2 - Một mình một ngựa](https://loj.ac/p/573)
 -   [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
 -   [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
 -   [Codeforces Round #325 (Div. 1) - Alice, Bob, Oranges and Apples](https://codeforces.com/contest/585/problem/C)
@@ -1744,34 +1786,36 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 -   [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
 -   [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
 -   [Luogu P5179. Fraction](https://www.luogu.com.cn/problem/P5179)
--   [Luogu P7739. \[NOI2021\] 密码箱](https://www.luogu.com.cn/problem/P7739)
+-   [Luogu P7739. \[NOI2021\] Hộp mật mã](https://www.luogu.com.cn/problem/P7739)
 
-## 参考文献与拓展阅读
+<span id="&#x53C2;&#x8003;&#x6587;&#x732E;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+
+## Tài liệu tham khảo và đọc thêm
 
 -   Hardy, G. H., Wright, E. M., Heath-Brown, R., & Silverman, J. (2008). An Introduction to the Theory of Numbers. Oxford Mathematics.
--   朱尧辰，王连祥《丢番图逼近引论》
--   [FatFish 的博客 - 连分数入门](https://chaoli.club/index.php/2756)
+-   Zhu Yaochen, Wang Lianxiang, *Nhập môn xấp xỉ Diophantine*
+-   [Blog của FatFish - Nhập môn liên phân số](https://chaoli.club/index.php/2756)
 -   [Simple continued fraction - Wikipedia](https://en.wikipedia.org/wiki/Simple_continued_fraction)
 -   [Periodic continued fraction - Wikipedia](https://en.wikipedia.org/wiki/Periodic_continued_fraction)
 -   [Gosper's original notes on continued fraction arithmetic algorithms](https://perl.plover.com/yak/cftalk/INFO/gosper.txt)
 -   [Understanding Bill Gosper's continued fraction arithmetic (implemented in Python)](https://hsinhaoyu.github.io/cont_frac/)
 
-**本页面主要内容译自博文 [Continued fractions](https://cp-algorithms.com/algebra/continued-fractions.html)，版权协议为 CC-BY-SA 4.0，内容有改动．**
+**Nội dung chính của trang này được dịch từ bài viết [Continued fractions](https://cp-algorithms.com/algebra/continued-fractions.html), có giấy phép CC-BY-SA 4.0 và đã được chỉnh sửa.**
 
-[^one-representation]: 自然数 $1$ 只有非标准表示：$1=[1]=[0,1]$．
+[^one-representation]: Số tự nhiên $1$ chỉ có biểu diễn không chuẩn: $1=[1]=[0,1]$.
 
-[^continuant]: 译名来自张明尧、张凡翻译的《具体数学》第 6.7 节．
+[^continuant]: Tên gọi này tham khảo bản dịch tiếng Trung chương 6.7 của *Concrete Mathematics* do Zhang Mingyao và Zhang Fan dịch.
 
-[^sqrt5]: 此时不能默认既约分数 $\dfrac{p}{q}$ 一定是渐近分数，虽然 Legendre 定理表明 $\dfrac{p}{q}$ 确实只能是某个渐近分数．对于渐近分数的情形，可以通过渐近分数逼近实数的误差入手加以证明．
+[^sqrt5]: Ở đây không thể mặc định phân số tối giản $\dfrac{p}{q}$ chắc chắn là phân số tiệm cận, dù định lý Legendre cho thấy $\dfrac{p}{q}$ thật ra chỉ có thể là một phân số tiệm cận nào đó. Với trường hợp phân số tiệm cận, có thể chứng minh từ sai số khi phân số tiệm cận xấp xỉ số thực.
 
-[^semi-range]: 不同文献可能对此处的 $t$ 的取值范围是否包括端点有不同的处理．
+[^semi-range]: Các tài liệu khác nhau có thể xử lý khác nhau về việc miền giá trị của $t$ ở đây có bao gồm hai đầu mút hay không.
 
-[^semiconvergent]: $t=0$ 时，应理解为形式连分数，相当于截断到连分数的倒数第二项．
+[^semiconvergent]: Khi $t=0$, nên hiểu đây là liên phân số hình thức, tương đương với việc cắt liên phân số ở hạng áp chót.
 
-[^nose-streching]: 此说法并非专业术语．可能转译自俄文文献 [ЦЕПНЫЕ ДРОБИ](https://old.mccme.ru/free-books/mmmf-lectures/book.14-full.pdf)，在 Алгоритм «вытягивания носов» 一节．
+[^nose-streching]: Cách gọi này không phải thuật ngữ chuyên môn. Có thể nó được dịch gián tiếp từ tài liệu tiếng Nga [ЦЕПНЫЕ ДРОБИ](https://old.mccme.ru/free-books/mmmf-lectures/book.14-full.pdf), phần Алгоритм «вытягивания носов».
 
-[^pgl2]: 这些性质表明，全体分式线性变换的群同构于 [射影线性群](https://en.wikipedia.org/wiki/Projective_linear_group)  $PGL_2(\mathbf R)$．
+[^pgl2]: Các tính chất này cho thấy nhóm gồm toàn bộ các biến đổi tuyến tính phân thức đẳng cấu với [nhóm tuyến tính xạ ảnh](https://en.wikipedia.org/wiki/Projective_linear_group) $PGL_2(\mathbf R)$.
 
-[^period-surd]: 证明见 [维基百科页面](https://en.wikipedia.org/wiki/Periodic_continued_fraction#Length_of_the_repeating_block) 的参考文献．
+[^period-surd]: Chứng minh có thể xem trong các tài liệu tham khảo của [trang Wikipedia](https://en.wikipedia.org/wiki/Periodic_continued_fraction#Length_of_the_repeating_block).
 
-[^continued-fraction-of-e]: 关于自然对数的底 $\mathrm{e}$ 的连分数展开的证明可以参考 [此处](https://proofwiki.org/wiki/Continued_Fraction_Expansion_of_Euler%27s_Number)．
+[^continued-fraction-of-e]: Có thể tham khảo chứng minh khai triển liên phân số của cơ số logarit tự nhiên $\mathrm{e}$ tại [đây](https://proofwiki.org/wiki/Continued_Fraction_Expansion_of_Euler%27s_Number).
