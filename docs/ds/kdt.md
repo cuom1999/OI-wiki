@@ -1,53 +1,53 @@
 author: hsfzLZH1, Ir1d, JosephusW
 
-k-D Tree(KDT , k-Dimension Tree) 是一种可以 **高效处理 $k$ 维空间信息** 的数据结构．
+k-D Tree(KDT, k-Dimension Tree) là một cấu trúc dữ liệu có thể **xử lý hiệu quả thông tin trong không gian k chiều**.
 
-在结点数 $n$ 远大于 $2^k$ 时，应用 k-D Tree 的时间效率很好．
+Khi số nút $n$ lớn hơn rất nhiều so với $2^k$, hiệu quả thời gian khi áp dụng k-D Tree là rất tốt.
 
-在算法竞赛的题目中，一般有 $k=2$．在本页面分析时间复杂度时，将认为 $k$ 是常数．
+Trong các bài toán thi lập trình, thường có $k=2$. Khi phân tích độ phức tạp thời gian trên trang này, ta xem $k$ là hằng số.
 
-## 建树
+## Xây cây
 
-k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都对应 $k$ 维空间内的一个点．其每个子树中的点都在一个 $k$ 维的超长方体内，这个超长方体内的所有点也都在这个子树中．
+k-D Tree có hình thái của cây tìm kiếm nhị phân. Mỗi nút trên cây tìm kiếm nhị phân tương ứng với một điểm trong không gian k chiều. Các điểm trong mỗi cây con đều nằm trong một siêu hình hộp chữ nhật k chiều, và tất cả các điểm bên trong siêu hình hộp chữ nhật đó cũng đều nằm trong cây con này.
 
-假设我们已经知道了 $k$ 维空间内的 $n$ 个不同的点的坐标，要将其构建成一棵 k-D Tree，步骤如下：
+Giả sử ta đã biết tọa độ của $n$ điểm phân biệt trong không gian k chiều. Để xây chúng thành một k-D Tree, thực hiện như sau:
 
-1.  若当前超长方体中只有一个点，返回这个点．
+1.  Nếu siêu hình hộp chữ nhật hiện tại chỉ có một điểm, trả về điểm đó.
 
-2.  选择一个维度，将当前超长方体按照这个维度分成两个超长方体．
+2.  Chọn một chiều, rồi chia siêu hình hộp chữ nhật hiện tại thành hai siêu hình hộp chữ nhật theo chiều đó.
 
-3.  选择切割点：在选择的维度上选择一个点，这一维度上的值小于这个点的归入一个超长方体（左子树），其余的归入另一个超长方体（右子树）．
+3.  Chọn điểm cắt: trên chiều đã chọn, chọn một điểm. Những điểm có giá trị ở chiều này nhỏ hơn điểm đó được đưa vào một siêu hình hộp chữ nhật, tức cây con trái; các điểm còn lại được đưa vào siêu hình hộp chữ nhật kia, tức cây con phải.
 
-4.  将选择的点作为这棵子树的根节点，递归对分出的两个超长方体构建左右子树，维护子树的信息．
+4.  Lấy điểm đã chọn làm gốc của cây con này, đệ quy xây cây con trái và cây con phải trên hai siêu hình hộp chữ nhật đã tách ra, đồng thời duy trì thông tin của cây con.
 
-为了方便理解，我们举一个 $k=2$ 时的例子．
+Để dễ hiểu hơn, xét ví dụ khi $k=2$.
 
 ![](./images/kdt1.jpg)
 
-其构建出 k-D Tree 的形态可能是这样的：
+Hình thái k-D Tree được xây ra có thể như sau:
 
 ![](./images/kdt2.jpg)
 
-其中树上每个结点上的坐标是选择的分割点的坐标，非叶子结点旁的 $x$ 或 $y$ 是选择的切割维度．
+Trong đó, tọa độ trên mỗi nút của cây là tọa độ của điểm chia được chọn; ký hiệu $x$ hoặc $y$ bên cạnh nút không phải lá là chiều cắt được chọn.
 
-这样的复杂度无法保证．对于 $2,3$ 两步，我们提出两个优化：
+Độ phức tạp của cách làm này chưa được bảo đảm. Với bước $2,3$, ta đưa ra hai tối ưu:
 
-1.  轮流选择 $k$ 个维度，以保证在任意连续 $k$ 层里每个维度都被切割到．
-2.  每次在维度上选择切割点时选择该维度上的 **中位数**，这样可以保证每次分成的左右子树大小尽量相等．
+1.  Luân phiên chọn trong $k$ chiều, để bảo đảm trong bất kỳ $k$ tầng liên tiếp nào thì mỗi chiều đều được dùng để cắt.
+2.  Mỗi lần chọn điểm cắt trên một chiều, chọn **trung vị** trên chiều đó, nhờ đó kích thước hai cây con trái và phải sau mỗi lần chia sẽ cân bằng nhất có thể.
 
-可以发现，使用优化 $2$ 后，构建出的 k-D Tree 的树高最多为 $\log n+O(1)$．
+Có thể thấy sau khi dùng tối ưu $2$, chiều cao của k-D Tree được xây ra nhiều nhất là $\log n+O(1)$.
 
-现在，构建 k-D Tree 时间复杂度的瓶颈在于快速选出一个维度上的中位数，并将在该维度上的值小于该中位数的置于中位数的左边，其余置于右边．如果每次都使用 `sort` 函数对该维度进行排序，时间复杂度是 $O(n\log^2 n)$ 的．事实上，单次找出 $n$ 个元素中的中位数并将中位数置于排序后正确的位置的复杂度可以达到 $O(n)$．
+Lúc này, nút thắt về độ phức tạp thời gian khi xây k-D Tree nằm ở việc nhanh chóng chọn ra trung vị trên một chiều, rồi đặt các phần tử có giá trị trên chiều đó nhỏ hơn trung vị sang bên trái trung vị, các phần tử còn lại sang bên phải. Nếu mỗi lần đều dùng hàm `sort` để sắp xếp theo chiều đó, độ phức tạp thời gian là $O(n\log^2 n)$. Thực ra, việc tìm trung vị trong $n$ phần tử một lần và đặt trung vị vào đúng vị trí sau khi sắp xếp có thể đạt độ phức tạp $O(n)$.
 
-我们来回顾一下快速排序的思想．每次我们选出一个数，将小于该数的置于该数的左边，大于该数的置于该数的右边，保证该数在排好序后正确的位置上，然后递归排序左侧和右侧的值．这样的期望复杂度是 $O(n\log n)$ 的．但是由于 k-D Tree 只要求要中位数在排序后正确的位置上，所以我们只需要递归排序包含中位数的 **一侧**．可以证明，这样的期望复杂度是 $O(n)$ 的．在 `algorithm` 库中，有一个实现相同功能的函数 `nth_element()`，要找到 `s[l]` 和 `s[r]` 之间的值按照排序规则 `cmp` 排序后在 `s[mid]` 位置上的值，并保证 `s[mid]` 左边的值小于 `s[mid]`，右边的值大于 `s[mid]`，只需写 `nth_element(s+l,s+mid,s+r+1,cmp)`．
+Ta cùng nhắc lại ý tưởng của quicksort. Mỗi lần ta chọn ra một số, đặt các số nhỏ hơn nó sang bên trái, các số lớn hơn nó sang bên phải, bảo đảm số đó nằm ở đúng vị trí sau khi sắp xếp, rồi đệ quy sắp xếp các giá trị ở bên trái và bên phải. Độ phức tạp kỳ vọng của cách này là $O(n\log n)$. Nhưng vì k-D Tree chỉ yêu cầu trung vị nằm ở đúng vị trí sau khi sắp xếp, ta chỉ cần đệ quy sắp xếp **một phía** chứa trung vị. Có thể chứng minh độ phức tạp kỳ vọng khi đó là $O(n)$. Trong thư viện `algorithm`, có hàm `nth_element()` hiện thực chức năng tương tự. Để tìm giá trị nằm ở vị trí `s[mid]` sau khi các giá trị giữa `s[l]` và `s[r]` được sắp xếp theo quy tắc `cmp`, đồng thời bảo đảm các giá trị bên trái `s[mid]` nhỏ hơn `s[mid]` và các giá trị bên phải lớn hơn `s[mid]`, chỉ cần viết `nth_element(s+l,s+mid,s+r+1,cmp)`.
 
-借助这种思想，构建 k-D Tree 时间复杂度是 $O(n\log n)$ 的．
+Nhờ ý tưởng này, độ phức tạp thời gian để xây k-D Tree là $O(n\log n)$.
 
-## 高维空间上的操作
+## Thao tác trên không gian nhiều chiều
 
-在查询高维矩形区域内的所有点的一些信息时，记录每个结点子树内每一维度上的坐标的最大值和最小值．如果当前子树对应的矩形与所求矩形没有交点，则不继续搜索其子树；如果当前子树对应的矩形完全包含在所求矩形内，返回当前子树内所有点的权值和；否则，判断当前点是否在所求矩形内，更新答案并递归在左右子树中查找答案．
+Khi truy vấn một số thông tin của tất cả các điểm trong vùng hình chữ nhật nhiều chiều, ta ghi lại giá trị tọa độ lớn nhất và nhỏ nhất trên từng chiều trong cây con của mỗi nút. Nếu hình chữ nhật tương ứng với cây con hiện tại không giao với hình chữ nhật cần truy vấn, không tiếp tục tìm kiếm trong cây con đó; nếu hình chữ nhật tương ứng với cây con hiện tại nằm hoàn toàn trong hình chữ nhật cần truy vấn, trả về tổng trọng số của tất cả các điểm trong cây con hiện tại; ngược lại, xét điểm hiện tại có nằm trong hình chữ nhật cần truy vấn hay không, cập nhật đáp án rồi đệ quy tìm đáp án trong cây con trái và phải.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     int query(int p) {
       if (!p) return 0;
@@ -64,123 +64,123 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
     }
     ```
 
-### 复杂度分析
+### Phân tích độ phức tạp
 
-先考虑二维的，在查询矩形 $R$ 时，我们将 k-D Tree 上的结点分为三类：
+Trước hết xét trường hợp hai chiều. Khi truy vấn hình chữ nhật $R$, ta chia các nút trên k-D Tree thành ba loại:
 
-1.  与 $R$ 无交．
-2.  完全被 $R$ 包含．
-3.  部分被 $R$ 包含．
+1.  Không giao với $R$.
+2.  Bị $R$ chứa hoàn toàn.
+3.  Bị $R$ chứa một phần.
 
-显然单次查询的复杂度是第 3 类点的个数．注意到第三类点的矩形要么完全包含 $R$，要么互不包含，而前者显然只有 $O(h)=O(\log n)$ 个，现在我们来分析后者的个数．
+Rõ ràng độ phức tạp của một truy vấn là số nút loại $3$. Chú ý rằng hình chữ nhật của các nút loại ba hoặc chứa hoàn toàn $R$, hoặc không chứa lẫn nhau. Trường hợp trước hiển nhiên chỉ có $O(h)=O(\log n)$ nút, nên bây giờ ta phân tích số lượng của trường hợp sau.
 
-首先，我们不妨令矩形的所有边偏移 $\epsilon$，使得查询矩形不穿过已经有的任何点．这样显然是不影响矩形的查询所涵盖的点集的．
+Trước hết, ta có thể dịch tất cả các cạnh của hình chữ nhật đi một lượng $\epsilon$, sao cho hình chữ nhật truy vấn không đi qua bất kỳ điểm nào đã có. Việc này hiển nhiên không ảnh hưởng đến tập điểm mà truy vấn hình chữ nhật bao phủ.
 
-注意到互不包含的第 3 类点所对应的矩形，一定有 $R$ 的一条边穿过之．所以我们只需要计算 $R$ 的每条边穿过的矩形个数，即任意一条线段最多经过多少个点对应的矩形．
+Chú ý rằng với hình chữ nhật tương ứng với các nút loại $3$ không chứa lẫn nhau, chắc chắn có một cạnh của $R$ đi xuyên qua nó. Vì vậy ta chỉ cần tính số hình chữ nhật mà mỗi cạnh của $R$ đi qua, tức một đoạn thẳng bất kỳ nhiều nhất đi qua bao nhiêu hình chữ nhật tương ứng với các nút.
 
-考虑对于某一个结点 $u$，它有四个孙子，且它到每一个孙子都在两个维度上各进行了一次划分．经过观察可以发现，按照这种方法将一个矩形划分成四个子矩形，一条与坐标轴平行的线段最多经过两个区域，即从 $u$ 出发的查询，最多向下进入两个孙子仍有第 3 类点（如果线段刚好与分割边界重合则不一定，但是我们偏移查询矩形边界的操作使得这种情况不存在）．
+Xét một nút $u$. Nó có bốn cháu, và từ nó đến mỗi cháu đều đã chia một lần trên từng chiều trong hai chiều. Quan sát thấy rằng nếu dùng cách này để chia một hình chữ nhật thành bốn hình chữ nhật con, một đoạn thẳng song song với trục tọa độ nhiều nhất đi qua hai vùng. Nói cách khác, truy vấn xuất phát từ $u$ nhiều nhất đi xuống hai cháu mà vẫn còn điểm loại $3$. Nếu đoạn thẳng vừa khít trùng với biên chia thì chưa chắc, nhưng thao tác dịch biên hình chữ nhật truy vấn đã loại bỏ tình huống này.
 
-而因为建树的时候，每个点是其整个子树在当前划分维度上的中位数，所以子树大小必定减半．于是，设 $u$ 的子树大小为 $n$，我们能写出如下递归式：
+Do khi xây cây, mỗi điểm là trung vị của toàn bộ cây con theo chiều chia hiện tại, kích thước cây con chắc chắn giảm một nửa. Vì vậy, nếu kích thước cây con của $u$ là $n$, ta viết được hệ thức truy hồi sau:
 
 $$
 T(n)=2T(n/4)+O(1)
 $$
 
-由主定理得 $T(n)=O(\sqrt{n})$．
+Theo định lý chính, $T(n)=O(\sqrt{n})$.
 
-将递归式推广到 $k$ 维，即 $T(n)=2^{k-1}T(n/2^k)+O(1)$，于是 $T(n)=O(n^{1-\frac1k})$（将 $k$ 视为常数）．
+Mở rộng hệ thức truy hồi sang $k$ chiều, tức $T(n)=2^{k-1}T(n/2^k)+O(1)$, suy ra $T(n)=O(n^{1-\frac1k})$, với $k$ được xem là hằng số.
 
-### 插入/删除
+### Chèn/xóa
 
-如果维护的这个 $k$ 维点集是可变的，即可能会插入或删除一些点，此时 k-D Tree 的平衡性无法保证．由于 k-D Tree 的构造，不能支持旋转，类似与 FHQ Treap 的随机优先级也不能保证其复杂度．对此，有两种比较常见的维护方法．
+Nếu tập điểm k chiều cần duy trì là động, tức có thể chèn hoặc xóa một số điểm, lúc này tính cân bằng của k-D Tree không được bảo đảm. Do cấu trúc của k-D Tree, ta không thể hỗ trợ phép xoay; ưu tiên ngẫu nhiên tương tự FHQ Treap cũng không thể bảo đảm độ phức tạp. Với vấn đề này, có hai phương pháp duy trì khá thường gặp.
 
-???+ note "Note"
-    很多选手会使用替罪羊树结构来维护．但是注意到在刚才的复杂度分析中，要求儿子的子树大小严格减半，即树高必须为严格的 $\log n+O(1)$，而替罪羊树只满足树高 $O(\log n)$，故查询复杂度无法保证．
+???+ note "Ghi chú"
+    Nhiều thí sinh dùng cấu trúc scapegoat tree để duy trì. Tuy nhiên, chú ý rằng trong phân tích độ phức tạp vừa rồi, ta yêu cầu kích thước cây con của con phải giảm đúng một nửa, tức chiều cao cây phải là $\log n+O(1)$ một cách chặt chẽ, còn scapegoat tree chỉ thỏa mãn chiều cao $O(\log n)$, nên độ phức tạp truy vấn không được bảo đảm.
 
-#### 根号重构
+#### Tái xây dựng căn bậc hai
 
-插入的时候，先存下来要插入的点，每 $B$ 次插入进行一次重构．
+Khi chèn, trước hết lưu lại điểm cần chèn; cứ sau mỗi $B$ lần chèn thì tái xây dựng một lần.
 
-删除打个标记即可．如果要求较为严格，可以维护树内有多少个被删除了，达到 $B$ 则重构．
+Khi xóa, chỉ cần đánh dấu. Nếu yêu cầu tương đối nghiêm ngặt, có thể duy trì số lượng điểm đã bị xóa trong cây, đạt đến $B$ thì tái xây dựng.
 
-修改复杂度均摊 $O(n\log n/B)$，查询 $O(B+n^{1-\frac1k})$，若二者数量同阶则 $B=O(\sqrt{n\log n})$ 最优（修改 $O(\sqrt{n\log n})$，查询 $O(\sqrt{n\log n}+n^{1-\frac1k})$）．
+Độ phức tạp sửa đổi trung bình là $O(n\log n/B)$, truy vấn là $O(B+n^{1-\frac1k})$. Nếu số lượng hai loại thao tác cùng bậc thì chọn $B=O(\sqrt{n\log n})$ là tối ưu, khi đó sửa đổi $O(\sqrt{n\log n})$, truy vấn $O(\sqrt{n\log n}+n^{1-\frac1k})$.
 
-#### 二进制分组
+#### Nhóm nhị phân
 
-考虑维护若干棵 $2$ 的自然数次幂的 k-D Tree，满足这些树的大小之和为 $n$．
+Xét việc duy trì một số k-D Tree có kích thước là lũy thừa tự nhiên của $2$, sao cho tổng kích thước của các cây này là $n$.
 
-插入的时候，新增一棵大小为 $1$ 的 k-D Tree，然后不断将相同大小的树合并（直接拍扁重构）．实现的时候可以只重构一次．
+Khi chèn, thêm một k-D Tree mới có kích thước $1$, rồi liên tục gộp các cây có cùng kích thước, bằng cách trải phẳng rồi tái xây dựng trực tiếp. Khi hiện thực, có thể chỉ cần tái xây dựng một lần.
 
-容易发现需要合并的树的大小一定从 $2^0$ 开始且指数连续．复杂度类似二进制加法，是均摊 $O(n\log^2 n)$ 的，因为重构本身带 $\log$．
+Dễ thấy kích thước của các cây cần gộp chắc chắn bắt đầu từ $2^0$ và có chỉ số mũ liên tiếp. Độ phức tạp tương tự phép cộng nhị phân, là trung bình $O(n\log^2 n)$, vì bản thân việc tái xây dựng có thêm một nhân tử $\log$.
 
-查询的时候，直接分别在每棵树上查询，复杂度为 $O\left(\sum_{i\geq0} (\frac n{2^i})^{1-\frac1k}\right)=O(n^{1-\frac1k})$．
+Khi truy vấn, trực tiếp truy vấn riêng trên từng cây, độ phức tạp là $O\left(\sum_{i\geq0} (\frac n{2^i})^{1-\frac1k}\right)=O(n^{1-\frac1k})$.
 
-### 例题
+### Ví dụ
 
-???+ note "[洛谷 P4148 简单题](https://www.luogu.com.cn/problem/P4148)"
-    在一个初始值全为 $0$ 的 $n\times n$ 的二维矩阵上，进行 $q$ 次操作，每次操作为以下两种之一：
+???+ note "[Luogu P4148 Bài toán đơn giản](https://www.luogu.com.cn/problem/P4148)"
+    Trên một ma trận hai chiều $n\times n$ có giá trị ban đầu toàn là $0$, thực hiện $q$ thao tác. Mỗi thao tác thuộc một trong hai loại sau:
     
-    1.  `1 x y A`：将坐标 $(x,y)$ 上的数加上 $A$．
-    2.  `2 x1 y1 x2 y2`：输出以 $(x1,y1)$ 为左下角，$(x2,y2)$ 为右上角的矩形内（包括矩形边界）的数字和．
+    1.  `1 x y A`: cộng $A$ vào số tại tọa độ $(x,y)$.
+    2.  `2 x1 y1 x2 y2`: xuất tổng các số trong hình chữ nhật có $(x1,y1)$ là góc dưới trái và $(x2,y2)$ là góc trên phải, bao gồm cả biên hình chữ nhật.
     
-    强制在线．内存限制 `20M`．保证答案及所有过程量在 `int` 范围内．
+    Bắt buộc online. Giới hạn bộ nhớ `20M`. Bảo đảm đáp án và tất cả đại lượng trung gian đều nằm trong phạm vi `int`.
     
-    $1\le n\le 500000 , 1\le q\le 200000$
+    $1\le n\le 500000, 1\le q\le 200000$
 
-20M 的空间卡掉了所有树套树，强制在线卡掉了 CDQ 分治，只能使用 k-D Tree．
+Giới hạn bộ nhớ 20M loại bỏ tất cả các cấu trúc cây lồng cây, yêu cầu online bắt buộc loại bỏ CDQ divide and conquer, nên chỉ có thể dùng k-D Tree.
 
-以下是二进制分组的参考代码．
+Dưới đây là mã tham khảo cho nhóm nhị phân.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/kdt/kdt_3.cpp"
     ```
 
-## 邻域查询
+## Truy vấn lân cận
 
-???+ warning "Warning"
-    使用 k-D Tree 单次查询最近点的时间复杂度最坏还是 $O(n)$ 的，但不失为一种优秀的骗分算法，使用时请注意．在这里对邻域查询的讲解仅限于加强对 k-D Tree 结构的认识．
+???+ warning "Cảnh báo"
+    Độ phức tạp thời gian tệ nhất của một lần truy vấn điểm gần nhất bằng k-D Tree vẫn là $O(n)$, nhưng đây vẫn là một thuật toán kiếm điểm rất tốt. Khi sử dụng cần lưu ý điều này. Phần giải thích về truy vấn lân cận ở đây chỉ nhằm tăng cường hiểu biết về cấu trúc k-D Tree.
 
-???+ note "例题 [luogu P1429 平面最近点对（加强版）](https://www.luogu.com.cn/problem/P1429)"
-    给定平面上的 $n$ 个点 $(x_i,y_i)$，找出平面上最近两个点对之间的 [欧几里得距离](../geometry/distance.md#欧氏距离)．
+???+ note "Ví dụ [Luogu P1429 Cặp điểm gần nhất trên mặt phẳng, bản nâng cao](https://www.luogu.com.cn/problem/P1429)"
+    Cho $n$ điểm $(x_i,y_i)$ trên mặt phẳng, hãy tìm [khoảng cách Euclid](../geometry/distance.md#%E6%AC%A7%E6%B0%8F%E8%B7%9D%E7%A6%BB) giữa cặp điểm gần nhất trên mặt phẳng.
     
-    $2\le n\le 200000 , 0\le x_i,y_i\le 10^9$
+    $2\le n\le 200000, 0\le x_i,y_i\le 10^9$
 
-首先建出关于这 $n$ 个点的 2-D Tree．
+Trước hết xây 2-D Tree cho $n$ điểm này.
 
-枚举每个结点，对于每个结点找到不等于该结点且距离最小的点，即可求出答案．每次暴力遍历 2-D Tree 上的每个结点的时间复杂度是 $O(n)$ 的，需要剪枝．我们可以维护一个子树中的所有结点在每一维上的坐标的最小值和最大值．假设当前已经找到的最近点对的距离是 $ans$，如果查询点到子树内所有点都包含在内的长方形的 **最近** 距离大于等于 $ans$，则在这个子树内一定没有答案，搜索时不进入这个子树．
+Duyệt từng nút. Với mỗi nút, tìm điểm khác nút đó và có khoảng cách nhỏ nhất, từ đó tính được đáp án. Nếu mỗi lần duyệt thô tất cả các nút trên 2-D Tree thì độ phức tạp thời gian là $O(n)$, nên cần cắt tỉa. Ta có thể duy trì giá trị tọa độ nhỏ nhất và lớn nhất trên từng chiều của tất cả các nút trong một cây con. Giả sử khoảng cách của cặp điểm gần nhất hiện đã tìm được là $ans$. Nếu khoảng cách **gần nhất** từ điểm truy vấn đến hình chữ nhật chứa tất cả các điểm trong cây con lớn hơn hoặc bằng $ans$, thì chắc chắn không có đáp án trong cây con này, và khi tìm kiếm ta không đi vào cây con đó.
 
-此外，还可以使用一种启发式搜索的方法，即若一个结点的两个子树都有可能包含答案，先在与查询点距离最近的一个子树中搜索答案．可以认为，**查询点到子树对应的长方形的最近距离就是此题的估价函数**．
+Ngoài ra, còn có thể dùng một phương pháp tìm kiếm heuristic: nếu hai cây con của một nút đều có khả năng chứa đáp án, hãy tìm kiếm trước trong cây con gần điểm truy vấn hơn. Có thể xem **khoảng cách gần nhất từ điểm truy vấn đến hình chữ nhật tương ứng với cây con chính là hàm đánh giá của bài này**.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/kdt/kdt_1.cpp"
     ```
 
-???+ note "例题 [「CQOI2016」K 远点对](https://loj.ac/problem/2043)"
-    给定平面上的 $n$ 个点 $(x_i,y_i)$，求欧几里得距离下的第 $k$ 远无序点对之间的距离．
+???+ note "Ví dụ [CQOI2016 K cặp điểm xa thứ k](https://loj.ac/problem/2043)"
+    Cho $n$ điểm $(x_i,y_i)$ trên mặt phẳng, hãy tìm khoảng cách giữa cặp điểm không thứ tự xa thứ $k$ theo khoảng cách Euclid.
     
-    $n\le 100000 , 1\le k\le 100 , 0\le x_i,y_i<2^{31}$
+    $n\le 100000, 1\le k\le 100, 0\le x_i,y_i<2^{31}$
 
-和上一道例题类似，从最近点对变成了 $k$ 远点对，估价函数改成了查询点到子树对应的长方形区域的最远距离．用一个小根堆来维护当前找到的前 $k$ 远点对之间的距离，如果当前找到的点对距离大于堆顶，则弹出堆顶并插入这个距离，同样的，使用堆顶的距离来剪枝．
+Tương tự ví dụ trước, bài toán chuyển từ cặp điểm gần nhất sang cặp điểm xa thứ $k$, và hàm đánh giá đổi thành khoảng cách xa nhất từ điểm truy vấn đến vùng hình chữ nhật tương ứng với cây con. Dùng một heap nhỏ để duy trì khoảng cách của $k$ cặp điểm xa nhất đã tìm được hiện tại. Nếu khoảng cách của cặp điểm vừa tìm được lớn hơn đỉnh heap, pop đỉnh heap rồi chèn khoảng cách này. Tương tự, dùng khoảng cách ở đỉnh heap để cắt tỉa.
 
-由于题目中强调的是无序点对，即交换前后两点的顺序后仍是相同的点对，则每个有序点对会被计算两次，那么读入的 $k$ 要乘以 $2$．
+Vì đề bài nhấn mạnh cặp điểm không thứ tự, tức sau khi hoán đổi thứ tự hai điểm vẫn là cùng một cặp điểm, mỗi cặp điểm có thứ tự sẽ bị tính hai lần. Vì vậy $k$ đọc vào phải nhân với $2$.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/kdt/kdt_2.cpp"
     ```
 
-## 习题
+## Bài tập
 
-[「SDOI2010」捉迷藏](https://www.luogu.com.cn/problem/P2479)
+[SDOI2010 Trốn tìm](https://www.luogu.com.cn/problem/P2479)
 
-[「Violet」天使玩偶/SJY 摆棋子](https://www.luogu.com.cn/problem/P4169)
+[Violet Thiên sứ búp bê/SJY đặt quân cờ](https://www.luogu.com.cn/problem/P4169)
 
-[「国家集训队」JZPFAR](https://www.luogu.com.cn/problem/P2093)
+[Đội tuyển tập huấn quốc gia JZPFAR](https://www.luogu.com.cn/problem/P2093)
 
-[「BOI2007」Mokia 摩基亚](https://www.luogu.com.cn/problem/P4390)
+[BOI2007 Mokia](https://www.luogu.com.cn/problem/P4390)
 
-[luogu P4475 巧克力王国](https://www.luogu.com.cn/problem/P4475)
+[Luogu P4475 Vương quốc chocolate](https://www.luogu.com.cn/problem/P4475)
 
-[「CH 弱省胡策 R2」TATT](https://www.luogu.com.cn/problem/P3769)
+[CH tỉnh yếu Huce R2 TATT](https://www.luogu.com.cn/problem/P3769)

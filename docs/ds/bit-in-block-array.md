@@ -1,72 +1,72 @@
 author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, aaron20100919
 
-## 简介
+## Giới thiệu
 
-分块套树状数组在特定条件下可以用来做一些树套树可以做的事情，但是相比起树套树，分块套树状数组代码编写更加简短，更加容易实现．
+Phân khối lồng cây Fenwick có thể dùng để làm một số việc mà cây lồng cây làm được trong những điều kiện nhất định. Tuy nhiên, so với cây lồng cây, mã của phân khối lồng cây Fenwick ngắn hơn và dễ cài đặt hơn.
 
-## 简单的例子
+## Ví dụ đơn giản
 
-一个简单的例子就是二维平面中矩阵区域内点数的查询．
+Một ví dụ đơn giản là truy vấn số điểm trong một vùng ma trận trên mặt phẳng hai chiều.
 
-???+ note "矩形区域查询"
-    给出 $n$ 个二维平面中的点 $(x_i, y_i)$，其中 $1 \le i \le n, 1 \le x_i, y_i \le n, 1 \le n \le 10^5$, 要求实现以下中操作：
+???+ note "Truy vấn vùng chữ nhật"
+    Cho $n$ điểm $(x_i, y_i)$ trên mặt phẳng hai chiều, trong đó $1 \le i \le n, 1 \le x_i, y_i \le n, 1 \le n \le 10^5$. Cần thực hiện các thao tác sau:
     
-    1.  给出 $a, b, c, d$，询问以 $(a, b)$ 为左上角，$c, d$ 为右下角的矩形区域内点的个数．
-    2.  给出 $x, y$，将横坐标为 $x$ 的点的纵坐标改为 $y$．
+    1.  Cho $a, b, c, d$, hỏi số điểm trong vùng chữ nhật có góc trên trái là $(a, b)$ và góc dưới phải là $(c, d)$.
+    2.  Cho $x, y$, đổi tung độ của điểm có hoành độ $x$ thành $y$.
     
-    题目 **强制在线**，保证 $x_i \ne x_j(1 \le i, j \le n, i \ne j)$．
+    Bài toán **bắt buộc xử lý trực tuyến**, và bảo đảm $x_i \ne x_j(1 \le i, j \le n, i \ne j)$.
 
-对于操作 1，可以通过矩形容斥将其转化为 4 个二维偏序的查询去解决，然后因为强制在线，CDQ 分治之类的离线算法就解决不了，于是想到了树套树，比如树状数组套 Treap．这确实可以解决这个问题，但是代码太长了，也不是特别好实现．
+Với thao tác 1, ta có thể dùng bao hàm - loại trừ trên hình chữ nhật để chuyển nó thành 4 truy vấn thứ tự bộ phận hai chiều. Vì bài toán bắt buộc xử lý trực tuyến, các thuật toán offline như chia để trị CDQ không áp dụng được, nên ta nghĩ đến cây lồng cây, chẳng hạn cây Fenwick lồng Treap. Cách này thật sự giải được bài toán, nhưng mã khá dài và không quá dễ cài đặt.
 
-注意到，题目还额外保证了 $x_i \ne x_j(1 \le i, j \le n, i \ne j)$，这个时候就可以用分块套树状数组解决．
+Chú ý rằng bài toán còn bảo đảm thêm $x_i \ne x_j(1 \le i, j \le n, i \ne j)$, khi đó có thể dùng phân khối lồng cây Fenwick để giải.
 
-### 初始化
+### Khởi tạo
 
-首先，一个 $x$ 只对应一个 $y$，所以可以用一个数组记录这个映射关系，比如令 $Y_i$ 表示横坐标为 $i$ 的点的纵坐标．
+Trước hết, mỗi $x$ chỉ tương ứng với một $y$, nên có thể dùng một mảng để ghi lại ánh xạ này. Chẳng hạn, đặt $Y_i$ là tung độ của điểm có hoành độ $i$.
 
-然后，以 $\sqrt n$ 为块大小对横坐标进行分块．为每个块建一棵权值树状数组．记 $T_i$ 为第 $i$ 个块对应的树状数组，$T_{i, j}$ 表示块 $i$ 里纵坐标在 $(j - lowbit(j), j]$ 内的点的个数．
+Sau đó, phân khối các hoành độ với kích thước khối là $\sqrt n$. Với mỗi khối, xây một cây Fenwick trên miền giá trị. Kí hiệu $T_i$ là cây Fenwick tương ứng với khối thứ $i$, và $T_{i, j}$ là số điểm trong khối $i$ có tung độ thuộc $(j - lowbit(j), j]$.
 
-### 查询
+### Truy vấn
 
-对于操作 1，将其转化为 4 个二维偏序的查询．现在只需要解决给出 $a, b$，询问有多少个点满足 $1 \le x_i \le a, 1\le y_i \le b$．
+Với thao tác 1, chuyển nó thành 4 truy vấn thứ tự bộ phận hai chiều. Bây giờ chỉ cần giải bài toán: cho $a, b$, hỏi có bao nhiêu điểm thỏa mãn $1 \le x_i \le a, 1\le y_i \le b$.
 
-现在要查询横坐标的范围为 $[1, a]$．因为查询范围最右边可能有一段不是完整的块，所以暴力扫一遍这个段，看是否满足 $Y_i \le b$，统计出这个段满足要求的点的个数．
+Ta cần truy vấn phạm vi hoành độ $[1, a]$. Vì ở mép phải của phạm vi truy vấn có thể có một đoạn không phải là khối hoàn chỉnh, ta duyệt trực tiếp đoạn này, kiểm tra điều kiện $Y_i \le b$, rồi đếm số điểm thỏa mãn trong đoạn đó.
 
-现在就只需要处理完整的块．暴力扫一遍前面的块，查询每个块对应的树状数组中值小于 $b$ 的个数，累加到答案上．
+Bây giờ chỉ còn cần xử lý các khối hoàn chỉnh. Duyệt trực tiếp các khối phía trước, truy vấn trong cây Fenwick tương ứng với mỗi khối số giá trị nhỏ hơn $b$, rồi cộng dồn vào đáp án.
 
-这就完事了？不，注意到处理完整的块的时候，其实相当于查询 $T$ 的前缀和，如果修改时也使用树状数组的技巧处理 $T$，那么查询时复杂度会更低．
+Như vậy là xong chưa? Chưa. Chú ý rằng khi xử lý các khối hoàn chỉnh, thực chất ta đang truy vấn tổng tiền tố của $T$. Nếu khi cập nhật cũng dùng kĩ thuật cây Fenwick để xử lý $T$, độ phức tạp truy vấn sẽ thấp hơn.
 
-### 修改
+### Cập nhật
 
-普通的做法就先找到点 $x$ 所在的块，然后一减一加两个权值树状数组单点修改，再将 $Y_x$ 置为 $y$．
+Cách thông thường là trước hết tìm khối chứa điểm $x$, sau đó thực hiện hai cập nhật điểm trên cây Fenwick theo miền giá trị, một lần trừ và một lần cộng, rồi đặt $Y_x$ thành $y$.
 
-如果用了上面说的优化，那就是对 $T$ 也走一个树状数组修改的流程，每次修改也是一减一加两个权值树状数组单点修改．
+Nếu dùng tối ưu nói trên, ta cũng thực hiện quy trình cập nhật kiểu cây Fenwick trên $T$. Mỗi lần cập nhật vẫn là hai cập nhật điểm trên cây Fenwick theo miền giá trị, một lần trừ và một lần cộng.
 
-对上述步骤进行一定的改变，比如将一减一加改成只减，就是删点；改成只加，就是加点．但是必须要注意一个 $x$ 只能对应一个 $y$．
+Thay đổi nhẹ các bước trên sẽ cho các thao tác khác. Ví dụ, đổi từ một lần trừ và một lần cộng thành chỉ trừ thì đó là xóa điểm; đổi thành chỉ cộng thì đó là thêm điểm. Tuy nhiên, cần chú ý rằng mỗi $x$ chỉ được tương ứng với một $y$.
 
-### 空间复杂度
+### Độ phức tạp không gian
 
-分块分了 $\sqrt n$ 个块，每个块一个树状数组 $O(n)$ 的空间，所以空间复杂度为 $O(n \sqrt n)$．
+Phân khối tạo ra $\sqrt n$ khối, mỗi khối có một cây Fenwick dùng $O(n)$ không gian, nên độ phức tạp không gian là $O(n \sqrt n)$.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-查询的话，遍历非完整块的段 $O(\sqrt n)$．然后，对 $T$ 走树状数组查询，每个经历到的 $T_i$ 也走树状数组查询，这一步是 $O(\log (\sqrt n) \log n)$ 的复杂度．所以查询的时间复杂度为 $O (\sqrt n + \log (\sqrt n) \log n)$．
+Khi truy vấn, việc duyệt đoạn thuộc khối không hoàn chỉnh tốn $O(\sqrt n)$. Sau đó, thực hiện truy vấn cây Fenwick trên $T$; với mỗi $T_i$ đi qua, lại thực hiện một truy vấn cây Fenwick, bước này có độ phức tạp $O(\log (\sqrt n) \log n)$. Vì vậy độ phức tạp thời gian của truy vấn là $O (\sqrt n + \log (\sqrt n) \log n)$.
 
-修改和查询一样，复杂度为 $O (\sqrt n + \log (\sqrt n) \log n)$．
+Cập nhật có độ phức tạp giống truy vấn, là $O (\sqrt n + \log (\sqrt n) \log n)$.
 
-## 例题 1
+## Ví dụ 1
 
 ???+ note "[Intersection of Permutations](https://codeforces.com/problemset/problem/1093/E)"
-    给出两个排列 $a$ 和 $b$，要求实现以下两种操作：
+    Cho hai hoán vị $a$ và $b$, cần thực hiện hai loại thao tác sau:
     
-    1.  给出 $l_a, r_a, l_b, r_b$，要求查询既出现在 $a[l_a ... r_a]$ 又出现在 $b[l_b ... r_b]$ 中的元素的个数．
-    2.  给出 $x, y$，$swap(b_x, b_y)$．
+    1.  Cho $l_a, r_a, l_b, r_b$, cần truy vấn số phần tử vừa xuất hiện trong $a[l_a ... r_a]$ vừa xuất hiện trong $b[l_b ... r_b]$.
+    2.  Cho $x, y$, thực hiện $swap(b_x, b_y)$.
     
-    序列长度 $n$ 满足 $2 \le n \le 2 \cdot 10^5$，操作个数 $q$ 满足 $1 \le q \le 2 \cdot 10^5$．
+    Độ dài dãy $n$ thỏa mãn $2 \le n \le 2 \cdot 10^5$, số thao tác $q$ thỏa mãn $1 \le q \le 2 \cdot 10^5$.
 
-对于每个值 $i$，记 $x_i$ 是它在排列 $b$ 中的下标，$y_i$ 是它在排列 $a$ 中的下标．这样，操作一就变成了一个矩形区域内点的个数的询问，操作 2 可以看成两个修改操作．而且因为是排列，所以满足一个 $x$ 对应一个 $y$，所以这题可以用分块套树状数组来写．
+Với mỗi giá trị $i$, kí hiệu $x_i$ là chỉ số của nó trong hoán vị $b$, và $y_i$ là chỉ số của nó trong hoán vị $a$. Khi đó, thao tác 1 trở thành một truy vấn số điểm trong vùng chữ nhật, còn thao tác 2 có thể xem là hai thao tác cập nhật. Hơn nữa, vì đây là hoán vị nên điều kiện mỗi $x$ tương ứng với một $y$ được thỏa mãn, do đó bài này có thể viết bằng phân khối lồng cây Fenwick.
 
-??? note "参考代码（分块套树状数组 - 1s）"
+??? note "Mã tham khảo (phân khối lồng cây Fenwick - 1s)"
     ```cpp
     #include <cmath>
     #include <cstdio>
@@ -151,7 +151,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
     }
     ```
 
-??? note "参考代码（树状数组套 Treap—TLE）"
+??? note "Mã tham khảo (cây Fenwick lồng Treap - TLE)"
     ```cpp
     #include <cstdio>
     #include <random>
@@ -296,24 +296,24 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
     }
     ```
 
-## 例题 2
+## Ví dụ 2
 
 ???+ note "[Complicated Computations](https://codeforces.com/contest/1436/problem/E)"
-    给出一个序列 $a$，将 $a$ 所有连续子序列的 MEX 构成的数组作为 $b$，问 $b$ 的 MEX．一个序列的 MEX 是序列中最小的没出现过的 **正整数**．
+    Cho một dãy $a$. Lấy tất cả MEX của mọi dãy con liên tiếp của $a$ để tạo thành mảng $b$, hỏi MEX của $b$. MEX của một dãy là **số nguyên dương** nhỏ nhất chưa xuất hiện trong dãy đó.
     
-    序列的长度 $n$ 满足 $1 \le n \le 10^5$．
+    Độ dài dãy $n$ thỏa mãn $1 \le n \le 10^5$.
 
-**观察**：一个序列的 MEX 为 $mex$，当且仅当这个序列包含 $1$ 至 $mex-1$，但不包含 $mex$．
+**Nhận xét**: MEX của một dãy là $mex$ khi và chỉ khi dãy đó chứa các số từ $1$ đến $mex-1$, nhưng không chứa $mex$.
 
-依次判断是否存在 MEX 为 $1$ 至 $n+1$ 的连续子序列．如果没有 MEX 为 $i$ 的连续子序列，那么答案即为 $i$．如果都存在，那么答案为 $n + 2$．
+Lần lượt kiểm tra có tồn tại dãy con liên tiếp có MEX bằng từng giá trị từ $1$ đến $n+1$ hay không. Nếu không có dãy con liên tiếp nào có MEX bằng $i$, thì đáp án là $i$. Nếu tất cả đều tồn tại, đáp án là $n + 2$.
 
-在判断 $i$ 时，将序列视为由零或多个 $i$ 分隔的多个段．如果存在一个段，这个段中包含 $1$ 至 $i - 1$，但不包含 $i$，那么就说明存在值为 $i$ 的连续子序列．
+Khi kiểm tra $i$, xem dãy như nhiều đoạn được ngăn cách bởi không hoặc nhiều phần tử có giá trị $i$. Nếu tồn tại một đoạn chứa các giá trị từ $1$ đến $i - 1$ nhưng không chứa $i$, thì tồn tại một dãy con liên tiếp có MEX bằng $i$.
 
-用一个数组 $Y_j$ 记录上一个值为 $a_j$ 的元素的位置，以 $j$ 作为 $x$，$Y_j$ 作为 $y$，$a_j$ 作为 $z$．这样，计算段内是否包含 $1$ 至 $i - 1$ 就是一个三维偏序的问题．形式化的说，判断段 $[l, r]$ 的 MEX 值是否为 $i$，就是看满足 $l \le j \le r, Y_j \le l - 1, a_j \le i - 1$ 的点的个数是否为 $i-1$．
+Dùng một mảng $Y_j$ để ghi lại vị trí của phần tử gần nhất trước đó có giá trị bằng $a_j$. Lấy $j$ làm $x$, $Y_j$ làm $y$, và $a_j$ làm $z$. Khi đó, tính xem trong đoạn có chứa các giá trị từ $1$ đến $i - 1$ hay không trở thành một bài toán thứ tự bộ phận ba chiều. Nói chính thức, để kiểm tra MEX của đoạn $[l, r]$ có bằng $i$ hay không, ta xem số điểm thỏa mãn $l \le j \le r, Y_j \le l - 1, a_j \le i - 1$ có bằng $i-1$ hay không.
 
-如果在判断完值为 $i$ 的元素之后再将对应的点插入，这时因为 $[l, r]$ 内只存在 $a_j \le i - 1$ 的元素，所以上述三维偏序问题就可以转换为二维偏序的问题．
+Nếu sau khi kiểm tra xong các phần tử có giá trị $i$ mới chèn các điểm tương ứng, thì lúc này trong $[l, r]$ chỉ tồn tại các phần tử có $a_j \le i - 1$. Vì vậy bài toán thứ tự bộ phận ba chiều ở trên có thể chuyển thành bài toán thứ tự bộ phận hai chiều.
 
-??? note "参考代码（分块套树状数组 - 78ms）"
+??? note "Mã tham khảo (phân khối lồng cây Fenwick - 78ms)"
     ```cpp
     #include <cmath>
     #include <cstdio>
@@ -322,7 +322,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
     constexpr int N = 1e5 + 5;
     constexpr int M = 316 + 5;  // sqrt(N) + 5
     
-    // 分块
+    // Phân khối
     int nn, b[N], block_size, block_cnt, block_id[N], L[N], R[N], T[M][N];
     
     void build(int n) {
@@ -344,14 +344,14 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
     
     int lb(int x) { return x & -x; }
     
-    // d = 1: 加点(p, v)
-    // d = -1: 删点(p, v)
+    // d = 1: thêm điểm (p, v)
+    // d = -1: xóa điểm (p, v)
     void add(int p, int v, int d) {
       for (int i = block_id[p]; i <= block_cnt; i += lb(i))
         for (int j = v; j <= nn; j += lb(j)) T[i][j] += d;
     }
     
-    // 询问[1, r]内，纵坐标小于等于val的点有多少个
+    // Hỏi trong [1, r] có bao nhiêu điểm có tung độ không vượt quá val
     int getsum(int p, int v) {
       if (!p) return 0;
       int res = 0;
@@ -363,14 +363,14 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
       return res;
     }
     
-    // 询问[l, r]内，纵坐标小于等于val的点有多少个
+    // Hỏi trong [l, r] có bao nhiêu điểm có tung độ không vượt quá val
     int query(int l, int r, int val) {
       if (l > r) return -1;
       int res = getsum(r, val) - getsum(l - 1, val);
       return res;
     }
     
-    // 加点(p, v)
+    // Thêm điểm (p, v)
     void update(int p, int v) {
       b[p] = v;
       add(p, v, 1);
@@ -382,13 +382,13 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
     int main() {
       scanf("%d", &n);
     
-      // 为了减少讨论，加了哨兵节点
-      // 因为树状数组添加的时候，为0可能会死循环，所以整体往右偏移一位
-      // a_1和a_{n+2}为哨兵节点
+      // Để giảm các trường hợp cần xét, thêm các nút lính canh
+      // Vì khi thêm vào cây Fenwick, giá trị 0 có thể gây vòng lặp vô hạn, nên dịch toàn bộ sang phải một vị trí
+      // a_1 và a_{n+2} là các nút lính canh
       for (int i = 2; i <= n + 1; ++i) scanf("%d", &a[i]);
       for (int i = 2; i <= n + 1; ++i) g[a[i]].push_back(i);
     
-      // 分块
+      // Phân khối
       build(n + 2);
     
       int ans = n + 2, lst, ok;
@@ -422,7 +422,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
     }
     ```
 
-??? note "参考代码（线段树套 Treap-468ms）"
+??? note "Mã tham khảo (cây đoạn lồng Treap - 468ms)"
     ```cpp
     #include <cstdio>
     #include <random>
@@ -549,7 +549,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
       for (int i = 1; i <= n; ++i) scanf("%d", &a[i]);
       for (int i = 1; i <= n; ++i) g[a[i]].push_back(i);
     
-      // a_0 和 a_{n+1}为哨兵节点
+      // a_0 và a_{n+1} là các nút lính canh
       int ans = n + 2, lst, ok;
       for (int i = 1; i <= n + 1; ++i) {
         g[i].push_back(n + 1);

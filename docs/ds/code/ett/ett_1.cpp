@@ -1,7 +1,8 @@
 /*
-虽然上文提到过块状链表实现 ETT
-在某些情况下可能较简单，但对于此题块状链表复杂度有可能无法通过而且实现较繁琐，所以这份代码采用
-FHQ Treap 实现。
+Mặc dù phần trên có nhắc đến cách cài đặt ETT bằng danh sách liên kết chia
+khối, vốn có thể đơn giản hơn trong một số trường hợp, với bài này độ phức tạp
+của danh sách liên kết chia khối có thể không qua được và cài đặt cũng khá
+phiền phức. Vì vậy, đoạn code này dùng FHQ Treap.
 */
 #include <iostream>
 #include <vector>
@@ -94,7 +95,7 @@ void add(long long x, long long v) {
   long long a, b, c;
   split(rt, rnk(s[x]) - 1, a, b);
   split(b, rnk(e[x]) - rnk(s[x]) + 1, b,
-        c);  // 这里 b 是我们要进行操作的子树的括号序列。
+        c);  // Ở đây b là dãy ngoặc của cây con cần thao tác.
   setTag(b, v);
   rt = merge(merge(a, b), c);
 }
@@ -113,9 +114,11 @@ void changeFa(long long x, long long y) {
   split(b, rnk(e[x]) - rnk(s[x]) + 1, b, c);
   a = merge(
       a,
-      c);  // 因为我们确定不了要设置为父亲的节点在括号序列中的哪边，所以先把两边合并。
+      c);  // Gộp hai phía trước vì ta không xác định được nút sẽ đặt làm cha
+           // nằm ở phía nào trong dãy ngoặc.
   split(a, rnk(s[y]), a, d);
-  rt = merge(merge(a, b), d);  // 把要进行操作的子树放在父亲括号序列的最前面。
+  rt = merge(merge(a, b),
+             d);  // Đặt cây con cần thao tác ở đầu dãy ngoặc của cha.
 }
 
 /*main function*/

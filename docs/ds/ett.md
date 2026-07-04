@@ -1,20 +1,20 @@
 author: Backl1ght
 
-Euler Tour Tree（欧拉游览树，欧拉回路树，后文简称 ETT）是一种可以解决 **动态树** 问题的数据结构．ETT 将动态树的操作转换成了其 DFS 序列上的区间操作，再用其他数据结构来维护序列的区间操作，从而维护动态树的操作．例如，ETT 将动态树的加边操作转换成了多个序列拆分操作和序列合并操作，如果能维护序列拆分操作和序列合并操作，就能维护动态树的加边操作．
+Euler Tour Tree (cây Euler Tour, sau đây viết tắt là ETT) là một cấu trúc dữ liệu có thể giải quyết bài toán **cây động**. ETT chuyển các thao tác trên cây động thành các thao tác đoạn trên dãy DFS của nó, rồi dùng các cấu trúc dữ liệu khác để duy trì các thao tác đoạn trên dãy, qua đó duy trì các thao tác trên cây động. Chẳng hạn, ETT chuyển thao tác thêm cạnh trên cây động thành nhiều thao tác tách dãy và gộp dãy; nếu có thể duy trì thao tác tách dãy và gộp dãy thì cũng có thể duy trì thao tác thêm cạnh trên cây động.
 
-LCT 也是一种可以解决动态树问题的数据结构，相比 ETT 而言 LCT 会更加常见．LCT 其实更适用于维护树链的信息，而 ETT 更加适用于维护 **子树** 的信息．例如，ETT 可以维护子树最小值而 LCT 不能．
+LCT cũng là một cấu trúc dữ liệu có thể giải quyết bài toán cây động, và so với ETT thì LCT phổ biến hơn. Thực ra LCT phù hợp hơn để duy trì thông tin trên đường đi của cây, còn ETT phù hợp hơn để duy trì thông tin của **cây con**. Ví dụ, ETT có thể duy trì giá trị nhỏ nhất trong cây con, còn LCT thì không.
 
-ETT 可以使用任意数据结构维护，只需要该数据结构支持对应的序列区间操作，以及在复杂度上满足要求．一般情况下会使用例如 Splay，Treap 等平衡二叉搜索树来维护序列，而这些数据结构维护区间操作的复杂度均为 $O(\log n)$，由此也可以在 $O(\log n)$ 的时间内维护动态树的操作．如果使用多叉平衡搜索树例如 B 树来维护区间操作，也可以做到更优的复杂度．
+ETT có thể được duy trì bằng bất kỳ cấu trúc dữ liệu nào, miễn là cấu trúc đó hỗ trợ các thao tác đoạn tương ứng trên dãy và thỏa yêu cầu về độ phức tạp. Thông thường, ta dùng các cây tìm kiếm nhị phân cân bằng như Splay, Treap để duy trì dãy; các cấu trúc này đều duy trì thao tác đoạn với độ phức tạp $O(\log n)$, nhờ đó cũng có thể duy trì thao tác trên cây động trong thời gian $O(\log n)$. Nếu dùng cây tìm kiếm cân bằng nhiều nhánh, chẳng hạn B-tree, để duy trì thao tác đoạn thì cũng có thể đạt độ phức tạp tốt hơn.
 
-其实 ETT 可以理解为一种思想，就是通过维护某种和原树一一对应的序列，从而达到维护原树的目的，本文介绍的只是这个思想的一些可行的实现和应用．
+Thực ra có thể hiểu ETT như một tư tưởng: duy trì một dãy nào đó tương ứng một-một với cây ban đầu, từ đó đạt mục đích duy trì cây ban đầu. Bài viết này chỉ giới thiệu một vài cách cài đặt và ứng dụng khả thi của tư tưởng đó.
 
-## 树的欧拉回路表示
+## Biểu diễn chu trình Euler của cây
 
-如果把一条树边看成两条有向边的话，那么就可以把一棵树表示成一个有向图的欧拉回路，称为树的欧拉回路表示（Euler tour representation，ETR）．
+Nếu xem mỗi cạnh của cây là hai cạnh có hướng, thì ta có thể biểu diễn một cây thành một chu trình Euler trong đồ thị có hướng; biểu diễn này được gọi là biểu diễn chu trình Euler của cây (Euler tour representation, ETR).
 
-后面要维护的序列其实是 ETR 的一个变种，把树中的点看成了自环也加到了 ETR 中，但是由于原始论文中作者没有给它起新的名字，就还是叫它 ETR 吧．
+Dãy cần duy trì ở phần sau thực ra là một biến thể của ETR: ta xem các đỉnh trong cây như các khuyên tự nối và cũng đưa chúng vào ETR. Tuy nhiên, vì tác giả trong bài báo gốc không đặt tên mới cho nó, ta vẫn gọi nó là ETR.
 
-可以通过下述算法得到树 $T$ 的 欧拉回路表示：
+Có thể thu được biểu diễn chu trình Euler của cây $T$ bằng thuật toán sau:
 
 $$
 \begin{array}{ll}
@@ -29,61 +29,61 @@ $$
 \end{array}
 $$
 
-树 $T$ 的欧拉回路表示 $\operatorname{ETR}(T)$ 初始为空，DFS 的过程中每次访问一个节点或者一条有向边时就将其加到 $\operatorname{ETR}(T)$ 的尾部，如此便可得到 $\operatorname{ETR}(T)$．
+Biểu diễn chu trình Euler $\operatorname{ETR}(T)$ của cây $T$ ban đầu rỗng. Trong quá trình DFS, mỗi khi thăm một đỉnh hoặc một cạnh có hướng, ta thêm nó vào cuối $\operatorname{ETR}(T)$; làm như vậy sẽ thu được $\operatorname{ETR}(T)$.
 
-若 $T$ 中包含 $n$ 个节点，则中包含 $2n - 2$ 条有向边，而 DFS 的过程中，每个点和每条有向边都会被访问一次，所以 $\operatorname{ETR}(T)$ 的长度为 $3n - 2$．
+Nếu $T$ có $n$ đỉnh thì nó chứa $2n - 2$ cạnh có hướng. Trong quá trình DFS, mỗi đỉnh và mỗi cạnh có hướng đều được thăm đúng một lần, nên độ dài của $\operatorname{ETR}(T)$ là $3n - 2$.
 
-把点 $u$ 看成是一个自环，这样 $\operatorname{ETR}(T)$ 就可以看成有向图中的一个欧拉回路．可以在欧拉回路的某处断开，将其看成是一些边的首尾相连组成的链；也可以把这样的链在断开处重新粘起来变回欧拉回路；还可以通过新增一些边把两个这样的链拼成一个新的欧拉回路．
+Xem đỉnh $u$ là một khuyên tự nối, khi đó $\operatorname{ETR}(T)$ có thể được xem như một chu trình Euler trong đồ thị có hướng. Ta có thể cắt chu trình Euler tại một vị trí nào đó và xem nó như một chuỗi gồm các cạnh nối đầu-cuối; cũng có thể dán chuỗi đó lại tại chỗ cắt để trở về chu trình Euler; ngoài ra, có thể thêm một vài cạnh mới để ghép hai chuỗi như vậy thành một chu trình Euler mới.
 
-后文中，如未说明默认维护的序列是树的欧拉回路表示．
+Trong phần sau, nếu không nói rõ, dãy được duy trì mặc định là biểu diễn chu trình Euler của cây.
 
-## ETT 的基本操作
+## Các thao tác cơ bản của ETT
 
-以下 3 个操作算是 ETT 的基本操作，均可以转换成常数次序列的操作，所以这 3 个操作的复杂度和序列操作同阶．
+Ba thao tác sau được xem là các thao tác cơ bản của ETT. Chúng đều có thể chuyển thành một số hằng thao tác trên dãy, vì vậy độ phức tạp của ba thao tác này cùng bậc với thao tác trên dãy.
 
-这里给出的只是一种可行的实现，只要能用常数次序列操作把修改后对应的序列拼出来即可．
+Cách trình bày ở đây chỉ là một cài đặt khả thi; chỉ cần dùng được một số hằng thao tác trên dãy để ghép ra dãy tương ứng sau khi sửa đổi là được.
 
 ### MakeRoot(u)
 
-即换根操作．ETT 中的换根操作被转换成了 1 个序列拆分操作和 1 个序列合并操作，也可以理解成 1 个区间平移操作．
+Đây là thao tác đổi gốc. Trong ETT, thao tác đổi gốc được chuyển thành 1 thao tác tách dãy và 1 thao tác gộp dãy; cũng có thể hiểu là 1 thao tác tịnh tiến đoạn.
 
-记包含点 $u$ 的树为 $T$，当前其树根为 $r$，现在要将树根换成 $u$．树 $T$ 对应的序列为 $L$，将 $L$ 在 $(u, u)$ 处拆分成序列 $L^1$ 和 $L^2$，前者包含 $L$ 中 $(u, u)$ 之前的元素以及 $(u, u)$，后者包含剩余元素．则依次将 $L^2$ 和 $L^1$ 合并得到的序列，即为换根之后树对应的序列．
+Gọi cây chứa đỉnh $u$ là $T$, gốc hiện tại của nó là $r$, và bây giờ cần đổi gốc thành $u$. Dãy tương ứng với cây $T$ là $L$. Tách $L$ tại $(u, u)$ thành hai dãy $L^1$ và $L^2$, trong đó dãy trước chứa các phần tử đứng trước $(u, u)$ trong $L$ cùng với $(u, u)$, còn dãy sau chứa các phần tử còn lại. Khi đó, dãy thu được bằng cách lần lượt gộp $L^2$ và $L^1$ chính là dãy tương ứng với cây sau khi đổi gốc.
 
-这里可以理解成对一个欧拉回路进行旋转操作，欧拉回路是一个环，旋转并不会改变欧拉回路的结构，也即不会改变树的结构，只是把点 $u$ 旋转到了根的位置而已．
+Có thể hiểu thao tác này là xoay một chu trình Euler. Chu trình Euler là một vòng, nên xoay sẽ không thay đổi cấu trúc của chu trình Euler, tức cũng không thay đổi cấu trúc của cây; nó chỉ xoay đỉnh $u$ đến vị trí gốc.
 
 ### Insert(u, v)
 
-即加边操作．ETT 中加边操作被转换成了 2 个序列拆分操作和 5 个序列合并操作．
+Đây là thao tác thêm cạnh. Trong ETT, thao tác thêm cạnh được chuyển thành 2 thao tác tách dãy và 5 thao tác gộp dãy.
 
-记包含点 $u$ 的树为 $T_1$，包含点 $v$ 的树为 $T_2$，加边之后两颗树合并成了一颗树 $T$．树 $T_1$ 对应的序列为 $L_1$，树 $T_2$ 对应的序列为 $L_2$．
+Gọi cây chứa đỉnh $u$ là $T_1$, cây chứa đỉnh $v$ là $T_2$; sau khi thêm cạnh, hai cây sẽ gộp thành một cây $T$. Dãy tương ứng với cây $T_1$ là $L_1$, và dãy tương ứng với cây $T_2$ là $L_2$.
 
-将 $L_1$ 在 $(u, u)$ 处拆分成序列 $L_1^1$ 和 $L_1^2$，前者包含 $L_1$ 中 $(u, u)$ 之前的元素以及 $(u, u)$，后者包含剩余元素．类似地将 $L_2$ 在 $(v, v)$ 处拆分成序列 $L_2^1$ 和 $L_2^2$．则依次将 $L_1^2, L_1^1, [(u, v)], L_2^2, L_2^1,  [(v, u)]$ 合并即可得到树 $T$ 对应的序列 $L$．
+Tách $L_1$ tại $(u, u)$ thành hai dãy $L_1^1$ và $L_1^2$, trong đó dãy trước chứa các phần tử đứng trước $(u, u)$ trong $L_1$ cùng với $(u, u)$, còn dãy sau chứa các phần tử còn lại. Tương tự, tách $L_2$ tại $(v, v)$ thành hai dãy $L_2^1$ và $L_2^2$. Khi đó, lần lượt gộp $L_1^2, L_1^1, [(u, v)], L_2^2, L_2^1,  [(v, u)]$ là thu được dãy $L$ tương ứng với cây $T$.
 
-这里可以理解成两次换根操作，然后把两个欧拉回路在当前根的位置处断开，再用新加的两条有向边把两个欧拉回路拼成一个新的欧拉回路．
+Có thể hiểu thao tác này là thực hiện hai lần đổi gốc, rồi cắt hai chu trình Euler tại vị trí gốc hiện tại, sau đó dùng hai cạnh có hướng mới thêm để ghép hai chu trình Euler thành một chu trình Euler mới.
 
 ### Delete(u, v)
 
-即删边操作．ETT 中删边操作被转换成了 4 个序列拆分操作以及 1 个序列合并操作．
+Đây là thao tác xóa cạnh. Trong ETT, thao tác xóa cạnh được chuyển thành 4 thao tác tách dãy và 1 thao tác gộp dãy.
 
-记包含边 $(u, v)$ 和边 $(v, u)$ 的树为 $T$，其对应序列为 $L$．删边之后 $T$ 分成了两颗树．
+Gọi cây chứa cạnh $(u, v)$ và cạnh $(v, u)$ là $T$, dãy tương ứng của nó là $L$. Sau khi xóa cạnh, $T$ tách thành hai cây.
 
-将 $L$ 拆分成 $L_1, [(u, v)], L_2, [(v, u)], L_3$，删边形成的两颗树对应的序列分别为 $L_2$ 以及 $L_1, L_3$．注意，在序列 $L$ 中 $[(u, v)]$ 有可能出现在 $[(v, u)]$ 的后面，此时可以先交换 $u$ 和 $v$ 的值然后再操作．
+Tách $L$ thành $L_1, [(u, v)], L_2, [(v, u)], L_3$. Hai cây được tạo ra sau khi xóa cạnh có các dãy tương ứng lần lượt là $L_2$ và dãy ghép từ $L_1, L_3$. Lưu ý rằng trong dãy $L$, $[(u, v)]$ có thể xuất hiện phía sau $[(v, u)]$; khi đó có thể hoán đổi giá trị của $u$ và $v$ trước rồi mới thao tác.
 
-这里可以理解成把一个欧拉回路从两条有向边处断开形成两条链，然后两条链自己首尾相连形成两个新的欧拉回路．
+Có thể hiểu thao tác này là cắt một chu trình Euler tại hai cạnh có hướng để tạo thành hai chuỗi, rồi mỗi chuỗi tự nối đầu-cuối để tạo thành hai chu trình Euler mới.
 
-## 实现
+## Cài đặt
 
-以下以非旋 Treap 为例介绍 ETT 的实现，需要读者事先了解使用非旋 Treap 维护区间操作的相关内容．
+Phần dưới lấy Treap không xoay làm ví dụ để giới thiệu cách cài đặt ETT; người đọc cần biết trước các nội dung liên quan đến việc dùng Treap không xoay để duy trì thao tác đoạn.
 
-`Split` 和 `Merge` 都是非旋 Treap 的基本操作了，这里不再赘述．
+`Split` và `Merge` đều là các thao tác cơ bản của Treap không xoay, nên ở đây không trình bày lại.
 
 ### SplitUp2(u)
 
-假设 $u$ 所在的序列为 $L$，将 $L$ 在 $u$ 处拆分成序列 $L^1$ 和 $L^2$，前者包含 $L$ 中 $u$ 之前的元素以及 $u$，后者包含剩余元素．
+Giả sử dãy chứa $u$ là $L$. Tách $L$ tại $u$ thành hai dãy $L^1$ và $L^2$, trong đó dãy trước chứa các phần tử đứng trước $u$ trong $L$ cùng với $u$, còn dãy sau chứa các phần tử còn lại.
 
-如果 Treap 的每个节点额外维护自己的父亲的话，就可以实现 $O(\log n)$ 的时间内计算一个 Treap 节点对应的元素在序列中的位置，再根据位置去 `Split` 就可以实现上述功能．
+Nếu mỗi nút của Treap duy trì thêm nút cha của chính nó, ta có thể tính vị trí trong dãy của phần tử tương ứng với một nút Treap trong thời gian $O(\log n)$, rồi dựa vào vị trí đó để `Split` và thực hiện chức năng trên.
 
-也可以自底向上地拆分从而实现上述功能，这样做相比上述方法会更高效．具体就是，在从 $u$ 对应的节点往根跳的过程中，根据二叉搜索树的性质就可以确定每个节点在 $L$ 中位于 $u$ 之前还是之后，根据这点就可以计算 $u$ 在序列中的位置，也可以确定每个节点属于拆分后的哪一棵树．
+Cũng có thể tách từ dưới lên để thực hiện chức năng trên; cách này hiệu quả hơn so với phương pháp vừa nêu. Cụ thể, trong quá trình nhảy từ nút tương ứng với $u$ lên gốc, dựa vào tính chất của cây tìm kiếm nhị phân, ta có thể xác định mỗi nút nằm trước hay sau $u$ trong $L$. Từ đó có thể tính vị trí của $u$ trong dãy, đồng thời xác định mỗi nút thuộc cây nào sau khi tách.
 
 ```cpp
 /*
@@ -133,13 +133,13 @@ static std::pair<Node*, Node*> SplitUp2(Node* p) {
 
 ### SplitUp3(u)
 
-假设 $u$ 所在的序列为 $L$，将 $L$ 在 $u$ 处拆分成序列 $L^1$,$u$ 和 $L^2$，前者包含 $L$ 中 $u$ 之前的元素，后者包含剩余元素．
+Giả sử dãy chứa $u$ là $L$. Tách $L$ tại $u$ thành các phần $L^1$, $u$ và $L^2$, trong đó phần trước chứa các phần tử đứng trước $u$ trong $L$, còn phần sau chứa các phần tử còn lại.
 
-在 `SplitUp2` 的基础上稍作修改即可．
+Chỉ cần sửa nhẹ trên cơ sở `SplitUp2` là được.
 
 ### MakeRoot(u)
 
-基于 `SplitUp2` 以及 `Merge` 易得．
+Dễ dàng thu được dựa trên `SplitUp2` và `Merge`.
 
 ```cpp
 void MakeRoot(int u) {
@@ -151,7 +151,7 @@ void MakeRoot(int u) {
 
 ### Insert(u, v)
 
-基于 `SplitUp2` 以及 `Merge` 易得．
+Dễ dàng thu được dựa trên `SplitUp2` và `Merge`.
 
 ```cpp
 void Insert(int u, int v) {
@@ -177,7 +177,7 @@ void Insert(int u, int v) {
 
 ### Delete(u, v)
 
-基于 `SplitUp3` 以及 `Merge` 易得．
+Dễ dàng thu được dựa trên `SplitUp3` và `Merge`.
 
 ```cpp
 void Delete(int u, int v) {
@@ -202,54 +202,54 @@ void Delete(int u, int v) {
 }
 ```
 
-## 维护连通性
+## Duy trì tính liên thông
 
-点 $u$ 和点 $v$ 连通，当且仅当两个点属于同一棵树 $T$，即 $(u, u)$ 和 $(v, v)$ 属于 $\operatorname{ETR}(T)$，这可以根据点 $u$ 和点 $v$ 对应的 Treap 节点所在的 Treap 的根是否相同判断．
+Đỉnh $u$ và đỉnh $v$ liên thông khi và chỉ khi hai đỉnh thuộc cùng một cây $T$, tức $(u, u)$ và $(v, v)$ cùng thuộc $\operatorname{ETR}(T)$. Có thể phán đoán điều này dựa trên việc hai nút Treap tương ứng với đỉnh $u$ và đỉnh $v$ có cùng gốc Treap hay không.
 
-### 例题 [P2147\[SDOI2008\] 洞穴勘测](https://www.luogu.com.cn/problem/P2147)
+### Bài tập ví dụ [P2147\[SDOI2008\] Thăm dò hang động](https://www.luogu.com.cn/problem/P2147)
 
-维护连通性的模板题．
+Bài mẫu về duy trì tính liên thông.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/ds/code/ett/ett_connectivity.cpp"
     ```
 
-## 维护子树信息
+## Duy trì thông tin cây con
 
-下面以子树节点数量为例进行说明．
+Phần dưới minh họa bằng số lượng đỉnh trong cây con.
 
-对于 $\operatorname{ETR}(T)$ 中每一个元素，如果这个元素对应的是树中的点，则令其权值为 $1$；如果这个元素对应的是树中的边，则令其权值为 $0$．现在树 $T$ 的节点数量就可以看成 $\operatorname{ETR}(T)$ 中元素的权值和，只需要再维护序列权值和即可实现维护子树节点数量．而序列权值和的维护是非旋 Treap 的经典操作了．
+Với mỗi phần tử trong $\operatorname{ETR}(T)$, nếu phần tử đó tương ứng với một đỉnh trong cây thì đặt trọng số của nó là $1$; nếu phần tử đó tương ứng với một cạnh trong cây thì đặt trọng số của nó là $0$. Khi đó, số lượng đỉnh của cây $T$ có thể được xem là tổng trọng số của các phần tử trong $\operatorname{ETR}(T)$. Chỉ cần duy trì thêm tổng trọng số của dãy là có thể duy trì số lượng đỉnh trong cây con. Việc duy trì tổng trọng số của dãy là thao tác kinh điển của Treap không xoay.
 
-类似地，可以将子树最小值等操作转化成序列最小值等平衡树经典操作然后维护．
+Tương tự, có thể chuyển các thao tác như giá trị nhỏ nhất trong cây con thành các thao tác kinh điển trên cây cân bằng như giá trị nhỏ nhất trên dãy, rồi duy trì chúng.
 
-### 例题 [LOJ #2230.「BJOI2014」大融合](https://loj.ac/p/2230)
+### Bài tập ví dụ [LOJ #2230. BJOI2014 - Đại dung hợp](https://loj.ac/p/2230)
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/ds/code/ett/ett_subtree_size.cpp"
     ```
 
-## 维护树链信息
+## Duy trì thông tin trên đường đi của cây
 
-可以使用一个比较常见的技巧就是借助括号序的性质将树链信息转化成区间信息，然后就可以借助数据结构维护序列从而维护树链信息了．但是这个技巧要求维护的信息满足 **可减性**．
+Có thể dùng một kỹ thuật khá phổ biến: dựa vào tính chất của dãy ngoặc để chuyển thông tin trên đường đi của cây thành thông tin trên đoạn, rồi dùng cấu trúc dữ liệu duy trì dãy để duy trì thông tin trên đường đi. Tuy nhiên, kỹ thuật này yêu cầu thông tin được duy trì phải có **tính trừ được**.
 
-前面介绍的动态树操作对应的序列操作可能会把括号序中的右括号移动到左括号前，所以维护树链点权和之类的信息时还需要额外注意，操作时不能改变对应左右括号的先后顺序，而这可能需要重新思考动态树操作对应的序列操作，甚至重新思考维护什么 DFS 序．
+Các thao tác trên dãy tương ứng với thao tác cây động đã giới thiệu ở trên có thể di chuyển ngoặc phải trong dãy ngoặc lên trước ngoặc trái. Vì vậy, khi duy trì các thông tin như tổng trọng số đỉnh trên đường đi của cây, cần đặc biệt chú ý rằng thao tác không được làm thay đổi thứ tự trước-sau của cặp ngoặc trái và phải tương ứng. Điều này có thể đòi hỏi phải suy nghĩ lại các thao tác trên dãy tương ứng với thao tác cây động, thậm chí suy nghĩ lại việc nên duy trì dãy DFS nào.
 
-此外，ETT 很难维护树链修改．
+Ngoài ra, ETT rất khó duy trì các phép sửa đổi trên đường đi của cây.
 
-### 例题 [「星际探索」](https://hydro.ac/p/bzoj-P3786)
+### Bài tập ví dụ [Khám phá giữa các vì sao](https://hydro.ac/p/bzoj-P3786)
 
-这题的动态树操作只有换父亲，可以看成删边再加边，但是这样可能会改变对应括号的先后顺序．
+Trong bài này, thao tác cây động chỉ có đổi cha; có thể xem là xóa cạnh rồi thêm cạnh, nhưng làm vậy có thể thay đổi thứ tự trước-sau của cặp ngoặc tương ứng.
 
-可以把点权转成边权，维护树的括号序，换父亲操作转化成把整个子树对应的括号序列平移至父亲左括号后面．
+Có thể chuyển trọng số đỉnh thành trọng số cạnh, duy trì dãy ngoặc của cây, và chuyển thao tác đổi cha thành thao tác tịnh tiến toàn bộ dãy ngoặc tương ứng với cây con đến ngay sau ngoặc trái của cha.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/ds/code/ett/ett_1.cpp"
     ```
 
-## 参考资料
+## Tài liệu tham khảo
 
 -   Dynamic trees as search trees via euler tours, applied to the network simplex algorithm - Robert E. Tarjan
 -   Randomized fully dynamic graph algorithms with polylogarithmic time per operation - Henzinger et al.

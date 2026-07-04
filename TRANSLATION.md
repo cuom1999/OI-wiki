@@ -249,6 +249,10 @@ MkDocs source layout intact.
   `docs/ds/seg-in-bit.md`: translated tree-of-data-structures pages covering
   segment-tree nesting, segment-tree-with-balanced-tree operations, and
   Fenwick-tree-with-value-segment-tree dynamic ranking.
+- `docs/ds/bit-in-block-array.md`, `docs/ds/kdt.md`,
+  `docs/ds/global-bst.md`, `docs/ds/ett.md`: translated block-with-Fenwick,
+  K-D Tree, global balanced binary tree, and Euler Tour Tree pages, including
+  rendered comments in the Euler Tour Tree example.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

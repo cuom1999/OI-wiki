@@ -1,38 +1,38 @@
-## 引入
+## Giới thiệu
 
-前置知识：[树链剖分](../graph/hld.md)
+Kiến thức nền: [Phân rã nặng-nhẹ](../graph/hld.md)
 
-由于树链剖分的时间复杂度为 $O(n\log^2 n)$，而我们熟知的 LCT 虽然时间复杂度为 $O(n\log n)$，但常数较大，可能比树链剖分还慢．那么有什么既是 $O(n\log n)$ 的，常数又相对较小的方法呢？这个时候全局平衡二叉树就出现了．
+Do độ phức tạp thời gian của phân rã nặng-nhẹ là $O(n\log^2 n)$, còn LCT quen thuộc tuy có độ phức tạp thời gian $O(n\log n)$ nhưng hằng số khá lớn, có thể còn chậm hơn phân rã nặng-nhẹ. Vậy có phương pháp nào vừa đạt $O(n\log n)$, vừa có hằng số tương đối nhỏ không? Khi đó cây nhị phân cân bằng toàn cục xuất hiện.
 
-全局平衡二叉树实际上是一颗二叉树森林，其中的每颗二叉树维护一条重链．但是这个森林里的二叉树又互有联系，其中每个二叉树的根连向这个重链链头的父亲，就像 LCT 中一样．但全局平衡二叉树是静态树，区别于 LCT，建成后树的形态不变．
+Cây nhị phân cân bằng toàn cục thực chất là một rừng cây nhị phân, trong đó mỗi cây nhị phân duy trì một chuỗi nặng. Nhưng các cây nhị phân trong rừng này lại có liên hệ với nhau: gốc của mỗi cây nhị phân nối tới cha của đỉnh đầu chuỗi nặng tương ứng, giống như trong LCT. Tuy nhiên, cây nhị phân cân bằng toàn cục là cây tĩnh; khác với LCT, sau khi xây xong thì hình dạng cây không thay đổi.
 
-全局平衡二叉树是一种可以处理树上链修改/查询的数据结构，可以做到：
+Cây nhị phân cân bằng toàn cục là một cấu trúc dữ liệu có thể xử lý cập nhật/truy vấn trên đường đi trong cây, đạt được:
 
--   $O(\log n)$ 一条链整体修改．
--   $O(\log n)$ 一条链整体查询．
--   $O(\log n)$ 求最近公共祖先，子树修改，子树查询等，这些复杂度和重链剖分是一样的．
+-   $O(\log n)$ cho cập nhật toàn bộ một đường.
+-   $O(\log n)$ cho truy vấn toàn bộ một đường.
+-   $O(\log n)$ cho tìm tổ tiên chung gần nhất, cập nhật cây con, truy vấn cây con, v.v.; các độ phức tạp này giống với phân rã chuỗi nặng.
 
-## 主要性质
+## Tính chất chính
 
-1.  全局平衡二叉树由很多棵二叉树通过轻边连起来组成，每一棵二叉树维护了原树的一条重链，其中序遍历的顺序就是这条重链深度单调递增的顺序．每个节点都仅出现在一棵二叉树中．
-2.  边分为重边和轻边，重边是包含在二叉树中的边，维护的时候就像正常维护二叉树一样，记录左右儿子和父节点．轻边从一颗二叉树的根节点指向它所对应的重链顶端节点的父节点．轻边维护的时候 "认父不认子"，即只能从子节点访问到父节点，不能反过来．注意，全局平衡二叉树中的边和原树中的边没有对应关系．
-3.  算上重边和轻边，全局平衡二叉树的高度是 $O(\log n)$ 级别的．这条是保证全局平衡二叉树时间复杂度的性质．
+1.  Cây nhị phân cân bằng toàn cục được tạo thành từ nhiều cây nhị phân nối với nhau bằng cạnh nhẹ. Mỗi cây nhị phân duy trì một chuỗi nặng của cây gốc, trong đó thứ tự duyệt trung thứ tự chính là thứ tự độ sâu tăng đơn điệu trên chuỗi nặng này. Mỗi đỉnh chỉ xuất hiện trong đúng một cây nhị phân.
+2.  Các cạnh được chia thành cạnh nặng và cạnh nhẹ. Cạnh nặng là cạnh nằm trong cây nhị phân; khi duy trì thì giống như duy trì cây nhị phân thông thường, ghi lại con trái, con phải và đỉnh cha. Cạnh nhẹ đi từ gốc của một cây nhị phân tới đỉnh cha của đỉnh đầu chuỗi nặng mà nó tương ứng. Khi duy trì cạnh nhẹ, ta "nhận cha chứ không nhận con", tức là chỉ có thể đi từ đỉnh con lên đỉnh cha, không thể đi ngược lại. Lưu ý rằng các cạnh trong cây nhị phân cân bằng toàn cục không có quan hệ tương ứng với các cạnh trong cây gốc.
+3.  Tính cả cạnh nặng và cạnh nhẹ, chiều cao của cây nhị phân cân bằng toàn cục ở cấp độ $O(\log n)$. Đây là tính chất bảo đảm độ phức tạp thời gian của cây nhị phân cân bằng toàn cục.
 
-下面是一个全局平衡二叉树建树的例子．第一张图是原树，以节点 1 为根节点．实线是重边．
+Dưới đây là một ví dụ xây cây nhị phân cân bằng toàn cục. Hình thứ nhất là cây gốc, lấy đỉnh 1 làm gốc. Các đường liền là cạnh nặng.
 
 ![global-bst-1](images/global-bst-1.svg)
 
-第二张图是建出来的全局平衡二叉树，其中虚线是轻边，实线是重边，每一棵二叉树用红圈表示．
+Hình thứ hai là cây nhị phân cân bằng toàn cục được xây ra, trong đó đường nét đứt là cạnh nhẹ, đường liền là cạnh nặng, mỗi cây nhị phân được biểu diễn bằng một vòng tròn đỏ.
 
 ![global-bst-2](images/global-bst-2.svg)
 
-## 建树
+## Xây cây
 
-首先是像普通重链剖分一样，一次 DFS 求出每个节点的重儿子．然后从根开始，找到根节点所在的重链，对于这些点的轻儿子递归建树，并连上轻边．然后我们需要给重链上的点建一棵二叉树．我们先把重链上的点存到数组里，求出每个点轻儿子的子树大小之和加一（即该点本身所贡献的 size）．然后我们按照这个求出这条重链的加权中点，把它作为二叉树的根，两边递归建树，并连上重边．
+Trước hết, giống như phân rã chuỗi nặng thông thường, dùng một lần DFS để tìm con nặng của mỗi đỉnh. Sau đó bắt đầu từ gốc, tìm chuỗi nặng chứa đỉnh gốc; với các con nhẹ của những đỉnh này, đệ quy xây cây và nối cạnh nhẹ. Tiếp theo ta cần xây một cây nhị phân cho các đỉnh trên chuỗi nặng. Trước tiên lưu các đỉnh trên chuỗi nặng vào một mảng, tính tổng kích thước cây con của các con nhẹ của mỗi đỉnh cộng thêm một (tức là size do chính đỉnh đó đóng góp). Sau đó dựa vào giá trị này để tìm trung điểm có trọng số của chuỗi nặng, lấy nó làm gốc của cây nhị phân, rồi đệ quy xây hai phía và nối cạnh nặng.
 
-代码如下：
+Mã như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     std::vector<int> G[N];
     int n, fa[N], son[N], sz[N];
@@ -48,7 +48,7 @@
     
     int b[N], bs[N], l[N], r[N], f[N], ss[N];
     
-    // 给b中[bl,br)内的点建二叉树，返回二叉树的根
+    // Xây cây nhị phân cho các đỉnh trong [bl,br) của b, trả về gốc của cây nhị phân
     int cbuild(int bl, int br) {
       int x = bl, y = br;
       while (y - x > 1) {
@@ -58,9 +58,9 @@
         else
           y = mid;
       }
-      // 二分求出按bs加权的中点
+      // Tìm trung điểm theo trọng số bs bằng tìm kiếm nhị phân
       y = b[x];
-      ss[y] = br - bl;  // ss：二叉树中重子树的大小
+      ss[y] = br - bl;  // ss: kích thước cây con nặng trong cây nhị phân
       if (bl < x) {
         l[y] = cbuild(bl, x);
         f[l[y]] = y;
@@ -78,29 +78,29 @@
         for (int v : G[y])
           if (v != son[y])
             f[build(v)] =
-                y;  // 递归建树并连轻边，注意要从二叉树的根连边，不是从儿子连边
+                y;  // Đệ quy xây cây và nối cạnh nhẹ; cần nối từ gốc cây nhị phân, không phải từ con
       while (y = son[y]);
       y = 0;
       do {
-        b[y++] = x;                              // 存放重链中的点
-        bs[y] = bs[y - 1] + sz[x] - sz[son[x]];  // bs：轻儿子size和+1，求前缀和
+        b[y++] = x;                              // Lưu các đỉnh trên chuỗi nặng
+        bs[y] = bs[y - 1] + sz[x] - sz[son[x]];  // bs: size con nhẹ + 1, lấy tổng tiền tố
       } while (x = son[x]);
       return cbuild(0, y);
     }
     ```
 
-由代码可以看出建树的时间复杂度是 $O(n\log n)$．接下来我们可以证明树高是 $O(\log n)$ 的：考虑从任意一个点跳父节点到根．跳轻边就相当于在原树中跳到另一条重链，由重链剖分的性质可得跳轻边最多 $O(\log n)$ 条；因为建二叉树的时候根节点找的是算轻儿子的加权中点，那么跳一次重边算上轻儿子的 size 至少翻倍，所以跳重边最多也是 $O(\log n)$ 条．整体树高就是 $O(\log n)$ 的．
+Từ mã có thể thấy độ phức tạp thời gian để xây cây là $O(n\log n)$. Tiếp theo ta có thể chứng minh chiều cao cây là $O(\log n)$: xét việc nhảy theo đỉnh cha từ một đỉnh bất kỳ lên gốc. Nhảy qua cạnh nhẹ tương đương với việc nhảy sang một chuỗi nặng khác trong cây gốc; theo tính chất của phân rã chuỗi nặng, số cạnh nhẹ phải nhảy tối đa là $O(\log n)$. Vì khi xây cây nhị phân, đỉnh gốc được chọn là trung điểm có trọng số tính theo các con nhẹ, nên mỗi lần nhảy qua cạnh nặng thì size tính cả các con nhẹ ít nhất tăng gấp đôi; do đó số cạnh nặng phải nhảy cũng tối đa là $O(\log n)$. Vì vậy chiều cao tổng thể của cây là $O(\log n)$.
 
-## 查询
+## Truy vấn
 
-以上就是关于全局平衡二叉树的部分．剩下关于链修改和链查询的操作方法相对简单，只需要从要操作的点出发，一直跳跃到根节点．要操作某个点所在的重链上比它深度小的所有点，本质上等同于在这条重链的二叉树中操作目标节点左侧的所有节点．这些操作可以分解成一系列子树操作，与普通二叉树的维护方法类似，其中涉及到维护子树和以及打子树标记．在这一过程中，使用的是标记永久化．也可以用 pushdown 来打标记，用 pushup 维护子树和，不过这种方式可能相对复杂，因为通常情况下，处理二叉树是自上而下进行操作，但在这里，需要首先确定跳跃路径，然后再从上到下进行 pushdown，可能导致常数较大．
+Trên đây là phần về cây nhị phân cân bằng toàn cục. Các thao tác cập nhật đường và truy vấn đường còn lại tương đối đơn giản: chỉ cần xuất phát từ đỉnh cần thao tác rồi liên tục nhảy lên gốc. Muốn thao tác trên tất cả các đỉnh có độ sâu nhỏ hơn nó trên chuỗi nặng chứa một đỉnh nào đó, về bản chất tương đương với thao tác trên tất cả các đỉnh nằm bên trái đỉnh mục tiêu trong cây nhị phân của chuỗi nặng này. Các thao tác đó có thể được phân rã thành một loạt thao tác trên cây con, tương tự cách duy trì cây nhị phân thông thường, trong đó cần duy trì tổng cây con và gắn nhãn cây con. Trong quá trình này, ta dùng kỹ thuật lưu nhãn vĩnh viễn. Cũng có thể dùng pushdown để gắn nhãn và dùng pushup để duy trì tổng cây con, nhưng cách này có thể phức tạp hơn, vì thông thường xử lý cây nhị phân là thao tác từ trên xuống dưới, còn ở đây cần xác định đường nhảy trước rồi mới pushdown từ trên xuống dưới, có thể làm hằng số lớn hơn.
 
-代码如下：
+Mã như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
-    // a：子树加标记
-    // s：子树和（不算加标记的）
+    // a: nhãn cộng trên cây con
+    // s: tổng cây con (không tính nhãn cộng)
     int a[N], s[N];
     
     void add(int x) {
@@ -115,7 +115,7 @@
           s[x] -= ss[r[x]];
         }
         t = (x != l[f[x]]);
-        if (t && x != r[f[x]]) z = 0;  // 跳过轻边要清空
+        if (t && x != r[f[x]]) z = 0;  // Khi nhảy qua cạnh nhẹ, cần xóa về 0
         x = f[x];
       }
     }
@@ -132,18 +132,18 @@
         }
         ret += 1ll * z * a[x];
         t = (x != l[f[x]]);
-        if (t && x != r[f[x]]) z = 0;  // 跳过轻边要清空
+        if (t && x != r[f[x]]) z = 0;  // Khi nhảy qua cạnh nhẹ, cần xóa về 0
         x = f[x];
       }
       return ret;
     }
     ```
 
-此外，对于子树操作，就是要考虑轻儿子的，需要再维护一个包括轻儿子的子树和、子树标记，可以去做 "[P3384【模板】轻重链剖分](https://www.luogu.com.cn/problem/P3384)"．
+Ngoài ra, với thao tác trên cây con, cần xét cả con nhẹ; cần duy trì thêm tổng cây con và nhãn cây con bao gồm cả con nhẹ, từ đó có thể làm bài "[P3384 [Mẫu] Phân rã nặng-nhẹ](https://www.luogu.com.cn/problem/P3384)".
 
-## 例题
+## Bài tập ví dụ
 
-??? note "[P4751【模板】"动态 DP"& 动态树分治（加强版）](https://www.luogu.com.cn/problem/P4751)"
+??? note "[P4751 [Mẫu] \"DP động\" và phân trị cây động (bản tăng cường)](https://www.luogu.com.cn/problem/P4751)"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -174,7 +174,7 @@
           }
         return ret;
       }
-    } matr1[MAXN + 5], matr2[MAXN + 5];  // 每个点维护两个矩阵
+    } matr1[MAXN + 5], matr2[MAXN + 5];  // Mỗi đỉnh duy trì hai ma trận
     
     int root;
     int w[MAXN + 5], dep[MAXN + 5], son[MAXN + 5], siz[MAXN + 5], lsiz[MAXN + 5];
@@ -204,7 +204,7 @@
         siz[u] += siz[v];
         if (!son[u] || siz[son[u]] < siz[v]) son[u] = v;
       }
-      lsiz[u] = siz[u] - siz[son[u]];  // 轻儿子的siz和+1
+      lsiz[u] = siz[u] - siz[son[u]];  // Tổng siz của con nhẹ + 1
     }
     
     void DFS2(int u, int fa) {
@@ -219,17 +219,17 @@
         int v = p->to;
         if (v == fa || v == son[u]) continue;
         DFS2(v, u);
-        f[u][0] += max(f[v][0], f[v][1]);  // f[][]就是正常的DP数组
+        f[u][0] += max(f[v][0], f[v][1]);  // f[][] là mảng DP thông thường
         f[u][1] += f[v][0];
-        g[u][0] += max(f[v][0], f[v][1]);  // g[][]数组只统计了自己和轻儿子的信息
+        g[u][0] += max(f[v][0], f[v][1]);  // Mảng g[][] chỉ thống kê thông tin của chính nó và con nhẹ
         g[u][1] += f[v][0];
       }
     }
     
     void PushUp(int u) {
-      matr2[u] = matr1[u];  // matr1是单点加上轻儿子的信息，matr2是区间信息
+      matr2[u] = matr1[u];  // matr1 là thông tin của một đỉnh cộng với con nhẹ, matr2 là thông tin đoạn
       if (bstch[u][0]) matr2[u] = matr2[bstch[u][0]] * matr2[u];
-      // 注意转移的方向，但是如果我们的矩乘定义不同，可能方向也会不同
+      // Lưu ý hướng chuyển tiếp; nếu định nghĩa phép nhân ma trận khác thì hướng có thể khác
       if (bstch[u][1]) matr2[u] = matr2[u] * matr2[bstch[u][1]];
     }
     
@@ -242,13 +242,13 @@
       int tot = 0;
       for (int i = l; i <= r; i++) tot += lsiz[stk[i]];
       for (int i = l, sumn = lsiz[stk[l]]; i <= r; i++, sumn += lsiz[stk[i]])
-        if (sumn * 2 >= tot)  // 是重心了
+        if (sumn * 2 >= tot)  // Đã là trọng tâm
         {
           int lch = SBuild(l, i - 1), rch = SBuild(i + 1, r);
           bstch[stk[i]][0] = lch;
           bstch[stk[i]][1] = rch;
           trfa[lch] = trfa[rch] = stk[i];
-          PushUp(stk[i]);  // 将区间的信息统计上来
+          PushUp(stk[i]);  // Tổng hợp thông tin của đoạn lên
           return stk[i];
         }
       return 0;
@@ -258,15 +258,15 @@
       for (int pos = u; pos; pos = son[pos]) vis[pos] = true;
       for (int pos = u; pos; pos = son[pos])
         for (edge *p = Adj[pos]; p != NULL; p = p->nxt)
-          if (!vis[p->to])  // 是轻儿子
+          if (!vis[p->to])  // Là con nhẹ
           {
             int v = p->to, ret = Build(v);
-            trfa[ret] = pos;  // 轻儿子的treefa[]接上来
+            trfa[ret] = pos;  // Nối treefa[] của con nhẹ vào
           }
       tp = 0;
-      for (int pos = u; pos; pos = son[pos]) stk[++tp] = pos;  // 把重链取出来
-      int ret = SBuild(1, tp);  // 对重链进行单独的SBuild(我猜是Special Build?)
-      return ret;               // 返回当前重链的二叉树的根
+      for (int pos = u; pos; pos = son[pos]) stk[++tp] = pos;  // Lấy chuỗi nặng ra
+      int ret = SBuild(1, tp);  // SBuild riêng cho chuỗi nặng (tôi đoán là Special Build?)
+      return ret;               // Trả về gốc cây nhị phân của chuỗi nặng hiện tại
     }
     
     void Modify(int u, int val) {
@@ -316,20 +316,20 @@
         AddEdge(u, v);
       }
       DFS(1, -1);
-      // 求重儿子
+      // Tìm con nặng
       DFS2(1, -1);
-      // 求初始的DP值，也可以在Build()里面求，但是这样写就和树剖的写法统一了
+      // Tìm giá trị DP ban đầu; cũng có thể làm trong Build(), nhưng viết vậy sẽ thống nhất với cách viết phân rã cây
       for (int i = 1; i <= n; i++) {
         matr1[i].M[0][0] = matr1[i].M[0][1] = g[i][0];
-        matr1[i].M[1][0] = g[i][1], matr1[i].M[1][1] = -INF;  // 初始化矩阵
+        matr1[i].M[1][0] = g[i][1], matr1[i].M[1][1] = -INF;  // Khởi tạo ma trận
       }
-      root = Build(1);  // root即为根节点所在重链的重心
+      root = Build(1);  // root chính là trọng tâm của chuỗi nặng chứa đỉnh gốc
       int lastans = 0;
       for (int i = 1; i <= m; i++) {
         u = read(), v = read();
-        u ^= lastans;  // 强制在线
+        u ^= lastans;  // Bắt buộc online
         Modify(u, v);
-        lastans = getmx1(root);  // 直接取值
+        lastans = getmx1(root);  // Lấy giá trị trực tiếp
         if (lastans == 0)
           putchar('0');
         else
@@ -340,6 +340,6 @@
     }
     ```
 
-## 参考
+## Tham khảo
 
-[P4211 \[LNOI2014\] LCA | 全局平衡二叉树](https://www.luogu.com.cn/blog/nederland/globalbst)
+[P4211 [LNOI2014] LCA | Cây nhị phân cân bằng toàn cục](https://www.luogu.com.cn/blog/nederland/globalbst)
