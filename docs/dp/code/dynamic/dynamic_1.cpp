@@ -10,7 +10,7 @@ constexpr int INF = 0x3f3f3f3f;
 int Begin[MAXN], Next[MAXN], To[MAXN], e, n, m;
 int sz[MAXN], son[MAXN], top[MAXN], fa[MAXN], dis[MAXN], p[MAXN], id[MAXN],
     End[MAXN];
-// p[i]表示i树剖后的编号，id[p[i]] = i
+// p[i] là số thứ tự của i sau khi phân rã cây, id[p[i]] = i
 int cnt, tot, a[MAXN], f[MAXN][2];
 
 struct matrix {
@@ -18,7 +18,7 @@ struct matrix {
 
   matrix() { memset(g, 0, sizeof(g)); }
 
-  matrix operator*(const matrix &b) const  // 重载矩阵乘
+  matrix operator*(const matrix &b) const  // Nạp chồng phép nhân ma trận
   {
     matrix c;
     for (int i = 0; i <= 1; i++)
@@ -27,7 +27,7 @@ struct matrix {
           c.g[i][j] = max(c.g[i][j], g[i][k] + b.g[k][j]);
     return c;
   }
-} Tree[MAXN], g[MAXN];  // Tree[]是建出来的线段树，g[]是维护的每个点的矩阵
+} Tree[MAXN], g[MAXN];  // Tree[] là cây phân đoạn, g[] là ma trận duy trì cho mỗi đỉnh
 
 void PushUp(int root) { Tree[root] = Tree[root << 1] * Tree[root << 1 | 1]; }
 
@@ -49,7 +49,7 @@ matrix Query(int root, int l, int r, int L, int R) {
   if (Mid < L) return Query(root << 1 | 1, Mid + 1, r, L, R);
   return Query(root << 1, l, Mid, L, R) *
          Query(root << 1 | 1, Mid + 1, r, L, R);
-  // 注意查询操作的书写
+  // Chú ý cách viết thao tác truy vấn
 }
 
 void Modify(int root, int l, int r, int pos) {
@@ -68,20 +68,20 @@ void Modify(int root, int l, int r, int pos) {
 void Update(int x, int val) {
   g[x].g[1][0] += val - a[x];
   a[x] = val;
-  // 首先修改x的g矩阵
+  // Trước hết sửa ma trận g của x
   while (x) {
     matrix last = Query(1, 1, n, p[top[x]], End[top[x]]);
-    // 查询top[x]的原本g矩阵
+    // Truy vấn ma trận g ban đầu của top[x]
     Modify(1, 1, n,
-           p[x]);  // 进行修改(x点的g矩阵已经进行修改但线段树上的未进行修改)
+           p[x]);  // Thực hiện sửa (ma trận g của x đã sửa, nhưng trên cây phân đoạn thì chưa)
     matrix now = Query(1, 1, n, p[top[x]], End[top[x]]);
-    // 查询top[x]的新g矩阵
+    // Truy vấn ma trận g mới của top[x]
     x = fa[top[x]];
     g[x].g[0][0] +=
         max(now.g[0][0], now.g[1][0]) - max(last.g[0][0], last.g[1][0]);
     g[x].g[0][1] = g[x].g[0][0];
     g[x].g[1][0] += now.g[0][0] - last.g[0][0];
-    // 根据变化量修改fa[top[x]]的g矩阵
+    // Sửa ma trận g của fa[top[x]] theo lượng thay đổi
   }
 }
 
@@ -108,7 +108,7 @@ void DFS1(int u) {
     }
     f[u][1] += f[v][0];
     f[u][0] += max(f[v][0], f[v][1]);
-    // DFS1过程中同时求出f[i][0/1]
+    // Đồng thời tính f[i][0/1] trong quá trình DFS1
   }
 }
 
@@ -127,7 +127,7 @@ void DFS2(int u, int t) {
     DFS2(v, v);
     g[u].g[0][0] += max(f[v][0], f[v][1]);
     g[u].g[1][0] += f[v][0];
-    // g矩阵根据f[i][0/1]求出
+    // Ma trận g được tính từ f[i][0/1]
   }
   g[u].g[0][1] = g[u].g[0][0];
 }
@@ -150,7 +150,7 @@ int main() {
     int x, val;
     cin >> x >> val;
     Update(x, val);
-    matrix ans = Query(1, 1, n, 1, End[1]);  // 查询1所在重链的矩阵乘
+    matrix ans = Query(1, 1, n, 1, End[1]);  // Truy vấn tích ma trận trên chuỗi nặng chứa 1
     cout << max(ans.g[0][0], ans.g[1][0]) << '\n';
   }
   return 0;

@@ -1,21 +1,24 @@
-## 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+## Định nghĩa
 
-记忆化搜索是一种通过记录已经遍历过的状态的信息，从而避免对同一状态重复遍历的搜索实现方式．
+Tìm kiếm có ghi nhớ là một cách cài đặt tìm kiếm bằng việc ghi lại thông tin của các trạng thái đã duyệt, từ đó tránh duyệt lặp lại cùng một trạng thái.
 
-因为记忆化搜索确保了每个状态只访问一次，它也是一种常见的动态规划实现方式．
+Vì tìm kiếm có ghi nhớ bảo đảm mỗi trạng thái chỉ được truy cập một lần, nó cũng là một cách cài đặt quy hoạch động thường gặp.
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Dẫn nhập
 
-???+ note "[\[NOIP2005\] 采药](https://www.luogu.com.cn/problem/P1048)"
-    山洞里有 $M$ 株不同的草药，采每一株都需要一些时间 $t_i$，每一株也有它自身的价值 $v_i$．给你一段时间 $T$，在这段时间里，你可以采到一些草药．让采到的草药的总价值最大．
+???+ note "[\[NOIP2005\] Hái thuốc](https://www.luogu.com.cn/problem/P1048)"
+    Trong hang có $M$ cây thuốc khác nhau. Hái mỗi cây cần một lượng thời gian $t_i$, và mỗi cây cũng có giá trị riêng $v_i$. Cho bạn một khoảng thời gian $T$; trong khoảng thời gian này, bạn có thể hái một số cây thuốc. Hãy làm cho tổng giá trị của các cây thuốc hái được là lớn nhất.
     
-    $1 \leq T \leq 10^3$，$1 \leq t_i,v_i,M \leq 100$
+    $1 \leq T \leq 10^3$, $1 \leq t_i,v_i,M \leq 100$
 
-### 朴素的 [DFS](../search/dfs.md) 做法
+<span id="&#x6734;&#x7D20;&#x7684;-dfs-&#x505A;&#x6CD5;"></span>
+### Cách làm [DFS](../search/dfs.md) đơn giản
 
-很容易实现这样一个朴素的搜索做法：在搜索时记录下当前准备选第几个物品、剩余的时间是多少、已经获得的价值是多少这三个参数，然后枚举当前物品是否被选，转移到相应的状态．
+Rất dễ cài đặt một cách tìm kiếm đơn giản như sau: trong quá trình tìm kiếm, ghi lại ba tham số gồm đang chuẩn bị xét vật phẩm thứ mấy, thời gian còn lại là bao nhiêu và giá trị đã thu được là bao nhiêu; sau đó liệt kê xem vật phẩm hiện tại có được chọn hay không và chuyển tới trạng thái tương ứng.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         int n, t;
@@ -66,19 +69,20 @@
         print(ans)
         ```
 
-这种做法的时间复杂度是指数级别的，并不能通过本题．
+Độ phức tạp thời gian của cách làm này là cấp số mũ, nên không thể vượt qua bài này.
 
-### 优化
+<span id="&#x4F18;&#x5316;"></span>
+### Tối ưu
 
-上面的做法为什么效率低下呢？因为同一个状态会被访问多次．
+Vì sao cách làm trên có hiệu quả thấp? Vì cùng một trạng thái sẽ bị truy cập nhiều lần.
 
-如果我们每查询完一个状态后将该状态的信息存储下来，再次需要访问这个状态就可以直接使用之前计算得到的信息，从而避免重复计算．这充分利用了动态规划中很多问题具有大量重叠子问题的特点，属于用空间换时间的「记忆化」思想．
+Nếu sau khi truy vấn xong một trạng thái, ta lưu thông tin của trạng thái đó lại, thì khi cần truy cập trạng thái này lần nữa có thể dùng trực tiếp kết quả đã tính trước đó, nhờ vậy tránh tính toán lặp. Điều này tận dụng đầy đủ đặc điểm nhiều bài toán quy hoạch động có rất nhiều bài toán con chồng lặp, thuộc tư tưởng "ghi nhớ" dùng bộ nhớ đổi lấy thời gian.
 
-具体到本题上，我们在朴素的 DFS 的基础上，增加一个数组 `mem` 来记录每个 `dfs(pos,tleft)` 的返回值．刚开始把 `mem` 中每个值都设成 `-1`（代表没求解过）．每次需要访问一个状态时，如果相应状态的值在 `mem` 中为 `-1`，则递归访问该状态．否则我们直接使用 `mem` 中已经存储过的值即可．
+Cụ thể với bài này, trên cơ sở DFS đơn giản, ta thêm một mảng `mem` để ghi lại giá trị trả về của từng `dfs(pos,tleft)`. Ban đầu đặt mọi giá trị trong `mem` bằng `-1` (biểu thị chưa từng được giải). Mỗi khi cần truy cập một trạng thái, nếu giá trị của trạng thái tương ứng trong `mem` là `-1` thì đệ quy truy cập trạng thái đó. Ngược lại, ta dùng trực tiếp giá trị đã lưu trong `mem`.
 
-通过这样的处理，我们确保了每个状态只会被访问一次，因此该算法的时间复杂度为 $O(TM)$．
+Thông qua cách xử lý này, ta bảo đảm mỗi trạng thái chỉ bị truy cập một lần, vì vậy độ phức tạp thời gian của thuật toán là $O(TM)$.
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         int n, t;
@@ -87,13 +91,13 @@
         
         int dfs(int pos, int tleft) {
           if (mem[pos][tleft] != -1)
-            return mem[pos][tleft];  // 已经访问过的状态，直接返回之前记录的值
+            return mem[pos][tleft];  // Trang thai da truy cap, tra ve gia tri da ghi lai
           if (pos == n + 1) return mem[pos][tleft] = 0;
           int dfs1, dfs2 = -INF;
           dfs1 = dfs(pos + 1, tleft);
           if (tleft >= tcost[pos])
-            dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // 状态转移
-          return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
+            dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // Chuyen trang thai
+          return mem[pos][tleft] = max(dfs1, dfs2);  // Luu gia tri cua trang thai hien tai
         }
         
         int main() {
@@ -132,11 +136,12 @@
         print(dfs(1, t))
         ```
 
-## 与递推的联系与区别
+<span id="&#x4E0E;&#x9012;&#x63A8;&#x7684;&#x8054;&#x7CFB;&#x4E0E;&#x533A;&#x522B;"></span>
+## Liên hệ và khác biệt với cài đặt lặp
 
-在求解动态规划的问题时，记忆化搜索与递推的代码，在形式上是高度类似的．这是由于它们使用了相同的状态表示方式和类似的状态转移．也正因为如此，一般来说两种实现的时间复杂度是一样的．
+Khi giải các bài toán quy hoạch động, mã của tìm kiếm có ghi nhớ và cài đặt lặp thường rất giống nhau về hình thức. Điều này là do chúng dùng cùng một cách biểu diễn trạng thái và các chuyển trạng thái tương tự nhau. Cũng vì vậy, nói chung độ phức tạp thời gian của hai cách cài đặt là như nhau.
 
-下面给出的是递推实现的代码（为了方便对比，没有添加滚动数组优化），通过对比可以发现二者在形式上的类似性．
+Dưới đây là mã cài đặt bằng vòng lặp (để tiện so sánh, không thêm tối ưu mảng cuộn). Qua đối chiếu có thể thấy hai cách cài đặt giống nhau về hình thức.
 
 ```cpp
 int n, t, w[105], v[105], f[105][1005];
@@ -148,30 +153,32 @@ int main() {
     for (int j = 0; j <= t; j++) {
       f[i][j] = f[i - 1][j];
       if (j >= w[i])
-        f[i][j] = max(f[i][j], f[i - 1][j - w[i]] + v[i]);  // 状态转移方程
+        f[i][j] = max(f[i][j], f[i - 1][j - w[i]] + v[i]);  // Phuong trinh chuyen trang thai
     }
   cout << f[n][t];
   return 0;
 }
 ```
 
-在求解动态规划的问题时，记忆化搜索和递推，都确保了同一状态至多只被求解一次．而它们实现这一点的方式则略有不同：递推通过设置明确的访问顺序来避免重复访问，记忆化搜索虽然没有明确规定访问顺序，但通过给已经访问过的状态打标记的方式，也达到了同样的目的．
+Khi giải các bài toán quy hoạch động, cả tìm kiếm có ghi nhớ lẫn cài đặt lặp đều bảo đảm cùng một trạng thái nhiều nhất chỉ được giải một lần. Tuy nhiên, cách chúng đạt được điều này hơi khác nhau: cài đặt lặp tránh truy cập lặp bằng cách đặt ra thứ tự truy cập rõ ràng; tìm kiếm có ghi nhớ tuy không quy định rõ thứ tự truy cập, nhưng cũng đạt được mục đích tương tự bằng cách đánh dấu các trạng thái đã truy cập.
 
-与递推相比，记忆化搜索因为不用明确规定访问顺序，在实现难度上有时低于递推，且能比较方便地处理边界情况，这是记忆化搜索的一大优势．但与此同时，记忆化搜索难以使用滚动数组等优化，且由于存在递归，运行效率会低于递推．因此应该视题目选择更适合的实现方式．
+So với cài đặt lặp, tìm kiếm có ghi nhớ đôi khi dễ cài đặt hơn vì không cần quy định rõ thứ tự truy cập, đồng thời xử lý biên khá thuận tiện; đây là một ưu điểm lớn của tìm kiếm có ghi nhớ. Nhưng mặt khác, tìm kiếm có ghi nhớ khó dùng các tối ưu như mảng cuộn, và do có đệ quy nên hiệu suất chạy sẽ thấp hơn cài đặt lặp. Vì vậy nên chọn cách cài đặt phù hợp hơn tùy theo bài toán.
 
-## 如何写记忆化搜索
+<span id="&#x5982;&#x4F55;&#x5199;&#x8BB0;&#x5FC6;&#x5316;&#x641C;&#x7D22;"></span>
+## Cách viết tìm kiếm có ghi nhớ
 
-### 方法一
+<span id="&#x65B9;&#x6CD5;&#x4E00;"></span>
+### Cách 1
 
-1.  把这道题的 dp 状态和方程写出来
-2.  根据它们写出 dfs 函数
-3.  添加记忆化数组
+1.  Viết trạng thái DP và phương trình của bài này ra
+2.  Dựa vào chúng để viết hàm dfs
+3.  Thêm mảng ghi nhớ
 
-举例：
+Ví dụ:
 
-$dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升子序列）
+$dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$ (dãy con tăng dài nhất)
 
-转为
+Chuyển thành
 
 === "C++"
     ```cpp
@@ -185,7 +192,7 @@ $dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升
     
     int main() {
       memset(mem, -1, sizeof(mem));
-      // 读入部分略去
+      // Bo qua phan doc du lieu
       int ret = 0;
       for (int j = 1; j <= n; j++) {
         ret = max(ret, dfs(j));
@@ -207,10 +214,11 @@ $dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升
         return mem[i]
     ```
 
-### 方法二
+<span id="&#x65B9;&#x6CD5;&#x4E8C;"></span>
+### Cách 2
 
-1.  写出这道题的暴搜程序（最好是 [dfs](../search/dfs.md)）
-2.  将这个 dfs 改成「无需外部变量」的 dfs
-3.  添加记忆化数组
+1.  Viết chương trình tìm kiếm vét cạn cho bài này (tốt nhất là [dfs](../search/dfs.md))
+2.  Sửa dfs này thành dfs "không cần biến bên ngoài"
+3.  Thêm mảng ghi nhớ
 
-举例：本文中「采药」的例子
+Ví dụ: ví dụ "Hái thuốc" trong bài viết này

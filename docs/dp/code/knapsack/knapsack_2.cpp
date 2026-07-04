@@ -10,7 +10,7 @@ int main() {
   for (int i = 1; i <= n; i++) cin >> w[i] >> v[i];
   for (int i = 1; i <= n; i++)
     for (int l = w[i]; l <= W; l++)
-      if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];  // 核心状态方程
+      if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];  // Phương trình trạng thái lõi
   cout << f[W];
   return 0;
 }

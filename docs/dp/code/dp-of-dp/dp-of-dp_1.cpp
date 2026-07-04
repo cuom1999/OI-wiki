@@ -9,16 +9,16 @@ const int MAXN = 100;
 int T, a[MAXN + 1], h[MAXN + 1];
 int g[MAXN + 1], m, n;
 int nxt[1 << 16]
-       [4];  // 状态转移表：nx[mask][ch] 表示 mask 状态下追加 ch 后的新状态
+       [4];  // Bảng chuyển trạng thái: nx[mask][ch] là trạng thái mới sau khi thêm ch vào mask
 int f[1001]
-     [1 << 16];  // DP 数组：f[i][mask] 表示长度为 i，处于状态 mask 的方案数
+     [1 << 16];  // Mảng DP: f[i][mask] là số phương án độ dài i ở trạng thái mask
 int ans[MAXN +
-        1];  // 最终答案：ans[i] 表示长度为 m 时，包含 i 个匹配位置的方案数
+        1];  // Đáp án cuối: ans[i] là số phương án độ dài m có i vị trí khớp
 
 void add(int &x, int y) { x = (x + y) % MOD; }
 
-int calc(int mask, int x) {  // 给定当前 mask 状态和当前字符
-                             // x（0~3），返回新状态
+int calc(int mask, int x) {  // Cho trạng thái mask hiện tại và ký tự hiện tại
+                             // x (0~3), trả về trạng thái mới
   int res = 0;
   for (int i = 0; i < n; ++i) g[i + 1] = g[i] + ((mask >> i) & 1);
 
@@ -35,7 +35,7 @@ int calc(int mask, int x) {  // 给定当前 mask 状态和当前字符
   return res;
 }
 
-int popcount(int x) {  // 计算 mask 中有多少个 1（即匹配了多少位置）
+int popcount(int x) {  // Tính mask có bao nhiêu bit 1 (tức số vị trí khớp)
   int res = 0;
   while (x) {
     res += x & 1;

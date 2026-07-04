@@ -1,45 +1,55 @@
-本页面将简要介绍数位 DP．
+Bài này giới thiệu ngắn gọn về DP chữ số.
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
 
-数位是指把一个数字按照个、十、百、千等等一位一位地拆开，关注它每一位上的数字．如果拆的是十进制数，那么每一位数字都是 0\~9，其他进制可类比十进制．
+## Dẫn nhập
 
-数位 DP：用来解决一类特定问题，这种问题比较好辨认，一般具有这几个特征：
+Chữ số là cách tách một số theo từng vị trí như hàng đơn vị, hàng chục, hàng trăm, hàng nghìn, v.v. rồi quan tâm đến chữ số nằm ở mỗi vị trí đó. Nếu đang xét số thập phân thì mỗi chữ số nằm trong $0\sim 9$; với các hệ cơ số khác có thể suy luận tương tự như hệ thập phân.
 
-1.  要求统计满足一定条件的数的数量（即，最终目的为计数）；
+DP chữ số dùng để giải một lớp bài toán đặc thù, thường khá dễ nhận ra, nhìn chung có các đặc điểm sau:
 
-2.  这些条件经过转化后可以使用「数位」的思想去理解和判断；
+1.  Cần thống kê số lượng các số thỏa một điều kiện nào đó, tức mục tiêu cuối cùng là đếm.
 
-3.  输入会提供一个数字区间（有时也只提供上界）来作为统计的限制；
+2.  Sau khi biến đổi, các điều kiện này có thể được hiểu và kiểm tra bằng tư duy theo "chữ số".
 
-4.  上界很大（比如 $10^{18}$），暴力枚举验证会超时．
+3.  Đầu vào cung cấp một khoảng số, đôi khi chỉ cung cấp cận trên, làm giới hạn cho việc thống kê.
 
-数位 DP 的基本原理：
+4.  Cận trên rất lớn, chẳng hạn $10^{18}$, nên duyệt vét cạn rồi kiểm tra sẽ quá thời gian.
 
-考虑人类计数的方式，最朴素的计数就是从小到大开始依次加一．但我们发现对于位数比较多的数，这样的过程中有许多重复的部分．例如，从 7000 数到 7999、从 8000 数到 8999、和从 9000 数到 9999 的过程非常相似，它们都是后三位从 000 变到 999，不一样的地方只有千位这一位，所以我们可以把这些过程归并起来，将这些过程中产生的计数答案也都存在一个通用的数组里．此数组根据题目具体要求设置状态，用递推或 DP 的方式进行状态转移．
+Nguyên lý cơ bản của DP chữ số:
 
-数位 DP 中通常会利用常规计数问题技巧，比如把一个区间内的答案拆成两部分相减（即 $\mathit{ans}_{[l, r]} = \mathit{ans}_{[0, r]}-\mathit{ans}_{[0, l - 1]}$）
+Hãy xét cách con người đếm số. Cách đếm thô sơ nhất là bắt đầu từ nhỏ đến lớn, mỗi lần tăng thêm một. Nhưng ta nhận thấy với các số có nhiều chữ số, quá trình này có rất nhiều phần lặp lại. Ví dụ, quá trình đếm từ 7000 đến 7999, từ 8000 đến 8999 và từ 9000 đến 9999 rất giống nhau: ba chữ số cuối đều chạy từ 000 đến 999, chỉ khác chữ số hàng nghìn. Vì vậy, ta có thể gộp những quá trình này lại, đồng thời lưu các giá trị đếm phát sinh trong một mảng dùng chung. Mảng này được thiết kế trạng thái theo yêu cầu cụ thể của đề, rồi chuyển trạng thái bằng truy hồi hoặc DP.
 
-那么有了通用答案数组，接下来就是统计答案．统计答案可以选择记忆化搜索，也可以选择循环迭代递推．为了不重不漏地统计所有不超过上限的答案，要从高到低枚举每一位，再考虑每一位都可以填哪些数字，最后利用通用答案数组统计答案．
+Trong DP chữ số, ta thường dùng các kỹ thuật quen thuộc của bài toán đếm, chẳng hạn tách đáp án trên một khoảng thành hiệu của hai phần: $\mathit{ans}_{[l, r]} = \mathit{ans}_{[0, r]}-\mathit{ans}_{[0, l - 1]}$.
 
-接下来我们具体看几道题目．
+Khi đã có mảng đáp án dùng chung, bước tiếp theo là thống kê đáp án. Có thể dùng tìm kiếm có nhớ, hoặc dùng vòng lặp để truy hồi/qui hoạch động. Để thống kê không trùng và không sót tất cả đáp án không vượt quá cận trên, ta duyệt từng chữ số từ cao xuống thấp, xét mỗi vị trí có thể điền những chữ số nào, rồi dùng mảng đáp án dùng chung để cộng kết quả.
 
-## 例题一
+Tiếp theo, ta xét cụ thể một vài bài toán.
 
-???+ note "例 1 [Luogu P2602 数字计数](https://www.luogu.com.cn/problem/P2602)"
-    题目大意：给定两个正整数 $a,b$，求在 $[a,b]$ 中的所有整数中，每个数码（digit）各出现了多少次．
+<span id="&#x4F8B;&#x9898;&#x4E00;"></span>
 
-### 方法一
+## Ví dụ 1
 
-#### 解释
+???+ note "Ví dụ 1 [Luogu P2602 Đếm chữ số](https://www.luogu.com.cn/problem/P2602)"
+    Tóm tắt đề bài: Cho hai số nguyên dương $a,b$, hãy tính trong tất cả các số nguyên thuộc $[a,b]$, mỗi chữ số (digit) xuất hiện bao nhiêu lần.
 
-发现对于满 $\mathit{i}$ 位的数，所有数字出现的次数都是相同的，故设数组 $\mathit{dp}_i$ 为满 $i$ 位的数中每个数字出现的次数，此时暂时不处理前导零．则有 $\mathit{dp}_i=10 \times \mathit{dp}_{i−1}+10^{i−1}$，这两部分前一个是来自前 $i-1$ 位数字的贡献，后一个是来自第 $i$ 位的数字的贡献．
+<span id="&#x65B9;&#x6CD5;&#x4E00;"></span>
 
-有了 $\mathit{dp}$ 数组，我们来考虑如何统计答案．将上界按位分开，从高到低枚举，不贴着上界时，后面可以随便取值．贴着上界时，后面就只能取 $0$ 到上界，分两部分分别计算贡献．最后考虑下前导零，第 $i$ 位为前导 $0$ 时，此时 $1$ 到 $\mathit{i-1}$ 位也都是 $0$，也就是多算了将 $i-1$ 位填满的答案，需要额外减去．
+### Cách 1
 
-#### 实现
+<span id="&#x89E3;&#x91CA;"></span>
 
-???+ note "参考代码"
+#### Giải thích
+
+Nhận thấy với tất cả các số đủ $i$ chữ số, số lần xuất hiện của mọi chữ số là như nhau. Do đó đặt mảng $\mathit{dp}_i$ là số lần xuất hiện của mỗi chữ số trong các số đủ $i$ chữ số; lúc này tạm thời chưa xử lý số 0 ở đầu. Ta có $\mathit{dp}_i=10 \times \mathit{dp}_{i−1}+10^{i−1}$. Trong đó, phần thứ nhất là đóng góp từ $i-1$ chữ số trước, phần thứ hai là đóng góp từ chữ số thứ $i$.
+
+Khi đã có mảng $\mathit{dp}$, ta xét cách thống kê đáp án. Tách cận trên theo từng chữ số rồi duyệt từ cao xuống thấp. Khi không bị ép sát cận trên, các chữ số phía sau có thể chọn tùy ý. Khi đang ép sát cận trên, phần phía sau chỉ có thể lấy từ $0$ đến cận trên tương ứng; ta chia thành hai phần để tính đóng góp. Cuối cùng xét số 0 ở đầu: khi chữ số thứ $i$ là số 0 dẫn đầu, các vị trí từ $1$ đến $\mathit{i-1}$ cũng đều là $0$, tức ta đã đếm thừa đáp án của phần điền đủ $i-1$ chữ số, nên cần trừ thêm.
+
+<span id="&#x5B9E;&#x73B0;"></span>
+
+#### Cài đặt
+
+???+ note "Mã tham khảo"
     ```cpp
     #include <cstdio>
     using namespace std;
@@ -74,17 +84,23 @@
     }
     ```
 
-### 方法二
+<span id="&#x65B9;&#x6CD5;&#x4E8C;"></span>
 
-#### 解释
+### Cách 2
 
-此题也可以使用记忆化搜索．$\mathit{dp}_i$ 表示不贴上限、无前导零时，位数为 $i$ 的答案．
+<span id="&#x89E3;&#x91CA;_1"></span>
 
-详见代码注释
+#### Giải thích
 
-#### 过程
+Bài này cũng có thể dùng tìm kiếm có nhớ. $\mathit{dp}_i$ biểu thị đáp án với độ dài $i$ khi không bị ép sát cận trên và không có số 0 ở đầu.
 
-???+ note "参考代码"
+Xem chi tiết trong chú thích của mã.
+
+<span id="&#x8FC7;&#x7A0B;"></span>
+
+#### Quy trình
+
+???+ note "Mã tham khảo"
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -96,7 +112,7 @@
     ll f[15], ksm[15], p[15], now[15];
     
     ll dfs(int u, int x, bool f0,
-           bool lim) {  // u 表示位数，f0 是否有前导零，lim 是否都贴在上限上
+           bool lim) {  // u là số chữ số, f0 có số 0 ở đầu không, lim có đang ép sát cận trên không
       if (!u) {
         if (f0) f0 = false;
         return 0;
@@ -104,19 +120,19 @@
       if (!lim && !f0 && (~f[u])) return f[u];
       ll cnt = 0;
       int lst = lim ? p[u] : 9;
-      for (int i = 0; i <= lst; i++) {  // 枚举这位要填的数字
+      for (int i = 0; i <= lst; i++) {  // Duyệt chữ số cần điền ở vị trí này
         if (f0 && i == 0)
-          cnt += dfs(u - 1, x, 1, lim && i == lst);  // 处理前导零
+          cnt += dfs(u - 1, x, 1, lim && i == lst);  // Xử lý số 0 ở đầu
         else if (i == x && lim && i == lst)
           cnt += now[u - 1] + 1 +
                  dfs(u - 1, x, 0,
-                     lim && i == lst);  // 此时枚举的前几位都贴在给定的上限上．
+                     lim && i == lst);  // Các chữ số đã duyệt phía trước đều ép sát cận trên đã cho.
         else if (i == x)
           cnt += ksm[u - 1] + dfs(u - 1, x, 0, lim && i == lst);
         else
           cnt += dfs(u - 1, x, 0, lim && i == lst);
       }
-      if ((!lim) && (!f0)) f[u] = cnt;  // 只有不贴着上限和没有前导零才能记忆
+      if ((!lim) && (!f0)) f[u] = cnt;  // Chỉ ghi nhớ khi không ép sát cận trên và không có số 0 ở đầu
       return cnt;
     }
     
@@ -141,18 +157,24 @@
     }
     ```
 
-## 例题二
+<span id="&#x4F8B;&#x9898;&#x4E8C;"></span>
 
-???+ note "例 2 [HDU 2089 不要 62](https://acm.hdu.edu.cn/showproblem.php?pid=2089)"
-    题面大意：统计一个区间内数位上不能有 4 也不能有连续的 62 的数有多少．
+## Ví dụ 2
 
-### 解释
+???+ note "Ví dụ 2 [HDU 2089 Không có 62](https://acm.hdu.edu.cn/showproblem.php?pid=2089)"
+    Tóm tắt đề bài: Đếm trong một khoảng có bao nhiêu số mà trong các chữ số không chứa 4 và cũng không chứa cặp liên tiếp 62.
 
-没有 4 的话在枚举的时候判断一下，不枚举 4 就可以保证状态合法了，所以这个约束没有记忆化的必要，而对于 62 的话，涉及到两位，当前一位是 6 或者不是 6 这两种不同情况计数是不相同的，所以要用状态来记录不同的方案数．$\mathit{dp}_{\mathit{pos},\mathit{sta}}$ 表示当前第 $\mathit{pos}$ 位，前一位是否是 6 的状态，这里 $\mathit{sta}$ 只需要取 0 和 1 两种状态就可以了，不是 6 的情况可视为同种，不会影响计数．
+<span id="&#x89E3;&#x91CA;_2"></span>
 
-### 实现
+### Giải thích
 
-???+ note "参考代码"
+Với điều kiện không có 4, chỉ cần kiểm tra khi duyệt và không duyệt chữ số 4 là trạng thái đã hợp lệ, nên ràng buộc này không cần ghi nhớ. Còn với 62, vì liên quan đến hai chữ số, số cách đếm sẽ khác nhau tùy chữ số trước đó có phải là 6 hay không, nên cần dùng trạng thái để ghi lại các số phương án khác nhau. $\mathit{dp}_{\mathit{pos},\mathit{sta}}$ biểu thị trạng thái tại chữ số thứ $\mathit{pos}$, trong đó $\mathit{sta}$ cho biết chữ số trước có phải là 6 hay không. Ở đây $\mathit{sta}$ chỉ cần lấy hai trạng thái 0 và 1; mọi trường hợp "không phải 6" có thể xem là cùng một loại vì không ảnh hưởng đến việc đếm.
+
+<span id="&#x5B9E;&#x73B0;_1"></span>
+
+### Cài đặt
+
+???+ note "Mã tham khảo"
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -178,7 +200,7 @@
       }
       bool flag = false;
       p[cnt + 1] = 0;
-      for (int i = cnt; i; i--) {  // 从高到低枚举数位
+      for (int i = cnt; i; i--) {  // Duyệt các chữ số từ cao xuống thấp
         ans += p[i] * dp[i - 1][2];
         if (flag)
           ans += p[i] * dp[i - 1][0];
@@ -203,28 +225,34 @@
     }
     ```
 
-## 例题三
+<span id="&#x4F8B;&#x9898;&#x4E09;"></span>
 
-???+ note "例 3 [SCOI2009 windy 数](https://loj.ac/problem/10165)"
-    题目大意：给定一个区间 $[l,r]$，求其中满足条件 **不含前导 $0$ 且相邻两个数字相差至少为 $2$** 的数字个数．
+## Ví dụ 3
 
-### 解释
+???+ note "Ví dụ 3 [SCOI2009 Số windy](https://loj.ac/problem/10165)"
+    Tóm tắt đề bài: Cho một khoảng $[l,r]$, hãy tính số lượng các số trong đó thỏa điều kiện **không có số 0 ở đầu và hai chữ số kề nhau chênh lệch ít nhất $2$**.
 
-首先我们将问题转化成更加简单的形式．设 $\mathit{ans}_i$ 表示在区间 $[1,i]$ 中满足条件的数的数量，那么所求的答案就是 $\mathit{ans}_r-\mathit{ans}_{l-1}$．
+<span id="&#x89E3;&#x91CA;_3"></span>
 
-对于一个小于 $n$ 的数，它从高到低肯定出现某一位，使得这一位上的数值小于 $n$ 这一位上对应的数值．而之前的所有位都和 $n$ 上的位相等．
+### Giải thích
 
-有了这个性质，我们可以定义 $f(i,st,op)$ 表示当前将要考虑的是从高到低的第 $i$ 位，当前该前缀的状态为 $st$ 且前缀和当前求解的数字的大小关系是 $op$（$op=1$ 表示等于，$op=0$ 表示小于）时的数字个数．在本题中，这个前缀的状态就是上一位的值，因为当前将要确定的位不能取哪些数只和上一位有关．在其他题目中，这个值可以是：前缀的数字和，前缀所有数字的 $\gcd$，该前缀取模某个数的余数，也有两种或多种合用的情况．
+Trước hết, ta chuyển bài toán sang một dạng đơn giản hơn. Đặt $\mathit{ans}_i$ là số lượng các số thỏa điều kiện trong khoảng $[1,i]$, khi đó đáp án cần tìm là $\mathit{ans}_r-\mathit{ans}_{l-1}$.
 
-写出 **状态转移方程**：$f(i,st,op)=\sum_{k=1}^{\mathit{maxx}} f(i+1,k,op=1~ \operatorname{and}~ k=\mathit{maxx} )\quad (|\mathit{st}-k|\ge 2)$
+Với một số nhỏ hơn $n$, nếu xét từ cao xuống thấp thì chắc chắn sẽ tồn tại một vị trí nào đó mà chữ số tại vị trí này nhỏ hơn chữ số tương ứng của $n$. Tất cả các vị trí trước đó đều bằng các chữ số tương ứng của $n$.
 
-这里的 $k$ 就是当前枚举的下一位的值，而 $\mathit{maxx}$ 就是当前能取到的最高位．因为如果 $\mathit{op}=1$，那么你在这一位上取的值一定不能大于求解的数字上该位的值，否则没有限制．
+Dựa vào tính chất này, ta có thể định nghĩa $f(i,st,op)$ là số lượng các số khi vị trí hiện tại cần xét là chữ số thứ $i$ tính từ cao xuống thấp, trạng thái hiện tại của tiền tố là $st$, và quan hệ lớn nhỏ giữa tiền tố với số đang xét là $op$ ($op=1$ nghĩa là bằng, $op=0$ nghĩa là nhỏ hơn). Trong bài này, trạng thái của tiền tố chính là giá trị của chữ số trước đó, vì các chữ số mà vị trí hiện tại không được chọn chỉ phụ thuộc vào chữ số trước. Trong các bài khác, giá trị này có thể là tổng chữ số của tiền tố, $\gcd$ của tất cả chữ số trong tiền tố, phần dư của tiền tố khi lấy modulo một số nào đó, hoặc cũng có thể là tổ hợp của hai hay nhiều loại trạng thái.
 
-我们发现，尽管前缀所选择的状态不同，而 $f$ 的三个参数相同，答案就是一样的．为了防止这个答案被计算多次，可以使用 [记忆化搜索](./memo.md) 的方式实现．
+Viết **phương trình chuyển trạng thái**: $f(i,st,op)=\sum_{k=1}^{\mathit{maxx}} f(i+1,k,op=1~ \operatorname{and}~ k=\mathit{maxx} )\quad (|\mathit{st}-k|\ge 2)$
 
-### 实现
+Ở đây $k$ là giá trị của chữ số tiếp theo đang được duyệt, còn $\mathit{maxx}$ là chữ số lớn nhất hiện có thể chọn. Nếu $\mathit{op}=1$, giá trị chọn ở vị trí này không được lớn hơn chữ số tương ứng của số đang xét; nếu không thì không có giới hạn này.
 
-???+ note "参考代码"
+Ta nhận thấy dù trạng thái tiền tố đã chọn có thể khác nhau, miễn ba tham số của $f$ giống nhau thì đáp án sẽ giống nhau. Để tránh tính cùng một đáp án nhiều lần, có thể dùng [tìm kiếm có nhớ](./memo.md).
+
+<span id="&#x5B9E;&#x73B0;_2"></span>
+
+### Cài đặt
+
+???+ note "Mã tham khảo"
     ```cpp
     int dfs(int x, int st, int op)  // op=1 =; op=0 <
     {
@@ -255,30 +283,36 @@
     }
     ```
 
-## 例题四
+<span id="&#x4F8B;&#x9898;&#x56DB;"></span>
 
-???+ note "例 4.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
-    题面大意：假如手写下 $[n,m]$ 之间所有整数，会有多少数看起来和在镜子里看起来一模一样？（$n,m<10^{44}, T<10^5$）
+## Ví dụ 4
 
-### 解释
+???+ note "Ví dụ 4 [SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
+    Tóm tắt đề bài: Nếu viết tay tất cả các số nguyên trong $[n,m]$, có bao nhiêu số nhìn giống hệt chính nó trong gương? ($n,m<10^{44}, T<10^5$)
 
-注：由于这里考虑到的镜像，只有 $0,1,8$ 的镜像是自己本身．所以，这里的「一模一样」并不是传统意义上的回文串，而是只含有 $0,1,8$ 的回文串．
+<span id="&#x89E3;&#x91CA;_4"></span>
 
-首先，在数位 DP 过程中，显然只有 $0,1,8$ 能被选中．
+### Giải thích
 
-其次，由于数值超过 long long 范围，所以 $[n,m]=[1,m]-[1,n-1]$ 不再适用（高精度比较繁琐），而是需要对 $n$ 是否合法进行判断，得出：$[n,m]=[1,m]-[1,n]+\mathrm{check}(n)$．
+Lưu ý: do ở đây đang xét ảnh trong gương, chỉ có ảnh gương của $0,1,8$ là chính chúng. Vì vậy, "giống hệt" ở đây không phải là xâu đối xứng theo nghĩa truyền thống, mà là xâu đối xứng chỉ gồm $0,1,8$.
 
-镜像解决了，如何判断回文？
+Trước hết, trong quá trình DP chữ số, rõ ràng chỉ có $0,1,8$ được chọn.
 
-我们需要用一个小数组记录一下之前的值．在未超过一半的长度时，只要不超上限就行；在超过一半的长度时，还需要判断是否和与之「镜面对称」的位相等．
+Tiếp theo, vì giá trị vượt quá phạm vi của `long long`, công thức $[n,m]=[1,m]-[1,n-1]$ không còn phù hợp do so sánh số lớn khá rườm rà. Thay vào đó, cần kiểm tra riêng xem $n$ có hợp lệ hay không, từ đó có: $[n,m]=[1,m]-[1,n]+\mathrm{check}(n)$.
 
-需要额外注意的是，这道题的记忆化部分，不能用 `memset`，否则会导致超时．
+Vấn đề ảnh gương đã được xử lý, còn làm sao kiểm tra đối xứng?
 
-### 实现
+Ta cần dùng một mảng nhỏ để ghi lại các giá trị trước đó. Khi chưa đi quá nửa độ dài, chỉ cần không vượt cận trên là được; khi đã đi quá nửa độ dài, còn cần kiểm tra xem chữ số hiện tại có bằng chữ số ở vị trí "đối xứng qua gương" hay không.
 
-???+ note "参考代码"
+Cần chú ý thêm rằng phần ghi nhớ của bài này không được dùng `memset`, nếu không sẽ dẫn đến quá thời gian.
+
+<span id="&#x5B9E;&#x73B0;_3"></span>
+
+### Cài đặt
+
+???+ note "Mã tham khảo"
     ```cpp
-    int check(char cc[]) {  // n 的特判
+    int check(char cc[]) {  // Trường hợp đặc biệt của n
       int strc = strlen(cc);
       for (int i = 0; i < strc; ++i) {
         if (!(cc[i] == cc[strc - i - 1] &&
@@ -288,20 +322,20 @@
       return 1ll;
     }
     
-    // now: 当前位, eff: 有效位, fulc: 是否全顶格, ful0: 是否全0
+    // now: vị trí hiện tại, eff: số chữ số hiệu lực, fulc: có ép sát cận trên không, ful0: có toàn số 0 không
     int dfs(int now, int eff, bool ful0, bool fulc) {
       if (now == 0) return 1ll;
-      if (!fulc && f[now][eff][ful0] != -1)  // 记忆化
+      if (!fulc && f[now][eff][ful0] != -1)  // Ghi nhớ
         return f[now][eff][ful0];
     
       int res = 0, maxk = fulc ? dig[now] : 9;
       for (int i = 0; i <= maxk; ++i) {
         if (i != 0 && i != 1 && i != 8) continue;
         b[now] = i;
-        if (ful0 && i == 0)  // 全前导 0
+        if (ful0 && i == 0)  // Toàn là số 0 ở đầu
           res += dfs(now - 1, eff - 1, 1, 0);
-        else if (now > eff / 2)                                  // 未过半程
-          res += dfs(now - 1, eff, 0, fulc && (dig[now] == i));  // 已过半程
+        else if (now > eff / 2)                                  // Chưa đi quá nửa độ dài
+          res += dfs(now - 1, eff, 0, fulc && (dig[now] == i));  // Đã đi quá nửa độ dài
         else if (b[now] == b[eff - now + 1])
           res += dfs(now - 1, eff, 0, fulc && (dig[now] == i));
       }
@@ -312,7 +346,7 @@
     char cc1[100], cc2[100];
     int strc, ansm, ansn;
     
-    int get(char cc[]) {  // 处理封装
+    int get(char cc[]) {  // Xử lý đóng gói
       strc = strlen(cc);
       for (int i = 0; i < strc; ++i) dig[strc - i] = cc[i] - '0';
       return dfs(strc, strc, 1, 1);
@@ -322,26 +356,32 @@
     printf("%lld\n", get(cc2) - get(cc1) + check(cc1));
     ```
 
-## 例题五
+<span id="&#x4F8B;&#x9898;&#x4E94;"></span>
 
-???+ note "例 5.[P3311 数数](https://www.luogu.com.cn/problem/P3311)"
-    题面：我们称一个正整数 $x$ 是幸运数，当且仅当它的十进制表示中不包含数字串集合 $S$ 中任意一个元素作为其子串．例如当 $S = \{22, 333, 0233\}$ 时，$233233$ 是幸运数，$23332333$、$2023320233$、$32233223$ 不是幸运数．给定 $n$ 和 $S$，计算不大于 $n$ 的幸运数个数．答案对 $10^9 + 7$ 取模．
+## Ví dụ 5
+
+???+ note "Ví dụ 5 [P3311 Đếm số](https://www.luogu.com.cn/problem/P3311)"
+    Đề bài: Ta gọi một số nguyên dương $x$ là số may mắn khi và chỉ khi biểu diễn thập phân của nó không chứa bất kỳ phần tử nào trong tập xâu chữ số $S$ làm xâu con. Ví dụ, khi $S = \{22, 333, 0233\}$, $233233$ là số may mắn, còn $23332333$, $2023320233$, $32233223$ không phải là số may mắn. Cho $n$ và $S$, hãy tính số lượng số may mắn không lớn hơn $n$. Đáp án lấy modulo $10^9 + 7$.
     
-    $1 \leq n<10^{1201}，1 \leq m \leq 100，1 \leq \sum_{i = 1}^m |s_i| \leq 1500，\min_{i = 1}^m |s_i| \geq 1$，其中 $|s_i|$ 表示字符串 $s_i$ 的长度．$n$ 没有前导 $0$，但是 $s_i$ 可能有前导 $0$．
+    $1 \leq n<10^{1201}, 1 \leq m \leq 100, 1 \leq \sum_{i = 1}^m |s_i| \leq 1500, \min_{i = 1}^m |s_i| \geq 1$, trong đó $|s_i|$ biểu thị độ dài của xâu $s_i$. $n$ không có số 0 ở đầu, nhưng $s_i$ có thể có số 0 ở đầu.
 
-### 解释
+<span id="&#x89E3;&#x91CA;_5"></span>
 
-阅读题面发现，如果将数字看成字符串，那么这就是需要完成一个多模匹配，自然而然就想到 AC 自动机．普通数位 DP 中，先从高到低枚举数位，再枚举每一位都填什么，在这道题中，我们也就自然地转化为枚举已经填好的位数，再枚举此时停在 AC 自动机上的哪个节点，然后从当前节点转移到它在 AC 自动机上的子节点．
+### Giải thích
 
-设 $f(i,j,0/1)$ 表示当前从高到低已经填了 $i$ 位（即在 AC 自动机上走过了 $i$ 条边），此时停在标号为 $j$ 的节点上，当前是否正好贴着上界．
+Đọc đề sẽ thấy nếu xem số như một xâu, bài toán cần thực hiện ghép nhiều mẫu, nên rất tự nhiên nghĩ đến automaton AC. Trong DP chữ số thông thường, ta duyệt chữ số từ cao xuống thấp rồi duyệt mỗi vị trí điền gì. Ở bài này, ta cũng tự nhiên chuyển thành duyệt số vị trí đã điền, sau đó duyệt hiện đang dừng ở nút nào trên automaton AC, rồi chuyển từ nút hiện tại sang nút con của nó trên automaton AC.
 
-至于题目中的「不包含」条件，只需在 AC 自动机上给每个模式串的结尾节点都打上标记，DP 过程中一旦遇上这些结尾节点就跳过即可．
+Đặt $f(i,j,0/1)$ biểu thị trạng thái khi từ cao xuống thấp đã điền $i$ chữ số, tức đã đi qua $i$ cạnh trên automaton AC; hiện đang dừng ở nút có chỉ số $j$; và hiện có đang ép sát cận trên hay không.
 
-转移很好想，详见代码主函数部分．
+Với điều kiện "không chứa" trong đề, chỉ cần đánh dấu các nút kết thúc của mọi xâu mẫu trên automaton AC; trong quá trình DP, hễ gặp những nút kết thúc này thì bỏ qua.
 
-### 实现
+Chuyển trạng thái khá dễ nghĩ, xem chi tiết trong phần hàm chính của mã.
 
-???+ note "参考代码"
+<span id="&#x5B9E;&#x73B0;_4"></span>
+
+### Cài đặt
+
+???+ note "Mã tham khảo"
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -415,13 +455,15 @@
     }
     ```
 
-此题可以很好地帮助理解数位 DP 的原理．
+Bài này rất hữu ích để hiểu nguyên lý của DP chữ số.
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
 
-[Ahoi2009 self 同类分布](https://www.luogu.com.cn/problem/P4127)
+## Bài tập
 
-[洛谷  P3413 SAC#1 - 萌数](https://www.luogu.com.cn/problem/P3413)
+[Ahoi2009 self Phân bố đồng loại](https://www.luogu.com.cn/problem/P4127)
+
+[Luogu P3413 SAC#1 - Số dễ thương](https://www.luogu.com.cn/problem/P3413)
 
 [HDU 6148 Valley Number](https://acm.hdu.edu.cn/showproblem.php?pid=6148)
 

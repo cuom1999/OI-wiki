@@ -174,19 +174,19 @@ nav:
     - Tối ưu hóa: search/opt.md
   - Quy Hoạch Động:
     - Tổng quan quy hoạch động: dp/index.md
-    - 动态规划基础: dp/basic.md
-    - 记忆化搜索: dp/memo.md
-    - 背包 DP: dp/knapsack.md
-    - 区间 DP: dp/interval.md
-    - DAG 上的 DP: dp/dag.md
-    - 树形 DP: dp/tree.md
-    - 状压 DP: dp/state.md
-    - 数位 DP: dp/number.md
+    - Cơ sở quy hoạch động: dp/basic.md
+    - Tìm kiếm có nhớ: dp/memo.md
+    - DP ba lô: dp/knapsack.md
+    - DP trên đoạn: dp/interval.md
+    - DP trên DAG: dp/dag.md
+    - DP trên cây: dp/tree.md
+    - DP nén trạng thái: dp/state.md
+    - DP chữ số: dp/number.md
     - 插头 DP: dp/plug.md
-    - 计数 DP: dp/count.md
-    - 动态 DP: dp/dynamic.md
-    - 概率 DP: dp/probability.md
-    - DP 套 DP: dp/dp-of-dp.md
+    - DP đếm: dp/count.md
+    - Dynamic DP: dp/dynamic.md
+    - DP xác suất: dp/probability.md
+    - DP lồng DP: dp/dp-of-dp.md
     - DP 优化:
       - DP 优化简介: dp/opt/dp-opt.md
       - 单调队列/单调栈优化: dp/opt/monotonic-queue-stack.md

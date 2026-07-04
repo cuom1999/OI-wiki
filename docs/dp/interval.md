@@ -1,47 +1,47 @@
-## 定义
+## Định nghĩa
 
-区间类动态规划是线性动态规划的扩展，它在分阶段地划分问题时，与阶段中元素出现的顺序和由前一阶段的哪些元素合并而来有很大的关系．
+Quy hoạch động trên đoạn là một mở rộng của quy hoạch động tuyến tính. Khi chia bài toán theo từng giai đoạn, nó phụ thuộc nhiều vào thứ tự xuất hiện của các phần tử trong giai đoạn và vào việc chúng được hợp nhất từ những phần tử nào ở giai đoạn trước.
 
-令状态 $f(i,j)$ 表示将下标位置 $i$ 到 $j$ 的所有元素合并能获得的价值的最大值，那么 $f(i,j)=\max\{f(i,k)+f(k+1,j)+cost\}$，$cost$ 为将这两组元素合并起来的价值．
+Gọi trạng thái $f(i,j)$ là giá trị lớn nhất có thể thu được khi hợp nhất tất cả phần tử từ vị trí $i$ đến $j$. Khi đó $f(i,j)=\max\{f(i,k)+f(k+1,j)+cost\}$, trong đó $cost$ là giá trị khi hợp nhất hai nhóm phần tử này.
 
-## 性质
+## Tính chất
 
-区间 DP 有以下特点：
+DP trên đoạn có các đặc điểm sau:
 
-**合并**：即将两个或多个部分进行整合，当然也可以反过来；
+**Hợp nhất**: gộp hai hoặc nhiều phần lại với nhau; cũng có thể xét theo chiều ngược lại.
 
-**特征**：能将问题分解为能两两合并的形式；
+**Đặc trưng**: bài toán có thể được phân rã thành dạng các phần có thể hợp nhất từng đôi một.
 
-**求解**：对整个问题设最优值，枚举合并点，将问题分解为左右两个部分，最后合并两个部分的最优值得到原问题的最优值．
+**Cách giải**: đặt giá trị tối ưu cho toàn bài toán, duyệt điểm hợp nhất, chia bài toán thành hai phần trái và phải, rồi hợp nhất giá trị tối ưu của hai phần để thu được giá trị tối ưu của bài toán ban đầu.
 
-## 解释
+## Giải thích
 
-### 例题
+### Ví dụ
 
-???+ note "[「NOI1995」石子合并](https://loj.ac/problem/10147)"
-    题目大意：在一个环上有 $n$ 个数 $a_1,a_2,\dots,a_n$，进行 $n-1$ 次合并操作，每次操作将相邻的两堆合并成一堆，能获得新的一堆中的石子数量的和的得分．你需要最大化你的得分．
+???+ note "[「NOI1995」Gộp đá](https://loj.ac/problem/10147)"
+    Tóm tắt đề bài: Trên một vòng tròn có $n$ số $a_1,a_2,\dots,a_n$. Thực hiện $n-1$ lần hợp nhất, mỗi lần gộp hai đống kề nhau thành một đống và nhận điểm bằng tổng số viên đá trong đống mới. Cần tối đa hóa tổng điểm.
 
-需要考虑不在环上，而在一条链上的情况．
+Trước hết xét trường hợp không ở trên vòng tròn mà ở trên một chuỗi.
 
-令 $f(i,j)$ 表示将区间 $[i,j]$ 内的所有石子合并到一起的最大得分．
+Đặt $f(i,j)$ là điểm lớn nhất khi hợp nhất tất cả đống đá trong đoạn $[i,j]$ thành một đống.
 
-写出 **状态转移方程**：$f(i,j)=\max\{f(i,k)+f(k+1,j)+\sum_{t=i}^{j} a_t \}~(i\le k<j)$
+Ta có **phương trình chuyển trạng thái**: $f(i,j)=\max\{f(i,k)+f(k+1,j)+\sum_{t=i}^{j} a_t \}~(i\le k<j)$.
 
-令 $sum_i$ 表示 $a$ 数组的前缀和，状态转移方程变形为 $f(i,j)=\max\{f(i,k)+f(k+1,j)+sum_j-sum_{i-1} \}$．
+Gọi $sum_i$ là tổng tiền tố của mảng $a$, phương trình chuyển có thể viết thành $f(i,j)=\max\{f(i,k)+f(k+1,j)+sum_j-sum_{i-1} \}$.
 
-### 怎样进行状态转移
+### Cách chuyển trạng thái
 
-由于计算 $f(i,j)$ 的值时需要知道所有 $f(i,k)$ 和 $f(k+1,j)$ 的值，而这两个中包含的元素的数量都小于 $f(i,j)$，所以我们以 $len=j-i+1$ 作为 DP 的阶段．首先从小到大枚举 $len$，然后枚举 $i$ 的值，根据 $len$ 和 $i$ 用公式计算出 $j$ 的值，然后枚举 $k$，时间复杂度为 $O(n^3)$
+Vì khi tính $f(i,j)$ cần biết mọi giá trị $f(i,k)$ và $f(k+1,j)$, mà số phần tử trong hai đoạn này đều nhỏ hơn đoạn của $f(i,j)$, ta lấy $len=j-i+1$ làm giai đoạn DP. Trước hết duyệt $len$ tăng dần, sau đó duyệt $i$, tính $j$ từ $len$ và $i$, rồi duyệt $k$. Độ phức tạp thời gian là $O(n^3)$.
 
-### 怎样处理环
+### Cách xử lý vòng tròn
 
-题目中石子围成一个环，而不是一条链，怎么办呢？
+Trong đề bài, các đống đá nằm trên một vòng tròn chứ không phải một chuỗi. Ta xử lý thế nào?
 
-**方法一**：由于石子围成一个环，我们可以枚举分开的位置，将这个环转化成一个链，由于要枚举 $n$ 次，最终的时间复杂度为 $O(n^4)$．
+**Cách 1**: Vì các đống đá tạo thành vòng tròn, có thể duyệt vị trí cắt để biến vòng tròn thành một chuỗi. Do phải duyệt $n$ lần, độ phức tạp cuối cùng là $O(n^4)$.
 
-**方法二**：我们将这条链延长两倍，变成 $2\times n$ 堆，其中第 $i$ 堆与第 $n+i$ 堆相同，用动态规划求解后，取 $f(1,n),f(2,n+1),\dots,f(n,2n-1)$ 中的最优值，即为最后的答案．时间复杂度 $O(n^3)$．
+**Cách 2**: Nhân đôi chuỗi, thu được $2\times n$ đống, trong đó đống thứ $i$ giống đống thứ $n+i$. Sau khi dùng DP để giải, lấy giá trị tốt nhất trong $f(1,n),f(2,n+1),\dots,f(n,2n-1)$ làm đáp án. Độ phức tạp là $O(n^3)$.
 
-## 实现
+## Cài đặt
 
 === "C++"
     ```cpp
@@ -62,10 +62,10 @@
                 f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1])
     ```
 
-## 几道练习题
+## Một số bài luyện tập
 
-[NOIP 2006 能量项链](https://www.luogu.com.cn/problem/P1063)
+[NOIP 2006 Vòng cổ năng lượng](https://www.luogu.com.cn/problem/P1063)
 
-[NOIP 2007 矩阵取数游戏](https://www.luogu.com.cn/problem/P1005)
+[NOIP 2007 Trò chơi lấy số trong ma trận](https://www.luogu.com.cn/problem/P1005)
 
-[「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767)
+[「IOI2000」Bưu điện](https://www.luogu.com.cn/problem/P4767)

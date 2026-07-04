@@ -70,6 +70,12 @@ MkDocs source layout intact.
 - `docs/search/*.md`: translated the search algorithm pages, including DFS,
   BFS, bidirectional search, heuristic search, A*/IDA*, iterative deepening,
   backtracking, Dancing Links, Alpha-Beta pruning, and search optimization.
+- `docs/dp/basic.md`, `docs/dp/memo.md`, `docs/dp/knapsack.md`,
+  `docs/dp/interval.md`, `docs/dp/dag.md`, `docs/dp/tree.md`,
+  `docs/dp/state.md`, `docs/dp/number.md`, `docs/dp/count.md`,
+  `docs/dp/dynamic.md`, `docs/dp/probability.md`,
+  `docs/dp/dp-of-dp.md`: translated the core dynamic-programming pages and
+  explanatory code comments in their included snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

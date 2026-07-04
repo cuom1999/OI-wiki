@@ -13,7 +13,7 @@ int main() {
       if (i == n && s == j) continue;
       dp[i][j] = (dp[i][j + 1] * i * (s - j) + dp[i + 1][j] * (n - i) * j +
                   dp[i + 1][j + 1] * (n - i) * (s - j) + n * s) /
-                 (n * s - i * j);  // 概率转移
+                 (n * s - i * j);  // Chuyển xác suất
     }
   }
   cout << fixed << setprecision(4) << dp[0][0] << '\n';

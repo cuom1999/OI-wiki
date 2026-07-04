@@ -1,53 +1,57 @@
 author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, odeinjul, xyf007, GoodCoder666, paigeman, shenshuaijie, oldoldtea
 
-前置知识：[动态规划部分简介](./index.md)．
+Kiến thức nền: [Giới thiệu phần quy hoạch động](./index.md).
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Mở đầu
 
-在具体讲何为「背包 dp」前，先来看如下的例题：
+Trước khi nói cụ thể "DP ba lô" là gì, hãy xem bài ví dụ sau:
 
 ???+ note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.com.cn/problem/P2871)"
-    题意概要：有 $n$ 个物品和一个容量为 $W$ 的背包，每个物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量．
+    Tóm tắt đề bài: có $n$ vật phẩm và một ba lô có sức chứa $W$. Mỗi vật phẩm có hai thuộc tính là trọng lượng $w_{i}$ và giá trị $v_{i}$. Cần chọn một số vật phẩm cho vào ba lô sao cho tổng giá trị các vật phẩm trong ba lô là lớn nhất, đồng thời tổng trọng lượng không vượt quá sức chứa của ba lô.
 
-在上述例题中，由于每个物体只有两种可能的状态（取与不取），对应二进制中的 $0$ 和 $1$，这类问题便被称为「0-1 背包问题」．
+Trong ví dụ trên, mỗi vật phẩm chỉ có hai trạng thái có thể xảy ra (chọn hoặc không chọn), tương ứng với $0$ và $1$ trong hệ nhị phân, nên loại bài toán này được gọi là "bài toán ba lô 0-1".
 
-## 0-1 背包
+<span id="0-1-&#x80CC;&#x5305;"></span>
+## Ba lô 0-1
 
-### 解释
+<span id="&#x89E3;&#x91CA;"></span>
+### Giải thích
 
-例题中已知条件有第 $i$ 个物品的重量 $w_{i}$，价值 $v_{i}$，以及背包的总容量 $W$．
+Trong bài ví dụ, các dữ kiện đã biết gồm trọng lượng $w_{i}$ của vật phẩm thứ $i$, giá trị $v_{i}$ của nó, và tổng sức chứa $W$ của ba lô.
 
-设 DP 状态 $f_{i,j}$ 为在只能放前 $i$ 个物品的情况下，容量为 $j$ 的背包所能达到的最大总价值．
+Đặt trạng thái DP $f_{i,j}$ là tổng giá trị lớn nhất có thể đạt được với một ba lô có sức chứa $j$ khi chỉ được xét $i$ vật phẩm đầu tiên.
 
-考虑转移．假设当前已经处理好了前 $i-1$ 个物品的所有状态，那么对于第 $i$ 个物品，当其不放入背包时，背包的剩余容量不变，背包中物品的总价值也不变，故这种情况的最大价值为 $f_{i-1,j}$；当其放入背包时，背包的剩余容量会减小 $w_{i}$，背包中物品的总价值会增大 $v_{i}$，故这种情况的最大价值为 $f_{i-1,j-w_{i}}+v_{i}$．
+Xét phép chuyển trạng thái. Giả sử mọi trạng thái của $i-1$ vật phẩm đầu tiên đã được xử lý xong. Với vật phẩm thứ $i$, nếu không cho nó vào ba lô thì sức chứa còn lại không đổi và tổng giá trị trong ba lô cũng không đổi, nên giá trị lớn nhất trong trường hợp này là $f_{i-1,j}$; nếu cho nó vào ba lô thì sức chứa còn lại giảm đi $w_{i}$ và tổng giá trị tăng thêm $v_{i}$, nên giá trị lớn nhất trong trường hợp này là $f_{i-1,j-w_{i}}+v_{i}$.
 
-由此可以得出状态转移方程：
+Từ đó suy ra phương trình chuyển trạng thái:
 
 $$
 f_{i,j}=\max(f_{i-1,j},f_{i-1,j-w_{i}}+v_{i})
 $$
 
-这里如果直接采用二维数组对状态进行记录，会出现 MLE．可以考虑改用滚动数组的形式来优化．
+Nếu trực tiếp dùng mảng hai chiều để lưu trạng thái, chương trình có thể bị MLE. Ta có thể cân nhắc dùng mảng cuốn để tối ưu.
 
-由于对 $f_i$ 有影响的只有 $f_{i-1}$，可以去掉第一维，直接用 $f_{i}$ 来表示处理到当前物品时背包容量为 $i$ 的最大价值，得出以下方程：
+Vì $f_i$ chỉ chịu ảnh hưởng từ $f_{i-1}$, có thể bỏ chiều thứ nhất và dùng trực tiếp $f_{i}$ để biểu diễn giá trị lớn nhất khi đã xử lý đến vật phẩm hiện tại và sức chứa ba lô là $i$. Khi đó ta được phương trình sau:
 
 $$
 f_j=\max \left(f_j,f_{j-w_i}+v_i\right)
 $$
 
-**务必牢记并理解这个转移方程，因为大部分背包问题的转移方程都是在此基础上推导出来的．**
+**Hãy ghi nhớ và hiểu thật rõ phương trình chuyển trạng thái này, vì phần lớn các phương trình chuyển của bài toán ba lô đều được suy ra dựa trên nó.**
 
-### 实现
+<span id="&#x5B9E;&#x73B0;"></span>
+### Cài đặt
 
-还有一点需要注意的是，很容易写出这样的 **错误核心代码**：
+Còn một điểm cần chú ý: rất dễ viết ra đoạn **mã lõi sai** như sau:
 
 === "C++"
     ```cpp
     for (int i = 1; i <= n; i++)
       for (int l = 0; l <= W - w[i]; l++)
         f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
-    // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + v[i]),
-    // f[i][l + w[i]]); 简化而来
+    // Rut gon tu f[i][l + w[i]] =
+    // max(max(f[i - 1][l + w[i]], f[i - 1][l] + v[i]), f[i][l + w[i]]);
     ```
 
 === "Python"
@@ -55,17 +59,17 @@ $$
     for i in range(1, n + 1):
         for l in range(0, W - w[i] + 1):
             f[l + w[i]] = max(f[l] + v[i], f[l + w[i]])
-    # 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + v[i]),
-    # f[i][l + w[i]]) 简化而来
+    # Rut gon tu f[i][l + w[i]] =
+    # max(max(f[i - 1][l + w[i]], f[i - 1][l] + v[i]), f[i][l + w[i]])
     ```
 
-这段代码哪里错了呢？枚举顺序错了．
+Đoạn mã này sai ở đâu? Sai ở thứ tự duyệt.
 
-仔细观察代码可以发现：对于当前处理的物品 $i$ 和当前状态 $f_{i,j}$，在 $j\geqslant w_{i}$ 时，$f_{i,j}$ 是会被 $f_{i,j-w_{i}}$ 所影响的．这就相当于物品 $i$ 可以多次被放入背包，与题意不符．（事实上，这正是完全背包问题的解法）
+Quan sát kỹ đoạn mã có thể thấy: với vật phẩm đang xử lý $i$ và trạng thái hiện tại $f_{i,j}$, khi $j\geqslant w_{i}$, $f_{i,j}$ sẽ bị ảnh hưởng bởi $f_{i,j-w_{i}}$. Điều này tương đương với việc vật phẩm $i$ có thể được cho vào ba lô nhiều lần, không đúng với đề bài. (Thực ra đây chính là cách giải cho bài toán ba lô đầy đủ.)
 
-为了避免这种情况发生，我们可以改变枚举的顺序，从 $W$ 枚举到 $w_{i}$，这样就不会出现上述的错误，因为 $f_{i,j}$ 总是在 $f_{i,j-w_{i}}$ 前被更新．
+Để tránh tình huống này, ta có thể đổi thứ tự duyệt, duyệt từ $W$ xuống $w_{i}$. Khi đó lỗi trên sẽ không xuất hiện, vì $f_{i,j}$ luôn được cập nhật trước $f_{i,j-w_{i}}$.
 
-因此实际核心代码为
+Vì vậy, mã lõi đúng là:
 
 === "C++"
     ```cpp
@@ -80,66 +84,70 @@ $$
             f[l] = max(f[l], f[l - w[i]] + v[i])
     ```
 
-??? note "例题代码"
+??? note "Mã cho bài ví dụ"
     ```cpp
     --8<-- "docs/dp/code/knapsack/knapsack_1.cpp"
     ```
 
-## 完全背包
+<span id="&#x5B8C;&#x5168;&#x80CC;&#x5305;"></span>
+## Ba lô đầy đủ
 
-### 解释
+<span id="&#x89E3;&#x91CA;_1"></span>
+### Giải thích
 
-完全背包模型与 0-1 背包类似，与 0-1 背包的区别仅在于一个物品可以选取无限次，而非仅能选取一次．
+Mô hình ba lô đầy đủ tương tự ba lô 0-1; điểm khác biệt so với ba lô 0-1 là mỗi loại vật phẩm có thể được chọn vô hạn lần, chứ không chỉ được chọn một lần.
 
-我们可以借鉴 0-1 背包的思路，进行状态定义：设 $f_{i,j}$ 为只能选前 $i$ 个物品时，容量为 $j$ 的背包可以达到的最大价值．
+Ta có thể mượn ý tưởng của ba lô 0-1 để định nghĩa trạng thái: đặt $f_{i,j}$ là giá trị lớn nhất có thể đạt được với ba lô có sức chứa $j$ khi chỉ được chọn trong $i$ loại vật phẩm đầu tiên.
 
-需要注意的是，虽然定义与 0-1 背包类似，但是其状态转移方程与 0-1 背包并不相同．
+Cần chú ý rằng tuy định nghĩa giống ba lô 0-1, phương trình chuyển trạng thái của nó lại không giống ba lô 0-1.
 
-### 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
+### Quá trình
 
-可以考虑一个朴素的做法：对于第 $i$ 件物品，枚举其选了多少个来转移．这样做的时间复杂度是 $O(n^3)$ 的．
+Trước hết có thể xét một cách làm ngây thơ: với vật phẩm thứ $i$, duyệt số lượng vật phẩm đó được chọn để chuyển trạng thái. Độ phức tạp thời gian của cách làm này là $O(n^3)$.
 
-状态转移方程如下：
+Phương trình chuyển trạng thái như sau:
 
 $$
 f_{i,j}=\max_{k=0}^{+\infty}(f_{i-1,j-k\times w_i}+v_i\times k)
 $$
 
-考虑做一个简单的优化．可以发现，对于 $f_{i,j}$，只要通过 $f_{i,j-w_i}$ 转移就可以了．因此状态转移方程为：
+Xét một tối ưu đơn giản. Có thể thấy với $f_{i,j}$, chỉ cần chuyển từ $f_{i,j-w_i}$ là đủ. Vì vậy phương trình chuyển trạng thái là:
 
 $$
 f_{i,j}=\max(f_{i-1,j},f_{i,j-w_i}+v_i)
 $$
 
-理由是当我们这样转移时，$f_{i,j-w_i}$ 已经由 $f_{i,j-2\times w_i}$ 更新过，那么 $f_{i,j-w_i}$ 就是充分考虑了第 $i$ 件物品所选次数后得到的最优结果．换言之，我们通过局部最优子结构的性质重复使用了之前的枚举过程，优化了枚举的复杂度．
+Lý do là khi ta chuyển như vậy, $f_{i,j-w_i}$ đã từng được cập nhật từ $f_{i,j-2\times w_i}$, nên $f_{i,j-w_i}$ đã là kết quả tối ưu sau khi xét đầy đủ số lần chọn vật phẩm thứ $i$. Nói cách khác, ta lặp lại quá trình duyệt trước đó thông qua tính chất cấu trúc con tối ưu cục bộ, từ đó tối ưu độ phức tạp của phép duyệt.
 
-与 0-1 背包相同，我们可以将第一维去掉来优化空间复杂度．如果理解了 0-1 背包的优化方式，就不难明白压缩后的循环是正向的（也就是上文中提到的错误优化）．
+Giống ba lô 0-1, ta có thể bỏ chiều thứ nhất để tối ưu độ phức tạp bộ nhớ. Nếu đã hiểu cách tối ưu của ba lô 0-1, sẽ không khó để thấy vòng lặp sau khi nén phải duyệt xuôi (chính là "tối ưu sai" đã nhắc ở trên).
 
-??? note "[「Luogu P1616」疯狂的采药](https://www.luogu.com.cn/problem/P1616)"
-    题意概要：有 $n$ 种物品和一个容量为 $W$ 的背包，每种物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干个物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量．
+??? note "[Luogu P1616 - Thu hái thảo dược điên cuồng](https://www.luogu.com.cn/problem/P1616)"
+    Tóm tắt đề bài: có $n$ loại vật phẩm và một ba lô có sức chứa $W$. Mỗi loại vật phẩm có hai thuộc tính là trọng lượng $w_{i}$ và giá trị $v_{i}$. Cần chọn một số vật phẩm cho vào ba lô sao cho tổng giá trị các vật phẩm trong ba lô là lớn nhất, đồng thời tổng trọng lượng không vượt quá sức chứa của ba lô.
 
-??? note "例题代码"
+??? note "Mã cho bài ví dụ"
     ```cpp
     --8<-- "docs/dp/code/knapsack/knapsack_2.cpp"
     ```
 
-## 多重背包
+<span id="&#x591A;&#x91CD;&#x80CC;&#x5305;"></span>
+## Ba lô nhiều vật phẩm
 
-多重背包也是 0-1 背包的一个变式．与 0-1 背包的区别在于每种物品有 $k_i$ 个，而非一个．
+Ba lô nhiều vật phẩm cũng là một biến thể của ba lô 0-1. Điểm khác biệt so với ba lô 0-1 là mỗi loại vật phẩm có $k_i$ món, chứ không phải chỉ một món.
 
-一个很朴素的想法就是：把「每种物品选 $k_i$ 次」等价转换为「有 $k_i$ 个相同的物品，每个物品选一次」．这样就转换成了一个 0-1 背包模型，套用上文所述的方法就可已解决．状态转移方程如下：
+Một ý tưởng rất ngây thơ là: biến việc "mỗi loại vật phẩm được chọn $k_i$ lần" thành "có $k_i$ vật phẩm giống hệt nhau, mỗi vật phẩm được chọn một lần". Khi đó bài toán được chuyển thành mô hình ba lô 0-1, và có thể áp dụng phương pháp đã trình bày ở trên để giải. Phương trình chuyển trạng thái như sau:
 
 $$
 f_{i,j}=\max_{k=0}^{k_i}(f_{i-1,j-k\times w_i}+v_i\times k)
 $$
 
-时间复杂度 $O(W\sum_{i=1}^nk_i)$．
+Độ phức tạp thời gian là $O(W\sum_{i=1}^nk_i)$.
 
-??? note "核心代码"
+??? note "Mã lõi"
     ```cpp
     for (int i = 1; i <= n; i++) {
       for (int weight = W; weight >= w[i]; weight--) {
-        // 多遍历一层物品数量
+        // Duyet them mot tang so luong vat pham
         for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
           dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
         }
@@ -147,36 +155,40 @@ $$
     }
     ```
 
-### 二进制分组优化
+<span id="&#x4E8C;&#x8FDB;&#x5236;&#x5206;&#x7EC4;&#x4F18;&#x5316;"></span>
+### Tối ưu bằng phân nhóm nhị phân
 
-考虑优化．我们仍考虑把多重背包转化成 0-1 背包模型来求解．
+Xét tối ưu. Ta vẫn xét việc chuyển ba lô nhiều vật phẩm thành mô hình ba lô 0-1 để giải.
 
-### 解释
+<span id="&#x89E3;&#x91CA;_2"></span>
+### Giải thích
 
-显然，复杂度中的 $O(nW)$ 部分无法再优化了，我们只能从 $O(\sum k_i)$ 处入手．为了表述方便，我们用 $A_{i,j}$ 代表第 $i$ 种物品拆分出的第 $j$ 个物品．
+Hiển nhiên phần $O(nW)$ trong độ phức tạp không thể tối ưu thêm, nên ta chỉ có thể bắt đầu từ phần $O(\sum k_i)$. Để tiện trình bày, dùng $A_{i,j}$ biểu diễn vật phẩm thứ $j$ được tách ra từ loại vật phẩm thứ $i$.
 
-在朴素的做法中，$\forall j\le k_i$，$A_{i,j}$ 均表示相同物品．那么我们效率低的原因主要在于我们进行了大量重复性的工作．举例来说，我们考虑了「同时选 $A_{i,1},A_{i,2}$」与「同时选 $A_{i,2},A_{i,3}$」这两个完全等效的情况．这样的重复性工作我们进行了许多次．那么优化拆分方式就成为了解决问题的突破口．
+Trong cách làm ngây thơ, với $\forall j\le k_i$, mọi $A_{i,j}$ đều biểu diễn cùng một loại vật phẩm. Vì vậy nguyên nhân chính khiến hiệu suất thấp là ta đã làm rất nhiều việc lặp lại. Ví dụ, ta xét hai trường hợp "đồng thời chọn $A_{i,1},A_{i,2}$" và "đồng thời chọn $A_{i,2},A_{i,3}$"; hai trường hợp này hoàn toàn tương đương. Ta đã thực hiện kiểu công việc trùng lặp như vậy rất nhiều lần. Do đó, tối ưu cách tách vật phẩm trở thành điểm then chốt để giải quyết bài toán.
 
-### 过程
+<span id="&#x8FC7;&#x7A0B;_1"></span>
+### Quá trình
 
-我们可以通过「二进制分组」的方式使拆分方式更加优美．
+Ta có thể dùng cách "phân nhóm nhị phân" để việc tách vật phẩm đẹp hơn.
 
-具体地说就是令 $A_{i,j}\left(j\in\left[0,\lfloor \log_2(k_i+1)\rfloor-1\right]\right)$ 分别表示由 $2^{j}$ 个单个物品「捆绑」而成的大物品．特殊地，若 $k_i+1$ 不是 $2$ 的整数次幂，则需要在最后添加一个由 $k_i-2^{\lfloor \log_2(k_i+1)\rfloor-1}$ 个单个物品「捆绑」而成的大物品用于补足．
+Cụ thể, cho $A_{i,j}\left(j\in\left[0,\lfloor \log_2(k_i+1)\rfloor-1\right]\right)$ lần lượt biểu diễn các vật phẩm lớn được "gói" từ $2^{j}$ vật phẩm đơn lẻ. Đặc biệt, nếu $k_i+1$ không phải là lũy thừa nguyên của $2$, cần thêm vào cuối một vật phẩm lớn được "gói" từ $k_i-2^{\lfloor \log_2(k_i+1)\rfloor-1}$ vật phẩm đơn lẻ để bù đủ.
 
-举几个例子：
+Một vài ví dụ:
 
 -   $6=1+2+3$
 -   $8=1+2+4+1$
 -   $18=1+2+4+8+3$
 -   $31=1+2+4+8+16$
 
-显然，通过上述拆分方式，可以表示任意 $\le k_i$ 个物品的等效选择方式．将每种物品按照上述方式拆分后，使用 0-1 背包的方法解决即可．
+Hiển nhiên, với cách tách trên, ta có thể biểu diễn mọi cách chọn tương đương với số lượng vật phẩm $\le k_i$. Sau khi tách từng loại vật phẩm theo cách trên, chỉ cần dùng phương pháp ba lô 0-1 để giải.
 
-时间复杂度 $O(W\sum_{i=1}^n\log_2k_i)$
+Độ phức tạp thời gian là $O(W\sum_{i=1}^n\log_2k_i)$.
 
-### 实现
+<span id="&#x5B9E;&#x73B0;_1"></span>
+### Cài đặt
 
-??? note "二进制分组代码"
+??? note "Mã phân nhóm nhị phân"
     === "C++"
         ```cpp
         index = 0;
@@ -211,42 +223,45 @@ $$
             list[index].v = h * k
         ```
 
-### 单调队列优化
+<span id="&#x5355;&#x8C03;&#x961F;&#x5217;&#x4F18;&#x5316;"></span>
+### Tối ưu bằng hàng đợi đơn điệu
 
-见 [单调队列/单调栈优化](./opt/monotonic-queue-stack.md)．
+Xem [Tối ưu bằng hàng đợi đơn điệu/ngăn xếp đơn điệu](./opt/monotonic-queue-stack.md).
 
-习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problem/P1776)
+Bài tập: [Luogu P1776 - Sàng lọc bảo vật, NOI Guide 2010 Advanced (02)](https://www.luogu.com.cn/problem/P1776)
 
-## 混合背包
+<span id="&#x6DF7;&#x5408;&#x80CC;&#x5305;"></span>
+## Ba lô hỗn hợp
 
-混合背包就是将前面三种的背包问题混合起来，有的只能取一次，有的能取无限次，有的只能取 $k$ 次．
+Ba lô hỗn hợp là bài toán trộn ba loại ba lô ở trên: có vật phẩm chỉ được chọn một lần, có vật phẩm được chọn vô hạn lần, và có vật phẩm chỉ được chọn $k$ lần.
 
-这种题目看起来很吓人，可是只要领悟了前面几种背包的中心思想，并将其合并在一起就可以了．下面给出伪代码：
+Dạng bài này thoạt nhìn khá đáng sợ, nhưng chỉ cần hiểu tư tưởng cốt lõi của các loại ba lô phía trên và ghép chúng lại là được. Dưới đây là mã giả:
 
 ```plain
-for (循环物品种类) {
-  if (是 0 - 1 背包)
-    套用 0 - 1 背包代码;
-  else if (是完全背包)
-    套用完全背包代码;
-  else if (是多重背包)
-    套用多重背包代码;
+for (duyet tung loai vat pham) {
+  if (la ba lo 0-1)
+    ap dung ma ba lo 0-1;
+  else if (la ba lo day du)
+    ap dung ma ba lo day du;
+  else if (la ba lo nhieu vat pham)
+    ap dung ma ba lo nhieu vat pham;
 }
 ```
 
-### 例题
+<span id="&#x4F8B;&#x9898;"></span>
+### Bài ví dụ
 
-???+ note "[「Luogu P1833」樱花](https://www.luogu.com.cn/problem/P1833)"
-    有 $n$ 种樱花树和长度为 $T$ 的时间，有的樱花树只能看一遍，有的樱花树最多看 $A_{i}$ 遍，有的樱花树可以看无数遍．每棵樱花树都有一个美学值 $C_{i}$，求在 $T$ 的时间内看哪些樱花树能使美学值最高．
+???+ note "[Luogu P1833 - Hoa anh đào](https://www.luogu.com.cn/problem/P1833)"
+    Có $n$ loại cây hoa anh đào và tổng thời gian dài $T$. Có loại cây chỉ có thể ngắm một lần, có loại cây được ngắm nhiều nhất $A_{i}$ lần, và có loại cây có thể ngắm vô hạn lần. Mỗi cây hoa anh đào có một giá trị thẩm mỹ $C_{i}$. Hãy tìm cách ngắm các cây trong thời gian $T$ sao cho tổng giá trị thẩm mỹ là cao nhất.
 
-??? note "核心代码"
+??? note "Mã lõi"
     ```cpp
     for (int i = 1; i <= n; i++) {
-      if (cnt[i] == 0) {  // 如果数量没有限制使用完全背包的核心代码
+      if (cnt[i] == 0) {  // Neu so luong khong gioi han, dung ma loi cua ba lo day du
         for (int weight = w[i]; weight <= W; weight++) {
           dp[weight] = max(dp[weight], dp[weight - w[i]] + v[i]);
         }
-      } else {  // 物品有限使用多重背包的核心代码，它也可以处理0-1背包问题
+      } else {  // Vat pham huu han: dung ma loi cua ba lo nhieu vat pham; cung xu ly duoc ba lo 0-1
         for (int weight = W; weight >= w[i]; weight--) {
           for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
             dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
@@ -256,193 +271,206 @@ for (循环物品种类) {
     }
     ```
 
-习题：[HDU 5410 CRB and His Birthday](https://acm.hdu.edu.cn/showproblem.php?pid=5410)
+Bài tập: [HDU 5410 CRB and His Birthday](https://acm.hdu.edu.cn/showproblem.php?pid=5410)
 
-## 二维费用背包
+<span id="&#x4E8C;&#x7EF4;&#x8D39;&#x7528;&#x80CC;&#x5305;"></span>
+## Ba lô với chi phí hai chiều
 
-???+ note "[「Luogu P1855」榨取 kkksc03](https://www.luogu.com.cn/problem/P1855)"
-    有 $n$ 个任务需要完成，完成第 $i$ 个任务需要花费 $t_i$ 分钟，产生 $c_i$ 元的开支．
+???+ note "[Luogu P1855 - Vắt kiệt kkksc03](https://www.luogu.com.cn/problem/P1855)"
+    Có $n$ nhiệm vụ cần hoàn thành. Hoàn thành nhiệm vụ thứ $i$ tốn $t_i$ phút và phát sinh chi phí $c_i$ đồng.
     
-    现在有 $T$ 分钟时间，$W$ 元钱来处理这些任务，求最多能完成多少任务．
+    Hiện có $T$ phút và $W$ đồng để xử lý các nhiệm vụ này. Hỏi tối đa có thể hoàn thành bao nhiêu nhiệm vụ.
 
-这道题是很明显的 0-1 背包问题，可是不同的是选一个物品会消耗两种价值（经费、时间），只需在状态中增加一维存放第二种价值即可．
+Bài này rõ ràng là bài toán ba lô 0-1, nhưng điểm khác là chọn một vật phẩm sẽ tiêu hao hai loại giá trị (kinh phí và thời gian). Chỉ cần tăng thêm một chiều trong trạng thái để lưu loại giá trị thứ hai.
 
-这时候就要注意，再开一维存放物品编号就不合适了，因为容易 MLE．
+Lúc này cần chú ý rằng mở thêm một chiều để lưu số thứ tự vật phẩm là không phù hợp, vì dễ bị MLE.
 
-### 实现
+<span id="&#x5B9E;&#x73B0;_2"></span>
+### Cài đặt
 
 === "C++"
     ```cpp
     for (int k = 1; k <= n; k++)
-      for (int i = m; i >= mi; i--)    // 对经费进行一层枚举
-        for (int j = t; j >= ti; j--)  // 对时间进行一层枚举
+      for (int i = m; i >= mi; i--)    // Duyet mot tang theo kinh phi
+        for (int j = t; j >= ti; j--)  // Duyet mot tang theo thoi gian
           dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1);
     ```
 
 === "Python"
     ```python
     for k in range(1, n + 1):
-        for i in range(m, mi - 1, -1):  # 对经费进行一层枚举
-            for j in range(t, ti - 1, -1):  # 对时间进行一层枚举
+        for i in range(m, mi - 1, -1):  # Duyet mot tang theo kinh phi
+            for j in range(t, ti - 1, -1):  # Duyet mot tang theo thoi gian
                 dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
     ```
 
-## 分组背包
+<span id="&#x5206;&#x7EC4;&#x80CC;&#x5305;"></span>
+## Ba lô theo nhóm
 
-???+ note "[「Luogu P1757」通天之分组背包](https://www.luogu.com.cn/problem/P1757)"
-    有 $n$ 件物品和一个大小为 $m$ 的背包，第 $i$ 个物品的价值为 $w_i$，体积为 $v_i$．同时，每个物品属于一个组，同组内最多只能选择一个物品．求背包能装载物品的最大总价值．
+???+ note "[Luogu P1757 - Ba lô phân nhóm vươn tới trời cao](https://www.luogu.com.cn/problem/P1757)"
+    Có $n$ vật phẩm và một ba lô có kích thước $m$. Giá trị của vật phẩm thứ $i$ là $w_i$, thể tích là $v_i$. Đồng thời, mỗi vật phẩm thuộc một nhóm, và trong cùng một nhóm chỉ được chọn nhiều nhất một vật phẩm. Hãy tìm tổng giá trị lớn nhất của các vật phẩm mà ba lô có thể chứa.
 
-这种题怎么想呢？其实是从「在所有物品中选择一件」变成了「从当前组中选择一件」，于是就对每一组进行一次 0-1 背包就可以了．
+Với dạng bài này nên nghĩ thế nào? Thực ra bài toán đã chuyển từ "chọn một vật phẩm trong tất cả vật phẩm" thành "chọn một vật phẩm trong nhóm hiện tại", nên chỉ cần thực hiện một lần ba lô 0-1 cho mỗi nhóm.
 
-再说一说如何进行存储．我们可以将 $t_{k,i}$ 表示第 $k$ 组的第 $i$ 件物品的编号是多少，再用 $\mathit{cnt}_k$ 表示第 $k$ 组物品有多少个．
+Nói thêm về cách lưu trữ. Có thể dùng $t_{k,i}$ để biểu diễn số thứ tự của vật phẩm thứ $i$ trong nhóm thứ $k$, rồi dùng $\mathit{cnt}_k$ để biểu diễn số vật phẩm trong nhóm thứ $k$.
 
-### 实现
+<span id="&#x5B9E;&#x73B0;_3"></span>
+### Cài đặt
 
 === "C++"
     ```cpp
-    for (int k = 1; k <= ts; k++)          // 循环每一组
-      for (int i = m; i >= 0; i--)         // 循环背包容量
-        for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
-          if (i >= w[t[k][j]])             // 背包容量充足
+    for (int k = 1; k <= ts; k++)          // Duyet tung nhom
+      for (int i = m; i >= 0; i--)         // Duyet suc chua ba lo
+        for (int j = 1; j <= cnt[k]; j++)  // Duyet tung vat pham trong nhom nay
+          if (i >= w[t[k][j]])             // Suc chua ba lo du
             dp[i] = max(dp[i],
-                        dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+                        dp[i - w[t[k][j]]] + c[t[k][j]]);  // Chuyen trang thai nhu ba lo 0-1
     ```
 
 === "Python"
     ```python
-    for k in range(1, ts + 1):  # 循环每一组
-        for i in range(m, -1, -1):  # 循环背包容量
-            for j in range(1, cnt[k] + 1):  # 循环该组的每一个物品
-                if i >= w[t[k][j]]:  # 背包容量充足
+    for k in range(1, ts + 1):  # Duyet tung nhom
+        for i in range(m, -1, -1):  # Duyet suc chua ba lo
+            for j in range(1, cnt[k] + 1):  # Duyet tung vat pham trong nhom nay
+                if i >= w[t[k][j]]:  # Suc chua ba lo du
                     dp[i] = max(
                         dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]
-                    )  # 像0-1背包一样状态转移
+                    )  # Chuyen trang thai nhu ba lo 0-1
     ```
 
-这里要注意：**一定不能搞错循环顺序**，这样才能保证正确性．
+Ở đây cần chú ý: **tuyệt đối không được nhầm thứ tự vòng lặp**, như vậy mới bảo đảm tính đúng đắn.
 
-## 有依赖的背包
+<span id="&#x6709;&#x4F9D;&#x8D56;&#x7684;&#x80CC;&#x5305;"></span>
+## Ba lô có phụ thuộc
 
-???+ note "[「Luogu P1064」金明的预算方案](https://www.luogu.com.cn/problem/P1064)"
-    金明有 $n$ 元钱，想要买 $m$ 个物品，第 $i$ 件物品的价格为 $v_i$，重要度为 $p_i$．有些物品是从属于某个主件物品的附件，要买这个物品，必须购买它的主件．
+???+ note "[Luogu P1064 - Phương án ngân sách của Jinming](https://www.luogu.com.cn/problem/P1064)"
+    Jinming có $n$ đồng, muốn mua $m$ vật phẩm. Vật phẩm thứ $i$ có giá $v_i$ và độ quan trọng $p_i$. Một số vật phẩm là phụ kiện phụ thuộc vào một vật phẩm chính nào đó; muốn mua vật phẩm đó thì bắt buộc phải mua vật phẩm chính của nó.
     
-    目标是让所有购买的物品的 $v_i \times p_i$ 之和最大．
+    Mục tiêu là tối đa hóa tổng $v_i \times p_i$ của tất cả vật phẩm được mua.
 
-考虑分类讨论．对于一个主件和它的若干附件，有以下几种可能：只买主件，买主件 + 某些附件．因为这几种可能性只能选一种，所以可以将这看成分组背包．
+Xét bằng cách chia trường hợp. Với một vật phẩm chính và một số phụ kiện của nó, có các khả năng sau: chỉ mua vật phẩm chính, hoặc mua vật phẩm chính + một số phụ kiện. Vì trong các khả năng này chỉ được chọn một, ta có thể xem đây là ba lô theo nhóm.
 
-如果是多叉树的集合，则要先算子节点的集合，最后算父节点的集合．
+Nếu là một tập các cây đa phân, cần tính tập của các nút con trước, rồi cuối cùng mới tính tập của nút cha.
 
-## 泛化物品的背包
+<span id="&#x6CDB;&#x5316;&#x7269;&#x54C1;&#x7684;&#x80CC;&#x5305;"></span>
+## Ba lô với vật phẩm tổng quát
 
-这种背包，没有固定的费用和价值，它的价值是随着分配给它的费用而定．在背包容量为 $V$ 的背包问题中，当分配给它的费用为 $v_i$ 时，能得到的价值就是 $h\left(v_i\right)$．这时，将固定的价值换成函数的引用即可．
+Loại ba lô này không có chi phí và giá trị cố định; giá trị của nó phụ thuộc vào lượng chi phí được phân bổ cho nó. Trong một bài toán ba lô có sức chứa $V$, khi phân bổ cho nó chi phí $v_i$, giá trị nhận được là $h\left(v_i\right)$. Lúc này, chỉ cần thay giá trị cố định bằng tham chiếu đến hàm.
 
-## 杂项
+<span id="&#x6742;&#x9879;"></span>
+## Linh tinh
 
-### 小优化
+<span id="&#x5C0F;&#x4F18;&#x5316;"></span>
+### Tối ưu nhỏ
 
-根据贪心原理，当费用相同时，只需保留价值最高的；当价值一定时，只需保留费用最低的；当有两件物品 $i,j$ 且 $i$ 的价值大于 $j$ 的价值并且 $i$ 的费用小于 $j$ 的费用时，只需保留 $i$．
+Theo nguyên lý tham lam, khi chi phí bằng nhau thì chỉ cần giữ vật phẩm có giá trị cao nhất; khi giá trị cố định thì chỉ cần giữ vật phẩm có chi phí thấp nhất; khi có hai vật phẩm $i,j$ mà giá trị của $i$ lớn hơn giá trị của $j$ và chi phí của $i$ nhỏ hơn chi phí của $j$, chỉ cần giữ $i$.
 
-### 背包问题变种
+<span id="&#x80CC;&#x5305;&#x95EE;&#x9898;&#x53D8;&#x79CD;"></span>
+### Biến thể của bài toán ba lô
 
-#### 输出方案
+<span id="&#x8F93;&#x51FA;&#x65B9;&#x6848;"></span>
+#### Xuất phương án
 
-输出方案其实就是记录下来背包中的某一个状态是怎么推出来的．我们可以用 $g_{i,v}$ 表示第 $i$ 件物品占用空间为 $v$ 的时候是否选择了此物品．然后在转移时记录是选用了哪一种策略（选或不选）．输出时的伪代码：
+Xuất phương án thực chất là ghi lại một trạng thái nào đó trong ba lô được suy ra như thế nào. Ta có thể dùng $g_{i,v}$ để biểu diễn khi vật phẩm thứ $i$ chiếm dung lượng $v$ thì có chọn vật phẩm này hay không. Sau đó, trong lúc chuyển trạng thái, ghi lại đã dùng chiến lược nào (chọn hoặc không chọn). Mã giả khi xuất:
 
 ```cpp
-int v = V;  // 记录当前的存储空间
+int v = V;  // Ghi lai dung luong luu tru hien tai
 
-// 因为最后一件物品存储的是最终状态，所以从最后一件物品进行循环
-for (从最后一件循环至第一件) {
+// Vi vat pham cuoi cung luu trang thai cuoi cung, nen duyet tu vat pham cuoi ve vat pham dau
+for (duyet tu vat pham cuoi den vat pham dau) {
   if (g[i][v]) {
-    选了第 i 项物品;
-    v -= 第 i 项物品的重量;
+    da chon vat pham thu i;
+    v -= trong luong cua vat pham thu i;
   } else {
-    未选第 i 项物品;
+    khong chon vat pham thu i;
   }
 }
 ```
 
-#### 求方案数
+<span id="&#x6C42;&#x65B9;&#x6848;&#x6570;"></span>
+#### Đếm số phương án
 
-对于给定的一个背包容量、物品费用、其他关系等的问题，求装到一定容量的方案总数．
+Với bài toán cho trước sức chứa ba lô, chi phí vật phẩm, các quan hệ khác, v.v., cần đếm tổng số phương án đạt đến một sức chứa nhất định.
 
-这种问题就是把求最大值换成求和即可．
+Dạng bài này chỉ cần thay việc lấy giá trị lớn nhất bằng phép cộng là được.
 
-例如 0-1 背包问题的转移方程就变成了：
+Ví dụ, phương trình chuyển trạng thái của bài toán ba lô 0-1 trở thành:
 
 $$
 \mathit{dp}_j \leftarrow \mathit{dp}_j + \mathit{dp}_{j-c_i} \qquad (j \ge c_i)
 $$
 
-初始条件：$\mathit{dp}_0=1$
+Điều kiện ban đầu: $\mathit{dp}_0=1$
 
-因为当容量为 $0$ 时也有一个方案，即什么都不装．
+Vì khi sức chứa bằng $0$ cũng có một phương án, tức là không cho gì vào.
 
-#### 求最优方案总数
+<span id="&#x6C42;&#x6700;&#x4F18;&#x65B9;&#x6848;&#x603B;&#x6570;"></span>
+#### Đếm tổng số phương án tối ưu
 
-要求最优方案总数，我们要对 0-1 背包里的 $\mathit{dp}$ 数组的定义稍作修改，DP 状态 $f_{i,j}$ 为在只能放前 $i$ 个物品的情况下，容量为 $j$ 的背包「正好装满」所能达到的最大总价值．
+Để đếm tổng số phương án tối ưu, ta cần sửa nhẹ định nghĩa của mảng $\mathit{dp}$ trong ba lô 0-1: trạng thái DP $f_{i,j}$ là tổng giá trị lớn nhất có thể đạt được khi ba lô có sức chứa $j$ được "lấp đầy chính xác" và chỉ được xét $i$ vật phẩm đầu tiên.
 
-这样修改之后，每一种 DP 状态都可以用一个 $g_{i,j}$ 来表示方案数．
+Sau khi sửa như vậy, mỗi trạng thái DP đều có thể dùng một $g_{i,j}$ để biểu diễn số phương án.
 
-$f_{i,j}$ 表示只考虑前 $i$ 个物品时背包体积「正好」是 $j$ 时的最大价值．
+$f_{i,j}$ biểu diễn giá trị lớn nhất khi chỉ xét $i$ vật phẩm đầu tiên và thể tích ba lô "đúng bằng" $j$.
 
-$g_{i,j}$ 表示只考虑前 $i$ 个物品时背包体积「正好」是 $j$ 时的方案数．
+$g_{i,j}$ biểu diễn số phương án khi chỉ xét $i$ vật phẩm đầu tiên và thể tích ba lô "đúng bằng" $j$.
 
-转移方程：
+Phương trình chuyển:
 
-如果 $f_{i,j} = f_{i-1,j}$ 且 $f_{i,j} \neq f_{i-1,j-v}+w$ 说明我们此时不选择把物品放入背包更优，方案数由 $g_{i-1,j}$ 转移过来，
+Nếu $f_{i,j} = f_{i-1,j}$ và $f_{i,j} \neq f_{i-1,j-v}+w$, nghĩa là lúc này không chọn vật phẩm vào ba lô tốt hơn; số phương án được chuyển từ $g_{i-1,j}$.
 
-如果 $f_{i,j} \neq f_{i-1,j}$ 且 $f_{i,j} = f_{i-1,j-v}+w$ 说明我们此时选择把物品放入背包更优，方案数由 $g_{i-1,j-v}$ 转移过来，
+Nếu $f_{i,j} \neq f_{i-1,j}$ và $f_{i,j} = f_{i-1,j-v}+w$, nghĩa là lúc này chọn vật phẩm vào ba lô tốt hơn; số phương án được chuyển từ $g_{i-1,j-v}$.
 
-如果 $f_{i,j} = f_{i-1,j}$ 且 $f_{i,j} = f_{i-1,j-v}+w$ 说明放入或不放入都能取得最优解，方案数由 $g_{i-1,j}$ 和 $g_{i-1,j-v}$ 转移过来．
+Nếu $f_{i,j} = f_{i-1,j}$ và $f_{i,j} = f_{i-1,j-v}+w$, nghĩa là chọn hoặc không chọn đều đạt nghiệm tối ưu; số phương án được chuyển từ cả $g_{i-1,j}$ và $g_{i-1,j-v}$.
 
-初始条件：
+Điều kiện ban đầu:
 
 ```cpp
 memset(f, 0xcf, sizeof(f));
-// 因为是求最大值，初始化为负无穷，避免没有装满而进行了转移
-// 若求最小值，则初始化为正无穷0x3f
+// Vi can lay gia tri lon nhat, khoi tao la am vo cung de tranh chuyen trang thai khi chua lap day
+// Neu can lay gia tri nho nhat, khoi tao la duong vo cung 0x3f
 f[0] = 0;
-g[0] = 1;  // 什么都不装是一种方案
+g[0] = 1;  // Khong chon gi cung la mot phuong an
 ```
 
-因为背包体积最大值有可能装不满，所以最优解不一定是 $f_{m}$．
+Vì thể tích lớn nhất của ba lô có thể không lấp đầy được, nghiệm tối ưu không nhất thiết là $f_{m}$.
 
-最后我们通过找到最优解的价值，把 $g_{j}$ 数组里取到最优解的所有方案数相加即可．
+Cuối cùng, ta tìm giá trị của nghiệm tối ưu, rồi cộng tất cả số phương án trong mảng $g_{j}$ tương ứng với các vị trí đạt nghiệm tối ưu.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     for (int i = 0; i < N; i++) {
       for (int j = V; j >= v[i]; j--) {
         int tmp = std::max(dp[j], dp[j - v[i]] + w[i]);
         int c = 0;
-        if (tmp == dp[j]) c += cnt[j];                       // 如果从dp[j]转移
-        if (tmp == dp[j - v[i]] + w[i]) c += cnt[j - v[i]];  // 如果从dp[j-v[i]]转移
+        if (tmp == dp[j]) c += cnt[j];                       // Neu chuyen tu dp[j]
+        if (tmp == dp[j - v[i]] + w[i]) c += cnt[j - v[i]];  // Neu chuyen tu dp[j-v[i]]
         dp[j] = tmp;
         cnt[j] = c;
       }
     }
-    int max = 0;  // 寻找最优解
+    int max = 0;  // Tim nghiem toi uu
     for (int i = 0; i <= V; i++) {
       max = std::max(max, dp[i]);
     }
     int res = 0;
     for (int i = 0; i <= V; i++) {
       if (dp[i] == max) {
-        res += cnt[i];  // 求和最优解方案数
+        res += cnt[i];  // Cong so phuong an toi uu
       }
     }
     ```
 
-#### 背包的第 k 优解
+<span id="&#x80CC;&#x5305;&#x7684;&#x7B2C;-k-&#x4F18;&#x89E3;"></span>
+#### Nghiệm tốt thứ $k$ của bài toán ba lô
 
-普通的 0-1 背包是要求最优解，在普通的背包 DP 方法上稍作改动，增加一维用于记录当前状态下的前 k 优解，即可得到求 0-1 背包第 $k$ 优解的算法．
-具体来讲：$\mathit{dp_{i,j,k}}$ 记录了前 $i$ 个物品中，选择的物品总体积为 $j$ 时，能够得到的第 $k$ 大的价值和．这个状态可以理解为将普通 0-1 背包只用记录一个数据的 $\mathit{dp_{i,j}}$ 扩展为记录一个有序的优解序列．转移时，普通背包最优解的求法是 $\mathit{dp_{i,j}}=\max(\mathit{dp_{i-1,j}},\mathit{dp_{i-1,j-v_{i}}}+w_{i})$，现在我们则是要合并 $\mathit{dp_{i-1,j}}$，$\mathit{dp_{i-1,j-v_{i}}}+w_{i}$ 这两个大小为 $k$ 的递减序列，并保留合并后前 $k$ 大的价值记在 $\mathit{dp_{i,j}}$ 里，这一步利用双指针法，复杂度是 $O(k)$ 的，整体时间复杂度为 $O(nmk)$．空间上，此方法与普通背包一样可以压缩掉第一维，复杂度是 $O(mk)$ 的．
+Ba lô 0-1 thông thường yêu cầu nghiệm tối ưu. Trên phương pháp DP ba lô thông thường, chỉ cần sửa nhẹ bằng cách thêm một chiều để ghi các nghiệm tốt nhất thứ 1 đến thứ $k$ dưới trạng thái hiện tại, ta sẽ thu được thuật toán tìm nghiệm tốt thứ $k$ của ba lô 0-1.
+Cụ thể, $\mathit{dp_{i,j,k}}$ ghi tổng giá trị lớn thứ $k$ có thể đạt được khi xét $i$ vật phẩm đầu tiên và tổng thể tích các vật phẩm được chọn là $j$. Có thể hiểu trạng thái này là mở rộng $\mathit{dp_{i,j}}$ của ba lô 0-1 thông thường, vốn chỉ cần ghi một dữ liệu, thành việc ghi một dãy nghiệm tốt có thứ tự. Khi chuyển trạng thái, cách tìm nghiệm tối ưu trong ba lô thông thường là $\mathit{dp_{i,j}}=\max(\mathit{dp_{i-1,j}},\mathit{dp_{i-1,j-v_{i}}}+w_{i})$; còn bây giờ ta cần hợp nhất hai dãy giảm dần có kích thước $k$, gồm $\mathit{dp_{i-1,j}}$ và $\mathit{dp_{i-1,j-v_{i}}}+w_{i}$, rồi giữ lại $k$ giá trị lớn nhất sau khi hợp nhất trong $\mathit{dp_{i,j}}$. Bước này dùng phương pháp hai con trỏ, có độ phức tạp $O(k)$; độ phức tạp thời gian tổng thể là $O(nmk)$. Về bộ nhớ, phương pháp này cũng có thể nén bỏ chiều thứ nhất như ba lô thông thường, với độ phức tạp $O(mk)$.
 
-??? note "例题 [HDU 2639 Bone Collector II](https://acm.hdu.edu.cn/showproblem.php?pid=2639)"
-    求 0-1 背包的严格第 $k$ 优解．$n \leq 100,v \leq 1000,k \leq 30$
+??? note "Bài ví dụ [HDU 2639 Bone Collector II](https://acm.hdu.edu.cn/showproblem.php?pid=2639)"
+    Tìm nghiệm tốt thứ $k$ nghiêm ngặt của ba lô 0-1. $n \leq 100,v \leq 1000,k \leq 30$
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     memset(dp, 0, sizeof(dp));
     int i, j, p, x, y, z;
@@ -469,6 +497,7 @@ g[0] = 1;  // 什么都不装是一种方案
     printf("%d\n", dp[m][K]);
     ```
 
-## 参考资料与注释
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+## Tài liệu tham khảo và ghi chú
 
--   [背包问题九讲 - 崔添翼](https://github.com/tianyicui/pack)．
+-   [Nine Lectures on the Knapsack Problem - Cui Tianyi](https://github.com/tianyicui/pack).

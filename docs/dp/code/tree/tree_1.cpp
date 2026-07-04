@@ -8,7 +8,7 @@ struct edge {
 
 int head[6005], n, cnt, f[6005][2], ans, is_h[6005], vis[6005];
 
-void addedge(int u, int v) {  // 建图
+void addedge(int u, int v) {  // Dựng đồ thị
   e[++cnt].v = v;
   e[cnt].next = head[u];
   head[u] = cnt;
@@ -16,11 +16,11 @@ void addedge(int u, int v) {  // 建图
 
 void calc(int k) {
   vis[k] = 1;
-  for (int i = head[k]; i; i = e[i].next) {  // 枚举该结点的每个子结点
+  for (int i = head[k]; i; i = e[i].next) {  // Duyệt từng nút con của nút này
     if (vis[e[i].v]) continue;
     calc(e[i].v);
     f[k][1] += f[e[i].v][0];
-    f[k][0] += max(f[e[i].v][0], f[e[i].v][1]);  // 转移方程
+    f[k][0] += max(f[e[i].v][0], f[e[i].v][1]);  // Phương trình chuyển
   }
   return;
 }
@@ -36,7 +36,7 @@ int main() {
     addedge(k, l);
   }
   for (int i = 1; i <= n; i++)
-    if (!is_h[i]) {  // 从根结点开始DFS
+    if (!is_h[i]) {  // Bắt đầu DFS từ nút gốc
       calc(i);
       cout << max(f[i][1], f[i][0]);
       return 0;
