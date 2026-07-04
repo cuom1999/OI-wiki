@@ -334,18 +334,38 @@ trường hợp lần lượt tương ứng với $D\equiv \pm 3\pmod 8$,
 $D\equiv \pm 1\pmod 8$ và $2$ chia $D$.
 
 <span id="gauss-&#x6574;&#x6570;"></span>
-## So nguyen Gauss
+## Số nguyên Gauss
 
-Trong phan nay, dat $\mathrm{i}=\sqrt{-1}$ la don vi ao. Truong bac hai $\mathbf Q(\mathrm{i})$ con duoc goi la truong Gauss, dong thoi la [truong cyclotomic](../algebra/field-theory.md#%E5%88%86%E5%9C%86%E5%9F%9F) bac bon. Vanh so nguyen bac hai tuong ung $\mathbf Z[\mathrm{i}]$ duoc goi la vanh so nguyen Gauss; cac phan tu cua no duoc goi la **so nguyen Gauss** (Gaussian integer). So nguyen Gauss co bon don vi, la $\pm 1$ va $\pm\mathrm{i}$, nen moi so nguyen Gauss khac khong co bon phan tu lien ket (ke ca chinh no). Tren mat phang phuc, so nguyen Gauss bieu dien tat ca diem nguyen, va chuan $N(a+b\mathrm{i})=a^2+b^2$ cua so nguyen Gauss chinh la chuan tren mat phang phuc.
+Trong phần này, đặt $\mathrm{i}=\sqrt{-1}$ là đơn vị ảo. Trường bậc hai
+$\mathbf Q(\mathrm{i})$ còn được gọi là trường Gauss, đồng thời là [trường
+cyclotomic](../algebra/field-theory.md#%E5%88%86%E5%9C%86%E5%9F%9F) bậc bốn.
+Vành số nguyên bậc hai tương ứng $\mathbf Z[\mathrm{i}]$ được gọi là vành số
+nguyên Gauss; các phần tử của nó được gọi là **số nguyên Gauss** (Gaussian
+integer). Số nguyên Gauss có bốn đơn vị, là $\pm 1$ và $\pm\mathrm{i}$, nên mỗi
+số nguyên Gauss khác không có bốn phần tử liên kết (kể cả chính nó). Trên mặt
+phẳng phức, số nguyên Gauss biểu diễn tất cả điểm nguyên, và chuẩn
+$N(a+b\mathrm{i})=a^2+b^2$ của số nguyên Gauss chính là chuẩn trên mặt phẳng
+phức.
 
 ![](./images/gaussian-integer.svg)
 
-Tren so nguyen Gauss co the thuc hien phep chia co du: voi cac so nguyen Gauss $a$ va $b\neq 0$, luon ton tai cac so nguyen Gauss $q$ va $r$ sao cho $a=bq+r$ va $N(r)<N(b)$. De tinh phep chia co du nay, truoc het tinh $\dfrac{a}{b}$ trong $\mathbf Q(\mathrm{i})$, sau do tim diem nguyen gan nhat trong mat phang phuc lam $q$, roi tinh $r=a-bq$; phan du thu duoc luon thoa $N(r)\le\dfrac{1}{2}N(b)$. Dung phep chia co du, co the chuyen thuat toan Euclid va dinh li Bezout sang so nguyen Gauss, tu do thiet lap dinh li phan tich duy nhat.
+Trên số nguyên Gauss có thể thực hiện phép chia có dư: với các số nguyên Gauss
+$a$ và $b\neq 0$, luôn tồn tại các số nguyên Gauss $q$ và $r$ sao cho $a=bq+r$
+và $N(r)<N(b)$. Để tính phép chia có dư này, trước hết tính $\dfrac{a}{b}$
+trong $\mathbf Q(\mathrm{i})$, sau đó tìm điểm nguyên gần nhất trong mặt phẳng
+phức làm $q$, rồi tính $r=a-bq$; phần dư thu được luôn thỏa
+$N(r)\le\dfrac{1}{2}N(b)$. Dùng phép chia có dư, có thể chuyển thuật toán
+Euclid và định lý Bézout sang số nguyên Gauss, từ đó thiết lập định lý phân
+tích duy nhất.
 
 <span id="gauss-&#x7d20;&#x6570;"></span>
-### So nguyen to Gauss
+### Số nguyên tố Gauss
 
-Dung ket qua cua phan truoc co the tim cac phan tu nguyen to trong so nguyen Gauss (cung goi la so nguyen to Gauss). Vi biet thuc cua vanh so nguyen Gauss la $-4$, con ki hieu Kronecker $\left(\dfrac{-4}{n}\right)$ nhan gia tri $0$ tren $n$ chan, va tren $n$ le co gia tri bang $\left(\dfrac{-1}{n}\right)=(-1)^{(n-1)/2}$, nen
+Dùng kết quả của phần trước có thể tìm các phần tử nguyên tố trong số nguyên
+Gauss (cũng gọi là số nguyên tố Gauss). Vì biệt thức của vành số nguyên Gauss
+là $-4$, còn kí hiệu Kronecker $\left(\dfrac{-4}{n}\right)$ nhận giá trị $0$
+trên $n$ chẵn, và trên $n$ lẻ có giá trị bằng
+$\left(\dfrac{-1}{n}\right)=(-1)^{(n-1)/2}$, nên
 
 $$
 \left(\dfrac{-4}{n}\right) = \begin{cases}
@@ -355,107 +375,157 @@ $$
 \end{cases}
 $$
 
-Do do, so nguyen to Gauss gom ba loai sau:
+Do đó, số nguyên tố Gauss gồm ba loại sau:
 
-1.  Cac so nguyen to dang $4k+3$ trong so nguyen;
-2.  Hai thua so nguyen to Gauss lien hop cua cac so nguyen to dang $4k+1$ trong so nguyen;
-3.  Thua so $1+\mathrm{i}$ cua so nguyen to $2$, lien hop cua no lien ket voi no.
+1.  Các số nguyên tố dạng $4k+3$ trong số nguyên;
+2.  Hai thừa số nguyên tố Gauss liên hợp của các số nguyên tố dạng $4k+1$ trong
+    số nguyên;
+3.  Thừa số $1+\mathrm{i}$ của số nguyên tố $2$, liên hợp của nó liên kết với
+    nó.
 
-Vi du trong $\mathbf Z[\mathrm{i}]$ co phan tich $60=2^2\times 3\times 5=-(1+\mathrm{i})^4\times 3\times(2+\mathrm{i})\times(2-\mathrm{i})$.
+Ví dụ trong $\mathbf Z[\mathrm{i}]$ có phân tích
+$60=2^2\times 3\times 5=-(1+\mathrm{i})^4\times 3\times(2+\mathrm{i})\times(2-\mathrm{i})$.
 
-Thao luan o day ve viec so nguyen to $p$ co the phan tich tiep trong $\mathbf Z[\mathrm{i}]$ thuc ra tuong duong voi thao luan ve viec $p$ co the viet duoi dang tong hai binh phuong nguyen $a^2+b^2$. Vi vay tu ket qua nay suy ra: so nguyen to $p$ co the viet thanh tong hai binh phuong khi va chi khi $p=2$ hoac $p\equiv 1\pmod 4$. Day la [dinh li Fermat ve tong hai binh phuong](https://en.wikipedia.org/wiki/Fermat%27s_theorem_on_sums_of_two_squares).
+Thảo luận ở đây về việc số nguyên tố $p$ có thể phân tích tiếp trong
+$\mathbf Z[\mathrm{i}]$ thực ra tương đương với thảo luận về việc $p$ có thể
+viết dưới dạng tổng hai bình phương nguyên $a^2+b^2$. Vì vậy từ kết quả này
+suy ra: số nguyên tố $p$ có thể viết thành tổng hai bình phương khi và chỉ khi
+$p=2$ hoặc $p\equiv 1\pmod 4$. Đây là [định lý Fermat về tổng hai bình phương](https://en.wikipedia.org/wiki/Fermat%27s_theorem_on_sums_of_two_squares).
 
 <span id="&#x5706;&#x4e0a;&#x6574;&#x70b9;&#x95ee;&#x9898;"></span>
-### Bai toan diem nguyen tren duong tron
+### Bài toán điểm nguyên trên đường tròn
 
-Tren mat phang phuc, so nguyen Gauss bieu dien moi diem nguyen. Chuan cua so nguyen Gauss chinh la binh phuong khoang cach Euclid tu diem luoi den goc toa do. Vi vay, cac so nguyen bac hai co cung chuan tuong ung voi cac diem nguyen tren duong tron tam goc toa do trong mat phang phuc. Noi cach khac, so diem nguyen tren duong tron $x^2+y^2=n$ chinh la so so nguyen Gauss $x+y\mathrm{i}$ co chuan bang $n$.
+Trên mặt phẳng phức, số nguyên Gauss biểu diễn mọi điểm nguyên. Chuẩn của số
+nguyên Gauss chính là bình phương khoảng cách Euclid từ điểm lưới đến gốc tọa
+độ. Vì vậy, các số nguyên bậc hai có cùng chuẩn tương ứng với các điểm nguyên
+trên đường tròn tâm gốc tọa độ trong mặt phẳng phức. Nói cách khác, số điểm
+nguyên trên đường tròn $x^2+y^2=n$ chính là số số nguyên Gauss
+$x+y\mathrm{i}$ có chuẩn bằng $n$.
 
-De giai phuong trinh $N(x+y\mathrm{i})=n$, co the xet phan tich so nguyen Gauss $x+y\mathrm{i}$ thanh thua so nguyen to; khi do tich chuan cua cac thua so nguyen to nay bang $n$. Do do, chi can truoc het co phan tich thua so cua $n$, ta co the dua vao cac thua so nguyen to cua $n$ de xac dinh nhung thua so nguyen to ma $x+y\mathrm{i}$ co the co. Gia su phan tich thua so nguyen to cua so nguyen $n$ la
+Để giải phương trình $N(x+y\mathrm{i})=n$, có thể xét phân tích số nguyên Gauss
+$x+y\mathrm{i}$ thành thừa số nguyên tố; khi đó tích chuẩn của các thừa số
+nguyên tố này bằng $n$. Do đó, chỉ cần trước hết có phân tích thừa số của $n$,
+ta có thể dựa vào các thừa số nguyên tố của $n$ để xác định những thừa số
+nguyên tố mà $x+y\mathrm{i}$ có thể có. Giả sử phân tích thừa số nguyên tố của
+số nguyên $n$ là
 
 $$
 n=2^kp_1^{r_1}\cdots p_\ell^{r_\ell}q_1^{s_1}\cdots q_{m}^{s_m},
 $$
 
-trong do $p_1,\cdots,p_\ell$ la cac thua so nguyen to dang $4k+1$, con $q_1,\cdots,q_m$ la cac thua so nguyen to dang $4k+3$.
+trong đó $p_1,\cdots,p_\ell$ là các thừa số nguyên tố dạng $4k+1$, còn
+$q_1,\cdots,q_m$ là các thừa số nguyên tố dạng $4k+3$.
 
-Truoc het, phuong trinh $N(x+y\mathrm{i})=n$ co nghiem khi va chi khi cac so mu $s_1,\cdots,s_m$ cua thua so nguyen to dang $4k+3$ trong $n$ deu chan; do $q_1,\cdots,q_m$ cung la so nguyen to Gauss, chuan cua chung bang binh phuong cua chinh chung, nen trong phan tich thua so nguyen to cua chuan chung bat buoc xuat hien thanh cap.
+Trước hết, phương trình $N(x+y\mathrm{i})=n$ có nghiệm khi và chỉ khi các số mũ
+$s_1,\cdots,s_m$ của thừa số nguyên tố dạng $4k+3$ trong $n$ đều chẵn; do
+$q_1,\cdots,q_m$ cũng là số nguyên tố Gauss, chuẩn của chúng bằng bình phương
+của chính chúng, nên trong phân tích thừa số nguyên tố của chuẩn chúng bắt buộc
+xuất hiện thành cặp.
 
-Bay gio gia su phuong trinh co nghiem. Khi do nghiem cua phuong trinh nhat dinh co dang
+Bây giờ giả sử phương trình có nghiệm. Khi đó nghiệm của phương trình nhất định
+có dạng
 
 $$
 u(1+\mathrm{i})^k(a_1+b_1\mathrm{i})^{r_{1}^+}(a_1-b_1\mathrm{i})^{r_{1}^-}\cdots(a_\ell+ b_\ell\mathrm{i})^{r_\ell^+}(a_\ell-b_\ell\mathrm{i})^{r_\ell^-}q_1^{s_1/2}\cdots q_{m}^{s_m/2},
 $$
 
-trong do $u$ la don vi, $a_j\pm b_j\mathrm{i}$ la hai thua so nguyen to lien hop cua $p_j$ trong vanh so nguyen Gauss, va $r_j^++r_j^-=r_j$. Do do, so nghiem cua phuong trinh bang
+trong đó $u$ là đơn vị, $a_j\pm b_j\mathrm{i}$ là hai thừa số nguyên tố liên
+hợp của $p_j$ trong vành số nguyên Gauss, và $r_j^++r_j^-=r_j$. Do đó, số
+nghiệm của phương trình bằng
 
 $$
 4(1+r_1)\cdots(1+r_\ell).
 $$
 
-Dat $f(n)$ la so nghiem nguyen cua phuong trinh $x^2+y^2=n$. Khi phuong trinh co nghiem, $f(n)$ duoc cho boi bieu thuc tren; neu khong thi $f(n)=0$. De thay, $\dfrac14f(n)$ la [ham nhan tinh](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0). Gia tri cua ham nhan tinh duoc xac dinh boi gia tri tren cac luy thua nguyen to. Tu bieu thuc cua $f(n)$ co the xac dinh gia tri cua $\dfrac14f(n)$ tren luy thua nguyen to $p^k$ nhu sau:
+Đặt $f(n)$ là số nghiệm nguyên của phương trình $x^2+y^2=n$. Khi phương trình
+có nghiệm, $f(n)$ được cho bởi biểu thức trên; nếu không thì $f(n)=0$. Dễ thấy,
+$\dfrac14f(n)$ là [hàm nhân tính](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0).
+Giá trị của hàm nhân tính được xác định bởi giá trị trên các lũy thừa nguyên
+tố. Từ biểu thức của $f(n)$ có thể xác định giá trị của $\dfrac14f(n)$ trên
+lũy thừa nguyên tố $p^k$ như sau:
 
-1.  Neu $p$ la so nguyen to dang $4k+3$, thi $\dfrac14f(1)=1,\dfrac14f(p)=0,\dfrac14f(p^2)=1,\dfrac14f(p^3)=0,\cdots$;
-2.  Neu $p$ la so nguyen to dang $4k+1$, thi $\dfrac14f(p^k)=k+1$;
-3.  Neu $p=2$, thi $\dfrac14f(2^k)=1$.
+1.  Nếu $p$ là số nguyên tố dạng $4k+3$, thì
+    $\dfrac14f(1)=1,\dfrac14f(p)=0,\dfrac14f(p^2)=1,\dfrac14f(p^3)=0,\cdots$;
+2.  Nếu $p$ là số nguyên tố dạng $4k+1$, thì $\dfrac14f(p^k)=k+1$;
+3.  Nếu $p=2$, thì $\dfrac14f(2^k)=1$.
 
-De thay ba truong hop nay deu co the viet thanh
+Dễ thấy ba trường hợp này đều có thể viết thành
 
 $$
 \dfrac14f(p^k) = \sum_{j=0}^k\left(\dfrac{-4}{p}\right)^k = \sum_{j=0}^k\left(\dfrac{-4}{p^k}\right) = \sum_{d\mid p^k}\left(\dfrac{-4}{d}\right).
 $$
 
-Vi ki hieu Kronecker $\left(\dfrac{-4}{n}\right)$ la ham hoan toan nhan tinh, ta thu duoc
+Vì kí hiệu Kronecker $\left(\dfrac{-4}{n}\right)$ là hàm hoàn toàn nhân tính,
+ta thu được
 
 $$
 f(n) = 4\sum_{d\mid n}\left(\dfrac{-4}{d}\right)=4\sum_{d\mid n}\chi_{4,3}(d).
 $$
 
-Ki hieu trong tong ben phai cung dung su that rang ki hieu Kronecker $\left(\dfrac{-4}{n}\right)$ la [dac trung Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_character) thuc modulo $4$.
+Kí hiệu trong tổng bên phải cũng dùng sự thật rằng kí hiệu Kronecker
+$\left(\dfrac{-4}{n}\right)$ là [đặc trưng Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_character)
+thực modulo $4$.
 
 <span id="&#x52fe;&#x80a1;&#x65b9;&#x7a0b;"></span>
-### Phuong trinh Pythagoras
+### Phương trình Pythagoras
 
-Dung so nguyen Gauss co the tim nghiem tong quat cua phuong trinh Pythagoras. Phuong trinh Pythagoras la phuong trinh vo dinh bac hai sau:
+Dùng số nguyên Gauss có thể tìm nghiệm tổng quát của phương trình Pythagoras.
+Phương trình Pythagoras là phương trình vô định bậc hai sau:
 
 $$
 x^2+y^2=z^2.
 $$
 
-So sanh voi noi dung phan truoc, dieu nay tuong duong voi viec giai phuong trinh $N(x+y\mathrm{i})=z^2$. Gia su $z$ co phan tich thua so nguyen to trong $\mathbf Z$ la
+So sánh với nội dung phần trước, điều này tương đương với việc giải phương
+trình $N(x+y\mathrm{i})=z^2$. Giả sử $z$ có phân tích thừa số nguyên tố trong
+$\mathbf Z$ là
 
 $$
 z=2^kp_1^{r_1}\cdots p_\ell^{r_\ell}q_1^{s_1}\cdots q_{m}^{s_m},
 $$
 
-thi nghiem $x+y\mathrm{i}$ cua no trong $\mathbf Z[\mathrm{i}]$ co phan tich thua so nguyen to
+thì nghiệm $x+y\mathrm{i}$ của nó trong $\mathbf Z[\mathrm{i}]$ có phân tích
+thừa số nguyên tố
 
 $$
 x+y\mathrm{i} = u(1+\mathrm{i})^{2k}(a_1+b_1\mathrm{i})^{r_{1}^+}(a_1-b_1\mathrm{i})^{r_{1}^-}\cdots(a_\ell+ b_\ell\mathrm{i})^{r_\ell^+}(a_\ell-b_\ell\mathrm{i})^{r_\ell^-}q_1^{s_1}\cdots q_{m}^{s_m}
 $$
 
-va $r_j^++r_j^-=2r_j$. Co the tinh uoc chung lon nhat cua $x+y\mathrm{i}$ va $z$, thu duoc so nguyen sau:
+và $r_j^++r_j^-=2r_j$. Có thể tính ước chung lớn nhất của $x+y\mathrm{i}$ và
+$z$, thu được số nguyên sau:
 
 $$
 \kappa = 2^kp_1^{\min\{r_1^+,r_1^-\}}\cdots p_\ell^{\min\{r_\ell^+,r_\ell^-\}}q_1^{s_1}\cdots q_m^{s_m}.
 $$
 
-Rut gon uoc chung nay, thi $\kappa^{-1}(x+y\mathrm{i})$ chi chua cac thua so nguyen to dang $a_j\pm b_j\mathrm{i}$, cac thua so lien hop khong xuat hien thanh cap, va cac so mu $|r_j^+-r_j^-|$ cua chung nhat dinh chan (vi tong cua chung $2r_j$ la chan). Do do, $\kappa^{-1}(x+y\mathrm{i})$ la binh phuong cua mot so nguyen bac hai nao do $u+v\mathrm{i}$. Tu day thu duoc phuong trinh:
+Rút gọn ước chung này, thì $\kappa^{-1}(x+y\mathrm{i})$ chỉ chứa các thừa số
+nguyên tố dạng $a_j\pm b_j\mathrm{i}$, các thừa số liên hợp không xuất hiện
+thành cặp, và các số mũ $|r_j^+-r_j^-|$ của chúng nhất định chẵn (vì tổng của
+chúng $2r_j$ là chẵn). Do đó, $\kappa^{-1}(x+y\mathrm{i})$ là bình phương của
+một số nguyên bậc hai nào đó $u+v\mathrm{i}$. Từ đây thu được phương trình:
 
 $$
 x+y\mathrm{i} = \kappa(u+v\mathrm{i})^2,\ z=\kappa N(u+v\mathrm{i}).
 $$
 
-Trong so nguyen $\mathbf Z$, dieu nay tuong duong voi he phuong trinh
+Trong số nguyên $\mathbf Z$, điều này tương đương với hệ phương trình
 
 $$
 x = \kappa(u^2-v^2),\ y = 2\kappa uv,\ z = \kappa(u^2+v^2).
 $$
 
-Nguoc lai, voi moi so nguyen $u$ va $v$, bieu thuc tren cho bo ba $(x,y,z)$ thoa man phuong trinh Pythagoras. Vi vay, day la nghiem tong quat cua phuong trinh Pythagoras.
+Ngược lại, với mọi số nguyên $u$ và $v$, biểu thức trên cho bộ ba $(x,y,z)$
+thỏa mãn phương trình Pythagoras. Vì vậy, đây là nghiệm tổng quát của phương
+trình Pythagoras.
 
-Tu qua trinh tren co the biet rang, trong bo so Pythagoras nguyen thuy $(x,y,z)$ (tuc $x,y,z$ co uoc chung bang mot), $x,y$ nhat dinh mot le mot chan, $z$ le va chi chua cac thua so nguyen to dang $4k+1$.
+Từ quá trình trên có thể biết rằng, trong bộ số Pythagoras nguyên thủy
+$(x,y,z)$ (tức $x,y,z$ có ước chung bằng một), $x,y$ nhất định một lẻ một chẵn,
+$z$ lẻ và chỉ chứa các thừa số nguyên tố dạng $4k+1$.
 
-Dung phuong phap tuong tu con co the tim nghiem tong quat cua phuong trinh $x^2+y^2=z^3$, hoac chung minh phuong trinh $x^4+y^4=z^4$ vo nghiem. Di nhien, dung nghiem tong quat cua phuong trinh Pythagoras va phuong phap lui vo han, co the chung minh ket qua manh hon: phuong trinh $x^4+y^4=z^2$ vo nghiem.
+Dùng phương pháp tương tự còn có thể tìm nghiệm tổng quát của phương trình
+$x^2+y^2=z^3$, hoặc chứng minh phương trình $x^4+y^4=z^4$ vô nghiệm. Dĩ nhiên,
+dùng nghiệm tổng quát của phương trình Pythagoras và phương pháp lùi vô hạn, có
+thể chứng minh kết quả mạnh hơn: phương trình $x^4+y^4=z^2$ vô nghiệm.
 
 <span id="eisenstein-&#x6574;&#x6570;"></span>
 ## So nguyen Eisenstein

@@ -139,7 +139,7 @@ MkDocs source layout intact.
   `docs/math/number-theory/prime.md` sections, then fully cleaned
   `docs/math/number-theory/gcd.md` and
   `docs/math/number-theory/sieve.md`, plus the opening concept sections of
-  `docs/math/number-theory/quadratic.md` through unique factorization.
+  `docs/math/number-theory/quadratic.md` through the Gaussian integer material.
 - `docs/math/number-theory/pollard-rho.md`,
   `docs/math/number-theory/bezouts.md`,
   `docs/math/number-theory/fermat.md`, `docs/math/number-theory/crt.md`,
