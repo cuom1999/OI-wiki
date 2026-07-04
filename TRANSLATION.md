@@ -374,6 +374,8 @@ MkDocs source layout intact.
   guide.
 - `docs/tools/special-judge.md`: translated the Special Judge writing guide
   for multiple OJ and judging tools.
+- `docs/tools/wsl.md`: translated the Windows Subsystem for Linux installation,
+  configuration, GUI, VS Code, and WSL2 upgrade guide.
 - `docs/tools/editor/atom.md`, `docs/tools/editor/cpeditor.md`,
   `docs/tools/editor/eclipse.md`, `docs/tools/editor/geany.md`: translated
   small editor setup and overview pages.
