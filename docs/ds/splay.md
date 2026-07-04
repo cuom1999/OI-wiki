@@ -1,142 +1,142 @@
-本页面将简要介绍如何用 Splay 维护二叉查找树．
+Trang này giới thiệu ngắn gọn cách dùng Splay để duy trì cây tìm kiếm nhị phân.
 
-## 定义
+## Định nghĩa
 
-**Splay 树**，或 **伸展树**，是一种平衡二叉查找树，它通过 **伸展（splay）操作** 不断将某个节点旋转到根节点，使得整棵树仍然满足二叉查找树的性质，能够在均摊 $O(\log N)$ 时间内完成插入、查找和删除操作，并且保持平衡而不至于退化为链．
+**Cây Splay**, hay **Splay Tree**, là một cây tìm kiếm nhị phân cân bằng. Nó liên tục đưa một nút nào đó lên nút gốc bằng **thao tác splay**, sao cho toàn bộ cây vẫn thỏa tính chất của cây tìm kiếm nhị phân, có thể hoàn thành các thao tác chèn, tìm kiếm và xóa trong thời gian khấu hao $O(\log N)$, đồng thời giữ cây cân bằng để không suy biến thành một dây xích.
 
-Splay 树由 Daniel Sleator 和 Robert Tarjan 于 1985 年发明．
+Cây Splay do Daniel Sleator và Robert Tarjan phát minh vào năm 1985.
 
-## 基本结构与操作
+## Cấu trúc và thao tác cơ bản
 
-本节讨论 Splay 树的基本结构和它的核心操作，其中最为重要的是伸展操作．
+Phần này thảo luận cấu trúc cơ bản của cây Splay và các thao tác cốt lõi của nó, trong đó quan trọng nhất là thao tác splay.
 
-Splay 树是一棵二叉查找树，查找某个值时满足性质：左子树任意节点的值 $<$ 根节点的值 $<$ 右子树任意节点的值．
+Cây Splay là một cây tìm kiếm nhị phân. Khi tìm một giá trị, nó thỏa tính chất: giá trị của mọi nút trong cây con trái $<$ giá trị của nút gốc $<$ giá trị của mọi nút trong cây con phải.
 
-### 维护信息
+### Thông tin cần duy trì
 
-本文使用数组模拟指针来实现 Splay 树，需要维护如下信息：
+Bài viết này dùng mảng để mô phỏng con trỏ khi cài đặt cây Splay, cần duy trì các thông tin sau:
 
 |   rt  |    id   | fa\[i] | ch\[i]\[0/1] | val\[i] | cnt\[i] | sz\[i] |
 | :---: | :-----: | :----: | :----------: | :-----: | :-----: | :----: |
-| 根节点编号 | 已使用节点个数 |   父亲   |    左右儿子编号    |   节点权值  |  权值出现次数 |  子树大小  |
+| Chỉ số nút gốc | Số nút đã dùng | Nút cha | Chỉ số con trái/phải | Giá trị nút | Số lần giá trị xuất hiện | Kích thước cây con |
 
-初始化时，所有信息都置零即可．
+Khi khởi tạo, chỉ cần đặt toàn bộ thông tin bằng không.
 
-### 辅助操作
+### Thao tác phụ trợ
 
-首先是一些简单的辅助操作：
+Trước hết là một vài thao tác phụ trợ đơn giản:
 
--   `dir(x)`：判断节点 $x$ 是父亲节点的左儿子还是右儿子；
--   `push_up(x)`：在改变节点位置后，根据子节点信息更新节点 $x$ 的信息．
+-   `dir(x)`: xác định nút $x$ là con trái hay con phải của nút cha;
+-   `push_up(x)`: sau khi thay đổi vị trí nút, cập nhật thông tin của nút $x$ dựa trên thông tin các nút con.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:aux"
     ```
 
-### 旋转操作
+### Thao tác xoay
 
-为了使 Splay 保持平衡，需要进行旋转操作．旋转的作用是将某个节点上移一个位置．
+Để Splay giữ được cân bằng, cần thực hiện thao tác xoay. Tác dụng của phép xoay là đưa một nút lên trên một mức.
 
-旋转需要保证：
+Phép xoay cần bảo đảm:
 
--   整棵 Splay 的中序遍历不变（不能破坏二叉查找树的性质）；
--   受影响的节点维护的信息依然正确有效；
--   `rt` 必须指向旋转后的根节点．
+-   Thứ tự duyệt trung tự của toàn bộ Splay không đổi, tức không phá vỡ tính chất của cây tìm kiếm nhị phân;
+-   Thông tin được duy trì trên các nút bị ảnh hưởng vẫn đúng và hợp lệ;
+-   `rt` phải trỏ tới nút gốc sau khi xoay.
 
-在 Splay 中旋转分为两种：左旋和右旋．
+Trong Splay có hai loại phép xoay: xoay trái và xoay phải.
 
 ![](./images/splay-rotate.svg)
 
-观察图示可知，如果要通过旋转将节点 $x$（左旋时的 $1$ 和右旋时的 $2$）上移，则旋转的方向由该节点是其父节点的左节点还是右节点唯一确定．因此，实现旋转操作时，只需要将要上移的节点 $x$ 传入即可．
+Quan sát hình minh họa có thể thấy, nếu muốn dùng phép xoay để đưa nút $x$ (nút $1$ trong xoay trái và nút $2$ trong xoay phải) lên trên, thì hướng xoay được xác định duy nhất bởi việc nút đó là con trái hay con phải của nút cha. Vì vậy, khi cài đặt thao tác xoay, chỉ cần truyền vào nút $x$ cần được đưa lên.
 
-具体分析旋转步骤：（假设需要上移的节点为 $x$，以右旋为例）
+Phân tích cụ thể các bước xoay: (giả sử nút cần đưa lên là $x$, lấy xoay phải làm ví dụ)
 
-1.  首先，记录节点 $x$ 的父节点 $y$，以及 $y$ 的父节点 $z$（可能为空），并记录 $x$ 是 $y$ 的左子节点还是右子节点；
-2.  按照旋转后的树中自下向上的顺序，依次更新 $y$ 的左子节点为 $x$ 的右子节点，$x$ 的右子节点为 $y$，以及若 $z$ 非空，$z$ 的子节点为 $x$；
-3.  按照同样的顺序，依次更新当前 $y$ 的左子节点（若存在）的父节点为 $y$，$y$ 的父节点为 $x$，以及 $x$ 的父节点为 $z$；
-4.  自下而上维护节点信息．
+1.  Trước hết, ghi lại nút cha $y$ của nút $x$, nút cha $z$ của $y$ (có thể rỗng), và ghi lại $x$ là con trái hay con phải của $y$;
+2.  Theo thứ tự từ dưới lên trong cây sau khi xoay, lần lượt cập nhật con trái của $y$ thành con phải của $x$, con phải của $x$ thành $y$, và nếu $z$ không rỗng thì cập nhật con của $z$ thành $x$;
+3.  Theo cùng thứ tự đó, lần lượt cập nhật nút cha của con trái hiện tại của $y$ (nếu tồn tại) thành $y$, nút cha của $y$ thành $x$, và nút cha của $x$ thành $z$;
+4.  Duy trì thông tin nút theo thứ tự từ dưới lên.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:rotate"
     ```
 
-在所有函数的实现时，都应注意不要修改节点 $0$ 的信息．
+Khi cài đặt mọi hàm, cần chú ý không sửa thông tin của nút $0$.
 
-### 伸展操作
+### Thao tác splay
 
-Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点．该操作也称为伸展操作．
+Cây Splay yêu cầu sau mỗi lần truy cập một nút $x$, bắt buộc phải xoay nút đó lên nút gốc. Thao tác này cũng được gọi là thao tác splay.
 
-设刚访问的节点为 $x$．要做伸展操作，就是要对 $x$ 做一系列的 **伸展步骤**．每次对 $x$ 做一次伸展步骤，$x$ 到根节点的距离都会更近．定义 $p$ 为 $x$ 的父节点．伸展步骤有三种：
+Giả sử nút vừa được truy cập là $x$. Để thực hiện thao tác splay, ta thực hiện một chuỗi **bước splay** trên $x$. Mỗi lần thực hiện một bước splay trên $x$, khoảng cách từ $x$ đến nút gốc sẽ ngắn hơn. Gọi $p$ là nút cha của $x$. Có ba loại bước splay:
 
-1.  **zig**: 在 $p$ 是根节点时操作．Splay 树会根据 $x$ 和 $p$ 间的边旋转．**zig** 存在是用于处理奇偶校验问题，仅当 $x$ 在伸展操作开始时具有奇数深度时作为伸展操作的最后一步执行．
+1.  **zig**: thực hiện khi $p$ là nút gốc. Cây Splay sẽ xoay theo cạnh giữa $x$ và $p$. **zig** tồn tại để xử lý vấn đề chẵn lẻ, và chỉ được thực hiện như bước cuối cùng của thao tác splay khi $x$ có độ sâu lẻ tại thời điểm bắt đầu thao tác splay.
 
     ![splay-zig](./images/splay-zig.svg)
 
-    即直接将 $x$ 右旋或左旋（图 1, 2）．
+    Tức là trực tiếp xoay phải hoặc xoay trái $x$ (hình 1, 2).
 
-    ![图 1](./images/splay-rotate1.svg)![图 2](./images/splay-rotate2.svg)
+    ![Hình 1](./images/splay-rotate1.svg)![Hình 2](./images/splay-rotate2.svg)
 
-2.  **zig-zig**: 在 $p$ 不是根节点且 $x$ 和 $p$ 都是右侧子节点或都是左侧子节点时操作．下方例图显示了 $x$ 和 $p$ 都是左侧子节点时的情况．Splay 树首先按照连接 $p$ 与其父节点 $g$ 边旋转，然后按照连接 $x$ 和 $p$ 的边旋转．
+2.  **zig-zig**: thực hiện khi $p$ không phải nút gốc và $x$ cùng $p$ đều là con phải hoặc đều là con trái. Hình ví dụ bên dưới thể hiện trường hợp $x$ và $p$ đều là con trái. Cây Splay trước tiên xoay theo cạnh nối $p$ với nút cha $g$ của nó, sau đó xoay theo cạnh nối $x$ và $p$.
 
     ![splay-zig-zig](./images/splay-zig-zig.svg)
 
-    即首先将 $p$ 右旋或左旋，然后将 $x$ 右旋或左旋（图 3, 4）．
+    Tức là trước tiên xoay phải hoặc xoay trái $p$, sau đó xoay phải hoặc xoay trái $x$ (hình 3, 4).
 
-    ![图 3](./images/splay-rotate3.svg)![图 4](./images/splay-rotate4.svg)
+    ![Hình 3](./images/splay-rotate3.svg)![Hình 4](./images/splay-rotate4.svg)
 
-3.  **zig-zag**: 在 $p$ 不是根节点且 $x$ 和 $p$ 一个是右侧子节点一个是左侧子节点时操作．Splay 树首先按 $p$ 和 $x$ 之间的边旋转，然后按 $x$ 和 $g$ 新生成的结果边旋转．
+3.  **zig-zag**: thực hiện khi $p$ không phải nút gốc và trong hai nút $x$, $p$, một nút là con phải còn nút kia là con trái. Cây Splay trước tiên xoay theo cạnh giữa $p$ và $x$, sau đó xoay theo cạnh kết quả mới sinh ra giữa $x$ và $g$.
 
     ![splay-zig-zag](./images/splay-zig-zag.svg)
 
-    即将 $x$ 先左旋再右旋或先右旋再左旋（图 5, 6）．
+    Tức là xoay $x$ trái rồi phải, hoặc phải rồi trái (hình 5, 6).
 
-    ![图 5](./images/splay-rotate5.svg)![图 6](./images/splay-rotate6.svg)
+    ![Hình 5](./images/splay-rotate5.svg)![Hình 6](./images/splay-rotate6.svg)
 
 ???+ tip "Tip"
-    请读者尝试自行模拟 $6$ 种旋转情况，以理解伸展操作的基本思想．
+    Bạn đọc hãy thử tự mô phỏng $6$ trường hợp xoay để hiểu tư tưởng cơ bản của thao tác splay.
 
-比较三种伸展步骤可知，要区分此时应使用哪种操作，关键是要判断 $x$ 是否是根节点的子节点，以及 $x$ 和它父节点是否在各自的父节点同侧．
+So sánh ba loại bước splay có thể thấy, để phân biệt lúc này nên dùng thao tác nào, điểm mấu chốt là cần xác định $x$ có phải là con của nút gốc hay không, và $x$ cùng nút cha của nó có nằm cùng phía so với nút cha tương ứng của chúng hay không.
 
-此处提供的实现，可以指定任意根节点 $z$，并将它的子树内任意节点 $x$ 上移至 $z$ 处：
+Cài đặt được đưa ra ở đây cho phép chỉ định một nút gốc bất kỳ $z$, rồi đưa một nút $x$ bất kỳ trong cây con của nó lên vị trí $z$:
 
-1.  首先记录根节点 $z$ 的父节点 $w$，从而可以利用 `fa[x] == w` 判断 $x$ 已经位于根结点处；
-2.  记录 $x$ 当前的父节点 $y$，如果 $y$ 和 $w$ 相同，说明 $x$ 已经到达根节点；
-3.  否则，利用 `fa[y] == w` 判断 $y$ 是否是根节点．如果是，直接做 zig 操作将 $x$ 旋转；如果不是，利用 `dir(x) == dir(y)` 判断使用 zig-zig 还是 zig-zag，前者先旋转 $y$ 再旋转 $x$，后者直接旋转两次 $x$．
+1.  Trước hết ghi lại nút cha $w$ của nút gốc $z$, từ đó có thể dùng `fa[x] == w` để xác định $x$ đã nằm tại vị trí nút gốc hay chưa;
+2.  Ghi lại nút cha hiện tại $y$ của $x$. Nếu $y$ giống $w$, tức là $x$ đã tới nút gốc;
+3.  Ngược lại, dùng `fa[y] == w` để xác định $y$ có phải nút gốc hay không. Nếu đúng, trực tiếp thực hiện thao tác zig để xoay $x$; nếu không, dùng `dir(x) == dir(y)` để xác định dùng zig-zig hay zig-zag: trường hợp trước xoay $y$ rồi xoay $x$, trường hợp sau xoay $x$ hai lần liên tiếp.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:splay"
     ```
 
-伸展操作是 Splay 树的核心操作，也是它的时间复杂度能够得到保证的关键步骤．请务必保证每次向下访问节点后，都进行一次伸展操作．
+Thao tác splay là thao tác cốt lõi của cây Splay, đồng thời là bước then chốt giúp độ phức tạp thời gian của nó được bảo đảm. Hãy bảo đảm rằng sau mỗi lần truy cập nút theo hướng đi xuống, đều thực hiện một lần thao tác splay.
 
-另外，伸展操作会将当前节点 $x$ 到根节点 $z$ 的路径上的所有节点信息自下而上地更新一遍．正是因为这一点，才可以修改非根节点，再通过伸展操作将它上移至根来完成整个树的信息更新．
+Ngoài ra, thao tác splay sẽ cập nhật lại thông tin của tất cả các nút trên đường đi từ nút hiện tại $x$ đến nút gốc $z$ theo thứ tự từ dưới lên. Chính nhờ điểm này, ta có thể sửa một nút không phải gốc, rồi thông qua thao tác splay đưa nó lên gốc để hoàn tất việc cập nhật thông tin của cả cây.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-对大小为 $n$ 的 Splay 树做 $m$ 次伸展操作的复杂度是 $O((n+m)\log n)$ 的，单次均摊复杂度是 $O(\log n)$ 的．
+Với một cây Splay kích thước $n$, thực hiện $m$ thao tác splay có độ phức tạp $O((n+m)\log n)$, và độ phức tạp khấu hao của một thao tác là $O(\log n)$.
 
-??? note "基于势能分析的复杂度证明"
-    为此只需分析 **zig**、**zig-zig** 和 **zig-zag** 三种操作的复杂度．为此，我们采用 **势能分析法**，通过研究势能的变化来推导操作的均摊复杂度．假设对一棵包含 $n$ 个节点的 Splay 树进行了 $m$ 次伸展操作，可以通过如下方式进行分析：
+??? note "Chứng minh độ phức tạp dựa trên phân tích thế năng"
+    Để làm điều này, chỉ cần phân tích độ phức tạp của ba thao tác **zig**, **zig-zig** và **zig-zag**. Ta dùng **phương pháp phân tích thế năng**, suy ra độ phức tạp khấu hao của thao tác bằng cách nghiên cứu sự thay đổi của thế năng. Giả sử thực hiện $m$ thao tác splay trên một cây Splay chứa $n$ nút, có thể phân tích như sau:
     
-    **定义**：
+    **Định nghĩa**:
     
-    1.  **单个节点的势能**：$w(x) = \log(\text{size}(x))$，其中 $\text{size}(x)$ 表示以节点 $x$ 为根的子树大小．
-    2.  **整棵树的势能**：$\varphi = \sum w(x)$，即树中所有节点势能的总和，初始势能满足 $\varphi_0 \leq n \log n$．
-    3.  **第 $i$ 次操作的均摊成本**：$c_i = t_i + \varphi_i - \varphi_{i-1}$，其中 $t_i$ 为实际操作代价，$\varphi_i$ 和 $\varphi_{i-1}$ 分别为操作后和操作前的势能．
+    1.  **Thế năng của một nút**: $w(x) = \log(\text{size}(x))$, trong đó $\text{size}(x)$ biểu thị kích thước cây con có gốc là nút $x$.
+    2.  **Thế năng của toàn bộ cây**: $\varphi = \sum w(x)$, tức tổng thế năng của tất cả các nút trong cây; thế năng ban đầu thỏa $\varphi_0 \leq n \log n$.
+    3.  **Chi phí khấu hao của thao tác thứ $i$**: $c_i = t_i + \varphi_i - \varphi_{i-1}$, trong đó $t_i$ là chi phí thực tế của thao tác, còn $\varphi_i$ và $\varphi_{i-1}$ lần lượt là thế năng sau và trước thao tác.
     
-    **性质**：
+    **Tính chất**:
     
-    1.  如果 $p$ 是 $x$ 的父节点，则有 $w(p) \geq w(x)$，即父节点的势能不小于子节点的势能．
+    1.  Nếu $p$ là nút cha của $x$, thì $w(p) \geq w(x)$, tức thế năng của nút cha không nhỏ hơn thế năng của nút con.
     
-    2.  由于根节点的子树大小在操作前后保持不变，因此根节点的势能在操作过程中不变．
+    2.  Vì kích thước cây con của nút gốc không đổi trước và sau thao tác, nên thế năng của nút gốc không đổi trong quá trình thao tác.
     
-    3.  如果 $\text{size}(p)\ge\text{size}(x)+\text{size}(y)$，那么有 $2w(p) - w(x) - w(y) \geq 2$．
+    3.  Nếu $\text{size}(p)\ge\text{size}(x)+\text{size}(y)$, thì có $2w(p) - w(x) - w(y) \geq 2$.
     
-    ??? note "性质 3 的证明"
-        根据均值不等式可知
+    ??? note "Chứng minh tính chất 3"
+        Theo bất đẳng thức trung bình, ta có
         
         $$
         \begin{aligned}
@@ -148,9 +148,9 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
         \end{aligned}
         $$
     
-    接下来，分别对 **zig**、**zig-zig** 和 **zig-zag** 操作进行势能分析．设操作前后的节点 $x$ 的势能分别是 $w(x)$ 和 $w'(x)$．节点的记号与 [上文](#伸展操作) 一致．
+    Tiếp theo, lần lượt thực hiện phân tích thế năng cho các thao tác **zig**, **zig-zig** và **zig-zag**. Gọi thế năng của nút $x$ trước và sau thao tác lần lượt là $w(x)$ và $w'(x)$. Ký hiệu của các nút nhất quán với [phần trên](#thao-tac-splay).
     
-    **zig**：根据性质 1 和 2，有 $w(p) = w'(x)$，且 $w'(x) \geq w'(p)$．由此，均摊成本为
+    **zig**: theo tính chất 1 và 2, có $w(p) = w'(x)$, đồng thời $w'(x) \geq w'(p)$. Do đó, chi phí khấu hao là
     
     $$
     \begin{aligned}
@@ -160,7 +160,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     \end{aligned}
     $$
     
-    **zig-zig**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w'(x) \geq w'(p)$，$w(x) \leq w(p)$．因为
+    **zig-zig**: theo tính chất 1 và 2, có $w(g) = w'(x)$, đồng thời $w'(x) \geq w'(p)$, $w(x) \leq w(p)$. Vì
     
     $$
     \begin{aligned}
@@ -171,13 +171,13 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     \end{aligned}
     $$
     
-    根据性质 3 可得
+    Theo tính chất 3, suy ra
     
     $$
     2 w'(x) - w(x) - w'(g) \geq 2.
     $$
     
-    由此，均摊成本为
+    Do đó, chi phí khấu hao là
     
     $$
     \begin{aligned}
@@ -189,13 +189,13 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     \end{aligned}
     $$
     
-    **zig-zag**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(p) \geq w(x)$．因为 $\text{size}'(x)>\text{size}'(p)+\text{size}'(g)$，根据性质 3，可得
+    **zig-zag**: theo tính chất 1 và 2, có $w(g) = w'(x)$, đồng thời $w(p) \geq w(x)$. Vì $\text{size}'(x)>\text{size}'(p)+\text{size}'(g)$, theo tính chất 3, suy ra
     
     $$
     2 \cdot w'(x) - w'(g) - w'(p) \geq 2.
     $$
     
-    由此，均摊成本为
+    Do đó, chi phí khấu hao là
     
     $$
     \begin{aligned}
@@ -207,19 +207,19 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     \end{aligned}
     $$
     
-    **单次伸展操作**：
+    **Một thao tác splay đơn lẻ**:
     
-    令 $w^{(n)}(x)=(w^{(n-1)})'(x)$ 且 $w^{(0)}(x)=w(x)$．假设一次伸展操作依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$ 等节点，最终 $x_{1}$ 成为根节点．这必然经过若干次 **zig-zig** 和 **zig-zag** 操作和至多一次 **zig** 操作，前两种操作的均摊成本均不超过 $3(w'(x)-w(x))$，而最后一次操作的均摊成本不超过 $3(w'(x) - w(x))+1$，所以总的均摊成本不超过
+    Đặt $w^{(n)}(x)=(w^{(n-1)})'(x)$ và $w^{(0)}(x)=w(x)$. Giả sử một thao tác splay lần lượt truy cập các nút $x_{1}, x_{2}, \cdots, x_{n}$, và cuối cùng $x_{1}$ trở thành nút gốc. Quá trình này chắc chắn đi qua một số thao tác **zig-zig** và **zig-zag**, cùng nhiều nhất một thao tác **zig**. Chi phí khấu hao của hai loại thao tác đầu đều không vượt quá $3(w'(x)-w(x))$, còn chi phí khấu hao của thao tác cuối không vượt quá $3(w'(x) - w(x))+1$, nên tổng chi phí khấu hao không vượt quá
     
     $$
     3(w^{(n)}(x_1) - w^{(0)}(x_1)) + 1 \le 3\log n + 1.
     $$
     
-    因此，一次伸展操作的均摊复杂度是 $O(\log n)$ 的．从而，基于伸展的插入、查询、删除等操作的时间复杂度也为均摊 $O(\log n)$．
+    Vì vậy, độ phức tạp khấu hao của một thao tác splay là $O(\log n)$. Từ đó, độ phức tạp thời gian của các thao tác dựa trên splay như chèn, truy vấn, xóa cũng là $O(\log n)$ theo nghĩa khấu hao.
     
-    **结论**：
+    **Kết luận**:
     
-    在进行 $m$ 次伸展操作之后，实际成本
+    Sau khi thực hiện $m$ thao tác splay, chi phí thực tế là
     
     $$
     \begin{aligned}
@@ -229,236 +229,236 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     \end{aligned}
     $$
     
-    因此，$m$ 次伸展操作的实际时间复杂度为 $O((m+n)\log n)$．
+    Vì vậy, độ phức tạp thời gian thực tế của $m$ thao tác splay là $O((m+n)\log n)$.
 
-??? info "为什么 Splay 树的再平衡操作可以获得 $O(\log n)$ 的均摊复杂度？"
-    朴素的再平衡思路就是对节点反复进行旋转操作使其上升，直到它成为根节点．这种朴素思路的问题在于，对于所有子节点都是左（右）节点的链状树来说，它相当于反复进行 **zig** 操作，因而 **zig** 操作的均摊复杂度中的常数项 $1$ 会不断累积，造成最终的均摊复杂度达到 $O(\log n+n)$ 级别．Splay 树的再平衡操作的设计，避免了连续 **zig** 的情形中的常数累积，使得一次完整的伸展操作中，至多进行一次单独的 **zig** 操作，从而优化了时间复杂度．
+??? info "Vì sao thao tác tái cân bằng của cây Splay có thể đạt độ phức tạp khấu hao $O(\log n)$?"
+    Cách tái cân bằng đơn giản là liên tục xoay một nút để nó đi lên cho đến khi trở thành nút gốc. Vấn đề của cách đơn giản này là với một cây dạng dây xích mà mọi nút con đều là con trái (hoặc con phải), nó tương đương với việc lặp lại thao tác **zig** liên tục, vì vậy hạng tử hằng $1$ trong độ phức tạp khấu hao của thao tác **zig** sẽ tích lũy không ngừng, khiến độ phức tạp khấu hao cuối cùng đạt mức $O(\log n+n)$. Thiết kế của thao tác tái cân bằng trong cây Splay tránh được việc tích lũy hằng số trong trường hợp **zig** liên tiếp, bảo đảm trong một thao tác splay hoàn chỉnh chỉ thực hiện nhiều nhất một thao tác **zig** đơn lẻ, từ đó tối ưu độ phức tạp thời gian.
 
-## 平衡树操作
+## Thao tác trên cây cân bằng
 
-本节讨论基于 Splay 树实现平衡树的常见操作的方法．其中，较为重要的是按照值或排名查找元素，它们可以将某个特定的元素找到，并上移至根节点处，以便后续处理．
+Phần này thảo luận cách cài đặt các thao tác thường gặp của cây cân bằng dựa trên cây Splay. Trong đó, tương đối quan trọng là tìm phần tử theo giá trị hoặc theo thứ hạng: chúng có thể tìm ra một phần tử cụ thể và đưa nó lên nút gốc để tiện xử lý tiếp.
 
-作为例子，本节将讨论模板题目 [普通平衡树](https://loj.ac/problem/104) 的实现．
+Làm ví dụ, phần này sẽ thảo luận cách cài đặt bài mẫu [Cây cân bằng thông thường](https://loj.ac/problem/104).
 
-### 按照值查找
+### Tìm theo giá trị
 
-作为二叉查找树，可以通过值 $v$ 查找到相应的节点，只需要将待查找的值 $v$ 和当前节点的值比较即可，找到后将该元素上移至根部即可．
+Với vai trò là cây tìm kiếm nhị phân, có thể tìm nút tương ứng theo giá trị $v$: chỉ cần so sánh giá trị cần tìm $v$ với giá trị của nút hiện tại, sau khi tìm thấy thì đưa phần tử đó lên gốc.
 
-应注意，经常存在树中不存在相应的节点的情形．对于这种情形，要记录最后一个访问的节点（即实现中的 $y$），并将 $y$ 上移至根部．此时，节点 $y$ 存储的值必然要么是所有小于 $v$ 的元素中最大的（即 $v$ 的前驱），要么是所有大于 $v$ 的元素中最小的（即 $v$ 的后继）．这是因为查找过程保证，左子树总是存储小于 $v$ 的值，而右子树总是存储大于 $v$ 的值．
+Cần chú ý rằng thường có trường hợp trong cây không tồn tại nút tương ứng. Với trường hợp này, cần ghi lại nút được truy cập cuối cùng (tức $y$ trong cài đặt) và đưa $y$ lên gốc. Lúc này, giá trị được lưu trong nút $y$ chắc chắn hoặc là phần tử lớn nhất trong tất cả các phần tử nhỏ hơn $v$ (tức tiền nhiệm của $v$), hoặc là phần tử nhỏ nhất trong tất cả các phần tử lớn hơn $v$ (tức hậu nhiệm của $v$). Điều này là vì quá trình tìm kiếm bảo đảm cây con trái luôn lưu các giá trị nhỏ hơn $v$, còn cây con phải luôn lưu các giá trị lớn hơn $v$.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:find"
     ```
 
-该实现允许指定任何节点 $z$ 作为根节点，并在它的子树内按值查找．
+Cài đặt này cho phép chỉ định bất kỳ nút $z$ nào làm nút gốc, rồi tìm theo giá trị trong cây con của nó.
 
-### 按照排名访问
+### Truy cập theo thứ hạng
 
-因为记录了子树大小信息，所以 Splay 树还可以通过排名访问元素，即查找树中第 $k$ 小的元素．
+Vì đã ghi lại thông tin kích thước cây con, cây Splay còn có thể truy cập phần tử theo thứ hạng, tức tìm phần tử nhỏ thứ $k$ trong cây.
 
-设 $k$ 为剩余排名，具体步骤如下：
+Gọi $k$ là thứ hạng còn lại, các bước cụ thể như sau:
 
--   如果左子树非空且剩余排名 $k$ 不大于左子树的大小，那么向左子树查找；
--   否则，如果 $k$ 不大于左子树加上根的大小，那么根节点就是要寻找的；
--   否则，将 $k$ 减去左子树的和根的大小，继续向右子树查找；
--   将最终找到的元素上移至根部．
+-   Nếu cây con trái không rỗng và thứ hạng còn lại $k$ không lớn hơn kích thước cây con trái, thì tìm trong cây con trái;
+-   Ngược lại, nếu $k$ không lớn hơn tổng kích thước cây con trái và kích thước của gốc, thì nút gốc chính là nút cần tìm;
+-   Ngược lại, trừ khỏi $k$ tổng kích thước cây con trái và kích thước của gốc, rồi tiếp tục tìm trong cây con phải;
+-   Đưa phần tử cuối cùng tìm được lên gốc.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:loc"
     ```
 
-该实现需要保证排名 $k$ 不超过根 $z$ 处的树大小．
+Cài đặt này cần bảo đảm thứ hạng $k$ không vượt quá kích thước cây tại nút gốc $z$.
 
-模板题目中操作 $4$ 要求按照排名返回值，直接调用该方法，并返回值即可．
+Trong bài mẫu, thao tác $4$ yêu cầu trả về giá trị theo thứ hạng; chỉ cần gọi trực tiếp phương thức này rồi trả về giá trị.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:find-kth"
     ```
 
-### 合并操作
+### Thao tác hợp nhất
 
-有些时候需要合并两棵 Splay 树．
+Đôi khi cần hợp nhất hai cây Splay.
 
-设两棵树的根节点分别为 $x$ 和 $y$，那么为了保证结果仍是二叉查找树，需要要求 $x$ 树中的最大值小于 $y$ 树中的最小值．这条件通常都可以满足，因为两棵树往往是从更大的子树中分裂出的．
+Giả sử nút gốc của hai cây lần lượt là $x$ và $y$. Để bảo đảm kết quả vẫn là cây tìm kiếm nhị phân, cần yêu cầu giá trị lớn nhất trong cây $x$ nhỏ hơn giá trị nhỏ nhất trong cây $y$. Điều kiện này thường có thể thỏa mãn, vì hai cây thường được tách ra từ một cây con lớn hơn.
 
-合并操作如下：
+Thao tác hợp nhất như sau:
 
--   如果 $x$ 和 $y$ 其中之一或两者都为空树，直接返回不为空的那一棵树的根节点或空树；
--   否则，通过 `loc(y, 1)` 将 $y$ 树中的最小值上移至根 $y$ 处，再将它的左节点（此时必然为空）设置为 $x$，并更新节点信息，返回节点 $y$．
+-   Nếu một trong $x$ và $y$, hoặc cả hai, là cây rỗng, trực tiếp trả về nút gốc của cây không rỗng hoặc cây rỗng;
+-   Ngược lại, dùng `loc(y, 1)` để đưa giá trị nhỏ nhất trong cây $y$ lên vị trí gốc $y$, sau đó đặt nút con trái của nó (lúc này chắc chắn rỗng) thành $x$, cập nhật thông tin nút và trả về nút $y$.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:merge"
     ```
 
-分裂操作类似．因而，Splay 树可以模拟 [无旋 treap](./treap.md#无旋-treap) 的思路做各种操作，包括区间操作．[后文](#序列操作) 会介绍更具有 Splay 树风格的区间操作处理方法．
+Thao tác tách cũng tương tự. Vì vậy, cây Splay có thể mô phỏng tư tưởng của [treap không xoay](./treap.md#%E6%97%A0%E6%97%8B-treap) để thực hiện nhiều thao tác, bao gồm thao tác đoạn. [Phần sau](#thao-tac-tren-day) sẽ giới thiệu phương pháp xử lý thao tác đoạn mang phong cách cây Splay hơn.
 
-### 插入操作
+### Thao tác chèn
 
-插入操作是一个比较复杂的过程．具体步骤如下：（假设插入的值为 $v$）
+Thao tác chèn là một quá trình tương đối phức tạp. Các bước cụ thể như sau: (giả sử giá trị được chèn là $v$)
 
--   类似按值查找的过程，根据 $v$ 向下查找到存储 $v$ 的节点或者空节点，过程中记录父节点 $y$；
--   如果存在存储 $v$ 的节点 $x$，直接更新信息，否则就新建节点 $x$；
--   做伸展操作，将最后一个节点 $x$ 上移至根部．
+-   Tương tự quá trình tìm theo giá trị, dựa vào $v$ để đi xuống tìm nút lưu $v$ hoặc nút rỗng, đồng thời ghi lại nút cha $y$ trong quá trình đó;
+-   Nếu tồn tại nút $x$ lưu $v$, trực tiếp cập nhật thông tin; ngược lại, tạo nút mới $x$;
+-   Thực hiện thao tác splay, đưa nút cuối cùng $x$ lên gốc.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:insert"
     ```
 
-该实现允许直接向空树内插入值．若不想处理空树，可以在树中提前插入哑节点．
+Cài đặt này cho phép chèn giá trị trực tiếp vào cây rỗng. Nếu không muốn xử lý cây rỗng, có thể chèn trước các nút giả vào cây.
 
-### 删除操作
+### Thao tác xóa
 
-删除操作也是一个比较复杂的操作．具体步骤如下：（假设删除的值为 $v$）
+Thao tác xóa cũng là một thao tác tương đối phức tạp. Các bước cụ thể như sau: (giả sử giá trị cần xóa là $v$)
 
--   首先按照值 $v$ 查找存储它的节点，并上移至根部；
--   如果不存在存储它的节点，直接返回；（上一步已经做了伸展操作）
--   否则，更新节点信息；
--   如果得到的根节点为空节点，就合并左右子树作为新的根节点，注意合并前需要更新两个子树的根的父节点为空．
+-   Trước hết tìm nút lưu giá trị $v$ theo giá trị và đưa nó lên gốc;
+-   Nếu không tồn tại nút lưu giá trị đó, trực tiếp trả về; (bước trước đã thực hiện thao tác splay)
+-   Ngược lại, cập nhật thông tin nút;
+-   Nếu nút gốc thu được là nút rỗng, thì hợp nhất cây con trái và cây con phải làm nút gốc mới; chú ý trước khi hợp nhất cần cập nhật nút cha của gốc hai cây con thành rỗng.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:remove"
     ```
 
-### 查询排名
+### Truy vấn thứ hạng
 
-直接按照值 $v$ 访问节点（并上移至根），然后返回相应的值即可．
+Trực tiếp truy cập nút theo giá trị $v$ (và đưa nó lên gốc), sau đó trả về giá trị tương ứng.
 
-注意，当 $v$ 不存在时，方法 `find(rt, v)` 返回的根和 $v$ 的大小关系无法确定，需要单独讨论．
+Chú ý, khi $v$ không tồn tại, quan hệ lớn nhỏ giữa nút gốc mà phương thức `find(rt, v)` trả về và $v$ không xác định, cần thảo luận riêng.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:find-rank"
     ```
 
-### 查询前驱
+### Truy vấn tiền nhiệm
 
-前驱定义为小于 $v$ 的最大的数．具体步骤如下：
+Tiền nhiệm được định nghĩa là số lớn nhất nhỏ hơn $v$. Các bước cụ thể như sau:
 
--   按照值 $v$ 访问节点（并上移至根部）；
--   如果根部的值小于 $v$，那么它必然是最大的那个，直接返回；
--   否则，在左子树中找到最大值，并上移至根部．
+-   Truy cập nút theo giá trị $v$ (và đưa nó lên gốc);
+-   Nếu giá trị ở gốc nhỏ hơn $v$, thì nó chắc chắn là giá trị lớn nhất như vậy, trực tiếp trả về;
+-   Ngược lại, tìm giá trị lớn nhất trong cây con trái và đưa nó lên gốc.
 
-最后一步相当于直接调用 `loc(ch[rt][0], sz[ch[rt][0]])`，只是省去了不必要的判断．
+Bước cuối cùng tương đương với việc gọi trực tiếp `loc(ch[rt][0], sz[ch[rt][0]])`, chỉ là lược bỏ các phán đoán không cần thiết.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:find-prev"
     ```
 
-该实现允许前驱不存在，此时返回 $-1$．
+Cài đặt này cho phép tiền nhiệm không tồn tại; khi đó trả về $-1$.
 
-### 查询后继
+### Truy vấn hậu nhiệm
 
-后继定义为大于 $x$ 的最小的数．查询方法和前驱类似，只是将左子树的最大值换成了右子树的最小值，即调用 `loc(ch[rt][1], 1)`．
+Hậu nhiệm được định nghĩa là số nhỏ nhất lớn hơn $x$. Cách truy vấn tương tự tiền nhiệm, chỉ thay giá trị lớn nhất trong cây con trái bằng giá trị nhỏ nhất trong cây con phải, tức gọi `loc(ch[rt][1], 1)`.
 
-???+ example "实现"
+???+ example "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:find-next"
     ```
 
-### 参考实现
+### Cài đặt tham khảo
 
-本节的最后，给出模板题目 [普通平衡树](https://loj.ac/problem/104) 的参考实现．
+Cuối phần này, đưa ra cài đặt tham khảo cho bài mẫu [Cây cân bằng thông thường](https://loj.ac/problem/104).
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-1.cpp:full-text"
     ```
 
-## 序列操作
+## Thao tác trên dãy
 
-Splay 树也可以运用在序列上，用于维护区间信息．与线段树对比，Splay 树常数较大，但是支持更复杂的序列操作，如区间翻转等．上文提到 Splay 树同样支持分裂和合并操作，因而可以模拟 [无旋 treap](./treap.md#无旋-treap) 进行区间操作，在此不再过多讨论．本节主要讨论基于伸展操作的区间操作实现方法．
+Cây Splay cũng có thể được dùng trên dãy để duy trì thông tin đoạn. So với cây đoạn, hằng số của cây Splay lớn hơn, nhưng nó hỗ trợ các thao tác trên dãy phức tạp hơn, chẳng hạn đảo ngược đoạn. Như đã đề cập ở trên, cây Splay cũng hỗ trợ thao tác tách và hợp nhất, vì vậy có thể mô phỏng [treap không xoay](./treap.md#%E6%97%A0%E6%97%8B-treap) để thực hiện thao tác đoạn; ở đây không thảo luận thêm. Phần này chủ yếu thảo luận phương pháp cài đặt thao tác đoạn dựa trên thao tác splay.
 
-将序列建成的 Splay 树有如下性质：
+Cây Splay được xây từ dãy có các tính chất sau:
 
--   Splay 树的中序遍历相当于原序列从左到右的遍历；
--   Splay 树上的一个节点代表原序列的一个元素；
--   Splay 树上的一颗子树，代表原序列的一段区间．
+-   Thứ tự duyệt trung tự của cây Splay tương đương với việc duyệt dãy ban đầu từ trái sang phải;
+-   Một nút trên cây Splay đại diện cho một phần tử của dãy ban đầu;
+-   Một cây con trên cây Splay đại diện cho một đoạn của dãy ban đầu.
 
-因为有伸展操作，可以快速提取出代表某个区间的 Splay 子树．
+Nhờ có thao tác splay, có thể nhanh chóng trích ra cây con Splay đại diện cho một đoạn nào đó.
 
-作为例子，本节将讨论模板题目 [文艺平衡树](https://loj.ac/problem/105) 的实现．
+Làm ví dụ, phần này sẽ thảo luận cách cài đặt bài mẫu [Cây cân bằng văn nghệ](https://loj.ac/problem/105).
 
-### 根据序列建树
+### Xây cây theo dãy
 
-在操作之前，需要根据所给的序列先把 Splay 树建出来．根据 Splay 树的特性，直接建出一颗只有左儿子的链即可．时间复杂度是 $O(n)$ 的．
+Trước khi thao tác, cần xây cây Splay theo dãy đã cho. Dựa trên đặc tính của cây Splay, có thể trực tiếp xây một dây xích chỉ có con trái. Độ phức tạp thời gian là $O(n)$.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-2.cpp:build"
     ```
 
-最后的伸展操作自下而上地更新了节点信息．为了后文区间操作方便，序列左右两侧添加了两个哨兵节点．
+Thao tác splay cuối cùng đã cập nhật thông tin nút từ dưới lên. Để tiện cho thao tác đoạn ở phần sau, hai nút lính canh được thêm vào hai phía trái và phải của dãy.
 
-### 区间翻转
+### Đảo ngược đoạn
 
-以区间翻转为例，可以理解区间操作的方法：（设区间为 $[L,R]$）
+Lấy đảo ngược đoạn làm ví dụ để hiểu phương pháp thao tác đoạn: (giả sử đoạn là $[L,R]$)
 
--   首先将节点 $L-1$ 上移到根节点，再在其右子树中，将节点 $R+1$ 上移到右子树的根节点；
--   此时，设 $x$ 为根节点的右子节点的左子节点，则以 $x$ 为根的子树就对应着区间 $[L,R]$；
--   在 $x$ 处对区间 $[L,R]$ 做操作，并打上懒标记；
--   在 $x$ 处将标记下传一次，然后利用伸展操作将 $x$ 上移到根．
+-   Trước hết đưa nút $L-1$ lên nút gốc, rồi trong cây con phải của nó, đưa nút $R+1$ lên nút gốc của cây con phải;
+-   Lúc này, gọi $x$ là nút con trái của nút con phải của nút gốc, thì cây con có gốc là $x$ sẽ tương ứng với đoạn $[L,R]$;
+-   Thực hiện thao tác trên đoạn $[L,R]$ tại $x$ và gắn lazy tag;
+-   Tại $x$, đẩy tag xuống một lần, rồi dùng thao tác splay đưa $x$ lên gốc.
 
-第一步需要的操作就是前文平衡树操作中的「按照排名访问」，因为元素的标号就是它的排名．因为涉及懒标记的管理，它的实现与上文略有不同．
+Thao tác cần ở bước đầu tiên chính là "truy cập theo thứ hạng" trong phần thao tác cây cân bằng phía trước, vì chỉ số của phần tử chính là thứ hạng của nó. Do liên quan tới quản lý lazy tag, cài đặt của nó hơi khác phần trên.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-2.cpp:reverse"
     ```
 
-最后一步的伸展操作并非为了保证复杂度正确，而是为了更新节点信息．因为伸展操作涉及到节点 $x$ 的左右子节点，所以之前需要将节点 $x$ 处的标记先下传一次．当然，仅对于区间翻转操作而言，子区间的翻转不会对祖先节点产生影响，所以省去这一步骤也是正确的．此处实现保留这两行，是为了说明一般的情形下的操作方法．
+Thao tác splay ở bước cuối không nhằm bảo đảm độ phức tạp đúng, mà để cập nhật thông tin nút. Vì thao tác splay liên quan đến nút con trái và phải của nút $x$, nên trước đó cần đẩy tag tại nút $x$ xuống một lần. Tất nhiên, nếu chỉ xét thao tác đảo ngược đoạn, việc đảo ngược đoạn con sẽ không ảnh hưởng tới các nút tổ tiên, nên bỏ qua bước này cũng đúng. Cài đặt ở đây giữ lại hai dòng này để minh họa phương pháp thao tác trong trường hợp tổng quát.
 
-### 懒标记管理
+### Quản lý lazy tag
 
-首先，需要辅助函数 `lazy_reverse(x)` 和 `push_down(x)`．前者交换左右节点，并更新懒标记；后者将标记下传．
+Trước hết, cần các hàm phụ trợ `lazy_reverse(x)` và `push_down(x)`. Hàm trước hoán đổi nút trái và nút phải, đồng thời cập nhật lazy tag; hàm sau đẩy tag xuống.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-2.cpp:push-down"
     ```
 
-然后，只需要在向下经过节点时下传标记即可．模板题要求的操作比较简单，只有按照排名寻找的操作（即 `loc`）涉及向下访问节点．注意，需要在函数每次访问一个新的节点 **前** 下传标记．
+Sau đó, chỉ cần đẩy tag xuống khi đi qua nút theo hướng xuống. Thao tác mà bài mẫu yêu cầu khá đơn giản, chỉ có thao tác tìm theo thứ hạng (tức `loc`) là liên quan đến việc truy cập nút theo hướng xuống. Chú ý, cần đẩy tag xuống **trước** mỗi lần hàm truy cập một nút mới.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-2.cpp:push-down-lazy"
     ```
 
-因为向下访问节点时已经移除了经过的路径的所有懒标记，所以利用伸展操作上移节点时不再需要处理懒标记．但是，对于区间操作的那一个节点要谨慎处理：因为它同样位于伸展操作的路径上，但是刚刚操作完，可能存在尚未下传的标记，需要首先下传再做伸展操作，正如同上文所做的那样．
+Vì khi truy cập nút theo hướng xuống, tất cả lazy tag trên đường đi đã được gỡ bỏ, nên khi dùng thao tác splay để đưa nút lên trên không cần xử lý lazy tag nữa. Tuy nhiên, cần xử lý cẩn thận nút tương ứng với thao tác đoạn: vì nó cũng nằm trên đường đi của thao tác splay, nhưng vừa được thao tác xong nên có thể còn tag chưa được đẩy xuống; cần đẩy xuống trước rồi mới thực hiện thao tác splay, đúng như cách đã làm ở trên.
 
-### 参考实现
+### Cài đặt tham khảo
 
-本节的最后，给出模板题目 [文艺平衡树](https://loj.ac/problem/105) 的参考实现．
+Cuối phần này, đưa ra cài đặt tham khảo cho bài mẫu [Cây cân bằng văn nghệ](https://loj.ac/problem/105).
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-2.cpp:full-text"
     ```
 
-## 习题
+## Bài tập
 
-这些题目都是裸的 Splay 树维护二叉查找树：
+Các bài này đều là bài Splay Tree trực tiếp để duy trì cây tìm kiếm nhị phân:
 
--   [【模板】普通平衡树](https://loj.ac/problem/104)
--   [【模板】文艺平衡树](https://loj.ac/problem/105)
--   [「HNOI2002」营业额统计](https://loj.ac/problem/10143)
--   [「HNOI2004」宠物收养所](https://loj.ac/problem/10144)
+-   [Mẫu: cây cân bằng thông thường](https://loj.ac/problem/104)
+-   [Mẫu: cây cân bằng văn nghệ](https://loj.ac/problem/105)
+-   [HNOI2002: thống kê doanh thu](https://loj.ac/problem/10143)
+-   [HNOI2004: trại nhận nuôi thú cưng](https://loj.ac/problem/10144)
 
-Splay 树还出现在更复杂的应用场景中：
+Cây Splay còn xuất hiện trong các bối cảnh ứng dụng phức tạp hơn:
 
--   [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problem/P4402)
--   [「HNOI2011」括号修复/「JSOI2011」括号序列](https://www.luogu.com.cn/problem/P3215)
--   [二逼平衡树（树套树）](https://loj.ac/problem/106)
--   [BZOJ 2827 千山鸟飞绝](https://hydro.ac/p/bzoj-P2827)
--   [「Lydsy1706 月赛」K 小值查询](https://hydro.ac/p/bzoj-P4923)
+-   [Cerc2007: robotic sort](https://www.luogu.com.cn/problem/P4402)
+-   [HNOI2011: sửa ngoặc / JSOI2011: dãy ngoặc](https://www.luogu.com.cn/problem/P3215)
+-   [Cây cân bằng ngầu: cây lồng cây](https://loj.ac/problem/106)
+-   [BZOJ 2827: ngàn núi chim bay hết](https://hydro.ac/p/bzoj-P2827)
+-   [Lydsy1706 thi tháng: truy vấn giá trị nhỏ thứ K](https://hydro.ac/p/bzoj-P4923)
 -   [POJ3580 SuperMemo](http://poj.org/problem?id=3580)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-本文部分内容引用于 algocode 算法博客，特别鸣谢！
+Một phần nội dung của bài viết này được trích từ blog thuật toán algocode, xin đặc biệt cảm ơn!

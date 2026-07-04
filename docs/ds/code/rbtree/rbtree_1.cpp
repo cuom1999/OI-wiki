@@ -46,7 +46,7 @@ struct IO_luogu_P3369_P6136 {
   }
 };
 
-// 把这里的模板参数改为 false 即为「Luogu P3369【模板】普通平衡树」的代码
+// Doi tham so mau o day thanh false de lay ma cho Luogu P3369 [Mau] Cay can bang thong thuong.
 IO_luogu_P3369_P6136<true> io;
 
 int main() {

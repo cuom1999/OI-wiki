@@ -376,19 +376,19 @@ nav:
       - Thao tác cực trị trên đoạn & cực trị lịch sử: ds/seg-beats.md
       - Kinetic Tournament Tree: ds/kinetic-tournament-tree.md
     - Cây phân hoạch: ds/dividing.md
-    - 二叉搜索树 & 平衡树:
-      - 二叉搜索树 & 平衡树: ds/bst.md
+    - Cây tìm kiếm nhị phân & cây cân bằng:
+      - Cây tìm kiếm nhị phân & cây cân bằng: ds/bst.md
       - Treap: ds/treap.md
-      - Splay 树: ds/splay.md
+      - Cây Splay: ds/splay.md
       - WBLT: ds/wblt.md
       - Cây scapegoat: ds/sgt.md
       - Cây Descartes: ds/cartesian-tree.md
       - Size Balanced Tree (SBT): ds/sbt.md
       - Cây AVL: ds/avl.md
-      - 红黑树: ds/rbtree.md
+      - Cây đỏ-đen: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
       - Cây AA: ds/aa-tree.md
-    - 跳表: ds/skiplist.md
+    - Skip list: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
       - 可持久化线段树: ds/persistent-seg.md

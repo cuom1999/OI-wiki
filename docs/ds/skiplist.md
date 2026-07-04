@@ -1,36 +1,36 @@
-跳表 (Skip List) 是由 William Pugh 发明的一种查找数据结构，支持对数据的快速查找，插入和删除．
+Skip list là một cấu trúc dữ liệu tìm kiếm do William Pugh phát minh, hỗ trợ tìm kiếm, chèn và xóa dữ liệu nhanh.
 
-跳表的期望空间复杂度为 $O(n)$，跳表的查询，插入和删除操作的期望时间复杂度都为 $O(\log n)$．
+Độ phức tạp không gian kỳ vọng của skip list là $O(n)$; độ phức tạp thời gian kỳ vọng của các thao tác truy vấn, chèn và xóa trong skip list đều là $O(\log n)$.
 
-## 基本思想
+## Ý tưởng cơ bản
 
-顾名思义，跳表是一种类似于链表的数据结构．更加准确地说，跳表是对有序链表的改进．
+Đúng như tên gọi, skip list là một cấu trúc dữ liệu tương tự danh sách liên kết. Chính xác hơn, skip list là một cải tiến của danh sách liên kết có thứ tự.
 
-为方便讨论，后续所有有序链表默认为 **升序** 排序．
+Để thuận tiện cho việc thảo luận, mọi danh sách liên kết có thứ tự bên dưới mặc định được sắp xếp theo thứ tự **tăng dần**.
 
-一个有序链表的查找操作，就是从头部开始逐个比较，直到当前节点的值大于或者等于目标节点的值．很明显，这个操作的复杂度是 $O(n)$．
+Thao tác tìm kiếm trên một danh sách liên kết có thứ tự bắt đầu từ đầu danh sách và so sánh từng phần tử, cho đến khi giá trị của nút hiện tại lớn hơn hoặc bằng giá trị của nút mục tiêu. Rõ ràng, độ phức tạp của thao tác này là $O(n)$.
 
-跳表在有序链表的基础上，引入了 **分层** 的概念．首先，跳表的每一层都是一个有序链表，特别地，最底层是初始的有序链表．每个位于第 $i$ 层的节点有 $p$ 的概率出现在第 $i+1$ 层，$p$ 为常数．
+Trên cơ sở danh sách liên kết có thứ tự, skip list đưa vào khái niệm **phân tầng**. Trước hết, mỗi tầng của skip list đều là một danh sách liên kết có thứ tự; đặc biệt, tầng thấp nhất là danh sách liên kết có thứ tự ban đầu. Mỗi nút nằm ở tầng thứ $i$ sẽ xuất hiện ở tầng thứ $i+1$ với xác suất $p$, trong đó $p$ là một hằng số.
 
-记在 $n$ 个节点的跳表中，期望包含 $\frac{1}{p}$ 个元素的层为第 $L(n)$ 层，易得 $L(n) = \log_{\frac{1}{p}}n$．
+Gọi tầng kỳ vọng chứa $\frac{1}{p}$ phần tử trong skip list có $n$ nút là tầng thứ $L(n)$, dễ thấy $L(n) = \log_{\frac{1}{p}}n$.
 
-在跳表中查找，就是从第 $L(n)$ 层开始，水平地逐个比较直至当前节点的下一个节点大于等于目标节点，然后移动至下一层．重复这个过程直至到达第一层且无法继续进行操作．此时，若下一个节点是目标节点，则成功查找；反之，则元素不存在．这样一来，查找的过程中会跳过一些没有必要的比较，所以相比于有序链表的查询，跳表的查询更快．可以证明，跳表查询的平均复杂度为 $O(\log n)$．
+Khi tìm kiếm trong skip list, ta bắt đầu từ tầng thứ $L(n)$, so sánh lần lượt theo chiều ngang cho đến khi nút kế tiếp của nút hiện tại lớn hơn hoặc bằng nút mục tiêu, rồi đi xuống tầng dưới. Lặp lại quá trình này cho đến khi đến tầng thứ nhất và không thể tiếp tục thao tác. Lúc này, nếu nút kế tiếp là nút mục tiêu thì tìm kiếm thành công; ngược lại, phần tử không tồn tại. Nhờ vậy, quá trình tìm kiếm sẽ bỏ qua một số phép so sánh không cần thiết, nên truy vấn trên skip list nhanh hơn so với truy vấn trên danh sách liên kết có thứ tự. Có thể chứng minh rằng độ phức tạp trung bình của truy vấn trên skip list là $O(\log n)$.
 
-## 复杂度证明
+## Chứng minh độ phức tạp
 
-### 空间复杂度
+### Độ phức tạp không gian
 
-对于一个节点而言，节点的最高层数为 $i$ 的概率为 $p^{i-1}(1 - p)$．所以，跳表的期望层数为 $\sum_{i\ge 1} ip^{i - 1}(1-p) = \frac{1}{1 - p}$，且因为 $p$ 为常数，所以跳表的 **期望空间复杂度** 为 $O(n)$．
+Đối với một nút, xác suất để tầng cao nhất của nút đó là $i$ bằng $p^{i-1}(1 - p)$. Vì vậy, số tầng kỳ vọng của skip list là $\sum_{i\ge 1} ip^{i - 1}(1-p) = \frac{1}{1 - p}$; do $p$ là hằng số, **độ phức tạp không gian kỳ vọng** của skip list là $O(n)$.
 
-在最坏的情况下，每一层有序链表等于初始有序链表，即跳表的 **最差空间复杂度** 为 $O(n \log n)$．
+Trong trường hợp xấu nhất, danh sách liên kết có thứ tự ở mỗi tầng đều bằng danh sách liên kết có thứ tự ban đầu, tức **độ phức tạp không gian tệ nhất** của skip list là $O(n \log n)$.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-从后向前分析查找路径，这个过程可以分为从最底层爬到第 $L(n)$ 层和后续操作两个部分．在分析时，假设一个节点的具体信息在它被访问之前是未知的．
+Phân tích đường đi tìm kiếm từ sau ra trước, quá trình này có thể chia thành hai phần: leo từ tầng thấp nhất lên tầng thứ $L(n)$ và các thao tác sau đó. Khi phân tích, giả sử thông tin cụ thể của một nút là chưa biết trước khi nút đó được truy cập.
 
-假设当前我们处于一个第 $i$ 层的节点 $x$，我们并不知道 $x$ 的最大层数和 $x$ 左侧节点的最大层数，只知道 $x$ 的最大层数至少为 $i$．如果 $x$ 的最大层数大于 $i$，那么下一步应该是向上走，这种情况的概率为 $p$；如果 $x$ 的最大层数等于 $i$，那么下一步应该是向左走，这种情况概率为 $1-p$．
+Giả sử hiện tại ta đang ở một nút $x$ thuộc tầng thứ $i$. Ta không biết số tầng tối đa của $x$ cũng như số tầng tối đa của nút bên trái $x$, chỉ biết số tầng tối đa của $x$ ít nhất là $i$. Nếu số tầng tối đa của $x$ lớn hơn $i$, bước tiếp theo nên đi lên; trường hợp này có xác suất $p$. Nếu số tầng tối đa của $x$ bằng $i$, bước tiếp theo nên đi sang trái; trường hợp này có xác suất $1-p$.
 
-令 $C(i)$ 为在一个无限长度的跳表中向上爬 $i$ 层的期望代价，那么有：
+Đặt $C(i)$ là chi phí kỳ vọng để leo lên $i$ tầng trong một skip list có độ dài vô hạn, khi đó có:
 
 $$
 \begin{aligned}
@@ -39,23 +39,23 @@ C(i) & = (1-p)(1+C(i)) + p(1+C(i-1))
 \end{aligned}
 $$
 
-解得 $C(i)=\frac{i}{p}$．
+Giải ra được $C(i)=\frac{i}{p}$.
 
-由此可以得出：在长度为 $n$ 的跳表中，从最底层爬到第 $L(n)$ 层的期望步数存在上界 $\frac{L(n) - 1}{p}$．
+Từ đó suy ra: trong một skip list có độ dài $n$, số bước kỳ vọng để leo từ tầng thấp nhất lên tầng thứ $L(n)$ có cận trên là $\frac{L(n) - 1}{p}$.
 
-现在只需要分析爬到第 $L(n)$ 层后还要再走多少步．易得，到了第 $L(n)$ 层后，向左走的步数不会超过第 $L(n)$ 层及更高层的节点数总和，而这个总和的期望为 $\frac{1}{p}$．所以到了第 $L(n)$ 层后向左走的期望步数存在上界 $\frac{1}{p}$．同理，到了第 $L(n)$ 层后向上走的期望步数存在上界 $\frac{1}{p}$．
+Bây giờ chỉ cần phân tích sau khi leo đến tầng thứ $L(n)$ thì còn phải đi thêm bao nhiêu bước. Dễ thấy sau khi đến tầng thứ $L(n)$, số bước đi sang trái không vượt quá tổng số nút ở tầng thứ $L(n)$ và các tầng cao hơn; kỳ vọng của tổng này là $\frac{1}{p}$. Vì vậy, số bước kỳ vọng đi sang trái sau khi đến tầng thứ $L(n)$ có cận trên là $\frac{1}{p}$. Tương tự, số bước kỳ vọng đi lên sau khi đến tầng thứ $L(n)$ cũng có cận trên là $\frac{1}{p}$.
 
-所以，跳表查询的期望查找步数为 $\frac{L(n) - 1}{p} + \frac{2}{p}$，又因为 $L(n)=\log_{\frac{1}{p}}n$，所以跳表查询的 **期望时间复杂度** 为 $O(\log n)$．
+Do đó, số bước tìm kiếm kỳ vọng của truy vấn trên skip list là $\frac{L(n) - 1}{p} + \frac{2}{p}$. Lại do $L(n)=\log_{\frac{1}{p}}n$, nên **độ phức tạp thời gian kỳ vọng** của truy vấn trên skip list là $O(\log n)$.
 
-在最坏的情况下，每一层有序链表等于初始有序链表，查找过程相当于对最高层的有序链表进行查询，即跳表查询操作的 **最差时间复杂度** 为 $O(n)$．
+Trong trường hợp xấu nhất, danh sách liên kết có thứ tự ở mỗi tầng đều bằng danh sách liên kết có thứ tự ban đầu, quá trình tìm kiếm tương đương với truy vấn trên danh sách liên kết có thứ tự ở tầng cao nhất, tức **độ phức tạp thời gian tệ nhất** của thao tác truy vấn trên skip list là $O(n)$.
 
-插入操作和删除操作就是进行一遍查询的过程，途中记录需要修改的节点，最后完成修改．易得每一层至多只需要修改一个节点，又因为跳表期望层数为 $\log_{\frac{1}{p}}n$，所以插入和修改的 **期望时间复杂度** 也为 $O(\log n)$．
+Thao tác chèn và thao tác xóa đều là quá trình thực hiện một lượt truy vấn, ghi lại các nút cần sửa đổi trên đường đi, rồi cuối cùng hoàn tất việc sửa đổi. Dễ thấy ở mỗi tầng nhiều nhất chỉ cần sửa đổi một nút; lại do số tầng kỳ vọng của skip list là $\log_{\frac{1}{p}}n$, nên **độ phức tạp thời gian kỳ vọng** của thao tác chèn và xóa cũng là $O(\log n)$.
 
-## 具体实现
+## Cài đặt cụ thể
 
-### 获取节点的最大层数
+### Lấy số tầng tối đa của nút
 
-模拟以 $p$ 的概率往上加一层，最后和上限值取最小．
+Mô phỏng việc tăng thêm một tầng với xác suất $p$, cuối cùng lấy giá trị nhỏ hơn giữa kết quả và giới hạn trên.
 
 ```cpp
 int randomLevel() {
@@ -66,38 +66,38 @@ int randomLevel() {
 }
 ```
 
-### 查询
+### Truy vấn
 
-查询跳表中是否存在键值为 `key` 的节点．具体实现时，可以设置两个哨兵节点以减少边界条件的讨论．
+Truy vấn xem trong skip list có tồn tại nút có khóa là `key` hay không. Khi cài đặt cụ thể, có thể đặt hai nút lính canh để giảm số trường hợp biên cần xét.
 
 ```cpp
 V& find(const K& key) {
   SkipListNode<K, V>* p = head;
 
-  // 找到该层最后一个键值小于 key 的节点，然后走向下一层
+  // Tìm nút cuối cùng ở tầng này có khóa nhỏ hơn key, rồi đi xuống
   for (int i = level; i >= 0; --i) {
     while (p->forward[i]->key < key) {
       p = p->forward[i];
     }
   }
-  // 现在是小于，所以还需要再往后走一步
+  // Hiện tại p vẫn nhỏ hơn key, nên cần đi tiếp một bước
   p = p->forward[0];
 
-  // 成功找到节点
+  // Tìm thấy nút
   if (p->key == key) return p->value;
 
-  // 节点不存在，返回 INVALID
+  // Nút không tồn tại, trả về INVALID
   return tail->value;
 }
 ```
 
-### 插入
+### Chèn
 
-插入节点 `(key, value)`．插入节点的过程就是先执行一遍查询的过程，中途记录新节点是要插入哪一些节点的后面，最后再执行插入．每一层最后一个键值小于 `key` 的节点，就是需要进行修改的节点．
+Chèn nút `(key, value)`. Quá trình chèn nút là trước tiên thực hiện một lượt truy vấn, trong lúc đó ghi lại nút mới cần được chèn sau những nút nào, rồi cuối cùng thực hiện việc chèn. Ở mỗi tầng, nút cuối cùng có khóa nhỏ hơn `key` chính là nút cần sửa đổi.
 
 ```cpp
 void insert(const K &key, const V &value) {
-  // 用于记录需要修改的节点
+  // Ghi lại các nút cần sửa đổi
   SkipListNode<K, V> *update[MAXL + 1];
 
   SkipListNode<K, V> *p = head;
@@ -105,27 +105,27 @@ void insert(const K &key, const V &value) {
     while (p->forward[i]->key < key) {
       p = p->forward[i];
     }
-    // 第 i 层需要修改的节点为 p
+    // Nút cần sửa đổi ở tầng i là p
     update[i] = p;
   }
   p = p->forward[0];
 
-  // 若已存在则修改
+  // Nếu đã tồn tại thì cập nhật
   if (p->key == key) {
     p->value = value;
     return;
   }
 
-  // 获取新节点的最大层数
+  // Lấy số tầng tối đa của nút mới
   int lv = randomLevel();
   if (lv > level) {
     lv = ++level;
     update[lv] = head;
   }
 
-  // 新建节点
+  // Tạo nút mới
   SkipListNode<K, V> *newNode = new SkipListNode<K, V>(key, value, lv);
-  // 在第 0~lv 层插入新节点
+  // Chèn nút mới vào các tầng từ 0 đến lv
   for (int i = lv; i >= 0; --i) {
     p = update[i];
     newNode->forward[i] = p->forward[i];
@@ -136,13 +136,13 @@ void insert(const K &key, const V &value) {
 }
 ```
 
-### 删除
+### Xóa
 
-删除键值为 `key` 的节点．删除节点的过程就是先执行一遍查询的过程，中途记录要删的节点是在哪一些节点的后面，最后再执行删除．每一层最后一个键值小于 `key` 的节点，就是需要进行修改的节点．
+Xóa nút có khóa là `key`. Quá trình xóa nút là trước tiên thực hiện một lượt truy vấn, trong lúc đó ghi lại nút cần xóa nằm sau những nút nào, rồi cuối cùng thực hiện việc xóa. Ở mỗi tầng, nút cuối cùng có khóa nhỏ hơn `key` chính là nút cần sửa đổi.
 
 ```cpp
 bool erase(const K &key) {
-  // 用于记录需要修改的节点
+  // Ghi lại các nút cần sửa đổi
   SkipListNode<K, V> *update[MAXL + 1];
 
   SkipListNode<K, V> *p = head;
@@ -150,41 +150,41 @@ bool erase(const K &key) {
     while (p->forward[i]->key < key) {
       p = p->forward[i];
     }
-    // 第 i 层需要修改的节点为 p
+    // Nút cần sửa đổi ở tầng i là p
     update[i] = p;
   }
   p = p->forward[0];
 
-  // 节点不存在
+  // Nút không tồn tại
   if (p->key != key) return false;
 
-  // 从最底层开始删除
+  // Xóa từ tầng thấp nhất trở lên
   for (int i = 0; i <= level; ++i) {
-    // 如果这层没有 p 删除就完成了
+    // Nếu tầng này không có p thì việc xóa đã hoàn tất
     if (update[i]->forward[i] != p) {
       break;
     }
-    // 断开 p 的连接
+    // Ngắt liên kết của p
     update[i]->forward[i] = p->forward[i];
   }
 
-  // 回收空间
+  // Thu hồi bộ nhớ
   delete p;
 
-  // 删除节点可能导致最大层数减少
+  // Xóa nút có thể làm giảm số tầng tối đa
   while (level > 0 && head->forward[level] == tail) --level;
 
-  // 跳表长度
+  // Độ dài của skip list
   --length;
   return true;
 }
 ```
 
-### 完整代码
+### Mã hoàn chỉnh
 
-下列代码是用跳表实现的 map．未经正经测试，仅供参考．
+Đoạn mã sau là một `map` được cài đặt bằng skip list. Mã chưa được kiểm thử nghiêm túc, chỉ dùng để tham khảo.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <cassert>
     #include <climits>
@@ -360,17 +360,17 @@ bool erase(const K &key) {
     }
     ```
 
-## 跳表的随机访问优化
+## Tối ưu truy cập ngẫu nhiên cho skip list
 
-访问跳表中第 $k$ 个节点，相当于访问初始有序链表中的第 $k$ 个节点，很明显这个操作的时间复杂度是 $O(n)$ 的，并不足够优秀．
+Truy cập nút thứ $k$ trong skip list tương đương với truy cập nút thứ $k$ trong danh sách liên kết có thứ tự ban đầu. Rõ ràng độ phức tạp thời gian của thao tác này là $O(n)$, chưa đủ tốt.
 
-跳表的随机访问优化就是对每一个前向指针，再多维护这个前向指针的长度．假设 $A$ 和 $B$ 都是跳表中的节点，其中 $A$ 为跳表的第 $a$ 个节点，$B$ 为跳表的第 $b$ 个节点 $(a < b)$，且在跳表的某一层中 $A$ 的前向指针指向 $B$，那么这个前向指针的长度为 $b - a$．
+Tối ưu truy cập ngẫu nhiên cho skip list là duy trì thêm độ dài của mỗi con trỏ tiến. Giả sử $A$ và $B$ đều là các nút trong skip list, trong đó $A$ là nút thứ $a$ của skip list, $B$ là nút thứ $b$ của skip list $(a < b)$, và ở một tầng nào đó của skip list, con trỏ tiến của $A$ trỏ đến $B$. Khi đó độ dài của con trỏ tiến này là $b - a$.
 
-现在访问跳表中的第 $k$ 个节点，就可以从顶层开始，水平地遍历该层的链表，直到当前节点的位置加上当前节点在该层的前向指针长度大于等于 $k$，然后移动至下一层．重复这个过程直至到达第一层且无法继续行操作．此时，当前节点就是跳表中第 $k$ 个节点．
+Bây giờ, để truy cập nút thứ $k$ trong skip list, ta có thể bắt đầu từ tầng trên cùng, duyệt danh sách liên kết của tầng đó theo chiều ngang cho đến khi vị trí của nút hiện tại cộng với độ dài con trỏ tiến của nút hiện tại tại tầng đó lớn hơn hoặc bằng $k$, rồi đi xuống tầng dưới. Lặp lại quá trình này cho đến khi đến tầng thứ nhất và không thể tiếp tục thao tác. Lúc này, nút hiện tại chính là nút thứ $k$ trong skip list.
 
-这样，就可以快速地访问到跳表的第 $k$ 个元素．可以证明，这个操作的时间复杂度为 $O(\log n)$．
+Như vậy, ta có thể truy cập nhanh phần tử thứ $k$ của skip list. Có thể chứng minh rằng độ phức tạp thời gian của thao tác này là $O(\log n)$.
 
-## 参考资料
+## Tài liệu tham khảo
 
 1.  [Skip Lists: A Probabilistic Alternative to Balanced Trees](https://15721.courses.cs.cmu.edu/spring2018/papers/08-oltpindexes1/pugh-skiplists-cacm1990.pdf)
 2.  [Skip List](https://en.wikipedia.org/wiki/Skip_list)

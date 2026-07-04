@@ -231,6 +231,11 @@ MkDocs source layout intact.
 - `docs/ds/sbt.md`: translated the Size Balanced Tree page covering node
   fields, balance invariants, rotations, insertion/deletion, rank queries, and
   the included map implementation reference.
+- `docs/ds/bst.md`, `docs/ds/splay.md`, `docs/ds/rbtree.md`,
+  `docs/ds/skiplist.md`: translated binary-search-tree and balanced-tree
+  material covering BST operations, splay amortized analysis and operations,
+  red-black tree insertion/deletion maintenance, and skip list complexity and
+  implementation.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
