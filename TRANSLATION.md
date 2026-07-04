@@ -136,7 +136,8 @@ MkDocs source layout intact.
 - Quality pass: restored Vietnamese diacritics and smoothed core prose in
   selected `docs/math/number-theory/basic.md`,
   `docs/math/number-theory/mod-arithmetic.md`, and
-  `docs/math/number-theory/prime.md` sections.
+  `docs/math/number-theory/prime.md` sections, then fully cleaned
+  `docs/math/number-theory/gcd.md`.
 - `docs/math/number-theory/pollard-rho.md`,
   `docs/math/number-theory/bezouts.md`,
   `docs/math/number-theory/fermat.md`, `docs/math/number-theory/crt.md`,
