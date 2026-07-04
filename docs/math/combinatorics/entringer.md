@@ -1,11 +1,12 @@
-## 恩特林格数
+<span id="&#24681;&#29305;&#26519;&#26684;&#25968;"></span>
+## Số Entringer
 
-恩特林格数（Entringer number，[OEIS A008281](http://oeis.org/A008281)）$E(n,k)$ 是满足下述条件的 $0$ 到 $n$ 共 $n+1$ 个数的置换数目：
+Số Entringer (Entringer number, [OEIS A008281](http://oeis.org/A008281)) $E(n,k)$ là số hoán vị của $n+1$ số từ $0$ đến $n$ thỏa mãn các điều kiện sau:
 
--   首元素是 $k$；
--   首元素的下一个元素比首元素小，再下一个元素比前一个元素大，再下一个元素比前一个元素小……后面相邻元素的大小关系均满足这样的规则．
+-   Phần tử đầu tiên là $k$;
+-   Phần tử kế tiếp của phần tử đầu tiên nhỏ hơn nó, phần tử tiếp theo nữa lớn hơn phần tử trước đó, phần tử tiếp theo nữa nhỏ hơn phần tử trước đó, v.v. Quan hệ lớn nhỏ giữa các phần tử kề nhau về sau đều tuân theo quy luật này.
 
-恩特林格数的初值有：
+Các giá trị ban đầu của số Entringer là:
 
 $$
 E(0,0)=1
@@ -15,15 +16,16 @@ $$
 E(n,0)=0
 $$
 
-有递推关系：
+Hệ thức truy hồi:
 
 $$
 E(n,k)=E(n,k-1)+E(n-1,n-k)
 $$
 
-## Seidel–Entringer–Arnold 三角
+<span id="Seidel&#8211;Entringer&#8211;Arnold-&#19977;&#35282;"></span>
+## Tam giác Seidel-Entringer-Arnold
 
-恩特林格数的一个适当排列的数字三角，称为 Seidel–Entringer–Arnold 三角（Seidel–Entringer–Arnold triangle，[OEIS A008280](http://oeis.org/A008280)）．该三角是按照「牛耕」顺序（ox-plowing order）排列的恩特林格数 $E_(n,k)$：
+Một tam giác số thu được bằng cách sắp xếp số Entringer một cách thích hợp được gọi là tam giác Seidel-Entringer-Arnold (Seidel-Entringer-Arnold triangle, [OEIS A008280](http://oeis.org/A008280)). Tam giác này sắp xếp các số Entringer $E(n,k)$ theo thứ tự "cày ruộng bằng bò" (ox-plowing order):
 
 $$
 \begin{aligned}
@@ -35,7 +37,7 @@ $$
 \end{aligned}
 $$
 
-即：
+tức là:
 
 $$
 \begin{aligned}
@@ -47,15 +49,15 @@ $$
 \end{aligned}
 $$
 
-按照这种方式排列的恩特林格数的优势是，与它的递推关系 $E(n,k)=E(n,k-1)+E(n-1,n-k)$ 一致，可以方便记忆和理解．
+Ưu điểm của cách sắp xếp số Entringer này là nó khớp với hệ thức truy hồi $E(n,k)=E(n,k-1)+E(n-1,n-k)$, nên dễ ghi nhớ và dễ hiểu.
 
-恩特林格数有一个指数型生成函数：
+Số Entringer có một hàm sinh mũ:
 
 $$
 \sum_{m=0}^\infty\sum_{n=0}^\infty E\left(m+n,\frac{1}{2}\left(m+n+{(-1)}^{m+n}(n-m)\right)\right)\frac{x^m}{m!}\frac{x^n}{n!}=\frac{\cos x+\sin x}{\cos (x+y)}
 $$
 
-这个生成函数的系数分布事实上是上面的 Seidel–Entringer–Arnold 三角的简单拉伸变形：
+Phân bố hệ số của hàm sinh này thực chất là một biến dạng kéo giãn đơn giản của tam giác Seidel-Entringer-Arnold ở trên:
 
 $$
 \begin{array}{ccccc}
@@ -67,7 +69,7 @@ E(4,4) & & & &
 \end{array}
 $$
 
-即：
+tức là:
 
 $$
 \begin{aligned}
@@ -79,17 +81,18 @@ $$
 \end{aligned}
 $$
 
-## zigzag 置换
+<span id="zigzag-&#32622;&#25442;"></span>
+## Hoán vị zigzag
 
-一个 zigzag 置换（zigzag permutation）是一个 $1$ 到 $n$ 的排列 $c_1$ 到 $c_i$，使得任意一个元素 $c_i$ 的大小都不介于 $c_{i-1}$ 和 $c_{i+1}$ 之间．
+Một hoán vị zigzag (zigzag permutation) là một hoán vị $c_1$ đến $c_i$ của các số từ $1$ đến $n$, sao cho mọi phần tử $c_i$ đều không nằm giữa $c_{i-1}$ và $c_{i+1}$ về giá trị.
 
-对于 zigzag 置换的个数 $Z_n$（[OEIS A001250](http://oeis.org/A001250)），从 $n=0$ 开始有：
+Với số hoán vị zigzag $Z_n$ ([OEIS A001250](http://oeis.org/A001250)), bắt đầu từ $n=0$ ta có:
 
 $$
 1, 1, 2, 4, 10, 32, 122, 544, \cdots
 $$
 
-例如，前几个 $n$ 的交替置换有：
+Ví dụ, các hoán vị luân phiên với một vài giá trị $n$ đầu tiên là:
 
 $$
 \begin{aligned}
@@ -101,55 +104,56 @@ n=4: & \{1,3,2,4\}, \{1,4,2,3\}, \{2,1,4,3\}, \{2,3,1,4\}, \{2,4,1,3\}, \\
 \end{aligned}
 $$
 
-## 交替置换与 zigzag 数
+<span id="&#20132;&#26367;&#32622;&#25442;&#19982;-zigzag-&#25968;"></span>
+## Hoán vị luân phiên và số zigzag
 
-（注意和「错位排列」进行概念上的区分．）
+Lưu ý phân biệt khái niệm này với hoán vị sai vị trí.
 
-对于大于 $1$ 的 $n$，每个 zigzag 置换翻转过来仍旧为 zigzag 置换，可以两两配对，所以必然为偶数．
+Với $n>1$, mỗi hoán vị zigzag khi đảo ngược vẫn là một hoán vị zigzag, nên chúng có thể ghép cặp từng đôi một; do đó số lượng chắc chắn là số chẵn.
 
-这里再给出一种配对的方法：将 zigzag 置换分为交替置换（alternating permutation）和反交替置换（reverse alternating permutation）．
+Sau đây là một cách ghép cặp khác: chia hoán vị zigzag thành hoán vị luân phiên (alternating permutation) và hoán vị phản luân phiên (reverse alternating permutation).
 
-交替置换的首元素大于第二个元素，大小关系为：
+Hoán vị luân phiên có phần tử đầu tiên lớn hơn phần tử thứ hai, với quan hệ lớn nhỏ:
 
 $$
 c_1>c_2<c_3>\cdots
 $$
 
-反交替置换的首元素小于第二个元素，大小关系为：
+Hoán vị phản luân phiên có phần tử đầu tiên nhỏ hơn phần tử thứ hai, với quan hệ lớn nhỏ:
 
 $$
 c_1<c_2>c_3<\cdots
 $$
 
-如果将 $1$ 和 $n$ 位置互换，$2$ 和 $n-1$ 位置互换，以此类推，即可将交替置换与反交替置换两个集合互换．因此，交替置换与反交替置换的个数相等，恰好为 zigzag 置换的一半．
+Nếu hoán đổi vị trí của $1$ và $n$, của $2$ và $n-1$, rồi tiếp tục như vậy, ta sẽ biến tập hoán vị luân phiên thành tập hoán vị phản luân phiên và ngược lại. Vì vậy, số hoán vị luân phiên và số hoán vị phản luân phiên bằng nhau, đúng bằng một nửa số hoán vị zigzag.
 
-对于大于 $1$ 的 $n$，记：
+Với $n>1$, đặt:
 
 $$
 A_n=\frac{Z_n}{2}
 $$
 
-定义初值：
+Định nghĩa giá trị ban đầu:
 
 $$
 A_0=A_1=1
 $$
 
-这里的 $A_n$ 称为 zigzag 数（Euler zigzag number，[OEIS A000111](http://oeis.org/A000111)），从 $n=0$ 开始有：
+$A_n$ ở đây được gọi là số zigzag (Euler zigzag number, [OEIS A000111](http://oeis.org/A000111)); bắt đầu từ $n=0$, ta có:
 
 $$
 1, 1, 1, 2, 5, 16, 61, 272, \cdots
 $$
 
-接下来试着求解 $A_n$．
+Tiếp theo thử tìm $A_n$.
 
-从 $1$ 到 $n$ 之中，选取 $k$ 个数构成子集，有 $\dbinom{n}{k}$ 种选法．
+Trong các số từ $1$ đến $n$, chọn $k$ số tạo thành một tập con, có $\dbinom{n}{k}$ cách chọn.
 
-在这个 $k$ 元子集中，选反交替置换 $u$，有 $A_k$ 种选法；用全集减掉这个 $k$ 元子集，剩余的 $n-k$ 元子集中，选反交替置换 $v$，有 $A_{n-k}$ 种选法．
+Trong tập con $k$ phần tử này, chọn một hoán vị phản luân phiên $u$, có $A_k$ cách chọn; lấy phần bù của tập con này trong tập toàn cục, với tập con còn lại gồm $n-k$ phần tử, chọn một hoán vị phản luân phiên $v$, có $A_{n-k}$ cách chọn.
 
-考虑 $n+1$ 元排列 $w$，将 $u$ 倒置作为开头，接上 $n+1$，再接上 $v$．那么，$w$ 一定是 zigzag 置换，并且任意一个 $n+1$ 元 zigzag 置换，都可以在 $n+1$ 处截断得到对应的反交替置换 $u$ 和 $v$，并且不同的 $n+1$ 元 zigzag 置换对应的 $u$ 和 $v$ 不同．
+Xét hoán vị $w$ gồm $n+1$ phần tử: đặt đảo ngược của $u$ ở đầu, nối thêm $n+1$, rồi nối thêm $v$. Khi đó $w$ chắc chắn là một hoán vị zigzag; hơn nữa, mọi hoán vị zigzag gồm $n+1$ phần tử đều có thể cắt tại $n+1$ để thu được các hoán vị phản luân phiên tương ứng $u$ và $v$, và các hoán vị zigzag khác nhau tương ứng với các cặp $u$ và $v$ khác nhau.
 
-因此有递推关系：
+Vì vậy có hệ thức truy hồi:
 
 $$
 2A_{n+1}=\sum_{k=0}^n \dbinom{n}{k} A_k A_{n-k}
@@ -159,63 +163,64 @@ $$
 2(n+1)\frac{A_{n+1}}{(n+1)!}=\sum_{k=0}^n \frac{A_k}{k!}\frac{A_{n-k}}{(n-k)!}
 $$
 
-当 $n$ 为 $0$ 时并不满足这个递推式，初值 $A_0$ 和 $A_1$ 都是 $1$．
+Khi $n=0$, hệ thức này không thỏa mãn; các giá trị đầu $A_0$ và $A_1$ đều bằng $1$.
 
-可见，这是一个指数型生成函数的卷积．假设 $A_n$ 的指数型生成函数为 $y$，就有微分方程：
+Có thể thấy đây là một tích chập của hàm sinh mũ. Giả sử hàm sinh mũ của $A_n$ là $y$, ta có phương trình vi phân:
 
 $$
 2\frac{\mathrm{d}y}{\mathrm{d}x}=y^2+1
 $$
 
-等式右面加 $1$ 是为了处理 $n$ 为 $0$ 时的特殊情况．该方程的通解为：
+Vế phải cộng thêm $1$ để xử lý trường hợp đặc biệt $n=0$. Nghiệm tổng quát của phương trình là:
 
 $$
 y=\tan\left(\frac{1}{2}x+C\right)
 $$
 
-代入第 $0$ 项为 $1$ 之后，可以得到特解：
+Thay số hạng thứ $0$ bằng $1$, ta thu được nghiệm riêng:
 
 $$
 y=\tan x+\sec x
 $$
 
-正切函数是奇函数，正割函数是偶函数，两者之和构成 zigzag 数的生成函数．
+Hàm tang là hàm lẻ, hàm sec là hàm chẵn; tổng của chúng tạo thành hàm sinh của số zigzag.
 
-## 恩特林格数与 zigzag 数的关系
+<span id="&#24681;&#29305;&#26519;&#26684;&#25968;&#19982;-zigzag-&#25968;&#30340;&#20851;&#31995;"></span>
+## Quan hệ giữa số Entringer và số zigzag
 
-根据恩特林格数的定义，恩特林格数 $E(n,k)$ 是首元素为 $k$ 的 $0$ 到 $n$ 的交替置换个数．因此恩特林格数与 zigzag 数事实上有关系：
+Theo định nghĩa của số Entringer, $E(n,k)$ là số hoán vị luân phiên của các số từ $0$ đến $n$ có phần tử đầu tiên là $k$. Vì vậy số Entringer thật ra có liên hệ với số zigzag:
 
 $$
 A_n=E(n,n)
 $$
 
-将 $A_n$ 称为「zigzag 数」也有原因：记 $E_n$ 是欧拉数（Euler number），$B_n$ 是伯努利数．
+Việc gọi $A_n$ là "số zigzag" cũng có lý do: ký hiệu $E_n$ là số Euler (Euler number), $B_n$ là số Bernoulli.
 
-当 $n$ 为偶数时，偶数项下标的 zigzag 数也称「正割数」$S_n$ 或者「zig 数」．有关系：
+Khi $n$ chẵn, các số zigzag có chỉ số chẵn còn được gọi là "số sec" $S_n$ hoặc "số zig". Có quan hệ:
 
 $$
 A_n=(-1)^{n/2}E_n
 $$
 
-前几项为（[OEIS A000364](http://oeis.org/A000364)）：
+Một vài số hạng đầu là ([OEIS A000364](http://oeis.org/A000364)):
 
 $$
 1, 1, 5, 61, 1385, \cdots
 $$
 
-当 $n$ 为奇数时，奇数项下标的 zigzag 数也称「正切数」$T_n$ 或者「zag 数」．有关系：
+Khi $n$ lẻ, các số zigzag có chỉ số lẻ còn được gọi là "số tang" $T_n$ hoặc "số zag". Có quan hệ:
 
 $$
 A_n=\frac{(-1)^{(n-1)/2}2^{n+1}(2^{n+1}-1)B_{n+1}}{n+1}
 $$
 
-前几项为（[OEIS A000182](http://oeis.org/A000182)）：
+Một vài số hạng đầu là ([OEIS A000182](http://oeis.org/A000182)):
 
 $$
 1, 2, 16, 272, 7936, \cdots
 $$
 
-于是对于在 $x=0$ 处的泰勒展开，可以给出正割数和正切数：
+Do đó, với khai triển Taylor tại $x=0$, ta có thể biểu diễn số sec và số tang:
 
 $$
 \sec x=A_0+A_2\frac{x^2}{2!}+A_4\frac{x^4}{4!}+\cdots
@@ -225,14 +230,15 @@ $$
 \tan x=A_1x+A_3\frac{x^3}{3!}+A_5\frac{x^5}{5!}+\cdots
 $$
 
-或者写到一起：
+Hoặc viết gộp:
 
 $$
 \sec x+\tan x=A_0+A_1x+A_2\frac{x^2}{2!}+A_3\frac{x^3}{3!}+A_4\frac{x^4}{4!}+A_5\frac{x^5}{5!}+\cdots
 $$
 
-构成 zigzag 数的生成函数．
+đây là hàm sinh của số zigzag.
 
-## 参考资料与链接
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#38142;&#25509;"></span>
+## Tài liệu tham khảo và liên kết
 
 1.  [Alternating permutation - Wikipedia](https://en.wikipedia.org/wiki/Alternating_permutation)

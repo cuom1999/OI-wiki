@@ -34,8 +34,8 @@ uint64_t pow(uint64_t x, uint64_t y) {
 }
 
 // --8<-- [start:pisano]
-// Get a period of Fibonacci sequence mod m.
-// Not necessarily be the exact Pisano period.
+// Lấy một chu kỳ của dãy Fibonacci modulo m.
+// Không nhất thiết là chu kỳ Pisano chính xác.
 uint32_t calc_cycle_from_mod(uint32_t m) {
   uint32_t res = 1;
   for (auto pe : factorize(m)) {

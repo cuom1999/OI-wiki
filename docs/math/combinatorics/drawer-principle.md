@@ -1,30 +1,38 @@
-## 定义
+<span id="&#x5B9A;&#x4E49;"></span>
 
-抽屉原理，亦称鸽巢原理（the pigeonhole principle）．
+## Định nghĩa
 
-它常被用于证明存在性证明和求最坏情况下的解．
+Nguyên lý ngăn kéo, còn gọi là nguyên lý chuồng bồ câu (the pigeonhole principle).
 
-## 简单情况
+Nó thường được dùng trong các chứng minh tồn tại và trong việc tìm lời giải ở trường hợp xấu nhất.
 
-将 $n+1$ 个物体，划分为 $n$ 组，那么有至少一组有两个（或以上）的物体．
+<span id="&#x7B80;&#x5355;&#x60C5;&#x51B5;"></span>
 
-这个定理看起来比较显然，证明方法考虑反证法：假如每个分组有至多 $1$ 个物体，那么最多有 $1\times n$ 个物体，而实际上有 $n+1$ 个物体，矛盾．
+## Trường hợp đơn giản
 
-## 推广
+Nếu đưa $n+1$ vật vào $n$ nhóm, thì tồn tại ít nhất một nhóm có hai vật trở lên.
 
-将 $n$ 个物体，划分为 $k$ 组，那么至少存在一个分组，含有大于或等于 $\left \lceil \dfrac{n}{k} \right \rceil$ 个物品．
+Định lý này khá hiển nhiên. Ta có thể chứng minh bằng phản chứng: nếu mỗi nhóm có nhiều nhất $1$ vật, tổng số vật tối đa chỉ là $1\times n$, trong khi thực tế có $n+1$ vật, mâu thuẫn.
 
-推广的形式也可以使用反证法证明：若每个分组含有小于 $\left \lceil \dfrac{n}{k} \right \rceil$ 个物体，则其总和 $S\leq (\left \lceil \dfrac{n}{k} \right \rceil -1 ) \times k=k\left\lceil \dfrac{n}{k} \right\rceil-k < k(\dfrac{n}{k}+1)-k=n$ 矛盾．
+<span id="&#x63A8;&#x5E7F;"></span>
 
-此外，划分还可以弱化为覆盖结论不变．  
-给定集合 $S$, 一个 $S$ 的非空子集构成的簇 $\{A_1,A_2\ldots A_k\}$
+## Mở rộng
 
--   若满足 $\bigcup_{i=1}^k A_i$ 则称为 $S$ 的一个覆盖（cover）
--   若一个覆盖还满足 $i\neq j\to A_i\cap A_j=\varnothing$ 则称为 $S$ 的一个划分．
+Nếu đưa $n$ vật vào $k$ nhóm, thì tồn tại ít nhất một nhóm chứa không ít hơn $\left \lceil \dfrac{n}{k} \right \rceil$ vật.
 
-鸽巢原理可以有如下叙述：对于 $S$ 的一个覆盖 $\{A_1,A_2\ldots A_k\}$ 有至少一个集合 $A_i$ 满足 $\left\vert A_i \right\vert \geq \left\lceil \dfrac{\left\vert S \right\vert}{k} \right\rceil$．
+Dạng mở rộng cũng có thể chứng minh bằng phản chứng: nếu mỗi nhóm chứa ít hơn $\left \lceil \dfrac{n}{k} \right \rceil$ vật, thì tổng số vật $S\leq (\left \lceil \dfrac{n}{k} \right \rceil -1 ) \times k=k\left\lceil \dfrac{n}{k} \right\rceil-k < k(\dfrac{n}{k}+1)-k=n$, mâu thuẫn.
 
-## 参考文献
+Ngoài ra, có thể thay phân hoạch bằng phủ mà kết luận vẫn không đổi.<br>
+Cho tập $S$, xét một họ các tập con khác rỗng của $S$: $\{A_1,A_2\ldots A_k\}$.
+
+-   Nếu thỏa $\bigcup_{i=1}^k A_i=S$, ta gọi đó là một phủ (cover) của $S$.
+-   Nếu một phủ còn thỏa $i\neq j\to A_i\cap A_j=\varnothing$, ta gọi đó là một phân hoạch của $S$.
+
+Nguyên lý chuồng bồ câu có thể được phát biểu như sau: với một phủ $\{A_1,A_2\ldots A_k\}$ của $S$, tồn tại ít nhất một tập $A_i$ thỏa $\left\vert A_i \right\vert \geq \left\lceil \dfrac{\left\vert S \right\vert}{k} \right\rceil$.
+
+<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+
+## Tài liệu tham khảo
 
 -   [Wikipedia: Pigeonhole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle)
 -   *Discrete Mathematics and Its Applications*: Chapter 6, Section 1

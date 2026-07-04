@@ -10,12 +10,12 @@ int main() {
   f[0] = 1;
   for (long long j = 1; j <= 4; j++)
     for (long long i = 1; i < S; i++)
-      if (i >= c[j]) f[i] += f[i - c[j]];  // f[i]：价格为i时的硬币组成方法数
+      if (i >= c[j]) f[i] += f[i - c[j]];  // Số cách ghép xu có tổng giá trị i
   for (long long k = 1; k <= n; k++) {
     cin >> d[1] >> d[2] >> d[3] >> d[4] >> s;
     long long ans = 0;
     for (long long i = 1; i < 16;
-         i++) {  // 容斥，因为物品一共有4种，所以从1到2^4-1=15循环
+         i++) {  // Bao hàm-loại trừ: có 4 loại vật nên duyệt từ 1 đến 2^4-1=15
       long long m = s, bit = 0;
       for (long long j = 1; j <= 4; j++) {
         if ((i >> (j - 1)) % 2 == 1) {

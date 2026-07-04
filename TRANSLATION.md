@@ -168,6 +168,10 @@ MkDocs source layout intact.
   `docs/math/poly/ogf.md`, `docs/math/poly/egf.md`: translated the remaining
   polynomial and generating-function pages, plus explanatory comments in
   included polynomial square-root and composition snippets.
+- `docs/math/combinatorics/*.md`: translated the combinatorics section covering
+  basic counting, inclusion-exclusion, Fibonacci/Catalan/Stirling/Bell/Bernoulli
+  numbers, partitions, Vandermonde convolution, Pólya counting, and graph
+  enumeration, plus explanatory comments in included combinatorics snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

@@ -1,58 +1,72 @@
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
 
-排列组合是组合数学中的基础．排列就是指从给定个数的元素中取出指定个数的元素进行排序；组合则是指从给定个数的元素中仅仅取出指定个数的元素，不考虑排序．排列组合的中心问题是研究给定要求的排列和组合可能出现的情况总数．排列组合与古典概率论关系密切．
+## Giới thiệu
 
-在高中初等数学中，排列组合多是利用列表、枚举等方法解题．
+Hoán vị và tổ hợp là các kiến thức cơ bản của tổ hợp. Hoán vị là việc chọn một số phần tử nhất định từ một tập phần tử cho trước rồi sắp xếp chúng theo thứ tự; tổ hợp là việc chỉ chọn một số phần tử nhất định từ tập phần tử cho trước, không xét thứ tự. Vấn đề trung tâm của hoán vị và tổ hợp là nghiên cứu tổng số khả năng sắp xếp hoặc chọn thỏa các yêu cầu đã cho. Hoán vị, tổ hợp có quan hệ chặt chẽ với xác suất cổ điển.
 
-## 加法 & 乘法原理
+Trong toán sơ cấp ở trung học, các bài hoán vị tổ hợp thường được giải bằng các cách như lập bảng, liệt kê trực tiếp.
 
-### 加法原理
+<span id="&#x52A0;&#x6CD5;-&#x4E58;&#x6CD5;&#x539F;&#x7406;"></span>
 
-完成一个工程可以有 $n$ 类办法，$a_i(1 \le i \le n)$ 代表第 $i$ 类方法的数目．那么完成这件事共有 $S=a_1+a_2+\cdots +a_n$ 种不同的方法．
+## Nguyên lý cộng và nhân
 
-### 乘法原理
+<span id="&#x52A0;&#x6CD5;&#x539F;&#x7406;"></span>
 
-完成一个工程需要分 $n$ 个步骤，$a_i(1 \le i \le n)$ 代表第 $i$ 个步骤的不同方法数目．那么完成这件事共有 $S = a_1 \times a_2 \times \cdots \times a_n$ 种不同的方法．
+### Nguyên lý cộng
 
-## 排列与组合基础
+Để hoàn thành một công việc có $n$ loại cách làm, trong đó $a_i(1 \le i \le n)$ là số cách của loại thứ $i$. Khi đó có tổng cộng $S=a_1+a_2+\cdots +a_n$ cách khác nhau để hoàn thành công việc.
 
-### 排列数
+<span id="&#x4E58;&#x6CD5;&#x539F;&#x7406;"></span>
 
-从 $n$ 个不同元素中，任取 $m$（$m\leq n$，$m$ 与 $n$ 均为自然数，下同）个元素按照一定的顺序排成一列，叫做从 $n$ 个不同元素中取出 $m$ 个元素的一个排列；从 $n$ 个不同元素中取出 $m$($m\leq n$) 个元素的所有排列的个数，叫做从 $n$ 个不同元素中取出 $m$ 个元素的排列数，用符号 $\mathrm A_n^m$（或者是 $\mathrm P_n^m$）表示．
+### Nguyên lý nhân
 
-排列的计算公式如下：
+Để hoàn thành một công việc cần thực hiện qua $n$ bước, trong đó $a_i(1 \le i \le n)$ là số cách khác nhau để thực hiện bước thứ $i$. Khi đó có tổng cộng $S = a_1 \times a_2 \times \cdots \times a_n$ cách khác nhau để hoàn thành công việc.
+
+<span id="&#x6392;&#x5217;&#x4E0E;&#x7EC4;&#x5408;&#x57FA;&#x7840;"></span>
+
+## Cơ bản về hoán vị và tổ hợp
+
+<span id="&#x6392;&#x5217;&#x6570;"></span>
+
+### Số hoán vị
+
+Từ $n$ phần tử khác nhau, chọn tùy ý $m$ phần tử ($m\leq n$, $m$ và $n$ đều là số tự nhiên; các phần sau cũng hiểu như vậy) và sắp thành một dãy theo một thứ tự nhất định, ta gọi đó là một hoán vị chập $m$ của $n$ phần tử khác nhau. Số tất cả các hoán vị chập $m$ ($m\leq n$) của $n$ phần tử khác nhau được gọi là số hoán vị chập $m$ của $n$ phần tử, ký hiệu $\mathrm A_n^m$ (hoặc $\mathrm P_n^m$).
+
+Công thức tính số hoán vị:
 
 $$
 \mathrm A_n^m = n(n-1)(n-2) \cdots (n-m+1) = \frac{n!}{(n - m)!}
 $$
 
-$n!$ 代表 $n$ 的阶乘，即 $6! = 1 \times 2 \times 3 \times 4 \times 5 \times 6$．
+$n!$ là giai thừa của $n$, ví dụ $6! = 1 \times 2 \times 3 \times 4 \times 5 \times 6$.
 
-公式可以这样理解：$n$ 个人选 $m$ 个来排队 ($m \le n$)．第一个位置可以选 $n$ 个，第二位置可以选 $n-1$ 个，以此类推，第 $m$ 个（最后一个）可以选 $n-m+1$ 个，得：
+Có thể hiểu công thức như sau: chọn $m$ người trong $n$ người để xếp hàng ($m \le n$). Vị trí thứ nhất có $n$ cách chọn, vị trí thứ hai có $n-1$ cách chọn, tiếp tục như vậy, vị trí thứ $m$ (vị trí cuối) có $n-m+1$ cách chọn. Do đó:
 
 $$
 \mathrm A_n^m = n(n-1)(n-2) \cdots (n-m+1) = \frac{n!}{(n - m)!}
 $$
 
-全排列：$n$ 个人全部来排队，队长为 $n$．第一个位置可以选 $n$ 个，第二位置可以选 $n-1$ 个，以此类推得：
+Hoán vị toàn phần: tất cả $n$ người đều xếp hàng, độ dài hàng là $n$. Vị trí thứ nhất có $n$ cách chọn, vị trí thứ hai có $n-1$ cách chọn, tiếp tục như vậy:
 
 $$
 \mathrm A_n^n = n(n-1)(n-2) \cdots 3 \times 2 \times 1 = n!
 $$
 
-全排列是排列数的一个特殊情况．
+Hoán vị toàn phần là một trường hợp đặc biệt của số hoán vị.
 
-### 组合数
+<span id="&#x7EC4;&#x5408;&#x6570;"></span>
 
-从 $n$ 个不同元素中，任取 $m \leq n$ 个元素组成一个集合，叫做从 $n$ 个不同元素中取出 $m$ 个元素的一个组合；从 $n$ 个不同元素中取出 $m \leq n$ 个元素的所有组合的个数，叫做从 $n$ 个不同元素中取出 $m$ 个元素的组合数，用符号 $\dbinom{n}{m}$ 来表示，读作「$n$ 选 $m$」．
+### Số tổ hợp
 
-组合数计算公式
+Từ $n$ phần tử khác nhau, chọn tùy ý $m \leq n$ phần tử để tạo thành một tập, ta gọi đó là một tổ hợp chập $m$ của $n$ phần tử khác nhau. Số tất cả các tổ hợp chập $m \leq n$ của $n$ phần tử khác nhau được gọi là số tổ hợp chập $m$ của $n$ phần tử, ký hiệu $\dbinom{n}{m}$, đọc là "$n$ chọn $m$".
+
+Công thức tính số tổ hợp:
 
 $$
 \dbinom{n}{m} = \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n - m)!}
 $$
 
-如何理解上述公式？我们考虑 $n$ 个人选 $m$ 个出来（$m \le n$），不排队，不在乎顺序．如果在乎顺序那么就是 $\mathrm A_n^m$，如果不在乎那么就要除掉重复，那么重复了多少？同样选出来的 $m$ 个人，他们还要「全排」得 $m!$，所以得：
+Hiểu công thức trên như thế nào? Xét việc chọn $m$ người từ $n$ người ($m \le n$), không xếp hàng, không quan tâm thứ tự. Nếu quan tâm thứ tự thì số cách là $\mathrm A_n^m$; nếu không quan tâm thứ tự thì phải chia cho số lần trùng lặp. Trùng lặp bao nhiêu lần? Cùng một nhóm $m$ người được chọn có thể được sắp xếp toàn phần theo $m!$ cách, nên:
 
 $$
 \begin{aligned}
@@ -61,59 +75,67 @@ $$
 \end{aligned}
 $$
 
-组合数也常用 $\mathrm C_n^m$ 表示，即 $\displaystyle \mathrm C_n^m=\binom{n}{m}$．现在数学界普遍采用 $\dbinom{n}{m}$ 的记号而非 $\mathrm C_n^m$．
+Số tổ hợp cũng thường được ký hiệu là $\mathrm C_n^m$, tức $\displaystyle \mathrm C_n^m=\binom{n}{m}$. Hiện nay trong toán học, ký hiệu $\dbinom{n}{m}$ phổ biến hơn $\mathrm C_n^m$.
 
-组合数也被称为「二项式系数」，下文二项式定理将会阐述其中的联系．
+Số tổ hợp còn được gọi là "hệ số nhị thức"; phần định lý nhị thức bên dưới sẽ trình bày mối liên hệ này.
 
-特别地，规定当 $m>n$ 时，$\mathrm A_n^m=\dbinom{n}{m}=0$．
+Đặc biệt, quy ước khi $m>n$ thì $\mathrm A_n^m=\dbinom{n}{m}=0$.
 
-## 插板法
+<span id="&#x63D2;&#x677F;&#x6CD5;"></span>
 
-插板法（Stars and bars）是用于求一类给相同元素分组的方案数的一种技巧，也可以用于求一类线性不定方程的解的组数．
+## Phương pháp thanh ngăn
 
-### 正整数和的数目
+Phương pháp thanh ngăn (Stars and bars) là một kỹ thuật để đếm số phương án chia nhóm các phần tử giống nhau, và cũng có thể dùng để đếm số nghiệm của một lớp phương trình bất định tuyến tính.
 
-问题一：现有 $n$ 个 **完全相同** 的元素，要求将其分为 $k$ 组，保证每组至少有一个元素，一共有多少种分法？
+<span id="&#x6B63;&#x6574;&#x6570;&#x548C;&#x7684;&#x6570;&#x76EE;"></span>
 
-考虑拿 $k - 1$ 块板子插入到 $n$ 个元素两两形成的 $n - 1$ 个空里面．
+### Số cách có tổng là số nguyên dương
 
-因为元素是完全相同的，所以答案就是 $\dbinom{n - 1}{k - 1}$．
+Bài toán 1: Có $n$ phần tử **hoàn toàn giống nhau**, cần chia chúng thành $k$ nhóm, mỗi nhóm có ít nhất một phần tử. Có bao nhiêu cách chia?
 
-本质是求 $x_1+x_2+\cdots+x_k=n$ 的正整数解的组数．
+Xét chèn $k - 1$ thanh ngăn vào $n - 1$ khoảng trống được tạo bởi các cặp phần tử liên tiếp trong $n$ phần tử.
 
-### 非负整数和的数目
+Vì các phần tử hoàn toàn giống nhau, đáp án là $\dbinom{n - 1}{k - 1}$.
 
-问题二：如果问题变化一下，每组允许为空呢？
+Bản chất là đếm số nghiệm nguyên dương của $x_1+x_2+\cdots+x_k=n$.
 
-显然此时没法直接插板了，因为有可能出现很多块板子插到一个空里面的情况，非常不好计算．
+<span id="&#x975E;&#x8D1F;&#x6574;&#x6570;&#x548C;&#x7684;&#x6570;&#x76EE;"></span>
 
-我们考虑创造条件转化成有限制的问题一，先借 $k$ 个元素过来，在这 $n + k$ 个元素形成的 $n + k - 1$ 个空里面插板，答案为
+### Số cách có tổng là số nguyên không âm
+
+Bài toán 2: Nếu thay đổi để mỗi nhóm được phép rỗng thì sao?
+
+Lúc này rõ ràng không thể trực tiếp chèn thanh ngăn, vì có thể xảy ra trường hợp nhiều thanh ngăn cùng nằm trong một khoảng, rất khó tính.
+
+Ta tạo điều kiện để chuyển về bài toán 1 có ràng buộc: mượn trước $k$ phần tử, rồi chèn thanh ngăn vào $n + k - 1$ khoảng được tạo bởi $n + k$ phần tử. Đáp án là
 
 $$
 \binom{n + k - 1}{k - 1} = \binom{n + k - 1}{n}
 $$
 
-虽然不是直接求的原问题，但这个式子就是原问题的答案，可以这么理解：
+Dù không trực tiếp giải bài toán gốc, biểu thức này chính là đáp án của bài toán gốc. Có thể hiểu như sau:
 
-开头我们借来了 $k$ 个元素，用于保证每组至少有一个元素，插完板之后再把这 $k$ 个借来的元素从 $k$ 组里面拿走．因为元素是相同的，所以转化过的情况和转化前的情况可以一一对应，答案也就是相等的．
+Ban đầu ta mượn $k$ phần tử để đảm bảo mỗi nhóm có ít nhất một phần tử; sau khi chèn thanh ngăn xong, lấy lại $k$ phần tử đã mượn khỏi $k$ nhóm. Vì các phần tử giống nhau, các trường hợp sau khi biến đổi và trước khi biến đổi tương ứng một-một, nên đáp án bằng nhau.
 
-由此可以推导出插板法的公式：$\dbinom{n + k - 1}{n}$．
+Từ đó suy ra công thức của phương pháp thanh ngăn: $\dbinom{n + k - 1}{n}$.
 
-本质是求 $x_1+x_2+\cdots+x_k=n$ 的非负整数解的组数（即要求 $x_i \ge 0$）．
+Bản chất là đếm số nghiệm nguyên không âm của $x_1+x_2+\cdots+x_k=n$ (tức yêu cầu $x_i \ge 0$).
 
-### 不同下界整数和的数目
+<span id="&#x4E0D;&#x540C;&#x4E0B;&#x754C;&#x6574;&#x6570;&#x548C;&#x7684;&#x6570;&#x76EE;"></span>
 
-问题三：如果再扩展一步，要求对于第 $i$ 组，至少要分到 $a_i,\sum a_i \le n$ 个元素呢？
+### Số cách có tổng với các cận dưới khác nhau
 
-本质是求 $x_1+x_2+\cdots+x_k=n$ 的解的数目，其中 $x_i \ge a_i$．
+Bài toán 3: Mở rộng thêm một bước, nếu yêu cầu nhóm thứ $i$ phải nhận ít nhất $a_i$ phần tử, với $\sum a_i \le n$, thì sao?
 
-类比无限制的情况，我们借 $\sum a_i$ 个元素过来，保证第 $i$ 组至少能分到 $a_i$ 个．也就是令
+Bản chất là đếm số nghiệm của $x_1+x_2+\cdots+x_k=n$, trong đó $x_i \ge a_i$.
+
+Tương tự trường hợp không ràng buộc, ta mượn $\sum a_i$ phần tử để đảm bảo nhóm thứ $i$ có ít nhất $a_i$ phần tử. Đặt
 
 $$
 x_i^{\prime}=x_i-a_i
 $$
 
-得到新方程：
+Thu được phương trình mới:
 
 $$
 \begin{aligned}
@@ -123,100 +145,112 @@ x_1^{\prime}+x_2^{\prime}+\cdots+x_k^{\prime}&=n-\sum a_i
 \end{aligned}
 $$
 
-其中
+trong đó
 
 $$
 x_i^{\prime}\ge 0
 $$
 
-然后问题三就转化成了问题二，直接用插板法公式得到答案为
+Khi đó bài toán 3 được chuyển về bài toán 2; dùng trực tiếp công thức thanh ngăn, đáp án là
 
 $$
 \binom{n - \sum a_i + k - 1}{n - \sum a_i}
 $$
 
-### 不相邻的排列
+<span id="&#x4E0D;&#x76F8;&#x90BB;&#x7684;&#x6392;&#x5217;"></span>
 
-$1 \sim n$ 这 $n$ 个自然数中选 $k$ 个，这 $k$ 个数中任何两个数都不相邻的组合有 $\dbinom {n-k+1}{k}$ 种．
+### Các cách chọn không kề nhau
 
-## 二项式定理
+Chọn $k$ số trong $n$ số tự nhiên $1 \sim n$ sao cho không có hai số nào kề nhau, số tổ hợp là $\dbinom {n-k+1}{k}$.
 
-在进入排列组合进阶篇之前，我们先介绍一个与组合数密切相关的定理——二项式定理．
+<span id="&#x4E8C;&#x9879;&#x5F0F;&#x5B9A;&#x7406;"></span>
 
-二项式定理阐明了一个展开式的系数：
+## Định lý nhị thức
+
+Trước khi vào phần nâng cao về hoán vị và tổ hợp, ta giới thiệu một định lý có liên quan chặt chẽ với số tổ hợp: định lý nhị thức.
+
+Định lý nhị thức mô tả các hệ số trong khai triển:
 
 $$
 (a+b)^n=\sum_{i=0}^n\binom{n}{i}a^{n-i}b^i
 $$
 
-证明可以采用数学归纳法，利用 $\dbinom{n}{k}+\dbinom{n}{k-1}=\dbinom{n+1}{k}$ 做归纳．
+Có thể chứng minh bằng quy nạp toán học, sử dụng $\dbinom{n}{k}+\dbinom{n}{k-1}=\dbinom{n+1}{k}$ trong bước quy nạp.
 
-二项式定理也可以很容易扩展为多项式的形式：
+Định lý nhị thức cũng dễ dàng mở rộng sang dạng đa thức:
 
-设 $n$ 为正整数，$x_i$ 为实数，
+Cho $n$ là số nguyên dương, $x_i$ là số thực,
 
 $$
-(x_1 + x_2 + \cdots + x_t)^n = \sum_{满足 n_1 + \cdots + n_t=n 的非负整数解} \binom{n}{n_1,n_2,\cdots,n_t} x_1^{n_1}x_2^{n_2}\cdots x_t^{n_t}
+(x_1 + x_2 + \cdots + x_t)^n = \sum_{\substack{n_1+\cdots+n_t=n\\n_i\ge 0}} \binom{n}{n_1,n_2,\cdots,n_t} x_1^{n_1}x_2^{n_2}\cdots x_t^{n_t}
 $$
 
-其中的 $\dbinom{n}{n_1,n_2,\cdots,n_t}$ 是多项式系数，它的性质也很相似：
+Trong đó $\dbinom{n}{n_1,n_2,\cdots,n_t}$ là hệ số đa thức, và nó có tính chất tương tự:
 
 $$
 \sum{\binom{n}{n_1,n_2,\cdots,n_t}} = t^n
 $$
 
-## 排列与组合进阶篇
+<span id="&#x6392;&#x5217;&#x4E0E;&#x7EC4;&#x5408;&#x8FDB;&#x9636;&#x7BC7;"></span>
 
-接下来我们介绍一些排列组合的变种．
+## Hoán vị và tổ hợp nâng cao
 
-### 多重集的排列数 | 多重组合数
+Tiếp theo ta giới thiệu một số biến thể của hoán vị và tổ hợp.
 
-请大家一定要区分 **多重组合数** 与 **多重集的组合数**！两者是完全不同的概念！
+<span id="&#x591A;&#x91CD;&#x96C6;&#x7684;&#x6392;&#x5217;&#x6570;-&#x591A;&#x91CD;&#x7EC4;&#x5408;&#x6570;"></span>
 
-多重集是指包含重复元素的广义集合．设 $S=\{n_1\cdot a_1,n_2\cdot a_2,\cdots,n_k\cdot a_k\}$ 表示由 $n_1$ 个 $a_1$，$n_2$ 个 $a_2$，…，$n_k$ 个 $a_k$ 组成的多重集，$S$ 的全排列个数为
+### Số hoán vị của đa tập | Hệ số đa thức
+
+Cần phân biệt rõ **hệ số đa thức** với **số tổ hợp của đa tập**. Hai khái niệm này hoàn toàn khác nhau.
+
+Đa tập là một tập tổng quát có thể chứa các phần tử lặp. Đặt $S=\{n_1\cdot a_1,n_2\cdot a_2,\cdots,n_k\cdot a_k\}$ là đa tập gồm $n_1$ phần tử $a_1$, $n_2$ phần tử $a_2$, ..., $n_k$ phần tử $a_k$. Số hoán vị toàn phần của $S$ là
 
 $$
 \frac{n!}{\prod_{i=1}^kn_i!}=\frac{n!}{n_1!n_2!\cdots n_k!}
 $$
 
-相当于把相同元素的排列数除掉了．具体地，你可以认为你有 $k$ 种不一样的球，每种球的个数分别是 $n_1,n_2,\cdots,n_k$，且 $n=n_1+n_2+\ldots+n_k$．这 $n$ 个球的全排列数就是 **多重集的排列数**．多重集的排列数常被称作 **多重组合数**．我们可以用多重组合数的符号表示上式：
+Tương đương với việc chia bỏ số hoán vị của các phần tử giống nhau. Cụ thể, có thể xem ta có $k$ loại bóng khác nhau, mỗi loại có lần lượt $n_1,n_2,\cdots,n_k$ quả, và $n=n_1+n_2+\ldots+n_k$. Số hoán vị toàn phần của $n$ quả bóng này chính là **số hoán vị của đa tập**. Số hoán vị của đa tập thường được gọi là **hệ số đa thức**. Ta có thể dùng ký hiệu hệ số đa thức để biểu diễn công thức trên:
 
 $$
 \binom{n}{n_1,n_2,\cdots,n_k}=\frac{n!}{\prod_{i=1}^kn_i!}
 $$
 
-可以看出，$\dbinom{n}{m}$ 等价于 $\dbinom{n}{m,n-m}$，只不过后者较为繁琐，因而不采用．
+Có thể thấy $\dbinom{n}{m}$ tương đương với $\dbinom{n}{m,n-m}$, nhưng cách viết sau dài dòng hơn nên thường không dùng.
 
-### 多重集的组合数 1
+<span id="&#x591A;&#x91CD;&#x96C6;&#x7684;&#x7EC4;&#x5408;&#x6570;-1"></span>
 
-设 $S=\{n_1\cdot a_1,n_2\cdot a_2,\cdots,n_k\cdot a_k\}$ 表示由 $n_1$ 个 $a_1$，$n_2$ 个 $a_2$，…，$n_k$ 个 $a_k$ 组成的多重集．那么对于整数 $r(r<n_i,\forall i\in[1,k])$，从 $S$ 中选择 $r$ 个元素组成一个多重集的方案数就是 **多重集的组合数**．这个问题等价于 $x_1+x_2+\cdots+x_k=r$ 的非负整数解的数目，可以用插板法解决，答案为
+### Số tổ hợp của đa tập 1
+
+Đặt $S=\{n_1\cdot a_1,n_2\cdot a_2,\cdots,n_k\cdot a_k\}$ là đa tập gồm $n_1$ phần tử $a_1$, $n_2$ phần tử $a_2$, ..., $n_k$ phần tử $a_k$. Với số nguyên $r(r<n_i,\forall i\in[1,k])$, số cách chọn $r$ phần tử từ $S$ để tạo thành một đa tập chính là **số tổ hợp của đa tập**. Bài toán này tương đương với số nghiệm nguyên không âm của $x_1+x_2+\cdots+x_k=r$, có thể giải bằng phương pháp thanh ngăn, đáp án là
 
 $$
 \binom{r+k-1}{k-1}
 $$
 
-### 多重集的组合数 2
+<span id="&#x591A;&#x91CD;&#x96C6;&#x7684;&#x7EC4;&#x5408;&#x6570;-2"></span>
 
-考虑这个问题：设 $S=\{n_1\cdot a_1,n_2\cdot a_2,\cdots,n_k\cdot a_k,\}$ 表示由 $n_1$ 个 $a_1$，$n_2$ 个 $a_2$，…，$n_k$ 个 $a_k$ 组成的多重集．那么对于正整数 $r$，从 $S$ 中选择 $r$ 个元素组成一个多重集的方案数．
+### Số tổ hợp của đa tập 2
 
-这样就限制了每种元素的取的个数．同样的，我们可以把这个问题转化为带限制的线性方程求解：
+Xét bài toán: đặt $S=\{n_1\cdot a_1,n_2\cdot a_2,\cdots,n_k\cdot a_k,\}$ là đa tập gồm $n_1$ phần tử $a_1$, $n_2$ phần tử $a_2$, ..., $n_k$ phần tử $a_k$. Với số nguyên dương $r$, cần đếm số cách chọn $r$ phần tử từ $S$ để tạo thành một đa tập.
+
+Lúc này số lượng phần tử mỗi loại được chọn bị giới hạn. Tương tự, ta có thể chuyển bài toán này thành việc giải phương trình tuyến tính có ràng buộc:
 
 $$
 \forall i\in [1,k],\ x_i\le n_i,\ \sum_{i=1}^kx_i=r
 $$
 
-于是很自然地想到了容斥原理．容斥的模型如下：
+Khi đó nguyên lý bao hàm-loại trừ xuất hiện rất tự nhiên. Mô hình bao hàm-loại trừ như sau:
 
-1.  全集：$\displaystyle \sum_{i=1}^kx_i=r$ 的非负整数解．
-2.  属性：$x_i\le n_i$．
+1.  Tập vũ trụ: các nghiệm nguyên không âm của $\displaystyle \sum_{i=1}^kx_i=r$.
+2.  Thuộc tính: $x_i\le n_i$.
 
-于是设满足属性 $i$ 的集合是 $S_i$，$\overline{S_i}$ 表示不满足属性 $i$ 的集合，即满足 $x_i\ge n_i+1$ 的集合（转化为上面插板法的问题三）．那么答案即为
+Đặt tập thỏa thuộc tính $i$ là $S_i$, $\overline{S_i}$ là tập không thỏa thuộc tính $i$, tức tập thỏa $x_i\ge n_i+1$ (chuyển về bài toán 3 của phương pháp thanh ngăn ở trên). Khi đó đáp án là
 
 $$
 \left|\bigcap_{i=1}^kS_i\right|=|U|-\left|\bigcup_{i=1}^k\overline{S_i}\right|
 $$
 
-根据容斥原理，有：
+Theo nguyên lý bao hàm-loại trừ:
 
 $$
 \begin{aligned}
@@ -233,132 +267,140 @@ $$
 \end{aligned}
 $$
 
-拿全集 $\displaystyle |U|=\binom{k+r-1}{k-1}$ 减去上式，得到多重集的组合数
+Lấy tập vũ trụ $\displaystyle |U|=\binom{k+r-1}{k-1}$ trừ biểu thức trên, ta thu được số tổ hợp của đa tập:
 
 $$
 Ans=\sum_{p=0}^k(-1)^p\sum_{A}\binom{k+r-1-\sum_{A} n_{A_i}-p}{k-1}
 $$
 
-其中 A 是充当枚举子集的作用，满足 $|A|=p,\ A_i<A_{i+1}$．
+Trong đó $A$ đóng vai trò tập con đang được liệt kê, thỏa $|A|=p,\ A_i<A_{i+1}$.
 
-### 圆排列
+<span id="&#x5706;&#x6392;&#x5217;"></span>
 
-$n$ 个人全部来围成一圈，所有的排列数记为 $\mathrm Q_n^n$．考虑其中已经排好的一圈，从不同位置断开，又变成不同的队列．
-所以有
+### Hoán vị vòng tròn
+
+Cho $n$ người đứng thành một vòng tròn, số cách sắp xếp được ký hiệu $\mathrm Q_n^n$. Xét một vòng tròn đã sắp xếp xong; nếu cắt vòng tròn tại các vị trí khác nhau, ta lại thu được các hàng dọc khác nhau.
+Do đó
 
 $$
 \mathrm Q_n^n \times n = \mathrm A_n^n \Longrightarrow \mathrm Q_n = \frac{\mathrm A_n^n}{n} = (n-1)!
 $$
 
-由此可知部分圆排列的公式：
+Từ đó suy ra công thức cho hoán vị vòng tròn chập một phần:
 
 $$
 \mathrm Q_n^r = \frac{\mathrm A_n^r}{r} = \frac{n!}{r \times (n-r)!}
 $$
 
-## 组合数性质 | 二项式推论
+<span id="&#x7EC4;&#x5408;&#x6570;&#x6027;&#x8D28;-&#x4E8C;&#x9879;&#x5F0F;&#x63A8;&#x8BBA;"></span><span id="tinh-chat-cua-so-to-hop-he-qua-nhi-thuc"></span>
 
-由于组合数在 OI 中十分重要，因此在此介绍一些组合数的性质．
+## Tính chất của số tổ hợp | Hệ quả nhị thức
+
+Vì số tổ hợp rất quan trọng trong OI, phần này giới thiệu một số tính chất của chúng.
 
 $$
 \binom{n}{m}=\binom{n}{n-m}\tag{1}
 $$
 
-相当于将选出的集合对全集取补集，故数值不变．（对称性）
+Tương đương với việc lấy phần bù của tập được chọn trong tập vũ trụ, nên giá trị không đổi. (Tính đối xứng)
 
 $$
 \binom{n}{k} = \frac{n}{k} \binom{n-1}{k-1}\tag{2}
 $$
 
-由定义导出的递推式．
+Hệ thức truy hồi suy ra từ định nghĩa.
 
 $$
 \binom{n}{m}=\binom{n-1}{m}+\binom{n-1}{m-1}\tag{3}
 $$
 
-组合数的递推式（杨辉三角的公式表达）．我们可以利用这个式子，在 $O(n^2)$ 的复杂度下推导组合数．
+Hệ thức truy hồi của số tổ hợp (cách biểu diễn công thức của tam giác Pascal). Có thể dùng công thức này để suy ra các số tổ hợp với độ phức tạp $O(n^2)$.
 
 $$
 \binom{n}{0}+\binom{n}{1}+\cdots+\binom{n}{n}=\sum_{i=0}^n\binom{n}{i}=2^n\tag{4}
 $$
 
-这是二项式定理的特殊情况．取 $a=b=1$ 就得到上式．
+Đây là trường hợp đặc biệt của định lý nhị thức. Lấy $a=b=1$ sẽ thu được hệ thức trên.
 
 $$
 \sum_{i=0}^n(-1)^i\binom{n}{i}=[n=0]\tag{5}
 $$
 
-二项式定理的另一种特殊情况，可取 $a=1, b=-1$．式子的特殊情况是取 $n=0$ 时答案为 $1$．
+Đây là một trường hợp đặc biệt khác của định lý nhị thức, lấy $a=1, b=-1$. Trường hợp riêng của công thức là khi $n=0$, đáp án bằng $1$.
 
 $$
 \sum_{i=0}^k \binom{n}{i}\binom{m}{k-i} = \binom{m+n}{k}\tag{6}
 $$
 
-拆组合数的式子，在处理某些数据结构题时会用到．被称为 [范德蒙恒等式](https://en.wikipedia.org/wiki/Vandermonde%27s_identity)．
+Đây là công thức tách số tổ hợp, thường dùng khi xử lý một số bài về cấu trúc dữ liệu. Nó được gọi là [đồng nhất thức Vandermonde](https://en.wikipedia.org/wiki/Vandermonde%27s_identity).
 
 $$
 \sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}\tag{7}
 $$
 
-这是 $(6)$ 的特殊情况，取 $n=k=m$ 即可．
+Đây là trường hợp đặc biệt của $(6)$, chỉ cần lấy $n=k=m$.
 
 $$
 \sum_{i=0}^ni\binom{n}{i}=n2^{n-1}\tag{8}
 $$
 
-带权和的一个式子，通过对 $(4)$ 对应的多项式函数求导可以得证．
+Một công thức tổng có trọng số; có thể chứng minh bằng cách lấy đạo hàm hàm đa thức tương ứng với $(4)$.
 
 $$
 \sum_{i=0}^ni^2\binom{n}{i}=n(n+1)2^{n-2}\tag{9}
 $$
 
-与上式类似，可以通过对多项式函数求导证明．
+Tương tự công thức trên, có thể chứng minh bằng đạo hàm hàm đa thức.
 
 $$
 \sum_{l=0}^n\binom{l}{k} = \binom{n+1}{k+1}\tag{10}
 $$
 
-通过组合分析一一考虑 $S=\{a_1, a_2, \cdots, a_{n+1}\}$ 的 $k+1$ 子集数可以得证，在恒等式证明中比较常用．被称为 [朱世杰恒等式](https://en.wikipedia.org/wiki/Hockey-stick_identity)．
+Có thể chứng minh bằng phân tích tổ hợp, xét từng tập con kích thước $k+1$ của $S=\{a_1, a_2, \cdots, a_{n+1}\}$. Công thức này khá thường dùng trong chứng minh đồng nhất thức, và được gọi là [đồng nhất thức hockey-stick](https://en.wikipedia.org/wiki/Hockey-stick_identity).
 
 $$
 \binom{n}{r}\binom{r}{k} = \binom{n}{k}\binom{n-k}{r-k}\tag{11}
 $$
 
-通过定义可以证明．
+Có thể chứng minh bằng định nghĩa.
 
 $$
 \sum_{i=0}^n\binom{n-i}{i}=F_{n+1}\tag{12}
 $$
 
-其中 $F$ 是斐波那契数列．
+Trong đó $F$ là dãy Fibonacci.
 
 $$
 \binom{n+k}{k}^2=\sum_{j=0}^k\binom{k}{j}^2\binom{n+2k-j}{2k}\tag{13}
 $$
 
-通过 $(6)$ 可以证明．被称为 [李善兰恒等式](https://en.wikipedia.org/wiki/Li_Shanlan_identity)．
+Có thể chứng minh bằng $(6)$. Công thức này được gọi là [đồng nhất thức Li Shanlan](https://en.wikipedia.org/wiki/Li_Shanlan_identity).
 
-## 二项式反演
+<span id="&#x4E8C;&#x9879;&#x5F0F;&#x53CD;&#x6F14;"></span>
 
-记 $f_n$ 表示恰好使用 $n$ 个不同元素形成特定结构的方案数，$g_n$ 表示从 $n$ 个不同元素中选出 $i \geq 0$ 个元素形成特定结构的总方案数．
+## Nghịch đảo nhị thức
 
-若已知 $f_n$ 求 $g_n$，那么显然有：
+Ký hiệu $f_n$ là số phương án tạo một cấu trúc nhất định bằng đúng $n$ phần tử khác nhau, và $g_n$ là tổng số phương án tạo cấu trúc đó bằng cách chọn $i \geq 0$ phần tử từ $n$ phần tử khác nhau.
+
+Nếu biết $f_n$ và cần tính $g_n$, rõ ràng có:
 
 $$
 g_n = \sum_{i = 0}^{n} \binom{n}{i} f_i
 $$
 
-若已知 $g_n$ 求 $f_n$，那么：
+Nếu biết $g_n$ và cần tính $f_n$, thì:
 
 $$
 f_n = \sum_{i = 0}^{n} \binom{n}{i} (-1)^{n-i} g_i
 $$
 
-上述已知 $g_n$ 求 $f_n$ 的过程，就称为 **二项式反演**．
+Quá trình tính $f_n$ từ $g_n$ như trên được gọi là **nghịch đảo nhị thức**.
 
-### 证明
+<span id="&#x8BC1;&#x660E;"></span>
 
-将反演公式的 $g_i$ 展开得到：
+### Chứng minh
+
+Khai triển $g_i$ trong công thức nghịch đảo:
 
 $$
 \begin{aligned}
@@ -367,7 +409,7 @@ f_n &= \sum_{i = 0}^{n} \binom{n}{i} (-1)^{n-i} \left[\sum_{j = 0}^{i} \binom{i}
 \end{aligned}
 $$
 
-先枚举 $j$，再枚举 $i$，得到：
+Liệt kê $j$ trước, rồi liệt kê $i$, ta được:
 
 $$
 \begin{aligned}
@@ -376,7 +418,7 @@ f_n &= \sum_{j = 0}^{n}\sum_{i = j}^{n}\binom{n}{i}\binom{i}{j} (-1)^{n-i}f_j \\
 \end{aligned}
 $$
 
-使用 [「组合数性质 | 二项式推论」](#组合数性质--二项式推论) 的公式 (11) 得到：
+Dùng công thức (11) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tinh-chat-cua-so-to-hop-he-qua-nhi-thuc), ta được:
 
 $$
 \begin{aligned}
@@ -385,16 +427,16 @@ f_n &= \sum_{j = 0}^{n}f_j\sum_{i = j}^{n}\binom{n}{j}\binom{n - j}{i - j} (-1)^
 \end{aligned}
 $$
 
-令 $k = i - j$．则 $i = k + j$，上式转换为：
+Đặt $k = i - j$. Khi đó $i = k + j$, biểu thức trên trở thành:
 
 $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j\sum_{k = 0}^{n - j}\binom{n - j}{k} (-1)^{n-j-k}1^{k}
 $$
 
-使用 [「组合数性质 | 二项式推论」](#组合数性质--二项式推论) 的公式 (5) 得到：
+Dùng công thức (5) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tinh-chat-cua-so-to-hop-he-qua-nhi-thuc), ta được:
 
 $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j[n = j] = f_n
 $$
 
-证毕．
+Chứng minh hoàn tất.

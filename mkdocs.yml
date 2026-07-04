@@ -286,22 +286,22 @@ nav:
       - Hợp thành chuỗi lũy thừa hình thức | nghịch đảo hợp thành: math/poly/comp-rev.md
       - Hàm sinh thường: math/poly/ogf.md
       - Hàm sinh mũ: math/poly/egf.md
-    - 组合数学:
-      - 排列组合: math/combinatorics/combination.md
-      - 抽屉原理: math/combinatorics/drawer-principle.md
-      - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
-      - 斐波那契数列: math/combinatorics/fibonacci.md
-      - 错位排列: math/combinatorics/derangement.md
-      - 卡特兰数: math/combinatorics/catalan.md
-      - 斯特林数: math/combinatorics/stirling.md
-      - 贝尔数: math/combinatorics/bell.md
-      - 伯努利数: math/combinatorics/bernoulli.md
+    - Tổ hợp:
+      - Hoán vị và tổ hợp: math/combinatorics/combination.md
+      - Nguyên lý Dirichlet: math/combinatorics/drawer-principle.md
+      - Nguyên lý bao hàm-loại trừ: math/combinatorics/inclusion-exclusion-principle.md
+      - Dãy Fibonacci: math/combinatorics/fibonacci.md
+      - Hoán vị lệch: math/combinatorics/derangement.md
+      - Số Catalan: math/combinatorics/catalan.md
+      - Số Stirling: math/combinatorics/stirling.md
+      - Số Bell: math/combinatorics/bell.md
+      - Số Bernoulli: math/combinatorics/bernoulli.md
       - Entringer Number: math/combinatorics/entringer.md
       - Eulerian Number: math/combinatorics/eulerian.md
-      - 分拆数: math/combinatorics/partition.md
-      - 范德蒙德卷积: math/combinatorics/vandermonde-convolution.md
-      - Pólya 计数: math/combinatorics/polya.md
-      - 图论计数: math/combinatorics/graph-enumeration.md
+      - Số phân hoạch: math/combinatorics/partition.md
+      - Tích chập Vandermonde: math/combinatorics/vandermonde-convolution.md
+      - Đếm Pólya: math/combinatorics/polya.md
+      - Đếm trong lý thuyết đồ thị: math/combinatorics/graph-enumeration.md
     - 线性代数:
       - 线性代数简介: math/linear-algebra/index.md
       - 向量: math/linear-algebra/vector.md

@@ -1,14 +1,17 @@
-## 错位排列
+<span id="&#38169;&#20301;&#25490;&#21015;"></span>
+## Hoán vị sai vị trí
 
-### 定义
+<span id="&#23450;&#20041;"></span>
+### Định nghĩa
 
-错位排列（derangement）是没有任何元素出现在其有序位置的排列．即，对于 $1\sim n$ 的排列 $P$，如果满足 $P_i\neq i$，则称 $P$ 是 $n$ 的错位排列．
+Hoán vị sai vị trí (derangement) là một hoán vị mà không có phần tử nào nằm ở vị trí đúng của nó. Cụ thể, với một hoán vị $P$ của $1\sim n$, nếu $P_i\neq i$ với mọi $i$, thì $P$ được gọi là một hoán vị sai vị trí của $n$ phần tử.
 
-例如，三元错位排列有 $\{2,3,1\}$ 和 $\{3,1,2\}$．四元错位排列有 $\{2,1,4,3\}$、$\{2,3,4,1\}$、$\{2,4,1,3\}$、$\{3,1,4,2\}$、$\{3,4,1,2\}$、$\{3,4,2,1\}$、$\{4,1,2,3\}$、$\{4,3,1,2\}$ 和 $\{4,3,2,1\}$．错位排列是没有不动点的排列，即没有长度为 1 的循环．
+Ví dụ, các hoán vị sai vị trí của 3 phần tử là $\{2,3,1\}$ và $\{3,1,2\}$. Các hoán vị sai vị trí của 4 phần tử là $\{2,1,4,3\}$, $\{2,3,4,1\}$, $\{2,4,1,3\}$, $\{3,1,4,2\}$, $\{3,4,1,2\}$, $\{3,4,2,1\}$, $\{4,1,2,3\}$, $\{4,3,1,2\}$ và $\{4,3,2,1\}$. Hoán vị sai vị trí là hoán vị không có điểm bất động, tức là không có chu trình độ dài 1.
 
-### 容斥原理的计算
+<span id="&#23481;&#26021;&#21407;&#29702;&#30340;&#35745;&#31639;"></span>
+### Tính bằng nguyên lý bao hàm - loại trừ
 
-全集 $U$ 即为 $1\sim n$ 的排列，$|U|=n!$；令 $S_i$ 是其中满足 $P_i\neq i$ 的排列．运用补集和 [容斥原理](./inclusion-exclusion-principle.md) 的知识，问题变成求：
+Tập toàn cục $U$ là tập các hoán vị của $1\sim n$, nên $|U|=n!$; đặt $S_i$ là tập các hoán vị thỏa mãn $P_i\neq i$. Dùng bổ đề về phần bù và [nguyên lý bao hàm - loại trừ](./inclusion-exclusion-principle.md), bài toán trở thành tính:
 
 $$
 \begin{aligned}
@@ -18,19 +21,19 @@ $$
 \end{aligned}
 $$
 
-其中求和的含义是 $1, 2, \cdots, n$ 中取 $a_1, a_2, \cdots, a_k$ 且满足 $a_i<a_{i+1}$．于是
+Trong đó tổng bên trong có nghĩa là chọn $a_1, a_2, \cdots, a_k$ từ $1, 2, \cdots, n$ sao cho $a_i<a_{i+1}$. Khi đó
 
 $$
 \left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|
 $$
 
-表示有 $k$ 个数 $a_1,a_2,\cdots,a_k$ 满足 $P_{a_i}=a_i$，而剩下 $n-k$ 个数的位置任意的排列数，因此：
+biểu thị số hoán vị có $k$ số $a_1,a_2,\cdots,a_k$ thỏa mãn $P_{a_i}=a_i$, còn vị trí của $n-k$ số còn lại tùy ý. Vì vậy:
 
 $$
 \left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|=(n-k)!
 $$
 
-这 $k$ 个数的选择情况共 $\dbinom{n}{k}$ 种，对其求和有：
+Có $\dbinom{n}{k}$ cách chọn $k$ số này, nên sau khi lấy tổng ta có:
 
 $$
 \begin{aligned}
@@ -41,52 +44,54 @@ $$
 \end{aligned}
 $$
 
-因此 $n$ 个元素的错位排列数为：
+Do đó số hoán vị sai vị trí của $n$ phần tử là:
 
 $$
 D_n=n!-n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}=n!\sum_{k=0}^n\frac{(-1)^k}{k!}
 $$
 
-错位排列数列的前几项为 $0,1,2,9,44,265$（[OEIS A000166](http://oeis.org/A000166)）．
+Một vài số hạng đầu của dãy số hoán vị sai vị trí là $0,1,2,9,44,265$ ([OEIS A000166](http://oeis.org/A000166)).
 
-### 递推的计算
+<span id="&#36882;&#25512;&#30340;&#35745;&#31639;"></span>
+### Tính bằng truy hồi
 
-把错位排列问题具体化，考虑这样一个问题：
+Cụ thể hóa bài toán hoán vị sai vị trí, xét bài toán sau:
 
-$n$ 封不同的信，编号分别是 $1,2,3,4,5$，现在要把这五封信放在编号 $1,2,3,4,5$ 的信封中，要求信封的编号与信的编号不一样．问有多少种不同的放置方法？
+Có $n$ lá thư khác nhau, được đánh số $1,2,3,4,5$, cần đặt năm lá thư này vào các phong bì đánh số $1,2,3,4,5$, sao cho số trên phong bì khác với số trên lá thư. Hỏi có bao nhiêu cách đặt khác nhau?
 
-假设考虑到第 $n$ 个信封，初始时暂时把第 $n$ 封信放在第 $n$ 个信封中，然后考虑两种情况的递推：
+Giả sử xét đến phong bì thứ $n$. Ban đầu tạm đặt lá thư thứ $n$ vào phong bì thứ $n$, rồi xét hai trường hợp truy hồi:
 
--   前面 $n-1$ 个信封全部装错；
--   前面 $n-1$ 个信封有一个没有装错其余全部装错．
+-   Toàn bộ $n-1$ phong bì phía trước đều đặt sai;
+-   Trong $n-1$ phong bì phía trước có đúng một phong bì đặt đúng, còn lại đều đặt sai.
 
-对于第一种情况，前面 $n-1$ 个信封全部装错：因为前面 $n-1$ 个已经全部装错了，所以第 $n$ 封只需要与前面任一一个位置交换即可，总共有 $D_{n-1}\times (n-1)$ 种情况．
+Với trường hợp thứ nhất, toàn bộ $n-1$ phong bì phía trước đều đặt sai. Vì $n-1$ phong bì đó đã sai hết, lá thư thứ $n$ chỉ cần đổi chỗ với bất kỳ vị trí nào phía trước, tổng cộng có $D_{n-1}\times (n-1)$ trường hợp.
 
-对于第二种情况，前面 $n-1$ 个信封有一个没有装错其余全部装错：考虑这种情况的目的在于，若 $n-1$ 个信封中如果有一个没装错，那么把那个没装错的与 $n$ 交换，即可得到一个全错位排列情况．
+Với trường hợp thứ hai, trong $n-1$ phong bì phía trước có một phong bì đặt đúng, còn lại đều đặt sai. Mục đích xét trường hợp này là: nếu trong $n-1$ phong bì có một phong bì chưa sai, đổi phong bì đó với phong bì thứ $n$ sẽ thu được một hoán vị sai vị trí hoàn toàn.
 
-其他情况，不可能通过一次操作来把它变成一个长度为 $n$ 的错排．
+Các trường hợp khác không thể biến thành một hoán vị sai vị trí độ dài $n$ chỉ bằng một thao tác.
 
-于是可得，错位排列数满足递推关系：
+Vì vậy số hoán vị sai vị trí thỏa mãn hệ thức truy hồi:
 
 $$
 D_n=(n-1)(D_{n-1}+D_{n-2})
 $$
 
-这里也给出另一个递推关系：
+Sau đây là một hệ thức truy hồi khác:
 
 $$
 D_n=nD_{n-1}+{(-1)}^n
 $$
 
-### 其他关系
+<span id="&#20854;&#20182;&#20851;&#31995;"></span>
+### Các quan hệ khác
 
-错位排列数有一个简单的取整表达式，增长速度与阶乘仅相差常数：
+Số hoán vị sai vị trí có một biểu thức làm tròn đơn giản; tốc độ tăng chỉ khác giai thừa bởi một hằng số:
 
 $$
 D_n=\left\lfloor\frac{n!}{\mathrm{e}} + \frac{1}{2}\right\rfloor
 $$
 
-随着元素数量的增加，形成错位排列的概率 P 接近：
+Khi số phần tử tăng lên, xác suất $P$ để tạo thành một hoán vị sai vị trí tiến tới:
 
 $$
 P=\lim_{n\to\infty}\frac{D_n}{n!}=\frac{1}{\mathrm{e}}

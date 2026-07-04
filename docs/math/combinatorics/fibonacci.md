@@ -1,106 +1,112 @@
-斐波那契数列（The Fibonacci sequence，[OEIS A000045](http://oeis.org/A000045)）的定义如下：
+Dãy Fibonacci (The Fibonacci sequence, [OEIS A000045](http://oeis.org/A000045)) được định nghĩa như sau:
 
 $$
 F_0 = 0, F_1 = 1, F_n = F_{n-1} + F_{n-2}
 $$
 
-该数列的前几项如下：
+Một vài số hạng đầu của dãy là:
 
 $$
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots
 $$
 
-## 卢卡斯数列
+<span id="&#21346;&#21345;&#26031;&#25968;&#21015;"></span>
+## Dãy Lucas
 
-卢卡斯数列（The Lucas sequence，[OEIS A000032](http://oeis.org/A000032)）的定义如下：
+Dãy Lucas (The Lucas sequence, [OEIS A000032](http://oeis.org/A000032)) được định nghĩa như sau:
 
 $$
 L_0 = 2, L_1 = 1, L_n = L_{n-1} + L_{n-2}
 $$
 
-该数列的前几项如下：
+Một vài số hạng đầu của dãy là:
 
 $$
 2, 1, 3, 4, 7, 11, 18, 29, 47, 76, 123, 199, \dots
 $$
 
-研究斐波那契数列，很多时候需要借助卢卡斯数列为工具．
+Khi nghiên cứu dãy Fibonacci, trong nhiều trường hợp ta cần dùng dãy Lucas như một công cụ.
 
-## 斐波那契数列通项公式
+<span id="&#26000;&#27874;&#37027;&#22865;&#25968;&#21015;&#36890;&#39033;&#20844;&#24335;"></span>
+## Công thức tổng quát của dãy Fibonacci
 
-第 $n$ 个斐波那契数可以在 $\Theta (n)$ 的时间内使用递推公式计算．但我们仍有更快速的方法计算．
+Số Fibonacci thứ $n$ có thể được tính bằng công thức truy hồi trong thời gian $\Theta(n)$. Tuy nhiên vẫn có các cách tính nhanh hơn.
 
-### 解析解
+<span id="&#35299;&#26512;&#35299;"></span>
+### Nghiệm giải tích
 
-解析解即公式解．我们有斐波那契数列的通项公式（Binet's Formula）：
+Nghiệm giải tích là nghiệm dạng công thức. Ta có công thức tổng quát của dãy Fibonacci (Binet's Formula):
 
 $$
 F_n = \frac{\left(\frac{1 + \sqrt{5}}{2}\right)^n - \left(\frac{1 - \sqrt{5}}{2}\right)^n}{\sqrt{5}}
 $$
 
-这个公式可以很容易地用归纳法证明，当然也可以通过生成函数的概念推导，或者解一个方程得到．
+Công thức này có thể chứng minh dễ dàng bằng quy nạp; cũng có thể suy ra bằng hàm sinh, hoặc bằng cách giải một phương trình.
 
-当然你可能发现，这个公式分子的第二项总是小于 $1$，并且它以指数级的速度减小．因此我们可以把这个公式写成
+Dễ thấy số hạng thứ hai trên tử số luôn có trị tuyệt đối nhỏ hơn $1$ và giảm theo tốc độ mũ. Vì vậy ta có thể viết công thức trên thành
 
 $$
 F_n = \left[\frac{\left(\frac{1 + \sqrt{5}}{2}\right)^n}{\sqrt{5}}\right]
 $$
 
-这里的中括号表示取离它最近的整数．
+Trong đó cặp ngoặc vuông biểu thị việc lấy số nguyên gần nhất.
 
-这两个公式在计算的时候要求极高的精确度，因此在实践中很少用到．但是请不要忽视！结合模意义下二次剩余和逆元的概念，在 OI 中使用这个公式仍是有用的．
+Hai công thức này đòi hỏi độ chính xác rất cao khi tính toán nên hiếm khi được dùng trực tiếp trong thực tế. Tuy vậy không nên bỏ qua chúng: kết hợp với khái niệm thặng dư bậc hai và nghịch đảo trong modulo, công thức này vẫn hữu ích trong OI.
 
-### 卢卡斯数列通项公式
+<span id="&#21346;&#21345;&#26031;&#25968;&#21015;&#36890;&#39033;&#20844;&#24335;"></span>
+### Công thức tổng quát của dãy Lucas
 
-我们有卢卡斯数列的通项公式：
+Ta có công thức tổng quát của dãy Lucas:
 
 $$
 L_n = \left(\frac{1 + \sqrt{5}}{2}\right)^n + \left(\frac{1 - \sqrt{5}}{2}\right)^n
 $$
 
-与斐波那契数列非常相似．事实上有：
+Công thức này rất giống với dãy Fibonacci. Thật vậy:
 
 $$
 \frac{L_n + F_n\sqrt{5}}{2} = \left(\frac{1 + \sqrt{5}}{2}\right)^n
 $$
 
-也就是说，$L_n$ 和 $F_n$ 恰好构成 $\left(\frac{1 + \sqrt{5}}{2}\right)^n$ 二项式展开再合并同类项后的分子系数．也就是说，Pell 方程
+Nói cách khác, $L_n$ và $F_n$ chính là các hệ số ở tử số sau khi khai triển nhị thức của $\left(\frac{1 + \sqrt{5}}{2}\right)^n$ rồi gom các hạng tử đồng dạng. Do đó, toàn bộ nghiệm của phương trình Pell
 
 $$
 x^2-5y^2=-4
 $$
 
-的全体解，恰好是
+chính là
 
 $$
 \frac{x_n + y_n\sqrt{5}}{2} = \frac{L_n + F_n\sqrt{5}}{2}
 $$
 
-恰好是卢卡斯数列和斐波那契数列．因此有
+tức là dãy Lucas và dãy Fibonacci. Vì thế:
 
 $$
 {L_n}^2-5{F_n}^2=-4
 $$
 
-### 矩阵形式
+<span id="&#30697;&#38453;&#24418;&#24335;"></span>
+### Dạng ma trận
 
-斐波那契数列的递推可以用矩阵乘法的形式表达：
+Công thức truy hồi của dãy Fibonacci có thể biểu diễn bằng phép nhân ma trận:
 
 $$
 \begin{bmatrix}F_{n-1} & F_{n} \cr\end{bmatrix} = \begin{bmatrix}F_{n-2} & F_{n-1} \cr\end{bmatrix} \begin{bmatrix}0 & 1 \cr 1 & 1 \cr\end{bmatrix}
 $$
 
-设 $P = \begin{bmatrix}0 & 1 \cr 1 & 1 \cr\end{bmatrix}$，我们得到
+Đặt $P = \begin{bmatrix}0 & 1 \cr 1 & 1 \cr\end{bmatrix}$, ta có
 
 $$
 \begin{bmatrix}F_n & F_{n+1} \cr\end{bmatrix} = \begin{bmatrix}F_0 & F_1 \cr\end{bmatrix} P^n
 $$
 
-于是我们可以用矩阵乘法在 $\Theta(\log n)$ 的时间内计算斐波那契数列．此外，前一节讲述的公式也可通过矩阵对角化的技巧来得到．
+Vì vậy ta có thể tính số Fibonacci bằng phép nhân ma trận trong thời gian $\Theta(\log n)$. Ngoài ra, công thức ở phần trước cũng có thể được suy ra bằng kỹ thuật chéo hóa ma trận.
 
-### 快速倍增法
+<span id="&#24555;&#36895;&#20493;&#22686;&#27861;"></span>
+### Phương pháp nhân đôi nhanh
 
-使用上面的方法我们可以得到以下等式：
+Từ các công thức trên, ta thu được các đẳng thức:
 
 $$
 \begin{aligned}
@@ -109,7 +115,7 @@ F_{2k+1} &= F_{k+1}^2 + F_{k}^2
 \end{aligned}
 $$
 
-于是可以通过这样的方法快速计算两个相邻的斐波那契数（常数比矩乘小）．代码如下，返回值是一个二元组 $(F_n,F_{n+1})$．
+Nhờ đó có thể tính nhanh hai số Fibonacci liên tiếp; hằng số nhỏ hơn so với nhân ma trận. Đoạn mã dưới đây trả về bộ đôi $(F_n,F_{n+1})$.
 
 ```cpp
 pair<int, int> fib(int n) {
@@ -124,51 +130,53 @@ pair<int, int> fib(int n) {
 }
 ```
 
-## 性质
+<span id="&#24615;&#36136;"></span>
+## Tính chất
 
-斐波那契数列拥有许多有趣的性质，这里列举出一部分简单的性质：
+Dãy Fibonacci có nhiều tính chất thú vị; dưới đây là một số tính chất cơ bản:
 
-1.  卡西尼性质（Cassini's identity）：$F_{n-1} F_{n+1} - F_n^2 = (-1)^n$．
-2.  附加性质：$F_{n+k} = F_k F_{n+1} + F_{k-1} F_n$．
-3.  取上一条性质中 $k = n$，我们得到 $F_{2n} = F_n (F_{n+1} + F_{n-1})$．
-4.  由上一条性质可以归纳证明，$\forall k\in \mathbb{N},F_n|F_{nk}$．
-5.  上述性质可逆，即 $\forall F_a|F_b,a|b$．
-6.  GCD 性质：$(F_m, F_n) = F_{(m, n)}$．
-7.  以斐波那契数列相邻两项作为输入会使欧几里德算法达到最坏复杂度（具体参见 [维基 - 拉梅](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9)）．
+1.  Đồng nhất thức Cassini (Cassini's identity): $F_{n-1} F_{n+1} - F_n^2 = (-1)^n$.
+2.  Tính chất cộng chỉ số: $F_{n+k} = F_k F_{n+1} + F_{k-1} F_n$.
+3.  Lấy $k = n$ trong tính chất trên, ta được $F_{2n} = F_n (F_{n+1} + F_{n-1})$.
+4.  Từ tính chất trên có thể chứng minh bằng quy nạp rằng $\forall k\in \mathbb{N},F_n|F_{nk}$.
+5.  Chiều ngược lại cũng đúng, tức là $\forall F_a|F_b,a|b$.
+6.  Tính chất GCD: $(F_m, F_n) = F_{(m, n)}$.
+7.  Khi đầu vào là hai số Fibonacci liên tiếp, thuật toán Euclid đạt độ phức tạp xấu nhất; xem thêm [Wikipedia - Lame](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9).
 
-### 斐波那契数列与卢卡斯数列的关系
+<span id="&#26000;&#27874;&#37027;&#22865;&#25968;&#21015;&#19982;&#21346;&#21345;&#26031;&#25968;&#21015;&#30340;&#20851;&#31995;"></span>
+### Quan hệ giữa dãy Fibonacci và dãy Lucas
 
-不难发现，关于卢卡斯数列与斐波那契数列的等式，与三角函数公式具有很高的相似性．比如：
+Không khó để nhận thấy các đẳng thức liên quan đến dãy Lucas và dãy Fibonacci có độ tương đồng cao với các công thức lượng giác. Chẳng hạn:
 
 $$
 \frac{L_n + F_n\sqrt{5}}{2} = \left(\frac{1 + \sqrt{5}}{2}\right)^n
 $$
 
-与
+rất giống với
 
 $$
 \cos nx + i\sin nx = \left(\cos x + i\sin x\right)^n
 $$
 
-很像．以及
+và
 
 $$
 {L_n}^2-5{F_n}^2=-4
 $$
 
-与
+rất giống với
 
 $$
 \cos^2 x + \sin^2 x = 1
 $$
 
-很像．因此，卢卡斯数列与余弦函数很像，而斐波那契数列与正弦函数很像．比如，根据
+Do đó, dãy Lucas giống hàm cos, còn dãy Fibonacci giống hàm sin. Ví dụ, từ
 
 $$
 \left(\frac{1 + \sqrt{5}}{2}\right)^m\left(\frac{1 + \sqrt{5}}{2}\right)^n = \left(\frac{1 + \sqrt{5}}{2}\right)^{m+n}
 $$
 
-可以得到两下标之和的等式：
+có thể suy ra các đẳng thức cho tổng hai chỉ số:
 
 $$
 2L_{m+n}=5F_mF_n+L_mL_n
@@ -178,7 +186,7 @@ $$
 2F_{m+n}=F_mL_n+L_mF_n
 $$
 
-于是推论就有二倍下标的等式：
+Từ đó có các hệ quả cho chỉ số gấp đôi:
 
 $$
 L_{2n}={L_n}^2-2{\left(-1\right)}^n
@@ -188,19 +196,20 @@ $$
 F_{2n}=F_nL_n
 $$
 
-这也是一种快速倍增下标的办法．同样地，也可以仿照三角函数的公式，比如奇偶性、和差化积、积化和差、半角、万能代换等等，推理出更多有关卢卡斯数列与斐波那契数列的相应等式．
+Đây cũng là một cách nhân đôi chỉ số nhanh. Tương tự, ta có thể mô phỏng các công thức lượng giác như tính chẵn lẻ, biến tổng thành tích, biến tích thành tổng, công thức nửa góc, phép thế vạn năng, v.v. để suy ra thêm nhiều đẳng thức tương ứng cho dãy Lucas và dãy Fibonacci.
 
-## 斐波那契编码
+<span id="&#26000;&#27874;&#37027;&#22865;&#32534;&#30721;"></span>
+## Mã hóa Fibonacci
 
-我们可以利用斐波那契数列为正整数编码．根据 [齐肯多夫定理](https://zh.wikipedia.org/wiki/%E9%BD%8A%E8%82%AF%E5%A4%9A%E5%A4%AB%E5%AE%9A%E7%90%86)，任何自然数 $n$ 可以被唯一地表示成一些斐波那契数的和：
+Ta có thể dùng dãy Fibonacci để mã hóa số nguyên dương. Theo [định lý Zeckendorf](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem), mọi số tự nhiên $n$ đều có thể được biểu diễn duy nhất thành tổng của một số số Fibonacci:
 
 $$
 N = F_{k_1} + F_{k_2} + \ldots + F_{k_r}
 $$
 
-并且 $k_1 \ge k_2 + 2,\ k_2 \ge k_3 + 2,\  \ldots,\  k_r \ge 2$（即不能使用两个相邻的斐波那契数）
+với $k_1 \ge k_2 + 2,\ k_2 \ge k_3 + 2,\  \ldots,\  k_r \ge 2$, tức là không được dùng hai số Fibonacci liên tiếp.
 
-于是我们可以用 $d_0 d_1 d_2 \dots d_s 1$ 的编码表示一个正整数，其中 $d_i=1$ 则表示 $F_{i+2}$ 被使用．编码末位我们强制给它加一个 1（这样会出现两个相邻的 1），表示这一串编码结束．举几个例子：
+Vì vậy ta có thể biểu diễn một số nguyên dương bằng mã $d_0 d_1 d_2 \dots d_s 1$, trong đó $d_i=1$ nghĩa là $F_{i+2}$ được sử dụng. Ở cuối mã ta bắt buộc thêm một chữ số 1; khi đó sẽ xuất hiện hai chữ số 1 liên tiếp, đánh dấu điểm kết thúc của chuỗi mã. Một số ví dụ:
 
 $$
 \begin{aligned}
@@ -213,96 +222,99 @@ $$
 \end{aligned}
 $$
 
-给 $n$ 编码的过程可以使用贪心算法解决：
+Quá trình mã hóa $n$ có thể giải bằng thuật toán tham lam:
 
-1.  从大到小枚举斐波那契数 $F_i$，直到 $F_i\le n$．
-2.  把 $n$ 减掉 $F_i$，在编码的 $i-2$ 的位置上放一个 1（编码从左到右以 0 为起点）．
-3.  如果 $n$ 为正，回到步骤 1．
-4.  最后在编码末位添加一个 1，表示编码的结束位置．
+1.  Duyệt các số Fibonacci $F_i$ từ lớn đến nhỏ cho đến khi $F_i\le n$.
+2.  Trừ $F_i$ khỏi $n$, rồi đặt một chữ số 1 vào vị trí $i-2$ của mã; vị trí trong mã được đánh số từ trái sang phải bắt đầu từ 0.
+3.  Nếu $n$ vẫn dương, quay lại bước 1.
+4.  Cuối cùng thêm một chữ số 1 vào cuối mã để biểu thị vị trí kết thúc.
 
-解码过程同理，先删掉末位的 1，对于编码为 1 的位置 $i$（编码从左到右以 0 为起点），累加一个 $F_{i+2}$ 到答案．最后的答案就是原数字．
+Giải mã cũng tương tự: trước hết xóa chữ số 1 cuối cùng; với mỗi vị trí $i$ có mã bằng 1, cộng $F_{i+2}$ vào đáp án. Kết quả cuối cùng chính là số ban đầu.
 
-## 模意义下周期性
+<span id="&#27169;&#24847;&#20041;&#19979;&#21608;&#26399;&#24615;"></span>
+## Tính tuần hoàn trong modulo
 
-对于模 $m$ 意义下的斐波那契数列，可以容易地使用抽屉原理证明，该数列是有周期性的．由于斐波那契数每一项的计算都依赖于前两项的取值，所以需要用相邻斐波那契数组成的数对描述数列当且所处的状态．考虑模意义下前 $m^2+1$ 个斐波那契数对：
+Với dãy Fibonacci xét theo modulo $m$, nguyên lý Dirichlet cho phép chứng minh dễ dàng rằng dãy này có tính tuần hoàn. Vì mỗi số Fibonacci phụ thuộc vào hai số liền trước, cần mô tả trạng thái của dãy bằng cặp hai số Fibonacci liên tiếp. Xét $m^2+1$ cặp Fibonacci đầu tiên trong modulo:
 
 $$
 (F_0,\ F_1),\ (F_1,\ F_2),\ \ldots,\ (F_{m^2},\ F_{m^2 + 1})
 $$
 
-模 $m$ 的剩余系大小为 $m$，这意味着至多只可能有 $m^2$ 种互不相同的数对．因此，在前 $m^2+1$ 个数对中必有两个相同的数对，于是从这两个数对可以往后生成相同的斐波那契数列．那么，斐波那契数列就是周期性的，且（最小正）周期不会超过 $m^2$．
+Hệ thặng dư modulo $m$ có kích thước $m$, nên có nhiều nhất $m^2$ cặp khác nhau. Do đó, trong $m^2+1$ cặp đầu tiên chắc chắn có hai cặp bằng nhau; từ hai cặp đó về sau sẽ sinh ra cùng một dãy Fibonacci. Vì vậy dãy Fibonacci là tuần hoàn, và chu kỳ dương nhỏ nhất không vượt quá $m^2$.
 
-### Pisano 周期
+<span id="pisano-&#21608;&#26399;"></span>
+### Chu kỳ Pisano
 
-模 $m$ 意义下斐波那契数列的最小正周期被称为 **Pisano 周期**（Pisano period，皮萨诺周期，[OEIS A001175](http://oeis.org/A001175)）．本文中用 $\pi(m)$ 表示模 $m$ 的 Pisano 周期．
+Chu kỳ dương nhỏ nhất của dãy Fibonacci trong modulo $m$ được gọi là **chu kỳ Pisano** (Pisano period, [OEIS A001175](http://oeis.org/A001175)). Trong bài này, ký hiệu $\pi(m)$ là chu kỳ Pisano modulo $m$.
 
-这一观察可以用于计算第 $n$ 项斐波那契数模 $m$ 的值．如果 $n$ 非常大，就需要计算斐波那契数模 $m$ 的周期．当然，只需要计算周期，不一定是最小正周期．
+Quan sát này có thể dùng để tính giá trị của số Fibonacci thứ $n$ modulo $m$. Nếu $n$ rất lớn, ta cần tính chu kỳ của dãy Fibonacci modulo $m$. Dĩ nhiên chỉ cần tìm được một chu kỳ, không nhất thiết là chu kỳ dương nhỏ nhất.
 
-为此，有如下结论：
+Để làm vậy, ta có các kết luận sau:
 
-1.  对于互素的模数 $m_1,m_2$，有 $\pi(m_1m_2)=\operatorname{lcm}(\pi(m_1),\pi(m_2))$．
-2.  对于素数 $p$ 和正整数 $e$，有 $\pi(p^{e})\mid p^{e-1}\pi(p)$．
-3.  对于 $m=2^e~(e\in\mathbf N_+)$，有 $\pi(m)=3\cdot 2^{e-1}$．
-4.  对于 $m=5^e~(e\in\mathbf N_+)$，有 $\pi(m)=4\cdot 5^e$．
-5.  最后，对于素数 $p\equiv\pm1\pmod{10}$，有 $\pi(p)\mid(p-1)$；对于素数 $p\equiv\pm3\pmod{10}$，有 $\pi(p)\mid 2(p+1)$．
+1.  Với hai modulo nguyên tố cùng nhau $m_1,m_2$, có $\pi(m_1m_2)=\operatorname{lcm}(\pi(m_1),\pi(m_2))$.
+2.  Với số nguyên tố $p$ và số nguyên dương $e$, có $\pi(p^{e})\mid p^{e-1}\pi(p)$.
+3.  Với $m=2^e~(e\in\mathbf N_+)$, có $\pi(m)=3\cdot 2^{e-1}$.
+4.  Với $m=5^e~(e\in\mathbf N_+)$, có $\pi(m)=4\cdot 5^e$.
+5.  Cuối cùng, với số nguyên tố $p\equiv\pm1\pmod{10}$, có $\pi(p)\mid(p-1)$; với số nguyên tố $p\equiv\pm3\pmod{10}$, có $\pi(p)\mid 2(p+1)$.
 
-综合这些情形，可以说明：模 $m$ 的 Pisano 周期不会超过 $6m$，等号当且仅当 $m = 2\times 5^e~(e\in\mathbf N_+)$ 时取得．
+Kết hợp các trường hợp này, ta suy ra: chu kỳ Pisano modulo $m$ không vượt quá $6m$, và dấu bằng xảy ra khi và chỉ khi $m = 2\times 5^e~(e\in\mathbf N_+)$.
 
-利用上述结论，可以基于素因数分解算法，得到如下快速计算 Pisano 周期的方法：
+Dựa trên các kết luận trên, ta có thể dùng phân tích thừa số nguyên tố để thu được phương pháp tính nhanh chu kỳ Pisano như sau:
 
-??? example "参考代码"
+??? example "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/combinatorics/fibonacci/pisano_estimate.cpp:pisano"
     ```
 
-这样得到的周期可能只是 Pisano 周期的一个倍数．要得到精确的 Pisano 周期，可以进一步考察该周期的因数；或者，可以直接通过 [BSGS 算法](../number-theory/discrete-logarithm.md#大步小步算法) 以 $O(\sqrt{m})$ 的时间复杂度计算．
+Chu kỳ thu được theo cách này có thể chỉ là một bội của chu kỳ Pisano. Để tìm chu kỳ Pisano chính xác, có thể tiếp tục xét các ước của chu kỳ đó; hoặc trực tiếp dùng [thuật toán BSGS](../number-theory/discrete-logarithm.md#%E5%A4%A7%E6%AD%A5%E5%B0%8F%E6%AD%A5%E7%AE%97%E6%B3%95) để tính trong độ phức tạp $O(\sqrt{m})$.
 
-### 证明
+<span id="&#35777;&#26126;"></span>
+### Chứng minh
 
-最后，本文简要证明上述关于 Pisano 周期的结论．值得说明的是，利用下文说明的方法，类似的结论可以推广到一般的二阶常系数线性齐次递推数列．尽管具体的常数有所差异，这些数列模 $m$ 的 Pisano 周期都是 $O(m)$ 的．
+Cuối cùng, bài viết chứng minh ngắn gọn các kết luận nêu trên về chu kỳ Pisano. Cần lưu ý rằng phương pháp dưới đây có thể mở rộng cho dãy truy hồi tuyến tính thuần nhất bậc hai với hệ số hằng nói chung. Dù hằng số cụ thể khác nhau, chu kỳ Pisano modulo $m$ của các dãy này đều là $O(m)$.
 
-第一个观察是：利用 [中国剩余定理](../number-theory/crt.md)，可以将讨论限制在素数幂模的情形．设 $m_1,m_2$ 是两个互素的模数．斐波那契数列在模 $m_1$ 下的周期是 $\pi(m_1)$ 及其倍数，在模 $m_2$ 下的周期是 $\pi(m_2)$ 及其倍数，所以它在模 $m_1m_2$ 下的最小正周期则恰为 $\pi(m_1)$ 和 $\pi(m_2)$ 的最小公倍数．这就是前文的结论 1．
+Quan sát đầu tiên là: nhờ [định lý số dư Trung Hoa](../number-theory/crt.md), ta có thể giới hạn việc thảo luận ở trường hợp modulo lũy thừa nguyên tố. Giả sử $m_1,m_2$ là hai modulo nguyên tố cùng nhau. Chu kỳ của dãy Fibonacci modulo $m_1$ là $\pi(m_1)$ và các bội của nó; chu kỳ modulo $m_2$ là $\pi(m_2)$ và các bội của nó. Do đó chu kỳ dương nhỏ nhất modulo $m_1m_2$ chính là bội chung nhỏ nhất của $\pi(m_1)$ và $\pi(m_2)$. Đây là kết luận 1 ở trên.
 
-另一个观察是：模 $m$ 下的 Pisano 周期，其实是最小的正整数 $k$，使得
+Một quan sát khác là: chu kỳ Pisano modulo $m$ thực chất là số nguyên dương nhỏ nhất $k$ sao cho
 
 $$
 A^k = \begin{pmatrix} 1&1\\1&0 \end{pmatrix}^k \equiv I \pmod{m}.
 $$
 
-也就是说，它其实是矩阵 $A$ 在模 $m$ 下[^mod-m]的 [阶](../algebra/group-theory.md#阶)．
+Nói cách khác, nó là [bậc](../algebra/group-theory.md#%E9%98%B6) của ma trận $A$ trong modulo $m$[^mod-m].
 
-对于素数幂模 $m=p^e$ 的情形，可以通过经典的升幂论证联系到相应的素数模的情形．设 $k=\pi(p^e)$，就存在二阶方阵 $\Lambda$，使得
+Với modulo lũy thừa nguyên tố $m=p^e$, ta có thể dùng lập luận nâng lũy thừa cổ điển để liên hệ với trường hợp modulo nguyên tố tương ứng. Đặt $k=\pi(p^e)$, khi đó tồn tại một ma trận vuông cấp hai $\Lambda$ sao cho
 
 $$
 A^k = p^e\Lambda + I 
 $$
 
-成立．故而，由 [二项式定理](./combination.md#二项式定理) 可知
+Do [định lý nhị thức](./combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86), ta có
 
 $$
 A^{kp} = (p^e\Lambda + I)^p = I + \sum_{i=1}^p\binom{p}{i}(p^e\Lambda)^i \equiv I\pmod{p^{e+1}}. 
 $$
 
-因此，由 [阶的性质](../number-theory/primitive-root.md#幂的循环结构)，有 $\pi(p^{e+1})\mid kp = p\pi(p^e)$．对 $e$ 归纳可知，$\pi(p^e)\mid p^{e-1}\pi(p)$ 总是成立．
+Vì vậy, theo [tính chất của bậc](../number-theory/primitive-root.md#%E5%B9%82%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84), có $\pi(p^{e+1})\mid kp = p\pi(p^e)$. Quy nạp theo $e$ cho thấy $\pi(p^e)\mid p^{e-1}\pi(p)$ luôn đúng.
 
-对于素数模 $p$ 的情形，本文讨论两种证明方式．
+Với trường hợp modulo nguyên tố $p$, bài viết xét hai cách chứng minh.
 
-=== "利用通项公式"
-    一种是利用斐波那契数列的通项公式：
+=== "Dùng công thức tổng quát"
+    Một cách là dùng công thức tổng quát của dãy Fibonacci:
     
     $$
     F_n = \dfrac{1}{\sqrt{5}}\left(\dfrac{1+\sqrt{5}}{2}\right)^n - \dfrac{1}{\sqrt{5}}\left(\dfrac{1-\sqrt{5}}{2}\right)^n.
     $$
     
-    将它用二项式定理展开，并消去根式项：
+    Khai triển nó bằng định lý nhị thức và khử các hạng tử chứa căn:
     
     $$
     F_n = \dfrac{1}{2^{n-1}}\sum_{i=0}^{\lfloor(n-1)/2\rfloor}\binom{n}{2i+1}5^i.
     $$
     
-    对于 $p=2$，这一表达式无法直接取模，但可以验证对应的 Pisano 周期为 $\pi(2)=3$．对于 $p=5$，有 $F_n\equiv n\cdot 3^{n-1}\pmod{p}$，可以直接验证对应的 Pisano 周期为 $\pi(5)=20$．对于剩余的奇素模数，可以分为两种情形：
+    Với $p=2$, biểu thức này không thể lấy modulo trực tiếp, nhưng có thể kiểm tra rằng chu kỳ Pisano tương ứng là $\pi(2)=3$. Với $p=5$, có $F_n\equiv n\cdot 3^{n-1}\pmod{p}$, và có thể kiểm tra trực tiếp chu kỳ Pisano tương ứng là $\pi(5)=20$. Với các modulo nguyên tố lẻ còn lại, chia thành hai trường hợp:
     
-    -   如果 $p\equiv 1,4\pmod{5}$，就有
+    -   Nếu $p\equiv 1,4\pmod{5}$, ta có
     
         $$
         \begin{aligned}
@@ -311,8 +323,8 @@ $$
         \end{aligned}
         $$
     
-        化简过程中，利用了如下结论：由 [Lucas 定理](../number-theory/lucas.md)，对于 $0 < k < p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，而对于 $1 < k < p$ 都有 $\dbinom{p+1}{k}\equiv 0\pmod{p}$；由 [Fermat 小定理](../number-theory/fermat.md#费马小定理)，有 $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$；对于 $p\equiv 1,4\pmod{5}$，都有 $p$ 是模 $5$ 的二次剩余，利用 [二次互反律](../number-theory/quad-residue.md#二次互反律)，也有 $5$ 是模 $p$ 的二次剩余，故而 $5^{(p-1)/2} \equiv 1\pmod{p}$．由此，有 $(F_p,F_{p+1}) \equiv (F_1,F_2) \pmod{p}$，所以 $(p-1)$ 是模 $p$ 的一个周期．所以，$\pi(p)\mid(p-1)$．
-    -   如果 $p\equiv 2,3\pmod{5}$，就有
+        Trong quá trình rút gọn, ta dùng các kết luận sau: theo [định lý Lucas](../number-theory/lucas.md), với $0 < k < p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, và với $1 < k < p$ đều có $\dbinom{p+1}{k}\equiv 0\pmod{p}$; theo [định lý nhỏ Fermat](../number-theory/fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), có $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$; với $p\equiv 1,4\pmod{5}$, $p$ là thặng dư bậc hai modulo $5$, nên theo [luật tương hỗ bậc hai](../number-theory/quad-residue.md#%E4%BA%8C%E6%AC%A1%E4%BA%92%E5%8F%8D%E5%BE%8B), $5$ cũng là thặng dư bậc hai modulo $p$, do đó $5^{(p-1)/2} \equiv 1\pmod{p}$. Suy ra $(F_p,F_{p+1}) \equiv (F_1,F_2) \pmod{p}$, nên $(p-1)$ là một chu kỳ modulo $p$. Vì vậy $\pi(p)\mid(p-1)$.
+    -   Nếu $p\equiv 2,3\pmod{5}$, ta có
     
         $$
         \begin{aligned}
@@ -321,20 +333,20 @@ $$
         \end{aligned}
         $$
     
-        化简过程中，利用了如下结论：由 Lucas 定理，对于 $0 < k < p$ 和 $p < k < 2p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，以及 $\dbinom{2p}{p}\equiv 2\pmod{p}$，而对于 $1 < k < p$ 和 $p + 1 < k < 2p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，以及 $\dbinom{2p+1}{p}\equiv 2\pmod{p}$；由 Fermat 小定理，有 $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$；对于 $p\equiv 2,3\pmod{5}$，都有 $p$ 是模 $5$ 的二次非剩余，利用二次互反律，也有 $5$ 是模 $p$ 的二次非剩余，故而 $5^{(p-1)/2} \equiv -1\pmod{p}$．由此，有 $(F_{2p},F_{2p+1}) \equiv (F_{-2},F_{-1}) \pmod{p}$，所以 $2(p+1)$ 是模 $p$ 的一个周期．所以，$\pi(p)\mid 2(p+1)$．
+        Trong quá trình rút gọn, ta dùng các kết luận sau: theo định lý Lucas, với $0 < k < p$ và $p < k < 2p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, đồng thời $\dbinom{2p}{p}\equiv 2\pmod{p}$; với $1 < k < p$ và $p + 1 < k < 2p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, đồng thời $\dbinom{2p+1}{p}\equiv 2\pmod{p}$; theo định lý nhỏ Fermat, có $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$; với $p\equiv 2,3\pmod{5}$, $p$ là bất thặng dư bậc hai modulo $5$, nên theo luật tương hỗ bậc hai, $5$ cũng là bất thặng dư bậc hai modulo $p$, do đó $5^{(p-1)/2} \equiv -1\pmod{p}$. Suy ra $(F_{2p},F_{2p+1}) \equiv (F_{-2},F_{-1}) \pmod{p}$, nên $2(p+1)$ là một chu kỳ modulo $p$. Vì vậy $\pi(p)\mid 2(p+1)$.
     
-    这就完成了证明．这一方法的局限性在于它高度依赖于斐波那契数列的通项公式，所以较难直接推广到一般的情形．
+    Chứng minh hoàn tất. Hạn chế của phương pháp này là nó phụ thuộc mạnh vào công thức tổng quát của dãy Fibonacci, nên khó mở rộng trực tiếp sang trường hợp tổng quát.
 
-=== "利用扩域"
-    另一种证明方式则是试图直接计算矩阵 $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ 的阶．它的 [特征多项式](../linear-algebra/char-poly.md) 是 $f(x) = x^2-x-1$，对应的判别式为 $\Delta = 5$．对于模 $p=5$，有 $\Delta\equiv 0\pmod{5}$，矩阵 $A$ 有两个相同特征值 $\lambda=3$，且不能对角化，需要单独计算．对于模 $p\equiv 1,4\pmod{5}$，由二次互反律可知，判别式 $\Delta=5$ 是模 $p$ 的二次剩余，矩阵 $A$ 在域 $\mathbf F_p$ 内有两个相异特征值 $\lambda_1\neq\lambda_2$，矩阵 $A$ 的阶就是 $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$，必然整除 $|\mathbf F_p^\times|=p-1$．对于模 $p\equiv 2,3\pmod{5}$，由二次互反律可知，判别式 $\Delta=5$ 是模 $p$ 的二次非剩余，矩阵 $A$ 在域 $\mathbf F_p$ 内没有特征值，而只有在 [扩域](../algebra/field-theory.md#域的扩张) $\mathbf F_p[\sqrt{5}]$ 内才有两个相异特征值 $\lambda_1\neq\lambda_2$，由于 Frobenius 自同态 $x\mapsto x^p$ 将两根交换，有 $\lambda_2=\lambda_1^p$，故而 $\lambda_1^{p+1}=\lambda_2^{p+1}=\lambda_1\lambda_2=-1$，亦即 $\lambda_1^{2(p+1)}=\lambda_2^{2(p+1)}=1$，由此，矩阵 $A$ 的阶就是 $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$，必然整除 $2(p+1)$．这就得到了与前种方法一致的结论．
+=== "Dùng trường mở rộng"
+    Một cách chứng minh khác là trực tiếp tính bậc của ma trận $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$. [Đa thức đặc trưng](../linear-algebra/char-poly.md) của nó là $f(x) = x^2-x-1$, với biệt thức tương ứng $\Delta = 5$. Với modulo $p=5$, có $\Delta\equiv 0\pmod{5}$, ma trận $A$ có hai trị riêng trùng nhau $\lambda=3$ và không chéo hóa được, nên cần tính riêng. Với modulo $p\equiv 1,4\pmod{5}$, theo luật tương hỗ bậc hai, biệt thức $\Delta=5$ là thặng dư bậc hai modulo $p$, nên ma trận $A$ có hai trị riêng phân biệt $\lambda_1\neq\lambda_2$ trong trường $\mathbf F_p$; bậc của ma trận $A$ là $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$, tất yếu chia hết cho $|\mathbf F_p^\times|=p-1$. Với modulo $p\equiv 2,3\pmod{5}$, theo luật tương hỗ bậc hai, biệt thức $\Delta=5$ là bất thặng dư bậc hai modulo $p$, nên ma trận $A$ không có trị riêng trong trường $\mathbf F_p$, mà chỉ có hai trị riêng phân biệt $\lambda_1\neq\lambda_2$ trong [trường mở rộng](../algebra/field-theory.md#%E5%9F%9F%E7%9A%84%E6%89%A9%E5%BC%A0) $\mathbf F_p[\sqrt{5}]$. Do tự đẳng cấu Frobenius $x\mapsto x^p$ hoán đổi hai nghiệm, ta có $\lambda_2=\lambda_1^p$, vì vậy $\lambda_1^{p+1}=\lambda_2^{p+1}=\lambda_1\lambda_2=-1$, tức là $\lambda_1^{2(p+1)}=\lambda_2^{2(p+1)}=1$. Từ đó, bậc của ma trận $A$ là $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$, tất yếu chia hết cho $2(p+1)$. Điều này cho kết luận giống phương pháp trước.
 
-综上，对于不同的情形，相应地有：
+Tóm lại, với các trường hợp khác nhau, ta có tương ứng:
 
--   $\pi(2^e)=\dfrac{3}{2}\cdot 2^e,~\dfrac{1}{4}\pi(5^e)=5^e$．
--   当 $p\equiv\pm1\pmod{10}$ 时，$\pi(p^e) \mid (p-1)p^{e-1}$，所以 $\pi(p^e)\le p^e$．
--   当 $p\equiv\pm3\pmod{10}$ 时，$\dfrac{1}{4}\pi(p^e) \mid \dfrac{p+1}{2}p^{e-1}$，所以 $\dfrac{1}{4}\pi(p^e)\le p^e$．
+-   $\pi(2^e)=\dfrac{3}{2}\cdot 2^e,~\dfrac{1}{4}\pi(5^e)=5^e$.
+-   Khi $p\equiv\pm1\pmod{10}$, $\pi(p^e) \mid (p-1)p^{e-1}$, nên $\pi(p^e)\le p^e$.
+-   Khi $p\equiv\pm3\pmod{10}$, $\dfrac{1}{4}\pi(p^e) \mid \dfrac{p+1}{2}p^{e-1}$, nên $\dfrac{1}{4}\pi(p^e)\le p^e$.
 
-所以，利用结论 1，对于一般的模数 $m=\prod_i p_i^{e_i}$，有
+Do đó, dùng kết luận 1, với modulo tổng quát $m=\prod_i p_i^{e_i}$, ta có
 
 $$
 \begin{aligned}
@@ -349,22 +361,24 @@ $$
 \end{aligned}
 $$
 
-这就说明了斐波那契数列模 $m$ 的 Pisano 周期总是不超过 $6m$，而且等号当且仅当在 $m=2\cdot 5^e$ 处取得．
+Điều này chứng tỏ chu kỳ Pisano của dãy Fibonacci modulo $m$ luôn không vượt quá $6m$, và dấu bằng xảy ra khi và chỉ khi $m=2\cdot 5^e$.
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
 -   [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)
 -   [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/)
 -   [HackerRank - Is Fibo](https://www.hackerrank.com/challenges/is-fibo/problem)
 -   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
--   [洛谷 P4000 斐波那契数列](https://www.luogu.com.cn/problem/P4000)
+-   [Luogu P4000 Fibonacci sequence](https://www.luogu.com.cn/problem/P4000)
 
-## 参考文献与注释
+<span id="&#21442;&#32771;&#25991;&#29486;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
 -   [Fibonacci sequence - Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_sequence)
 -   [Zeckendorf's theorem - Wikipedia](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem)
 -   [Pisano period - Wikipedia](https://en.wikipedia.org/wiki/Pisano_period)
 
-**本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．内容有改动．**
+**Trang này chủ yếu được dịch từ bài viết [Chisla Fibonachchi](http://e-maxx.ru/algo/fibonacci_numbers) và bản dịch tiếng Anh [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html). Bản tiếng Nga có giấy phép Public Domain + Leave a Link; bản tiếng Anh có giấy phép CC-BY-SA 4.0. Nội dung đã được chỉnh sửa.**
 
-[^mod-m]: 严格来说，它是矩阵 $A$ 在一般线性群 $GL_2(\mathbf Z_m)$ 中的阶．
+[^mod-m]: Nói chính xác, đó là bậc của ma trận $A$ trong nhóm tuyến tính tổng quát $GL_2(\mathbf Z_m)$.

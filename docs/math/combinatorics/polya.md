@@ -1,74 +1,76 @@
 author: Wajov, Early0v0, Enter-tainer, Great-designer, iamtwz, Ir1d, MegaOwIer, mgt, StudyingFather, Tiphereth-A, warzone-oier, Xeonacid, c-forrest
 
-前置知识：[置换和排列](../permutation.md)
+Kiến thức cần có: [hoán vị và sắp xếp](../permutation.md)
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Mở đầu
 
-Pólya 计数原理通常用来解决一些涉及「本质不同」的计数问题．
+Nguyên lí đếm Pólya thường được dùng để giải các bài toán đếm liên quan đến những đối tượng "khác nhau về bản chất".
 
-???+ info "本文可能涉及群论的相关内容"
-    本文可能涉及到群论的相关内容．本文会对涉及到的群论概念做简单的解释，以便于不熟悉相关内容的读者理解和应用 Pólya 计数原理．关于群论的内容，严格的表述和讨论请参考 [抽象代数基本概念](../algebra/basic.md)、[群论](../algebra/group-theory.md) 等章节．
+???+ info "Bài viết này có thể liên quan đến nội dung lí thuyết nhóm"
+    Bài viết này có thể dùng một số nội dung của lí thuyết nhóm. Các khái niệm nhóm xuất hiện trong bài sẽ được giải thích ngắn gọn để người đọc chưa quen vẫn có thể hiểu và áp dụng nguyên lí đếm Pólya. Với phát biểu và thảo luận chặt chẽ hơn về lí thuyết nhóm, hãy tham khảo các chương [khái niệm cơ bản của đại số trừu tượng](../algebra/basic.md), [lí thuyết nhóm](../algebra/group-theory.md), v.v.
 
-??? info "「空间对称群」、「对称群」与「置换群」"
-    本文中将不可避免地同时使用这三类群的名字．尽管可能很容易造成混淆，但它们确实代指不同的概念．给定几何结构，它上面的对称操作指的是能够使它与它自身重合的几何变换，而空间对称群（symmetry group）就是这些对称操作的集合．对称群（symmetric group）是给定集合上的全体置换的集合．置换群（permutation group）则是对称群的子群，即一些（未必是全体）置换构成的群．后文会解释如何将给定几何结构的空间对称群表示成置换群的形式，并用于计数问题．
+??? info "\"Nhóm đối xứng không gian\", \"nhóm đối xứng\" và \"nhóm hoán vị\""
+    Trong bài này sẽ không tránh khỏi việc dùng đồng thời ba tên gọi nhóm trên. Dù dễ gây nhầm lẫn, chúng thật sự chỉ các khái niệm khác nhau. Với một cấu trúc hình học cho trước, phép đối xứng trên nó là một phép biến đổi hình học có thể đưa nó trùng lại với chính nó; nhóm đối xứng không gian (symmetry group) là tập hợp các phép đối xứng đó. Nhóm đối xứng (symmetric group) là tập hợp tất cả các hoán vị trên một tập cho trước. Nhóm hoán vị (permutation group) là một nhóm con của nhóm đối xứng, tức một nhóm gồm một số hoán vị, không nhất thiết là toàn bộ. Phần sau sẽ giải thích cách biểu diễn nhóm đối xứng không gian của một cấu trúc hình học cho trước dưới dạng nhóm hoán vị và dùng nó cho bài toán đếm.
 
-## Burnside 引理
+<span id="burnside-&#x5F15;&#x7406;"></span>
+## Bổ đề Burnside
 
-相关阅读：[Burnside 引理](../algebra/group-theory.md#burnside-引理)
+Đọc thêm: [bổ đề Burnside](../algebra/group-theory.md#burnside-%E5%BC%95%E7%90%86)
 
-Pólya 计数原理是 Burnside 引理的应用和推广．在介绍 Pólya 计数原理之前，需要先简单地回顾 Burnside 引理的内容．
+Nguyên lí đếm Pólya là một ứng dụng và mở rộng của bổ đề Burnside. Trước khi giới thiệu nguyên lí đếm Pólya, ta cần nhắc lại ngắn gọn nội dung của bổ đề Burnside.
 
-为了总结出一般的规律，首先考虑简单的例子．
+Để rút ra quy luật tổng quát, trước hết xét một ví dụ đơn giản.
 
-???+ example "项链染色"
-    现在有一串共四个珠子的项链，每个珠子可以是红色或者蓝色，计算共有几种本质不同的珠子．（如果两种染色的结果可以通过旋转项链重合，就认为是相同的．)
+???+ example "Tô màu vòng cổ"
+    Có một vòng cổ gồm bốn hạt, mỗi hạt có thể tô màu đỏ hoặc xanh. Hỏi có bao nhiêu vòng cổ khác nhau về bản chất? (Nếu hai cách tô có thể trùng nhau sau khi quay vòng cổ, chúng được xem là giống nhau.)
 
-??? example "解答和分析"
-    这个问题足够简单，可以通过枚举的方式加以解答．珠子共计 $4$ 个，每个珠子可以染 $2$ 种颜色，所以，项链所有可能的染色方案共计 $2^4=16$ 种．将可以通过旋转相互得到的分到一组，共计 $6$ 组，如下图所示．（其中，单个染色方案的编码表示了自左下角的珠子开始顺时针染的颜色，$B$ 表示蓝色，$R$ 表示红色；分到同一组的染色方案的编码有着相同的背景颜色．）
+??? example "Lời giải và phân tích"
+    Bài toán đủ đơn giản để giải bằng liệt kê. Có tổng cộng $4$ hạt, mỗi hạt có $2$ màu, nên tổng số cách tô màu có thể là $2^4=16$. Gom các cách tô có thể thu được từ nhau bằng phép quay vào cùng một nhóm, ta có tổng cộng $6$ nhóm như hình dưới. Trong đó, mã của một cách tô biểu diễn màu các hạt theo chiều kim đồng hồ bắt đầu từ hạt ở góc trái dưới; $B$ là xanh, $R$ là đỏ; các mã thuộc cùng nhóm có cùng màu nền.
     
-    ![项链染色](../images/necklaces.svg)
+    ![Tô màu vòng cổ](../images/necklaces.svg)
     
-    从这个例子中可以看到，要计算本质不同的染色的种类数，关键其实是知道每种本质相同的染色对应几种不同的染色方案．也就是说，要搞清楚上图中每个分组的大小．
+    Từ ví dụ này có thể thấy, để tính số loại tô màu khác nhau về bản chất, điều then chốt là biết mỗi kiểu tô màu cùng bản chất tương ứng với bao nhiêu cách tô khác nhau. Nói cách khác, cần hiểu kích thước của từng nhóm trong hình trên.
     
-    能够分到同一个组中的染色方案，就是指它们之间能够通过旋转操作互相转化的染色方案．总共有 $4$ 种旋转的方式，即
+    Các cách tô nằm trong cùng một nhóm là các cách có thể biến đổi qua lại bằng phép quay. Có tổng cộng $4$ phép quay:
     
     $$
     G=\{r_0,r_1,r_2,r_3\},
     $$
     
-    分别表示旋转 $0,1,2,3$ 次．旋转 $0$ 次就是原地不动．
+    lần lượt biểu diễn quay $0,1,2,3$ lần. Quay $0$ lần chính là giữ nguyên.
     
-    首先看染色方案 $RRBB$ 所在的分组．对它施加这四种操作，将分别得到
+    Trước hết xét nhóm chứa cách tô $RRBB$. Áp dụng bốn phép toán đó lên nó, ta lần lượt được
     
     $$
     RRBB, RBBR, BBRR, BRRB.
     $$
     
-    四种染色方案互不相同，因此这个组就有 $4$ 个元素．
+    Bốn cách tô này đôi một khác nhau, nên nhóm này có $4$ phần tử.
     
-    再看染色方案 $BRBR$ 所在的分组．对它同样施加这四种操作，将分别得到
+    Tiếp theo xét nhóm chứa cách tô $BRBR$. Áp dụng bốn phép toán tương tự, ta lần lượt được
     
     $$
     BRBR, RBRB, BRBR, RBRB.
     $$
     
-    此时，旋转两次的结果和不旋转的结果是一致的，旋转三次和旋转一次的结果是一致的．所以，这个组就有 $2$ 个元素．
+    Lúc này kết quả quay hai lần trùng với không quay, và quay ba lần trùng với quay một lần. Vì vậy nhóm này chỉ có $2$ phần tử.
     
-    如果看染色方案 $BBBB$ 和 $RRRR$ 所在的分组．对它们施加四种操作得到的结果都是它们自身．因而，每个组就只有 $1$ 个元素．
+    Nếu xét các nhóm chứa $BBBB$ và $RRRR$, áp dụng bất kì phép quay nào cũng cho lại chính chúng. Do đó mỗi nhóm chỉ có $1$ phần tử.
     
-    如果用 $x$ 表示染色方案，$Gx$ 表示对染色方案 $x$ 操作后能够得到的颜色编码的集合，那么从上面的例子可以总结出一个规律，那就是 $G$ 的操作对于 $x$ 的影响存在某种「周期性」．
+    Gọi $x$ là một cách tô, $Gx$ là tập các mã màu thu được sau khi tác động các phép toán lên $x$. Từ ví dụ trên có thể rút ra rằng tác động của $G$ lên $x$ có một dạng "chu kì" nào đó.
     
-    设 $|G|$ 表示操作的总个数，这种影响的「周期性」意味着，如果有 $m$ 个不同的 $G$ 中的操作将染色方案 $x$ 变换到它自身，那么 $x$ 在这些操作下的结果就会重复出现 $m$ 次．因而，染色方案 $x$ 在这些操作下共计有 $|G|/m$ 种不同的结果，这也就是 $x$ 所在分组的大小．
+    Gọi $|G|$ là tổng số phép toán. Tính "chu kì" này nghĩa là nếu có $m$ phép toán khác nhau trong $G$ biến cách tô $x$ thành chính nó, thì kết quả của $x$ dưới các phép toán đó sẽ lặp lại $m$ lần. Vì vậy $x$ có tổng cộng $|G|/m$ kết quả khác nhau dưới các phép toán, và đó chính là kích thước nhóm chứa $x$.
     
-    这个例子中，因为只有旋转零次 $r_0$ 才能够将 $RRBB$ 变换到它自身，所以，它所在分组的大小等于 $4/1=4$；而旋转零次 $r_0$ 和两次 $r_2$ 都能将 $BRBR$ 变换到它自身，所以，它所在分组的大小等于 $4/2=2$；无论旋转几次都能将 $BBBB$ 变换到它自身，所以，它所在分组的大小就是 $4/4=1$．
+    Trong ví dụ này, vì chỉ có quay không lần $r_0$ biến $RRBB$ thành chính nó, nên kích thước nhóm của nó là $4/1=4$; còn quay không lần $r_0$ và quay hai lần $r_2$ đều biến $BRBR$ thành chính nó, nên kích thước nhóm là $4/2=2$; với $BBBB$, mọi phép quay đều biến nó thành chính nó, nên kích thước nhóm là $4/4=1$.
     
-    在下面的叙述中，用 $G_x$ 表示能够将 $x$ 变换到它自身的操作的数目，所以，$|G_x|$ 就是上面的 $m$．此时，$X$ 所在分组大小是 $|G|/|G_x|$．要计算染色方案的分组的数目，只需要穷举所有可能的染色方案 $x\in X$，对所在分组大小为 $|Gx|$ 的染色方案 $x$ 赋以权重 $1/|Gx|$，就能够将分组的数目表达为
+    Trong phần dưới, kí hiệu $G_x$ là tập các phép toán biến $x$ thành chính nó, nên $|G_x|$ chính là $m$ ở trên. Khi đó kích thước nhóm chứa $X$ là $|G|/|G_x|$. Để tính số nhóm các cách tô, chỉ cần duyệt mọi cách tô có thể $x\in X$, rồi gán trọng số $1/|Gx|$ cho cách tô $x$ nằm trong nhóm có kích thước $|Gx|$. Khi đó số nhóm là
     
     $$
     |X/G|=\sum_{x\in X}\frac{1}{|Gx|}=\sum_{x\in X}\frac{|G_x|}{|G|}.
     $$
     
-    现在这个式子的形式并不便于应用．记 $gx$ 是对染色方案 $x\in X$ 应用操作 $g\in G$ 的结果，那么上面描述的集合 $G_x$ 就是 $\{g\in G:gx=x\}$，所以交换求和顺序就有
+    Dạng công thức hiện tại chưa tiện áp dụng. Kí hiệu $gx$ là kết quả khi áp dụng phép toán $g\in G$ lên cách tô $x\in X$. Khi đó tập $G_x$ nêu trên là $\{g\in G:gx=x\}$, nên đổi thứ tự lấy tổng ta có
     
     $$
     \begin{aligned}
@@ -81,188 +83,190 @@ Pólya 计数原理是 Burnside 引理的应用和推广．在介绍 Pólya 计�
     \end{aligned}
     $$
     
-    其中 $[\cdot]$ 为 Iverson 括号．交换求和记号的结果中，$X^g=\{x\in X:gx=x\}$ 是指在操作 $g$ 下保持不变的染色方案 $x$ 的集合．简言之，它是操作 $g$ 的不动点．
+    Trong đó $[\cdot]$ là ngoặc Iverson. Sau khi đổi thứ tự tổng, $X^g=\{x\in X:gx=x\}$ là tập các cách tô $x$ bất biến dưới phép toán $g$. Nói ngắn gọn, đó là tập điểm bất động của $g$.
     
-    在这些讨论之后，现在可以将分组的个数写作
+    Sau các thảo luận trên, số nhóm có thể viết thành
     
     $$
     |X/G|=\frac{1}{|G|}\sum_{g\in G}|X^g|.
     $$
     
-    也就是说，分组的个数是各种旋转操作的不动点的平均个数．
+    Nghĩa là số nhóm bằng số điểm bất động trung bình của các phép quay.
     
-    作为这个结果的应用，再次计算项链染色的个数．这些旋转操作的不动点可以列举如下．
+    Áp dụng kết quả này để tính lại số cách tô vòng cổ. Các điểm bất động của từng phép quay được liệt kê như sau.
     
-    |   操作  |            不动点            |
-    | :---: | :-----------------------: |
-    | $r_0$ |            $X$            |
-    | $r_1$ |      $\{BBBB,RRRR\}$      |
-    | $r_2$ | $\{BBBB,BRBR,RBRB,RRRR\}$ |
-    | $r_3$ |      $\{BBBB,RRRR\}$      |
+    | Phép toán |        Điểm bất động         |
+    | :------: | :--------------------------: |
+    |  $r_0$   |             $X$              |
+    |  $r_1$   |       $\{BBBB,RRRR\}$        |
+    |  $r_2$   | $\{BBBB,BRBR,RBRB,RRRR\}$    |
+    |  $r_3$   |       $\{BBBB,RRRR\}$        |
     
-    因而，分组的个数就等于
+    Do đó số nhóm bằng
     
     $$
     \frac{16+2+4+2}{4} = 6.
     $$
     
-    这样就得到了前面的结果．
+    Kết quả này trùng với phần trước.
 
-从这个例子中，可以归纳出一般的结果，用于求解这类计数问题．为了方便讨论，本文考虑的情景是染色问题，当然也可以应用到别的情景上去，在文末会提供相应的例子．
+Từ ví dụ trên có thể rút ra kết quả tổng quát để giải lớp bài toán đếm này. Để tiện thảo luận, bài viết xét ngữ cảnh là bài toán tô màu; tất nhiên kết quả cũng áp dụng được cho các ngữ cảnh khác, và cuối bài sẽ có ví dụ tương ứng.
 
-染色问题是说，给定某个结构，在它的每个顶点上染色，会得到不同的染色方案．这个结构拥有某种对称性，使得看似不同的染色方案在经过一系列对称操作后能够互相转化．这些能互相转化的染色方案就称为本质相同的．问题是要求解本质不同的染色的数目．
+Bài toán tô màu là: cho một cấu trúc, tô màu các đỉnh của nó sẽ tạo ra các cách tô khác nhau. Cấu trúc này có một loại đối xứng nào đó, khiến các cách tô nhìn có vẻ khác nhau lại có thể biến đổi qua lại bằng một dãy phép đối xứng. Những cách tô có thể biến đổi qua lại như vậy được gọi là giống nhau về bản chất. Bài toán yêu cầu số cách tô khác nhau về bản chất.
 
-根据例子中的分析，要求解这样的问题，首先要讨论给定的结构都有哪些对称操作．这些对称操作的集合 $G$ 称为给定结构的空间对称群．实际应用中，大多时候无需了解群的定义，只需要能够不重不漏地讨论所有的空间对称操作就可以了．本文后面分析了几个常见的空间对称群的结构，那里解释了群的定义．
+Theo phân tích trong ví dụ, để giải bài toán như vậy, trước hết cần xét cấu trúc cho trước có những phép đối xứng nào. Tập các phép đối xứng đó, kí hiệu $G$, gọi là nhóm đối xứng không gian của cấu trúc. Trong ứng dụng thực tế, đa số trường hợp không cần hiểu định nghĩa nhóm, chỉ cần liệt kê đầy đủ và không trùng lặp mọi phép đối xứng không gian. Phần sau sẽ phân tích cấu trúc của một số nhóm đối xứng không gian thường gặp và giải thích định nghĩa nhóm ở đó.
 
-所有染色方案的集合记作 $X$，其中的单个染色方案记作 $x$．操作 $g\in G$ 作用在染色方案 $x\in X$ 的结果是 $gx$．那么，能够通过某个操作作用在染色方案 $x$ 上的所有结果就是 $Gx=\{gx:g\in G\}$，它称为群 $G$ 作用下 $x$ 的轨道．同一轨道中的不同染色方案就是这类问题中所谓「本质相同」的．故而，所有本质不同的染色的数目，就等价于不同轨道的数目．
+Kí hiệu tập tất cả các cách tô là $X$, một cách tô riêng lẻ là $x$. Kết quả tác động của phép toán $g\in G$ lên cách tô $x\in X$ là $gx$. Khi đó tập tất cả kết quả thu được bằng cách tác động một phép toán nào đó lên $x$ là $Gx=\{gx:g\in G\}$, gọi là quỹ đạo của $x$ dưới tác động của nhóm $G$. Các cách tô khác nhau trong cùng một quỹ đạo chính là những cách "giống nhau về bản chất" trong loại bài toán này. Vì thế số cách tô khác nhau về bản chất tương đương với số quỹ đạo khác nhau.
 
-例子中的分析可以推广到一般的情形．
+Phân tích trong ví dụ có thể mở rộng sang trường hợp tổng quát.
 
-???+ note "Burnside 引理"
-    给定群 $G$ 在集合 $X$ 上的作用，则所有不同的轨道的数目
+???+ note "Bổ đề Burnside"
+    Cho nhóm $G$ tác động lên tập $X$, số quỹ đạo khác nhau là
     
     $$
     |X/G|=\frac{1}{|G|}\sum_{g\in G}|X^g|.
     $$
     
-    这里，$X^g=\{x\in X:gx=x\}$ 是 $g\in G$ 的作用下的不动点集合．
+    Ở đây, $X^g=\{x\in X:gx=x\}$ là tập điểm bất động dưới tác động của $g\in G$.
 
-它的证明几乎就是照搬上面例子中的分析．但是，例子中用到了观察，即群 $G$ 在单个元素 $x$ 上的作用结果具有某种「周期性」，所以，这种周期重复的数目就等于能将 $x$ 变换到它自身的操作的数目．这个观察在一般的情形是正确的，但是因为群 $G$ 的结构可能很复杂，它的「周期性」未必是例子中呈现的那么直接．严格地表述这个观察，需要用到群论中的 [轨道稳定子定理（orbit-stabilizer theorem）](../algebra/group-theory.md#稳定化子)．
+Chứng minh gần như chỉ là chép lại phân tích trong ví dụ trên. Tuy nhiên, ví dụ dùng một quan sát: kết quả tác động của nhóm $G$ lên một phần tử riêng lẻ $x$ có một dạng "chu kì", nên số lần lặp của chu kì bằng số phép toán biến $x$ thành chính nó. Quan sát này đúng trong trường hợp tổng quát, nhưng vì cấu trúc của nhóm $G$ có thể phức tạp, "chu kì" của nó không nhất thiết trực quan như trong ví dụ. Phát biểu chặt chẽ quan sát này cần dùng [định lí quỹ đạo - ổn định tử (orbit-stabilizer theorem)](../algebra/group-theory.md#%E7%A8%B3%E5%AE%9A%E5%8C%96%E5%AD%90) trong lí thuyết nhóm.
 
-在应用的时候，只要能够列举出所有的对称操作，并且给出每个对称操作对应的不动点数目就可以解决对应的计数问题．下面是一个稍微复杂的应用．
+Khi áp dụng, chỉ cần liệt kê mọi phép đối xứng và cho biết số điểm bất động ứng với từng phép đối xứng là giải được bài toán đếm tương ứng. Dưới đây là một ứng dụng hơi phức tạp hơn.
 
-???+ example "立方体染色"
-    用三种颜色给一个立方体染色，求本质不同的方案数（经过空间旋转后相同的两种方案视为同一种）．
+???+ example "Tô màu lập phương"
+    Dùng ba màu để tô một khối lập phương, hỏi có bao nhiêu phương án khác nhau về bản chất (hai phương án trùng nhau sau một phép quay trong không gian được xem là cùng một phương án).
 
-??? example "解答"
-    因为立方体有 $6$ 个面，每个面有 $3$ 中染色方法，所以，总共有 $3^6$ 种染色方案，即 $|X|=3^6$．记立方体的空间对称群为 $G$．
+??? example "Lời giải"
+    Khối lập phương có $6$ mặt, mỗi mặt có $3$ cách tô, nên tổng cộng có $3^6$ cách tô, tức $|X|=3^6$. Kí hiệu nhóm đối xứng không gian của khối lập phương là $G$.
     
     ![](../images/cube.svg)
     
-    接下来我们需要对 $G$ 中的所有操作进行分析，它们可以分为以下几类（方便起见，将立方体的六个面分别称为前、后、上、下、左、右）：
+    Tiếp theo cần phân tích mọi phép toán trong $G$. Có thể chia chúng thành các loại sau (để tiện, gọi sáu mặt của khối lập phương là trước, sau, trên, dưới, trái, phải):
     
-    -   不动：即恒等变换，因为所有直接染色方案经过恒等变换都不变，因此它对应的 $|X^g|=3^6$；
-    -   以两个相对面的中心连线为轴的 $90^\circ$ 旋转：相对面有 $3$ 种选择，旋转的方向有 $2$ 种选择，因此这类共有 $6$ 个置换．假设选择了前、后两个面中心的连线为轴，则必须要满足上、下、左、右四个面的颜色一样，才能使旋转后不变．此时，有 $3$ 个可以独立染色的区域，因此它对应的 $|X^g|=3^3$；
-    -   以两个相对面的中心连线为轴的 $180^\circ$ 旋转：相对面有 $3$ 种选择，旋转方向的选择没有影响，因此这类共有 $3$ 个置换．假设选择了前、后两个面中心的连线为轴，则必须要满足上、下两个面的颜色一样，左、右两个面的颜色一样，才能使旋转后不变．此时，有 $4$ 个可以独立染色的区域，因此它对应的 $|X^g|=3^4$；
-    -   以两条相对棱的中点连线为轴的 $180^\circ$ 旋转：相对棱有 $6$ 种选择，旋转方向对置换依然没有影响，因此这类共有 $6$ 个置换．假设选择了前、上两个面的边界和下、后两个面的边界作为相对棱，则必须要满足前、上两个面的颜色一样，下、后两个面的颜色一样，左、右两个面的颜色一样，才能使旋转后不变．此时，有 $3$ 个可以独立染色的区域，因此它对应的 $|X^g|=3^3$；
-    -   以两个相对顶点的连线为轴的 $120^\circ$ 旋转：相对顶点有 $4$ 种选择，旋转的方向有 $2$ 种选择，因此这类共有 $8$ 个置换．假设选择了前面的右上角和后面的左下角作为相对顶点，则必须满足前、上、右三个面的颜色一样，后、下、左三个面的颜色一样，才能使旋转后不变．此时，有 $2$ 个可以独立染色的区域，因此它对应的 $|X^g|=3^2$．
+    -   Bất động: tức phép đồng nhất. Mọi cách tô trực tiếp đều bất biến dưới phép đồng nhất, nên $|X^g|=3^6$;
+    -   Quay $90^\circ$ quanh trục nối tâm của hai mặt đối diện: có $3$ cách chọn cặp mặt đối diện và $2$ hướng quay, nên loại này có $6$ phép hoán vị. Giả sử chọn trục nối tâm mặt trước và mặt sau, để bất biến sau khi quay thì bốn mặt trên, dưới, trái, phải phải có cùng màu. Khi đó có $3$ vùng tô độc lập, nên $|X^g|=3^3$;
+    -   Quay $180^\circ$ quanh trục nối tâm của hai mặt đối diện: có $3$ cách chọn cặp mặt đối diện, hướng quay không ảnh hưởng, nên loại này có $3$ phép hoán vị. Giả sử chọn trục nối tâm mặt trước và mặt sau, để bất biến thì mặt trên và dưới phải cùng màu, mặt trái và phải phải cùng màu. Khi đó có $4$ vùng tô độc lập, nên $|X^g|=3^4$;
+    -   Quay $180^\circ$ quanh trục nối trung điểm của hai cạnh đối diện: có $6$ cách chọn cặp cạnh đối diện, hướng quay vẫn không ảnh hưởng, nên loại này có $6$ phép hoán vị. Giả sử chọn cặp cạnh đối diện là biên giữa mặt trước - trên và biên giữa mặt dưới - sau, thì để bất biến, mặt trước và trên phải cùng màu, mặt dưới và sau phải cùng màu, mặt trái và phải phải cùng màu. Khi đó có $3$ vùng tô độc lập, nên $|X^g|=3^3$;
+    -   Quay $120^\circ$ quanh trục nối hai đỉnh đối diện: có $4$ cách chọn cặp đỉnh đối diện và $2$ hướng quay, nên loại này có $8$ phép hoán vị. Giả sử chọn đỉnh góc phải trên của mặt trước và đỉnh góc trái dưới của mặt sau làm cặp đỉnh đối diện, thì mặt trước, trên, phải phải cùng màu, và mặt sau, dưới, trái phải cùng màu. Khi đó có $2$ vùng tô độc lập, nên $|X^g|=3^2$.
     
-    因此，所有本质不同的染色方案数为
+    Vì vậy số cách tô khác nhau về bản chất là
     
     $$
     \frac{1\times3^6+6\times3^3+3\times3^4+6\times3^3+8\times3^2}{1+6+3+6+8}=57.
     $$
 
-## Pólya 计数原理
+<span id="pólya-&#x8BA1;&#x6570;&#x539F;&#x7406;"></span>
+## Nguyên lí đếm Pólya
 
-在 Burnside 引理的叙述中，并没有用到集合 $X$ 是某结构上的全部染色方案这一性质．其实，Burnside 引理的应用范围并不局限于染色计数问题．对于染色计数问题，Pólya 计数原理则提供了更为准确的计算方法．它可以看作是一般性的 Burnside 引理在染色计数问题上的应用．
+Trong phát biểu của bổ đề Burnside, ta không dùng tính chất rằng tập $X$ là toàn bộ các cách tô trên một cấu trúc nào đó. Thật ra phạm vi áp dụng của bổ đề Burnside không chỉ giới hạn ở bài toán đếm tô màu. Với bài toán tô màu, nguyên lí đếm Pólya cung cấp một cách tính chính xác hơn; có thể xem nó là ứng dụng của bổ đề Burnside tổng quát vào bài toán tô màu.
 
-相较于 Burnside 引理，Pólya 计数原理的改进就是提供了不动点集合大小 $|X^g|$ 在染色计数问题中的具体计算方法．
+So với bổ đề Burnside, điểm cải tiến của nguyên lí đếm Pólya là cung cấp cách tính cụ thể kích thước tập điểm bất động $|X^g|$ trong bài toán đếm tô màu.
 
-这一点从上面的立方体染色的例子可以直观地看出来．对于正方体的各种对称操作，它的不动点集合的大小都是 $m^{c(g)}$ 的形式，这里 $m$ 是颜色的数目，$c(g)$ 是在操作 $g$ 下可以独立染色的区域数目．这个观察在一般的情形下也是成立的，不过需要进一步明晰如何对给定的 $g$ 计算 $c(g)$ 的取值．
+Điều này có thể thấy trực quan từ ví dụ tô màu lập phương ở trên. Với các phép đối xứng của khối lập phương, kích thước tập điểm bất động đều có dạng $m^{c(g)}$, trong đó $m$ là số màu, còn $c(g)$ là số vùng có thể tô độc lập dưới phép toán $g$. Quan sát này cũng đúng trong trường hợp tổng quát, nhưng cần làm rõ cách tính $c(g)$ với một $g$ cho trước.
 
-给某个结构选择一种染色方案，用数学语言表示，就是选择一个从这个结构的可以染色的对象（比如项链中的珠子、立方体的面等）的集合 $X$ 到颜色集合 $C$ 的映射 $f:X\rightarrow C$．因此，染色方案的集合就是 $C^X$．该结构的空间对称群 $G$ 作用在结构上，自然也连带着作用在集合 $X$ 上．这种对称操作，总对应着集合 $X$ 上的双射，即 **置换**（permutation）．[^perm-group]
+Chọn một cách tô cho một cấu trúc, viết bằng ngôn ngữ toán học, là chọn một ánh xạ $f:X\rightarrow C$ từ tập các đối tượng có thể tô của cấu trúc (ví dụ hạt trong vòng cổ, mặt của lập phương) đến tập màu $C$. Vì vậy tập các cách tô là $C^X$. Nhóm đối xứng không gian $G$ của cấu trúc tác động lên cấu trúc, và tự nhiên cũng tác động lên tập $X$. Mỗi phép đối xứng như vậy luôn tương ứng với một song ánh trên tập $X$, tức một **hoán vị** (permutation).[^perm-group]
 
-现在分析不动点集合 $(C^X)^g$ 的结构．给定 $g$，看作 $X$ 上的置换，比照例子中的分析可以知道，如果 $X$ 中的位置 $x$ 在有限次重复操作 $g$ 之后可以移动到位置 $y$，那么，作为不动点 $f\in (C^X)^g$，必然需要满足 $f(x)=f(y)$．用上一节轨道的语言来说，因为位置 $x$ 和位置 $y$ 处于操作 $g$ 作用[^g-act]的同一个轨道上，所以它们需要染相同的颜色．用置换的语言来说，在置换 $g$ 的 [轮换分解](../permutation.md#轮换表示) 中，位置 $x$ 和位置 $y$ 处于同一轮换，故而需要染相同的颜色．轮换分解中不同的轮换的染色不必相同，可以独立染色，所以此时可以独立染色的区域数目就是 $c(g)$，即 $g$ 的轮换分解中的轮换数目．
+Bây giờ phân tích cấu trúc của tập điểm bất động $(C^X)^g$. Với $g$ cho trước, xem nó là một hoán vị trên $X$. Tương tự phân tích trong ví dụ, nếu vị trí $x$ trong $X$ có thể chuyển đến vị trí $y$ sau khi lặp hữu hạn lần phép toán $g$, thì với một điểm bất động $f\in (C^X)^g$, bắt buộc $f(x)=f(y)$. Theo ngôn ngữ quỹ đạo ở phần trước, vì vị trí $x$ và $y$ nằm trong cùng một quỹ đạo dưới tác động[^g-act] của $g$, chúng phải được tô cùng màu. Theo ngôn ngữ hoán vị, trong [phân tích thành chu trình](../permutation.md#%E8%BD%AE%E6%8D%A2%E8%A1%A8%E7%A4%BA) của hoán vị $g$, vị trí $x$ và $y$ nằm trong cùng một chu trình nên phải tô cùng màu. Các chu trình khác nhau trong phân tích chu trình không nhất thiết phải cùng màu và có thể tô độc lập. Vì vậy số vùng có thể tô độc lập chính là $c(g)$, tức số chu trình trong phân tích chu trình của $g$.
 
-由此，操作 $g$ 的不动点的数目就是 $|C|^{c(g)}$．将这个结论代入 Burnside 引理，就能得到无权重版本的 **Pólya 计数原理**（Pólya enumeration theorem）．
+Từ đó, số điểm bất động của phép toán $g$ là $|C|^{c(g)}$. Thay kết luận này vào bổ đề Burnside, ta thu được phiên bản không trọng số của **nguyên lí đếm Pólya** (Pólya enumeration theorem).
 
-???+ note "Pólya 计数原理（无权重版本）"
-    给定群 $G$ 在集合 $X$ 上的作用和颜色集合 $C$，则不同的染色方案的数目
+???+ note "Nguyên lí đếm Pólya (phiên bản không trọng số)"
+    Cho nhóm $G$ tác động lên tập $X$ và tập màu $C$, số cách tô khác nhau là
     
     $$
     |C^X/G|=\frac{1}{|G|}\sum_{g\in G}m^{c(g)},
     $$
     
-    这里，$m$ 是颜色数目，$c(g)$ 是元素 $g\in G$ 的置换表示的轮换分解中的轮换数目．
+    trong đó $m$ là số màu, còn $c(g)$ là số chu trình trong phân tích chu trình của biểu diễn hoán vị của phần tử $g\in G$.
 
-??? info "关于群 $G$ 的含义"
-    这里略微有些滥用记号．如果群 $G$ 作用在 $X$ 上，那么染色方案集合 $C^X$ 上的群作用是需要重新定义的，这里没有加以区分．
+??? info "Về ý nghĩa của nhóm $G$"
+    Ở đây có lạm dụng kí hiệu một chút. Nếu nhóm $G$ tác động lên $X$, thì tác động nhóm trên tập cách tô $C^X$ cần được định nghĩa lại; bài viết không phân biệt riêng hai tác động này.
 
-作为 Pólya 计数原理的简单应用，下面重新用 Pólya 计数原理计算前文的例子．
+Như một ứng dụng đơn giản của nguyên lí đếm Pólya, ta tính lại các ví dụ phía trước.
 
-??? example "项链染色问题另解"
-    将四个珠子标号 $1\sim 4$，则例子中的群 $G$ 中的元素分别有置换表示如下：（均写作轮换分解的形式）
+??? example "Một cách giải khác cho bài toán tô màu vòng cổ"
+    Đánh số bốn hạt là $1\sim 4$. Khi đó các phần tử trong nhóm $G$ của ví dụ có biểu diễn hoán vị như sau (đều viết dưới dạng phân tích chu trình):
     
-    -   旋转零次 $r_0=(1)$，共计 $4$ 个轮换（注意省略的 $1$‑轮换）；
-    -   旋转一次 $r_1=(1234)$，共计 $1$ 个轮换；
-    -   旋转二次 $r_2=(13)(24)$，共计 $2$ 个轮换；
-    -   旋转三次 $r_3=(1432)$，共计 $1$ 个轮换．
+    -   Quay không lần $r_0=(1)$, tổng cộng $4$ chu trình (chú ý các chu trình độ dài $1$ bị lược bỏ);
+    -   Quay một lần $r_1=(1234)$, tổng cộng $1$ chu trình;
+    -   Quay hai lần $r_2=(13)(24)$, tổng cộng $2$ chu trình;
+    -   Quay ba lần $r_3=(1432)$, tổng cộng $1$ chu trình.
     
-    因此，本质不同染色的数目是
+    Vì vậy số cách tô khác nhau về bản chất là
     
     $$
     \frac{2^4+2^1+2^2+2^1}{4}=6.
     $$
 
-??? example "立方体染色问题另解"
-    由于前文的分析实质上已经给出了各类置换的轮换表示，只是没有用数字符号显式地书写出来，这里不再重复前文的分析．仅仅考虑以相对棱的中点连线为轴的 $180^\circ$ 旋转的情形，加以示例．将前、后、上、下、左、右六个面依次编号为 $1\sim6$，此时对应的置换是 $(13)(24)(56)$，因此 $c(g)=3$．其它类型的置换也可以类似分析，最后的计数的表达式也和上文完全一致．
+??? example "Một cách giải khác cho bài toán tô màu lập phương"
+    Phân tích phía trước thực chất đã cho biểu diễn chu trình của từng loại hoán vị, chỉ chưa viết tường minh bằng kí hiệu số. Ở đây không lặp lại phân tích đó, chỉ minh họa trường hợp quay $180^\circ$ quanh trục nối trung điểm của hai cạnh đối diện. Đánh số sáu mặt trước, sau, trên, dưới, trái, phải lần lượt là $1\sim6$, hoán vị tương ứng là $(13)(24)(56)$, do đó $c(g)=3$. Các loại hoán vị khác cũng phân tích tương tự, và biểu thức đếm cuối cùng giống hệt phần trên.
 
-## 带权重形式的推广
+<span id="&#x5E26;&#x6743;&#x91CD;&#x5F62;&#x5F0F;&#x7684;&#x63A8;&#x5E7F;"></span>
+## Mở rộng có trọng số
 
-无权重版本的 Pólya 计数原理只能够给出所有的本质不同的染色问题的计数，但是在处理更为精细的问题时就无能为力了．比如说，如果在上述染色问题中，给定每种可以使用的颜色的数目，就不能套用上面的 Pólya 计数公式．在实际求解这类问题时，需要再次使用 Burnside 引理加以推导；而将这些结果总结为生成函数的形式，就是带权重版本的 Pólya 计数原理．
+Phiên bản không trọng số của nguyên lí đếm Pólya chỉ cho số lượng tất cả các cách tô khác nhau về bản chất; khi xử lí bài toán tinh hơn thì không đủ. Chẳng hạn, nếu trong bài toán tô màu ở trên, ta cho trước số lần được dùng của từng màu, thì không thể áp dụng trực tiếp công thức Pólya trên. Khi giải loại bài toán này trong thực tế, cần dùng lại bổ đề Burnside để suy luận; tổng kết các kết quả đó dưới dạng hàm sinh chính là phiên bản có trọng số của nguyên lí đếm Pólya.
 
-???+ example "项链染色（带限制）"
-    现在有一串共四个珠子的项链，每个珠子可以是红色或者蓝色，恰有两个红色珠子、两个蓝色珠子可以使用，计算共有几种本质不同的珠子．（如果两种染色的结果可以通过旋转项链重合，就认为是相同的．)
+???+ example "Tô màu vòng cổ (có ràng buộc)"
+    Có một vòng cổ gồm bốn hạt, mỗi hạt có thể tô màu đỏ hoặc xanh, và phải dùng đúng hai hạt đỏ, hai hạt xanh. Hỏi có bao nhiêu vòng cổ khác nhau về bản chất? (Nếu hai cách tô có thể trùng nhau sau khi quay vòng cổ, chúng được xem là giống nhau.)
 
-??? example "解答和分析"
-    考虑使用 Burnside 引理．红色、蓝色珠子各两个，共计有 $\dbinom{4}{2}=6$ 种染色方案．空间对称群 $G=\{r_0,r_1,r_2,r_3\}$ 分别对应旋转 $0\sim3$ 次，则它们对应的不动点集合分析如下：
+??? example "Lời giải và phân tích"
+    Xét bằng bổ đề Burnside. Có đúng hai hạt đỏ và hai hạt xanh, tổng cộng có $\dbinom{4}{2}=6$ cách tô. Nhóm đối xứng không gian $G=\{r_0,r_1,r_2,r_3\}$ lần lượt ứng với quay $0\sim3$ lần. Tập điểm bất động của chúng được phân tích như sau:
     
-    -   旋转零次 $r_0=(1)$，全部 $6$ 个染色方案都是不动点；
-    -   旋转一次 $r_1=(1234)$，不动点要求所有珠子染同样的颜色，没有不动点；
-    -   旋转两次 $r_2=(13)(24)$，有两个可独立染色的区域，大小都是 $2$，它们要分别染成红色和蓝色，则不动点集合的大小为 $2$；
-    -   旋转三次 $r_3=(1432)$，与旋转一次的情形相同，没有不动点．
+    -   Quay không lần $r_0=(1)$, cả $6$ cách tô đều là điểm bất động;
+    -   Quay một lần $r_1=(1234)$, điểm bất động yêu cầu mọi hạt có cùng màu, nên không có điểm bất động;
+    -   Quay hai lần $r_2=(13)(24)$, có hai vùng tô độc lập, mỗi vùng có kích thước $2$; chúng cần lần lượt tô thành đỏ và xanh, nên kích thước tập điểm bất động là $2$;
+    -   Quay ba lần $r_3=(1432)$ giống trường hợp quay một lần, không có điểm bất động.
     
-    所以，根据 Burnside 引理，本质不同的染色数目为
+    Theo bổ đề Burnside, số cách tô khác nhau về bản chất là
     
     $$
     \frac{6+0+2+0}{4}=2.
     $$
 
-从这个例子中可以总结出如下计算方法．对于限制不同颜色个数的问题，同样是要把空间对称群中各个置换的轮换分别染色，但是需要让染色用到的颜色数目恰好等于给定的颜色个数．这样的组合问题通常没有显式解，除了可以通过 [排列组合方法](../combinatorics/combination.md) 计算的特殊情形外，需要看做 [背包问题](../../dp/knapsack.md) 进行求解．
+Từ ví dụ này có thể rút ra cách tính sau. Với bài toán ràng buộc số lượng của từng màu, ta vẫn phải tô các chu trình của từng hoán vị trong nhóm đối xứng không gian, nhưng số lượng màu được dùng phải đúng bằng các giá trị cho trước. Bài toán tổ hợp này thường không có nghiệm tường minh; ngoài vài trường hợp đặc biệt có thể tính bằng [phương pháp hoán vị - tổ hợp](../combinatorics/combination.md), thường cần xem như [bài toán ba lô](../../dp/knapsack.md) để giải.
 
-通过生成函数可以给出这类计数问题的答案．给定置换 $g$，如果它的 [型](../permutation.md#置换的型) 是 $1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}$，即它有 $\alpha_k$ 个长度为 $k$ 的轮换，且对于每个轮换可以染成 $m$ 种颜色中的一种，那么生成函数
+Hàm sinh có thể mô tả đáp án của loại bài toán đếm này. Với một hoán vị $g$ cho trước, nếu [kiểu](../permutation.md#%E7%BD%AE%E6%8D%A2%E7%9A%84%E5%9E%8B) của nó là $1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}$, tức nó có $\alpha_k$ chu trình độ dài $k$, và mỗi chu trình có thể tô bằng một trong $m$ màu, thì trong hàm sinh
 
 $$
 \prod_{k=1}^n\left(\sum_{i=1}^mx_i^k\right)^{\alpha_k}
 $$
 
-中单项式 $x_1^{\beta_1}x_2^{\beta_2}\cdots x_m^{\beta_m}$ 的系数就是第 $i$ 种颜色用了 $\beta_i$ 次的计数．这里圆括号中的表达式 $\sum_{i=1}^mx_i^k$ 的组合意义是，对于长度为 $k$ 的轮换，用到 $k$ 次颜色 $i$ 的染色方法的计数是 $1$，对于其它情形，计数是 $0$；这正描述了同一轮换中各位置染色一致的要求．
+hệ số của đơn thức $x_1^{\beta_1}x_2^{\beta_2}\cdots x_m^{\beta_m}$ chính là số cách dùng màu thứ $i$ đúng $\beta_i$ lần. Ý nghĩa tổ hợp của biểu thức $\sum_{i=1}^mx_i^k$ trong ngoặc là: với một chu trình độ dài $k$, số cách tô dùng màu $i$ đúng $k$ lần là $1$, còn các trường hợp khác có số cách là $0$; điều này mô tả đúng yêu cầu các vị trí trong cùng một chu trình phải có cùng màu.
 
-给定置换 $g$ 下染色计数的生成函数，对各个单项式应用 Burnside 引理，就得到各种颜色组合下的本质不同的计数．因为生成函数对各个单项式是线性的，所以本质不同染色方案的计数的生成函数是
+Cho hàm sinh đếm tô màu dưới hoán vị $g$, áp dụng bổ đề Burnside lên từng đơn thức sẽ thu được số cách khác nhau về bản chất ứng với mỗi tổ hợp màu. Vì hàm sinh tuyến tính theo từng đơn thức, hàm sinh đếm các cách tô khác nhau về bản chất là
 
 $$
 \frac1{|G|}\sum_{g\in G}\prod_{k=1}^n\left(\sum_{i=1}^mx_i^k\right)^{\alpha_k}.
 $$
 
-展开这个式子，每个单项式的系数就给出了给定颜色组合下的本质不同染色的计数．
+Khai triển biểu thức này, hệ số của mỗi đơn thức sẽ cho số cách tô khác nhau về bản chất với tổ hợp màu tương ứng.
 
-在上述过程中，对每个轮换进行染色的生成函数 $\sum_{i=1}^mx_i^k$ 并无特殊之处，可以替换成其它的生成函数．因而，有如下的一般版本的 Pólya 计数原理．
+Trong quá trình trên, hàm sinh $\sum_{i=1}^mx_i^k$ cho việc tô mỗi chu trình không có gì đặc biệt, có thể thay bằng các hàm sinh khác. Vì vậy ta có phiên bản tổng quát sau của nguyên lí đếm Pólya.
 
-???+ note "置换群的轮换指标"
-    给定置换群 $G$，则群 $G$ 的 **轮换指标**（cycle index），定义为
+???+ note "Chỉ số chu trình của nhóm hoán vị"
+    Cho nhóm hoán vị $G$, **chỉ số chu trình** (cycle index) của nhóm $G$ được định nghĩa là
     
     $$
     Z_G(t_1,t_2,\cdots,t_n)=\frac{1}{|G|}\sum_{g\in G}t_1^{c_1(g)}t_2^{c_2(g)}\cdots t_n^{c_n(g)},
     $$
     
-    其中，$c_k(g)$ 是置换 $g$ 的轮换分解中长度为 $k$ 的轮换的个数，即 $1^{c_1(g)}2^{c_2(g)}\cdots n^{c_n(g)}$ 是置换 $g$ 的型．
+    trong đó $c_k(g)$ là số chu trình độ dài $k$ trong phân tích chu trình của hoán vị $g$, tức $1^{c_1(g)}2^{c_2(g)}\cdots n^{c_n(g)}$ là kiểu của hoán vị $g$.
 
-???+ note "Pólya 计数原理（带权重版本）"
-    给定群 $G$ 在集合 $X$ 上的作用，对每个点的染色方法由它的染色方案的计数的生成函数 $f(x_1,x_2,\cdots,x_m)$ 给出，那么集合 $X$ 的本质不同染色方案的计数的生成函数是
+???+ note "Nguyên lí đếm Pólya (phiên bản có trọng số)"
+    Cho nhóm $G$ tác động lên tập $X$. Nếu cách tô mỗi điểm được cho bởi hàm sinh đếm các phương án tô $f(x_1,x_2,\cdots,x_m)$, thì hàm sinh đếm các cách tô khác nhau về bản chất của tập $X$ là
     
     $$
     Z_G(f(x_1^1,x_2^1,\cdots,x_m^1),f(x_1^2,x_2^2,\cdots,x_m^2),\cdots,f(x_1^n,x_2^n,\cdots,x_m^n)),
     $$
     
-    这里，$Z_G(t_1,t_2,\cdots,t_n)$ 是群 $G$ 的轮换指标．
+    trong đó $Z_G(t_1,t_2,\cdots,t_n)$ là chỉ số chu trình của nhóm $G$.
 
-这里，如果单个位置的染色的生成函数是 $f(x_1,x_2,\cdots,x_m)$，那么长度为 $k$ 的轮换的染色的生成函数就是 $f(x_1^k,x_2^k,\cdots,x_m^k)$．这反映了如果某一染色方案是给定置换的不动点，那么同一轮换中的所有位置必须染相同的颜色．如果将生成函数在 $x_i=1$ 处取值，就得到上文的无权重版本的 Pólya 计数原理．
+Ở đây, nếu hàm sinh của cách tô một vị trí là $f(x_1,x_2,\cdots,x_m)$, thì hàm sinh của cách tô một chu trình độ dài $k$ là $f(x_1^k,x_2^k,\cdots,x_m^k)$. Điều này phản ánh rằng nếu một cách tô là điểm bất động của hoán vị cho trước, thì mọi vị trí trong cùng một chu trình phải có cùng màu. Nếu lấy giá trị hàm sinh tại $x_i=1$, ta thu được phiên bản không trọng số của nguyên lí đếm Pólya ở trên.
 
-定理的叙述用到了置换群的轮换指标的概念．它和具体的染色问题无关．它描述了置换群的结构．
+Phát biểu định lí dùng khái niệm chỉ số chu trình của nhóm hoán vị. Khái niệm này độc lập với bài toán tô màu cụ thể; nó mô tả cấu trúc của nhóm hoán vị.
 
-??? example "带限制的项链染色问题另解"
-    旋转对称群的轮换指标是 $\dfrac14\left(t_1^4+t_2^2+2t_4\right)$，单点染色的生成函数是 $r+b$，故而全体染色方案的生成函数是
+??? example "Một cách giải khác cho bài toán tô vòng cổ có ràng buộc"
+    Chỉ số chu trình của nhóm đối xứng quay là $\dfrac14\left(t_1^4+t_2^2+2t_4\right)$, hàm sinh tô một điểm là $r+b$, nên hàm sinh của toàn bộ cách tô là
     
     $$
     \begin{aligned}
@@ -271,23 +275,24 @@ $$
     \end{aligned}
     $$
     
-    所求计数就是 $r^2b^2$ 的系数，即共 $2$ 种本质不同染色．顺便，这个式子也给出了其他限制下的计数．
+    Số cần tìm là hệ số của $r^2b^2$, tức có tổng cộng $2$ cách tô khác nhau về bản chất. Đồng thời, công thức này cũng cho số cách đếm dưới các ràng buộc khác.
 
-### 应用
+<span id="&#x5E94;&#x7528;"></span>
+### Ứng dụng
 
-带权重版本的 Pólya 计数原理在组合计数问题中起到重要的作用．这里简单讨论它的应用，而更一般的讨论可以参考 [组合问题的形式化方法](../poly/symbolic-method.md#有限制的构造)．
+Phiên bản có trọng số của nguyên lí đếm Pólya đóng vai trò quan trọng trong các bài toán đếm tổ hợp. Ở đây chỉ thảo luận ngắn gọn ứng dụng của nó; phần tổng quát hơn có thể xem ở [phương pháp hình thức cho bài toán tổ hợp](../poly/symbolic-method.md#%E6%9C%89%E9%99%90%E5%88%B6%E7%9A%84%E6%9E%84%E9%80%A0).
 
-???+ example "钻石项链"
-    现在有一串共四个相同珠子的项链，每个珠子上可以镶若干颗钻石．如果有四枚钻石，总共有多少本质不同的镶钻方式．（如果两种镶钻的结果可以通过旋转项链重合，就认为是相同的．)
+???+ example "Vòng cổ kim cương"
+    Có một vòng cổ gồm bốn hạt giống nhau, mỗi hạt có thể gắn một số viên kim cương. Nếu có tổng cộng bốn viên kim cương, hỏi có bao nhiêu cách gắn khác nhau về bản chất? (Nếu hai cách gắn có thể trùng nhau sau khi quay vòng cổ, chúng được xem là giống nhau.)
 
-??? example "解答和分析"
-    项链的空间对称群仍与前文所述相同．不考虑钻石总数的限制，则单个位置的镶钻方案的生成函数是
+??? example "Lời giải và phân tích"
+    Nhóm đối xứng không gian của vòng cổ vẫn giống như đã nêu ở trên. Nếu chưa xét ràng buộc tổng số kim cương, hàm sinh phương án gắn kim cương tại một vị trí là
     
     $$
-    f(x)=1+x+x^2+\cdots=\sum_{i=1}^\infty x^i=\frac{1}{1-x}.
+    f(x)=1+x+x^2+\cdots=\sum_{i=0}^\infty x^i=\frac{1}{1-x}.
     $$
     
-    应用带权重版本的 Pólya 计数原理可知，所有镶钻方案的生成函数为
+    Áp dụng phiên bản có trọng số của nguyên lí đếm Pólya, hàm sinh của mọi phương án gắn kim cương là
     
     $$
     \begin{aligned}
@@ -296,76 +301,79 @@ $$
     \end{aligned}
     $$
     
-    故而，所求镶钻方案的数目就是 $x^4$ 的系数，即共计 $10$ 种方案．作为验证，通过枚举可知，它们分别是
+    Vì vậy số phương án cần tìm là hệ số của $x^4$, tức tổng cộng $10$ phương án. Có thể kiểm chứng bằng liệt kê; chúng lần lượt là
     
     $$
     4000,3100,3010,3001,2200,2020,2110,2101,2011,1111.
     $$
     
-    这里，每组四个数字分别表示每个珠子上的镶钻数目．
+    Ở đây, mỗi nhóm bốn chữ số biểu diễn số kim cương trên từng hạt.
 
-这个例子说明，带权重版本的 Pólya 计数原理能够解决的问题远比染色计数问题要广泛．它提供了一种将单点的计数扩展到整个结构上本质不同的计数的方法．染色问题只是这类问题的特例．
+Ví dụ này cho thấy phiên bản có trọng số của nguyên lí đếm Pólya giải được phạm vi bài toán rộng hơn nhiều so với bài toán tô màu. Nó cung cấp cách mở rộng phép đếm tại một điểm đơn lẻ thành phép đếm khác nhau về bản chất trên toàn cấu trúc. Bài toán tô màu chỉ là một trường hợp đặc biệt của lớp bài toán này.
 
-## 常见空间对称群
+<span id="&#x5E38;&#x89C1;&#x7A7A;&#x95F4;&#x5BF9;&#x79F0;&#x7FA4;"></span>
+## Các nhóm đối xứng không gian thường gặp
 
-Pólya 计数相关问题的难点之一在于分析置换群的结构．这里，简单讨论常见的空间对称群的结构，并用它们的轮换指标加以描述．应当注意，对于同一个结构的空间对称群，如果考虑的作用对象的集合不同，相应的 [群作用](../algebra/group-theory.md#群作用) 也就不同，因而它们的置换表示也就不同．比如说，正方体的空间对称群对于它的顶点、棱、面的作用就分别对应着正方体的顶点置换群、棱置换群和面置换群，顶点、棱、面的个数互不相同，故而这些置换群以及对应的轮换指标当然也各不相同．所以，在具体问题的求解中，不能忽视群作用的对象的指定．
+Một khó khăn của các bài toán đếm Pólya là phân tích cấu trúc của nhóm hoán vị. Ở đây thảo luận ngắn gọn cấu trúc của các nhóm đối xứng không gian thường gặp và mô tả chúng bằng chỉ số chu trình. Cần chú ý rằng với cùng một nhóm đối xứng không gian của một cấu trúc, nếu tập đối tượng mà nó tác động lên khác nhau thì [tác động nhóm](../algebra/group-theory.md#%E7%BE%A4%E4%BD%9C%E7%94%A8) tương ứng cũng khác nhau, do đó biểu diễn hoán vị cũng khác nhau. Ví dụ, nhóm đối xứng không gian của khối lập phương khi tác động lên đỉnh, cạnh, mặt lần lượt cho nhóm hoán vị đỉnh, nhóm hoán vị cạnh và nhóm hoán vị mặt của khối lập phương; số lượng đỉnh, cạnh, mặt đôi một khác nhau, nên các nhóm hoán vị đó và chỉ số chu trình tương ứng cũng khác nhau. Vì vậy trong bài toán cụ thể, không được bỏ qua việc chỉ rõ đối tượng mà nhóm tác động lên.
 
-??? info "空间对称群和置换群的关系"
-    虽然两者概念上十分相似，但是它们绝不是同一个对象．用群论的语言说，给定空间对称群 $G$ 和它在集合 $X$ 上的群作用，群作用的置换表示实则提供了一个从群 $G$ 到对称群 $S_X$ 的同态 $\varphi$，而且这个置换表示在组合计数的语境下往往是忠实的，即 $\ker\varphi=\{e\}$，故而同态 $\varphi$ 实则是群 $G$ 到群 $S_X$ 内的一个嵌入．文中的置换群则是这个嵌入的像，即 $\varphi(G)$，它与本身的空间对称群 $G$ 同构．因此，对于同样的结构上的空间对称群 $G$，如果群作用的选取不一致，就会同构于不同的置换群 $\varphi(G)$，进而具有不同的轮换指标（同构的置换群的轮换指标未必相同）．
+??? info "Quan hệ giữa nhóm đối xứng không gian và nhóm hoán vị"
+    Dù hai khái niệm rất giống nhau về trực giác, chúng tuyệt đối không phải cùng một đối tượng. Nói bằng ngôn ngữ lí thuyết nhóm, cho nhóm đối xứng không gian $G$ và tác động nhóm của nó lên tập $X$, biểu diễn hoán vị của tác động nhóm thực ra cho một đồng cấu từ nhóm $G$ đến nhóm đối xứng $S_X$, kí hiệu $\varphi$. Trong ngữ cảnh đếm tổ hợp, biểu diễn hoán vị này thường là trung thành, tức $\ker\varphi=\{e\}$, nên đồng cấu $\varphi$ thực chất là một phép nhúng từ nhóm $G$ vào nhóm $S_X$. Nhóm hoán vị trong bài chính là ảnh của phép nhúng này, tức $\varphi(G)$, và nó đẳng cấu với nhóm đối xứng không gian $G$. Vì vậy, với cùng một nhóm đối xứng không gian $G$ trên cùng một cấu trúc, nếu cách chọn tác động nhóm khác nhau thì nó sẽ đẳng cấu với các nhóm hoán vị $\varphi(G)$ khác nhau, từ đó có chỉ số chu trình khác nhau (các nhóm hoán vị đẳng cấu chưa chắc có cùng chỉ số chu trình).
 
-给定一个结构，它的空间对称群是所有能够将它变换到它自身的操作的集合．它必然满足如下条件：
+Cho một cấu trúc, nhóm đối xứng không gian của nó là tập mọi phép toán có thể biến đổi nó thành chính nó. Nó nhất thiết thỏa mãn các điều kiện sau:
 
--   对给定结构连续应用两个对称操作，可以视作应用另一个对称操作，即对称操作的集合对于复合是满足封闭性的；
--   对称操作的复合满足结合律；
--   存在恒等的对称操作，即给定结构保持不变本身也视作一个操作；
--   任何操作都存在它的逆操作，可以抵消给定操作的效果．
+-   Áp dụng liên tiếp hai phép đối xứng lên cấu trúc cho trước có thể xem là áp dụng một phép đối xứng khác, tức tập các phép đối xứng đóng dưới phép hợp thành;
+-   Phép hợp thành các phép đối xứng thỏa mãn luật kết hợp;
+-   Tồn tại phép đối xứng đồng nhất, tức việc giữ nguyên cấu trúc cũng được xem là một phép toán;
+-   Mọi phép toán đều có phép nghịch đảo, có thể triệt tiêu hiệu quả của phép toán đã cho.
 
-[群](../algebra/basic.md#群) 是对所有满足这些条件的概念的抽象．对于群的结构的讨论，就是 [群论](../algebra/group-theory.md) 的主要研究内容．这里的分析主要集中在空间对称群，对它的结构的讨论也主要应用几何观点．这里给出了常见的例子，读者应当从中获得分析这类问题的常见思路．
+[Nhóm](../algebra/basic.md#%E7%BE%A4) là sự trừu tượng hóa của mọi khái niệm thỏa mãn các điều kiện trên. Việc nghiên cứu cấu trúc nhóm là nội dung chính của [lí thuyết nhóm](../algebra/group-theory.md). Phân tích ở đây chủ yếu tập trung vào nhóm đối xứng không gian và dùng quan điểm hình học để thảo luận cấu trúc của chúng. Các ví dụ thường gặp dưới đây nhằm giúp người đọc nắm được cách phân tích loại bài toán này.
 
-### 循环群
+<span id="&#x5FAA;&#x73AF;&#x7FA4;"></span>
+### Nhóm cyclic
 
-给定正 $n$ 边形，它的全体旋转操作构成的空间对称群称为循环群（cyclic group），记作 $C_n$．将逆时针旋转 $(360/n)^\circ$ 的操作记作 $r$，则群 $C_n$ 的元素可以写作
+Cho đa giác đều $n$ cạnh, nhóm đối xứng không gian gồm tất cả các phép quay của nó được gọi là nhóm cyclic, kí hiệu $C_n$. Kí hiệu phép quay ngược chiều kim đồng hồ $(360/n)^\circ$ là $r$, khi đó các phần tử của nhóm $C_n$ có thể viết là
 
 $$
 C_n=\{e,r,r^2,\cdots,r^{n-1}\}.
 $$
 
-这里，$r^k$ 指对操作 $r$ 重复 $k$ 次的结果，即逆时针旋转 $(360k/n)^\circ$，而 $e=r^0$ 指恒等变换．
+Ở đây, $r^k$ là kết quả lặp phép toán $r$ đúng $k$ lần, tức quay ngược chiều kim đồng hồ $(360k/n)^\circ$, còn $e=r^0$ là phép đồng nhất.
 
-无论是考虑循环群对正 $n$ 边形的全体顶点还是全体边的集合的作用，它的置换表示都是一样的．以全体顶点的集合为例分析群作用的置换表示．它的轮换指标是
+Dù xét tác động của nhóm cyclic lên tập tất cả đỉnh hay tập tất cả cạnh của đa giác đều $n$ cạnh, biểu diễn hoán vị đều giống nhau. Lấy tập tất cả đỉnh làm ví dụ để phân tích biểu diễn hoán vị của tác động nhóm. Chỉ số chu trình của nó là
 
 $$
 Z(C_n)=\frac1n\sum_{d\mid n}\varphi(d)t_{d}^{n/d}.
 $$
 
-这里，$\varphi(\cdot)$ 是数论中的 [欧拉函数](../number-theory/euler-totient.md)．
+Ở đây, $\varphi(\cdot)$ là [hàm Euler](../number-theory/euler-totient.md) trong số học.
 
-只计旋转操作，长度为 $n$ 的项链的空间对称群就是 $C_n$．
+Nếu chỉ tính phép quay, nhóm đối xứng không gian của vòng cổ độ dài $n$ chính là $C_n$.
 
-??? note "分析"
-    设顶点的集合按照逆时针顺序记为 $\{0,1,\cdots,n-1\}$，则 $r^k(i)=i+k\bmod n$．顶点 $i$ 所在的轮换中的顶点集合就是
+??? note "Phân tích"
+    Đánh số tập đỉnh theo thứ tự ngược chiều kim đồng hồ là $\{0,1,\cdots,n-1\}$, khi đó $r^k(i)=i+k\bmod n$. Tập đỉnh trong chu trình chứa đỉnh $i$ là
     
     $$
     \{i+\ell k\bmod n:\ell\in\mathbf Z\}.
     $$
     
-    显然，$i\equiv i+\ell k\pmod n$ 当且仅当
+    Rõ ràng $i\equiv i+\ell k\pmod n$ khi và chỉ khi
     
     $$
     \frac{n}{\gcd(k,n)}\mid\ell.
     $$
     
-    这意味着，任何顶点 $i$ 所在的轮换长度都是 $\dfrac{n}{\gcd(k,n)}$．因此，置换 $r^k$ 有 $\gcd(k,n)$ 个等长的轮换．考虑在轮换指标的表达式中合并同类项，给定 $d\mid n$，则满足 $\gcd(k,n)=n/d$ 的 $k$ 共计 $\varphi(d)$ 个，它们对应的单项式都是 $t_d^{n/d}$ 的形式，所以可以得到上面的轮换指标表达式．
+    Điều này có nghĩa là độ dài chu trình chứa bất kì đỉnh $i$ nào đều là $\dfrac{n}{\gcd(k,n)}$. Vì vậy hoán vị $r^k$ có $\gcd(k,n)$ chu trình cùng độ dài. Xét việc gộp các hạng đồng dạng trong biểu thức chỉ số chu trình: với $d\mid n$ cho trước, các $k$ thỏa $\gcd(k,n)=n/d$ có tổng cộng $\varphi(d)$ giá trị, và chúng ứng với cùng một đơn thức dạng $t_d^{n/d}$. Từ đó suy ra biểu thức chỉ số chu trình ở trên.
 
-### 二面体群
+<span id="&#x4E8C;&#x9762;&#x4F53;&#x7FA4;"></span>
+### Nhóm nhị diện
 
-给定正 $n$ 边形，它的全体旋转和关于对称轴翻转的操作也构成空间对称群，它称为二面体群（dihedral group），记作 $D_{2n}$．将逆时针旋转 $(360/n)^\circ$ 的操作记作 $r$，并将沿某个给定对称轴（比如中心与某个顶点的连线）翻转的操作记作 $s$，则群 $D_{2n}$ 的操作可以写作
+Cho đa giác đều $n$ cạnh, tất cả các phép quay và phép lật qua trục đối xứng cũng tạo thành một nhóm đối xứng không gian, gọi là nhóm nhị diện (dihedral group), kí hiệu $D_{2n}$. Kí hiệu phép quay ngược chiều kim đồng hồ $(360/n)^\circ$ là $r$, và kí hiệu phép lật qua một trục đối xứng cố định (ví dụ đường nối tâm với một đỉnh) là $s$, khi đó các phép toán của nhóm $D_{2n}$ có thể viết là
 
 $$
 D_{2n}=\{e,r,\cdots,r^{n-1},s,sr,\cdots,sr^{n-1}\}.
 $$
 
-这里，$r^k$ 依然是旋转操作，而 $sr^k$ 虽然是先进行 $k$ 次旋转再沿给定对称轴翻转，但是可以等价地看作沿着另一个对称轴翻转．因此，群 $D_{2n}$ 中共计 $1$ 个恒等变换、$(n-1)$ 个旋转操作和 $n$ 个翻转操作．它对顶点集合和边集合的群作用也有着相同的置换表示．它的轮换指标是
+Ở đây, $r^k$ vẫn là phép quay; còn $sr^k$, dù có thể hiểu là quay $k$ lần rồi lật qua trục cố định, cũng tương đương với lật qua một trục đối xứng khác. Do đó nhóm $D_{2n}$ có tổng cộng $1$ phép đồng nhất, $(n-1)$ phép quay và $n$ phép lật. Tác động của nó lên tập đỉnh và tập cạnh cũng có cùng biểu diễn hoán vị. Chỉ số chu trình là
 
 $$
 Z(D_{2n})=\frac12Z(C_n)+
@@ -375,159 +383,165 @@ Z(D_{2n})=\frac12Z(C_n)+
 \end{cases}
 $$
 
-??? note "分析"
-    群 $D_{2n}$ 中的旋转操作 $r^k$ 的集合（包括恒等变换）的分析和循环群 $C_n$ 如出一辙，关键在于剩下的翻转操作的分析．此时需要对顶点个数 $n$ 的奇偶性分类讨论．
+??? note "Phân tích"
+    Phân tích tập các phép quay $r^k$ trong nhóm $D_{2n}$ (bao gồm phép đồng nhất) giống hệt nhóm cyclic $C_n$; điểm mấu chốt là phân tích các phép lật còn lại. Khi đó cần chia theo tính chẵn lẻ của số đỉnh $n$.
     
-    当 $n=2k+1$ 时，所有的翻转操作的对称轴都是连结顶点和它对面的边的中点的，共计 $n$ 条这样的对称轴．每个翻转操作后，对称轴上的顶点保持不动，而其它顶点成对地交换，因此有 $1$ 个不动点（$1$‑轮换）和 $k$ 个 $2$‑轮换．
+    Khi $n=2k+1$, mọi trục lật đều nối một đỉnh với trung điểm cạnh đối diện nó, có tổng cộng $n$ trục như vậy. Sau mỗi phép lật, đỉnh nằm trên trục đối xứng giữ nguyên, còn các đỉnh khác đổi chỗ theo từng cặp, nên có $1$ điểm bất động (chu trình độ dài $1$) và $k$ chu trình độ dài $2$.
     
-    当 $n=2k$ 时，有两种对称轴．其中，一半的对称轴是连接相对的顶点的；沿着这样的对称轴翻转，将保持对称轴上的两个顶点不动，而将其余的顶点成对地交换，因此有 $2$ 个不动点（$1$‑轮换）和 $(k-1)$ 个 $2$‑轮换．另一半的对称轴是连接相对的边的中点的；沿着这样的对称轴翻转，将所有顶点都成对地交换，因此有 $k$ 个 $2$‑轮换．
+    Khi $n=2k$, có hai loại trục đối xứng. Một nửa số trục nối hai đỉnh đối diện; lật qua trục như vậy giữ nguyên hai đỉnh trên trục và đổi chỗ các đỉnh còn lại theo từng cặp, nên có $2$ điểm bất động (chu trình độ dài $1$) và $(k-1)$ chu trình độ dài $2$. Nửa còn lại nối trung điểm hai cạnh đối diện; lật qua trục như vậy đổi chỗ mọi đỉnh theo từng cặp, nên có $k$ chu trình độ dài $2$.
     
-    根据这一分析，可以写出上面的轮换指标表达式．
+    Từ phân tích này có thể viết được biểu thức chỉ số chu trình ở trên.
 
-### 对称群
+<span id="&#x5BF9;&#x79F0;&#x7FA4;"></span>
+### Nhóm đối xứng
 
-给定 $n$ 个元素，它上面的全体置换构成群，称为 $n$ 次对称群（symmetric group），记作 $S_n$．它描述了这 $n$ 个顶点能拥有的全部对称性．它也是这些对称操作对顶点集合的作用的置换表示．
+Cho $n$ phần tử, tập tất cả các hoán vị trên chúng tạo thành một nhóm, gọi là nhóm đối xứng bậc $n$ (symmetric group), kí hiệu $S_n$. Nó mô tả mọi đối xứng mà $n$ đỉnh này có thể có. Nó cũng chính là biểu diễn hoán vị của các phép đối xứng đó khi tác động lên tập đỉnh.
 
-根据 [置换与排列](../permutation.md#置换的型) 一文的分析，它的轮换指标是
+Theo phân tích trong bài [hoán vị và sắp xếp](../permutation.md#%E7%BD%AE%E6%8D%A2%E7%9A%84%E5%9E%8B), chỉ số chu trình của nó là
 
 $$
 Z(S_n)=\sum_{a_1+2\alpha_2+\cdots+n\alpha_n=n}\frac{t_1^{\alpha_1}t_2^{\alpha_2}\cdots t_n^{\alpha_n}}{1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}\alpha_1!\alpha_2!\cdots\alpha_n!}.
 $$
 
-这里用到了型为 $1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}$ 的置换的计数是
+Ở đây dùng công thức đếm số hoán vị có kiểu $1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}$:
 
 $$
 \frac{n!}{1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}\alpha_1!\alpha_2!\cdots\alpha_n!}.
 $$
 
-它满足递推关系
+Nó thỏa mãn truy hồi
 
 $$
 Z(S_n)=\frac1n\sum_{k=1}^nt_kZ(S_{n-k}),
 $$
 
-而递推起点是 $Z(S_0)=1$．这一递推关系的组合意义是，要构造长度为 $n$ 的置换，可以首先选取点 $n$ 所在轮换的长度 $k$，再对剩下的 $(n-k)$ 个顶点的集合构造．
+với điều kiện đầu $Z(S_0)=1$. Ý nghĩa tổ hợp của truy hồi này là: để xây dựng một hoán vị độ dài $n$, trước hết chọn độ dài $k$ của chu trình chứa điểm $n$, rồi xây dựng trên tập $(n-k)$ đỉnh còn lại.
 
-给定 $n$ 个顶点的完全图，则它的空间对称群正是 $S_n$．它对全体顶点的集合的作用的轮换指标就由上文的 $Z(S_n)$ 给出．但是，它对全体边的集合的作用的置换表示并不相同．比如说，集合的大小就不相同，全体边的数目是 $n(n-1)/2$．对于边的情形，需要额外的分析．这里给出简单的例子，一般的情形可参考习题．
+Với đồ thị đầy đủ trên $n$ đỉnh, nhóm đối xứng không gian của nó chính là $S_n$. Chỉ số chu trình của tác động lên tập tất cả đỉnh được cho bởi $Z(S_n)$ ở trên. Nhưng biểu diễn hoán vị của nó trên tập tất cả cạnh thì khác. Chẳng hạn, kích thước tập đã khác: số cạnh là $n(n-1)/2$. Với trường hợp cạnh, cần phân tích thêm. Dưới đây là ví dụ đơn giản; trường hợp tổng quát có thể xem ở phần bài tập.
 
-???+ example "无向简单图计数"
-    计算同构意义下有 $4$ 个顶点的无向简单图的数目．
+???+ example "Đếm đồ thị đơn vô hướng"
+    Tính số đồ thị đơn vô hướng có $4$ đỉnh, xét đến đẳng cấu.
 
-??? example "解答"
-    这相当于在有 $4$ 个顶点的完全图上染两种颜色，要求本质不同的染色数目．空间对称群是 $S_4$，现在分析它的边置换群 $S_4^{(2)}$ 的轮换指标．
+??? example "Lời giải"
+    Bài toán tương đương với tô hai màu trên đồ thị đầy đủ có $4$ đỉnh, yêu cầu số cách tô khác nhau về bản chất. Nhóm đối xứng không gian là $S_4$; ta phân tích chỉ số chu trình của nhóm hoán vị cạnh $S_4^{(2)}$.
     
-    -   恒等变换（$1$ 种）：边也保持不动，故对应单项式为 $t_1^6$；
-    -   交换两顶点（$6$ 种）：假设交换 $a$ 和 $b$，则边 $1$ 和边 $3$ 保持不动，同时，边 $2$ 和边 $5$ 对换，边 $4$ 和边 $6$ 对换，故对应单项式为 $6t_1^2t_2^2$；
-    -   轮换三顶点（$8$ 种）：假设轮换是 $(abc)$，则它们之间的连边 $1,2,5$ 也相应轮换，它们和第四点 $d$ 的连边 $4,6,3$ 也相应轮换，故对应单项式为 $8t_3^2$；
-    -   交换两对顶点（$3$ 种）：假设点 $a$ 和点 $b$ 对换，点 $c$ 和点 $d$ 对换，则边 $1$ 和边 $3$ 保持不动，同时，边 $2$ 和边 $4$ 对换，边 $5$ 和边 $6$ 对换，故对应单项式为 $3t_1^2t_2^2$；
-    -   轮换四顶点（$6$ 种）：假设轮换是 $(abcd)$，则其中相邻顶点的连边 $1,2,3,4$ 也相应轮换，相对顶点的连边 $5,6$ 同时对换，故对应的单项式为 $6t_2t_4$．
+    -   Phép đồng nhất ($1$ phép): các cạnh cũng giữ nguyên, nên đơn thức tương ứng là $t_1^6$;
+    -   Đổi chỗ hai đỉnh ($6$ phép): giả sử đổi chỗ $a$ và $b$, cạnh $1$ và cạnh $3$ giữ nguyên; cạnh $2$ đổi chỗ với cạnh $5$, cạnh $4$ đổi chỗ với cạnh $6$, nên đơn thức tương ứng là $6t_1^2t_2^2$;
+    -   Chu trình ba đỉnh ($8$ phép): giả sử chu trình là $(abc)$, các cạnh nối giữa chúng $1,2,5$ cũng tạo chu trình tương ứng, và các cạnh nối chúng với đỉnh thứ tư $d$, tức $4,6,3$, cũng tạo chu trình tương ứng, nên đơn thức là $8t_3^2$;
+    -   Đổi chỗ hai cặp đỉnh ($3$ phép): giả sử đỉnh $a$ đổi với $b$, đỉnh $c$ đổi với $d$, thì cạnh $1$ và cạnh $3$ giữ nguyên, cạnh $2$ đổi với cạnh $4$, cạnh $5$ đổi với cạnh $6$, nên đơn thức là $3t_1^2t_2^2$;
+    -   Chu trình bốn đỉnh ($6$ phép): giả sử chu trình là $(abcd)$, các cạnh nối các đỉnh kề nhau $1,2,3,4$ cũng tạo chu trình tương ứng, còn hai cạnh nối đỉnh đối diện $5,6$ đổi chỗ với nhau, nên đơn thức tương ứng là $6t_2t_4$.
     
-    所以，边置换群的轮换指标是
+    Vì vậy chỉ số chu trình của nhóm hoán vị cạnh là
     
     $$
     Z(S_4^{(2)})=\dfrac{1}{24}(t_1^6+9t_1^2t_2^2+8t_3^2+6t_2t_4).
     $$
     
-    根据 Pólya 计数原理，同构意义下有 $4$ 个顶点的无向简单图的数目是
+    Theo nguyên lí đếm Pólya, số đồ thị đơn vô hướng có $4$ đỉnh xét đến đẳng cấu là
     
     $$
     \frac{2^6+9\times 2^4+8\times 2^2+6\times 2^2}{24} = 11.
     $$
 
-### 多面体群
+<span id="&#x591A;&#x9762;&#x4F53;&#x7FA4;"></span>
+### Nhóm đa diện
 
-多面体群（polyhedral group）是正多面体的空间对称群．正多面体只有五种：正四面体、正方体、正八面体、正十二面体和正二十面体．如果保持点、棱、面之间的邻接关系，交换点和面，可以得到对偶的正多面体．其中，正四面体和它自身对偶，正方体和正八面体对偶，正十二面体和正二十面体对偶．利用对偶关系，可以简化它们的空间对称群的讨论．
+Nhóm đa diện (polyhedral group) là nhóm đối xứng không gian của khối đa diện đều. Chỉ có năm khối đa diện đều: tứ diện đều, lập phương, bát diện đều, thập nhị diện đều và nhị thập diện đều. Nếu giữ quan hệ kề nhau giữa đỉnh, cạnh, mặt và hoán đổi vai trò đỉnh với mặt, ta được khối đa diện đều đối ngẫu. Trong đó, tứ diện đều đối ngẫu với chính nó, lập phương đối ngẫu với bát diện đều, thập nhị diện đều đối ngẫu với nhị thập diện đều. Có thể dùng quan hệ đối ngẫu để đơn giản hóa thảo luận nhóm đối xứng không gian của chúng.
 
-只计三维空间中可以进行的旋转操作，它们的空间对称群只有三种．
+Nếu chỉ tính các phép quay trong không gian ba chiều, nhóm đối xứng không gian của chúng chỉ có ba loại.
 
--   四面体群（tetrahedral group），即正四面体的空间对称群：
+-   Nhóm tứ diện (tetrahedral group), tức nhóm đối xứng không gian của tứ diện đều:
 
-    -   恒等变换；
-    -   绕顶点和对面中心的连线旋转 $120^\circ$ 和 $240^\circ$；
-    -   绕对边的中点的连线旋转 $180^\circ$．
+    -   Phép đồng nhất;
+    -   Quay $120^\circ$ và $240^\circ$ quanh đường nối một đỉnh với tâm mặt đối diện;
+    -   Quay $180^\circ$ quanh đường nối trung điểm hai cạnh đối diện.
 
-    共计 $1+2\times4+1\times3=12$ 个对称操作．
+    Tổng cộng có $1+2\times4+1\times3=12$ phép đối xứng.
 
-    它对应的置换群的轮换指标如下．
+    Chỉ số chu trình của các nhóm hoán vị tương ứng là:
 
-    -   顶点置换群和面置换群：$\dfrac1{12}\left(t_1^4+8t_1t_3+3t_2^2\right)$；
-    -   棱置换群：$\dfrac1{12}\left(t_1^6+8t_3^2+3t_1^2t_2^2\right)$．
+    -   Nhóm hoán vị đỉnh và nhóm hoán vị mặt: $\dfrac1{12}\left(t_1^4+8t_1t_3+3t_2^2\right)$;
+    -   Nhóm hoán vị cạnh: $\dfrac1{12}\left(t_1^6+8t_3^2+3t_1^2t_2^2\right)$.
 
--   八面体群（octahedral group），即正方体（和正八面体）的空间对称群：
+-   Nhóm bát diện (octahedral group), tức nhóm đối xứng không gian của lập phương (và bát diện đều):
 
-    -   恒等变换；
-    -   绕相对顶点的连线旋转 $120^\circ$ 和 $240^\circ$；
-    -   绕相对的棱的中点的连线旋转 $180^\circ$；
-    -   绕相对的面的中心的连线旋转 $90^\circ$，$180^\circ$ 和 $270^\circ$．
+    -   Phép đồng nhất;
+    -   Quay $120^\circ$ và $240^\circ$ quanh đường nối hai đỉnh đối diện;
+    -   Quay $180^\circ$ quanh đường nối trung điểm hai cạnh đối diện;
+    -   Quay $90^\circ$, $180^\circ$ và $270^\circ$ quanh đường nối tâm hai mặt đối diện.
 
-    共计 $1+2\times 4+1\times 6+3\times 3=24$ 个对称操作．
+    Tổng cộng có $1+2\times 4+1\times 6+3\times 3=24$ phép đối xứng.
 
-    它对应的正方体的置换群的轮换指标如下．
+    Chỉ số chu trình của các nhóm hoán vị tương ứng của lập phương là:
 
-    -   顶点置换群：$\dfrac{1}{24}\left(t_1^8+8t_1^2t_3^2+9t_2^4+6t_4^2\right)$；
-    -   棱置换群：$\dfrac{1}{24}\left(t_1^{12}+8t_3^4+6t_1^2t_2^5+6t_4^3+3t_2^6\right)$；
-    -   面置换群：$\dfrac{1}{24}\left(t_1^6+8t_3^2+6t_2^3+6t_1^2t_4+3t_1^2t_2^2\right)$．
+    -   Nhóm hoán vị đỉnh: $\dfrac{1}{24}\left(t_1^8+8t_1^2t_3^2+9t_2^4+6t_4^2\right)$;
+    -   Nhóm hoán vị cạnh: $\dfrac{1}{24}\left(t_1^{12}+8t_3^4+6t_1^2t_2^5+6t_4^3+3t_2^6\right)$;
+    -   Nhóm hoán vị mặt: $\dfrac{1}{24}\left(t_1^6+8t_3^2+6t_2^3+6t_1^2t_4+3t_1^2t_2^2\right)$.
 
-    正八面体的置换群类似，只是要将顶点和面的角色对换．
+    Nhóm hoán vị của bát diện đều tương tự, chỉ cần đổi vai trò đỉnh và mặt.
 
--   二十面体群（icosahedral group），即正十二面体（和正二十面体）的空间对称群：
+-   Nhóm nhị thập diện (icosahedral group), tức nhóm đối xứng không gian của thập nhị diện đều (và nhị thập diện đều):
 
-    -   恒等变换；
-    -   绕相对顶点的连线旋转 $120^\circ$ 和 $240^\circ$；
-    -   绕相对的棱的中点的连线旋转 $180^\circ$；
-    -   绕相对的面的中心的连线旋转 $72^\circ$，$144^\circ$，$216^\circ$ 和 $288^\circ$．
+    -   Phép đồng nhất;
+    -   Quay $120^\circ$ và $240^\circ$ quanh đường nối hai đỉnh đối diện;
+    -   Quay $180^\circ$ quanh đường nối trung điểm hai cạnh đối diện;
+    -   Quay $72^\circ$, $144^\circ$, $216^\circ$ và $288^\circ$ quanh đường nối tâm hai mặt đối diện.
 
-    共计 $1+2\times 10+1\times 15+6\times 4=60$ 个对称操作．
+    Tổng cộng có $1+2\times 10+1\times 15+6\times 4=60$ phép đối xứng.
 
-    它对应的正十二面体的置换群的轮换指标如下．
+    Chỉ số chu trình của các nhóm hoán vị tương ứng của thập nhị diện đều là:
 
-    -   顶点置换群：$\dfrac{1}{60}\left(t_1^{20}+20t_1^2t_3^6+15t_2^{10}+24t_5^4\right)$；
-    -   棱置换群：$\dfrac{1}{60}\left(t_1^{30}+20t_3^{10}+15t_1^2t_2^{14}+24t_5^6\right)$；
-    -   面置换群：$\dfrac{1}{60}\left(t_1^{12}+20t_3^4+15t_2^6+24t_1^2t_5^2\right)$．
+    -   Nhóm hoán vị đỉnh: $\dfrac{1}{60}\left(t_1^{20}+20t_1^2t_3^6+15t_2^{10}+24t_5^4\right)$;
+    -   Nhóm hoán vị cạnh: $\dfrac{1}{60}\left(t_1^{30}+20t_3^{10}+15t_1^2t_2^{14}+24t_5^6\right)$;
+    -   Nhóm hoán vị mặt: $\dfrac{1}{60}\left(t_1^{12}+20t_3^4+15t_2^6+24t_1^2t_5^2\right)$.
 
-    正二十面体的置换群类似，只是要将顶点和面的角色对换．
+    Nhóm hoán vị của nhị thập diện đều tương tự, chỉ cần đổi vai trò đỉnh và mặt.
 
-这里给出的都是对顶点、棱、面等单独的对象作用的置换群的轮换指标．如果要对不同的对象同时染色，需要写出联合的轮换指标．
+Các chỉ số chu trình ở đây đều dành cho nhóm hoán vị tác động riêng lên các đối tượng như đỉnh, cạnh, mặt. Nếu cần tô màu đồng thời nhiều loại đối tượng, phải viết chỉ số chu trình liên hợp.
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
+## Bài tập
 
-### 染色问题
+<span id="&#x67D3;&#x8272;&#x95EE;&#x9898;"></span>
+### Bài toán tô màu
 
-这些题目只需要分析置换群的结构，并应用 Pólya 计数原理．
+Các bài này chỉ cần phân tích cấu trúc của nhóm hoán vị và áp dụng nguyên lí đếm Pólya.
 
--   [Luogu P4980【模板】Polya 定理](https://www.luogu.com.cn/problem/P4980)
--   [Luogu P2561 \[AHOI2002\] 黑白瓷砖](https://www.luogu.com.cn/problem/P2561)
+-   [Luogu P4980 Mẫu: Định lí Polya](https://www.luogu.com.cn/problem/P4980)
+-   [Luogu P2561 [AHOI2002] Gạch trắng đen](https://www.luogu.com.cn/problem/P2561)
 -   [TRANSP - Transposing is Fun](https://www.spoj.com/problems/TRANSP/)
 -   [TRANSP2 - Transposing is Even More Fun](https://www.spoj.com/problems/TRANSP2/)
--   [Luogu P3307 \[SDOI2013\] 项链](https://www.luogu.com.cn/problem/P3307)
+-   [Luogu P3307 [SDOI2013] Vòng cổ](https://www.luogu.com.cn/problem/P3307)
 
-当可以使用的颜色组合受到限制时，需要通过背包 DP 或者组合方法求解对轮换染色的方法数目．
+Khi tổ hợp màu được phép dùng bị ràng buộc, cần dùng DP ba lô hoặc phương pháp tổ hợp để tính số cách tô các chu trình.
 
--   [Luogu P1446 \[HNOI2008\] Cards](https://www.luogu.com.cn/problem/P1446)
+-   [Luogu P1446 [HNOI2008] Cards](https://www.luogu.com.cn/problem/P1446)
 -   [UVA10601 Cubes](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1542)
--   [Luogu P4916 \[MtOI2018\] 魔力环](https://www.luogu.com.cn/problem/P4916)
+-   [Luogu P4916 [MtOI2018] Vòng ma lực](https://www.luogu.com.cn/problem/P4916)
 
-### 图论计数
+<span id="&#x56FE;&#x8BBA;&#x8BA1;&#x6570;"></span>
+### Đếm đồ thị
 
-Pólya 计数原理可以用于 [图论计数](../combinatorics/graph-enumeration.md) 问题，这类问题难点在于图的边置换群的枚举．
+Nguyên lí đếm Pólya có thể dùng cho bài toán [đếm đồ thị](../combinatorics/graph-enumeration.md); khó khăn của loại bài này nằm ở việc liệt kê nhóm hoán vị cạnh của đồ thị.
 
 -   [SGU 282. Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)
--   [Luogu P4727 \[HNOI2009\] 图的同构计数](https://www.luogu.com.cn/problem/P4727)
--   [Luogu P4128 \[SHOI2006\] 有色图](https://www.luogu.com.cn/problem/P4128)
+-   [Luogu P4727 [HNOI2009] Đếm đẳng cấu đồ thị](https://www.luogu.com.cn/problem/P4727)
+-   [Luogu P4128 [SHOI2006] Đồ thị có màu](https://www.luogu.com.cn/problem/P4128)
 
-另一类可以应用 Pólya 计数原理的图论计数问题需要直接操纵生成函数．
+Một loại bài toán đếm đồ thị khác có thể áp dụng nguyên lí đếm Pólya cần thao tác trực tiếp trên hàm sinh.
 
--   [LOJ 6538 烷基计数 加强版 加强版](https://loj.ac/p/6538)
--   [LOJ 6512「雅礼集训 2018」烷烃计数](https://loj.ac/p/6512)
--   [Luogu P6597 烯烃计数](https://www.luogu.com.cn/problem/P6597)
--   [Luogu P5818 \[JSOI2011\] 同分异构体计数](https://www.luogu.com.cn/problem/P5818)
+-   [LOJ 6538 Đếm alkyl, bản tăng cường, bản tăng cường](https://loj.ac/p/6538)
+-   [LOJ 6512 "Trại huấn luyện Yale 2018" Đếm alkane](https://loj.ac/p/6512)
+-   [Luogu P6597 Đếm alkene](https://www.luogu.com.cn/problem/P6597)
+-   [Luogu P5818 [JSOI2011] Đếm đồng phân](https://www.luogu.com.cn/problem/P5818)
 
-## 参考文献与注释
+<span id="&#x53C2;&#x8003;&#x6587;&#x732E;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+## Tài liệu tham khảo và chú thích
 
 -   [Pólya enumeration theorem - Wikipedia](https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem)
 -   [Notes on Pólya's Enumeration Theorem](https://www.diva-portal.org/smash/get/diva2:324594/FULLTEXT01.pdf)
 -   [Cycle index - Wikipedia](https://en.wikipedia.org/wiki/Cycle_index)
 
-[^perm-group]: 因此，空间对称群 $G$ 可以表示是集合 $X$ 上的置换群，即对称群 $S_X$ 的子群．
+[^perm-group]: Vì vậy nhóm đối xứng không gian $G$ có thể biểu diễn thành một nhóm hoán vị trên tập $X$, tức một nhóm con của nhóm đối xứng $S_X$.
 
-[^g-act]: 严格来说，是子群 $\langle g\rangle\le G$ 的作用．
+[^g-act]: Nói chặt chẽ hơn, đây là tác động của nhóm con $\langle g\rangle\le G$.

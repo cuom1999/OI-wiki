@@ -1,16 +1,22 @@
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
 
-范德蒙德卷积是一种合并组合数的式子，主要应用于组合数学的公式推导．
+## Giới thiệu
 
-## 范德蒙德卷积公式
+Tích chập Vandermonde là một công thức dùng để gộp các số tổ hợp, chủ yếu được áp dụng khi suy ra các công thức trong tổ hợp.
+
+<span id="&#x8303;&#x5FB7;&#x8499;&#x5FB7;&#x5377;&#x79EF;&#x516C;&#x5F0F;"></span>
+
+## Công thức tích chập Vandermonde
 
 $$
 \sum_{i=0}^k\binom{n}{i}\binom{m}{k-i}=\binom{n+m}{k}
 $$
 
-### 证明
+<span id="&#x8BC1;&#x660E;"></span>
 
-考虑用二项式定理证明：
+### Chứng minh
+
+Xét chứng minh bằng định lý nhị thức:
 
 $$
 \begin{aligned}
@@ -21,74 +27,88 @@ $$
 \end{aligned}
 $$
 
-即有：
+Suy ra:
 
 $$
 \binom{n+m}{k}=\sum_{r=0}^k\binom{n}{r}\binom{m}{k-r}
 $$
 
-若考虑其组合意义证明：
+Nếu chứng minh theo ý nghĩa tổ hợp:
 
-在一个大小为 $n+m$ 的集合中取出 $k$ 个数，可以等于把大小为 $n+m$ 的集合拆成两个集合，大小分别为 $n$ 与 $m$，然后从 $n$ 中取出 $i$ 个数，从 $m$ 中取出 $k-i$ 个数的方案数．由于我们有了对于 $i$ 的枚举，于是只需要考虑一种拆法，因为不同的拆法之间是等价的．
+Chọn $k$ phần tử từ một tập có kích thước $n+m$ có thể xem là tách tập này thành hai tập có kích thước lần lượt là $n$ và $m$, rồi chọn $i$ phần tử từ tập kích thước $n$ và $k-i$ phần tử từ tập kích thước $m$. Do ta đã cộng trên mọi giá trị $i$, chỉ cần xét một cách tách tập, vì các cách tách khác là tương đương.
 
-## 推论
+<span id="&#x63A8;&#x8BBA;"></span>
 
-### 推论 1 及证明
+## Hệ quả
+
+<span id="&#x63A8;&#x8BBA;-1-&#x53CA;&#x8BC1;&#x660E;"></span>
+
+### Hệ quả 1 và chứng minh
 
 $$
 \sum_{i=-r}^{s}\binom{n}{r+i}\binom{m}{s-i}=\binom{n+m}{r+s}
 $$
 
-证明与原公式证明相似．
+Chứng minh tương tự chứng minh công thức gốc.
 
-### 推论 2 及证明
+<span id="&#x63A8;&#x8BBA;-2-&#x53CA;&#x8BC1;&#x660E;"></span>
+
+### Hệ quả 2 và chứng minh
 
 $$
 \sum_{i=1}^n\binom{n}{i}\binom{n}{i-1}=\binom{2n}{n-1}
 $$
 
-根据基础的组合数学知识推导，有：
+Suy ra từ các kiến thức tổ hợp cơ bản:
 
 $$
 \sum_{i=1}^n\binom{n}{i}\binom{n}{i-1}=\sum_{i=0}^{n-1}\binom{n}{i+1}\binom{n}{i}=\sum_{i=0}^{n-1}\binom{n}{n-1-i}\binom{n}{i}=\binom{2n}{n-1}
 $$
 
-### 推论 3 及证明
+<span id="&#x63A8;&#x8BBA;-3-&#x53CA;&#x8BC1;&#x660E;"></span>
+
+### Hệ quả 3 và chứng minh
 
 $$
 \sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}
 $$
 
-根据基础的组合数学知识推导，有：
+Suy ra từ các kiến thức tổ hợp cơ bản:
 
 $$
 \sum_{i=0}^n\binom{n}{i}^2=\sum_{i=0}^n\binom{n}{i}\binom{n}{n-i}=\binom{2n}{n}
 $$
 
-### 推论 4 及证明
+<span id="&#x63A8;&#x8BBA;-4-&#x53CA;&#x8BC1;&#x660E;"></span>
+
+### Hệ quả 4 và chứng minh
 
 $$
 \sum_{i=0}^m\binom{n}{i}\binom{m}{i}=\binom{n+m}{m}
 $$
 
-根据基础的组合数学知识推导，有：
+Suy ra từ các kiến thức tổ hợp cơ bản:
 
 $$
 \sum_{i=0}^m\binom{n}{i}\binom{m}{i}=\sum_{i=0}^m\binom{n}{i}\binom{m}{m-i}=\binom{n+m}{m}
 $$
 
-其中 $\binom{n+m}{m}$ 是我们较为熟悉的网格图路径计数的方案数．所以我们可以考虑其组合意义的证明．
+Trong đó $\binom{n+m}{m}$ là số cách đếm đường đi trên lưới quen thuộc. Vì vậy ta có thể chứng minh bằng ý nghĩa tổ hợp.
 
-在一张网格图中，从 $(0,0)$ 走到 $(n,m)$ 共走 $n+m$ 步．规定 $(0,0)$ 位于网格图左上角，其中向下走了 $n$ 步，向右走了 $m$ 步，方案数为 $\binom{n+m}{m}$．
+Trên một đồ thị lưới, để đi từ $(0,0)$ đến $(n,m)$ cần đi tổng cộng $n+m$ bước. Quy ước $(0,0)$ nằm ở góc trên bên trái của lưới; trong đó có $n$ bước đi xuống và $m$ bước đi sang phải, nên số cách là $\binom{n+m}{m}$.
 
-换个视角，我们将 $n+m$ 步拆成两部分走，先走 $n$ 步，再走 $m$ 步，那么 $n$ 步中若有 $i$ 步向右，则 $m$ 步中就有 $m-i$ 步向右，故得证．
+Nhìn theo cách khác, ta tách $n+m$ bước thành hai phần: đi $n$ bước trước, rồi đi $m$ bước sau. Nếu trong $n$ bước đầu có $i$ bước sang phải, thì trong $m$ bước sau sẽ có $m-i$ bước sang phải. Do đó công thức được chứng minh.
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
+
+## Bài tập
 
 -   [CF785D Anton and School - 2](https://codeforces.com/problemset/problem/785/D)
 
--   [洛谷 P2791 幼儿园篮球题](https://www.luogu.com.cn/problem/P2791)
+-   [Luogu P2791 Kindergarten Basketball Problem](https://www.luogu.com.cn/problem/P2791)
 
-## 参考资料与注释
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+
+## Tài liệu tham khảo và ghi chú
 
 1.  [Vandermonde's Convolution Formula](https://www.cut-the-knot.org/arithmetic/algebra/VandermondeConvolution.shtml)
