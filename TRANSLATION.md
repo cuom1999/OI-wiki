@@ -192,6 +192,10 @@ MkDocs source layout intact.
   `docs/math/matroid.md`, `docs/math/berlekamp-massey.md`: translated the
   remaining standalone math pages on order theory, Young tableaux, matroids,
   and Berlekamp-Massey, plus explanatory comments in order-theory snippets.
+- `docs/ds/stack.md`, `docs/ds/queue.md`, `docs/ds/linked-list.md`,
+  `docs/ds/hash.md`: translated the opening data-structure pages covering
+  stacks, queues/deques, linked lists, and hash tables, plus explanatory
+  comments in included queue snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

@@ -1,29 +1,37 @@
-本页面将简要介绍链表．
+Trang này giới thiệu ngắn gọn về danh sách liên kết.
 
-## 引入
+<span id="&#24341;&#20837;"></span>
 
-链表是一种用于存储数据的数据结构，通过如链条一般的指针来连接元素．它的特点是插入与删除数据十分方便，但寻找与读取数据的表现欠佳．
+## Giới thiệu
 
-## 与数组的区别
+Danh sách liên kết là một cấu trúc dữ liệu dùng để lưu trữ dữ liệu, trong đó các phần tử được nối với nhau bằng các con trỏ giống như các mắt xích. Đặc điểm của nó là chèn và xóa dữ liệu rất thuận tiện, nhưng tìm kiếm và đọc dữ liệu lại kém hiệu quả hơn.
 
-链表和数组都可用于存储数据．与链表不同，数组将所有元素按次序依次存储．不同的存储结构令它们有了不同的优势：
+<span id="&#19982;&#25968;&#32452;&#30340;&#21306;&#21035;"></span>
 
-链表因其链状的结构，能方便地删除、插入数据，操作次数是 $O(1)$．但也因为这样，寻找、读取数据的效率不如数组高，在随机访问数据中的操作次数是 $O(n)$．
+## Khác biệt với mảng
 
-数组可以方便地寻找并读取数据，在随机访问中操作次数是 $O(1)$．但删除、插入的操作次数是 $O(n)$ 次．
+Cả danh sách liên kết và mảng đều có thể dùng để lưu trữ dữ liệu. Khác với danh sách liên kết, mảng lưu toàn bộ phần tử liên tiếp theo thứ tự. Cấu trúc lưu trữ khác nhau khiến chúng có những ưu điểm khác nhau:
 
-## 构建链表
+Nhờ cấu trúc dạng chuỗi, danh sách liên kết có thể xóa và chèn dữ liệu thuận tiện, số thao tác là $O(1)$. Nhưng cũng vì vậy, hiệu quả tìm kiếm và đọc dữ liệu không cao bằng mảng; khi truy cập ngẫu nhiên, số thao tác là $O(n)$.
 
-???+ tip "Tip"
-    构建链表时，使用指针的部分比较抽象，光靠文字描述和代码可能难以理解，建议配合作图来理解．
+Mảng có thể tìm kiếm và đọc dữ liệu thuận tiện, với số thao tác khi truy cập ngẫu nhiên là $O(1)$. Nhưng số thao tác để xóa và chèn là $O(n)$.
 
-### 单向链表
+<span id="&#26500;&#24314;&#38142;&#34920;"></span>
 
-单向链表中包含数据域和指针域，其中数据域用于存放数据，指针域用来连接当前结点和下一节点．
+## Xây dựng danh sách liên kết
+
+???+ tip "Mẹo"
+    Khi xây dựng danh sách liên kết, phần sử dụng con trỏ khá trừu tượng. Chỉ đọc mô tả bằng chữ và mã nguồn có thể khó hiểu, nên kết hợp vẽ hình để nắm rõ hơn.
+
+<span id="&#21333;&#21521;&#38142;&#34920;"></span>
+
+### Danh sách liên kết đơn
+
+Danh sách liên kết đơn gồm vùng dữ liệu và vùng con trỏ. Vùng dữ liệu dùng để lưu dữ liệu, còn vùng con trỏ dùng để nối nút hiện tại với nút tiếp theo.
 
 ![](images/list.svg)
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         struct Node {
@@ -40,13 +48,15 @@
                 self.next = next
         ```
 
-### 双向链表
+<span id="&#21452;&#21521;&#38142;&#34920;"></span>
 
-双向链表中同样有数据域和指针域．不同之处在于，指针域有左右（或上一个、下一个）之分，用来连接上一个结点、当前结点、下一个结点．
+### Danh sách liên kết đôi
+
+Danh sách liên kết đôi cũng có vùng dữ liệu và vùng con trỏ. Điểm khác biệt là vùng con trỏ được chia thành trái và phải, hoặc nút trước và nút sau, dùng để nối nút trước, nút hiện tại và nút sau.
 
 ![](images/double-list.svg)
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         struct Node {
@@ -65,25 +75,29 @@
                 self.right = right
         ```
 
-## 向链表中插入（写入）数据
+<span id="&#21521;&#38142;&#34920;&#20013;&#25554;&#20837;&#65288;&#20889;&#20837;&#65289;&#25968;&#25454;"></span>
 
-### 单向链表
+## Chèn (ghi) dữ liệu vào danh sách liên kết
 
-流程大致如下：
+<span id="&#21333;&#21521;&#38142;&#34920;_1"></span>
 
-1.  初始化待插入的数据 `node`；
-2.  将 `node` 的 `next` 指针指向 `p` 的下一个结点；
-3.  将 `p` 的 `next` 指针指向 `node`．
+### Danh sách liên kết đơn
 
-具体过程可参考下图：
+Quy trình đại khái như sau:
+
+1.  Khởi tạo dữ liệu cần chèn `node`;
+2.  Cho con trỏ `next` của `node` trỏ đến nút kế tiếp của `p`;
+3.  Cho con trỏ `next` của `p` trỏ đến `node`.
+
+Có thể tham khảo quá trình cụ thể trong các hình dưới đây:
 
 1.  ![](./images/list-insert-1.svg)
 2.  ![](./images/list-insert-2.svg)
 3.  ![](./images/list-insert-3.svg)
 
-代码实现如下：
+Mã cài đặt như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         void insertNode(int i, Node *p) {
@@ -103,27 +117,29 @@
             p.next = node
         ```
 
-### 单向循环链表
+<span id="&#21333;&#21521;&#24490;&#29615;&#38142;&#34920;"></span>
 
-将链表的头尾连接起来，链表就变成了循环链表．由于链表首尾相连，在插入数据时需要判断原链表是否为空：为空则自身循环，不为空则正常插入数据．
+### Danh sách liên kết vòng đơn
 
-大致流程如下：
+Nối đầu và cuối danh sách liên kết lại với nhau thì danh sách liên kết sẽ trở thành danh sách liên kết vòng. Vì đầu và cuối danh sách liên kết được nối với nhau, khi chèn dữ liệu cần kiểm tra danh sách ban đầu có rỗng hay không: nếu rỗng thì nút tự trỏ về chính nó, nếu không rỗng thì chèn dữ liệu như bình thường.
 
-1.  初始化待插入的数据 `node`；
-2.  判断给定链表 `p` 是否为空；
-3.  若为空，则将 `node` 的 `next` 指针和 `p` 都指向自己；
-4.  否则，将 `node` 的 `next` 指针指向 `p` 的下一个结点；
-5.  将 `p` 的 `next` 指针指向 `node`．
+Quy trình đại khái như sau:
 
-具体过程可参考下图：
+1.  Khởi tạo dữ liệu cần chèn `node`;
+2.  Kiểm tra danh sách liên kết cho trước `p` có rỗng hay không;
+3.  Nếu rỗng, cho con trỏ `next` của `node` và `p` đều trỏ đến chính `node`;
+4.  Ngược lại, cho con trỏ `next` của `node` trỏ đến nút kế tiếp của `p`;
+5.  Cho con trỏ `next` của `p` trỏ đến `node`.
+
+Có thể tham khảo quá trình cụ thể trong các hình dưới đây:
 
 1.  ![](./images/list-insert-cyclic-1.svg)
 2.  ![](./images/list-insert-cyclic-2.svg)
 3.  ![](./images/list-insert-cyclic-3.svg)
 
-代码实现如下：
+Mã cài đặt như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         void insertNode(int i, Node *p) {
@@ -154,23 +170,25 @@
                 p.next = node
         ```
 
-### 双向循环链表
+<span id="&#21452;&#21521;&#24490;&#29615;&#38142;&#34920;"></span>
 
-在向双向循环链表插入数据时，除了要判断给定链表是否为空外，还要同时修改左、右两个指针．
+### Danh sách liên kết vòng đôi
 
-大致流程如下：
+Khi chèn dữ liệu vào danh sách liên kết vòng đôi, ngoài việc kiểm tra danh sách cho trước có rỗng hay không, ta còn phải đồng thời sửa cả hai con trỏ trái và phải.
 
-1.  初始化待插入的数据 `node`；
-2.  判断给定链表 `p` 是否为空；
-3.  若为空，则将 `node` 的 `left` 和 `right` 指针，以及 `p` 都指向自己；
-4.  否则，将 `node` 的 `left` 指针指向 `p`;
-5.  将 `node` 的 `right` 指针指向 `p` 的右结点；
-6.  将 `p` 右结点的 `left` 指针指向 `node`；
-7.  将 `p` 的 `right` 指针指向 `node`．
+Quy trình đại khái như sau:
 
-代码实现如下：
+1.  Khởi tạo dữ liệu cần chèn `node`;
+2.  Kiểm tra danh sách liên kết cho trước `p` có rỗng hay không;
+3.  Nếu rỗng, cho hai con trỏ `left` và `right` của `node`, cũng như `p`, đều trỏ đến chính `node`;
+4.  Ngược lại, cho con trỏ `left` của `node` trỏ đến `p`;
+5.  Cho con trỏ `right` của `node` trỏ đến nút bên phải của `p`;
+6.  Cho con trỏ `left` của nút bên phải của `p` trỏ đến `node`;
+7.  Cho con trỏ `right` của `p` trỏ đến `node`.
 
-???+ note "实现"
+Mã cài đặt như sau:
+
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         void insertNode(int i, Node *p) {
@@ -205,28 +223,32 @@
                 p.right = node
         ```
 
-## 从链表中删除数据
+<span id="&#20174;&#38142;&#34920;&#20013;&#21024;&#38500;&#25968;&#25454;"></span>
 
-### 单向（循环）链表
+## Xóa dữ liệu khỏi danh sách liên kết
 
-设待删除结点为 `p`，从链表中删除它时，将 `p` 的下一个结点 `p->next` 的值覆盖给 `p` 即可，与此同时更新 `p` 的下下个结点．
+<span id="&#21333;&#21521;&#65288;&#24490;&#29615;&#65289;&#38142;&#34920;"></span>
 
-流程大致如下：
+### Danh sách liên kết đơn (vòng)
 
-1.  将 `p` 下一个结点的值赋给 `p`，以抹掉 `p->value`；
-2.  新建一个临时结点 `t` 存放 `p->next` 的地址；
-3.  将 `p` 的 `next` 指针指向 `p` 的下下个结点，以抹掉 `p->next`；
-4.  删除 `t`．此时虽然原结点 `p` 的地址还在使用，删除的是原结点 `p->next` 的地址，但 `p` 的数据被 `p->next` 覆盖，`p` 名存实亡．
+Giả sử nút cần xóa là `p`. Khi xóa nó khỏi danh sách liên kết, chỉ cần dùng giá trị của nút kế tiếp `p->next` để ghi đè lên `p`, đồng thời cập nhật nút sau nữa của `p`.
 
-具体过程可参考下图：
+Quy trình đại khái như sau:
+
+1.  Gán giá trị của nút kế tiếp của `p` cho `p`, để xóa đi `p->value`;
+2.  Tạo một nút tạm `t` để lưu địa chỉ của `p->next`;
+3.  Cho con trỏ `next` của `p` trỏ đến nút sau nữa của `p`, để xóa đi `p->next`;
+4.  Xóa `t`. Lúc này tuy địa chỉ của nút ban đầu `p` vẫn đang được dùng và địa chỉ bị xóa là địa chỉ của nút ban đầu `p->next`, nhưng dữ liệu của `p` đã bị `p->next` ghi đè, nên `p` thực chất không còn tồn tại như ban đầu nữa.
+
+Có thể tham khảo quá trình cụ thể trong các hình dưới đây:
 
 1.  ![](./images/list-delete-1.svg)
 2.  ![](./images/list-delete-2.svg)
 3.  ![](./images/list-delete-3.svg)
 
-代码实现如下：
+Mã cài đặt như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         void deleteNode(Node *p) {
@@ -244,19 +266,21 @@
             p.next = p.next.next
         ```
 
-### 双向循环链表
+<span id="&#21452;&#21521;&#24490;&#29615;&#38142;&#34920;_1"></span>
 
-流程大致如下：
+### Danh sách liên kết vòng đôi
 
-1.  将 `p` 左结点的右指针指向 `p` 的右节点；
-2.  将 `p` 右结点的左指针指向 `p` 的左节点；
-3.  新建一个临时结点 `t` 存放 `p` 的地址；
-4.  将 `p` 的右节点地址赋给 `p`，以避免 `p` 变成悬垂指针；
-5.  删除 `t`．
+Quy trình đại khái như sau:
 
-代码实现如下：
+1.  Cho con trỏ phải của nút bên trái của `p` trỏ đến nút bên phải của `p`;
+2.  Cho con trỏ trái của nút bên phải của `p` trỏ đến nút bên trái của `p`;
+3.  Tạo một nút tạm `t` để lưu địa chỉ của `p`;
+4.  Gán địa chỉ nút bên phải của `p` cho `p`, để tránh việc `p` trở thành con trỏ treo;
+5.  Xóa `t`.
 
-???+ note "实现"
+Mã cài đặt như sau:
+
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         void deleteNode(Node *&p) {
@@ -276,12 +300,15 @@
             p = p.right
         ```
 
-## 技巧
+<span id="&#25216;&#24039;"></span>
 
-### 异或链表
+## Kỹ thuật
 
-异或链表（XOR Linked List）本质上还是 **双向链表**，但它利用按位异或的值，仅使用一个指针的内存大小便可以实现双向链表的功能．
+<span id="&#24322;&#25110;&#38142;&#34920;"></span>
 
-我们在结构 `Node` 中定义 `lr = left ^ right`，即前后两个元素地址的 **按位异或值**．正向遍历时用前一个元素的地址异
-或当前节点的 `lr` 可得到后一个元素的地址，反向遍历时用后一个元素的地址异或当前节点的 `lr` 又可得到前一个的元素地址．
-这样一来，便可以用一半的内存实现双向链表同样的功能．
+### Danh sách liên kết XOR
+
+Danh sách liên kết XOR (XOR Linked List) về bản chất vẫn là **danh sách liên kết đôi**, nhưng nó tận dụng giá trị XOR theo bit để thực hiện chức năng của danh sách liên kết đôi chỉ với lượng bộ nhớ bằng một con trỏ.
+
+Trong cấu trúc `Node`, ta định nghĩa `lr = left ^ right`, tức là **giá trị XOR theo bit** của địa chỉ hai phần tử trước và sau. Khi duyệt xuôi, lấy địa chỉ của phần tử trước XOR với `lr` của nút hiện tại sẽ thu được địa chỉ của phần tử sau; khi duyệt ngược, lấy địa chỉ của phần tử sau XOR với `lr` của nút hiện tại sẽ thu được địa chỉ của phần tử trước.
+Nhờ vậy, ta có thể dùng một nửa bộ nhớ mà vẫn thực hiện được chức năng tương tự danh sách liên kết đôi.

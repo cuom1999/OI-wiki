@@ -1,69 +1,77 @@
-## 引入
+<span id="&#24341;&#20837;"></span>
+
+## Giới thiệu
 
 ![](./images/stack.svg)
 
-栈是 OI 中常用的一种线性数据结构．请注意，本文主要讲的是栈这种数据结构，而非程序运行时的系统栈/栈空间．
+Ngăn xếp là một cấu trúc dữ liệu tuyến tính thường dùng trong OI. Lưu ý rằng bài này chủ yếu nói về cấu trúc dữ liệu ngăn xếp, không phải ngăn xếp hệ thống/không gian ngăn xếp khi chương trình chạy.
 
-栈的修改与访问是按照后进先出的原则进行的，因此栈通常被称为是后进先出（last in first out）表，简称 LIFO 表．
+Các thao tác sửa đổi và truy cập của ngăn xếp tuân theo nguyên tắc vào sau ra trước, vì vậy ngăn xếp thường được gọi là bảng vào sau ra trước (last in first out), viết tắt là bảng LIFO.
 
-??? warning "Warning"
-    LIFO 表达的是 **当前在容器** 内最后进来的最先出去．
-    
-    我们考虑这样一个栈
-    
+??? warning "Cảnh báo"
+    LIFO mô tả việc **phần tử vào sau cùng trong container hiện tại** sẽ ra trước.
+
+    Xét một ngăn xếp như sau:
+
     ```text
     push(1)
     pop(1)
     push(2)
     pop(2)
     ```
-    
-    如果从整体考虑，1 最先入栈，最先出栈，2 最后入栈，最后出栈，这样就成了一个先进先出表，显然是错误的．
-    
-    所以，在考虑数据结构是 LIFO 还是 FIFO 的时候，应当考虑在当前容器内的情况．
 
-## 使用数组模拟栈
+    Nếu nhìn toàn bộ quá trình, $1$ vào ngăn xếp đầu tiên và cũng ra đầu tiên, $2$ vào ngăn xếp cuối cùng và cũng ra cuối cùng; như vậy lại giống bảng vào trước ra trước, rõ ràng là sai.
 
-我们可以方便的使用数组来模拟一个栈，如下：
+    Vì vậy, khi xét một cấu trúc dữ liệu là LIFO hay FIFO, cần xét trạng thái của các phần tử đang nằm trong container tại thời điểm đó.
 
-???+ note "实现"
+<span id="&#20351;&#29992;&#25968;&#32452;&#27169;&#25311;&#26632;"></span>
+
+## Mô phỏng ngăn xếp bằng mảng
+
+Ta có thể dễ dàng dùng mảng để mô phỏng một ngăn xếp như sau:
+
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         int st[N];
-        // 这里使用 st[0] (即 *st) 代表栈中元素数量，同时也是栈顶下标
-        
-        // 压栈 ：
+        // Dùng st[0] (tức *st) để biểu thị số phần tử trong ngăn xếp,
+        // đồng thời cũng là chỉ số của đỉnh ngăn xếp.
+
+        // Đẩy vào ngăn xếp:
         st[++*st] = var1;
-        // 取栈顶 ：
+        // Lấy đỉnh ngăn xếp:
         int u = st[*st];
-        // 弹栈 ：注意越界问题, *st == 0 时不能继续弹出
+        // Bật khỏi ngăn xếp: chú ý vượt biên, không thể tiếp tục bật khi *st == 0.
         if (*st) --*st;
-        // 清空栈
+        // Xóa rỗng ngăn xếp:
         *st = 0;
         ```
-    
+
     === "Python"
         ```python
         st = [0] * N
-        # 这里使用 st[0] 代表栈中元素数量，同时也是栈顶下标
-        
-        # 压栈 ：
+        # Dùng st[0] để biểu thị số phần tử trong ngăn xếp,
+        # đồng thời cũng là chỉ số của đỉnh ngăn xếp.
+
+        # Đẩy vào ngăn xếp:
         st[st[0] + 1] = var1
         st[0] = st[0] + 1
-        # 取栈顶：
+        # Lấy đỉnh ngăn xếp:
         u = st[st[0]]
-        # 弹栈：注意越界问题, *st == 0 时不能继续弹出
+        # Bật khỏi ngăn xếp: chú ý vượt biên, không thể tiếp tục bật khi st[0] == 0.
         if st[0]:
             st[0] = st[0] - 1
-        # 清空栈
+        # Xóa rỗng ngăn xếp:
         st[0] = 0
         ```
 
-## C++ STL 中的栈
+<span id="C++ STL &#20013;&#30340;&#26632;"></span>
 
-C++ 中的 STL 也提供了一个容器 `std::stack`，使用前需要引入 `stack` 头文件．
+## Ngăn xếp trong C++ STL
 
-???+ info "STL 中对 `stack` 的定义"
+STL trong C++ cung cấp container `std::stack`; trước khi dùng cần include header `stack`.
+
+???+ info "Định nghĩa `stack` trong STL"
     ```cpp
     // clang-format off
     template<
@@ -71,68 +79,72 @@ C++ 中的 STL 也提供了一个容器 `std::stack`，使用前需要引入 `st
         class Container = std::deque<T>
     > class stack;
     ```
-    
-    `T` 为 stack 中要存储的数据类型．
-    
-    `Container` 为用于存储元素的底层容器类型．这个容器必须提供通常语义的下列函数：
-    
+
+    `T` là kiểu dữ liệu cần lưu trong `stack`.
+
+    `Container` là kiểu container nền dùng để lưu phần tử. Container này phải cung cấp các hàm sau với ngữ nghĩa thông thường:
+
     -   `back()`
     -   `push_back()`
     -   `pop_back()`
-    
-    STL 容器 `std::vector`、`std::deque` 和 `std::list` 满足这些要求．如果不指定，则默认使用 `std::deque` 作为底层容器．
 
-STL 中的 `stack` 容器提供了一众成员函数以供调用，其中较为常用的有：
+    Các container STL `std::vector`, `std::deque` và `std::list` đều thỏa mãn những yêu cầu này. Nếu không chỉ định, mặc định dùng `std::deque` làm container nền.
 
--   元素访问
-    -   `st.top()` 返回栈顶
--   修改
-    -   `st.push()` 插入传入的参数到栈顶
-    -   `st.pop()` 弹出栈顶
--   容量
-    -   `st.empty()` 返回是否为空
-    -   `st.size()` 返回元素数量
+Container `stack` trong STL cung cấp nhiều hàm thành viên để gọi; các hàm thường dùng gồm:
 
-此外，`std::stack` 还提供了一些运算符．较为常用的是使用赋值运算符 `=` 为 `stack` 赋值，示例：
+-   Truy cập phần tử
+    -   `st.top()` trả về đỉnh ngăn xếp
+-   Sửa đổi
+    -   `st.push()` chèn tham số truyền vào lên đỉnh ngăn xếp
+    -   `st.pop()` bật phần tử ở đỉnh ngăn xếp
+-   Dung lượng
+    -   `st.empty()` trả về ngăn xếp có rỗng hay không
+    -   `st.size()` trả về số phần tử
+
+Ngoài ra, `std::stack` còn cung cấp một số toán tử. Toán tử thường dùng là toán tử gán `=` để gán giá trị cho `stack`, ví dụ:
 
 ```cpp
-// 新建两个栈 st1 和 st2
+// Tạo hai ngăn xếp st1 và st2.
 std::stack<int> st1, st2;
 
-// 为 st1 装入 1
+// Đưa 1 vào st1.
 st1.push(1);
 
-// 将 st1 赋值给 st2
+// Gán st1 cho st2.
 st2 = st1;
 
-// 输出 st2 的栈顶元素
+// In phần tử ở đỉnh của st2.
 cout << st2.top() << endl;
-// 输出: 1
+// Output: 1
 ```
 
-## 使用 Python 中的 list 模拟栈
+<span id="&#20351;&#29992; Python &#20013;&#30340; list &#27169;&#25311;&#26632;"></span>
 
-在 Python 中，你可以使用列表来模拟一个栈：
+## Mô phỏng ngăn xếp bằng `list` trong Python
 
-???+ note "实现"
+Trong Python, bạn có thể dùng danh sách để mô phỏng một ngăn xếp:
+
+???+ note "Cài đặt"
     ```python
     st = [5, 1, 4]
-    
-    # 使用 append() 向栈顶添加元素
+
+    # Dùng append() để thêm phần tử vào đỉnh ngăn xếp.
     st.append(2)
     st.append(3)
     # >>> st
     # [5, 1, 4, 2, 3]
-    
-    # 使用 pop 取出栈顶元素
+
+    # Dùng pop() để lấy phần tử ở đỉnh ngăn xếp.
     st.pop()
     # >>> st
     # [5, 1, 4, 2]
-    
-    # 使用 clear 清空栈
+
+    # Dùng clear() để xóa rỗng ngăn xếp.
     st.clear()
     ```
 
-## 参考资料
+<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+
+## Tài liệu tham khảo
 
 1.  [std::stack - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/stack)

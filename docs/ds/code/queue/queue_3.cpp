@@ -6,7 +6,7 @@ using namespace std;
 const int M = 1000000 + 5;
 
 struct Deque {
-  // 将 stack 的底层容器从 deque 换为 vector 以减少空间常数
+  // Đổi container nền của stack từ deque sang vector để giảm hằng số bộ nhớ
   stack<int, vector<int>> f, s;
 
   bool empty() { return f.empty() && s.empty(); }
@@ -16,7 +16,7 @@ struct Deque {
   void push_front(int x) { s.push(x); }
 
   void balance() {
-    // 平衡中需要辅助栈实现栈内元素倒置
+    // Cần stack phụ để đảo ngược phần tử trong stack khi cân bằng
     stack<int, vector<int>> t;
     if (s.empty()) {
       int n = f.size() / 2;

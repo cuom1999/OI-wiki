@@ -346,10 +346,10 @@ nav:
     - Thuật toán Berlekamp–Massey: math/berlekamp-massey.md
   - Cấu Trúc Dữ Liệu:
     - Tổng quan cấu trúc dữ liệu: ds/index.md
-    - 栈: ds/stack.md
-    - 队列: ds/queue.md
-    - 链表: ds/linked-list.md
-    - 哈希表: ds/hash.md
+    - Ngăn xếp: ds/stack.md
+    - Hàng đợi: ds/queue.md
+    - Danh sách liên kết: ds/linked-list.md
+    - Bảng băm: ds/hash.md
     - 并查集:
       - 并查集: ds/dsu.md
       - 并查集复杂度: ds/dsu-complexity.md

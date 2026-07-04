@@ -1,55 +1,60 @@
-本页面介绍和队列有关的数据结构及其应用．
+Trang này giới thiệu các cấu trúc dữ liệu liên quan đến hàng đợi và ứng dụng của chúng.
 
 ![](./images/queue.svg)
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Dẫn nhập
 
-队列（queue）是一种具有「先进入队列的元素一定先出队列」性质的表．由于该性质，队列通常也被称为先进先出（first in first out）表，简称 FIFO 表．
+Hàng đợi (queue) là một dạng danh sách có tính chất "phần tử vào hàng đợi trước chắc chắn sẽ ra khỏi hàng đợi trước". Vì tính chất này, hàng đợi thường được gọi là danh sách vào trước ra trước (first in first out), viết tắt là FIFO.
 
-## 实现
+<span id="&#x5B9E;&#x73B0;"></span>
+## Cài đặt
 
-### 数组模拟队列
+<span id="&#x6570;&#x7EC4;&#x6A21;&#x62DF;&#x961F;&#x5217;"></span>
+### Mô phỏng hàng đợi bằng mảng
 
-通常用一个数组模拟一个队列，用两个变量标记队列的首尾．
+Thông thường ta dùng một mảng để mô phỏng một hàng đợi, cùng hai biến đánh dấu đầu và cuối hàng đợi.
 
 ```cpp
 int q[SIZE], ql = 1, qr;
 ```
 
-队列操作对应的代码如下：
+Các thao tác hàng đợi tương ứng với đoạn mã sau:
 
--   插入元素：`q[++qr] = x;`
--   删除元素：`ql++;`
--   访问队首：`q[ql]`
--   访问队尾：`q[qr]`
--   清空队列：`ql = 1; qr = 0;`
+-   Chèn phần tử: `q[++qr] = x;`
+-   Xóa phần tử: `ql++;`
+-   Truy cập đầu hàng đợi: `q[ql]`
+-   Truy cập cuối hàng đợi: `q[qr]`
+-   Xóa rỗng hàng đợi: `ql = 1; qr = 0;`
 
-??? example "[Luogu B3616【模板】队列](https://www.luogu.com.cn/problem/B3616) 数组模拟参考实现"
+??? example "[Luogu B3616【Mẫu】Hàng đợi](https://www.luogu.com.cn/problem/B3616) Cài đặt tham khảo bằng mô phỏng mảng"
     ```cpp
     --8<-- "docs/ds/code/queue/queue_1.cpp"
     ```
 
-### 双栈模拟队列
+<span id="&#x53CC;&#x6808;&#x6A21;&#x62DF;&#x961F;&#x5217;"></span>
+### Mô phỏng hàng đợi bằng hai ngăn xếp
 
-还有一种冷门的方法是使用两个 [栈](./stack.md) 来模拟一个队列．
+Còn một cách ít phổ biến hơn là dùng hai [ngăn xếp](./stack.md) để mô phỏng một hàng đợi.
 
-这种方法使用两个栈 $F$ 和 $S$ 模拟一个队列，其中 $F$ 是队尾的栈，$S$ 代表队首的栈，支持 push（在队尾插入），pop（在队首弹出）操作：
+Cách này dùng hai ngăn xếp $F$ và $S$ để mô phỏng một hàng đợi, trong đó $F$ là ngăn xếp ở phía cuối hàng đợi, còn $S$ biểu diễn phía đầu hàng đợi. Nó hỗ trợ các thao tác push (chèn vào cuối hàng đợi) và pop (lấy ra ở đầu hàng đợi):
 
--   push：插入到栈 $F$ 中．
--   pop：如果 $S$ 非空，让 $S$ 弹栈；否则把 $F$ 的元素倒过来压到 $S$ 中（其实就是一个一个弹出插入，做完后是首尾颠倒的），然后再让 $S$ 弹栈．
+-   push: chèn vào ngăn xếp $F$.
+-   pop: nếu $S$ không rỗng thì pop khỏi $S$; nếu không, chuyển ngược các phần tử của $F$ sang $S$ (thực chất là pop rồi push từng phần tử, sau khi làm xong thứ tự đầu cuối bị đảo ngược), rồi pop khỏi $S$.
 
-容易证明，每个元素只会进入/转移/弹出一次，均摊复杂度 $O(1)$．
+Dễ chứng minh rằng mỗi phần tử chỉ được đưa vào, chuyển sang ngăn xếp kia, và lấy ra một lần; do đó độ phức tạp khấu hao là $O(1)$.
 
-??? example "[Luogu B3616【模板】队列](https://www.luogu.com.cn/problem/B3616) 双栈模拟参考实现"
+??? example "[Luogu B3616【Mẫu】Hàng đợi](https://www.luogu.com.cn/problem/B3616) Cài đặt tham khảo bằng mô phỏng hai ngăn xếp"
     ```cpp
     --8<-- "docs/ds/code/queue/queue_2.cpp"
     ```
 
-## C++ STL 中的队列
+<span id="c-stl-&#x4E2D;&#x7684;&#x961F;&#x5217;"></span>
+## Hàng đợi trong C++ STL
 
-C++ 在 STL 中提供了一个容器 `std::queue`，使用前需要先引入 `<queue>` 头文件．
+C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần include header `<queue>`.
 
-???+ info "STL 中对 `queue` 的定义"
+???+ info "Định nghĩa `queue` trong STL"
     ```cpp
     // clang-format off
     template<
@@ -58,79 +63,82 @@ C++ 在 STL 中提供了一个容器 `std::queue`，使用前需要先引入 `<q
     > class queue;
     ```
     
-    `T` 为 queue 中要存储的数据类型．
+    `T` là kiểu dữ liệu của các phần tử được lưu trong queue.
     
-    `Container` 为用于存储元素的底层容器类型．这个容器必须提供通常语义的下列函数：
+    `Container` là kiểu container nền dùng để lưu phần tử. Container này phải cung cấp các hàm sau với ngữ nghĩa thông thường:
     
     -   `back()`
     -   `front()`
     -   `push_back()`
     -   `pop_front()`
     
-    STL 容器 `std::deque` 和 `std::list` 满足这些要求．如果不指定，则默认使用 `std::deque` 作为底层容器．
+    Các container STL `std::deque` và `std::list` thỏa mãn các yêu cầu này. Nếu không chỉ định, `std::deque` sẽ được dùng làm container nền mặc định.
 
-STL 中的 `queue` 容器提供了一众成员函数以供调用．其中较为常用的有：
+Container `queue` trong STL cung cấp nhiều hàm thành viên để sử dụng. Những hàm thường dùng gồm:
 
--   元素访问
-    -   `q.front()` 返回队首元素
-    -   `q.back()` 返回队尾元素
--   修改
-    -   `q.push()` 在队尾插入元素
-    -   `q.pop()` 弹出队首元素
--   容量
-    -   `q.empty()` 队列是否为空
-    -   `q.size()` 返回队列中元素的数量
+-   Truy cập phần tử
+    -   `q.front()` trả về phần tử đầu hàng đợi
+    -   `q.back()` trả về phần tử cuối hàng đợi
+-   Sửa đổi
+    -   `q.push()` chèn phần tử vào cuối hàng đợi
+    -   `q.pop()` lấy phần tử đầu hàng đợi ra
+-   Dung lượng
+    -   `q.empty()` kiểm tra hàng đợi có rỗng hay không
+    -   `q.size()` trả về số phần tử trong hàng đợi
 
-此外，`queue` 还提供了一些运算符．较为常用的是使用赋值运算符 `=` 为 `queue` 赋值，示例：
+Ngoài ra, `queue` còn cung cấp một số toán tử. Toán tử thường dùng là toán tử gán `=` để gán giá trị cho `queue`, ví dụ:
 
 ```cpp
 std::queue<int> q1, q2;
 
-// 向 q1 的队尾插入 1
+// Chèn 1 vào cuối hàng đợi q1
 q1.push(1);
 
-// 将 q1 赋值给 q2
+// Gán q1 cho q2
 q2 = q1;
 
-// 输出 q2 的队首元素
+// In phần tử đầu hàng đợi của q2
 std::cout << q2.front() << std::endl;
-// 输出: 1
+// Kết quả: 1
 ```
 
-## 特殊队列
+<span id="&#x7279;&#x6B8A;&#x961F;&#x5217;"></span>
+## Các hàng đợi đặc biệt
 
-### 双端队列
+<span id="&#x53CC;&#x7AEF;&#x961F;&#x5217;"></span>
+### Hàng đợi hai đầu
 
-双端队列是指一个可以在队首/队尾插入或删除元素的队列．相当于是栈与队列功能的结合．具体地，双端队列支持的操作有 4 个：
+Hàng đợi hai đầu là hàng đợi cho phép chèn hoặc xóa phần tử ở cả đầu và cuối hàng đợi. Có thể xem nó như sự kết hợp giữa chức năng của ngăn xếp và hàng đợi. Cụ thể, hàng đợi hai đầu hỗ trợ 4 thao tác:
 
--   在队首插入一个元素
--   在队尾插入一个元素
--   在队首删除一个元素
--   在队尾删除一个元素
+-   Chèn một phần tử ở đầu hàng đợi
+-   Chèn một phần tử ở cuối hàng đợi
+-   Xóa một phần tử ở đầu hàng đợi
+-   Xóa một phần tử ở cuối hàng đợi
 
-数组模拟双端队列的方式与普通队列相同．
+Cách dùng mảng để mô phỏng hàng đợi hai đầu giống với hàng đợi thông thường.
 
-同样地，也可以使用双栈模拟队列的思想来维护双端队列，但需注意当某个栈为空时，交替查询队首和队尾将导致均摊分析失效．考虑在移动时，只将非空栈的一半元素移动到空栈中，并保持队首与队尾栈的性质，这样处理后仍可以做到均摊常数时间的插入和删除．
+Tương tự, ta cũng có thể dùng ý tưởng mô phỏng hàng đợi bằng hai ngăn xếp để duy trì hàng đợi hai đầu. Tuy nhiên, cần chú ý rằng khi một ngăn xếp rỗng, việc truy vấn luân phiên đầu và cuối hàng đợi sẽ làm phân tích khấu hao mất hiệu lực. Khi cần chuyển phần tử, ta chỉ chuyển một nửa số phần tử của ngăn xếp không rỗng sang ngăn xếp rỗng, đồng thời giữ đúng tính chất của ngăn xếp phía đầu và phía cuối hàng đợi. Sau cách xử lý này, các thao tác chèn và xóa vẫn có thời gian hằng số khấu hao.
 
-??? note "简要证明"
-    由于插入操作只贡献常数复杂度，现在考虑弹出操作．假设初始时队列中有 $m$ 个元素，下面我们计算将所有元素全部弹出（无论首尾）的时间复杂度．则第一次平衡的复杂度是 $O(m)$ 的．然后两个栈就各有 $\frac{m}{2}$ 个元素．这时就需要 $O(\frac{m}{2})$ 的时间清空其中一个栈，然后就又可以触发一次复杂度为 $O(\frac{m}{2})$ 的平衡操作，以此类推，直到所有元素被弹出．因此，这样做的总复杂度是
+??? note "Chứng minh ngắn gọn"
+    Vì thao tác chèn chỉ đóng góp độ phức tạp hằng số, bây giờ xét thao tác pop. Giả sử ban đầu hàng đợi có $m$ phần tử; ta tính độ phức tạp thời gian để pop toàn bộ phần tử (bất kể từ đầu hay từ cuối). Lần cân bằng đầu tiên có độ phức tạp $O(m)$. Sau đó, mỗi ngăn xếp có $\frac{m}{2}$ phần tử. Lúc này cần $O(\frac{m}{2})$ thời gian để làm rỗng một trong hai ngăn xếp, rồi lại kích hoạt một thao tác cân bằng có độ phức tạp $O(\frac{m}{2})$, cứ tiếp tục như vậy cho đến khi toàn bộ phần tử được pop ra. Vì vậy, tổng độ phức tạp là
     
     $$
     T(m)=T\left(\frac{m}{2}\right)+O(m)
     $$
     
-    根据主定理，解得 $T(m)=O(m)$．于是，这种维护方式的总复杂度仍是均摊常数的．
+    Theo định lý Master, ta giải được $T(m)=O(m)$. Do đó tổng độ phức tạp của cách duy trì này vẫn là hằng số khấu hao.
 
-??? example "[Luogu B3656【模板】双端队列 1](https://www.luogu.com.cn/problem/B3656) 参考实现"
+??? example "[Luogu B3656【Mẫu】Hàng đợi hai đầu 1](https://www.luogu.com.cn/problem/B3656) Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/queue/queue_3.cpp"
     ```
 
-#### C++ STL 中的双端队列
+<span id="c-stl-&#x4E2D;&#x7684;&#x53CC;&#x7AEF;&#x961F;&#x5217;"></span>
+#### Hàng đợi hai đầu trong C++ STL
 
-C++ 在 STL 中也提供了一个容器 `std::deque`，使用前需要先引入 `<deque>` 头文件．
+C++ cũng cung cấp container `std::deque` trong STL. Trước khi dùng, cần include header `<deque>`.
 
-??? info "STL 中对 `deque` 的定义"
+??? info "Định nghĩa `deque` trong STL"
     ```cpp
     // clang-format off
     template<
@@ -139,64 +147,67 @@ C++ 在 STL 中也提供了一个容器 `std::deque`，使用前需要先引入 
     > class deque;
     ```
     
-    `T` 为 deque 中要存储的数据类型．
+    `T` là kiểu dữ liệu của các phần tử được lưu trong deque.
     
-    `Allocator` 为分配器，此处不做过多说明，一般保持默认即可．
+    `Allocator` là bộ cấp phát; ở đây không giải thích sâu, thông thường cứ giữ giá trị mặc định.
 
-STL 中的 `deque` 容器提供了一众成员函数以供调用．其中较为常用的有：
+Container `deque` trong STL cung cấp nhiều hàm thành viên để sử dụng. Những hàm thường dùng gồm:
 
--   元素访问
-    -   `q.front()` 返回队首元素
-    -   `q.back()` 返回队尾元素
--   修改
-    -   `q.push_back()` 在队尾插入元素
-    -   `q.pop_back()` 弹出队尾元素
-    -   `q.push_front()` 在队首插入元素
-    -   `q.pop_front()` 弹出队首元素
-    -   `q.insert()` 在指定位置前插入元素（传入迭代器和元素）
-    -   `q.erase()` 删除指定位置的元素（传入迭代器）
--   容量
-    -   `q.empty()` 队列是否为空
-    -   `q.size()` 返回队列中元素的数量
+-   Truy cập phần tử
+    -   `q.front()` trả về phần tử đầu hàng đợi
+    -   `q.back()` trả về phần tử cuối hàng đợi
+-   Sửa đổi
+    -   `q.push_back()` chèn phần tử vào cuối hàng đợi
+    -   `q.pop_back()` lấy phần tử cuối hàng đợi ra
+    -   `q.push_front()` chèn phần tử vào đầu hàng đợi
+    -   `q.pop_front()` lấy phần tử đầu hàng đợi ra
+    -   `q.insert()` chèn phần tử trước vị trí chỉ định (truyền vào iterator và phần tử)
+    -   `q.erase()` xóa phần tử ở vị trí chỉ định (truyền vào iterator)
+-   Dung lượng
+    -   `q.empty()` kiểm tra hàng đợi có rỗng hay không
+    -   `q.size()` trả về số phần tử trong hàng đợi
 
-此外，`deque` 还提供了一些运算符．其中较为常用的有：
+Ngoài ra, `deque` còn cung cấp một số toán tử. Những toán tử thường dùng gồm:
 
--   使用赋值运算符 `=` 为 `deque` 赋值，类似 `queue`．
--   使用 `[]` 访问元素，类似 `vector`．
+-   Dùng toán tử gán `=` để gán giá trị cho `deque`, tương tự `queue`.
+-   Dùng `[]` để truy cập phần tử, tương tự `vector`.
 
-`<queue>` 头文件中还提供了优先队列 `std::priority_queue`，因其与 [堆](./heap.md) 更为相似，在此不作过多介绍．
+Header `<queue>` còn cung cấp hàng đợi ưu tiên `std::priority_queue`. Vì cấu trúc này giống với [heap](./heap.md) hơn, trang này không giới thiệu sâu.
 
-#### Python 中的双端队列
+<span id="python-&#x4E2D;&#x7684;&#x53CC;&#x7AEF;&#x961F;&#x5217;"></span>
+#### Hàng đợi hai đầu trong Python
 
-在 Python 中，双端队列的容器由 `collections.deque` 提供．
+Trong Python, container hàng đợi hai đầu được cung cấp bởi `collections.deque`.
 
-示例如下：
+Ví dụ như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```python
     from collections import deque
     
-    # 新建一个 deque，并初始化内容为 [1, 2, 3]
+    # Tạo một deque mới, khởi tạo nội dung là [1, 2, 3]
     queue = deque([1, 2, 3])
     
-    # 在队尾插入元素 4
+    # Chèn phần tử 4 vào cuối hàng đợi
     queue.append(4)
     
-    # 在队首插入元素 0
+    # Chèn phần tử 0 vào đầu hàng đợi
     queue.appendleft(0)
     
-    # 访问队列
+    # Truy cập hàng đợi
     # >>> queue
     # deque([0, 1, 2, 3, 4])
     ```
 
-### 循环队列
+<span id="&#x5FAA;&#x73AF;&#x961F;&#x5217;"></span>
+### Hàng đợi vòng
 
-使用数组模拟队列会导致一个问题：随着时间的推移，整个队列会向数组的尾部移动，一旦到达数组的最末端，即使数组的前端还有空闲位置，再进行入队操作也会导致溢出（这种数组里实际有空闲位置而发生了上溢的现象被称为「假溢出」）．
+Dùng mảng để mô phỏng hàng đợi sẽ gây ra một vấn đề: theo thời gian, toàn bộ hàng đợi dịch dần về phía cuối mảng. Khi đã đến cuối mảng, dù phía đầu mảng vẫn còn vị trí trống, thao tác enqueue tiếp theo vẫn gây tràn (hiện tượng mảng thực tế vẫn còn vị trí trống nhưng lại bị tràn trên được gọi là "tràn giả").
 
-解决假溢出的办法是采用循环的方式来组织存放队列元素的数组，即将数组下标为 0 的位置看做是最后一个位置的后继．（数组下标为 `x` 的元素，它的后继为 `(x + 1) % SIZE`）．这样就形成了循环队列．
+Cách giải quyết tràn giả là tổ chức mảng lưu phần tử hàng đợi theo dạng vòng, tức xem vị trí có chỉ số 0 của mảng là phần tử kế tiếp của vị trí cuối cùng. (Với phần tử có chỉ số mảng là `x`, phần tử kế tiếp của nó là `(x + 1) % SIZE`.) Như vậy ta có hàng đợi vòng.
 
-## 参考资料
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+## Tài liệu tham khảo
 
 1.  [std::queue - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/queue)
 2.  [std::deque - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/deque)
