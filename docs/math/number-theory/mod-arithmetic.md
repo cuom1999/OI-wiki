@@ -351,21 +351,40 @@ nguyên modulo để thực hiện nhiều tính toán số học, phép nhân m
 phù hợp hơn.
 
 <span id="&#x6A21;-2-&#x7684;&#x5E42;&#x6B21;&#x7684;&#x6574;&#x6570;&#x7C7B;"></span>
-### Lop so nguyen modulo luy thua cua 2
+### Lớp số nguyên modulo lũy thừa của 2
 
-Muc nay thao luan cach cai dat lop so nguyen modulo khi modulo la luy thua cua $2$. Trong truong hop dac biet nay, phep chia va modulo co the thuc hien bang thao tac bit, nen rat hieu qua. Barrett reduction va phep nhan modulo Montgomery deu tan dung dac tinh nay khi dung $2^e$ lam so chia va modulo de tang toc. Dac biet, khi modulo dung bang cac so dac biet nhu $2^{32}$ va $2^{64}$, co the dung so nguyen khong dau co do dai bit tuong ung ket hop voi tran tu nhien de cai dat lop so nguyen modulo, khong can phep modulo tuong minh nao. Ngay ca khi modulo khong dung bang nhu vay, cung co the chuyen ve cac modulo dac biet nay. Vi du voi modulo $2^{58}$, co the hoan thanh tinh toan trung gian duoi modulo $2^{64}$, roi cuoi cung lay ket qua modulo $2^{58}$. Ngoai modulo de tinh, lop so nguyen modulo $2^e$ con co nhieu cach cai dat dac biet cho cac thao tac khac. Muc nay tap trung gioi thieu cach cai dat nghich dao va luy thua.
+Mục này thảo luận cách cài đặt lớp số nguyên modulo khi modulo là lũy thừa của
+$2$. Trong trường hợp đặc biệt này, phép chia và modulo có thể thực hiện bằng
+thao tác bit, nên rất hiệu quả. Barrett reduction và phép nhân modulo Montgomery
+đều tận dụng đặc tính này khi dùng $2^e$ làm số chia và modulo để tăng tốc. Đặc
+biệt, khi modulo đúng bằng các số đặc biệt như $2^{32}$ và $2^{64}$, có thể
+dùng số nguyên không dấu có độ dài bit tương ứng kết hợp với tràn tự nhiên để
+cài đặt lớp số nguyên modulo, không cần phép modulo tường minh nào. Ngay cả khi
+modulo không đúng bằng như vậy, cũng có thể chuyển về các modulo đặc biệt này.
+Ví dụ với modulo $2^{58}$, có thể hoàn thành tính toán trung gian dưới modulo
+$2^{64}$, rồi cuối cùng lấy kết quả modulo $2^{58}$. Ngoài modulo để tính, lớp
+số nguyên modulo $2^e$ còn có nhiều cách cài đặt đặc biệt cho các thao tác khác.
+Mục này tập trung giới thiệu cách cài đặt nghịch đảo và lũy thừa.
 
-Truoc het la phep lay nghich dao: cho so le $a$ va modulo $m=2^e~(e > 2)$, can tinh $a^{-1}\bmod m$. Cac cach lay nghich dao thuong gap gom thuat toan Euclid mo rong va luy thua nhanh. Qua trinh Euclid mo rong lien quan den phep modulo theo modulo tong quat; luy thua nhanh thong thuong can tinh $a^{\varphi(m)-1}\bmod{m}$, can $\Theta(e)$ phep nhan so nguyen. Phuong phap hieu qua hon la [Newton-Hensel](../poly/newton.md). Cu the, xet ket luan sau:[^newton-hensel]
+Trước hết là phép lấy nghịch đảo: cho số lẻ $a$ và modulo $m=2^e~(e > 2)$, cần
+tính $a^{-1}\bmod m$. Các cách lấy nghịch đảo thường gặp gồm thuật toán Euclid
+mở rộng và lũy thừa nhanh. Quá trình Euclid mở rộng liên quan đến phép modulo
+theo modulo tổng quát; lũy thừa nhanh thông thường cần tính
+$a^{\varphi(m)-1}\bmod{m}$, cần $\Theta(e)$ phép nhân số nguyên. Phương pháp
+hiệu quả hơn là [Newton-Hensel](../poly/newton.md). Cụ thể, xét kết luận
+sau:[^newton-hensel]
 
 $$
 mx \equiv 1 \pmod{2^e} \implies mx(2 - mx) \equiv 1\pmod{2^{2e}}.
 $$
 
-Theo bieu thuc nay, chi can bat dau tu $x = 1$ va lap lai $x \gets x(2-mx)$, sau $\lceil\log_2 e\rceil$ lan lap se thu duoc $m^{-1}\bmod R$.
+Theo biểu thức này, chỉ cần bắt đầu từ $x = 1$ và lặp lại
+$x \gets x(2-mx)$, sau $\lceil\log_2 e\rceil$ lần lặp sẽ thu được
+$m^{-1}\bmod R$.
 
-Lam vi du, cai dat tham khao cho phep lay nghich dao modulo $2^{32}$ nhu sau:
+Làm ví dụ, cài đặt tham khảo cho phép lấy nghịch đảo modulo $2^{32}$ như sau:
 
-???+ example "Cai dat tham khao"
+???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/mod-32-inv-pow.cpp:inv"
     ```

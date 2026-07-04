@@ -145,7 +145,7 @@ MkDocs source layout intact.
   algorithm outline, reference implementation comments, and probability proof,
   deterministic-base notes, anti-prime introduction, examples, and references,
   the Barrett reduction and Montgomery multiplication discussions in
-  `mod-arithmetic.md`,
+  `mod-arithmetic.md`, plus the modulo-power-of-two inverse setup there,
   the residue-class, residue-system, and residue-system composition definitions
   and arithmetic-function through floor-function sections in `basic.md`, then fully cleaned
   `docs/math/number-theory/gcd.md` and
