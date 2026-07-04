@@ -139,7 +139,7 @@ Xét các trường hợp sau:
         root->count++;  // Khoa bang nhau, tang so luong lap
       }
       root->size = root->count + (root->left ? root->left->size : 0) +
-                   (root->right ? root->right->size : 0);  // Cap nhat kich thuoc cay con
+                   (root->right ? root->right->size : 0);  // Cập nhật kích thước cây con
       return root;
     }
     ```
@@ -166,7 +166,7 @@ Trước tiên tìm nút có khóa `value` trong BST, rồi xét các trường 
     Gọi `root = remove(root, 1)` nghĩa là xóa nút có giá trị 1 trong cây gốc `root`, rồi trả về gốc mới.
     
     ```cpp
-    // Tra ve root moi sau khi xoa value
+    // Trả về root mới sau khi xóa value
     TreeNode* remove(TreeNode* root, int value) {
       if (root == nullptr) {
         return root;
@@ -177,7 +177,7 @@ Trước tiên tìm nút có khóa `value` trong BST, rồi xét các trường 
         root->right = remove(root->right, value);
       } else {
         if (root->count > 1) {
-          root->count--;  // Co nhieu ban sao, giam so lan lap
+          root->count--;  // Có nhiều bản sao, giảm số lần lặp
         } else {
           if (root->left == nullptr) {
             TreeNode* temp = root->right;
@@ -190,9 +190,9 @@ Trước tiên tìm nút có khóa `value` trong BST, rồi xét các trường 
           } else {
             TreeNode* successor = findMinNode(root->right);
             root->key = successor->key;
-            root->count = successor->count;  // Cap nhat so lan lap
+            root->count = successor->count;  // Cập nhật số lần lặp
             // Khi successor->count > 1, van can xoa nut nay;
-            // neu khong, lan xoa tiep theo chi giam so lan lap.
+            // nếu không, lần xóa tiếp theo chỉ giảm số lần lặp.
             successor->count = 1;
             root->right = remove(root->right, successor->key);
           }
@@ -308,10 +308,10 @@ Mã cho xoay trái và xoay phải như sau.
       TreeNode* newRoot = root->right;
       root->right = newRoot->left;
       newRoot->left = root;
-      // Cap nhat thong tin cua cac nut lien quan
+      // Cập nhật thông tin của các nút liên quan
       updateHeight(root);
       updateHeight(newRoot);
-      return newRoot;  // Tra ve goc moi
+      return newRoot;  // Trả về gốc mới
     }
     
     TreeNode* rotateRight(TreeNode* root) {

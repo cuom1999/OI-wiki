@@ -108,7 +108,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
         aux_time++;
         while (true) {
           if (v != -1) {
-            if (aux[v] == aux_time) {  // tim thay dinh da tham, tuc LCA
+            if (aux[v] == aux_time) {  // tìm thấy đỉnh đã thăm, tức LCA
               return v;
             }
             aux[v] = aux_time;
@@ -126,7 +126,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
         while (orig[v] != a) {
           parent[v] = u;
           u = match[v];
-          if (label[u] == 1) {  // dat diem ban dau la "o" de tim duong tang
+          if (label[u] == 1) {  // đặt điểm ban đầu là "o" để tìm đường tăng
             label[u] = 0;
             q.push(u);
           }
@@ -160,21 +160,21 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
           for (int id : g.g[v]) {
             auto &e = g.edges[id];
             int u = e.from ^ e.to ^ v;
-            if (label[u] == -1) {  // tim thay dinh chua tham
-              label[u] = 1;        // danh dau "i"
+            if (label[u] == -1) {  // tìm thấy đỉnh chưa thăm
+              label[u] = 1;        // đánh dấu "i"
               parent[u] = v;
-              if (match[u] == -1) {  // tim thay dinh chua ghep cap
-                augment(u);          // tim duong tang
+              if (match[u] == -1) {  // tìm thấy đỉnh chưa ghép cặp
+                augment(u);          // tìm đường tăng
                 return true;
               }
-              // Tim thay dinh da ghep cap; dua dinh ghep voi no vao queue de mo rong cay xen ke
+              // Tìm thấy đỉnh đã ghép cặp; đưa đỉnh ghép với nó vào queue để mở rộng cây xen kẽ
               label[match[u]] = 0;
               q.push(match[u]);
               continue;
             } else if (label[u] == 0 && orig[v] != orig[u]) {
-              // Tim thay dinh da tham va cung co nhan "o", nghia la tim thay "hoa"
+              // Tìm thấy đỉnh đã thăm và cùng có nhãn "o", nghĩa là tìm thấy "hoa"
               int a = lca(orig[v], orig[u]);
-              // Tim LCA roi co hoa
+              // Tìm LCA rồi co hoa
               blossom(u, v, a);
               blossom(v, u, a);
             }
@@ -205,9 +205,9 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
         }
       };  // greedy
     
-      // Ban dau ghep cap ngau nhien
+      // Ban đầu ghép cặp ngẫu nhiên
       greedy();
-      // Tim duong tang tu cac dinh chua ghep cap
+      // Tìm đường tăng từ các đỉnh chưa ghép cặp
       for (int i = 0; i < g.n; i++) {
         if (match[i] == -1) {
           bfs(i);

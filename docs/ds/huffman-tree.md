@@ -94,7 +94,7 @@ Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn
     Htree createHuffmanTree(int arr[], int n) {
       Htree forest[N];
       Htree root = NULL;
-      for (int i = 0; i < n; i++) {  // Dua tat ca cac nut vao rung
+      for (int i = 0; i < n; i++) {  // Đưa tất cả các nút vào rừng
         Htree temp;
         temp = (Htree)malloc(sizeof(HNode));
         temp->weight = arr[i];
@@ -115,7 +115,7 @@ Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn
           }
         }
     
-        for (int j = minnSub; j < n; j++) {  // Cap nhat minn va minnSub
+        for (int j = minnSub; j < n; j++) {  // Cập nhật minn và minnSub
           if (forest[j] != NULL) {
             if (forest[j]->weight < forest[minn]->weight) {
               minnSub = minn;
