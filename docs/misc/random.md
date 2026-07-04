@@ -1,65 +1,65 @@
-## 概述
+## Tổng quan
 
-要想使用随机化技巧，前提条件是能够快速生成随机数．本文将介绍生成随机数的常见方法．
+Muốn sử dụng các kĩ thuật ngẫu nhiên hóa, điều kiện tiên quyết là có thể sinh số ngẫu nhiên thật nhanh. Bài viết này giới thiệu các phương pháp phổ biến để sinh số ngẫu nhiên.
 
-### 随机数与伪随机数
+### Số ngẫu nhiên và số giả ngẫu nhiên
 
-说一个单独的数是「随机数」是无意义的，所以以下我们都默认讨论「随机数列」，即使提到「随机数」，指的也是「随机数列中的一个元素」．
+Nói rằng một số đơn lẻ là "số ngẫu nhiên" không có nhiều ý nghĩa, vì vậy bên dưới ta mặc định thảo luận về "dãy số ngẫu nhiên"; ngay cả khi nhắc tới "số ngẫu nhiên", ý nói cũng là "một phần tử trong dãy số ngẫu nhiên".
 
-现有的计算机的运算过程都是确定性的，因此，仅凭借算法来生成真正 **不可预测**、**不可重复** 的随机数列是不可能的．
+Quá trình tính toán của các máy tính hiện nay đều có tính xác định. Vì thế, chỉ dựa vào thuật toán thì không thể sinh được một dãy số ngẫu nhiên thật sự **không thể dự đoán** và **không thể lặp lại**.
 
-然而在绝大部分情况下，我们都不需要如此强的随机性，而只需要所生成的数列在统计学上具有随机数列的种种特征（比如均匀分布、互相独立等等）．这样的数列即称为 **伪随机数** 序列．
+Tuy nhiên, trong phần lớn trường hợp, ta không cần tính ngẫu nhiên mạnh đến vậy, mà chỉ cần dãy được sinh ra có các đặc trưng thống kê của dãy số ngẫu nhiên, chẳng hạn phân bố đều, độc lập lẫn nhau, v.v. Những dãy như vậy được gọi là dãy **giả ngẫu nhiên**.
 
-随机数与伪随机数在实际生活和算法中的应用举例：
+Ví dụ về ứng dụng của số ngẫu nhiên và số giả ngẫu nhiên trong đời sống thực tế và trong thuật toán:
 
--   抽样调查时往往只需使用伪随机数．这是因为我们本就只关心统计特征．
--   网络安全中往往要用到（比刚刚提到的伪随机数）更强的随机数．这是因为攻击者可能会利用可预测性做文章．
--   OI/ICPC 中用到的随机算法，基本都只需要伪随机数．这是因为，这些算法往往是 通过引入随机数 来把概率引入复杂度分析，从而降低复杂度．这本质上依然只利用了随机数的统计特征．
--   某些随机算法（例如 [Moser 算法](https://en.wikipedia.org/wiki/Algorithmic_Lov%C3%A1sz_local_lemma)）用到了随机数的熵相关的性质，因此必须使用真正的随机数．
+-   Khi điều tra lấy mẫu, thường chỉ cần dùng số giả ngẫu nhiên, vì vốn dĩ ta chỉ quan tâm đến các đặc trưng thống kê.
+-   Trong an ninh mạng, thường cần dùng số ngẫu nhiên mạnh hơn loại số giả ngẫu nhiên vừa nhắc tới, vì kẻ tấn công có thể khai thác tính dự đoán được.
+-   Các thuật toán ngẫu nhiên dùng trong OI/ICPC về cơ bản chỉ cần số giả ngẫu nhiên. Lý do là các thuật toán này thường đưa xác suất vào phân tích độ phức tạp bằng cách đưa số ngẫu nhiên vào, từ đó giảm độ phức tạp. Về bản chất, chúng vẫn chỉ sử dụng các đặc trưng thống kê của số ngẫu nhiên.
+-   Một số thuật toán ngẫu nhiên, ví dụ [thuật toán Moser](https://en.wikipedia.org/wiki/Algorithmic_Lov%C3%A1sz_local_lemma), sử dụng các tính chất liên quan đến entropy của số ngẫu nhiên, nên bắt buộc phải dùng số ngẫu nhiên thật sự.
 
-## 实现
+## Cài đặt
 
 ### `rand`
 
-用于生成伪随机数，缺点是比较慢，使用时需要 `#include<cstdlib>`．
+Dùng để sinh số giả ngẫu nhiên. Nhược điểm là khá chậm; khi sử dụng cần `#include<cstdlib>`.
 
-调用 `rand()` 函数会返回一个 `[0,RAND_MAX]` 中的随机非负整数，其中 `RAND_MAX` 是标准库中的一个宏，在 Linux 系统下 `RAND_MAX` 等于 $2^{31}-1$．可以用取模来限制所生成的数的大小．
+Gọi hàm `rand()` sẽ trả về một số nguyên không âm ngẫu nhiên trong `[0,RAND_MAX]`, trong đó `RAND_MAX` là một macro trong thư viện chuẩn. Trên hệ thống Linux, `RAND_MAX` bằng $2^{31}-1$. Có thể dùng phép lấy modulo để giới hạn kích thước của số được sinh ra.
 
-使用 `rand()` 需要一个随机数种子，可以使用 `srand(seed)` 函数来将随机种子更改为 `seed`，当然不初始化也是可以的．
+Khi dùng `rand()` cần có một hạt giống ngẫu nhiên. Có thể dùng hàm `srand(seed)` để đổi hạt giống ngẫu nhiên thành `seed`; tất nhiên cũng có thể không khởi tạo.
 
-同一程序使用相同的 `seed` 两次运行，在同一机器、同一编译器下，随机出的结果将会是相同的．
+Nếu cùng một chương trình chạy hai lần với cùng `seed`, trên cùng máy và cùng trình biên dịch, kết quả ngẫu nhiên nhận được sẽ giống nhau.
 
-有一个选择是使用当前系统时间来作为随机种子：`srand(time(nullptr))`．
+Một lựa chọn là dùng thời gian hệ thống hiện tại làm hạt giống ngẫu nhiên: `srand(time(nullptr))`.
 
-??? warning "Warning"
-    在 `Windows` 系统下 `rand()` 返回值的取值范围为 $\left[0,2^{15}\right)$（即 `RAND_MAX` 等于 $2^{15}-1$），当需要生成的数不小于 $2^{15}$ 时建议使用 `(rand() << 15 | rand())` 来生成更大的随机数．
+??? warning "Cảnh báo"
+    Trên hệ thống `Windows`, miền giá trị trả về của `rand()` là $\left[0,2^{15}\right)$, tức `RAND_MAX` bằng $2^{15}-1$. Khi cần sinh số không nhỏ hơn $2^{15}$, nên dùng `(rand() << 15 | rand())` để sinh số ngẫu nhiên lớn hơn.
 
-关于 `rand()` 和 `rand()%n` 的随机性：
+Về tính ngẫu nhiên của `rand()` và `rand()%n`:
 
--   C/C++ 标准并未关于 `rand()` 所生成随机数的任何方面的质量做任何规定．
--   GCC 编译器对 `rand()` 所采用的实现方式，保证了分布的均匀性等基本性质，但具有 低位周期长度短 等明显缺陷．（例如在笔者的机器上，`rand()%2` 所生成的序列的周期长约 $2\cdot 10^6$）
--   即使假设 `rand()` 是均匀随机的，`rand()%n` 也不能保证均匀性，因为 `[0,n)` 中的每个数在 `0%n,1%n,...,RAND_MAX%n` 中的出现次数可能不相同．
+-   Chuẩn C/C++ không quy định bất kì yêu cầu nào về chất lượng của các số ngẫu nhiên do `rand()` sinh ra.
+-   Cách hiện thực `rand()` mà trình biên dịch GCC sử dụng bảo đảm các tính chất cơ bản như phân bố đều, nhưng có những khuyết điểm rõ rệt như chu kì của các bit thấp ngắn. Ví dụ trên máy của tác giả, dãy do `rand()%2` sinh ra có chu kì khoảng $2\cdot 10^6$.
+-   Ngay cả khi giả sử `rand()` là ngẫu nhiên đều, `rand()%n` cũng không bảo đảm tính đều, vì mỗi số trong `[0,n)` có thể xuất hiện với số lần khác nhau trong `0%n,1%n,...,RAND_MAX%n`.
 
-### 预定义随机数生成器
+### Bộ sinh số ngẫu nhiên định nghĩa sẵn
 
-定义了数个特别的流行算法．如没有特别说明，均定义于头文件 `<random>`．
+Thư viện định nghĩa một số thuật toán phổ biến đặc biệt. Nếu không nói rõ thêm, tất cả đều được định nghĩa trong header `<random>`.
 
-??? warning "Warning"
-    预定义随机数生成器仅在于 C++11 标准[^ref2]中开始使用．
+??? warning "Cảnh báo"
+    Các bộ sinh số ngẫu nhiên định nghĩa sẵn chỉ bắt đầu được dùng từ chuẩn C++11[^ref2].
 
 #### mt19937
 
-是一个随机数生成器类，效用同 `rand()`，随机数的范围同 `unsigned int` 类型的取值范围．
+Đây là một lớp bộ sinh số ngẫu nhiên, có tác dụng tương tự `rand()`. Miền giá trị ngẫu nhiên giống miền giá trị của kiểu `unsigned int`.
 
-其优点是随机数质量高（一个表现为，出现循环的周期更长；其他方面也都至少不逊于 `rand()`），且速度比 `rand()` 快很多．使用时需要 `#include<random>`．
+Ưu điểm của nó là chất lượng số ngẫu nhiên cao, ví dụ chu kì trước khi lặp dài hơn, các mặt khác cũng ít nhất không kém `rand()`, đồng thời tốc độ nhanh hơn `rand()` rất nhiều. Khi sử dụng cần `#include<random>`.
 
-`mt19937` 基于 32 位梅森缠绕器，由松本与西村设计于 1998 年[^ref3]，使用时用其定义一个随机数生成器即可：`std::mt19937 myrand(seed)`，`seed` 可不填，不填 `seed` 则会使用默认随机种子．
+`mt19937` dựa trên Mersenne Twister 32 bit, do Matsumoto và Nishimura thiết kế năm 1998[^ref3]. Khi dùng, chỉ cần dùng nó để định nghĩa một bộ sinh số ngẫu nhiên: `std::mt19937 myrand(seed)`. Có thể bỏ qua `seed`; khi đó hạt giống ngẫu nhiên mặc định sẽ được dùng.
 
-`mt19937` 重载了 `operator ()`，需要生成随机数时调用 `myrand()` 即可返回一个随机数．
+`mt19937` nạp chồng `operator ()`; khi cần sinh số ngẫu nhiên, gọi `myrand()` là có thể trả về một số ngẫu nhiên.
 
-另一个类似的生成器是 `mt19937_64`，基于 64 位梅森缠绕器，由松本与西村设计于 2000 年，使用方式同 `mt19937`，但随机数范围扩大到了 `unsigned long long` 类型的取值范围．
+Một bộ sinh tương tự khác là `mt19937_64`, dựa trên Mersenne Twister 64 bit, do Matsumoto và Nishimura thiết kế năm 2000. Cách dùng giống `mt19937`, nhưng miền số ngẫu nhiên được mở rộng đến miền giá trị của kiểu `unsigned long long`.
 
-??? note "代码示例"
+??? note "Ví dụ mã nguồn"
     ```cpp
     #include <ctime>
     #include <iostream>
@@ -76,46 +76,46 @@
 
 #### `minstd_rand0`
 
-线性同余算法由 Lewis、Goodman 及 Miller 发现于 1969，由 Park 与 Miller 于 1988 采纳为「最小标准」．
+Thuật toán đồng dư tuyến tính được Lewis, Goodman và Miller phát hiện năm 1969, rồi được Park và Miller chọn làm "tiêu chuẩn tối thiểu" năm 1988.
 
-计算公式如下，其中 $A,C,M$ 为预定义常数．
+Công thức tính như sau, trong đó $A,C,M$ là các hằng số định nghĩa sẵn.
 
 $$
 s_i\equiv s_{i-1}\times A+C\mod{M}
 $$
 
-`minstd_rand()` 是较新的「最小标准」，为 Park、Miller 和 Stockmeyer 于 1993 推荐．
+`minstd_rand()` là "tiêu chuẩn tối thiểu" mới hơn, được Park, Miller và Stockmeyer khuyến nghị năm 1993.
 
-对于 `minstd_rand0()`，$s$ 的类型取 32 位无符号整数，$A$ 取 16807，$C$ 取 0，$M$ 取 2147483647．
+Với `minstd_rand0()`, kiểu của $s$ là số nguyên không dấu 32 bit, $A$ lấy 16807, $C$ lấy 0, $M$ lấy 2147483647.
 
-对于 `minstd_rand()`，$s$ 的类型取 32 位无符号整数，$A$ 取 48271，$C$ 取 0，$M$ 取 2147483647．
+Với `minstd_rand()`, kiểu của $s$ là số nguyên không dấu 32 bit, $A$ lấy 48271, $C$ lấy 0, $M$ lấy 2147483647.
 
 ### `random_shuffle`
 
-用于随机打乱指定序列．使用时需要 `#include<algorithm>`．
+Dùng để xáo trộn ngẫu nhiên một dãy được chỉ định. Khi sử dụng cần `#include<algorithm>`.
 
-使用时传入指定区间的首尾指针或迭代器（左闭右开）即可：`std::random_shuffle(first, last)` 或 `std::random_shuffle(first, last, myrand)`
+Khi dùng, chỉ cần truyền con trỏ hoặc iterator đầu cuối của đoạn được chỉ định, theo dạng đóng trái mở phải: `std::random_shuffle(first, last)` hoặc `std::random_shuffle(first, last, myrand)`.
 
-内部使用的随机数生成器默认为 `rand()`．当然也可以传入自定义的随机数生成器．
+Bộ sinh số ngẫu nhiên dùng bên trong mặc định là `rand()`. Tất nhiên cũng có thể truyền vào bộ sinh số ngẫu nhiên tự định nghĩa.
 
-关于 `random_shuffle` 的随机性：
+Về tính ngẫu nhiên của `random_shuffle`:
 
--   C++ 标准中要求 `random_shuffle` 在所有可能的排列中 **等概率** 随机选取，但 GCC[^note1]编译器 **并未** 严格执行．
--   GCC 中 `random_shuffle` 随机性上的缺陷的原因之一，是因为它使用了 `rand()%n` 这样的写法．如先前所述，这样生成的不是均匀随机的整数．
--   原因之二，是因为 `rand()` 的值域有限．如果所传入的区间长度超过 `RAND_MAX`，将存在某些排列 **不可能** 被产生[^ref1]．
+-   Chuẩn C++ yêu cầu `random_shuffle` chọn ngẫu nhiên **đồng xác suất** trong tất cả các hoán vị có thể, nhưng trình biên dịch GCC[^note1] **không** thực hiện nghiêm ngặt điều này.
+-   Một trong các nguyên nhân gây khiếm khuyết về tính ngẫu nhiên của `random_shuffle` trong GCC là nó dùng cách viết như `rand()%n`. Như đã nói ở trên, cách này không sinh ra số nguyên ngẫu nhiên đều.
+-   Nguyên nhân thứ hai là miền giá trị của `rand()` hữu hạn. Nếu độ dài đoạn truyền vào vượt quá `RAND_MAX`, sẽ tồn tại một số hoán vị **không thể** được sinh ra[^ref1].
 
-??? warning "Warning"
-    `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除．
+??? warning "Cảnh báo"
+    `random_shuffle` đã bị loại khỏi khuyến nghị sử dụng từ chuẩn C++14 và bị gỡ bỏ trong chuẩn C++17.
 
-### `shuffle`
+### shuffle
 
-效用同 `random_shuffle`．使用时需要 `#include<algorithm>`．
+Tác dụng giống `random_shuffle`. Khi sử dụng cần `#include<algorithm>`.
 
-区别在于必须使用自定义的随机数生成器：`std::shuffle(first, last, myrand)`．
+Điểm khác biệt là bắt buộc phải dùng bộ sinh số ngẫu nhiên tự định nghĩa: `std::shuffle(first, last, myrand)`.
 
-GCC[^note1]实现的 `shuffle` 符合 C++ 标准的要求，即在所有可能的排列中等概率随机选取．
+Hiện thực `shuffle` của GCC[^note1] đáp ứng yêu cầu của chuẩn C++, tức là chọn ngẫu nhiên đồng xác suất trong tất cả các hoán vị có thể.
 
-下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器．生成数据为 [「ZJOI2012」灾难](https://www.luogu.com.cn/problem/P2597) 的随机小数据．
+Dưới đây là một bộ sinh dữ liệu viết bằng `rand()` và `random_shuffle()`. Dữ liệu được sinh là dữ liệu nhỏ ngẫu nhiên cho bài ["ZJOI2012" Thảm họa](https://www.luogu.com.cn/problem/P2597).
 
 ```cpp
 #include <algorithm>
@@ -139,7 +139,7 @@ int main() {
 }
 ```
 
-下面是用 `mt19937` 及 `shuffle()` 编写的同一个数据生成器．
+Dưới đây là cùng bộ sinh dữ liệu đó, viết bằng `mt19937` và `shuffle()`.
 
 ```cpp
 #include <algorithm>
@@ -163,7 +163,7 @@ int main() {
 }
 ```
 
-下面是随机排列前十个正整数的一个实现．
+Dưới đây là một cách hiện thực để tạo hoán vị ngẫu nhiên của mười số nguyên dương đầu tiên.
 
 ```cpp
 #include <algorithm>
@@ -184,13 +184,13 @@ int main() {
 }
 ```
 
-### 非确定随机数的均匀分布整数随机数生成器
+### Bộ sinh số nguyên ngẫu nhiên phân bố đều không xác định
 
-`random_device` 是一个基于硬件的均匀分布随机数生成器，**在熵池耗尽** 前可以高速生成随机数．该类在 C++11 定义，需要 `random` 头文件．由于熵池耗尽后性能急剧下降，所以建议用此方法生成 `mt19937` 等伪随机数的种子，而不是直接生成．
+`random_device` là một bộ sinh số ngẫu nhiên phân bố đều dựa trên phần cứng, có thể sinh số ngẫu nhiên với tốc độ cao **trước khi cạn entropy pool**. Lớp này được định nghĩa trong C++11 và cần header `random`. Vì hiệu năng giảm mạnh sau khi entropy pool cạn, nên khuyến nghị dùng phương pháp này để sinh hạt giống cho các bộ sinh số giả ngẫu nhiên như `mt19937`, thay vì dùng trực tiếp để sinh số.
 
-`random_device` 是非确定的均匀随机位生成器，尽管若不支持非确定随机数生成，则允许实现用伪随机数引擎实现．目前笔者尚未接到报告称 NOIP 评测机不支持基于硬件的均匀分布随机数生成．但出于保守考虑，建议使用该算法生成随机数种子．
+`random_device` là một bộ sinh bit ngẫu nhiên đều không tất định, mặc dù nếu việc sinh số ngẫu nhiên không tất định không được hỗ trợ, hiện thực vẫn được phép dùng một engine số giả ngẫu nhiên để hiện thực nó. Hiện tại tác giả chưa nhận được báo cáo nào nói rằng máy chấm NOIP không hỗ trợ bộ sinh số ngẫu nhiên phân bố đều dựa trên phần cứng. Tuy vậy, để thận trọng, nên dùng thuật toán này để sinh hạt giống ngẫu nhiên.
 
-参考代码如下．
+Mã tham khảo như sau.
 
 ```cpp
 #include <iostream>
@@ -203,10 +203,11 @@ int main() {
   std::map<int, int> hist;
   std::uniform_int_distribution<int> dist(0, 9);
   for (int n = 0; n < 20000; ++n) {
-    ++hist[dist(rd)];  // 注意：仅用于演示：一旦熵池耗尽，
-                       // 许多 random_device 实现的性能就急剧下滑
-                       // 对于实践使用， random_device 通常仅用于
-                       // 播种类似 mt19937 的伪随机数生成器
+    ++hist[dist(rd)];  // Lưu ý: chỉ dùng để minh họa. Khi entropy pool
+                       // cạn, nhiều hiện thực random_device sẽ giảm
+                       // hiệu năng rất mạnh. Trong thực tế, random_device
+                       // thường chỉ dùng để gieo hạt giống cho các
+                       // bộ sinh giả ngẫu nhiên như mt19937.
   }
   for (auto p : hist) {
     std::cout << p.first << " : " << std::string(p.second / 100, '*') << '\n';
@@ -214,7 +215,7 @@ int main() {
 }
 ```
 
-可能的输出如下．
+Kết quả có thể như sau.
 
 ```plain
 0 : ********************
@@ -229,49 +230,49 @@ int main() {
 9 : ********************
 ```
 
-### 随机数分布
+### Phân bố số ngẫu nhiên
 
-这里介绍的是要求生成的随机数按照一定的概率出现，如等概率，[伯努利分布](https://en.wikipedia.org/wiki/Bernoulli_distribution)，[二项分布](https://en.wikipedia.org/wiki/Binomial_distribution)，[几何分布](https://en.wikipedia.org/wiki/Geometric_distribution)，[标准正态（高斯）分布](https://en.wikipedia.org/wiki/Normal_distribution)．
+Phần này giới thiệu việc yêu cầu số ngẫu nhiên được sinh ra xuất hiện theo một xác suất nhất định, chẳng hạn xác suất bằng nhau, [phân bố Bernoulli](https://en.wikipedia.org/wiki/Bernoulli_distribution), [phân bố nhị thức](https://en.wikipedia.org/wiki/Binomial_distribution), [phân bố hình học](https://en.wikipedia.org/wiki/Geometric_distribution), [phân bố chuẩn tắc, còn gọi là Gaussian](https://en.wikipedia.org/wiki/Normal_distribution).
 
-具体类名请参见 [伪随机数生成——随机数分布](https://zh.cppreference.com/w/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.88.86.E5.B8.83) 的列表．
+Tên lớp cụ thể có thể xem trong danh sách [sinh số giả ngẫu nhiên: phân bố số ngẫu nhiên](https://zh.cppreference.com/w/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.88.86.E5.B8.83).
 
-#### 实现
+#### Cài đặt
 
-下面的程序模拟了一个六面体骰子．
+Chương trình dưới đây mô phỏng một con xúc xắc sáu mặt.
 
 ```cpp
 #include <iostream>
 #include <random>
 
 int main() {
-  std::random_device rd;   // 将用于为随机数引擎获得种子
-  std::mt19937 gen(rd());  // 以播种标准 mersenne_twister_engine
+  std::random_device rd;   // Dùng để lấy hạt giống cho engine ngẫu nhiên
+  std::mt19937 gen(rd());  // Gieo hạt giống cho mersenne_twister_engine chuẩn
   std::uniform_int_distribution<> dis(1, 6);
 
   for (int n = 0; n < 10; ++n)
-    // 用 dis 变换 gen 所生成的随机 unsigned int 到 [1, 6] 中的 int
+    // Dùng dis để biến unsigned int ngẫu nhiên do gen sinh ra thành int trong [1, 6]
     std::cout << dis(gen) << ' ';
   std::cout << '\n';
 }
 ```
 
-### 其他实现方法
+### Các cách hiện thực khác
 
-有的时候我们需要实现自己的随机数生成器．下面是一些常用的随机数生成方法．
+Đôi khi ta cần tự hiện thực bộ sinh số ngẫu nhiên của mình. Dưới đây là một số phương pháp sinh số ngẫu nhiên thường dùng.
 
-#### 线性同余随机数生成器
+#### Bộ sinh số ngẫu nhiên đồng dư tuyến tính
 
-利用下式来生成随机数序列 $\{R_i\}$：
+Dùng công thức sau để sinh dãy số ngẫu nhiên $\{R_i\}$:
 
 $$
 R_{i+1} = (A \times R_i + B) \bmod P
 $$
 
-其中 $A,B,P$ 均为常数．
+Trong đó $A,B,P$ đều là hằng số.
 
-该方法实现难度低，但生成的随机序列周期长度较短（周期最大为 $P$，但大多数情况下都会比 $P$ 短）．
+Phương pháp này dễ hiện thực, nhưng dãy ngẫu nhiên được sinh ra có chu kì khá ngắn. Chu kì lớn nhất là $P$, nhưng trong đa số trường hợp sẽ ngắn hơn $P$.
 
-??? note "参考实现"
+??? note "Hiện thực tham khảo"
     ```cpp
     #include <iostream>
     using namespace std;
@@ -285,11 +286,11 @@ $$
         this->P = P;
       }
     
-      // 生成随机序列的下一个随机数
+      // Sinh số ngẫu nhiên tiếp theo trong dãy ngẫu nhiên
       int next() { return x = (A * x + B) % P; }
     };
     
-    myrand rnd(3, 5, 97);  // 初始化一个随机数生成器
+    myrand rnd(3, 5, 97);  // Khởi tạo một bộ sinh số ngẫu nhiên
     
     int main() {
       int x = rnd.next();
@@ -298,19 +299,19 @@ $$
     }
     ```
 
-#### 时滞斐波那契随机数生成器
+#### Bộ sinh số ngẫu nhiên Fibonacci trễ
 
-利用下式来生成随机数序列 $\{R_i\}$（其中 $0 < j < k$）：
+Dùng công thức sau để sinh dãy số ngẫu nhiên $\{R_i\}$, trong đó $0 < j < k$:
 
 $$
 R_i \equiv R_{i-j} \star R_{i-k} \bmod P
 $$
 
-这里的 $P$ 通常取 $2$ 的幂（常用 $2^{32}$ 或 $2^{64}$），$\star$ 表示二元运算符，可以使用加法，减法，乘法，异或．
+Ở đây $P$ thường lấy là một lũy thừa của $2$, phổ biến là $2^{32}$ hoặc $2^{64}$; $\star$ biểu thị toán tử nhị phân, có thể dùng phép cộng, phép trừ, phép nhân hoặc XOR.
 
-该方法较传统的线性同余随机数生成器而言，拥有更长的周期，但随机性受初始条件影响较大．
+So với bộ sinh số ngẫu nhiên đồng dư tuyến tính truyền thống, phương pháp này có chu kì dài hơn, nhưng tính ngẫu nhiên chịu ảnh hưởng khá lớn từ điều kiện ban đầu.
 
-??? note "参考实现"
+??? note "Hiện thực tham khảo"
     ```cpp
     #include <iostream>
     #include <vector>
@@ -326,13 +327,13 @@ $$
         this->k = k;
         cur = 0;
         for (int i = 0; i < l; i++) {
-          vec.push_back(rand());  // 先用其他方法生成随机序列中的前几个元素
+          vec.push_back(rand());  // Trước tiên sinh vài phần tử đầu bằng phương pháp khác
         }
       }
     
       unsigned next() {
         vec[cur] = vec[(cur - j + l) % l] * vec[(cur - k + l) % l];
-        // 这里用 unsigned 类型是为了实现自动对 2^32 取模
+        // Dùng kiểu unsigned ở đây để tự động lấy modulo 2^32
         return vec[cur++];
       }
     };
@@ -346,12 +347,12 @@ $$
     }
     ```
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
 [^ref1]: [Don't use rand(): a guide to random number generators in C++](https://codeforces.com/blog/entry/61587)
 
-[^ref2]: [伪随机数生成 - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/random#%E9%A2%84%E5%AE%9A%E4%B9%89%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8)
+[^ref2]: [Sinh số giả ngẫu nhiên - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/random#%E9%A2%84%E5%AE%9A%E4%B9%89%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8)
 
 [^ref3]: [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)
 
-[^note1]: 版本号为 GCC 9.2.0
+[^note1]: Phiên bản là GCC 9.2.0

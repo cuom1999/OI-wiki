@@ -1,153 +1,153 @@
 author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
 
-## 概述
+## Tổng quan
 
-前置知识：[随机函数](../misc/random.md) 和 [概率初步](../math/probability/basic-conception.md)
+Kiến thức nền: [hàm ngẫu nhiên](../misc/random.md) và [xác suất sơ cấp](../math/probability/basic-conception.md)
 
-本文将对 OI/ICPC 中的随机化相关技巧做一个简单的分类，并对每个分类予以介绍．本文也将介绍一些在 OI/ICPC 中很少使用，但与 OI/ICPC 在风格等方面较为贴近的方法，这些内容前将用 `(*)` 标注．
+Bài viết này phân loại sơ bộ các kỹ thuật liên quan đến ngẫu nhiên hóa trong OI/ICPC, đồng thời giới thiệu từng nhóm. Bài viết cũng nhắc đến một số phương pháp ít dùng trong OI/ICPC, nhưng khá gần với OI/ICPC về phong cách; các mục đó sẽ được đánh dấu bằng `(*)`.
 
-这一分类并不代表广泛共识，也必定不能囊括所有可能性，因此仅供参考．
+Cách phân loại này không phải đồng thuận rộng rãi, và chắc chắn không bao quát hết mọi khả năng, vì vậy chỉ nên xem như tài liệu tham khảo.
 
-**记号和约定**：
+**Ký hiệu và quy ước**:
 
--   $\mathrm{Pr}[A]$ 表示事件 $A$ 发生的概率．
--   $\mathrm{E}[X]$ 表示随机变量 $X$ 的期望．
--   赋值号 $:=$ 表示引入新的量，例如 $Y:=1926$ 表示引入值为 $1926$ 的量 $Y$．
+-   $\mathrm{Pr}[A]$ biểu thị xác suất sự kiện $A$ xảy ra.
+-   $\mathrm{E}[X]$ biểu thị kỳ vọng của biến ngẫu nhiên $X$.
+-   Dấu gán $:=$ biểu thị việc giới thiệu một đại lượng mới; ví dụ $Y:=1926$ nghĩa là giới thiệu đại lượng $Y$ có giá trị $1926$.
 
-## 用随机集合覆盖目标元素
+## Dùng tập ngẫu nhiên để bao phủ phần tử mục tiêu
 
-庞大的解空间中有一个（或多个）解是我们想要的．我们可以尝试进行多次撒网，只要有一次能够网住目标解就能成功．
+Trong không gian lời giải khổng lồ có một hoặc nhiều nghiệm mà ta cần. Ta có thể thử "quăng lưới" nhiều lần; chỉ cần một lần bắt trúng nghiệm mục tiêu là thành công.
 
-### 例：三部图的判定
+### Ví dụ: nhận định đồ thị ba phía
 
-???+ note "问题"
-    给定一张 $n$ 个结点、$m$ 条边的简单无向图，用 RGB 三种颜色给每个结点染色 满足任意一对邻居都不同色，或者报告无解．
+???+ note "Bài toán"
+    Cho một đơn đồ thị vô hướng có $n$ đỉnh và $m$ cạnh. Hãy tô mỗi đỉnh bằng một trong ba màu RGB sao cho mọi cặp đỉnh kề nhau có màu khác nhau, hoặc báo không có nghiệm.
 
-对每个点 $v$，从 $\{R,G,B\}$ 中等概率独立随机地选一种颜色 $C_v$，并钦定 $v$  **不** 被染成 $C_v$．最优解恰好符合这些限制的概率，显然是 $\big(\frac 23\big)^n$．
+Với mỗi đỉnh $v$, chọn độc lập và đều một màu $C_v$ trong $\{R,G,B\}$, rồi quy định rằng $v$ **không** được tô màu $C_v$. Xác suất một nghiệm tối ưu tình cờ thỏa đúng các ràng buộc này hiển nhiên là $\big(\frac 23\big)^n$.
 
-在这些限制下，对于一对邻居 $(u,v)$，「$u,v$ 不同色」的要求等价于以下这条「推出」关系：
+Dưới các ràng buộc đó, với một cặp đỉnh kề nhau $(u,v)$, yêu cầu "$u,v$ khác màu" tương đương với quan hệ "kéo theo" sau:
 
--   对于所有异于 $C_u,C_v$ 的颜色 $X$，若 $u$ 被染成 $X$，则 $v$ 被染成 $\{R,G,B\}\setminus\{X,C_v\}$．
+-   Với mọi màu $X$ khác $C_u,C_v$, nếu $u$ được tô màu $X$, thì $v$ được tô màu $\{R,G,B\}\setminus\{X,C_v\}$.
 
-于是我们可以对每个 $v$ 设置布尔变量 $B_v$，其取值表示 $v$ 被染成两种剩余的颜色中的哪一种．借助 2-SAT 模型即可以 $O(n+m)$ 的复杂度解决这个问题．
+Do đó ta có thể gán cho mỗi $v$ một biến Boolean $B_v$, giá trị của nó biểu thị $v$ được tô bằng màu nào trong hai màu còn lại. Khi đó có thể dùng mô hình 2-SAT để giải bài toán trong $O(n+m)$.
 
-这样做，单次的正确率是 $\big(\frac 23\big)^n$．将算法重复运行 $-\big(\frac 32\big)^n\log \epsilon$ 次，只要有一次得到解就输出，这样即可保证 $1-\epsilon$ 的正确率．（详见后文中「概率上界的分析」）
+Làm như vậy, xác suất đúng của một lần chạy là $\big(\frac 23\big)^n$. Lặp lại thuật toán $-\big(\frac 32\big)^n\log \epsilon$ lần; chỉ cần một lần tìm được nghiệm thì in ra. Như vậy có thể bảo đảm xác suất đúng $1-\epsilon$. Xem thêm phần "Phân tích cận trên xác suất" bên dưới.
 
 ***
 
-**回顾**：本题中「解空间」就是集合 $\{R,G,B\}^n$，我们每次通过随机施加限制来在一个缩小的范围内搜寻「目标解」——即合法的染色方案．
+**Nhìn lại**: trong bài này, "không gian lời giải" là tập $\{R,G,B\}^n$. Mỗi lần ta áp đặt ngẫu nhiên một số ràng buộc để tìm "nghiệm mục tiêu" trong một phạm vi đã thu hẹp, tức là một phương án tô màu hợp lệ.
 
-### 例：[CodeChef SELEDGE](https://www.codechef.com/problems/SELEDGE)
+### Ví dụ: [CodeChef SELEDGE](https://www.codechef.com/problems/SELEDGE)
 
-???+ note "简要题意"
-    给定一张点、边都有非负权值的无向图，找到一个大小 $\leq K$ 的边集合 $S$，以最大化与 $S$ 相连的点的权值和减去 $S$ 的边权和．一个点的权值只被计算一次．
+???+ note "Tóm tắt đề bài"
+    Cho một đồ thị vô hướng có trọng số không âm trên cả đỉnh và cạnh. Tìm một tập cạnh $S$ có kích thước $\leq K$ để tối đa hóa tổng trọng số của các đỉnh liên thông với $S$ trừ đi tổng trọng số các cạnh trong $S$. Trọng số của một đỉnh chỉ được tính một lần.
 
-观察：如果选出的边中有三条边构成一条链，则删掉中间的那条一定不劣；如果选出的边中有若干条构成环，则删掉任何一条一定不劣．
+Nhận xét: nếu trong các cạnh đã chọn có ba cạnh tạo thành một đường đi, thì xóa cạnh ở giữa chắc chắn không tệ hơn; nếu trong các cạnh đã chọn có một số cạnh tạo thành chu trình, thì xóa bất kỳ cạnh nào cũng không tệ hơn.
 
-推论：最优解选出的边集，一定构成若干个不相交的菊花图（即直径不超过 2 的树）．
+Hệ quả: tập cạnh được chọn trong nghiệm tối ưu chắc chắn tạo thành một số đồ thị hoa cúc rời nhau, tức là các cây có đường kính không quá 2.
 
-推论：最优解选出的边集，一定构成一张二分图．
+Hệ quả: tập cạnh được chọn trong nghiệm tối ưu chắc chắn tạo thành một đồ thị hai phía.
 
-我们对每个点等概率独立随机地染上黑白两种颜色之一，并要求这一染色方案，恰好也是最优解所对应的二分图的黑白染色方案．
+Ta tô mỗi đỉnh độc lập và đều bằng một trong hai màu đen/trắng, và yêu cầu cách tô màu này trùng với cách tô hai phía của đồ thị hai phía tương ứng với nghiệm tối ưu.
 
-尝试计算最优解符合这一要求的概率：
+Thử tính xác suất nghiệm tối ưu thỏa yêu cầu này:
 
--   考虑一张 $n$ 个点的菊花图，显然它有 2 种染色方案，所以它被染对颜色的概率是 $\dfrac 2{2^n}=2^{1-n}$．
--   假设最优解中每个菊花的结点数分别为 $a_1,\cdots,a_l$，则一定有 $(a_1-1)+\cdots+(a_l-1)\leq K$，其中 $K$ 表示最多能够选出的边数．
--   从而所有菊花都被染对颜色的概率是 $2^{1-a_1}\cdots 2^{1-a_l}\geq 2^{-K}$．
+-   Xét một đồ thị hoa cúc có $n$ đỉnh. Nó hiển nhiên có 2 cách tô màu, nên xác suất tô đúng màu là $\dfrac 2{2^n}=2^{1-n}$.
+-   Giả sử số đỉnh của từng hoa cúc trong nghiệm tối ưu lần lượt là $a_1,\cdots,a_l$. Khi đó chắc chắn có $(a_1-1)+\cdots+(a_l-1)\leq K$, trong đó $K$ là số cạnh tối đa có thể chọn.
+-   Suy ra xác suất tất cả các hoa cúc đều được tô đúng màu là $2^{1-a_1}\cdots 2^{1-a_l}\geq 2^{-K}$.
 
-在上述要求下，尝试建立费用流模型计算最优答案：
+Dưới yêu cầu trên, thử lập mô hình luồng chi phí để tính đáp án tối ưu:
 
--   建立二分图，白点在左侧并与 $S$ 相连，黑点在右侧并与 $T$ 相连．
-    -   对于白点 $v$，从 $S$ 向它连一条容量为 1、费用为 $-A_v$ 的边，和一条容量为 $\infty$、费用为 0 的边．
-    -   对于黑点 $v$，从它向 $T$ 连一条容量为 1、费用为 $-A_v$ 的边，和一条容量为 $\infty$、费用为 0 的边．
--   对于原图中的边 $(u,v,B)$ 满足 $u$ 为白色、$v$ 为黑色，连一条从 $u$ 到 $v$ 的边，容量为 1，费用为 $B$．
--   在该图中限制流量不超过 $K$，则最小费用的相反数就是答案．
+-   Lập đồ thị hai phía: đỉnh trắng ở bên trái và nối với $S$, đỉnh đen ở bên phải và nối với $T$.
+    -   Với đỉnh trắng $v$, nối một cạnh từ $S$ đến nó có dung lượng 1 và chi phí $-A_v$, cùng một cạnh có dung lượng $\infty$ và chi phí 0.
+    -   Với đỉnh đen $v$, nối một cạnh từ nó đến $T$ có dung lượng 1 và chi phí $-A_v$, cùng một cạnh có dung lượng $\infty$ và chi phí 0.
+-   Với cạnh $(u,v,B)$ trong đồ thị gốc sao cho $u$ màu trắng và $v$ màu đen, nối một cạnh từ $u$ đến $v$ có dung lượng 1 và chi phí $B$.
+-   Giới hạn luồng trong đồ thị này không vượt quá $K$; khi đó số đối của chi phí nhỏ nhất chính là đáp án.
 
-用 SPFA 费用流求解的话，复杂度是 $O\big(K^2(n+m)\big)$，证明：
+Nếu dùng SPFA cho luồng chi phí, độ phức tạp là $O\big(K^2(n+m)\big)$. Chứng minh:
 
--   首先，显然 SPFA 的运行次数 $\leq K$．
--   然后，在一次 SPFA 中，任何一个结点至多入队 $O(K)$ 次．这是因为：
-    -   任意时刻有流量的边不会超过 $3K$ 条，否则就意味着在原图中选了超过 $K$ 条边．
-    -   对于任何一条长为 $L$ 的增广路，其中至少有 $\dfrac L2-2$ 条边是某条有流量的边的反向边，因为正向边都是从图的左侧指向右侧，只有这些反向边才会从右侧指向左侧．
-    -   综合以上两条，得到任意一条增广路的长度不超过 $6K+4$．
--   综上，复杂度是 $O\big(K^2(n+m)\big)$．
+-   Trước hết, số lần chạy SPFA hiển nhiên $\leq K$.
+-   Sau đó, trong một lần SPFA, mỗi đỉnh vào hàng đợi tối đa $O(K)$ lần. Lý do:
+    -   Tại bất kỳ thời điểm nào, số cạnh có luồng không vượt quá $3K$; nếu không, trong đồ thị gốc đã chọn hơn $K$ cạnh.
+    -   Với bất kỳ đường tăng luồng dài $L$, trong đó có ít nhất $\dfrac L2-2$ cạnh là cạnh ngược của một cạnh có luồng, vì các cạnh thuận đều đi từ trái sang phải của đồ thị, và chỉ các cạnh ngược này mới đi từ phải sang trái.
+    -   Kết hợp hai ý trên, độ dài của bất kỳ đường tăng luồng nào không vượt quá $6K+4$.
+-   Tóm lại, độ phức tạp là $O\big(K^2(n+m)\big)$.
 
-和上一题类似，我们需要把整个过程重复 $-2^K \log\epsilon$ 次以得到 $1-\epsilon$ 的正确率．总复杂度 $O\big(2^KK^2(n+m)\cdot -\log\epsilon\big)$．
+Tương tự bài trước, ta cần lặp lại toàn bộ quá trình $-2^K \log\epsilon$ lần để đạt xác suất đúng $1-\epsilon$. Tổng độ phức tạp là $O\big(2^KK^2(n+m)\cdot -\log\epsilon\big)$.
 
-## 用随机元素命中目标集合
+## Dùng phần tử ngẫu nhiên để đánh trúng tập mục tiêu
 
-我们需要确定一个集合中的任意一个元素，为此我们随机选取元素，以期能够恰好命中这一集合．
+Ta cần xác định bất kỳ một phần tử nào trong một tập; vì vậy ta chọn phần tử ngẫu nhiên, hy vọng chọn trúng tập này.
 
-### 例：[Gym 101550I](https://codeforces.com/gym/101550/attachments)
+### Ví dụ: [Gym 101550I](https://codeforces.com/gym/101550/attachments)
 
-???+ note "简要题意"
-    有一张图形如：两条平行的链，加上连接两链的两条平行边．给定这张图上的若干条简单路径（每条路径表示一次通话），请你选择尽量少的边放置窃听器，以使得每条给定的路径上都有至少一个窃听器．
+???+ note "Tóm tắt đề bài"
+    Có một đồ thị có dạng: hai chuỗi song song, cộng thêm hai cạnh song song nối giữa hai chuỗi. Cho một số đường đi đơn trên đồ thị này, mỗi đường đi biểu thị một cuộc gọi. Hãy chọn ít cạnh nhất để đặt thiết bị nghe lén, sao cho trên mỗi đường đi đã cho đều có ít nhất một thiết bị nghe lén.
 
-整张图可以拆分为一个环加上四条从环伸出去的链．对于这四条链中的任何一条（记作 $C$），考虑在这条链上如何放置窃听器，容易通过贪心算法得到满足以下条件的方案：
+Toàn bộ đồ thị có thể tách thành một chu trình cộng với bốn chuỗi mọc từ chu trình đó. Với bất kỳ một trong bốn chuỗi này, ký hiệu là $C$, xét cách đặt thiết bị nghe lén trên chuỗi này. Dễ dàng dùng tham lam để thu được phương án thỏa các điều kiện sau:
 
--   在拦截所有 $C$ 内部进行的通话的前提下，用的窃听器数量最少．
--   在上一条的前提下，使得 $C$ 上的窃听器离环的最短距离尽可能小．
-    -   作这一要求的目的是尽可能地拦截恰有一个端点在 $C$ 内部的通话．
+-   Với điều kiện chặn được mọi cuộc gọi nằm hoàn toàn trong $C$, số thiết bị nghe lén được dùng là ít nhất.
+-   Dưới điều kiện trên, khoảng cách ngắn nhất từ thiết bị nghe lén trên $C$ đến chu trình là nhỏ nhất có thể.
+    -   Mục đích của yêu cầu này là chặn nhiều nhất các cuộc gọi có đúng một đầu mút nằm trong $C$.
 
-接着考虑链与环相接处的共计 4 条边，我们暴力枚举这些边上有没有放窃听器．显然，如果想要拦截跨越链和环的通话，在这 4 条边上放窃听器一定是最优的．现在，我们可以把通话线路分为以下几种：
+Tiếp theo xét tổng cộng 4 cạnh nối giữa chuỗi và chu trình, và vét cạn xem trên các cạnh này có đặt thiết bị nghe lén hay không. Hiển nhiên, nếu muốn chặn các cuộc gọi cắt qua giữa chuỗi và chu trình, đặt thiết bị nghe lén trên 4 cạnh này chắc chắn là tối ưu. Bây giờ ta có thể chia các đường gọi thành các loại sau:
 
-1.  完全在链上的通话线路．这些线路一定已经被拦截，故可以忽略．
-2.  跨越链和环，且已经被拦截的通话线路．它们可以忽略．
-3.  跨越链和环，且未被拦截的通话线路．我们可以直接截掉它在链上的部分（因为链上的窃听器放置方案已经固定了），只保留环上的部分．
-4.  完全在环上的通话线路．
+1.  Đường gọi nằm hoàn toàn trên chuỗi. Các đường này chắc chắn đã bị chặn, nên có thể bỏ qua.
+2.  Đường gọi cắt qua chuỗi và chu trình, và đã bị chặn. Chúng có thể bị bỏ qua.
+3.  Đường gọi cắt qua chuỗi và chu trình, nhưng chưa bị chặn. Ta có thể cắt bỏ phần trên chuỗi của nó, vì cách đặt thiết bị trên chuỗi đã cố định, và chỉ giữ lại phần trên chu trình.
+4.  Đường gọi nằm hoàn toàn trên chu trình.
 
-至此，问题转化成了环上的问题．
+Đến đây, bài toán được chuyển thành bài toán trên chu trình.
 
-设最优解中在环上的边集 $S$ 上放置了窃听器，如果我们已经确定了 $S$ 中的任何一个元素 $e$，就可以：
+Giả sử trong nghiệm tối ưu, tập cạnh trên chu trình có đặt thiết bị nghe lén là $S$. Nếu ta đã xác định được bất kỳ một phần tử $e$ nào trong $S$, ta có thể:
 
--   先在 $e$ 处断环为链．
--   然后从 $e$ 开始贪心，不断找到下一个放置窃听器的边．注意到如果经过合适的预处理，贪心的每一步可以做到 $O(1)$ 的复杂度．
--   从而以 $O(|S|)$ 的复杂度解决问题．
+-   Cắt chu trình tại $e$ thành một chuỗi.
+-   Sau đó tham lam bắt đầu từ $e$, liên tục tìm cạnh tiếp theo để đặt thiết bị nghe lén. Chú ý rằng nếu tiền xử lý thích hợp, mỗi bước tham lam có thể làm trong $O(1)$.
+-   Từ đó giải bài toán trong $O(|S|)$.
 
-我们考虑随机选取环上的一条边 $e'$，并钦定 $e'\in S$ 再执行上述过程，重复多次取最优．
+Ta xét việc chọn ngẫu nhiên một cạnh $e'$ trên chu trình, quy định $e'\in S$, rồi thực hiện quá trình trên; lặp lại nhiều lần và lấy kết quả tốt nhất.
 
-分析单次复杂度：
+Phân tích độ phức tạp một lần:
 
--   观察：记 $S'$ 表示所有选取了 $e'$ 的方案中的最优解，则 $|S'|\leq |S|+1$．
--   从而单次复杂度 $O(|S'|)=O(|S|)$．
+-   Nhận xét: ký hiệu $S'$ là nghiệm tối ưu trong tất cả các phương án đã chọn $e'$, khi đó $|S'|\leq |S|+1$.
+-   Vì vậy độ phức tạp một lần là $O(|S'|)=O(|S|)$.
 
-分析正确率：
+Phân tích xác suất đúng:
 
--   显然单次正确率 $\dfrac {|S|}n$，其中 $n$ 表示环长．
--   所以需要重复 $-\dfrac n{|S|}\log\epsilon$ 次以得到 $1-\epsilon$ 的正确率．
+-   Hiển nhiên xác suất đúng một lần là $\dfrac {|S|}n$, trong đó $n$ là độ dài chu trình.
+-   Do đó cần lặp lại $-\dfrac n{|S|}\log\epsilon$ lần để đạt xác suất đúng $1-\epsilon$.
 
-综上，该算法的复杂度 $O\big(|S|\cdot -\dfrac n{|S|}\log\epsilon\big)=O(-n\log\epsilon)$．
+Tổng hợp lại, độ phức tạp của thuật toán là $O\big(|S|\cdot -\dfrac n{|S|}\log\epsilon\big)=O(-n\log\epsilon)$.
 
-### 例：[CSES 1685 New Flight Routes](https://cses.fi/problemset/task/1685)
+### Ví dụ: [CSES 1685 New Flight Routes](https://cses.fi/problemset/task/1685)
 
-???+ note "简要题意"
-    给定一张有向图，请你加最少的边使得该图强连通，需 **输出方案**．
+???+ note "Tóm tắt đề bài"
+    Cho một đồ thị có hướng. Hãy thêm ít cạnh nhất để đồ thị liên thông mạnh, và phải **in ra phương án**.
 
-先对原图进行强连通缩点．我们的目标显然是使每个汇点能到达每个源点．
+Trước hết co đồ thị gốc theo các thành phần liên thông mạnh. Mục tiêu của ta hiển nhiên là làm cho mỗi sink có thể đi đến mỗi source.
 
-不难证明，我们一定只会从汇点到源点连边，因为任何其他的连边，都能对应上一条不弱于它的、从汇点到源点的连边．
+Không khó chứng minh rằng ta chỉ cần nối cạnh từ sink đến source, vì mọi cạnh nối khác đều có thể tương ứng với một cạnh từ sink đến source không yếu hơn nó.
 
-我们的一个核心操作是，取汇点 $t$ 和源点 $s$（它们不必在同一个弱连通分量里），连边 $t\to s$ 以 **使得 $s$ 和 $t$ 都不再是汇点或源点**（记作目标 I）．理想情况下这种操作每次能减少一个汇点和一个源点，那我们不断操作直到只剩一个汇点或只剩一个源点，而这样的情形就很平凡了．由此，我们猜测答案是源点个数与汇点个数的较大值．
+Một thao tác cốt lõi là chọn sink $t$ và source $s$ (không nhất thiết nằm trong cùng một thành phần liên thông yếu), rồi nối cạnh $t\to s$ để **làm cho cả $s$ và $t$ không còn là source hoặc sink** (gọi là mục tiêu I). Lý tưởng thì mỗi thao tác như vậy giảm được một sink và một source; ta liên tục thao tác cho đến khi chỉ còn một sink hoặc chỉ còn một source, và trường hợp đó rất đơn giản. Từ đó ta đoán đáp án là số lớn hơn giữa số source và số sink.
 
-不难发现，上述操作能够达到目标 I 的充要条件是：$t$ 拥有 $s$ 以外的前驱、且 $s$ 拥有 $t$ 以外的后继．可以证明（等会会给出证明），对于任意一张有着至少两个源点和至少两个汇点的 DAG，都存在这样的 $(s,t)$；但存在性的结论无法帮助我们构造方案，还需做其他分析．
+Dễ thấy rằng điều kiện cần và đủ để thao tác trên đạt mục tiêu I là: $t$ có một tiền nhiệm khác $s$, và $s$ có một hậu nhiệm khác $t$. Có thể chứng minh (lát nữa sẽ đưa ra chứng minh) rằng với bất kỳ DAG nào có ít nhất hai source và ít nhất hai sink, luôn tồn tại cặp $(s,t)$ như vậy; nhưng kết luận tồn tại không giúp ta xây dựng phương án, nên cần phân tích thêm.
 
--   有了这个充要条件还难以直接得到算法，主要的原因是连边 $t\to s$ 后可能影响其他 $(s',t')$ 二元组的合法性，这个比较难处理．
+-   Dùng điều kiện cần và đủ này vẫn khó suy ra thuật toán trực tiếp, chủ yếu vì sau khi nối cạnh $t\to s$, tính hợp lệ của các cặp $(s',t')$ khác có thể bị ảnh hưởng, điều này khá khó xử lý.
 
-注意到我们关于源汇点间的关系知之甚少（甚至连快速查询一对 $s-t$ 间是否可达都需要 dfs + bitset 预处理，而时限并不允许这么做），这提示我们需要某种非常一般和强大的性质．
+Chú ý rằng ta biết rất ít về quan hệ giữa source và sink (thực ra ngay cả truy vấn nhanh một cặp $s-t$ có thể đi tới nhau hay không cũng cần tiền xử lý dfs + bitset, mà giới hạn thời gian không cho phép). Điều này gợi ý rằng ta cần một tính chất rất tổng quát và mạnh.
 
-观察：不满足目标 I 的 $(s,t)$ 至多有 $n+m-1$ 对，其中 $n$ 表示源点个数，$m$ 表示汇点个数．
+Nhận xét: số cặp $(s,t)$ không thỏa mục tiêu I nhiều nhất là $n+m-1$, trong đó $n$ là số source và $m$ là số sink.
 
--   理由：对于每一对这样的 $(s,t)$，若把它看成 $s,t$ 间的一条边，则所有这些边构成的图形如若干条不相交的链，于是边数不超过点数减一．
--   作出这一观察的动机是，要想将存在性结论应用于算法，前置步骤往往是把定性的结果加强为定量的结果．
+-   Lý do: với mỗi cặp $(s,t)$ như vậy, nếu xem nó như một cạnh giữa $s$ và $t$, thì đồ thị tạo bởi tất cả các cạnh này có dạng một số chuỗi rời nhau, nên số cạnh không vượt quá số đỉnh trừ một.
+-   Động cơ của nhận xét này là: để áp dụng một kết quả tồn tại vào thuật toán, bước tiền đề thường là tăng cường kết quả định tính thành kết quả định lượng.
 
-推论：等概率随机选取 $(s,t)$，满足前述要求的概率 $\geq \dfrac {(n-1)(m-1)}{nm}$．
+Hệ quả: chọn đều ngẫu nhiên $(s,t)$, xác suất thỏa yêu cầu trên $\geq \dfrac {(n-1)(m-1)}{nm}$.
 
--   注意到这个结论严格强于先前给出的存在性结论．
+-   Chú ý rằng kết luận này mạnh hơn nghiêm ngặt so với kết luận tồn tại đã nêu trước đó.
 
-推论：等概率独立随机地连续选取 $\dfrac {\min(n,m)}2$ 对不含公共元素的 $(s,t)$，并对它们 **依次** 操作（即连边 $t\to s$），则这些操作全部满足目标 I 的概率 $\geq \dfrac 14$．
+Hệ quả: chọn độc lập và đều ngẫu nhiên liên tiếp $\dfrac {\min(n,m)}2$ cặp $(s,t)$ không có phần tử chung, và **lần lượt** thao tác trên chúng (tức là nối cạnh $t\to s$), thì xác suất tất cả các thao tác đều thỏa mục tiêu I là $\geq \dfrac 14$.
 
--   理由：
+-   Lý do:
 
 $$
 \begin{aligned}
@@ -157,9 +157,9 @@ $$
 \end{aligned}
 $$
 
-而连续选完 $k$ 对 $(s,t)$ 后判断它们是否全部满足目标 I 很简单，只要再跑一遍强连通缩点，判断一下 $n,m$ 是否都减小了 $k$ 即可．注意到若每次减少 $k=\dfrac{\min(n,m)}2$，则 $\min(n,m)$ 必在 $O\big(\log(n+m)\big)$ 轮内变成 1，也就转化到了平凡的情况．
+Sau khi chọn liên tiếp $k$ cặp $(s,t)$, việc kiểm tra chúng có tất cả thỏa mục tiêu I hay không rất đơn giản: chỉ cần chạy lại phép co thành phần liên thông mạnh và kiểm tra $n,m$ có đều giảm $k$ hay không. Chú ý rằng nếu mỗi lần giảm $k=\dfrac{\min(n,m)}2$, thì $\min(n,m)$ sẽ trở thành 1 trong $O\big(\log(n+m)\big)$ vòng, tức là chuyển về trường hợp đơn giản.
 
-???+ note "算法伪代码"
+???+ note "Mã giả của thuật toán"
     ```text
     while(n>1 and m>1):
         randomly choose k=min(n,m)/2 pairs (s,t)
@@ -169,226 +169,226 @@ $$
     solve_trivial()
     ```
 
-复杂度 $O\big((|V|+|E|) \log |V|\big)$．
+Độ phức tạp $O\big((|V|+|E|) \log |V|\big)$.
 
 ***
 
-**回顾**：我们需要确定任意一对能够实现目标 I 的二元组 $(s,t)$，为此我们随机选择 $(s,t)$．
+**Nhìn lại**: ta cần xác định bất kỳ cặp $(s,t)$ nào có thể đạt mục tiêu I, nên ta chọn ngẫu nhiên $(s,t)$.
 
-## 用随机化获得随机数据的性质
+## Dùng ngẫu nhiên hóa để thu được tính chất của dữ liệu ngẫu nhiên
 
-如果一道题的数据随机生成，我们可能可以利用随机数据的性质解决它．而在有些情况下，即使数据并非随机生成，我们也可以通过随机化来给其赋予随机数据的某些特性，从而帮助解决问题．
+Nếu dữ liệu của một bài toán được sinh ngẫu nhiên, ta có thể lợi dụng tính chất của dữ liệu ngẫu nhiên để giải. Trong một số trường hợp, ngay cả khi dữ liệu không được sinh ngẫu nhiên, ta cũng có thể dùng ngẫu nhiên hóa để trao cho nó một số tính chất của dữ liệu ngẫu nhiên, từ đó hỗ trợ giải bài toán.
 
-### 例：随机增量法
+### Ví dụ: phương pháp gia tăng ngẫu nhiên
 
-随机生成的元素序列可能具有「前缀最优解变化次数期望下很小」等性质，而随机增量法就通过随机打乱输入的序列来获得这些性质．
+Một dãy phần tử sinh ngẫu nhiên có thể có các tính chất như "số lần nghiệm tối ưu của tiền tố thay đổi có kỳ vọng rất nhỏ"; phương pháp gia tăng ngẫu nhiên thu được các tính chất đó bằng cách xáo trộn ngẫu nhiên dãy đầu vào.
 
-详见 [随机增量法](../geometry/random-incremental.md)．
+Xem chi tiết tại [phương pháp gia tăng ngẫu nhiên](../geometry/random-incremental.md).
 
-### 例：[TopCoder MagicMolecule](https://archive.topcoder.com/ProblemStatement/pm/11705) 随机化解法
+### Ví dụ: lời giải ngẫu nhiên hóa cho [TopCoder MagicMolecule](https://archive.topcoder.com/ProblemStatement/pm/11705)
 
-???+ note "简要题意"
-    给定一张 $n$ 个点、带点权的无向图，在其中所有大小不小于 $\dfrac {2n}3$ 的团中，找到点权和最大的那个．
+???+ note "Tóm tắt đề bài"
+    Cho một đồ thị vô hướng có $n$ đỉnh, mỗi đỉnh có trọng số. Trong tất cả các clique có kích thước không nhỏ hơn $\dfrac {2n}3$, hãy tìm clique có tổng trọng số lớn nhất.
     
     $n\leq 50$
 
-不难想到折半搜索．把点集均匀分成左右两半 $V_L,V_R$（大小都为 $\dfrac n2$），计算数组 $f_{L,k}$ 表示点集 $L\subseteq V_L$ 中的所有 $\geq k$ 元团的最大权值和．接着我们枚举右半边的每个团 $C_R$，算出左半边有哪些点与 $C_R$ 中的所有点相连（这个点集记作 $N_L$），并用 $f_{N_L,\frac 23 n-|C_R|}+\textit{value}(C_R)$ 更新答案．
+Dễ nghĩ ngay đến meet-in-the-middle. Chia đều tập đỉnh thành hai nửa trái/phải $V_L,V_R$ (mỗi bên có kích thước $\dfrac n2$), tính mảng $f_{L,k}$ biểu thị tổng trọng số lớn nhất của mọi clique có kích thước $\geq k$ trong tập đỉnh $L\subseteq V_L$. Sau đó ta liệt kê mỗi clique $C_R$ ở nửa phải, tính các đỉnh bên trái nối với tất cả đỉnh trong $C_R$ (ký hiệu tập này là $N_L$), và dùng $f_{N_L,\frac 23 n-|C_R|}+\textit{value}(C_R)$ để cập nhật đáp án.
 
--   注意到可以 $O(1)$ 转移每一个 $f_{L,k}$．具体地说，取 $d$ 为 $L$ 中的任意一个元素，然后分类讨论：
-    -   假设最优解中 $d$ 不在团中，则从 $f_{L\setminus \{d\},k}$ 转移而来．
-    -   假设最优解中 $d$ 在团中，则从 $f_{L\cap N(d),k}+\textit{value}(d)$ 转移而来，其中 $N(d)$ 表示 $d$ 的邻居集合．
-    -   别忘了还要用 $f_{L,k+1}$ 来更新 $f_{L,k}$．
+-   Chú ý có thể chuyển trạng thái mỗi $f_{L,k}$ trong $O(1)$. Cụ thể, lấy $d$ là một phần tử bất kỳ trong $L$, rồi chia trường hợp:
+    -   Giả sử trong nghiệm tối ưu $d$ không nằm trong clique, thì chuyển từ $f_{L\setminus \{d\},k}$.
+    -   Giả sử trong nghiệm tối ưu $d$ nằm trong clique, thì chuyển từ $f_{L\cap N(d),k}+\textit{value}(d)$, trong đó $N(d)$ là tập đỉnh kề của $d$.
+    -   Đừng quên dùng $f_{L,k+1}$ để cập nhật $f_{L,k}$.
 
-这个解法会超时．尝试优化：
+Cách giải này sẽ quá thời gian. Thử tối ưu:
 
--   平分点集时均匀随机地划分．这样的话，最优解的点集 $C_{res}$ 以可观的概率也被恰好平分（即 $|C_{res}\cap V_L|=|C_{res}\cap V_R|$）．
-    -   当然，$|C_{res}|$ 可能是奇数．简单起见，这里假设它是偶数；奇数的情况对解法没有本质改变．
-    -   实验发现，随机尝试约 20 次就能以很大概率有至少一次满足该性质．也就是说，如果我们的算法依赖于「$C_{res}$ 被平分」这一性质，则将算法重复执行 20 次取最优，同样也能保证以很大概率得到正确答案．
--   有了这一性质，我们就可以直接钦定左侧团 $L$、右侧团 $C_R$ 的大小都 $\geq \dfrac n3$．这会对复杂度带来两处改进：
-    -   $f$ 可以省掉记录大小的维度．
-    -   因为只需考虑大小 $\geq \dfrac n3$ 的团，所以需要考虑的左侧团 $L$ 和 右侧团 $C_R$ 的数量也大大减少至约 $1.8\cdot 10^6$．
--   现在的瓶颈变成了求单侧的某一子集的权值和，因为这需要 $O\big(2^{|V_L|}+2^{|V_R|}\big)$ 的预处理．
-    -   解决方案：在 $V_L,V_R$ 内部再次折半；当查询一个子集的权值和时，将这个子集分成左右两半查询，再把答案相加．
--   这样即可通过本题．
+-   Khi chia đôi tập đỉnh, chia đều một cách ngẫu nhiên. Khi đó tập đỉnh của nghiệm tối ưu $C_{res}$ cũng được chia đúng đôi với xác suất đáng kể, tức là $|C_{res}\cap V_L|=|C_{res}\cap V_R|$.
+    -   Tất nhiên, $|C_{res}|$ có thể là số lẻ. Để đơn giản, ở đây giả sử nó là số chẵn; trường hợp lẻ không làm thay đổi bản chất lời giải.
+    -   Thực nghiệm cho thấy thử ngẫu nhiên khoảng 20 lần là với xác suất rất cao sẽ có ít nhất một lần thỏa tính chất này. Nói cách khác, nếu thuật toán của ta dựa vào tính chất "$C_{res}$ được chia đôi", thì lặp lại thuật toán 20 lần và lấy kết quả tốt nhất cũng bảo đảm xác suất đúng rất cao.
+-   Có tính chất này, ta có thể quy định trực tiếp kích thước của clique bên trái $L$ và clique bên phải $C_R$ đều $\geq \dfrac n3$. Điều này đem lại hai cải tiến về độ phức tạp:
+    -   $f$ không cần lưu chiều kích thước.
+    -   Vì chỉ cần xét các clique có kích thước $\geq \dfrac n3$, số lượng clique bên trái $L$ và clique bên phải $C_R$ cần xét cũng giảm mạnh, xuống khoảng $1.8\cdot 10^6$.
+-   Nút thắt hiện tại trở thành việc tính tổng trọng số của một tập con ở một phía, vì việc này cần tiền xử lý $O\big(2^{|V_L|}+2^{|V_R|}\big)$.
+    -   Cách giải: tiếp tục chia đôi bên trong $V_L,V_R$; khi truy vấn tổng trọng số của một tập con, tách tập con đó thành hai nửa để truy vấn, rồi cộng đáp án.
+-   Như vậy là có thể qua bài này.
 
 ***
 
-**回顾**：一个随机的集合有着「在划分出的两半的数量差距不会太悬殊」这一性质，而我们通过随机划分获取了这个性质．
+**Nhìn lại**: một tập ngẫu nhiên có tính chất "số lượng phần tử trong hai nửa được chia ra không chênh nhau quá lớn", và ta thu được tính chất này bằng cách chia ngẫu nhiên.
 
-## 随机化用于哈希
+## Ngẫu nhiên hóa cho băm
 
-### 例：[UOJ #207 共价大爷游长沙](https://uoj.ac/problem/207)
+### Ví dụ: [UOJ #207 Covalent Master Tours Changsha](https://uoj.ac/problem/207)
 
-???+ note "简要题意"
-    维护一棵动态变化的树，和一个动态变化的结点二元组集合．你需要支持：
+???+ note "Tóm tắt đề bài"
+    Duy trì một cây thay đổi động và một tập cặp đỉnh thay đổi động. Cần hỗ trợ:
     
-    -   删边、加边．保证得到的还是一棵树．
-    -   加入/删除某个结点二元组．
-    -   给定一条边 $e$，判断是否对于集合中的每个结点二元组 $(s,t)$，$e$ 都在 $s,t$ 间的简单路径上．
+    -   Xóa cạnh, thêm cạnh. Bảo đảm kết quả vẫn là một cây.
+    -   Thêm/xóa một cặp đỉnh.
+    -   Cho một cạnh $e$, kiểm tra xem với mọi cặp đỉnh $(s,t)$ trong tập, $e$ có nằm trên đường đi đơn giữa $s,t$ hay không.
 
-对图中的每条边 $e$，我们定义集合 $S_e$ 表示经过该边的关键路径（即题中的 $(a,b)$）集合．考虑对每条边动态维护集合 $S_e$ 的哈希值，这样就能轻松判定 $S_e$ 是否等于全集（即 $e$ 是否是「必经之路」）．
+Với mỗi cạnh $e$ trong đồ thị, định nghĩa tập $S_e$ là tập các đường đi quan trọng đi qua cạnh đó, tức các cặp $(a,b)$ trong đề. Xét duy trì động giá trị băm của tập $S_e$ cho mỗi cạnh, khi đó có thể dễ dàng phán định $S_e$ có bằng toàn tập hay không, tức là $e$ có phải "cạnh bắt buộc phải đi qua" hay không.
 
-哈希的方式是，对每个 $(a,b)$ 赋予 $2^{64}$ 以内的随机非负整数 $H_{(a,b)}$，然后一个集合的哈希值就是其中元素的 $H$ 值的异或和．
+Cách băm là: với mỗi $(a,b)$, gán một số nguyên không âm ngẫu nhiên $H_{(a,b)}$ nhỏ hơn $2^{64}$; giá trị băm của một tập là xor của các giá trị $H$ của phần tử trong tập.
 
-这样的话，任何一个固定的集合的哈希值一定服从 $R:=\left\{0,1,\cdots,2^{64}-1\right\}$ 上的均匀分布（换句话说，哈希值的取值范围为 $R$，且取每一个值的概率相等）．这是因为：
+Khi đó, giá trị băm của bất kỳ tập cố định nào đều tuân theo phân bố đều trên $R:=\left\{0,1,\cdots,2^{64}-1\right\}$, nói cách khác miền giá trị của băm là $R$ và xác suất lấy mỗi giá trị là bằng nhau. Lý do:
 
-1.  单个 $H_{(a,b)}$ 显然服从均匀分布．
-2.  两个独立且服从 $R$ 上的均匀分布的随机变量的异或和，一定也服从 $R$ 上的均匀分布．自证不难．
+1.  Một $H_{(a,b)}$ riêng lẻ hiển nhiên tuân theo phân bố đều.
+2.  Xor của hai biến ngẫu nhiên độc lập và đều trên $R$ chắc chắn cũng đều trên $R$. Chứng minh không khó.
 
-从而该算法的正确率是有保障的．
+Do đó xác suất đúng của thuật toán này được bảo đảm.
 
-至于如何维护这个哈希值，使用 LCT 即可．
+Còn cách duy trì giá trị băm này thì dùng LCT là đủ.
 
-### 例：[CodeChef PANIC](https://www.codechef.com/problems/PANIC) 及其错误率分析
+### Ví dụ: [CodeChef PANIC](https://www.codechef.com/problems/PANIC) và phân tích tỉ lệ sai
 
-本题的大致解法：
+Hướng giải đại khái của bài này:
 
-1.  可以证明[^ref1] $S(N)$ 服从一个关于 $N$ 的 $O(K)$ 阶线性递推式．
-2.  用 BM 算法求出该递推式．
-3.  借助递推式，用凯莱哈密顿定理计算出 $S(N)$．
+1.  Có thể chứng minh[^ref1] rằng $S(N)$ tuân theo một truy hồi tuyến tính bậc $O(K)$ theo $N$.
+2.  Dùng thuật toán BM để tìm truy hồi đó.
+3.  Dựa vào truy hồi, dùng định lý Cayley-Hamilton để tính $S(N)$.
 
-这里仅关注第二部分，即如何求一个矩阵序列的递推式．所以我们只需考虑下述问题：
+Ở đây chỉ tập trung vào phần thứ hai, tức là cách tìm truy hồi của một dãy ma trận. Vì vậy ta chỉ cần xét bài toán sau:
 
-???+ note "问题"
-    给定一个矩阵序列，该序列在模 $P:=998244353$ 意义下服从一个齐次线性递推式（递推式中的数乘和加法运算定义为矩阵的数乘和加法），求出最短递推式．
+???+ note "Bài toán"
+    Cho một dãy ma trận. Dãy này, theo modulo $P:=998244353$, tuân theo một truy hồi tuyến tính thuần nhất (phép nhân vô hướng và phép cộng trong truy hồi được định nghĩa là phép nhân vô hướng và phép cộng ma trận). Hãy tìm truy hồi ngắn nhất.
 
-如果一系列矩阵服从一个递推式 $F$，那么它的每一位也一定服从 $F$．然而，如果对某一位求出最短递推式 $F'$，则 $F'$ 可能会比 $F$ 更短，从而产生问题．
+Nếu một dãy ma trận tuân theo một truy hồi $F$, thì mỗi phần tử của ma trận cũng chắc chắn tuân theo $F$. Tuy nhiên, nếu tìm truy hồi ngắn nhất $F'$ cho một vị trí nào đó, $F'$ có thể ngắn hơn $F$, gây ra vấn đề.
 
-解决方案：给矩阵的每一位 $(i,j)$ 赋予一个 $<P$ 的随机权值 $x_{i,j}$，然后对于序列中每个矩阵计算其所有位的加权和模 $P$ 的结果，再把每个矩阵算出的这个数连成一个数列，最后我们对所得数列运行 BM 算法．
+Cách xử lý: gán cho mỗi vị trí $(i,j)$ của ma trận một trọng số ngẫu nhiên $x_{i,j}<P$. Sau đó với mỗi ma trận trong dãy, tính tổng có trọng số của tất cả các vị trí theo modulo $P$, nối các số tính được từ mỗi ma trận thành một dãy số, cuối cùng chạy thuật toán BM trên dãy số thu được.
 
-错误率分析：
+Phân tích tỉ lệ sai:
 
--   假设上述做法求得了不同于 $F$（且显然也不长于 $F$）的 $l$ 阶递推式 $F'$．
--   因为矩阵序列不服从 $F'$，所以一定存在矩阵中的某个位置 $(i,j)$，满足该位置对应的数列 $S_{i,j}$ 在某个 $N$ 处不服从 $F'$．也就是说：
+-   Giả sử cách làm trên tìm được một truy hồi bậc $l$ là $F'$, khác $F$ và hiển nhiên không dài hơn $F$.
+-   Vì dãy ma trận không tuân theo $F'$, nên chắc chắn tồn tại một vị trí $(i,j)$ trong ma trận sao cho dãy số tương ứng với vị trí đó, $S_{i,j}$, không tuân theo $F'$ tại một $N$ nào đó. Tức là:
 
 $$
 S(N)_{i,j}-F'_1S(N-1)_{i,j}-\cdots-F'_lS(N-l)_{i,j}\not\equiv 0\pmod {P}
 $$
 
--   假设 $(i,j)$ 是唯一的不服从的位置，则一定有：
+-   Giả sử $(i,j)$ là vị trí duy nhất không tuân theo, khi đó chắc chắn có:
 
 $$
 T_{i,j}:=\Big(x_{i,j}\cdot\big(S(N)_{i,j}-F'_1S(N-1)_{i,j}-\cdots-F'_lS(N-l)_{i,j}\big)\bmod P\Big)=0
 $$
 
--   显然这仅当 $x_{i,j}=0$ 时才成立，概率 $P^{-1}$．
--   如果有多个不服从的位置呢？
-    -   对每个这样的位置 $(i,j)$，易证 $T_{i,j}$ 服从 $R:=\{0,1,\cdots,P-1\}$ 上的均匀分布．
-    -   若干个互相独立的、服从 $R$ 上的均匀分布的随机变量，它们在模意义下的和，依然服从 $R$ 上的均匀分布．自证不难．
-    -   从而这种情况下的错误率也是 $P^{-1}$．
+-   Hiển nhiên điều này chỉ xảy ra khi $x_{i,j}=0$, với xác suất $P^{-1}$.
+-   Nếu có nhiều vị trí không tuân theo thì sao?
+    -   Với mỗi vị trí $(i,j)$ như vậy, dễ chứng minh $T_{i,j}$ tuân theo phân bố đều trên $R:=\{0,1,\cdots,P-1\}$.
+    -   Tổng theo modulo của một số biến ngẫu nhiên độc lập và đều trên $R$ vẫn tuân theo phân bố đều trên $R$. Chứng minh không khó.
+    -   Do đó tỉ lệ sai trong trường hợp này cũng là $P^{-1}$.
 
-### 例：[UOJ #552 同构判定鸭](https://uoj.ac/problem/552) 及其错误率分析
+### Ví dụ: [UOJ #552 Isomorphism Checking Duck](https://uoj.ac/problem/552) và phân tích tỉ lệ sai
 
-???+ note "简要题意"
-    给定两张边权为小写字母的有向图 $G_0,G_1$，你要对这两张图分别算出「所有路径对应的字符串构成的多重集」（可能是无穷集），并判断这两个多重集是否相等．如果不相等，你要给出一个最短的串，满足它在两个多重集中的出现次数不相等．
+???+ note "Tóm tắt đề bài"
+    Cho hai đồ thị có hướng $G_0,G_1$ có trọng số cạnh là các chữ cái thường. Với mỗi đồ thị, hãy tính "đa tập các xâu tương ứng với tất cả đường đi" (có thể là tập vô hạn), và phán định hai đa tập này có bằng nhau hay không. Nếu không bằng nhau, hãy đưa ra một xâu ngắn nhất sao cho số lần xuất hiện của nó trong hai đa tập là khác nhau.
 
-令 $f_{K,i,j}$ 表示图 $G_K$ 中从点 $i$ 开始的所有长为 $j$ 的路径，这些路径对应的所有字符串构成的多重集的哈希值．按照 $j$ 升序考虑每个状态，转移时枚举 $i$ 的出边并钦定该边为路径上的第一条边．
+Đặt $f_{K,i,j}$ là giá trị băm của đa tập gồm tất cả xâu tương ứng với mọi đường đi dài $j$ bắt đầu từ đỉnh $i$ trong đồ thị $G_K$. Xét mỗi trạng thái theo thứ tự tăng dần của $j$; khi chuyển trạng thái, liệt kê các cạnh ra của $i$ và quy định cạnh đó là cạnh đầu tiên trên đường đi.
 
-要判断是否存在长度 $=L$ 的坏串，只需把 $\{f_{0,*,L}\}$ 和 $\{f_{1,*,L}\}$ 各自「整合」起来再比较即可（通配符 `*` 这里表示每一个结点，例如 $\{f_{0,*,L}\}$ 表示全体 $f_{0,i,L}$ 构成的集合，其中 $i$ 取遍所有结点）．官方题解[^ref2]中证明了最短坏串（如果存在的话）长度一定不超过 $n_1+n_2$，所以这个解法的复杂度是可靠的．
+Để phán định có tồn tại xâu xấu có độ dài $=L$ hay không, chỉ cần "tổng hợp" riêng các tập $\{f_{0,*,L}\}$ và $\{f_{1,*,L}\}$ rồi so sánh (ký tự đại diện `*` ở đây biểu thị mọi đỉnh; ví dụ $\{f_{0,*,L}\}$ biểu thị tập tất cả $f_{0,i,L}$, trong đó $i$ chạy qua mọi đỉnh). Lời giải chính thức[^ref2] chứng minh độ dài xâu xấu ngắn nhất, nếu tồn tại, chắc chắn không vượt quá $n_1+n_2$, nên độ phức tạp của cách giải này là đáng tin.
 
-接下来考虑具体的哈希方式．注意到常规的哈希方法——即把串 $a_1a_2\cdots a_k$ 映射到 $\big(a_1+Pa_2+P^2a_3+\cdots+P^{k-1}a_k\big)\bmod Q$ 上、再把多重集的哈希值定为其中元素的哈希值之和模 $Q$——在这里是行不通的．一个反例是，集合 `{"ab","cd"}` 与集合 `{"cb","ad"}` 的哈希值是一样的，不论 $P,Q$ 如何取值．
+Tiếp theo xét cách băm cụ thể. Chú ý rằng cách băm thông thường, tức là ánh xạ xâu $a_1a_2\cdots a_k$ thành $\big(a_1+Pa_2+P^2a_3+\cdots+P^{k-1}a_k\big)\bmod Q$, rồi đặt giá trị băm của đa tập là tổng giá trị băm các phần tử theo modulo $Q$, không dùng được ở đây. Một phản ví dụ là tập `{"ab","cd"}` và tập `{"cb","ad"}` có giá trị băm như nhau, bất kể chọn $P,Q$ thế nào.
 
-上述做法的问题在于，一个串的哈希值是一个和式，从而其中的每一项可以拆出来并重组．为避免这一问题，我们考虑把哈希值改为一个连乘式．此外，乘法交换律会使得不同的位不可区分，为避免这一点我们要为不同的位赋予不同的权值．
+Vấn đề của cách làm trên nằm ở chỗ giá trị băm của một xâu là một tổng, nên mỗi hạng tử có thể bị tách ra và ghép lại. Để tránh vấn đề này, ta xét đổi giá trị băm thành dạng tích. Ngoài ra, tính giao hoán của phép nhân sẽ khiến các vị trí khác nhau không phân biệt được, nên để tránh điều này ta gán trọng số khác nhau cho các vị trí khác nhau.
 
-对每一个二元组 $(c,j)$（其中 $c$ 为字符，$j$ 为整数表示 $c$ 在某个串中的第几位）我们都预先生成一个随机数 $x_{c,j}$．然后我们把串 $a_1a_2\cdots a_k$ 映射到 $x_{a_1,1}x_{a_2,2}\cdots x_{a_k,k}\bmod Q$ 上（其中 $Q$ 为 **随机选取** 的质数）、再把多重集的哈希值定为其中元素的哈希值之和模 $Q$．接下来分析它的错误率．
+Với mỗi cặp $(c,j)$, trong đó $c$ là ký tự và $j$ là số nguyên biểu thị vị trí thứ mấy của $c$ trong một xâu, ta sinh trước một số ngẫu nhiên $x_{c,j}$. Sau đó ánh xạ xâu $a_1a_2\cdots a_k$ thành $x_{a_1,1}x_{a_2,2}\cdots x_{a_k,k}\bmod Q$ (trong đó $Q$ là một số nguyên tố **được chọn ngẫu nhiên**), rồi đặt giá trị băm của đa tập là tổng giá trị băm các phần tử theo modulo $Q$. Tiếp theo phân tích tỉ lệ sai.
 
-???+ note "(*)Schwartz–Zippel 引理"
-    令 $f\in F[z_1,\cdots,z_k]$ 为域 $F$ 上的 $k$ 元 $d$ 次非零多项式，令 $S$ 为 $F$ 的有限子集，则至多有 $d\cdot |S|^{k-1}$ 组 $(z_1,\cdots,z_k)\in S^k$ 满足 $f(z_1,\cdots,z_k)=0$．
+???+ note "(*) Bổ đề Schwartz-Zippel"
+    Cho $f\in F[z_1,\cdots,z_k]$ là một đa thức khác không bậc $d$ với $k$ biến trên trường $F$, và $S$ là một tập con hữu hạn của $F$. Khi đó có nhiều nhất $d\cdot |S|^{k-1}$ bộ $(z_1,\cdots,z_k)\in S^k$ thỏa $f(z_1,\cdots,z_k)=0$.
     
-    ??? note "如果你不知道域是什么"
-        你只需记得这两样东西都是域：
+    ??? note "Nếu bạn không biết trường là gì"
+        Chỉ cần nhớ hai thứ sau đều là trường:
         
-        1.  模质数的剩余系，以及其上的各种运算．
-        2.  实数集，以及其上的各种运算．
+        1.  Hệ thặng dư modulo một số nguyên tố, cùng các phép toán trên đó.
+        2.  Tập số thực, cùng các phép toán trên đó.
     
-    推论：若 $z_1,\cdots,z_k$ 都在 $S$ 中等概率独立随机选取，则 $\mathrm{Pr}\big[f(z_1,\cdots,z_k)=0\big]\leq \dfrac d{|S|}$．
+    Hệ quả: nếu $z_1,\cdots,z_k$ đều được chọn độc lập và đều ngẫu nhiên trong $S$, thì $\mathrm{Pr}\big[f(z_1,\cdots,z_k)=0\big]\leq \dfrac d{|S|}$.
 
-记 $F$ 为模 $Q$ 的剩余系所对应的域，则对于一个 $L\leq n_1+n_2$，$\sum\limits_i f_{0,i,L}$ 和 $\sum\limits_i f_{1,i,L}$ 就分别对应着一个 $F$ 上关于变元集合 $\{x_{*,*}\}$ 的 $L$ 次多元多项式，不妨将这两个多项式记为 $P_0,P_1$．
+Ký hiệu $F$ là trường ứng với hệ thặng dư modulo $Q$. Khi đó, với một $L\leq n_1+n_2$, $\sum\limits_i f_{0,i,L}$ và $\sum\limits_i f_{1,i,L}$ lần lượt tương ứng với hai đa thức nhiều biến bậc $L$ trên $F$ theo tập biến $\{x_{*,*}\}$. Gọi hai đa thức này là $P_0,P_1$.
 
-假如两个不同的字符串多重集的哈希值相同，则有两种可能：
+Nếu giá trị băm của hai đa tập xâu khác nhau lại bằng nhau, có hai khả năng:
 
-1.  $P_0\equiv P_1\pmod {Q}$，即 $P_0,P_1$ 的每一项系数在模 $Q$ 意义下都对应相等．
-2.  $P_0\not\equiv P_1\pmod {Q}, P_0(x_{*,*})\equiv P_1(x_{*,*})\pmod {Q}$，即 $P_0,P_1$ 虽然不恒等，但我们选取的这一组 $\{x_{*,*}\}$ 恰好使得它们在此处的点值相等．
+1.  $P_0\equiv P_1\pmod {Q}$, tức là hệ số của mỗi hạng tử trong $P_0,P_1$ đều bằng nhau theo modulo $Q$.
+2.  $P_0\not\equiv P_1\pmod {Q}, P_0(x_{*,*})\equiv P_1(x_{*,*})\pmod {Q}$, tức là tuy $P_0,P_1$ không đồng nhất, bộ $\{x_{*,*}\}$ ta chọn lại tình cờ làm giá trị tại điểm này của chúng bằng nhau.
 
-分析前者发生的概率：
+Phân tích xác suất của trường hợp đầu:
 
--   观察：对于任意的 $A\neq B; A,B\leq N$ 和随机选取的质数 $Q\leq Q_{\max}$，一定有：
+-   Nhận xét: với bất kỳ $A\neq B; A,B\leq N$ và số nguyên tố $Q\leq Q_{\max}$ được chọn ngẫu nhiên, chắc chắn có:
 
 $$
 \mathrm{Pr}\big[A\equiv B\pmod {Q}\big]=O\Big(\dfrac{\log N \log Q_{max}}{Q_{max}}\Big)
 $$
 
--   这是因为：使 $A\equiv B$ 成立的 $Q$ 一定满足 $Q\big|(A-B)$，这样的 $Q$ 有 $\omega(A-B)\leq \log_2 N$ 个；而由质数定理，$Q_{\max}$ 以内不同的质数又有 $\Theta\Big(\dfrac {Q_{\max}}{\log Q_{\max}}\Big)$ 个．将两者相除即可得到上式．
--   在上述观察中取 $A,B$（满足 $A\neq B$）为某一特定项在 $P_0,P_1$ 中的系数（也就等于该项对应的串在 $G_0,G_1$ 中的出现次数），则易见 $A,B\leq (m_1+m_2)^{L}$，得到：
+-   Lý do: để $A\equiv B$ đúng, $Q$ chắc chắn phải thỏa $Q\big|(A-B)$. Số lượng $Q$ như vậy là $\omega(A-B)\leq \log_2 N$; theo định lý số nguyên tố, số số nguyên tố khác nhau không vượt quá $Q_{\max}$ là $\Theta\Big(\dfrac {Q_{\max}}{\log Q_{\max}}\Big)$. Chia hai đại lượng này sẽ được công thức trên.
+-   Trong nhận xét trên, lấy $A,B$ (với $A\neq B$) là hệ số của một hạng tử cụ thể trong $P_0,P_1$ (cũng bằng số lần xuất hiện của xâu ứng với hạng tử đó trong $G_0,G_1$). Dễ thấy $A,B\leq (m_1+m_2)^{L}$, suy ra:
 
 $$
 \mathrm{Pr}\big[A\equiv B\pmod {Q}\big]=O\Big(\dfrac{L\log (m_1+m_2) \log Q_{max}}{Q_{max}}\Big)
 $$
 
--   所以取 $Q_{\max}\approx 10^{12}$ 就绰绰有余．如果机器无法支持这么大的整数运算，可以用双哈希代替．
+-   Vì vậy chọn $Q_{\max}\approx 10^{12}$ là quá đủ. Nếu máy không hỗ trợ phép toán số nguyên lớn như vậy, có thể thay bằng băm đôi.
 
-分析后者发生的概率：
+Phân tích xác suất của trường hợp sau:
 
--   在 Schwartz–Zippel 引理中：
-    -   取域 $F$ 为模 $Q$ 的剩余系对应的域
-    -   取 $f(x_{*,*})=P_0(x_{*,*})-P_1(x_{*,*})$ 为 $L$ 次非零多项式
-    -   取 $S=F$
--   得到：所求概率 $\leq \dfrac LQ$．
+-   Trong bổ đề Schwartz-Zippel:
+    -   Lấy trường $F$ là trường ứng với hệ thặng dư modulo $Q$.
+    -   Lấy $f(x_{*,*})=P_0(x_{*,*})-P_1(x_{*,*})$ là đa thức khác không bậc $L$.
+    -   Lấy $S=F$.
+-   Suy ra xác suất cần tìm $\leq \dfrac LQ$.
 
-注意到我们需要对每个 $L$ 都能保证正确性，所以要想保证严谨的话还需用 Union Bound（见后文）说明一下．
+Chú ý rằng ta cần bảo đảm tính đúng cho mọi $L$, nên nếu muốn lập luận chặt chẽ thì cần dùng thêm Union Bound (xem bên dưới).
 
-实践上我们不必随机选取模数，因为——比如说——用自己的生日做模数的话，实际上已经相当于随机数了．
+Trong thực hành ta không nhất thiết phải chọn modulo ngẫu nhiên, vì chẳng hạn dùng ngày sinh của mình làm modulo thì trên thực tế cũng đã tương đương một số ngẫu nhiên.
 
-### 例：（\*）子矩阵不同元素个数
+### Ví dụ: (*) số lượng phần tử khác nhau trong ma trận con
 
-???+ note "问题"
-    给定 $n\times m$ 的矩阵，$q$ 次询问一个连续子矩阵中不同元素的个数，要求在线算法．
+???+ note "Bài toán"
+    Cho ma trận $n\times m$, có $q$ truy vấn hỏi số lượng phần tử khác nhau trong một ma trận con liên tiếp. Yêu cầu thuật toán online.
     
-    允许 $\epsilon$ 的相对误差和 $\delta$ 的错误率，换句话说，你要对至少 $(1-\delta)q$ 个询问给出离正确答案相对误差不超过 $\epsilon$ 的回答．
+    Cho phép sai số tương đối $\epsilon$ và tỉ lệ sai $\delta$. Nói cách khác, bạn cần trả lời ít nhất $(1-\delta)q$ truy vấn với sai số tương đối không vượt quá $\epsilon$ so với đáp án đúng.
     
     $n\cdot m\leq 2\cdot10^5;q\leq 10^6;\epsilon=0.5,\delta=0.2$
 
-引理：令 $X_{1\cdots k}$ 为互相独立的随机变量，且取值在 $[0,1]$ 中均匀分布，则 $\mathrm{E}\big[\min\limits_i X_i\big]=\dfrac 1{k+1}$．
+Bổ đề: cho $X_{1\cdots k}$ là các biến ngẫu nhiên độc lập, và có giá trị phân bố đều trong $[0,1]$. Khi đó $\mathrm{E}\big[\min\limits_i X_i\big]=\dfrac 1{k+1}$.
 
--   证明：考虑一个单位圆，其上分布着 **相对位置** 均匀随机的 $k+1$ 个点，分别在位置 $0,X_1,X_2,\cdots,X_k$ 处．那么 $\min\limits_i X_i$ 就等于 $k+1$ 段空隙中特定的一段的长度．而因为这些空隙之间是「对称」的，所以其中任何一段特定空隙的期望长度都是 $\dfrac 1{k+1}$．
+-   Chứng minh: xét một đường tròn đơn vị, trên đó có $k+1$ điểm có **vị trí tương đối** được chọn đều ngẫu nhiên, lần lượt ở các vị trí $0,X_1,X_2,\cdots,X_k$. Khi đó $\min\limits_i X_i$ bằng độ dài của một khoảng trống cụ thể trong $k+1$ khoảng trống. Vì các khoảng trống này "đối xứng" với nhau, kỳ vọng độ dài của bất kỳ khoảng trống cụ thể nào cũng là $\dfrac 1{k+1}$.
 
-我们取 $k$ 为不同元素的个数，并借助上述引理来从 $\min\limits_i X_i$ 反推得到 $k$．
+Ta lấy $k$ là số lượng phần tử khác nhau, và dựa vào bổ đề trên để suy ngược $k$ từ $\min\limits_i X_i$.
 
-考虑采用某个哈希函数，将矩阵中每个元素都均匀、独立地随机映射到 $[0,1]$ 中的实数上去，且相等的元素会映射到相等的实数．这样的话，一个子矩阵中的所有元素对应的那些实数，在去重后就恰好是先前的集合 $\{X_1,\cdots,X_k\}$ 的一个实例，其中 $k$ 等于子矩阵中不同元素的个数．
+Xét dùng một hàm băm nào đó, ánh xạ mỗi phần tử trong ma trận một cách đều và độc lập vào số thực trong $[0,1]$, đồng thời các phần tử bằng nhau sẽ được ánh xạ đến cùng một số thực. Khi đó các số thực tương ứng với mọi phần tử trong một ma trận con, sau khi loại trùng, đúng là một thực thể của tập $\{X_1,\cdots,X_k\}$ ở trên, trong đó $k$ bằng số lượng phần tử khác nhau trong ma trận con.
 
-于是我们得到了算法：
+Do đó ta có thuật toán:
 
-1.  给矩阵中元素赋 $[0,1]$ 中的哈希值．为保证随机性，哈希函数可以直接用 `map` 和随机数生成器实现，即每遇到一个新的未出现过的值就给它随机一个哈希值．
-2.  回答询问时设法求出子矩阵中哈希值的最小值 $M$，并输出 $\dfrac 1M-1$．
+1.  Gán giá trị băm trong $[0,1]$ cho các phần tử của ma trận. Để bảo đảm tính ngẫu nhiên, hàm băm có thể được hiện thực trực tiếp bằng `map` và bộ sinh số ngẫu nhiên: mỗi khi gặp một giá trị mới chưa từng xuất hiện thì gán cho nó một giá trị băm ngẫu nhiên.
+2.  Khi trả lời truy vấn, tìm cách lấy giá trị băm nhỏ nhất $M$ trong ma trận con, và in $\dfrac 1M-1$.
 
-然而，这个算法并不能令人满意．它的输出值的期望是 $\mathrm{E}\Big[\dfrac 1{\min\limits_i X_i}-1\Big]$，但事实上这个值并不等于 $\dfrac 1{\mathrm{E}\big[\min\limits_i X_i\big]}-1=k$，而（可以证明）等于 $\infty$．
+Tuy nhiên, thuật toán này chưa đáp ứng mong muốn. Kỳ vọng của giá trị xuất ra là $\mathrm{E}\Big[\dfrac 1{\min\limits_i X_i}-1\Big]$, nhưng thực ra giá trị này không bằng $\dfrac 1{\mathrm{E}\big[\min\limits_i X_i\big]}-1=k$, mà có thể chứng minh là bằng $\infty$.
 
-也就是说，我们不能直接把 $\min\limits_i X_i$ 的单次取值放在分母上，而要先算得它的期望，再把期望值放在分母上．
+Nói cách khác, ta không thể trực tiếp đưa một giá trị lấy mẫu đơn lẻ của $\min\limits_i X_i$ vào mẫu số; phải tính kỳ vọng của nó trước, rồi mới đưa kỳ vọng đó vào mẫu số.
 
-怎么算期望值？多次随机取平均．
+Tính kỳ vọng bằng cách nào? Lấy trung bình qua nhiều lần ngẫu nhiên.
 
-我们用 $C$ 组不同的哈希函数分别执行前述过程，回答询问时计算出 $C$ 个不同的 $M$ 值，并算出其平均数 $\overline M$，然后输出 $\big(\overline M\big)^{-1}-1$．
+Ta dùng $C$ nhóm hàm băm khác nhau để thực hiện riêng quá trình trên. Khi trả lời truy vấn, tính ra $C$ giá trị $M$ khác nhau, lấy trung bình $\overline M$, rồi in $\big(\overline M\big)^{-1}-1$.
 
-实验发现取 $C\approx 80$ 即可满足要求．严格证明十分繁琐，在此略去．
+Thực nghiệm cho thấy lấy $C\approx 80$ là đủ thỏa yêu cầu. Chứng minh chặt chẽ rất dài dòng, nên lược bỏ ở đây.
 
-最后，怎么求子矩阵最小值？用二维 S-T 表即可，预处理 $O(nm\log n\log m)$，回答询问 $O(1)$．
+Cuối cùng, làm sao tìm min trong ma trận con? Dùng bảng S-T hai chiều là đủ, tiền xử lý $O(nm\log n\log m)$, trả lời truy vấn $O(1)$.
 
-## 随机化在算法中的其他应用
+## Các ứng dụng khác của ngẫu nhiên hóa trong thuật toán
 
-随机化的其他作用还包括：
+Những vai trò khác của ngẫu nhiên hóa còn bao gồm:
 
--   防止被造数据者用针对性数据卡掉．例如在搜索时随机打乱邻居的顺序．
--   保证算法过程中进行的「操作」具有（某种意义上的）均匀性．例如 [模拟退火](../misc/simulated-annealing.md) 算法．
+-   Tránh bị người tạo test dùng dữ liệu có chủ đích để làm hack. Ví dụ, khi tìm kiếm thì xáo trộn ngẫu nhiên thứ tự các đỉnh kề.
+-   Bảo đảm các "thao tác" trong quá trình thuật toán có tính đều theo một ý nghĩa nào đó. Ví dụ thuật toán [simulated annealing](../misc/simulated-annealing.md).
 
-在这些场景下，随机化常常（但并不总是）与乱搞、骗分等做法挂钩．
+Trong các bối cảnh này, ngẫu nhiên hóa thường, nhưng không phải lúc nào cũng, gắn với các cách làm thử nghiệm hoặc lấy điểm một phần.
 
-### 例：[「TJOI2015」线性代数](https://loj.ac/problem/2100)
+### Ví dụ: ["TJOI2015" Linear Algebra](https://loj.ac/problem/2100)
 
-本题的标准算法是网络流，但这里我们采取这样的乱搞做法：
+Thuật toán chuẩn của bài này là luồng mạng, nhưng ở đây ta dùng cách làm thử nghiệm sau:
 
--   每次随机一个位置，把这个位置取反，判断大小并更新答案．
+-   Mỗi lần chọn ngẫu nhiên một vị trí, lật giá trị tại vị trí đó, rồi tính giá trị và cập nhật đáp án.
 
-??? note "代码"
+??? note "Code"
     ```cpp
     #include <algorithm>
     #include <cstdlib>
@@ -427,13 +427,13 @@ $$
     }
     ```
 
-### 例：（\*）随机堆[^ref3]
+### Ví dụ: (*) randomized heap[^ref3]
 
-可并堆最常用的写法应该是左偏树了，通过维护树高让树左偏来保证合并的复杂度．然而维护树高有点麻烦，我们希望尽量避开．
+Cách viết meldable heap thường gặp nhất có lẽ là leftist tree, bảo đảm độ phức tạp của phép gộp bằng cách duy trì chiều cao để cây nghiêng trái. Tuy nhiên duy trì chiều cao hơi phiền, nên ta muốn tránh việc này nếu có thể.
 
-那么可以考虑使用随机堆，即不按照树高来交换儿子，而是随机交换．
+Vậy có thể xét dùng randomized heap: không đổi con theo chiều cao, mà đổi ngẫu nhiên.
 
-???+ note "代码"
+???+ note "Code"
     ```cpp
     struct Node {
       int child[2];
@@ -452,16 +452,16 @@ $$
     void pop(int &now) { now = merge(nd[now].child[0], nd[now].child[1]); }
     ```
 
-随机堆对堆的形态没有任何硬性或软性的要求，合并操作的期望复杂度对任何两个堆（作为 `merge` 函数的参数）都成立．下证．
+Randomized heap không đặt bất kỳ yêu cầu cứng hay mềm nào lên hình dạng của heap; độ phức tạp kỳ vọng của phép gộp đúng cho bất kỳ hai heap nào, khi chúng là tham số của hàm `merge`. Chứng minh như sau.
 
-???+ note "期望复杂度的证明"
-    将证，对于任意的堆 $A$，从根节点开始每次随机选左或者右走下去（直到无路可走），路径长度（即路径上的结点数）的期望值 $h(A)\leq\log_2 (|A|+1)$．
+???+ note "Chứng minh độ phức tạp kỳ vọng"
+    Sẽ chứng minh rằng với bất kỳ heap $A$ nào, nếu bắt đầu từ nút gốc và mỗi lần chọn ngẫu nhiên đi sang trái hoặc phải cho đến khi không còn đường, thì kỳ vọng độ dài đường đi (tức số nút trên đường đi) là $h(A)\leq\log_2 (|A|+1)$.
     
-    -   注意到在前述过程中合并堆 $A,B$ 的期望复杂度是 $O\big(h(A)+h(B)\big)$ 的，所以上述结论可以保证随机堆的期望复杂度．
+    -   Chú ý trong quá trình trên, độ phức tạp kỳ vọng khi gộp hai heap $A,B$ là $O\big(h(A)+h(B)\big)$, nên kết luận trên bảo đảm độ phức tạp kỳ vọng của randomized heap.
     
-    证明采用数学归纳．边界情况是 $A$ 为空图，此时显然．下设 $A$ 非空．
+    Chứng minh bằng quy nạp toán học. Trường hợp cơ sở là $A$ rỗng, hiển nhiên đúng. Giả sử $A$ không rỗng.
     
-    假设 $A$ 的两个子树分别为 $L,R$，则：
+    Giả sử hai cây con của $A$ lần lượt là $L,R$, khi đó:
     
     $$
     \begin{align} h(A)
@@ -472,113 +472,113 @@ $$
     \\&=\log_2{(|A|+1)} \end{align}
     $$
     
-    证毕．
+    Chứng minh xong.
 
-## 与随机性有关的证明技巧
+## Các kỹ thuật chứng minh liên quan đến tính ngẫu nhiên
 
-以下列举几个比较有用的技巧．
+Sau đây liệt kê một vài kỹ thuật khá hữu ích.
 
-自然，这寥寥几项不可能就是全部；如果你了解某种没有列出的技巧，那么欢迎补充．
+Hiển nhiên, vài mục ít ỏi này không thể là tất cả; nếu bạn biết một kỹ thuật chưa được liệt kê, hoan nghênh bổ sung.
 
-### 概率上界的分析
+### Phân tích cận trên xác suất
 
-详见 [概率不等式](../math/probability/concentration-inequality.md) 页面．
+Xem chi tiết ở trang [bất đẳng thức xác suất](../math/probability/concentration-inequality.md).
 
-除了上述页面中提到的各种不等式外，推导过程中还经常会用到以下结论：
+Ngoài các bất đẳng thức đã nhắc trong trang trên, quá trình suy diễn cũng thường dùng kết luận sau:
 
-**自然常数的使用**：$\Big(1-\dfrac{1}{n}\Big)^n\leq \dfrac{1}{\mathrm{e}},\forall n\geq1$
+**Sử dụng hằng số tự nhiên**: $\Big(1-\dfrac{1}{n}\Big)^n\leq \dfrac{1}{\mathrm{e}},\forall n\geq1$
 
--   左式关于 $n\geq 1$ 单调递增且在 $+\infty$ 处的极限是 $\dfrac{1}{\mathrm{e}}$，因此有这个结论．
--   这告诉我们，如果 $n$ 个互相独立的事件，每个的发生概率为 $1-\dfrac 1n$，则它们全部发生的概率至多为 $\dfrac{1}{\mathrm{e}}$．
+-   Vế trái tăng đơn điệu theo $n\geq 1$ và có giới hạn tại $+\infty$ là $\dfrac{1}{\mathrm{e}}$, nên có kết luận này.
+-   Điều này cho ta biết: nếu $n$ sự kiện độc lập với nhau, mỗi sự kiện xảy ra với xác suất $1-\dfrac 1n$, thì xác suất tất cả cùng xảy ra nhiều nhất là $\dfrac{1}{\mathrm{e}}$.
 
-### 「耦合」思想
+### Tư tưởng "coupling"
 
-「耦合」思想常用于同时处理超过一个有随机性的对象，或者同时处理随机的对象和确定性的对象．
+Tư tưởng "coupling" thường dùng để xử lý đồng thời hơn một đối tượng có tính ngẫu nhiên, hoặc xử lý đồng thời đối tượng ngẫu nhiên và đối tượng tất định.
 
-#### 引子：随机图的连通性
+#### Dẫn nhập: tính liên thông của đồ thị ngẫu nhiên
 
-???+ note "问题"
-    对于 $n \in \mathbf{N}^*; p,q\in [0,1]$ 且 $q\leq p$，求证：随机图 $G_1(n,p)$ 的连通分量个数的期望值不超过随机图 $G_2(n,q)$ 的连通分量个数的期望值．这里 $G(n,\alpha)$ 表示一张 $n$ 个结点的简单无向图 $G$，其中 $\dfrac {n(n-1)}2$ 条可能的边中的每一条都有 $\alpha$ 的概率出现，且这些概率互相独立．
+???+ note "Bài toán"
+    Với $n \in \mathbf{N}^*; p,q\in [0,1]$ và $q\leq p$, hãy chứng minh: kỳ vọng số thành phần liên thông của đồ thị ngẫu nhiên $G_1(n,p)$ không vượt quá kỳ vọng số thành phần liên thông của đồ thị ngẫu nhiên $G_2(n,q)$. Ở đây $G(n,\alpha)$ biểu thị một đơn đồ thị vô hướng $G$ có $n$ đỉnh, trong đó mỗi cạnh trong $\dfrac {n(n-1)}2$ cạnh có thể xuất hiện với xác suất $\alpha$, và các xác suất này độc lập với nhau.
 
-这个结论看起来再自然不过，但严格证明却并不那么容易．
+Kết luận này trông rất tự nhiên, nhưng chứng minh nghiêm ngặt lại không dễ như vậy.
 
-???+ note "证明思路"
-    我们假想这两张图分别使用了一个 01 随机数生成器来获知每条边存在与否，其中 $G_1$ 的生成器 $T_1$ 每次以 $p$ 的概率输出 1，$G_2$ 的生成器 $T_2$ 每次以 $q$ 的概率输出 1．这样，要构造一张图，就只需把对应的生成器运行 $\dfrac {n(n-1)}2$ 遍即可．
+???+ note "Ý tưởng chứng minh"
+    Ta tưởng tượng hai đồ thị này lần lượt dùng một bộ sinh số ngẫu nhiên 01 để biết mỗi cạnh có tồn tại hay không. Bộ sinh $T_1$ của $G_1$ mỗi lần xuất ra 1 với xác suất $p$, bộ sinh $T_2$ của $G_2$ mỗi lần xuất ra 1 với xác suất $q$. Như vậy, để xây dựng một đồ thị, chỉ cần chạy bộ sinh tương ứng $\dfrac {n(n-1)}2$ lần.
     
-    现在我们把两个生成器合二为一．考虑随机数生成器 $T$，每次以 $q$ 的概率输出 0，以 $p-q$ 的概率输出 1，以 $1-p$ 的概率输出 2．如果我们将这个 $T$ 运行 $\dfrac {n(n-1)}2$ 遍，就能同时构造出 $G_1$ 和 $G_2$．具体地说，如果输出是 0，则认为 $G_1$ 和 $G_2$ 中都没有当前考虑的边；如果输出是 1，则认为只有 $G_1$ 中有当前考虑的边；如果输出是 2，则认为 $G_1$ 和 $G_2$ 中都有当前考虑的边．
+    Bây giờ ta gộp hai bộ sinh thành một. Xét bộ sinh số ngẫu nhiên $T$, mỗi lần xuất ra 0 với xác suất $q$, xuất ra 1 với xác suất $p-q$, và xuất ra 2 với xác suất $1-p$. Nếu chạy $T$ $\dfrac {n(n-1)}2$ lần, ta có thể đồng thời xây dựng $G_1$ và $G_2$. Cụ thể, nếu kết quả là 0 thì xem như cả $G_1$ và $G_2$ đều không có cạnh đang xét; nếu kết quả là 1 thì xem như chỉ $G_1$ có cạnh đang xét; nếu kết quả là 2 thì xem như cả $G_1$ và $G_2$ đều có cạnh đang xét.
     
-    容易验证，这样生成的 $G_1$ 和 $G_2$ 符合其定义，而且在每个实例中，$G_2$ 的边集都是 $G_1$ 边集的子集．因此在每个实例中，$G_2$ 的连通分量个数都不小于 $G_1$ 的连通分量个数；那么期望值自然也满足同样的大小关系．
+    Dễ kiểm tra rằng $G_1$ và $G_2$ sinh ra như vậy phù hợp với định nghĩa của chúng, và trong mọi instance, tập cạnh của $G_2$ đều là tập con của tập cạnh của $G_1$. Vì thế trong mọi instance, số thành phần liên thông của $G_2$ không nhỏ hơn số thành phần liên thông của $G_1$; khi đó kỳ vọng tự nhiên cũng thỏa cùng quan hệ lớn nhỏ.
 
-这一段证明中用到的思想被称为「耦合」，可以从字面意思来理解这种思想．本例中它体现为把两个本来独立的随机过程合二为一．
+Tư tưởng được dùng trong đoạn chứng minh này gọi là "coupling"; có thể hiểu theo nghĩa mặt chữ. Trong ví dụ này, nó thể hiện ở việc gộp hai quá trình ngẫu nhiên vốn độc lập thành một.
 
-#### 应用：[NERC 2019 Problem G: Game Relics](https://codeforces.com/contest/1267/problem/G)
+#### Ứng dụng: [NERC 2019 Problem G: Game Relics](https://codeforces.com/contest/1267/problem/G)
 
-???+ note "简要题意"
-    有若干个物品，每个物品有一个价格 $c_i$．你想要获得所有物品，为此你可以任意地进行两种操作：
+???+ note "Tóm tắt đề bài"
+    Có một số vật phẩm, mỗi vật phẩm có giá $c_i$. Bạn muốn sở hữu tất cả vật phẩm, và có thể tùy ý thực hiện hai thao tác:
     
-    1.  选择一个未拥有的物品 $i$，花 $c_i$ 块钱买下来．
-    2.  花 $x$ 块钱从所有物品（包括已经拥有的）中等概率随机抽取一个．如果尚未拥有该物品，则直接获得它；否则一无所获，但是会返还 $\dfrac x2$ 块钱．$x$ 为输入的常数．
+    1.  Chọn một vật phẩm $i$ chưa sở hữu, trả $c_i$ tiền để mua nó.
+    2.  Trả $x$ tiền để rút đều ngẫu nhiên một vật phẩm trong tất cả vật phẩm (kể cả đã sở hữu). Nếu chưa sở hữu vật phẩm đó thì nhận được nó ngay; nếu đã sở hữu thì không nhận được gì, nhưng được hoàn lại $\dfrac x2$ tiền. $x$ là hằng số đầu vào.
     
-    问最优策略下的期望花费．
+    Hỏi chi phí kỳ vọng dưới chiến lược tối ưu.
 
-观察：如果选择抽物品，就一定会一直抽直到获得新物品为止．
+Nhận xét: nếu chọn rút vật phẩm, thì chắc chắn sẽ tiếp tục rút cho đến khi nhận được vật phẩm mới.
 
--   理由：如果抽一次没有获得新物品，则新的局面和抽物品之前的局面一模一样，所以如果旧局面的最优行动是「抽一发」，则新局面的最优行动一定也是「再抽一发」．
+-   Lý do: nếu rút một lần mà không nhận được vật phẩm mới, trạng thái mới giống hệt trạng thái trước khi rút. Vì vậy nếu hành động tối ưu ở trạng thái cũ là "rút một lần", thì hành động tối ưu ở trạng thái mới chắc chắn cũng là "rút thêm một lần".
 
-我们可以计算出 $f_k$ 表示：如果当前已经拥有 $k$ 个不同物品，则期望要花多少钱才能抽到新物品．根据刚才的观察，我们可以直接把 $f_k$ 当作一个固定的代价，即转化为「每次花 $f_k$ 块钱随机获得一个新物品」．
+Ta có thể tính $f_k$ biểu thị: nếu hiện đã sở hữu $k$ vật phẩm khác nhau, thì kỳ vọng cần tốn bao nhiêu tiền để rút được vật phẩm mới. Theo nhận xét vừa rồi, ta có thể xem trực tiếp $f_k$ như một chi phí cố định, tức là chuyển thành "mỗi lần trả $f_k$ tiền để nhận ngẫu nhiên một vật phẩm mới".
 
-???+ note "期望代价的计算"
-    显然 $f_k=\dfrac x2 \cdot (R-1)+x$，其中 $R$ 表示要得到新物品期望的抽取次数．
+???+ note "Tính chi phí kỳ vọng"
+    Hiển nhiên $f_k=\dfrac x2 \cdot (R-1)+x$, trong đó $R$ biểu thị số lần rút kỳ vọng để nhận được vật phẩm mới.
     
-    引理：如果一枚硬币有 $p$ 的概率掷出正面，则首次掷出正面所需的期望次数为 $\dfrac 1p$．
+    Bổ đề: nếu một đồng xu có xác suất $p$ ra mặt ngửa, thì số lần tung kỳ vọng để lần đầu ra mặt ngửa là $\dfrac 1p$.
     
-    -   感性理解：$\dfrac 1p \cdot p = 1$，所以扔这么多次期望得到 1 次正面，看起来就比较对．
-    -   这种感性理解可以通过 [大数定律](https://en.wikipedia.org/wiki/Law_of_large_numbers) 严谨化，即考虑 $n\to \infty$ 次「不断抛硬币直到得到正面」的实验．推导细节略．
-    -   另一种可行的证法是，直接把期望的定义带进去暴算．推导细节略．
+    -   Hiểu trực giác: $\dfrac 1p \cdot p = 1$, nên tung bấy nhiêu lần thì kỳ vọng thu được 1 lần mặt ngửa, nghe có vẻ hợp lý.
+    -   Cách hiểu trực giác này có thể làm chặt chẽ bằng [luật số lớn](https://en.wikipedia.org/wiki/Law_of_large_numbers), bằng cách xét $n\to \infty$ thí nghiệm "liên tục tung đồng xu cho đến khi ra mặt ngửa". Chi tiết suy diễn được lược bỏ.
+    -   Một cách chứng minh khả thi khác là đưa trực tiếp định nghĩa kỳ vọng vào và tính. Chi tiết suy diễn được lược bỏ.
     
-    显然抽一次得到新物品的概率是 $\dfrac {n-k}n$，那么 $R=\dfrac n{n-k}$．
+    Hiển nhiên xác suất rút một lần được vật phẩm mới là $\dfrac {n-k}n$, nên $R=\dfrac n{n-k}$.
 
-结论：最优策略一定是先抽若干次，再买掉所有没抽到的物品．
+Kết luận: chiến lược tối ưu chắc chắn là rút một số lần trước, rồi mua hết các vật phẩm chưa rút được.
 
-这个结论符合直觉，因为 $f_k$ 是关于 $k$ 递增的，早抽似乎确实比晚抽看起来好一点．
+Kết luận này phù hợp trực giác, vì $f_k$ tăng theo $k$, nên rút sớm có vẻ thực sự tốt hơn rút muộn.
 
-???+ note "证明"
-    先考虑证明一个特殊情况．将证：
+???+ note "Chứng minh"
+    Trước hết chứng minh một trường hợp đặc biệt. Sẽ chứng minh:
     
-    -   随机过程 $A$：先买物品 $x$，然后不断抽直到得到所有物品
-    -   ……一定不优于……
-    -   随机过程 $B$：不断抽直到得到 $x$ 以外的所有物品，然后如果还没有 $x$ 则买下来
+    -   Quá trình ngẫu nhiên $A$: mua vật phẩm $x$ trước, sau đó liên tục rút cho đến khi có tất cả vật phẩm.
+    -   ... chắc chắn không tốt hơn ...
+    -   Quá trình ngẫu nhiên $B$: liên tục rút cho đến khi có tất cả vật phẩm trừ $x$, sau đó nếu vẫn chưa có $x$ thì mua nó.
     
-    考虑让随机过程 $A$ 和随机过程 $B$ 使用同一个随机数生成器．即，$A$ 的第一次抽取和 $B$ 的第一次抽取会抽到同一个元素，第二次、第三次……也是一样．
+    Cho hai quá trình ngẫu nhiên $A$ và $B$ dùng cùng một bộ sinh số ngẫu nhiên. Tức là lần rút đầu tiên của $A$ và lần rút đầu tiên của $B$ sẽ rút trúng cùng một phần tử, lần thứ hai, thứ ba, ... cũng vậy.
     
-    显然，此时 $A$ 和 $B$ 抽取的次数必定相等．对于一个被 $A$ 抽到的物品 $y\neq x$，观察到：
+    Hiển nhiên khi đó số lần rút của $A$ và $B$ chắc chắn bằng nhau. Với một vật phẩm $y\neq x$ được $A$ rút trúng, quan sát thấy:
     
-    -   $A$ 中抽到 $y$ 时已经持有的物品数，一定大于等于 $B$ 中抽到 $y$ 时已经持有的物品数．
+    -   Số vật phẩm đã sở hữu khi $A$ rút trúng $y$ chắc chắn lớn hơn hoặc bằng số vật phẩm đã sở hữu khi $B$ rút trúng $y$.
     
-    因此 $B$ 的单次抽取代价不高于 $A$ 的单次抽取代价，进而抽取的总代价也不高于 $A$．
+    Vì vậy chi phí một lần rút của $B$ không cao hơn của $A$, và tổng chi phí rút cũng không cao hơn của $A$.
     
-    显然 $B$ 的购买代价同样不高于 $A$．综上，$B$ 一定不劣于 $A$．
+    Hiển nhiên chi phí mua của $B$ cũng không cao hơn của $A$. Tóm lại, $B$ chắc chắn không tệ hơn $A$.
     
-    然后可以通过数学归纳把这一结论推广到一般情况．具体地说，每次我们找到当前策略中的最后一次购买，然后根据上述结论，把这一次购买移到最后一定不劣．细节略．
+    Sau đó có thể dùng quy nạp toán học để mở rộng kết luận này sang trường hợp tổng quát. Cụ thể, mỗi lần ta tìm lần mua cuối cùng trong chiến lược hiện tại, rồi theo kết luận trên, dời lần mua này về cuối chắc chắn không tệ hơn. Chi tiết lược bỏ.
 
-基于这个结论，我们再次等价地转化问题：把「选一个物品并支付对应价格购买」的操作，改成「随机选一个未拥有的物品并支付对应价格购买」．等价性的理由是，既然购买只是用来扫尾的，那选到哪个都无所谓．
+Dựa trên kết luận này, ta lại chuyển đổi tương đương bài toán: thay thao tác "chọn một vật phẩm và trả giá tương ứng để mua" bằng "chọn ngẫu nhiên một vật phẩm chưa sở hữu và trả giá tương ứng để mua". Lý do tương đương là: vì mua chỉ dùng để dọn phần còn lại, chọn trúng vật phẩm nào cũng không quan trọng.
 
-现在我们发现，「抽取」和「购买」，实质上已经变成了相同的操作，区别仅在于付出的价格不同．选择购买还是抽取，对于获得物品的顺序毫无影响，而且每种获得物品的顺序都是等可能的．
+Bây giờ ta thấy "rút" và "mua" về bản chất đã trở thành cùng một thao tác, chỉ khác giá tiền phải trả. Việc chọn mua hay rút không ảnh hưởng đến thứ tự nhận được vật phẩm, và mọi thứ tự nhận vật phẩm đều đồng khả năng.
 
-观察：在某一时刻，我们应当选择买，当且仅当下一次抽取的代价（由已经抽到的物品数确定）大于剩余物品的平均价格（等于的话则任意）．
+Nhận xét: tại một thời điểm, ta nên chọn mua khi và chỉ khi chi phí lần rút tiếp theo (được xác định bởi số vật phẩm đã rút được) lớn hơn giá trung bình của các vật phẩm còn lại (nếu bằng nhau thì chọn cách nào cũng được).
 
--   可以证明，随着时间的推移，抽取代价的增速一定不低于剩余物品均价的增速．这说明从抽到买的「临界点」只有一个，进一步验证了先前结论．
+-   Có thể chứng minh rằng theo thời gian, tốc độ tăng của chi phí rút chắc chắn không thấp hơn tốc độ tăng của giá trung bình các vật phẩm còn lại. Điều này cho thấy chỉ có một "điểm tới hạn" từ rút sang mua, và tiếp tục xác nhận kết luận trước đó.
 
-最后，我们枚举所有可能的局面（即已经拥有的元素集合），算出这种局面出现的概率（已有元素的排列方案数除以总方案数），乘上当前局面最优决策的代价（由拥有元素个数和剩余物品总价确定），再加起来即可．这个过程可以用背包式的 DP 优化，即可通过本题．
+Cuối cùng, ta liệt kê mọi trạng thái có thể, tức tập các phần tử đã sở hữu; tính xác suất xuất hiện của trạng thái đó (số hoán vị của các phần tử đã có chia cho tổng số phương án), nhân với chi phí của quyết định tối ưu ở trạng thái hiện tại (được xác định bởi số phần tử đã sở hữu và tổng giá các vật phẩm còn lại), rồi cộng lại. Quá trình này có thể tối ưu bằng DP kiểu ba lô, như vậy là qua được bài này.
 
 ***
 
-**回顾**：可以看到，耦合的技巧在本题中使用了两次．第一次是在证明过程中，令两个随机过程使用同一个随机源；第二次是把购买转化成随机购买（即引入随机源），从而使得购买和抽取这两种操作实质上「耦合」为同一种操作（即令抽取和购买操作共享一个随机源）．
+**Nhìn lại**: có thể thấy kỹ thuật coupling được dùng hai lần trong bài này. Lần đầu là trong chứng minh, cho hai quá trình ngẫu nhiên dùng chung một nguồn ngẫu nhiên; lần thứ hai là chuyển việc mua thành mua ngẫu nhiên (tức đưa thêm nguồn ngẫu nhiên), từ đó làm cho hai thao tác mua và rút về bản chất được "couple" thành cùng một thao tác, tức là cho thao tác rút và mua chia sẻ cùng một nguồn ngẫu nhiên.
 
-## 参考资料
+## Tài liệu tham khảo
 
 [^ref1]: [PANIC - Editorial](https://discuss.codechef.com/t/panic-editorial/80145)
 
-[^ref2]: [UOJ NOI Round #4 Day2 题解](https://peehs-moorhsum.blog.uoj.ac/blog/6375)
+[^ref2]: [UOJ NOI Round #4 Day2 Editorial](https://peehs-moorhsum.blog.uoj.ac/blog/6375)
 
 [^ref3]: [Anna Gambin and Adam Malinowski, Randomized Meldable Priority Queues](https://www.researchgate.net/publication/2801527_Randomized_Meldable_Priority_Queues)

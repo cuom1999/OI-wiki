@@ -332,6 +332,10 @@ MkDocs source layout intact.
   `docs/misc/mo-algo-with-bitset.md`: translated Mo's algorithm and its
   modification, tree, rollback, two-dimensional, secondary-offline, and bitset
   variants.
+- `docs/misc/random.md`, `docs/misc/rand-technique.md`,
+  `docs/misc/hill-climbing.md`, `docs/misc/simulated-annealing.md`:
+  translated random number generation, randomized techniques, hill climbing,
+  and simulated annealing material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

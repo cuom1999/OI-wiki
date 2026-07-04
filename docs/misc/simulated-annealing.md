@@ -1,21 +1,21 @@
-## 引入
+## Mở đầu
 
-模拟退火是一种随机化算法．当一个问题的方案数量极大（甚至是无穷的）而且不是一个单峰函数时，我们常使用模拟退火求解．
+Mô phỏng luyện kim, hay simulated annealing, là một thuật toán ngẫu nhiên. Khi một bài toán có số lượng phương án cực lớn, thậm chí vô hạn, và không phải là một hàm đơn đỉnh, ta thường dùng mô phỏng luyện kim để giải.
 
-## 解释
+## Giải thích
 
-根据 [爬山算法](./hill-climbing.md) 的过程，我们发现：对于一个当前最优解附近的非最优解，爬山算法直接舍去了这个解．而很多情况下，我们需要去接受这个非最优解从而跳出这个局部最优解，即为模拟退火算法．
+Dựa trên quá trình của [thuật toán leo đồi](./hill-climbing.md), ta thấy rằng với một nghiệm không tối ưu nằm gần nghiệm tốt nhất hiện tại, thuật toán leo đồi sẽ loại bỏ trực tiếp nghiệm đó. Nhưng trong nhiều trường hợp, ta cần chấp nhận nghiệm không tối ưu này để thoát khỏi nghiệm tối ưu cục bộ. Đó chính là thuật toán mô phỏng luyện kim.
 
-??? note "什么是退火？（选自 [百度百科](https://baike.baidu.com/item/%E9%80%80%E7%81%AB/1039313)）"
-    退火是一种金属热处理工艺，指的是将金属缓慢加热到一定温度，保持足够时间，然后以适宜速度冷却．目的是降低硬度，改善切削加工性；消除残余应力，稳定尺寸，减少变形与裂纹倾向；细化晶粒，调整组织，消除组织缺陷．准确的说，退火是一种对材料的热处理工艺，包括金属材料、非金属材料．而且新材料的退火目的也与传统金属退火存在异同．
+??? note "Ủ là gì? Trích từ [Baidu Baike](https://baike.baidu.com/item/%E9%80%80%E7%81%AB/1039313)"
+    Ủ là một công nghệ xử lý nhiệt kim loại, trong đó kim loại được làm nóng chậm tới một nhiệt độ nhất định, giữ trong một khoảng thời gian đủ dài, rồi được làm nguội với tốc độ thích hợp. Mục đích là giảm độ cứng, cải thiện khả năng gia công cắt gọt, khử ứng suất dư, ổn định kích thước, giảm xu hướng biến dạng và nứt, làm mịn hạt tinh thể, điều chỉnh tổ chức vật liệu và loại bỏ khuyết tật tổ chức. Nói chính xác, ủ là một công nghệ xử lý nhiệt vật liệu, bao gồm cả vật liệu kim loại và phi kim loại. Mục đích ủ của vật liệu mới cũng có điểm giống và khác so với ủ kim loại truyền thống.
 
-由于退火的规律引入了更多随机因素，那么我们得到最优解的概率会大大增加．于是我们可以去模拟这个过程，将目标函数作为能量函数．
+Do quy luật ủ đưa vào nhiều yếu tố ngẫu nhiên hơn, xác suất thu được nghiệm tối ưu sẽ tăng đáng kể. Vì vậy ta có thể mô phỏng quá trình này, coi hàm mục tiêu là hàm năng lượng.
 
-### 过程
+### Quá trình
 
-先用一句话概括：如果新状态的解更优则修改答案，否则以一定概率接受新状态．
+Tóm tắt trong một câu: nếu nghiệm của trạng thái mới tốt hơn thì cập nhật đáp án, nếu không thì chấp nhận trạng thái mới với một xác suất nhất định.
 
-我们定义当前温度为 $T$，新状态 $S'$ 与已知状态 $S$（新状态由已知状态通过随机的方式得到）之间的能量（值）差为 $\Delta E$（$\Delta E\geqslant 0$），则发生状态转移（修改最优解）的概率为
+Gọi nhiệt độ hiện tại là $T$, hiệu năng lượng, hay hiệu giá trị, giữa trạng thái mới $S'$ và trạng thái đã biết $S$, trong đó trạng thái mới được sinh ngẫu nhiên từ trạng thái đã biết, là $\Delta E$ với $\Delta E\geqslant 0$. Khi đó xác suất xảy ra chuyển trạng thái, tức là sửa nghiệm tối ưu, là
 
 $$
 P(\Delta E)=
@@ -25,46 +25,46 @@ P(\Delta E)=
 \end{cases}
 $$
 
-**注意**：我们有时为了使得到的解更有质量，会在模拟退火结束后，以当前温度在得到的解附近多次随机状态，尝试得到更优的解（其过程与模拟退火相似）．
+**Chú ý**: Đôi khi để nghiệm thu được có chất lượng tốt hơn, sau khi mô phỏng luyện kim kết thúc, ta sẽ dùng nhiệt độ hiện tại để sinh ngẫu nhiên nhiều trạng thái gần nghiệm đã thu được, thử tìm nghiệm tốt hơn. Quá trình này tương tự mô phỏng luyện kim.
 
-### 如何退火（降温）
+### Cách ủ, hay hạ nhiệt
 
-模拟退火时我们有三个参数：初始温度 $T_0$，降温系数 $d$，终止温度 $T_k$．其中 $T_0$ 是一个比较大的数，$d$ 是一个非常接近 $1$ 但是小于 $1$ 的数，$T_k$ 是一个接近 $0$ 的正数．
+Trong mô phỏng luyện kim, ta có ba tham số: nhiệt độ ban đầu $T_0$, hệ số hạ nhiệt $d$ và nhiệt độ kết thúc $T_k$. Trong đó $T_0$ là một số tương đối lớn, $d$ là một số rất gần $1$ nhưng nhỏ hơn $1$, còn $T_k$ là một số dương gần $0$.
 
-首先让温度 $T=T_0$，然后按照上述步骤进行一次转移尝试，再让 $T=d\cdot T$．当 $T<T_k$ 时模拟退火过程结束，当前最优解即为最终的最优解．
+Trước hết đặt nhiệt độ $T=T_0$, sau đó thực hiện một lần thử chuyển trạng thái theo các bước trên, rồi đặt $T=d\cdot T$. Khi $T<T_k$, quá trình mô phỏng luyện kim kết thúc, và nghiệm tốt nhất hiện tại là nghiệm tối ưu cuối cùng.
 
-注意为了使得解更为精确，我们通常不直接取当前解作为答案，而是在退火过程中维护遇到的所有解的最优值．
+Lưu ý rằng để nghiệm chính xác hơn, thông thường ta không lấy trực tiếp nghiệm hiện tại làm đáp án, mà duy trì giá trị tốt nhất trong tất cả các nghiệm đã gặp trong quá trình ủ.
 
-引用一张 [Simulated annealing - Wikipedia](https://en.wikipedia.org/wiki/Simulated_annealing) 的图片（随着温度的降低，跳跃越来越不随机，最优解也越来越稳定）．
+Dưới đây là một hình từ [Simulated annealing - Wikipedia](https://en.wikipedia.org/wiki/Simulated_annealing). Khi nhiệt độ giảm, các bước nhảy ngày càng ít ngẫu nhiên hơn và nghiệm tối ưu cũng ngày càng ổn định hơn.
 
 ![](./images/simulated-annealing.gif)
 
-## 实现
+## Cài đặt
 
-此处代码以 [「BZOJ 3680」吊打 XXX](https://hydro.ac/p/bzoj-P3680)（求 $n$ 个点的带权类费马点）为例．
+Đoạn mã ở đây lấy [BZOJ 3680 - Đánh bại XXX](https://hydro.ac/p/bzoj-P3680), bài toán tìm điểm Fermat dạng có trọng số của $n$ điểm, làm ví dụ.
 
 ```cpp
 --8<-- "docs/misc/code/simulated-annealing/simulated-annealing_1.cpp"
 ```
 
-## 一些技巧
+## Một số kỹ thuật
 
-### 分块模拟退火
+### Mô phỏng luyện kim theo từng đoạn
 
-有时函数的峰很多，模拟退火难以跑出最优解．
+Đôi khi hàm có rất nhiều đỉnh, khiến mô phỏng luyện kim khó chạy ra nghiệm tối ưu.
 
-此时可以把整个值域分成几段，每段跑一遍模拟退火，然后再取最优解．
+Khi đó có thể chia toàn bộ miền giá trị thành vài đoạn, chạy mô phỏng luyện kim một lần trên mỗi đoạn, rồi lấy nghiệm tốt nhất.
 
-### 卡时
+### Khống chế thời gian
 
-有一个 `clock()` 函数，返回程序运行时间．
+Có hàm `clock()` trả về thời gian chạy của chương trình.
 
-可以把主程序中的 `simulateAnneal();` 换成 `while ((double)clock()/CLOCKS_PER_SEC < MAX_TIME) simulateAnneal();`．这样子就会一直跑模拟退火，直到用时即将超过时间限制．
+Có thể thay `simulateAnneal();` trong chương trình chính bằng `while ((double)clock()/CLOCKS_PER_SEC < MAX_TIME) simulateAnneal();`. Như vậy chương trình sẽ liên tục chạy mô phỏng luyện kim cho đến khi thời gian sử dụng sắp vượt quá giới hạn.
 
-这里的 `MAX_TIME` 是一个自定义的略小于时限的数（单位：秒）．
+Ở đây `MAX_TIME` là một số tự định nghĩa, hơi nhỏ hơn giới hạn thời gian, tính bằng giây.
 
-## 习题
+## Bài tập
 
--   [「BZOJ 3680」吊打 XXX](https://hydro.ac/p/bzoj-P3680)
--   [「JSOI 2016」炸弹攻击](https://loj.ac/problem/2076)
--   [「HAOI 2006」均分数据](https://www.luogu.com.cn/problem/P2503)
+-   [BZOJ 3680 - Đánh bại XXX](https://hydro.ac/p/bzoj-P3680)
+-   [JSOI 2016 - Tấn công bom](https://loj.ac/problem/2076)
+-   [HAOI 2006 - Chia đều dữ liệu](https://www.luogu.com.cn/problem/P2503)

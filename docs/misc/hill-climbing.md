@@ -1,69 +1,69 @@
-## 简介
+## Giới thiệu
 
-爬山算法是一种局部择优的方法，采用启发式方法，是对深度优先搜索的一种改进，它利用反馈信息帮助生成解的决策．
+Thuật toán leo đồi là một phương pháp chọn tối ưu cục bộ. Đây là một phương pháp heuristic, có thể xem như một cải tiến của tìm kiếm theo chiều sâu, dùng thông tin phản hồi để hỗ trợ việc sinh quyết định cho lời giải.
 
-直白地讲，就是当目前无法直接到达最优解，但是可以判断两个解哪个更优的时候，根据一些反馈信息生成一个新的可能解．
+Nói trực tiếp hơn, khi hiện tại không thể đi thẳng tới nghiệm tối ưu, nhưng có thể so sánh được hai nghiệm để biết nghiệm nào tốt hơn, ta sẽ dựa trên một số thông tin phản hồi để sinh ra một nghiệm khả dĩ mới.
 
-因此，爬山算法每次在当前找到的最优方案 $x$ 附近寻找一个新方案．如果这个新的解 $x'$ 更优，那么转移到 $x'$，否则不变．
+Vì vậy, mỗi lần thuật toán leo đồi sẽ tìm một phương án mới ở gần phương án tốt nhất hiện tại $x$. Nếu nghiệm mới $x'$ tốt hơn, ta chuyển sang $x'$, nếu không thì giữ nguyên.
 
-这种算法对于单峰函数显然可行．
+Thuật toán này hiển nhiên khả thi với hàm đơn đỉnh.
 
-Q：都知道是单峰函数了为什么不三分呢？
+Q: Nếu đã biết là hàm đơn đỉnh thì tại sao không dùng tìm kiếm tam phân?
 
-A：爬山算法的优势在于当正解的写法你并不了解（常见于毒瘤计算几何和毒瘤数学题），或者本身状态维度很多，无法容易地写分治（例 2 就可以用二分完成合法正解）时，可以通过非常暴力的计算得到最优解．
+A: Ưu điểm của leo đồi là khi bạn không nắm rõ cách viết lời giải chuẩn, thường gặp trong các bài hình học tính toán hoặc toán rất khó, hoặc khi bản thân trạng thái có nhiều chiều khiến việc viết chia để trị không dễ dàng, ví dụ 2 thật ra có thể dùng nhị phân để có lời giải chuẩn, thì ta vẫn có thể tìm nghiệm tối ưu bằng cách tính toán khá brute force.
 
-但是对于多数需要求解的函数，爬山算法很容易进入一个局部最优解，如下图（最优解为 $\color{green}{\Uparrow}$，而爬山算法可能找到的最优解为 $\color{red}{\Downarrow}$）．
+Tuy nhiên, với phần lớn các hàm cần giải, thuật toán leo đồi rất dễ rơi vào một nghiệm tối ưu cục bộ, như hình dưới đây. Nghiệm tối ưu là $\color{green}{\Uparrow}$, còn nghiệm tốt nhất mà leo đồi có thể tìm được là $\color{red}{\Downarrow}$.
 
 ![](./images/hill-climbing.png)
 
-## 具体实现
+## Cài đặt cụ thể
 
-爬山算法一般会引入温度参数（类似模拟退火）．类比地说，爬山算法就像是一只兔子喝醉了在山上跳，它每次都会朝着它所认为的更高的地方（这往往只是个不准确的趋势）跳，显然它有可能一次跳到山顶，也可能跳过头翻到对面去．不过没关系，兔子翻过去之后还会跳回来．显然这个过程很没有用，兔子永远都找不到出路，所以在这个过程中兔子冷静下来并在每次跳的时候更加谨慎，少跳一点，以到达合适的最优点．
+Thuật toán leo đồi thường đưa vào một tham số nhiệt độ, tương tự mô phỏng luyện kim. Có thể hình dung leo đồi giống như một con thỏ say đang nhảy trên núi. Mỗi lần nó sẽ nhảy về phía mà nó cho là cao hơn, dù đó thường chỉ là một xu hướng không chính xác. Rõ ràng nó có thể nhảy thẳng lên đỉnh núi trong một lần, cũng có thể nhảy quá đà sang phía bên kia. Nhưng điều đó không sao, vì sau khi nhảy qua bên kia thì nó vẫn sẽ nhảy ngược lại. Quá trình này rõ ràng không hiệu quả, con thỏ mãi không tìm được đường ra, nên trong quá trình đó nó dần bình tĩnh lại và mỗi lần nhảy sẽ thận trọng hơn, nhảy ngắn hơn, để đi tới điểm tối ưu phù hợp.
 
-兔子逐渐变得清醒的过程就是降温过程，即温度参数在爬山的时候会不断减小．
+Quá trình con thỏ dần tỉnh táo chính là quá trình hạ nhiệt, tức là tham số nhiệt độ sẽ liên tục giảm trong khi leo đồi.
 
-关于降温：降温参数是略小于 $1$ 的常数，一般在 $[0.985, 0.999]$ 中选取．
+Về hạ nhiệt: hệ số hạ nhiệt là một hằng số hơi nhỏ hơn $1$, thường được chọn trong $[0.985, 0.999]$.
 
-## 例题
+## Ví dụ
 
-???+ example "[「JSOI2008」球形空间产生器](https://www.luogu.com.cn/problem/P4035)"
-    给出 $n$ 维空间中的 $n + 1$ 个点，已知它们在同一个 $n$ 维球面上，求出球心．$n \leq 10$，坐标绝对值不超过 $20000$．
+???+ example "[JSOI2008 - Bộ sinh không gian hình cầu](https://www.luogu.com.cn/problem/P4035)"
+    Cho $n + 1$ điểm trong không gian $n$ chiều. Biết rằng chúng cùng nằm trên một mặt cầu $n$ chiều, hãy tìm tâm cầu. $n \leq 10$, trị tuyệt đối của tọa độ không vượt quá $20000$.
 
-??? note "解答"
-    很明显的单峰函数，可以使用爬山解决．本题算法流程：
+??? note "Lời giải"
+    Đây là một hàm đơn đỉnh rất rõ ràng, có thể dùng leo đồi để giải. Quy trình thuật toán của bài này:
     
-    1.  初始化球心为各个给定点的重心（即其各维坐标均为所有给定点对应维度坐标的平均值），以减少枚举量．
-    2.  对于当前的球心，求出每个已知点到这个球心欧氏距离的平均值．
-    3.  遍历所有已知点．记录一个改变值 $\textit{cans}$（分开每一维度记录）对于每一个点的欧氏距离，如果大于平均值，就把改变值加上差值，否则减去．实际上并不用判断这个大小问题，只要不考虑绝对值，直接用坐标计算即可．这个过程可以形象地转化成一个新的球心，在空间里推来推去，碰到太远的点就往点的方向拉一点，碰到太近的点就往点的反方向推一点．
-    4.  将我们记录的 $\textit{cans}$ 乘上温度，更新球心，回到步骤 2
-    5.  在温度小于某个给定阈值的时候结束．
+    1.  Khởi tạo tâm cầu là trọng tâm của các điểm đã cho, tức là ở mỗi chiều, tọa độ của nó bằng trung bình tọa độ tương ứng của tất cả các điểm đã cho, để giảm lượng liệt kê.
+    2.  Với tâm cầu hiện tại, tính giá trị trung bình của khoảng cách Euclid từ mỗi điểm đã biết tới tâm này.
+    3.  Duyệt tất cả các điểm đã biết. Ghi lại một lượng thay đổi $\textit{cans}$, ghi riêng cho từng chiều. Với khoảng cách Euclid của mỗi điểm, nếu lớn hơn giá trị trung bình thì cộng hiệu vào lượng thay đổi, nếu không thì trừ đi. Thực ra không cần xét quan hệ lớn nhỏ này; nếu không xét trị tuyệt đối, ta có thể tính trực tiếp bằng tọa độ. Quá trình này có thể hình dung như việc biến đổi thành một tâm cầu mới rồi đẩy qua đẩy lại trong không gian: gặp điểm quá xa thì kéo tâm về phía điểm đó một chút, gặp điểm quá gần thì đẩy tâm theo hướng ngược lại điểm đó một chút.
+    4.  Nhân $\textit{cans}$ đã ghi lại với nhiệt độ, cập nhật tâm cầu, rồi quay lại bước 2.
+    5.  Kết thúc khi nhiệt độ nhỏ hơn một ngưỡng cho trước.
     
-    因此，我们在更新球心的时候，不能直接加上改变值，而是要加上改变值与温度的乘积．
+    Vì vậy, khi cập nhật tâm cầu, ta không cộng trực tiếp lượng thay đổi mà phải cộng tích của lượng thay đổi với nhiệt độ.
     
-    并不是每一道爬山题都可以具体地用温度解决，这只是一个例子．
+    Không phải mọi bài leo đồi đều có thể giải cụ thể bằng nhiệt độ; đây chỉ là một ví dụ.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/hill-climbing/hill-climbing_1.cpp"
     ```
 
-???+ example "[「BZOJ 3680」吊打 XXX](https://hydro.ac/p/bzoj-P3680)"
-    求 $n$ 个点的带权类费马点．
+???+ example "[BZOJ 3680 - Đánh bại XXX](https://hydro.ac/p/bzoj-P3680)"
+    Tìm điểm Fermat dạng có trọng số của $n$ điểm.
 
-??? note "解答"
-    框架类似，用了点物理知识．
+??? note "Lời giải"
+    Khung thuật toán tương tự, có dùng một chút kiến thức vật lý.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/hill-climbing/hill-climbing_2.cpp"
     ```
 
-## 优化
+## Tối ưu hóa
 
-很容易想到的是，为了尽可能获取优秀的答案，我们可以多次爬山．方法有修改初始状态/修改降温参数/修改初始温度等，然后开一个全局最优解记录答案．每次爬山结束之后，更新全局最优解．
+Dễ nghĩ tới việc để cố gắng thu được đáp án tốt hơn, ta có thể chạy leo đồi nhiều lần. Các cách làm gồm thay đổi trạng thái ban đầu, thay đổi hệ số hạ nhiệt, thay đổi nhiệt độ ban đầu, v.v. Sau đó duy trì một nghiệm tối ưu toàn cục để ghi đáp án. Sau mỗi lần leo đồi kết thúc, cập nhật nghiệm tối ưu toàn cục.
 
-这样处理可能会存在的问题是超时，在正式考试时请手造大数据测试调参．
+Vấn đề có thể gặp khi làm như vậy là quá thời gian. Trong kỳ thi chính thức, nên tự tạo dữ liệu lớn để kiểm thử và chỉnh tham số.
 
-## 劣势
+## Nhược điểm
 
-其实爬山算法的劣势上文已经提及：它容易陷入一个局部最优解．当目标函数不是单峰函数时，这个劣势是致命的．因此我们要引进 [**模拟退火**](./simulated-annealing.md)．
+Thực ra nhược điểm của thuật toán leo đồi đã được nhắc ở trên: nó dễ rơi vào một nghiệm tối ưu cục bộ. Khi hàm mục tiêu không phải hàm đơn đỉnh, nhược điểm này có thể trở nên chí mạng. Vì vậy ta cần đưa vào [**mô phỏng luyện kim**](./simulated-annealing.md).
