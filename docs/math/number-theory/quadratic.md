@@ -528,21 +528,36 @@ dùng nghiệm tổng quát của phương trình Pythagoras và phương pháp 
 thể chứng minh kết quả mạnh hơn: phương trình $x^4+y^4=z^2$ vô nghiệm.
 
 <span id="eisenstein-&#x6574;&#x6570;"></span>
-## So nguyen Eisenstein
+## Số nguyên Eisenstein
 
-Trong phan nay, dat $\omega=\dfrac{-1+\sqrt{3}\mathrm{i}}{2}=e^{2\pi\mathrm{i}/3}$.[^omega] Truong bac hai $\mathbf Q(\sqrt{3}\mathrm{i})$ la [truong cyclotomic](../algebra/field-theory.md#%E5%88%86%E5%9C%86%E5%9F%9F) bac ba va bac sau; cac so nguyen dai so trong do duoc goi la so nguyen Eisenstein. Vanh gom tat ca so nguyen Eisenstein $\mathbf Z[\omega]$ duoc goi la vanh so nguyen Eisenstein. Vanh so nguyen Eisenstein co sau don vi, lan luot la $\pm 1$, $\pm\omega$ va $\pm\omega^2$. Tren mat phang phuc, tat ca so nguyen Eisenstein tao thanh cac diem cua luoi tam giac. Khac voi so nguyen Gauss, cac diem luoi o day noi chung khong phai diem nguyen.
+Trong phần này, đặt
+$\omega=\dfrac{-1+\sqrt{3}\mathrm{i}}{2}=e^{2\pi\mathrm{i}/3}$.[^omega]
+Trường bậc hai $\mathbf Q(\sqrt{3}\mathrm{i})$ là
+[trường cyclotomic](../algebra/field-theory.md#%E5%88%86%E5%9C%86%E5%9F%9F)
+bậc ba và bậc sáu; các số nguyên đại số trong trường này được gọi là số
+nguyên Eisenstein. Vành gồm tất cả số nguyên Eisenstein $\mathbf Z[\omega]$
+được gọi là vành số nguyên Eisenstein. Vành số nguyên Eisenstein có sáu đơn
+vị, lần lượt là $\pm 1$, $\pm\omega$ và $\pm\omega^2$. Trên mặt phẳng phức, tất
+cả số nguyên Eisenstein tạo thành các điểm của một lưới tam giác. Khác với số
+nguyên Gauss, các điểm lưới ở đây nhìn chung không phải điểm nguyên.
 
 ![](./images/eisenstein-integer.svg)
 
-Chuan cua so nguyen Eisenstein la
+Chuẩn của số nguyên Eisenstein là
 
 $$
 N(a+b\omega) = a^2-ab+b^2,
 $$
 
-va no cung la binh phuong khoang cach tu diem luoi tren den goc toa do trong mat phang phuc.
+và cũng là bình phương khoảng cách từ điểm lưới tương ứng đến gốc tọa độ trong
+mặt phẳng phức.
 
-So nguyen Eisenstein cung rat giong so nguyen Gauss. Tren so nguyen Eisenstein cung co the dung chuan $N(\cdot)$ de dinh nghia phep chia co du, roi thiet lap thuat toan Euclid, dinh li Bezout, dinh li phan tich duy nhat, v.v. Tuong tu phan tren, co the suy ra cac thua so cua so nguyen to trong vanh so nguyen Eisenstein. De lam viec nay, chu y rang biet thuc cua $\mathbf Z[\omega]$ la $-3$, va ki hieu Kronecker
+Số nguyên Eisenstein có nhiều tính chất rất giống số nguyên Gauss. Trên số
+nguyên Eisenstein, cũng có thể dùng chuẩn $N(\cdot)$ để định nghĩa phép chia có
+dư, rồi thiết lập thuật toán Euclid, định lí Bezout, định lí phân tích duy
+nhất, v.v. Tương tự phần trên, ta có thể suy ra cách các số nguyên tố phân rã
+trong vành số nguyên Eisenstein. Để làm việc này, chú ý rằng biệt thức của
+$\mathbf Z[\omega]$ là $-3$, và kí hiệu Kronecker
 
 $$
 \left(\dfrac{-3}{n}\right) = \begin{cases}
@@ -552,33 +567,59 @@ $$
 \end{cases}
 $$
 
-Do do, cac phan tu nguyen to trong vanh so nguyen Eisenstein, hay so nguyen to Eisenstein, co ba loai sau:
+Do đó, các phần tử nguyên tố trong vành số nguyên Eisenstein, hay số nguyên tố
+Eisenstein, có ba loại sau:
 
-1.  Cac so nguyen to dang $3k+2$ trong so nguyen, tuc $2$ va cac so nguyen to dang $6k+5$;
-2.  Hai thua so nguyen to Eisenstein lien hop cua cac so nguyen to dang $3k+1$ trong so nguyen (tuc so nguyen to dang $6k+1$);
-3.  Thua so $(3+\sqrt{3}\mathrm{i})/2$ cua so nguyen to $3$, lien hop cua no lien ket voi no.
+1.  Các số nguyên tố dạng $3k+2$ trong số nguyên, tức $2$ và các số nguyên tố
+    dạng $6k+5$;
+2.  Hai thừa số nguyên tố Eisenstein liên hợp của các số nguyên tố dạng $3k+1$
+    trong số nguyên (tức số nguyên tố dạng $6k+1$);
+3.  Thừa số $(3+\sqrt{3}\mathrm{i})/2$ của số nguyên tố $3$; liên hợp của nó là
+    phần tử liên kết với chính nó.
 
-Dung phuong phap cua phan truoc, co the tim so so nguyen Eisenstein co chuan bang $n$. Ki hieu so nay la $f(n)$, khi do
+Dùng phương pháp của phần trước, có thể tìm số lượng số nguyên Eisenstein có
+chuẩn bằng $n$. Kí hiệu số này là $f(n)$, khi đó
 
 $$
-f(n)=6\sum_{d\mid n}\left(\dfrac{-3}{d}\right)=6\sum_{d\mid n}\chi_{3,2}(d). 
+f(n)=6\sum_{d\mid n}\left(\dfrac{-3}{d}\right)=6\sum_{d\mid n}\chi_{3,2}(d).
 $$
 
-Trong do $\chi_{3,2}(n)=\left(\dfrac{-3}{n}\right)$ la dac trung Dirichlet thuc modulo $3$. Bieu thuc nay cho thay cac so nguyen Eisenstein nhu vay ton tai khi va chi khi moi thua so nguyen to dang $3k+2$ cua $n$ deu co so mu chan.
+Trong đó $\chi_{3,2}(n)=\left(\dfrac{-3}{n}\right)$ là đặc trưng Dirichlet thực
+modulo $3$. Biểu thức này cho thấy các số nguyên Eisenstein như vậy tồn tại khi
+và chỉ khi mọi thừa số nguyên tố dạng $3k+2$ của $n$ đều có số mũ chẵn.
 
-Theo cong thuc chuan o tren, $f(n)$ cung la so nghiem cua phuong trinh vo dinh $x^2-xy+y^2=n$ hoac $x^2+xy+y^2=n$. Y nghia hinh hoc cua no la so diem nguyen tren cac ellipse xieng $x^2\pm xy+y^2=n$.
+Theo công thức chuẩn ở trên, $f(n)$ cũng là số nghiệm của phương trình vô định
+$x^2-xy+y^2=n$ hoặc $x^2+xy+y^2=n$. Ý nghĩa hình học của nó là số điểm nguyên
+trên các ellipse xiên $x^2\pm xy+y^2=n$.
 
-Lien quan chat che voi cac phuong trinh nay la mot phuong trinh vo dinh khac, $x^2+3y^2=n$; nghiem nguyen cua no tuong ung voi cac diem nguyen tren ellipse chuan. Doi bien $x=(u+v)/2$ va $y=(u-v)/2$ co the chuyen no thanh phuong trinh da giai $u^2-uv+v^2=n$. Tuy nhien, mac du moi nghiem nguyen cua $x^2+3y^2=n$ deu tuong ung voi mot nghiem nguyen cua $u^2-uv+v^2=n$, chieu nguoc lai khong nhat thiet dung. Neu $n$ chan, thi $u$ va $v$ nhat dinh deu chan, nghia la $x$ va $y$ nhat dinh la so nguyen; khi do so nghiem nguyen cua $x^2+3y^2=n$ van la $f(n)$. Nhung neu $n$ le, thi $u$ va $v$ co the mot le mot chan, hoac deu le, nen $x$ va $y$ tuong ung co the deu la ban nguyen hoac deu la so nguyen. Truong hop nay can thao luan ki hon.
+Liên quan chặt chẽ với các phương trình này là một phương trình vô định khác,
+$x^2+3y^2=n$; nghiệm nguyên của nó tương ứng với các điểm nguyên trên ellipse
+chuẩn. Đổi biến $x=(u+v)/2$ và $y=(u-v)/2$ có thể chuyển nó thành phương trình
+đã giải $u^2-uv+v^2=n$. Tuy nhiên, mặc dù mỗi nghiệm nguyên của
+$x^2+3y^2=n$ đều tương ứng với một nghiệm nguyên của $u^2-uv+v^2=n$, chiều
+ngược lại không nhất thiết đúng. Nếu $n$ chẵn, thì $u$ và $v$ nhất định đều
+chẵn, nghĩa là $x$ và $y$ chắc chắn là số nguyên; khi đó số nghiệm nguyên của
+$x^2+3y^2=n$ vẫn là $f(n)$. Nhưng nếu $n$ lẻ, thì $u$ và $v$ có thể một lẻ một
+chẵn, hoặc đều lẻ, nên $x$ và $y$ tương ứng có thể đều là bán nguyên hoặc đều là
+số nguyên. Trường hợp này cần thảo luận kĩ hơn.
 
-Khi biet mot nghiem nguyen $(u,v)$ cua phuong trinh $u^2-uv+v^2=n$, cac so nguyen Eisenstein lien ket voi $u+v\omega$ (ke ca chinh no) tuong ung voi cac nghiem nguyen sau:
+Khi biết một nghiệm nguyên $(u,v)$ của phương trình $u^2-uv+v^2=n$, các số
+nguyên Eisenstein liên kết với $u+v\omega$ (kể cả chính nó) tương ứng với các
+nghiệm nguyên sau:
 
 $$
 (u,v),(u-v,u),(-v,u-v),(-u,-v),(v-u,-u),(v,v-u).
 $$
 
-Vi trong ba so nguyen $u,v,u-v$, neu khong phai tat ca deu chan thi nhat dinh co hai so le va mot so chan, nen trong sau nghiem nguyen tren nhat dinh co hai nghiem toan le va bon nghiem mot le mot chan. Dieu nay cho thay khi $n$ le, chi co $\dfrac13$ so nghiem nguyen cua phuong trinh $u^2-uv+v^2=n$ la toan le, va chi khi do chung moi tuong ung voi nghiem nguyen cua $x^2+3y^2=n$. Vi vay khi $n$ le, so nghiem nguyen cua $x^2+3y^2=n$ la $\dfrac13f(n)$.
+Vì trong ba số nguyên $u,v,u-v$, nếu không phải tất cả đều chẵn thì nhất định có
+hai số lẻ và một số chẵn, nên trong sáu nghiệm nguyên trên nhất định có hai
+nghiệm toàn lẻ và bốn nghiệm một lẻ một chẵn. Điều này cho thấy khi $n$ lẻ, chỉ
+có $\dfrac13$ số nghiệm nguyên của phương trình $u^2-uv+v^2=n$ là toàn lẻ, và
+chỉ khi đó chúng mới tương ứng với nghiệm nguyên của $x^2+3y^2=n$. Vì vậy, khi
+$n$ lẻ, số nghiệm nguyên của $x^2+3y^2=n$ là $\dfrac13f(n)$.
 
-Cuoi cung, tuong tu cach giai phuong trinh Pythagoras, co the dung so nguyen Eisenstein de giai cac phuong trinh vo dinh sau:
+Cuối cùng, tương tự cách giải phương trình Pythagoras, có thể dùng số nguyên
+Eisenstein để giải các phương trình vô định sau:
 
 $$
 x^2-xy+y^2=z^2
@@ -596,10 +637,11 @@ $$
 x^2+3y^2=z^3
 $$
 
-Nghiem tong quat cua chung khong duoc trinh bay them o day. Phuong phap tuong tu cung co the dung de chung minh $x^3+y^3=z^3$ vo nghiem.
+Nghiệm tổng quát của chúng không được trình bày thêm ở đây. Phương pháp tương
+tự cũng có thể dùng để chứng minh $x^3+y^3=z^3$ vô nghiệm.
 
 <span id="&#x53c2;&#x8003;&#x6587;&#x732e;&#x4e0e;&#x6ce8;&#x91ca;"></span>
-## Tai lieu tham khao va chu thich
+## Tài liệu tham khảo và chú thích
 
 -   [Quadratic field - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_field)
 -   [Quadratic integer - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
@@ -611,4 +653,10 @@ Nghiem tong quat cua chung khong duoc trinh bay them o day. Phuong phap tuong tu
 -   [Franz Lemmermeyer's Notes on Ideals in Quadratic Number Fields](http://www.fen.bilkent.edu.tr/~franz/ant/ant02.pdf)
 -   [J.S. Milne - Algebraic Number Theory](https://www.jmilne.org/math/CourseNotes/ANT301.pdf)
 
-[^omega]: Chu y rang cach chon $\omega$ o day khac voi cach chon o tren. Theo quy uoc, khi thao luan vanh so nguyen bac hai tong quat, thuong quy dinh $\omega=(1+\sqrt{d})/2$ (khi $d\equiv 1\pmod4$), con voi vanh so nguyen Eisenstein lai thuong quy dinh $\omega=(-1+\sqrt{-3})/2$. Khac biet nay khong co anh huong ban chat nao, nhung co the lam thay doi hinh thuc cua mot so bieu thuc. Chu y khong nen viet vanh so nguyen Eisenstein thanh $\mathbf Z[\sqrt{-3}]$.
+[^omega]: Chú ý rằng cách chọn $\omega$ ở đây khác với cách chọn ở trên. Theo
+    quy ước, khi thảo luận vành số nguyên bậc hai tổng quát, thường quy định
+    $\omega=(1+\sqrt{d})/2$ (khi $d\equiv 1\pmod4$), còn với vành số nguyên
+    Eisenstein lại thường quy định $\omega=(-1+\sqrt{-3})/2$. Khác biệt này
+    không có ảnh hưởng bản chất nào, nhưng có thể làm thay đổi hình thức của
+    một số biểu thức. Chú ý không nên viết vành số nguyên Eisenstein thành
+    $\mathbf Z[\sqrt{-3}]$.
