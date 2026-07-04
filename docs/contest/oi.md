@@ -63,7 +63,7 @@ Cả hai vòng thi đều đánh giá chứng nhận kết quả của thí sinh
 
 ### NOIP
 
-**NOIP** (tiếng Anh: National Olympiad in Informatics in Provinces, tiếng Trung: 全国青少年信息学奥林匹克联赛) là cuộc thi tin học do Cộng hòa Nhân dân Trung Hoa tổ chức, dành cho học sinh trung học ở Trung Quốc (bao gồm Hồng Kông và Ma Cao).
+**NOIP** (tiếng Anh: National Olympiad in Informatics in Provinces, tiếng Trung: Liên đoàn Olympic Tin học Thanh thiếu niên Toàn quốc) là cuộc thi tin học do Cộng hòa Nhân dân Trung Hoa tổ chức, dành cho học sinh trung học ở Trung Quốc (bao gồm Hồng Kông và Ma Cao).
 
 Thể thức cũ từ năm 2018 trở về trước: NOIP chia theo đối tượng dự thi thành nhóm phổ cập và nhóm nâng cao; năm 2018 thí điểm nhóm nhập môn tại Thượng Hải; chia theo giai đoạn thành vòng sơ khảo và vòng phúc khảo. Vòng sơ khảo kiểm tra một số kiến thức cơ bản về máy tính và nền tảng thuật toán, còn vòng phúc khảo là thi trên máy. Về thời gian, thường diễn ra vào cuối tuần thứ hai của tháng 11: sáng thứ Bảy, nhóm nâng cao bài thi thứ nhất từ 8:30-12:00 (3,5 giờ, tổng cộng 3 bài); chiều từ 14:30-18:00 là nhóm phổ cập (3,5 giờ, tổng cộng 4 bài); sáng Chủ nhật, nhóm nâng cao bài thi thứ hai từ 8:30-12:00 (3,5 giờ, tổng cộng 3 bài). Cả nước dùng chung một bộ đề, nhưng quy tắc trao giải do CCF (China Computer Federation) quy định thống nhất theo tình hình từng tỉnh, và được công bố trên [trang web chính thức của NOI](http://www.noi.cn) sau cuộc thi. Điểm chuẩn giải nhất của các tỉnh có khác nhau đôi chút.
 
@@ -78,7 +78,7 @@ NOIP [bị CCF tạm dừng](http://www.noi.cn/xw/2019-08-16/715365.shtml) vào 
 
 NOIP xếp hạng và trao giải theo đơn vị tỉnh. Tính đến năm 2019, ở phần lớn trường đại học, thí sinh đạt giải nhất cấp tỉnh nhóm nâng cao có thể nhận tư cách tuyển sinh tự chủ.
 
-> Tháng 1 năm 2020, Bộ Giáo dục Cộng hòa Nhân dân Trung Hoa ban hành [Ý kiến về việc triển khai thí điểm cải cách tuyển sinh các ngành khoa học cơ bản tại một số trường đại học](http://www.moe.gov.cn/srcsite/A15/moe_776/s3258/202001/t20200115_415589.html). Văn bản nêu rằng từ năm 2020 sẽ không còn tổ chức công tác tuyển sinh tự chủ ở các trường đại học, đồng thời triển khai thí điểm cải cách tuyển sinh các ngành khoa học cơ bản tại một số trường đại học xây dựng đại học hạng nhất (强基计划).
+> Tháng 1 năm 2020, Bộ Giáo dục Cộng hòa Nhân dân Trung Hoa ban hành [Ý kiến về việc triển khai thí điểm cải cách tuyển sinh các ngành khoa học cơ bản tại một số trường đại học](http://www.moe.gov.cn/srcsite/A15/moe_776/s3258/202001/t20200115_415589.html). Văn bản nêu rằng từ năm 2020 sẽ không còn tổ chức công tác tuyển sinh tự chủ ở các trường đại học, đồng thời triển khai thí điểm cải cách tuyển sinh các ngành khoa học cơ bản tại một số trường đại học xây dựng đại học hạng nhất (Kế hoạch Cường cơ).
 
 ### Vòng tuyển chọn đội tuyển cấp tỉnh
 
@@ -92,7 +92,7 @@ Từ năm 2020, vòng tuyển đội tuyển tỉnh NOI do CCF thống nhất ra
 
 ### NOI
 
-**NOI** (tiếng Anh: National Olympiad in Informatics, tiếng Trung: 全国信息学奥林匹克竞赛) là cuộc thi cấp cao nhất trong nước dành cho các đội đại diện cấp tỉnh, bao gồm cả Hồng Kông và Ma Cao.
+**NOI** (tiếng Anh: National Olympiad in Informatics, tiếng Trung: Olympic Tin học Toàn quốc) là cuộc thi cấp cao nhất trong nước dành cho các đội đại diện cấp tỉnh, bao gồm cả Hồng Kông và Ma Cao.
 
 NOI thường được tổ chức vào tháng 7, thí sinh được chia thành hai loại: thí sinh chính thức và thí sinh trại hè. Thí sinh chính thức lại chia thành ba loại, trong đó loại A, B là thí sinh chính thức của đội tuyển tỉnh, loại C là thí sinh được mời. Loại A, B tương ứng với thí sinh loại A, B của đội tuyển tỉnh (trong đó loại A được cộng 5 điểm khi tính thành tích); loại C trên danh nghĩa là suất thưởng sau khi trường có đóng góp nổi bật cho CCF. Thí sinh trại hè chia thành loại D, E, lần lượt tương ứng với thí sinh nhóm trung học phổ thông và trung học cơ sở tham gia với tư cách không chính thức. Nếu thí sinh trại hè có thành tích vượt điểm chuẩn, họ chỉ có giấy chứng nhận thành tích chứ không có huy chương (với cùng mức điểm thì giá trị thấp hơn đôi chút). 50 thí sinh chính thức đứng đầu tạo thành đội tuyển tập huấn quốc gia và nhận tư cách tuyển thẳng.
 
@@ -100,25 +100,25 @@ Trên các nền tảng quốc tế, để phân biệt với các cuộc thi kh
 
 ### CTT
 
-**CTT** (tiếng Anh: China Team Training, tiếng Trung: 国际信息学奥林匹克国家集训队培训) là hoạt động tập huấn và tuyển chọn tổ chức mỗi mùa đông cho thí sinh đội tuyển tập huấn quốc gia IOI, gồm 3-4 bài kiểm tra. Ngoài đội tuyển tập huấn quốc gia, một số thí sinh đạt thành tích xuất sắc trong NOI năm đó cũng có thể tham gia CTT dưới danh nghĩa "tập huấn tinh anh".
+**CTT** (tiếng Anh: China Team Training, tiếng Trung: Tập huấn đội tuyển quốc gia Olympic Tin học Quốc tế) là hoạt động tập huấn và tuyển chọn tổ chức mỗi mùa đông cho thí sinh đội tuyển tập huấn quốc gia IOI, gồm 3-4 bài kiểm tra. Ngoài đội tuyển tập huấn quốc gia, một số thí sinh đạt thành tích xuất sắc trong NOI năm đó cũng có thể tham gia CTT dưới danh nghĩa "tập huấn tinh anh".
 
 CTT cùng với bài tập thường kỳ và các quy trình khác tạo thành giai đoạn thứ nhất của tuyển chọn đội tuyển quốc gia. Từ năm 2021, 30 thí sinh đứng đầu ở giai đoạn thứ nhất sẽ trở thành đội dự tuyển quốc gia và bước vào giai đoạn tuyển chọn thứ hai (WC).
 
 ### WC
 
-**WC** (tiếng Anh: Winter Camp, tiếng Trung: 全国青少年信息学奥林匹克竞赛冬令营) là một hoạt động được tổ chức vào mỗi mùa đông tại địa điểm đăng cai NOI của năm đó. Dù hoạt động này chủ yếu dùng cho tập huấn đội tuyển và tuyển chọn đội tuyển quốc gia, các thí sinh đạt thành tích khá tốt ở NOIP và vòng hai CSP-S năm trước cũng có thể tham gia với tư cách trại viên không chính thức.
+**WC** (tiếng Anh: Winter Camp, tiếng Trung: Trại đông Olympic Tin học Thanh thiếu niên Toàn quốc) là một hoạt động được tổ chức vào mỗi mùa đông tại địa điểm đăng cai NOI của năm đó. Dù hoạt động này chủ yếu dùng cho tập huấn đội tuyển và tuyển chọn đội tuyển quốc gia, các thí sinh đạt thành tích khá tốt ở NOIP và vòng hai CSP-S năm trước cũng có thể tham gia với tư cách trại viên không chính thức.
 
 Nội dung WC gồm nhiều ngày tập huấn và kiểm tra; điểm kiểm tra sẽ được tổng hợp với thành tích của các giai đoạn trước để tính ra xếp hạng tổng hợp của thí sinh đội tuyển tập huấn. Trước năm 2020, chỉ có một bài kiểm tra, và đề kiểm tra của đội tuyển tập huấn giống đề của trại viên không chính thức; 15 thí sinh đứng đầu thành tích tổng hợp của đội tuyển tập huấn sẽ trở thành đội dự tuyển quốc gia, tham gia giai đoạn tuyển chọn cuối cùng (CTS, v.v.). Từ năm 2021, khi chức năng tuyển chọn đội tuyển quốc gia của CTS được gộp vào WC, bài kiểm tra của đội dự tuyển quốc gia chuyển thành hai buổi, còn trại viên không chính thức vẫn thi một buổi, và đề của trại viên không chính thức có một phần trùng với đề của đội dự tuyển. 6 thí sinh đứng đầu xếp hạng tổng hợp trong đội dự tuyển sẽ bước vào phỏng vấn cuối cùng, từ đó chọn ra 4 thí sinh chính thức và 2 thí sinh dự bị tham gia IOI năm đó.
 
 ### APIO
 
-**APIO** (tiếng Anh: Asia-Pacific Informatics Olympiad, tiếng Trung: 亚太地区信息学奥林匹克竞赛) là một cuộc thi môn tin học dành cho học sinh trung học đang học tại khu vực châu Á - Thái Bình Dương. Hằng năm CCF tổ chức cuộc thi mirror cho khu vực Trung Quốc vào đầu tháng 5. Xung quanh ngày thi sẽ có các hoạt động tập huấn.
+**APIO** (tiếng Anh: Asia-Pacific Informatics Olympiad, tiếng Trung: Olympic Tin học Châu Á - Thái Bình Dương) là một cuộc thi môn tin học dành cho học sinh trung học đang học tại khu vực châu Á - Thái Bình Dương. Hằng năm CCF tổ chức cuộc thi mirror cho khu vực Trung Quốc vào đầu tháng 5. Xung quanh ngày thi sẽ có các hoạt động tập huấn.
 
 Thí sinh APIO có thể chia thành loại A và loại B; sáu thí sinh đứng đầu loại A (bao gồm đồng hạng) có thể tham gia xét giải quốc tế của APIO, còn thí sinh loại B chỉ có thể tham gia xét giải của khu vực Trung Quốc.
 
 ### CTS
 
-**CTS** (tên cũ: CTSC, tiếng Anh: China Team Selection Competition, tiếng Trung: 国际信息学奥林匹克竞赛中国队选拔赛) dùng để chọn đội tuyển quốc gia (6 người) từ đội dự tuyển quốc gia (15 người), chuẩn bị tham gia IOI vào mùa hè năm đó; trong đó có 4 thí sinh chính thức và 2 thí sinh dự bị. Tương tự WC, thí sinh có thành tích khá tốt ở NOIP năm trước cũng có thể tham gia (không tham gia tuyển chọn).
+**CTS** (tên cũ: CTSC, tiếng Anh: China Team Selection Competition, tiếng Trung: Kỳ tuyển chọn đội tuyển Trung Quốc tham dự Olympic Tin học Quốc tế) dùng để chọn đội tuyển quốc gia (6 người) từ đội dự tuyển quốc gia (15 người), chuẩn bị tham gia IOI vào mùa hè năm đó; trong đó có 4 thí sinh chính thức và 2 thí sinh dự bị. Tương tự WC, thí sinh có thành tích khá tốt ở NOIP năm trước cũng có thể tham gia (không tham gia tuyển chọn).
 
 APIO và CTS đều đăng ký theo đơn vị tỉnh, thường dựa trên thứ hạng thành tích NOIP để xác định người tham gia APIO và CTS (hai kỳ này thường diễn ra rất gần nhau về thời gian).
 
@@ -126,7 +126,7 @@ CTS năm 2020 bị dừng vì dịch bệnh; đội tuyển tập huấn quốc 
 
 ### IOI
 
-**IOI** (tiếng Anh: International Olympiad in Informatics, tiếng Trung: 国际信息学奥林匹克竞赛) là cuộc thi môn tin học hằng năm dành cho học sinh trung học trên toàn thế giới. Mỗi quốc gia có bốn người tham gia; cuộc thi thường có phát trực tiếp. Trong thể thức IOI, mỗi bài có các Subtask (bài con), mỗi Subtask tương ứng với một số điểm nhất định.
+**IOI** (tiếng Anh: International Olympiad in Informatics, tiếng Trung: Olympic Tin học Quốc tế) là cuộc thi môn tin học hằng năm dành cho học sinh trung học trên toàn thế giới. Mỗi quốc gia có bốn người tham gia; cuộc thi thường có phát trực tiếp. Trong thể thức IOI, mỗi bài có các Subtask (bài con), mỗi Subtask tương ứng với một số điểm nhất định.
 
 ### Trại học thuật
 
@@ -195,14 +195,14 @@ Luogu, BZOJ và LibreOJ đều có một lượng nhỏ bài COCI.
 
 Trang web chính thức: <https://www.ioi-jp.org/>
 
-JOI (tiếng Nhật: 日本情報オリンピック, tiếng Trung: 日本信息学奥赛) cung cấp đề bài, dữ liệu, lời giải và mã chuẩn cho tất cả bài. Trong hai năm gần đây, JOI Final và JOI Spring Camp cung cấp đề tiếng Anh, nhưng không có lời giải tiếng Anh. JOI Open qua các năm đều cung cấp phiên bản đề bài và lời giải bằng tiếng Anh.
+JOI (tiếng Nhật: Japanese Olympiad in Informatics, tiếng Trung: Olympic Tin học Nhật Bản) cung cấp đề bài, dữ liệu, lời giải và mã chuẩn cho tất cả bài. Trong hai năm gần đây, JOI Final và JOI Spring Camp cung cấp đề tiếng Anh, nhưng không có lời giải tiếng Anh. JOI Open qua các năm đều cung cấp phiên bản đề bài và lời giải bằng tiếng Anh.
 
 Quy trình JOI:
 
--   Vòng sơ tuyển (予選)
--   Chung kết (本選/JOI Final)
--   Trại tập huấn mùa xuân (春季トレーニング合宿/JOI Spring Camp/JOISC)
--   Cuộc thi mở (通信教育/JOI Open Contest)
+-   Vòng sơ tuyển (Yosen)
+-   Chung kết (Honsen/JOI Final)
+-   Trại tập huấn mùa xuân (JOI Spring Camp/JOISC)
+-   Cuộc thi mở (JOI Open Contest)
 
 Vòng sơ tuyển có độ khó thấp; từ mùa 2019/2020, vòng sơ tuyển được chia thành nhiều vòng. Độ khó của JOI Final khoảng từ Nâng cao - đến Nâng cao +. Độ khó các bài của JOISC và JOI Open dao động từ Nâng cao đến NOI -.
 
@@ -216,7 +216,7 @@ Trang web chính thức: <http://neerc.ifmo.ru/school/archive/index.html>
 
 Địa chỉ nộp trực tuyến: <https://contest.yandex.ru/roiarchive/> và Codeforces (một phần).
 
-ROI (tiếng Nga: олимпиадная информатика, tiếng Trung: 俄罗斯信息学奥赛) là cuộc thi tin học của Nga.
+ROI (tiếng Nga: олимпиадная информатика, tiếng Trung: Olympic Tin học Nga) là cuộc thi tin học của Nga.
 
 Quy trình:
 
@@ -256,15 +256,15 @@ Tên đầy đủ là Singapore National Olympiad in Informatics; trong ngữ c�
 
 Hiện nay các OJ trong nước Trung Quốc thu thập bài NOI SG còn khá ít; có thể tìm đề bài, dữ liệu kiểm thử và chương trình chuẩn chính thức qua các năm trên [tài khoản GitHub chính thức](https://github.com/noisg).
 
-### Khu vực Đài Loan: 資訊奧林匹亞競賽
+### Khu vực Đài Loan: Olympic Tin học
 
-Khu vực Đài Loan dịch "informatics" trong OI là "資訊" thay vì cách dịch "信息" thông dụng ở đại lục.
+Khu vực Đài Loan dùng cách dịch "tin học" theo thuật ngữ tiếng Hoa phồn thể của Đài Loan, khác với cách dùng thông dụng ở Trung Quốc đại lục.
 
 Thí sinh ở khu vực Đài Loan nếu muốn tham gia IOI cần trải qua các vòng thi sau:
 
--   區域資訊學科能力競賽
--   全國資訊學科能力競賽
--   資訊研習營（TOI）
+-   Kỳ thi năng lực môn Tin học khu vực
+-   Kỳ thi năng lực môn Tin học toàn quốc
+-   Trại nghiên cứu Tin học (TOI)
 
 ### Các quốc gia khác
 
@@ -312,7 +312,7 @@ eJOI công khai đề bài, dữ liệu kiểm thử và lời giải hằng nă
 ### NOI
 
 ???+ warning "Warning"
-    Phần này không giới thiệu "全国信息学奥林匹克竞赛".
+    Phần này không giới thiệu "National Olympiad in Informatics" của Trung Quốc.
 
 **NOI** có tên đầy đủ là Nordic Olympiads in Informatics.
 

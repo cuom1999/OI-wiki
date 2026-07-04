@@ -410,6 +410,8 @@ MkDocs source layout intact.
 - Residual visible contest problem/resource labels were translated or normalized
   while preserving URLs, compatibility anchors, donor names, and official source
   identifiers.
+- Official contest names and stage labels in `docs/contest/oi.md` were
+  normalized into Vietnamese/romanized forms where needed.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
