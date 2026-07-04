@@ -1,46 +1,50 @@
-## 描述
+<span id="&#25551;&#36848;"></span>
+## Mô tả
 
-给定一个长度为 $n$ 的字符串 $s$，请找到所有对 $(i, j)$ 使得子串 $s[i \dots j]$ 为一个回文串．当 $t = t_{\text{rev}}$ 时，字符串 $t$ 是一个回文串（$t_{\text{rev}}$ 是 $t$ 的反转字符串）．
+Cho một xâu $s$ có độ dài $n$, hãy tìm mọi cặp $(i, j)$ sao cho xâu con $s[i \dots j]$ là một xâu đối xứng. Một xâu $t$ là xâu đối xứng khi $t = t_{\text{rev}}$, trong đó $t_{\text{rev}}$ là xâu đảo ngược của $t$.
 
-## 解释
+<span id="&#35299;&#37322;"></span>
+## Giải thích
 
-显然在最坏情况下可能有 $O(n^2)$ 个回文串，因此似乎一眼看过去该问题并没有线性算法．
+Rõ ràng trong trường hợp xấu nhất có thể có $O(n^2)$ xâu đối xứng, nên thoạt nhìn bài toán dường như không có thuật toán tuyến tính.
 
-但是关于回文串的信息可用 **一种更紧凑的方式** 表达：对于每个位置 $i = 0 \dots n - 1$，我们找出值 $d_1[i]$ 和 $d_2[i]$．二者分别表示以位置 $i$ 为中心的长度为奇数和长度为偶数的回文串个数．换个角度，二者也表示了以位置 $i$ 为中心的最长回文串的半径长度（半径长度 $d_1[i]$，$d_2[i]$ 均为从位置 $i$ 到回文串最右端位置包含的字符个数）．
+Tuy nhiên thông tin về các xâu đối xứng có thể được biểu diễn bằng **một cách gọn hơn**: với mỗi vị trí $i = 0 \dots n - 1$, ta tìm hai giá trị $d_1[i]$ và $d_2[i]$. Chúng lần lượt biểu thị số xâu đối xứng độ dài lẻ và độ dài chẵn có tâm tại vị trí $i$. Nhìn theo cách khác, chúng cũng biểu thị bán kính của xâu đối xứng dài nhất có tâm tại $i$ (bán kính $d_1[i]$, $d_2[i]$ đều là số ký tự tính từ vị trí $i$ đến đầu phải của xâu đối xứng, có tính cả ký tự đầu phải).
 
-举例来说，字符串 $s = \mathtt{abababc}$ 以 $s[3] = b$ 为中心有三个奇数长度的回文串，最长回文串半径为 $3$，也即 $d_1[3] = 3$：
+Ví dụ, xâu $s = \mathtt{abababc}$ có ba xâu đối xứng độ dài lẻ với tâm tại $s[3] = b$; xâu đối xứng dài nhất có bán kính $3$, tức $d_1[3] = 3$:
 
 $$
 a\ \overbrace{b\ a\ \underset{s_3}{b}\ a\ b}^{d_1[3]=3}\ c
 $$
 
-字符串 $s = \mathtt{cbaabd}$ 以 $s[3] = a$ 为中心有两个偶数长度的回文串，最长回文串半径为 $2$，也即 $d_2[3] = 2$：
+Xâu $s = \mathtt{cbaabd}$ có hai xâu đối xứng độ dài chẵn với tâm tại $s[3] = a$; xâu đối xứng dài nhất có bán kính $2$, tức $d_2[3] = 2$:
 
 $$
 c\ \overbrace{b\ a\ \underset{s_3}{a}\ b}^{d_2[3]=2}\ d
 $$
 
-因此关键思路是，如果以某个位置 $i$ 为中心，我们有一个长度为 $l$ 的回文串，那么我们有以 $i$ 为中心的长度为 $l - 2$，$l - 4$，等等的回文串．所以 $d_1[i]$ 和 $d_2[i]$ 两个数组已经足够表示字符串中所有子回文串的信息．
+Vì vậy ý tưởng then chốt là: nếu có một xâu đối xứng độ dài $l$ với tâm tại vị trí $i$, thì cũng có các xâu đối xứng cùng tâm có độ dài $l-2$, $l-4$, v.v. Do đó hai mảng $d_1[i]$ và $d_2[i]$ đã đủ để biểu diễn thông tin về mọi xâu con đối xứng trong xâu.
 
-一个令人惊讶的事实是，存在一个复杂度为线性并且足够简单的算法计算上述两个「回文性质数组」$d_1[]$ 和 $d_2[]$．在这篇文章中我们将详细的描述该算法．
+Một sự thật đáng chú ý là tồn tại một thuật toán tuyến tính và khá đơn giản để tính hai "mảng tính chất đối xứng" $d_1[]$ và $d_2[]$ nói trên. Bài viết này mô tả chi tiết thuật toán đó.
 
-## 解法
+<span id="&#35299;&#27861;"></span>
+## Cách giải
 
-总的来说，该问题具有多种解法：应用字符串哈希，该问题可在 $O(n \log n)$ 时间内解决，而使用后缀数组和快速 LCA 该问题可在 $O(n)$ 时间内解决．
+Nhìn chung, bài toán này có nhiều cách giải: dùng hash xâu có thể giải trong $O(n \log n)$, còn dùng mảng hậu tố và LCA nhanh có thể giải trong $O(n)$.
 
-但是这里描述的算法 **压倒性** 的简单，并且在时间和空间复杂度上具有更小的常数．该算法由 **Glenn K. Manacher** 在 1975 年提出．
+Tuy nhiên thuật toán mô tả ở đây **đơn giản hơn hẳn**, đồng thời có hằng số nhỏ hơn về cả thời gian lẫn bộ nhớ. Thuật toán này do **Glenn K. Manacher** đề xuất năm 1975.
 
-## 朴素算法
+<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+## Thuật toán đơn giản
 
-为了避免在之后的叙述中出现歧义，这里我们指出什么是「朴素算法」．
+Để tránh mơ hồ trong phần sau, trước hết nêu rõ "thuật toán đơn giản" là gì.
 
-该算法通过下述方式工作：对每个中心位置 $i$，在比较一对对应字符后，只要可能，该算法便尝试将答案加 $1$．
+Thuật toán này làm việc như sau: với mỗi vị trí tâm $i$, sau khi so sánh một cặp ký tự tương ứng, nếu còn có thể mở rộng thì tăng đáp án thêm $1$.
 
-该算法是比较慢的：它只能在 $O(n^2)$ 的时间内计算答案．
+Thuật toán này chậm: nó chỉ tính được đáp án trong thời gian $O(n^2)$.
 
-该朴素算法的实现如下：
+Cài đặt thuật toán đơn giản như sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
         vector<int> d1(n), d2(n);
@@ -72,21 +76,23 @@ $$
                 d2[i] += 1
         ```
 
-## Manacher 算法
+<span id="Manacher-&#31639;&#27861;"></span>
+## Thuật toán Manacher
 
-这里我们将只描述算法中寻找所有奇数长度子回文串的情况，即只计算 $d_1[]$；寻找所有偶数长度子回文串的算法（即计算数组 $d_2[]$）将只需对奇数情况下的算法进行一些小修改．
+Ở đây chỉ mô tả trường hợp tìm mọi xâu con đối xứng có độ dài lẻ, tức chỉ tính $d_1[]$; thuật toán tìm mọi xâu con đối xứng độ dài chẵn (tức tính mảng $d_2[]$) chỉ cần sửa một chút từ trường hợp lẻ.
 
-为了快速计算，我们维护已找到的最靠右的子回文串的 **边界 $[l, r]$**（即具有最大 $r$ 值的回文串，其中 $l$ 和 $r$ 分别为该回文串左右边界的位置）．初始时，我们置 $l = 0$ 和 $r = -1$（*-1*需区别于倒序索引位置，这里可为任意负数，仅为了循环初始时方便）．
+Để tính nhanh, ta duy trì **biên $[l, r]$** của xâu con đối xứng đã tìm được có đầu phải xa nhất (tức xâu đối xứng có giá trị $r$ lớn nhất, trong đó $l$ và $r$ lần lượt là vị trí biên trái và biên phải của xâu đối xứng đó). Ban đầu đặt $l = 0$ và $r = -1$ (`-1` ở đây cần phân biệt với chỉ số đảo ngược; chỉ cần là một số âm bất kỳ để thuận tiện khi khởi tạo vòng lặp).
 
-### 过程
+<span id="&#36807;&#31243;"></span>
+### Quy trình
 
-现在假设我们要对下一个 $i$ 计算 $d_1[i]$，而之前所有 $d_1[]$ 中的值已计算完毕．我们将通过下列方式计算：
+Giả sử cần tính $d_1[i]$ cho vị trí tiếp theo $i$, và mọi giá trị trước đó của $d_1[]$ đã được tính. Ta tính như sau:
 
--   如果 $i$ 位于当前子回文串之外，即 $i > r$，那么我们调用朴素算法．
+-   Nếu $i$ nằm ngoài xâu con đối xứng hiện tại, tức $i > r$, ta gọi thuật toán đơn giản.
 
-    因此我们将连续地增加 $d_1[i]$，同时在每一步中检查当前的子串 $[i - d_1[i] \dots i + d_1[i]]$（$d_1[i]$ 表示半径长度，下同）是否为一个回文串．如果我们找到了第一处对应字符不同，又或者碰到了 $s$ 的边界，则算法停止．在两种情况下我们均已计算完 $d_1[i]$．此后，仍需记得更新 $(l, r)$．
+    Khi đó liên tục tăng $d_1[i]$, đồng thời ở mỗi bước kiểm tra xâu con hiện tại $[i - d_1[i] \dots i + d_1[i]]$ ($d_1[i]$ biểu thị bán kính, dưới đây cũng vậy) có phải xâu đối xứng hay không. Nếu gặp cặp ký tự đầu tiên khác nhau, hoặc chạm biên của $s$, thuật toán dừng. Trong cả hai trường hợp, $d_1[i]$ đã được tính xong. Sau đó vẫn cần nhớ cập nhật $(l, r)$.
 
--   现在考虑 $i \le r$ 的情况．我们将尝试从已计算过的 $d_1[]$ 的值中获取一些信息．首先在子回文串 $(l, r)$ 中反转位置 $i$，即我们得到 $j = l + (r - i)$．现在来考察值 $d_1[j]$．因为位置 $j$ 同位置 $i$ 对称，我们 **几乎总是** 可以置 $d_1[i] = d_1[j]$．该想法的图示如下（可认为以 $j$ 为中心的回文串被「拷贝」至以 $i$ 为中心的位置上）：
+-   Bây giờ xét trường hợp $i \le r$. Ta sẽ cố gắng lấy một phần thông tin từ các giá trị $d_1[]$ đã tính. Trước hết phản chiếu vị trí $i$ trong xâu con đối xứng $(l, r)$, thu được $j = l + (r - i)$. Xét giá trị $d_1[j]$. Vì vị trí $j$ đối xứng với vị trí $i$, ta **gần như luôn** có thể đặt $d_1[i] = d_1[j]$. Ý tưởng được minh họa như sau (có thể hiểu là xâu đối xứng tâm $j$ được "sao chép" sang vị trí tâm $i$):
 
     $$
     \ldots\
@@ -104,11 +110,11 @@ $$
     \ldots
     $$
 
-    然而有一个 **棘手的情况** 需要被正确处理：当「内部」的回文串到达「外部」回文串的边界时，即 $j - d_1[j] + 1 \le l$（或者等价的说，$i + d_1[j] - 1 \ge r$）．因为在「外部」回文串范围以外的对称性没有保证，因此直接置 $d_1[i] = d_1[j]$ 将是不正确的：我们没有足够的信息来断言在位置 $i$ 的回文串具有同样的长度．
+    Tuy nhiên có một **trường hợp khó** cần xử lý đúng: khi xâu đối xứng "bên trong" chạm biên của xâu đối xứng "bên ngoài", tức $j - d_1[j] + 1 \le l$ (hoặc tương đương $i + d_1[j] - 1 \ge r$). Vì tính đối xứng ngoài phạm vi xâu đối xứng "bên ngoài" không được bảo đảm, đặt thẳng $d_1[i] = d_1[j]$ là không đúng: ta không có đủ thông tin để khẳng định xâu đối xứng tại vị trí $i$ có cùng độ dài.
 
-    实际上，为了正确处理这种情况，我们应该「截断」回文串的长度，即置 $d_1[i] = r - i + 1$．之后我们将运行朴素算法以尝试尽可能增加 $d_1[i]$ 的值．
+    Thực tế, để xử lý đúng trường hợp này, cần "cắt ngắn" độ dài xâu đối xứng, tức đặt $d_1[i] = r - i + 1$. Sau đó chạy thuật toán đơn giản để cố gắng tăng $d_1[i]$ nhiều nhất có thể.
 
-    该种情况的图示如下（以 $j$ 为中心的回文串已经被截断以落在「外部」回文串内）：
+    Trường hợp này được minh họa như sau (xâu đối xứng tâm $j$ đã bị cắt ngắn để nằm trong xâu đối xứng "bên ngoài"):
 
     $$
     \ldots\
@@ -126,27 +132,30 @@ $$
     }_\text{try moving here}
     $$
 
-    该图示显示出，尽管以 $j$ 为中心的回文串可能更长，以致于超出「外部」回文串，但在位置 $i$，我们只能利用其完全落在「外部」回文串内的部分．然而位置 $i$ 的答案可能比这个值更大，因此接下来我们将运行朴素算法来尝试将其扩展至「外部」回文串之外，也即标识为 "try moving here" 的区域．
+    Hình này cho thấy dù xâu đối xứng tâm $j$ có thể dài hơn và vượt ra ngoài xâu đối xứng "bên ngoài", tại vị trí $i$ ta chỉ có thể dùng phần hoàn toàn nằm trong xâu đối xứng "bên ngoài". Tuy nhiên đáp án tại vị trí $i$ có thể lớn hơn giá trị này, nên tiếp theo ta chạy thuật toán đơn giản để thử mở rộng ra ngoài xâu đối xứng "bên ngoài", tức vùng được đánh dấu "try moving here".
 
-最后，仍有必要提醒的是，我们应当记得在计算完每个 $d_1[i]$ 后更新值 $(l, r)$．
+Cuối cùng, cần nhắc lại rằng sau khi tính xong mỗi $d_1[i]$, phải nhớ cập nhật $(l, r)$.
 
-同时，再让我们重复一遍：计算偶数长度回文串数组 $d_2[]$ 的算法同上述计算奇数长度回文串数组 $d_1[]$ 的算法十分类似．
+Đồng thời, nhắc lại một lần nữa: thuật toán tính mảng xâu đối xứng độ dài chẵn $d_2[]$ rất giống với thuật toán tính mảng xâu đối xứng độ dài lẻ $d_1[]$ ở trên.
 
-## Manacher 算法的复杂度
+<span id="Manacher-&#31639;&#27861;&#30340;&#22797;&#26434;&#24230;"></span>
+## Độ phức tạp của thuật toán Manacher
 
-因为在计算一个特定位置的答案时我们总会运行朴素算法，所以一眼看去该算法的时间复杂度为线性的事实并不显然．
+Vì khi tính đáp án cho một vị trí cụ thể ta luôn chạy thuật toán đơn giản, thoạt nhìn không hiển nhiên rằng thuật toán có thời gian tuyến tính.
 
-然而更仔细的分析显示出该算法具有线性复杂度．此处我们需要指出，[计算 Z 函数的算法](./z-func.md) 和该算法较为类似，并同样具有线性时间复杂度．
+Tuy nhiên phân tích kỹ hơn cho thấy thuật toán có độ phức tạp tuyến tính. Cần lưu ý rằng [thuật toán tính hàm Z](./z-func.md) khá giống thuật toán này và cũng có độ phức tạp thời gian tuyến tính.
 
-实际上，注意到朴素算法的每次迭代均会使 $r$ 增加 $1$，以及 $r$ 在算法运行过程中从不减小．这两个观察告诉我们朴素算法总共会进行 $O(n)$ 次迭代．
+Thực tế, mỗi lần lặp của thuật toán đơn giản đều làm $r$ tăng thêm $1$, và $r$ không bao giờ giảm trong quá trình thuật toán chạy. Hai quan sát này cho thấy thuật toán đơn giản chỉ thực hiện tổng cộng $O(n)$ lần lặp.
 
-Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n)$．
+Phần còn lại của thuật toán Manacher hiển nhiên cũng tuyến tính, nên tổng độ phức tạp là $O(n)$.
 
-## Manacher 算法的实现
+<span id="Manacher-&#31639;&#27861;&#30340;&#23454;&#29616;"></span>
+## Cài đặt thuật toán Manacher
 
-### 分类讨论
+<span id="&#20998;&#31867;&#35752;&#35770;"></span>
+### Tách hai trường hợp
 
-为了计算 $d_1[]$，我们有以下代码：
+Để tính $d_1[]$, ta có đoạn mã sau:
 
 === "C++"
     ```cpp
@@ -179,7 +188,7 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
             r = i + k
     ```
 
-计算 $d_2[]$ 的代码十分类似，但是在算术表达式上有些许不同：
+Mã tính $d_2[]$ rất giống, chỉ khác một chút trong các biểu thức số học:
 
 === "C++"
     ```cpp
@@ -212,24 +221,26 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
             r = i + k
     ```
 
-### 统一处理
+<span id="&#32479;&#19968;&#22788;&#29702;"></span>
+### Xử lý thống nhất
 
-虽然在讲解过程及上述实现中我们将 $d_1[]$ 和 $d_2[]$ 的计算分开考虑，但实际上可以通过一个技巧将二者的计算统一为 $d_1[]$ 的计算．
+Mặc dù trong phần giải thích và cài đặt ở trên ta tách riêng việc tính $d_1[]$ và $d_2[]$, trên thực tế có thể dùng một mẹo để quy cả hai về việc tính $d_1[]$.
 
-给定一个长度为 $n$ 的字符串 $s$，我们在其 $n + 1$ 个空中插入分隔符 $\#$，从而构造一个长度为 $2n + 1$ 的字符串 $s'$．举例来说，对于字符串 $s = \mathtt{abababc}$，其对应的 $s' = \mathtt{\#a\#b\#a\#b\#a\#b\#c\#}$．
+Cho một xâu $s$ có độ dài $n$, chèn ký tự phân tách $\#$ vào $n+1$ khoảng trống của nó để xây một xâu $s'$ có độ dài $2n+1$. Ví dụ, với xâu $s = \mathtt{abababc}$, xâu tương ứng là $s' = \mathtt{\#a\#b\#a\#b\#a\#b\#c\#}$.
 
-对于字母间的 $\#$，其实际意义为 $s$ 中对应的「空」．而两端的 $\#$ 则是为了实现的方便．
+Ký tự $\#$ giữa các chữ cái có ý nghĩa là "khoảng trống" tương ứng trong $s$. Hai ký tự $\#$ ở hai đầu dùng để thuận tiện khi cài đặt.
 
-注意到，在对 $s'$ 计算 $d_1[]$ 后，对于一个位置 $i$，$d_1[i]$ 所描述的最长的子回文串必定以 $\#$ 结尾（若以字母结尾，由于字母两侧必定各有一个 $\#$，因此可向外扩展一个得到一个更长的）．因此，对于 $s$ 中一个以字母为中心的极大子回文串，设其长度为 $m + 1$，则其在 $s'$ 中对应一个以相应字母为中心，长度为 $2m + 3$ 的极大子回文串；而对于 $s$ 中一个以空为中心的极大子回文串，设其长度为 $m$，则其在 $s'$ 中对应一个以相应表示空的 $\#$ 为中心，长度为 $2m + 1$ 的极大子回文串（上述两种情况下的 $m$ 均为偶数，但该性质成立与否并不影响结论）．综合以上观察及少许计算后易得，在 $s'$ 中，$d_1[i]$ 表示在 $s$ 中以对应位置为中心的极大子回文串的 **总长度加一**．
+Chú ý rằng sau khi tính $d_1[]$ cho $s'$, với một vị trí $i$, xâu con đối xứng dài nhất mà $d_1[i]$ mô tả nhất định kết thúc bằng $\#$ (nếu kết thúc bằng chữ cái, vì hai bên chữ cái đều có một $\#$, nó có thể mở rộng thêm một bước để dài hơn). Do đó, với một xâu con đối xứng cực đại trong $s$ có tâm là chữ cái và độ dài $m+1$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là chữ cái tương ứng và độ dài $2m+3$; còn với một xâu con đối xứng cực đại trong $s$ có tâm là khoảng trống và độ dài $m$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là ký tự $\#$ biểu diễn khoảng trống đó và độ dài $2m+1$ (trong cả hai trường hợp, $m$ đều là số chẵn, nhưng tính chất này không ảnh hưởng đến kết luận). Kết hợp các quan sát trên với một chút tính toán, ta được rằng trong $s'$, $d_1[i]$ biểu thị **tổng độ dài cộng một** của xâu con đối xứng cực đại trong $s$ có tâm tại vị trí tương ứng.
 
-上述结论建立了 $s'$ 的 $d_1[]$ 同 $s$ 的 $d_1[]$ 和 $d_2[]$ 间的关系．
+Kết luận trên thiết lập quan hệ giữa $d_1[]$ của $s'$ với $d_1[]$ và $d_2[]$ của $s$.
 
-由于该统一处理本质上即求 $s'$ 的 $d_1[]$，因此在得到 $s'$ 后，代码同上节计算 $d_1[]$ 的一样．
+Vì cách xử lý thống nhất này về bản chất là tính $d_1[]$ của $s'$, nên sau khi có $s'$, mã giống hệt phần tính $d_1[]$ ở trên.
 
-## 练习题目
+<span id="&#32451;&#20064;&#39064;&#30446;"></span>
+## Bài tập
 
 -   [UVa #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
--   [「国家集训队」最长双回文串](https://www.luogu.com.cn/problem/P4555)
+-   [[Đội tuyển quốc gia] Xâu đối xứng kép dài nhất](https://www.luogu.com.cn/problem/P4555)
 -   [CF1326D2. Labyrinth](https://codeforces.com/contest/1326/problem/D2)
 
-**本页面主要译自博文 [Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count) 与其英文翻译版 [Finding all sub-palindromes in $O(N)$](https://cp-algorithms.com/string/manacher.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+**Trang này chủ yếu được dịch từ bài viết [Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count) và bản dịch tiếng Anh [Finding all sub-palindromes in $O(N)$](https://cp-algorithms.com/string/manacher.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**

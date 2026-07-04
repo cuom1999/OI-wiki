@@ -215,7 +215,7 @@ nav:
     - Hậu tố tự động tổng quát: string/general-sam.md
     - Cây hậu tố: string/suffix-tree.md
     - Manacher: string/manacher.md
-    - 回文树: string/pam.md
+    - Cây đối xứng: string/pam.md
     - Sequence automaton: string/seq-automaton.md
     - Biểu diễn nhỏ nhất: string/minimal-string.md
     - Phân tích Lyndon: string/lyndon.md

@@ -97,8 +97,10 @@ MkDocs source layout intact.
   `docs/string/lyndon.md`, `docs/string/main-lorentz.md`: translated
   Boyer-Moore, suffix-array and suffix-structure pages, sequence automata,
   minimal representation, Lyndon decomposition, and Main-Lorentz material,
-  plus explanatory comments in their included snippets. `docs/string/sam.md`,
-  `docs/string/manacher.md`, and `docs/string/pam.md` remain to be translated.
+  plus explanatory comments in their included snippets.
+- `docs/string/sam.md`, `docs/string/manacher.md`, `docs/string/pam.md`:
+  translated the remaining suffix automaton, Manacher, and palindromic-tree
+  pages, plus explanatory comments in the palindromic-tree snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

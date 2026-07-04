@@ -1,106 +1,120 @@
 author: GoodCoder666, abc1763613206, ksyx
 
-## 一些记号
+<span id="&#x4E00;&#x4E9B;&#x8BB0;&#x53F7;"></span>
 
--   $\Sigma$：字符集．字符集大小 $|\Sigma| = k$．
--   $s$：字符串．字符串长 $|s| = n$，标号自 $0$ 开始．
--   $t_0$：初始状态．
--   $\operatorname{endpos}(t)$：字符串 $s$ 中子串 $t$ 的结束位置的集合．
--   $\operatorname{link}(v)$：状态 $v$ 的后缀链接．
--   $\operatorname{len}(v)$：状态 $v$ 对应的最长子串的长度．
--   $\operatorname{longest}(v)$：状态 $v$ 对应的最长子串．
--   $\operatorname{minlen}(v)$：状态 $v$ 对应的最短子串的长度．
--   $\operatorname{shortest}(v)$：状态 $v$ 对应的最短子串．
+## Một số ký hiệu
 
-## 后缀自动机概述
+-   $\Sigma$: bảng chữ cái. Kích thước bảng chữ cái là $|\Sigma| = k$.
+-   $s$: xâu. Độ dài xâu là $|s| = n$, chỉ số bắt đầu từ $0$.
+-   $t_0$: trạng thái ban đầu.
+-   $\operatorname{endpos}(t)$: tập các vị trí kết thúc của xâu con $t$ trong xâu $s$.
+-   $\operatorname{link}(v)$: liên kết hậu tố của trạng thái $v$.
+-   $\operatorname{len}(v)$: độ dài xâu con dài nhất ứng với trạng thái $v$.
+-   $\operatorname{longest}(v)$: xâu con dài nhất ứng với trạng thái $v$.
+-   $\operatorname{minlen}(v)$: độ dài xâu con ngắn nhất ứng với trạng thái $v$.
+-   $\operatorname{shortest}(v)$: xâu con ngắn nhất ứng với trạng thái $v$.
 
-**后缀自动机**（suffix automaton, SAM）是一个能解决许多字符串相关问题的有力的数据结构．
+<span id="&#x540E;&#x7F00;&#x81EA;&#x52A8;&#x673A;&#x6982;&#x8FF0;"></span>
 
-举个例子，以下的字符串问题都可以在线性时间内通过 SAM 解决：
+## Tổng quan về suffix automaton
 
--   在另一个字符串中搜索一个字符串的所有出现位置；
--   计算给定的字符串中有多少个不同的子串．
+**Suffix automaton** (SAM) là một cấu trúc dữ liệu mạnh, có thể giải quyết nhiều bài toán liên quan đến xâu.
 
-直观上，字符串的 SAM 可以理解为给定字符串的 **所有子串** 的压缩形式．值得注意的事实是，SAM 将所有的这些信息以高度压缩的形式储存．对于一个长度为 $n$ 的字符串，它的空间复杂度仅为 $O(n)$．而且，构造 SAM 的时间复杂度也仅为 $O(n)$．准确地说，一个 SAM 最多有 $2n-1$ 个结点和 $3n-4$ 条转移边．
+Ví dụ, các bài toán xâu sau đều có thể được giải bằng SAM trong thời gian tuyến tính:
 
-## 定义
+-   Tìm mọi lần xuất hiện của một xâu trong một xâu khác;
+-   Đếm số xâu con phân biệt trong một xâu cho trước.
 
-字符串 $s$ 的 SAM 是一个接受 $s$ 的所有后缀的最小 [DFA](../misc/fsm.md#确定性有限状态自动机)．
+Về trực giác, SAM của một xâu có thể được hiểu là dạng nén của **tất cả xâu con** của xâu đó. Điểm đáng chú ý là SAM lưu toàn bộ thông tin này dưới dạng nén rất cao. Với một xâu độ dài $n$, độ phức tạp bộ nhớ chỉ là $O(n)$. Hơn nữa, SAM cũng có thể được xây dựng trong $O(n)$. Chính xác hơn, một SAM có nhiều nhất $2n-1$ đỉnh và $3n-4$ cạnh chuyển.
 
-换句话说：
+<span id="&#x5B9A;&#x4E49;"></span>
 
--   SAM 是一张有向无环图．结点被称作 **状态**，边被称作状态间的 **转移**．
--   图存在一个源点 $t_0$，称作 **初始状态**，其它各结点均可从 $t_0$ 出发到达．
--   每个 **转移** 都标有某个字符．从一个结点出发的所有转移均 **不同**．
--   存在一个或多个 **终止状态**．如果我们从初始状态 $t_0$ 出发，最终转移到了一个终止状态，则路径上的所有转移的标号连接起来一定是字符串 $s$ 的一个后缀．反过来，$s$ 的每个后缀均可用一条从 $t_0$ 到某个终止状态的路径构成．
--   在所有满足上述条件的自动机中，SAM 的结点数是最少的．
+## Định nghĩa
 
-SAM 的关键恰在于这个最小性．实际上，直接对字符串 $s$ 的所有后缀建立 [AC 自动机](./ac-automaton.md) 同样可以得到一个接受 $s$ 的所有后缀的 DFA．但是，最差情况下，这样得到的自动机有 $\Theta(n^2)$ 个结点，复杂度难以接受．从下面的例子可以看出，对所有后缀建立 AC 自动机得到的 DFA 中很多结点是重复的，因而可以合并．SAM 正是将结点的合并做到了极致，故而将得到的 DFA 的规模控制在 $O(n)$．从这个意义上，SAM 是字符串的全体后缀的「压缩」的 AC 自动机．
+SAM của xâu $s$ là [DFA](../misc/fsm.md#%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA) nhỏ nhất chấp nhận tất cả các hậu tố của $s$.
 
-### 子串和路径
+Nói cách khác:
 
-SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所有子串的信息．任意从初始状态 $t_0$ 开始的路径，如果我们将路径上的所有转移的标号写下来，都会形成 $s$ 的一个 **子串**．反之，每个 $s$ 的子串都对应从 $t_0$ 开始的某条路径．
+-   SAM là một đồ thị có hướng không chu trình. Các đỉnh được gọi là **trạng thái**, các cạnh được gọi là **chuyển trạng thái**.
+-   Đồ thị có một đỉnh nguồn $t_0$, gọi là **trạng thái ban đầu**; mọi đỉnh khác đều có thể đi tới được từ $t_0$.
+-   Mỗi **chuyển trạng thái** được gán nhãn bằng một ký tự. Mọi chuyển trạng thái xuất phát từ cùng một đỉnh có nhãn **khác nhau**.
+-   Có một hoặc nhiều **trạng thái kết thúc**. Nếu ta bắt đầu từ trạng thái ban đầu $t_0$ và cuối cùng chuyển tới một trạng thái kết thúc, thì chuỗi nhãn của các chuyển trạng thái trên đường đi chắc chắn là một hậu tố của xâu $s$. Ngược lại, mỗi hậu tố của $s$ đều có thể được tạo bởi một đường đi từ $t_0$ tới một trạng thái kết thúc nào đó.
+-   Trong tất cả các automaton thỏa các điều kiện trên, SAM có số đỉnh nhỏ nhất.
 
-为了简化表达，我们称子串 **对应** 这条（从 $t_0$ 出发且它上面所有转移的标号构成这个子串的）路径．反过来，我们说任意一条路径都 **对应** 它的标号构成的字符串．
+Điểm cốt lõi của SAM chính là tính nhỏ nhất này. Thực ra, nếu trực tiếp xây [AC automaton](./ac-automaton.md) cho tất cả hậu tố của xâu $s$, ta cũng thu được một DFA chấp nhận tất cả hậu tố của $s$. Nhưng trong trường hợp xấu nhất, automaton đó có $\Theta(n^2)$ đỉnh, nên độ phức tạp không chấp nhận được. Từ ví dụ bên dưới có thể thấy DFA nhận được khi xây AC automaton cho mọi hậu tố có nhiều đỉnh trùng lặp và có thể gộp lại. SAM đẩy việc gộp đỉnh đến mức tối đa, nhờ đó kích thước DFA thu được được khống chế ở $O(n)$. Theo nghĩa này, SAM là AC automaton "nén" của toàn bộ các hậu tố của xâu.
 
-到达某个状态的路径可能不止一条，因此我们说一个状态对应一些字符串的集合，这个集合中的字符串分别对应着这些路径．
+<span id="&#x5B50;&#x4E32;&#x548C;&#x8DEF;&#x5F84;"></span>
 
-### 简单例子
+### Xâu con và đường đi
 
-我们将会在这里展示一些简单的字符串的后缀自动机．
+Tính chất đơn giản nhất và cũng quan trọng nhất của SAM là nó chứa thông tin về mọi xâu con của xâu $s$. Với bất kỳ đường đi nào bắt đầu từ trạng thái ban đầu $t_0$, nếu viết ra nhãn của tất cả chuyển trạng thái trên đường đi, ta luôn thu được một **xâu con** của $s$. Ngược lại, mỗi xâu con của $s$ đều ứng với một đường đi nào đó bắt đầu từ $t_0$.
 
-我们用蓝色表示初始状态，用绿色表示终止状态．
+Để diễn đạt ngắn gọn, ta nói xâu con **ứng với** đường đi này, tức đường đi bắt đầu từ $t_0$ và chuỗi nhãn trên nó tạo thành xâu con đó. Ngược lại, ta nói một đường đi bất kỳ **ứng với** xâu tạo bởi các nhãn của nó.
 
-对于字符串 $s=\varnothing$：
+Có thể có nhiều hơn một đường đi đi tới cùng một trạng thái, vì vậy ta nói một trạng thái ứng với một tập các xâu; các xâu trong tập lần lượt ứng với các đường đi đó.
+
+<span id="&#x7B80;&#x5355;&#x4F8B;&#x5B50;"></span>
+
+### Ví dụ đơn giản
+
+Ở đây ta trình bày suffix automaton của một vài xâu đơn giản.
+
+Ta dùng màu xanh lam cho trạng thái ban đầu và màu xanh lục cho trạng thái kết thúc.
+
+Với xâu $s=\varnothing$:
 
 ![](./images/SAM/SA.svg)
 
-对于字符串 $s=\texttt{a}$：
+Với xâu $s=\texttt{a}$:
 
 ![](./images/SAM/SAa.svg)
 
-对于字符串 $s=\texttt{aa}$：
+Với xâu $s=\texttt{aa}$:
 
 ![](./images/SAM/SAaa.svg)
 
-对于字符串 $s=\texttt{ab}$：
+Với xâu $s=\texttt{ab}$:
 
 ![](./images/SAM/SAab.svg)
 
-对于字符串 $s=\texttt{abb}$：
+Với xâu $s=\texttt{abb}$:
 
 ![](./images/SAM/SAabb.svg)
 
-对于字符串 $s=\texttt{abbb}$：
+Với xâu $s=\texttt{abbb}$:
 
 ![](./images/SAM/SAabbb.svg)
 
-在最后这个例子中可以看到，如果直接建立它的所有后缀的 AC 自动机，路径 $\texttt{bbb}$ 和路径 $\texttt{abbb}$ 应当导向不同的结点，但是这两个结点都是终止状态，且无论再添加任何字符，都不会得到更长的匹配串，这说明两个结点在自动机的转移上表现出同样的性质，因而可以合并成同一个结点．这样就得到了如图所示的 SAM．下面的讨论会将合并结点这一想法拓展到所有的情形，并说明，只要合理地合并结点，最后得到的 SAM 只有 $O(n)$ 个结点和转移．
+Trong ví dụ cuối cùng, nếu trực tiếp xây AC automaton cho tất cả hậu tố của nó, đường đi $\texttt{bbb}$ và đường đi $\texttt{abbb}$ đáng ra sẽ dẫn tới hai đỉnh khác nhau. Tuy nhiên hai đỉnh này đều là trạng thái kết thúc, và dù thêm bất kỳ ký tự nào nữa cũng không thể nhận được một xâu khớp dài hơn. Điều đó cho thấy hai đỉnh này có hành vi chuyển trạng thái giống nhau trong automaton, nên có thể gộp thành cùng một đỉnh. Khi đó ta thu được SAM như hình. Phần thảo luận bên dưới sẽ mở rộng ý tưởng gộp đỉnh này cho mọi trường hợp và chứng minh rằng, nếu gộp đỉnh hợp lý, SAM cuối cùng chỉ có $O(n)$ đỉnh và chuyển trạng thái.
 
-## 线性复杂度的构造算法
+<span id="&#x7EBF;&#x6027;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x6784;&#x9020;&#x7B97;&#x6CD5;"></span>
 
-在我们描述线性时间内构造 SAM 的算法之前，我们需要引入两个对理解构造过程非常重要的概念，并对其性质进行简单证明．其中，结束位置 $\operatorname{endpos}$ 定义了 SAM 中的结点（亦即指出了结点可以合并的充要条件），而后缀链接 $\operatorname{link}$ 不过是 AC 自动机中的 [失配指针](./ac-automaton.md#失配指针) 在 SAM 中的自然对应．
+## Thuật toán xây dựng tuyến tính
 
-### 结束位置 `endpos`
+Trước khi mô tả thuật toán xây SAM trong thời gian tuyến tính, ta cần giới thiệu hai khái niệm rất quan trọng để hiểu quá trình xây dựng, đồng thời chứng minh ngắn gọn các tính chất của chúng. Trong đó, tập vị trí kết thúc $\operatorname{endpos}$ định nghĩa các đỉnh trong SAM, tức chỉ ra điều kiện cần và đủ để gộp các đỉnh; còn liên kết hậu tố $\operatorname{link}$ chỉ là đối ứng tự nhiên trong SAM của [con trỏ thất bại](./ac-automaton.md#%E5%A4%B1%E9%85%8D%E6%8C%87%E9%92%88) trong AC automaton.
 
-考虑字符串 $s$ 的任意非空子串 $t$，我们记 $\operatorname{endpos}(t)$ 为在字符串 $s$ 中 $t$ 的所有结束位置的集合（假设对字符串中字符的编号从零开始）．例如，对于字符串 $\texttt{abcbc}$，我们有 $\operatorname{endpos}(\texttt{bc})=\{2,4\}$．
+<span id="&#x7ED3;&#x675F;&#x4F4D;&#x7F6E;-endpos"></span>
 
-两个子串 $t_1$ 与 $t_2$ 的结束位置可能完全相同：$\operatorname{endpos}(t_1)=\operatorname{endpos}(t_2)$．这定义了字符串 $s$ 的子串之间的等价关系．字符串 $s$ 的所有非空子串可以根据它们的结束位置集合 $\operatorname{endpos}$ 分为若干 **等价类**．
+### Tập vị trí kết thúc `endpos`
 
-一个事实是，每个这样的等价类都对应 SAM 的一个状态[^state-endpos]．也就是说，只要两个子串的结束位置相同，它们在 SAM 中的路径就对应着同一个状态．换句话说，SAM 中的每个非初始状态都对应一个或多个 $\operatorname{endpos}$ 相同的非空子串．总之，SAM 中的状态就是所有非空子串的等价类，再加上初始状态．
+Xét một xâu con không rỗng bất kỳ $t$ của xâu $s$. Ta ký hiệu $\operatorname{endpos}(t)$ là tập tất cả vị trí kết thúc của $t$ trong xâu $s$ (giả sử các ký tự trong xâu được đánh số từ không). Ví dụ, với xâu $\texttt{abcbc}$, ta có $\operatorname{endpos}(\texttt{bc})=\{2,4\}$.
 
-暂且接受这个事实，我们将基于它介绍构造 SAM 的算法．我们还将说明，SAM 需要满足的所有性质，除了最小性以外都满足了；而最小性可以由 [Myhill–Nerode 定理](../misc/fsm.md#myhillnerode-定理) 得出．
+Hai xâu con $t_1$ và $t_2$ có thể có tập vị trí kết thúc hoàn toàn giống nhau: $\operatorname{endpos}(t_1)=\operatorname{endpos}(t_2)$. Điều này định nghĩa một quan hệ tương đương trên các xâu con của $s$. Tất cả xâu con không rỗng của $s$ có thể được chia thành nhiều **lớp tương đương** theo tập vị trí kết thúc $\operatorname{endpos}$ của chúng.
 
-由 $\operatorname{endpos}$ 的值我们可以得到一些重要结论，它们解释了同一个状态对应的不同的子串之间的关系．
+Một sự thật là mỗi lớp tương đương như vậy ứng với một trạng thái của SAM[^state-endpos]. Tức là, nếu hai xâu con có cùng vị trí kết thúc, đường đi của chúng trong SAM sẽ ứng với cùng một trạng thái. Nói cách khác, mỗi trạng thái không phải trạng thái ban đầu trong SAM ứng với một hoặc nhiều xâu con không rỗng có cùng $\operatorname{endpos}$. Tóm lại, các trạng thái trong SAM chính là các lớp tương đương của mọi xâu con không rỗng, cộng thêm trạng thái ban đầu.
 
-???+ note "引理 1"
-    字符串 $s$ 的两个非空子串 $u$ 和 $w$（假设 $\left|u\right|\le \left|w\right|$）的 $\operatorname{endpos}$ 相同，当且仅当字符串 $u$ 在 $s$ 中每次出现时，都是以 $w$ 后缀的形式存在的．
+Tạm thời chấp nhận sự thật này, ta sẽ dựa vào nó để giới thiệu thuật toán xây SAM. Ta cũng sẽ chỉ ra rằng mọi tính chất mà SAM cần thỏa, ngoại trừ tính nhỏ nhất, đều đã được thỏa mãn; còn tính nhỏ nhất có thể suy ra từ [định lý Myhill-Nerode](../misc/fsm.md#myhillnerode-%E5%AE%9A%E7%90%86).
 
-??? note "证明"
-    引理显然成立．如果 $u$ 和 $w$ 的 $\operatorname{endpos}$ 相同，则 $u$ 是 $w$ 的一个后缀，且在 $s$ 中只以 $w$ 的后缀的形式出现．反过来，根据定义，如果 $u$ 为 $w$ 的一个后缀，且只以 $w$ 的后缀的形式在 $s$ 中出现，那么两个子串的 $\operatorname{endpos}$ 相同．
+Từ giá trị của $\operatorname{endpos}$, ta có thể rút ra một số kết luận quan trọng. Chúng giải thích quan hệ giữa các xâu con khác nhau ứng với cùng một trạng thái.
 
-???+ note "引理 2"
-    考虑两个非空子串 $u$ 和 $w$（假设 $\left|u\right|\le \left|w\right|$）．那么，要么 $\operatorname{endpos}(u)\cap \operatorname{endpos}(w)=\varnothing$，要么 $\operatorname{endpos}(w)\subseteq \operatorname{endpos}(u)$，取决于 $u$ 是否为 $w$ 的一个后缀：
+???+ note "Bổ đề 1"
+    Hai xâu con không rỗng $u$ và $w$ của xâu $s$ (giả sử $\left|u\right|\le \left|w\right|$) có cùng $\operatorname{endpos}$ khi và chỉ khi mỗi lần $u$ xuất hiện trong $s$, nó đều xuất hiện dưới dạng một hậu tố của $w$.
+
+??? note "Chứng minh"
+    Bổ đề là hiển nhiên. Nếu $u$ và $w$ có cùng $\operatorname{endpos}$, thì $u$ là một hậu tố của $w$, và trong $s$ nó chỉ xuất hiện dưới dạng hậu tố của $w$. Ngược lại, theo định nghĩa, nếu $u$ là một hậu tố của $w$ và chỉ xuất hiện trong $s$ dưới dạng hậu tố của $w$, thì hai xâu con này có cùng $\operatorname{endpos}$.
+
+???+ note "Bổ đề 2"
+    Xét hai xâu con không rỗng $u$ và $w$ (giả sử $\left|u\right|\le \left|w\right|$). Khi đó, hoặc $\operatorname{endpos}(u)\cap \operatorname{endpos}(w)=\varnothing$, hoặc $\operatorname{endpos}(w)\subseteq \operatorname{endpos}(u)$, tùy theo $u$ có phải là một hậu tố của $w$ hay không:
     
     $$
     \begin{cases}
@@ -109,211 +123,225 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
     \end{cases}
     $$
 
-??? note "证明"
-    如果集合 $\operatorname{endpos}(u)$ 与 $\operatorname{endpos}(w)$ 有至少一个公共元素，那么由于字符串 $u$ 与 $w$ 在相同位置结束，$u$ 是 $w$ 的一个后缀．所以在每次 $w$ 出现的位置，子串 $u$ 也会出现．所以 $\operatorname{endpos}(w)\subseteq \operatorname{endpos}(u)$．
+??? note "Chứng minh"
+    Nếu hai tập $\operatorname{endpos}(u)$ và $\operatorname{endpos}(w)$ có ít nhất một phần tử chung, thì do $u$ và $w$ kết thúc tại cùng một vị trí, $u$ là một hậu tố của $w$. Vì vậy, tại mỗi vị trí mà $w$ xuất hiện, xâu con $u$ cũng xuất hiện. Do đó $\operatorname{endpos}(w)\subseteq \operatorname{endpos}(u)$.
 
-???+ note "引理 3"
-    考虑一个 $\operatorname{endpos}$ 相同的子串等价类，将类中的所有子串按长度非递增的顺序排序．那么，每个子串都不会比它前一个子串长，与此同时每个子串也是它前一个子串的后缀．换句话说，对于同一等价类的任意两子串，较短者为较长者的后缀，且该等价类中的子串长度是连续的，取遍某个区间内的所有整数值．
+???+ note "Bổ đề 3"
+    Xét một lớp tương đương gồm các xâu con có cùng $\operatorname{endpos}$, và sắp xếp mọi xâu con trong lớp theo thứ tự độ dài không tăng. Khi đó, mỗi xâu con không dài hơn xâu đứng trước nó, đồng thời cũng là hậu tố của xâu đứng trước. Nói cách khác, với hai xâu con bất kỳ trong cùng một lớp tương đương, xâu ngắn hơn là hậu tố của xâu dài hơn; độ dài các xâu con trong lớp là liên tiếp và lấy đủ mọi giá trị nguyên trong một đoạn nào đó.
 
-??? note "证明"
-    如果等价类中只包含一个子串，引理显然成立．现在我们来讨论子串元素个数大于 $1$ 的等价类．
+??? note "Chứng minh"
+    Nếu lớp tương đương chỉ chứa một xâu con, bổ đề là hiển nhiên. Bây giờ xét lớp tương đương có nhiều hơn $1$ xâu con.
     
-    由引理 1，$\operatorname{endpos}$ 相同的两个不同字符串中，必定一长一短，且较短者总是较长者的真后缀．也就是说，等价类中没有等长的字符串．
+    Theo Bổ đề 1, trong hai xâu khác nhau có cùng $\operatorname{endpos}$, chắc chắn một xâu dài hơn, một xâu ngắn hơn, và xâu ngắn hơn luôn là hậu tố thực sự của xâu dài hơn. Tức là trong cùng một lớp tương đương không có hai xâu cùng độ dài.
     
-    记 $w$ 为等价类中最长的字符串，$u$ 为等价类中最短的字符串．由引理 1，字符串 $u$ 是字符串 $w$ 的真后缀．现在考虑长度在区间 $[\left|u\right|,\left|w\right|]$ 中的 $w$ 的任意后缀．容易看出，这个后缀也在同一等价类中，因为这个后缀只能在字符串 $s$ 中以 $w$ 的一个后缀的形式存在（这是因为较短的后缀 $u$ 在 $s$ 中只以 $w$ 的后缀的形式存在）．因此，由引理 1，这个后缀和字符串 $w$ 的 $\operatorname{endpos}$ 相同．
+    Gọi $w$ là xâu dài nhất trong lớp tương đương, và $u$ là xâu ngắn nhất. Theo Bổ đề 1, xâu $u$ là hậu tố thực sự của xâu $w$. Bây giờ xét một hậu tố bất kỳ của $w$ có độ dài thuộc đoạn $[\left|u\right|,\left|w\right|]$. Dễ thấy hậu tố này cũng thuộc cùng lớp tương đương, vì nó chỉ có thể xuất hiện trong xâu $s$ dưới dạng một hậu tố của $w$ (do hậu tố ngắn hơn $u$ trong $s$ chỉ xuất hiện dưới dạng hậu tố của $w$). Vì vậy, theo Bổ đề 1, hậu tố này và xâu $w$ có cùng $\operatorname{endpos}$.
 
-一句话概括，同一个状态对应的子串的长度各不相同，而且是连续的若干自然数，其中较短的总是较长的子串的后缀．
+Tóm lại trong một câu: các xâu con ứng với cùng một trạng thái có độ dài đôi một khác nhau, tạo thành một số tự nhiên liên tiếp, và xâu ngắn hơn luôn là hậu tố của xâu dài hơn.
 
-### 后缀链接 `link`
+<span id="&#x540E;&#x7F00;&#x94FE;&#x63A5;-link"></span>
 
-考虑 SAM 中某个状态 $v\neq t_0$．我们已经知道，状态 $v$ 对应于具有相同 $\operatorname{endpos}$ 的子串等价类．我们如果定义 $w$ 为这些字符串中最长的一个，则所有其它的字符串都是 $w$ 的后缀．
+### Liên kết hậu tố `link`
 
-我们还知道字符串 $w$ 的前几个后缀（按长度降序考虑）全部包含于这个等价类，且其它后缀（至少有一个——空后缀）在别的等价类中．我们记 $t$ 为其它后缀中最长的，然后将 $v$ 的后缀链接连到 $t$ 上．
+Xét một trạng thái $v\neq t_0$ trong SAM. Ta đã biết trạng thái $v$ ứng với một lớp tương đương các xâu con có cùng $\operatorname{endpos}$. Nếu định nghĩa $w$ là xâu dài nhất trong các xâu này, thì mọi xâu còn lại đều là hậu tố của $w$.
 
-换句话说，$v$ 的 **后缀链接** $\operatorname{link}(v)$ 连接到的状态，对应于 $w$ 的后缀中与它的 $\operatorname{endpos}$ 集合不同且最长的那个，也是 $w$ 的后缀中在 $s$ 中的出现次数比 $w$ 更多且最长的那个．
+Ta cũng biết vài hậu tố đầu tiên của $w$ (xét theo thứ tự độ dài giảm dần) đều thuộc lớp tương đương này, còn các hậu tố khác (ít nhất có hậu tố rỗng) thuộc các lớp tương đương khác. Gọi $t$ là hậu tố dài nhất trong các hậu tố khác đó, rồi nối liên kết hậu tố của $v$ tới trạng thái của $t$.
 
-为方便讨论，我们规定初始状态 $t_0$ 对应的等价类，只包含一个空字符串，而且 $\operatorname{endpos}(t_0)=\{-1,0,\ldots,\left|S\right|-1\}$．
+Nói cách khác, **liên kết hậu tố** $\operatorname{link}(v)$ của $v$ trỏ tới trạng thái ứng với hậu tố dài nhất của $w$ có tập $\operatorname{endpos}$ khác với $w$; đó cũng là hậu tố dài nhất của $w$ xuất hiện trong $s$ nhiều lần hơn $w$.
 
-???+ note "引理 4"
-    所有后缀链接构成一棵根节点为 $t_0$ 的树．
+Để tiện thảo luận, ta quy ước lớp tương đương ứng với trạng thái ban đầu $t_0$ chỉ chứa xâu rỗng, và $\operatorname{endpos}(t_0)=\{-1,0,\ldots,\left|S\right|-1\}$.
 
-??? note "证明"
-    考虑任意状态 $v\neq t_0$，后缀链接 $\operatorname{link}(v)$ 连接到的状态对应于严格更短的字符串（后缀链接的定义、引理 3）．因此，沿后缀链接移动，我们总是能到达对应空串的初始状态 $t_0$．
+???+ note "Bổ đề 4"
+    Tất cả liên kết hậu tố tạo thành một cây có gốc là $t_0$.
 
-???+ note "引理 5"
-    以 $\operatorname{endpos}$ 集合为结点、集合的包含关系作为边，这样构造的树（即每个子节点的 $\operatorname{endpos}$ 集合都包含在父节点的 $\operatorname{endpos}$ 集合中）与通过后缀链接 $\operatorname{link}$ 构造的树相同．
+??? note "Chứng minh"
+    Xét trạng thái bất kỳ $v\neq t_0$. Trạng thái mà liên kết hậu tố $\operatorname{link}(v)$ trỏ tới ứng với một xâu ngắn hơn nghiêm ngặt (theo định nghĩa liên kết hậu tố và Bổ đề 3). Vì vậy, khi đi theo các liên kết hậu tố, ta luôn có thể tới trạng thái ban đầu $t_0$ ứng với xâu rỗng.
 
-??? note "证明"
-    由引理 2，任意一个 SAM 的 $\operatorname{endpos}$ 集合形成了一棵树（因为两个集合要么完全没有交集要么其中一个是另一个的子集）．
+???+ note "Bổ đề 5"
+    Cây được xây bằng cách lấy các tập $\operatorname{endpos}$ làm đỉnh và quan hệ bao hàm giữa các tập làm cạnh (tức tập $\operatorname{endpos}$ của mỗi nút con nằm trong tập $\operatorname{endpos}$ của nút cha) trùng với cây được xây bởi các liên kết hậu tố $\operatorname{link}$.
+
+??? note "Chứng minh"
+    Theo Bổ đề 2, các tập $\operatorname{endpos}$ của một SAM bất kỳ tạo thành một cây, vì hai tập hoặc hoàn toàn không giao nhau, hoặc một tập là con của tập kia.
     
-    我们现在考虑任意状态 $v\neq t_0$ 及后缀链接 $\operatorname{link}(v)$，由后缀链接和引理 2，我们可以得到
+    Bây giờ xét một trạng thái bất kỳ $v\neq t_0$ và liên kết hậu tố $\operatorname{link}(v)$. Từ liên kết hậu tố và Bổ đề 2, ta có
     
     $$
     \operatorname{endpos}(v)\subsetneq \operatorname{endpos}(\operatorname{link}(v)).
     $$
     
-    注意这里应该是 $\subsetneq$ 而不是 $\subseteq$，因为若 $\operatorname{endpos}(v)=\operatorname{endpos}(\operatorname{link}(v))$，那么 $v$ 和 $\operatorname{link}(v)$ 应该被合并为一个结点．
+    Lưu ý ở đây phải là $\subsetneq$ chứ không phải $\subseteq$, vì nếu $\operatorname{endpos}(v)=\operatorname{endpos}(\operatorname{link}(v))$, thì $v$ và $\operatorname{link}(v)$ lẽ ra phải được gộp thành cùng một đỉnh.
 
-结合前面的引理有：后缀链接构成的树本质上是 $\operatorname{endpos}$ 集合构成的一棵树．
+Kết hợp các bổ đề trước, ta có: cây tạo bởi các liên kết hậu tố về bản chất là cây tạo bởi các tập $\operatorname{endpos}$.
 
-以下是对字符串 $\texttt{abcbc}$ 构造 SAM 时产生的后缀链接树的一个 **例子**，结点被标记为对应等价类中最长的子串．
+Dưới đây là một **ví dụ** về cây liên kết hậu tố sinh ra khi xây SAM cho xâu $\texttt{abcbc}$; mỗi đỉnh được gắn nhãn bằng xâu con dài nhất trong lớp tương đương tương ứng.
 
 ![](./images/SAM/SA_suffix_links.svg)
 
-结合图示，如果能够形成一些对于后缀自动机的认识，将对下文理解其构造算法和应用都有所帮助．
+Kết hợp với hình minh họa, nếu hình thành được một số trực giác về suffix automaton thì việc hiểu thuật toán xây dựng và các ứng dụng bên dưới sẽ dễ hơn.
 
-???+ example "对图示的解释"
-    -   SAM 上存在一条最长的路径，其标号恰好为字符串 $\texttt{abcbc}$ 本身．该路径从初始状态开始，经过的每个状态都对应着字符串 $\texttt{abcbc}$ 的前缀（$\varnothing,\texttt{a},\texttt{ab},\texttt{abc},\texttt{abcb},\texttt{abcbc}$）．这些状态在后续 [应用](#后缀链接树) 中至关重要．
-    -   后缀链接树可以看做是将这些「前缀状态」沿着后缀链接移动到根节点（即初始状态）的路径「压缩」得到．
+???+ example "Giải thích hình minh họa"
+    -   Trên SAM tồn tại một đường đi dài nhất có nhãn đúng bằng chính xâu $\texttt{abcbc}$. Đường đi này bắt đầu từ trạng thái ban đầu; mỗi trạng thái đi qua đều ứng với một tiền tố của xâu $\texttt{abcbc}$ ($\varnothing,\texttt{a},\texttt{ab},\texttt{abc},\texttt{abcb},\texttt{abcbc}$). Các trạng thái này rất quan trọng trong phần [ứng dụng](#%E5%90%8E%E7%BC%80%E9%93%BE%E6%8E%A5%E6%A0%91) phía sau.
+    -   Có thể xem cây liên kết hậu tố là kết quả "nén" các đường đi từ những "trạng thái tiền tố" này về gốc (tức trạng thái ban đầu) theo liên kết hậu tố.
     
-        -   沿着每条路径，结点对应的字符串集合构成了相应的前缀的所有后缀的分划．例如，标记为 $\texttt{abcbc}$ 的状态沿着后缀链接移动到根节点的路径为 $\texttt{abcbc}\rightarrow\texttt{bc}\rightarrow\varnothing$．其中，结点 $\texttt{abcbc}$ 实际对应着字符串集合 $\{\texttt{abcbc},\texttt{bcbc},\texttt{cbc}\}$，结点 $\texttt{bc}$ 实际对应着字符串集合 $\{\texttt{bc},\texttt{c}\}$，结点 $\varnothing$ 就对应空字符串．
-        -   不同的路径可能共用同一个结点，这就是为什么会有「压缩」．例如，路径 $\texttt{abc}\rightarrow\texttt{bc}\rightarrow\varnothing$ 和路径 $\texttt{abcbc}\rightarrow\texttt{bc}\rightarrow\varnothing$ 共用了结点 $\texttt{bc}$．这是因为 $\operatorname{endpos}(\texttt{bc})=\{2,4\}$，而结束在位置 $2$ 的字符串 $\texttt{bc}$ 前紧接着字符 $\texttt{a}$ 而结束在位置 $4$ 的字符串 $\texttt{bc}$ 前紧接着字符 $\texttt{c}$，因此，当在前方添加字符（即逆着后缀链接移动）时，结束位置集合（即状态）会分裂．
-        -   后缀链接树只需要将这些后缀路径合理地「压缩」在一起即可，而不需要考虑别的结点．这是因为，所有子串都是某个前缀的后缀，故而必然出现在某个这样的路径中．后文的构造算法本质上就是逐个添加字符，并为每个新增加的前缀，构造这样一条后缀路径，并使其合理地「压缩」到之前已有的路径中（即不重复构造已经存在的状态和转移）．
-        -   终止状态恰为字符串 $\texttt{abcbc}$ 本身所在的后缀路径上的所有结点．
-    -   到达同一个状态的转移必然具有相同的标号，而且这些转移的起点一定是位于后缀链接树上的某条（连续的）路径．比如，转移到状态 $\texttt{abcb}$ 的状态就有两个：$\texttt{abc}$ 和 $\texttt{bc}$．它们位于后缀树上的路径 $\texttt{abc}\rightarrow\texttt{bc}$ 上．注意，它们分别对应于字符串集合 $\{\texttt{abc}\}$ 和 $\{\texttt{bc},\texttt{c}\}$，这些字符串在后面添加字符 $\texttt{b}$，就得到状态 $\texttt{abcb}$ 对应的字符串集合 $\{\texttt{abcb},\texttt{bcb},\texttt{cb}\}$．
+        -   Dọc theo mỗi đường đi, các tập xâu ứng với các đỉnh tạo thành một phân hoạch của toàn bộ hậu tố của tiền tố tương ứng. Ví dụ, đường đi theo liên kết hậu tố từ trạng thái gắn nhãn $\texttt{abcbc}$ về gốc là $\texttt{abcbc}\rightarrow\texttt{bc}\rightarrow\varnothing$. Trong đó, đỉnh $\texttt{abcbc}$ thực ra ứng với tập xâu $\{\texttt{abcbc},\texttt{bcbc},\texttt{cbc}\}$, đỉnh $\texttt{bc}$ ứng với tập xâu $\{\texttt{bc},\texttt{c}\}$, và đỉnh $\varnothing$ ứng với xâu rỗng.
+        -   Các đường đi khác nhau có thể dùng chung một đỉnh; đó là lý do có sự "nén". Ví dụ, đường đi $\texttt{abc}\rightarrow\texttt{bc}\rightarrow\varnothing$ và đường đi $\texttt{abcbc}\rightarrow\texttt{bc}\rightarrow\varnothing$ cùng dùng chung đỉnh $\texttt{bc}$. Nguyên nhân là $\operatorname{endpos}(\texttt{bc})=\{2,4\}$; trước xâu $\texttt{bc}$ kết thúc ở vị trí $2$ là ký tự $\texttt{a}$, còn trước xâu $\texttt{bc}$ kết thúc ở vị trí $4$ là ký tự $\texttt{c}$. Vì vậy, khi thêm ký tự ở phía trước (tức đi ngược liên kết hậu tố), tập vị trí kết thúc, tức trạng thái, sẽ tách ra.
+        -   Cây liên kết hậu tố chỉ cần "nén" hợp lý các đường đi hậu tố này lại với nhau, không cần xét các đỉnh khác. Lý do là mọi xâu con đều là hậu tố của một tiền tố nào đó, nên chắc chắn xuất hiện trên một đường đi như vậy. Thuật toán xây dựng bên dưới về bản chất là thêm từng ký tự, rồi với mỗi tiền tố mới, xây một đường đi hậu tố như vậy và "nén" nó hợp lý vào các đường đi đã có, tức không xây lặp trạng thái và chuyển trạng thái đã tồn tại.
+        -   Các trạng thái kết thúc chính là tất cả đỉnh trên đường đi hậu tố chứa chính xâu $\texttt{abcbc}$.
+    -   Các chuyển trạng thái đi tới cùng một trạng thái chắc chắn có cùng nhãn, và các điểm đầu của chúng chắc chắn nằm trên một đoạn đường đi liên tiếp nào đó trong cây liên kết hậu tố. Ví dụ, có hai trạng thái chuyển tới trạng thái $\texttt{abcb}$: $\texttt{abc}$ và $\texttt{bc}$. Chúng nằm trên đường đi $\texttt{abc}\rightarrow\texttt{bc}$ của cây hậu tố. Lưu ý rằng chúng lần lượt ứng với tập xâu $\{\texttt{abc}\}$ và $\{\texttt{bc},\texttt{c}\}$; khi thêm ký tự $\texttt{b}$ vào sau các xâu này, ta thu được tập xâu $\{\texttt{abcb},\texttt{bcb},\texttt{cb}\}$ ứng với trạng thái $\texttt{abcb}$.
     
-        -   添加字符后，不同状态可能转移到同一个状态，是因为新添加的字符使得结束位置的增加更为困难．
-    -   后缀链接树上，每个结点的 $\operatorname{endpos}$ 集合都是其子节点的 $\operatorname{endpos}$ 集合的并集，至多再增加一个位置．而且，这个新位置存在，当且仅当该结点恰好对应着结束在该位置的原字符串的前缀．因为图示中，后缀链接树的非根非叶的结点都不对应着字符串 $\texttt{abcbc}$ 的前缀，所以不存在这种情形．
+        -   Sau khi thêm ký tự, các trạng thái khác nhau có thể chuyển tới cùng một trạng thái vì ký tự mới khiến việc mở rộng tập vị trí kết thúc trở nên khó hơn.
+    -   Trên cây liên kết hậu tố, tập $\operatorname{endpos}$ của mỗi đỉnh là hợp của các tập $\operatorname{endpos}$ của các nút con, nhiều nhất thêm một vị trí nữa. Vị trí mới này tồn tại khi và chỉ khi đỉnh đó đúng là tiền tố của xâu gốc kết thúc tại vị trí ấy. Trong hình minh họa, các đỉnh không phải gốc và không phải lá của cây liên kết hậu tố đều không ứng với tiền tố của xâu $\texttt{abcbc}$, nên trường hợp đó không xảy ra.
 
-后缀自动机中存储着字符串全部子串的信息．这件事可以通过两个角度理解：
+Suffix automaton lưu thông tin về toàn bộ xâu con của xâu. Có thể hiểu điều này từ hai góc nhìn:
 
--   SAM 本身可以看作是字符串全体后缀的 AC 自动机的压缩版本．因此，它存储了字符串的全体后缀的所有前缀的信息，这就相当于存储了字符串全体子串的信息．
--   SAM 的后缀链接树可以看做是字符串全体前缀的后缀路径的压缩版本．因此，它存储了字符串的全体前缀的所有后缀的信息，这也相当于存储了字符串全体子串的信息．
+-   Bản thân SAM có thể được xem là phiên bản nén của AC automaton trên toàn bộ hậu tố của xâu. Vì vậy, nó lưu thông tin về mọi tiền tố của mọi hậu tố, tương đương với lưu thông tin về mọi xâu con của xâu.
+-   Cây liên kết hậu tố của SAM có thể được xem là phiên bản nén của các đường đi hậu tố của toàn bộ tiền tố của xâu. Vì vậy, nó lưu thông tin về mọi hậu tố của mọi tiền tố, cũng tương đương với lưu thông tin về mọi xâu con của xâu.
 
-这两种思考的角度在处理不同问题时都是有用的．
+Cả hai cách nhìn này đều hữu ích khi xử lý các bài toán khác nhau.
 
-### 小结
+<span id="&#x5C0F;&#x7ED3;"></span>
 
-在进一步讨论算法本身前，我们总结一下之前的内容，并引入一些辅助记号．
+### Tóm tắt
 
--   $s$ 的子串可以根据它们的结束位置集合 $\operatorname{endpos}$ 划分为多个等价类；
+Trước khi tiếp tục bàn về chính thuật toán, ta tóm tắt nội dung đã có và giới thiệu vài ký hiệu phụ trợ.
 
--   SAM 由初始状态 $t_0$ 和与每一个（非空子串的）$\operatorname{endpos}$ 等价类对应的每个状态组成；
+-   Các xâu con của $s$ có thể được chia thành nhiều lớp tương đương theo tập vị trí kết thúc $\operatorname{endpos}$ của chúng;
 
--   每一个状态 $v$ 都匹配一个或多个子串．我们记 $\operatorname{longest}(v)$ 为其中最长的一个字符串，记 $\operatorname{len}(v)$ 为它的长度．类似地，记 $\operatorname{shortest}(v)$ 为最短的子串，它的长度为 $\operatorname{minlen}(v)$．那么对应这个状态的所有字符串都是字符串 $\operatorname{longest}(v)$ 的不同的后缀，且所有字符串的长度恰好取遍区间 $[\operatorname{minlen}(v),\operatorname{len}(v)]$ 中的每一个整数．
+-   SAM gồm trạng thái ban đầu $t_0$ và mỗi trạng thái ứng với một lớp tương đương $\operatorname{endpos}$ của các xâu con không rỗng;
 
--   对于任意状态 $v\neq t_0$，定义后缀链接为连接到对应字符串 $\operatorname{longest}(v)$ 的长度为 $\operatorname{minlen}(v)-1$ 的后缀的一条边．从根节点 $t_0$ 出发的后缀链接可以形成一棵树．这棵树也表示 $\operatorname{endpos}$ 集合间的包含关系．
+-   Mỗi trạng thái $v$ khớp với một hoặc nhiều xâu con. Ta ký hiệu $\operatorname{longest}(v)$ là xâu dài nhất trong số đó, và $\operatorname{len}(v)$ là độ dài của nó. Tương tự, ký hiệu $\operatorname{shortest}(v)$ là xâu con ngắn nhất, với độ dài $\operatorname{minlen}(v)$. Khi đó mọi xâu ứng với trạng thái này đều là các hậu tố khác nhau của xâu $\operatorname{longest}(v)$, và độ dài của chúng lấy đúng mọi số nguyên trong đoạn $[\operatorname{minlen}(v),\operatorname{len}(v)]$.
 
--   对于任意状态 $v\neq t_0$，可用后缀链接 $\operatorname{link}(v)$ 表达 $\operatorname{minlen}(v)$：
+-   Với trạng thái bất kỳ $v\neq t_0$, định nghĩa liên kết hậu tố là cạnh trỏ tới hậu tố của xâu $\operatorname{longest}(v)$ có độ dài $\operatorname{minlen}(v)-1$. Các liên kết hậu tố xuất phát từ gốc $t_0$ tạo thành một cây. Cây này cũng biểu diễn quan hệ bao hàm giữa các tập $\operatorname{endpos}$.
+
+-   Với trạng thái bất kỳ $v\neq t_0$, có thể biểu diễn $\operatorname{minlen}(v)$ bằng liên kết hậu tố $\operatorname{link}(v)$:
 
     $$
     \operatorname{minlen}(v)=\operatorname{len}(\operatorname{link}(v))+1.
     $$
 
--   如果我们从任意状态 $v_0$ 开始顺着后缀链接遍历，总会到达初始状态 $t_0$．这种情况下我们可以得到一个互不相交的区间 $[\operatorname{minlen}(v_i),\operatorname{len}(v_i)]$ 的序列，且它们的并集形成了连续的区间 $[0,\operatorname{len}(v_0)]$．
+-   Nếu bắt đầu từ trạng thái bất kỳ $v_0$ và duyệt theo liên kết hậu tố, ta luôn đi tới trạng thái ban đầu $t_0$. Khi đó ta nhận được một dãy các đoạn đôi một không giao nhau $[\operatorname{minlen}(v_i),\operatorname{len}(v_i)]$, và hợp của chúng tạo thành đoạn liên tiếp $[0,\operatorname{len}(v_0)]$.
 
-### 算法
+<span id="&#x7B97;&#x6CD5;"></span>
 
-现在我们可以讨论构造 SAM 的算法了．这个算法是 **在线** 算法，我们可以逐个加入字符串中的每个字符，并且在每一步中对应地维护 SAM．
+### Thuật toán
 
-在讨论详细的实现之前，首先通过图示初步感受一下增加新字符 $c$ 时，SAM 可能发生的变化．
+Bây giờ ta có thể thảo luận thuật toán xây SAM. Thuật toán này là thuật toán **trực tuyến**: ta có thể thêm từng ký tự của xâu và duy trì SAM tương ứng ở mỗi bước.
 
-???+ note "简单理解增量构造过程"
-    在字符串 $s$ 的 SAM 的基础上，可以构造字符串 $s+c$ 的 SAM．根据前文对图示的解释，只需要构造出新增加的前缀（即 $s+c$）的后缀路径，并压缩到现有的路径上即可．而且，根据前文的描述，新的后缀路径上的结点必然都可以通过原字符串 $s$ 的后缀路径上的结点经由字符 $c$ 转移而来．
+Trước khi bàn về cài đặt chi tiết, trước hết hãy dùng hình minh họa để cảm nhận sơ bộ những thay đổi có thể xảy ra trong SAM khi thêm ký tự mới $c$.
+
+???+ note "Hiểu đơn giản quá trình xây dựng tăng dần"
+    Từ SAM của xâu $s$, ta có thể xây SAM của xâu $s+c$. Theo phần giải thích hình minh họa ở trên, ta chỉ cần xây đường đi hậu tố của tiền tố mới được thêm vào, tức $s+c$, rồi nén nó vào các đường đi hiện có. Hơn nữa, theo mô tả trước đó, các đỉnh trên đường đi hậu tố mới chắc chắn đều có thể nhận được bằng cách đi từ các đỉnh trên đường đi hậu tố của xâu cũ $s$ qua chuyển trạng thái mang ký tự $c$.
     
-    我们首先考虑在添加新字符 $c$ 之前，原来的字符串 $s$ 的后缀路径可能具有什么形式，而且会怎样经由字符 $c$ 转移．最一般的情形，如下图示：
+    Trước hết xét, trước khi thêm ký tự mới $c$, đường đi hậu tố của xâu cũ $s$ có thể có dạng nào và sẽ chuyển qua ký tự $c$ ra sao. Trường hợp tổng quát nhất được minh họa như sau:
     
     ![](./images/SAM/sam-suffix-path-1.svg)
     
-    图中，原字符串 $s$ 的后缀路径为 $p_0\rightarrow p_1\rightarrow\cdots\rightarrow p_6\rightarrow t_0$，后缀链接由红色箭头表示．其中部分结点（即 $p_2\sim p_6$）已经存在经由字符 $c$ 的转移；因为将连续的后缀串添加同一个字符会同样得到连续的后缀，所以这些转移的终点组成另一串后缀路径 $q_1\rightarrow q_2\rightarrow q_3\rightarrow t_0$．此时，有两点观察：
+    Trong hình, đường đi hậu tố của xâu cũ $s$ là $p_0\rightarrow p_1\rightarrow\cdots\rightarrow p_6\rightarrow t_0$, các liên kết hậu tố được biểu diễn bằng mũi tên màu đỏ. Một số đỉnh trong đó (cụ thể là $p_2\sim p_6$) đã có chuyển trạng thái qua ký tự $c$; do thêm cùng một ký tự vào các hậu tố liên tiếp cũng tạo ra các hậu tố liên tiếp, các điểm đến của những chuyển trạng thái này tạo thành một đường đi hậu tố khác $q_1\rightarrow q_2\rightarrow q_3\rightarrow t_0$. Lúc này có hai quan sát:
     
-    -   原字符串 $s$ 的后缀路径上，没有经由 $c$ 的转移的结点一定是最初的几个结点．只要从某个结点（图中的 $p_2$）开始，存在经由 $c$ 的转移，后续经过的结点也一定存在经由 $c$ 的转移．
+    -   Trên đường đi hậu tố của xâu cũ $s$, các đỉnh không có chuyển trạng thái qua $c$ chắc chắn là vài đỉnh đầu tiên. Chỉ cần từ một đỉnh nào đó (trong hình là $p_2$) đã có chuyển trạng thái qua $c$, thì mọi đỉnh đi tiếp sau đó cũng chắc chắn có chuyển trạng thái qua $c$.
     
-        **解释**：设 $s_2=\operatorname{longest}(p_2)$，那么后续经过的所有结点都对应 $s_2$ 的后缀，因而如果 $s_2+c$ 也出现在 $s$ 中，那么 $s_2$ 的后缀再加 $c$ 的结果也一定出现在 $s$ 中，因此这些结点都有经由 $c$ 的转移．
-    -   虽然经由字符 $c$ 能够到达结点 $q_i$ 的结点一定是后缀链接树上的连续段，但是这个连续段未必全体都位于自 $p_0$ 到根的后缀路径上．特别地，只有第一个结点 $q_1$ 对应的连续段中起始的若干个结点 **可能** 不在这个后缀路径上．例如图中的结点 $q_1$ 就对应结点 $p_1'\rightarrow p_2\rightarrow p_3$，其中，$p_1'$ 不在 $p_0$ 的后缀路径上．
+        **Giải thích**: đặt $s_2=\operatorname{longest}(p_2)$. Khi đó mọi đỉnh đi tiếp sau đó đều ứng với hậu tố của $s_2$. Nếu $s_2+c$ cũng xuất hiện trong $s$, thì hậu tố của $s_2$ cộng thêm $c$ cũng chắc chắn xuất hiện trong $s$, nên các đỉnh đó đều có chuyển trạng thái qua $c$.
+    -   Dù các đỉnh có thể đi qua ký tự $c$ tới đỉnh $q_i$ chắc chắn tạo thành một đoạn liên tiếp trên cây liên kết hậu tố, đoạn liên tiếp này không nhất thiết nằm hoàn toàn trên đường đi hậu tố từ $p_0$ tới gốc. Đặc biệt, chỉ một số đỉnh đầu của đoạn liên tiếp ứng với đỉnh đầu tiên $q_1$ là **có thể** không nằm trên đường đi hậu tố này. Ví dụ trong hình, đỉnh $q_1$ ứng với các đỉnh $p_1'\rightarrow p_2\rightarrow p_3$, trong đó $p_1'$ không nằm trên đường đi hậu tố của $p_0$.
     
-        **解释**：设 $s_2=\operatorname{longest}(p_2)$，则 $s_2+c$ 对应着 $q_1$，但是图中显然有 $s_2+c\neq\operatorname{longest}(q_1)$，因为后者是 $\operatorname{longest}(p'_1)+c$．这就说明，$q_1$ 对应的部分字符串不能由 $s_2$ 及其后缀转移来．反过来，$q_2$ 中的字符串必然是 $s_2+c$ 的后缀，因此删去末尾的 $c$ 后必然是 $s_2$ 的后缀．也就是说，经由 $c$ 转移到 $q_2$ 的结点必然在 $p_2$ 起始的后缀路径上．这也是为什么只有起始的 $q_1$ 对应的连续段中的部分结点可能不在 $p_0$ 的后缀路径上．
+        **Giải thích**: đặt $s_2=\operatorname{longest}(p_2)$. Khi đó $s_2+c$ ứng với $q_1$, nhưng trong hình rõ ràng $s_2+c\neq\operatorname{longest}(q_1)$, vì vế sau là $\operatorname{longest}(p'_1)+c$. Điều này cho thấy một phần các xâu ứng với $q_1$ không thể thu được bằng cách chuyển từ $s_2$ và các hậu tố của nó. Ngược lại, các xâu trong $q_2$ chắc chắn là hậu tố của $s_2+c$, nên sau khi bỏ ký tự $c$ ở cuối, chúng chắc chắn là hậu tố của $s_2$. Tức là các đỉnh chuyển qua $c$ tới $q_2$ chắc chắn nằm trên đường đi hậu tố bắt đầu từ $p_2$. Đó cũng là lý do chỉ một phần các đỉnh trong đoạn liên tiếp ứng với $q_1$ ban đầu có thể không nằm trên đường đi hậu tố của $p_0$.
     
-    对于这个图示，如果要在原字符串 $s$ 的末尾添加一个字符 $c$，并构造出相应的后缀路径，会发生什么变化呢？答案是如下图所示：
+    Với hình minh họa này, nếu thêm một ký tự $c$ vào cuối xâu cũ $s$ và xây đường đi hậu tố tương ứng, điều gì sẽ xảy ra? Câu trả lời được thể hiện trong hình sau:
     
     ![](./images/SAM/sam-suffix-path-2.svg)
     
-    因为结点 $q_0$ 由原字符串 $s$ 对应结点 $p_0$ 经由字符 $c$ 转移而来，它就对应新字符串 $s+c$．所以，它的后缀路径 $q_0\rightarrow q_1''\rightarrow q_2\rightarrow q_3\rightarrow t_0$ 就是新增的后缀路径．如果原来的后缀路径上的结点 $p_i$ 本就有经由 $c$ 的转移，那么新的后缀路径也必然会经过这些转移到达的结点，因此可以直接复用旧有的结点．新的后缀路径上有且只有一个完全新建的节点 $q_0$，用于接受原来的后缀路径上起始的那些没有经由 $c$ 的转移的结点的转移．
+    Vì đỉnh $q_0$ được chuyển tới từ đỉnh $p_0$ ứng với xâu cũ $s$ qua ký tự $c$, nó ứng với xâu mới $s+c$. Do đó đường đi hậu tố $q_0\rightarrow q_1''\rightarrow q_2\rightarrow q_3\rightarrow t_0$ của nó chính là đường đi hậu tố mới được thêm vào. Nếu các đỉnh $p_i$ trên đường đi hậu tố cũ vốn đã có chuyển trạng thái qua $c$, thì đường đi hậu tố mới cũng chắc chắn đi qua các đỉnh là điểm đến của những chuyển trạng thái này, nên có thể trực tiếp tái sử dụng các đỉnh cũ. Trên đường đi hậu tố mới có đúng một đỉnh hoàn toàn mới $q_0$, dùng để nhận các chuyển trạng thái từ những đỉnh ban đầu trên đường đi hậu tố cũ chưa có chuyển trạng thái qua $c$.
     
-    除了这些显然的事实外，还可以注意到，原来的结点 $q_1$ 也经过了一次复制，或者说是分裂成了两个结点 $q'_1\rightarrow q_1''$．这是因为新增的后缀路径只是与现有路径部分重合：原来的结点 $q_1$ 对应的字符串中，只有较短的那些（即结点 $p_2$ 和 $p_3$ 能够转移到的那些）才会出现在新增的后缀路径上，而较长的那些（即结点 $p_1'$ 能够转移到的那些）并不会出现在新增的后缀路径上，因此新增的后缀路径只能经过结点 $q_1$ 的一部分，后者只能分裂成两个结点用于表示这种情形．同样的道理，前面已经解释过，$q_1$ 之后的结点 $q_2$ 和 $q_3$ 都无法由不在 $p_0$ 的后缀路径上的结点转移，因此这些结点对应的所有字符串都会出现在新增的后缀路径上，也就不需要分裂了．
+    Ngoài những sự thật hiển nhiên đó, có thể thấy đỉnh cũ $q_1$ cũng đã được sao chép, hay nói cách khác là bị tách thành hai đỉnh $q'_1\rightarrow q_1''$. Lý do là đường đi hậu tố mới chỉ trùng một phần với đường đi hiện có: trong các xâu ứng với đỉnh cũ $q_1$, chỉ những xâu ngắn hơn (tức những xâu mà các đỉnh $p_2$ và $p_3$ có thể chuyển tới) mới xuất hiện trên đường đi hậu tố mới, còn những xâu dài hơn (tức những xâu mà đỉnh $p_1'$ có thể chuyển tới) thì không. Vì vậy đường đi hậu tố mới chỉ có thể đi qua một phần của đỉnh $q_1$, và đỉnh này phải tách thành hai đỉnh để biểu diễn tình huống đó. Tương tự, như đã giải thích trước đó, các đỉnh $q_2$ và $q_3$ sau $q_1$ đều không thể được chuyển tới từ những đỉnh nằm ngoài đường đi hậu tố của $p_0$, nên mọi xâu ứng với các đỉnh này đều xuất hiện trên đường đi hậu tố mới và không cần tách.
     
-    从 SAM 中状态代表的含义看，每个状态都是一个 $\operatorname{endpos}$ 集合．设延长字符串时，新增的结束位置为 $i$，那么新增的结点 $q_0$ 就是结束位置集合 $\{i\}$，而分裂的结点 $q_1'$ 和 $q_1''$ 分别对应集合 $\operatorname{endpos}(q_1)$ 和 $\operatorname{endpos}(q_1)\cup\{i\}$，之后的结点 $q_2$ 和 $q_3$ 其实都在原有的结束位置集合上新增了 $i$．也就是说，虽然 $q_2$ 和 $q_3$ 及其相关的转移没有发生变化，但是它们对应的 $\operatorname{endpos}$ 集合的确扩大了．
+    Nhìn từ ý nghĩa của trạng thái trong SAM, mỗi trạng thái là một tập $\operatorname{endpos}$. Giả sử khi kéo dài xâu, vị trí kết thúc mới là $i$. Khi đó đỉnh mới $q_0$ chính là tập vị trí kết thúc $\{i\}$, còn hai đỉnh tách ra $q_1'$ và $q_1''$ lần lượt ứng với các tập $\operatorname{endpos}(q_1)$ và $\operatorname{endpos}(q_1)\cup\{i\}$. Các đỉnh $q_2$ và $q_3$ phía sau thực ra đều được thêm $i$ vào tập vị trí kết thúc cũ. Tức là dù $q_2$, $q_3$ và các chuyển trạng thái liên quan không thay đổi, tập $\operatorname{endpos}$ tương ứng của chúng thực sự đã mở rộng.
     
-    以上说明的是最复杂、最一般的情形（即下文的 **情形三**）．实际操作时，可能并不存在结点 $p'_1$，因而也就不需要分裂（即下文的 **情形二**）．要判断这种情形，只需要判断 $\operatorname{longest}(q_1)=\operatorname{longest}(p_2)+c$ 即可，亦即 $\operatorname{len}(q_1)=\operatorname{len}(p_2)+1$．也有可能 $p_0$ 的后缀路径上的所有结点都没有经由 $c$ 的转移，此时，只要新建 $q_0$ 就好了（即下文的 **情形一**）．
+    Phần trên mô tả trường hợp phức tạp nhất và tổng quát nhất, tức **trường hợp ba** bên dưới. Trong thực tế, có thể không tồn tại đỉnh $p'_1$, nên cũng không cần tách, tức **trường hợp hai** bên dưới. Để nhận biết trường hợp này, chỉ cần kiểm tra $\operatorname{longest}(q_1)=\operatorname{longest}(p_2)+c$, tức $\operatorname{len}(q_1)=\operatorname{len}(p_2)+1$. Cũng có thể mọi đỉnh trên đường đi hậu tố của $p_0$ đều không có chuyển trạng thái qua $c$; khi đó chỉ cần tạo mới $q_0$, tức **trường hợp một** bên dưới.
 
-掌握了新增后缀路径的思想后，现在讨论增量构造的具体步骤．
+Sau khi nắm được ý tưởng về đường đi hậu tố mới, bây giờ ta thảo luận các bước cụ thể của quá trình xây dựng tăng dần.
 
-#### 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
 
-为了保证线性的空间复杂度，我们将只保存 $\operatorname{len}$ 和 $\operatorname{link}$ 的值和每个状态的转移列表，我们不会标记终止状态（但是我们稍后会展示在构造 SAM 后如何分配这些标记）．
+#### Quy trình
 
-一开始 SAM 只包含一个状态 $t_0$，编号为 $0$（其它状态的编号为 $1,2,\ldots$）．为了方便，对于状态 $t_0$ 我们指定 $\operatorname{len}(t_0)=0$，$\operatorname{link}(t_0)=-1$（$-1$ 表示虚拟状态）．
+Để bảo đảm độ phức tạp bộ nhớ tuyến tính, ta chỉ lưu các giá trị $\operatorname{len}$ và $\operatorname{link}$ cùng danh sách chuyển trạng thái của mỗi trạng thái; ta không đánh dấu trạng thái kết thúc (nhưng lát nữa sẽ chỉ ra cách gán các dấu này sau khi xây xong SAM).
 
-现在，只需要实现给当前字符串添加一个字符 $c$ 的过程．算法流程如下：
+Ban đầu SAM chỉ chứa một trạng thái $t_0$, có số hiệu $0$ (các trạng thái khác có số hiệu $1,2,\ldots$). Để tiện, với trạng thái $t_0$ ta đặt $\operatorname{len}(t_0)=0$, $\operatorname{link}(t_0)=-1$ ($-1$ biểu diễn trạng thái ảo).
 
-???+ note "SAM 增量构造过程"
-    -   令 $\textit{last}$ 为添加字符 $c$ 之前，整个字符串对应的状态（一开始我们设 $\textit{last}=0$，算法的最后一步更新 $\textit{last}$）．
-    -   创建一个新的状态 $\textit{cur}$，并将 $\operatorname{len}(\textit{cur})$ 赋值为 $\operatorname{len}(\textit{last})+1$，在这时 $\operatorname{link}(\textit{cur})$ 的值还未知．
-    -   现在我们进行如下流程：从状态 $\textit{last}$ 开始，如果当前状态还没有标号为字符 $c$ 的转移，我们就添加一个经字符 $c$ 到状态 $\textit{cur}$ 的转移，并将当前状态沿后缀链接移动．如果过程中遇到某个状态已经存在到字符 $c$ 的转移，我们就停下来，并将这个状态标记为 $p$．
-    -   **情况一**：如果没有找到这样的状态 $p$，我们就到达了虚拟状态 $-1$，我们将 $\operatorname{link}(\textit{cur})$ 赋值为 $0$ 并退出．
-    -   假设现在我们找到了一个状态 $p$，它可以通过字符 $c$ 转移．我们将转移到的状态标记为 $q$．此时，要么 $\operatorname{len}(p)+1=\operatorname{len}(q)$，要么 $\operatorname{len}(p)+1<\operatorname{len}(q)$．
-    -   **情况二**：如果 $\operatorname{len}(p)+1=\operatorname{len}(q)$，我们只要将 $\operatorname{link}(\textit{cur})$ 赋值为 $q$ 并退出．
-    -   **情况三**：否则就会有些复杂，需要 **复制** 状态 $q$：我们创建一个新的状态 $\textit{clone}$，复制 $q$ 的除了 $\operatorname{len}$ 的值以外的所有信息（后缀链接和转移）．我们将 $\operatorname{len}(\textit{clone})$ 赋值为 $\operatorname{len}(p)+1$．
+Bây giờ chỉ cần cài đặt quy trình thêm một ký tự $c$ vào xâu hiện tại. Thuật toán như sau:
+
+???+ note "Quy trình xây SAM tăng dần"
+    -   Gọi $\textit{last}$ là trạng thái ứng với toàn bộ xâu trước khi thêm ký tự $c$ (ban đầu đặt $\textit{last}=0$, và bước cuối của thuật toán cập nhật $\textit{last}$).
+    -   Tạo một trạng thái mới $\textit{cur}$, gán $\operatorname{len}(\textit{cur})=\operatorname{len}(\textit{last})+1$. Lúc này giá trị $\operatorname{link}(\textit{cur})$ vẫn chưa biết.
+    -   Bây giờ thực hiện quá trình sau: bắt đầu từ trạng thái $\textit{last}$; nếu trạng thái hiện tại chưa có chuyển trạng thái nhãn $c$, ta thêm một chuyển trạng thái qua ký tự $c$ tới trạng thái $\textit{cur}$, rồi đi theo liên kết hậu tố từ trạng thái hiện tại. Nếu trong quá trình gặp một trạng thái đã có chuyển trạng thái bằng ký tự $c$, ta dừng lại và gọi trạng thái đó là $p$.
+    -   **Trường hợp một**: nếu không tìm thấy trạng thái $p$ như vậy, ta đã đi tới trạng thái ảo $-1$; khi đó gán $\operatorname{link}(\textit{cur})=0$ rồi kết thúc.
+    -   Giả sử bây giờ đã tìm được một trạng thái $p$ có thể chuyển qua ký tự $c$. Gọi trạng thái được chuyển tới là $q$. Khi đó hoặc $\operatorname{len}(p)+1=\operatorname{len}(q)$, hoặc $\operatorname{len}(p)+1<\operatorname{len}(q)$.
+    -   **Trường hợp hai**: nếu $\operatorname{len}(p)+1=\operatorname{len}(q)$, chỉ cần gán $\operatorname{link}(\textit{cur})=q$ rồi kết thúc.
+    -   **Trường hợp ba**: ngược lại, tình hình phức tạp hơn và cần **sao chép** trạng thái $q$: ta tạo một trạng thái mới $\textit{clone}$, sao chép toàn bộ thông tin của $q$ ngoại trừ giá trị $\operatorname{len}$ (liên kết hậu tố và các chuyển trạng thái). Gán $\operatorname{len}(\textit{clone})=\operatorname{len}(p)+1$.
     
-        复制之后，我们将后缀链接从 $\textit{cur}$ 指向 $\textit{clone}$，也从 $q$ 指向 $\textit{clone}$．
+        Sau khi sao chép, ta cho liên kết hậu tố từ $\textit{cur}$ trỏ tới $\textit{clone}$, và cũng cho liên kết hậu tố từ $q$ trỏ tới $\textit{clone}$.
     
-        最终我们需要沿着后缀链接从状态 $p$ 往回走，只要经过的状态存在指向状态 $q$ 的转移，就将该转移重新连接到状态 $\textit{clone}$．
-    -   处理完以上三种情况后，我们都需要将 $\textit{last}$ 的值更新为状态 $\textit{cur}$．
+        Cuối cùng, cần đi ngược theo liên kết hậu tố từ trạng thái $p$; miễn là trạng thái đi qua có chuyển trạng thái tới $q$, ta nối lại chuyển trạng thái đó sang $\textit{clone}$.
+    -   Sau khi xử lý xong một trong ba trường hợp trên, ta đều cần cập nhật $\textit{last}$ thành trạng thái $\textit{cur}$.
 
-如果我们还想知道哪些状态是 **终止状态** 而哪些不是，我们可以在为字符串 $s$ 构造完完整的 SAM 后找到所有的终止状态．为此，我们从对应整个字符串的状态（存储在变量 $\textit{last}$ 中），遍历它的后缀链接，直到到达初始状态．我们将所有遍历到的状态都标记为终止状态．容易理解这样做我们会准确地标记字符串 $s$ 的所有后缀，这些状态都是终止状态．
+Nếu muốn biết trạng thái nào là **trạng thái kết thúc**, ta có thể tìm tất cả trạng thái kết thúc sau khi đã xây xong SAM đầy đủ cho xâu $s$. Cụ thể, bắt đầu từ trạng thái ứng với toàn bộ xâu (được lưu trong biến $\textit{last}$), duyệt theo các liên kết hậu tố cho tới khi tới trạng thái ban đầu. Đánh dấu mọi trạng thái đi qua là trạng thái kết thúc. Dễ thấy cách này đánh dấu chính xác mọi hậu tố của xâu $s$, và các trạng thái đó đều là trạng thái kết thúc.
 
-因为我们只为 $s$ 的每个字符创建一个或两个新状态，所以 SAM 只包含 **线性个** 状态．而 SAM 只有线性规模的转移个数，以及算法总体的线性运行时间，都还没有说清楚，将在后文说明．
+Vì với mỗi ký tự của $s$ ta chỉ tạo một hoặc hai trạng thái mới, SAM chỉ chứa **số lượng tuyến tính** trạng thái. Tuy nhiên, số chuyển trạng thái của SAM là tuyến tính và tổng thời gian chạy của thuật toán là tuyến tính vẫn chưa được giải thích rõ; phần sau sẽ chứng minh.
 
-#### 解释
+<span id="&#x89E3;&#x91CA;"></span>
 
-我们详细解释算法每一步的细节，并说明它的 **正确性**．
+#### Giải thích
 
-???+ note "对算法的详细解释"
-    -   若一个转移 $(p,q)$ 满足 $\operatorname{len}(p)+1=\operatorname{len}(q)$，则我们称这个转移是 **连续的**．否则，即当 $\operatorname{len}(p)+1<\operatorname{len}(q)$ 时，这个转移被称为 **不连续的**．
-    
-        从算法描述中可以看出，连续的和不连续的转移，在算法中的处理也并不相同．连续的转移是固定的，我们不会再改变了．与此相反，当向字符串中插入一个新的字符时，不连续的转移可能会改变（转移边的端点可能会改变）．
-    -   为了避免引起歧义，我们记向 SAM 中插入当前字符 $c$ 之前的字符串为 $s$．
-    -   算法从创建一个新状态 $\textit{cur}$ 开始，对应于整个字符串 $s+c$．我们创建一个新的节点的原因很清楚．与此同时我们也创建了一个新的字符和一个新的等价类．
-    -   在创建一个新的状态之后，我们会从对应整个字符串 $s$ 的状态 $\textit{last}$ 沿着后缀链接进行移动．对于经过的每一个状态，我们尝试添加一个通过字符 $c$ 到新状态 $\textit{cur}$ 的转移．
-    
-        然而我们只能添加与原有转移不冲突的转移．因此我们只要找到已存在的 $c$ 的转移，我们就必须停止．
-    -   最简单的情况是我们到达了虚拟状态 $-1$，这意味着我们为所有 $s$ 的后缀添加了 $c$ 的转移．这也意味着，字符 $c$ 从未在字符串 $s$ 中出现过．因此 $\textit{cur}$ 的后缀链接为状态 $0$．
-    -   第二种情况下，我们找到了现有的转移 $(p,q)$．这意味着我们尝试向自动机内添加一个 **已经存在的** 字符串 $x+c$（其中 $x$ 为 $s$ 的一个后缀，且字符串 $x+c$ 已经作为 $s$ 的一个子串出现过了）．因为我们假设字符串 $s$ 的自动机的构造是正确的，我们不应该在这里添加一个新的转移．
-    
-        然而，难点在于，从状态 $\textit{cur}$ 出发的后缀链接应该连接到哪个状态呢？我们要把后缀链接连到一个状态上，且对应的最长的字符串恰好是 $x+c$，即这个状态的 $\operatorname{len}$ 应该是 $\operatorname{len}(p)+1$．然而这样的状态有可能并不存在，即 $\operatorname{len}(q)>\operatorname{len}(p)+1$．这种情况下，我们必须通过拆开状态 $q$ 来创建一个这样的状态．
-    -   当然，如果转移 $(p,\,q)$ 是连续的，那么 $\operatorname{len}(q)=\operatorname{len}(p)+1$．在这种情况下一切都很简单．我们只需要将 $\textit{cur}$ 的后缀链接指向状态 $q$．
-    -   否则转移是不连续的，即 $\operatorname{len}(q)>\operatorname{len}(p)+1$，这意味着状态 $q$ 不只对应于长度为 $\operatorname{len}(p)+1$ 的后缀 $s+c$，还对应于 $s$ 的更长的子串．除了将状态 $q$ 拆成两个子状态以外我们别无他法，所以第一个子状态的长度就是 $\operatorname{len}(p)+1$ 了．
-    
-        我们如何拆开一个状态呢？我们 **复制** 状态 $q$，产生一个状态 $\textit{clone}$，我们将 $\operatorname{len}(\textit{clone})$ 赋值为 $\operatorname{len}(p)+1$．由于我们不想改变经过 $q$ 的路径，我们将 $q$ 的所有转移复制到 $\textit{clone}$．我们也将从 $\textit{clone}$ 出发的后缀链接设置为 $q$ 的后缀链接的目标，并设置 $q$ 的后缀链接为 $\textit{clone}$．
-    
-        在拆开状态后，我们将从 $\textit{cur}$ 出发的后缀链接设置为 $\textit{clone}$．
-    
-        最后一步我们将一些原本指向 $q$ 的转移重新连接到 $\textit{clone}$．我们需要修改哪些转移呢？只重新连接相当于所有字符串 $w+c$（其中 $w$ 是状态 $p$ 对应的最长字符串）的后缀就够了．也就是说，我们需要继续沿着后缀链接移动，从结点 $p$ 直到虚拟状态 $-1$，或者当前状态经 $c$ 的转移不再指向状态 $q$．
+Ta giải thích chi tiết từng bước của thuật toán và chứng minh **tính đúng đắn** của nó.
 
-### 线性时间复杂度
-
-我们假设字符集大小为 **常数**，即每次对一个字符搜索转移、添加转移、查找下一个转移这些操作的时间复杂度都为 $O(1)$ 的．如果将每个结点的转移分别存储为一个长度为 $\left|\Sigma\right|$ 的数组（用于快速查询给定标号的转移）和一个动态列表（用于快速遍历所有可用转移），以空间换时间，那么算法的时间复杂度[^time-complexity]为 $O(n)$，空间复杂度为 $O(n\left|\Sigma\right|)$．
-
-??? note "证明"
-    如果我们考虑算法的各个部分，算法中有三处时间复杂度不明显是线性的：
+???+ note "Giải thích chi tiết thuật toán"
+    -   Nếu một chuyển trạng thái $(p,q)$ thỏa $\operatorname{len}(p)+1=\operatorname{len}(q)$, ta gọi chuyển trạng thái này là **liên tục**. Ngược lại, khi $\operatorname{len}(p)+1<\operatorname{len}(q)$, chuyển trạng thái đó được gọi là **không liên tục**.
     
-    -   第一处是遍历所有状态 $\textit{last}$ 的后缀链接，添加字符 $c$ 的转移．
-    -   第二处是当状态 $q$ 被复制到一个新的状态 $\textit{clone}$ 时复制转移的过程．
-    -   第三处是修改指向 $q$ 的转移，将它们重新连接到 $\textit{clone}$ 的过程．
+        Từ mô tả thuật toán có thể thấy các chuyển trạng thái liên tục và không liên tục được xử lý khác nhau. Chuyển trạng thái liên tục là cố định, ta sẽ không thay đổi nó nữa. Ngược lại, khi chèn một ký tự mới vào xâu, chuyển trạng thái không liên tục có thể thay đổi (đầu mút của cạnh chuyển có thể thay đổi).
+    -   Để tránh nhập nhằng, ta ký hiệu xâu trước khi chèn ký tự hiện tại $c$ vào SAM là $s$.
+    -   Thuật toán bắt đầu bằng việc tạo trạng thái mới $\textit{cur}$, ứng với toàn bộ xâu $s+c$. Lý do tạo một đỉnh mới là rõ ràng. Đồng thời, ta cũng tạo ra một ký tự mới và một lớp tương đương mới.
+    -   Sau khi tạo trạng thái mới, ta đi từ trạng thái $\textit{last}$ ứng với toàn bộ xâu $s$ theo các liên kết hậu tố. Với mỗi trạng thái đi qua, ta thử thêm một chuyển trạng thái qua ký tự $c$ tới trạng thái mới $\textit{cur}$.
     
-    我们使用 SAM 的大小（状态数和转移数）为 **线性的** 的事实（对状态数是线性的的证明就是算法本身，对转移数为线性的的证明将在稍后实现算法后给出）．
+        Tuy nhiên, ta chỉ có thể thêm các chuyển trạng thái không xung đột với chuyển trạng thái đã có. Vì vậy, hễ tìm thấy một chuyển trạng thái $c$ đã tồn tại, ta phải dừng lại.
+    -   Trường hợp đơn giản nhất là ta đi tới trạng thái ảo $-1$. Điều này có nghĩa là ta đã thêm chuyển trạng thái $c$ cho mọi hậu tố của $s$. Nó cũng có nghĩa là ký tự $c$ chưa từng xuất hiện trong xâu $s$. Vì vậy liên kết hậu tố của $\textit{cur}$ là trạng thái $0$.
+    -   Trong trường hợp thứ hai, ta tìm được chuyển trạng thái có sẵn $(p,q)$. Điều này có nghĩa là ta đang thử thêm vào automaton một xâu **đã tồn tại** $x+c$, trong đó $x$ là một hậu tố của $s$ và xâu $x+c$ đã xuất hiện như một xâu con của $s$. Vì giả sử automaton của xâu $s$ đã được xây đúng, ta không nên thêm một chuyển trạng thái mới ở đây.
     
-    因此上述 **第一处和第二处** 的总复杂度显然为线性的，因为单次操作均摊只为自动机添加了一个新转移．
+        Tuy nhiên, điểm khó là liên kết hậu tố từ trạng thái $\textit{cur}$ nên nối tới trạng thái nào? Ta cần nối liên kết hậu tố tới một trạng thái có xâu dài nhất đúng bằng $x+c$, tức $\operatorname{len}$ của trạng thái đó phải là $\operatorname{len}(p)+1$. Nhưng trạng thái như vậy có thể chưa tồn tại, tức $\operatorname{len}(q)>\operatorname{len}(p)+1$. Trong trường hợp này, ta phải tách trạng thái $q$ để tạo ra một trạng thái như vậy.
+    -   Tất nhiên, nếu chuyển trạng thái $(p,\,q)$ là liên tục, thì $\operatorname{len}(q)=\operatorname{len}(p)+1$. Khi đó mọi thứ rất đơn giản: chỉ cần cho liên kết hậu tố của $\textit{cur}$ trỏ tới trạng thái $q$.
+    -   Ngược lại, chuyển trạng thái là không liên tục, tức $\operatorname{len}(q)>\operatorname{len}(p)+1$. Điều này có nghĩa trạng thái $q$ không chỉ ứng với hậu tố độ dài $\operatorname{len}(p)+1$ của $s+c$, mà còn ứng với những xâu con dài hơn của $s$. Ngoài việc tách trạng thái $q$ thành hai trạng thái con, ta không còn cách nào khác, nên độ dài của trạng thái con thứ nhất sẽ là $\operatorname{len}(p)+1$.
     
-    还需为 **第三处** 估计总复杂度，我们将最初指向 $q$ 的转移重新连接到 $\textit{clone}$．我们记 $v=\operatorname{longest}(p)$，这是字符串 $s$ 的一个后缀．每迭代一次，$v$ 的长度都减小，因而 $v$ 作为 $s$ 的后缀的起始位置必然在后移．因此，循环中 $p$ 沿后缀链接移动的次数，不超过 $v$ 作为 $s$ 的后缀的起始位置向后移动的距离．因为 $p$ 至少要向后移动一次，才能终止循环，而且 $p$ 至少是 $last$ 沿后缀链接移动一次的结果，因此循环终止时，$v$ 作为 $s$ 的后缀的起始位置并不比字符串 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$ 更靠前．而且，循环终止时，字符串 $v$ 作为 $s$ 的后缀的起始位置将恰好是 $v+c$ 作为 $s+c$ 的后缀的起始位置，而作为 $s+c$ 的后缀，字符串 $v+c$ 恰好是字符串 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{cur}))$．因为 $cur$ 是更新后的 $last$ 的值，所以循环中移动的次数不会超过更新前后 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$ 作为当前字符串后缀的起始位置向后移动的距离，再加一（即为了终止循环必须移动的次数）．
+        Tách một trạng thái như thế nào? Ta **sao chép** trạng thái $q$ để tạo trạng thái $\textit{clone}$, rồi gán $\operatorname{len}(\textit{clone})=\operatorname{len}(p)+1$. Vì không muốn thay đổi các đường đi đi qua $q$, ta sao chép mọi chuyển trạng thái của $q$ sang $\textit{clone}$. Ta cũng đặt liên kết hậu tố xuất phát từ $\textit{clone}$ tới mục tiêu liên kết hậu tố cũ của $q$, và đặt liên kết hậu tố của $q$ thành $\textit{clone}$.
     
-    因为作为当前字符串后缀的字符串 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$ 的位置在整个 SAM 构造过程中单调递增[^monotone-loc]，它的总移动距离必然不超过 $n$．这就说明，需要修改指向 $q$ 的转移的循环中，迭代次数不超过 $2n$．这正是我们需要证明的．
+        Sau khi tách trạng thái, ta đặt liên kết hậu tố xuất phát từ $\textit{cur}$ tới $\textit{clone}$.
+    
+        Bước cuối cùng là nối lại một số chuyển trạng thái vốn trỏ tới $q$ sang $\textit{clone}$. Cần sửa những chuyển trạng thái nào? Chỉ cần nối lại các chuyển trạng thái ứng với các hậu tố của mọi xâu $w+c$, trong đó $w$ là xâu dài nhất ứng với trạng thái $p$. Tức là ta tiếp tục đi theo liên kết hậu tố từ đỉnh $p$ tới trạng thái ảo $-1$, hoặc cho tới khi chuyển trạng thái qua $c$ của trạng thái hiện tại không còn trỏ tới $q$.
 
-当然，如果字符集大小不是常数，SAM 的时间复杂度就不是线性的．从一个结点出发的转移需要存储在支持快速查询和插入的平衡树中．因此如果我们记 $\Sigma$ 为字符集，$\left|\Sigma\right|$ 为字符集大小，则算法的渐近时间复杂度为 $O(n\log\left|\Sigma\right|)$，空间复杂度为 $O(n)$．
+<span id="&#x7EBF;&#x6027;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;"></span>
 
-### 实现
+### Độ phức tạp thời gian tuyến tính
 
-首先，我们实现一种存储一个转移的全部信息的数据结构．如果需要的话，你可以在这里加入一个终止标记，也可以是一些其它信息．我们将用一个 `map` 存储转移的列表，允许我们在总计 $O(n)$ 的空间复杂度和 $O(n\log\left|\Sigma\right|)$ 的时间复杂度内处理整个字符串．当然，在字符集大小为较小的常数 $K$（比如 26）时，将 `next` 声明为 `int[K]` 更方便．
+Ta giả sử kích thước bảng chữ cái là **hằng số**, tức mỗi thao tác tìm chuyển trạng thái theo một ký tự, thêm chuyển trạng thái, và tìm chuyển trạng thái kế tiếp đều có độ phức tạp $O(1)$. Nếu lưu các chuyển trạng thái của mỗi đỉnh bằng một mảng độ dài $\left|\Sigma\right|$ (để truy vấn nhanh chuyển trạng thái có nhãn cho trước) và một danh sách động (để duyệt nhanh mọi chuyển trạng thái khả dụng), đổi bộ nhớ lấy thời gian, thì độ phức tạp thời gian[^time-complexity] của thuật toán là $O(n)$, còn độ phức tạp bộ nhớ là $O(n\left|\Sigma\right|)$.
+
+??? note "Chứng minh"
+    Nếu xét từng phần của thuật toán, có ba chỗ mà độ phức tạp thời gian không hiển nhiên là tuyến tính:
+    
+    -   Thứ nhất là duyệt mọi liên kết hậu tố từ trạng thái $\textit{last}$ để thêm chuyển trạng thái của ký tự $c$.
+    -   Thứ hai là quá trình sao chép các chuyển trạng thái khi trạng thái $q$ được sao chép thành trạng thái mới $\textit{clone}$.
+    -   Thứ ba là quá trình sửa các chuyển trạng thái trỏ tới $q$ để nối lại chúng sang $\textit{clone}$.
+    
+    Ta dùng sự thật rằng kích thước của SAM (số trạng thái và số chuyển trạng thái) là **tuyến tính**. Với số trạng thái, chứng minh tuyến tính chính là bản thân thuật toán; với số chuyển trạng thái, chứng minh tuyến tính sẽ được đưa ra sau khi cài đặt thuật toán.
+    
+    Vì vậy tổng độ phức tạp của **phần thứ nhất và phần thứ hai** rõ ràng là tuyến tính, vì theo trung bình mỗi thao tác chỉ thêm một chuyển trạng thái mới vào automaton.
+    
+    Còn cần ước lượng tổng độ phức tạp của **phần thứ ba**, nơi ta nối lại các chuyển trạng thái ban đầu trỏ tới $q$ sang $\textit{clone}$. Gọi $v=\operatorname{longest}(p)$; đây là một hậu tố của xâu $s$. Mỗi lần lặp, độ dài của $v$ giảm đi, nên vị trí bắt đầu của $v$ với vai trò hậu tố của $s$ chắc chắn dịch sang phải. Do đó, số lần $p$ di chuyển theo liên kết hậu tố trong vòng lặp không vượt quá quãng đường mà vị trí bắt đầu của $v$ với vai trò hậu tố của $s$ dịch sang phải. Vì $p$ phải di chuyển ít nhất một lần để kết thúc vòng lặp, và $p$ ít nhất là kết quả của một lần đi theo liên kết hậu tố từ $last$, nên khi vòng lặp kết thúc, vị trí bắt đầu của $v$ với vai trò hậu tố của $s$ không nằm trước vị trí bắt đầu của xâu $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$. Hơn nữa, khi vòng lặp kết thúc, vị trí bắt đầu của xâu $v$ với vai trò hậu tố của $s$ đúng bằng vị trí bắt đầu của $v+c$ với vai trò hậu tố của $s+c$; còn với vai trò hậu tố của $s+c$, xâu $v+c$ đúng là xâu $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{cur}))$. Vì $cur$ là giá trị mới của $last$, số lần di chuyển trong vòng lặp không vượt quá quãng đường vị trí bắt đầu của $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$ với vai trò hậu tố của xâu hiện tại dịch sang phải trước và sau cập nhật, cộng thêm một (số lần di chuyển bắt buộc để kết thúc vòng lặp).
+    
+    Vì vị trí của xâu $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$ với vai trò hậu tố của xâu hiện tại tăng đơn điệu trong toàn bộ quá trình xây SAM[^monotone-loc], tổng quãng đường dịch chuyển của nó chắc chắn không vượt quá $n$. Điều này chứng minh số lần lặp trong vòng lặp sửa các chuyển trạng thái trỏ tới $q$ không vượt quá $2n$. Đó chính là điều cần chứng minh.
+
+Tất nhiên, nếu kích thước bảng chữ cái không phải hằng số, độ phức tạp thời gian của SAM sẽ không còn tuyến tính. Các chuyển trạng thái xuất phát từ một đỉnh cần được lưu trong một cây cân bằng hỗ trợ truy vấn và chèn nhanh. Vì vậy, nếu ký hiệu $\Sigma$ là bảng chữ cái và $\left|\Sigma\right|$ là kích thước bảng chữ cái, thì độ phức tạp thời gian tiệm cận của thuật toán là $O(n\log\left|\Sigma\right|)$, còn độ phức tạp bộ nhớ là $O(n)$.
+
+<span id="&#x5B9E;&#x73B0;"></span>
+
+### Cài đặt
+
+Trước hết, ta cài đặt một cấu trúc dữ liệu lưu toàn bộ thông tin của một chuyển trạng thái. Nếu cần, bạn có thể thêm cờ kết thúc hoặc thông tin khác ở đây. Ta dùng một `map` để lưu danh sách chuyển trạng thái, cho phép xử lý toàn bộ xâu với tổng độ phức tạp bộ nhớ $O(n)$ và độ phức tạp thời gian $O(n\log\left|\Sigma\right|)$. Tất nhiên, khi kích thước bảng chữ cái là hằng số nhỏ $K$ (ví dụ 26), khai báo `next` là `int[K]` sẽ tiện hơn.
 
 ```cpp
 struct state {
@@ -322,7 +350,7 @@ struct state {
 };
 ```
 
-SAM 本身将会存储在一个 `state` 结构体数组中．我们记录当前自动机的大小 `sz` 和变量 `last`，当前整个字符串对应的状态．
+Bản thân SAM sẽ được lưu trong một mảng các cấu trúc `state`. Ta ghi lại kích thước hiện tại của automaton trong `sz`, và biến `last`, tức trạng thái ứng với toàn bộ xâu hiện tại.
 
 ```cpp
 constexpr int MAXLEN = 100000;
@@ -330,7 +358,7 @@ state st[MAXLEN * 2];
 int sz, last;
 ```
 
-我们定义一个函数来初始化 SAM（创建一个只有初始状态的 SAM）．
+Ta định nghĩa một hàm khởi tạo SAM, tức tạo một SAM chỉ có trạng thái ban đầu.
 
 ```cpp
 void sam_init() {
@@ -341,9 +369,9 @@ void sam_init() {
 }
 ```
 
-最终我们给出主函数的实现：给当前行末增加一个字符，对应地在之前的基础上建造自动机．
+Cuối cùng là cài đặt hàm chính: thêm một ký tự vào cuối xâu hiện tại và xây automaton tương ứng dựa trên automaton trước đó.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     void sam_extend(char c) {
       int cur = sz++;
@@ -375,319 +403,349 @@ void sam_init() {
     }
     ```
 
-正如之前提到的一样，如果你用内存换时间（空间复杂度为 $O(n\left|\Sigma\right|)$，其中 $\left|\Sigma\right|$ 为字符集大小），你可以在 $O(n)$ 的时间[^time-complexity]内构造字符集大小任意的 SAM．但是这样你需要为每一个状态储存一个大小为 $\left|\Sigma\right|$ 的数组（用于快速根据字符找到相应的转移）以及一个包含所有可用转移的列表（用于快速遍历所有可用的转移）．
+Như đã nói ở trên, nếu dùng bộ nhớ đổi lấy thời gian (độ phức tạp bộ nhớ $O(n\left|\Sigma\right|)$, trong đó $\left|\Sigma\right|$ là kích thước bảng chữ cái), bạn có thể xây SAM trong thời gian $O(n)$[^time-complexity] với bảng chữ cái tùy ý. Nhưng khi đó cần lưu cho mỗi trạng thái một mảng kích thước $\left|\Sigma\right|$ (để nhanh chóng tìm chuyển trạng thái tương ứng theo ký tự) và một danh sách chứa mọi chuyển trạng thái khả dụng (để duyệt nhanh mọi chuyển trạng thái khả dụng).
 
-## 更多性质
+<span id="&#x66F4;&#x591A;&#x6027;&#x8D28;"></span>
 
-### 状态数
+## Các tính chất khác
 
-对于一个长度为 $n$ 的字符串 $s$，它的 SAM 中的状态数 **不会超过**  $2n-1$（假设 $n\ge 2$）．
+<span id="&#x72B6;&#x6001;&#x6570;"></span>
 
-??? note "证明"
-    算法本身即可证明该结论．一开始，自动机含有一个状态，第一次和第二次迭代中只会创建一个节点，剩余的 $n-2$ 步中每步会创建至多 $2$ 个状态．
+### Số trạng thái
+
+Với một xâu $s$ độ dài $n$, số trạng thái trong SAM của nó **không vượt quá** $2n-1$ (giả sử $n\ge 2$).
+
+??? note "Chứng minh"
+    Bản thân thuật toán đã chứng minh kết luận này. Ban đầu automaton có một trạng thái; ở lần lặp thứ nhất và thứ hai chỉ tạo một đỉnh; trong $n-2$ bước còn lại, mỗi bước tạo nhiều nhất $2$ trạng thái.
     
-    然而我们也能在 **不借助这个算法** 的情况下 **证明** 这个估计值．我们回忆一下状态数等于不同的 $\operatorname{endpos}$ 集合个数．这些 $\operatorname{endpos}$ 集合形成了一棵树（父节点的 $\operatorname{endpos}$ 集合包含子节点的 $\operatorname{endpos}$ 集合）．考虑将这棵树稍微变形一下：只要它有一个只有一个子节点的内部节点（这意味着该子节点的集合至少遗漏了它的父节点的集合中的一个位置），我们就创建一个含有这些遗漏位置的集合作为它的子节点．最后我们可以获得一棵每一个内部结点的度数都大于一的树，且叶子节点的个数不超过 $n$．这样的树里有不超过 $2n-1$ 个节点，因此，原来的不同的 $\operatorname{endpos}$ 集合个数也不超过 $2n-1$．
+    Tuy nhiên, ta cũng có thể **chứng minh** ước lượng này **mà không dựa vào thuật toán**. Nhắc lại rằng số trạng thái bằng số tập $\operatorname{endpos}$ khác nhau. Các tập $\operatorname{endpos}$ này tạo thành một cây (tập $\operatorname{endpos}$ của nút cha chứa tập $\operatorname{endpos}$ của nút con). Xét biến đổi nhẹ cây này: mỗi khi nó có một nút trong chỉ có một nút con (nghĩa là tập của nút con thiếu ít nhất một vị trí trong tập của nút cha), ta tạo một tập chứa các vị trí bị thiếu đó làm nút con của nó. Cuối cùng ta thu được một cây mà mọi nút trong đều có bậc lớn hơn một, và số lá không vượt quá $n$. Một cây như vậy có không quá $2n-1$ nút, do đó số tập $\operatorname{endpos}$ khác nhau ban đầu cũng không vượt quá $2n-1$.
     
-    字符串 $\texttt{abbb} \cdots \texttt{bbb}$ 的状态数达到了该上界：从第三次迭代后的每次迭代，算法都会拆开一个状态，最终产生恰好 $2n-1$ 个状态．
+    Xâu $\texttt{abbb} \cdots \texttt{bbb}$ đạt tới cận trên này: từ sau lần lặp thứ ba, mỗi lần lặp của thuật toán đều tách một trạng thái, cuối cùng tạo đúng $2n-1$ trạng thái.
 
-### 转移数
+<span id="&#x8F6C;&#x79FB;&#x6570;"></span>
 
-对于一个长度为 $n$ 的字符串 $s$，它的 SAM 中的转移数 **不会超过**  $3n-4$（假设 $n\ge 3$）．
+### Số chuyển trạng thái
 
-??? note "证明"
-    我们首先估计连续的转移的数量．考虑自动机中由从状态 $t_0$ 开始到达所有状态的最长路径组成的生成树．生成树只包含连续的边，因此数量少于状态数，即边数不会超过 $2n-2$．
+Với một xâu $s$ độ dài $n$, số chuyển trạng thái trong SAM của nó **không vượt quá** $3n-4$ (giả sử $n\ge 3$).
+
+??? note "Chứng minh"
+    Trước hết ước lượng số chuyển trạng thái liên tục. Xét cây khung của automaton gồm các đường đi dài nhất từ trạng thái $t_0$ tới mọi trạng thái. Cây khung chỉ chứa các cạnh liên tục, nên số cạnh nhỏ hơn số trạng thái, tức không vượt quá $2n-2$.
     
-    现在我们来估计不连续的转移的数量．令当前不连续转移为 $(p,\,q)$，其字符为 $c$．我们取它的对应字符串 $u+c+w$，其中字符串 $u$ 对应于初始状态到 $p$ 的最长路径，$w$ 对应于从 $q$ 到任意终止状态的最长路径．一方面，每个不完整的字符串所对应的形如 $u+c+w$ 的字符串是不同的（因为字符串 $u$ 和 $w$ 仅由完整的转移组成）．另一方面，由终止状态的定义，每个形如 $u+c+w$ 的字符串都是整个字符串 $s$ 的后缀．因为 $s$ 只有 $n$ 个非空后缀，且形如 $u+c+w$ 的字符串都不包含 $s$（因为整个字符串只包含完整的转移），所以非完整的转移的总数不会超过 $n-1$．
+    Bây giờ ước lượng số chuyển trạng thái không liên tục. Gọi chuyển trạng thái không liên tục hiện tại là $(p,\,q)$, với ký tự $c$. Ta lấy xâu tương ứng của nó là $u+c+w$, trong đó xâu $u$ ứng với đường đi dài nhất từ trạng thái ban đầu tới $p$, còn $w$ ứng với đường đi dài nhất từ $q$ tới một trạng thái kết thúc bất kỳ. Một mặt, các xâu dạng $u+c+w$ ứng với mỗi chuyển trạng thái không đầy đủ là khác nhau (vì $u$ và $w$ chỉ gồm các chuyển trạng thái đầy đủ). Mặt khác, theo định nghĩa trạng thái kết thúc, mọi xâu dạng $u+c+w$ đều là hậu tố của toàn bộ xâu $s$. Vì $s$ chỉ có $n$ hậu tố không rỗng, và các xâu dạng $u+c+w$ không chứa $s$ (vì toàn bộ xâu chỉ chứa các chuyển trạng thái đầy đủ), tổng số chuyển trạng thái không đầy đủ không vượt quá $n-1$.
     
-    将以上两个估计值相加，我们可以得到上界 $3n-3$．然而，最大的状态数只能在类似于 $\texttt{abbb} \cdots \texttt{bbb}$ 的情况中产生，而此时转移数量显然少于 $3n-3$．
+    Cộng hai ước lượng trên, ta được cận trên $3n-3$. Tuy nhiên, số trạng thái lớn nhất chỉ có thể xuất hiện trong những trường hợp giống $\texttt{abbb} \cdots \texttt{bbb}$, mà khi đó số chuyển trạng thái rõ ràng nhỏ hơn $3n-3$.
     
-    因此我们可以获得更为紧确的 SAM 的转移数的上界：$3n-4$．字符串 $\texttt{abbb} \cdots \texttt{bbbc}$ 就达到了这个上界．
+    Do đó ta thu được cận trên chặt hơn cho số chuyển trạng thái của SAM: $3n-4$. Xâu $\texttt{abbb} \cdots \texttt{bbbc}$ đạt tới cận trên này.
 
-### 后缀链接树
+<span id="&#x540E;&#x7F00;&#x94FE;&#x63A5;&#x6811;"></span>
 
-尽管构造 SAM 是为了得到它的状态和转移的信息，但是构造过程中记录的后缀链接 $\operatorname{link}$ 和该状态对应的最长子串长度 $\operatorname{len}$ 在应用中常常比 SAM 的转移更为重要，甚至可以抛开转移单独使用．
+### Cây liên kết hậu tố
 
-在构建 SAM 的过程中，需要更新 $\textit{last}$ 状态的值．它对应的是每次添加字符前（后）的字符串，也就是整个字符串 $s$ 的所有前缀．将第 $i$ 个前缀对应的状态记为 $v_i$，这样就得到 $v_0,v_1,\cdots,v_{n-1}$ 共计 $n$ 个状态．另外，规定初始状态 $t_0$ 为 $v_{-1}$，对应着空前缀．这些状态姑且称为「前缀节点」．
+Dù mục đích xây SAM là để thu được thông tin về trạng thái và chuyển trạng thái của nó, nhưng liên kết hậu tố $\operatorname{link}$ và độ dài xâu con dài nhất $\operatorname{len}$ ứng với trạng thái, được ghi lại trong quá trình xây dựng, thường còn quan trọng hơn các chuyển trạng thái của SAM trong ứng dụng; thậm chí có thể bỏ qua các chuyển trạng thái và dùng riêng chúng.
 
-引理 4 中提及，所有状态和所有后缀链接构成根为 $t_0$ 的根向树，这个树也称为 **后缀链接树**（国内 OI 选手也常称它为 **parent 树**）．它记录了字符串全体前缀的所有后缀的信息，亦即全体子串的信息．
+Trong quá trình xây SAM, cần cập nhật giá trị của trạng thái $\textit{last}$. Nó ứng với xâu trước hoặc sau mỗi lần thêm ký tự, tức mọi tiền tố của toàn bộ xâu $s$. Gọi trạng thái ứng với tiền tố thứ $i$ là $v_i$, ta thu được $n$ trạng thái $v_0,v_1,\cdots,v_{n-1}$. Ngoài ra, quy ước trạng thái ban đầu $t_0$ là $v_{-1}$, ứng với tiền tố rỗng. Tạm gọi các trạng thái này là "nút tiền tố".
 
-后缀链接树有如下性质：
+Như Bổ đề 4 đã nêu, mọi trạng thái và mọi liên kết hậu tố tạo thành một cây có gốc $t_0$, hướng từ gốc, gọi là **cây liên kết hậu tố** (trong OI còn thường gọi là **cây parent**). Nó ghi lại thông tin về mọi hậu tố của mọi tiền tố của xâu, tức thông tin về toàn bộ xâu con.
 
--   祖先节点对应的字符串总是子孙节点对应的字符串的后缀．
--   每个节点处的 $\operatorname{endpos}$ 集合就是它的子树内的所有「前缀节点」$v_i$ 的下标 $i$ 的集合．
--   后缀链接树的祖先节点的 $\operatorname{endpos}$ 集合总是严格包含子孙节点的 $\operatorname{endpos}$ 集合．
--   每个节点处的 $\operatorname{len}$ 的值就是它的子树内的所有「前缀节点」$v_i$ 对应前缀的最长公共后缀的长度．
--   除根节点 $t_0$ 外，每个节点对应的不同子串的数目，就是它的 $\operatorname{len}$ 值，减去它的父节点的 $\operatorname{len}$ 值，即 $\operatorname{len}(v)-\operatorname{len}(\operatorname{link}(v))$．
+Cây liên kết hậu tố có các tính chất sau:
 
-这些性质有很多应用．比如，第 $i$ 个前缀和第 $j$ 个前缀的最长公共后缀对应的字符串就是 $v_i$ 和 $v_j$ 的 LCA 对应的最长字符串．
+-   Xâu ứng với nút tổ tiên luôn là hậu tố của xâu ứng với nút con cháu.
+-   Tập $\operatorname{endpos}$ tại mỗi nút chính là tập các chỉ số $i$ của mọi "nút tiền tố" $v_i$ nằm trong cây con của nó.
+-   Tập $\operatorname{endpos}$ của nút tổ tiên trong cây liên kết hậu tố luôn chứa nghiêm ngặt tập $\operatorname{endpos}$ của nút con cháu.
+-   Giá trị $\operatorname{len}$ tại mỗi nút chính là độ dài hậu tố chung dài nhất của các tiền tố ứng với mọi "nút tiền tố" $v_i$ trong cây con của nó.
+-   Ngoài nút gốc $t_0$, số xâu con phân biệt ứng với mỗi nút bằng giá trị $\operatorname{len}$ của nó trừ đi giá trị $\operatorname{len}$ của nút cha, tức $\operatorname{len}(v)-\operatorname{len}(\operatorname{link}(v))$.
 
-最后，对字符串 $s$ 建立的后缀链接树与对它的翻转 $s_R$ 建立的 [后缀树](./suffix-tree.md) 有相同的结构．这一点常常用于离线构造后缀树．
+Các tính chất này có rất nhiều ứng dụng. Ví dụ, xâu là hậu tố chung dài nhất của tiền tố thứ $i$ và tiền tố thứ $j$ chính là xâu dài nhất ứng với LCA của $v_i$ và $v_j$.
 
-## 应用
+Cuối cùng, cây liên kết hậu tố xây cho xâu $s$ có cùng cấu trúc với [cây hậu tố](./suffix-tree.md) xây cho xâu đảo $s_R$ của nó. Điều này thường được dùng để xây cây hậu tố ngoại tuyến.
 
-下面我们来看一些可以用 SAM 解决的问题．简单起见，假设字符集的大小 $k$ 为常数．这允许我们认为增加一个字符和遍历的复杂度为常数．
+<span id="&#x5E94;&#x7528;"></span>
 
-### 检查字符串是否出现
+## Ứng dụng
 
-???+ example "问题"
-    给一个文本串 $T$ 和多个模式串 $P$，我们要检查字符串 $P$ 是否作为 $T$ 的一个子串出现．
+Bây giờ ta xem một số bài toán có thể giải bằng SAM. Để đơn giản, giả sử kích thước bảng chữ cái $k$ là hằng số. Khi đó có thể coi độ phức tạp của việc thêm một ký tự và duyệt là hằng số.
 
-??? note "解法"
-    我们在 $O(\left|T\right|)$ 的时间内对文本串 $T$ 构造后缀自动机．为了检查模式串 $P$ 是否在 $T$ 中出现，我们沿转移（边）从 $t_0$ 开始根据 $P$ 的字符进行转移．如果在某个点无法转移下去，则模式串 $P$ 不是 $T$ 的一个子串．如果我们能够这样处理完整个字符串 $P$，那么模式串在 $T$ 中出现过．
+<span id="&#x68C0;&#x67E5;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x51FA;&#x73B0;"></span>
+
+### Kiểm tra một xâu có xuất hiện hay không
+
+???+ example "Bài toán"
+    Cho một xâu văn bản $T$ và nhiều xâu mẫu $P$. Cần kiểm tra xâu $P$ có xuất hiện trong $T$ như một xâu con hay không.
+
+??? note "Lời giải"
+    Ta xây suffix automaton cho xâu văn bản $T$ trong thời gian $O(\left|T\right|)$. Để kiểm tra xâu mẫu $P$ có xuất hiện trong $T$ hay không, ta bắt đầu từ $t_0$ và đi theo các chuyển trạng thái (cạnh) tương ứng với các ký tự của $P$. Nếu tại một điểm nào đó không thể đi tiếp, xâu mẫu $P$ không phải là xâu con của $T$. Nếu xử lý được toàn bộ xâu $P$ theo cách này, thì xâu mẫu đã xuất hiện trong $T$.
     
-    对于每个字符串 $P$，算法的时间复杂度为 $O(\left|P\right|)$．此外，这个算法还找到了模式串 $P$ 在文本串中出现的最大前缀长度．
+    Với mỗi xâu $P$, độ phức tạp thời gian của thuật toán là $O(\left|P\right|)$. Ngoài ra, thuật toán này cũng tìm được độ dài tiền tố dài nhất của xâu mẫu $P$ xuất hiện trong xâu văn bản.
 
-### 不同子串个数
+<span id="&#x4E0D;&#x540C;&#x5B50;&#x4E32;&#x4E2A;&#x6570;"></span>
 
-???+ example "问题"
-    给一个字符串 $S$，计算不同子串的个数．
+### Số xâu con phân biệt
 
-??? note "解法一"
-    对字符串 $S$ 构造后缀自动机．
+???+ example "Bài toán"
+    Cho một xâu $S$, tính số xâu con phân biệt.
+
+??? note "Lời giải 1"
+    Xây suffix automaton cho xâu $S$.
     
-    每个 $S$ 的子串都相当于自动机中的一些路径．因此不同子串的个数等于自动机中以 $t_0$ 为起点的不同路径的条数．
+    Mỗi xâu con của $S$ tương ứng với một số đường đi trong automaton. Vì vậy số xâu con phân biệt bằng số đường đi khác nhau trong automaton có điểm bắt đầu là $t_0$.
     
-    考虑到 SAM 为有向无环图，不同路径的条数可以通过动态规划计算．即令 $d_{v}$ 为从状态 $v$ 开始的路径数量（包括长度为零的路径），则我们有如下递推方程：
+    Vì SAM là đồ thị có hướng không chu trình, số đường đi khác nhau có thể được tính bằng quy hoạch động. Cụ thể, gọi $d_{v}$ là số đường đi bắt đầu từ trạng thái $v$ (bao gồm cả đường đi độ dài không), ta có công thức truy hồi:
     
     $$
     d_{v}=1+\sum_{w:(v,w,c)\in DAWG}d_{w}
     $$
     
-    即，$d_{v}$ 可以表示为所有 $v$ 的转移的末端的和，$DAWG$ 中的三元组 $(v,w,c)$ 表示后缀自动机中存在自 $v$ 经 $c$ 至 $w$ 的转移．
+    Tức $d_{v}$ có thể được biểu diễn bằng tổng trên các điểm cuối của mọi chuyển trạng thái từ $v$; bộ ba $(v,w,c)$ trong $DAWG$ biểu diễn một chuyển trạng thái từ $v$ qua $c$ tới $w$ trong suffix automaton.
     
-    所以不同子串的个数为 $d_{t_0}-1$（因为要去掉空子串）．
+    Vì vậy số xâu con phân biệt là $d_{t_0}-1$ (do cần bỏ xâu rỗng).
     
-    总时间复杂度为：$O(\left|S\right|)$．
+    Tổng độ phức tạp thời gian là $O(\left|S\right|)$.
 
-??? note "解法二"
-    另一种方法是在构造完后缀自动机后，利用得到的后缀链接树的信息．每个节点对应的子串数量是 $\operatorname{len}(v)-\operatorname{len}(\operatorname{link}(v))$，对自动机所有节点求和即可．
+??? note "Lời giải 2"
+    Một phương pháp khác là dùng thông tin của cây liên kết hậu tố sau khi xây xong suffix automaton. Số xâu con ứng với mỗi nút là $\operatorname{len}(v)-\operatorname{len}(\operatorname{link}(v))$; chỉ cần cộng trên mọi nút của automaton.
     
-    总时间复杂度仍然为：$O(\left|S\right|)$．
+    Tổng độ phức tạp thời gian vẫn là $O(\left|S\right|)$.
 
-例题：[【模板】后缀自动机](https://www.luogu.com.cn/problem/P3804)，[SDOI2016 生成魔咒](https://loj.ac/problem/2033)
+Bài ví dụ: [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804), [SDOI2016 Sinh bùa chú](https://loj.ac/problem/2033)
 
-### 所有不同子串的总长度
+<span id="&#x6240;&#x6709;&#x4E0D;&#x540C;&#x5B50;&#x4E32;&#x7684;&#x603B;&#x957F;&#x5EA6;"></span>
 
-???+ example "问题"
-    给定一个字符串 $S$，计算所有不同子串的总长度．
+### Tổng độ dài của mọi xâu con phân biệt
 
-??? note "解法一"
-    本题做法与上一题类似，只是现在我们需要考虑分两部分进行动态规划：不同子串的数量 $d_{v}$ 和它们的总长度 $ans_{v}$．
+???+ example "Bài toán"
+    Cho một xâu $S$, tính tổng độ dài của mọi xâu con phân biệt.
+
+??? note "Lời giải 1"
+    Cách làm của bài này tương tự bài trước, chỉ khác là bây giờ cần xét quy hoạch động gồm hai phần: số xâu con phân biệt $d_{v}$ và tổng độ dài của chúng $ans_{v}$.
     
-    我们已经在上一题中介绍了如何计算 $d_{v}$．$ans_{v}$ 的值可以通过以下递推式计算：
+    Ở bài trước ta đã giới thiệu cách tính $d_{v}$. Giá trị $ans_{v}$ có thể được tính bằng công thức truy hồi sau:
     
     $$
     ans_{v}=\sum_{w:(v,w,c)\in DAWG}d_{w}+ans_{w}
     $$
     
-    我们取每个邻接结点 $w$ 的答案，并加上 $d_{w}$（因为从状态 $v$ 出发的子串都增加了一个字符）．
+    Ta lấy đáp án của mỗi đỉnh kề $w$ và cộng thêm $d_{w}$ (vì các xâu con xuất phát từ trạng thái $v$ đều được thêm một ký tự).
     
-    算法的时间复杂度仍然是 $O(\left|S\right|)$．
+    Độ phức tạp thời gian của thuật toán vẫn là $O(\left|S\right|)$.
 
-??? note "解法二"
-    同样可以利用后缀链接树的信息．每个节点对应的最长子串的所有后缀长度是
+??? note "Lời giải 2"
+    Cũng có thể dùng thông tin của cây liên kết hậu tố. Tổng độ dài mọi hậu tố của xâu con dài nhất ứng với mỗi nút là
     
     $$
     \dfrac{\operatorname{len}(v)\times (\operatorname{len}(v)+1)}{2},
     $$
     
-    减去其 $\operatorname{link}$ 节点的对应值就是该节点的净贡献，对自动机所有节点求和即可．
+    trừ đi giá trị tương ứng của nút $\operatorname{link}$ chính là đóng góp ròng của nút đó; chỉ cần cộng trên mọi nút của automaton.
     
-    总时间复杂度仍然为：$O(\left|S\right|)$．
+    Tổng độ phức tạp thời gian vẫn là $O(\left|S\right|)$.
 
-### 字典序第 k 大子串
+<span id="&#x5B57;&#x5178;&#x5E8F;&#x7B2C;-k-&#x5927;&#x5B50;&#x4E32;"></span>
 
-???+ example "问题"
-    给定一个字符串 $S$．多组询问，每组询问给定一个数 $K_i$，查询 $S$ 的所有子串中字典序第 $K_i$ 大的子串．
+### Xâu con lớn thứ k theo thứ tự từ điển
 
-??? note "解法"
-    解决这个问题的思路可以从解决前两个问题的思路发展而来．字典序第 $k$ 大的子串对应于 SAM 中字典序第 $k$ 大的路径，因此在计算每个状态的路径数后，我们可以很容易地从 SAM 的根开始找到第 $k$ 大的路径．
+???+ example "Bài toán"
+    Cho một xâu $S$. Có nhiều truy vấn, mỗi truy vấn cho một số $K_i$, yêu cầu tìm xâu con lớn thứ $K_i$ theo thứ tự từ điển trong tất cả xâu con của $S$.
+
+??? note "Lời giải"
+    Ý tưởng giải bài này có thể phát triển từ cách giải hai bài trước. Xâu con lớn thứ $k$ theo thứ tự từ điển tương ứng với đường đi lớn thứ $k$ theo thứ tự từ điển trong SAM. Vì vậy, sau khi tính số đường đi của mỗi trạng thái, ta có thể dễ dàng bắt đầu từ gốc của SAM để tìm đường đi lớn thứ $k$.
     
-    预处理的时间复杂度为 $O(\left|S\right|)$，单次查询的复杂度为 $O(\left|ans\right|\cdot\left|\Sigma\right|)$（其中 $ans$ 是查询的答案，$\left|\Sigma\right|$ 为字符集的大小）．
+    Độ phức tạp tiền xử lý là $O(\left|S\right|)$, độ phức tạp mỗi truy vấn là $O(\left|ans\right|\cdot\left|\Sigma\right|)$, trong đó $ans$ là đáp án của truy vấn và $\left|\Sigma\right|$ là kích thước bảng chữ cái.
 
-??? info "另注"
-    虽然该题是后缀自动机的经典题，但实际上这题由于涉及字典序，用后缀数组做最方便．
+??? info "Ghi chú thêm"
+    Dù đây là một bài kinh điển về suffix automaton, thực ra vì bài toán liên quan đến thứ tự từ điển nên dùng mảng hậu tố là thuận tiện nhất.
 
-例题：[SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/)，[TJOI2015 弦论](https://loj.ac/problem/2102)
+Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015 String Theory](https://loj.ac/problem/2102)
 
-### 最小循环移位
+<span id="&#x6700;&#x5C0F;&#x5FAA;&#x73AF;&#x79FB;&#x4F4D;"></span>
 
-???+ example "问题"
-    给定一个字符串 $S$．找出字典序最小的循环移位．
+### Phép dịch vòng nhỏ nhất
 
-??? note "解法"
-    容易发现字符串 $S+S$ 包含字符串 $S$ 的所有循环移位作为子串．
+???+ example "Bài toán"
+    Cho một xâu $S$. Tìm phép dịch vòng nhỏ nhất theo thứ tự từ điển.
+
+??? note "Lời giải"
+    Dễ thấy xâu $S+S$ chứa mọi phép dịch vòng của xâu $S$ dưới dạng xâu con.
     
-    所以问题简化为在 $S+S$ 对应的后缀自动机上寻找最小的长度为 $\left|S\right|$ 的路径，这可以通过平凡的方法做到：我们从初始状态开始，贪心地访问最小的字符即可．
+    Vì vậy bài toán được rút gọn thành tìm đường đi độ dài $\left|S\right|$ nhỏ nhất trên suffix automaton ứng với $S+S$. Điều này có thể làm bằng cách hiển nhiên: bắt đầu từ trạng thái ban đầu, tham lam đi theo ký tự nhỏ nhất.
     
-    总的时间复杂度为 $O(\left|S\right|)$．
+    Tổng độ phức tạp thời gian là $O(\left|S\right|)$.
 
-### 出现次数
+<span id="&#x51FA;&#x73B0;&#x6B21;&#x6570;"></span>
 
-???+ example "问题"
-    对于一个给定的文本串 $T$，有多组询问，每组询问给一个模式串 $P$，回答模式串 $P$ 在字符串 $T$ 中作为子串出现了多少次．
+### Số lần xuất hiện
 
-??? note "解法一"
-    利用后缀链接树的信息，进行 dfs 即可预处理每个节点的 $\operatorname{endpos}$ 集合的大小．
-    
-    所有「前缀节点」的初始集合大小为 $1$，非「前缀节点」的初始集合大小为 $0$．然后，沿着后缀链接自下向上回溯时，每个父节点的集合大小都加上它的所有子节点的集合大小（不要遗漏父节点本身的初始值）．这样得到的每个节点处的值，就是该节点的 $\operatorname{endpos}$ 集合的大小．不同子节点的集合大小可以直接相加的理由是，同一个 $v_i$ 只会出现在一个子树内，故而相加不会重复．
-    
-    查询时，在自动机上查找模式串 $P$ 对应的节点，如果存在，则答案就是该节点的 $\operatorname{endpos}$ 集合的大小；如果不存在，则答案为 $0$．
-    
-    预处理时间复杂度为 $O(|T|)$．单次查询的时间复杂度为 $O(|P|)$．
+???+ example "Bài toán"
+    Với một xâu văn bản $T$ cho trước, có nhiều truy vấn; mỗi truy vấn cho một xâu mẫu $P$, cần trả lời xâu mẫu $P$ xuất hiện bao nhiêu lần trong xâu $T$ như một xâu con.
 
-??? note "解法二"
-    对文本串 $T$ 构造后缀自动机．
+??? note "Lời giải 1"
+    Dùng thông tin của cây liên kết hậu tố, thực hiện DFS để tiền xử lý kích thước tập $\operatorname{endpos}$ của mỗi nút.
     
-    接下来做预处理：对于自动机中的每个状态 $v$，预处理 $cnt_{v}$，使之等于 $\operatorname{endpos}(v)$ 集合的大小．事实上，对应同一状态 $v$ 的所有子串在文本串 $T$ 中的出现次数相同，这相当于集合 $\operatorname{endpos}$ 中的位置数．
+    Kích thước tập ban đầu của mọi "nút tiền tố" là $1$, còn của các nút không phải "nút tiền tố" là $0$. Sau đó, khi truy hồi từ dưới lên theo liên kết hậu tố, kích thước tập của mỗi nút cha được cộng với kích thước tập của tất cả nút con của nó (đừng bỏ sót giá trị ban đầu của chính nút cha). Giá trị thu được tại mỗi nút chính là kích thước tập $\operatorname{endpos}$ của nút đó. Lý do có thể cộng trực tiếp kích thước tập của các nút con khác nhau là cùng một $v_i$ chỉ xuất hiện trong một cây con, nên cộng sẽ không bị trùng.
     
-    然而我们不能明确的构造集合 $\operatorname{endpos}$，因此我们只考虑它们的大小 $cnt$．
+    Khi truy vấn, tìm nút ứng với xâu mẫu $P$ trên automaton. Nếu tồn tại, đáp án là kích thước tập $\operatorname{endpos}$ của nút đó; nếu không tồn tại, đáp án là $0$.
     
-    为了计算这些值，我们进行以下操作．对于每个状态，如果它不是通过复制创建的（且它不是初始状态 $t_0$），我们将它的 $cnt$ 初始化为 1．然后我们按它们的长度 $\operatorname{len}$ 降序遍历所有状态，并将当前的 $cnt_{v}$ 的值加到后缀链接指向的状态上，即：
+    Độ phức tạp tiền xử lý là $O(|T|)$. Độ phức tạp mỗi truy vấn là $O(|P|)$.
+
+??? note "Lời giải 2"
+    Xây suffix automaton cho xâu văn bản $T$.
+    
+    Tiếp theo tiền xử lý: với mỗi trạng thái $v$ trong automaton, tiền xử lý $cnt_{v}$ sao cho nó bằng kích thước tập $\operatorname{endpos}(v)$. Thực ra, mọi xâu con ứng với cùng một trạng thái $v$ xuất hiện trong xâu văn bản $T$ cùng số lần; số lần đó chính là số vị trí trong tập $\operatorname{endpos}$.
+    
+    Tuy nhiên ta không thể xây tường minh tập $\operatorname{endpos}$, nên chỉ xét kích thước $cnt$ của chúng.
+    
+    Để tính các giá trị này, ta làm như sau. Với mỗi trạng thái, nếu nó không được tạo bằng cách sao chép (và không phải trạng thái ban đầu $t_0$), ta khởi tạo $cnt$ của nó bằng 1. Sau đó duyệt mọi trạng thái theo thứ tự giảm dần của độ dài $\operatorname{len}$, và cộng giá trị $cnt_{v}$ hiện tại vào trạng thái mà liên kết hậu tố trỏ tới, tức:
     
     $$
     cnt_{\operatorname{link}(v)}+=cnt_{v}
     $$
     
-    这样做每个状态的答案都是正确的．
+    Làm như vậy, đáp án của mỗi trạng thái đều đúng.
     
-    为什么这是正确的？不是通过复制获得的状态，恰好有 $\left|T\right|$ 个，并且它们中的前 $i$ 个在我们插入前 $i$ 个字符时产生．因此对于每个这样的状态，我们在它被处理时计算它们所对应的位置的数量．因此我们初始将这些状态的 $cnt$ 的值赋为 $1$，其它状态的 $cnt$ 值赋为 $0$．
+    Vì sao đúng? Các trạng thái không được tạo bằng sao chép có đúng $\left|T\right|$ trạng thái, và trạng thái thứ $i$ trong số chúng được tạo khi ta chèn $i$ ký tự đầu. Vì vậy, với mỗi trạng thái như vậy, khi nó được xử lý, ta đang tính số lượng vị trí mà nó ứng với. Do đó ta khởi tạo $cnt$ của các trạng thái này bằng $1$, và khởi tạo $cnt$ của các trạng thái khác bằng $0$.
     
-    接下来我们对每一个 $v$ 执行以下操作：$cnt_{\operatorname{link}(v)}+=cnt_{v}$．其背后的含义是，如果有一个字符串 $v$ 出现了 $cnt_{v}$ 次，那么它的所有后缀也在完全相同的地方结束，即也出现了 $cnt_{v}$ 次．
+    Tiếp theo, với mỗi $v$, ta thực hiện thao tác: $cnt_{\operatorname{link}(v)}+=cnt_{v}$. Ý nghĩa đằng sau là nếu một xâu $v$ xuất hiện $cnt_{v}$ lần, thì mọi hậu tố của nó cũng kết thúc tại đúng các vị trí đó, tức cũng xuất hiện $cnt_{v}$ lần.
     
-    为什么我们在这个过程中不会重复计数（即把某些位置数了两次）呢？因为我们只将一个状态的位置添加到 **一个** 其它的状态上，所以一个状态不可能以两种不同的方式将其位置重复地指向另一个状态．
+    Vì sao quá trình này không đếm lặp (tức đếm một số vị trí hai lần)? Vì ta chỉ thêm các vị trí của một trạng thái vào **một** trạng thái khác, nên một trạng thái không thể trỏ lặp các vị trí của nó tới trạng thái khác theo hai cách khác nhau.
     
-    因此，我们可以在 $O(\left|T\right|)$ 的时间内计算出所有状态的 $cnt$ 的值．
+    Do đó, ta có thể tính giá trị $cnt$ của mọi trạng thái trong thời gian $O(\left|T\right|)$.
     
-    最后回答询问只需要查找值 $cnt_{t}$，其中 $t$ 为模式串对应的状态，如果该模式串不存在答案就为 $0$．单次查询的时间复杂度为 $O(\left|P\right|)$．
+    Cuối cùng, để trả lời truy vấn chỉ cần tìm giá trị $cnt_{t}$, trong đó $t$ là trạng thái ứng với xâu mẫu; nếu xâu mẫu không tồn tại thì đáp án là $0$. Độ phức tạp mỗi truy vấn là $O(\left|P\right|)$.
 
-### 第一次出现的位置
+<span id="&#x7B2C;&#x4E00;&#x6B21;&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;"></span>
 
-???+ example "问题"
-    给定一个文本串 $T$，多组查询．每次查询字符串 $P$ 在字符串 $T$ 中第一次出现的位置（$P$ 的开头位置）．
+### Vị trí xuất hiện đầu tiên
 
-??? note "解法一"
-    利用后缀链接树的信息，进行 dfs 即可预处理每个节点的 $\operatorname{endpos}$ 集合中的最小值．
-    
-    所有「前缀节点」$v_i$ 的初始值为 $i$，非「前缀节点」的初始值为 $\infty$．然后，沿着后缀链接自下向上回溯时，每个父节点的值都与它的所有子节点的值比较，取最小值（不要遗漏父节点本身的初始值）．这样得到的每个节点处的值，就是该节点的 $\operatorname{endpos}$ 集合中的最小值．
-    
-    查询时，在自动机上查找模式串 $P$ 对应的节点，如果存在，则答案就是该节点的值，减去 $|P|-1$；如果不存在，则答案不存在．
-    
-    预处理时间复杂度为 $O(|T|)$．单次查询的时间复杂度为 $O(|P|)$．
+???+ example "Bài toán"
+    Cho một xâu văn bản $T$ và nhiều truy vấn. Mỗi truy vấn hỏi vị trí xuất hiện đầu tiên của xâu $P$ trong xâu $T$ (vị trí bắt đầu của $P$).
 
-??? note "解法二"
-    我们构造一个后缀自动机．我们对 SAM 中的所有状态预处理位置 $\operatorname{firstpos}$．即，对每个状态 $v$ 我们想要找到第一次出现这个状态的末端的位置 $\operatorname{firstpos}[v]$．换句话说，我们希望先找到每个集合 $\operatorname{endpos}$ 中的最小的元素（显然我们不能显式地维护所有 $\operatorname{endpos}$ 集合）．
+??? note "Lời giải 1"
+    Dùng thông tin của cây liên kết hậu tố, thực hiện DFS để tiền xử lý giá trị nhỏ nhất trong tập $\operatorname{endpos}$ của mỗi nút.
     
-    为了维护 $\operatorname{firstpos}$ 这些位置，我们对函数 `sam_extend()` 进行扩展．当我们创建新状态 $\textit{cur}$ 时，我们令：
+    Giá trị ban đầu của mọi "nút tiền tố" $v_i$ là $i$, còn của các nút không phải "nút tiền tố" là $\infty$. Sau đó, khi truy hồi từ dưới lên theo liên kết hậu tố, giá trị của mỗi nút cha được so sánh với giá trị của tất cả nút con của nó và lấy nhỏ nhất (đừng bỏ sót giá trị ban đầu của chính nút cha). Giá trị thu được tại mỗi nút chính là giá trị nhỏ nhất trong tập $\operatorname{endpos}$ của nút đó.
+    
+    Khi truy vấn, tìm nút ứng với xâu mẫu $P$ trên automaton. Nếu tồn tại, đáp án là giá trị của nút đó trừ $|P|-1$; nếu không tồn tại, đáp án không tồn tại.
+    
+    Độ phức tạp tiền xử lý là $O(|T|)$. Độ phức tạp mỗi truy vấn là $O(|P|)$.
+
+??? note "Lời giải 2"
+    Ta xây một suffix automaton. Ta tiền xử lý vị trí $\operatorname{firstpos}$ cho mọi trạng thái trong SAM. Tức là, với mỗi trạng thái $v$, ta muốn tìm vị trí kết thúc của lần xuất hiện đầu tiên của trạng thái này, $\operatorname{firstpos}[v]$. Nói cách khác, trước hết ta muốn tìm phần tử nhỏ nhất trong mỗi tập $\operatorname{endpos}$ (rõ ràng không thể duy trì tường minh mọi tập $\operatorname{endpos}$).
+    
+    Để duy trì các vị trí $\operatorname{firstpos}$ này, ta mở rộng hàm `sam_extend()`. Khi tạo trạng thái mới $\textit{cur}$, ta đặt:
     
     $$
     \operatorname{firstpos}(\textit{cur})=\operatorname{len}(\textit{cur})-1.
     $$
     
-    当我们将结点 $q$ 复制到 $\textit{clone}$ 时，我们令：
+    Khi sao chép đỉnh $q$ sang $\textit{clone}$, ta đặt:
     
     $$
     \operatorname{firstpos}(\textit{clone})=\operatorname{firstpos}(q).
     $$
     
-    （因为值的唯一的其它选项 $\operatorname{firstpos}(\textit{cur})$ 显然太大了）．
+    (Vì lựa chọn duy nhất khác là $\operatorname{firstpos}(\textit{cur})$, rõ ràng quá lớn.)
     
-    那么查询的答案就是 $\operatorname{firstpos}(t)-\left|P\right|+1$，其中 $t$ 为对应字符串 $P$ 的状态．单次查询只需要 $O(\left|P\right|)$ 的时间．
+    Khi đó đáp án truy vấn là $\operatorname{firstpos}(t)-\left|P\right|+1$, trong đó $t$ là trạng thái ứng với xâu $P$. Mỗi truy vấn chỉ cần thời gian $O(\left|P\right|)$.
 
-### 所有出现的位置
+<span id="&#x6240;&#x6709;&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;"></span>
 
-???+ example "问题"
-    问题同上，这一次需要查询文本串 $T$ 中模式串 $P$ 出现的所有位置．
+### Mọi vị trí xuất hiện
 
-??? note "解法一"
-    找到模式串 $P$ 对应的节点后，利用后缀链接树的信息，遍历子树，一旦发现终点节点就输出．
-    
-    单次查询复杂度为 $O(|P|)+O(\textit{answer}(P))$，其中，$\textit{answer}(P)$ 为本次询问的答案．仿照 [状态数为线性的证明](#状态数) 可以说明，后缀链接树的子树大小不会超过该节点的 $\operatorname{endpos}$ 集合的大小的二倍，因此遍历子树的复杂度是 $O(\textit{answer}(P))$ 的．
+???+ example "Bài toán"
+    Bài toán giống trên, nhưng lần này cần truy vấn mọi vị trí xuất hiện của xâu mẫu $P$ trong xâu văn bản $T$.
 
-??? note "解法二"
-    我们还是对文本串 $T$ 构造后缀自动机．与上一个问题相似，我们为所有状态计算位置 $\operatorname{firstpos}$．
+??? note "Lời giải 1"
+    Sau khi tìm được nút ứng với xâu mẫu $P$, dùng thông tin của cây liên kết hậu tố để duyệt cây con; hễ gặp một nút kết thúc thì xuất ra.
     
-    如果 $t$ 为对应于模式串 $P$ 的状态，显然 $\operatorname{firstpos}(t)$ 为答案之一．我们已经找到了自动机中对应于 $P$ 的状态．还需要找到其它哪些位置？正是那些对应于以 $P$ 为后缀的字符串的状态．换句话说，我们要找到所有可以通过后缀链接到达状态 $t$ 的状态．
+    Độ phức tạp mỗi truy vấn là $O(|P|)+O(\textit{answer}(P))$, trong đó $\textit{answer}(P)$ là đáp án của truy vấn này. Tương tự [chứng minh số trạng thái là tuyến tính](#%E7%8A%B6%E6%80%81%E6%95%B0), có thể chỉ ra kích thước cây con của cây liên kết hậu tố không vượt quá hai lần kích thước tập $\operatorname{endpos}$ của nút đó, nên độ phức tạp duyệt cây con là $O(\textit{answer}(P))$.
+
+??? note "Lời giải 2"
+    Ta vẫn xây suffix automaton cho xâu văn bản $T$. Tương tự bài trước, ta tính vị trí $\operatorname{firstpos}$ cho mọi trạng thái.
     
-    因此为了解决这个问题，我们需要为每一个状态保存一个指向它的后缀连接列表．查询的答案就包含了对于每个我们能从状态 $t$ 只使用反向的后缀链接进行 DFS 或 BFS 找到的所有状态的 $\operatorname{firstpos}$ 值．
+    Nếu $t$ là trạng thái ứng với xâu mẫu $P$, rõ ràng $\operatorname{firstpos}(t)$ là một trong các đáp án. Ta đã tìm được trạng thái trong automaton ứng với $P$. Còn cần tìm những vị trí nào khác? Chính là các trạng thái ứng với những xâu có $P$ làm hậu tố. Nói cách khác, ta cần tìm tất cả trạng thái có thể đi tới trạng thái $t$ thông qua các liên kết hậu tố.
     
-    预处理的复杂度为 $O(|T|)$，单次查询的复杂度为 $O(|P|+\textit{answer}(P))$．
+    Vì vậy để giải bài toán này, ta cần lưu cho mỗi trạng thái danh sách các liên kết hậu tố trỏ vào nó. Đáp án truy vấn sẽ chứa giá trị $\operatorname{firstpos}$ của mọi trạng thái mà ta có thể tìm được từ trạng thái $t$ bằng cách chỉ dùng liên kết hậu tố ngược trong DFS hoặc BFS.
     
-    我们不会重复访问一个状态（因为对于仅有一个后缀链接指向一个状态，所以不存在两条不同的路径指向同一状态）．
+    Độ phức tạp tiền xử lý là $O(|T|)$, độ phức tạp mỗi truy vấn là $O(|P|+\textit{answer}(P))$.
     
-    我们只需要考虑两个可能有相同 $\operatorname{firstpos}$ 值的不同状态．这种情形只在一个状态是由另一个状态复制而来时发生．然而，这并不会对复杂度分析造成影响．仿照 [状态数为线性的证明](#状态数)，所有这种后缀为 $P$ 的状态数目不会超过 $2\textit{answer}(P)$．
+    Ta sẽ không thăm lặp một trạng thái, vì mỗi trạng thái chỉ có một liên kết hậu tố trỏ tới một trạng thái khác, nên không tồn tại hai đường đi khác nhau trỏ tới cùng một trạng thái.
     
-    此外，我们可以通过不考虑复制而来的节点的 $\operatorname{firstpos}$ 值来去除重复的位置．事实上对于一个状态，如果经过被复制状态可以到达，则经过原状态也可以到达．因此，如果我们给每个状态记录标记 `is_clone` 来代表这个状态是不是被复制出来的，我们就可以简单地忽略掉被复制的状态，只输出其它所有状态的 $firstpos$ 的值．
+    Ta chỉ cần xét trường hợp hai trạng thái khác nhau có cùng giá trị $\operatorname{firstpos}$. Tình huống này chỉ xảy ra khi một trạng thái được sao chép từ trạng thái kia. Tuy nhiên, điều này không ảnh hưởng tới phân tích độ phức tạp. Tương tự [chứng minh số trạng thái là tuyến tính](#%E7%8A%B6%E6%80%81%E6%95%B0), số trạng thái có hậu tố là $P$ như vậy không vượt quá $2\textit{answer}(P)$.
     
-    以下是大致的实现：
+    Ngoài ra, ta có thể loại bỏ vị trí lặp bằng cách không xét giá trị $\operatorname{firstpos}$ của các nút được sao chép. Thực tế, với một trạng thái, nếu có thể đi tới nó qua trạng thái được sao chép thì cũng có thể đi tới nó qua trạng thái gốc. Do đó, nếu ghi cho mỗi trạng thái một cờ `is_clone` biểu diễn trạng thái này có phải được sao chép ra hay không, ta có thể đơn giản bỏ qua các trạng thái được sao chép, chỉ xuất giá trị $firstpos$ của mọi trạng thái còn lại.
+    
+    Dưới đây là cài đặt phác thảo:
     
     ```cpp
     struct state {
       bool is_clone;
       int first_pos;
       std::vector<int> inv_link;
-      // some other variables
+      // cac bien khac
     };
     
-    // 在构造 SAM 后
+    // sau khi xay SAM
     for (int v = 1; v < sz; v++) st[st[v].link].inv_link.push_back(v);
     
-    // 输出所有出现位置
+    // xuat moi vi tri xuat hien
     void output_all_occurrences(int v, int P_length) {
       if (!st[v].is_clone) cout << st[v].first_pos - P_length + 1 << endl;
       for (int u : st[v].inv_link) output_all_occurrences(u, P_length);
     }
     ```
 
-### 最短的没有出现的字符串
+<span id="&#x6700;&#x77ED;&#x7684;&#x6CA1;&#x6709;&#x51FA;&#x73B0;&#x7684;&#x5B57;&#x7B26;&#x4E32;"></span>
 
-???+ example "问题"
-    给定一个字符串 $S$ 和一个特定的字符集，我们要找一个长度最短的没有在 $S$ 中出现过的字符串．
+### Xâu ngắn nhất không xuất hiện
 
-??? note "解法"
-    我们在字符串 $S$ 的后缀自动机上做动态规划．
+???+ example "Bài toán"
+    Cho một xâu $S$ và một bảng chữ cái cụ thể, cần tìm một xâu ngắn nhất không xuất hiện trong $S$.
+
+??? note "Lời giải"
+    Ta quy hoạch động trên suffix automaton của xâu $S$.
     
-    假定我们已经处理完了子串的一部分，当前在状态 $v$，想找到不连续的转移需要添加的最小字符数量，将节点 $v$ 处的这个数量记作 $d_v$．
+    Giả sử đã xử lý xong một phần của xâu con, hiện đang ở trạng thái $v$. Ta muốn tìm số ký tự tối thiểu cần thêm để gặp một chuyển trạng thái không tồn tại; gọi số này tại nút $v$ là $d_v$.
     
-    计算 $d_{v}$ 非常简单．如果不存在使用字符集中至少一个字符的转移，则 $d_{v}=1$．否则添加一个字符是不够的，我们需要求出所有转移中的最小值：
+    Tính $d_{v}$ rất đơn giản. Nếu không tồn tại chuyển trạng thái dùng ít nhất một ký tự trong bảng chữ cái, thì $d_{v}=1$. Ngược lại, thêm một ký tự là chưa đủ, ta cần lấy giá trị nhỏ nhất trong mọi chuyển trạng thái:
     
     $$
     d_{v}=1+\min_{w:(v,w,c)\in SAM}d_{w}
     $$
     
-    问题的答案就是 $d_{t_0}$，字符串可以通过计算过的数组 $d$ 逆推回去．
+    Đáp án của bài toán là $d_{t_0}$; xâu cụ thể có thể được truy vết ngược từ mảng $d$ đã tính.
 
-### 两个字符串的最长公共子串
+<span id="&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x4E32;"></span>
 
-???+ example "问题"
-    给定两个字符串 $S$ 和 $T$，求出最长公共子串，公共子串定义为在 $S$ 和 $T$ 中都作为子串出现过的字符串 $X$．
+### Xâu con chung dài nhất của hai xâu
 
-??? note "解法"
-    我们对字符串 $S$ 构造后缀自动机．
+???+ example "Bài toán"
+    Cho hai xâu $S$ và $T$, tìm xâu con chung dài nhất, tức một xâu $X$ xuất hiện trong cả $S$ và $T$ dưới dạng xâu con.
+
+??? note "Lời giải"
+    Ta xây suffix automaton cho xâu $S$.
     
-    我们现在处理字符串 $T$，对于每一个前缀，都在 $S$ 中寻找这个前缀的最长后缀．换句话说，对于每个字符串 $T$ 中的位置，我们想要找到这个位置结束的 $S$ 和 $T$ 的最长公共子串的长度．
+    Bây giờ xử lý xâu $T$. Với mỗi tiền tố, ta tìm hậu tố dài nhất của tiền tố này nằm trong $S$. Nói cách khác, với mỗi vị trí trong xâu $T$, ta muốn tìm độ dài xâu con chung dài nhất của $S$ và $T$ kết thúc tại vị trí này.
     
-    为了达到这一目的，我们使用两个变量，**当前状态**  $v$ 和 **当前长度**  $l$．这两个变量描述当前匹配的部分：它的长度和它们对应的状态．
+    Để đạt mục tiêu đó, ta dùng hai biến: **trạng thái hiện tại** $v$ và **độ dài hiện tại** $l$. Hai biến này mô tả phần đang khớp: độ dài của nó và trạng thái tương ứng.
     
-    一开始 $v=t_0$ 且 $l=0$，即，匹配为空串．
+    Ban đầu $v=t_0$ và $l=0$, tức phần khớp là xâu rỗng.
     
-    现在我们来描述如何添加一个字符 $T_{i}$ 并为其重新计算答案：
+    Bây giờ mô tả cách thêm một ký tự $T_{i}$ và tính lại đáp án cho nó:
     
-    -   如果存在一个从 $v$ 到字符 $T_{i}$ 的转移，我们只需要转移并让 $l$ 自增一．
-    -   如果不存在这样的转移，我们需要缩短当前匹配的部分，这意味着我们需要按照后缀链接进行转移：
+    -   Nếu tồn tại chuyển trạng thái từ $v$ qua ký tự $T_{i}$, ta chỉ cần đi theo chuyển trạng thái đó và tăng $l$ thêm một.
+    -   Nếu không tồn tại chuyển trạng thái như vậy, ta cần rút ngắn phần khớp hiện tại, nghĩa là đi theo liên kết hậu tố:
     
         $$
         v=\operatorname{link}(v)
         $$
     
-        与此同时，需要缩短当前长度．显然我们需要将 $l$ 赋值为 $\operatorname{len}(v)$，因为经过这个后缀链接后我们到达的状态所对应的最长字符串是一个子串．
-    -   如果仍然没有使用这一字符的转移，我们继续重复经过后缀链接并减小 $l$，直到我们找到一个转移或到达虚拟状态 $-1$（这意味着字符 $T_{i}$ 根本没有在 $S$ 中出现过，所以我们设置 $v=l=0$）．
+        Đồng thời cần rút ngắn độ dài hiện tại. Rõ ràng ta cần gán $l=\operatorname{len}(v)$, vì sau khi đi qua liên kết hậu tố này, trạng thái ta tới ứng với một xâu dài nhất là một xâu con.
+    -   Nếu vẫn không có chuyển trạng thái dùng ký tự này, ta tiếp tục lặp việc đi theo liên kết hậu tố và giảm $l$, cho tới khi tìm được một chuyển trạng thái hoặc tới trạng thái ảo $-1$ (nghĩa là ký tự $T_{i}$ hoàn toàn không xuất hiện trong $S$, nên đặt $v=l=0$).
     
-    显然问题的答案就是所有 $l$ 的最大值．
+    Rõ ràng đáp án của bài toán là giá trị lớn nhất của mọi $l$.
     
-    这一部分的时间复杂度为 $O(\left|T\right|)$，因为每次移动我们要么可以使 $l$ 增加一，要么可以在后缀链接间移动几次，每次都减小 $l$ 的值．
+    Độ phức tạp thời gian của phần này là $O(\left|T\right|)$, vì mỗi lần di chuyển hoặc làm $l$ tăng thêm một, hoặc đi qua vài liên kết hậu tố và mỗi lần đều làm giá trị $l$ giảm.
     
-    代码实现：
+    Cài đặt:
     
     ```cpp
     string lcs(const string &S, const string &T) {
@@ -713,43 +771,47 @@ void sam_init() {
     }
     ```
 
-例题：[SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/)
+Bài ví dụ: [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/)
 
-### 多个字符串间的最长公共子串
+<span id="&#x591A;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x95F4;&#x7684;&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x4E32;"></span>
 
-???+ example "问题"
-    给定 $k$ 个字符串 $S_i$．我们需要找到它们的最长公共子串，即作为子串出现在每个字符串中的字符串 $X$．
+### Xâu con chung dài nhất giữa nhiều xâu
 
-??? note "解法一"
-    我们将所有的子串连接成一个较长的字符串 $T$，以特殊字符 $D_i$ 分开每个字符串（一个字符对应一个字符串）：
+???+ example "Bài toán"
+    Cho $k$ xâu $S_i$. Cần tìm xâu con chung dài nhất của chúng, tức một xâu $X$ xuất hiện trong mọi xâu dưới dạng xâu con.
+
+??? note "Lời giải 1"
+    Ta nối tất cả xâu con thành một xâu dài hơn $T$, dùng các ký tự đặc biệt $D_i$ để tách từng xâu (mỗi ký tự ứng với một xâu):
     
     $$
     T=S_1+D_1+S_2+D_2+\cdots+S_k+D_k.
     $$
     
-    然后对字符串 $T$ 构造后缀自动机．
+    Sau đó xây suffix automaton cho xâu $T$.
     
-    现在我们需要在自动机中找到存在于所有字符串 $S_i$ 中的一个字符串，为此可以利用添加的特殊字符．如果 $S_j$ 包含了一个子串 $X$，则从子串 $X$ 对应的节点 $t$ 出发，必然存在一条到达 $D_j$ 但是不经过任何其它特殊字符 $D_1,\cdots,D_{j-1},D_{j+1},\cdots,D_k$ 的路径．对于公共子串 $X$，应当对每个特殊字符 $D_j$ 都存在这样的路径．
+    Bây giờ cần tìm trong automaton một xâu tồn tại trong mọi xâu $S_i$; để làm điều này có thể tận dụng các ký tự đặc biệt đã thêm. Nếu $S_j$ chứa một xâu con $X$, thì từ nút $t$ ứng với xâu con $X$, chắc chắn tồn tại một đường đi tới $D_j$ mà không đi qua bất kỳ ký tự đặc biệt nào khác $D_1,\cdots,D_{j-1},D_{j+1},\cdots,D_k$. Với một xâu con chung $X$, điều này phải đúng với mọi ký tự đặc biệt $D_j$.
     
-    因此我们需要计算可达性，即对于自动机中的每个状态和每个字符 $D_i$，是否存在这样的一条路径．这可以容易地通过 DFS 或 BFS 及动态规划计算．这之后，问题的答案就是所有能够达到所有特殊字符的状态 $v$ 对应的最长子串 $\operatorname{longest}(v)$ 中最长的那个．
+    Vì vậy cần tính khả năng đi tới: với mỗi trạng thái trong automaton và mỗi ký tự $D_i$, có tồn tại một đường đi như vậy hay không. Điều này có thể tính dễ dàng bằng DFS hoặc BFS và quy hoạch động. Sau đó, đáp án của bài toán là xâu con dài nhất $\operatorname{longest}(v)$ trong các trạng thái $v$ có thể đi tới mọi ký tự đặc biệt.
 
-??? note "解法二"
-    不妨设 **最短** 的字符串为 $S_1$，对它构造 SAM．利用解决两个字符串最长公共子串的算法，计算剩余的每个字符串与 $S_1$ 的最长公共子串长度．在匹配过程中，每添加一个要匹配的字符串 $S_j$ 中的字符，就相应地在 SAM 上移动，因此，可以直接记录 **在匹配过程中** SAM 每个状态能够匹配上的 $S_j$ 的最长子串的长度．
+??? note "Lời giải 2"
+    Giả sử xâu **ngắn nhất** là $S_1$, xây SAM cho nó. Dùng thuật toán tìm xâu con chung dài nhất của hai xâu để tính độ dài xâu con chung dài nhất giữa từng xâu còn lại và $S_1$. Trong quá trình khớp, mỗi khi thêm một ký tự của xâu $S_j$ cần khớp, ta di chuyển tương ứng trên SAM, nên có thể trực tiếp ghi lại độ dài xâu con dài nhất của $S_j$ mà mỗi trạng thái SAM có thể khớp được **trong quá trình khớp**.
     
-    因为匹配过程中，每次匹配到 SAM 的一个状态时，必然同时匹配到了它在后缀链接树上的所有祖先节点，但是祖先节点的匹配长度的信息并没有更新．所以，在完成对字符串 $S_j$ 的匹配后，需要自下而上地沿着后缀链接更新，将子节点匹配到的最长子串的信息更新到父节点．此时，需要注意父节点记录的最长匹配长度不能超过它自身的 $\operatorname{len}$ 值．这样，就得到了 $S_1$ 的 SAM 上每个状态 **实际能够匹配到** 的 $S_j$ 的最长字串长度．
+    Vì trong quá trình khớp, mỗi lần khớp tới một trạng thái của SAM, ta cũng đồng thời khớp tới mọi nút tổ tiên của nó trên cây liên kết hậu tố, nhưng thông tin độ dài khớp của các nút tổ tiên chưa được cập nhật. Vì vậy, sau khi hoàn tất việc khớp xâu $S_j$, cần cập nhật từ dưới lên theo liên kết hậu tố, đưa thông tin xâu con dài nhất khớp được của nút con lên nút cha. Lúc này cần chú ý độ dài khớp dài nhất ghi ở nút cha không được vượt quá giá trị $\operatorname{len}$ của chính nó. Như vậy ta thu được, với mỗi trạng thái trên SAM của $S_1$, độ dài xâu con dài nhất của $S_j$ mà nó **thực sự có thể khớp được**.
     
-    最后，只需要对每个 $S_2,\cdots,S_k$ 都匹配一遍，再对 SAM 上每个状态记录的实际匹配到的长度取最小值，就得到 SAM 上每个状态实际能够匹配到的 $S_2,\cdots,S_k$ 的最长公共子串的长度．然后，遍历 SAM 所有状态，取最大值就是这 $k$ 个串的最长公共子串长度．
+    Cuối cùng, chỉ cần khớp lần lượt mọi $S_2,\cdots,S_k$, rồi lấy giá trị nhỏ nhất trên độ dài thực sự khớp được đã ghi ở mỗi trạng thái SAM, ta thu được độ dài xâu con chung dài nhất của $S_2,\cdots,S_k$ mà mỗi trạng thái SAM thực sự có thể khớp được. Sau đó duyệt mọi trạng thái SAM và lấy giá trị lớn nhất, đó chính là độ dài xâu con chung dài nhất của $k$ xâu này.
     
-    算法时间复杂度是 $O(\sum_i |S_i|)$ 的．字符串 $S_1$ 的 SAM 虽然遍历了 $k$ 遍，但是因为 $|S_1|$ 是最小的，所以 $k|S_1|\le \sum_i |S_i|$，复杂度的主要项依然是匹配过程遍历所有子串．
+    Độ phức tạp thời gian của thuật toán là $O(\sum_i |S_i|)$. Dù SAM của xâu $S_1$ được duyệt $k$ lần, vì $|S_1|$ là nhỏ nhất nên $k|S_1|\le \sum_i |S_i|$; thành phần chính của độ phức tạp vẫn là quá trình khớp duyệt qua mọi xâu con.
 
-例题：[SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
+Bài ví dụ: [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
 
-## 习题
+<span id="&#x4E60;&#x9898;"></span>
 
--   [【模板】后缀自动机](https://www.luogu.com.cn/problem/P3804)
--   [SDOI2016 生成魔咒](https://loj.ac/problem/2033)
+## Bài tập
+
+-   [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804)
+-   [SDOI2016 Sinh bùa chú](https://loj.ac/problem/2033)
 -   [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/)
--   [TJOI2015 弦论](https://loj.ac/problem/2102)
+-   [TJOI2015 String Theory](https://loj.ac/problem/2102)
 -   [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/)
 -   [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
 -   [Codeforces 1037H Security](https://codeforces.com/problemset/problem/1037/H)
@@ -758,12 +820,14 @@ void sam_init() {
 -   [HDU4436 str2int](https://acm.hdu.edu.cn/showproblem.php?pid=4436)
 -   [HDU6583 Typewriter](https://acm.hdu.edu.cn/showproblem.php?pid=6583)
 -   [Codeforces 235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C)
--   [CTSC2012 熟悉的文章](https://www.luogu.com.cn/problem/P4022)
--   [NOI2018 你的名字](https://uoj.ac/problem/395)
+-   [CTSC2012 Familiar Article](https://www.luogu.com.cn/problem/P4022)
+-   [NOI2018 Your Name](https://uoj.ac/problem/395)
 
-## 相关资料
+<span id="&#x76F8;&#x5173;&#x8D44;&#x6599;"></span>
 
-我们先给出与 SAM 有关的最初的一些文献：
+## Tài liệu liên quan
+
+Trước hết là một số tài liệu ban đầu liên quan đến SAM:
 
 -   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler, R. McConnell. Linear Size Finite Automata for the Set of All Subwords of a Word. An Outline of Results. \[1983]
 -   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler. The Smallest Automaton Recognizing the Subwords of a Text. \[1984]
@@ -771,25 +835,25 @@ void sam_init() {
 -   Maxime Crochemore. Transducers and Repetitions. \[1986]
 -   A. Nerode. Linear automaton transformations. \[1958]
 
-另外，在更新的一些资源以及很多关于字符串算法的书中，都能找到这个主题：
+Ngoài ra, trong một số tài nguyên mới hơn và nhiều sách về thuật toán xâu, cũng có thể tìm thấy chủ đề này:
 
 -   Maxime Crochemore, Rytter Wowjcieh. Jewels of Stringology. \[2002]
 -   Bill Smyth. Computing Patterns in Strings. \[2003]
 -   Bill Smith. Methods and algorithms of calculations on lines. \[2006]
 
-另外，还有一些资料：
+Ngoài ra còn có một số tài liệu khác:
 
--   《后缀自动机》，陈立杰．
--   《后缀自动机在字典树上的拓展》，刘研绎．
--   《后缀自动机及其应用》，张天扬．
+-   "Suffix automaton", Chen Lijie.
+-   "Mở rộng suffix automaton trên trie", Liu Yanyi.
+-   "Suffix automaton và ứng dụng", Zhang Tianyang.
 -   <https://www.cnblogs.com/zinthos/p/3899679.html>
 -   <https://codeforces.com/blog/entry/20861>
 -   <https://zhuanlan.zhihu.com/p/25948077>
 
-**本页面主要译自博文 [Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata) 与其英文翻译版 [Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+**Trang này chủ yếu được dịch từ bài viết [Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata) và bản dịch tiếng Anh của nó [Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html). Trong đó, bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**
 
-[^state-endpos]: 需要将每个状态都取作一个 $\operatorname{endpos}$ 等价类的原因，其实就是本段提到的 Myhill–Nerode 定理．简单来说，如果两个字符串 $t$ 和 $u$ 的 $\operatorname{endpos}$ 集合不同，那么它们不能对应于 SAM 的同一个状态：同一个状态到达终止状态的路径总是一样的，这意味着在 $t$ 和 $u$ 末尾添加字符到达 $s$ 的结尾的方式也是一样的，而这正说明 $t$ 和 $u$ 在字符串 $s$ 中的结束位置一样．反过来，只要两个字符串 $t$ 和 $u$ 的 $\operatorname{endpos}$ 集合相同，就可以将它们对应到 SAM 的同一个状态．这样做可行，就是 Nerode 定理的证明的内容，在此不多讨论．但是，此处的讨论至少可以相信，将 $\operatorname{endpos}$ 集合相同的字符串放到同一个状态，这样得到的 SAM 一定是最小的，因为进一步合并节点是不可能的．
+[^state-endpos]: Lý do cần lấy mỗi trạng thái làm một lớp tương đương $\operatorname{endpos}$ thực ra chính là định lý Myhill-Nerode được nhắc tới trong đoạn này. Nói ngắn gọn, nếu hai xâu $t$ và $u$ có tập $\operatorname{endpos}$ khác nhau, thì chúng không thể ứng với cùng một trạng thái của SAM: các đường đi từ cùng một trạng thái tới trạng thái kết thúc luôn giống nhau, nghĩa là cách thêm ký tự vào cuối $t$ và $u$ để đi tới cuối xâu $s$ cũng giống nhau, và điều này lại cho thấy vị trí kết thúc của $t$ và $u$ trong xâu $s$ là giống nhau. Ngược lại, nếu hai xâu $t$ và $u$ có cùng tập $\operatorname{endpos}$, ta có thể cho chúng ứng với cùng một trạng thái của SAM. Việc này khả thi chính là nội dung chứng minh của định lý Nerode, nên không thảo luận thêm ở đây. Nhưng ít nhất từ thảo luận này có thể tin rằng, đặt các xâu có cùng tập $\operatorname{endpos}$ vào cùng một trạng thái sẽ tạo ra SAM nhỏ nhất, vì không thể gộp đỉnh thêm nữa.
 
-[^time-complexity]: 如果不额外使用列表记录当前状态的可用转移，只用数组存储所有可能的转移（无论是否存在）并在复制节点时直接复制，那么时间复杂度也是 $O(n\left|\Sigma\right|)$ 的．
+[^time-complexity]: Nếu không dùng thêm danh sách để ghi lại các chuyển trạng thái khả dụng của trạng thái hiện tại, mà chỉ dùng mảng để lưu mọi chuyển trạng thái có thể có (dù có tồn tại hay không) và sao chép trực tiếp khi sao chép nút, thì độ phức tạp thời gian cũng là $O(n\left|\Sigma\right|)$.
 
-[^monotone-loc]: 此处正文没有解释的是，在第一种和第二种情况中，$\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 的位置是否也是单调（弱）递增的．第一种情况容易验证，因为更新后 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 是空串，起止位置在字符串 $s$ 的末尾．第二种情况，转移是连续的，说明 $\operatorname{longest}(q) = \operatorname{longest}(p)+c$．然而，向子串的末尾添加新的字符只会使得该子串更难以出现在字符串中，也就是说，当字符串 $\operatorname{longest}(p)$ 的长度为 $\operatorname{len}(\operatorname{link}(p))$ 的后缀的结束位置集合严格包含 $\operatorname{endpos}(p)$ 时，字符串 $\operatorname{longest}(q)$ 的长度为 $\operatorname{len}(\operatorname{link}(p))+1$ 的后缀的结束位置集合可能仍然与 $\operatorname{endpos}(q)$ 相同．故而，$\operatorname{len}(\operatorname{link}(q))<\operatorname{len}(\operatorname{link}(p))+1$，亦即 $\operatorname{longest}(\operatorname{link}(p))$ 作为 $s$ 的后缀的起始位置必然不大于 $\operatorname{longest}(\operatorname{link}(q))$ 作为 $s+c$ 的后缀的起始位置．而当一次找到状态 $p$ 使得存在经由 $c$ 的转移时，必定移动了至少一次，这说明 $\operatorname{longest}(\operatorname{link}(p))$ 作为 $s$ 的后缀的起始位置不小于 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 作为 $s$ 的后缀的起始位置．最后，$\operatorname{longest}(\operatorname{link}(q))=\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{cur})))$．这就说明，在第二种情况中，$\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 的位置也是单调递增的．
+[^monotone-loc]: Điều phần chính văn chưa giải thích là, trong trường hợp một và hai, vị trí của $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ có tăng đơn điệu (không giảm) hay không. Trường hợp một dễ kiểm chứng, vì sau khi cập nhật, $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ là xâu rỗng, có vị trí bắt đầu và kết thúc ở cuối xâu $s$. Với trường hợp hai, chuyển trạng thái là liên tục, nghĩa là $\operatorname{longest}(q) = \operatorname{longest}(p)+c$. Tuy nhiên, thêm ký tự mới vào cuối một xâu con chỉ khiến xâu con đó khó xuất hiện hơn; nói cách khác, khi tập vị trí kết thúc của hậu tố độ dài $\operatorname{len}(\operatorname{link}(p))$ của xâu $\operatorname{longest}(p)$ chứa nghiêm ngặt $\operatorname{endpos}(p)$, thì tập vị trí kết thúc của hậu tố độ dài $\operatorname{len}(\operatorname{link}(p))+1$ của xâu $\operatorname{longest}(q)$ vẫn có thể giống $\operatorname{endpos}(q)$. Do đó $\operatorname{len}(\operatorname{link}(q))<\operatorname{len}(\operatorname{link}(p))+1$, tức vị trí bắt đầu của $\operatorname{longest}(\operatorname{link}(p))$ với vai trò hậu tố của $s$ chắc chắn không lớn hơn vị trí bắt đầu của $\operatorname{longest}(\operatorname{link}(q))$ với vai trò hậu tố của $s+c$. Mặt khác, khi tìm được trạng thái $p$ sao cho tồn tại chuyển trạng thái qua $c$, chắc chắn đã di chuyển ít nhất một lần. Điều này cho thấy vị trí bắt đầu của $\operatorname{longest}(\operatorname{link}(p))$ với vai trò hậu tố của $s$ không nhỏ hơn vị trí bắt đầu của $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ với vai trò hậu tố của $s$. Cuối cùng, $\operatorname{longest}(\operatorname{link}(q))=\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{cur})))$. Điều này chứng minh trong trường hợp hai, vị trí của $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ cũng tăng đơn điệu.

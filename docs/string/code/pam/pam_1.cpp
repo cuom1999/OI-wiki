@@ -10,7 +10,7 @@ int sz, tot, last;
 int cnt[MAXN], ch[MAXN][26], len[MAXN], fail[MAXN];
 char s[MAXN];
 
-int node(int l) {  // 建立一个新节点，长度为 l
+int node(int l) {  // Tạo một nút mới có độ dài l.
   sz++;
   memset(ch[sz], 0, sizeof(ch[sz]));
   len[sz] = l;
@@ -18,7 +18,7 @@ int node(int l) {  // 建立一个新节点，长度为 l
   return sz;
 }
 
-void clear() {  // 初始化
+void clear() {  // Khởi tạo.
   sz = -1;
   last = 0;
   s[tot = 0] = '$';
@@ -27,12 +27,12 @@ void clear() {  // 初始化
   fail[0] = 1;
 }
 
-int getfail(int x) {  // 找后缀回文
+int getfail(int x) {  // Tìm hậu tố đối xứng.
   while (s[tot - len[x] - 1] != s[tot]) x = fail[x];
   return x;
 }
 
-void insert(char c) {  // 建树
+void insert(char c) {  // Xây cây.
   s[++tot] = c;
   int now = getfail(last);
   if (!ch[now][c - 'a']) {
@@ -49,7 +49,7 @@ long long solve() {
   for (int i = sz; i >= 0; i--) {
     cnt[fail[i]] += cnt[i];
   }
-  for (int i = 1; i <= sz; i++) {  // 更新答案
+  for (int i = 1; i <= sz; i++) {  // Cập nhật đáp án.
     ans = max(ans, 1ll * len[i] * cnt[i]);
   }
   return ans;

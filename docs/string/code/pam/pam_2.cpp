@@ -17,7 +17,7 @@ int ch[MAXN][26], len[MAXN], fail[MAXN];
 int cnt[MAXN], dep[MAXN], dif[MAXN], slink[MAXN];
 char s[MAXN];
 
-int node(int l) {  // 建立一个长度为 l 的新节点
+int node(int l) {  // Tạo một nút mới có độ dài l.
   sz++;
   memset(ch[sz], 0, sizeof(ch[sz]));
   len[sz] = l;
@@ -27,7 +27,7 @@ int node(int l) {  // 建立一个长度为 l 的新节点
   return sz;
 }
 
-void clear() {  // 初始化
+void clear() {  // Khởi tạo.
   sz = -1;
   last = 0;
   s[tot = 0] = '$';
@@ -36,12 +36,12 @@ void clear() {  // 初始化
   fail[0] = 1;
 }
 
-int getfail(int x) {  // 找到后缀回文
+int getfail(int x) {  // Tìm hậu tố đối xứng.
   while (s[tot - len[x] - 1] != s[tot]) x = fail[x];
   return x;
 }
 
-void insert(char c) {  // 建树
+void insert(char c) {  // Xây cây.
   s[++tot] = c;
   int now = getfail(last);
   if (!ch[now][c - 'a']) {
@@ -81,7 +81,7 @@ int main() {
     for (int x = pam::last; x > 1; x = slink[x]) {
       g[x] = dp[i - len[slink[x]] - dif[x]];
       if (dif[x] == dif[fail[x]]) g[x] = add(g[x], g[fail[x]]);
-      if (i % 2 == 0) dp[i] = add(dp[i], g[x]);  // 在偶数位置更新 dp 数组
+      if (i % 2 == 0) dp[i] = add(dp[i], g[x]);  // Cập nhật dp ở vị trí chẵn.
     }
   }
   cout << dp[n];
