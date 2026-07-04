@@ -142,7 +142,7 @@ Dưới đây là mã tham khảo cho nhóm nhị phân.
     Độ phức tạp thời gian tệ nhất của một lần truy vấn điểm gần nhất bằng k-D Tree vẫn là $O(n)$, nhưng đây vẫn là một thuật toán kiếm điểm rất tốt. Khi sử dụng cần lưu ý điều này. Phần giải thích về truy vấn lân cận ở đây chỉ nhằm tăng cường hiểu biết về cấu trúc k-D Tree.
 
 ???+ note "Ví dụ [Luogu P1429 Cặp điểm gần nhất trên mặt phẳng, bản nâng cao](https://www.luogu.com.cn/problem/P1429)"
-    Cho $n$ điểm $(x_i,y_i)$ trên mặt phẳng, hãy tìm [khoảng cách Euclid](../geometry/distance.md#%E6%AC%A7%E6%B0%8F%E8%B7%9D%E7%A6%BB) giữa cặp điểm gần nhất trên mặt phẳng.
+    Cho $n$ điểm $(x_i,y_i)$ trên mặt phẳng, hãy tìm [khoảng cách Euclid](../geometry/distance.md#khoảng-cách-euclid) giữa cặp điểm gần nhất trên mặt phẳng.
     
     $2\le n\le 200000, 0\le x_i,y_i\le 10^9$
 

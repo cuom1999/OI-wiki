@@ -1,44 +1,44 @@
 author: Ir1d, TianyiQ
 
-## 引入
+## Mở đầu
 
-随机增量算法是计算几何的一个重要算法，它对理论知识要求不高，算法时间复杂度低，应用范围广大．
+Phương pháp tăng dần ngẫu nhiên là một thuật toán quan trọng trong hình học tính toán. Nó không đòi hỏi nhiều kiến thức lý thuyết, có độ phức tạp thời gian thấp và phạm vi ứng dụng rộng.
 
-增量法 (Incremental Algorithm) 的思想与第一数学归纳法类似，它的本质是将一个问题化为规模刚好小一层的子问题．解决子问题后加入当前的对象．写成递归式是：
+Ý tưởng của phương pháp tăng dần (Incremental Algorithm) tương tự nguyên lý quy nạp toán học thứ nhất: bản chất là biến một bài toán thành bài toán con có quy mô nhỏ hơn đúng một mức. Sau khi giải bài toán con, ta thêm đối tượng hiện tại vào. Viết dưới dạng truy hồi:
 
 $$
 T(n)=T(n-1)+g(n)
 $$
 
-增量法形式简洁，可以应用于许多的几何题目中．
+Phương pháp tăng dần có hình thức gọn gàng và có thể áp dụng cho nhiều bài toán hình học.
 
-增量法往往结合随机化，可以避免最坏情况的出现．
+Phương pháp tăng dần thường được kết hợp với ngẫu nhiên hóa để tránh xuất hiện trường hợp xấu nhất.
 
-## 最小圆覆盖问题
+## Bài toán đường tròn bao nhỏ nhất
 
-### 题意描述
+### Mô tả bài toán
 
-在一个平面上有 $n$ 个点，求一个半径最小的圆，能覆盖所有的点．
+Trên một mặt phẳng có $n$ điểm, hãy tìm đường tròn có bán kính nhỏ nhất sao cho bao phủ được tất cả các điểm.
 
-### 过程
+### Quy trình
 
-假设圆 $O$ 是前 $i-1$ 个点的最小覆盖圆，加入第 $i$ 个点，如果在圆内或边上则什么也不做．否则，新得到的最小覆盖圆肯定经过第 $i$ 个点．
+Giả sử đường tròn $O$ là đường tròn bao nhỏ nhất của $i-1$ điểm đầu. Khi thêm điểm thứ $i$, nếu điểm này nằm trong đường tròn hoặc trên biên thì không cần làm gì. Ngược lại, đường tròn bao nhỏ nhất mới chắc chắn đi qua điểm thứ $i$.
 
-然后以第 $i$ 个点为基础（半径为 $0$），重复以上过程依次加入第 $j$ 个点，若第 $j$ 个点在圆外，则最小覆盖圆必经过第 $j$ 个点．
+Sau đó lấy điểm thứ $i$ làm cơ sở, bán kính bằng $0$, rồi lặp lại quá trình trên để lần lượt thêm điểm thứ $j$. Nếu điểm thứ $j$ nằm ngoài đường tròn, thì đường tròn bao nhỏ nhất chắc chắn đi qua điểm thứ $j$.
 
-重复以上步骤．（因为最多需要三个点来确定这个最小覆盖圆，所以重复三次）
+Lặp lại các bước trên. Vì nhiều nhất cần ba điểm để xác định đường tròn bao nhỏ nhất này, nên quá trình được lặp ba tầng.
 
-遍历完所有点之后，所得到的圆就是覆盖所有点得最小圆．
+Sau khi duyệt hết mọi điểm, đường tròn thu được chính là đường tròn bao nhỏ nhất bao phủ tất cả các điểm.
 
-### 性质
+### Tính chất
 
-**时间复杂度**  $O(n)$，证明详见参考资料．
+**Độ phức tạp thời gian**  $O(n)$, chứng minh xem trong phần tài liệu tham khảo.
 
-**空间复杂度**  $O(n)$
+**Độ phức tạp không gian**  $O(n)$
 
-### 实现
+### Cài đặt
 
-??? note "代码实现"
+??? note "Mã cài đặt"
     ```cpp
     #include <cmath>
     #include <cstdio>
@@ -108,17 +108,17 @@ $$
     }
     ```
 
-## 练习
+## Bài tập
 
-[最小圆覆盖](https://www.luogu.com.cn/problem/P1742)
+[Minimum Enclosing Circle](https://www.luogu.com.cn/problem/P1742)
 
-[「HNOI2012」射箭](https://www.luogu.com.cn/problem/P3222)
+[HNOI2012 Archery](https://www.luogu.com.cn/problem/P3222)
 
 [CodeForces 442E](https://codeforces.com/problemset/problem/442/E)
 
-## 参考资料与扩展阅读
+## Tài liệu tham khảo và đọc thêm
 
-[随机增量算法 - 解轶伦](https://github.com/hzwer/shareOI/blob/master/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E9%9A%8F%E6%9C%BA%E5%A2%9E%E9%87%8F%E7%AE%97%E6%B3%95_%E8%A7%A3%E8%BD%B6%E4%BC%A6.pdf)
+[Phương pháp tăng dần ngẫu nhiên - Xie Yilun](https://github.com/hzwer/shareOI/blob/master/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E9%9A%8F%E6%9C%BA%E5%A2%9E%E9%87%8F%E7%AE%97%E6%B3%95_%E8%A7%A3%E8%BD%B6%E4%BC%A6.pdf)
 
 <https://www.cnblogs.com/aininot260/p/9635757.html>
 

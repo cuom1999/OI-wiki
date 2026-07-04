@@ -482,19 +482,19 @@ nav:
     - Bước đi ngẫu nhiên trên đồ thị: graph/graph-random-walk.md
   - Hình Học Tính Toán:
     - Tổng quan hình học tính toán: geometry/index.md
-    - 二维计算几何基础: geometry/2d.md
-    - 三维计算几何基础: geometry/3d.md
-    - 距离: geometry/distance.md
-    - Pick 定理: geometry/pick.md
-    - 三角剖分: geometry/triangulation.md
-    - 凸包: geometry/convex-hull.md
-    - 扫描线: geometry/scanning.md
-    - 旋转卡壳: geometry/rotating-calipers.md
-    - 半平面交: geometry/half-plane.md
-    - 平面最近点对: geometry/nearest-points.md
-    - 随机增量法: geometry/random-incremental.md
-    - 反演变换: geometry/inverse.md
-    - 计算几何杂项: geometry/misc.md
+    - Cơ sở hình học tính toán hai chiều: geometry/2d.md
+    - Cơ sở hình học tính toán ba chiều: geometry/3d.md
+    - Khoảng cách: geometry/distance.md
+    - Định lý Pick: geometry/pick.md
+    - Tam giác phân: geometry/triangulation.md
+    - Bao lồi: geometry/convex-hull.md
+    - Đường quét: geometry/scanning.md
+    - Thước kẹp quay: geometry/rotating-calipers.md
+    - Giao nửa mặt phẳng: geometry/half-plane.md
+    - Cặp điểm gần nhất trên mặt phẳng: geometry/nearest-points.md
+    - Phương pháp tăng dần ngẫu nhiên: geometry/random-incremental.md
+    - Phép nghịch đảo: geometry/inverse.md
+    - Linh tinh hình học tính toán: geometry/misc.md
   - Khác:
     - Tổng quan mục khác: misc/index.md
     - 离散化: misc/discrete.md

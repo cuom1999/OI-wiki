@@ -1,98 +1,100 @@
-## 二维凸包
+## Bao lồi hai chiều
 
-### 定义
+### Định nghĩa
 
-#### 凸多边形
+#### Đa giác lồi
 
-凸多边形是指所有内角大小都在 $[0,\pi]$ 范围内的 **简单多边形**．
+Đa giác lồi là **đa giác đơn** mà mọi góc trong đều nằm trong khoảng $[0,\pi]$.
 
-#### 凸包
+#### Bao lồi
 
-在平面上能包含所有给定点的最小凸多边形叫做凸包．
+Trên mặt phẳng, đa giác lồi nhỏ nhất có thể chứa tất cả các điểm đã cho được gọi là bao lồi.
 
-其定义为：对于给定集合 $X$，所有包含 $X$ 的凸集的交集 $S$ 被称为 $X$ 的 **凸包**．
+Định nghĩa chính xác hơn: với tập hợp $X$ cho trước, giao của tất cả các tập lồi chứa $X$ được gọi là **bao lồi** của $X$.
 
-实际上可以理解为用一个橡皮筋包含住所有给定点的形态．
+Có thể hình dung bao lồi như hình dạng của một sợi dây cao su bao quanh tất cả các điểm đã cho.
 
-凸包用最小的周长围住了给定的所有点．如果一个凹多边形围住了所有的点，它的周长一定不是最小，如下图．根据三角不等式，凸多边形在周长上一定是最优的．
+Bao lồi bao quanh toàn bộ các điểm đã cho với chu vi nhỏ nhất. Nếu một đa giác lõm bao quanh tất cả các điểm, chu vi của nó chắc chắn không nhỏ nhất, như hình dưới đây. Theo bất đẳng thức tam giác, đa giác lồi chắc chắn là tối ưu về chu vi.
 
 ![](./images/ch.png)
 
-### Andrew 算法求凸包
+### Thuật toán Andrew để tìm bao lồi
 
-常用的求法有 Graham 扫描法和 Andrew 算法，这里主要介绍 Andrew 算法．
+Các cách thường dùng để tìm bao lồi gồm Graham scan và thuật toán Andrew; ở đây chủ yếu giới thiệu thuật toán Andrew.
 
-#### 性质
+#### Tính chất
 
-该算法的时间复杂度为 $O(n\log n)$，其中 $n$ 为待求凸包点集的大小，复杂度的瓶颈在于对所有点坐标的双关键字排序．
+Độ phức tạp thời gian của thuật toán là $O(n\log n)$, trong đó $n$ là kích thước của tập điểm cần tìm bao lồi. Nút thắt độ phức tạp nằm ở việc sắp xếp tất cả các điểm theo hai khóa tọa độ.
 
-#### 过程
+#### Quy trình
 
-首先把所有点以横坐标为第一关键字，纵坐标为第二关键字排序．
+Trước hết, sắp xếp tất cả các điểm theo hoành độ làm khóa thứ nhất và tung độ làm khóa thứ hai.
 
-显然排序后最小的元素和最大的元素一定在凸包上．而且因为是凸多边形，我们如果从一个点出发逆时针走，轨迹总是「左拐」的，一旦出现右拐，就说明这一段不在凸包上．因此我们可以用一个单调栈来维护上下凸壳．
+Rõ ràng phần tử nhỏ nhất và phần tử lớn nhất sau khi sắp xếp chắc chắn nằm trên bao lồi. Hơn nữa, vì đây là đa giác lồi, nếu đi ngược chiều kim đồng hồ từ một điểm, quỹ đạo luôn "rẽ trái"; một khi xuất hiện rẽ phải, điều đó cho thấy đoạn này không nằm trên bao lồi. Vì vậy, ta có thể dùng một stack đơn điệu để duy trì vỏ lồi dưới và vỏ lồi trên.
 
-因为从左向右看，上下凸壳所旋转的方向不同，为了让单调栈起作用，我们首先 **升序枚举** 求出下凸壳，然后 **降序** 求出上凸壳．
+Khi nhìn từ trái sang phải, hướng quay của vỏ lồi dưới và vỏ lồi trên là khác nhau. Để stack đơn điệu phát huy tác dụng, trước hết ta **duyệt tăng dần** để tìm vỏ lồi dưới, sau đó **duyệt giảm dần** để tìm vỏ lồi trên.
 
-求凸壳时，一旦发现即将进栈的点（$P$）和栈顶的两个点（$S_1,S_2$，其中 $S_1$ 为栈顶）行进的方向向右旋转，即叉积小于 $0$：$\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$，则弹出栈顶，回到上一步，继续检测，直到 $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}\ge 0$ 或者栈内仅剩一个元素为止．
+Khi tìm vỏ lồi, nếu phát hiện điểm sắp được đưa vào stack ($P$) và hai điểm trên đỉnh stack ($S_1,S_2$, trong đó $S_1$ là đỉnh stack) tạo hướng di chuyển quay sang phải, tức tích có hướng nhỏ hơn $0$: $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$, thì loại đỉnh stack, quay lại bước trước và tiếp tục kiểm tra, cho đến khi $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}\ge 0$ hoặc trong stack chỉ còn một phần tử.
 
-通常情况下不需要保留位于凸包边上的点，因此上面一段中 $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ 这个条件中的「$<$」可以视情况改为 $\le$，同时后面一个条件应改为 $>$．
+Thông thường không cần giữ các điểm nằm trên cạnh của bao lồi, vì vậy dấu "$<$" trong điều kiện $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ ở đoạn trên có thể đổi thành $\le$ tùy tình huống, đồng thời điều kiện phía sau cần đổi thành $>$.
 
 ![Andrew](./images/andrew.svg)
 
-#### 实现
+#### Cài đặt
 
-???+ note "代码实现"
+???+ note "Cài đặt"
     === "C++"
         ```cpp
-        // stk[] 是整型，存的是下标
-        // p[] 存储向量或点
-        tp = 0;                       // 初始化栈
-        std::sort(p + 1, p + 1 + n);  // 对点进行排序
+        // stk[] la so nguyen, luu chi so
+        // p[] luu vector hoac diem
+        tp = 0;                       // khoi tao stack
+        std::sort(p + 1, p + 1 + n);  // sap xep cac diem
         stk[++tp] = 1;
-        // 栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
+        // Them phan tu dau tien vao stack va khong cap nhat used, de diem 1 van
+        // cap nhat stack don dieu khi khep kin bao loi cuoi cung
         for (int i = 2; i <= n; ++i) {
-          while (tp >= 2  // 下一行 * 操作符被重载为叉积
+          while (tp >= 2  // dong tiep theo: toan tu * duoc nap chong thanh tich co huong
                  && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
             used[stk[tp--]] = 0;
-          used[i] = 1;  // used 表示在凸壳上
+          used[i] = 1;  // used cho biet diem nam tren vo loi
           stk[++tp] = i;
         }
-        int tmp = tp;  // tmp 表示下凸壳大小
+        int tmp = tp;  // tmp la kich thuoc vo loi duoi
         for (int i = n - 1; i > 0; --i)
           if (!used[i]) {
-            // ↓求上凸壳时不影响下凸壳
+            // Khi tinh vo loi tren, khong anh huong den vo loi duoi
             while (tp > tmp && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
               used[stk[tp--]] = 0;
             used[i] = 1;
             stk[++tp] = i;
           }
-        for (int i = 1; i <= tp; ++i)  // 复制到新数组中去
+        for (int i = 1; i <= tp; ++i)  // sao chep sang mang moi
           h[i] = p[stk[i]];
         int ans = tp - 1;
         ```
     
     === "Python"
         ```python
-        stk = []  # 是整型，存的是下标
-        p = []  # 存储向量或点
-        tp = 0  # 初始化栈
-        p.sort()  # 对点进行排序
+        stk = []  # la so nguyen, luu chi so
+        p = []  # luu vector hoac diem
+        tp = 0  # khoi tao stack
+        p.sort()  # sap xep cac diem
         tp = tp + 1
         stk[tp] = 1
-        # 栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
+        # Them phan tu dau tien vao stack va khong cap nhat used, de diem 1 van
+        # cap nhat stack don dieu khi khep kin bao loi cuoi cung
         for i in range(2, n + 1):
             while tp >= 2 and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
-                # 下一行 * 操作符被重载为叉积
+                # Dong tiep theo: toan tu * duoc nap chong thanh tich co huong
                 used[stk[tp]] = 0
                 tp = tp - 1
-            used[i] = 1  # used 表示在凸壳上
+            used[i] = 1  # used cho biet diem nam tren vo loi
             tp = tp + 1
             stk[tp] = i
-        tmp = tp  # tmp 表示下凸壳大小
+        tmp = tp  # tmp la kich thuoc vo loi duoi
         for i in range(n - 1, 0, -1):
             if used[i] == False:
-                #      ↓求上凸壳时不影响下凸壳
+                # Khi tinh vo loi tren, khong anh huong den vo loi duoi
                 while tp > tmp and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
                     used[stk[tp]] = 0
                     tp = tp - 1
@@ -104,33 +106,33 @@
         ans = tp - 1
         ```
 
-根据上面的代码，最后凸包上有 $\textit{ans}$ 个元素（额外存储了 $1$ 号点，因此 $h$ 数组中有 $\textit{ans}+1$ 个元素），并且按逆时针方向排序．周长就是
+Theo đoạn code trên, cuối cùng trên bao lồi có $\textit{ans}$ phần tử (điểm số $1$ được lưu thêm, nên mảng $h$ có $\textit{ans}+1$ phần tử), và các điểm được sắp theo chiều ngược kim đồng hồ. Chu vi là
 
 $$
 \sum_{i=1}^{\textit{ans}}\left|\overrightarrow{h_ih_{i+1}}\right|
 $$
 
-### Graham 扫描法
+### Graham scan
 
-#### 性质
+#### Tính chất
 
-与 Andrew 算法相同，Graham 扫描法的时间复杂度为 $O(n\log n)$，复杂度瓶颈也在于对所有点排序．
+Tương tự thuật toán Andrew, độ phức tạp thời gian của Graham scan là $O(n\log n)$, nút thắt độ phức tạp cũng nằm ở việc sắp xếp tất cả các điểm.
 
-#### 过程
+#### Quy trình
 
-首先找到所有点中，纵坐标最小的一个点 $P$．根据凸包的定义我们知道，这个点一定在凸包上．然后将所有的点以相对于点 P 的极角大小为关键字进行排序．
+Trước hết tìm điểm $P$ có tung độ nhỏ nhất trong tất cả các điểm. Theo định nghĩa bao lồi, ta biết điểm này chắc chắn nằm trên bao lồi. Sau đó sắp xếp tất cả các điểm theo góc cực so với điểm $P$.
 
 ![](./images/ch1.svg)
 
-和 Andrew 算法类似地，我们考虑从点 $P$ 出发，在凸包上逆时针走，那么我们经过的所有节点一定都是「左拐」的．形式化地说，对于凸包逆时针方向上任意连续经过的三个点 $P_1, P_2, P_3$，一定满足 $\overrightarrow{P_1 P_2} \times \overrightarrow{P_2 P_3} \ge 0$．
+Tương tự thuật toán Andrew, xét việc đi ngược chiều kim đồng hồ trên bao lồi bắt đầu từ điểm $P$; mọi điểm ta đi qua đều phải là các lần "rẽ trái". Nói một cách hình thức, với ba điểm liên tiếp bất kỳ $P_1, P_2, P_3$ trên bao lồi theo chiều ngược kim đồng hồ, luôn có $\overrightarrow{P_1 P_2} \times \overrightarrow{P_2 P_3} \ge 0$.
 
-新建一个栈用于存储凸包的信息，先将 $P$ 压入栈中，然后按照极角序依次尝试加入每一个点．如果进栈的点 $P_0$ 和栈顶的两个点 $P_1, P_2$（其中 $P_1$ 为栈顶）行进的方向「右拐」了，那么就弹出栈顶的 $P_1$，不断重复上述过程直至进栈的点与栈顶的两个点满足条件，或者栈中仅剩下一个元素，再将 $P_0$ 压入栈中．
+Tạo một stack mới để lưu thông tin bao lồi, trước tiên đẩy $P$ vào stack, rồi lần lượt thử thêm từng điểm theo thứ tự góc cực. Nếu điểm sắp vào stack $P_0$ và hai điểm trên đỉnh stack $P_1, P_2$ (trong đó $P_1$ là đỉnh stack) tạo hướng di chuyển "rẽ phải", thì loại $P_1$ khỏi đỉnh stack. Lặp lại quá trình trên cho đến khi điểm sắp vào stack và hai điểm trên đỉnh stack thỏa điều kiện, hoặc trong stack chỉ còn một phần tử, rồi đẩy $P_0$ vào stack.
 
 ![](./images/ch2.svg)
 
 ![](./images/ch3.svg)
 
-???+ note "代码实现"
+???+ note "Cài đặt"
     ```cpp
     struct Point {
       double x, y, ang;
@@ -173,30 +175,30 @@ $$
     }
     ```
 
-## 闵可夫斯基和
+## Tổng Minkowski
 
-### 定义
+### Định nghĩa
 
-点集 $P$ 和点集 $Q$ 的闵可夫斯基和 $P+Q$ 定义为 $P+Q=\{a+b|a\in P,b\in Q\}$，即把点集 $Q$ 中的每个点看做一个向量，将点集 $P$ 中每个点沿这些向量平移，最终得到的结果的集合就是点集 $P+Q$．此处仅讨论 **凸包** 的闵可夫斯基和．
+Tổng Minkowski $P+Q$ của tập điểm $P$ và tập điểm $Q$ được định nghĩa là $P+Q=\{a+b|a\in P,b\in Q\}$. Nói cách khác, xem mỗi điểm trong tập điểm $Q$ là một vector, tịnh tiến mỗi điểm trong tập điểm $P$ theo các vector đó, thì tập hợp các kết quả cuối cùng chính là tập điểm $P+Q$. Ở đây chỉ xét tổng Minkowski của **bao lồi**.
 
-例如：对于点集 $P=\{(0,0),(-3,3),(2,1)\}$ 和 点集 $Q=\{(0,0),(-1,3),(1,4),(2,2)\}$，
+Ví dụ: với tập điểm $P=\{(0,0),(-3,3),(2,1)\}$ và tập điểm $Q=\{(0,0),(-1,3),(1,4),(2,2)\}$,
 
 ![](./images/convex-hull1.svg)
 
-将 $P$ 沿 $Q$ 的每个向量平移：
+Tịnh tiến $P$ theo từng vector của $Q$:
 
 ![](./images/convex-hull2.svg)
 
-不难发现新图形也是一个 **凸包**：
+Dễ thấy hình mới cũng là một **bao lồi**:
 
 ![](./images/convex-hull3.svg)
 
-### 性质
+### Tính chất
 
-1.  若点集合 $P$，$Q$ 为凸集，则其闵可夫斯基和 $P+Q$ 也是凸集．
+1.  Nếu các tập điểm $P$, $Q$ là tập lồi, thì tổng Minkowski $P+Q$ của chúng cũng là tập lồi.
 
-    ??? note "证明"
-        设 $e,f\in P+Q$，有 $a,b \in P$，$c,d\in Q$ 且 $e=a+c,f=b+d$，则对任意 $t\in[0,1]$ 均有：
+    ??? note "Chứng minh"
+        Giả sử $e,f\in P+Q$, khi đó tồn tại $a,b \in P$, $c,d\in Q$ sao cho $e=a+c,f=b+d$. Với mọi $t\in[0,1]$, ta có:
         
         $$
         \begin{aligned}
@@ -206,31 +208,31 @@ $$
         \end{aligned}
         $$
         
-        证毕．
-2.  若点集 $P$，$Q$ 为凸集，则其闵可夫斯基和 $P+Q$ 的边集是由凸集 $P$，$Q$ 的边按极角排序后连接的结果．
+        Chứng minh hoàn tất.
+2.  Nếu các tập điểm $P$, $Q$ là tập lồi, thì tập cạnh của tổng Minkowski $P+Q$ là kết quả nối các cạnh của các tập lồi $P$, $Q$ sau khi sắp xếp theo góc cực.
 
-    ??? note "证明"
-        不妨假设凸集 $P$ 中任意一条边的斜率与 $Q$ 中任意一条边的斜率均不相同．将坐标系进行旋转，使得 $P$ 上的一条边 $XY$ 与 $x$ 轴平行且在最下方．
+    ??? note "Chứng minh"
+        Không mất tính tổng quát, giả sử hệ số góc của mọi cạnh trong tập lồi $P$ đều khác hệ số góc của mọi cạnh trong tập lồi $Q$. Xoay hệ tọa độ sao cho một cạnh $XY$ trên $P$ song song với trục $x$ và nằm ở dưới cùng.
         
-        设此时 $Q$ 中最低的点 $U$，$P+Q$ 的 **最低** 且 **靠左** 的点 $A$．
+        Gọi $U$ là điểm thấp nhất của $Q$ lúc này, và $A$ là điểm **thấp nhất** đồng thời **ở bên trái nhất** của $P+Q$.
         
-        可知 $\vec{A} = \vec{X} + \vec{U}$，所以 $A$ 必然在 $P+Q$ 的边界上．
+        Ta có $\vec{A} = \vec{X} + \vec{U}$, nên $A$ chắc chắn nằm trên biên của $P+Q$.
         
-        同理，$P+Q$ 中 **最低** 且 **靠右** 的点 $B$ 有 $\vec{B} = \vec{Y} + \vec{U}$，也必然在 $P+Q$ 的边界上．
+        Tương tự, với điểm $B$ **thấp nhất** đồng thời **ở bên phải nhất** trong $P+Q$, ta có $\vec{B} = \vec{Y} + \vec{U}$, nên $B$ cũng chắc chắn nằm trên biên của $P+Q$.
         
-        因此，有 $\vec{AB} = \vec{XY} + \vec{U}$．
+        Do đó, có $\vec{AB} = \vec{XY} + \vec{U}$.
         
-        若按顺序进行旋转，则结果连续的构成了 $P+Q$ 中的每条边．
+        Nếu tiếp tục xoay theo thứ tự, kết quả sẽ liên tiếp tạo thành từng cạnh của $P+Q$.
         
-        证毕．
+        Chứng minh hoàn tất.
 
-### 实现
+### Cài đặt
 
-我们可以根据性质 2，将凸集 $P,Q$ 极角排序，得到它们在 $P+Q$ 上的出现顺序，把 $P_1+Q_1$ 看做 $P+Q$ 的起点，然后用类似 **归并** 的做法依次放边即可．
+Theo tính chất 2, ta có thể sắp xếp các tập lồi $P,Q$ theo góc cực để thu được thứ tự xuất hiện của chúng trên $P+Q$. Xem $P_1+Q_1$ là điểm bắt đầu của $P+Q$, sau đó dùng cách tương tự **trộn** để lần lượt đặt các cạnh.
 
-时间复杂度：$O(n+m)$
+Độ phức tạp thời gian: $O(n+m)$
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     template <class T>
     struct Point {
@@ -246,12 +248,12 @@ $$
         return {a.x - b.x, a.y - b.y};
       }
     
-      // 点乘
+      // Tich vo huong
       friend T operator*(const Point &a, const Point &b) {
         return a.x * b.x + a.y * b.y;
       }
     
-      // 叉乘
+      // Tich co huong
       friend T operator^(const Point &a, const Point &b) {
         return a.x * b.y - a.y * b.x;
       }
@@ -271,47 +273,47 @@ $$
     }
     ```
 
-### 例题
+### Ví dụ
 
-???+ note "[例题 \[JSOI2018\] 战争](https://loj.ac/p/2549)"
-    有两个凸包 $P,Q$，平移 $q$ 次 $Q$，问每次移动后是否有交点．$1\le n,m\le 10^5,1\le q\le 10^5$．
+???+ note "[Ví dụ \[JSOI2018\] War](https://loj.ac/p/2549)"
+    Có hai bao lồi $P,Q$; tịnh tiến $Q$ tổng cộng $q$ lần, hỏi sau mỗi lần di chuyển hai bao lồi có giao điểm hay không. $1\le n,m\le 10^5,1\le q\le 10^5$.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     --8<-- "docs/geometry/code/convex-hull/convex-hull_1.cpp"
     ```
 
-## 三维凸包
+## Bao lồi ba chiều
 
-### 基础知识
+### Kiến thức cơ bản
 
-> 圆的反演：反演中心为 $O$，反演半径为 $R$，若经过 $O$ 的直线经过 $P$,$P'$，且 $OP\times OP'=R^{2}$，则称 $P$、$P'$ 关于 $O$ 互为反演．
+> Phép nghịch đảo đường tròn: tâm nghịch đảo là $O$, bán kính nghịch đảo là $R$. Nếu đường thẳng đi qua $O$ cũng đi qua $P$,$P'$, và $OP\times OP'=R^{2}$, thì gọi $P$ và $P'$ là hai điểm nghịch đảo của nhau đối với $O$.
 
-### 过程
+### Quy trình
 
-求凸包的过程如下：
+Quy trình tìm bao lồi như sau:
 
--   首先对其微小扰动，避免出现四点共面的情况．
--   对于一个已知凸包，新增一个点 $P$，将 $P$ 视作一个点光源，向凸包做射线，可以知道，光线的可见面和不可见面一定是由若干条棱隔开的．
--   将光的可见面删去，并新增由其分割棱与 $P$ 构成的平面．
-    重复此过程即可，由 [Pick 定理](./pick.md)、欧拉公式（在凸多面体中，其顶点 $V$、边数 $E$ 及面数 $F$ 满足 $V−E+F=2$）和圆的反演，复杂度 $O(n^2)$．[^3d-v]
+-   Trước hết nhiễu loạn rất nhỏ các điểm để tránh trường hợp bốn điểm đồng phẳng.
+-   Với một bao lồi đã biết, thêm một điểm mới $P$. Xem $P$ như một nguồn sáng điểm và chiếu các tia về phía bao lồi; khi đó có thể biết rằng các mặt nhìn thấy ánh sáng và các mặt không nhìn thấy ánh sáng chắc chắn bị ngăn cách bởi một số cạnh.
+-   Xóa các mặt nhìn thấy ánh sáng, rồi thêm các mặt phẳng tạo bởi $P$ và các cạnh phân cách đó.
+    Lặp lại quá trình này là có thể thu được kết quả. Theo [định lý Pick](./pick.md), công thức Euler (trong đa diện lồi, số đỉnh $V$, số cạnh $E$ và số mặt $F$ thỏa mãn $V-E+F=2$) và phép nghịch đảo đường tròn, độ phức tạp là $O(n^2)$.[^3d-v]
 
-### 模板题
+### Bài mẫu
 
-[P4724【模板】三维凸包](https://www.luogu.com.cn/problem/P4724)
+[P4724 [Mẫu] Bao lồi ba chiều](https://www.luogu.com.cn/problem/P4724)
 
-重复上述过程即可得到答案．
+Lặp lại quy trình trên là có thể thu được đáp án.
 
-???+ note "代码实现"
+???+ note "Cài đặt"
     ```cpp
     --8<-- "docs/geometry/code/3d/3d_1.cpp"
     ```
 
-## 练习
+## Bài tập
 
 -   [UVa11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
 
--   [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742)
+-   ["USACO5.1" Fencing the Cows](https://www.luogu.com.cn/problem/P2742)
 
 -   [POJ1873 The Fortified Forest](http://poj.org/problem?id=1873)
 
@@ -319,8 +321,8 @@ $$
 
 -   [USACO22JAN Multiple Choice Test P](https://www.luogu.com.cn/problem/P8101)
 
--   [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829)
+-   ["SHOI2012" Credit Card Convex Hull](https://www.luogu.com.cn/problem/P3829)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^3d-v]: [三维凸包学习小记](https://www.cnblogs.com/xzyxzy/p/10225804.html)
+[^3d-v]: [Ghi chép học bao lồi ba chiều](https://www.cnblogs.com/xzyxzy/p/10225804.html)

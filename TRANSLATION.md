@@ -312,6 +312,14 @@ MkDocs source layout intact.
   `docs/graph/dominator-tree.md`, `docs/graph/graph-random-walk.md`:
   translated Prüfer sequence, Matrix-Tree theorem, LGV lemma, maximum clique,
   dominator tree, and graph random-walk material.
+- `docs/geometry/2d.md`, `docs/geometry/3d.md`,
+  `docs/geometry/distance.md`, `docs/geometry/pick.md`,
+  `docs/geometry/triangulation.md`, `docs/geometry/convex-hull.md`,
+  `docs/geometry/scanning.md`, `docs/geometry/rotating-calipers.md`,
+  `docs/geometry/half-plane.md`, `docs/geometry/nearest-points.md`,
+  `docs/geometry/random-incremental.md`, `docs/geometry/inverse.md`,
+  `docs/geometry/index.md`, `docs/geometry/misc.md`: translated
+  computational geometry foundations and algorithm material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

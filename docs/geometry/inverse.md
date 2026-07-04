@@ -1,42 +1,42 @@
 author: hyp1231, 383494
 
-## 引入
+## Mở đầu
 
-反演变换适用于题目中存在多个圆/直线之间的相切关系的情况．利用反演变换的性质，在反演空间求解问题，可以大幅简化计算．
+Phép nghịch đảo phù hợp với những bài toán có nhiều quan hệ tiếp xúc giữa các đường tròn hoặc đường thẳng. Tận dụng các tính chất của phép nghịch đảo để giải bài toán trong không gian nghịch đảo có thể đơn giản hóa phép tính đáng kể.
 
-## 定义
+## Định nghĩa
 
-给定反演中心点 $O$ 和反演半径 $R$．若平面上点 $P$ 和 $P'$ 满足：
+Cho tâm nghịch đảo $O$ và bán kính nghịch đảo $R$. Nếu hai điểm $P$ và $P'$ trên mặt phẳng thỏa mãn:
 
--   点 $P'$ 在射线 $\overrightarrow{OP}$ 上
+-   Điểm $P'$ nằm trên tia $\overrightarrow{OP}$
 -   $|OP| \cdot |OP'| = R^2$
 
-则称点 $P$ 和点 $P'$ 互为反演点．
+thì gọi $P$ và $P'$ là hai điểm nghịch đảo của nhau.
 
-## 解释
+## Giải thích
 
-下图所示即为平面上一点 $P$ 的反演：
+Hình dưới đây minh họa phép nghịch đảo của một điểm $P$ trên mặt phẳng:
 
-![Inv1](./images/inverse1.png)
+![Nghịch đảo 1](./images/inverse1.png)
 
-## 性质
+## Tính chất
 
-1.  圆 $O$ 外的点的反演点在圆 $O$ 内，反之亦然；圆 $O$ 上的点的反演点为其自身．
+1.  Điểm ở ngoài đường tròn $O$ có điểm nghịch đảo nằm trong đường tròn $O$, và ngược lại; điểm nằm trên đường tròn $O$ có điểm nghịch đảo là chính nó.
 
-2.  不过点 $O$ 的圆 $A$，其反演图形也是不过点 $O$ 的圆．
+2.  Một đường tròn $A$ không đi qua điểm $O$ có ảnh nghịch đảo cũng là một đường tròn không đi qua điểm $O$.
 
-    ![Inv2](./images/inverse2.png)
+    ![Nghịch đảo 2](./images/inverse2.png)
 
-    -   记圆 $A$ 半径为 $r_1$，其反演图形圆 $B$ 半径为 $r_2$，则有：
+    -   Gọi bán kính của đường tròn $A$ là $r_1$, bán kính của đường tròn ảnh nghịch đảo $B$ là $r_2$, ta có:
 
         $$
         r_2 = \frac{1}{2}\left(\frac{1}{|OA| - r_1} - \frac{1}{|OA| + r_1}\right) R^2
         $$
 
-    ???+ note "证明"
-        ![Inv3](./images/inverse3.png)
+    ???+ note "Chứng minh"
+        ![Nghịch đảo 3](./images/inverse3.png)
         
-        根据反演变换定义：
+        Theo định nghĩa của phép nghịch đảo:
         
         $$
         \begin{aligned}
@@ -45,9 +45,9 @@ author: hyp1231, 383494
         \end{aligned}
         $$
         
-        消掉 $|OB|$，解方程即可．
+        Khử $|OB|$ rồi giải phương trình là được.
 
-    -   记点 $O$ 坐标为 $(x_0, y_0)$，点 $A$ 坐标为 $x_1, y_1$，点 $B$ 坐标为 $x_2, y_2$，则有：
+    -   Gọi tọa độ của điểm $O$ là $(x_0, y_0)$, tọa độ của điểm $A$ là $(x_1, y_1)$, tọa độ của điểm $B$ là $(x_2, y_2)$, ta có:
 
         $$
         \begin{aligned}
@@ -56,33 +56,33 @@ author: hyp1231, 383494
         \end{aligned}
         $$
 
-        其中 $|OB|$ 可在上述求 $r_2$ 的过程中计算得到．
+        Trong đó $|OB|$ có thể được tính trong quá trình tính $r_2$ ở trên.
 
-3.  过点 $O$ 的圆 $A$，其反演图形是不过点 $O$ 的直线．因为圆 $A$ 上无限接近点 $O$ 的一点，其反演点离点 $O$ 无限远．
+3.  Một đường tròn $A$ đi qua điểm $O$ có ảnh nghịch đảo là một đường thẳng không đi qua điểm $O$. Lý do là một điểm trên đường tròn $A$ tiến gần vô hạn tới $O$ sẽ có điểm nghịch đảo cách $O$ vô hạn.
 
-    ![Inv4](./images/inverse4.png)
+    ![Nghịch đảo 4](./images/inverse4.png)
 
-4.  两个图形相切且存在不为点 $O$ 的切点，则他们的反演图形也相切．
+4.  Nếu hai hình tiếp xúc nhau và điểm tiếp xúc không phải là điểm $O$, thì các ảnh nghịch đảo của chúng cũng tiếp xúc nhau.
 
-## 例题
+## Ví dụ
 
-### [「ICPC 2013 杭州赛区」Problem of Apollonius](https://acm.hdu.edu.cn/showproblem.php?pid=4773)
+### [ICPC 2013 Hangzhou Regional - Problem of Apollonius](https://acm.hdu.edu.cn/showproblem.php?pid=4773)
 
-#### 题目大意
+#### Tóm tắt đề bài
 
-求过两圆外一点，且与两圆相切的所有的圆．
+Tìm tất cả các đường tròn đi qua một điểm nằm ngoài hai đường tròn đã cho và tiếp xúc với cả hai đường tròn đó.
 
-#### 解法
+#### Cách giải
 
-首先考虑解析几何解法，似乎很难求解．
+Trước hết nếu xét cách giải bằng hình học giải tích, bài toán có vẻ rất khó giải.
 
-考虑以需要经过的点为反演中心进行反演（反演半径任意），所求的圆的反演图形是一条直线（应用性质 $3$），且与题目给出两圆的反演图形（性质 $2$）相切（性质 $4$）．
+Xét phép nghịch đảo với tâm là điểm mà đường tròn cần tìm phải đi qua, bán kính nghịch đảo tùy ý. Ảnh nghịch đảo của đường tròn cần tìm là một đường thẳng, theo tính chất $3$, và nó tiếp xúc với ảnh nghịch đảo của hai đường tròn đã cho, theo tính chất $2$ và tính chất $4$.
 
-于是题目经过反演变换后转变为：求两圆的所有公切线．
+Do đó sau phép nghịch đảo, bài toán trở thành: tìm tất cả các tiếp tuyến chung của hai đường tròn.
 
-求出公切线后，反演回原平面即可．
+Sau khi tìm được các tiếp tuyến chung, lấy ảnh nghịch đảo trở lại mặt phẳng ban đầu là được.
 
-??? note "示例代码"
+??? note "Mã ví dụ"
     ```cpp
     #include <algorithm>
     #include <cmath>
@@ -92,11 +92,11 @@ author: hyp1231, 383494
     #include <vector>
     using namespace std;
     
-    constexpr double EPS = 1e-8;   // 精度系数
-    const double PI = acos(-1.0);  // π
+    constexpr double EPS = 1e-8;   // Hệ số sai số
+    const double PI = acos(-1.0);  // pi
     constexpr int N = 4;
     
-    // 点的定义
+    // Định nghĩa điểm
     struct Point {
       double x, y;
     
@@ -105,43 +105,43 @@ author: hyp1231, 383494
       bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
     };
     
-    // 向量的定义
+    // Định nghĩa vectơ
     using Vector = Point;
     
-    // 向量加法
+    // Cộng vectơ
     Vector operator+(Vector A, Vector B) { return Vector(A.x + B.x, A.y + B.y); }
     
-    // 向量减法
+    // Trừ vectơ
     Vector operator-(Vector A, Vector B) { return Vector(A.x - B.x, A.y - B.y); }
     
-    // 向量数乘
+    // Nhân vectơ với số
     Vector operator*(Vector A, double p) { return Vector(A.x * p, A.y * p); }
     
-    // 向量数除
+    // Chia vectơ cho số
     Vector operator/(Vector A, double p) { return Vector(A.x / p, A.y / p); }
     
-    // 与0的关系
+    // Quan hệ với 0
     int dcmp(double x) {
       if (fabs(x) < EPS) return 0;
       return x < 0 ? -1 : 1;
     }
     
-    // 向量点乘
+    // Tích vô hướng của vectơ
     double Dot(Vector A, Vector B) { return A.x * B.x + A.y * B.y; }
     
-    // 向量长度
+    // Độ dài vectơ
     double Length(Vector A) { return sqrt(Dot(A, A)); }
     
-    // 向量叉乘
+    // Tích có hướng của vectơ
     double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }
     
-    // 点在直线上投影
+    // Hình chiếu của điểm lên đường thẳng
     Point GetLineProjection(Point P, Point A, Point B) {
       Vector v = B - A;
       return A + v * (Dot(v, P - A) / Dot(v, v));
     }
     
-    // 圆
+    // Đường tròn
     struct Circle {
       Point c;
       double r;
@@ -150,12 +150,12 @@ author: hyp1231, 383494
     
       Circle(Point c, double r = 0) : c(c), r(r) {}
     
-      // 输入极角返回点坐标
+      // Nhập góc cực và trả về tọa độ điểm
       Point point(double a) { return Point(c.x + cos(a) * r, c.y + sin(a) * r); }
     };
     
-    // 两圆公切线 返回切线的条数，-1表示无穷多条切线
-    // a[i] 和 b[i] 分别是第i条切线在圆A和圆B上的切点
+    // Tiếp tuyến chung của hai đường tròn. Trả về số tiếp tuyến, -1 nghĩa là vô số tiếp tuyến
+    // a[i] và b[i] lần lượt là tiếp điểm của tiếp tuyến thứ i trên đường tròn A và B
     int getTangents(Circle A, Circle B, Point* a, Point* b) {
       int cnt = 0;
       if (A.r < B.r) {
@@ -166,17 +166,17 @@ author: hyp1231, 383494
           (A.c.x - B.c.x) * (A.c.x - B.c.x) + (A.c.y - B.c.y) * (A.c.y - B.c.y);
       double rdiff = A.r - B.r;
       double rsum = A.r + B.r;
-      if (dcmp(d2 - rdiff * rdiff) < 0) return 0;  // 内含
+      if (dcmp(d2 - rdiff * rdiff) < 0) return 0;  // Chứa trong
     
       double base = atan2(B.c.y - A.c.y, B.c.x - A.c.x);
-      if (dcmp(d2) == 0 && dcmp(A.r - B.r) == 0) return -1;  // 无限多条切线
-      if (dcmp(d2 - rdiff * rdiff) == 0) {  // 内切，一条切线
+      if (dcmp(d2) == 0 && dcmp(A.r - B.r) == 0) return -1;  // Vô số tiếp tuyến
+      if (dcmp(d2 - rdiff * rdiff) == 0) {  // Tiếp xúc trong, một tiếp tuyến
         a[cnt] = A.point(base);
         b[cnt] = B.point(base);
         ++cnt;
         return 1;
       }
-      // 有外公切线
+      // Có tiếp tuyến chung ngoài
       double ang = acos(rdiff / sqrt(d2));
       a[cnt] = A.point(base + ang);
       b[cnt] = B.point(base + ang);
@@ -184,11 +184,11 @@ author: hyp1231, 383494
       a[cnt] = A.point(base - ang);
       b[cnt] = B.point(base - ang);
       ++cnt;
-      if (dcmp(d2 - rsum * rsum) == 0) {  // 一条内公切线
+      if (dcmp(d2 - rsum * rsum) == 0) {  // Một tiếp tuyến chung trong
         a[cnt] = A.point(base);
         b[cnt] = B.point(PI + base);
         ++cnt;
-      } else if (dcmp(d2 - rsum * rsum) > 0) {  // 两条内公切线
+      } else if (dcmp(d2 - rsum * rsum) > 0) {  // Hai tiếp tuyến chung trong
         double ang = acos(rsum / sqrt(d2));
         a[cnt] = A.point(base + ang);
         b[cnt] = B.point(PI + base + ang);
@@ -200,7 +200,7 @@ author: hyp1231, 383494
       return cnt;
     }
     
-    // 点 O 在圆 A 外，求圆 A 的反演圆 B，R 是反演半径
+    // Điểm O nằm ngoài đường tròn A, tìm đường tròn nghịch đảo B của A, R là bán kính nghịch đảo
     Circle Inversion_C2C(Point O, double R, Circle A) {
       double OA = Length(A.c - O);
       double RB = 0.5 * ((1 / (OA - A.r)) - (1 / (OA + A.r))) * R * R;
@@ -210,7 +210,7 @@ author: hyp1231, 383494
       return Circle(Point(Bx, By), RB);
     }
     
-    // 直线反演为过 O 点的圆 B，R 是反演半径
+    // Nghịch đảo đường thẳng thành đường tròn B đi qua O, R là bán kính nghịch đảo
     Circle Inversion_L2C(Point O, double R, Point A, Vector v) {
       Point P = GetLineProjection(O, A, A + v);
       double d = Length(O - P);
@@ -219,7 +219,7 @@ author: hyp1231, 383494
       return Circle(O + VB, RB);
     }
     
-    // 返回 true 如果 A B 两点在直线同侧
+    // Trả về true nếu hai điểm A và B ở cùng phía của đường thẳng
     bool theSameSideOfLine(Point A, Point B, Point S, Vector v) {
       return dcmp(Cross(A - S, v)) * dcmp(Cross(B - S, v)) > 0;
     }
@@ -253,14 +253,14 @@ author: hyp1231, 383494
     }
     ```
 
-## 练习
+## Bài tập
 
-[「ICPC 2017 南宁赛区网络赛」Finding the Radius for an Inserted Circle](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A1283)
+[ICPC 2017 Nanning Regional Online - Finding the Radius for an Inserted Circle](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A1283)
 
-[「CCPC 2017 网络赛」The Designer](https://acm.hdu.edu.cn/showproblem.php?pid=6158)
+[CCPC 2017 Online - The Designer](https://acm.hdu.edu.cn/showproblem.php?pid=6158)
 
-## 参考资料与拓展阅读
+## Tài liệu tham khảo và đọc thêm
 
 -   [Inversive geometry - Wikipedia](https://en.wikipedia.org/wiki/Inversive_geometry)
 
--   [圆的反演变换 - ACdreamers 的博客](https://blog.csdn.net/acdreamers/article/details/16966369)
+-   [Phép nghịch đảo của đường tròn - blog ACdreamers](https://blog.csdn.net/acdreamers/article/details/16966369)

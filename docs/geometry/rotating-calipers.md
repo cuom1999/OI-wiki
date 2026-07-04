@@ -1,35 +1,35 @@
-本页面将主要介绍旋转卡壳．
+Trang này chủ yếu giới thiệu thuật toán thước kẹp quay.
 
-## 引入
+## Dẫn nhập
 
-旋转卡壳（Rotating Calipers，也称「旋转卡尺」）算法，在凸包算法的基础上，通过枚举凸包上某一条边的同时维护其他需要的点，能够在线性时间内求解如凸包直径、最小矩形覆盖等和凸包性质相关的问题．
+Thuật toán thước kẹp quay, tiếng Anh là Rotating Calipers, dựa trên bao lồi. Khi liệt kê một cạnh nào đó trên bao lồi, ta đồng thời duy trì các điểm cần thiết khác, nhờ đó có thể giải các bài toán liên quan đến tính chất của bao lồi, như đường kính bao lồi hoặc hình chữ nhật phủ nhỏ nhất, trong thời gian tuyến tính.
 
-???+ note "算法中文名称"
-    该算法比较常见的中文名是「旋转卡壳」．可以理解为：根据我们枚举的边，可以从每个维护的点画出一条或平行或垂直的直线，为了确保对于当前枚举的边的最优性，我们的任务就是使这些直线能将凸包正好卡住．而边通常是按照向某一方向旋转的顺序来枚举，所以整个过程就是在边「旋转」，边「卡壳」．
+???+ note "Tên gọi của thuật toán"
+    Tên tiếng Việt trong bản dịch này là "thước kẹp quay". Có thể hiểu như sau: ứng với cạnh đang được liệt kê, từ mỗi điểm đang duy trì ta vẽ một đường thẳng song song hoặc vuông góc với cạnh đó. Để bảo đảm tính tối ưu đối với cạnh hiện tại, nhiệm vụ là làm cho các đường thẳng này vừa kẹp sát bao lồi. Các cạnh thường được liệt kê theo thứ tự quay về một hướng, nên toàn bộ quá trình là một chiếc thước kẹp đang quay quanh bao lồi.
     
-    其英文名「rotating calipers」的直译应为「旋转卡尺」，其中「calipers」的意思是「卡尺」．第一次提出该术语的论文[^ref1]原意为：使用一个可动态调整的「卡尺」夹住凸包后，绕凸包「旋转」该「卡尺」．
+    Tên tiếng Anh "rotating calipers" được hiểu trực tiếp là "thước kẹp quay", trong đó "calipers" là thước kẹp. Bài báo đầu tiên đề xuất thuật ngữ này[^ref1] có ý tưởng dùng một chiếc thước kẹp có thể điều chỉnh động để kẹp bao lồi, rồi quay chiếc thước kẹp đó quanh bao lồi.
 
-## 求凸包直径
+## Tìm đường kính bao lồi
 
-???+ note "例题 1 :[Luogu P1452 Beauty Contest G](https://www.luogu.com.cn/problem/P1452)"
-    给定平面上 $n$ 个点，求所有点对之间的最长距离．（$2\leq n \leq 50000,|x|,|y| \leq 10^4$）
+???+ note "Ví dụ 1: [Luogu P1452 Beauty Contest G](https://www.luogu.com.cn/problem/P1452)"
+    Cho $n$ điểm trên mặt phẳng, hãy tìm khoảng cách lớn nhất giữa mọi cặp điểm. ($2\leq n \leq 50000,|x|,|y| \leq 10^4$)
 
-### 过程
+### Quá trình
 
-首先使用任何一种凸包算法求出给定所有点的凸包，有着最长距离的点对一定在凸包上．而由于凸包的形状，我们发现，逆时针地遍历凸包上的边，对于每条边都找到离这条边最远的点，那么这时随着边的转动，对应的最远点也在逆时针旋转，不会有反向的情况，这意味着我们可以在逆时针枚举凸包上的边时，记录并维护一个当前最远点，并不断计算、更新答案．
+Trước hết dùng một thuật toán bao lồi bất kỳ để tìm bao lồi của tất cả các điểm đã cho. Cặp điểm có khoảng cách lớn nhất chắc chắn nằm trên bao lồi. Do hình dạng của bao lồi, khi duyệt ngược chiều kim đồng hồ qua các cạnh của bao lồi và với mỗi cạnh tìm điểm xa cạnh đó nhất, điểm xa nhất tương ứng cũng quay ngược chiều kim đồng hồ theo cạnh, không quay ngược lại. Điều này có nghĩa là khi liệt kê các cạnh của bao lồi theo chiều ngược kim đồng hồ, ta chỉ cần ghi lại và duy trì một điểm xa nhất hiện tại, rồi liên tục tính và cập nhật đáp án.
 
-求出凸包后的数组自然地是按照逆时针旋转的顺序排列，不过要记得提前将最左下角的 1 节点补到数组最后，这样在挨个枚举边 $(i,i+1)$ 时，才能把所有边都枚举到．
+Sau khi tìm bao lồi, mảng thu được tự nhiên được sắp theo thứ tự quay ngược chiều kim đồng hồ. Tuy nhiên cần nhớ thêm trước đỉnh số 1 ở góc trái dưới vào cuối mảng, để khi lần lượt liệt kê các cạnh $(i,i+1)$ thì có thể duyệt đủ mọi cạnh.
 
 ![](images/rotating-calipers1.png)
 
-枚举过程中，对于每条边，都检查 $j+1$ 和边 $(i,i+1)$ 的距离是不是比 $j$ 更大，如果是就将 $j$ 加一，否则说明 $j$ 是此边的最优点．判断点到边的距离大小时可以用叉积分别算出两个三角形的面积（如图，黄、蓝两个同底三角形的面积）并直接比较．
+Trong quá trình liệt kê, với mỗi cạnh, kiểm tra khoảng cách từ $j+1$ đến cạnh $(i,i+1)$ có lớn hơn từ $j$ hay không. Nếu có thì tăng $j$ thêm một, nếu không thì $j$ là điểm tối ưu của cạnh này. Khi so sánh khoảng cách từ điểm đến cạnh, có thể dùng tích có hướng để tính diện tích của hai tam giác, như hai tam giác cùng đáy màu vàng và màu xanh trong hình, rồi so sánh trực tiếp.
 
-### 实现
+### Cài đặt
 
-???+ note "核心代码"
+???+ note "Mã lõi"
     === "C++"
         ```cpp
-        int sta[N], top;  // 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
+        int sta[N], top;  // Lưu số hiệu các đỉnh trên bao lồi trong ngăn xếp; đỉnh đầu và đỉnh cuối trùng nhau.
         
         ll pf(ll x) { return x * x; }
         
@@ -39,7 +39,7 @@
         
         ll mx;
         
-        void get_longest() {  // 求凸包直径
+        void get_longest() {  // Tìm đường kính bao lồi.
           int j = 3;
           if (top < 4) {
             mx = dis(sta[1], sta[2]);
@@ -57,7 +57,7 @@
     === "Python"
         ```python
         sta = [0] * N
-        top = 0  # 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
+        top = 0  # Lưu số hiệu các đỉnh trên bao lồi trong ngăn xếp; đỉnh đầu và đỉnh cuối trùng nhau.
         
         
         def pf(x):
@@ -72,7 +72,7 @@
             return abs((a[q] - a[p]) * (a[y] - a[q]))
         
         
-        def get_longest():  # 求凸包直径
+        def get_longest():  # Tìm đường kính bao lồi.
             j = 3
             if top < 4:
                 mx = dis(sta[1], sta[2])
@@ -85,29 +85,29 @@
                 mx = max(mx, max(dis(sta[i + 1], sta[j]), dis(sta[i], sta[j])))
         ```
 
-## 求最小矩形覆盖
+## Tìm hình chữ nhật phủ nhỏ nhất
 
-[Luogu P3187 最小矩形覆盖](https://www.luogu.com.cn/problem/P3187)
+[Luogu P3187 Minimum Rectangle Cover](https://www.luogu.com.cn/problem/P3187)
 
-给定一些点的坐标，求能够覆盖所有点的最小面积的矩形．（$3\leq n \leq 50000$）
+Cho tọa độ một số điểm, hãy tìm hình chữ nhật có diện tích nhỏ nhất có thể phủ tất cả các điểm. ($3\leq n \leq 50000$)
 
-### 过程
+### Quá trình
 
-有了上一道题做铺垫，这道题比较直观的想法仍然是使用旋转卡壳法，不过这次要求的是面积，像上一题一样只维护一个最优点就只能找到一对距离最小的平行线，我们还需要确定矩形的左右边界．所以这次我们需要维护三个点：一个在所枚举的直线对面的点、两个在不同侧面的点．对面的最优点仍然是用叉积算面积来比较，此时比较面积就是在比较这个矩形的一个边长．侧面的最优点则是用点积来比较，因为比较点积就是比较投影的长度，左右两个投影长度相加可以代表这个矩形的另一个边长．这两个边长的最优性相互独立，因此找到三个最优点的位置就能够确定以当前边所在直线为矩阵的一条边时，能覆盖所有点的矩形最小面积．
+Dựa trên bài trước, ý tưởng trực quan của bài này vẫn là dùng thước kẹp quay. Tuy nhiên lần này cần tối ưu diện tích; nếu chỉ duy trì một điểm tối ưu như bài trước thì ta chỉ tìm được một cặp đường thẳng song song có khoảng cách nhỏ nhất, trong khi còn cần xác định biên trái và biên phải của hình chữ nhật. Vì vậy lần này ta cần duy trì ba điểm: một điểm nằm đối diện đường thẳng đang liệt kê và hai điểm nằm ở hai phía khác nhau. Điểm tối ưu ở phía đối diện vẫn được so sánh bằng diện tích tính bởi tích có hướng; lúc này so sánh diện tích chính là so sánh một cạnh của hình chữ nhật. Hai điểm tối ưu ở hai phía được so sánh bằng tích vô hướng, vì so sánh tích vô hướng chính là so sánh độ dài hình chiếu, và tổng hai độ dài hình chiếu trái phải có thể biểu diễn cạnh còn lại của hình chữ nhật. Tính tối ưu của hai cạnh này độc lập với nhau, nên khi tìm được vị trí của ba điểm tối ưu, ta xác định được hình chữ nhật có diện tích nhỏ nhất phủ mọi điểm khi đường thẳng chứa cạnh hiện tại là một cạnh của hình chữ nhật.
 
 ![](images/rotating-calipers2.png)
 
-最后统计答案时，如果题目没有要求将四个顶点都求出来，其实有一种较为巧妙的利用叉积和点积的方式直接算出矩阵的面积．设紫色部分面积的两倍为 $S$，最后的面积就是
+Khi thống kê đáp án cuối cùng, nếu đề bài không yêu cầu tìm cả bốn đỉnh, thực ra có một cách khá khéo để tính trực tiếp diện tích hình chữ nhật bằng tích có hướng và tích vô hướng. Gọi hai lần diện tích phần màu tím là $S$, diện tích cuối cùng là
 
 $$
 S\times (|\overrightarrow{AD}\cdot \overrightarrow{AB}|+|\overrightarrow{BC}\cdot \overrightarrow{BA}|-|\overrightarrow{AB}\cdot \overrightarrow{BA}|)/|\overrightarrow{AB}\cdot \overrightarrow{BA}|
 $$
 
-### 实现
+### Cài đặt
 
-必要的求凸包过程略去，这里贴出本题核心代码：
+Phần tìm bao lồi cần thiết được lược bỏ; dưới đây là mã lõi của bài này:
 
-???+ note "核心代码"
+???+ note "Mã lõi"
     === "C++"
         ```cpp
         void get_biggest() {
@@ -160,13 +160,13 @@ $$
                 ans = min(ans, t1 * t2 / t3)
         ```
 
-## 练习
+## Luyện tập
 
 -   [POJ 3608. Bridge Across Islands](http://poj.org/problem?id=3608)
 -   [2011 ACM-ICPC World Finals, Problem K. Trash Removal](https://codeforces.com/gym/101175)
 -   [ICPC WF Moscow Invitational Contest - Online Mirror, Problem F. Framing Pictures](https://codeforces.com/contest/1578/problem/F)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
 [^ref1]: Toussaint, Godfried T. (1983). "Solving geometric problems with the rotating calipers". Proc. MELECON '83, Athens. CiteSeerX 10.1.1.155.5671
 
@@ -174,4 +174,4 @@ $$
 
 -   <http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html>
 
--   Shamos, Michael (1978). "Computational Geometry" (PDF). Yale University. pp. 76–81.
+-   Shamos, Michael (1978). "Computational Geometry" (PDF). Yale University. pp. 76-81.
