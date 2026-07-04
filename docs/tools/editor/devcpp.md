@@ -1,148 +1,148 @@
 author: topdevst, ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagnet, CamberLoid, royqh1979
 
-## 介绍
+## Giới thiệu
 
-Dev-C++ 是一套用于开发 C/C++ 程序的自由的集成开发环境（IDE），并以 GPL 作为分发许可，使用 MinGW 及 GDB 作为编译系统与调试系统．Dev-C++ 运行在 Microsoft Windows 下．
+Dev-C++ là một môi trường phát triển tích hợp (IDE) tự do dùng để phát triển chương trình C/C++, được phân phối theo giấy phép GPL, dùng MinGW và GDB làm hệ thống biên dịch và gỡ lỗi. Dev-C++ chạy trên Microsoft Windows.
 
-Dev-C++ 的优点在于界面简洁友好，安装便捷，支持单文件编译，因此成为了许多入门 OI 选手以及 C++ 语言初学者的首选．在 NOIP 中，提供 Windows 作为比赛系统的省份一般预置 Dev-C++．
+Ưu điểm của Dev-C++ là giao diện đơn giản, thân thiện, cài đặt thuận tiện và hỗ trợ biên dịch tệp đơn, nên nó trở thành lựa chọn đầu tiên của nhiều thí sinh OI mới bắt đầu và người mới học C++. Trong NOIP, các tỉnh dùng Windows làm hệ thống thi đấu thường cài sẵn Dev-C++.
 
-Dev-C++ 起源于 Colin Laplace 编写的 Bloodshed Dev-C++．该版本自 2005 年 2 月 22 日停止更新．2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：「因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发．」
+Dev-C++ bắt nguồn từ Bloodshed Dev-C++ do Colin Laplace viết. Phiên bản này ngừng cập nhật từ ngày 22 tháng 2 năm 2005. Năm 2006, nhà phát triển chính Colin Laplace từng giải thích về việc này: "Do bận rộn với công việc ngoài đời, tôi không có thời gian tiếp tục phát triển Dev-C++."
 
-Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本，由独立程序员 Orwell (Johan Mes) 开发并维护．其对原版 Dev-C++ 进行了错误修正，并更新了编译器版本．一般而言，Dev-C++ 5.x 均为 Orwell Dev-C++．其最后一次更新于 2015 年，版本为 5.11．
+Orwell Dev-C++ là một phiên bản phái sinh của Dev-C++, do lập trình viên độc lập Orwell (Johan Mes) phát triển và duy trì. Phiên bản này sửa lỗi cho Dev-C++ gốc và cập nhật phiên bản trình biên dịch. Nói chung, Dev-C++ 5.x đều là Orwell Dev-C++. Lần cập nhật cuối cùng của nó là vào năm 2015, với phiên bản 5.11.
 
-Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者．2020 年，Embarcadero 赞助并接手了原有的 Dev-C++ 项目，继续开发．Embarcadero Dev-C++ 加入了对高 DPI 的支持，更新了编译器以加入更新版本的 C++ 标准支持，以及暗色模式．
+Embarcadero Dev-C++[^ref1] là phiên bản kế nhiệm Bloodshed Dev-C++ và Orwell Dev-C++. Năm 2020, Embarcadero tài trợ và tiếp quản dự án Dev-C++ cũ để tiếp tục phát triển. Embarcadero Dev-C++ bổ sung hỗ trợ DPI cao, cập nhật trình biên dịch để hỗ trợ các chuẩn C++ mới hơn, đồng thời thêm dark mode.
 
-以上的 Dev-C++ 分发都被认为是「官方的」．此外，在 2015 年 Orwell Dev-C++ 停止更新后，因为教学需要，一位来自中国的个人开发者 [royqh1979](https://github.com/royqh1979) 决定继续开发他的 Dev-C++ 个人分支，命名为小熊猫 Dev-C++[^ref2]，集成了智能提示和高版本的 MinGW64，非常便于国内的个人使用和学习．
+Các bản phân phối Dev-C++ nêu trên đều được coi là "chính thức". Ngoài ra, sau khi Orwell Dev-C++ ngừng cập nhật vào năm 2015, vì nhu cầu giảng dạy, một nhà phát triển cá nhân từ Trung Quốc là [royqh1979](https://github.com/royqh1979) quyết định tiếp tục phát triển nhánh Dev-C++ cá nhân của mình, đặt tên là Red Panda Dev-C++[^ref2]. Nhánh này tích hợp gợi ý thông minh và MinGW64 phiên bản cao, rất thuận tiện cho việc tự học và sử dụng cá nhân trong nước.
 
-小熊猫 Dev-C++ 6.7.5 版本发布后，作者使用 qt5 开发了全新的小熊猫 C++[^ref3]，可在 windows、linux 和 macos 等系统下原生运行．小熊猫 C++ 的界面与 Dev-C++ 相似，除了提供和 Dev-C++ 相似但更加完善的单文件编译、调试、语法高亮、搜索/替换等功能外，还提供了诸如 **暗色主题**、**代码智能提示**、**变量/函数重命名**、**切换/自动识别文件编码** 等现代 IDE 常见的基本功能．此外小熊猫 C++ 还具备与 CP Editor 类似的试题集功能，可以自行编写或 **从常见的 OJ 竞赛网站上下载试题样例**，**自动运行和测试程序**．
+Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng qt5 phát triển Red Panda C++[^ref3] hoàn toàn mới, có thể chạy native trên Windows, Linux, macOS và các hệ thống khác. Giao diện của Red Panda C++ tương tự Dev-C++; ngoài các chức năng giống Dev-C++ nhưng hoàn thiện hơn như biên dịch tệp đơn, gỡ lỗi, tô sáng cú pháp, tìm kiếm/thay thế, nó còn cung cấp các chức năng cơ bản thường thấy ở IDE hiện đại như **giao diện tối**, **gợi ý mã thông minh**, **đổi tên biến/hàm**, **chuyển/tự nhận diện mã hóa tệp**. Ngoài ra, Red Panda C++ còn có chức năng bộ đề tương tự CP Editor: có thể tự viết hoặc **tải sample bài từ các website OJ/contest thường gặp**, rồi **tự động chạy và kiểm thử chương trình**.
 
-## 使用教程
+## Hướng dẫn sử dụng
 
-### 常用快捷键
+### Phím tắt thường dùng
 
-#### 文件部分
+#### Nhóm tệp
 
--   `Ctrl + N`: 创建源代码
--   `Ctrl + O`: 打开文件
--   `Ctrl + W`: 关闭文件
--   `Ctrl + Shift + W`: 关闭所有文件
--   `Ctrl + P`: 打印文件
+-   `Ctrl + N`: tạo mã nguồn
+-   `Ctrl + O`: mở tệp
+-   `Ctrl + W`: đóng tệp
+-   `Ctrl + Shift + W`: đóng tất cả tệp
+-   `Ctrl + P`: in tệp
 
-#### 格式部分
+#### Nhóm định dạng
 
--   `Ctrl + /`：注释和取消注释
--   `Tab`: 缩进
--   `Shift + Tab`: 取消缩进
+-   `Ctrl + /`: chú thích và bỏ chú thích
+-   `Tab`: thụt lề
+-   `Shift + Tab`: bỏ thụt lề
 
-#### 行操作
+#### Thao tác dòng
 
--   `Ctrl + E`: 复制行
--   `Ctrl + D`: 删除行
--   `Ctrl + Shift + Up`: 向上移动
--   `Ctrl + Shift + Down`: 向下移动
+-   `Ctrl + E`: sao chép dòng
+-   `Ctrl + D`: xóa dòng
+-   `Ctrl + Shift + Up`: di chuyển lên
+-   `Ctrl + Shift + Down`: di chuyển xuống
 
-#### 跳转部分
+#### Nhóm nhảy vị trí
 
--   `Ctrl + F`: 搜索
--   `Ctrl + R`: 替换
--   `F3`: 搜索下一个
--   `Shift + F3`: 搜索上一个
--   `Ctrl + G`: 到指定行号
--   `Shift + Ctrl + G`: 到指定函数
--   `Ctrl + [1 ~ 9]`: 设置书签
--   `Alt + [1 ~ 9]`: 跳转书签
+-   `Ctrl + F`: tìm kiếm
+-   `Ctrl + R`: thay thế
+-   `F3`: tìm tiếp
+-   `Shift + F3`: tìm trước
+-   `Ctrl + G`: tới số dòng chỉ định
+-   `Shift + Ctrl + G`: tới hàm chỉ định
+-   `Ctrl + [1 ~ 9]`: đặt bookmark
+-   `Alt + [1 ~ 9]`: nhảy tới bookmark
 
-#### 显示部分
+#### Nhóm hiển thị
 
--   `Ctrl + 滚轮`：字号放大或缩小
--   `Ctrl + F11`: 全屏或恢复
+-   `Ctrl + cuộn chuột`: phóng to hoặc thu nhỏ cỡ chữ
+-   `Ctrl + F11`: toàn màn hình hoặc khôi phục
 
-#### 运行部分
+#### Nhóm chạy
 
--   `F9`: 只编译
--   `F10`: 只运行
--   `F11`: 编译并运行
--   `F12`: 全部重新编译
+-   `F9`: chỉ biên dịch
+-   `F10`: chỉ chạy
+-   `F11`: biên dịch và chạy
+-   `F12`: biên dịch lại toàn bộ
 
-#### 调试部分
+#### Nhóm gỡ lỗi
 
--   `F2`: 转到断点
--   `F4`: 设置断点或取消
--   `F5`: 调试运行
--   `F6`: 停止
--   `F7`: 逐步调试
+-   `F2`: tới breakpoint
+-   `F4`: đặt hoặc hủy breakpoint
+-   `F5`: chạy gỡ lỗi
+-   `F6`: dừng
+-   `F7`: gỡ lỗi từng bước
 
-### 调试流程
+### Quy trình gỡ lỗi
 
-1.  将编译器配置设定为 `TDM-GCC 4.9.2 64-bit Debug`
-2.  按 `F4` 设置或取消调试断点
-3.  将光标放置在变量上，按 `Alt + A` 向调试窗口添加监控变量
-4.  按 `F5` 启动调试
-5.  按 `F7` 或 `Alt + N` 逐步调试
-6.  按 `Alt + S` 跳至下一个调试断点
-7.  按 `F6` 停止调试
+1.  Đặt cấu hình trình biên dịch thành `TDM-GCC 4.9.2 64-bit Debug`.
+2.  Nhấn `F4` để đặt hoặc hủy breakpoint gỡ lỗi.
+3.  Đặt con trỏ lên biến, nhấn `Alt + A` để thêm biến cần theo dõi vào cửa sổ gỡ lỗi.
+4.  Nhấn `F5` để bắt đầu gỡ lỗi.
+5.  Nhấn `F7` hoặc `Alt + N` để gỡ lỗi từng bước.
+6.  Nhấn `Alt + S` để nhảy tới breakpoint gỡ lỗi tiếp theo.
+7.  Nhấn `F6` để dừng gỡ lỗi.
 
-## 扩展
+## Mở rộng
 
-### 增加编译选项
+### Thêm tùy chọn biên dịch
 
-点击工具 -> 编译选项，然后选择 "代码生成/优化" 选项卡，下面介绍笔者常用的几个编译选项．
+Nhấp Tools -> Compiler Options, rồi chọn thẻ "Code Generation/Optimization". Dưới đây giới thiệu một vài tùy chọn biên dịch thường dùng.
 
-#### 开启优化
+#### Bật tối ưu hóa
 
-优化代码运行时间或占用空间．
+Tối ưu hóa thời gian chạy hoặc dung lượng chương trình.
 
-选择 "代码生成" 子选项卡中的 "优化级别（-Ox）" 选项标签．
+Chọn nhãn tùy chọn "Optimization level (-Ox)" trong thẻ con "Code Generation".
 
 ![](./images/Dev-C++-11.png)
 
-#### 更换语言标准
+#### Đổi chuẩn ngôn ngữ
 
-使用新语言特性或试图让代码在旧标准下编译．
+Dùng tính năng ngôn ngữ mới, hoặc thử biên dịch mã dưới chuẩn cũ.
 
-选择 "代码生成" 子选项卡中的 "语言标准（-std）" 选项标签．
+Chọn nhãn tùy chọn "Language standard (-std)" trong thẻ con "Code Generation".
 
 ![](./images/Dev-C++-12.png)
 
-#### 显示最多警告信息
+#### Hiển thị nhiều cảnh báo nhất
 
-查错小助手．
+Trợ thủ nhỏ khi tìm lỗi.
 
-选择 "代码警告" 子选项卡中的 "显示最多警告信息（-Wall）" 选项标签．
+Chọn nhãn tùy chọn "Show most warnings (-Wall)" trong thẻ con "Code Warnings".
 
 ![](./images/Dev-C++-13.png)
 
-#### 生成调试信息
+#### Sinh thông tin gỡ lỗi
 
-当显示 "项目没有调试信息，您想打开项目调试选项并重新生成吗？" 点击后闪退或想使用调试功能时需开启此功能．
+Khi xuất hiện thông báo "Project does not have debugging information, do you want to enable debugging and rebuild?" rồi bị thoát sau khi nhấp, hoặc khi muốn dùng chức năng gỡ lỗi, cần bật chức năng này.
 
-选择 "连接器" 子选项卡中的 "产生调试信息" 选项标签．
+Chọn nhãn tùy chọn "Generate debugging information" trong thẻ con "Linker".
 
 ![](./images/Dev-C++-14.png)
 
-### 编译小 trick
+### Một số mẹo biên dịch
 
-点击工具 -> 编译选项，然后选择 "编译器" 选项卡，接下来介绍几个常用 trick．
+Nhấp Tools -> Compiler Options, rồi chọn thẻ "Compiler". Dưới đây giới thiệu một vài mẹo thường dùng.
 
-#### 开大栈
+#### Tăng stack
 
-防止 DFS 爆系统栈之类的情况出现．
+Tránh các tình huống như DFS làm tràn stack hệ thống.
 
-在 "连接器命令行加入以下命令" 中加入 `-Wl,--stack=128000000` 命令．
+Thêm lệnh `-Wl,--stack=128000000` vào "Add the following commands when calling the linker".
 
-此命令将栈开到了约 128MB 的大小，有需要可以自行增加．
+Lệnh này đặt stack khoảng 128 MB; nếu cần, có thể tự tăng thêm.
 
 ![](./images/Dev-C++-15.png)
 
-#### 定义宏
+#### Định nghĩa macro
 
-方便本地评测使用文件输入输出或作其他用途．
+Thuận tiện để chấm cục bộ bằng file input/output hoặc dùng cho mục đích khác.
 
-在 "连接器命令行加入以下命令" 中加入 `-D[String]` 命令．
+Thêm lệnh `-D[String]` vào "Add the following commands when calling the linker".
 
-其中 `[String]` 改为你需要的宏名．
+Trong đó `[String]` đổi thành tên macro bạn cần.
 
-如图，当开启编译选项后便可将以下代码从 `test.in` 文件读入数据并在 `test.out` 文件中输出．
+Như hình, sau khi bật tùy chọn biên dịch, đoạn mã sau có thể đọc dữ liệu từ tệp `test.in` và xuất ra tệp `test.out`.
 
 ![](./images/Dev-C++-16.png)
 
@@ -153,30 +153,30 @@ freopen("test.out", "w", stdout);
 #endif
 ```
 
-#### 代码格式化
+#### Định dạng mã
 
-点击 Astyle-> 格式化当前文件 或 按 Ctrl+Shift+A 进行代码格式化．
+Nhấp Astyle -> Format Current File, hoặc nhấn Ctrl+Shift+A để định dạng mã.
 
 ![](./images/Dev-C++-17.png)
 
-### 美化
+### Làm đẹp giao diện
 
-#### 字体
+#### Phông chữ
 
-点击工具 -> 编辑器选项，然后选择 "显示" 选项卡．
+Nhấp Tools -> Editor Options, rồi chọn thẻ "Display".
 
 ![](./images/Dev-C++-9.png)
 
-#### 主题
+#### Theme
 
-点击工具 -> 编辑器选项，然后选择 "语法" 选项卡，可以使用预设主题，也可以自行调整．
+Nhấp Tools -> Editor Options, rồi chọn thẻ "Syntax". Có thể dùng theme có sẵn hoặc tự điều chỉnh.
 
 ![](./images/Dev-C++-10.png)
 
-## 参考资料
+## Tài liệu tham khảo
 
-[^ref1]: 项目源代码托管于 [GitHub](https://github.com/Embarcadero/Dev-Cpp) 和 [SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/).
+[^ref1]: Mã nguồn dự án được lưu tại [GitHub](https://github.com/Embarcadero/Dev-Cpp) và [SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/).
 
-[^ref2]: 源代码托管于 [Github](https://github.com/royqh1979/Dev-Cpp)
+[^ref2]: Mã nguồn được lưu tại [Github](https://github.com/royqh1979/Dev-Cpp)
 
-[^ref3]: 项目官网位于 [小熊猫 C++](https://royqh1979.gitee.io/redpandacpp)，源代码托管于 [Github](https://github.com/royqh1979/RedPanda-CPP/)
+[^ref3]: Trang chủ dự án nằm tại [Red Panda C++](https://royqh1979.gitee.io/redpandacpp), mã nguồn được lưu tại [Github](https://github.com/royqh1979/RedPanda-CPP/)

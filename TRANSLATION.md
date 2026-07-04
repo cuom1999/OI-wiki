@@ -379,6 +379,8 @@ MkDocs source layout intact.
   small editor setup and overview pages.
 - `docs/tools/editor/guide.md`, `docs/tools/editor/clion.md`: translated the
   GUIDE and CLion editor pages.
+- `docs/tools/editor/codeblocks.md`, `docs/tools/editor/devcpp.md`: translated
+  the Code::Blocks and Dev-C++ editor pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

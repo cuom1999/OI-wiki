@@ -1,138 +1,138 @@
-## 简介
+## Giới thiệu
 
-Code::Blocks 是一个使用 C++ 开发的开源集成开发环境（IDE），采用 wxWidgets 作为图形界面库．该项目始于 2001 年，目前由官方社区维护，主要用于 C、C++ 和 Fortran 等编程语言的开发．[^ref1]
+Code::Blocks là một môi trường phát triển tích hợp (IDE) mã nguồn mở được phát triển bằng C++, dùng wxWidgets làm thư viện giao diện đồ họa. Dự án bắt đầu từ năm 2001, hiện do cộng đồng chính thức duy trì, và chủ yếu dùng cho phát triển bằng các ngôn ngữ như C, C++ và Fortran.[^ref1]
 
-优点：
+Ưu điểm:
 
--   **轻量和高效**：Code::Blocks 资源占用少且启动迅速，适合资源有限的环境以及偏好轻量级 IDE 的开发者，也适合入门级开发者学习和使用．
+-   **Nhẹ và hiệu quả**: Code::Blocks chiếm ít tài nguyên và khởi động nhanh, phù hợp với môi trường tài nguyên hạn chế, lập trình viên thích IDE nhẹ, cũng như người mới học.
 
--   **跨平台兼容性**：支持 Windows、Linux 和 macOS 等多种操作系统，提供了一致的用户体验，使得开发者可以无缝地在不同平台上工作．
+-   **Tương thích đa nền tảng**: hỗ trợ nhiều hệ điều hành như Windows, Linux và macOS, cung cấp trải nghiệm người dùng nhất quán để lập trình viên có thể làm việc liền mạch trên nhiều nền tảng.
 
--   **广泛的编译器支持**：支持包括 GCC、MSVC (Microsoft Visual C++)、Digital Mars 和 Borland C++ 5.5 在内的多种编译器，允许开发者根据项目需求选择最合适的编译工具．
+-   **Hỗ trợ nhiều trình biên dịch**: hỗ trợ nhiều trình biên dịch, bao gồm GCC, MSVC (Microsoft Visual C++), Digital Mars và Borland C++ 5.5, cho phép lập trình viên chọn công cụ biên dịch phù hợp nhất theo nhu cầu dự án.
 
-缺点：
+Nhược điểm:
 
--   **功能范围有限**：相比于 CLion 或 Eclipse 等 IDE，内置功能和工具较为基础，可能不足以满足复杂项目的需求．
+-   **Phạm vi chức năng hạn chế**: so với các IDE như CLion hoặc Eclipse, chức năng và công cụ tích hợp còn khá cơ bản, có thể chưa đủ cho nhu cầu của các dự án phức tạp.
 
--   **插件生态较弱**：尽管支持插件扩展功能，但第三方插件数量和质量有限，插件生态相对较弱．
+-   **Hệ sinh thái plugin yếu**: dù hỗ trợ plugin để mở rộng chức năng, số lượng và chất lượng plugin bên thứ ba còn hạn chế, nên hệ sinh thái plugin tương đối yếu.
 
-## 安装
+## Cài đặt
 
-参见 [Code::Blocks 官方网站](https://www.codeblocks.org/downloads/)，选择下载二进制安装程序（Binary Release），或者下载源代码编译安装（Source Code），然后根据需求和操作系统选择合适的安装程序，按照安装向导完成安装即可．
+Xem [trang web chính thức của Code::Blocks](https://www.codeblocks.org/downloads/), chọn tải trình cài đặt nhị phân (Binary Release), hoặc tải mã nguồn để biên dịch cài đặt (Source Code). Sau đó chọn trình cài đặt phù hợp với nhu cầu và hệ điều hành, rồi hoàn thành cài đặt theo hướng dẫn.
 
-???+ note "下载包含 MinGW 的安装包"
-    对于 Windows 用户，如果不希望手动配置编译器，建议下载包含 MinGW 的安装程序，例如 `codeblocks-xxxxmingw-setup.exe`，该版本已经包括了 GCC 编译器，无需额外安装和配置即可开始开发 C 和 C++ 项目．
+???+ note "Tải gói cài đặt có kèm MinGW"
+    Với người dùng Windows, nếu không muốn cấu hình trình biên dịch thủ công, nên tải trình cài đặt có kèm MinGW, chẳng hạn `codeblocks-xxxxmingw-setup.exe`. Phiên bản này đã bao gồm trình biên dịch GCC, nên có thể bắt đầu phát triển dự án C và C++ mà không cần cài đặt và cấu hình thêm.
 
 ![CodeBlocks DownLoad](./images/codeblocks-1.png)
 
-## 配置
+## Cấu hình
 
-如果安装时选择了不包含 MinGW 的安装程序，或者需要使用其他编译器，则需要手动安装和配置编译器，然后设置 Code::Blocks 以使用该编译器．
+Nếu khi cài đặt bạn chọn trình cài đặt không kèm MinGW, hoặc cần dùng trình biên dịch khác, thì cần cài đặt và cấu hình trình biên dịch thủ công, rồi thiết lập Code::Blocks để dùng trình biên dịch đó.
 
-### 工具链安装
+### Cài đặt toolchain
 
-参考本站的 [编译器](../compiler.md) 安装指南，下载并安装你需要的编译器．
+Tham khảo hướng dẫn cài đặt [trình biên dịch](../compiler.md) trên trang này để tải và cài đặt trình biên dịch bạn cần.
 
-### 工具链设置
+### Thiết lập toolchain
 
-当第一次启动 Code::Blocks 时，软件会自动扫描系统中已安装的编译器，如果没有找到编译器，可以通过以下步骤手动添加：
+Khi khởi động Code::Blocks lần đầu, phần mềm sẽ tự động quét các trình biên dịch đã cài trong hệ thống. Nếu không tìm thấy trình biên dịch, có thể thêm thủ công theo các bước sau:
 
-1.  打开 Code::Blocks，点击菜单栏的 `Settings -> Compiler`，打开编译器设置对话框（如下图所示）．![CodeBlocks Compiler Settings](./images/codeblocks-2.png)
-2.  在 `Selected compiler` 下拉框中选择需要配置的编译器，例如 `GNU GCC Compiler`．
-3.  在 `Toolchain executables` 选项卡中，单击 `Auto-detect` 按钮，Code::Blocks 将自动扫描系统中已安装的编译器．
-4.  如果自动扫描失败，你可以手动设置编译器路径．在 `Compiler's installation directory` 中输入编译器的安装路径，例如 `C:\MinGW\bin`．
-5.  设置完成后，点击 `OK` 保存设置，现在你可以使用该编译器来编译和运行项目．
+1.  Mở Code::Blocks, nhấp `Settings -> Compiler` trên thanh menu để mở hộp thoại thiết lập trình biên dịch (như hình dưới).![CodeBlocks Compiler Settings](./images/codeblocks-2.png)
+2.  Trong danh sách thả xuống `Selected compiler`, chọn trình biên dịch cần cấu hình, ví dụ `GNU GCC Compiler`.
+3.  Trong thẻ `Toolchain executables`, nhấp nút `Auto-detect`; Code::Blocks sẽ tự động quét các trình biên dịch đã cài trong hệ thống.
+4.  Nếu tự động quét thất bại, bạn có thể đặt thủ công đường dẫn trình biên dịch. Trong `Compiler's installation directory`, nhập đường dẫn cài đặt của trình biên dịch, ví dụ `C:\MinGW\bin`.
+5.  Sau khi thiết lập xong, nhấp `OK` để lưu; bây giờ bạn có thể dùng trình biên dịch đó để biên dịch và chạy project.
 
-## 使用
+## Sử dụng
 
-Code::Blocks 内置项目管理器，支持用户自定义构建项目，你可以在 `Project -> Build options` 中设置编译选项，选择编译器、编译选项、链接选项等，也可以在 `Project -> Properties` 中设置项目属性，例如项目名称、路径、文件列表等．
+Code::Blocks có trình quản lý project tích hợp và hỗ trợ người dùng tự định nghĩa cách build project. Bạn có thể đặt tùy chọn biên dịch trong `Project -> Build options`, chọn trình biên dịch, tùy chọn biên dịch, tùy chọn liên kết, v.v.; cũng có thể đặt thuộc tính project trong `Project -> Properties`, chẳng hạn tên project, đường dẫn và danh sách tệp.
 
-??? note "配置 Makefile"
-    Code::Blocks 默认不需要编写 Makefile，如果需要使用自定义的 Makefile，可以在 `Project -> Properties` 中勾选 `This is a custom Makefile` 选项，然后在 `Project -> Build options` 中设置 Makefile 的路径．
+??? note "Cấu hình Makefile"
+    Mặc định Code::Blocks không yêu cầu viết Makefile. Nếu cần dùng Makefile tùy chỉnh, có thể chọn tùy chọn `This is a custom Makefile` trong `Project -> Properties`, rồi đặt đường dẫn Makefile trong `Project -> Build options`.
 
-### 创建项目
+### Tạo project
 
-Code::Blocks 支持的编程语言包括 C、C++ 和 Fortran 等，当启动 Code::Blocks 后，可以通过 `File -> New -> Project` 创建新项目，选择项目类型和模板，然后按照向导的指示，设置项目名称、路径、编译器等，最后点击 `Finish` 完成项目创建．
+Các ngôn ngữ lập trình mà Code::Blocks hỗ trợ bao gồm C, C++ và Fortran. Sau khi khởi động Code::Blocks, có thể tạo project mới qua `File -> New -> Project`, chọn loại project và template, rồi làm theo hướng dẫn để đặt tên project, đường dẫn, trình biên dịch, v.v.; cuối cùng nhấp `Finish` để hoàn tất tạo project.
 
-Code::Blocks 也支持单文件的编译和运行，可以通过 `File -> New -> File` 创建新文件，编写代码并保存后，点击工具栏上的 `Build and run` 按钮，或者按下 `F9` 键，自动编译和运行当前文件．
+Code::Blocks cũng hỗ trợ biên dịch và chạy tệp đơn. Có thể tạo tệp mới qua `File -> New -> File`; sau khi viết mã và lưu, nhấp nút `Build and run` trên thanh công cụ, hoặc nhấn phím `F9`, để tự động biên dịch và chạy tệp hiện tại.
 
-### 构建和运行
+### Build và chạy
 
-以一个简单的 Console Application 项目为例，接下来介绍如何构建和运行项目：
+Lấy một project Console Application đơn giản làm ví dụ, dưới đây là cách build và chạy project:
 
-1.  项目创建完成后，你会看到一个默认的 `main.cpp` 文件，你可以在该文件中编写代码，然后保存文件．
-2.  编写完代码后，点击工具栏上的 `Build and run` 按钮，或者按下 `F9` 键，Code::Blocks 将自动编译和运行项目．
-3.  编译和运行后，输出窗口中会显示程序的输出结果，你可以在输出窗口中查看程序的输出，根据需要调整代码．
-4.  如果只需要编译项目，而不运行，可以点击工具栏上的 `Build` 按钮，或者按下 `Ctrl + F9` 键，Code::Blocks 将只编译项目，不运行程序．
+1.  Sau khi tạo project xong, bạn sẽ thấy một tệp `main.cpp` mặc định. Bạn có thể viết mã trong tệp này rồi lưu lại.
+2.  Sau khi viết mã xong, nhấp nút `Build and run` trên thanh công cụ, hoặc nhấn phím `F9`; Code::Blocks sẽ tự động biên dịch và chạy project.
+3.  Sau khi biên dịch và chạy, cửa sổ output sẽ hiển thị kết quả xuất của chương trình. Bạn có thể xem output trong cửa sổ này và điều chỉnh mã khi cần.
+4.  Nếu chỉ cần biên dịch project mà không chạy, có thể nhấp nút `Build` trên thanh công cụ, hoặc nhấn `Ctrl + F9`; Code::Blocks sẽ chỉ biên dịch project, không chạy chương trình.
 
-### 调试
+### Gỡ lỗi
 
-Code::Blocks 内置了调试器，你可以在 `Debug` 菜单中设置和启动调试器，帮助你定位和解决程序中的错误．
+Code::Blocks tích hợp debugger. Bạn có thể thiết lập và khởi động debugger trong menu `Debug` để hỗ trợ định vị và giải quyết lỗi trong chương trình.
 
-同理，以一个简单的 Console Application 项目为例，接下来介绍如何调试项目：
+Tương tự, lấy một project Console Application đơn giản làm ví dụ, dưới đây là cách gỡ lỗi project:
 
-1.  **设置断点**：在需要调试的代码行左侧单击鼠标左键，设置断点，程序将在断点处停止执行．
-2.  **启动调试器**：点击工具栏上的 `Debug` 按钮，或者按下 `F8` 键，Code::Blocks 将自动编译并启动调试器．
-3.  **调试程序**：在调试器中，你可以单步执行程序，查看变量值、调用栈等，帮助你定位和解决程序中的错误．
-4.  **停止调试**：调试完成后，你可以点击工具栏上的 `Stop` 按钮，或者按下 `Shift + F8`，停止调试器．
+1.  **Đặt breakpoint**: nhấp chuột trái ở bên trái dòng mã cần gỡ lỗi để đặt breakpoint; chương trình sẽ dừng thực thi tại breakpoint.
+2.  **Khởi động debugger**: nhấp nút `Debug` trên thanh công cụ, hoặc nhấn phím `F8`; Code::Blocks sẽ tự động biên dịch và khởi động debugger.
+3.  **Gỡ lỗi chương trình**: trong debugger, bạn có thể thực thi từng bước, xem giá trị biến, call stack, v.v. để hỗ trợ định vị và giải quyết lỗi trong chương trình.
+4.  **Dừng gỡ lỗi**: sau khi gỡ lỗi xong, có thể nhấp nút `Stop` trên thanh công cụ, hoặc nhấn `Shift + F8`, để dừng debugger.
 
-## 自定义设置
+## Tùy chỉnh thiết lập
 
-Code::Blocks 提供了丰富的设置选项，可以帮助调整编辑器的行为，以下是一些常用的设置：
+Code::Blocks cung cấp nhiều tùy chọn thiết lập để giúp điều chỉnh hành vi của trình soạn thảo. Dưới đây là một số thiết lập thường dùng:
 
-### 界面设置
+### Thiết lập giao diện
 
-1.  在 `Settings -> Editor` 中，可以设置编辑器的字体、颜色、缩进、自动补全等选项．
-2.  在 `Settings -> Environment` 中，可以设置 Code::Blocks 的全局行为，例如自动保存、自动备份、自动提示等．
-3.  在 `View` 菜单中，可以调整编辑器的布局，例如打开/关闭文件浏览器、工具栏、状态栏、输出窗口等．
+1.  Trong `Settings -> Editor`, có thể đặt phông chữ, màu sắc, thụt lề, tự động hoàn thành, v.v. của trình soạn thảo.
+2.  Trong `Settings -> Environment`, có thể đặt hành vi toàn cục của Code::Blocks, chẳng hạn tự động lưu, tự động sao lưu, tự động gợi ý, v.v.
+3.  Trong menu `View`, có thể điều chỉnh bố cục của trình soạn thảo, chẳng hạn bật/tắt trình duyệt tệp, thanh công cụ, thanh trạng thái, cửa sổ output, v.v.
 
-### 插件设置
+### Thiết lập plugin
 
-Code::Blocks 支持插件来扩展功能，可以通过 `Settings -> Plugins` 查看和安装可用的插件，例如 DoxyBlocks、wxSmith 等，以下是一些常用的插件：
+Code::Blocks hỗ trợ plugin để mở rộng chức năng. Có thể xem và cài đặt plugin khả dụng qua `Settings -> Plugins`, chẳng hạn DoxyBlocks, wxSmith, v.v. Dưới đây là một số plugin thường dùng:
 
--   **DoxyBlocks**：著名的文档生成工具 Doxygen 的集成插件，可以直接在 Code::Blocks 中生成项目文档．
--   **wxSmith**：用于开发 wxWidgets 应用程序的插件，提供了可视化的界面设计工具，允许快速创建和布局 GUI 界面，简化开发流程．
--   **Thread Search**：支持多线程搜索的插件，可以在项目中快速搜索和替换符号和文本，适用于大型项目的开发．
+-   **DoxyBlocks**: plugin tích hợp công cụ sinh tài liệu nổi tiếng Doxygen, có thể sinh tài liệu project trực tiếp trong Code::Blocks.
+-   **wxSmith**: plugin dùng để phát triển ứng dụng wxWidgets, cung cấp công cụ thiết kế giao diện trực quan, cho phép tạo và bố trí giao diện GUI nhanh chóng, đơn giản hóa quy trình phát triển.
+-   **Thread Search**: plugin hỗ trợ tìm kiếm đa luồng, có thể nhanh chóng tìm kiếm và thay thế ký hiệu và văn bản trong project, phù hợp cho phát triển dự án lớn.
 
-插件的安装和使用方法请参考 [Code::Blocks 的插件文档](https://wiki.codeblocks.org/index.php/Code::Blocks_Plugins)，根据插件的需求和功能，选择合适的插件安装和使用．
+Cách cài đặt và sử dụng plugin xem trong [tài liệu plugin của Code::Blocks](https://wiki.codeblocks.org/index.php/Code::Blocks_Plugins). Hãy chọn plugin phù hợp để cài đặt và sử dụng theo nhu cầu và chức năng của plugin.
 
-???+ warning "注意"
-    Code::Blocks 的插件相对单一和基础，且大部分插件已经集成到软件中，第三方插件的数量和质量有限，建议根据实际需求选择合适的插件．
+???+ warning "Chú ý"
+    Plugin của Code::Blocks tương đối đơn giản và cơ bản; phần lớn plugin đã được tích hợp vào phần mềm, còn số lượng và chất lượng plugin bên thứ ba thì hạn chế. Nên chọn plugin phù hợp theo nhu cầu thực tế.
 
-### 快捷键设置
+### Thiết lập phím tắt
 
-你可以通过 `Settings -> Editor -> Keyboard shortcuts` 选项卡查看和修改快捷键设置，根据自己的习惯调整快捷键．
+Bạn có thể xem và sửa phím tắt qua thẻ `Settings -> Editor -> Keyboard shortcuts`, rồi điều chỉnh theo thói quen của mình.
 
-以下是一些常用的快捷键：
+Dưới đây là một số phím tắt thường dùng:
 
-| 功能         | 快捷键                 |
-| ---------- | ------------------- |
-| 新建文件       | `Ctrl + Shift + N`  |
-| 打开文件       | `Ctrl + O`          |
-| 保存当前文件     | `Ctrl + S`          |
-| 全部保存       | `Ctrl + Shift + S`  |
-| 关闭当前文件     | `Ctrl + W`          |
-| 关闭所有文件     | `Ctrl + Shift + W`  |
-| 构建和运行当前项目  | `F9`                |
-| 只构建当前项目    | `Ctrl + F9`         |
-| 只编译当前项目    | `Ctrl + Shift + F9` |
-| 运行当前项目     | `Ctrl + F10`        |
-| 调试：开始/继续   | `F8`                |
-| 调试：停止      | `Shift + F8`        |
-| 调试：下一步     | `F7`                |
-| 调试：进入      | `Shift + F7`        |
-| 调试：跳出      | `Ctrl + F7`         |
-| 调试：切换断点    | `F5`                |
-| 查找         | `Ctrl + F`          |
-| 查找并替换      | `Ctrl + R`          |
-| 转到指定行      | `Ctrl + G`          |
-| 转到匹配的括号    | `Ctrl + B`          |
-| 全屏切换       | `F11`               |
-| 开关所有折叠     | `Ctrl + Shift + -`  |
-| 展开所有折叠     | `Ctrl + Shift + +`  |
-| 选择下一个匹配项   | `Ctrl + E`          |
-| 选择跳到下一个匹配项 | `Ctrl + Shift + E`  |
+| Chức năng | Phím tắt |
+| --------- | -------- |
+| Tạo tệp mới | `Ctrl + Shift + N` |
+| Mở tệp | `Ctrl + O` |
+| Lưu tệp hiện tại | `Ctrl + S` |
+| Lưu tất cả | `Ctrl + Shift + S` |
+| Đóng tệp hiện tại | `Ctrl + W` |
+| Đóng tất cả tệp | `Ctrl + Shift + W` |
+| Build và chạy project hiện tại | `F9` |
+| Chỉ build project hiện tại | `Ctrl + F9` |
+| Chỉ biên dịch project hiện tại | `Ctrl + Shift + F9` |
+| Chạy project hiện tại | `Ctrl + F10` |
+| Gỡ lỗi: bắt đầu/tiếp tục | `F8` |
+| Gỡ lỗi: dừng | `Shift + F8` |
+| Gỡ lỗi: bước tiếp | `F7` |
+| Gỡ lỗi: bước vào | `Shift + F7` |
+| Gỡ lỗi: bước ra | `Ctrl + F7` |
+| Gỡ lỗi: bật/tắt breakpoint | `F5` |
+| Tìm kiếm | `Ctrl + F` |
+| Tìm và thay thế | `Ctrl + R` |
+| Đi tới dòng chỉ định | `Ctrl + G` |
+| Đi tới ngoặc khớp | `Ctrl + B` |
+| Bật/tắt toàn màn hình | `F11` |
+| Bật/tắt toàn bộ vùng gấp | `Ctrl + Shift + -` |
+| Mở toàn bộ vùng gấp | `Ctrl + Shift + +` |
+| Chọn kết quả khớp tiếp theo | `Ctrl + E` |
+| Chọn và nhảy tới kết quả khớp tiếp theo | `Ctrl + Shift + E` |
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Code::Blocks - 维基百科](https://zh.wikipedia.org/wiki/Code::Blocks)
+[^ref1]: [Code::Blocks - Wikipedia](https://zh.wikipedia.org/wiki/Code::Blocks)
