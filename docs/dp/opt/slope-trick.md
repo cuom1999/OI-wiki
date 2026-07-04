@@ -172,83 +172,113 @@ Thực ra, cách đặc trưng hàm lồi bằng độ dốc cũng có thể m�
 tổng quát.
 
 ???+ note "Đặc trưng hàm lồi bằng độ dốc"
-    Cho $S$ la $\mathbf R$ hoac tap con roi rac cua no. Ham $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$ la ham loi khi va chi khi do doc
+    Cho $S$ là $\mathbf R$ hoặc tập con rời rạc của nó. Hàm
+    $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$ là hàm lồi khi và chỉ khi độ dốc
     
     $$
     \Delta f(x_1,x_2) = \dfrac{f(x_2)-f(x_1)}{x_2-x_1}
     $$
     
-    la ham khong giam theo ca $x_1$ va $x_2$, voi moi $x_1,x_2\in S$ va $x_1<x_2$.
+    là hàm không giảm theo cả $x_1$ và $x_2$, với mọi $x_1,x_2\in S$ và
+    $x_1<x_2$.
 
-??? note "Chung minh"
-    Voi ham $f(x)$ tren $\mathbf R$ va $x_1<x_2$, voi $\alpha\in(0,1)$, dat $x_3=\alpha x_1+(1-\alpha)x_2$. Khi do
+??? note "Chứng minh"
+    Với hàm $f(x)$ trên $\mathbf R$ và $x_1<x_2$, với $\alpha\in(0,1)$, đặt
+    $x_3=\alpha x_1+(1-\alpha)x_2$. Khi đó
     
     $$
     \Delta f(x_1,x_3) \le \Delta f(x_1,x_2) \le \Delta f(x_3,x_2)
     $$
     
-    tuong duong voi
+    tương đương với
     
     $$
     \dfrac{f(x_3)-f(x_1)}{1-\alpha} \le f(x_2)-f(x_1) \le \dfrac{f(x_2)-f(x_3)}{\alpha}.
     $$
     
-    Hai bat dang thuc hai phia deu tuong duong voi $f(x_3)\le\alpha f(x_1)+(1-\alpha)f(x_2)$, tuc tinh loi cua ham $f(x)$.
+    Hai bất đẳng thức hai phía đều tương đương với
+    $f(x_3)\le\alpha f(x_1)+(1-\alpha)f(x_2)$, tức tính lồi của hàm $f(x)$.
     
-    Voi ham $f(x)$ tren tap con roi rac $S$ cua $\mathbf R$, tinh can thiet cua dieu kien do doc khong giam co the suy ra tu tinh loi cua $\tilde f(x)$. Bay gio can chung minh tinh du. De lam viec nay, chi can chung minh $\Delta\tilde f(x_1,x_2)$ cung khong giam. Dat $S=\{s_i\}$ voi $s_i$ tang nghiem ngat theo $i$, va gia su $s_{i_1}\le x_1\le s_{i_1+1}$, $s_{i_2}\le x_2\le s_{i_2+1}$; hien nhien $i_1\le i_2$. Dat $\Delta_i=\Delta f(s_i,s_{i+1})$. Khi do, co the chung minh $\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$.
+    Với hàm $f(x)$ trên tập con rời rạc $S$ của $\mathbf R$, tính cần thiết của
+    điều kiện độ dốc không giảm có thể suy ra từ tính lồi của $\tilde f(x)$. Bây
+    giờ cần chứng minh tính đủ. Để làm việc này, chỉ cần chứng minh
+    $\Delta\tilde f(x_1,x_2)$ cũng không giảm. Đặt $S=\{s_i\}$ với $s_i$ tăng
+    nghiêm ngặt theo $i$, và giả sử $s_{i_1}\le x_1\le s_{i_1+1}$,
+    $s_{i_2}\le x_2\le s_{i_2+1}$; hiển nhiên $i_1\le i_2$. Đặt
+    $\Delta_i=\Delta f(s_i,s_{i+1})$. Khi đó, có thể chứng minh
+    $\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$.
     
-    Xet hai truong hop. Neu $i_1=i_2$, thi $\Delta_{i_1}=\Delta\tilde f(x_1,x_2)=\Delta_{i_2}$, bat dang thuc hien nhien dung. Nguoc lai, ta co
+    Xét hai trường hợp. Nếu $i_1=i_2$, thì
+    $\Delta_{i_1}=\Delta\tilde f(x_1,x_2)=\Delta_{i_2}$, bất đẳng thức hiển
+    nhiên đúng. Ngược lại, ta có
     
     $$
     \Delta\tilde f(x_1,x_2) = \dfrac{1}{x_2-x_1}\left((s_{i_1+1}-x_1)\Delta_{i_1}+(x_2-s_{i_2})\Delta_{i_2}+\sum_{j=i_1+1}^{i_2-1}(s_{j+1}-s_j)\Delta_j\right).
     $$
     
-    Theo tinh chat do doc tang tren $S$, $\Delta_i$ tang theo $i$, nen $\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$.
+    Theo tính chất độ dốc tăng trên $S$, $\Delta_i$ tăng theo $i$, nên
+    $\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$.
     
-    Dung ket luan nay, voi $x_1<x_2$ va $\alpha\in(0,1)$, dat $x_3=\alpha x_1+(1-\alpha)x_2$, va chon $i_3$ sao cho $s_{i_3}\le x_3\le s_{i_3+1}$. Khi do
+    Dùng kết luận này, với $x_1<x_2$ và $\alpha\in(0,1)$, đặt
+    $x_3=\alpha x_1+(1-\alpha)x_2$, và chọn $i_3$ sao cho
+    $s_{i_3}\le x_3\le s_{i_3+1}$. Khi đó
     
     $$
     \Delta\tilde f(x_1,x_3) \le \Delta_{i_3} \le \Delta\tilde f(x_3,x_2).
     $$
     
-    Thay bieu thuc cua $x_3$ vao se thu duoc tinh loi cua $\tilde f(x)$.
+    Thay biểu thức của $x_3$ vào sẽ thu được tính lồi của $\tilde f(x)$.
 
-Do doc don dieu khong giam co the xem la mot dinh nghia tuong duong cua ham loi. Chinh vi do doc cua ham loi co tinh don dieu, khi duy tri do doc, ta thuong can chon cac cau truc du lieu nhu [heap (hang doi uu tien)](../../ds/heap.md) hoac [cay can bang](../../ds/bst.md).
+Độ dốc đơn điệu không giảm có thể xem là một định nghĩa tương đương của hàm lồi.
+Chính vì độ dốc của hàm lồi có tính đơn điệu, khi duy trì độ dốc, ta thường cần
+chọn các cấu trúc dữ liệu như [heap (hàng đợi ưu tiên)](../../ds/heap.md) hoặc
+[cây cân bằng](../../ds/bst.md).
 
-Bai viet nay con dung mot dac trung tuong duong khac cua ham loi. Voi ham $f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$, ta co the xet vung nam phia thuong do thi cua ham trong mat phang, tuc
+Bài viết này còn dùng một đặc trưng tương đương khác của hàm lồi. Với hàm
+$f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$, ta có thể xét vùng nằm phía
+trên đồ thị của hàm trong mặt phẳng, tức
 
 $$
 \operatorname{epi} f = \{(x,y)\in\mathbf R^2 : y\ge f(x)\}.
 $$
 
-Vung nay con duoc goi la **thuong do thi** cua ham $f$ (epigraph). Tinh loi cua ham tuong duong voi tinh loi cua thuong do thi:
+Vùng này còn được gọi là **thượng đồ thị** của hàm $f$ (epigraph). Tính lồi của
+hàm tương đương với tính lồi của thượng đồ thị:
 
-???+ note "Dac trung ham loi bang thuong do thi"
-    Ham $f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ la ham loi khi va chi khi $\operatorname{epi}f$ la tap loi trong $\mathbf R^2$.
+???+ note "Đặc trưng hàm lồi bằng thượng đồ thị"
+    Hàm $f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ là hàm lồi khi và
+    chỉ khi $\operatorname{epi}f$ là tập lồi trong $\mathbf R^2$.
 
-??? note "Chung minh"
-    Neu $f$ la ham loi, thi voi $(x_1,y_1),(x_2,y_2)\in\operatorname{epi}f$ va bat ky $\alpha\in(0,1)$, ta co
+??? note "Chứng minh"
+    Nếu $f$ là hàm lồi, thì với
+    $(x_1,y_1),(x_2,y_2)\in\operatorname{epi}f$ và bất kỳ $\alpha\in(0,1)$, ta
+    có
     
     $$
     \alpha y_1+(1-\alpha)y_2 \ge \alpha f(x_1)+(1-\alpha)f(x_2) \ge f(\alpha x_1+(1-\alpha) x_2).
     $$
     
-    Do do, $\alpha(x_1,y_1)+(1-\alpha)(x_2,y_2)\in\operatorname{epi}f$.
+    Do đó, $\alpha(x_1,y_1)+(1-\alpha)(x_2,y_2)\in\operatorname{epi}f$.
     
-    Nguoc lai, neu $\operatorname{epi}f$ la tap loi, thi voi moi $x_1<x_2$ va $\alpha\in(0,1)$, ta co
+    Ngược lại, nếu $\operatorname{epi}f$ là tập lồi, thì với mọi $x_1<x_2$ và
+    $\alpha\in(0,1)$, ta có
     
     $$
     \alpha(x_1,f(x_1))+(1-\alpha)(x_2,f(x_2)) \in \operatorname{epi}f.
     $$
     
-    Dieu nay tuong duong voi $\alpha f(x_1)+(1-\alpha)f(x_2)\ge f\left(\alpha x_1+(1-\alpha)x_2\right)$, tuc tinh loi cua $f$.
+    Điều này tương đương với
+    $\alpha f(x_1)+(1-\alpha)f(x_2)\ge f\left(\alpha x_1+(1-\alpha)x_2\right)$,
+    tức tính lồi của $f$.
 
-Lat nua ta se thay, bang thuong do thi, co the lien he tich chap duoi dung cua ham loi voi tong Minkowski cua tap loi.
+Lát nữa ta sẽ thấy, bằng thượng đồ thị, có thể liên hệ tích chập dưới đúng của
+hàm lồi với tổng Minkowski của tập lồi.
 
 <span id="&#x51F8;&#x51FD;&#x6570;&#x7684;&#x53D8;&#x6362;"></span>
-## Cac phep bien doi ham loi
+## Các phép biến đổi hàm lồi
 
-Tiep theo, bai viet gioi thieu mot so phep bien doi bao toan tinh loi thuong gap trong Slope Trick.
+Tiếp theo, bài viết giới thiệu một số phép biến đổi bảo toàn tính lồi thường gặp
+trong Slope Trick.
 
 <span id="&#x975E;&#x8D1F;&#x7EBF;&#x6027;&#x7EC4;&#x5408;"></span>
 ### To hop tuyen tinh khong am
