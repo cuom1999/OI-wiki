@@ -1,17 +1,17 @@
-Interactor，即交互器，用于交互题与选手程序交互．交互题的介绍见 [题型介绍 - 交互题](../../contest/problems.md#)．
+Interactor, tức trình tương tác, dùng để giao tiếp với chương trình của thí sinh trong bài tương tác. Phần giới thiệu về bài tương tác nằm ở [Các dạng bài - Bài tương tác](../../contest/problems.md#bài-tương-tác).
 
-???+ note "Note"
-    Testlib 仅支持 Codeforces 形式交互题，即两程序交互．不支持 NOI 形式的选手编写函数与其他函数交互．
+???+ note "Ghi chú"
+    Testlib chỉ hỗ trợ bài tương tác theo kiểu Codeforces, tức hai chương trình tương tác với nhau. Testlib không hỗ trợ kiểu NOI, trong đó thí sinh viết hàm để tương tác với các hàm khác.
 
-请在阅读下文前先阅读 [通用](./general.md)．
+Hãy đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 
-Testlib 为 interactor 提供了一个特殊的流 `std::fstream tout`，它是一个 log 流，你可以在 interactor 中向它写入，并在 checker 中用 `ouf` 读取．
+Testlib cung cấp cho interactor một luồng đặc biệt `std::fstream tout`. Đây là luồng log; bạn có thể ghi vào nó trong interactor và đọc lại bằng `ouf` trong checker.
 
-在 interactor 中，我们从 `inf` 读取题目测试数据，将选手程序（和标程）的标准输入写入 `stdout`（在线），从 `ouf` 读选手输出（在线），从 `ans` 读标准输出（在线）．
+Trong interactor, ta đọc dữ liệu test của đề từ `inf`, ghi input chuẩn cho chương trình thí sinh (và chương trình chuẩn) vào `stdout` (trực tuyến), đọc output của thí sinh từ `ouf` (trực tuyến), và đọc output chuẩn từ `ans` (trực tuyến).
 
-如果 interactor 返回了 ok 状态，checker（如果有的话）将接管工作，检查答案合法性．
+Nếu interactor trả về trạng thái ok, checker (nếu có) sẽ tiếp quản và kiểm tra tính hợp lệ của đáp án.
 
-## 用法
+## Cách dùng
 
 Windows:
 
@@ -25,31 +25,31 @@ Linux:
 ./interactor.out <Input_File> <Output_File> [<Answer_File> [<Result_File> [-appes]]],
 ```
 
-## 简单的例子
+## Ví dụ đơn giản
 
-???+ note "题目"
-    interactor 随机选择一个 $[1,10^9]$ 范围内的整数，你要写一个程序来猜它，你最多可以询问 $50$ 次一个 $[1,10^9]$ 范围内的整数．
+???+ note "Đề bài"
+    Interactor chọn ngẫu nhiên một số nguyên trong khoảng $[1,10^9]$. Bạn cần viết một chương trình để đoán số đó; bạn được hỏi tối đa $50$ lần, mỗi lần hỏi một số nguyên trong khoảng $[1,10^9]$.
     
-    interactor 将返回：
+    Interactor sẽ trả về:
     
-    `1`：询问与答案相同，你的程序应当停止询问．
+    `1`: số được hỏi bằng đáp án, chương trình của bạn nên dừng hỏi.
     
-    `0`：询问比答案小．
+    `0`: số được hỏi nhỏ hơn đáp án.
     
-    `2`：询问比答案大．
+    `2`: số được hỏi lớn hơn đáp án.
 
-注意在此题中我们不需要 `ans`，因为我们不需要将标准输出与其比较；而在其他题中可能需要这么做．
+Lưu ý rằng trong bài này ta không cần `ans`, vì không cần so sánh với output chuẩn; trong các bài khác, việc này có thể cần thiết.
 
 ```cpp
 int main(int argc, char** argv) {
   registerInteraction(argc, argv);
-  int n = inf.readInt();  // 选数
-  cout.flush();           // 刷新缓冲区
+  int n = inf.readInt();  // Số được chọn
+  cout.flush();           // Xả bộ đệm
   int left = 50;
   bool found = false;
   while (left > 0 && !found) {
     left--;
-    int a = ouf.readInt(1, 1000000000);  // 询问
+    int a = ouf.readInt(1, 1000000000);  // Câu hỏi
     if (a < n)
       cout << 0 << endl;
     else if (a > n)
@@ -64,4 +64,4 @@ int main(int argc, char** argv) {
 }
 ```
 
-**本文主要翻译自 [Interactors with testlib.h - Codeforces](https://codeforces.com/blog/entry/18455)．`testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)．**
+**Bài viết này chủ yếu được dịch từ [Interactors with testlib.h - Codeforces](https://codeforces.com/blog/entry/18455). Kho GitHub của `testlib.h` là [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib).**

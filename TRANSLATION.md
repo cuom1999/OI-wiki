@@ -352,6 +352,8 @@ MkDocs source layout intact.
   offline queries.
 - `docs/tools/testlib/index.md`, `docs/tools/testlib/general.md`: translated
   the Testlib introduction and common API material.
+- `docs/tools/testlib/validator.md`, `docs/tools/testlib/interactor.md`:
+  translated the Testlib validator and interactor pages.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

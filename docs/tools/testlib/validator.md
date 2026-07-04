@@ -1,34 +1,34 @@
-前置知识：[通用](./general.md)
+Kiến thức cần biết trước: [Thông dụng](./general.md)
 
-本页面将简要介绍 validator 的概念与用法．
+Trang này giới thiệu ngắn gọn khái niệm và cách dùng validator.
 
-## 概述
+## Tổng quan
 
-Validator（中文：校验器）用于检验造好的数据的合法性．当造好一道题的数据，又担心数据不合法（不符合题目的限制条件：上溢、图不连通、不是树……）时，出题者通常会借助 validator 来检查．[^ref1]
+Validator dùng để kiểm tra tính hợp lệ của dữ liệu đã tạo. Khi đã tạo xong dữ liệu cho một bài nhưng vẫn lo dữ liệu không hợp lệ (không thỏa ràng buộc của đề: tràn số, đồ thị không liên thông, không phải cây, v.v.), người ra đề thường dùng validator để kiểm tra.[^ref1]
 
-因为 Coderforces 支持 hack 功能，所以所有 Codeforces 上的题目都必须要有 validator．UOJ 也如此．[Polygon](../polygon.md) 内建了对 validator 的支持．
+Vì Codeforces hỗ trợ tính năng hack, mọi bài trên Codeforces đều bắt buộc phải có validator. UOJ cũng như vậy. [Polygon](../polygon.md) có sẵn hỗ trợ cho validator.
 
-## 使用方法
+## Cách dùng
 
-直接在命令行输入 `./val` 即可．数据通过 stdin 输入．如果想从文件输入可 `./val < a.in`．
+Chỉ cần nhập trực tiếp `./val` trên dòng lệnh. Dữ liệu được đưa vào qua stdin. Nếu muốn nhập từ tệp, có thể dùng `./val < a.in`.
 
-若数据没有问题，则什么都不会输出且返回 0；否则会输出错误信息并返回一个非 0 值．
+Nếu dữ liệu không có vấn đề, chương trình sẽ không in gì và trả về 0; nếu không, chương trình sẽ in thông báo lỗi và trả về một giá trị khác 0.
 
-## 提示
+## Gợi ý
 
--   写 validator 时，不能对被 validate 的数据做任何假设，因为它可能包含任何内容．因此，出题者要对各种不合法的情况进行判断（使用 Testlib 会大大简化这一流程）．
-    -   例如，输入一个点数为 $n$ 的树，主要工作是判断 $n$ 是否符合范围和判断输入的是树与否．但是切不可在判断过 $n$ 范围之后就不对接下来输入的边的起点与终点的范围进行判断，否则可能会导致 validator RE．
-    -   即使不会 RE 也不应该不判断，这会导致你的报错不正确．如上例，如果不判断，报错可能会是「不是一棵树」，但是正确的报错应当是「边起点/终点不在 $[1,n]$ 之间」．
--   不能对选手的读入方式做任何假设．因此，必须保证能通过 validate 的数据完全符合输入格式．
-    -   例如，选手可能逐字符地读入数字，在数字与数字之间只读入一个空格．所以在编写 validator 时，数据中的每一个空白字符都要在 validator 中显式地读入（如空格和换行）．
--   结束时不要忘记 `inf.readEof()`．
--   如果题目开放 hack（或者说，validator 的错误信息会给别人看），请使报错信息尽量友好．
-    -   读入变量时使用「项别名」．
-    -   在判断使用的表达式不那么易懂时，使用 ensuref 而非 ensure．
+-   Khi viết validator, không được đưa ra bất kỳ giả định nào về dữ liệu đang được validate, vì nó có thể chứa bất cứ thứ gì. Vì vậy, người ra đề cần xét đủ các trường hợp không hợp lệ (Testlib sẽ đơn giản hóa đáng kể quá trình này).
+    -   Ví dụ, với input là một cây có $n$ đỉnh, công việc chính là kiểm tra $n$ có nằm trong phạm vi hay không và input có thật sự là cây hay không. Tuy nhiên, tuyệt đối không được chỉ kiểm tra phạm vi của $n$ rồi bỏ qua việc kiểm tra phạm vi đầu mút của các cạnh tiếp theo, nếu không validator có thể RE.
+    -   Ngay cả khi không RE, cũng không nên bỏ kiểm tra, vì thông báo lỗi sẽ không chính xác. Trong ví dụ trên, nếu không kiểm tra, lỗi có thể là "không phải cây", nhưng lỗi đúng phải là "đầu mút của cạnh không nằm trong $[1,n]$".
+-   Không được đưa ra bất kỳ giả định nào về cách thí sinh đọc input. Vì vậy, dữ liệu được validator chấp nhận phải hoàn toàn tuân thủ định dạng input.
+    -   Ví dụ, thí sinh có thể đọc số theo từng ký tự và chỉ đọc một dấu cách giữa hai số. Do đó, khi viết validator, mọi ký tự trắng trong dữ liệu đều phải được đọc tường minh trong validator (chẳng hạn dấu cách và xuống dòng).
+-   Đừng quên gọi `inf.readEof()` khi kết thúc.
+-   Nếu bài cho phép hack (nói cách khác, thông báo lỗi của validator sẽ được người khác nhìn thấy), hãy làm thông báo lỗi thân thiện nhất có thể.
+    -   Dùng "bí danh hạng mục" khi đọc biến.
+    -   Khi biểu thức dùng để kiểm tra không dễ hiểu, dùng `ensuref` thay vì `ensure`.
 
-## 示例
+## Ví dụ
 
-以下是 [CF Gym 100541A - Stock Market](https://codeforces.com/gym/100541/problem/A) 的 validator：
+Dưới đây là validator của [CF Gym 100541A - Stock Market](https://codeforces.com/gym/100541/problem/A):
 
 ```cpp
 #include "testlib.h"
@@ -55,11 +55,11 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-## 外部链接
+## Liên kết ngoài
 
--   [Validator 的更多示例](https://github.com/MikeMirzayanov/testlib/tree/master/validators)
--   [`testlib.h` 的 GitHub 存储库 MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)
+-   [Thêm ví dụ về validator](https://github.com/MikeMirzayanov/testlib/tree/master/validators)
+-   [Kho GitHub của `testlib.h`: MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
 [^ref1]: [Validators with testlib.h - Codeforces](https://codeforces.com/blog/entry/18426)
