@@ -295,6 +295,11 @@ MkDocs source layout intact.
 - `docs/graph/planar.md`, `docs/graph/chord.md`,
   `docs/graph/color.md`: translated planar graph, chordal graph, and graph
   coloring material.
+- `docs/graph/flow.md`, `docs/graph/flow/max-flow.md`,
+  `docs/graph/flow/min-cut.md`, `docs/graph/flow/min-cost.md`,
+  `docs/graph/flow/bound.md`, `docs/graph/stoer-wagner.md`: translated
+  network-flow overview, max flow, min cut, min-cost flow, bounded flows, and
+  Stoer-Wagner global min-cut material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

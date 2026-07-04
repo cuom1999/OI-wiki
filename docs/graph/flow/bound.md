@@ -1,85 +1,85 @@
-在阅读这篇文章之前请先阅读 [最大流](./max-flow.md) 并确保自己熟练掌握最大流算法．
+Trước khi đọc bài này, hãy đọc [luồng cực đại](./max-flow.md) và bảo đảm rằng bạn đã nắm vững thuật toán luồng cực đại.
 
-## 概述
+## Tổng quan
 
-上下界网络流本质是给流量网络的每一条边设置了流量上界 $c(u,v)$ 和流量下界 $b(u,v)$．也就是说，一种可行的流必须满足 $b(u,v) \leq f(u,v) \leq c(u,v)$．同时必须满足除了源点和汇点之外的其余点流量平衡．
+Luồng mạng có cận trên và cận dưới về bản chất là bài toán đặt cận trên $c(u,v)$ và cận dưới $b(u,v)$ cho mỗi cạnh của mạng luồng. Nói cách khác, một luồng khả thi phải thỏa mãn $b(u,v) \leq f(u,v) \leq c(u,v)$. Đồng thời, mọi đỉnh ngoài đỉnh nguồn và đỉnh đích phải thỏa mãn cân bằng luồng.
 
-根据题目要求，我们可以使用上下界网络流解决不同问题．
+Tùy theo yêu cầu đề bài, ta có thể dùng luồng mạng có cận trên và cận dưới để giải nhiều loại bài toán khác nhau.
 
-## 无源汇上下界可行流
+## Luồng khả thi có cận trên và cận dưới, không có nguồn và đích
 
-给定无源汇流量网络 $G$．询问是否存在一种标定每条边流量的方式，使得每条边流量满足上下界同时每一个点流量平衡．
+Cho một mạng luồng $G$ không có nguồn và đích. Hỏi có tồn tại cách gán luồng cho mỗi cạnh sao cho luồng trên mỗi cạnh thỏa mãn cận trên, cận dưới, đồng thời mọi đỉnh đều cân bằng luồng hay không.
 
-不妨假设每条边已经流了 $b(u,v)$ 的流量，设其为初始流．同时我们在新图中加入 $u$ 连向 $v$ 的流量为 $c(u,v) - b(u,v)$ 的边．考虑在新图上进行调整．
+Có thể giả sử mỗi cạnh đã có sẵn lượng luồng $b(u,v)$, gọi đó là luồng ban đầu. Đồng thời, trong đồ thị mới ta thêm cạnh từ $u$ đến $v$ với dung lượng $c(u,v) - b(u,v)$. Sau đó xét việc điều chỉnh trên đồ thị mới này.
 
-由于最大流需要满足初始流量平衡条件（最大流可以看成是下界为 $0$ 的上下界最大流），但是构造出来的初始流很有可能不满足初始流量平衡．假设一个点初始流入流量减初始流出流量为 $M$．
+Vì luồng cực đại cần thỏa mãn điều kiện cân bằng luồng ban đầu (luồng cực đại có thể được xem như luồng cực đại có cận dưới bằng $0$), trong khi luồng ban đầu vừa xây dựng rất có thể không cân bằng. Giả sử tại một đỉnh, lượng luồng vào ban đầu trừ lượng luồng ra ban đầu bằng $M$.
 
-若 $M=0$，此时流量平衡，不需要附加边．
+Nếu $M=0$, đỉnh này đã cân bằng luồng và không cần cạnh phụ.
 
-若 $M>0$，此时入流量过大，需要新建附加源点 $S'$，$S'$ 向其连流量为 $M$ 的附加边．
+Nếu $M>0$, lúc này luồng vào quá lớn, cần tạo thêm nguồn phụ $S'$ và nối một cạnh phụ có dung lượng $M$ từ $S'$ đến đỉnh đó.
 
-若 $M<0$，此时出流量过大，需要新建附加汇点 $T'$，其向 $T'$ 连流量为 $-M$ 的附加边．
+Nếu $M<0$, lúc này luồng ra quá lớn, cần tạo thêm đích phụ $T'$ và nối một cạnh phụ có dung lượng $-M$ từ đỉnh đó đến $T'$.
 
-如果附加边满流，说明这一个点的流量平衡条件可以满足，否则这个点的流量平衡条件不满足．（因为原图加上附加流之后才会满足原图中的流量平衡．）
+Nếu cạnh phụ bão hòa, điều đó cho thấy điều kiện cân bằng luồng của đỉnh này có thể được thỏa mãn; ngược lại thì không. Lý do là đồ thị ban đầu chỉ cân bằng sau khi cộng thêm phần luồng phụ này.
 
-在建图完毕之后跑 $S'$ 到 $T'$ 的最大流，若 $S'$ 连出去的边全部满流，则存在可行流，否则不存在．
+Sau khi dựng xong đồ thị, chạy luồng cực đại từ $S'$ đến $T'$. Nếu mọi cạnh đi ra từ $S'$ đều bão hòa thì tồn tại luồng khả thi, ngược lại thì không tồn tại.
 
-### 例题
+### Ví dụ
 
-???+ note "[luogu P14578【模板】无源汇上下界可行流](https://www.luogu.com.cn/problem/P14578)"
-    一个 $n$ 个点、$m$ 条有向边的有向图 $G$，每条边有流量下界 $l_i$ 和流量上界 $r_i$．
+???+ note "[Luogu P14578 - Mẫu: luồng khả thi có cận trên và cận dưới, không có nguồn và đích](https://www.luogu.com.cn/problem/P14578)"
+    Cho một đồ thị có hướng $G$ gồm $n$ đỉnh và $m$ cạnh có hướng. Mỗi cạnh có cận dưới luồng $l_i$ và cận trên luồng $r_i$.
     
-    构造一种方案使得每条边的流量 $w_i$ 满足流量限制 $l_i\leq w_i\leq r_i$，且每个点流量平衡，即每个点流入流量等于流出流量．或报告无解．
+    Hãy xây dựng một phương án sao cho luồng $w_i$ trên mỗi cạnh thỏa mãn ràng buộc $l_i\leq w_i\leq r_i$, đồng thời mọi đỉnh đều cân bằng luồng, tức tổng luồng vào của mỗi đỉnh bằng tổng luồng ra. Nếu không có nghiệm thì báo vô nghiệm.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/graph/code/flow/bound/bound_1.cpp"
     ```
 
-## 有源汇上下界可行流
+## Luồng khả thi có cận trên và cận dưới, có nguồn và đích
 
-给定有源汇流量网络 $G$．询问是否存在一种标定每条边流量的方式，使得每条边流量满足上下界同时除了源点和汇点每一个点流量平衡．
+Cho một mạng luồng $G$ có nguồn và đích. Hỏi có tồn tại cách gán luồng cho mỗi cạnh sao cho luồng trên mỗi cạnh thỏa mãn cận trên, cận dưới, đồng thời mọi đỉnh ngoài nguồn và đích đều cân bằng luồng hay không.
 
-假设源点为 $S$，汇点为 $T$．
+Giả sử đỉnh nguồn là $S$ và đỉnh đích là $T$.
 
-则我们可以加入一条 $T$ 到 $S$ 的上界为 $\infty$，下界为 $0$ 的边转化为无源汇上下界可行流问题．
+Khi đó ta có thể thêm một cạnh từ $T$ đến $S$ có cận trên là $\infty$ và cận dưới là $0$, từ đó chuyển bài toán về luồng khả thi có cận trên và cận dưới, không có nguồn và đích.
 
-若有解，则 $S$ 到 $T$ 的可行流流量等于 $T$ 到 $S$ 的附加边的流量．
+Nếu có nghiệm, giá trị luồng khả thi từ $S$ đến $T$ bằng lượng luồng trên cạnh phụ từ $T$ đến $S$.
 
-## 有源汇上下界最大流
+## Luồng cực đại có cận trên và cận dưới, có nguồn và đích
 
-给定有源汇流量网络 $G$．询问是否存在一种标定每条边流量的方式，使得每条边流量满足上下界同时除了源点和汇点每一个点流量平衡．如果存在，询问满足标定的最大流量．
+Cho một mạng luồng $G$ có nguồn và đích. Hỏi có tồn tại cách gán luồng cho mỗi cạnh sao cho luồng trên mỗi cạnh thỏa mãn cận trên, cận dưới, đồng thời mọi đỉnh ngoài nguồn và đích đều cân bằng luồng hay không. Nếu tồn tại, hỏi giá trị luồng lớn nhất thỏa mãn cách gán đó.
 
-我们找到网络上的任意一个可行流．如果找不到解就可以直接结束．
+Ta tìm một luồng khả thi bất kỳ trên mạng. Nếu không tìm được nghiệm thì có thể kết thúc ngay.
 
-否则我们考虑删去所有附加边之后的残量网络并且在网络上进行调整．
+Ngược lại, xét mạng dư sau khi xóa toàn bộ các cạnh phụ và điều chỉnh trên mạng đó.
 
-我们在残量网络上再跑一次 $S$ 到 $T$ 的最大流，将可行流流量和最大流流量相加即为答案．
+Chạy thêm một lần luồng cực đại từ $S$ đến $T$ trên mạng dư; lấy giá trị luồng khả thi cộng với giá trị luồng cực đại vừa tìm được, ta có đáp án.
 
-??? warning "一个非常易错的问题"
-    $S$ 到 $T$ 的最大流直接在跑完有源汇上下界可行的残量网络上跑．
+??? warning "Một điểm rất dễ sai"
+    Luồng cực đại từ $S$ đến $T$ phải được chạy trực tiếp trên mạng dư sau khi đã chạy xong bước tìm luồng khả thi có cận trên, cận dưới, nguồn và đích.
     
-    千万不可以在原来的流量网络上跑．
+    Tuyệt đối không chạy trên mạng luồng ban đầu.
 
-## 有源汇上下界最小流
+## Luồng cực tiểu có cận trên và cận dưới, có nguồn và đích
 
-给定有源汇流量网络 $G$．询问是否存在一种标定每条边流量的方式，使得每条边流量满足上下界同时除了源点和汇点每一个点流量平衡．如果存在，询问满足标定的最小流量．
+Cho một mạng luồng $G$ có nguồn và đích. Hỏi có tồn tại cách gán luồng cho mỗi cạnh sao cho luồng trên mỗi cạnh thỏa mãn cận trên, cận dưới, đồng thời mọi đỉnh ngoài nguồn và đích đều cân bằng luồng hay không. Nếu tồn tại, hỏi giá trị luồng nhỏ nhất thỏa mãn cách gán đó.
 
-类似的，我们考虑将残量网络中不需要的流退掉．
+Tương tự, ta xét việc đẩy trả phần luồng không cần thiết trong mạng dư.
 
-我们找到网络上的任意一个可行流．如果找不到解就可以直接结束．
+Ta tìm một luồng khả thi bất kỳ trên mạng. Nếu không tìm được nghiệm thì có thể kết thúc ngay.
 
-否则我们考虑删去所有附加边之后的残量网络．
+Ngược lại, xét mạng dư sau khi xóa toàn bộ các cạnh phụ.
 
-我们在残量网络上再跑一次 $T$ 到 $S$ 的最大流，将可行流流量减去最大流流量即为答案．
+Chạy thêm một lần luồng cực đại từ $T$ đến $S$ trên mạng dư; lấy giá trị luồng khả thi trừ đi giá trị luồng cực đại vừa tìm được, ta có đáp án.
 
-??? note "[AHOI 2014 支线剧情](https://loj.ac/problem/2226)"
-    对于每条 $x$ 到 $y$ 花费 $v$ 的剧情边设上界为 $\infty$, 下界为 $1$．
+??? note "[AHOI 2014 - Side Story](https://loj.ac/problem/2226)"
+    Với mỗi cạnh cốt truyện từ $x$ đến $y$ có chi phí $v$, đặt cận trên là $\infty$ và cận dưới là $1$.
     
-    对于每个点，向 $T$ 连边权 $c$, 上界 $\infty$, 下界为 $1$．
+    Với mỗi đỉnh, nối đến $T$ một cạnh có chi phí $c$, cận trên $\infty$ và cận dưới $1$.
     
-    $S$ 点为 $1$ 号节点．
+    Đỉnh $S$ là đỉnh số $1$.
     
-    跑一次 上下界带源汇最小费用可行流 即可．
+    Chỉ cần chạy một lần luồng khả thi chi phí nhỏ nhất có cận trên, cận dưới, nguồn và đích.
     
-    因为最小费用可行流解法与最小可行流类似，这里不再展开．
+    Vì cách giải luồng khả thi chi phí nhỏ nhất tương tự luồng khả thi nhỏ nhất, phần này không trình bày thêm.

@@ -460,13 +460,13 @@ nav:
     - Đồ thị phẳng: graph/planar.md
     - Đồ thị dây cung: graph/chord.md
     - Tô màu đồ thị: graph/color.md
-    - 网络流:
-      - 网络流简介: graph/flow.md
-      - 最大流: graph/flow/max-flow.md
-      - 最小割: graph/flow/min-cut.md
-      - 费用流: graph/flow/min-cost.md
-      - 上下界网络流: graph/flow/bound.md
-      - Stoer–Wagner 算法: graph/stoer-wagner.md
+    - Luồng mạng:
+      - Giới thiệu luồng mạng: graph/flow.md
+      - Luồng cực đại: graph/flow/max-flow.md
+      - Cắt nhỏ nhất: graph/flow/min-cut.md
+      - Luồng chi phí: graph/flow/min-cost.md
+      - Luồng mạng có cận dưới/trên: graph/flow/bound.md
+      - Thuật toán Stoer-Wagner: graph/stoer-wagner.md
     - 图的匹配:
       - 图匹配: graph/graph-matching/graph-match.md
       - 二分图最大匹配: graph/graph-matching/bigraph-match.md

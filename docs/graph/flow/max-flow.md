@@ -1,56 +1,56 @@
-本页面主要介绍最大流问题相关的算法知识．
+Trang này chủ yếu giới thiệu kiến thức thuật toán liên quan đến bài toán luồng cực đại.
 
-## 概述
+## Tổng quan
 
-网络流基本概念参见 [网络流简介](../flow.md)．
+Các khái niệm cơ bản về luồng trên mạng có thể xem tại [Giới thiệu luồng mạng](../flow.md).
 
-令 $G=(V,E)$ 是一个有源汇点的网络，我们希望在 $G$ 上指定合适的流 $f$，以最大化整个网络的流量 $|f|$（即 $\sum_{x \in V} f(s, x) - \sum_{x \in V} f(x, s)$），这一问题被称作最大流问题（Maximum flow problem）．
+Cho $G=(V,E)$ là một mạng có nguồn và đích. Ta muốn chỉ định một luồng thích hợp $f$ trên $G$ sao cho giá trị luồng của toàn mạng $|f|$ được cực đại hóa, tức $\sum_{x \in V} f(s, x) - \sum_{x \in V} f(x, s)$. Bài toán này được gọi là bài toán luồng cực đại (Maximum flow problem).
 
-## Ford–Fulkerson 增广
+## Tăng luồng Ford–Fulkerson
 
-Ford–Fulkerson 增广是计算最大流的一类算法的总称．该方法运用贪心的思想，通过寻找增广路来更新并求解最大流．
+Tăng luồng Ford–Fulkerson là tên gọi chung của một lớp thuật toán tính luồng cực đại. Phương pháp này dùng tư tưởng tham lam, liên tục tìm đường tăng luồng để cập nhật và tìm luồng cực đại.
 
-### 概述
+### Tổng quan
 
-给定网络 $G$ 及 $G$ 上的流 $f$，我们做如下定义．
+Cho mạng $G$ và một luồng $f$ trên $G$, ta định nghĩa như sau.
 
-对于边 $(u, v)$，我们将其容量与流量之差称为剩余容量 $c_f(u,v)$（Residual Capacity），即 $c_f(u,v)=c(u,v)-f(u,v)$．
+Với cạnh $(u, v)$, hiệu giữa dung lượng và luồng được gọi là dung lượng còn dư $c_f(u,v)$ (Residual Capacity), tức $c_f(u,v)=c(u,v)-f(u,v)$.
 
-我们将 $G$ 中所有结点和剩余容量大于 $0$ 的边构成的子图称为残量网络 $G_f$（Residual Network），即 $G_f=(V,E_f)$，其中 $E_f=\left\{(u,v) \mid c_f(u,v)>0\right\}$．
+Đồ thị con gồm tất cả các đỉnh của $G$ và các cạnh có dung lượng còn dư lớn hơn $0$ được gọi là mạng thặng dư $G_f$ (Residual Network), tức $G_f=(V,E_f)$, trong đó $E_f=\left\{(u,v) \mid c_f(u,v)>0\right\}$.
 
-???+ warning "Warning"
-    正如我们马上要提到的，流量可能是负值，因此，$E_f$ 的边有可能并不在 $E$ 中．引入增广的概念后，下文将具体解释这一点．
+???+ warning "Cảnh báo"
+    Như sẽ nói ngay sau đây, luồng có thể nhận giá trị âm, vì vậy cạnh trong $E_f$ có thể không thuộc $E$. Sau khi đưa vào khái niệm tăng luồng, phần dưới sẽ giải thích cụ thể điểm này.
 
-我们将 $G_f$ 上一条从源点 $s$ 到汇点 $t$ 的路径称为增广路（Augmenting Path）．对于一条增广路，我们给每一条边 $(u, v)$ 都加上等量的流量，以令整个网络的流量增加，这一过程被称为增广（Augment）．由此，最大流的求解可以被视为若干次增广分别得到的流的叠加．
+Một đường đi từ nguồn $s$ đến đích $t$ trên $G_f$ được gọi là đường tăng luồng (Augmenting Path). Với một đường tăng luồng, ta cộng cùng một lượng luồng vào mọi cạnh $(u, v)$ trên đường đó để làm tăng giá trị luồng của toàn mạng. Quá trình này được gọi là tăng luồng (Augment). Do đó, việc tìm luồng cực đại có thể được xem như chồng nhiều luồng thu được từ các lần tăng luồng.
 
-此外，在 Ford–Fulkerson 增广的过程中，对于每条边 $(u, v)$，我们都新建一条反向边 $(v, u)$．我们约定 $f(u, v) = -f(v, u)$，这一性质可以通过在每次增广时引入退流操作来保证，即 $f(u, v)$ 增加时 $f(v, u)$ 应当减少同等的量．
+Ngoài ra, trong quá trình tăng luồng Ford–Fulkerson, với mỗi cạnh $(u, v)$, ta tạo thêm một cạnh ngược $(v, u)$. Ta quy ước $f(u, v) = -f(v, u)$. Tính chất này có thể được đảm bảo bằng thao tác hoàn luồng trong mỗi lần tăng luồng, tức khi $f(u, v)$ tăng thì $f(v, u)$ phải giảm cùng một lượng.
 
-???+ tip "Tip"
-    在最大流算法的代码实现中，我们往往需要支持快速访问反向边的操作．在邻接矩阵中，这一操作是 trivial 的（$g_{u, v} \leftrightarrow g_{v, u}$）．但主流的实现是更加优秀的链式前向星．其中，一个常用的技巧是，我们令边从偶数（通常为 $0$）开始编号，并在加边时总是紧接着加入其反向边使得它们的编号相邻．由此，我们可以令编号为 $i$ 的边和编号为 $i \oplus 1$ 的边始终保持互为反向边的关系．
+???+ tip "Mẹo"
+    Trong cài đặt các thuật toán luồng cực đại, ta thường cần hỗ trợ truy cập nhanh cạnh ngược. Với ma trận kề, thao tác này là hiển nhiên ($g_{u, v} \leftrightarrow g_{v, u}$). Tuy nhiên, cách cài đặt phổ biến hơn và tốt hơn là forward-star dạng danh sách liên kết. Một mẹo thường dùng là đánh số cạnh bắt đầu từ số chẵn, thường là $0$, và khi thêm cạnh luôn thêm ngay cạnh ngược của nó để hai cạnh có chỉ số kề nhau. Khi đó, cạnh có chỉ số $i$ và cạnh có chỉ số $i \oplus 1$ luôn là cạnh ngược của nhau.
 
-初次接触这一方法的读者可能察觉到一个违反直觉的情形——反向边的流量 $f(v, u)$ 可能是一个负值．实际上我们可以注意到，在 Ford–Fulkerson 增广的过程中，真正有意义的是剩余容量 $c_f$，而 $f(v, u)$ 的绝对值是无关紧要的，我们可以将反向边流量的减少视为反向边剩余容量 $c_f(v, u)$ 的增加——这也与退流的意义相吻合——反向边剩余容量的增加意味着我们接下来可能通过走反向边来和原先正向的增广抵消，代表一种「反悔」的操作．
+Người mới tiếp xúc với phương pháp này có thể nhận thấy một tình huống trái trực giác: luồng trên cạnh ngược $f(v, u)$ có thể là số âm. Thực ra, trong quá trình tăng luồng Ford–Fulkerson, đại lượng thật sự có ý nghĩa là dung lượng còn dư $c_f$, còn trị tuyệt đối của $f(v, u)$ không quan trọng. Ta có thể xem việc giảm luồng trên cạnh ngược là làm tăng dung lượng còn dư $c_f(v, u)$ của cạnh ngược. Điều này cũng phù hợp với ý nghĩa của hoàn luồng: dung lượng còn dư trên cạnh ngược tăng lên nghĩa là sau đó ta có thể đi qua cạnh ngược để triệt tiêu lần tăng luồng theo chiều thuận trước đó, tương đương với một thao tác "hối lại".
 
-以下案例有可能帮助你理解这一过程．假设 $G$ 是一个单位容量的网络，我们考虑以下过程：
+Ví dụ sau có thể giúp bạn hiểu quá trình này. Giả sử $G$ là một mạng dung lượng đơn vị, xét quá trình sau:
 
--   $G$ 上有多条增广路，其中，我们选择进行一次先后经过 $u, v$ 的增广（如左图所示），流量增加 $1$．
--   我们注意到，如果进行中图上的增广，这个局部的最大流量不是 $1$ 而是 $2$．但由于指向 $u$ 的边和从 $v$ 出发的边在第一次增广中耗尽了容量，此时我们无法进行中图上的增广．这意味着我们当前的流是不够优的，但局部可能已经没有其他（只经过原图中的边而不经过反向边的）增广路了．
--   现在引入退流操作．第一次增广后，退流意味着 $c_f(v, u)$ 增加了 $1$ 剩余容量，即相当于新增 $(v, u)$ 这条边，因此我们可以再进行一次先后经过 $p, v, u, q$ 的增广（如右图橙色路径所示）．无向边 $(u, v)$ 上的流量在两次增广中抵消，我们惊奇地发现两次增广叠加得到的结果实际上和中图是等价的．
+-   Trên $G$ có nhiều đường tăng luồng. Trong đó, ta chọn thực hiện một lần tăng luồng đi qua $u, v$ theo thứ tự, như hình bên trái, làm giá trị luồng tăng thêm $1$.
+-   Ta nhận thấy nếu thực hiện lần tăng luồng như hình giữa, luồng cực đại cục bộ không phải là $1$ mà là $2$. Nhưng do cạnh đi vào $u$ và cạnh đi ra từ $v$ đã dùng hết dung lượng trong lần tăng luồng đầu tiên, lúc này ta không thể thực hiện lần tăng luồng ở hình giữa. Điều này nghĩa là luồng hiện tại chưa đủ tốt, nhưng cục bộ có thể đã không còn đường tăng luồng nào khác nếu chỉ đi qua các cạnh của đồ thị gốc mà không đi qua cạnh ngược.
+-   Bây giờ đưa vào thao tác hoàn luồng. Sau lần tăng luồng đầu tiên, hoàn luồng nghĩa là $c_f(v, u)$ tăng thêm $1$ dung lượng còn dư, tương đương với việc thêm cạnh $(v, u)$. Vì vậy ta có thể thực hiện thêm một lần tăng luồng đi qua $p, v, u, q$ theo thứ tự, như đường màu cam trong hình bên phải. Luồng trên cạnh vô hướng $(u, v)$ bị triệt tiêu qua hai lần tăng luồng, và ta thấy kết quả chồng hai lần tăng luồng thực ra tương đương với hình giữa.
 
 ![](./images/flow2.png)
 
-以上案例告诉我们，退流操作带来的「抵消」效果使得我们无需担心我们按照「错误」的顺序选择了增广路．
+Ví dụ trên cho thấy hiệu ứng "triệt tiêu" do thao tác hoàn luồng đem lại giúp ta không cần lo lắng rằng mình đã chọn đường tăng luồng theo "thứ tự sai".
 
-容易发现，只要 $G_f$ 上存在增广路，那么对其增广就可以令总流量增加；否则说明总流量已经达到最大可能值，求解过程完成．这就是 Ford–Fulkerson 增广的过程．
+Dễ thấy rằng chỉ cần trên $G_f$ còn tồn tại đường tăng luồng thì tăng luồng theo đường đó sẽ làm tổng giá trị luồng tăng lên. Nếu không còn đường tăng luồng, tổng giá trị luồng đã đạt giá trị lớn nhất có thể và quá trình kết thúc. Đây chính là quá trình tăng luồng Ford–Fulkerson.
 
-### 最大流最小割定理
+### Định lý luồng cực đại - lát cắt nhỏ nhất
 
-我们大致了解了 Ford–Fulkerson 增广的思想，可是如何证明这一方法的正确性呢？为什么增广结束后的流 $f$ 是一个最大流？
+Ta đã hiểu sơ lược tư tưởng tăng luồng Ford–Fulkerson, nhưng làm thế nào để chứng minh tính đúng đắn của phương pháp này? Vì sao luồng $f$ sau khi kết thúc tăng luồng là một luồng cực đại?
 
-实际上，Ford–Fulkerson 增广的正确性和最大流最小割定理（The Maxflow-Mincut Theorem）等价．这一定理指出，对于任意网络 $G = (V, E)$，其上的最大流 $f$ 和最小割 $\{S, T\}$ 总是满足 $|f| = ||S, T||$．
+Thực ra, tính đúng đắn của tăng luồng Ford–Fulkerson tương đương với định lý luồng cực đại - lát cắt nhỏ nhất (The Maxflow-Mincut Theorem). Định lý này phát biểu rằng với mọi mạng $G = (V, E)$, luồng cực đại $f$ và lát cắt nhỏ nhất $\{S, T\}$ trên mạng đó luôn thỏa mãn $|f| = ||S, T||$.
 
-为了证明最大流最小割定理，我们先从一个引理出发：对于网络 $G = (V, E)$，任取一个流 $f$ 和一个割 $\{S, T\}$，总是有 $|f| \leq ||S, T||$，其中等号成立当且仅当 $\{(u, v) | u \in S, v \in T\}$ 的所有边均满流，且 $\{(u, v) | u \in T, v \in S\}$ 的所有边均空流．
+Để chứng minh định lý luồng cực đại - lát cắt nhỏ nhất, trước hết xét một bổ đề: với mạng $G = (V, E)$, lấy tùy ý một luồng $f$ và một lát cắt $\{S, T\}$, luôn có $|f| \leq ||S, T||$. Dấu bằng xảy ra khi và chỉ khi mọi cạnh trong $\{(u, v) | u \in S, v \in T\}$ đều đầy luồng, và mọi cạnh trong $\{(u, v) | u \in T, v \in S\}$ đều có luồng bằng không.
 
-???+ note "证明"
+???+ note "Chứng minh"
     $$
     \begin{aligned}
     |f| & = f(s) \\
@@ -65,84 +65,84 @@ Ford–Fulkerson 增广是计算最大流的一类算法的总称．该方法运
     \end{aligned}
     $$
     
-    为了取等，第一个不等号需要 $\{(u, v) \mid u \in T, v \in S\}$ 的所有边均空流，第二个不等号需要 $\{(u, v) \mid u \in S, v \in T\}$ 的所有边均满流．原引理得证．
+    Để đạt dấu bằng, bất đẳng thức thứ nhất cần mọi cạnh trong $\{(u, v) \mid u \in T, v \in S\}$ đều có luồng bằng không, còn bất đẳng thức thứ hai cần mọi cạnh trong $\{(u, v) \mid u \in S, v \in T\}$ đều đầy luồng. Bổ đề được chứng minh.
 
-那么，对于任意网络，以上取等条件是否总是能被满足呢？如果答案是肯定的，则最大流最小割定理得证．以下我们尝试证明．
+Vậy với một mạng bất kỳ, các điều kiện đạt dấu bằng ở trên có luôn được thỏa mãn không? Nếu câu trả lời là có, định lý luồng cực đại - lát cắt nhỏ nhất được chứng minh. Sau đây ta thử chứng minh điều đó.
 
-???+ note "证明"
-    假设某一轮增广后，我们得到流 $f$ 使得 $G_f$ 上不存在增广路，即 $G_f$ 上不存在 $s$ 到 $t$ 的路径．此时我们记从 $s$ 出发可以到达的结点组成的点集为 $S$，并记 $T = V \setminus S$．
+???+ note "Chứng minh"
+    Giả sử sau một vòng tăng luồng nào đó, ta thu được luồng $f$ sao cho trên $G_f$ không tồn tại đường tăng luồng, tức trên $G_f$ không tồn tại đường đi từ $s$ đến $t$. Khi đó, gọi $S$ là tập các đỉnh có thể đến được từ $s$, và đặt $T = V \setminus S$.
     
-    显然，$\{S, T\}$ 是 $G_f$ 的一个割，且 $||S, T|| = \sum_{u \in S} \sum_{v \in T} c_f(u, v) = 0$．由于剩余容量是非负的，这也意味着对于任意 $u \in S, v \in T, (u, v) \in E_f$，均有 $c_f(u, v) = 0$．以下我们将这些边分为存在于原图中的边和反向边两种情况讨论：
+    Hiển nhiên, $\{S, T\}$ là một lát cắt của $G_f$, và $||S, T|| = \sum_{u \in S} \sum_{v \in T} c_f(u, v) = 0$. Vì dung lượng còn dư không âm, điều này cũng có nghĩa là với mọi $u \in S, v \in T, (u, v) \in E_f$, ta đều có $c_f(u, v) = 0$. Sau đây ta chia các cạnh này thành hai trường hợp: cạnh tồn tại trong đồ thị gốc và cạnh ngược.
     
-    -   $(u, v) \in E$：此时，$c_f(u, v) = c(u, v) - f(u, v) = 0$，因此有 $c(u, v) = f(u, v)$，即 $\{(u, v) \mid u \in S, v \in T\}$ 的所有边均满流；
-    -   $(v, u) \in E$：此时，$c_f(u, v) = c(u, v) - f(u, v) = 0 - f(u, v) = f(v, u) = 0$，即 $\{(v, u) \mid u \in S, v \in T\}$ 的所有边均空流．
+    -   $(u, v) \in E$: khi đó $c_f(u, v) = c(u, v) - f(u, v) = 0$, nên $c(u, v) = f(u, v)$, tức mọi cạnh trong $\{(u, v) \mid u \in S, v \in T\}$ đều đầy luồng.
+    -   $(v, u) \in E$: khi đó $c_f(u, v) = c(u, v) - f(u, v) = 0 - f(u, v) = f(v, u) = 0$, tức mọi cạnh trong $\{(v, u) \mid u \in S, v \in T\}$ đều có luồng bằng không.
     
-    因此，增广停止后，上述流 $f$ 满足取等条件．根据引理指出的大小关系，自然地，$f$ 是 $G$ 的一个最大流，$\{S, T\}$ 是 $G$ 的一个最小割．
+    Vì vậy, sau khi tăng luồng dừng lại, luồng $f$ ở trên thỏa mãn điều kiện đạt dấu bằng. Theo quan hệ lớn nhỏ trong bổ đề, một cách tự nhiên, $f$ là một luồng cực đại của $G$, và $\{S, T\}$ là một lát cắt nhỏ nhất của $G$.
 
-容易看出，Kőnig 定理是最大流最小割定理的特殊情形．实际上，它们都和线性规划中的对偶有关．
+Dễ thấy định lý Kőnig là một trường hợp đặc biệt của định lý luồng cực đại - lát cắt nhỏ nhất. Thực ra, cả hai đều liên quan đến đối ngẫu trong quy hoạch tuyến tính.
 
-### 时间复杂度分析
+### Phân tích độ phức tạp thời gian
 
-在整数流量的网络 $G = (V, E)$ 上，平凡地，我们假设每次增广的流量都是整数，则 Ford–Fulkerson 增广的时间复杂度的一个上界是 $O(|E||f|)$，其中 $f$ 是 $G$ 上的最大流．这是因为单轮增广的时间复杂度是 $O(|E|)$，而增广会导致总流量增加，故增广轮数不可能超过 $|f|$．
+Trên mạng $G = (V, E)$ có luồng nguyên, giả sử một cách hiển nhiên rằng lượng luồng tăng thêm mỗi lần đều là số nguyên, thì một cận trên cho độ phức tạp thời gian của tăng luồng Ford–Fulkerson là $O(|E||f|)$, trong đó $f$ là luồng cực đại trên $G$. Lý do là một vòng tăng luồng có độ phức tạp $O(|E|)$, còn mỗi lần tăng luồng đều làm tổng giá trị luồng tăng lên, nên số vòng tăng luồng không thể vượt quá $|f|$.
 
-对于 Ford–Fulkerson 增广的不同实现，时间复杂度也各不相同．其中较主流的实现有 Edmonds–Karp, Dinic, SAP, ISAP 等算法，我们将在下文中分别介绍．
+Các cách cài đặt khác nhau của tăng luồng Ford–Fulkerson có độ phức tạp thời gian khác nhau. Trong đó các cài đặt phổ biến hơn gồm Edmonds–Karp, Dinic, SAP, ISAP, v.v. Ta sẽ lần lượt giới thiệu ở phần sau.
 
-### Edmonds–Karp 算法
+### Thuật toán Edmonds–Karp
 
-#### 算法思想
+#### Ý tưởng thuật toán
 
-如何在 $G_f$ 中寻找增广路呢？当我们考虑 Ford–Fulkerson 增广的具体实现时，最自然的方案就是使用 BFS．此时，Ford–Fulkerson 增广表现为 Edmonds–Karp 算法．其具体流程如下：
+Làm thế nào để tìm đường tăng luồng trong $G_f$? Khi xét một cài đặt cụ thể của tăng luồng Ford–Fulkerson, phương án tự nhiên nhất là dùng BFS. Khi đó, tăng luồng Ford–Fulkerson trở thành thuật toán Edmonds–Karp. Quy trình cụ thể như sau:
 
--   如果在 $G_f$ 上我们可以从 $s$ 出发 BFS 到 $t$，则我们找到了新的增广路．
+-   Nếu trên $G_f$ ta có thể BFS từ $s$ đến $t$, ta đã tìm được một đường tăng luồng mới.
 
--   对于增广路 $p$，我们计算出 $p$ 经过的边的剩余容量的最小值 $\Delta = \min_{(u, v) \in p} c_f(u, v)$．我们给 $p$ 上的每条边都加上 $\Delta$ 流量，并给它们的反向边都退掉 $\Delta$ 流量，令最大流增加了 $\Delta$．
+-   Với đường tăng luồng $p$, ta tính giá trị nhỏ nhất của dung lượng còn dư trên các cạnh mà $p$ đi qua: $\Delta = \min_{(u, v) \in p} c_f(u, v)$. Ta cộng $\Delta$ luồng vào mỗi cạnh trên $p$, đồng thời hoàn $\Delta$ luồng trên các cạnh ngược của chúng, làm luồng cực đại tăng thêm $\Delta$.
 
--   因为我们修改了流量，所以我们得到新的 $G_f$，我们在新的 $G_f$ 上重复上述过程，直至增广路不存在，则流量不再增加．
+-   Vì ta đã sửa luồng, ta thu được $G_f$ mới. Lặp lại quá trình trên trên $G_f$ mới cho đến khi không còn đường tăng luồng, khi đó giá trị luồng không tăng thêm nữa.
 
-以上算法即 Edmonds–Karp 算法．
+Thuật toán trên chính là thuật toán Edmonds–Karp.
 
-#### 时间复杂度分析
+#### Phân tích độ phức tạp thời gian
 
-接下来让我们尝试分析 Edmonds–Karp 算法的时间复杂度．
+Tiếp theo ta thử phân tích độ phức tạp thời gian của thuật toán Edmonds–Karp.
 
-显然，单轮 BFS 增广的时间复杂度是 $O(|E|)$．
+Hiển nhiên, độ phức tạp thời gian của một vòng tăng luồng bằng BFS là $O(|E|)$.
 
-增广总轮数的上界是 $O(|V||E|)$．这一论断在网络资料中常被伪证（或被含糊其辞略过）．以下我们尝试给出一个较正式的证明[^ref_ek]．
+Cận trên cho tổng số vòng tăng luồng là $O(|V||E|)$. Mệnh đề này thường bị chứng minh sai trên tài liệu mạng, hoặc bị lược qua một cách mơ hồ. Sau đây ta thử đưa ra một chứng minh tương đối hình thức[^ref_ek].
 
-???+ note "增广总轮数的上界的证明"
-    首先，我们引入一个引理——最短路非递减引理．具体地，我们记 $d_f(u)$ 为 $G_f$ 上结点 $u$ 到源点 $s$ 的距离（即最短路长度，下同）．对于某一轮增广，我们用 $f$ 和 $f'$ 分别表示增广前的流和增广后的流，我们断言，对于任意结点 $u$，增广总是使得 $d_{f'}(u) \geq d_f(u)$．我们将在稍后证明这一引理．
+???+ note "Chứng minh cận trên của tổng số vòng tăng luồng"
+    Trước hết, ta đưa vào một bổ đề: bổ đề khoảng cách ngắn nhất không giảm. Cụ thể, ký hiệu $d_f(u)$ là khoảng cách từ đỉnh $u$ đến nguồn $s$ trên $G_f$, tức độ dài đường đi ngắn nhất, dưới đây cũng vậy. Với một vòng tăng luồng nào đó, dùng $f$ và $f'$ lần lượt biểu diễn luồng trước và sau khi tăng. Ta khẳng định rằng với mọi đỉnh $u$, tăng luồng luôn làm $d_{f'}(u) \geq d_f(u)$. Ta sẽ chứng minh bổ đề này sau.
     
-    不妨称增广路上剩余容量最小的边是饱和边（存在多条边同时最小则取任一）．如果一条有向边 $(u, v)$ 被选为饱和边，增广会清空其剩余容量导致饱和边的消失，并且退流导致反向边的新增（如果原先反向边不存在），即 $(u, v) \not \in E_{f'}$ 且 $(v, u) \in E_{f'}$．以上分析使我们知道，对于无向边 $(u, v)$，其被增广的两种方向总是交替出现．
+    Gọi cạnh có dung lượng còn dư nhỏ nhất trên đường tăng luồng là cạnh bão hòa, nếu có nhiều cạnh cùng nhỏ nhất thì chọn tùy ý một cạnh. Nếu một cạnh có hướng $(u, v)$ được chọn làm cạnh bão hòa, lần tăng luồng sẽ làm dung lượng còn dư của nó bằng không, khiến cạnh bão hòa biến mất, đồng thời hoàn luồng làm xuất hiện cạnh ngược, nếu trước đó cạnh ngược chưa tồn tại, tức $(u, v) \not \in E_{f'}$ và $(v, u) \in E_{f'}$. Phân tích trên cho thấy với một cạnh vô hướng $(u, v)$, hai chiều được tăng luồng của nó luôn xuất hiện xen kẽ.
     
-    在 $G_f$ 上沿 $(u, v)$ 增广时，$d_f(u) + 1 = d_f(v)$，此后残量网络变为 $G_{f'}$．在 $G_{f'}$ 上沿 $(v, u)$ 增广时，$d_{f'}(v) + 1 = d_{f'}(u)$．根据最短路非递减引理又有 $d_{f'}(v) \geq d_f(v)$，我们连接所有式子，得到 $d_{f'}(u) \geq d_{f}(u) + 2$．换言之，如果有向边 $(u, v)$ 被选为饱和边，那么与其上一次被选为饱和边时相比，$u$ 到 $s$ 的距离至少增加 $2$．
+    Khi tăng luồng dọc theo $(u, v)$ trên $G_f$, ta có $d_f(u) + 1 = d_f(v)$, sau đó mạng thặng dư trở thành $G_{f'}$. Khi tăng luồng dọc theo $(v, u)$ trên $G_{f'}$, ta có $d_{f'}(v) + 1 = d_{f'}(u)$. Theo bổ đề khoảng cách ngắn nhất không giảm lại có $d_{f'}(v) \geq d_f(v)$. Nối các đẳng thức và bất đẳng thức lại, thu được $d_{f'}(u) \geq d_{f}(u) + 2$. Nói cách khác, nếu cạnh có hướng $(u, v)$ được chọn làm cạnh bão hòa, thì so với lần trước nó được chọn làm cạnh bão hòa, khoảng cách từ $u$ đến $s$ tăng ít nhất $2$.
     
-    $s$ 到任意结点的距离不可能超过 $|V|$，结合上述性质，我们发现每条边被选为饱和边的次数是 $O(|V|)$ 的，与边数相乘后得到增广总轮数的上界 $O(|V||E|)$．
+    Khoảng cách từ $s$ đến bất kỳ đỉnh nào không thể vượt quá $|V|$. Kết hợp tính chất trên, ta thấy mỗi cạnh được chọn làm cạnh bão hòa $O(|V|)$ lần. Nhân với số cạnh, ta được cận trên $O(|V||E|)$ cho tổng số vòng tăng luồng.
     
-    接下来我们证明最短路非递减引理，即 $d_{f'}(u) \geq d_f(u)$．这一证明并不难，但可能稍显绕口，读者可以停下来认真思考片刻．
+    Tiếp theo ta chứng minh bổ đề khoảng cách ngắn nhất không giảm, tức $d_{f'}(u) \geq d_f(u)$. Chứng minh này không khó, nhưng có thể hơi vòng vèo; người đọc có thể dừng lại suy nghĩ kỹ một chút.
     
-    ???+ note "最短路非递减引理的证明"
-        考虑反证．对于某一轮增广，我们假设存在若干结点，它们在该轮增广后到 $s$ 的距离较增广前减小．我们记 $v$ 为其中到 $s$ 的距离最小的一者（即 $v = \arg \min_{x \in V, d_{f'}(x) < d_f(x)} d_{f'}(x)$）．注意，根据反证假设，此时 $d_{f'}(v) < d_f(v)$ 是已知条件．
+    ???+ note "Chứng minh bổ đề khoảng cách ngắn nhất không giảm"
+        Xét phản chứng. Với một vòng tăng luồng nào đó, giả sử tồn tại một số đỉnh mà sau vòng tăng luồng này, khoảng cách đến $s$ giảm so với trước khi tăng. Gọi $v$ là đỉnh có khoảng cách đến $s$ nhỏ nhất trong số đó, tức $v = \arg \min_{x \in V, d_{f'}(x) < d_f(x)} d_{f'}(x)$. Chú ý rằng theo giả thiết phản chứng, lúc này $d_{f'}(v) < d_f(v)$ là điều đã biết.
         
-        在 $G_{f'}$ 中 $s$ 到 $v$ 的最短路上，我们记 $u$ 是 $v$ 的上一个结点，即 $d_{f'}(u) + 1 = d_{f'}(v)$．
+        Trên đường đi ngắn nhất từ $s$ đến $v$ trong $G_{f'}$, gọi $u$ là đỉnh ngay trước $v$, tức $d_{f'}(u) + 1 = d_{f'}(v)$.
         
-        为了不让 $u$ 破坏 $v$ 的「距离最小」这一性质，$u$ 必须满足 $d_{f'}(u) \geq d_f(u)$．
+        Để $u$ không phá vỡ tính chất "khoảng cách nhỏ nhất" của $v$, $u$ phải thỏa mãn $d_{f'}(u) \geq d_f(u)$.
         
-        对于上式，我们令不等号两侧同加，得 $d_{f'}(v) \geq d_f(u) + 1$．根据反证假设进行放缩，我们得到 $d_f(v) > d_f(u) + 1$．
+        Cộng cùng một lượng vào hai vế của bất đẳng thức trên, ta được $d_{f'}(v) \geq d_f(u) + 1$. Dùng giả thiết phản chứng để chặn, ta thu được $d_f(v) > d_f(u) + 1$.
         
-        以下我们尝试讨论 $(u, v)$ 上的增广方向．
+        Sau đây ta xét hướng tăng luồng trên $(u, v)$.
         
-        -   假设有向边 $(u, v) \in E_f$．根据 BFS「广度优先」的性质，我们有 $d_f(u) + 1 \geq d_f(v)$．该式与放缩结果冲突，导出矛盾．
-        -   假设有向边 $(u, v) \not \in E_f$．根据 $u$ 的定义我们已知 $(u, v) \in E_{f'}$，因此这条边的存在必须是当前轮次的增广经过了 $(v, u)$ 并退流产生反向边的结果，也即 $d_f(v) + 1 = d_f(u)$．该式与放缩结果冲突，导出矛盾．
+        -   Giả sử cạnh có hướng $(u, v) \in E_f$. Theo tính chất "duyệt theo chiều rộng" của BFS, ta có $d_f(u) + 1 \geq d_f(v)$. Đẳng thức này mâu thuẫn với kết quả chặn ở trên.
+        -   Giả sử cạnh có hướng $(u, v) \not \in E_f$. Theo định nghĩa của $u$, ta đã biết $(u, v) \in E_{f'}$, nên sự tồn tại của cạnh này nhất định là kết quả của việc vòng tăng luồng hiện tại đi qua $(v, u)$ và tạo cạnh ngược do hoàn luồng, tức $d_f(v) + 1 = d_f(u)$. Đẳng thức này mâu thuẫn với kết quả chặn ở trên.
         
-        由于 $(u, v)$ 沿任何方向增广都会导出矛盾，我们知道反证假设不成立，最短路非递减引理得证．
+        Vì tăng luồng theo bất kỳ hướng nào của $(u, v)$ cũng dẫn đến mâu thuẫn, giả thiết phản chứng không đúng, và bổ đề khoảng cách ngắn nhất không giảm được chứng minh.
 
-将单轮 BFS 增广的复杂度与增广轮数的上界相乘，我们得到 Edmonds–Karp 算法的时间复杂度是 $O(|V||E|^2)$．
+Nhân độ phức tạp của một vòng tăng luồng BFS với cận trên của số vòng tăng luồng, ta được độ phức tạp thời gian của thuật toán Edmonds–Karp là $O(|V||E|^2)$.
 
-#### 代码实现
+#### Cài đặt
 
-Edmonds–Karp 算法的可能实现如下．
+Một cài đặt khả dĩ của thuật toán Edmonds–Karp như sau.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     constexpr int MAXN = 250;
     constexpr int INF = 0x3f3f3f3f;
@@ -154,11 +154,12 @@ Edmonds–Karp 算法的可能实现如下．
     };
     
     struct EK {
-      int n, m;             // n：点数，m：边数
-      vector<Edge> edges;   // edges：所有边的集合
-      vector<int> G[MAXN];  // G：点 x -> x 的所有边在 edges 中的下标
-      int a[MAXN], p[MAXN];  // a：点 x -> BFS 过程中最近接近点 x 的边给它的最大流
-                             // p：点 x -> BFS 过程中最近接近点 x 的边
+      int n, m;             // n: so dinh, m: so canh
+      vector<Edge> edges;   // edges: tap hop tat ca cac canh
+      vector<int> G[MAXN];  // G: dinh x -> chi so cac canh cua x trong edges
+      int a[MAXN], p[MAXN];  // a: dinh x -> luong lon nhat ma canh gan nhat
+                             //    cham toi x trong BFS co the gan cho x
+                             // p: dinh x -> canh gan nhat cham toi x trong BFS
     
       void init(int n) {
         for (int i = 0; i < n; i++) G[i].clear();
@@ -183,23 +184,23 @@ Edmonds–Karp 算法的可能实现如下．
           while (!Q.empty()) {
             int x = Q.front();
             Q.pop();
-            for (int i = 0; i < G[x].size(); i++) {  // 遍历以 x 作为起点的边
+            for (int i = 0; i < G[x].size(); i++) {  // duyet cac canh di tu x
               Edge& e = edges[G[x][i]];
               if (!a[e.to] && e.cap > e.flow) {
-                p[e.to] = G[x][i];  // G[x][i] 是最近接近点 e.to 的边
+                p[e.to] = G[x][i];  // G[x][i] la canh gan nhat cham toi e.to
                 a[e.to] =
-                    min(a[x], e.cap - e.flow);  // 最近接近点 e.to 的边赋给它的流
+                    min(a[x], e.cap - e.flow);  // luong canh gan nhat gan cho e.to
                 Q.push(e.to);
               }
             }
-            if (a[t]) break;  // 如果汇点接受到了流，就退出 BFS
+            if (a[t]) break;  // neu dinh dich da nhan luong thi thoat BFS
           }
           if (!a[t])
-            break;  // 如果汇点没有接受到流，说明源点和汇点不在同一个连通分量上
+            break;  // neu dinh dich khong nhan luong, s va t khong cung thanh phan lien thong
           for (int u = t; u != s;
-               u = edges[p[u]].from) {  // 通过 u 追寻 BFS 过程中 s -> t 的路径
-            edges[p[u]].flow += a[t];      // 增加路径上边的 flow 值
-            edges[p[u] ^ 1].flow -= a[t];  // 减小反向路径的 flow 值
+               u = edges[p[u]].from) {  // lan nguoc duong s -> t trong qua trinh BFS qua u
+            edges[p[u]].flow += a[t];      // tang gia tri flow tren canh cua duong
+            edges[p[u] ^ 1].flow -= a[t];  // giam gia tri flow tren duong nguoc
           }
           flow += a[t];
         }
@@ -208,134 +209,134 @@ Edmonds–Karp 算法的可能实现如下．
     };
     ```
 
-### Dinic 算法
+### Thuật toán Dinic
 
-#### 算法思想
+#### Ý tưởng thuật toán
 
-考虑在增广前先对 $G_f$ 做 BFS 分层，即根据结点 $u$ 到源点 $s$ 的距离 $d(u)$ 把结点分成若干层．令经过 $u$ 的流量只能流向下一层的结点 $v$，即删除 $u$ 向层数标号相等或更小的结点的出边，我们称 $G_f$ 剩下的部分为层次图（Level Graph）．形式化地，我们称 $G_L = (V, E_L)$ 是 $G_f = (V, E_f)$ 的层次图，其中 $E_L = \left\{ (u, v) \mid (u, v) \in E_f, d(u) + 1 = d(v) \right\}$．
+Xét việc trước khi tăng luồng, ta BFS để phân tầng $G_f$, tức chia các đỉnh thành nhiều tầng theo khoảng cách $d(u)$ từ đỉnh $u$ đến nguồn $s$. Quy định luồng đi qua $u$ chỉ có thể chảy đến các đỉnh $v$ ở tầng kế tiếp, tức xóa các cạnh đi ra từ $u$ đến các đỉnh có số tầng bằng hoặc nhỏ hơn. Phần còn lại của $G_f$ được gọi là đồ thị tầng (Level Graph). Nói hình thức, $G_L = (V, E_L)$ là đồ thị tầng của $G_f = (V, E_f)$, trong đó $E_L = \left\{ (u, v) \mid (u, v) \in E_f, d(u) + 1 = d(v) \right\}$.
 
-如果我们在层次图 $G_L$ 上找到一个极大的增广流 $f_b$，使得仅在 $G_L$ 上是不可能进一步扩大流 $f_b$ 的，则我们称 $f_b$ 是 $G_L$ 的阻塞流（Blocking Flow）．
+Nếu trên đồ thị tầng $G_L$ ta tìm được một luồng tăng cực đại $f_b$ sao cho chỉ xét trên $G_L$ thì không thể tiếp tục mở rộng $f_b$, ta gọi $f_b$ là luồng chặn (Blocking Flow) của $G_L$.
 
-??? warning "Warning"
-    尽管在上文中我们仅在单条增广路上定义了增广/增广流，广义地，「增广」一词不仅可以用于单条路径上的增广流，也可以用于若干增广流的并——后者才是我们定义阻塞流时使用的意义．
+??? warning "Cảnh báo"
+    Mặc dù ở trên ta chỉ định nghĩa tăng luồng/luồng tăng trên một đường tăng luồng đơn lẻ, theo nghĩa rộng, thuật ngữ "tăng luồng" không chỉ dùng cho luồng tăng trên một đường đơn, mà còn có thể dùng cho hợp của nhiều luồng tăng. Nghĩa thứ hai là nghĩa được dùng khi ta định nghĩa luồng chặn.
 
-定义层次图和阻塞流后，Dinic 算法的流程如下．
+Sau khi định nghĩa đồ thị tầng và luồng chặn, quy trình của thuật toán Dinic như sau.
 
-1.  在 $G_f$ 上 BFS 出层次图 $G_L$．
-2.  在 $G_L$ 上 DFS 出阻塞流 $f_b$．
-3.  将 $f_b$ 并到原先的流 $f$ 中，即 $f \leftarrow f + f_b$．
-4.  重复以上过程直到不存在从 $s$ 到 $t$ 的路径．
+1.  BFS trên $G_f$ để tạo đồ thị tầng $G_L$.
+2.  DFS trên $G_L$ để tìm luồng chặn $f_b$.
+3.  Gộp $f_b$ vào luồng ban đầu $f$, tức $f \leftarrow f + f_b$.
+4.  Lặp lại quá trình trên cho đến khi không còn đường đi từ $s$ đến $t$.
 
-此时的 $f$ 即为最大流．
+Lúc này $f$ là luồng cực đại.
 
-在分析这一算法的复杂度之前，我们需要特别说明「在 $G_L$ 上 DFS 出阻塞流 $f_b$」的过程．尽管 BFS 层次图对于本页面的读者应当是 trivial 的，但 DFS 阻塞流的过程则稍需技巧——我们需要引入当前弧优化．
+Trước khi phân tích độ phức tạp của thuật toán này, ta cần đặc biệt giải thích quá trình "DFS trên $G_L$ để tìm luồng chặn $f_b$". Mặc dù BFS đồ thị tầng có lẽ là hiển nhiên với người đọc trang này, quá trình DFS luồng chặn cần một chút kỹ thuật: ta cần đưa vào tối ưu cung hiện tại.
 
-注意到在 $G_L$ 上 DFS 的过程中，如果结点 $u$ 同时具有大量入边和出边，并且 $u$ 每次接受来自入边的流量时都遍历出边表来决定将流量传递给哪条出边，则 $u$ 这个局部的时间复杂度最坏可达 $O(|E|^2)$．为避免这一缺陷，如果某一时刻我们已经知道边 $(u, v)$ 已经增广到极限（边 $(u, v)$ 已无剩余容量或 $v$ 的后侧已增广至阻塞），则 $u$ 的流量没有必要再尝试流向出边 $(u, v)$．据此，对于每个结点 $u$，我们维护 $u$ 的出边表中第一条还有必要尝试的出边．习惯上，我们称维护的这个指针为当前弧，称这个做法为当前弧优化．
+Chú ý rằng trong quá trình DFS trên $G_L$, nếu đỉnh $u$ đồng thời có rất nhiều cạnh vào và cạnh ra, và mỗi khi $u$ nhận luồng từ cạnh vào đều duyệt danh sách cạnh ra để quyết định truyền luồng sang cạnh ra nào, thì độ phức tạp thời gian cục bộ tại $u$ trong trường hợp xấu nhất có thể đạt $O(|E|^2)$. Để tránh nhược điểm này, nếu tại một thời điểm ta đã biết cạnh $(u, v)$ đã được tăng luồng đến giới hạn, tức cạnh $(u, v)$ không còn dung lượng còn dư hoặc phía sau $v$ đã bị chặn, thì luồng của $u$ không cần thử chảy vào cạnh ra $(u, v)$ nữa. Vì vậy, với mỗi đỉnh $u$, ta duy trì cạnh ra đầu tiên trong danh sách cạnh ra của $u$ mà vẫn còn cần thử. Theo thói quen, con trỏ được duy trì này được gọi là cung hiện tại, và cách làm này được gọi là tối ưu cung hiện tại.
 
-??? note "多路增广"
-    多路增广是 Dinic 算法的一个常数优化——如果我们在层次图上找到了一条从 $s$ 到 $t$ 的增广路 $p$，则接下来我们未必需要重新从 $s$ 出发找下一条增广路，而可能从 $p$ 上最后一个仍有剩余容量的位置出发寻找一条岔路进行增广．考虑到其与回溯形式的一致性，这一优化在 DFS 的代码实现中也是自然的．
+??? note "Tăng luồng nhiều đường"
+    Tăng luồng nhiều đường là một tối ưu hằng số của thuật toán Dinic. Nếu ta tìm được một đường tăng luồng $p$ từ $s$ đến $t$ trên đồ thị tầng, thì tiếp theo không nhất thiết phải quay lại từ $s$ để tìm đường tăng luồng kế tiếp, mà có thể bắt đầu từ vị trí cuối cùng trên $p$ vẫn còn dung lượng còn dư để tìm một nhánh rẽ và tăng luồng. Xét sự nhất quán với dạng quay lui, tối ưu này cũng tự nhiên trong cài đặt DFS.
     
-    ??? failure "常见误区"
-        可能是由于大量网络资料的错误表述引发以讹传讹的情形，相当数量的选手喜欢将当前弧优化和多路增广并列称为 Dinic 算法的两种优化．实际上，当前弧优化是用于保证 Dinic 时间复杂度正确性的一部分，而多路增广只是一个不影响复杂度的常数优化．
+    ??? failure "Hiểu lầm thường gặp"
+        Có lẽ do nhiều tài liệu mạng diễn đạt sai rồi lan truyền, khá nhiều thí sinh thích gọi tối ưu cung hiện tại và tăng luồng nhiều đường là hai tối ưu của thuật toán Dinic đặt ngang hàng nhau. Thực ra, tối ưu cung hiện tại là một phần dùng để đảm bảo tính đúng đắn của độ phức tạp thời gian của Dinic, còn tăng luồng nhiều đường chỉ là tối ưu hằng số không ảnh hưởng đến độ phức tạp.
 
-#### 时间复杂度分析
+#### Phân tích độ phức tạp thời gian
 
-应用当前弧优化后，对 Dinic 算法的时间复杂度分析如下．
+Sau khi áp dụng tối ưu cung hiện tại, phân tích độ phức tạp thời gian của thuật toán Dinic như sau.
 
-首先，我们尝试证明单轮增广中 DFS 求阻塞流的时间复杂度是 $O(|V||E|)$．
+Trước hết, ta thử chứng minh độ phức tạp thời gian của DFS tìm luồng chặn trong một vòng tăng luồng là $O(|V||E|)$.
 
-???+ note "单轮增广的时间复杂度的证明"
-    考虑阻塞流 $f_b$ 中的每条增广路，它们都是在 $G_L$ 上每次沿当前弧跳转而得到的结果，其中每条增广路经历的跳转次数不可能多于 $|V|$．
+???+ note "Chứng minh độ phức tạp thời gian của một vòng tăng luồng"
+    Xét từng đường tăng luồng trong luồng chặn $f_b$. Chúng đều là kết quả của việc nhảy theo cung hiện tại trên $G_L$, và số lần nhảy mà mỗi đường tăng luồng trải qua không thể nhiều hơn $|V|$.
     
-    每找到一条增广路就有一条饱和边消失（剩余容量清零）．考虑阻塞流 $f_b$ 中的每条增广路，我们将被它们清零的饱和边形成的边集记作 $E_1$．考虑到 $G_L$ 分层的性质，饱和边消失后其反向边不可能在同一轮增广内被其他增广路经过，因此，$E_1$ 是 $E_L$ 的子集．
+    Mỗi khi tìm được một đường tăng luồng thì có một cạnh bão hòa biến mất, tức dung lượng còn dư bị xóa về không. Xét từng đường tăng luồng trong luồng chặn $f_b$, gọi $E_1$ là tập các cạnh bão hòa bị chúng xóa về không. Do tính chất phân tầng của $G_L$, sau khi cạnh bão hòa biến mất, cạnh ngược của nó không thể được các đường tăng luồng khác đi qua trong cùng một vòng tăng luồng. Vì vậy, $E_1$ là tập con của $E_L$.
     
-    此外，对于沿当前弧跳转但由于某个位置阻塞所以没有成功得到增广路的情形，我们将这些不完整的路径上的最后一条边形成的边集记作 $E_2$．$E_2$ 的成员不饱和，所以 $E_1$ 与 $E_2$ 不交，且 $E_1 \cup E_2$ 仍是 $E_L$ 的子集．
+    Ngoài ra, với các trường hợp đã nhảy theo cung hiện tại nhưng không thu được đường tăng luồng thành công do bị chặn ở một vị trí nào đó, gọi $E_2$ là tập các cạnh cuối cùng trên những đường chưa hoàn chỉnh này. Các phần tử của $E_2$ không bão hòa, nên $E_1$ và $E_2$ không giao nhau, đồng thời $E_1 \cup E_2$ vẫn là tập con của $E_L$.
     
-    由于 $E_1 \cup E_2$ 的每个成员都没有花费超过 $|V|$ 次跳转（且在使用多路增广优化后一些跳转将被重复计数），因此，综上所述，DFS 过程中的总跳转次数不可能多于 $|V||E_L|$．
+    Vì mỗi phần tử của $E_1 \cup E_2$ đều không tốn quá $|V|$ lần nhảy, và khi dùng tối ưu tăng luồng nhiều đường thì một số lần nhảy còn bị đếm lặp, nên tổng số lần nhảy trong quá trình DFS không thể nhiều hơn $|V||E_L|$.
     
-    ??? failure "常见伪证一则"
-        对于每个结点，我们维护下一条可以增广的边，而当前弧最多变化 $|E|$ 次，从而单轮增广的最坏时间复杂度为 $O(|V||E|)$．
+    ??? failure "Một chứng minh sai thường gặp"
+        Với mỗi đỉnh, ta duy trì cạnh tiếp theo có thể tăng luồng, còn cung hiện tại thay đổi nhiều nhất $|E|$ lần, từ đó độ phức tạp thời gian xấu nhất của một vòng tăng luồng là $O(|V||E|)$.
     
-    ??? bug "Bug"
-        「当前弧最多变化 $|E|$ 次」并不能推得「每个结点最多访问其出边 $|E|$ 次」．这是因为，访问当前弧并不一定耗尽上面的剩余容量，结点 $u$ 可能多次访问同一条当前弧．
+    ??? bug "Lỗi"
+        "Cung hiện tại thay đổi nhiều nhất $|E|$ lần" không suy ra được "mỗi đỉnh truy cập các cạnh ra của nó nhiều nhất $|E|$ lần". Lý do là truy cập cung hiện tại không nhất thiết làm cạn dung lượng còn dư trên cung đó; đỉnh $u$ có thể truy cập cùng một cung hiện tại nhiều lần.
 
-注意到层次图的层数显然不可能超过 $|V|$，如果我们可以证明层次图的层数在增广过程中严格单增，则 Dinic 算法的增广轮数是 $O(|V|)$ 的．接下来我们尝试证明这一结论[^ref_dinic]．
+Chú ý rằng số tầng của đồ thị tầng hiển nhiên không thể vượt quá $|V|$. Nếu có thể chứng minh số tầng của đồ thị tầng tăng nghiêm ngặt đơn điệu trong quá trình tăng luồng, thì số vòng tăng luồng của thuật toán Dinic là $O(|V|)$. Tiếp theo ta thử chứng minh kết luận này[^ref_dinic].
 
-???+ note "层次图层数单调性的证明"
-    我们需要引入预流推进类算法（另一类最大流算法）中的一个概念——高度标号．为了更方便地结合高度标号表述我们的证明，在证明过程中，我们令 $d_f(u)$ 为 $G_f$ 上结点 $u$ 到 **汇点**  $t$ 的距离，从 **汇点** 而非源点出发进行分层（这并没有本质上的区别）．对于某一轮增广，我们用 $f$ 和 $f'$ 分别表示增广前的流和增广后的流．在该轮增广中求解并加入阻塞流后，记层次图由 $G_L = (V, E_L)$ 变为 $G'_{L} = (V, E'_L)$．
+???+ note "Chứng minh tính đơn điệu của số tầng đồ thị tầng"
+    Ta cần đưa vào một khái niệm trong các thuật toán đẩy tiền luồng, một lớp thuật toán luồng cực đại khác: nhãn độ cao. Để thuận tiện kết hợp nhãn độ cao vào chứng minh, trong quá trình chứng minh, đặt $d_f(u)$ là khoảng cách từ đỉnh $u$ đến **đích** $t$ trên $G_f$, và phân tầng bắt đầu từ **đích** chứ không phải nguồn. Điều này không có khác biệt bản chất. Với một vòng tăng luồng nào đó, dùng $f$ và $f'$ lần lượt biểu diễn luồng trước và sau khi tăng. Sau khi tìm và thêm luồng chặn trong vòng tăng luồng này, ký hiệu đồ thị tầng chuyển từ $G_L = (V, E_L)$ thành $G'_{L} = (V, E'_L)$.
     
-    我们给高度标号一个不严格的临时定义——在网络 $G = (V, E)$ 上，令 $h$ 是点集 $V$ 到整数集 $N$ 上的函数，$h$ 是 $G$ 上合法的高度标号当且仅当 $h(u) \leq h(v) + 1$ 对于 $(u, v) \in E$ 恒成立．
+    Ta tạm thời định nghĩa nhãn độ cao một cách không chặt: trên mạng $G = (V, E)$, cho $h$ là một hàm từ tập đỉnh $V$ đến tập số nguyên $N$. $h$ là một nhãn độ cao hợp lệ trên $G$ khi và chỉ khi $h(u) \leq h(v) + 1$ luôn đúng với mọi $(u, v) \in E$.
     
-    考察所有 $E_{f'}$ 的成员 $(u, v)$，我们发现 $(u, v) \in E_{f'}$ 的原因是以下二者之一．
+    Xét mọi phần tử $(u, v)$ của $E_{f'}$, ta thấy lý do để $(u, v) \in E_{f'}$ là một trong hai trường hợp sau.
     
-    -   $(u, v) \in E_f$，且剩余容量在该轮增广过程中未耗尽——根据最短路的定义，此时我们有 $d_f(u) \leq d_f(v) + 1$；
-    -   $(u, v) \not \in E_f$，但在该轮增广过程中阻塞流经过 $(v, u)$ 并退流产生反向边——根据层次图和阻塞流的定义，此时我们有 $d_f(u) + 1 = d_f(v)$．
+    -   $(u, v) \in E_f$, và dung lượng còn dư chưa bị dùng hết trong vòng tăng luồng này. Theo định nghĩa đường đi ngắn nhất, lúc này ta có $d_f(u) \leq d_f(v) + 1$.
+    -   $(u, v) \not \in E_f$, nhưng trong vòng tăng luồng này luồng chặn đi qua $(v, u)$ và tạo cạnh ngược do hoàn luồng. Theo định nghĩa của đồ thị tầng và luồng chặn, lúc này ta có $d_f(u) + 1 = d_f(v)$.
     
-    以上观察让我们得出一个结论——$d_f$ 在 $G_{f'}$ 上是一个合法的高度标号．当然，在 $G_{f'}$ 的子图 $G'_L$ 上也是．
+    Quan sát trên cho ta một kết luận: $d_f$ là một nhãn độ cao hợp lệ trên $G_{f'}$. Tất nhiên, nó cũng hợp lệ trên đồ thị con $G'_L$ của $G_{f'}$.
     
-    现在，对于一条 $G'_L$ 上的增广路 $p = (s, \dots, u, v, \dots, t)$，按照 $p$ 上结点的反序（从 $t$ 到 $s$ 的顺序）考虑从空路径开始每次添加一个结点的过程．假设结点 $v$ 已加入，结点 $u$ 正在加入，我们发现，加入结点 $u$ 后，根据层次图的定义，$d_{f'}(u)$ 的值较 $d_{f'}(v)$ 增加 $1$；与此同时，由于 $d_f$ 是 $G'_L$ 上的高度标号，$d_f(u)$ 的值既可能较 $d_f(v)$ 增加 $1$，也可能保持不变或减少．因此，在整条路径被添加完成后，我们得到 $d_{f'}(s) \geq d_f(s)$，其中取等的充要条件是 $d_f(u) = d_f(v) + 1$ 对于 $(u, v) \in p$ 恒成立．如果该不等式不能取等，则有 $d_{f'}(s) > d_f(s)$——即我们想要的结论「层次图的层数在增广过程中严格单增」．以下我们尝试证明该不等式不能取等．
+    Bây giờ, với một đường tăng luồng $p = (s, \dots, u, v, \dots, t)$ trên $G'_L$, xét quá trình bắt đầu từ đường rỗng rồi lần lượt thêm một đỉnh theo thứ tự ngược của các đỉnh trên $p$, tức từ $t$ đến $s$. Giả sử đỉnh $v$ đã được thêm, và đỉnh $u$ đang được thêm. Ta thấy sau khi thêm $u$, theo định nghĩa đồ thị tầng, giá trị $d_{f'}(u)$ lớn hơn $d_{f'}(v)$ đúng $1$; đồng thời, vì $d_f$ là nhãn độ cao trên $G'_L$, giá trị $d_f(u)$ có thể lớn hơn $d_f(v)$ đúng $1$, cũng có thể giữ nguyên hoặc giảm. Vì vậy, sau khi toàn bộ đường được thêm xong, ta thu được $d_{f'}(s) \geq d_f(s)$. Điều kiện cần và đủ để đạt dấu bằng là $d_f(u) = d_f(v) + 1$ luôn đúng với mọi $(u, v) \in p$. Nếu bất đẳng thức này không đạt dấu bằng, thì $d_{f'}(s) > d_f(s)$, tức chính là kết luận ta muốn: số tầng của đồ thị tầng tăng nghiêm ngặt đơn điệu trong quá trình tăng luồng. Sau đây ta thử chứng minh bất đẳng thức này không thể đạt dấu bằng.
     
-    考虑反证，我们假设 $d_{f'}(s) = d_f(s)$ 成立，并尝试导出矛盾．现在我们断言，在 $G'_L$ 上，$p$ 至少包含一条边 $(u, v)$ 满足 $(u, v)$ 在 $G_L$ 上不存在．如果没有这样的边，考虑到 $d_f(s) = d_{f'}(s)$，结合层次图和阻塞流的定义，$G_L$ 上的增广应尚未完成．为了不产生以上矛盾，我们的断言只好是正确的．
+    Xét phản chứng, giả sử $d_{f'}(s) = d_f(s)$ đúng, và thử dẫn đến mâu thuẫn. Bây giờ ta khẳng định rằng trên $G'_L$, $p$ chứa ít nhất một cạnh $(u, v)$ không tồn tại trên $G_L$. Nếu không có cạnh như vậy, xét $d_f(s) = d_{f'}(s)$ và kết hợp định nghĩa đồ thị tầng cùng luồng chặn, việc tăng luồng trên $G_L$ đáng lẽ chưa hoàn tất. Để tránh mâu thuẫn này, khẳng định của ta phải đúng.
     
-    令 $(u, v)$ 是满足断言条件的那条边，其满足断言的原因只能是以下二者之一．
+    Gọi $(u, v)$ là cạnh thỏa mãn khẳng định đó. Lý do khiến nó thỏa mãn khẳng định chỉ có thể là một trong hai trường hợp sau.
     
-    -   $(u, v) \in E_f$ 但 $d_f(u) \leq d_f(v) + 1$ 未取等，故根据层次图的定义可知 $(u, v) \not \in E_L$，并在增广后新一轮重分层中被加入到 $E'_L$ 中；
-    -   $(u, v) \not \in E_f$，这意味着 $(u, v)$ 这条边的产生是当前轮次增广中阻塞流经过 $(v, u)$ 并退流产生反向边的结果，也即 $d_f(u) = d_f(v) - 1$．
+    -   $(u, v) \in E_f$ nhưng $d_f(u) \leq d_f(v) + 1$ không đạt dấu bằng, nên theo định nghĩa đồ thị tầng, $(u, v) \not \in E_L$, và sau khi tăng luồng được thêm vào $E'_L$ trong lần phân tầng lại mới.
+    -   $(u, v) \not \in E_f$, nghĩa là cạnh $(u, v)$ được sinh ra do luồng chặn trong vòng tăng luồng hiện tại đi qua $(v, u)$ và tạo cạnh ngược do hoàn luồng, tức $d_f(u) = d_f(v) - 1$.
     
-    由于我们无论以何种方式满足断言均得到 $d_f(u) \neq d_f(v) + 1$，也即 $d_{f'}(s) \geq d_f(s)$ 取等的充要条件无法被满足，这与反证假设 $d_{f'}(s) = d_f(s)$ 冲突，原命题得证．
+    Dù khẳng định được thỏa mãn theo cách nào, ta đều có $d_f(u) \neq d_f(v) + 1$. Tức là điều kiện cần và đủ để $d_{f'}(s) \geq d_f(s)$ đạt dấu bằng không thể được thỏa mãn, mâu thuẫn với giả thiết phản chứng $d_{f'}(s) = d_f(s)$. Mệnh đề ban đầu được chứng minh.
     
-    ??? failure "常见伪证另一则"
-        考虑反证．假设层次图的层数在一轮增广结束后较原先相等，则层次图上应仍存在至少一条从 $s$ 到 $t$ 的增广路满足相邻两点间的层数差为 $1$．这条增广路未被增广说明该轮增广尚未结束．为了不产生上述矛盾，原命题成立．
+    ??? failure "Một chứng minh sai thường gặp khác"
+        Xét phản chứng. Giả sử sau một vòng tăng luồng, số tầng của đồ thị tầng bằng trước đó, thì trên đồ thị tầng vẫn phải tồn tại ít nhất một đường tăng luồng từ $s$ đến $t$ sao cho hiệu số tầng giữa hai đỉnh kề nhau là $1$. Đường tăng luồng này chưa được tăng chứng tỏ vòng tăng luồng đó chưa kết thúc. Để tránh mâu thuẫn trên, mệnh đề ban đầu đúng.
     
-    ??? bug "Bug"
-        「一轮增广结束后新的层次图上 $s$-$t$ 最短路较原先相等」并不能推得「旧的层次图上该轮增广尚未结束」．这是因为，没有理由表明两张层次图的边集相同，新的层次图上的 $s$-$t$ 最短路有可能经过旧的层次图上不存在的边．
+    ??? bug "Lỗi"
+        "Sau khi một vòng tăng luồng kết thúc, đường đi ngắn nhất $s$-$t$ trên đồ thị tầng mới bằng trước đó" không suy ra được "vòng tăng luồng trên đồ thị tầng cũ chưa kết thúc". Lý do là không có căn cứ nào cho thấy tập cạnh của hai đồ thị tầng là như nhau; đường đi ngắn nhất $s$-$t$ trên đồ thị tầng mới có thể đi qua cạnh không tồn tại trên đồ thị tầng cũ.
 
-将单轮增广的时间复杂度 $O(|V||E|)$ 与增广轮数 $O(|V|)$ 相乘，Dinic 算法的时间复杂度是 $O(|V|^2|E|)$．
+Nhân độ phức tạp thời gian của một vòng tăng luồng $O(|V||E|)$ với số vòng tăng luồng $O(|V|)$, độ phức tạp thời gian của thuật toán Dinic là $O(|V|^2|E|)$.
 
-如果需要令 Dinic 算法的实际运行时间接近其理论上界，我们需要构造有特殊性质的网络作为输入．由于在算法竞赛实践中，对于网络流知识相关的考察常侧重于将原问题建模为网络流问题的技巧．此时，我们的建模通常不包含令 Dinic 算法执行缓慢的特殊性质；恰恰相反，Dinic 算法在大部分图上效率非常优秀．因此，网络流问题的数据范围通常较大，「将 $|V|, |E|$ 的值代入 $|V|^2|E|$ 以估计运行时间」这一方式并不适用．实际上，进行准确的估计需要选手对 Dinic 算法的实际效率有一定的经验，读者可以多加练习．
+Nếu muốn thời gian chạy thực tế của thuật toán Dinic tiệm cận cận trên lý thuyết, ta cần xây dựng mạng đầu vào có tính chất đặc biệt. Trong thực hành thi thuật toán, phần kiểm tra kiến thức luồng mạng thường tập trung vào kỹ thuật mô hình hóa bài toán gốc thành bài toán luồng mạng. Khi đó, mô hình của ta thường không chứa các tính chất đặc biệt khiến thuật toán Dinic chạy chậm; ngược lại, Dinic có hiệu quả rất tốt trên phần lớn đồ thị. Vì vậy, phạm vi dữ liệu của bài toán luồng mạng thường khá lớn, và cách "thay giá trị $|V|, |E|$ vào $|V|^2|E|$ để ước lượng thời gian chạy" không phù hợp. Thực tế, để ước lượng chính xác, thí sinh cần có kinh nghiệm nhất định về hiệu suất thực tế của thuật toán Dinic; người đọc có thể luyện tập thêm.
 
-#### 特殊情形下的时间复杂度分析
+#### Phân tích độ phức tạp thời gian trong các trường hợp đặc biệt
 
-在一些性质良好的图上，Dinic 算法有更好的时间复杂度．
+Trên một số đồ thị có tính chất tốt, thuật toán Dinic có độ phức tạp thời gian tốt hơn.
 
-对于网络 $G = (V, E)$，如果其所有边容量均为 $1$，即 $c(u, v) \in \{0, 1\}$ 对于 $(u, v) \in E$ 恒成立，则我们称 $G$ 是单位容量（Unit Capacity）的．
+Với mạng $G = (V, E)$, nếu mọi cạnh đều có dung lượng bằng $1$, tức $c(u, v) \in \{0, 1\}$ luôn đúng với mọi $(u, v) \in E$, ta gọi $G$ là mạng dung lượng đơn vị (Unit Capacity).
 
-在单位容量的网络中，Dinic 算法的单轮增广的时间复杂度为 $O(|E|)$．
+Trong mạng dung lượng đơn vị, độ phức tạp thời gian của một vòng tăng luồng trong thuật toán Dinic là $O(|E|)$.
 
-???+ note "证明"
-    这是因为，每次增广都会导致增广路上的所有边均饱和并消失，故单轮增广中每条边只能被增广一次．
+???+ note "Chứng minh"
+    Lý do là mỗi lần tăng luồng đều làm mọi cạnh trên đường tăng luồng bão hòa và biến mất, nên trong một vòng tăng luồng, mỗi cạnh chỉ có thể được tăng luồng một lần.
 
-在单位容量的网络中，Dinic 算法的增广轮数是 $O(|E|^{\frac{1}{2}})$ 的．
+Trong mạng dung lượng đơn vị, số vòng tăng luồng của thuật toán Dinic là $O(|E|^{\frac{1}{2}})$.
 
-???+ note "证明"
-    以源点 $s$ 为中心分层，记 $d_f(u)$ 为 $G_f$ 上结点 $u$ 到源点 $s$ 的距离．另外，我们定义将点集 $\left\{u \mid u \in V, d_f(u) = k \right\}$ 定义为编号为 $k$ 的层次 $D_k$，并记 $S_k = \cup_{i \leq k} D_i$．
+???+ note "Chứng minh"
+    Phân tầng lấy nguồn $s$ làm trung tâm, ký hiệu $d_f(u)$ là khoảng cách từ đỉnh $u$ đến nguồn $s$ trên $G_f$. Ngoài ra, định nghĩa tập đỉnh $\left\{u \mid u \in V, d_f(u) = k \right\}$ là tầng số $k$, ký hiệu $D_k$, và đặt $S_k = \cup_{i \leq k} D_i$.
     
-    假设我们已经进行了 $|E|^{\frac{1}{2}}$ 轮增广．根据鸽巢原理，至少存在一个 $k$ 满足边集 $\left\{ (u, v) \mid u \in D_k, v \in D_{k+1}, (u, v) \in E_f \right\}$ 的大小不超过 $\frac {|E|} {|E|^{\frac{1}{2}}} \approx |E|^{\frac{1}{2}}$．显然，$\{S_k, V - S_k\}$ 是 $G_f$ 上的 $s$-$t$ 割，且其割容量不超过 $|E|^{\frac{1}{2}}$．根据最大流最小割定理，$G_f$ 上的最大流不超过 $|E|^{\frac{1}{2}}$，也即 $G_f$ 上最多还能执行 $|E|^{\frac{1}{2}}$ 轮增广．因此，总增广轮数是 $O(|E|^{\frac{1}{2}})$ 的．
+    Giả sử ta đã thực hiện $|E|^{\frac{1}{2}}$ vòng tăng luồng. Theo nguyên lý Dirichlet, tồn tại ít nhất một $k$ sao cho kích thước của tập cạnh $\left\{ (u, v) \mid u \in D_k, v \in D_{k+1}, (u, v) \in E_f \right\}$ không vượt quá $\frac {|E|} {|E|^{\frac{1}{2}}} \approx |E|^{\frac{1}{2}}$. Hiển nhiên, $\{S_k, V - S_k\}$ là một lát cắt $s$-$t$ trên $G_f$, và dung lượng lát cắt của nó không vượt quá $|E|^{\frac{1}{2}}$. Theo định lý luồng cực đại - lát cắt nhỏ nhất, luồng cực đại trên $G_f$ không vượt quá $|E|^{\frac{1}{2}}$, tức trên $G_f$ nhiều nhất còn có thể thực hiện $|E|^{\frac{1}{2}}$ vòng tăng luồng. Vì vậy tổng số vòng tăng luồng là $O(|E|^{\frac{1}{2}})$.
 
-在单位容量的网络中，Dinic 算法的增广轮数是 $O(|V|^{\frac{2}{3}})$ 的．
+Trong mạng dung lượng đơn vị, số vòng tăng luồng của thuật toán Dinic là $O(|V|^{\frac{2}{3}})$.
 
-???+ note "证明"
-    假设我们已经进行了 $2 |V|^{\frac{2}{3}}$ 轮增广．由于至多有半数的（$|V|^{\frac{2}{3}}$ 个）层次包含多于 $|V|^{\frac{1}{3}}$ 个点，故无论我们如何分配所有层次的大小，至少存在一个 $k$ 满足相邻两个层次同时包含不多于 $|V|^{\frac{1}{3}}$ 个点，即 $|D_k| \leq |V|^{\frac{1}{3}}$ 且 $|D_{k+1}| \leq |V|^{\frac{1}{3}}$．
+???+ note "Chứng minh"
+    Giả sử ta đã thực hiện $2 |V|^{\frac{2}{3}}$ vòng tăng luồng. Vì nhiều nhất chỉ có một nửa số tầng, tức $|V|^{\frac{2}{3}}$ tầng, chứa nhiều hơn $|V|^{\frac{1}{3}}$ đỉnh, nên bất kể ta phân bố kích thước của tất cả các tầng như thế nào, vẫn tồn tại ít nhất một $k$ sao cho hai tầng kề nhau đều chứa không quá $|V|^{\frac{1}{3}}$ đỉnh, tức $|D_k| \leq |V|^{\frac{1}{3}}$ và $|D_{k+1}| \leq |V|^{\frac{1}{3}}$.
     
-    为最大化 $D_k$ 和 $D_{k+1}$ 之间的边数，我们假定这是一个完全二分图，此时边集 $\left\{ (u, v) \mid u \in D_k, v \in D_{k+1}, (u, v) \in E_f \right\}$ 的大小不超过 $|V|^{\frac{2}{3}}$．显然，$\{S_k, V - S_k\}$ 是 $G_f$ 上的 $s$-$t$ 割，且其割容量不超过 $|V|^{\frac{2}{3}}$．根据最大流最小割定理，$G_f$ 上的最大流不超过 $|V|^{\frac{2}{3}}$，也即 $G_f$ 上最多还能执行 $|V|^{\frac{2}{3}}$ 轮增广．因此，总增广轮数是 $O(|V|^{\frac{2}{3}})$ 的．
+    Để tối đa hóa số cạnh giữa $D_k$ và $D_{k+1}$, giả sử đây là một đồ thị hai phía đầy đủ. Khi đó kích thước của tập cạnh $\left\{ (u, v) \mid u \in D_k, v \in D_{k+1}, (u, v) \in E_f \right\}$ không vượt quá $|V|^{\frac{2}{3}}$. Hiển nhiên, $\{S_k, V - S_k\}$ là một lát cắt $s$-$t$ trên $G_f$, và dung lượng lát cắt của nó không vượt quá $|V|^{\frac{2}{3}}$. Theo định lý luồng cực đại - lát cắt nhỏ nhất, luồng cực đại trên $G_f$ không vượt quá $|V|^{\frac{2}{3}}$, tức trên $G_f$ nhiều nhất còn có thể thực hiện $|V|^{\frac{2}{3}}$ vòng tăng luồng. Vì vậy tổng số vòng tăng luồng là $O(|V|^{\frac{2}{3}})$.
 
-在单位容量的网络中，如果除源汇点外每个结点 $u$ 都满足 $\mathit{deg}_{\mathit{in}}(u) = 1$ 或 $\mathit{deg}_{\mathit{out}}(u) = 1$，则 Dinic 算法的增广轮数是 $O(|V|^{\frac{1}{2}})$ 的．其中，$\mathit{deg}_{\mathit{in}}(u)$ 和 $\mathit{deg}_{\mathit{out}}(u)$ 分别代表结点 $u$ 的入度和出度．
+Trong mạng dung lượng đơn vị, nếu ngoài nguồn và đích, mỗi đỉnh $u$ đều thỏa mãn $\mathit{deg}_{\mathit{in}}(u) = 1$ hoặc $\mathit{deg}_{\mathit{out}}(u) = 1$, thì số vòng tăng luồng của thuật toán Dinic là $O(|V|^{\frac{1}{2}})$. Trong đó, $\mathit{deg}_{\mathit{in}}(u)$ và $\mathit{deg}_{\mathit{out}}(u)$ lần lượt biểu diễn bậc vào và bậc ra của đỉnh $u$.
 
-???+ note "证明"
-    我们引入以下引理——对于这一形式的网络，其上的任意流总是可以分解成若干条单位流量的、**点不交** 的增广路．
+???+ note "Chứng minh"
+    Ta đưa vào bổ đề sau: với mạng có dạng này, bất kỳ luồng nào trên nó luôn có thể phân rã thành một số đường tăng luồng có luồng đơn vị và **không giao nhau theo đỉnh**.
     
-    假设我们已经进行了 $|V|^{\frac{1}{2}}$ 轮增广．根据层次图的定义，此时任意新的增广路的长度至少为 $|V|^{\frac{1}{2}}$．
+    Giả sử ta đã thực hiện $|V|^{\frac{1}{2}}$ vòng tăng luồng. Theo định nghĩa đồ thị tầng, lúc này độ dài của bất kỳ đường tăng luồng mới nào ít nhất là $|V|^{\frac{1}{2}}$.
     
-    考虑 $G_f$ 上的最大流的增广路分解，我们得到的增广路的数量不能多于 $\frac {|V|} {|V|^{\frac{1}{2}}} \approx |V|^{\frac{1}{2}}$，这意味着 $G_f$ 上最多还能执行 $|V|^{\frac{1}{2}}$ 轮增广．因此，总增广轮数是 $O(|V|^{\frac{1}{2}})$ 的．
+    Xét phân rã thành các đường tăng luồng của luồng cực đại trên $G_f$. Số đường tăng luồng thu được không thể nhiều hơn $\frac {|V|} {|V|^{\frac{1}{2}}} \approx |V|^{\frac{1}{2}}$, nghĩa là trên $G_f$ nhiều nhất còn có thể thực hiện $|V|^{\frac{1}{2}}$ vòng tăng luồng. Vì vậy tổng số vòng tăng luồng là $O(|V|^{\frac{1}{2}})$.
 
-综上，我们得出一些推论．
+Tóm lại, ta thu được một số hệ quả.
 
--   在单位容量的网络上，Dinic 算法的总时间复杂度是 $O(|E| \min(|E|^\frac{1}{2}, |V|^{\frac{2}{3}}))$．
--   在单位容量的网络上，如果除源汇点外每个结点 $u$ 都满足 $\mathit{deg}_{\mathit{in}}(u) = 1$ 或 $\mathit{deg}_{\mathit{out}}(u) = 1$，Dinic 算法的总时间复杂度是 $O(|E||V|^{\frac{1}{2}})$．对于二分图最大匹配问题，我们常使用 Hopcroft–Karp 算法解决，而这一算法实际上是 Dinic 算法在满足上述度数限制的单位容量网络上的特例．
+-   Trên mạng dung lượng đơn vị, tổng độ phức tạp thời gian của thuật toán Dinic là $O(|E| \min(|E|^\frac{1}{2}, |V|^{\frac{2}{3}}))$.
+-   Trên mạng dung lượng đơn vị, nếu ngoài nguồn và đích, mỗi đỉnh $u$ đều thỏa mãn $\mathit{deg}_{\mathit{in}}(u) = 1$ hoặc $\mathit{deg}_{\mathit{out}}(u) = 1$, tổng độ phức tạp thời gian của thuật toán Dinic là $O(|E||V|^{\frac{1}{2}})$. Với bài toán ghép cặp cực đại trên đồ thị hai phía, ta thường dùng thuật toán Hopcroft–Karp để giải, và thuật toán này thực ra là một trường hợp đặc biệt của Dinic trên mạng dung lượng đơn vị thỏa mãn ràng buộc bậc nói trên.
 
-#### 代码实现
+#### Cài đặt
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     struct MF {
       struct edge {
@@ -406,13 +407,13 @@ Edmonds–Karp 算法的可能实现如下．
     } mf;
     ```
 
-### MPM 算法
+### Thuật toán MPM
 
-**MPM**(Malhotra, Pramodh-Kumar and Maheshwari) 算法得到最大流的方式有两种：使用基于堆的优先队列，时间复杂度为 $O(n^3\log n)$；常用 BFS 解法，时间复杂度为 $O(n^3)$．注意，本章节只专注于分析更优也更简洁的 $O(n^3)$ 算法．
+Thuật toán **MPM** (Malhotra, Pramodh-Kumar and Maheshwari) có hai cách tìm luồng cực đại: dùng hàng đợi ưu tiên dựa trên heap với độ phức tạp thời gian $O(n^3\log n)$; hoặc cách giải BFS thường dùng với độ phức tạp thời gian $O(n^3)$. Chú ý rằng mục này chỉ tập trung phân tích thuật toán $O(n^3)$ tốt hơn và gọn hơn.
 
-MPM 算法的整体结构和 Dinic 算法类似，也是分阶段运行的．在每个阶段，在 $G$ 的残量网络的分层网络中找到增广路．它与 Dinic 算法的主要区别在于寻找增广路的方式不同：MPM 算法中寻找增广路的部分的只花了 $O(n^2)$, 时间复杂度要优于 Dinic 算法．
+Cấu trúc tổng thể của thuật toán MPM tương tự thuật toán Dinic, cũng chạy theo từng pha. Trong mỗi pha, thuật toán tìm đường tăng luồng trong mạng phân tầng của mạng thặng dư của $G$. Khác biệt chính so với Dinic nằm ở cách tìm đường tăng luồng: phần tìm đường tăng luồng trong thuật toán MPM chỉ tốn $O(n^2)$, có độ phức tạp thời gian tốt hơn Dinic.
 
-MPM 算法需要考虑顶点而不是边的容量．在分层网络 $L$ 中，如果定义点 $v$ 的容量 $p(v)$ 为其传入残量和传出残量的最小值，则有：
+Thuật toán MPM cần xét dung lượng của đỉnh thay vì cạnh. Trong mạng phân tầng $L$, nếu định nghĩa dung lượng $p(v)$ của đỉnh $v$ là giá trị nhỏ hơn giữa tổng thặng dư đi vào và tổng thặng dư đi ra của nó, thì có:
 
 $$
 \begin{aligned}
@@ -422,26 +423,26 @@ p(v) &= \min (p_{in}(v), p_{out}(v))
 \end{aligned}
 $$
 
-我们称节点 $r$ 是参考节点当且仅当 $p(r) = \min {p(v)}$．对于一个参考节点 $r$，我们一定可以让经过 $r$ 的流量增加 $p(r)$ 以使其容量变为 $0$．这是因为 $L$ 是有向无环图且 $L$ 中节点容量至少为 $p(r)$，所以我们一定能找到一条从 $s$ 经过 $r$ 到达 $t$ 的有向路径．那么我们让这条路上的边流量都增加 $p(r)$ 即可．这条路即为这一阶段的增广路．寻找增广路可以用 BFS．增广完之后所有满流边都可以从 $L$ 中删除，因为它们不会在此阶段后被使用．同样，所有与 $s$ 和 $t$ 不同且没有出边或入边的节点都可以删除．
+Ta gọi đỉnh $r$ là đỉnh tham chiếu khi và chỉ khi $p(r) = \min {p(v)}$. Với một đỉnh tham chiếu $r$, ta chắc chắn có thể làm luồng đi qua $r$ tăng thêm $p(r)$ để dung lượng của nó trở thành $0$. Lý do là $L$ là đồ thị có hướng không chu trình và dung lượng đỉnh trong $L$ ít nhất là $p(r)$, nên ta chắc chắn tìm được một đường có hướng từ $s$ đi qua $r$ đến $t$. Khi đó chỉ cần tăng luồng trên các cạnh của đường này thêm $p(r)$. Đường này chính là đường tăng luồng của pha này. Có thể dùng BFS để tìm đường tăng luồng. Sau khi tăng luồng xong, mọi cạnh đầy luồng đều có thể bị xóa khỏi $L$ vì chúng sẽ không được dùng tiếp trong pha này. Tương tự, mọi đỉnh khác $s$ và $t$ mà không có cạnh ra hoặc cạnh vào cũng có thể bị xóa.
 
-#### 时间复杂度分析
+#### Phân tích độ phức tạp thời gian
 
-MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（因为至少删除了所选的参考节点），并且在每次迭代中，我们删除除最多 $V$ 之外经过的所有边．求和，我们得到 $O(V^2+E)=O(V^2)$．由于阶段总数少于 $V$，因此 MPM 算法的总运行时间为 $O(V^3)$．
+Mỗi pha của thuật toán MPM cần $O(V^2)$, vì có nhiều nhất $V$ lần lặp, do ít nhất đỉnh tham chiếu được chọn bị xóa, và trong mỗi lần lặp, ta xóa tất cả các cạnh được đi qua, ngoại trừ nhiều nhất $V$ cạnh. Lấy tổng, ta được $O(V^2+E)=O(V^2)$. Vì tổng số pha nhỏ hơn $V$, tổng thời gian chạy của thuật toán MPM là $O(V^3)$.
 
-???+ note "阶段总数小于 V 的证明"
-    MPM 算法在少于 $V$ 个阶段内结束．为了证明这一点，我们必须首先证明两个引理．
+???+ note "Chứng minh số pha nhỏ hơn V"
+    Thuật toán MPM kết thúc trong ít hơn $V$ pha. Để chứng minh điều này, trước hết ta phải chứng minh hai bổ đề.
     
-    **引理 1**：每次迭代后，从 $s$ 到每个点的距离不会减少，也就是说，$level_{i+1}[v] \ge level_{i}[v]$．
+    **Bổ đề 1**: sau mỗi lần lặp, khoảng cách từ $s$ đến mỗi đỉnh không giảm, tức $level_{i+1}[v] \ge level_{i}[v]$.
     
-    **证明**：固定一个阶段 $i$ 和点 $v$．考虑 $G_{i}^R$ 中从 $s$ 到 $v$ 的任意最短路径 $P$．$P$ 的长度等于 $level_{i}[v]$．注意 $G_{i}^R$ 只能包含 $G_{i}^R$ 的后向边和前向边．如果 $P$ 没有 $G_{i}^R$ 的后边，那么 $level_{i+1}[v] \ge level_{i}[v]$．因为 $P$ 也是 $G_{i}^R$ 中的一条路径．现在，假设 $P$ 至少有一个后向边且第一个这样的边是 $(u,w)$，那么 $level_{i+1}[u] \ge level_{i}[u]$（因为第一种情况）．边 $(u,w)$ 不属于 $G_{i}^R$，因此 $(u,w)$ 受到前一次迭代的增广路的影响．这意味着 $level_{i}[u] = level_{i}[w]+1$．此外，$level_{i+1}[w] = level_{i+1}[u]+1$．从这两个方程和 $level_{i+1}[u] \ge level_{i}[u]$ 我们得到 $level_{i+1}[w] \ge level_{i}[w]+2$．路径的剩余部分也可以使用相同思想．
+    **Chứng minh**: cố định một pha $i$ và một đỉnh $v$. Xét một đường đi ngắn nhất bất kỳ $P$ từ $s$ đến $v$ trong $G_{i}^R$. Độ dài của $P$ bằng $level_{i}[v]$. Chú ý rằng $G_{i}^R$ chỉ có thể chứa các cạnh lùi và cạnh tiến của $G_{i}^R$. Nếu $P$ không có cạnh lùi của $G_{i}^R$, thì $level_{i+1}[v] \ge level_{i}[v]$, vì $P$ cũng là một đường đi trong $G_{i}^R$. Bây giờ giả sử $P$ có ít nhất một cạnh lùi và cạnh đầu tiên như vậy là $(u,w)$. Khi đó $level_{i+1}[u] \ge level_{i}[u]$, do trường hợp thứ nhất. Cạnh $(u,w)$ không thuộc $G_{i}^R$, vì vậy $(u,w)$ chịu ảnh hưởng của đường tăng luồng ở lần lặp trước. Điều này nghĩa là $level_{i}[u] = level_{i}[w]+1$. Ngoài ra, $level_{i+1}[w] = level_{i+1}[u]+1$. Từ hai phương trình này và $level_{i+1}[u] \ge level_{i}[u]$, ta được $level_{i+1}[w] \ge level_{i}[w]+2$. Phần còn lại của đường đi cũng có thể dùng cùng ý tưởng.
     
-    **引理 2**：$level_{i+1}[t] > level_{i}[t]$．
+    **Bổ đề 2**: $level_{i+1}[t] > level_{i}[t]$.
     
-    **证明**：从引理一我们得出，$level_{i+1}[t] \ge level_{i}[t]$．假设 $level_{i+1}[t] = level_{i}[t]$，注意 $G_{i}^R$ 只能包含 $G_{i}^R$ 的后向边和前向边．这意味着 $G_{i}^R$ 中有一条最短路径未被增广路阻塞．这就形成了矛盾．
+    **Chứng minh**: từ bổ đề 1, ta có $level_{i+1}[t] \ge level_{i}[t]$. Giả sử $level_{i+1}[t] = level_{i}[t]$. Chú ý rằng $G_{i}^R$ chỉ có thể chứa các cạnh lùi và cạnh tiến của $G_{i}^R$. Điều này nghĩa là trong $G_{i}^R$ có một đường đi ngắn nhất chưa bị đường tăng luồng chặn, dẫn đến mâu thuẫn.
 
-#### 实现
+#### Cài đặt
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     struct MPM {
       struct FlowEdge {
@@ -626,31 +627,31 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
 
 ### ISAP
 
-在 Dinic 算法中，我们每次求完增广路后都要跑 BFS 来分层，有没有更高效的方法呢？
+Trong thuật toán Dinic, sau mỗi lần tìm xong đường tăng luồng, ta đều phải chạy BFS để phân tầng. Có cách nào hiệu quả hơn không?
 
-答案就是下面要介绍的 ISAP 算法．
+Câu trả lời chính là thuật toán ISAP được giới thiệu dưới đây.
 
-#### 过程
+#### Quy trình
 
-和 Dinic 算法一样，我们还是先跑 BFS 对图上的点进行分层，不过与 Dinic 略有不同的是，我们选择在反图上，从 $t$ 点向 $s$ 点进行 BFS．
+Giống thuật toán Dinic, trước hết ta vẫn chạy BFS để phân tầng các đỉnh trên đồ thị. Tuy nhiên, hơi khác Dinic ở chỗ ta chọn chạy BFS trên đồ thị ngược, từ đỉnh $t$ về đỉnh $s$.
 
-执行完分层过程后，我们通过 DFS 来找增广路．
+Sau khi thực hiện xong quá trình phân tầng, ta dùng DFS để tìm đường tăng luồng.
 
-增广的过程和 Dinic 类似，我们只选择比当前点层数少 $1$ 的点来增广．
+Quá trình tăng luồng tương tự Dinic: ta chỉ chọn các đỉnh có số tầng nhỏ hơn đỉnh hiện tại $1$ đơn vị để tăng luồng.
 
-与 Dinic 不同的是，我们并不会重跑 BFS 来对图上的点重新分层，而是在增广的过程中就完成重分层过程．
+Khác với Dinic, ta không chạy lại BFS để phân tầng lại các đỉnh trên đồ thị, mà hoàn thành việc phân tầng lại ngay trong quá trình tăng luồng.
 
-具体来说，设 $i$ 号点的层为 $d_i$，当我们结束在 $i$ 号点的增广过程后，我们遍历残量网络上 $i$ 的所有出边，找到层最小的出点 $j$，随后令 $d_i \gets d_j+1$．特别地，若残量网络上 $i$ 无出边，则 $d_i \gets n$．
+Cụ thể, giả sử tầng của đỉnh số $i$ là $d_i$. Khi kết thúc quá trình tăng luồng tại đỉnh số $i$, ta duyệt tất cả các cạnh ra của $i$ trên mạng thặng dư, tìm đỉnh ra $j$ có tầng nhỏ nhất, rồi đặt $d_i \gets d_j+1$. Đặc biệt, nếu trên mạng thặng dư $i$ không có cạnh ra, đặt $d_i \gets n$.
 
-容易发现，当 $d_s \geq n$ 时，图上不存在增广路，此时即可终止算法．
+Dễ thấy khi $d_s \geq n$, trên đồ thị không tồn tại đường tăng luồng, khi đó có thể kết thúc thuật toán.
 
-和 Dinic 类似，ISAP 中也存在 **当前弧优化**．
+Giống Dinic, trong ISAP cũng có **tối ưu cung hiện tại**.
 
-而 ISAP 还存在另外一个优化，我们记录层数为 $i$ 的点的数量 $num_i$，每当将一个点的层数从 $x$ 更新到 $y$ 时，同时更新 $num$ 数组的值，若在更新后 $num_x=0$，则意味着图上出现了断层，无法再找到增广路，此时可以直接终止算法（实现时直接将 $d_s$ 标为 $n$），该优化被称为 **GAP 优化**．
+ISAP còn có một tối ưu khác: ta ghi lại số lượng đỉnh có tầng bằng $i$ là $num_i$. Mỗi khi cập nhật tầng của một đỉnh từ $x$ thành $y$, đồng thời cập nhật giá trị mảng $num$. Nếu sau cập nhật $num_x=0$, điều đó nghĩa là trên đồ thị xuất hiện một khoảng trống tầng, không thể tìm thêm đường tăng luồng nữa. Khi đó có thể trực tiếp kết thúc thuật toán, khi cài đặt thì trực tiếp đánh dấu $d_s$ thành $n$. Tối ưu này được gọi là **tối ưu GAP**.
 
-#### 实现
+#### Cài đặt
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     struct Edge {
       int from, to, cap, flow;
@@ -765,54 +766,54 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
     };
     ```
 
-## Push-Relabel 预流推进算法
+## Thuật toán đẩy tiền luồng Push-Relabel
 
-该方法在求解过程中忽略流守恒性，并每次对一个结点更新信息，以求解最大流．
+Phương pháp này bỏ qua tính bảo toàn luồng trong quá trình giải, và mỗi lần cập nhật thông tin của một đỉnh để tìm luồng cực đại.
 
-### 通用的预流推进算法
+### Thuật toán đẩy tiền luồng tổng quát
 
-首先我们介绍预流推进算法的主要思想，以及一个可行的暴力实现算法．
+Trước hết ta giới thiệu tư tưởng chính của thuật toán đẩy tiền luồng, cũng như một thuật toán vét cạn khả thi.
 
-预流推进算法通过对单个结点的更新操作，直到没有结点需要更新来求解最大流．
+Thuật toán đẩy tiền luồng giải luồng cực đại bằng cách cập nhật từng đỉnh cho đến khi không còn đỉnh nào cần cập nhật.
 
-算法过程维护的流函数不一定保持流守恒性，对于一个结点，我们允许进入结点的流超过流出结点的流，超过的部分被称为结点 $u(u\in V-\{s,t\})$ 的 **超额流**  $e(u)$：
+Hàm luồng được duy trì trong quá trình thuật toán không nhất thiết luôn thỏa mãn bảo toàn luồng. Với một đỉnh, ta cho phép luồng đi vào đỉnh lớn hơn luồng đi ra khỏi đỉnh; phần vượt quá được gọi là **luồng dư** $e(u)$ của đỉnh $u(u\in V-\{s,t\})$:
 
 $$
 e(u)=\sum_{(x,u)\in E}f(x,u)-\sum_{(u,y)\in E}f(u,y)
 $$
 
-若 $e(u)>0$，称结点 $u$  **溢出**[^note1]，注意当我们提到溢出结点时，并不包括 $s$ 和 $t$．
+Nếu $e(u)>0$, gọi đỉnh $u$ là **đang hoạt động**[^note1]. Chú ý rằng khi nói đến đỉnh đang hoạt động, ta không bao gồm $s$ và $t$.
 
-预流推进算法维护每个结点的高度 $h(u)$，并且规定溢出的结点 $u$ 如果要推送超额流，只能向高度小于 $u$ 的结点推送；如果 $u$ 没有相邻的高度小于 $u$ 的结点，就修改 $u$ 的高度（重贴标签）．
+Thuật toán đẩy tiền luồng duy trì độ cao $h(u)$ của mỗi đỉnh và quy định rằng nếu đỉnh đang hoạt động $u$ muốn đẩy luồng dư, nó chỉ có thể đẩy đến các đỉnh có độ cao nhỏ hơn $u$. Nếu $u$ không có đỉnh kề nào có độ cao nhỏ hơn $u$, thì sửa độ cao của $u$, tức gán lại nhãn.
 
-#### 高度函数[^note2]
+#### Hàm độ cao[^note2]
 
-准确地说，预流推进维护以下的一个映射 $h:V\to \mathbf{N}$：
+Nói chính xác, đẩy tiền luồng duy trì ánh xạ sau $h:V\to \mathbf{N}$:
 
 -   $h(s)=|V|,h(t)=0$
 -   $\forall (u,v)\in E_f,h(u)\leq h(v)+1$
 
-称 $h$ 是残量网络 $G_f=(V_f,E_f)$ 的高度函数．
+Gọi $h$ là hàm độ cao của mạng thặng dư $G_f=(V_f,E_f)$.
 
-引理 1：设 $G_f$ 上的高度函数为 $h$，对于任意两个结点 $u,v\in V$，如果 $h(u)>h(v)+1$，则 $(u,v)$ 不是 $G_f$ 中的边．
+Bổ đề 1: giả sử hàm độ cao trên $G_f$ là $h$. Với hai đỉnh bất kỳ $u,v\in V$, nếu $h(u)>h(v)+1$ thì $(u,v)$ không phải là cạnh trong $G_f$.
 
-算法只会在 $h(u)=h(v)+1$ 的边执行推送．
+Thuật toán chỉ thực hiện đẩy trên các cạnh có $h(u)=h(v)+1$.
 
-#### 推送（Push）
+#### Đẩy (Push)
 
-适用条件：结点 $u$ 溢出，且存在结点 $v((u,v)\in E_f,c(u,v)-f(u,v)>0,h(u)=h(v)+1)$，则 push 操作适用于 $(u,v)$．
+Điều kiện áp dụng: đỉnh $u$ đang hoạt động, và tồn tại đỉnh $v((u,v)\in E_f,c(u,v)-f(u,v)>0,h(u)=h(v)+1)$. Khi đó thao tác push áp dụng được cho $(u,v)$.
 
-于是，我们尽可能将超额流从 $u$ 推送到 $v$，推送过程中我们只关心超额流和 $c(u,v)-f(u,v)$ 的最小值，不关心 $v$ 是否溢出．
+Vì vậy, ta cố gắng đẩy nhiều nhất có thể luồng dư từ $u$ sang $v$. Trong quá trình đẩy, ta chỉ quan tâm giá trị nhỏ nhất giữa luồng dư và $c(u,v)-f(u,v)$, không quan tâm $v$ có trở thành đỉnh đang hoạt động hay không.
 
-如果 $(u,v)$ 在推送完之后满流，将其从残量网络中删除．
+Nếu $(u,v)$ đầy luồng sau khi đẩy xong, xóa nó khỏi mạng thặng dư.
 
-#### 重贴标签（Relabel）
+#### Gán lại nhãn (Relabel)
 
-适用条件：如果结点 $u$ 溢出，且 $\forall (u,v)\in E_f,h(u)\leq h(v)$，则 relabel 操作适用于 $u$．
+Điều kiện áp dụng: nếu đỉnh $u$ đang hoạt động, và $\forall (u,v)\in E_f,h(u)\leq h(v)$, thì thao tác relabel áp dụng được cho $u$.
 
-则将 $h(u)$ 更新为 $\min_{(u,v)\in E_f}h(v)+1$ 即可．
+Khi đó chỉ cần cập nhật $h(u)$ thành $\min_{(u,v)\in E_f}h(v)+1$.
 
-#### 初始化
+#### Khởi tạo
 
 $$
 \forall (u,v)\in E,~~f(u,v)=\begin{cases}
@@ -832,37 +833,37 @@ $$
 e(u)=\sum_{(x,u)\in E}f(x,u)-\sum_{(u,y)\in E}f(u,y)
 $$
 
-上述将 $(s,v)\in E$ 充满流，并将 $h(s)$ 抬高，使得 $(s,v)\notin E_f$，因为 $h(s)>h(v)$，而且 $(s,v)$ 毕竟满流，没必要留在残量网络中；上述还将 $e(s)$ 初始化为 $\sum_{(s,v)\in E}f(s,v)$ 的相反数．
+Ở trên ta lấp đầy luồng trên các cạnh $(s,v)\in E$ và nâng $h(s)$ lên, khiến $(s,v)\notin E_f$, vì $h(s)>h(v)$, hơn nữa $(s,v)$ vốn đã đầy luồng nên không cần giữ trong mạng thặng dư. Ở trên cũng khởi tạo $e(s)$ bằng số đối của $\sum_{(s,v)\in E}f(s,v)$.
 
-#### 过程
+#### Quy trình
 
-我们每次扫描整个图，只要存在结点 $u$ 满足 push 或 relabel 操作的条件，就执行对应的操作．
+Mỗi lần ta quét toàn bộ đồ thị. Chỉ cần tồn tại đỉnh $u$ thỏa mãn điều kiện của thao tác push hoặc relabel, ta thực hiện thao tác tương ứng.
 
-如图，每个结点中间表示编号，左下表示高度值 $h(u)$，右下表示超额流 $e(u)$，结点颜色的深度也表示结点的高度；边权表示 $c(u,v)-f(u,v)$，绿色的边表示满足 $h(u)=h(v)+1$ 的边 $(u,v)$（即残量网络的边 $E_f$）：
+Như trong hình, giữa mỗi đỉnh biểu diễn số hiệu, góc trái dưới biểu diễn giá trị độ cao $h(u)$, góc phải dưới biểu diễn luồng dư $e(u)$, độ đậm màu của đỉnh cũng biểu diễn độ cao của đỉnh; trọng số cạnh biểu diễn $c(u,v)-f(u,v)$, cạnh màu xanh lá biểu diễn cạnh $(u,v)$ thỏa mãn $h(u)=h(v)+1$, tức cạnh của mạng thặng dư $E_f$:
 
 ![p1](./images/2148.png)
 
-整个算法我们大致浏览一下过程，这里笔者使用的是一个暴力算法，即暴力扫描是否有溢出的结点，有就更新
+Ta xem qua toàn bộ quá trình của thuật toán. Ở đây tác giả dùng một thuật toán vét cạn, tức quét vét cạn xem có đỉnh đang hoạt động nào không; nếu có thì cập nhật.
 
 ![p2](./images/2149.gif)
 
-最后的结果
+Kết quả cuối cùng:
 
 ![p3](./images/2150.png)
 
-可以发现，最后的超额流一部分回到了 $s$，且除了源点汇点，其他结点都没有溢出；这时的流函数 $f$ 满足流守恒性，为最大流，流量即为 $e(t)$．
+Có thể thấy cuối cùng một phần luồng dư đã quay về $s$, và ngoài nguồn và đích, các đỉnh khác đều không còn đang hoạt động. Khi đó hàm luồng $f$ thỏa mãn bảo toàn luồng, là luồng cực đại, và giá trị luồng là $e(t)$.
 
-但是实际上论文[^ref1]指出只处理高度小于 $n$ 的溢出节点也能获得正确的最大流值，不过这样一来算法结束的时候预流还不满足流函数性质，不能知道每条边上真实的流量．
+Tuy nhiên, trên thực tế bài báo[^ref1] chỉ ra rằng chỉ xử lý các đỉnh đang hoạt động có độ cao nhỏ hơn $n$ cũng có thể thu được đúng giá trị luồng cực đại. Nhưng như vậy, khi thuật toán kết thúc, tiền luồng vẫn chưa thỏa mãn tính chất của hàm luồng, nên không biết được luồng thực sự trên từng cạnh.
 
-#### 实现
+#### Cài đặt
 
-???+ note "核心代码"
+???+ note "Mã cốt lõi"
     ```cpp
     constexpr int N = 1e4 + 4, M = 1e5 + 5, INF = 0x3f3f3f3f;
     int n, m, s, t, maxflow, tot;
     int ht[N], ex[N];
     
-    void init() {  // 初始化
+    void init() {  // khoi tao
       for (int i = h[s]; i; i = e[i].nex) {
         const int &v = e[i].t;
         ex[v] = e[i].v, ex[s] -= ex[v], e[i ^ 1].v = e[i].v, e[i].v = 0;
@@ -874,7 +875,7 @@ $$
       const int &u = e[ed ^ 1].t, &v = e[ed].t;
       int flow = min(ex[u], e[ed].v);
       ex[u] -= flow, ex[v] += flow, e[ed].v -= flow, e[ed ^ 1].v += flow;
-      return ex[u];  // 如果 u 仍溢出，返回 1
+      return ex[u];  // neu u van hoat dong, tra ve 1
     }
     
     void relabel(int u) {
@@ -885,38 +886,38 @@ $$
     }
     ```
 
-### HLPP 算法
+### Thuật toán HLPP
 
-最高标号预流推进算法（Highest Label Preflow Push）在上述通用的预流推送算法中，在每次选择结点时，都优先选择高度最高的溢出结点，其算法复杂度为 $O(n^2\sqrt m)$．
+Thuật toán đẩy tiền luồng nhãn cao nhất (Highest Label Preflow Push) trong thuật toán đẩy tiền luồng tổng quát ở trên luôn ưu tiên chọn đỉnh đang hoạt động có độ cao lớn nhất mỗi khi chọn đỉnh. Độ phức tạp của thuật toán là $O(n^2\sqrt m)$.
 
-#### 过程
+#### Quy trình
 
-具体地说，HLPP 算法过程如下：
+Cụ thể, quy trình của thuật toán HLPP như sau:
 
-1.  初始化（基于预流推进算法）；
-2.  选择溢出结点中高度最高的结点 $u$，并对它所有可以推送的边进行推送；
-3.  如果 $u$ 仍溢出，对它重贴标签，回到步骤 2；
-4.  如果没有溢出的结点，算法结束．
+1.  Khởi tạo, dựa trên thuật toán đẩy tiền luồng.
+2.  Chọn đỉnh $u$ có độ cao lớn nhất trong các đỉnh đang hoạt động, và thực hiện đẩy trên tất cả các cạnh có thể đẩy của nó.
+3.  Nếu $u$ vẫn đang hoạt động, gán lại nhãn cho nó rồi quay lại bước 2.
+4.  Nếu không có đỉnh đang hoạt động, thuật toán kết thúc.
 
-一篇对最大流算法实际表现进行测试的论文[^ref2]表明，实际上基于预流的算法，有相当一部分时间都花在了重贴标签这一步上．以下介绍两种来自论文[^ref3]的能显著减少重贴标签次数的优化．
+Một bài báo kiểm thử hiệu năng thực tế của các thuật toán luồng cực đại[^ref2] cho thấy các thuật toán dựa trên tiền luồng thực ra tốn một phần đáng kể thời gian ở bước gán lại nhãn. Sau đây giới thiệu hai tối ưu từ bài báo[^ref3] có thể giảm đáng kể số lần gán lại nhãn.
 
-#### BFS 优化
+#### Tối ưu BFS
 
-HLPP 的上界为 $O(n^2\sqrt m)$，但在使用时卡得比较紧；我们可以在初始化高度的时候进行优化．具体来说，我们初始化 $h(u)$ 为 $u$ 到 $t$ 的最短距离；特别地，$h(s)=n$．
+Cận trên của HLPP là $O(n^2\sqrt m)$, nhưng khi sử dụng thì khá sát; ta có thể tối ưu lúc khởi tạo độ cao. Cụ thể, khởi tạo $h(u)$ là khoảng cách ngắn nhất từ $u$ đến $t$; đặc biệt $h(s)=n$.
 
-在 BFS 的同时我们顺便检查图的连通性，排除无解的情况．
+Trong khi BFS, ta đồng thời kiểm tra tính liên thông của đồ thị để loại trường hợp không có nghiệm.
 
-#### GAP 优化
+#### Tối ưu GAP
 
-HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存在某个 $k$，使得 $h(u)=k$ 的结点个数为 $0$，那么对于 $h(u)>k$ 的结点就永远无法推送超额流到 $t$，因此只能送回 $s$，那么我们就在这时直接让他们的高度变成至少 $n+1$，以尽快推送回 $s$，减少重贴标签的操作．
+Điều kiện đẩy của HLPP là $h(u)=h(v)+1$. Nếu tại một thời điểm nào đó của thuật toán tồn tại một $k$ sao cho số đỉnh có $h(u)=k$ bằng $0$, thì các đỉnh có $h(u)>k$ sẽ mãi không thể đẩy luồng dư đến $t$, mà chỉ có thể đưa ngược về $s$. Vì vậy lúc này ta trực tiếp đặt độ cao của chúng thành ít nhất $n+1$ để nhanh chóng đẩy ngược về $s$, giảm thao tác gán lại nhãn.
 
-以下的实现采取论文[^ref2]中的实现方法，使用 $N*2-1$ 个桶 `B`，其中 `B[i]` 中记录所有当前高度为 $i$ 的溢出节点．加入了以上提到的两种优化，并且只处理了高度小于 $n$ 的溢出节点．
+Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụng $N*2-1$ bucket `B`, trong đó `B[i]` ghi lại tất cả các đỉnh đang hoạt động hiện có độ cao $i$. Cài đặt đã thêm hai tối ưu nói trên, và chỉ xử lý các đỉnh đang hoạt động có độ cao nhỏ hơn $n$.
 
-值得注意的是论文[^ref2]中使用的桶是基于链表的栈，而 STL 中的 `stack` 默认的容器是 `deque`．经过简单的测试发现 `vector`，`deque`，`list` 在本题的实际运行过程中效率区别不大．
+Điều đáng chú ý là bucket trong bài báo[^ref2] được cài đặt bằng stack dựa trên danh sách liên kết, còn container mặc định của `stack` trong STL là `deque`. Qua kiểm thử đơn giản, `vector`, `deque`, `list` không khác biệt nhiều về hiệu suất trong quá trình chạy thực tế của bài này.
 
-#### 实现
+#### Cài đặt
 
-??? note "LuoguP4722【模板】最大流 加强版/预流推进"
+??? note "LuoguP4722 [Mẫu] Luồng cực đại bản tăng cường / đẩy tiền luồng"
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -943,36 +944,36 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
       add_path(t, f, 0);
     }
     
-    int ht[N + 1];        // 高度;
-    long long ex[N + 1];  // 超额流;
-    int gap[N];           // gap 优化. gap[i] 为高度为 i 的节点的数量
-    stack<int> B[N];      // 桶 B[i] 中记录所有 ht[v]==i 的v
-    int level = 0;        // 溢出节点的最高高度
+    int ht[N + 1];        // do cao
+    long long ex[N + 1];  // luong du
+    int gap[N];           // toi uu gap. gap[i] la so dinh co do cao i
+    stack<int> B[N];      // bucket B[i] ghi tat ca v co ht[v] == i
+    int level = 0;        // do cao lon nhat cua dinh dang hoat dong
     
-    int push(int u) {      // 尽可能通过能够推送的边推送超额流
-      bool init = u == s;  // 是否在初始化
+    int push(int u) {      // day luong du qua cac canh co the day nhieu nhat co the
+      bool init = u == s;  // co dang khoi tao khong
       for (int i = h[u]; i; i = e[i].nex) {
         const int &v = e[i].t;
         const long long &w = e[i].v;
-        // 初始化时不考虑高度差为1
+        // Khi khoi tao khong xet hieu do cao bang 1
         if (!w || (init == false && ht[u] != ht[v] + 1) || ht[v] == INF) continue;
         long long k = init ? w : min(w, ex[u]);
-        // 取到剩余容量和超额流的最小值，初始化时可以使源的溢出量为负数．
+        // Lay min cua dung luong con du va luong du. Khi khoi tao co the lam luong du cua nguon am.
         if (v != s && v != t && !ex[v]) B[ht[v]].push(v), level = max(level, ht[v]);
         ex[u] -= k, ex[v] += k, e[i].v -= k, e[i ^ 1].v += k;  // push
-        if (!ex[u]) return 0;  // 如果已经推送完就返回
+        if (!ex[u]) return 0;  // neu da day het thi tra ve
       }
       return 1;
     }
     
-    void relabel(int u) {  // 重贴标签（高度）
+    void relabel(int u) {  // gan lai nhan, tuc do cao
       ht[u] = INF;
       for (int i = h[u]; i; i = e[i].nex)
         if (e[i].v) ht[u] = min(ht[u], ht[e[i].t]);
-      if (++ht[u] < n) {  // 只处理高度小于 n 的节点
+      if (++ht[u] < n) {  // chi xu ly dinh co do cao nho hon n
         B[ht[u]].push(u);
         level = max(level, ht[u]);
-        ++gap[ht[u]];  // 新的高度，更新 gap
+        ++gap[ht[u]];  // do cao moi, cap nhat gap
       }
     }
     
@@ -980,7 +981,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
       memset(ht, 0x3f, sizeof(ht));
       queue<int> q;
       q.push(t), ht[t] = 0;
-      while (q.size()) {  // 反向 BFS, 遇到没有访问过的结点就入队
+      while (q.size()) {  // BFS nguoc, gap dinh chua tham thi dua vao hang doi
         int u = q.front();
         q.pop();
         for (int i = h[u]; i; i = e[i].nex) {
@@ -988,30 +989,30 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
           if (e[i ^ 1].v && ht[v] > ht[u] + 1) ht[v] = ht[u] + 1, q.push(v);
         }
       }
-      return ht[s] != INF;  // 如果图不连通，返回 0
+      return ht[s] != INF;  // neu do thi khong lien thong, tra ve 0
     }
     
-    // 选出当前高度最大的节点之一, 如果已经没有溢出节点返回 0
+    // Chon mot trong cac dinh co do cao lon nhat hien tai, neu khong con dinh dang hoat dong thi tra ve 0
     int select() {
       while (level > -1 && B[level].size() == 0) level--;
       return level == -1 ? 0 : B[level].top();
     }
     
-    long long hlpp() {            // 返回最大流
-      if (!bfs_init()) return 0;  // 图不连通
+    long long hlpp() {            // tra ve luong cuc dai
+      if (!bfs_init()) return 0;  // do thi khong lien thong
       memset(gap, 0, sizeof(gap));
       for (int i = 1; i <= n; i++)
-        if (ht[i] != INF) gap[ht[i]]++;  // 初始化 gap
+        if (ht[i] != INF) gap[ht[i]]++;  // khoi tao gap
       ht[s] = n;
-      push(s);  // 初始化预流
+      push(s);  // khoi tao tien luong
       int u;
       while ((u = select())) {
         B[level].pop();
-        if (push(u)) {  // 仍然溢出
+        if (push(u)) {  // van dang hoat dong
           if (!--gap[ht[u]])
             for (int i = 1; i <= n; i++)
               if (i != s && ht[i] > ht[u] && ht[i] < n + 1)
-                ht[i] = n + 1;  // 这里重贴成 n+1 的节点都不是溢出节点
+                ht[i] = n + 1;  // cac dinh duoc gan lai thanh n+1 o day deu khong dang hoat dong
           relabel(u);
         }
       }
@@ -1029,13 +1030,13 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
     }
     ```
 
-感受一下运行过程
+Xem qua quá trình chạy:
 
 ![HLPP](./images/1152.png)
 
-其中 pic13 到 pic14 执行了 Relabel(4)，并进行了 GAP 优化．
+Trong đó từ pic13 đến pic14 thực hiện Relabel(4), đồng thời thực hiện tối ưu GAP.
 
-## 脚注
+## Chú thích
 
 [^ref_ek]: <http://pisces.ck.tp.edu.tw/~peng/index.php?action=showfile&file=f6cdf7ef750d7dc79c7d599b942acbaaee86a2e3e>
 
@@ -1047,6 +1048,6 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
 
 [^ref3]: Derigs U, Meier W. Implementing Goldberg's max-flow-algorithm—A computational investigation\[J]. Zeitschrift für Operations Research, 1989, 33(6): 383-403.
 
-[^note1]: 英语文献中通常称为「active」．
+[^note1]: Trong tài liệu tiếng Anh thường gọi là "active".
 
-[^note2]: 在英语文献中，一个结点的高度通常被称为「distance label」．此处使用的「高度」这个术语源自算法导论中的相关章节．你可以在机械工业出版社算法导论（原书第 3 版）的 P432 脚注中找到这么做的理由．
+[^note2]: Trong tài liệu tiếng Anh, độ cao của một đỉnh thường được gọi là "distance label". Thuật ngữ "độ cao" dùng ở đây bắt nguồn từ chương liên quan trong Introduction to Algorithms.

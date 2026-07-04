@@ -1,30 +1,30 @@
-## 概念
+## Khái niệm
 
-### 割
+### Lát cắt
 
-对于一个网络流图 $G=(V,E)$，其割的定义为一种 **点的划分方式**：将所有的点划分为 $S$ 和 $T=V-S$ 两个集合，其中源点 $s\in S$，汇点 $t\in T$．
+Với một đồ thị luồng mạng $G=(V,E)$, một lát cắt được định nghĩa là một **cách phân hoạch các đỉnh**: chia toàn bộ các đỉnh thành hai tập $S$ và $T=V-S$, trong đó đỉnh nguồn $s\in S$ và đỉnh đích $t\in T$.
 
-### 割的容量
+### Dung lượng của lát cắt
 
-我们的定义割 $(S,T)$ 的容量 $c(S,T)$ 表示所有从 $S$ 到 $T$ 的边的容量之和，即 $c(S,T)=\sum_{u\in S,v\in T}c(u,v)$．当然我们也可以用 $c(s,t)$ 表示 $c(S,T)$．
+Dung lượng $c(S,T)$ của lát cắt $(S,T)$ được định nghĩa là tổng dung lượng của tất cả các cạnh đi từ $S$ sang $T$, tức $c(S,T)=\sum_{u\in S,v\in T}c(u,v)$. Tất nhiên ta cũng có thể dùng $c(s,t)$ để biểu diễn $c(S,T)$.
 
-### 最小割
+### Lát cắt nhỏ nhất
 
-最小割就是求得一个割 $(S,T)$ 使得割的容量 $c(S,T)$ 最小．
+Lát cắt nhỏ nhất là lát cắt $(S,T)$ có dung lượng $c(S,T)$ nhỏ nhất.
 
-## 证明
+## Chứng minh
 
-### 最大流最小割定理
+### Định lý luồng cực đại - lát cắt nhỏ nhất
 
-参见 [最大流](max-flow.md) 页面最大流最小割定理一节．
+Xem phần định lý luồng cực đại - lát cắt nhỏ nhất trong trang [luồng cực đại](max-flow.md).
 
-## 代码
+## Mã nguồn
 
-### 最小割
+### Lát cắt nhỏ nhất
 
-通过 **最大流最小割定理**，我们可以直接得到如下代码：
+Từ **định lý luồng cực đại - lát cắt nhỏ nhất**, ta có thể trực tiếp thu được đoạn mã sau:
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -91,9 +91,9 @@
     }
     ```
 
-### 方案
+### Phương án
 
-我们可以通过从源点 $s$ 开始 DFS，每次走残量大于 $0$ 的边，找到所有 $S$ 点集内的点．
+Ta có thể bắt đầu DFS từ đỉnh nguồn $s$, mỗi lần chỉ đi qua các cạnh có dung lượng dư lớn hơn $0$, để tìm tất cả các đỉnh thuộc tập $S$.
 
 ```cpp
 void dfs(int u) {
@@ -105,37 +105,37 @@ void dfs(int u) {
 }
 ```
 
-### 割边数量
+### Số cạnh bị cắt
 
-如果需要在最小割的前提下最小化割边数量，那么先求出最小割，把没有满流的边容量改成 $\infty$，满流的边容量改成 $1$，重新跑一遍最小割就可求出最小割边数量；如果没有最小割的前提，直接把所有边的容量设成 $1$，求一遍最小割就好了．
+Nếu cần tối thiểu hóa số cạnh bị cắt với điều kiện vẫn là một lát cắt nhỏ nhất, trước hết hãy tìm lát cắt nhỏ nhất, đổi dung lượng của các cạnh chưa bão hòa thành $\infty$, đổi dung lượng của các cạnh đã bão hòa thành $1$, rồi chạy lại bài toán lát cắt nhỏ nhất để thu được số cạnh bị cắt nhỏ nhất. Nếu không có điều kiện phải là lát cắt nhỏ nhất, chỉ cần đặt dung lượng của mọi cạnh bằng $1$ rồi tìm lát cắt nhỏ nhất một lần.
 
-## 问题模型 1
+## Mô hình bài toán 1
 
-有 $n$ 个物品和两个集合 $A,B$，如果一个物品没有放入 $A$ 集合会花费 $a_i$，没有放入 $B$ 集合会花费 $b_i$；还有若干个形如 $u_i,v_i,w_i$ 限制条件，表示如果 $u_i$ 和 $v_i$ 同时不在一个集合会花费 $w_i$．每个物品必须且只能属于一个集合，求最小的代价．
+Có $n$ vật phẩm và hai tập $A,B$. Nếu vật phẩm thứ $i$ không được đưa vào tập $A$ thì tốn chi phí $a_i$, nếu không được đưa vào tập $B$ thì tốn chi phí $b_i$. Ngoài ra còn có một số ràng buộc dạng $u_i,v_i,w_i$, nghĩa là nếu $u_i$ và $v_i$ không cùng nằm trong một tập thì tốn chi phí $w_i$. Mỗi vật phẩm bắt buộc thuộc đúng một tập. Hãy tìm chi phí nhỏ nhất.
 
-这是一个经典的 **二者选其一** 的最小割题目．我们对于每个集合设置源点 $s$ 和汇点 $t$，第 $i$ 个点由 $s$ 连一条容量为 $a_i$ 的边、向 $t$ 连一条容量为 $b_i$ 的边．对于限制条件 $u,v,w$，我们在 $u,v$ 之间连容量为 $w$ 的双向边．
+Đây là một bài toán lát cắt nhỏ nhất kinh điển thuộc dạng **chọn một trong hai**. Ta đặt đỉnh nguồn $s$ và đỉnh đích $t$ tương ứng với hai tập; với đỉnh thứ $i$, nối một cạnh từ $s$ đến nó có dung lượng $a_i$, và một cạnh từ nó đến $t$ có dung lượng $b_i$. Với mỗi ràng buộc $u,v,w$, nối cạnh hai chiều có dung lượng $w$ giữa $u$ và $v$.
 
-注意到当源点和汇点不相连时，代表这些点都选择了其中一个集合．如果将连向 $s$ 或 $t$ 的边割开，表示不放在 $A$ 或 $B$ 集合，如果把物品之间的边割开，表示这两个物品不放在同一个集合．
+Cần chú ý rằng khi đỉnh nguồn và đỉnh đích không còn liên thông, các đỉnh ở mỗi phía đại diện cho việc chọn một trong hai tập. Nếu cắt cạnh nối với $s$ hoặc $t$, điều đó biểu thị vật phẩm không được đặt vào tập $A$ hoặc $B$; nếu cắt cạnh giữa hai vật phẩm, điều đó biểu thị hai vật phẩm này không được đặt trong cùng một tập.
 
-最小割就是最小花费．
+Lát cắt nhỏ nhất chính là chi phí nhỏ nhất.
 
-## 问题模型 2
+## Mô hình bài toán 2
 
-最大权值闭合图，即给定一张有向图，每个点都有一个权值（可以为正或负或 $0$），你需要选择一个权值和最大的子图，使得子图中每个点的后继都在子图中．
+Đồ thị đóng có tổng trọng số lớn nhất: cho một đồ thị có hướng, mỗi đỉnh có một trọng số (có thể dương, âm hoặc bằng $0$). Cần chọn một đồ thị con có tổng trọng số lớn nhất sao cho với mọi đỉnh trong đồ thị con, tất cả các đỉnh kề đi ra từ nó cũng nằm trong đồ thị con.
 
-做法：建立超级源点 $s$ 和超级汇点 $t$，若节点 $u$ 权值为正，则 $s$ 向 $u$ 连一条有向边，边权即为该点点权；若节点 $u$ 权值为负，则由 $u$ 向 $t$ 连一条有向边，边权即为该点点权的相反数．原图上所有边权改为 $\infty$．跑网络最大流，将所有正权值之和减去最大流，即为答案．
+Cách làm: tạo siêu nguồn $s$ và siêu đích $t$. Nếu đỉnh $u$ có trọng số dương, nối một cạnh có hướng từ $s$ đến $u$ với dung lượng bằng trọng số của đỉnh đó. Nếu đỉnh $u$ có trọng số âm, nối một cạnh có hướng từ $u$ đến $t$ với dung lượng bằng số đối của trọng số đỉnh đó. Đổi dung lượng của tất cả các cạnh trong đồ thị ban đầu thành $\infty$. Chạy luồng cực đại trên mạng; lấy tổng mọi trọng số dương trừ đi giá trị luồng cực đại, ta được đáp án.
 
-几个小结论来证明：
+Một vài nhận xét để chứng minh:
 
-1.  每一个符合条件的子图都对应流量网络中的一个割．因为每一个割将网络分为两部分，与 $s$ 相连的那部分满足没有边指向另一部分，于是满足上述条件．这个命题是充要的．
-2.  最小割所去除的边必须与 $s$ 和 $t$ 其中一者相连．因为否则边权是 $\infty$，不可能成为最小割．
-3.  我们所选择的那部分子图，权值和 $=$ 所有正权值之和 $-$ 我们未选择的正权值点的权值之和 $+$ 我们选择的负权值点的权值之和．当我们不选择一个正权值点时，其与 $s$ 的连边会被断开；当我们选择一个负权值点时，其与 $t$ 的连边会被断开．断开的边的边权之和即为割的容量．于是上述式子转化为：权值和 $=$ 所有正权值之和 $-$ 割的容量．
-4.  于是得出结论，最大权值和 $=$ 所有正权值之和 $-$ 最小割 $=$ 所有正权值之和 $-$ 最大流．
+1.  Mỗi đồ thị con thỏa mãn điều kiện đều tương ứng với một lát cắt trong mạng luồng. Vì mỗi lát cắt chia mạng thành hai phần, phần liên thông với $s$ không có cạnh nào đi sang phần còn lại, nên thỏa mãn điều kiện trên. Mệnh đề này là điều kiện cần và đủ.
+2.  Các cạnh bị loại bỏ bởi lát cắt nhỏ nhất bắt buộc phải nối với một trong hai đỉnh $s$ hoặc $t$. Nếu không, dung lượng cạnh là $\infty$ nên cạnh đó không thể thuộc lát cắt nhỏ nhất.
+3.  Với phần đồ thị con ta chọn, tổng trọng số $=$ tổng mọi trọng số dương $-$ tổng trọng số của các đỉnh dương không được chọn $+$ tổng trọng số của các đỉnh âm được chọn. Khi không chọn một đỉnh có trọng số dương, cạnh nối nó với $s$ bị cắt; khi chọn một đỉnh có trọng số âm, cạnh nối nó với $t$ bị cắt. Tổng dung lượng của các cạnh bị cắt chính là dung lượng của lát cắt. Do đó công thức trên trở thành: tổng trọng số $=$ tổng mọi trọng số dương $-$ dung lượng lát cắt.
+4.  Suy ra kết luận: tổng trọng số lớn nhất $=$ tổng mọi trọng số dương $-$ lát cắt nhỏ nhất $=$ tổng mọi trọng số dương $-$ luồng cực đại.
 
-## 习题
+## Bài tập
 
--   [「USACO 4.4」Pollutant Control](https://www.luogu.com.cn/problem/P1344)
--   [「USACO 5.4」Telecowmunication](https://www.luogu.com.cn/problem/P1345)
--   [「Luogu 1361」小 M 的作物](https://www.luogu.com.cn/problem/P1361)
--   [「SHOI 2007」善意的投票](https://www.luogu.com.cn/problem/P2057)
--   [太空飞行计划问题](https://www.luogu.com.cn/problem/P2762)
+-   [USACO 4.4 - Pollutant Control](https://www.luogu.com.cn/problem/P1344)
+-   [USACO 5.4 - Telecowmunication](https://www.luogu.com.cn/problem/P1345)
+-   [Luogu 1361 - Crops of Little M](https://www.luogu.com.cn/problem/P1361)
+-   [SHOI 2007 - Goodwill Voting](https://www.luogu.com.cn/problem/P2057)
+-   [Space Flight Plan](https://www.luogu.com.cn/problem/P2762)

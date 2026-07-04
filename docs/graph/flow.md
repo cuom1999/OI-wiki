@@ -1,32 +1,32 @@
-本页面主要介绍网络流相关的基本知识．
+Trang này giới thiệu các kiến thức cơ bản liên quan đến luồng mạng.
 
-## 概述
+## Tổng quan
 
-网络（network）是指一个特殊的有向图 $G=(V,E)$，其与一般有向图的不同之处在于有容量和源汇点．
+Mạng (network) là một đồ thị có hướng đặc biệt $G=(V,E)$. Điểm khác biệt so với đồ thị có hướng thông thường là mạng có dung lượng và hai đỉnh nguồn, đỉnh đích.
 
--   $E$ 中的每条边 $(u, v)$ 都有一个被称为容量（capacity）的权值，记作 $c(u, v)$．当 $(u,v)\notin E$ 时，可以假定 $c(u,v)=0$．
+-   Mỗi cạnh $(u, v)$ trong $E$ có một trọng số gọi là dung lượng (capacity), ký hiệu là $c(u, v)$. Khi $(u,v)\notin E$, có thể giả sử $c(u,v)=0$.
 
--   $V$ 中有两个特殊的点：源点（source）$s$ 和汇点（sink）$t$（$s \neq t$）．
+-   Trong $V$ có hai đỉnh đặc biệt: đỉnh nguồn (source) $s$ và đỉnh đích (sink) $t$ ($s \neq t$).
 
-对于网络 $G=(V, E)$，流（flow）是一个从边集 $E$ 到整数集或实数集的函数，其满足以下性质．
+Với mạng $G=(V, E)$, luồng (flow) là một hàm từ tập cạnh $E$ đến tập số nguyên hoặc tập số thực, thỏa mãn các tính chất sau.
 
-1.  容量限制：对于每条边，流经该边的流量不得超过该边的容量，即 $0 \leq f(u,v) \leq c(u,v)$；
-2.  流守恒性：除源汇点外，任意结点 $u$ 的净流量为 $0$．其中，我们定义 $u$ 的净流量为 $f(u) = \sum_{x \in V} f(u, x) - \sum_{x \in V} f(x, u)$．
+1.  Ràng buộc dung lượng: với mỗi cạnh, lượng luồng đi qua cạnh đó không được vượt quá dung lượng của cạnh, tức là $0 \leq f(u,v) \leq c(u,v)$.
+2.  Bảo toàn luồng: ngoài đỉnh nguồn và đỉnh đích, luồng ròng của mọi đỉnh $u$ đều bằng $0$. Ở đây, luồng ròng của $u$ được định nghĩa là $f(u) = \sum_{x \in V} f(u, x) - \sum_{x \in V} f(x, u)$.
 
-对于网络 $G = (V, E)$ 和其上的流 $f$，我们定义 $f$ 的流量 $|f|$ 为 $s$ 的净流量 $f(s)$．作为流守恒性的推论，这也等于 $t$ 的净流量的相反数 $-f(t)$．
+Với mạng $G = (V, E)$ và một luồng $f$ trên mạng đó, ta định nghĩa giá trị luồng $|f|$ là luồng ròng $f(s)$ của đỉnh nguồn $s$. Từ tính bảo toàn luồng, giá trị này cũng bằng số đối của luồng ròng tại đỉnh đích, tức $-f(t)$.
 
-对于网络 $G = (V, E)$，如果 $\{S, T\}$ 是 $V$ 的划分（即 $S \cup T = V$ 且 $S \cap T = \varnothing$），且满足 $s \in S, t \in T$，则我们称 $\{S, T\}$ 是 $G$ 的一个 $s$-$t$ 割（cut）．我们定义 $s$-$t$ 割 $\{S, T\}$ 的容量为 $||S, T|| = \sum_{u \in S} \sum_{v \in T} c(u, v)$．
+Với mạng $G = (V, E)$, nếu $\{S, T\}$ là một phân hoạch của $V$ (tức $S \cup T = V$ và $S \cap T = \varnothing$), đồng thời thỏa mãn $s \in S, t \in T$, thì $\{S, T\}$ được gọi là một lát cắt $s$-$t$ (cut) của $G$. Dung lượng của lát cắt $s$-$t$ $\{S, T\}$ được định nghĩa là $||S, T|| = \sum_{u \in S} \sum_{v \in T} c(u, v)$.
 
-## 常见问题
+## Các bài toán thường gặp
 
-常见的网络流问题包括但不限于以下类型问题．
+Các bài toán luồng mạng thường gặp bao gồm, nhưng không chỉ giới hạn ở, những dạng sau.
 
--   最大流问题：对于网络 $G = (V, E)$，给每条边指定流量，得到合适的流 $f$，使得 $f$ 的流量尽可能大．此时我们称 $f$ 是 $G$ 的最大流．
--   最小割问题：对于网络 $G = (V, E)$，找到合适的 $s$-$t$ 割 $\{S, T\}$，使得 $\{S, T\}$ 的总容量尽可能小．此时我们称 $\{S, T\}$ 的总容量是 $G$ 的最小割．
--   最小费用最大流问题：在网络 $G = (V, E)$ 上，对每条边给定一个权值 $w(u, v)$，称为费用（cost），含义是单位流量通过 $(u, v)$ 所花费的代价．对于 $G$ 所有可能的最大流，我们称其中总费用最小的一者为最小费用最大流．
+-   Bài toán luồng cực đại: với mạng $G = (V, E)$, gán lượng luồng cho mỗi cạnh để thu được một luồng hợp lệ $f$ sao cho giá trị luồng của $f$ lớn nhất có thể. Khi đó $f$ được gọi là luồng cực đại của $G$.
+-   Bài toán lát cắt nhỏ nhất: với mạng $G = (V, E)$, tìm một lát cắt $s$-$t$ thích hợp $\{S, T\}$ sao cho tổng dung lượng của $\{S, T\}$ nhỏ nhất có thể. Khi đó tổng dung lượng của $\{S, T\}$ được gọi là lát cắt nhỏ nhất của $G$.
+-   Bài toán luồng cực đại chi phí nhỏ nhất: trên mạng $G = (V, E)$, mỗi cạnh có một trọng số $w(u, v)$ gọi là chi phí (cost), biểu thị chi phí để một đơn vị luồng đi qua $(u, v)$. Trong tất cả các luồng cực đại có thể có của $G$, luồng có tổng chi phí nhỏ nhất được gọi là luồng cực đại chi phí nhỏ nhất.
 
-我们将在稍后的章节中对它们进行详细介绍．
+Các bài toán này sẽ được trình bày chi tiết hơn trong các phần sau.
 
-## 例题：网络流 24 题
+## Ví dụ: 24 bài toán luồng mạng
 
-网络流 24 题是中文互联网上广泛流传的一个题单（[LibreOJ](https://loj.ac/problems/tag/30)/[洛谷](https://www.luogu.com.cn/problem/list?tag=332)），至少在 2010 年前后就已经存在．该题单引入了一些经典的将其他问题建模为网络流问题的技巧．由于时代的局限性，这些问题未必是最具代表性的网络流问题，但仍值得有志于算法竞赛的读者一阅．
+24 bài toán luồng mạng là một danh sách bài tập được lưu truyền rộng rãi trên Internet tiếng Trung ([LibreOJ](https://loj.ac/problems/tag/30)/[Luogu](https://www.luogu.com.cn/problem/list?tag=332)) và đã tồn tại ít nhất từ khoảng năm 2010. Danh sách này giới thiệu một số kỹ thuật kinh điển để mô hình hóa các bài toán khác thành bài toán luồng mạng. Do giới hạn của bối cảnh thời kỳ đó, các bài trong danh sách này chưa chắc là những bài toán luồng mạng tiêu biểu nhất, nhưng vẫn rất đáng đọc đối với độc giả quan tâm đến lập trình thi đấu.

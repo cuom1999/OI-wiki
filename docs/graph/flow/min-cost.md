@@ -1,49 +1,49 @@
-在看这篇文章前请先看 [网络流简介](../flow.md) 这篇 wiki 的定义部分．
+Trước khi đọc bài này, hãy xem phần định nghĩa trong bài [Giới thiệu về luồng mạng](../flow.md).
 
-## 费用流
+## Luồng chi phí
 
-给定一个网络 $G=(V,E)$，每条边除了有容量限制 $c(u,v)$，还有一个单位流量的费用 $w(u,v)$．
+Cho một mạng $G=(V,E)$, ngoài giới hạn dung lượng $c(u,v)$, mỗi cạnh còn có chi phí trên một đơn vị luồng $w(u,v)$.
 
-当 $(u,v)$ 的流量为 $f(u,v)$ 时，需要花费 $f(u,v)\times w(u,v)$ 的费用．
+Khi luồng trên $(u,v)$ là $f(u,v)$, chi phí cần trả là $f(u,v)\times w(u,v)$.
 
-$w$ 也满足斜对称性，即 $w(u,v)=-w(v,u)$．
+$w$ cũng thỏa mãn tính phản đối xứng, tức là $w(u,v)=-w(v,u)$.
 
-则该网络中总花费最小的最大流称为 **最小费用最大流**，即在最大化 $\sum_{(s,v)\in E}f(s,v)$ 的前提下最小化 $\sum_{(u,v)\in E}f(u,v)\times w(u,v)$．
+Khi đó, luồng cực đại có tổng chi phí nhỏ nhất trong mạng được gọi là **luồng cực đại chi phí nhỏ nhất**, tức là tối thiểu hóa $\sum_{(u,v)\in E}f(u,v)\times w(u,v)$ với điều kiện đã tối đa hóa $\sum_{(s,v)\in E}f(s,v)$.
 
-## SSP 算法
+## Thuật toán SSP
 
-SSP（Successive Shortest Path）算法是一个贪心的算法．它的思路是每次寻找单位费用最小的增广路进行增广，直到图上不存在增广路为止．
+Thuật toán SSP (Successive Shortest Path) là một thuật toán tham lam. Ý tưởng của nó là mỗi lần tìm một đường tăng luồng có chi phí đơn vị nhỏ nhất để tăng luồng, cho đến khi trên đồ thị không còn đường tăng luồng nào.
 
-如果图上存在单位费用为负的圈，SSP 算法无法正确求出该网络的最小费用最大流．此时需要先使用消圈算法消去图上的负圈．
+Nếu trên đồ thị tồn tại chu trình có chi phí đơn vị âm, thuật toán SSP không thể tìm đúng luồng cực đại chi phí nhỏ nhất của mạng. Khi đó cần dùng thuật toán khử chu trình để loại bỏ các chu trình âm trên đồ thị trước.
 
-### 证明
+### Chứng minh
 
-我们考虑使用数学归纳法和反证法来证明 SSP 算法的正确性．
+Ta dùng quy nạp toán học và phản chứng để chứng minh tính đúng đắn của thuật toán SSP.
 
-设流量为 $i$ 的时候最小费用为 $f_i$．我们假设最初的网络上 **没有负圈**，这种情况下 $f_0=0$．
+Gọi chi phí nhỏ nhất khi lượng luồng bằng $i$ là $f_i$. Giả sử mạng ban đầu **không có chu trình âm**, khi đó $f_0=0$.
 
-假设用 SSP 算法求出的 $f_i$ 是最小费用，我们在 $f_i$ 的基础上，找到一条最短的增广路，从而求出 $f_{i+1}$．这时 $f_{i+1}-f_i$ 是这条最短增广路的长度．
+Giả sử $f_i$ do thuật toán SSP tìm được là chi phí nhỏ nhất. Từ $f_i$, ta tìm một đường tăng luồng ngắn nhất để suy ra $f_{i+1}$. Khi đó $f_{i+1}-f_i$ chính là độ dài của đường tăng luồng ngắn nhất này.
 
-假设存在更小的 $f_{i+1}$，设它为 $f'_{i+1}$．因为 $f_{i+1}-f_i$ 已经是最短增广路了，所以 $f'_{i+1}-f_i$ 一定对应一个经过 **至少一个负圈** 的增广路．
+Giả sử tồn tại một giá trị $f_{i+1}$ nhỏ hơn, ký hiệu là $f'_{i+1}$. Vì $f_{i+1}-f_i$ đã là đường tăng luồng ngắn nhất, nên $f'_{i+1}-f_i$ chắc chắn tương ứng với một đường tăng luồng đi qua **ít nhất một chu trình âm**.
 
-这时候矛盾就出现了：既然存在一条经过至少一个负圈的增广路，那么 $f_i$ 就不是最小费用了．因为只要给这个负圈添加流量，就可以在不增加 $s$ 流出的流量的前提下，使 $f_i$ 对应的费用更小．
+Mâu thuẫn xuất hiện ở đây: nếu tồn tại một đường tăng luồng đi qua ít nhất một chu trình âm, thì $f_i$ không phải là chi phí nhỏ nhất. Thật vậy, chỉ cần đẩy thêm luồng trên chu trình âm này, ta có thể làm chi phí ứng với $f_i$ nhỏ hơn mà không làm tăng lượng luồng đi ra từ $s$.
 
-综上，SSP 算法可以正确求出无负圈网络的最小费用最大流．
+Do đó, thuật toán SSP có thể tìm đúng luồng cực đại chi phí nhỏ nhất của một mạng không có chu trình âm.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-如果使用 [Bellman–Ford 算法](../shortest-path.md#thuật-toán-bellman-ford) 求解最短路，每次找增广路的时间复杂度为 $O(nm)$．设该网络的最大流为 $f$，则最坏时间复杂度为 $O(nmf)$．事实上，SSP 算法是 [伪多项式时间](../../misc/cc-basic.md#pseudo-polynomial-time-伪多项式时间) 的．
+Nếu dùng [thuật toán Bellman–Ford](../shortest-path.md#thuật-toán-bellman-ford) để tìm đường đi ngắn nhất, độ phức tạp cho mỗi lần tìm đường tăng luồng là $O(nm)$. Gọi luồng cực đại của mạng là $f$, độ phức tạp xấu nhất là $O(nmf)$. Trên thực tế, thuật toán SSP là thuật toán có [thời gian giả đa thức](../../misc/cc-basic.md#pseudo-polynomial-time-%E4%BC%AA%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%97%B6%E9%97%B4).
 
-???+ note "为什么 SSP 算法是伪多项式时间的？"
-    SSP 算法的时间复杂度有 $O(nmf)$ 的上界，这是一个关于值域的多项式，所以是伪多项式时间的．
+???+ note "Vì sao thuật toán SSP có thời gian giả đa thức?"
+    Độ phức tạp thời gian của thuật toán SSP có cận trên $O(nmf)$. Đây là một đa thức theo miền giá trị, nên là thời gian giả đa thức.
     
-    可以构造 $m=n^2,f=2^{n/2}$ 的网络[^note1]使得 SSP 算法的时间复杂度达到 $O(n^3 2^{n/2})$，所以 SSP 算法不是多项式时间的．
+    Có thể xây dựng một mạng[^note1] với $m=n^2,f=2^{n/2}$ làm cho độ phức tạp thời gian của thuật toán SSP đạt $O(n^3 2^{n/2})$, vì vậy thuật toán SSP không phải là thuật toán thời gian đa thức.
 
-### 实现
+### Cài đặt
 
-只需将 EK 算法或 Dinic 算法中找增广路的过程，替换为用最短路算法寻找单位费用最小的增广路即可．
+Chỉ cần thay quá trình tìm đường tăng luồng trong thuật toán EK hoặc thuật toán Dinic bằng việc dùng thuật toán đường đi ngắn nhất để tìm đường tăng luồng có chi phí đơn vị nhỏ nhất.
 
-??? note "基于 EK 算法的实现"
+??? note "Cài đặt dựa trên thuật toán EK"
     ```cpp
     struct qxx {
       int nex, t, v, c;
@@ -92,10 +92,10 @@ SSP（Successive Shortest Path）算法是一个贪心的算法．它的思路�
       }
     }
     
-    // 调用：while(spfa())update();
+    // Gọi: while(spfa())update();
     ```
 
-??? note "基于 Dinic 算法的实现"
+??? note "Cài đặt dựa trên thuật toán Dinic"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -170,27 +170,27 @@ SSP（Successive Shortest Path）算法是一个贪心的算法．它的思路�
     }
     ```
 
-### Primal-Dual 原始对偶算法
+### Thuật toán Primal-Dual nguyên thủy-đối ngẫu
 
-用 Bellman–Ford 求解最短路的时间复杂度为 $O(nm)$，无论在稀疏图上还是稠密图上都不及 Dijkstra 算法[^note2]．但网络上存在单位费用为负的边，因此无法直接使用 Dijkstra 算法．
+Dùng Bellman–Ford để tìm đường đi ngắn nhất có độ phức tạp thời gian $O(nm)$; cả trên đồ thị thưa lẫn đồ thị dày, nó đều kém thuật toán Dijkstra[^note2]. Tuy nhiên, trong mạng có thể tồn tại cạnh có chi phí đơn vị âm, nên không thể dùng trực tiếp thuật toán Dijkstra.
 
-Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](../shortest-path.md#thuật-toán-johnson-tìm-đường-đi-ngắn-nhất-mọi-cặp) 类似，通过为每个点设置一个势能，将网络上所有边的费用（下面简称为边权）全部变为非负值，从而可以应用 Dijkstra 算法找出网络上单位费用最小的增广路．
+Ý tưởng của thuật toán Primal-Dual nguyên thủy-đối ngẫu tương tự [thuật toán Johnson tìm đường đi ngắn nhất mọi cặp](../shortest-path.md#thuật-toán-johnson-tìm-đường-đi-ngắn-nhất-mọi-cặp): đặt một thế năng cho mỗi đỉnh để biến chi phí của mọi cạnh trong mạng (sau đây gọi tắt là trọng số cạnh) thành giá trị không âm, từ đó có thể áp dụng thuật toán Dijkstra để tìm đường tăng luồng có chi phí đơn vị nhỏ nhất trong mạng.
 
-首先跑一次最短路，求出源点到每个点的最短距离（也是该点的初始势能）$h_i$．接下来和 Johnson 算法一样，对于一条从 $u$ 到 $v$，单位费用为 $w$ 的边，将其边权重置为 $w+h_u-h_v$．
+Trước hết chạy một lần thuật toán đường đi ngắn nhất để tìm khoảng cách ngắn nhất từ nguồn đến mỗi đỉnh, cũng chính là thế năng ban đầu $h_i$ của đỉnh đó. Tiếp theo, giống thuật toán Johnson, với một cạnh từ $u$ đến $v$ có chi phí đơn vị $w$, đặt lại trọng số cạnh thành $w+h_u-h_v$.
 
-可以发现，这样设置势能后新网络上的最短路径和原网络上的最短路径一定对应．证明在介绍 Johnson 算法时已经给出，这里不再展开．
+Có thể thấy rằng sau khi đặt thế năng như vậy, đường đi ngắn nhất trên mạng mới chắc chắn tương ứng với đường đi ngắn nhất trên mạng gốc. Chứng minh đã được đưa ra khi giới thiệu thuật toán Johnson, nên không trình bày lại ở đây.
 
-与常规的最短路问题不同的是，每次增广后图的形态会发生变化，这种情况下各点的势能需要更新．
+Khác với bài toán đường đi ngắn nhất thông thường, sau mỗi lần tăng luồng, hình dạng của đồ thị sẽ thay đổi. Trong trường hợp này, thế năng của các đỉnh cần được cập nhật.
 
-如何更新呢？先给出结论，设增广后从源点到 $i$ 号点的最短距离为 $d'_i$（这里的距离为重置每条边边权后得到的距离），只需给 $h_i$ 加上 $d'_i$ 即可．下面我们证明，这样更新边权后，图上所有边的边权均为非负．
+Cập nhật như thế nào? Trước hết nêu kết luận: giả sử sau khi tăng luồng, khoảng cách ngắn nhất từ nguồn đến đỉnh số $i$ là $d'_i$ (ở đây khoảng cách được tính sau khi đã đặt lại trọng số cho từng cạnh), chỉ cần cộng $d'_i$ vào $h_i$. Dưới đây ta chứng minh rằng sau cách cập nhật trọng số cạnh này, trọng số của mọi cạnh trên đồ thị đều không âm.
 
-容易发现，在一轮增广后，由于一些 $(i,j)$ 边在增广路上，残量网络上会相应多出一些 $(j,i)$ 边，且一定会满足 $d'_i+(w(i,j)+h_i-h_j)=d'_j$（否则 $(i,j)$ 边就不会在增广路上了）．稍作变形后可以得到 $w(j,i)+(h_j+d'_j)-(h_i+d'_i)=0$．因此新增的边的边权非负．
+Dễ thấy rằng sau một lượt tăng luồng, do một số cạnh $(i,j)$ nằm trên đường tăng luồng, mạng dư sẽ xuất hiện tương ứng một số cạnh $(j,i)$, và chắc chắn thỏa mãn $d'_i+(w(i,j)+h_i-h_j)=d'_j$ (nếu không, cạnh $(i,j)$ đã không nằm trên đường tăng luồng). Biến đổi nhẹ ta được $w(j,i)+(h_j+d'_j)-(h_i+d'_i)=0$. Vì vậy trọng số của các cạnh mới thêm là không âm.
 
-而对于原有的边，在增广前，$d'_i+(w(i,j)+h_i-h_j) - d'_j \geq 0$，因此 $w(i,j)+(d'_i+h_i)-(d'_j+h_j) \geq 0$，即用 $h_i+d'_i$ 作为新势能并不会使 $(i,j)$ 的边权变为负．
+Còn với các cạnh đã có, trước khi tăng luồng ta có $d'_i+(w(i,j)+h_i-h_j) - d'_j \geq 0$, do đó $w(i,j)+(d'_i+h_i)-(d'_j+h_j) \geq 0$. Tức là dùng $h_i+d'_i$ làm thế năng mới sẽ không khiến trọng số của cạnh $(i,j)$ trở thành âm.
 
-综上，增广后所有边的边权均非负，使用 Dijkstra 算法可以正确求出图上的最短路．
+Tóm lại, sau khi tăng luồng, trọng số của mọi cạnh đều không âm, nên có thể dùng thuật toán Dijkstra để tìm đúng đường đi ngắn nhất trên đồ thị.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -280,7 +280,7 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
         addedge(u, v, f, c);
         addedge(v, u, 0, -c);
       }
-      spfa();  // 先求出初始势能
+      spfa();  // Tính thế năng ban đầu
       while (dijkstra()) {
         int minf = INF;
         for (int i = 1; i <= n; i++) h[i] += dis[i];
@@ -297,17 +297,17 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
     }
     ```
 
-## 习题
+## Bài tập
 
--   [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.com.cn/problem/P3381)
--   [「Luogu 4452」航班安排](https://www.luogu.com.cn/problem/P4452)
--   [「SDOI 2009」晨跑](https://www.luogu.com.cn/problem/P2153)
--   [「SCOI 2007」修车](https://www.luogu.com.cn/problem/P2053)
--   [「HAOI 2010」订货](https://www.luogu.com.cn/problem/P2517)
--   [「NOI 2012」美食节](https://loj.ac/problem/2674)
+-   [Luogu 3381 - Mẫu: Luồng cực đại chi phí nhỏ nhất](https://www.luogu.com.cn/problem/P3381)
+-   [Luogu 4452 - Sắp xếp chuyến bay](https://www.luogu.com.cn/problem/P4452)
+-   [SDOI 2009 - Chạy buổi sáng](https://www.luogu.com.cn/problem/P2153)
+-   [SCOI 2007 - Sửa xe](https://www.luogu.com.cn/problem/P2053)
+-   [HAOI 2010 - Đặt hàng](https://www.luogu.com.cn/problem/P2517)
+-   [NOI 2012 - Lễ hội ẩm thực](https://loj.ac/problem/2674)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^note1]: 详细构造方法可以参考 [min\_25 的博客](https://web.archive.org/web/20211009144446/https://min-25.hatenablog.com/entry/2018/03/19/235802)．
+[^note1]: Có thể tham khảo cách xây dựng chi tiết trong [blog của min\_25](https://web.archive.org/web/20211009144446/https://min-25.hatenablog.com/entry/2018/03/19/235802).
 
-[^note2]: 在稀疏图上使用堆优化可以做到 $O(m \log n)$ 的时间复杂度，而在稠密图上不使用堆优化，可以做到 $O(n^2)$ 的时间复杂度．
+[^note2]: Trên đồ thị thưa, dùng tối ưu bằng heap có thể đạt độ phức tạp thời gian $O(m \log n)$; còn trên đồ thị dày, không dùng tối ưu bằng heap có thể đạt độ phức tạp thời gian $O(n^2)$.
