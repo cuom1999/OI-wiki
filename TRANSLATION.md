@@ -159,7 +159,7 @@ MkDocs source layout intact.
   decomposition material, plus explanatory comments in included snippets;
   quality-passed `docs/math/number-theory/primitive-root.md` through the
   Carmichael-number section and footnotes, and the opening high-order-residue
-  section of `docs/math/number-theory/residue.md`.
+  and unit-root sections of `docs/math/number-theory/residue.md`.
 - `docs/math/number-theory/dirichlet.md`,
   `docs/math/number-theory/mobius.md`, `docs/math/number-theory/du.md`,
   `docs/math/number-theory/powerful-number.md`,

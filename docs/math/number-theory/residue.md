@@ -180,106 +180,194 @@ quát thành [luật tương hỗ Artin](https://en.wikipedia.org/wiki/Artin_rec
 <span id="&#21333;&#20301;&#26681;"></span>
 ## Căn đơn vị
 
-La mot truong hop dac biet cua can bac $k$, muc nay thao luan ve khai niem can don vi (nguyen thuy) bac $k$. No co the xem la doi ung cua khai niem [can don vi](../complex.md#%E5%8D%95%E4%BD%8D%E6%A0%B9) bac $k$ trong truong so phuc $\mathbf C$ tren he thang du thu gon $\mathbf Z_m^*$ modulo $m$. Khi modulo $m$ phu hop, co the dung can don vi nguyen thuy bac $k$ modulo $m$ thay cho can phuc $\omega_k$ de tang toc tinh toan.
+Là một trường hợp đặc biệt của căn bậc $k$, mục này thảo luận khái niệm căn đơn
+vị (nguyên thủy) bậc $k$. Nó có thể xem là đối ứng của khái niệm
+[căn đơn vị](../complex.md#%E5%8D%95%E4%BD%8D%E6%A0%B9) bậc $k$ trong trường số
+phức $\mathbf C$ trên hệ thặng dư thu gọn $\mathbf Z_m^*$ modulo $m$. Khi modulo
+$m$ phù hợp, có thể dùng căn đơn vị nguyên thủy bậc $k$ modulo $m$ thay cho căn
+phức $\omega_k$ để tăng tốc tính toán.
 
-Tuong tu truong hop tren truong so phuc, ta co dinh nghia sau:
+Tương tự trường hợp trên trường số phức, ta có định nghĩa sau:
 
 ???+ abstract "Căn đơn vị bậc $k$ modulo $m$"
-    Voi modulo $m$, can bac $k$ cua phan tu $1$ duoc goi la **can don vi bac $k$ modulo $m$** ($k$-th root of unity modulo $m$). Dac biet, neu $x$ la mot can don vi bac $k$ modulo $m$ va khong phai la can don vi bac $k' < k$ nao modulo $m$, thi $x$ duoc goi la **can don vi nguyen thuy bac $k$ modulo $m$** ($k$-th primitive root of unity modulo $m$).
+    Với modulo $m$, căn bậc $k$ của phần tử $1$ được gọi là **căn đơn vị bậc
+    $k$ modulo $m$** ($k$-th root of unity modulo $m$). Đặc biệt, nếu $x$ là một
+    căn đơn vị bậc $k$ modulo $m$ và không phải là căn đơn vị bậc $k' < k$ nào
+    modulo $m$, thì $x$ được gọi là **căn đơn vị nguyên thủy bậc $k$ modulo
+    $m$** ($k$-th primitive root of unity modulo $m$).
 
-So sanh voi [dinh nghia can nguyen thuy](./primitive-root.md#%E5%8E%9F%E6%A0%B9), ta thay can nguyen thuy $g$ chinh la can don vi nguyen thuy bac $\varphi(m)$ modulo $m$, trong do $\varphi(m)$ la [ham Euler](./euler-totient.md).
+So sánh với [định nghĩa căn nguyên thủy](./primitive-root.md#%E5%8E%9F%E6%A0%B9),
+ta thấy căn nguyên thủy $g$ chính là căn đơn vị nguyên thủy bậc $\varphi(m)$
+modulo $m$, trong đó $\varphi(m)$ là [hàm Euler](./euler-totient.md).
 
-Khi can don vi nguyen thuy bac $k$ modulo $m$ ton tai, cac tinh chat dai so cua no trung voi can don vi phuc nguyen thuy bac $k$ la $\omega_k$, nen co the dung no thay $\omega_k$ trong nhieu phep tinh. Vi du, ap dung no vao [bien doi Fourier nhanh](../poly/fft.md) se thu duoc [bien doi so hoc nhanh](../poly/ntt.md) tren truong huu han[^fnnt].
+Khi căn đơn vị nguyên thủy bậc $k$ modulo $m$ tồn tại, các tính chất đại số của
+nó trùng với căn đơn vị phức nguyên thủy bậc $k$ là $\omega_k$, nên có thể dùng
+nó thay $\omega_k$ trong nhiều phép tính. Ví dụ, áp dụng nó vào
+[biến đổi Fourier nhanh](../poly/fft.md) sẽ thu được
+[biến đổi số học nhanh](../poly/ntt.md) trên trường hữu hạn[^fnnt].
 
 <span id="&#24615;&#36136;_1"></span>
 ### Tính chất
 
-Trong truong so phuc, can don vi (nguyen thuy) bac bat ky deu ton tai. Nhung trong so hoc, can don vi (nguyen thuy) khong phai luc nao cung ton tai.
+Trong trường số phức, căn đơn vị (nguyên thủy) bậc bất kỳ đều tồn tại. Nhưng
+trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng tồn tại.
 
 ???+ note "Tính chất"
-    Voi modulo $m$, dat $\lambda(m)$ la [ham Carmichael](./primitive-root.md#carmichael-%E5%87%BD%E6%95%B0) cua no. Khi do:
-    
-    1.  Moi so nguyen $a$ nguyen to cung nhau voi $m$ deu la can don vi nguyen thuy bac $\delta_m(a)$ modulo $m$, trong do $\delta_m(a)$ la [cap](./primitive-root.md#%E9%98%B6) cua $a$ modulo $m$.
-    2.  Neu phan tu $a$ la can don vi bac $k$ modulo $m$, va $k'$ la mot boi bat ky cua $k$, thi $a$ cung la can don vi bac $k'$ modulo $m$.
-    3.  Neu phan tu $a$ la can don vi (nguyen thuy) bac $k$ modulo $m$, thi phan tu $a^{\ell}$ la can don vi bac $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$ (tuong ung la nguyen thuy).
-    4.  Khi $k'$ chay qua cac uoc cua $k$, toan bo can don vi nguyen thuy bac $k'$ modulo $m$ lap thanh mot phan hoach cua tap can don vi bac $k$ modulo $m$. Hon nua, voi $\ell\perp k$, anh xa $x\mapsto x^\ell$ cho mot song anh tren cac can don vi bac $k$ va giu nguyen phan hoach do: no van anh xa can don vi nguyen thuy bac $k'\mid k$ thanh can don vi nguyen thuy bac $k'$.
-    5.  Can don vi nguyen thuy bac $k$ modulo $m$ ton tai khi va chi khi $k\mid\lambda(m)$. Dac biet, can don vi nguyen thuy bac $\lambda(m)$ modulo $m$ ton tai va duoc goi la **$\lambda$-can nguyen thuy modulo $m$**.
-    6.  Phan tu $a$ la can don vi bac $k$ modulo $m$ khi va chi khi $a^k\equiv 1\pmod{m}$ va voi moi uoc nguyen to $p\mid k$ deu co $a^{k/p}\not\equiv 1\pmod{m}$.
+    Với modulo $m$, đặt $\lambda(m)$ là
+    [hàm Carmichael](./primitive-root.md#carmichael-%E5%87%BD%E6%95%B0) của nó.
+    Khi đó:
+
+    1.  Mọi số nguyên $a$ nguyên tố cùng nhau với $m$ đều là căn đơn vị nguyên
+        thủy bậc $\delta_m(a)$ modulo $m$, trong đó $\delta_m(a)$ là
+        [bậc](./primitive-root.md#%E9%98%B6) của $a$ modulo $m$.
+    2.  Nếu phần tử $a$ là căn đơn vị bậc $k$ modulo $m$, và $k'$ là một bội bất
+        kỳ của $k$, thì $a$ cũng là căn đơn vị bậc $k'$ modulo $m$.
+    3.  Nếu phần tử $a$ là căn đơn vị (nguyên thủy) bậc $k$ modulo $m$, thì phần
+        tử $a^{\ell}$ là căn đơn vị bậc $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$
+        (tương ứng là nguyên thủy).
+    4.  Khi $k'$ chạy qua các ước của $k$, toàn bộ căn đơn vị nguyên thủy bậc
+        $k'$ modulo $m$ lập thành một phân hoạch của tập căn đơn vị bậc $k$
+        modulo $m$. Hơn nữa, với $\ell\perp k$, ánh xạ $x\mapsto x^\ell$ cho
+        một song ánh trên các căn đơn vị bậc $k$ và giữ nguyên phân hoạch đó: nó
+        vẫn ánh xạ căn đơn vị nguyên thủy bậc $k'\mid k$ thành căn đơn vị nguyên
+        thủy bậc $k'$.
+    5.  Căn đơn vị nguyên thủy bậc $k$ modulo $m$ tồn tại khi và chỉ khi
+        $k\mid\lambda(m)$. Đặc biệt, căn đơn vị nguyên thủy bậc $\lambda(m)$
+        modulo $m$ tồn tại và được gọi là **$\lambda$-căn nguyên thủy modulo
+        $m$**.
+    6.  Phần tử $a$ là căn đơn vị nguyên thủy bậc $k$ modulo $m$ khi và chỉ khi
+        $a^k\equiv 1\pmod{m}$ và với mọi ước nguyên tố $p\mid k$ đều có
+        $a^{k/p}\not\equiv 1\pmod{m}$.
 
 ??? note "Chứng minh"
-    Theo dinh nghia cua cap, moi so nguyen $a$ nguyen to cung nhau voi $m$ deu la can don vi nguyen thuy bac $\delta_m(a)$ modulo $m$, trong do $\delta_m(a)$ la cap cua $a$ modulo $m$. Nguoc lai, neu $a$ la can don vi bac $k$ modulo $m$, thi $\gcd(a^k,m)=1$, nen $\gcd(a,m)=1$. Do do, $a$ la can don vi (nguyen thuy) modulo $m$ khi va chi khi $a$ nguyen to cung nhau voi $m$. Day la tinh chat 1.
-    
-    Kiem tra truc tiep tu dinh nghia thay rang chi can $k\mid k'$, tu $a^k\equiv 1\pmod m$ suy ra $a^{k'}\equiv 1\pmod m$; day la tinh chat 2. Theo [tinh chat cua cap](./primitive-root.md#ord-prop-3), ta co
-    
+    Theo định nghĩa của bậc, mọi số nguyên $a$ nguyên tố cùng nhau với $m$ đều
+    là căn đơn vị nguyên thủy bậc $\delta_m(a)$ modulo $m$, trong đó
+    $\delta_m(a)$ là bậc của $a$ modulo $m$. Ngược lại, nếu $a$ là căn đơn vị
+    bậc $k$ modulo $m$, thì $\gcd(a^k,m)=1$, nên $\gcd(a,m)=1$. Do đó, $a$ là
+    căn đơn vị (nguyên thủy) modulo $m$ khi và chỉ khi $a$ nguyên tố cùng nhau
+    với $m$. Đây là tính chất 1.
+
+    Kiểm tra trực tiếp từ định nghĩa thấy rằng chỉ cần $k\mid k'$, từ
+    $a^k\equiv 1\pmod m$ suy ra $a^{k'}\equiv 1\pmod m$; đây là tính chất 2.
+    Theo [tính chất của bậc](./primitive-root.md#ord-prop-3), ta có
+
     $$
-    \delta(a^\ell) = \dfrac{\delta_m(a)}{\gcd(\delta_m(a),\ell)}.
+    \delta_m(a^\ell) = \dfrac{\delta_m(a)}{\gcd(\delta_m(a),\ell)}.
     $$
-    
-    Neu $a$ la can don vi nguyen thuy bac $k$ modulo $m$, thi $\delta_m(a)=k$, thay truc tiep vao cong thuc tren se duoc $a^\ell$ la can don vi nguyen thuy bac $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$. Neu $a$ chi la can don vi bac $k$ modulo $m$, gia su no la can don vi nguyen thuy bac $k'\mid k$, thi $a^\ell$ la can don vi nguyen thuy bac $\dfrac{k'}{\gcd(k',\ell)}$ modulo $m$. Vi $k'\mid k$, ta co
-    
+
+    Nếu $a$ là căn đơn vị nguyên thủy bậc $k$ modulo $m$, thì $\delta_m(a)=k$;
+    thay trực tiếp vào công thức trên sẽ được $a^\ell$ là căn đơn vị nguyên thủy
+    bậc $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$. Nếu $a$ chỉ là căn đơn vị bậc $k$
+    modulo $m$, giả sử nó là căn đơn vị nguyên thủy bậc $k'\mid k$, thì
+    $a^\ell$ là căn đơn vị nguyên thủy bậc $\dfrac{k'}{\gcd(k',\ell)}$ modulo
+    $m$. Vì $k'\mid k$, ta có
+
     $$
     \dfrac{k'}{\gcd(k',\ell)} \mid \dfrac{k}{\gcd(k,\ell)},
     $$
-    
-    roi theo tinh chat 2, $a^\ell$ la can don vi bac $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$. Day la tinh chat 3.
-    
-    Voi $k'\mid k$, theo tinh chat 2, can don vi nguyen thuy bac $k'$ modulo $m$ tat nhien la can don vi bac $k$ modulo $m$. Cac tap nay doi mot khong giao nhau, nen tao thanh mot phan hoach. Voi $\ell\perp k$, luon co $\ell\perp k'$, do do neu $a$ la can don vi nguyen thuy bac $k'$ modulo $m$ thi $a^\ell$ van la can don vi nguyen thuy bac $k'$ modulo $m$. Lay $\ell'=\ell^{-1}\bmod k$, co the kiem tra $x\mapsto x^\ell$ va $x\mapsto x^{\ell'}$ la hai anh xa nguoc nhau; vi vay $x\mapsto x^\ell$ la song anh. Day la tinh chat 4.
-    
-    Theo tinh chat cua ham Carmichael, can don vi nguyen thuy bac $\lambda(m)$ modulo $m$ luon ton tai; goi no la $a$, voi $\delta_m(a)=\lambda(m)$. Voi $k\mid\lambda(m)$, dat $k'=\dfrac{\lambda(m)}{k}$, luon co
-    
+
+    rồi theo tính chất 2, $a^\ell$ là căn đơn vị bậc
+    $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$. Đây là tính chất 3.
+
+    Với $k'\mid k$, theo tính chất 2, căn đơn vị nguyên thủy bậc $k'$ modulo
+    $m$ tất nhiên là căn đơn vị bậc $k$ modulo $m$. Các tập này đôi một không
+    giao nhau, nên tạo thành một phân hoạch. Với $\ell\perp k$, luôn có
+    $\ell\perp k'$, do đó nếu $a$ là căn đơn vị nguyên thủy bậc $k'$ modulo $m$
+    thì $a^\ell$ vẫn là căn đơn vị nguyên thủy bậc $k'$ modulo $m$. Lấy
+    $\ell'=\ell^{-1}\bmod k$, có thể kiểm tra $x\mapsto x^\ell$ và
+    $x\mapsto x^{\ell'}$ là hai ánh xạ ngược nhau; vì vậy $x\mapsto x^\ell$ là
+    song ánh. Đây là tính chất 4.
+
+    Theo tính chất của hàm Carmichael, căn đơn vị nguyên thủy bậc $\lambda(m)$
+    modulo $m$ luôn tồn tại; gọi nó là $a$, với $\delta_m(a)=\lambda(m)$. Với
+    $k\mid\lambda(m)$, đặt $k'=\dfrac{\lambda(m)}{k}$, luôn có
+
     $$
     \delta_m(a^{k'}) = \dfrac{\lambda(m)}{(\lambda(m),k')} = \dfrac{\lambda(m)}{k'} = k.
     $$
-    
-    Vi vay, $a^{k'}$ la can don vi nguyen thuy bac $k$. Mat khac, theo dinh nghia ham Carmichael, cap cua moi $x\perp m$ deu la uoc cua $\lambda(m)$. Suy ra tinh chat 5.
-    
-    Gan nhu lap lai chung minh cua [dinh ly kiem tra can nguyen thuy](./primitive-root.md#%E5%8E%9F%E6%A0%B9%E5%88%A4%E5%AE%9A%E5%AE%9A%E7%90%86) se thu duoc tinh chat 6. Tieu chuan nay thuc chat dang kiem tra $\delta_m(a)=k$.
 
-Tu cac tinh chat tren co the thay, so voi truong hop ton tai can nguyen thuy, $\lambda$-can nguyen thuy modulo $m$ dong vai tro nen tang tuong tu. Khac voi can nguyen thuy, cac luy thua cua $\lambda$-can nguyen thuy khong the sinh ra toan bo cac can don vi modulo $m$. Du vay, vi mat do cua $\lambda$-can nguyen thuy khong qua thap[^lambda-density], neu can tim mot can don vi nguyen thuy bac $k$, co the truoc het dung phuong phap ngau nhien de tim mot $\lambda$-can nguyen thuy, roi lay luy thua cua no de thu duoc can don vi nguyen thuy bac $k$.
+    Vì vậy, $a^{k'}$ là căn đơn vị nguyên thủy bậc $k$. Mặt khác, theo định
+    nghĩa hàm Carmichael, bậc của mọi $x\perp m$ đều là ước của $\lambda(m)$.
+    Suy ra tính chất 5.
 
-Neu da biet mot can bac $k$ cua $a$ modulo $m$, co the dung toan bo can don vi bac $k$ modulo $m$ de sinh ra toan bo can bac $k$ cua $a$ modulo $m$.
+    Gần như lặp lại chứng minh của
+    [định lí kiểm tra căn nguyên thủy](./primitive-root.md#%E5%8E%9F%E6%A0%B9%E5%88%A4%E5%AE%9A%E5%AE%9A%E7%90%86)
+    sẽ thu được tính chất 6. Tiêu chuẩn này thực chất đang kiểm tra
+    $\delta_m(a)=k$.
+
+Từ các tính chất trên có thể thấy, so với trường hợp tồn tại căn nguyên thủy,
+$\lambda$-căn nguyên thủy modulo $m$ đóng vai trò nền tảng tương tự. Khác với
+căn nguyên thủy, các lũy thừa của $\lambda$-căn nguyên thủy không thể sinh ra
+toàn bộ các căn đơn vị modulo $m$. Dù vậy, vì mật độ của $\lambda$-căn nguyên
+thủy không quá thấp[^lambda-density], nếu cần tìm một căn đơn vị nguyên thủy bậc
+$k$, có thể trước hết dùng phương pháp ngẫu nhiên để tìm một $\lambda$-căn
+nguyên thủy, rồi lấy lũy thừa của nó để thu được căn đơn vị nguyên thủy bậc
+$k$.
+
+Nếu đã biết một căn bậc $k$ của $a$ modulo $m$, có thể dùng toàn bộ căn đơn vị
+bậc $k$ modulo $m$ để sinh ra toàn bộ căn bậc $k$ của $a$ modulo $m$.
 
 ???+ note "Định lý"
-    Gia su $x$ la mot can bac $k$ cua $a$ modulo $m$. Khi $r$ chay qua toan bo cac can don vi bac $k$ modulo $m$, $xr$ chay qua toan bo cac can bac $k$ cua $a$ modulo $m$.
+    Giả sử $x$ là một căn bậc $k$ của $a$ modulo $m$. Khi $r$ chạy qua toàn bộ
+    các căn đơn vị bậc $k$ modulo $m$, $xr$ chạy qua toàn bộ các căn bậc $k$ của
+    $a$ modulo $m$.
 
 ??? note "Chứng minh"
-    Voi hai can bac $k$ la $x,y$ cua $a$ modulo $m$, dat $r=x^{-1}y\bmod m$. Khi do $r$ thoa man $r^k\equiv 1\pmod m$, nen la can don vi bac $k$ modulo $m$. Nguoc lai, neu $r$ la can don vi bac $k$ modulo $m$, thi $(xr)^{k}= x^kr^k\equiv a\pmod m$, tuc la $xr$ la can bac $k$ cua $a$ modulo $m$.
+    Với hai căn bậc $k$ là $x,y$ của $a$ modulo $m$, đặt
+    $r=x^{-1}y\bmod m$. Khi đó $r$ thỏa mãn $r^k\equiv 1\pmod m$, nên là căn
+    đơn vị bậc $k$ modulo $m$. Ngược lại, nếu $r$ là căn đơn vị bậc $k$ modulo
+    $m$, thì $(xr)^{k}= x^kr^k\equiv a\pmod m$, tức là $xr$ là căn bậc $k$ của
+    $a$ modulo $m$.
 
-Dung can don vi bac $k$ de sinh ra toan bo can bac $k$ tuong tu viec dung nghiem cua he phuong trinh tuyen tinh thuan nhat de sinh nghiem tong quat cua he phuong trinh tuyen tinh khong thuan nhat.
+Dùng căn đơn vị bậc $k$ để sinh ra toàn bộ căn bậc $k$ tương tự việc dùng nghiệm
+của hệ phương trình tuyến tính thuần nhất để sinh nghiệm tổng quát của hệ phương
+trình tuyến tính không thuần nhất.
 
-Phan tren thao luan truong hop tong quat. Rieng khi can nguyen thuy ton tai, cau truc cua can don vi don gian hon:
+Phần trên thảo luận trường hợp tổng quát. Riêng khi căn nguyên thủy tồn tại, cấu
+trúc của căn đơn vị đơn giản hơn:
 
 ???+ note "Định lý"
-    Voi modulo $m$, gia su ton tai can nguyen thuy modulo $m$, va $a$ la can don vi nguyen thuy bac $k$ modulo $m$. Khi do, $b$ la can don vi bac $k$ modulo $m$ khi va chi khi $b$ co the bieu dien thanh mot luy thua cua $a$.
+    Với modulo $m$, giả sử căn nguyên thủy modulo $m$ tồn tại, và $a$ là căn đơn
+    vị nguyên thủy bậc $k$ modulo $m$. Khi đó, $b$ là căn đơn vị bậc $k$ modulo
+    $m$ khi và chỉ khi $b$ có thể biểu diễn thành một lũy thừa của $a$.
 
 ??? note "Chứng minh"
-    Goi $g$ la can nguyen thuy modulo $m$. Khi do moi phan tu nguyen to cung nhau voi $m$ deu co the bieu dien thanh mot luy thua cua $g$. Do do, $a$ la can don vi nguyen thuy bac $k$ modulo $m$ khi va chi khi
-    
+    Gọi $g$ là căn nguyên thủy modulo $m$. Khi đó mọi phần tử nguyên tố cùng
+    nhau với $m$ đều có thể biểu diễn thành một lũy thừa của $g$. Do đó, $a$ là
+    căn đơn vị nguyên thủy bậc $k$ modulo $m$ khi và chỉ khi
+
     $$
     \delta_m(a) = \delta_m(g^{\operatorname{ind}_ga}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_ga)} = k.
     $$
-    
-    Tuong tu, $b$ la can don vi bac $k$ modulo $m$ khi va chi khi
-    
+
+    Tương tự, $b$ là căn đơn vị bậc $k$ modulo $m$ khi và chỉ khi
+
     $$
     \delta_m(b) = \delta_m(g^{\operatorname{ind}_gb}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_gb)} = k' \mid k.
     $$
-    
-    Vi vay, ta co
-    
+
+    Vì vậy, ta có
+
     $$
     \gcd(\varphi(m),\operatorname{ind}_ga) \mid \gcd(\varphi(m),\operatorname{ind}_gb)\mid \operatorname{ind}_gb.
     $$
-    
-    Theo [phan tich](./linear-equation.md) ve phuong trinh dong du tuyen tinh, dieu kien nay tuong duong voi viec phuong trinh
-    
+
+    Theo [phân tích](./linear-equation.md) về phương trình đồng dư tuyến tính,
+    điều kiện này tương đương với việc phương trình
+
     $$
     (\operatorname{ind}_ga) x \equiv \operatorname{ind}_gb \pmod{\varphi(m)}
     $$
-    
-    co nghiem. Lay luy thua co co so $g$ cho dieu kien nay se duoc $a^x\equiv b\pmod{m}$, tuc la $b$ co the bieu dien thanh mot luy thua cua $a$.
 
-Dinh ly nay cho thay, khi can nguyen thuy ton tai, toan bo cac can don vi bac $k$ co cau truc [nhom cyclic](../algebra/group-theory.md#%E5%BE%AA%E7%8E%AF%E7%BE%A4), va cac can don vi nguyen thuy bac $k$ la phan tu sinh cua nhom cyclic do. Ngay sau day ta se thay thuat toan Tonelli-Shanks tan dung diem nay de tang toc phan tinh logarit roi rac trong phep khai can.
+    có nghiệm. Lấy lũy thừa cơ số $g$ cho điều kiện này sẽ được
+    $a^x\equiv b\pmod{m}$, tức là $b$ có thể biểu diễn thành một lũy thừa của
+    $a$.
+
+Định lí này cho thấy, khi căn nguyên thủy tồn tại, toàn bộ các căn đơn vị bậc
+$k$ có cấu trúc [nhóm cyclic](../algebra/group-theory.md#%E5%BE%AA%E7%8E%AF%E7%BE%A4),
+và các căn đơn vị nguyên thủy bậc $k$ là phần tử sinh của nhóm cyclic đó. Ngay
+sau đây ta sẽ thấy thuật toán Tonelli-Shanks tận dụng điểm này để tăng tốc phần
+tính logarit rời rạc trong phép khai căn.
 
 <span id="&#27169;&#24847;&#20041;&#19979;&#24320;&#26041;"></span>
 ## Khai căn theo modulo
