@@ -384,6 +384,8 @@ MkDocs source layout intact.
 - `docs/tools/editor/npp.md`: translated the Notepad++ editor workflow page.
 - `docs/tools/editor/kate.md`: translated the Kate editor features and LSP
   setup page.
+- `docs/tools/editor/vscode.md`: translated the VS Code compile/run, debugging,
+  clangd, and editing workflow page.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

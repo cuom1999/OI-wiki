@@ -1,188 +1,188 @@
 author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh, xiaofu-15191, Sekakou, fuxianhu
 
-## 简介
+## Giới thiệu
 
-Visual Studio Code（以下简称 VS Code）是一个由微软开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器．它是用 TypeScript 编写的，并且采用 Electron 架构．它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统．
+Visual Studio Code (dưới đây gọi tắt là VS Code) là một trình soạn thảo mã nguồn mở do Microsoft phát triển, hỗ trợ các hệ điều hành như Windows, Linux và macOS. Nó được viết bằng TypeScript và dùng kiến trúc Electron. VS Code có sẵn hỗ trợ cho JavaScript, TypeScript và Node.js, đồng thời cung cấp hệ sinh thái extension phong phú cho các ngôn ngữ khác như C, C++, Java, Python, PHP, Go.
 
-官网：[Visual Studio Code - The open source AI code editor](https://code.visualstudio.com/)
+Trang chủ: [Visual Studio Code - The open source AI code editor](https://code.visualstudio.com/)
 
-在阅读以下内容前，建议你先简单了解 VS Code 的基本使用方法：[开始使用 Get started](https://code.visualstudio.com/docs/getstarted/getting-started)．
+Trước khi đọc các nội dung bên dưới, bạn nên tìm hiểu sơ qua cách dùng cơ bản của VS Code: [Get started](https://code.visualstudio.com/docs/getstarted/getting-started).
 
-## 使用 C/C++ Compile Run 扩展运行代码
+## Chạy mã bằng extension C/C++ Compile Run
 
-C/C++ Compile Run 是一个专注于 C/C++ 单文件编译与运行的插件．它免去了传统 C/C++ 插件中繁琐的配置步骤，非常适合编程竞赛的需要，上手迅速，操作简单．
+C/C++ Compile Run là một plugin tập trung vào biên dịch và chạy tệp đơn C/C++. Nó tránh được các bước cấu hình rườm rà của plugin C/C++ truyền thống, rất phù hợp với nhu cầu lập trình thi đấu, dễ bắt đầu và thao tác đơn giản.
 
-打开 VS Code，点击左侧边栏的「扩展」图标（或按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>），在搜索框中输入 `C++`，找到 C/C++ Compile Run，点击「安装/Install」即可．
+Mở VS Code, nhấp biểu tượng "Extensions" ở thanh bên trái (hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>), nhập `C++` vào ô tìm kiếm, tìm C/C++ Compile Run, rồi nhấp "Install".
 
 ![](./images/vscode-14.png)
 
-安装完成后，无需额外配置，插件会根据环境变量自动适配已配置好的 MinGW 编译器．
+Sau khi cài đặt xong, không cần cấu hình thêm; plugin sẽ tự động thích nghi với trình biên dịch MinGW đã cấu hình sẵn theo biến môi trường.
 
-打开需要运行的文件，点击右上角的三角图标即可运行代码．
+Mở tệp cần chạy, nhấp biểu tượng tam giác ở góc trên bên phải để chạy mã.
 
-快捷键：
+Phím tắt:
 
--   <kbd>F6</kbd>- 编译并在 VS Code 内置集成终端中运行
--   <kbd>F7</kbd>- 以自定义参数编译并以自定义参数在 VS Code 内置集成终端运行
--   <kbd>F8</kbd>- 编译并在外部终端中运行
+-   <kbd>F6</kbd> - biên dịch và chạy trong terminal tích hợp của VS Code.
+-   <kbd>F7</kbd> - biên dịch với tham số tùy chỉnh và chạy với tham số tùy chỉnh trong terminal tích hợp của VS Code.
+-   <kbd>F8</kbd> - biên dịch và chạy trong terminal ngoài.
 
-## 使用 Code Runner 扩展运行代码
+## Chạy mã bằng extension Code Runner
 
-VS Code 安装并配置扩展后可实现对 C/C++ 的支持，但配置过程比较复杂．一个简单的编译与运行 C++ 程序的方案是安装 Code Runner 扩展．
+Sau khi cài đặt và cấu hình extension, VS Code có thể hỗ trợ C/C++, nhưng quá trình cấu hình tương đối phức tạp. Một phương án đơn giản để biên dịch và chạy chương trình C++ là cài extension Code Runner.
 
-Code Runner 是一个可以一键运行代码的扩展，在工程上一般用来验证代码片段，支持 Node.js、Python、C、C++、Java、PHP、Perl、Ruby、Go 等 40 多种语言．
+Code Runner là một extension có thể chạy mã bằng một lần nhấp. Trong công việc phát triển, nó thường được dùng để kiểm tra đoạn mã, và hỗ trợ hơn 40 ngôn ngữ như Node.js, Python, C, C++, Java, PHP, Perl, Ruby, Go.
 
-安装的方式是在扩展商店搜索 Code Runner 并点击 Install；或者前往 [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 并点击 Install，浏览器会自动打开 VS Code 并进行安装．
+Cách cài đặt là tìm Code Runner trong extension store rồi nhấp Install; hoặc vào [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) và nhấp Install, trình duyệt sẽ tự mở VS Code để cài đặt.
 
 ![](./images/vscode-1.jpg)
 
-安装完成后，打开需要运行的文件，点击右上角的小三角图标即可运行代码；按下快捷键<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>（在 macOS 下是<kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>）也可以得到同样的效果．
+Sau khi cài đặt xong, mở tệp cần chạy, nhấp biểu tượng tam giác nhỏ ở góc trên bên phải để chạy mã; nhấn phím tắt <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd> (trên macOS là <kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>) cũng có hiệu quả tương tự.
 
-???+ warning "Warning"
-    如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境，参考 [Hello, World! 页面](../../lang/helloworld.md) 以安装．
-    
-    记得勾选设置中的 Run In Terminal 选项，如图：![](./images/vscode-7.png)
+???+ warning "Cảnh báo"
+    Nếu sau khi cài VS Code và Code Runner mà mã vẫn không chạy được, rất có thể hệ thống chưa cài môi trường chạy C/C++; hãy tham khảo [trang Hello, World!](../../lang/helloworld.md) để cài đặt.
 
-## 使用 C/C++ 扩展编译并调试/智能补全代码
+    Nhớ chọn tùy chọn Run In Terminal trong phần cài đặt, như hình: ![](./images/vscode-7.png)
 
-### 安装扩展
+## Dùng extension C/C++ để biên dịch, gỡ lỗi và hoàn thành thông minh
 
-在 VS Code 中打开扩展商店，在搜索栏中输入 `C++` 或者 `@category:"programming languages"`，然后找到 C/C++，点击 Install 安装扩展．
+### Cài extension
+
+Trong VS Code, mở extension store, nhập `C++` hoặc `@category:"programming languages"` vào thanh tìm kiếm, tìm C/C++, rồi nhấp Install để cài extension.
 
 ![](./images/vscode-2.png)
 
-???+ warning "Warning"
-    在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了环境变量 `PATH` 中．请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端．
+???+ warning "Cảnh báo"
+    Trước khi cấu hình, hãy đảm bảo hệ thống đã cài G++ hoặc Clang và đã thêm vào biến môi trường `PATH`. Hãy dùng CMD hoặc PowerShell làm terminal tích hợp, không dùng Git Bash.
 
-### 配置 GDB/LLDB 调试器
+### Cấu hình debugger GDB/LLDB
 
 #### GDB
 
-在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下<kbd>F5</kbd>，进入调试模式．
-如果出现了「选择调试器」的提示，选择 `C++ (GDB/LLDB)`．在「选择配置」中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`．
+Trong VS Code, tạo một tệp mã C++ mới, viết một số nội dung theo cú pháp C++ (ví dụ `int main(){}`), lưu lại rồi nhấn <kbd>F5</kbd> để vào chế độ gỡ lỗi.
+Nếu xuất hiện lời nhắc "Select debugger", chọn `C++ (GDB/LLDB)`. Trong "Select configuration", người dùng G++ chọn `g++.exe - Build and debug active file`; người dùng Clang chọn `clang++ - Build and debug active file`.
 
-???+ warning "Warning"
-    配置名称并非固定，而是可以自定义的．不同的操作系统可能具有不同的配置名称．
+???+ warning "Cảnh báo"
+    Tên cấu hình không cố định mà có thể tùy chỉnh. Các hệ điều hành khác nhau có thể có tên cấu hình khác nhau.
 
-完成后，VS Code 将自动完成初始化操作在下方的集成终端中启动调试．至此，GDB 所有的配置流程已经完毕．
+Sau khi hoàn tất, VS Code sẽ tự động hoàn thành thao tác khởi tạo và khởi động gỡ lỗi trong terminal tích hợp phía dưới. Đến đây, toàn bộ quy trình cấu hình GDB đã xong.
 
 #### LLDB
 
-如果需要采用 LLDB，需要安装另外一款扩展[^ref1]——[CodeLLDB](https://github.com/vadimcn/vscode-lldb/)．从该项目的 Release 页面下载 .vsix 文件后[^ref2]，从 VS Code 的扩展页面安装．
+Nếu cần dùng LLDB, cần cài một extension khác[^ref1]: [CodeLLDB](https://github.com/vadimcn/vscode-lldb/). Sau khi tải tệp `.vsix` từ trang Release của dự án này[^ref2], hãy cài đặt từ trang extension của VS Code.
 
 ![](images/vscode-9.png)
 
-先按照上文 GDB 的配置过程操作一遍，然后删除 `.vscode/launch.json`，按下<kbd>F5</kbd>，选择 `LLDB`，再把 `launch.json` 中的 `${workspaceFolder}/<executable file>` 更改为 `${fileDirname}/${fileBasenameNoExtension}` 即可．
+Trước hết làm theo quy trình cấu hình GDB ở trên một lần, rồi xóa `.vscode/launch.json`, nhấn <kbd>F5</kbd>, chọn `LLDB`, sau đó đổi `${workspaceFolder}/<executable file>` trong `launch.json` thành `${fileDirname}/${fileBasenameNoExtension}` là được.
 
-至此，LLDB 配置完成．再次按下<kbd>F5</kbd>即可看到软件下方的调试信息．
+Đến đây, cấu hình LLDB đã hoàn tất. Nhấn <kbd>F5</kbd> lần nữa là có thể thấy thông tin gỡ lỗi ở phía dưới phần mềm.
 
-若要在以后使用 VS Code 编译并调试代码，所有的源代码都需要保存至这个文件夹内．若要编译并调试其他文件夹中存放的代码，需要重新执行上述步骤（或将旧文件夹内的 `.vscode` 子文件夹复制到新文件夹内）．
+Nếu sau này muốn dùng VS Code để biên dịch và gỡ lỗi mã, toàn bộ mã nguồn cần được lưu trong thư mục này. Nếu muốn biên dịch và gỡ lỗi mã nằm trong thư mục khác, cần thực hiện lại các bước trên (hoặc sao chép thư mục con `.vscode` trong thư mục cũ sang thư mục mới).
 
-### 开始调试代码
+### Bắt đầu gỡ lỗi mã
 
-使用 VS Code 打开一份代码，将鼠标悬停在行数左侧的空白区域，并单击出现的红点即可为该行代码设置断点．再次单击可取消设置断点．
+Dùng VS Code mở một tệp mã, di chuột tới vùng trống bên trái số dòng, rồi nhấp chấm đỏ xuất hiện để đặt breakpoint cho dòng mã đó. Nhấp lại để hủy breakpoint.
 
 ![](images/vscode-5.apng)
 
-按下<kbd>F5</kbd>进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 GDB 中的 `continue`,`next`,`step` 和 `until`：
+Nhấn <kbd>F5</kbd> để vào chế độ gỡ lỗi. Phía trên trình soạn thảo sẽ xuất hiện một thanh công cụ gỡ lỗi; bốn nút màu xanh từ trái sang phải lần lượt tương ứng với `continue`, `next`, `step` và `until` trong GDB:
 
 ![](images/vscode-6.png)
 
-如果编辑器未自动跳转，点击左侧工具栏中的「调试」图标进入调试窗口，即可在左侧看到变量的值．
+Nếu trình soạn thảo không tự động chuyển tới, hãy nhấp biểu tượng "Debug" trên thanh công cụ bên trái để vào cửa sổ gỡ lỗi; khi đó có thể thấy giá trị biến ở bên trái.
 
-在「监视」中，你可以输入表达式，在每一次进行 `next` 或 `step` 等操作时都会重新求值并显示．
+Trong "Watch", bạn có thể nhập biểu thức; mỗi lần thực hiện thao tác như `next` hoặc `step`, biểu thức sẽ được tính lại và hiển thị.
 
-在「调用堆栈」中，你可以看见当前函数执行的栈帧．
+Trong "Call Stack", bạn có thể thấy stack frame của hàm hiện tại.
 
-???+ note "Tip"
-    你可以参照 [GDB 官方文档](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Arrays.html) 来查看某个数组一段区间内的内容．
+???+ note "Mẹo"
+    Bạn có thể tham khảo [tài liệu chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Arrays.html) để xem nội dung của một đoạn trong mảng.
 
-在调试模式中，编辑器将以黄色底色显示下一步将要执行的代码．
+Trong chế độ gỡ lỗi, trình soạn thảo sẽ dùng nền màu vàng để hiển thị dòng mã sẽ được thực thi tiếp theo.
 
-### 配置 IntelliSense
+### Cấu hình IntelliSense
 
-用于调整 VS Code 的智能补全．
+Dùng để điều chỉnh hoàn thành thông minh của VS Code.
 
-如果你使用 Clang 编译器，在「IntelliSense 模式」中选择 `clang-x64` 而非默认的 `msvc-x64`；如果你使用 G++ 编译器，选择 `gcc-x64` 以使用自动补全等功能．否则会得到「IntelliSense 模式 msvc-x64 与编译器路径不兼容．」的错误．
+Nếu bạn dùng trình biên dịch Clang, trong "IntelliSense Mode" hãy chọn `clang-x64` thay vì `msvc-x64` mặc định; nếu dùng trình biên dịch G++, chọn `gcc-x64` để dùng tự động hoàn thành và các chức năng tương tự. Nếu không, bạn sẽ gặp lỗi "IntelliSense mode msvc-x64 is incompatible with compiler path."
 
 ![](images/vscode-4.png)
 
-## 配置 clangd
+## Cấu hình clangd
 
-???+ warning "Warning"
-    由于功能冲突，安装 clangd 扩展后 C/C++ 扩展的 IntelliSense 功能将被禁用（调试等功能仍然使用 C/C++ 扩展）．如果 clangd 扩展的功能出现问题，可以查看是否禁用了 C/C++ 扩展的 IntelliSense 功能．
+???+ warning "Cảnh báo"
+    Do xung đột chức năng, sau khi cài extension clangd, chức năng IntelliSense của extension C/C++ sẽ bị tắt (các chức năng như gỡ lỗi vẫn dùng extension C/C++). Nếu chức năng của extension clangd có vấn đề, có thể kiểm tra xem IntelliSense của extension C/C++ đã bị tắt hay chưa.
 
-### clangd 简介
+### Giới thiệu clangd
 
-LLVM 官网上对 clangd 的介绍是这样的：
+Trang chủ LLVM giới thiệu clangd như sau:
 
 > Clangd is an implementation of the Language Server Protocol leveraging Clang. Clangd’s goal is to provide language "smartness" features like code completion, find references, etc. for clients such as C/C++ Editors.
 
-简单来说，clangd 是 Clang 对语言服务器协定（Language Server Protocol）的实现，提供了一些智能的特性，例如全项目索引、代码跳转、变量重命名、更快的代码补全、提示信息、格式化代码等，并且能利用 LSP 与 Vim、Emacs、VSCode 等编辑器协作．虽然官方给出的定义是 LSP 的实现，但 clangd 的功能更接近语言服务器（Language Server）而不仅仅只是协议本身．
+Nói đơn giản, clangd là phần triển khai Language Server Protocol của Clang. Nó cung cấp một số tính năng thông minh như lập chỉ mục toàn project, nhảy tới mã, đổi tên biến, hoàn thành mã nhanh hơn, gợi ý thông tin, định dạng mã, v.v.; đồng thời có thể phối hợp với các trình soạn thảo như Vim, Emacs, VSCode thông qua LSP. Dù định nghĩa chính thức nói clangd là phần triển khai LSP, chức năng của clangd gần với language server hơn là chỉ bản thân giao thức.
 
-VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易读程度的准确度等方面与 clangd 相比稍逊一筹，所以我们有时会使用 clangd 代替 C/C++ 扩展来实现代码自动补全等功能．
+Extension C/C++ của VS Code cũng có các chức năng như tự động hoàn thành, nhưng về độ dễ đọc và độ chính xác của thông tin gợi ý thì kém hơn clangd một chút. Vì vậy đôi khi ta dùng clangd thay cho extension C/C++ để triển khai các chức năng như tự động hoàn thành mã.
 
-### 安装
+### Cài đặt
 
-参见 [Getting started](https://clangd.llvm.org/installation)．
+Xem [Getting started](https://clangd.llvm.org/installation).
 
-### VS Code 扩展
+### Extension VS Code
 
-打开 VS Code 扩展商店，在搜索栏中输入 `clangd` 找到 clangd 扩展并安装
+Mở extension store của VS Code, nhập `clangd` vào thanh tìm kiếm, tìm extension clangd rồi cài đặt.
 
 ![](images/vscode-8.png)
 
-如果下方弹出 clangd 要求关闭 Intellisense 的对话框，点击 "Disable Intellisense"，重新加载工作区，就可以享受 clangd 的自动补全等功能了．
+Nếu phía dưới hiện hộp thoại clangd yêu cầu tắt Intellisense, hãy nhấp "Disable Intellisense", tải lại workspace, rồi bạn có thể dùng các chức năng như tự động hoàn thành của clangd.
 
-## 编辑
+## Chỉnh sửa
 
-### 语法设置
+### Thiết lập cú pháp
 
-在新打开的编辑器中点击「选择语言」，即可打开对应的语法高亮，如图：
+Trong trình soạn thảo mới mở, nhấp "Select Language" để bật tô sáng cú pháp tương ứng, như hình:
 
 ![](images/vscode-11.apng)
 
-### 快捷键
+### Phím tắt
 
-官方快捷键 PDF 如下，也可以在 VS Code 中按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>打开命令面板并输入命令 `> Help: Keyboard Shortcuts Reference` 打开．[^ref3]
+PDF phím tắt chính thức như dưới đây; cũng có thể nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> trong VS Code để mở command palette, rồi nhập lệnh `> Help: Keyboard Shortcuts Reference` để mở.[^ref3]
 
--   [Windows 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
--   [Linux 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
--   [Mac OS 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+-   [Phím tắt hệ Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+-   [Phím tắt hệ Linux](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
+-   [Phím tắt hệ Mac OS](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
 
-部分快捷键：
+Một số phím tắt:
 
-| 按键                                                            | 操作                        |
-| ------------------------------------------------------------- | ------------------------- |
-| <kbd>Ctrl</kbd>+<kbd>C</kbd>/<kbd>X</kbd>                     | 复制/剪切当前行（当没有选择内容时）        |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                 | 删除当前行                     |
-| <kbd>Alt</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd>                  | 行上移/下移                    |
-| <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd> | 行向上/向下复制                  |
-| <kbd>Ctrl</kbd>+<kbd>/</kbd>                                  | 切换行注释                     |
-| <kbd>Ctrl</kbd>+<kbd>\[</kbd>/<kbd>]</kbd>                    | 行向左/右缩进                   |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\[</kbd>/<kbd>]</kbd>   | 行折叠/展开                    |
-| <kbd>Ctrl</kbd>+<kbd>P</kbd>                                  | 打开最近打开的文件                 |
-| <kbd>Alt</kbd>+<kbd>Z</kbd>                                   | 切换自动折行                    |
-| <kbd>Alt</kbd>+<kbd>F12</kbd>                                 | 速览定义（如函数的定义）              |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\\</kbd>                | 跳转到匹配括号                   |
-| <kbd>Ctrl</kbd>+<kbd>T</kbd>                                  | 在工作区中查找符号（在文件夹中查找指定名称函数等） |
+| Phím | Thao tác |
+| ---- | -------- |
+| <kbd>Ctrl</kbd>+<kbd>C</kbd>/<kbd>X</kbd> | Sao chép/cắt dòng hiện tại (khi không chọn nội dung nào) |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> | Xóa dòng hiện tại |
+| <kbd>Alt</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd> | Di chuyển dòng lên/xuống |
+| <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd> | Sao chép dòng lên/xuống |
+| <kbd>Ctrl</kbd>+<kbd>/</kbd> | Bật/tắt chú thích dòng |
+| <kbd>Ctrl</kbd>+<kbd>\[</kbd>/<kbd>]</kbd> | Thụt dòng sang trái/phải |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\[</kbd>/<kbd>]</kbd> | Gấp/mở dòng |
+| <kbd>Ctrl</kbd>+<kbd>P</kbd> | Mở tệp đã mở gần đây |
+| <kbd>Alt</kbd>+<kbd>Z</kbd> | Bật/tắt tự xuống dòng |
+| <kbd>Alt</kbd>+<kbd>F12</kbd> | Xem nhanh định nghĩa (ví dụ định nghĩa của hàm) |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\\</kbd> | Nhảy tới ngoặc khớp |
+| <kbd>Ctrl</kbd>+<kbd>T</kbd> | Tìm symbol trong workspace (ví dụ tìm hàm có tên chỉ định trong thư mục) |
 
-### 多光标
+### Nhiều con trỏ
 
-按住<kbd>Alt</kbd>并单击即可在编辑器中添加光标，多数编辑操作都可同时进行；按住鼠标中键并在编辑器中拖动也可添加多行光标，如图：
+Giữ <kbd>Alt</kbd> rồi nhấp để thêm con trỏ trong trình soạn thảo; đa số thao tác chỉnh sửa đều có thể thực hiện đồng thời. Giữ nút chuột giữa và kéo trong trình soạn thảo cũng có thể thêm con trỏ nhiều dòng, như hình:
 
 ![](images/vscode-12.gif)
 
-按<kbd>Ctrl</kbd>+<kbd>F2</kbd>可在编辑器中同时更改所有匹配项，也可以在右键菜单中找到 Change All Occurrences，如图：
+Nhấn <kbd>Ctrl</kbd>+<kbd>F2</kbd> để đồng thời sửa tất cả kết quả khớp trong trình soạn thảo; cũng có thể tìm Change All Occurrences trong menu chuột phải, như hình:
 
 ![](images/vscode-13.gif)
 
-注意此时在右上角会有一个工具栏，可在其中开启查找匹配项时是否开启大小写匹配、全字匹配等．
+Chú ý lúc này ở góc trên bên phải sẽ có một thanh công cụ, có thể bật/tắt phân biệt hoa thường, khớp cả từ, v.v. khi tìm kết quả khớp.
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^ref1]: VS Code 的 C/C++ 扩展如果选择 lldb 作调试器，则会默认采用 lldb-mi 程序，而它已经被 LLVM 开发团队从项目中分离出来，需要自己编译该程序．而它本身就有一些 bug，使用体验和方便程度都不如 CodeLLDB 扩展．
+[^ref1]: Nếu extension C/C++ của VS Code chọn lldb làm debugger, mặc định nó sẽ dùng chương trình lldb-mi; chương trình này đã được nhóm phát triển LLVM tách khỏi dự án và cần tự biên dịch. Bản thân nó cũng có một số bug, nên trải nghiệm và mức độ tiện lợi đều không bằng extension CodeLLDB.
 
-[^ref2]: 从扩展商店安装 CodeLLDB 后它会再从 GitHub 下载本体，下载速度奇慢，有时下载出错，所以最好直接下载本体然后安装．更新也可直接按照以上步骤下载安装．
+[^ref2]: Sau khi cài CodeLLDB từ extension store, nó sẽ tải phần lõi từ GitHub, tốc độ tải rất chậm và đôi khi lỗi tải, nên tốt nhất là tải trực tiếp phần lõi rồi cài đặt. Khi cập nhật cũng có thể tải và cài theo các bước trên.
 
-[^ref3]: [VS Code 官方文档](https://code.visualstudio.com/docs/)．
+[^ref3]: [Tài liệu chính thức của VS Code](https://code.visualstudio.com/docs/).
