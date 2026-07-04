@@ -745,68 +745,96 @@ Bài mẫu:
 -   [Codeforces 865 D. Buy Low Sell High](https://codeforces.com/problemset/problem/865/D)
 
 <span id="&#x4F8B;&#x9898;&#x642C;&#x8FD0;&#x571F;&#x77F3;&#x95EE;&#x9898;"></span>
-### Vi du: bai toan van chuyen dat da
+### Ví dụ: bài toán vận chuyển đất đá
 
 ???+ example "[\[USACO16OPEN\] Landscaping P](https://www.luogu.com.cn/problem/P2748)"
-    Cho hai day do dai $n$, $\{a_i\}$ va $\{b_i\}$, lan luot bieu thi luong dat hien co va luong dat can co trong vuon thu $i$ (khong duoc thua cung khong duoc thieu). Mua mot don vi dat va dat vao mot vuon bat ky ton $X$; chuyen mot don vi dat ra khoi mot vuon bat ky ton $Y$; van chuyen mot don vi dat tu vuon $i$ sang vuon $j$ ton $Z|i-j|$. Hay tinh chi phi nho nhat de thoa man nhu cau cua moi vuon. ($a_i,b_i\le 10$)
+    Cho hai dãy độ dài $n$, $\{a_i\}$ và $\{b_i\}$, lần lượt biểu thị lượng đất
+    hiện có và lượng đất cần có trong vườn thứ $i$ (không được thừa cũng không
+    được thiếu). Mua một đơn vị đất và đặt vào một vườn bất kỳ tốn $X$; chuyển
+    một đơn vị đất ra khỏi một vườn bất kỳ tốn $Y$; vận chuyển một đơn vị đất từ
+    vườn $i$ sang vườn $j$ tốn $Z|i-j|$. Hãy tính chi phí nhỏ nhất để thỏa mãn
+    nhu cầu của mọi vườn. ($a_i,b_i\le 10$)
 
-??? note "Loi giai"
-    Xet loi giai DP truc tiep. Dat $f_i(x)$ la chi phi nho nhat de thoa man nhu cau cua $i$ vuon dau, va con du thuan $x$ don vi dat duoc chuyen den cac vuon phia sau. Neu $x<0$, dieu do tuong duong voi thieu rong $|x|$ don vi dat va can duoc chuyen tu cac vuon phia sau ve. Khi do co the viet phuong trinh chuyen trang thai:
+??? note "Lời giải"
+    Xét lời giải DP trực tiếp. Đặt $f_i(x)$ là chi phí nhỏ nhất để thỏa mãn nhu
+    cầu của $i$ vườn đầu, và còn dư ròng $x$ đơn vị đất được chuyển đến các vườn
+    phía sau. Nếu $x<0$, điều đó tương đương với thiếu ròng $|x|$ đơn vị đất và
+    cần được chuyển từ các vườn phía sau về. Khi đó có thể viết phương trình
+    chuyển trạng thái:
 
     $$
     f_i(x) = \min_{y\in\mathbf R} f_{i-1}(y) + |y|Z + h((x-y)+(b_i-a_i)).
     $$
 
-    Trong do, ham $h(\delta)$ bieu thi chi phi khi luong dat mua rong cua vuon hien tai la $\delta$, tuc
+    Trong đó, hàm $h(\delta)$ biểu thị chi phí khi lượng đất mua ròng của vườn
+    hiện tại là $\delta$, tức
 
     $$
     h(\delta) = \max\{0,\delta\}X + \max\{0,-\delta\}Y = \max\{\delta X,-\delta Y\}.
     $$
 
-    Ham nay ro rang la ham loi. Y nghia cua phuong trinh chuyen trang thai la:
+    Hàm này rõ ràng là hàm lồi. Ý nghĩa của phương trình chuyển trạng thái là:
 
-    -   Khi $i-1$ vuon truoc con du rong $y$ don vi dat, chi phi nho nhat la $f_{i-1}(y)$;
-    -   Chi phi van chuyen luong dat du (hoac thieu) giua vuon $i-1$ va $i$ la $|y|Z$;
-    -   Bang mua ban, dieu chinh luong dat cua vuon thu $i$ tu $a_i$ thanh $b_i$, dong thoi dieu chinh luong dat du rong tu $y$ thanh $x$, voi chi phi nho nhat la $h((x-y)+(b_i-a_i))$.
+    -   Khi $i-1$ vườn trước còn dư ròng $y$ đơn vị đất, chi phí nhỏ nhất là
+        $f_{i-1}(y)$;
+    -   Chi phí vận chuyển lượng đất dư (hoặc thiếu) giữa vườn $i-1$ và $i$ là
+        $|y|Z$;
+    -   Bằng mua bán, điều chỉnh lượng đất của vườn thứ $i$ từ $a_i$ thành
+        $b_i$, đồng thời điều chỉnh lượng đất dư ròng từ $y$ thành $x$, với chi
+        phí nhỏ nhất là $h((x-y)+(b_i-a_i))$.
 
-    Trang thai ban dau la $f_0(0)=0$, va voi moi $x\neq 0$, $f_0(x)=+\infty$. Dap an cua bai toan la $f_n(0)$.
+    Trạng thái ban đầu là $f_0(0)=0$, và với mọi $x\neq 0$, $f_0(x)=+\infty$.
+    Đáp án của bài toán là $f_n(0)$.
 
-    Co the chia phep bien doi tu $f_{i-1}(x)$ sang $f_i(x)$ thanh ba buoc:
+    Có thể chia phép biến đổi từ $f_{i-1}(x)$ sang $f_i(x)$ thành ba bước:
 
-    1.  Truoc het cong $|x|Z$, thu duoc $f_{i-1}(x)+|x|Z$;
-    2.  Sau do lay tich chap duoi dung voi $h(x)$, thu duoc $\min_{y\in\mathbf R}f_{i-1}(y)+|y|Z+h(x-y)$;
-    3.  Cuoi cung, tinh tien ham sang trai $(b_i-a_i)$ don vi.
+    1.  Trước hết cộng $|x|Z$, thu được $f_{i-1}(x)+|x|Z$;
+    2.  Sau đó lấy tích chập dưới đúng với $h(x)$, thu được
+        $\min_{y\in\mathbf R}f_{i-1}(y)+|y|Z+h(x-y)$;
+    3.  Cuối cùng, tịnh tiến hàm sang trái $(b_i-a_i)$ đơn vị.
 
-    Chuyen thanh thao tac tren cac doan do doc, cung gom ba buoc:
+    Chuyển thành thao tác trên các đoạn độ dốc, cũng gồm ba bước:
 
-    1.  Cong $-Z$ vao tat ca doan do doc ben trai goc, va cong $Z$ vao tat ca doan do doc ben phai goc;
-    2.  Thay the tat ca doan do doc nho hon $-Y$ bang $-Y$, va thay the tat ca doan do doc lon hon $X$ bang $X$;
-    3.  Tinh tien tat ca doan do doc sang trai $(b_i-a_i)$ don vi.
+    1.  Cộng $-Z$ vào tất cả đoạn độ dốc bên trái gốc, và cộng $Z$ vào tất cả
+        đoạn độ dốc bên phải gốc;
+    2.  Thay thế tất cả đoạn độ dốc nhỏ hơn $-Y$ bằng $-Y$, và thay thế tất cả
+        đoạn độ dốc lớn hơn $X$ bằng $X$;
+    3.  Tịnh tiến tất cả đoạn độ dốc sang trái $(b_i-a_i)$ đơn vị.
 
-    Trong de goc, $a_i$ va $b_i$ rat nho, nen chi can duy tri nhieu doan do doc do dai $1$. Mac du so doan do doc la vo han, chung co can tren $X$ va can duoi $-Y$, va so doan do doc nam nghiem ngat giua hai can nay khong nhieu. Vi khong co thao tac chen, co the dung hai stack de duy tri cac doan do doc hai phia goc. Phep cong tren khoang va phep lay cuc tri tren khoang deu duoc xu ly bang lazy tag. Ba buoc tren lan luot tuong ung voi:
+    Trong đề gốc, $a_i$ và $b_i$ rất nhỏ, nên chỉ cần duy trì nhiều đoạn độ dốc
+    độ dài $1$. Mặc dù số đoạn độ dốc là vô hạn, chúng có cận trên $X$ và cận
+    dưới $-Y$, và số đoạn độ dốc nằm nghiêm ngặt giữa hai cận này không nhiều.
+    Vì không có thao tác chèn, có thể dùng hai stack để duy trì các đoạn độ dốc
+    hai phía gốc. Phép cộng trên khoảng và phép lấy cực trị trên khoảng đều được
+    xử lý bằng lazy tag. Ba bước trên lần lượt tương ứng với:
 
-    1.  Gan lazy tag cho hai stack trai va phai: ben trai cong $-Z$, ben phai cong $Z$;
-    2.  Moi khi pop phan tu trong stack, lay max voi $-Y$ va min voi $X$. Neu stack trai rong thi pop $-Y$. Neu stack phai rong thi pop $X$;
-    3.  Pop $(b_i-a_i)$ phan tu tren dinh stack trai va chen vao stack phai; tat nhien, khi $b_i-a_i<0$ thi lam nguoc lai.
+    1.  Gắn lazy tag cho hai stack trái và phải: bên trái cộng $-Z$, bên phải
+        cộng $Z$;
+    2.  Mỗi khi pop phần tử trong stack, lấy max với $-Y$ và min với $X$. Nếu
+        stack trái rỗng thì pop $-Y$. Nếu stack phải rỗng thì pop $X$;
+    3.  Pop $(b_i-a_i)$ phần tử trên đỉnh stack trái và chèn vào stack phải; tất
+        nhiên, khi $b_i-a_i<0$ thì làm ngược lại.
 
-    Khi trao doi dinh stack, cap nhat dap an: di sang trai thi tru di do doc hien tai, di sang phai thi cong do doc hien tai.
+    Khi trao đổi đỉnh stack, cập nhật đáp án: đi sang trái thì trừ đi độ dốc
+    hiện tại, đi sang phải thì cộng độ dốc hiện tại.
 
-    Do phuc tap cua thuat toan la $O(n\max\{a_i,b_i\})$.
+    Độ phức tạp của thuật toán là $O(n\max\{a_i,b_i\})$.
 
     ```cpp
     --8<-- "docs/dp/code/opt/slope-trick/landscaping.cpp"
     ```
 
-Bai mau:
+Bài mẫu:
 
 -   [Luogu P2748 \[USACO16OPEN\] Landscaping P](https://www.luogu.com.cn/problem/P2748)
 -   [Kyoto University PC 2016 H - WAAAAAAAAAAAAALL](https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h)
 -   [JAG Practice Contest 2017 J - Farm Village](https://atcoder.jp/contests/jag2017autumn/tasks/jag2017autumn_j)
 
 <span id="&#x4E60;&#x9898;"></span>
-## Bai tap
+## Bài tập
 
-Cuoi bai viet, duoi day la mot so bai toan tung xuat hien trong cac ky thi lap trinh, co the giai bang Slope Trick, de ban luyen tap.
+Cuối bài viết, dưới đây là một số bài toán từng xuất hiện trong các kỳ thi lập
+trình, có thể giải bằng Slope Trick, để bạn luyện tập.
 
 -   [Luogu P3642 \[APIO2016\] Fireworks](https://www.luogu.com.cn/problem/P3642)
 -   [Luogu P9962 \[THUPC 2024 Preliminary\] A Tree](https://www.luogu.com.cn/problem/P9962)
@@ -824,13 +852,13 @@ Cuoi bai viet, duoi day la mot so bai toan tung xuat hien trong cac ky thi lap t
 -   [300iq Contest 3 F. Farm of Monsters](https://codeforces.com/gym/102538/problem/F)
 
 <span id="&#x53C2;&#x8003;&#x6587;&#x732E;&#x4E0E;&#x6CE8;&#x91CA;"></span>
-## Tai lieu tham khao va ghi chu
+## Tài liệu tham khảo và ghi chú
 
 -   [\[Tutorial\] Slope Trick - zscoder](https://codeforces.com/blog/entry/47821)
 -   [Slope trick explained - Kuroni](https://codeforces.com/blog/entry/77298)
 -   [Slope Trick - USACO Guide](https://usaco.guide/adv/slope-trick?lang=cpp)
 -   [\[Tutorial\] Intuition on Slope Trick - maomao90](https://codeforces.com/blog/entry/103222)
 
-[^convex-def]: Cac giao trinh khac nhau co the dung ten goi khac nhau cho ham loi.
+[^convex-def]: Các giáo trình khác nhau có thể dùng tên gọi khác nhau cho hàm lồi.
 
-[^inf-conv]: Cung thuong duoc goi la tich chap $\min$, tich chap $\inf$, hoac tich chap $(\min,+)$.
+[^inf-conv]: Cũng thường được gọi là tích chập $\min$, tích chập $\inf$, hoặc tích chập $(\min,+)$.
