@@ -1,70 +1,70 @@
 author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ksyx, luxuryspark567, mgt, orzAtalod, sandyzikun, SunsetGlow95, Tiphereth-A, current2020, untitledunrevised, yuhuoji
 
-左偏红黑树是 [红黑树](./rbtree.md) 的一种变体，它的对红边（点）的位置做了一定限制，使得其插入与删除操作可以与 [2-3 树](https://en.wikipedia.org/wiki/2%E2%80%933_tree) 构成一一对应．
+Cây đỏ-đen nghiêng trái là một biến thể của [cây đỏ-đen](./rbtree.md). Nó đặt thêm một số ràng buộc lên vị trí của cạnh đỏ (hoặc nút đỏ), nhờ đó các thao tác chèn và xóa có thể tương ứng một-một với [cây 2-3](https://en.wikipedia.org/wiki/2%E2%80%933_tree).
 
-我们假设读者已经至少掌握了一种基于旋转的平衡树，因此本文不会对旋转操作进行讲解．
+Chúng tôi giả sử người đọc đã nắm được ít nhất một loại cây cân bằng dựa trên phép xoay, vì vậy bài viết này sẽ không giải thích riêng thao tác xoay.
 
-## 红黑树
+## Cây đỏ-đen
 
-### 性质
+### Tính chất
 
-一棵红黑树满足如下性质：
+Một cây đỏ-đen thỏa mãn các tính chất sau:
 
-1.  节点是红色或黑色；
-2.  NIL 节点（空叶子节点）为黑色；
-3.  红色的节点的所有儿子的颜色必须是黑色，即从每个叶子到根的所有路径上不能有两个连续的红色节点；
-4.  从任一节点到其子树中的每个叶子的所有简单路径上都包含相同数目的黑色节点．（黑高平衡）
+1.  Mỗi nút có màu đỏ hoặc đen.
+2.  Nút NIL (nút lá rỗng) có màu đen.
+3.  Mọi con của nút đỏ đều phải có màu đen, tức là trên mọi đường đi từ mỗi lá đến gốc không được có hai nút đỏ liên tiếp.
+4.  Trên mọi đường đi đơn từ một nút bất kỳ đến từng lá trong cây con của nó đều có cùng số lượng nút đen. Đây là cân bằng chiều cao đen.
 
-这保证了从根节点到任意叶子的最长路径（红黑交替）不会超过最短路径（全黑）的二倍．从而保证了树的平衡性．
+Các tính chất này đảm bảo đường đi dài nhất từ gốc đến một lá bất kỳ, trong trường hợp màu đỏ và đen xen kẽ, không vượt quá hai lần đường đi ngắn nhất, trong trường hợp toàn nút đen. Nhờ đó cây vẫn được cân bằng.
 
-维护这些性质是比较复杂的，如果我们要插入一个节点，首先，它一定会被染色成红色，否则会破坏性质 4．即使这样，我们还是有可能会破坏性质 3．因此需要进行调整．而删除节点就更加麻烦，与插入类似，我们不能删除黑色节点，否则会破坏黑高的平衡．如何方便地解决这些问题呢？
+Việc duy trì các tính chất này khá phức tạp. Khi chèn một nút, trước hết nút đó chắc chắn phải được tô màu đỏ, nếu không sẽ phá vỡ tính chất 4. Nhưng ngay cả như vậy, ta vẫn có thể phá vỡ tính chất 3, nên cần thực hiện điều chỉnh. Xóa nút còn rắc rối hơn: tương tự như khi chèn, ta không thể xóa trực tiếp một nút đen, nếu không cân bằng chiều cao đen sẽ bị phá vỡ. Làm thế nào để giải quyết những vấn đề này một cách thuận tiện?
 
-## 左偏红黑树（Left Leaning Red Black Tree）
+## Cây đỏ-đen nghiêng trái (Left-Leaning Red-Black Tree)
 
-### 解释
+### Giải thích
 
-左偏红黑树是一种容易实现的红黑树变体．
+Cây đỏ-đen nghiêng trái, hay LLRB, là một biến thể cây đỏ-đen dễ cài đặt.
 
-在以下左偏红黑树示意图中，是边具有颜色而不是节点具有颜色．我们习惯用一个节点的颜色代指它的父亲边的颜色．
+Trong các sơ đồ cây đỏ-đen nghiêng trái bên dưới, màu được gán cho cạnh chứ không phải cho nút. Theo thói quen, ta dùng màu của một nút để chỉ màu của cạnh nối từ cha của nó đến nó.
 
-左偏红黑树对红黑树进行了进一步限制，一个黑色节点的左右儿子：
+Cây đỏ-đen nghiêng trái đặt thêm ràng buộc lên cây đỏ-đen. Với hai con trái và phải của một nút đen:
 
--   要么全是黑色；
--   要么左儿子是红色，右儿子是黑色．
+-   Hoặc cả hai đều là màu đen.
+-   Hoặc con trái là màu đỏ, con phải là màu đen.
 
-符合条件的情况：
+Các trường hợp hợp lệ:
 
 ![llrbt1](./images/llrbt-1.png)
 
-不符合条件的情况：
+Các trường hợp không hợp lệ:
 
 ![llrbt2](./images/llrbt-2.png)
 
-这是左偏树的「左偏」性质：红色边只能是左偏的．
+Đây chính là tính chất "nghiêng trái" của LLRB: cạnh đỏ chỉ được phép nghiêng về bên trái.
 
-### 过程
+### Quy trình
 
-#### 插入
+#### Chèn
 
-我们首先使用普通的 BST 插入方法，在树的底部插入一个红色的叶子节点，然后通过从下向上的调整，使得插入后的树仍然符合左偏红黑树的性质．下面描述调整的过程：
+Trước hết, ta dùng cách chèn BST thông thường để chèn một nút lá màu đỏ ở đáy cây. Sau đó, thông qua các điều chỉnh từ dưới lên, ta bảo đảm cây sau khi chèn vẫn thỏa mãn các tính chất của cây đỏ-đen nghiêng trái. Quy trình điều chỉnh được mô tả dưới đây:
 
 ![llrbt3](./images/llrbt-3.png)
 
-插入后，可能会产生一条右偏的红色边，因此需要对红边右偏的情况进行一次左旋：
+Sau khi chèn, có thể xuất hiện một cạnh đỏ nghiêng phải, vì vậy trong trường hợp cạnh đỏ nghiêng phải ta cần thực hiện một phép xoay trái:
 
 ![llrbt4](./images/llrbt-4.png)
 
-考虑左旋后会产生两条连续的左偏红色边：
+Sau phép xoay trái, có thể xuất hiện hai cạnh đỏ nghiêng trái liên tiếp:
 
 ![llrbt5](./images/llrbt-5.png)
 
-因此需要把它进行一次右旋．而对于右旋后的情况，我们应该对它进行 `color_flip`：即翻转该节点和它的两个儿子的颜色
+Vì vậy ta cần thực hiện một phép xoay phải. Với trạng thái sau phép xoay phải, ta nên gọi `color_flip`, tức là đảo màu của nút đó và hai con của nó.
 
 ![llrbt6](./images/llrbt-6.png)
 
-从而消灭右偏的红边．
+Nhờ đó cạnh đỏ nghiêng phải bị loại bỏ.
 
-??? note "参考代码（部分）"
+??? note "Mã tham khảo (một phần)"
     ```cpp
     template <class Key, class Compare>
     typename Set<Key, Compare>::Node *Set<Key, Compare>::fix_up(
@@ -96,35 +96,35 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
     }
     ```
 
-#### 删除
+#### Xóa
 
-删除操作基于这样的思想：我们不能删除黑色的节点，因为这样会破坏黑高．所以我们需要保证我们最后删除的节点是红色的．
+Thao tác xóa dựa trên ý tưởng sau: ta không thể xóa một nút đen, vì làm vậy sẽ phá vỡ chiều cao đen. Do đó ta cần bảo đảm nút cuối cùng bị xóa là nút đỏ.
 
-##### 删除最小值节点
+##### Xóa nút nhỏ nhất
 
-首先来试一下删除整棵树里的最小值．
+Trước hết, hãy thử xóa giá trị nhỏ nhất trong toàn bộ cây.
 
-怎么才能保证最后删除的节点是红色的呢？我们需要在向下递归的过程中保证一个性质：如果当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->lc` 是红色．
+Làm thế nào để bảo đảm nút cuối cùng bị xóa là màu đỏ? Trong quá trình đệ quy đi xuống, ta cần duy trì một tính chất: nếu nút hiện tại là `h`, thì phải bảo đảm `h` là màu đỏ, hoặc `h->lc` là màu đỏ.
 
-考虑这样做的正确性，如果我们能够通过各种旋转和反转颜色操作成功维护这个性质，那么当我们到达最小的节点 `h_min` 的时候，有 `h_min` 是红色，或者 `h_min` 的左子树——但是 `h_min` 根本没有左子树！所以这就保证了最小值节点一定是红的，既然它是红色的，我们就可以大胆的删除它，然后用与插入操作相同的调整思路对树进行调整．
+Hãy xét tính đúng đắn của cách làm này. Nếu ta có thể duy trì thành công tính chất trên bằng các phép xoay và thao tác đảo màu, thì khi đi đến nút nhỏ nhất `h_min`, ta có `h_min` là màu đỏ, hoặc cây con trái của `h_min` là màu đỏ. Nhưng `h_min` hoàn toàn không có cây con trái. Vì vậy điều này bảo đảm nút nhỏ nhất chắc chắn là màu đỏ. Vì nó là màu đỏ, ta có thể xóa nó một cách trực tiếp, rồi dùng cùng ý tưởng điều chỉnh như thao tác chèn để chỉnh lại cây.
 
-下面我们来考虑怎么满足这个性质，注意，我们会在向下递归的时候 **临时地** 破坏左偏红黑树的若干性质，但是当我们从递归中返回时还会将其恢复．
+Bây giờ ta xét cách thỏa mãn tính chất này. Lưu ý rằng trong lúc đệ quy đi xuống, ta sẽ **tạm thời** phá vỡ một số tính chất của cây đỏ-đen nghiêng trái, nhưng khi quay lui khỏi đệ quy thì sẽ khôi phục chúng.
 
-如下图所描述的，是一种较为简单的情况，此时 `h->rc->lc` 为黑色，我们只需要一次翻转颜色即可：
+Như hình dưới mô tả, đây là một trường hợp tương đối đơn giản. Lúc này `h->rc->lc` là màu đen, ta chỉ cần đảo màu một lần:
 
 ![llrbt-7](./images/llrbt-7.png)
 
-并且，在如上所示的翻转之后，不会使 `h->rc` 与 `h->rc->lc` 形成连续的红边；
+Hơn nữa, sau phép đảo màu như trên, `h->rc` và `h->rc->lc` sẽ không tạo thành các cạnh đỏ liên tiếp.
 
-但如果 `h->rc->lc` 是红色，情况会比较复杂：
+Nhưng nếu `h->rc->lc` là màu đỏ thì tình huống phức tạp hơn:
 
 ![llrbt-8](./images/llrbt-8.png)
 
-如果只进行翻转颜色，会产生连续的红边，而考虑我们递归返回的时候，是无法修复这样的情况的，因此需要进行处理．
+Nếu chỉ đảo màu, các cạnh đỏ liên tiếp sẽ xuất hiện. Khi xét quá trình quay lui khỏi đệ quy, ta không thể sửa được tình huống như vậy, nên cần xử lý thêm.
 
-然后就可以进行删除了：
+Sau đó ta có thể thực hiện xóa:
 
-??? note "参考代码（部分）"
+??? note "Mã tham khảo (một phần)"
     ```cpp
     template <class Key, class Compare>
     typename Set<Key, Compare>::Node *Set<Key, Compare>::move_red_left(
@@ -156,17 +156,17 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
     }
     ```
 
-##### 删除任意节点
+##### Xóa nút bất kỳ
 
-我们首先考虑删除叶子：与删最小值类似，我们在删除任意值的过程中也要维护一个性质，不过这次比较特殊，因为我们不是只向左边走，而是可以向左右两个方向走，因此在删除过程中维护的性质是这样的：如果往左走，当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->lc` 是红色；如果往右走，当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->rc` 是红色．这样可以保证我们最后总会删掉一个红色节点．
+Trước hết ta xét việc xóa lá. Tương tự như xóa giá trị nhỏ nhất, trong quá trình xóa một giá trị bất kỳ ta cũng cần duy trì một tính chất. Tuy nhiên lần này có điểm đặc biệt: ta không chỉ đi sang trái, mà có thể đi theo cả hai hướng trái và phải. Vì vậy tính chất cần duy trì trong quá trình xóa là: nếu đi sang trái và nút hiện tại là `h`, thì cần bảo đảm `h` là màu đỏ, hoặc `h->lc` là màu đỏ; nếu đi sang phải và nút hiện tại là `h`, thì cần bảo đảm `h` là màu đỏ, hoặc `h->rc` là màu đỏ. Như vậy ta có thể bảo đảm cuối cùng luôn xóa một nút đỏ.
 
-下面考虑删除非叶子节点，我们只需要找到其右子树（如果有）里的最小节点，然后用右子树的最小节点的值代替该节点的值，最后删除右子树里的最小节点．
+Tiếp theo xét việc xóa nút không phải lá. Ta chỉ cần tìm nút nhỏ nhất trong cây con phải của nó, nếu có, rồi dùng giá trị của nút nhỏ nhất trong cây con phải để thay thế giá trị của nút đó. Cuối cùng xóa nút nhỏ nhất trong cây con phải.
 
 ![llrbt-9](./images/llrbt-9.png)
 
-那如果没有右子树怎么办？我们需要把左子树旋转过来，这样就不会出现这个问题了．
+Vậy nếu không có cây con phải thì sao? Ta cần xoay cây con trái lên, như vậy vấn đề này sẽ không xuất hiện.
 
-??? note "参考代码（部分）"
+??? note "Mã tham khảo (một phần)"
     ```cpp
     template <class Key, class Compare>
     typename Set<Key, Compare>::Node *Set<Key, Compare>::delete_arbitrary(
@@ -199,11 +199,11 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
     }
     ```
 
-## 实现
+## Cài đặt
 
-下面的代码是用左偏红黑树实现的 `Set`，即有序不可重集合：
+Đoạn mã dưới đây là một `Set` được cài đặt bằng cây đỏ-đen nghiêng trái, tức là một tập hợp có thứ tự và không chứa phần tử trùng lặp:
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <memory>
@@ -517,25 +517,25 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
     }
     ```
 
-## 与 2-3 树的关系
+## Quan hệ với cây 2-3
 
-2-3 树是 3 阶 B 树，每个结点都是 2 结点或 3 结点，存储一个或两个数据元素．非叶结点的 2 结点和 3 结点分别只能有两个或三个孩子．而且，2-3 树中存储的所有数据都是有序的．
+Cây 2-3 là cây B bậc 3. Mỗi nút là nút 2 hoặc nút 3, lưu trữ một hoặc hai phần tử dữ liệu. Nút 2 và nút 3 không phải lá lần lượt chỉ có thể có hai hoặc ba con. Ngoài ra, tất cả dữ liệu được lưu trong cây 2-3 đều có thứ tự.
 
-2-3 树和左偏红黑树实质是等价的．2-3 树中一个节点可以存储 1 个元素或 2 个元素，而红黑树的一个节点只能存储一个元素．如下图所示，2-3 树的 2 节点对应一个黑色节点，3 节点对应一个红色节点和一个黑色节点（可以将 bc 视作平行）．
+Về bản chất, cây 2-3 và cây đỏ-đen nghiêng trái là tương đương. Trong cây 2-3, một nút có thể lưu 1 phần tử hoặc 2 phần tử, còn một nút trong cây đỏ-đen chỉ có thể lưu một phần tử. Như hình dưới đây, nút 2 của cây 2-3 tương ứng với một nút đen, còn nút 3 tương ứng với một nút đỏ và một nút đen. Có thể xem `b` và `c` là song song.
 
 ![2-3-tree-rbt](images/2-3-tree-rbt-1.svg)
 
 ![2-3-tree-rbt](images/2-3-tree-rbt-2.svg)
 
-下图是一棵 2-3 树对应的左偏红黑树．
+Hình dưới đây là cây đỏ-đen nghiêng trái tương ứng với một cây 2-3.
 
 ![2-3-tree-rbt](images/2-3-tree-rbt-3.svg)
 
-2-3 树和左偏红黑树的插入与删除操作是一一对应的．[^23-vs-llrbt]
+Các thao tác chèn và xóa của cây 2-3 và cây đỏ-đen nghiêng trái tương ứng một-một với nhau.[^23-vs-llrbt]
 
-## 参考资料与拓展阅读
+## Tài liệu tham khảo và đọc thêm
 
 -   [Left-Leaning Red-Black Trees](https://sedgewick.io/wp-content/themes/sedgewick/papers/2008LLRB.pdf)-  Robert Sedgewick Princeton University
 -   [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/keynote/33BalancedSearchTrees-2x2.pdf)-\_Algorithms\_Robert Sedgewick | Kevin Wayne
 
-[^23-vs-llrbt]: [这篇博文](https://riteme.site/blog/2016-3-12/2-3-tree-and-red-black-tree.html) 提供了详细的描述．文中的「红黑树」实际上指的是「左偏红黑树」．
+[^23-vs-llrbt]: [Bài viết này](https://riteme.site/blog/2016-3-12/2-3-tree-and-red-black-tree.html) cung cấp mô tả chi tiết. "Cây đỏ-đen" trong bài viết đó thực chất chỉ "cây đỏ-đen nghiêng trái".

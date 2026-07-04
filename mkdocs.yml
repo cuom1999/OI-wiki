@@ -386,12 +386,12 @@ nav:
       - Size Balanced Tree (SBT): ds/sbt.md
       - Cây AVL: ds/avl.md
       - Cây đỏ-đen: ds/rbtree.md
-      - 左偏红黑树: ds/llrbt.md
+      - Cây đỏ-đen nghiêng trái: ds/llrbt.md
       - Cây AA: ds/aa-tree.md
     - Skip list: ds/skiplist.md
-    - 可持久化数据结构:
-      - 可持久化数据结构简介: ds/persistent.md
-      - 可持久化线段树: ds/persistent-seg.md
+    - Cấu trúc dữ liệu bền vững:
+      - Giới thiệu cấu trúc dữ liệu bền vững: ds/persistent.md
+      - Cây phân đoạn bền vững: ds/persistent-seg.md
       - 可持久化块状数组: ds/persistent-block-array.md
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md

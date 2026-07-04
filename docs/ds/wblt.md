@@ -1,316 +1,316 @@
 author: hsfzLZH1, cesonic, AtomAlpaca, caijianhong, Persdre, aofall, CoelacanthusHex, Marcythm, shuzhouliu, Tiphereth-A
 
-## 引入
+## Dẫn nhập
 
-**Weight Balanced Leafy Tree**，下称 **WBLT**，是一种平衡树，比起其它平衡树主要有实现简单、常数小的优点．它支持区间操作，而且可持久化．
+**Weight Balanced Leafy Tree**, dưới đây gọi là **WBLT**, là một loại cây cân bằng. So với các cây cân bằng khác, ưu điểm chính của nó là cài đặt đơn giản và hằng số nhỏ. Nó hỗ trợ thao tác trên đoạn, đồng thời có thể làm bền vững.
 
-Weight Balanced Leafy Tree 顾名思义是 Weight Balanced Tree 和 Leafy Tree 的结合．
+Đúng như tên gọi, Weight Balanced Leafy Tree là sự kết hợp giữa Weight Balanced Tree và Leafy Tree.
 
-Weight Balanced Tree 的每个结点储存这个结点下子树的大小，并且通过保持左右子树的大小关系在一定范围来保证树高．
+Trong Weight Balanced Tree, mỗi nút lưu kích thước cây con dưới nút đó, và chiều cao cây được bảo đảm bằng cách giữ quan hệ kích thước giữa cây con trái và cây con phải trong một phạm vi nhất định.
 
-Leafy Tree 维护的原始信息仅存储在树的 **叶子节点** 上，而非叶子节点仅用于维护子节点信息和维持数据结构的形态．我们熟知的线段树就是一种 Leafy Tree．
+Leafy Tree chỉ lưu thông tin gốc cần duy trì trên **nút lá**; các nút không phải lá chỉ dùng để duy trì thông tin của nút con và giữ hình thái của cấu trúc dữ liệu. Cây đoạn quen thuộc cũng là một loại Leafy Tree.
 
 ![](images/leafy-tree-1.svg)
 
-本文的树均指的是二叉的 Leafy Tree，即每个节点的子节点数目只能是 $0$ 或者 $2$．本文中的 $n$，指的是树的叶子节点的数目．叶子节点数目为 $n$ 的树，总的节点数量是 $2n-1$，因此，WBLT 占用的空间是 $\Theta(n)$ 的．
+Trong bài này, cây luôn chỉ Leafy Tree nhị phân, tức số nút con của mỗi nút chỉ có thể là $0$ hoặc $2$. Trong bài, $n$ là số nút lá của cây. Với một cây có $n$ nút lá, tổng số nút là $2n-1$, vì vậy không gian mà WBLT chiếm dụng là $\Theta(n)$.
 
-## 基本结构及平衡维护
+## Cấu trúc cơ bản và duy trì cân bằng
 
-本节介绍 WBLT 的基本结构，定义树的 $\alpha$‑平衡的概念，并解释如何通过旋转或合并的方式维护树的平衡．
+Phần này giới thiệu cấu trúc cơ bản của WBLT, định nghĩa khái niệm cây $\alpha$-cân bằng, đồng thời giải thích cách duy trì cân bằng của cây bằng phép xoay hoặc bằng phép hợp nhất.
 
-### 节点信息
+### Thông tin nút
 
-要实现一个基本的 WBLT，只需要记录每个节点的如下信息：
+Để cài đặt một WBLT cơ bản, chỉ cần ghi lại các thông tin sau cho mỗi nút:
 
--   `lc[x]`、`rc[x]`：左、右子节点；
--   `sz[x]`：以 $x$ 为根的子树中的叶子节点的数目．
+-   `lc[x]`, `rc[x]`: nút con trái và phải;
+-   `sz[x]`: số nút lá trong cây con gốc $x$.
 
-利用 WBLT 实现平衡树，还需要在每个节点处记录与键值相关的信息：
+Khi dùng WBLT để cài đặt cây cân bằng, ta còn cần ghi lại thông tin liên quan tới khóa tại mỗi nút:
 
--   `val[x]`：节点 $x$ 处的键值．
+-   `val[x]`: khóa tại nút $x$.
 
-因为只有叶子节点实际存储键值，所以其他节点处存储的信息是由它们的子节点合并得到的，以方便后续查询．
+Vì chỉ các nút lá mới thực sự lưu khóa, thông tin lưu tại các nút khác được hợp nhất từ các nút con của chúng, để thuận tiện cho các truy vấn sau này.
 
-比如，一种常用的合并方式就是将两个子节点的键值中较大的那个存储于该节点．这样，每个节点存储的就是以它为根的子树中，所有叶子节点的键值的最大值．基于此，节点信息的更新方法如下：
+Ví dụ, một cách hợp nhất thường dùng là lưu tại nút hiện tại giá trị lớn hơn trong hai khóa của hai nút con. Khi đó, mỗi nút lưu giá trị lớn nhất trong tất cả nút lá của cây con gốc tại nó. Dựa trên cách này, phương thức cập nhật thông tin nút như sau:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:push-up"
     ```
 
-当然，如果需要，还可以实现相应的 `push_down(x)` 函数．
+Dĩ nhiên, nếu cần, cũng có thể cài đặt hàm `push_down(x)` tương ứng.
 
-### 辅助函数
+### Hàm phụ trợ
 
-除了基本的节点信息维护外，WBLT 通常还需要实现如下辅助函数，用于内存管理：
+Ngoài việc duy trì thông tin nút cơ bản, WBLT thường còn cần cài đặt các hàm phụ trợ sau để quản lý bộ nhớ:
 
--   `new_node()`：新建节点；
--   `del_node(x)`：删除节点 $x$；
--   `new_leaf(v)`：新建以 $v$ 为键值的叶子节点；
--   `join(x, y)`：连接子树，即分别以 $x$、$y$ 为左右子节点，新建节点 $z$；
--   `cut(x)`：拆分子树，即获得节点 $x$ 的两个子节点，并删除节点 $x$．
+-   `new_node()`: tạo nút mới;
+-   `del_node(x)`: xóa nút $x$;
+-   `new_leaf(v)`: tạo nút lá mới có khóa là $v$;
+-   `join(x, y)`: nối cây con, tức tạo nút mới $z$ với $x$, $y$ lần lượt là nút con trái và phải;
+-   `cut(x)`: cắt cây con, tức lấy hai nút con của nút $x$ rồi xóa nút $x$.
 
-如果 WBLT 的实现十分依赖于拆分和连接子树，会建立较多的新节点，并释放等量的旧节点．如果不及时回收旧的无用节点，会导致空间不再是线性的．以下是这些辅助函数的数组实现：
+Nếu cài đặt WBLT phụ thuộc nhiều vào việc tách và nối cây con, nó sẽ tạo khá nhiều nút mới và giải phóng cùng số lượng nút cũ. Nếu không thu hồi kịp thời các nút cũ không còn dùng tới, không gian sẽ không còn tuyến tính nữa. Dưới đây là cài đặt bằng mảng của các hàm phụ trợ này:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:helper"
     ```
 
-封装好这些辅助函数后，数组实现和指针实现在后续函数中就没有区别了．
+Sau khi đóng gói các hàm phụ trợ này, cài đặt bằng mảng và cài đặt bằng con trỏ sẽ không còn khác biệt trong các hàm phía sau.
 
-### 平衡的概念
+### Khái niệm cân bằng
 
-对于一个树，可以定义它在一个非叶节点 $x$ 处的 **平衡度** 为
+Với một cây, có thể định nghĩa **độ cân bằng** của nó tại một nút không phải lá $x$ là
 
 $$
 \rho(x) = \dfrac{\min\{w(T_{\operatorname{left}(x)}),w(T_{\operatorname{right}(x)})\}}{w(T_x)}.
 $$
 
-其中，$T_x$ 表示以 $x$ 为根的子树，$w(\cdot)$ 表示子树的权重（它的叶子节点的数目），而 $\operatorname{left}(x)$ 和 $\operatorname{right}(x)$ 分别表示 $x$ 的左右叶子节点．特别地，叶子节点处规定 $\rho(x)=1/2$．
+Trong đó, $T_x$ biểu thị cây con gốc $x$, $w(\cdot)$ biểu thị trọng số của cây con (số nút lá của nó), còn $\operatorname{left}(x)$ và $\operatorname{right}(x)$ lần lượt biểu thị nút con trái và phải của $x$. Đặc biệt, với nút lá, quy ước $\rho(x)=1/2$.
 
-对于 $\alpha\in(0,1/2]$，如果某个节点 $x$ 处平衡度 $\rho(x)\ge\alpha$，就称该节点是 **$\alpha$‑平衡** 的．如果树的每个节点处都是 $\alpha$‑平衡的，就称树是 **$\alpha$‑平衡** 的．这样的树的集合记作 $BB[\alpha]$．一个树是 **$\alpha$‑平衡** 的，当且仅当它本身是 $\alpha$‑平衡的，且它的左右子树都是 $\alpha$‑平衡的或者它是叶子节点．
+Với $\alpha\in(0,1/2]$, nếu độ cân bằng tại một nút $x$ thỏa $\rho(x)\ge\alpha$, ta gọi nút đó là **$\alpha$-cân bằng**. Nếu mọi nút của cây đều $\alpha$-cân bằng, ta gọi cây là **$\alpha$-cân bằng**. Tập hợp các cây như vậy được ký hiệu là $BB[\alpha]$. Một cây là **$\alpha$-cân bằng** khi và chỉ khi bản thân nó $\alpha$-cân bằng, và các cây con trái phải của nó đều $\alpha$-cân bằng, hoặc nó là nút lá.
 
-树是 $\alpha$‑平衡的，有一个显然的好处是，它的高度是 $O(\log n)$ 的．这是因为，从叶子节点每向根移动一步，子树所包含的叶子节点数目就至少扩大到原来的 $1/(1-\alpha)$ 倍，因此只能移动 $O(\log_{\frac{1}{1-\alpha}}n) = O(\log n)$ 次．这就保证了在 $\alpha$‑平衡的树中，单次查询的复杂度总是严格 $O(\log n)$ 的，且算法的常数与 $\log(1/(1-\alpha))$（以 $2$ 为底）正相关．当 $\alpha$ 位于下文提供的合理范围内时，这个常数大致为 $2\sim 3.5$．
+Cây $\alpha$-cân bằng có một lợi ích hiển nhiên: chiều cao của nó là $O(\log n)$. Lý do là, mỗi khi đi từ nút lá lên gần gốc thêm một bước, số nút lá trong cây con ít nhất tăng lên $1/(1-\alpha)$ lần so với trước đó, nên chỉ có thể đi $O(\log_{\frac{1}{1-\alpha}}n) = O(\log n)$ bước. Điều này bảo đảm trong cây $\alpha$-cân bằng, độ phức tạp của một truy vấn đơn lẻ luôn nghiêm ngặt là $O(\log n)$, và hằng số của thuật toán tương quan thuận với $\log(1/(1-\alpha))$ (cơ số $2$). Khi $\alpha$ nằm trong phạm vi hợp lý được đưa ra bên dưới, hằng số này xấp xỉ $2\sim 3.5$.
 
-WBLT 的平衡维护通常可以通过旋转或合并的方式进行．两种方式实现的 WBLT，单次插入、删除等操作，复杂度都是严格 $O(\log n)$ 的．但是，与固定优先级的 [Treap](./treap.md) 不同，WBLT 的结构并不具有唯一性，因此，两种方式维护得到的树的结构并不相同，虽然这并不影响它们的使用．当然，平衡的维护还可以采取类似 [替罪羊树](./sgt.md) 的策略，利用重构达到均摊 $O(\log n)$ 的复杂度，但是这样就失去了 WBLT 可持久化和区间操作等优势，因而并不推荐．
+Việc duy trì cân bằng của WBLT thường có thể thực hiện bằng phép xoay hoặc phép hợp nhất. Với WBLT được cài đặt theo một trong hai cách này, độ phức tạp của một thao tác đơn lẻ như chèn, xóa đều nghiêm ngặt là $O(\log n)$. Tuy nhiên, khác với [Treap](./treap.md) có độ ưu tiên cố định, cấu trúc của WBLT không có tính duy nhất, vì vậy cấu trúc cây thu được từ hai cách duy trì này không giống nhau, dù điều đó không ảnh hưởng đến việc sử dụng. Dĩ nhiên, việc duy trì cân bằng cũng có thể dùng chiến lược tương tự [cây scapegoat](./sgt.md), sử dụng tái xây dựng để đạt độ phức tạp khấu hao $O(\log n)$, nhưng như vậy sẽ mất các ưu điểm như khả năng bền vững và thao tác trên đoạn của WBLT, nên không được khuyến nghị.
 
-下文分别介绍了通过旋转和合并维护平衡的方法，并实现了相应的平衡维护和合并操作的函数．封装好这些函数后，两种维护树平衡的方式在后续具体的平衡树的实现中再无区别．而且，无论使用哪种方式，单次维护平衡的操作的时间复杂度都是 $O(1)$ 的，单次合并树 $T_1$ 和树 $T_2$ 的复杂度都是 $O\left(\left|\log\dfrac{w(T_1)}{w(T_2)}\right|\right)$ 的．
+Phần dưới lần lượt giới thiệu phương pháp duy trì cân bằng bằng phép xoay và bằng phép hợp nhất, đồng thời cài đặt các hàm duy trì cân bằng và hợp nhất tương ứng. Sau khi đóng gói các hàm này, hai cách duy trì cân bằng cây sẽ không còn khác biệt trong các cài đặt cây cân bằng cụ thể phía sau. Hơn nữa, dù dùng cách nào, độ phức tạp thời gian của một thao tác duy trì cân bằng đơn lẻ đều là $O(1)$, và độ phức tạp của việc hợp nhất một cây $T_1$ với một cây $T_2$ đều là $O\left(\left|\log\dfrac{w(T_1)}{w(T_2)}\right|\right)$.
 
-???+ info "省略权重的记号"
-    为了维护树的平衡，只需要保留子树的权重信息．因此，为了表达方便，下面讨论平衡维护的两节将混用树和它的权重的记号．比如，子树 $x$ 的权重也由 $x$ 表示，而不是 $w(x)$．类似地，子树 $x$ 和 $y$ 合并得到的树也用它的权重表示，直接写作树 $x+y$．
+???+ info "Ký hiệu lược bỏ trọng số"
+    Để duy trì cân bằng của cây, chỉ cần giữ thông tin trọng số của cây con. Vì vậy, để diễn đạt thuận tiện, hai phần thảo luận về duy trì cân bằng dưới đây sẽ dùng lẫn ký hiệu của cây và trọng số của nó. Ví dụ, trọng số của cây con $x$ cũng được ký hiệu là $x$, thay vì $w(x)$. Tương tự, cây thu được bằng cách hợp nhất cây con $x$ và $y$ cũng được viết trực tiếp theo trọng số của nó là cây $x+y$.
 
-### 通过旋转维护
+### Duy trì bằng phép xoay
 
-WBLT 的旋转操作和 [Treap 的旋转操作](./treap.md#旋转) 完全相同，可以采取与 Treap 完全一致的旋转策略．当然，旋转本身同样可以看作是重新分配子树权重的过程，因此也可以利用拆分和连接子树完成．两种实现的结果是完全一致的，但是第二种实现更方便 WBLT 的持久化．
+Phép xoay của WBLT hoàn toàn giống [phép xoay của Treap](./treap.md#phép-xoay), và có thể dùng chiến lược xoay hoàn toàn giống Treap. Dĩ nhiên, bản thân phép xoay cũng có thể xem là quá trình phân phối lại trọng số cây con, nên cũng có thể hoàn thành bằng cách tách và nối cây con. Kết quả của hai cách cài đặt hoàn toàn giống nhau, nhưng cách thứ hai thuận tiện hơn cho WBLT bền vững.
 
-???+ example "参考代码"
-    === "不依赖连接"
+???+ example "Mã tham khảo"
+    === "Không phụ thuộc vào nối"
         ```cpp
         --8<-- "docs/ds/code/wblt/wblt-1.cpp:rotate-not-by-joining"
         ```
     
-    === "依赖连接"
+    === "Phụ thuộc vào nối"
         ```cpp
         --8<-- "docs/ds/code/wblt/wblt-1.cpp:rotate-by-joining"
         ```
 
-假设在某个树的修改操作后，正在自下而上地恢复树的平衡．现在，左右子树 $x$ 和 $y$ 不再平衡，但是它们自身都是平衡的．不妨设右子树 $y$ 过轻，即 $y<\alpha(x+y)$．此时，树的形态如图中左侧的树所示．
+Giả sử sau một thao tác sửa đổi trên một cây nào đó, ta đang khôi phục cân bằng của cây từ dưới lên trên. Lúc này, hai cây con trái phải $x$ và $y$ không còn cân bằng với nhau, nhưng bản thân chúng đều cân bằng. Không mất tính tổng quát, giả sử cây con phải $y$ quá nhẹ, tức $y<\alpha(x+y)$. Khi đó, hình thái của cây như cây bên trái trong hình.
 
 ![](images/wblt-balance.svg)
 
-一种朴素的平衡维护策略是将 $x$ 旋转到根节点处，这样它原先的右子节点 $w$ 就和 $y$ 一起成为了新树的右子节点，而它原先的左子节点 $z$ 成为了新树的左子节点．这相当于将原来的树左侧中 $w$ 的权重移动到它的右侧．如果 $w$ 的权重合适，这样的操作就可以恢复树的平衡．这样得到的树如图中右侧的树所示．
+Một chiến lược duy trì cân bằng đơn giản là xoay $x$ lên vị trí nút gốc; khi đó nút con phải ban đầu của nó là $w$ sẽ cùng với $y$ trở thành nút con phải của cây mới, còn nút con trái ban đầu của nó là $z$ trở thành nút con trái của cây mới. Điều này tương đương với việc chuyển trọng số của $w$ từ phía trái của cây ban đầu sang phía phải. Nếu trọng số của $w$ phù hợp, thao tác này có thể khôi phục cân bằng của cây. Cây thu được như cây bên phải trong hình.
 
-但是，如果 $w$ 本身过重，这样的操作可能移动了太多的权重到右子树，从而使得新树中左子树过轻，即 $z<\alpha(x+y)$．对于这种情形，因为子树 $z$ 和子树 $y$ 的权重都太小，只能考虑将 $w$ 分拆为两个子树，分别与 $z$ 和 $y$ 连接，成为新树的两个子树．这相当于首先将节点 $w$ 旋转到节点 $x$ 处，再将它旋转到根节点处．同样，可以期待这样得到的树能够达到平衡，形态如图中上方的树所示．
+Tuy nhiên, nếu bản thân $w$ quá nặng, thao tác này có thể chuyển quá nhiều trọng số sang cây con phải, khiến cây con trái trong cây mới quá nhẹ, tức $z<\alpha(x+y)$. Trong trường hợp này, vì trọng số của cả cây con $z$ lẫn cây con $y$ đều quá nhỏ, chỉ có thể cân nhắc tách $w$ thành hai cây con, rồi nối chúng lần lượt với $z$ và $y$ để trở thành hai cây con của cây mới. Điều này tương đương với việc trước tiên xoay nút $w$ lên vị trí nút $x$, rồi xoay nó lên vị trí gốc. Tương tự, có thể kỳ vọng cây thu được theo cách này đạt cân bằng, với hình thái như cây phía trên trong hình.
 
-这两种旋转的策略分别称为单旋和双旋．单旋和双旋策略的选取，主要取决于子树 $w$ 相对于子树 $x$ 的比重，即存在阈值 $\beta$，使得
+Hai chiến lược xoay này lần lượt được gọi là xoay đơn và xoay kép. Việc chọn chiến lược xoay đơn hay xoay kép chủ yếu phụ thuộc vào tỷ trọng của cây con $w$ so với cây con $x$, tức tồn tại một ngưỡng $\beta$ sao cho
 
--   当 $w\le\beta x$ 时，应选取单旋策略；
--   当 $w>\beta x$ 时，应选取双旋策略．
+-   khi $w\le\beta x$, nên chọn chiến lược xoay đơn;
+-   khi $w>\beta x$, nên chọn chiến lược xoay kép.
 
-难点在于阈值 $\beta$ 的选择，这就需要做一些具体的计算．Blum 和 Mehlhorn 证明了，对于参数[^wrong-range]
+Điểm khó nằm ở việc chọn ngưỡng $\beta$, điều này cần một số tính toán cụ thể. Blum và Mehlhorn đã chứng minh rằng, với tham số[^wrong-range]
 
 $$
 \alpha\in\left(\dfrac{2}{11},1-\dfrac{\sqrt{2}}{2}\right]\approx(0.182,0.292],~\beta=\frac{1}{2-\alpha},
 $$
 
-能够通过上述单旋和双旋结合的策略，维护因为单次插入或删除而失衡的 WBLT 的平衡．
+có thể dùng chiến lược kết hợp xoay đơn và xoay kép nói trên để duy trì cân bằng của WBLT bị mất cân bằng do một lần chèn hoặc xóa.
 
-??? note "证明"
-    需要证明的是，如果树在单次插入或删除后失衡，可以通过上述策略恢复它的平衡．结合上述图示，令
+??? note "Chứng minh"
+    Cần chứng minh rằng nếu cây mất cân bằng sau một lần chèn hoặc xóa, ta có thể dùng chiến lược trên để khôi phục cân bằng. Kết hợp với hình minh họa phía trên, đặt
     
     $$
     \rho_1 = \dfrac{y}{x+y}, ~\rho_2 = \dfrac{w}{x}, ~\rho_3 = \dfrac{v}{w}.
     $$
     
-    那么，有 $\rho_1<\alpha\le\rho_2,\rho_3\le 1-\alpha$．此处还有一个隐含条件，是关于 $\rho_1$ 的取值范围的：
+    Khi đó, có $\rho_1<\alpha\le\rho_2,\rho_3\le 1-\alpha$. Ở đây còn một điều kiện ngầm về phạm vi giá trị của $\rho_1$:
     
-    -   如果失衡是由插入单个元素引起的，那么，应该有
+    -   Nếu mất cân bằng do chèn một phần tử đơn lẻ, thì phải có
     
         $$
         \dfrac{y}{x-1+y} \ge \alpha \implies \rho_1 \ge \dfrac{\alpha y}{y+\alpha} \ge \dfrac{\alpha}{1+\alpha}.
         $$
-    -   如果失衡是由删除单个元素引起的，那么，应该有
+    -   Nếu mất cân bằng do xóa một phần tử đơn lẻ, thì phải có
     
         $$
         \dfrac{y+1}{x+y+1} \ge \alpha \implies \rho_1 \ge \dfrac{\alpha y}{y+1-\alpha} \ge \dfrac{\alpha}{2-\alpha}.
         $$
     
-    因为对于 $0<\alpha<1/2$，总有 $\alpha/(2-\alpha)<\alpha/(1+\alpha)$，所以删除元素会导致比增添元素更严重的失衡，尤其是对于树的规模很小的情形．
+    Vì với $0<\alpha<1/2$ luôn có $\alpha/(2-\alpha)<\alpha/(1+\alpha)$, nên xóa phần tử sẽ gây mất cân bằng nghiêm trọng hơn thêm phần tử, đặc biệt với trường hợp kích thước cây rất nhỏ.
     
-    接下来，恢复平衡的操作分为两种情形：
+    Tiếp theo, thao tác khôi phục cân bằng được chia thành hai trường hợp:
     
-    ??? note "情形一：$w$ 没有过重，即 $\rho_2\le\beta$ 时，单旋"
-        首先，$z$ 和 $w+y$ 平衡．这是因为
+    ??? note "Trường hợp 1: $w$ không quá nặng, tức $\rho_2\le\beta$, dùng xoay đơn"
+        Trước hết, $z$ và $w+y$ cân bằng. Điều này là do
         
         $$
         \left(1-\dfrac{\alpha}{2-\alpha}\right)\alpha+\dfrac{\alpha}{2-\alpha} \le \dfrac{w+y}{x+y} = (1-\rho_1)\rho_2+\rho_1 < (1-\alpha)\dfrac{1}{2-\alpha}+\alpha.
         $$
         
-        左侧表达式在 $\alpha\in(0,1)$ 时总大于 $\alpha$，右侧表达式在 $\alpha\in(0,1-\sqrt{2}/2]$ 时总不大于 $(1-\alpha)$．
+        Biểu thức bên trái luôn lớn hơn $\alpha$ khi $\alpha\in(0,1)$, còn biểu thức bên phải luôn không vượt quá $(1-\alpha)$ khi $\alpha\in(0,1-\sqrt{2}/2]$.
         
-        其次，$w$ 和 $y$ 平衡．同样地，考虑
+        Thứ hai, $w$ và $y$ cân bằng. Tương tự, xét
         
         $$
         \dfrac{y}{w+y} = \dfrac{\rho_1}{(1-\rho_1)\rho_2+\rho_1}.
         $$
         
-        一方面，对于所有 $\alpha\in(0,(3-\sqrt{5})/2)$，有
+        Một mặt, với mọi $\alpha\in(0,(3-\sqrt{5})/2)$, có
         
         $$
         \dfrac{y}{w+y} < \dfrac{\alpha}{(1-\alpha)\alpha+\alpha} < 1-\alpha.
         $$
         
-        另一方面，对于所有 $\alpha\in(0,1/3)$，除了删除元素且 $y=1$ 的情形外，都有
+        Mặt khác, với mọi $\alpha\in(0,1/3)$, trừ trường hợp xóa phần tử và $y=1$, đều có
         
         $$
         \rho_1 \ge \min\left\{\dfrac{\alpha}{1+\alpha},\dfrac{2\alpha}{3-\alpha}\right\} = \dfrac{2\alpha}{3-\alpha},
         $$
         
-        所以，有
+        nên có
         
         $$
         \dfrac{y}{w+y} \ge \dfrac{\dfrac{2\alpha}{3-\alpha}}{\left(1-\dfrac{2\alpha}{3-\alpha}\right)\dfrac{1}{2-\alpha}+\dfrac{2\alpha}{3-\alpha}} > \alpha.
         $$
         
-        最后，考虑剩余的情形，即删除元素且 $y=1$ 时．最可能失衡的情形发生在 $x=\lfloor 2/\alpha\rfloor-2$ 且 $w=\lfloor\beta x\rfloor$ 时．树可以恢复平衡，当且仅当
+        Cuối cùng, xét trường hợp còn lại, tức xóa phần tử và $y=1$. Trường hợp dễ mất cân bằng nhất xảy ra khi $x=\lfloor 2/\alpha\rfloor-2$ và $w=\lfloor\beta x\rfloor$. Cây có thể khôi phục cân bằng khi và chỉ khi
         
         $$
         \dfrac{1}{1+\lfloor\beta x\rfloor}\ge\alpha \iff \lfloor\beta x\rfloor\le\dfrac{1}{\alpha}-1 \iff \beta x < \dfrac{1}{\alpha} \iff x < \dfrac{2}{\alpha}-1.
         $$
         
-        而这总是成立的．这就完成了该情形的证明．注意，最后一种情形的证明利用了权重总是整数这一性质，并不能合并到之前的讨论中．
+        Điều này luôn đúng. Như vậy hoàn tất chứng minh cho trường hợp này. Lưu ý, chứng minh của trường hợp cuối cùng đã dùng tính chất trọng số luôn là số nguyên, nên không thể gộp vào phần thảo luận trước đó.
     
-    ??? note "情形二：$w$ 过重，即 $\rho_2>\beta$ 时，双旋"
-        首先，$z+u$ 和 $v+y$ 平衡．这是因为
+    ??? note "Trường hợp 2: $w$ quá nặng, tức $\rho_2>\beta$, dùng xoay kép"
+        Trước hết, $z+u$ và $v+y$ cân bằng. Điều này là do
         
         $$
         \dfrac{\alpha}{2-\alpha}+\left(1-\dfrac{\alpha}{2-\alpha}\right)\dfrac{1}{2-\alpha}\alpha < \dfrac{z+u}{x+y} = \rho_1+(1-\rho_1)\rho_2\rho_3 <\alpha+(1-\alpha)^3
         $$
         
-        左侧表达式在 $\alpha\in(0,1)$ 时总大于 $\alpha$，右侧表达式在 $\alpha\in(0,(3-\sqrt{5})/2)$ 时总小于 $(1-\alpha)$．
+        Biểu thức bên trái luôn lớn hơn $\alpha$ khi $\alpha\in(0,1)$, còn biểu thức bên phải luôn nhỏ hơn $(1-\alpha)$ khi $\alpha\in(0,(3-\sqrt{5})/2)$.
         
-        然后，$z$ 和 $u$ 平衡．这是因为对于 $\alpha\in(0,1)$，总是成立
+        Tiếp theo, $z$ và $u$ cân bằng. Điều này là do với $\alpha\in(0,1)$, luôn có
         
         $$
         \alpha=\dfrac{\dfrac{1}{2-\alpha}\alpha}{1-\dfrac{1}{2-\alpha}(1-\alpha)}<\dfrac{u}{z} = \dfrac{\rho_2(1-\rho_3)}{1-\rho_2\rho_3} <\dfrac{(1-\alpha)^2}{1-(1-\alpha)\alpha} < 1-\alpha.
         $$
         
-        最后，$v$ 和 $y$ 平衡．类似其他的情形，考虑
+        Cuối cùng, $v$ và $y$ cân bằng. Tương tự các trường hợp khác, xét
         
         $$
         \dfrac{y}{v+y} = \dfrac{\rho_1}{\rho_1+(1-\rho_1)\rho_2\rho_3}.
         $$
         
-        一方面，对于所有 $\alpha\in(0,1-\sqrt{2}/2]$，都有
+        Một mặt, với mọi $\alpha\in(0,1-\sqrt{2}/2]$, đều có
         
         $$
         \dfrac{y}{v+y} < \dfrac{\alpha}{\alpha+(1-\alpha)\dfrac{1}{2-\alpha}\alpha} \le 1-\alpha.
         $$
         
-        另一方面，
+        Mặt khác,
         
         $$
         \dfrac{y}{v+y} \ge \dfrac{\rho_1}{\rho_1+(1-\rho_1)(1-\alpha)^2}.
         $$
         
-        右侧表达式不小于 $\alpha$，当且仅当
+        Biểu thức bên phải không nhỏ hơn $\alpha$ khi và chỉ khi
         
         $$
         \rho_1 \ge \dfrac{\alpha(1-\alpha)}{1+\alpha(1-\alpha)}.
         $$
         
-        如果失衡是由插入引起的，那么 $\rho_1\ge \alpha/(1+\alpha)$，显然成立．否则，情形有些复杂：
+        Nếu mất cân bằng do chèn, thì $\rho_1\ge \alpha/(1+\alpha)$, hiển nhiên thỏa mãn. Nếu không, tình huống phức tạp hơn:
         
-        -   当 $y\ge 3$ 时，$\rho_1\ge 3\alpha/(4-\alpha)$，且 $3\alpha/(4-\alpha)\ge\alpha(1-\alpha)/(1+\alpha(1-\alpha))$ 对于所有 $\alpha\in[1-\sqrt{3}/2,1)$ 都成立；
-        -   当 $y=2$ 时，最可能失衡的情形发生在 $x=\lfloor 3/\alpha\rfloor-3$，$w=\lfloor(1-\alpha)x\rfloor$ 且 $v=\lfloor(1-\alpha)w\rfloor$ 时，此时 $v/(v+y)\ge\alpha$ 对于所有 $\alpha\in(3/22,1)$ 都成立；
-        -   当 $y=1$ 时，最可能失衡的情形发生在 $x=\lfloor 2/\alpha\rfloor-2$，$w=\lfloor(1-\alpha)x\rfloor$ 且 $v=\lfloor(1-\alpha)w\rfloor$ 时，此时 $v/(v+y)\ge\alpha$ 对于所有 $\alpha\in(2/11,1)$ 都成立．
+        -   Khi $y\ge 3$, $\rho_1\ge 3\alpha/(4-\alpha)$, và $3\alpha/(4-\alpha)\ge\alpha(1-\alpha)/(1+\alpha(1-\alpha))$ đúng với mọi $\alpha\in[1-\sqrt{3}/2,1)$;
+        -   Khi $y=2$, trường hợp dễ mất cân bằng nhất xảy ra tại $x=\lfloor 3/\alpha\rfloor-3$, $w=\lfloor(1-\alpha)x\rfloor$ và $v=\lfloor(1-\alpha)w\rfloor$; lúc này $v/(v+y)\ge\alpha$ đúng với mọi $\alpha\in(3/22,1)$;
+        -   Khi $y=1$, trường hợp dễ mất cân bằng nhất xảy ra tại $x=\lfloor 2/\alpha\rfloor-2$, $w=\lfloor(1-\alpha)x\rfloor$ và $v=\lfloor(1-\alpha)w\rfloor$; lúc này $v/(v+y)\ge\alpha$ đúng với mọi $\alpha\in(2/11,1)$.
         
-        最后两种情形的讨论，同样利用了所有节点的权重都是整数这一点．
+        Phần thảo luận của hai trường hợp cuối cũng dùng tính chất trọng số của tất cả nút đều là số nguyên.
     
-    综合两种情形，当 $\alpha\in(2/11,1-\sqrt{2}/2]$ 时，前述单旋和双旋结合的策略可以保证树的平衡．
+    Tổng hợp hai trường hợp, khi $\alpha\in(2/11,1-\sqrt{2}/2]$, chiến lược kết hợp xoay đơn và xoay kép ở trên có thể bảo đảm cân bằng của cây.
     
-    从这个分析过程中可以看出，最难保持平衡的情形发生在从小规模的树中删除节点时．除了 $\beta=1/(2-\alpha)$ 之外，对于其他参数的选择的正确性证明，同样可以重复上述的过程，只是用到的一些不等式需要相应地调整．
+    Từ quá trình phân tích này có thể thấy, tình huống khó giữ cân bằng nhất xảy ra khi xóa nút khỏi cây có kích thước nhỏ. Ngoài $\beta=1/(2-\alpha)$, với các lựa chọn tham số khác, cũng có thể lặp lại quá trình trên để chứng minh tính đúng đắn, chỉ là một số bất đẳng thức được sử dụng cần được điều chỉnh tương ứng.
 
-随后，Hirai 和 Yamamoto 通过机器证明完整地确定了所有可行的 $(\alpha,\beta)$ 的范围，结果是一个相当复杂的二维图形：
+Sau đó, Hirai và Yamamoto đã dùng chứng minh bằng máy để xác định đầy đủ phạm vi của tất cả $(\alpha,\beta)$ khả thi; kết quả là một hình hai chiều khá phức tạp:
 
 ![](images/wblt-param-range.svg)
 
-他们在文章中推荐使用如下策略维持平衡：
+Trong bài viết của mình, họ khuyến nghị dùng chiến lược sau để duy trì cân bằng:
 
--   当 $x>3y$ 时，判断失衡；
--   当 $w\le 2z$ 时，选取单旋策略，否则，选取双旋策略．
+-   Khi $x>3y$, phán định là mất cân bằng;
+-   Khi $w\le 2z$, chọn chiến lược xoay đơn, ngược lại chọn chiến lược xoay kép.
 
-原因是，这是可行的参数范围内唯一可以用简单整数表示的策略，从而避免了浮点数运算造成的效率损失．他们推荐的策略相当于取 $(\alpha,\beta)=(1/4,2/3)$．实践中，可以根据具体情况，选择合适的参数．
+Lý do là đây là chiến lược duy nhất trong phạm vi tham số khả thi có thể biểu diễn bằng số nguyên đơn giản, qua đó tránh tổn thất hiệu năng do phép toán dấu phẩy động. Chiến lược họ khuyến nghị tương đương với việc lấy $(\alpha,\beta)=(1/4,2/3)$. Trong thực hành, có thể chọn tham số phù hợp tùy tình huống cụ thể.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:too-heavy"
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:balance"
     ```
 
-实现了维护平衡的策略后，合并两树的算法就非常简单．仍然设 $x>y$，合并的策略如下：
+Sau khi cài đặt chiến lược duy trì cân bằng, thuật toán hợp nhất hai cây trở nên rất đơn giản. Vẫn giả sử $x>y$, chiến lược hợp nhất như sau:
 
--   如果右子树 $y$ 是空的，直接返回左子树 $x$；
--   如果左右子树 $x$ 和 $y$ 已经平衡，即 $y\ge\alpha(x+y)$，直接连接两子树；
--   否则，将 $x$ 的右子树 $w$ 与 $y$ 合并，将左子树 $z$ 与它们合并的结果连接，并调整新树的平衡．
+-   Nếu cây con phải $y$ rỗng, trả về trực tiếp cây con trái $x$;
+-   Nếu hai cây con trái phải $x$ và $y$ đã cân bằng, tức $y\ge\alpha(x+y)$, nối trực tiếp hai cây con;
+-   Nếu không, hợp nhất cây con phải $w$ của $x$ với $y$, nối cây con trái $z$ với kết quả hợp nhất của chúng, rồi điều chỉnh cân bằng của cây mới.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:merge-by-balancing"
     ```
 
-可以证明，这样可以维持合并后树的平衡，且这样操作的复杂度是 $O(|\log(x/y)|)$ 的．
+Có thể chứng minh rằng cách này duy trì được cân bằng của cây sau khi hợp nhất, và độ phức tạp của thao tác là $O(|\log(x/y)|)$.
 
-??? note "平衡和复杂度的证明"
-    只需要考虑 $y$ 过轻的情形，即 $y<\alpha(x+y)$．此时，先合并 $w$ 和 $y$，再连接 $z$ 和 $w+y$．需要证明的是，只要在树根处调整树的平衡，就能够保证树的平衡．假设树 $w+y$ 的左、右子树分别是 $c$ 和 $d$，且 $c$ 的左、右子树分别是 $a$ 和 $b$．在树根处调整平衡，可以分为三种情形：
+??? note "Chứng minh cân bằng và độ phức tạp"
+    Chỉ cần xét trường hợp $y$ quá nhẹ, tức $y<\alpha(x+y)$. Khi đó, trước tiên hợp nhất $w$ và $y$, rồi nối $z$ với $w+y$. Cần chứng minh rằng chỉ cần điều chỉnh cân bằng tại gốc cây là đủ để bảo đảm cây cân bằng. Giả sử cây con trái và phải của cây $w+y$ lần lượt là $c$ và $d$, còn cây con trái và phải của $c$ lần lượt là $a$ và $b$. Việc điều chỉnh cân bằng tại gốc cây có thể chia thành ba trường hợp:
     
-    ??? note "情形一：$z$ 和 $w+y$ 已经平衡，无需进一步调整，即 $z\ge\alpha(x+y)$"
-        根据平衡的定义，子树 $z$ 和 $w+y$ 都是平衡的，且它们互相也是平衡的，那么整棵树也是平衡的．
+    ??? note "Trường hợp 1: $z$ và $w+y$ đã cân bằng, không cần điều chỉnh thêm, tức $z\ge\alpha(x+y)$"
+        Theo định nghĩa cân bằng, cây con $z$ và $w+y$ đều cân bằng, đồng thời chúng cân bằng với nhau, nên toàn bộ cây cũng cân bằng.
     
-    ??? note "情形二：$z$ 过轻且 $c$ 没有过重，可以通过单旋恢复平衡，即 $z<\alpha(x+y)$ 且 $c\le\beta(w+y)$"
-        此时，因为 $z$ 和 $w$ 平衡，但 $y$ 相较于 $x = z+w$ 过轻，所以，子树 $z$ 的权重满足
+    ??? note "Trường hợp 2: $z$ quá nhẹ và $c$ không quá nặng, có thể khôi phục cân bằng bằng xoay đơn, tức $z<\alpha(x+y)$ và $c\le\beta(w+y)$"
+        Lúc này, vì $z$ và $w$ cân bằng, nhưng $y$ quá nhẹ so với $x = z+w$, nên trọng số của cây con $z$ thỏa
         
         $$
         \alpha(1-\alpha)(x+y) <  \alpha(z+w) \le z \le \alpha(x+y) .
         $$
         
-        而 $c$ 的权重则满足
+        Còn trọng số của $c$ thỏa
         
         $$
         \alpha(w+y) \le c \le \beta(w+y).
         $$
         
-        由此，$z$ 和 $c$ 互相平衡，只要
+        Do đó, $z$ và $c$ cân bằng với nhau, miễn là
         
         $$
         \dfrac{\alpha}{1-\alpha}<\dfrac{1-\alpha}{\alpha}\alpha<\dfrac{c}{z}=\dfrac{w+y}{z}\dfrac{c}{w+y} < \dfrac{1-\alpha(1-\alpha)}{\alpha(1-\alpha)}\beta\le\dfrac{1-\alpha}{\alpha},
         $$
         
-        这要求
+        điều này yêu cầu
         
         $$
         \beta\le \dfrac{(1-\alpha)^2}{1-\alpha(1-\alpha)}.
         $$
         
-        以及 $z+c$ 和 $d$ 互相平衡，只要
+        Đồng thời, $z+c$ và $d$ cân bằng với nhau, miễn là
         
         $$
         \alpha\le (1-\beta)(1-\alpha)\le \dfrac{d}{w+y}\dfrac{w+y}{x+y}  = \dfrac{d}{x+y} < \dfrac{d}{c+d} \le 1-\alpha,
         $$
         
-        这要求
+        điều này yêu cầu
         
         $$
         \beta \le \dfrac{1-2\alpha}{1-\alpha}.
         $$
     
-    ??? note "情形三：$z$ 过轻且 $c$ 过重，可以通过双旋恢复平衡，即 $z<\alpha(x+y)$ 且 $c>\beta(w+y)$"
-        类似情形二，有
+    ??? note "Trường hợp 3: $z$ quá nhẹ và $c$ quá nặng, có thể khôi phục cân bằng bằng xoay kép, tức $z<\alpha(x+y)$ và $c>\beta(w+y)$"
+        Tương tự trường hợp 2, có
         
         $$
         \begin{aligned}
@@ -320,117 +320,117 @@ $$
         \end{aligned}
         $$
         
-        由此，$z$ 和 $a$ 互相平衡，只要
+        Do đó, $z$ và $a$ cân bằng với nhau, miễn là
         
         $$
         \dfrac{\alpha}{1-\alpha}\le\dfrac{1-\alpha}{\alpha}\beta\alpha\le\dfrac{a}{z} = \dfrac{w+y}{z}\dfrac{a}{c+d} < \dfrac{1-\alpha(1-\alpha)}{\alpha(1-\alpha)}(1-\alpha)^2,
         $$
         
-        这要求
+        điều này yêu cầu
         
         $$
         \beta\ge\dfrac{\alpha}{(1-\alpha)^2}.
         $$
         
-        其次，$b$ 和 $d$ 互相平衡，只要
+        Thứ hai, $b$ và $d$ cân bằng với nhau, miễn là
         
         $$
         \dfrac{\alpha}{1-\alpha}\le\dfrac{\beta}{1-\beta}\alpha \le \dfrac{b}{d} = \dfrac{c}{d}\dfrac{b}{c} \le \dfrac{1-\alpha}{\alpha}(1-\alpha) < \dfrac{1-\alpha}{\alpha},
         $$
         
-        这要求
+        điều này yêu cầu
         
         $$
         \beta\ge\dfrac{1}{2-\alpha}.
         $$
         
-        最后，$z+a$ 和 $b+d$ 互相平衡，只要
+        Cuối cùng, $z+a$ và $b+d$ cân bằng với nhau, miễn là
         
         $$
         \alpha<(1-\alpha)(1-(1-\alpha)^2)\le\frac{b+d}{x+y} = \dfrac{w+y}{x+y}\dfrac{b+d}{w+y} < (1-\alpha(1-\alpha))(1-\beta\alpha) \le 1-\alpha,
         $$
         
-        这要求
+        điều này yêu cầu
         
         $$
         \beta\ge\dfrac{\alpha}{1-\alpha+\alpha^2}.
         $$
     
-    综合三种情形，只要
+    Tổng hợp ba trường hợp, miễn là
     
     $$
     0<\alpha\le 1-\dfrac{\sqrt{2}}{2},~\dfrac{1}{2-\alpha}\le\beta\le\dfrac{1-2\alpha}{1-\alpha},
     $$
     
-    就能保证合并后的树可以利用单旋和双旋结合的策略调整到平衡．这显然包含正文给出的参数范围．
+    ta có thể bảo đảm cây sau khi hợp nhất có thể được điều chỉnh về cân bằng bằng chiến lược kết hợp xoay đơn và xoay kép. Điều này hiển nhiên bao gồm phạm vi tham số đã nêu trong phần chính.
     
-    最后，简单说明一下该算法的复杂度为什么是 $O(|\log(x/y)|)$ 的．合并的流程中，如果 $y$ 相较于 $x$ 过轻，就尝试与 $x$ 的右子树合并，这个过程一直持续到以 $x$ 某个子孙节点为根的子树与 $y$ 平衡为止．因为每向下加深一层，子树权重至少变为原来的 $(1-\alpha)$，所以至多只要 $\log_{\frac{1}{1-\alpha}}(x/y)$ 次迭代，就能找到与 $y$ 平衡的子树．因此，该合并算法调用 $O(\log n)$ 次平衡算法[^merge-complexity-cmp]，复杂度也就是 $O(\log n)$．
+    Cuối cùng, giải thích ngắn gọn vì sao độ phức tạp của thuật toán này là $O(|\log(x/y)|)$. Trong quá trình hợp nhất, nếu $y$ quá nhẹ so với $x$, ta thử hợp nhất nó với cây con phải của $x$; quá trình này tiếp tục cho tới khi cây con gốc tại một hậu duệ nào đó của $x$ cân bằng với $y$. Vì mỗi khi đi sâu xuống một tầng, trọng số cây con ít nhất trở thành $(1-\alpha)$ lần so với trước đó, nên chỉ cần nhiều nhất $\log_{\frac{1}{1-\alpha}}(x/y)$ lần lặp là có thể tìm được cây con cân bằng với $y$. Vì vậy, thuật toán hợp nhất này gọi thuật toán cân bằng $O(\log n)$ lần[^merge-complexity-cmp], và độ phức tạp cũng là $O(\log n)$.
     
-    虽然并不明显，但是这个论证过程依赖于这样一个结论：不断取右子树的过程中，$y$ 不会在一次迭代前后，从相较于左侧的子树过轻，变为相较于它过重．这是因为能够与 $y$ 平衡的子树权重范围位于 $\alpha y/(1-\alpha)$ 与 $(1-\alpha)y/\alpha$ 之间．因此，如果在一次迭代时，就从 $y$ 过轻变成 $y$ 过重，则 $x$ 的子树的权重在该次迭代过程中至少缩小到了原来的 $\alpha^2/(1-\alpha)^2$ 倍．但是，单次迭代，子树权重至多只能缩小到原来的 $\alpha$ 倍，但是在上述 $\alpha$ 的范围中，$\alpha>\alpha^2/(1-\alpha)^2$．这说明，前设情形是不可能的，某次迭代之后一定会有 $y$ 与 $x$ 的某个子树平衡的情形发生．
+    Dù không hiển nhiên, quá trình lập luận này phụ thuộc vào một kết luận: trong quá trình liên tục lấy cây con phải, $y$ sẽ không chuyển từ quá nhẹ so với cây con bên trái sang quá nặng so với nó chỉ sau một lần lặp. Lý do là phạm vi trọng số của cây con có thể cân bằng với $y$ nằm giữa $\alpha y/(1-\alpha)$ và $(1-\alpha)y/\alpha$. Do đó, nếu trong một lần lặp mà $y$ chuyển từ quá nhẹ sang quá nặng, thì trọng số của cây con của $x$ trong lần lặp đó ít nhất đã co lại thành $\alpha^2/(1-\alpha)^2$ lần so với ban đầu. Nhưng trong một lần lặp, trọng số cây con nhiều nhất chỉ có thể co lại thành $\alpha$ lần so với ban đầu; trong phạm vi $\alpha$ nói trên, lại có $\alpha>\alpha^2/(1-\alpha)^2$. Điều này cho thấy tình huống giả định trước đó là không thể, và sau một lần lặp nào đó nhất định sẽ xuất hiện trường hợp $y$ cân bằng với một cây con nào đó của $x$.
 
-### 通过合并维护
+### Duy trì bằng phép hợp nhất
 
-合并两子树是指，保证左子树的键值总是不大于右子树的键值的情况下，建立新树，使其所有叶子节点的信息恰为左右子树叶子节点信息的并，且保证树的平衡．
+Hợp nhất hai cây con có nghĩa là, trong điều kiện bảo đảm khóa của cây con trái luôn không lớn hơn khóa của cây con phải, xây dựng một cây mới sao cho thông tin của tất cả nút lá của nó đúng bằng hợp của thông tin nút lá trong hai cây con trái phải, đồng thời bảo đảm cây cân bằng.
 
-为此，有如下策略[^more-join]：（仍然设 $x>y$）
+Để làm điều đó, có chiến lược sau[^more-join]: (vẫn giả sử $x>y$)
 
--   如果右子树 $y$ 是空的，直接返回左子树 $x$；
--   如果左右子树 $x$ 和 $y$ 已经平衡，即 $y\ge\alpha(x+y)$，直接连接两子树；
--   否则，右子树 $y$ 过轻，但如果 $x$ 的左子树 $z$ 和 $w+y$ 可以平衡，即 $z\ge\alpha(x+y)$，就将 $w$ 和 $y$ 先合并，再合并 $z$ 和 $w+y$；
--   否则，$z$ 和 $y$ 都过轻，此时，需要首先合并 $z$ 和 $w$ 的左子树 $u$，再合并 $w$ 的右子树 $v$ 和 $y$，再将两次合并的结果 **合并** 为新树．
+-   Nếu cây con phải $y$ rỗng, trả về trực tiếp cây con trái $x$;
+-   Nếu hai cây con trái phải $x$ và $y$ đã cân bằng, tức $y\ge\alpha(x+y)$, nối trực tiếp hai cây con;
+-   Nếu không, cây con phải $y$ quá nhẹ, nhưng nếu cây con trái $z$ của $x$ và $w+y$ có thể cân bằng, tức $z\ge\alpha(x+y)$, thì hợp nhất $w$ với $y$ trước, rồi hợp nhất $z$ với $w+y$;
+-   Nếu không, cả $z$ và $y$ đều quá nhẹ; lúc này cần trước hết hợp nhất $z$ với cây con trái $u$ của $w$, rồi hợp nhất cây con phải $v$ của $w$ với $y$, sau đó **hợp nhất** kết quả của hai lần hợp nhất thành cây mới.
 
-将这一策略与前文的平衡策略对比，可以看到后两种情形中节点的组合方式分别和前述平衡策略中单旋和双旋的结果相似，只是将子树的连接换作了合并．
+So sánh chiến lược này với chiến lược cân bằng ở phần trước, có thể thấy trong hai trường hợp sau, cách tổ hợp các nút lần lượt tương tự kết quả của xoay đơn và xoay kép trong chiến lược cân bằng nói trên, chỉ khác là thay việc nối cây con bằng hợp nhất.
 
-可以证明，当
+Có thể chứng minh rằng, khi
 
 $$
 0<\alpha \le 1-\dfrac{\sqrt{2}}{2}\approx 0.292
 $$
 
-时，这样得到的树总是平衡的，且这样操作的复杂度是 $O(|\log(x/y)|)$ 的．也就是说，合并两个树的成本，与两个树的绝对大小无关，而只与它们的相对大小有关．
+cây thu được theo cách này luôn cân bằng, và độ phức tạp của thao tác là $O(|\log(x/y)|)$. Nói cách khác, chi phí hợp nhất hai cây không liên quan tới kích thước tuyệt đối của hai cây, mà chỉ liên quan tới kích thước tương đối của chúng.
 
-??? note "平衡和复杂度的证明"
-    设合并权重分别为 $x$ 和 $y$ 的两棵子树时，需要直接连接两棵子树的次数为 $\tau(x,y)$．严格来说，需要证明当 $0<\alpha\le 1-\sqrt{2}/2$ 时，存在常数 $C>0$，对于任意 $x>y>0$，都有
+??? note "Chứng minh cân bằng và độ phức tạp"
+    Khi hợp nhất hai cây con có trọng số lần lượt là $x$ và $y$, đặt số lần cần nối trực tiếp hai cây con là $\tau(x,y)$. Nói nghiêm ngặt, cần chứng minh rằng khi $0<\alpha\le 1-\sqrt{2}/2$, tồn tại hằng số $C>0$ sao cho với mọi $x>y>0$ đều có
     
     $$
     \tau(x,y) \le 1+C\log^+\dfrac{\alpha x}{(1-\alpha)^2y},
     $$
     
-    其中，$\log^+ x = \max\{0,\log x\}$；而且，对于所有 $x/y\le(1-\alpha)/\alpha$，都有 $\tau(x,y)=1$．实际上，式子中的常数可以取作
+    trong đó $\log^+ x = \max\{0,\log x\}$; hơn nữa, với mọi $x/y\le(1-\alpha)/\alpha$, đều có $\tau(x,y)=1$. Trên thực tế, hằng số trong công thức có thể lấy là
     
     $$
     C = -\dfrac{2}{\log(1-\alpha)}.
     $$
     
-    这就说明了合并算法的复杂度是 $O(|\log(x/y)|)$ 的．
+    Điều này cho thấy độ phức tạp của thuật toán hợp nhất là $O(|\log(x/y)|)$.
     
-    为了证明合并算法得到的树总是平衡的，且上述复杂度的表达式成立，需要使用归纳法．对于所有第一象限的格点 $(x,y)\in\mathbf N^2_+$，可以赋以 $(x+y,|x-y|)$ 的字典序，这显然是该集合上的良序，可以沿着该顺序进行归纳．归纳起点是 $(x,y)=(1,1)$，此时，两子树都只有一个叶子节点，直接连接得到的子树必然是平衡的，且 $\tau(x,y)=1$，符合上式．下面假设归纳进行到 $(x,y)$，且结论对于所有 $(x,y)$ 之前的点都成立．这分为三种情形：
+    Để chứng minh cây thu được từ thuật toán hợp nhất luôn cân bằng, và biểu thức độ phức tạp ở trên đúng, cần dùng quy nạp. Với mọi điểm lưới trong góc phần tư thứ nhất $(x,y)\in\mathbf N^2_+$, có thể gán thứ tự từ điển của $(x+y,|x-y|)$; đây hiển nhiên là một thứ tự tốt trên tập này, nên có thể quy nạp theo thứ tự đó. Cơ sở quy nạp là $(x,y)=(1,1)$; khi đó hai cây con đều chỉ có một nút lá, cây con thu được bằng cách nối trực tiếp tất nhiên cân bằng, và $\tau(x,y)=1$, phù hợp với công thức trên. Dưới đây giả sử quy nạp đã tiến tới $(x,y)$, và kết luận đúng với mọi điểm đứng trước $(x,y)$. Có ba trường hợp:
     
-    ??? note "情形一：树 $x$ 和 $y$ 平衡，即 $y\ge\alpha(x+y)$"
-        此时，直接连接得到树也是平衡的，且只调用树的连接算法一次，所以有 $\tau(x,y)=1$．
+    ??? note "Trường hợp 1: cây $x$ và $y$ cân bằng, tức $y\ge\alpha(x+y)$"
+        Lúc này, cây thu được bằng nối trực tiếp cũng cân bằng, và chỉ gọi thuật toán nối cây một lần, nên có $\tau(x,y)=1$.
     
-    ??? note "情形二：树 $y$ 过轻，但是 $z$ 并不过轻，即 $y<\alpha(x+y)\le z$"
-        此时，首先合并 $w$ 和 $y$，然后合并 $z$ 和 $w+y$，所以
+    ??? note "Trường hợp 2: cây $y$ quá nhẹ, nhưng $z$ không quá nhẹ, tức $y<\alpha(x+y)\le z$"
+        Lúc này, trước hết hợp nhất $w$ và $y$, sau đó hợp nhất $z$ với $w+y$, nên
         
         $$
         \tau(x,y) = \tau(w,y) + \tau(z,w+y).
         $$
         
-        由归纳假设，子树 $w+y$ 已经是平衡的．对于第二步合并，其实可以直接证明 $z$ 和 $w+y$ 是平衡的：
+        Theo giả thiết quy nạp, cây con $w+y$ đã cân bằng. Với bước hợp nhất thứ hai, thật ra có thể chứng minh trực tiếp rằng $z$ và $w+y$ cân bằng:
         
         $$
         \alpha \le \dfrac{z}{z+(w+y)} = \dfrac{z}{x+y} < \dfrac{z}{z+w} \le 1-\alpha.
         $$
         
-        因此，合并 $z$ 和 $w+y$ 其实是直接连接两个子树，有 $\tau(z,w+y) = 1$．因此，最后得到的树也是平衡的．
+        Vì vậy, việc hợp nhất $z$ và $w+y$ thực chất là nối trực tiếp hai cây con, có $\tau(z,w+y) = 1$. Do đó, cây cuối cùng thu được cũng cân bằng.
         
-        现在估计 $\tau(w,y)$ 的大小．因为 $y>(\alpha/(1-\alpha))x$ 且 $\alpha x\le w\le(1-\alpha)x$，所以，经放缩可知
+        Bây giờ ước lượng kích thước của $\tau(w,y)$. Vì $y>(\alpha/(1-\alpha))x$ và $\alpha x\le w\le(1-\alpha)x$, nên bằng cách nới lỏng bất đẳng thức ta biết
         
         $$
         \dfrac{\alpha}{1-\alpha}<1-\alpha=\dfrac{\alpha x}{(\alpha/(1-\alpha))x}< \dfrac{w}{y} \le \dfrac{(1-\alpha)x}{y}.
         $$
         
-        这说明，$w$ 和 $y$ 不平衡，只出现在 $w>y$ 时，所以，有
+        Điều này cho thấy $w$ và $y$ chỉ không cân bằng khi $w>y$, nên có
         
         $$
         \begin{aligned}
@@ -439,24 +439,24 @@ $$
         \end{aligned}
         $$
         
-        最后一步的等式成立，是因为 $x/y>(1-\alpha)/\alpha$．
+        Đẳng thức ở bước cuối đúng vì $x/y>(1-\alpha)/\alpha$.
         
-        因此，有
+        Vì vậy, có
         
         $$
         \tau(x,y) \le 2 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
         $$
     
-    ??? note "情形三：树 $y$ 和 $z$ 都过轻，即 $y,z<\alpha(x+y)$"
-        此时，首先合并 $z$ 和 $u$，再合并 $v$ 和 $y$，最后合并 $z+u$ 和 $v+y$．因此，
+    ??? note "Trường hợp 3: cả cây $y$ và $z$ đều quá nhẹ, tức $y,z<\alpha(x+y)$"
+        Lúc này, trước hết hợp nhất $z$ và $u$, rồi hợp nhất $v$ và $y$, cuối cùng hợp nhất $z+u$ với $v+y$. Vì vậy,
         
         $$
         \tau(x,y) = \tau(z,u) + \tau(v,y) + \tau(z+u,v+y).
         $$
         
-        类似前文情形，可以估计每一步合并时两个子树的权重比值．
+        Tương tự các trường hợp phía trước, có thể ước lượng tỷ lệ trọng số của hai cây con tại mỗi bước hợp nhất.
         
-        因为 $z,y<\alpha(x+y)$，所以 $w>(1-2\alpha)(x+y)$．同时，利用平衡条件，有 $\alpha\le z/x,w/x,u/w,v/w\le 1-\alpha$．这说明
+        Vì $z,y<\alpha(x+y)$, nên $w>(1-2\alpha)(x+y)$. Đồng thời, dùng điều kiện cân bằng, có $\alpha\le z/x,w/x,u/w,v/w\le 1-\alpha$. Điều này cho thấy
         
         $$
         \begin{aligned}
@@ -465,24 +465,24 @@ $$
         \end{aligned}
         $$
         
-        对于最后一项，有
+        Với hạng cuối cùng, có
         
         $$
         \dfrac{z+u}{v+y} = \dfrac{x+y}{v+y}-1 = \dfrac{x+y}{y}\dfrac{y}{v+y} - 1 < (1-\alpha)\left(\dfrac{x}{y}+1\right)-1 < (1-\alpha)\dfrac{x}{y}.
         $$
         
-        反过来，有
+        Ngược lại, có
         
         $$
         \dfrac{z+u}{v+y} = \dfrac{x+y}{v+y}-1 \ge \dfrac{x+y}{(1-\alpha)^2x+y}-1 > \dfrac{1}{(1-\alpha)^3+\alpha}-1 > \dfrac{\alpha}{1-\alpha}.
         $$
         
-        利用这些不等式，可以说明最后得到的树必然是平衡的．利用归纳假设可知，$z$ 和 $u$ 合并，$v$ 和 $y$ 合并，都可以保证得到的树是平衡的．而且，其中第一步 $z$ 和 $u$ 合并实际上是直接连接两棵树．对于树 $z+u$ 和树 $v+y$ 的合并，又有两种子情形：
+        Dùng các bất đẳng thức này, có thể chỉ ra rằng cây cuối cùng thu được nhất định cân bằng. Theo giả thiết quy nạp, hợp nhất $z$ với $u$ và hợp nhất $v$ với $y$ đều bảo đảm cây thu được cân bằng. Hơn nữa, trong đó bước đầu tiên hợp nhất $z$ và $u$ thực chất là nối trực tiếp hai cây. Với việc hợp nhất cây $z+u$ và cây $v+y$, lại có hai trường hợp con:
         
-        -   如果 $z+u\le v+y$，那么它们的权重比值严格大于 $\alpha/(1-\alpha)$，故而可以直接连接，结果是平衡的；
-        -   否则，它们的权重比值必然严格小于 $x/y$，但是 $(z+u)+(v+y)=x+y$，所以 $|(z+u)-(v+y)|<|x-y|$，由前文给出的字典序判断，这种情形也可以应用归纳假设，结果也是平衡的．
+        -   Nếu $z+u\le v+y$, thì tỷ lệ trọng số của chúng lớn hơn nghiêm ngặt $\alpha/(1-\alpha)$, nên có thể nối trực tiếp, và kết quả cân bằng;
+        -   Nếu không, tỷ lệ trọng số của chúng tất nhiên nhỏ hơn nghiêm ngặt $x/y$, nhưng $(z+u)+(v+y)=x+y$, nên $|(z+u)-(v+y)|<|x-y|$; theo thứ tự từ điển đã nêu phía trước, trường hợp này cũng có thể áp dụng giả thiết quy nạp, và kết quả cũng cân bằng.
         
-        进一步应用归纳假设可知：
+        Tiếp tục áp dụng giả thiết quy nạp, ta biết:
         
         $$
         \begin{aligned}
@@ -492,9 +492,9 @@ $$
         \end{aligned}
         $$
         
-        三个不等式直接相加，会导致对数项前面的系数变成 $2C$，无法完成归纳．因此，此处需要更为细致的估计．
+        Nếu cộng trực tiếp ba bất đẳng thức, hệ số trước hạng logarit sẽ trở thành $2C$, nên không thể hoàn tất quy nạp. Vì vậy, ở đây cần một ước lượng tinh tế hơn.
         
-        当 $\max\{v/y,(z+u)/(v+y)\}\le(1-\alpha)/\alpha$ 时，$\tau(v,y)$ 和 $\tau(z+u,v+y)$ 中必然有一项为 $1$，所以，有
+        Khi $\max\{v/y,(z+u)/(v+y)\}\le(1-\alpha)/\alpha$, trong $\tau(v,y)$ và $\tau(z+u,v+y)$ nhất định có một hạng bằng $1$, nên có
         
         $$
         \begin{aligned}
@@ -503,7 +503,7 @@ $$
         \end{aligned}
         $$
         
-        否则，应该有
+        Nếu không, phải có
         
         $$
         \begin{aligned}
@@ -513,13 +513,13 @@ $$
         \end{aligned}
         $$
         
-        对于 $0<\alpha\le 1-\sqrt{2}/2$，有
+        Với $0<\alpha\le 1-\sqrt{2}/2$, có
         
         $$
         \dfrac{\alpha}{(1-\alpha)^2} < 1-\alpha.
         $$
         
-        而且，有
+        Hơn nữa, có
         
         $$
         \begin{aligned}
@@ -528,198 +528,198 @@ $$
         \end{aligned}
         $$
         
-        这就说明，对于后面这种情形，也有
+        Điều này cho thấy trong trường hợp sau cũng có
         
         $$
         \tau(v,y) + \tau(z+u,v+y) < 2 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
         $$
         
-        整体的合并复杂度为
+        Độ phức tạp hợp nhất tổng thể là
         
         $$
         \tau(x,y) \le 3 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
         $$
     
-    综合所有情形，有
+    Tổng hợp mọi trường hợp, có
     
     $$
     \tau(x,y) \le 3 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
     $$
     
-    因此，只要取 $2+C\log(1-\alpha)\le 0$，就可以完成复杂度的归纳．一个显然的选择为
+    Vì vậy, chỉ cần lấy $2+C\log(1-\alpha)\le 0$ là có thể hoàn tất quy nạp về độ phức tạp. Một lựa chọn hiển nhiên là
     
     $$
     C = -\dfrac{2}{\log(1-\alpha)}.
     $$
     
-    这个常数说明，两个树合并时，直接连接子树的次数大致不会超过树高差值的二倍．
+    Hằng số này cho thấy khi hợp nhất hai cây, số lần nối trực tiếp cây con xấp xỉ sẽ không vượt quá hai lần chênh lệch chiều cao cây.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:merge"
     ```
 
-利用该合并策略，同样可以很容易实现树的平衡维护：失衡时，直接合并左右子树即可．
+Dùng chiến lược hợp nhất này, ta cũng có thể rất dễ cài đặt việc duy trì cân bằng của cây: khi mất cân bằng, hợp nhất trực tiếp hai cây con trái phải.
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:balance-by-merging"
     ```
 
-因为需要再平衡的两个树的大小总是近乎平衡的，因此维护平衡的复杂度是 $O(1)$ 的．
+Vì hai cây cần tái cân bằng luôn có kích thước gần cân bằng, độ phức tạp của việc duy trì cân bằng là $O(1)$.
 
-## 平衡树基础操作
+## Thao tác cơ bản trên cây cân bằng
 
-利用前文实现的函数，WBLT 可以支持平衡树的所有基础操作．本节以可重集为例，讨论 WBLT 实现平衡树的方法．
+Dùng các hàm đã cài đặt ở phần trước, WBLT có thể hỗ trợ mọi thao tác cơ bản của cây cân bằng. Phần này lấy đa tập làm ví dụ để thảo luận cách dùng WBLT cài đặt cây cân bằng.
 
-### 建树
+### Xây cây
 
-建树操作与线段树十分相似，只需要向下递归二分区间，直至区间长度为 $1$ 时把要维护的信息放叶子节点上，回溯的时候合并区间信息即可．
+Thao tác xây cây rất giống cây đoạn: chỉ cần đệ quy chia đôi đoạn đi xuống, cho tới khi độ dài đoạn là $1$ thì đặt thông tin cần duy trì lên nút lá, rồi khi quay lui thì hợp nhất thông tin đoạn.
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-2.cpp:build"
     ```
 
-时间复杂度为 $O(n)$．
+Độ phức tạp thời gian là $O(n)$.
 
-### 插入与删除
+### Chèn và xóa
 
-对于插入操作，需要从根节点开始向下递归，直到找到权值大于等于插入元素的权值最小的叶子节点，再新建两个节点，其中一个用来存储新插入的值，另一个作为两个叶子的新父亲替代这个最小叶子节点的位置，再将这两个叶子连接到这个父亲上．回溯时，需要维护树的平衡．
+Với thao tác chèn, cần đệ quy từ nút gốc đi xuống, cho tới khi tìm được nút lá nhỏ nhất có khóa lớn hơn hoặc bằng khóa của phần tử cần chèn, rồi tạo mới hai nút: một nút dùng để lưu giá trị mới chèn, nút còn lại làm cha mới của hai lá để thay thế vị trí của nút lá nhỏ nhất này, sau đó nối hai lá này vào nút cha đó. Khi quay lui, cần duy trì cân bằng của cây.
 
 ![](./images/wblt-insert-delete.svg)
 
-如图所示，要向左侧的树中插入值为 $4$ 的元素．首先找到值为 $5$ 的叶子节点，然后新建叶子节点 $4$ 和非叶子节点 $\text{d}$，并将 $4$ 和 $5$ 连接到 $\text{d}$ 上．这就得到右侧的树．
+Như hình minh họa, ta muốn chèn phần tử có giá trị $4$ vào cây bên trái. Trước hết tìm nút lá có giá trị $5$, sau đó tạo mới nút lá $4$ và nút không phải lá $\text{d}$, rồi nối $4$ và $5$ vào $\text{d}$. Như vậy thu được cây bên phải.
 
-对于删除，考虑上面过程的逆过程．即找到与要删除的值权值相等的一个叶子节点，将它和它的父亲节点删除，并用其父亲的另一个儿子代替父亲的位置．回溯时，同样需要维护树的平衡．
+Với thao tác xóa, xét quá trình ngược lại của quá trình trên. Tức là tìm một nút lá có khóa bằng giá trị cần xóa, xóa nó và nút cha của nó, rồi dùng nút con còn lại của cha thay thế vị trí của cha. Khi quay lui, cũng cần duy trì cân bằng của cây.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:insert-remove"
     ```
 
-注意空树的处理．如果不想处理空树，可以提前向树内插入 $\infty$ 元素．
+Chú ý xử lý cây rỗng. Nếu không muốn xử lý cây rỗng, có thể chèn trước phần tử $\infty$ vào cây.
 
-两种操作的时间复杂度均为 $O(\log n)$．
+Độ phức tạp thời gian của cả hai thao tác đều là $O(\log n)$.
 
-### 查询排名
+### Truy vấn hạng
 
-因为 WBLT 的形态和线段树十分相似，因此查询排名可以使用类似线段树上二分的方式：如果左子树的最大值大于等于待查值就往左子节点跳；否则，就向右子节点跳，同时答案加上左子树的权重．
+Vì hình thái của WBLT rất giống cây đoạn, truy vấn hạng có thể dùng cách tương tự tìm kiếm nhị phân trên cây đoạn: nếu giá trị lớn nhất của cây con trái lớn hơn hoặc bằng giá trị cần tìm thì đi sang nút con trái; nếu không, đi sang nút con phải, đồng thời cộng trọng số của cây con trái vào đáp án.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:rank"
     ```
 
-时间复杂度为 $O(\log n)$．
+Độ phức tạp thời gian là $O(\log n)$.
 
-### 根据排名查询
+### Truy vấn theo hạng
 
-依然是利用线段树上二分的思想，只不过这里比较的是节点的权重．
+Vẫn là dùng ý tưởng tìm kiếm nhị phân trên cây đoạn, chỉ khác là ở đây so sánh trọng số của nút.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:kth-element"
     ```
 
-时间复杂度为 $O(\log n)$．
+Độ phức tạp thời gian là $O(\log n)$.
 
-### 查找前驱、后继
+### Tìm tiền nhiệm và kế nhiệm
 
-以上两种功能结合即可．
+Chỉ cần kết hợp hai chức năng trên.
 
-参考实现如下：
+Cài đặt tham khảo như sau:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:prev-next"
     ```
 
-如果想直接实现，需要注意键值相同的节点可能存储于多个叶子节点．
+Nếu muốn cài đặt trực tiếp, cần chú ý rằng các nút có cùng khóa có thể được lưu ở nhiều nút lá.
 
-### 分裂操作
+### Thao tác tách
 
-WBLT 的分裂与 [无旋 Treap](./treap.md#分裂split) 类似，根据子树大小或权值决定向下递归分裂左子树或右子树．不同的是，WBLT 需要对分裂出来的子树进行 **合并**，以维护最终分裂的树的平衡．
+Phép tách của WBLT tương tự [Treap không xoay](./treap.md#tách-split): dựa vào kích thước cây con hoặc khóa để quyết định đệ quy tách cây con trái hay cây con phải. Điểm khác là WBLT cần **hợp nhất** các cây con được tách ra để duy trì cân bằng của cây cuối cùng sau khi tách.
 
-根据子树大小分裂的参考实现如下：
+Cài đặt tham khảo cho cách tách theo kích thước cây con như sau:
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-2.cpp:split"
     ```
 
-时间复杂度为 $O(\log n)$．
+Độ phức tạp thời gian là $O(\log n)$.
 
-??? note "复杂度证明"
-    向下递归的层数显然不超过树高，是 $O(\log n)$ 的．需要证明的是，将左右两侧分裂出来的子树分别合并起来的复杂度是 $O(\log n)$ 的．不妨仅考虑左侧的子树，因为右侧是对称的．设左侧分裂出来的子树自下而上分别是 $T_1,T_2,\cdots,T_\ell$，这些子树的数量 $\ell\in O(\log n)$．合并的过程可以描述为，自 $T'_1=T_1$ 开始，将 $T'_{i-1}$ 与 $T_i$ 合并得到 $T'_i$，递归地合并完所有子树为止．合并的总复杂度可以表示为
+??? note "Chứng minh độ phức tạp"
+    Số tầng đệ quy đi xuống hiển nhiên không vượt quá chiều cao cây, tức là $O(\log n)$. Cần chứng minh rằng độ phức tạp của việc lần lượt hợp nhất các cây con được tách ra ở hai phía trái phải là $O(\log n)$. Không mất tính tổng quát, chỉ xét các cây con phía trái, vì phía phải đối xứng. Giả sử các cây con được tách ra ở phía trái theo thứ tự từ dưới lên trên là $T_1,T_2,\cdots,T_\ell$, số lượng các cây con này là $\ell\in O(\log n)$. Quá trình hợp nhất có thể mô tả như sau: bắt đầu từ $T'_1=T_1$, hợp nhất $T'_{i-1}$ với $T_i$ để thu được $T'_i$, và tiếp tục đệ quy cho tới khi hợp nhất xong tất cả cây con. Tổng độ phức tạp của việc hợp nhất có thể biểu diễn là
     
     $$
     \sum_{i=2}^\ell \tau(T_i,T'_{i-1}),
     $$
     
-    其中，$\tau(T_i,T'_{i-1})$ 是将 $T_i$ 和 $T'_{i-1}$ 合并起来的复杂度．
+    trong đó $\tau(T_i,T'_{i-1})$ là độ phức tạp của việc hợp nhất $T_i$ và $T'_{i-1}$.
     
-    如果总是有 $w(T_i)\ge w(T'_{i-1})$，那么根据合并两子树的复杂度表达式，有
+    Nếu luôn có $w(T_i)\ge w(T'_{i-1})$, thì theo biểu thức độ phức tạp của việc hợp nhất hai cây con, có
     
     $$
     \tau(T_i,T'_{i-1}) \in O\left(\log\dfrac{w(T_i)}{w(T'_{i-1})}\right) \subseteq O\left(\log\dfrac{w(T'_i)}{w(T'_{i-1})}\right).
     $$
     
-    因为这些大 $O$ 记号中的常数都是一致的，所以可以直接相加，裂项相消．
+    Vì các hằng số trong các ký hiệu $O$ lớn này đều thống nhất, có thể cộng trực tiếp và triệt tiêu dạng telescoping.
     
-    但是，应该注意的是，$w(T_i)\ge w(T'_{i-1})$ 并不总是成立，因为 $T'_{i-1}$ 是从 $T_i$ 在原来的树中对应的右子树分裂出来的，而这个右子树可能比左子树 $T_i$ 更大．尽管如此，即使 $T'_{i-1}$ 比 $T_i$ 大，作为右子树的一部分，权重 $w(T'_{i-1})$ 也不会超过 $w(T_i)$ 的 $(1-\alpha)/\alpha$ 倍，这意味着，此时 $T'_{i-1}$ 和 $T_i$ 一定是平衡的，合并的复杂度是 $O(1)$ 的．
+    Tuy nhiên, cần chú ý rằng $w(T_i)\ge w(T'_{i-1})$ không phải lúc nào cũng đúng, vì $T'_{i-1}$ được tách ra từ cây con phải tương ứng của $T_i$ trong cây ban đầu, và cây con phải này có thể lớn hơn cây con trái $T_i$. Dù vậy, ngay cả khi $T'_{i-1}$ lớn hơn $T_i$, với tư cách là một phần của cây con phải, trọng số $w(T'_{i-1})$ cũng sẽ không vượt quá $(1-\alpha)/\alpha$ lần $w(T_i)$; điều này nghĩa là lúc này $T'_{i-1}$ và $T_i$ nhất định cân bằng, nên độ phức tạp hợp nhất là $O(1)$.
     
-    将这两种情形总结在一起，单次合并的复杂度可以写为
+    Tổng hợp hai trường hợp này, độ phức tạp của một lần hợp nhất có thể viết là
     
     $$
     \tau(T_i,T'_{i-1}) \in O\left(\log\dfrac{w(T'_i)}{w(T'_{i-1})}\right) + O(1).
     $$
     
-    由此，合并的总复杂度为
+    Do đó, tổng độ phức tạp của việc hợp nhất là
     
     $$
     O\left(\sum_{i=2}^\ell\left( 1+\log\dfrac{w(T'_i)}{w(T'_{i-1})}\right) \right) \subseteq O(\ell+\log w(T'_\ell)) \subseteq O(\log n).
     $$
     
-    这也说明，分裂算法的总复杂度是 $O(\log n)$ 的．
+    Điều này cũng cho thấy tổng độ phức tạp của thuật toán tách là $O(\log n)$.
 
-## 参考实现
+## Cài đặt tham khảo
 
-本文介绍了如何利用 WBLT 完成平衡树的基本操作．下面是用 WBLT 实现的 [普通平衡树模板](https://loj.ac/p/104)．
+Bài này đã giới thiệu cách dùng WBLT để hoàn thành các thao tác cơ bản của cây cân bằng. Dưới đây là [mẫu cây cân bằng thông thường](https://loj.ac/p/104) được cài đặt bằng WBLT.
 
-??? example "参考代码"
+??? example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:full-text"
     ```
 
-利用合并和分裂，也可以实现文艺平衡树．下面是用 WBLT 实现的 [文艺平衡树模板](https://loj.ac/p/105)，需要在向下访问节点时下传懒标记．
+Dùng hợp nhất và tách, cũng có thể cài đặt cây cân bằng văn nghệ. Dưới đây là [mẫu cây cân bằng văn nghệ](https://loj.ac/p/105) được cài đặt bằng WBLT; cần đẩy nhãn lười xuống khi truy cập nút đi xuống.
 
-??? example "参考代码"
+??? example "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt-2.cpp:full-text"
     ```
 
-注意 WBLT 需要两倍的空间；涉及分裂与合并时，需要注意垃圾回收，及时回收无用的节点，否则空间不是线性的．
+Chú ý rằng WBLT cần gấp đôi không gian; khi có liên quan tới tách và hợp nhất, cần chú ý thu gom rác, kịp thời thu hồi các nút không còn dùng tới, nếu không không gian sẽ không còn tuyến tính.
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
 -   [Weight-balanced tree - Wikipedia](https://en.wikipedia.org/wiki/Weight-balanced_tree)
--   Nievergelt, J.; Reingold, E. M. (1973). "Binary Search Trees of Bounded Balance". SIAM Journal on Computing. 2: 33–43.
--   Blum, Norbert; Mehlhorn, Kurt (1980). "On the average number of rebalancing operations in weight-balanced trees". Theoretical Computer Science. 11 (3): 303–320.
+-   Nievergelt, J.; Reingold, E. M. (1973). "Binary Search Trees of Bounded Balance". SIAM Journal on Computing. 2: 33-43.
+-   Blum, Norbert; Mehlhorn, Kurt (1980). "On the average number of rebalancing operations in weight-balanced trees". Theoretical Computer Science. 11 (3): 303-320.
 -   Hirai, Y.; Yamamoto, K. (2011). "Balancing weight-balanced trees". Journal of Functional Programming. 21 (3): 287.
--   Blelloch, Guy E.; Ferizovic, Daniel; Sun, Yihan (2016), "Just Join for Parallel Ordered Sets", Symposium on Parallel Algorithms and Architectures, Proc. of 28th ACM Symp. Parallel Algorithms and Architectures (SPAA 2016), ACM, pp. 253–264.
--   Straka, Milan. (2011). "Adams’Trees Revisited: Correctness Proof and Efficient Implementation." International Symposium on Trends in Functional Programming. Berlin, Heidelberg: Springer Berlin Heidelberg.
+-   Blelloch, Guy E.; Ferizovic, Daniel; Sun, Yihan (2016), "Just Join for Parallel Ordered Sets", Symposium on Parallel Algorithms and Architectures, Proc. of 28th ACM Symp. Parallel Algorithms and Architectures (SPAA 2016), ACM, pp. 253-264.
+-   Straka, Milan. (2011). "Adams'Trees Revisited: Correctness Proof and Efficient Implementation." International Symposium on Trends in Functional Programming. Berlin, Heidelberg: Springer Berlin Heidelberg.
 
-[^wrong-range]: Nievergelt 和 Reingold 的原始论文中给出的参数范围 $\alpha < 1-\dfrac{\sqrt{2}}{2},~\beta=\dfrac{1-2\alpha}{1-\alpha}$ 是错误的．Hirai 和 Yamamoto 的文章中提供了相应的反例，问题主要出现在某些很小的树上，从而导致整个归纳证明失效．当然，实际算法竞赛中，很难造出能卡掉这些错误参数的数据，所以实践中可能并不会有太大影响．
+[^wrong-range]: Phạm vi tham số $\alpha < 1-\dfrac{\sqrt{2}}{2},~\beta=\dfrac{1-2\alpha}{1-\alpha}$ được đưa ra trong bài báo gốc của Nievergelt và Reingold là sai. Bài viết của Hirai và Yamamoto đưa ra phản ví dụ tương ứng; vấn đề chủ yếu xuất hiện trên một số cây rất nhỏ, khiến toàn bộ chứng minh quy nạp mất hiệu lực. Dĩ nhiên, trong thi lập trình thuật toán thực tế, rất khó tạo dữ liệu có thể đánh bại các tham số sai này, nên trên thực tế có thể không ảnh hưởng nhiều.
 
-[^merge-complexity-cmp]: 因为单次平衡操作至多相当于连接两次子树，而且最后两子树已经平衡时还需要调用一次连接子树的算法，所以如果以调用连接子树的算法的次数计算，基于平衡实现的合并操作和下文直接合并的平衡操作的算法的常数是一致的．
+[^merge-complexity-cmp]: Vì một thao tác cân bằng đơn lẻ nhiều nhất tương đương với nối cây con hai lần, hơn nữa khi hai cây con cuối cùng đã cân bằng vẫn cần gọi thuật toán nối cây con một lần, nên nếu tính theo số lần gọi thuật toán nối cây con, hằng số của thao tác hợp nhất cài đặt dựa trên cân bằng và thuật toán cân bằng bằng hợp nhất trực tiếp ở phần sau là như nhau.
 
-[^more-join]: 通过稍后的证明可以看出：第三种情形中，$z$ 和 $w+y$ 总是平衡的；第四种情形中，$z$ 和 $u$ 总是平衡的．它们都可以直接连接，而不需要合并．
+[^more-join]: Từ chứng minh phía sau có thể thấy: trong trường hợp thứ ba, $z$ và $w+y$ luôn cân bằng; trong trường hợp thứ tư, $z$ và $u$ luôn cân bằng. Chúng đều có thể được nối trực tiếp, không cần hợp nhất.

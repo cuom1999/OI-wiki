@@ -1,77 +1,77 @@
-## 主席树
+## Cây chủ tịch
 
-主席树全称是可持久化权值线段树，参见 [知乎讨论](https://www.zhihu.com/question/59195374)．
+Cây chủ tịch là tên gọi thường dùng của cây phân đoạn theo giá trị có tính bền vững. Xem thêm [thảo luận trên Zhihu](https://www.zhihu.com/question/59195374).
 
-???+ warning "关于函数式线段树"
-    **函数式线段树** 是指使用函数式编程思想的线段树．在函数式编程思想中，将计算机运算视为数学函数，并避免可改变的状态或变量．不难发现，函数式线段树是 [完全可持久化](persistent.md#完全可持久化-fully-persistent) 的．
+???+ warning "Về cây phân đoạn hàm"
+    **Cây phân đoạn hàm** là cây phân đoạn được xây dựng theo tư tưởng lập trình hàm. Trong lập trình hàm, phép tính của máy tính được xem như hàm toán học, đồng thời tránh trạng thái hoặc biến có thể thay đổi. Không khó để thấy cây phân đoạn hàm là [hoàn toàn bền vững](persistent.md#hoàn-toàn-bền-vững-fully-persistent).
 
-## 引入
+## Dẫn nhập
 
-先引入一道题目：给定 $n$ 个整数构成的序列 $a$，将对于指定的闭区间 $[l, r]$ 查询其区间内的第 $k$ 小值．
+Trước hết xét một bài toán: cho dãy $a$ gồm $n$ số nguyên, với mỗi khoảng đóng $[l, r]$ được chỉ định, hãy truy vấn giá trị nhỏ thứ $k$ trong khoảng đó.
 
-你该如何解决？
+Bạn sẽ giải quyết như thế nào?
 
-一种可行的方案是：使用主席树．
-主席树的主要思想就是：保存每次插入操作时的历史版本，以便查询区间第 $k$ 小．
+Một phương án khả thi là dùng cây chủ tịch.
+Ý tưởng chính của cây chủ tịch là lưu lại phiên bản lịch sử sau mỗi thao tác chèn, để tiện truy vấn phần tử nhỏ thứ $k$ trong một đoạn.
 
-怎么保存呢？简单暴力一点，每次开一棵线段树呗．  
-那空间还不爆掉？
+Lưu như thế nào? Cách đơn giản thô bạo là mỗi lần tạo một cây phân đoạn mới.
+Vậy chẳng phải bộ nhớ sẽ nổ tung sao?
 
-## 解释
+## Giải thích
 
-我们分析一下，发现每次修改操作修改的点的个数是一样的．  
-（例如下图，修改了 $[1,8]$ 中对应权值为 1 的结点，红色的点即为更改的点）  
+Phân tích một chút, ta thấy số nút bị sửa đổi trong mỗi thao tác sửa là như nhau.
+(Ví dụ trong hình dưới, ta sửa nút tương ứng với giá trị 1 trong $[1,8]$; các nút màu đỏ là các nút bị thay đổi.)
 ![](./images/persistent-seg.png)
 
-只更改了 $O(\log{n})$ 个结点，形成一条链，也就是说每次更改的结点数 = 树的高度．  
-注意主席树不能使用堆式存储法，就是说不能用 $x\times 2$，$x\times 2+1$ 来表示左右儿子，而是应该动态开点，并保存每个节点的左右儿子编号．  
-所以我们只要在记录左右儿子的基础上，保存插入每个数的时候的根节点就可以实现持久化了．
+Mỗi lần chỉ thay đổi $O(\log{n})$ nút và các nút đó tạo thành một chuỗi; nói cách khác, số nút thay đổi mỗi lần bằng chiều cao của cây.
+Chú ý rằng cây chủ tịch không thể dùng cách lưu kiểu heap, tức không thể dùng $x\times 2$ và $x\times 2+1$ để biểu diễn con trái/phải. Thay vào đó, cần cấp phát nút động và lưu chỉ số con trái/phải của từng nút.
+Vì vậy, chỉ cần lưu nút gốc tại thời điểm chèn từng số, trên cơ sở đã lưu con trái/phải, là có thể đạt được tính bền vững.
 
-我们把问题简化一下：每次求 $[1,r]$ 区间内的 $k$ 小值．  
-怎么做呢？只需要找到插入 r 时的根节点版本，然后用普通权值线段树（有的叫键值线段树/值域线段树）做就行了．
+Đơn giản hóa bài toán: mỗi lần chỉ cần tìm giá trị nhỏ thứ $k$ trong khoảng $[1,r]$.
+Làm thế nào? Chỉ cần tìm phiên bản nút gốc sau khi đã chèn đến $r$, rồi xử lý như trên cây phân đoạn theo giá trị thông thường (còn gọi là cây phân đoạn khóa/miền giá trị).
 
-这个相信大家都能理解，回到原问题——求 $[l,r]$ 区间 $k$ 小值．  
-这里我们再联系另外一个知识：**前缀和**．  
-这个小东西巧妙运用了区间减法的性质，通过预处理从而达到 $O(1)$ 回答每个询问．
+Điều này khá dễ hiểu. Quay lại bài toán ban đầu: tìm giá trị nhỏ thứ $k$ trong khoảng $[l,r]$.
+Ở đây ta liên hệ đến một kiến thức khác: **tổng tiền tố**.
+Kỹ thuật nhỏ này khéo léo tận dụng tính chất trừ đoạn, nhờ tiền xử lý để trả lời mỗi truy vấn trong $O(1)$.
 
-我们可以发现，主席树统计的信息也满足这个性质．  
-所以……如果需要得到 $[l,r]$ 的统计信息，只需要用 $[1,r]$ 的信息减去 $[1,l - 1]$ 的信息就行了．
+Ta có thể thấy thông tin thống kê trong cây chủ tịch cũng thỏa tính chất này.
+Vì vậy, nếu cần lấy thông tin thống kê của $[l,r]$, chỉ cần lấy thông tin của $[1,r]$ trừ đi thông tin của $[1,l - 1]$.
 
-至此，该问题解决！
+Đến đây, bài toán đã được giải quyết.
 
-关于空间问题，我们分析一下：由于我们是动态开点的，所以一棵线段树只会出现 $2n-1$ 个结点．  
-然后，有 $n$ 次修改，每次至多增加 $\lceil\log_2{n}\rceil+1$ 个结点．因此，最坏情况下 $n$ 次修改后的结点总数会达到 $2n-1+n(\lceil\log_2{n}\rceil+1)$．
-此题的 $n \leq 10^5$，单次修改至多增加 $\lceil\log_2{10^5}\rceil+1 = 18$ 个结点，故 $n$ 次修改后的结点总数为 $2\times 10^5-1+18\times 10^5$，忽略掉 $-1$，大概就是 $20\times 10^5$．
+Về vấn đề không gian, phân tích như sau: vì ta cấp phát nút động, nên một cây phân đoạn chỉ có $2n-1$ nút.
+Sau đó có $n$ lần sửa, mỗi lần nhiều nhất tăng thêm $\lceil\log_2{n}\rceil+1$ nút. Do đó trong trường hợp xấu nhất, tổng số nút sau $n$ lần sửa đạt $2n-1+n(\lceil\log_2{n}\rceil+1)$.
+Trong bài này $n \leq 10^5$, mỗi lần sửa nhiều nhất tăng thêm $\lceil\log_2{10^5}\rceil+1 = 18$ nút, nên tổng số nút sau $n$ lần sửa là $2\times 10^5-1+18\times 10^5$; bỏ qua $-1$ thì xấp xỉ $20\times 10^5$.
 
-最后给一个忠告：千万不要吝啬空间（大多数题目中空间限制都较为宽松，因此一般不用担心空间超限的问题）！大胆一点，直接上个 $2^5\times 10^5$，接近原空间的两倍（即 `n << 5`）．
+Cuối cùng là một lời khuyên: đừng quá tiết kiệm không gian (trong đa số bài, giới hạn bộ nhớ khá rộng, nên thường không cần quá lo vượt bộ nhớ). Cứ mạnh dạn cấp $2^5\times 10^5$, gần gấp đôi dung lượng ước tính ban đầu, tức `n << 5`.
 
-## 实现
+## Cài đặt
 
 ```cpp
 #include <algorithm>
 #include <cstdio>
 #include <cstring>
 using namespace std;
-constexpr int MAXN = 1e5;  // 数据范围
+constexpr int MAXN = 1e5;  // Gioi han du lieu
 int tot, n, m;
 int sum[(MAXN << 5) + 10], rt[MAXN + 10], ls[(MAXN << 5) + 10],
     rs[(MAXN << 5) + 10];
 int a[MAXN + 10], ind[MAXN + 10], len;
 
-int getid(const int &val) {  // 离散化
+int getid(const int &val) {  // Roi rac hoa
   return lower_bound(ind + 1, ind + len + 1, val) - ind;
 }
 
-int build(int l, int r) {  // 建树
+int build(int l, int r) {  // Xay cay
   int root = ++tot;
   if (l == r) return root;
   int mid = l + r >> 1;
   ls[root] = build(l, mid);
   rs[root] = build(mid + 1, r);
-  return root;  // 返回该子树的根节点
+  return root;  // Tra ve nut goc cua cay con nay
 }
 
-int update(int k, int l, int r, int root) {  // 插入操作
+int update(int k, int l, int r, int root) {  // Thao tac chen
   int dir = ++tot;
   ls[dir] = ls[root], rs[dir] = rs[root], sum[dir] = sum[root] + 1;
   if (l == r) return dir;
@@ -83,13 +83,13 @@ int update(int k, int l, int r, int root) {  // 插入操作
   return dir;
 }
 
-int query(int u, int v, int l, int r, int k) {  // 查询操作
+int query(int u, int v, int l, int r, int k) {  // Thao tac truy van
   int mid = l + r >> 1,
-      x = sum[ls[v]] - sum[ls[u]];  // 通过区间减法得到左儿子中所存储的数值个数
+      x = sum[ls[v]] - sum[ls[u]];  // So gia tri nam trong con trai, tinh bang phep tru doan
   if (l == r) return l;
-  if (k <= x)  // 若 k 小于等于 x ，则说明第 k 小的数字存储在左儿子中
+  if (k <= x)  // Neu k <= x, so nho thu k nam trong con trai
     return query(ls[u], ls[v], l, mid, k);
-  else  // 否则说明在右儿子中
+  else  // Nguoc lai, no nam trong con phai
     return query(rs[u], rs[v], mid + 1, r, k - x);
 }
 
@@ -108,7 +108,7 @@ int l, r, k;
 void work() {
   while (m--) {
     scanf("%d%d%d", &l, &r, &k);
-    printf("%d\n", ind[query(rt[l - 1], rt[r], 1, len, k)]);  // 回答询问
+    printf("%d\n", ind[query(rt[l - 1], rt[r], 1, len, k)]);  // Tra loi truy van
   }
 }
 
@@ -119,15 +119,15 @@ int main() {
 }
 ```
 
-## 拓展：基于主席树的可持久化并查集
+## Mở rộng: DSU bền vững dựa trên cây chủ tịch
 
-主席树是实现可持久化并查集的便捷方式，在此也提供一个基于主席树的可持久化并查集实现示例．
+Cây chủ tịch là một cách thuận tiện để cài đặt DSU bền vững. Dưới đây cũng cung cấp một ví dụ cài đặt DSU bền vững dựa trên cây chủ tịch.
 
 ```cpp
 --8<-- "docs/ds/code/persistent-seg/persistent-seg_1.cpp"
 ```
 
-## 参考
+## Tài liệu tham khảo
 
 <https://en.wikipedia.org/wiki/Persistent_data_structure>
 

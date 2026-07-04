@@ -1,42 +1,42 @@
 author: morris821028
 
-## 简介
+## Giới thiệu
 
-可持久化数据结构 (Persistent data structure) 总是可以保留每一个历史版本，并且支持操作的不可变特性 (immutable)．
+Cấu trúc dữ liệu bền vững (persistent data structure) luôn có thể giữ lại mọi phiên bản lịch sử, đồng thời hỗ trợ tính bất biến (immutable) của thao tác.
 
-## 可持久化分类
+## Phân loại bền vững hóa
 
-### 部分可持久化 (Partially Persistent)
+### Một phần bền vững (Partially Persistent)
 
-所有版本都可以访问，但是只有最新版本可以修改．
+Mọi phiên bản đều có thể được truy cập, nhưng chỉ phiên bản mới nhất có thể được sửa đổi.
 
-### 完全可持久化 (Fully Persistent)
+### Hoàn toàn bền vững (Fully Persistent)
 
-所有版本都既可以访问又可以修改．
+Mọi phiên bản đều có thể vừa được truy cập vừa được sửa đổi.
 
-若支持将两个历史版本合并，则又称为 Confluently Persistent
+Nếu còn hỗ trợ hợp nhất hai phiên bản lịch sử, cấu trúc đó được gọi là bền vững hợp lưu (confluently persistent).
 
-## 实际应用
+## Ứng dụng thực tế
 
-### 几何计算
+### Tính toán hình học
 
-在几何计算中有许多离线算法，如扫描线算法一次扫过去回答所有询问，在时间复杂度分析上相当优异．但强迫在线的情况下，每一次都扫描一次，询问操作的时间复杂度就从对数时间降成线性．为了解决这一种情况，持久化技术给了另一种思维，我们将扫描线的时间轴作为一个变动依据，持久化相关的结构，只要我们能将询问在对数时间内穿梭于这个时间轴，必能动态解决先前的问题．
+Trong tính toán hình học có nhiều thuật toán ngoại tuyến, chẳng hạn thuật toán đường quét có thể trả lời mọi truy vấn trong một lần quét và có độ phức tạp rất tốt. Nhưng nếu bị buộc phải xử lý trực tuyến, mỗi lần lại phải quét một lượt, khiến độ phức tạp truy vấn từ mức logarit rơi xuống tuyến tính. Để giải quyết tình huống này, kỹ thuật bền vững hóa đưa ra một cách nhìn khác: xem trục thời gian của đường quét là căn cứ biến đổi và bền vững hóa cấu trúc liên quan. Chỉ cần truy vấn có thể di chuyển trên trục thời gian này trong thời gian logarit, ta có thể giải động bài toán ban đầu.
 
-### 字串处理
+### Xử lý chuỗi
 
-为了达到非常高效率的合并操作，防止大量重复性字串的生成伴随的效能退化，使得各方面的操作都能远低于线性操作．如 C++ rope 就是一个持久化的数据结构．不只是字串操作，若处理类型有大量重复的情况，持久化的概念便能派上用场．
+Để đạt thao tác hợp nhất rất hiệu quả và tránh suy giảm hiệu năng do tạo ra lượng lớn chuỗi lặp lại, ta muốn các thao tác ở nhiều mặt đều thấp hơn xa so với tuyến tính. Ví dụ, `rope` trong C++ là một cấu trúc dữ liệu bền vững. Không chỉ trong thao tác chuỗi, khi kiểu dữ liệu cần xử lý có nhiều phần lặp lại, khái niệm bền vững hóa cũng có thể phát huy tác dụng.
 
-### 版本回溯
+### Quay lui phiên bản
 
-实际上就是对应大部分的应用软体中的 redo/undo．如果资料库/操作变动为了高效率操作而会配上复杂的结构（并不像 hash, set 反转操作只需要常数或对数时间），那么为了快速回推变动结果，持久化结构就是要减少 redo/undo 的花费．
+Về bản chất, điều này tương ứng với redo/undo trong phần lớn phần mềm ứng dụng. Nếu dữ liệu hoặc thao tác biến đổi cần đi kèm cấu trúc phức tạp để đạt hiệu quả cao (không giống `hash` hay `set`, nơi thao tác đảo ngược thường chỉ cần thời gian hằng số hoặc logarit), thì để nhanh chóng quay lui kết quả biến đổi, cấu trúc bền vững có nhiệm vụ giảm chi phí redo/undo.
 
-资料库本身可以常数回推，纪录变动的部分情况即可．而应用层的计算，大部分实作都是砍掉快取，并且重新计算出一份新的结构，有时候回推的变动大小为 m，为了重新计算结构而消耗了 n+m，如果 n 和 m 的差距非常大，那连续回推的体感就很糟糕．
+Bản thân cơ sở dữ liệu có thể quay lui trong thời gian hằng số nếu chỉ ghi lại phần đã thay đổi. Nhưng ở tầng ứng dụng, đa số cài đặt sẽ bỏ cache rồi tính lại một cấu trúc mới. Đôi khi kích thước thay đổi cần quay lui là $m$, nhưng để tính lại cấu trúc lại tốn $n+m$; nếu $n$ và $m$ chênh lệch rất lớn, trải nghiệm khi quay lui liên tiếp sẽ rất tệ.
 
-### 函数式编程
+### Lập trình hàm
 
-函数式编程需要特别的数据结构以符合语言特性，其中不可变的性质更为重要，以利于并行环境与除错．如面向对象编程的 Java 8 后引入 stream 类，支援写出函数式的语法设计，可提供惰性求值、无限值域等的特殊功能．
+Lập trình hàm cần các cấu trúc dữ liệu đặc biệt để phù hợp với đặc tính ngôn ngữ; trong đó tính bất biến càng quan trọng vì có lợi cho môi trường song song và gỡ lỗi. Chẳng hạn, Java hướng đối tượng từ Java 8 đã đưa vào lớp `stream`, hỗ trợ viết cú pháp theo phong cách hàm và cung cấp các khả năng đặc biệt như đánh giá lười, miền giá trị vô hạn, v.v.
 
-## 参考
+## Tài liệu tham khảo
 
 -   <https://en.wikipedia.org/wiki/Persistent_data_structure>
--   MIT 课程 <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-854j-advanced-algorithms-fall-2005/lecture-notes/persistent.pdf>
+-   Khóa học MIT <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-854j-advanced-algorithms-fall-2005/lecture-notes/persistent.pdf>

@@ -1,103 +1,103 @@
 author: Dev-XYS, ttzytt, Sora233, qwqAutomaton
 
-前置知识：[朴素二叉搜索树](./bst.md)，[堆基础](./heap.md)．
+Kiến thức cần có: [Cây tìm kiếm nhị phân mộc mạc](./bst.md), [Cơ sở về heap](./heap.md).
 
-## 简介
+## Giới thiệu
 
-Treap（树堆）是一种 **弱平衡** 的 **二叉搜索树**．
+Treap là một **cây tìm kiếm nhị phân** **cân bằng yếu**.
 
-Treap 的结点除了被维护的 **权值**（$\textit{val}$）之外，还附加了一个随机的 **优先级**（$\textit{priority}$）．其中，权值满足二叉搜索树性质，优先级满足堆性质（小根堆或大根堆）．
+Ngoài **giá trị** cần được duy trì ($\textit{val}$), mỗi nút của Treap còn có thêm một **độ ưu tiên** ngẫu nhiên ($\textit{priority}$). Trong đó, giá trị thỏa mãn tính chất của cây tìm kiếm nhị phân, còn độ ưu tiên thỏa mãn tính chất heap (min-heap hoặc max-heap).
 
-其中，二叉搜索树的性质是指：
+Tính chất của cây tìm kiếm nhị phân là:
 
--   左子树所有节点的权值（$\textit{val}$）比父节点小．
--   右子树所有节点的权值（$\textit{val}$）比父节点大．
+-   Giá trị ($\textit{val}$) của mỗi nút trong cây con trái nhỏ hơn nút cha.
+-   Giá trị ($\textit{val}$) của mỗi nút trong cây con phải lớn hơn nút cha.
 
-堆的性质是：
+Tính chất của heap là:
 
--   子节点优先级（$\textit{priority}$）比父节点大或小（取决于是小根堆还是大根堆）．
+-   Độ ưu tiên ($\textit{priority}$) của nút con lớn hơn hoặc nhỏ hơn nút cha, tùy theo đó là min-heap hay max-heap.
 
-不难看出，如果用的是同一个值，那么这两种数据结构在组合后会变成一条链，所以我们再在搜索树的基础上，引入一个给堆的值 $\textit{priority}$．对于 $\textit{val}$ 值，我们维护搜索树的性质，对于 $\textit{priority}$ 值，我们维护堆的性质．其中 $\textit{priority}$ 这个值是随机给出的．
+Có thể thấy rằng nếu dùng cùng một giá trị cho cả hai cấu trúc, khi kết hợp lại cấu trúc sẽ biến thành một chuỗi. Vì vậy, trên nền tảng cây tìm kiếm, ta đưa thêm một giá trị $\textit{priority}$ cho heap. Với giá trị $\textit{val}$, ta duy trì tính chất cây tìm kiếm; với giá trị $\textit{priority}$, ta duy trì tính chất heap. Giá trị $\textit{priority}$ này được gán ngẫu nhiên.
 
-下图就是一个 Treap 的例子（这里使用的是小根堆，即根节点的优先级最小）．
+Hình dưới đây là một ví dụ về Treap (ở đây dùng min-heap, tức nút gốc có độ ưu tiên nhỏ nhất).
 
-![一个 Treap 的例子](./images/treap-treap-example.svg)
+![Một ví dụ về Treap](./images/treap-treap-example.svg)
 
-那我们为什么需要大费周章的去让这个数据结构符合树和堆的性质，并且随机给出堆的值呢？
+Vậy tại sao ta phải mất công làm cho cấu trúc dữ liệu này đồng thời thỏa mãn tính chất của cây và heap, lại còn gán ngẫu nhiên giá trị heap?
 
-要理解这个，首先需要理解朴素二叉搜索树的问题．在给朴素搜索树插入一个新节点时，我们需要从这个搜索树的根节点开始递归，如果新节点比当前节点小，那就向左递归，反之亦然．
+Để hiểu điều này, trước hết cần hiểu vấn đề của cây tìm kiếm nhị phân mộc mạc. Khi chèn một nút mới vào cây tìm kiếm mộc mạc, ta bắt đầu đệ quy từ nút gốc của cây. Nếu nút mới nhỏ hơn nút hiện tại thì đệ quy sang trái, ngược lại thì đệ quy sang phải.
 
-最后当发现当前节点没有子节点时，就根据新节点的值的大小，让新节点成为当前节点的左或右子节点．
+Cuối cùng, khi gặp một nút hiện tại không có nút con phù hợp, dựa vào quan hệ lớn nhỏ của giá trị nút mới mà đặt nó làm nút con trái hoặc nút con phải của nút hiện tại.
 
-如果插入结点的权值是随机的（换言之，是随机插入的），那这个朴素搜索树的高度较小（接近 $\log n$，其中 $n$ 为结点数），而每一层的节点数较多，即它的形状会非常的「胖」．上图的 Treap 就是一个例子．因此此时的任意操作复杂度都将会是 $O(\log n)$ 左右．
+Nếu giá trị của các nút được chèn là ngẫu nhiên (nói cách khác, chèn theo thứ tự ngẫu nhiên), chiều cao của cây tìm kiếm mộc mạc này sẽ nhỏ (gần $\log n$, trong đó $n$ là số nút), và số nút trên mỗi tầng khá lớn, tức hình dạng của cây khá "bè ngang". Treap trong hình trên là một ví dụ. Khi đó độ phức tạp của mỗi thao tác sẽ vào khoảng $O(\log n)$.
 
-不过，这只是在随机情况下的复杂度，如果我们按照下面这个非常有序的顺序给一个朴素的搜索树插入节点：
+Tuy nhiên, đó chỉ là độ phức tạp trong trường hợp ngẫu nhiên. Nếu ta chèn nút vào một cây tìm kiếm mộc mạc theo thứ tự rất có quy luật như sau:
 
 ```plain
 1 2 3 4 5
 ```
 
-那么这棵树将会退化成链，即变得非常「瘦长」（每次插入的节点都比前面的大，所以都被安排到右子节点了）：
+Thì cây này sẽ suy biến thành một chuỗi, tức trở nên rất "thon dài" (mỗi nút được chèn đều lớn hơn các nút trước đó, nên đều bị đặt vào nút con phải):
 
-![退化成链的例子](./images/treap-search-tree-chain.svg)
+![Ví dụ suy biến thành chuỗi](./images/treap-search-tree-chain.svg)
 
-不难看出，查询的复杂度也从 $O(\log n)$ 变成了 $O(n)$.
+Dễ thấy rằng độ phức tạp truy vấn cũng từ $O(\log n)$ biến thành $O(n)$.
 
-而 treap 为了解决这个问题、达到一个较为「平衡」的状态，通过维护随机的优先级满足堆性质，「打乱」了节点的插入顺序，从而让二叉搜索树达到了理想的复杂度，避免了退化成链的问题．
+Để giải quyết vấn đề này và đạt trạng thái tương đối "cân bằng", Treap duy trì các độ ưu tiên ngẫu nhiên thỏa mãn tính chất heap, qua đó "xáo trộn" thứ tự chèn nút, giúp cây tìm kiếm nhị phân đạt độ phức tạp mong muốn và tránh suy biến thành chuỗi.
 
-## Treap 复杂度的证明
+## Chứng minh độ phức tạp của Treap
 
-由于 treap 各种操作的复杂度都和所操作的节点的深度有关，我们首先证明，所有节点的期望深度都是 $O(\log n)$．
+Vì độ phức tạp của các thao tác trên Treap đều liên quan đến độ sâu của nút được thao tác, trước hết ta chứng minh độ sâu kỳ vọng của mỗi nút đều là $O(\log n)$.
 
-### 记号约定
+### Quy ước ký hiệu
 
-为了方便表述，我们约定：
+Để tiện trình bày, ta quy ước:
 
--   $n$ 是节点个数．
--   Treap 节点中满足二叉搜索树性质的称为 **权值**，满足堆性质的（也就是随机的）称为 **优先级**．不妨设优先级满足小根堆性质．
--   $x_k$ 表示权值第 $k$ 小的节点．
--   $X_{i,j}$ 表示集合 $\{x_i,x_{i+1},\cdots,x_{j-1},x_j\}$，即按权值升序排列后第 $i$ 个到第 $j$ 个的节点构成的集合．
--   $\operatorname{dep}(x)$ 表示节点 $x$ 的深度．规定根节点的深度是 $0$．
--   $Y_{i,j}$ 是一个指示器随机变量，当 $x_i$ 是 $x_j$ 的祖先时值为 $1$，否则为 $0$．特别地，$Y_{i,i}=0$．
--   $\Pr(A)$ 表示事件 $A$ 发生的概率．
+-   $n$ là số nút.
+-   Trong nút Treap, giá trị thỏa mãn tính chất cây tìm kiếm nhị phân được gọi là **giá trị**, còn giá trị thỏa mãn tính chất heap (tức ngẫu nhiên) được gọi là **độ ưu tiên**. Không mất tính tổng quát, giả sử độ ưu tiên thỏa mãn tính chất min-heap.
+-   $x_k$ biểu thị nút có giá trị nhỏ thứ $k$.
+-   $X_{i,j}$ biểu thị tập $\{x_i,x_{i+1},\cdots,x_{j-1},x_j\}$, tức tập các nút từ thứ $i$ đến thứ $j$ sau khi sắp xếp tăng dần theo giá trị.
+-   $\operatorname{dep}(x)$ biểu thị độ sâu của nút $x$. Quy định độ sâu của nút gốc là $0$.
+-   $Y_{i,j}$ là một biến ngẫu nhiên chỉ thị; khi $x_i$ là tổ tiên của $x_j$ thì có giá trị $1$, ngược lại là $0$. Đặc biệt, $Y_{i,i}=0$.
+-   $\Pr(A)$ biểu thị xác suất xảy ra sự kiện $A$.
 
-### 节点期望深度的证明
+### Chứng minh độ sâu kỳ vọng của nút
 
-由于节点 $x_i$ 的深度等于它祖先的个数，因此有
+Vì độ sâu của nút $x_i$ bằng số tổ tiên của nó, ta có
 
 $$
 \operatorname{dep}(x_i)=\sum_{k=1}^nY_{k,i}.
 $$
 
-那么根据期望的线性性，有
+Theo tính tuyến tính của kỳ vọng, ta có
 
 $$
 E(\operatorname{dep}(x_i))=E\left(\sum_{k=1}^nY_{k,i}\right)=\sum_{k=1}^nE(Y_{k,i}).
 $$
 
-由于 $Y_{k,i}$ 是指示器随机变量，它的期望就等于它为 $1$ 的概率，因此
+Vì $Y_{k,i}$ là biến ngẫu nhiên chỉ thị, kỳ vọng của nó bằng xác suất nó có giá trị $1$, nên
 
 $$
 E(\operatorname{dep}(x_i))=\sum_{k=1}^n\Pr(Y_{k,i}=1).
 $$
 
-我们先证明引理：$Y_{i,j}=1$ 当且仅当 $x_i$ 的优先级是 $X_{i,j}$ 中最小的．
+Trước hết ta chứng minh bổ đề: $Y_{i,j}=1$ khi và chỉ khi độ ưu tiên của $x_i$ là nhỏ nhất trong $X_{i,j}$.
 
-??? note "引理的证明"
-    考虑分类讨论 $x_i$ 和 $x_j$ 的情况．
-    
-    1.  若 $x_i$ 是根节点：由于优先级满足小根堆性质，$x_i$ 的优先级最小，并且对于任意的 $x_j$，$x_i$ 都是 $x_j$ 的祖先．
-    2.  若 $x_j$ 是根节点：同理，$x_j$ 优先级最小，因此 $x_i$ 不是 $X_{i,j}$ 中优先级最小的；同时 $x_i$ 也不是 $x_j$ 的祖先．
-    3.  若 $x_i$ 和 $x_j$ 在根节点的两个子树中（一左一右），那么根节点 $r\in X_{i,j}$. 因此 $x_i$ 的优先级不可能是 $X_{i,j}$ 中最小的（因为根节点的比它小）．同时，由于 $x_i$ 和 $x_j$ 分属两个子树，$x_i$ 也不是 $x_j$ 的祖先．
-    4.  若 $x_i$ 和 $x_j$ 在根节点的同一个子树中，此时可以将这个子树单独拿出来作为一棵新的 treap，递归进行上面的证明即可．
+??? note "Chứng minh bổ đề"
+    Xét các trường hợp của $x_i$ và $x_j$.
 
-那么根据引理，深度的期望可以转化成
+    1.  Nếu $x_i$ là nút gốc: do độ ưu tiên thỏa mãn tính chất min-heap, độ ưu tiên của $x_i$ là nhỏ nhất, và với mọi $x_j$, $x_i$ đều là tổ tiên của $x_j$.
+    2.  Nếu $x_j$ là nút gốc: tương tự, do độ ưu tiên của $x_j$ là nhỏ nhất, nên $x_i$ không phải nút có độ ưu tiên nhỏ nhất trong $X_{i,j}$; đồng thời $x_i$ cũng không phải tổ tiên của $x_j$.
+    3.  Nếu $x_i$ và $x_j$ nằm trong hai cây con của nút gốc (một trái, một phải), thì nút gốc $r\in X_{i,j}$. Do đó độ ưu tiên của $x_i$ không thể là nhỏ nhất trong $X_{i,j}$ (vì độ ưu tiên của nút gốc nhỏ hơn nó). Đồng thời, vì $x_i$ và $x_j$ thuộc hai cây con khác nhau, $x_i$ cũng không phải tổ tiên của $x_j$.
+    4.  Nếu $x_i$ và $x_j$ nằm trong cùng một cây con của nút gốc, có thể tách riêng cây con này thành một Treap mới và chứng minh đệ quy như trên.
+
+Theo bổ đề, kỳ vọng của độ sâu có thể chuyển thành
 
 $$
 E(\operatorname{dep}(x_i))=\sum_{k=1}^n\Pr(x_k=\min X_{i,k}\land k\neq i).
 $$
 
-又因为节点的优先级是随机的，我们假定集合 $X_{i,j}$ 中任何一个节点的优先级最小的概率都相同，那么
+Vì độ ưu tiên của các nút là ngẫu nhiên, ta giả định mỗi nút trong tập $X_{i,j}$ có xác suất như nhau để có độ ưu tiên nhỏ nhất. Khi đó
 
 $$
 \begin{aligned}
@@ -111,47 +111,47 @@ E(\operatorname{dep}(x_i))&=\sum_{k=1}^n\Pr(x_k=\min X_{i,k}\land k\neq i)\\
 \end{aligned}
 $$
 
-因此每个节点的期望深度都是 $O(\log n)$．
+Do đó độ sâu kỳ vọng của mỗi nút đều là $O(\log n)$.
 
-而朴素的二叉搜索树的操作的复杂度均是 $O(h)$，同时 treap 维护堆性质的复杂度也是 $O(h)$ 的，因此 treap 各种操作的期望复杂度都是 $O(\log n)$．
+Độ phức tạp của các thao tác trên cây tìm kiếm nhị phân mộc mạc đều là $O(h)$, và độ phức tạp để Treap duy trì tính chất heap cũng là $O(h)$, nên độ phức tạp kỳ vọng của các thao tác trên Treap đều là $O(\log n)$.
 
-???+ note "期望复杂度的感性理解"
-    首先，我们需要认识到一个节点的 $\textit{priority}$ 属性是和它所在的层数有直接关联的．再回忆堆的性质：
-    
-    -   子节点值（$\textit{priority}$）比父节点大或小（取决于是小根堆还是大根堆）
-    
-    我们发现层数低的节点，比如整个树的根节点，它的 $\textit{priority}$ 属性也会更小（在小根堆中）．并且，在朴素的搜索树中，先被插入的节点，也更有可能会有比较小的层数．我们可以把这个 $\textit{priority}$ 属性和被插入的顺序关联起来理解，这样，也就理解了为什么 treap 可以把节点插入的顺序通过 $\textit{priority}$ 打乱．
+???+ note "Cách hiểu trực quan về độ phức tạp kỳ vọng"
+    Trước hết, ta cần nhận ra thuộc tính $\textit{priority}$ của một nút có liên hệ trực tiếp với tầng chứa nút đó. Nhắc lại tính chất heap:
 
-给 treap 插入新节点时，需要同时维护树和堆的性质．其中，搜索树的性质可以在插入时维护，而堆性质的维护则有两种处理方法，分别是旋转和分裂、合并．使用这两种方法的 treap 被分别称为 **旋转 treap** 和 **无旋 treap**．
+    -   Giá trị nút con ($\textit{priority}$) lớn hơn hoặc nhỏ hơn nút cha, tùy theo đó là min-heap hay max-heap.
 
-## 旋转 treap
+    Ta thấy các nút ở tầng thấp, chẳng hạn nút gốc của toàn bộ cây, sẽ có thuộc tính $\textit{priority}$ nhỏ hơn (trong min-heap). Đồng thời, trong cây tìm kiếm mộc mạc, nút được chèn trước cũng có khả năng nằm ở tầng nông hơn. Có thể liên hệ thuộc tính $\textit{priority}$ này với thứ tự chèn để hiểu vì sao Treap có thể dùng $\textit{priority}$ để xáo trộn thứ tự chèn nút.
 
-**旋转 treap** 维护平衡的方式为旋转，和 AVL 树的旋转操作类似，分为 **左旋** 和 **右旋**．即在满足二叉搜索树的条件下根据堆的优先级对 treap 进行平衡操作．
+Khi chèn nút mới vào Treap, cần đồng thời duy trì tính chất của cây và của heap. Trong đó, tính chất cây tìm kiếm có thể được duy trì khi chèn, còn tính chất heap có hai cách xử lý: phép xoay và tách/hợp nhất. Treap dùng hai cách này lần lượt được gọi là **Treap xoay** và **Treap không xoay**.
 
-旋转 treap 在做普通平衡树题的时候，是所有平衡树中常数较小的．
+## Treap xoay
 
-下面的讲解中的代码用指针实现了旋转 treap，文末附有数组形式的完整实现．
+**Treap xoay** duy trì cân bằng bằng phép xoay, tương tự thao tác xoay của cây AVL, gồm **xoay trái** và **xoay phải**. Tức là, với điều kiện vẫn thỏa mãn cây tìm kiếm nhị phân, Treap được cân bằng dựa theo độ ưu tiên của heap.
 
-???+ info "Info"
-    代码中的 `rank` 代表前面讲的优先级（$\textit{priority}$ 属性），该属性满足的是小根堆性质．
+Khi làm các bài cây cân bằng thông thường, Treap xoay có hằng số nhỏ trong số các cây cân bằng.
 
-### 节点结构
+Phần giải thích dưới đây dùng con trỏ để cài đặt Treap xoay; cuối bài có kèm cài đặt đầy đủ bằng mảng.
+
+???+ info "Thông tin"
+    Trong code, `rank` đại diện cho độ ưu tiên đã nói ở trên (thuộc tính $\textit{priority}$); thuộc tính này thỏa mãn tính chất min-heap.
+
+### Cấu trúc nút
 
 ```cpp
 struct Node {
-  Node *ch[2];  // 两个子节点的地址
+  Node *ch[2];  // Địa chỉ của hai nút con
   int val, rank;
-  int rep_cnt;  // 当前这个值（val）重复出现的次数
-  int siz;      // 以当前节点为根的子树大小
+  int rep_cnt;  // Số lần giá trị hiện tại (val) xuất hiện lặp lại
+  int siz;      // Kích thước cây con có gốc là nút hiện tại
 
   Node(int val) : val(val), rep_cnt(1), siz(1) {
     ch[0] = ch[1] = nullptr;
     rank = rand();
-    // 注意初始化的时候，rank 是随机给出的
+    // Lưu ý: khi khởi tạo, rank được gán ngẫu nhiên
   }
 
   void upd_siz() {
-    // 用于旋转和删除过后，重新计算 siz 的值
+    // Dùng để tính lại giá trị siz sau khi xoay và xóa
     siz = rep_cnt;
     if (ch[0] != nullptr) siz += ch[0]->siz;
     if (ch[1] != nullptr) siz += ch[1]->siz;
@@ -159,72 +159,72 @@ struct Node {
 };
 ```
 
-### 旋转
+### Phép xoay
 
-旋转操作是 treap 的一个非常重要的操作，主要用来在保持 treap 树性质的同时，调整不同节点的层数，以达到维护堆性质的作用．
+Phép xoay là một thao tác rất quan trọng của Treap, chủ yếu dùng để điều chỉnh tầng của các nút khác nhau trong khi vẫn giữ tính chất của Treap, qua đó duy trì tính chất heap.
 
-旋转操作的左旋和右旋可能不是特别容易区分，以下是两个较为明显的特点：
+Xoay trái và xoay phải có thể không quá dễ phân biệt. Dưới đây là hai đặc điểm khá rõ:
 
-旋转操作的含义：
+Ý nghĩa của thao tác xoay:
 
--   在不影响搜索树性质的前提下，把和旋转方向相反的子树变成根节点（如左旋，就是把右子树变成根节点）
--   不影响性质，并且在旋转过后，跟旋转方向相同的子节点变成了原来的根节点（如左旋，旋转完之后的左子节点是旋转前的根节点）
+-   Không làm ảnh hưởng đến tính chất cây tìm kiếm; cây con ở hướng ngược với hướng xoay sẽ trở thành nút gốc (ví dụ xoay trái là biến cây con phải thành nút gốc).
+-   Không ảnh hưởng đến tính chất heap; sau khi xoay, nút con cùng hướng với hướng xoay sẽ trở thành nút gốc ban đầu (ví dụ sau khi xoay trái, nút con trái là nút gốc trước khi xoay).
 
-左旋和右旋操作是相互的，如下图．
+Thao tác xoay trái và xoay phải là hai thao tác đối xứng với nhau, như hình dưới đây.
 
-![旋转操作](./images/treap-rotate.svg)
+![Thao tác xoay](./images/treap-rotate.svg)
 
 ```cpp
 enum rot_type { LF = 1, RT = 0 };
 
 void _rotate(Node *&cur,
-             rot_type dir) {  // dir参数代表旋转的方向 0为右旋，1为左旋
-  // 注意传进来的 cur 是指针的引用，也就是改了这个
-  // cur，变量是跟着一起改的，如果这个 cur 是别的 树的子节点，根据 ch
-  // 找过来的时候，也是会找到这里的
+             rot_type dir) {  // Tham số dir biểu thị hướng xoay: 0 là xoay phải, 1 là xoay trái
+  // Lưu ý cur truyền vào là tham chiếu tới con trỏ, nên khi sửa cur này
+  // thì biến bên ngoài cũng thay đổi theo. Nếu cur này là nút con của một cây khác,
+  // lần theo ch cũng sẽ đến đúng vị trí này.
 
-  // 以下的代码解释的均是左旋时的情况
-  Node *tmp = cur->ch[dir];  // 让 C 变成根节点，
-                             // 这里的 tmp
-                             // 是一个临时的节点指针，指向成为新的根节点的节点
+  // Các giải thích dưới đây đều là trường hợp xoay trái
+  Node *tmp = cur->ch[dir];  // Cho C thành nút gốc,
+                             // tmp ở đây
+                             // là một con trỏ nút tạm, trỏ đến nút sẽ thành gốc mới
 
-  /* 左旋：也就是让右子节点变成根节点
+  /* Xoay trái: tức cho nút con phải thành nút gốc
    *         A                 C
    *        / \               / \
    *       B  C    ---->     A   E
    *         / \            / \
    *        D   E          B   D
    */
-  cur->ch[dir] = tmp->ch[!dir];    // 让 A 的右子节点变成 D
-  tmp->ch[!dir] = cur;             // 让 C 的左子节点变成 A
-  cur->upd_siz(), tmp->upd_siz();  // 更新大小信息
-  cur = tmp;  // 最后把临时储存 C 树的变量赋值到当前根节点上（注意 cur 是引用）
+  cur->ch[dir] = tmp->ch[!dir];    // Cho nút con phải của A thành D
+  tmp->ch[!dir] = cur;             // Cho nút con trái của C thành A
+  cur->upd_siz(), tmp->upd_siz();  // Cập nhật thông tin kích thước
+  cur = tmp;  // Cuối cùng gán biến tạm lưu cây C cho nút gốc hiện tại (lưu ý cur là tham chiếu)
 }
 ```
 
-### 插入
+### Chèn
 
-类似普通二叉搜索树的插入，但是需要在插入的过程中通过旋转来维护优先级的堆性质．
+Tương tự chèn trong cây tìm kiếm nhị phân thông thường, nhưng cần dùng phép xoay trong quá trình chèn để duy trì tính chất heap của độ ưu tiên.
 
 ```cpp
 void _insert(Node *&cur, int val) {
   if (cur == nullptr) {
-    // 没这个节点直接新建
+    // Không có nút này thì tạo mới trực tiếp
     cur = new Node(val);
     return;
   } else if (val == cur->val) {
-    // 如果有这个值相同的节点，就把重复数量加一
+    // Nếu đã có nút cùng giá trị, tăng số lần lặp lên một
     cur->rep_cnt++;
     cur->siz++;
   } else if (val < cur->val) {
-    // 维护搜索树性质，val 比当前节点小就插到左边，反之亦然
+    // Duy trì tính chất cây tìm kiếm: val nhỏ hơn nút hiện tại thì chèn bên trái, ngược lại bên phải
     _insert(cur->ch[0], val);
     if (cur->ch[0]->rank < cur->rank) {
-      // 小根堆中，上面节点的优先级一定更小
-      // 因为新插的左子节点比父节点小，现在需要让左子节点变成父节点
-      _rotate(cur, RT);  // 注意前面的旋转性质，要把左子节点转上来，需要右旋
+      // Trong min-heap, độ ưu tiên của nút phía trên chắc chắn nhỏ hơn
+      // Vì nút con trái mới chèn nhỏ hơn nút cha, bây giờ cần cho nút con trái thành nút cha
+      _rotate(cur, RT);  // Lưu ý tính chất xoay ở trên: muốn đưa nút con trái lên thì cần xoay phải
     }
-    cur->upd_siz();  // 插入之后大小会变化，需要更新
+    cur->upd_siz();  // Sau khi chèn, kích thước thay đổi nên cần cập nhật
   } else {
     _insert(cur->ch[1], val);
     if (cur->ch[1]->rank < cur->rank) {
@@ -235,161 +235,161 @@ void _insert(Node *&cur, int val) {
 }
 ```
 
-### 删除
+### Xóa
 
-主要就是分类讨论，不同的情况有不同的处理方法，删完了树的大小会有变化，要注意更新．并且如果要删的节点有左子树和右子树，就要考虑删除之后让谁来当父节点（维护 rank 小的节点在上面）．
+Chủ yếu là phân loại từng trường hợp; mỗi trường hợp có cách xử lý khác nhau. Sau khi xóa, kích thước cây thay đổi, cần chú ý cập nhật. Nếu nút cần xóa có cả cây con trái và cây con phải, cần xét sau khi xóa thì nút nào làm cha (duy trì nút có `rank` nhỏ hơn ở phía trên).
 
 ```cpp
 void _del(Node *&cur, int val) {
   if (val > cur->val) {
     _del(cur->ch[1], val);
-    // 值更大就在右子树，反之亦然
+    // Giá trị lớn hơn thì nằm trong cây con phải, ngược lại nằm bên trái
     cur->upd_siz();
   } else if (val < cur->val) {
     _del(cur->ch[0], val);
     cur->upd_siz();
   } else {
     if (cur->rep_cnt > 1) {
-      // 如果要删除的节点是重复的，可以直接把重复值减小
+      // Nếu nút cần xóa có giá trị lặp, chỉ cần giảm số lần lặp
       cur->rep_cnt--, cur->siz--;
       return;
     }
     uint8_t state = 0;
     state |= (cur->ch[0] != nullptr);
     state |= ((cur->ch[1] != nullptr) << 1);
-    // 00都无，01有左无右，10，无左有右，11都有
+    // 00: không có con; 01: có trái không phải; 10: không trái có phải; 11: có cả hai
     Node *tmp = cur;
     switch (state) {
       case 0:
         delete cur;
         cur = nullptr;
-        // 没有任何子节点，就直接把这个节点删了
+        // Không có nút con nào, xóa trực tiếp nút này
         break;
-      case 1:  // 有左无右
+      case 1:  // Có trái không phải
         cur = tmp->ch[0];
-        // 把根变成左儿子，然后把原来的根节删了，注意这里的 tmp 是从 cur
-        // 复制的，而 cur 是引用
+        // Biến gốc thành con trái, rồi xóa nút gốc cũ. Lưu ý tmp được sao chép từ cur,
+        // còn cur là tham chiếu
         delete tmp;
         break;
-      case 2:  // 有右无左
+      case 2:  // Có phải không trái
         cur = tmp->ch[1];
         delete tmp;
         break;
       case 3:
         rot_type dir = cur->ch[0]->rank < cur->ch[1]->rank
                            ? RT
-                           : LF;  // dir 是 rank 更小的那个儿子
-        _rotate(cur, dir);  // 这里的旋转可以把优先级更小的儿子转上去，rt 是 0，
-                            // 而 lf 是 1，刚好跟实际的子树下标反过来
+                           : LF;  // dir là hướng xoay để đưa con có rank nhỏ hơn lên
+        _rotate(cur, dir);  // Phép xoay này có thể đưa con có độ ưu tiên nhỏ hơn lên; RT là 0,
+                            // LF là 1, vừa hay ngược với chỉ số cây con thực tế
         _del(
             cur->ch[!dir],
-            val);  // 旋转完成后原来的根节点就在旋方向那边，所以需要
-                   // 继续把这个原来的根节点删掉
-                   // 如果说要删的这个节点是在整个树的「上层的」，那我们会一直通过这
-                   // 这里的旋转操作，把它转到没有子树了（或者只有一个），再删掉它．
+            val);  // Sau khi xoay, nút gốc ban đầu nằm ở phía hướng xoay,
+                   // nên cần tiếp tục xóa nút gốc ban đầu này.
+                   // Nếu nút cần xóa nằm ở "tầng trên" của toàn cây, ta sẽ liên tục dùng
+                   // các phép xoay này để đưa nó đến khi không còn cây con (hoặc chỉ có một cây con), rồi xóa nó.
         cur->upd_siz();
-        // 删除会造成大小改变
+        // Xóa sẽ làm kích thước thay đổi
         break;
     }
   }
 }
 ```
 
-### 根据值查询排名
+### Truy vấn hạng theo giá trị
 
-操作含义：查询以 cur 为根节点的子树中，val 这个值的大小的排名（该子树中小于 val 的节点的个数 + 1）
+Ý nghĩa thao tác: truy vấn hạng của giá trị `val` trong cây con có gốc là `cur` (số nút trong cây con nhỏ hơn `val` + 1).
 
 ```cpp
 int _query_rank(Node *cur, int val) {
   int less_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
-  // 这个树中小于 val 的节点的数量
+  // Số nút trong cây này nhỏ hơn val
   if (val == cur->val)
-    // 如果这个节点就是要查的节点
+    // Nếu nút này chính là nút cần tìm
     return less_siz + 1;
   else if (val < cur->val) {
     if (cur->ch[0] != nullptr)
       return _query_rank(cur->ch[0], val);
     else
-      return 1;  // 如果左子树是空的，说比最小的节点还要小，那这个数字就是最小的
+      return 1;  // Nếu cây con trái rỗng, nghĩa là nhỏ hơn cả nút nhỏ nhất; số này là nhỏ nhất
   } else {
     if (cur->ch[1] != nullptr)
-      // 如果要查的值比这个节点大，那这个节点的左子树以及这个节点自身肯定都比要查的值小
-      // 所以要加上这两个值，再加上往右边找的结果
-      // （以右子树为根的子树中，val 这个值的大小的排名）
+      // Nếu giá trị cần tìm lớn hơn nút này, thì cây con trái của nút này và bản thân nút này đều nhỏ hơn giá trị cần tìm
+      // Vì vậy cần cộng hai giá trị này, rồi cộng kết quả tìm sang bên phải
+      // (hạng của giá trị val trong cây con có gốc là cây con phải)
       return less_siz + cur->rep_cnt + _query_rank(cur->ch[1], val);
     else
       return cur->siz + 1;
-    // 没有右子树的话直接整个树 + 1 相当于 less_siz + cur->rep_cnt + 1
+    // Nếu không có cây con phải thì toàn bộ cây + 1, tương đương less_siz + cur->rep_cnt + 1
   }
 }
 ```
 
-### 根据排名查询值
+### Truy vấn giá trị theo hạng
 
-要根据排名查询值，我们首先要知道如何判断要查的节点在树的哪个部分：
+Để truy vấn giá trị theo hạng, trước hết ta cần biết cách xác định nút cần tìm nằm ở phần nào của cây:
 
-以下是一个判断方法的表：
+Bảng dưới đây là một cách phân định:
 
-| 左子树         | 根节点/当前节点                           | 右子树                    |
+| Cây con trái | Nút gốc/nút hiện tại | Cây con phải |
 | ----------- | ---------------------------------- | ---------------------- |
-| 排名 ≤ 左子树的大小 | 排名 > 左子树的大小，并且 ≤ 左子树的大小 + 根节点的重复次数 | 排名 > 左子树的大小 + 根节点的重复次数 |
+| Hạng <= kích thước cây con trái | Hạng > kích thước cây con trái, và <= kích thước cây con trái + số lần lặp của nút gốc | Hạng > kích thước cây con trái + số lần lặp của nút gốc |
 
-注意如果在右子树，递归的时候需要对原来的 `rank` 进行处理．递归的时候就相当去查，在右子树中为这个排名的值，为了把排名转换成基于右子树的，需要把原来的 `rank` 减去左子树的大小和根节点的重复次数．
+Lưu ý nếu nằm trong cây con phải, khi đệ quy cần xử lý `rank` ban đầu. Khi đệ quy, ta tương đương đi tìm giá trị có hạng này trong cây con phải; để chuyển hạng sang cơ sở của cây con phải, cần lấy `rank` ban đầu trừ đi kích thước cây con trái và số lần lặp của nút gốc.
 
-可以把所有节点想象成一个排好序的数组，或者数轴（如下），
+Có thể hình dung tất cả nút thành một mảng đã sắp xếp, hoặc một trục số (như dưới đây),
 
-    1 -> |左子树的节点|根节点|右子树的节点| -> n
+    1 -> |các nút của cây con trái|nút gốc|các nút của cây con phải| -> n
                                ^
-                               要查的排名
-                         ⬇转换成基于右子树的排名
-    1 -> |右子树的节点| -> n
+                               hạng cần tìm
+                         v chuyển thành hạng theo cây con phải
+    1 -> |các nút của cây con phải| -> n
            ^
-           要查的排名
+           hạng cần tìm
 
-这里的转换方法就是直接把排名减去左子树的大小和根节点的重复数量．
+Cách chuyển đổi ở đây là trực tiếp trừ hạng đi kích thước cây con trái và số lần lặp của nút gốc.
 
 ```cpp
 int _query_val(Node *cur, int rank) {
-  // 查询树中第 rank 大的节点的值
+  // Truy vấn giá trị của nút có hạng rank trong cây
   int less_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
-  // less siz 是左子树的大小
+  // less_siz là kích thước cây con trái
   if (rank <= less_siz)
     return _query_val(cur->ch[0], rank);
   else if (rank <= less_siz + cur->rep_cnt)
     return cur->val;
   else
-    return _query_val(cur->ch[1], rank - less_siz - cur->rep_cnt);  // 见前文
+    return _query_val(cur->ch[1], rank - less_siz - cur->rep_cnt);  // Xem phần trên
 }
 ```
 
-### 查询第一个比 val 小的节点
+### Truy vấn nút đầu tiên nhỏ hơn val
 
-注意这里使用了一个类中的全局变量，`q_prev_tmp`．
+Lưu ý ở đây sử dụng một biến toàn cục trong lớp, `q_prev_tmp`.
 
-这个值是只有在 val 比当前节点值大的时候才会被更改的，所以返回这个变量就是返回 val 最后一次比当前节点的值大，之后就是更小了．
+Giá trị này chỉ được thay đổi khi `val` lớn hơn giá trị nút hiện tại, nên trả về biến này tức là trả về lần cuối cùng `val` lớn hơn giá trị nút hiện tại; sau đó các nút sẽ nhỏ hơn.
 
 ```cpp
 int _query_prev(Node *cur, int val) {
   if (val <= cur->val) {
-    // 还是比 val 大，所以往左子树找
+    // Vẫn lớn hơn hoặc bằng val, nên tìm sang cây con trái
     if (cur->ch[0] != nullptr) return _query_prev(cur->ch[0], val);
   } else {
-    // 只有能进到这个 else 里，才会更新 q_prev_tmp 的值
+    // Chỉ khi vào được nhánh else này mới cập nhật q_prev_tmp
     q_prev_tmp = cur->val;
-    // 当前节点已经比 val，小了，但是不确定是否是最大的，所以要到右子树继续找
+    // Nút hiện tại đã nhỏ hơn val, nhưng chưa chắc là lớn nhất, nên tiếp tục tìm trong cây con phải
     if (cur->ch[1] != nullptr) _query_prev(cur->ch[1], val);
-    // 接下来的递归可能不会更改 q_prev_tmp
-    // 了，那就直接返回这个值，总之返回的就是最后一次进到 这个 else 中的
-    // cur->val
+    // Các lần đệ quy tiếp theo có thể không thay đổi q_prev_tmp,
+    // khi đó trả về trực tiếp giá trị này; nói tóm lại, giá trị trả về là cur->val
+    // của lần cuối cùng vào nhánh else này
     return q_prev_tmp;
   }
   return NIL;
 }
 ```
 
-### 查询第一个比 val 大的节点
+### Truy vấn nút đầu tiên lớn hơn val
 
-跟前一个很相似，只是大于小于号换了一下．
+Rất giống thao tác trước, chỉ đổi dấu lớn hơn và nhỏ hơn.
 
 ```cpp
 int _query_nex(Node *cur, int val) {
@@ -404,44 +404,44 @@ int _query_nex(Node *cur, int val) {
 }
 ```
 
-## 无旋 treap
+## Treap không xoay
 
-无旋 treap 的操作方式使得它天生支持维护序列、可持久化等特性．
+Cách thao tác của Treap không xoay giúp nó tự nhiên hỗ trợ duy trì dãy, khả năng lưu phiên bản (persistent), và các đặc tính khác.
 
-**无旋 treap** 又称分裂合并 treap．它仅有两种核心操作，即为 **分裂** 与 **合并**．通过这两种操作，在很多情况下可以比旋转 treap 更方便的实现别的操作．下面逐一介绍这两种操作．
+**Treap không xoay** còn được gọi là Treap tách-hợp nhất. Nó chỉ có hai thao tác lõi, đó là **tách** và **hợp nhất**. Trong nhiều trường hợp, nhờ hai thao tác này, việc cài đặt các thao tác khác sẽ tiện hơn so với Treap xoay. Dưới đây lần lượt giới thiệu hai thao tác này.
 
-???+ note "注释"
-    讲解无旋 treap 应当提到 **FHQ-Treap**（by 范浩强）．即可持久化，支持区间操作的无旋 Treap．更多内容请参照《范浩强谈数据结构》ppt．
+???+ note "Ghi chú"
+    Khi giải thích Treap không xoay, nên nhắc đến **FHQ-Treap** (của Fan Haoqiang). Đây là Treap không xoay có thể lưu phiên bản (persistent) và hỗ trợ thao tác trên đoạn. Xem thêm trong ppt "Fan Haoqiang bàn về cấu trúc dữ liệu".
 
-### 分裂（split）
+### Tách (split)
 
-#### 按值分裂
+#### Tách theo giá trị
 
-分裂过程接受两个参数：根指针 $\textit{cur}$、关键值 $\textit{key}$．结果为将根指针指向的 treap 分裂为两个 treap，第一个 treap 所有结点的值（$\textit{val}$）小于等于 $\textit{key}$，第二个 treap 所有结点的值大于 $\textit{key}$．
+Quá trình tách nhận hai tham số: con trỏ gốc $\textit{cur}$ và khóa $\textit{key}$. Kết quả là tách Treap mà con trỏ gốc trỏ tới thành hai Treap: mỗi nút trong Treap thứ nhất có giá trị ($\textit{val}$) nhỏ hơn hoặc bằng $\textit{key}$, mỗi nút trong Treap thứ hai có giá trị lớn hơn $\textit{key}$.
 
-该过程首先判断 $\textit{key}$ 是否小于 $\textit{cur}$ 的值，若小于，则说明 $\textit{cur}$ 及其右子树全部大于 $\textit{key}$，属于第二个 treap．当然，也可能有一部分的左子树的值大于 $\textit{key}$，所以还需要继续向左子树递归地分裂．对于大于 $\textit{key}$ 的那部分左子树，我们把它作为 $\textit{cur}$ 的左子树，这样，整个 $\textit{cur}$ 上的节点都是大于 $\textit{key}$ 的．
+Quá trình này trước hết kiểm tra $\textit{key}$ có nhỏ hơn giá trị của $\textit{cur}$ hay không. Nếu nhỏ hơn, điều đó cho thấy $\textit{cur}$ và toàn bộ cây con phải của nó đều lớn hơn $\textit{key}$, thuộc Treap thứ hai. Tất nhiên, có thể một phần cây con trái cũng có giá trị lớn hơn $\textit{key}$, nên cần tiếp tục đệ quy tách cây con trái. Với phần cây con trái lớn hơn $\textit{key}$, ta gán nó làm cây con trái của $\textit{cur}$, như vậy mọi nút trong toàn bộ $\textit{cur}$ đều lớn hơn $\textit{key}$.
 
-相应的，如果 $\textit{key}$ 大于等于 $\textit{cur}$ 的值，说明 $\textit{cur}$ 的整个左子树以及其自身都小于等于 $\textit{key}$，属于分裂后的第一个 treap．并且，$\textit{cur}$ 的部分右子树也可能有部分小于等于 $\textit{key}$，因此我们需要继续递归地分裂右子树．把小于等于 $\textit{key}$ 的那部分作为 $\textit{cur}$ 的右子树，这样，整个 $\textit{cur}$ 上的节点都小于等于 $\textit{key}$．
+Tương ứng, nếu $\textit{key}$ lớn hơn hoặc bằng giá trị của $\textit{cur}$, điều đó cho thấy toàn bộ cây con trái của $\textit{cur}$ và chính nó đều nhỏ hơn hoặc bằng $\textit{key}$, thuộc Treap thứ nhất sau khi tách. Đồng thời, một phần cây con phải của $\textit{cur}$ cũng có thể nhỏ hơn hoặc bằng $\textit{key}$, nên cần tiếp tục đệ quy tách cây con phải. Ta lấy phần nhỏ hơn hoặc bằng $\textit{key}$ làm cây con phải của $\textit{cur}$, như vậy mọi nút trong toàn bộ $\textit{cur}$ đều nhỏ hơn hoặc bằng $\textit{key}$.
 
-下图展示了 $\textit{cur}$ 的值小于等于 $\textit{key}$ 时按值分裂的情况．[^ref1]
+Hình dưới đây minh họa trường hợp tách theo giá trị khi giá trị của $\textit{cur}$ nhỏ hơn hoặc bằng $\textit{key}$.[^ref1]
 
-![按值分裂](./images/treap-none-rot-split-by-val.svg)
+![Tách theo giá trị](./images/treap-none-rot-split-by-val.svg)
 
 ```cpp
 pair<Node *, Node *> split(Node *cur, int key) {
   if (cur == nullptr) return {nullptr, nullptr};
   if (cur->val <= key) {
-    // cur 以及它的左子树一定属于分裂后的第一个树
+    // cur và cây con trái của nó chắc chắn thuộc cây thứ nhất sau khi tách
     auto temp = split(cur->ch[1], key);
-    // 但是它可能有部分右子树也比 key 小
+    // Nhưng nó có thể có một phần cây con phải cũng nhỏ hơn key
     cur->ch[1] = temp.first;
-    // 我们把小于 key 的那部分拿出来，作为 cur 的右子树，这样整个 cur 都是小于
-    // key 的 剩下的那部分右子树成为分裂后的第二个 treap
+    // Ta lấy phần nhỏ hơn key ra làm cây con phải của cur, như vậy toàn bộ cur đều nhỏ hơn
+    // key; phần cây con phải còn lại trở thành Treap thứ hai sau khi tách
     cur->upd_siz();
-    // 分裂过后树的大小会变化，需要更新
+    // Sau khi tách, kích thước cây thay đổi, cần cập nhật
     return {cur, temp.second};
   } else {
-    // 同上
+    // Tương tự như trên
     auto temp = split(cur->ch[0], key);
     cur->ch[0] = temp.second;
     cur->upd_siz();
@@ -450,40 +450,40 @@ pair<Node *, Node *> split(Node *cur, int key) {
 }
 ```
 
-#### 按排名分裂
+#### Tách theo hạng
 
-比起按值分裂，这个操作更像是旋转 treap 中的根据排名（某个节点的排名是树中所有小于此节点值的节点的数量 $+ 1$）查询值：
+So với tách theo giá trị, thao tác này giống truy vấn giá trị theo hạng trong Treap xoay hơn (hạng của một nút là số nút có giá trị nhỏ hơn nút đó trong cây $+ 1$):
 
-此函数接受两个参数，节点指针 $\textit{cur}$ 和排名 $\textit{rk}$，返回分裂后的三个 treap．
+Hàm này nhận hai tham số, con trỏ nút $\textit{cur}$ và hạng $\textit{rk}$, rồi trả về ba Treap sau khi tách.
 
-其中，第一个 treap 中每个节点的排名都小于 $\textit{rk}$，第二个的排名等于 $\textit{rk}$，并且第二个 treap 只有一个节点（不可能有多个等于的，如果有的话会增加 `Node` 结构体中的 `cnt`），第三个则是大于．
+Trong đó, mỗi nút trong Treap thứ nhất có hạng nhỏ hơn $\textit{rk}$, Treap thứ hai có hạng bằng $\textit{rk}$, và Treap thứ hai chỉ có một nút (không thể có nhiều nút bằng nhau; nếu có thì sẽ tăng `cnt` trong cấu trúc `Node`), còn Treap thứ ba là các nút lớn hơn.
 
-此操作的重点在于判断排名和 $\textit{cur}$ 相等的节点在树的哪个部分，这也是旋转 treap 根据排名查询值操作时的重要部分，在前文有非常详细的解释，这里不过多讲解．
+Trọng tâm của thao tác này là xác định nút có hạng bằng $\textit{rk}$ nằm ở phần nào của cây. Đây cũng là phần quan trọng trong thao tác truy vấn giá trị theo hạng của Treap xoay, đã được giải thích rất chi tiết ở trên, nên ở đây không lặp lại nhiều.
 
-并且，此操作的递归部分和按值分裂也非常相似，这里不赘述．
+Đồng thời, phần đệ quy của thao tác này cũng rất giống tách theo giá trị, nên không trình bày lại.
 
 ```cpp
 tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
   if (cur == nullptr) return {nullptr, nullptr, nullptr};
   int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
   if (rk <= ls_siz) {
-    // 排名和 cur 相等的节点在左子树
+    // Nút có hạng bằng rk nằm trong cây con trái
     Node *l, *mid, *r;
     tie(l, mid, r) = split_by_rk(cur->ch[0], rk);
-    cur->ch[0] = r;  // 返回的第三个 treap 中的排名都大于 rk
-    // cur 的左子树被设成 r 后，整个 cur 中节点的排名都大于 rk
+    cur->ch[0] = r;  // Các hạng trong Treap thứ ba trả về đều lớn hơn rk
+    // Sau khi cây con trái của cur được gán thành r, mọi nút trong cur đều có hạng lớn hơn rk
     cur->upd_siz();
     return {l, mid, cur};
   } else if (rk <= ls_siz + cur->cnt) {
-    // 和 cur 相等的就是当前节点
+    // Nút bằng cur chính là nút hiện tại
     Node *lt = cur->ch[0];
     Node *rt = cur->ch[1];
     cur->ch[0] = cur->ch[1] = nullptr;
-    // 分裂后第二个 treap 只有一个节点，所有要把它的子树设置为空
+    // Treap thứ hai sau khi tách chỉ có một nút, nên cần đặt các cây con của nó thành rỗng
     return {lt, cur, rt};
   } else {
-    // 排名和 cur 相等的节点在右子树
-    // 递归过程同上
+    // Nút có hạng bằng rk nằm trong cây con phải
+    // Quá trình đệ quy tương tự như trên
     Node *l, *mid, *r;
     tie(l, mid, r) = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
     cur->ch[1] = l;
@@ -493,49 +493,49 @@ tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
 }
 ```
 
-### 合并（merge）
+### Hợp nhất (merge)
 
-合并过程接受两个参数：左 treap 的根指针 $\textit{u}$、右 treap 的根指针 $\textit{v}$．必须满足 $\textit{u}$ 中所有结点的值小于等于 $\textit{v}$ 中所有结点的值．一般来说，我们合并的两个 treap 都是原来从一个 treap 中分裂出去的，所以不难满足 $\textit{u}$ 中所有节点的值都小于 $\textit{v}$
+Quá trình hợp nhất nhận hai tham số: con trỏ gốc của Treap trái $\textit{u}$ và con trỏ gốc của Treap phải $\textit{v}$. Cần thỏa mãn mọi nút trong $\textit{u}$ có giá trị nhỏ hơn hoặc bằng mọi nút trong $\textit{v}$. Thông thường, hai Treap được hợp nhất đều tách ra từ một Treap ban đầu, nên không khó để thỏa mãn mọi nút trong $\textit{u}$ có giá trị nhỏ hơn $\textit{v}$.
 
-在旋转 treap 中，我们借助旋转操作来维护 $\textit{priority}$ 符合堆的性质，同时旋转时还不能改变树的性质．在无旋 treap 中，我们用合并达到相同的效果．
+Trong Treap xoay, ta dựa vào thao tác xoay để duy trì $\textit{priority}$ thỏa mãn tính chất heap, đồng thời khi xoay không được làm thay đổi tính chất cây. Trong Treap không xoay, ta dùng hợp nhất để đạt hiệu ứng tương tự.
 
-因为两个 treap 已经有序，所以我们在合并的时候只需要考虑把哪个树「放在上面」，把哪个「放在下面」，也就是需要判断将哪个一个树作为子树．显然，根据堆的性质，我们需要把 $\textit{priority}$ 小的放在上面（这里采用小根堆）．
+Vì hai Treap đã có thứ tự, khi hợp nhất ta chỉ cần xét cây nào được "đặt lên trên" và cây nào "đặt xuống dưới", tức cần xác định cây nào làm cây con. Hiển nhiên, theo tính chất heap, ta cần đặt $\textit{priority}$ nhỏ hơn lên trên (ở đây dùng min-heap).
 
-同时，我们还需要满足搜索树的性质，所以若 $\textit{u}$ 的根结点的 $\textit{priority}$ 小于 $\textit{v}$ 的，那么 $\textit{u}$ 即为新根结点，并且 $\textit{v}$ 因为值比 $\textit{u}$ 更大，应与 $\textit{u}$ 的右子树合并；反之，则 $\textit{v}$ 作为新根结点，然后因为 $u$ 的值比 $\textit{v}$ 小，与 $v$ 的左子树合并．
+Đồng thời, ta vẫn cần thỏa mãn tính chất cây tìm kiếm. Vì vậy, nếu $\textit{priority}$ của nút gốc $\textit{u}$ nhỏ hơn của $\textit{v}$, thì $\textit{u}$ sẽ là nút gốc mới; do $\textit{v}$ có giá trị lớn hơn $\textit{u}$, nó cần được hợp nhất với cây con phải của $\textit{u}$. Ngược lại, $\textit{v}$ làm nút gốc mới; do giá trị của $u$ nhỏ hơn $\textit{v}$, ta hợp nhất với cây con trái của $v$.
 
 ```cpp
 Node *merge(Node *u, Node *v) {
-  // 传进来的两个树的内部已经符合搜索树的性质了
-  // 并且 u 内所有节点的值 < v 内所有节点的值
-  // 所以在合并的时候需要维护堆的性质
-  // 这里用的是小根堆
+  // Hai cây truyền vào đã thỏa mãn tính chất cây tìm kiếm ở bên trong
+  // Và mọi nút trong u có giá trị < mọi nút trong v
+  // Nên khi hợp nhất cần duy trì tính chất heap
+  // Ở đây dùng min-heap
   if (u == nullptr && v == nullptr) return nullptr;
   if (u != nullptr && v == nullptr) return u;
   if (v != nullptr && u == nullptr) return v;
 
   if (u->prio < v->prio) {
-    // u 的 prio 比较小，u应该作为父节点
+    // prio của u nhỏ hơn, u nên làm nút cha
     u->ch[1] = merge(u->ch[1], v);
-    // 因为 v 比 u 大，所以把 v 作为 u 的右子树
+    // Vì v lớn hơn u, đặt v làm cây con phải của u
     u->upd_siz();
     return u;
   } else {
-    // v 比较小，v应该作为父节点
+    // v nhỏ hơn, v nên làm nút cha
     v->ch[0] = merge(u, v->ch[0]);
-    // u 比 v 小，所以递归时的参数是这样的
+    // u nhỏ hơn v, nên tham số khi đệ quy là như vậy
     v->upd_siz();
     return v;
   }
 }
 ```
 
-### 插入
+### Chèn
 
-在无旋 treap 中，插入，删除，根据值查询排名等基础操作既可以用普通二叉查找树的方法实现，也可以用分裂和合并来实现．通常来说，使用分裂和合并来实现更加简洁，但是速度会慢一点[^ref2]．为了帮助更好的理解无旋 treap，下面的操作全部使用分裂和合并实现．
+Trong Treap không xoay, các thao tác cơ bản như chèn, xóa, truy vấn hạng theo giá trị có thể cài đặt theo cách của cây tìm kiếm nhị phân thông thường, hoặc bằng tách và hợp nhất. Thông thường, dùng tách và hợp nhất để cài đặt sẽ ngắn gọn hơn, nhưng tốc độ chậm hơn một chút[^ref2]. Để giúp hiểu Treap không xoay tốt hơn, các thao tác dưới đây đều được cài đặt bằng tách và hợp nhất.
 
-在实现插入操作时，我们利用了分裂操作的一些性质．也就是值小于等于 $\textit{val}$ 的节点会被分到第一个 treap．
+Khi cài đặt thao tác chèn, ta tận dụng một số tính chất của thao tác tách. Cụ thể, các nút có giá trị nhỏ hơn hoặc bằng $\textit{val}$ sẽ được tách vào Treap thứ nhất.
 
-所以，假设我们根据 $\textit{val}$ 分裂当前这个 treap．会有下面两棵树，并符合以下条件：
+Vì vậy, giả sử ta tách Treap hiện tại theo $\textit{val}$. Sẽ có hai cây sau, thỏa mãn các điều kiện:
 
 $$
 \begin{aligned}
@@ -544,9 +544,9 @@ T_2 &> val
 \end{aligned}
 $$
 
-其中 $T_1$ 表示分裂后所有被分到第一个 treap 的节点的集合，$T_2$ 则是第二个．
+Trong đó $T_1$ biểu thị tập tất cả nút được tách vào Treap thứ nhất, $T_2$ là tập thứ hai.
 
-如果我们再按照 $\textit{val} - 1$ 继续分裂 $T_1$，那么会产生下面两棵树，并符合以下条件：
+Nếu tiếp tục tách $T_1$ theo $\textit{val} - 1$, ta sẽ có hai cây sau và thỏa mãn các điều kiện:
 
 $$
 \begin{gathered}
@@ -555,24 +555,24 @@ T_{1\ \text{right}} > val - 1 \ \And \ T_{1\ \text{right}} \le val
 \end{gathered}
 $$
 
-其中 $T_{1\ \text{left}}$ 表示 $T_1$ 分裂后所有被分到第一个 treap 的节点的集合，$T_{1\ \text{right}}$ 则是第二个．并且上面的式子中，后半部分的 $\And \ T_{1\ \text{right}} \le val$ 来自于 $T_1$ 所符合的条件 $T_1 \le val$．
+Trong đó $T_{1\ \text{left}}$ biểu thị tập tất cả nút được tách vào Treap thứ nhất sau khi tách $T_1$, còn $T_{1\ \text{right}}$ là tập thứ hai. Trong công thức trên, phần sau $\And \ T_{1\ \text{right}} \le val$ đến từ điều kiện $T_1 \le val$ mà $T_1$ thỏa mãn.
 
-不难发现，只要 $\textit{val}$ 和节点的值是一个整数（大多数使用场景下会使用整数）那么符合 $T_{1\ \text{right}}$ 条件的节点只有一个，也就是值等于 $\textit{val}$ 的节点．
+Không khó thấy, chỉ cần $\textit{val}$ và giá trị của nút là số nguyên (hầu hết trường hợp sử dụng đều dùng số nguyên), thì các nút thỏa mãn điều kiện $T_{1\ \text{right}}$ chỉ có một loại, đó là nút có giá trị bằng $\textit{val}$.
 
-在插入时，如果我们发现符合 $T_{1\ \text{right}}$ 的节点存在，那就可以直接增加重复次数，否则，就新开一个节点．
+Khi chèn, nếu ta thấy nút thỏa mãn $T_{1\ \text{right}}$ tồn tại, có thể trực tiếp tăng số lần lặp; ngược lại thì tạo một nút mới.
 
-注意把树分裂好了还需要用合并操作把它「粘」回去，这样下次还能继续使用．并且，还需要注意合并操作的参数顺序是有要求的，第一个树的所有节点的值都需要小于第二个．
+Lưu ý sau khi tách cây xong, vẫn cần dùng hợp nhất để "dán" nó lại, để lần sau có thể tiếp tục sử dụng. Đồng thời cần chú ý thứ tự tham số của thao tác hợp nhất có yêu cầu: mọi nút của cây thứ nhất phải nhỏ hơn các nút của cây thứ hai.
 
 ```cpp
 void insert(int val) {
   auto temp = split(root, val);
-  // 根据 val 的值把整个树分成两个
-  // 注意 split 的实现，等于 val 的子树是在左子树的
+  // Tách toàn bộ cây thành hai phần theo giá trị val
+  // Lưu ý cài đặt split: cây con bằng val nằm ở cây con trái
   auto l_tr = split(temp.first, val - 1);
-  // l_tr 的左子树 <= val - 1，如果有 = val 的节点，那一定在右子树
+  // Cây con trái của l_tr <= val - 1; nếu có nút = val thì nó chắc chắn nằm ở cây con phải
   Node *new_node;
   if (l_tr.second == nullptr) {
-    // 没有这个节点就新开，否则直接增加重复次数．
+    // Không có nút này thì tạo mới, ngược lại tăng trực tiếp số lần lặp.
     new_node = new Node(val);
   } else {
     l_tr.second->cnt++;
@@ -580,28 +580,28 @@ void insert(int val) {
   }
   Node *l_tr_combined =
       merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
-  // 合并 T_1 left 和 T_1 right
+  // Hợp nhất T_1 left và T_1 right
   root = merge(l_tr_combined, temp.second);
-  // 合并 T_1 和 T_2
+  // Hợp nhất T_1 và T_2
 }
 ```
 
-### 删除
+### Xóa
 
-删除操作也使用和插入操作相似的方法，找到值和 $\textit{val}$ 相等的节点，并且删除它．
+Thao tác xóa cũng dùng cách tương tự thao tác chèn: tìm nút có giá trị bằng $\textit{val}$ và xóa nó.
 
 ```cpp
 void del(int val) {
   auto temp = split(root, val);
   auto l_tr = split(temp.first, val - 1);
   if (l_tr.second->cnt > 1) {
-    // 如果这个节点的重复次数大于 1，减小即可
+    // Nếu số lần lặp của nút này lớn hơn 1, chỉ cần giảm đi
     l_tr.second->cnt--;
     l_tr.second->upd_siz();
     l_tr.first = merge(l_tr.first, l_tr.second);
   } else {
     if (temp.first == l_tr.second) {
-      // 有可能整个 T_1 只有这个节点，所以也需要把这个点设成 null 来标注已经删除
+      // Có thể toàn bộ T_1 chỉ có nút này, nên cũng cần đặt điểm này thành null để đánh dấu đã xóa
       temp.first = nullptr;
     }
     delete l_tr.second;
@@ -611,28 +611,28 @@ void del(int val) {
 }
 ```
 
-### 根据值查询排名
+### Truy vấn hạng theo giá trị
 
-排名是比这个值小的节点的数量 $+ 1$，所以我们根据 $\textit{val} - 1$ 分裂当前树，那么分裂后的第一个树就符合：
+Hạng là số nút nhỏ hơn giá trị này $+ 1$, nên ta tách cây hiện tại theo $\textit{val} - 1$. Khi đó Treap thứ nhất sau khi tách thỏa mãn:
 
 $$
 T_1 \le val - 1
 $$
 
-如果树的值和 $\textit{val}$ 为整数，那么 $T_1$ 就包含了所有值小于 $\textit{val}$ 的节点．
+Nếu giá trị trong cây và $\textit{val}$ là số nguyên, thì $T_1$ sẽ chứa tất cả nút có giá trị nhỏ hơn $\textit{val}$.
 
 ```cpp
 int qrank_by_val(Node* cur, int val) {
   auto temp = split(cur, val - 1);
-  int ret = (temp.first == nullptr ? 0 : temp.first->siz) + 1;  // 根据定义 + 1
-  root = merge(temp.first, temp.second);  // 拆好了再粘回去
+  int ret = (temp.first == nullptr ? 0 : temp.first->siz) + 1;  // + 1 theo định nghĩa
+  root = merge(temp.first, temp.second);  // Tách xong thì dán lại
   return ret;
 }
 ```
 
-### 根据排名查询值
+### Truy vấn giá trị theo hạng
 
-调用 `split_by_rk()` 函数后，会返回分裂好的三个 treap，其中第二个只包含一个节点，它的排名等于 $\textit{rk}$，所以我们直接返回这个节点的 $\textit{val}$．
+Sau khi gọi hàm `split_by_rk()`, hàm sẽ trả về ba Treap đã tách xong. Trong đó Treap thứ hai chỉ chứa một nút, và hạng của nó bằng $\textit{rk}$, nên ta trực tiếp trả về $\textit{val}$ của nút này.
 
 ```cpp
 int qval_by_rank(Node *cur, int rk) {
@@ -644,122 +644,122 @@ int qval_by_rank(Node *cur, int rk) {
 }
 ```
 
-### 查询第一个比 val 小的节点
+### Truy vấn nút đầu tiên nhỏ hơn val
 
-可以把这个问题转化为，在比 $\textit{val}$ 小的所有节点中，找出排名最大的．我们根据 $\textit{val}$ 来分裂这个 treap，返回的第一个 treap 中的节点的值就全部小于 $\textit{val}$，然后我们调用 `qval_by_rank()` 找出这个树中值最大的节点．
+Có thể chuyển bài toán này thành: trong tất cả nút nhỏ hơn $\textit{val}$, tìm nút có hạng lớn nhất. Ta tách Treap này theo $\textit{val}$; mọi nút trong Treap thứ nhất trả về đều có giá trị nhỏ hơn $\textit{val}$, sau đó gọi `qval_by_rank()` để tìm nút có giá trị lớn nhất trong cây này.
 
 ```cpp
 int qprev(int val) {
   auto temp = split(root, val - 1);
-  // temp.first 就是值小于 val 的子树
+  // temp.first là cây con gồm các giá trị nhỏ hơn val
   int ret = qval_by_rank(temp.first, temp.first->siz);
-  // 这里查询的是，所有小于 val 的节点里面，最大的那个的值
+  // Ở đây truy vấn giá trị lớn nhất trong tất cả nút nhỏ hơn val
   root = merge(temp.first, temp.second);
   return ret;
 }
 ```
 
-### 查询第一个比 val 大的节点
+### Truy vấn nút đầu tiên lớn hơn val
 
-和上个操作类似，可以把这个问题转化为，在比 $\textit{val}$ 大的所有节点中，找出排名最小的．那么根据 $\textit{val}$ 分裂后，返回的第二个 treap 中的所有节点的值就大于 $\textit{val}$．
+Tương tự thao tác trên, có thể chuyển bài toán thành: trong tất cả nút lớn hơn $\textit{val}$, tìm nút có hạng nhỏ nhất. Khi tách theo $\textit{val}$, mọi nút trong Treap thứ hai được trả về đều có giá trị lớn hơn $\textit{val}$.
 
-然后我们去查询这个树中排名为 $1$ 的节点（也就是值最小的节点）的值，就可以成功查到第一个比 $\textit{val}$ 大的节点．
+Sau đó ta truy vấn nút có hạng $1$ trong cây này (tức nút có giá trị nhỏ nhất), là tìm được nút đầu tiên lớn hơn $\textit{val}$.
 
 ```cpp
 int qnex(int val) {
   auto temp = split(root, val);
   int ret = qval_by_rank(temp.second, 1);
-  // 查询所有大于 val 的子树里面，值最小的那个
+  // Truy vấn giá trị nhỏ nhất trong cây con gồm tất cả nút lớn hơn val
   root = merge(temp.first, temp.second);
   return ret;
 }
 ```
 
-### 建树（build）
+### Xây cây (build)
 
-将一个有 $n$ 个节点的序列 $\{a_n\}$ 转化为一棵 treap．
+Chuyển một dãy có $n$ nút $\{a_n\}$ thành một Treap.
 
-可以依次暴力插入这 $n$ 个节点，每次插入一个权值为 $v$ 的节点时，将整棵 treap 按照权值分裂成权值小于等于 $v$ 的和权值大于 $v$ 的两部分，然后新建一个权值为 $v$ 的节点，将两部分和新节点按从小到大的顺序依次合并，单次插入时间复杂度 $O(\log n)$，总时间复杂度 $O(n\log n)$．
+Có thể chèn lần lượt từng nút trong $n$ nút này một cách trực tiếp. Mỗi lần chèn một nút có giá trị $v$, tách toàn bộ Treap theo giá trị thành hai phần: giá trị nhỏ hơn hoặc bằng $v$ và giá trị lớn hơn $v$; sau đó tạo một nút mới có giá trị $v$, rồi hợp nhất hai phần và nút mới theo thứ tự tăng dần. Độ phức tạp mỗi lần chèn là $O(\log n)$, tổng độ phức tạp là $O(n\log n)$.
 
-在某些题目内，可能会有多次插入一段有序序列的操作，这是就需要在 $O(n)$ 的时间复杂度内完成建树操作．
+Trong một số bài, có thể có nhiều thao tác chèn một đoạn dãy đã sắp xếp; lúc này cần hoàn thành thao tác xây cây trong độ phức tạp $O(n)$.
 
-方法一：在递归建树的过程中，每次选取当前区间的中点作为该区间的树根，并对每个节点钦定合适的优先值，使得新树满足堆的性质．这样能保证树高为 $O(\log n)$．
+Cách 1: Trong quá trình đệ quy xây cây, mỗi lần chọn điểm giữa của đoạn hiện tại làm gốc của cây trong đoạn, và gán cho mỗi nút một độ ưu tiên phù hợp để cây mới thỏa mãn tính chất heap. Cách này đảm bảo chiều cao cây là $O(\log n)$.
 
-方法二：在递归建树的过程中，每次选取当前区间的中点作为该区间的树根，然后给每个节点一个随机优先级．这样能保证树高为 $O(\log n)$，但不保证其满足堆的性质．这样也是正确的，因为无旋式 treap 的优先级是用来使 `merge` 操作更加随机一点，而不是用来保证树高的．
+Cách 2: Trong quá trình đệ quy xây cây, mỗi lần chọn điểm giữa của đoạn hiện tại làm gốc của cây trong đoạn, sau đó gán cho mỗi nút một độ ưu tiên ngẫu nhiên. Cách này đảm bảo chiều cao cây là $O(\log n)$, nhưng không đảm bảo nó thỏa mãn tính chất heap. Cách này vẫn dùng được, vì độ ưu tiên của Treap không xoay dùng để làm thao tác `merge` ngẫu nhiên hơn, chứ không phải để đảm bảo chiều cao cây.
 
-方法三：观察到 treap 是笛卡尔树，利用笛卡尔树的 $O(n)$ 建树方法即可，用单调栈维护右链即可．
+Cách 3: Nhận thấy Treap là cây Descartes, nên chỉ cần dùng phương pháp xây cây $O(n)$ của cây Descartes, dùng ngăn xếp đơn điệu để duy trì chuỗi phải.
 
-### 无旋 treap 的区间操作
+### Thao tác đoạn của Treap không xoay
 
-#### 建树
+#### Xây cây
 
-无旋 treap 相比旋转 treap 的一大好处就是可以实现各种区间操作，下面我们以文艺平衡树的 [模板题](https://loj.ac/problem/105) 为例，介绍 treap 的区间操作．
+Một lợi thế lớn của Treap không xoay so với Treap xoay là có thể cài đặt nhiều loại thao tác trên đoạn. Dưới đây, ta lấy [bài mẫu](https://loj.ac/problem/105) về cây cân bằng nghệ thuật làm ví dụ để giới thiệu thao tác đoạn của Treap.
 
-> 您需要写一种数据结构（可参考题目标题），来维护一个有序数列．
+> Bạn cần viết một cấu trúc dữ liệu (có thể tham khảo tiêu đề bài) để duy trì một dãy có thứ tự.
 >
-> 其中需要提供以下操作：翻转一个区间，例如原有序序列是 $5\ 4\ 3\ 2\ 1$，翻转区间是 $[2,4]$ 的话，结果是 $5\ 2\ 3\ 4\ 1$．
-> 对于 $100\%$ 的数据，$1 \le n$（初始区间长度）$m$（翻转次数）$\le 10^5$
+> Cần cung cấp thao tác sau: đảo ngược một đoạn. Ví dụ dãy có thứ tự ban đầu là $5\ 4\ 3\ 2\ 1$, nếu đoạn đảo ngược là $[2,4]$, kết quả là $5\ 2\ 3\ 4\ 1$.
+> Với $100\%$ dữ liệu, $1 \le n, m \le 10^5$, trong đó $n$ là độ dài dãy ban đầu và $m$ là số lần đảo ngược.
 
-在这道题目中，我们需要实现的是区间翻转，那么我们首先需要考虑如何建树，建出来的树需要是初始的区间．
+Trong bài này, ta cần cài đặt thao tác đảo ngược đoạn. Trước hết cần xét cách xây cây, cây được xây ra cần biểu diễn đoạn ban đầu.
 
-我们只需要把区间的下标依次插入 treap 中，这样在中序遍历（先遍历左子树，然后当前节点，最后右子树）时，就可以得到这个区间[^ref3]．
+Ta chỉ cần chèn lần lượt các chỉ số của đoạn vào Treap. Khi duyệt trung thứ tự (duyệt cây con trái trước, sau đó đến nút hiện tại, cuối cùng là cây con phải), ta sẽ thu được đoạn này[^ref3].
 
-我们知道在朴素的二叉查找树中按照递增的顺序插入节点，建出来的树是一个长链，按照中序遍历，自然可以得到这个区间．
+Ta biết trong cây tìm kiếm nhị phân mộc mạc, nếu chèn nút theo thứ tự tăng dần, cây được tạo ra là một chuỗi dài; khi duyệt trung thứ tự, hiển nhiên sẽ thu được đoạn này.
 
 <div align=center>
   <img style="width: 50%; " src="../images/treap-search-tree-chain.svg" >
 </div>
 
-如上图，按照 $1\ 2\ 3\ 4\ 5$ 的顺序给朴素搜索树插入节点，中序遍历时，得到的也是 $1\ 2\ 3\ 4\ 5$．
+Như hình trên, nếu chèn các nút vào cây tìm kiếm mộc mạc theo thứ tự $1\ 2\ 3\ 4\ 5$, khi duyệt trung thứ tự cũng thu được $1\ 2\ 3\ 4\ 5$.
 
-但是在 treap 中，按增序插入节点后，在合并操作时还会根据 $\textit{priority}$ 调整树的结构，在这样的情况下，如何确保中序遍历一定能正确的输出呢？
+Nhưng trong Treap, sau khi chèn các nút theo thứ tự tăng dần, thao tác hợp nhất còn điều chỉnh cấu trúc cây dựa theo $\textit{priority}$. Trong trường hợp này, làm sao đảm bảo duyệt trung thứ tự nhất định xuất đúng?
 
-可以参考 [笛卡尔树的单调栈建树方法](./cartesian-tree.md) 来理解这个问题．
+Có thể tham khảo [phương pháp xây cây bằng ngăn xếp đơn điệu của cây Descartes](./cartesian-tree.md) để hiểu vấn đề này.
 
-设新插入的节点为 $\textit{u}$．
+Giả sử nút mới chèn là $\textit{u}$.
 
-首先，因为是递增地插入节点，每一个新插入的节点肯定会被连接到 treap 的右链（即从根结点一直往右子树走，经过的结点形成的链）上．
+Trước hết, vì chèn nút theo thứ tự tăng dần, mỗi nút mới chèn chắc chắn sẽ được nối vào chuỗi phải của Treap (tức chuỗi gồm các nút đi từ nút gốc liên tục sang cây con phải).
 
-从根节点开始，右链上的节点的 $\textit{priority}$ 是递增的（小根堆）．那我们可以找到右链上第一个 $\textit{priority}$ 大于 $\textit{u}$ 的节点，我们叫这个节点 $\textit{v}$，并把这个节点换成 $\textit{u}$．
+Bắt đầu từ nút gốc, độ ưu tiên $\textit{priority}$ của các nút trên chuỗi phải tăng dần (min-heap). Ta có thể tìm nút đầu tiên trên chuỗi phải có $\textit{priority}$ lớn hơn $\textit{u}$, gọi nút này là $\textit{v}$, và thay nút này bằng $\textit{u}$.
 
-因为 $\textit{u}$ 一定大于这个树上其他的全部节点，我们需要把 $\textit{v}$ 以及它的子树作为 $\textit{u}$ 的左子树．并且此时 $\textit{u}$ 没有右子树．
+Vì $\textit{u}$ chắc chắn lớn hơn tất cả nút khác trong cây, ta cần đặt $\textit{v}$ và cây con của nó làm cây con trái của $\textit{u}$. Đồng thời lúc này $\textit{u}$ không có cây con phải.
 
-可以发现，中序遍历时 $\textit{u}$ 一定是最后一个被遍历到的（因为 $\textit{u}$ 是右链中的最后一个，而中序遍历中，右子树是最后被遍历到的）．
+Có thể thấy khi duyệt trung thứ tự, $\textit{u}$ chắc chắn là nút cuối cùng được duyệt (vì $\textit{u}$ là nút cuối trên chuỗi phải, mà trong duyệt trung thứ tự, cây con phải được duyệt cuối cùng).
 
-下图是一个 treap 根据递增顺序插入 $1 \sim 5$ 号节点时，插入 $5$ 号节点时的变化，可以用这张图更好的理解按照增序插入的过程．
+Hình dưới đây cho thấy sự thay đổi khi chèn nút số $5$ trong quá trình chèn các nút $1 \sim 5$ vào Treap theo thứ tự tăng dần. Có thể dùng hình này để hiểu tốt hơn quá trình chèn tăng dần.
 
-![插入结点](./images/treap-none-rot-seg-build.svg)
+![Chèn nút](./images/treap-none-rot-seg-build.svg)
 
-#### 区间翻转
+#### Đảo ngược đoạn
 
-翻转 $[l, r]$ 这个区间时，基本思路是将树分裂成 $[1, l - 1],\ [l, r],\ [r + 1, n]$ 三个区间，再对中间的 $[l, r]$ 进行翻转[^ref3]．
+Khi đảo ngược đoạn $[l, r]$, ý tưởng cơ bản là tách cây thành ba đoạn $[1, l - 1],\ [l, r],\ [r + 1, n]$, rồi đảo ngược đoạn giữa $[l, r]$[^ref3].
 
-翻转的具体操作是把区间内的子树的每一个左，右子节点交换位置．如下图就展示了翻转上图中 treap 的 $[3, 4]$ 和 $[3, 5]$ 区间后的 treap．
+Thao tác đảo ngược cụ thể là hoán đổi vị trí mọi cặp nút con trái và con phải trong cây con của đoạn. Hình dưới đây minh họa Treap sau khi đảo ngược các đoạn $[3, 4]$ và $[3, 5]$ của Treap ở hình trên.
 
-![区间翻转](./images/treap-none-rot-seg-flip-ex.svg)
+![Đảo ngược đoạn](./images/treap-none-rot-seg-flip-ex.svg)
 
-注意如果按照这个方法翻转，那么每次翻转 $[l, r]$ 区间时，就会有 $r - l$ 个节点会被交换位置，这样频繁的操作显然不能满足 $10^5$ 的数据范围，其 $O(n \times \log_2 n)$ 的单次翻转复杂度甚至不如暴力（因为我们除了需要花线性时间交换节点外，还需要在树中花费 $O(\log_2 n)$ 的时间找到需要交换的节点）．
+Lưu ý nếu đảo ngược theo cách này, mỗi lần đảo ngược đoạn $[l, r]$ sẽ có $r - l$ nút bị hoán đổi vị trí. Thao tác thường xuyên như vậy rõ ràng không đáp ứng được giới hạn dữ liệu $10^5$; độ phức tạp một lần đảo ngược $O(n \times \log_2 n)$ kém hiệu quả hơn cả làm trực tiếp (vì ngoài thời gian tuyến tính để hoán đổi nút, ta còn cần tốn $O(\log_2 n)$ để tìm các nút cần hoán đổi trong cây).
 
-再观察题目要求，可以发现因为只需要最后输出操作完的区间，所以并不需要每次都真的去交换．如此一来，便可以使用线段树中常用的懒标记（lazy tag）来优化复杂度．交换时，只需要在父节点打上标记，代表这个子树下的每个左右子节点都需要交换就行了．
+Quan sát lại yêu cầu bài toán, có thể thấy vì chỉ cần xuất đoạn cuối cùng sau tất cả thao tác, không cần mỗi lần đều hoán đổi thật. Do đó có thể dùng lazy tag thường gặp trong cây phân đoạn để tối ưu độ phức tạp. Khi hoán đổi, chỉ cần gán đánh dấu trên nút cha, biểu thị mọi cặp nút con trái/phải dưới cây con này đều cần hoán đổi.
 
-在线段树中，我们一般在更新和查询时下传懒标记．这是因为，在更新和查询时，我们想要更新/查询的范围不一定和懒标记代表的范围重合，所以要先下传标记，确保查到和更新后的值是正确的．
+Trong cây phân đoạn, ta thường đẩy lazy tag xuống khi cập nhật và truy vấn. Lý do là khi cập nhật/truy vấn, phạm vi ta muốn cập nhật/truy vấn không nhất thiết trùng với phạm vi mà lazy tag đại diện, nên phải đẩy tag xuống trước để đảm bảo giá trị tìm được và giá trị sau cập nhật là đúng.
 
-在无旋 treap 中也是一样．具体操作时我们会把 treap 分裂成前文讲到的三个树，然后给中间的树打上懒标记后合并这三棵树．因为我们想要翻转的区间和懒标记代表的区间不一定重合，所以要在分裂时下传标记．并且，分裂和合并操作会造成每个节点及其懒标记所代表的节点发生变动，所以也需要在合并前下传懒标记．
+Trong Treap không xoay cũng vậy. Khi thao tác cụ thể, ta tách Treap thành ba cây như đã nói ở trên, sau đó gán lazy tag cho cây ở giữa rồi hợp nhất ba cây này. Vì đoạn cần đảo ngược không nhất thiết trùng với đoạn mà lazy tag đại diện, cần đẩy tag xuống khi tách. Đồng thời, thao tác tách và hợp nhất làm thay đổi mỗi nút và tập nút mà lazy tag của nó đại diện, nên trước khi hợp nhất cũng cần đẩy lazy tag xuống.
 
-换句话说，是当树的结构发生改变的时候，当我们进行分裂或合并操作时需要改变某一个点的左右儿子信息时之前，应该下放标记，而非之后，因为懒标记是需要下传给儿子节点的，但更改左右儿子信息之后若懒标记还未下放，则懒标记就丢失了下放的对象．[^ref4]
+Nói cách khác, khi cấu trúc cây thay đổi, trước thời điểm một thao tác tách hoặc hợp nhất cần thay đổi thông tin con trái/con phải của một nút, ta nên đẩy tag xuống, không phải sau đó. Vì lazy tag cần được đẩy cho các nút con; nếu đã thay đổi thông tin con trái/con phải mà lazy tag chưa được đẩy xuống, lazy tag sẽ mất đối tượng để đẩy xuống.[^ref4]
 
-<!-- TODO: 可以加一张图解释为什么需要在分裂和合并时下传标记 -->
+<!-- TODO: Có thể thêm một hình giải thích vì sao cần đẩy tag khi tách và hợp nhất -->
 
-以下为代码讲解，代码参考了[^ref3]．
+Dưới đây là phần giải thích code, code tham khảo từ [^ref3].
 
-因为区间操作中大部分操作都和普通的无旋 treap 相同，所以这里只讲解和普通无旋 treap 不同的地方．
+Vì phần lớn thao tác trong thao tác đoạn giống Treap không xoay thông thường, ở đây chỉ giải thích những điểm khác với Treap không xoay thông thường.
 
-#### 下传标记
+#### Đẩy tag xuống
 
-需要注意这里的懒标记代表需要把这个树中的每一个子节点交换位置．所以如果当前节点的子节点也有懒标记，那两次翻转就抵消了．如果子节点不需要翻转，那么这个懒标记就需要继续被下传到子节点上．
+Cần lưu ý lazy tag ở đây biểu thị cần hoán đổi vị trí mọi cặp nút con trong cây này. Vì vậy nếu nút con của nút hiện tại cũng có lazy tag, hai lần đảo ngược sẽ triệt tiêu nhau. Nếu nút con không cần đảo ngược, lazy tag này cần tiếp tục được đẩy xuống nút con.
 
 ```cpp
-// 这里这个 pushdown 是 Node 类的成员函数，其中 to_rev 是懒标记
+// pushdown ở đây là hàm thành viên của lớp Node, trong đó to_rev là lazy tag
 void pushdown() {
   swap(ch[0], ch[1]);
   if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
@@ -772,22 +772,22 @@ void check_tag() {
 }
 ```
 
-#### 分裂
+#### Tách
 
-注意在这个题目中，因为翻转操作，treap 中的 $\textit{val}$ 会不符合二叉搜索树的性质（见区间翻转部分的图），所以我们不能根据 $\textit{val}$ 来判断应该往左子树还是右子树递归．
+Lưu ý trong bài này, do thao tác đảo ngược, $\textit{val}$ trong Treap sẽ không thỏa mãn tính chất cây tìm kiếm nhị phân (xem hình ở phần đảo ngược đoạn), nên ta không thể dựa vào $\textit{val}$ để xác định nên đệ quy sang cây con trái hay phải.
 
-所以这里的分裂跟普通无旋 treap 中的按排名分裂更相似，是根据当前树的大小判断往左还是右子树递归的，换言之，我们是按照开始时这个节点在树中的位置来判断的．
+Vì vậy, tách ở đây giống tách theo hạng trong Treap không xoay thông thường hơn: dựa vào kích thước cây hiện tại để quyết định đệ quy sang trái hay phải. Nói cách khác, ta xác định dựa theo vị trí ban đầu của nút trong cây.
 
-返回的第一个 treap 中节点的排名全部小于等于 $\textit{sz}$，而第二个 treap 中节点的排名则全部大于 $\textit{sz}$．
+Mỗi nút trong Treap thứ nhất trả về có hạng nhỏ hơn hoặc bằng $\textit{sz}$, còn mỗi nút trong Treap thứ hai có hạng lớn hơn $\textit{sz}$.
 
 ```cpp
 #define siz(_) (_ == nullptr ? 0 : _->siz)
 
 pair<Node*, Node*> split(Node* cur, int sz) {
-  // 按照树的大小判断
+  // Xác định theo kích thước cây
   if (cur == nullptr) return {nullptr, nullptr};
   cur->check_tag();
-  // 分裂前先下传
+  // Đẩy tag xuống trước khi tách
   if (sz <= siz(cur->ch[0])) {
     auto temp = split(cur->ch[0], sz);
     cur->ch[0] = temp.second;
@@ -797,7 +797,7 @@ pair<Node*, Node*> split(Node* cur, int sz) {
     auto temp =
         split(cur->ch[1],
               sz - siz(cur->ch[0]) -
-                  1);  // 这里的转换在有旋 treap 的 「根据排名查询值有讲」
+                  1);  // Phép chuyển đổi này đã được giải thích ở phần "truy vấn giá trị theo hạng" của Treap xoay
     cur->ch[1] = temp.first;
     cur->upd_siz();
     return {cur, temp.second};
@@ -805,9 +805,9 @@ pair<Node*, Node*> split(Node* cur, int sz) {
 }
 ```
 
-#### 合并
+#### Hợp nhất
 
-唯一需要注意的是在合并前下传懒标记
+Điểm duy nhất cần chú ý là đẩy lazy tag xuống trước khi hợp nhất.
 
 ```cpp
 Node *merge(Node *sm, Node *bg) {
@@ -828,89 +828,89 @@ Node *merge(Node *sm, Node *bg) {
 }
 ```
 
-#### 区间翻转
+#### Đảo ngược đoạn
 
-和前面介绍的一样，分裂出 $[1, l - 1],\ [l, r],\ [r + 1, n]$ 三个区间，然后对中间的区间打上标记后再合并．
+Giống như đã giới thiệu ở trên, tách ra ba đoạn $[1, l - 1],\ [l, r],\ [r + 1, n]$, sau đó gán tag cho đoạn giữa rồi hợp nhất lại.
 
 ```cpp
 void seg_rev(int l, int r) {
-  // 这里的 less 和 more 是相对于 l 的
+  // less và more ở đây là tương đối theo l
   auto less = split(root, l - 1);
-  // 所有小于等于 l - 1 的会在 less 的左子树
+  // Tất cả phần nhỏ hơn hoặc bằng l - 1 sẽ nằm bên trái của less
   auto more = split(less.second, r - l + 1);
-  // 从 l 开始的前 r - l + 1 个元素的区间
+  // Đoạn gồm r - l + 1 phần tử bắt đầu từ l
   more.first->to_rev = true;
   root = merge(less.first, merge(more.first, more.second));
 }
 ```
 
-#### 中序遍历打印
+#### In bằng duyệt trung thứ tự
 
-要注意在打印时要下传标记．
+Cần chú ý đẩy tag xuống khi in.
 
 ```cpp
 void print(Node* cur) {
   if (cur == nullptr) return;
   cur->check_tag();
-  // 中序遍历 -> 先左子树，再自己，最后右子树
+  // Duyệt trung thứ tự -> trái trước, rồi đến bản thân, cuối cùng là phải
   print(cur->ch[0]);
   cout << cur->val << " ";
   print(cur->ch[1]);
 }
 ```
 
-## 完整代码
+## Code đầy đủ
 
-### 旋转 treap
+### Treap xoay
 
-#### 指针实现
+#### Cài đặt bằng con trỏ
 
-??? note "完整代码"
-    以下是前文讲解的代码的完整版本，是普通平衡树的模板代码．
-    
+??? note "Code đầy đủ"
+    Dưới đây là phiên bản đầy đủ của code đã giải thích ở trên, là code mẫu cho bài cây cân bằng thông thường.
+
     ```cpp
     // author: (ttzytt)[ttzytt.com]
     #include <cstdint>
     #include <cstdio>
     #include <cstdlib>
     using namespace std;
-    
+
     struct Node {
       Node *ch[2];
       int val, rank;
       int rep_cnt;
       int siz;
-    
+
       Node(int val) : val(val), rep_cnt(1), siz(1) {
         ch[0] = ch[1] = nullptr;
         rank = rand();
       }
-    
+
       void upd_siz() {
         siz = rep_cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
         if (ch[1] != nullptr) siz += ch[1]->siz;
       }
     };
-    
+
     class Treap {
      private:
       Node *root;
-    
-      constexpr static int NIL = -1;  // 用于表示查询的值不存在
-    
+
+      constexpr static int NIL = -1;  // Dùng để biểu thị giá trị truy vấn không tồn tại
+
       enum rot_type { LF = 1, RT = 0 };
-    
+
       int q_prev_tmp = 0, q_nex_tmp = 0;
-    
-      void _rotate(Node *&cur, rot_type dir) {  // 0为右旋，1为左旋
+
+      void _rotate(Node *&cur, rot_type dir) {  // 0 là xoay phải, 1 là xoay trái
         Node *tmp = cur->ch[dir];
         cur->ch[dir] = tmp->ch[!dir];
         tmp->ch[!dir] = cur;
         cur->upd_siz(), tmp->upd_siz();
         cur = tmp;
       }
-    
+
       void _insert(Node *&cur, int val) {
         if (cur == nullptr) {
           cur = new Node(val);
@@ -932,7 +932,7 @@ void print(Node* cur) {
           cur->upd_siz();
         }
       }
-    
+
       void _del(Node *&cur, int val) {
         if (val > cur->val) {
           _del(cur->ch[1], val);
@@ -948,18 +948,18 @@ void print(Node* cur) {
           uint8_t state = 0;
           state |= (cur->ch[0] != nullptr);
           state |= ((cur->ch[1] != nullptr) << 1);
-          // 00都无，01有左无右，10，无左有右，11都有
+          // 00: không có con; 01: có trái không phải; 10: không trái có phải; 11: có cả hai
           Node *tmp = cur;
           switch (state) {
             case 0:
               delete cur;
               cur = nullptr;
               break;
-            case 1:  // 有左无右
+            case 1:  // Có trái không phải
               cur = tmp->ch[0];
               delete tmp;
               break;
-            case 2:  // 有右无左
+            case 2:  // Có phải không trái
               cur = tmp->ch[1];
               delete tmp;
               break;
@@ -972,7 +972,7 @@ void print(Node* cur) {
           }
         }
       }
-    
+
       int _query_rank(Node *cur, int val) {
         int less_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
         if (val == cur->val)
@@ -989,7 +989,7 @@ void print(Node* cur) {
             return cur->siz + 1;
         }
       }
-    
+
       int _query_val(Node *cur, int rank) {
         int less_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
         if (rank <= less_siz)
@@ -999,7 +999,7 @@ void print(Node* cur) {
         else
           return _query_val(cur->ch[1], rank - less_siz - cur->rep_cnt);
       }
-    
+
       int _query_prev(Node *cur, int val) {
         if (val <= cur->val) {
           if (cur->ch[0] != nullptr) return _query_prev(cur->ch[0], val);
@@ -1010,7 +1010,7 @@ void print(Node* cur) {
         }
         return NIL;
       }
-    
+
       int _query_nex(Node *cur, int val) {
         if (val >= cur->val) {
           if (cur->ch[1] != nullptr) return _query_nex(cur->ch[1], val);
@@ -1021,23 +1021,23 @@ void print(Node* cur) {
         }
         return NIL;
       }
-    
+
      public:
       void insert(int val) { _insert(root, val); }
-    
+
       void del(int val) { _del(root, val); }
-    
+
       int query_rank(int val) { return _query_rank(root, val); }
-    
+
       int query_val(int rank) { return _query_val(root, rank); }
-    
+
       int query_prev(int val) { return _query_prev(root, val); }
-    
+
       int query_nex(int val) { return _query_nex(root, val); }
     };
-    
+
     Treap tr;
-    
+
     int main() {
       srand(0);
       int t;
@@ -1070,58 +1070,58 @@ void print(Node* cur) {
     }
     ```
 
-#### 数组实现
+#### Cài đặt bằng mảng
 
-以下是 bzoj 普通平衡树模板代码，使用数组实现．
+Dưới đây là code mẫu bzoj cho bài cây cân bằng thông thường, cài đặt bằng mảng.
 
-??? note "完整代码"
+??? note "Code đầy đủ"
     ```cpp
     --8<-- "docs/ds/code/treap/treap_1.cpp"
     ```
 
-### 无旋 treap
+### Treap không xoay
 
-#### 指针实现
+#### Cài đặt bằng con trỏ
 
-??? note "完整代码"
-    以下是前文讲解的代码的完整版本，是普通平衡树的模板代码．
-    
+??? note "Code đầy đủ"
+    Dưới đây là phiên bản đầy đủ của code đã giải thích ở trên, là code mẫu cho bài cây cân bằng thông thường.
+
     ```cpp
-    
+
     // author: (ttzytt)[ttzytt.com]
     #include <cstdio>
     #include <cstdlib>
     #include <ctime>
     #include <tuple>
     using namespace std;
-    
+
     struct Node {
       Node *ch[2];
       int val, prio;
       int cnt;
       int siz;
-    
+
       Node(int _val) : val(_val), cnt(1), siz(1) {
         ch[0] = ch[1] = nullptr;
         prio = rand();
       }
-    
+
       Node(Node *_node) {
         val = _node->val, prio = _node->prio, cnt = _node->cnt, siz = _node->siz;
       }
-    
+
       void upd_siz() {
         siz = cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
         if (ch[1] != nullptr) siz += ch[1]->siz;
       }
     };
-    
+
     struct none_rot_treap {
     #define _3 second.second
     #define _2 second.first
       Node *root;
-    
+
       pair<Node *, Node *> split(Node *cur, int key) {
         if (cur == nullptr) return {nullptr, nullptr};
         if (cur->val <= key) {
@@ -1136,7 +1136,7 @@ void print(Node* cur) {
           return {temp.first, cur};
         }
       }
-    
+
       tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
         if (cur == nullptr) return {nullptr, nullptr, nullptr};
         int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
@@ -1159,7 +1159,7 @@ void print(Node* cur) {
           return {cur, mid, r};
         }
       }
-    
+
       Node *merge(Node *u, Node *v) {
         if (u == nullptr && v == nullptr) return nullptr;
         if (u != nullptr && v == nullptr) return u;
@@ -1174,7 +1174,7 @@ void print(Node* cur) {
           return v;
         }
       }
-    
+
       void insert(int val) {
         auto temp = split(root, val);
         auto l_tr = split(temp.first, val - 1);
@@ -1189,7 +1189,7 @@ void print(Node* cur) {
             merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
         root = merge(l_tr_combined, temp.second);
       }
-    
+
       void del(int val) {
         auto temp = split(root, val);
         auto l_tr = split(temp.first, val - 1);
@@ -1206,14 +1206,14 @@ void print(Node* cur) {
         }
         root = merge(l_tr.first, temp.second);
       }
-    
+
       int qrank_by_val(Node *cur, int val) {
         auto temp = split(cur, val - 1);
         int ret = (temp.first == nullptr ? 0 : temp.first->siz) + 1;
         root = merge(temp.first, temp.second);
         return ret;
       }
-    
+
       int qval_by_rank(Node *cur, int rk) {
         Node *l, *mid, *r;
         tie(l, mid, r) = split_by_rk(cur, rk);
@@ -1221,14 +1221,14 @@ void print(Node* cur) {
         root = merge(merge(l, mid), r);
         return ret;
       }
-    
+
       int qprev(int val) {
         auto temp = split(root, val - 1);
         int ret = qval_by_rank(temp.first, temp.first->siz);
         root = merge(temp.first, temp.second);
         return ret;
       }
-    
+
       int qnex(int val) {
         auto temp = split(root, val);
         int ret = qval_by_rank(temp.second, 1);
@@ -1236,9 +1236,9 @@ void print(Node* cur) {
         return ret;
       }
     };
-    
+
     none_rot_treap tr;
-    
+
     int main() {
       srand(time(nullptr));
       int t;
@@ -1271,79 +1271,79 @@ void print(Node* cur) {
     }
     ```
 
-### 无旋 treap 的区间操作
+### Thao tác đoạn của Treap không xoay
 
-#### 指针实现
+#### Cài đặt bằng con trỏ
 
-??? note "完整代码"
-    以下是前文讲解的代码的完整版本，是文艺平衡树题目的模板代码．
-    
+??? note "Code đầy đủ"
+    Dưới đây là phiên bản đầy đủ của code đã giải thích ở trên, là code mẫu cho bài cây cân bằng nghệ thuật.
+
     ```cpp
-    
+
     // author: (ttzytt)[ttzytt.com]
     #include <cstdlib>
     #include <ctime>
     #include <iostream>
     using namespace std;
-    
-    // 参考：https://www.cnblogs.com/Equinox-Flower/p/10785292.html
+
+    // Tham khảo: https://www.cnblogs.com/Equinox-Flower/p/10785292.html
     struct Node {
       Node* ch[2];
       int val, prio;
       int cnt;
       int siz;
-      bool to_rev = false;  // 需要把这个子树下的每一个节点都翻转过来
-    
+      bool to_rev = false;  // Cần đảo ngược mọi nút trong cây con này
+
       Node(int _val) : val(_val), cnt(1), siz(1) {
         ch[0] = ch[1] = nullptr;
         prio = rand();
       }
-    
+
       int upd_siz() {
         siz = cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
         if (ch[1] != nullptr) siz += ch[1]->siz;
         return siz;
       }
-    
+
       void pushdown() {
         swap(ch[0], ch[1]);
         if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
-        // 如果原来子节点也要翻转，那两次翻转就抵消了，如果子节点不翻转，那这个
-        //  tag 就需要继续被 push 到子节点上
+        // Nếu nút con ban đầu cũng cần đảo ngược, hai lần đảo ngược sẽ triệt tiêu nhau; nếu không,
+        // tag này cần tiếp tục được push xuống nút con
         if (ch[1] != nullptr) ch[1]->to_rev ^= 1;
         to_rev = false;
       }
-    
+
       void check_tag() {
         if (to_rev) pushdown();
       }
     };
-    
+
     struct Seg_treap {
       Node* root;
     #define siz(_) (_ == nullptr ? 0 : _->siz)
-    
+
       pair<Node*, Node*> split(Node* cur, int sz) {
-        // 按照树的大小划分
+        // Chia theo kích thước cây
         if (cur == nullptr) return {nullptr, nullptr};
         cur->check_tag();
         if (sz <= siz(cur->ch[0])) {
-          // 左边的子树就够了
+          // Chỉ cây con bên trái đã đủ
           auto temp = split(cur->ch[0], sz);
-          // 左边的子树不一定全部需要，temp.second 是不需要的
+          // Không nhất thiết cần toàn bộ cây con bên trái; temp.second là phần không cần
           cur->ch[0] = temp.second;
           cur->upd_siz();
           return {temp.first, cur};
         } else {
-          // 左边的加上右边的一部分（当然也包括这个节点本身）
+          // Cây bên trái cộng với một phần bên phải (tất nhiên gồm cả nút này)
           auto temp = split(cur->ch[1], sz - siz(cur->ch[0]) - 1);
           cur->ch[1] = temp.first;
           cur->upd_siz();
           return {cur, temp.second};
         }
       }
-    
+
       Node* merge(Node* sm, Node* bg) {
         // small, big
         if (sm == nullptr && bg == nullptr) return nullptr;
@@ -1360,7 +1360,7 @@ void print(Node* cur) {
           return bg;
         }
       }
-    
+
       void insert(int val) {
         auto temp = split(root, val);
         auto l_tr = split(temp.first, val - 1);
@@ -1370,17 +1370,17 @@ void print(Node* cur) {
             merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
         root = merge(l_tr_combined, temp.second);
       }
-    
+
       void seg_rev(int l, int r) {
-        // 这里的 less 和 more 是相对于 l 的
+        // less và more ở đây là tương đối theo l
         auto less = split(root, l - 1);
-        // 所有小于等于 l - 1 的会在 less 的左边
+        // Tất cả phần nhỏ hơn hoặc bằng l - 1 sẽ nằm bên trái của less
         auto more = split(less.second, r - l + 1);
-        // 拿出从 l 开始的前 r - l + 1 个
+        // Lấy r - l + 1 phần tử bắt đầu từ l
         more.first->to_rev = true;
         root = merge(less.first, merge(more.first, more.second));
       }
-    
+
       void print(Node* cur) {
         if (cur == nullptr) return;
         cur->check_tag();
@@ -1389,9 +1389,9 @@ void print(Node* cur) {
         print(cur->ch[1]);
       }
     };
-    
+
     Seg_treap tr;
-    
+
     int main() {
       srand(time(nullptr));
       int n, m;
@@ -1406,21 +1406,21 @@ void print(Node* cur) {
     }
     ```
 
-## 例题
+## Bài tập ví dụ
 
-[普通平衡树](https://loj.ac/problem/104)
+[Cây cân bằng thông thường](https://loj.ac/problem/104)
 
-[文艺平衡树（Splay）](https://loj.ac/problem/105)
+[Cây cân bằng nghệ thuật (Splay)](https://loj.ac/problem/105)
 
-[「ZJOI2006」书架](https://www.luogu.com.cn/problem/P2596)
+[ZJOI2006 - Giá sách](https://www.luogu.com.cn/problem/P2596)
 
-[「NOI2005」维护数列](https://www.luogu.com.cn/problem/P2042)
+[NOI2005 - Duy trì dãy số](https://www.luogu.com.cn/problem/P2042)
 
 [CF 702F T-Shirts](http://codeforces.com/problemset/problem/702/F)
 
-## 参考资料与注释
+## Tài liệu tham khảo và ghi chú
 
-[^ref1]: 本图的设计参考了 [维基百科 treap 词条的配图](https://en.wikipedia.org/wiki/Treap)
+[^ref1]: Thiết kế của hình này tham khảo từ [hình minh họa trong mục Treap trên Wikipedia](https://en.wikipedia.org/wiki/Treap)
 
 [^ref2]: <https://charleswu.site/archives/1051>
 
