@@ -1,113 +1,113 @@
 author: shenyouran, Xeonacid, StudyingFather, CoelacanthusHex
 
-## 简介
+## Giới thiệu
 
-Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc. 开发．
+Xcode là một môi trường phát triển tích hợp (IDE) chạy trên macOS, do Apple Inc. phát triển.
 
-## 安装
+## Cài đặt
 
-### 方法一
+### Cách 1
 
-打开苹果电脑自带的 App Store（或者尝试 [快捷链接](https://apps.apple.com/cn/app/xcode/id497799835?mt=12)）下载 Xcode．点击获取，然后输入苹果账号密码开始下载安装．
+Mở App Store có sẵn trên máy Mac (hoặc thử [liên kết nhanh](https://apps.apple.com/cn/app/xcode/id497799835?mt=12)) để tải Xcode. Nhấp `Get`, rồi nhập mật khẩu tài khoản Apple để bắt đầu tải xuống và cài đặt.
 
 ![](images/xcode-1.jpg)
 
-### 方法二
+### Cách 2
 
-访问 [苹果开发者下载页面](https://developer.apple.com/download/more/)，用苹果账号登录，然后找到 Xcode 最新的稳定版本安装包（即不含 Beta 的最新版本，此处为 11.6）：
+Truy cập [trang tải xuống dành cho nhà phát triển Apple](https://developer.apple.com/download/more/), đăng nhập bằng tài khoản Apple, rồi tìm gói cài đặt phiên bản ổn định mới nhất của Xcode (tức phiên bản mới nhất không phải Beta; trong hình là 11.6):
 
 ![](images/xcode-2.jpg)
 
-点击弹出框内蓝色的文件名即可下载．得到压缩包之后，用系统自带的工具进行解压，然后得到文件 Xcode.app．把这个文件移动到【应用程序】文件夹后即可使用．
+Nhấp tên tệp màu xanh trong hộp thoại bật lên để tải xuống. Sau khi có tệp nén, dùng công cụ có sẵn của hệ thống để giải nén, bạn sẽ nhận được tệp `Xcode.app`. Di chuyển tệp này vào thư mục `Applications` là có thể sử dụng.
 
-## 基础配置
+## Cấu hình cơ bản
 
-首次打开 Xcode 时，可能会遇到下列弹出窗口：
+Khi mở Xcode lần đầu, bạn có thể gặp cửa sổ bật lên sau:
 
 ![](images/xcode-3.jpg)
 
-这个窗口是 Xcode 元件的安装引导．点击 `Install` 并输入当前用户密码即可．
+Cửa sổ này là trình hướng dẫn cài đặt các thành phần của Xcode. Nhấp `Install` và nhập mật khẩu của người dùng hiện tại.
 
-安装完毕后，界面左侧显示：
+Sau khi cài đặt xong, phía bên trái giao diện sẽ hiển thị:
 
 ![](images/xcode-4.jpg)
 
-点击 `Create a new Xcode project`（创建一个新的 Xcode 项目），然后选择上方 `macOS` 中的 `Command Line Tool`（命令行工具），并点击右下角的 `Next`．
+Nhấp `Create a new Xcode project` (tạo một project Xcode mới), sau đó chọn `Command Line Tool` (công cụ dòng lệnh) trong mục `macOS` ở phía trên, rồi nhấp `Next` ở góc dưới bên phải.
 
 ![](images/xcode-5.jpg)
 
-接下来，我们可以给项目命名，但最重要的是选择项目的语言．我们可以根据自己的需求，在最下方 `Language` 处选择 C 或者 C++：
+Tiếp theo, ta có thể đặt tên cho project, nhưng điều quan trọng nhất là chọn ngôn ngữ của project. Tùy nhu cầu, tại mục `Language` ở phía dưới cùng, ta có thể chọn C hoặc C++:
 
 ![](images/xcode-6.jpg)
 
-项目的目录可以根据需要选择．创建完毕后，Xcode 会自动打开这个项目，并自动创建一个 `main` 文件（C 语言的后缀为 `.c`，C++ 语言的后缀为 `.cpp`）．
+Thư mục của project có thể chọn theo nhu cầu. Sau khi tạo xong, Xcode sẽ tự động mở project này và tự tạo một tệp `main` (đuôi của C là `.c`, đuôi của C++ là `.cpp`).
 
-点击这个文件，就可以打开编辑区域：
+Nhấp vào tệp này để mở vùng soạn thảo:
 
 ![](images/xcode-7.jpg)
 
-编写代码后，可以按⌘B 编译（Build），⌘R 运行（Run）．运行后拖动，得到三个部分：
+Sau khi viết mã, có thể nhấn ⌘B để biên dịch (Build), ⌘R để chạy (Run). Sau khi chạy, kéo giao diện ra sẽ thấy ba phần:
 
 ![](images/xcode-8.jpg)
 
-一般来说我们只使用【编辑区】和【运行区】．若程序有输入，那么在【运行区】中进行输入之后，就可以得到输出．界面呈现效果：
+Thông thường ta chỉ dùng vùng soạn thảo và vùng chạy. Nếu chương trình có dữ liệu vào, nhập trong vùng chạy rồi sẽ nhận được kết quả đầu ra. Giao diện hiển thị như sau:
 
 ![](images/xcode-9.jpg)
 
-仿照这种方式，我们就可以运行任何的单个 C/C++ 程序．
+Làm theo cách này, ta có thể chạy bất kỳ chương trình C/C++ tệp đơn nào.
 
-## 万能头文件的使用
+## Sử dụng header tổng hợp
 
-在编写代码过程中，我们可能会使用到很多头文件．常用的解决方法是使用万能头文件．
+Trong quá trình viết mã, ta có thể cần dùng nhiều header. Một cách xử lý phổ biến là dùng header tổng hợp.
 
-我们在源代码第一行引入万能头文件，然而编译过程中却提示：`'bits/stdc++.h' file not found`．即该头文件未找到．
+Khi thêm header tổng hợp ở dòng đầu tiên của mã nguồn, quá trình biên dịch lại báo: `'bits/stdc++.h' file not found`, nghĩa là không tìm thấy header này.
 
 ![](images/xcode-10.jpg)
 
-这是因为在 macOS 上默认使用 [libc++](https://libcxx.llvm.org/) 作为 C++ 标准库实现，而万能头 `bits/stdc++.h` 是 [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/) 所独有的．
+Nguyên nhân là trên macOS, mặc định [libc++](https://libcxx.llvm.org/) được dùng làm phần triển khai thư viện chuẩn C++, còn header tổng hợp `bits/stdc++.h` là phần riêng của [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/).
 
-不过，我们可以手动编写一个万能头文件来使用．
+Tuy vậy, ta có thể tự tạo một header tổng hợp để sử dụng.
 
-### 步骤 1
+### Bước 1
 
-打开终端（Terminal.app），前往 Xcode 存储头文件的文件夹，即：
+Mở Terminal.app, đi tới thư mục nơi Xcode lưu các header, tức là:
 
 ```bash
 cd /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
 ```
 
-如果 Xcode 版本大于等于 12.5，那么
+Nếu phiên bản Xcode từ 12.5 trở lên, dùng:
 
 ```bash
 cd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/
 ```
 
-### 步骤 2
+### Bước 2
 
-创建 `bits` 文件夹并进入：
+Tạo thư mục `bits` rồi đi vào thư mục đó:
 
 ```bash
 mkdir bits
 cd bits
 ```
 
-用 vim 创建 stdc++.h 文件：
+Dùng vim để tạo tệp `stdc++.h`:
 
 ```bash
 vim stdc++.h
 ```
 
-界面如下：
+Giao diện như sau:
 
 ![](images/xcode-11.jpg)
 
-接着，我们需要通过 vim 编辑文件．敲击 i（insert）键盘即可进入插入/编辑模式（下方出现 `-- INSERT --`）：
+Tiếp theo, ta cần chỉnh sửa tệp bằng vim. Nhấn phím i (insert) để vào chế độ chèn/chỉnh sửa (bên dưới xuất hiện `-- INSERT --`):
 
 ![](images/xcode-12.jpg)
 
-将下面这段代码块复制并粘贴到终端中：
+Sao chép đoạn mã dưới đây và dán vào terminal:
 
-??? note "万能头文件代码块"
+??? note "Đoạn mã header tổng hợp"
     ```cpp
     // C++ includes used for precompiling -*- C++ -*-
     
@@ -260,18 +260,18 @@ vim stdc++.h
     #endif
     ```
 
-该文件来源于 [10.2.0 版本的 libstdc++](https://github.com/gcc-mirror/gcc/blob/ee5c3db6c5b2c3332912fb4c9cfa2864569ebd9a/libstdc++-v3/include/precompiled/stdc++.h) 并经少许修改以兼容 libc++．
+Tệp này lấy từ [libstdc++ phiên bản 10.2.0](https://github.com/gcc-mirror/gcc/blob/ee5c3db6c5b2c3332912fb4c9cfa2864569ebd9a/libstdc++-v3/include/precompiled/stdc++.h) và đã được chỉnh sửa nhẹ để tương thích với libc++.
 
-按键盘左上角的<kbd>Esc</kbd>退出编辑模式，然后直接输入 `:wq` 并换行即可保存文件．
+Nhấn <kbd>Esc</kbd> ở góc trên bên trái bàn phím để thoát chế độ chỉnh sửa, sau đó nhập trực tiếp `:wq` rồi xuống dòng để lưu tệp.
 
-### 步骤 3
+### Bước 3
 
-关闭终端，回到 Xcode．重新按下 ⌘B/⌘R 进行编译，发现编译成功：
+Đóng terminal và quay lại Xcode. Nhấn lại ⌘B/⌘R để biên dịch/chạy; lúc này quá trình biên dịch sẽ thành công:
 
 ![](images/xcode-13.jpg)
 
-## 优缺点
+## Ưu và nhược điểm
 
-优点：由苹果开发，适合 Mac 用户，界面齐全、美观．
+Ưu điểm: do Apple phát triển, phù hợp với người dùng Mac, giao diện đầy đủ và đẹp.
 
-缺点：Xcode 主要用来苹果程序的开发，对于竞赛来说功能冗余，安装包大小较大，而且仅能在 Mac 端上使用．
+Nhược điểm: Xcode chủ yếu dùng để phát triển ứng dụng Apple, nên có nhiều chức năng dư thừa đối với lập trình thi đấu; gói cài đặt khá lớn và chỉ dùng được trên Mac.

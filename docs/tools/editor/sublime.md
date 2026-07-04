@@ -1,98 +1,98 @@
-## 简介
+## Giới thiệu
 
-Sublime Text（以下简称 ST，后附数字作为版本区分，如无则各版本都适用）是一款轻量级的文本编辑器，支持多种语言的语法高亮及代码补全．具有高度的可拓展性以及 Vim 模式，特别的热启动模式大幅减小了文件丢失的可能．
+Sublime Text (sau đây gọi tắt là ST; khi cần phân biệt phiên bản sẽ thêm số ở sau, nếu không ghi thì áp dụng cho mọi phiên bản) là một trình soạn thảo văn bản nhẹ, hỗ trợ tô sáng cú pháp và hoàn thành mã cho nhiều ngôn ngữ. ST có khả năng mở rộng cao, có chế độ Vim, và cơ chế hot exit đặc biệt giúp giảm đáng kể khả năng mất tệp.
 
-新版 NOI Linux 中支持版本为 ST3 最后一个版本 3.2.2[^ref1]，故这里以 ST3 为主．目前 ST4 正式版已经发布[^ref2]，现在如仍使用 ST3 会提示更新．
+Trong bản NOI Linux mới, phiên bản được hỗ trợ là bản cuối của ST3, tức 3.2.2[^ref1], vì vậy trang này chủ yếu lấy ST3 làm ví dụ. Hiện nay bản chính thức của ST4 đã được phát hành[^ref2]; nếu vẫn dùng ST3, chương trình sẽ nhắc cập nhật.
 
-ST4 与 ST3 的重要差别会有额外补充，在介绍中如果提及某项在 ST3 已有翻译则使用中文，否则为 ST4 中的英文．
+Những khác biệt quan trọng giữa ST4 và ST3 sẽ được bổ sung riêng. Trong phần giới thiệu, nếu một mục đã có bản dịch trong ST3 thì dùng tên tiếng Việt tương ứng, nếu không thì giữ tên tiếng Anh trong ST4.
 
-## 安装
+## Cài đặt
 
-ST4 的安装方法参见 [Sublime Text 4 的下载页面](https://www.sublimetext.com/download)．
+Cách cài ST4 xem tại [trang tải Sublime Text 4](https://www.sublimetext.com/download).
 
-ST3 的安装方法参见 [Sublime Text 3 的下载页面](https://www.sublimetext.com/3)．
+Cách cài ST3 xem tại [trang tải Sublime Text 3](https://www.sublimetext.com/3).
 
-???+ note "提示购买"
-    ST 是收费软件，但有一个无限期的试用，试用并不会带来功能上的缺失，但会不时弹出弹窗提示激活．
+???+ note "Nhắc mua bản quyền"
+    ST là phần mềm trả phí, nhưng có chế độ dùng thử không giới hạn thời gian. Bản dùng thử không thiếu chức năng, nhưng thỉnh thoảng sẽ hiện cửa sổ nhắc kích hoạt.
 
-## 插件与自定义
+## Plugin và tùy biến
 
-### 汉化
+### Việt hóa hoặc bản địa hóa giao diện
 
-ST 并不支持中文，如需中文需要安装汉化插件．
+ST không hỗ trợ tiếng Trung sẵn; nếu cần giao diện tiếng Trung thì phải cài plugin bản địa hóa. Với người dùng tiếng Việt, cách cài plugin dưới đây cũng là quy trình chung để cài các gói mở rộng khác.
 
-#### 安装插件管理器
+#### Cài trình quản lý plugin
 
-打开 ST 后键入<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>唤出命令框，输入 `Install` 后回车（完整命令是 `Install Package Control`，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动．Package Control 安装完成（或失败）后会有弹窗提示，具体的加载时间取决于网络．
+Sau khi mở ST, nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> để gọi hộp lệnh, nhập `Install` rồi nhấn Enter (lệnh đầy đủ là `Install Package Control`, không phân biệt chữ hoa chữ thường). Lúc này ở góc dưới bên trái thường sẽ thấy một dấu `=` di chuyển qua lại liên tục. Khi Package Control cài xong (hoặc thất bại), sẽ có cửa sổ thông báo; thời gian tải cụ thể phụ thuộc vào mạng.
 
-如果完成的弹窗显示安装失败（与网络有关），则需要手动下载 [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) 并将下载好的文件放到 ST 的数据目录下的 `\Installed Packages` 文件夹中．稍作等待，ST 会自动识别该插件（有时需要重启 ST）．
+Nếu cửa sổ hoàn tất báo cài đặt thất bại (liên quan đến mạng), cần tải thủ công [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) rồi đặt tệp đã tải vào thư mục `\Installed Packages` trong thư mục dữ liệu của ST. Chờ một lát, ST sẽ tự nhận diện plugin này (đôi khi cần khởi động lại ST).
 
-???+ note "ST 数据目录的路径"
-    Windows 下，如果在 ST 的 **安装目录** 下存在 `\data` 文件夹，会自动使用（或初始化）该文件夹作为数据目录．
-    
-    ST3 的路径一般为 `C:\Users\用户名\AppData\Roaming\Sublime Text 3`，ST4 一般为 `C:\Users\用户名\AppData\Roaming\Sublime Text`，ST 会先寻找对应版本的路径，如不存在则寻找更低版本的路径，如都不存在则新建并初始化．
-    
-    在以 NOI Linux 所使用的 Ubuntu 20.04.1 中，ST3 的数据目录为 `$HOME/.config/sublime-text-3`，ST4 的数据目录为 `$HOME/.config/sublime-text`，使用的具体规则同 Windows 环境．
-    
-    可以使用 `首选项->浏览插件目录...` 快速查看数据文件夹路径下的 `\Packages` 文件夹．
+???+ note "Đường dẫn thư mục dữ liệu của ST"
+    Trên Windows, nếu trong **thư mục cài đặt** của ST có thư mục `\data`, ST sẽ tự động dùng (hoặc khởi tạo) thư mục đó làm thư mục dữ liệu.
 
-#### 安装汉化插件
+    Đường dẫn của ST3 thường là `C:\Users\tên_người_dùng\AppData\Roaming\Sublime Text 3`, còn ST4 thường là `C:\Users\tên_người_dùng\AppData\Roaming\Sublime Text`. ST sẽ tìm đường dẫn ứng với phiên bản trước, nếu không tồn tại thì tìm đường dẫn của phiên bản thấp hơn, nếu vẫn không có thì tạo mới và khởi tạo.
 
-再次按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
+    Trong Ubuntu 20.04.1 dùng bởi NOI Linux, thư mục dữ liệu của ST3 là `$HOME/.config/sublime-text-3`, còn của ST4 là `$HOME/.config/sublime-text`; quy tắc sử dụng cụ thể giống môi trường Windows.
+
+    Có thể dùng `Preferences->Browse Packages...` để xem nhanh thư mục `\Packages` nằm dưới đường dẫn thư mục dữ liệu.
+
+#### Cài plugin bản địa hóa tiếng Trung
+
+Nhấn lại <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` rồi nhấn Enter (lệnh đầy đủ là `Package Control: Install Package`), đợi tải xong. Tiếp theo sẽ thấy giao diện như sau:
 
 ![](./images/sublime3-1.png)
 
-输入 `Chinese` 选择 ChineseLocalizations 并回车，等待安装完毕，完成后界面会自动切换为中文（如是 ST4，因为汉化插件未更新，会少一些新增的菜单项，但一般对编辑无影响）．
+Nhập `Chinese`, chọn ChineseLocalizations rồi nhấn Enter, chờ cài đặt hoàn tất. Sau khi xong, giao diện sẽ tự chuyển sang tiếng Trung (nếu là ST4, vì plugin bản địa hóa chưa cập nhật nên một số mục menu mới sẽ thiếu bản dịch, nhưng thường không ảnh hưởng đến việc soạn thảo).
 
-### 调整字体
+### Điều chỉnh phông chữ
 
-进入 `首选项->设置`，在右边的用户设置中的花括号中添加一行 `"font_face": "字体名",`，ST 的设置使用 JSON 格式储存．修改完成后保存，如果系统安装了对应字体会自动切换．
+Vào `Preferences->Settings`, trong phần thiết lập người dùng ở bên phải, thêm một dòng `"font_face": "tên phông",` vào trong cặp ngoặc nhọn. Thiết lập của ST được lưu bằng định dạng JSON. Sau khi sửa xong và lưu lại, nếu hệ thống đã cài phông tương ứng thì ST sẽ tự chuyển.
 
-一般而言，如果单论对中文的显示的话，Microsoft Yahei Consolas 和 Microsoft YaHei Mono 是比较好的选择．
+Nhìn chung, nếu chỉ xét khả năng hiển thị tiếng Trung, Microsoft Yahei Consolas và Microsoft YaHei Mono là các lựa chọn tương đối tốt.
 
 ???+ warning "Warning"
-    注意任何设置（包括插件设置）即使能也不要在左边的默认设置中修改，这是不被推荐的，如果软件（或插件）更新，默认设置会被重置．
+    Chú ý: dù có thể sửa, không nên sửa bất kỳ thiết lập nào (kể cả thiết lập plugin) trong phần thiết lập mặc định bên trái. Đây là cách không được khuyến nghị, vì khi phần mềm (hoặc plugin) cập nhật, thiết lập mặc định sẽ bị đặt lại.
 
-### 安装插件与主题
+### Cài plugin và theme
 
-安装插件与主题的方法与安装汉化插件一致．
+Cách cài plugin và theme giống cách cài plugin bản địa hóa.
 
-输入<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车，然后搜索插件/主题/配色即可．
+Nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` rồi nhấn Enter, sau đó tìm plugin/theme/bảng màu cần cài.
 
-插件推荐：
+Plugin khuyến nghị:
 
--   BracketHighlighter : 对原版的括号高亮进行了增强，必备．
--   C++ Snippets : ST 自带有 C++ 代码补全，格式为大括号不换行．如果不习惯自带大括号换行的码风可以安装这个插件，同时增加了一部分补全．
--   C++ 11 : 支持 C++ 11 标准高亮（ST4 中不需要）．
--   SublimeAstyleFormatter : Astyle，用于格式化代码．
--   Diffy : 按<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>D</kbd>即可快速比较第一视窗与第二视窗打开的文件的不同，比较方式为逐行比较．
--   ConvertToUTF8 : 自动识别文件编码，并支持编码转换．
--   SideBarEnhancements : 侧边栏增强，较为推荐．
--   Transparency : 窗口透明化．
+-   BracketHighlighter: tăng cường khả năng tô sáng cặp ngoặc so với bản gốc, gần như bắt buộc nên có.
+-   C++ Snippets: ST đã có hoàn thành mã C++ sẵn, với phong cách dấu ngoặc nhọn không xuống dòng. Nếu không quen phong cách có sẵn hoặc muốn thêm một số mẫu hoàn thành, có thể cài plugin này.
+-   C++ 11: hỗ trợ tô sáng chuẩn C++ 11 (không cần trong ST4).
+-   SublimeAstyleFormatter: Astyle, dùng để định dạng mã.
+-   Diffy: nhấn <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>D</kbd> để nhanh chóng so sánh khác biệt giữa tệp đang mở ở khung nhìn thứ nhất và thứ hai; cách so sánh là theo từng dòng.
+-   ConvertToUTF8: tự động nhận diện mã hóa tệp và hỗ trợ chuyển đổi mã hóa.
+-   SideBarEnhancements: tăng cường thanh bên, khá đáng dùng.
+-   Transparency: làm cửa sổ trong suốt.
 
-有其他需要可以尝试搜索．
+Nếu có nhu cầu khác, có thể thử tìm kiếm thêm.
 
-一些主题：[^ref3]
+Một số theme:[^ref3]
 
-1337（单配色方案）、3024（单配色方案）、Grandson-of-Obsidian（单配色方案）、Seti\_UI（单主题，额外包含 git 等格式的高亮，较为推荐）、Material Theme、Predawn、Agila、Materialize．
+1337 (chỉ bảng màu), 3024 (chỉ bảng màu), Grandson-of-Obsidian (chỉ bảng màu), Seti\_UI (chỉ theme, có thêm tô sáng cho git và một số định dạng khác, khá đáng dùng), Material Theme, Predawn, Agila, Materialize.
 
-如果要编辑自己的配色方案，可以访问 [tmTheme Editor](http://tmtheme-editor.herokuapp.com/)．
+Nếu muốn chỉnh bảng màu riêng, có thể truy cập [tmTheme Editor](http://tmtheme-editor.herokuapp.com/).
 
-如是 ST4 则可以在 `Preferences->Customize Color Scheme` 中调整配色方案或 `Preferences->Customize Scheme` 中调整主题．
+Nếu dùng ST4, có thể chỉnh bảng màu trong `Preferences->Customize Color Scheme` hoặc chỉnh theme trong `Preferences->Customize Scheme`.
 
-### 开启 Vi Mode
+### Bật Vi Mode
 
-ST 的开发者为 Vi 使用者提供了一个可选插件 Vintage，可模拟 Vi 的大部分功能．
+Nhà phát triển ST cung cấp cho người dùng Vi một plugin tùy chọn tên là Vintage, có thể mô phỏng phần lớn chức năng của Vi.
 
-#### 开启方式
+#### Cách bật
 
-Vintage 插件默认是禁用的．可以通过 `首选项->设置` 在用户设置中，将 `"ignored_packages"` 一项中的 Vintage 删除并保存（不要整个删除，只删除 Vintage），ST 的状态栏左边就会出现 `INSERT MODE`，此时 Vintage 插件已开启．
+Plugin Vintage mặc định bị tắt. Có thể vào `Preferences->Settings`, trong thiết lập người dùng, xóa Vintage khỏi mục `"ignored_packages"` rồi lưu lại (không xóa cả mục, chỉ xóa Vintage). Bên trái thanh trạng thái của ST sẽ xuất hiện `INSERT MODE`, tức là plugin Vintage đã được bật.
 
-或者按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>，然后输入 `Enable` 选择 `Package Control: Enable Package` 并回车，选择 Vintage 即可，该方法需要 Package Control．
+Hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Enable`, chọn `Package Control: Enable Package` rồi nhấn Enter, sau đó chọn Vintage. Cách này cần Package Control.
 
-#### 相关配置
+#### Cấu hình liên quan
 
-如果想让上下左右键失效，可以在 `首选项->快捷键设置` 中添加：
+Nếu muốn vô hiệu hóa các phím mũi tên, có thể thêm vào `Preferences->Key Bindings`:
 
 ```JSON
 { "keys": ["left"], "command": ""},
@@ -101,105 +101,108 @@ Vintage 插件默认是禁用的．可以通过 `首选项->设置` 在用户设
 { "keys": ["down"], "command": ""},
 ```
 
-如要使 ST 以命令模式启动，则可以在 `首选项->设置` 中添加：
+Nếu muốn ST khởi động ở chế độ lệnh, có thể thêm vào `Preferences->Settings`:
 
 ```json
 "vintage_start_in_command_mode": true,
 ```
 
-也可以通过快捷键设置将进入命令模式设置成任意键（具体详见 [设置快捷键](#设置快捷键)）．
+Cũng có thể dùng thiết lập phím tắt để gán thao tác vào chế độ lệnh cho một phím bất kỳ (xem chi tiết ở [Thiết lập phím tắt](#thiết-lập-phím-tắt)).
 
-#### 与 Vi 的不同
+#### Khác biệt so với Vi
 
-ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
+Plugin Vintage của ST có một số điểm khác với Vi, một phần được liệt kê dưới đây:
 
--   在插入模式下用选中不会进入可视模式，这时输入不会被识别为命令而是直接替换文本．可视模式只有命令模式下才能进入．
--   `r`、`R`、`zA`、`za`、`zi`、`z=`、`@` 与使用<kbd>\[</kbd>、<kbd>]</kbd>或<kbd>"</kbd>键的命令不存在．
--   使用<kbd>Ctrl</kbd>、<kbd>Shift</kbd>和<kbd>Alt</kbd>键的快捷键会保留为 ST 设置的快捷键，如<kbd>Ctrl</kbd>+<kbd>V</kbd>不会进入可视模式而是正常粘贴．
--   命令行模式只保留了 `:e`、`:0`、`:$`、`:s`．
--   使用 `\` 与 `?` 命令会自动唤出搜索框，而不是直接在命令中键入单词进行搜索．同时，数字将无法生效．
--   `q` 宏录制命令会启动 ST 自带的宏录制，按<kbd>Q</kbd>后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd>才能启动．如果需要保存，需要 `工具->保存宏`，快捷键需要设置．
--   无法使用 `数字+.` 的组合．
+-   Trong chế độ chèn, thao tác chọn bằng chuột sẽ không vào chế độ visual; lúc này nội dung nhập vào không được nhận diện là lệnh mà sẽ trực tiếp thay thế văn bản. Chế độ visual chỉ có thể vào từ chế độ lệnh.
+-   Không có các lệnh `r`, `R`, `zA`, `za`, `zi`, `z=`, `@` và các lệnh dùng phím <kbd>\[</kbd>, <kbd>]</kbd> hoặc <kbd>"</kbd>.
+-   Các phím tắt dùng <kbd>Ctrl</kbd>, <kbd>Shift</kbd> và <kbd>Alt</kbd> vẫn giữ nguyên phím tắt do ST thiết lập; ví dụ <kbd>Ctrl</kbd>+<kbd>V</kbd> sẽ không vào chế độ visual mà vẫn dán bình thường.
+-   Chế độ dòng lệnh chỉ giữ lại `:e`, `:0`, `:$`, `:s`.
+-   Khi dùng lệnh `\` và `?`, ST sẽ tự gọi hộp tìm kiếm thay vì nhập trực tiếp từ cần tìm trong lệnh. Đồng thời, số đếm sẽ không có hiệu lực.
+-   Lệnh ghi macro `q` sẽ khởi động chức năng ghi macro có sẵn của ST. Sau khi nhấn <kbd>Q</kbd>, cần nhấn thêm một phím để bắt đầu ghi, nhưng macro đã ghi sẽ không được gắn với phím đó; cần nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd> mới chạy. Nếu cần lưu, dùng `Tools->Save Macro`; phím tắt cần tự thiết lập.
+-   Không thể dùng tổ hợp `số+.`.
 
-### 设置
+### Thiết lập
 
-#### 设置 ST
+#### Thiết lập ST
 
-在 `首选项->设置` 中设置，这里列举部分较有用的选项：
+Thiết lập trong `Preferences->Settings`. Dưới đây liệt kê một số tùy chọn khá hữu ích:
 
 ```JSON
 {
-  //字体大小
+  // Co chu
   "font_size": 11,
-  
-  //字体，可以不设置，默认为 Consolas
+
+  // Phong chu; co the khong dat, mac dinh la Consolas
   "font_face": "",
-  
-  //Tab自动转换为空格
+
+  // Tu dong chuyen Tab thanh dau cach
   "translate_tabs_to_spaces": true,
-  
-  //缩进宽度
+
+  // Do rong thut le
   "tab_size": 4,
-  
-  //行高亮
+
+  // To sang dong hien tai
   "highlight_line": true,
-  
-  //保存时自动在文件尾增加换行
+
+  // Tu dong them xuong dong o cuoi tep khi luu
   "trim_trailing_white_space_on_save": true,
-  
-  //在选择时查找自动只查找选择范围
+
+  // Khi dang chon van ban, tim kiem chi tim trong pham vi da chon
   "auto_find_in_selection": true,
-  
-  //禁用了OI中不太可能用到的插件，可以自己调整
+
+  // Tat cac plugin it khi dung trong OI; co the tu dieu chinh
   "ignored_packages": [
-    "ActionScript", "AppleScript", "ASP", "Batch File", "C#", 
-    "Clojure", "CSS", "D", "Diff", "Erlang", "Git Formats", 
-    "Go", "Graphviz", "Groovy", "Haskell", "HTML", "Java", 
-    "LaTeX", "Lisp", "Lua", "Makefile", "Matlab", 
-    "Objective-C", "OCaml", "Perl", "PHP", "Python", 
-    "R","Rails", "RestructuredText", "Ruby", "Rust", 
-    "Scala", "ShellScript", "SQL", "TCL", "Textile", "XML", 
+    "ActionScript", "AppleScript", "ASP", "Batch File", "C#",
+    "Clojure", "CSS", "D", "Diff", "Erlang", "Git Formats",
+    "Go", "Graphviz", "Groovy", "Haskell", "HTML", "Java",
+    "LaTeX", "Lisp", "Lua", "Makefile", "Matlab",
+    "Objective-C", "OCaml", "Perl", "PHP", "Python",
+    "R","Rails", "RestructuredText", "Ruby", "Rust",
+    "Scala", "ShellScript", "SQL", "TCL", "Textile", "XML",
   ],
-  
-  //相对行号，可配合 Vintage 插件快速跳转
+
+  // So dong tuong doi, co the phoi hop voi Vintage de nhay nhanh
   "relative_line_numbers": false,
 }
 ```
 
-#### 设置快捷键
+#### Thiết lập phím tắt
 
-在 `首选项->快捷键设置` 中设置，在左边找到需要修改的功能，然后复制到右边并修改按键即可．
+Thiết lập trong `Preferences->Key Bindings`: tìm chức năng cần sửa ở bên trái, sao chép sang bên phải rồi sửa phím.
 
-例如，如果要把<kbd>Ctrl</kbd>+<kbd>B</kbd>的编译改为<kbd>F9</kbd>（如果不令原有的快捷键失效，实际是增加一个触发方式），则可以在 `首选项->快捷键设置` 中添加：
+Ví dụ, nếu muốn đổi phím biên dịch từ <kbd>Ctrl</kbd>+<kbd>B</kbd> sang <kbd>F9</kbd> (nếu không vô hiệu hóa phím tắt cũ thì thực tế là thêm một cách kích hoạt), có thể thêm vào `Preferences->Key Bindings`:
 
 ```JSON
-//将build命令改为f9
+// Doi lenh build thanh f9
 { "keys": ["f9"], "command": "build" },
 
-//将原有的f9对应的行排序功能的快捷键改为shift+f9，由于大部分时候这个功能用不到，这一行也可以不添加
+// Doi phim sap xep dong dang gan voi f9 sang shift+f9.
+// Phan lon truong hop khong can chuc nang nay, nen co the bo dong nay.
 { "keys": ["shift+f9"], "command": "sort_lines", "args": {"case_sensitive": false} },
 ```
 
-#### 设置插件
+#### Thiết lập plugin
 
-插件的设置可以在 `首选项->Package Setting->插件名` 中找到，做修改时请注意不要修改默认设置．
+Thiết lập của plugin có thể tìm trong `Preferences->Package Settings->tên plugin`; khi sửa, chú ý không sửa thiết lập mặc định.
 
-例如，这里给出 BracketHighlighter 的一些设置，在 `首选项->Package Setting->BracketHighlighter->Bracket Setting` 中修改：
+Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, chỉnh trong `Preferences->Package Settings->BracketHighlighter->Bracket Settings`:
 
 ```JSON
 {
-  //在匹配的括号之间行的行首显示一条线，可以快速找到括号的范围
+  // Hien mot vach o dau dong giua hai ngoac khop nhau,
+  // giup nhanh chong tim pham vi cap ngoac
   "content_highlight_bar": true,
-  
-  //在小地图中显示匹配的括号
+
+  // Hien cap ngoac khop nhau trong minimap
   "show_in_minimap": true,
-  
-  //忽略匹配范围限制
+
+  // Bo qua gioi han pham vi khop
   "ignore_threshold": true,
-  
-  //style高亮样式，bold为块高亮，underline为加粗下划线，outline为外围一圈
-  //color为颜色，默认设置中已经包含了所有支持的颜色
-  //icon为在侧边栏显示的标志
+
+  // style la kieu to sang: bold la to sang khoi,
+  // underline la gach chan dam, outline la vien ngoai
+  // color la mau; thiet lap mac dinh da chua tat ca mau duoc ho tro
+  // icon la dau hieu hien thi o thanh ben
   "bracket_styles": {
     "default": {"icon": "dot", "color": "region.yellowish", "style": "bold",},
     "unmatched": {"icon": "question", "color": "region.redish", "style": "outline",},
@@ -211,28 +214,28 @@ ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
     "c_define": {"icon": "hash", "color": "region.yellowish",},
     "single_quote": {"icon": "single_quote", "color": "region.greenish",},
     "double_quote": {"icon": "double_quote", "color": "region.greenish",},
-    "regex": {"icon": "star", "color": "region.greenish",}
+    "regex": {"icon": "star", "color": "region.greenish"}
   }
 }
 ```
 
-### 修改与添加
+### Sửa và thêm mới
 
-有时候，插件的某些地方可能并不尽如人意，或想对插件进行汉化，这时就需要对插件做一些修改．
+Đôi khi một số chỗ trong plugin có thể chưa thật vừa ý, hoặc muốn bản địa hóa plugin; khi đó cần sửa plugin.
 
-插件存放的位置是数据目录下的 `\Installed Packages` 文件夹．
+Plugin được đặt trong thư mục `\Installed Packages` dưới thư mục dữ liệu.
 
-里面的文件以 `.sublime-package` 为后缀，实际上为 `.zip` 格式，可以使用解压缩软件打开．
+Các tệp bên trong có hậu tố `.sublime-package`; thực chất đây là định dạng `.zip`, có thể mở bằng phần mềm giải nén.
 
-例如，如果要修改自动补全，可以打开 ST 的 **安装目录** `\Packages\C++` 插件中的 `\Snippets\*.sublime-snippet` 文件修改，如要 **增添** 自动补全，可以安装 C++ Snippets 并在其中修改或添加文件（或新建一个插件，但不能直接添加进自带的 C++ 插件，否则无法被识别）．保存任何修改时 **必须** 关闭 ST，且请提前做好备份，否则可能出现文件丢失．
+Ví dụ, nếu muốn sửa hoàn thành tự động, có thể mở các tệp `\Snippets\*.sublime-snippet` trong plugin `\Packages\C++` ở **thư mục cài đặt** của ST để sửa. Nếu muốn **thêm** hoàn thành tự động, có thể cài C++ Snippets rồi sửa hoặc thêm tệp trong đó (hoặc tạo một plugin mới, nhưng không được thêm trực tiếp vào plugin C++ có sẵn, nếu không ST sẽ không nhận diện). Khi lưu bất kỳ sửa đổi nào, **bắt buộc** phải đóng ST và nên sao lưu trước, nếu không có thể mất tệp.
 
-当然，任何增添都可以放在数据目录路径下的 `\Packages\User\` 下，这总是被支持的．
+Dĩ nhiên, mọi phần thêm mới đều có thể đặt dưới `\Packages\User\` trong thư mục dữ liệu; cách này luôn được hỗ trợ.
 
-例如，一个文件模板的补全可以这么写：
+Ví dụ, một snippet mẫu tệp có thể viết như sau:
 
 ```XML
 <snippet>
-  <description>template_code</description> <!-- 这里的内容是补全内容的预览 -->
+  <description>template_code</description> <!-- Noi dung nay la ban xem truoc cua phan hoan thanh -->
   <content><![CDATA[#include <cstdio>
 using namespace std;
 
@@ -244,106 +247,106 @@ int main() {
   fclose(stdout);
   return 0;
 }]]></content>
-  <tabTrigger>code</tabTrigger> <!-- 这里的内容是补全的触发文本 -->
-  <scope>source.c++</scope> <!-- 这里的内容是补全适用语言 -->
+  <tabTrigger>code</tabTrigger> <!-- Noi dung nay la van ban kich hoat hoan thanh -->
+  <scope>source.c++</scope> <!-- Noi dung nay la ngon ngu ap dung cho hoan thanh -->
 </snippet>
 ```
 
-以下列出部分文件后缀以及其用途，具体的插件开发教程详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/plugins/) 和 [官方文档](https://www.sublimetext.com/docs/3/)：
+Dưới đây liệt kê một số hậu tố tệp và công dụng của chúng. Hướng dẫn phát triển plugin chi tiết xem [tài liệu cộng đồng](https://docs.sublimetext.io/guide/extensibility/plugins/) và [tài liệu chính thức](https://www.sublimetext.com/docs/3/):
 
-| 后缀名                  | 用途                             |
-| -------------------- | ------------------------------ |
-| .sublime-build       | 编译系统文件                         |
-| .sublime-completions | 文件名补全列表（一般为头文件）                |
-| .sublime-syntax      | 语法高亮文件                         |
-| .sublime-settings    | 设置文件                           |
-| .tmPreferences       | 首选项中的列表文件                      |
-| .sublime-keymap      | 快捷键设置文件                        |
-| .sublime-snippet     | 代码补全文件                         |
-| .sublime-commands    | 命令定义文件                         |
-| .sublime-menu        | ST UI 文件，包括侧边栏以及顶部菜单栏（汉化的主要对象） |
+| Hậu tố | Công dụng |
+| ------ | --------- |
+| .sublime-build | Tệp hệ thống biên dịch |
+| .sublime-completions | Danh sách hoàn thành tên tệp (thường là tệp header) |
+| .sublime-syntax | Tệp tô sáng cú pháp |
+| .sublime-settings | Tệp thiết lập |
+| .tmPreferences | Tệp danh sách trong Preferences |
+| .sublime-keymap | Tệp thiết lập phím tắt |
+| .sublime-snippet | Tệp hoàn thành mã |
+| .sublime-commands | Tệp định nghĩa lệnh |
+| .sublime-menu | Tệp UI của ST, gồm thanh bên và thanh menu phía trên (đối tượng chính khi bản địa hóa) |
 
-由于插件更新会直接覆盖原文件，所以建议备份更改的文件．
+Do cập nhật plugin sẽ trực tiếp ghi đè tệp gốc, nên nên sao lưu các tệp đã sửa.
 
-## 编辑
+## Soạn thảo
 
-### 设置语法
+### Thiết lập cú pháp
 
-按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>后输入语法即可，或者按右下角的 `Plain Text` 然后修改为需要的语言，同时在 `视图->语法` 中也可以设置．
+Sau khi nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập tên cú pháp cần dùng; hoặc nhấn `Plain Text` ở góc dưới bên phải rồi đổi sang ngôn ngữ cần thiết. Cũng có thể thiết lập trong `View->Syntax`.
 
 ![](images/sublime3-2.png)
 
-### 快捷键
+### Phím tắt
 
-ST 有复合快捷键，如<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>表示先按<kbd>Ctrl</kbd>+<kbd>K</kbd>再按<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>．
+ST có phím tắt phức hợp, ví dụ <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd> nghĩa là nhấn <kbd>Ctrl</kbd>+<kbd>K</kbd> trước, rồi nhấn <kbd>Ctrl</kbd>+<kbd>Backspace</kbd>.
 
-部分快捷键：
+Một số phím tắt:
 
-| 按键                                                                         | 命令                                                            |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| <kbd>Ctrl</kbd>+<kbd>X</kbd>                                               | 剪切当前行                                                         |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                              | 删除行                                                           |
-| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                                           | 在下方插入行                                                        |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>                          | 在上方插入行                                                        |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>                             | 行上移                                                           |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>                           | 行下移                                                           |
-| <kbd>Ctrl</kbd>+<kbd>L</kbd>                                               | 选择行，重复以向下选择多行                                                 |
-| <kbd>Ctrl</kbd>+<kbd>D</kbd>                                               | 选择词，重复以选择多个相同词，并进入多重选择模式（用于快速批量更改）                            |
-| <kbd>Ctrl</kbd>+<kbd>M</kbd>                                               | 跳转到匹配的括号                                                      |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>                              | 选择括号内的内容（不包括括号），重复以包括括号                                       |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd>                  | 删至行尾（复合快捷键，建议使用 Vim 模式代替）                                     |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>          | 删至行首（复合快捷键，建议使用 Vim 模式代替）                                     |
-| <kbd>Ctrl</kbd>+<kbd>]</kbd>                                               | 缩进当前（选择的）行                                                    |
-| <kbd>Ctrl</kbd>+<kbd>\[</kbd>                                              | 取消缩进当前（选择的）行                                                  |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>                              | 复制当前行，并插入在下一行                                                 |
-| <kbd>Ctrl</kbd>+<kbd>J</kbd>                                               | 合并下一行与当前行                                                     |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>                              | 粘贴并缩进（用于整段粘贴代码）                                               |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> | 从历史粘贴（复合快捷键，建议修改为<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>） |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>                             | 光标下移，并保留当前行光标（进入多重选择模式）                                       |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>                               | 光标上移，并保留当前行光标（进入多重选择模式）                                       |
-| <kbd>Ctrl</kbd>+<kbd>R</kbd>                                               | 跳至文件中的任意符号（函数或类型定义）                                           |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>                              | 跳至项目中的任意符号（函数或类型定义）                                           |
-| <kbd>Ctrl</kbd>+<kbd>P</kbd>                                               | 跳至任意文件（曾经打开过或在项目中且存在的文件）                                      |
-| <kbd>\~</kbd>                                                              | 转换选择内容的大小写                                                    |
+| Phím | Lệnh |
+| ---- | ---- |
+| <kbd>Ctrl</kbd>+<kbd>X</kbd> | Cắt dòng hiện tại |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> | Xóa dòng |
+| <kbd>Ctrl</kbd>+<kbd>Enter</kbd> | Chèn dòng bên dưới |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd> | Chèn dòng bên trên |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd> | Di chuyển dòng lên |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd> | Di chuyển dòng xuống |
+| <kbd>Ctrl</kbd>+<kbd>L</kbd> | Chọn dòng; lặp lại để chọn thêm nhiều dòng phía dưới |
+| <kbd>Ctrl</kbd>+<kbd>D</kbd> | Chọn từ; lặp lại để chọn nhiều từ giống nhau và vào chế độ chọn nhiều điểm (dùng để sửa hàng loạt nhanh) |
+| <kbd>Ctrl</kbd>+<kbd>M</kbd> | Nhảy đến ngoặc khớp |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> | Chọn nội dung trong cặp ngoặc (không gồm ngoặc); lặp lại để bao gồm cả ngoặc |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd> | Xóa đến cuối dòng (phím tắt phức hợp, nên dùng Vim mode thay thế) |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd> | Xóa đến đầu dòng (phím tắt phức hợp, nên dùng Vim mode thay thế) |
+| <kbd>Ctrl</kbd>+<kbd>]</kbd> | Thụt lề dòng hiện tại (hoặc các dòng đang chọn) |
+| <kbd>Ctrl</kbd>+<kbd>\[</kbd> | Bỏ thụt lề dòng hiện tại (hoặc các dòng đang chọn) |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> | Sao chép dòng hiện tại và chèn vào dòng kế tiếp |
+| <kbd>Ctrl</kbd>+<kbd>J</kbd> | Gộp dòng kế tiếp với dòng hiện tại |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> | Dán và tự thụt lề (dùng khi dán cả đoạn mã) |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> | Dán từ lịch sử (phím tắt phức hợp, nên đổi thành <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>) |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd> | Di chuyển con trỏ xuống và giữ lại con trỏ ở dòng hiện tại (vào chế độ chọn nhiều điểm) |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd> | Di chuyển con trỏ lên và giữ lại con trỏ ở dòng hiện tại (vào chế độ chọn nhiều điểm) |
+| <kbd>Ctrl</kbd>+<kbd>R</kbd> | Nhảy đến bất kỳ ký hiệu nào trong tệp (hàm hoặc định nghĩa kiểu) |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> | Nhảy đến bất kỳ ký hiệu nào trong dự án (hàm hoặc định nghĩa kiểu) |
+| <kbd>Ctrl</kbd>+<kbd>P</kbd> | Nhảy đến bất kỳ tệp nào (đã từng mở, hoặc nằm trong dự án và tồn tại) |
+| <kbd>\~</kbd> | Chuyển đổi chữ hoa/thường của vùng chọn |
 
-### 自动补全
+### Hoàn thành tự động
 
-ST 有丰富的补全功能，可能的补全内容会在光标下方显示，按<kbd>Tab</kbd>或<kbd>Enter</kbd>进行补全（ST4 中，如进行一个非 Snippet 类型的补全，接下来再按<kbd>Tab</kbd>可继续选择为以该补全为子串的补全）．
+ST có chức năng hoàn thành phong phú. Các mục hoàn thành có thể dùng sẽ hiển thị dưới con trỏ; nhấn <kbd>Tab</kbd> hoặc <kbd>Enter</kbd> để hoàn thành (trong ST4, nếu thực hiện một hoàn thành không phải kiểu Snippet, nhấn tiếp <kbd>Tab</kbd> có thể tiếp tục chọn mục hoàn thành chứa mục này làm chuỗi con).
 
-Snippet 类型的补全一般会有一些编辑块，补全后会自动选择为替换文本，如果是 `for` 等含有多个编辑块的复杂补全，编辑完成后再次按<kbd>Tab</kbd>完成下一个编辑块，此时要在编辑块中触发补全需要使用<kbd>Enter</kbd>（在 ST4 中可继续使用<kbd>Tab</kbd>）．
+Hoàn thành kiểu Snippet thường có một số khối có thể chỉnh sửa. Sau khi hoàn thành, ST sẽ tự chọn phần cần thay thế; nếu là hoàn thành phức tạp như `for` có nhiều khối chỉnh sửa, sau khi sửa xong một khối thì nhấn lại <kbd>Tab</kbd> để sang khối tiếp theo. Khi đang ở trong khối chỉnh sửa mà muốn kích hoạt hoàn thành, cần dùng <kbd>Enter</kbd> (trong ST4 vẫn có thể tiếp tục dùng <kbd>Tab</kbd>).
 
-如果没有自动补全，请如下修复：
+Nếu không có hoàn thành tự động, hãy sửa như sau:
 
-1.  检查是否切换了语言，ST 默认新建文件为 Plain Text．
+1.  Kiểm tra xem đã chuyển ngôn ngữ chưa; tệp mới của ST mặc định là Plain Text.
 
-2.  进入 `首选项->设置` 然后添上两行：
+2.  Vào `Preferences->Settings` rồi thêm hai dòng:
 
 ```JSON
 "auto_complete": true,
 "auto_match_enabled": true,
 ```
 
-### 多重选择
+### Chọn nhiều điểm
 
-按住<kbd>Ctrl</kbd>并用鼠标单击即可在屏幕上增加光标，<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>或<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>可以在相邻两行直接增加光标，任何编辑性质的操作会同时应用至所有光标．
+Giữ <kbd>Ctrl</kbd> và nhấp chuột để thêm con trỏ trên màn hình. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd> có thể trực tiếp thêm con trỏ ở các dòng kề nhau. Mọi thao tác chỉnh sửa sẽ được áp dụng đồng thời cho tất cả con trỏ.
 
-### 查找与替换
+### Tìm kiếm và thay thế
 
-<kbd>Ctrl</kbd>+<kbd>F</kbd>为查找，<kbd>F3</kbd>为查找下一个<kbd>Shift</kbd>+<kbd>F3</kbd>为查找上一个，<kbd>Ctrl</kbd>+<kbd>H</kbd>为替换．
+<kbd>Ctrl</kbd>+<kbd>F</kbd> là tìm kiếm, <kbd>F3</kbd> là tìm tiếp, <kbd>Shift</kbd>+<kbd>F3</kbd> là tìm trước đó, <kbd>Ctrl</kbd>+<kbd>H</kbd> là thay thế.
 
-五个查找选项分别为正则表达式匹配、大小写敏感、全字匹配、循环查找、在选段中查找．
+Năm tùy chọn tìm kiếm lần lượt là khớp biểu thức chính quy, phân biệt hoa thường, khớp cả từ, tìm vòng, và tìm trong vùng chọn.
 
-建议在首选项中将 `"auto_find_in_selection"` 设置为 `true`．这样在选择超过一个词时使用查找会自动只在选段中查找．
+Nên đặt `"auto_find_in_selection"` thành `true` trong Preferences. Khi đó, nếu chọn hơn một từ rồi tìm kiếm, ST sẽ tự chỉ tìm trong vùng đã chọn.
 
-## 演示
+## Minh họa
 
-### 热启动
+### Hot exit
 
-尝试在 ST 中键入一些内容，并直接把整个 ST 关闭，ST 会直接关闭且没有任何提示，再打开 ST 时只要不对电脑进行数据还原就不会丢失任何数据．
+Thử nhập một số nội dung trong ST rồi đóng thẳng toàn bộ ST. ST sẽ đóng ngay mà không có thông báo nào; khi mở lại ST, miễn là máy tính không bị khôi phục dữ liệu, dữ liệu sẽ không mất.
 
-### 多重选择
+### Chọn nhiều điểm
 
-如果要把以下代码中的所有 `bok` 改为 `book`，只需将光标放置在任意一个 `bok` 中，长按<kbd>Ctrl</kbd>+<kbd>D</kbd>即可快速选中．
+Nếu muốn đổi tất cả `bok` trong đoạn mã sau thành `book`, chỉ cần đặt con trỏ vào một `bok` bất kỳ rồi giữ <kbd>Ctrl</kbd>+<kbd>D</kbd> để nhanh chóng chọn tất cả.
 
 ```cpp
 int check() {
@@ -352,9 +355,9 @@ int check() {
 }
 ```
 
-如果要将下列文件中的所有等号后面改成 `"good"`，只需在将光标放置于第一行的 `aaa` 前，并按五次<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>，再然后按下<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入 `good` 即可．
+Nếu muốn đổi toàn bộ phần sau dấu bằng trong tệp dưới đây thành `"good"`, chỉ cần đặt con trỏ trước `aaa` ở dòng đầu, nhấn <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd> năm lần, sau đó nhấn <kbd>Ctrl</kbd>+<kbd>D</kbd> rồi nhập `good`.
 
-或选中 `"a` 并按住<kbd>Ctrl</kbd>+<kbd>D</kbd>，然后按<kbd>Right</kbd>、<kbd>Ctrl</kbd>+<kbd>D</kbd>，之后键入即可．
+Hoặc chọn `"a`, giữ <kbd>Ctrl</kbd>+<kbd>D</kbd>, sau đó nhấn <kbd>Right</kbd>, <kbd>Ctrl</kbd>+<kbd>D</kbd>, rồi nhập nội dung cần thay.
 
 ```cpp
 s[1] = "aaa";
@@ -365,15 +368,15 @@ s[5] = "aae";
 s[6] = "aaf";
 ```
 
-如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b`，按住<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入<kbd>(</kbd>即可（如选择一定区域，则任意左括号键入会为该区域两边添加匹配的括号）．
+Nếu muốn thêm ngoặc cho tất cả `a + b` dưới đây, chỉ cần chọn một `a + b`, giữ <kbd>Ctrl</kbd>+<kbd>D</kbd> rồi nhập <kbd>(</kbd> (nếu đã chọn một vùng nhất định, nhập bất kỳ ngoặc trái nào sẽ thêm cặp ngoặc khớp vào hai bên vùng đó).
 
 ```plain
 a + b*a + b*a + b
 ```
 
-### 查找与替换
+### Tìm kiếm và thay thế
 
-如果要将下列文件中的所有等号后面改成 `"good"`，也可以用<kbd>Ctrl</kbd>+<kbd>H</kbd>使用替换，打开正则，输入 `".*"`，并替换成 `"good"` 即可．
+Nếu muốn đổi toàn bộ phần sau dấu bằng trong tệp dưới đây thành `"good"`, cũng có thể dùng <kbd>Ctrl</kbd>+<kbd>H</kbd> để thay thế, bật regex, nhập `".*"`, rồi thay bằng `"good"`.
 
 ```cpp
 s[1] = "aaa";
@@ -384,15 +387,15 @@ s[5] = "aae";
 s[6] = "aaf";
 ```
 
-如要为以下代码添加分号，只需使用选择区域替换，打开正则，输入 `\n`，并替换成 `;\n` 即可．
+Nếu muốn thêm dấu chấm phẩy cho đoạn mã sau, chỉ cần dùng thay thế trong vùng chọn, bật regex, nhập `\n`, rồi thay bằng `;\n`.
 
 ```plain
 int main() {  int a, b  cin >> a >> b  cout << a + b  return 0}
 ```
 
-### 宏录制
+### Ghi macro
 
-如要为以下代码添加分号，可以按<kbd>Ctrl</kbd>+<kbd>q</kbd>启动宏录制接下来依次按<kbd>End</kbd>、<kbd>;</kbd>、<kbd>Down</kbd>再按<kbd>Ctrl</kbd>+<kbd>q</kbd>结束宏录制（中途左下角不会全程显示正在录制，但确实在录制），接下来重复<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>即可．
+Nếu muốn thêm dấu chấm phẩy cho đoạn mã sau, có thể nhấn <kbd>Ctrl</kbd>+<kbd>q</kbd> để bắt đầu ghi macro, sau đó lần lượt nhấn <kbd>End</kbd>, <kbd>;</kbd>, <kbd>Down</kbd>, rồi nhấn lại <kbd>Ctrl</kbd>+<kbd>q</kbd> để kết thúc ghi macro (trong quá trình này góc dưới bên trái không luôn hiển thị đang ghi, nhưng thực tế vẫn đang ghi). Sau đó lặp lại bằng <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>.
 
 ```plain
 int main() {
@@ -403,74 +406,75 @@ int main() {
 }
 ```
 
-??? note "如已开启 Vintage 插件"
-    执行一次<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>后，可以<kbd>Esc</kbd>进入命令模式，输入 `..` 即可（`.` 命令可以重复 ST3 命令）
+??? note "Nếu đã bật plugin Vintage"
+    Sau khi chạy <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd> một lần, có thể nhấn <kbd>Esc</kbd> để vào chế độ lệnh rồi nhập `..` (lệnh `.` có thể lặp lại lệnh ST3).
 
-关于宏的保存与绑定按键详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/macros.html)．
+Về cách lưu macro và gán phím, xem [tài liệu cộng đồng](https://docs.sublimetext.io/guide/extensibility/macros.html).
 
-## 编译与运行
+## Biên dịch và chạy
 
-ST 的编译环境已经配置好了，可以直接使用．
+Môi trường biên dịch của ST đã được cấu hình sẵn, có thể dùng trực tiếp.
 
-Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 ST．
+Trên Windows, cần thêm thư mục chứa g++ vào biến môi trường rồi khởi động lại ST.
 
-### 编译
+### Biên dịch
 
-直接按<kbd>Ctrl</kbd>+<kbd>B</kbd>编译，第一次使用会需要选择编译系统，选择 `C++ Single File`（编译）或 `C++ Single File - Run`（编译并运行）．
+Nhấn trực tiếp <kbd>Ctrl</kbd>+<kbd>B</kbd> để biên dịch. Lần đầu sử dụng cần chọn hệ thống biên dịch: chọn `C++ Single File` (biên dịch) hoặc `C++ Single File - Run` (biên dịch và chạy).
 
-#### 修改编译选项
+#### Sửa tùy chọn biên dịch
 
-ST 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`，如果要修改编译选项，可以新建一个编译系统．
+Tùy chọn biên dịch mặc định của ST là `g++ "${file}" -o "${file_path}/${file_base_name}"`. Nếu muốn sửa tùy chọn biên dịch, có thể tạo một hệ thống biên dịch mới.
 
-进入 `工具->编译系统->新建编译系统…` 然后在大括号中间输入：
+Vào `Tools->Build System->New Build System...`, rồi nhập vào giữa cặp ngoặc nhọn:
 
 ```JSON
-// 编译选项可以自己调整
-// 编译并运行
+// Tuy chon bien dich co the tu dieu chinh
+// Bien dich va chay
 "shell_cmd": "g++ -Wall \"${file}\" -o \"${file_path}/${file_base_name}.exe\" && \"${file_path}/${file_base_name}.exe\"",
 
-// 这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
+// Dong nay giup ST3 hien loi bang giao dien do hoa.
+// Neu quen xem thong tin g++ tra ve thi co the bo.
 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 ```
 
-保存后按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>切换编译系统就可以使用了，这里的配置是编译并在外部 CMD 运行．
+Sau khi lưu, nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> để chuyển hệ thống biên dịch là có thể dùng. Cấu hình ở đây là biên dịch rồi chạy trong CMD bên ngoài.
 
-保存的文件为数据目录路径下的 `\Packages\User\编译系统名.sublime-build` 可以反复修改．
+Tệp đã lưu nằm tại `\Packages\User\tên_hệ_thống_biên_dịch.sublime-build` dưới thư mục dữ liệu và có thể sửa nhiều lần.
 
-### 运行
+### Chạy
 
-如果编译时选择 `C++ Single File - Run`（即编译后运行）或配置了自动运行，那么在下方弹出的编译信息窗口应该不会有任何显示（除非编译错误），因为 ST 的编译信息窗口实际上是一个终端，可以直接输入数据．
+Nếu khi biên dịch chọn `C++ Single File - Run` (tức chạy sau khi biên dịch) hoặc đã cấu hình tự chạy, cửa sổ thông tin biên dịch bật lên ở phía dưới thường sẽ không hiển thị gì (trừ khi lỗi biên dịch), vì cửa sổ thông tin biên dịch của ST thực chất là một terminal, có thể nhập dữ liệu trực tiếp.
 
-运行结束后会提示程序的运行时间，其计时为从按下<kbd>Ctrl</kbd>+<kbd>B</kbd>到全部 CMD 命令运行结束的时间，也就是说包括编译的时间和输入的时间，以及如果在外部 CMD 运行还包括 CMD 开启关闭的时间．
+Sau khi chạy xong, ST sẽ hiển thị thời gian chạy của chương trình. Bộ đếm thời gian này tính từ lúc nhấn <kbd>Ctrl</kbd>+<kbd>B</kbd> đến khi toàn bộ lệnh CMD kết thúc, nghĩa là bao gồm cả thời gian biên dịch, thời gian nhập liệu, và nếu chạy trong CMD bên ngoài thì còn gồm cả thời gian mở/đóng CMD.
 
 ???+ warning "Warning"
-    这个窗口无法输入<kbd>F6</kbd>或<kbd>Ctrl</kbd>+<kbd>Z</kbd>，如果运行读入到文件末尾的程序请使用文件输入，或配置在外部 CMD 运行．
+    Cửa sổ này không thể nhập <kbd>F6</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>Z</kbd>. Nếu chương trình cần đọc đến cuối tệp, hãy dùng input từ tệp hoặc cấu hình chạy trong CMD bên ngoài.
 
-### 调试
+### Gỡ lỗi
 
-可以安装插件使 ST 支持图形化 gdb 调试，但不建议依赖插件进行 gdb 调试．
+Có thể cài plugin để ST hỗ trợ gỡ lỗi gdb bằng giao diện đồ họa, nhưng không nên phụ thuộc vào plugin để gỡ lỗi gdb.
 
-更好的做法是在配置编译系统时加上相关命令启动 gdb，在外部进行命令行调试．
+Cách tốt hơn là thêm lệnh liên quan khi cấu hình hệ thống biên dịch để khởi động gdb, rồi gỡ lỗi bằng dòng lệnh ở bên ngoài.
 
-## 杂项
+## Linh tinh
 
--   把文件夹拖进 ST 中并按<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>B</kbd>开启侧边栏，从而快速切换文件．
--   善用跳转功能，尤其是<kbd>Ctrl</kbd>+<kbd>P</kbd>进行文件间跳转与<kbd>Ctrl</kbd>+<kbd>R</kbd>进行函数跳转．
--   ST 支持 git[^ref4]．
--   ST 的所有配置储存在数据目录下，可以随意打包，但注册信息无法在多台电脑上使用．
+-   Kéo thư mục vào ST rồi nhấn <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>B</kbd> để mở thanh bên, từ đó chuyển tệp nhanh.
+-   Tận dụng chức năng nhảy, đặc biệt là <kbd>Ctrl</kbd>+<kbd>P</kbd> để nhảy giữa các tệp và <kbd>Ctrl</kbd>+<kbd>R</kbd> để nhảy đến hàm.
+-   ST hỗ trợ git[^ref4].
+-   Toàn bộ cấu hình của ST được lưu dưới thư mục dữ liệu và có thể đóng gói tùy ý, nhưng thông tin đăng ký không thể dùng trên nhiều máy.
 
-## 外部链接
+## Liên kết ngoài
 
--   [使用命令行调试](../cmd.md)
--   [Sublime Text 3 官方文档](https://www.sublimetext.com/docs/3/)
--   [Sublime Text 社区文档](https://docs.sublimetext.io/)
+-   [Dùng dòng lệnh để gỡ lỗi](../cmd.md)
+-   [Tài liệu chính thức Sublime Text 3](https://www.sublimetext.com/docs/3/)
+-   [Tài liệu cộng đồng Sublime Text](https://docs.sublimetext.io/)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^ref1]: [NOI Linux 2.0 发布](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
+[^ref1]: [NOI Linux 2.0 phát hành](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
 
-[^ref2]: [Sublime Text 4 发布](https://www.sublimetext.com/blog/articles/sublime-text-4)
+[^ref2]: [Sublime Text 4 phát hành](https://www.sublimetext.com/blog/articles/sublime-text-4)
 
-[^ref3]: [便捷清新的文本编辑器 sublime](https://www.luogu.com.cn/blog/acking/sublime)
+[^ref3]: [Trình soạn thảo văn bản Sublime gọn nhẹ và dễ dùng](https://www.luogu.com.cn/blog/acking/sublime)
 
-[^ref4]: [Sublime Text Git 集成](https://www.sublimetext.com/docs/git_integration.html)
+[^ref4]: [Tích hợp Git trong Sublime Text](https://www.sublimetext.com/docs/git_integration.html)

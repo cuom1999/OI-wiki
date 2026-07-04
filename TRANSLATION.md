@@ -390,6 +390,10 @@ MkDocs source layout intact.
   command tutorial.
 - `docs/tools/editor/emacs.md`: translated the Emacs introductory tutorial and
   configuration examples.
+- `docs/tools/editor/sublime.md`: translated the Sublime Text installation,
+  customization, editing, build/run, and workflow guide.
+- `docs/tools/editor/xcode.md`: translated the Xcode setup, single-file C/C++
+  workflow, and `bits/stdc++.h` compatibility notes.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
