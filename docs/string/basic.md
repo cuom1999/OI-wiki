@@ -1,61 +1,61 @@
 author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
-## 定义
+## Định nghĩa
 
-### 字符集
+### Bảng chữ cái
 
-一个 **字符集** $\Sigma$ 是一个建立了 [全序](../math/order-theory.md#偏序集) 关系的集合，也就是说，$\Sigma$ 中的任意两个不同的元素 $\alpha$ 和 $\beta$ 都可以比较大小，要么 $\alpha<\beta$，要么 $\beta<\alpha$．字符集 $\Sigma$ 中的元素称为字符．
+Một **bảng chữ cái** $\Sigma$ là một tập hợp có quan hệ [thứ tự toàn phần](../math/order-theory.md#%E5%81%8F%E5%BA%8F%E9%9B%86). Nói cách khác, với hai phần tử khác nhau bất kỳ $\alpha$ và $\beta$ trong $\Sigma$, luôn có thể so sánh chúng: hoặc $\alpha<\beta$, hoặc $\beta<\alpha$. Các phần tử của bảng chữ cái $\Sigma$ được gọi là ký tự.
 
-### 字符串
+### Xâu
 
-一个 **字符串**  $S$ 是将 $n$ 个字符顺次排列形成的序列，$n$ 称为 $S$ 的长度，表示为 $|S|$．
+Một **xâu** $S$ là một dãy gồm $n$ ký tự được sắp theo thứ tự; $n$ được gọi là độ dài của $S$, ký hiệu là $|S|$.
 
-如果字符串下标从 $1$ 开始计算，$S$ 的第 $i$ 个字符表示为 $S[i]$；
+Nếu chỉ số xâu bắt đầu từ $1$, ký tự thứ $i$ của $S$ được viết là $S[i]$.
 
-如果字符串下标从 $0$ 开始计算，$S$ 的第 $i$ 个字符表示为 $S[i-1]$．
+Nếu chỉ số xâu bắt đầu từ $0$, ký tự thứ $i$ của $S$ được viết là $S[i-1]$.
 
-### 子串
+### Xâu con
 
-字符串 $S$ 的 **子串**  $S[i..j]，i≤j$，表示 $S$ 串中从 $i$ 到 $j$ 这一段，也就是顺次排列 $S[i],S[i+1],\ldots,S[j]$ 形成的字符串．
+**Xâu con** $S[i..j]$ của xâu $S$, với $i\le j$, biểu thị đoạn từ $i$ đến $j$ trong $S$, tức xâu tạo bởi các ký tự $S[i],S[i+1],\ldots,S[j]$ theo thứ tự.
 
-有时也会用 $S[i..j]$，$i>j$ 来表示空串．
+Đôi khi cũng dùng $S[i..j]$ với $i>j$ để biểu diễn xâu rỗng.
 
-### 子序列
+### Dãy con
 
-字符串 $S$ 的 **子序列** 是从 $S$ 中将若干元素提取出来并不改变相对位置形成的序列，即 $S[p_1],S[p_2],\ldots,S[p_k]$，$1\le p_1< p_2<\cdots< p_k\le|S|$．
+**Dãy con** của xâu $S$ là dãy thu được bằng cách lấy ra một số phần tử từ $S$ mà không thay đổi thứ tự tương đối, tức $S[p_1],S[p_2],\ldots,S[p_k]$ với $1\le p_1<p_2<\cdots<p_k\le |S|$.
 
-### 后缀
+### Hậu tố
 
-**后缀** 是指从某个位置 $i$ 开始到整个串末尾结束的一个特殊子串．字符串 $S$ 的从 $i$ 开头的后缀表示为 $\textit{Suffix(S,i)}$，也就是 $\textit{Suffix(S,i)}=S[i..|S|-1]$．
+**Hậu tố** là một xâu con đặc biệt bắt đầu từ một vị trí $i$ nào đó và kéo dài tới cuối xâu. Hậu tố của xâu $S$ bắt đầu tại $i$ được ký hiệu là $\textit{Suffix(S,i)}$, tức $\textit{Suffix(S,i)}=S[i..|S|-1]$.
 
-**真后缀** 指除了 $S$ 本身的 $S$ 的后缀．
+**Hậu tố thực sự** là hậu tố của $S$ khác với chính $S$.
 
-举例来说，字符串 `abcabcd` 的所有后缀为 `{d, cd, bcd, abcd, cabcd, bcabcd, abcabcd}`，而它的真后缀为 `{d, cd, bcd, abcd, cabcd, bcabcd}`．
+Ví dụ, mọi hậu tố của xâu `abcabcd` là `{d, cd, bcd, abcd, cabcd, bcabcd, abcabcd}`, còn các hậu tố thực sự là `{d, cd, bcd, abcd, cabcd, bcabcd}`.
 
-### 前缀
+### Tiền tố
 
-**前缀** 是指从串首开始到某个位置 $i$ 结束的一个特殊子串．字符串 $S$ 的以 $i$ 结尾的前缀表示为 $\textit{Prefix(S,i)}$，也就是 $\textit{Prefix(S,i)}=S[0..i]$．
+**Tiền tố** là một xâu con đặc biệt bắt đầu từ đầu xâu và kết thúc tại một vị trí $i$ nào đó. Tiền tố của xâu $S$ kết thúc tại $i$ được ký hiệu là $\textit{Prefix(S,i)}$, tức $\textit{Prefix(S,i)}=S[0..i]$.
 
-**真前缀** 指除了 $S$ 本身的 $S$ 的前缀．
+**Tiền tố thực sự** là tiền tố của $S$ khác với chính $S$.
 
-举例来说，字符串 `abcabcd` 的所有前缀为 `{a, ab, abc, abca, abcab, abcabc, abcabcd}`, 而它的真前缀为 `{a, ab, abc, abca, abcab, abcabc}`．
+Ví dụ, mọi tiền tố của xâu `abcabcd` là `{a, ab, abc, abca, abcab, abcabc, abcabcd}`, còn các tiền tố thực sự là `{a, ab, abc, abca, abcab, abcabc}`.
 
-### 字典序
+### Thứ tự từ điển
 
-以第 $i$ 个字符作为第 $i$ 关键字进行大小比较，空字符小于字符集内任何字符（即：$a< aa$）．
+So sánh kích thước bằng cách lấy ký tự thứ $i$ làm khóa thứ $i$; ký tự rỗng nhỏ hơn mọi ký tự trong bảng chữ cái, tức $a<aa$.
 
-### 回文串
+### Xâu đối xứng
 
-**回文串** 是正着写和倒着写相同的字符串，即满足 $\forall 1\le i\le|s|, s[i]=s[|s|+1-i]$ 的 $s$．
+**Xâu đối xứng** là xâu đọc xuôi và đọc ngược giống nhau, tức xâu $s$ thỏa $\forall 1\le i\le |s|, s[i]=s[|s|+1-i]$.
 
-### 汉明距离
+### Khoảng cách Hamming
 
-**汉明距离** 是两个等长字符串之间的距离，它表示两个长度相同的字符串对应位字符不同的数量．
+**Khoảng cách Hamming** là khoảng cách giữa hai xâu có cùng độ dài; nó biểu thị số vị trí mà hai xâu khác ký tự tương ứng.
 
-我们可以简单的认为对两个串进行异或运算，结果为 $1$ 的数量就是两个串的汉明距离．
+Có thể hiểu đơn giản rằng nếu thực hiện phép xor trên hai xâu, số bit có kết quả bằng $1$ chính là khoảng cách Hamming của hai xâu.
 
-## 字符串的存储
+## Lưu trữ xâu
 
--   使用 `char` 数组存储，用空字符 `\0` 表示字符串的结尾（C 风格字符串）．
--   使用 C++ 标准库提供的 [`string` 类](../lang/csl/string.md)．
--   字符串常量可以用字符串字面量（用双引号括起来的字符串）表示．
+-   Dùng mảng `char` để lưu, dùng ký tự rỗng `\0` để biểu thị kết thúc xâu (xâu kiểu C).
+-   Dùng lớp [`string`](../lang/csl/string.md) do thư viện chuẩn C++ cung cấp.
+-   Hằng xâu có thể được biểu diễn bằng literal xâu (xâu đặt trong dấu nháy kép).

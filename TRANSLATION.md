@@ -82,6 +82,10 @@ MkDocs source layout intact.
   `docs/dp/opt/state.md`: translated plug DP and most DP optimization pages,
   plus explanatory comments in their included snippets. `wqs-binary-search.md`
   remains to be translated.
+- `docs/string/basic.md`, `docs/string/lib-func.md`,
+  `docs/string/match.md`: translated the introductory string material covering
+  alphabets, substrings, C/C++ string helpers, and baseline string matching
+  algorithms.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

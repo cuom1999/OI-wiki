@@ -1,32 +1,32 @@
-本页面将简述字符串匹配问题以及它的解法．
+Trang này giới thiệu ngắn gọn bài toán khớp xâu và các cách giải.
 
-## 字符串匹配问题
+## Bài toán khớp xâu
 
-### 定义
+### Định nghĩa
 
-又称模式匹配（pattern matching）．该问题可以概括为「给定字符串 $S$ 和 $T$，在主串 $S$ 中寻找子串 $T$」．字符 $T$ 称为模式串 (pattern)．
+Còn gọi là khớp mẫu (pattern matching). Bài toán có thể tóm tắt là: "cho hai xâu $S$ và $T$, tìm xâu con $T$ trong xâu chính $S$". Xâu $T$ được gọi là xâu mẫu (pattern).
 
-### 类型
+### Phân loại
 
--   单串匹配：给定一个模式串和一个待匹配串，找出前者在后者中的所有位置．
--   多串匹配：给定多个模式串和一个待匹配串，找出这些模式串在后者中的所有位置．
-    -   出现多个待匹配串时，将它们直接连起来便可作为一个待匹配串处理．
-    -   可以直接当做单串匹配，但是效率不够高．
--   其他类型：例如匹配一个串的任意后缀，匹配多个串的任意后缀……
+-   Khớp một xâu: cho một xâu mẫu và một xâu cần khớp, tìm mọi vị trí xuất hiện của xâu mẫu trong xâu kia.
+-   Khớp nhiều xâu: cho nhiều xâu mẫu và một xâu cần khớp, tìm mọi vị trí xuất hiện của các xâu mẫu trong xâu kia.
+    -   Khi có nhiều xâu cần khớp, có thể nối trực tiếp chúng lại để xử lý như một xâu cần khớp.
+    -   Có thể xử lý trực tiếp như nhiều lần khớp một xâu, nhưng hiệu quả không đủ cao.
+-   Các kiểu khác: ví dụ khớp hậu tố bất kỳ của một xâu, khớp hậu tố bất kỳ của nhiều xâu, v.v.
 
-## 暴力做法
+## Cách vét cạn
 
-简称 BF (Brute Force) 算法．该算法的基本思想是从主串 $S$ 的第一个字符开始和模式串 $T$ 的第一个字符进行比较，若相等，则继续比较二者的后续字符；否则，模式串 $T$ 回退到第一个字符，重新和主串 $S$ 的第二个字符进行比较．如此往复，直到 $S$ 或 $T$ 中所有字符比较完毕．
+Thường gọi tắt là thuật toán BF (Brute Force). Ý tưởng cơ bản là bắt đầu từ ký tự đầu tiên của xâu chính $S$ và so sánh với ký tự đầu tiên của xâu mẫu $T$. Nếu bằng nhau, tiếp tục so sánh các ký tự tiếp theo của cả hai; nếu không, đưa xâu mẫu $T$ quay về ký tự đầu tiên và so sánh lại với ký tự thứ hai của xâu chính $S$. Lặp lại như vậy cho tới khi so sánh xong toàn bộ ký tự trong $S$ hoặc $T$.
 
-### 实现
+### Cài đặt
 
 === "C++"
     ```cpp
     /*
-     * s：待匹配的主串
-     * t：模式串
-     * n：主串的长度
-     * m：模式串的长度
+     * s: xâu chính cần khớp
+     * t: xâu mẫu
+     * n: độ dài xâu chính
+     * m: độ dài xâu mẫu
      */
     std::vector<int> match(char *s, char *t, int n, int m) {
       std::vector<int> ans;
@@ -57,20 +57,20 @@
         return ans
     ```
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-设 $n$ 为主串的长度，$m$ 为模式串的长度．默认 $m\ll n$．
+Gọi $n$ là độ dài xâu chính, $m$ là độ dài xâu mẫu. Mặc định $m\ll n$.
 
-BF 算法匹配成功时，在最好情况下，只有一趟匹配成功，此趟比较次数为 $m$，而其余每趟不成功的匹配都发生在模式串的第一个字符，还需要 $n-m$ 次比较，总比较次数为 $n$，故时间复杂度为 $O(n)$；在最坏情况下，匹配成功的趟数为 $n-m+1$，每趟比较次数为 $m$，总比较次数为 $m(n-m+1)$，故时间复杂度为 $O(mn)$．
+Khi thuật toán BF khớp thành công, trong trường hợp tốt nhất chỉ có một lượt khớp thành công, lượt này cần $m$ lần so sánh, còn mọi lượt khớp thất bại khác đều thất bại ở ký tự đầu của xâu mẫu và cần thêm $n-m$ lần so sánh. Tổng số lần so sánh là $n$, nên độ phức tạp thời gian là $O(n)$. Trong trường hợp xấu nhất, số lượt khớp thành công cần xét là $n-m+1$, mỗi lượt cần $m$ lần so sánh, tổng cộng $m(n-m+1)$ lần, nên độ phức tạp là $O(mn)$.
 
-BF 算法匹配失败时，在最好情况下，每趟不成功的匹配都发生在模式串的第一个字符，BF 算法要执行 $n-m+1$ 次比较，时间复杂度为 $O(n)$；在最坏情况下，每趟不成功的匹配都发生在模式串的最后一个字符，BF 算法要执行 $m(n-m+1)$ 次比较，时间复杂度为 $O(mn)$．
+Khi thuật toán BF khớp thất bại, trong trường hợp tốt nhất mọi lượt thất bại đều xảy ra ở ký tự đầu của xâu mẫu, thuật toán BF cần thực hiện $n-m+1$ lần so sánh, độ phức tạp là $O(n)$. Trong trường hợp xấu nhất, mọi lượt thất bại đều xảy ra ở ký tự cuối của xâu mẫu, thuật toán BF cần thực hiện $m(n-m+1)$ lần so sánh, độ phức tạp là $O(mn)$.
 
-如果模式串有至少两个不同的字符，则 BF 算法的平均时间复杂度为 $O(n)$．但是在 OI 题目中，给出的字符串一般都不是纯随机的．
+Nếu xâu mẫu có ít nhất hai ký tự khác nhau, độ phức tạp trung bình của thuật toán BF là $O(n)$. Tuy nhiên trong các bài OI, xâu được cho thường không phải dữ liệu ngẫu nhiên thuần túy.
 
-## Hash 的方法
+## Phương pháp hash
 
-参见：[字符串哈希](./hash.md)
+Xem: [hash xâu](./hash.md)
 
-## KMP 算法
+## Thuật toán KMP
 
-参见：[前缀函数与 KMP 算法](./kmp.md)
+Xem: [hàm tiền tố và thuật toán KMP](./kmp.md)

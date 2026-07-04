@@ -198,9 +198,9 @@ nav:
     - 其它 DP 方法: dp/misc.md
   - Xâu:
     - Tổng quan xâu: string/index.md
-    - 字符串基础: string/basic.md
-    - 标准库: string/lib-func.md
-    - 字符串匹配: string/match.md
+    - Cơ sở xâu: string/basic.md
+    - Thư viện chuẩn: string/lib-func.md
+    - Khớp xâu: string/match.md
     - 字符串哈希: string/hash.md
     - 字典树 (Trie): string/trie.md
     - 前缀函数与 KMP 算法: string/kmp.md
