@@ -7,6 +7,7 @@ MkDocs source layout intact.
 
 - `README.md`: translated and annotated for this fork.
 - `docs/index.md`: translated landing page.
+- `docs/edit-landing.md`: translated the in-browser edit landing prompt.
 - `docs/intro/about.md`: translated project overview.
 - `docs/contest/index.md`, `docs/lang/index.md`, `docs/basic/index.md`:
   translated section introductions.
@@ -35,8 +36,9 @@ MkDocs source layout intact.
   algorithm and sorting pages.
 - `docs/contest/resources.md`, `docs/contest/roadmap.md`: translated learning
   resources and roadmap pages.
-- `docs/intro/htc.md`, `docs/intro/faq.md`: translated contributor guide and
-  FAQ, while preserving compatibility anchors for existing upstream links.
+- `docs/intro/htc.md`, `docs/intro/faq.md`, `docs/intro/format.md`:
+  translated contributor guide, FAQ, and formatting manual, while preserving
+  compatibility anchors for existing upstream links.
 - `docs/contest/oi.md`, `docs/contest/common-mistakes.md`,
   `docs/intro/docker-deploy.md`, `docs/intro/symbol.md`: translated OI contest
   formats, common contest mistakes, Docker deployment instructions, and the
@@ -258,6 +260,8 @@ MkDocs source layout intact.
   miscellaneous data-structure pages covering divide-combine trees, PQ trees,
   finger trees, and Huffman trees, including rendered comments and output
   strings in the Huffman examples.
+- `docs/ds/lct.md`, `docs/ds/top-tree.md`: translated dynamic-tree pages
+  covering Link/Cut Tree and Self-Adjusting Top Tree.
 - `docs/graph/concept.md`, `docs/graph/save.md`, `docs/graph/dfs.md`,
   `docs/graph/bfs.md`: translated foundational graph-theory pages covering
   graph terminology, graph storage formats, DFS, and BFS, including pseudocode

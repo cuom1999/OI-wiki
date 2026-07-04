@@ -1,81 +1,81 @@
-在文章开始之前，**OI Wiki** 项目组全体成员十分欢迎您为本项目贡献页面．正因为有了上百位像您一样的人，才有了 **OI Wiki** 的今天！
+Trước khi bắt đầu bài viết, toàn thể thành viên dự án **OI Wiki** rất hoan nghênh bạn đóng góp trang cho dự án này. Chính nhờ hàng trăm người như bạn mà **OI Wiki** có được ngày hôm nay!
 
-本页面将列出在 **OI Wiki** 编写过程时推荐使用的格式规范与编辑方针．请您在撰稿或者修正 Wiki 页面以前，仔细阅读以下内容，以帮助您完成更高质量的内容．
+Trang này liệt kê các quy chuẩn định dạng và phương châm biên tập được khuyên dùng khi viết **OI Wiki**. Trước khi soạn thảo hoặc sửa trang Wiki, vui lòng đọc kỹ các nội dung dưới đây để tạo ra nội dung chất lượng hơn.
 
-如果您已迫不及待，想要快速上手，建议先阅读 [太长不看版](#太长不看版) 与 [图片举例](#图解) 的章节．
+Nếu bạn muốn bắt đầu thật nhanh, nên đọc trước các mục [Tóm tắt nhanh](#tom-tat-nhanh) và [Hình minh họa](#hinh-minh-hoa).
 
 ??? abstract "Changelog"
-    **注意**：只记录和写作、审阅等相关的改动，不记录格式修正等改动．
+    **Chú ý**: chỉ ghi các thay đổi liên quan đến viết bài, duyệt bài, v.v.; không ghi các thay đổi chỉ sửa định dạng.
     
-    | 时间         | 主要内容                                                | 相关 Issue/Pull Request 链接                                                                                    |
-    | ---------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-    | 2026-02-22 | 完善引号使用的相关规定                                         | [#6793](https://github.com/OI-wiki/OI-wiki/pull/6793)                                                       |
-    | 2026-01-07 | 要求使用全角句点替代中文句号                                      | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                       |
-    | 2025-08-10 | 添加格式手册的格式要求；<br>代码：补充片段代码相关要求                       | [#6412](https://github.com/OI-wiki/OI-wiki/pull/6412)                                                       |
-    | 2025-08-10 | 添加 Changelog 与 TL;DR                                | [#6409](https://github.com/OI-wiki/OI-wiki/pull/6409)                                                       |
-    | 2024-10-08 | 代码：为适应全平台测试完善了格式要求                                  | [#5912](https://github.com/OI-wiki/OI-wiki/pull/5912)，[#5924](https://github.com/OI-wiki/OI-wiki/pull/5924) |
-    | 2024-03-26 | 引用 OJ 题目链接时使用原链接，而不是镜像链接                            | [#5482](https://github.com/OI-wiki/OI-wiki/pull/5482)                                                       |
-    | 2023-10-09 | 主题插件：新增选项卡[^note6]的格式要求                             | [#5152](https://github.com/OI-wiki/OI-wiki/pull/5152)                                                       |
-    | 2023-07-23 | 对于工具类内容的下载安装等内容，要求引用官方文档                            | [#5023](https://github.com/OI-wiki/OI-wiki/pull/5023)                                                       |
-    | 2023-04-15 | 补充引号的使用规范                                           | [#4792](https://github.com/OI-wiki/OI-wiki/pull/4792)                                                       |
-    | 2023-03-28 | LaTeX：数学符号表                                         | [#4587](https://github.com/OI-wiki/OI-wiki/pull/4587)                                                       |
-    | 2023-03-02 | 补充全半角标点与连接号的使用规范                                    | [#4726](https://github.com/OI-wiki/OI-wiki/pull/4726)                                                       |
-    | 2022-12-13 | 主题插件：移除嵌套折叠框的阴影样式要求                                 | [#4500](https://github.com/OI-wiki/OI-wiki/pull/4500)                                                       |
-    | 2022-08-09 | 引用内链的某一节内容时，使用中文标题                                  | [#4057](https://github.com/OI-wiki/OI-wiki/pull/4057)                                                       |
-    | 2022-06-12 | 完善目录更改的相关要求[^note4]                                 | [#4043](https://github.com/OI-wiki/OI-wiki/pull/4043)                                                       |
-    | 2021-09-09 | 主题插件：补充折叠框相关要求                                      | [#3517](https://github.com/OI-wiki/OI-wiki/pull/3517)                                                       |
-    | 2021-09-03 | LaTeX：`\Leftrightarrow` $\to$ `\iff`                | [#3499](https://github.com/OI-wiki/OI-wiki/pull/3499)                                                       |
-    | 2021-08-18 | 代码：新增例题代码的格式要求                                      | [#3447](https://github.com/OI-wiki/OI-wiki/pull/3447)                                                       |
-    | 2021-08-12 | 图片：动图优先使用 APNG 格式                                   | [#3422](https://github.com/OI-wiki/OI-wiki/pull/3422)                                                       |
-    | 2021-06-29 | 图片：建议同时提交源文件                                        | [#3255](https://github.com/OI-wiki/OI-wiki/pull/3255)                                                       |
-    | 2021-05-29 | 代码：删除大括号不换行的要求，补充可读性要求                              | [#3197](https://github.com/OI-wiki/OI-wiki/pull/3197)                                                       |
-    | 2021-03-15 | 站点维护：规范 Pull Request 的合并方式[^note5]                  | [#3061](https://github.com/OI-wiki/OI-wiki/pull/3061)                                                       |
-    | 2021-02-01 | LaTeX：`\lt` $\to$ `<`，`\gt` $\to$ `>`               | [#2950](https://github.com/OI-wiki/OI-wiki/pull/2950)                                                       |
-    | 2021-01-27 | 建议在 [互联网档案馆](https://web.archive.org/) 保存外链备份       | [#2918](https://github.com/OI-wiki/OI-wiki/pull/2918)                                                       |
-    | 2020-09-19 | 站点维护：Commit Message 与 Pull Request 标题的书写要求[^note4]  | [#2744](https://github.com/OI-wiki/OI-wiki/pull/2744)                                                       |
-    | 2020-10-18 | 图片：优先使用 SVG 格式                                      | [#2215](https://github.com/OI-wiki/OI-wiki/pull/2215)                                                       |
-    | 2020-08-05 | LaTeX：新增多字母变量的格式要求                                  | [#2502](https://github.com/OI-wiki/OI-wiki/pull/2502)                                                       |
-    | 2020-07-28 | LaTeX：`cases` 环境禁止超过两列                              | [#2466](https://github.com/OI-wiki/OI-wiki/pull/2466)                                                       |
-    | 2020-07-24 | LaTeX：`{n \choose m}`$\to$ `\dbinom{n}{m}`          | [#2442](https://github.com/OI-wiki/OI-wiki/pull/2442)                                                       |
-    | 2020-07-20 | Markdown：禁用删除线语法                                    | [#2422](https://github.com/OI-wiki/OI-wiki/pull/2422)                                                       |
-    | 2020-07-19 | 主题插件：要求保留折叠框[^note3]中空行的缩进空格；<br>LaTeX：追加对数学公式的格式要求 | [#2412](https://github.com/OI-wiki/OI-wiki/pull/2412)                                                       |
-    | 2020-07-11 | 最初版本                                                | [#2350](https://github.com/OI-wiki/OI-wiki/pull/2350)                                                       |
+    | Thời gian  | Nội dung chính                                                                | Liên kết Issue/Pull Request liên quan                                                                     |
+    | ---------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+    | 2026-02-22 | Hoàn thiện quy định về cách dùng dấu nháy                                     | [#6793](https://github.com/OI-wiki/OI-wiki/pull/6793)                                                     |
+    | 2026-01-07 | Yêu cầu dùng dấu chấm toàn chiều rộng thay cho dấu chấm câu tiếng Trung       | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                     |
+    | 2025-08-10 | Thêm yêu cầu định dạng cho sổ tay định dạng;<br>Mã: bổ sung yêu cầu về mã đoạn | [#6412](https://github.com/OI-wiki/OI-wiki/pull/6412)                                                    |
+    | 2025-08-10 | Thêm Changelog và TL;DR                                                       | [#6409](https://github.com/OI-wiki/OI-wiki/pull/6409)                                                     |
+    | 2024-10-08 | Mã: hoàn thiện yêu cầu định dạng để phù hợp kiểm thử đa nền tảng              | [#5912](https://github.com/OI-wiki/OI-wiki/pull/5912), [#5924](https://github.com/OI-wiki/OI-wiki/pull/5924) |
+    | 2024-03-26 | Khi dẫn liên kết bài trên OJ, dùng liên kết gốc thay vì liên kết mirror       | [#5482](https://github.com/OI-wiki/OI-wiki/pull/5482)                                                     |
+    | 2023-10-09 | Plugin chủ đề: thêm yêu cầu định dạng cho tab[^note6]                         | [#5152](https://github.com/OI-wiki/OI-wiki/pull/5152)                                                     |
+    | 2023-07-23 | Với nội dung về công cụ, yêu cầu dẫn tài liệu chính thức khi nói về tải và cài đặt | [#5023](https://github.com/OI-wiki/OI-wiki/pull/5023)                                                 |
+    | 2023-04-15 | Bổ sung quy phạm dùng dấu nháy                                                | [#4792](https://github.com/OI-wiki/OI-wiki/pull/4792)                                                     |
+    | 2023-03-28 | LaTeX: bảng ký hiệu toán học                                                  | [#4587](https://github.com/OI-wiki/OI-wiki/pull/4587)                                                     |
+    | 2023-03-02 | Bổ sung quy phạm dùng dấu câu toàn chiều rộng, nửa chiều rộng và dấu nối      | [#4726](https://github.com/OI-wiki/OI-wiki/pull/4726)                                                     |
+    | 2022-12-13 | Plugin chủ đề: bỏ yêu cầu về bóng của hộp gấp lồng nhau                       | [#4500](https://github.com/OI-wiki/OI-wiki/pull/4500)                                                     |
+    | 2022-08-09 | Khi dẫn một mục của liên kết nội bộ, dùng tiêu đề tiếng Trung                 | [#4057](https://github.com/OI-wiki/OI-wiki/pull/4057)                                                     |
+    | 2022-06-12 | Hoàn thiện yêu cầu liên quan đến thay đổi mục lục[^note4]                     | [#4043](https://github.com/OI-wiki/OI-wiki/pull/4043)                                                     |
+    | 2021-09-09 | Plugin chủ đề: bổ sung yêu cầu liên quan đến hộp gấp                          | [#3517](https://github.com/OI-wiki/OI-wiki/pull/3517)                                                     |
+    | 2021-09-03 | LaTeX: `\Leftrightarrow` $\to$ `\iff`                                         | [#3499](https://github.com/OI-wiki/OI-wiki/pull/3499)                                                     |
+    | 2021-08-18 | Mã: thêm yêu cầu định dạng cho mã bài mẫu                                     | [#3447](https://github.com/OI-wiki/OI-wiki/pull/3447)                                                     |
+    | 2021-08-12 | Hình ảnh: ưu tiên dùng định dạng APNG cho ảnh động                            | [#3422](https://github.com/OI-wiki/OI-wiki/pull/3422)                                                     |
+    | 2021-06-29 | Hình ảnh: khuyến nghị nộp kèm tệp nguồn                                       | [#3255](https://github.com/OI-wiki/OI-wiki/pull/3255)                                                     |
+    | 2021-05-29 | Mã: bỏ yêu cầu dấu ngoặc nhọn không xuống dòng, bổ sung yêu cầu về khả năng đọc | [#3197](https://github.com/OI-wiki/OI-wiki/pull/3197)                                                  |
+    | 2021-03-15 | Bảo trì site: chuẩn hóa cách merge Pull Request[^note5]                       | [#3061](https://github.com/OI-wiki/OI-wiki/pull/3061)                                                     |
+    | 2021-02-01 | LaTeX: `\lt` $\to$ `<`, `\gt` $\to$ `>`                                       | [#2950](https://github.com/OI-wiki/OI-wiki/pull/2950)                                                     |
+    | 2021-01-27 | Khuyến nghị lưu bản sao liên kết ngoài trên [Internet Archive](https://web.archive.org/) | [#2918](https://github.com/OI-wiki/OI-wiki/pull/2918)                                           |
+    | 2020-09-19 | Bảo trì site: yêu cầu viết Commit Message và tiêu đề Pull Request[^note4]     | [#2744](https://github.com/OI-wiki/OI-wiki/pull/2744)                                                     |
+    | 2020-10-18 | Hình ảnh: ưu tiên dùng định dạng SVG                                          | [#2215](https://github.com/OI-wiki/OI-wiki/pull/2215)                                                     |
+    | 2020-08-05 | LaTeX: thêm yêu cầu định dạng cho biến gồm nhiều chữ cái                      | [#2502](https://github.com/OI-wiki/OI-wiki/pull/2502)                                                     |
+    | 2020-07-28 | LaTeX: cấm môi trường `cases` có quá hai cột                                  | [#2466](https://github.com/OI-wiki/OI-wiki/pull/2466)                                                     |
+    | 2020-07-24 | LaTeX: `{n \choose m}`$\to$ `\dbinom{n}{m}`                                   | [#2442](https://github.com/OI-wiki/OI-wiki/pull/2442)                                                     |
+    | 2020-07-20 | Markdown: cấm cú pháp gạch xóa                                               | [#2422](https://github.com/OI-wiki/OI-wiki/pull/2422)                                                     |
+    | 2020-07-19 | Plugin chủ đề: yêu cầu giữ khoảng trắng thụt lề ở dòng trống trong hộp gấp[^note3];<br>LaTeX: thêm yêu cầu định dạng cho công thức toán | [#2412](https://github.com/OI-wiki/OI-wiki/pull/2412) |
+    | 2020-07-11 | Phiên bản đầu tiên                                                            | [#2350](https://github.com/OI-wiki/OI-wiki/pull/2350)                                                     |
 
-## 太长不看版
+## <a id="tom-tat-nhanh"></a>Tóm tắt nhanh
 
-为方便初次阅读本文档的用户，本节列举该手册中的若干重点事项：
+Để thuận tiện cho người lần đầu đọc tài liệu này, mục này liệt kê một số điểm trọng yếu của sổ tay:
 
--   文件存储：
+-   Lưu trữ tệp:
 
-    -   使用小写文件名，以 `-` 代替空格．详见 [SAVE-1](#SAVE-1)．
+    -   Dùng tên tệp viết thường, thay khoảng trắng bằng `-`. Xem [SAVE-1](#SAVE-1).
 
-    -   不要插入外链图片．详见 [SAVE-2](#SAVE-2)．
+    -   Không chèn ảnh bằng liên kết ngoài. Xem [SAVE-2](#SAVE-2).
 
-    -   图片尽可能使用 SVG 格式，只应使用 SVG 1.1 标准．详见 [SAVE-3](#SAVE-3)．
+    -   Hình ảnh nên dùng định dạng SVG nếu có thể, và chỉ nên dùng chuẩn SVG 1.1. Xem [SAVE-3](#SAVE-3).
 
-    -   动图应使用 SVG 或 APNG 格式．详见 [SAVE-4](#SAVE-4)．
+    -   Ảnh động nên dùng định dạng SVG hoặc APNG. Xem [SAVE-4](#SAVE-4).
 
-    -   有源文件的图片建议同时提交源文件．详见 [SAVE-5](#SAVE-5)．
+    -   Nếu hình ảnh có tệp nguồn, nên nộp kèm tệp nguồn. Xem [SAVE-5](#SAVE-5).
 
-    -   插入外链时建议同时插入快照链接．详见 [SAVE-6](#SAVE-6)．
+    -   Khi chèn liên kết ngoài, nên chèn kèm liên kết bản lưu trữ. Xem [SAVE-6](#SAVE-6).
 
-    -   不要以插入外链的方式插入内链．详见 [SAVE-7](#SAVE-7)．
+    -   Không chèn liên kết nội bộ theo cách chèn liên kết ngoài. Xem [SAVE-7](#SAVE-7).
 
--   标点符号：
+-   Dấu câu:
 
-    -   规范使用标点符号．在每句话的末尾添加 **句号**．详见 [PUNC-1](#PUNC-1) 至 [PUNC-7](#PUNC-7)．
+    -   Dùng dấu câu đúng quy chuẩn. Thêm **dấu chấm câu** ở cuối mỗi câu. Xem từ [PUNC-1](#PUNC-1) đến [PUNC-7](#PUNC-7).
 
-    -   注意区分连接号（hyphen、en dash、em dash）．详见 [PUNC-8](#PUNC-8)．
+    -   Chú ý phân biệt các loại dấu nối (hyphen, en dash, em dash). Xem [PUNC-8](#PUNC-8).
 
--   Markdown 语法与主题扩展语法：
+-   Cú pháp Markdown và cú pháp mở rộng của chủ đề:
 
-    -   只应使用二级、三级、四级标题．不要使用标题替代加粗．不要在标题写 LaTeX 公式．详见 [LINT-1](#LINT-1)、[MDFM-1](#MDFM-1)、[CONT-4](#CONT-4)、[CONT-9](#CONT-9)．
+    -   Chỉ nên dùng tiêu đề cấp hai, cấp ba và cấp bốn. Không dùng tiêu đề để thay cho in đậm. Không viết công thức LaTeX trong tiêu đề. Xem [LINT-1](#LINT-1), [MDFM-1](#MDFM-1), [CONT-4](#CONT-4), [CONT-9](#CONT-9).
 
-    -   使用折叠框[^note3]语法和选项卡[^note6]语法时，须保持内部缩进一致，**对空行也是如此**．**不要漏掉** 空行的空格缩进．详见 [LINT-6](#LINT-6)、[MDFM-6](#MDFM-6)．
+    -   Khi dùng cú pháp hộp gấp[^note3] và cú pháp tab[^note6], phải giữ thụt lề bên trong nhất quán, **kể cả dòng trống**. **Không được bỏ sót** khoảng trắng thụt lề của dòng trống. Xem [LINT-6](#LINT-6), [MDFM-6](#MDFM-6).
 
-    -   不要使用删除线 `~~foo~~` 语法．详见 [LINT-3](#LINT-3)．
+    -   Không dùng cú pháp gạch xóa `~~foo~~`. Xem [LINT-3](#LINT-3).
 
-    -   行间公式应写作
+    -   Công thức hiển thị riêng dòng nên viết là
 
         ```text
         $$
@@ -83,253 +83,253 @@
         $$
         ```
 
-        而不是 `$$a^{2}=b^{2}+c^{2}$$`．详见 [LINT-5](#LINT-5)．
+        thay vì `$$a^{2}=b^{2}+c^{2}$$`. Xem [LINT-5](#LINT-5).
 
-    -   使用折叠框而不是块引用（Blockquotes）．详见 [MDFM-5](#MDFM-5)．
+    -   Dùng hộp gấp thay vì blockquote. Xem [MDFM-5](#MDFM-5).
 
-    -   代码块只应使用 ` ``` ` 语法，且须标注语言．详见 [LINT-7](#LINT-7)、[MDFM-3](#MDFM-3)．
+    -   Khối mã chỉ nên dùng cú pháp ` ``` ` và phải ghi rõ ngôn ngữ. Xem [LINT-7](#LINT-7), [MDFM-3](#MDFM-3).
 
--   LaTeX 公式：
-    -   不应与 [数学符号表](./symbol.md) 相冲突．详见 [MATH-1.1](#MATH-1.1)．
+-   Công thức LaTeX:
+    -   Không được mâu thuẫn với [bảng ký hiệu toán học](./symbol.md). Xem [MATH-1.1](#MATH-1.1).
 
-    -   注意字体的使用，详见 [MATH-1.2](#MATH-1.2)、[MATH-1.15](#MATH-1.15)、[MATH-2.6](#MATH-2.6)、[MATH-2.7](#MATH-2.7)．
+    -   Chú ý cách dùng font, xem [MATH-1.2](#MATH-1.2), [MATH-1.15](#MATH-1.15), [MATH-2.6](#MATH-2.6), [MATH-2.7](#MATH-2.7).
 
-    -   不要滥用 LaTeX 公式．详见 [MATH-1.14](#MATH-1.14)．
+    -   Không lạm dụng công thức LaTeX. Xem [MATH-1.14](#MATH-1.14).
 
-    -   不要 LaTeX 公式里使用程序设计语言的表示方式．（如：不要使用 $a==b$、$a<<1$、$a\%b$．）不要使用中括号连缀（$a[i][j]$）．详见 [MATH-1.9](#MATH-1.9)、[MATH-1.10](#MATH-1.10)．
+    -   Không dùng cách biểu diễn của ngôn ngữ lập trình trong công thức LaTeX. (Ví dụ: không dùng $a==b$, $a<<1$, $a\%b$.) Không dùng cách nối nhiều cặp ngoặc vuông ($a[i][j]$). Xem [MATH-1.9](#MATH-1.9), [MATH-1.10](#MATH-1.10).
 
--   代码：
+-   Mã:
 
-    -   尽可能简洁易懂，避免压行等不良习惯．尽可能保证可读性，突出算法思想．详见 [CONT-10](#CONT-10)．
+    -   Cố gắng viết ngắn gọn, dễ hiểu, tránh các thói quen xấu như nén quá nhiều câu lệnh trên một dòng. Cố gắng bảo đảm khả năng đọc và làm nổi bật tư tưởng thuật toán. Xem [CONT-10](#CONT-10).
 
-    -   不推荐直接把代码插入 Markdown 文档中．详见 [CODE-1.1](#CODE-1.1)、[CODE-1.2](#CODE-1.2)．
+    -   Không khuyến nghị chèn mã trực tiếp vào tài liệu Markdown. Xem [CODE-1.1](#CODE-1.1), [CODE-1.2](#CODE-1.2).
 
-## 对本文档的格式要求
+## Yêu cầu định dạng của tài liệu này
 
--   <a id="FREQ-1"></a>FREQ-1：修订格式手册的条目时需同时补充 Changelog．若只是修正格式，则无需补充 Changelog．
--   <a id="FREQ-2"></a>FREQ-2：除 [太长不看版](#太长不看版) 一节外，格式手册的条目都需要有不重复的编号，编号需要匹配正则表达式 `(?<category>[A-Z]{4})-(?<id>[1-9][0-9]*(?:\.[1-9][0-9]*)*)`，其中 `category` 应具有直观的含义．说明文字不需要有编号．
--   <a id="FREQ-3"></a>FREQ-3：[太长不看版](#太长不看版) 的条目必须来自格式手册其他章节的内容，且需在末尾引用对应的条目编号．
--   <a id="FREQ-4"></a>FREQ-4：条目的编号一旦确定就不应更改．如果确需更改（如删除、合并条目），则应用类似「已废止」、「迁移至 XXXX-id」的文字注明．
+-   <a id="FREQ-1"></a>FREQ-1: khi sửa các mục của sổ tay định dạng, cần bổ sung Changelog đồng thời. Nếu chỉ sửa lỗi định dạng thì không cần bổ sung Changelog.
+-   <a id="FREQ-2"></a>FREQ-2: ngoài mục [Tóm tắt nhanh](#tom-tat-nhanh), mọi mục trong sổ tay định dạng đều cần có mã số không trùng lặp. Mã số cần khớp biểu thức chính quy `(?<category>[A-Z]{4})-(?<id>[1-9][0-9]*(?:\.[1-9][0-9]*)*)`, trong đó `category` nên có ý nghĩa trực quan. Phần thuyết minh không cần có mã số.
+-   <a id="FREQ-3"></a>FREQ-3: các mục trong [Tóm tắt nhanh](#tom-tat-nhanh) phải được lấy từ nội dung ở các chương khác của sổ tay định dạng, và cuối mục cần dẫn mã số mục tương ứng.
+-   <a id="FREQ-4"></a>FREQ-4: sau khi mã số của mục đã xác định thì không nên thay đổi. Nếu thật sự cần thay đổi (ví dụ xóa hoặc gộp mục), cần ghi chú bằng nội dung tương tự "đã hủy bỏ" hoặc "chuyển sang XXXX-id".
 
-## 贡献文档要求
+## Yêu cầu khi đóng góp tài liệu
 
-当你打算贡献某部分的内容时，你应该尽量熟悉以下三部分：
+Khi bạn dự định đóng góp nội dung cho một phần nào đó, bạn nên cố gắng nắm rõ ba phần sau:
 
--   文档存储的格式
--   文档的合理性
--   remark-lint 和 $\rm{\LaTeX}$ 公式的格式要求
+-   Định dạng lưu trữ tài liệu.
+-   Tính hợp lý của tài liệu.
+-   Yêu cầu định dạng của remark-lint và công thức $\rm{\LaTeX}$.
 
-### 文档引用与存储的格式
+### Định dạng dẫn chiếu và lưu trữ tài liệu
 
--   <a id="SAVE-1"></a>SAVE-1：**文件名请务必都小写，以 `-` 分割．** 例如：`file-name.md`．
+-   <a id="SAVE-1"></a>SAVE-1: **tên tệp bắt buộc viết thường và tách bằng `-`.** Ví dụ: `file-name.md`.
 
--   <a id="SAVE-2"></a>SAVE-2：请务必确保文档中引用的 **外链** 图片已经全部转存到了 **本库内** 对应的 `images` 文件夹中（防止触发某些网站的防盗链），建议处理成 `MD 文档名称 + 编号` 的形式（可参考已有文档中图片的处理方式）．例如：本篇文档的文件名称为 format，则文档中引用的第一张图片的名字为 `format1.png`．
+-   <a id="SAVE-2"></a>SAVE-2: hãy đảm bảo tất cả hình ảnh **liên kết ngoài** được dẫn trong tài liệu đã được chuyển vào thư mục `images` tương ứng **bên trong kho này** (để tránh kích hoạt cơ chế chống hotlink của một số website). Nên đặt tên theo dạng `tên tài liệu MD + số thứ tự` (có thể tham khảo cách xử lý hình ảnh trong các tài liệu hiện có). Ví dụ: tên tệp của tài liệu này là format, thì hình ảnh đầu tiên được dẫn trong tài liệu có tên là `format1.png`.
 
--   <a id="SAVE-3"></a>SAVE-3：推荐使用 SVG 格式的图片[^ref4]，以获取较好的清晰度和缩放效果．由于 **OI Wiki** 各组件对 SVG 标准的兼容性不同，所以您的图片应基于 [SVG 1.1](http://www.w3.org/TR/SVG11/) 标准．
+-   <a id="SAVE-3"></a>SAVE-3: nên dùng hình ảnh định dạng SVG[^ref4] để có độ nét và hiệu quả phóng to, thu nhỏ tốt hơn. Do các thành phần của **OI Wiki** có khả năng tương thích khác nhau với chuẩn SVG, hình ảnh của bạn nên dựa trên chuẩn [SVG 1.1](http://www.w3.org/TR/SVG11/).
 
--   <a id="SAVE-4"></a>SAVE-4：动图如果无法或者不会制作 SVG 格式的，则推荐使用 APNG 格式[^apng]的文件．Windows 用户可使用 [ScreenToGif](https://www.screentogif.com) 录制，Linux 用户可使用 [Peek](https://github.com/phw/peek) 录制，注意需要在设置里调整为录制 APNG．其他情况则推荐先制作为 MP4 等视频文件再转换为 APNG，如果使用 ffmpeg 则可以使用 `ffmpeg -i filename.mp4 -f apng filename.apng -plays 0` 转换．[^intro-apng]
+-   <a id="SAVE-4"></a>SAVE-4: với ảnh động, nếu không thể hoặc không biết cách tạo định dạng SVG, nên dùng tệp định dạng APNG[^apng]. Người dùng Windows có thể dùng [ScreenToGif](https://www.screentogif.com) để ghi hình, người dùng Linux có thể dùng [Peek](https://github.com/phw/peek) để ghi hình; chú ý cần chỉnh trong cài đặt sang ghi APNG. Trường hợp khác, nên tạo trước thành tệp video như MP4 rồi chuyển sang APNG. Nếu dùng ffmpeg, có thể chuyển bằng `ffmpeg -i filename.mp4 -f apng filename.apng -plays 0`.[^intro-apng]
 
--   <a id="SAVE-5"></a>SAVE-5：同时具有源文件和导出图像的图片（例如 JPG 文件与 PSD 文件或者 SVG 图像与 TikZ TeX 源代码），建议将源文件以与图片相同的文件名保存于同一目录下．
+-   <a id="SAVE-5"></a>SAVE-5: với hình ảnh có đồng thời tệp nguồn và ảnh xuất ra (ví dụ tệp JPG và tệp PSD, hoặc ảnh SVG và mã nguồn TikZ TeX), nên lưu tệp nguồn cùng tên với hình ảnh trong cùng thư mục.
 
--   <a id="SAVE-6"></a>SAVE-6：请确保您的文档中的引用链接的稳定性．**不推荐** 引用 **自建** 服务中的资源（如自建 OJ 里的题目）．建议在添加时同时将该外链存于互联网档案馆[^webarchive]，以防无法替代的链接失效．
+-   <a id="SAVE-6"></a>SAVE-6: hãy đảm bảo tính ổn định của các liên kết tham chiếu trong tài liệu. **Không khuyến nghị** dẫn tài nguyên từ dịch vụ **tự xây dựng** (ví dụ bài tập trong OJ tự xây dựng). Khi thêm liên kết ngoài, nên đồng thời lưu liên kết đó vào Internet Archive[^webarchive] để phòng trường hợp liên kết không thể thay thế bị hỏng.
 
--   <a id="SAVE-7"></a>SAVE-7：站内链接请去掉网站域名，并且使用相对路径链接对应 `.md` 文件．例如，在本页面（`intro/format`）中链接杂项简介（`misc`），应使用 `[杂项简介](../misc/index.md)`．可以在链接中添加 hash 来链接到某一节，例如 [`[Pull Request 信息格式规范](./htc.md#pull-request-信息格式规范)`](./htc.md#pull-request-信息格式规范)，hash 的值可以通过位于每个标题右侧的按钮或者位于网页右侧的目录中的链接得到．
+-   <a id="SAVE-7"></a>SAVE-7: với liên kết trong site, hãy bỏ tên miền website và dùng đường dẫn tương đối để liên kết đến tệp `.md` tương ứng. Ví dụ, trong trang này (`intro/format`), khi liên kết đến giới thiệu về tạp mục (`misc`), nên dùng `[Giới thiệu tạp mục](../misc/index.md)`. Có thể thêm hash vào liên kết để trỏ đến một mục cụ thể, ví dụ [`[Quy chuẩn định dạng thông tin Pull Request](./htc.md#pull-request-format)`](./htc.md#pull-request-format). Giá trị hash có thể lấy từ nút ở bên phải mỗi tiêu đề hoặc từ liên kết trong mục lục bên phải trang web.
 
-### 文档的合理性
+### Tính hợp lý của tài liệu
 
-**合理性**，指所编写的 **内容** 必须具有如下的特性：
+**Tính hợp lý** nghĩa là **nội dung** được viết phải có các đặc tính sau:
 
--   <a id="STRC-1"></a>STRC-1：由浅入深，内容的难度应该具有渐进性．
--   <a id="STRC-2"></a>STRC-2：逻辑性．
+-   <a id="STRC-1"></a>STRC-1: đi từ dễ đến khó, độ khó của nội dung nên có tính tăng tiến.
+-   <a id="STRC-2"></a>STRC-2: có tính logic.
 
-    -   <a id="STRC-2.1"></a>STRC-2.1：对于算法或数学概念类内容的撰写应该尽量包含以下的内容：
+    -   <a id="STRC-2.1"></a>STRC-2.1: khi viết nội dung về thuật toán hoặc khái niệm toán học, nên cố gắng bao gồm các nội dung sau:
 
-        1.  原理：说明该内容对应的原理；
-        2.  例子：给出 1 \~ 2 个典型的例子；
-        3.  题目：在该标题下，**只需要给出题目名字和题目链接**．对于算法类题目，题目链接 OJ 的优先级为：原 OJ（国外 OJ 要求国内可流畅访问）> UOJ > LOJ > 洛谷．
+        1.  Nguyên lý: giải thích nguyên lý tương ứng của nội dung đó;
+        2.  Ví dụ: đưa ra 1 đến 2 ví dụ điển hình;
+        3.  Bài tập: dưới tiêu đề này, **chỉ cần đưa ra tên bài và liên kết bài**. Với bài tập thuật toán, thứ tự ưu tiên của OJ trong liên kết bài là: OJ gốc (với OJ nước ngoài, yêu cầu có thể truy cập mượt mà trong nước) > UOJ > LOJ > Luogu.
 
-        示例页面：[IDA\*](../search/idastar.md)
+        Trang ví dụ: [IDA\*](../search/idastar.md).
 
-    -   <a id="STRC-2.2"></a>STRC-2.2：对于工具类内容的撰写应该尽量包含以下的内容：
+    -   <a id="STRC-2.2"></a>STRC-2.2: khi viết nội dung về công cụ, nên cố gắng bao gồm các nội dung sau:
 
-        1.  简介：阐明该工具的背景与用途．
-        2.  配置方式：详细给出配置环境与使用的过程，下载与安装方法建议尽量引用官方文档．
+        1.  Giới thiệu: trình bày bối cảnh và công dụng của công cụ.
+        2.  Cách cấu hình: nêu chi tiết quá trình cấu hình môi trường và sử dụng; phương pháp tải và cài đặt nên ưu tiên dẫn tài liệu chính thức.
 
-        示例页面：[WSL (Windows 10)](../tools/wsl.md)
+        Trang ví dụ: [WSL (Windows 10)](../tools/wsl.md).
 
-除现有内容质量较低的情况外，建议尽量从 **补充** 的角度来做贡献，而非采取直接覆盖的方式．如果拿不准主意，可以参考 [关于本项目的交流方式](./about.md#交流方式) 一节，与 **OI Wiki** 项目组联系．
+Trừ khi chất lượng nội dung hiện có khá thấp, nên đóng góp theo hướng **bổ sung** thay vì ghi đè trực tiếp. Nếu không chắc nên làm gì, có thể tham khảo mục [cách trao đổi về dự án này](./about.md#trao-đổi) và liên hệ với nhóm dự án **OI Wiki**.
 
-### 文档的基本格式要求
+### Yêu cầu định dạng cơ bản của tài liệu
 
-#### Remark-lint 的格式要求
+#### Yêu cầu định dạng của Remark-lint
 
-[remark-lint](https://github.com/remarkjs/remark-lint) 可以自动给项目内文件统一风格．**OI Wiki** 现在启用的配置文件托管在 [.remarkrc](https://github.com/OI-wiki/OI-wiki/blob/master/.remarkrc)．
+[remark-lint](https://github.com/remarkjs/remark-lint) có thể tự động thống nhất phong cách cho các tệp trong dự án. Tệp cấu hình hiện **OI Wiki** đang dùng được lưu tại [.remarkrc](https://github.com/OI-wiki/OI-wiki/blob/master/.remarkrc).
 
-在配置过程中 **OI Wiki** 项目组也遇到了一些 remark-lint 不能很好处理的问题，所以请严格按照下列要求编辑文档：
+Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số vấn đề remark-lint xử lý chưa tốt, vì vậy hãy biên tập tài liệu nghiêm ngặt theo các yêu cầu sau:
 
--   <a id="LINT-1"></a>LINT-1：不要使用如 `<h1>` 或者 `# 标题` 的一级标题．
+-   <a id="LINT-1"></a>LINT-1: không dùng tiêu đề cấp một như `<h1>` hoặc `# Tiêu đề`.
 
--   <a id="LINT-2"></a>LINT-2：标题要空一个英文半角空格，例如：`## 简介`．
+-   <a id="LINT-2"></a>LINT-2: sau dấu tiêu đề phải có một khoảng trắng ASCII, ví dụ: `## Giới thiệu`.
 
--   <a id="LINT-3"></a>LINT-3：由于 remark-lint 不能很好地处理删除线，因此请不要使用删除线语法（不使用删除线语法的另外一个原因是，删除线划去的内容大多为「抖机灵」性质，对读者理解帮助不大，不符合下面的「文本内容的格式要求」中 [对内容表述的要求](#CONT-5)）．
+-   <a id="LINT-3"></a>LINT-3: vì remark-lint không xử lý tốt gạch xóa, vui lòng không dùng cú pháp gạch xóa. Một lý do khác để không dùng gạch xóa là nội dung bị gạch xóa thường mang tính "đùa vui", ít giúp người đọc hiểu bài, và không phù hợp với [yêu cầu về diễn đạt nội dung](#CONT-5) trong phần "Yêu cầu định dạng của nội dung văn bản" bên dưới.
 
--   <a id="LINT-4"></a>LINT-4：列表：
-    -   <a id="LINT-4.1"></a>LINT-4.1：列表前要有空行，新开一段．
-    -   <a id="LINT-4.2"></a>LINT-4.2：使用有序列表（如 `1. 例子`）时，点号后要有空格．
+-   <a id="LINT-4"></a>LINT-4: danh sách:
+    -   <a id="LINT-4.1"></a>LINT-4.1: trước danh sách cần có một dòng trống để bắt đầu một đoạn mới.
+    -   <a id="LINT-4.2"></a>LINT-4.2: khi dùng danh sách có thứ tự (như `1. Ví dụ`), sau dấu chấm cần có khoảng trắng.
 
--   <a id="LINT-5"></a>LINT-5：行间公式前后各要有一行空行，否则会被当做是行内公式．
+-   <a id="LINT-5"></a>LINT-5: trước và sau công thức riêng dòng đều cần có một dòng trống, nếu không nó sẽ bị xem là công thức trong dòng.
 
--   <a id="LINT-6"></a>LINT-6：使用 `???` 或 `!!!` 开头的 Details 语法时，每一行要包括在 Details 语法的文本框的文本，开头必须至少有 4 个空格．
+-   <a id="LINT-6"></a>LINT-6: khi dùng cú pháp Details bắt đầu bằng `???` hoặc `!!!`, mỗi dòng thuộc phần văn bản trong hộp của cú pháp Details phải bắt đầu bằng ít nhất 4 khoảng trắng.
 
-    **即使是空行，也必须保持与其他行一致的缩进．请不要使用编辑器的自动裁剪行末空格功能．**
+    **Ngay cả dòng trống cũng phải giữ thụt lề nhất quán với các dòng khác. Vui lòng không dùng tính năng tự động cắt khoảng trắng cuối dòng của trình soạn thảo.**
 
-    ???+ success "示例"
-        下面的代码中用 `␣` 表示空格 ` `．
+    ???+ success "Ví dụ"
+        Trong đoạn mã dưới đây, `␣` biểu thị khoảng trắng ` `.
         
         ```text
         ???+ warning
-        ␣␣␣␣请记得在文本前面添加 4 个空格．其他的语法还是与 Markdown 语法一致．
+        ␣␣␣␣Hãy nhớ thêm 4 khoảng trắng trước văn bản. Các cú pháp khác vẫn giống cú pháp Markdown.
         ␣␣␣␣
-        ␣␣␣␣不添加 4 个空格的话，文本就不会出现在 Details 文本框里了．
+        ␣␣␣␣Nếu không thêm 4 khoảng trắng, văn bản sẽ không xuất hiện trong hộp Details.
         ␣␣␣␣
-        ␣␣␣␣这个`???`是什么的问题会在 [下文](#MDFM-5) 解答．
+        ␣␣␣␣Câu hỏi `???` này là gì sẽ được giải thích ở [phần sau](#MDFM-5).
         ```
         
         ???+ warning "Warning"
-            请记得在文本前面添加 4 个空格．其他的语法还是与 Markdown 语法一致．
+            Hãy nhớ thêm 4 khoảng trắng trước văn bản. Các cú pháp khác vẫn giống cú pháp Markdown.
             
-            不添加 4 个空格的话，文本就不会出现在 Details 文本框里了．
+            Nếu không thêm 4 khoảng trắng, văn bản sẽ không xuất hiện trong hộp Details.
             
-            这个 `???` 是什么的问题会在 [下文](#MDFM-5) 解答．
+            Câu hỏi `???` này là gì sẽ được giải thích ở [phần sau](#MDFM-5).
 
--   <a id="LINT-7"></a>LINT-7：代码样式的纯文本块请使用 ` ```text`．直接使用 ` ``` ` 而不指定纯文本块里的语言，可能会导致内容被错误地缩进．
+-   <a id="LINT-7"></a>LINT-7: với khối văn bản thuần mang kiểu dáng mã, vui lòng dùng ` ```text`. Nếu dùng trực tiếp ` ``` ` mà không chỉ định ngôn ngữ cho khối văn bản thuần, nội dung có thể bị thụt lề sai.
 
-#### 标点符号的使用
+#### Cách dùng dấu câu
 
--   <a id="PUNC-1"></a>PUNC-1：请在每句话的末尾添加 **句号**．
+-   <a id="PUNC-1"></a>PUNC-1: hãy thêm **dấu chấm câu** ở cuối mỗi câu.
 
 <!-- scripts.linter.postprocess.fix_full_stop off -->
 
--   <a id="PUNC-2"></a>PUNC-2：请正确使用 **全角** 标点符号与 **半角** 标点符号．汉语请使用全角符号，英语请使用半角符号．中文中夹用英文时，请参考 [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)．特别地，请用全角句点「．」替代中文句号「。」．
+-   <a id="PUNC-2"></a>PUNC-2: hãy dùng đúng **dấu câu toàn chiều rộng** và **dấu câu nửa chiều rộng**. Văn bản tiếng Trung nên dùng ký hiệu toàn chiều rộng, văn bản tiếng Anh nên dùng ký hiệu nửa chiều rộng. Khi chèn tiếng Anh trong văn bản tiếng Trung, hãy tham khảo [quy phạm biên tập khi chèn tiếng Anh trong ấn phẩm tiếng Trung](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html). Đặc biệt, hãy dùng fullwidth full stop U+FF0E thay cho dấu chấm câu tiếng Trung U+3002.
 
 <!-- scripts.linter.postprocess.fix_full_stop on -->
 
 <!-- scripts.linter.postprocess.fix_quotation off -->
 
--   <a id="PUNC-3"></a>PUNC-3：由于 `“……”` 和 `‘……’` 未区分全半角，请使用 `「……」` 作为全角双引号，`"..."` 作为半角双引号，`『……』` 作为全角单引号，`'...'` 作为半角单引号．
+-   <a id="PUNC-3"></a>PUNC-3: vì các cặp dấu nháy cong U+201C/U+201D và U+2018/U+2019 không phân biệt toàn chiều rộng với nửa chiều rộng, hãy dùng U+300C/U+300D làm dấu nháy kép toàn chiều rộng, `"..."` làm dấu nháy kép nửa chiều rộng, U+300E/U+300F làm dấu nháy đơn toàn chiều rộng, và `'...'` làm dấu nháy đơn nửa chiều rộng.
 
 <!-- scripts.linter.postprocess.fix_quotation on -->
 
--   <a id="PUNC-4"></a>PUNC-4：注意区分 **顿号** 与 **逗号** 的使用．
--   <a id="PUNC-5"></a>PUNC-5：注意 **括号** 的位置．句内括号与句外括号的位置不同．
--   <a id="PUNC-6"></a>PUNC-6：通常使用 **分号** 来表示列表环境中各复句之间的关系．
--   <a id="PUNC-7"></a>PUNC-7：对于有序列表，推荐在每一项的后面添加 **分号**，在列表最后一项的后面添加 **句号**；对于无序列表，推荐在每一项的后面添加 **句号**．
--   <a id="PUNC-8"></a>PUNC-8：注意区分各种不同的连接号，如 hyphen（一般使用 U+002D hyphen-minus（-），即键盘上的「减号」代替），U+2013 en dash（–）和 U+2014 em dash（—）．（英文中连接多个人名时，须用 en dash，但是极常误用为 hyphen．其他误用较为罕见，基本上只需记住这一点即可．）详见 [连接号 - 维基百科](https://zh.wikipedia.org/wiki/%E8%BF%9E%E6%8E%A5%E5%8F%B7)．
+-   <a id="PUNC-4"></a>PUNC-4: chú ý phân biệt cách dùng dấu liệt kê và dấu phẩy.
+-   <a id="PUNC-5"></a>PUNC-5: chú ý vị trí của dấu ngoặc. Vị trí của ngoặc trong câu và ngoặc ngoài câu là khác nhau.
+-   <a id="PUNC-6"></a>PUNC-6: thông thường dùng **dấu chấm phẩy** để biểu thị quan hệ giữa các mệnh đề phức trong môi trường danh sách.
+-   <a id="PUNC-7"></a>PUNC-7: với danh sách có thứ tự, nên thêm **dấu chấm phẩy** sau mỗi mục và thêm **dấu chấm câu** sau mục cuối cùng; với danh sách không thứ tự, nên thêm **dấu chấm câu** sau mỗi mục.
+-   <a id="PUNC-8"></a>PUNC-8: chú ý phân biệt các loại dấu nối khác nhau, như hyphen (thường dùng U+002D hyphen-minus (-), tức phím "dấu trừ" trên bàn phím, để thay thế), U+2013 en dash (–) và U+2014 em dash (—). (Trong tiếng Anh, khi nối nhiều tên người, phải dùng en dash, nhưng lỗi thường gặp là dùng nhầm thành hyphen. Các lỗi khác hiếm hơn; về cơ bản chỉ cần nhớ điểm này.) Xem [hyphen - Wikipedia](https://zh.wikipedia.org/wiki/%E8%BF%9E%E6%8E%A5%E5%8F%B7).
 
-    ???+ success "示例"
-        -   中学生学科竞赛主要包括信息学奥林匹克竞赛、信息学奥林匹克竞赛、信息学奥林匹克竞赛、信息学奥林匹克竞赛和信息学奥林匹克竞赛（谁写的这个示例，建议抬走）．
-        -   「你吃了吗？」李四问张三．
-        -   我想对你说：「我真是太喜欢你了．」
-        -   「苟利国家生死以，岂因祸福避趋之！」
-        -   张华考上了大学；李萍进了技校；我当了工人：我们都有美好的前途．[^note1]
-        -   以下是这个算法的基本流程：
-            1.  初始化到各点的距离为无穷大，将所有点设置为未被访问过，初始化一个队列；
-            2.  将起点放入队列，将起点设置为已被访问过，更新到起点的距离为 $0$；
-            3.  取出队首元素，将该元素设置为未被访问过；
-            4.  遍历所有与此元素相连的边，若到这个点存在更短的距离，则进行松弛操作；
-            5.  若这个点未被访问过，则将这个点放入队列，且设置这个点为已经访问过；
-            6.  回到第三步，直到队列为空．
-        -   KMP 算法（Knuth–Morris–Pratt algorithm, KMP algorithm）由 Knuth、Pratt 和 Morris 在 1977 年共同发布．[^note2]
+    ???+ success "Ví dụ"
+        -   Các kỳ thi môn học cấp trung học chủ yếu bao gồm Olympic Tin học, Olympic Tin học, Olympic Tin học, Olympic Tin học và Olympic Tin học (ai viết ví dụ này thì nên mời ra ngoài sửa lại).
+        -   "Bạn ăn cơm chưa?" Lý Tứ hỏi Trương Tam.
+        -   Tôi muốn nói với bạn: "Tôi thật sự rất thích bạn."
+        -   "Nếu lợi cho đất nước thì sống chết cũng không quản ngại, đâu vì họa phúc mà tránh né!"
+        -   Trương Hoa đỗ đại học; Lý Bình vào trường nghề; tôi trở thành công nhân: chúng tôi đều có tương lai tốt đẹp.[^note1]
+        -   Quy trình cơ bản của thuật toán này như sau:
+            1.  Khởi tạo khoảng cách đến mỗi đỉnh là vô cùng, đánh dấu tất cả đỉnh là chưa được thăm, và khởi tạo một hàng đợi;
+            2.  Đưa đỉnh xuất phát vào hàng đợi, đánh dấu đỉnh xuất phát là đã được thăm, và cập nhật khoảng cách đến đỉnh xuất phát là $0$;
+            3.  Lấy phần tử đầu hàng đợi ra và đánh dấu phần tử đó là chưa được thăm;
+            4.  Duyệt tất cả cạnh nối với phần tử này; nếu tồn tại khoảng cách ngắn hơn đến đỉnh đó thì thực hiện thao tác relax;
+            5.  Nếu đỉnh đó chưa được thăm, đưa đỉnh đó vào hàng đợi và đánh dấu đỉnh đó là đã được thăm;
+            6.  Quay lại bước thứ ba cho đến khi hàng đợi rỗng.
+        -   Thuật toán KMP (Knuth–Morris–Pratt algorithm, KMP algorithm) được Knuth, Pratt và Morris công bố chung vào năm 1977.[^note2]
 
-#### Markdown 格式与主题扩展格式要求
+#### Yêu cầu về định dạng Markdown và định dạng mở rộng của chủ đề
 
--   <a id="MDFM-1"></a>MDFM-1：表示强调时请使用 `**SOMETHING**` 和 `「」`，而非某级标题，因为使用标题会导致文章结构层次混乱和（或）目录出现问题．
+-   <a id="MDFM-1"></a>MDFM-1: khi biểu thị nhấn mạnh, vui lòng dùng `**SOMETHING**` và dấu nháy kép toàn chiều rộng, thay vì một cấp tiêu đề nào đó, vì dùng tiêu đề sẽ làm cấu trúc bài viết rối loạn và/hoặc làm mục lục gặp vấn đề.
 
--   <a id="MDFM-2"></a>MDFM-2：当需要引用题目链接时，应尽可能使用原 OJ 题库中的链接而不是镜像链接．
+-   <a id="MDFM-2"></a>MDFM-2: khi cần dẫn liên kết bài tập, nên ưu tiên dùng liên kết trong kho bài của OJ gốc thay vì liên kết mirror.
 
--   <a id="MDFM-3"></a>MDFM-3：请正确使用 Markdown 的区块功能．插入行内代码请使用一对反引号包围代码区块；行间代码请使用一对 ` ``` ` 包围代码区块，其中反引号就是键盘左上角波浪线下面那个符号，行间代码请在第一个 ` ``` ` 的后面加上语言名称（如：` ```cpp`）．
+-   <a id="MDFM-3"></a>MDFM-3: hãy dùng đúng chức năng block của Markdown. Khi chèn mã trong dòng, dùng một cặp dấu backtick bao quanh khối mã; khi chèn mã riêng dòng, dùng một cặp ` ``` ` bao quanh khối mã. Dấu backtick là ký tự nằm dưới dấu ngã ở góc trên bên trái bàn phím. Với mã riêng dòng, hãy thêm tên ngôn ngữ sau ` ``` ` đầu tiên (ví dụ: ` ```cpp`).
 
-    ???+ success "示例"
+    ???+ success "Ví dụ"
         ````text
         ```cpp
-        // #include<stdio.h>    //不好的写法
-        #include <cstdio>  //好的写法
+        // #include<stdio.h>    // cách viết không tốt
+        #include <cstdio>  // cách viết tốt
         ```
         ````
         
         ```cpp
-        // #include<stdio.h>    //不好的写法
-        #include <cstdio>  //好的写法
+        // #include<stdio.h>    // cách viết không tốt
+        #include <cstdio>  // cách viết tốt
         ```
 
--   <a id="MDFM-4"></a>MDFM-4：「参考资料与注释」使用 Markdown 的脚注功能进行编写．格式为：
+-   <a id="MDFM-4"></a>MDFM-4: mục "Tài liệu tham khảo và chú thích" được viết bằng chức năng footnote của Markdown. Định dạng là:
 
     ```markdown
-    文本内容．[^脚注名]
-    [^脚注名]: 参考资料内容．注意：冒号是英文冒号，冒号后面跟着一个空格．
+    Nội dung văn bản.[^ten-footnote]
+    [^ten-footnote]: Nội dung tài liệu tham khảo. Chú ý: dấu hai chấm là dấu hai chấm tiếng Anh, sau dấu hai chấm có một khoảng trắng.
     ```
 
-    脚注名既可以使用数字也可以使用文本．脚注名摆放的位置与括号的用法一致．为美观起见，建议同一个页面内的脚注名遵循统一的命名规律，如：ref1、ref2、note1……
+    Tên footnote có thể dùng số hoặc văn bản. Vị trí đặt tên footnote giống cách dùng dấu ngoặc. Để đẹp mắt, nên để tên footnote trong cùng một trang tuân theo cùng một quy luật đặt tên, ví dụ: ref1, ref2, note1, ...
 
-    脚注的内容统一放在 `## 参考资料与注释` 二级标题下．
+    Nội dung footnote được đặt thống nhất dưới tiêu đề cấp hai `## Tài liệu tham khảo và chú thích`.
 
-    ???+ success "示例"
+    ???+ success "Ví dụ"
         ```markdown
-        当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者．[^ref1]
+        Khi `#include <cxxxx>` có thể thay thế `#include <xxxx.h>`, nên dùng cách viết trước.[^ref1]
         
-        2020年1月21日，CCF宣布恢复NOIP．[^ref2]
+        Ngày 21 tháng 1 năm 2020, CCF thông báo khôi phục NOIP.[^ref2]
         
-        ## 参考资料与注释
+        ## Tài liệu tham khảo và chú thích
         
         [^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
         
-        [^ref2]: [CCF关于恢复NOIP竞赛的公告-中国计算机学会](https://www.ccf.org.cn/c/2020-01-21/694716.shtml)
+        [^ref2]: [Thông báo của CCF về việc khôi phục kỳ thi NOIP - China Computer Federation](https://www.ccf.org.cn/c/2020-01-21/694716.shtml)
         ```
         
-        当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者．[^ref1]
+        Khi `#include <cxxxx>` có thể thay thế `#include <xxxx.h>`, nên dùng cách viết trước.[^ref1]
         
-        2020 年 1 月 21 日，CCF 宣布恢复 NOIP．[^ref2]
+        Ngày 21 tháng 1 năm 2020, CCF thông báo khôi phục NOIP.[^ref2]
 
--   <a id="MDFM-5"></a>MDFM-5：建议使用主题扩展的 `???+note` 格式（即 [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)）来描述题面和参考代码．也可以用这种格式来展示其他需要补充介绍的内容．
+-   <a id="MDFM-5"></a>MDFM-5: nên dùng định dạng `???+note` được chủ đề mở rộng (tức [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)) để mô tả đề bài và mã tham khảo. Cũng có thể dùng định dạng này để hiển thị các nội dung khác cần giới thiệu bổ sung.
 
-    示例代码（下面的代码中用 `␣` 表示空格 ` `）：
+    Mã ví dụ (trong đoạn mã dưới đây, `␣` biểu thị khoảng trắng ` `):
 
     ```text
-    ??? note "标题"
-    ␣␣␣␣这个文本框会被默认折叠．
+    ??? note "Tiêu đề"
+    ␣␣␣␣Hộp văn bản này mặc định sẽ bị gấp lại.
     ␣␣␣␣
-    ␣␣␣␣推荐将 **解题代码** 放在折叠文本框内．
+    ␣␣␣␣Nên đặt **mã lời giải** trong hộp văn bản gấp được.
 
-    ???+note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
-    ␣␣␣␣标题也可以使用 Markdown 的超链接．这里的超链接是 HDOJ 的「A + B Problem」．
+    ???+note "[A + B Problem của HDOJ](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+    ␣␣␣␣Tiêu đề cũng có thể dùng siêu liên kết Markdown. Siêu liên kết ở đây là "A + B Problem" của HDOJ.
     ␣␣␣␣
-    ␣␣␣␣而且推荐以这种方式**标注原题链接**．
+    ␣␣␣␣Ngoài ra, nên **ghi chú liên kết bài gốc** theo cách này.
     ␣␣␣␣
-    ␣␣␣␣注意双引号的位置．
+    ␣␣␣␣Chú ý vị trí của dấu nháy kép.
     ```
 
-    效果：
+    Hiệu quả:
 
-    ??? note "标题"
-        这个文本框会被默认折叠．
+    ??? note "Tiêu đề"
+        Hộp văn bản này mặc định sẽ bị gấp lại.
         
-        推荐将 **解题代码** 放在折叠文本框内．
+        Nên đặt **mã lời giải** trong hộp văn bản gấp được.
 
-    ???+ note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
-        标题也可以使用 Markdown 的超链接．这里的超链接是 HDOJ 的「A + B Problem」．
+    ???+ note "[A + B Problem của HDOJ](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+        Tiêu đề cũng có thể dùng siêu liên kết Markdown. Siêu liên kết ở đây là "A + B Problem" của HDOJ.
         
-        而且推荐以这种方式 **标注原题链接**．
+        Ngoài ra, nên **ghi chú liên kết bài gốc** theo cách này.
         
-        注意双引号的位置．
+        Chú ý vị trí của dấu nháy kép.
 
-    两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠．
+    Khác nhau giữa hai định dạng là: định dạng có `+` mặc định giữ trạng thái mở, còn định dạng không có `+` mặc định giữ trạng thái gấp.
 
-    折叠框的标题，即 `???+note` 中 `note` 后的内容应以 `"` 包裹起来．其中的内容支持 Markdown 语法．详见 [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)．（不具备折叠功能的为一般的 Admonitions，参考 [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions)）
+    Tiêu đề của hộp gấp, tức nội dung sau `note` trong `???+note`, nên được bao bằng `"`. Nội dung trong đó hỗ trợ cú pháp Markdown. Xem [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title). (Loại không có chức năng gấp là Admonitions thông thường; tham khảo [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions).)
 
--   <a id="MDFM-6"></a>MDFM-6：当需要添加不同语言的代码时，推荐使用 Content tabs，可以实现不同语言代码的切换．Content tabs 还有其他的用法，详见 [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#usage)．其使用方法和效果如下．
+-   <a id="MDFM-6"></a>MDFM-6: khi cần thêm mã bằng nhiều ngôn ngữ khác nhau, nên dùng Content tabs để có thể chuyển đổi giữa mã của các ngôn ngữ. Content tabs còn có các cách dùng khác; xem [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#usage). Cách dùng và hiệu quả như sau.
 
-    ???+ success "示例"
-        注意需要在文本前面添加 4 个空格（下面用 `␣` 表示）．其他的语法还是与 Markdown 语法一致．
+    ???+ success "Ví dụ"
+        Chú ý cần thêm 4 khoảng trắng trước văn bản (dưới đây dùng `␣` để biểu thị). Các cú pháp khác vẫn giống cú pháp Markdown.
         
         ````text
         === "C"
@@ -373,121 +373,121 @@
             }
             ```
 
-如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)，其介绍了 mkdocs-material 主题的插件使用方式．
+Nếu còn câu hỏi về mkdocs-material (chủ đề mà chúng ta đang dùng), bạn cũng có thể đọc [hướng dẫn sử dụng MkDocs](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E), trong đó giới thiệu cách dùng các plugin của chủ đề mkdocs-material.
 
-#### 文本内容的格式要求
+#### Yêu cầu định dạng của nội dung văn bản
 
--   <a id="CONT-1"></a>CONT-1：所有的 **OI Wiki** 文本都应使用粗体标记．
+-   <a id="CONT-1"></a>CONT-1: tất cả chữ **OI Wiki** trong văn bản đều nên được đánh dấu in đậm.
 
--   <a id="CONT-2"></a>CONT-2：在页面的开头应有一段简短的文字（如「本页面将介绍……」），用于概述页面内容．
+-   <a id="CONT-2"></a>CONT-2: đầu trang nên có một đoạn văn ngắn (như "Trang này sẽ giới thiệu ...") để tóm tắt nội dung trang.
 
-    ???+ success "示例"
-        本页面将列出在 **OI Wiki** 编写过程时推荐使用的格式规范与编辑方针．
+    ???+ success "Ví dụ"
+        Trang này liệt kê các quy chuẩn định dạng và phương châm biên tập được khuyên dùng khi viết **OI Wiki**.
 
--   <a id="CONT-3"></a>CONT-3：涉及到「前置知识」的页面，请在开头添加一行 **前置知识：……**，放在页面概述前．格式如下：
+-   <a id="CONT-3"></a>CONT-3: với trang liên quan đến "kiến thức tiên quyết", hãy thêm một dòng **Kiến thức tiên quyết: ...** ở đầu trang, đặt trước phần tóm tắt trang. Định dạng như sau:
 
-    `前置知识：[站内页面1](url1)、[站内页面2](url2)和[站内页面3](url3)`
+    `Kiến thức tiên quyết: [trang nội bộ 1](url1), [trang nội bộ 2](url2) và [trang nội bộ 3](url3)`
 
-    ???+ success "示例"
-        前置知识：[时间复杂度](../basic/complexity.md)
+    ???+ success "Ví dụ"
+        Kiến thức tiên quyết: [Độ phức tạp thời gian](../basic/complexity.md)
         
-        本页面将介绍基础的计算理论的知识．
+        Trang này sẽ giới thiệu kiến thức cơ bản về lý thuyết tính toán.
 
--   <a id="CONT-4"></a>CONT-4：请注意文档结构．文档结构应当十分条理，层次清晰．请不要让诸如「五级标题」这种事情再次发生了，一篇正常的文章是用不到如此复杂的结构层次的．
+-   <a id="CONT-4"></a>CONT-4: hãy chú ý cấu trúc tài liệu. Cấu trúc tài liệu cần thật có trật tự và phân cấp rõ ràng. Xin đừng để những việc như "tiêu đề cấp năm" xảy ra nữa; một bài viết bình thường không cần cấu trúc phân cấp phức tạp như vậy.
 
--   <a id="CONT-5"></a>CONT-5：请注意内容的表述．作为一个百科网站，**OI Wiki** 使用的语言应该是书面的，客观的．诸如「抖机灵」性质的，对读者理解帮助不大的内容，不应该出现在 **OI Wiki** 当中．
+-   <a id="CONT-5"></a>CONT-5: hãy chú ý cách diễn đạt nội dung. Là một website bách khoa, ngôn ngữ **OI Wiki** sử dụng nên mang tính viết, khách quan. Những nội dung mang tính "đùa vui" và ít giúp người đọc hiểu bài không nên xuất hiện trong **OI Wiki**.
 
--   <a id="CONT-6"></a>CONT-6：请尽量为链接提供完整的标题、或者可被识别的提示，避免使用裸地址和「这」、「此」之类的模糊不清的描述．每一个超链接都应尽量对其加以清楚明确的描述，方便读者明白该超链接将指向何处．
+-   <a id="CONT-6"></a>CONT-6: hãy cố gắng cung cấp tiêu đề đầy đủ hoặc gợi ý dễ nhận biết cho liên kết, tránh dùng URL trần hoặc các mô tả mơ hồ như "này", "đó". Mỗi siêu liên kết nên được mô tả rõ ràng hết mức để người đọc biết nó sẽ trỏ đến đâu.
 
-    建议使用源文章或者标签页的标题．
+    Nên dùng tiêu đề của bài nguồn hoặc của tab.
 
-    ???+ failure "不推荐的写法"
+    ???+ failure "Cách viết không khuyến nghị"
         ```markdown
-        请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+        Vui lòng tham khảo [trang này](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         
-        请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
+        Vui lòng tham khảo <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
         ```
         
-        请参考 [这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+        Vui lòng tham khảo [trang này](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         
-        请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
+        Vui lòng tham khảo <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
 
-    ???+ success "推荐的写法"
+    ???+ success "Cách viết khuyến nghị"
         ```markdown
-        请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+        Vui lòng tham khảo trang trợ giúp chính thức của GitHub [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         ```
         
-        请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+        Vui lòng tham khảo trang trợ giúp chính thức của GitHub [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
--   <a id="CONT-7"></a>CONT-7：受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末．
+-   <a id="CONT-7"></a>CONT-7: do giới hạn của định dạng Markdown, tiêu đề cấp hai `## Tài liệu tham khảo và chú thích` phải đặt ở cuối bài.
 
--   <a id="CONT-8"></a>CONT-8：所有用作序号的数字建议使用中文．示例：
-    -   数列的第一项．
-    -   输入文件的第一行．
+-   <a id="CONT-8"></a>CONT-8: các số dùng làm số thứ tự nên viết bằng chữ tiếng Trung. Ví dụ:
+    -   Hạng thứ nhất của dãy số.
+    -   Dòng thứ nhất của tệp nhập.
 
--   <a id="CONT-9"></a>CONT-9：请尽量避免在标题中使用 MathJax 公式，无论是几级标题．在标题中使用公式有可能会导致目录显示错误．[^ref3]
+-   <a id="CONT-9"></a>CONT-9: hãy cố gắng tránh dùng công thức MathJax trong tiêu đề, bất kể là tiêu đề cấp mấy. Dùng công thức trong tiêu đề có thể làm mục lục hiển thị sai.[^ref3]
 
--   <a id="CONT-10"></a>CONT-10：请注意代码的可读性．
+-   <a id="CONT-10"></a>CONT-10: hãy chú ý khả năng đọc của mã.
 
-    -   <a id="CONT-10.1.1"></a>CONT-10.1.1：代码应拥有清晰的逻辑，尽可能简洁易懂．不要过度压行，不要引入过多无关代码．尽量避免与算法思想无关的内容．
-    -   <a id="CONT-10.1.2"></a>CONT-10.1.2：建议在参考代码中添加适当注释以方便读者理解．
+    -   <a id="CONT-10.1.1"></a>CONT-10.1.1: mã cần có logic rõ ràng, ngắn gọn và dễ hiểu hết mức có thể. Không nên nén dòng quá mức, không đưa vào quá nhiều mã không liên quan. Cố gắng tránh nội dung không liên quan đến tư tưởng thuật toán.
+    -   <a id="CONT-10.1.2"></a>CONT-10.1.2: nên thêm chú thích phù hợp trong mã tham khảo để người đọc dễ hiểu.
 
-    对 C/C++ 类语言：
+    Đối với các ngôn ngữ kiểu C/C++:
 
-    -   <a id="CONT-10.2.1"></a>CONT-10.2.1：尽量避免出现影响阅读的预编译指令和宏定义．
+    -   <a id="CONT-10.2.1"></a>CONT-10.2.1: cố gắng tránh các chỉ thị tiền xử lý và định nghĩa macro ảnh hưởng đến khả năng đọc.
 
-    -   <a id="CONT-10.2.2"></a>CONT-10.2.2：不要用 `0` 代替 `false`/`NULL`/`nullptr` 等，不要用 `1` 代替 `true` 等．
+    -   <a id="CONT-10.2.2"></a>CONT-10.2.2: không dùng `0` thay cho `false`/`NULL`/`nullptr`, không dùng `1` thay cho `true`, v.v.
 
-    -   <a id="CONT-10.2.3"></a>CONT-10.2.3：在声明 [类型别名](https://en.cppreference.com/w/cpp/language/type_alias) 时，不推荐使用 `typedef`，推荐使用 `using`．
+    -   <a id="CONT-10.2.3"></a>CONT-10.2.3: khi khai báo [bí danh kiểu](https://en.cppreference.com/w/cpp/language/type_alias), không khuyến nghị dùng `typedef`, nên dùng `using`.
 
-    -   <a id="CONT-10.2.4"></a>CONT-10.2.4：不推荐用宏定义定义常量，推荐直接使用 `constexpr`/`const` 等关键字定义常量．
+    -   <a id="CONT-10.2.4"></a>CONT-10.2.4: không khuyến nghị định nghĩa hằng bằng macro; nên trực tiếp dùng các từ khóa như `constexpr`/`const` để định nghĩa hằng.
 
-    -   <a id="CONT-10.2.5"></a>CONT-10.2.5：不推荐对函数使用 `inline` 关键字，详见 [编译优化](../lang/optimizations.md#inline---内联)．
+    -   <a id="CONT-10.2.5"></a>CONT-10.2.5: không khuyến nghị dùng từ khóa `inline` cho hàm; xem [tối ưu biên dịch](../lang/optimizations.md#inline---%E5%86%85%E8%81%94).
 
-    -   <a id="CONT-10.2.6"></a>CONT-10.2.6：尽量避免类型萃取、偏特化等复杂的模板元编程技巧．如确需使用，则需添加注释解释含义．
+    -   <a id="CONT-10.2.6"></a>CONT-10.2.6: cố gắng tránh type traits, partial specialization và các kỹ thuật lập trình meta bằng template phức tạp khác. Nếu thật sự cần dùng, cần thêm chú thích để giải thích ý nghĩa.
 
-        ???+ failure "不推荐的写法"
+        ???+ failure "Cách viết không khuyến nghị"
             ```cpp
             --8<-- "docs/intro/code/format/format_1.cpp:not-recommended"
             ```
             
-            该代码给出了一个求 [最大公约数](../math/number-theory/gcd.md) 的复杂实现，其中：
+            Đoạn mã này đưa ra một cách hiện thực phức tạp để tính [ước chung lớn nhất](../math/number-theory/gcd.md), trong đó:
             
-            -   第一个 `gcd` 接受两个无符号整数 `x`，`y`，返回 `x`，`y` 的最大公约数，返回值类型的范围保证能同时包含 `x` 和 `y`．
-            -   第二个 `gcd` 接受两个整数 `x`，`y`，其中 `x`，`y` 至少有一个是有符号整数，返回 `x`，`y` 的最大公约数．
-            -   第三个 `gcd` 接受超过两个整数，返回这些整数的最大公约数．
-            -   第四个 `gcd` 接受一个容器，返回容器中所有数的最大公约数．
+            -   `gcd` thứ nhất nhận hai số nguyên không dấu `x`, `y`, trả về ước chung lớn nhất của `x`, `y`; miền giá trị của kiểu trả về bảo đảm có thể chứa đồng thời `x` và `y`.
+            -   `gcd` thứ hai nhận hai số nguyên `x`, `y`, trong đó ít nhất một trong `x`, `y` là số nguyên có dấu, và trả về ước chung lớn nhất của `x`, `y`.
+            -   `gcd` thứ ba nhận hơn hai số nguyên và trả về ước chung lớn nhất của các số đó.
+            -   `gcd` thứ tư nhận một container và trả về ước chung lớn nhất của tất cả số trong container.
             
-            对 **OI Wiki** 来说，我们只关注最大公约数这个算法的思想，这份代码涵盖了过多无关且复杂的技术细节，是需要避免的．
+            Với **OI Wiki**, chúng ta chỉ quan tâm đến tư tưởng của thuật toán ước chung lớn nhất; đoạn mã này bao gồm quá nhiều chi tiết kỹ thuật phức tạp và không liên quan, nên cần tránh.
 
-        ???+ success "推荐的写法"
+        ???+ success "Cách viết khuyến nghị"
             ```cpp
             --8<-- "docs/intro/code/format/format_1.cpp:recommended"
             ```
             
-            诸如「添加类型检查」、「处理负数输入」、「让函数支持多参数」等更多是工程上关注的话题，我们的重点始终应该是算法的思想．
+            Những việc như "thêm kiểm tra kiểu", "xử lý đầu vào âm", "cho hàm hỗ trợ nhiều tham số" thiên về quan tâm kỹ thuật phần mềm hơn; trọng tâm của chúng ta luôn nên là tư tưởng thuật toán.
 
-#### LaTeX 公式的格式要求
+#### Yêu cầu định dạng của công thức LaTeX
 
-LaTeX 作为公式排版的首选，我们应当正确地使用它．因此对于 LaTeX 的使用我们有严格的要求．如果您想要快速上手，可以阅读本章节末给出的表格．
+LaTeX là lựa chọn ưu tiên để dàn công thức, và chúng ta nên sử dụng nó đúng cách. Vì vậy, chúng ta có yêu cầu nghiêm ngặt đối với việc dùng LaTeX. Nếu bạn muốn bắt đầu nhanh, có thể đọc bảng ở cuối mục này.
 
--   <a id="MATH-1.1"></a>MATH-1.1：您使用的符号不应与 [数学符号表](./symbol.md) 规定的符号冲突．
+-   <a id="MATH-1.1"></a>MATH-1.1: ký hiệu bạn sử dụng không được mâu thuẫn với ký hiệu được quy định trong [bảng ký hiệu toán học](./symbol.md).
 
--   <a id="MATH-1.2"></a>MATH-1.2：使用 Roman 体表示数字、常量、算子和函数．使用 Italic 体表示变量、下标．LaTeX 已经预先定义好了一些常见的常量、函数、运算符等，我们可以直接调用，包括但不限于：
+-   <a id="MATH-1.2"></a>MATH-1.2: dùng Roman để biểu thị số, hằng, toán tử và hàm. Dùng Italic để biểu thị biến và chỉ số dưới. LaTeX đã định nghĩa sẵn một số hằng, hàm, toán tử thường gặp; chúng ta có thể gọi trực tiếp, bao gồm nhưng không giới hạn:
 
     ```latex
     \log, \ln, \lg, \sin, \cos, \tan, \sec, \csc, \cot, \gcd, \min, \max, \exp, \inf, \mod, \bmod, \pmod
     ```
 
-    所以在输入常量、函数名、运算符等时，请先检查一下是否应该使用 Roman 体或其它字体．LaTeX 符号的书写可参考 [KaTeX 的 Supported Functions 页面](https://katex.org/docs/supported.html)（不是全部），也可以搜索求解．
+    Vì vậy, khi nhập hằng, tên hàm, toán tử, v.v., vui lòng kiểm tra trước xem có nên dùng Roman hoặc font khác hay không. Cách viết ký hiệu LaTeX có thể tham khảo trang [Supported Functions của KaTeX](https://katex.org/docs/supported.html) (không phải đầy đủ tất cả), hoặc có thể tìm kiếm lời giải.
 
-    由于 LaTeX 书写 Roman 体小写希腊字母较为困难，故小写希腊字母常量、算子和函数可以使用 Italic 体，如 $\pi$ 以及 $\delta x$ 中的 $\delta$.
+    Do trong LaTeX việc viết chữ cái Hy Lạp thường dạng Roman khá khó, các hằng, toán tử và hàm là chữ cái Hy Lạp thường có thể dùng Italic, như $\pi$ và $\delta$ trong $\delta x$.
 
-    如果遇到没有预先定义好的需要使用 Roman 体的 **函数名**，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号．同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$`；产生 Roman 体粗体符号应用 `$\mathbf{}$`；产生 Italic 体粗体符号应用 `$\boldsymbol{}$`（如向量 $\boldsymbol{a}$）．对于多字母的变量，应当使用 `$\textit{}$`．其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$`．中文我们则建议不放在 LaTeX 公式中．
+    Nếu gặp **tên hàm** cần dùng Roman nhưng chưa được định nghĩa sẵn, chúng ta có thể dùng `$\operatorname{something}$` để tạo ra. Ví dụ có thể dùng `$\operatorname{lcm}$` để tạo ký hiệu bội chung nhỏ nhất (hàm) ở dạng roman. Tương tự, để tạo **hằng** dạng Roman, dùng `$\mathrm{}$`; để tạo ký hiệu Roman đậm, dùng `$\mathbf{}$`; để tạo ký hiệu Italic đậm, dùng `$\boldsymbol{}$` (như vector $\boldsymbol{a}$). Với biến gồm nhiều chữ cái, nên dùng `$\textit{}$`. Các nội dung phi toán học khác, bao gồm tiếng Anh, ký hiệu đặc biệt, v.v., đều dùng `$\text{}$`. Với tiếng Trung, chúng tôi khuyến nghị không đặt trong công thức LaTeX.
 
--   <a id="MATH-1.3"></a>MATH-1.3：如果表达式须折行（常见于较长的行间公式中），则应遵循如下换行规则：
+-   <a id="MATH-1.3"></a>MATH-1.3: nếu biểu thức cần xuống dòng (thường gặp trong công thức hiển thị riêng dòng dài), nên tuân theo các quy tắc xuống dòng sau:
 
-    -   <a id="MATH-1.3.1"></a>MATH-1.3.1：将换行符放在 $=$，$+$，$-$，$\pm$，$\mp$ 之前，如果有必要，也可放在 $\times$，$\cdot$，$/$ 之前，如：
+    -   <a id="MATH-1.3.1"></a>MATH-1.3.1: đặt ký tự xuống dòng trước $=$, $+$, $-$, $\pm$, $\mp$; nếu cần, cũng có thể đặt trước $\times$, $\cdot$, $/$, ví dụ:
 
         $$
         \begin{aligned}
@@ -497,84 +497,84 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它．因此对�
         \end{aligned}
         $$
 
-    -   <a id="MATH-1.3.2"></a>MATH-1.3.2：同一运算符不应在换行符前后同时出现，
+    -   <a id="MATH-1.3.2"></a>MATH-1.3.2: cùng một toán tử không nên xuất hiện đồng thời trước và sau ký tự xuống dòng.
 
-    -   <a id="MATH-1.3.3"></a>MATH-1.3.3：换行符尽量不要出现在括号内的表达式中．
+    -   <a id="MATH-1.3.3"></a>MATH-1.3.3: cố gắng không đặt ký tự xuống dòng bên trong biểu thức nằm trong dấu ngoặc.
 
--   <a id="MATH-1.4"></a>MATH-1.4：在行内使用分数的时候，请使用 `$\dfrac{}{}$`．比如 `$\dfrac{1}{2}$`，效果 $\dfrac{1}{2}$，而不是 `$\frac{1}{2}$`，效果 $\frac{1}{2}$．
+-   <a id="MATH-1.4"></a>MATH-1.4: khi dùng phân số trong dòng, hãy dùng `$\dfrac{}{}$`. Ví dụ `$\dfrac{1}{2}$` cho hiệu quả $\dfrac{1}{2}$, thay vì `$\frac{1}{2}$` cho hiệu quả $\frac{1}{2}$.
 
--   <a id="MATH-1.5"></a>MATH-1.5：组合数请使用 `\dbinom{n}{m}`，效果 $\dbinom{n}{m}$，而不是 `{n \choose m}`（在 LaTeX 中这种写法已不推荐）；与上一条关于分数的约定相似，请不要使用 `\binom{n}{m}`，效果 $\binom{n}{m}$．
+-   <a id="MATH-1.5"></a>MATH-1.5: với tổ hợp, hãy dùng `\dbinom{n}{m}`, cho hiệu quả $\dbinom{n}{m}$, thay vì `{n \choose m}` (cách viết này trong LaTeX đã không được khuyến nghị); tương tự quy ước về phân số ở mục trước, vui lòng không dùng `\binom{n}{m}`, cho hiệu quả $\binom{n}{m}$.
 
--   <a id="MATH-1.6"></a>MATH-1.6：尽可能避免在行内使用巨运算符（如 $\sum$，$\prod$，$\int$ 等）．
+-   <a id="MATH-1.6"></a>MATH-1.6: cố gắng tránh dùng toán tử lớn trong dòng (như $\sum$, $\prod$, $\int$, v.v.).
 
--   <a id="MATH-1.7"></a>MATH-1.7：在不会引起歧义的情况下，请用 `$\times$` 代替星号，叉乘请使用 `$\times$`，点乘请使用 `$\cdot$`．如 $a\times b$，$a\cdot b$，而不是 $a\ast b$．
+-   <a id="MATH-1.7"></a>MATH-1.7: khi không gây nhầm lẫn, hãy dùng `$\times$` thay cho dấu sao; phép nhân chéo dùng `$\times$`, phép nhân vô hướng dùng `$\cdot$`. Ví dụ $a\times b$, $a\cdot b$, thay vì $a\ast b$.
 
--   <a id="MATH-1.8"></a>MATH-1.8：请用 `$\cdots$`（居于排版基线与顶线中间），`$\ldots$`（居于排版基线的位置），`$\vdots$`（竖着的省略号）代替 `$...$`．如 $a_1,a_2,\cdots a_n$，而不是 $a_1,a_2,... a_n$．
+-   <a id="MATH-1.8"></a>MATH-1.8: hãy dùng `$\cdots$` (nằm giữa baseline và topline), `$\ldots$` (nằm tại baseline), `$\vdots$` (dấu ba chấm dọc) thay cho `$...$`. Ví dụ $a_1,a_2,\cdots a_n$, thay vì $a_1,a_2,... a_n$.
 
--   <a id="MATH-1.9"></a>MATH-1.9：请注意，不要在非代码区域使用任何程序设计语言的表示方式，而是使用 LaTeX 公式．例如，使用 `$=$` 而不是 `$==$`（如 $a=b$，而不是 $a==b$）、使用 `` `a<<1` `` 或者 `$a\times 2$` 而不是 `$a<<1$`、使用 `$a\bmod b$` 代替 `$a\%b$`（如 $a\bmod b$，而不是 $a\%b$）等．
+-   <a id="MATH-1.9"></a>MATH-1.9: chú ý không dùng bất kỳ cách biểu diễn nào của ngôn ngữ lập trình ở khu vực không phải mã; thay vào đó hãy dùng công thức LaTeX. Ví dụ, dùng `$=$` thay vì `$==$` (như $a=b$, thay vì $a==b$), dùng `` `a<<1` `` hoặc `$a\times 2$` thay vì `$a<<1$`, dùng `$a\bmod b$` thay cho `$a\%b$` (như $a\bmod b$, thay vì $a\%b$), v.v.
 
--   <a id="MATH-1.10"></a>MATH-1.10：公式中不要使用中括号连缀（即 C++ 高维数组的表示方式）而多使用下标．即 $a_{i,j,k}$ 而不是 $a[i][j][k]$．在公式中下标较复杂的情况下建议改用多元函数（$f(i,j,k)$）或内联代码格式．对于一元简单函数使用 `$f_i$`、`$f(i)$` 或 `$f[i]$` 均可．
+-   <a id="MATH-1.10"></a>MATH-1.10: trong công thức, không dùng nhiều cặp ngoặc vuông nối tiếp (tức cách biểu diễn mảng nhiều chiều của C++); nên dùng chỉ số dưới nhiều hơn. Tức là dùng $a_{i,j,k}$ thay vì $a[i][j][k]$. Khi chỉ số dưới trong công thức phức tạp, nên chuyển sang hàm nhiều biến ($f(i,j,k)$) hoặc định dạng mã trong dòng. Với hàm một biến đơn giản, có thể dùng `$f_i$`, `$f(i)$` hoặc `$f[i]$`.
 
--   <a id="MATH-1.11"></a>MATH-1.11：为了统一且书写方便，复杂度分析时大 $O$ 记号请直接使用 `$O()$` 而不是 `$\mathcal O()$`．
+-   <a id="MATH-1.11"></a>MATH-1.11: để thống nhất và tiện viết, khi phân tích độ phức tạp, hãy dùng trực tiếp ký hiệu $O$ lớn `$O()$` thay vì `$\mathcal O()$`.
 
--   <a id="MATH-1.12"></a>MATH-1.12：在表示等价关系时，请使用 `$\iff$`，效果 $\iff$，而不是 `$\Leftrightarrow$`，效果 $\Leftrightarrow$．
+-   <a id="MATH-1.12"></a>MATH-1.12: khi biểu thị quan hệ tương đương, hãy dùng `$\iff$`, hiệu quả $\iff$, thay vì `$\Leftrightarrow$`, hiệu quả $\Leftrightarrow$.
 
--   <a id="MATH-1.13"></a>MATH-1.13：分段函数环境 `cases`  **只能有两列**（即一个 `&` 分隔符）．
+-   <a id="MATH-1.13"></a>MATH-1.13: môi trường hàm từng phần `cases` **chỉ được có hai cột** (tức một dấu phân tách `&`).
 
--   <a id="MATH-1.14"></a>MATH-1.14：请不要滥用 LaTeX 公式．这不仅会造成页面加载缓慢（因为 MathJax 的效率低是出了名的），同时也会导致页面的排版混乱．我们通常使用 LaTeX 公式字体表示变量名称．我们的建议是，如非必要，尽量减少公式与普通正文字体的 **大量** 混合使用，如非必要，尽量不要使用公式，如：
+-   <a id="MATH-1.14"></a>MATH-1.14: vui lòng không lạm dụng công thức LaTeX. Điều này không chỉ làm trang tải chậm (vì MathJax nổi tiếng là hiệu suất thấp), mà còn làm bố cục trang rối loạn. Chúng ta thường dùng font công thức LaTeX để biểu thị tên biến. Khuyến nghị của chúng tôi là nếu không cần thiết, hãy cố gắng giảm **lượng lớn** việc trộn công thức với font văn bản thông thường; nếu không cần thiết, cố gắng không dùng công thức, ví dụ:
 
     ```LaTeX
-    我们将要学习 $Network-flow$ 中的 $SPFA$ 最小费用流，需要使用 $Edmonds–Karp$ 算法进行增广．
+    Chúng ta sắp học luồng chi phí nhỏ nhất $SPFA$ trong $Network-flow$, cần dùng thuật toán $Edmonds–Karp$ để tăng luồng.
     ```
 
-    就是一个典型的 **滥用公式字体** 的例子．（在页面中使用斜体请用 `*文本*` 表示．）
+    Đây là một ví dụ điển hình về **lạm dụng font công thức**. (Nếu cần dùng chữ nghiêng trong trang, hãy viết bằng `*văn bản*`.)
 
--   <a id="MATH-1.15"></a>MATH-1.15：请正确使用对应的 LaTeX 符号，尤其是公式中的希腊字母等特殊符号．如欧拉函数请使用 `$\varphi$`，圆的直径请使用 `$\Phi$`，黄金分割请使用 `$\phi$`．这些符号虽然同样表示希腊字母 Phi，但是在不同的环境下有不同的含义．切记 **不要使用输入法的插入特殊符号** 来插入这种符号．
+-   <a id="MATH-1.15"></a>MATH-1.15: hãy dùng đúng ký hiệu LaTeX tương ứng, đặc biệt là các ký hiệu đặc biệt như chữ cái Hy Lạp trong công thức. Ví dụ hàm Euler nên dùng `$\varphi$`, đường kính hình tròn nên dùng `$\Phi$`, tỉ lệ vàng nên dùng `$\phi$`. Các ký hiệu này tuy đều biểu thị chữ cái Hy Lạp Phi, nhưng có ý nghĩa khác nhau trong các ngữ cảnh khác nhau. Hãy nhớ **không dùng chức năng chèn ký hiệu đặc biệt của bộ gõ** để chèn các ký hiệu này.
 
-    另外，由于 LaTeX 历史原因，空集的符号应为 `$\varnothing$` 而不是 `$\emptyset$`；其他的符号应参照 [数学符号表](./symbol.md) 书写．
+    Ngoài ra, do nguyên nhân lịch sử của LaTeX, ký hiệu tập rỗng nên là `$\varnothing$` thay vì `$\emptyset$`; các ký hiệu khác nên viết theo [bảng ký hiệu toán học](./symbol.md).
 
-我们可以使用一个表格来总结一下上述内容．注意本表格没有举出所有符号的用法，只给出常见的错误．类似的情况类比即可．
+Chúng ta có thể dùng một bảng để tóm tắt các nội dung trên. Chú ý bảng này không liệt kê cách dùng của tất cả ký hiệu, mà chỉ đưa ra các lỗi thường gặp. Các trường hợp tương tự có thể suy ra theo đó.
 
-| 不符合规定的用法                     | 渲染效果              | 符合规定的用法                                  | 渲染效果                                |
-| ---------------------------- | ----------------- | ---------------------------------------- | ----------------------------------- |
-| `$log, ln, lg$`              | $log, ln, lg$     | `$\log$, $\ln$, $\lg$`                   | $\log$，$\ln$，$\lg$                  |
-| `$sin, cos, tan$`            | $sin, cos, tan$   | `$\sin$, $\cos$, $\tan$`                 | $\sin$，$\cos$，$\tan$                |
-| `$gcd, lcm$`                 | $gcd, lcm$        | `$\gcd$, $\operatorname{lcm}$`           | $\gcd$，$\operatorname{lcm}$         |
-| `$e$, $\text{e}$, e`（自然对数的底） | $e$，$\text{e}$, e | `$\mathrm{e}$`                           | $\mathrm{e}$                        |
-| `$i$, $\text{i}$, i`（虚数单位）   | $i$，$\text{i}$, i | `$\mathrm{i}$`                           | $\mathrm{i}$                        |
-| `$ 小于 a 的质数 $`               | $小于 a 的质数$        | `小于 $a$ 的质数`                             | 小于 $a$ 的质数                          |
-| `$...$`                      | $...$             | `$\cdots$, $\ldots$, $\vdots$, $\ddots$` | $\cdots$，$\ldots$，$\vdots$，$\ddots$ |
-| `$a*b$`（两个数相乘）               | $a*b$             | `$a\times b$, $a\cdot b$`                | $a\times b$，$a\cdot b$              |
-| `$SPFA$`（英文名称）               | $SPFA$            | `SPFA`                                   | SPFA                                |
-| `$a==b$`                     | $a==b$            | `$a=b$`                                  | $a=b$                               |
-| `$f[i][j][k]$`               | $f[i][j][k]$      | `$f_{i,j,k}$, $f(i,j,k)$`                | $f_{i,j,k}$，$f(i,j,k)$              |
-| `$R,N^*$`（集合）                | $R,N^*$           | `$\mathbf{R}$, $\mathbf{N}^*$`           | $\mathbf{R}$，$\mathbf{N}^*$         |
-| `$\emptyset$`                | $\emptyset$       | `$\varnothing$`                          | $\varnothing$                       |
-| `$size$`                     | $size$            | `$\textit{size}$`                        | $\textit{size}$                     |
+| Cách dùng không đúng quy định       | Hiệu quả render       | Cách dùng đúng quy định                         | Hiệu quả render                       |
+| ----------------------------------- | --------------------- | ----------------------------------------------- | ------------------------------------- |
+| `$log, ln, lg$`                     | $log, ln, lg$         | `$\log$, $\ln$, $\lg$`                          | $\log$, $\ln$, $\lg$                  |
+| `$sin, cos, tan$`                   | $sin, cos, tan$       | `$\sin$, $\cos$, $\tan$`                        | $\sin$, $\cos$, $\tan$                |
+| `$gcd, lcm$`                        | $gcd, lcm$            | `$\gcd$, $\operatorname{lcm}$`                  | $\gcd$, $\operatorname{lcm}$          |
+| `$e$, $\text{e}$, e` (cơ số logarit tự nhiên) | $e$, $\text{e}$, e | `$\mathrm{e}$`                                  | $\mathrm{e}$                          |
+| `$i$, $\text{i}$, i` (đơn vị ảo)    | $i$, $\text{i}$, i    | `$\mathrm{i}$`                                  | $\mathrm{i}$                          |
+| `$ số nguyên tố nhỏ hơn a $`        | $số nguyên tố nhỏ hơn a$ | `số nguyên tố nhỏ hơn $a$`                   | số nguyên tố nhỏ hơn $a$              |
+| `$...$`                             | $...$                 | `$\cdots$, $\ldots$, $\vdots$, $\ddots$`        | $\cdots$, $\ldots$, $\vdots$, $\ddots$ |
+| `$a*b$` (hai số nhân nhau)          | $a*b$                 | `$a\times b$, $a\cdot b$`                       | $a\times b$, $a\cdot b$               |
+| `$SPFA$` (tên tiếng Anh)            | $SPFA$                | `SPFA`                                          | SPFA                                  |
+| `$a==b$`                            | $a==b$                | `$a=b$`                                         | $a=b$                                 |
+| `$f[i][j][k]$`                      | $f[i][j][k]$          | `$f_{i,j,k}$, $f(i,j,k)$`                       | $f_{i,j,k}$, $f(i,j,k)$               |
+| `$R,N^*$` (tập hợp)                 | $R,N^*$               | `$\mathbf{R}$, $\mathbf{N}^*$`                  | $\mathbf{R}$, $\mathbf{N}^*$          |
+| `$\emptyset$`                       | $\emptyset$           | `$\varnothing$`                                 | $\varnothing$                         |
+| `$size$`                            | $size$                | `$\textit{size}$`                               | $\textit{size}$                       |
 
-#### 对数学公式的附加格式要求
+#### Yêu cầu định dạng bổ sung đối với công thức toán
 
-请注意，尽管上述输入公式的语法和真正的 LaTeX 排版系统非常相似，但 **MathJax 和 LaTeX 是两个完全没有关系的东西**，MathJax 仅仅使用了一部分与 LaTeX 非常相似的语法而已．实际上，二者之间有不少细节差别，而这些差别经常导致写出来的公式在二者之间不通用．
+Vui lòng chú ý, mặc dù cú pháp nhập công thức nói trên rất giống hệ thống dàn trang LaTeX thực sự, **MathJax và LaTeX là hai thứ hoàn toàn không liên quan**, MathJax chỉ sử dụng một phần cú pháp rất giống LaTeX mà thôi. Trên thực tế, giữa hai bên có nhiều khác biệt chi tiết, và các khác biệt này thường làm công thức viết ra không dùng chung được giữa hai bên.
 
-由于 **OI Wiki** 使用 LaTeX 排版引擎开发了 PDF 导出工具，因此有必要强调公式在 MathJax 和 LaTeX 之间的兼容性．**请各位在 Wiki 中书写数学公式时注意以下几点．**
+Vì **OI Wiki** đã phát triển công cụ xuất PDF dựa trên engine dàn trang LaTeX, cần nhấn mạnh tính tương thích của công thức giữa MathJax và LaTeX. **Khi viết công thức toán trong Wiki, vui lòng chú ý các điểm sau.**
 
-这些规则已经向 MathJax 做了尽可能多的妥协．导出工具兼容了一部分原本仅能在 MathJax 中正常输出的写法．
+Các quy tắc này đã nhân nhượng MathJax hết mức có thể. Công cụ xuất đã tương thích với một phần cách viết vốn chỉ xuất đúng trong MathJax.
 
--   <a id="MATH-2.1"></a>MATH-2.1：请使用 `\begin{aligned} ... \end{aligned}` 表示多行对齐的公式；
+-   <a id="MATH-2.1"></a>MATH-2.1: hãy dùng `\begin{aligned} ... \end{aligned}` để biểu thị công thức cần nhiều dòng căn chỉnh;
 
--   <a id="MATH-2.2"></a>MATH-2.2：如果这些多行对齐的公式需要 **编号**，请用 `align` 或 `equation` 环境；
+-   <a id="MATH-2.2"></a>MATH-2.2: nếu các công thức cần nhiều dòng căn chỉnh này cần **đánh số**, hãy dùng môi trường `align` hoặc `equation`;
 
--   <a id="MATH-2.3"></a>MATH-2.3：不要使用 `split`、`eqnarray` 环境；
+-   <a id="MATH-2.3"></a>MATH-2.3: không dùng môi trường `split`, `eqnarray`;
 
--   <a id="MATH-2.4"></a>MATH-2.4：不要使用 `\lt`,`\gt` 来表示大于号和小于号，请直接使用 `<`，`>`；
+-   <a id="MATH-2.4"></a>MATH-2.4: không dùng `\lt`, `\gt` để biểu thị dấu lớn hơn và nhỏ hơn; hãy dùng trực tiếp `<`, `>`;
 
--   <a id="MATH-2.5"></a>MATH-2.5：不要直接用 `\\` 换行（需要换行的公式，请套在 `aligned` 或其他多行环境下）；
+-   <a id="MATH-2.5"></a>MATH-2.5: không trực tiếp dùng `\\` để xuống dòng (công thức cần xuống dòng phải đặt trong `aligned` hoặc môi trường nhiều dòng khác);
 
--   <a id="MATH-2.6"></a>MATH-2.6：若要输出 LaTeX 符号 $\rm{\LaTeX}$，请用 `$\rm{\LaTeX}$`，而不是 `mathrm`；（`\LaTeX` 在 TeX 排版系统中是一个不能用于数学模式下的命令，而 `\mathrm` 又不能在普通模式下使用；另外，`\text` 命令虽然在 TeX 上正常输出，但是在 MathJax 中 `\text` 命令的参数会被原样输出，而不是按命令转义）；
+-   <a id="MATH-2.6"></a>MATH-2.6: nếu muốn xuất ký hiệu LaTeX $\rm{\LaTeX}$, hãy dùng `$\rm{\LaTeX}$`, thay vì `mathrm`; (`\LaTeX` trong hệ thống dàn trang TeX là lệnh không thể dùng trong math mode, còn `\mathrm` lại không thể dùng trong normal mode; ngoài ra, tuy lệnh `\text` xuất đúng trên TeX, trong MathJax tham số của lệnh `\text` sẽ được xuất nguyên dạng, không được escape theo lệnh);
 
--   <a id="MATH-2.7"></a>MATH-2.7：数学公式中的中文文字 **必须置于 `\text{}` 命令之中**，而变量、数字、运算符、函数名称则必须置于 `\text{}` 命令之外．**请不要在 `\text{}` 命令中嵌套数学公式**；
+-   <a id="MATH-2.7"></a>MATH-2.7: chữ tiếng Trung trong công thức toán **bắt buộc đặt trong lệnh `\text{}`**, còn biến, số, toán tử và tên hàm bắt buộc đặt ngoài lệnh `\text{}`. **Vui lòng không lồng công thức toán trong lệnh `\text{}`**;
 
--   <a id="MATH-2.8"></a>MATH-2.8：使用 `array` 环境时请注意 **实际列数与对齐符号的数量保持一致**．例如下面的公式中，数据实际有 3 列（`&` 是列分隔符），因此需要 3 个对齐符号（`l`/`r`/`c` 分别表示左、右、居中对齐）．
+-   <a id="MATH-2.8"></a>MATH-2.8: khi dùng môi trường `array`, hãy chú ý **số cột thực tế phải khớp với số ký hiệu căn chỉnh**. Ví dụ trong công thức dưới đây, dữ liệu thực tế có 3 cột (`&` là ký hiệu tách cột), vì vậy cần 3 ký hiệu căn chỉnh (`l`/`r`/`c` lần lượt biểu thị căn trái, căn phải, căn giữa).
 
     ```latex
     $$
@@ -585,13 +585,13 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它．因此对�
     $$
     ```
 
-#### 伪代码格式
+#### Định dạng giả mã
 
-伪代码具体格式没有严格要求，请参考算法导论或学术论文．注意不要写成 Python．
+Định dạng cụ thể của giả mã không có yêu cầu nghiêm ngặt; vui lòng tham khảo Introduction to Algorithms hoặc các bài báo học thuật. Chú ý không viết thành Python.
 
-<a id="PCOD-1"></a>PCOD-1：Wiki 内使用 LaTeX 书写伪代码，整体处于 array 环境中，缩进使用 `$\qquad$`，文字描述使用 `$\text$`，关键字使用 `$\textbf$`，多字母变量使用 `$\textit$`，赋值使用 `$\gets$`．
+<a id="PCOD-1"></a>PCOD-1: trong Wiki, giả mã được viết bằng LaTeX, toàn bộ nằm trong môi trường `array`, thụt lề dùng `$\qquad$`, mô tả bằng văn bản dùng `$\text$`, từ khóa dùng `$\textbf$`, biến nhiều chữ cái dùng `$\textit$`, phép gán dùng `$\gets$`.
 
-参考示例：
+Ví dụ tham khảo:
 
 $$
 \begin{array}{l}
@@ -631,139 +631,139 @@ $$
 $$
 ```
 
-#### 代码块的格式要求
+#### Yêu cầu định dạng của khối mã
 
-代码块目前分为两种：片段和例题．
+Khối mã hiện được chia thành hai loại: đoạn mã và bài mẫu.
 
-关于片段代码：
+Về đoạn mã:
 
--   <a id="CODE-1.1"></a>CODE-1.1：若代码片段足够短且没有必要测试，可以直接在 Markdown 文档中修改．
--   <a id="CODE-1.2"></a>CODE-1.2：由于 Markdown 文档中内嵌的代码难以实现自动化测试，所以推荐使用例题代码的格式插入片段代码．可以选择 [多文件编译方案](https://github.com/OI-wiki/OI-wiki/pull/5729) 或 [Snippet Sections](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-sections) 语法：
+-   <a id="CODE-1.1"></a>CODE-1.1: nếu đoạn mã đủ ngắn và không cần thiết phải kiểm thử, có thể sửa trực tiếp trong tài liệu Markdown.
+-   <a id="CODE-1.2"></a>CODE-1.2: vì mã nhúng trong tài liệu Markdown khó tự động hóa kiểm thử, nên dùng định dạng mã bài mẫu để chèn đoạn mã. Có thể chọn [phương án biên dịch nhiều tệp](https://github.com/OI-wiki/OI-wiki/pull/5729) hoặc cú pháp [Snippet Sections](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-sections):
 
-    多文件编译方案示例：[冒泡排序](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/bubble-sort.md?plain=1#L48)．正文引用 [bubble-sort\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.cpp)，测试代码放在 [bubble-sort\_1.aux1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.aux1.cpp) 中．
+    Ví dụ về phương án biên dịch nhiều tệp: [sắp xếp nổi bọt](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/bubble-sort.md?plain=1#L48). Phần thân bài dẫn [bubble-sort\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.cpp), mã kiểm thử đặt trong [bubble-sort\_1.aux1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.aux1.cpp).
 
-    Snippet Sections 示例：[前缀和](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/prefix-sum.md?plain=1#L37)．正文中不需要引用 [prefix-sum\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/code/prefix-sum/prefix-sum_1.cpp) 中的测试部分，所以选择插入主要的代码片段．
+    Ví dụ về Snippet Sections: [tổng tiền tố](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/prefix-sum.md?plain=1#L37). Trong phần thân bài không cần dẫn phần kiểm thử trong [prefix-sum\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/code/prefix-sum/prefix-sum_1.cpp), nên chọn chèn đoạn mã chính.
 
-    **注意**：不要使用 [Snippet Lines](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines) 语法．
+    **Chú ý**: không dùng cú pháp [Snippet Lines](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines).
 
-    为了提高代码复用率，您也可以将代码拆分成头文件，测试时在不同的测试代码里引用．如果正文中需要出现完整的测试代码作为例题的参考实现，那么正文中应该另外用 Snippet Sections 语法拼接成单文件代码，以便读者阅读．示例：[红黑树](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231)．
+    Để tăng tỷ lệ tái sử dụng mã, bạn cũng có thể tách mã thành header file và khi kiểm thử thì dẫn vào các mã kiểm thử khác nhau. Nếu phần thân bài cần xuất hiện đầy đủ mã kiểm thử làm hiện thực tham khảo cho bài mẫu, trong phần thân bài nên dùng riêng cú pháp Snippet Sections để ghép thành mã một tệp, để người đọc dễ đọc. Ví dụ: [cây đỏ-đen](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231).
 
-关于例题代码：
+Về mã bài mẫu:
 
--   <a id="CODE-2.1"></a>CODE-2.1：例题代码的表示形式为 `--8<-- "path"`，代码均存储在 `path` 中．路径通常为 `docs/主题/code/内容/内容_编号.cpp`．
+-   <a id="CODE-2.1"></a>CODE-2.1: hình thức biểu diễn của mã bài mẫu là `--8<-- "path"`, và mã đều được lưu trong `path`. Đường dẫn thường là `docs/chu-de/code/noi-dung/noi-dung_so-thu-tu.cpp`.
 
--   <a id="CODE-2.2"></a>CODE-2.2：修改例题代码时，请保证你的代码是正确的．例题代码均拥有一组测试数据，存储在 `/docs/主题/examples/内容/内容_编号.in/ans` 中．
+-   <a id="CODE-2.2"></a>CODE-2.2: khi sửa mã bài mẫu, hãy bảo đảm mã của bạn đúng. Mã bài mẫu đều có một bộ dữ liệu kiểm thử, được lưu trong `/docs/chu-de/examples/noi-dung/noi-dung_so-thu-tu.in/ans`.
 
-如果你需要添加例题：
+Nếu bạn cần thêm bài mẫu:
 
--   请在 `docs/主题/code/内容` 中添加你的例题代码，并编号．通常，该 `内容` 文件夹中已经有了一个或者多个代码．例子：如果需要修改 `dag.md` 的代码，那么路径为 `docs/dp/code/dag`，其中 `dp` 为主题，而 `dag` 为内容．
+-   Hãy thêm mã bài mẫu của bạn vào `docs/chu-de/code/noi-dung` và đánh số. Thông thường, thư mục `noi-dung` này đã có một hoặc nhiều đoạn mã. Ví dụ: nếu cần sửa mã của `dag.md`, đường dẫn là `docs/dp/code/dag`, trong đó `dp` là chủ đề, còn `dag` là nội dung.
 
--   如果需要在所有例题的最后添加一个例题代码，请顺延目前的编号．比如已经存在了 `code/prefix-sum/prefix-sum_3.cpp`，如果需要在最后一个例题后继续添加一个例题，请将你的代码命名为 `prefix-sum_4.cpp` 并添加到 `docs/basic/code/prefix-sum` 中．
+-   Nếu cần thêm một mã bài mẫu vào cuối tất cả bài mẫu, hãy tăng tiếp số thứ tự hiện tại. Ví dụ đã tồn tại `code/prefix-sum/prefix-sum_3.cpp`; nếu cần thêm một bài mẫu sau bài mẫu cuối cùng, hãy đặt tên mã của bạn là `prefix-sum_4.cpp` và thêm vào `docs/basic/code/prefix-sum`.
 
--   如果需要在文章中间添加一个例题代码，请插入并改变原先的编号．比如已经存在了 `prefix-sum_2.cpp` 和 `prefix-sum_3.cpp`，如果你需要在第二个例题和第三个例题中间再添加一个例题，请将你的代码命名为 `prefix-sum_3.cpp` 并将原先的 `prefix-sum_3.cpp` 改名为 `prefix-sum_4.cpp` 同时 **在 Markdown 文档和测试数据存放的文件夹中同步修改编号**．
+-   Nếu cần thêm một mã bài mẫu vào giữa bài viết, hãy chèn và thay đổi số thứ tự cũ. Ví dụ đã tồn tại `prefix-sum_2.cpp` và `prefix-sum_3.cpp`; nếu bạn cần chèn một bài mẫu giữa bài mẫu thứ hai và bài mẫu thứ ba, hãy đặt tên mã của bạn là `prefix-sum_3.cpp`, đổi tên `prefix-sum_3.cpp` cũ thành `prefix-sum_4.cpp`, đồng thời **sửa đồng bộ số thứ tự trong tài liệu Markdown và thư mục lưu dữ liệu kiểm thử**.
 
--   **别忘记，你还要对你的代码添加一组测试数据，以保证这个代码是可以成功运行的．** 你需要在 `docs/主题/examples/内容` 文件夹中添加一组测试数据，将输入数据存储为 `内容_编号.in`，将标准答案存储为 `内容_编号.ans`．
+-   **Đừng quên rằng bạn còn phải thêm một bộ dữ liệu kiểm thử cho mã của mình để bảo đảm mã có thể chạy thành công.** Bạn cần thêm một bộ dữ liệu kiểm thử vào thư mục `docs/chu-de/examples/noi-dung`, lưu dữ liệu vào thành `noi-dung_so-thu-tu.in` và lưu đáp án chuẩn thành `noi-dung_so-thu-tu.ans`.
 
--   最后，可以将代码添加到文档中了．请直接在文档中用添加代码块的格式，并将代码块内部直接写成 `--8<-- "你的代码路径"` 的格式就可以了．
+-   Cuối cùng, có thể thêm mã vào tài liệu. Hãy dùng trực tiếp định dạng thêm khối mã trong tài liệu, và viết trực tiếp bên trong khối mã theo định dạng `--8<-- "duong dan ma cua ban"`.
 
-**OI Wiki** 会对例题代码进行全平台测试，为保证您的代码能够顺利通过测试，请遵守如下规则：
+**OI Wiki** sẽ kiểm thử mã bài mẫu trên tất cả nền tảng. Để bảo đảm mã của bạn có thể vượt qua kiểm thử thuận lợi, vui lòng tuân thủ các quy tắc sau:
 
--   <a id="CODE-3.1"></a>CODE-3.1：您的代码需要同时支持在 C++14、C++17、C++20 标准下编译和运行．
--   <a id="CODE-3.2"></a>CODE-3.2：不要使用 `<bits/stdc++.h>`、`<bits/extc++.h>` 等非标准头文件．
--   <a id="CODE-3.3"></a>CODE-3.3：标准答案文件不要有多余空格．
--   <a id="CODE-3.4"></a>CODE-3.4：不要使用 [代用记号](https://en.cppreference.com/w/cpp/language/operator_alternative#Alternative_tokens)．
--   <a id="CODE-3.5"></a>CODE-3.5：使用 [聚合初始化](https://en.cppreference.com/w/cpp/language/aggregate_initialization) 时，`object{args}` 不可写成 `(object){args}`．
--   <a id="CODE-3.6"></a>CODE-3.6：使用 [运算符重载](https://en.cppreference.com/w/cpp/language/operators) 时注意格式，如重载比较运算符时，若使用成员函数写法，则不可省略 `const` 限定符．
--   <a id="CODE-3.7"></a>CODE-3.7：不要使用类似 `#define int long long` 的宏定义．
--   <a id="CODE-3.8"></a>CODE-3.8：若您需要使用 C 风格的 [有格式输入/输出](https://en.cppreference.com/w/cpp/io/c#Formatted_input.2Foutput)，请特别留意格式指示符的写法：如 `size_t` 对应 `%zu`，`ptrdiff_t` 对应 `%td`．例如输出某 STL 容器的大小时，代码应类似 `printf("%zu", container.size());`．
--   <a id="CODE-3.9"></a>CODE-3.9：由于当前测试环境 libstdc++ 的 `<chrono>` 库有 [BUG](https://github.com/actions/runner-images/issues/8659)，所以请避免使用 `<chrono>` 库．
--   <a id="CODE-3.10"></a>CODE-3.10：由于 `long` 与 `unsigned long` 在某些测试环境下为 32 位，而在另一些测试环境下为 64 位，为确保各平台代码行为一致，故不推荐使用这两种类型．推荐使用 [定宽整数类型](../lang/var.md#定宽整数类型)．
--   <a id="CODE-3.11"></a>CODE-3.11：不建议使用 `__gcd`、`__int128`、`__builtin_` 系列函数等非标准内容．如果您需要使用，则需确保您的代码能通过全平台测试，如 [此代码](https://github.com/OI-wiki/OI-wiki/blob/4af83d6db6017f4c36db6d4a7583bbc3f6257484/docs/ds/code/tree-decompose/tree-decompose_1.cpp#L24-L47) 提供了 libstdc++ 中 [std::bitset](../lang/csl/bitset.md) 特有成员函数 `_Find_first()` 的全平台实现．
+-   <a id="CODE-3.1"></a>CODE-3.1: mã của bạn cần hỗ trợ biên dịch và chạy đồng thời theo các chuẩn C++14, C++17, C++20.
+-   <a id="CODE-3.2"></a>CODE-3.2: không dùng các header không chuẩn như `<bits/stdc++.h>`, `<bits/extc++.h>`.
+-   <a id="CODE-3.3"></a>CODE-3.3: tệp đáp án chuẩn không được có khoảng trắng thừa.
+-   <a id="CODE-3.4"></a>CODE-3.4: không dùng [alternative tokens](https://en.cppreference.com/w/cpp/language/operator_alternative#Alternative_tokens).
+-   <a id="CODE-3.5"></a>CODE-3.5: khi dùng [aggregate initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization), không được viết `object{args}` thành `(object){args}`.
+-   <a id="CODE-3.6"></a>CODE-3.6: khi dùng [operator overloading](https://en.cppreference.com/w/cpp/language/operators), cần chú ý định dạng; ví dụ khi overload toán tử so sánh, nếu dùng cách viết hàm thành viên thì không được bỏ từ định danh `const`.
+-   <a id="CODE-3.7"></a>CODE-3.7: không dùng macro giống `#define int long long`.
+-   <a id="CODE-3.8"></a>CODE-3.8: nếu bạn cần dùng [nhập/xuất có định dạng](https://en.cppreference.com/w/cpp/io/c#Formatted_input.2Foutput) kiểu C, hãy đặc biệt lưu ý cách viết format specifier: ví dụ `size_t` tương ứng `%zu`, `ptrdiff_t` tương ứng `%td`. Ví dụ khi xuất kích thước của một STL container, mã nên tương tự `printf("%zu", container.size());`.
+-   <a id="CODE-3.9"></a>CODE-3.9: do thư viện `<chrono>` của libstdc++ trong môi trường kiểm thử hiện tại có [BUG](https://github.com/actions/runner-images/issues/8659), vui lòng tránh dùng thư viện `<chrono>`.
+-   <a id="CODE-3.10"></a>CODE-3.10: do `long` và `unsigned long` là 32 bit trong một số môi trường kiểm thử, nhưng là 64 bit trong một số môi trường khác, để bảo đảm hành vi mã nhất quán trên mọi nền tảng, không khuyến nghị dùng hai kiểu này. Nên dùng [kiểu số nguyên có độ rộng cố định](../lang/var.md#%E5%AE%9A%E5%AE%BD%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B).
+-   <a id="CODE-3.11"></a>CODE-3.11: không khuyến nghị dùng các nội dung không chuẩn như `__gcd`, `__int128`, các hàm dòng `__builtin_`. Nếu bạn cần dùng, cần đảm bảo mã của bạn vượt qua kiểm thử trên tất cả nền tảng; ví dụ [đoạn mã này](https://github.com/OI-wiki/OI-wiki/blob/4af83d6db6017f4c36db6d4a7583bbc3f6257484/docs/ds/code/tree-decompose/tree-decompose_1.cpp#L24-L47) cung cấp hiện thực đa nền tảng cho hàm thành viên `_Find_first()` đặc thù của [std::bitset](../lang/csl/bitset.md) trong libstdc++.
 
-此外，为了提高代码的可读性，建议遵守 [CONT-10](#CONT-10)．
+Ngoài ra, để nâng cao khả năng đọc của mã, nên tuân thủ [CONT-10](#CONT-10).
 
-## 图解
+## <a id="hinh-minh-hoa"></a>Hình minh họa
 
-可能上述要求把握起来有些困难，接下来我们给出一些图片来具体分析哪种格式应该使用，哪种不该使用：
+Có thể các yêu cầu trên hơi khó nắm bắt, nên tiếp theo chúng ta đưa ra một số hình ảnh để phân tích cụ thể nên dùng định dạng nào và không nên dùng định dạng nào:
 
-### 例 1
+### Ví dụ 1
 
 ![](./images/format-1.png)
 
-将复杂的 LaTeX 公式使用行间格式，可以使得页面错落有致．但 **OI Wiki** 作为一个以中文为主体的站点，我们希望大部分纲领性的信息（如标题）尽量使用中文（除英文专有名词）．
+Dùng định dạng hiển thị riêng dòng cho công thức LaTeX phức tạp có thể làm trang rõ ràng và cân đối hơn. Tuy nhiên, **OI Wiki** là một site lấy tiếng Trung làm chủ đạo, nên chúng ta mong phần lớn thông tin có tính dàn ý (như tiêu đề) ưu tiên dùng tiếng Trung (trừ các thuật ngữ riêng tiếng Anh).
 
-### 例 2
+### Ví dụ 2
 
 ![](./images/format-2.png)
 
-较复杂度的 LaTeX 公式请注意等号的对齐，同时可以适当引用 Wiki 的页面 **链接** 来完善内容．
+Với công thức LaTeX phức tạp hơn, hãy chú ý căn chỉnh dấu bằng; đồng thời có thể dẫn liên kết **Wiki** phù hợp để bổ sung nội dung.
 
-### 例 3
+### Ví dụ 3
 
 ![](./images/format-3.png)
 
-一般情况下，我们建议将引用的资料列在文末的 `##参考资料与注释` 一节，并在原句后面加上脚注，而不是直接给出链接．同时一定要避免使用 LaTeX 公式表达代码，上图中两个中括号就是不规范的写法．我们建议使用 `dp(i,j)` 或者 `dp_{i,j}`．
+Thông thường, chúng ta nên liệt kê tài liệu được dẫn ở mục `## Tài liệu tham khảo và chú thích` cuối bài, và thêm footnote sau câu gốc thay vì đưa trực tiếp liên kết. Đồng thời nhất định phải tránh dùng công thức LaTeX để biểu diễn mã; hai cặp ngoặc vuông trong hình là cách viết không đúng quy chuẩn. Chúng ta nên dùng `dp(i,j)` hoặc `dp_{i,j}`.
 
-### 例 4
+### Ví dụ 4
 
 ![](./images/format-4.png)
 
-注意我们描述 **乘法** 的时候一般使用 `\times` 或者 `\cdot`，特殊情况（如卷积）下会使用 `*`（也可以写成 `\ast`）．标题是简洁的词组，但我们不希望正文部分由词组拼凑而成．上图中「两个要素」，建议更改为「动态规划的原理具有以下两个要素」，上下文保持连贯．可取的地方是，适当使用 **有序** 列表可以更有条理地表述内容．再次提醒，在使用列表的时候，每一项如果是一句话，需要在末位添加 **标点符号**．有序列表通常添加分号，在最后一项末位添加句号；无序列表统一添加句号．
+Chú ý khi mô tả **phép nhân**, chúng ta thường dùng `\times` hoặc `\cdot`; trong trường hợp đặc biệt (như convolution) sẽ dùng `*` (cũng có thể viết là `\ast`). Tiêu đề là cụm từ ngắn gọn, nhưng chúng ta không mong phần thân bài được ghép lại từ các cụm từ rời rạc. Trong hình, cụm "hai yếu tố" nên đổi thành "nguyên lý của quy hoạch động có hai yếu tố sau" để giữ mạch văn bản liên tục. Điểm đáng học tập là: dùng **danh sách có thứ tự** một cách phù hợp có thể giúp trình bày nội dung mạch lạc hơn. Nhắc lại lần nữa, khi dùng danh sách, nếu mỗi mục là một câu thì cần thêm **dấu câu** ở cuối mục. Danh sách có thứ tự thường thêm dấu chấm phẩy, và thêm dấu chấm câu ở cuối mục cuối cùng; danh sách không thứ tự thống nhất thêm dấu chấm câu.
 
-### 例 5
+### Ví dụ 5
 
 ![](./images/format-5.png)
 
-适当引用 **图片** 可以增强文章易读性．使用 **伪代码** 的方式表达算法过程可以方便又简洁地描述算法过程，相比于直接贴模板代码更加好懂．
+Dẫn **hình ảnh** phù hợp có thể tăng khả năng đọc của bài viết. Dùng **giả mã** để biểu diễn quá trình thuật toán có thể mô tả thuật toán tiện lợi và ngắn gọn, dễ hiểu hơn so với dẫn trực tiếp mã mẫu.
 
-### 例 6
+### Ví dụ 6
 
 ![](./images/format-6.png)
 
-同样的问题，标题使用英文．并且在使用完括号后没有句号．另外，上图中的行间公式虽然没有使用括号，但是由于下标嵌套过多，使得最底层的下标字体很小，整个公式也并不美观．建议将 `son_{now,i}` 更换为 `son(now,i)`，或者把 `f_{now}` 替换为 `f(now)`．我们希望尽量控制上下标嵌套在两层以内（需要多次嵌套上标时建议使用 Knuth 箭头，如用 $2 \uparrow (2 \uparrow (2 \uparrow (2 \uparrow \cdots)))$ 代替 $2^{2^{2^{2^{\cdots}}}}$，《上帝造题的七分钟》）．
+Vẫn là vấn đề cũ: tiêu đề dùng tiếng Anh, và sau khi dùng ngoặc lại không có dấu chấm câu. Ngoài ra, công thức hiển thị riêng dòng trong hình tuy không dùng ngoặc, nhưng do lồng chỉ số dưới quá nhiều tầng, font của chỉ số dưới tầng thấp nhất rất nhỏ và toàn bộ công thức cũng không đẹp. Nên thay `son_{now,i}` bằng `son(now,i)`, hoặc thay `f_{now}` bằng `f(now)`. Chúng ta mong cố gắng không lồng chỉ số trên/dưới quá hai tầng (khi cần lồng chỉ số trên nhiều lần, nên dùng mũi tên Knuth, ví dụ dùng $2 \uparrow (2 \uparrow (2 \uparrow (2 \uparrow \cdots)))$ thay cho $2^{2^{2^{2^{\cdots}}}}$, bài "Bảy phút Chúa tạo đề").
 
-### 例 7
+### Ví dụ 7
 
 ![](./images/format-7.png)
 
-使用 MkDocs 扩展语法，让例题题面与算法描述区分开．将代码折叠，可以让文章更紧凑．（毕竟看 Wiki 的大多数是了解思路，除了模板代码需要阅读外，习题的代码大多可以折叠．）在描述函数操作时，使用行内代码和 LaTeX 公式都是不错的选择．
+Dùng cú pháp mở rộng MkDocs để tách đề bài mẫu khỏi mô tả thuật toán. Gấp mã lại có thể làm bài viết gọn hơn. (Suy cho cùng, phần lớn người đọc Wiki là để hiểu ý tưởng; ngoài mã mẫu cần đọc, mã của bài tập phần lớn có thể gấp lại.) Khi mô tả thao tác hàm, dùng mã trong dòng và công thức LaTeX đều là lựa chọn tốt.
 
-### 例 8
+### Ví dụ 8
 
 ![](./images/format-8.png)
 
-在文末罗列出参考文献，可以使页面的内容更严谨，真实可信．
+Liệt kê tài liệu tham khảo ở cuối bài có thể làm nội dung trang nghiêm túc, xác thực và đáng tin hơn.
 
-## 外部链接
+## Liên kết ngoài
 
--   [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/W020190128580990138234.pdf)
--   [维基百科：格式手册/标点符号](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7)
--   [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
--   [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
--   [一份（不太）简短的 LATEX2ε 介绍或 106 分钟了解 LATEX2ε](https://github.com/CTeX-org/lshort-zh-cn/releases)
--   [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)
+-   [Cách dùng dấu câu (GB/T 15834-2011)](http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/W020190128580990138234.pdf)
+-   [Wikipedia: Manual of Style/Punctuation](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7)
+-   [Hướng dẫn sắp chữ văn bản tiếng Trung (bản giản thể)](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
+-   [Hướng dẫn phong cách văn bản tiếng Trung - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
+-   [Một giới thiệu không quá ngắn về LATEX2epsilon, hoặc tìm hiểu LATEX2epsilon trong 106 phút](https://github.com/CTeX-org/lshort-zh-cn/releases)
+-   [Quy phạm biên tập khi chèn tiếng Anh trong ấn phẩm tiếng Trung](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^note1]: （冒号）表示总结上文．
+[^note1]: Dấu hai chấm biểu thị việc tổng kết nội dung phía trước.
 
-[^note2]: 科学技术名称的英文全称与其缩略形式间，应使用英文逗号．中文句子内夹用了用以注释、补充或说明的英文句子或语段，该英文句子或语段用中文圆括号标示．
+[^note2]: Giữa tên đầy đủ bằng tiếng Anh của thuật ngữ khoa học kỹ thuật và dạng viết tắt của nó nên dùng dấu phẩy tiếng Anh. Khi trong câu tiếng Trung có chèn câu hoặc cụm câu tiếng Anh dùng để chú thích, bổ sung hoặc giải thích, câu hoặc cụm câu tiếng Anh đó được đánh dấu bằng ngoặc tròn tiếng Trung.
 
-[^note3]: 折叠框：参见 [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)，有时我们也用「Details 语法」指代该语法，因其从功能上与 HTML 中的 [`<details>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) 功能一致．
+[^note3]: Hộp gấp: xem [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks). Đôi khi chúng ta cũng dùng "cú pháp Details" để chỉ cú pháp này, vì về chức năng nó giống với [`<details>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) trong HTML.
 
-[^note4]: 移至 [如何贡献](./htc.md)．
+[^note4]: Đã chuyển đến [Cách đóng góp](./htc.md).
 
-[^note5]: 该规范写入了 [编辑前须知](../edit-landing.md) 并发布了公告，并未写入本文档．
+[^note5]: Quy phạm này được viết vào [Những điều cần biết trước khi biên tập](../edit-landing.md) và đã công bố thông báo, nhưng không được viết vào tài liệu này.
 
-[^note6]: 选项卡：参见 [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs)．
+[^note6]: Tab: xem [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs).
 
 [^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
 
-[^ref2]: [CCF 关于恢复 NOIP 竞赛的公告 - 中国计算机学会](https://www.ccf.org.cn/c/2020-01-21/694716.shtml)
+[^ref2]: [Thông báo của CCF về việc khôi phục kỳ thi NOIP - China Computer Federation](https://www.ccf.org.cn/c/2020-01-21/694716.shtml)
 
-[^ref3]: [我的公式为什么在目录里没有正常显示？好像双倍了](faq.md)
+[^ref3]: [Vì sao công thức của tôi không hiển thị bình thường trong mục lục? Hình như bị nhân đôi](faq.md)
 
-[^ref4]: [SVG|MDN](https://developer.mozilla.org/zh-CN/docs/Web/SVG)
+[^ref4]: [SVG | MDN](https://developer.mozilla.org/zh-CN/docs/Web/SVG)
 
 [^webarchive]: [Save Page in Internet Archive](https://web.archive.org/save/)
 

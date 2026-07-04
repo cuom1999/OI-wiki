@@ -2,194 +2,194 @@ author:F7487
 
 ## Self-Adjusting Top Tree
 
-### 简介
+### Giới thiệu
 
-Self-Adjusting Top Tree，是 2005 年 Tarjan 和 Werneck 在他们的论文 Self-Adjusting Top Trees 中提出的一种基于 Top Tree 理论的维护完全动态森林的数据结构，简称为 SATT．
+Self-Adjusting Top Tree, viết tắt là SATT, là một cấu trúc dữ liệu dựa trên lý thuyết Top Tree để duy trì rừng động hoàn toàn, được Tarjan và Werneck đề xuất năm 2005 trong bài báo Self-Adjusting Top Trees.
 
-Self-Adjusting Top Tree 可以实现森林中任一棵树的链修改/查询、子树修改/查询以及非局部搜索等操作．
+Self-Adjusting Top Tree có thể thực hiện các thao tác cập nhật/truy vấn trên đường đi, cập nhật/truy vấn trên cây con, cũng như tìm kiếm phi cục bộ trong bất kỳ cây nào của rừng.
 
-Splay Tree 是 SATT 的基础，但是 SATT 用的 Splay Tree 和普通的 Splay 在细节处不太一样（进行了一些扩展）．
+Splay Tree là nền tảng của SATT, nhưng Splay Tree dùng trong SATT khác Splay thông thường ở một số chi tiết, vì nó được mở rộng thêm.
 
-### 问题引入
+### Đặt vấn đề
 
-维护一个森林，支持如下操作：
+Duy trì một rừng, hỗ trợ các thao tác sau:
 
--   删除，添加一条边，保证操作前后仍是一个森林．
+-   Xóa hoặc thêm một cạnh, bảo đảm trước và sau thao tác vẫn là một rừng.
 
--   修改某棵树上某条简单路径的权值．
+-   Cập nhật trọng số trên một đường đi đơn trong một cây.
 
--   修改以某个点为根的子树权值．
+-   Cập nhật trọng số của cây con gốc tại một đỉnh.
 
--   查询某棵树上的某条简单路径权值和．
+-   Truy vấn tổng trọng số trên một đường đi đơn trong một cây.
 
--   查询以某个点为根的子树权值和．
+-   Truy vấn tổng trọng số của cây con gốc tại một đỉnh.
 
-### 树收缩
+### Co rút cây
 
-对于任意一棵树，我们都可以运用 **树收缩** 理论来将它收缩为一条边．
+Với một cây bất kỳ, ta có thể dùng lý thuyết **co rút cây** để co nó thành một cạnh.
 
-具体地，树收缩有两个基本操作：**Compress** 和 **Rake**，Compress 操作指定一个度数为 $2$ 的点 $x$，与点 $x$ 相邻的那两个点记为 $y$、$z$，我们连一条新边 $yz$；将点 $x$、边 $xz$、边 $xy$ 的信息放到 $yz$ 中储存，并删去它们．如图所示．
+Cụ thể, co rút cây có hai thao tác cơ bản: **Compress** và **Rake**. Thao tác Compress chọn một đỉnh $x$ có bậc $2$; gọi hai đỉnh kề với $x$ là $y$ và $z$, ta nối một cạnh mới $yz$. Thông tin của đỉnh $x$, cạnh $xz$ và cạnh $xy$ được lưu vào $yz$, rồi xóa chúng đi. Minh họa như hình dưới.
 
 ![](./images/top-tree1.svg)
 
-Rake 操作指定一个度为 $1$ 的点 $x$，而且与点 $x$ 相邻的点 $y$ 的度数需大于 $1$，设点 $y$ 的另一个邻点为 $z$，我们将点 $x$、边 $xy$ 的信息放入边 $yz$ 中储存，并删去它们．如图所示．
+Thao tác Rake chọn một đỉnh $x$ có bậc $1$, đồng thời đỉnh $y$ kề với $x$ phải có bậc lớn hơn $1$. Gọi một đỉnh kề khác của $y$ là $z$, ta đưa thông tin của đỉnh $x$ và cạnh $xy$ vào cạnh $yz$, rồi xóa chúng đi. Minh họa như hình dưới.
 
 ![](./images/top-tree2.svg)
 
-不难证明，任何一棵树都可以只用 Compress 操作和 Rake 操作来将它收缩为一条边，如图所示．
+Không khó để chứng minh rằng mọi cây đều có thể được co thành một cạnh chỉ bằng các thao tác Compress và Rake, như hình dưới.
 
 ![](./images/top-tree3.svg)
 
-### 簇
+### Cụm
 
-为了表达方便，我们记在进行任何操作之前的原树为 $T$．在对 $T$ 进行某些树收缩操作（可以不做任何操作）之后的树记为 $T_x$．
+Để diễn đạt thuận tiện, gọi cây ban đầu trước mọi thao tác là $T$. Sau khi thực hiện một số thao tác co rút cây trên $T$ (cũng có thể không thực hiện thao tác nào), gọi cây thu được là $T_x$.
 
-我们研究某个 $T_x$ 中某一条边所包含的信息情况．
+Ta xét tình trạng thông tin được chứa trong một cạnh nào đó của một $T_x$.
 
-这条边除了带有它本身的信息（当然，如果这条边在 $T$ 中不存在，这条边就没有本身的信息）之外，还可能包含其它通过 Compress/Rake 操作合并到它上面的点、边的信息．我们不妨先从下图中的树收缩过程中选取一条边，看看它所包含的信息在 $T$ 中代表哪些点、边．
+Ngoài thông tin của chính cạnh đó (dĩ nhiên, nếu cạnh này không tồn tại trong $T$ thì nó không có thông tin của bản thân), nó còn có thể chứa thông tin của các đỉnh và cạnh khác đã được gộp vào thông qua thao tác Compress/Rake. Trước hết, hãy chọn một cạnh trong quá trình co rút cây ở hình sau và xem thông tin mà nó chứa đại diện cho những đỉnh, cạnh nào trong $T$.
 
 ![](./images/top-tree4.svg)
 
-如图，选取的边和对应的图已用红线圈出．
+Trong hình, cạnh được chọn và đồ thị tương ứng đã được khoanh bằng đường đỏ.
 
-可以看出，这条边所包含的信息在 $T$ 中代表的点、边是连通的．我们可以推及，对于任一 $T_x$ 中的任一条边储存的信息在 $T$ 中总体现为一个连通子图．我们将这样的连通子图称为 **簇（Cluster）**．
+Có thể thấy các đỉnh và cạnh trong $T$ mà thông tin của cạnh này đại diện tạo thành một phần liên thông. Từ đó suy ra, với bất kỳ cạnh nào trong bất kỳ $T_x$ nào, thông tin được lưu trong cạnh đó nhìn tổng thể trong $T$ đều biểu diễn một đồ thị con liên thông. Ta gọi đồ thị con liên thông như vậy là **cụm (Cluster)**.
 
-然而，簇是 **不完整的子图**，它包含的某些边的端点不被簇它自己包含．于是我们将这些端点称作簇的 **端点（Endpoint）**，将它包含的那些连通子图的点称作 **内点（Internal Node）**，连通子图的边称作 **内边（Internal Edge）**．
+Tuy nhiên, cụm là một **đồ thị con không đầy đủ**: nó chứa một số cạnh mà đầu mút của các cạnh đó không được chính cụm chứa. Do đó ta gọi các đầu mút này là **đầu mút (Endpoint)** của cụm, gọi các đỉnh thuộc đồ thị con liên thông mà nó chứa là **đỉnh trong (Internal Node)**, và gọi các cạnh của đồ thị con liên thông là **cạnh trong (Internal Edge)**.
 
-对于任意一个簇，都有以下性质：
+Với mọi cụm, có các tính chất sau:
 
-1.  簇只存储和维护内点和内边的信息．
+1.  Cụm chỉ lưu trữ và duy trì thông tin của các đỉnh trong và cạnh trong.
 
-2.  簇有两个端点．这两个端点即为 $T_x$ 中代表那个簇的边相连的那两个点．两个端点之间的路径我们称之为 **簇路径（Cluster Path）**；记一个簇的两个端点分别为 $x$、$y$，我们下面用 $C(x,y)$ 来表示这个簇．
+2.  Cụm có hai đầu mút. Hai đầu mút này chính là hai đỉnh kề với cạnh đại diện cho cụm đó trong $T_x$. Đường đi giữa hai đầu mút được gọi là **đường cụm (Cluster Path)**. Nếu hai đầu mút của một cụm lần lượt là $x$ và $y$, bên dưới ta dùng $C(x,y)$ để biểu diễn cụm này.
 
-3.  内点仅与端点或内点相连．
+3.  Đỉnh trong chỉ kề với đầu mút hoặc đỉnh trong.
 
-特别地，对于 $T$ 中的每条边，都各自独立为一个簇（仅包含边自己的信息），这种簇我们称之为 **基簇（Base Cluster）**．对于由 $T$ 收缩到只有一条边的最终的 $T_x$，那条边代表的簇包含除了两个端点之外的整棵 $T$ 的信息，这个簇我们称之为 **根簇（Root Cluster）**．
+Đặc biệt, mỗi cạnh trong $T$ tự nó là một cụm độc lập (chỉ chứa thông tin của chính cạnh đó); loại cụm này được gọi là **cụm cơ sở (Base Cluster)**. Khi $T$ đã được co đến $T_x$ cuối cùng chỉ còn một cạnh, cụm do cạnh đó đại diện chứa thông tin của toàn bộ $T$ trừ hai đầu mút; cụm này được gọi là **cụm gốc (Root Cluster)**.
 
 ![](./images/top-tree5.svg)
 
-如图，上文提到的基簇已用红线标出．
+Trong hình, các cụm cơ sở nói trên đã được đánh dấu bằng đường đỏ.
 
-从簇的视角来看 Compress/Rake 操作，我们发现这两个操作会将两个簇「合二为一」，剩下一个新簇，所以树收缩的过程也是所有的基簇合并为一个簇的过程．
+Nhìn thao tác Compress/Rake từ góc độ cụm, ta thấy hai thao tác này sẽ "gộp hai cụm thành một", chỉ còn lại một cụm mới. Vì vậy, quá trình co rút cây cũng là quá trình gộp tất cả cụm cơ sở thành một cụm.
 
-所以我们也可以得到下图，是对一系列树收缩操作的另一表示．
+Do đó ta cũng có thể có hình sau, là một cách biểu diễn khác của một chuỗi thao tác co rút cây.
 
 ![](./images/top-tree6.svg)
 
 ### Top Tree
 
-我们现在想表示某一棵树进行树收缩的全过程．
+Bây giờ ta muốn biểu diễn toàn bộ quá trình co rút cây của một cây nào đó.
 
-我们可以用上文的两种方法来表示这一过程，但这样十分麻烦，如果树收缩进行了 $n$ 步，我们就要用 $n$ 棵树来表示整个树收缩．
+Ta có thể dùng hai cách ở trên để biểu diễn quá trình này, nhưng như vậy rất rườm rà: nếu quá trình co rút cây có $n$ bước, ta cần dùng $n$ cây để biểu diễn toàn bộ quá trình.
 
-考虑一个对某棵树进行某一树收缩的更简便表示，我们引入 **Top Tree**．
+Xét một cách biểu diễn gọn hơn cho một quá trình co rút cây trên một cây, ta đưa vào **Top Tree**.
 
 ![](./images/top-tree7.jpg)
 
-如图，是以上文的收缩方法和原树为基础的一棵 Top Tree．
+Hình trên là một Top Tree dựa trên cây ban đầu và phương pháp co rút đã nêu.
 
-Top Tree 有以下性质；
+Top Tree có các tính chất sau:
 
-1.  一棵 Top Tree 对应一棵原树和一种对其进行树收缩的方法，Top Tree 的每个节点都表示在某个 $T_x$ 中的某一条边，也就是树收缩过程中形成的某一个簇．图中的形如 $N_x$ 的点表示 `compress(x)` 这一操作形成的簇．
+1.  Một Top Tree tương ứng với một cây ban đầu và một cách co rút cây trên nó. Mỗi nút của Top Tree biểu diễn một cạnh nào đó trong một $T_x$, tức là một cụm được hình thành trong quá trình co rút cây. Trong hình, các nút dạng $N_x$ biểu diễn cụm được tạo bởi thao tác `compress(x)`.
 
-2.  Top Tree 中的一个节点有两个儿子（都分别代表一个簇），这个节点代表的簇是这两个簇通过 Compress 或 Rake 操作合并得到的新簇．
+2.  Một nút trong Top Tree có hai con, mỗi con đều đại diện cho một cụm. Cụm do nút này đại diện là cụm mới thu được bằng cách gộp hai cụm con thông qua thao tác Compress hoặc Rake.
 
-3.  Top Tree 的叶子节点是基簇，其根节点是根簇．因此我们按一棵 Top Tree 的拓扑序分层，它的每一层就代表了一棵 $T_x$．
+3.  Lá của Top Tree là các cụm cơ sở, còn gốc của nó là cụm gốc. Vì vậy, nếu chia một Top Tree theo thứ tự topo thành các tầng, mỗi tầng của nó biểu diễn một cây $T_x$.
 
-### 用三度化 Self-Adjusting Top Tree 实现信息维护
+### Duy trì thông tin bằng Self-Adjusting Top Tree tam bậc hóa
 
-#### 原理
+#### Nguyên lý
 
-Top Tree 对树收缩过程的极大简化，使我们看到通过维护树收缩过程来维护树上信息的可能性，SATT 即是通过这一原理来维护树上信息的．
+Top Tree giản lược rất nhiều quá trình co rút cây, giúp ta thấy khả năng duy trì thông tin trên cây bằng cách duy trì quá trình co rút cây. SATT duy trì thông tin trên cây dựa trên nguyên lý này.
 
-注意到树收缩的过程也是树上信息不断加入的过程，我们执行一次 `compress(x)`，$x$ 点的信息从此刻起就开始在某个簇中出现，影响着我们的统计结果．
+Chú ý rằng quá trình co rút cây cũng là quá trình thông tin trên cây liên tục được thêm vào. Khi thực hiện một lần `compress(x)`, thông tin của đỉnh $x$ bắt đầu xuất hiện trong một cụm kể từ thời điểm đó và ảnh hưởng đến kết quả thống kê.
 
-假如我们现在用 Top Tree 来维护某棵树 $T$，树上的每个点，边都有权值，我们要维护的是 $T$ 的权值和．
+Giả sử hiện tại ta dùng Top Tree để duy trì một cây $T$, mỗi đỉnh và cạnh trên cây đều có trọng số, và ta muốn duy trì tổng trọng số của $T$.
 
-现在我们在维护时要对 $T$ 中某个点 $x$ 的权值进行修改，很明显，我们就需要更改 Top Tree 中所有簇信息包含 $x$ 的节点信息，这样做单次时间复杂度会是 $O(n)$ 级别的．
+Khi đang duy trì mà cần sửa trọng số của một đỉnh $x$ trong $T$, rõ ràng ta phải thay đổi thông tin của tất cả các nút trong Top Tree mà cụm của chúng chứa $x$. Làm như vậy có độ phức tạp thời gian mỗi lần ở mức $O(n)$.
 
-然而，如果我们选的点它在 Top Tree 中簇信息包含 $x$ 的节点个数很少，也就是说使它的信息尽可能晚地加入簇中，我们单次操作的时间复杂度就会有一个很大的提升．如图．
+Tuy nhiên, nếu đỉnh được chọn xuất hiện trong rất ít nút cụm của Top Tree, nói cách khác làm cho thông tin của nó được thêm vào cụm càng muộn càng tốt, thì độ phức tạp mỗi thao tác sẽ được cải thiện đáng kể. Minh họa như hình.
 
 ![](./images/top-tree8.jpg)
 
-SATT 就是通过修改 **某个点/某条路径** 在树收缩过程中信息被加入簇中的先后顺序（以降低其在被修改时的单次时间复杂度）来维护树上信息的．
+SATT duy trì thông tin trên cây bằng cách thay đổi thứ tự mà thông tin của **một đỉnh/một đường đi** được thêm vào cụm trong quá trình co rút cây, nhằm giảm độ phức tạp mỗi lần khi thông tin đó bị sửa.
 
-### 实际结构
+### Cấu trúc thực tế
 
-我们先将一棵原树 $T$ 分层定根，然后我们考虑对某种树收缩顺序的 Top Tree 的根簇，它有两个端点，我们令这其中一个端点就是原树的根，另一个端点任选．
+Trước hết, ta gốc hóa cây ban đầu $T$ theo tầng. Sau đó xét cụm gốc của một Top Tree ứng với một thứ tự co rút cây nào đó. Cụm gốc có hai đầu mút; ta chọn một trong hai đầu mút đó là gốc của cây ban đầu, đầu mút còn lại chọn tùy ý.
 
 ![](./images/top-tree9.jpg)
 
-如图，给根簇选出一组端点，这里标注簇时将端点也圈进去了．
+Như hình, ta chọn một cặp đầu mút cho cụm gốc; khi đánh dấu cụm ở đây, cả đầu mút cũng được khoanh vào.
 
-由树收缩的基本操作可知，簇路径上的点、边 $(j,h,c,jh,hc)$ 的信息最后是通过 Compress 操作才加入 $C(k,g)$ 的，而的非簇路径点 $(a,b,i,f,g,e,ig,\cdots)$ 是通过 Rake 操作才加入 $C(k,g)$ 的．
+Từ các thao tác cơ bản của co rút cây, có thể thấy thông tin của các đỉnh và cạnh trên đường cụm $(j,h,c,jh,hc)$ cuối cùng được thêm vào $C(k,g)$ thông qua thao tác Compress, còn thông tin của các đỉnh và cạnh không nằm trên đường cụm $(a,b,i,f,g,e,ig,\cdots)$ được thêm vào $C(k,g)$ thông qua thao tác Rake.
 
-我们将簇路径单独拿出来，这是一条形态特殊（为链）的树，我们为这棵树建出一棵 top tree（其代表的树收缩顺序任意）．
+Ta tách riêng đường cụm ra. Đây là một cây có hình dạng đặc biệt, cụ thể là một dây chuyền, và ta dựng một top tree cho cây này với thứ tự co rút cây tùy ý.
 
 ![](./images/top-tree10.jpg)
 
-我们将这一结构称之为 **Compress Tree**，因为在这棵 Top Tree 中任一个点的两个儿子之间是通过 Compress 操作来合并成它们的父亲．
+Ta gọi cấu trúc này là **Compress Tree**, vì trong Top Tree này, hai con của bất kỳ nút nào được gộp thành cha của chúng bằng thao tác Compress.
 
-Compress Tree 里的节点称为 **Compress Node**．只考虑当前这条簇路径，一个非叶子的 Compress Node 就代表一次 compress 过程，表示将左儿子和右儿子信息合并起来，再将这个 `compress(x)` 本身存储的点 $x$ 信息加入．这棵 Compress Tree 就维护了 $C(k,g)$ 簇路径的信息．
+Các nút trong Compress Tree được gọi là **Compress Node**. Nếu chỉ xét đường cụm hiện tại, một Compress Node không phải lá đại diện cho một quá trình compress: nó gộp thông tin của con trái và con phải, rồi thêm thông tin của chính đỉnh $x$ được lưu bởi `compress(x)`. Compress Tree này duy trì thông tin của đường cụm của $C(k,g)$.
 
-另外，在 Compress Tree 中，我们实际上还对使用的 Top Tree 做了一些限制．注意到 Compress Tree 维护的是一个 $T$ 中点的深度两两不同的链，我们规定在 Compress Tree 中基簇的中序遍历顺序与对应的 $T$ 中边的深度是一致的，且中序遍历越小深度越浅．同样，对于每个点 $x$ 对应的 `compress(x)` 的关系也是如此．
+Ngoài ra, trong Compress Tree, ta thực ra còn đặt thêm một số ràng buộc lên Top Tree được sử dụng. Chú ý rằng Compress Tree duy trì một dây chuyền gồm các đỉnh trong $T$ có độ sâu đôi một khác nhau. Ta quy định rằng thứ tự duyệt trung thứ tự của các cụm cơ sở trong Compress Tree phải nhất quán với độ sâu của các cạnh tương ứng trong $T$, và thứ tự trung thứ tự càng nhỏ thì độ sâu càng nông. Tương tự, quan hệ của `compress(x)` ứng với mỗi đỉnh $x$ cũng như vậy.
 
-现在来维护那些非簇路径的信息，我们假设这些非簇路径上的点、边已经形成了一个个极大簇，而这些极大簇是由这些用蓝线圈出的更小簇之间互相 Rake 形成的，对由一些更小簇合并形成一个极大簇的过程，我们用一个三叉树来表示，类似地，我们称这一结构为 **Rake Tree**，对应地 Rake Tree 里的点就是 **Rake Node**．每个 Rake Node 都代表一个簇，是由其左儿子和右儿子 Rake 到其中儿子代表的更小簇上形成的．具体可见下图，可知 Rake Tree 中的每个点都代表了 $T$ 中具有相同端点的更小簇．
+Bây giờ xét cách duy trì thông tin không nằm trên đường cụm. Giả sử các đỉnh và cạnh không nằm trên đường cụm đã hình thành từng cụm cực đại, và các cụm cực đại này được tạo ra bằng cách Rake lẫn nhau giữa các cụm nhỏ hơn được khoanh bằng đường xanh. Với quá trình gộp một số cụm nhỏ hơn thành một cụm cực đại, ta dùng một cây tam phân để biểu diễn. Tương tự, ta gọi cấu trúc này là **Rake Tree**, và các nút trong Rake Tree tương ứng được gọi là **Rake Node**. Mỗi Rake Node đều đại diện cho một cụm, được hình thành bằng cách Rake con trái và con phải vào cụm nhỏ hơn do con giữa đại diện. Cụ thể xem hình dưới; có thể thấy mỗi nút trong Rake Tree đều đại diện cho một cụm nhỏ hơn có cùng đầu mút trong $T$.
 
 ![](./images/top-tree11.jpg)
 
-如图，蓝线圈出的是一个个极大簇，黄线圈出的是一个个更小簇．
+Trong hình, đường xanh khoanh các cụm cực đại, đường vàng khoanh các cụm nhỏ hơn.
 
-对于那些更小簇，我们对它们进行相同处理，给它们选择簇路径、建出 Compress Tree、……如此递归下去，就建出了许多表示树收缩过程的 Compress Tree，Rake Tree．
+Với các cụm nhỏ hơn đó, ta xử lý tương tự: chọn đường cụm cho chúng, dựng Compress Tree, rồi tiếp tục đệ quy như vậy. Khi đó ta dựng được nhiều Compress Tree và Rake Tree biểu diễn quá trình co rút cây.
 
 ![](./images/top-tree12.jpg)
 
-上图为原树的 Rake-Compress Tree（因为每个 Rake Node 都连着一棵 Compress Tree，所以表现为一棵 Rake Tree 连着许多 Compress Tree 的形态）和代表根簇路径的 Compress Tree．
+Hình trên là Rake-Compress Tree của cây ban đầu (vì mỗi Rake Node đều nối với một Compress Tree, nên nó có dạng một Rake Tree nối với nhiều Compress Tree) và Compress Tree đại diện cho đường cụm gốc.
 
-考虑将这些树以某种方式拼接在一起，使它们形成一个有序的整体．记一个 Rake Tree 代表的最小簇的集合的公共端点是点 $x$．我们给这些 Rake Node 的中儿子（一个 Compress Tree 集合）都加入非 $x$ 的另一端点，但仍保持其中序遍历和 Top Tree 的基本性质，如图．
+Xét việc ghép các cây này với nhau theo một cách nào đó để chúng tạo thành một tổng thể có thứ tự. Gọi $x$ là đầu mút chung của tập các cụm nhỏ nhất mà một Rake Tree đại diện. Ta thêm đầu mút còn lại, không phải $x$, vào các con giữa của những Rake Node này (một tập Compress Tree), đồng thời vẫn giữ nguyên thứ tự trung thứ tự và các tính chất cơ bản của Top Tree, như hình.
 
 ![](./images/top-tree13.jpg)
 
-这一步相当于是让 Rake 操作加入某个 $T$ 中点的操作直接发生在 Compress Tree 中，这不仅使我们能正确维护 Rake Node 的信息（只需将三个儿子信息合并即可），还使我们 Compress Tree 的结构更完整．下一步，我们将 Compress Tree 改为三叉树，若某个 Rake Tree 的公共端点是点 $x$，我们就将 Rake Tree 挂在 `compress(x)` 的中儿子处，如图．
+Bước này tương đương với việc để thao tác Rake thêm một đỉnh nào đó trong $T$ xảy ra trực tiếp trong Compress Tree. Điều này không chỉ giúp ta duy trì đúng thông tin của Rake Node (chỉ cần gộp thông tin của ba con), mà còn làm cho cấu trúc Compress Tree đầy đủ hơn. Tiếp theo, ta đổi Compress Tree thành cây tam phân. Nếu đầu mút chung của một Rake Tree là đỉnh $x$, ta treo Rake Tree đó vào con giữa của `compress(x)`, như hình.
 
 ![](./images/top-tree14.jpg)
 
-此时经过三叉化的 `compress(x)` 点，它的意义就变成先将其中儿子 Rake 到簇路径上，再统计左右儿子和点 $x$ 的信息．
+Lúc này, đỉnh `compress(x)` sau khi tam phân hóa có ý nghĩa là trước tiên Rake con giữa vào đường cụm, rồi thống kê thông tin của con trái, con phải và đỉnh $x$.
 
-最后，我们再处理一下根簇路径的那棵 Compress Tree：与其它所有 Compress Tree 一致地，按中序遍历加入它的两个端点，使得它的根储存整棵 $T$ 的信息．
+Cuối cùng, ta xử lý Compress Tree của đường cụm gốc: giống như mọi Compress Tree khác, thêm hai đầu mút của nó theo thứ tự trung thứ tự, để gốc của nó lưu thông tin của toàn bộ $T$.
 
-于是我们就实现了用三度化 Self-Adjusting Top Tree 实现一棵树的信息维护．
+Như vậy, ta đã thực hiện được việc dùng Self-Adjusting Top Tree tam bậc hóa để duy trì thông tin của một cây.
 
 ![](./images/top-tree15.jpg)
 
-总结一下，SATT 有以下性质：
+Tóm lại, SATT có các tính chất sau:
 
-1.  SATT 由 Compress Tree 和 Rake Tree 组成，Compress Tree 是一棵特殊的 Top Tree；Rake Tree 是一个三叉树，它们都对应一棵树进行树收缩的过程．
+1.  SATT gồm Compress Tree và Rake Tree. Compress Tree là một Top Tree đặc biệt; Rake Tree là một cây tam phân. Cả hai đều tương ứng với quá trình co rút cây của một cây.
 
-2.  Compress Tree 里的点最多有三个儿子．Compress Tree 可以做类似于 Splay 树的旋转操作（只需保证其中序遍历不变即可，旋转一个点时保持其中儿子不动）．
+2.  Một nút trong Compress Tree có nhiều nhất ba con. Compress Tree có thể thực hiện các phép xoay tương tự Splay tree, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
 
-3.  Rake Tree 里的点一定有一个中儿子．Rake Tree 可以做类似于 Splay 树的旋转操作（只需保证其中序遍历不变即可，旋转一个点时保持其中儿子不动）．
+3.  Một nút trong Rake Tree nhất định có một con giữa. Rake Tree có thể thực hiện các phép xoay tương tự Splay tree, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
 
-4.  SATT 的拓扑序反映了原树 $T$ 的树收缩顺序．
+4.  Thứ tự topo của SATT phản ánh thứ tự co rút cây của cây ban đầu $T$.
 
-我们在上文中提到的「修改某个点/某条路径在树收缩过程中信息被加入簇中的先后顺序」SATT 是否能实现呢，答案是肯定的．
+Ở trên ta đã nhắc đến việc "thay đổi thứ tự mà thông tin của một đỉnh/một đường đi được thêm vào cụm trong quá trình co rút cây". SATT có làm được điều này không? Câu trả lời là có.
 
-在 SATT 中，有一个 `access(x)` 的操作，它的作用是使某点 $x$ 成为根簇的非根端点，同时在 SATT 中使 `compress(x)` 成为 SATT 的根．
+Trong SATT có thao tác `access(x)`. Tác dụng của nó là làm cho đỉnh $x$ trở thành đầu mút không phải gốc của cụm gốc, đồng thời làm cho `compress(x)` trở thành gốc của SATT.
 
-我们可以通过 `access(x)` 操作以均摊 $O(\log n)$ 的复杂度使 SATT 中代表 `compress(x)` 的点旋到整棵 SATT 的树根，根据 SATT 的第四个性质，我们改变了 `compress(x)` 的操作顺序，使得它最晚执行，$x$ 点的信息也就被最晚加入；这样当我们要修改 $x$ 点的信息时，就只需要更新 `compress(x)`．
+Thông qua thao tác `access(x)`, ta có thể đưa nút đại diện cho `compress(x)` trong SATT lên gốc của toàn bộ SATT với độ phức tạp khấu hao $O(\log n)$. Theo tính chất thứ tư của SATT, ta đã thay đổi thứ tự thao tác `compress(x)` để nó được thực hiện muộn nhất, nên thông tin của đỉnh $x$ cũng được thêm vào muộn nhất. Nhờ đó, khi cần sửa thông tin của đỉnh $x$, ta chỉ cần cập nhật `compress(x)`.
 
-### 代码实现
+### Cài đặt
 
-#### Push 类函数
+#### Các hàm Push
 
-首先考虑上传信息，即 `Pushup(x)` 函数．在考虑对 SATT 的某个节点维护信息时，首先分这个点在 Compress Tree 还是在 Rake Tree 进行讨论，原因可见上文，不再赘述，下面以维护某个点的子树大小为例
+Trước hết xét việc đẩy thông tin lên, tức hàm `Pushup(x)`. Khi duy trì thông tin cho một nút nào đó của SATT, đầu tiên cần xét nút này nằm trong Compress Tree hay Rake Tree. Lý do đã được trình bày ở trên, nên không lặp lại nữa. Dưới đây lấy ví dụ duy trì kích thước cây con của một đỉnh.
 
 ```cpp
-// ls(x) x的左儿子
-// rs(x) x的右儿子
-// ms(x) x的中儿子
-// type==0 是 Compress Node
-// type==1 是 Rake Node
+// ls(x) con trái của x
+// rs(x) con phải của x
+// ms(x) con giữa của x
+// type==0 là Compress Node
+// type==1 là Rake Node
 void pushup(int x, int type) {
   if (type == 0)
     size[x] = size[rs(x)] + size[ms(x)] + 1;
@@ -199,22 +199,22 @@ void pushup(int x, int type) {
 }
 ```
 
-查询点 $x$ 的子树大小，就将其 Access 到 SATT 根，答案是其中儿子的 size $+1$；因为根据上文，在 Access 之后，其中儿子才是它的真子树．
+Để truy vấn kích thước cây con của đỉnh $x$, đưa nó Access lên gốc SATT; đáp án là size của con giữa cộng $1$, vì theo phần trên, sau Access, con giữa mới là cây con thật của nó.
 
-然后考虑下传信息，即 `Pushdown(x)` 函数．我们如果要对原树中的某个子树做整体修改，一个很自然的想法是：将这个节点直接 Access 到 SATT 根节点，给它的中儿子打上一个标记即可．同理，查询子树就直接 Access 后查询中儿子．
+Tiếp theo xét việc đẩy thông tin xuống, tức hàm `Pushdown(x)`. Nếu muốn cập nhật toàn bộ một cây con trong cây ban đầu, một ý tưởng rất tự nhiên là: đưa trực tiếp nút này Access lên gốc SATT, rồi đánh dấu vào con giữa của nó. Tương tự, truy vấn cây con thì sau Access trực tiếp truy vấn con giữa.
 
-我们如果要对原树中的某条路径做整体修改，我们就 expose 路径的两个端点，其中 `expose(x, y)` 是指使点 $x$ 成为 $T$ 的根节点，使点 $y$ 成为根簇的另一个端点．对应在 SATT 上，此时根簇的 Compress Tree 就是 $x$ 到 $y$ 的路径．于是直接给根簇的 Compress Tree 打上一个标记即可．同理查询链 expose 后查询根节点即可．
+Nếu muốn cập nhật toàn bộ một đường đi trong cây ban đầu, ta expose hai đầu mút của đường đi. Ở đây `expose(x, y)` nghĩa là làm cho đỉnh $x$ trở thành gốc của $T$, và làm cho đỉnh $y$ trở thành đầu mút còn lại của cụm gốc. Tương ứng trên SATT, lúc này Compress Tree của cụm gốc chính là đường đi từ $x$ đến $y$. Vì vậy, chỉ cần đánh dấu vào Compress Tree của cụm gốc. Tương tự, truy vấn đường đi thì expose rồi truy vấn nút gốc.
 
-于是我们就知道问题引入的问题怎么做了．
+Như vậy ta đã biết cách giải các thao tác trong phần đặt vấn đề.
 
 ```cpp
 void pushdown(int x, int type) {
   if (type == 0) {
-    // 处理链
+    // xử lý đường đi
     chain[ls(x)] += chain[x] chain[rs(x)] += chain[x];
     val[ls(x)] += chain[x];
     val[rs(x)] += chain[x];
-    // 处理子树
+    // xử lý cây con
     subtree[ls(x)] += subtree[x];
     subtree[rs(x)] += subtree[x];
     subtree[ms(x)] += subtree[x];
@@ -234,7 +234,7 @@ void pushdown(int x, int type) {
   return;
 }
 
-// 下传标记
+// đẩy dấu xuống
 void pushall(int x, int type) {
   if (!isroot(x)) pushall(father[x], type);
   pushdown(x, type);
@@ -242,17 +242,17 @@ void pushall(int x, int type) {
 }
 ```
 
-#### Splay 类函数
+#### Các hàm Splay
 
-我们知道 SATT 中的 Rake Tree 和 Compress Tree 都是可以旋转的，也就是说它们可以用 Splay 来维护．因此我们可以写出以下代码：
+Ta biết rằng Rake Tree và Compress Tree trong SATT đều có thể xoay, tức là có thể dùng Splay để duy trì chúng. Do đó ta có thể viết mã sau:
 
 ```cpp
-// 是一个节点的中儿子或无父亲
-// ls 一个SATT节点的左儿子
-// rs 一个SATT节点的右儿子
-// ms 一个SATT节点的中儿子
-// type==1 在 Rake Tree中
-// type==0 在 Compress Tree中
+// là con giữa của một nút hoặc không có cha
+// ls con trái của một nút SATT
+// rs con phải của một nút SATT
+// ms con giữa của một nút SATT
+// type==1 nằm trong Rake Tree
+// type==0 nằm trong Compress Tree
 bool isroot(int x) { return rs(father[x]) != x && ls(father[x]) != x; }
 
 bool direction(int x) { return rs(father[x]) == x; }
@@ -271,7 +271,7 @@ void rotate(int x, int type) {
 }
 
 void splay(int x, int type, int goal = 0) {
-  pushall(x, ty);  // 下传标记
+  pushall(x, ty);  // đẩy dấu xuống
   for (int y; y = father[x], (!isroot(x)) && y != goal; rotate(x, ty)) {
     if (father[y] != goal && (!isroot(y))) {
       rotate(direction(x) ^ diretion(y) ? x : y, type);
@@ -281,13 +281,13 @@ void splay(int x, int type, int goal = 0) {
 }
 ```
 
-值得注意的是，函数 `direction` 和 `isroot` 与普通 Splay 的不同．因为无论这个点怎么转，这个点的中儿子是不会变的．
+Đáng chú ý là hai hàm `direction` và `isroot` khác với Splay thông thường, vì dù nút này xoay thế nào thì con giữa của nó cũng không thay đổi.
 
-#### Access 类函数
+#### Các hàm Access
 
-`access(x)` 的意义是：将点 $x$ 旋转到整个 SATT 的根处，使点 $x$ 成为根簇的两个端点之一（另一端点即为 $T$ 的根节点），同时不能改变原树的结构和原树的根．
+Ý nghĩa của `access(x)` là: xoay đỉnh $x$ lên gốc của toàn bộ SATT, làm cho đỉnh $x$ trở thành một trong hai đầu mút của cụm gốc (đầu mút còn lại là gốc của $T$), đồng thời không làm thay đổi cấu trúc của cây ban đầu và gốc của cây ban đầu.
 
-为了实现 `access(x)`，我们先将其旋转到其所在 Compress Tree 的树根，再把点 $x$ 的右儿子去掉，使点 $x$ 成为其所在 Compress Tree 对应簇的端点．
+Để thực hiện `access(x)`, trước hết ta xoay nó lên gốc của Compress Tree mà nó đang thuộc về, rồi bỏ con phải của đỉnh $x$, khiến đỉnh $x$ trở thành đầu mút của cụm tương ứng với Compress Tree đó.
 
 ```cpp
 if (rs(x)) {
@@ -301,37 +301,37 @@ if (rs(x)) {
 }
 ```
 
-如果这时点 $x$ 已经到了根部，则退出；若没有，则执行以下步骤，以让它跨过它上面的 Rake Tree：
+Nếu lúc này đỉnh $x$ đã ở gốc thì thoát. Nếu chưa, thực hiện các bước sau để nó vượt qua Rake Tree phía trên:
 
-1.  将其父亲节点（一定是一个 Rake Node），splay 到其 Rake Tree 的树根；
+1.  Đưa nút cha của nó (chắc chắn là một Rake Node) splay lên gốc của Rake Tree của nó.
 
-2.  将 $x$ 的爷节点（一定是一个 Compress Node）splay 到其 Compress Tree 根部．
+2.  Đưa nút ông của $x$ (chắc chắn là một Compress Node) splay lên gốc của Compress Tree của nó.
 
-3.  若 $x$ 的爷节点有一个右儿子，则将点 x 和爷节点的右儿子互换，更新信息，然后退出．
+3.  Nếu nút ông của $x$ có một con phải, hoán đổi đỉnh x với con phải của nút ông, cập nhật thông tin, rồi thoát.
 
-4.  若爷节点没有右儿子，则先让点 $x$ 成为爷节点的右儿子，此时点 $x$ 原来的父节点没有中儿子，根据上文 Rake Node 的性质，它不能存在．于是调用 `Delete` 函数，将其删除，然后退出．
+4.  Nếu nút ông không có con phải, trước hết cho đỉnh $x$ trở thành con phải của nút ông. Lúc này nút cha ban đầu của đỉnh $x$ không có con giữa; theo tính chất của Rake Node ở trên, nó không thể tồn tại. Do đó gọi hàm `Delete` để xóa nó, rồi thoát.
 
-1，2 两个步骤合称为 **Local Splay**．3，4 两个步骤合称为 **Splice**．但我们方便起见，将它们都写在 `Splice(x)` 函数里．
+Hai bước 1 và 2 được gọi chung là **Local Splay**. Hai bước 3 và 4 được gọi chung là **Splice**. Để thuận tiện, ta viết tất cả trong hàm `Splice(x)`.
 
-上文提到的 `Delete(x)` 函数是这样的：
+Hàm `Delete(x)` nói trên hoạt động như sau:
 
-1.  检视将要删除的点 $x$ 有没有左儿子，若有，则将左儿子的子树后继续旋转到点 $x$ 下方（成为新的左儿子），然后将右儿子（若有）变成左儿子的右儿子，此时点 $x$ 的左儿子就代替了点 $x$．这相当于 Splay 的合并操作．
+1.  Kiểm tra xem đỉnh $x$ sắp bị xóa có con trái hay không. Nếu có, tiếp tục xoay cây con của con trái xuống dưới đỉnh $x$ (trở thành con trái mới), rồi biến con phải (nếu có) thành con phải của con trái. Khi đó con trái của đỉnh $x$ thay thế đỉnh $x$. Điều này tương đương thao tác gộp trong Splay.
 
-2.  若没有左儿子，则直接让其右儿子代替点 $x$．
+2.  Nếu không có con trái, trực tiếp cho con phải thay thế đỉnh $x$.
 
-不难发现，`Splice(x)` 改变了原树的一些簇的端点选取．一次 splice 完了之后，我们将点 $x$ 的父亲节点当作新的点 $x$，进行下一次 splice．
+Không khó để nhận ra `Splice(x)` đã thay đổi cách chọn đầu mút của một số cụm trong cây ban đầu. Sau khi hoàn thành một lần splice, ta lấy nút cha của đỉnh $x$ làm đỉnh $x$ mới và thực hiện lần splice tiếp theo.
 
-最终我们会发现，我们最开始要操作的点 $x$ 一定在根簇的 Compress Tree 最右端．我们只需最后做一次 **Global Splay**，将其旋至 SATT 根部即可．
+Cuối cùng ta sẽ thấy đỉnh $x$ ban đầu cần thao tác chắc chắn nằm ở đầu phải nhất của Compress Tree của cụm gốc. Ta chỉ cần thực hiện một lần **Global Splay** cuối cùng để xoay nó lên gốc SATT.
 
 ```cpp
-// ls 一个SATT节点的左儿子
-// rs 一个SATT节点的右儿子
-// ms 一个SATT节点的中儿子
+// ls con trái của một nút SATT
+// rs con phải của một nút SATT
+// ms con giữa của một nút SATT
 // son[x][0] ls
 // son[x][1] rs
 // son[x][2] ms
-// type==1 在 Rake Tree中
-// type==0 在 Compress Tree中
+// type==1 nằm trong Rake Tree
+// type==0 nằm trong Compress Tree
 int new_node() {
   if (top) {
     top--;
@@ -397,7 +397,7 @@ void access(int x) {
 }
 ```
 
-若要让一个点成为原树的根，那么我们就将点 $x$ Access 到 SATT 的根节点，可知此时点 $x$ 已经是最终状态的簇一个端点．由 Compress Tree 的中序遍历性质可知，将点 $x$ 所在的 Compress Tree 左右颠倒（所有点的左右儿子互换），就使点 $x$ 成为原树的根．在具体实现中，我们通过给点 $x$ 打上一个翻转标记，之后下传来进行这一过程．
+Nếu muốn làm cho một đỉnh trở thành gốc của cây ban đầu, ta Access đỉnh $x$ lên gốc SATT. Khi đó có thể thấy đỉnh $x$ đã là một đầu mút của cụm ở trạng thái cuối cùng. Từ tính chất duyệt trung thứ tự của Compress Tree, nếu đảo trái phải Compress Tree chứa đỉnh $x$ (hoán đổi con trái và con phải của mọi nút), thì đỉnh $x$ trở thành gốc của cây ban đầu. Trong cài đặt cụ thể, ta đánh dấu đảo cho đỉnh $x$, sau đó đẩy dấu xuống để thực hiện quá trình này.
 
 ```cpp
 void makeroot(int x) {
@@ -406,7 +406,7 @@ void makeroot(int x) {
 }
 ```
 
-于是 `expose(x, y)` 就呼之欲出：
+Như vậy `expose(x, y)` trở nên hiển nhiên:
 
 ```cpp
 void expose(int x, int y) {
@@ -417,11 +417,11 @@ void expose(int x, int y) {
 
 ### Link & Cut
 
-现在我们要将原树中两个不连通的点之间连一条边，我们先让其中的一个点 $x$ 成为原树的根，再将另一个点 $y$ 旋转到根处，可知此时应该使点 $y$ 成为点 $x$ 的右儿子．然后在点 $y$ 的右儿子上挂上这一条边（在只需维护点的 SATT 中，这一步可省）．
+Bây giờ ta muốn nối một cạnh giữa hai đỉnh không liên thông trong cây ban đầu. Trước hết cho một trong hai đỉnh, $x$, trở thành gốc của cây ban đầu, rồi xoay đỉnh còn lại $y$ lên gốc. Khi đó có thể thấy cần làm cho đỉnh $y$ trở thành con phải của đỉnh $x$. Sau đó treo cạnh này vào con phải của đỉnh $y$ (nếu SATT chỉ cần duy trì đỉnh thì bước này có thể bỏ qua).
 
 ```cpp
 void Link(int x, int y, int z) {
-  // z代表连接 x, y的边
+  // z đại diện cho cạnh nối x, y
   access(x);
   makeroot(y);
   setfather(y, x, 1);
@@ -431,47 +431,47 @@ void Link(int x, int y, int z) {
 }
 ```
 
-`Cut` 跟 `Link` 原理差不多
+Nguyên lý của `Cut` gần giống `Link`.
 
 ```cpp
 void cut(int x, int y) {
   expose(x, y);
-  clear(rs(x));  // 删掉 xy 这一基簇
+  clear(rs(x));  // xóa cụm cơ sở xy này
   father[x] = ls(y) = rs(x);
   pushup(y, 0);
 }
 ```
 
-### 完整代码
+### Mã hoàn chỉnh
 
-??? note "[Luogu P3690【模板】动态树](https://www.luogu.com.cn/problem/P3690)"
+??? note "[Luogu P3690, Bài mẫu: cây động](https://www.luogu.com.cn/problem/P3690)"
     ```cpp
     --8<-- "docs/ds/code/top-tree/top-tree_1.cpp"
     ```
 
-### SATT 的时间复杂度证明
+### Chứng minh độ phức tạp thời gian của SATT
 
-设在一棵 SATT（点数为 $n$）中，其当前状态 $x$ 的势能函数为
+Giả sử trong một SATT có $n$ nút, hàm thế năng của trạng thái hiện tại $x$ là
 
 $$
 \varphi(x)= \sum_{i=1}^{n} r(i)
 $$
 
-其中 $r(i) = \lceil \log_2 \text{siz}(i) \rceil$．$\text{siz}(i)$ 为以 $i$ 为根的子树大小．
+trong đó $r(i) = \lceil \log_2 \text{siz}(i) \rceil$. $\text{siz}(i)$ là kích thước cây con gốc tại $i$.
 
-则 SATT 的 splay 的均摊复杂度显然仍是 $3n\log n + 1$，即使 SATT 是一个三叉树．
+Khi đó độ phức tạp khấu hao của splay trong SATT hiển nhiên vẫn là $3n\log n + 1$, kể cả khi SATT là một cây tam phân.
 
-因此对于 SATT，我们只要证得 Access 函数复杂度正确，就能证得 SATT 的时间复杂度．
+Vì vậy với SATT, chỉ cần chứng minh độ phức tạp của hàm Access là đúng thì ta chứng minh được độ phức tạp của SATT.
 
-我们逐步分析 Accese 的均摊复杂度．
+Ta phân tích từng bước độ phức tạp khấu hao của Access.
 
-我们先要将点 $x$ 旋至其所在 Compress Tree 的根，则这一步的均摊复杂度
+Trước hết cần xoay đỉnh $x$ lên gốc của Compress Tree chứa nó. Độ phức tạp khấu hao của bước này là
 
 $$
 a \leq  3\log n +1
 $$
 
-接着我们要使点 $x$ 无右儿子，则这一步的均摊复杂度
+Tiếp theo cần làm cho đỉnh $x$ không có con phải. Độ phức tạp khấu hao của bước này là
 
 $$
 a = 1 + r'(\gamma)- 0 \leq \log n +1
@@ -479,9 +479,9 @@ $$
 
 ![](./images/top-tree16.jpg)
 
-如图，为去掉点 $x$ 的右儿子过程．
+Hình trên minh họa quá trình bỏ con phải của đỉnh $x$.
 
-然后是 Local Splay，Splice 交替进行的过程，经过若干次 Splice，点 $x$ 被旋至 SATT 的根．我们对其中一组 Local Splay，Splice 进行分析：
+Sau đó là quá trình Local Splay và Splice diễn ra luân phiên. Sau một số lần Splice, đỉnh $x$ được xoay lên gốc SATT. Ta phân tích một cặp Local Splay, Splice:
 
 ![](./images/top-tree17.jpg)
 
@@ -489,31 +489,31 @@ $$
 
 ![](./images/top-tree19.jpg)
 
-如图，体现了对点 $x$ 做一次 Splice 的过程，不包括最后左旋点 $x$ 的部分．
+Các hình trên thể hiện quá trình thực hiện một lần Splice đối với đỉnh $x$, chưa bao gồm phần xoay trái đỉnh $x$ cuối cùng.
 
-为表达方便，设 $r_x(i)$ 为点 $i$ 在状态 $x$ 时的 $r$ 值．
+Để diễn đạt thuận tiện, đặt $r_x(i)$ là giá trị $r$ của đỉnh $i$ ở trạng thái $x$.
 
-由图，易知由状态 1 到状态 2 的操作（将点 $x$ 的父亲旋至其 Rake Tree 的根部的 Local Splay 操作）的均摊复杂度
+Từ hình, dễ thấy thao tác từ trạng thái 1 sang trạng thái 2 (Local Splay đưa cha của đỉnh $x$ lên gốc Rake Tree của nó) có độ phức tạp khấu hao
 
 $$
 a \leq  3(r_2(\gamma)- r_1(\gamma))+1
 $$
 
-由图，易知由状态 2 到状态 3 的操作（将点 $x$ 的爷节点旋至其 Compress Tree 的根部的 Local Splay 操作）的均摊复杂度
+Từ hình, dễ thấy thao tác từ trạng thái 2 sang trạng thái 3 (Local Splay đưa nút ông của đỉnh $x$ lên gốc Compress Tree của nó) có độ phức tạp khấu hao
 
 $$
 a \leq  3(r_3(B)- r_2(B))+1
 $$
 
-重点分析由状态 3 到状态 4 的操作（Splice）
+Tập trung phân tích thao tác từ trạng thái 3 sang trạng thái 4 (Splice):
 
 $$
 a = r_4(\gamma) -r_3(\gamma) +1
 $$
 
-不难发现 $r_4(\gamma) \leq r_3(B)$
+Không khó thấy $r_4(\gamma) \leq r_3(B)$.
 
-故这一次操作的均摊复杂度为
+Vì vậy độ phức tạp khấu hao của thao tác này là
 
 $$
 \begin{aligned}
@@ -522,29 +522,29 @@ a &\leq r_3(B)- r_3(\gamma)+1\\
 \end{aligned}
 $$
 
-综合上述过程，一次 Splice 的复杂度为
+Tổng hợp các bước trên, độ phức tạp của một lần Splice là
 
 $$
 a\leq 3r_3(B)+3r_3(B)+3r_2(\gamma)-3r_3(\gamma)-3r_2(B)-3r_1(\gamma)+3
 $$
 
-记下一次 Splice 的点 $X$（即状态 4 中的点 $B$）的 $r$ 值为 $r'(X)$，并注意到 $r_3(\gamma),r_1(\gamma) \ge r_1(X)$，$r_3(B),r_2(\gamma) \leq r'(X)$ 且 $r_3(B)=r_2(B)$，所以
+Gọi điểm của lần Splice tiếp theo là $X$ (tức điểm $B$ trong trạng thái 4), giá trị $r$ của nó là $r'(X)$. Đồng thời chú ý rằng $r_3(\gamma),r_1(\gamma) \ge r_1(X)$, $r_3(B),r_2(\gamma) \leq r'(X)$ và $r_3(B)=r_2(B)$, nên
 
 $$
 a\leq  9(r'(X)-r(X))+3
 $$
 
-除了上面这个复杂度以外，在 Splice 中可能还会有因 `delete(x)` 产生的额外均摊复杂度，记这一部分为 $a' \leq 3\log n +1$．
+Ngoài độ phức tạp trên, trong Splice còn có thể có phần độ phức tạp khấu hao phát sinh do `delete(x)`. Ký hiệu phần này là $a' \leq 3\log n +1$.
 
-先不管 $a'$ 部分，每次 Splice 的 $r'(X)$ 等于下一次的 $r(X)$，且第一次 Splice 的 $r(X)$ 等于我们一开始旋转点 $x$ 到其 Compress Tree 树根时的 $r(X)$，则对于不计 `delete(x)` 的一次 `access(x)` 复杂度，我们有：
+Tạm thời bỏ qua phần $a'$. Mỗi lần Splice có $r'(X)$ bằng $r(X)$ của lần tiếp theo, và $r(X)$ của lần Splice đầu tiên bằng $r(X)$ khi ban đầu ta xoay đỉnh $x$ lên gốc Compress Tree của nó. Vì vậy, với độ phức tạp của một lần `access(x)` nếu không tính `delete(x)`, ta có:
 
 $$
 a \leq 9(r'(x)-r(x))+ 3k + 1
 $$
 
-其中 $k$ 为 Splice 次数．
+trong đó $k$ là số lần Splice.
 
-看样子 $a$ 会带一个 $3k+1$ 导致均摊复杂度无法分析，但我们有办法来对付它，注意到 zig-zig/zig-zag 的旋转可以这么均摊
+Nhìn qua thì $a$ có thêm hạng $3k+1$, khiến độ phức tạp khấu hao dường như khó phân tích. Nhưng ta có cách xử lý: chú ý rằng các phép xoay zig-zig/zig-zag có thể được khấu hao như sau
 
 $$
 \begin{aligned}
@@ -553,9 +553,9 @@ a &\leq 3(r'(X)-r(X)) + q\\
 \end{aligned}
 $$
 
-如果我们能找到足够多的 zig-zig，zig-zag 操作，我们就可以将这 $3k+1$ 平摊到这些操作上去，从而消掉这个 $3k+1$．
+Nếu tìm được đủ nhiều thao tác zig-zig, zig-zag, ta có thể phân bổ $3k+1$ này vào các thao tác đó để triệt tiêu nó.
 
-我们发现 Globel Splay 里面就有这么多的 zig-zig，zag-zig 来给我们使用，因为 Globel Splay 里面点的个数一定大于 $k$，而从点 $x$ 到 Globel Splay 根部路径的点数一定不少于 $k$，也就是说一次 `access(x)` 中一定会至少有 $\dfrac k2$ 个 zig-zag 操作，算上 Globel Splay 的均摊复杂度 $a \leq 3\log n +1$，一次 `access(x)` 不记 `delete(x)` 的均摊复杂度为
+Ta thấy trong Global Splay có đủ nhiều thao tác zig-zig, zag-zig để dùng, vì số nút trong Global Splay chắc chắn lớn hơn $k$, còn số nút trên đường từ đỉnh $x$ đến gốc Global Splay chắc chắn không nhỏ hơn $k$. Nói cách khác, trong một lần `access(x)` chắc chắn có ít nhất $\dfrac k2$ thao tác zig-zag. Tính thêm độ phức tạp khấu hao của Global Splay là $a \leq 3\log n +1$, độ phức tạp khấu hao của một lần `access(x)` khi không tính `delete(x)` là
 
 $$
 \begin{aligned}
@@ -565,13 +565,13 @@ a&\leq 21(r''(X)-r(X)) +3
 \end{aligned}
 $$
 
-现在算上 $a'$，列出进行 $m$ 次 `access(x)` 操作的总式子．
+Bây giờ tính cả $a'$, viết công thức tổng cho $m$ lần thao tác `access(x)`.
 
 $$
 \sum_{i=1}^m a_i' + \sum_{i=1}^m a_i = \sum_{i=1}^m c_i + \varphi(x_n) -\varphi(x_0)
 $$
 
-我们要求的是实际复杂度
+Ta cần độ phức tạp thực tế:
 
 $$
 \begin{aligned}
@@ -580,29 +580,29 @@ $$
 \end{aligned}
 $$
 
-注意到 `delete(x)` 操作的本质是删掉一个 Rake Node，但我们在 $m$ 次操作中最多只会添加 $m$ 个 Rake Node，由 Rake Node 的定义，我们初始时最多有 $n$ 个 Rake Node，也就是说我们总共只会做 $m+n$ 次 `delete(x)` 操作，由 $a' \leq 3\log n +1$ 可知
+Chú ý rằng bản chất của thao tác `delete(x)` là xóa một Rake Node, nhưng trong $m$ lần thao tác, ta nhiều nhất chỉ thêm $m$ Rake Node. Theo định nghĩa của Rake Node, ban đầu ta có nhiều nhất $n$ Rake Node, tức tổng cộng chỉ thực hiện nhiều nhất $m+n$ lần `delete(x)`. Từ $a' \leq 3\log n +1$ suy ra
 
 $$
 \sum_{i=1}^m c_i \leq 3(m+n)\log n + 21m\log n +n\log n +4m +n
 $$
 
-所以我们就证明了 Access 的复杂度，而其他函数要么基于 Access 要么单次时间复杂度为常数，所以我们就证明了 SATT 的复杂度．
+Do đó ta đã chứng minh được độ phức tạp của Access; các hàm khác hoặc dựa trên Access, hoặc có độ phức tạp thời gian mỗi lần là hằng số, nên ta cũng chứng minh được độ phức tạp của SATT.
 
-顺便一提，如果像 LCT 一样省略 Global Splay 的过程，改为在每次 Splice 时直接将要 Access 的点旋转一下，这样做时间复杂度也是对的（实测省略 Global Splay 的版本要快很多，能与 LCT 在 Luogu P3690 跑得不分上下）．
+Nhân tiện, nếu giống LCT mà bỏ qua quá trình Global Splay, đổi thành trong mỗi lần Splice thì trực tiếp xoay đỉnh cần Access một lần, độ phức tạp thời gian vẫn đúng. Theo đo thực nghiệm, phiên bản bỏ Global Splay nhanh hơn rất nhiều và có thể chạy ngang ngửa LCT trên Luogu P3690.
 
-### 例题
+### Bài tập ví dụ
 
-#### 例题 1
+#### Ví dụ 1
 
 ???+ note "[CEOI 2019 Dynamic Diameter](https://loj.ac/p/3163)"
-    给定一棵 $n$ 个节点的树，每条边有边权，有 $q$ 次更新，每次修改一条边的边权，并询问树的直径．强制在线．
+    Cho một cây có $n$ nút, mỗi cạnh có trọng số cạnh. Có $q$ lần cập nhật, mỗi lần sửa trọng số của một cạnh và truy vấn đường kính của cây. Bắt buộc online.
 
-维护动态直径，建出 SATT 后，我们只需要在 `Pushup(x)` 里面维护每个点的答案，最后查询根节点的答案（即整棵树的直径）就可以了．
+Duy trì đường kính động. Sau khi dựng SATT, ta chỉ cần duy trì đáp án của mỗi nút trong `Pushup(x)`, rồi cuối cùng truy vấn đáp án của nút gốc (tức đường kính của cả cây).
 
 ```cpp
 void pushup(int x, int op) {
   if (op == 0) {
-    // 是 Compress Node
+    // là Compress Node
     len[x] = len[ls(x)] + len[rs(x)];
     diam[x] = maxs[ls(x)][1] + maxs[rs(x)][0];
     diam[x] =
@@ -613,7 +613,7 @@ void pushup(int x, int op) {
     maxs[x][1] =
         max(maxs[rs(x)][1], len[rs(x)] + max(maxs[ms(x)][0], maxs[ls(x)][1]));
   } else {
-    // 是 Rake Node
+    // là Rake Node
     diam[x] = maxs[ls(x)][0] + maxs[rs(x)][0];
     diam[x] =
         max(diam[x], maxs[ms(x)][0] + max(maxs[ls(x)][0], maxs[rs(x)][0]));
@@ -624,9 +624,9 @@ void pushup(int x, int op) {
 }
 ```
 
-其中 $diam$ 是当前点的答案（这个点代表的簇的直径）．$len$ 表示当前 Compress Node 所在簇路径的长度，$maxs_{0/1}$ 表示 Compress Node 到簇内点和端点的不选簇路径儿子/不选父亲的最大距离（如果是 Rake Node 则只存储选取当前簇的上端点到簇内点和端点的最大距离 $maxs_0$）．每次查询 SATT 根节点的 diam 即可，正确性显然．
+Trong đó $diam$ là đáp án của nút hiện tại, tức đường kính của cụm do nút này đại diện. $len$ biểu diễn độ dài đường cụm của Compress Node hiện tại, còn $maxs_{0/1}$ biểu diễn khoảng cách lớn nhất từ Compress Node đến đỉnh trong và đầu mút của cụm khi không chọn con đường cụm/không chọn cha. Nếu là Rake Node thì chỉ lưu $maxs_0$, khoảng cách lớn nhất từ đầu mút trên của cụm hiện tại đến đỉnh trong và đầu mút của cụm. Mỗi lần truy vấn chỉ cần lấy diam của nút gốc SATT; tính đúng đắn là hiển nhiên.
 
-注意对 `Pushrev(x)` 做一些改动．
+Chú ý cần sửa `Pushrev(x)` đôi chút.
 
 ```cpp
 void pushrev(int x) {
@@ -637,34 +637,34 @@ void pushrev(int x) {
 }
 ```
 
-#### 例题 2
+#### Ví dụ 2
 
-???+ note "[「CSP-S 2019」树的重心](https://loj.ac/p/3213)"
-    给定一棵树，求出单独删去树的每条边后，分裂出的两个子树的重心编号和之和．
+???+ note "[CSP-S 2019, Trọng tâm của cây](https://loj.ac/p/3213)"
+    Cho một cây. Với mỗi cạnh của cây, xóa riêng cạnh đó rồi lấy hai cây con tách ra; hãy tính tổng các chỉ số trọng tâm của hai cây con đó, cộng trên mọi cạnh.
 
-假如我们能动态 $O(\log n)$ 维护树的重心，我们就做出这个题了．
+Nếu có thể duy trì động trọng tâm của cây trong $O(\log n)$, ta sẽ giải được bài này.
 
-SATT 支持动态 $O(\log n)$ 维护树的重心，做到这需要 **非局部搜索（Non-local Search）**．
+SATT hỗ trợ duy trì động trọng tâm của cây trong $O(\log n)$. Để làm được điều này cần **tìm kiếm phi cục bộ (Non-local Search)**.
 
-对于一种树上的性质，如果一个点/一条边在整棵树中有这种性质，且在所有包含它的子树中都包含此种性质，我们就称这个性质是 **局部的（Local）**，否则称它是 **非局部的（Non-local）**．局部信息一般可以通过 `pushup(x)` 来维护
+Với một tính chất trên cây, nếu một đỉnh/một cạnh có tính chất đó trong toàn cây và cũng có tính chất đó trong mọi cây con chứa nó, ta gọi tính chất này là **cục bộ (Local)**; ngược lại gọi là **phi cục bộ (Non-local)**. Thông tin cục bộ thường có thể duy trì bằng `pushup(x)`.
 
-例如，权值最小值是局部的，因为一个点/一条边如果在整棵树中权值最小，那么在所有包含它的子树中它也是权值最小的，而权值第二小显然就是非局部的．
+Ví dụ, giá trị trọng số nhỏ nhất là cục bộ, vì nếu một đỉnh/một cạnh có trọng số nhỏ nhất trong toàn cây thì trong mọi cây con chứa nó, nó cũng có trọng số nhỏ nhất. Còn trọng số nhỏ thứ hai hiển nhiên là phi cục bộ.
 
-我们上文维护的 $diam$ 也是局部信息．
+$diam$ mà ta duy trì ở trên cũng là thông tin cục bộ.
 
-回到正题，重心显然是一个非局部信息，无法通过简单的 `pushup(x)` 来维护．我们考虑在 SATT 上搜索：
+Quay lại vấn đề chính, trọng tâm hiển nhiên là thông tin phi cục bộ, không thể duy trì bằng `pushup(x)` đơn giản. Ta xét cách tìm kiếm trên SATT:
 
-我们的搜索从 SATT 的根节点，即根簇开始．注意到重心有很好的性质：假如有一条边的一侧点的个数大于等于另一侧点的个数，那么边的这一侧一定至少有一个重心（重心可能有两个）．
+Tìm kiếm bắt đầu từ nút gốc của SATT, tức cụm gốc. Chú ý rằng trọng tâm có một tính chất rất tốt: nếu một phía của một cạnh có số đỉnh lớn hơn hoặc bằng phía còn lại, thì phía đó của cạnh chắc chắn có ít nhất một trọng tâm (trọng tâm có thể có hai).
 
-记 $sum$ 表示某一个簇的点个数，$maxs$ 为一棵 Rake Tree 的所有 Rake Node 中儿子的 $sum$ 最大值．
+Gọi $sum$ là số đỉnh của một cụm, $maxs$ là giá trị $sum$ lớn nhất trong các con giữa của mọi Rake Node thuộc một Rake Tree.
 
 ```cpp
 void pushup(int x, int op) {
   if (op == 0) {
-    // 是 Compress Node
+    // là Compress Node
     sum[x] = sum[ls(x)] + sum[rs(x)] + sum[ms(x)] + 1;
   } else {
-    // 是 Rake Node
+    // là Rake Node
     maxs[x] = max(maxs[ls(x)], max(maxs[rs(x)], sum[ms(x)]));
     sum[x] = sum[ls(x)] + sum[rs(x)] + sum[ms(x)];
   }
@@ -673,25 +673,25 @@ void pushup(int x, int op) {
 
 ![](./images/top-tree20.jpg)
 
-如图，为在进行 Non-local Search 时的 SATT 和对应的原树 $T$．
+Hình trên là SATT khi thực hiện Non-local Search và cây ban đầu $T$ tương ứng.
 
-我们做如下比较：
+Ta thực hiện các phép so sánh sau:
 
-1.  比较簇 $compress(Y)$ 的 $sum$ 值与簇 $compress(Z)$、簇 $A$ 和点 $X$ 的并（我们暂称为簇 $\alpha$）的 $sum$ 值．若 $compress(Y)$ 的 $sum$ 值大于等于后者，说明至少有一个重心在 $compress(Y)$ 的子树中，我们递归到 $compress(Y)$ 搜索．（如果此处取等，点 $X$ 也是一个重心，需要记录）
+1.  So sánh giá trị $sum$ của cụm $compress(Y)$ với giá trị $sum$ của hợp giữa cụm $compress(Z)$, cụm $A$ và đỉnh $X$ (tạm gọi là cụm $\alpha$). Nếu $sum$ của $compress(Y)$ lớn hơn hoặc bằng vế sau, nghĩa là có ít nhất một trọng tâm trong cây con của $compress(Y)$, ta đệ quy tìm kiếm vào $compress(Y)$. Nếu ở đây bằng nhau, đỉnh $X$ cũng là một trọng tâm và cần ghi nhận.
 
-2.  比较簇 $compress(Z)$ 的 $sum$ 值与簇 $compress(Y)$、簇 $A$ 和点 $X$ 的并（我们暂称为簇 $\beta$）的 $sum$ 值．若 $compress(Z)$ 的 $sum$ 值大于等于后者，说明至少有一个重心在 $compress(Z)$ 的子树中，我们递归到 $compress(Z)$ 搜索．（如果此处取等，点 $X$ 也是一个重心，需要记录）
+2.  So sánh giá trị $sum$ của cụm $compress(Z)$ với giá trị $sum$ của hợp giữa cụm $compress(Y)$, cụm $A$ và đỉnh $X$ (tạm gọi là cụm $\beta$). Nếu $sum$ của $compress(Z)$ lớn hơn hoặc bằng vế sau, nghĩa là có ít nhất một trọng tâm trong cây con của $compress(Z)$, ta đệ quy tìm kiếm vào $compress(Z)$. Nếu ở đây bằng nhau, đỉnh $X$ cũng là một trọng tâm và cần ghi nhận.
 
-3.  比较点 $x$ 中儿子 Rake tree 之中 $sum$ 最大的更小簇的 $sum$ 值与簇 $compress(Y)$、簇 $A$、点 $X$ 及其它更小簇的并（我们暂称为簇 $Y$）的 $sum$ 值，若那个更小簇的 $sum$ 值大于等于后者，说明至少有一个重心在那个更小簇的子树中，我们递归到它搜索．如果此处取等，点 $X$ 也是一个重心，需要记录．
+3.  So sánh giá trị $sum$ của cụm nhỏ hơn có $sum$ lớn nhất trong Rake tree là con giữa của điểm $x$ với giá trị $sum$ của hợp giữa cụm $compress(Y)$, cụm $A$, đỉnh $X$ và các cụm nhỏ hơn còn lại (tạm gọi là cụm $Y$). Nếu giá trị $sum$ của cụm nhỏ hơn đó lớn hơn hoặc bằng vế sau, nghĩa là có ít nhất một trọng tâm trong cây con của cụm nhỏ hơn đó, ta đệ quy tìm kiếm vào nó. Nếu ở đây bằng nhau, đỉnh $X$ cũng là một trọng tâm và cần ghi nhận.
 
-4.  若以上比较都不递归，则点 $X$ 一定是一个重心，记录并退出．
+4.  Nếu các phép so sánh trên đều không đệ quy, thì đỉnh $X$ chắc chắn là một trọng tâm; ghi nhận rồi thoát.
 
-第一步的搜索显然正确，之后应该怎么搜呢？
+Bước tìm kiếm đầu tiên hiển nhiên đúng. Vậy sau đó nên tìm thế nào?
 
-假如我们递归到 $Y$，则现在 $Y$ 储存信息的并不完整，因为 $compress(Y)$ 里面只存储了它自己这个簇的信息，而我们要求的是整棵树的重心．解决方法是，将之前簇的信息记录下来，在点 $Y$ 上比较计算时将上一个簇的信息与点 $Y$ 自己的信息合并处理．具体实现如下：
+Giả sử ta đệ quy vào $Y$. Lúc này thông tin mà $Y$ lưu không đầy đủ, vì $compress(Y)$ chỉ lưu thông tin của chính cụm đó, còn ta cần trọng tâm của cả cây. Cách giải quyết là ghi lại thông tin của cụm trước đó, rồi khi so sánh tính toán tại đỉnh $Y$, gộp thông tin của cụm trước với thông tin của chính đỉnh $Y$. Cài đặt cụ thể như sau:
 
 ```cpp
 void non_local_search(int x, int lv, int rv, int op) {
-  // lv 和 rv 都是搜索的上一个簇的信息
+  // lv và rv đều là thông tin của cụm trước đó trong tìm kiếm
   if (!x) return;
   psd(x, 0);
   if (op == 0) {
@@ -749,13 +749,13 @@ void non_local_search(int x, int lv, int rv, int op) {
 }
 ```
 
-??? note "示例代码"
+??? note "Mã ví dụ"
     ```cpp
     --8<-- "docs/ds/code/top-tree/top-tree_2.cpp"
     ```
 
-### Reference
+### Tài liệu tham khảo
 
-1.  Robert E. Tarjan and Renato F. Werneck. 2005. Self-adjusting top trees. In Proceedings of the sixteenth annual ACM-SIAM symposium on Discrete algorithms (SODA '05). Society for Industrial and Applied Mathematics, USA, 813–822. DOI 10.5555/1070432.1070547
+1.  Robert E. Tarjan and Renato F. Werneck. 2005. Self-adjusting top trees. In Proceedings of the sixteenth annual ACM-SIAM symposium on Discrete algorithms (SODA '05). Society for Industrial and Applied Mathematics, USA, 813-822. DOI 10.5555/1070432.1070547
 
-2.  [negiizhao 的博客](https://negiizhao.blog.uoj.ac/blog/4912)
+2.  [Blog của negiizhao](https://negiizhao.blog.uoj.ac/blog/4912)

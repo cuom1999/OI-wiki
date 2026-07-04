@@ -1,129 +1,129 @@
-## 简介
+## Giới thiệu
 
-Link/Cut Tree 是一种数据结构，我们用它来解决 **动态树问题**．
+Link/Cut Tree là một cấu trúc dữ liệu dùng để giải **bài toán cây động**.
 
-Link/Cut Tree 又称 Link-Cut Tree，简称 LCT，但它不叫动态树，动态树是指一类问题．
+Link/Cut Tree còn được gọi là Link-Cut Tree, viết tắt là LCT. Tuy vậy bản thân nó không được gọi là "cây động"; cây động là tên của một lớp bài toán.
 
-Splay Tree 是 LCT 的基础，但是 LCT 用的 Splay Tree 和普通的 Splay 在细节处不太一样（进行了一些扩展）．
+Splay Tree là nền tảng của LCT, nhưng Splay Tree dùng trong LCT khác Splay thông thường ở một vài chi tiết (có thêm một số mở rộng).
 
-## 问题引入
+## Dẫn nhập bài toán
 
-维护一棵树，支持如下操作：
+Duy trì một cây, hỗ trợ các thao tác sau:
 
--   修改两点间路径权值．
--   查询两点间路径权值和．
--   修改某点子树权值．
--   查询某点子树权值和．
+-   Sửa trọng số trên đường đi giữa hai điểm.
+-   Truy vấn tổng trọng số trên đường đi giữa hai điểm.
+-   Sửa trọng số trong cây con của một điểm.
+-   Truy vấn tổng trọng số trong cây con của một điểm.
 
-这是一道树剖模版题．
+Đây là một bài mẫu về phân rã cây theo chuỗi.
 
-但是再加一个操作：
+Nhưng nếu thêm một thao tác:
 
--   断开并连接一些边，保证仍是一棵树．
+-   Cắt và nối một số cạnh, đồng thời bảo đảm cấu trúc vẫn là một cây.
 
-要求在线求出上面的答案．
+Yêu cầu trả lời trực tuyến các truy vấn ở trên.
 
-这就成了动态树问题，可以使用 LCT 求解．
+Khi đó bài toán trở thành bài toán cây động, có thể dùng LCT để giải.
 
-## 动态树问题
+## Bài toán cây động
 
-维护一个 **森林**，支持删除某条边，加入某条边，并保证加边，删边之后仍是森林．我们要维护这个森林的一些信息．
+Duy trì một **rừng**, hỗ trợ xóa một cạnh, thêm một cạnh, và bảo đảm sau khi thêm hoặc xóa cạnh thì cấu trúc vẫn là rừng. Ta cần duy trì một số thông tin trên rừng này.
 
-一般的操作有两点连通性，两点路径权值和，连接两点和切断某条边、修改信息等．
+Các thao tác thường gặp gồm kiểm tra liên thông giữa hai điểm, tổng trọng số trên đường đi giữa hai điểm, nối hai điểm, cắt một cạnh, sửa thông tin, v.v.
 
-### 从 LCT 的角度回顾一下树链剖分
+### Nhìn lại phân rã cây theo chuỗi từ góc nhìn LCT
 
--   对整棵树按子树大小进行剖分，并重新标号．
--   我们发现重新标号之后，在树上形成了一些以链为单位的连续区间，并且可以用线段树进行区间操作．
+-   Phân rã toàn bộ cây theo kích thước cây con và đánh số lại.
+-   Sau khi đánh số lại, trên cây xuất hiện một số đoạn liên tiếp theo đơn vị chuỗi, và ta có thể dùng cây đoạn để thao tác trên các đoạn này.
 
-### 转向动态树问题
+### Chuyển sang bài toán cây động
 
-我们发现我们刚刚讲的树剖是以子树大小作为划分条件．那我们能不能重定义一种剖分，使它更适应我们的动态树问题呢？
+Ta thấy phân rã cây vừa nêu dùng kích thước cây con làm điều kiện chia. Vậy có thể định nghĩa lại một kiểu phân rã để phù hợp hơn với bài toán cây động không?
 
-考虑动态树问题需要什么链．
+Hãy xét xem bài toán cây động cần loại chuỗi nào.
 
-由于动态维护一个森林，显然我们希望这个链是我们指定的链，以便利用来求解．
+Vì ta đang duy trì động một rừng, rõ ràng ta muốn chuỗi này là chuỗi do chính ta chỉ định để tiện dùng trong lời giải.
 
-## 实链剖分
+## Phân rã chuỗi thực
 
-对于一个点连向它所有儿子的边，我们自己选择一条边进行剖分，我们称被选择的边为实边，其他边则为虚边．对于实边，我们称它所连接的儿子为实儿子．对于一条由实边组成的链，我们同样称之为实链．请记住我们选择实链剖分的最重要的原因：它是我们选择的，灵活且可变．正是它的这种灵活可变性，我们采用 Splay Tree 来维护这些实链．
+Với các cạnh nối một điểm tới tất cả con của nó, ta tự chọn một cạnh để đưa vào phân rã. Cạnh được chọn gọi là cạnh thực, các cạnh còn lại gọi là cạnh ảo. Với một cạnh thực, đứa con mà nó nối tới gọi là con thực. Một chuỗi gồm các cạnh thực cũng được gọi là chuỗi thực. Hãy nhớ lý do quan trọng nhất khiến ta chọn phân rã chuỗi thực: nó do ta chọn, linh hoạt và có thể thay đổi. Chính tính linh hoạt đó khiến ta dùng Splay Tree để duy trì các chuỗi thực này.
 
 ## LCT
 
-我们可以简单的把 LCT 理解成用一些 Splay 来维护动态的树链剖分，以期实现动态树上的区间操作．对于每条实链，我们建一个 Splay 来维护整个链区间的信息．
+Có thể hiểu đơn giản LCT là dùng một số Splay để duy trì phân rã cây theo chuỗi một cách động, nhằm thực hiện các thao tác đoạn trên cây động. Với mỗi chuỗi thực, ta xây một Splay để duy trì thông tin của toàn bộ đoạn chuỗi đó.
 
-## 辅助树
+## Cây phụ trợ
 
-我们先来看一看辅助树的一些性质，再通过一张图实际了解一下辅助树的具体结构．
+Trước hết hãy xem một số tính chất của cây phụ trợ, rồi dùng hình vẽ để hiểu cấu trúc cụ thể của nó.
 
-在本文里，你可以认为一些 Splay 构成了一个辅助树，每棵辅助树维护的是一棵树，一些辅助树构成了 LCT，其维护的是整个森林．
+Trong bài này, có thể xem một số Splay hợp thành một cây phụ trợ; mỗi cây phụ trợ duy trì một cây, và nhiều cây phụ trợ hợp thành LCT, duy trì toàn bộ rừng.
 
-1.  辅助树由多棵 Splay 组成，每棵 Splay 维护原树中的一条路径，且中序遍历这棵 Splay 得到的点序列，从前到后对应原树「从上到下」的一条路径．
-2.  原树每个节点与辅助树的 Splay 节点一一对应．
-3.  辅助树的各棵 Splay 之间并不是独立的．每棵 Splay 的根节点的父亲节点本应是空，但在 LCT 中每棵 Splay 的根节点的父亲节点指向原树中 **这条链** 的父亲节点（即链最顶端的点的父亲节点）．这类父亲链接与通常 Splay 的父亲链接区别在于儿子认父亲，而父亲不认儿子，对应原树的一条 **虚边**．因此，每个连通块恰好有一个点的父亲节点为空．
-4.  由于辅助树的以上性质，我们维护任何操作都不需要维护原树，辅助树可以在任何情况下拿出一个唯一的原树，我们只需要维护辅助树即可．
+1.  Cây phụ trợ gồm nhiều Splay. Mỗi Splay duy trì một đường đi trong cây gốc, và dãy đỉnh thu được khi duyệt trung thứ tự Splay này tương ứng từ trước ra sau với một đường đi "từ trên xuống dưới" trong cây gốc.
+2.  Mỗi nút trong cây gốc tương ứng một-một với một nút Splay trong cây phụ trợ.
+3.  Các Splay trong cây phụ trợ không độc lập với nhau. Cha của gốc mỗi Splay lẽ ra phải rỗng, nhưng trong LCT, cha của gốc mỗi Splay trỏ tới nút cha của **chuỗi này** trong cây gốc (tức cha của điểm trên cùng của chuỗi). Loại liên kết cha này khác liên kết cha trong Splay thông thường ở chỗ con nhận cha, nhưng cha không nhận con; nó tương ứng với một **cạnh ảo** trong cây gốc. Vì vậy, mỗi thành phần liên thông có đúng một điểm có cha rỗng.
+4.  Nhờ các tính chất trên của cây phụ trợ, khi duy trì mọi thao tác ta không cần duy trì cây gốc. Cây phụ trợ luôn xác định được duy nhất một cây gốc, nên ta chỉ cần duy trì cây phụ trợ.
 
-现在我们有一棵原树，如图所示．（加粗边是实边，虚线边是虚边．）
+Giả sử ta có một cây gốc như hình dưới. (Cạnh tô đậm là cạnh thực, cạnh nét đứt là cạnh ảo.)
 
 ![tree](images/lct-atree-1.svg)
 
-由刚刚的定义，辅助树的结构如图所示．
+Theo định nghĩa vừa nêu, cấu trúc cây phụ trợ như hình sau.
 
 ![auxtree](images/lct-atree-2.svg)
 
-### 考虑原树和辅助树的结构关系
+### Quan hệ cấu trúc giữa cây gốc và cây phụ trợ
 
--   原树中的实链 : 在辅助树中节点都在一棵 Splay 中．
--   原树中的虚链 : 在辅助树中，子节点所在 Splay 的 Father 指向父节点，但是父节点的两个儿子都不指向子节点．
--   注意：原树的根不等于辅助树的根．
--   原树的 Father 指向不等于辅助树的 Father 指向．
--   辅助树是可以在满足辅助树、Splay 的性质下任意换根的．
--   虚实链变换可以轻松在辅助树上完成，这也就是实现了动态维护树链剖分．
+-   Chuỗi thực trong cây gốc: các nút nằm trong cùng một Splay của cây phụ trợ.
+-   Chuỗi ảo trong cây gốc: trong cây phụ trợ, `Father` của Splay chứa nút con trỏ tới nút cha, nhưng hai con của nút cha đều không trỏ tới nút con.
+-   Chú ý: gốc của cây gốc không nhất thiết là gốc của cây phụ trợ.
+-   Con trỏ `Father` trong cây gốc không giống con trỏ `Father` trong cây phụ trợ.
+-   Cây phụ trợ có thể đổi gốc tùy ý miễn vẫn thỏa các tính chất của cây phụ trợ và Splay.
+-   Chuyển đổi giữa chuỗi ảo và chuỗi thực có thể thực hiện dễ dàng trên cây phụ trợ; đây chính là cách duy trì động phân rã cây theo chuỗi.
 
-### 接下来要用到的变量声明
+### Khai báo biến sẽ dùng sau đây
 
--   `ch[N][2]` 左右儿子
--   `f[N]` 父亲指向
--   `sum[N]` 路径权值和
--   `val[N]` 点权
--   `tag[N]` 翻转标记
--   `laz[N]` 权值标记
--   `siz[N]` 辅助树上子树大小
+-   `ch[N][2]` con trái và con phải
+-   `f[N]` con trỏ cha
+-   `sum[N]` tổng trọng số trên đường đi
+-   `val[N]` trọng số của điểm
+-   `tag[N]` đánh dấu đảo
+-   `laz[N]` đánh dấu trọng số
+-   `siz[N]` kích thước cây con trên cây phụ trợ
 -   Other\_Vars
 
-### 函数声明
+### Khai báo hàm
 
-#### 一般数据结构函数（字面意思）
+#### Các hàm cấu trúc dữ liệu thông thường
 
 1.  `PushUp(x)`
 2.  `PushDown(x)`
 
-#### Splay 树的函数
+#### Các hàm của Splay Tree
 
-下面是 Splay 树中用到的函数，具体可以查阅 [Splay 树](./splay.md)．
+Sau đây là các hàm dùng trong Splay Tree; xem chi tiết tại [Splay Tree](./splay.md).
 
-1.  `Get(x)` 获取 $x$ 是父亲的哪个儿子．
-2.  `Splay(x)` 通过和 Rotate 操作联动实现把 $x$ 旋转到 **当前 Splay 的根**．
-3.  `Rotate(x)` 将 $x$ 向上旋转一层的操作．
+1.  `Get(x)` lấy xem $x$ là con nào của cha nó.
+2.  `Splay(x)` phối hợp với thao tác `Rotate` để xoay $x$ lên **gốc của Splay hiện tại**.
+3.  `Rotate(x)` xoay $x$ lên trên một tầng.
 
-#### 新操作
+#### Thao tác mới
 
-1.  `Access(x)` 把从根到 $x$ 的所有点放在一条实链里，使根到 $x$ 成为一条实路径，并且在同一棵 Splay 里．**只有此操作是必须实现的，其他操作视题目而实现．**
-2.  `IsRoot(x)` 判断 $x$ 是否是所在树的根．
-3.  `Update(x)` 在 `Access` 操作之后，递归地从上到下 `PushDown` 更新信息．
-4.  `MakeRoot(x)` 使 $x$ 点成为其所在树的根．
-5.  `Link(x, y)` 在 $x, y$ 两点间连一条边．
-6.  `Cut(x, y)` 把 $x, y$ 两点间边删掉．
-7.  `Find(x)` 找到 $x$ 所在树的根节点编号．
-8.  `Fix(x, v)` 修改 $x$ 的点权为 $v$．
-9.  `Split(x, y)` 提取出 $x, y$ 间的路径，方便做区间操作．
+1.  `Access(x)` đưa tất cả điểm từ gốc tới $x$ vào cùng một chuỗi thực, khiến đường từ gốc tới $x$ trở thành một đường thực và nằm trong cùng một Splay. **Chỉ thao tác này là bắt buộc phải cài đặt; các thao tác khác tùy bài mà cài đặt.**
+2.  `IsRoot(x)` kiểm tra $x$ có phải gốc của cây chứa nó hay không.
+3.  `Update(x)` sau thao tác `Access`, đệ quy từ trên xuống dưới để `PushDown` và cập nhật thông tin.
+4.  `MakeRoot(x)` biến điểm $x$ thành gốc của cây chứa nó.
+5.  `Link(x, y)` nối một cạnh giữa hai điểm $x, y$.
+6.  `Cut(x, y)` xóa cạnh giữa hai điểm $x, y$.
+7.  `Find(x)` tìm chỉ số nút gốc của cây chứa $x$.
+8.  `Fix(x, v)` sửa trọng số điểm của $x$ thành $v$.
+9.  `Split(x, y)` trích xuất đường đi giữa $x, y$ để tiện thao tác đoạn.
 
-### 宏定义
+### Định nghĩa macro
 
 -   `#define ls ch[p][0]`
 -   `#define rs ch[p][1]`
 
-## 函数讲解
+## Giải thích hàm
 
 ### `PushUp()`
 
@@ -147,7 +147,7 @@ void PushDown(int p) {
 
 ### `Splay() && Rotate()`
 
-这里 `Splay()` 和 `Rotate()` 与 Splay 树的实现有些区别．
+Ở đây `Splay()` và `Rotate()` có vài điểm khác với cách cài đặt Splay Tree thông thường.
 
 ```cpp
 #define Get(x) (ch[f[x]][1] == x)
@@ -155,7 +155,8 @@ void PushDown(int p) {
 void Rotate(int x) {
   int y = f[x], z = f[y], k = Get(x);
   if (!isRoot(y)) ch[z][ch[z][1] == y] = x;
-  // 上面这句一定要写在前面，普通的 Splay 是不用的，因为 isRoot  (后面会讲)
+  // Câu trên phải đặt ở phía trước; Splay thông thường không cần vậy
+  // vì isRoot (sẽ nói ở phần sau)
   ch[y][k] = ch[x][!k], f[ch[x][!k]] = y;
   ch[x][!k] = y, f[y] = x, f[x] = z;
   PushUp(y), PushUp(x);
@@ -163,31 +164,33 @@ void Rotate(int x) {
 
 void Splay(int x) {
   Update(
-      x);  // 马上就能看到啦．在 Splay 之前要把旋转会经过的路径上的点都 PushDown
+      x);  // Trước khi Splay, phải PushDown mọi điểm trên đường mà phép xoay sẽ đi qua
   for (int fa; fa = f[x], !isRoot(x); Rotate(x)) {
     if (!isRoot(fa)) Rotate(Get(fa) == Get(x) ? fa : x);
   }
 }
 ```
 
-以上函数可以查阅 [Splay 树](./splay.md)．
+Các hàm trên có thể xem thêm tại [Splay Tree](./splay.md).
 
-下面是 LCT 独有的函数．
+Sau đây là các hàm riêng của LCT.
 
 ### `isRoot()`
 
 ```cpp
-// 在前面我们已经说过，LCT 具有 如果一个儿子不是实儿子，他的父亲找不到它的性质
-// 所以当一个点既不是它父亲的左儿子，又不是它父亲的右儿子，它就是当前 Splay 的根
+// Như đã nói ở trên, LCT có tính chất: nếu một con không phải con thực
+// thì cha của nó không tìm thấy nó.
+// Vì vậy, nếu một điểm không phải con trái cũng không phải con phải của cha nó,
+// nó chính là gốc của Splay hiện tại.
 #define isRoot(x) (ch[f[x]][0] != x && ch[f[x]][1] != x)
 ```
 
 ### `Access()`
 
 ```cpp
-// Access 是 LCT
-// 的核心操作，试想我们想求解一条路径，而这条路径恰好就是我们当前的一棵 Splay，
-// 直接调用其信息即可．先来看一下代码，再结合图来看看过程
+// Access là thao tác cốt lõi của LCT. Hãy tưởng tượng ta muốn giải một đường đi,
+// và đường đi đó đúng bằng một Splay hiện tại, khi đó chỉ cần gọi trực tiếp
+// thông tin của nó. Trước hết xem mã, rồi kết hợp với hình để hiểu quá trình.
 int Access(int x) {
   int p;
   for (p = 0; x; p = x, x = f[x]) {
@@ -197,50 +200,50 @@ int Access(int x) {
 }
 ```
 
--   我们有这样一棵树，实线为实边，虚线为虚边．
+-   Ta có một cây như sau, cạnh liền là cạnh thực, cạnh nét đứt là cạnh ảo.
 
     ![initial tree](images/lct-access-1.svg)
 
--   它的辅助树可能长成这样（构图方式不同可能 LCT 的结构也不同）．
+-   Cây phụ trợ của nó có thể có dạng sau (cách vẽ khác nhau có thể dẫn tới cấu trúc LCT khác nhau).
 
     ![initial auxtree](images/lct-access-2.svg)
 
--   现在我们要 `Access(N)`，把 $A$ 到 $N$ 路径上的边都变为实边，拉成一棵 Splay．
+-   Bây giờ ta cần `Access(N)`, biến mọi cạnh trên đường từ $A$ tới $N$ thành cạnh thực và kéo chúng thành một Splay.
 
     ![access tree](images/lct-access-3.svg)
 
--   实现的方法是从下到上逐步更新 Splay．
+-   Cách thực hiện là cập nhật Splay từng bước từ dưới lên trên.
 
--   首先我们要把 $N$ 旋至当前 Splay 的根．
+-   Trước hết ta xoay $N$ lên gốc của Splay hiện tại.
 
--   为了保证 AuxTree（辅助树）的性质，原来 $N$ 到 $O$ 的实边要更改为虚边．
+-   Để bảo đảm tính chất của AuxTree (cây phụ trợ), cạnh thực ban đầu từ $N$ tới $O$ phải đổi thành cạnh ảo.
 
--   由于认父不认子的性质，我们可以单方面的把 $N$ 的儿子改为 `NULL`．
+-   Do tính chất con nhận cha nhưng cha không nhận con, ta có thể đơn phương đổi con của $N$ thành `NULL`.
 
--   于是原来的 AuxTree 就从下图变成了下下图．
+-   Vì vậy AuxTree ban đầu chuyển từ hình dưới sang hình kế tiếp.
 
     ![step 1 auxtree](images/lct-access-4.svg)
 
--   下一步，我们把 $N$ 指向的 Father $I$ 也旋转到 $I$ 的 Splay 树根．
+-   Bước tiếp theo, ta cũng xoay `Father` $I$ mà $N$ trỏ tới lên gốc của Splay chứa $I$.
 
--   原来的实边 $I$—$K$ 要去掉，这时候我们把 $I$ 的右儿子指向 $N$，就得到了 $I$—$L$ 这样一棵 Splay．
+-   Cạnh thực ban đầu $I$--$K$ cần bị bỏ. Lúc này ta cho con phải của $I$ trỏ tới $N$, và thu được một Splay từ $I$ tới $L$.
 
     ![step 2 auxtree](images/lct-access-5.svg)
 
--   接下来，按照刚刚的操作步骤，由于 $I$ 的 Father 指向 $H$，我们把 $H$ 旋转到他所在 Splay Tree 的根，然后把 $H$ 的 rs 设为 $I$．
+-   Tiếp theo, theo các bước vừa rồi, vì `Father` của $I$ trỏ tới $H$, ta xoay $H$ lên gốc của Splay Tree chứa nó, rồi đặt `rs` của $H$ thành $I$.
 
--   之后的树是这样的．
+-   Cây sau đó có dạng như sau.
 
     ![step 3 auxtree](images/lct-access-6.svg)
 
--   同理我们 `Splay(A)`，并把 $A$ 的右儿子指向 $H$．
+-   Tương tự, ta `Splay(A)` và cho con phải của $A$ trỏ tới $H$.
 
--   于是我们得到了这样一棵 AuxTree．并且发现 $A$—$N$ 的整个路径已经在同一棵 Splay 中了．
+-   Khi đó ta thu được AuxTree sau, và thấy rằng toàn bộ đường đi $A$--$N$ đã nằm trong cùng một Splay.
 
     ![step final auxtree](images/lct-access-7.svg)
 
 ```cpp
-// 回顾一下代码
+// Nhìn lại mã
 int Access(int x) {
   int p;
   for (p = 0; x; p = x, x = f[x]) {
@@ -250,22 +253,22 @@ int Access(int x) {
 }
 ```
 
-我们发现 `Access()` 其实很容易，只有如下四步操作：
+Ta thấy `Access()` thực ra rất đơn giản, chỉ gồm bốn bước:
 
-1.  把当前节点转到根．
-2.  把儿子换成之前的节点．
-3.  更新当前点的信息．
-4.  把当前点换成当前点的父亲，继续操作．
+1.  Xoay nút hiện tại lên gốc.
+2.  Đổi con thành nút trước đó.
+3.  Cập nhật thông tin của điểm hiện tại.
+4.  Đổi điểm hiện tại thành cha của nó và tiếp tục thao tác.
 
-这里提供的 Access 还有一个返回值．这个返回值相当于最后一次虚实链变换时虚边父亲节点的编号．该值有两个含义：
+Phiên bản `Access` ở đây còn có giá trị trả về. Giá trị này tương đương chỉ số nút cha của cạnh ảo trong lần chuyển đổi chuỗi ảo/thực cuối cùng. Nó có hai ý nghĩa:
 
--   连续两次 Access 操作时，第二次 Access 操作的返回值等于这两个节点的 LCA.
--   表示 $x$ 到根的链所在的 Splay 树的根．这个节点一定已经被旋转到了根节点，且父亲一定为空．
+-   Khi thực hiện hai thao tác `Access` liên tiếp, giá trị trả về của thao tác `Access` thứ hai bằng LCA của hai nút đó.
+-   Biểu thị gốc của Splay chứa chuỗi từ $x$ tới gốc. Nút này chắc chắn đã được xoay lên gốc và cha của nó chắc chắn rỗng.
 
 ### `Update()`
 
 ```cpp
-// 从上到下一层一层 pushDown 即可
+// Chỉ cần pushDown từng tầng từ trên xuống dưới
 void Update(int p) {
   if (!isRoot(p)) Update(f[p]);
   pushDown(p);
@@ -274,13 +277,13 @@ void Update(int p) {
 
 ### `makeRoot()`
 
--   `Make_Root()` 的重要性丝毫不亚于 `Access()`．我们在需要维护路径信息的时候，一定会出现路径深度无法严格递增的情况，根据 AuxTree 的性质，这种路径是不能出现在一棵 Splay 中的．
--   这时候我们需要用到 `Make_Root()`．
--   `Make_Root()` 的作用是使指定的点成为原树的根，考虑如何实现这种操作．
--   设 `Access(x)` 的返回值为 $y$，则此时 $x$ 到当前根的路径恰好构成一个 Splay，且该 Splay 的根为 $y$.
--   考虑将树用有向图表示出来，给每条边定一个方向，表示从儿子到父亲的方向．容易发现换根相当于将 $x$ 到根的路径的所有边反向（请仔细思考）．
--   因此将 $x$ 到当前根的路径翻转即可．
--   由于 $y$ 是 $x$ 到当前根的路径所代表的 Splay 的根，因此将以 $y$ 为根的 Splay 树进行区间翻转即可．
+-   Tầm quan trọng của `Make_Root()` không hề kém `Access()`. Khi cần duy trì thông tin đường đi, chắc chắn sẽ có trường hợp độ sâu trên đường đi không tăng nghiêm ngặt; theo tính chất của AuxTree, kiểu đường đi này không thể xuất hiện trong một Splay.
+-   Lúc này ta cần dùng `Make_Root()`.
+-   Tác dụng của `Make_Root()` là biến điểm được chỉ định thành gốc của cây gốc. Hãy xét cách cài đặt thao tác này.
+-   Giả sử giá trị trả về của `Access(x)` là $y$, khi đó đường đi từ $x$ tới gốc hiện tại vừa đúng tạo thành một Splay, và gốc của Splay này là $y$.
+-   Hãy biểu diễn cây bằng đồ thị có hướng, gán cho mỗi cạnh một hướng từ con tới cha. Dễ thấy đổi gốc tương đương đảo hướng mọi cạnh trên đường đi từ $x$ tới gốc (hãy suy nghĩ kỹ).
+-   Vì vậy chỉ cần đảo đường đi từ $x$ tới gốc hiện tại.
+-   Do $y$ là gốc của Splay biểu diễn đường đi từ $x$ tới gốc hiện tại, ta chỉ cần đảo đoạn trên Splay có gốc $y$.
 
 ```cpp
 void makeRoot(int p) {
@@ -292,7 +295,7 @@ void makeRoot(int p) {
 
 ### `Link()`
 
--   Link 两个点其实很简单，先 `Make_Root(x)`，然后把 $x$ 的父亲指向 $y$ 即可．显然，这个操作肯定不能发生在同一棵树内，所以记得先判一下．
+-   `Link` hai điểm thật ra rất đơn giản: trước hết `Make_Root(x)`, sau đó cho cha của $x$ trỏ tới $y$. Rõ ràng thao tác này không được xảy ra trong cùng một cây, nên hãy nhớ kiểm tra trước.
 
 ```cpp
 void Link(int x, int p) {
@@ -304,36 +307,36 @@ void Link(int x, int p) {
 
 ### `Split()`
 
--   `Split` 操作意义很简单，就是拿出一棵 Splay，维护的是 $x$ 到 $y$ 的路径．
--   先 `MakeRoot(x)`，然后 `Access(y)`．如果要 $y$ 做根，再 `Splay(y)`．
--   另外 Split 这三个操作可以直接把需要的路径拿出到 $y$ 的子树上，可以进行其他操作．
+-   Ý nghĩa của thao tác `Split` rất đơn giản: lấy ra một Splay duy trì đường đi từ $x$ tới $y$.
+-   Trước hết `MakeRoot(x)`, sau đó `Access(y)`. Nếu muốn $y$ làm gốc, tiếp tục `Splay(y)`.
+-   Ngoài ra, ba thao tác trong `Split` có thể trực tiếp lấy đường đi cần thiết ra thành cây con của $y$, từ đó thực hiện các thao tác khác.
 
 ### `Cut()`
 
--   `Cut` 有两种情况，保证合法和不一定保证合法．
--   如果保证合法，直接 `Split(x, y)`，这时候 $y$ 是根，$x$ 一定是它的儿子，双向断开即可．就像这样：
+-   `Cut` có hai trường hợp: bảo đảm hợp lệ và không nhất thiết bảo đảm hợp lệ.
+-   Nếu bảo đảm hợp lệ, trực tiếp `Split(x, y)`. Lúc này $y$ là gốc, $x$ chắc chắn là con của nó, chỉ cần ngắt liên kết hai chiều. Ví dụ:
 
 ```cpp
 void Cut(int x, int p) { makeRoot(x), Access(p), Splay(p), ls = f[x] = 0; }
 ```
 
-如果是不保证合法，我们需要判断一下是否有，这里选择使用 `map` 存一下，但是这里有一个利用性质的方法：
+Nếu không bảo đảm hợp lệ, ta cần kiểm tra cạnh đó có tồn tại hay không. Có thể dùng `map` để lưu, nhưng cũng có một cách tận dụng tính chất:
 
-想要删边，必须要满足如下三个条件：
+Muốn xóa cạnh, phải thỏa ba điều kiện sau:
 
-1.  $x,y$ 连通．
-2.  $x,y$ 的路径上没有其他的链．
-3.  $x$ 没有右儿子．
+1.  $x,y$ liên thông.
+2.  Trên đường đi giữa $x,y$ không có chuỗi nào khác.
+3.  $x$ không có con phải.
 
-总结一下，上面三句话的意思就一个：$x,y$ 之间有边．
+Tóm lại, ba câu trên chỉ có một ý: giữa $x,y$ có cạnh.
 
-具体实现就留作一个思考题给大家．判断连通需要用到后面的 `Find`，其他两点稍作思考分析一下结构就知道该怎么判断了．
+Phần cài đặt cụ thể xin để lại như một bài tập suy nghĩ. Kiểm tra liên thông cần dùng `Find` ở phía sau; hai điểm còn lại chỉ cần phân tích cấu trúc một chút là biết cách kiểm tra.
 
 ### `Find()`
 
--   `Find()` 查找的是 $x$ 所在的 **原树** 的根，请不要把原树根和辅助树根弄混．在 `Access(p)` 后，再 `Splay(p)`．这样根就是树里深度最小的那个，一直往左儿子走，沿途 `PushDown` 即可．
--   一直走到没有 ls，非常简单．
--   注意，每次查询之后需要把查询到的答案对应的结点 `Splay` 上去以保证复杂度．
+-   `Find()` tìm gốc của **cây gốc** chứa $x$; đừng nhầm gốc cây gốc với gốc cây phụ trợ. Sau `Access(p)`, tiếp tục `Splay(p)`. Khi đó gốc là nút có độ sâu nhỏ nhất trong cây, chỉ cần đi liên tục sang con trái và `PushDown` trên đường đi.
+-   Đi cho tới khi không còn `ls`, rất đơn giản.
+-   Chú ý, sau mỗi lần truy vấn cần `Splay` nút kết quả tìm được lên trên để bảo đảm độ phức tạp.
 
 ```cpp
 int Find(int p) {
@@ -346,74 +349,74 @@ int Find(int p) {
 }
 ```
 
-### 注意事项
+### Lưu ý
 
--   操作前一定要想一想需不需要 `PushUp` 或者 `PushDown`，LCT 由于特别灵活的原因，少 `Pushdown` 或者 `Pushup` 一次就可能把修改改到不该改的点上！
--   LCT 的 `Rotate` 和 Splay 的不太一样，`if (z)` 一定要放在前面．
--   LCT 的 `Splay` 操作就是旋转到根，没有旋转到谁儿子的操作，因为不需要．
+-   Trước khi thao tác, nhất định phải nghĩ xem có cần `PushUp` hoặc `PushDown` hay không. Vì LCT rất linh hoạt, thiếu một lần `Pushdown` hoặc `Pushup` cũng có thể khiến sửa đổi rơi vào điểm không nên sửa.
+-   `Rotate` của LCT hơi khác Splay, `if (z)` nhất định phải đặt phía trước.
+-   Thao tác `Splay` của LCT chỉ xoay lên gốc; không có thao tác xoay tới làm con của một nút nào đó, vì không cần.
 
-## 时间复杂度
+## Độ phức tạp thời gian
 
-LCT 中的大部分操作都基于 `Access`，其余操作的时间复杂度都为常数，因此我们只需要分析 `Access` 操作的时间复杂度．
+Phần lớn thao tác trong LCT đều dựa trên `Access`, còn các thao tác khác có độ phức tạp hằng số, vì vậy ta chỉ cần phân tích độ phức tạp của thao tác `Access`.
 
-其中，`Access` 的时间复杂度主要来自于多次 splay 操作和对路径中虚边的访问，接下来分别分析这两部分的时间复杂度．
+Trong đó, độ phức tạp của `Access` chủ yếu đến từ nhiều thao tác splay và việc truy cập các cạnh ảo trên đường đi. Sau đây phân tích riêng hai phần này.
 
 1.  splay
 
-    -   定义 $w(x) = \log size(x)$，其中 $size(x)$ 表示以 $x$ 为根的所有虚边和实边的数量之和．
+    -   Định nghĩa $w(x) = \log size(x)$, trong đó $size(x)$ biểu thị tổng số cạnh ảo và cạnh thực trong cây có gốc $x$.
 
-    -   定义势能函数 $\Phi = \sum_{x \in T} w(x)$，其中 $T$ 表示所有节点的集合．
+    -   Định nghĩa hàm thế năng $\Phi = \sum_{x \in T} w(x)$, trong đó $T$ là tập tất cả các nút.
 
-    由 [Splay 的时间复杂度](./splay.md#时间复杂度) 分析易知，splay 操作的均摊时间复杂度为 $O(\log n)$．
+    Từ phân tích [độ phức tạp thời gian của Splay](./splay.md#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6), dễ biết độ phức tạp khấu hao của thao tác splay là $O(\log n)$.
 
-2.  访问虚边
+2.  Truy cập cạnh ảo
 
-    参考 [重链剖分](../graph/hld.md#重链剖分)，定义两种虚边：
+    Tham khảo [phân rã chuỗi nặng](../graph/hld.md#%E9%87%8D%E9%93%BE%E5%89%96%E5%88%86), định nghĩa hai loại cạnh ảo:
 
-    -   **重虚边**：从节点 $v$ 到其父节点的虚边，其中 $size(v) > \frac{1}{2} size(parent(v))$．
+    -   **Cạnh ảo nặng**: cạnh ảo từ nút $v$ tới cha của nó, với $size(v) > \frac{1}{2} size(parent(v))$.
 
-    -   **轻虚边**：从节点 $v$ 到其父节点的虚边，其中 $size(v) \leq \frac{1}{2} size(parent(v))$．
+    -   **Cạnh ảo nhẹ**: cạnh ảo từ nút $v$ tới cha của nó, với $size(v) \leq \frac{1}{2} size(parent(v))$.
 
-    对于虚边的处理，可以使用势能分析，定义势能函数 $\Phi$ 为所有重虚边的数量，定义均摊成本 $c_i = t_i + \Delta \Phi_i$，其中 $t_i$ 为实际操作的成本，$\Delta \Phi_i$ 为势能的变化．
+    Với việc xử lý cạnh ảo, có thể dùng phân tích thế năng. Định nghĩa hàm thế năng $\Phi$ là số lượng tất cả cạnh ảo nặng, và định nghĩa chi phí khấu hao $c_i = t_i + \Delta \Phi_i$, trong đó $t_i$ là chi phí thao tác thực tế, $\Delta \Phi_i$ là biến thiên thế năng.
 
-    -   走过重虚边后，会将重虚边转换为实边，该操作会减少 $1$ 的势能，因为它通过加强重要连接来优化树的结构．且由于其实际操作成本为 $O(1)$，抵消了势能的增加，故不会增加均摊成本，所有的均摊成本集中在轻虚边的处理上．
+    -   Sau khi đi qua cạnh ảo nặng, cạnh ảo nặng sẽ được chuyển thành cạnh thực. Thao tác này làm giảm thế năng đi $1$ vì nó tối ưu cấu trúc cây bằng cách tăng cường một liên kết quan trọng. Do chi phí thao tác thực tế là $O(1)$, nó bù trừ phần tăng thế năng, nên không làm tăng chi phí khấu hao; toàn bộ chi phí khấu hao tập trung vào việc xử lý cạnh ảo nhẹ.
 
-    -   每次 `Access` 操作最多遍历 $O(\log n)$ 条轻虚边，因此至多消耗 $O(\log n)$ 的实际操作成本，转化得到 $O(\log n)$ 条重虚边，即势能以 $O(\log n)$ 的代价增加．
+    -   Mỗi thao tác `Access` duyệt nhiều nhất $O(\log n)$ cạnh ảo nhẹ, nên tốn tối đa $O(\log n)$ chi phí thao tác thực tế, đồng thời chuyển đổi ra $O(\log n)$ cạnh ảo nặng, tức thế năng tăng với chi phí $O(\log n)$.
 
-    由此，最终访问虚边的均摊复杂度为实际操作成本和势能变化的和，即 $O(\log n)$．
+    Do đó, độ phức tạp khấu hao cuối cùng của việc truy cập cạnh ảo là tổng của chi phí thao tác thực tế và biến thiên thế năng, tức $O(\log n)$.
 
-综上所述，LCT 中 `Access` 操作的时间复杂度是 splay 和 虚边访问的复杂度之和，因此最后的均摊复杂度为 $O(\log n)$，即 n 个节点的 LCT，做 m 次 `Access` 操作的时间复杂度为 $O(n \log n + m \log n)$，从而基于 `Access` 操作的 `Cut`,`Link`,`Findroot` 等操作的均摊复杂度也为 $O(\log n)$．
+Tóm lại, độ phức tạp của thao tác `Access` trong LCT là tổng độ phức tạp của splay và truy cập cạnh ảo, nên độ phức tạp khấu hao cuối cùng là $O(\log n)$. Nghĩa là với một LCT có n nút, thực hiện m thao tác `Access` có độ phức tạp thời gian $O(n \log n + m \log n)$; do đó các thao tác dựa trên `Access` như `Cut`, `Link`, `Findroot` cũng có độ phức tạp khấu hao $O(\log n)$.
 
-## 习题
+## Bài tập
 
--   [「BZOJ 3282」Tree](https://hydro.ac/p/bzoj-P3282)
--   [「HNOI2010」弹飞绵羊](https://www.luogu.com.cn/problem/P3203)
+-   [BZOJ 3282 - Tree](https://hydro.ac/p/bzoj-P3282)
+-   [HNOI2010 - Cừu bông bật nảy](https://www.luogu.com.cn/problem/P3203)
 
-## 维护树链信息
+## Duy trì thông tin trên chuỗi cây
 
-LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径提取到以 $y$ 为根的 Splay 内，树链信息的修改和统计转化为平衡树上的操作，这使得 LCT 在维护树链信息上具有优势．此外，借助 LCT 实现的在树链上二分比树链剖分少一个 $O(\log n)$ 的复杂度．
+Thông qua thao tác `Split(x,y)`, LCT có thể trích xuất đường đi từ điểm $x$ tới điểm $y$ trên cây vào Splay có gốc $y$. Việc sửa và thống kê thông tin chuỗi cây được chuyển thành thao tác trên cây cân bằng, giúp LCT có ưu thế khi duy trì thông tin chuỗi cây. Ngoài ra, nhị phân trên chuỗi cây bằng LCT ít hơn một hệ số $O(\log n)$ so với phân rã cây theo chuỗi.
 
-???+ note "例题 [「国家集训队」Tree II](https://www.luogu.com.cn/problem/P1501)"
-    给出一棵有 $n$ 个结点的树，每个点的初始权值为 $1$．$q$ 次操作，每次操作均为以下四种之一：
+???+ note "Ví dụ [Đội tuyển quốc gia - Tree II](https://www.luogu.com.cn/problem/P1501)"
+    Cho một cây có $n$ nút, trọng số ban đầu của mỗi điểm là $1$. Có $q$ thao tác, mỗi thao tác thuộc một trong bốn loại sau:
     
-    1.  `- u1 v1 u2 v2`：将树上 $u_1,v_1$ 两点之间的边删除，连接 $u_2,v_2$ 两点，保证操作合法且连边后仍是一棵树．
-    2.  `+ u v c`：将树上 $u,v$ 两点之间的路径上的点权都增加 $c$．
-    3.  `* u v c`：将树上 $u,v$ 两点之间的路径上的点权都乘以 $c$．
-    4.  `/ u v`：输出树上 $u,v$ 两点之间的路径上的点权之和对 $51061$ 取模后的值．
+    1.  `- u1 v1 u2 v2`: xóa cạnh giữa hai điểm $u_1,v_1$ trên cây, rồi nối hai điểm $u_2,v_2$; bảo đảm thao tác hợp lệ và sau khi nối cạnh vẫn là một cây.
+    2.  `+ u v c`: tăng trọng số của mọi điểm trên đường đi giữa hai điểm $u,v$ trên cây thêm $c$.
+    3.  `* u v c`: nhân trọng số của mọi điểm trên đường đi giữa hai điểm $u,v$ trên cây với $c$.
+    4.  `/ u v`: xuất tổng trọng số các điểm trên đường đi giữa hai điểm $u,v$ trên cây sau khi lấy modulo $51061$.
     
         $1\le n,q\le 10^5,0\le c\le 10^4$
     
-        `-` 操作可以直接 `Cut(u1,v1),Link(u2,v2)`．
+        Thao tác `-` có thể trực tiếp `Cut(u1,v1),Link(u2,v2)`.
 
-对树上 $u,v$ 两点之间的路径进行修改时，先 `Split(u,v)`．
+Khi sửa đường đi giữa hai điểm $u,v$ trên cây, trước hết `Split(u,v)`.
 
-此题要求进行在辅助树上的子树加，子树乘，子树求和操作，所以我们除了一般 LCT 需要维护的子树翻转标记，还要维护子树加法标记和子树乘法标记．处理标记的方法和在 Splay 上是一样的．
+Bài này yêu cầu thực hiện cộng cây con, nhân cây con và tính tổng cây con trên cây phụ trợ, nên ngoài đánh dấu đảo cây con mà LCT thông thường cần duy trì, ta còn phải duy trì đánh dấu cộng và đánh dấu nhân của cây con. Cách xử lý đánh dấu giống như trên Splay.
 
-在打上和下传加法标记时，子树权值和的变化量和子树中的结点数有关，所以我们还要维护子树的大小 `siz`．
+Khi gắn và đẩy xuống đánh dấu cộng, lượng thay đổi của tổng trọng số cây con liên quan tới số nút trong cây con, nên ta còn phải duy trì kích thước cây con `siz`.
 
-在下传标记时，需要注意顺序，先下传乘法标记再下传加法标记．子树翻转和子树加乘两种标记没有冲突．
+Khi đẩy đánh dấu xuống, cần chú ý thứ tự: đẩy đánh dấu nhân trước, rồi đến đánh dấu cộng. Hai loại đánh dấu đảo cây con và cộng/nhân cây con không xung đột.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -571,30 +574,30 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     }
     ```
 
-### 习题
+### Bài tập
 
--   [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.com.cn/problem/P3690)
--   [「SDOI2011」染色](https://www.luogu.com.cn/problem/P2486)
--   [「SHOI2014」三叉神经树](https://loj.ac/problem/2187)
+-   [luogu P3690 - Mẫu Link Cut Tree (cây động)](https://www.luogu.com.cn/problem/P3690)
+-   [SDOI2011 - Tô màu](https://www.luogu.com.cn/problem/P2486)
+-   [SHOI2014 - Cây thần kinh tam thoa](https://loj.ac/problem/2187)
 
-## 维护连通性质
+## Duy trì tính liên thông
 
-### 判断是否连通
+### Kiểm tra liên thông
 
-借助 LCT 的 `Find()` 函数，可以判断动态森林上的两点是否连通．如果有 `Find(x)==Find(y)`，则说明 $x,y$ 两点在一棵树上，相互连通．
+Nhờ hàm `Find()` của LCT, ta có thể kiểm tra hai điểm trong rừng động có liên thông hay không. Nếu `Find(x)==Find(y)`, điều đó cho biết hai điểm $x,y$ nằm trong cùng một cây và liên thông với nhau.
 
-???+ note "例题 [「SDOI2008」洞穴勘测](https://www.luogu.com.cn/problem/P2147)"
-    一开始有 $n$ 个独立的点，$m$ 次操作．每次操作为以下之一：
+???+ note "Ví dụ [SDOI2008 - Khảo sát hang động](https://www.luogu.com.cn/problem/P2147)"
+    Ban đầu có $n$ điểm độc lập và $m$ thao tác. Mỗi thao tác thuộc một trong các loại sau:
     
-    1.  `Connect u v`：在 $u,v$ 两点之间连接一条边．
-    2.  `Destroy u v`：删除在 $u,v$ 两点之间的边，保证之前存在这样的一条边．
-    3.  `Query u v`：询问 $u,v$ 两点是否连通．
+    1.  `Connect u v`: nối một cạnh giữa hai điểm $u,v$.
+    2.  `Destroy u v`: xóa cạnh giữa hai điểm $u,v$, bảo đảm trước đó tồn tại cạnh này.
+    3.  `Query u v`: hỏi hai điểm $u,v$ có liên thông hay không.
     
-    保证在任何时刻图的形态都是一个森林．
+    Bảo đảm ở mọi thời điểm, hình dạng của đồ thị đều là một rừng.
     
     $n\le 10^4, m\le 2\times 10^5$
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -686,29 +689,29 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     }
     ```
 
-### 维护边双连通分量
+### Duy trì thành phần song liên thông cạnh
 
-如果要求将边双连通分量缩成点，每次添加一条边，所连接的树上的两点如果相互连通，那么这条路径上的所有点都会被缩成一个点．
+Nếu cần co mỗi thành phần song liên thông cạnh thành một điểm, thì mỗi khi thêm một cạnh, nếu hai điểm trên cây được nối bởi cạnh đó vốn đã liên thông, mọi điểm trên đường đi này sẽ được co thành một điểm.
 
-???+ note "例题 [「AHOI2005」航线规划](https://www.luogu.com.cn/problem/P2542)"
-    给出 $n$ 个点，初始时有 $m$ 条无向边，$q$ 次操作，每次操作为以下之一：
+???+ note "Ví dụ [AHOI2005 - Quy hoạch tuyến bay](https://www.luogu.com.cn/problem/P2542)"
+    Cho $n$ điểm, ban đầu có $m$ cạnh vô hướng, và $q$ thao tác. Mỗi thao tác thuộc một trong các loại sau:
     
-    1.  `0 u v`：删除 $u,v$ 之间的连边，保证此时存在这样的一条边．
-    2.  `1 u v`：查询此时 $u,v$ 两点之间可能的所有路径必须经过的边的数量．
+    1.  `0 u v`: xóa cạnh nối giữa $u,v$, bảo đảm lúc này tồn tại cạnh đó.
+    2.  `1 u v`: truy vấn số cạnh mà mọi đường đi khả dĩ giữa hai điểm $u,v$ lúc này đều phải đi qua.
     
-    保证图在任意时刻都连通．
+    Bảo đảm đồ thị liên thông ở mọi thời điểm.
     
     $1<n<3\times 10^4,1<m<10^5,0\le q\le 4\times 10^4$
 
-可以发现，$u,v$ 两点之间的所有可能路径必须经过的边的数量为将所有边双连通分量缩成点之后 $u$ 所在点和 $v$ 所在点之间的路径上的结点数 $-1$．
+Có thể thấy, số cạnh mà mọi đường đi khả dĩ giữa hai điểm $u,v$ đều phải đi qua bằng số nút trên đường đi giữa điểm chứa $u$ và điểm chứa $v$ sau khi co mọi thành phần song liên thông cạnh thành điểm, trừ $1$.
 
-由于题目中的删边操作不好进行，我们考虑离线逆向进行操作，改删边为加边．
+Vì thao tác xóa cạnh trong bài không dễ xử lý, ta xét xử lý offline theo chiều ngược, biến xóa cạnh thành thêm cạnh.
 
-加入一条边时，如果两点原来不连通，则在 LCT 上连接两点；否则提取出加这条边之前 LCT 上这两点之间的路径，遍历辅助树上的这个子树，相当于遍历了这条路径，将这些点合并，利用并查集维护合并的信息．
+Khi thêm một cạnh, nếu hai điểm ban đầu không liên thông, ta nối hai điểm trên LCT; ngược lại, trích xuất đường đi giữa hai điểm này trên LCT trước khi thêm cạnh, duyệt cây con tương ứng trên cây phụ trợ, tương đương duyệt đường đi đó, rồi hợp nhất các điểm này và dùng DSU để duy trì thông tin hợp nhất.
 
-用合并后并查集的代表元素代替原来树上的路径．注意之后的每次操作都要找到操作点在并查集上的代表元素进行操作．
+Dùng phần tử đại diện của DSU sau khi hợp nhất để thay thế đường đi ban đầu trên cây. Chú ý rằng trong mọi thao tác sau đó, cần tìm phần tử đại diện trong DSU của điểm thao tác rồi mới thao tác.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -881,32 +884,32 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     }
     ```
 
-### 习题
+### Bài tập
 
--   [洛谷 P3950 部落冲突](https://www.luogu.com.cn/problem/P3950)
--   [BZOJ 4998 星球联盟](https://hydro.ac/p/bzoj-P4998)
--   [BZOJ 2959 长跑](https://hydro.ac/p/bzoj-P2959)
+-   [Luogu P3950 - Xung đột bộ lạc](https://www.luogu.com.cn/problem/P3950)
+-   [BZOJ 4998 - Liên minh hành tinh](https://hydro.ac/p/bzoj-P4998)
+-   [BZOJ 2959 - Chạy đường dài](https://hydro.ac/p/bzoj-P2959)
 
-## 维护边权
+## Duy trì trọng số cạnh
 
-LCT 并不能直接处理边权，此时需要对每条边建立一个对应点，方便查询链上的边信息．利用这一技巧可以动态维护生成树．
+LCT không thể trực tiếp xử lý trọng số cạnh. Khi đó cần tạo một điểm tương ứng cho mỗi cạnh để tiện truy vấn thông tin cạnh trên chuỗi. Dùng kỹ thuật này có thể duy trì cây khung một cách động.
 
-???+ note "例题 [luogu P4234 最小差值生成树](https://www.luogu.com.cn/problem/P4234)"
-    给定一个 $n$ 个点，$m$ 条边的带权无向图，求其边权最大值和边权最小值的差值最小的生成树，输出这个差值．
+???+ note "Ví dụ [luogu P4234 - Cây khung có hiệu nhỏ nhất](https://www.luogu.com.cn/problem/P4234)"
+    Cho một đồ thị vô hướng có trọng số gồm $n$ điểm và $m$ cạnh. Hãy tìm cây khung sao cho hiệu giữa trọng số cạnh lớn nhất và trọng số cạnh nhỏ nhất là nhỏ nhất, rồi xuất hiệu đó.
     
-    数据保证至少存在一棵生成树．
+    Dữ liệu bảo đảm tồn tại ít nhất một cây khung.
     
     $1\le n\le 5\times 10^4,1\le m\le 2\times 10^5,1\le w_i\le 10^4$
 
-将边按照边权从小到大排序，枚举选择的最右边的一条边，要得到最优解，需要使边权最小边的边权最大．
+Sắp xếp các cạnh theo trọng số tăng dần, rồi liệt kê cạnh được chọn ở phía phải nhất. Để đạt lời giải tối ưu, cần làm cho trọng số của cạnh nhỏ nhất lớn nhất có thể.
 
-每次按照顺序添加边，如果将要连接的这两个点已经连通，则删除这两点之间边权最小的一条边．如果整个图已经连通成了一棵树，则用当前边权减去最小边权更新答案．最小边权可用双指针法更新．
+Mỗi lần thêm cạnh theo thứ tự, nếu hai điểm sắp nối đã liên thông, thì xóa cạnh có trọng số nhỏ nhất trên đường đi giữa hai điểm đó. Nếu toàn bộ đồ thị đã liên thông thành một cây, dùng trọng số hiện tại trừ trọng số nhỏ nhất để cập nhật đáp án. Trọng số nhỏ nhất có thể cập nhật bằng phương pháp hai con trỏ.
 
-LCT 上没有固定的父子关系，所以不能将边权记录在点权中．
+Trên LCT không có quan hệ cha-con cố định, nên không thể ghi trọng số cạnh vào trọng số điểm.
 
-记录树链上的边的信息，可以使用 **拆边**．对每条边建立一个对应的点，从这条边向其两个端点连接一条边，原先的连边与删边操作都变成两次操作．
+Để ghi thông tin cạnh trên chuỗi cây, có thể dùng kỹ thuật **tách cạnh**. Với mỗi cạnh, tạo một điểm tương ứng, rồi nối một cạnh từ điểm cạnh này tới mỗi đầu mút của nó; khi đó thao tác nối cạnh và xóa cạnh ban đầu đều trở thành hai thao tác.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -1056,35 +1059,35 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中．
     }
     ```
 
-### 习题
+### Bài tập
 
--   [「WC2006」水管局长](https://www.luogu.com.cn/problem/P4172)
--   [「BJWC2010」严格次小生成树](https://www.luogu.com.cn/problem/P4180)
--   [「NOI2014」魔法森林](https://uoj.ac/problem/3)
+-   [WC2006 - Cục trưởng cục đường ống nước](https://www.luogu.com.cn/problem/P4172)
+-   [BJWC2010 - Cây khung nhỏ thứ hai nghiêm ngặt](https://www.luogu.com.cn/problem/P4180)
+-   [NOI2014 - Rừng ma thuật](https://uoj.ac/problem/3)
 
-## 维护子树信息
+## Duy trì thông tin cây con
 
-LCT 不擅长维护子树信息．统计一个结点所有虚子树的信息，就可以求得整棵树的信息．
+LCT không giỏi duy trì thông tin cây con. Nếu thống kê thông tin của mọi cây con ảo của một nút, ta có thể thu được thông tin của toàn bộ cây.
 
-???+ note "例题 [「BJOI2014」大融合](https://loj.ac/problem/2230)"
-    给定 $n$ 个结点和 $q$ 次操作，每个操作为如下形式：
+???+ note "Ví dụ [BJOI2014 - Đại dung hợp](https://loj.ac/problem/2230)"
+    Cho $n$ nút và $q$ thao tác, mỗi thao tác có dạng sau:
     
-    1.  `A x y` 在结点 $x$ 和 $y$ 之间连接一条边．
-    2.  `Q x y` 给定一条已经存在的边 $(x,y)$，求有多少条简单路径，其中包含边 $(x,y)$．
+    1.  `A x y` nối một cạnh giữa nút $x$ và nút $y$.
+    2.  `Q x y` cho một cạnh đã tồn tại $(x,y)$, hãy tính có bao nhiêu đường đi đơn chứa cạnh $(x,y)$.
     
-    保证在任意时刻，图的形态都是一棵森林．
+    Bảo đảm ở mọi thời điểm, hình dạng của đồ thị đều là một rừng.
     
     $1\le n,q,x,y\le 10^5$
 
-为询问 `Q` 考虑另一种表述，我们发现答案等于边 $(x,y)$ 在 $x$ 侧的结点数与 $y$ 侧的结点数的乘积，即将边 $(x,y)$ 断开后分别包含 $x$ 和 $y$ 的树的结点数．为了消除断边的影响，在询问后我们再次连接边 $(x,y)$．
+Với truy vấn `Q`, xét một cách diễn đạt khác: đáp án bằng tích của số nút ở phía $x$ và số nút ở phía $y$ của cạnh $(x,y)$, tức số nút của hai cây lần lượt chứa $x$ và $y$ sau khi cắt cạnh $(x,y)$. Để loại bỏ ảnh hưởng của việc cắt cạnh, sau khi truy vấn ta nối lại cạnh $(x,y)$.
 
-题目中的操作既有连边，又有删边，还保证在任意时刻都是一棵森林，我们不由得想到用 LCT 来维护．但是这题中 LCT 维护的是子树的大小，不像我们印象中的维护一条链的信息，而 LCT 的构造 **认父不认子**，不方便我们直接进行子树的统计．怎么办呢？
+Các thao tác trong bài vừa có nối cạnh vừa có xóa cạnh, lại bảo đảm ở mọi thời điểm đều là một rừng, nên tự nhiên nghĩ tới dùng LCT để duy trì. Nhưng trong bài này LCT duy trì kích thước cây con, không giống việc duy trì thông tin một chuỗi như ta thường hình dung; hơn nữa cấu tạo của LCT là **con nhận cha nhưng cha không nhận con**, nên không tiện thống kê trực tiếp cây con. Làm thế nào?
 
-方法是统计一个结点 $x$ 所有虚儿子（即父亲为 $x$，但 $x$ 在 Splay 中的左右儿子并不包含它）所代表的子树的贡献．
+Cách làm là thống kê đóng góp của các cây con do mọi con ảo của một nút $x$ biểu diễn (tức các nút có cha là $x$, nhưng không nằm trong con trái hoặc con phải của $x$ trong Splay).
 
-定义 $siz2[x]$ 为结点 $x$ 的所有虚儿子代表的子树的结点数，$siz[x]$ 为 结点 $x$ 子树中的结点数．
+Định nghĩa $siz2[x]$ là số nút trong các cây con do mọi con ảo của nút $x$ biểu diễn, và $siz[x]$ là số nút trong cây con của nút $x$.
 
-不同于以往我们维护 Splay 中子树结点个数的方法，我们在计算结点 $x$ 子树中的结点数时，还要加上 $siz2[x]$，即
+Khác với cách trước đây khi duy trì số nút cây con trong Splay, khi tính số nút trong cây con của nút $x$, ta còn phải cộng thêm $siz2[x]$, tức:
 
 ```cpp
 void maintain(int x) {
@@ -1093,11 +1096,11 @@ void maintain(int x) {
 }
 ```
 
-而且在我们 **改变 Splay 的形态**（即改变一个结点在 Splay 上的左右儿子指向时），需要及时修改 $siz2[x]$ 的值．
+Ngoài ra, khi ta **thay đổi hình dạng của Splay** (tức thay đổi con trỏ con trái/phải của một nút trên Splay), cần kịp thời sửa giá trị $siz2[x]$.
 
-在 `Rotate(),Splay()` 操作中，我们都只是改变了 Splay 中结点的相对位置，没有改变任意一条边的虚实情况，所以不对 $siz2[x]$ 进行任何修改．
+Trong các thao tác `Rotate(),Splay()`, ta chỉ thay đổi vị trí tương đối của các nút trong Splay, không thay đổi trạng thái ảo/thực của bất kỳ cạnh nào, nên không sửa $siz2[x]$.
 
-在 `access` 操作中，在每次 splay 完后，都会改变刚刚 splay 完的结点的右儿子，即该结点与其原右儿子的连边和该节点和新右儿子的连边的虚实情况发生了变化，我们需要加上新变成虚边所连的子树的贡献，减去刚刚变成实边所连的子树的贡献．代码如下：
+Trong thao tác `access`, sau mỗi lần splay xong, con phải của nút vừa được splay sẽ thay đổi. Nói cách khác, trạng thái ảo/thực của cạnh nối nút đó với con phải cũ và cạnh nối nút đó với con phải mới đã thay đổi. Ta cần cộng đóng góp của cây con vừa được nối bằng cạnh ảo mới, và trừ đóng góp của cây con vừa được nối bằng cạnh thực mới. Mã như sau:
 
 ```cpp
 void access(int x) {
@@ -1106,9 +1109,9 @@ void access(int x) {
 }
 ```
 
-在 `MakeRoot(),Find()` 操作中，我们都只是调用了之前的函数或者在 Splay 上条边，并不用做任何修改．
+Trong các thao tác `MakeRoot(),Find()`, ta chỉ gọi các hàm trước đó hoặc đi trên Splay, nên không cần sửa gì thêm.
 
-在连接两点时，我们修改了一个结点的父亲．我们需要在父亲结点的 $siz2$ 值中加上新子结点的子树大小贡献．
+Khi nối hai điểm, ta sửa cha của một nút. Ta cần cộng đóng góp kích thước cây con của nút con mới vào giá trị $siz2$ của nút cha.
 
 ```cpp
 st.makeroot(x);
@@ -1117,16 +1120,16 @@ st.fa[x] = y;
 st.siz2[y] += st.siz[x];
 ```
 
-在断开一条边时，我们只是删除了 Splay 上的一条实边，`Maintain` 操作会维护这些信息，不需要做任何修改．
+Khi cắt một cạnh, ta chỉ xóa một cạnh thực trên Splay; thao tác `Maintain` sẽ duy trì các thông tin này, nên không cần sửa gì thêm.
 
-以上是代码修改的细节，最后总结一下 LCT 维护子树信息的要求与方法：
+Trên đây là các chi tiết sửa mã. Cuối cùng, tóm tắt yêu cầu và phương pháp để LCT duy trì thông tin cây con:
 
-1.  维护的信息要有 **可减性**，如子树结点数，子树权值和，但不能直接维护子树最大最小值，因为在将一条虚边变成实边时要排除原先虚边的贡献．
-2.  新建一个附加值存储虚子树的贡献，在统计时将其加入本结点答案，在改变边的虚实时及时维护．
-3.  其余部分同普通 LCT，在统计子树信息时一定将其作为根节点．
-4.  如果维护的信息没有可减性，如维护区间最值，可以对每个结点开一个平衡树维护结点的虚子树中的最值．
+1.  Thông tin được duy trì phải có **tính trừ được**, như số nút cây con hoặc tổng trọng số cây con; không thể trực tiếp duy trì giá trị lớn nhất/nhỏ nhất của cây con, vì khi một cạnh ảo biến thành cạnh thực cần loại bỏ đóng góp của cạnh ảo ban đầu.
+2.  Tạo một giá trị phụ để lưu đóng góp của cây con ảo; khi thống kê thì cộng nó vào đáp án của nút hiện tại, và duy trì kịp thời khi trạng thái ảo/thực của cạnh thay đổi.
+3.  Các phần còn lại giống LCT thông thường; khi thống kê thông tin cây con, nhất định phải đặt nút đó làm gốc.
+4.  Nếu thông tin được duy trì không có tính trừ được, chẳng hạn duy trì cực trị đoạn, có thể mở một cây cân bằng cho mỗi nút để duy trì cực trị trong các cây con ảo của nút đó.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -1236,7 +1239,7 @@ st.siz2[y] += st.siz[x];
     }
     ```
 
-### 习题
+### Bài tập
 
--   [luogu P4299 首都](https://www.luogu.com.cn/problem/P4299)
+-   [luogu P4299 - Thủ đô](https://www.luogu.com.cn/problem/P4299)
 -   [SPOJ QTREE5 - Query on a tree V](https://www.spoj.com/problems/QTREE5)
