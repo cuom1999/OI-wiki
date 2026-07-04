@@ -1,86 +1,86 @@
-## 引入
+## Giới thiệu
 
-???+ question "问题"
-    给出一个图，问其中的由 $n$ 个节点构成的边权和最小的环 $(n\ge 3)$ 是多大．
+???+ question "Bài toán"
+    Cho một đồ thị. Hỏi chu trình có tổng trọng số cạnh nhỏ nhất, gồm $n$ đỉnh $(n\ge 3)$, có độ dài bằng bao nhiêu.
 
-图的最小环也称围长．
+Chu trình nhỏ nhất của đồ thị cũng được gọi là girth.
 
-## 过程
+## Quy trình
 
-### 暴力解法
+### Cách làm vét cạn
 
-设 $u$ 和 $v$ 之间有一条边长为 $w$ 的边，$dis(u,v)$ 表示删除 $u$ 和 $v$ 之间的连边之后，$u$ 和 $v$ 之间的最短路．
+Giả sử giữa $u$ và $v$ có một cạnh độ dài $w$, và $dis(u,v)$ biểu thị đường đi ngắn nhất từ $u$ đến $v$ sau khi xóa cạnh nối $u$ và $v$.
 
-那么无向图中的最小环是 $dis(u,v)+w$．
+Khi đó chu trình nhỏ nhất trong đồ thị vô hướng là $dis(u,v)+w$.
 
-注意若是在有向图中求最小环，相对应的公式要修改，最小环是 $dis(v,u)+w$．
+Lưu ý, nếu cần tìm chu trình nhỏ nhất trong đồ thị có hướng thì công thức tương ứng cần đổi thành $dis(v,u)+w$.
 
-总时间复杂度 $O(n^2m)$．
+Tổng độ phức tạp thời gian là $O(n^2m)$.
 
 ### Dijkstra
 
-相关链接：[最短路/Dijkstra](./shortest-path.md#thuật-toán-dijkstra)
+Liên kết liên quan: [Đường đi ngắn nhất/Dijkstra](./shortest-path.md#thuật-toán-dijkstra)
 
-#### 过程
+#### Quy trình
 
-枚举所有边，每一次求删除一条边之后对这条边的起点跑一次 Dijkstra，道理同上．
+Liệt kê mọi cạnh. Mỗi lần xóa một cạnh, rồi chạy Dijkstra từ đỉnh đầu của cạnh đó. Ý tưởng giống như trên.
 
-#### 性质
+#### Tính chất
 
-时间复杂度 $O(m(n+m)\log n)$．
+Độ phức tạp thời gian là $O(m(n+m)\log n)$.
 
 ### Floyd
 
-相关链接：[最短路/Floyd](./shortest-path.md#thuật-toán-floyd)
+Liên kết liên quan: [Đường đi ngắn nhất/Floyd](./shortest-path.md#thuật-toán-floyd)
 
-#### 过程
+#### Quy trình
 
-记原图中 $u,v$ 之间边的边权为 $val\left(u,v\right)$．
+Ký hiệu trọng số cạnh giữa $u,v$ trong đồ thị ban đầu là $val\left(u,v\right)$.
 
-我们注意到 Floyd 算法有一个性质：在最外层循环到点 $k$ 时（尚未开始第 $k$ 次循环），最短路数组 $dis$ 中，$dis_{u,v}$ 表示的是从 $u$ 到 $v$ 且仅经过编号在 $\left[1, k\right)$ 区间中的点的最短路．
+Ta chú ý đến một tính chất của thuật toán Floyd: khi vòng lặp ngoài cùng đến đỉnh $k$ (trước khi bắt đầu lần lặp thứ $k$), trong mảng đường đi ngắn nhất $dis$, $dis_{u,v}$ biểu thị đường đi ngắn nhất từ $u$ đến $v$ chỉ đi qua các đỉnh có chỉ số nằm trong đoạn $\left[1, k\right)$.
 
-由最小环的定义可知其至少有三个顶点，设其中编号最大的顶点为 $w$，环上与 $w$ 相邻两侧的两个点为 $u,v$，则在最外层循环枚举到 $k=w$ 时，该环的长度即为 $dis_{u,v}+val\left(v,w\right)+val\left(w,u\right)$．
+Theo định nghĩa của chu trình nhỏ nhất, nó có ít nhất ba đỉnh. Giả sử đỉnh có chỉ số lớn nhất trên chu trình là $w$, hai đỉnh kề với $w$ ở hai phía của chu trình là $u,v$. Khi vòng lặp ngoài cùng liệt kê đến $k=w$, độ dài chu trình này chính là $dis_{u,v}+val\left(v,w\right)+val\left(w,u\right)$.
 
-故在循环时对于每个 $k$ 枚举满足 $i<k,j<k$ 的 $(i,j)$，更新答案即可．
+Vì vậy, trong khi lặp, với mỗi $k$ ta liệt kê các cặp $(i,j)$ thỏa mãn $i<k,j<k$ và cập nhật đáp án.
 
-#### 记录路径
+#### Ghi lại đường đi
 
-现在已经知道了环的形式为 $u\to k\to v$，然后再从 $v$ 回到 $u$（经过的点编号均 $<k$）．
+Lúc này ta đã biết dạng của chu trình là $u\to k\to v$, sau đó đi từ $v$ về $u$ (các đỉnh đi qua đều có chỉ số $<k$).
 
-问题转化为求 $v\leadsto u$ 的路径．由三角不等式 $dis_{u,v}\le dis_{u,i}+dis_{i,v}$，考虑记录 $pos_{u,v}=j$ 表示使得 $dis_{u,v}=dis_{u,j}+dis_{j,v}$ 的点．显然 $j$ 就在 $v\leadsto u$ 的路径上．
+Bài toán chuyển thành tìm đường đi $v\leadsto u$. Theo bất đẳng thức tam giác $dis_{u,v}\le dis_{u,i}+dis_{i,v}$, xét việc ghi lại $pos_{u,v}=j$, biểu thị đỉnh làm cho $dis_{u,v}=dis_{u,j}+dis_{j,v}$. Rõ ràng $j$ nằm trên đường đi $v\leadsto u$.
 
-于是可以将路径转化为 $v\leadsto j$ 和 $j\leadsto u$ 两段，分别递归处理即可．
+Do đó có thể tách đường đi thành hai đoạn $v\leadsto j$ và $j\leadsto u$, rồi đệ quy xử lý từng đoạn.
 
-???+ note "证明递归不会陷入死循环"
-    使用反证法．
+???+ note "Chứng minh đệ quy không rơi vào vòng lặp vô hạn"
+    Dùng phản chứng.
     
-    假设环会重复经过一个点 $u$，那么环上必然会有一条 $u$ 出发经过若干条边回到 $u$ 的边．这就构成了一个新的环．
+    Giả sử chu trình lặp lại một đỉnh $u$. Khi đó trên chu trình chắc chắn có một đoạn xuất phát từ $u$, đi qua một số cạnh rồi quay lại $u$. Đoạn này tạo thành một chu trình mới.
     
-    由于图中不会出现负环（如果出现负环就不会有最小环了），所以新环的边权和必然是小于等于原环的．
+    Vì trong đồ thị không có chu trình âm (nếu có chu trình âm thì sẽ không tồn tại chu trình nhỏ nhất), tổng trọng số của chu trình mới chắc chắn không lớn hơn chu trình ban đầu.
     
-    所以只需要截取这一个环，那么就不会重复经过一个点 $u$，假设不成立，故环不会重复经过一个点．
+    Vì thế chỉ cần lấy riêng chu trình này thì sẽ không lặp lại đỉnh $u$. Giả thiết không đúng, nên chu trình không lặp lại một đỉnh.
     
-    所以当递归到 $u,v$ 两点时，其 $pos_{u,v}$ 必然不等于两点编号，也就是新加入了一个点．
+    Do đó khi đệ quy đến hai đỉnh $u,v$, $pos_{u,v}$ chắc chắn không bằng chỉ số của hai đỉnh này, tức là sẽ thêm một đỉnh mới.
     
-    特别地，当 $u$ 和 $v$ 相邻时，直接返回即可．
+    Đặc biệt, khi $u$ và $v$ kề nhau thì trả về trực tiếp.
     
-    由于总点数为 $n$，那么新加入的次数（即递归次数）不会超过 $n$，因此递归不会陷入死循环．
+    Vì tổng số đỉnh là $n$, số lần thêm đỉnh mới (cũng là số lần đệ quy) không vượt quá $n$, nên đệ quy sẽ không rơi vào vòng lặp vô hạn.
 
-#### 性质
+#### Tính chất
 
-时间复杂度：$O(n^3)$．
+Độ phức tạp thời gian: $O(n^3)$.
 
-#### 实现
+#### Cài đặt
 
-下面给出 C++ 和 Python 的参考实现（记录路径）：
+Dưới đây là các cài đặt tham khảo bằng C++ và Python (có ghi lại đường đi):
 
 === "C++"
     ```cpp
-    // 图的点数为 n
-    int val[MAXN + 1][MAXN + 1];  // 原图的邻接矩阵
-    int cnt, path[MAXN + 5];      // 记录最小环的路径和长度
+    // Số đỉnh của đồ thị là n
+    int val[MAXN + 1][MAXN + 1];  // Ma trận kề của đồ thị ban đầu
+    int cnt, path[MAXN + 5];      // Ghi lại đường đi của chu trình nhỏ nhất và độ dài
     
-    void get_path(int u, int v) {  // 获得 u 到 v 之间的路径
+    void get_path(int u, int v) {  // Lấy đường đi giữa u và v
       if (pos[u][v] == 0) return;
     
       int k = pos[u][v];
@@ -90,7 +90,7 @@
     }
     
     void Floyd(const int &n) {
-      static int dis[MAXN + 1][MAXN + 1];  // 最短路矩阵
+      static int dis[MAXN + 1][MAXN + 1];  // Ma trận đường đi ngắn nhất
       static int pos[MAXN + 1][MAXN + 1];
       memcpy(dis, val, sizeof(val));
       memset(pos, 0, sizeof(pos));
@@ -98,19 +98,19 @@
         for (int i = 1; i < k; ++i)
           for (int j = 1; j < i; ++j)
             if (ans >
-                (long long)val[i][k] + val[k][j] + dis[i][j]) {  // 发现了更短的环
-              // 由于这里保证了 j<i<k，所以三个点不同，不会出现零环．
+                (long long)val[i][k] + val[k][j] + dis[i][j]) {  // Tìm thấy chu trình ngắn hơn
+              // Ở đây đảm bảo j<i<k, nên ba đỉnh khác nhau và không có chu trình rỗng.
               ans = val[i][k] + val[k][j] + dis[i][j], cnt = 0;
               path[++cnt] = i, path[++cnt] = k,
-              path[++cnt] = j;  // 依次加入 i,k,j 三点
-              get_path(j, i);   // 加入 j 到 i 的路径
+              path[++cnt] = j;  // Lần lượt thêm ba đỉnh i,k,j
+              get_path(j, i);   // Thêm đường đi từ j đến i
             }
     
-        for (int i = 1; i <= n; ++i)  // 正常 Floyd 更新最短路
+        for (int i = 1; i <= n; ++i)  // Cập nhật đường đi ngắn nhất bằng Floyd như thông thường
           for (int j = 1; j <= n; ++j) {
             if (dis[i][j] > dis[i][k] + dis[k][j]) {
               dis[i][j] = dis[i][k] + dis[k][j];
-              pos[i][j] = k;  // 当前路径可以由 k 更新得到
+              pos[i][j] = k;  // Đường đi hiện tại có thể được cập nhật thông qua k
             }
           }
       }
@@ -119,117 +119,117 @@
 
 === "Python"
     ```python
-    # 定义一个足够大的值表示无穷大
+    # Định nghĩa một giá trị đủ lớn để biểu thị vô cực
     INF = sys.maxsize
     
     
     def get_path(i, j, pos, path, cnt):
         """
-        递归地获取从节点 i 到节点 j 的最短路径上的中间节点．
+        Đệ quy lấy các đỉnh trung gian trên đường đi ngắn nhất từ đỉnh i đến đỉnh j.
     
         Args:
-            i (int): 起始节点 (0-based index).
-            j (int): 结束节点 (0-based index).
-            pos (list[list[int]]): 记录最短路径中间节点的矩阵. pos[i][j] = k 表示从 i 到 j 的最短路径经过 k.
-            path (list[int]): 存储路径节点的列表 (使用 0-based index).
-            cnt (int): 当前路径节点的数量.
+            i (int): Đỉnh bắt đầu (0-based index).
+            j (int): Đỉnh kết thúc (0-based index).
+            pos (list[list[int]]): Ma trận ghi lại đỉnh trung gian của đường đi ngắn nhất. pos[i][j] = k nghĩa là đường đi ngắn nhất từ i đến j đi qua k.
+            path (list[int]): Danh sách lưu các đỉnh trên đường đi (dùng 0-based index).
+            cnt (int): Số đỉnh hiện có trên đường đi.
     
         Returns:
-            int: 更新后的路径节点数量.
+            int: Số đỉnh trên đường đi sau khi cập nhật.
         """
-        # 如果 pos[i][j] 为 -1，表示 i 到 j 没有中间节点
+        # Nếu pos[i][j] bằng -1, i đến j không có đỉnh trung gian
         if pos[i][j] == -1:
             return cnt
     
-        # 获取中间节点 k
+        # Lấy đỉnh trung gian k
         k = pos[i][j]
-        # 递归获取 i 到 k 的路径
+        # Đệ quy lấy đường đi từ i đến k
         cnt = get_path(i, k, pos, path, cnt)
-        # 将中间节点 k 加入路径
+        # Thêm đỉnh trung gian k vào đường đi
         path[cnt] = k
         cnt += 1
-        # 递归获取 k 到 j 的路径
+        # Đệ quy lấy đường đi từ k đến j
         cnt = get_path(k, j, pos, path, cnt)
         return cnt
     
     
     def find_minimum_cycle_undirected(n, edges):
         """
-        使用 Floyd-Warshall 算法查找无向图中的最小环．
+        Dùng thuật toán Floyd-Warshall để tìm chu trình nhỏ nhất trong đồ thị vô hướng.
     
         Args:
-            n (int): 图的节点数 (1 到 n).
-            edges (list[tuple]): 边的列表，每个元素是 (u, v, w)，表示节点 u 和 v 之间有一条权重为 w 的边．
-                                 节点索引是 1 到 n．
+            n (int): Số đỉnh của đồ thị (1 đến n).
+            edges (list[tuple]): Danh sách cạnh, mỗi phần tử là (u, v, w), biểu thị có một cạnh trọng số w giữa đỉnh u và đỉnh v.
+                                 Chỉ số đỉnh từ 1 đến n.
     
         Returns:
-            tuple: 包含最小环的长度和路径．
-                   如果不存在环，返回 (INF, []).
-                   路径是一个节点索引列表 (1-based index)．
+            tuple: Gồm độ dài chu trình nhỏ nhất và đường đi.
+                   Nếu không tồn tại chu trình, trả về (INF, []).
+                   Đường đi là danh sách chỉ số đỉnh (1-based index).
         """
-        # 内部使用 0-based indexing
+        # Bên trong dùng 0-based indexing
         N = n
-        # 初始化邻接矩阵 g，表示原始边的权重
+        # Khởi tạo ma trận kề g, biểu thị trọng số các cạnh ban đầu
         g = [[INF for _ in range(N)] for _ in range(N)]
-        # 初始化最短路矩阵 dis，开始时与 g 相同
+        # Khởi tạo ma trận đường đi ngắn nhất dis, ban đầu giống g
         dis = [[INF for _ in range(N)] for _ in range(N)]
-        # 初始化 pos 矩阵，记录最短路径的中间节点
+        # Khởi tạo ma trận pos, ghi lại đỉnh trung gian của đường đi ngắn nhất
         pos = [[-1 for _ in range(N)] for _ in range(N)]
     
-        # 初始化对角线为 0 (节点到自身的距离)
+        # Khởi tạo đường chéo bằng 0 (khoảng cách từ đỉnh đến chính nó)
         for i in range(N):
             g[i][i] = 0
             dis[i][i] = 0
     
-        # 根据输入的边构建邻接矩阵 (无向图)
+        # Dựng ma trận kề từ danh sách cạnh đầu vào (đồ thị vô hướng)
         for u, v, w in edges:
-            # 将 1-based 索引转换为 0-based
+            # Chuyển chỉ số 1-based thành 0-based
             u -= 1
             v -= 1
-            # 对于无向图，边是双向的
+            # Trong đồ thị vô hướng, cạnh có hai chiều
             g[u][v] = min(g[u][v], w)
             g[v][u] = min(g[v][u], w)
             dis[u][v] = min(dis[u][v], w)
             dis[v][u] = min(dis[v][u], w)
     
-        # 初始化最小环长度为无穷大
+        # Khởi tạo độ dài chu trình nhỏ nhất là vô cực
         min_cycle_len = INF
-        # 初始化最小环路径
+        # Khởi tạo đường đi của chu trình nhỏ nhất
         min_cycle_path = []
     
-        # Floyd-Warshall 算法核心部分
-        # k 作为中间节点 (0-based index)
+        # Phần lõi của thuật toán Floyd-Warshall
+        # k là đỉnh trung gian (0-based index)
         for k in range(N):
-            # 在更新 dis[i][j] 之前，检查通过节点 k 是否能形成更小的环
-            # 环由 i -> k -> j -> ... -> i 组成
-            # 这里的 dis[i][j] 是在考虑节点 0 到 k-1 作为中间节点时的最短路径
-            # C++ 代码中使用 i < k 和 j < i 的循环顺序，这里也遵循这个逻辑 (0-based)
+            # Trước khi cập nhật dis[i][j], kiểm tra xem đi qua đỉnh k có tạo được chu trình nhỏ hơn hay không
+            # Chu trình có dạng i -> k -> j -> ... -> i
+            # Ở đây dis[i][j] là đường đi ngắn nhất khi chỉ xét các đỉnh 0 đến k-1 làm đỉnh trung gian
+            # Mã C++ dùng thứ tự lặp i < k và j < i, ở đây cũng theo logic này (0-based)
             for i in range(k):  # 0 <= i < k
                 for j in range(i):  # 0 <= j < i
-                    # 检查 i, k, j 是否构成一个环，并且通过 dis[i][j] 连接
-                    # 确保原始边 g[i][k] 和 g[k][j] 存在 (不为 INF)
-                    # 并且 i 到 j 的最短路径 dis[i][j] 存在 (不为 INF)
+                    # Kiểm tra i, k, j có tạo thành chu trình và được nối bằng dis[i][j] hay không
+                    # Đảm bảo các cạnh ban đầu g[i][k] và g[k][j] tồn tại (khác INF)
+                    # Đồng thời đường đi ngắn nhất từ i đến j là dis[i][j] tồn tại (khác INF)
                     if g[i][k] != INF and g[k][j] != INF and dis[i][j] != INF:
                         current_cycle_len = g[i][k] + g[k][j] + dis[i][j]
                         if current_cycle_len < min_cycle_len:
                             min_cycle_len = current_cycle_len
-                            # 重构路径
-                            path = [0] * (N + 5)  # 临时存储路径的数组，长度足够大
+                            # Khôi phục đường đi
+                            path = [0] * (N + 5)  # Mảng tạm lưu đường đi, đủ dài
                             cnt = 0
-                            # 按照 i, k, j 的顺序加入路径
+                            # Thêm các đỉnh theo thứ tự i, k, j
                             path[cnt] = i
                             cnt += 1
                             path[cnt] = k
                             cnt += 1
                             path[cnt] = j
                             cnt += 1
-                            # 获取 j 到 i 的最短路径上的中间节点 (使用之前计算的 dis 和 pos)
+                            # Lấy các đỉnh trung gian trên đường đi ngắn nhất từ j đến i (dùng dis và pos đã tính trước đó)
                             cnt = get_path(j, i, pos, path, cnt)
-                            # 提取实际路径节点 (去除未使用的部分)
-                            # 将 0-based 索引转换为 1-based
+                            # Lấy các đỉnh thực sự trên đường đi (bỏ phần chưa dùng)
+                            # Chuyển chỉ số 0-based thành 1-based
                             min_cycle_path = [node + 1 for node in path[:cnt]]
     
-            # 标准 Floyd-Warshall 更新最短路径
+            # Cập nhật đường đi ngắn nhất bằng Floyd-Warshall chuẩn
             for i in range(N):
                 for j in range(N):
                     if (
@@ -238,127 +238,127 @@
                         and dis[i][j] > dis[i][k] + dis[k][j]
                     ):
                         dis[i][j] = dis[i][k] + dis[k][j]
-                        # 记录从 i 到 j 的最短路径经过 k
+                        # Ghi lại đường đi ngắn nhất từ i đến j đi qua k
                         pos[i][j] = k
     
         return min_cycle_len, min_cycle_path
     ```
 
-## 模板题
+## Bài mẫu
 
-??? note "[AcWing 344 观光之旅](https://www.acwing.com/problem/content/346)"
-    给定一张 $n$ 个点无向图，求图中一个至少包含 $3$ 个点的环，环上的节点不重复，并且环上的边的长度之和最小．
+??? note "[AcWing 344 Chuyến du lịch tham quan](https://www.acwing.com/problem/content/346)"
+    Cho một đồ thị vô hướng có $n$ đỉnh. Hãy tìm một chu trình gồm ít nhất $3$ đỉnh trong đồ thị, các đỉnh trên chu trình không lặp lại, và tổng độ dài các cạnh trên chu trình là nhỏ nhất.
     
-    该问题称为无向图的最小环问题．
+    Bài toán này được gọi là bài toán chu trình nhỏ nhất trong đồ thị vô hướng.
     
-    你需要输出最小环的方案，若最小环不唯一，输出任意一个均可．
+    Bạn cần in ra một phương án chu trình nhỏ nhất. Nếu chu trình nhỏ nhất không duy nhất, có thể in ra bất kỳ một chu trình nào.
     
     $n \le 100$
 
-时间复杂度接受 $O(n^3)$ 的做法，套用 Floyd 求最小环的做法即可．
+Cách làm $O(n^3)$ được chấp nhận cho giới hạn thời gian, chỉ cần áp dụng cách dùng Floyd để tìm chu trình nhỏ nhất.
 
 === "C++"
     ```cpp
     #include <bits/stdc++.h>
     using lint = long long;
-    // 定义一个足够大的常量，用于表示图的最大节点数
+    // Định nghĩa hằng số đủ lớn cho số đỉnh tối đa của đồ thị
     const int MAXN = 110;
     
-    // 定义一个足够大的值，用于表示无穷大，初始化最小环长度
-    lint ans = 1e9;  // lint 是 long long 的别名
+    // Định nghĩa một giá trị đủ lớn để biểu thị vô cực và khởi tạo độ dài chu trình nhỏ nhất
+    lint ans = 1e9;  // lint là bí danh của long long
     
-    // 图的节点数 n，边数 m
-    // cnt 记录最小环路径中的节点数量
-    // path 存储最小环的路径节点
+    // n là số đỉnh của đồ thị, m là số cạnh
+    // cnt ghi lại số đỉnh trên đường đi của chu trình nhỏ nhất
+    // path lưu các đỉnh trên đường đi của chu trình nhỏ nhất
     int n, m, cnt, path[MAXN];
     
-    // g 存储原始图的邻接矩阵
-    // dis 存储最短路径矩阵 (Floyd-Warshall 算法计算过程中更新)
-    // pos 记录最短路径的中间节点，pos[i][j] = k 表示从 i 到 j 的最短路径经过 k
+    // g lưu ma trận kề của đồ thị ban đầu
+    // dis lưu ma trận đường đi ngắn nhất (được cập nhật trong quá trình Floyd-Warshall)
+    // pos ghi lại đỉnh trung gian của đường đi ngắn nhất, pos[i][j] = k nghĩa là đường đi ngắn nhất từ i đến j đi qua k
     int g[MAXN][MAXN], dis[MAXN][MAXN], pos[MAXN][MAXN];
     
-    // 递归函数：获取从节点 u 到节点 v 的最短路径上的中间节点
-    // 根据 pos 矩阵重构路径
+    // Hàm đệ quy: lấy các đỉnh trung gian trên đường đi ngắn nhất từ đỉnh u đến đỉnh v
+    // Khôi phục đường đi theo ma trận pos
     void get_path(int u, int v) {
-      // 如果 pos[u][v] 为 0，表示 u 到 v 没有中间节点，直接返回
+      // Nếu pos[u][v] bằng 0, u đến v không có đỉnh trung gian, trả về trực tiếp
       if (pos[u][v] == 0) return;
     
-      // 获取中间节点 k
+      // Lấy đỉnh trung gian k
       int k = pos[u][v];
-      // 递归获取 u 到 k 的路径
+      // Đệ quy lấy đường đi từ u đến k
       get_path(u, k);
-      // 将中间节点 k 加入路径
+      // Thêm đỉnh trung gian k vào đường đi
       path[++cnt] = k;
-      // 递归获取 k 到 v 的路径
+      // Đệ quy lấy đường đi từ k đến v
       get_path(k, v);
     }
     
-    // Floyd-Warshall 算法函数：查找图中的最小环
+    // Hàm Floyd-Warshall: tìm chu trình nhỏ nhất trong đồ thị
     void Floyd() {
-      // 外层循环：k 作为中间节点 (1 到 n)
+      // Vòng lặp ngoài: k là đỉnh trung gian (1 đến n)
       for (int k = 1; k <= n; ++k) {
-        // 内层循环：i 和 j，用于检查通过节点 k 是否能形成更小的环
-        // 这里循环顺序是 i 从 1 到 k-1，j 从 1 到 i-1
-        // 这样可以检查由 i -> k -> j -> ... -> i 构成的环
+        // Vòng lặp trong: i và j, dùng để kiểm tra xem đi qua đỉnh k có tạo được chu trình nhỏ hơn hay không
+        // Thứ tự lặp ở đây là i từ 1 đến k-1, j từ 1 đến i-1
+        // Như vậy có thể kiểm tra chu trình i -> k -> j -> ... -> i
         for (int i = 1; i < k; ++i)
           for (int j = 1; j < i; ++j)
-            // 检查通过节点 k 连接 i 和 j 是否形成更小的环
-            // 环的长度是 i 到 k 的原始边权重 g[i][k] + k 到 j 的原始边权重 g[k][j]
-            // + i 到 j 的当前最短路径 dis[i][j]
+            // Kiểm tra nối i và j thông qua đỉnh k có tạo thành chu trình nhỏ hơn hay không
+            // Độ dài chu trình bằng trọng số cạnh ban đầu i đến k g[i][k] + trọng số cạnh ban đầu k đến j g[k][j]
+            // + đường đi ngắn nhất hiện tại từ i đến j dis[i][j]
             if (ans > (long long)g[i][k] + g[k][j] + dis[i][j]) {
-              // 发现了更小的环
-              ans = g[i][k] + g[k][j] + dis[i][j];  // 更新最小环长度
-              cnt = 0;                              // 重置路径计数
-              // 将 i, k, j 依次加入路径
+              // Tìm thấy chu trình nhỏ hơn
+              ans = g[i][k] + g[k][j] + dis[i][j];  // Cập nhật độ dài chu trình nhỏ nhất
+              cnt = 0;                              // Đặt lại bộ đếm đường đi
+              // Lần lượt thêm i, k, j vào đường đi
               path[++cnt] = i, path[++cnt] = k, path[++cnt] = j;
-              // 获取 j 到 i 的最短路径上的中间节点，加入路径
+              // Lấy các đỉnh trung gian trên đường đi ngắn nhất từ j đến i và thêm vào đường đi
               get_path(j, i);
             }
     
-        // 标准 Floyd-Warshall 更新最短路径
-        // i 从 1 到 n，j 从 1 到 n
+        // Cập nhật đường đi ngắn nhất bằng Floyd-Warshall chuẩn
+        // i từ 1 đến n, j từ 1 đến n
         for (int i = 1; i <= n; ++i)
           for (int j = 1; j <= n; ++j) {
-            // 如果通过中间节点 k 可以获得更短的从 i 到 j 的路径
+            // Nếu có thể có đường đi từ i đến j ngắn hơn thông qua đỉnh trung gian k
             if (dis[i][j] > dis[i][k] + dis[k][j]) {
-              // 更新最短路径
+              // Cập nhật đường đi ngắn nhất
               dis[i][j] = dis[i][k] + dis[k][j];
-              // 记录从 i 到 j 的最短路径经过 k
+              // Ghi lại đường đi ngắn nhất từ i đến j đi qua k
               pos[i][j] = k;
             }
           }
       }
     }
     
-    // 主函数
+    // Hàm main
     int main() {
-      // 读取节点数 n 和边数 m
+      // Đọc số đỉnh n và số cạnh m
       std::cin >> n >> m;
-      // 初始化原始邻接矩阵 g，所有边的权重设为无穷大 (0x3f 通常表示一个很大的值)
+      // Khởi tạo ma trận kề ban đầu g, mọi trọng số cạnh được gán vô cực (0x3f thường biểu thị một giá trị rất lớn)
       memset(g, 0x3f, sizeof(g));
-      // 将节点到自身的距离设为 0
+      // Đặt khoảng cách từ đỉnh đến chính nó bằng 0
       for (int i = 1; i <= n; ++i) g[i][i] = 0;
-      // 读取 m 条边，构建原始邻接矩阵 g
-      // 对于无向图，边是双向的，取较小的权重
+      // Đọc m cạnh và xây dựng ma trận kề ban đầu g
+      // Với đồ thị vô hướng, cạnh có hai chiều và lấy trọng số nhỏ hơn
       for (int i = 0, u, v, w; i < m; ++i) {
         std::cin >> u >> v >> w;
         g[u][v] = g[v][u] = std::min(g[u][v], w);
       }
-      // 将原始邻接矩阵 g 复制到最短路径矩阵 dis
+      // Sao chép ma trận kề ban đầu g sang ma trận đường đi ngắn nhất dis
       memcpy(dis, g, sizeof(g));
-      // 调用 Floyd 算法查找最小环
+      // Gọi thuật toán Floyd để tìm chu trình nhỏ nhất
       Floyd();
-      // 根据最小环长度判断是否存在环
-      if (ans == 1e9) {  // 如果最小环长度仍为无穷大，表示不存在环
+      // Dựa vào độ dài chu trình nhỏ nhất để xác định có tồn tại chu trình hay không
+      if (ans == 1e9) {  // Nếu độ dài chu trình nhỏ nhất vẫn là vô cực, không tồn tại chu trình
         puts("No solution.");
       } else {
-        // 如果存在环，打印路径节点
-        // std::cout << "ans = " << ans << std::endl; // 打印最小环长度 (注释掉)
-        // 打印路径节点，用空格分隔
+        // Nếu tồn tại chu trình, in các đỉnh trên đường đi
+        // std::cout << "ans = " << ans << std::endl; // In độ dài chu trình nhỏ nhất (đang được comment)
+        // In các đỉnh trên đường đi, phân tách bằng dấu cách
         for (int i = 1; i <= cnt; ++i)
           std::cout << path[i]
-                    << (i == cnt ? "" : " ");  // 最后一个节点后面没有空格
-        std::cout << std::endl;                // 路径打印完后换行
+                    << (i == cnt ? "" : " ");  // Không in dấu cách sau đỉnh cuối cùng
+        std::cout << std::endl;                // Xuống dòng sau khi in xong đường đi
       }
       return 0;
     }
@@ -369,117 +369,117 @@
     import copy
     import sys
     
-    # 定义一个足够大的值表示无穷大
+    # Định nghĩa một giá trị đủ lớn để biểu thị vô cực
     INF = sys.maxsize
     
     
     def get_path(i, j, pos, path, cnt):
         """
-        递归地获取从节点 i 到节点 j 的最短路径上的中间节点．
+        Đệ quy lấy các đỉnh trung gian trên đường đi ngắn nhất từ đỉnh i đến đỉnh j.
     
         Args:
-            i (int): 起始节点 (0-based index).
-            j (int): 结束节点 (0-based index).
-            pos (list[list[int]]): 记录最短路径中间节点的矩阵. pos[i][j] = k 表示从 i 到 j 的最短路径经过 k.
-            path (list[int]): 存储路径节点的列表 (使用 0-based index).
-            cnt (int): 当前路径节点的数量.
+            i (int): Đỉnh bắt đầu (0-based index).
+            j (int): Đỉnh kết thúc (0-based index).
+            pos (list[list[int]]): Ma trận ghi lại đỉnh trung gian của đường đi ngắn nhất. pos[i][j] = k nghĩa là đường đi ngắn nhất từ i đến j đi qua k.
+            path (list[int]): Danh sách lưu các đỉnh trên đường đi (dùng 0-based index).
+            cnt (int): Số đỉnh hiện có trên đường đi.
     
         Returns:
-            int: 更新后的路径节点数量.
+            int: Số đỉnh trên đường đi sau khi cập nhật.
         """
-        # 如果 pos[i][j] 为 -1，表示 i 到 j 没有中间节点
+        # Nếu pos[i][j] bằng -1, i đến j không có đỉnh trung gian
         if pos[i][j] == -1:
             return cnt
     
-        # 获取中间节点 k
+        # Lấy đỉnh trung gian k
         k = pos[i][j]
-        # 递归获取 i 到 k 的路径
+        # Đệ quy lấy đường đi từ i đến k
         cnt = get_path(i, k, pos, path, cnt)
-        # 将中间节点 k 加入路径
+        # Thêm đỉnh trung gian k vào đường đi
         path[cnt] = k
         cnt += 1
-        # 递归获取 k 到 j 的路径
+        # Đệ quy lấy đường đi từ k đến j
         cnt = get_path(k, j, pos, path, cnt)
         return cnt
     
     
     def find_minimum_cycle_undirected(n, edges):
         """
-        使用 Floyd-Warshall 算法查找无向图中的最小环．
+        Dùng thuật toán Floyd-Warshall để tìm chu trình nhỏ nhất trong đồ thị vô hướng.
     
         Args:
-            n (int): 图的节点数 (1 到 n).
-            edges (list[tuple]): 边的列表，每个元素是 (u, v, w)，表示节点 u 和 v 之间有一条权重为 w 的边．
-                                 节点索引是 1 到 n．
+            n (int): Số đỉnh của đồ thị (1 đến n).
+            edges (list[tuple]): Danh sách cạnh, mỗi phần tử là (u, v, w), biểu thị có một cạnh trọng số w giữa đỉnh u và đỉnh v.
+                                 Chỉ số đỉnh từ 1 đến n.
     
         Returns:
-            tuple: 包含最小环的长度和路径．
-                   如果不存在环，返回 (INF, []).
-                   路径是一个节点索引列表 (1-based index)．
+            tuple: Gồm độ dài chu trình nhỏ nhất và đường đi.
+                   Nếu không tồn tại chu trình, trả về (INF, []).
+                   Đường đi là danh sách chỉ số đỉnh (1-based index).
         """
-        # 内部使用 0-based indexing
+        # Bên trong dùng 0-based indexing
         N = n
-        # 初始化邻接矩阵 g，表示原始边的权重
+        # Khởi tạo ma trận kề g, biểu thị trọng số các cạnh ban đầu
         g = [[INF for _ in range(N)] for _ in range(N)]
-        # 初始化最短路矩阵 dis，开始时与 g 相同
+        # Khởi tạo ma trận đường đi ngắn nhất dis, ban đầu giống g
         dis = [[INF for _ in range(N)] for _ in range(N)]
-        # 初始化 pos 矩阵，记录最短路径的中间节点
+        # Khởi tạo ma trận pos, ghi lại đỉnh trung gian của đường đi ngắn nhất
         pos = [[-1 for _ in range(N)] for _ in range(N)]
     
-        # 初始化对角线为 0 (节点到自身的距离)
+        # Khởi tạo đường chéo bằng 0 (khoảng cách từ đỉnh đến chính nó)
         for i in range(N):
             g[i][i] = 0
             dis[i][i] = 0
     
-        # 根据输入的边构建邻接矩阵 (无向图)
+        # Dựng ma trận kề từ danh sách cạnh đầu vào (đồ thị vô hướng)
         for u, v, w in edges:
-            # 将 1-based 索引转换为 0-based
+            # Chuyển chỉ số 1-based thành 0-based
             u -= 1
             v -= 1
-            # 对于无向图，边是双向的
+            # Trong đồ thị vô hướng, cạnh có hai chiều
             g[u][v] = min(g[u][v], w)
             g[v][u] = min(g[v][u], w)
             dis[u][v] = min(dis[u][v], w)
             dis[v][u] = min(dis[v][u], w)
     
-        # 初始化最小环长度为无穷大
+        # Khởi tạo độ dài chu trình nhỏ nhất là vô cực
         min_cycle_len = INF
-        # 初始化最小环路径
+        # Khởi tạo đường đi của chu trình nhỏ nhất
         min_cycle_path = []
     
-        # Floyd-Warshall 算法核心部分
-        # k 作为中间节点 (0-based index)
+        # Phần lõi của thuật toán Floyd-Warshall
+        # k là đỉnh trung gian (0-based index)
         for k in range(N):
-            # 在更新 dis[i][j] 之前，检查通过节点 k 是否能形成更小的环
-            # 环由 i -> k -> j -> ... -> i 组成
-            # 这里的 dis[i][j] 是在考虑节点 0 到 k-1 作为中间节点时的最短路径
-            # C++ 代码中使用 i < k 和 j < i 的循环顺序，这里也遵循这个逻辑 (0-based)
+            # Trước khi cập nhật dis[i][j], kiểm tra xem đi qua đỉnh k có tạo được chu trình nhỏ hơn hay không
+            # Chu trình có dạng i -> k -> j -> ... -> i
+            # Ở đây dis[i][j] là đường đi ngắn nhất khi chỉ xét các đỉnh 0 đến k-1 làm đỉnh trung gian
+            # Mã C++ dùng thứ tự lặp i < k và j < i, ở đây cũng theo logic này (0-based)
             for i in range(k):  # 0 <= i < k
                 for j in range(i):  # 0 <= j < i
-                    # 检查 i, k, j 是否构成一个环，并且通过 dis[i][j] 连接
-                    # 确保原始边 g[i][k] 和 g[k][j] 存在 (不为 INF)
-                    # 并且 i 到 j 的最短路径 dis[i][j] 存在 (不为 INF)
+                    # Kiểm tra i, k, j có tạo thành chu trình và được nối bằng dis[i][j] hay không
+                    # Đảm bảo các cạnh ban đầu g[i][k] và g[k][j] tồn tại (khác INF)
+                    # Đồng thời đường đi ngắn nhất từ i đến j là dis[i][j] tồn tại (khác INF)
                     if g[i][k] != INF and g[k][j] != INF and dis[i][j] != INF:
                         current_cycle_len = g[i][k] + g[k][j] + dis[i][j]
                         if current_cycle_len < min_cycle_len:
                             min_cycle_len = current_cycle_len
-                            # 重构路径
-                            path = [0] * (N + 5)  # 临时存储路径的数组，长度足够大
+                            # Khôi phục đường đi
+                            path = [0] * (N + 5)  # Mảng tạm lưu đường đi, đủ dài
                             cnt = 0
-                            # 按照 i, k, j 的顺序加入路径
+                            # Thêm các đỉnh theo thứ tự i, k, j
                             path[cnt] = i
                             cnt += 1
                             path[cnt] = k
                             cnt += 1
                             path[cnt] = j
                             cnt += 1
-                            # 获取 j 到 i 的最短路径上的中间节点 (使用之前计算的 dis 和 pos)
+                            # Lấy các đỉnh trung gian trên đường đi ngắn nhất từ j đến i (dùng dis và pos đã tính trước đó)
                             cnt = get_path(j, i, pos, path, cnt)
-                            # 提取实际路径节点 (去除未使用的部分)
-                            # 将 0-based 索引转换为 1-based
+                            # Lấy các đỉnh thực sự trên đường đi (bỏ phần chưa dùng)
+                            # Chuyển chỉ số 0-based thành 1-based
                             min_cycle_path = [node + 1 for node in path[:cnt]]
     
-            # 标准 Floyd-Warshall 更新最短路径
+            # Cập nhật đường đi ngắn nhất bằng Floyd-Warshall chuẩn
             for i in range(N):
                 for j in range(N):
                     if (
@@ -488,88 +488,88 @@
                         and dis[i][j] > dis[i][k] + dis[k][j]
                     ):
                         dis[i][j] = dis[i][k] + dis[k][j]
-                        # 记录从 i 到 j 的最短路径经过 k
+                        # Ghi lại đường đi ngắn nhất từ i đến j đi qua k
                         pos[i][j] = k
     
         return min_cycle_len, min_cycle_path
     
     
-    # --- 主程序入口 ---
+    # --- Điểm vào chương trình chính ---
     if __name__ == "__main__":
-        # 读取节点数 n 和边数 m
+        # Đọc số đỉnh n và số cạnh m
         n, m = map(int, sys.stdin.readline().split())
     
-        # 读取边信息
+        # Đọc thông tin cạnh
         edges = []
         for _ in range(m):
             u, v, w = map(int, sys.stdin.readline().split())
             edges.append((u, v, w))
     
-        # 查找最小环
+        # Tìm chu trình nhỏ nhất
         min_len, path = find_minimum_cycle_undirected(n, edges)
     
-        # 输出结果
+        # In kết quả
         if min_len == INF:
             print("No solution.")
         else:
-            # 打印路径节点 (1-based index)，用空格分隔
+            # In các đỉnh trên đường đi (1-based index), phân tách bằng dấu cách
             print(" ".join(map(str, path)))
     ```
 
-## 例题 2
+## Ví dụ 2
 
-GDOI2018 Day2 巡逻
+GDOI2018 Day2 Patrol
 
-给出一张 $n$ 个点的无负权边无向图，要求执行 $q$ 个操作，三种操作
+Cho một đồ thị vô hướng có $n$ đỉnh và cạnh không có trọng số âm. Cần thực hiện $q$ thao tác, gồm ba loại:
 
-1.  删除一个图中的点以及与它有关的边
-2.  恢复一个被删除点以及与它有关的边
-3.  询问点 $x$ 所在的最小环大小
+1.  Xóa một đỉnh trong đồ thị và các cạnh liên quan đến nó.
+2.  Khôi phục một đỉnh đã bị xóa và các cạnh liên quan đến nó.
+3.  Hỏi kích thước chu trình nhỏ nhất chứa đỉnh $x$.
 
-对于 $50\%$ 的数据，有 $n,q \le 100$
+Với $50\%$ dữ liệu, $n,q \le 100$.
 
-对于每一个点 $x$ 所在的简单环，都存在两条与 $x$ 相邻的边，删去其中的任意一条，简单环将变为简单路径．
+Với mọi chu trình đơn chứa đỉnh $x$, luôn tồn tại hai cạnh kề với $x$. Nếu xóa một trong hai cạnh đó, chu trình đơn sẽ trở thành một đường đi đơn.
 
-那么枚举所有与 $x$ 相邻的边，每次删去其中一条，然后跑一次 Dijkstra．
+Vì vậy, có thể liệt kê mọi cạnh kề với $x$, mỗi lần xóa một cạnh trong số đó rồi chạy Dijkstra.
 
-或者直接对每次询问跑一遍 Floyd 求最小环，$O(qn^3)$
+Hoặc trực tiếp chạy Floyd một lần cho mỗi truy vấn để tìm chu trình nhỏ nhất, độ phức tạp $O(qn^3)$.
 
-对于 $100\%$ 的数据，有 $n,q \le 400$．
+Với $100\%$ dữ liệu, $n,q \le 400$.
 
-还是利用 Floyd 求最小环的算法．
+Vẫn tận dụng thuật toán Floyd tìm chu trình nhỏ nhất.
 
-若没有删除，删去询问点将简单环裂开成为一条简单路．
+Nếu không có thao tác xóa, xóa đỉnh được hỏi sẽ tách chu trình đơn thành một đường đi đơn.
 
-然而第二步的求解改用 Floyd 来得出．
+Tuy nhiên, bước thứ hai đổi sang dùng Floyd để tính.
 
-那么答案就是要求出不经过询问点 $x$ 的情况下任意两点之间的距离．
+Khi đó đáp án là khoảng cách giữa hai đỉnh bất kỳ trong trường hợp không đi qua đỉnh truy vấn $x$.
 
-怎么在线？
+Làm thế nào để xử lý online?
 
-强行离线，利用离线的方法来避免删除操作．
+Ép về offline, dùng phương pháp offline để tránh thao tác xóa.
 
-将询问按照时间顺序排列，对这些询问建立一个线段树．
+Sắp xếp các truy vấn theo thứ tự thời gian và dựng một cây phân đoạn trên các truy vấn này.
 
-每个点的出现时间覆盖所有除去询问该点的时刻外的所有询问，假设一个点被询问 $x$ 次，则它的出现时间可以视为 $x + 1$ 段区间，插入到线段树上．
+Thời gian xuất hiện của mỗi đỉnh bao phủ tất cả các thời điểm truy vấn, trừ các thời điểm truy vấn chính đỉnh đó. Giả sử một đỉnh được truy vấn $x$ lần, thời gian xuất hiện của nó có thể xem là $x + 1$ đoạn, rồi chèn các đoạn này vào cây phân đoạn.
 
-完成之后遍历一遍整棵线段树，在经过一个点时存储一个 Floyd 数组的备份，然后加入被插入在这个区间上的所有点，在离开时利用备份数组退回去即可．
+Sau khi hoàn tất, duyệt toàn bộ cây phân đoạn một lần. Khi đi qua một nút, lưu một bản sao của mảng Floyd, sau đó thêm tất cả các đỉnh được chèn vào khoảng ứng với nút này. Khi rời nút, dùng bản sao để quay lại trạng thái trước đó.
 
-这个做法的时间复杂度为 $O(qn^2\log q)$．
+Độ phức tạp thời gian của cách làm này là $O(qn^2\log q)$.
 
-还有一个时间复杂度更优秀的在线做法．
+Còn có một cách online có độ phức tạp thời gian tốt hơn.
 
-对于一个对点 $x$ 的询问，我们以 $x$ 为起点跑一次最短路，然后把最短路树建出来，顺便处理出每个点是在 $x$ 的哪棵子树内．
+Với một truy vấn trên đỉnh $x$, ta chạy đường đi ngắn nhất một nguồn từ $x$, sau đó dựng cây đường đi ngắn nhất và đồng thời xử lý xem mỗi đỉnh nằm trong cây con nào của $x$.
 
-那么一定能找出一条非树边，满足这条非树边的两个端点在根的不同子树中，使得这条非树边 $+$ 两个端点到根的路径就是最小环．
+Khi đó chắc chắn có thể tìm một cạnh không thuộc cây sao cho hai đầu mút của cạnh này nằm trong hai cây con khác nhau của gốc. Cạnh không thuộc cây đó cộng với hai đường đi từ hai đầu mút về gốc sẽ tạo thành chu trình nhỏ nhất.
 
-证明：
+Chứng minh:
 
-显然最小环包含至少两个端点在根的不同子树中一条非树边．
+Rõ ràng chu trình nhỏ nhất chứa ít nhất một cạnh không thuộc cây mà hai đầu mút của cạnh đó nằm trong hai cây con khác nhau của gốc.
 
-假设这条边为 $(u,v)$，那么最短路树上 $x$ 到 $u$ 的路径是所有 $x$ 到 $u$ 的路径中最短的那条，$x$ 到 $v$ 的路径也是最短的那条，那么 $x\to u\to v\to x$ 这个环肯定不会比最小环要长．
+Giả sử cạnh đó là $(u,v)$. Khi đó đường đi từ $x$ đến $u$ trên cây đường đi ngắn nhất là đường ngắn nhất trong tất cả các đường đi từ $x$ đến $u$, và đường đi từ $x$ đến $v$ cũng là đường ngắn nhất. Vì vậy chu trình $x\to u\to v\to x$ chắc chắn không dài hơn chu trình nhỏ nhất.
 
-那么就可以枚举所有非树边，更新答案．
+Từ đó có thể liệt kê mọi cạnh không thuộc cây để cập nhật đáp án.
 
-每次询问的复杂度为跑一次单源最短路的复杂度，为 $O(n^2)$．
+Độ phức tạp của mỗi truy vấn bằng độ phức tạp chạy đường đi ngắn nhất một nguồn, là $O(n^2)$.
 
-总时间复杂度为 $O(qn^2)$．
+Tổng độ phức tạp thời gian là $O(qn^2)$.

@@ -451,12 +451,12 @@ nav:
       - Đỉnh khớp và cầu: graph/cut.md
       - Cây tròn-vuông: graph/block-forest.md
       - Độ liên thông đỉnh/cạnh: graph/connectivity.md
-    - 环计数问题: graph/rings-count.md
-    - 最小环: graph/min-cycle.md
+    - Đếm chu trình: graph/rings-count.md
+    - Chu trình nhỏ nhất: graph/min-cycle.md
     - 2-SAT: graph/2-sat.md
-    - 欧拉图: graph/euler.md
-    - 哈密顿图: graph/hamilton.md
-    - 二分图: graph/bi-graph.md
+    - Đồ thị Euler: graph/euler.md
+    - Đồ thị Hamilton: graph/hamilton.md
+    - Đồ thị hai phía: graph/bi-graph.md
     - 平面图: graph/planar.md
     - 弦图: graph/chord.md
     - 图的着色: graph/color.md

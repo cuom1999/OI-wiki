@@ -1,61 +1,61 @@
-本页面将简要介绍欧拉图的概念、实现和应用．
+Trang này giới thiệu ngắn gọn khái niệm, cách cài đặt và ứng dụng của đồ thị Euler.
 
-## 定义
+## Định nghĩa
 
-本文中仅讨论有限图．
+Trong bài viết này, ta chỉ xét đồ thị hữu hạn.
 
-在图论中，**欧拉路径（Eulerian path）**是经过图中每条边恰好一次的路径，**欧拉回路（Eulerian circuit）**是经过图中每条边恰好一次的回路．
-如果一个图中存在欧拉回路，则这个图被称为**欧拉图（Eulerian graph）**；如果一个图中不存在欧拉回路但是存在欧拉路径，则这个图被称为**半欧拉图（semi-Eulerian graph）**．
+Trong lý thuyết đồ thị, **đường đi Euler (Eulerian path)** là một đường đi đi qua mỗi cạnh của đồ thị đúng một lần, còn **chu trình Euler (Eulerian circuit)** là một chu trình đi qua mỗi cạnh của đồ thị đúng một lần.
+Nếu một đồ thị có chu trình Euler, đồ thị đó được gọi là **đồ thị Euler (Eulerian graph)**; nếu một đồ thị không có chu trình Euler nhưng có đường đi Euler, đồ thị đó được gọi là **đồ thị nửa Euler (semi-Eulerian graph)**.
 
-??? warning "Warning"
-    此处定义中虽然使用「路径」一词，但严格说来此处使用的概念应该是「迹（trail）」．欧拉路径与欧拉回路仅能使用每条边恰好一次，但并没有对经过顶点的情况进行限制．
+??? warning "Cảnh báo"
+    Dù định nghĩa ở đây dùng từ "đường đi", nói chặt chẽ hơn thì khái niệm được dùng phải là "vết (trail)". Đường đi Euler và chu trình Euler chỉ yêu cầu mỗi cạnh được dùng đúng một lần, chứ không hạn chế số lần đi qua một đỉnh.
 
-## 性质
+## Tính chất
 
-以下我们假设所讨论的图 $G$ 中不存在孤立顶点．该假设不失一般性，因为对于存在孤立顶点的图 $G$，以下性质对从 $G$ 中删除孤立顶点后得到的图 $G'$ 仍然成立．
+Trong phần dưới, giả sử đồ thị $G$ đang xét không có đỉnh cô lập. Giả thiết này không mất tính tổng quát, vì nếu $G$ có đỉnh cô lập thì các tính chất dưới đây vẫn đúng với đồ thị $G'$ thu được sau khi xóa các đỉnh cô lập khỏi $G$.
 
-对于连通图 $G$，以下三个性质是互相等价的：
+Với đồ thị liên thông $G$, ba tính chất sau tương đương với nhau:
 
-1.  $G$ 是欧拉图；
-2.  $G$ 中所有顶点的度数都是偶数（对于有向图，每个顶点的入度等于出度）；
-3.  $G$ 可被分解为若干条不共边回路的并．
+1.  $G$ là đồ thị Euler;
+2.  Mọi đỉnh của $G$ đều có bậc chẵn (với đồ thị có hướng, mỗi đỉnh có bậc vào bằng bậc ra);
+3.  $G$ có thể được phân rã thành hợp của một số chu trình đôi một không chung cạnh.
 
-以下我们对等价性进行证明．
+Sau đây ta chứng minh tính tương đương.
 
-若一个图 $G$ 是欧拉图，那么 $G$ 中所有顶点的度数都是偶数：考虑从任意顶点开始沿着欧拉回路走一圈，则每个点 $v$ 的度数等于离开点 $v$ 的次数加到达点 $v$ 的次数．又由于行动的轨迹是一个回路，则对于每个点 $v$，离开该点的次数等于到达该点的次数．这也就是说，每个点的度数都形如 $2k$，即偶数．
-特别地，对于有向图，根据相同的证明过程，每个顶点的入度等于出度．
+Nếu một đồ thị $G$ là đồ thị Euler, thì mọi đỉnh của $G$ đều có bậc chẵn: xét việc bắt đầu từ một đỉnh bất kỳ rồi đi hết một vòng theo chu trình Euler, khi đó bậc của mỗi đỉnh $v$ bằng số lần rời khỏi $v$ cộng với số lần đi đến $v$. Do quỹ đạo di chuyển là một chu trình, với mỗi đỉnh $v$, số lần rời khỏi đỉnh đó bằng số lần đi đến đỉnh đó. Nói cách khác, bậc của mỗi đỉnh đều có dạng $2k$, tức là số chẵn.
+Đặc biệt, với đồ thị có hướng, theo cùng lập luận trên, mỗi đỉnh có bậc vào bằng bậc ra.
 
-若一个图 $G$ 中所有顶点的度数都是偶数（或入度与出度相等），则它可被分解为若干条不共边回路的不交并：考虑从任意顶点 $u$ 开始，选择任意出边 $(u, v)$，走向对应的相邻顶点 $v$ 并删除 $(u, v)$，直到返回最初开始的顶点 $u$．可以证明该过程必定会最终回到 $u$：每当到达一个新的顶点 $v \neq u$ 时，根据上一条性质，该顶点剩余的度数为奇数，也就是说必定存在一条出边，该过程不会在点 $v$ 终止．（换句话说，该过程会且仅会在回到点 $u$ 时停止．）又因图 $G$ 中的边数是有限的，该过程必定会在有限步内停止，则最终必然可以返回 $u$ 并得到一条回路．注意到在前述证明中我们仅使用了点度数均为偶数的性质，且在找到并删除一条回路后剩下部分的图仍然满足该性质，我们可以不断重复该过程直到剩下的图为空图，从而将 $G$ 拆分为若干条不共边的回路．
-更进一步地，每条回路都可以被从其多次经过的顶点处分解成若干简单环的不交并，所以上述性质中的简单回路亦可被替换为简单环．
+Nếu mọi đỉnh của một đồ thị $G$ đều có bậc chẵn (hoặc bậc vào bằng bậc ra), thì nó có thể được phân rã thành hợp rời cạnh của một số chu trình: bắt đầu từ một đỉnh bất kỳ $u$, chọn một cạnh ra bất kỳ $(u, v)$, đi đến đỉnh kề tương ứng $v$ rồi xóa $(u, v)$, cho đến khi quay lại đỉnh xuất phát ban đầu $u$. Có thể chứng minh quá trình này cuối cùng chắc chắn quay lại $u$: mỗi khi đi đến một đỉnh mới $v \neq u$, theo tính chất ở trên, bậc còn lại của đỉnh đó là số lẻ, tức là chắc chắn còn một cạnh ra, nên quá trình không thể kết thúc tại $v$. (Nói cách khác, quá trình sẽ dừng khi và chỉ khi quay lại $u$.) Vì số cạnh của đồ thị $G$ là hữu hạn, quá trình chắc chắn dừng sau hữu hạn bước, nên cuối cùng phải quay lại $u$ và thu được một chu trình. Lưu ý rằng trong chứng minh trên ta chỉ dùng tính chất mọi bậc đỉnh đều chẵn, và sau khi tìm rồi xóa một chu trình, phần đồ thị còn lại vẫn thỏa tính chất này; do đó ta có thể lặp lại quá trình cho đến khi đồ thị còn lại rỗng, qua đó tách $G$ thành một số chu trình đôi một không chung cạnh.
+Hơn nữa, mỗi chu trình cũng có thể được tách tại các đỉnh mà nó đi qua nhiều lần để trở thành hợp rời cạnh của một số chu trình đơn, nên trong tính chất trên cũng có thể thay "chu trình" bằng "chu trình đơn".
 
-若一个连通图 $G$ 可被分解为若干条不共边回路的不交并，则 $G$ 是欧拉图：对于一组不共边回路，每次从中选出两条有共同顶点的回路并将其合并为一条，重复该过程直到不存在有共同顶点的两条回路．
-可以证明该过程结束时剩下的回路唯一．对于任意两条不共边回路 $P_1, P_2$，若 $P_1$ 与 $P_2$ 共点，则可以在共点处直接进行合并；否则，任取 $P_1$ 上的点 $v_1$ 与 $P_2$ 上的点 $v_2$，根据 $G$ 的连通性，存在连接 $v_1$ 和 $v_2$ 的路径 $e_1, e_2, \ldots, e_k$，其中的每条边 $e_i$ 都被一个回路 $C_i$ 包含，且 $P_1$ 与 $C_1$，$C_i$ 与 $C_{i+1}$，$C_k$ 与 $P_2$ 均存在共点（或者 $C_i = C_{i+1}$，此情况不影响证明）．此情况下，$P_1$ 与 $P_2$ 可以通过 $C_1, \ldots, C_k$ 进行合并．也就是说，任意两条回路都可以进行合并，最后剩下的回路必定唯一，且组成该回路的边集是所有不共边回路的并即 $E(G)$，该回路为 $G$ 上的欧拉回路，$G$ 为欧拉图．
+Nếu một đồ thị liên thông $G$ có thể được phân rã thành hợp rời cạnh của một số chu trình, thì $G$ là đồ thị Euler: với một tập các chu trình không chung cạnh, mỗi lần chọn hai chu trình có đỉnh chung rồi ghép chúng thành một chu trình, lặp lại cho đến khi không còn hai chu trình nào có đỉnh chung.
+Có thể chứng minh rằng khi quá trình này kết thúc, chu trình còn lại là duy nhất. Với hai chu trình không chung cạnh bất kỳ $P_1, P_2$, nếu $P_1$ và $P_2$ có đỉnh chung thì có thể ghép trực tiếp tại đỉnh chung đó; nếu không, chọn tùy ý một đỉnh $v_1$ trên $P_1$ và một đỉnh $v_2$ trên $P_2$. Do $G$ liên thông, tồn tại một đường đi nối $v_1$ với $v_2$ gồm các cạnh $e_1, e_2, \ldots, e_k$, trong đó mỗi cạnh $e_i$ nằm trong một chu trình $C_i$, đồng thời $P_1$ và $C_1$, $C_i$ và $C_{i+1}$, $C_k$ và $P_2$ đều có đỉnh chung (hoặc $C_i = C_{i+1}$, trường hợp này không ảnh hưởng đến chứng minh). Khi đó, $P_1$ và $P_2$ có thể được ghép thông qua $C_1, \ldots, C_k$. Nói cách khác, hai chu trình bất kỳ đều có thể được ghép, nên chu trình cuối cùng còn lại chắc chắn là duy nhất; tập cạnh tạo nên chu trình đó chính là hợp của tất cả chu trình không chung cạnh, tức là $E(G)$. Chu trình này là chu trình Euler trên $G$, do đó $G$ là đồ thị Euler.
 
-以上的性质同时也构成了欧拉图的判断条件．具体地说，一个图是欧拉图当且仅当非零度顶点互相（强）连通，且顶点的度数都是偶数（或入度与出度相等）．
+Các tính chất trên cũng tạo thành tiêu chuẩn nhận biết đồ thị Euler. Cụ thể, một đồ thị là đồ thị Euler khi và chỉ khi các đỉnh có bậc khác không liên thông (liên thông mạnh với đồ thị có hướng) với nhau, và mọi đỉnh đều có bậc chẵn (hoặc bậc vào bằng bậc ra).
 
-对于半欧拉图，其性质与欧拉图相似：一个半欧拉图具有恰好两个奇度数的顶点，且这两个顶点就是欧拉路径的两个端点．通过将这两个点连接起来，可以将半欧拉图转化为欧拉图．通过删除欧拉图中的任意一条边，可以得到一个半欧拉图．
-由此可以导出半欧拉图的判别法：一个图是半欧拉图当且仅当非零度顶点互相（强）连通，且奇度数顶点恰好有两个．对于有向图，第二个条件为恰存在两个顶点 $u, v$，其中 $\deg^+(u) - \deg^-(u) = 1, \deg^+(v) - \deg^-(v) = -1$，且其余顶点的入度等于出度．
+Với đồ thị nửa Euler, các tính chất tương tự đồ thị Euler: một đồ thị nửa Euler có đúng hai đỉnh bậc lẻ, và hai đỉnh này chính là hai đầu mút của đường đi Euler. Bằng cách nối hai đỉnh đó với nhau, có thể biến đồ thị nửa Euler thành đồ thị Euler. Ngược lại, xóa một cạnh bất kỳ trong đồ thị Euler sẽ thu được một đồ thị nửa Euler.
+Từ đó suy ra tiêu chuẩn nhận biết đồ thị nửa Euler: một đồ thị là đồ thị nửa Euler khi và chỉ khi các đỉnh có bậc khác không liên thông (liên thông mạnh với đồ thị có hướng) với nhau, và có đúng hai đỉnh bậc lẻ. Với đồ thị có hướng, điều kiện thứ hai là tồn tại đúng hai đỉnh $u, v$ sao cho $\deg^+(u) - \deg^-(u) = 1, \deg^+(v) - \deg^-(v) = -1$, còn mọi đỉnh còn lại đều có bậc vào bằng bậc ra.
 
-## 欧拉回路/欧拉路径的构造
+## Xây dựng chu trình Euler/đường đi Euler
 
-此处我们介绍最常用的 Hierholzer 算法，该算法的核心思想为利用上述欧拉图性质中的第三点，即欧拉图可以被拆解为若干条不共边回路的并．
-可以注意到，在上述证明中其实已经提到了完整可行的将不共边回路合并为欧拉回路的操作，且在使用合适的数据结构储存时（如使用类链表的结构储存环）实现并不困难．
+Ở đây ta giới thiệu thuật toán Hierholzer thường dùng nhất. Ý tưởng cốt lõi của thuật toán là tận dụng tính chất thứ ba của đồ thị Euler ở trên: đồ thị Euler có thể được phân rã thành hợp của một số chu trình đôi một không chung cạnh.
+Có thể thấy trong phần chứng minh trên, ta thật ra đã nêu một thao tác hoàn chỉnh và khả thi để ghép các chu trình không chung cạnh thành chu trình Euler; khi dùng cấu trúc dữ liệu phù hợp để lưu trữ (chẳng hạn dùng cấu trúc dạng danh sách liên kết để lưu chu trình), thao tác này không khó cài đặt.
 
-算法的具体流程为先从图中找到一条回路作为当前回路，每次从当前回路中选取剩余度数不为零的点，从该点出发找到一条新的简单回路，并将该简单回路与当前回路合并，重复该过程直到当前回路中的所有点均无剩余度数，此时的当前回路即为欧拉回路．
+Quy trình cụ thể của thuật toán là trước hết tìm trong đồ thị một chu trình làm chu trình hiện tại. Mỗi lần chọn một đỉnh trên chu trình hiện tại vẫn còn bậc dư khác không, xuất phát từ đỉnh đó để tìm một chu trình đơn mới, rồi ghép chu trình đơn này với chu trình hiện tại. Lặp lại quá trình cho đến khi mọi đỉnh trên chu trình hiện tại đều không còn bậc dư; khi đó chu trình hiện tại chính là chu trình Euler.
 
-该算法同样适用于有向图．对于半欧拉图，可以从图中找到一条连接两个奇度数点的路径作为当前路径，每次选取度数非零的点寻找简单回路并将其与当前路径合并，最后得到欧拉路径．
+Thuật toán cũng áp dụng được cho đồ thị có hướng. Với đồ thị nửa Euler, có thể tìm trong đồ thị một đường đi nối hai đỉnh bậc lẻ làm đường đi hiện tại; mỗi lần chọn một đỉnh có bậc khác không để tìm chu trình đơn rồi ghép nó vào đường đi hiện tại, cuối cùng thu được đường đi Euler.
 
-### 实现
+### Cài đặt
 
-Hierholzer 算法的伪代码如下：
+Mã giả của thuật toán Hierholzer như sau:
 
 $$
 \begin{array}{ll}
-1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v) \\
-2 &  \textbf{Output. } \text{The vertex of the Euler Road of the input graph}.\\
-3 &  \textbf{Method. } \\
-4 &  \textbf{Function } \text{Hierholzer } (v) \\
-5 &  \qquad circle \gets \text{Find a Circle in } e \text{ Begin with } v \\
+1 &  \textbf{Dữ liệu vào. } \text{Các cạnh của đồ thị } e, \text{ trong đó mỗi phần tử của } e \text{ là } (u, v) \\
+2 &  \textbf{Kết quả. } \text{Dãy đỉnh của đường đi Euler trong đồ thị đầu vào}.\\
+3 &  \textbf{Phương pháp. } \\
+4 &  \textbf{Hàm } \text{Hierholzer } (v) \\
+5 &  \qquad circle \gets \text{Tìm một chu trình trong } e \text{ bắt đầu từ } v \\
 6 &  \qquad \textbf{if } circle=\varnothing \\
 7 &  \qquad\qquad \textbf{return } v \\
 8 &  \qquad e \gets e-circle \\
@@ -63,85 +63,85 @@ $$
 10&  \qquad\qquad v \gets \text{Hierholzer}(v) \\
 11&  \qquad \textbf{return } circle \\
 12&  \textbf{Endfunction}\\
-13&  \textbf{return } \text{Hierholzer}(\text{any vertex})
+13&  \textbf{return } \text{Hierholzer}(\text{một đỉnh bất kỳ})
 \end{array}
 $$
 
-### 时间复杂度分析
+### Phân tích độ phức tạp thời gian
 
-Hierholzer 算法的时间复杂度为 $O(|E| + |V|)$．
+Độ phức tạp thời gian của thuật toán Hierholzer là $O(|E| + |V|)$.
 
-注意到在前述正确性分析中，在欧拉图或半欧拉图上寻找简单回路（或半欧拉图的初始路径）的过程是 **无需回溯** 的，只要沿着剩下的边一直走就必定可以发现所求的回路或路径，且 **每条边仅会被访问一次**．
-为了利用这一性质，在实现上应采取类链表的方式储存图中的边，如邻接表或链式前向星，以便每条边在被访问过后即刻删除之．如果采用朴素的邻接矩阵进行储存，则每次寻边耗时 $O(|V|)$，总复杂度为 $O(|V||E|)$．
+Lưu ý rằng trong phân tích tính đúng đắn ở trên, quá trình tìm chu trình đơn trong đồ thị Euler hoặc nửa Euler (hoặc đường đi ban đầu của đồ thị nửa Euler) là **không cần quay lui**: chỉ cần đi theo các cạnh còn lại thì chắc chắn tìm được chu trình hoặc đường đi cần thiết, và **mỗi cạnh chỉ được thăm một lần**.
+Để tận dụng tính chất này, khi cài đặt nên lưu các cạnh trong đồ thị bằng cấu trúc dạng danh sách liên kết, chẳng hạn danh sách kề hoặc forward star, để mỗi cạnh được xóa ngay sau khi được thăm. Nếu dùng ma trận kề đơn giản để lưu trữ, mỗi lần tìm cạnh sẽ tốn $O(|V|)$, tổng độ phức tạp là $O(|V||E|)$.
 
-???+ note "Note"
-    事实上，该算法的准确复杂度应为 $O(|E|)$ 而非 $O(|V| + |E|)$，这是因为该算法的实现方式可以采取依赖于边而不依赖于点的方法，通过维护剩余边的总链表来进行下一步回路的寻找．
+???+ note "Ghi chú"
+    Thật ra, độ phức tạp chính xác của thuật toán nên là $O(|E|)$ chứ không phải $O(|V| + |E|)$, vì cách cài đặt thuật toán có thể phụ thuộc vào cạnh thay vì phụ thuộc vào đỉnh, bằng cách duy trì danh sách liên kết tổng thể của các cạnh còn lại để tìm chu trình ở bước tiếp theo.
 
-如果需要输出字典序最小的欧拉路或欧拉回路，则需要将边排序，时间复杂度为 $\Theta(|E|\log |E|)$ 或 $\Theta(|E|)$（使用计数排序或者基数排序）．
+Nếu cần xuất đường đi Euler hoặc chu trình Euler có thứ tự từ điển nhỏ nhất, cần sắp xếp các cạnh; độ phức tạp thời gian là $\Theta(|E|\log |E|)$ hoặc $\Theta(|E|)$ (nếu dùng sắp xếp đếm hoặc sắp xếp cơ số).
 
-### 应用
+### Ứng dụng
 
-有向欧拉图可用于计算机译码．
+Đồ thị Euler có hướng có thể được dùng trong giải mã bằng máy tính.
 
-设有 $m$ 个字母，希望构造一个有 $m^n$ 个扇形的圆盘，每个圆盘上放一个字母，使得圆盘上每连续 $n$ 位对应长为 $n$ 的符号串．转动一周（$m^n$ 次）后得到由 $m$ 个字母产生的长度为 $n$ 的 $m^n$ 个各不相同的符号串．
+Giả sử có $m$ chữ cái, ta muốn xây dựng một đĩa tròn có $m^n$ ô hình quạt, trên mỗi ô đặt một chữ cái, sao cho mỗi $n$ vị trí liên tiếp trên đĩa tương ứng với một xâu ký hiệu độ dài $n$. Sau khi quay hết một vòng ($m^n$ lần), ta thu được $m^n$ xâu ký hiệu độ dài $n$ đôi một khác nhau được tạo từ $m$ chữ cái.
 
 ![](images/euler1.svg)
 
-构造如下有向欧拉图：
+Xây dựng đồ thị Euler có hướng như sau:
 
-设 $S = \{a_1, a_2, \cdots, a_m\}$，构造 $D=\langle V, E\rangle$，如下：
+Đặt $S = \{a_1, a_2, \cdots, a_m\}$, xây dựng $D=\langle V, E\rangle$ như sau:
 
 $V = \{a_{i_1}a_{i_2}\cdots a_{i_{n-1}} |a_i \in S, 1 \leq i \leq n - 1 \}$
 
 $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
 
-规定 $D$ 中顶点与边的关联关系如下：
+Quy định quan hệ liên thuộc giữa đỉnh và cạnh trong $D$ như sau:
 
-顶点 $a_{i_1}a_{i_2}\cdots a_{i_{n-1}}$ 引出 $m$ 条边：$a_{i_1}a_{i_2}\cdots a_{i_{n-1}}a_r, r=1, 2, \cdots, m$．
+Từ đỉnh $a_{i_1}a_{i_2}\cdots a_{i_{n-1}}$ có $m$ cạnh đi ra: $a_{i_1}a_{i_2}\cdots a_{i_{n-1}}a_r, r=1, 2, \cdots, m$.
 
-边 $a_{j_1}a_{j_2}\cdots a_{j_{n-1}}$ 引入顶点 $a_{j_2}a_{j_3}\cdots a_{j_{n}}$．
+Cạnh $a_{j_1}a_{j_2}\cdots a_{j_{n-1}}$ đi vào đỉnh $a_{j_2}a_{j_3}\cdots a_{j_{n}}$.
 
 ![](images/euler2.svg)
 
-这样的 $D$ 是连通的，且每个顶点入度等于出度（均等于 $m$），所以 $D$ 是有向欧拉图．
+Đồ thị $D$ như vậy là liên thông, và mỗi đỉnh có bậc vào bằng bậc ra (đều bằng $m$), nên $D$ là đồ thị Euler có hướng.
 
-任求 $D$ 中一条欧拉回路 $C$，取 $C$ 中各边的最后一个字母，按各边在 $C$ 中的顺序排成圆形放在圆盘上即可．
+Tìm tùy ý một chu trình Euler $C$ trong $D$, lấy chữ cái cuối cùng của mỗi cạnh trong $C$, rồi đặt chúng theo thứ tự các cạnh trong $C$ thành một vòng tròn trên đĩa.
 
-## 例题
+## Bài tập mẫu
 
-???+ note "[洛谷 P2731 骑马修栅栏](https://www.luogu.com.cn/problem/P2731)"
-    给定一张有 500 个顶点的无向图，求这张图的一条欧拉路或欧拉回路．如果有多组解，输出最小的那一组．
+???+ note "[Luogu P2731: Riding the Fences](https://www.luogu.com.cn/problem/P2731)"
+    Cho một đồ thị vô hướng có 500 đỉnh. Hãy tìm một đường đi Euler hoặc chu trình Euler của đồ thị đó. Nếu có nhiều lời giải, hãy xuất lời giải nhỏ nhất.
     
-    在本题中，欧拉路或欧拉回路不需要经过所有顶点．
+    Trong bài này, đường đi Euler hoặc chu trình Euler không cần đi qua mọi đỉnh.
     
-    边的数量 m 满足 $1\leq m \leq 1024$．
+    Số cạnh $m$ thỏa $1\leq m \leq 1024$.
 
-??? note "解题思路"
-    本题为 Hierholzer 算法的直接应用．
+??? note "Ý tưởng"
+    Bài này là một ứng dụng trực tiếp của thuật toán Hierholzer.
     
-    保存答案可以使用 `std::stack<int>`，因为如果找的不是回路的话必须将那一部分放在最后．
+    Có thể dùng `std::stack<int>` để lưu đáp án, vì nếu phần tìm được không phải chu trình thì phải đặt phần đó ở cuối.
     
-    注意，不能使用邻接矩阵存图，否则时间复杂度会退化为 $\Theta(nm)$．由于需要将边排序，建议使用前向星或者 `std::vector` 存图．示例代码使用 `std::vector`．
+    Chú ý rằng không thể dùng ma trận kề để lưu đồ thị, nếu không độ phức tạp thời gian sẽ suy biến thành $\Theta(nm)$. Vì cần sắp xếp cạnh, nên dùng forward star hoặc `std::vector` để lưu đồ thị. Mã mẫu dùng `std::vector`.
 
-??? note "示例代码"
+??? note "Mã mẫu"
     ```cpp
     --8<-- "docs/graph/code/euler/euler_1.cpp"
     ```
 
-## 习题
+## Bài tập
 
 -   [SGU 101 Domino](https://codeforces.com/problemsets/acmsguru/problem/99999/101)
 
 -   [POJ 1780 Code](http://poj.org/problem?id=1780)
 
--   [洛谷 P1127 词链](https://www.luogu.com.cn/problem/P1127)
+-   [Luogu P1127: Chuỗi từ](https://www.luogu.com.cn/problem/P1127)
 
--   [洛谷 P1333 瑞瑞的木棍](https://www.luogu.com.cn/problem/P1333)
+-   [Luogu P1333: Que gỗ của Ruirui](https://www.luogu.com.cn/problem/P1333)
 
--   [洛谷 P1341 无序字母对](https://www.luogu.com.cn/problem/P1341)
+-   [Luogu P1341: Cặp chữ cái không thứ tự](https://www.luogu.com.cn/problem/P1341)
 
--   [洛谷 P6066 \[USACO05JAN\]Watchcow S](https://www.luogu.com.cn/problem/P6066)
+-   [Luogu P6066 \[USACO05JAN\] Watchcow S](https://www.luogu.com.cn/problem/P6066)
 
--   [洛谷 P6628 \[省选联考 2020 B 卷\] 丁香之路](https://www.luogu.com.cn/problem/P6628)
+-   [Luogu P6628 \[Kỳ thi liên tỉnh 2020, đề B\] Con đường hoa đinh hương](https://www.luogu.com.cn/problem/P6628)
 
--   [洛谷 P3520 \[POI 2011\] SMI-Garbage](https://www.luogu.com.cn/problem/P3520)
+-   [Luogu P3520 \[POI 2011\] SMI-Garbage](https://www.luogu.com.cn/problem/P3520)

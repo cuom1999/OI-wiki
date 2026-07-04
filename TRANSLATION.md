@@ -287,6 +287,11 @@ MkDocs source layout intact.
   `docs/graph/block-forest.md`, `docs/graph/connectivity.md`: translated
   connectivity material covering SCCs, biconnected components, articulation
   points, bridges, block-cut trees, and vertex/edge connectivity.
+- `docs/graph/rings-count.md`, `docs/graph/min-cycle.md`,
+  `docs/graph/2-sat.md`, `docs/graph/euler.md`,
+  `docs/graph/hamilton.md`, `docs/graph/bi-graph.md`: translated cycle
+  counting, minimum cycle, 2-SAT, Euler/Hamilton graph, and bipartite graph
+  material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
