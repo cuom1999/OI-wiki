@@ -15,7 +15,7 @@ struct SAM {
 } sam[N << 1];
 
 void insert(int x) {
-  int np = ++tot;  // 新节点
+  int np = ++tot;  // Đỉnh mới
   sam[np].len = sam[p].len + 1;
   while (p && !sam[p].ch[x]) {
     sam[p].ch[x] = np;
@@ -55,7 +55,7 @@ int main() {
 
   for (int i = 1; i <= m; ++i) insert(b[i]);
 
-  // nxt[S[i]]<-i
+  // nxt[S[i]] <- i
   for (int i = 0; i < 26; ++i) nxt[i] = n + 1;
   for (int i = n; i >= 0; --i) {
     memcpy(na[i], nxt, sizeof(nxt));
@@ -68,7 +68,7 @@ int main() {
     nxt[b[i]] = i;
   }
 
-  // 四种情况计算答案
+  // Tính đáp án cho bốn trường hợp
   //  1
   int ans = N;
   for (int l = 1; l <= n; ++l) {

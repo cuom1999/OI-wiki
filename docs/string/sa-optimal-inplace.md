@@ -1,27 +1,30 @@
-本章介绍线性时间复杂度的后缀排序的就地算法[^in-place-sa-sort]（Optimal In-Place Suffix Sorting）．
+Chương này giới thiệu thuật toán sắp xếp hậu tố tại chỗ với độ phức tạp tuyến tính[^in-place-sa-sort] (Optimal In-Place Suffix Sorting).
 
-???+ warning "Warning"
-    本章 **只建议** 在 **非常非常熟悉** SA-IS[^nzc09a][^sa-is介绍]的前提下阅读．
+???+ warning "Cảnh báo"
+    Chỉ nên đọc chương này khi bạn **rất, rất quen thuộc** với SA-IS[^nzc09a][^sa-is-gioi-thieu].
 
-## 全局设定
+<span id="&#20840;&#23616;&#35774;&#23450;"></span>
+## Thiết lập chung
 
-目标字符串 $\texttt{Pat}$，后缀数组 $\texttt{SA}$，串的序号从 0 开始，结尾字符是警戒哨，不妨设为 0．
+Xâu mục tiêu là $\texttt{Pat}$, mảng hậu tố là $\texttt{SA}$. Chỉ số xâu bắt đầu từ 0; ký tự cuối là lính canh, giả sử bằng 0.
 
-## 在整形字母表上的后缀排序
+<span id="&#22312;&#25972;&#24418;&#23383;&#27597;&#34920;&#19978;&#30340;&#21518;&#32512;&#25490;&#24207;"></span>
+## Sắp xếp hậu tố trên bảng chữ cái số nguyên
 
-事实上这一部分可以看成是原地版本的 SA-IS 算法．
+Thực ra phần này có thể xem là phiên bản tại chỗ của thuật toán SA-IS.
 
-因为是原文中细节相对最清楚，实现也较为简单的算法，也是了解后续算法的基础，是本文介绍的重点．
+Đây là thuật toán có phần mô tả chi tiết tương đối rõ ràng trong bài gốc, cài đặt cũng khá đơn giản, đồng thời là nền tảng để hiểu các thuật toán phía sau, nên là trọng tâm của bài này.
 
-原地化的原理是用重命名的 $\texttt{Pat}$ 代替 S、L 桶，用额外 $O(n)$ 的操作代替类型桶．
+Nguyên lý tại chỗ là dùng $\texttt{Pat}$ đã được đổi tên để thay thế các bucket S và L, rồi dùng thêm $O(n)$ thao tác để thay cho bucket kiểu.
 
-### 重命名目标串 Pat
+<span id="&#37325;&#21629;&#21517;&#30446;&#26631;&#20018;-pat"></span>
+### Đổi tên xâu mục tiêu Pat
 
-简单来说，我们会在不改变后缀大小的相对顺序的前提下，重命名 $\texttt{Pat}$，用重命名后的 $\texttt{Pat}$ 来取代原来 S、L 桶，来指明桶头或者桶尾．
+Nói ngắn gọn, ta đổi tên $\texttt{Pat}$ mà không làm thay đổi thứ tự tương đối giữa các hậu tố. Sau đó dùng $\texttt{Pat}$ đã đổi tên để thay thế các bucket S và L ban đầu, nhằm chỉ ra đầu bucket hoặc cuối bucket.
 
-重命名的方法是将 $\texttt{Pat}$ 中的 S 型字符替换为所在桶的桶尾索引，L  型字符替换为所在桶的桶头索引．
+Cách đổi tên là thay ký tự kiểu S trong $\texttt{Pat}$ bằng chỉ số cuối bucket của nó, và thay ký tự kiểu L bằng chỉ số đầu bucket của nó.
 
-如下图所示：
+Như hình dưới đây:
 
 $$
 \begin{aligned}
@@ -33,7 +36,7 @@ $$
 \end{aligned}
 $$
 
-重命名后的 $\texttt{Pat'}$（之后直接将重命名后的 $\texttt{Pat'}$ 称做 $\texttt{Pat}$）：
+$\texttt{Pat'}$ sau khi đổi tên (từ đây về sau gọi trực tiếp $\texttt{Pat'}$ đã đổi tên là $\texttt{Pat}$):
 
 $$
 \begin{aligned}
@@ -42,30 +45,32 @@ $$
 \end{aligned}
 $$
 
-由于桶内的字符，L 型字符后缀小，作为桶头；而 S 型字符后缀大，作为桶尾，因此保持了后缀大小的相对顺序．
+Trong cùng một bucket, hậu tố của ký tự kiểu L nhỏ hơn nên nằm ở đầu bucket, còn hậu tố của ký tự kiểu S lớn hơn nên nằm ở cuối bucket; do đó thứ tự tương đối giữa các hậu tố được giữ nguyên.
 
-描述一下重命名的具体步骤：
+Các bước đổi tên cụ thể:
 
-1.  和 SA-IS 一样，对 $\texttt{Pat}$ 中每个字符计数，计算其前缀和（计数排序），来构建 S/L 桶，只不过这里用 $\texttt{SA}$ 盛放这个前缀和；
-2.  从尾到头，扫描 $\texttt{Pat}$ 的每个字符，这样只需记录上一个字符的类型，就可以动态地判断每个字符的类型，然后依据前缀和将其重命名．
+1.  Giống SA-IS, đếm từng ký tự trong $\texttt{Pat}$ và tính tổng tiền tố của chúng (sắp xếp đếm) để xây dựng bucket S/L; khác biệt là ở đây dùng $\texttt{SA}$ để chứa các tổng tiền tố này.
+2.  Quét từng ký tự của $\texttt{Pat}$ từ cuối lên đầu. Khi đó chỉ cần ghi nhớ kiểu của ký tự trước đó là có thể xác định động kiểu của từng ký tự, rồi đổi tên theo tổng tiền tố.
 
-### 对 LMS 字符排序
+<span id="&#23545;-lms-&#23383;&#31526;&#25490;&#24207;"></span>
+### Sắp xếp ký tự LMS
 
-这里重点是使用了一个内部计数器的技巧．
+Điểm chính ở đây là kỹ thuật dùng bộ đếm nội bộ.
 
-#### 初始化
+<span id="&#21021;&#22987;&#21270;"></span>
+#### Khởi tạo
 
-初始的时候将 $\texttt{SA}$ 每一项设为 E（EMPTY）．
+Ban đầu đặt mọi phần tử của $\texttt{SA}$ thành E (EMPTY).
 
-从尾到头扫描 $\texttt{Pat}$，如果发现是 LMS 字符，$\texttt{Pat[i]}$，那么就设置 $\texttt{SA[Pat[i]]}$ 的标记：
+Quét $\texttt{Pat}$ từ cuối lên đầu. Nếu phát hiện ký tự LMS $\texttt{Pat[i]}$, ta đặt dấu cho $\texttt{SA[Pat[i]]}$:
 
-如果 $\texttt{SA[Pat[i]]}$ 是 E，就将其设为 U（UNIQUE）；
+Nếu $\texttt{SA[Pat[i]]}$ là E, đặt nó thành U (UNIQUE).
 
-如果 $\texttt{SA[Pat[i]]}$ 是 U，就将其设为 M（MULTIPLE）；
+Nếu $\texttt{SA[Pat[i]]}$ là U, đặt nó thành M (MULTIPLE).
 
-其他情况，不做处理．
+Các trường hợp khác không cần xử lý.
 
-结果如下图所示：
+Kết quả như hình dưới đây:
 
 $$
 \begin{aligned}
@@ -76,32 +81,33 @@ $$
 \end{aligned}
 $$
 
-#### 把 LMS 字符的索引放入 SA
+<span id="&#25226;-lms-&#23383;&#31526;&#30340;&#32034;&#24341;&#25918;&#20837;-sa"></span>
+#### Đưa chỉ số ký tự LMS vào SA
 
-从尾到头扫描 $\texttt{Pat}$，对于 LMS 字符 $\texttt{Pat[i]}$，根据 $\texttt{SA[Pat[i]]}$ 的符号进行分类讨论：
+Quét $\texttt{Pat}$ từ cuối lên đầu. Với ký tự LMS $\texttt{Pat[i]}$, xét theo ký hiệu của $\texttt{SA[Pat[i]]}$:
 
-U：直接让 $\texttt{SA[Pat[i]] = i}$
+U: đặt trực tiếp $\texttt{SA[Pat[i]] = i}$.
 
-M：意味着桶中有至少两个 LMS 字符．
+M: nghĩa là trong bucket có ít nhất hai ký tự LMS.
 
-1.  如果桶中有至少三个 LMS 字符：
-    就把桶中倒数第二个位置作为临时计数器，标志桶中已填充的 LMS 字符数（桶中倒数第一位就是标志 M）
-    将新的 LMS 字符从倒数第三个位置开始插入，让临时计数器自增 1．
-    如果发现桶已经满了，就把桶中从桶头到倒数第三个的所有元素向右平移 2 个位置，然后把新元素插入到桶中第二个位置（桶中第一个位置填为 E）
+1.  Nếu bucket có ít nhất ba ký tự LMS:
+    dùng vị trí áp chót của bucket làm bộ đếm tạm, ghi số ký tự LMS đã được điền vào bucket (vị trí cuối bucket là dấu M).
+    Chèn ký tự LMS mới bắt đầu từ vị trí thứ ba tính từ cuối, rồi tăng bộ đếm tạm thêm 1.
+    Nếu phát hiện bucket đã đầy, dịch toàn bộ phần tử từ đầu bucket đến vị trí thứ ba tính từ cuối sang phải 2 vị trí, rồi chèn phần tử mới vào vị trí thứ hai của bucket (vị trí đầu bucket điền E).
 
-2.  如果桶中有且只有 2 个 LMS 字符，显然不需要计数器，直接从右到左顺序插入即可．
+2.  Nếu bucket có đúng 2 ký tự LMS, rõ ràng không cần bộ đếm; chỉ cần chèn theo thứ tự từ phải sang trái.
 
-正常的值：
+Giá trị bình thường:
 
-    根据我们之前的讨论，此时不管桶中有两个还是两个以上的 LMS 字符，这都意味着 $\texttt{i}$ 是桶中最后一个待插入的 LMS 字符的位置，
+    Theo thảo luận ở trên, lúc này dù bucket có hai hay nhiều hơn hai ký tự LMS, điều đó đều có nghĩa $\texttt{i}$ là vị trí của ký tự LMS cuối cùng cần chèn trong bucket.
 
-    只需要从桶头开始向左扫描，找到第一个标记为 E 的位置，将其设为 $\texttt{i}$．
+    Chỉ cần quét từ đầu bucket sang trái, tìm vị trí đầu tiên được đánh dấu E và đặt nó thành $\texttt{i}$.
 
-最后要从尾到头扫描一遍 $\texttt{SA}$，清除可能残余的特殊符号 M（桶中未被填满，所以 M 和计数器未被覆盖）．
+Cuối cùng cần quét $\texttt{SA}$ một lượt từ cuối lên đầu để xóa các ký hiệu đặc biệt M có thể còn sót lại (bucket chưa được điền đầy, nên M và bộ đếm chưa bị ghi đè).
 
-方法是将桶中 LMS 字符如上述步骤一样向右平移 2 位，将左边空出来的位置填为 E．
+Cách làm là dịch các ký tự LMS trong bucket sang phải 2 vị trí như bước trên, rồi điền E vào các vị trí trống bên trái.
 
-如下图所示：
+Như hình dưới đây:
 
 $$
 \begin{aligned}
@@ -122,15 +128,17 @@ $$
 \end{aligned}
 $$
 
-这个阶段，由于每个桶只需要被移动和扫描一次，所以时间复杂度是 $O(n)$．
+Ở giai đoạn này, mỗi bucket chỉ cần được dịch chuyển và quét một lần, nên độ phức tạp thời gian là $O(n)$.
 
-### 诱导排序 LMS 子串
+<span id="&#35825;&#23548;&#25490;&#24207;-lms-&#23376;&#20018;"></span>
+### Sắp xếp cảm ứng xâu con LMS
 
-#### 诱导排序 LMS 前缀
+<span id="&#35825;&#23548;&#25490;&#24207;-lms-&#21069;&#32512;"></span>
+#### Sắp xếp cảm ứng tiền tố LMS
 
-将 LMS 前缀进行诱导排序，同 SA-IS 一样，这部分同后面对后缀的诱导排序完全一样（使用同一个函数），因此这里直接跳过．
+Thực hiện sắp xếp cảm ứng các tiền tố LMS. Giống SA-IS, phần này hoàn toàn giống bước sắp xếp cảm ứng hậu tố ở phía sau (dùng cùng một hàm), nên ở đây bỏ qua chi tiết.
 
-这里直接给出排序结果：
+Dưới đây là kết quả sắp xếp:
 
 $$
 \begin{aligned}
@@ -139,7 +147,8 @@ $$
 \end{aligned}
 $$
 
-#### 将已排序的 LMS 子串放到 SA 尾部
+<span id="&#23558;&#24050;&#25490;&#24207;&#30340;-lms-&#23376;&#20018;&#25918;&#21040;-sa-&#23614;&#37096;"></span>
+#### Đưa các xâu con LMS đã sắp xếp vào cuối SA
 
 $$
 \begin{aligned}
@@ -148,11 +157,12 @@ $$
 \end{aligned}
 $$
 
-### 构建规模缩减的子目标串 Pat1
+<span id="&#26500;&#24314;&#35268;&#27169;&#32553;&#20943;&#30340;&#23376;&#30446;&#26631;&#20018;-pat1"></span>
+### Xây dựng xâu mục tiêu con Pat1 có kích thước thu gọn
 
-从左到右扫描 $\texttt{SA}$ 尾部的 LMS 子串，确定其大小关系「重命名」，将 $\texttt{SA[i]}$ 重命名的值存储在 $\texttt{SA}\left[\left\lfloor\frac{\texttt{SA}[i]}{2} \right\rfloor\right]$．
+Quét các xâu con LMS ở cuối $\texttt{SA}$ từ trái sang phải, xác định quan hệ thứ tự của chúng và "đổi tên"; lưu giá trị đổi tên của $\texttt{SA[i]}$ vào $\texttt{SA}\left[\left\lfloor\frac{\texttt{SA}[i]}{2} \right\rfloor\right]$.
 
-因为 LMS 字符并不相邻，所以不会有冲突，这样做是将重命名后的值按照所代表的子串在 $\texttt{Pat}$ 中的原顺序放置：
+Vì các ký tự LMS không kề nhau nên sẽ không có xung đột. Cách này đặt các giá trị đã đổi tên theo đúng thứ tự ban đầu của các xâu con mà chúng đại diện trong $\texttt{Pat}$:
 
 $$
 \begin{aligned}
@@ -161,7 +171,7 @@ $$
 \end{aligned}
 $$
 
-然后扫描 $\texttt{SA}$，收集这些重命名的值到 $\texttt{SA}$ 头部：
+Sau đó quét $\texttt{SA}$ và gom các giá trị đã đổi tên này về đầu $\texttt{SA}$:
 
 $$
 \begin{aligned}
@@ -170,9 +180,10 @@ $$
 \end{aligned}
 $$
 
-### 通过递归解决 Pat1，完成对 LMS 后缀的排序
+<span id="&#36890;&#36807;&#36882;&#24402;&#35299;&#20915;-pat1&#23436;&#25104;&#23545;-lms-&#21518;&#32512;&#30340;&#25490;&#24207;"></span>
+### Giải đệ quy Pat1 để hoàn tất sắp xếp hậu tố LMS
 
-同 SA-IS 一样，递归解决 $\texttt{SA}$ 头部的规模缩减的 $\texttt{Pat1}$ 的后缀排序，结果存到 $\texttt{SA}$ 尾部：
+Giống SA-IS, giải đệ quy bài toán sắp xếp hậu tố của $\texttt{Pat1}$ đã thu gọn ở đầu $\texttt{SA}$, rồi lưu kết quả vào cuối $\texttt{SA}$:
 
 $$
 \begin{aligned}
@@ -181,7 +192,7 @@ $$
 \end{aligned}
 $$
 
-将 $\texttt{SA}$ 尾部的 $\texttt{SA1}$ 挪到 $\texttt{SA}$ 头部，重新从尾到头扫描 $\texttt{Pat}$，将其中 LMS 字符按照在 $\texttt{Pat}$ 中的顺序放到 $\texttt{SA}$ 尾部：
+Di chuyển $\texttt{SA1}$ ở cuối $\texttt{SA}$ lên đầu $\texttt{SA}$, rồi quét lại $\texttt{Pat}$ từ cuối lên đầu, đặt các ký tự LMS vào cuối $\texttt{SA}$ theo thứ tự của chúng trong $\texttt{Pat}$:
 
 $$
 \begin{aligned}
@@ -190,7 +201,7 @@ $$
 \end{aligned}
 $$
 
-依照 $\texttt{SA}$ 尾部的「对照表」，将 $\texttt{SA1}$ 头部的 $\texttt{SA}$ 还原为 $\texttt{Pat}$ 中对应的 LMS 后缀的索引位置：
+Dựa trên "bảng đối chiếu" ở cuối $\texttt{SA}$, khôi phục phần đầu của $\texttt{SA1}$ thành vị trí chỉ số của hậu tố LMS tương ứng trong $\texttt{Pat}$:
 
 $$
 \begin{aligned}
@@ -199,7 +210,7 @@ $$
 \end{aligned}
 $$
 
-将 $\texttt{SA}$ 头部的排好序的 LMS 后缀按顺序放入到对应的桶中（从尾部开始放）：
+Đưa các hậu tố LMS đã sắp xếp ở đầu $\texttt{SA}$ vào bucket tương ứng theo thứ tự (đặt từ cuối bucket):
 
 $$
 \begin{aligned}
@@ -208,11 +219,12 @@ $$
 \end{aligned}
 $$
 
-### 对 Pat1 中所有的后缀进行诱导排序
+<span id="&#23545;-pat1-&#20013;&#25152;&#26377;&#30340;&#21518;&#32512;&#36827;&#34892;&#35825;&#23548;&#25490;&#24207;"></span>
+### Sắp xếp cảm ứng tất cả hậu tố trong Pat1
 
-这一部分就是利用前面用过的内部计数器技巧，进行原地版的诱导排序．
+Phần này dùng lại kỹ thuật bộ đếm nội bộ ở trên để thực hiện sắp xếp cảm ứng phiên bản tại chỗ.
 
-假如我们已经有排好序的 LMS 后缀（在桶尾），来诱导 L 型后缀[^诱导顺序]：
+Giả sử ta đã có các hậu tố LMS được sắp xếp (ở cuối bucket), dùng chúng để cảm ứng các hậu tố kiểu L[^thu-tu-cam-ung]:
 
 $$
 \begin{aligned}
@@ -222,7 +234,7 @@ $$
 \end{aligned}
 $$
 
-如同排序 LMS 字符一样，先对 L 型字符用特殊符号计数：
+Tương tự khi sắp xếp ký tự LMS, trước hết dùng ký hiệu đặc biệt để đếm các ký tự kiểu L:
 
 $$
 \begin{aligned}
@@ -232,7 +244,7 @@ $$
 \end{aligned}
 $$
 
-从左到右扫描 SA，同对 LMS 字符排序一样，复杂一点的是判断 $\texttt{suf[SA[i] - 1]}$ 的类型，需要分类讨论（详情参考代码）：
+Quét SA từ trái sang phải. Giống khi sắp xếp ký tự LMS, điểm phức tạp hơn là cần xác định kiểu của $\texttt{suf[SA[i] - 1]}$, phải chia trường hợp để xét (chi tiết xem code):
 
 $$
 \begin{aligned}
@@ -247,7 +259,7 @@ $$
 \end{aligned}
 $$
 
-区别于 SA-IS 的是，对一个类型字符诱导排序后，需要清理 LMS 字符以免对后面的原地诱导排序：
+Khác với SA-IS, sau khi sắp xếp cảm ứng một kiểu ký tự, cần dọn các ký tự LMS để tránh ảnh hưởng tới bước sắp xếp cảm ứng tại chỗ tiếp theo:
 
 $$
 \begin{aligned}
@@ -256,15 +268,16 @@ $$
 \end{aligned}
 $$
 
-至于从 L 后缀诱导 S 后缀与从 LMS 后缀诱导 L 后缀完全对称，这里就不做多余介绍．
+Còn việc cảm ứng hậu tố S từ hậu tố L hoàn toàn đối xứng với việc cảm ứng hậu tố L từ hậu tố LMS, nên không trình bày thêm ở đây.
 
-到这儿为止，诱导排序就完成了．
+Đến đây, bước sắp xếp cảm ứng đã hoàn tất.
 
-#### 实现
+<span id="&#23454;&#29616;"></span>
+#### Cài đặt
 
-时间性能上和 SA-IS 没有显著差别，空间占用变为不到原来的 $\dfrac{1}{3}$（代码量多 1 倍），算是不愧为原文 Optimal In-Place Suffix Sorting[^in-place-sa-sort]的标题．
+Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian sử dụng giảm xuống dưới $\dfrac{1}{3}$ so với ban đầu (đổi lại lượng code tăng khoảng gấp đôi). Như vậy khá xứng với tiêu đề Optimal In-Place Suffix Sorting[^in-place-sa-sort] của bài gốc.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```rust
     use std::cmp::max;
     use std::cmp::Ordering;
@@ -298,7 +311,7 @@ $$
     
     fn rename_pat(pat: &mut [usize], sa: &mut [usize]) {
         let patlastpos = pat.len() - 1;
-        // 全部刷成bucket head
+        // Đặt tất cả về đầu bucket
         //sa.fill(0);
         for i in 0..sa.len() { sa[i] = 0 }
         
@@ -308,7 +321,7 @@ $$
         for i in 0..pat.len() - 1 {
             pat[i] = sa[pat[i]] - 1;
         };
-        // 将L-suffix刷成bucket head
+        // Đặt các L-suffix về đầu bucket
         //sa.fill(0);
         for i in 0..sa.len() { sa[i] = 0 }
         
@@ -395,7 +408,7 @@ $$
         for i in (0..pat.len()).rev() {
             if sa[i] >= MULTI {
                 let c = sa[i - 1];
-                for j in (1..c + 1).rev() {  // 逆序防止前面的覆盖后面的
+                for j in (1..c + 1).rev() {  // Duyệt ngược để tránh giá trị phía trước ghi đè giá trị phía sau
                     sa[i - c + j] = sa[i - 2 - c + j];
                 }
                 sa[i - c - 1] = EMPTY;
@@ -416,21 +429,21 @@ $$
         let mut lms_cnt = 0;
         let mut i = pat_last_pos;
         let mut bucket_tail_ptr = pat_last_pos + 1;  // for renamed bucket ver
-        let mut bucket = EMPTY;  // 可以省略，但是为了书写代码方便
-        let mut num = 0;  // S type number of bucket
+        let mut bucket = EMPTY;  // Có thể bỏ, nhưng giữ lại để code dễ viết hơn
+        let mut num = 0;  // Số ký tự kiểu S trong bucket
         while i > 0 {
             if pat[sa[i]] != bucket {  // reach new bucket
                 num = 0;
                 
                 let mut l = 0;
-                while pat[sa[i - l]] == pat[sa[i]] {  // 扫描桶来计算桶中S字符数量，根据定义 当l=i时循环必然终止
-                    let pat_i = sa[i - l];             // l < i, 即 i - l > 0, 0 <= pat_i < patlen - 1
+                while pat[sa[i - l]] == pat[sa[i]] {  // Quét bucket để đếm ký tự kiểu S; theo định nghĩa, vòng lặp chắc chắn dừng khi l = i
+                    let pat_i = sa[i - l];             // l < i, tức i - l > 0, 0 <= pat_i < patlen - 1
                     if pat[pat_i] < pat[pat_i + 1] {
                         let mut k = pat_i;
                         while k > 0 && pat[k - 1] == pat[pat_i] { k -= 1 }
                         num += pat_i - k + 1;
                     } else {
-                        break;   // bucket不含S字符，结束扫描
+                        break;   // Bucket không có ký tự kiểu S; dừng quét
                     }
                     
                     l += 1;
@@ -465,11 +478,11 @@ $$
         let mut rank = 0;
         sa[(patlen - 1) / 2] = rank;
         let mut has_duplicated_char = false;
-        for i in patlen - lms_cnt + 1..patlen {  // 从警戒哨字符的下一个字符开始
+        for i in patlen - lms_cnt + 1..patlen {  // Bắt đầu từ ký tự ngay sau lính canh
             let mut j = sa[i];
-            while pat[j] <= pat[j + 1] { j += 1 } // 寻找suf(sa[i])右边第一个L字符，因为排除了警戒哨这个LMS后缀，所以必然不会越界
+            while pat[j] <= pat[j + 1] { j += 1 } // Tìm ký tự L đầu tiên bên phải suf(sa[i]); hậu tố LMS lính canh đã bị loại, nên không thể vượt biên
             let mut k = j;
-            while k + 1 < patlen && pat[k] >= pat[k + 1] { k += 1 }  // 找到suf(sa[i])右边第一个LMS字符
+            while k + 1 < patlen && pat[k] >= pat[k + 1] { k += 1 }  // Tìm ký tự LMS đầu tiên bên phải suf(sa[i])
             let cur_lms_str_len = k + 1 - sa[i];
             let cmp_res = lms_str_cmp(&pat[sa[i]..sa[i] + cur_lms_str_len], &pat[sa[i - 1]..sa[i - 1] + prev_lms_str_len]);
             
@@ -481,7 +494,7 @@ $$
                 has_duplicated_char = true;
             }
             let rank_index = sa[i] / 2;
-            sa[rank_index] = rank;  // 整除
+            sa[rank_index] = rank;  // Chia nguyên
             
             prev_lms_str_len = cur_lms_str_len;
         }
@@ -549,7 +562,7 @@ $$
         
         let mut tail = EMPTY;
         let mut rfp = EMPTY;
-        for i in (1..lms_cnt).rev() { // sa[0] 保持原位
+        for i in (1..lms_cnt).rev() { // Giữ nguyên vị trí của sa[0]
             if pat[sa[i]] != tail {
                 tail = pat[sa[i]];
                 rfp = tail;
@@ -584,7 +597,7 @@ $$
                 let mut is_ltype = false;
                 if pat[j] > pat[j + 1] {
                     is_ltype = true;
-                } else if pat[j] == pat[j + 1] {  // 判断sa[i]是否是L后缀的编号
+                } else if pat[j] == pat[j + 1] {  // Kiểm tra sa[i] có phải chỉ số của một L-suffix hay không
                     let next_i = sa[pat[sa[i]]];
                     if next_i >= MULTI {
                         is_ltype = true;
@@ -613,7 +626,7 @@ $$
                         let e = pat[j];
                         let c = sa[e + 1];
                         let lfp = e + c + 2;
-                        if  c + 2 < sa[pat[j]] - EMPTY {  // 没到bucket尾部
+                        if  c + 2 < sa[pat[j]] - EMPTY {  // Chưa đến cuối bucket
                             sa[lfp] = j;
                             sa[e + 1] += 1;  // update counter
                         } else {
@@ -642,7 +655,7 @@ $$
             i += 1;
         }
         
-        // remove LMS-suff form SA, 一个桶里可能有多个LMS后缀
+        // Xóa các LMS-suffix khỏi SA; một bucket có thể chứa nhiều LMS-suffix
         last_scanned_type = STYPE;
         for i in (0..pat.len() - 1).rev() {
             if pat_char_type(pat[i], pat[i + 1], last_scanned_type) == STYPE {
@@ -695,7 +708,7 @@ $$
                 let mut is_stype = false;
                 if pat[j] < pat[j + 1] {
                     is_stype = true;
-                } else if pat[j] == pat[j + 1] {  // 判断sa[i]是否是S后缀的编号
+                } else if pat[j] == pat[j + 1] {  // Kiểm tra sa[i] có phải chỉ số của một S-suffix hay không
                     let next_i = sa[pat[sa[i]]];
                     if next_i >= MULTI {
                         is_stype = true;
@@ -724,7 +737,7 @@ $$
                         let e = pat[j];
                         let c = sa[e - 1];
                         let num = sa[pat[j]] - EMPTY;
-                        if c + 2 < num {  // 没到bucket头部
+                        if c + 2 < num {  // Chưa đến đầu bucket
                             let rfp = e - c - 2;
                             sa[rfp] = j;
                             sa[e - 1] += 1;
@@ -790,30 +803,33 @@ $$
     }
     ```
 
-## 在只读的整形字母表上的后缀排序
+<span id="&#22312;&#21482;&#35835;&#30340;&#25972;&#24418;&#23383;&#27597;&#34920;&#19978;&#30340;&#21518;&#32512;&#25490;&#24207;"></span>
+## Sắp xếp hậu tố trên bảng chữ cái số nguyên chỉ đọc
 
-使用复杂方法解决复杂问题，通过分治，解决空间紧张的问题．
+Dùng phương pháp phức tạp để giải quyết vấn đề phức tạp: thông qua chia để trị, giải quyết hạn chế về không gian.
 
-算法实现的难点在于在 $\texttt{SA}$ 上构建 BitMaps[^np12]，来替代本来由重命名后的 T 所指示的指示桶尾/桶头的位置．
+Khó khăn khi cài đặt thuật toán nằm ở việc xây dựng BitMaps[^np12] trên $\texttt{SA}$ để thay thế các vị trí đầu/cuối bucket vốn được chỉ ra bởi T sau khi đổi tên.
 
-这里的 BitMaps 指得是使用比特向量（bit vector）表示的有序字典（multiset），是一种紧凑型结构（compact data structure）．
+Ở đây, BitMaps là từ điển có thứ tự (multiset) được biểu diễn bằng vector bit (bit vector), một dạng cấu trúc dữ liệu gọn (compact data structure).
 
-有兴趣了解的暂时只能阅读原文以及本文引用的 BitMaps 的有关论文自行了解．
+Nếu muốn tìm hiểu sâu hơn, hiện tại bạn nên đọc bài gốc và các bài báo liên quan đến BitMaps được trích dẫn trong bài này.
 
-## 在只读的一般字母表上的后缀排序
+<span id="&#22312;&#21482;&#35835;&#30340;&#19968;&#33324;&#23383;&#27597;&#34920;&#19978;&#30340;&#21518;&#32512;&#25490;&#24207;"></span>
+## Sắp xếp hậu tố trên bảng chữ cái tổng quát chỉ đọc
 
-前置知识是归并排序和堆排序．
+Kiến thức chuẩn bị là sắp xếp trộn và sắp xếp vun đống.
 
-由于笔者对于其中确定字符类型的方法的时间复杂度有疑问，这里也不再介绍，建议阅读原文自行了解．
+Vì tác giả còn băn khoăn về độ phức tạp thời gian của phương pháp xác định kiểu ký tự trong phần này, nên không trình bày thêm ở đây; bạn nên đọc bài gốc để tự tìm hiểu.
 
-## 注解
+<span id="&#27880;&#35299;"></span>
+## Ghi chú
 
 [^in-place-sa-sort]: Li, Zhize; Li, Jian; Huo, Hongwei (2016).*Optimal In-Place Suffix Sorting*. Proceedings of the 25th International Symposium on String Processing and Information Retrieval (SPIRE). Lecture Notes in Computer Science. 11147. Springer. pp. 268–284. arXiv:1610.08305. doi:10.1007/978-3-030-00479-8\_22. ISBN:978-3-030-00478-1.
 
 [^nzc09a]: Ge Nong, Sen Zhang, and Wai Hong Chan. Linear suffix array construction by almost pure induced-sorting. In Data Compression Conference (DCC), pages 193–202. IEEE, 2009.
 
-[^sa-is介绍]: 推荐阅读 [博文](https://riteme.site/blog/2016-6-19/sais.html) 和它的 [issue 列表](https://github.com/riteme/riteme.github.io/issues/28)
+[^sa-is-gioi-thieu]: Nên đọc [bài viết](https://riteme.site/blog/2016-6-19/sais.html) và [danh sách issue](https://github.com/riteme/riteme.github.io/issues/28) của bài viết đó.
 
-[^诱导顺序]: 如果是 LML 后缀，就先诱导 S 型后缀，唯一区别是计算 LML 后缀时需要将警戒哨也算进去．
+[^thu-tu-cam-ung]: Nếu là hậu tố LML, hãy cảm ứng hậu tố kiểu S trước. Khác biệt duy nhất là khi tính hậu tố LML cần tính cả ký tự lính canh.
 
 [^np12]: Gonzalo Navarro and Eliana Providel. Fast, small, simple rank/select on bitmaps. In Proc. 11th International Symposium on Experimental Algorithms (SEA), pages 295–306, 2012.

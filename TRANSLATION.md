@@ -90,6 +90,15 @@ MkDocs source layout intact.
   `docs/string/z-func.md`, `docs/string/ac-automaton.md`: translated core
   string hashing, trie, prefix-function/KMP, Z-function, and AC automaton
   material, plus explanatory comments in their included snippets.
+- `docs/string/bm.md`, `docs/string/sa.md`,
+  `docs/string/sa-optimal-inplace.md`, `docs/string/suffix-bst.md`,
+  `docs/string/general-sam.md`, `docs/string/suffix-tree.md`,
+  `docs/string/seq-automaton.md`, `docs/string/minimal-string.md`,
+  `docs/string/lyndon.md`, `docs/string/main-lorentz.md`: translated
+  Boyer-Moore, suffix-array and suffix-structure pages, sequence automata,
+  minimal representation, Lyndon decomposition, and Main-Lorentz material,
+  plus explanatory comments in their included snippets. `docs/string/sam.md`,
+  `docs/string/manacher.md`, and `docs/string/pam.md` remain to be translated.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

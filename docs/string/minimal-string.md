@@ -1,28 +1,34 @@
-## 定义
+<span id="&#23450;&#20041;"></span>
+## Định nghĩa
 
-最小表示法是用于解决字符串最小表示问题的方法．
+Biểu diễn nhỏ nhất là phương pháp dùng để giải bài toán biểu diễn nhỏ nhất của xâu.
 
-## 字符串的最小表示
+<span id="&#23383;&#31526;&#20018;&#30340;&#26368;&#23567;&#34920;&#31034;"></span>
+## Biểu diễn nhỏ nhất của xâu
 
-### 循环同构
+<span id="&#24490;&#29615;&#21516;&#26500;"></span>
+### Đẳng cấu vòng
 
-当字符串 $S$ 中可以选定一个位置 $i$ 满足
+Nếu có thể chọn một vị trí $i$ trong xâu $S$ sao cho
 
 $$
 S[i\cdots n]+S[1\cdots i-1]=T
 $$
 
-则称 $S$ 与 $T$ 循环同构
+thì gọi $S$ và $T$ là đẳng cấu vòng.
 
-### 最小表示
+<span id="&#26368;&#23567;&#34920;&#31034;"></span>
+### Biểu diễn nhỏ nhất
 
-字符串 $S$ 的最小表示为与 $S$ 循环同构的所有字符串中字典序最小的字符串
+Biểu diễn nhỏ nhất của xâu $S$ là xâu có thứ tự từ điển nhỏ nhất trong tất cả các xâu đẳng cấu vòng với $S$.
 
-## simple 的暴力
+<span id="simple-&#30340;&#26292;&#21147;"></span>
+## Cách vét cạn đơn giản
 
-我们每次比较 $i$ 和 $j$ 开始的循环同构，把当前比较到的位置记作 $k$，每次遇到不一样的字符时便把大的跳过，最后剩下的就是最优解．
+Mỗi lần ta so sánh hai xâu đẳng cấu vòng bắt đầu tại $i$ và $j$, đồng thời dùng $k$ để ghi vị trí đang so sánh. Mỗi khi gặp hai ký tự khác nhau, ta bỏ qua điểm bắt đầu cho xâu lớn hơn; điểm còn lại cuối cùng chính là nghiệm tối ưu.
 
-### 实现
+<span id="&#23454;&#29616;"></span>
+### Cài đặt
 
 === "C++"
     ```cpp
@@ -59,42 +65,48 @@ $$
     i = min(i, j)
     ```
 
-### 解释
+<span id="&#35299;&#37322;"></span>
+### Giải thích
 
-该实现方法随机数据下表现良好，但是可以构造特殊数据卡掉．
+Cách cài đặt này chạy tốt trên dữ liệu ngẫu nhiên, nhưng có thể bị chặn bằng dữ liệu đặc biệt.
 
-例如：对于 $\texttt{aaa}\cdots\texttt{aab}$, 不难发现这个算法的复杂度退化为 $O(n^2)$．
+Ví dụ, với $\texttt{aaa}\cdots\texttt{aab}$, không khó thấy độ phức tạp của thuật toán suy biến thành $O(n^2)$.
 
-我们发现，当字符串中出现多个连续重复子串时，此算法效率降低，我们考虑优化这个过程．
+Ta nhận thấy khi trong xâu có nhiều đoạn con lặp liên tiếp, hiệu suất của thuật toán giảm xuống; vì vậy cần tối ưu quá trình này.
 
-## 最小表示法
+<span id="&#26368;&#23567;&#34920;&#31034;&#27861;"></span>
+## Thuật toán biểu diễn nhỏ nhất
 
-### 算法核心
+<span id="&#31639;&#27861;&#26680;&#24515;"></span>
+### Ý tưởng cốt lõi
 
-考虑对于一对字符串 $A,B$, 它们在原字符串 $S$ 中的起始位置分别为 $i,j$, 且它们的前 $k$ 个字符均相同，即
+Xét một cặp xâu $A,B$ có vị trí bắt đầu trong xâu gốc $S$ lần lượt là $i,j$, và $k$ ký tự đầu của chúng đều giống nhau, tức
 
 $$
-S[i \cdots i+k-1]=S[j \cdots j+k-1]
+S[i \cdots i+k-1]=S[j \cdots j+k-1].
 $$
 
-不妨先考虑 $S[i+k]>S[j+k]$ 的情况，我们发现起始位置下标 $l$ 满足 $i\le l\le i+k$ 的字符串均不能成为答案．因为对于任意一个字符串 $S_{i+p}$（表示以 $i+p$ 为起始位置的字符串，$p \in [0, k]$）一定存在字符串 $S_{j+p}$ 比它更优．
+Trước hết xét trường hợp $S[i+k]>S[j+k]$. Khi đó mọi xâu có vị trí bắt đầu $l$ thỏa $i\le l\le i+k$ đều không thể là đáp án, vì với mọi xâu $S_{i+p}$ (xâu bắt đầu tại $i+p$, $p \in [0, k]$), luôn tồn tại xâu $S_{j+p}$ tốt hơn nó.
 
-所以我们比较时可以跳过下标 $l\in [i,i+k]$, 直接比较 $S_{i+k+1}$
+Vì vậy khi so sánh, ta có thể bỏ qua các chỉ số $l\in [i,i+k]$ và trực tiếp so sánh tiếp từ $S_{i+k+1}$.
 
-这样，我们就完成了对于上文暴力的优化．
+Như vậy ta đã tối ưu được cách vét cạn ở trên.
 
-### 时间复杂度
+<span id="&#26102;&#38388;&#22797;&#26434;&#24230;"></span>
+### Độ phức tạp thời gian
 
 $O(n)$
 
-### 过程
+<span id="&#36807;&#31243;"></span>
+### Quy trình
 
-1.  初始化指针 $i$ 为 $0$，$j$ 为 $1$；初始化匹配长度 $k$ 为 $0$
-2.  比较第 $k$ 位的大小，根据比较结果跳转相应指针．若跳转后两个指针相同，则随意选一个加一以保证比较的两个字符串不同
-3.  重复上述过程，直到比较结束
-4.  答案为 $i,j$ 中较小的一个
+1.  Khởi tạo con trỏ $i=0$, $j=1$; khởi tạo độ dài khớp $k=0$.
+2.  So sánh ký tự thứ $k$ và nhảy con trỏ tương ứng theo kết quả so sánh. Nếu sau khi nhảy hai con trỏ trùng nhau, tăng tùy ý một con trỏ để bảo đảm hai xâu đang so sánh khác nhau.
+3.  Lặp lại quá trình trên cho tới khi so sánh kết thúc.
+4.  Đáp án là giá trị nhỏ hơn trong $i,j$.
 
-### 实现
+<span id="&#23454;&#29616;"></span>
+### Cài đặt
 
 === "C++"
     ```cpp

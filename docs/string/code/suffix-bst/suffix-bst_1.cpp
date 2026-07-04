@@ -11,8 +11,8 @@ string t;
 
 // SuffixBST(SGT Ver)
 
-// 顺序加入，查询时将询问串翻转
-// 以i开始的后缀，对应节点的编号为i
+// Add in order; reverse the query string when querying.
+// The suffix starting at i corresponds to node i.
 constexpr double alpha = 0.75;
 int root;
 int sz[N], L[N], R[N];
@@ -100,7 +100,7 @@ void solve(int Case) {
     insert(root, i, 0, INF);
   }
 
-  // 后缀平衡树的中序遍历即为后缀数组
+  // The inorder traversal of the suffix balanced tree is the suffix array.
   m = 0;
   inorder(root);
 

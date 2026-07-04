@@ -7,7 +7,7 @@ using namespace std;
 constexpr int N = 40010;
 
 int n, k, a[N], sa[N], rk[N], oldrk[N], id[N], px[N], cnt[1000010], ht[N], ans;
-multiset<int> t;  // multiset 是最好写的实现方式
+multiset<int> t;  // multiset là cách cài đặt dễ viết nhất
 
 bool cmp(int x, int y, int w) {
   return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
@@ -20,7 +20,7 @@ int main() {
   cin >> n >> k;
   --k;
 
-  for (i = 1; i <= n; ++i) cin >> a[i];  // 求后缀数组
+  for (i = 1; i <= n; ++i) cin >> a[i];  // Xây dựng mảng hậu tố
   for (i = 1; i <= n; ++i) ++cnt[rk[i] = a[i]];
   for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
   for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
@@ -38,13 +38,13 @@ int main() {
       rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
   }
 
-  for (i = 1, j = 0; i <= n; ++i) {  // 求 height
+  for (i = 1, j = 0; i <= n; ++i) {  // Xây dựng height
     if (j) --j;
     while (a[i + j] == a[sa[rk[i] - 1] + j]) ++j;
     ht[rk[i]] = j;
   }
 
-  for (i = 1; i <= n; ++i) {  // 求所有最小值的最大值
+  for (i = 1; i <= n; ++i) {  // Tìm giá trị lớn nhất trong các giá trị nhỏ nhất
     t.insert(ht[i]);
     if (i > k) t.erase(t.find(ht[i - k]));
     ans = max(ans, *t.begin());

@@ -19,9 +19,9 @@ char t[N];
 
 // SuffixBST(SGT Ver)
 
-// 顺序加入，查询时将询问串翻转
-// 以i结束的前缀，对应节点的编号为i
-// 注意：不能写懒惰删除，否则可能会破坏树的结构
+// Add in order; reverse the query string when querying.
+// The prefix ending at i corresponds to node i.
+// Note: do not use lazy deletion, or the tree structure may be broken.
 constexpr double alpha = 0.75;
 int root;
 int sz[N], L[N], R[N];
@@ -100,7 +100,7 @@ void remove(int& rt, int p, double lv, double rv) {
       rt = (L[rt] | R[rt]);
       rebuild(rt, lv, rv);
     } else {
-      // 找到rt的前驱来替换rt
+      // Find the predecessor of rt to replace rt.
       int nrt = L[rt];
       while (R[nrt]) {
         nrt = R[nrt];
@@ -158,7 +158,7 @@ void solve() {
   for (int i = 1; i <= q; ++i) {
     cin >> op;
 
-    // 三种情况分别处理
+    // Handle the three cases separately.
 
     if (op[0] == 'A') {  // ADD
       cin >> a;

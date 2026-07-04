@@ -1,59 +1,67 @@
-## 前置知识
+<span id="&#21069;&#32622;&#30693;&#35782;"></span>
+## Kiến thức nền
 
-广义后缀自动机基于下面的知识点
+Máy tự động hậu tố tổng quát dựa trên các kiến thức sau:
 
--   [字典树（Trie 树）](./trie.md)
--   [后缀自动机](./sam.md)
+-   [Cây từ điển (Trie)](./trie.md)
+-   [Máy tự động hậu tố](./sam.md)
 
-请务必对上述两个知识点非常熟悉之后，再来阅读本文，特别是对于 **后缀自动机** 中的 **后缀链接** 能够有一定的理解
+Hãy chắc chắn rằng bạn đã rất quen thuộc với hai chủ đề trên trước khi đọc bài này, đặc biệt là có hiểu biết nhất định về **liên kết hậu tố** trong **máy tự động hậu tố**.
 
-## 引入
+<span id="&#24341;&#20837;"></span>
+## Dẫn nhập
 
-### 起源
+<span id="&#36215;&#28304;"></span>
+### Nguồn gốc
 
-广义后缀自动机是由刘研绎在其 2015 国家队论文《后缀自动机在字典树上的拓展》上提出的一种结构，即将后缀自动机直接建立在字典树上．
+Máy tự động hậu tố tổng quát là một cấu trúc do Liu Yanyi đề xuất trong bài luận đội tuyển quốc gia năm 2015 "Mở rộng máy tự động hậu tố trên cây từ điển"; nói ngắn gọn là xây dựng trực tiếp máy tự động hậu tố trên cây từ điển.
 
-> 大部分可以用后缀自动机处理的字符串的问题均可扩展到 Trie 树上．——刘研绎
+> Phần lớn các bài toán chuỗi có thể xử lý bằng máy tự động hậu tố đều có thể mở rộng lên cây Trie. -- Liu Yanyi
 
-### 约定
+<span id="&#32422;&#23450;"></span>
+### Quy ước
 
-参考 [字符串约定](./basic.md)
+Tham khảo [quy ước về chuỗi](./basic.md).
 
-字符串个数为 $k$ 个，即 $S_1, S_2, S_3 \dots S_k$
+Số lượng chuỗi là $k$, tức $S_1, S_2, S_3 \dots S_k$.
 
-约定字典树和广义后缀自动机的根节点为 $0$ 号节点
+Quy ước nút gốc của cây từ điển và máy tự động hậu tố tổng quát là nút số $0$.
 
-### 概述
+<span id="&#27010;&#36848;"></span>
+### Tổng quan
 
-后缀自动机 (suffix automaton, SAM) 是用于处理单个字符串的子串问题的强力工具．
+Máy tự động hậu tố (suffix automaton, SAM) là một công cụ mạnh để xử lý các bài toán chuỗi con của một chuỗi đơn.
 
-而广义后缀自动机 (General Suffix Automaton) 则是将后缀自动机整合到字典树中来解决对于多个字符串的子串问题
+Máy tự động hậu tố tổng quát (General Suffix Automaton) tích hợp máy tự động hậu tố vào cây từ điển để giải các bài toán chuỗi con trên nhiều chuỗi.
 
-## 常见的伪广义后缀自动机
+<span id="&#24120;&#35265;&#30340;&#20266;&#24191;&#20041;&#21518;&#32512;&#33258;&#21160;&#26426;"></span>
+## Các máy tự động hậu tố tổng quát giả thường gặp
 
-1.  通过用特殊符号将多个串直接连接后，再建立 SAM
-2.  对每个串，重复在同一个 SAM 上进行建立，每次建立前，将 `last` 指针置零
+1.  Nối trực tiếp nhiều chuỗi bằng các ký hiệu đặc biệt rồi xây dựng SAM.
+2.  Với từng chuỗi, tiếp tục xây dựng trên cùng một SAM, và trước mỗi lần xây dựng đặt con trỏ `last` về không.
 
-方法 1 和方法 2 的实现方式简单，而且在面对题目时通常可以达到和广义后缀自动机一样的正确性．所以在网络上很多人会选择此类写法，例如在后缀自动机一文中最后一个应用，便使用了方法 1 [（原文链接）](./sam.md)
+Cách 1 và cách 2 có cài đặt đơn giản, và khi giải bài thường có thể đạt tính đúng đắn giống máy tự động hậu tố tổng quát. Vì vậy trên mạng có nhiều lời giải chọn kiểu viết này; chẳng hạn ứng dụng cuối cùng trong bài máy tự động hậu tố dùng cách 1 [xem liên kết gốc](./sam.md).
 
-但是无论方法 1 还是方法 2，其时间复杂度较为危险
+Tuy nhiên, cả cách 1 lẫn cách 2 đều có độ phức tạp thời gian khá rủi ro.
 
-## 构造广义后缀自动机
+<span id="&#26500;&#36896;&#24191;&#20041;&#21518;&#32512;&#33258;&#21160;&#26426;"></span>
+## Xây dựng máy tự động hậu tố tổng quát
 
-根据原论文的描述，应当在多个字符串上先建立字典树，然后在字典树的基础上建立广义后缀自动机．
+Theo mô tả trong bài luận gốc, ta nên xây dựng cây từ điển trên nhiều chuỗi trước, rồi xây dựng máy tự động hậu tố tổng quát trên cơ sở cây từ điển đó.
 
-### 字典树的使用
+<span id="&#23383;&#20856;&#26641;&#30340;&#20351;&#29992;"></span>
+### Sử dụng cây từ điển
 
-首先应对多个串创建一棵字典树，这不是什么难事，如果你已经掌握了前置知识的前提下，可以很快的建立完毕．这里为了统一上下文的代码，给出一个可能的字典树代码．
+Trước hết cần tạo một cây từ điển cho nhiều chuỗi. Đây không phải việc khó; nếu bạn đã nắm chắc kiến thức nền thì có thể xây dựng nhanh chóng. Để thống nhất mã trong phần giải thích, dưới đây là một cài đặt cây từ điển khả dĩ.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     constexpr int MAXN = 2000000;
     constexpr int CHAR_NUM = 30;
     
     struct Trie {
-      int next[MAXN][CHAR_NUM];  // 转移
-      int tot;                   // 节点总数：[0, tot)
+      int next[MAXN][CHAR_NUM];  // Chuyen trang thai
+      int tot;                   // Tong so nut: [0, tot)
     
       void init() { tot = 1; }
     
@@ -69,56 +77,60 @@
     };
     ```
 
-这里我们得到了一棵依赖于 `next` 数组建立的一棵字典树．
+Đến đây ta đã thu được một cây từ điển được xây dựng dựa trên mảng `next`.
 
-### 后缀自动机的建立
+<span id="&#21518;&#32512;&#33258;&#21160;&#26426;&#30340;&#24314;&#31435;"></span>
+### Xây dựng máy tự động hậu tố
 
-如果我们把这样一棵树直接认为是一个后缀自动机，则我们可以得到如下结论
+Nếu xem trực tiếp cây này như một máy tự động hậu tố, ta có các kết luận sau:
 
--   对于节点 `i`，其 `len[i]` 和它在字典树中的深度相同
--   如果我们对字典树进行拓扑排序，我们可以得到一串根据 `len` 不递减的序列．BFS 的结果相同
+-   Với nút `i`, `len[i]` bằng đúng độ sâu của nó trong cây từ điển.
+-   Nếu sắp xếp tô pô cây từ điển, ta nhận được một dãy có `len` không giảm. Kết quả BFS cũng như vậy.
 
-而后缀自动机在建立的过程中，可以视为不断的插入 `len` 严格递增的值，且差值为 $1$．所以我们可以将对字典树进行拓扑排序后的结果做为一个队列，然后按照这个队列的顺序不断地插入到后缀自动机中．
+Trong quá trình xây dựng máy tự động hậu tố, có thể xem như ta liên tục chèn các giá trị `len` tăng nghiêm ngặt, với hiệu là $1$. Vì thế có thể lấy kết quả sắp xếp tô pô của cây từ điển làm một hàng đợi, rồi lần lượt chèn vào máy tự động hậu tố theo thứ tự trong hàng đợi này.
 
-由于在普通后缀自动机上，其前一个节点的 `len` 值为固定值，即为 `last` 节点的 `len`．但是在广义后缀自动机中，插入的队列是一个不严格递增的数列．所以对于每一个值，对于它的 `last` 应该是已知而且固定的，在字典树上，即为其父亲节点．
+Trong SAM thông thường, giá trị `len` của nút trước đó là cố định, chính là `len` của nút `last`. Nhưng trong máy tự động hậu tố tổng quát, hàng đợi được chèn là một dãy không giảm nhưng không nghiêm ngặt. Vì vậy, với mỗi giá trị, `last` của nó phải đã biết và cố định; trên cây từ điển, đó chính là nút cha của nó.
 
-由于在字典树中，已经建立了一个近似的后缀自动机，所以只需要对整个字典树的结构进行一定的处理即可转化为广义后缀自动机．我们可以按照前面提出的队列顺序来对整个字典树上的每一个节点进行更新操作．最终我们可以得到广义后缀自动机．
+Vì trong cây từ điển đã có một cấu trúc gần giống máy tự động hậu tố, ta chỉ cần xử lý cấu trúc của toàn bộ cây từ điển để chuyển nó thành máy tự động hậu tố tổng quát. Có thể cập nhật từng nút trên cây từ điển theo thứ tự hàng đợi nêu trên. Cuối cùng ta thu được máy tự động hậu tố tổng quát.
 
-对于每个点的更新操作，我们可以稍微修改一下 SAM 中的插入操作来得到．
+Thao tác cập nhật cho mỗi điểm có thể thu được bằng cách sửa nhẹ thao tác chèn trong SAM.
 
-对于整个插入的过程，需要注意的是，由于插入是按照 `len` 不递减的顺序插入，在进行 `clone` 后的数据复制过程中，不可以复制其 `len` 小于当前 `len` 的数据．
+Trong toàn bộ quá trình chèn, cần chú ý rằng do các nút được chèn theo thứ tự `len` không giảm, khi sao chép dữ liệu sau khi `clone`, không được sao chép dữ liệu có `len` nhỏ hơn `len` hiện tại.
 
-### 过程
+<span id="&#36807;&#31243;"></span>
+### Quy trình
 
-根据上述的逻辑，可以将整个构建过程描述为如下操作
+Theo logic trên, toàn bộ quá trình xây dựng có thể mô tả như sau:
 
-1.  将所有字符串插入到字典树中
-2.  从字典树的根节点开始进行 BFS，记录下顺序以及每个节点的父亲节点
-3.  将得到的 BFS 序列按照顺序，对每个节点在原字典树上进行构建，注意不能将 `len` 小于当前 `len` 的数据进行操作
+1.  Chèn tất cả chuỗi vào cây từ điển.
+2.  Bắt đầu BFS từ gốc cây từ điển, ghi lại thứ tự và nút cha của từng nút.
+3.  Duyệt dãy BFS theo thứ tự nhận được, xây dựng cho từng nút trên cây từ điển ban đầu, chú ý không thao tác trên dữ liệu có `len` nhỏ hơn `len` hiện tại.
 
-### 对操作次数为线性的证明
+<span id="&#23545;&#25805;&#20316;&#27425;&#25968;&#20026;&#32447;&#24615;&#30340;&#35777;&#26126;"></span>
+### Chứng minh số thao tác là tuyến tính
 
-由于仅处理 BFS 得到的序列，可以保证字典树上所有节点仅经过一次．
+Vì chỉ xử lý dãy thu được từ BFS, ta bảo đảm mỗi nút trên cây từ điển chỉ được đi qua một lần.
 
-对于最坏情况，考虑字典树本身节点个数最多的情况，即任意两个字符串没有相同的前缀，则节点个数为 $\sum_{i=1}^{k}|S_i|$，即所有的字符串长度之和．
+Trong trường hợp xấu nhất, xét khi bản thân cây từ điển có số nút lớn nhất, tức là không có hai chuỗi bất kỳ nào có tiền tố chung. Khi đó số nút là $\sum_{i=1}^{k}|S_i|$, chính là tổng độ dài mọi chuỗi.
 
-而在后缀自动机的更新操作的复杂度已经在 [后缀自动机](./sam.md) 中证明
+Độ phức tạp của thao tác cập nhật trong máy tự động hậu tố đã được chứng minh trong bài [máy tự động hậu tố](./sam.md).
 
-所以可以证明其最坏复杂度为线性
+Do đó có thể chứng minh độ phức tạp xấu nhất là tuyến tính.
 
-而通常伪广义后缀自动机的平均复杂度等同于广义后缀自动机的最差复杂度，面对大量的字符串时，伪广义后缀自动机的效率远不如标准的广义后缀自动机
+Thông thường, độ phức tạp trung bình của máy tự động hậu tố tổng quát giả ngang với độ phức tạp xấu nhất của máy tự động hậu tố tổng quát chuẩn. Khi phải xử lý lượng lớn chuỗi, hiệu suất của máy tự động hậu tố tổng quát giả kém xa cấu trúc chuẩn.
 
-### 实现
+<span id="&#23454;&#29616;"></span>
+### Cài đặt
 
-对插入函数进行少量必要的修改即可得到所需要的函数
+Chỉ cần sửa một lượng nhỏ cần thiết trong hàm chèn là có thể thu được hàm cần dùng.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     struct GSA {
-      int len[MAXN];             // 节点长度
-      int link[MAXN];            // 后缀链接，link
-      int next[MAXN][CHAR_NUM];  // 转移
-      int tot;                   // 节点总数：[0, tot)
+      int len[MAXN];             // Do dai nut
+      int link[MAXN];            // Lien ket hau to, link
+      int next[MAXN][CHAR_NUM];  // Chuyen trang thai
+      int tot;                   // Tong so nut: [0, tot)
     
       int insertSAM(int last, int c) {
         int cur = next[last][c];
@@ -169,43 +181,47 @@
     }
     ```
 
--   由于整个 BFS 的过程得到的顺序，其父节点始终在变化，所以并不需要保存 `last` 指针．
--   插入操作中，`int cur = next[last][c];` 与正常后缀自动机的 `int cur = tot++;` 有差异，因为我们插入的节点已经在树型结构中完成了，所以只需要直接获取即可
--   在 `clone` 后的数据拷贝中，有这样的判断 `next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;` 这与正常的后缀自动机的直接赋值 `next[clone][i] = next[q][i];` 有一定差异，此次是为了避免更新了 `len` 大于当前节点的值．由于数组中 `len` 当且仅当这个值被 BFS 遍历并插入到后缀自动机后才会被赋值
+-   Vì thứ tự thu được từ toàn bộ quá trình BFS có nút cha luôn thay đổi, ta không cần lưu con trỏ `last`.
+-   Trong thao tác chèn, `int cur = next[last][c];` khác với `int cur = tot++;` của máy tự động hậu tố thông thường, vì nút cần chèn đã được tạo xong trong cấu trúc cây, nên chỉ cần lấy trực tiếp.
+-   Khi sao chép dữ liệu sau `clone`, có kiểm tra `next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;`. Điều này khác với phép gán trực tiếp `next[clone][i] = next[q][i];` trong máy tự động hậu tố thông thường, nhằm tránh cập nhật các giá trị có `len` lớn hơn nút hiện tại. Trong mảng, `len` chỉ được gán khi và chỉ khi giá trị đó đã được BFS duyệt tới và chèn vào máy tự động hậu tố.
 
-## 性质
+<span id="&#24615;&#36136;"></span>
+## Tính chất
 
-1.  广义后缀自动机与后缀自动机的结构一致，在后缀自动机上的性质绝大部分均可在广义后缀自动机上生效（[后缀自动机的性质](./sam.md)）
-2.  当广义后缀自动机建立后，通常字典树结构将会被破坏，即通常不可以用广义后缀自动机来解决字典树问题．当然也可以选择准备双倍的空间，将后缀自动机建立在另外一个空间上．
+1.  Máy tự động hậu tố tổng quát có cấu trúc nhất quán với máy tự động hậu tố; phần lớn các tính chất trên máy tự động hậu tố đều có hiệu lực trên máy tự động hậu tố tổng quát ([tính chất của máy tự động hậu tố](./sam.md)).
+2.  Sau khi xây dựng máy tự động hậu tố tổng quát, cấu trúc cây từ điển thường sẽ bị phá vỡ, tức là thông thường không thể dùng máy tự động hậu tố tổng quát để giải bài toán cây từ điển. Dĩ nhiên cũng có thể chuẩn bị gấp đôi bộ nhớ và xây dựng máy tự động hậu tố trong một vùng khác.
 
-## 应用
+<span id="&#24212;&#29992;"></span>
+## Ứng dụng
 
-### 所有字符中不同子串个数
+<span id="&#25152;&#26377;&#23383;&#31526;&#20013;&#19981;&#21516;&#23376;&#20018;&#20010;&#25968;"></span>
+### Số chuỗi con khác nhau trong tất cả chuỗi
 
-可以根据后缀自动机的性质得到，以点 $i$ 为结束节点的子串个数等于 $len[i] - len[link[i]]$
+Theo tính chất của máy tự động hậu tố, số chuỗi con có nút kết thúc là điểm $i$ bằng $len[i] - len[link[i]]$.
 
-所以可以遍历所有的节点求和得到
+Vì vậy có thể duyệt tất cả nút và lấy tổng.
 
-例题：[【模板】广义后缀自动机（广义 SAM）](https://www.luogu.com.cn/problem/P6139)
+Bài ví dụ: [[Mẫu] Máy tự động hậu tố tổng quát (SAM tổng quát)](https://www.luogu.com.cn/problem/P6139)
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/string/code/general-sam/general-sam_1.cpp"
     ```
 
-### 多个字符串间的最长公共子串
+<span id="&#22810;&#20010;&#23383;&#31526;&#20018;&#38388;&#30340;&#26368;&#38271;&#20844;&#20849;&#23376;&#20018;"></span>
+### Chuỗi con chung dài nhất giữa nhiều chuỗi
 
-我们需要对每个节点建立一个长度为 $k$ 的数组 `flag`（对于本题而言，可以仅为标记数组，若需要求出此子串的个数，则需要改成计数数组）
+Ta cần xây dựng cho mỗi nút một mảng `flag` có độ dài $k$ (với bài này, có thể chỉ là mảng đánh dấu; nếu cần tính số lần xuất hiện của chuỗi con này, cần đổi thành mảng đếm).
 
-在字典树插入字符串时，对所有节点进行计数，保存在当前字符串所在的数组
+Khi chèn chuỗi vào cây từ điển, đếm trên tất cả nút và lưu vào mảng tương ứng với chuỗi hiện tại.
 
-然后按照 `len` 递减的顺序遍历，通过后缀链接将当前节点的 `flag` 与其他节点的合并
+Sau đó duyệt theo thứ tự `len` giảm dần, dùng liên kết hậu tố để hợp nhất `flag` của nút hiện tại vào các nút khác.
 
-遍历所有的节点，找到一个 `len` 最大且满足对于所有的 `k`，其 `flag` 的值均为非 $0$ 的节点，此节点的 $len$ 即为解
+Duyệt tất cả nút, tìm một nút có `len` lớn nhất và thỏa mãn với mọi chỉ số trong $k$, giá trị `flag` của nó đều khác $0$. Khi đó $len$ của nút này là đáp án.
 
-例题：[SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
+Bài ví dụ: [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/string/code/general-sam/general-sam_2.cpp"
     ```

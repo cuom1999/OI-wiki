@@ -2,23 +2,23 @@
 #include <queue>
 using namespace std;
 
-constexpr int MAXN = 2000000;  // 双倍字符串长度
-constexpr int CHAR_NUM = 30;   // 字符集个数，注意修改下方的 (-'a')
-constexpr int NUM = 15;        // 字符串个数
+constexpr int MAXN = 2000000;  // Twice the total string length.
+constexpr int CHAR_NUM = 30;   // Alphabet size; update (-'a') below as needed.
+constexpr int NUM = 15;        // Number of strings.
 
 struct exSAM {
-  int len[MAXN];             // 节点长度
-  int link[MAXN];            // 后缀链接，link
-  int next[MAXN][CHAR_NUM];  // 转移
-  int tot;                   // 节点总数：[0, tot)
-  int lenSorted[MAXN];   // 按照 len 排序后的数组，仅排序 [1, tot)
-                         // 部分，最终下标范围 [0, tot - 1)
-  int sizeC[MAXN][NUM];  // 表示某个字符串的子串个数
-  int curString;         // 字符串实际个数
+  int len[MAXN];             // Node length.
+  int link[MAXN];            // Suffix link.
+  int next[MAXN][CHAR_NUM];  // Transitions.
+  int tot;                   // Total number of nodes: [0, tot).
+  int lenSorted[MAXN];   // Array sorted by len; only [1, tot) is sorted.
+                         // The final index range is [0, tot - 1).
+  int sizeC[MAXN][NUM];  // Number of substrings for each string.
+  int curString;         // Actual number of strings.
   /**
-   * 计数排序使用的辅助空间数组
+   * Auxiliary array used for counting sort.
    */
-  int lc[MAXN];  // 统计个数
+  int lc[MAXN];  // Counts.
 
   void init() {
     tot = 1;
@@ -81,7 +81,7 @@ struct exSAM {
     queue<pair<int, int>> q;
     for (int i = 0; i < CHAR_NUM; ++i)
       if (next[0][i]) q.push({i, 0});
-    while (!q.empty()) {  // 广搜遍历
+    while (!q.empty()) {  // BFS traversal.
       auto item = q.front();
       q.pop();
       auto last = insertSAM(item.second, item.first);
@@ -105,7 +105,7 @@ struct exSAM {
 } exSam;
 
 int main() {
-  exSam.init();  // 初始化
+  exSam.init();  // Initialize.
   string s;
   while (cin >> s) exSam.insert(s);
   exSam.build();

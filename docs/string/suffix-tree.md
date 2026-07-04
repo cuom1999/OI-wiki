@@ -1,39 +1,42 @@
-后缀树是一种维护一个字符串所有后缀的数据结构．
+Cây hậu tố là một cấu trúc dữ liệu duy trì tất cả hậu tố của một chuỗi.
 
-## 一些记号
+<span id="&#19968;&#20123;&#35760;&#21495;"></span>
+## Một số ký hiệu
 
-记构建后缀树的母串为 $S$，长度为 $n$，字符集为 $\Sigma$．
+Gọi chuỗi mẹ dùng để xây dựng cây hậu tố là $S$, có độ dài $n$, và bảng chữ cái là $\Sigma$.
 
-令 $S[i]$ 表示 $S$ 中的第 $i$ 个字符，其中 $1 \le i \le n$．
+Gọi $S[i]$ là ký tự thứ $i$ trong $S$, với $1 \le i \le n$.
 
-令 $S [l, r]$ 表示 $S$ 中第 $l$ 个字符至第 $r$ 个字符组成的字符串，称为 $S$ 的一个子串．
+Gọi $S [l, r]$ là chuỗi tạo bởi các ký tự từ vị trí $l$ đến vị trí $r$ trong $S$; chuỗi này được gọi là một chuỗi con của $S$.
 
-记 $S [i, n]$ 为 $S$ 的以 $i$ 开头的后缀，$S [1, i]$ 为 $S$ 的以 $i$ 结尾的前缀．
+Gọi $S [i, n]$ là hậu tố của $S$ bắt đầu tại $i$, và $S [1, i]$ là tiền tố của $S$ kết thúc tại $i$.
 
-## 定义
+<span id="&#23450;&#20041;"></span>
+## Định nghĩa
 
-定义字符串 $S$ 的 **后缀 trie** 为将 S 的所有后缀插入至 trie 树中得到的字典树．在后缀 trie 中，节点 x 对应的字符串为从根节点走到 x 的路径上经过的字符拼接而成的字符串．记后
-缀 trie 中所有对应 $S$ 的某个后缀的节点为后缀节点．
+Định nghĩa **trie hậu tố** của chuỗi $S$ là cây từ điển thu được bằng cách chèn tất cả hậu tố của $S$ vào trie. Trong trie hậu tố, chuỗi tương ứng với nút $x$ là chuỗi tạo bởi việc nối các ký tự trên đường đi từ gốc đến $x$. Gọi mọi nút tương ứng với một hậu tố nào đó của $S$ trong trie hậu tố là nút hậu tố.
 
-容易看出后缀 trie 的优越性质：它的非根节点恰好能接受 $S$ 的所有本质不同非空子串．但构建后缀 trie 的时空复杂度均为 $O(n^2)$，在很多情况下不能接受，所以我们引入后缀树的概念．
+Dễ thấy trie hậu tố có tính chất rất tốt: mọi nút khác gốc của nó nhận đúng tất cả chuỗi con không rỗng và phân biệt của $S$. Tuy nhiên, độ phức tạp thời gian và bộ nhớ để xây dựng trie hậu tố đều là $O(n^2)$, trong nhiều trường hợp không chấp nhận được, nên ta đưa vào khái niệm cây hậu tố.
 
-如果令后缀 trie 中所有拥有多于一个儿子的节点和后缀节点为关键点，定义只保留关键点，将非关键点形成的链压缩成一条边形成的压缩 trie 树为 **后缀树 (Suffix Tree)**．如果仅令后缀 trie 中所有拥有多于一个儿子的节点和叶结点为关键点，定义只保留关键点形成的压缩 trie 树为 **隐式后缀树 (Implicit Suffix Tree)**．容易看出隐式后缀树为后缀树进一步压缩后得到的结果．
+Nếu lấy mọi nút trong trie hậu tố có nhiều hơn một con và mọi nút hậu tố làm điểm then chốt, rồi chỉ giữ lại các điểm then chốt và nén các chuỗi nút không then chốt thành một cạnh, cây trie nén thu được được gọi là **cây hậu tố (Suffix Tree)**. Nếu chỉ lấy mọi nút trong trie hậu tố có nhiều hơn một con và mọi nút lá làm điểm then chốt, rồi chỉ giữ lại các điểm then chốt để tạo thành cây trie nén, cấu trúc đó gọi là **cây hậu tố ẩn (Implicit Suffix Tree)**. Dễ thấy cây hậu tố ẩn là kết quả thu được sau khi tiếp tục nén cây hậu tố.
 
-在后缀树和隐式后缀树中，每条边对应一个字符串；每个非根节点 $x$ 对应了一个字符串集合，为从根节点走到 $x$ 的父亲节点 $fa_x$ 经过的字符串，拼接上 $fa_x$ 至 $x$ 的树边对应的字符串的任意一个非空前缀，称为 $str_x$．同时，在隐式后缀树中，称一个没有对应任何节点的后缀为 **隐式后缀**．
+Trong cây hậu tố và cây hậu tố ẩn, mỗi cạnh tương ứng với một chuỗi; mỗi nút không phải gốc $x$ tương ứng với một tập chuỗi, gồm chuỗi đi từ gốc đến nút cha $fa_x$ của $x$, nối với một tiền tố không rỗng bất kỳ của chuỗi trên cạnh từ $fa_x$ đến $x$. Tập này được gọi là $str_x$. Đồng thời, trong cây hậu tố ẩn, một hậu tố không tương ứng với bất kỳ nút nào được gọi là **hậu tố ẩn**.
 
-下图从左至右分别为以字符串 $\texttt{cabab}$ 为母串构建的后缀 trie、后缀树和隐式后缀树．
+Hình dưới đây, từ trái sang phải, lần lượt là trie hậu tố, cây hậu tố và cây hậu tố ẩn được xây dựng từ chuỗi mẹ $\texttt{cabab}$.
 
 ![suffix-tree\_cabab1.png](./images/suffix-tree1.png)
 
-考虑将 $S$ 的后缀逐个插入至后缀 trie 中．从第二次插入开始，每次最多新增一个拥有多于一个儿子的节点和一个后缀节点，所以后缀树中节点个数最多为 $2n$ 个，十分优秀．
+Xét việc chèn từng hậu tố của $S$ vào trie hậu tố. Từ lần chèn thứ hai trở đi, mỗi lần nhiều nhất chỉ thêm một nút có nhiều hơn một con và một nút hậu tố, nên số nút trong cây hậu tố nhiều nhất là $2n$, rất tốt.
 
-## 后缀树的建立
+<span id="&#21518;&#32512;&#26641;&#30340;&#24314;&#31435;"></span>
+## Xây dựng cây hậu tố
 
-### 支持前端动态添加字符的算法
+<span id="&#25903;&#25345;&#21069;&#31471;&#21160;&#24577;&#28155;&#21152;&#23383;&#31526;&#30340;&#31639;&#27861;"></span>
+### Thuật toán hỗ trợ thêm ký tự động ở đầu
 
-反串建 SAM 建出的 parent 树就是这个串的后缀树，所以我们将反串的字符逐个加入 SAM 即可．
+Cây parent của SAM được xây dựng trên chuỗi đảo chính là cây hậu tố của chuỗi đó, vì vậy ta chỉ cần lần lượt thêm các ký tự của chuỗi đảo vào SAM.
 
-???+ note "参考实现"
+???+ note "Cài đặt tham khảo"
     ```cpp
     struct SuffixAutomaton {
       int tot, lst;
@@ -70,72 +73,76 @@
     } SAM;
     ```
 
-### 支持后端动态添加字符的算法
+<span id="&#25903;&#25345;&#21518;&#31471;&#21160;&#24577;&#28155;&#21152;&#23383;&#31526;&#30340;&#31639;&#27861;"></span>
+### Thuật toán hỗ trợ thêm ký tự động ở cuối
 
-Ukkonen 算法是一种增量构造算法．我们依次向树中插入串 $S$ 的每一个字符，并在每一次插入之后正确地维护当前的后缀树．
+Thuật toán Ukkonen là một thuật toán xây dựng tăng dần. Ta lần lượt chèn từng ký tự của chuỗi $S$ vào cây, và sau mỗi lần chèn duy trì đúng cây hậu tố hiện tại.
 
-#### 朴素算法
+<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+#### Thuật toán ngây thơ
 
-首先介绍一下一种较为暴力的构建方式，我们用字符串 $\texttt {abbbc}$ 来演示一下构建的过程．
+Trước hết giới thiệu một cách xây dựng khá trực tiếp. Ta dùng chuỗi $\texttt {abbbc}$ để minh họa quá trình xây dựng.
 
-初始建立一个根节点，称为 $0$ 号节点．同时每条边我们维护一个区间 $[l,r]$ 表示这条边上的字符串为 $S[l,r]$．另外，维护已经插入的字符个数 $m$，初始为 $0$．
+Ban đầu tạo một nút gốc, gọi là nút số $0$. Đồng thời, với mỗi cạnh ta duy trì một đoạn $[l,r]$ biểu thị chuỗi trên cạnh là $S[l,r]$. Ngoài ra, duy trì số ký tự đã chèn $m$, ban đầu bằng $0$.
 
-首先插入字符 $\texttt a$，直接从 $0$ 号节点伸出一条边，标为 $[1,\infty]$，指向一个新建的节点．这里的 $\infty$ 是一个极大值，可理解为串的结尾，这样在插入新字符时，这条边会自动的包含新的字符．
+Đầu tiên chèn ký tự $\texttt a$, trực tiếp tạo từ nút $0$ một cạnh được gắn nhãn $[1,\infty]$, trỏ đến một nút mới. Ở đây $\infty$ là một giá trị rất lớn, có thể hiểu là cuối chuỗi; nhờ vậy khi chèn ký tự mới, cạnh này tự động chứa thêm ký tự mới.
 
 ![suffix-tree\_a.webp](./images/suffix-tree2.webp)
 
-接下来我们插入字符 $\texttt b$，同样从 $0$ 伸出一条边，标为 $[2,\infty⁡]$．注意到之前延伸出的边 $[1,\infty]$ 的意义自动地发生了变化，随着串结尾的改变，其表示的串从 $\texttt a$ 变为了 $\texttt {ab}$．这样是正确的，因为之前所有后缀都已经以一个叶节点的形式出现在树中，只需要向所有叶节点的末端插入一个当前字符即可．
+Tiếp theo chèn ký tự $\texttt b$, cũng tạo từ nút $0$ một cạnh được gắn nhãn $[2,\infty]$. Lưu ý rằng ý nghĩa của cạnh $[1,\infty]$ đã tạo trước đó tự động thay đổi: khi cuối chuỗi thay đổi, chuỗi mà nó biểu diễn chuyển từ $\texttt a$ thành $\texttt {ab}$. Điều này đúng, vì mọi hậu tố trước đó đều đã xuất hiện trong cây dưới dạng nút lá; ta chỉ cần chèn ký tự hiện tại vào cuối mọi nút lá.
 
 ![suffix-tree\_ab.webp](./images/suffix-tree3.webp)
 
-接下来，我们要再次插入一个字符 $\texttt b$，但是 $\texttt b$ 是之前已经插入的字符串的一个子串，因此原树已经包含 $\texttt b$，此时，我们什么都不做，记录一个 $k$ 表示 $S[k,m]$ 是当前最长的隐式后缀．
+Tiếp theo, ta lại chèn một ký tự $\texttt b$. Nhưng $\texttt b$ đã là một chuỗi con của chuỗi đã chèn trước đó, nên cây hiện có đã chứa $\texttt b$. Lúc này ta không làm gì, và ghi lại một $k$ sao cho $S[k,m]$ là hậu tố ẩn dài nhất hiện tại.
 
 ![suffix-tree\_abb.webp](./images/suffix-tree4.webp)
 
-接下来我们插入另一个 $\texttt b$．因为前一个 $\texttt b$ 没有插入成功，此时 $k=3$，代表要插入的后缀为 $\texttt {bb}$．我们从根开始向下寻找 $\texttt {bb}$，发现也在原树之中．同样，我们还是什么都不做．
+Tiếp theo ta chèn thêm một $\texttt b$. Vì ký tự $\texttt b$ trước đó chưa chèn thành công, lúc này $k=3$, biểu thị hậu tố cần chèn là $\texttt {bb}$. Ta tìm $\texttt {bb}$ từ gốc xuống và thấy nó cũng đã nằm trong cây. Tương tự, ta vẫn không làm gì.
 
 ![suffix-tree\_abbb.webp](./images/suffix-tree5.webp)
 
-注意到我们没有管 $k$ 之后的后缀．因为如果 $S[k,m]$ 是一个隐式后缀，那么对于 $l>k$，$S[l,m]$ 都是隐式后缀．因为由 $S[k,m]$ 为隐式后缀可知，存在字符 $c$ 使得 $S[k, m] + c$ 为 $S$ 的子串，所以 $S [ l, m] + c$ 也为 $S$ 的子串，由隐式后缀树的定义可知 $S[ l, m]$ 也不作为叶结点出现．
+Lưu ý rằng ta không xét các hậu tố sau $k$. Vì nếu $S[k,m]$ là một hậu tố ẩn, thì với $l>k$, $S[l,m]$ đều là hậu tố ẩn. Do $S[k,m]$ là hậu tố ẩn, tồn tại ký tự $c$ sao cho $S[k, m] + c$ là chuỗi con của $S$, do đó $S [ l, m] + c$ cũng là chuỗi con của $S$. Theo định nghĩa của cây hậu tố ẩn, $S[ l, m]$ cũng không xuất hiện dưới dạng nút lá.
 
-接下来我们插入 $\texttt c$，此时 $k=3$，因此我们需要沿着根向下寻找 $\texttt {bbc}$，发现不在原树中．我们需要在 $\texttt {bb}$ 处代表的节点延伸出一条为 $[5,\infty]$ 的出边．但发现这个节点其实不存在，而是包含在一条边中，因此我们需要分裂这条边，创建一个新节点，再在创建的节点处伸展出我们要创建的出边．此时成功插入，令 $k\to k+1$，因为 $S[k,m]$ 不再是隐式后缀．
+Tiếp theo chèn $\texttt c$. Lúc này $k=3$, vì vậy ta cần tìm $\texttt {bbc}$ từ gốc xuống và thấy nó không có trong cây. Ta cần tạo một cạnh đi ra nhãn $[5,\infty]$ tại nút biểu diễn $\texttt {bb}$. Nhưng phát hiện nút này thực ra không tồn tại, mà nằm bên trong một cạnh; vì vậy cần tách cạnh này, tạo một nút mới, rồi tại nút vừa tạo kéo ra cạnh cần tạo. Lần này chèn thành công, đặt $k\to k+1$, vì $S[k,m]$ không còn là hậu tố ẩn.
 
 ![suffix-tree\_abbbc1.webp](./images/suffix-tree6.webp)
 
-接下来，因为 $k$ 变化了，我们重复这个过程，直到再次出现隐式后缀，或 $k>m$（在这个例子中，是后者）．
+Tiếp theo, vì $k$ đã thay đổi, ta lặp lại quá trình này cho đến khi lại xuất hiện hậu tố ẩn, hoặc $k>m$ (trong ví dụ này là trường hợp sau).
 
 ![suffix-tree\_abbbc2.webp](./images/suffix-tree7.webp)
 
-构建过程结束．
+Quá trình xây dựng kết thúc.
 
-该算法每次暴力从根向下寻找并插入的复杂度最坏为 $O(n)$，所以总的复杂度为 $O(n^2)$．
+Thuật toán này mỗi lần đều tìm và chèn thẳng từ gốc xuống, độ phức tạp xấu nhất là $O(n)$, nên tổng độ phức tạp là $O(n^2)$.
 
-#### 后缀链接
+<span id="&#21518;&#32512;&#38142;&#25509;"></span>
+#### Liên kết hậu tố
 
-朴素算法慢主要是因为每次 extend 都要从根找到最长隐式后缀的插入位置．所以考虑把这个位置记下来．首先，我们采用一个二元组 $(now,rem)$ 来描述当前这个最长的被隐式包含的后缀 $S[k,m]$．沿着节点 $now$ 的开头为 $S[m-rem+1]$ 的出边走长度 $rem$ 到达的位置应该唯一表示一个字符串，每次插入新的字符时，我们只需要从 $now$ 和 $rem$ 描述的位置查找即可．
+Thuật toán ngây thơ chậm chủ yếu vì mỗi lần `extend` đều phải tìm từ gốc đến vị trí chèn của hậu tố ẩn dài nhất. Vì vậy ta cân nhắc ghi lại vị trí này. Trước hết, dùng một cặp $(now,rem)$ để mô tả hậu tố dài nhất hiện đang được chứa ẩn, $S[k,m]$. Đi theo cạnh đi ra từ nút $now$ có ký tự đầu là $S[m-rem+1]$ với độ dài $rem$ sẽ đến một vị trí biểu diễn duy nhất một chuỗi. Mỗi lần chèn ký tự mới, ta chỉ cần tìm từ vị trí được mô tả bởi $now$ và $rem$.
 
-现在，我们只需要在 $k\to k + 1$ 时更新 $(now,rem)$．此时如果 $now=0$，只需要让 $rem \to rem-1$，因为下一个要插入的后缀是刚才插入的长度 $-1$．否则，设 $str_{now}$ 对应的子串为 $S[l,r]$，我们需要找到一个节点 $now'$ 对应 $S[l+1,r]$，令 $now\to now'$ 即可．
+Bây giờ chỉ cần cập nhật $(now,rem)$ khi $k\to k + 1$. Nếu $now=0$, chỉ cần cho $rem \to rem-1$, vì hậu tố tiếp theo cần chèn có độ dài giảm $1$ so với hậu tố vừa chèn. Ngược lại, giả sử chuỗi con tương ứng với $str_{now}$ là $S[l,r]$, ta cần tìm một nút $now'$ tương ứng với $S[l+1,r]$, rồi đặt $now\to now'$.
 
-首先有引理：对隐式后缀树中任意非叶非根节点 $x$，在树中存在另一非叶节点 $y$，使得 $str_y$ 是 $str_x$ 对应的子串删去开头的字符．
+Trước hết có bổ đề: với mọi nút $x$ trong cây hậu tố ẩn không phải lá và không phải gốc, tồn tại một nút không phải lá khác $y$ trong cây sao cho $str_y$ là chuỗi thu được từ chuỗi tương ứng với $str_x$ sau khi bỏ ký tự đầu.
 
-证明．令 $s$ 表示 $str_x$ 删去开头字符形成的字符串．由隐式后缀树的定义可知，存在两个不同的字符 $c_1,c_2$，满足 $str_x + c1$ 与 $str_x + c_2$ 均为 $S$ 的子串．所以，$s + c_1$ 与 $s + c_2$ 也为 $S$ 的子串，所以 $s$ 在后缀 trie 中也对应了一个有分叉的关键点，即在隐式后缀 trie 中存在 $y$ 使得 $str_y=s$．证毕．
+Chứng minh. Gọi $s$ là chuỗi thu được từ $str_x$ sau khi bỏ ký tự đầu. Theo định nghĩa cây hậu tố ẩn, tồn tại hai ký tự khác nhau $c_1,c_2$ sao cho $str_x + c1$ và $str_x + c_2$ đều là chuỗi con của $S$. Vì vậy $s + c_1$ và $s + c_2$ cũng là chuỗi con của $S$, nên trong trie hậu tố, $s$ cũng tương ứng với một điểm then chốt có phân nhánh, tức là trong trie hậu tố ẩn tồn tại $y$ sao cho $str_y=s$. Chứng minh xong.
 
-由该引理，我们定义 $\operatorname{Link}(x)=y$，称为 x 的 **后缀链接 (Suffix Link)**．于是 $now'=\operatorname{Link}(now)$ 一定存在．现在我们只要能求出隐式后缀树中所有非根非叶节点的 $\operatorname{Link}$ 即可．
+Từ bổ đề này, ta định nghĩa $\operatorname{Link}(x)=y$, gọi là **liên kết hậu tố (Suffix Link)** của $x$. Khi đó $now'=\operatorname{Link}(now)$ chắc chắn tồn tại. Bây giờ ta chỉ cần tính được $\operatorname{Link}$ cho mọi nút không phải gốc và không phải lá trong cây hậu tố ẩn.
 
-#### Ukkonen 算法
+<span id="ukkonen-&#31639;&#27861;"></span>
+#### Thuật toán Ukkonen
 
-Ukkonen 算法的整体流程如下：
+Quy trình tổng thể của thuật toán Ukkonen như sau:
 
-为了构建隐式后缀树，我们从前往后加入 $S$ 中的字符．假设根节点为 $0$，且当前已经建出 $S[1, m]$ 的隐式后缀树且维护好了后缀链接．$S [1, m]$ 的最长隐式后缀为 $S [k, m]$，在树中的位置为 $(now, rem)$．设 $S [m + 1] = x$, 现在我们需要加入字符 $x$．此时，$S [1, m]$ 的每一个后缀都需要在末尾添加字符 $x$．由于所有显式后缀都对应树中某个叶结点，它们父边右端点为 $\infty$，无需维护．所以，现在我们只用考虑隐式后缀末尾添加 x 对树的形态产生的影响．首先考虑 $S [k, m]$，有两种情况：
+Để xây dựng cây hậu tố ẩn, ta thêm các ký tự của $S$ từ trái sang phải. Giả sử nút gốc là $0$, hiện đã xây dựng cây hậu tố ẩn của $S[1, m]$ và đã duy trì xong các liên kết hậu tố. Hậu tố ẩn dài nhất của $S [1, m]$ là $S [k, m]$, có vị trí trong cây là $(now, rem)$. Đặt $S [m + 1] = x$, bây giờ cần thêm ký tự $x$. Lúc này mọi hậu tố của $S [1, m]$ đều cần thêm ký tự $x$ vào cuối. Vì mọi hậu tố hiển thị đều tương ứng với một nút lá trong cây, và đầu mút phải của cạnh cha của chúng là $\infty$, nên không cần bảo trì. Do đó, ta chỉ cần xét ảnh hưởng của việc thêm $x$ vào cuối các hậu tố ẩn đối với hình dạng cây. Trước hết xét $S [k, m]$, có hai trường hợp:
 
-1.  $(now, rem)$ 位置已经存在 $x$ 的转移．此时后缀树形态不会发生变化．由于 $S [k, m+1]$ 已经在后缀树中出现，所以对于 $l > k$，$S [ l, m + 1]$ 也会在后缀树中出现，此时只需将 $rem\to rem + 1$，不需做任何修改．
-2.  $(now, rem)$ 不存在 $x$ 的转移．如果 $(now, rem)$ 恰好为树中的节点，则此节点新增一条出边 $x$；否则需要对节点进行分裂，在此位置新增一个节点，并在新增节处添加出边 $x$．此时对于 $l > k$，我们并不知道 $S [ l, m]$ 会对后缀树形态造成什么影响，所以我们还需继续考虑 $S [k + 1, m]$．考虑怎么求出 $S [k + 1, m]$ 在后缀树中的位置：如果 $now$ 不为 $0$，可以利用后缀链接，令 $now = \operatorname{Link}(now)$；否则，令 $rem\to rem − 1$．最后令 $k\to k + 1$，再次重复这个过程．
+1.  Vị trí $(now, rem)$ đã có chuyển tiếp bằng $x$. Khi đó hình dạng cây hậu tố không thay đổi. Vì $S [k, m+1]$ đã xuất hiện trong cây hậu tố, nên với $l > k$, $S [ l, m + 1]$ cũng sẽ xuất hiện trong cây hậu tố. Lúc này chỉ cần đặt $rem\to rem + 1$, không cần sửa gì thêm.
+2.  Vị trí $(now, rem)$ không có chuyển tiếp bằng $x$. Nếu $(now, rem)$ đúng là một nút trong cây, thêm một cạnh đi ra bằng $x$ từ nút này; nếu không, cần tách cạnh, thêm một nút mới tại vị trí này, rồi thêm cạnh đi ra bằng $x$ tại nút mới. Lúc này với $l > k$, ta chưa biết $S [ l, m]$ sẽ ảnh hưởng ra sao đến hình dạng cây hậu tố, nên cần tiếp tục xét $S [k + 1, m]$. Cách tìm vị trí của $S [k + 1, m]$ trong cây hậu tố: nếu $now$ khác $0$, dùng liên kết hậu tố và đặt $now = \operatorname{Link}(now)$; nếu không, đặt $rem\to rem - 1$. Cuối cùng đặt $k\to k + 1$ và lặp lại quá trình.
 
-每一步都只消耗常数时间，而算法在插入全部的字符后停止，所以时间复杂度为 $O(n)$．
+Mỗi bước chỉ tốn thời gian hằng số, và thuật toán dừng sau khi chèn toàn bộ ký tự, nên độ phức tạp thời gian là $O(n)$.
 
-由于 Ukkonen 算法只能处理出 $S$ 的隐式后缀树，而隐式后缀树在一些问题中的功能可能不如后缀树强大，所以在需要时，可以在 $S$ 的末端添加一个从未出现过的字符，这时 S 的所有后缀可以和树的所有叶子一一对应．
+Vì thuật toán Ukkonen chỉ xây dựng được cây hậu tố ẩn của $S$, trong khi cây hậu tố ẩn có thể không đủ mạnh cho một số bài toán, khi cần có thể thêm vào cuối $S$ một ký tự chưa từng xuất hiện. Khi đó mọi hậu tố của S có thể tương ứng một-một với mọi lá của cây.
 
-???+ note "参考实现"
+???+ note "Cài đặt tham khảo"
     ```cpp
     struct SuffixTree {
       int ch[M + 5][RNG + 1], st[M + 5], len[M + 5], link[M + 5];
@@ -181,53 +188,58 @@ Ukkonen 算法的整体流程如下：
     } Tree;
     ```
 
-## 作用
+<span id="&#20316;&#29992;"></span>
+## Vai trò
 
-后缀树上每一个节点到根的路径都是 $S$ 的一个非空子串，这在处理很多字符串问题时都很有用．
+Mỗi đường đi từ một nút trên cây hậu tố đến gốc đều là một chuỗi con không rỗng của $S$, điều này rất hữu ích khi xử lý nhiều bài toán chuỗi.
 
-后缀树的 DFS 序就是后缀数组．后缀树的一个子树也就对应到后缀数组上的一个区间．后缀树上两个后缀的最长公共前缀是它们对应的叶节点的 LCA，因此，后缀数组的 height 的结论可以理解为树上若干个节点的 LCA 等于 DFS 序最小的和最大的节点的 LCA．
+Thứ tự DFS của cây hậu tố chính là mảng hậu tố. Một cây con của cây hậu tố cũng tương ứng với một đoạn trên mảng hậu tố. Tiền tố chung dài nhất của hai hậu tố trên cây hậu tố là LCA của hai nút lá tương ứng với chúng. Vì vậy, kết luận về `height` của mảng hậu tố có thể hiểu là: LCA của một số nút trên cây bằng LCA của nút nhỏ nhất và lớn nhất theo thứ tự DFS trong số đó.
 
-## 例题
+<span id="&#20363;&#39064;"></span>
+## Bài tập ví dụ
 
-### [洛谷 P3804【模板】后缀自动机（SAM）](https://www.luogu.com.cn/problem/P3804)
+<span id="&#27931;&#35895;-p3804&#27169;&#26495;&#21518;&#32512;&#33258;&#21160;&#26426;sam"></span>
+### [Luogu P3804 [Mẫu] Máy tự động hậu tố (SAM)](https://www.luogu.com.cn/problem/P3804)
 
-题意：
+Tóm tắt đề bài:
 
-给定一个只包含小写字母的字符串 $S$．
+Cho một chuỗi $S$ chỉ gồm chữ cái thường.
 
-请你求出 $S$ 的所有出现次数不为 $1$ 的子串的出现次数乘上该子串长度的最大值．
+Hãy tìm giá trị lớn nhất của số lần xuất hiện của một chuỗi con nhân với độ dài chuỗi con đó, xét trên mọi chuỗi con của $S$ có số lần xuất hiện khác $1$.
 
-??? note "解法"
-    建出插入一个终止符的隐式后缀树．树上每条从根出发的路径都构成子串．一个显示后缀的出现次数即为对应节点子树内的叶子节点个数，隐式后缀不用考虑，因为一个隐式后缀的出现次数等于向下走到的第一个节点对应显示后缀的出现次数，而且一定没有该显示后缀长．所以遍历整棵树，求出每个节点子树内叶子个数和每个节点到根的路径长度．如果叶子个数 $>1$ 则更新答案．复杂度 $O(|S||\Sigma|)$．
+??? note "Lời giải"
+    Xây dựng cây hậu tố ẩn sau khi chèn thêm một ký tự kết thúc. Mỗi đường đi xuất phát từ gốc trên cây đều tạo thành một chuỗi con. Số lần xuất hiện của một hậu tố hiển thị chính là số nút lá trong cây con của nút tương ứng; các hậu tố ẩn không cần xét, vì số lần xuất hiện của một hậu tố ẩn bằng số lần xuất hiện của hậu tố hiển thị đầu tiên gặp được khi đi xuống, và hậu tố ẩn chắc chắn không dài hơn hậu tố hiển thị đó. Vì vậy duyệt toàn bộ cây, tính số lá trong cây con của mỗi nút và độ dài đường đi từ mỗi nút đến gốc. Nếu số lá $>1$ thì cập nhật đáp án. Độ phức tạp $O(|S||\Sigma|)$.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/string/code/suffix-tree/suffix-tree_1.cpp"
     ```
 
+<span id="cf235c-cyclical-quest"></span>
 ### [CF235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C)
 
-题意：给定一个小写字母主串 $S$ 和 $n$ 个询问串，求每个询问串 $x_i$ 的所有循环同构在主串中出现的次数总和．
+Tóm tắt đề bài: Cho một chuỗi mẹ $S$ chỉ gồm chữ cái thường và $n$ chuỗi truy vấn, hãy tính tổng số lần xuất hiện trong chuỗi mẹ của tất cả chuỗi đồng cấu vòng của mỗi chuỗi truy vấn $x_i$.
 
-??? note "解法"
-    建立插入终止符的隐式后缀树．
+??? note "Lời giải"
+    Xây dựng cây hậu tố ẩn sau khi chèn ký tự kết thúc.
     
-    枚举当前在那个循环节，记录在树上能查找到多长的前缀．
+    Liệt kê chu kỳ hiện tại và ghi lại độ dài tiền tố có thể tìm được trên cây.
     
-    重复类似 Ukkonen 算法的过程，记录当前能匹配到的位置 $(now,rem)$．每次尝试插入下一个字符，如果成功则继续插入，否则跳出循环．
+    Lặp lại quá trình tương tự thuật toán Ukkonen, ghi lại vị trí hiện có thể khớp tới là $(now,rem)$. Mỗi lần thử chèn ký tự tiếp theo; nếu thành công thì tiếp tục chèn, nếu không thì thoát khỏi vòng lặp.
     
-    如果某一个次成功匹配了当前的循环节，且该循环节之前没出现过，则更新答案．
+    Nếu một lần nào đó khớp thành công chu kỳ hiện tại, và chu kỳ đó chưa từng xuất hiện trước đó, thì cập nhật đáp án.
     
-    然后切换到下个循环节的时候，我们要删去当前匹配的子串开头的字符：这正好就相当于令 $now \to \operatorname{Link}(now)$．当然，如果 $now=1$ 则直接让 $rem\to rem-1$ 就行了．
+    Sau đó khi chuyển sang chu kỳ tiếp theo, ta cần xóa ký tự đầu của chuỗi con đang khớp: điều này đúng bằng việc đặt $now \to \operatorname{Link}(now)$. Dĩ nhiên, nếu $now=1$ thì chỉ cần đặt $rem\to rem-1$.
     
-    复杂度 $O(|S||\Sigma|+\sum|x_i|)$
+    Độ phức tạp $O(|S||\Sigma|+\sum|x_i|)$.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/string/code/suffix-tree/suffix-tree_2.cpp"
     ```
 
-## 参考文献
+<span id="&#21442;&#32771;&#25991;&#29486;"></span>
+## Tài liệu tham khảo
 
-1.  2021 国家集训队论文《后缀树的构建》代晨昕
-2.  [炫酷后缀树魔术 - EternalAlexander 的博客](https://www.luogu.com.cn/blog/EternalAlexander/xuan-ku-hou-zhui-shu-mo-shu)
+1.  Bài luận đội tuyển quốc gia năm 2021 "Xây dựng cây hậu tố", Dai Chenxin
+2.  [Ảo thuật cây hậu tố thú vị, blog của EternalAlexander](https://www.luogu.com.cn/blog/EternalAlexander/xuan-ku-hou-zhui-shu-mo-shu)

@@ -1,64 +1,71 @@
-## 一些约定
+<span id="&#19968;&#20123;&#32422;&#23450;"></span>
+## Một số quy ước
 
-字符串相关的定义请参考 [字符串基础](./basic.md)．
+Với các định nghĩa liên quan đến xâu, hãy xem [Cơ sở về xâu](./basic.md).
 
-字符串下标从 $1$ 开始．
+Chỉ số của xâu bắt đầu từ $1$.
 
-字符串 $s$ 的长度为 $n$．
+Độ dài của xâu $s$ là $n$.
 
-" 后缀 $i$" 代指以第 $i$ 个字符开头的后缀，存储时用 $i$ 代表字符串 $s$ 的后缀 $s[i\dots n]$．
+"Hậu tố $i$" chỉ hậu tố bắt đầu từ ký tự thứ $i$; khi lưu trữ, ta dùng $i$ để đại diện cho hậu tố $s[i\dots n]$ của xâu $s$.
 
-## 后缀数组是什么？
+<span id="&#21518;&#32512;&#25968;&#32452;&#26159;&#20160;&#20040;"></span>
+## Mảng hậu tố là gì?
 
-后缀数组（Suffix Array）主要关系到两个数组：$sa$ 和 $rk$．
+Mảng hậu tố (Suffix Array) chủ yếu liên quan đến hai mảng: $sa$ và $rk$.
 
-其中，$sa[i]$ 表示将所有后缀排序后第 $i$ 小的后缀的编号，也是所说的后缀数组，后文也称编号数组 $sa$；
+Trong đó, $sa[i]$ là chỉ số của hậu tố nhỏ thứ $i$ sau khi sắp xếp tất cả hậu tố. Đây chính là mảng hậu tố; về sau cũng gọi là mảng chỉ số $sa$.
 
-$rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排名数组 $rk$．
+$rk[i]$ là thứ hạng của hậu tố $i$, một mảng phụ quan trọng; về sau cũng gọi là mảng thứ hạng $rk$.
 
-这两个数组满足性质：$sa[rk[i]]=rk[sa[i]]=i$．
+Hai mảng này thỏa tính chất: $sa[rk[i]]=rk[sa[i]]=i$.
 
-### 解释
+<span id="&#35299;&#37322;"></span>
+### Diễn giải
 
-后缀数组示例：
+Ví dụ về mảng hậu tố:
 
 [![](./images/sa1.png)][2]
 
-## 后缀数组怎么求？
+<span id="&#21518;&#32512;&#25968;&#32452;&#24590;&#20040;&#27714;"></span>
+## Tính mảng hậu tố như thế nào?
 
-### O(n^2logn) 做法
+<span id="on2logn-&#20570;&#27861;"></span>
+### Cách $O(n^2\log n)$
 
-相信这个做法大家还是能自己想到的：将盛有全部后缀字符串的数组进行 `sort` 排序，由于排序进行 $O(n\log n)$ 次字符串比较，每次字符串比较要 $O(n)$ 次字符比较，所以这个排序是 $O(n^2\log n)$ 的时间复杂度．
+Cách này khá dễ tự nghĩ ra: đưa tất cả hậu tố vào một mảng rồi sắp xếp bằng `sort`. Việc sắp xếp cần $O(n\log n)$ lần so sánh xâu, mỗi lần so sánh xâu tốn $O(n)$ phép so sánh ký tự, nên độ phức tạp thời gian là $O(n^2\log n)$.
 
-### O(nlog^2n) 做法
+<span id="onlog2n-&#20570;&#27861;"></span>
+### Cách $O(n\log^2 n)$
 
-这个做法要用到倍增的思想．
+Cách này dùng ý tưởng nhân đôi.
 
-首先对字符串 $s$ 的所有长度为 $1$ 的子串，即每个字符进行排序，得到排序后的编号数组 $sa_1$ 和排名数组 $rk_1$．
+Trước hết, sắp xếp tất cả xâu con độ dài $1$ của xâu $s$, tức từng ký tự, để thu được mảng chỉ số đã sắp xếp $sa_1$ và mảng thứ hạng $rk_1$.
 
-倍增过程：
+Quá trình nhân đôi:
 
-1.  用两个长度为 $1$ 的子串的排名，即 $rk_1[i]$ 和 $rk_1[i+1]$，作为排序的第一第二关键字，就可以对字符串 $s$ 的每个长度为 $2$ 的子串：$\{s[i\dots \min(i+1, n)]\ |\ i \in [1,\ n]\}$ 进行排序，得到 $sa_2$ 和 $rk_2$；
+1.  Dùng thứ hạng của hai xâu con độ dài $1$, tức $rk_1[i]$ và $rk_1[i+1]$, làm khóa thứ nhất và thứ hai để sắp xếp mỗi xâu con độ dài $2$ của $s$: $\{s[i\dots \min(i+1, n)]\ |\ i \in [1,\ n]\}$, thu được $sa_2$ và $rk_2$.
 
-2.  之后用两个长度为 $2$ 的子串的排名，即 $rk_2[i]$ 和 $rk_2[i+2]$，作为排序的第一第二关键字，就可以对字符串 $s$ 的每个长度为 $4$ 的子串：$\{s[i\dots \min(i+3, n)]\ |\ i \in [1,\ n]\}$ 进行排序，得到 $sa_4$ 和 $rk_4$；
+2.  Tiếp theo, dùng thứ hạng của hai xâu con độ dài $2$, tức $rk_2[i]$ và $rk_2[i+2]$, làm hai khóa sắp xếp để sắp xếp mỗi xâu con độ dài $4$ của $s$: $\{s[i\dots \min(i+3, n)]\ |\ i \in [1,\ n]\}$, thu được $sa_4$ và $rk_4$.
 
-3.  以此倍增，用长度为 $w/2$ 的子串的排名，即 $rk_{w/2}[i]$ 和 $rk_{w/2}[i+w/2]$，作为排序的第一第二关键字，就可以对字符串 $s$ 的每个长度为 $w$ 的子串 $s[i\dots \min(i+w-1,\ n)]$ 进行排序，得到 $sa_w$ 和 $rk_w$．其中，类似字母序排序规则，当 $i+w>n$ 时，$rk_w[i+w]$ 视为无穷小；
+3.  Cứ tiếp tục nhân đôi như vậy: dùng thứ hạng của hai xâu con độ dài $w/2$, tức $rk_{w/2}[i]$ và $rk_{w/2}[i+w/2]$, làm hai khóa sắp xếp để sắp xếp mỗi xâu con độ dài $w$ của $s$, là $s[i\dots \min(i+w-1,\ n)]$, thu được $sa_w$ và $rk_w$. Tương tự quy tắc thứ tự từ điển, khi $i+w>n$ thì xem $rk_w[i+w]$ là âm vô cực.
 
-4.  $rk_w[i]$ 即是子串 $s[i\dots i + w - 1]$ 的排名，这样当 $w \geqslant n$ 时，得到的编号数组 $sa_w$，也就是我们需要的后缀数组．
+4.  $rk_w[i]$ chính là thứ hạng của xâu con $s[i\dots i + w - 1]$. Khi $w \geqslant n$, mảng chỉ số $sa_w$ thu được chính là mảng hậu tố cần tìm.
 
-#### 过程
+<span id="&#36807;&#31243;"></span>
+#### Quá trình
 
-倍增排序示意图：
+Sơ đồ minh họa sắp xếp bằng nhân đôi:
 
 [![](./images/sa2.png)][2]
 
-显然倍增的过程是 $O(\log n)$，而每次倍增用 `sort` 对子串进行排序是 $O(n\log n)$，而每次子串的比较花费 $2$ 次字符比较；
+Rõ ràng quá trình nhân đôi có $O(\log n)$ vòng. Trong mỗi vòng, dùng `sort` để sắp xếp các xâu con tốn $O(n\log n)$, còn mỗi lần so sánh xâu con chỉ cần $2$ phép so sánh ký tự.
 
-除此之外，每次倍增在 `sort` 排序完后，还有额外的 $O(n)$ 时间复杂度的，更新 $rk$ 的操作，但是相对于 $O(n\log n)$ 被忽略不计；
+Ngoài ra, sau khi `sort` ở mỗi vòng còn có thao tác cập nhật $rk$ tốn thêm $O(n)$, nhưng so với $O(n\log n)$ thì có thể bỏ qua.
 
-所以这个算法的时间复杂度就是 $O(n\log^2n)$．
+Vì vậy độ phức tạp thời gian của thuật toán là $O(n\log^2 n)$.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -72,8 +79,8 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
     char s[N];
     int n, w, sa[N], rk[N << 1], oldrk[N << 1];
     
-    // 为了防止访问 rk[i+w] 导致数组越界，开两倍数组．
-    // 当然也可以在访问前判断是否越界，但直接开两倍数组方便一些．
+    // Dùng mảng gấp đôi để tránh truy cập vượt biên khi đọc rk[i + w].
+    // Cũng có thể kiểm tra biên trước khi truy cập, nhưng cấp phát gấp đôi tiện hơn.
     
     int main() {
       int i, p;
@@ -85,10 +92,10 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
       for (w = 1; w < n; w <<= 1) {
         sort(sa + 1, sa + n + 1, [](int x, int y) {
           return rk[x] == rk[y] ? rk[x + w] < rk[y + w] : rk[x] < rk[y];
-        });  // 这里用到了 lambda
+        });  // Ở đây dùng lambda
         memcpy(oldrk, rk, sizeof(rk));
-        // 由于计算 rk 的时候原来的 rk 会被覆盖，要先复制一份
-        // 若两个子串相同，它们对应的 rk 也需要相同，所以要去重
+        // Vì rk cũ sẽ bị ghi đè khi tính rk mới, cần sao chép trước
+        // Nếu hai xâu con bằng nhau, rk tương ứng của chúng cũng phải bằng nhau, nên cần loại trùng
         for (p = 0, i = 1; i <= n; ++i) {
           if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
               oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
@@ -105,15 +112,16 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
     }
     ```
 
-### O(nlogn) 做法
+<span id="onlogn-&#20570;&#27861;"></span>
+### Cách $O(n\log n)$
 
-在刚刚的 $O(n\log^2n)$ 做法中，单次排序是 $O(n\log n)$ 的，如果能 $O(n)$ 排序，就能 $O(n\log n)$ 计算后缀数组了．
+Trong cách $O(n\log^2 n)$ ở trên, mỗi lần sắp xếp tốn $O(n\log n)$. Nếu có thể sắp xếp trong $O(n)$, ta sẽ tính được mảng hậu tố trong $O(n\log n)$.
 
-前置知识：[计数排序](../basic/counting-sort.md)，[基数排序](../basic/radix-sort.md)．
+Kiến thức chuẩn bị: [sắp xếp đếm](../basic/counting-sort.md), [sắp xếp cơ số](../basic/radix-sort.md).
 
-由于计算后缀数组的过程中排序的关键字是排名，值域为 $O(n)$，并且是一个双关键字的排序，可以使用基数排序优化至 $O(n)$．
+Trong quá trình tính mảng hậu tố, khóa sắp xếp là thứ hạng, có miền giá trị $O(n)$, và đây là phép sắp xếp theo hai khóa. Do đó có thể dùng sắp xếp cơ số để tối ưu xuống $O(n)$.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -146,15 +154,15 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
       }
     
       for (w = 1; w < n; w <<= 1, m = n) {
-        // 对第二关键字：id[i] + w进行计数排序
+        // Sắp xếp đếm theo khóa thứ hai: id[i] + w
         memset(cnt, 0, sizeof(cnt));
         memcpy(id + 1, sa + 1,
-               n * sizeof(int));  // id保存一份儿sa的拷贝，实质上就相当于oldsa
+               n * sizeof(int));  // id lưu một bản sao của sa, về bản chất tương đương oldsa
         for (i = 1; i <= n; ++i) ++cnt[rk[id[i] + w]];
         for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
         for (i = n; i >= 1; --i) sa[cnt[rk[id[i] + w]]--] = id[i];
     
-        // 对第一关键字：id[i]进行计数排序
+        // Sắp xếp đếm theo khóa thứ nhất: id[i]
         memset(cnt, 0, sizeof(cnt));
         memcpy(id + 1, sa + 1, n * sizeof(int));
         for (i = 1; i <= n; ++i) ++cnt[rk[id[i]]];
@@ -178,17 +186,19 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
     }
     ```
 
-### 一些常数优化
+<span id="&#19968;&#20123;&#24120;&#25968;&#20248;&#21270;"></span>
+### Một số tối ưu hằng số
 
-如果你把上面那份代码交到 [LOJ #111: 后缀排序](https://loj.ac/problem/111) 上：
+Nếu nộp đoạn code trên lên [LOJ #111: Suffix Sorting](https://loj.ac/problem/111):
 
 ![](./images/sa3.png)
 
-这是因为，上面那份代码的常数的确很大．
+Nguyên nhân là hằng số của đoạn code trên thực sự khá lớn.
 
-#### 第二关键字无需计数排序
+<span id="&#31532;&#20108;&#20851;&#38190;&#23383;&#26080;&#38656;&#35745;&#25968;&#25490;&#24207;"></span>
+#### Khóa thứ hai không cần sắp xếp đếm
 
-思考一下第二关键字排序的实质，其实就是把超出字符串范围（即 $sa[i] + w > n$）的 $sa[i]$ 放到 $sa$ 数组头部，然后把剩下的依原顺序放入：
+Xét bản chất của việc sắp xếp theo khóa thứ hai: thực ra ta chỉ cần đưa các $sa[i]$ vượt khỏi phạm vi xâu (tức $sa[i] + w > n$) lên đầu mảng $sa$, rồi đưa phần còn lại vào theo thứ tự cũ:
 
 ```cpp
 int cur = 0;
@@ -197,15 +207,17 @@ for (int i = 1; i <= n; i++)
   if (sa[i] > w) id[++cur] = sa[i] - w;
 ```
 
-#### 优化计数排序的值域
+<span id="&#20248;&#21270;&#35745;&#25968;&#25490;&#24207;&#30340;&#20540;&#22495;"></span>
+#### Tối ưu miền giá trị của sắp xếp đếm
 
-每次对 $rk$ 进行更新之后，我们都计算了一个 $p$，这个 $p$ 即是 $rk$ 的值域，将值域改成它即可．
+Sau mỗi lần cập nhật $rk$, ta đều tính được một giá trị $p$; đây chính là miền giá trị của $rk$, nên chỉ cần đặt miền giá trị thành $p$.
 
-#### 若排名都不相同可直接生成后缀数组
+<span id="&#33509;&#25490;&#21517;&#37117;&#19981;&#30456;&#21516;&#21487;&#30452;&#25509;&#29983;&#25104;&#21518;&#32512;&#25968;&#32452;"></span>
+#### Nếu mọi thứ hạng đều khác nhau thì có thể tạo ngay mảng hậu tố
 
-考虑新的 $rk$ 数组，若其值域为 $[1,n]$ 那么每个排名都不同，此时无需再排序．
+Xét mảng $rk$ mới: nếu miền giá trị của nó là $[1,n]$ thì mọi thứ hạng đều khác nhau, lúc này không cần sắp xếp tiếp.
 
-??? note "实现"
+??? note "Cài đặt"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -229,7 +241,7 @@ for (int i = 1; i <= n; i++)
       for (int i = 1; i <= m; i++) cnt[i] += cnt[i - 1];
       for (int i = n; i >= 1; i--) sa[cnt[rk[i]]--] = i;
     
-      for (int w = 1;; w <<= 1, m = p) {  // m = p 即为值域优化
+      for (int w = 1;; w <<= 1, m = p) {  // m = p là tối ưu miền giá trị
         int cur = 0;
         for (int i = n - w + 1; i <= n; i++) id[++cur] = i;
         for (int i = 1; i <= n; i++)
@@ -250,7 +262,7 @@ for (int i = 1; i <= n; i++)
             rk[sa[i]] = ++p;
         }
     
-        if (p == n) break;  // p = n 时无需再排序
+        if (p == n) break;  // Khi p = n thì không cần sắp xếp tiếp
       }
     
       for (int i = 1; i <= n; i++) printf("%d ", sa[i]);
@@ -259,90 +271,100 @@ for (int i = 1; i <= n; i++)
     }
     ```
 
-### O(n) 做法
+<span id="on-&#20570;&#27861;"></span>
+### Cách $O(n)$
 
-在一般的题目中，常数较小的倍增求后缀数组是完全够用的，求后缀数组以外的部分也经常有 $O(n\log n)$ 的复杂度，倍增求解后缀数组不会成为瓶颈．
+Trong đa số bài toán thông thường, cách nhân đôi với hằng số nhỏ đã hoàn toàn đủ dùng. Những phần khác ngoài việc tính mảng hậu tố cũng thường có độ phức tạp $O(n\log n)$, nên bước tính mảng hậu tố bằng nhân đôi không trở thành nút thắt.
 
-但如果遇到特殊题目、时限较紧的题目，或者是你想追求更短的用时，就需要学习 $O(n)$ 求后缀数组的方法．
+Nhưng nếu gặp bài đặc biệt, giới hạn thời gian chặt, hoặc muốn rút ngắn thời gian chạy hơn nữa, cần học các phương pháp xây dựng mảng hậu tố trong $O(n)$.
 
 #### SA-IS
 
-可以参考 [诱导排序与 SA-IS 算法](https://riteme.site/blog/2016-6-19/sais.html)，另外它的 [评论页面](https://github.com/riteme/riteme.github.io/issues/28) 也有参考价值．
+Có thể tham khảo [Induced Sorting and SA-IS Algorithm](https://riteme.site/blog/2016-6-19/sais.html); [trang bình luận](https://github.com/riteme/riteme.github.io/issues/28) của bài viết này cũng có giá trị tham khảo.
 
 #### DC3
 
-可以参考[\[2009\] 后缀数组——处理字符串的有力工具 by. 罗穗骞][2]．
+Có thể tham khảo [[2009] Suffix Array: A Powerful Tool for String Processing, by Luo Suiqian][2].
 
-## 后缀数组的应用
+<span id="&#21518;&#32512;&#25968;&#32452;&#30340;&#24212;&#29992;"></span>
+## Ứng dụng của mảng hậu tố
 
-### 寻找最小的循环移动位置
+<span id="&#23547;&#25214;&#26368;&#23567;&#30340;&#24490;&#29615;&#31227;&#21160;&#20301;&#32622;"></span>
+### Tìm vị trí dịch vòng nhỏ nhất
 
-将字符串 $S$ 复制一份变成 $SS$ 就转化成了后缀排序问题．
+Sao chép xâu $S$ một lần để thành $SS$, bài toán sẽ chuyển thành bài toán sắp xếp hậu tố.
 
-例题：[「JSOI2007」字符加密](https://www.luogu.com.cn/problem/P4051)．
+Ví dụ: [JSOI2007 - Character Encryption](https://www.luogu.com.cn/problem/P4051).
 
-### 在字符串中找子串
+<span id="&#22312;&#23383;&#31526;&#20018;&#20013;&#25214;&#23376;&#20018;"></span>
+### Tìm xâu con trong xâu
 
-任务是在线地在主串 $T$ 中寻找模式串 $S$．在线的意思是，我们已经预先知道主串 $T$，但是当且仅当询问时才知道模式串 $S$．我们可以先构造出 $T$ 的后缀数组，然后查找子串 $S$．若子串 $S$ 在 $T$ 中出现，它必定是 $T$ 的一些后缀的前缀．因为我们已经将所有后缀排序了，我们可以通过在 $p$ 数组中二分 $S$ 来实现．比较子串 $S$ 和当前后缀的时间复杂度为 $O(|S|)$，因此找子串的时间复杂度为 $O(|S|\log |T|)$．注意，如果该子串在 $T$ 中出现了多次，每次出现都是在 $p$ 数组中相邻的．因此出现次数可以通过再次二分找到，输出每次出现的位置也很轻松．
+Nhiệm vụ là tìm xâu mẫu $S$ trong xâu chính $T$ theo kiểu trực tuyến. "Trực tuyến" nghĩa là ta đã biết trước xâu chính $T$, nhưng chỉ biết xâu mẫu $S$ khi có truy vấn. Ta có thể xây dựng trước mảng hậu tố của $T$, rồi tìm xâu con $S$. Nếu $S$ xuất hiện trong $T$, nó chắc chắn là tiền tố của một số hậu tố của $T$. Vì tất cả hậu tố đã được sắp xếp, ta có thể nhị phân $S$ trên mảng $p$. Mỗi lần so sánh $S$ với hậu tố hiện tại tốn $O(|S|)$, nên độ phức tạp tìm xâu con là $O(|S|\log |T|)$. Chú ý rằng nếu xâu con xuất hiện nhiều lần trong $T$, các lần xuất hiện đó sẽ nằm liên tiếp trong mảng $p$. Vì vậy có thể nhị phân thêm để tìm số lần xuất hiện, và việc in ra mọi vị trí xuất hiện cũng rất đơn giản.
 
-### 从字符串首尾取字符最小化字典序
+<span id="&#20174;&#23383;&#31526;&#20018;&#39318;&#23614;&#21462;&#23383;&#31526;&#26368;&#23567;&#21270;&#23383;&#20856;&#24207;"></span>
+### Lấy ký tự từ hai đầu để tối thiểu hóa thứ tự từ điển
 
-例题：[「USACO07DEC」Best Cow Line](https://www.luogu.com.cn/problem/P2870)．
+Ví dụ: [USACO07DEC - Best Cow Line](https://www.luogu.com.cn/problem/P2870).
 
-题意：给你一个字符串，每次从首或尾取一个字符组成字符串，问所有能够组成的字符串中字典序最小的一个．
+Đề bài: Cho một xâu. Mỗi lần lấy một ký tự ở đầu hoặc cuối để tạo xâu mới. Hỏi trong tất cả các xâu có thể tạo được, xâu nào có thứ tự từ điển nhỏ nhất.
 
-??? note "题解"
-    暴力做法就是每次最坏 $O(n)$ 地判断当前应该取首还是尾（即比较取首得到的字符串与取尾得到的反串的大小），只需优化这一判断过程即可．
+??? note "Lời giải"
+    Cách vét cạn là mỗi lần tốn tối đa $O(n)$ để quyết định nên lấy đầu hay lấy cuối, tức so sánh xâu nhận được khi lấy đầu với xâu đảo tương ứng khi lấy cuối. Chỉ cần tối ưu bước phán đoán này.
     
-    由于需要在原串后缀与反串后缀构成的集合内比较大小，可以将反串拼接在原串后，并在中间加上一个没出现过的字符（如 `#`，代码中可以直接使用空字符），求后缀数组，即可 $O(1)$ 完成这一判断．
+    Vì cần so sánh trong tập gồm các hậu tố của xâu gốc và hậu tố của xâu đảo, ta có thể nối xâu đảo vào sau xâu gốc, thêm ở giữa một ký tự chưa từng xuất hiện (như `#`; trong code có thể dùng trực tiếp ký tự rỗng), rồi xây dựng mảng hậu tố. Khi đó mỗi lần quyết định chỉ tốn $O(1)$.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/string/code/sa/sa_1.cpp"
     ```
 
-## height 数组
+<span id="height-&#25968;&#32452;"></span>
+## Mảng height
 
-### LCP（最长公共前缀）
+<span id="lcp&#26368;&#38271;&#20844;&#20849;&#21069;&#32512;"></span>
+### LCP (tiền tố chung dài nhất)
 
-两个字符串 $S$ 和 $T$ 的 LCP 就是最大的 $x$($x\le \min(|S|, |T|)$) 使得 $S_i=T_i\ (\forall\ 1\le i\le x)$．
+LCP của hai xâu $S$ và $T$ là giá trị lớn nhất $x$ ($x\le \min(|S|, |T|)$) sao cho $S_i=T_i\ (\forall\ 1\le i\le x)$.
 
-下文中以 $lcp(i,j)$ 表示后缀 $i$ 和后缀 $j$ 的最长公共前缀（的长度）．
+Trong phần sau, $lcp(i,j)$ biểu thị độ dài tiền tố chung dài nhất của hậu tố $i$ và hậu tố $j$.
 
-### height 数组的定义
+<span id="height-&#25968;&#32452;&#30340;&#23450;&#20041;"></span>
+### Định nghĩa mảng height
 
-$height[i]=lcp(sa[i],sa[i-1])$，即第 $i$ 名的后缀与它前一名的后缀的最长公共前缀．
+$height[i]=lcp(sa[i],sa[i-1])$, tức tiền tố chung dài nhất của hậu tố hạng $i$ và hậu tố đứng ngay trước nó.
 
-$height[1]$ 可以视作 $0$．
+Có thể xem $height[1]$ là $0$.
 
-### O(n) 求 height 数组需要的一个引理
+<span id="on-&#27714;-height-&#25968;&#32452;&#38656;&#35201;&#30340;&#19968;&#20010;&#24341;&#29702;"></span>
+### Bổ đề cần dùng để tính mảng height trong $O(n)$
 
 $height[rk[i]]\ge height[rk[i-1]]-1$
 
-???+ note "证明"
-    当 $height[rk[i-1]]\le1$ 时，上式显然成立（右边小于等于 $0$）．
+???+ note "Chứng minh"
+    Khi $height[rk[i-1]]\le1$, bất đẳng thức hiển nhiên đúng vì vế phải không lớn hơn $0$.
     
-    当 $height[rk[i-1]]>1$ 时：
+    Khi $height[rk[i-1]]>1$:
     
-    根据 $height$ 定义，有 $lcp(sa[rk[i-1]], sa[rk[i-1]-1]) = height[rk[i-1]] > 1$．
+    Theo định nghĩa của $height$, ta có $lcp(sa[rk[i-1]], sa[rk[i-1]-1]) = height[rk[i-1]] > 1$.
     
-    既然后缀 $i-1$ 和后缀 $sa[rk[i-1]-1]$ 有长度为 $height[rk[i-1]]$ 的最长公共前缀，
+    Vì hậu tố $i-1$ và hậu tố $sa[rk[i-1]-1]$ có tiền tố chung dài nhất độ dài $height[rk[i-1]]$,
     
-    那么不妨用 $aA$ 来表示这个最长公共前缀．（其中 $a$ 是一个字符，$A$ 是长度为 $height[rk[i-1]]-1$ 的字符串，非空）
+    ta ký hiệu tiền tố chung dài nhất này là $aA$, trong đó $a$ là một ký tự, còn $A$ là một xâu không rỗng có độ dài $height[rk[i-1]]-1$.
     
-    那么后缀 $i-1$ 可以表示为 $aAD$，后缀 $sa[rk[i-1]-1]$ 可以表示为 $aAB$．（$B < D$，$B$ 可能为空串，$D$ 非空）
+    Khi đó hậu tố $i-1$ có thể viết thành $aAD$, còn hậu tố $sa[rk[i-1]-1]$ có thể viết thành $aAB$, với $B < D$, $B$ có thể rỗng và $D$ không rỗng.
     
-    进一步地，后缀 $i$ 可以表示为 $AD$，存在后缀（$sa[rk[i-1]-1]+1$）$AB$．
+    Suy ra hậu tố $i$ có dạng $AD$, và tồn tại hậu tố $(sa[rk[i-1]-1]+1)$ có dạng $AB$.
     
-    因为后缀 $sa[rk[i]-1]$ 在大小关系的排名上仅比后缀 $sa[rk[i]]$ 也就是后缀 $i$，小一位，而 $AB < AD$．
+    Vì hậu tố $sa[rk[i]-1]$ đứng ngay trước hậu tố $sa[rk[i]]$, tức hậu tố $i$, trong thứ tự sắp xếp, và $AB < AD$,
     
-    所以 $AB \leqslant$ 后缀 $sa[rk[i]-1] < AD$，显然后缀 $i$ 和后缀 $sa[rk[i]-1]$ 有公共前缀 $A$．
+    nên $AB \leqslant$ hậu tố $sa[rk[i]-1] < AD$. Rõ ràng hậu tố $i$ và hậu tố $sa[rk[i]-1]$ có tiền tố chung $A$.
     
-    于是就可以得出 $lcp(i,sa[rk[i]-1])$ 至少是 $height[rk[i-1]]-1$，也即 $height[rk[i]]\ge height[rk[i-1]]-1$．
+    Do đó $lcp(i,sa[rk[i]-1])$ ít nhất là $height[rk[i-1]]-1$, tức $height[rk[i]]\ge height[rk[i-1]]-1$.
 
-### O(n) 求 height 数组的代码实现
+<span id="on-&#27714;-height-&#25968;&#32452;&#30340;&#20195;&#30721;&#23454;&#29616;"></span>
+### Cài đặt tính mảng height trong $O(n)$
 
-利用上面这个引理暴力求即可：
+Chỉ cần dùng bổ đề trên để tính trực tiếp:
 
 ```cpp
 for (i = 1, k = 0; i <= n; ++i) {
@@ -353,97 +375,108 @@ for (i = 1, k = 0; i <= n; ++i) {
 }
 ```
 
-$k$ 不会超过 $n$，最多减 $n$ 次，所以最多加 $2n$ 次，总复杂度就是 $O(n)$．
+$k$ không vượt quá $n$ và giảm nhiều nhất $n$ lần, nên cũng tăng nhiều nhất $2n$ lần. Tổng độ phức tạp là $O(n)$.
 
-## height 数组的应用
+<span id="height-&#25968;&#32452;&#30340;&#24212;&#29992;"></span>
+## Ứng dụng của mảng height
 
-### 两子串最长公共前缀
+<span id="&#20004;&#23376;&#20018;&#26368;&#38271;&#20844;&#20849;&#21069;&#32512;"></span>
+### Tiền tố chung dài nhất của hai xâu con
 
 $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$
 
-感性理解：如果 $height$ 一直大于某个数，前这么多位就一直没变过；反之，由于后缀已经排好序了，不可能变了之后变回来．
+Trực giác: nếu $height$ luôn lớn hơn một giá trị nào đó, thì bấy nhiêu ký tự đầu vẫn không đổi; ngược lại, vì các hậu tố đã được sắp xếp, sau khi đã thay đổi thì không thể quay lại như cũ.
 
-严格证明可以参考[\[2004\] 后缀数组 by. 许智磊][1]．
+Chứng minh chặt chẽ có thể tham khảo [[2004] Suffix Array, by Xu Zhilei][1].
 
-有了这个定理，求两子串最长公共前缀就转化为了 [RMQ 问题](../topic/rmq.md)．
+Với định lý này, bài toán tìm tiền tố chung dài nhất của hai xâu con được chuyển thành [bài toán RMQ](../topic/rmq.md).
 
-### 比较一个字符串的两个子串的大小关系
+<span id="&#27604;&#36739;&#19968;&#20010;&#23383;&#31526;&#20018;&#30340;&#20004;&#20010;&#23376;&#20018;&#30340;&#22823;&#23567;&#20851;&#31995;"></span>
+### So sánh thứ tự của hai xâu con trong một xâu
 
-假设需要比较的是 $A=S[a..b]$ 和 $B=S[c..d]$ 的大小关系．
+Giả sử cần so sánh thứ tự của $A=S[a..b]$ và $B=S[c..d]$.
 
-若 $lcp(a, c)\ge\min(|A|, |B|)$，$A<B\iff |A|<|B|$．
+Nếu $lcp(a, c)\ge\min(|A|, |B|)$, thì $A<B\iff |A|<|B|$.
 
-否则，$A<B\iff rk[a]< rk[c]$．
+Ngược lại, $A<B\iff rk[a]< rk[c]$.
 
-### 不同子串的数目
+<span id="&#19981;&#21516;&#23376;&#20018;&#30340;&#25968;&#30446;"></span>
+### Số lượng xâu con khác nhau
 
-子串就是后缀的前缀，所以可以枚举每个后缀，计算前缀总数，再减掉重复．
+Xâu con chính là tiền tố của một hậu tố, nên có thể duyệt từng hậu tố, tính tổng số tiền tố rồi trừ đi phần trùng lặp.
 
-「前缀总数」其实就是子串个数，为 $n(n+1)/2$．
+"Tổng số tiền tố" thực ra chính là số xâu con, bằng $n(n+1)/2$.
 
-如果按后缀排序的顺序枚举后缀，每次新增的子串就是除了与上一个后缀的 LCP 剩下的前缀．这些前缀一定是新增的，否则会破坏 $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$ 的性质．只有这些前缀是新增的，因为 LCP 部分在枚举上一个前缀时计算过了．
+Nếu duyệt các hậu tố theo thứ tự đã sắp xếp, những xâu con mới được thêm ở mỗi bước chính là các tiền tố còn lại sau khi bỏ phần LCP với hậu tố trước đó. Các tiền tố này chắc chắn là mới, nếu không sẽ mâu thuẫn với tính chất $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$. Chỉ các tiền tố này là mới, vì phần LCP đã được tính khi duyệt hậu tố trước.
 
-所以答案为：
+Vì vậy đáp án là:
 
 $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
-### 出现至少 k 次的子串的最大长度
+<span id="&#20986;&#29616;&#33267;&#23569;-k-&#27425;&#30340;&#23376;&#20018;&#30340;&#26368;&#22823;&#38271;&#24230;"></span>
+### Độ dài lớn nhất của xâu con xuất hiện ít nhất $k$ lần
 
-例题：[「USACO06DEC」Milk Patterns](https://www.luogu.com.cn/problem/P2852)．
+Ví dụ: [USACO06DEC - Milk Patterns](https://www.luogu.com.cn/problem/P2852).
 
-??? note "题解"
-    出现至少 $k$ 次意味着后缀排序后有至少连续 $k$ 个后缀以这个子串作为公共前缀．
+??? note "Lời giải"
+    Xuất hiện ít nhất $k$ lần nghĩa là sau khi sắp xếp hậu tố, tồn tại ít nhất $k$ hậu tố liên tiếp cùng nhận xâu con này làm tiền tố chung.
     
-    所以，求出每相邻 $k-1$ 个 $height$ 的最小值，再求这些最小值的最大值就是答案．
+    Do đó, lấy giá trị nhỏ nhất trong mỗi nhóm $k-1$ phần tử $height$ liên tiếp, rồi lấy giá trị lớn nhất trong các giá trị nhỏ nhất đó, ta được đáp án.
     
-    可以使用单调队列 $O(n)$ 解决，但使用其它方式也足以 AC．
+    Có thể dùng hàng đợi đơn điệu để giải trong $O(n)$, nhưng các cách khác cũng đủ để AC.
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/string/code/sa/sa_2.cpp"
     ```
 
-### 是否有某字符串在文本串中至少不重叠地出现了两次
+<span id="&#26159;&#21542;&#26377;&#26576;&#23383;&#31526;&#20018;&#22312;&#25991;&#26412;&#20018;&#20013;&#33267;&#23569;&#19981;&#37325;&#21472;&#22320;&#20986;&#29616;&#20102;&#20004;&#27425;"></span>
+### Kiểm tra một xâu có xuất hiện ít nhất hai lần không chồng lấp trong văn bản hay không
 
-可以二分目标串的长度 $|s|$，将 $h$ 数组划分成若干个连续 LCP 大于等于 $|s|$ 的段，利用 RMQ 对每个段求其中出现的数中最大和最小的下标，若这两个下标的距离满足条件，则一定有长度为 $|s|$ 的字符串不重叠地出现了两次．
+Có thể nhị phân độ dài $|s|$ của xâu mục tiêu, chia mảng $h$ thành các đoạn liên tiếp có LCP lớn hơn hoặc bằng $|s|$, rồi dùng RMQ để tìm chỉ số lớn nhất và nhỏ nhất xuất hiện trong từng đoạn. Nếu khoảng cách giữa hai chỉ số đó thỏa điều kiện, chắc chắn tồn tại một xâu độ dài $|s|$ xuất hiện hai lần không chồng lấp.
 
-### 连续的若干个相同子串
+<span id="&#36830;&#32493;&#30340;&#33509;&#24178;&#20010;&#30456;&#21516;&#23376;&#20018;"></span>
+### Một số xâu con giống nhau liên tiếp
 
-我们可以枚举连续串的长度 $|s|$，按照 $|s|$ 对整个串进行分块，对相邻两块的块首进行 LCP 与 LCS 查询，具体可见[\[2009\] 后缀数组——处理字符串的有力工具][2]．
+Ta có thể duyệt độ dài $|s|$ của chuỗi lặp liên tiếp, chia toàn bộ xâu thành các khối theo $|s|$, rồi truy vấn LCP và LCS tại đầu của hai khối kề nhau. Chi tiết xem [[2009] Suffix Array: A Powerful Tool for String Processing][2].
 
-例题：[「NOI2016」优秀的拆分](https://loj.ac/p/2083)．
+Ví dụ: [NOI2016 - Excellent Splitting](https://loj.ac/p/2083).
 
-### 结合并查集
+<span id="&#32467;&#21512;&#24182;&#26597;&#38598;"></span>
+### Kết hợp với DSU
 
-某些题目求解时要求你将后缀数组划分成若干个连续 LCP 长度大于等于某一值的段，亦即将 $h$ 数组划分成若干个连续最小值大于等于某一值的段并统计每一段的答案．如果有多次询问，我们可以将询问离线．观察到当给定值单调递减的时候，满足条件的区间个数总是越来越少，而新区间都是两个或多个原区间相连所得，且新区间中不包含在原区间内的部分的 $h$ 值都为减少到的这个值．我们只需要维护一个并查集，每次合并相邻的两个区间，并维护统计信息即可．
+Một số bài yêu cầu chia mảng hậu tố thành các đoạn liên tiếp có độ dài LCP lớn hơn hoặc bằng một giá trị nào đó; tương đương với việc chia mảng $h$ thành các đoạn liên tiếp có giá trị nhỏ nhất lớn hơn hoặc bằng giá trị đó, rồi thống kê đáp án cho từng đoạn. Nếu có nhiều truy vấn, ta có thể xử lý offline. Quan sát rằng khi giá trị cho trước giảm đơn điệu, số đoạn thỏa điều kiện chỉ càng ít đi; đoạn mới đều được tạo bằng cách nối hai hoặc nhiều đoạn cũ, và các phần không thuộc đoạn cũ trong đoạn mới có giá trị $h$ đúng bằng giá trị vừa giảm tới. Vì vậy chỉ cần duy trì một DSU, mỗi lần hợp nhất hai đoạn kề nhau và cập nhật thông tin thống kê.
 
-经典题目：[「NOI2015」品酒大会](https://uoj.ac/problem/131)
+Bài kinh điển: [NOI2015 - Wine Tasting Conference](https://uoj.ac/problem/131).
 
-### 结合线段树
+<span id="&#32467;&#21512;&#32447;&#27573;&#26641;"></span>
+### Kết hợp với cây phân đoạn
 
-某些题目让你求满足条件的前若干个数，而这些数又在后缀排序中的一个区间内．这时我们可以用归并排序的性质来合并两个结点的信息，利用线段树维护和查询区间答案．
+Một số bài yêu cầu tìm vài số đầu tiên thỏa điều kiện, trong khi các số đó lại nằm trong một đoạn của thứ tự sắp xếp hậu tố. Khi đó có thể dùng tính chất của sắp xếp trộn để hợp nhất thông tin của hai nút, rồi dùng cây phân đoạn để duy trì và truy vấn đáp án trên đoạn.
 
-### 结合单调栈
+<span id="&#32467;&#21512;&#21333;&#35843;&#26632;"></span>
+### Kết hợp với ngăn xếp đơn điệu
 
-例题：[「AHOI2013」差异](https://loj.ac/problem/2377)
+Ví dụ: [AHOI2013 - Difference](https://loj.ac/problem/2377).
 
-??? note "题解"
-    被加数的前两项很好处理，为 $n(n-1)(n+1)/2$（每个后缀都出现了 $n-1$ 次，后缀总长是 $n(n+1)/2$），关键是最后一项，即后缀的两两 LCP．
+??? note "Lời giải"
+    Hai hạng đầu của biểu thức cần cộng rất dễ xử lý, bằng $n(n-1)(n+1)/2$ (mỗi hậu tố xuất hiện $n-1$ lần, tổng độ dài hậu tố là $n(n+1)/2$). Điểm chính là hạng cuối, tức LCP của từng cặp hậu tố.
     
-    我们知道 $lcp(i,j)=k$ 等价于 $\min\{height[i+1..j]\}=k$．所以，可以把 $lcp(i,j)$ 记作 $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$ 对答案的贡献．
+    Ta biết $lcp(i,j)=k$ tương đương với $\min\{height[i+1..j]\}=k$. Vì vậy có thể quy phần đóng góp của $lcp(i,j)$ vào $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$.
     
-    考虑每个位置对答案的贡献是哪些后缀的 LCP，其实就是从它开始向左若干个连续的 $height$ 大于它的后缀中选一个，再从向右若干个连续的 $height$ 不小于它的后缀中选一个．这个东西可以用 [单调栈](../ds/monotonic-stack.md) 计算．
+    Xét một vị trí đóng góp cho LCP của những cặp hậu tố nào: thực chất là chọn một hậu tố trong đoạn liên tiếp bên trái có $height$ lớn hơn nó, và chọn một hậu tố trong đoạn liên tiếp bên phải có $height$ không nhỏ hơn nó. Phần này có thể tính bằng [ngăn xếp đơn điệu](../ds/monotonic-stack.md).
     
-    单调栈部分类似于 [Luogu P2659 美丽的序列](https://www.luogu.com.cn/problem/P2659) 以及 [悬线法](../misc/hoverline.md)．
+    Phần ngăn xếp đơn điệu tương tự [Luogu P2659 - Beautiful Sequence](https://www.luogu.com.cn/problem/P2659) và [phương pháp đường treo](../misc/hoverline.md).
 
-??? note "参考代码"
+??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/string/code/sa/sa_3.cpp"
     ```
 
-类似的题目：[「HAOI2016」找相同字符](https://loj.ac/problem/2064)．
+Bài tương tự: [HAOI2016 - Find Identical Characters](https://loj.ac/problem/2064).
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
 -   [UVa 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701)
 -   [UVa 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664)
@@ -463,7 +496,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 -   [UVa 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
 -   [UVa 12206 - Stammering Aliens](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358)
 -   [Codechef - Jarvis and LCP](https://www.codechef.com/problems/INSQ16F)
--   [洛谷 P8617 - 重复模式](https://www.luogu.com.cn/problem/P8617)
+-   [Luogu P8617 - Repeated Pattern](https://www.luogu.com.cn/problem/P8617)
 -   [UVa 11107 - Life Forms](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048)
 -   [UVa 12974 - Exquisite Strings](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853)
 -   [UVa 10526 - Intellectual Property](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467)
@@ -480,16 +513,17 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 -   [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E)
 -   [Gym 101470B - Circle of digits](https://codeforces.com/gym/101470/problem/B)
 
-## 参考资料
+<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+## Tài liệu tham khảo
 
-本页面中（[4070a9b](https://github.com/OI-wiki/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef) 引入的部分）主要译自博文 [Суффиксный массив](http://e-maxx.ru/algo/suffix_array) 与其英文翻译版 [Suffix Array](https://cp-algorithms.com/string/suffix-array.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．
+Các phần trên trang này được đưa vào từ commit [4070a9b](https://github.com/OI-wiki/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef), chủ yếu dịch từ bài viết [Суффиксный массив](http://e-maxx.ru/algo/suffix_array) và bản dịch tiếng Anh [Suffix Array](https://cp-algorithms.com/string/suffix-array.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.
 
-论文：
+Bài báo:
 
-1.  [\[2004\] 后缀数组 by. 许智磊][1]
+1.  [[2004] Suffix Array, by Xu Zhilei][1]
 
-2.  [\[2009\] 后缀数组——处理字符串的有力工具 by. 罗穗骞][2]
+2.  [[2009] Suffix Array: A Powerful Tool for String Processing, by Luo Suiqian][2]
 
-[1]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2004%E8%AE%BA%E6%96%87%E9%9B%86/%E8%AE%B8%E6%99%BA%E7%A3%8A--%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84.pdf "[2004] 后缀数组 by. 许智磊"
+[1]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2004%E8%AE%BA%E6%96%87%E9%9B%86/%E8%AE%B8%E6%99%BA%E7%A3%8A--%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84.pdf "[2004] Suffix Array, by Xu Zhilei"
 
-[2]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2009%E8%AE%BA%E6%96%87%E9%9B%86/11.%E7%BD%97%E7%A9%97%E9%AA%9E%E3%80%8A%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7%E3%80%8B/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7.pdf "[2009] 后缀数组——处理字符串的有力工具 by. 罗穗骞"
+[2]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2009%E8%AE%BA%E6%96%87%E9%9B%86/11.%E7%BD%97%E7%A9%97%E9%AA%9E%E3%80%8A%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7%E3%80%8B/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7.pdf "[2009] Suffix Array: A Powerful Tool for String Processing, by Luo Suiqian"

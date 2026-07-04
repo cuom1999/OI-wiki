@@ -1,14 +1,15 @@
 author: minghu6
 
-前置知识：[前缀函数与 KMP 算法](./kmp.md)．
+Kiến thức chuẩn bị: [hàm tiền tố và thuật toán KMP](./kmp.md).
 
-KMP 算法将前缀匹配的信息用到了极致，
+Thuật toán KMP khai thác thông tin khớp tiền tố đến mức tối đa.
 
-而 BM 算法背后的基本思想是通过后缀匹配获得比前缀匹配更多的信息来实现更快的字符跳转．
+Còn ý tưởng cơ bản phía sau thuật toán BM là dùng khớp hậu tố để thu được nhiều thông tin hơn so với khớp tiền tố, từ đó thực hiện các bước nhảy ký tự nhanh hơn.
 
-## 引入
+<span id="&#24341;&#20837;"></span>
+## Dẫn nhập
 
-想象一下，如果我们的模式字符串 $pat$，被放在文本字符串 $string$ 的左手起头部，使它们的第一个字符对齐．
+Hãy tưởng tượng xâu mẫu $pat$ được đặt ở đầu bên trái của xâu văn bản $string$, sao cho hai ký tự đầu tiên của chúng thẳng hàng.
 
 $$
 \begin{aligned}
@@ -18,82 +19,87 @@ $$
 \end{aligned}
 $$
 
-在这里做定义，往后不赘述：
+Ta định nghĩa một số ký hiệu ở đây và sẽ không nhắc lại về sau:
 
-$pat$ 的长度为 $patlen$，特别地对于从 0 开始的串来说，规定 $patlastpos=patlen-1$ 为 $pat$ 串最后一个字符的位置；
+Độ dài của $pat$ là $patlen$. Riêng với xâu đánh chỉ số từ 0, quy ước $patlastpos=patlen-1$ là vị trí ký tự cuối cùng của $pat$.
 
-$string$ 的长度 $stringlen$，$stringlastpos = stringlen-1$．
+Độ dài của $string$ là $stringlen$, và $stringlastpos = stringlen-1$.
 
-假如我们知道了 $string$ 的第 $patlen$ 个字符 $char$（与 $pat$ 的最后一个字符对齐）考虑我们能得到什么信息：
+Giả sử ta biết ký tự thứ $patlen$ của $string$ là $char$ (ký tự đang thẳng hàng với ký tự cuối của $pat$), hãy xem ta có thể rút ra thông tin gì:
 
-### 观察 1
+<span id="&#35266;&#23519;-1"></span>
+### Quan sát 1
 
-如果我们知道 $char$ 这个字符不在 $pat$ 中，我们就不用考虑 $pat$ 从 $string$ 的第 $1$ 个、第 $2$ 个……第 $patlen$ 个字符起出现的情况，而可以直接将 $pat$ 向下滑动 $patlen$ 个字符．
+Nếu biết ký tự $char$ không xuất hiện trong $pat$, ta không cần xét các khả năng $pat$ xuất hiện bắt đầu từ ký tự thứ $1$, thứ $2$, ..., thứ $patlen$ của $string$, mà có thể trượt thẳng $pat$ sang phải $patlen$ ký tự.
 
-### 观察 2
+<span id="&#35266;&#23519;-2"></span>
+### Quan sát 2
 
-更一般地，**如果出现在 $pat$ 最末尾（也就是最右边）的那一个 $char$ 字符的位置是离末尾端差了 $delta_1$ 个字符**，
+Tổng quát hơn, **nếu vị trí xuất hiện ngoài cùng bên phải của ký tự $char$ trong $pat$ cách cuối xâu $delta_1$ ký tự**,
 
-那么就可以不用匹配，直接将 $pat$ 向后滑动 $delta_1$ 个字符：如果滑动距离少于 $delta_1$，那么仅就 $char$ 这个字符就无法被匹配，当然模式字符串 $pat$ 也就不会被匹配．
+thì có thể bỏ qua việc so khớp và trượt thẳng $pat$ sang phải $delta_1$ ký tự: nếu trượt ít hơn $delta_1$, chỉ riêng ký tự $char$ đã không thể khớp, nên dĩ nhiên xâu mẫu $pat$ cũng không thể khớp.
 
-因此除非 $char$ 字符可以和 $pat$ 末尾的那个字符匹配，否则 $string$ 要跳过 $delta_1$ 个字符（相当于 $pat$ 向后滑动了 $delta_1$ 个字符）．并且我们可以得到一个计算 $delta_1$ 的函数 $delta_1(char)$：
+Do đó, trừ khi ký tự $char$ có thể khớp với ký tự cuối của $pat$, con trỏ trên $string$ cần nhảy qua $delta_1$ ký tự (tương đương với việc $pat$ trượt sang phải $delta_1$ ký tự). Ta có thể thu được hàm $delta_1(char)$ như sau:
 
 $$
 \begin{array}{ll}
 \textbf{int}\ delta1(\textbf{char}\ char) \\
-\qquad \textbf{if}\ \text{char不在pat中 || char是pat上最后一个字符} \\
+\qquad \textbf{if}\ \text{char không nằm trong pat || char là ký tự cuối cùng trong pat} \\
 \qquad\qquad\textbf{return}\ patlen \\
 \qquad \textbf{else} \\
-\qquad\qquad\textbf{return}\ patlastpos-i\quad\textbf{//}\ \text{i为出现在pat最末尾的那一个char出现的位置，即pat[i]=char}
+\qquad\qquad\textbf{return}\ patlastpos-i\quad\textbf{//}\ \text{i là vị trí xuất hiện ngoài cùng bên phải của char trong pat, tức pat[i]=char}
 \end{array}
 $$
 
-需要注意，显然这个表只需计算到 $patlastpos-1$ 的位置．
+Cần chú ý rằng bảng này hiển nhiên chỉ cần được tính đến vị trí $patlastpos-1$.
 
-现在假设 $char$ 和 $pat$ 最后一个字符匹配到了，那我们就看看 $char$ 前一个字符和 $pat$ 的倒数第二个字符是否匹配：
+Bây giờ giả sử $char$ đã khớp với ký tự cuối của $pat$, ta tiếp tục kiểm tra ký tự đứng trước $char$ có khớp với ký tự áp chót của $pat$ hay không:
 
-如果是，就继续回退直到整个模式串 $pat$ 完成匹配（这时我们就在 $string$ 上成功得到了一个 $pat$ 的匹配）；
+Nếu có, ta tiếp tục lùi lại cho đến khi toàn bộ xâu mẫu $pat$ được khớp (khi đó ta đã tìm được một lần xuất hiện của $pat$ trong $string$).
 
-或者，我们也可能会在匹配完 $pat$ 的倒数第 $m$ 个字符后，在倒数第 $m+1$ 个字符上失配，这时我们就希望把 $pat$ 向后滑动到下一个可能会实现匹配的位置，当然我们希望滑动得越远越好．
+Hoặc cũng có thể sau khi đã khớp $m$ ký tự cuối của $pat$, ta gặp bất khớp ở ký tự thứ $m+1$ tính từ cuối. Khi đó ta muốn trượt $pat$ sang phải đến vị trí tiếp theo có thể khớp, và dĩ nhiên càng trượt xa càng tốt.
 
-### 观察 3(a)
+<span id="&#35266;&#23519;-3(a)"></span>
+### Quan sát 3(a)
 
-在 **观察 2** 中提到，当匹配完 $pat$ 的倒数 $m$ 个字符后，如果在倒数第 $m+1$ 个字符失配，为了使得 $string$ 中的失配字符与 $pat$ 上对应字符对齐，
+Trong **Quan sát 2**, khi đã khớp $m$ ký tự cuối của $pat$ rồi bất khớp ở ký tự thứ $m+1$ tính từ cuối, để ký tự bất khớp trong $string$ thẳng hàng với ký tự tương ứng trong $pat$,
 
-需要把 $pat$ 向后滑动 $k$ 个字符，也就是说我们应该把注意力看向之后的 $k+m$ 个字符（也就是看向 $pat$ 滑动 k 之后，末段与 $string$ 对齐的那个字符）．
+cần trượt $pat$ sang phải $k$ ký tự. Nói cách khác, ta nên chú ý đến ký tự sau đó $k+m$ vị trí (tức ký tự ở cuối đoạn của $pat$ sau khi trượt $k$ bước và thẳng hàng với $string$).
 
-而 $k=delta_1-m$，
+Mà $k=delta_1-m$,
 
-所以我们的注意力应该沿着 $string$ 向后跳 $delta_1-m+m = delta_1$ 个字符．
+nên điểm chú ý của ta trên $string$ cần nhảy sang phải $delta_1-m+m = delta_1$ ký tự.
 
-然而，我们有机会跳过更多的字符，请继续看下去．
+Tuy vậy, ta còn có cơ hội bỏ qua nhiều ký tự hơn; hãy tiếp tục xét.
 
-### 观察 3(b)
+<span id="&#35266;&#23519;-3(b)"></span>
+### Quan sát 3(b)
 
-如果我们知道 $string$ 接下来的 $m$ 个字符和 $pat$ 的最后 $m$ 个字符匹配，假设这个子串为 $subpat$，
+Nếu ta biết $m$ ký tự tiếp theo của $string$ khớp với $m$ ký tự cuối của $pat$, gọi xâu con đó là $subpat$,
 
-我们还知道在 $string$ 失配字符 $char$ 后面是与 $subpat$ 相匹配的子串，而假如 $pat$ 对应失配字符前面存在 $subpat$，我们可以将 $pat$ 向下滑动一段距离，
+thì ta còn biết sau ký tự bất khớp $char$ trong $string$ là một xâu con khớp với $subpat$. Nếu phía trước ký tự tương ứng bị bất khớp trong $pat$ cũng có một $subpat$, ta có thể trượt $pat$ sang phải một đoạn,
 
-使得失配字符 $char$ 在 $pat$ 上对应的字符前面出现的 $subpat$（合理重现，plausible reoccurrence，以下也简称 pr）与 $string$ 的 $subpat$ 对齐．如果 $pat$ 上有多个 $subpat$，按照从右到左的后缀匹配顺序，取第一个（rightmost plausible reoccurrence，以下也简称 rpr）．
+sao cho $subpat$ xuất hiện phía trước ký tự tương ứng với ký tự bất khớp $char$ trong $pat$ (một lần tái xuất hiện hợp lệ, plausible reoccurrence, sau đây cũng viết tắt là pr) thẳng hàng với $subpat$ trong $string$. Nếu có nhiều $subpat$ trong $pat$, theo thứ tự khớp hậu tố từ phải sang trái, ta lấy lần đầu tiên (rightmost plausible reoccurrence, sau đây cũng viết tắt là rpr).
 
-假设此时 $pat$ 向下滑动的 $k$ 个字符（也即 $pat$ 末尾端的 $subpat$ 与其最右边的合理重现的距离），这样我们的注意力应该沿着 $string$ 向后滑动 $k+m$ 个字符，这段距离我们称之为 $delta_2(j)$：
+Giả sử lúc này $pat$ trượt sang phải $k$ ký tự (tức khoảng cách giữa $subpat$ ở cuối $pat$ và lần tái xuất hiện hợp lệ ngoài cùng bên phải của nó). Khi đó điểm chú ý của ta trên $string$ nên trượt sang phải $k+m$ ký tự; khoảng cách này được gọi là $delta_2(j)$:
 
-假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 上失配时的最右边合理重现的位置，$rpr(j) < j$（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j-rpr(j),\ m=patlastpos-j$．
+Giả sử $rpr(j)$ là vị trí tái xuất hiện hợp lệ ngoài cùng bên phải của $subpat=pat[j+1\dots patlastpos]$ khi bất khớp tại $pat[j]$, với $rpr(j) < j$ (đây chỉ là định nghĩa đơn giản; phần thiết kế thuật toán bên dưới sẽ thảo luận chính xác hơn), khi đó rõ ràng $k=j-rpr(j),\ m=patlastpos-j$.
 
-所以有：
+Vì vậy:
 
 $$
 \begin{array}{ll}
-\textbf{int}\ delta2(\textbf{int}\ j) \quad\textbf{//}\ \text{j为失配字符在pat上对应字符的位置} \\
+\textbf{int}\ delta2(\textbf{int}\ j) \quad\textbf{//}\ \text{j là vị trí ký tự trong pat tương ứng với ký tự bất khớp} \\
 \qquad\qquad\textbf{return}\ patlastpos-rpr(j) \\
 \end{array}
 $$
 
-于是我们在失配时，可以把 $string$ 上的注意力往后跳过 $\max(delta_1,delta_2)$ 个字符
+Do đó khi xảy ra bất khớp, ta có thể cho điểm chú ý trên $string$ nhảy sang phải $\max(delta_1,delta_2)$ ký tự.
 
-## 过程
+<span id="&#36807;&#31243;"></span>
+## Quy trình
 
-箭头指向失配字符 $char$：
+Mũi tên chỉ vào ký tự bất khớp $char$:
 
 $$
 \begin{aligned}
@@ -103,7 +109,7 @@ $$
 \end{aligned}
 $$
 
-$\texttt{F}$ 没有出现 $pat$ 中，根据 **观察 1**，$pat$ 直接向下移动 $patlen$ 个字符，也就是 7 个字符：
+$\texttt{F}$ không xuất hiện trong $pat$. Theo **Quan sát 1**, $pat$ được dịch thẳng sang phải $patlen$ ký tự, tức 7 ký tự:
 
 $$
 \begin{aligned}
@@ -113,7 +119,7 @@ $$
 \end{aligned}
 $$
 
-根据 **观察 2**，我们需要将 $pat$ 向下移动 4 个字符使得短横线字符对齐：
+Theo **Quan sát 2**, ta cần dịch $pat$ sang phải 4 ký tự để ký tự gạch nối thẳng hàng:
 
 $$
 \begin{aligned}
@@ -123,7 +129,7 @@ $$
 \end{aligned}
 $$
 
-现在*char*:$\texttt{T}$ 匹配了，把 $string$ 上的指针左移一步继续匹配：
+Bây giờ *char*: $\texttt{T}$ đã khớp, ta dịch con trỏ trên $string$ sang trái một bước để tiếp tục so khớp:
 
 $$
 \begin{aligned}
@@ -133,7 +139,7 @@ $$
 \end{aligned}
 $$
 
-根据 **观察 3(a)**，$\texttt{L}$ 失配，因为 $\texttt{L}$ 不在 $pat$ 中，所以 $pat$ 向下移动 $k=delta_1-m=7-1=6$ 个字符，而 $string$ 上指针向下移动 $delta_1=7$ 个字符：
+Theo **Quan sát 3(a)**, $\texttt{L}$ bất khớp. Vì $\texttt{L}$ không nằm trong $pat$, nên $pat$ dịch sang phải $k=delta_1-m=7-1=6$ ký tự, còn con trỏ trên $string$ dịch sang phải $delta_1=7$ ký tự:
 
 $$
 \begin{aligned}
@@ -143,7 +149,7 @@ $$
 \end{aligned}
 $$
 
-这时 $char$ 又一次匹配到了 $pat$ 的最后一个字符 $\texttt{T}$，$string$ 上的指针向左匹配，匹配到了 $\texttt{A}$，继续向左匹配，发现在字符 $\texttt{-}$ 失配：
+Lúc này $char$ lại khớp với ký tự cuối $\texttt{T}$ của $pat$. Con trỏ trên $string$ khớp sang trái đến $\texttt{A}$, tiếp tục khớp sang trái rồi phát hiện bất khớp tại ký tự $\texttt{-}$:
 
 $$
 \begin{aligned}
@@ -153,10 +159,10 @@ $$
 \end{aligned}
 $$
 
-显然直观上看，此时根据 **观察 3(b)**，将 $pat$ 向下移动 $k=5$ 个字符，使得后缀 $\texttt{AT}$ 对齐，这种滑动可以获得 $string$ 指针最大的滑动距离，此时 $delta_2=k+patlastpos-j=5+6-4=7$，即 $string$ 上指针向下滑动 7 个字符．
+Về trực giác, lúc này theo **Quan sát 3(b)**, ta dịch $pat$ sang phải $k=5$ ký tự để hậu tố $\texttt{AT}$ thẳng hàng. Cách dịch này cho con trỏ $string$ dịch được xa nhất; khi đó $delta_2=k+patlastpos-j=5+6-4=7$, tức con trỏ trên $string$ dịch sang phải 7 ký tự.
 
-而从形式化逻辑看，此时，$delta_1=7-1-2=4,\ delta_2=7, \max(delta_1,delta_2)= 7$，
-这样从形式逻辑上支持了进行 **观察 3(b)** 的跳转：
+Nhìn theo logic hình thức, lúc này $delta_1=7-1-2=4,\ delta_2=7, \max(delta_1,delta_2)= 7$,
+điều này cũng ủng hộ bước nhảy theo **Quan sát 3(b)**:
 
 $$
 \begin{aligned}
@@ -166,15 +172,18 @@ $$
 \end{aligned}
 $$
 
-现在我们发现了 $pat$ 上每一个字符都和 $string$ 上对应的字符相等，我们在 $string$ 上找到了一个 $pat$ 的匹配．而只花费了 14 次对 $string$ 的引用，其中 7 次是完成一个成功的匹配所必需的比较次数（$patlen=7$），另外 7 次让我们跳过了 22 个字符．
+Bây giờ ta thấy mọi ký tự trên $pat$ đều bằng ký tự tương ứng trên $string$, tức đã tìm được một lần khớp của $pat$ trong $string$. Tổng cộng chỉ cần 14 lần truy cập $string$, trong đó 7 lần là các phép so sánh bắt buộc để hoàn thành một lần khớp thành công ($patlen=7$), 7 lần còn lại giúp ta bỏ qua 22 ký tự.
 
-## 算法设计
+<span id="&#31639;&#27861;&#35774;&#35745;"></span>
+## Thiết kế thuật toán
 
-### 最初的匹配算法
+<span id="&#26368;&#21021;&#30340;&#21305;&#37197;&#31639;&#27861;"></span>
+### Thuật toán khớp ban đầu
 
-#### 解释
+<span id="&#35299;&#37322;"></span>
+#### Giải thích
 
-现在看这样一个利用 $delta_1$ 和 $delta_2$ 进行字符串匹配的算法：
+Xét thuật toán khớp xâu sử dụng $delta_1$ và $delta_2$ sau:
 
 $$
 \begin{array}{ll}
@@ -197,26 +206,27 @@ j \gets patlastpos. \\
 \end{array}
 $$
 
-如果上面的算法 $\textbf{return}\ false$，表明 $pat$ 不在 $string$ 中；如果返回一个数字，表示 $pat$ 在 $string$ 左起第一次出现的位置．
+Nếu thuật toán trên $\textbf{return}\ false$, điều đó cho biết $pat$ không nằm trong $string$; nếu trả về một số, số đó là vị trí xuất hiện đầu tiên của $pat$ tính từ trái sang trong $string$.
 
-然后让我们更精细地描述下计算 $delta_2$，所依靠的 $rpr(j)$ 函数．
+Tiếp theo, ta mô tả kỹ hơn hàm $rpr(j)$ được dùng để tính $delta_2$.
 
-根据前文定义，$rpr(j)$ 表示在 $pat(j)$ 失配时，子串 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 最右边合理重现的位置．
+Theo định nghĩa ở trên, $rpr(j)$ biểu thị vị trí tái xuất hiện hợp lệ ngoài cùng bên phải của xâu con $subpat=pat[j+1\dots patlastpos]$ khi bất khớp tại $pat(j)$.
 
-也就是说需要找到一个最好的 $k$, 使得 $pat[k\dots k+patlastpos-j-1]=pat[j+1\dots patlastpos]$，另外要考虑两种特殊情况：
+Nói cách khác, cần tìm một $k$ tốt nhất sao cho $pat[k\dots k+patlastpos-j-1]=pat[j+1\dots patlastpos]$. Ngoài ra còn phải xét hai trường hợp đặc biệt:
 
-1.  当 $k<0$ 时，相当于在 $pat$ 前面补充了一段虚拟的前缀，实际上也符合 $delta_2$ 跳转的原理．
-2.  当 $k>0$ 时，如果 $pat[k-1]=pat[j]$，则这个 $pat[k\dots k+patlastpos-j-1]$ 不能作为 $subpat$ 的合理重现．
-    原因是 $pat[j]$ 本身是失配字符，所以 $pat$ 向下滑动 $k$ 个字符后，在后缀匹配过程中仍然会在 $pat[k-1]$ 处失配．
+1.  Khi $k<0$, điều này tương đương với việc thêm một đoạn tiền tố ảo phía trước $pat$, và thực ra vẫn phù hợp với nguyên lý nhảy của $delta_2$.
+2.  Khi $k>0$, nếu $pat[k-1]=pat[j]$, thì $pat[k\dots k+patlastpos-j-1]$ này không thể được xem là một lần tái xuất hiện hợp lệ của $subpat$.
+    Lý do là bản thân $pat[j]$ là ký tự bất khớp, nên sau khi trượt $pat$ sang phải $k$ ký tự, quá trình khớp hậu tố vẫn sẽ bất khớp tại $pat[k-1]$.
 
-还要注意两个限制条件：
+Cũng cần chú ý hai ràng buộc:
 
-1.  $k < j$．因为当 $k=j$ 时，有 $pat[k]=pat[j]$，在 $pat[j]$ 上失配的字符也会在 $pat[k]$ 上失配．
-2.  考虑到 $delta_2(patlastpos)= 0$，所以规定 $rpr(patlastpos) = patlastpos$．
+1.  $k < j$. Vì khi $k=j$ thì $pat[k]=pat[j]$, ký tự bất khớp tại $pat[j]$ cũng sẽ bất khớp tại $pat[k]$.
+2.  Do $delta_2(patlastpos)= 0$, ta quy ước $rpr(patlastpos) = patlastpos$.
 
-#### 过程
+<span id="&#36807;&#31243;_1"></span>
+#### Quy trình
 
-由于理解 $rpr(j)$ 是实现 BoyerMoore 算法的核心，所以我们使用如下两个例子进行详细说明：
+Vì hiểu $rpr(j)$ là phần cốt lõi để cài đặt thuật toán Boyer-Moore, ta dùng hai ví dụ sau để giải thích chi tiết:
 
 $$
 \begin{aligned}
@@ -227,25 +237,25 @@ $$
 \end{aligned}
 $$
 
-对于 $rpr(0)$，$subpat$ 为 $\texttt{BCXXXABC}$，在 $pat[0]$ 之前的最右边合理重现只能是 $\texttt{[(BCXXX)ABC]XXXABC}$，也就是最右边合理重现位置为 -5，即 $rpr(j)=-5$；
+Với $rpr(0)$, $subpat$ là $\texttt{BCXXXABC}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[0]$ chỉ có thể là $\texttt{[(BCXXX)ABC]XXXABC}$, tức vị trí tái xuất hiện hợp lệ ngoài cùng bên phải là -5, nên $rpr(j)=-5$.
 
-对于 $rpr(1)$，$subpat$ 为 $\texttt{CXXXABC}$，在 $pat[1]$ 之前的最右边的合理重现是 $\texttt{[(CXXX)ABC]XXXABC}$，所以 $rpr(j)=-4$；
+Với $rpr(1)$, $subpat$ là $\texttt{CXXXABC}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[1]$ là $\texttt{[(CXXX)ABC]XXXABC}$, nên $rpr(j)=-4$.
 
-对于 $rpr(2)$，$subpat$ 为 $\texttt{XXXABC}$，在 $pat[2]$ 之前的最右边的合理重现是 $\texttt{[(XXX)ABC]XXXABC}$，所以 $rpr(j)=-3$；
+Với $rpr(2)$, $subpat$ là $\texttt{XXXABC}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[2]$ là $\texttt{[(XXX)ABC]XXXABC}$, nên $rpr(j)=-3$.
 
-对于 $rpr(3)$，$subpat$ 为 $\texttt{XXABC}$，在 $pat[3]$ 之前的最右边的合理重现是 $\texttt{[(XX)ABC]XXXABC}$，所以 $rpr(j)=-2$；
+Với $rpr(3)$, $subpat$ là $\texttt{XXABC}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[3]$ là $\texttt{[(XX)ABC]XXXABC}$, nên $rpr(j)=-2$.
 
-对于 $rpr(4)$，$subpat$ 为 $\texttt{XABC}$，在 $pat[4]$ 之前的最右边的合理重现是 $\texttt{[(X)ABC]XXXABC}$，所以 $rpr(j)=-1$；
+Với $rpr(4)$, $subpat$ là $\texttt{XABC}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[4]$ là $\texttt{[(X)ABC]XXXABC}$, nên $rpr(j)=-1$.
 
-对于 $rpr(5)$，$subpat$ 为 $\texttt{ABC}$，在 $pat[5]$ 之前的最右边的合理重现是 $\texttt{[ABC]XXXABC}$，所以 $rpr(j)=0$；
+Với $rpr(5)$, $subpat$ là $\texttt{ABC}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[5]$ là $\texttt{[ABC]XXXABC}$, nên $rpr(j)=0$.
 
-对于 $rpr(6)$，$subpat$ 为 $\texttt{BC}$，又因为 $string[0]=string[6]$，即 $string[0]$ 等于失配字符 $string[6]$，所以 $string[0\dots 2]$ 并不是符合条件的 $subpat$ 的合理重现，所以在最右边的合理重现是 $\texttt{[(BC)]ABCXXXABC}$，所以 $rpr(j)=-2$；
+Với $rpr(6)$, $subpat$ là $\texttt{BC}$. Do $string[0]=string[6]$, tức $string[0]$ bằng ký tự bất khớp $string[6]$, nên $string[0\dots 2]$ không phải là một lần tái xuất hiện hợp lệ của $subpat$. Vì vậy lần tái xuất hiện hợp lệ ngoài cùng bên phải là $\texttt{[(BC)]ABCXXXABC}$, nên $rpr(j)=-2$.
 
-对于 $rpr(7)$，$subpat$ 为 $\texttt{C}$，同理又因为 $string[7]=string[1]$，所以 $string[1\dots 2]$ 并不是符合条件的 $subpat$ 的合理重现，在最右边的合理重现是 $\texttt{[(C)]ABCXXXABC}$，所以 $rpr(j)=-1$；
+Với $rpr(7)$, $subpat$ là $\texttt{C}$. Tương tự, do $string[7]=string[1]$, nên $string[1\dots 2]$ không phải là một lần tái xuất hiện hợp lệ của $subpat$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải là $\texttt{[(C)]ABCXXXABC}$, nên $rpr(j)=-1$.
 
-对于 $rpr(8)$，根据 $delta_2$ 定义，$rpr(patlastpos)=patlastpos$，得到 $rpr(8)=8$．
+Với $rpr(8)$, theo định nghĩa của $delta_2$, $rpr(patlastpos)=patlastpos$, do đó $rpr(8)=8$.
 
-现在再看一下另一个例子：
+Bây giờ xét thêm một ví dụ khác:
 
 $$
 \begin{aligned}
@@ -256,42 +266,43 @@ $$
 \end{aligned}
 $$
 
-对于 $rpr(0)$，$subpat$ 为 $\texttt{BYXCDEYX}$，在 $pat[0]$ 之前的最右边合理重现只能是 $\texttt{[(BYXCDEYX)]ABYXCDEYX}$，也就是最右边合理重现位置为 -8，即 $rpr(j)=-8$；
+Với $rpr(0)$, $subpat$ là $\texttt{BYXCDEYX}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[0]$ chỉ có thể là $\texttt{[(BYXCDEYX)]ABYXCDEYX}$, tức vị trí tái xuất hiện hợp lệ ngoài cùng bên phải là -8, nên $rpr(j)=-8$.
 
-对于 $rpr(1)$，$subpat$ 为 $\texttt{YXCDEYX}$，在 $pat[1]$ 之前的最右边合理重现只能是 $\texttt{[(YXCDEYX)]ABYXCDEYX}$，$rpr(j)=-7$；
+Với $rpr(1)$, $subpat$ là $\texttt{YXCDEYX}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[1]$ chỉ có thể là $\texttt{[(YXCDEYX)]ABYXCDEYX}$, nên $rpr(j)=-7$.
 
-对于 $rpr(2)$，$subpat$ 为 $\texttt{XCDEYX}$，在 $pat[2]$ 之前的最右边合理重现只能是 $\texttt{[(XCDEYX)]ABYXCDEYX}$，$rpr(j)=-6$；
+Với $rpr(2)$, $subpat$ là $\texttt{XCDEYX}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[2]$ chỉ có thể là $\texttt{[(XCDEYX)]ABYXCDEYX}$, nên $rpr(j)=-6$.
 
-对于 $rpr(3)$，$subpat$ 为 $\texttt{CDEYX}$，在 $pat[3]$ 之前的最右边合理重现只能是 $\texttt{[(CDEYX)]ABYXCDEYX}$，$rpr(j)=-5$；
+Với $rpr(3)$, $subpat$ là $\texttt{CDEYX}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[3]$ chỉ có thể là $\texttt{[(CDEYX)]ABYXCDEYX}$, nên $rpr(j)=-5$.
 
-对于 $rpr(4)$，$subpat$ 为 $\texttt{DEYX}$，在 $pat[4]$ 之前的最右边合理重现只能是 $\texttt{[(DEYX)]ABYXCDEYX}$，$rpr(j)=-4$；
+Với $rpr(4)$, $subpat$ là $\texttt{DEYX}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[4]$ chỉ có thể là $\texttt{[(DEYX)]ABYXCDEYX}$, nên $rpr(j)=-4$.
 
-对于 $rpr(5)$，$subpat$ 为 $\texttt{EYX}$，在 $pat[5]$ 之前的最右边合理重现只能是 $\texttt{[(EYX)]ABYXCDEYX}$，$rpr(j)=-3$；
+Với $rpr(5)$, $subpat$ là $\texttt{EYX}$. Lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[5]$ chỉ có thể là $\texttt{[(EYX)]ABYXCDEYX}$, nên $rpr(j)=-3$.
 
-对于 $rpr(6)$，$subpat$ 为 $\texttt{YX}$，因为 $string[2\dots 3]=string[7\dots 8]$ 并且有 $string[6]\neq string[1]$，所以在 $pat[6]$ 之前的最右边的合理重现是 $\texttt{AB[YX]CDEYX}$，$rpr(j)=2$；
+Với $rpr(6)$, $subpat$ là $\texttt{YX}$. Vì $string[2\dots 3]=string[7\dots 8]$ và $string[6]\neq string[1]$, nên lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[6]$ là $\texttt{AB[YX]CDEYX}$, nên $rpr(j)=2$.
 
-对于 $rpr(7)$，$subpat$ 为 $\texttt{X}$，虽然 $string[3]=string[8]$ 但是因为 $string[2] = string[7]$，所以在 $pat[7]$ 之前的最右边的合理重现是 $\texttt{[X]ABYXCDEYX}$，$rpr(j)=-1$;
+Với $rpr(7)$, $subpat$ là $\texttt{X}$. Mặc dù $string[3]=string[8]$, nhưng vì $string[2] = string[7]$, nên lần tái xuất hiện hợp lệ ngoài cùng bên phải trước $pat[7]$ là $\texttt{[X]ABYXCDEYX}$, nên $rpr(j)=-1$.
 
-对于 $rpr(8)$，根据 $delta_2$ 定义，$rpr(patlastpos)=patlastpos$，得到 $rpr(8)=8$．
+Với $rpr(8)$, theo định nghĩa của $delta_2$, $rpr(patlastpos)=patlastpos$, do đó $rpr(8)=8$.
 
-### 对匹配算法的一个改进
+<span id="&#23545;&#21305;&#37197;&#31639;&#27861;&#30340;&#19968;&#20010;&#25913;&#36827;"></span>
+### Một cải tiến cho thuật toán khớp
 
-最后，实践过程中考虑到搜索过程中估计有 80% 的时间用在了 **观察 1** 的跳转上，也就是 $string[i]$ 和 $pat[patlastpos]$ 不匹配，然后跳跃整个 $patlen$ 进行下一次匹配的过程．
+Cuối cùng, trong thực tế người ta nhận thấy khoảng 80% thời gian tìm kiếm được dành cho các bước nhảy của **Quan sát 1**, tức quá trình $string[i]$ không khớp với $pat[patlastpos]$, rồi nhảy cả đoạn $patlen$ để bắt đầu lần khớp tiếp theo.
 
-于是，可以为此进行特别的优化：
+Vì vậy có thể tối ưu riêng cho trường hợp này:
 
-我们定义一个 $delta0$：
+Ta định nghĩa một $delta0$:
 
 $$
 \begin{array}{ll}
 \textbf{int}\ delta0(\textbf{char}\ char) \\
 \qquad \textbf{if}\ char=pat[patlastpos] \\
-\qquad\qquad \textbf{return}\ large\ \ \text{// large为一个整数，需要满足large>stringlastpos+patlen} \\
+\qquad\qquad \textbf{return}\ large\ \ \text{// large là một số nguyên, cần thỏa large>stringlastpos+patlen} \\
 \qquad \textbf{return}\ delta1(char)
 \end{array}
 $$
 
-用 $delta0$ 代替 $delta_1$，得到改进后的匹配算法：
+Thay $delta_1$ bằng $delta0$, ta thu được thuật toán khớp cải tiến:
 
 $$
 \begin{array}{ll}
@@ -301,8 +312,8 @@ i \gets patlastpos \\
 \qquad\qquad\textbf{return}\ false\\
 \\
 \qquad\textbf{while}\ i < stringlen \\
-\qquad\qquad i \gets i+delta0(string(i)) \ \ \text{// 除非string[i]和pat末尾字符匹配，否则至多向下滑动patlen }\\\
-\qquad\textbf{if}\ i \leqslant\ large \qquad\qquad\qquad\qquad \text{//此时表示string上没有一个字符和pat末尾字符匹配}\ \\
+\qquad\qquad i \gets i+delta0(string(i)) \ \ \text{// trừ khi string[i] khớp với ký tự cuối của pat, bước dịch tối đa là patlen}\\\
+\qquad\textbf{if}\ i \leqslant\ large \qquad\qquad\qquad\qquad \text{// lúc này không có ký tự nào trên string khớp với ký tự cuối của pat}\ \\
 \qquad\qquad\textbf{return}\ false\\
 \\
 \qquad i \gets i-large \\
@@ -318,27 +329,30 @@ i \gets patlastpos \\
 \end{array}
 $$
 
-其中 $large$ 起到多重作用，一是类似后面介绍的 Horspool 算法进行快速的坏字符跳转，二是辅助检测字符串搜索是否完成．
+Ở đây $large$ có nhiều vai trò: một mặt nó hỗ trợ bước nhảy ký tự xấu nhanh tương tự thuật toán Horspool sẽ giới thiệu sau, mặt khác nó giúp phát hiện việc tìm kiếm trong xâu đã kết thúc.
 
-经过改进，比起原算法，在做 **观察 1** 跳转时不必每次进行 $delta_2$ 的多余计算，使得在通常字符集下搜索字符串的性能有了明显的提升．
+Sau cải tiến, so với thuật toán gốc, khi thực hiện bước nhảy của **Quan sát 1** ta không còn phải tính thừa $delta_2$ mỗi lần, nhờ đó hiệu năng tìm kiếm trên các bảng chữ cái thông thường được cải thiện rõ rệt.
 
-## delta2 构建细节
+<span id="delta2-&#26500;&#24314;&#32454;&#33410;"></span>
+## Chi tiết xây dựng delta2
 
-### 引入
+<span id="&#24341;&#20837;_1"></span>
+### Dẫn nhập
 
-在 1977 年 10 月的*Communications of the ACM*上，Boyer、Moor 的论文[^bm]中只描述了 $delta_2$ 静态表，
+Trong bài báo của Boyer và Moore[^bm] trên *Communications of the ACM* tháng 10 năm 1977, các tác giả chỉ mô tả bảng tĩnh $delta_2$.
 
-构造 $delta_2$ 的具体实现的讨论出现在 1977 年 6 月 Knuth、Morris、Pratt 在*SIAM Journal on Computing*上正式联合发表的 KMP 算法的论文[^kmp]．
+Phần thảo luận về cách cài đặt cụ thể để xây dựng $delta_2$ xuất hiện trong bài báo về thuật toán KMP do Knuth, Morris và Pratt cùng công bố chính thức trên *SIAM Journal on Computing* tháng 6 năm 1977[^kmp].
 
-### 朴素算法
+<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+### Thuật toán đơn giản
 
-在介绍 Knuth 的 $delta_2$ 构建算法之前，根据定义，我们会有一个适用于小规模问题的朴素算法：
+Trước khi giới thiệu thuật toán xây dựng $delta_2$ của Knuth, theo định nghĩa ta có một thuật toán đơn giản phù hợp với bài toán quy mô nhỏ:
 
-1.  对于 `[0, patlen)` 区间的每一个位置 `i`，根据 `subpat` 的长度确定其重现位置的区间，也就是 `[-subpatlen, i]`；
-2.  可能的重现位置按照从右到左进行逐字符比较，寻找符合 $delta_2$ 要求的最右边 $subpat$ 的重现位置；
-3.  最后别忘了令 $delta_2(lastpos)= 0$．
+1.  Với mỗi vị trí `i` trong đoạn `[0, patlen)`, xác định khoảng vị trí tái xuất hiện theo độ dài của `subpat`, tức `[-subpatlen, i]`.
+2.  So sánh từng ký tự của các vị trí tái xuất hiện khả dĩ theo thứ tự từ phải sang trái, để tìm vị trí tái xuất hiện ngoài cùng bên phải của $subpat$ thỏa yêu cầu của $delta_2$.
+3.  Cuối cùng đừng quên đặt $delta_2(lastpos)= 0$.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```Rust
     use std::cmp::PartialEq;
     
@@ -356,7 +370,7 @@ $$
             }
             
             for j in (-subpatlen..(i + 1) as isize).rev() {
-                // subpat 匹配
+                // subpat khop
                 if (j..j + subpatlen)
                 .zip(i + 1..patlen)
                 .all(|(rpr_index, subpat_index)| {
@@ -382,44 +396,47 @@ $$
     }
     ```
 
-特别地，对 Rust 语言特性进行必要地解释，下不赘述：
+Riêng về một số đặc điểm của Rust cần giải thích, các đoạn sau sẽ không nhắc lại:
 
--   `usize` 和 `isize` 是和内存指针同字节数的无符号整数和有符号整数，在 32 位机上相当于 `u32` 和 `i32`，64 位机上相当于 `u64` 和 `i64`．
--   索引数组、向量、分片时使用 `usize` 类型的数字（因为在做内存上的随机访问并且下标不能为负值），所以如果需要处理负值要用 `isize`，而进行索引时又要用 `usize`，这就看到使用 `as` 关键字进行二者之间的显式转换．
--   `impl PartialEq` 只是用作泛型，可以同时支持 `Unicode` 编码的 `char` 和二进制的 `u8`．
+-   `usize` và `isize` lần lượt là số nguyên không dấu và có dấu có cùng số byte với con trỏ bộ nhớ; trên máy 32 bit chúng tương đương `u32` và `i32`, còn trên máy 64 bit tương đương `u64` và `i64`.
+-   Khi đánh chỉ số mảng, vector hoặc slice, ta dùng số kiểu `usize` (vì đây là truy cập ngẫu nhiên trong bộ nhớ và chỉ số không thể âm). Vì vậy nếu cần xử lý giá trị âm thì dùng `isize`, còn khi đánh chỉ số lại phải dùng `usize`; đây là lý do ta thấy từ khóa `as` được dùng để chuyển đổi tường minh giữa hai kiểu.
+-   `impl PartialEq` chỉ được dùng như một generic, cho phép hỗ trợ cả `char` theo mã hóa `Unicode` lẫn dữ liệu nhị phân kiểu `u8`.
 
-显然，该暴力算法的时间复杂度为 $O(n^3)$．
+Rõ ràng thuật toán vét cạn này có độ phức tạp thời gian $O(n^3)$.
 
-### 高效算法
+<span id="&#39640;&#25928;&#31639;&#27861;"></span>
+### Thuật toán hiệu quả
 
-下面我们要介绍的是时间复杂度为 $O(n)$，但是需要额外 $O(n)$ 空间复杂度的高效算法．
+Tiếp theo ta giới thiệu thuật toán hiệu quả có độ phức tạp thời gian $O(n)$, nhưng cần thêm $O(n)$ bộ nhớ.
 
-虽然 1977 年 Knuth 提出了这个构建方法，然而他的原始版本的构建算法存在一个缺陷，实际上对于某些 $pat$ 产生不出符合定义的 $delta_2$．
+Dù Knuth đã đưa ra phương pháp xây dựng này vào năm 1977, phiên bản xây dựng gốc của ông có một khiếm khuyết: với một số $pat$, nó thực ra không tạo được $delta_2$ đúng theo định nghĩa.
 
-Rytter 在 1980 年*SIAM Journal on Computing*上发表的文章[^rytter]对此提出了修正，以下是 $delta_2$ 的构建算法：
+Rytter đã sửa điểm này trong bài báo đăng trên *SIAM Journal on Computing* năm 1980[^rytter]. Thuật toán xây dựng $delta_2$ như sau:
 
-首先考虑到 $delta_2$ 的定义比较复杂，我们按照 $subpat$ 的重现位置进行分类，每一类进行单独处理，这是高效实现的关键思路．
+Trước hết, vì định nghĩa của $delta_2$ tương đối phức tạp, ta phân loại theo vị trí tái xuất hiện của $subpat$ và xử lý từng loại riêng; đây là ý tưởng then chốt để cài đặt hiệu quả.
 
-按照重现位置由远到近，也就是偏移量由大到小，分成如下几类：
+Sắp xếp các loại theo vị trí tái xuất hiện từ xa đến gần, tức theo độ lệch từ lớn đến nhỏ:
 
-1.  整个 $subpat$ 重现位置完全在 $pat$ 左边的，比如 $\texttt{[(EYX)]ABYXCDEYX}$，此时 $delta_2(j) = patlastpos\times 2 - j$；
+1.  Toàn bộ vị trí tái xuất hiện của $subpat$ nằm hoàn toàn bên trái $pat$, ví dụ $\texttt{[(EYX)]ABYXCDEYX}$. Khi đó $delta_2(j) = patlastpos\times 2 - j$.
 
-2.  $subpat$ 的重现有一部分在 $pat$ 左边，有一部分是 $pat$ 头部，比如 $\texttt{[(XX)ABC]XXXABC}$，此时 $patlastpos < delta_2(j) < patlastpos\times 2 - j$；
-    我们把 $subpat$ 完全在 $pat$ 头部的边际情况也归类在这里（当然根据实现也可以归类在下边），比如 $\texttt{[ABC]XXXABC}$，此时 $patlastpos = delta_2(j)$；
+2.  Một phần tái xuất hiện của $subpat$ nằm bên trái $pat$, phần còn lại là phần đầu của $pat$, ví dụ $\texttt{[(XX)ABC]XXXABC}$. Khi đó $patlastpos < delta_2(j) < patlastpos\times 2 - j$.
+    Ta cũng xếp trường hợp biên khi $subpat$ nằm hoàn toàn ở đầu $pat$ vào nhóm này (tùy cách cài đặt cũng có thể xếp xuống nhóm dưới), ví dụ $\texttt{[ABC]XXXABC}$. Khi đó $patlastpos = delta_2(j)$.
 
-3.  $subpat$ 的重现完全在 $pat$ 中，比如 $\texttt{AB[YX]CDEYX}$，此时 $delta_2(j) < patlastpos$．
+3.  Sự tái xuất hiện của $subpat$ nằm hoàn toàn trong $pat$, ví dụ $\texttt{AB[YX]CDEYX}$. Khi đó $delta_2(j) < patlastpos$.
 
-现在来讨论如何高效地计算这三种情况：
+Bây giờ ta thảo luận cách tính hiệu quả ba trường hợp này:
 
-#### 第一种情况
+<span id="&#31532;&#19968;&#31181;&#24773;&#20917;"></span>
+#### Trường hợp thứ nhất
 
-这是最简单的情况，只需一次遍历并且可以顺便将 $delta_2$ 初始化．
+Đây là trường hợp đơn giản nhất; chỉ cần duyệt một lần và có thể tiện thể khởi tạo $delta_2$.
 
-#### 第二种情况
+<span id="&#31532;&#20108;&#31181;&#24773;&#20917;"></span>
+#### Trường hợp thứ hai
 
-我们观察什么时候会出现 $subpat$ 的重现一部分在 $pat$ 左边，一部分是 $pat$ 的头部的情况呢？应该是 $subpat$ 的某个后缀和 $pat$ 的某个前缀相等，
+Ta quan sát xem khi nào sự tái xuất hiện của $subpat$ có một phần nằm bên trái $pat$ và một phần là đầu $pat$. Điều này xảy ra khi một hậu tố nào đó của $subpat$ bằng một tiền tố nào đó của $pat$.
 
-比如之前的例子：
+Ví dụ từ trước:
 
 $$
 \begin{aligned}
@@ -428,21 +445,21 @@ $$
 \end{aligned}
 $$
 
-$delta_2(3)$ 的重现 $\texttt{[(XX)ABC]XXXABC}$，$subpat$ $\texttt{XXABC}$ 的后缀与 pat 前缀中，有相等的，是 $\texttt{ABC}$．
+Lần tái xuất hiện của $delta_2(3)$ là $\texttt{[(XX)ABC]XXXABC}$; trong hậu tố của $subpat$ $\texttt{XXABC}$ và tiền tố của $pat$, phần bằng nhau là $\texttt{ABC}$.
 
-实际上，对第二种和第三种情况的计算的关键都需要前缀函数的计算和和应用．
+Thực ra, mấu chốt để tính cả trường hợp thứ hai và thứ ba đều là tính và áp dụng hàm tiền tố.
 
-那么只要 $j$ 取值使得 $subpat$ 包含这个相等的后缀，那么就可以得到第二种情况的 $subpat$ 的重现，对于例子，我们只需要使得 $j \leqslant 5$，
+Chỉ cần giá trị $j$ khiến $subpat$ chứa hậu tố bằng nhau này, ta sẽ thu được một lần tái xuất hiện của $subpat$ thuộc trường hợp thứ hai. Với ví dụ trên, chỉ cần $j \leqslant 5$.
 
-而当 $j = 5$ 时，就是 $subpat$ 完全在 $pat$ 头部的边际情况．
+Khi $j = 5$, đó chính là trường hợp biên mà $subpat$ nằm hoàn toàn ở đầu $pat$.
 
-可以计算此时的 $delta_2(j)$：
+Ta có thể tính $delta_2(j)$ lúc này:
 
-设此时这对相等的前后缀长度为 $\textit{prefixlen}$，可知 $subpatlen = patlastpos - j$，那么在 $pat$ 左边的部分长度是 $subpatlen-\textit{prefixlen}$，
+Giả sử độ dài của cặp tiền tố - hậu tố bằng nhau này là $\textit{prefixlen}$. Ta có $subpatlen = patlastpos - j$, nên độ dài phần nằm bên trái $pat$ là $subpatlen-\textit{prefixlen}$.
 
-而 $rpr(j) = -(subpatlen-\textit{prefixlen})$，所以得到 $delta_2(j) = patlastpos - rpr(j) = patlastpos \times 2 - j - \textit{prefixlen}$．
+Mà $rpr(j) = -(subpatlen-\textit{prefixlen})$, nên $delta_2(j) = patlastpos - rpr(j) = patlastpos \times 2 - j - \textit{prefixlen}$.
 
-其后面可能会有多对相等的前缀和后缀，比如：
+Phía sau nó có thể còn nhiều cặp tiền tố và hậu tố bằng nhau, chẳng hạn:
 
 $$
 \begin{aligned}
@@ -451,32 +468,34 @@ $$
 \end{aligned}
 $$
 
-在 $j\leq2$ 处有 $\texttt{ABAABAA}$，$2< j \leq 5$ 处有 $\texttt{ABAA}$，在 $5<j\leq8$ 处有 $\texttt{A}$
+Tại $j\leq2$ có $\texttt{ABAABAA}$, tại $2< j \leq 5$ có $\texttt{ABAA}$, và tại $5<j\leq8$ có $\texttt{A}$.
 
-Knuth 算法的缺陷是只考虑了最长的那一对的情况，但实际上我们要考虑所有 $subpat$ 后缀与 $pat$ 前缀相等的情况，等同于计算 $pat$ 所有真后缀和真前缀相等的情况，并按照长度从大到小，$j$ 分区间计算不同的 $delta_2(j)$．
+Khuyết điểm của thuật toán Knuth là chỉ xét cặp dài nhất. Trên thực tế, ta phải xét mọi trường hợp hậu tố của $subpat$ bằng tiền tố của $pat$, tương đương với việc tính tất cả các hậu tố thực sự bằng tiền tố thực sự của $pat$, rồi tính các giá trị $delta_2(j)$ khác nhau theo các đoạn $j$, theo thứ tự độ dài từ lớn đến nhỏ.
 
-利用前缀函数和逆向运用计算前缀函数的状态转移方程：$j^{(n)} = \pi[j^{(n-1)}-1]$，以得到 $pat$ 所有相等的真前缀和真后缀长度．从 $\pi[patlastpos]$ 开始作为最长一对的长度，然后通过逆向运行状态转移方程，得到下一个次长相等真前缀和真后缀的长度．
+Dùng hàm tiền tố và áp dụng ngược phương trình chuyển trạng thái khi tính hàm tiền tố: $j^{(n)} = \pi[j^{(n-1)}-1]$, ta thu được độ dài của mọi tiền tố thực sự bằng hậu tố thực sự của $pat$. Bắt đầu từ $\pi[patlastpos]$ là cặp dài nhất, sau đó chạy ngược phương trình chuyển trạng thái để lấy độ dài cặp tiền tố - hậu tố bằng nhau dài thứ hai, rồi tiếp tục tương tự.
 
-如此就完成了第二种情况的 $delta_2$ 的计算．
+Như vậy ta hoàn tất việc tính $delta_2$ cho trường hợp thứ hai.
 
-#### 第三种情况
+<span id="&#31532;&#19977;&#31181;&#24773;&#20917;"></span>
+#### Trường hợp thứ ba
 
-$subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就是按照从右到左的顺序，在 $pat[0\dots patlastpos-1]$ 中寻找 $subpat$．
+Sự tái xuất hiện của $subpat$ nằm đúng trong $pat$ (không bao gồm phần đầu của $pat$), tức ta tìm $subpat$ trong $pat[0\dots patlastpos-1]$ theo thứ tự từ phải sang trái.
 
-如果用 BM 算法解决，我们就得到了一个 BM 的递归实现的第三种情况，结束条件是 $patlen \leqslant  2$．
+Nếu dùng chính thuật toán BM để giải, ta thu được một cài đặt đệ quy của BM cho trường hợp thứ ba, với điều kiện dừng là $patlen \leqslant  2$.
 
-而且根据 $delta_2$ 的定义，找到的 $subpat$ 的重现的下一个（也就是左边一个）字符和作为 $pat$ 后缀的 $subpat$ 的下一个字符不能一样．
+Hơn nữa, theo định nghĩa của $delta_2$, ký tự tiếp theo (tức ký tự bên trái) của lần tái xuất hiện $subpat$ tìm được không được giống ký tự tiếp theo của $subpat$ khi $subpat$ là hậu tố của $pat$.
 
-这就很好地启发了我们，可以使用类似于计算前缀函数的过程计算第三种情况，只不过是左右反过来的前缀函数：
+Điều này gợi ý rằng ta có thể dùng một quá trình tương tự tính hàm tiền tố để xử lý trường hợp thứ ba, chỉ khác là dùng hàm tiền tố theo chiều ngược trái phải:
 
--   两个指针分别指向子串的左端点和子串最长公共前后缀的「前缀」位置，从右向左移动，在发现指向的两个字符相等时继续移动，此时相当于「前缀」变大；
--   当两个字符不相等时，之前相等的部分就满足了 $delta_2$ 对重现的要求，并且回退指向「前缀」位置的指针直到构成新的字符相等或者出界．
+-   Hai con trỏ lần lượt chỉ vào đầu trái của xâu con và vị trí "tiền tố" của tiền tố - hậu tố chung dài nhất của xâu con, rồi di chuyển từ phải sang trái. Khi hai ký tự đang chỉ đến bằng nhau, ta tiếp tục di chuyển; lúc này tương đương với việc "tiền tố" dài ra.
+-   Khi hai ký tự khác nhau, phần đã bằng nhau trước đó thỏa yêu cầu của $delta_2$ đối với một lần tái xuất hiện. Sau đó lùi con trỏ trỏ vào vị trí "tiền tố" cho đến khi tạo được cặp ký tự bằng nhau mới hoặc đi ra ngoài biên.
 
-同前缀函数一样，需要一个辅助数组，用于回退，可以使用之前计算第二种情况所生成的前缀数组的空间．
+Giống hàm tiền tố, ta cần một mảng phụ để lùi trạng thái; có thể dùng lại không gian của mảng tiền tố đã sinh ra khi tính trường hợp thứ hai.
 
-### 实现
+<span id="&#23454;&#29616;"></span>
+### Cài đặt
 
-??? note "上述实现"
+??? note "Cài đặt ở trên"
     ```rust
     use std::cmp::PartialEq;
     use std::cmp::min;
@@ -486,17 +505,17 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
         let lastpos = patlen - 1;
         let mut delta_2 = Vec::with_capacity(patlen);
         
-        // 第一种情况
+        // Truong hop thu nhat
         // delta_2[j] = lastpos * 2 - j
         for i in 0..patlen {
             delta_2.push(lastpos * 2 - i);
         }
         
-        // 第二种情况
+        // Truong hop thu hai
         // lastpos <= delata2[j] = lastpos * 2 - j
-        let pi = compute_pi(p);  // 计算前缀函数
+        let pi = compute_pi(p);  // Tinh ham tien to
         let mut i = lastpos;
-        let mut last_i = lastpos; // 只是为了初始化
+        let mut last_i = lastpos; // Chi de khoi tao
         while pi[i] > 0 {
             let start;
             let end;
@@ -517,7 +536,7 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
             i = pi[i] - 1;
         }
         
-        // 第三种情况
+        // Truong hop thu ba
         // delata2[j] < lastpos
         let mut j = lastpos;
         let mut t = patlen;
@@ -525,7 +544,7 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
         loop {
             f[j] = t;
             while t < patlen && p[j] != p[t] {
-                // 使用min函数保证后面可能的回退不会覆盖前面的数据
+                // Dung ham min de viec lui trang thai ve sau khong ghi de du lieu phia truoc
                 delta_2[t] = min(delta_2[t], lastpos - 1 - j);
                 t = f[t];
             }
@@ -537,44 +556,47 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
             j -= 1;
         }
         
-        // 没有实际意义，只是为了完整定义
+        // Khong co y nghia thuc te, chi de dinh nghia day du
         delta_2[lastpos] = 0;
         
         delta_2
     }
     ```
 
-## Galil 规则对多次匹配时最坏情况的改善
+<span id="Galil-&#35268;&#21017;&#23545;&#22810;&#27425;&#21305;&#37197;&#26102;&#26368;&#22351;&#24773;&#20917;&#30340;&#25913;&#21892;"></span>
+## Quy tắc Galil cải thiện trường hợp xấu nhất khi khớp nhiều lần
 
-### 关于后缀匹配算法的多次匹配问题
+<span id="&#20851;&#20110;&#21518;&#32512;&#21305;&#37197;&#31639;&#27861;&#30340;&#22810;&#27425;&#21305;&#37197;&#38382;&#39064;"></span>
+### Vấn đề khớp nhiều lần của thuật toán khớp hậu tố
 
-之前的搜索算法只涉及到在 $string$ 中寻找第一次 $pat$ 匹配的情况，而对与在 $string$ 中寻找全部 $pat$ 的匹配的情况有很多不同的算法思路，这个问题的核心关注点是：如何利用之前匹配成功的字符的信息，将最坏情况下的时间复杂度降为线性．
+Các thuật toán tìm kiếm trước đó chỉ xét việc tìm lần khớp đầu tiên của $pat$ trong $string$. Còn với bài toán tìm mọi lần khớp của $pat$ trong $string$, có nhiều hướng thuật toán khác nhau. Trọng tâm của vấn đề là: làm sao tận dụng thông tin về các ký tự đã khớp trước đó để giảm độ phức tạp thời gian trong trường hợp xấu nhất xuống tuyến tính.
 
-在原始的成功匹配后，简单的 $string$ 的指针向后滑动 $patlen$ 距离后重新开始后缀匹配，这会导致最坏情况下回到 $O(mn)$ 的时间复杂度（按照惯例，$m$ 为 $patlen$，$n$ 为 $stringlen$，下同）．
+Sau một lần khớp thành công trong thuật toán gốc, nếu chỉ đơn giản dịch con trỏ của $string$ sang phải $patlen$ rồi bắt đầu lại việc khớp hậu tố, trường hợp xấu nhất sẽ quay về độ phức tạp $O(mn)$ (theo quy ước, $m$ là $patlen$, $n$ là $stringlen$, sau đây cũng vậy).
 
-比如一个极端的例子：$pat$：$\texttt{AAA}$，$string$：$\texttt{AAAAA}\dots$．
+Ví dụ cực đoan: $pat$: $\texttt{AAA}$, $string$: $\texttt{AAAAA}\dots$.
 
-对此 Knuth 提出来的一个方法是用一个「数量有限」的状态的集合来记录 $patlen$ 长度的字符，这种算法保证 $string$ 上每一个字符最多比较一次，但代价是这个「数量有限」的状态可能规模并不小，对于一个字符彼此不相等的 $pat$，需要 $\dfrac{1}{2}m^{2}+m$ 个状态．
+Để xử lý điều này, Knuth từng đề xuất dùng một tập trạng thái "hữu hạn" để ghi lại các ký tự có độ dài $patlen$. Thuật toán này bảo đảm mỗi ký tự trên $string$ được so sánh nhiều nhất một lần, nhưng cái giá là tập trạng thái "hữu hạn" ấy có thể không nhỏ; với một $pat$ mà các ký tự đôi một khác nhau, cần $\dfrac{1}{2}m^{2}+m$ trạng thái.
 
-下面介绍的思路简单且不需要额外预处理开销的 Galil 算法[^galil-rule]．
+Dưới đây là ý tưởng Galil[^galil-rule], đơn giản hơn và không cần thêm chi phí tiền xử lý.
 
-### Galil 规则
+<span id="Galil-&#35268;&#21017;"></span>
+### Quy tắc Galil
 
-假定一个 $pat$，它是某个子串 $U$ 重复 n 次构成的字符串 $UUUU\dots$ 的前缀，那么我们称 $U$ 为 $pat$ 的一个周期．
+Giả sử $pat$ là tiền tố của xâu được tạo bằng cách lặp một xâu con $U$ n lần, tức $UUUU\dots$. Khi đó ta gọi $U$ là một chu kỳ của $pat$.
 
-比如，$pat: \texttt{ABCABCAB}$，是 $\texttt{ABC}$ 的重复 $\texttt{ABCABCABC}$ 的前缀，所以 $\texttt{ABC}$ 的长度 $3$ 就是这个 $pat$ 的周期长度，也即 $pat$ 满足 $pat[i] = pat[i+3]$．
+Ví dụ, $pat: \texttt{ABCABCAB}$ là tiền tố của $\texttt{ABCABCABC}$, tức $\texttt{ABC}$ lặp lại; do đó độ dài $3$ của $\texttt{ABC}$ là độ dài chu kỳ của $pat$, hay $pat$ thỏa $pat[i] = pat[i+3]$.
 
-$pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周期为 $k$，$k\leq patlen$．
+$pat$ ít nhất có một chu kỳ với độ dài bằng chính nó. Ta quy ước chu kỳ ngắn nhất có độ dài $k$, với $k\leq patlen$.
 
-在搜索过程中，假如我们的 $pat$ 成功地完成了一次匹配，那么依照周期的特点，实际上只需将 $string$ 向后滑动 $k$ 个字符，比较这 $k$ 个字符是否对应相等就可以直接判断是否存在 $pat$ 的又一个匹配．
+Trong quá trình tìm kiếm, nếu $pat$ đã hoàn tất một lần khớp thành công, thì theo tính chất chu kỳ, thực ra chỉ cần dịch $string$ sang phải $k$ ký tự và so sánh xem $k$ ký tự đó có tương ứng bằng nhau hay không là có thể trực tiếp xác định có thêm một lần khớp của $pat$ hay không.
 
-为计算这个最短周期的长度，我们假设已知 $pat$ 的相等的一对前缀 - 后缀，设它们的长度为 $\textit{prefixlen}$，那么有 $pat[i] = pat[i+(patlen-\textit{prefixlen})]$．从而得到长度为 $patlen-\textit{prefixlen}$ 的周期，
+Để tính độ dài chu kỳ ngắn nhất này, giả sử ta biết một cặp tiền tố - hậu tố bằng nhau của $pat$, có độ dài $\textit{prefixlen}$. Khi đó $pat[i] = pat[i+(patlen-\textit{prefixlen})]$, nên thu được một chu kỳ có độ dài $patlen-\textit{prefixlen}$.
 
-当我们知道 $pat$ 最长的那一对相等的前缀 - 后缀，我们就得到了 $pat$ 最短的周期．
+Khi biết cặp tiền tố - hậu tố bằng nhau dài nhất của $pat$, ta thu được chu kỳ ngắn nhất của $pat$.
 
-而最长相等的前后缀长度，$\pi[patlastpos]$，已经在我们在计算 $delta_2$ 的过程中，所以实际不需要额外的预处理时间和空间，就能将后缀匹配算法最坏情况的时间复杂度改善成线性．
+Độ dài tiền tố - hậu tố bằng nhau dài nhất, $\pi[patlastpos]$, đã được tính trong quá trình xây dựng $delta_2$, nên thực tế không cần thêm thời gian hay bộ nhớ tiền xử lý để cải thiện độ phức tạp thời gian trong trường hợp xấu nhất của thuật toán khớp hậu tố thành tuyến tính.
 
-??? note "结合上述优化的 BM 的搜索算法最终实现"
+??? note "Cài đặt cuối cùng của thuật toán tìm kiếm BM kết hợp các tối ưu ở trên"
     ```rust
     #[cfg(target_pointer_width = "64")]
     const LARGE: usize = 10_000_000_000_000_000_000;
@@ -586,7 +608,7 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
         pat_bytes: &'a [u8],
         delta_1: [usize; 256],
         delta_2: Vec<usize>,
-        k: usize  // pat的最短周期长度
+        k: usize  // Do dai chu ky ngan nhat cua pat
     }
     
     impl<'a> BMPattern<'a> {
@@ -615,8 +637,9 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
                 
                 string_index -= LARGE;
                 
-                // 如果string_index发生移动，意味着自从上次成功匹配后发生了至少一次的失败匹配．
-                // 此时需要将Galil规则的二次匹配的偏移量归零．
+                // Neu string_index di chuyen, nghia la sau lan khop thanh cong truoc do
+                // da co it nhat mot lan khop that bai.
+                // Luc nay can dua do lech khop lan hai cua quy tac Galil ve 0.
                 if old_string_index < string_index {
                     l = 0;
                 }
@@ -647,23 +670,27 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
     }
     ```
 
-### 最坏情况在实践中性能影响
+<span id="&#26368;&#22351;&#24773;&#20917;&#22312;&#23454;&#36341;&#20013;&#24615;&#33021;&#24433;&#21709;"></span>
+### Ảnh hưởng của trường hợp xấu nhất trong thực tế
 
-从实践的角度上说，理论上的最坏情况并不容易影响性能表现，哪怕是很小的只有 4 的字符集的随机文本测试下这种最坏情况的影响也小到难以观察．
+Từ góc độ thực tế, trường hợp xấu nhất trên lý thuyết không dễ ảnh hưởng đến hiệu năng. Ngay cả khi kiểm thử trên văn bản ngẫu nhiên với bảng chữ cái rất nhỏ chỉ có 4 ký tự, ảnh hưởng của trường hợp xấu nhất này cũng nhỏ đến mức khó quan sát.
 
-也因此如果没有很好地设计，使用 Galil 法则会拖累一点平均的性能表现，但对于一些极端特殊的 $pat$ 和 $string$ 比如例子中的：$pat$：$\texttt{AAA}$，$string$：$\texttt{AAAAA}\dots$，Galil 规则的应用确实会使得性能表现提高数倍．
+Vì vậy nếu không được thiết kế tốt, việc dùng quy tắc Galil có thể làm giảm nhẹ hiệu năng trung bình. Nhưng với một số $pat$ và $string$ cực kỳ đặc biệt, chẳng hạn ví dụ $pat$: $\texttt{AAA}$, $string$: $\texttt{AAAAA}\dots$, việc áp dụng quy tắc Galil thật sự có thể cải thiện hiệu năng lên nhiều lần.
 
-## 改进算法
+<span id="&#25913;&#36827;&#31639;&#27861;"></span>
+## Các thuật toán cải tiến
 
-### Simplified Boyer–Moore 算法
+<span id="Simplified-Boyer–Moore-&#31639;&#27861;"></span>
+### Thuật toán Boyer-Moore đơn giản hóa
 
-BM 算法最复杂的地方就在于 $delta_2$ 表（也就是好后缀表）的构建，而实践中发现，在一般的字符集上的匹配性能主要依靠 $delta_1$ 表（也就是坏字符表），于是出现了仅仅使用 $delta_1$ 表的简化版 BM 算法，通常性能和原版差距很小．
+Phần phức tạp nhất của thuật toán BM là xây dựng bảng $delta_2$ (tức bảng hậu tố tốt). Trong thực tế, người ta nhận thấy hiệu năng khớp trên các bảng chữ cái thông thường chủ yếu dựa vào bảng $delta_1$ (tức bảng ký tự xấu), nên xuất hiện phiên bản BM đơn giản hóa chỉ dùng bảng $delta_1$. Hiệu năng của phiên bản này thường không chênh lệch nhiều so với bản gốc.
 
-### Boyer–Moore–Horspol 算法
+<span id="Boyer–Moore–Horspol-&#31639;&#27861;"></span>
+### Thuật toán Boyer-Moore-Horspool
 
-Horspol 算法同样是基于坏字符的规则，在与 $pat$ 尾部对齐的字符上应用 $delta_1$．效果类似于对原版匹配算法的改进，通常性能优于原版本．
+Thuật toán Horspool cũng dựa trên quy tắc ký tự xấu, áp dụng $delta_1$ lên ký tự thẳng hàng với cuối $pat$. Hiệu quả của nó tương tự cải tiến cho thuật toán khớp gốc và thường tốt hơn phiên bản gốc.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```rust
     pub struct HorspoolPattern<'a> {
         pat_bytes: &'a [u8],
@@ -692,15 +719,16 @@ Horspol 算法同样是基于坏字符的规则，在与 $pat$ 尾部对齐的�
     }
     ```
 
-### Boyer–Moore–Sunday 算法
+<span id="Boyer–Moore–Sunday-&#31639;&#27861;"></span>
+### Thuật toán Boyer-Moore-Sunday
 
-Sunday 算法同样是利用坏字符规则，只不过相比 Horspool 它更进一步，直接关注 $pat$ 尾部对齐的那个字符的下一个字符．
+Thuật toán Sunday cũng sử dụng quy tắc ký tự xấu, nhưng tiến thêm một bước so với Horspool: nó trực tiếp xét ký tự nằm ngay sau ký tự đang thẳng hàng với cuối $pat$.
 
-实现它只需要稍微修改 $delta_1$ 表，相当于在 $patlen+1$ 长度的 $pat$ 上进行构建．
+Để cài đặt, chỉ cần sửa nhẹ bảng $delta_1$, tương đương xây dựng trên $pat$ có độ dài $patlen+1$.
 
-Sunday 算法通常用作一般情况下实现最简单而且平均表现最好之一的实用算法，通常性能比 Horspool 和 BM 要好一点．
+Thuật toán Sunday thường được dùng như một thuật toán thực dụng có cài đặt đơn giản nhất và hiệu năng trung bình thuộc nhóm tốt nhất trong trường hợp thông thường; hiệu năng thường nhỉnh hơn Horspool và BM một chút.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```rust
     pub struct SundayPattern<'a> {
         pat_bytes: &'a [u8],
@@ -743,25 +771,27 @@ Sunday 算法通常用作一般情况下实现最简单而且平均表现最好�
     }
     ```
 
-### BMHBNFS 算法
+<span id="BMHBNFS-&#31639;&#27861;"></span>
+### Thuật toán BMHBNFS
 
-该算法结合了 Horspool 和 Sunday，是 CPython 实现 `stringlib` 模块时用到的 `find` 的算法[^b5s]，以下简称 B5S．
+Thuật toán này kết hợp Horspool và Sunday. Đây là thuật toán `find` được CPython dùng khi cài đặt module `stringlib`[^b5s], sau đây gọi tắt là B5S.
 
-B5S 基本思路是：
+Ý tưởng cơ bản của B5S là:
 
-1.  按照后缀匹配的思路，首先比较 $patlastpos$ 位置对应的字符是否相等，如果相等就比较 $0\dots patlastpos-1$ 对应位置的字符是否相等，如果仍然相等，那么就发现一个匹配；
+1.  Theo cách khớp hậu tố, trước hết so sánh hai ký tự tương ứng ở vị trí $patlastpos$. Nếu bằng nhau, tiếp tục so sánh các vị trí tương ứng $0\dots patlastpos-1$. Nếu vẫn bằng nhau, ta tìm được một lần khớp.
 
-2.  如果任何一个阶段发生不匹配，就进入跳转阶段；
+2.  Nếu bất kỳ giai đoạn nào xảy ra bất khớp, chuyển sang giai đoạn nhảy.
 
-3.  在跳转阶段，首先观察 $patlastpos$ 位置的下一个字符是否在 $pat$ 中，如果不在，直接向右滑动 $patlen+1$，这是 Sunday 算法的最大利用；
+3.  Trong giai đoạn nhảy, trước hết quan sát ký tự ngay sau vị trí $patlastpos$ có nằm trong $pat$ hay không. Nếu không, trượt thẳng sang phải $patlen+1$, đây là cách tận dụng tối đa thuật toán Sunday.
 
-    如果这个字符在 $pat$ 中，对 $patlastpos$ 处的字符利用 $delta_1$ 进行 Horspool 跳转．
+    Nếu ký tự này nằm trong $pat$, dùng $delta_1$ tại ký tự ở vị trí $patlastpos$ để thực hiện bước nhảy Horspool.
 
-而根据时间节省还是空间节省为第一目标，算法会有差别巨大的不同实现．
+Tùy mục tiêu ưu tiên là tiết kiệm thời gian hay tiết kiệm bộ nhớ, thuật toán sẽ có các cách cài đặt rất khác nhau.
 
-#### 时间节省版本
+<span id="&#26102;&#38388;&#33410;&#30465;&#29256;&#26412;"></span>
+#### Phiên bản tiết kiệm thời gian
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```rust
     pub struct B5STimePattern<'a> {
         pat_bytes: &'a [u8],
@@ -836,15 +866,16 @@ B5S 基本思路是：
     }
     ```
 
-该版本的 B5S 性能表现非常理想，在目前介绍的后缀匹配系列算法中是通常情况下是最快的．
+Phiên bản B5S này có hiệu năng rất lý tưởng; trong loạt thuật toán khớp hậu tố đang được giới thiệu, nó thường là phiên bản nhanh nhất trong các trường hợp thông thường.
 
-#### 空间节省版本
+<span id="&#31354;&#38388;&#33410;&#30465;&#29256;&#26412;"></span>
+#### Phiên bản tiết kiệm bộ nhớ
 
-同样在 CPython `stringlib` 中实现，使用了两个整数近似取代了字符表和 $delta_1$ 的作用，极大地节省了空间：
+Phiên bản này cũng được cài đặt trong `stringlib` của CPython. Nó dùng hai số nguyên để xấp xỉ vai trò của bảng ký tự và $delta_1$, nhờ đó tiết kiệm bộ nhớ đáng kể:
 
-1.  用一个简单的 Bloom 过滤器取代字符表（alphabet）
+1.  Dùng một Bloom filter đơn giản để thay thế bảng ký tự (alphabet).
 
-    ???+ note "实现"
+    ???+ note "Cài đặt"
         ```rust
         pub struct BytesBloomFilter {
             mask: u64,
@@ -867,23 +898,23 @@ B5S 基本思路是：
         }
         ```
 
-    Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来极大地节省存储空间的 `Set` 类型的数据结构，它的特点是会将集合中不存在的项误判为存在（False Positives，简称 FP），但不会把集合中存在的项判断为不存在（False Negatives，简称 FN），因此使用它可能会因为 FP 而没有得到最大的字符跳转，但不会因为 FN 而跳过本应匹配的字符．
+    Thiết kế Bloom filter đánh đổi độ chính xác (thực tế cả thời gian chạy) để tiết kiệm đáng kể không gian lưu trữ cho cấu trúc dữ liệu kiểu `Set`. Đặc điểm của nó là có thể phán đoán nhầm một phần tử không thuộc tập thành thuộc tập (False Positives, viết tắt FP), nhưng không phán đoán nhầm một phần tử thuộc tập thành không thuộc tập (False Negatives, viết tắt FN). Vì vậy khi dùng nó, FP có thể khiến ta không đạt được bước nhảy ký tự lớn nhất, nhưng FN sẽ không làm ta bỏ qua ký tự đáng lẽ phải khớp.
 
-    理论上分析，上述「Bloom 过滤器」的实现在 $pat$ 长度在 50 个 Bytes 时，FP 概率约为 0.5，而 $pat$ 长度在 10 个 Bytes 时，FP 概率约为 0.15．
+    Về mặt lý thuyết, với cài đặt "Bloom filter" ở trên, khi độ dài $pat$ là 50 byte, xác suất FP khoảng 0.5; khi độ dài $pat$ là 10 byte, xác suất FP khoảng 0.15.
 
-    虽然这不是一个标准的 Bloom 过滤器，首先它实际上没有使用一个真正的哈希函数，实际上它只是一个字符映射，将 0-255 的字节映射为它的前六位构成的数．
+    Tuy nhiên đây không phải một Bloom filter chuẩn. Trước hết, nó không dùng một hàm băm thật sự; thực chất nó chỉ là một phép ánh xạ ký tự, ánh xạ byte 0-255 thành số được tạo từ sáu bit thấp của byte đó.
 
-    但考虑到我们在内存上的进行字符搜索，这种简化就非常重要，即使用目前已知最快的非加密哈希算法 [xxHash](https://cyan4973.github.io/xxHash/)，计算所需要的时间仍比它高一个数量级．
+    Nhưng xét đến việc ta đang tìm kiếm ký tự trong bộ nhớ, sự đơn giản hóa này rất quan trọng. Ngay cả khi dùng thuật toán băm phi mật mã nhanh nhất hiện biết là [xxHash](https://cyan4973.github.io/xxHash/), thời gian tính toán cần thiết vẫn cao hơn nó một bậc độ lớn.
 
-    另外当 pat 在 30 字节以下时，为了达到最佳的 FP 概率，需要不止一个哈希函数．但这么做意义不大，因为用装有两个 `u128` 数字的数组就已经可以构建字符表的全字符集．
+    Ngoài ra, khi $pat$ ngắn hơn 30 byte, để đạt xác suất FP tốt nhất, cần nhiều hơn một hàm băm. Nhưng làm vậy không mấy ý nghĩa, vì chỉ cần một mảng chứa hai số `u128` là đã có thể xây dựng bảng ký tự cho toàn bộ bảng chữ cái.
 
-2.  使用 $delta_1(pat[patlastpos])$ 代替整个 $delta_1$
+2.  Dùng $delta_1(pat[patlastpos])$ thay cho toàn bộ $delta_1$.
 
-    观察 $delta_1$，最常使用处就是后缀匹配时第一个字符就不匹配是最常见的不匹配的情况，于是令 `skip = delta1(pat[patlastpos])`，
+    Quan sát $delta_1$, ta thấy vị trí được dùng thường xuyên nhất là trường hợp bất khớp phổ biến nhất: ký tự đầu tiên trong khớp hậu tố đã không khớp. Vì vậy đặt `skip = delta1(pat[patlastpos])`.
 
-    在第一阶段不匹配时，直接向下滑动 `skip` 个字符；但当第二阶段不配时，因为缺乏整个 $delta_1$ 的信息，只能向下滑动一个字符．
+    Khi bất khớp ở giai đoạn đầu, dịch thẳng sang phải `skip` ký tự; nhưng khi bất khớp ở giai đoạn thứ hai, vì thiếu thông tin của toàn bộ $delta_1$, ta chỉ có thể dịch sang phải một ký tự.
 
-    ???+ note "实现"
+    ???+ note "Cài đặt"
         ```rust
         pub struct B5SSpacePattern<'a> {
             pat_bytes: &'a [u8],
@@ -961,32 +992,34 @@ B5S 基本思路是：
         }
         ```
 
-    这个版本的算法相较于前面的后缀匹配算法不够快，但差距不大，性能仍然优于 KMP，得益于它至多两个 `u64` 的整数的优秀空间复杂度．
+    So với các thuật toán khớp hậu tố phía trước, phiên bản này không nhanh bằng nhưng chênh lệch không lớn. Nhờ độ phức tạp bộ nhớ rất tốt, tối đa chỉ hai số nguyên `u64`, hiệu năng của nó vẫn tốt hơn KMP.
 
-## 理论分析
+<span id="&#29702;&#35770;&#20998;&#26512;"></span>
+## Phân tích lý thuyết
 
-以下是一般字符集下各算法的表现，纵坐标类似于执行开销（cost 指匹配成功 m 个字符后失配时的代价，skip 指发生失配时向下滑动 k 个字符的概率），越小性能越好．横坐标为模式字符串 pat 的长度：
+Dưới đây là biểu hiện của các thuật toán trên bảng chữ cái thông thường. Trục tung tương tự chi phí thực thi (`cost` chỉ chi phí khi bất khớp sau khi đã khớp thành công m ký tự, `skip` chỉ xác suất dịch sang phải k ký tự khi xảy ra bất khớp); giá trị càng nhỏ thì hiệu năng càng tốt. Trục hoành là độ dài của xâu mẫu $pat$:
 
-![字符串搜索算法性能对比图](./images/BM/plot256.svg)
+![Biểu đồ so sánh hiệu năng các thuật toán tìm kiếm xâu](./images/BM/plot256.svg)
 
-在较小字符集（DNA {A, C, T, G} 碱基对序列）中的表现：
+Biểu hiện trên bảng chữ cái nhỏ hơn (chuỗi cặp base DNA {A, C, T, G}):
 
-![小字符集下字符串搜索算法性能对比图](./images/BM/plot4.svg)
+![Biểu đồ so sánh hiệu năng thuật toán tìm kiếm xâu trên bảng chữ cái nhỏ](./images/BM/plot4.svg)
 
-综上，在较大的字符集，比如日常搜索的过程中，BoyerMoore 系列算法的优越表现，其中主要依赖 $delta_1$ 表实现字符跳转；
+Tóm lại, trên các bảng chữ cái lớn hơn, chẳng hạn trong quá trình tìm kiếm thường ngày, họ thuật toán Boyer-Moore có hiệu năng vượt trội chủ yếu nhờ bảng $delta_1$ để thực hiện bước nhảy ký tự.
 
-另一方面，在较小的字符集里，$delta_1$ 的作用下降，而 $delta_2$ 的作用得到了体现．
+Mặt khác, trên bảng chữ cái nhỏ hơn, vai trò của $delta_1$ giảm xuống, còn vai trò của $delta_2$ được thể hiện rõ hơn.
 
-如果有一定富裕空间的情况下，完整的空间复杂度为 $O(m)$ 的 BoyerMoore 算法更加通用，综合表现最优．
+Nếu có đủ không gian dư, thuật toán Boyer-Moore đầy đủ với độ phức tạp bộ nhớ $O(m)$ tổng quát hơn và có biểu hiện tổng hợp tốt nhất.
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
-[^bm]: [1977 年 Boyer–Moore 算法论文](https://dl.acm.org/doi/10.1145/359842.359859)
+[^bm]: [Bài báo năm 1977 về thuật toán Boyer-Moore](https://dl.acm.org/doi/10.1145/359842.359859)
 
-[^kmp]: [1977 年 KMP 算法论文](https://epubs.siam.org/doi/abs/10.1137/0206024)
+[^kmp]: [Bài báo năm 1977 về thuật toán KMP](https://epubs.siam.org/doi/abs/10.1137/0206024)
 
-[^rytter]: [1980 年 Rytter 纠正 Knuth 的论文](https://epubs.siam.org/doi/10.1137/0209037)
+[^rytter]: [Bài báo năm 1980 của Rytter sửa lỗi Knuth](https://epubs.siam.org/doi/10.1137/0209037)
 
-[^galil-rule]: [1979 年介绍 Galil 算法的论文](https://doi.org/10.1145%2F359146.359148)
+[^galil-rule]: [Bài báo năm 1979 giới thiệu thuật toán Galil](https://doi.org/10.1145%2F359146.359148)
 
-[^b5s]: [B5S 算法的介绍](http://effbot.org/zone/stringlib.htm#BMHBNFS)
+[^b5s]: [Giới thiệu thuật toán B5S](http://effbot.org/zone/stringlib.htm#BMHBNFS)

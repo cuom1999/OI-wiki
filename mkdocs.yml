@@ -204,22 +204,22 @@ nav:
     - Hash xâu: string/hash.md
     - Cây từ điển (Trie): string/trie.md
     - Hàm tiền tố và thuật toán KMP: string/kmp.md
-    - Boyer–Moore 算法: string/bm.md
+    - Thuật toán Boyer-Moore: string/bm.md
     - Hàm Z (KMP mở rộng): string/z-func.md
     - Máy tự động AC: string/ac-automaton.md
-    - 后缀数组 (SA):
-      - 后缀数组简介: string/sa.md
-      - 最优原地后缀排序算法: string/sa-optimal-inplace.md
-    - 后缀自动机 (SAM): string/sam.md
-    - 后缀平衡树: string/suffix-bst.md
-    - 广义后缀自动机: string/general-sam.md
-    - 后缀树: string/suffix-tree.md
+    - Mảng hậu tố (SA):
+      - Giới thiệu mảng hậu tố: string/sa.md
+      - Thuật toán sắp xếp hậu tố tại chỗ tối ưu: string/sa-optimal-inplace.md
+    - Hậu tố tự động (SAM): string/sam.md
+    - Cây cân bằng hậu tố: string/suffix-bst.md
+    - Hậu tố tự động tổng quát: string/general-sam.md
+    - Cây hậu tố: string/suffix-tree.md
     - Manacher: string/manacher.md
     - 回文树: string/pam.md
-    - 序列自动机: string/seq-automaton.md
-    - 最小表示法: string/minimal-string.md
-    - Lyndon 分解: string/lyndon.md
-    - Main–Lorentz 算法: string/main-lorentz.md
+    - Sequence automaton: string/seq-automaton.md
+    - Biểu diễn nhỏ nhất: string/minimal-string.md
+    - Phân tích Lyndon: string/lyndon.md
+    - Thuật toán Main-Lorentz: string/main-lorentz.md
   - Toán:
     - Tổng quan toán học: math/index.md
     - 布尔代数: math/boolean-algebra.md

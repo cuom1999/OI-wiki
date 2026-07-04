@@ -2,21 +2,21 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-constexpr int MAXN = 2000000;  // 双倍字符串长度
-constexpr int CHAR_NUM = 30;   // 字符集个数，注意修改下方的 (-'a')
+constexpr int MAXN = 2000000;  // Twice the total string length.
+constexpr int CHAR_NUM = 30;   // Alphabet size; update (-'a') below as needed.
 
 struct exSAM {
-  int len[MAXN];             // 节点长度
-  int link[MAXN];            // 后缀链接，link
-  int next[MAXN][CHAR_NUM];  // 转移
-  int tot;                   // 节点总数：[0, tot)
+  int len[MAXN];             // Node length.
+  int link[MAXN];            // Suffix link.
+  int next[MAXN][CHAR_NUM];  // Transitions.
+  int tot;                   // Total number of nodes: [0, tot).
 
-  void init() {  // 初始化函数
+  void init() {  // Initialization function.
     tot = 1;
     link[0] = -1;
   }
 
-  int insertSAM(int last, int c) {  // last 为父 c 为子
+  int insertSAM(int last, int c) {  // last is the parent, c is the child.
     int cur = next[last][c];
     if (len[cur]) return cur;
     len[cur] = len[last] + 1;
@@ -52,8 +52,8 @@ struct exSAM {
   }
 
   int insertTrie(int cur, int c) {
-    if (next[cur][c]) return next[cur][c];  // 已有该节点 直接返回
-    return next[cur][c] = tot++;            // 无该节点 建立节点
+    if (next[cur][c]) return next[cur][c];  // Return if the node exists.
+    return next[cur][c] = tot++;            // Otherwise create the node.
   }
 
   void insert(const string &s) {
@@ -65,14 +65,14 @@ struct exSAM {
     int root = 0;
     for (int i = 0; i < n; ++i)
       root =
-          insertTrie(root, s[i] - 'a');  // 一边插入一边更改所插入新节点的父节点
+          insertTrie(root, s[i] - 'a');  // Insert while updating the parent.
   }
 
   void build() {
     queue<pair<int, int>> q;
     for (int i = 0; i < CHAR_NUM; ++i)
       if (next[0][i]) q.push({i, 0});
-    while (!q.empty()) {  // 广搜遍历
+    while (!q.empty()) {  // BFS traversal.
       auto item = q.front();
       q.pop();
       auto last = insertSAM(item.second, item.first);
