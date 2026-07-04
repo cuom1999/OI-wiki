@@ -274,6 +274,11 @@ MkDocs source layout intact.
   `docs/graph/tree-hash.md`, `docs/graph/tree-random-walk.md`: translated the
   remaining tree subsection pages covering dynamic centroid decomposition, AHU
   tree isomorphism, tree hashing, and random walks on trees.
+- `docs/graph/dag.md`, `docs/graph/topo.md`,
+  `docs/graph/shortest-path.md`, `docs/graph/diff-constraints.md`,
+  `docs/graph/kth-path.md`, `docs/graph/mod-shortest-path.md`: translated DAG,
+  topological sorting, shortest-path algorithms, difference constraints,
+  k-shortest walks, and modular shortest-path material.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

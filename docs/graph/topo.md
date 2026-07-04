@@ -1,122 +1,122 @@
 author: marscheng1
 
-## 定义
+## Định nghĩa
 
-拓扑排序（Topological sorting）要解决的问题是如何给一个有向无环图的所有节点排序．
+Sắp xếp topo (Topological sorting) giải quyết bài toán sắp thứ tự tất cả các đỉnh của một đồ thị có hướng không chu trình.
 
-我们可以拿大学每学期排课的例子来描述这个过程，比如学习大学课程中有：「程序设计」，「算法语言」，「高等数学」，「离散数学」，「编译技术」，「普通物理」，「数据结构」，「数据库系统」等．按照例子中的排课，当我们想要学习「数据结构」的时候，就必须先学会「离散数学」，学习完这门课后就获得了学习「编译技术」的前置条件．当然，「编译技术」还有一个更加前的课程「算法语言」．这些课程就相当于几个顶点 $u$, 顶点之间的有向边 $(u,v)$ 就相当于学习课程的顺序．教务处安排这些课程，使得在逻辑关系符合的情况下排出课表，就是拓扑排序的过程．
+Ta có thể mô tả quá trình này bằng ví dụ xếp lịch học theo từng học kỳ ở đại học. Giả sử các môn học gồm "Lập trình", "Ngôn ngữ thuật toán", "Giải tích cao cấp", "Toán rời rạc", "Kỹ thuật biên dịch", "Vật lý đại cương", "Cấu trúc dữ liệu", "Hệ quản trị cơ sở dữ liệu", v.v. Theo quan hệ tiên quyết trong ví dụ, muốn học "Cấu trúc dữ liệu" thì trước đó phải học "Toán rời rạc"; sau khi học xong môn này, ta có điều kiện tiên quyết để học "Kỹ thuật biên dịch". Tất nhiên, "Kỹ thuật biên dịch" còn có một môn học trước đó nữa là "Ngôn ngữ thuật toán". Các môn học này tương ứng với các đỉnh $u$, còn cạnh có hướng $(u,v)$ giữa các đỉnh tương ứng với thứ tự học. Việc phòng đào tạo sắp xếp các môn này thành một thời khóa biểu thỏa mãn các quan hệ logic chính là quá trình sắp xếp topo.
 
 ![topo](images/topo-example-1.svg)
 
-但是如果某一天排课的老师打瞌睡了，说想要学习 数据结构，还得先学 操作系统，而 操作系统 的前置课程又是 数据结构，那么到底应该先学哪一个（不考虑同时学习的情况）？在这里，数据结构 和 操作系统 间就出现了一个环，显然同学们现在没办法弄清楚自己需要先学什么了，也就没办法进行拓扑排序了．因为如果有向图中存在环路，那么我们就没办法进行拓扑排序．
+Nhưng nếu một ngày nào đó người xếp lịch lơ đãng và ghi rằng muốn học Cấu trúc dữ liệu thì phải học Hệ điều hành trước, trong khi môn tiên quyết của Hệ điều hành lại là Cấu trúc dữ liệu, vậy rốt cuộc phải học môn nào trước, nếu không xét trường hợp học đồng thời? Ở đây giữa Cấu trúc dữ liệu và Hệ điều hành đã xuất hiện một chu trình. Rõ ràng sinh viên không còn xác định được mình cần học gì trước, nên cũng không thể sắp xếp topo. Nếu trong đồ thị có hướng tồn tại chu trình, ta không thể thực hiện sắp xếp topo.
 
-因此我们可以说 在一个 [DAG（有向无环图）](./dag.md) 中，我们将图中的顶点以线性方式进行排序，使得对于任何的顶点 $u$ 到 $v$ 的有向边 $(u,v)$, 都可以有 $u$ 在 $v$ 的前面．
+Vì vậy, trong một [DAG, tức đồ thị có hướng không chu trình](./dag.md), ta sắp các đỉnh của đồ thị thành một thứ tự tuyến tính sao cho với mọi cạnh có hướng $(u,v)$ từ đỉnh $u$ đến đỉnh $v$, đỉnh $u$ đều đứng trước đỉnh $v$.
 
-还有给定一个 DAG，如果从 $i$ 到 $j$ 有边，则认为 $j$ 依赖于 $i$．如果 $i$ 到 $j$ 有路径（$i$ 可达 $j$），则称 $j$ 间接依赖于 $i$．
+Với một DAG cho trước, nếu có cạnh từ $i$ đến $j$, ta nói $j$ phụ thuộc vào $i$. Nếu có đường đi từ $i$ đến $j$, tức $j$ có thể đạt được từ $i$, thì gọi $j$ là phụ thuộc gián tiếp vào $i$.
 
-拓扑排序的目标是将所有节点排序，使得排在前面的节点不能依赖于排在后面的节点．
+Mục tiêu của sắp xếp topo là sắp thứ tự tất cả các đỉnh sao cho một đỉnh đứng trước không phụ thuộc vào một đỉnh đứng sau.
 
-## AOV 网
+## Mạng AOV
 
-日常生活中，一项大的工程可以看作是由若干个子工程组成的集合，这些子工程之间必定存在一定的先后顺序，即某些子工程必须在其他的一些子工程完成后才能开始．
+Trong đời sống, một công trình lớn có thể được xem là tập hợp của nhiều công việc con. Giữa các công việc con này thường tồn tại một thứ tự trước sau nhất định, nghĩa là một số công việc con chỉ có thể bắt đầu sau khi một số công việc con khác đã hoàn thành.
 
-我们用有向图来表现子工程之间的先后关系，子工程之间的先后关系为有向边，这种有向图称为顶点活动网络，即 **AOV 网  (Activity On Vertex Network)**．一个 AOV 网必定是一个有向无环图，即不带有回路．与 DAG 不同的是，AOV 的活动都表示在顶点上．（上面的例图即为一个 AOV 网）
+Ta dùng đồ thị có hướng để biểu diễn quan hệ trước sau giữa các công việc con, trong đó quan hệ trước sau là các cạnh có hướng. Loại đồ thị có hướng này được gọi là mạng hoạt động trên đỉnh, tức **mạng AOV (Activity On Vertex Network)**. Một mạng AOV nhất thiết là một đồ thị có hướng không chu trình, tức không có vòng. Điểm đặc trưng của AOV là các hoạt động đều được biểu diễn trên đỉnh. Hình minh họa ở trên chính là một mạng AOV.
 
-在 AOV 网中，顶点表示活动，弧表示活动间的优先关系．AOV 网中不应该出现环，这样就能够找到一个顶点序列，使得每个顶点代表的活动的前驱活动都排在该顶点的前面，这样的序列称为拓扑序列（一个 AOV 网的拓扑序列不是唯一的），由 AOV 网构造拓扑序列的过程称为拓扑排序．因此，拓扑排序也可以解释为将 AOV 网中所有活动排成一个序列，使得每个活动的前驱活动都排在该活动的前面（一个 AOV 网中的拓扑排序也不是唯一的）．
+Trong mạng AOV, đỉnh biểu diễn hoạt động, còn cung biểu diễn quan hệ ưu tiên giữa các hoạt động. Mạng AOV không nên có chu trình; khi đó ta có thể tìm được một dãy đỉnh sao cho mọi hoạt động tiền nhiệm của hoạt động do mỗi đỉnh biểu diễn đều đứng trước đỉnh đó. Dãy như vậy được gọi là dãy topo, và dãy topo của một mạng AOV không nhất thiết là duy nhất. Quá trình xây dựng dãy topo từ mạng AOV được gọi là sắp xếp topo. Do đó, sắp xếp topo cũng có thể được hiểu là sắp tất cả các hoạt động trong mạng AOV thành một dãy sao cho hoạt động tiền nhiệm của mỗi hoạt động đều đứng trước hoạt động đó. Kết quả sắp xếp topo trong một mạng AOV cũng không nhất thiết là duy nhất.
 
--   前驱活动：有向边起点的活动称为终点的前驱活动（只有当一个活动的前驱全部都完成后，这个活动才能进行）．
+-   Hoạt động tiền nhiệm: hoạt động ở đầu xuất phát của cạnh có hướng được gọi là hoạt động tiền nhiệm của hoạt động ở đầu kết thúc. Một hoạt động chỉ có thể được thực hiện sau khi tất cả các hoạt động tiền nhiệm của nó đã hoàn thành.
 
--   后继活动：有向边终点的活动称为起点的后继活动．
+-   Hoạt động kế nhiệm: hoạt động ở đầu kết thúc của cạnh có hướng được gọi là hoạt động kế nhiệm của hoạt động ở đầu xuất phát.
 
-检测 AOV 网中是否带环的方式是构造拓扑序列，看是否包含所有顶点．
+Cách kiểm tra mạng AOV có chu trình hay không là xây dựng dãy topo và xem dãy đó có chứa tất cả các đỉnh hay không.
 
-### 构造拓扑序列步骤
+### Các bước xây dựng dãy topo
 
-1.  从图中选择一个入度为零的点．
-2.  输出该顶点，从图中删除此顶点及其所有的出边．
+1.  Chọn một đỉnh có bậc vào bằng không trong đồ thị.
+2.  Xuất đỉnh đó, rồi xóa đỉnh này và tất cả các cạnh đi ra từ nó khỏi đồ thị.
 
-重复上面两步，直到所有顶点都输出，拓扑排序完成，或者图中不存在入度为零的点，此时说明图是有环图，拓扑排序无法完成，陷入死锁．
+Lặp lại hai bước trên cho đến khi tất cả các đỉnh đã được xuất ra, khi đó sắp xếp topo hoàn tất; hoặc cho đến khi trong đồ thị không còn đỉnh nào có bậc vào bằng không, khi đó đồ thị có chu trình, sắp xếp topo không thể hoàn thành và quá trình rơi vào bế tắc.
 
-## 关键路径和 AOE 网
+## Đường găng và mạng AOE
 
-与 AOV 网对应的是 **AOE 网（Activity On Edge Network)** 即边表示活动的网．AOE 网是一个带权的有向无环图，其中，顶点表示事件，弧表示活动持续的时间．通常，AOE 网可以用来估算工程的完成时间．AOE 网应该是无环的，且存在唯一入度为零的起始顶点（源点），以及唯一出度为零的完成顶点（汇点）．
+Tương ứng với mạng AOV là **mạng AOE (Activity On Edge Network)**, tức mạng trong đó cạnh biểu diễn hoạt động. Mạng AOE là một đồ thị có hướng không chu trình có trọng số, trong đó đỉnh biểu diễn sự kiện, còn cung biểu diễn thời gian kéo dài của hoạt động. Thông thường, mạng AOE có thể được dùng để ước lượng thời gian hoàn thành một công trình. Mạng AOE phải không có chu trình, đồng thời có đúng một đỉnh bắt đầu có bậc vào bằng không, gọi là nguồn, và đúng một đỉnh kết thúc có bậc ra bằng không, gọi là đích.
 
 ![topo](images/topo-example-2.svg)
 
-AOE 网中的有些活动是可以并行进行的，所以完成整个工程的最短时间是从开始点到完成点的最长活动路径长度（这里所说的路径长度是指路径上各活动的持续时间之和，即弧的权值之和，不是路径上弧的数目）．因为一项工程需要完成所有工程内的活动，所以最长的活动路径也是关键路径，它决定工程完成的总时间．
+Trong mạng AOE, một số hoạt động có thể được tiến hành song song. Vì vậy thời gian ngắn nhất để hoàn thành toàn bộ công trình là độ dài của đường hoạt động dài nhất từ điểm bắt đầu đến điểm kết thúc. Ở đây, độ dài đường đi là tổng thời gian kéo dài của các hoạt động trên đường đi, tức tổng trọng số của các cung, chứ không phải số lượng cung trên đường đi. Vì một công trình cần hoàn thành tất cả hoạt động bên trong nó, đường hoạt động dài nhất cũng là đường găng, và nó quyết định tổng thời gian hoàn thành công trình.
 
-### AOE 网的相关基本概念
+### Một số khái niệm cơ bản liên quan đến mạng AOE
 
--   活动：AOE 网中，弧表示活动．弧的权值表示活动持续的时间，活动在其前驱事件（即该弧的起点）被触发后开始．
+-   Hoạt động: trong mạng AOE, cung biểu diễn hoạt động. Trọng số của cung biểu diễn thời gian kéo dài của hoạt động; hoạt động bắt đầu sau khi sự kiện tiền nhiệm của nó, tức đầu xuất phát của cung, được kích hoạt.
 
--   事件：AOE 网中，顶点表示事件，事件在它的所有前驱活动（即指向该边的弧）全部完成被触发．
+-   Sự kiện: trong mạng AOE, đỉnh biểu diễn sự kiện. Một sự kiện được kích hoạt sau khi tất cả các hoạt động tiền nhiệm của nó, tức các cung đi vào sự kiện đó, đã hoàn thành.
 
--   事件（顶点）$v_i$ 的最早发生时间：该事件最早可能的发生时间，记为 $ve(i)$，它决定了以该顶点开始的活动的最早发生时间，显然源点的最早发生时间为 0．因为事件发生需要其所有前驱活动全部完成，所以它等于初始点到该顶点的路径长度的最大值，写成递推：$ve(i) = \max\{ve(j) + val^j_i ~\vert~ j \in pre_i\}$，其中 $val^j_i$ 表示 j 到 i 的边的权值（即 j 到 i 的活动的持续时间），$pre_i$ 表示 i 的所有前驱事件的集合．
+-   Thời điểm xảy ra sớm nhất của sự kiện, tức đỉnh $v_i$: thời điểm sớm nhất mà sự kiện này có thể xảy ra, ký hiệu là $ve(i)$. Nó quyết định thời điểm xảy ra sớm nhất của các hoạt động bắt đầu từ đỉnh này. Rõ ràng thời điểm xảy ra sớm nhất của nguồn là 0. Vì một sự kiện chỉ xảy ra sau khi tất cả hoạt động tiền nhiệm của nó đã hoàn thành, giá trị này bằng độ dài lớn nhất của đường đi từ điểm bắt đầu đến đỉnh đó. Viết dưới dạng truy hồi: $ve(i) = \max\{ve(j) + val^j_i ~\vert~ j \in pre_i\}$, trong đó $val^j_i$ biểu diễn trọng số cạnh từ $j$ đến $i$, tức thời gian kéo dài của hoạt động từ $j$ đến $i$, còn $pre_i$ biểu diễn tập tất cả các sự kiện tiền nhiệm của $i$.
 
--   事件（顶点）$v_i$ 的最迟发生时间：在不推迟整个工期的前提下，该事件最晚能容忍的发生时间，记为 $vl(i)$，它决定了所有以该状态结束的活动的最迟发生时间，它等于事件的所有后继活动的最迟开始时间的最小值，即 $vl(i) = \min\{vl(j) - val^i_j ~\vert~ j \in nxt_i\}$，其中 $val^i_j$ 表示 i 到 j 的边的权值（即 i 到 j 的活动的持续时间），$nxt_i$ 表示 i 的所有后驱事件的集合．
+-   Thời điểm xảy ra muộn nhất của sự kiện, tức đỉnh $v_i$: thời điểm muộn nhất mà sự kiện này còn có thể xảy ra mà không làm chậm toàn bộ tiến độ, ký hiệu là $vl(i)$. Nó quyết định thời điểm xảy ra muộn nhất của tất cả các hoạt động kết thúc tại trạng thái này. Giá trị này bằng giá trị nhỏ nhất trong các thời điểm bắt đầu muộn nhất của mọi hoạt động kế nhiệm của sự kiện, tức $vl(i) = \min\{vl(j) - val^i_j ~\vert~ j \in nxt_i\}$, trong đó $val^i_j$ biểu diễn trọng số cạnh từ $i$ đến $j$, tức thời gian kéo dài của hoạt động từ $i$ đến $j$, còn $nxt_i$ biểu diễn tập tất cả các sự kiện kế nhiệm của $i$.
 
--   活动（弧）$(u, v)$ 的最早开始时间：该活动最早可能的发生时间，记为 $e(u,v)$，显然，它等于其前驱事件的最早发生时间，即 $e(u,v)=ve(u)$．
+-   Thời điểm bắt đầu sớm nhất của hoạt động, tức cung $(u, v)$: thời điểm sớm nhất mà hoạt động này có thể xảy ra, ký hiệu là $e(u,v)$. Rõ ràng nó bằng thời điểm xảy ra sớm nhất của sự kiện tiền nhiệm, tức $e(u,v)=ve(u)$.
 
--   活动（弧）$(u, v)$ 的最迟开始时间：在不推迟整个工期的前提下，活动开始最晚能容忍的时间，记为 $l(u,v)$，它等于其后继事件的最迟发生时间 - 该事件的持续时间（权值），即 $l(u,v)=vl(v)-val^u_v$，其中 $val^u_v$ 表示 u 到 v 的边的权值（即 u 到 v 的活动的持续时间）．
+-   Thời điểm bắt đầu muộn nhất của hoạt động, tức cung $(u, v)$: thời điểm muộn nhất mà hoạt động có thể bắt đầu mà không làm chậm toàn bộ tiến độ, ký hiệu là $l(u,v)$. Nó bằng thời điểm xảy ra muộn nhất của sự kiện kế nhiệm trừ thời gian kéo dài của hoạt động, tức trọng số của cung: $l(u,v)=vl(v)-val^u_v$, trong đó $val^u_v$ biểu diễn trọng số cạnh từ $u$ đến $v$, tức thời gian kéo dài của hoạt động từ $u$ đến $v$.
 
--   关键路径：AOE 网中从源点到汇点的最长路径的长度．
+-   Đường găng: độ dài đường đi dài nhất từ nguồn đến đích trong mạng AOE.
 
--   关键活动：即关键路径上的活动，它的最早开始时间和最迟开始时间相等．
+-   Hoạt động găng: hoạt động nằm trên đường găng; thời điểm bắt đầu sớm nhất và muộn nhất của nó bằng nhau.
 
-### 递推求最早和最迟发生时间
+### Truy hồi thời điểm xảy ra sớm nhất và muộn nhất
 
-按拓扑顺序求，最早发生时间从前往后递推，最迟发生时间从后往前递推，递推公式如上 **AOE 网的相关基本概念** 所示．
+Ta tính theo thứ tự topo: thời điểm xảy ra sớm nhất được truy hồi từ trước ra sau, còn thời điểm xảy ra muộn nhất được truy hồi từ sau ra trước. Công thức truy hồi đã được nêu trong phần **Một số khái niệm cơ bản liên quan đến mạng AOE** ở trên.
 
-## Kahn 算法
+## Thuật toán Kahn
 
-### 过程
+### Quy trình
 
-初始状态下，集合 $S$ 装着所有入度为 $0$ 的点，$L$ 是一个空列表．
+Ban đầu, tập $S$ chứa tất cả các đỉnh có bậc vào bằng $0$, còn $L$ là một danh sách rỗng.
 
-每次从 $S$ 中取出一个点 $u$（可以随便取）放入 $L$, 然后将 $u$ 的所有边 $(u, v_1), (u, v_2), (u, v_3) \cdots$ 删除．对于边 $(u, v)$，若将该边删除后点 $v$ 的入度变为 $0$，则将 $v$ 放入 $S$ 中．
+Mỗi lần, lấy một đỉnh $u$ bất kỳ từ $S$ và đưa vào $L$, sau đó xóa tất cả các cạnh $(u, v_1), (u, v_2), (u, v_3) \cdots$ xuất phát từ $u$. Với mỗi cạnh $(u, v)$, nếu sau khi xóa cạnh này bậc vào của đỉnh $v$ trở thành $0$, thì đưa $v$ vào $S$.
 
-不断重复以上过程，直到集合 $S$ 为空．检查图中是否存在任何边，如果有，那么这个图一定有环路，否则返回 $L$，$L$ 中顶点的顺序就是构造拓扑序列的结果．
+Lặp lại quá trình trên cho đến khi tập $S$ rỗng. Sau đó kiểm tra trong đồ thị còn cạnh nào không. Nếu còn, đồ thị chắc chắn có chu trình; ngược lại trả về $L$, và thứ tự các đỉnh trong $L$ chính là dãy topo đã xây dựng.
 
-首先看来自 [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm) 的伪代码
+Trước hết, xét mã giả từ [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm):
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```text
-    L ← Empty list that will contain the sorted elements
-    S ← Set of all nodes with no incoming edges
-    while S is not empty do
-        remove a node n from S
-        insert n into L
-        for each node m with an edge e from n to m do
-            remove edge e from the graph
-            if m has no other incoming edges then
-                insert m into S
-    if graph has edges then
-        return error (graph has at least one cycle)
+    L ← danh sách rỗng sẽ chứa các phần tử sau khi sắp xếp
+    S ← tập tất cả các nút không có cạnh đi vào
+    while S không rỗng do
+        lấy một nút n khỏi S
+        đưa n vào L
+        for mỗi nút m có một cạnh e từ n đến m do
+            xóa cạnh e khỏi đồ thị
+            if m không còn cạnh đi vào nào khác then
+                đưa m vào S
+    if đồ thị còn cạnh then
+        return lỗi (đồ thị có ít nhất một chu trình)
     else
-        return L (a topologically sorted order)
+        return L (một thứ tự topo)
     ```
 
-代码的核心是维持一个入度为 0 的顶点的集合．
+Cốt lõi của mã là duy trì một tập các đỉnh có bậc vào bằng 0.
 
-可以参考该图
+Có thể tham khảo hình sau:
 
 ![topo](images/topo-example.svg)
 
-对其排序的结果就是：2 -> 8 -> 0 -> 3 -> 7 -> 1 -> 5 -> 6 -> 9 -> 4 -> 11 -> 10 -> 12
+Một kết quả sắp xếp của đồ thị này là: 2 -> 8 -> 0 -> 3 -> 7 -> 1 -> 5 -> 6 -> 9 -> 4 -> 11 -> 10 -> 12
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-假设这个图 $G = (V, E)$ 在初始化入度为 $0$ 的集合 $S$ 的时候就需要遍历整个图，并检查每一条边，因而有 $O(E+V)$ 的复杂度．然后对该集合进行操作，显然也是需要 $O(E+V)$ 的时间复杂度．
+Với đồ thị $G = (V, E)$, khi khởi tạo tập $S$ gồm các đỉnh có bậc vào bằng $0$, ta cần duyệt toàn bộ đồ thị và kiểm tra từng cạnh, nên độ phức tạp là $O(E+V)$. Sau đó, các thao tác trên tập này hiển nhiên cũng cần độ phức tạp thời gian $O(E+V)$.
 
-因而总的时间复杂度就有 $O(E+V)$
+Vì vậy tổng độ phức tạp thời gian là $O(E+V)$.
 
-### 实现
+### Cài đặt
 
 === "C++"
     ```cpp
     int n, m;
     vector<int> G[MAXN];
-    int in[MAXN];  // 存储每个结点的入度
+    int in[MAXN];  // Lưu bậc vào của mỗi đỉnh
     
     bool toposort() {
       vector<int> L;
@@ -165,13 +165,13 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
         return None if any(in_degree.values()) else lst
     ```
 
-## DFS 算法
+## Thuật toán DFS
 
-### 实现
+### Cài đặt
 
 === "C++"
     ```cpp
-    using Graph = vector<vector<int>>;  // 邻接表
+    using Graph = vector<vector<int>>;  // Danh sách kề
     
     struct TopoSort {
       enum class Status : uint8_t { to_visit, visiting, visited };
@@ -243,28 +243,28 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
         return order[::-1]
     ```
 
-时间复杂度：$O(E+V)$ 空间复杂度：$O(V)$
+Độ phức tạp thời gian: $O(E+V)$. Độ phức tạp bộ nhớ: $O(V)$.
 
-### 合理性证明
+### Chứng minh tính đúng đắn
 
-考虑一个图，删掉某个入度为 $0$ 的节点之后，如果新图可以拓扑排序，那么原图一定也可以．反过来，如果原图可以拓扑排序，那么删掉后也可以．
+Xét một đồ thị. Sau khi xóa một đỉnh có bậc vào bằng $0$, nếu đồ thị mới có thể sắp xếp topo, thì đồ thị ban đầu cũng chắc chắn có thể sắp xếp topo. Ngược lại, nếu đồ thị ban đầu có thể sắp xếp topo, thì sau khi xóa đỉnh đó, đồ thị còn lại cũng có thể sắp xếp topo.
 
-### 应用
+### Ứng dụng
 
-拓扑排序可以判断图中是否有环，还可以用来判断图是否是一条链．拓扑排序可以用来求 AOE 网中的关键路径，估算工程完成的最短时间．
+Sắp xếp topo có thể dùng để kiểm tra đồ thị có chu trình hay không, và cũng có thể dùng để kiểm tra đồ thị có phải là một đường đi tuyến tính hay không. Sắp xếp topo còn có thể dùng để tìm đường găng trong mạng AOE và ước lượng thời gian ngắn nhất để hoàn thành công trình.
 
-### 求字典序最大/最小的拓扑排序
+### Tìm thứ tự topo lớn nhất hoặc nhỏ nhất theo thứ tự từ điển
 
-将 Kahn 算法中的队列替换成最大堆/最小堆实现的优先队列即可，此时总的时间复杂度为 $O(E+V \log{V})$．
+Chỉ cần thay hàng đợi trong thuật toán Kahn bằng hàng đợi ưu tiên được cài đặt bằng heap lớn hoặc heap nhỏ. Khi đó tổng độ phức tạp thời gian là $O(E+V \log{V})$.
 
-## 习题
+## Bài tập
 
-[CF 1385E](https://codeforces.com/problemset/problem/1385/E)：需要通过拓扑排序构造．
+[CF 1385E](https://codeforces.com/problemset/problem/1385/E): cần xây dựng bằng sắp xếp topo.
 
-[Luogu P1347](https://www.luogu.com.cn/problem/P1347): 拓扑排序模板．
+[Luogu P1347](https://www.luogu.com.cn/problem/P1347): bài mẫu sắp xếp topo.
 
-## 参考
+## Tham khảo
 
-1.  离散数学及其应用．ISBN:9787111555391
+1.  Toán rời rạc và ứng dụng. ISBN:9787111555391
 2.  [Topological sorting - Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting)
-3.  [数据结构第九讲（图：拓扑排序，关键路径，最短路径）- 知乎专栏](https://zhuanlan.zhihu.com/p/164751109)
+3.  [Bài giảng Cấu trúc dữ liệu số 9, đồ thị: sắp xếp topo, đường găng, đường đi ngắn nhất - chuyên mục Zhihu](https://zhuanlan.zhihu.com/p/164751109)

@@ -1,96 +1,96 @@
-前置知识：[Dijkstra 算法](./shortest-path.md#dijkstra-算法)、[A\* 算法](../search/astar.md)、[可持久化可并堆](../ds/persistent-heap.md)
+Kiến thức tiên quyết: [thuật toán Dijkstra](./shortest-path.md#thuật-toán-dijkstra), [thuật toán A\*](../search/astar.md), [heap gộp được khả trì](../ds/persistent-heap.md)
 
-## 问题描述
+## Mô tả bài toán
 
-给定一个有 $n$ 个结点，$m$ 条边的有向图，求从 $s$ 到 $t$ 的所有不同路径中的第 $k$ 短路径的长度．
+Cho một đồ thị có hướng gồm $n$ đỉnh và $m$ cạnh. Hãy tìm độ dài đường đi ngắn thứ $k$ trong tất cả các đường đi khác nhau từ $s$ đến $t$.
 
-???+ info "「路径」"
-    本文所指的「路径」允许经过同一条边或同一个结点多次，因此严格的名称应为「[途径](./concept.md#路径)」而非「路径」．本文讨论的问题严格地说也是 **第 $k$ 短途径**（$k$ shortest walk）问题．但是，本文依据习惯仍然采用「路径」这一名称，而对于不自交的路径则称为「简单路径」．
+???+ info "\"Đường đi\""
+    "Đường đi" trong bài viết này cho phép đi qua cùng một cạnh hoặc cùng một đỉnh nhiều lần, nên tên gọi chính xác hơn phải là "[walk](./concept.md#đường-đi)" thay vì "đường đi". Nói chặt chẽ, bài toán được thảo luận ở đây là bài toán **walk ngắn thứ $k$** ($k$ shortest walk). Tuy nhiên, theo thói quen, bài viết vẫn dùng tên gọi "đường đi", còn đường đi không tự giao sẽ được gọi là "đường đi đơn".
 
-## A\* 算法
+## Thuật toán A\*
 
-A\* 算法是一个搜索算法．它为每个当前状态 $x$ 都设置了一个估价函数 $f(x)=g(x)+h(x)$，其中 $g(x)$ 为从初始状态到达当前状态的实际代价，$h(x)$ 为从当前状态到达目标状态的最佳路径的估计代价．搜索时，每次取出 $f(x)$ 最优的状态 $x$，扩展其所有后继状态．可以用 **优先队列** 来维护这个值．
+Thuật toán A\* là một thuật toán tìm kiếm. Với mỗi trạng thái hiện tại $x$, nó đặt một hàm đánh giá $f(x)=g(x)+h(x)$, trong đó $g(x)$ là chi phí thực tế từ trạng thái ban đầu đến trạng thái hiện tại, còn $h(x)$ là chi phí ước lượng của đường tốt nhất từ trạng thái hiện tại đến trạng thái đích. Khi tìm kiếm, mỗi lần lấy ra trạng thái $x$ có $f(x)$ tốt nhất và mở rộng mọi trạng thái kế tiếp của nó. Có thể dùng **hàng đợi ưu tiên** để duy trì giá trị này.
 
-在求解 $k$ 短路问题时，令 $h(x)$ 为从当前结点到达终点 $t$ 的最短路径长度．可以通过在反向图上对结点 $t$ 跑单源最短路预处理出每个结点的这个值．对于每个状态需要记录两个值，即当前到达的结点 $x$ 和已经走过的距离 $g(x)$，将这种状态记为 $(x,g(x))$．开始时，将初始状态 $(s,0)$ 加入优先队列．每次取出估价函数 $f(x)=g(x)+h(x)$ 最小的一个状态，枚举该状态所在结点 $x$ 的所有出边，将对应的后继状态加入优先队列．当访问到一个结点第 $k$ 次时，对应状态的 $g(x)$ 就是从起始结点 $s$ 到该结点的第 $k$ 短路的长度．
+Khi giải bài toán đường đi ngắn thứ $k$, đặt $h(x)$ là độ dài đường đi ngắn nhất từ đỉnh hiện tại đến đích $t$. Có thể tiền xử lý giá trị này cho mọi đỉnh bằng cách chạy đường đi ngắn nhất một nguồn từ đỉnh $t$ trên đồ thị đảo. Với mỗi trạng thái, cần ghi hai giá trị: đỉnh hiện tại đang đến $x$ và quãng đường đã đi $g(x)$; ký hiệu trạng thái này là $(x,g(x))$. Ban đầu, đưa trạng thái khởi đầu $(s,0)$ vào hàng đợi ưu tiên. Mỗi lần lấy ra trạng thái có hàm đánh giá $f(x)=g(x)+h(x)$ nhỏ nhất, liệt kê mọi cạnh đi ra từ đỉnh $x$ của trạng thái đó và đưa các trạng thái kế tiếp tương ứng vào hàng đợi ưu tiên. Khi một đỉnh được thăm lần thứ $k$, $g(x)$ của trạng thái tương ứng chính là độ dài đường đi ngắn thứ $k$ từ đỉnh xuất phát $s$ đến đỉnh đó.
 
-这一搜索过程可以优化．由于只需要求出从初始结点到目标结点的第 $k$ 短路，所以已经取出的状态到达一个结点的次数大于 $k$ 次时，可以不扩展其后继状态．这一状态不会影响到最后的答案．这是因为之前 $k$ 次取出该结点时，已经形成了到达该结点的 $k$ 条合法路径，足以构造到达目标结点的前 $k$ 条最短路．
+Quá trình tìm kiếm này có thể tối ưu. Vì chỉ cần tìm đường đi ngắn thứ $k$ từ đỉnh đầu đến đỉnh đích, nên nếu các trạng thái đã lấy ra đến một đỉnh nhiều hơn $k$ lần, ta có thể không mở rộng trạng thái kế tiếp của nó. Trạng thái này không ảnh hưởng đến đáp án cuối cùng. Lý do là trong $k$ lần lấy ra trước đó của đỉnh này, đã có $k$ đường đi hợp lệ đến đỉnh đó, đủ để xây dựng $k$ đường đi ngắn nhất đầu tiên đến đỉnh đích.
 
-若使用优先队列优化 Dijkstra 算法，由于至多会将所有边加入优先队列 $k$ 次，所以算法的时间复杂度是 $O(km\log km)$ 的，空间复杂度是 $O(km)$ 的．相较于直接搜索，A\* 算法针对目标结点 $t$ 进行了剪枝，但这仅仅改良了常数，而非渐近复杂度．本节所述算法虽然复杂度并不优秀，但是可以在相同的复杂度内求出从起始点 $s$ 到（以 $t$ 为根的最短路树中）每个结点的前 $k$ 短路．
+Nếu dùng Dijkstra tối ưu bằng hàng đợi ưu tiên, do tối đa đưa toàn bộ cạnh vào hàng đợi ưu tiên $k$ lần, độ phức tạp thời gian của thuật toán là $O(km\log km)$ và độ phức tạp bộ nhớ là $O(km)$. So với tìm kiếm trực tiếp, thuật toán A\* cắt tỉa theo đỉnh đích $t$, nhưng điều này chỉ cải thiện hằng số chứ không cải thiện độ phức tạp tiệm cận. Thuật toán trong mục này tuy không có độ phức tạp tốt, nhưng với cùng độ phức tạp đó có thể tìm $k$ đường đi ngắn nhất đầu tiên từ đỉnh xuất phát $s$ đến mỗi đỉnh (trong cây đường đi ngắn nhất gốc $t$).
 
-### 实现
+### Cài đặt
 
-??? example "模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现"
+??? example "Cài đặt tham khảo cho bài mẫu [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk)"
     ```cpp
     --8<-- "docs/graph/code/k-shortest-walk/k-shortest-walk-1.cpp"
     ```
 
-## 可持久化可并堆做法
+## Cách làm bằng heap gộp được khả trì
 
-前述算法实际上求出了到达所有结点的 $k$ 短路．如果仅仅是想要求得到达给定目标结点 $t$ 的 $k$ 短路，实际上可以做得更快．本节提供了一种基于可持久化可并堆的 $O(m\log m+k\log k)$ 的做法．
+Thuật toán ở trên thực chất tìm $k$ đường đi ngắn nhất đến mọi đỉnh. Nếu chỉ muốn tìm $k$ đường đi ngắn nhất đến một đỉnh đích $t$ cho trước, ta có thể làm nhanh hơn. Mục này trình bày một cách làm $O(m\log m+k\log k)$ dựa trên heap gộp được khả trì.
 
-### 最短路树与偏离边
+### Cây đường đi ngắn nhất và cạnh lệch
 
-前述算法的瓶颈在于只有到达目标结点 $t$ 时才会更新答案．但是，不同路径之间可能相差并不大．例如，次短路区别于最短路，可能仅仅是在一条边处多绕了一个结点，而路径的其他部分都是相同的；前述算法却可能需要重复搜索一遍这些相同的边才能找到次短路．由于只有绕路部分才是关键的，所以，要得到前 $k$ 条最短的路径，只需要考虑代价最小的 $k$ 种绕路方式即可．这就引出了最短路树的概念．
+Nút thắt của thuật toán ở trên là đáp án chỉ được cập nhật khi đến đỉnh đích $t$. Tuy nhiên, các đường đi khác nhau có thể không chênh lệch nhiều. Ví dụ, đường đi ngắn thứ hai có thể khác đường đi ngắn nhất chỉ ở chỗ đi vòng thêm qua một đỉnh tại một cạnh, còn các phần khác của đường đi đều giống nhau; thuật toán ở trên có thể vẫn phải tìm kiếm lại qua các cạnh giống nhau đó để tìm đường đi ngắn thứ hai. Vì chỉ phần đi vòng mới là quan trọng, nên để lấy $k$ đường đi ngắn nhất đầu tiên, ta chỉ cần xét $k$ cách đi vòng có chi phí nhỏ nhất. Điều này dẫn đến khái niệm cây đường đi ngắn nhất.
 
-在反向图上从目标结点 $t$ 开始跑单源最短路，记录每个结点 $x$ 到 $t$ 的最短路长度 $h(x)$，并记录从结点 $x$ 开始的最短路经过的第一条边 $f_x$；如果有多个最优的选择，选择任意一条即可．所有这些边 $f_x$ 及其端点就构成一棵树，且从树上的每个结点 $x$ 到根节点 $t$ 的简单路径都是 $x$ 到 $t$ 的一条最短路径．这就是 **最短路树**  $T$．
+Chạy đường đi ngắn nhất một nguồn từ đỉnh đích $t$ trên đồ thị đảo, ghi lại độ dài đường đi ngắn nhất $h(x)$ từ mỗi đỉnh $x$ đến $t$, đồng thời ghi cạnh đầu tiên $f_x$ trên một đường đi ngắn nhất bắt đầu từ $x$; nếu có nhiều lựa chọn tối ưu thì chọn tùy ý một cạnh. Tất cả các cạnh $f_x$ cùng các đầu mút của chúng tạo thành một cây, và đường đi đơn từ mỗi đỉnh $x$ trên cây đến gốc $t$ đều là một đường đi ngắn nhất từ $x$ đến $t$. Đây là **cây đường đi ngắn nhất** $T$.
 
-求得最短路树 $T$ 后，就可以计算每条不在 $T$ 上的边会多绕多少路．对于边 $e=(u,v)\notin T$，边权为 $w$，可以定义一条新的边，仍然从 $u$ 指向 $v$，且代价为 $\Delta(e)=w + h(v) - h(u)$．本文形象地称这些权值为 $\Delta(e)$ 的边为 **偏离边**（sidetrack），权值 $\Delta(e)$ 则称为偏离成本．如果一条边的端点并非全部在最短路树 $T$ 里，它就不会影响到达结点 $t$ 的 $k$ 短路的计算，可以直接将它们删掉．
+Sau khi tìm được cây đường đi ngắn nhất $T$, có thể tính mỗi cạnh không nằm trên $T$ làm đi vòng thêm bao nhiêu. Với cạnh $e=(u,v)\notin T$ có trọng số $w$, định nghĩa một cạnh mới vẫn đi từ $u$ đến $v$, với chi phí $\Delta(e)=w + h(v) - h(u)$. Trong bài viết này, các cạnh có trọng số $\Delta(e)$ đó được gọi trực quan là **cạnh lệch** (sidetrack), còn trọng số $\Delta(e)$ được gọi là chi phí lệch. Nếu hai đầu mút của một cạnh không cùng nằm trong cây đường đi ngắn nhất $T$, cạnh đó không ảnh hưởng đến việc tính $k$ đường đi ngắn nhất đến đỉnh $t$ và có thể xóa trực tiếp.
 
-下图左侧是有向图 $G$，右侧是它对应的最短路树 $T$（粗边）和相应的偏离边（细边）：
+Hình bên trái dưới đây là đồ thị có hướng $G$, còn bên phải là cây đường đi ngắn nhất $T$ tương ứng (cạnh dày) và các cạnh lệch tương ứng (cạnh mảnh):
 
 ![](./images/k-shortest-path-1.svg)
 
-设一条从 $s$ 到 $t$ 的路径经过的边集为 $P$，去掉 $P$ 中与 $T$ 的交集得到 $P'$．那么，将 $P'$ 中的边顺次排列，它相邻的两条边 $e_1=(u_1,v_1)$ 和 $e_2=(u_2,v_2)$ 一定满足
+Giả sử tập cạnh mà một đường đi từ $s$ đến $t$ đi qua là $P$, bỏ khỏi $P$ phần giao với $T$ để thu được $P'$. Khi sắp các cạnh trong $P'$ theo thứ tự, hai cạnh kề nhau $e_1=(u_1,v_1)$ và $e_2=(u_2,v_2)$ nhất định thỏa mãn
 
--   条件 $(*)$：后者的起点 $u_2$ 是前者的终点 $v_1$ 在最短路树 $T$ 的祖先（包括其自身）．
+-   Điều kiện $(*)$: điểm đầu $u_2$ của cạnh sau là một tổ tiên của điểm cuối $v_1$ của cạnh trước trên cây đường đi ngắn nhất $T$ (bao gồm chính nó).
 
-这是因为对应的原始路径 $P$ 中，$v_1$ 和 $u_2$ 之间连接了若干条 $T$ 中的树边．反过来，对于一个满足条件 $(*)$ 的边集 $P'$，一定存在唯一一条图 $G$ 中的路径 $P$ 与之对应．这是因为 $v_1$ 和 $u_2$ 在最短路树 $T$ 上的简单路径是唯一的．这样就说明，原图中的任意路径 $P$ 与满足条件 $(*)$ 的偏离边序列 $P'$ 一一对应．而且，路径 $P$ 的长度就等于最短路长度 $h(s)$ 与这些偏离成本的和：
+Lý do là trong đường đi gốc $P$ tương ứng, giữa $v_1$ và $u_2$ có nối qua một số cạnh cây trong $T$. Ngược lại, với một tập cạnh $P'$ thỏa điều kiện $(*)$, luôn tồn tại duy nhất một đường đi $P$ trong đồ thị $G$ tương ứng với nó. Điều này đúng vì đường đi đơn giữa $v_1$ và $u_2$ trên cây đường đi ngắn nhất $T$ là duy nhất. Như vậy, mọi đường đi $P$ trong đồ thị gốc tương ứng một-một với một dãy cạnh lệch $P'$ thỏa điều kiện $(*)$. Hơn nữa, độ dài của đường đi $P$ bằng độ dài đường đi ngắn nhất $h(s)$ cộng với tổng các chi phí lệch này:
 
 $$
 h(s)+\sum_{e\in P'}\Delta(e).
 $$
 
-这些讨论说明，寻找 $k$ 短路的任务转化为寻找成本第 $k$ 小且满足条件 $(*)$ 的偏离边序列 $P'$ 的任务．
+Các phân tích trên cho thấy nhiệm vụ tìm đường đi ngắn thứ $k$ được chuyển thành nhiệm vụ tìm dãy cạnh lệch $P'$ có chi phí nhỏ thứ $k$ và thỏa điều kiện $(*)$.
 
-为处理条件 $(*)$，与其每次查询时在最短路树上寻找祖先，不如直接将每个结点的偏离边集合下传到最短路树上的子孙结点．这相当于建了下面这样的图 $G'$：
+Để xử lý điều kiện $(*)$, thay vì mỗi lần truy vấn lại tìm tổ tiên trên cây đường đi ngắn nhất, ta có thể trực tiếp truyền tập cạnh lệch của mỗi đỉnh xuống các đỉnh con cháu của nó trên cây đường đi ngắn nhất. Điều này tương đương với xây dựng đồ thị $G'$ như sau:
 
 ![](./images/k-shortest-path-2.svg)
 
-在这个图上，条件 $(*)$ 就转化为要求 $P'$ 中的边首尾相接，也就是说，$P'$ 是图 $G'$ 中的一条路径．问题进一步转化为在这个图中寻找从 $s$ 出发的长度第 $k$ 小的 **到达任意结点的** 路径．相对于原始的 $k$ 短路问题，此处不再要求路径一定要结束在目标结点 $t$．
+Trên đồ thị này, điều kiện $(*)$ chuyển thành yêu cầu các cạnh trong $P'$ nối đầu-cuối với nhau, tức là $P'$ là một đường đi trong đồ thị $G'$. Bài toán tiếp tục được chuyển thành tìm đường đi **đến một đỉnh bất kỳ** có độ dài nhỏ thứ $k$ xuất phát từ $s$ trong đồ thị này. So với bài toán đường đi ngắn thứ $k$ ban đầu, ở đây không còn yêu cầu đường đi nhất định phải kết thúc tại đỉnh đích $t$.
 
-转化后的问题很容易解决．直接从起始结点 $s$ 处出发，求单源最短路．每次从优先队列中取出一个结点时，就相当于找到了一条图 $G'$ 中的路径，也就对应着图 $G$ 中一条到达目标结点 $t$ 的路径．
+Bài toán sau chuyển đổi rất dễ giải. Chỉ cần xuất phát từ đỉnh đầu $s$ và chạy đường đi ngắn nhất một nguồn. Mỗi lần lấy ra một đỉnh từ hàng đợi ưu tiên, ta tương đương đã tìm được một đường đi trong đồ thị $G'$, cũng tương ứng với một đường đi đến đỉnh đích $t$ trong đồ thị $G$.
 
-### 可持久化可并堆优化
+### Tối ưu bằng heap gộp được khả trì
 
-算法思路已经明晰．但是，朴素实现这一算法的复杂度过高．由于图 $G'$ 中，单个结点处边的规模可能是 $\Theta(m)$ 的，所以每次求单源最短路时，都可能需要将规模为 $\Theta(m)$ 的边集压入优先队列．实际上，没有必要将所有边都压入优先队列：很多情况下，压入队列的这些边，只有最短的那些可能会在后续计算中弹出队列．也就是说，完全可以将单个结点处的整个边集作为一个存储单元压入优先队列，每次只要能够快速访问边集中的最短边即可．
+Ý tưởng thuật toán đã rõ, nhưng cài đặt ngây thơ có độ phức tạp quá cao. Trong đồ thị $G'$, số cạnh tại một đỉnh đơn lẻ có thể là $\Theta(m)$, nên mỗi lần chạy đường đi ngắn nhất một nguồn có thể phải đẩy một tập cạnh kích thước $\Theta(m)$ vào hàng đợi ưu tiên. Thực ra không cần đưa mọi cạnh vào hàng đợi ưu tiên: trong nhiều trường hợp, trong số các cạnh được đưa vào hàng đợi, chỉ những cạnh ngắn nhất mới có khả năng được lấy ra trong các bước sau. Nói cách khác, có thể xem toàn bộ tập cạnh tại một đỉnh là một đơn vị lưu trữ và đưa đơn vị đó vào hàng đợi ưu tiên; mỗi lần chỉ cần truy cập nhanh cạnh ngắn nhất trong tập cạnh.
 
-这启发我们使用小根堆来存储单个结点处的边集．在求单源最短路的优先队列中，只需要存储这些堆，它们的成本就是堆顶元素对应的最短路成本．每次弹出队首时，都需要一并从队首的堆中弹出堆顶边．然后，既要将弹出堆顶后的堆压回优先队列，也需要将堆顶边终点处的偏离边集合对应的堆顶压入优先队列．
+Điều này gợi ý dùng heap min để lưu tập cạnh tại một đỉnh. Trong hàng đợi ưu tiên của thuật toán đường đi ngắn nhất một nguồn, chỉ cần lưu các heap này; chi phí của chúng chính là chi phí đường đi ngắn nhất tương ứng với phần tử ở đỉnh heap. Mỗi lần lấy đầu hàng đợi, cũng cần đồng thời lấy cạnh ở đỉnh heap của heap đầu hàng đợi. Sau đó, vừa đưa heap sau khi bỏ đỉnh heap trở lại hàng đợi ưu tiên, vừa đưa đỉnh heap tương ứng với tập cạnh lệch tại điểm cuối của cạnh vừa lấy vào hàng đợi ưu tiên.
 
-使用堆来存储边集也解决了沿最短路树下传边集的问题．因为下传边集相当于需要将当前结点的边集合并到它的子结点，所以，堆还需要支持合并操作；合并到子结点的同时，还不能破坏当前结点处的边集，所以，堆还需要支持可持久化．这正是可持久化可并堆．
+Dùng heap để lưu tập cạnh cũng giải quyết được việc truyền tập cạnh xuống theo cây đường đi ngắn nhất. Vì truyền tập cạnh xuống tương đương với gộp tập cạnh của đỉnh hiện tại vào đỉnh con của nó, heap cần hỗ trợ thao tác gộp; đồng thời khi gộp vào đỉnh con, không được phá hỏng tập cạnh tại đỉnh hiện tại, nên heap còn cần hỗ trợ khả trì. Đây chính là heap gộp được khả trì.
 
-由此，就得到算法的完整过程：
+Từ đó, ta thu được toàn bộ quy trình thuật toán:
 
-1.  从目标结点 $t$ 出发，跑单源最短路，求出最短路树．
-2.  为最短路树上的每个结点都构建对应的偏离边集合，存储到可持久化可并堆里．
-3.  沿着最短路树的边，从目标结点 $t$ 开始，将每个结点处的堆都合并到子结点的堆里．
-4.  从起始结点 $s$ 出发，将该处的堆压入优先队列．
-5.  弹出队首的堆，记录答案，再将弹出堆顶后的堆压回优先队列，并将堆顶边的终点处的堆压入优先队列．
+1.  Từ đỉnh đích $t$, chạy đường đi ngắn nhất một nguồn để tìm cây đường đi ngắn nhất.
+2.  Với mỗi đỉnh trên cây đường đi ngắn nhất, xây dựng tập cạnh lệch tương ứng và lưu vào heap gộp được khả trì.
+3.  Dọc theo các cạnh của cây đường đi ngắn nhất, bắt đầu từ đỉnh đích $t$, gộp heap tại mỗi đỉnh vào heap của các đỉnh con.
+4.  Từ đỉnh xuất phát $s$, đưa heap tại đó vào hàng đợi ưu tiên.
+5.  Lấy heap ở đầu hàng đợi, ghi nhận đáp án, rồi đưa heap sau khi bỏ đỉnh heap trở lại hàng đợi ưu tiên, đồng thời đưa heap tại điểm cuối của cạnh ở đỉnh heap vào hàng đợi ưu tiên.
 
-一般采用左偏树或随机堆实现可持久化可并堆．此时，最后一步还可以继续优化．这些堆的内部结构都是二叉树．弹出堆顶后，原本是要合并左右两个子结点，再将合并后的堆顶压入优先队列的；但是，本算法中，可以不执行合并操作，直接将两个子结点对应的堆分别压入优先队列．这样就省去了单次合并的 $O(\log m)$ 的复杂度．由于每次弹出队首堆后，至多会将三个新的堆压入优先队列，所以，优先队列的大小是 $O(k)$ 的．这样，单次查询的时间复杂度就降低到 $O(\log k)$．总查询复杂度就是 $O(k\log k)$ 的．
+Thông thường dùng cây leftist hoặc heap ngẫu nhiên để cài đặt heap gộp được khả trì. Khi đó, bước cuối còn có thể tối ưu thêm. Cấu trúc bên trong của các heap này đều là cây nhị phân. Sau khi lấy đỉnh heap, ban đầu cần gộp hai đỉnh con trái và phải, rồi đưa đỉnh heap sau khi gộp vào hàng đợi ưu tiên; tuy nhiên trong thuật toán này, có thể không thực hiện thao tác gộp mà trực tiếp đưa hai heap tương ứng với hai đỉnh con vào hàng đợi ưu tiên riêng rẽ. Như vậy tiết kiệm được độ phức tạp $O(\log m)$ của một lần gộp. Vì sau mỗi lần lấy heap đầu hàng đợi, tối đa chỉ đưa thêm ba heap mới vào hàng đợi ưu tiên, kích thước hàng đợi ưu tiên là $O(k)$. Khi đó, độ phức tạp thời gian của một lần truy vấn giảm xuống $O(\log k)$, và tổng độ phức tạp truy vấn là $O(k\log k)$.
 
-由于构建最短路树和构建可持久化可并堆的复杂度都是 $O(m\log m)$ 的，所以，算法的总时间复杂度为 $O(m\log m+k\log k)$ 的．
+Vì độ phức tạp xây dựng cây đường đi ngắn nhất và xây dựng heap gộp được khả trì đều là $O(m\log m)$, tổng độ phức tạp thời gian của thuật toán là $O(m\log m+k\log k)$.
 
-### 实现
+### Cài đặt
 
-??? example "模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现"
+??? example "Cài đặt tham khảo cho bài mẫu [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk)"
     ```cpp
     --8<-- "docs/graph/code/k-shortest-walk/k-shortest-walk-2.cpp"
     ```
 
-## 习题
+## Bài tập
 
--   [「SDOI2010」魔法猪学院](https://www.luogu.com.cn/problem/P2483)
+-   [SDOI2010 Magic Pig Academy](https://www.luogu.com.cn/problem/P2483)
 
-## 参考资料与注释
+## Tài liệu tham khảo và ghi chú
 
 -   [\[Tutorial\] k shortest paths and Eppstein's algorithm by meooow - Codeforces](https://codeforces.com/blog/entry/102085)

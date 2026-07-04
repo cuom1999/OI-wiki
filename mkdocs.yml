@@ -432,13 +432,13 @@ nav:
       - Thuật toán AHU: graph/tree-ahu.md
       - Băm cây: graph/tree-hash.md
       - Bước đi ngẫu nhiên trên cây: graph/tree-random-walk.md
-    - 有向无环图: graph/dag.md
-    - 拓扑排序: graph/topo.md
-    - 最短路问题:
-      - 最短路: graph/shortest-path.md
-      - 差分约束: graph/diff-constraints.md
-      - k 短路: graph/kth-path.md
-      - 同余最短路: graph/mod-shortest-path.md
+    - Đồ thị có hướng không chu trình: graph/dag.md
+    - Sắp xếp topo: graph/topo.md
+    - Bài toán đường đi ngắn nhất:
+      - Đường đi ngắn nhất: graph/shortest-path.md
+      - Ràng buộc hiệu: graph/diff-constraints.md
+      - Đường đi ngắn thứ k: graph/kth-path.md
+      - Đường đi ngắn nhất theo đồng dư: graph/mod-shortest-path.md
     - 生成树问题:
       - 最小生成树: graph/mst.md
       - 最小树形图: graph/dmst.md

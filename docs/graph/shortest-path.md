@@ -1,53 +1,53 @@
 author: du33169, lingkerio, Taoran-01
 
-## 定义
+## Định nghĩa
 
-（还记得这些定义吗？在阅读下列内容之前，请务必了解 [图论相关概念](./concept.md) 中的基础部分．）
+(Bạn còn nhớ các khái niệm này không? Trước khi đọc nội dung dưới đây, hãy nắm chắc phần cơ bản trong [các khái niệm đồ thị](./concept.md).)
 
--   路径
--   最短路
--   有向图中的最短路、无向图中的最短路
--   单源最短路、每对结点之间的最短路
+-   Đường đi
+-   Đường đi ngắn nhất
+-   Đường đi ngắn nhất trong đồ thị có hướng, đường đi ngắn nhất trong đồ thị vô hướng
+-   Đường đi ngắn nhất từ một nguồn, đường đi ngắn nhất giữa mọi cặp đỉnh
 
-## 记号
+## Ký hiệu
 
-为了方便叙述，这里先给出下文将会用到的一些记号的含义．
+Để tiện trình bày, trước hết ta nêu ý nghĩa của một số ký hiệu sẽ dùng ở dưới.
 
--   $n$ 为图上点的数目，$m$ 为图上边的数目；
--   $s$ 为最短路的源点；
--   $D(u)$ 为 $s$ 点到 $u$ 点的 **实际** 最短路长度；
--   $dis(u)$ 为 $s$ 点到 $u$ 点的 **估计** 最短路长度．任何时候都有 $dis(u) \geq D(u)$．特别地，当最短路算法终止时，应有 $dis(u)=D(u)$．
--   $w(u,v)$ 为 $(u,v)$ 这一条边的边权．
+-   $n$ là số đỉnh của đồ thị, $m$ là số cạnh của đồ thị;
+-   $s$ là đỉnh nguồn của bài toán đường đi ngắn nhất;
+-   $D(u)$ là độ dài đường đi ngắn nhất **thực sự** từ $s$ đến $u$;
+-   $dis(u)$ là độ dài đường đi ngắn nhất **ước lượng** từ $s$ đến $u$. Ở mọi thời điểm đều có $dis(u) \geq D(u)$. Đặc biệt, khi thuật toán đường đi ngắn nhất kết thúc, cần có $dis(u)=D(u)$.
+-   $w(u,v)$ là trọng số của cạnh $(u,v)$.
 
-## 性质
+## Tính chất
 
-对于边权为正的图，任意两个结点之间的最短路，不会经过重复的结点．
+Trong đồ thị có trọng số cạnh dương, đường đi ngắn nhất giữa hai đỉnh bất kỳ sẽ không đi qua một đỉnh lặp lại.
 
-对于边权为正的图，任意两个结点之间的最短路，不会经过重复的边．
+Trong đồ thị có trọng số cạnh dương, đường đi ngắn nhất giữa hai đỉnh bất kỳ sẽ không đi qua một cạnh lặp lại.
 
-对于边权为正的图，任意两个结点之间的最短路，任意一条的结点数不会超过 $n$，边数不会超过 $n-1$．
+Trong đồ thị có trọng số cạnh dương, mọi đường đi ngắn nhất giữa hai đỉnh bất kỳ có số đỉnh không vượt quá $n$ và số cạnh không vượt quá $n-1$.
 
-## Floyd 算法
+## Thuật toán Floyd
 
-是用来求任意两个结点之间的最短路的．
+Thuật toán Floyd dùng để tìm đường đi ngắn nhất giữa mọi cặp đỉnh.
 
-复杂度比较高，但是常数小，容易实现（只有三个 `for`）．
+Độ phức tạp khá cao, nhưng hằng số nhỏ và dễ cài đặt (chỉ có ba vòng `for`).
 
-适用于任何图，不管有向无向，边权正负，但是最短路必须存在．（不能有个负环）
+Thuật toán áp dụng được cho mọi đồ thị, dù có hướng hay vô hướng, trọng số âm hay dương, miễn là đường đi ngắn nhất tồn tại (không có chu trình âm).
 
-### 实现
+### Cài đặt
 
-我们定义一个数组 `f[k][x][y]`，表示只允许经过结点 $1$ 到 $k$（也就是说，在子图 $V'={1, 2, \ldots, k}$ 中的路径，注意，$x$ 与 $y$ 不一定在这个子图中），结点 $x$ 到结点 $y$ 的最短路长度．
+Ta định nghĩa mảng `f[k][x][y]`, biểu diễn độ dài đường đi ngắn nhất từ đỉnh $x$ đến đỉnh $y$ khi chỉ được phép đi qua các đỉnh từ $1$ đến $k$ (tức là đường đi trong đồ thị con $V'={1, 2, \ldots, k}$; chú ý rằng $x$ và $y$ không nhất thiết nằm trong đồ thị con này).
 
-很显然，`f[n][x][y]` 就是结点 $x$ 到结点 $y$ 的最短路长度（因为 $V'={1, 2, \ldots, n}$ 即为 $V$ 本身，其表示的最短路径就是所求路径）．
+Rõ ràng, `f[n][x][y]` chính là độ dài đường đi ngắn nhất từ đỉnh $x$ đến đỉnh $y$ (vì $V'={1, 2, \ldots, n}$ chính là toàn bộ $V$, nên đường đi biểu diễn trong đó là đường đi cần tìm).
 
-接下来考虑如何求出 `f` 数组的值．
+Tiếp theo xét cách tính giá trị của mảng `f`.
 
-`f[0][x][y]`：$x$ 与 $y$ 的边权，或者 $0$，或者 $+\infty$（`f[0][x][y]` 什么时候应该是 $+\infty$？当 $x$ 与 $y$ 间有直接相连的边的时候，为它们的边权；当 $x = y$ 的时候为零，因为到本身的距离为零；当 $x$ 与 $y$ 没有直接相连的边的时候，为 $+\infty$）．
+`f[0][x][y]`: trọng số cạnh giữa $x$ và $y$, hoặc $0$, hoặc $+\infty$ (`f[0][x][y]` khi nào nên là $+\infty$? Nếu $x$ và $y$ có cạnh nối trực tiếp thì lấy trọng số cạnh đó; nếu $x = y$ thì bằng không vì khoảng cách đến chính nó là không; nếu $x$ và $y$ không có cạnh nối trực tiếp thì là $+\infty$).
 
-`f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])`（`f[k-1][x][y]`，为不经过 $k$ 点的最短路径，而 `f[k-1][x][k]+f[k-1][k][y]`，为经过了 $k$ 点的最短路）．
+`f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])` (`f[k-1][x][y]` là đường đi ngắn nhất không đi qua đỉnh $k$, còn `f[k-1][x][k]+f[k-1][k][y]` là đường đi ngắn nhất có đi qua đỉnh $k$).
 
-上面两行都显然是对的，所以说这个做法空间是 $O(N^3)$，我们需要依次增加问题规模（$k$ 从 $1$ 到 $n$），判断任意两点在当前问题规模下的最短路．
+Hai dòng trên đều hiển nhiên đúng, vì vậy cách làm này dùng không gian $O(N^3)$. Ta lần lượt tăng quy mô bài toán ($k$ từ $1$ đến $n$), rồi xét đường đi ngắn nhất giữa mọi cặp đỉnh trong quy mô hiện tại.
 
 === "C++"
     ```cpp
@@ -68,12 +68,12 @@ author: du33169, lingkerio, Taoran-01
                 f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])
     ```
 
-因为第一维对结果无影响，我们可以发现数组的第一维是可以省略的，于是可以直接改成 `f[x][y] = min(f[x][y], f[x][k]+f[k][y])`．
+Vì chiều thứ nhất không ảnh hưởng đến kết quả, ta có thể bỏ chiều đầu của mảng và viết trực tiếp thành `f[x][y] = min(f[x][y], f[x][k]+f[k][y])`.
 
-???+ note "证明第一维对结果无影响"
-    对于给定的 `k`，当更新 `f[k][x][y]` 时，涉及的元素总是来自 `f[k-1]` 数组的第 `k` 行和第 `k` 列．然后我们可以发现，对于给定的 `k`，当更新 `f[k][k][y]` 或 `f[k][x][k]`，总是不会发生数值更新，因为按照公式 `f[k][k][y] = min(f[k-1][k][y], f[k-1][k][k]+f[k-1][k][y])`,`f[k-1][k][k]` 为 0，因此这个值总是 `f[k-1][k][y]`，对于 `f[k][x][k]` 的证明类似．
+???+ note "Chứng minh chiều thứ nhất không ảnh hưởng đến kết quả"
+    Với một `k` cố định, khi cập nhật `f[k][x][y]`, các phần tử được dùng luôn đến từ hàng `k` và cột `k` của mảng `f[k-1]`. Ta có thể thấy rằng với `k` cố định, khi cập nhật `f[k][k][y]` hoặc `f[k][x][k]`, giá trị sẽ không thay đổi, vì theo công thức `f[k][k][y] = min(f[k-1][k][y], f[k-1][k][k]+f[k-1][k][y])`, `f[k-1][k][k]` bằng 0, nên giá trị này luôn là `f[k-1][k][y]`; chứng minh cho `f[k][x][k]` tương tự.
     
-    因此，如果省略第一维，在给定的 `k` 下，每个元素的更新中使用到的元素都没有在这次迭代中更新，因此第一维的省略并不会影响结果．
+    Do đó, nếu bỏ chiều thứ nhất, với `k` cố định, mọi phần tử được dùng trong mỗi lần cập nhật đều chưa bị thay đổi trong lần lặp này, nên việc bỏ chiều thứ nhất không ảnh hưởng đến kết quả.
 
 === "C++"
     ```cpp
@@ -94,33 +94,33 @@ author: du33169, lingkerio, Taoran-01
                 f[x][y] = min(f[x][y], f[x][k] + f[k][y])
     ```
 
-综上时间复杂度是 $O(N^3)$，空间复杂度是 $O(N^2)$．
+Tóm lại, độ phức tạp thời gian là $O(N^3)$, độ phức tạp không gian là $O(N^2)$.
 
-### 应用
+### Ứng dụng
 
-???+ question "给一个正权无向图，找一个最小权值和的环．"
-    首先这一定是一个简单环．
+???+ question "Cho một đồ thị vô hướng trọng số dương, hãy tìm một chu trình có tổng trọng số nhỏ nhất."
+    Trước hết, chu trình đó chắc chắn là chu trình đơn.
     
-    想一想这个环是怎么构成的．
+    Hãy nghĩ xem chu trình này được tạo thành như thế nào.
     
-    考虑环上编号最大的结点 $u$．
+    Xét đỉnh $u$ có số thứ tự lớn nhất trên chu trình.
     
-    `f[u-1][x][y]` 和 $(u,x)$,$(u,y)$ 共同构成了环．
+    `f[u-1][x][y]` cùng với $(u,x)$, $(u,y)$ tạo thành chu trình.
     
-    在 Floyd 的过程中枚举 $u$，计算这个和的最小值即可．
+    Trong quá trình Floyd, ta liệt kê $u$ và tính giá trị nhỏ nhất của tổng này.
     
-    时间复杂度为 $O(n^3)$．
+    Độ phức tạp thời gian là $O(n^3)$.
     
-    更多参见 [最小环](./min-cycle.md) 部分内容．
+    Xem thêm nội dung trong phần [chu trình nhỏ nhất](./min-cycle.md).
 
-???+ question "已知一个有向图中任意两点之间是否有连边，要求判断任意两点是否连通．"
-    该问题即是求 **图的传递闭包**．
+???+ question "Biết với mọi cặp đỉnh trong một đồ thị có hướng rằng giữa chúng có cạnh hay không, hãy xác định mọi cặp đỉnh có liên thông với nhau hay không."
+    Bài toán này chính là tìm **bao đóng bắc cầu của đồ thị**.
     
-    我们只需要按照 Floyd 的过程，逐个加入点判断一下．
+    Ta chỉ cần làm theo quá trình Floyd, lần lượt thêm từng đỉnh vào để kiểm tra.
     
-    只是此时的边的边权变为 $1/0$，而取 $\min$ 变成了 **或** 运算．
+    Chỉ khác là lúc này trọng số cạnh trở thành $1/0$, còn phép lấy $\min$ trở thành phép **hoặc**.
     
-    再进一步用 bitset 优化，复杂度可以到 $O(\frac{n^3}{w})$．
+    Nếu tiếp tục tối ưu bằng bitset, độ phức tạp có thể đạt $O(\frac{n^3}{w})$.
     
     ```cpp
     // std::bitset<SIZE> f[SIZE];
@@ -129,36 +129,36 @@ author: du33169, lingkerio, Taoran-01
         if (f[i][k]) f[i] = f[i] | f[k];
     ```
 
-## Bellman–Ford 算法
+## Thuật toán Bellman-Ford
 
-Bellman–Ford 算法是一种基于松弛（relax）操作的最短路算法，可以求出有负权的图的最短路，并可以对最短路不存在的情况进行判断．
+Thuật toán Bellman-Ford là thuật toán đường đi ngắn nhất dựa trên thao tác nới lỏng (relax). Nó có thể tìm đường đi ngắn nhất trong đồ thị có trọng số âm, đồng thời có thể xác định trường hợp đường đi ngắn nhất không tồn tại.
 
-在国内 OI 界，你可能听说过的「SPFA」，就是 Bellman–Ford 算法的一种实现．
+Trong giới OI Trung Quốc, thuật toán "SPFA" mà bạn có thể đã nghe đến chính là một cách cài đặt Bellman-Ford.
 
-### 过程
+### Quy trình
 
-先介绍 Bellman–Ford 算法要用到的松弛操作（Dijkstra 算法也会用到松弛操作）．
+Trước hết giới thiệu thao tác nới lỏng mà Bellman-Ford dùng (Dijkstra cũng dùng thao tác này).
 
-对于边 $(u,v)$，松弛操作对应下面的式子：$dis(v) = \min(dis(v), dis(u) + w(u, v))$．
+Với cạnh $(u,v)$, thao tác nới lỏng tương ứng với công thức: $dis(v) = \min(dis(v), dis(u) + w(u, v))$.
 
-这么做的含义是显然的：我们尝试用 $S \to u \to v$（其中 $S \to u$ 的路径取最短路）这条路径去更新 $v$ 点最短路的长度，如果这条路径更优，就进行更新．
+Ý nghĩa của thao tác này rất rõ ràng: ta thử dùng đường đi $S \to u \to v$ (trong đó đường đi $S \to u$ lấy theo đường đi ngắn nhất) để cập nhật độ dài đường đi ngắn nhất đến đỉnh $v$; nếu đường đi này tốt hơn thì cập nhật.
 
-Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行松弛．我们每进行一轮循环，就对图上所有的边都尝试进行一次松弛操作，当一次循环中没有成功的松弛操作时，算法停止．
+Việc Bellman-Ford làm là liên tục thử nới lỏng từng cạnh trên đồ thị. Mỗi vòng lặp, ta thử thực hiện một lần nới lỏng trên tất cả cạnh của đồ thị; khi trong một vòng lặp không có thao tác nới lỏng thành công nào, thuật toán dừng.
 
-每次循环是 $O(m)$ 的，那么最多会循环多少次呢？
+Mỗi vòng lặp tốn $O(m)$, vậy nhiều nhất sẽ lặp bao nhiêu lần?
 
-在最短路存在的情况下，由于一次松弛操作会使最短路的边数至少 $+1$，而最短路的边数最多为 $n-1$，因此整个算法最多执行 $n-1$ 轮松弛操作．故总时间复杂度为 $O(nm)$．
+Trong trường hợp đường đi ngắn nhất tồn tại, vì một thao tác nới lỏng sẽ làm số cạnh trên đường đi ngắn nhất tăng thêm ít nhất $1$, còn số cạnh trên đường đi ngắn nhất nhiều nhất là $n-1$, nên toàn bộ thuật toán thực hiện nhiều nhất $n-1$ vòng nới lỏng. Do đó độ phức tạp thời gian là $O(nm)$.
 
-但还有一种情况，如果从 $S$ 点出发，抵达一个负环时，松弛操作会无休止地进行下去．注意到前面的论证中已经说明了，对于最短路存在的图，松弛操作最多只会执行 $n-1$ 轮，因此如果第 $n$ 轮循环时仍然存在能松弛的边，说明从 $S$ 点出发，能够抵达一个负环．
+Nhưng còn một trường hợp khác: nếu từ đỉnh $S$ có thể đi đến một chu trình âm, thao tác nới lỏng sẽ tiếp tục mãi. Từ lập luận ở trên, với đồ thị mà đường đi ngắn nhất tồn tại, thao tác nới lỏng nhiều nhất chỉ thực hiện $n-1$ vòng; vì vậy nếu đến vòng thứ $n$ vẫn còn cạnh có thể nới lỏng, điều đó cho thấy từ đỉnh $S$ có thể đi đến một chu trình âm.
 
-???+ warning "负环判断中存在的常见误区"
-    需要注意的是，以 $S$ 点为源点跑 Bellman–Ford 算法时，如果没有给出存在负环的结果，只能说明从 $S$ 点出发不能抵达一个负环，而不能说明图上不存在负环．
+???+ warning "Hiểu lầm thường gặp khi phát hiện chu trình âm"
+    Cần chú ý rằng khi chạy Bellman-Ford với đỉnh nguồn $S$, nếu thuật toán không báo tồn tại chu trình âm thì điều đó chỉ nói rằng từ $S$ không thể đi đến một chu trình âm, chứ không chứng minh rằng toàn đồ thị không có chu trình âm.
     
-    因此如果需要判断整个图上是否存在负环，最严谨的做法是建立一个超级源点，向图上每个节点连一条权值为 0 的边，然后以超级源点为起点执行 Bellman–Ford 算法．
+    Vì vậy nếu cần xác định toàn đồ thị có chu trình âm hay không, cách chặt chẽ nhất là tạo một siêu nguồn, nối từ siêu nguồn đến mỗi đỉnh trong đồ thị một cạnh trọng số 0, rồi chạy Bellman-Ford từ siêu nguồn.
 
-### 实现
+### Cài đặt
 
-??? note "参考实现"
+??? note "Cài đặt tham khảo"
     === "C++"
         ```cpp
         struct Edge {
@@ -173,25 +173,25 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
         bool bellmanford(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
           dis[s] = 0;
-          bool flag = false;  // 判断一轮循环过程中是否发生松弛操作
+          bool flag = false;  // Kiểm tra trong một vòng lặp có xảy ra nới lỏng hay không
           for (int i = 1; i <= n; i++) {
             flag = false;
             for (int j = 0; j < edge.size(); j++) {
               u = edge[j].u, v = edge[j].v, w = edge[j].w;
               if (dis[u] == INF) continue;
-              // 无穷大与常数加减仍然为无穷大
-              // 因此最短路长度为 INF 的点引出的边不可能发生松弛操作
+              // Vô cực cộng trừ với hằng số vẫn là vô cực
+              // Vì vậy cạnh đi ra từ đỉnh có độ dài đường đi ngắn nhất là INF không thể được nới lỏng
               if (dis[v] > dis[u] + w) {
                 dis[v] = dis[u] + w;
                 flag = true;
               }
             }
-            // 没有可以松弛的边时就停止算法
+            // Khi không còn cạnh có thể nới lỏng thì dừng thuật toán
             if (!flag) {
               break;
             }
           }
-          // 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
+          // Nếu ở vòng lặp thứ n vẫn có thể nới lỏng, đỉnh s có thể đi đến một chu trình âm
           return flag;
         }
         ```
@@ -218,31 +218,31 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
                     u, v, w = e.u, e.v, e.w
                     if dis[u] == INF:
                         continue
-                    # 无穷大与常数加减仍然为无穷大
-                    # 因此最短路长度为 INF 的点引出的边不可能发生松弛操作
+                    # Vô cực cộng trừ với hằng số vẫn là vô cực
+                    # Vì vậy cạnh đi ra từ đỉnh có độ dài đường đi ngắn nhất là INF không thể được nới lỏng
                     if dis[v] > dis[u] + w:
                         dis[v] = dis[u] + w
                         flag = True
-                # 没有可以松弛的边时就停止算法
+                # Khi không còn cạnh có thể nới lỏng thì dừng thuật toán
                 if not flag:
                     break
-            # 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
+            # Nếu ở vòng lặp thứ n vẫn có thể nới lỏng, đỉnh s có thể đi đến một chu trình âm
             return flag
         ```
 
-### 队列优化：SPFA
+### Tối ưu bằng hàng đợi: SPFA
 
-即 Shortest Path Faster Algorithm．
+SPFA là viết tắt của Shortest Path Faster Algorithm.
 
-很多时候我们并不需要那么多无用的松弛操作．
+Trong nhiều trường hợp, ta không cần thực hiện quá nhiều thao tác nới lỏng vô ích.
 
-很显然，只有上一次被松弛的结点，所连接的边，才有可能引起下一次的松弛操作．
+Hiển nhiên, chỉ các cạnh nối với những đỉnh vừa được nới lỏng ở lần trước mới có khả năng gây ra thao tác nới lỏng tiếp theo.
 
-那么我们用队列来维护「哪些结点可能会引起松弛操作」，就能只访问必要的边了．
+Vì vậy ta dùng hàng đợi để duy trì "những đỉnh có thể gây ra thao tác nới lỏng", nhờ đó chỉ cần thăm các cạnh cần thiết.
 
-SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最短路经过了多少条边，当经过了至少 $n$ 条边时，说明 $s$ 点可以抵达一个负环．
+SPFA cũng có thể dùng để xác định đỉnh $s$ có đi đến được một chu trình âm hay không. Chỉ cần ghi lại số cạnh mà đường đi ngắn nhất đi qua; khi số cạnh đã đi qua ít nhất là $n$, điều đó cho thấy từ $s$ có thể đi đến một chu trình âm.
 
-??? note "实现"
+??? note "Cài đặt"
     === "C++"
         ```cpp
         struct edge {
@@ -264,10 +264,10 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
               int v = ed.v, w = ed.w;
               if (dis[v] > dis[u] + w) {
                 dis[v] = dis[u] + w;
-                cnt[v] = cnt[u] + 1;  // 记录最短路经过的边数
+                cnt[v] = cnt[u] + 1;  // Ghi lại số cạnh mà đường đi ngắn nhất đi qua
                 if (cnt[v] >= n) return false;
-                // 在不经过负环的情况下，最短路至多经过 n - 1 条边
-                // 因此如果经过了多于 n 条边，一定说明经过了负环
+                // Nếu không đi qua chu trình âm, đường đi ngắn nhất có nhiều nhất n - 1 cạnh
+                // Vì vậy nếu đi qua nhiều hơn n cạnh thì chắc chắn đã đi qua chu trình âm
                 if (!vis[v]) q.push(v), vis[v] = 1;
               }
             }
@@ -307,85 +307,85 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                     v, w = ed.v, ed.w
                     if dis[v] > dis[u] + w:
                         dis[v] = dis[u] + w
-                        cnt[v] = cnt[u] + 1  # 记录最短路经过的边数
+                        cnt[v] = cnt[u] + 1  # Ghi lại số cạnh mà đường đi ngắn nhất đi qua
                         if cnt[v] >= n:
                             return False
-                        # 在不经过负环的情况下，最短路至多经过 n - 1 条边
-                        # 因此如果经过了多于 n 条边，一定说明经过了负环
+                        # Nếu không đi qua chu trình âm, đường đi ngắn nhất có nhiều nhất n - 1 cạnh
+                        # Vì vậy nếu đi qua nhiều hơn n cạnh thì chắc chắn đã đi qua chu trình âm
                         if not vis[v]:
                             q.append(v)
                             vis[v] = True
         ```
 
-虽然在大多数情况下 SPFA 跑得很快，但其最坏情况下的时间复杂度为 $O(nm)$，将其卡到这个复杂度也是不难的，所以考试时要谨慎使用（在没有负权边时最好使用 Dijkstra 算法，在有负权边且题目中的图没有特殊性质时，若 SPFA 是标算的一部分，题目不应当给出 Bellman–Ford 算法无法通过的数据范围）．
+Dù trong đa số trường hợp SPFA chạy rất nhanh, độ phức tạp thời gian trong trường hợp xấu nhất của nó là $O(nm)$; việc tạo dữ liệu để đẩy nó đến độ phức tạp này không khó. Vì vậy khi thi cần thận trọng khi dùng SPFA (nếu không có cạnh âm thì tốt nhất dùng Dijkstra; nếu có cạnh âm và đồ thị trong đề không có tính chất đặc biệt, nếu SPFA là một phần của lời giải chuẩn thì đề không nên cho giới hạn dữ liệu khiến Bellman-Ford không thể qua).
 
-???+ note "Bellman–Ford 的其他优化"
-    除了队列优化（SPFA）之外，Bellman–Ford 还有其他形式的优化，这些优化在部分图上效果明显，但在某些特殊图上，最坏复杂度可能达到指数级．
+???+ note "Các tối ưu khác của Bellman-Ford"
+    Ngoài tối ưu bằng hàng đợi (SPFA), Bellman-Ford còn có các dạng tối ưu khác. Những tối ưu này hiệu quả rõ rệt trên một số đồ thị, nhưng trên vài đồ thị đặc biệt, độ phức tạp xấu nhất có thể đạt mức hàm mũ.
     
-    -   堆优化：将队列换成堆，与 Dijkstra 的区别是允许一个点多次入队．在有负权边的图可能被卡成指数级复杂度．
-    -   栈优化：将队列换成栈（即将原来的 BFS 过程变成 DFS），在寻找负环时可能具有更高效率，但最坏时间复杂度仍然为指数级．
-    -   LLL 优化：将普通队列换成双端队列，每次将入队结点距离和队内距离平均值比较，如果更大则插入至队尾，否则插入队首．
-    -   SLF 优化：将普通队列换成双端队列，每次将入队结点距离和队首比较，如果更大则插入至队尾，否则插入队首．
-    -   D´Esopo–Pape 算法：将普通队列换成双端队列，如果一个节点之前没有入队，则将其插入队尾，否则插入队首．
+    -   Tối ưu bằng heap: thay hàng đợi bằng heap; khác với Dijkstra ở chỗ cho phép một đỉnh vào hàng đợi nhiều lần. Trên đồ thị có cạnh âm, cách này có thể bị đẩy đến độ phức tạp hàm mũ.
+    -   Tối ưu bằng stack: thay hàng đợi bằng stack (tức biến quá trình BFS ban đầu thành DFS). Cách này có thể hiệu quả hơn khi tìm chu trình âm, nhưng độ phức tạp thời gian xấu nhất vẫn là hàm mũ.
+    -   Tối ưu LLL: thay hàng đợi thường bằng deque; mỗi lần đưa một đỉnh vào hàng đợi, so sánh khoảng cách của nó với trung bình khoảng cách trong hàng đợi, nếu lớn hơn thì chèn vào cuối, ngược lại chèn vào đầu.
+    -   Tối ưu SLF: thay hàng đợi thường bằng deque; mỗi lần đưa một đỉnh vào hàng đợi, so sánh khoảng cách của nó với đỉnh đầu hàng đợi, nếu lớn hơn thì chèn vào cuối, ngược lại chèn vào đầu.
+    -   Thuật toán D'Esopo-Pape: thay hàng đợi thường bằng deque; nếu một đỉnh trước đó chưa vào hàng đợi thì chèn vào cuối, ngược lại chèn vào đầu.
     
-    更多优化以及针对这些优化的 Hack 方法，可以看 [fstqwq 在知乎上的回答](https://www.zhihu.com/question/292283275/answer/484871888)．
+    Xem thêm các tối ưu và cách hack những tối ưu đó trong [câu trả lời của fstqwq trên Zhihu](https://www.zhihu.com/question/292283275/answer/484871888).
 
-## Dijkstra 算法
+## Thuật toán Dijkstra
 
-Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. W. Dijkstra 于 1956 年发现，1959 年公开发表．是一种求解 **非负权图** 上单源最短路径的算法．
+Thuật toán Dijkstra (/ˈdikstrɑ/ hoặc /ˈdɛikstrɑ/) do nhà khoa học máy tính người Hà Lan E. W. Dijkstra phát hiện năm 1956 và công bố năm 1959. Đây là thuật toán tìm đường đi ngắn nhất từ một nguồn trên **đồ thị có trọng số không âm**.
 
-### 过程
+### Quy trình
 
-将结点分成两个集合：已确定最短路长度的点集（记为 $S$ 集合）的和未确定最短路长度的点集（记为 $T$ 集合）．一开始所有的点都属于 $T$ 集合．
+Chia các đỉnh thành hai tập: tập các đỉnh đã xác định được độ dài đường đi ngắn nhất (ký hiệu là tập $S$) và tập các đỉnh chưa xác định được độ dài đường đi ngắn nhất (ký hiệu là tập $T$). Ban đầu mọi đỉnh đều thuộc tập $T$.
 
-初始化 $dis(s)=0$，其他点的 $dis$ 均为 $+\infty$．
+Khởi tạo $dis(s)=0$, còn $dis$ của các đỉnh khác đều là $+\infty$.
 
-然后重复这些操作：
+Sau đó lặp lại các thao tác sau:
 
-1.  从 $T$ 集合中，选取一个最短路长度最小的结点，移到 $S$ 集合中．
-2.  对那些刚刚被加入 $S$ 集合的结点的所有出边执行松弛操作．
+1.  Chọn trong tập $T$ một đỉnh có độ dài đường đi ngắn nhất nhỏ nhất, rồi chuyển nó sang tập $S$.
+2.  Thực hiện nới lỏng trên tất cả cạnh đi ra từ đỉnh vừa được thêm vào tập $S$.
 
-直到 $T$ 集合为空，算法结束．
+Khi tập $T$ rỗng, thuật toán kết thúc.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-朴素的实现方法为每次 2 操作执行完毕后，直接在 $T$ 集合中暴力寻找最短路长度最小的结点．2 操作总时间复杂度为 $O(m)$，1 操作总时间复杂度为 $O(n^2)$，全过程的时间复杂度为 $O(n^2 + m) = O(n^2)$．
+Cài đặt đơn giản là sau mỗi lần thực hiện thao tác 2, trực tiếp tìm tuyến tính trong tập $T$ đỉnh có độ dài đường đi ngắn nhất nhỏ nhất. Tổng thời gian của thao tác 2 là $O(m)$, tổng thời gian của thao tác 1 là $O(n^2)$, nên toàn bộ quá trình có độ phức tạp thời gian $O(n^2 + m) = O(n^2)$.
 
-可以用堆来优化这一过程：每成功松弛一条边 $(u,v)$，就将 $v$ 插入堆中（如果 $v$ 已经在堆中，直接执行 Decrease-key），1 操作直接取堆顶结点即可．共计 $O(m)$ 次 Decrease-key，$O(n)$ 次 pop，选择不同堆可以取到不同的复杂度，参考 [堆](../ds/heap.md) 页面．堆优化能做到的最优复杂度为 $O(n\log n+m)$，能做到这一复杂度的有斐波那契堆等．
+Có thể dùng heap để tối ưu quá trình này: mỗi khi nới lỏng thành công một cạnh $(u,v)$, chèn $v$ vào heap (nếu $v$ đã ở trong heap thì trực tiếp thực hiện Decrease-key); thao tác 1 chỉ cần lấy đỉnh ở đỉnh heap. Tổng cộng có $O(m)$ lần Decrease-key, $O(n)$ lần pop; chọn heap khác nhau sẽ cho độ phức tạp khác nhau, xem trang [heap](../ds/heap.md). Độ phức tạp tối ưu mà Dijkstra tối ưu bằng heap có thể đạt được là $O(n\log n+m)$, ví dụ với heap Fibonacci.
 
-特别地，可以使用优先队列维护，此时无法执行 Decrease-key 操作，但可以通过每次松弛时重新插入该结点，且弹出时检查该结点是否已被松弛过，若是则跳过，复杂度 $O(m\log n)$，优点是实现较简单．
+Đặc biệt, có thể dùng hàng đợi ưu tiên để duy trì. Khi đó không thể thực hiện Decrease-key, nhưng có thể chèn lại đỉnh mỗi khi nới lỏng, rồi khi lấy ra thì kiểm tra đỉnh đó đã được nới lỏng hay chưa; nếu rồi thì bỏ qua. Độ phức tạp là $O(m\log n)$, ưu điểm là cài đặt đơn giản hơn.
 
-这里的堆也可以用线段树来实现，复杂度为 $O(m\log n)$，在一些特殊的非递归线段树实现下，该做法常数比堆更小．并且线段树支持的操作更多，在一些特殊图问题上只能用线段树来维护．
+Heap ở đây cũng có thể được cài bằng cây phân đoạn, độ phức tạp là $O(m\log n)$. Với một số cài đặt cây phân đoạn không đệ quy đặc biệt, hằng số của cách này nhỏ hơn heap. Ngoài ra cây phân đoạn hỗ trợ nhiều thao tác hơn, và trong một số bài đồ thị đặc biệt bắt buộc phải dùng cây phân đoạn để duy trì.
 
-在稀疏图中，$m = O(n)$，堆优化的 Dijkstra 算法具有较大的效率优势；而在稠密图中，$m = O(n^2)$，这时候使用朴素实现更优．
+Trong đồ thị thưa, $m = O(n)$, Dijkstra tối ưu bằng heap có lợi thế lớn về hiệu suất; còn trong đồ thị dày, $m = O(n^2)$, cài đặt đơn giản lại tốt hơn.
 
-### 正确性证明
+### Chứng minh tính đúng đắn
 
-下面用数学归纳法证明，在 **所有边权值非负** 的前提下，Dijkstra 算法的正确性[^1]．
+Dưới đây dùng quy nạp toán học để chứng minh tính đúng đắn của thuật toán Dijkstra trong điều kiện **mọi trọng số cạnh đều không âm**[^1].
 
-简单来说，我们要证明的，就是在执行 1 操作时，取出的结点 $u$ 最短路均已经被确定，即满足 $D(u) = dis(u)$．
+Nói ngắn gọn, ta cần chứng minh rằng ở thao tác 1, đỉnh $u$ được lấy ra đều đã được xác định đường đi ngắn nhất, tức thỏa mãn $D(u) = dis(u)$.
 
-初始时 $S = \varnothing$，假设成立．
+Ban đầu $S = \varnothing$, giả thiết đúng.
 
-接下来用反证法．
+Tiếp theo dùng phản chứng.
 
-设 $u$ 点为算法中第一个在加入 $S$ 集合时不满足 $D(u) = dis(u)$ 的点．因为 $s$ 点一定满足 $D(u)=dis(u)=0$，且它一定是第一个加入 $S$ 集合的点，因此将 $u$ 加入 $S$ 集合前，$S \neq \varnothing$，如果不存在 $s$ 到 $u$ 的路径，则 $D(u) = dis(u) = +\infty$，与假设矛盾．
+Giả sử $u$ là đỉnh đầu tiên trong thuật toán mà khi được thêm vào tập $S$ không thỏa mãn $D(u) = dis(u)$. Vì đỉnh $s$ chắc chắn thỏa mãn $D(u)=dis(u)=0$, và nó chắc chắn là đỉnh đầu tiên được thêm vào tập $S$, nên trước khi thêm $u$ vào tập $S$, ta có $S \neq \varnothing$; nếu không tồn tại đường đi từ $s$ đến $u$, thì $D(u) = dis(u) = +\infty$, mâu thuẫn với giả thiết.
 
-于是一定存在路径 $s \to x \to y \to u$，其中 $y$ 为 $s \to u$ 路径上第一个属于 $T$ 集合的点，而 $x$ 为 $y$ 的前驱结点（显然 $x \in S$）．需要注意的是，可能存在 $s = x$ 或 $y = u$ 的情况，即 $s \to x$ 或 $y \to u$ 可能是空路径．
+Vì vậy chắc chắn tồn tại một đường đi $s \to x \to y \to u$, trong đó $y$ là đỉnh đầu tiên trên đường đi từ $s$ đến $u$ thuộc tập $T$, còn $x$ là đỉnh đứng trước $y$ (rõ ràng $x \in S$). Cần chú ý rằng có thể xảy ra $s = x$ hoặc $y = u$, tức $s \to x$ hoặc $y \to u$ có thể là đường đi rỗng.
 
-因为在 $u$ 结点之前加入的结点都满足 $D(u) = dis(u)$，所以在 $x$ 点加入到 $S$ 集合时，有 $D(x) = dis(x)$，此时边 $(x,y)$ 会被松弛，从而可以证明，将 $u$ 加入到 $S$ 时，一定有 $D(y)=dis(y)$．
+Vì mọi đỉnh được thêm vào trước $u$ đều thỏa mãn $D(u) = dis(u)$, nên khi đỉnh $x$ được thêm vào tập $S$, có $D(x) = dis(x)$; lúc đó cạnh $(x,y)$ sẽ được nới lỏng. Từ đó có thể chứng minh rằng khi thêm $u$ vào tập $S$, chắc chắn có $D(y)=dis(y)$.
 
-下面证明 $D(u) = dis(u)$ 成立．在路径 $s \to x \to y \to u$ 中，因为图上所有边边权非负，因此 $D(y) \leq D(u)$．从而 $dis(y) = D(y) \leq D(u)\leq dis(u)$．但是因为 $u$ 结点在 1 过程中被取出 $T$ 集合时，$y$ 结点还没有被取出 $T$ 集合，因此此时有 $dis(u)\leq dis(y)$，从而得到 $dis(y) = D(y) = D(u) = dis(u)$，这与 $D(u)\neq dis(u)$ 的假设矛盾，故假设不成立．
+Tiếp theo chứng minh $D(u) = dis(u)$. Trên đường đi $s \to x \to y \to u$, vì mọi trọng số cạnh của đồ thị không âm, nên $D(y) \leq D(u)$. Do đó $dis(y) = D(y) \leq D(u)\leq dis(u)$. Nhưng khi đỉnh $u$ được lấy khỏi tập $T$ ở thao tác 1, đỉnh $y$ vẫn chưa bị lấy khỏi tập $T$, vì vậy lúc này có $dis(u)\leq dis(y)$. Suy ra $dis(y) = D(y) = D(u) = dis(u)$, mâu thuẫn với giả thiết $D(u)\neq dis(u)$. Do đó giả thiết sai.
 
-因此我们证明了，1 操作每次取出的点，其最短路均已经被确定．命题得证．
+Vậy ta đã chứng minh được rằng mỗi đỉnh được lấy ra ở thao tác 1 đều đã được xác định đường đi ngắn nhất. Mệnh đề được chứng minh.
 
-注意到证明过程中的关键不等式 $D(y) \leq D(u)$ 是在图上所有边边权非负的情况下得出的．当图上存在负权边时，这一不等式不再成立，Dijkstra 算法的正确性将无法得到保证，算法可能会给出错误的结果．
+Chú ý rằng bất đẳng thức then chốt $D(y) \leq D(u)$ trong chứng minh được suy ra nhờ mọi trọng số cạnh trên đồ thị không âm. Khi đồ thị có cạnh âm, bất đẳng thức này không còn đúng, tính đúng đắn của Dijkstra không được bảo đảm, và thuật toán có thể cho kết quả sai.
 
-### 实现
+### Cài đặt
 
-这里同时给出 $O(n^2)$ 的暴力做法实现和 $O(m \log m)$ 的优先队列做法实现．
+Dưới đây đồng thời đưa ra cài đặt đơn giản $O(n^2)$ và cài đặt bằng hàng đợi ưu tiên $O(m \log m)$.
 
-???+ note "朴素实现"
+???+ note "Cài đặt đơn giản"
     === "C++"
         ```cpp
         struct edge {
@@ -442,7 +442,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
                         dis[v] = dis[u] + w
         ```
 
-???+ note "优先队列实现"
+???+ note "Cài đặt bằng hàng đợi ưu tiên"
     === "C++"
         ```cpp
         struct edge {
@@ -484,11 +484,11 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         ```python
         def dijkstra(e, s):
             """
-            输入：
-            e:邻接表
-            s:起点
-            返回：
-            dis:从s到每个顶点的最短路长度
+            Đầu vào:
+            e: danh sách kề
+            s: đỉnh xuất phát
+            Trả về:
+            dis: độ dài đường đi ngắn nhất từ s đến từng đỉnh
             """
             dis = defaultdict(lambda: float("inf"))
             dis[s] = 0
@@ -506,96 +506,96 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
             return dis
         ```
 
-## Johnson 全源最短路径算法
+## Thuật toán Johnson tìm đường đi ngắn nhất mọi cặp
 
-Johnson 和 Floyd 一样，是一种能求出无负环图上任意两点间最短路径的算法．该算法在 1977 年由 Donald B. Johnson 提出．
+Giống Floyd, Johnson là thuật toán có thể tìm đường đi ngắn nhất giữa mọi cặp đỉnh trên đồ thị không có chu trình âm. Thuật toán này được Donald B. Johnson đề xuất năm 1977.
 
-任意两点间的最短路可以通过枚举起点，跑 $n$ 次 Bellman–Ford 算法解决，时间复杂度是 $O(n^2m)$ 的，也可以直接用 Floyd 算法解决，时间复杂度为 $O(n^3)$．
+Đường đi ngắn nhất giữa mọi cặp đỉnh có thể được giải bằng cách liệt kê đỉnh xuất phát và chạy Bellman-Ford $n$ lần, độ phức tạp thời gian là $O(n^2m)$; cũng có thể dùng trực tiếp Floyd, độ phức tạp thời gian là $O(n^3)$.
 
-注意到堆优化的 Dijkstra 算法求单源最短路径的时间复杂度比 Bellman–Ford 更优，如果枚举起点，跑 $n$ 次 Dijkstra 算法，就可以在 $O(nm\log m)$（取决于 Dijkstra 算法的实现）的时间复杂度内解决本问题，比上述跑 $n$ 次 Bellman–Ford 算法的时间复杂度更优秀，在稀疏图上也比 Floyd 算法的时间复杂度更加优秀．
+Nhận thấy Dijkstra tối ưu bằng heap có độ phức tạp tìm đường đi ngắn nhất từ một nguồn tốt hơn Bellman-Ford. Nếu liệt kê đỉnh xuất phát và chạy Dijkstra $n$ lần, ta có thể giải bài toán trong độ phức tạp $O(nm\log m)$ (phụ thuộc vào cách cài đặt Dijkstra), tốt hơn độ phức tạp chạy Bellman-Ford $n$ lần ở trên, và trên đồ thị thưa cũng tốt hơn Floyd.
 
-但 Dijkstra 算法不能正确求解带负权边的最短路，因此我们需要对原图上的边进行预处理，确保所有边的边权均非负．
+Nhưng Dijkstra không thể tìm đúng đường đi ngắn nhất khi có cạnh âm, vì vậy ta cần tiền xử lý trọng số cạnh của đồ thị ban đầu để bảo đảm mọi trọng số cạnh đều không âm.
 
-一种容易想到的方法是给所有边的边权同时加上一个正数 $x$，从而让所有边的边权均非负．如果新图上起点到终点的最短路经过了 $k$ 条边，则将最短路减去 $kx$ 即可得到实际最短路．
+Một cách dễ nghĩ tới là cộng đồng thời một số dương $x$ vào trọng số của mọi cạnh, để mọi cạnh đều có trọng số không âm. Nếu đường đi ngắn nhất từ điểm đầu đến điểm cuối trong đồ thị mới đi qua $k$ cạnh, thì trừ $kx$ khỏi đường đi ngắn nhất đó sẽ nhận được đường đi ngắn nhất thực sự.
 
-但这样的方法是错误的．考虑下图：
+Nhưng cách này là sai. Xét hình sau:
 
 ![](./images/shortest-path1.svg)
 
-$1 \to 2$ 的最短路为 $1 \to 5 \to 3 \to 2$，长度为 $−2$．
+Đường đi ngắn nhất từ $1 \to 2$ là $1 \to 5 \to 3 \to 2$, độ dài là $−2$.
 
-但假如我们把每条边的边权加上 $5$ 呢？
+Nhưng nếu ta cộng thêm $5$ vào trọng số của mỗi cạnh thì sao?
 
 ![](./images/shortest-path2.svg)
 
-新图上 $1 \to 2$ 的最短路为 $1 \to 4 \to 2$，已经不是实际的最短路了．
+Trong đồ thị mới, đường đi ngắn nhất từ $1 \to 2$ là $1 \to 4 \to 2$, không còn là đường đi ngắn nhất thực sự.
 
-Johnson 算法则通过另外一种方法来给每条边重新标注边权．
+Thuật toán Johnson dùng một cách khác để gán lại trọng số cho từng cạnh.
 
-我们新建一个虚拟节点（在这里我们就设它的编号为 $0$）．从这个点向其他所有点连一条边权为 $0$ 的边．
+Ta tạo một đỉnh ảo mới (ở đây giả sử đánh số là $0$). Từ đỉnh này nối một cạnh trọng số $0$ đến mọi đỉnh khác.
 
-接下来用 Bellman–Ford 算法求出从 $0$ 号点到其他所有点的最短路，记为 $h_i$．
+Tiếp theo dùng Bellman-Ford để tìm đường đi ngắn nhất từ đỉnh $0$ đến mọi đỉnh khác, ký hiệu là $h_i$.
 
-假如存在一条从 $u$ 点到 $v$ 点，边权为 $w$ 的边，则我们将该边的边权重新设置为 $w+h_u-h_v$．
+Giả sử tồn tại một cạnh từ đỉnh $u$ đến đỉnh $v$ với trọng số $w$, ta đặt lại trọng số của cạnh này thành $w+h_u-h_v$.
 
-接下来以每个点为起点，跑 $n$ 轮 Dijkstra 算法即可求出任意两点间的最短路了．
+Sau đó lấy từng đỉnh làm điểm xuất phát và chạy Dijkstra $n$ lần, ta sẽ tìm được đường đi ngắn nhất giữa mọi cặp đỉnh.
 
-一开始的 Bellman–Ford 算法并不是时间上的瓶颈，若使用 `priority_queue` 实现 Dijkstra 算法，该算法的时间复杂度是 $O(nm\log m)$．
+Bellman-Ford ban đầu không phải nút thắt thời gian; nếu dùng `priority_queue` để cài Dijkstra, độ phức tạp thời gian của thuật toán là $O(nm\log m)$.
 
-### 正确性证明
+### Chứng minh tính đúng đắn
 
-为什么这样重新标注边权的方式是正确的呢？
+Vì sao cách gán lại trọng số này là đúng?
 
-在讨论这个问题之前，我们先讨论一个物理概念——势能．
+Trước khi bàn về vấn đề đó, hãy xét một khái niệm vật lý: thế năng.
 
-诸如重力势能，电势能这样的势能都有一个特点，势能的变化量只和起点和终点的相对位置有关，而与起点到终点所走的路径无关．
+Các dạng thế năng như thế năng trọng trường, thế năng điện có một đặc điểm: độ biến thiên thế năng chỉ phụ thuộc vào vị trí tương đối của điểm đầu và điểm cuối, không phụ thuộc vào đường đi từ điểm đầu đến điểm cuối.
 
-势能还有一个特点，势能的绝对值往往取决于设置的零势能点，但无论将零势能点设置在哪里，两点间势能的差值是一定的．
+Thế năng còn có một đặc điểm khác: giá trị tuyệt đối của thế năng thường phụ thuộc vào cách chọn mốc thế năng bằng không, nhưng dù đặt mốc ở đâu thì hiệu thế năng giữa hai điểm vẫn không đổi.
 
-接下来回到正题．
+Bây giờ quay lại bài toán.
 
-在重新标记后的图上，从 $s$ 点到 $t$ 点的一条路径 $s \to p_1 \to p_2 \to \dots \to p_k \to t$ 的长度表达式如下：
+Trong đồ thị sau khi gán lại trọng số, độ dài của một đường đi từ $s$ đến $t$: $s \to p_1 \to p_2 \to \dots \to p_k \to t$ có biểu thức:
 
 $(w(s,p_1)+h_s-h_{p_1})+(w(p_1,p_2)+h_{p_1}-h_{p_2})+ \dots +(w(p_k,t)+h_{p_k}-h_t)$
 
-化简后得到：
+Rút gọn được:
 
 $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
-无论我们从 $s$ 到 $t$ 走的是哪一条路径，$h_s-h_t$ 的值是不变的，这正与势能的性质相吻合！
+Bất kể ta đi từ $s$ đến $t$ theo đường nào, giá trị $h_s-h_t$ đều không đổi, điều này khớp với tính chất của thế năng.
 
-为了方便，下面我们就把 $h_i$ 称为 $i$ 点的势能．
+Để tiện gọi, dưới đây ta gọi $h_i$ là thế năng của đỉnh $i$.
 
-上面的新图中 $s \to t$ 的最短路的长度表达式由两部分组成，前面的边权和为原图中 $s \to t$ 的最短路，后面则是两点间的势能差．因为两点间势能的差为定值，因此原图上 $s \to t$ 的最短路与新图上 $s \to t$ 的最短路相对应．
+Trong đồ thị mới ở trên, biểu thức độ dài đường đi ngắn nhất từ $s \to t$ gồm hai phần: tổng trọng số cạnh phía trước là đường đi ngắn nhất từ $s \to t$ trong đồ thị ban đầu, còn phần phía sau là hiệu thế năng giữa hai đỉnh. Vì hiệu thế năng giữa hai đỉnh là hằng số, đường đi ngắn nhất từ $s \to t$ trên đồ thị ban đầu tương ứng với đường đi ngắn nhất từ $s \to t$ trên đồ thị mới.
 
-到这里我们的正确性证明已经解决了一半——我们证明了重新标注边权后图上的最短路径仍然是原来的最短路径．接下来我们需要证明新图中所有边的边权非负，因为在非负权图上，Dijkstra 算法能够保证得出正确的结果．
+Đến đây ta đã giải quyết được một nửa chứng minh tính đúng đắn: ta chứng minh rằng sau khi gán lại trọng số, đường đi ngắn nhất trên đồ thị vẫn là đường đi ngắn nhất ban đầu. Tiếp theo cần chứng minh mọi cạnh trong đồ thị mới đều có trọng số không âm, vì trên đồ thị trọng số không âm, Dijkstra bảo đảm cho kết quả đúng.
 
-根据三角形不等式，图上任意一边 $(u,v)$ 上两点满足：$h_v \leq h_u + w(u,v)$．这条边重新标记后的边权为 $w'(u,v)=w(u,v)+h_u-h_v \geq 0$．这样我们证明了新图上的边权均非负．
+Theo bất đẳng thức tam giác, với mọi cạnh $(u,v)$ trên đồ thị, hai đầu cạnh thỏa mãn $h_v \leq h_u + w(u,v)$. Trọng số cạnh sau khi gán lại là $w'(u,v)=w(u,v)+h_u-h_v \geq 0$. Như vậy ta đã chứng minh mọi trọng số cạnh trong đồ thị mới đều không âm.
 
-这样，我们就证明了 Johnson 算法的正确性．
+Vậy ta đã chứng minh tính đúng đắn của thuật toán Johnson.
 
-## 不同方法的比较
+## So sánh các phương pháp
 
-| 最短路算法   | Floyd      | Bellman–Ford | Dijkstra     | Johnson       |
+| Thuật toán đường đi ngắn nhất | Floyd | Bellman-Ford | Dijkstra | Johnson |
 | ------- | ---------- | ------------ | ------------ | ------------- |
-| 最短路类型   | 每对结点之间的最短路 | 单源最短路        | 单源最短路        | 每对结点之间的最短路    |
-| 作用于     | 任意图        | 任意图          | 非负权图         | 任意图           |
-| 能否检测负环？ | 能          | 能            | 不能           | 能             |
-| 时间复杂度   | $O(N^3)$   | $O(NM)$      | $O(M\log M)$ | $O(NM\log M)$ |
+| Kiểu đường đi ngắn nhất | Mọi cặp đỉnh | Từ một nguồn | Từ một nguồn | Mọi cặp đỉnh |
+| Áp dụng cho | Đồ thị bất kỳ | Đồ thị bất kỳ | Đồ thị trọng số không âm | Đồ thị bất kỳ |
+| Phát hiện được chu trình âm? | Có | Có | Không | Có |
+| Độ phức tạp thời gian | $O(N^3)$ | $O(NM)$ | $O(M\log M)$ | $O(NM\log M)$ |
 
-注：表中的 Dijkstra 算法在计算复杂度时均用 `priority_queue` 实现．
+Ghi chú: thuật toán Dijkstra trong bảng đều được tính độ phức tạp khi cài bằng `priority_queue`.
 
-## 输出方案
+## Xuất phương án
 
-开一个 `pre` 数组，在更新距离的时候记录下来后面的点是如何转移过去的，算法结束前再递归地输出路径即可．
+Tạo một mảng `pre`, khi cập nhật khoảng cách thì ghi lại đỉnh phía sau được chuyển từ đâu đến, sau đó trước khi thuật toán kết thúc thì đệ quy xuất đường đi.
 
-比如 Floyd 就要记录 `pre[i][j] = k;`，Bellman–Ford 和 Dijkstra 一般记录 `pre[v] = u`．
+Ví dụ Floyd cần ghi `pre[i][j] = k;`, còn Bellman-Ford và Dijkstra thường ghi `pre[v] = u`.
 
-## 一些特殊情形
+## Một số trường hợp đặc biệt
 
--   边权只由 $0$ 和 $1$ 组成的图上最短路：[0-1 BFS](./bfs.md#双端队列-bfs)；
--   允许至多 $k$ 次改变路径成本等操作的最短路问题：[分层图最短路](./node.md#分层图最短路)．
+-   Đường đi ngắn nhất trên đồ thị có trọng số cạnh chỉ gồm $0$ và $1$: [0-1 BFS](./bfs.md#bfs-hai-đầu-hàng-đợi);
+-   Bài toán đường đi ngắn nhất cho phép thay đổi chi phí đường đi tối đa $k$ lần: [đường đi ngắn nhất trên đồ thị phân tầng](./node.md#%E5%88%86%E5%B1%82%E5%9B%BE%E6%9C%80%E7%9F%AD%E8%B7%AF).
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^1]: 《算法导论（第 3 版中译本）》，机械工业出版社，2013 年，第 384 - 385 页．
+[^1]: *Introduction to Algorithms* (bản dịch Trung Quốc, ấn bản thứ 3), China Machine Press, 2013, trang 384-385.
