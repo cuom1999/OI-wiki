@@ -518,22 +518,26 @@ Với số nguyên dương $m$, ta có định lý sau:
     Đây là một hệ thặng dư **thu gọn** modulo $m$.
 
 <span id="&#x6570;&#x8BBA;&#x51FD;&#x6570;"></span>
-## Ham so hoc
+## Hàm số học
 
-Ham so hoc (con goi la ham so so hoc) la ham co mien xac dinh la cac so nguyen duong. Ham so hoc cung co the xem nhu mot day so.
+Hàm số học (còn gọi là hàm số số học) là hàm có miền xác định là các số nguyên
+dương. Hàm số học cũng có thể xem như một dãy số.
 
 <span id="&#x79EF;&#x6027;&#x51FD;&#x6570;"></span>
-### Ham nhan tinh
+### Hàm nhân tính
 
-???+ note "Dinh nghia"
-    Trong so hoc, neu ham $f(n)$ thoa man $f(1)=1$ va $f(xy)=f(x)f(y)$ voi moi cap $x, y \in\mathbf{N}^*$ nguyen to cung nhau, thi $f(n)$ la **ham nhan tinh**.
+???+ note "Định nghĩa"
+    Trong số học, nếu hàm $f(n)$ thỏa mãn $f(1)=1$ và $f(xy)=f(x)f(y)$ với mọi
+    cặp $x, y \in\mathbf{N}^*$ nguyên tố cùng nhau, thì $f(n)$ là
+    **hàm nhân tính**.
     
-    Trong so hoc, neu ham $f(n)$ thoa man $f(1)=1$ va $f(xy)=f(x)f(y)$ voi moi $x, y \in\mathbf{N}^*$, thi $f(n)$ la **ham nhan tinh hoan toan**.
+    Trong số học, nếu hàm $f(n)$ thỏa mãn $f(1)=1$ và $f(xy)=f(x)f(y)$ với mọi
+    $x, y \in\mathbf{N}^*$, thì $f(n)$ là **hàm nhân tính hoàn toàn**.
 
 <span id="&#x6027;&#x8D28;"></span>
-#### Tinh chat
+#### Tính chất
 
-Neu $f(x)$ va $g(x)$ deu la ham nhan tinh, thi cac ham sau cung la ham nhan tinh:
+Nếu $f(x)$ và $g(x)$ đều là hàm nhân tính, thì các hàm sau cũng là hàm nhân tính:
 
 $$
 \begin{aligned}
@@ -544,52 +548,70 @@ h(x)&=\sum_{d\mid x}f(d)g\left(\dfrac{x}{d}\right)
 \end{aligned}
 $$
 
-Voi so nguyen duong $x$, gia su phan tich thua so nguyen to duy nhat cua no la $x=\prod p_i^{k_i}$, trong do $p_i$ la so nguyen to.
+Với số nguyên dương $x$, giả sử phân tích thừa số nguyên tố duy nhất của nó là
+$x=\prod p_i^{k_i}$, trong đó $p_i$ là số nguyên tố.
 
-Neu $F(x)$ la ham nhan tinh, thi $F(x)=\prod F(p_i^{k_i})$.
+Nếu $F(x)$ là hàm nhân tính, thì $F(x)=\prod F(p_i^{k_i})$.
 
-Neu $F(x)$ la ham nhan tinh hoan toan, thi $F(x)=\prod F(p_i^{k_i})=\prod F(p_i)^{k_i}$.
+Nếu $F(x)$ là hàm nhân tính hoàn toàn, thì
+$F(x)=\prod F(p_i^{k_i})=\prod F(p_i)^{k_i}$.
 
 <span id="&#x4F8B;&#x5B50;"></span>
-#### Vi du
+#### Ví dụ
 
--   Ham don vi: $\varepsilon(n)=[n=1]$. (nhan tinh hoan toan)
--   Ham dong nhat: $\operatorname{id}_k(n)=n^k$, $\operatorname{id}_{1}(n)$ thuong duoc viet gon la $\operatorname{id}(n)$. (nhan tinh hoan toan)
--   Ham hang: $1(n)=1$. (nhan tinh hoan toan)
--   Ham uoc so: $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$. $\sigma_{0}(n)$ thuong duoc viet gon la $d(n)$ hoac $\tau(n)$, $\sigma_{1}(n)$ thuong duoc viet gon la $\sigma(n)$.
--   Ham Euler: $\varphi(n)=\sum_{i=1}^n[(i,n)=1]$.
--   Ham Mobius: $\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$, trong do $\omega(n)$ la so luong thua so nguyen to phan biet cua $n$.
+-   Hàm đơn vị: $\varepsilon(n)=[n=1]$. (nhân tính hoàn toàn)
+-   Hàm đồng nhất: $\operatorname{id}_k(n)=n^k$, $\operatorname{id}_{1}(n)$
+    thường được viết gọn là $\operatorname{id}(n)$. (nhân tính hoàn toàn)
+-   Hàm hằng: $1(n)=1$. (nhân tính hoàn toàn)
+-   Hàm ước số: $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$. $\sigma_{0}(n)$ thường
+    được viết gọn là $d(n)$ hoặc $\tau(n)$, $\sigma_{1}(n)$ thường được viết gọn
+    là $\sigma(n)$.
+-   Hàm Euler: $\varphi(n)=\sum_{i=1}^n[(i,n)=1]$.
+-   Hàm Mobius:
+    $\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$,
+    trong đó $\omega(n)$ là số lượng thừa số nguyên tố phân biệt của $n$.
 
 <span id="&#x52A0;&#x6027;&#x51FD;&#x6570;"></span>
-### Ham cong tinh
+### Hàm cộng tính
 
-???+ note "Dinh nghia"
-    Trong so hoc, neu ham $f(n)$ thoa man $f(1)=0$ va $f(xy)=f(x)+f(y)$ voi moi cap $x, y \in\mathbf{N}^*$ nguyen to cung nhau, thi $f(n)$ la **ham cong tinh**.
+???+ note "Định nghĩa"
+    Trong số học, nếu hàm $f(n)$ thỏa mãn $f(1)=0$ và $f(xy)=f(x)+f(y)$ với mọi
+    cặp $x, y \in\mathbf{N}^*$ nguyên tố cùng nhau, thì $f(n)$ là
+    **hàm cộng tính**.
     
-    Trong so hoc, neu ham $f(n)$ thoa man $f(1)=0$ va $f(xy)=f(x)+f(y)$ voi moi $x, y \in\mathbf{N}^*$, thi $f(n)$ la **ham cong tinh hoan toan**.
+    Trong số học, nếu hàm $f(n)$ thỏa mãn $f(1)=0$ và $f(xy)=f(x)+f(y)$ với mọi
+    $x, y \in\mathbf{N}^*$, thì $f(n)$ là **hàm cộng tính hoàn toàn**.
 
-???+ warning "Ham cong tinh"
-    Ham cong tinh trong muc nay chi ham cong tinh trong so hoc (Additive function), can phan biet voi Additive map trong dai so.
+???+ warning "Hàm cộng tính"
+    Hàm cộng tính trong mục này chỉ hàm cộng tính trong số học (Additive
+    function), cần phân biệt với ánh xạ cộng (Additive map) trong đại số.
 
 <span id="&#x6027;&#x8D28;_1"></span>
-#### Tinh chat
+#### Tính chất
 
-Voi so nguyen duong $x$, gia su phan tich thua so nguyen to duy nhat cua no la $x=\prod p_i^{k_i}$, trong do $p_i$ la so nguyen to.
+Với số nguyên dương $x$, giả sử phân tích thừa số nguyên tố duy nhất của nó là
+$x=\prod p_i^{k_i}$, trong đó $p_i$ là số nguyên tố.
 
-Neu $F(x)$ la ham cong tinh, thi $F(x)=\sum F(p_i^{k_i})$.
+Nếu $F(x)$ là hàm cộng tính, thì $F(x)=\sum F(p_i^{k_i})$.
 
-Neu $F(x)$ la ham cong tinh hoan toan, thi $F(x)=\sum F(p_i^{k_i})=\sum F(p_i)\cdot k_i$.
+Nếu $F(x)$ là hàm cộng tính hoàn toàn, thì
+$F(x)=\sum F(p_i^{k_i})=\sum F(p_i)\cdot k_i$.
 
 <span id="&#x4F8B;&#x5B50;_1"></span>
-#### Vi du
+#### Ví dụ
 
-De thuan tien trinh bay, goi tap hop tat ca cac so nguyen to la $\mathbf P$.
+Để thuận tiện trình bày, gọi tập hợp tất cả các số nguyên tố là $\mathbf P$.
 
--   So mu cua $p$ trong phan tich thua so nguyen to: $\nu_p(n) = \max\{k\in\mathbf N: p^k\mid n\}$, trong do $p\in\mathbf P$. (cong tinh hoan toan)
--   Tong so thua so nguyen to ke ca boi so: $\Omega(n)=\sum_{p \in\mathbf P} \nu_p(n)$. (cong tinh hoan toan)
--   So thua so nguyen to phan biet: $\omega(n)=\sum_{p \in\mathbf P} [p \mid n]$.
--   Tong cac thua so nguyen to ke ca boi so: $a_0(n)=\sum_{p \in\mathbf P} \nu_p(n)\cdot p$. (cong tinh hoan toan)
--   Tong cac thua so nguyen to phan biet: $a_1(n)=\sum_{p \in\mathbf P} [p \mid n] \cdot p$.
+-   Số mũ của $p$ trong phân tích thừa số nguyên tố:
+    $\nu_p(n) = \max\{k\in\mathbf N: p^k\mid n\}$, trong đó $p\in\mathbf P$.
+    (cộng tính hoàn toàn)
+-   Tổng số thừa số nguyên tố kể cả bội số:
+    $\Omega(n)=\sum_{p \in\mathbf P} \nu_p(n)$. (cộng tính hoàn toàn)
+-   Số thừa số nguyên tố phân biệt: $\omega(n)=\sum_{p \in\mathbf P} [p \mid n]$.
+-   Tổng các thừa số nguyên tố kể cả bội số:
+    $a_0(n)=\sum_{p \in\mathbf P} \nu_p(n)\cdot p$. (cộng tính hoàn toàn)
+-   Tổng các thừa số nguyên tố phân biệt:
+    $a_1(n)=\sum_{p \in\mathbf P} [p \mid n] \cdot p$.
 
 <span id="&#x53D6;&#x6574;&#x51FD;&#x6570;"></span>
 ## Ham lay phan nguyen

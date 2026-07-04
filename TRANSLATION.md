@@ -145,7 +145,7 @@ MkDocs source layout intact.
   algorithm outline, reference implementation comments, and probability proof,
   deterministic-base notes, anti-prime introduction, examples, and references,
   the residue-class, residue-system, and residue-system composition definitions
-  in `basic.md`, then fully cleaned
+  and arithmetic-function sections in `basic.md`, then fully cleaned
   `docs/math/number-theory/gcd.md` and
   `docs/math/number-theory/sieve.md`, plus the opening concept sections of
   `docs/math/number-theory/quadratic.md` through the Eisenstein integer
