@@ -93,7 +93,8 @@ MkDocs source layout intact.
   `docs/dp/opt/quadrangle.md`, `docs/dp/opt/slope-trick.md`,
   `docs/dp/opt/state.md`, `docs/dp/opt/wqs-binary-search.md`: translated
   plug DP and DP optimization pages, plus explanatory comments in their
-  included snippets.
+  included snippets; quality-passed the Slope Trick introduction and convex
+  function definitions in `docs/dp/opt/slope-trick.md`.
 - `docs/string/basic.md`, `docs/string/lib-func.md`,
   `docs/string/match.md`: translated the introductory string material covering
   alphabets, substrings, C/C++ string helpers, and baseline string matching

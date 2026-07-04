@@ -1,123 +1,177 @@
 <span id="&#x5F15;&#x5165;"></span>
-## Dan nhap
+## Dẫn nhập
 
-Voi mot lop bai toan DP hai chieu, neu ham gia tri $f(i,x)$ la ham loi theo $x$ voi moi $i$ co dinh, ta co the xem toan bo ham $f(i,\cdot)$ la trang thai tai $i$, va duy tri sai phan (hay do doc) cua no
+Với một lớp bài toán DP hai chiều, nếu hàm giá trị $f(i,x)$ là hàm lồi theo
+$x$ với mọi $i$ cố định, ta có thể xem toàn bộ hàm $f(i,\cdot)$ là trạng thái
+tại $i$, và duy trì sai phân (hay độ dốc) của nó
 
 $$
 \Delta f(i,x) = f(i,x+1)-f(i,x)
 $$
 
-thay vi duy tri truc tiep ham. Cach nghi toi uu hoa DP nay thuong giup don gian hoa phep chuyen trang thai, va duoc goi la Slope Trick.
+thay vì duy trì trực tiếp hàm. Cách nghĩ tối ưu hóa DP này thường giúp đơn giản
+hóa phép chuyển trạng thái, và được gọi là Slope Trick.
 
-???+ info "\"Do doc\""
-    Trong phan lon bai toan, cac ham chi duoc lay gia tri tai cac diem nguyen, nen viec goi no la sai phan hay do doc ve ban chat khong khac nhau. Trong bai viet nay, theo thuat ngu Slope Trick, ta thong nhat goi la do doc.
+???+ info "\"Độ dốc\""
+    Trong phần lớn bài toán, các hàm chỉ được lấy giá trị tại các điểm nguyên,
+    nên việc gọi nó là sai phân hay độ dốc về bản chất không khác nhau. Trong
+    bài viết này, theo thuật ngữ Slope Trick, ta thống nhất gọi là độ dốc.
 
-Trong tung bai cu the, cach duy tri do doc co the khac nhau. Neu mien gia tri cua do doc hep, viec duy tri cac diem ma do doc thay doi (tuc diem gay) se tien loi hon; neu mien xac dinh cua ham hep, viec duy tri truc tiep day do doc co the tien loi hon. Trong cac tinh huong phuc tap hon, co the can duy tri dong thoi gia tri do doc cua moi doan va do dai cua doan do. Bat ke cach duy tri cu the la gi, ban chat cua lop bai toan nay la loi dung viec day do doc chi thay doi it trong chuyen trang thai de don gian hoa phep chuyen. Vi vay, tat ca chung deu co the duoc goi la Slope Trick.
+Trong từng bài cụ thể, cách duy trì độ dốc có thể khác nhau. Nếu miền giá trị
+của độ dốc hẹp, việc duy trì các điểm mà độ dốc thay đổi (tức điểm gãy) sẽ tiện
+lợi hơn; nếu miền xác định của hàm hẹp, việc duy trì trực tiếp dãy độ dốc có thể
+tiện lợi hơn. Trong các tình huống phức tạp hơn, có thể cần duy trì đồng thời
+giá trị độ dốc của mỗi đoạn và độ dài của đoạn đó. Bất kể cách duy trì cụ thể là
+gì, bản chất của lớp bài toán này là lợi dụng việc dãy độ dốc chỉ thay đổi ít
+trong chuyển trạng thái để đơn giản hóa phép chuyển. Vì vậy, tất cả chúng đều có
+thể được gọi là Slope Trick.
 
 <span id="&#x51F8;&#x51FD;&#x6570;"></span>
-## Ham loi
+## Hàm lồi
 
-Truoc khi thao luan cac bai toan cu the, can nam mot so tinh chat co ban cua ham loi, cung nhu cach do doc cua no thay doi khi thuc hien cac phep bien doi khac nhau tren ham loi.
+Trước khi thảo luận các bài toán cụ thể, cần nắm một số tính chất cơ bản của
+hàm lồi, cũng như cách độ dốc của nó thay đổi khi thực hiện các phép biến đổi
+khác nhau trên hàm lồi.
 
 <span id="&#x5B9E;&#x8F74;&#x4E0A;&#x7684;&#x51F8;&#x51FD;&#x6570;"></span>
-### Ham loi tren truc thuc
+### Hàm lồi trên trục thực
 
-Dinh nghia tong quat hon cua ham loi duoc phat bieu tren $\mathbf R$.
+Định nghĩa tổng quát hơn của hàm lồi được phát biểu trên $\mathbf R$.
 
 ![](../images/slope-trick/epigraph-convex-def.svg)
 
-???+ abstract "Ham loi tren $\mathbf R$"
-    Neu ham $f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ thoa man, voi moi $x,y\in\mathbf R$ va $\alpha\in(0,1)$,
+???+ abstract "Hàm lồi trên $\mathbf R$"
+    Nếu hàm $f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ thỏa mãn, với
+    mọi $x,y\in\mathbf R$ và $\alpha\in(0,1)$,
     
     $$
     f(\alpha x+(1-\alpha)y) \le \alpha f(x)+(1-\alpha)f(y),
     $$
     
-    thi $f$ duoc goi la **ham loi** (convex function). Quy tac tinh toan voi $\pm\infty$ duoc quy uoc nhu sau: $\pm\infty$ nhan voi bat ky so thuc duong nao, hoac cong voi bat ky so thuc nao, deu bang chinh no; va voi moi so thuc $x\in\mathbf R$ luon co $-\infty<x<+\infty$.
+    thì $f$ được gọi là **hàm lồi** (convex function). Quy tắc tính toán với
+    $\pm\infty$ được quy ước như sau: $\pm\infty$ nhân với bất kỳ số thực dương
+    nào, hoặc cộng với bất kỳ số thực nào, đều bằng chính nó; và với mọi số thực
+    $x\in\mathbf R$ luôn có $-\infty<x<+\infty$.
 
-Tat nhien, neu doi dau bat dang thuc thanh $\ge$, ta tuong ung co ham lom[^convex-def]. Vi voi moi ham lom $f$, ham $-f$ luon la ham loi, nen muc nay chi xet ham loi.
+Tất nhiên, nếu đổi dấu bất đẳng thức thành $\ge$, ta tương ứng có hàm lõm[^convex-def].
+Vì với mọi hàm lõm $f$, hàm $-f$ luôn là hàm lồi, nên mục này chỉ xét hàm lồi.
 
-???+ info "Bai viet chi xet ham loi dung"
-    De tranh phai thao luan gia tri cua $\infty-\infty$ va cac phan tich phuc tap bo sung, khi noi ve cac khai niem lien quan den ham loi, bai viet nay luon mac dinh ham khong nhan gia tri $-\infty$ va khong phai luc nao cung bang $+\infty$. Nhung ham loi nhu vay duoc goi la **ham loi dung** (proper convex function). Dieu nay da du de hieu cac noi dung can dung trong lap trinh thi dau.
+???+ info "Bài viết chỉ xét hàm lồi đúng"
+    Để tránh phải thảo luận giá trị của $\infty-\infty$ và các phân tích phức
+    tạp bổ sung, khi nói về các khái niệm liên quan đến hàm lồi, bài viết này
+    luôn mặc định hàm không nhận giá trị $-\infty$ và không phải lúc nào cũng
+    bằng $+\infty$. Những hàm lồi như vậy được gọi là **hàm lồi đúng** (proper
+    convex function). Điều này đã đủ để hiểu các nội dung cần dùng trong lập
+    trình thi đấu.
 
-Tat nhien, ham $f$ thuong khong duoc dinh nghia tren moi so thuc. Neu mien xac dinh cua $f$ chi la mot tap con cua $\mathbf R$, ta co the mo rong no thanh ham tren $\mathbf R$:
+Tất nhiên, hàm $f$ thường không được định nghĩa trên mọi số thực. Nếu miền xác
+định của $f$ chỉ là một tập con của $\mathbf R$, ta có thể mở rộng nó thành hàm
+trên $\mathbf R$:
 
 $$
 \tilde f(x) = \begin{cases} f(x), & x\in\operatorname{dom}f,\\ +\infty,& x\notin\operatorname{dom}f.\end{cases}
 $$
 
-Khi do, ta noi $f$ la ham loi khi va chi khi ham mo rong tuong ung $\tilde f$ thoa man dinh nghia ham loi o tren. Vi vay, neu khong noi ro them, mien xac dinh cua cac ham loi duoc nhac den trong bai viet nay deu la tap so thuc $\mathbf R$. Hien nhien, ham loi $f$ chi co the nhan gia tri huu han tren mot khoang (tuc mot tap con loi cua $\mathbf R$).
+Khi đó, ta nói $f$ là hàm lồi khi và chỉ khi hàm mở rộng tương ứng $\tilde f$
+thỏa mãn định nghĩa hàm lồi ở trên. Vì vậy, nếu không nói rõ thêm, miền xác định
+của các hàm lồi được nhắc đến trong bài viết này đều là tập số thực $\mathbf R$.
+Hiển nhiên, hàm lồi $f$ chỉ có thể nhận giá trị hữu hạn trên một khoảng (tức một
+tập con lồi của $\mathbf R$).
 
-???+ example "Vi du don gian"
-    Cac vi du thuong gap ve ham loi gom:
+???+ example "Ví dụ đơn giản"
+    Các ví dụ thường gặp về hàm lồi gồm:
     
-    1.  Ham hang: $f(x)=c$, voi $c\in\mathbf R$;
-    2.  Ham bac nhat: $f(x)=kx+b$, voi $k,b\in\mathbf R$ va $k\neq 0$;
-    3.  Ham gia tri tuyet doi: $f(x)=|x-a|$, voi $a\in\mathbf R$;
-    4.  Ket qua khi han che bat ky ham loi nao tren mot khoang, chang han $0_{[a,b]}(x)$ (trong ngu canh giai tich loi, ham nay cung duoc goi la ham chi thi cua $[a,b]$).
+    1.  Hàm hằng: $f(x)=c$, với $c\in\mathbf R$;
+    2.  Hàm bậc nhất: $f(x)=kx+b$, với $k,b\in\mathbf R$ và $k\neq 0$;
+    3.  Hàm giá trị tuyệt đối: $f(x)=|x-a|$, với $a\in\mathbf R$;
+    4.  Kết quả khi hạn chế bất kỳ hàm lồi nào trên một khoảng, chẳng hạn
+        $0_{[a,b]}(x)$ (trong ngữ cảnh giải tích lồi, hàm này cũng được gọi là
+        hàm chỉ thị của $[a,b]$).
 
-Tat nhien, co the ket hop cac phep bien doi bao toan tinh loi duoc neu ben duoi de tao ra nhung ham loi phuc tap hon.
+Tất nhiên, có thể kết hợp các phép biến đổi bảo toàn tính lồi được nêu bên dưới
+để tạo ra những hàm lồi phức tạp hơn.
 
 <span id="&#x79BB;&#x6563;&#x70B9;&#x96C6;&#x4E0A;&#x7684;&#x51F8;&#x51FD;&#x6570;"></span>
-### Ham loi tren tap diem roi rac
+### Hàm lồi trên tập điểm rời rạc
 
-Trong lap trinh thi dau, nhieu ham chi duoc dinh nghia tai mot phan cac gia tri nguyen. Noi chung, chung khong phai la ham loi theo dinh nghia o tren, vi mien xac dinh khong con la tap loi. De xu ly tinh huong nay, can dinh nghia rieng tinh loi cua ham tren tap diem roi rac. Noi ngan gon, truoc het can noi suy tuyen tinh ham de mo rong mien xac dinh thanh mot khoang, roi moi xet tinh loi cua no.
+Trong lập trình thi đấu, nhiều hàm chỉ được định nghĩa tại một phần các giá trị
+nguyên. Nói chung, chúng không phải là hàm lồi theo định nghĩa ở trên, vì miền
+xác định không còn là tập lồi. Để xử lý tình huống này, cần định nghĩa riêng
+tính lồi của hàm trên tập điểm rời rạc. Nói ngắn gọn, trước hết cần nội suy
+tuyến tính hàm để mở rộng miền xác định thành một khoảng, rồi mới xét tính lồi
+của nó.
 
 ![](../images/slope-trick/epigraph-convex-discrete.svg)
 
-???+ abstract "Ham loi tren tap diem roi rac"
-    Cho $S\subset\mathbf R$ la tap diem roi rac, nghia la voi moi khoang dong $[a,b]$, tap $S\cap[a,b]$ deu huu han. Voi ham $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$, ta co the dinh nghia ham $\tilde f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ sao cho:
+???+ abstract "Hàm lồi trên tập điểm rời rạc"
+    Cho $S\subset\mathbf R$ là tập điểm rời rạc, nghĩa là với mọi khoảng đóng
+    $[a,b]$, tập $S\cap[a,b]$ đều hữu hạn. Với hàm
+    $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$, ta có thể định nghĩa hàm
+    $\tilde f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ sao cho:
     
     -   Khi $x\in S$, $\tilde f(x)=f(x)$,
-    -   Khi $x\in(\inf S,\sup S)\setminus S$, dat $s_-=\max\{s\in S:s\le x\}$, $s_+=\min\{s\in S:s\ge x\}$, khi do
+    -   Khi $x\in(\inf S,\sup S)\setminus S$, đặt
+        $s_-=\max\{s\in S:s\le x\}$, $s_+=\min\{s\in S:s\ge x\}$, khi đó
     
         $$
         \tilde f(x) = \dfrac{s_+-x}{s_+-s_-}f(s_-)+\dfrac{x-s_-}{s_+-s_-}f(s_+),
         $$
     -   Khi $x\notin[\inf S,\sup S]$, $\tilde f(x)=+\infty$.
     
-    Neu $\tilde f(x)$ la ham loi tren $\mathbf R$, thi $f(x)$ duoc goi la **ham loi** tren $S$.
+    Nếu $\tilde f(x)$ là hàm lồi trên $\mathbf R$, thì $f(x)$ được gọi là **hàm
+    lồi** trên $S$.
 
-Vi ham loi tren $\mathbf R$ tien xu ly hon, trong bai viet nay, neu khong noi ro them, ham loi luon chi ham loi tren $\mathbf R$. Neu mot ham trong bai viet chi cho gia tri tai mot so diem nguyen, thi gia tri cua no tai cac so thuc khac duoc xac dinh boi $\tilde f$ trong dinh nghia, tuong duong voi viec truc tiep thao luan ham tuyen tinh tung doan tuong ung $\tilde f$.
+Vì hàm lồi trên $\mathbf R$ tiện xử lý hơn, trong bài viết này, nếu không nói rõ
+thêm, hàm lồi luôn chỉ hàm lồi trên $\mathbf R$. Nếu một hàm trong bài viết chỉ
+cho giá trị tại một số điểm nguyên, thì giá trị của nó tại các số thực khác
+được xác định bởi $\tilde f$ trong định nghĩa, tương đương với việc trực tiếp
+thảo luận hàm tuyến tính từng đoạn tương ứng $\tilde f$.
 
-Ham loi tren tap so nguyen $\mathbf Z$ co mot dinh nghia tuong duong truc quan hon:
+Hàm lồi trên tập số nguyên $\mathbf Z$ có một định nghĩa tương đương trực quan hơn:
 
-???+ note "Dinh nghia tuong duong cua ham loi tren $\mathbf Z$"
-    Ham $f:\mathbf Z\rightarrow\mathbf R\cup\{\pm\infty\}$ la ham loi khi va chi khi
+???+ note "Định nghĩa tương đương của hàm lồi trên $\mathbf Z$"
+    Hàm $f:\mathbf Z\rightarrow\mathbf R\cup\{\pm\infty\}$ là hàm lồi khi và
+    chỉ khi
     
     $$
     f(x)-f(x-1)\le f(x+1)-f(x)
     $$
     
-    dung voi moi $x\in\mathbf Z$.
+    đúng với mọi $x\in\mathbf Z$.
 
-??? note "Chung minh"
-    Menh de nay la he qua don gian cua cach dac trung ham loi bang do doc.
+??? note "Chứng minh"
+    Mệnh đề này là hệ quả đơn giản của cách đặc trưng hàm lồi bằng độ dốc.
     
-    Neu $f$ la ham loi tren $\mathbf Z$, theo tinh chat do doc khong giam, ta co
+    Nếu $f$ là hàm lồi trên $\mathbf Z$, theo tính chất độ dốc không giảm, ta có
     
     $$
     \Delta f(x-1,x)\le \Delta f(x-1,x+1) \le\Delta f(x,x+1).
     $$
     
-    Day chinh la dieu kien o tren.
+    Đây chính là điều kiện ở trên.
     
-    Nguoc lai, neu dieu kien o tren dung, thi voi moi $x_1<x_2$, ta co
+    Ngược lại, nếu điều kiện ở trên đúng, thì với mọi $x_1<x_2$, ta có
     
     $$
-    \Delta f(x_1,x_2) = \dfrac{1}{x_2-x_1}\sum_{i=x_1}^{x_2-1}\left(f(i)-f(i-1)\right).
+    \Delta f(x_1,x_2) = \dfrac{1}{x_2-x_1}\sum_{i=x_1}^{x_2-1}\left(f(i+1)-f(i)\right).
     $$
     
-    Gia tri nay la trung binh cong cua cac sai phan voi $x_1\le i<x_2$. Neu tang $x_2$ them mot, ta tuong duong chen them mot sai phan lon hon; neu tang $x_1$ them mot, ta tuong duong bo di sai phan nho nhat. Ca hai thao tac deu lam trung binh tang len. Dieu do cho thay do doc $\Delta f(x_1,x_2)$ khong giam, tuc $f$ la ham loi tren $\mathbf Z$.
+    Giá trị này là trung bình cộng của các sai phân với $x_1\le i<x_2$. Nếu
+    tăng $x_2$ thêm một, ta tương đương chèn thêm một sai phân lớn hơn; nếu tăng
+    $x_1$ thêm một, ta tương đương bỏ đi sai phân nhỏ nhất. Cả hai thao tác đều
+    làm trung bình tăng lên. Điều đó cho thấy độ dốc $\Delta f(x_1,x_2)$ không
+    giảm, tức $f$ là hàm lồi trên $\mathbf Z$.
 
-Noi cach khac, chi can do doc (sai phan) don dieu khong giam, day do co the duoc xem la mot ham loi tren $\mathbf Z$.
+Nói cách khác, chỉ cần độ dốc (sai phân) đơn điệu không giảm, dãy đó có thể
+được xem là một hàm lồi trên $\mathbf Z$.
 
 <span id="&#x51F8;&#x51FD;&#x6570;&#x7684;&#x4E24;&#x79CD;&#x523B;&#x753B;"></span>
-### Hai cach dac trung ham loi
+### Hai cách đặc trưng hàm lồi
 
-Thuc ra, cach dac trung ham loi bang do doc cung co the mo rong cho truong hop tong quat.
+Thực ra, cách đặc trưng hàm lồi bằng độ dốc cũng có thể mở rộng cho trường hợp
+tổng quát.
 
-???+ note "Dac trung ham loi bang do doc"
+???+ note "Đặc trưng hàm lồi bằng độ dốc"
     Cho $S$ la $\mathbf R$ hoac tap con roi rac cua no. Ham $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$ la ham loi khi va chi khi do doc
     
     $$
