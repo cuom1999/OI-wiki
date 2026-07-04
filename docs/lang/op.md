@@ -52,7 +52,7 @@ chính xác kép (`double`) $y$:
 -   Kết quả của `x*1/3` là kiểu số nguyên;
 -   Kết quả của `x*1.0/3` là kiểu `double`;
 
-<a id="位操作符"></a>
+<a id="toán-tử-bit"></a>
 
 ## Toán tử bit
 
@@ -219,7 +219,7 @@ auto result4 = &v;      // lấy con trỏ trỏ tới v
 auto result5 = *v;      // lấy đối tượng mà con trỏ v trỏ tới
 ```
 
-<a id="c-运算符优先级总表"></a>
+<a id="bảng-tổng-hợp-độ-ưu-tiên-toán-tử-c"></a>
 
 ## Bảng tổng hợp độ ưu tiên toán tử C++
 

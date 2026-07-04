@@ -57,7 +57,7 @@ Toán tử logic một ngôi có thứ tự ưu tiên cao hơn toán tử logic 
 
 Có nhiều quy ước khác nhau về thứ tự ưu tiên giữa các toán tử logic hai ngôi. Một số tài liệu xem $\land$, $\lor$, $\oplus$ có thứ tự ưu tiên cao hơn $\to$, $\gets$, $\leftrightarrow$, trong khi một số tài liệu khác lại quy ước ngược lại. Do đó khi sử dụng, nên thêm ngoặc để làm rõ thứ tự thực hiện.
 
-Quy ước trong C++ xem tại [bảng tổng hợp thứ tự ưu tiên toán tử C++](../lang/op.md#c-%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E6%80%BB%E8%A1%A8).
+Quy ước trong C++ xem tại [bảng tổng hợp thứ tự ưu tiên toán tử C++](../lang/op.md#bảng-tổng-hợp-độ-ưu-tiên-toán-tử-c).
 
 <span id="&#x81EA;&#x8DB3;&#x7B97;&#x5B50;&#x4E0E;&#x5B8C;&#x5907;&#x7B97;&#x5B50;&#x96C6;"></span>
 ### Toán tử tự túc và tập toán tử đầy đủ

@@ -30,9 +30,9 @@ Theo thông lệ, hãy xem Hello World trước.
 ### Hello World: chương trình C++ đầu tiên
 
 ```cpp
-#include <iostream>  // nap thu vien iostream
+#include <iostream>  // nạp thư viện iostream
 
-int main()  // phan main
+int main()  // phần main
 {
   std::cout << "Hello World!" << std::endl;
 
@@ -242,7 +242,7 @@ begin
     while i <= 10 do
         begin
             write(i,' ');
-            inc(i); // hoac i := i + 1;
+            inc(i); // hoặc i := i + 1;
         end;
 end.
 ```
@@ -323,28 +323,28 @@ Thư viện chuẩn C++ cung cấp `vector`, tương đương với mảng có �
 
 ```cpp
 #include <iostream>
-#include <vector>  // nap thu vien vector
+#include <vector>  // nạp thư viện vector
 
 int main() {
-  std::vector<int> a;  // khai bao vector a va dinh nghia a la doi tuong vector rong
+  std::vector<int> a;  // khai báo vector a và định nghĩa a là đối tượng vector rỗng
   int n;
 
   std::cin >> n;
-  // doc a
+  // đọc a
   for (int i = 0; i < n; i++) {
     int t;
     std::cin >> t;
-    a.push_back(t);  // dua so t vua doc vao cuoi vector a; thao tac nay co do phuc tap O(1)
-    /* Khong the dung truy cap chi so de gan gia tri o day, vi khi khai bao,
-    kich thuoc cua a van rong.
-    Dung `a[i] = t;` tai day la cach lam sai.
+    a.push_back(t);  // đưa số t vừa đọc vào cuối vector a; thao tác này có độ phức tạp O(1)
+    /* Không thể dùng truy cập chỉ số để gán giá trị ở đây, vì khi khai báo,
+    kích thước của a vẫn rỗng.
+    Dùng `a[i] = t;` tại đây là cách làm sai.
     */
   }
 
-  // in ra tat ca cac so da doc vao a
+  // in ra tất cả các số đã đọc vào a
   for (int i = 0; i < n; i++) {
-    std::cout << a[i] << ", ";  // !chu y, so dau tien trong a la a[0];
-    // Neu chi so vuot bien, no se tra ve mot gia tri khong xac dinh (tran), chu khong bao loi
+    std::cout << a[i] << ", ";  // !chú ý, số đầu tiên trong a là a[0];
+    // Nếu chỉ số vượt biên, nó sẽ trả về một giá trị không xác định (tràn), chứ không báo lỗi
   }
   std::cout << std::endl;
 
@@ -365,11 +365,11 @@ Thư viện chuẩn C++ cung cấp `string`. Một số thao tác trên `string`
 #include <string>
 
 int main() {
-  std::string s;  // khai bao string s
+  std::string s;  // khai báo string s
 
-  std::cin >> s;  // doc s;
-  // Khi doc, tat ca ky tu trang o dau (dau cach, xuong dong, tab) se bi bo qua;
-  // chuoi duoc doc den truoc ky tu trang tiep theo thi dung.
+  std::cin >> s;  // đọc s;
+  // Khi đọc, tất cả ký tự trắng ở đầu (dấu cách, xuống dòng, tab) sẽ bị bỏ qua;
+  // chuỗi được đọc đến trước ký tự trắng tiếp theo thì dừng.
 
   std::cout << s << std::endl;
 
@@ -404,7 +404,7 @@ Vì vậy, khi dùng C++, hãy khai báo biến, chẳng hạn `i` dùng trong v
 
 ```cpp
 int i = 2;
-if (i) {  // i = 0 tra ve false, cac gia tri khac tra ve true
+if (i) {  // i = 0 trả về false, các giá trị khác trả về true
   std::cout << "true";
 } else {
   std::cout << "false";
@@ -415,29 +415,29 @@ Không chỉ `int` có thể chuyển thành `bool`, `int` và `float` cũng có
 
 ```cpp
 int a;
-a = 3.2;      // luc nay a = 3
-float b = a;  // luc nay b = 3.0
+a = 3.2;      // lúc này a = 3
+float b = a;  // lúc này b = 3.0
 ```
 
 Việc phân biệt `/` là phép chia nguyên hay phép chia số thực được quyết định dựa trên kiểu của số bị chia và số chia.
 
 ```cpp
-float a = 32 / 10;    // ket qua cua 32/10 la 3 (chia nguyen); a = 3.0
-float b = 32.0 / 10;  // ket qua cua 32.0/10 la 3.2; b = 3.2
+float a = 32 / 10;    // kết quả của 32/10 là 3 (chia nguyên); a = 3.0
+float b = 32.0 / 10;  // kết quả của 32.0/10 là 3.2; b = 3.2
 ```
 
 `pow(a, b)` tính $a^b$. Hàm này trả về kiểu số thực; nếu dùng trực tiếp để tính lũy thừa số nguyên thì nhờ chuyển đổi tự động, bạn không cần lo nó báo lỗi.
 
 ```cpp
-int a = pow(2, 3);  // tinh 2^3
+int a = pow(2, 3);  // tính 2^3
 ```
 
 Ngoài ra còn có chuyển đổi qua lại giữa `char` và `int`.
 
 ```cpp
-char a = 48;              // ASCII 48 la '0'
+char a = 48;              // ASCII 48 là '0'
 int b = a + 1;            // b = 49
-std::cout << (a == '0');  // true xuat ra 1
+std::cout << (a == '0');  // true xuất ra 1
 ```
 
 Thực ra trong C++, `char` và `bool` về bản chất đều là kiểu số nguyên.
@@ -540,7 +540,7 @@ int main() {
 
 void printWarning(int x) {
   if (x >= 0) {
-    return;  // cau lenh nay o day tuong duong voi `exit;` trong Pascal
+    return;  // câu lệnh này ở đây tương đương với `exit;` trong Pascal
   }
   std::cout << "Warning: input a negative number.";
 }
@@ -562,11 +562,11 @@ function abs(x:integer):integer;
 begin
     if x < 0 then
         begin
-            abs := -x; exit; // !chu y cho nay
+            abs := -x; exit; // !chú ý chỗ này
         end
     else
         begin
-            abs := x;  exit; // !chu y cho nay
+            abs := x;  exit; // !chú ý chỗ này
         end;
 end;
 ```
@@ -611,7 +611,7 @@ end.
 ```
 
 ```cpp
-// Ma dung con tro
+// Mã dùng con trỏ
 #include <iostream>
 
 void swap(int* x, int* y) {
@@ -633,7 +633,7 @@ int main() {
 Chú ý, đoạn C++ ở đây **liên quan đến con trỏ**. Con trỏ là vấn đề khá rắc rối, nên bạn nên đọc thêm tài liệu liên quan.
 
 ```cpp
-// Ma dung tham chieu
+// Mã dùng tham chiếu
 #include <iostream>
 
 void swap(int& x, int& y) {
