@@ -2,17 +2,17 @@ author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, CoelacanthusHex
 
 ## Arbiter
 
-**Arbiter** 为北京航空航天大学为 NOI Linux 开发的评测工具，现已用于各大 NOI 系列程序设计竞赛的评测．据吕凯风在 2016 年冬令营上的讲稿《下一代测评系统》，Arbiter 是由北京航空航天大学的团队（GAIT）在尹宝林老师的带领下开发完成的．
+**Arbiter** là công cụ chấm do Đại học Hàng không và Du hành vũ trụ Bắc Kinh phát triển cho NOI Linux, hiện đã được dùng để chấm trong nhiều kỳ thi lập trình thuộc hệ NOI. Theo bài giảng "Hệ thống chấm thế hệ tiếp theo" của Lyu Kaifeng tại trại mùa đông năm 2016, Arbiter được nhóm GAIT của Đại học Hàng không và Du hành vũ trụ Bắc Kinh phát triển dưới sự dẫn dắt của thầy Yin Baolin.
 
-在 NOI Linux 更新到 2.0 版本后，Arbiter 也用 Qt 5.12.8 重新编译，并发布为 Arbiter 2.0．因为之后的测评环境均使用 NOI Linux 2.0，因此以下介绍使用的 Arbiter 版本均为 NOI Linux 2.0 中自带的 Arbiter 2.0．
+Sau khi NOI Linux được cập nhật lên phiên bản 2.0, Arbiter cũng được biên dịch lại bằng Qt 5.12.8 và phát hành dưới tên Arbiter 2.0. Vì các môi trường chấm sau đó đều dùng NOI Linux 2.0, phần giới thiệu dưới đây dùng phiên bản Arbiter 2.0 đi kèm trong NOI Linux 2.0.
 
-此测评软件仅能在 NOI Linux 下找到．二进制文件位置为 `/usr/local/arbiter/local/arbiter_local`．
+Phần mềm chấm này chỉ có trong NOI Linux. Tệp nhị phân nằm tại `/usr/local/arbiter/local/arbiter_local`.
 
-### 使用方法
+### Cách dùng
 
-#### 配置程序
+#### Cấu hình chương trình
 
-配置选手源程序文件夹和选手名单．选手文件夹如 NOIP 格式创建：
+Cấu hình thư mục mã nguồn của thí sinh và danh sách thí sinh. Thư mục thí sinh được tạo theo định dạng NOIP như sau:
 
 ```text
 players/
@@ -45,9 +45,9 @@ players/
 ...
 ```
 
-其中，`day<x>` 中的 `<x>` 是场次编号，`<contestant_x's ID>` 指的是选手编号，形如 `<省份>-<编号>`，例如 HL-001，JL-125 等等；`<problem_x>` 指的是题目名称．在自测时可以使用字母、短线（即 `-`）和数字的组合作为选手编号．
+Trong `day<x>`, `<x>` là số hiệu buổi thi; `<contestant_x's ID>` là mã thí sinh, có dạng `<tỉnh>-<số hiệu>`, chẳng hạn HL-001, JL-125, v.v.; `<problem_x>` là tên bài. Khi tự kiểm thử, có thể dùng tổ hợp chữ cái, dấu gạch nối (`-`) và chữ số làm mã thí sinh.
 
-选手名单格式如下：
+Định dạng danh sách thí sinh như sau:
 
 ```text
 <contestant_1's ID>,<contestant_1's name>
@@ -55,41 +55,41 @@ players/
 ...
 ```
 
-其中，`<contestant_x's name>` 表示选手姓名．保存这个文件为纯文本文件或 csv 文件，可以使用 `UTF-8` 编码．
+Trong đó, `<contestant_x's name>` biểu thị tên thí sinh. Hãy lưu tệp này dưới dạng tệp văn bản thuần hoặc tệp csv; có thể dùng mã hóa `UTF-8`.
 
-选手名单也可以在启动 Arbiter 后手动添加．
+Cũng có thể thêm danh sách thí sinh thủ công sau khi khởi động Arbiter.
 
-接下来配置测试数据．每组数据的命名格式如下：
+Tiếp theo, cấu hình dữ liệu test. Định dạng tên của mỗi bộ dữ liệu như sau:
 
 ```text
 <problem_x><y>.in <problem_x><y>.ans
 ```
 
-其中，`<y>` 是数据编号，编号从 1 开始．默认测试数据后缀名是 `.ans`，选手输出的后缀名是 `.out`，不能混淆．
+Trong đó, `<y>` là số hiệu dữ liệu, bắt đầu từ 1. Hậu tố mặc định của dữ liệu test là `.ans`, còn hậu tố output của thí sinh là `.out`; không được nhầm lẫn hai loại này.
 
-如果需要将之前生成的 out 格式修改为 ans 格式，在 NOI Linux 2.0 中可以使用 `rename` 命令批量修改，而在 Windows 中可以使用 `ren` 命令批量修改．我们将在后面介绍这些命令的用法．
+Nếu cần đổi định dạng `out` đã sinh trước đó thành định dạng `ans`, trong NOI Linux 2.0 có thể dùng lệnh `rename` để đổi hàng loạt, còn trong Windows có thể dùng lệnh `ren`. Phần sau sẽ giới thiệu cách dùng các lệnh này.
 
-不用将每题的测试数据放置在各题的文件夹里，只需要放在一起即可．
+Không cần đặt dữ liệu test của từng bài trong thư mục riêng của bài đó; chỉ cần đặt chung với nhau là được.
 
-然后开始测评文件夹的配置．
+Sau đó bắt đầu cấu hình thư mục chấm.
 
-左下角「显示应用程序」-「全部」-「Arbiter\_local」，启动 Arbiter．
+Ở góc dưới bên trái, chọn "Hiển thị ứng dụng" - "Tất cả" - "Arbiter\_local" để khởi động Arbiter.
 
 ![Arbiter\_Home](./images/arbiter_home.png)
 
-点击 OPEN 可以打开已经建立的比赛，之后需选择对应比赛文件夹下的 `setup.cfg` 文件；点击 NEW 可以新建一个竞赛，并设置名称和比赛目录．注意，需要在用户 **主目录下** 新建一个文件夹，然后选择其为比赛目录，如果在桌面上建立比赛目录的话无法测评．出现这种问题很有可能是因为比赛文件夹路径中不能包含中文．
+Nhấn OPEN để mở một kỳ thi đã tạo; sau đó cần chọn tệp `setup.cfg` trong thư mục kỳ thi tương ứng. Nhấn NEW để tạo một kỳ thi mới và đặt tên cùng thư mục kỳ thi. Lưu ý, cần tạo một thư mục trong **thư mục home** của người dùng rồi chọn thư mục đó làm thư mục kỳ thi; nếu tạo thư mục kỳ thi trên desktop thì sẽ không chấm được. Vấn đề này rất có thể xảy ra vì đường dẫn thư mục kỳ thi không được chứa ký tự tiếng Trung.
 
 ![add\_problem](./images/arbiter_addproblem.png)
 
-在左边试题概要里「右键」-「添加考试」，再在考试标签上「右键」-「添加试题」，新建出试题即可．
+Trong phần tổng quan bài ở bên trái, "nhấp chuột phải" - "Thêm kỳ thi", rồi trên nhãn kỳ thi "nhấp chuột phải" - "Thêm bài", là có thể tạo bài mới.
 
-单击考试左边的向下箭头即可全部显示，单击试题标签对试题名称进行修改，改为题目的英文名称，同时修改题目时间与空间限制和比较方式．比较方式十分不推荐用「全文完全直接比较」，对于 Windows 下制作的数据十分不友好．可以根据题目自主选择比较器，但是需要注意必须选择一个比较器，否则测评结果将是 `No Score.`．
+Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ nhớ và cách so sánh. Rất không khuyến nghị dùng cách so sánh "so sánh trực tiếp toàn văn", vì cách này không thân thiện với dữ liệu được tạo trên Windows. Có thể tự chọn checker theo bài, nhưng cần lưu ý bắt buộc phải chọn một checker, nếu không kết quả chấm sẽ là `No Score.`.
 
 ![problem\_list](./images/arbiter_problem.png)
 
-点击「文件」-「保存」．该操作不可省略，否则程序将不会生成题目配置文件．注意每一次对题目配置的修改都要保存．
+Nhấn "Tệp" - "Lưu". Không được bỏ qua thao tác này, nếu không chương trình sẽ không sinh tệp cấu hình bài. Lưu ý mỗi lần sửa cấu hình bài đều phải lưu lại.
 
-此时，打开考试文件夹，会发现有如下内容．
+Lúc này, mở thư mục kỳ thi, ta sẽ thấy các nội dung sau.
 
 ```text
 <name>/
@@ -108,106 +108,106 @@ players/
 `-- team.info
 ```
 
-`filter` 文件夹放置了一些比较器；`result` 文件夹存放选手的测评结果；`tmp` 文件夹是测评时的缓存文件夹．其中 `day<x>.info` 为场次配置文件，`<x>` 为场次编号；`task<x>_<y>.info` 文件为题目配置文件，`<x>` 为场次编号，`<y>` 为题目序号．
+Thư mục `filter` chứa một số checker; thư mục `result` lưu kết quả chấm của thí sinh; thư mục `tmp` là thư mục cache khi chấm. Trong đó, `day<x>.info` là tệp cấu hình buổi thi, `<x>` là số hiệu buổi thi; tệp `task<x>_<y>.info` là tệp cấu hình bài, `<x>` là số hiệu buổi thi, `<y>` là số thứ tự bài.
 
-把已经建好的选手程序文件夹放在 `players/` 目录下，注意最外层应按照考试日建立相应的 `day<x>` 文件夹．将所有测试数据（不放在文件夹里）放在 `evaldata` 中．如果使用了自定义校验器，则需要将自定义校验器放在 `filter` 中．
+Đặt thư mục chương trình thí sinh đã tạo vào thư mục `players/`. Lưu ý lớp ngoài cùng nên tạo thư mục `day<x>` tương ứng theo ngày thi. Đặt toàn bộ dữ liệu test (không đặt trong thư mục con) vào `evaldata`. Nếu dùng checker tùy chỉnh, cần đặt checker tùy chỉnh vào `filter`.
 
-#### 正式测评
+#### Chấm chính thức
 
-点开「试题评测」标签，会出现如下页面：
+Mở thẻ "Chấm bài", sẽ thấy giao diện như sau:
 
 ![Pretest](./images/arbiter_pretest.png)
 
-如果选手名单已经建立了，直接选择右边的「导入名单」进行导入．如果人数较少，可以选择右边的「添加选手」进行导入．
+Nếu đã tạo danh sách thí sinh, chọn trực tiếp "Nhập danh sách" ở bên phải để nhập. Nếu số lượng người ít, có thể chọn "Thêm thí sinh" ở bên phải để nhập.
 
-导入后的页面如图．
+Sau khi nhập, giao diện như hình sau.
 
 ![Test](./images/arbiter_test.png)
 
-示例中的编号是 `HL-001`，程序会自动识别出「所属」一栏．如果不是 NOIP 规范的编号是识别不出来的．
+Trong ví dụ, mã là `HL-001`; chương trình sẽ tự nhận ra cột "Thuộc". Nếu mã không theo chuẩn NOIP thì sẽ không nhận ra được.
 
-把测评第 0 场变为测评第 1 场（或者其他场次）．然后选择右边的全选（或选择指定的选手），再选择下面的评测选定选手，选择要测评的题目（或全部试题），最后等待测评结束即可．
+Đổi buổi chấm thứ 0 thành buổi chấm thứ 1 (hoặc buổi khác). Sau đó chọn tất cả ở bên phải (hoặc chọn các thí sinh chỉ định), rồi chọn chấm các thí sinh đã chọn ở phía dưới, chọn bài cần chấm (hoặc toàn bộ bài), cuối cùng chờ quá trình chấm kết thúc.
 
-测试点详细信息需要在 `result` 文件夹下查看，文件夹下会有选手的结果文件夹，结果文件的后缀名为 `.result`，用纯文本方式查看即可．如果出现 `No score file.` 的错误，可以检查测评时是否生成了 `/tmp/_eval.score` 文件．
+Chi tiết từng test cần xem trong thư mục `result`. Trong thư mục này sẽ có thư mục kết quả của thí sinh; tệp kết quả có hậu tố `.result`, có thể mở bằng văn bản thuần. Nếu xuất hiện lỗi `No score file.`, có thể kiểm tra khi chấm có sinh tệp `/tmp/_eval.score` hay không.
 
-### 自定义校验器的编写
+### Viết checker tùy chỉnh
 
-反编译其他校验器，可以知道运行自定义校验器的命令是 `<problem>_e <in> <out> <ans>`．后三个参数分别代表输入，选手输出和答案文件．最终的评分结果需写入 `/tmp/_eval.score` 文件中，第一行是测评信息，第二行是分数，10 分为满分．
+Khi dịch ngược các checker khác, có thể biết lệnh chạy checker tùy chỉnh là `<problem>_e <in> <out> <ans>`. Ba tham số sau lần lượt biểu thị input, output của thí sinh và tệp đáp án. Kết quả chấm cuối cùng cần được ghi vào tệp `/tmp/_eval.score`: dòng đầu tiên là thông tin chấm, dòng thứ hai là điểm, với 10 điểm là điểm tối đa.
 
-编译后自定义校验器的名称必须为 `<problem>_e`，其中 `<problem>` 为题目名称．在配置题目时选择自定义校验器，然后选择需要的自定义校验器即可．
+Tên checker tùy chỉnh sau khi biên dịch bắt buộc phải là `<problem>_e`, trong đó `<problem>` là tên bài. Khi cấu hình bài, chọn checker tùy chỉnh rồi chọn checker tùy chỉnh cần dùng.
 
-在试题管理中题目配置的地方将提交方式由源代码改为答案文件，然后选择自定义校验器，可以测试提交答案题．
+Trong phần cấu hình bài của quản lý bài, đổi phương thức nộp từ mã nguồn sang tệp đáp án, rồi chọn checker tùy chỉnh; cách này có thể kiểm thử bài nộp đáp án.
 
-### 注意事项
+### Lưu ý
 
-已确认需要注意的内容：
+Các điểm đã xác nhận cần chú ý:
 
--   需要注意及时保存比赛，否则操作时可能闪退．为了确保不会闪退可以尝试多次保存比赛，或进行一次修改时就保存比赛．
--   没有进行过评测时不要点击上面的成绩统计，否则将会导致 Arbiter 直接闪退．
--   由于 Linux 运行时栈限制，如果要开无限栈，应在终端先输入 `ulimit -s unlimited` 后执行 `arbiter_local` 打开测评器，否则可能出现 `Exceeding memory limit` 的问题．
--   对于正式测评，在题目准备时需要让所有题目空间限制一致．测评时将命令中的 `unlimited` 换为题目空间限制的千字节数（KiB），如：题目空间限制为 512 MiB，则命令为 `ulimit -s $((512 * 1024))`．导致这一问题的主要原因是直接启动 Arbiter，其父进程为 GNOME，子进程继承了父进程的栈空间限制．
--   软件的工作目录不建议包含空格，若包含空格的话很可能会导致创建比赛时所有的默认校验器都无法拷贝进 filter 目录中（即 filter 目录为空）．此时进行评测会出现全部爆 0 的情况，同时生成的 result 文件中可以看到 `Compile Failed.` 的提示．
--   查看代码时提示「未找到答案文件」指的是没有找到选手的源代码．
+-   Cần chú ý lưu kỳ thi kịp thời, nếu không khi thao tác có thể bị thoát đột ngột. Để tránh bị thoát, có thể thử lưu kỳ thi nhiều lần, hoặc lưu ngay sau mỗi lần sửa.
+-   Nếu chưa từng chấm, đừng nhấn thống kê điểm ở phía trên, nếu không Arbiter sẽ thoát ngay.
+-   Do giới hạn stack khi chạy trên Linux, nếu muốn mở stack không giới hạn, nên nhập `ulimit -s unlimited` trong terminal trước rồi chạy `arbiter_local` để mở trình chấm; nếu không có thể gặp vấn đề `Exceeding memory limit`.
+-   Khi chấm chính thức, lúc chuẩn bị đề cần để mọi bài có cùng giới hạn bộ nhớ. Khi chấm, thay `unlimited` trong lệnh bằng số KiB tương ứng với giới hạn bộ nhớ của bài; ví dụ giới hạn bộ nhớ là 512 MiB thì lệnh là `ulimit -s $((512 * 1024))`. Nguyên nhân chính của vấn đề này là khi khởi động Arbiter trực tiếp, tiến trình cha là GNOME, và tiến trình con kế thừa giới hạn stack của tiến trình cha.
+-   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu cách, rất có thể khi tạo kỳ thi, toàn bộ checker mặc định không được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời trong tệp kết quả sinh ra có thể thấy thông báo `Compile Failed.`.
+-   Khi xem mã mà hiện thông báo "không tìm thấy tệp đáp án", điều đó nghĩa là không tìm thấy mã nguồn của thí sinh.
 
-存疑的内容：
+Các điểm còn nghi ngờ:
 
--   很容易死机，如大量测评时移动鼠标会导致死机．
--   不定时闪退（一部分原因是没有及时保存比赛）．
--   修改比较方式后有概率会出现修改失败的情况，即比较方式修改后未被应用．
--   配置时需要注意权限问题，但确保使用同一用户建立比赛，拷贝数据和进行测评的情况下不会出现权限问题．
+-   Rất dễ treo máy; chẳng hạn khi chấm số lượng lớn, di chuyển chuột có thể gây treo máy.
+-   Thỉnh thoảng thoát đột ngột (một phần nguyên nhân là không lưu kỳ thi kịp thời).
+-   Sau khi sửa cách so sánh, có xác suất sửa thất bại, tức cách so sánh sau khi sửa không được áp dụng.
+-   Khi cấu hình cần chú ý vấn đề quyền, nhưng nếu bảo đảm dùng cùng một người dùng để tạo kỳ thi, sao chép dữ liệu và chấm thì sẽ không xuất hiện vấn đề quyền.
 
-### 漏洞
+### Lỗ hổng
 
-由于长期缺乏维护，系统存在一些漏洞，如可以使用 `#pragma G++ optimize("O2")` 和 `__attribute__((__optimize__("-O2")))` 等．可以使用 [gcc-plugins-for-oi](https://github.com/xdu-icpc/gcc-plugins-for-oi) 在编译期实现对这些命令的检测．
+Do thiếu bảo trì lâu dài, hệ thống tồn tại một số lỗ hổng, chẳng hạn có thể dùng `#pragma G++ optimize("O2")`, `__attribute__((__optimize__("-O2")))`, v.v. Có thể dùng [gcc-plugins-for-oi](https://github.com/xdu-icpc/gcc-plugins-for-oi) để phát hiện các lệnh này trong giai đoạn biên dịch.
 
-### 评价
+### Đánh giá
 
-Arbiter 1.0.2 在开发完成后就一直没有实质性更新，导致测评体验极差，UI 脱离现代审美．在 NOI Linux 1.4.1 中，它和 NOI Linux 自带的 GUIDE 一样沦为选手与教练疯狂吐槽的对象．在 NOI Linux 2.0 中，除了比较器移除了源代码和软件整体使用 Qt 5 重新编译外，并没有很大的变化，一些稳定性问题仍未得到解决．
+Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nhật thực chất nào, khiến trải nghiệm chấm rất tệ và UI không còn phù hợp với thẩm mỹ hiện đại. Trong NOI Linux 1.4.1, nó cùng với GUIDE đi kèm NOI Linux trở thành đối tượng bị thí sinh và huấn luyện viên phàn nàn rất nhiều. Trong NOI Linux 2.0, ngoài việc checker bị loại bỏ mã nguồn và toàn bộ phần mềm được biên dịch lại bằng Qt 5, không có nhiều thay đổi lớn; một số vấn đề ổn định vẫn chưa được giải quyết.
 
-??? note "附：ren 和 rename 命令的使用方法"
-    在 Windows 操作系统中自带了一个修改文件名称的命令：`ren`．
+??? note "Phụ lục: cách dùng lệnh ren và rename"
+    Trong hệ điều hành Windows có sẵn một lệnh đổi tên tệp: `ren`.
     
-    命令语法如下：
+    Cú pháp lệnh như sau:
     
     ```shell
     ren [<drive>:][<path>]<filename1> <filename2>
     ```
     
-    如果我们需要对当前工作目录下的所有的文件进行修改，比如将所有的 out 文件修改为 ans 文件，可以执行如下命令：
+    Nếu cần đổi toàn bộ tệp trong thư mục làm việc hiện tại, chẳng hạn đổi tất cả tệp `out` thành tệp `ans`, có thể chạy lệnh sau:
     
     ```shell
     ren *.out *.ans
     ```
     
-    如果是在 NOI Linux 2.0 环境中进行此类修改，似乎目前比较好用的是 `rename` 命令，但它不是 NOI Linux 2.0 环境内自带的命令，所以你要先进行安装：
+    Nếu thực hiện thao tác này trong môi trường NOI Linux 2.0, hiện có vẻ lệnh `rename` là lựa chọn tương đối dễ dùng, nhưng nó không được cài sẵn trong NOI Linux 2.0, nên cần cài đặt trước:
     
     ```shell
     sudo apt install rename
     ```
     
-    注：如果执行后提示 `E: Unable to locate package package_name`，你需要先执行这个命令：`sudo apt-get update`
+    Ghi chú: nếu sau khi chạy xuất hiện thông báo `E: Unable to locate package package_name`, bạn cần chạy lệnh này trước: `sudo apt-get update`.
     
-    安装完成后，就可以正常使用 `rename` 命令了．`rename` 命令的使用类似于直接的文本替换，其在 NOI Linux 2.0 环境下的命令语法如下：
+    Sau khi cài đặt xong, có thể dùng `rename` bình thường. Cách dùng `rename` tương tự thay thế văn bản trực tiếp; cú pháp trong môi trường NOI Linux 2.0 như sau:
     
     ```shell
-    rename 's/<修改前的文本>/<修改后的文本>/' <filename>
+    rename 's/<text-before>/<text-after>/' <filename>
     ```
     
-    其中 `<filename>` 可以使用通配符 `*`，也可以指定其中一类文件（比如 `*.out`)．
+    Trong đó, `<filename>` có thể dùng ký tự đại diện `*`, hoặc chỉ định một loại tệp nhất định (ví dụ `*.out`).
     
-    请注意在引号内末尾还有一个 `/`，如果少写了一个 `/`，`rename` 命令将会报错：`Substitution replacement not terminated at (user-supplied code)`．
+    Lưu ý trong dấu nháy còn có một dấu `/` ở cuối. Nếu thiếu dấu `/`, lệnh `rename` sẽ báo lỗi: `Substitution replacement not terminated at (user-supplied code)`.
     
-    此时如果我们需要对当前工作目录下的所有的文件进行修改，比如将所有的 out 文件修改为 ans 文件，可以这么写：
+    Lúc này, nếu cần đổi toàn bộ tệp trong thư mục làm việc hiện tại, chẳng hạn đổi tất cả tệp `out` thành tệp `ans`, có thể viết như sau:
     
     ```shell
     rename 's/\.out/\.ans/' *
     ```
     
-    其中 `\.` 表示对 `.` 进行转义．
+    Trong đó, `\.` biểu thị escape ký tự `.`.
     
-    （温馨提示：如果少写了 `\.`，假如你的文件里有个 `outtest.out`，这条命令执行过后文件将会被修改成 `anstest.out`)
+    Gợi ý: nếu thiếu `\.`, giả sử trong tệp của bạn có một tệp tên `outtest.out`, sau khi chạy lệnh này, tệp đó sẽ bị đổi thành `anstest.out`.
     
-    类似的，如果你需要对所有名为 `atmost<x>.ans` 的文件进行统一修改（其中 `<x>` 代表测试点编号），将它们都修改为 `test<x>.ans`，不妨这么写：
+    Tương tự, nếu bạn cần đổi đồng loạt tất cả tệp tên `atmost<x>.ans` (trong đó `<x>` biểu thị số hiệu test) thành `test<x>.ans`, có thể viết như sau:
     
     ```shell
     rename 's/atmost/test/' *.ans
