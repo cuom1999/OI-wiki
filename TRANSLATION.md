@@ -96,7 +96,7 @@ MkDocs source layout intact.
   included snippets; quality-passed the Slope Trick introduction, convex
   function definitions, slope/epigraph characterizations, and convex
   transformation material, plus the opening kink-maintenance section and
-  Sequence example in
+  Sequence/Safety examples in
   `docs/dp/opt/slope-trick.md`.
 - `docs/string/basic.md`, `docs/string/lib-func.md`,
   `docs/string/match.md`: translated the introductory string material covering

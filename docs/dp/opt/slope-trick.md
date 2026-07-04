@@ -587,59 +587,81 @@ Bài mẫu:
 -   [AtCoder dwango Challenge 2 Preliminary E - Fireworks](https://atcoder.jp/contests/dwango2016-prelims/tasks/dwango2016qual_e)
 
 <span id="&#x4F8B;&#x9898;&#x8F6C;&#x79FB;&#x5E26;&#x9650;&#x5236;&#x7684;&#x60C5;&#x5F62;"></span>
-### Vi du: truong hop chuyen trang thai co rang buoc
+### Ví dụ: trường hợp chuyển trạng thái có ràng buộc
 
 ???+ example "[\[NOISG 2018 Finals\] Safety](https://www.luogu.com.cn/problem/P11598)"
-    Cho day $\{a_i\}$ do dai $n$. Hay tim day $\{b_i\}$ sao cho $|b_i-b_{i-1}|\le h$ voi moi $1<i\le n$, va lam $\sum_i|a_i-b_i|$ nho nhat. In ra gia tri nho nhat.
+    Cho dãy $\{a_i\}$ độ dài $n$. Hãy tìm dãy $\{b_i\}$ sao cho
+    $|b_i-b_{i-1}|\le h$ với mọi $1<i\le n$, và làm $\sum_i|a_i-b_i|$ nhỏ nhất.
+    In ra giá trị nhỏ nhất.
 
-??? note "Loi giai"
-    Noi dung gan giong bai truoc, chi khac rang rang buoc tren day $\{b_i\}$ da thay doi. Tuong tu, dat $f_i(x)$ la gia tri nho nhat cua tong sai lech tren $i$ so dau khi so thu $i$ nhan gia tri $x$:
+??? note "Lời giải"
+    Nội dung gần giống bài trước, chỉ khác rằng ràng buộc trên dãy $\{b_i\}$ đã
+    thay đổi. Tương tự, đặt $f_i(x)$ là giá trị nhỏ nhất của tổng sai lệch trên
+    $i$ số đầu khi số thứ $i$ nhận giá trị $x$:
 
     $$
     f_i(x) = \min\sum_{j=1}^i|a_j-b_j|\text{ s.t. }|b_{j-1}-b_j|\le h,\forall 1<j\le i,~b_i=x.
     $$
 
-    Suy ra phuong trinh chuyen trang thai
+    Suy ra phương trình chuyển trạng thái
 
     $$
     f_i(x) = |a_i-x| + \min_{|y-x|\le h} f_{i-1}(y).
     $$
 
-    Dieu kien ban dau la $f_0(x)\equiv 0$. Cuoi cung van can tinh $\min_xf_n(x)$.
+    Điều kiện ban đầu là $f_0(x)\equiv 0$. Cuối cùng vẫn cần tính $\min_xf_n(x)$.
 
-    Tach chuyen trang thai thanh cac thao tac tren ham loi, gom hai buoc:
+    Tách chuyển trạng thái thành các thao tác trên hàm lồi, gồm hai bước:
 
-    1.  Truoc het lay cuc tri cua $f_{i-1}(x)$, bien thanh $\min_{|y-x|\le h} f_{i-1}(y)$, tuong duong voi tich chap duoi dung cua $f_{i-1}(x)$ va $0_{[-h,h]}(x)$;
-    2.  Cong ham thu duoc voi $|a_i-x|$.
+    1.  Trước hết lấy cực trị của $f_{i-1}(x)$, biến thành
+        $\min_{|y-x|\le h} f_{i-1}(y)$, tương đương với tích chập dưới đúng của
+        $f_{i-1}(x)$ và $0_{[-h,h]}(x)$;
+    2.  Cộng hàm thu được với $|a_i-x|$.
 
-    Cung vi do doc moi lan chi thay doi mot, co the xet duy tri diem gay. Khi do, hai thao tac nay co the mo ta nhu sau:
+    Cũng vì độ dốc mỗi lần chỉ thay đổi một, có thể xét duy trì điểm gãy. Khi
+    đó, hai thao tác này có thể mô tả như sau:
 
-    1.  Dich tat ca doan do doc am sang trai $h$, va dich tat ca doan do doc duong sang phai $h$;
-    2.  Chen $a_i$ hai lan.
+    1.  Dịch tất cả đoạn độ dốc âm sang trái $h$, và dịch tất cả đoạn độ dốc
+        dương sang phải $h$;
+    2.  Chèn $a_i$ hai lần.
 
-    Hien nhien, voi bai nay, duy tri rieng cac doan do doc am va duong se tien loi hon. Vi thao tac chu yeu tap trung quanh doan do doc bang khong, ta dung [hai heap doi dinh](../../ds/binary-heap.md#%E5%AF%B9%E9%A1%B6%E5%A0%86), tuc dung rieng max-heap va min-heap de duy tri cac diem gay cua doan do doc am va duong. Cac phep tinh tien toan bo diem gay duoc thuc hien bang lazy tag. Vi buoc thu hai can chen mot $a_i$ vao moi heap, sau khi chen, dinh max-heap khong nhat thiet van nho hon hoac bang dinh min-heap. Khi do, hoan doi hai dinh heap cho den khi quan he thu tu cua hai dinh heap duoc thoa man.
+    Hiển nhiên, với bài này, duy trì riêng các đoạn độ dốc âm và dương sẽ tiện
+    lợi hơn. Vì thao tác chủ yếu tập trung quanh đoạn độ dốc bằng không, ta dùng
+    [hai heap đối đỉnh](../../ds/binary-heap.md#%E5%AF%B9%E9%A1%B6%E5%A0%86),
+    tức dùng riêng max-heap và min-heap để duy trì các điểm gãy của đoạn độ dốc
+    âm và dương. Các phép tịnh tiến toàn bộ điểm gãy được thực hiện bằng lazy
+    tag. Vì bước thứ hai cần chèn một $a_i$ vào mỗi heap, sau khi chèn, đỉnh
+    max-heap không nhất thiết vẫn nhỏ hơn hoặc bằng đỉnh min-heap. Khi đó, hoán
+    đổi hai đỉnh heap cho đến khi quan hệ thứ tự của hai đỉnh heap được thỏa
+    mãn.
 
-    Cuoi cung, xet cach cap nhat gia tri nho nhat trong qua trinh thao tac. Vi buoc tinh tien dau tien khong lam thay doi gia tri nho nhat, chi can xet thao tac hoan doi dinh heap. Gia su $\xi_{-1}>\xi_1$. Khi hoan doi hai dinh heap $\xi_{-1}$ va $\xi_1$, ham tu
+    Cuối cùng, xét cách cập nhật giá trị nhỏ nhất trong quá trình thao tác. Vì
+    bước tịnh tiến đầu tiên không làm thay đổi giá trị nhỏ nhất, chỉ cần xét thao
+    tác hoán đổi đỉnh heap. Giả sử $\xi_{-1}>\xi_1$. Khi hoán đổi hai đỉnh heap
+    $\xi_{-1}$ và $\xi_1$, hàm từ
 
     $$
-    \max\{0,x-\xi_{-1}\}+\max\{0,x-\xi_1\}
+    \max\{0,\xi_{-1}-x\}+\max\{0,x-\xi_1\}
     $$
 
-    bien thanh
+    biến thành
 
     $$
-    \max\{0,x-\xi_{1}\}+\max\{0,x-\xi_{-1}\}.
+    \max\{0,\xi_1-x\}+\max\{0,x-\xi_{-1}\}.
     $$
 
-    Trong qua trinh nay, hinh dang cua ham khong doi, chi bi tinh tien xuong duoi $|\xi_{-1}-\xi_1|$. Vi vay, de ham truoc va sau khi hoan doi dinh heap giu nguyen, chi can cong $|\xi_{-1}-\xi_1|$ vao gia tri nho nhat.
+    Trong quá trình này, hình dạng của hàm không đổi, chỉ bị tịnh tiến xuống
+    dưới $|\xi_{-1}-\xi_1|$. Vì vậy, để hàm trước và sau khi hoán đổi đỉnh heap
+    giữ nguyên, chỉ cần cộng $|\xi_{-1}-\xi_1|$ vào giá trị nhỏ nhất.
 
-    Do phuc tap thoi gian cua thuat toan van la $O(n\log n)$, vi sau moi lan them phan tu, thao tac hoan doi dinh heap thuc hien nhieu nhat mot lan.
+    Độ phức tạp thời gian của thuật toán vẫn là $O(n\log n)$, vì sau mỗi lần
+    thêm phần tử, thao tác hoán đổi đỉnh heap thực hiện nhiều nhất một lần.
 
     ```cpp
     --8<-- "docs/dp/code/opt/slope-trick/safety.cpp"
     ```
 
-Bai mau:
+Bài mẫu:
 
 -   [Luogu P4272 \[CTSC2009\] Sequence Transformation](https://www.luogu.com.cn/problem/P4272)
 -   [Luogu P11598 \[NOISG 2018 Finals\] Safety](https://www.luogu.com.cn/problem/P11598)
