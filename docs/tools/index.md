@@ -1,5 +1,5 @@
-本章主要介绍与竞赛有关的工具软件，包括一些代码编辑器的介绍和 OJ 相关工具．
+Chương này chủ yếu giới thiệu các phần mềm công cụ liên quan đến thi đấu, bao gồm một số trình soạn thảo mã và công cụ liên quan đến OJ.
 
-程序是解决 OI 问题的工具，熟练运用代码编辑器是学习 OI 的前提．
+Chương trình là công cụ để giải quyết bài toán OI; sử dụng thành thạo trình soạn thảo mã là một tiền đề để học OI.
 
-了解 OJ 相关的工具能让 OI 之旅更加舒适、便捷．
+Hiểu các công cụ liên quan đến OJ sẽ giúp hành trình OI thuận tiện và dễ chịu hơn.

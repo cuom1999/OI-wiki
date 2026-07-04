@@ -363,6 +363,8 @@ MkDocs source layout intact.
   and short Cena/CCR Plus pages.
 - `docs/tools/judger/lemon.md`: translated the Lemon judging-tool page.
 - `docs/tools/judger/arbiter.md`: translated the Arbiter judging-tool guide.
+- `docs/tools/index.md`, `docs/tools/oj-tool.md`: translated the tools
+  overview and OJ tool roundup.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.
