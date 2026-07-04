@@ -1,8 +1,8 @@
 #include <cfloat>
 #include <iostream>
 
-// Check whether a working __int128 type is available.
-// Clang-cl on Windows may fail to link when using mod/div with __int128.
+// Kiem tra co kieu __int128 hoat dong duoc hay khong.
+// Clang-cl tren Windows co the loi lien ket khi dung mod/div voi __int128.
 #if defined(__SIZEOF_INT128__) && !(defined(__clang__) && defined(_MSC_VER))
 #define HAS_WORKING_INT128 1
 #else
@@ -11,7 +11,7 @@
 
 namespace LongDoubleMul {
 
-#if LDBL_MANT_DIG >= 64  // Test this only if long double has at least 80 bits.
+#if LDBL_MANT_DIG >= 64  // Chi kiem tra khi long double co it nhat 80 bit.
 
 // --8<-- [start:ld-mul]
 long long mul(long long a, long long b, long long m) {
@@ -31,7 +31,7 @@ long long mul(long long a, long long b, long long m) { return -1; }
 
 namespace Int128Mul {
 
-#if HAS_WORKING_INT128  // Test this only if __int128 is available.
+#if HAS_WORKING_INT128  // Chi kiem tra khi co __int128.
 
 // --8<-- [start:i128-mul]
 long long mul(long long a, long long b, long long m) {

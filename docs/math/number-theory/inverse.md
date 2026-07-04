@@ -1,23 +1,26 @@
-本文介绍模意义下乘法运算的逆元，并讨论它的常见求解方法．
+Bài viết này giới thiệu nghịch đảo của phép nhân theo modulo và các cách thường dùng để tính nó.
 
-## 基本概念
+<span id="&#22522;&#26412;&#27010;&#24565;"></span>
+## Khái niệm cơ bản
 
-非零实数 $a\in\mathbf R$ 的乘法逆元就是它的倒数 $a^{-1}$．类似地，数论中也可以定义一个整数 $a$ 在模 $m$ 意义下的逆元 $a^{-1}\bmod m$，或简单地记作 $a^{-1}$．这就是 **模逆元**（modular multiplicative inverse），也称作 **数论倒数**．
+Nghịch đảo nhân của số thực khác $0$ $a\in\mathbf R$ chính là số nghịch đảo $a^{-1}$. Tương tự, trong số học có thể định nghĩa nghịch đảo của một số nguyên $a$ theo modulo $m$, ký hiệu là $a^{-1}\bmod m$, hoặc đơn giản là $a^{-1}$. Đây là **nghịch đảo modulo** (modular multiplicative inverse), cũng gọi là **nghịch đảo số học**.
 
-???+ abstract "逆元"
-    对于非零整数 $a,m$，如果存在 $b$ 使得 $ab\equiv 1\pmod m$，就称 $b$ 是 $a$ 在模 $m$ 意义下的 **逆元**（inverse）．
+???+ abstract "Nghịch đảo"
+    Với các số nguyên khác $0$ $a,m$, nếu tồn tại $b$ sao cho $ab\equiv 1\pmod m$, thì gọi $b$ là **nghịch đảo** (inverse) của $a$ theo modulo $m$.
 
-这相当于说，$b$ 是线性同余方程 $ax\equiv 1\pmod m$ 的解．根据 [线性同余方程](./linear-equation.md) 的性质可知，当且仅当 $\gcd(a,m)=1$，即 $a,m$ 互素时，逆元 $a^{-1}\bmod m$ 存在，且在模 $m$ 的意义下是唯一的．
+Điều này tương đương với việc $b$ là nghiệm của phương trình đồng dư tuyến tính $ax\equiv 1\pmod m$. Theo tính chất của [phương trình đồng dư tuyến tính](./linear-equation.md), nghịch đảo $a^{-1}\bmod m$ tồn tại khi và chỉ khi $\gcd(a,m)=1$, tức $a,m$ nguyên tố cùng nhau; khi tồn tại, nó là duy nhất theo modulo $m$.
 
-## 单个逆元的求法
+<span id="&#21333;&#20010;&#36870;&#20803;&#30340;&#27714;&#27861;"></span>
+## Cách tính một nghịch đảo
 
-利用扩展欧几里得算法或快速幂法，可以在 $O(\log m)$ 时间内求出单个整数的逆元．
+Dùng thuật toán Euclid mở rộng hoặc lũy thừa nhị phân, có thể tính nghịch đảo của một số nguyên trong thời gian $O(\log m)$.
 
-### 扩展欧几里得算法
+<span id="&#25193;&#23637;&#27431;&#20960;&#37324;&#24471;&#31639;&#27861;"></span>
+### Thuật toán Euclid mở rộng
 
-求解逆元，就相当于求解线性同余方程．因此，可以使用 [扩展欧几里得算法](./gcd.md#扩展欧几里得算法) 在 $O(\log\min\{a,m\})$ 时间内求解逆元．同时，由于逆元对应的线性方程比较特殊，可以适当地简化相应的步骤．
+Tính nghịch đảo tương đương với giải phương trình đồng dư tuyến tính. Vì vậy có thể dùng [thuật toán Euclid mở rộng](./gcd.md#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95) để tính nghịch đảo trong thời gian $O(\log\min\{a,m\})$. Đồng thời, vì phương trình tuyến tính tương ứng với nghịch đảo khá đặc biệt, có thể giản lược một số bước.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/math/code/inverse/inverse-1.cpp:core"
@@ -28,19 +31,20 @@
         --8<-- "docs/math/code/inverse/inverse-1.py:core"
         ```
 
-这一算法适用于所有逆元存在的情形．
+Thuật toán này áp dụng cho mọi trường hợp nghịch đảo tồn tại.
 
-### 快速幂法
+<span id="&#24555;&#36895;&#24130;&#27861;"></span>
+### Phương pháp lũy thừa nhị phân
 
-这一方法主要适用于模数是素数 $p$ 的情形．此时，由 [费马小定理](./fermat.md#费马小定理) 可知对于任意 $a\perp p$ 都有
+Phương pháp này chủ yếu áp dụng khi modulo là số nguyên tố $p$. Khi đó, theo [định lý nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), với mọi $a\perp p$ đều có
 
 $$
 a\cdot a^{p-2} = a^{p-1} \equiv 1 \pmod p.
 $$
 
-根据逆元的唯一性可知，逆元 $a^{-1}\bmod p$ 就等于 $a^{p-2}\bmod p$，因此可以直接使用 [快速幂](../binary-exponentiation.md) 在 $O(\log p)$ 时间内计算：
+Theo tính duy nhất của nghịch đảo, nghịch đảo $a^{-1}\bmod p$ bằng $a^{p-2}\bmod p$, nên có thể trực tiếp dùng [lũy thừa nhị phân](../binary-exponentiation.md) để tính trong thời gian $O(\log p)$:
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/math/code/inverse/inverse-2.cpp:core"
@@ -51,33 +55,34 @@ $$
         --8<-- "docs/math/code/inverse/inverse-2.py:core"
         ```
 
-当然，理论上，这一方法可以利用 [欧拉定理](./fermat.md#欧拉定理) 推广到一般的模数 $m$ 的情形，即利用 $a^{\varphi(m)-1}\bmod m$ 计算逆元．但是，单次求解 [欧拉函数](./euler-totient.md) $\varphi(m)$ 并不容易，因此该算法在一般情况下效率不高．
+Về lý thuyết, phương pháp này có thể được mở rộng sang modulo tổng quát $m$ bằng [định lý Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), tức dùng $a^{\varphi(m)-1}\bmod m$ để tính nghịch đảo. Tuy nhiên, tính riêng [hàm Euler](./euler-totient.md) $\varphi(m)$ không dễ, nên thuật toán này không hiệu quả trong trường hợp tổng quát.
 
-## 多个逆元的求法
+<span id="&#22810;&#20010;&#36870;&#20803;&#30340;&#27714;&#27861;"></span>
+## Cách tính nhiều nghịch đảo
 
-有些场景下，需要快速处理出多个整数 $a_1,a_2,\cdots,a_n$ 在模 $m$ 意义下的逆元．此时，逐个求解逆元，总共需要 $O(n\log m)$ 的时间．实际上，如果将它们统一处理，就可以在 $O(n+\log m)$ 的时间内求出所有整数的逆元．
+Trong một số tình huống, cần xử lý nhanh nghịch đảo của nhiều số nguyên $a_1,a_2,\cdots,a_n$ theo modulo $m$. Nếu tính từng nghịch đảo riêng lẻ thì tổng thời gian là $O(n\log m)$. Thực tế, nếu xử lý chung, có thể tính tất cả nghịch đảo trong thời gian $O(n+\log m)$.
 
-考虑序列 $\{a_i\}$ 的前缀积：
+Xét tích tiền tố của dãy $\{a_i\}$:
 
 $$
 S_0 = 1,~ S_i = a_iS_{i-1},~ i=1,2,\cdots,n.
 $$
 
-只要每个 $a_i$ 都与 $m$ 互素，它们的乘积 $S_n$ 就与 $m$ 互素．因此，可以通过前文所述算法求出 $S_n^{-1}\bmod m$ 的值．因为乘积的逆元就是逆元的乘积，所以，从 $S_n^{-1}$ 出发，反向遍历序列就能求出每个 $S_i$ 的逆元：
+Chỉ cần mỗi $a_i$ đều nguyên tố cùng nhau với $m$, tích của chúng $S_n$ cũng nguyên tố cùng nhau với $m$. Vì vậy có thể dùng thuật toán ở trên để tính $S_n^{-1}\bmod m$. Vì nghịch đảo của tích bằng tích các nghịch đảo, từ $S_n^{-1}$ duyệt ngược dãy sẽ tính được nghịch đảo của từng $S_i$:
 
 $$
 S_{i-1}^{-1} = a_iS_i^{-1} \bmod m,~ i = n,n-1,\cdots,1.
 $$
 
-由此，单个 $a_i$ 的逆元可以通过下式计算：
+Từ đó nghịch đảo của từng $a_i$ có thể được tính bằng:
 
 $$
 a_i^{-1} = S_{i-1}S_i^{-1} \bmod m,~ i = 1,2,\cdots,n.
 $$
 
-参考实现如下：
+Cài đặt tham khảo:
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/math/code/inverse/inverse-3.cpp:core"
@@ -88,35 +93,36 @@ $$
         --8<-- "docs/math/code/inverse/inverse-3.py:core"
         ```
 
-算法中，只求了一次单个元素的逆元，因此总的时间复杂度是 $O(n+\log m)$ 的．
+Trong thuật toán chỉ tính nghịch đảo của một phần tử một lần, nên tổng độ phức tạp thời gian là $O(n+\log m)$.
 
-## 线性时间预处理逆元
+<span id="&#32447;&#24615;&#26102;&#38388;&#39044;&#22788;&#29702;&#36870;&#20803;"></span>
+## Tiền xử lý nghịch đảo trong thời gian tuyến tính
 
-如果要预处理前 $n$ 个正整数在素数模 $p$ 下的逆元，还可以通过本节将要讨论的递推关系在 $O(n)$ 时间内计算．这一方法常用于组合数计算中前 $n$ 个正整数的阶乘的倒数的预处理．
+Nếu cần tiền xử lý nghịch đảo của $n$ số nguyên dương đầu tiên theo modulo nguyên tố $p$, có thể dùng hệ thức truy hồi trong phần này để tính trong thời gian $O(n)$. Phương pháp này thường dùng khi tiền xử lý nghịch đảo của giai thừa các số nguyên dương đầu tiên trong tính tổ hợp.
 
-对于 $1< i < p$ 的正整数 $i$，考察带余除法：
+Với số nguyên dương $i$ thỏa $1< i < p$, xét phép chia có dư:
 
 $$
 p = \left\lfloor \dfrac{p}{i} \right\rfloor i + (p\bmod i).
 $$
 
-将该等式对素数 $p$ 取模，就得到
+Lấy modulo số nguyên tố $p$ hai vế:
 
 $$
 0 \equiv \left\lfloor \dfrac{p}{i} \right\rfloor i + (p\bmod i) \pmod p.
 $$
 
-将等式两边同时乘以 $i^{-1}(p\bmod i)^{-1}$ 就得到
+Nhân hai vế với $i^{-1}(p\bmod i)^{-1}$, ta được
 
 $$
 i^{-1} \equiv - \left\lfloor \dfrac{p}{i} \right\rfloor (p\bmod i)^{-1} \pmod p.
 $$
 
-这就是用于线性时间递推求逆元的公式．由于 $p\bmod i < i$，这一公式将求解 $i^{-1}\bmod p$ 的问题转化为规模更小的问题 $(p\bmod i)^{-1}\bmod p$．因此，从 $1^{-1}\bmod p=1$ 开始，对每个 $i$ 顺次应用该公式，就可以在 $O(n)$ 时间内获得前 $n$ 个整数的逆元．
+Đây chính là công thức truy hồi tính nghịch đảo trong thời gian tuyến tính. Vì $p\bmod i < i$, công thức này chuyển bài toán tính $i^{-1}\bmod p$ thành bài toán nhỏ hơn $(p\bmod i)^{-1}\bmod p$. Do đó, bắt đầu từ $1^{-1}\bmod p=1$, áp dụng công thức lần lượt cho từng $i$ sẽ thu được nghịch đảo của $n$ số nguyên đầu tiên trong thời gian $O(n)$.
 
-参考实现如下：
+Cài đặt tham khảo:
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/math/code/inverse/inverse-4.cpp:core"
@@ -127,20 +133,22 @@ $$
         --8<-- "docs/math/code/inverse/inverse-4.py:core"
         ```
 
-这一算法只适用于模数是素数的情形．对于模数 $m$ 不是素数的情形，无法保证递推公式中得到的 $m\bmod i$ 仍然与 $m$ 互素，因而递推所需要的 $(m\bmod i)^{-1}$ 可能并不存在．一个这样的例子是 $m=8,i=3$．此时，$m\bmod i = 2$，不存在模 $m$ 的逆元．
+Thuật toán này chỉ áp dụng khi modulo là số nguyên tố. Nếu modulo $m$ không phải số nguyên tố, không thể bảo đảm $m\bmod i$ trong công thức truy hồi vẫn nguyên tố cùng nhau với $m$, nên nghịch đảo $(m\bmod i)^{-1}$ cần cho truy hồi có thể không tồn tại. Một ví dụ là $m=8,i=3$: khi đó $m\bmod i = 2$, và không tồn tại nghịch đảo modulo $m$.
 
-另外，得到该递推公式后，一种自然的想法是直接递归求解任意一个数 $a$ 的逆元．每次递归时，都利用递推公式将它转化为更小的余数 $p\bmod a$ 的逆元，直到余数变为 $1$ 时停止．目前尚不清楚这样做的复杂度[^linear-recursion]，因此，推荐使用前文所述的常规方法求解．
+Sau khi có công thức truy hồi này, một ý tưởng tự nhiên là dùng đệ quy để tính nghịch đảo của một số bất kỳ $a$. Mỗi lần đệ quy dùng công thức truy hồi để chuyển nó thành nghịch đảo của số dư nhỏ hơn $p\bmod a$, cho đến khi số dư bằng $1$. Hiện chưa rõ độ phức tạp của cách làm này[^linear-recursion], nên khuyến nghị dùng các phương pháp thông thường đã nêu ở trên.
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
--   [LOJ 110 乘法逆元](https://loj.ac/problem/110)
--   [LOJ 161 乘法逆元 2](https://loj.ac/problem/161)
--   [LOJ 2605「NOIP2012」同余方程](https://loj.ac/problem/2605)
--   [Luogu P2054「AHOI2005」洗牌](https://www.luogu.com.cn/problem/P2054)
--   [LOJ 2034「SDOI2016」排列计数](https://loj.ac/problem/2034)
+-   [LOJ 110 Nghịch đảo nhân](https://loj.ac/problem/110)
+-   [LOJ 161 Nghịch đảo nhân 2](https://loj.ac/problem/161)
+-   [LOJ 2605 [NOIP2012] Phương trình đồng dư](https://loj.ac/problem/2605)
+-   [Luogu P2054 [AHOI2005] Xáo bài](https://www.luogu.com.cn/problem/P2054)
+-   [LOJ 2034 [SDOI2016] Đếm hoán vị](https://loj.ac/problem/2034)
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
 -   [Modular multiplicative inverse - Wikipedia](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)
 
-[^linear-recursion]: [riteme 在知乎上的回答](https://www.zhihu.com/question/59033693/answer/323292359) 中指出，这样做理论上已知的复杂度的上界是 $O(p^{1/3+\varepsilon})$，而在实际随机数据中的表现接近于 $O(\log p)$．
+[^linear-recursion]: [Câu trả lời của riteme trên Zhihu](https://www.zhihu.com/question/59033693/answer/323292359) chỉ ra rằng cận trên độ phức tạp đã biết về lý thuyết của cách này là $O(p^{1/3+\varepsilon})$, còn trên dữ liệu ngẫu nhiên thực tế thì biểu hiện gần với $O(\log p)$.

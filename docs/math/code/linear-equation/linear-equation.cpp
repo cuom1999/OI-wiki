@@ -1,9 +1,9 @@
 #include <iostream>
 
 // --8<-- [start:core]
-// Extended Euclidean Algorithm.
-// Finds integers x, y such that a*x + b*y = gcd(a, b),
-// and returns gcd(a, b).
+// Thuật toán Euclid mở rộng.
+// Tìm các số nguyên x, y sao cho a*x + b*y = gcd(a, b),
+// rồi trả về gcd(a, b).
 int ex_gcd(int a, int b, int& x, int& y) {
   if (!b) {
     x = 1;
@@ -16,10 +16,10 @@ int ex_gcd(int a, int b, int& x, int& y) {
   }
 }
 
-// Solves the linear congruence equation:
-//     a * x ≡ b (mod n), where n > 0.
-// Returns the smallest non-negative solution x,
-// or -1 if there is no solution.
+// Giải phương trình đồng dư tuyến tính:
+//     a * x ≡ b (mod n), trong đó n > 0.
+// Trả về nghiệm không âm nhỏ nhất x,
+// hoặc -1 nếu phương trình vô nghiệm.
 int solve_linear_congruence_equation(int a, int b, int n) {
   int x, y;
   int d = ex_gcd(a, n, x, y);

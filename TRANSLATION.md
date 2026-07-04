@@ -112,6 +112,15 @@ MkDocs source layout intact.
   `docs/math/complex.md`: translated general math pages on Boolean algebra,
   binary set operations, permutations, coordinate systems, and complex numbers,
   plus explanatory comments in permutation snippets.
+- `docs/math/bignum.md`, `docs/math/number-theory/basic.md`,
+  `docs/math/number-theory/mod-arithmetic.md`,
+  `docs/math/number-theory/prime.md`, `docs/math/number-theory/gcd.md`,
+  `docs/math/number-theory/euler-totient.md`,
+  `docs/math/number-theory/sieve.md`, `docs/math/number-theory/inverse.md`,
+  `docs/math/number-theory/linear-equation.md`: translated arbitrary-precision
+  arithmetic and the first number-theory pages, plus explanatory comments in
+  the included modular arithmetic, prime, inverse, and linear congruence
+  snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

@@ -1,50 +1,54 @@
-## 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+## Dinh nghia
 
-最大公约数即为 Greatest Common Divisor，常缩写为 gcd．
+Uoc chung lon nhat trong tieng Anh la Greatest Common Divisor, thuong viet tat la gcd.
 
-一组整数的公约数，是指同时是这组数中每一个数的约数的数．$\pm 1$ 是任意一组整数的公约数．
+Uoc chung cua mot tap so nguyen la so dong thoi la uoc cua moi so trong tap do. $\pm 1$ la uoc chung cua moi tap so nguyen.
 
-一组整数的最大公约数，是指所有公约数里面最大的一个．
+Uoc chung lon nhat cua mot tap so nguyen la so lon nhat trong tat ca cac uoc chung.
 
-对不全为 $0$ 的整数 $a,b$，将其最大公约数记为 $\gcd(a,b)$，不引起歧义时可简写为 $(a,b)$．
+Voi hai so nguyen $a,b$ khong dong thoi bang $0$, uoc chung lon nhat cua chung duoc ky hieu la $\gcd(a,b)$; khi khong gay nham lan co the viet gon la $(a,b)$.
 
-对不全为 $0$ 的整数 $a_1,\dots,a_n$，将其最大公约数记为 $\gcd(a_1,\dots,a_n)$，不引起歧义时可简写为 $(a_1,\dots,a_n)$．
+Voi cac so nguyen $a_1,\dots,a_n$ khong dong thoi bang $0$, uoc chung lon nhat cua chung duoc ky hieu la $\gcd(a_1,\dots,a_n)$; khi khong gay nham lan co the viet gon la $(a_1,\dots,a_n)$.
 
-最大公约数与最小公倍数的性质见 [数论基础](./basic.md#最大公约数与最小公倍数)．
+Tinh chat cua uoc chung lon nhat va boi chung nho nhat xem tai [co so ly thuyet so](./basic.md#%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0).
 
-那么如何求最大公约数呢？我们先考虑两个数的情况．
+Vay lam the nao de tim uoc chung lon nhat? Truoc het xet truong hop hai so.
 
-### 欧几里得算法
+<span id="&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+### Thuat toan Euclid
 
-#### 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
+#### Qua trinh
 
-如果我们已知两个数 $a$ 和 $b$，如何求出二者的最大公约数呢？
+Neu biet hai so $a$ va $b$, lam the nao de tim uoc chung lon nhat cua chung?
 
-不妨设 $a > b$．
+Gia su $a > b$.
 
-我们发现如果 $b$ 是 $a$ 的约数，那么 $b$ 就是二者的最大公约数．
-下面讨论不能整除的情况，即 $a = b \times q + r$，其中 $r < b$．
+Neu $b$ la uoc cua $a$, thi $b$ chinh la uoc chung lon nhat cua hai so.
+Sau day xet truong hop khong chia het, tuc $a = b \times q + r$, trong do $r < b$.
 
-我们通过证明可以得到 $\gcd(a,b)=\gcd(b,a \bmod b)$，过程如下：
+Co the chung minh $\gcd(a,b)=\gcd(b,a \bmod b)$ nhu sau:
 
-???+ note "证明"
-    设 $a=bk+c$，显然有 $c=a \bmod b$．设 $d \mid a,~d \mid b$，则 $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$．
+???+ note "Chung minh"
+    Dat $a=bk+c$, ro rang $c=a \bmod b$. Neu $d \mid a,~d \mid b$ thi $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$.
     
-    由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d \mid c$，所以对于 $a,b$ 的公约数，它也会是 $b,a \bmod b$ 的公约数．
+    Tu ve phai suy ra $\frac{c}{d}$ la so nguyen, tuc $d \mid c$. Vi vay moi uoc chung cua $a,b$ cung la uoc chung cua $b,a \bmod b$.
     
-    反过来也需要证明：
+    Chieu nguoc lai cung can chung minh:
     
-    设 $d \mid b,~d\mid (a \bmod b)$，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$．
+    Neu $d \mid b,~d\mid (a \bmod b)$, tuong tu ta co $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$.
     
-    因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d \mid a$，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数．
+    Vi ve trai ro rang la so nguyen, $\frac{a}{d}$ cung la so nguyen, tuc $d \mid a$. Vi vay moi uoc chung cua $b,a\bmod b$ cung la uoc chung cua $a,b$.
     
-    既然两式公约数都是相同的，那么最大公约数也会相同．
+    Hai cap co cung tap uoc chung, nen uoc chung lon nhat cung bang nhau.
     
-    所以得到式子 $\gcd(a,b)=\gcd(b,a\bmod b)$
+    Do do $\gcd(a,b)=\gcd(b,a\bmod b)$.
 
-既然得到了 $\gcd(a, b) = \gcd(b, r)$，这里两个数的大小是不会增大的，那么我们也就得到了关于两个数的最大公约数的一个递归求法．
+Sau khi co $\gcd(a, b) = \gcd(b, r)$, kich thuoc hai so khong tang len, nen ta thu duoc mot cach de quy de tinh uoc chung lon nhat cua hai so.
 
-#### 实现
+<span id="&#x5B9E;&#x73B0;"></span>
+#### Cai dat
 
 === "C++"
     ```cpp
@@ -80,9 +84,9 @@
         return gcd(b, a % b)
     ```
 
-递归至 `b == 0`（即上一步的 `a % b == 0`）的情况再返回值即可．
+De quy den khi `b == 0` (tuc `a % b == 0` o buoc truoc) thi tra ve gia tri.
 
-根据上述递归求法，我们也可以写出一个迭代求法：
+Theo cach de quy tren, ta cung co the viet ban lap:
 
 === "C++"
     ```cpp
@@ -116,81 +120,87 @@
         return a
     ```
 
-上述算法都可被称作欧几里得算法（Euclidean algorithm）．
+Cac thuat toan tren deu co the goi la thuat toan Euclid (Euclidean algorithm).
 
-另外，对于 C++17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数．
+Ngoai ra, voi C++17, ta co the dung [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) va [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) trong header [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) de tinh uoc chung lon nhat va boi chung nho nhat.
 
-???+ warning "注意"
-    在部分编译器中，C++14 中可以用 `std::__gcd(a,b)` 函数来求最大公约数，但是其仅作为 `std::rotate` 的私有辅助函数．[^1]使用该函数可能会导致预期之外的问题，故一般情况下不推荐使用．
+???+ warning "Luu y"
+    Trong mot so trinh bien dich, C++14 co the dung ham `std::__gcd(a,b)` de tinh uoc chung lon nhat, nhung ham nay chi la ham phu rieng cua `std::rotate`.[^1] Dung ham nay co the gay cac van de ngoai du kien, nen nhin chung khong khuyen nghi.
 
-如果两个数 $a$ 和 $b$ 满足 $\gcd(a, b) = 1$，我们称 $a$ 和 $b$ 互质．
+Neu hai so $a$ va $b$ thoa man $\gcd(a, b) = 1$, ta noi $a$ va $b$ nguyen to cung nhau.
 
-#### 性质
+<span id="&#x6027;&#x8D28;"></span>
+#### Tinh chat
 
-欧几里得算法的时间效率如何呢？下面我们证明，在输入为两个长为 $n$ 的二进制整数时，欧几里得算法的时间复杂度为 $O(n)$．（换句话说，在默认 $a, b$ 同阶的情况下，时间复杂度为 $O(\log\max(a, b))$．）
+Hieu qua thoi gian cua thuat toan Euclid ra sao? Sau day ta chung minh: khi dau vao la hai so nguyen nhi phan co do dai $n$, do phuc tap thoi gian cua thuat toan Euclid la $O(n)$. Noi cach khac, neu mac dinh $a, b$ cung bac, do phuc tap thoi gian la $O(\log\max(a, b))$.
 
-???+ note "证明"
-    当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
+???+ note "Chung minh"
+    Khi tinh $\gcd(a,b)$, ta gap hai truong hop:
     
-    -   $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
-    -   $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半．这意味着这一过程最多发生 $O(\log a) = O(n)$ 次．
+    -   $a < b$, khi do $\gcd(a,b)=\gcd(b,a)$;
+    -   $a \geq b$, khi do $\gcd(a,b)=\gcd(b,a \bmod b)$, va phep lay modulo theo $a$ lam $a$ giam it nhat mot nua. Nghia la qua trinh nay xay ra toi da $O(\log a) = O(n)$ lan.
     
-    第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数．
+    Sau truong hop thu nhat nhat dinh se den truong hop thu hai, nen so lan xay ra truong hop thu nhat chac chan **khong nhieu hon** so lan xay ra truong hop thu hai.
     
-    从而我们最多递归 $O(n)$ 次就可以得出结果．
+    Vi vay chi can de quy toi da $O(n)$ lan la co ket qua.
 
-事实上，假如我们试着用欧几里得算法去求 [斐波那契数列](../combinatorics/fibonacci.md) 相邻两项的最大公约数，会让该算法达到最坏复杂度．
+Thuc te, neu dung thuat toan Euclid de tinh uoc chung lon nhat cua hai so hang xom trong [day Fibonacci](../combinatorics/fibonacci.md), thuat toan se dat do phuc tap xau nhat.
 
-### 更相减损术
+<span id="&#x66F4;&#x76F8;&#x51CF;&#x635F;&#x672F;"></span>
+### Thuat toan tru dan
 
-大整数取模的时间复杂度较高，而加减法时间复杂度较低．针对大整数，我们可以用加减代替乘除求出最大公约数．
+Voi so lon, phep lay modulo co do phuc tap cao, con cong tru thi thap hon. Vi vay co the dung cong tru thay cho nhan chia de tinh uoc chung lon nhat.
 
-#### 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
+#### Qua trinh
 
-已知两数 $a$ 和 $b$，求 $\gcd(a,b)$．
+Cho hai so $a$ va $b$, can tinh $\gcd(a,b)$.
 
-不妨设 $a \ge b$，若 $a = b$，则 $\gcd(a,b)=a=b$．
-否则，$\forall d\mid a, d\mid b$，可以证明 $d\mid a-b$．
+Gia su $a \ge b$. Neu $a = b$, thi $\gcd(a,b)=a=b$.
+Neu khong, voi moi $\forall d\mid a, d\mid b$, co the chung minh $d\mid a-b$.
 
-因此，$a$ 和 $b$ 的 **所有** 公因数都是 $a-b$ 和 $b$ 的公因数，$\gcd(a,b) = \gcd(a-b, b)$．
+Do do **tat ca** uoc chung cua $a$ va $b$ deu la uoc chung cua $a-b$ va $b$, nen $\gcd(a,b) = \gcd(a-b, b)$.
 
-#### Stein 算法的优化
+<span id="stein-&#x7B97;&#x6CD5;&#x7684;&#x4F18;&#x5316;"></span>
+#### Toi uu hoa bang thuat toan Stein
 
-如果 $a\gg b$，更相减损术的 $O(n)$ 复杂度将会达到最坏情况．
+Neu $a\gg b$, do phuc tap $O(n)$ cua thuat toan tru dan se roi vao truong hop xau nhat.
 
-考虑一个优化，若 $2\mid a,2\mid b$，$\gcd(a,b) = 2\gcd\left(\dfrac a2, \dfrac b2\right)$．
+Xet mot toi uu: neu $2\mid a,2\mid b$, thi $\gcd(a,b) = 2\gcd\left(\dfrac a2, \dfrac b2\right)$.
 
-否则，若 $2\mid a$（$2\mid b$ 同理），因为 $2\mid b$ 的情况已经讨论过了，所以 $2 \nmid b$．因此 $\gcd(a,b)=\gcd\left(\dfrac a2,b\right)$．
+Neu khong, gia su $2\mid a$ (truong hop $2\mid b$ tuong tu). Vi truong hop $2\mid b$ da duoc xet, nen $2 \nmid b$. Do do $\gcd(a,b)=\gcd\left(\dfrac a2,b\right)$.
 
-优化后的算法（即 Stein 算法）时间复杂度是 $O(\log n)$．
+Thuat toan sau khi toi uu, tuc thuat toan Stein, co do phuc tap thoi gian $O(\log n)$.
 
-???+ note "证明"
-    若 $2\mid a$ 或 $2\mid b$，每次递归至少会将 $a,b$ 之一减半．
+???+ note "Chung minh"
+    Neu $2\mid a$ hoac $2\mid b$, moi lan de quy se lam it nhat mot trong hai so $a,b$ giam mot nua.
     
-    否则，$2\mid a-b$，回到了上一种情况．
+    Neu khong, $2\mid a-b$, quay ve truong hop tren.
     
-    算法最多递归 $O(\log n)$ 次．
+    Thuat toan de quy toi da $O(\log n)$ lan.
 
-#### 实现
+<span id="&#x5B9E;&#x73B0;"></span>
+#### Cai dat
 
-高精度模板见 [高精度计算](../bignum.md)．
+Mau so do chinh xac cao xem tai [tinh toan so lon](../bignum.md).
 
-高精度运算需实现：减法、大小比较、左移、右移（可用低精乘除代替）、二进制末位 0 的个数（可以通过判断奇偶暴力计算）．
+Voi so do chinh xac cao can cai dat: phep tru, so sanh kich thuoc, dich trai, dich phai (co the thay bang nhan chia do chinh xac thap), so bit $0$ lien tiep o cuoi bieu dien nhi phan (co the tinh vét can bang cach kiem tra chan le).
 
 ??? note "C++"
     ```cpp
     Big gcd(Big a, Big b) {
       if (a == 0) return b;
       if (b == 0) return a;
-      // 记录a和b的公因数2出现次数，countr_zero表示二进制末位0的个数
+      // Ghi so lan thua so chung 2 xuat hien trong a va b;
+      // countr_zero la so bit 0 lien tiep o cuoi bieu dien nhi phan
       int atimes = countr_zero(a);
       int btimes = countr_zero(b);
       int mintimes = min(atimes, btimes);
       a >>= atimes;
       for (;;) {
-        // a和b公因数中的2已经计算过了，后面不可能出现a为偶数的情况
+        // Thua so 2 chung cua a va b da duoc tinh; ve sau a khong the chan
         b >>= btimes;
-        // 确保 a<=b
+        // Bao dam a <= b
         if (a > b) swap(a, b);
         b -= a;
         if (b == 0) break;
@@ -200,12 +210,12 @@
     }
     ```
 
-上述代码参考了 [libstdc++](https://github.com/gcc-mirror/gcc/blob/1667962ae755db27965778b8c8c684c6c0c4da21/libstdc%2B%2B-v3/include/std/numeric#L173) 和 [MSVC](https://github.com/microsoft/STL/blob/9aca22477df4eed3222b4974746ee79129eb44e7/stl/inc/numeric#L591) 对 C++17 `std::gcd` 的实现．在 `unsigned int` 和 `unsigned long long` 的数据范围下，如果可以以极快的速度计算 `countr_zero`，则 Stein 算法比欧几里得算法来得快，但反之则可能比欧几里得算法慢．
+Doan code tren tham khao cach cai dat C++17 `std::gcd` cua [libstdc++](https://github.com/gcc-mirror/gcc/blob/1667962ae755db27965778b8c8c684c6c0c4da21/libstdc%2B%2B-v3/include/std/numeric#L173) va [MSVC](https://github.com/microsoft/STL/blob/9aca22477df4eed3222b4974746ee79129eb44e7/stl/inc/numeric#L591). Trong pham vi du lieu cua `unsigned int` va `unsigned long long`, neu co the tinh `countr_zero` rat nhanh thi thuat toan Stein nhanh hon thuat toan Euclid; nguoc lai no co the cham hon Euclid.
 
-???+ note "关于 countr_zero"
-    1.  gcc 有 [内建函数](../bit.md#gcc-内建函数) `__builtin_ctz`（32 位）或 `__builtin_ctzll`（64 位）可替换上述代码的 `countr_zero`；
-    2.  从 C++20 开始，头文件 `<bit>` 包含了 [`std::countr_zero`](https://en.cppreference.com/w/cpp/numeric/countr_zero)；
-    3.  如果不使用不在标准库的函数，又无法使用 C++20 标准，下面的代码是一种在 Word-RAM with multiplication 模型下经过预处理后 $O(1)$ 的实现：
+???+ note "Ve countr_zero"
+    1.  gcc co [ham noi tai](../bit.md#gcc-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0) `__builtin_ctz` (32 bit) hoac `__builtin_ctzll` (64 bit), co the thay cho `countr_zero` trong doan code tren;
+    2.  Tu C++20, header `<bit>` chua [`std::countr_zero`](https://en.cppreference.com/w/cpp/numeric/countr_zero);
+    3.  Neu khong dung ham ngoai thu vien chuan va cung khong dung duoc C++20, doan code sau la mot cach cai dat $O(1)$ sau tien xu ly trong mo hinh Word-RAM with multiplication:
     
     ```cpp
     constexpr int loghash[64] = {0,  32, 48, 56, 60, 62, 63, 31, 47, 55, 59, 61, 30,
@@ -219,15 +229,15 @@
     }
     ```
     
-    而对于高精度运算，如果实现方法类似 `bitset`，则搭配上述对 `countr_zero` 的实现可以在 `O(n / w)` 的时间复杂度下完成．但如果不便按二进制位拆分，则只能暴力判断最大的 $2$ 的幂因子，时间复杂度取决于实现．比如：
+    Voi so do chinh xac cao, neu cach cai dat giong `bitset`, ket hop voi cach cai dat `countr_zero` tren se dat do phuc tap $O(n / w)$. Neu khong tien tach theo bit nhi phan, chi co the vét can de xac dinh thua so la luy thua lon nhat cua $2$, va do phuc tap phu thuoc vao cach cai dat. Vi du:
     
     ```cpp
-    // 以小端序实现的二进制 Big，要求能枚举每一个元素
+    // Big nhi phan luu theo little-endian, yeu cau co the duyet tung phan tu
     int countr_zero(Big a) {
       int ans = 0;
       for (auto x : a) {
         if (x != 0) {
-          ans += 32;  // 每一位数据类型的位长
+          ans += 32;  // do dai bit cua kieu du lieu moi phan tu
         } else {
           return ans + countr_zero(x);
         }
@@ -235,7 +245,7 @@
       return ans;
     }
     
-    // 暴力计算，如需使用建议直接写进 gcd 加快常数
+    // Tinh vét can; neu can dung nen viet truc tiep vao gcd de giam hang so
     int countr_zero(Big a) {
       int ans = 0;
       while ((a & 1) == 0) {
@@ -246,75 +256,83 @@
     }
     ```
 
-更多关于 `gcd` 实现上快慢的讨论可阅读 [Fastest way to compute the greatest common divisor](https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/)．
+Doc them thao luan ve toc do cua cac cach cai dat `gcd` tai [Fastest way to compute the greatest common divisor](https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/).
 
-### 多个数的最大公约数
+<span id="&#x591A;&#x4E2A;&#x6570;&#x7684;&#x6700;&#x5927;&#x516C;&#x7EA6;&#x6570;"></span>
+### Uoc chung lon nhat cua nhieu so
 
-那怎么求多个数的最大公约数呢？显然答案一定是每个数的约数，那么也一定是每相邻两个数的约数．我们采用归纳法，可以证明，每次取出两个数求出答案后再放回去，不会对所需要的答案造成影响．
+Vay tinh uoc chung lon nhat cua nhieu so nhu the nao? Ro rang dap an phai la uoc cua tung so, nen cung phai la uoc cua moi cap hai so lien tiep. Dung quy nap co the chung minh: moi lan lay hai so ra tinh dap an roi dua lai vao se khong anh huong den dap an can tim.
 
-## 最小公倍数
+<span id="&#x6700;&#x5C0F;&#x516C;&#x500D;&#x6570;"></span>
+## Boi chung nho nhat
 
-接下来我们介绍如何求解最小公倍数（Least Common Multiple, LCM）．
+Tiep theo ta gioi thieu cach tinh boi chung nho nhat (Least Common Multiple, LCM).
 
-### 定义
+<span id="&#x5B9A;&#x4E49;"></span>
+### Dinh nghia
 
-一组整数的公倍数，是指同时是这组数中每一个数的倍数的数．0 是任意一组整数的公倍数．
+Boi chung cua mot tap so nguyen la so dong thoi la boi cua moi so trong tap do. $0$ la boi chung cua moi tap so nguyen.
 
-一组整数的最小公倍数，是指所有正的公倍数里面，最小的一个数．
+Boi chung nho nhat cua mot tap so nguyen la so nho nhat trong tat ca cac boi chung duong.
 
-对整数 $a,b$，将其最小公倍数记为 $\operatorname{lcm}(a,b)$，不引起歧义时可简写为 $[a,b]$．
+Voi hai so nguyen $a,b$, boi chung nho nhat cua chung duoc ky hieu la $\operatorname{lcm}(a,b)$; khi khong gay nham lan co the viet gon la $[a,b]$.
 
-对整数 $a_1,\dots,a_n$，将其最小公倍数记为 $\operatorname{lcm}(a_1,\dots,a_n)$，不引起歧义时可简写为 $[a_1,\dots,a_n]$．
+Voi cac so nguyen $a_1,\dots,a_n$, boi chung nho nhat cua chung duoc ky hieu la $\operatorname{lcm}(a_1,\dots,a_n)$; khi khong gay nham lan co the viet gon la $[a_1,\dots,a_n]$.
 
-### 两个数
+<span id="&#x4E24;&#x4E2A;&#x6570;"></span>
+### Hai so
 
-设 $a = p_1^{k_{a_1}}p_2^{k_{a_2}} \cdots p_s^{k_{a_s}}$，$b = p_1^{k_{b_1}}p_2^{k_{b_2}} \cdots p_s^{k_{b_s}}$
+Dat $a = p_1^{k_{a_1}}p_2^{k_{a_2}} \cdots p_s^{k_{a_s}}$, $b = p_1^{k_{b_1}}p_2^{k_{b_2}} \cdots p_s^{k_{b_s}}$.
 
-我们发现，对于 $a$ 和 $b$ 的情况，二者的最大公约数等于
+Voi $a$ va $b$, uoc chung lon nhat cua chung bang
 
 $p_1^{\min(k_{a_1}, k_{b_1})}p_2^{\min(k_{a_2}, k_{b_2})} \cdots p_s^{\min(k_{a_s}, k_{b_s})}$
 
-最小公倍数等于
+boi chung nho nhat bang
 
 $p_1^{\max(k_{a_1}, k_{b_1})}p_2^{\max(k_{a_2}, k_{b_2})} \cdots p_s^{\max(k_{a_s}, k_{b_s})}$
 
-由于 $k_a + k_b = \max(k_a, k_b) + \min(k_a, k_b)$
+Vi $k_a + k_b = \max(k_a, k_b) + \min(k_a, k_b)$,
 
-所以得到结论是 $\gcd(a, b) \times \operatorname{lcm}(a, b) = a \times b$
+suy ra $\gcd(a, b) \times \operatorname{lcm}(a, b) = a \times b$.
 
-要求两个数的最小公倍数，先求出最大公约数即可．
+Muon tinh boi chung nho nhat cua hai so, chi can tinh uoc chung lon nhat truoc.
 
-### 多个数
+<span id="&#x591A;&#x4E2A;&#x6570;"></span>
+### Nhieu so
 
-可以发现，当我们求出两个数的 $\gcd$ 时，求最小公倍数是 $O(1)$ 的复杂度．那么对于多个数，我们其实没有必要求一个共同的最大公约数再去处理，最直接的方法就是，当我们算出两个数的 $\gcd$，或许在求多个数的 $\gcd$ 时候，我们将它放入序列对后面的数继续求解，那么，我们转换一下，直接将最小公倍数放入序列即可．
+Khi da tinh duoc $\gcd$ cua hai so, viec tinh boi chung nho nhat la $O(1)$. Vi vay voi nhieu so, thuc ra khong can tinh mot uoc chung lon nhat chung roi xu ly tiep. Cach truc tiep la: sau khi tinh $\gcd$ cua hai so, thay vi dua uoc chung lon nhat do vao day de tiep tuc tinh voi cac so sau, ta chuyen sang dua boi chung nho nhat vao day.
 
-## 扩展欧几里得算法
+<span id="&#x6269;&#x5C55;&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+## Thuat toan Euclid mo rong
 
-扩展欧几里得算法（Extended Euclidean algorithm, EXGCD），常用于求 $ax+by=\gcd(a,b)$ 的一组可行解．
+Thuat toan Euclid mo rong (Extended Euclidean algorithm, EXGCD) thuong dung de tim mot nghiem kha thi cua $ax+by=\gcd(a,b)$.
 
-### 过程
+<span id="&#x8FC7;&#x7A0B;"></span>
+### Qua trinh
 
-设
+Dat
 
 $ax_1+by_1=\gcd(a,b)$
 
 $bx_2+(a\bmod b)y_2=\gcd(b,a\bmod b)$
 
-由欧几里得定理可知：$\gcd(a,b)=\gcd(b,a\bmod b)$
+Theo dinh ly Euclid: $\gcd(a,b)=\gcd(b,a\bmod b)$.
 
-所以 $ax_1+by_1=bx_2+(a\bmod b)y_2$
+Do do $ax_1+by_1=bx_2+(a\bmod b)y_2$.
 
-又因为 $a\bmod b=a-(\lfloor\frac{a}{b}\rfloor\times b)$
+Lai vi $a\bmod b=a-(\lfloor\frac{a}{b}\rfloor\times b)$,
 
-所以 $ax_1+by_1=bx_2+(a-(\lfloor\frac{a}{b}\rfloor\times b))y_2$
+nen $ax_1+by_1=bx_2+(a-(\lfloor\frac{a}{b}\rfloor\times b))y_2$.
 
 $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\frac{a}{b}\rfloor y_2)$
 
-因为 $a=a,b=b$，所以 $x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$
+Vi $a=a,b=b$, suy ra $x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$.
 
-将 $x_2,y_2$ 不断代入递归求解直至 $b$ 为 $0$ 递归 $x=1,y=0$ 回去求解．
+Lien tuc thay $x_2,y_2$ vao de quy cho den khi $b$ bang $0$, roi tra nguoc voi $x=1,y=0$ de tinh nghiem.
 
-### 实现
+<span id="&#x5B9E;&#x73B0;"></span>
+### Cai dat
 
 === "C++"
     ```cpp
@@ -341,27 +359,29 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
         return d, y, x - (a // b) * y
     ```
 
-函数返回的值为 $\gcd$，在这个过程中计算 $x,y$ 即可．
+Ham tra ve gia tri $\gcd$; trong qua trinh do ta tinh duoc $x,y$.
 
-### 值域分析
+<span id="&#x503C;&#x57DF;&#x5206;&#x6790;"></span>
+### Phan tich mien gia tri
 
-$ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long．  
-万幸的是，若 $b\not= 0$，扩展欧几里得算法求出的可行解必有 $|x|\le b,|y|\le a$．  
-下面给出这一性质的证明．
+Phuong trinh $ax+by=\gcd(a,b)$ co vo so nghiem, va ro rang mot so nghiem co the lam tran `long long`.
+May man la neu $b\not= 0$, nghiem kha thi do thuat toan Euclid mo rong tim duoc luon co $|x|\le b,|y|\le a$.
+Sau day la chung minh cua tinh chat nay.
 
-??? note "证明"
-    -   $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归．  
-        得到 $x_1=0,y_1=1$，显然 $a,b\ge 1\ge |x_1|,|y_1|$．
-    -   $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$．  
-        因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$   
-        所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
-        $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$   
-        $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$   
-        因此 $|x_1|\le b,|y_1|\le a$ 成立．
+??? note "Chung minh"
+    -   Khi $\gcd(a,b)=b$, ta co $a\bmod b=0$, nen de quy se dung o tang tiep theo.
+        Thu duoc $x_1=0,y_1=1$, ro rang $a,b\ge 1\ge |x_1|,|y_1|$.
+    -   Khi $\gcd(a,b)\not= b$, gia su $|x_2|\le (a\bmod b),|y_2|\le b$.
+        Vi $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$,
+        nen $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$
+        $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$
+        $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$
+        Do do $|x_1|\le b,|y_1|\le a$ dung.
 
-### 迭代法编写扩展欧几里得算法
+<span id="&#x8FED;&#x4EE3;&#x6CD5;&#x7F16;&#x5199;&#x6269;&#x5C55;&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+### Viet thuat toan Euclid mo rong bang phuong phap lap
 
-首先，当 $x = 1$，$y = 0$，$x_1 = 0$，$y_1 = 1$ 时，显然有：
+Ban dau, khi $x = 1$, $y = 0$, $x_1 = 0$, $y_1 = 1$, ro rang co:
 
 $$
 \begin{cases}
@@ -370,15 +390,15 @@ $$
 \end{cases}
 $$
 
-成立．
+dung.
 
-已知 $a\bmod b = a - (\lfloor \frac{a}{b} \rfloor \times b)$，下面令 $q = \lfloor \frac{a}{b} \rfloor$．参考迭代法求 gcd，每一轮的迭代过程可以表示为：
+Biet $a\bmod b = a - (\lfloor \frac{a}{b} \rfloor \times b)$, dat $q = \lfloor \frac{a}{b} \rfloor$. Tham khao cach lap tinh gcd, moi vong lap co the bieu dien la:
 
 $$
 (a, b) \rightarrow (b, a - qb)
 $$
 
-将迭代过程中的 $a$ 替换为 $ax + by = a$，$b$ 替换为 $ax_1 + by_1 = b$，可以得到：
+Thay $a$ trong qua trinh lap bang $ax + by = a$, thay $b$ bang $ax_1 + by_1 = b$, ta duoc:
 
 $$
 \begin{aligned}
@@ -393,9 +413,9 @@ $$
 \end{aligned}
 $$
 
-据此就可以得到迭代法求 exgcd．
+Tu do co the tinh exgcd bang phuong phap lap.
 
-因为迭代的方法避免了递归，所以代码运行速度将比递归代码快一点．
+Vi cach lap tranh de quy, code se nhanh hon ban de quy mot chut.
 
 ```cpp
 int gcd(int a, int b, int& x, int& y) {
@@ -411,13 +431,14 @@ int gcd(int a, int b, int& x, int& y) {
 }
 ```
 
-如果你仔细观察 $a_1$ 和 $b_1$，你会发现，他们在迭代版本的欧几里德算法中取值完全相同，并且以下公式无论何时（在 while 循环之前和每次迭代结束时）都是成立的：$x \cdot a +y \cdot b =a_1$ 和 $x_1 \cdot a +y_1 \cdot b= b_1$．因此，该算法肯定能正确计算出 $\gcd$．
+Neu quan sat ky $a_1$ va $b_1$, ta se thay chung co gia tri hoan toan giong trong ban lap cua thuat toan Euclid, va cac cong thuc sau luon dung tai moi thoi diem (truoc vong `while` va sau moi lan lap): $x \cdot a +y \cdot b =a_1$ va $x_1 \cdot a +y_1 \cdot b= b_1$. Vi vay, thuat toan chac chan tinh dung $\gcd$.
 
-最后我们知道 $a_1$ 就是要求的 $\gcd$，有 $x \cdot a +y \cdot b = g$．
+Cuoi cung $a_1$ chinh la $\gcd$ can tim, va co $x \cdot a +y \cdot b = g$.
 
-#### 矩阵的解释
+<span id="&#x77E9;&#x9635;&#x7684;&#x89E3;&#x91CA;"></span>
+#### Giai thich bang ma tran
 
-对于正整数 $a$ 和 $b$ 的一次辗转相除即 $\gcd(a,b)=\gcd(b,a\bmod b)$ 使用矩阵表示如
+Voi hai so nguyen duong $a$ va $b$, mot buoc thuat toan Euclid $\gcd(a,b)=\gcd(b,a\bmod b)$ co the bieu dien bang ma tran:
 
 $$
 \begin{bmatrix}
@@ -432,9 +453,9 @@ a\\b
 \end{bmatrix}
 $$
 
-其中向下取整符号 $\lfloor c\rfloor$ 表示不大于 $c$ 的最大整数．我们定义变换 $\begin{bmatrix}a\\b\end{bmatrix}\mapsto \begin{bmatrix}0&1\\1&-\lfloor a/b\rfloor\end{bmatrix}\begin{bmatrix}a\\b\end{bmatrix}$．
+Trong do ky hieu lam tron xuong $\lfloor c\rfloor$ la so nguyen lon nhat khong vuot qua $c$. Ta dinh nghia bien doi $\begin{bmatrix}a\\b\end{bmatrix}\mapsto \begin{bmatrix}0&1\\1&-\lfloor a/b\rfloor\end{bmatrix}\begin{bmatrix}a\\b\end{bmatrix}$.
 
-易发现欧几里得算法即不停应用该变换，有
+De thay thuat toan Euclid chinh la viec lien tuc ap dung bien doi nay, nen co
 
 $$
 \begin{bmatrix}
@@ -455,7 +476,7 @@ a\\b
 \end{bmatrix}
 $$
 
-令
+Dat
 
 $$
 \begin{bmatrix}
@@ -471,7 +492,7 @@ x_1&x_2\\x_3&x_4
 \end{bmatrix}
 $$
 
-那么
+Khi do
 
 $$
 \begin{bmatrix}
@@ -486,7 +507,7 @@ a\\b
 \end{bmatrix}
 $$
 
-满足 $a\cdot x_1+b\cdot x_2=\gcd(a,b)$ 即扩展欧几里得算法，注意在最后乘了一个单位矩阵不会影响结果，提示我们可以在开始时维护一个 $2\times 2$ 的单位矩阵编写更简洁的迭代方法如
+Thoa man $a\cdot x_1+b\cdot x_2=\gcd(a,b)$, tuc thuat toan Euclid mo rong. Luu y viec nhan them mot ma tran don vi o cuoi khong anh huong den ket qua; dieu nay goi y ta co the bat dau bang cach duy tri mot ma tran don vi $2\times 2$ de viet phuong phap lap gon hon:
 
 ```cpp
 int exgcd(int a, int b, int &x, int &y) {
@@ -501,14 +522,16 @@ int exgcd(int a, int b, int &x, int &y) {
 }
 ```
 
-这种表述相较于递归更简单．
+Cach dien giai nay don gian hon so voi de quy.
 
-## 应用
+<span id="&#x5E94;&#x7528;"></span>
+## Ung dung
 
 -   [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
 -   [GYM - (J) once upon a time](http://codeforces.com/gym/100963)
 -   [UVa - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)
 
-## 参考资料与链接
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x94FE;&#x63A5;"></span>
+## Tai lieu tham khao va lien ket
 
 [^1]: [libstdc++: std Namespace Reference](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00978.html#a2686a128df5a576cb53a1ed5f674607)

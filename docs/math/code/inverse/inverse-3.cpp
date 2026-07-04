@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-// Extended Euclidean algorithm.
+// Thuật toán Euclid mở rộng.
 void ex_gcd(int a, int b, int& x, int& y) {
   if (!b) {
     x = 1;
@@ -13,8 +13,8 @@ void ex_gcd(int a, int b, int& x, int& y) {
   }
 }
 
-// Returns the modular inverse of a modulo m.
-// Assumes that gcd(a, m) = 1, so the inverse exists.
+// Trả về nghịch đảo modulo của a theo modulo m.
+// Giả sử gcd(a, m) = 1, nên nghịch đảo tồn tại.
 int inverse(int a, int m) {
   int x, y;
   ex_gcd(a, m, x, y);
@@ -22,18 +22,18 @@ int inverse(int a, int m) {
 }
 
 // --8<-- [start:core]
-// Returns the modular inverses for each x in a modulo m.
-// Assume x mod m exists for each x in a.
+// Trả về nghịch đảo modulo của từng x trong a theo modulo m.
+// Giả sử nghịch đảo của x theo modulo m tồn tại với mọi x trong a.
 std::vector<int> batch_inverse(const std::vector<int>& a, int m) {
   int n = a.size();
   std::vector<int> prod(n);
   long long s = 1;
   for (int i = 0; i < n; ++i) {
-    // prod[i] = product of a[0...i-1]; prod[0] = 1.
+    // prod[i] = tích của a[0...i-1]; prod[0] = 1.
     prod[i] = s;
     s = s * a[i] % m;
   }
-  // s = product of all elements in a.
+  // s = tích của mọi phần tử trong a.
   s = inverse(s, m);
   std::vector<int> res(n);
   for (int i = n - 1; i >= 0; --i) {

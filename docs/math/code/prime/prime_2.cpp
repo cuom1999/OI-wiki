@@ -3,25 +3,25 @@
 int p[16] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};
 unsigned long long n;
 unsigned long long ans,
-    ans_num;  // ans 为 n 以内的最大反素数（会持续更新），ans_sum 为
-              // ans的因子数。
+    ans_num;  // ans la so phan nguyen to lon nhat khong vuot qua n (luon cap nhat),
+              // ans_sum la so uoc cua ans.
 
-// depth: 当前在枚举第几个素数
-// temp: 当前因子数量为 num 的时候的数值
-// num: 当前因子数
-// up：上一个素数的幂，限制当前因子幂次上界
+// depth: dang liet ke den so nguyen to thu may
+// temp: gia tri hien tai khi so uoc la num
+// num: so uoc hien tai
+// up: so mu cua so nguyen to truoc, gioi han can tren so mu hien tai
 void dfs(int depth, unsigned long long temp, unsigned long long num, int up) {
   if (depth >= 16 || temp > n) return;
-  if (num > ans_num) {  // 更新答案
+  if (num > ans_num) {  // cap nhat dap an
     ans = temp;
     ans_num = num;
   }
-  if (num == ans_num && ans > temp) ans = temp;  // 更新答案
+  if (num == ans_num && ans > temp) ans = temp;  // cap nhat dap an
   for (int i = 1; i <= up; i++) {
     if (temp * p[depth] > n)
-      break;  // 剪枝：如果加一个这个乘数的结果比ans要大，则必不是最佳方案
+      break;  // cat nhanh: neu nhan them thua so nay vuot n thi khong toi uu
     dfs(depth + 1, temp *= p[depth], num * (i + 1),
-        i);  // 取一个该乘数，进行对下一个乘数的搜索
+        i);  // lay them mot thua so nay, roi tim tiep voi thua so ke tiep
   }
   return;
 }

@@ -1,45 +1,47 @@
 author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, CoelacanthusHex, frank-xjh, Great-designer, greyqz, guodong2005, henrytbtrue, Ir1d, kZime, lihaoyu1234, Marcythm, MegaOwIer, Menci, nalemy, orzAtalod, ouuan, Persdre, segment-tree, ShaoChenHeng, shuzhouliu, sshwy, Struggler-q, Tiphereth-A, TrisolarisHD, Xeonacid, yuhuoji
 
-## 定义
+<span id="&#23450;&#20041;"></span>
+## Định nghĩa
 
-欧拉函数（Euler's totient function），即 $\varphi(n)$，表示的是小于等于 $n$ 和 $n$ 互质的数的个数．
+Hàm Euler (Euler's totient function), tức $\varphi(n)$, biểu thị số lượng số không vượt quá $n$ và nguyên tố cùng nhau với $n$.
 
-比如说 $\varphi(1) = 1$．
+Ví dụ $\varphi(1) = 1$.
 
-当 $n$ 是质数的时候，显然有 $\varphi(n) = n - 1$．
+Khi $n$ là số nguyên tố, hiển nhiên $\varphi(n) = n - 1$.
 
-## 性质
+<span id="&#24615;&#36136;"></span>
+## Tính chất
 
--   欧拉函数是 [积性函数](./basic.md#积性函数)．
+-   Hàm Euler là [hàm nhân tính](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0).
 
-    即对任意满足 $\gcd(a, b) = 1$ 的整数 $a,b$，有 $\varphi(ab) = \varphi(a)\varphi(b)$．
+    Tức với mọi số nguyên $a,b$ thỏa $\gcd(a, b) = 1$, ta có $\varphi(ab) = \varphi(a)\varphi(b)$.
 
-    特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$．
+    Đặc biệt, khi $n$ là số lẻ, $\varphi(2n) = \varphi(n)$.
 
-    证明参见 [剩余系的复合](./basic.md#剩余系的复合)．
+    Chứng minh xem tại [hợp thành hệ thặng dư](./basic.md#%E5%89%A9%E4%BD%99%E7%B3%BB%E7%9A%84%E5%A4%8D%E5%90%88).
 
--   $n = \sum_{d \mid n}{\varphi(d)}$．
+-   $n = \sum_{d \mid n}{\varphi(d)}$.
 
-    ???+ note "证明"
-        利用 [莫比乌斯反演](./mobius.md) 相关知识可以得出．
+    ???+ note "Chứng minh"
+        Có thể suy ra bằng kiến thức liên quan đến [đảo Mobius](./mobius.md).
         
-        也可以这样考虑：如果 $\gcd(k, n) = d$，那么 $\gcd(\dfrac{k}{d},\dfrac{n}{d}) = 1, ( k < n )$．
+        Cũng có thể suy nghĩ như sau: nếu $\gcd(k, n) = d$, thì $\gcd(\dfrac{k}{d},\dfrac{n}{d}) = 1, ( k < n )$.
         
-        如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(i)}$．
+        Nếu đặt $f(x)$ là số lượng số thỏa $\gcd(k, n) = x$, thì $n = \sum_{i = 1}^n{f(i)}$.
         
-        根据上面的证明，我们发现，$f(x) = \varphi(\dfrac{n}{x})$，从而 $n = \sum_{d \mid n}\varphi(\dfrac{n}{d})$．注意到约数 $d$ 和 $\dfrac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d \mid n}\varphi(d)$．
+        Theo chứng minh trên, $f(x) = \varphi(\dfrac{n}{x})$, nên $n = \sum_{d \mid n}\varphi(\dfrac{n}{d})$. Chú ý rằng ước $d$ và $\dfrac{n}{d}$ có tính đối xứng, do đó công thức trở thành $n = \sum_{d \mid n}\varphi(d)$.
 
--   若 $n = p^k$，其中 $p$ 是质数，那么 $\varphi(n) = p^k - p^{k - 1}$．
-    （根据定义可知）
+-   Nếu $n = p^k$, trong đó $p$ là số nguyên tố, thì $\varphi(n) = p^k - p^{k - 1}$.
+    (Suy ra trực tiếp từ định nghĩa.)
 
--   由唯一分解定理，设 $n = \prod_{i=1}^{s}p_i^{k_i}$，其中 $p_i$ 是质数，有 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$．
+-   Theo định lý phân tích duy nhất, đặt $n = \prod_{i=1}^{s}p_i^{k_i}$, trong đó $p_i$ là số nguyên tố, ta có $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$.
 
-    ???+ note "证明"
-        -   引理：设 $p$ 为任意质数，那么 $\varphi(p^k)=p^{k-1}\times(p-1)$．
+    ???+ note "Chứng minh"
+        -   Bổ đề: với mọi số nguyên tố $p$, $\varphi(p^k)=p^{k-1}\times(p-1)$.
         
-            证明：显然对于从 1 到 $p^k$ 的所有数中，除了 $p^{k-1}$ 个 $p$ 的倍数以外其它数都与 $p^k$ 互素，故 $\varphi(p^k)=p^k-p^{k-1}=p^{k-1}\times(p-1)$，证毕．
+            Chứng minh: trong các số từ 1 đến $p^k$, ngoài $p^{k-1}$ bội của $p$, các số còn lại đều nguyên tố cùng nhau với $p^k$, nên $\varphi(p^k)=p^k-p^{k-1}=p^{k-1}\times(p-1)$. Chứng minh xong.
         
-        接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$．由唯一分解定理与 $\varphi(x)$ 函数的积性
+        Tiếp theo chứng minh $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$. Từ định lý phân tích duy nhất và tính nhân tính của hàm $\varphi(x)$,
         
         $$
         \begin{aligned}
@@ -51,15 +53,16 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
         \end{aligned}
         $$
 
--   对任意不全为 $0$ 的整数 $m,n$，$\varphi(mn)\varphi(\gcd(m,n))=\varphi(m)\varphi(n)\gcd(m,n)$．
+-   Với mọi số nguyên $m,n$ không đồng thời bằng $0$, $\varphi(mn)\varphi(\gcd(m,n))=\varphi(m)\varphi(n)\gcd(m,n)$.
 
-    可由上一条直接计算得出．
+    Có thể tính trực tiếp từ tính chất trước.
 
-## 实现
+<span id="&#23454;&#29616;"></span>
+## Cài đặt
 
-如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了．这个过程可以用 [Pollard Rho](./pollard-rho.md) 算法优化．
+Nếu chỉ cần tính giá trị hàm Euler của một số, có thể vừa phân tích thừa số nguyên tố theo định nghĩa vừa tính trực tiếp. Quá trình này có thể được tối ưu bằng thuật toán [Pollard Rho](./pollard-rho.md).
 
-???+ note "参考实现"
+???+ note "Cài đặt tham khảo"
     === "C++"
         ```cpp
         #include <cmath>
@@ -93,61 +96,64 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
             return ans
         ```
 
-如果是多个数的欧拉函数值，可以利用后面会提到的线性筛法来求得．
+Nếu cần giá trị hàm Euler của nhiều số, có thể dùng sàng tuyến tính sẽ nhắc ở phần sau.
 
-详见：[筛法求欧拉函数](./sieve.md#筛法求欧拉函数)
+Xem chi tiết: [sàng tính hàm Euler](./sieve.md#%E7%AD%9B%E6%B3%95%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0)
 
-## 应用
+<span id="&#24212;&#29992;"></span>
+## Ứng dụng
 
-欧拉函数常常用于化简一列最大公约数的和．国内有些文章称它为 **欧拉反演**[^1]．
+Hàm Euler thường được dùng để rút gọn tổng của một dãy ước chung lớn nhất. Một số bài viết tiếng Trung gọi kỹ thuật này là **đảo Euler**[^1].
 
-在结论
+Thay $n=\gcd(a,b)$ vào kết luận
 
 $$
-n=\sum_{d|n}\varphi(d)
+n=\sum_{d|n}\varphi(d),
 $$
 
-中代入 $n=\gcd(a,b)$，则有
+ta có
 
 $$
 \gcd(a,b) = \sum_{d|\gcd(a,b)}\varphi(d) = \sum_d [d|a][d|b]\varphi(d),
 $$
 
-其中 $[\cdot]$ 为 Iverson 括号．对上式求和，就可以得到
+trong đó $[\cdot]$ là ngoặc Iverson. Lấy tổng hai vế, thu được
 
 $$
 \sum_{i=1}^n\gcd(i,n)=\sum_{d}\sum_{i=1}^n[d|i][d|n]\varphi(d)=\sum_d\left\lfloor\frac{n}{d}\right\rfloor[d|n]\varphi(d)=\sum_{d|n}\left\lfloor\frac{n}{d}\right\rfloor\varphi(d).
 $$
 
-这里关键的观察是 $\sum_{i=1}^n[d|i]=\lfloor\frac{n}{d}\rfloor$，即在 $1$ 和 $n$ 之间能够被 $d$ 整除的 $i$ 的个数是 $\lfloor\frac{n}{d}\rfloor$．
+Quan sát then chốt ở đây là $\sum_{i=1}^n[d|i]=\lfloor\frac{n}{d}\rfloor$, tức số lượng $i$ trong khoảng từ $1$ đến $n$ chia hết cho $d$ là $\lfloor\frac{n}{d}\rfloor$.
 
-利用这个式子，就可以遍历约数求和了．需要多组查询的时候，可以预处理欧拉函数的前缀和，利用数论分块查询．
+Dùng công thức này, có thể duyệt các ước để tính tổng. Khi có nhiều truy vấn, có thể tiền xử lý tổng tiền tố của hàm Euler rồi dùng chia khối số học để trả lời.
 
 ???+ note "[GCD SUM](https://www.luogu.com.cn/problem/P2398)"
-    给定 $n\le 100000$，求
+    Cho $n\le 100000$, hãy tính
     
     $$
     \sum_{i=1}^n\sum_{j=1}^n\gcd(i,j).
     $$
     
-    ??? note "思路"
-        仿照上文的推导，可以得出
+    ??? note "Ý tưởng"
+        Tương tự suy luận ở trên, có thể thu được
         
         $$
         \sum_{i=1}^n\sum_{j=1}^n\gcd(i,j) = \sum_{d=1}^n\left\lfloor\frac{n}{d}\right\rfloor^2\varphi(d).
         $$
         
-        此时需要从 $1$ 遍历到 $n$ 求欧拉函数，用线性筛做就可以 $O(n)$ 得到答案．
+        Lúc này cần duyệt từ $1$ đến $n$ để tính hàm Euler; dùng sàng tuyến tính có thể nhận đáp án trong $O(n)$.
 
-## 欧拉定理
+<span id="&#27431;&#25289;&#23450;&#29702;"></span>
+## Định lý Euler
 
-与欧拉函数紧密相关的一个定理就是欧拉定理．其描述如下：
+Một định lý liên quan chặt chẽ đến hàm Euler là định lý Euler. Nội dung như sau:
 
-若 $\gcd(a, m) = 1$，则 $a^{\varphi(m)} \equiv 1 \pmod{m}$．
+Nếu $\gcd(a, m) = 1$, thì $a^{\varphi(m)} \equiv 1 \pmod{m}$.
 
-### 扩展欧拉定理
+<span id="&#25193;&#23637;&#27431;&#25289;&#23450;&#29702;"></span>
+### Định lý Euler mở rộng
 
-当然也有扩展欧拉定理，用于处理一般的 $a$ 和 $m$ 的情形．
+Cũng có định lý Euler mở rộng để xử lý trường hợp tổng quát của $a$ và $m$.
 
 $$
 a^b\equiv
@@ -159,19 +165,21 @@ a^{b\bmod\varphi(m)+\varphi(m)},&\gcd(a,\,m)\ne1,\,b\ge\varphi(m)
 \pmod m
 $$
 
-证明和习题详见 [欧拉定理](./fermat.md)．
+Chứng minh và bài tập xem tại [định lý Euler](./fermat.md).
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
 -   [SPOJ ETF. Euler Totient Function](http://www.spoj.com/problems/ETF/)
 -   [UVa 10179. Irreducible Basic Fractions](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120)
 -   [UVa 10299. Relatives](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240)
 -   [UVa 11327. Enumerating Rational Numbers](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302)
 -   [TIMUS 1673. Admission to Exam](http://acm.timus.ru/problem.aspx?space=1&num=1673)
--   [Luogu P1390 公约数的和](https://www.luogu.com.cn/problem/P1390)
--   [Luogu P2155 \[SDOI2008\] 沙拉公主的困惑](https://www.luogu.com.cn/problem/P2155)
+-   [Luogu P1390 Tổng các ước chung](https://www.luogu.com.cn/problem/P1390)
+-   [Luogu P2155 [SDOI2008] Nỗi băn khoăn của công chúa salad](https://www.luogu.com.cn/problem/P2155)
 -   [Luogu P2568 GCD](https://www.luogu.com.cn/problem/P2568)
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
-[^1]: 这一说法并未见于学术期刊或国外的论坛中，在使用该说法时应当注意．
+[^1]: Cách gọi này chưa thấy xuất hiện trong tạp chí học thuật hoặc diễn đàn nước ngoài; cần chú ý khi sử dụng.

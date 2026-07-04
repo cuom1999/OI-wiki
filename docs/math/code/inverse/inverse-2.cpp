@@ -1,7 +1,7 @@
 #include <iostream>
 
 // --8<-- [start:core]
-// Binary exponentiation.
+// Lũy thừa nhị phân.
 int pow(int a, int b, int m) {
   long long res = 1, po = a;
   for (; b; b >>= 1) {
@@ -11,7 +11,7 @@ int pow(int a, int b, int m) {
   return res;
 }
 
-// Returns the modular inverse of a prime modulo p.
+// Trả về nghịch đảo modulo theo modulo nguyên tố p.
 int inverse(int a, int p) { return pow(a, p - 2, p); }
 
 // --8<-- [end:core]

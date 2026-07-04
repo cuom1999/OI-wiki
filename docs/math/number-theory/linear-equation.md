@@ -1,62 +1,65 @@
-本文讨论线性同余方程的求解．
+Bài viết này thảo luận cách giải phương trình đồng dư tuyến tính.
 
-## 基本概念
+<span id="&#22522;&#26412;&#27010;&#24565;"></span>
+## Khái niệm cơ bản
 
-设 $a,b,n$ 为整数，$x$ 为未知数，那么，形如
+Gọi $a,b,n$ là các số nguyên và $x$ là ẩn. Phương trình có dạng
 
 $$
 ax\equiv b\pmod n
 $$
 
-的方程称为 **线性同余方程**（linear congruence equation）．
+được gọi là **phương trình đồng dư tuyến tính** (linear congruence equation).
 
-求解线性同余方程，需要找到区间 $[0,n-1]$ 中 $x$ 的全部解．当然，将它们加减 $n$ 的任意倍数，依然是方程的解．在模 $n$ 的意义下，这些就是该方程的全部解．
+Giải phương trình đồng dư tuyến tính nghĩa là tìm toàn bộ nghiệm $x$ trong đoạn $[0,n-1]$. Tất nhiên, cộng hoặc trừ bội tùy ý của $n$ vào các nghiệm này vẫn cho nghiệm của phương trình. Theo modulo $n$, đó là toàn bộ nghiệm của phương trình.
 
-本文接下来介绍了两种求解线性同余方程的思路，分别利用了逆元和不定方程．对于一般的情形，逆元和不定方程的求解都需要用到 [扩展欧几里得算法](./gcd.md#扩展欧几里得算法)，因此，这两种思路其实是一致的．
+Bài viết này giới thiệu hai cách giải phương trình đồng dư tuyến tính, lần lượt dùng nghịch đảo và phương trình bất định. Trong trường hợp tổng quát, cả việc tính nghịch đảo lẫn giải phương trình bất định đều cần dùng [thuật toán Euclid mở rộng](./gcd.md#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95), nên hai cách này về bản chất là nhất quán.
 
-## 用逆元求解
+<span id="&#29992;&#36870;&#20803;&#27714;&#35299;"></span>
+## Giải bằng nghịch đảo
 
-首先，考虑 $a$ 和 $n$ 互素的情形，即 $\gcd(a,n)=1$ 的情形．此时，可以计算 $a$ 的 [逆元](./inverse.md)  $a^{-1}$，并将方程两边同乘以 $a^{-1}$，这就得到方程的唯一解：
+Trước hết xét trường hợp $a$ và $n$ nguyên tố cùng nhau, tức $\gcd(a,n)=1$. Khi đó có thể tính [nghịch đảo](./inverse.md) $a^{-1}$ của $a$, rồi nhân hai vế phương trình với $a^{-1}$, thu được nghiệm duy nhất:
 
 $$
 x \equiv ba^{-1} \pmod n.
 $$
 
-紧接着，考虑 $a$ 和 $n$ 不互素的情形，即 $\gcd(a,n)=d>1$ 的情形．此时，原方程不一定有解．例如，$2x\equiv 1\pmod 4$ 就没有解．因此，需要考虑两种情形：
+Tiếp theo xét trường hợp $a$ và $n$ không nguyên tố cùng nhau, tức $\gcd(a,n)=d>1$. Khi đó phương trình ban đầu chưa chắc có nghiệm. Ví dụ $2x\equiv 1\pmod 4$ không có nghiệm. Vì vậy cần xét hai trường hợp:
 
--   当 $d$ 不能整除 $b$ 时，方程无解．对于任意的 $x$，方程左侧 $ax$ 都是 $d$ 的倍数，但是方程右侧 $b$ 不是 $d$ 的倍数．因此，它们不可能相差 $n$ 的倍数，因为 $n$ 的倍数也一定是 $d$ 的倍数．因此，方程无解．
+-   Nếu $d$ không chia hết $b$, phương trình vô nghiệm. Với mọi $x$, vế trái $ax$ luôn là bội của $d$, nhưng vế phải $b$ không phải bội của $d$. Do đó chúng không thể chênh nhau một bội của $n$, vì mọi bội của $n$ cũng là bội của $d$. Vì vậy phương trình vô nghiệm.
 
--   当 $d$ 可以整除 $b$ 时，可以将方程的参数 $a,b,n$ 都同除以 $d$，得到一个新的方程：
+-   Nếu $d$ chia hết $b$, có thể chia đồng thời các tham số $a,b,n$ cho $d$, thu được phương trình mới:
 
     $$
     a'x \equiv b'\pmod{n'}.
     $$
 
-    其中，$\gcd(a',n')=1$，也就是说，$a'$ 和 $n'$ 互素．这种情形已经在前文解决，所以，可以通过求解逆元得到方程的一个解 $x'$.
+    Trong đó $\gcd(a',n')=1$, tức $a'$ và $n'$ nguyên tố cùng nhau. Trường hợp này đã được giải ở trên, nên có thể dùng nghịch đảo để tìm một nghiệm $x'$.
 
-    显然，$x'$ 也是原方程的一个解．但这并非原方程唯一的解．由于转化后的方程的全体解为
+    Hiển nhiên $x'$ cũng là một nghiệm của phương trình ban đầu. Nhưng đây không phải nghiệm duy nhất của phương trình ban đầu. Vì toàn bộ nghiệm của phương trình đã chuyển đổi là
 
     $$
     \{x' + kn' : k\in\mathbf Z\}.
     $$
 
-    这些解中落在区间 $[0,n-1]$ 的那些，就是原方程在区间 $[0,n-1]$ 中的全部解：
+    Những nghiệm rơi vào đoạn $[0,n-1]$ chính là toàn bộ nghiệm của phương trình ban đầu trong đoạn $[0,n-1]$:
 
     $$
     x \equiv (x' + kn')\pmod{n},\quad k = 0, 1, \cdots, d-1.
     $$
 
-总结这两种情形，线性同余方程的 **解的数量** 等于 $d=\gcd(a,n)$ 或 $0$．
+Tóm lại, **số nghiệm** của phương trình đồng dư tuyến tính bằng $d=\gcd(a,n)$ hoặc bằng $0$.
 
-## 用不定方程求解
+<span id="&#29992;&#19981;&#23450;&#26041;&#31243;&#27714;&#35299;"></span>
+## Giải bằng phương trình bất định
 
-线性同余方程等价于关于 $x,y$ 的 [二元一次不定方程](./bezouts.md#两个变量的情形)：
+Phương trình đồng dư tuyến tính tương đương với [phương trình bất định bậc nhất hai ẩn](./bezouts.md#%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E6%83%85%E5%BD%A2) theo $x,y$:
 
 $$
 ax + ny = b.
 $$
 
-利用所引页面的讨论，方程有解当且仅当 $\gcd(a,n)\mid b$，而且该方程的一组通解是
+Theo thảo luận trong trang được dẫn, phương trình có nghiệm khi và chỉ khi $\gcd(a,n)\mid b$, và một dạng nghiệm tổng quát là
 
 $$
 \begin{aligned}
@@ -65,21 +68,22 @@ y &= y_0 - t\dfrac{a}{d},
 \end{aligned}
 $$
 
-其中，$d=\gcd(a,n)$ 是它们的最大公约数，$t$ 是任意整数．
+trong đó $d=\gcd(a,n)$ là ước chung lớn nhất của chúng, và $t$ là số nguyên tùy ý.
 
-进而，线性同余方程的通解就是
+Do đó nghiệm tổng quát của phương trình đồng dư tuyến tính là
 
 $$
 x \equiv \left(x_0+t\frac{n}{d}\right)\pmod{n},\quad t\in\mathbf Z.
 $$
 
-将 $x_0$ 对 $n/d$ 取模就得到同余方程的最小（非负）整数解，也就是上文的 $x'$.
+Lấy $x_0$ theo modulo $n/d$ sẽ nhận được nghiệm nguyên không âm nhỏ nhất của phương trình đồng dư, tức $x'$ ở phần trên.
 
-## 参考实现
+<span id="&#21442;&#32771;&#23454;&#29616;"></span>
+## Cài đặt tham khảo
 
-本节提供的参考实现可以得到同余方程的最小非负整数解．如果解不存在，则输出 $-1$．
+Cài đặt tham khảo trong phần này trả về nghiệm nguyên không âm nhỏ nhất của phương trình đồng dư. Nếu nghiệm không tồn tại, trả về $-1$.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/math/code/linear-equation/linear-equation.cpp:core"
@@ -90,8 +94,9 @@ $$
         --8<-- "docs/math/code/linear-equation/linear-equation.py:core"
         ```
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
--   [「NOIP2012」同余方程](https://loj.ac/problem/2605)
+-   [[NOIP2012] Phương trình đồng dư](https://loj.ac/problem/2605)
 
-**本页面主要译自博文 [Модульное линейное уравнение первого порядка](http://e-maxx.ru/algo/diofant_1_equation) 与其英文翻译版 [Linear Congruence Equation](https://cp-algorithms.com/algebra/linear_congruence_equation.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．内容有改动．**
+**Trang này chủ yếu được dịch từ bài viết [Модульное линейное уравнение первого порядка](http://e-maxx.ru/algo/diofant_1_equation) và bản dịch tiếng Anh [Linear Congruence Equation](https://cp-algorithms.com/algebra/linear_congruence_equation.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0. Nội dung có chỉnh sửa.**

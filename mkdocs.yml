@@ -230,23 +230,23 @@ nav:
       - Mã Gray: math/numeral-sys/gray-code.md
     - Phép toán bit: math/bit.md
     - Thao tác tập bằng nhị phân: math/binary-set.md
-    - 高精度计算: math/bignum.md
+    - Tính toán độ chính xác cao: math/bignum.md
     - Lũy thừa nhị phân: math/binary-exponentiation.md
     - Hoán vị và sắp xếp: math/permutation.md
     - Radian và hệ tọa độ: math/coordinate.md
     - Số phức: math/complex.md
-    - 数论:
-      - 数论基础: math/number-theory/basic.md
-      - 模算术简介: math/number-theory/mod-arithmetic.md
-      - 素数: math/number-theory/prime.md
-      - 最大公约数: math/number-theory/gcd.md
-      - 欧拉函数: math/number-theory/euler-totient.md
-      - 筛法: math/number-theory/sieve.md
+    - Lý thuyết số:
+      - Cơ sở lý thuyết số: math/number-theory/basic.md
+      - Số học modulo: math/number-theory/mod-arithmetic.md
+      - Số nguyên tố: math/number-theory/prime.md
+      - Ước chung lớn nhất: math/number-theory/gcd.md
+      - Hàm Euler: math/number-theory/euler-totient.md
+      - Sàng số: math/number-theory/sieve.md
       - 分解质因数: math/number-theory/pollard-rho.md
       - 裴蜀定理 & 一次不定方程: math/number-theory/bezouts.md
       - 费马小定理 & 欧拉定理: math/number-theory/fermat.md
-      - 模逆元: math/number-theory/inverse.md
-      - 线性同余方程: math/number-theory/linear-equation.md
+      - Nghịch đảo modulo: math/number-theory/inverse.md
+      - Phương trình đồng dư tuyến tính: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
       - 升幂引理: math/number-theory/lift-the-exponent.md
       - 阶乘取模: math/number-theory/factorial.md

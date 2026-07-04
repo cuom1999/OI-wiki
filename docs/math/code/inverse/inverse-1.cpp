@@ -1,7 +1,7 @@
 #include <iostream>
 
 // --8<-- [start:core]
-// Extended Euclidean algorithm.
+// Thuật toán Euclid mở rộng.
 void ex_gcd(int a, int b, int& x, int& y) {
   if (!b) {
     x = 1;
@@ -12,8 +12,8 @@ void ex_gcd(int a, int b, int& x, int& y) {
   }
 }
 
-// Returns the modular inverse of a modulo m.
-// Assumes that gcd(a, m) = 1, so the inverse exists.
+// Trả về nghịch đảo modulo của a theo modulo m.
+// Giả sử gcd(a, m) = 1, nên nghịch đảo tồn tại.
 int inverse(int a, int m) {
   int x, y;
   ex_gcd(a, m, x, y);
