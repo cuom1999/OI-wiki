@@ -6,7 +6,7 @@
 #endif
 
 namespace UInt32Test {
-// Tinh x*a^b mod 2^32.
+// Tính x*a^b mod 2^32.
 uint32_t pow_mod_2_32(uint32_t a, uint32_t b, uint32_t x) {
   uint32_t ans = x;
   for (uint32_t po = a; b; b >>= 1) {
@@ -16,13 +16,13 @@ uint32_t pow_mod_2_32(uint32_t a, uint32_t b, uint32_t x) {
   return ans;
 }
 
-// Tinh 1/v mod 2^32 voi v le.
+// Tính 1/v mod 2^32 với v lẻ.
 uint32_t inv_mod_2_32(uint32_t v) { return pow_mod_2_32(v, (1 << 30) - 1, 1); }
 };  // namespace UInt32Test
 
 namespace UInt32 {
 // --8<-- [start:inv]
-// Tinh 1/v mod 2^32 voi v le.
+// Tính 1/v mod 2^32 với v lẻ.
 uint32_t inv_mod_2_32(uint32_t v) {
   uint32_t x = 1;
   for (int i = 0; i != 5; ++i) {
@@ -33,16 +33,16 @@ uint32_t inv_mod_2_32(uint32_t v) {
 
 // --8<-- [end:inv]
 // --8<-- [start:pow]
-// Luu 4L(a) voi a = 2^d + 1, trong do L(a) la log roi rac co so 388251981.
-// Hai gia tri dau khong bao gio duoc dung nen duoc dat bang 0.
-// Co so duoc chon sao cho 4L(2^16+1) = 2^16.
+// Lưu 4L(a) với a = 2^d + 1, trong đó L(a) là log rời rạc cơ số 388251981.
+// Hai giá trị đầu không bao giờ được dùng nên được đặt bằng 0.
+// Cơ sở được chọn sao cho 4L(2^16+1) = 2^16.
 constexpr uint32_t log_table[16] = {
     0x00000000, 0x00000000, 0xbba0267c, 0x49b9d1e8, 0xf0026f90, 0xd6e17e20,
     0xe78bf840, 0x039fe080, 0xaf7f8100, 0x60fe0200, 0xd1f80400, 0x23e00800,
     0x47801000, 0x8e002000, 0x18004000, 0x20008000,
 };
 
-// Tinh 4L(v).
+// Tính 4L(v).
 uint32_t log_mod_2_32(uint32_t x, uint32_t v) {
   for (int i = 2; i != 16; ++i) {
     if ((v >> i) & 1) {
@@ -54,7 +54,7 @@ uint32_t log_mod_2_32(uint32_t x, uint32_t v) {
   return x;
 }
 
-// Tinh x*a voi 4L(a) = v.
+// Tính x*a với 4L(a) = v.
 uint32_t exp_mod_2_32(uint32_t x, uint32_t v) {
   for (int i = 2; i != 16; ++i) {
     if ((v >> i) & 1) {
@@ -66,7 +66,7 @@ uint32_t exp_mod_2_32(uint32_t x, uint32_t v) {
   return x;
 }
 
-// Tinh x*a^b voi a le.
+// Tính x*a^b với a lẻ.
 uint32_t pow_odd_mod_2_32(uint32_t a, uint32_t b, uint32_t x) {
   if (a & 2) {
     a = -a;
@@ -77,7 +77,7 @@ uint32_t pow_odd_mod_2_32(uint32_t a, uint32_t b, uint32_t x) {
   return exp_mod_2_32(x, log_mod_2_32(0, a) * b);
 }
 
-// Tinh x*a^b mod 2^32.
+// Tính x*a^b mod 2^32.
 uint32_t pow_mod_2_32(uint32_t a, uint32_t b, uint32_t x = 1) {
   if (!a) return b == 0 ? x : 0;
   auto d = __builtin_ctz(a);
