@@ -170,21 +170,46 @@ $\mathbf Q(\sqrt{d})$. Khi $d\equiv 1\pmod 4$, biệt thức là $d$; khi
 $d\equiv 2,3\pmod 4$, biệt thức là $4d$.
 
 <span id="&#x6574;&#x9664;&#x3001;&#x76f8;&#x4f34;&#x4e0e;&#x5355;&#x4f4d;&#x6570;"></span>
-### Chia het, lien ket va don vi
+### Chia hết, liên kết và đơn vị
 
-Tuong tu so nguyen, ta cung co the xay dung li thuyet chia het cho so nguyen bac hai. Di nhien viec thao luan phai duoc thuc hien trong cung mot vanh so nguyen bac hai.
+Tương tự số nguyên, ta cũng có thể xây dựng lí thuyết chia hết cho số nguyên
+bậc hai. Dĩ nhiên việc thảo luận phải được thực hiện trong cùng một vành số
+nguyên bậc hai.
 
-Voi cac so nguyen bac hai $\alpha$ va $\beta$ trong vanh so nguyen bac hai $\mathbf Z[\omega]$, neu ton tai so nguyen bac hai $\gamma$ trong cung vanh sao cho $\beta=\alpha\gamma$, thi noi $\alpha$ chia het $\beta$, ki hieu $\alpha\mid\beta$. Quan he chia het la mot quan he [thu tu bo phan](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB) tren vanh so nguyen bac hai. Neu dong thoi co $\alpha\mid\beta$ va $\beta\mid\alpha$, thi khi nghien cuu li thuyet chia het co the xem $\alpha$ va $\beta$ nhu cung mot so; chung duoc goi la **lien ket** (associate). Quan he lien ket la mot quan he tuong duong tren vanh so nguyen bac hai.
+Với các số nguyên bậc hai $\alpha$ và $\beta$ trong vành số nguyên bậc hai
+$\mathbf Z[\omega]$, nếu tồn tại số nguyên bậc hai $\gamma$ trong cùng vành sao
+cho $\beta=\alpha\gamma$, thì nói $\alpha$ chia hết $\beta$, kí hiệu
+$\alpha\mid\beta$. Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB)
+trên vành số nguyên bậc hai. Nếu đồng thời có $\alpha\mid\beta$ và
+$\beta\mid\alpha$, thì khi nghiên cứu lí thuyết chia hết có thể xem $\alpha$
+và $\beta$ như cùng một số; chúng được gọi là **liên kết** (associate). Quan hệ
+liên kết là một quan hệ tương đương trên vành số nguyên bậc hai.
 
-Trong li thuyet chia het cua so nguyen, quan he lien ket chinh la quan he doi nhau. Thong thuong chi can xet cac so tu nhien trong li thuyet chia het, khong can xet truong hop so am. Doi voi so nguyen bac hai, quan he lien ket co the phuc tap hon. Neu hai so nguyen bac hai $\alpha$ va $\beta$ lien ket, thi ton tai cac so nguyen bac hai $\gamma$ va $\delta$ sao cho $\beta=\alpha\gamma$ va $\alpha=\beta\delta$. Do do, thuong $\gamma$ cua $\beta$ va $\alpha$ nhat dinh la mot so nguyen bac hai dac biet: ton tai so nguyen bac hai $\delta$ sao cho $\gamma\delta=1$. So nguyen bac hai $\gamma$ nhu vay duoc goi la **don vi** (unit), hay phan tu kha nghich. Hai so nguyen bac hai lien ket khi va chi khi thuong cua chung la don vi. Vi vay, muon hieu quan he lien ket tren vanh so nguyen bac hai thi can hieu cau truc cac don vi cua vanh do.
+Trong lí thuyết chia hết của số nguyên, quan hệ liên kết chính là quan hệ đối
+nhau. Thông thường chỉ cần xét các số tự nhiên trong lí thuyết chia hết, không
+cần xét trường hợp số âm. Đối với số nguyên bậc hai, quan hệ liên kết có thể
+phức tạp hơn. Nếu hai số nguyên bậc hai $\alpha$ và $\beta$ liên kết, thì tồn
+tại các số nguyên bậc hai $\gamma$ và $\delta$ sao cho $\beta=\alpha\gamma$ và
+$\alpha=\beta\delta$. Do đó, thương $\gamma$ của $\beta$ và $\alpha$ nhất định
+là một số nguyên bậc hai đặc biệt: tồn tại số nguyên bậc hai $\delta$ sao cho
+$\gamma\delta=1$. Số nguyên bậc hai $\gamma$ như vậy được gọi là **đơn vị**
+(unit), hay phần tử khả nghịch. Hai số nguyên bậc hai liên kết khi và chỉ khi
+thương của chúng là đơn vị. Vì vậy, muốn hiểu quan hệ liên kết trên vành số
+nguyên bậc hai thì cần hiểu cấu trúc các đơn vị của vành đó.
 
-Vi chuan bao toan phep nhan va chuan cua so nguyen bac hai luon la so nguyen, ta co the dung chuan de chuyen quan he chia het cua so nguyen bac hai thanh quan he chia het cua so nguyen. Noi cach khac, neu $\alpha\mid\beta$ thi nhat dinh $N(\alpha)\mid N(\beta)$. Tuong tu, so nguyen bac hai $\alpha$ la don vi khi va chi khi chuan cua no $N(\alpha)=\pm 1$. Do do, de tim tat ca don vi trong vanh so nguyen bac hai $\mathbf Z[\omega]$, chi can giai phuong trinh vo dinh:
+Vì chuẩn bảo toàn phép nhân và chuẩn của số nguyên bậc hai luôn là số nguyên,
+ta có thể dùng chuẩn để chuyển quan hệ chia hết của số nguyên bậc hai thành
+quan hệ chia hết của số nguyên. Nói cách khác, nếu $\alpha\mid\beta$ thì nhất
+định $N(\alpha)\mid N(\beta)$. Tương tự, số nguyên bậc hai $\alpha$ là đơn vị
+khi và chỉ khi chuẩn của nó $N(\alpha)=\pm 1$. Do đó, để tìm tất cả đơn vị
+trong vành số nguyên bậc hai $\mathbf Z[\omega]$, chỉ cần giải phương trình vô
+định:
 
 $$
 N(a+b\sqrt{d})=1,
 $$
 
-trong do bieu thuc cua chuan la
+trong đó biểu thức của chuẩn là
 
 $$
 N(a+b\sqrt{d})=\begin{cases}
@@ -193,32 +218,120 @@ a^2-db^2, & d\equiv 2,3\pmod 4.
 \end{cases}
 $$
 
-Voi vanh so nguyen bac hai ao, tuc $d<0$, vi chuan nhat dinh la so nguyen khong am, de dang kiem tra rang voi moi so am khong chua nhan tu chinh phuong $d\neq -1,-3$, nghiem chi la $(a,b)=(\pm 1,0)$; tuc ngoai $\mathbf Z[\sqrt{-1}]$ va $\mathbf Z[\frac{1+\sqrt{-3}}{2}]$, cac vanh so nguyen bac hai ao chi co cac don vi $\pm 1$. Dat $\mathrm{i}=\sqrt{-1}$, vanh so nguyen bac hai $\mathbf Z[\mathrm{i}]$ con duoc goi la vanh so nguyen Gauss; tap don vi cua no la $\{\pm 1,\pm\mathrm{i}\}$. Dat $\omega=\frac{1+\sqrt{-3}}{2}$, vanh so nguyen bac hai $\mathbf Z[\omega]$ con duoc goi la vanh so nguyen Eisenstein; tap don vi cua no la $\{\pm 1,\pm\omega,\pm\omega^2\}$.
+Với vành số nguyên bậc hai ảo, tức $d<0$, vì chuẩn nhất định là số nguyên không
+âm, dễ dàng kiểm tra rằng với mọi số âm không chứa nhân tử chính phương
+$d\neq -1,-3$, nghiệm chỉ là $(a,b)=(\pm 1,0)$; tức ngoài
+$\mathbf Z[\sqrt{-1}]$ và $\mathbf Z[\frac{1+\sqrt{-3}}{2}]$, các vành số
+nguyên bậc hai ảo chỉ có các đơn vị $\pm 1$. Đặt $\mathrm{i}=\sqrt{-1}$, vành
+số nguyên bậc hai $\mathbf Z[\mathrm{i}]$ còn được gọi là vành số nguyên Gauss;
+tập đơn vị của nó là $\{\pm 1,\pm\mathrm{i}\}$. Đặt
+$\omega=\frac{1+\sqrt{-3}}{2}$, vành số nguyên bậc hai $\mathbf Z[\omega]$ còn
+được gọi là vành số nguyên Eisenstein; tập đơn vị của nó là
+$\{\pm 1,\pm\omega,\pm\omega^2\}$.
 
-Voi vanh so nguyen bac hai thuc, tuc $d>0$, tinh hinh phuc tap hon va co the chuyen thanh thao luan ve [phuong trinh Pell](./pell-equation.md). Tu cac ket qua ve phuong trinh Pell, tap tat ca don vi khi do co the viet la $\{\pm u^k:k\in\mathbf Z\}$, trong do $u$ duoc goi la **don vi co ban** (fundamental unit). Co the tim don vi co ban thong qua phuong trinh Pell tuong ung. Don vi co ban khong duy nhat: neu $u$ la don vi co ban thi lien hop $\bar u$ cua no, cung nhu $-u$ va $-\bar u$, deu la don vi co ban.
+Với vành số nguyên bậc hai thực, tức $d>0$, tình hình phức tạp hơn và có thể
+chuyển thành thảo luận về [phương trình Pell](./pell-equation.md). Từ các kết
+quả về phương trình Pell, tập tất cả đơn vị khi đó có thể viết là
+$\{\pm u^k:k\in\mathbf Z\}$, trong đó $u$ được gọi là **đơn vị cơ bản**
+(fundamental unit). Có thể tìm đơn vị cơ bản thông qua phương trình Pell tương
+ứng. Đơn vị cơ bản không duy nhất: nếu $u$ là đơn vị cơ bản thì liên hợp
+$\bar u$ của nó, cũng như $-u$ và $-\bar u$, đều là đơn vị cơ bản.
 
-Cau truc cac don vi cua vanh so nguyen bac hai co the mo rong sang [vanh so nguyen dai so](../algebra/field-theory.md#%E4%BB%A3%E6%95%B0%E6%89%A9%E5%BC%A0) tong quat. [Dinh li don vi Dirichlet](https://en.wikipedia.org/wiki/Dirichlet%27s_unit_theorem) trong so hoc dai so phat bieu rang tat ca don vi cua moi vanh so nguyen dai so lap thanh mot [nhom Abel huu han sinh](../algebra/group-theory.md#%E6%9C%89%E9%99%90%E7%94%9F%E6%88%90-abel-%E7%BE%A4), dong thoi dinh li nay cung cho biet hang cua nhom do.
+Cấu trúc các đơn vị của vành số nguyên bậc hai có thể mở rộng sang [vành số
+nguyên đại số](../algebra/field-theory.md#%E4%BB%A3%E6%95%B0%E6%89%A9%E5%BC%A0)
+tổng quát. [Định lý đơn vị Dirichlet](https://en.wikipedia.org/wiki/Dirichlet%27s_unit_theorem)
+trong số học đại số phát biểu rằng tất cả đơn vị của mọi vành số nguyên đại số
+lập thành một [nhóm Abel hữu hạn sinh](../algebra/group-theory.md#%E6%9C%89%E9%99%90%E7%94%9F%E6%88%90-abel-%E7%BE%A4),
+đồng thời định lý này cũng cho biết hạng của nhóm đó.
 
-Cac noi dung trong li thuyet chia het cua so nguyen nhu uoc chung lon nhat, phep chia co du, dinh li Bezout, dinh li phan tich duy nhat, v.v. deu co the mo rong len mot phan hoac toan bo cac vanh so nguyen bac hai. Viec co the thuc hien cac mo rong nhu vay tren mot vanh so nguyen bac hai hay khong thuc ra phan anh tinh chat cua vanh do co du gan voi vanh so nguyen hay khong. Khong phai moi vanh so nguyen bac hai deu thoa man dinh li phan tich duy nhat; trong cac vanh thoa man dinh li phan tich duy nhat, cung chi mot phan cho phep thuc hien phep chia co du. Co the tham khao muc [vanh so nguyen bac hai](../algebra/ring-theory.md#%E4%BE%8B%E5%AD%90%E4%BA%8C%E6%AC%A1%E6%95%B4%E6%95%B0%E7%8E%AF) trong phan li thuyet vanh hoac cac sach lien quan de biet them ve noi dung nay.
+Các nội dung trong lí thuyết chia hết của số nguyên như ước chung lớn nhất,
+phép chia có dư, định lý Bézout, định lý phân tích duy nhất, v.v. đều có thể
+mở rộng lên một phần hoặc toàn bộ các vành số nguyên bậc hai. Việc có thể thực
+hiện các mở rộng như vậy trên một vành số nguyên bậc hai hay không thực ra phản
+ánh tính chất của vành đó có đủ gần với vành số nguyên hay không. Không phải
+mọi vành số nguyên bậc hai đều thỏa mãn định lý phân tích duy nhất; trong các
+vành thỏa mãn định lý phân tích duy nhất, cũng chỉ một phần cho phép thực hiện
+phép chia có dư. Có thể tham khảo mục [vành số nguyên bậc hai](../algebra/ring-theory.md#%E4%BE%8B%E5%AD%90%E4%BA%8C%E6%AC%A1%E6%95%B4%E6%95%B0%E7%8E%AF)
+trong phần lí thuyết vành hoặc các sách liên quan để biết thêm về nội dung này.
 
 <span id="&#x552f;&#x4e00;&#x5206;&#x89e3;"></span>
-### Phan tich duy nhat
+### Phân tích duy nhất
 
-Neu dinh li phan tich duy nhat cua so nguyen co the mo rong len vanh so nguyen bac hai, no nen co dang sau: moi so nguyen bac hai trong vanh $\mathbf Z[\omega]$ deu co the viet thanh tich cua mot so phan tu bat kha quy, va phan tich nay la duy nhat neu bo qua lien ket va thu tu. O day [phan tu bat kha quy](../algebra/ring-theory.md#%E6%95%B4%E9%99%A4%E5%85%B3%E7%B3%BB) la so nguyen bac hai khong the tiep tuc phan tich thanh tich cua cac phan tu khong phai don vi, tuong tu so nguyen to trong dinh li phan tich duy nhat cua so nguyen. Nhung nhu da noi, khong phai moi vanh so nguyen bac hai deu thoa man dinh li phan tich duy nhat.
+Nếu định lý phân tích duy nhất của số nguyên có thể mở rộng lên vành số nguyên
+bậc hai, nó nên có dạng sau: mọi số nguyên bậc hai trong vành
+$\mathbf Z[\omega]$ đều có thể viết thành tích của một số phần tử bất khả quy,
+và phân tích này là duy nhất nếu bỏ qua liên kết và thứ tự. Ở đây [phần tử bất
+khả quy](../algebra/ring-theory.md#%E6%95%B4%E9%99%A4%E5%85%B3%E7%B3%BB) là số
+nguyên bậc hai không thể tiếp tục phân tích thành tích của các phần tử không
+phải đơn vị, tương tự số nguyên tố trong định lý phân tích duy nhất của số
+nguyên. Nhưng như đã nói, không phải mọi vành số nguyên bậc hai đều thỏa mãn
+định lý phân tích duy nhất.
 
-Vi du, trong $\mathbf Z[\sqrt{-5}]$ co phan tich $9=3\times 3=(2+\sqrt{-5})\times(2-\sqrt{-5})$, nhung $3$ va $2\pm\sqrt{-5}$ deu da la phan tu bat kha quy, nen phan tich khong duy nhat. De chi ra ba so nay deu bat kha quy, co the xet chuan cua chung: chuan cua chung deu bang $9$; neu chung co the phan tich thanh tich cua cac phan tu khong phai don vi, thi chuan cua cac thua so thu duoc chi co the bang $3$, nhung trong $\mathbf Z[\sqrt{-5}]$ khong co so nguyen bac hai nao co chuan bang $3$.
+Ví dụ, trong $\mathbf Z[\sqrt{-5}]$ có phân tích
+$9=3\times 3=(2+\sqrt{-5})\times(2-\sqrt{-5})$, nhưng $3$ và
+$2\pm\sqrt{-5}$ đều đã là phần tử bất khả quy, nên phân tích không duy nhất. Để
+chỉ ra ba số này đều bất khả quy, có thể xét chuẩn của chúng: chuẩn của chúng
+đều bằng $9$; nếu chúng có thể phân tích thành tích của các phần tử không phải
+đơn vị, thì chuẩn của các thừa số thu được chỉ có thể bằng $3$, nhưng trong
+$\mathbf Z[\sqrt{-5}]$ không có số nguyên bậc hai nào có chuẩn bằng $3$.
 
-Nguyen nhan chinh khien dinh li phan tich duy nhat khong dung trong vanh so nguyen bac hai tong quat la viec phan tich chi bang so nguyen bac hai chua du tinh vi. Chuyen tuong tu la can phan tich tich $abcd$, nhung cac phan tu co ban kha dung chi la $\{ab,cd,ac,bd\}$, thi phan tich thu duoc tat nhien khong duy nhat; de co dinh li phan tich duy nhat, phai xet them $\{a,b,c,d\}$. Trong vanh so nguyen bac hai, cau truc tinh vi hon so nguyen bac hai la [ideal](../algebra/ring-theory.md#%E7%90%86%E6%83%B3) cua vanh so nguyen bac hai. Anh xa mot so nguyen bac hai den ideal chinh tuong ung cua no se nhung lop lien ket cua no vao tap cac ideal, vi vay phan tich so nguyen chi la truong hop dac biet cua phan tich ideal. Neu xet phan tich ideal trong vanh so nguyen bac hai, co the chung minh moi ideal cua vanh so nguyen bac hai deu phan tich duy nhat thanh tich cua mot so ideal nguyen to. Dieu nay cho thay cac vanh so nguyen bac hai deu la [mien Dedekind](https://en.wikipedia.org/wiki/Dedekind_domain). Tong quat hon, moi vanh so nguyen dai so deu la mien Dedekind.
+Nguyên nhân chính khiến định lý phân tích duy nhất không đúng trong vành số
+nguyên bậc hai tổng quát là việc phân tích chỉ bằng số nguyên bậc hai chưa đủ
+tinh vi. Chuyện tương tự là cần phân tích tích $abcd$, nhưng các phần tử cơ bản
+khả dụng chỉ là $\{ab,cd,ac,bd\}$, thì phân tích thu được tất nhiên không duy
+nhất; để có định lý phân tích duy nhất, phải xét thêm $\{a,b,c,d\}$. Trong
+vành số nguyên bậc hai, cấu trúc tinh vi hơn số nguyên bậc hai là [ideal](../algebra/ring-theory.md#%E7%90%86%E6%83%B3)
+của vành số nguyên bậc hai. Ánh xạ một số nguyên bậc hai đến ideal chính tương
+ứng của nó sẽ nhúng lớp liên kết của nó vào tập các ideal, vì vậy phân tích số
+nguyên chỉ là trường hợp đặc biệt của phân tích ideal. Nếu xét phân tích ideal
+trong vành số nguyên bậc hai, có thể chứng minh mọi ideal của vành số nguyên
+bậc hai đều phân tích duy nhất thành tích của một số ideal nguyên tố. Điều này
+cho thấy các vành số nguyên bậc hai đều là [miền Dedekind](https://en.wikipedia.org/wiki/Dedekind_domain).
+Tổng quát hơn, mọi vành số nguyên đại số đều là miền Dedekind.
 
-Neu mot vanh so nguyen bac hai thoa man dinh li phan tich duy nhat, thi cac ideal nguyen to cua no tuong ung mot-mot voi cac phan tu bat kha quy (theo lop tuong duong lien ket). Vi vay, voi lop vanh so nguyen bac hai nay, phan tich ideal thanh ideal nguyen to tuong duong voi phan tich so nguyen bac hai thanh phan tu bat kha quy. Hon nua, khi do cac phan tu bat kha quy cung duoc goi la [phan tu nguyen to](../algebra/ring-theory.md#%E6%95%B4%E9%99%A4%E5%85%B3%E7%B3%BB), tuong ung voi khai niem so nguyen to trong so nguyen. Phan thao luan duoi day se dung ideal nguyen to va cac khai niem lien quan; doc gia chua quen khai niem nay co the thay chung tung chu mot bang phan tu nguyen to, khi do cac phat bieu van dung trong truong hop dinh li phan tich duy nhat dung.
+Nếu một vành số nguyên bậc hai thỏa mãn định lý phân tích duy nhất, thì các
+ideal nguyên tố của nó tương ứng một-một với các phần tử bất khả quy (theo lớp
+tương đương liên kết). Vì vậy, với lớp vành số nguyên bậc hai này, phân tích
+ideal thành ideal nguyên tố tương đương với phân tích số nguyên bậc hai thành
+phần tử bất khả quy. Hơn nữa, khi đó các phần tử bất khả quy cũng được gọi là
+[phần tử nguyên tố](../algebra/ring-theory.md#%E6%95%B4%E9%99%A4%E5%85%B3%E7%B3%BB),
+tương ứng với khái niệm số nguyên tố trong số nguyên. Phần thảo luận dưới đây
+sẽ dùng ideal nguyên tố và các khái niệm liên quan; độc giả chưa quen khái
+niệm này có thể thay chúng từng chữ một bằng phần tử nguyên tố, khi đó các phát
+biểu vẫn đúng trong trường hợp định lý phân tích duy nhất đúng.
 
-De hieu hoan toan phan tich duy nhat tren vanh so nguyen bac hai tong quat $\mathbf Z[\omega]$, can biet cac ideal nguyen to trong $\mathbf Z[\omega]$ la nhung ideal nao. Truoc het, moi ideal nguyen to trong $\mathbf Z[\omega]$ deu chia chuan cua no (duoi dang ideal chinh). Phan tich chuan cua no trong cac so nguyen thanh tich cac so nguyen to; theo dinh li phan tich duy nhat, ideal nguyen to do nhat dinh chia mot trong cac thua so nguyen to nay (duoi dang ideal chinh). Vi vay, cac ideal nguyen to trong $\mathbf Z[\omega]$ nhat dinh thu duoc bang cach phan tich tiep cac so nguyen to trong $\mathbf Z$. De liet ke toan bo ideal nguyen to trong $\mathbf Z[\omega]$, chi can cho phan tich duy nhat cua so nguyen to $p$ cua $\mathbf Z$ (duoi dang ideal chinh) trong $\mathbf Z[\omega]$. Vi chuan cua so nguyen to $p$ (duoi dang ideal chinh) trong $\mathbf Z[\omega]$ la $p^2$, ma phan tich cua no thanh ideal nguyen to co nghia chuan cua cac ideal nguyen to chi co the la uoc cua $p^2$, nen chi co the la $p$ hoac $p^2$. Dieu nay cho thay chi co ba kha nang sau:
+Để hiểu hoàn toàn phân tích duy nhất trên vành số nguyên bậc hai tổng quát
+$\mathbf Z[\omega]$, cần biết các ideal nguyên tố trong $\mathbf Z[\omega]$ là
+những ideal nào. Trước hết, mọi ideal nguyên tố trong $\mathbf Z[\omega]$ đều
+chia chuẩn của nó (dưới dạng ideal chính). Phân tích chuẩn của nó trong các số
+nguyên thành tích các số nguyên tố; theo định lý phân tích duy nhất, ideal
+nguyên tố đó nhất định chia một trong các thừa số nguyên tố này (dưới dạng
+ideal chính). Vì vậy, các ideal nguyên tố trong $\mathbf Z[\omega]$ nhất định
+thu được bằng cách phân tích tiếp các số nguyên tố trong $\mathbf Z$. Để liệt
+kê toàn bộ ideal nguyên tố trong $\mathbf Z[\omega]$, chỉ cần cho phân tích duy
+nhất của số nguyên tố $p$ của $\mathbf Z$ (dưới dạng ideal chính) trong
+$\mathbf Z[\omega]$. Vì chuẩn của số nguyên tố $p$ (dưới dạng ideal chính)
+trong $\mathbf Z[\omega]$ là $p^2$, mà phân tích của nó thành ideal nguyên tố
+có nghĩa chuẩn của các ideal nguyên tố chỉ có thể là ước của $p^2$, nên chỉ có
+thể là $p$ hoặc $p^2$. Điều này cho thấy chỉ có ba khả năng sau:
 
-1.  $p$ **bat dong** (inert) trong $\mathbf Z[\omega]$, tuc $(p)$ van la ideal nguyen to trong $\mathbf Z[\omega]$;
-2.  $p$ **tach** (split) trong $\mathbf Z[\omega]$, tuc $(p)$ co the viet thanh tich cua hai ideal nguyen to lien hop khac nhau trong $\mathbf Z[\omega]$;
-3.  $p$ **phan nhanh** (ramify) trong $\mathbf Z[\omega]$, tuc $(p)$ co the viet thanh binh phuong cua mot ideal nguyen to.
+1.  $p$ **bất động** (inert) trong $\mathbf Z[\omega]$, tức $(p)$ vẫn là ideal
+    nguyên tố trong $\mathbf Z[\omega]$;
+2.  $p$ **tách** (split) trong $\mathbf Z[\omega]$, tức $(p)$ có thể viết thành
+    tích của hai ideal nguyên tố liên hợp khác nhau trong $\mathbf Z[\omega]$;
+3.  $p$ **phân nhánh** (ramify) trong $\mathbf Z[\omega]$, tức $(p)$ có thể
+    viết thành bình phương của một ideal nguyên tố.
 
-Co the chung minh them rang, de xac dinh mot so nguyen to $p$ roi vao truong hop nao trong ba truong hop tren, chi can tinh [ki hieu Kronecker](https://en.wikipedia.org/wiki/Kronecker_symbol) $\left(\dfrac{D}{p}\right)$ voi biet thuc $D$ cua truong bac hai chua $\mathbf Z[\omega]$ va so nguyen to $p$. Ba truong hop nay tuong ung voi ba gia tri cua ki hieu Kronecker: $-1$, $+1$ va $0$. Khi $p$ la so nguyen to le, ki hieu Kronecker chinh la [ki hieu Legendre](./quad-residue.md#legendre-%E7%AC%A6%E5%8F%B7), va ba truong hop tuong ung voi $D$ la [khong thang du bac hai](./quad-residue.md), $D$ la [thang du bac hai](./quad-residue.md), va $p$ chia $D$. Khi $p=2$, ba truong hop lan luot tuong ung voi $D\equiv \pm 3\pmod 8$, $D\equiv \pm 1\pmod 8$ va $2$ chia $D$.
+Có thể chứng minh thêm rằng, để xác định một số nguyên tố $p$ rơi vào trường
+hợp nào trong ba trường hợp trên, chỉ cần tính [kí hiệu Kronecker](https://en.wikipedia.org/wiki/Kronecker_symbol)
+$\left(\dfrac{D}{p}\right)$ với biệt thức $D$ của trường bậc hai chứa
+$\mathbf Z[\omega]$ và số nguyên tố $p$. Ba trường hợp này tương ứng với ba giá
+trị của kí hiệu Kronecker: $-1$, $+1$ và $0$. Khi $p$ là số nguyên tố lẻ, kí
+hiệu Kronecker chính là [kí hiệu Legendre](./quad-residue.md#legendre-%E7%AC%A6%E5%8F%B7),
+và ba trường hợp tương ứng với $D$ là [không thặng dư bậc hai](./quad-residue.md),
+$D$ là [thặng dư bậc hai](./quad-residue.md), và $p$ chia $D$. Khi $p=2$, ba
+trường hợp lần lượt tương ứng với $D\equiv \pm 3\pmod 8$,
+$D\equiv \pm 1\pmod 8$ và $2$ chia $D$.
 
 <span id="gauss-&#x6574;&#x6570;"></span>
 ## So nguyen Gauss
