@@ -42,7 +42,7 @@ hết hay không.
           return true;
         }
         ```
-    
+
     === "Python"
         ```python
         def isPrime(a):
@@ -74,7 +74,7 @@ Vì $1$ chắc chắn là ước nên ta không cần kiểm tra nó.
           return 1;
         }
         ```
-    
+
     === "Python"
         ```python
         def isPrime(a):
@@ -112,7 +112,7 @@ có $a^{n-1} \equiv 1 \pmod n$ hay không.
           return true;
         }
         ```
-    
+
     === "Python"
         ```python
         def fermat(n):
@@ -222,7 +222,7 @@ Ta thu được phiên bản Miller-Rabin khá đúng sau (từ fjzzq2002):
           return 1;
         }
         ```
-    
+
     === "Python"
         ```python
         def millerRabin(n):
@@ -260,84 +260,137 @@ $n$ vượt qua kiểm tra Miller-Rabin với một cơ sở $a$ chọn ngẫu n
 $1/4$. Do đó, sau khi chọn ngẫu nhiên $k$ cơ sở, xác suất vẫn nhận nhầm hợp số
 là số nguyên tố không vượt quá $1/4^k$.
 
-??? note "Chung minh"
-    Dat $n-1=u2^t$, trong do $u$ la so le va $t$ la so nguyen duong. Viec so nguyen $n$ vuot qua kiem tra Miller-Rabin voi co so $a$ co nghia la
-    
+??? note "Chứng minh"
+    Đặt $n-1=u2^t$, trong đó $u$ là số lẻ và $t$ là số nguyên dương. Việc số
+    nguyên $n$ vượt qua kiểm tra Miller-Rabin với cơ sở $a$ có nghĩa là
+
     $$
     a^u\equiv 1{\textstyle\pmod n},\text{ or }a^{u2^i}\equiv -1{\textstyle\pmod n}\text{ for some }0\le i < t.
     $$
-    
-    Goi $S$ la tap cac lop dong du cua nhung $a$ nhu vay. Can chung minh
-    
+
+    Gọi $S$ là tập các lớp đồng dư của những $a$ như vậy. Cần chứng minh
+
     $$
     |S| \le \dfrac14\varphi(n).
     $$
-    
-    Trong do $\varphi(n)$ la [ham Euler](./euler-totient.md). Chung minh gom ba buoc.
-    
-    **Buoc 1**: Goi $\ell$ la so nguyen duong lon nhat sao cho $2^\ell \mid p-1$ dung voi moi thua so nguyen to $p$ cua $n$. Khi do co the chung minh
-    
+
+    Trong đó $\varphi(n)$ là [hàm Euler](./euler-totient.md). Chứng minh gồm ba
+    bước.
+
+    **Bước 1**: Gọi $\ell$ là số nguyên dương lớn nhất sao cho
+    $2^\ell \mid p-1$ đúng với mọi thừa số nguyên tố $p$ của $n$. Khi đó có thể
+    chứng minh
+
     $$
     S\subseteq S' = \{a\bmod n:a^{u2^{\ell-1}}\equiv\pm 1{\textstyle\pmod n}\}.
     $$
-    
-    Phan tu $a$ trong tap $S$ chi co hai kha nang. Neu $a^u\equiv 1\pmod n$, ro rang $a^{u2^{\ell-1}}\equiv 1\pmod n$ cung dung, tuc $a\in S'$. Neu ton tai $0\le i < t$ sao cho $a^{u2^i}\equiv -1\pmod n$, thi voi moi thua so nguyen to $p\mid n$ deu co $a^{u2^i}\equiv-1\pmod p$. Goi $\delta_p(a)$ la [cap](./primitive-root.md#%E9%98%B6) cua $a$ theo modulo $p$. Khi do ro rang $\delta_p(a)\mid u2^{i+1}$ nhung $\delta_p(a)\nmid u2^{i}$, nen trong phan tich thua so nguyen to cua $\delta_p(a)$, so mu cua $2$ dung bang $i+1$, vi vay $2^{i+1}\mid\delta_p(a)$. Theo dinh ly nho Fermat, $\delta_p(a)\mid p-1$, do do $2^{i+1}\mid p-1$. Dieu nay dung voi moi thua so nguyen to $p$ cua $n$, suy ra $i+1\le\ell$. Vay $a^{u2^{\ell-1}} = (a^{u2^i})^{2^{\ell-1-i}} \equiv \pm 1 \pmod n$, nen cung co $a\in S'$. Tong hop hai kha nang, ta duoc $S\subseteq S'$.
-    
-    **Buoc 2**: Tinh kich thuoc $|S'|$.
-    
-    Gia su $n$ co phan tich thua so nguyen to $n = p_1^{e_1}p_2^{e_2}\cdots p_k^{e_k}$. Theo [dinh ly thang du Trung Hoa](./crt.md), dieu kien $a^{u2^{\ell - 1}}\equiv 1\pmod n$ tuong duong voi $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ dung voi moi $p_i^{e_i}$. Vi [can nguyen thuy](./primitive-root.md#%E5%8E%9F%E6%A0%B9) modulo luy thua cua so nguyen to le $p_i^{e_i}$ luon ton tai, so [nghiem](./residue.md#%E6%80%A7%E8%B4%A8) cua phuong trinh dong du $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ la
-    
+
+    Phần tử $a$ trong tập $S$ chỉ có hai khả năng. Nếu $a^u\equiv 1\pmod n$, rõ
+    ràng $a^{u2^{\ell-1}}\equiv 1\pmod n$ cũng đúng, tức $a\in S'$. Nếu tồn tại
+    $0\le i < t$ sao cho $a^{u2^i}\equiv -1\pmod n$, thì với mọi thừa số nguyên
+    tố $p\mid n$ đều có $a^{u2^i}\equiv-1\pmod p$. Gọi $\delta_p(a)$ là
+    [cấp](./primitive-root.md#%E9%98%B6) của $a$ theo modulo $p$. Khi đó rõ ràng
+    $\delta_p(a)\mid u2^{i+1}$ nhưng $\delta_p(a)\nmid u2^{i}$, nên trong phân
+    tích thừa số nguyên tố của $\delta_p(a)$, số mũ của $2$ đúng bằng $i+1$, vì
+    vậy $2^{i+1}\mid\delta_p(a)$. Theo định lý nhỏ Fermat,
+    $\delta_p(a)\mid p-1$, do đó $2^{i+1}\mid p-1$. Điều này đúng với mọi thừa
+    số nguyên tố $p$ của $n$, suy ra $i+1\le\ell$. Vậy
+    $a^{u2^{\ell-1}} = (a^{u2^i})^{2^{\ell-1-i}} \equiv \pm 1 \pmod n$, nên
+    cũng có $a\in S'$. Tổng hợp hai khả năng, ta được $S\subseteq S'$.
+
+    **Bước 2**: Tính kích thước $|S'|$.
+
+    Giả sử $n$ có phân tích thừa số nguyên tố
+    $n = p_1^{e_1}p_2^{e_2}\cdots p_k^{e_k}$. Theo
+    [định lý thặng dư Trung Hoa](./crt.md), điều kiện
+    $a^{u2^{\ell - 1}}\equiv 1\pmod n$ tương đương với
+    $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ đúng với mọi $p_i^{e_i}$. Vì
+    [căn nguyên thủy](./primitive-root.md#%E5%8E%9F%E6%A0%B9) modulo lũy thừa
+    của số nguyên tố lẻ $p_i^{e_i}$ luôn tồn tại, số
+    [nghiệm](./residue.md#%E6%80%A7%E8%B4%A8) của phương trình đồng dư
+    $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ là
+
     $$
     \gcd(u2^{\ell-1},p_i^{e_i-1}(p_i-1)) = \gcd(u2^{\ell-1},p_i-1) = 2^{\ell-1}\gcd(u,p_i-1).
     $$
-    
-    Dang thuc dau tien dung vi $u$ la uoc cua $n-1$, nen khong the la boi cua $p_i$; dang thuc thu hai dung theo cach chon $\ell$. Vi vay, theo dinh ly thang du Trung Hoa, so nghiem cua phuong trinh dong du $a^{u2^{\ell-1}}\equiv 1\pmod n$ la
-    
+
+    Đẳng thức đầu tiên đúng vì $u$ là ước của $n-1$, nên không thể là bội của
+    $p_i$; đẳng thức thứ hai đúng theo cách chọn $\ell$. Vì vậy, theo định lý
+    thặng dư Trung Hoa, số nghiệm của phương trình đồng dư
+    $a^{u2^{\ell-1}}\equiv 1\pmod n$ là
+
     $$
     \prod_{p\mid n}2^{\ell-1}\gcd(u,p-1).
     $$
-    
-    Tuong tu, dieu kien $a^{u2^{\ell - 1}}\equiv -1\pmod n$ tuong duong voi $a^{u2^{\ell - 1}}\equiv -1\pmod{p_i^{e_i}}$ dung voi moi $p_i^{e_i}$. Voi moi thua so $p_i^{e_i}$, dieu kien $a^{u2^{\ell - 1}}\equiv -1\pmod{p_i^{e_i}}$ tuong duong voi $a^{u2^{\ell - 1}}\not\equiv 1\pmod{p_i^{e_i}}$ va $a^{u2^{\ell}}\equiv 1\pmod{p_i^{e_i}}$ cung dung. Tuong tu phan tren, co the tinh so nghiem cua phuong trinh dong du $a^{u2^{\ell}}\equiv 1\pmod{p_i^{e_i}}$ la $2^{\ell}\gcd(u,p_i-1)$, do do so nghiem cua phuong trinh dong du $a^{u2^{\ell - 1}}\equiv -1\pmod{p_i^{e_i}}$ cung bang
-    
+
+    Tương tự, điều kiện $a^{u2^{\ell - 1}}\equiv -1\pmod n$ tương đương với
+    $a^{u2^{\ell - 1}}\equiv -1\pmod{p_i^{e_i}}$ đúng với mọi $p_i^{e_i}$. Với
+    mỗi thừa số $p_i^{e_i}$, điều kiện
+    $a^{u2^{\ell - 1}}\equiv -1\pmod{p_i^{e_i}}$ tương đương với
+    $a^{u2^{\ell - 1}}\not\equiv 1\pmod{p_i^{e_i}}$ và
+    $a^{u2^{\ell}}\equiv 1\pmod{p_i^{e_i}}$ cùng đúng. Tương tự phần trên, có
+    thể tính số nghiệm của phương trình đồng dư
+    $a^{u2^{\ell}}\equiv 1\pmod{p_i^{e_i}}$ là $2^{\ell}\gcd(u,p_i-1)$, do đó
+    số nghiệm của phương trình đồng dư
+    $a^{u2^{\ell - 1}}\equiv -1\pmod{p_i^{e_i}}$ cũng bằng
+
     $$
     2^{\ell}\gcd(u,p_i-1) - 2^{\ell-1}\gcd(u,p_i-1) = 2^{\ell-1}\gcd(u,p_i-1).
     $$
-    
-    Lai ap dung dinh ly thang du Trung Hoa, so nghiem cua phuong trinh dong du $a^{u2^{\ell - 1}}\equiv -1\pmod n$ bang
-    
+
+    Lại áp dụng định lý thặng dư Trung Hoa, số nghiệm của phương trình đồng dư
+    $a^{u2^{\ell - 1}}\equiv -1\pmod n$ bằng
+
     $$
     \prod_{p\mid n}2^{\ell-1}\gcd(u,p-1).
     $$
-    
-    Vi vay, gop hai truong hop lai, ta co
-    
+
+    Vì vậy, gộp hai trường hợp lại, ta có
+
     $$
     |S'| = 2\prod_{p\mid n}2^{\ell-1}\gcd(u,p-1).
     $$
-    
-    **Buoc 3**: Chung minh $|S'|\le\varphi(n)/4$.
-    
-    Ket hop cong thuc cua ham Euler $\varphi(n)=\prod_ip_i^{e_i-1}(p_i-1)$, ta co
-    
+
+    **Bước 3**: Chứng minh $|S'|\le\varphi(n)/4$.
+
+    Kết hợp công thức của hàm Euler $\varphi(n)=\prod_ip_i^{e_i-1}(p_i-1)$, ta
+    có
+
     $$
     \dfrac{\varphi(n)}{|S'|} = \dfrac{1}{2}\prod_ip_i^{e_i-1}\dfrac{p_i-1}{2^{\ell-1}\gcd(u,p_i-1)}.
     $$
-    
-    Voi moi $i$, thua so tuong ung $p_i^{e_i-1}\dfrac{p_i-1}{2^{\ell-1}\gcd(u,p_i-1)}$ deu la so chan, nen $\varphi(n)/|S'|$ la mot so nguyen. Gia su $|S'|\le\varphi(n)/4$ khong dung. Khi do tat yeu $\varphi(n)/|S'|=1,2,3$, tuc
-    
+
+    Với mọi $i$, thừa số tương ứng
+    $p_i^{e_i-1}\dfrac{p_i-1}{2^{\ell-1}\gcd(u,p_i-1)}$ đều là số chẵn, nên
+    $\varphi(n)/|S'|$ là một số nguyên. Giả sử $|S'|\le\varphi(n)/4$ không đúng.
+    Khi đó tất yếu $\varphi(n)/|S'|=1,2,3$, tức
+
     $$
     \prod_ip_i^{e_i-1}\dfrac{p_i-1}{2^{\ell-1}\gcd(u,p_i-1)} = 2,4,6.
     $$
-    
-    Vi moi thua so trong tich deu la so chan, tich nay hoac chi co mot thua so va thua so do bang $2,4,6$, hoac chi co hai thua so va ca hai deu bang $2$.
-    
-    Truoc het xet truong hop co hai thua so. Khi do hai thua so deu khong co thua so nguyen to le, nen $p_i^{e_i-1}=1$, tuc $n$ khong co thua so binh phuong. Gia su $n=p_1p_2$ voi $p_1<p_2$ deu la so nguyen to. Hai thua so deu bang $2$, nen luon co $p_i-1=2^{\ell}\gcd(u,p_i-1)$. Do do $p_i=1+2^\ell m_i$, trong do $m_i$ la so le va $m_i\mid u$. Lay $p_1p_2=n=1+u2^t$ modulo $m_1$ duoc $p_1p_2\equiv 1\pmod{m_1}$, vi the $p_2\equiv 1\pmod{m_1}$, suy ra $m_1\mid m_2$. Chieu nguoc lai cung dung. Vay $m_1=m_2$, tuc $p_1=p_2$, mau thuan voi $p_1<p_2$. Truong hop nay khong the xay ra.
-    
-    Cuoi cung xet truong hop chi co mot thua so, tuc hop so $n=p^e$ voi $e>1$. Khi do tat yeu $p^{e-1}\mid 2,4,6$. Truong hop duy nhat la $p=3,e=2$, tuc $n=9$, mau thuan voi gia thiet cua menh de. Truong hop nay cung khong the xay ra.
-    
-    Tong hop moi truong hop, $|S'|\le\varphi(n)/4$ dung.
-    
-    Ket hop ba buoc tren, $|S|\le |S'|\le \varphi(n)/4$ dung voi moi hop so le $n>9$.
+
+    Vì mọi thừa số trong tích đều là số chẵn, tích này hoặc chỉ có một thừa số
+    và thừa số đó bằng $2,4,6$, hoặc chỉ có hai thừa số và cả hai đều bằng $2$.
+
+    Trước hết xét trường hợp có hai thừa số. Khi đó hai thừa số đều không có
+    thừa số nguyên tố lẻ, nên $p_i^{e_i-1}=1$, tức $n$ không có thừa số bình
+    phương. Giả sử $n=p_1p_2$ với $p_1<p_2$ đều là số nguyên tố. Hai thừa số đều
+    bằng $2$, nên luôn có $p_i-1=2^{\ell}\gcd(u,p_i-1)$. Do đó
+    $p_i=1+2^\ell m_i$, trong đó $m_i$ là số lẻ và $m_i\mid u$. Lấy
+    $p_1p_2=n=1+u2^t$ modulo $m_1$ được $p_1p_2\equiv 1\pmod{m_1}$, vì thế
+    $p_2\equiv 1\pmod{m_1}$, suy ra $m_1\mid m_2$. Chiều ngược lại cũng đúng.
+    Vậy $m_1=m_2$, tức $p_1=p_2$, mâu thuẫn với $p_1<p_2$. Trường hợp này không
+    thể xảy ra.
+
+    Cuối cùng xét trường hợp chỉ có một thừa số, tức hợp số $n=p^e$ với $e>1$.
+    Khi đó tất yếu $p^{e-1}\mid 2,4,6$. Trường hợp duy nhất là $p=3,e=2$, tức
+    $n=9$, mâu thuẫn với giả thiết của mệnh đề. Trường hợp này cũng không thể
+    xảy ra.
+
+    Tổng hợp mọi trường hợp, $|S'|\le\varphi(n)/4$ đúng.
+
+    Kết hợp ba bước trên, $|S|\le |S'|\le \varphi(n)/4$ đúng với mọi hợp số lẻ
+    $n>9$.
 
 Ngoai ra, neu gia su [gia thuyet Riemann tong quat](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis) (generalized Riemann hypothesis, GRH) dung, thi voi so $n$ chi can kiem tra tat ca cac so nguyen trong $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ la co the **xac dinh tat dinh** tinh nguyen to cua $n$.[^deterministic-proof]
 

@@ -142,7 +142,8 @@ MkDocs source layout intact.
   selected `docs/math/number-theory/basic.md`,
   `docs/math/number-theory/mod-arithmetic.md`, and
   `docs/math/number-theory/prime.md` sections, including the Miller-Rabin
-  algorithm outline and reference implementation comments, then fully cleaned
+  algorithm outline, reference implementation comments, and probability proof,
+  then fully cleaned
   `docs/math/number-theory/gcd.md` and
   `docs/math/number-theory/sieve.md`, plus the opening concept sections of
   `docs/math/number-theory/quadratic.md` through the Eisenstein integer
