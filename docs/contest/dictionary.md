@@ -39,8 +39,8 @@ cân nhắc.
 
 ### Bài ví dụ
 
-[「BZOJ 3798」特殊的质数](https://hydro.ac/p/bzoj-P3798): Tính có bao nhiêu số
+[BZOJ 3798: Số nguyên tố đặc biệt](https://hydro.ac/p/bzoj-P3798): Tính có bao nhiêu số
 nguyên tố trong đoạn $[l,r]$ có thể phân tích thành tổng bình phương của hai số
 nguyên dương.
 
-[「Luogu P1822」魔法指纹](https://www.luogu.com.cn/problem/P1822)
+[Luogu P1822: Dấu vân tay ma thuật](https://www.luogu.com.cn/problem/P1822)

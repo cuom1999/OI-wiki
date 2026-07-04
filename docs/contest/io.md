@@ -163,7 +163,7 @@ Trước hết cần lấy file descriptor `fd`, sau đó dùng `fstat` để l�
 
 Nếu cần đọc từ đầu vào chuẩn, có thể đặt `fd` là `0`. **Tuy nhiên, dùng mmap trên đầu vào chuẩn là hành vi cực kỳ nguy hiểm, đồng thời không thể nhập từ terminal; có thể chọn cách redirect file vào đầu vào chuẩn.**
 
-???+ note "Ví dụ: [洛谷 P10815【模板】快速读入](https://www.luogu.com.cn/problem/P10815)"
+???+ note "Ví dụ: [Luogu P10815 Mẫu: đọc nhanh](https://www.luogu.com.cn/problem/P10815)"
     Đọc $n$ số nguyên trong phạm vi $[-n, n]$, tính tổng và xuất ra. Trong đó $n \leq 10^8$. Dữ liệu đảm bảo với mọi tiền tố của dãy, tổng của tiền tố đó nằm trong phạm vi lưu trữ của số nguyên có dấu $32$ bit.
 
 Mã tham khảo như sau.
@@ -174,8 +174,8 @@ Mã tham khảo như sau.
 
 ## Tham khảo
 
-[cin.tie 与 sync\_with\_stdio 加速输入输出 - 码农场](https://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html)
+[Dùng cin.tie và sync\_with\_stdio để tăng tốc nhập xuất - Mã Nông Trường](https://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html)
 
-[C++ 高速化 - Heavy Watal](https://heavywatal.github.io/cxx/speed.html)
+[Tăng tốc C++ - Heavy Watal](https://heavywatal.github.io/cxx/speed.html)
 
 ['Re: mmap/mlock performance versus read' - MARC](https://marc.info/?l=linux-kernel&m=95496636207616&w=2)

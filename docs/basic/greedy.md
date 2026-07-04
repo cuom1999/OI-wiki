@@ -74,7 +74,7 @@ nên có khả năng quay lui theo nghĩa rộng.
 
 ### Ví dụ dùng phương pháp đổi chỗ phần tử kề
 
-???+ note "[NOIP 2012 国王游戏](https://www.luogu.com.cn/problem/P1080)"
+???+ note "[NOIP 2012 Trò chơi nhà vua](https://www.luogu.com.cn/problem/P1080)"
     Đúng dịp quốc khánh nước H, nhà vua mời $n$ đại thần chơi một trò chơi có
     thưởng. Trước hết, ông yêu cầu mỗi đại thần viết một số nguyên lên tay trái
     và một số nguyên lên tay phải; bản thân nhà vua cũng viết một số nguyên lên
@@ -134,7 +134,7 @@ nên có khả năng quay lui theo nghĩa rộng.
 
 ### Ví dụ dùng phương pháp hối tiếc
 
-???+ note "[「USACO09OPEN」Work Scheduling](https://www.luogu.com.cn/problem/P2949)"
+???+ note "[USACO09OPEN Work Scheduling](https://www.luogu.com.cn/problem/P2949)"
     Ngày làm việc của John bắt đầu từ thời điểm $0$ và có $10^9$ đơn vị thời
     gian. Ở mỗi đơn vị thời gian, anh có thể chọn hoàn thành một trong $N$ công
     việc được đánh số từ $1$ đến $N$ với $N(1 \leq N \leq 10^5)$. Công việc
@@ -178,7 +178,7 @@ nên có khả năng quay lui theo nghĩa rộng.
 ## Bài tập
 
 -   [P1209\[USACO1.3\] Barn Repair - Luogu](https://www.luogu.com.cn/problem/P1209)
--   [P2123 皇后游戏 - Luogu](https://www.luogu.com.cn/problem/P2123)
+-   [P2123 Trò chơi hoàng hậu - Luogu](https://www.luogu.com.cn/problem/P2123)
 -   [Các bài có nhãn greedy trên LeetCode](https://leetcode-cn.com/tag/greedy/)
 
 ## Tài liệu tham khảo và ghi chú

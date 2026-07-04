@@ -147,7 +147,7 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
 
 ### Bài ví dụ 4
 
-???+ note "[BZOJ 4971「Lydsy1708 月赛」记忆中的背包](https://vjudge.net/problem/BZOJ-4971)"
+???+ note "[BZOJ 4971 Lydsy1708 Monthly: Ba lô trong ký ức](https://vjudge.net/problem/BZOJ-4971)"
     Sau một ngày làm việc vất vả, Tiểu Q chìm vào giấc ngủ. Trong đầu cậu hiện
     lên cảnh vừa vào đại học và học bài 01 knapsack. Khi đó, còn là tân sinh
     viên năm nhất, Tiểu Q đã giải một bài 01 knapsack đơn giản. Bài toán như

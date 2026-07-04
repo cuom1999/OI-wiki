@@ -54,7 +54,7 @@ Các phương thức tương tác chủ yếu gồm hai loại sau. Dù khác nh
 
 Tương tác STDIO (tương tác I/O chuẩn) là phương thức tương tác trên các nền tảng trực tuyến như Codeforces, AtCoder, đồng thời cũng là chuẩn trong các kỳ thi thuộc hệ ICPC. Codeforces có một [hướng dẫn ngắn gọn hơn (tiếng Anh)](https://codeforces.com/blog/entry/45307).
 
-???+ note "Ví dụ [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559)"
+???+ note "Ví dụ [LOJ #559. LibreOJ Round #9: Mê cung của ZQC](https://loj.ac/problem/559)"
     Hãy chú ý phần được thêm ở cuối.
 
     Đây là một bài tương tác.
@@ -73,7 +73,7 @@ Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩ
 
 Phương thức tương tác Grader thường gặp trong các kỳ thi OI quốc tế như IOI, APIO (đặc biệt là các kỳ thi trên nền tảng CMS).
 
-???+ note "Ví dụ [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206)"
+???+ note "Ví dụ [UOJ #206. APIO2016 Gap](https://uoj.ac/problem/206)"
     Có $N$ số nguyên không âm tăng nghiêm ngặt $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$. Bạn cần tìm giá trị lớn nhất trong các hiệu $a_{i+1}−a_i (0\leq i\leq N−1)$.
 
     Chương trình của bạn không thể trực tiếp đọc dãy số nguyên này, nhưng bạn có thể truy vấn thông tin của dãy thông qua các hàm đã cho. Về chi tiết của hàm truy vấn, hãy tham khảo phần chi tiết cài đặt bên dưới theo ngôn ngữ bạn sử dụng.
@@ -101,7 +101,7 @@ Nếu tự thiết kế bài hoặc tổ chức kỳ thi, cần cân nhắc và 
 
 **Bài truyền tin** là dạng bài yêu cầu hai chương trình của thí sinh giao tiếp với nhau và phối hợp hoàn thành một nhiệm vụ. Chương trình thứ nhất nhận dữ liệu vào của bài toán và sinh một số dữ liệu ra; dữ liệu vào của chương trình thứ hai sẽ liên quan đến dữ liệu ra của chương trình thứ nhất (đôi khi được giữ nguyên làm một tham số, đôi khi được phía chấm xử lý rồi tạo ra), và chương trình thứ hai cần sinh lời giải của bài toán.
 
-Ví dụ về bài truyền tin có: [UOJ #178. 新年的贺电](https://uoj.ac/problem/178), [#454.【UER #8】打雪仗](https://uoj.ac/problem/454), v.v.
+Ví dụ về bài truyền tin có: [UOJ #178. Điện mừng năm mới](https://uoj.ac/problem/178), [#454. UER #8: Ném tuyết](https://uoj.ac/problem/454), v.v.
 
 Phương pháp kiểm thử cục bộ rất đa dạng tùy theo thiết lập của bài, các hình thức thường dùng gồm:
 
@@ -120,7 +120,7 @@ Thông thường có một số hình thức sau:
 -   Cho sẵn một chương trình và cho biết khối mã cần hoàn thiện sẽ được nhúng vào đâu.
 -   Không cho chương trình, mà truyền thông tin đầu vào dưới dạng tham số của hàm cần nộp.
 
-Dạng bài này khá thường gặp trên [LeetCode](https://leetcode.com/) và [PTA - 拼题 A](https://pintia.cn/problem-sets).
+Dạng bài này khá thường gặp trên [LeetCode](https://leetcode.com/) và [PTA - Pintia](https://pintia.cn/problem-sets).
 
 ## Các dạng khác
 

@@ -1,8 +1,8 @@
 author: countercurrent-time, StudyingFather
 
-Từ thế kỷ trước, IOI đã có các bài tương tác. Dù những năm gần đây dạng bài tương tác không xuất hiện trong các kỳ thi dưới cấp tuyển chọn tỉnh, nhưng trong hệ thống kỳ thi NOI năm 2019 đã liên tiếp xuất hiện hai bài tương tác 《P5208\[WC2019]I 君的商店》 và 《P5473\[NOI2019]I 君的探险》. Điều này có thể cho thấy bài tương tác đang quay trở lại hệ thống kỳ thi NOI.
+Từ thế kỷ trước, IOI đã có các bài tương tác. Dù những năm gần đây dạng bài tương tác không xuất hiện trong các kỳ thi dưới cấp tuyển chọn tỉnh, nhưng trong hệ thống kỳ thi NOI năm 2019 đã liên tiếp xuất hiện hai bài tương tác *P5208 [WC2019] Cửa hàng của I-kun* và *P5473 [NOI2019] Cuộc thám hiểm của I-kun*. Điều này có thể cho thấy bài tương tác đang quay trở lại hệ thống kỳ thi NOI.
 
-Bài tương tác không đòi hỏi quá nhiều thuật toán nền tảng, thường cũng không có giới hạn thời gian quá chặt; mức độ tốt của chương trình thường chỉ phụ thuộc vào giới hạn số lần tương tác. Vì vậy khi học bài tương tác, nên đi từ dễ đến khó. Nếu muốn rèn tư duy thuật toán chứ không chỉ đơn thuần học thuật toán, làm bài tương tác là một cách rất tốt. Tuy yêu cầu về các thuật toán đã nắm của thí sinh thường khá thấp, vẫn nên nắm được một số thuật toán nâng cao và thuật toán cấp tuyển chọn tỉnh rồi mới thử bài tương tác, vì lúc đó tư duy thuật toán và phạm vi kiến thức của bản thân đã đạt đến một mức nhất định. Phần giới thiệu cơ bản về bài tương tác có thể tham khảo [Giới thiệu dạng bài - Bài tương tác](./problems.md#交互题) của **OI Wiki**.
+Bài tương tác không đòi hỏi quá nhiều thuật toán nền tảng, thường cũng không có giới hạn thời gian quá chặt; mức độ tốt của chương trình thường chỉ phụ thuộc vào giới hạn số lần tương tác. Vì vậy khi học bài tương tác, nên đi từ dễ đến khó. Nếu muốn rèn tư duy thuật toán chứ không chỉ đơn thuần học thuật toán, làm bài tương tác là một cách rất tốt. Tuy yêu cầu về các thuật toán đã nắm của thí sinh thường khá thấp, vẫn nên nắm được một số thuật toán nâng cao và thuật toán cấp tuyển chọn tỉnh rồi mới thử bài tương tác, vì lúc đó tư duy thuật toán và phạm vi kiến thức của bản thân đã đạt đến một mức nhất định. Phần giới thiệu cơ bản về bài tương tác có thể tham khảo [Giới thiệu dạng bài - Bài tương tác](./problems.md#bài-tương-tác) của **OI Wiki**.
 
 Các lỗi đặc thù của bài tương tác:
 
@@ -20,7 +20,7 @@ Ví dụ:
 -   [CF843B Interactive LowerBound](https://codeforces.com/problemset/problem/843/B)
 -   [UOJ206\[APIO2016\]Gap](http://uoj.ac/problem/206)
 -   [CF750F New Year and Finding Roots](https://codeforces.com/problemset/problem/750/F)
--   [UVa12731 太空站之谜 Mysterious Space Station](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=823&page=show_problem&problem=4584)
+-   [UVa12731 Bí ẩn trạm không gian / Mysterious Space Station](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=823&page=show_problem&problem=4584)
 
 ## CF679A Bear and Prime 100
 
@@ -278,7 +278,7 @@ Khi đó thuật toán của ta vừa khít trường hợp xấu nhất 16 lầ
     }
     ```
 
-## UVa12731 太空站之谜 Mysterious Space Station
+## UVa12731 Bí ẩn trạm không gian / Mysterious Space Station
 
 Vì phản hồi duy nhất là khi di chuyển có va vào tường hay không, ta nên xét cách đi sát mép tường nhiều nhất có thể trong khi vẫn không để robot bị lạc. Cách này có vài lợi ích:
 
@@ -293,7 +293,7 @@ Ta có thể dùng phương pháp trên: ban đầu đánh dấu toàn bộ các
 
 Sau khi tìm ra các ô chưa biết, cần phán đoán quan hệ ghép cặp của $2k$ ô chưa biết. Cách làm thực tế cũng rất đơn giản: chỉ cần ghép cặp brute force. Vì $k \le 5$, nên nhiều nhất chỉ cần $9 + 7 + 5 + 3$ lần thử sai. Để so sánh, trường hợp phán đoán toàn bộ ô chưa biết trong hình nhiều nhất cần $121 - 40$ lần thử sai.
 
-Hiện tại, code dưới đây chỉ qua được bài mirror trên UOJ: [#247.【Rujia Liu's Present 7】Mysterious Space Station](http://uoj.ac/problem/247), nhưng không qua được đề gốc UVa. Sau khi sửa standard solution của Liu Rujia trên UOJ vẫn không qua, và tạm thời chưa liên hệ được với Liu Rujia. Vì vậy code dưới đây lấy UOJ làm chuẩn.
+Hiện tại, code dưới đây chỉ qua được bài mirror trên UOJ: [#247. Rujia Liu's Present 7: Mysterious Space Station](http://uoj.ac/problem/247), nhưng không qua được đề gốc UVa. Sau khi sửa standard solution của Liu Rujia trên UOJ vẫn không qua, và tạm thời chưa liên hệ được với Liu Rujia. Vì vậy code dưới đây lấy UOJ làm chuẩn.
 
 Tuy nhiên chất lượng standard solution của Liu Rujia vẫn cao hơn code dưới đây rất nhiều; có thể xem [standard solution đã qua bài mirror UOJ](http://uoj.ac/submission/105789) trên UOJ. Với cùng một bộ dữ liệu, số lần di chuyển mà standard solution dùng là rất ít.
 
@@ -567,8 +567,8 @@ Tuy nhiên chất lượng standard solution của Liu Rujia vẫn cao hơn code
 ## Bài tập
 
 -   [Chuyên đề bài tương tác Rujia Liu's Present 7 của Liu Rujia có chất lượng rất cao, rất đáng làm thử.](https://onlinejudge.org/contests/328-9976a2e2/)
--   [P5473\[NOI2019\]I 君的探险](https://www.luogu.com.cn/problem/P5473)
--   [P5208\[WC2019\]I 君的商店](https://www.luogu.com.cn/problem/P5208)
+-   [P5473 [NOI2019] Cuộc thám hiểm của I-kun](https://www.luogu.com.cn/problem/P5473)
+-   [P5208 [WC2019] Cửa hàng của I-kun](https://www.luogu.com.cn/problem/P5208)
 
 ## Tài liệu tham khảo và đọc thêm
 

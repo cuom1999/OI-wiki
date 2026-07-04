@@ -70,13 +70,13 @@ Các ngoại lệ có thể nới lỏng yêu cầu:
 >
 > --[vfk, *Nguồn gốc tinh thần của UOJ*][1]
 
-Ví dụ: [「XR-1」柯南家族](https://www.luogu.com.cn/problem/P5346), hai nửa trước sau của lời giải hoàn toàn tách rời. Nửa đầu là [「模板」树上后缀排序](https://www.luogu.com.cn/problem/P5353), nửa sau là một bài toán kinh điển trên cây. Ngay cả khi nhập tùy ý trọng số các đỉnh của cây, vẫn có thể làm phần thứ hai; hai phần trước sau không có liên hệ.
+Ví dụ: [XR-1: Gia tộc Conan](https://www.luogu.com.cn/problem/P5346), hai nửa trước sau của lời giải hoàn toàn tách rời. Nửa đầu là [Mẫu: sắp xếp hậu tố trên cây](https://www.luogu.com.cn/problem/P5353), nửa sau là một bài toán kinh điển trên cây. Ngay cả khi nhập tùy ý trọng số các đỉnh của cây, vẫn có thể làm phần thứ hai; hai phần trước sau không có liên hệ.
 
 > Một loại bài OI lấy toán học làm chính; dù là mô tả đề hay lời giải đều mang đặc trưng của bài toán học, và lời giải không chứa kiến thức liên quan đến thuật toán. Những bài OI kiểu này được gọi chung là bài thuần toán.
 >
 > --[Wang Tianyi, *Bàn về tác hại của đề lệch*][2]
 
-Ví dụ kinh điển: [NOIP2017 小凯的疑惑](https://uoj.ac/problem/329)
+Ví dụ kinh điển: [NOIP2017 Nỗi băn khoăn của Xiao Kai](https://uoj.ac/problem/329)
 
 Điểm khác biệt giữa bài toán học trong OI và các bài toán học khác, cũng là một đặc điểm thể hiện bản chất của OI, là trọng tâm của bài toán học trong OI thường không nằm ở đáp án **là gì**, mà nằm ở cách **tăng tốc** việc tính đáp án. Nếu trọng tâm khảo sát của một bài là "tính như thế nào" thay vì "làm sao tính nhanh", thì dạng bài toán học như vậy thường không phù hợp để đưa vào OI.
 
@@ -84,7 +84,7 @@ Ví dụ kinh điển: [NOIP2017 小凯的疑惑](https://uoj.ac/problem/329)
 >
 > --[Wang Tianyi, *Bàn về tác hại của đề lệch*][2]
 
-Ví dụ kinh điển: [「清华集训 2015」多边形下海](https://uoj.ac/problem/159)
+Ví dụ kinh điển: [Tập huấn Thanh Hoa 2015: Đa giác xuống biển](https://uoj.ac/problem/159)
 
 Không chỉ vật lý, bài OI cũng không nên liên quan quá nhiều đến kiến thức của các môn học khác. Nếu có liên quan, cần giải thích chi tiết, và không nên để kiến thức của môn khác trở thành trở ngại lớn trong việc giải bài.
 
@@ -94,7 +94,7 @@ Không chỉ vật lý, bài OI cũng không nên liên quan quá nhiều đến
 >
 > --[Wang Tianyi, *Bàn về tác hại của đề lệch*][2]
 
-Ví dụ kinh điển: [「SDOI2010」猪国杀](https://loj.ac/problem/2885), [「集训队互测 2015」未来程序·改](https://uoj.ac/problem/98)
+Ví dụ kinh điển: [SDOI2010: Sát Trư Quốc](https://loj.ac/problem/2885), [Kiểm tra chéo đội tuyển tập huấn 2015: Chương trình tương lai - bản sửa](https://uoj.ac/problem/98)
 
 Trong các cuộc thi OI thông thường, độ khó tư duy nên chiếm phần chủ yếu. Dĩ nhiên, những bài kỹ thuật như Day 2+ của THUWC/THUSC cũng có lý do tồn tại của chúng: mục đích của trại trải nghiệm không chỉ là kiểm tra năng lực thiết kế thuật toán của thí sinh, mà còn kiểm tra khả năng viết mã kỹ thuật và học tài liệu để nối tiếp với việc học ở đại học. Nhưng trong các cuộc thi OI thông thường, điều cần khảo sát nhiều hơn vẫn nên là thiết kế thuật toán và năng lực tư duy.
 
@@ -132,7 +132,7 @@ Bạn cần bảo đảm đề bài của mình không tự mâu thuẫn. Ví d�
 
 Bạn cần bảo đảm đề bài không thể bị hiểu sai mà vẫn tự hợp lý hóa được, kể cả khi cách hiểu đó trái với lẽ thường và không ai sẽ nghĩ như vậy. Ví dụ: trong [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D), lý do phải định nghĩa rườm rà "walk into" và phân biệt với "teleport" là để ngăn cách hiểu như sau: đi qua portal có thể tới một portal khác, mà tới portal thì sẽ teleport, nên sẽ nhảy qua lại vô hạn.
 
-Đọc xuôi phần mô tả bài toán nên hiểu được từng câu, đồng thời hiểu nhiệm vụ và yêu cầu của bài. Ít nhất, nếu có thắc mắc thì thắc mắc đó phải được giải thích ngay ở đoạn tiếp theo, chứ không phải đợi vài đoạn sau mới được giải thích, hoặc phải đọc phần định dạng vào ra mới hiểu ý đề, thậm chí phải dựa vào ví dụ để đoán đề. Ví dụ: trong [「GuOJ Round #1」琪露诺的冰雪宴会](https://github.com/OI-wiki/problemset/blob/master/contest/online/GuOJ/OI%20Archive%20-%20GuOJ1171.pdf), mục tiêu của bài "lượng nước lớn nhất mà Hồ Sương Mù cuối cùng có thể nhận được" lần đầu tiên mới xuất hiện trong phần định dạng đầu ra; cộng thêm câu "Reimu đương nhiên có thể nhanh chóng tính ra tổng chi phí sau khi dọn sạch toàn bộ suối nhỏ" mang tính gây hiểu nhầm, càng dễ khiến người đọc hiểu sai ý đề. Điều này không nên xảy ra; mục tiêu của bài nên được nêu ngay trong mô tả bài toán. (Trong ví dụ này còn có vấn đề bối cảnh bài toán ảnh hưởng nghiêm trọng đến việc hiểu ý đề.) Lỗi tương tự cũng xuất hiện trong [CF1423(4)N Bubblesquare Tokens](https://codeforces.com/problemset/problem/1423/N), khi mục tiêu của bài "friend pairs and number of tokens each of them gets on behalf of their friendship" lần đầu tiên mới xuất hiện ở phần định dạng đầu ra.
+Đọc xuôi phần mô tả bài toán nên hiểu được từng câu, đồng thời hiểu nhiệm vụ và yêu cầu của bài. Ít nhất, nếu có thắc mắc thì thắc mắc đó phải được giải thích ngay ở đoạn tiếp theo, chứ không phải đợi vài đoạn sau mới được giải thích, hoặc phải đọc phần định dạng vào ra mới hiểu ý đề, thậm chí phải dựa vào ví dụ để đoán đề. Ví dụ: trong [GuOJ Round #1: Bữa tiệc băng tuyết của Cirno](https://github.com/OI-wiki/problemset/blob/master/contest/online/GuOJ/OI%20Archive%20-%20GuOJ1171.pdf), mục tiêu của bài "lượng nước lớn nhất mà Hồ Sương Mù cuối cùng có thể nhận được" lần đầu tiên mới xuất hiện trong phần định dạng đầu ra; cộng thêm câu "Reimu đương nhiên có thể nhanh chóng tính ra tổng chi phí sau khi dọn sạch toàn bộ suối nhỏ" mang tính gây hiểu nhầm, càng dễ khiến người đọc hiểu sai ý đề. Điều này không nên xảy ra; mục tiêu của bài nên được nêu ngay trong mô tả bài toán. (Trong ví dụ này còn có vấn đề bối cảnh bài toán ảnh hưởng nghiêm trọng đến việc hiểu ý đề.) Lỗi tương tự cũng xuất hiện trong [CF1423(4)N Bubblesquare Tokens](https://codeforces.com/problemset/problem/1423/N), khi mục tiêu của bài "friend pairs and number of tokens each of them gets on behalf of their friendship" lần đầu tiên mới xuất hiện ở phần định dạng đầu ra.
 
 ### Định dạng vào ra
 
@@ -273,7 +273,7 @@ Giới hạn dữ liệu nhỏ hơn thường nên được chia thành nhiều 
 
 "Dữ liệu có phân tầng" tốt nhất nên được thay bằng nhiều mức điểm thành phần.
 
-Việc đặt điểm thành phần cho tính chất đặc biệt cần tùy theo bài cụ thể. Điểm thành phần cho tính chất đặc biệt lý tưởng nên có khả năng dẫn dắt thí sinh suy nghĩ về lời giải đúng. Khác với điểm thành phần theo giới hạn dữ liệu nhỏ hơn, nếu bạn không biết lời giải cho một tính chất đặc biệt nào đó, tốt nhất đừng cho tính chất ấy một mức điểm. Ví dụ: mức điểm $k=1$ của [「CTS2019」随机立方体](https://loj.ac/problem/3119) đã bị nhiều người phàn nàn khi giảng bài, cho rằng mức điểm này cản trở việc suy nghĩ lời giải đúng.
+Việc đặt điểm thành phần cho tính chất đặc biệt cần tùy theo bài cụ thể. Điểm thành phần cho tính chất đặc biệt lý tưởng nên có khả năng dẫn dắt thí sinh suy nghĩ về lời giải đúng. Khác với điểm thành phần theo giới hạn dữ liệu nhỏ hơn, nếu bạn không biết lời giải cho một tính chất đặc biệt nào đó, tốt nhất đừng cho tính chất ấy một mức điểm. Ví dụ: mức điểm $k=1$ của [CTS2019: Lập phương ngẫu nhiên](https://loj.ac/problem/3119) đã bị nhiều người phàn nàn khi giảng bài, cho rằng mức điểm này cản trở việc suy nghĩ lời giải đúng.
 
 Nếu cách tính điểm của bài khác với mặc định (ví dụ: trong một cuộc thi theo thể thức OI thông thường nhưng chấm theo subtask buộc chặt), nhất định phải nói rõ trong đề.
 
