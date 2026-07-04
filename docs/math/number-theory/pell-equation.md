@@ -664,41 +664,61 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     là phân số gần đúng của $\dfrac{1+\sqrt{5}}{2}=[\overline{1}]$, điều này
     hiển nhiên đúng.
 
-???+ note "Dinh li"
-    Gia su $D$ la so nguyen duong khong phai so chinh phuong. Khai trien phan so lien tuc cua so vo ti bac hai $\omega=\dfrac{1+\sqrt{D}}{2}$ co dang
+???+ note "Định lý"
+    Giả sử $D$ là số nguyên dương không phải số chính phương. Khai triển phân số
+    liên tục của số vô tỉ bậc hai $\omega=\dfrac{1+\sqrt{D}}{2}$ có dạng
 
     $$
     \omega = [\lfloor\omega\rfloor,\overline{a_1,\cdots,a_{\ell-1},2\lfloor\omega\rfloor-1}],
     $$
 
-    trong do $\ell$ la do dai chu ki, va $a_k=a_{\ell-k}$ voi moi $1<k<\ell$.
+    trong đó $\ell$ là độ dài chu kỳ, và $a_k=a_{\ell-k}$ với mọi $1<k<\ell$.
 
-??? note "Chung minh"
-    Vi $\lfloor\omega\rfloor-1+\omega>1$, va lien hop cua no bang $\lfloor\omega\rfloor - \omega$, nam giua $-1$ va $0$, nen theo [ket qua cua Galois](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0), $\lfloor\omega\rfloor-1+\omega$ la phan so lien tuc thuan tuan hoan, co the viet thanh
+??? note "Chứng minh"
+    Vì $\lfloor\omega\rfloor-1+\omega>1$, và liên hợp của nó bằng
+    $\lfloor\omega\rfloor - \omega$, nằm giữa $-1$ và $0$, nên theo
+    [kết quả của Galois](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0),
+    $\lfloor\omega\rfloor-1+\omega$ là phân số liên tục thuần tuần hoàn, có thể
+    viết thành
 
     $$
     \lfloor\omega\rfloor-1+\omega = [\overline{2\lfloor\omega\rfloor-1,a_1,\cdots,a_{\ell-1}}].
     $$
 
-    Ket qua cua Galois ve nghich dao cua lien hop doi dau cho biet
+    Kết quả của Galois về nghịch đảo của liên hợp đổi dấu cho biết
 
     $$
     \dfrac{1}{\omega-\lfloor\omega\rfloor} = [\overline{a_{\ell-1},\cdots,a_1,2\lfloor\omega\rfloor-1}].
     $$
 
-    Do do, theo dinh nghia phan so lien tuc,
+    Do đó, theo định nghĩa phân số liên tục,
 
     $$
     \lfloor\omega\rfloor-1+\omega = 2\lfloor\omega\rfloor-1 + \dfrac{1}{\dfrac{1}{\omega-\lfloor\omega\rfloor}} = [2\lfloor\omega\rfloor-1,\overline{a_{\ell-1},\cdots,a_1,2\lfloor\omega\rfloor-1}].
     $$
 
-    Tinh duy nhat cua khai trien phan so lien tuc cho thay $a_k=a_{\ell-k}$ voi moi $1<k<\ell$, va do do dang khai trien can chung minh cung dung.
+    Tính duy nhất của khai triển phân số liên tục cho thấy $a_k=a_{\ell-k}$ với
+    mọi $1<k<\ell$, và do đó dạng khai triển cần chứng minh cũng đúng.
 
-???+ note "Dinh li"
-    Gia su $D\equiv 1\pmod 4$. Trong qua trinh chay thuat toan PQa o tren voi $(P_0,Q_0,D)=(1,2,D)$, $Q_k=2$ nhat dinh keo theo $\ell\mid k$.
+???+ note "Định lý"
+    Giả sử $D\equiv 1\pmod 4$. Trong quá trình chạy thuật toán PQa ở trên với
+    $(P_0,Q_0,D)=(1,2,D)$, $Q_k=2$ nhất định kéo theo $\ell\mid k$.
 
-??? note "Chung minh"
-    Trong khai trien phan so lien tuc cua $\dfrac{1+\sqrt{D}}{2}$, ngoai thuong hoan toan thu $0$, moi thuong hoan toan khac deu la [phan so lien tuc thuan tuan hoan](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0). Gia su $Q_k=2$. Theo ket qua cua Galois, lien hop cua thuong hoan toan $\omega_k=\dfrac{P_k+\sqrt{D}}{2}$ nhat dinh thoa $-1<\dfrac{P_k-\sqrt{D}}{2}<0$, tuc $\sqrt{D}-2<P_k<\sqrt{D}$. Vi trong thuat toan PQa luon co $Q_k\mid P_k^2-D$ (xem [chung minh tinh dung dan cua thuat toan](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0)), nen $P_k$ nhat dinh le; dieu nay cho thay gia tri cua $P_k$ la duy nhat, tuc $P_k=P_0+2(\lfloor\omega\rfloor-1)$, hay thuong hoan toan $\omega_k=\omega_\ell$. Nhung su lap lai cua thuong hoan toan co nghia phan so lien tuc vao chu ki; neu $k$ khong phai boi cua $\ell$, dieu nay mau thuan voi viec $\ell$ la chu ki duong nho nhat. Vi vay nhat dinh $\ell\mid k$.
+??? note "Chứng minh"
+    Trong khai triển phân số liên tục của $\dfrac{1+\sqrt{D}}{2}$, ngoài thương
+    hoàn toàn thứ $0$, mọi thương hoàn toàn khác đều là
+    [phân số liên tục thuần tuần hoàn](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0).
+    Giả sử $Q_k=2$. Theo kết quả của Galois, liên hợp của thương hoàn toàn
+    $\omega_k=\dfrac{P_k+\sqrt{D}}{2}$ nhất định thỏa
+    $-1<\dfrac{P_k-\sqrt{D}}{2}<0$, tức $\sqrt{D}-2<P_k<\sqrt{D}$. Vì trong
+    thuật toán PQa luôn có $Q_k\mid P_k^2-D$ (xem
+    [chứng minh tính đúng đắn của thuật toán](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0)),
+    nên $P_k$ nhất định lẻ; điều này cho thấy giá trị của $P_k$ là duy nhất,
+    tức $P_k=P_0+2(\lfloor\omega\rfloor-1)$, hay thương hoàn toàn
+    $\omega_k=\omega_\ell$. Nhưng sự lặp lại của thương hoàn toàn có nghĩa phân
+    số liên tục vào chu kỳ; nếu $k$ không phải bội của $\ell$, điều này mâu
+    thuẫn với việc $\ell$ là chu kỳ dương nhỏ nhất. Vì vậy nhất định
+    $\ell\mid k$.
 
 ???+ note "Dinh li"
     Gia su nghiem nguyen duong nho nhat cua phuong trinh $x^2-Dy^2=\pm 4$ la $(x_1,y_1)$. Khi do toan bo nghiem cua no la

@@ -183,7 +183,8 @@ MkDocs source layout intact.
   equivalence-class structure, the PQa theorem block and Pell-solving
   derivation/examples, the negative-Pell theorem around the missing quadratic
   factor, the negative-Pell solubility proof, the opening norm-±4 reduction and
-  Legendre criterion, and the general Lagrange–Matthews–Mollin argument in
+  Legendre criterion, the norm-±4 continued-fraction facts, and the general
+  Lagrange–Matthews–Mollin argument in
   `docs/math/number-theory/pell-equation.md`, including its LMM examples and
   closing notes.
 - `docs/math/poly/intro.md`, `docs/math/poly/fundamental.md`,
