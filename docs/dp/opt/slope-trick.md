@@ -43,11 +43,11 @@ khác nhau trên hàm lồi.
 ???+ abstract "Hàm lồi trên $\mathbf R$"
     Nếu hàm $f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ thỏa mãn, với
     mọi $x,y\in\mathbf R$ và $\alpha\in(0,1)$,
-    
+
     $$
     f(\alpha x+(1-\alpha)y) \le \alpha f(x)+(1-\alpha)f(y),
     $$
-    
+
     thì $f$ được gọi là **hàm lồi** (convex function). Quy tắc tính toán với
     $\pm\infty$ được quy ước như sau: $\pm\infty$ nhân với bất kỳ số thực dương
     nào, hoặc cộng với bất kỳ số thực nào, đều bằng chính nó; và với mọi số thực
@@ -80,7 +80,7 @@ tập con lồi của $\mathbf R$).
 
 ???+ example "Ví dụ đơn giản"
     Các ví dụ thường gặp về hàm lồi gồm:
-    
+
     1.  Hàm hằng: $f(x)=c$, với $c\in\mathbf R$;
     2.  Hàm bậc nhất: $f(x)=kx+b$, với $k,b\in\mathbf R$ và $k\neq 0$;
     3.  Hàm giá trị tuyệt đối: $f(x)=|x-a|$, với $a\in\mathbf R$;
@@ -108,16 +108,16 @@ của nó.
     $[a,b]$, tập $S\cap[a,b]$ đều hữu hạn. Với hàm
     $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$, ta có thể định nghĩa hàm
     $\tilde f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ sao cho:
-    
+
     -   Khi $x\in S$, $\tilde f(x)=f(x)$,
     -   Khi $x\in(\inf S,\sup S)\setminus S$, đặt
         $s_-=\max\{s\in S:s\le x\}$, $s_+=\min\{s\in S:s\ge x\}$, khi đó
-    
+
         $$
         \tilde f(x) = \dfrac{s_+-x}{s_+-s_-}f(s_-)+\dfrac{x-s_-}{s_+-s_-}f(s_+),
         $$
     -   Khi $x\notin[\inf S,\sup S]$, $\tilde f(x)=+\infty$.
-    
+
     Nếu $\tilde f(x)$ là hàm lồi trên $\mathbf R$, thì $f(x)$ được gọi là **hàm
     lồi** trên $S$.
 
@@ -132,30 +132,30 @@ Hàm lồi trên tập số nguyên $\mathbf Z$ có một định nghĩa tương
 ???+ note "Định nghĩa tương đương của hàm lồi trên $\mathbf Z$"
     Hàm $f:\mathbf Z\rightarrow\mathbf R\cup\{\pm\infty\}$ là hàm lồi khi và
     chỉ khi
-    
+
     $$
     f(x)-f(x-1)\le f(x+1)-f(x)
     $$
-    
+
     đúng với mọi $x\in\mathbf Z$.
 
 ??? note "Chứng minh"
     Mệnh đề này là hệ quả đơn giản của cách đặc trưng hàm lồi bằng độ dốc.
-    
+
     Nếu $f$ là hàm lồi trên $\mathbf Z$, theo tính chất độ dốc không giảm, ta có
-    
+
     $$
     \Delta f(x-1,x)\le \Delta f(x-1,x+1) \le\Delta f(x,x+1).
     $$
-    
+
     Đây chính là điều kiện ở trên.
-    
+
     Ngược lại, nếu điều kiện ở trên đúng, thì với mọi $x_1<x_2$, ta có
-    
+
     $$
     \Delta f(x_1,x_2) = \dfrac{1}{x_2-x_1}\sum_{i=x_1}^{x_2-1}\left(f(i+1)-f(i)\right).
     $$
-    
+
     Giá trị này là trung bình cộng của các sai phân với $x_1\le i<x_2$. Nếu
     tăng $x_2$ thêm một, ta tương đương chèn thêm một sai phân lớn hơn; nếu tăng
     $x_1$ thêm một, ta tương đương bỏ đi sai phân nhỏ nhất. Cả hai thao tác đều
@@ -174,31 +174,31 @@ tổng quát.
 ???+ note "Đặc trưng hàm lồi bằng độ dốc"
     Cho $S$ là $\mathbf R$ hoặc tập con rời rạc của nó. Hàm
     $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$ là hàm lồi khi và chỉ khi độ dốc
-    
+
     $$
     \Delta f(x_1,x_2) = \dfrac{f(x_2)-f(x_1)}{x_2-x_1}
     $$
-    
+
     là hàm không giảm theo cả $x_1$ và $x_2$, với mọi $x_1,x_2\in S$ và
     $x_1<x_2$.
 
 ??? note "Chứng minh"
     Với hàm $f(x)$ trên $\mathbf R$ và $x_1<x_2$, với $\alpha\in(0,1)$, đặt
     $x_3=\alpha x_1+(1-\alpha)x_2$. Khi đó
-    
+
     $$
     \Delta f(x_1,x_3) \le \Delta f(x_1,x_2) \le \Delta f(x_3,x_2)
     $$
-    
+
     tương đương với
-    
+
     $$
     \dfrac{f(x_3)-f(x_1)}{1-\alpha} \le f(x_2)-f(x_1) \le \dfrac{f(x_2)-f(x_3)}{\alpha}.
     $$
-    
+
     Hai bất đẳng thức hai phía đều tương đương với
     $f(x_3)\le\alpha f(x_1)+(1-\alpha)f(x_2)$, tức tính lồi của hàm $f(x)$.
-    
+
     Với hàm $f(x)$ trên tập con rời rạc $S$ của $\mathbf R$, tính cần thiết của
     điều kiện độ dốc không giảm có thể suy ra từ tính lồi của $\tilde f(x)$. Bây
     giờ cần chứng minh tính đủ. Để làm việc này, chỉ cần chứng minh
@@ -207,26 +207,26 @@ tổng quát.
     $s_{i_2}\le x_2\le s_{i_2+1}$; hiển nhiên $i_1\le i_2$. Đặt
     $\Delta_i=\Delta f(s_i,s_{i+1})$. Khi đó, có thể chứng minh
     $\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$.
-    
+
     Xét hai trường hợp. Nếu $i_1=i_2$, thì
     $\Delta_{i_1}=\Delta\tilde f(x_1,x_2)=\Delta_{i_2}$, bất đẳng thức hiển
     nhiên đúng. Ngược lại, ta có
-    
+
     $$
     \Delta\tilde f(x_1,x_2) = \dfrac{1}{x_2-x_1}\left((s_{i_1+1}-x_1)\Delta_{i_1}+(x_2-s_{i_2})\Delta_{i_2}+\sum_{j=i_1+1}^{i_2-1}(s_{j+1}-s_j)\Delta_j\right).
     $$
-    
+
     Theo tính chất độ dốc tăng trên $S$, $\Delta_i$ tăng theo $i$, nên
     $\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$.
-    
+
     Dùng kết luận này, với $x_1<x_2$ và $\alpha\in(0,1)$, đặt
     $x_3=\alpha x_1+(1-\alpha)x_2$, và chọn $i_3$ sao cho
     $s_{i_3}\le x_3\le s_{i_3+1}$. Khi đó
-    
+
     $$
     \Delta\tilde f(x_1,x_3) \le \Delta_{i_3} \le \Delta\tilde f(x_3,x_2).
     $$
-    
+
     Thay biểu thức của $x_3$ vào sẽ thu được tính lồi của $\tilde f(x)$.
 
 Độ dốc đơn điệu không giảm có thể xem là một định nghĩa tương đương của hàm lồi.
@@ -253,20 +253,20 @@ hàm tương đương với tính lồi của thượng đồ thị:
     Nếu $f$ là hàm lồi, thì với
     $(x_1,y_1),(x_2,y_2)\in\operatorname{epi}f$ và bất kỳ $\alpha\in(0,1)$, ta
     có
-    
+
     $$
     \alpha y_1+(1-\alpha)y_2 \ge \alpha f(x_1)+(1-\alpha)f(x_2) \ge f(\alpha x_1+(1-\alpha) x_2).
     $$
-    
+
     Do đó, $\alpha(x_1,y_1)+(1-\alpha)(x_2,y_2)\in\operatorname{epi}f$.
-    
+
     Ngược lại, nếu $\operatorname{epi}f$ là tập lồi, thì với mọi $x_1<x_2$ và
     $\alpha\in(0,1)$, ta có
-    
+
     $$
     \alpha(x_1,f(x_1))+(1-\alpha)(x_2,f(x_2)) \in \operatorname{epi}f.
     $$
-    
+
     Điều này tương đương với
     $\alpha f(x_1)+(1-\alpha)f(x_2)\ge f\left(\alpha x_1+(1-\alpha)x_2\right)$,
     tức tính lồi của $f$.
@@ -336,64 +336,64 @@ nó có thể xem là kết quả trộn (rồi sắp xếp lại) các đoạn 
     Giả sử $f,g$ đều là hàm lồi, và $h$ là tích chập dưới đúng của chúng. Lấy
     $x_1<x_2$ và $\alpha\in(0,1)$. Theo định nghĩa tích chập dưới đúng, với mọi
     $\varepsilon>0$, tồn tại $y_i,z_i\in\mathbf R$ sao cho $y_i+z_i=x_i$ và
-    
+
     $$
     h(x_i) + \varepsilon > f(y_i) + g(z_i).
     $$
-    
+
     Do đó, kết hợp tính lồi của $f,g$ và định nghĩa của $h$, ta có
-    
+
     $$
     \begin{aligned}
-    \alpha h(x_1)+(1-\alpha)h(x_2) + \varepsilon 
+    \alpha h(x_1)+(1-\alpha)h(x_2) + \varepsilon
     &> \alpha f(y_1) + (1-\alpha) f(y_2) + \alpha g(z_1) + (1-\alpha) g(z_2)\\
     &\ge f\left(\alpha y_1+(1-\alpha)y_2\right) + g\left(\alpha z_1+(1-\alpha)z_2\right)\\
     &\ge h(\alpha x_1+(1-\alpha)x_2).
     \end{aligned}
     $$
-    
+
     Vì $\varepsilon>0$ được chọn tùy ý, suy ra
-    
+
     $$
     \alpha h(x_1)+(1-\alpha)h(x_2) \ge h(\alpha x_1+(1-\alpha)x_2).
     $$
-    
+
     Từ đó thu được tính lồi của $h$.
-    
+
     Tiếp theo, đối với trực giác hình học, nói một cách chặt chẽ thì chỉ có thể
     chứng minh kết luận sau:
-    
+
     $$
     \operatorname{epi} f + \operatorname{epi} g\subseteq \operatorname{epi}h \subseteq \operatorname{cl}(\operatorname{epi} f + \operatorname{epi} g).
     $$
-    
+
     Trong đó, $\operatorname{cl}$ biểu thị bao đóng.
-    
+
     Với mọi $(x,y)\in\operatorname{epi} f + \operatorname{epi} g$, tồn tại
     $(x_1,y_1)\in\operatorname{epi} f$ và $(x_2,y_2)\in\operatorname{epi} g$ sao
     cho $x=x_1+x_2$ và
-    
+
     $$
     y = y_1+y_2 \ge f(x_1)+g(x_2) \ge h(x_1+x_2)=h(x).
     $$
-    
+
     Do đó, $(x,y)\in\operatorname{epi}h$. Điều này cho thấy
     $\operatorname{epi} f + \operatorname{epi} g\subseteq \operatorname{epi}h$.
-    
+
     Ngược lại, với mọi $(x,y)\in\operatorname{epi}h$, ta có $y\ge h(x)$. Theo
     định nghĩa của $h$, với mọi $\varepsilon>0$, tồn tại $x_1+x_2=x$ sao cho
-    
+
     $$
     y + \varepsilon > f(x_1) + g(x_2).
     $$
-    
+
     Đặt $y_1=f(x_1)$ và $y_2=g(x_2)$, ta có $y+\varepsilon>y_1+y_2$. Điều này
     nói rằng với mọi $\varepsilon>0$, điểm
     $(x_1,y_1)+(x_2,y_2)\in\operatorname{epi} f + \operatorname{epi} g$ nằm trên
     đoạn thẳng nối $(x,y)$ và $(x,y+\varepsilon)$. Cho
     $\varepsilon\rightarrow 0$, ta được
     $\operatorname{epi}h \subseteq \operatorname{cl}(\operatorname{epi} f + \operatorname{epi} g)$.
-    
+
     Vì vậy, $\operatorname{epi} f + \operatorname{epi} g = \operatorname{epi}h$
     khi và chỉ khi nó là tập lồi đóng. Một điều kiện để điều này đúng là $f$ và
     $g$ đều là hàm lồi đúng và
@@ -419,7 +419,7 @@ Nhiều phép lấy nhỏ nhất thường gặp có thể chuyển thành tích
 ???+ example "Ví dụ"
     -   $f(x)=\min_{y\in [x+a,x+b]}g(y)$ vẫn là hàm lồi, vì nó có thể xem là
         tích chập dưới đúng:
-    
+
         $$
         f(x) = \min_{y\in\mathbf R}g(y) + 0_{[-b,-a]}(x-y).
         $$
@@ -428,11 +428,11 @@ Nhiều phép lấy nhỏ nhất thường gặp có thể chuyển thành tích
         nghĩa trên tập hữu hạn $\{a_i\}\subset\mathbf Z$ cũng là hàm lồi trên
         tập rời rạc đó. Lý do là sau khi mở rộng, hàm $\tilde f(x)$ có thể xem
         là tích chập dưới đúng:
-    
+
         $$
         \tilde f(x) = \min_{y\in\mathbf R}\tilde h(y)+\tilde g(x-y).
         $$
-    
+
         Do đó, hàm $f(x)$ trước khi mở rộng cũng là hàm lồi.
 
 Nhưng không phải mọi phép lấy nhỏ nhất đều bảo toàn tính lồi.
@@ -456,75 +456,129 @@ Slope Trick; cần chọn cách duy trì đoạn độ dốc phù hợp theo yê
 toán.
 
 <span id="&#x7EF4;&#x62A4;&#x62D0;&#x70B9;"></span>
-## Duy tri diem gay
+## Duy trì điểm gãy
 
-Lop bai toan nay thuong xuat hien khi can toi thieu hoa tong cua nhieu gia tri tuyet doi. Vi trong cac bai toan do, gia tri tuyet doi cua do doc cua ham gia tri khong lon, nen duy tri cac diem gay noi do doc thay doi se tien loi hon.
+Lớp bài toán này thường xuất hiện khi cần tối thiểu hóa tổng của nhiều giá trị
+tuyệt đối. Vì trong các bài toán đó, giá trị tuyệt đối của độ dốc của hàm giá
+trị không lớn, nên duy trì các điểm gãy nơi độ dốc thay đổi sẽ tiện lợi hơn.
 
-Duy tri diem gay nghia la duy tri cac diem trong ham tuyen tinh tung doan tai do do doc thay doi. Tuong duong, voi moi doan do doc $[l_i,r_i]$ co do doc $k_i$, chi duy tri thong tin hai dau mut cua no, con ban than do doc khong can duy tri rieng; do do, trong lop bai toan nay, moi khi do doc thay doi, no phai chi thay doi mot luong co dinh. Chang han, neu duy tri tap diem gay $\xi_{-s}\le\cdots\le\xi_{-1}\le\xi_{1}\le\cdots\le\xi_{t}$, dieu do tuong duong voi: do doc bang $0$ tren khoang $[\xi_{-1},\xi_1]$; moi khi di sang trai qua mot diem gay, do doc giam mot; moi khi di sang phai qua mot diem gay, do doc tang mot. Vi vay, tren khoang $[\xi_2,\xi_3]$, do doc la $2$; tren khoang $[\xi_{-3},\xi_{-2}]$, do doc la $-2$; va tuong tu. Viet bang ngon ngu hinh thuc, ham co the duoc bieu dien bang cac diem gay cua do doc nhu sau:
+Duy trì điểm gãy nghĩa là duy trì các điểm trong hàm tuyến tính từng đoạn tại đó
+độ dốc thay đổi. Tương đương, với mỗi đoạn độ dốc $[l_i,r_i]$ có độ dốc $k_i$,
+chỉ duy trì thông tin hai đầu mút của nó, còn bản thân độ dốc không cần duy trì
+riêng; do đó, trong lớp bài toán này, mỗi khi độ dốc thay đổi, nó phải chỉ thay
+đổi một lượng cố định. Chẳng hạn, nếu duy trì tập điểm gãy
+$\xi_{-s}\le\cdots\le\xi_{-1}\le\xi_{1}\le\cdots\le\xi_{t}$, điều đó tương
+đương với: độ dốc bằng $0$ trên khoảng $[\xi_{-1},\xi_1]$; mỗi khi đi sang trái
+qua một điểm gãy, độ dốc giảm một; mỗi khi đi sang phải qua một điểm gãy, độ dốc
+tăng một. Vì vậy, trên khoảng $[\xi_2,\xi_3]$, độ dốc là $2$; trên khoảng
+$[\xi_{-3},\xi_{-2}]$, độ dốc là $-2$; và tương tự. Viết bằng ngôn ngữ hình
+thức, hàm có thể được biểu diễn bằng các điểm gãy của độ dốc như sau:
 
 $$
 f(x) = f(\xi_1) + \sum_{i=-s}^{-1}\max\{\xi_i-x,0\} + \sum_{i=1}^{\ell}\max\{x-\xi_i,0\}.
 $$
 
-Gia tri nho nhat cua no la $f(\xi_{-1})=f(\xi_1)$, va co the dat duoc tai bat ky vi tri nao trong khoang $[\xi_{-1},\xi_1]$.
+Giá trị nhỏ nhất của nó là $f(\xi_{-1})=f(\xi_1)$, và có thể đạt được tại bất kỳ
+vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
 
 ![](../images/slope-trick/epigraph-convex-kinks.svg)
 
 <span id="&#x4F8B;&#x9898;&#x6700;&#x5C0F;&#x6210;&#x672C;&#x9012;&#x589E;&#x5E8F;&#x5217;"></span>
-### Vi du: day tang voi chi phi nho nhat
+### Ví dụ: dãy tăng với chi phí nhỏ nhất
 
 ???+ example "[\[BalticOI 2004\] Sequence](https://www.luogu.com.cn/problem/P4331)"
-    Cho day $\{a_i\}$ do dai $n$. Hay tim mot day tang nghiem ngat $\{b_i\}$ sao cho $\sum_i|a_i-b_i|$ nho nhat, va in ra gia tri nho nhat cung mot phuong an toi uu bat ky $\{b_i\}$.
+    Cho dãy $\{a_i\}$ độ dài $n$. Hãy tìm một dãy tăng nghiêm ngặt $\{b_i\}$ sao
+    cho $\sum_i|a_i-b_i|$ nhỏ nhất, và in ra giá trị nhỏ nhất cùng một phương án
+    tối ưu bất kỳ $\{b_i\}$.
 
-??? note "Loi giai"
-    Truoc het, $\{b_i\}$ tang nghiem ngat tuong duong voi $\{b'_i\}=\{b_i-i\}$ khong giam. Vi vay, chi can tim day khong giam $\{b'_i\}=\{b_i-i\}$ co tong sai lech nho nhat so voi $\{a'_i\}=\{a_i-i\}$, roi khoi phuc lai $\{b_i\}$.
-    
-    Xet loi giai DP truc tiep. Dat $f_i(x)$ la sai lech nho nhat giua cac so da chon va $i$ so dau cua $\{a'_i\}$, khi da chon $i$ so dau cua day $\{b'_i\}$ va so thu $i$ khong vuot qua $x$:
-    
+??? note "Lời giải"
+    Trước hết, $\{b_i\}$ tăng nghiêm ngặt tương đương với
+    $\{b'_i\}=\{b_i-i\}$ không giảm. Vì vậy, chỉ cần tìm dãy không giảm
+    $\{b'_i\}=\{b_i-i\}$ có tổng sai lệch nhỏ nhất so với
+    $\{a'_i\}=\{a_i-i\}$, rồi khôi phục lại $\{b_i\}$.
+
+    Xét lời giải DP trực tiếp. Đặt $f_i(x)$ là sai lệch nhỏ nhất giữa các số đã
+    chọn và $i$ số đầu của $\{a'_i\}$, khi đã chọn $i$ số đầu của dãy
+    $\{b'_i\}$ và số thứ $i$ không vượt quá $x$:
+
     $$
     f_i(x) = \min\sum_{j=1}^i|a'_j-b'_j|\text{ s.t. }b'_1\le b'_2\le\cdots\le b'_i\le x.
     $$
-    
-    De thay phuong trinh chuyen trang thai la
-    
+
+    Dễ thấy phương trình chuyển trạng thái là
+
     $$
     f_i(x) = \min_{y\le x}f_{i-1}(y)+|a'_i-y|.
     $$
-    
-    Trang thai ban dau la $f_0(x)\equiv 0$, va cuoi cung can tim $\min_xf_n(x)$. Dung cac phep bien doi ham loi da neu o tren, de chuyen tu $f_{i-1}(x)$ sang $f_i(x)$ can hai buoc:
-    
-    1.  Truoc het, cong them $|a'_i-x|$, tuong duong voi tang tat ca doan do doc trong khoang $(-\infty,a'_i]$ them $-1$, va tang tat ca doan do doc trong khoang $[a'_i,+\infty)$ them $1$;
-    2.  Lay gia tri nho nhat cua ham thu duoc, bien $g(x)=f_{i-1}(x)+|a'_i-x|$ thanh $f_i(x)=\min_{y\le x}g(y)$. Theo phan tich o tren, viec nay tuong duong voi lay tich chap duoi dung cua $g(x)$ va $0_{[0,+\infty)}$. Vi ham sau chi co mot doan do doc duy nhat, do doc bang $0$ va keo dai vo han sang phai, chen no vao cac doan do doc cua $g(x)$ tuong duong voi xoa tat ca doan do doc duong.
-    
-    Sau khi lam ro cac thao tac nay, ta da co the truc tiep dung cay can bang de duy tri tat ca doan do doc, nhung code se phuc tap. Chu y rang trong bai nay do doc moi lan thay doi nhieu nhat $1$, nen gia tri tuyet doi cua moi doan do doc khong vuot qua $n$. Thay vi truc tiep duy tri cac doan do doc, duy tri truc tiep cac diem gay cua do doc se tien hon.
-    
-    Gia su tap diem gay cua $f_{-1}(x)$ la $\xi_{-k}\le\cdots\le\xi_{-1}\le\xi_{1}\le\cdots\le\xi_{\ell}$. Khi do hai buoc o tren lan luot tuong ung voi:
-    
-    1.  Them mot diem gay $a'_i$ cua doan do doc am va mot diem gay $a'_i$ cua doan do doc duong;
-    2.  Pop tat ca diem gay $\xi_1,\cdots,\xi_{\ell}$ cua cac doan do doc duong.
-    
-    Khi duy tri thuc te, vi sau moi thao tac khong con diem gay cua doan do doc duong, tuc cac diem gay cua do doc co dang $\xi_{-k}\le\cdots\le\xi_{-1}$, va thao tac luon xay ra tai bien giua doan do doc am va duong, nen chi can dung mot max-heap de luu tat ca diem gay. Hai buoc lan luot tuong ung voi:
-    
-    1.  Chen $a'_i$ hai lan;
-    2.  Pop dinh heap.
-    
-    Tat nhien, sau moi lan can duy tri gia tri nho nhat hien tai cua ham. Vi sau khi thao tac ket thuc khong con doan do doc duong, gia tri nho nhat cua ham la gia tri tai dinh max-heap. Gia su truoc moi thao tac, dinh heap la $\xi_{-1}$ va gia tri nho nhat la $f_{i-1}(\xi_{-1})$. Vi dinh heap bi pop la diem gay nho nhat cua doan do doc duong, gia tri nho nhat cua ham bang gia tri ham tai do, nen chi can tinh gia tri ham tai dinh heap truoc khi pop, tuc
-    
+
+    Trạng thái ban đầu là $f_0(x)\equiv 0$, và cuối cùng cần tìm
+    $\min_xf_n(x)$. Dùng các phép biến đổi hàm lồi đã nêu ở trên, để chuyển từ
+    $f_{i-1}(x)$ sang $f_i(x)$ cần hai bước:
+
+    1.  Trước hết, cộng thêm $|a'_i-x|$, tương đương với tăng tất cả đoạn độ dốc
+        trong khoảng $(-\infty,a'_i]$ thêm $-1$, và tăng tất cả đoạn độ dốc trong
+        khoảng $[a'_i,+\infty)$ thêm $1$;
+    2.  Lấy giá trị nhỏ nhất của hàm thu được, biến
+        $g(x)=f_{i-1}(x)+|a'_i-x|$ thành $f_i(x)=\min_{y\le x}g(y)$. Theo phân
+        tích ở trên, việc này tương đương với lấy tích chập dưới đúng của
+        $g(x)$ và $0_{[0,+\infty)}$. Vì hàm sau chỉ có một đoạn độ dốc duy nhất,
+        độ dốc bằng $0$ và kéo dài vô hạn sang phải, chèn nó vào các đoạn độ dốc
+        của $g(x)$ tương đương với xóa tất cả đoạn độ dốc dương.
+
+    Sau khi làm rõ các thao tác này, ta đã có thể trực tiếp dùng cây cân bằng để
+    duy trì tất cả đoạn độ dốc, nhưng code sẽ phức tạp. Chú ý rằng trong bài này
+    độ dốc mỗi lần thay đổi nhiều nhất $1$, nên giá trị tuyệt đối của mỗi đoạn
+    độ dốc không vượt quá $n$. Thay vì trực tiếp duy trì các đoạn độ dốc, duy
+    trì trực tiếp các điểm gãy của độ dốc sẽ tiện hơn.
+
+    Giả sử tập điểm gãy của $f_{i-1}(x)$ là
+    $\xi_{-k}\le\cdots\le\xi_{-1}\le\xi_{1}\le\cdots\le\xi_{\ell}$. Khi đó hai
+    bước ở trên lần lượt tương ứng với:
+
+    1.  Thêm một điểm gãy $a'_i$ của đoạn độ dốc âm và một điểm gãy $a'_i$ của
+        đoạn độ dốc dương;
+    2.  Pop tất cả điểm gãy $\xi_1,\cdots,\xi_{\ell}$ của các đoạn độ dốc dương.
+
+    Khi duy trì thực tế, vì sau mỗi thao tác không còn điểm gãy của đoạn độ dốc
+    dương, tức các điểm gãy của độ dốc có dạng
+    $\xi_{-k}\le\cdots\le\xi_{-1}$, và thao tác luôn xảy ra tại biên giữa đoạn
+    độ dốc âm và dương, nên chỉ cần dùng một max-heap để lưu tất cả điểm gãy.
+    Hai bước lần lượt tương ứng với:
+
+    1.  Chèn $a'_i$ hai lần;
+    2.  Pop đỉnh heap.
+
+    Tất nhiên, sau mỗi lần cần duy trì giá trị nhỏ nhất hiện tại của hàm. Vì sau
+    khi thao tác kết thúc không còn đoạn độ dốc dương, giá trị nhỏ nhất của hàm
+    là giá trị tại đỉnh max-heap. Giả sử trước mỗi thao tác, đỉnh heap là
+    $\xi_{-1}$ và giá trị nhỏ nhất là $f_{i-1}(\xi_{-1})$. Vì đỉnh heap bị pop
+    là điểm gãy nhỏ nhất của đoạn độ dốc dương, giá trị nhỏ nhất của hàm bằng
+    giá trị hàm tại đó, nên chỉ cần tính giá trị hàm tại đỉnh heap trước khi
+    pop, tức
+
     $$
     f_{i-1}(\max\{a'_i,\xi_{-1}\})+|\max\{a'_i,\xi_{-1}\}-a'_i|=f_{i-1}(\xi_{-1})+\max\{0,\xi_{-1}-a'_i\}.
     $$
-    
-    Trong do, dau bang dau tien dung vi $f_{i-1}(x)$ khong co doan do doc duong. Do do, moi lan chi can lien tuc cong $\max\{0,\xi_{-1}-a'_i\}$ vao gia tri nho nhat.
-    
-    Bai nay con yeu cau in mot phuong an toi uu. Vi khi thao tac cuoi ket thuc, nghiem toi uu chinh la dinh heap, nen co the xac dinh truc tiep gia tri cua $b'_n$. Neu da biet nghiem toi uu thu $i$ la $b'_i$, de tim nghiem toi uu cua $f_{i-1}(x)$ thoa man $x\le b'$, chi can chu y rang do $f_{i-1}(x)$ la ham loi, diem cang gan diem cuc tieu toan cuc cua no thi nghiem cang tot. Vi vay, chi can ghi lai diem cuc tieu toan cuc cua $f_{i-1}(x)$, roi lay min voi $b'_i$, ta se thu duoc $b'_{i-1}$ toi uu.
-    
-    Do phuc tap thoi gian la $O(n\log n)$.
-    
+
+    Trong đó, dấu bằng đầu tiên đúng vì $f_{i-1}(x)$ không có đoạn độ dốc dương.
+    Do đó, mỗi lần chỉ cần liên tục cộng $\max\{0,\xi_{-1}-a'_i\}$ vào giá trị
+    nhỏ nhất.
+
+    Bài này còn yêu cầu in một phương án tối ưu. Vì khi thao tác cuối kết thúc,
+    nghiệm tối ưu chính là đỉnh heap, nên có thể xác định trực tiếp giá trị của
+    $b'_n$. Nếu đã biết nghiệm tối ưu thứ $i$ là $b'_i$, để tìm nghiệm tối ưu
+    của $f_{i-1}(x)$ thỏa mãn $x\le b'_i$, chỉ cần chú ý rằng do
+    $f_{i-1}(x)$ là hàm lồi, điểm càng gần điểm cực tiểu toàn cục của nó thì
+    nghiệm càng tốt. Vì vậy, chỉ cần ghi lại điểm cực tiểu toàn cục của
+    $f_{i-1}(x)$, rồi lấy min với $b'_i$, ta sẽ thu được $b'_{i-1}$ tối ưu.
+
+    Độ phức tạp thời gian là $O(n\log n)$.
+
     ```cpp
     --8<-- "docs/dp/code/opt/slope-trick/sequence.cpp"
     ```
 
-Bai mau:
+Bài mẫu:
 
 -   [Codeforces 713 C. Sonya and Problem Without a Legend](https://codeforces.com/problemset/problem/713/C)
 -   [Luogu P2893 \[USACO08FEB\] Making the Grade G](https://www.luogu.com.cn/problem/P2893)
@@ -540,47 +594,47 @@ Bai mau:
 
 ??? note "Loi giai"
     Noi dung gan giong bai truoc, chi khac rang rang buoc tren day $\{b_i\}$ da thay doi. Tuong tu, dat $f_i(x)$ la gia tri nho nhat cua tong sai lech tren $i$ so dau khi so thu $i$ nhan gia tri $x$:
-    
+
     $$
     f_i(x) = \min\sum_{j=1}^i|a_j-b_j|\text{ s.t. }|b_{j-1}-b_j|\le h,\forall 1<j\le i,~b_i=x.
     $$
-    
+
     Suy ra phuong trinh chuyen trang thai
-    
+
     $$
-    f_i(x) = |a_i-x| + \min_{|y-x|\le h} f_{i-1}(y). 
+    f_i(x) = |a_i-x| + \min_{|y-x|\le h} f_{i-1}(y).
     $$
-    
+
     Dieu kien ban dau la $f_0(x)\equiv 0$. Cuoi cung van can tinh $\min_xf_n(x)$.
-    
+
     Tach chuyen trang thai thanh cac thao tac tren ham loi, gom hai buoc:
-    
+
     1.  Truoc het lay cuc tri cua $f_{i-1}(x)$, bien thanh $\min_{|y-x|\le h} f_{i-1}(y)$, tuong duong voi tich chap duoi dung cua $f_{i-1}(x)$ va $0_{[-h,h]}(x)$;
     2.  Cong ham thu duoc voi $|a_i-x|$.
-    
+
     Cung vi do doc moi lan chi thay doi mot, co the xet duy tri diem gay. Khi do, hai thao tac nay co the mo ta nhu sau:
-    
+
     1.  Dich tat ca doan do doc am sang trai $h$, va dich tat ca doan do doc duong sang phai $h$;
     2.  Chen $a_i$ hai lan.
-    
+
     Hien nhien, voi bai nay, duy tri rieng cac doan do doc am va duong se tien loi hon. Vi thao tac chu yeu tap trung quanh doan do doc bang khong, ta dung [hai heap doi dinh](../../ds/binary-heap.md#%E5%AF%B9%E9%A1%B6%E5%A0%86), tuc dung rieng max-heap va min-heap de duy tri cac diem gay cua doan do doc am va duong. Cac phep tinh tien toan bo diem gay duoc thuc hien bang lazy tag. Vi buoc thu hai can chen mot $a_i$ vao moi heap, sau khi chen, dinh max-heap khong nhat thiet van nho hon hoac bang dinh min-heap. Khi do, hoan doi hai dinh heap cho den khi quan he thu tu cua hai dinh heap duoc thoa man.
-    
+
     Cuoi cung, xet cach cap nhat gia tri nho nhat trong qua trinh thao tac. Vi buoc tinh tien dau tien khong lam thay doi gia tri nho nhat, chi can xet thao tac hoan doi dinh heap. Gia su $\xi_{-1}>\xi_1$. Khi hoan doi hai dinh heap $\xi_{-1}$ va $\xi_1$, ham tu
-    
+
     $$
     \max\{0,x-\xi_{-1}\}+\max\{0,x-\xi_1\}
     $$
-    
+
     bien thanh
-    
+
     $$
     \max\{0,x-\xi_{1}\}+\max\{0,x-\xi_{-1}\}.
     $$
-    
+
     Trong qua trinh nay, hinh dang cua ham khong doi, chi bi tinh tien xuong duoi $|\xi_{-1}-\xi_1|$. Vi vay, de ham truoc va sau khi hoan doi dinh heap giu nguyen, chi can cong $|\xi_{-1}-\xi_1|$ vao gia tri nho nhat.
-    
+
     Do phuc tap thoi gian cua thuat toan van la $O(n\log n)$, vi sau moi lan them phan tu, thao tac hoan doi dinh heap thuc hien nhieu nhat mot lan.
-    
+
     ```cpp
     --8<-- "docs/dp/code/opt/slope-trick/safety.cpp"
     ```
@@ -606,40 +660,40 @@ Con co mot so bai toan ma viec duy tri do doc tien loi hon. Lop bai toan nay thu
 
 ??? note "Loi giai"
     Truoc het xet loi giai DP truc tiep. Dat $f_i(x)$ la loi nhuan lon nhat khi ket thuc ngay thu $i$ va dang nam giu $x\ge 0$ co phieu. Khi do
-    
+
     $$
     f_i(x) = \max\{f_{i-1}(x-1)-p_i,f_{i-1}(x),f_{i-1}(x+1)+p_i\}.
     $$
-    
+
     Trang thai ban dau la $f_0(0)=0$, va voi moi $x\neq 0$, $f_0(x)=-\infty$. Dap an cua bai toan la $f_n(0)$.
-    
+
     De chuyen tu $f_{i-1}(x)$ sang $f_i(x)$ can hai buoc:
-    
+
     1.  Lay tich chap tren dung cua $f_{i-1}(x)$ voi ham tuyen tinh tung doan $\tilde h(x)$ ung voi ham
-    
+
         $$
         h_i(x) = \begin{cases}p_i,&x=-1,\\0,&x=0,\\-p_i,&x=1\end{cases}
         $$
-    
+
         (ro rang la ham lom);
     2.  Vi viec nay lam ham co gia tri huu han tren khoang $[-1,0)$, trai voi yeu cau $x\ge 0$, nen can cat lay phan cua ham tren $[0,+\infty)$.
-    
+
     Chuyen chung thanh thay doi tren cac doan do doc, ta co hai buoc sau:
-    
+
     1.  Chen mot doan do doc co do dai $2$ va do doc $-p_i$;
     2.  Trong cac doan do doc huu han, xoa mot doan co do dai $1$ va do doc lon nhat.
-    
+
     Vi do dai cua cac doan do doc luon la so tu nhien, ta co the duy tri nhieu doan do dai mot, nhu vay chi can ghi lai do doc cua moi doan. Vi chi can chen va truy cap gia tri lon nhat, chi can dung mot max-heap. Thao tac gom hai buoc:
-    
+
     1.  Chen $-p_i$ hai lan;
     2.  Pop dinh heap.
-    
+
     Con can duy tri gia tri $f_i(0)$. Vi sau buoc dau tien, gia tri cua ham tai $x=-1$ la $f_{i-1}(0)+p_i$, nen gia tri tai $x=0$ la gia tri nay cong voi dinh heap sap bi pop, chinh la do doc cua ham tren khoang $[-1,0]$. Vi phep cat khong doi gia tri ham tai $x=0$, Day chinh la $f_i(0)$.
-    
+
     So sanh cach cai dat thuat toan nay voi code cua phan [day tang voi chi phi nho nhat](#%E4%BE%8B%E9%A2%98%E6%9C%80%E5%B0%8F%E6%88%90%E6%9C%AC%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97) o tren co the thay, thuat toan nay tuong duong voi bai toan bien day gia co phieu thanh day khong tang voi chi phi nho nhat.
-    
+
     Do phuc tap thoi gian la $O(n\log n)$.
-    
+
     ```cpp
     --8<-- "docs/dp/code/opt/slope-trick/stock.cpp"
     ```
@@ -656,47 +710,47 @@ Bai mau:
 
 ??? note "Loi giai"
     Xet loi giai DP truc tiep. Dat $f_i(x)$ la chi phi nho nhat de thoa man nhu cau cua $i$ vuon dau, va con du thuan $x$ don vi dat duoc chuyen den cac vuon phia sau. Neu $x<0$, dieu do tuong duong voi thieu rong $|x|$ don vi dat va can duoc chuyen tu cac vuon phia sau ve. Khi do co the viet phuong trinh chuyen trang thai:
-    
+
     $$
     f_i(x) = \min_{y\in\mathbf R} f_{i-1}(y) + |y|Z + h((x-y)+(b_i-a_i)).
     $$
-    
+
     Trong do, ham $h(\delta)$ bieu thi chi phi khi luong dat mua rong cua vuon hien tai la $\delta$, tuc
-    
+
     $$
     h(\delta) = \max\{0,\delta\}X + \max\{0,-\delta\}Y = \max\{\delta X,-\delta Y\}.
     $$
-    
+
     Ham nay ro rang la ham loi. Y nghia cua phuong trinh chuyen trang thai la:
-    
+
     -   Khi $i-1$ vuon truoc con du rong $y$ don vi dat, chi phi nho nhat la $f_{i-1}(y)$;
     -   Chi phi van chuyen luong dat du (hoac thieu) giua vuon $i-1$ va $i$ la $|y|Z$;
     -   Bang mua ban, dieu chinh luong dat cua vuon thu $i$ tu $a_i$ thanh $b_i$, dong thoi dieu chinh luong dat du rong tu $y$ thanh $x$, voi chi phi nho nhat la $h((x-y)+(b_i-a_i))$.
-    
+
     Trang thai ban dau la $f_0(0)=0$, va voi moi $x\neq 0$, $f_0(x)=+\infty$. Dap an cua bai toan la $f_n(0)$.
-    
+
     Co the chia phep bien doi tu $f_{i-1}(x)$ sang $f_i(x)$ thanh ba buoc:
-    
+
     1.  Truoc het cong $|x|Z$, thu duoc $f_{i-1}(x)+|x|Z$;
     2.  Sau do lay tich chap duoi dung voi $h(x)$, thu duoc $\min_{y\in\mathbf R}f_{i-1}(y)+|y|Z+h(x-y)$;
     3.  Cuoi cung, tinh tien ham sang trai $(b_i-a_i)$ don vi.
-    
+
     Chuyen thanh thao tac tren cac doan do doc, cung gom ba buoc:
-    
+
     1.  Cong $-Z$ vao tat ca doan do doc ben trai goc, va cong $Z$ vao tat ca doan do doc ben phai goc;
     2.  Thay the tat ca doan do doc nho hon $-Y$ bang $-Y$, va thay the tat ca doan do doc lon hon $X$ bang $X$;
     3.  Tinh tien tat ca doan do doc sang trai $(b_i-a_i)$ don vi.
-    
+
     Trong de goc, $a_i$ va $b_i$ rat nho, nen chi can duy tri nhieu doan do doc do dai $1$. Mac du so doan do doc la vo han, chung co can tren $X$ va can duoi $-Y$, va so doan do doc nam nghiem ngat giua hai can nay khong nhieu. Vi khong co thao tac chen, co the dung hai stack de duy tri cac doan do doc hai phia goc. Phep cong tren khoang va phep lay cuc tri tren khoang deu duoc xu ly bang lazy tag. Ba buoc tren lan luot tuong ung voi:
-    
+
     1.  Gan lazy tag cho hai stack trai va phai: ben trai cong $-Z$, ben phai cong $Z$;
     2.  Moi khi pop phan tu trong stack, lay max voi $-Y$ va min voi $X$. Neu stack trai rong thi pop $-Y$. Neu stack phai rong thi pop $X$;
     3.  Pop $(b_i-a_i)$ phan tu tren dinh stack trai va chen vao stack phai; tat nhien, khi $b_i-a_i<0$ thi lam nguoc lai.
-    
+
     Khi trao doi dinh stack, cap nhat dap an: di sang trai thi tru di do doc hien tai, di sang phai thi cong do doc hien tai.
-    
+
     Do phuc tap cua thuat toan la $O(n\max\{a_i,b_i\})$.
-    
+
     ```cpp
     --8<-- "docs/dp/code/opt/slope-trick/landscaping.cpp"
     ```

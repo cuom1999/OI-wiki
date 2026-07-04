@@ -95,7 +95,8 @@ MkDocs source layout intact.
   plug DP and DP optimization pages, plus explanatory comments in their
   included snippets; quality-passed the Slope Trick introduction, convex
   function definitions, slope/epigraph characterizations, and convex
-  transformation material in
+  transformation material, plus the opening kink-maintenance section and
+  Sequence example in
   `docs/dp/opt/slope-trick.md`.
 - `docs/string/basic.md`, `docs/string/lib-func.md`,
   `docs/string/match.md`: translated the introductory string material covering
