@@ -154,12 +154,12 @@ Một cài đặt khả dĩ của thuật toán Edmonds–Karp như sau.
     };
     
     struct EK {
-      int n, m;             // n: so dinh, m: so canh
-      vector<Edge> edges;   // edges: tap hop tat ca cac canh
-      vector<int> G[MAXN];  // G: dinh x -> chi so cac canh cua x trong edges
-      int a[MAXN], p[MAXN];  // a: dinh x -> luong lon nhat ma canh gan nhat
-                             //    cham toi x trong BFS co the gan cho x
-                             // p: dinh x -> canh gan nhat cham toi x trong BFS
+      int n, m;             // n: số đỉnh, m: số cạnh
+      vector<Edge> edges;   // edges: tập hợp tất cả các cạnh
+      vector<int> G[MAXN];  // G: đỉnh x -> chỉ số các cạnh của x trong edges
+      int a[MAXN], p[MAXN];  // a: đỉnh x -> lượng lớn nhất mà cạnh gần nhất
+                             //    chạm tới x trong BFS có thể gán cho x
+                             // p: đỉnh x -> cạnh gần nhất chạm tới x trong BFS
     
       void init(int n) {
         for (int i = 0; i < n; i++) G[i].clear();
@@ -184,23 +184,23 @@ Một cài đặt khả dĩ của thuật toán Edmonds–Karp như sau.
           while (!Q.empty()) {
             int x = Q.front();
             Q.pop();
-            for (int i = 0; i < G[x].size(); i++) {  // duyet cac canh di tu x
+            for (int i = 0; i < G[x].size(); i++) {  // duyệt các cạnh đi từ x
               Edge& e = edges[G[x][i]];
               if (!a[e.to] && e.cap > e.flow) {
-                p[e.to] = G[x][i];  // G[x][i] la canh gan nhat cham toi e.to
+                p[e.to] = G[x][i];  // G[x][i] là cạnh gần nhất chạm tới e.to
                 a[e.to] =
-                    min(a[x], e.cap - e.flow);  // luong canh gan nhat gan cho e.to
+                    min(a[x], e.cap - e.flow);  // lượng cạnh gần nhất gán cho e.to
                 Q.push(e.to);
               }
             }
-            if (a[t]) break;  // neu dinh dich da nhan luong thi thoat BFS
+            if (a[t]) break;  // nếu đỉnh đích đã nhận lượng thì thoát BFS
           }
           if (!a[t])
-            break;  // neu dinh dich khong nhan luong, s va t khong cung thanh phan lien thong
+            break;  // nếu đỉnh đích không nhận lượng, s và t không cùng thành phần liên thông
           for (int u = t; u != s;
-               u = edges[p[u]].from) {  // lan nguoc duong s -> t trong qua trinh BFS qua u
-            edges[p[u]].flow += a[t];      // tang gia tri flow tren canh cua duong
-            edges[p[u] ^ 1].flow -= a[t];  // giam gia tri flow tren duong nguoc
+               u = edges[p[u]].from) {  // lần ngược đường s -> t trong quá trình BFS qua u
+            edges[p[u]].flow += a[t];      // tăng giá trị flow trên cạnh của đường
+            edges[p[u] ^ 1].flow -= a[t];  // giảm giá trị flow trên đường ngược
           }
           flow += a[t];
         }
@@ -863,7 +863,7 @@ Tuy nhiên, trên thực tế bài báo[^ref1] chỉ ra rằng chỉ xử lý c�
     int n, m, s, t, maxflow, tot;
     int ht[N], ex[N];
     
-    void init() {  // khoi tao
+    void init() {  // khởi tạo
       for (int i = h[s]; i; i = e[i].nex) {
         const int &v = e[i].t;
         ex[v] = e[i].v, ex[s] -= ex[v], e[i ^ 1].v = e[i].v, e[i].v = 0;
@@ -875,7 +875,7 @@ Tuy nhiên, trên thực tế bài báo[^ref1] chỉ ra rằng chỉ xử lý c�
       const int &u = e[ed ^ 1].t, &v = e[ed].t;
       int flow = min(ex[u], e[ed].v);
       ex[u] -= flow, ex[v] += flow, e[ed].v -= flow, e[ed ^ 1].v += flow;
-      return ex[u];  // neu u van hoat dong, tra ve 1
+      return ex[u];  // nếu u vẫn hoạt động, trả về 1
     }
     
     void relabel(int u) {
@@ -944,36 +944,36 @@ Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụ
       add_path(t, f, 0);
     }
     
-    int ht[N + 1];        // do cao
-    long long ex[N + 1];  // luong du
-    int gap[N];           // toi uu gap. gap[i] la so dinh co do cao i
-    stack<int> B[N];      // bucket B[i] ghi tat ca v co ht[v] == i
-    int level = 0;        // do cao lon nhat cua dinh dang hoat dong
+    int ht[N + 1];        // độ cao
+    long long ex[N + 1];  // lượng dư
+    int gap[N];           // tối ưu gap. gap[i] là số đỉnh có độ cao i
+    stack<int> B[N];      // bucket B[i] ghi tất cả v có ht[v] == i
+    int level = 0;        // độ cao lớn nhất của đỉnh đang hoạt động
     
-    int push(int u) {      // day luong du qua cac canh co the day nhieu nhat co the
-      bool init = u == s;  // co dang khoi tao khong
+    int push(int u) {      // đẩy lượng dư qua các cạnh có thể đẩy nhiều nhất có thể
+      bool init = u == s;  // có đang khởi tạo không
       for (int i = h[u]; i; i = e[i].nex) {
         const int &v = e[i].t;
         const long long &w = e[i].v;
-        // Khi khoi tao khong xet hieu do cao bang 1
+        // Khi khởi tạo không xét hiệu độ cao bằng 1
         if (!w || (init == false && ht[u] != ht[v] + 1) || ht[v] == INF) continue;
         long long k = init ? w : min(w, ex[u]);
-        // Lay min cua dung luong con du va luong du. Khi khoi tao co the lam luong du cua nguon am.
+        // Lấy min của dung lượng còn dư và lượng dư. Khi khởi tạo có thể làm lượng dư của nguồn âm.
         if (v != s && v != t && !ex[v]) B[ht[v]].push(v), level = max(level, ht[v]);
         ex[u] -= k, ex[v] += k, e[i].v -= k, e[i ^ 1].v += k;  // push
-        if (!ex[u]) return 0;  // neu da day het thi tra ve
+        if (!ex[u]) return 0;  // nếu đã đẩy hết thì trả về
       }
       return 1;
     }
     
-    void relabel(int u) {  // gan lai nhan, tuc do cao
+    void relabel(int u) {  // gán lại nhãn, tức độ cao
       ht[u] = INF;
       for (int i = h[u]; i; i = e[i].nex)
         if (e[i].v) ht[u] = min(ht[u], ht[e[i].t]);
-      if (++ht[u] < n) {  // chi xu ly dinh co do cao nho hon n
+      if (++ht[u] < n) {  // chỉ xử lý đỉnh có độ cao nhỏ hơn n
         B[ht[u]].push(u);
         level = max(level, ht[u]);
-        ++gap[ht[u]];  // do cao moi, cap nhat gap
+        ++gap[ht[u]];  // độ cao mới, cập nhật gap
       }
     }
     
@@ -981,7 +981,7 @@ Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụ
       memset(ht, 0x3f, sizeof(ht));
       queue<int> q;
       q.push(t), ht[t] = 0;
-      while (q.size()) {  // BFS nguoc, gap dinh chua tham thi dua vao hang doi
+      while (q.size()) {  // BFS ngược, gặp đỉnh chưa thăm thì đưa vào hàng đợi
         int u = q.front();
         q.pop();
         for (int i = h[u]; i; i = e[i].nex) {
@@ -989,30 +989,30 @@ Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụ
           if (e[i ^ 1].v && ht[v] > ht[u] + 1) ht[v] = ht[u] + 1, q.push(v);
         }
       }
-      return ht[s] != INF;  // neu do thi khong lien thong, tra ve 0
+      return ht[s] != INF;  // nếu đồ thị không liên thông, trả về 0
     }
     
-    // Chon mot trong cac dinh co do cao lon nhat hien tai, neu khong con dinh dang hoat dong thi tra ve 0
+    // Chọn một trong các đỉnh có độ cao lớn nhất hiện tại, nếu không còn đỉnh đang hoạt động thì trả về 0
     int select() {
       while (level > -1 && B[level].size() == 0) level--;
       return level == -1 ? 0 : B[level].top();
     }
     
-    long long hlpp() {            // tra ve luong cuc dai
-      if (!bfs_init()) return 0;  // do thi khong lien thong
+    long long hlpp() {            // trả về luồng cực đại
+      if (!bfs_init()) return 0;  // đồ thị không liên thông
       memset(gap, 0, sizeof(gap));
       for (int i = 1; i <= n; i++)
-        if (ht[i] != INF) gap[ht[i]]++;  // khoi tao gap
+        if (ht[i] != INF) gap[ht[i]]++;  // khởi tạo gap
       ht[s] = n;
-      push(s);  // khoi tao tien luong
+      push(s);  // khởi tạo tiền luồng
       int u;
       while ((u = select())) {
         B[level].pop();
-        if (push(u)) {  // van dang hoat dong
+        if (push(u)) {  // vẫn đang hoạt động
           if (!--gap[ht[u]])
             for (int i = 1; i <= n; i++)
               if (i != s && ht[i] > ht[u] && ht[i] < n + 1)
-                ht[i] = n + 1;  // cac dinh duoc gan lai thanh n+1 o day deu khong dang hoat dong
+                ht[i] = n + 1;  // các đỉnh được gán lại thành n+1 ở đây đều không đang hoạt động
           relabel(u);
         }
       }

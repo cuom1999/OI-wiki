@@ -243,13 +243,13 @@ Ví dụ, kết quả duyệt theo mức của cây trong hình dưới là `[[1
       queue<Node*> q;
       q.push(root);
       while (!q.empty()) {
-        int currentLevelSize = q.size();  // So nut cua tang hien tai
+        int currentLevelSize = q.size();  // Số nút của tầng hiện tại
         res.push_back(vector<int>());
         for (int i = 0; i < currentLevelSize; ++i) {
           Node* cur = q.front();
           q.pop();
           res.back().push_back(cur->val);
-          for (Node* child : cur->children) {  // Dua tat ca nut con vao hang doi
+          for (Node* child : cur->children) {  // Đưa tất cả nút con vào hàng đợi
             q.push(child);
           }
         }
@@ -294,22 +294,22 @@ Thứ tự thăm toàn bộ cây là `1242513637`. Có thể thấy các nút c�
       TreeNode* cur = root;
       while (cur) {
         if (!cur->left) {
-          // Neu nut hien tai khong co nut con trai, in gia tri cua no roi vao cay con phai
+          // Nếu nút hiện tại không có nút con trái, in giá trị của nó rồi vào cây con phải
           std::cout << cur->val << " ";
           cur = cur->right;
           continue;
         }
-        // Tim nut ngoai cung ben phai cua cay con trai cua nut hien tai
+        // Tìm nút ngoài cùng bên phải của cây con trái của nút hiện tại
         TreeNode* mostRight = cur->left;
         while (mostRight->right && mostRight->right != cur) {
           mostRight = mostRight->right;
         }
         if (!mostRight->right) {
-          // Neu con tro right cua nut ngoai cung ben phai rong, cho no tro den nut hien tai roi vao cay con trai
+          // Nếu con trỏ right của nút ngoài cùng bên phải rỗng, cho nó trỏ đến nút hiện tại rồi vào cây con trái
           mostRight->right = cur;
           cur = cur->left;
         } else {
-          // Neu con tro right cua nut ngoai cung ben phai tro den nut hien tai, cay con trai da duoc duyet xong; in gia tri cua nut hien tai roi vao cay con phai
+          // Nếu con trỏ right của nút ngoài cùng bên phải trỏ đến nút hiện tại, cây con trái đã được duyệt xong; in giá trị của nút hiện tại rồi vào cây con phải
           mostRight->right = nullptr;
           std::cout << cur->val << " ";
           cur = cur->right;
@@ -329,17 +329,17 @@ Vì cây là đồ thị không có chu trình, chỉ cần ghi lại nút hiệ
 ???+ note "Cài đặt"
     ```cpp
     void dfs(int u, int from) {
-      // De quy vao tat ca nut con ngoai tru from
-      // Voi nut xuat phat, from rong, nen moi nut ke deu duoc tham; dieu nay dung voi mong doi
+      // Đệ quy vào tất cả nút con ngoại trừ from
+      // Với nút xuất phát, from rỗng, nên mọi nút kề đều được thăm; điều này đúng với mong đợi
       for (int v : adj[u])
         if (v != from) {
           dfs(v, u);
         }
     }
     
-    // Khi bat dau duyet
-    int EMPTY_NODE = -1;  // Mot chi so khong ton tai
-    int root = 0;         // Chon tuy y mot nut lam diem xuat phat
+    // Khi bắt đầu duyệt
+    int EMPTY_NODE = -1;  // Một chỉ số không tồn tại
+    int root = 0;         // Chọn tùy ý một nút làm điểm xuất phát
     dfs(root, EMPTY_NODE);
     ```
 
