@@ -336,6 +336,12 @@ MkDocs source layout intact.
   `docs/misc/hill-climbing.md`, `docs/misc/simulated-annealing.md`:
   translated random number generation, randomized techniques, hill climbing,
   and simulated annealing material.
+- `docs/misc/frac-programming.md`, `docs/misc/hoverline.md`,
+  `docs/misc/endianness.md`, `docs/misc/josephus.md`,
+  `docs/misc/job-order.md`, `docs/misc/main-element.md`,
+  `docs/misc/garsia-wachs.md`, `docs/misc/15-puzzle.md`,
+  `docs/misc/kahan-summation.md`, `docs/misc/space-optimization.md`:
+  translated standalone miscellaneous algorithm and implementation notes.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

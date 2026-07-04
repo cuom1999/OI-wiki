@@ -1,18 +1,18 @@
-你有 $n$ 个任务，要求你找到一个代价最小的顺序执行他们．第 $i$ 个任务花费的时间是 $t_i$，而第 $i$ 个任务等待 $t$ 的时间会花费 $f_i(t)$ 的代价．
+Có $n$ công việc, và cần tìm một thứ tự thực hiện chúng sao cho chi phí nhỏ nhất. Công việc thứ $i$ mất thời gian $t_i$, còn nếu công việc thứ $i$ phải chờ trong thời gian $t$ thì phát sinh chi phí $f_i(t)$.
 
-形式化地说，给出 $n$ 个函数 $f_i$ 和 $n$ 个数 $t_i$，求一个排列 $p$，最小化
+Nói một cách hình thức, cho $n$ hàm $f_i$ và $n$ số $t_i$, hãy tìm một hoán vị $p$ sao cho tối thiểu hóa
 
 $$
 F(p)=\sum_{i=1}^nf_{p_i}\left(\sum_{j=1}^{i-1}t_{p_j}\right)
 $$
 
-## 特殊的代价函数
+## Các hàm chi phí đặc biệt
 
-### 线性代价函数
+### Hàm chi phí tuyến tính
 
-首先我们考虑所有的函数是线性的函数，即 $f_i(x)=c_ix+d_i$，其中 $c_i$ 是非负整数．显然我们可以事先把常数项加起来，因此函数就转化为了 $f_i(x)=c_ix$ 的形式．
+Trước hết, xét trường hợp tất cả các hàm đều là hàm tuyến tính, tức là $f_i(x)=c_ix+d_i$, trong đó $c_i$ là số nguyên không âm. Rõ ràng ta có thể cộng trước các hằng số, nên hàm được chuyển về dạng $f_i(x)=c_ix$.
 
-考虑两个排列 $p$ 和 $p'$，其中 $p'$ 是把 $p$ 的第 $i$ 个位置上的数和 $i+1$ 个位置上的数交换得到的排列．则
+Xét hai hoán vị $p$ và $p'$, trong đó $p'$ là hoán vị thu được bằng cách đổi chỗ phần tử ở vị trí thứ $i$ và vị trí thứ $i+1$ của $p$. Khi đó
 
 $$
 \begin{aligned}
@@ -22,28 +22,28 @@ F(p')-F(p)&=c_{p'_i}\sum_{j=1}^{i-1}t_{p'_j}+c_{p'_{i+1}}\sum_{j=1}^{i}t_{p'_j}
 \end{aligned}
 $$
 
-于是我们使用如果 $c_{p_i}t_{p_{i+1}}-c_{p_{i+1}}t_{p_i}>0$ 就交换的策略做一下排序就可以了．写成 $\dfrac{c_{p_i}}{t_{p_i}}>\dfrac{c_{p_{i+1}}}{t_{p_{i+1}}}$ 的形式，就可以理解为将排列按 $\dfrac{c_i}{t_i}$ 升序排序．
+Vì vậy, ta chỉ cần sắp xếp theo chiến lược: nếu $c_{p_i}t_{p_{i+1}}-c_{p_{i+1}}t_{p_i}>0$ thì đổi chỗ hai phần tử. Viết lại dưới dạng $\dfrac{c_{p_i}}{t_{p_i}}>\dfrac{c_{p_{i+1}}}{t_{p_{i+1}}}$, có thể hiểu là sắp xếp hoán vị theo thứ tự tăng dần của $\dfrac{c_i}{t_i}$.
 
-处理这个问题，我们的思路是考虑微扰后的变换情况，贪心地选取最优解．
+Khi xử lý bài toán này, ý tưởng là xét sự thay đổi sau một nhiễu nhỏ, rồi chọn nghiệm tối ưu theo cách tham lam.
 
-### 指数代价函数
+### Hàm chi phí mũ
 
-考虑代价函数的形式为 $f_i(x)=c_i\mathrm{e}^{ax}$，其中 $c_i\ge 0,a>0$．
+Xét hàm chi phí có dạng $f_i(x)=c_i\mathrm{e}^{ax}$, trong đó $c_i\ge 0,a>0$.
 
-我们沿用之前的思路，考虑将 $i$ 和 $i+1$ 的位置上的数交换引起的代价变化．最终得到的算法是将排列按照 $\dfrac{1-\mathrm{e}^{at_i}}{c_i}$ 升序排序．
+Tiếp tục dùng ý tưởng trên, xét biến thiên chi phí khi đổi chỗ hai phần tử ở vị trí $i$ và $i+1$. Thuật toán cuối cùng là sắp xếp hoán vị theo thứ tự tăng dần của $\dfrac{1-\mathrm{e}^{at_i}}{c_i}$.
 
-### 相同的单增函数
+### Cùng một hàm tăng
 
-我们考虑所有的 $f_i(x)$ 是同一个单增函数．那么显然我们将排列按照 $t_i$ 升序排序即可．
+Xét trường hợp mọi $f_i(x)$ đều là cùng một hàm tăng. Khi đó rõ ràng chỉ cần sắp xếp hoán vị theo thứ tự tăng dần của $t_i$.
 
-## Livshits–Kladov 定理
+## Định lý Livshits-Kladov
 
-Livshits–Kladov 定理成立，当且仅当代价函数是以下三种情况：
+Định lý Livshits-Kladov đúng khi và chỉ khi hàm chi phí thuộc một trong ba trường hợp sau:
 
--   线性函数：$f_i(t) = c_it + d_i$，其中 $c_i\ge 0$；
--   指数函数：$f_i(t) = c_i \mathrm{e}^{a t} + d_i$，其中 $c_i,a>0$；
--   相同的单增函数：$f_i(t) = \phi(t)$，其中 $\phi(t)$ 是一个单增函数．
+-   Hàm tuyến tính: $f_i(t) = c_it + d_i$, trong đó $c_i\ge 0$;
+-   Hàm mũ: $f_i(t) = c_i \mathrm{e}^{a t} + d_i$, trong đó $c_i,a>0$;
+-   Cùng một hàm tăng: $f_i(t) = \phi(t)$, trong đó $\phi(t)$ là một hàm tăng.
 
-定理是在假设代价函数足够平滑（存在三阶导数）的条件下证明的．在这三种情况下，问题的最优解可以通过简单的排序在 $O(n\log n)$ 的时间内解决．
+Định lý được chứng minh dưới giả thiết hàm chi phí đủ trơn, tức là có đạo hàm bậc ba. Trong cả ba trường hợp này, nghiệm tối ưu của bài toán có thể được tìm bằng một phép sắp xếp đơn giản trong thời gian $O(n\log n)$.
 
-**本页面主要译自博文 [Задача Джонсона с одним станком](http://e-maxx.ru/algo/johnson_problem_1) 与其英文翻译版 [Scheduling jobs on one machine](https://cp-algorithms.com/schedules/schedule_one_machine.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+**Trang này chủ yếu được dịch từ bài viết [Задача Джонсона с одним станком](http://e-maxx.ru/algo/johnson_problem_1) và bản dịch tiếng Anh [Scheduling jobs on one machine](https://cp-algorithms.com/schedules/schedule_one_machine.html). Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**

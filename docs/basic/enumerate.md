@@ -129,4 +129,4 @@ Dưới đây là một ví dụ về cách dùng liệt kê để giải bài v
 
 ## Chú thích
 
-[^1]: [Sắp xếp thùng](../basic/bucket-sort.md), [Bài toán phần tử chính](../misc/main-element.md#离线算法) và [phần giải thích về cấu trúc dữ liệu thùng trên Stack Overflow](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure) (tiếng Anh)
+[^1]: [Sắp xếp thùng](../basic/bucket-sort.md), [Bài toán phần tử chính](../misc/main-element.md#thuật-toán-offline) và [phần giải thích về cấu trúc dữ liệu thùng trên Stack Overflow](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure) (tiếng Anh)

@@ -1,28 +1,28 @@
-## 引入
+## Dẫn nhập
 
-**Kahan 求和** 算法，又名补偿求和或进位求和算法，是一个用来 **降低有限精度浮点数序列累加值误差** 的算法．它主要通过保持一个单独变量用来累积误差（常用变量名为 $c$）来完成的．
+Thuật toán **Kahan summation**, còn gọi là thuật toán cộng bù hoặc cộng có bù sai số, là một thuật toán dùng để **giảm sai số của tổng tích lũy trên một dãy số thực dấu phẩy động có độ chính xác hữu hạn**. Thuật toán chủ yếu làm việc này bằng cách giữ một biến riêng để tích lũy sai số, thường dùng tên biến $c$.
 
-该算法主要由 William Kahan 于 1960s 发现．因为 Ivo Babuška 也曾独立提出了一个类似的算法，Kahan 求和算法又名为 Kahan–Babuška 求和算法．
+Thuật toán này chủ yếu do William Kahan phát hiện vào thập niên 1960. Vì Ivo Babuška cũng từng độc lập đề xuất một thuật toán tương tự, thuật toán Kahan summation còn được gọi là thuật toán Kahan–Babuška summation.
 
-## 舍入误差
+## Sai số làm tròn
 
-在计算机程序中，我们需要用有限位数对实数做近似表示，如今的大多数计算机都使用 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754) 规定的浮点数来作为这个近似表示．对于 $\frac{1}{3}$，由于我们不能在有限位数内对它进行精准表示，因此在使用 IEEE-754 表示法时，必须四舍五入一部分数值（truncate）．这种 **舍入误差**（Rounding off error）是浮点计算的一个特征．
+Trong chương trình máy tính, ta cần biểu diễn xấp xỉ số thực bằng một số hữu hạn chữ số. Ngày nay, hầu hết máy tính dùng số dấu phẩy động theo chuẩn [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754) cho biểu diễn xấp xỉ này. Với $\frac{1}{3}$, vì không thể biểu diễn chính xác nó bằng hữu hạn chữ số, nên khi dùng biểu diễn IEEE-754, một phần giá trị bắt buộc phải được làm tròn hoặc cắt bỏ (truncate). **Sai số làm tròn** (Rounding off error) này là một đặc trưng của tính toán dấu phẩy động.
 
-在浮点加法计算中，交换律（commutativity）成立，但结合律（associativity）不成立．也就是说，$a+b = b+a$ 但 $(a+b)+c \neq a+(b+c)$．因此在浮点序列加法计算中，我们可以从左到右一个个累加，也可以在原有顺序上，将他们两两分成一对．第二种算法会相对较慢并需要更多内存，也常被一些语言的特定求和函数使用，但相对结果更准确．
+Trong phép cộng dấu phẩy động, tính giao hoán (commutativity) đúng, nhưng tính kết hợp (associativity) không đúng. Nói cách khác, $a+b = b+a$ nhưng $(a+b)+c \neq a+(b+c)$. Vì vậy, khi cộng một dãy số dấu phẩy động, ta có thể cộng lần lượt từ trái sang phải, hoặc giữ nguyên thứ tự ban đầu rồi ghép các phần tử thành từng cặp để cộng. Thuật toán thứ hai thường chậm hơn và cần nhiều bộ nhớ hơn, cũng thường được một số hàm tính tổng chuyên dụng của các ngôn ngữ sử dụng, nhưng kết quả tương đối chính xác hơn.
 
-为了得到更准确的浮点累加结果，我们需要使用 Kahan 求和算法．
+Để thu được kết quả cộng tích lũy dấu phẩy động chính xác hơn, ta cần dùng thuật toán Kahan summation.
 
-在计算 $S_{new}=S_{old}+a$（$a$ 为浮点序列的一个数值）时，定义实际计算加入 $S$ 的值为 $a_{eff}=S_{new}-S_{old}$, 如果 $a_{eff}$ 比 $a$ 大，则证明有向上舍入误差；如果 $a_{eff}$ 比 $a$ 小，则证明有向下舍入误差．则舍入误差定义为 $E_{roundoff} = a_{eff} - a$．那么用来纠正这部分舍入误差的值就为 $a-a_{eff}$, 即 $E_{roundoff}$ 的负值．定义 $c$ 是对丢失的低位进行运算补偿的变量，就可以得到 $c_{new} = c_{old} + (a - a_{eff})$．
+Khi tính $S_{new}=S_{old}+a$ (trong đó $a$ là một giá trị của dãy dấu phẩy động), định nghĩa giá trị thực sự được cộng vào $S$ là $a_{eff}=S_{new}-S_{old}$. Nếu $a_{eff}$ lớn hơn $a$, nghĩa là có sai số làm tròn lên; nếu $a_{eff}$ nhỏ hơn $a$, nghĩa là có sai số làm tròn xuống. Khi đó sai số làm tròn được định nghĩa là $E_{roundoff} = a_{eff} - a$. Giá trị dùng để hiệu chỉnh phần sai số làm tròn này là $a-a_{eff}$, tức là giá trị đối của $E_{roundoff}$. Gọi $c$ là biến bù cho các bit thấp bị mất trong phép tính, ta có $c_{new} = c_{old} + (a - a_{eff})$.
 
-## 过程
+## Quy trình
 
-Kahan 求和算法主要通过一个单独变量用来累积误差．如下方参考代码所示，$sum$ 为最终返回的累加结果．$c$ 是对丢失的低位进行运算补偿的变量（其被舍去的部分），也是 Kahan 求和算法中的必要变量．
+Thuật toán Kahan summation chủ yếu dùng một biến riêng để tích lũy sai số. Như đoạn mã tham khảo dưới đây, $sum$ là kết quả tổng cuối cùng được trả về. $c$ là biến bù cho các bit thấp bị mất trong phép tính (phần đã bị loại bỏ), và cũng là biến cần thiết trong thuật toán Kahan summation.
 
-因为 $sum$ 大，$y$ 小，所以 $y$ 的低位数丢失．$(t - sum)$ 抵消了 $y$ 的高阶部分，减去 $y$ 则会恢复负值（$y$ 的低价部分）．因此代数值中 $c$ 始终为零．在下一轮迭代中，丢失的低位部分会被更新添加到 $y$．
+Vì $sum$ lớn còn $y$ nhỏ, các bit thấp của $y$ bị mất. $(t - sum)$ triệt tiêu phần bậc cao của $y$, rồi trừ $y$ sẽ khôi phục giá trị âm, tức phần bậc thấp của $y$. Do đó, về mặt đại số, $c$ luôn bằng không. Trong vòng lặp tiếp theo, phần bit thấp bị mất sẽ được cập nhật và cộng vào $y$.
 
-## 实现
+## Cài đặt
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     float kahanSum(vector<float> nums) {
       float sum = 0.0f;
@@ -37,23 +37,23 @@ Kahan 求和算法主要通过一个单独变量用来累积误差．如下方�
     }
     ```
 
-## 习题
+## Bài tập
 
-在 OI 中，Kahan 求和主要作为辅助工具存在，为计算结果提供误差更小的值．
+Trong OI, Kahan summation chủ yếu tồn tại như một công cụ phụ trợ, cung cấp giá trị có sai số nhỏ hơn cho kết quả tính toán.
 
-???+ note "例题 [CodeForces Contest 800 Problem A. Voltage Keepsake](https://codeforces.com/contest/800/problem/A)"
-    有 $n$ 个同时使用的设备．第 $i$ 个设备每秒使用 $a_{i}$ 单位的功率．这种用法是连续的．也就是说，在 $\lambda$ 秒内，设备将使用 $\lambda \times a_{i}$ 单位的功率．第 $i$ 个设备当前存储了 $b_{i}$ 单位的电力．所有设备都可以存储任意数量的电量．有一个可以插入任何单个设备的充电器．充电器每秒会为设备增加 $p$ 个单位的电量．这种充电是连续的．也就是说，如果将设备插入 $\lambda$ 秒，它将获得 $\lambda \times p$ 单位的功率．我们可以在任意时间单位内（包括实数）切换哪个设备正在充电（切换所需时间忽略不计）．求其中一个设备达到 $0$ 单位功率前，可以使用这些设备的最长时间．
+???+ note "Ví dụ [CodeForces Contest 800 Problem A. Voltage Keepsake](https://codeforces.com/contest/800/problem/A)"
+    Có $n$ thiết bị đang được sử dụng đồng thời. Thiết bị thứ $i$ tiêu thụ $a_{i}$ đơn vị năng lượng mỗi giây. Việc tiêu thụ này là liên tục. Nghĩa là trong $\lambda$ giây, thiết bị sẽ tiêu thụ $\lambda \times a_{i}$ đơn vị năng lượng. Thiết bị thứ $i$ hiện lưu trữ $b_{i}$ đơn vị điện năng. Mọi thiết bị đều có thể lưu trữ lượng điện bất kỳ. Có một bộ sạc có thể cắm vào bất kỳ một thiết bị đơn lẻ nào. Mỗi giây, bộ sạc bổ sung $p$ đơn vị điện năng cho thiết bị. Việc sạc cũng là liên tục. Nghĩa là nếu cắm thiết bị trong $\lambda$ giây, nó sẽ nhận được $\lambda \times p$ đơn vị năng lượng. Ta có thể chuyển thiết bị đang được sạc tại bất kỳ thời điểm nào, kể cả thời điểm thực, và thời gian chuyển đổi được bỏ qua. Hãy tìm thời gian dài nhất có thể sử dụng các thiết bị trước khi một thiết bị nào đó đạt mức $0$ đơn vị năng lượng.
 
-???+ note "例题 [CodeForces Contest 504 Problem B. Misha and Permutations Summation](https://codeforces.com/problemset/problem/504/B)"
-    定义数字 $0, 1, \cdots, (n - 1)$ 的两个排列 $p$ 和 $q$ 的和为 $Perm((Ord(p)+Ord(q))\bmod n!)$，其中 $Perm(x)$ 是数字 $0, 1, \cdots, (n-1)$ 的第 $x$ 个字典排列（从零开始计数），$Ord(p)$ 是字典序排列 $p$ 的个数．例如，$Perm(0) = (0, 1, \cdots , n - 2, n - 1)$，$Perm(n! - 1) = (n - 1, n-2,\cdots, 1,0))$．Misha 有两个排列 $p$ 和 $q$，找到它们的总和．
+???+ note "Ví dụ [CodeForces Contest 504 Problem B. Misha and Permutations Summation](https://codeforces.com/problemset/problem/504/B)"
+    Định nghĩa tổng của hai hoán vị $p$ và $q$ của các số $0, 1, \cdots, (n - 1)$ là $Perm((Ord(p)+Ord(q))\bmod n!)$, trong đó $Perm(x)$ là hoán vị theo thứ tự từ điển thứ $x$ của các số $0, 1, \cdots, (n-1)$, tính từ $0$, còn $Ord(p)$ là số thứ tự từ điển của hoán vị $p$. Ví dụ, $Perm(0) = (0, 1, \cdots , n - 2, n - 1)$, $Perm(n! - 1) = (n - 1, n-2,\cdots, 1,0))$. Misha có hai hoán vị $p$ và $q$; hãy tìm tổng của chúng.
 
-## 编程语言的求和
+## Phép tính tổng trong các ngôn ngữ lập trình
 
-Python 的标准库指定了精确舍入求和的 [fsum](https://docs.python.org/3/library/math.html#math.fsum) 函数可用于返回可迭代对象中值的准确浮点总和，它通过使用 Shewchuk 算法跟踪多个中间部分和来避免精度损失．
+Thư viện chuẩn Python cung cấp hàm [fsum](https://docs.python.org/3/library/math.html#math.fsum) để tính tổng làm tròn chính xác, dùng để trả về tổng dấu phẩy động chính xác của các giá trị trong một đối tượng khả lặp. Hàm này tránh mất độ chính xác bằng cách dùng thuật toán Shewchuk để theo dõi nhiều tổng trung gian từng phần.
 
-Julia 语言中，[sum](https://docs.julialang.org/en/v1/base/collections/#Base.sum) 函数的默认实现是成对求和，以获得高精度和良好的性能．同时外部库函数 [sum\_kbn](http://www.jlhub.com/julia/manual/en/function/sum_kbn) 为需要更高精度的情况提供了 Neumaier 变体的实现，具体可见 [KahanSummation.jl](https://github.com/JuliaMath/KahanSummation.jl)．
+Trong Julia, cài đặt mặc định của hàm [sum](https://docs.julialang.org/en/v1/base/collections/#Base.sum) là cộng theo cặp để đạt độ chính xác cao và hiệu năng tốt. Đồng thời, hàm thư viện ngoài [sum\_kbn](http://www.jlhub.com/julia/manual/en/function/sum_kbn) cung cấp cài đặt biến thể Neumaier cho các trường hợp cần độ chính xác cao hơn; xem thêm [KahanSummation.jl](https://github.com/JuliaMath/KahanSummation.jl).
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
 1.  [Kahan\_summation\_algorithm - Wikipedia](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
 2.  [Kahan summation - Rosetta Code](https://rosettacode.org/wiki/Kahan_summation)

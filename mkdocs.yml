@@ -512,25 +512,25 @@ nav:
         - Thuật toán Mo hai chiều: misc/mo-algo-2dimen.md
         - Thuật toán Mo với offline lần hai: misc/mo-algo-secondary-offline.md
         - Thuật toán Mo kết hợp bitset: misc/mo-algo-with-bitset.md
-    - 分数规划: misc/frac-programming.md
+    - Quy hoạch phân thức: misc/frac-programming.md
     - Ngẫu nhiên hóa:
       - Hàm ngẫu nhiên: misc/random.md
       - Kỹ thuật ngẫu nhiên hóa: misc/rand-technique.md
       - Thuật toán leo đồi: misc/hill-climbing.md
       - Mô phỏng luyện kim: misc/simulated-annealing.md
-    - 悬线法: misc/hoverline.md
+    - Phương pháp đường treo: misc/hoverline.md
     - 有限状态自动机: misc/fsm.md
     - 计算理论基础: misc/cc-basic.md
-    - 字节顺序: misc/endianness.md
-    - 约瑟夫问题: misc/josephus.md
+    - Thứ tự byte: misc/endianness.md
+    - Bài toán Josephus: misc/josephus.md
     - 表达式求值: misc/expression.md
-    - 在一台机器上规划任务: misc/job-order.md
-    - 主元素问题: misc/main-element.md
-    - Garsia–Wachs 算法: misc/garsia-wachs.md
+    - Lập lịch tác vụ trên một máy: misc/job-order.md
+    - Bài toán phần tử chính: misc/main-element.md
+    - Thuật toán Garsia-Wachs: misc/garsia-wachs.md
     - 15-puzzle: misc/15-puzzle.md
-    - Kahan 求和: misc/kahan-summation.md
+    - Phép cộng Kahan: misc/kahan-summation.md
     - 珂朵莉树/颜色段均摊: misc/odt.md
-    - 空间优化简介: misc/space-optimization.md
+    - Giới thiệu tối ưu bộ nhớ: misc/space-optimization.md
   - Chuyên Đề:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md

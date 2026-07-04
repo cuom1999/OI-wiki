@@ -1,65 +1,65 @@
 author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
-## 引入
+## Giới thiệu
 
-悬线法的适用范围是单调栈的子集．具体来说，悬线法可以应用于满足以下条件的题目：
+Phương pháp đường treo có phạm vi áp dụng là một tập con của stack đơn điệu. Cụ thể, có thể áp dụng phương pháp đường treo cho các bài toán thỏa mãn các điều kiện sau:
 
--   需要在扫描序列时维护单调的信息；
--   可以使用单调栈解决；
--   不需要在单调栈上二分．
+-   Cần duy trì thông tin đơn điệu khi quét dãy;
+-   Có thể giải bằng stack đơn điệu;
+-   Không cần tìm kiếm nhị phân trên stack đơn điệu.
 
-看起来悬线法可以被替代，用处不大，但是悬线法概念比单调栈简单，更适合初学 OI 的选手理解并解决最大子矩阵等问题．
+Thoạt nhìn, phương pháp đường treo có thể được thay thế và không quá hữu dụng. Tuy vậy, khái niệm của nó đơn giản hơn stack đơn điệu, phù hợp hơn để người mới học OI hiểu và giải các bài như hình chữ nhật con lớn nhất.
 
-## 例题
+## Ví dụ
 
 ???+ note "[SPOJ HISTOGRA - Largest Rectangle in a Histogram](https://www.spoj.com/problems/HISTOGRA)"
-    大意：在一条水平线上有 $n$ 个宽为 $1$ 的矩形，求包含于这些矩形的最大子矩形面积．
+    Tóm tắt: Trên một đường thẳng nằm ngang có $n$ hình chữ nhật, mỗi hình rộng $1$. Hãy tìm diện tích hình chữ nhật con lớn nhất nằm trong các hình chữ nhật đó.
 
-悬线，就是一条竖线，这条竖线有初始位置和高度两个性质，可以在其上端点不超过当前位置的矩形高度的情况下左右移动．
+Đường treo là một đoạn thẳng đứng. Đoạn thẳng này có hai thuộc tính là vị trí ban đầu và chiều cao; nó có thể di chuyển sang trái hoặc phải miễn là đầu trên của nó không vượt quá chiều cao hình chữ nhật tại vị trí hiện tại.
 
-对于一条悬线，我们在这条上端点不超过当前位置的矩形高度且不移出边界的前提下，将这条悬线左右移动，求出其最多能向左和向右扩展到何处，此时这条悬线扫过的面积就是包含这条悬线的尽可能大的矩形．容易发现，最大子矩形必定是包含一条初始位置为 $i$，高度为 $h_i$ 的悬线．枚举实现这个过程的时间复杂度为 $O(n ^ 2)$，但是我们可以用悬线法将其优化到 $O(n)$．
+Với một đường treo, ta di chuyển nó sang trái và phải trong điều kiện đầu trên không vượt quá chiều cao hình chữ nhật tại vị trí hiện tại và không ra khỏi biên, từ đó tìm vị trí xa nhất mà nó có thể mở rộng sang trái và sang phải. Khi đó diện tích mà đường treo quét qua chính là hình chữ nhật lớn nhất có thể chứa đường treo này. Dễ thấy hình chữ nhật con lớn nhất chắc chắn chứa một đường treo có vị trí ban đầu là $i$ và chiều cao là $h_i$. Nếu mô phỏng bằng cách liệt kê thì độ phức tạp là $O(n ^ 2)$, nhưng ta có thể dùng phương pháp đường treo để tối ưu xuống $O(n)$.
 
-我们考虑如何快速找到悬线可以到达的最左边的位置．
+Ta xét cách nhanh chóng tìm vị trí ngoài cùng bên trái mà đường treo có thể chạm tới.
 
-### 过程
+### Quy trình
 
-定义 $l_i$ 为当前找到的 $i$ 位置的悬线能扩展到的最左边的位置，容易得到 $l_i$ 初始为 $i$，我们需要进一步判断还能不能进一步往左扩展．
+Định nghĩa $l_i$ là vị trí ngoài cùng bên trái hiện tìm được mà đường treo tại vị trí $i$ có thể mở rộng tới. Ban đầu rõ ràng $l_i=i$; tiếp theo ta cần kiểm tra xem nó còn có thể mở rộng thêm sang trái hay không.
 
--   如果当前 $l_i = 1$，则已经扩展到了边界，不可以．
--   如果当前 $a_i > a_{l_i - 1}$，则从当前悬线扩展到的位置不能再往左扩展了．
--   如果当前 $a_i \le a_{l_i - 1}$，则从当前悬线还可以往左扩展，并且 $l_i - 1$ 位置的悬线能向左扩展到的位置，$i$ 位置的悬线一定也可以扩展到，于是我们将 $l_i$ 更新为 $l_{l_i - 1}$，并继续执行判断．
+-   Nếu hiện tại $l_i = 1$, đường treo đã mở rộng tới biên, nên không thể mở rộng thêm.
+-   Nếu hiện tại $a_i > a_{l_i - 1}$, đường treo không thể mở rộng thêm sang trái từ vị trí hiện tại.
+-   Nếu hiện tại $a_i \le a_{l_i - 1}$, đường treo vẫn có thể mở rộng sang trái; hơn nữa, vị trí ngoài cùng bên trái mà đường treo tại $l_i - 1$ có thể mở rộng tới thì đường treo tại $i$ cũng chắc chắn mở rộng tới được. Vì vậy ta cập nhật $l_i$ thành $l_{l_i - 1}$ rồi tiếp tục kiểm tra.
 
-通过摊还分析，可以证明每个 $l_i$ 最多会被其他的 $l_j$ 遍历到一次，因此时间复杂度为 $O(n)$．
+Bằng phân tích khấu hao, có thể chứng minh mỗi $l_i$ nhiều nhất chỉ bị các $l_j$ khác duyệt tới một lần, nên độ phức tạp thời gian là $O(n)$.
 
-### 实现
+### Cài đặt
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/hoverline/hoverline_1.cpp"
     ```
 
-???+ note "[UVa1619 感觉不错 Feel Good](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4494)"
-    对于一个长度为 $n$ 的数列，找出一个子区间，使子区间内的最小值与子区间内元素和的乘积最大，要求在满足舒适值最大的情况下最小化长度，最小化长度的情况下最小化左端点序号．
+???+ note "[UVa1619 Feel Good](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4494)"
+    Với một dãy số độ dài $n$, hãy tìm một đoạn con sao cho tích giữa giá trị nhỏ nhất trong đoạn và tổng các phần tử trong đoạn là lớn nhất. Khi cùng đạt giá trị thoải mái lớn nhất, yêu cầu đoạn có độ dài nhỏ nhất; nếu vẫn còn hòa, chọn đoạn có chỉ số đầu trái nhỏ nhất.
 
-本题中我们可以考虑枚举最小值，将每个位置的数 $a_i$ 当作最小值，并考虑从 $i$ 向左右扩展，找到满足 $\min\limits _ {j = l} ^ r a_j = a_i$ 的尽可能向左右扩展的区间 $[l, r]$．这样本题就被转化成了悬线法模型．
+Trong bài này, ta có thể xét liệt kê giá trị nhỏ nhất: xem số $a_i$ ở mỗi vị trí là giá trị nhỏ nhất, rồi mở rộng từ $i$ sang hai bên để tìm đoạn $[l, r]$ mở rộng xa nhất sao cho $\min\limits _ {j = l} ^ r a_j = a_i$. Như vậy bài toán được chuyển thành mô hình đường treo.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/hoverline/hoverline_2.cpp"
     ```
 
-## 最大子矩形
+## Hình chữ nhật con lớn nhất
 
-???+ note "[P4147 玉蟾宫](https://www.luogu.com.cn/problem/P4147)"
-    给定一个 $n \times m$ 的包含 `'F'` 和 `'R'` 的矩阵，求其面积最大的子矩阵的面积 $\times 3$，使得这个子矩阵中的每一位的值都为 `'F'`．
+???+ note "[P4147 Yu Chan Gong](https://www.luogu.com.cn/problem/P4147)"
+    Cho một ma trận $n \times m$ gồm các ký tự `'F'` và `'R'`. Hãy tìm diện tích của ma trận con lớn nhất chỉ gồm toàn ký tự `'F'`, rồi nhân diện tích đó với $3$.
 
-我们会发现本题的模型和第一题的模型很像．仔细分析，发现如果我们每次只考虑某一行的所有元素，将位置 $(x, y)$ 的元素尽可能向上扩展的距离作为该位置的悬线长度，那最大子矩阵一定是这些悬线向左右扩展得到的尽可能大的矩形中的一个．
+Ta sẽ thấy mô hình của bài này rất giống bài đầu tiên. Phân tích kỹ hơn, nếu mỗi lần chỉ xét tất cả phần tử trên một hàng, rồi lấy khoảng cách mà phần tử tại vị trí $(x, y)$ có thể mở rộng lên trên xa nhất làm độ dài đường treo tại vị trí đó, thì ma trận con lớn nhất chắc chắn là một trong các hình chữ nhật lớn nhất thu được bằng cách mở rộng các đường treo này sang trái và phải.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/hoverline/hoverline_3.cpp"
     ```
 
-## 习题
+## Bài tập
 
--   [P1169「ZJOI2007」棋盘制作](https://www.luogu.com.cn/problem/P1169)
+-   [P1169 \[ZJOI2007\] Làm bàn cờ](https://www.luogu.com.cn/problem/P1169)

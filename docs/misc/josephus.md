@@ -1,32 +1,32 @@
-约瑟夫问题由来已久，而这个问题的解法也在不断改进，只是目前仍没有一个极其高效的算法（log 以内）解决这个问题．
+Bài toán Josephus đã có lịch sử lâu đời, và các cách giải của nó cũng liên tục được cải tiến. Tuy vậy, hiện vẫn chưa có thuật toán cực kỳ hiệu quả, chẳng hạn dưới mức logarit, để giải bài toán này.
 
-## 问题描述
+## Mô tả bài toán
 
-> n 个人标号 $0,1,\cdots, n-1$．逆时针站一圈，从 $0$ 号开始，每一次从当前的人逆时针数 $k$ 个，然后让这个人出局．问最后剩下的人是谁．
+> Có $n$ người được đánh số $0,1,\cdots, n-1$. Họ đứng thành một vòng tròn theo chiều ngược kim đồng hồ. Bắt đầu từ người số $0$, mỗi lần đếm ngược chiều kim đồng hồ $k$ người kể từ người hiện tại, rồi loại người đó khỏi vòng. Hỏi người cuối cùng còn lại là ai.
 
-这个经典的问题由约瑟夫于公元 1 世纪提出，尽管他当时只考虑了 $k=2$ 的情况．现在我们可以用许多高效的算法解决这个问题．
+Bài toán kinh điển này được Josephus nêu ra vào thế kỷ 1 sau Công nguyên, dù khi đó ông chỉ xét trường hợp $k=2$. Hiện nay ta có nhiều thuật toán hiệu quả để giải bài toán này.
 
-## 过程
+## Cách làm
 
-### 朴素算法
+### Thuật toán vét cạn
 
-最朴素的算法莫过于直接枚举．用一个环形链表枚举删除的过程，重复 $n-1$ 次得到答案．复杂度 $\Theta (n^2)$．
+Thuật toán đơn giản nhất là mô phỏng trực tiếp. Dùng một danh sách liên kết vòng để mô phỏng quá trình xóa, lặp lại $n-1$ lần để thu được đáp án. Độ phức tạp là $\Theta (n^2)$.
 
-### 简单优化
+### Tối ưu đơn giản
 
-寻找下一个人的过程可以用线段树优化．具体地，开一个 $0,1,\cdots, n-1$ 的线段树，然后记录区间内剩下的人的个数．寻找当前的人的位置以及之后的第 $k$ 个人可以在线段树上二分做．
+Quá trình tìm người tiếp theo có thể được tối ưu bằng cây đoạn. Cụ thể, xây một cây đoạn trên các vị trí $0,1,\cdots, n-1$, rồi lưu số người còn lại trong mỗi đoạn. Khi cần tìm vị trí của người hiện tại và người thứ $k$ sau đó, ta có thể nhị phân trên cây đoạn.
 
-### 线性算法
+### Thuật toán tuyến tính
 
-设 $J_{n,k}$ 表示规模分别为 $n,k$ 的约瑟夫问题的答案．我们有如下递归式
+Gọi $J_{n,k}$ là đáp án của bài toán Josephus với tham số $n,k$. Ta có công thức truy hồi sau:
 
 $$
 J_{n,k}=(J_{n-1,k}+k)\bmod n
 $$
 
-这个也很好推．你从 $0$ 开始数 $k$ 个，让第 $k-1$ 个人出局后剩下 $n-1$ 个人，你计算出在 $n-1$ 个人中选的答案后，再加一个相对位移 $k$ 得到真正的答案．这个算法的复杂度显然是 $\Theta (n)$ 的．
+Công thức này cũng dễ suy ra. Bắt đầu đếm từ $0$ qua $k$ người, sau khi người thứ $k-1$ bị loại thì còn lại $n-1$ người. Nếu đã tính được đáp án trong vòng gồm $n-1$ người đó, ta cộng thêm độ lệch tương đối $k$ để thu được đáp án thật. Độ phức tạp của thuật toán này hiển nhiên là $\Theta (n)$.
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     int josephus(int n, int k) {
       int res = 0;
@@ -35,44 +35,44 @@ $$
     }
     ```
 
-### 对数算法
+### Thuật toán logarit
 
-对于 $k$ 较小 $n$ 较大的情况，本题还有一种复杂度为 $\Theta (k\log n)$ 的算法．
+Khi $k$ nhỏ và $n$ lớn, bài toán còn có một thuật toán độ phức tạp $\Theta (k\log n)$.
 
-考虑到我们每次走 $k$ 个删一个，那么在一圈以内我们可以删掉 $\left\lfloor\frac{n}{k}\right\rfloor$ 个，然后剩下了 $n-\left\lfloor\frac{n}{k}\right\rfloor$ 个人．这时我们在第 $\left\lfloor\frac{n}{k}\right\rfloor\cdot k$ 个人的位置上．而你发现它等于 $n-n\bmod k$．于是我们继续递归处理，算完后还原它的相对位置．还原相对位置的依据是：每次做一次删除都会把数到的第 $k$ 个人删除，他们的编号被之后的人逐个继承，也即用 $n-\left\lfloor\frac{n}{k}\right\rfloor$ 人环算时每 $k$ 个人即有 $1$ 个人的位置失算，因此在得数小于 $0$ 时，用还没有被删去 $k$ 倍数编号的 $n$ 人环的 的 $n$ 求模，在得数大于等于 $0$ 时，即可以直接乘 $\frac{k}{k-1}$, 于是得到如下的算法：
+Vì mỗi lần ta đi qua $k$ người rồi xóa một người, trong một vòng ta có thể xóa $\left\lfloor\frac{n}{k}\right\rfloor$ người, và còn lại $n-\left\lfloor\frac{n}{k}\right\rfloor$ người. Khi đó ta đang ở vị trí người thứ $\left\lfloor\frac{n}{k}\right\rfloor\cdot k$, tức là $n-n\bmod k$. Ta tiếp tục xử lý đệ quy, rồi khôi phục vị trí tương đối sau khi tính xong. Cơ sở của việc khôi phục là: mỗi lần xóa sẽ loại người thứ $k$ được đếm tới, và chỉ số của họ được những người phía sau kế thừa lần lượt. Vì vậy, khi tính trên vòng gồm $n-\left\lfloor\frac{n}{k}\right\rfloor$ người, cứ mỗi $k$ người lại có $1$ vị trí bị lệch. Nếu kết quả nhỏ hơn $0$, ta lấy modulo $n$ trên vòng $n$ người mà các chỉ số bội của $k$ chưa bị xóa; nếu kết quả không âm, có thể khôi phục trực tiếp bằng cách nhân với $\frac{k}{k-1}$. Từ đó thu được thuật toán sau:
 
-???+ note "实现"
+???+ note "Cài đặt"
     ```cpp
     int josephus(int n, int k) {
       if (n == 1) return 0;
       if (k == 1) return n - 1;
-      if (k > n) return (josephus(n - 1, k) + k) % n;  // 线性算法
+      if (k > n) return (josephus(n - 1, k) + k) % n;  // thuật toán tuyến tính
       int res = josephus(n - n / k, k);
       res -= n % k;
       if (res < 0)
         res += n;  // mod n
       else
-        res += res / (k - 1);  // 还原位置
+        res += res / (k - 1);  // khôi phục vị trí
       return res;
     }
     ```
 
-可以证明这个算法的复杂度是 $\Theta (k\log n)$ 的．我们设这个过程的递归次数是 $x$，那么每一次问题规模会大致变成 $\displaystyle n\left(1-\frac{1}{k}\right)$，于是得到
+Có thể chứng minh độ phức tạp của thuật toán này là $\Theta (k\log n)$. Gọi số lần đệ quy của quá trình là $x$. Sau mỗi lần, kích thước bài toán xấp xỉ trở thành $\displaystyle n\left(1-\frac{1}{k}\right)$, nên ta có
 
 $$
 n\left(1-\frac{1}{k}\right)^x=1
 $$
 
-解这个方程得到
+Giải phương trình này được
 
 $$
 x=-\frac{\ln n}{\ln\left(1-\frac{1}{k}\right)}
 $$
 
-下面我们证明该算法的复杂度是 $\Theta (k\log n)$ 的．
+Sau đây ta chứng minh độ phức tạp của thuật toán là $\Theta (k\log n)$.
 
-???+ note "证明"
-    考虑 $\displaystyle \lim _{k \rightarrow \infty} k \log \left(1-\frac{1}{k}\right)$，我们有
+???+ note "Chứng minh"
+    Xét $\displaystyle \lim _{k \rightarrow \infty} k \log \left(1-\frac{1}{k}\right)$, ta có
     
     $$
     \begin{aligned}
@@ -85,6 +85,6 @@ $$
     \end{aligned}
     $$
     
-    所以 $x \sim k \ln n, k\to \infty$，即 $-\dfrac{\ln n}{\ln\left(1-\frac{1}{k}\right)}= \Theta (k\log n)$
+    Do đó $x \sim k \ln n, k\to \infty$, tức là $-\dfrac{\ln n}{\ln\left(1-\frac{1}{k}\right)}= \Theta (k\log n)$.
 
-**本页面主要译自博文 [Задача Иосифа](https://e-maxx.ru/algo/joseph_problem) 与其英文翻译版 [Josephus Problem](https://cp-algorithms.com/others/josephus_problem.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+**Trang này chủ yếu được dịch từ bài viết [Задача Иосифа](https://e-maxx.ru/algo/joseph_problem) và bản dịch tiếng Anh [Josephus Problem](https://cp-algorithms.com/others/josephus_problem.html). Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**
