@@ -1,58 +1,59 @@
 /*
-洛谷 P3388 【模板】割点（割顶）
+Luogu P3388 Mẫu: điểm khớp (đỉnh cắt)
 */
 #include <iostream>
 #include <vector>
 using namespace std;
-int n, m;  // n：点数 m：边数
+int n, m;  // n: số đỉnh, m: số cạnh.
 int dfn[100001], low[100001], idx, res;
-// dfn：记录每个点的时间戳
-// low：能不经过父亲到达最小的编号，idx：时间戳，res：答案数量
-bool vis[100001], flag[100001];  // flag: 答案 vis：标记是否重复
-vector<int> edge[100001];        // 存图用的
+// dfn: ghi timestamp của mỗi đỉnh.
+// low: số hiệu nhỏ nhất có thể đến mà không đi qua cha; idx: timestamp; res: số đáp án.
+bool vis[100001], flag[100001];  // flag: đáp án, vis: đánh dấu để tránh lặp.
+vector<int> edge[100001];        // Dùng để lưu đồ thị.
 
-void Tarjan(int u, int fa) {  // u 当前点的编号，fa 自己爸爸的编号
-  vis[u] = true;              // 标记
-  low[u] = dfn[u] = ++idx;    // 打上时间戳
-  int child = 0;              // 每一个点儿子数量
-  for (const auto &v : edge[u]) {  // 访问这个点的所有邻居 （C++11）
+void Tarjan(int u, int fa) {  // u là số hiệu đỉnh hiện tại, fa là cha của nó.
+  vis[u] = true;              // Đánh dấu.
+  low[u] = dfn[u] = ++idx;    // Gán timestamp.
+  int child = 0;              // Số con của mỗi đỉnh.
+  for (const auto &v : edge[u]) {  // Duyệt mọi láng giềng của đỉnh này (C++11).
     if (!vis[v]) {
-      child++;                       // 多了一个儿子
-      Tarjan(v, u);                  // 继续
-      low[u] = min(low[u], low[v]);  // 更新能到的最小节点编号
-      if (fa != u && low[v] >= dfn[u] && !flag[u]) {  // 主要代码
-        // 如果不是自己，且不通过父亲返回的最小点符合割点的要求，并且没有被标记过
-        // 要求即为：删了父亲连不上去了，即为最多连到父亲
+      child++;                       // Thêm một con.
+      Tarjan(v, u);                  // Tiếp tục.
+      low[u] = min(low[u], low[v]);  // Cập nhật số hiệu nhỏ nhất có thể đến.
+      if (fa != u && low[v] >= dfn[u] && !flag[u]) {  // Phần chính.
+        // Nếu không phải gốc, điểm nhỏ nhất quay về mà không qua cha thỏa điều kiện
+        // điểm khớp, và đỉnh này chưa bị đánh dấu.
+        // Điều kiện là: xóa cha thì không nối được nữa, tức xa nhất chỉ nối về cha.
         flag[u] = true;
-        res++;  // 记录答案
+        res++;  // Ghi đáp án.
       }
     } else if (v != fa) {
-      // 如果这个点不是自己的父亲，更新能到的最小节点编号
+      // Nếu đỉnh này không phải cha, cập nhật số hiệu nhỏ nhất có thể đến.
       low[u] = min(low[u], dfn[v]);
     }
   }
-  // 主要代码，自己的话需要 2 个儿子才可以
+  // Phần chính: nếu là gốc thì cần ít nhất 2 con.
   if (fa == u && child >= 2 && !flag[u]) {
     flag[u] = true;
-    res++;  // 记录答案
+    res++;  // Ghi đáp án.
   }
 }
 
 int main() {
-  cin >> n >> m;                  // 读入数据
-  for (int i = 1; i <= m; i++) {  // 注意点是从 1 开始的
+  cin >> n >> m;                  // Đọc dữ liệu.
+  for (int i = 1; i <= m; i++) {  // Chú ý các đỉnh bắt đầu từ 1.
     int x, y;
     cin >> x >> y;
     edge[x].push_back(y);
     edge[y].push_back(x);
-  }  // 使用 vector 存图
-  for (int i = 1; i <= n; i++)  // 因为 Tarjan 图不一定连通
+  }  // Dùng vector để lưu đồ thị.
+  for (int i = 1; i <= n; i++)  // Vì đồ thị trong Tarjan không nhất thiết liên thông.
     if (!vis[i]) {
-      idx = 0;       // 时间戳初始为 0
-      Tarjan(i, i);  // 从第 i 个点开始，父亲为自己
+      idx = 0;       // Timestamp khởi tạo bằng 0.
+      Tarjan(i, i);  // Bắt đầu từ đỉnh i, cha là chính nó.
     }
   cout << res << endl;
   for (int i = 1; i <= n; i++)
-    if (flag[i]) cout << i << " ";  // 输出结果
+    if (flag[i]) cout << i << " ";  // In kết quả.
   return 0;
 }

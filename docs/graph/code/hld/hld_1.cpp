@@ -11,7 +11,7 @@ int siz[MAXN], top[MAXN], son[MAXN], dep[MAXN], fa[MAXN], dfn[MAXN], rnk[MAXN],
     cnt;
 char op[10];
 
-void add_edge(int x, int y) {  // 加边
+void add_edge(int x, int y) {  // Thêm cạnh.
   cur++;
   nxt[cur] = h[x];
   h[x] = cur;
@@ -33,28 +33,28 @@ struct SegTree {
     maxx[o] = std::max(maxx[lc], maxx[rc]);
   }
 
-  int query1(int o, int l, int r, int ql, int qr) {  // 查询 max
+  int query1(int o, int l, int r, int ql, int qr) {  // Truy vấn max.
     if (l > qr || r < ql) return -inf;
     if (ql <= l && r <= qr) return maxx[o];
     int mid = (l + r) >> 1;
     return std::max(query1(lc, l, mid, ql, qr), query1(rc, mid + 1, r, ql, qr));
   }
 
-  int query2(int o, int l, int r, int ql, int qr) {  // 查询 sum
+  int query2(int o, int l, int r, int ql, int qr) {  // Truy vấn sum.
     if (l > qr || r < ql) return 0;
     if (ql <= l && r <= qr) return sum[o];
     int mid = (l + r) >> 1;
     return query2(lc, l, mid, ql, qr) + query2(rc, mid + 1, r, ql, qr);
   }
 
-  void update(int o, int l, int r, int x, int t) {  // 更新
+  void update(int o, int l, int r, int x, int t) {  // Cập nhật.
     if (l == r) {
       maxx[o] = sum[o] = t;
       return;
     }
     int mid = (l + r) >> 1;
     if (x <= mid)
-      update(lc, l, mid, x, t);  // 左右分别更新
+      update(lc, l, mid, x, t);  // Cập nhật riêng hai phía trái/phải.
     else
       update(rc, mid + 1, r, x, t);
     sum[o] = sum[lc] + sum[rc];
@@ -86,7 +86,7 @@ void dfs2(int o, int t) {
     if (p[j] != son[o] && p[j] != fa[o]) dfs2(p[j], p[j]);
 }
 
-int querymax(int x, int y) {  // 查询，看main函数理解一下
+int querymax(int x, int y) {  // Truy vấn; xem main để hiểu cách dùng.
   int ret = -inf, fx = top[x], fy = top[y];
   while (fx != fy) {
     if (dep[fx] >= dep[fy])

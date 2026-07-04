@@ -18,7 +18,7 @@ struct Edge {
 int head[MAXN], sz[MAXN], f[MAXN], maxv[MAXN], tag[MAXN], tot, Max;
 vector<int> center[2], L[MAXN], subtree_tags[MAXN];
 
-void addedge(int u, int v) {  // 建图
+void addedge(int u, int v) {  // Xây đồ thị.
   e[tot].v = v;
   e[tot].nxt = head[u];
   head[u] = tot++;
@@ -27,7 +27,7 @@ void addedge(int u, int v) {  // 建图
   head[v] = tot++;
 }
 
-void dfs_size(int u, int fa) {  // 找到 size 值
+void dfs_size(int u, int fa) {  // Tìm giá trị size.
   sz[u] = 1;
   maxv[u] = 0;
   for (int i = head[u]; i; i = e[i].nxt) {
@@ -45,7 +45,7 @@ void dfs_center(int rt, int u, int fa, int id) {
     center[id].clear();
     Max = maxv[u];
   }
-  if (Max == maxv[u]) center[id].push_back(u);  // 如果相等就 push_back
+  if (Max == maxv[u]) center[id].push_back(u);  // Nếu bằng nhau thì push_back.
   for (int i = head[u]; i; i = e[i].nxt) {
     int v = e[i].v;
     if (v == fa) continue;
@@ -53,7 +53,7 @@ void dfs_center(int rt, int u, int fa, int id) {
   }
 }
 
-int dfs_height(int u, int fa, int depth) {  // 递归查找 height
+int dfs_height(int u, int fa, int depth) {  // Đệ quy tìm height.
   L[depth].push_back(u);
   f[u] = fa;
   int h = 0;
@@ -65,7 +65,7 @@ int dfs_height(int u, int fa, int depth) {  // 递归查找 height
   return h + 1;
 }
 
-void init(int n) {  // 一开始的处理
+void init(int n) {  // Xử lý ban đầu.
   for (int i = 1; i <= 2 * n; i++) head[i] = 0;
   tot = 1;
   center[0].clear();

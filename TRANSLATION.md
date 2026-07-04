@@ -421,6 +421,9 @@ MkDocs source layout intact.
 - Chinese comments in foundational `docs/graph/code` snippets covering 2-SAT,
   BFS, difference constraints, Euler paths, MST, modular shortest paths, Steiner
   trees, and tree centroids were translated.
+- Chinese comments in structural graph/tree snippets covering BCC, block
+  forests, cut vertices, DSU-on-tree, dynamic tree divide, HLD/LCA, tree AHU,
+  and tree divide were translated.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

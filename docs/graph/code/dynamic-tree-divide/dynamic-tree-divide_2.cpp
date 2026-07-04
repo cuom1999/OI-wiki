@@ -86,9 +86,9 @@ void calcsiz(int x, int fa) {
       maxx[x] = max(maxx[x], siz[p[j]]);
     }
   maxx[x] =
-      max(maxx[x], sum - siz[x]);  // maxx[x] 表示以 x 为根时的最大子树大小
+      max(maxx[x], sum - siz[x]);  // maxx[x] là kích thước cây con lớn nhất khi lấy x làm gốc.
   if (maxx[x] < maxx[rt])
-    rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
+    rt = x;  // Không được viết <= ở đây, để lần calcsiz thứ hai không đổi rt.
 }
 
 void dfs1(int x, int fa, int y, int d) {
@@ -104,7 +104,7 @@ void dfs2(int x, int fa, int y, int d) {
 }
 
 void pre(int x) {
-  vis[x] = true;  // 表示在之后的过程中不考虑 x 这个点
+  vis[x] = true;  // Về sau không xét đỉnh x nữa.
   dfs2(x, -1, x, 0);
   for (int j = h[x]; j; j = nxt[j])
     if (!vis[p[j]]) {
@@ -112,11 +112,11 @@ void pre(int x) {
       maxx[rt] = inf;
       sum = siz[p[j]];
       calcsiz(p[j], -1);
-      calcsiz(rt, -1);  // 计算两次，第二次求出以 rt 为根时的各子树大小
+      calcsiz(rt, -1);  // Tính hai lần; lần hai tìm kích thước các cây con khi lấy rt làm gốc.
       dfs1(p[j], -1, rt, 1);
       fa[rt] = x;
       dep[rt] = dep[x] + 1;
-      pre(rt);  // 记录点分树上的父亲
+      pre(rt);  // Ghi cha trên cây phân rã trọng tâm.
     }
 }
 

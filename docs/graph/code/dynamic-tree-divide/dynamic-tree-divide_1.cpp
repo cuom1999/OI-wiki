@@ -30,9 +30,9 @@ void calcsiz(int x, int f) {
       maxx[x] = max(maxx[x], siz[p[j]]);
     }
   maxx[x] =
-      max(maxx[x], sum - siz[x]);  // maxx[x] 表示以 x 为根时的最大子树大小
+      max(maxx[x], sum - siz[x]);  // maxx[x] là kích thước cây con lớn nhất khi lấy x làm gốc.
   if (maxx[x] < maxx[rt])
-    rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
+    rt = x;  // Không được viết <= ở đây, để lần calcsiz thứ hai không đổi rt.
 }
 
 struct heap {
@@ -70,19 +70,19 @@ void dfs(int x, int f, int d, heap& y) {
 }
 
 void pre(int x) {
-  vis[x] = true;  // 不考虑 x
+  vis[x] = true;  // Không xét x nữa.
   for (int j = h[x]; j; j = nxt[j])
     if (!vis[p[j]]) {
       rt = 0;
       maxx[rt] = inf;
       sum = siz[p[j]];
       calcsiz(p[j], -1);
-      calcsiz(rt, -1);  // 计算两次，第二次求出以 rt 为根时的各子树大小
+      calcsiz(rt, -1);  // Tính hai lần; lần hai tìm kích thước các cây con khi lấy rt làm gốc.
       fa[rt] = x;
       dfs(p[j], -1, 1, dist[rt]);
       ch[x].insert(dist[rt].top());
       dep[rt] = dep[x] + 1;
-      pre(rt);  // 记录点分树上的父亲
+      pre(rt);  // Ghi cha trên cây phân rã trọng tâm.
     }
   ch[x].insert(0);
   if (ch[x].size() >= 2)

@@ -1,10 +1,10 @@
-/* size 处理子树 d[], 连通块大小 cnt
-   dp 最大子树 f[], 树的重心 rot
-   get 计算出点到重心的距离 t[], top
-   calc 点分治 bu[] 长度桶
-   hd to nx wg 链式前向星存图
-   ak[] as[] 离线处理询问
-   ok[] 点分治中已成为重心的点
+/* size xử lý cây con d[], kích thước thành phần liên thông cnt
+   dp xử lý cây con lớn nhất f[], trọng tâm của cây rot
+   get tính khoảng cách từ đỉnh đến trọng tâm t[], top
+   calc xử lý phân rã trọng tâm, bu[] là bucket độ dài
+   hd to nx wg lưu đồ thị bằng forward-star danh sách liên kết
+   ak[] as[] xử lý truy vấn offline
+   ok[] đánh dấu các đỉnh đã trở thành trọng tâm trong phân rã
  */
 #include <iostream>
 const int N = 1e4 + 4, M = 105, Q = 1e7 + 7;

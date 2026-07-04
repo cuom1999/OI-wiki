@@ -17,7 +17,7 @@ void add(int x, int y) {
   head[x] = tot;
 }
 
-void dfs1(int x) {  // 第一次插入一个1
+void dfs1(int x) {  // Lần đầu chèn một giá trị 1.
   d[x] = 1;
   for (int i = head[x]; i; i = e[i].next)
     if (e[i].to != fa[x]) {
@@ -28,7 +28,7 @@ void dfs1(int x) {  // 第一次插入一个1
     }
 }
 
-void dfs2(int x) {  // 第二次合并
+void dfs2(int x) {  // Lần thứ hai hợp nhất.
   dfn[x] = ++*dfn;
   f[x] = g + dfn[x];
   if (mx[x]) dfs2(mx[x]);
@@ -36,7 +36,7 @@ void dfs2(int x) {  // 第二次合并
     if (e[i].to != fa[x] && e[i].to != mx[x]) dfs2(e[i].to);
 }
 
-void getans(int x) {  // 暴力合并算答案
+void getans(int x) {  // Hợp nhất vét cạn để tính đáp án.
   if (mx[x]) {
     getans(mx[x]);
     mxp[x] = mxp[mx[x]] + 1;

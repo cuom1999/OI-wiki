@@ -9,7 +9,7 @@ std::vector<int> G[N];
 
 int idx, fa[N], dep[N], siz[N], son[N], top[N], dfn[N], rnk[N];
 
-struct SegmentTree {  // 区间加，区间求和的线段树实现
+struct SegmentTree {  // Cây đoạn hỗ trợ cộng đoạn và truy vấn tổng đoạn.
   lint sum[N << 2], lzy[N << 2];
 
   void maketag(int u, int l, int r, lint x) {
@@ -58,7 +58,7 @@ struct SegmentTree {  // 区间加，区间求和的线段树实现
   }
 } T;
 
-void dfs1(int u, int f) {  // 树剖预处理 1
+void dfs1(int u, int f) {  // Tiền xử lý HLD 1.
   fa[u] = f, dep[u] = dep[f] + 1, siz[u] = 1;
   for (auto v : G[u]) {
     if (v == f) continue;
@@ -68,14 +68,14 @@ void dfs1(int u, int f) {  // 树剖预处理 1
   }
 }
 
-void dfs2(int u, int tp) {  // 树剖预处理 2
+void dfs2(int u, int tp) {  // Tiền xử lý HLD 2.
   top[u] = tp, dfn[u] = ++idx, rnk[idx] = u;
   if (son[u]) dfs2(son[u], tp);
   for (auto v : G[u])
     if (v != fa[u] && v != son[u]) dfs2(v, v);
 }
 
-void modify_path(int u, int v, int w) {  // 正常树剖
+void modify_path(int u, int v, int w) {  // HLD thông thường.
   while (top[u] != top[v]) {
     if (dep[top[u]] < dep[top[v]]) std::swap(u, v);
     T.upd(1, 1, n, dfn[top[u]], dfn[u], w);
@@ -90,9 +90,9 @@ void modify_subtree(int u, int w) {
     T.maketag(1, 1, n, w);
   else if (dfn[u] <= dfn[root] && dfn[root] <= dfn[u] + siz[u] - 1) {
     int v = root;
-    while (dep[top[v]] > dep[u] + 1) v = fa[top[v]];  // 向上跳
-    v = rnk[dfn[top[v]] + dep[u] + 1 - dep[top[v]]];  // 计算 v
-    // 上面这一句可以替换为如下两句：
+    while (dep[top[v]] > dep[u] + 1) v = fa[top[v]];  // Nhảy lên trên.
+    v = rnk[dfn[top[v]] + dep[u] + 1 - dep[top[v]]];  // Tính v.
+    // Câu trên có thể thay bằng hai câu dưới:
     // if (dep[top[v]] == dep[u] + 1) v = top[v];
     // else if (dep[top[v]] < dep[u] + 1) v = rnk[dfn[u] + 1];
     if (1 <= dfn[v] - 1) T.upd(1, 1, n, 1, dfn[v] - 1, w);
@@ -101,7 +101,7 @@ void modify_subtree(int u, int w) {
     T.upd(1, 1, n, dfn[u], dfn[u] + siz[u] - 1, w);
 }
 
-lint query_path(int u, int v) {  // 正常树剖
+lint query_path(int u, int v) {  // HLD thông thường.
   lint res = 0;
   while (top[u] != top[v]) {
     if (dep[top[u]] < dep[top[v]]) std::swap(u, v);
@@ -136,20 +136,20 @@ int main() {
     G[i].emplace_back(f);
     G[f].emplace_back(i);
   }
-  dfs1(1, 0), dfs2(1, 1), T.build(1, 1, n);  // 预处理
+  dfs1(1, 0), dfs2(1, 1), T.build(1, 1, n);  // Tiền xử lý.
   for (std::cin >> m; m; --m) {
     int op, u, v, w;
     std::cin >> op >> u;
     if (op == 1)
-      root = u;  // 换根
+      root = u;  // Đổi gốc.
     else if (op == 2)
-      std::cin >> v >> w, modify_path(u, v, w);  // 修改路径
+      std::cin >> v >> w, modify_path(u, v, w);  // Sửa đường đi.
     else if (op == 3)
-      std::cin >> w, modify_subtree(u, w);  // 修改子树
+      std::cin >> w, modify_subtree(u, w);  // Sửa cây con.
     else if (op == 4)
-      std::cin >> v, std::cout << query_path(u, v) << "\n";  // 查询路径
+      std::cin >> v, std::cout << query_path(u, v) << "\n";  // Truy vấn đường đi.
     else
-      std::cout << query_subtree(u) << "\n";  // 查询子树
+      std::cout << query_subtree(u) << "\n";  // Truy vấn cây con.
   }
   std::cout.flush();
   return 0;
