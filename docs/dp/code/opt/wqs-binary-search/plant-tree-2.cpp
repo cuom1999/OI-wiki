@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <vector>
 
-// Golden section search on integer domain (unimodal function)
+// Tìm kiếm theo tỉ lệ vàng trên miền số nguyên (hàm đơn đỉnh)
 template <typename T, typename F>
 typename std::enable_if<
     std::is_integral<T>::value,
@@ -46,7 +46,7 @@ int main() {
   std::cin >> n >> m;
   std::vector<int> a(n + 1);
   for (int i = 1; i <= n; ++i) std::cin >> a[i];
-  // Calculate h(k) = max_x f(x) + k * g(x).
+  // Tính h(k) = max_x f(x) + k * g(x).
   auto calc = [&](int k) -> long long {
     long long dp[2] = {0, -0x3f3f3f3f3f3f3f3f};
     for (int i = 1; i <= n; ++i) {
@@ -55,10 +55,10 @@ int main() {
     }
     return std::max(dp[0], dp[1]);
   };
-  // Solve the dual problem to find v(m).
-  // Implemented as a minimization problem by adding negative signs.
-  // Only consider tangent lines of negative slopes to ignore the part
-  //     of the curve after the peak.
+  // Giải bài toán đối ngẫu để tìm v(m).
+  // Cài đặt dưới dạng bài toán cực tiểu bằng cách thêm dấu âm.
+  // Chỉ xét các tiếp tuyến có hệ số góc âm để bỏ qua phần
+  //     của đường cong nằm sau đỉnh.
   auto res = -golden_section_search(-1000000, 0, [&](int k) -> long long {
                 return -calc(k) + (long long)k * m;
               }).second;

@@ -5,7 +5,7 @@
 #include <type_traits>
 #include <vector>
 
-// Golden section search on floating-point domain (unimodal function)
+// Tìm kiếm theo tỉ lệ vàng trên miền số thực (hàm đơn đỉnh)
 template <typename T, typename F>
 typename std::enable_if<
     std::is_floating_point<T>::value,
@@ -40,7 +40,7 @@ int main() {
   std::vector<long double> p(n + 1), q(n + 1);
   for (int i = 1; i <= n; ++i) std::cin >> p[i];
   for (int i = 1; i <= n; ++i) std::cin >> q[i];
-  // Calculate h(k1,k2).
+  // Tính h(k1,k2).
   auto solve = [&](long double k1, long double k2) -> long double {
     long double res = 0;
     for (int i = 1; i <= n; ++i) {
@@ -49,8 +49,8 @@ int main() {
     }
     return res;
   };
-  // Solve the dual problem to find v(m1,m2).
-  // Implemented as a minimization problem by adding negative signs.
+  // Giải bài toán đối ngẫu để tìm v(m1,m2).
+  // Cài đặt dưới dạng bài toán cực tiểu bằng cách thêm dấu âm.
   auto res = -golden_section_search(
                   -1.0l, 0.0l,
                   [&](long double k1) -> long double {

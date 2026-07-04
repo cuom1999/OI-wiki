@@ -5,9 +5,9 @@
 #include <utility>
 #include <vector>
 
-// Monotone decision DP.
-// This solves f(i) = min f(j-1) + w(j,i) s.t. 1 <= j <= i.
-// Also records the minimal optimal decision j for each f(i).
+// Quy hoạch động với quyết định đơn điệu.
+// Giải f(i) = min f(j-1) + w(j,i) với điều kiện 1 <= j <= i.
+// Đồng thời ghi lại quyết định tối ưu nhỏ nhất j cho mỗi f(i).
 template <typename W>
 std::pair<std::vector<decltype(std::declval<W>()(0, 0))>, std::vector<int>>
 monotone_decision_opt_dp(int n, W ww) {
@@ -54,7 +54,7 @@ monotone_decision_opt_dp(int n, W ww) {
   return {f, opt};
 }
 
-// Golden section search on integer domain (unimodal function)
+// Tìm kiếm theo tỉ lệ vàng trên miền số nguyên (hàm đơn đỉnh)
 template <typename T, typename F>
 typename std::enable_if<
     std::is_integral<T>::value,
@@ -99,19 +99,19 @@ int main() {
     std::cin >> a[i];
     ps[i] = ps[i - 1] + a[i];
   }
-  // Cost function for interval [l,r].
+  // Hàm chi phí cho đoạn [l,r].
   auto w = [&](int j, int i) -> long long {
     int mm = j + (i - j) / 2;
     return ps[i] + ps[j - 1] - 2 * ps[mm] + (2 * mm - j - i + 1) * a[mm];
   };
-  // Calculate h(k) = min_x f(x) - k * g(x).
+  // Tính h(k) = min_x f(x) - k * g(x).
   auto solve = [&](long long k) -> long long {
     return monotone_decision_opt_dp(
                n, [&](int j, int i) -> long long { return w(j, i) - k; })
                .first[n] +
            k * m;
   };
-  // Solve the dual problem to find v(m).
+  // Giải bài toán đối ngẫu để tìm v(m).
   auto res = golden_section_search(-(1LL << 32), 0LL, solve).second;
   std::cout << res << std::endl;
   return 0;

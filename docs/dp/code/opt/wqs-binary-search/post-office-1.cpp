@@ -5,9 +5,9 @@
 #include <type_traits>
 #include <vector>
 
-// Monotone decision DP.
-// This solves f(i) = min f(j-1) + w(j,i) s.t. 1 <= j <= i.
-// Also records the minimal optimal decision j for each f(i).
+// Quy hoạch động với quyết định đơn điệu.
+// Giải f(i) = min f(j-1) + w(j,i) với điều kiện 1 <= j <= i.
+// Đồng thời ghi lại quyết định tối ưu nhỏ nhất j cho mỗi f(i).
 template <typename W>
 std::pair<std::vector<decltype(std::declval<W>()(0, 0))>, std::vector<int>>
 monotone_decision_opt_dp(int n, W ww) {
@@ -62,13 +62,13 @@ int main() {
     std::cin >> a[i];
     ps[i] = ps[i - 1] + a[i];
   }
-  // Cost function for interval [l,r].
+  // Hàm chi phí cho đoạn [l,r].
   auto w = [&](int j, int i) -> long long {
     int mm = j + (i - j) / 2;
     return ps[i] + ps[j - 1] - 2 * ps[mm] + (2 * mm - j - i + 1) * a[mm];
   };
-  // Calculate h(k) = min_x f(x) - k * g(x).
-  // Also record the minimum of optimal number of segments.
+  // Tính h(k) = min_x f(x) - k * g(x).
+  // Đồng thời ghi lại số đoạn tối ưu nhỏ nhất.
   auto calc = [&](long long k) -> std::pair<long long, int> {
     auto res = monotone_decision_opt_dp(
         n, [&](int j, int i) -> long long { return w(j, i) - k; });
@@ -79,8 +79,8 @@ int main() {
     }
     return {val, cnt};
   };
-  // WQS binary search.
-  // Find the largest k such that g(x) <= m.
+  // Tìm kiếm nhị phân WQS.
+  // Tìm k lớn nhất sao cho g(x) <= m.
   long long val, tar_val;
   int opt_m, tar_k;
   long long ll = -(1LL << 32), rr = 0;

@@ -28,14 +28,14 @@ int main() {
   int V, E, m;
   std::cin >> V >> E >> m;
   std::array<std::vector<std::array<int, 3>>, 2> edges;
-  edges[0].reserve(E);  // white edges.
-  edges[1].reserve(E);  // black edges.
+  edges[0].reserve(E);  // cạnh trắng.
+  edges[1].reserve(E);  // cạnh đen.
   for (int i = 0; i < E; ++i) {
     int u, v, c, w;
     std::cin >> u >> v >> w >> c;
     edges[c].push_back({u, v, w});
   }
-  // Sort edges.
+  // Sắp xếp các cạnh.
   std::sort(edges[0].begin(), edges[0].end(),
             [&](const auto& lhs, const auto& rhs) -> bool {
               return lhs[2] < rhs[2];
@@ -44,8 +44,8 @@ int main() {
             [&](const auto& lhs, const auto& rhs) -> bool {
               return lhs[2] < rhs[2];
             });
-  // Calculate h(k) = min_x f(x) - k * g(x) by Kruskal algorithm.
-  // Use white edges first, whenever possible.
+  // Tính h(k) = min_x f(x) - k * g(x) bằng thuật toán Kruskal.
+  // Ưu tiên dùng cạnh trắng bất cứ khi nào có thể.
   auto calc = [&](int k) -> std::pair<int, int> {
     int res = 0, cnt = 0;
     DisjointSet djs(V);
@@ -73,8 +73,8 @@ int main() {
     }
     return {res, cnt};
   };
-  // WQS binary search.
-  // Find the minimum k such that g(x) >= m.
+  // Tìm kiếm nhị phân WQS.
+  // Tìm k nhỏ nhất sao cho g(x) >= m.
   int val, opt_m, tar_val, tar_k;
   int ll = -100, rr = 100;
   while (ll <= rr) {

@@ -193,7 +193,7 @@ nav:
       - Tối ưu bằng độ dốc: dp/opt/slope.md
       - Bất đẳng thức tứ giác: dp/opt/quadrangle.md
       - Slope Trick: dp/opt/slope-trick.md
-      - WQS 二分: dp/opt/wqs-binary-search.md
+      - Tìm kiếm nhị phân WQS: dp/opt/wqs-binary-search.md
       - Tối ưu thiết kế trạng thái: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
   - Xâu:

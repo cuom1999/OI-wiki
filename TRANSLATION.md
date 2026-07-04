@@ -79,9 +79,9 @@ MkDocs source layout intact.
 - `docs/dp/plug.md`, `docs/dp/opt/dp-opt.md`,
   `docs/dp/opt/monotonic-queue-stack.md`, `docs/dp/opt/slope.md`,
   `docs/dp/opt/quadrangle.md`, `docs/dp/opt/slope-trick.md`,
-  `docs/dp/opt/state.md`: translated plug DP and most DP optimization pages,
-  plus explanatory comments in their included snippets. `wqs-binary-search.md`
-  remains to be translated.
+  `docs/dp/opt/state.md`, `docs/dp/opt/wqs-binary-search.md`: translated
+  plug DP and DP optimization pages, plus explanatory comments in their
+  included snippets.
 - `docs/string/basic.md`, `docs/string/lib-func.md`,
   `docs/string/match.md`: translated the introductory string material covering
   alphabets, substrings, C/C++ string helpers, and baseline string matching

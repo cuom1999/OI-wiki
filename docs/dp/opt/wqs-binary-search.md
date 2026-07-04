@@ -1,18 +1,20 @@
-## 引入
+<span id="&#24341;&#20837;"></span>
+## Giới thiệu
 
-本文介绍利用 WQS 二分优化动态规划问题的方法．在不同的文章中，它也常称作带权二分、凸优化 DP、凸完全单调性 DP、Lagrange 乘子法等，在国外也称作 Aliens Trick．它最早由王钦石在《浅析一类二分方法》一文中总结．
+Bài viết này giới thiệu cách dùng tìm kiếm nhị phân WQS để tối ưu các bài toán quy hoạch động. Trong các tài liệu khác, kỹ thuật này cũng thường được gọi là tìm kiếm nhị phân có trọng số, DP tối ưu lồi, DP đơn điệu hoàn toàn lồi, phương pháp nhân tử Lagrange, hay ở nước ngoài là Aliens Trick. Nó được Wang Qinshi tổng kết sớm nhất trong bài viết "Phân tích sơ lược một lớp phương pháp nhị phân".
 
-WQS 二分通常用于解决这样一类优化问题：它们带有数量限制，直接求解代价较高；但一旦去除这一限制，问题本身就变得容易得多．
+Tìm kiếm nhị phân WQS thường dùng để giải một lớp bài toán tối ưu như sau: bài toán có ràng buộc về số lượng nên giải trực tiếp rất tốn kém; nhưng khi bỏ ràng buộc này đi, bản thân bài toán trở nên dễ hơn nhiều.
 
-比如，假设要解决的问题是，要从 $n$ 个物品中选取 $m$ 个，并最优化某个较复杂的目标函数．如果设从前 $i$ 个物品中选取 $j$ 个，目标函数的最优值为 $f(i,j)$，那么原问题的答案就是 $f(n,m)$．这类问题中，状态转移方程通常是二维的．直接实现该状态转移方程，时间复杂度是 $O(nm)$ 的，难以接受．
+Ví dụ, giả sử cần chọn $m$ trong $n$ vật phẩm và tối ưu một hàm mục tiêu khá phức tạp. Nếu đặt $f(i,j)$ là giá trị tối ưu của hàm mục tiêu khi chọn $j$ vật phẩm trong $i$ vật phẩm đầu tiên, thì đáp án bài toán gốc là $f(n,m)$. Trong các bài toán dạng này, phương trình chuyển trạng thái thường là hai chiều. Cài đặt trực tiếp phương trình chuyển trạng thái có độ phức tạp thời gian $O(nm)$, thường không chấp nhận được.
 
-进一步假设，没有数量限制的最优化问题容易解决．但是，选取到的最优数量未必满足原问题的数量限制．假设选取的物品过多．那么，就可以考虑在选取物品时，为每个选取到的物品都附加一个固定大小的惩罚 $k$（即「带权二分」中的「权」），仍然解没有数量限制的最优化问题．根据 $k$ 的取值不同，选取到的最优数量也会有所不同；而且，随着 $k$ 的变化，选取到的最优数量也是单调变化的．所以，可以通过二分，找到 $k$ 使得选取到的最优数量恰为 $m$．假设此时目标函数的最优值为 $f_k(n)$，那么，只要消除额外附加的惩罚造成的价值损失，就能得到原问题的答案 $f(n,m)=f_k(n)+km$．假设单次求解附加惩罚的问题的复杂度是 $O(T(n))$ 的，那么，算法的整体复杂度也就降低到了 $O(T(n)\log L)$，其中，$O(\log L)$ 是二分 $k$ 需要的次数．
+Giả sử thêm rằng bài toán tối ưu không có ràng buộc số lượng dễ giải. Tuy nhiên, số lượng được chọn trong nghiệm tối ưu chưa chắc thỏa ràng buộc của bài toán gốc. Nếu số vật phẩm được chọn quá nhiều, ta có thể thêm một khoản phạt cố định $k$ cho mỗi vật phẩm được chọn (đó là "trọng số" trong "tìm kiếm nhị phân có trọng số"), rồi vẫn giải bài toán tối ưu không có ràng buộc số lượng. Với các giá trị $k$ khác nhau, số lượng được chọn tối ưu cũng khác nhau; hơn nữa, khi $k$ thay đổi, số lượng được chọn tối ưu biến thiên đơn điệu. Vì vậy có thể dùng tìm kiếm nhị phân để tìm $k$ sao cho số lượng được chọn tối ưu đúng bằng $m$. Giả sử khi đó giá trị tối ưu của hàm mục tiêu là $f_k(n)$, thì chỉ cần loại bỏ phần mất mát do khoản phạt phụ thêm gây ra là thu được đáp án bài toán gốc $f(n,m)=f_k(n)+km$. Nếu độ phức tạp của một lần giải bài toán có phạt là $O(T(n))$, thì độ phức tạp tổng thể giảm xuống $O(T(n)\log L)$, trong đó $O(\log L)$ là số lần cần nhị phân trên $k$.
 
-这就是 WQS 二分的基本想法．但是，这一想法能够行得通，前提是 $f(n,m)$ 关于 $m$ 是凸的．否则，可能不存在使得最优数量恰为 $m$ 的附加惩罚 $k$．这也是这种 DP 优化方法常常称为「凸优化 DP」或「凸完全单调性 DP」的原因．
+Đó là ý tưởng cơ bản của tìm kiếm nhị phân WQS. Tuy nhiên, để ý tưởng này hoạt động được, $f(n,m)$ phải là hàm lồi theo $m$. Nếu không, có thể không tồn tại khoản phạt phụ thêm $k$ làm cho số lượng tối ưu đúng bằng $m$. Đây cũng là lý do phương pháp tối ưu DP này thường được gọi là "DP tối ưu lồi" hoặc "DP đơn điệu hoàn toàn lồi".
 
-## 传统方法
+<span id="&#20256;&#32479;&#26041;&#27861;"></span>
+## Phương pháp truyền thống
 
-设非空集合 $X$ 为（有限的）决策空间，$f:X\rightarrow\mathbf R$ 为目标函数，且另有函数 $g:X\rightarrow\mathbf R^d$ 用于施加限制．需要求解的问题，可以看作是计算如下最优化问题的价值函数 $v(y)$ 在某处的取值：
+Gọi tập không rỗng $X$ là không gian quyết định (hữu hạn), $f:X\rightarrow\mathbf R$ là hàm mục tiêu, và có thêm hàm $g:X\rightarrow\mathbf R^d$ dùng để áp ràng buộc. Bài toán cần giải có thể xem là việc tính giá trị của hàm giá trị $v(y)$ của bài toán tối ưu sau tại một điểm nào đó:
 
 $$
 \begin{aligned}
@@ -21,103 +23,107 @@ v(y)=\min_{x\in X}\;&f(x)\\
 \end{aligned}
 $$
 
-比如，对于前文提到的限制数量的问题，$X$ 可以理解为所有物品集合的子集族，$x\in X$ 是单个子集，$f(x)$ 是单个子集的价值函数，$g(x)$ 是子集 $x$ 中的元素个数．当然，$g(x)$ 并非只能是数量限制，后文提供了更为广泛的限制条件的例子．
+Ví dụ, với bài toán ràng buộc số lượng đã nêu ở trên, $X$ có thể hiểu là họ tất cả các tập con của tập vật phẩm, $x\in X$ là một tập con cụ thể, $f(x)$ là hàm giá trị của tập con đó, còn $g(x)$ là số phần tử trong tập con $x$. Tất nhiên, $g(x)$ không chỉ có thể là ràng buộc số lượng; phần sau sẽ đưa ra các ví dụ về những điều kiện ràng buộc tổng quát hơn.
 
-???+ info "约定"
-    为了行文方便，本文仅讨论最小化目标函数的问题．最大化目标函数的问题与之相仿，只是需要将本文中的（下）凸函数相应地替换成凹函数（或称上凸函数）．或者，可以通过添加负号，将最大化目标函数的问题，转化为最小化它的相反数的问题．
+???+ info "Quy ước"
+    Để trình bày thuận tiện, bài viết này chỉ thảo luận các bài toán cực tiểu hóa hàm mục tiêu. Bài toán cực đại hóa hàm mục tiêu cũng tương tự, chỉ cần thay các hàm lồi (dưới) trong bài viết bằng hàm lõm (còn gọi là lồi trên). Hoặc có thể thêm dấu âm để chuyển bài toán cực đại hóa hàm mục tiêu thành bài toán cực tiểu hóa hàm đối của nó.
 
-### 几何直观
+<span id="&#20960;&#20309;&#30452;&#35266;"></span>
+### Trực quan hình học
 
-因为算法竞赛中遇到的大多数问题都是组合优化问题，决策空间 $X$ 通常没有良好的结构，所以，可以转而考察集合
+Vì phần lớn bài toán trong lập trình thi đấu là bài toán tối ưu tổ hợp, không gian quyết định $X$ thường không có cấu trúc tốt. Do đó, ta chuyển sang xét tập
 
 $$
 \mathcal D = \{(g(x),f(x))\in\mathbf R\times\mathbf R^d:x\in X\}.
 $$
 
-传统方法能够解决的主要是 $d=1$ 的情形，即只有一个限制的情形．下图提供了此时点集 $\mathcal D$ 的一种可能的图示．
+Phương pháp truyền thống chủ yếu giải được trường hợp $d=1$, tức là chỉ có một ràng buộc. Hình dưới đây minh họa một khả năng của tập điểm $\mathcal D$ trong trường hợp đó.
 
 ![](../images/wqs-binary-search/wqs-f-g-space.svg)
 
-图中的红点和蓝点是 $X$ 中所有可能的选择投影在平面 $(g(x),f(x))$ 上得到的集合 $\mathcal D$．于是，原问题所要求的就是横坐标为 $y$ 的那些点中，纵坐标的最小值 $v(y)$．当 $y$ 变动时，所有这样的点 $(y,v(y))$ 就构成了图中的红点的集合．
+Các điểm đỏ và xanh trong hình là tập $\mathcal D$ thu được khi chiếu mọi lựa chọn có thể trong $X$ lên mặt phẳng $(g(x),f(x))$. Khi đó, bài toán gốc cần tìm giá trị nhỏ nhất của tung độ $v(y)$ trong các điểm có hoành độ bằng $y$. Khi $y$ thay đổi, tất cả các điểm $(y,v(y))$ như vậy tạo thành tập các điểm đỏ trong hình.
 
-为了求得点 $(y,v(y))$ 的纵坐标，可以考虑用斜率为 $\lambda\in\mathbf R$ 的直线去切集合 $\mathcal D$．如图所示，当直线的斜率选取得恰当时，经过点 $(y,v(y))$ 的那条直线，是所有经过集合 $\mathcal D$ 中的点且斜率为 $\lambda$ 的直线中，截距 $f(x)-\lambda g(x)$ 最小的．将这一最小值记为
+Để tìm tung độ của điểm $(y,v(y))$, có thể dùng một đường thẳng có hệ số góc $\lambda\in\mathbf R$ để "tiếp" tập $\mathcal D$. Như hình minh họa, khi chọn hệ số góc của đường thẳng thích hợp, đường thẳng đi qua điểm $(y,v(y))$ là đường có tung độ gốc $f(x)-\lambda g(x)$ nhỏ nhất trong tất cả các đường thẳng có hệ số góc $\lambda$ và đi qua một điểm của tập $\mathcal D$. Ký hiệu giá trị nhỏ nhất này là
 
 $$
 h(\lambda) = \min_{x\in X}f(x)-\lambda g(x).
 $$
 
-那么，因为 $(y,v(y))$ 同样位于该直线上，就可以得到原问题的解
+Vì $(y,v(y))$ cũng nằm trên đường thẳng đó, ta thu được nghiệm của bài toán gốc
 
 $$
 v(y) = h(\lambda) + \lambda y.
 $$
 
-假设对于所有合理范围的 $\lambda$，上述函数 $h(\lambda)$ 都是容易求解的．这在算法竞赛中常常是成立的，因为它去掉了原问题中的限制条件．那么，现在面临的最为重要的两个问题，就是
+Giả sử với mọi $\lambda$ trong phạm vi hợp lý, hàm $h(\lambda)$ ở trên đều dễ tính. Trong lập trình thi đấu điều này thường đúng, vì nó đã bỏ đi điều kiện ràng buộc trong bài toán gốc. Khi đó, hai vấn đề quan trọng nhất còn lại là
 
-1.  是否存在这样的直线斜率 $\lambda$，使得它的截距最小值恰好取得在点 $(y,v(y))$ 处，以及
-2.  如果存在，如何找到这样的斜率 $\lambda$．
+1.  có tồn tại hệ số góc $\lambda$ của đường thẳng sao cho giá trị tung độ gốc nhỏ nhất đạt được đúng tại điểm $(y,v(y))$ hay không, và
+2.  nếu tồn tại, làm thế nào để tìm hệ số góc đó.
 
-第一个问题相对容易解决．因为当直线斜率 $\lambda$ 发生变化时，所有这些直线切出的集合（即它们对应的上半平面的交）必然是一个凸集．因此，这些直线能够经过某个点，当且仅当这个点在该凸集的下凸壳上．这等价于说，函数 $v(y)$ 是 [凸函数](./slope-trick.md#离散点集上的凸函数)．
+Vấn đề thứ nhất tương đối dễ giải quyết. Khi hệ số góc $\lambda$ thay đổi, tập được cắt ra bởi tất cả các đường thẳng này (tức giao của các nửa mặt phẳng phía trên tương ứng) nhất định là một tập lồi. Vì vậy, các đường thẳng này có thể đi qua một điểm khi và chỉ khi điểm đó nằm trên bao lồi dưới của tập lồi này. Điều đó tương đương với việc hàm $v(y)$ là [hàm lồi](./slope-trick.md#%E7%A6%BB%E6%95%A3%E7%82%B9%E9%9B%86%E4%B8%8A%E7%9A%84%E5%87%B8%E5%87%BD%E6%95%B0).
 
-第二个问题则更为精细．因为所求点的横坐标已经知道是 $y$，所以，一个自然的思路是，计算 $h(\lambda)$ 时，顺便求出限制函数 $g(x)$ 在当前最优解 $x_\lambda$ 处的取值．比如，在前文提到的例子中，求解带惩罚的问题时，可以记录带惩罚的目标函数取得最优解时，选取的物品数量．然后，将 $g(x_\lambda)$ 与所期望的 $y$ 进行比较，并相应调整下次计算时的 $\lambda$ 的取值．这就是最为传统的 WQS 二分的方法．
+Vấn đề thứ hai tinh tế hơn. Vì hoành độ của điểm cần tìm đã biết là $y$, một ý tưởng tự nhiên là khi tính $h(\lambda)$, đồng thời tính giá trị của hàm ràng buộc $g(x)$ tại nghiệm tối ưu hiện tại $x_\lambda$. Chẳng hạn, trong ví dụ ở trên, khi giải bài toán có phạt, ta có thể ghi lại số vật phẩm được chọn khi hàm mục tiêu có phạt đạt tối ưu. Sau đó so sánh $g(x_\lambda)$ với $y$ mong muốn và điều chỉnh giá trị $\lambda$ cho lần tính tiếp theo. Đây là phương pháp tìm kiếm nhị phân WQS truyền thống nhất.
 
-总结一下，传统 WQS 二分的基本流程如下：
+Tóm lại, quy trình cơ bản của tìm kiếm nhị phân WQS truyền thống như sau:
 
-1.  初始时，选取一个 $\lambda$ 的合理的区间；
-2.  在当前的区间中选择一个 $\lambda$；
-3.  求解带惩罚的问题 $h(\lambda)=\min_{x\in X}f(x)-\lambda g(x)$，并记录它的最优解 $x_\lambda$ 处 $g(x)$ 的取值 $g(x_\lambda)$；
-4.  如果 $g(x_\lambda)=y$，就得到原问题的最优价值 $v(y)=h(\lambda)+\lambda y$，直接结束算法；
-5.  否则，根据 $g(x_\lambda)$ 与 $y$ 的大小关系，调整 $\lambda$ 的区间，并回到步骤 2．
+1.  Ban đầu chọn một khoảng hợp lý cho $\lambda$;
+2.  chọn một $\lambda$ trong khoảng hiện tại;
+3.  giải bài toán có phạt $h(\lambda)=\min_{x\in X}f(x)-\lambda g(x)$, đồng thời ghi lại giá trị $g(x_\lambda)$ của $g(x)$ tại nghiệm tối ưu $x_\lambda$;
+4.  nếu $g(x_\lambda)=y$, thu được giá trị tối ưu của bài toán gốc $v(y)=h(\lambda)+\lambda y$ và kết thúc thuật toán;
+5.  nếu không, dựa vào quan hệ lớn nhỏ giữa $g(x_\lambda)$ và $y$ để điều chỉnh khoảng của $\lambda$, rồi quay lại bước 2.
 
-这一基本流程已经足以解决一些问题，但并不完善．接下来，本文将讨论对这一基本流程的改进．
+Quy trình cơ bản này đã đủ để giải một số bài toán, nhưng chưa hoàn chỉnh. Tiếp theo, bài viết sẽ thảo luận các cải tiến cho quy trình cơ bản này.
 
-### 共线情形的处理
+<span id="&#20849;&#32447;&#24773;&#24418;&#30340;&#22788;&#29702;"></span>
+### Xử lý trường hợp thẳng hàng
 
-在应用基本流程时，首先遇到的问题就是共线情形无法正确处理．
+Vấn đề đầu tiên gặp phải khi áp dụng quy trình cơ bản là trường hợp thẳng hàng không được xử lý đúng.
 
-如果点集 $\mathcal D$ 的下凸壳上有三个及以上的红点共线，那么在上述基本流程中，可能无法正确地判断 $g(x_\lambda)$ 与 $y$ 的大小关系．比如，设共线的三个红点的横坐标分别为 $y_1,y_2,y_3$，且它们共线的直线的斜率为 $\lambda^*$．那么，要正确求解 $v(y_2)$，就必须保证算法终止时，最后计算的问题是 $h(\lambda^*)$，因为 $\lambda^*$ 是唯一一个最小化截距时能够经过点 $(y_2,v(y_2))$ 的直线的斜率．但是，因为在求解 $h(\lambda^*)$ 的过程中，记录的 $g(x_{\lambda^*})$ 可能是 $y_1,y_2,y_3$ 中的任意一个．如果记录到的 $g(x_{\lambda^*})$ 不等于 $y_2$，那么算法将错误地继续运行，并向着背离 $y_2$ 的方向调整 $\lambda$ 的区间，最终将得到错误的结果．
+Nếu trên bao lồi dưới của tập điểm $\mathcal D$ có ba điểm đỏ trở lên thẳng hàng, thì trong quy trình cơ bản ở trên, có thể không phán đoán đúng quan hệ giữa $g(x_\lambda)$ và $y$. Chẳng hạn, giả sử ba điểm đỏ thẳng hàng có hoành độ lần lượt là $y_1,y_2,y_3$, và đường thẳng đi qua chúng có hệ số góc $\lambda^*$. Khi đó, để giải đúng $v(y_2)$, phải bảo đảm rằng bài toán được tính ở lần cuối khi thuật toán dừng là $h(\lambda^*)$, vì $\lambda^*$ là hệ số góc duy nhất của đường thẳng có thể đi qua điểm $(y_2,v(y_2))$ khi tối thiểu hóa tung độ gốc. Tuy nhiên, khi giải $h(\lambda^*)$, giá trị $g(x_{\lambda^*})$ được ghi lại có thể là bất kỳ giá trị nào trong $y_1,y_2,y_3$. Nếu giá trị ghi được không bằng $y_2$, thuật toán sẽ tiếp tục chạy sai và điều chỉnh khoảng $\lambda$ theo hướng rời xa $y_2$, cuối cùng thu được kết quả sai.
 
-为了解决共线的情形，一种处理方法是在记录最优解 $x_\lambda$ 对应的 $g(x_\lambda)$ 时，总是使之尽可能大（或尽可能小）．同时，将二分中的终止条件从寻找恰好满足 $g(x_\lambda)=y$ 的 $\lambda$ 改为寻找满足 $g(x_\lambda)\ge y$（或 $g(x_\lambda)\le y$）的最小（或最大）的 $\lambda$．在上一段的例子中，这相当于计算问题 $h(\lambda^*)$ 时，输出的 $g(x_{\lambda^*})$ 是 $y_3$．这就保证了算法终止时，最后计算的问题是 $h(\lambda^*)$．实现这一方法时，需要注意最后输出的不是 $h(\lambda)+\lambda g(x_{\lambda})$ 而是 $h(\lambda)+\lambda y$，因为记录的 $g(x_\lambda)$ 未必等于实际的限制 $y$．
+Để xử lý trường hợp thẳng hàng, một cách làm là khi ghi lại $g(x_\lambda)$ của nghiệm tối ưu $x_\lambda$, luôn làm cho nó lớn nhất có thể (hoặc nhỏ nhất có thể). Đồng thời, thay điều kiện dừng của nhị phân từ việc tìm $\lambda$ thỏa chính xác $g(x_\lambda)=y$ thành tìm $\lambda$ nhỏ nhất (hoặc lớn nhất) thỏa $g(x_\lambda)\ge y$ (hoặc $g(x_\lambda)\le y$). Trong ví dụ ở đoạn trước, điều này tương đương với việc khi tính $h(\lambda^*)$, giá trị $g(x_{\lambda^*})$ xuất ra là $y_3$. Như vậy có thể bảo đảm rằng bài toán được tính ở lần cuối khi thuật toán dừng là $h(\lambda^*)$. Khi cài đặt cách này, cần chú ý giá trị xuất cuối cùng không phải là $h(\lambda)+\lambda g(x_{\lambda})$ mà là $h(\lambda)+\lambda y$, vì $g(x_\lambda)$ được ghi lại chưa chắc bằng ràng buộc thực tế $y$.
 
-另一种处理方法是实数二分．如果问题涉及的数字都是整数，显然，WQS 二分中的斜率也是整数．在二分中引入实数，是为了保证错误地排除正确选项 $\lambda^*$ 时，可以通过小数部分调整回来，最终逼近正确答案 $\lambda^*$．例如，在上面的例子中，如果计算问题 $h(\lambda^*)$ 时，记录的 $g(x_{\lambda^*})$ 是 $y_1$，小于所希望的 $y_2$，那么，算法就会转而考虑区间 $(\lambda^*,\lambda_r]$，其中，$\lambda_r$ 是 $\lambda$ 所在区间的右端点．对于整数的情形，这一区间实际应该写作 $[\lambda_*+1,\lambda_r]$，这就排除了在后续算法中接近正确答案 $\lambda^*$ 的可能．但是，实数二分时，考虑的区间仍然是 $(\lambda^*,\lambda_r]$，而且，对于该区间中的 $\lambda$，求解 $h(\lambda)$ 时记录的 $g(x_\lambda)$ 总是不小于 $y_3$，从而严格大于 $y_2$ 的．因此，随着算法继续进行，会不断地舍去右半区间，从而，最终得到的 $\lambda$ 的范围可以保证在 $\lambda^*$ 附近．当然，因为已经知道所求的斜率是一个整数，实数二分终止时的精度不必太高，只要能保证二分的区间中只包含一个整数即可，这一整数就是要寻找的 $\lambda^*$．
+Một cách xử lý khác là nhị phân trên số thực. Nếu các con số trong bài toán đều là số nguyên, rõ ràng hệ số góc trong tìm kiếm nhị phân WQS cũng là số nguyên. Việc đưa số thực vào nhị phân nhằm bảo đảm rằng khi loại nhầm lựa chọn đúng $\lambda^*$, ta vẫn có thể nhờ phần thập phân để điều chỉnh quay lại và cuối cùng tiệm cận đáp án đúng $\lambda^*$. Ví dụ, trong ví dụ trên, nếu khi tính $h(\lambda^*)$, giá trị $g(x_{\lambda^*})$ được ghi là $y_1$, nhỏ hơn $y_2$ mong muốn, thuật toán sẽ chuyển sang xét khoảng $(\lambda^*,\lambda_r]$, trong đó $\lambda_r$ là đầu phải của khoảng chứa $\lambda$. Với trường hợp nguyên, khoảng này thực ra phải viết là $[\lambda_*+1,\lambda_r]$, nên đã loại bỏ khả năng tiến gần đáp án đúng $\lambda^*$ trong các bước sau. Nhưng khi nhị phân trên số thực, khoảng được xét vẫn là $(\lambda^*,\lambda_r]$; hơn nữa, với mọi $\lambda$ trong khoảng này, khi giải $h(\lambda)$ thì $g(x_\lambda)$ được ghi luôn không nhỏ hơn $y_3$, do đó lớn hơn hẳn $y_2$. Vì vậy, khi thuật toán tiếp tục, nó sẽ liên tục bỏ nửa phải, cuối cùng bảo đảm khoảng của $\lambda$ nằm gần $\lambda^*$. Tất nhiên, vì đã biết hệ số góc cần tìm là một số nguyên, độ chính xác khi dừng nhị phân thực không cần quá cao; chỉ cần bảo đảm trong khoảng nhị phân chỉ còn một số nguyên, số nguyên đó chính là $\lambda^*$ cần tìm.
 
-正确地处理共线情形后，WQS 二分足以解决绝大多数算法竞赛会遇到的 WQS 二分的问题．但是，这一方法仍然存在一些不足之处：它无法处理 $g(x_\lambda)$ 难以记录的情形，也无法处理高维 WQS 二分中多个点共面的情形．本文将进一步考察最优化问题 $v(y)$ 的性质，并提出更为一般的处理方法．
+Sau khi xử lý đúng trường hợp thẳng hàng, tìm kiếm nhị phân WQS đã đủ để giải phần lớn các bài toán WQS trong lập trình thi đấu. Tuy nhiên, phương pháp này vẫn có một số thiếu sót: nó không xử lý được trường hợp khó ghi lại $g(x_\lambda)$, cũng không xử lý được trường hợp nhiều điểm đồng phẳng trong WQS nhiều chiều. Bài viết sẽ tiếp tục khảo sát tính chất của bài toán tối ưu $v(y)$ và đưa ra phương pháp tổng quát hơn.
 
-## 对偶方法
+<span id="&#23545;&#20598;&#26041;&#27861;"></span>
+## Phương pháp đối ngẫu
 
-本节介绍一种 WQS 二分的实现方法，它只要求对于所有 $\lambda\in\mathbf R^d$，可以高效地计算
+Mục này giới thiệu một cách cài đặt tìm kiếm nhị phân WQS chỉ yêu cầu với mọi $\lambda\in\mathbf R^d$, ta có thể tính hiệu quả giá trị của
 
 $$
 h(\lambda) = \min_{x\in X}f(x)-\lambda\cdot g(x)
 $$
 
-的取值，且原问题的最优价值 $v(y)$ 是关于 $y\in\mathbf R^d$ 的凸函数[^high-d-convex]．用一句话概括，本节将证明原问题的价值函数 $v(y)$ 就等于它的对偶问题的最优价值
+và giá trị tối ưu $v(y)$ của bài toán gốc là hàm lồi theo $y\in\mathbf R^d$[^high-d-convex]. Tóm gọn trong một câu, mục này sẽ chứng minh rằng hàm giá trị $v(y)$ của bài toán gốc đúng bằng giá trị tối ưu của bài toán đối ngẫu
 
 $$
 v^\star(y) = \sup_{\lambda\in\mathbf R^d} h(\lambda)+\lambda\cdot y,
 $$
 
-而对偶问题的目标函数是关于 $\lambda\in\mathbf R^d$ 的凹函数，从而是单峰函数，可以通过 [三分法](../../basic/binary.md#三分法) 或 [黄金分割法](../../basic/binary.md#优化黄金分割法) 高效地求解，复杂度仍然是 $O(T(n)\log^d L)$ 的．这就完全地解决了传统 WQS 二分方法中记录 $g(x_\lambda)$ 的值可能会出现的问题，同时，允许将 WQS 二分的思想应用至高维的情形．
+còn hàm mục tiêu của bài toán đối ngẫu là hàm lõm theo $\lambda\in\mathbf R^d$, do đó là hàm đơn đỉnh và có thể được giải hiệu quả bằng [tìm kiếm tam phân](../../basic/binary.md#%E4%B8%89%E5%88%86%E6%B3%95) hoặc [tìm kiếm tỉ lệ vàng](../../basic/binary.md#%E4%BC%98%E5%8C%96%E9%BB%84%E9%87%91%E5%88%86%E5%89%B2%E6%B3%95), với độ phức tạp vẫn là $O(T(n)\log^d L)$. Điều này giải quyết hoàn toàn vấn đề giá trị $g(x_\lambda)$ được ghi trong phương pháp WQS truyền thống có thể gây lỗi, đồng thời cho phép áp dụng tư tưởng WQS cho trường hợp nhiều chiều.
 
-另外，本节还说明，$g(x_\lambda)$ 的范围可以通过 $h(\lambda)$ 求得，而无需在求解 $h(\lambda)$ 时额外记录．例如，对于 $d=1$ 且问题只涉及整数的情形，可以证明 $g(x_\lambda)$ 的取值范围恰为
+Ngoài ra, mục này còn chỉ ra rằng phạm vi của $g(x_\lambda)$ có thể được suy ra từ $h(\lambda)$ mà không cần ghi thêm khi giải $h(\lambda)$. Ví dụ, với $d=1$ và bài toán chỉ liên quan đến số nguyên, có thể chứng minh phạm vi giá trị của $g(x_\lambda)$ đúng bằng
 
 $$
 [h(\lambda-1)-h(\lambda),h(\lambda)-h(\lambda+1)].
 $$
 
-这实际上也对于不得不采取前文所述二分流程的题目，提供了又一种解决共线问题的方法．
+Trên thực tế, điều này cũng cung cấp thêm một cách xử lý vấn đề thẳng hàng cho những bài vẫn buộc phải dùng quy trình nhị phân đã nêu ở trước.
 
-接下来，本节将用凸分析的理论证明这些结论成立．至于这些方法的具体应用，可以参考 [例题](#例题) 一节．
+Tiếp theo, mục này sẽ dùng lý thuyết giải tích lồi để chứng minh các kết luận trên. Về ứng dụng cụ thể của những phương pháp này, có thể tham khảo mục [Ví dụ](#%E4%BE%8B%E9%A2%98).
 
-### Lagrange 对偶
+<span id="lagrange-&#23545;&#20598;"></span>
+### Đối ngẫu Lagrange
 
-考虑用 [Lagrange 乘子法](https://en.wikipedia.org/wiki/Lagrange_multiplier) 解决该问题．引入 Lagrange 乘子 $\lambda\in\mathbf R^d$，那么，Lagrangian 可以写作
+Xét việc dùng [phương pháp nhân tử Lagrange](https://en.wikipedia.org/wiki/Lagrange_multiplier) để giải bài toán. Đưa vào nhân tử Lagrange $\lambda\in\mathbf R^d$, khi đó Lagrangian có thể viết là
 
 $$
 L(x,\lambda,y) = f(x) - \lambda\cdot g(x)+\lambda\cdot y.
 $$
 
-因为只要 $g(x)-y$ 有一个分量非零，就可以让相应的 $\lambda$ 的分量趋于（正或负）无穷，所以有
+Vì chỉ cần $g(x)-y$ có một thành phần khác không, ta có thể cho thành phần tương ứng của $\lambda$ tiến tới vô cùng (dương hoặc âm), nên
 
 $$
 \sup_{\lambda\in\mathbf R^d}L(x,\lambda,y)
@@ -127,7 +133,7 @@ f(x),&g(x)=y,\\
 \end{cases}
 $$
 
-这说明，原问题可以写作
+Điều này cho thấy bài toán gốc có thể viết thành
 
 $$
 \begin{aligned}
@@ -135,7 +141,7 @@ v(y) &= \min_{x\in X}\sup_{\lambda\in\mathbf R^d}L(x,\lambda,y).
 \end{aligned}
 $$
 
-交换两次最值操作，就得到它的 [对偶问题](https://en.wikipedia.org/wiki/Duality_%28optimization%29)：
+Hoán đổi hai phép cực trị sẽ thu được [bài toán đối ngẫu](https://en.wikipedia.org/wiki/Duality_%28optimization%29):
 
 $$
 \begin{aligned}
@@ -144,45 +150,46 @@ v^\star(y)&=\sup_{\lambda\in\mathbf R^d}\min_{x\in X}L(x,\lambda,y)\\
 \end{aligned}
 $$
 
-马上要说明的是，在 $v(y)$ 是关于 $y$ 的凸函数的条件下，强对偶（strong duality）成立，即 $v^\star(y)=v(y)$．
+Điều sắp chứng minh là: dưới điều kiện $v(y)$ là hàm lồi theo $y$, đối ngẫu mạnh (strong duality) được thỏa mãn, tức là $v^\star(y)=v(y)$.
 
-### 凸共轭
+<span id="&#20984;&#20849;&#36717;"></span>
+### Liên hợp lồi
 
-为了说明强对偶成立，需要引入凸共轭的概念．
+Để chứng minh đối ngẫu mạnh, cần đưa vào khái niệm liên hợp lồi.
 
-???+ abstract "凸共轭"
-    对于函数 $f:\mathbf R^d\rightarrow\mathbf R\cup\{\pm\infty\}$，它的 **凸共轭**（convex conjugate），或称 **Legendre–Fenchel 变换**（Legendre–Fenchel transformation），是指函数
+???+ abstract "Liên hợp lồi"
+    Với hàm $f:\mathbf R^d\rightarrow\mathbf R\cup\{\pm\infty\}$, **liên hợp lồi** (convex conjugate) của nó, hay còn gọi là **biến đổi Legendre-Fenchel** (Legendre-Fenchel transformation), là hàm
     
     $$
     f^*(x^*) = \sup_{x\in\mathbf R^d}x^*\cdot x - f(x).
     $$
 
-从变量 $x^*$ 的角度看，$f^*(x^*)$ 是一系列线性函数的上确界，所以，必然是 $\mathbf R^d$ 上的凸函数．
+Nhìn từ biến $x^*$, $f^*(x^*)$ là cận trên đúng của một họ các hàm tuyến tính, nên nhất định là hàm lồi trên $\mathbf R^d$.
 
-???+ info "超平面的「斜率向量」和「截距」"
-    本文所讨论的向量空间 $\mathbf R^{d+1}$ 中的超平面的方程都具有形式
+???+ info ""Vector hệ số góc" và "tung độ gốc" của siêu phẳng"
+    Các phương trình siêu phẳng trong không gian vector $\mathbf R^{d+1}$ được thảo luận trong bài viết này đều có dạng
     
     $$
     y = k\cdot x + b.
     $$
     
-    也就是说，本文不会涉及平行于 $y$ 轴的超平面．为表述方便，本文并不严谨地将 $k$ 称为该超平面的「斜率向量」，$b$ 称为该超平面的「截距」．将这一超平面的方程写成更标准的形式，就是
+    Nói cách khác, bài viết này không xét các siêu phẳng song song với trục $y$. Để tiện trình bày, bài viết gọi không hoàn toàn chặt chẽ $k$ là "vector hệ số góc" của siêu phẳng, và $b$ là "tung độ gốc" của nó. Viết phương trình siêu phẳng này theo dạng chuẩn hơn sẽ là
     
     $$
     k\cdot x - y = -b.
     $$
     
-    它的一个法向量是 $(k,-1)$．因此，所谓的斜率向量其实是将超平面的法向量归一化使得它的最后一个分量等于 $-1$ 时，所得到的法向量的前 $d$ 个分量．
+    Một vector pháp tuyến của nó là $(k,-1)$. Vì vậy, cái gọi là vector hệ số góc thực ra là $d$ thành phần đầu của vector pháp tuyến thu được sau khi chuẩn hóa vector pháp tuyến của siêu phẳng sao cho thành phần cuối của nó bằng $-1$.
 
-几何直观上，函数 $f(x)$ 的凸共轭描述的是，对于所有斜率向量为 $x^*$ 且与函数 $f(x)$ 的上境图
+Về trực quan hình học, liên hợp lồi của hàm $f(x)$ mô tả điều sau: với mọi siêu phẳng có vector hệ số góc $x^*$ và cắt epigraph
 
 $$
 \operatorname{epi}f = \{(x,y)\in\mathbf R^d\times\mathbf R:f(x)\le y\}
 $$
 
-相交的超平面，截距 $f(x)-x^*\cdot x$ 的最小值就是 $-f^*(x^*)$．换句话说，函数 $f(x)$ 总在超平面 $y = x^*\cdot x-f^*(x^*)$ 上方，且与该平面切于点 $(x_0,f(x_0))$；当然，可能存在其余的切点．这样的超平面，称为 $f(x)$ 在 $x_0$ 处的 **支撑超平面**（supporting hyperplane）．函数 $f(x)$ 的一个支撑超平面的截距由它的斜率向量唯一确定，凸共轭就提供了这个从斜率向量到截距的映射．
+của hàm $f(x)$, giá trị nhỏ nhất của tung độ gốc $f(x)-x^*\cdot x$ là $-f^*(x^*)$. Nói cách khác, hàm $f(x)$ luôn nằm phía trên siêu phẳng $y = x^*\cdot x-f^*(x^*)$ và tiếp xúc với siêu phẳng đó tại điểm $(x_0,f(x_0))$; tất nhiên có thể tồn tại các điểm tiếp xúc khác. Siêu phẳng như vậy được gọi là **siêu phẳng đỡ** (supporting hyperplane) của $f(x)$ tại $x_0$. Tung độ gốc của một siêu phẳng đỡ của hàm $f(x)$ được xác định duy nhất bởi vector hệ số góc của nó; liên hợp lồi chính là ánh xạ từ vector hệ số góc đến tung độ gốc.
 
-在集合 $X$ 上最小化 $f(x)-\lambda\cdot g(x)$ 就等价于在集合 $\{(y,v(y))\}$ 上最小化 $v(y)-\lambda\cdot y$：
+Việc cực tiểu hóa $f(x)-\lambda\cdot g(x)$ trên tập $X$ tương đương với việc cực tiểu hóa $v(y)-\lambda\cdot y$ trên tập $\{(y,v(y))\}$:
 
 $$
 \begin{aligned}
@@ -192,201 +199,202 @@ $$
 \end{aligned}
 $$
 
-因此，有
+Do đó,
 
 $$
 h(\lambda) = \min_{y\in g(X)}v(y) - \lambda\cdot y = -v^*(\lambda).
 $$
 
-这说明 $h(\lambda)$ 是关于 $\lambda\in\mathbf R^d$ 的凹函数．进而，有
+Điều này cho thấy $h(\lambda)$ là hàm lõm theo $\lambda\in\mathbf R^d$. Hơn nữa,
 
 $$
 v^\star(y) = \sup_{\lambda\in\mathbf R^d}\lambda\cdot y-v^*(\lambda) = v^{**}(y).
 $$
 
-也就是说，对偶问题的价值函数 $v^{\star}(y)$ 是原问题的价值函数 $v(y)$ 的双重凸共轭，也称为 **双共轭**（biconjugate）．
+Nói cách khác, hàm giá trị $v^{\star}(y)$ của bài toán đối ngẫu là liên hợp lồi hai lần của hàm giá trị $v(y)$ của bài toán gốc, còn gọi là **song liên hợp** (biconjugate).
 
-所以，问题转化为：什么样的函数 $v(y)$ 满足它的双共轭就等于它自身？这一问题的答案由如下定理给出：
+Vì vậy, bài toán được chuyển thành: loại hàm $v(y)$ nào có song liên hợp đúng bằng chính nó? Câu trả lời được cho bởi định lý sau:
 
-???+ note "定理（Fenchel–Moreau）"
-    对于函数 $f:\mathbf R^d\rightarrow\mathbf R\cup\{\pm\infty\}$，它的双共轭等于它自身，即 $f^{**}=f$，当且仅当以下三个条件之一满足：
+???+ note "Định lý (Fenchel-Moreau)"
+    Với hàm $f:\mathbf R^d\rightarrow\mathbf R\cup\{\pm\infty\}$, song liên hợp của nó bằng chính nó, tức $f^{**}=f$, khi và chỉ khi một trong ba điều kiện sau thỏa mãn:
     
-    1.  $f(x)$ 是正常凸函数且 [下半连续](https://en.wikipedia.org/wiki/Semi-continuity)，
-    2.  $f(x)\equiv+\infty$，或
-    3.  $f(x)\equiv-\infty$．
+    1.  $f(x)$ là hàm lồi proper và [nửa liên tục dưới](https://en.wikipedia.org/wiki/Semi-continuity),
+    2.  $f(x)\equiv+\infty$, hoặc
+    3.  $f(x)\equiv-\infty$.
 
-??? note "证明"
-    一个函数是正常的（proper），当且仅当它从不取得 $-\infty$ 的值，且不永远取得 $+\infty$ 的值．
+??? note "Chứng minh"
+    Một hàm là proper khi và chỉ khi nó không bao giờ nhận giá trị $-\infty$ và không luôn luôn nhận giá trị $+\infty$.
     
-    对于非正常函数的情形，可以验证 $f(x)\equiv+\infty$ 和 $f(x)\equiv-\infty$ 互为共轭．除此之外，只要 $f(x)$ 在任何一点处取到 $-\infty$，必然有 $f^*(x^*)\equiv+\infty$．所以，满足 $f^{**}=f$ 的非正常函数只有这两种情形．下面的讨论仅限于正常函数．对于正常函数，下半连续且凸的条件等价于它的上境图是闭凸集．
+    Với trường hợp hàm không proper, có thể kiểm chứng $f(x)\equiv+\infty$ và $f(x)\equiv-\infty$ là liên hợp của nhau. Ngoài ra, chỉ cần $f(x)$ nhận giá trị $-\infty$ tại bất kỳ điểm nào thì nhất định có $f^*(x^*)\equiv+\infty$. Vì vậy, các hàm không proper thỏa $f^{**}=f$ chỉ có hai trường hợp này. Phần thảo luận sau chỉ xét hàm proper. Với hàm proper, điều kiện nửa liên tục dưới và lồi tương đương với epigraph của nó là một tập lồi đóng.
     
-    这一条件的必要性是容易的．因为 $f=f^{**}$ 是 $f^*$ 的凸共轭，作为一系列线性函数的上确界，它的上境图必然是一系列闭凸集的交集，所以必然是闭凸集．这就说明，满足 $f^{**}=f$ 的正常函数必然是下半连续且凸的．
+    Tính cần thiết của điều kiện này khá dễ thấy. Vì $f=f^{**}$ là liên hợp lồi của $f^*$, và với tư cách là cận trên đúng của một họ các hàm tuyến tính, epigraph của nó nhất định là giao của một họ các tập lồi đóng, nên nhất định là tập lồi đóng. Điều này cho thấy hàm proper thỏa $f^{**}=f$ nhất định là nửa liên tục dưới và lồi.
     
-    反过来，这些条件也是充分的．和其他强对偶定理的证明一样，证明可以分为两步．
+    Chiều ngược lại, các điều kiện này cũng là đủ. Giống chứng minh của các định lý đối ngẫu mạnh khác, chứng minh có thể chia thành hai bước.
     
-    第一步，说明弱对偶成立，即 $f(x)\ge f^{**}(x)$．由凸共轭的定义可知，对于所有 $x,x^*\in\mathbf R^d$，都有
+    Bước thứ nhất, chứng minh đối ngẫu yếu, tức $f(x)\ge f^{**}(x)$. Theo định nghĩa của liên hợp lồi, với mọi $x,x^*\in\mathbf R^d$, ta có
     
     $$
     f^*(x^*) \ge x^*\cdot x-f(x).
     $$
     
-    这就说明，对于所有 $x,x^*\in\mathbf R^d$，同样有
+    Điều này suy ra với mọi $x,x^*\in\mathbf R^d$ cũng có
     
     $$
     f(x) \ge x^*\cdot x-f^*(x^*).
     $$
     
-    对不等式右侧中的 $x^*$ 取上确界，就有 $f(x)\ge f^{**}(x)$．
+    Lấy cận trên đúng theo $x^*$ ở vế phải bất đẳng thức, ta được $f(x)\ge f^{**}(x)$.
     
-    第二步，利用 [超平面分离定理](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem) 说明 $f(x)\le f^{**}(x)$．假设不然，存在 $x_0\in\mathbf R^d$ 使得 $f(x_0)>f^{**}(x_0)$ 成立．因为 $f(x)$ 的上境图 $\operatorname{epi}(f)$ 是闭凸集，而且单点集 $\{(x_0,f^{**}(x_0))\}$ 是紧凸集，所以，根据超平面分离定理，存在 $(\lambda,t)\in\mathbf R^d\times\mathbf R$ 和 $\alpha\in\mathbf R$ 使得对于所有 $x\in\operatorname{dom} f:=\{x\in\mathbf R^d:f(x)<+\infty\}$ 和所有 $y\ge f(x)$ 都有
+    Bước thứ hai, dùng [định lý tách siêu phẳng](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem) để chứng minh $f(x)\le f^{**}(x)$. Giả sử ngược lại, tồn tại $x_0\in\mathbf R^d$ sao cho $f(x_0)>f^{**}(x_0)$. Vì epigraph $\operatorname{epi}(f)$ của $f(x)$ là tập lồi đóng, còn tập một điểm $\{(x_0,f^{**}(x_0))\}$ là tập lồi compact, nên theo định lý tách siêu phẳng, tồn tại $(\lambda,t)\in\mathbf R^d\times\mathbf R$ và $\alpha\in\mathbf R$ sao cho với mọi $x\in\operatorname{dom} f:=\{x\in\mathbf R^d:f(x)<+\infty\}$ và mọi $y\ge f(x)$ đều có
     
     $$
     \lambda\cdot x-ty <\alpha <\lambda\cdot x_0 - tf^{**}(x_0)
     $$
     
-    成立．因为 $y$ 可以选得任意大，所以必然有 $t\ge 0$．这又可以分为两种情形．
+    đúng. Vì $y$ có thể được chọn lớn tùy ý, nhất định phải có $t\ge 0$. Lại chia thành hai trường hợp.
     
-    首先，讨论 $t>0$ 的情形．此时，将不等式的各部分都同除以 $t$，并设 $\lambda'=t^{-1}\lambda$ 和 $\alpha'=t^{-1}\alpha$，就得到
+    Trước hết xét trường hợp $t>0$. Khi đó, chia mọi phần của bất đẳng thức cho $t$, đặt $\lambda'=t^{-1}\lambda$ và $\alpha'=t^{-1}\alpha$, ta được
     
     $$
     \lambda'\cdot x-y < \alpha'< \lambda'\cdot x_0-f^{**}(x_0).
     $$
     
-    对所有 $x\in\operatorname{dom} f$，令 $y=f(x)$，就都成立
+    Với mọi $x\in\operatorname{dom} f$, lấy $y=f(x)$, đều có
     
     $$
     \alpha' > \lambda'\cdot x - f(x).
     $$
     
-    故而，对不等号右侧的 $x$ 取上确界，有
+    Do đó, lấy cận trên đúng theo $x$ ở vế phải,
     
     $$
     \alpha' \ge \sup_{x\in\mathbf R^d}\lambda'\cdot x - f(x) = f^*(\lambda').
     $$
     
-    进而，有
+    Suy ra
     
     $$
     f^{**}(x_0) < \lambda'\cdot x_0-f^*(\lambda') \le \sup_{x^*\in\mathbf R^d}x^*\cdot x_0-f^*(x^*) = f^{**}(x_0).
     $$
     
-    这一矛盾说明 $t>0$ 的情形并不成立．
+    Mâu thuẫn này cho thấy trường hợp $t>0$ không thể xảy ra.
     
-    最后，讨论 $t=0$ 的情形．事实上，将要说明的是，可以通过微扰，将它转化为 $t>0$ 的情形．任取 $\lambda_0\in\operatorname{dom}f^*$，根据凸共轭的定义可知，对于任何 $x\in\operatorname{dom}f$ 和 $y\ge f(x)$ 都有
+    Cuối cùng xét trường hợp $t=0$. Trên thực tế, ta sẽ chứng minh rằng có thể dùng nhiễu nhỏ để chuyển nó về trường hợp $t>0$. Lấy tùy ý $\lambda_0\in\operatorname{dom}f^*$, theo định nghĩa liên hợp lồi, với mọi $x\in\operatorname{dom}f$ và $y\ge f(x)$ đều có
     
     $$
     \lambda_0\cdot x-y\le f^*(\lambda_0).
     $$
     
-    因此，对于任意 $\varepsilon>0$，都有
+    Vì vậy, với mọi $\varepsilon>0$, ta có
     
     $$
     (\lambda+\varepsilon\lambda_0)\cdot x - \varepsilon y<\alpha+\varepsilon f^*(\lambda_0).
     $$
     
-    同时，因为 $\alpha<\lambda\cdot x_0$，所以，对于充分小的 $\varepsilon>0$，又有
+    Đồng thời, vì $\alpha<\lambda\cdot x_0$, nên với $\varepsilon>0$ đủ nhỏ, lại có
     
     $$
     \alpha+\varepsilon f^*(\lambda_0) < (\lambda+\varepsilon\lambda_0)\cdot x_0 - \varepsilon f^{**}(x_0).
     $$
     
-    因此，如果取 $\lambda'=\lambda+\varepsilon\lambda_0$，$t'=\varepsilon$ 和 $\alpha'=\alpha+\varepsilon f^*(\lambda_0)$，那么，就有
+    Do đó, nếu lấy $\lambda'=\lambda+\varepsilon\lambda_0$, $t'=\varepsilon$ và $\alpha'=\alpha+\varepsilon f^*(\lambda_0)$, thì có
     
     $$
     \lambda'\cdot x-t'y <\alpha' <\lambda'\cdot x_0 - t'f^{**}(x_0).
     $$
     
-    这就又回到了前一种情形，仍然会导致矛盾．
+    Điều này lại quay về trường hợp trước và vẫn dẫn đến mâu thuẫn.
     
-    这一矛盾说明，并不存在满足 $f(x_0)>f^{**}(x_0)$ 的点 $x_0\in\mathbf R^d$．故而，总有 $f(x_0)\le f^{**}(x_0)$．
+    Mâu thuẫn này cho thấy không tồn tại điểm $x_0\in\mathbf R^d$ thỏa $f(x_0)>f^{**}(x_0)$. Vì vậy luôn có $f(x_0)\le f^{**}(x_0)$.
     
-    结合这两步证明的结果，就得到 $f^{**}(x)=f(x)$ 成立．
+    Kết hợp kết quả của hai bước chứng minh, ta thu được $f^{**}(x)=f(x)$.
 
-因此，强对偶成立，当且仅当 $v(y)$ 是关于 $y\in\mathbf R^d$ 的凸函数[^other-conditions]．
+Do đó, đối ngẫu mạnh được thỏa mãn khi và chỉ khi $v(y)$ là hàm lồi theo $y\in\mathbf R^d$[^other-conditions].
 
-### 次梯度
+<span id="&#27425;&#26799;&#24230;"></span>
+### Dưới gradient
 
-上一节说明了，带惩罚的问题的价值函数 $h(\lambda)$ 是原问题的价值函数 $v(y)$ 的凸共轭的相反数．因为凸共轭的定义实际上是一个含参数的最优化问题，所以它也成立类似 [包络定理](https://en.wikipedia.org/wiki/Envelope_theorem) 的结论．但是，因为凸函数并非处处可微的，所以需要首先将导数的定义推广到凸函数的情形．这就引出了次梯度的概念．
+Mục trước đã chỉ ra rằng hàm giá trị $h(\lambda)$ của bài toán có phạt là số đối của liên hợp lồi của hàm giá trị $v(y)$ của bài toán gốc. Vì định nghĩa liên hợp lồi thực chất là một bài toán tối ưu có tham số, nó cũng có kết luận tương tự [định lý bao](https://en.wikipedia.org/wiki/Envelope_theorem). Tuy nhiên, vì hàm lồi không khả vi ở mọi nơi, trước hết cần mở rộng định nghĩa đạo hàm cho trường hợp hàm lồi. Điều này dẫn đến khái niệm dưới gradient.
 
-???+ abstract "次梯度"
-    对于凸函数 $f:\mathbf R^d\rightarrow\mathbf R\cup\{\pm\infty\}$ 和 $x_0\in\operatorname{dom}f$，如果向量 $x^*\in\mathbf R^d$ 满足对于任何 $x\in\mathbf R^d$，都有
+???+ abstract "Dưới gradient"
+    Với hàm lồi $f:\mathbf R^d\rightarrow\mathbf R\cup\{\pm\infty\}$ và $x_0\in\operatorname{dom}f$, nếu vector $x^*\in\mathbf R^d$ thỏa với mọi $x\in\mathbf R^d$,
     
     $$
     f(x) \ge f(x_0)+x^*\cdot(x-x_0),
     $$
     
-    那么，就称 $x^*$ 是 $f(x)$ 在 $x_0$ 处的一个 **次梯度**（subgradient）．函数 $f(x)$ 在 $x_0$ 处的全体次梯度的集合称为它在该处的 **次微分**（subdifferential），记作 $\partial f(x_0)$．
+    thì gọi $x^*$ là một **dưới gradient** (subgradient) của $f(x)$ tại $x_0$. Tập tất cả các dưới gradient của hàm $f(x)$ tại $x_0$ được gọi là **dưới vi phân** (subdifferential) tại đó, ký hiệu $\partial f(x_0)$.
 
-几何直观上，凸函数 $f(x)$ 在 $x_0$ 处的次微分，就是它在该处的所有支撑超平面的斜率向量的集合．对于一维的情形，次微分
+Về trực quan hình học, dưới vi phân của hàm lồi $f(x)$ tại $x_0$ chính là tập vector hệ số góc của tất cả các siêu phẳng đỡ của nó tại đó. Với trường hợp một chiều, dưới vi phân
 
 $$
 \partial f(x_0) = [\partial_-f(x_0),\partial_+f(x_0)],
 $$
 
-其中，$\partial_-f(x_0)$ 和 $\partial_+f(x_0)$ 分别是函数 $f(x)$ 在 $x_0$ 处的左右导数．进一步地，对于整数集上的凸函数 $f:\mathbf Z\rightarrow\mathbf R\cup\{\pm\infty\}$ 延拓而来的 $\tilde f(x)$，它在整数点 $x=k$ 处的左右导数就是左右两侧的一阶差分：
+trong đó $\partial_-f(x_0)$ và $\partial_+f(x_0)$ lần lượt là đạo hàm trái và đạo hàm phải của hàm $f(x)$ tại $x_0$. Hơn nữa, với $\tilde f(x)$ được mở rộng từ hàm lồi $f:\mathbf Z\rightarrow\mathbf R\cup\{\pm\infty\}$ trên tập số nguyên, đạo hàm trái và phải của nó tại điểm nguyên $x=k$ chính là sai phân bậc một ở hai phía:
 
 $$
 \partial\tilde f(k) = [f(k)-f(k-1),f(k+1)-f(k)]. 
 $$
 
-显然，凸函数 $f(x)$ 在点 $x_0$ 处可微，当且仅当它在该处的次微分 $\partial f(x_0)$ 是单点集．
+Rõ ràng, hàm lồi $f(x)$ khả vi tại điểm $x_0$ khi và chỉ khi dưới vi phân $\partial f(x_0)$ của nó tại đó là tập một điểm.
 
-因为凸共轭提供了从支撑超平面的斜率向量到它的截距的映射，所以，利用凸共轭，可以判断一个斜率向量 $x^*$ 是否是凸函数 $f(x)$ 在给定点 $x$ 处的一个次梯度．
+Vì liên hợp lồi cung cấp ánh xạ từ vector hệ số góc của siêu phẳng đỡ đến tung độ gốc của nó, ta có thể dùng liên hợp lồi để phán đoán liệu một vector hệ số góc $x^*$ có phải là một dưới gradient của hàm lồi $f(x)$ tại điểm đã cho $x$ hay không.
 
-???+ note "定理（凸共轭与次梯度）"
-    对于正常凸函数 $f:\mathbf R^d\rightarrow\mathbf R$ 和任意 $x,x^*\in\mathbf R^d$，都有
+???+ note "Định lý (liên hợp lồi và dưới gradient)"
+    Với hàm lồi proper $f:\mathbf R^d\rightarrow\mathbf R$ và mọi $x,x^*\in\mathbf R^d$, ta có
     
     $$
     x^*\in\partial f(x) \iff x^*\cdot x = f(x) + f^*(x^*).
     $$
     
-    进而，如果 $f$ 还是下半连续的，那么这两个条件都等价于 $x\in\partial f^*(x^*)$．
+    Hơn nữa, nếu $f$ còn nửa liên tục dưới, thì hai điều kiện này đều tương đương với $x\in\partial f^*(x^*)$.
 
-??? note "证明"
-    按照次梯度的定义，$x^*\in\partial f(x)$，当且仅当
+??? note "Chứng minh"
+    Theo định nghĩa dưới gradient, $x^*\in\partial f(x)$ khi và chỉ khi
     
     $$
     f(x') \ge f(x) + x^*\cdot(x'-x),~\forall x'\in\mathbf R^d.
     $$
     
-    这等价于
+    Điều này tương đương với
     
     $$
     x^*\cdot x - f(x) \ge x^*\cdot x'-f(x'),~\forall x'\in\mathbf R^d.
     $$
     
-    这又等价于
+    Lại tương đương với
     
     $$
     x^*\cdot x - f(x) \ge \sup_{x'\in\mathbf R^d}x^*\cdot x'-f(x') = f^*(x^*).
     $$
     
-    但是，依据凸共轭的定义，总是有
+    Nhưng theo định nghĩa liên hợp lồi, luôn có
     
     $$
     x^*\cdot x - f(x) \le f^*(x^*).
     $$
     
-    因此，前一式中的大于等于号实际上等价于等号，也就等价于下式
+    Vì vậy, dấu lớn hơn hoặc bằng trong biểu thức trước thực ra tương đương với dấu bằng, tức tương đương với
     
     $$
     x^*\cdot x = f(x) + f^*(x^*).
     $$
     
-    这就完成了第一部分的证明．
+    Điều này hoàn thành phần chứng minh thứ nhất.
     
-    对于 $f$ 是下半连续的正常凸函数的情形，依 Fenchel–Moreau 定理，有 $f^{**}=f$．因此，这两个条件等价于
+    Khi $f$ là hàm lồi proper nửa liên tục dưới, theo định lý Fenchel-Moreau, có $f^{**}=f$. Do đó, hai điều kiện này tương đương với
     
     $$
     x^*\cdot x = f^*(x^*) + f^{**}(x).
     $$
     
-    再次应用第一部分的结论，它们也就等价于 $x\in\partial f^*(x^*)$．
+    Áp dụng lại kết luận ở phần thứ nhất, chúng cũng tương đương với $x\in\partial f^*(x^*)$.
 
-这一结论说明，如果 $f^{**}=f$，那么凸共轭 $f^*$ 在 $x^*$ 处的次微分 $\partial f^{*}(x^*)$，恰好就是斜率向量为 $x^*$ 的支撑超平面与上境图 $\operatorname{epi}f$ 的交点的 $x$ 分量的集合．
+Kết luận này cho thấy nếu $f^{**}=f$, thì dưới vi phân $\partial f^{*}(x^*)$ của liên hợp lồi $f^*$ tại $x^*$ chính là tập các thành phần $x$ của những giao điểm giữa siêu phẳng đỡ có vector hệ số góc $x^*$ và epigraph $\operatorname{epi}f$.
 
-???+ note "推论"
-    对于下半连续的正常凸函数 $f:\mathbf R^d\rightarrow\mathbf R$ 和任意 $x,x^*\in\mathbf R^d$，都有
+???+ note "Hệ quả"
+    Với hàm lồi proper nửa liên tục dưới $f:\mathbf R^d\rightarrow\mathbf R$ và mọi $x,x^*\in\mathbf R^d$, ta có
     
     $$
     \begin{aligned}
@@ -395,87 +403,89 @@ $$
     \end{aligned}
     $$
 
-??? note "证明"
-    下面，证明第二个等式．第一个等式的证明与之类似．
+??? note "Chứng minh"
+    Sau đây chứng minh đẳng thức thứ hai. Đẳng thức thứ nhất chứng minh tương tự.
     
-    按照凸共轭的定义，有
+    Theo định nghĩa liên hợp lồi, có
     
     $$
     f^*(x^*) = \sup_{y\in\mathbf R^d} x^*\cdot y - f(y),
     $$
     
-    所以，
+    nên
     
     $$
     x \in \arg\max_{y\in\mathbf R^d} x^*\cdot y - f(y)
     $$
     
-    当且仅当 $f^*(x^*) = x^*\cdot x - f(x)$，而这一等式成立，又当且仅当 $x\in\partial f^*(x^*)$．这就证明了两个集合是相等的．
+    khi và chỉ khi $f^*(x^*) = x^*\cdot x - f(x)$; mà đẳng thức này đúng khi và chỉ khi $x\in\partial f^*(x^*)$. Điều này chứng minh hai tập bằng nhau.
 
-应用到本文的场景中，这一结论说明，求解问题
+Áp dụng vào bối cảnh của bài viết, kết luận này cho thấy khi giải bài toán
 
 $$
 h(\lambda) = \min_{x\in X}f(x)-\lambda\cdot g(x) = \min_{y\in g(X)}v(y) - \lambda\cdot y
 $$
 
-时，限制函数 $g(x)$ 在最优决策集合上的取值恰为 $\partial(-h(\lambda))$．对于 $d=1$ 且问题只涉及整数的情形，这一集合就是区间
+thì các giá trị của hàm ràng buộc $g(x)$ trên tập quyết định tối ưu đúng bằng $\partial(-h(\lambda))$. Với $d=1$ và bài toán chỉ liên quan đến số nguyên, tập này chính là khoảng
 
 $$
 [h(\lambda-1)-h(\lambda),h(\lambda)-h(\lambda+1)].
 $$
 
-对于连续的整数 $\lambda$，这些区间首尾相接，所以，如果用于二分，只需要计算一侧的端点即可．
+Với các $\lambda$ nguyên liên tiếp, những khoảng này nối đầu đuôi với nhau, nên nếu dùng cho nhị phân, chỉ cần tính một đầu mút là đủ.
 
-## 凸性证明
+<span id="&#20984;&#24615;&#35777;&#26126;"></span>
+## Chứng minh tính lồi
 
-应用 WQS 二分的前提条件是价值函数的凸性．在算法竞赛中，可以通过打表、感性理解等方式猜测凸性成立．但是，严格地证明凸性成立，往往并不容易．本节结合如下经典题目，介绍算法竞赛中常见的证明凸性的方法．
+Điều kiện tiên quyết để áp dụng tìm kiếm nhị phân WQS là tính lồi của hàm giá trị. Trong lập trình thi đấu, có thể đoán tính lồi bằng cách lập bảng, trực giác, v.v. Tuy nhiên, chứng minh chặt chẽ tính lồi thường không dễ. Mục này kết hợp với bài toán kinh điển sau để giới thiệu các phương pháp chứng minh tính lồi thường gặp trong lập trình thi đấu.
 
-???+ example "种树问题"
-    有 $n$ 个树坑，要种 $m$ 棵树．树不能栽种于相邻的两个坑．给定长度为 $n$ 的序列 $\{a_i\}$，表示在每个坑种树的收益，收益可正可负．求种完这 $m$ 棵树最大可能的收益和．
+???+ example "Bài toán trồng cây"
+    Có $n$ hố cây, cần trồng $m$ cây. Không được trồng cây ở hai hố kề nhau. Cho dãy độ dài $n$ là $\{a_i\}$, biểu thị lợi ích khi trồng cây ở mỗi hố, lợi ích có thể dương hoặc âm. Hãy tìm tổng lợi ích lớn nhất có thể sau khi trồng đủ $m$ cây.
     
-    简言之，就是在长度为 $n$ 的链上，求解大小为 $m$ 的最大权独立集的问题．
+    Nói ngắn gọn, đây là bài toán tìm tập độc lập trọng số lớn nhất có kích thước $m$ trên một đường thẳng độ dài $n$.
 
-这些方法粗略地可以分为四类：
+Các phương pháp này có thể chia sơ bộ thành bốn loại:
 
--   归约为凸优化问题（包括 [线性规划](../../math/linear-programming.md) 等）的价值函数对参数的凸性，这包括建立 [费用流](../../graph/flow/min-cost.md) 模型等方法；
--   利用状态转移方程也可以归纳地证明凸性成立，过程中可能会用到一些 [保持凸性的变换](./slope-trick.md#凸函数的变换)；
--   对于区间分拆类型的问题，可以验证每段区间的成本函数满足 [四边形不等式](./quadrangle.md)；
--   最后，对于特殊的问题，也可以通过交换论证直接说明凸性成立．
+-   Quy về tính lồi theo tham số của hàm giá trị trong bài toán tối ưu lồi (bao gồm [quy hoạch tuyến tính](../../math/linear-programming.md), v.v.), trong đó có các cách như xây dựng mô hình [luồng chi phí](../../graph/flow/min-cost.md);
+-   dùng phương trình chuyển trạng thái để chứng minh quy nạp tính lồi, trong quá trình đó có thể dùng một số [phép biến đổi bảo toàn tính lồi](./slope-trick.md#%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2);
+-   với các bài toán phân đoạn khoảng, có thể kiểm chứng hàm chi phí của mỗi đoạn thỏa [bất đẳng thức tứ giác](./quadrangle.md);
+-   cuối cùng, với các bài toán đặc biệt, cũng có thể dùng lập luận trao đổi để trực tiếp chứng minh tính lồi.
 
-这些证明方法本身往往都同该问题的某种解法联系在一起．
+Bản thân các phương pháp chứng minh này thường gắn với một cách giải nào đó của bài toán.
 
-### 归约为含参凸优化
+<span id="&#24402;&#32422;&#20026;&#21547;&#21442;&#20984;&#20248;&#21270;"></span>
+### Quy về tối ưu lồi có tham số
 
-考虑如下形式的含参凸优化问题：
+Xét bài toán tối ưu lồi có tham số dạng sau:
 
 $$
 v(y)=\inf_{x\in\mathcal D(y)} f(x,y).
 $$
 
-其中，目标函数 $f:\mathbf R^n\times\mathbf R^d\rightarrow\mathbf R\cup\{\pm\infty\}$ 对于每个 $y\in\mathbf R^d$ 都是关于 $x\in\mathbf R^m$ 的凸函数，而可行域 $\mathcal D:\mathbf R^d\rightarrow \mathcal P(\mathbf R^m)$ 是 $\mathbf R^d$ 上的集合值函数，且对于每个 $y\in\mathbf R^d$，集合 $\mathcal D(y)$ 都是凸集．这些条件保证了对于任意参数 $y\in\mathbf R^d$，这都是一个凸优化问题．
+Trong đó, với mỗi $y\in\mathbf R^d$, hàm mục tiêu $f:\mathbf R^n\times\mathbf R^d\rightarrow\mathbf R\cup\{\pm\infty\}$ là hàm lồi theo $x\in\mathbf R^m$, còn miền khả thi $\mathcal D:\mathbf R^d\rightarrow \mathcal P(\mathbf R^m)$ là hàm nhận giá trị là tập trên $\mathbf R^d$, và với mỗi $y\in\mathbf R^d$, tập $\mathcal D(y)$ đều là tập lồi. Các điều kiện này bảo đảm rằng với mọi tham số $y\in\mathbf R^d$, đây đều là một bài toán tối ưu lồi.
 
-???+ note "定理"
-    假设上述含参凸优化问题满足如下条件：
+???+ note "Định lý"
+    Giả sử bài toán tối ưu lồi có tham số ở trên thỏa các điều kiện sau:
     
-    1.  目标函数 $f(x,y)$ 是关于 $(x,y)$ 的凸函数；
-    2.  可行域映射 $y\mapsto\mathcal D(y)$ 的图像 $\{(x,y):x\in\mathcal D(y)\}$ 是凸集．
+    1.  Hàm mục tiêu $f(x,y)$ là hàm lồi theo $(x,y)$;
+    2.  đồ thị $\{(x,y):x\in\mathcal D(y)\}$ của ánh xạ miền khả thi $y\mapsto\mathcal D(y)$ là tập lồi.
     
-    如果对于任意 $y\in\mathbf R^d$，都有 $v(y)>-\infty$，那么，价值函数 $v(y)$ 是关于 $y$ 的正常凸函数．
+    Nếu với mọi $y\in\mathbf R^d$ đều có $v(y)>-\infty$, thì hàm giá trị $v(y)$ là hàm lồi proper theo $y$.
 
-??? note "证明"
-    对于任意 $y_1,y_2\in\mathbf R^d$ 和 $\alpha\in(0,1)$，需要证明
+??? note "Chứng minh"
+    Với mọi $y_1,y_2\in\mathbf R^d$ và $\alpha\in(0,1)$, cần chứng minh
     
     $$
     v(\alpha y_1+(1-\alpha)y_2) \le \alpha v(y_1) + (1-\alpha) v(y_2).
     $$
     
-    如果 $v(y_1)=+\infty$ 或 $v(y_2)=+\infty$，那么不等式的右侧就是 $+\infty$，不等式必然成立．否则，$v(y_1)$ 和 $v(y_2)$ 都是有限值．对于任意 $\varepsilon>0$ 和 $i=1,2$，都存在 $x_i\in\mathcal D(y_i)$ 使得 $f(x_i,y_i)< v(y_i)+\varepsilon$ 成立．利用映射 $\mathcal D$ 的图像的凸性可知
+    Nếu $v(y_1)=+\infty$ hoặc $v(y_2)=+\infty$, vế phải của bất đẳng thức là $+\infty$, nên bất đẳng thức hiển nhiên đúng. Ngược lại, $v(y_1)$ và $v(y_2)$ đều hữu hạn. Với mọi $\varepsilon>0$ và $i=1,2$, tồn tại $x_i\in\mathcal D(y_i)$ sao cho $f(x_i,y_i)< v(y_i)+\varepsilon$. Dùng tính lồi của đồ thị ánh xạ $\mathcal D$, ta có
     
     $$
     \alpha x_1+(1-\alpha)x_2 \in \mathcal D(\alpha y_1+(1-\alpha)y_2).
     $$
     
-    也就是说，$\alpha x_1+(1-\alpha)x_2$ 是参数为 $\alpha y_1+(1-\alpha)y_2$ 的最优化问题的一个可行解．利用最优化条件和目标函数的凸性可知
+    Nói cách khác, $\alpha x_1+(1-\alpha)x_2$ là một nghiệm khả thi của bài toán tối ưu có tham số $\alpha y_1+(1-\alpha)y_2$. Dùng điều kiện tối ưu và tính lồi của hàm mục tiêu, ta được
     
     $$
     \begin{aligned}
@@ -486,49 +496,49 @@ $$
     \end{aligned}
     $$
     
-    因为 $\varepsilon$ 的选取是任意的，令 $\varepsilon\rightarrow 0$，就有
+    Vì $\varepsilon$ được chọn tùy ý, cho $\varepsilon\rightarrow 0$, ta có
     
     $$
     v(\alpha y_1+(1-\alpha)y_2) \le \alpha v(y_1) + (1-\alpha) v(y_2).
     $$
     
-    因此，价值函数 $v(y)$ 的凸性成立．
+    Do đó, tính lồi của hàm giá trị $v(y)$ được chứng minh.
 
-算法竞赛中，最为常见的凸优化问题就是线性规划问题．
+Trong lập trình thi đấu, bài toán tối ưu lồi thường gặp nhất là quy hoạch tuyến tính.
 
-???+ note "推论"
-    设 $c\in\mathbf R^n$，$A_1\in\mathbf R^{d_1\times n}$，$A_2\in\mathbf R^{d_2\times n}$，$y_1\in\mathbf R^{d_1}$，$y_2\in\mathbf R^{d_2}$．考虑如下含参线性规划问题：
+???+ note "Hệ quả"
+    Gọi $c\in\mathbf R^n$, $A_1\in\mathbf R^{d_1\times n}$, $A_2\in\mathbf R^{d_2\times n}$, $y_1\in\mathbf R^{d_1}$, $y_2\in\mathbf R^{d_2}$. Xét bài toán quy hoạch tuyến tính có tham số sau:
     
     $$
     v(y_1,y_2)=\min_{x\in\mathbf R^n} c\cdot x \text{ subject to }A_1x\le y_1,A_2x=y_2,x\ge 0.
     $$
     
-    那么，价值函数 $v(y_1,y_2)$ 是关于 $(y_1,y_2)$ 的凸函数．
+    Khi đó, hàm giá trị $v(y_1,y_2)$ là hàm lồi theo $(y_1,y_2)$.
 
-无论是不等式约束，还是等式约束，线性规划的价值函数都是约束条件参数的凸函数．
+Bất kể là ràng buộc bất đẳng thức hay ràng buộc đẳng thức, hàm giá trị của quy hoạch tuyến tính đều là hàm lồi theo tham số trong điều kiện ràng buộc.
 
-很多图论问题都可以写成线性规划问题的形式：
+Nhiều bài toán đồ thị có thể viết dưới dạng bài toán quy hoạch tuyến tính:
 
--   网络流问题：最大流、最小割、最小费用流；
--   无负环的最短路问题；
--   二分图的最大（权）匹配、最小点覆盖等问题；
--   一般图的最大（权）匹配问题；
--   最小生成树问题[^mst]．
+-   Bài toán luồng mạng: luồng cực đại, cắt cực tiểu, luồng chi phí nhỏ nhất;
+-   bài toán đường đi ngắn nhất không có chu trình âm;
+-   ghép cặp cực đại (có trọng số) trên đồ thị hai phía, phủ đỉnh nhỏ nhất, v.v.;
+-   ghép cặp cực đại (có trọng số) trên đồ thị tổng quát;
+-   bài toán cây khung nhỏ nhất[^mst].
 
-因此，这些问题的价值函数都是这些问题的参数的凸（凹）函数．
+Vì vậy, hàm giá trị của các bài toán này đều là hàm lồi (hoặc lõm) theo tham số của bài toán.
 
-???+ warning "整数约束"
-    利用图论模型为实际问题建模时，通常有隐含的整数限制，例如一条边只能选或不选、流量只能是整数等．因此，它们只能转化为整数线性规划（integer linear programming, ILP）问题而非线性规划（LP）问题．因为 ILP 问题并非凸优化问题，所以它的价值函数未必是该问题的参数的凸函数．将一个 ILP 问题中的整数约束松弛掉后就得到一个 LP 问题，但后者未必存在满足整数约束的最优解．因此，松弛整数约束后得到的 LP 的最优价值有可能严格优于相应的 ILP 问题，两者未必等价．
+???+ warning "Ràng buộc nguyên"
+    Khi dùng mô hình đồ thị để mô hình hóa bài toán thực tế, thường có ràng buộc nguyên ẩn, ví dụ một cạnh chỉ có thể được chọn hoặc không được chọn, lưu lượng chỉ có thể là số nguyên, v.v. Do đó, chúng chỉ có thể chuyển thành bài toán quy hoạch tuyến tính nguyên (integer linear programming, ILP) chứ không phải bài toán quy hoạch tuyến tính (LP). Vì ILP không phải bài toán tối ưu lồi, hàm giá trị của nó chưa chắc là hàm lồi theo tham số bài toán. Sau khi nới lỏng ràng buộc nguyên trong một bài toán ILP, ta thu được một bài toán LP, nhưng bài toán sau chưa chắc tồn tại nghiệm tối ưu thỏa ràng buộc nguyên. Vì vậy, giá trị tối ưu của LP sau khi nới lỏng ràng buộc nguyên có thể tốt hơn hẳn bài toán ILP tương ứng; hai bài toán chưa chắc tương đương.
     
-    上文列举的那些图论问题，都可以写成一个 LP 问题而不需要施加整数约束；但对于其他的一些问题，例如一般图的最大独立集问题等，整数约束则是必要的．另外，即使一个图论问题可以写成 LP 的形式，在该问题引入额外的线性约束条件后，仍然可能会破坏相应的 ILP 问题和 LP 问题的等价性，从而这个带约束的图论问题不再能够写成线性规划的形式．
+    Các bài toán đồ thị được liệt kê ở trên đều có thể viết thành một bài toán LP mà không cần áp ràng buộc nguyên; nhưng với một số bài toán khác, chẳng hạn bài toán tập độc lập cực đại trên đồ thị tổng quát, ràng buộc nguyên là cần thiết. Ngoài ra, ngay cả khi một bài toán đồ thị có thể viết dưới dạng LP, sau khi thêm ràng buộc tuyến tính bổ sung vào bài toán, tính tương đương giữa ILP và LP tương ứng vẫn có thể bị phá vỡ, khiến bài toán đồ thị có ràng buộc đó không còn viết được dưới dạng quy hoạch tuyến tính.
 
-例如，在费用流的语境下，有如下常见结论：
+Ví dụ, trong ngữ cảnh luồng chi phí, có kết luận thường gặp sau:
 
-???+ note "推论"
-    [最小费用流模型](../../graph/flow/min-cost.md) 中，最小费用 $v(m)$ 是流量 $m$ 的凸函数．
+???+ note "Hệ quả"
+    Trong [mô hình luồng chi phí nhỏ nhất](../../graph/flow/min-cost.md), chi phí nhỏ nhất $v(m)$ là hàm lồi theo lưu lượng $m$.
 
-??? note "证明"
-    设有向图 $G=(V,E)$，边 $(i,j)$ 的容量为 $c_{ij}$，单位流量的费用为 $w_{ij}$,，源点和汇点分别为 $s$ 和 $t$．记决策变量为 $\{f_{ij}\}$，其中，$f_{ij}$ 为边 $(i,j)\in E$ 的流量．那么，最小费用流可以写成如下线性规划问题：
+??? note "Chứng minh"
+    Gọi đồ thị có hướng là $G=(V,E)$, dung lượng cạnh $(i,j)$ là $c_{ij}$, chi phí cho một đơn vị lưu lượng là $w_{ij}$, đỉnh nguồn và đỉnh đích lần lượt là $s$ và $t$. Ký hiệu các biến quyết định là $\{f_{ij}\}$, trong đó $f_{ij}$ là lưu lượng trên cạnh $(i,j)\in E$. Khi đó, luồng chi phí nhỏ nhất có thể viết thành bài toán quy hoạch tuyến tính sau:
     
     $$
     \begin{aligned}
@@ -544,75 +554,76 @@ $$
     \end{aligned}
     $$
     
-    因此，最小费用 $v(m)$ 是参数 $m$ 的凸函数．
+    Vì vậy, chi phí nhỏ nhất $v(m)$ là hàm lồi theo tham số $m$.
 
-算法竞赛中很多问题都可以归约为网络流等图论问题，从而都可以通过类似的方式建立价值函数的凸性．
+Trong lập trình thi đấu, nhiều bài toán có thể quy về các bài toán đồ thị như luồng mạng, từ đó có thể thiết lập tính lồi của hàm giá trị bằng cách tương tự.
 
-利用这一方法，可以得到种树问题的第一个凸性证明：
+Dùng phương pháp này, ta có chứng minh tính lồi đầu tiên cho bài toán trồng cây:
 
-??? example "凸性证明一"
-    种树问题的最大收益实际上可以通过如下最大费用最大流模型得出：
+??? example "Chứng minh tính lồi 1"
+    Lợi ích lớn nhất của bài toán trồng cây thực ra có thể được suy ra từ mô hình luồng cực đại chi phí lớn nhất sau:
     
-    -   从源点 $s$ 出发，向结点 $r$，连接一条容量为 $m$、费用为 $0$ 的边；
-    -   从结点 $r$ 出发，向每个奇数结点 $i=1,3,\cdots,2\lceil n/2\rceil-1$ 连接一条容量为 $1$、费用为 $0$ 的边；
-    -   从每个偶数结点 $i=0,2,\cdots,2\lfloor n/2\rfloor$ 出发，向汇点 $t$ 连接一条容量为 $1$、费用为 $0$ 的边；
-    -   对于每个 $i=1,\cdots,n$，从 $i-1$ 和 $i$ 中的奇数结点出发，向偶数结点连接一条容量为 $1$、费用为 $a_i$ 的边．
+    -   Từ nguồn $s$ nối một cạnh đến nút $r$ với dung lượng $m$ và chi phí $0$;
+    -   từ nút $r$ nối đến mỗi nút lẻ $i=1,3,\cdots,2\lceil n/2\rceil-1$ một cạnh có dung lượng $1$ và chi phí $0$;
+    -   từ mỗi nút chẵn $i=0,2,\cdots,2\lfloor n/2\rfloor$ nối đến đích $t$ một cạnh có dung lượng $1$ và chi phí $0$;
+    -   với mỗi $i=1,\cdots,n$, từ nút lẻ trong hai nút $i-1$ và $i$ nối đến nút chẵn một cạnh có dung lượng $1$ và chi phí $a_i$.
     
-    最终答案就是求得的最大费用．将这一图论模型转换为相应的线性规划问题（具体见上文推论的证明），那么，总流量 $m$ 将出现在表示边 $(s,r)$ 的流量限制的不等式中．由推论可知，最大费用 $v(m)$ 是流量 $m$ 的凹函数．
+    Đáp án cuối cùng là chi phí lớn nhất tìm được. Chuyển mô hình đồ thị này thành bài toán quy hoạch tuyến tính tương ứng (cụ thể xem chứng minh của hệ quả ở trên), khi đó tổng lưu lượng $m$ sẽ xuất hiện trong bất đẳng thức biểu thị giới hạn lưu lượng của cạnh $(s,r)$. Theo hệ quả, chi phí lớn nhất $v(m)$ là hàm lõm theo lưu lượng $m$.
     
-    利用该费用流模型，可以通过模拟费用流或 [反悔贪心](../../basic/greedy.md#后悔解法) 的方法在 $O(n\log n)$ 的复杂度内解决该问题．
+    Dùng mô hình luồng chi phí này, có thể giải bài toán trong độ phức tạp $O(n\log n)$ bằng cách mô phỏng luồng chi phí hoặc [tham lam hối tiếc](../../basic/greedy.md#%E5%90%8E%E6%82%94%E8%A7%A3%E6%B3%95).
 
-### 利用状态转移方程
+<span id="&#21033;&#29992;&#29366;&#24577;&#36716;&#31227;&#26041;&#31243;"></span>
+### Dùng phương trình chuyển trạng thái
 
-尽管状态转移方程无法提供有效的计算方式，但是，它常常可以用于证明状态函数 $f(i,j)$ 对于参数 $j$ 具有凸性．具体地说，就是将 $f(i,\cdot)$ 这一函数视为 $i$ 处的状态，就可以将关于 $f(i,j)$ 的状态转移方程看作是关于 $f(i,\cdot)$ 的递推关系，从而可以归纳地证明每个 $f(i,\cdot)$ 都是凸函数．这类证明凸性的方法在 [Slope Trick 优化 DP](./slope-trick.md) 的场景中更为常见，该页面也讨论了常见的保持凸性的变换．
+Dù phương trình chuyển trạng thái không cung cấp cách tính hiệu quả, nó thường có thể dùng để chứng minh hàm trạng thái $f(i,j)$ có tính lồi theo tham số $j$. Cụ thể, xem hàm $f(i,\cdot)$ là trạng thái tại $i$, ta có thể xem phương trình chuyển trạng thái của $f(i,j)$ là quan hệ truy hồi của $f(i,\cdot)$, từ đó chứng minh quy nạp rằng mỗi $f(i,\cdot)$ đều là hàm lồi. Kiểu chứng minh tính lồi này thường gặp hơn trong bối cảnh [tối ưu DP bằng Slope Trick](./slope-trick.md); trang đó cũng thảo luận các phép biến đổi thường gặp giúp bảo toàn tính lồi.
 
-这一方法同样可以用于证明种树问题的凸性：
+Phương pháp này cũng có thể dùng để chứng minh tính lồi của bài toán trồng cây:
 
-??? example "凸性证明二"
-    设 $f(i,j)$ 为前 $i$ 个坑种 $j$ 棵树时的最大收益．考察如下状态转移方程：
+??? example "Chứng minh tính lồi 2"
+    Gọi $f(i,j)$ là lợi ích lớn nhất khi trồng $j$ cây trong $i$ hố đầu tiên. Xét phương trình chuyển trạng thái sau:
     
     $$
     f(i,j) = \max\{f(i-1,j),f(i-2,j-1)+a_i\}.
     $$
     
-    将这一状态转移方程看作是函数 $f(i,\cdot)$ 的递推关系式．因为最值符号内涉及两个不同的函数，这并不能表达为卷积上确界的形式．但是，仍然可以通过归纳的方法证明函数 $f(i,\cdot)$ 是凹函数．
+    Xem phương trình chuyển trạng thái này là quan hệ truy hồi của hàm $f(i,\cdot)$. Vì trong ký hiệu cực trị có hai hàm khác nhau, nó không thể biểu diễn thành dạng chập lấy cận trên đúng. Tuy nhiên, vẫn có thể chứng minh bằng quy nạp rằng hàm $f(i,\cdot)$ là hàm lõm.
     
-    实际上，需要归纳地证明如下两点：
+    Thực ra, cần chứng minh quy nạp hai điểm sau:
     
-    -   $f(i,j)-f(i-2,j-1)$ 关于 $j$ 递减；
-    -   $f(i,j)-f(i-1,j)$ 关于 $j$ 递增．
+    -   $f(i,j)-f(i-2,j-1)$ giảm theo $j$;
+    -   $f(i,j)-f(i-1,j)$ tăng theo $j$.
     
-    归纳起点是平凡的．假设它们对于所有 $i-1$ 及之前的自然数都成立，现在证明它对 $i$ 也成立．直接验证即可．
+    Cơ sở quy nạp là hiển nhiên. Giả sử chúng đúng với mọi số tự nhiên từ $i-1$ trở về trước, ta chứng minh chúng cũng đúng với $i$. Chỉ cần kiểm tra trực tiếp.
     
-    首先，由归纳假设，有
+    Trước hết, theo giả thiết quy nạp,
     
     $$
     f(i-1,j) - f(i-2,j-1) = (f(i,j)-f(i-2,j-1)) - (f(i,j)-f(i-1,j))
     $$
     
-    关于 $j$ 递减．所以，有
+    giảm theo $j$. Vì vậy,
     
     $$
     f(i,j) - f(i-2,j-1) = \max\{f(i-1,j) - f(i-2,j-1), a_i\}
     $$
     
-    关于 $j$ 递减，且
+    giảm theo $j$, và
     
     $$
     f(i,j) - f(i-1,j) = \max\{0,a_i-(f(i,j) - f(i-2,j-1))\}
     $$
     
-    关于 $j$ 递增．这就完成了归纳．
+    tăng theo $j$. Như vậy hoàn tất quy nạp.
     
-    进而，有
+    Hơn nữa,
     
     $$
     f(i,j) - f(i,j-1) = (f(i,j)-f(i-2,j-1)) - (f(i,j-1) - f(i-1,j-1)) - (f(i-1,j-1) - f(i-2,j-1))
     $$
     
-    关于 $j$ 递减．这就说明 $f(i,j)$ 是关于 $j$ 的凹函数，从而，价值函数 $v(m)=f(n,m)$ 是关于 $m$ 的凹函数．
+    giảm theo $j$. Điều này cho thấy $f(i,j)$ là hàm lõm theo $j$, do đó hàm giá trị $v(m)=f(n,m)$ là hàm lõm theo $m$.
     
-    这个证明的一个副产品是，对于任意 $i$，都存在 $p_i$ 使得
+    Một sản phẩm phụ của chứng minh này là với mọi $i$, đều tồn tại $p_i$ sao cho
     
     $$
     f(i,j) =
@@ -622,11 +633,12 @@ $$
     \end{cases}
     $$
     
-    这说明，可以通过平衡树直接维护序列 $f(i,\cdot)$，复杂度是 $O(n\log^2n)$ 的．但是，好处是可以处理任意种树间隔的一般情形，且一次性地获得了所有 $v(m)$ 的值．
+    Điều này cho thấy có thể dùng cây cân bằng để trực tiếp duy trì dãy $f(i,\cdot)$, với độ phức tạp $O(n\log^2n)$. Ưu điểm là có thể xử lý trường hợp tổng quát với khoảng cách trồng cây bất kỳ, đồng thời thu được tất cả giá trị $v(m)$ trong một lần.
 
-### 四边形不等式
+<span id="&#22235;&#36793;&#24418;&#19981;&#31561;&#24335;"></span>
+### Bất đẳng thức tứ giác
 
-算法竞赛中，另一类常见的成立凸性的问题是 [区间分拆问题](./quadrangle.md#区间分拆问题)．该页面证明了，如果单个区间的成本函数满足四边形不等式，那么限制区间个数的区间分拆问题的最小成本是区间个数的凸函数．该页面同样提供了一些判断某个函数 $w(l,r)$ 是否满足四边形不等式的方法．最为直接的方法就是计算它的二阶混合差分：
+Trong lập trình thi đấu, một lớp bài toán thường gặp khác có tính lồi là [bài toán phân đoạn khoảng](./quadrangle.md#%E5%8C%BA%E9%97%B4%E5%88%86%E6%8B%86%E9%97%AE%E9%A2%98). Trang đó chứng minh rằng nếu hàm chi phí của một khoảng đơn lẻ thỏa bất đẳng thức tứ giác, thì chi phí nhỏ nhất của bài toán phân đoạn khoảng với số đoạn bị ràng buộc là hàm lồi theo số đoạn. Trang đó cũng cung cấp một số cách phán đoán liệu một hàm $w(l,r)$ có thỏa bất đẳng thức tứ giác hay không. Cách trực tiếp nhất là tính sai phân hỗn hợp bậc hai của nó:
 
 $$
 \begin{aligned}
@@ -635,98 +647,101 @@ $$
 \end{aligned}
 $$
 
-函数 $w(l,r)$ 满足四边形不等式，当且仅当 $\Delta_l \Delta_r w(l,r)$ 非正．直观上，满足四边形不等式的函数通常意味着，区间向两侧扩大——即左端点向左移动和右端点向右移动——具有某种协同效应．
+Hàm $w(l,r)$ thỏa bất đẳng thức tứ giác khi và chỉ khi $\Delta_l \Delta_r w(l,r)$ không dương. Trực quan mà nói, hàm thỏa bất đẳng thức tứ giác thường có nghĩa là việc mở rộng khoảng sang hai phía, tức dịch đầu trái sang trái và đầu phải sang phải, có một loại hiệu ứng cộng hưởng nào đó.
 
-种树问题同样可以看作是一个区间分拆问题，可以通过验证四边形不等式进行证明．
+Bài toán trồng cây cũng có thể xem là một bài toán phân đoạn khoảng và có thể được chứng minh bằng cách kiểm chứng bất đẳng thức tứ giác.
 
-??? example "凸性证明三"
-    在种树的收益序列前添加一个 $a_0$，它可以是任何值．然后，种树问题就等价于将序列 $\{a_0,a_1,\cdots,a_n\}$ 分成 $m$ 段，且每段的收益函数为
+??? example "Chứng minh tính lồi 3"
+    Thêm một $a_0$ vào đầu dãy lợi ích trồng cây; giá trị này có thể tùy ý. Khi đó, bài toán trồng cây tương đương với việc chia dãy $\{a_0,a_1,\cdots,a_n\}$ thành $m$ đoạn, trong đó hàm lợi ích của mỗi đoạn là
     
     $$
     w(l,r) = \max_{i\in[l+1,r]} a_i
     $$
     
-    的区间分拆问题．也就是说，每一段的收益是除去第一棵树外，其余树的收益的最大值——这就保证了间隔种树．
+    của bài toán phân đoạn khoảng. Nói cách khác, lợi ích của mỗi đoạn là giá trị lớn nhất trong các cây còn lại sau khi bỏ cây đầu tiên, điều này bảo đảm việc trồng cách nhau.
     
-    因为这是最大化问题，需要验证「交叉大于包含」，即对于任意 $a<b<c<d$，都成立
+    Vì đây là bài toán cực đại hóa, cần kiểm chứng "giao lớn hơn chứa", tức với mọi $a<b<c<d$ đều có
     
     $$
     w(a,c)+w(b,d) \ge w(a,d)+w(b,c).
     $$
     
-    代入收益函数的表达式，并设
+    Thay biểu thức của hàm lợi ích vào, đặt
     
     $$
     A = \max_{i\in[a+1,b]} a_i,~ B = \max_{i\in[b+1,c]} a_i,~ C = \max_{i\in[c+1,d]}a_i,
     $$
     
-    则要证明的不等式可以写作
+    thì bất đẳng thức cần chứng minh có thể viết thành
     
     $$
     \max\{A,B\} + \max\{B,C\} \ge \max\{A,B,C\} + B.
     $$
     
-    注意到不等号左侧的两项 $\max\{A,B\}$ 和 $\max\{B,C\}$ 中较大的那个就等于 $\max\{A,B,C\}$，而它们中较小的那个总是不小于 $B$，因此该不等式成立．
+    Chú ý rằng trong hai hạng tử $\max\{A,B\}$ và $\max\{B,C\}$ ở vế trái, hạng tử lớn hơn đúng bằng $\max\{A,B,C\}$, còn hạng tử nhỏ hơn luôn không nhỏ hơn $B$, nên bất đẳng thức đúng.
     
-    将种树问题转化为区间分拆问题后，只需要用 ST 表等方式预处理区间最值，可以单次 $O(1)$ 地计算单个区间的成本，就可以套用区间分拆问题的算法在 $O(n\log n\log L)$ 或 $O(n(n+m))$ 的时间复杂度内解决该问题．该方法同样可以处理任意种树间隔的问题．
+    Sau khi chuyển bài toán trồng cây thành bài toán phân đoạn khoảng, chỉ cần dùng bảng ST hoặc cách tương tự để tiền xử lý giá trị cực trị trên khoảng, có thể tính chi phí của một khoảng đơn lẻ trong $O(1)$ mỗi lần, rồi áp dụng thuật toán cho bài toán phân đoạn khoảng với độ phức tạp thời gian $O(n\log n\log L)$ hoặc $O(n(n+m))$. Phương pháp này cũng có thể xử lý bài toán với khoảng cách trồng cây bất kỳ.
 
-### 交换论证
+<span id="&#20132;&#25442;&#35770;&#35777;"></span>
+### Lập luận trao đổi
 
-组合优化问题中，证明价值函数的凸性常常会用到交换论证（exchange argument）．具体地说，就是从参数为 $m-1$ 和 $m+1$ 的问题的最优解出发，通过交换部分元素，构造出参数为 $m$ 且价值不超过 $(v(m-1)+v(m+1))/2$ 的可行解，从而利用 $v(m)$ 的最优性来证明凸性的论证方法．相较于凸优化的情形，组合优化问题中并不存在自然地构造两个解的「中间形态」的方法，因此，交换论证的应用通常具有一定的技巧性．
+Trong các bài toán tối ưu tổ hợp, chứng minh tính lồi của hàm giá trị thường dùng lập luận trao đổi (exchange argument). Cụ thể, xuất phát từ các nghiệm tối ưu của bài toán với tham số $m-1$ và $m+1$, thông qua trao đổi một phần phần tử, ta xây dựng nghiệm khả thi có tham số $m$ và giá trị không vượt quá $(v(m-1)+v(m+1))/2$, từ đó dùng tính tối ưu của $v(m)$ để chứng minh tính lồi. So với trường hợp tối ưu lồi, trong bài toán tối ưu tổ hợp không tồn tại cách tự nhiên để xây dựng "dạng trung gian" của hai nghiệm, nên việc áp dụng lập luận trao đổi thường cần một số kỹ thuật.
 
-???+ warning "「边际成本递增」并不一定导致凸性"
-    组合优化问题中，目标函数常常具有一些「边际成本递增」的性质，但是这并不必然导致凸性．一个典型的例子是 [\[IOI 2005\] Riv 河流](https://www.luogu.com.cn/problem/P3354)，该问题的链上版本是满足四边形不等式因而具有凸性的，但是树上版本存在凸性不成立的例子．
+???+ warning ""Chi phí biên tăng dần" không nhất thiết dẫn đến tính lồi"
+    Trong bài toán tối ưu tổ hợp, hàm mục tiêu thường có một số tính chất "chi phí biên tăng dần", nhưng điều này không tất yếu dẫn đến tính lồi. Một ví dụ điển hình là [\[IOI 2005\] Riv](https://www.luogu.com.cn/problem/P3354); phiên bản trên đường thẳng của bài toán này thỏa bất đẳng thức tứ giác nên có tính lồi, nhưng phiên bản trên cây có ví dụ mà tính lồi không đúng.
     
-    用于刻画「边际成本递增」的一个常见性质是函数的超模性（supermodularity）．对于有限集合 $X$ 的子集族 $\mathcal PX$ 上的函数 $f:\mathcal PX\rightarrow\mathbf R$，如果它满足以下两条等价性质之一：
+    Một tính chất thường dùng để mô tả "chi phí biên tăng dần" là siêu mô-đun (supermodularity) của hàm. Với hàm $f:\mathcal PX\rightarrow\mathbf R$ trên họ tập con $\mathcal PX$ của một tập hữu hạn $X$, nếu nó thỏa một trong hai tính chất tương đương sau:
     
-    1.  （交叉小于包含）对于任何子集 $A,B\subseteq X$，都有 $f(A)+f(B) \le f(A\cup B) + f(A\cap B)$ 成立；
-    2.  （边际成本递增）对于任何子集 $A\subseteq B\subseteq X$ 以及 $x\in X\setminus B$，都有 $f(A\cup\{x\})-f(A)\le f(B\cup\{x\})-f(B)$ 成立；
+    1.  (Giao nhỏ hơn chứa) Với mọi tập con $A,B\subseteq X$, đều có $f(A)+f(B) \le f(A\cup B) + f(A\cap B)$;
+    2.  (Chi phí biên tăng dần) Với mọi tập con $A\subseteq B\subseteq X$ và $x\in X\setminus B$, đều có $f(A\cup\{x\})-f(A)\le f(B\cup\{x\})-f(B)$;
     
-    就称函数 $f$ 是 **超模的**（supermodular）．但是，超模函数作为目标函数的最优化问题中，价值函数
+    thì gọi $f$ là **siêu mô-đun** (supermodular). Tuy nhiên, trong bài toán tối ưu dùng hàm siêu mô-đun làm hàm mục tiêu, hàm giá trị
     
     $$
     v(m) = \min_{A\subseteq X} f(A) \text{ subject to }|A|=m
     $$
     
-    **未必** 是 $m$ 的凸函数．究其原因，就是从子集大小分别为 $m-1$ 和 $m+1$ 的最优解，一般来说是无法构造出子集大小为 $m$ 且满足前述价值函数大小关系的可行解的．
+    **chưa chắc** là hàm lồi theo $m$. Nguyên nhân là từ các nghiệm tối ưu có kích thước tập con lần lượt là $m-1$ và $m+1$, nhìn chung không thể xây dựng được nghiệm khả thi có kích thước tập con $m$ và thỏa quan hệ giá trị nêu trên.
 
-交换论证提供了种树问题凸性的又一种证明方式．
+Lập luận trao đổi cung cấp một cách chứng minh khác cho tính lồi của bài toán trồng cây.
 
-??? example "凸性证明四"
-    利用交换论证．设种 $m-1$ 棵树和种 $m+1$ 棵树的最优方案分别由 $\{x_i^{(m-1)}\}\in\{0,1\}^n$ 和 $\{x_i^{(m+1)}\}\in\{0,1\}^n$ 给出，其中，取值为 $1$ 表示该坑位种了一棵树，取值为 $0$ 表示该坑位没有种树．定义序列 $\{z_i\}\in\{0,\pm 1\}^n$ 满足
+??? example "Chứng minh tính lồi 4"
+    Dùng lập luận trao đổi. Gọi các phương án tối ưu khi trồng $m-1$ cây và $m+1$ cây lần lượt là $\{x_i^{(m-1)}\}\in\{0,1\}^n$ và $\{x_i^{(m+1)}\}\in\{0,1\}^n$, trong đó giá trị $1$ nghĩa là hố đó được trồng cây, còn $0$ nghĩa là không trồng. Định nghĩa dãy $\{z_i\}\in\{0,\pm 1\}^n$ thỏa
     
     $$
     z_i = x_i^{(m+1)} - x_i^{(m-1)},~i=1,\cdots,n.
     $$
     
-    这个序列标记了两个种树方案的差异．这一序列中取值为 $0$ 的位置表示该坑位要么在两个方案中都种了一棵树，要么在两个方案中都没有种树；而取值为 $-1$ 和 $+1$ 的位置则分别表示只在方案 $x^{(m-1)}$ 或只在方案 $x^{(m+1)}$ 中，该坑位种了一棵树．因为任何方案中都不能在相邻的坑位种树，所以有如下观察：
+    Dãy này đánh dấu sự khác biệt giữa hai phương án trồng cây. Vị trí có giá trị $0$ trong dãy nghĩa là hố đó hoặc được trồng trong cả hai phương án, hoặc không được trồng trong cả hai phương án; còn các vị trí có giá trị $-1$ và $+1$ lần lượt nghĩa là chỉ trong phương án $x^{(m-1)}$ hoặc chỉ trong phương án $x^{(m+1)}$, hố đó được trồng cây. Vì trong bất kỳ phương án nào cũng không được trồng cây ở hai hố kề nhau, ta có các quan sát sau:
     
-    -   连续的非零子段中，$z_i$ 的取值必然在 $\pm 1$ 之间相互交错的；
-    -   极大的连续非零子段左右两侧的 $0$，必然表示在两个方案中都没有种树．
+    -   Trong một đoạn con liên tiếp khác không, các giá trị $z_i$ nhất định luân phiên giữa $\pm 1$;
+    -   các số $0$ ở hai bên của một đoạn con liên tiếp khác không cực đại nhất định biểu thị các hố không được trồng cây trong cả hai phương án.
     
-    因此，如果某个极大的连续非零子段中，$z_i$ 的和恰好为 $+1$，也就是说，在该段坑位中，方案 $x^{(m+1)}$ 比方案 $x^{(m-1)}$ 多种了一棵树，那么就可以在该段内交换两个方案的种树位置．这样，就得到了两个各种 $m$ 棵树的可行方案．因为没有改变两个方案中总的种树的位置和数量，只是将它们重新分配，所以总的收益不变，仍然是 $v(m-1)+v(m+1)$．但是，这两个种 $m$ 棵树的方案未必是最优的，因此，它们各自的收益不会超过 $v(m)$．这就证明了
+    Do đó, nếu trong một đoạn con liên tiếp khác không cực đại nào đó, tổng của $z_i$ đúng bằng $+1$, tức trong đoạn hố này phương án $x^{(m+1)}$ trồng nhiều hơn phương án $x^{(m-1)}$ một cây, thì có thể trao đổi vị trí trồng cây của hai phương án trong đoạn đó. Như vậy thu được hai phương án khả thi, mỗi phương án trồng $m$ cây. Vì không thay đổi tổng vị trí và tổng số lượng cây trồng trong hai phương án, mà chỉ phân phối lại chúng, tổng lợi ích không đổi và vẫn là $v(m-1)+v(m+1)$. Nhưng hai phương án trồng $m$ cây này chưa chắc tối ưu, nên lợi ích của từng phương án không vượt quá $v(m)$. Điều này chứng minh
     
     $$
     v(m-1) + v(m+1) \le 2v(m),
     $$
     
-    也就是说，$v(m)$ 是关于 $m$ 的凹函数．
+    tức là $v(m)$ là hàm lõm theo $m$.
     
-    现在，只剩下一个问题，就是和恰好为 $+1$ 的极大连续非零子段是否存在．因为是若干个交错的 $\pm 1$ 相加，一个连续非零子段的和只能是 $0$ 或 $\pm 1$．又因为所有这些极大连续非零子段的和等于 $2$，所以，一定存在至少两个和恰好为 $+1$ 的极大连续非零子段．这就完成了证明．
+    Bây giờ chỉ còn một vấn đề: có tồn tại đoạn con liên tiếp khác không cực đại có tổng đúng bằng $+1$ hay không. Vì đây là tổng của một số giá trị $\pm 1$ luân phiên, tổng của một đoạn con liên tiếp khác không chỉ có thể là $0$ hoặc $\pm 1$. Lại vì tổng của tất cả các đoạn con liên tiếp khác không cực đại này bằng $2$, nhất định tồn tại ít nhất hai đoạn con cực đại có tổng đúng bằng $+1$. Như vậy hoàn tất chứng minh.
 
-## 例题
+<span id="&#20363;&#39064;"></span>
+## Ví dụ
 
-本节介绍几个不同场景下应用 WQS 二分方法的例题．
+Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm kiếm nhị phân WQS trong các bối cảnh khác nhau.
 
-### 模板题目
+<span id="&#27169;&#26495;&#39064;&#30446;"></span>
+### Bài mẫu
 
-???+ example "[Luogu P1484 种树](https://www.luogu.com.cn/problem/P1484)"
-    有 $n$ 个树坑，**至多** 种 $m$ 棵树．树不能栽种于相邻的两个坑．给定长度为 $n$ 的序列 $\{a_i\}$，表示在每个坑种树的收益，收益可正可负．求种完这 $m$ 棵树最大可能的收益和．
+???+ example "[Luogu P1484 Trồng cây](https://www.luogu.com.cn/problem/P1484)"
+    Có $n$ hố cây, được trồng **nhiều nhất** $m$ cây. Không được trồng cây ở hai hố kề nhau. Cho dãy độ dài $n$ là $\{a_i\}$, biểu thị lợi ích khi trồng cây ở mỗi hố, lợi ích có thể dương hoặc âm. Hãy tìm tổng lợi ích lớn nhất có thể sau khi trồng xong các cây này.
 
-??? note "解答"
-    与前文讨论的种树问题稍有不同，本题要求至多种 $m$ 棵树，而非恰好种 $m$ 棵树．仍然用 $v(m)$ 表示前文讨论的种树问题的价值函数，本题的答案实际上是 $\tilde v(m)=\max_{k\le m}v(k)$．因为 $v(m)$ 是凹函数，也就是一个单峰函数，本题的答案相当于只保留 $v(m)$ 上升至峰顶的部分，然后函数会一直留在峰顶；这相当于仅仅保留切线斜率非负的部分．因此，本题与前文讨论的题目的唯一差别，就是 WQS 二分时，初始的斜率范围为 $[0,\max_ia_i]$ 而非 $[\min_ia_i,\max_ia_i]$．
+??? note "Lời giải"
+    Hơi khác với bài toán trồng cây đã thảo luận ở trên, bài này yêu cầu trồng nhiều nhất $m$ cây, chứ không phải đúng $m$ cây. Vẫn dùng $v(m)$ để biểu thị hàm giá trị của bài toán trồng cây đã thảo luận, đáp án bài này thực ra là $\tilde v(m)=\max_{k\le m}v(k)$. Vì $v(m)$ là hàm lõm, tức là một hàm đơn đỉnh, đáp án bài này tương đương với việc chỉ giữ phần $v(m)$ tăng lên tới đỉnh, rồi hàm sẽ giữ nguyên ở đỉnh; điều này tương đương với việc chỉ giữ phần có hệ số góc tiếp tuyến không âm. Vì vậy, khác biệt duy nhất giữa bài này và bài đã thảo luận ở trước là khi tìm kiếm nhị phân WQS, phạm vi hệ số góc ban đầu là $[0,\max_ia_i]$ chứ không phải $[\min_ia_i,\max_ia_i]$.
     
-    应用 WQS 二分的方法移除数量限制后，问题转化为计算链上最大权独立集，只是将原本的收益 $\{a_i\}$ 替换为了 $\{a_i+k\}$．这是经典的动态规划题目．可以设 $f(i,j)$ 为第 $i$ 个坑位选择种树（$j=1$）或不种树（$j=0$）时，前 $i$ 个树坑的子问题的最大收益．由此，可以写出状态转移方程为
+    Sau khi dùng tìm kiếm nhị phân WQS để loại bỏ ràng buộc số lượng, bài toán chuyển thành tính tập độc lập trọng số lớn nhất trên một đường thẳng, chỉ khác là dãy lợi ích ban đầu $\{a_i\}$ được thay bằng $\{a_i+k\}$. Đây là bài toán quy hoạch động kinh điển. Có thể đặt $f(i,j)$ là lợi ích lớn nhất của bài toán con trên $i$ hố đầu tiên khi hố thứ $i$ được chọn trồng cây ($j=1$) hoặc không trồng cây ($j=0$). Từ đó viết được phương trình chuyển trạng thái:
     
     $$
     \begin{aligned}
@@ -735,68 +750,69 @@ $$
     \end{aligned}
     $$
     
-    初始条件为 $f(0,0)=0$ 和 $f(0,1)=-\infty$，最终答案为 $\max\{f(n,0),f(n,1)\}$．单次计算复杂度为 $O(n)$，整体时间复杂度为 $O(n\log L)$，其中，$L=\max_i|a_i|$．
+    Điều kiện ban đầu là $f(0,0)=0$ và $f(0,1)=-\infty$, đáp án cuối cùng là $\max\{f(n,0),f(n,1)\}$. Độ phức tạp của một lần tính là $O(n)$, độ phức tạp tổng thể là $O(n\log L)$, trong đó $L=\max_i|a_i|$.
     
-    参考实现如下：
+    Cài đặt tham khảo như sau:
     
-    === "传统方法"
+    === "Phương pháp truyền thống"
         ```cpp
         --8<-- "docs/dp/code/opt/wqs-binary-search/plant-tree-1.cpp"
         ```
     
-    === "对偶方法"
+    === "Phương pháp đối ngẫu"
         ```cpp
         --8<-- "docs/dp/code/opt/wqs-binary-search/plant-tree-2.cpp"
         ```
 
-???+ example "[Luogu P2619 \[国家集训队\] Tree I](https://www.luogu.com.cn/problem/P2619)"
-    给定一张带权无向连通图，每条边是黑色或白色．求恰有 $m$ 条白边的生成树的最小权．
+???+ example "[Luogu P2619 Đội tuyển quốc gia Tree I](https://www.luogu.com.cn/problem/P2619)"
+    Cho một đồ thị vô hướng liên thông có trọng số, mỗi cạnh màu đen hoặc trắng. Hãy tìm cây khung có đúng $m$ cạnh trắng và tổng trọng số nhỏ nhất.
 
-??? note "解答"
-    首先，通过交换论证可以证明 $v(m)$ 是凸函数．不妨假设所有边的边权各不相同：那些存在两边边权相同的情形，可以通过微扰使之变为边权各不相同的情形；然后只要令微扰的幅度趋近于零，就可以证明函数的凸性在极限情形——也就是存在两边边权相同的情形——仍然成立．证明的关键在于如下引理：[^edge-swap]
+??? note "Lời giải"
+    Trước hết, có thể dùng lập luận trao đổi để chứng minh $v(m)$ là hàm lồi. Không mất tính tổng quát, giả sử trọng số của mọi cạnh đều khác nhau: những trường hợp có hai cạnh cùng trọng số có thể được biến thành trường hợp trọng số khác nhau bằng nhiễu nhỏ; sau đó chỉ cần cho biên độ nhiễu tiến tới $0$ là có thể chứng minh tính lồi của hàm vẫn đúng trong trường hợp giới hạn, tức trường hợp tồn tại hai cạnh cùng trọng số. Mấu chốt của chứng minh nằm ở bổ đề sau:[^edge-swap]
     
-    ???+ note "引理"
-        设 $S$ 和 $T$ 是无向连通图 $G=(V,E)$ 的两个生成树．对于任意 $e\in S\setminus T$，都存在至少一条边 $f\in T\setminus S$，使得 $S-e+f$ 和 $T-f+e$ 都是图 $G$ 的生成树．
+    ???+ note "Bổ đề"
+        Gọi $S$ và $T$ là hai cây khung của đồ thị vô hướng liên thông $G=(V,E)$. Với mọi $e\in S\setminus T$, đều tồn tại ít nhất một cạnh $f\in T\setminus S$ sao cho $S-e+f$ và $T-f+e$ đều là cây khung của đồ thị $G$.
     
-    ??? note "证明"
-        设 $e=(u,v)$，且 $P$ 是树 $T$ 中连接 $u$ 和 $v$ 的唯一一条路径．因为 $P+e$ 是图 $T+e$ 中唯一的环路，所以删掉 $P$ 中的任何一条边 $f$ 都可以使得 $T-f+e$ 是一棵生成树．与此同时，图 $S-e$ 是有两个连通分量的森林，它们的顶点集分别记作 $V_1$ 和 $V_2$，所以，只要选择边 $f\in P$ 使得 $f$ 连通了 $V_1$ 和 $V_2$，就能保证 $S-e+f$ 是一棵生成树．这样的边 $f$ 总是存在的，因为 $u$ 和 $v$ 分别属于 $V_1$ 和 $V_2$，而 $P$ 连接了 $u$ 和 $v$．而且，$f\notin S$，因为图 $S-e$ 中，$V_1$ 和 $V_2$ 并不是连通的．这就完成了证明．
+    ??? note "Chứng minh"
+        Đặt $e=(u,v)$, và $P$ là đường đi duy nhất nối $u$ và $v$ trong cây $T$. Vì $P+e$ là chu trình duy nhất trong đồ thị $T+e$, xóa bất kỳ cạnh $f$ nào trong $P$ đều làm cho $T-f+e$ là một cây khung. Đồng thời, đồ thị $S-e$ là một rừng có hai thành phần liên thông, gọi tập đỉnh của chúng lần lượt là $V_1$ và $V_2$. Vì vậy, chỉ cần chọn cạnh $f\in P$ sao cho $f$ nối $V_1$ và $V_2$, sẽ bảo đảm $S-e+f$ là một cây khung. Cạnh $f$ như vậy luôn tồn tại, vì $u$ và $v$ lần lượt thuộc $V_1$ và $V_2$, còn $P$ nối $u$ với $v$. Hơn nữa, $f\notin S$, vì trong đồ thị $S-e$, $V_1$ và $V_2$ không liên thông. Như vậy chứng minh xong.
     
-    设 $T_{m-1}$ 和 $T_{m+1}$ 是白边数量分别为 $m-1$ 和 $m+1$ 的最小生成树．设 $e$ 是 $T_{m+1}\setminus T_{m-1}$ 的一条白边，对它应用上述引理可知，存在边 $f\in T_{m-1}\setminus T_{m+1}$，使得 $T'=T_{m+1}-e+f$ 和 $T''=T_{m-1}+e-f$ 都是生成树．因为只是交换了一对边，所以，树 $T'$ 和树 $T''$ 的边权和仍然是 $v(m-1)+v(m+1)$．进而，分两种情形讨论：
+    Gọi $T_{m-1}$ và $T_{m+1}$ là các cây khung nhỏ nhất có số cạnh trắng lần lượt là $m-1$ và $m+1$. Gọi $e$ là một cạnh trắng thuộc $T_{m+1}\setminus T_{m-1}$. Áp dụng bổ đề trên cho $e$, tồn tại cạnh $f\in T_{m-1}\setminus T_{m+1}$ sao cho $T'=T_{m+1}-e+f$ và $T''=T_{m-1}+e-f$ đều là cây khung. Vì chỉ trao đổi một cặp cạnh, tổng trọng số của cây $T'$ và cây $T''$ vẫn là $v(m-1)+v(m+1)$. Tiếp theo xét hai trường hợp:
     
-    -   如果 $f$ 是一条黑边，那么，$T'$ 和 $T''$ 中的白边数量都是 $m$．它们各自的边权和都不会小于 $v(m)$．这就证明了 $2v(m)\le v(m-1)+v(m+1)$，故而 $v(m)$ 关于 $m$ 是凸的．
-    -   如果 $f$ 是一条白边，那么，$T'$ 和 $T''$ 的白边数量分别是 $m+1$ 和 $m-1$，所以它们的边权和分别不小于 $v(m+1)$ 和 $v(m-1)$．但是，上面已经说明，它们的边权和加在一起就等于 $v(m-1)+v(m+1)$．这说明，$T'$ 的边权和就等于 $v(m+1)$．将 $T'$ 与 $T_{m+1}$ 比较可知，$e$ 和 $f$ 的边权必然相等．这与假设矛盾，所以该情形并不成立．
+    -   Nếu $f$ là cạnh đen, thì số cạnh trắng trong cả $T'$ và $T''$ đều là $m$. Tổng trọng số của mỗi cây đều không nhỏ hơn $v(m)$. Điều này chứng minh $2v(m)\le v(m-1)+v(m+1)$, do đó $v(m)$ lồi theo $m$.
+    -   Nếu $f$ là cạnh trắng, thì số cạnh trắng trong $T'$ và $T''$ lần lượt là $m+1$ và $m-1$, nên tổng trọng số của chúng lần lượt không nhỏ hơn $v(m+1)$ và $v(m-1)$. Nhưng ở trên đã chỉ ra tổng trọng số của chúng cộng lại bằng $v(m-1)+v(m+1)$. Điều này cho thấy tổng trọng số của $T'$ đúng bằng $v(m+1)$. So sánh $T'$ với $T_{m+1}$, ta biết trọng số của $e$ và $f$ nhất định bằng nhau. Điều này mâu thuẫn với giả thiết, nên trường hợp này không xảy ra.
     
-    这就证明了 $v(m)$ 是 $m$ 的凸函数．
+    Như vậy đã chứng minh $v(m)$ là hàm lồi theo $m$.
     
-    建立了函数 $v(m)$ 的凸性后，就可以用 WQS 二分解决该问题．移除数量限制并将每条白边的权重都减去 $k$，并求解最小生成树问题．为此，可以应用 [Kruskal 算法](../../graph/mst.md#kruskal-算法)．利用并查集维护连通性，算法的复杂度就是 $O(E\log E+E\alpha(V))$，其中，$E$ 和 $V$ 分别为边数和顶点数，$\alpha(\cdot)$ 为反 Ackerman 函数．复杂度的主要部分 $O(E\log E)$ 是给边排序的复杂度，在本题中可以进一步优化．虽然在 WQS 二分的过程中需要多次计算最小生成树，但是每次只有白边的边权会整体加减一个数．所以，可以在预处理时给白边、黑边分别排序，然后每次计算最小生成树时，只需要将调整完权重后的白边和黑边归并到一起就可以了．这样，整体复杂度就降低到了 $O(E\log E+E\alpha(V)\log L)$，其中，$L$ 为边权的取值范围的长度．
+    Sau khi thiết lập tính lồi của hàm $v(m)$, có thể dùng tìm kiếm nhị phân WQS để giải bài toán. Loại bỏ ràng buộc số lượng bằng cách trừ $k$ khỏi trọng số của mỗi cạnh trắng, rồi giải bài toán cây khung nhỏ nhất. Có thể dùng [thuật toán Kruskal](../../graph/mst.md#kruskal-%E7%AE%97%E6%B3%95). Dùng DSU để duy trì tính liên thông, độ phức tạp thuật toán là $O(E\log E+E\alpha(V))$, trong đó $E$ và $V$ lần lượt là số cạnh và số đỉnh, còn $\alpha(\cdot)$ là hàm ngược Ackermann. Phần chính của độ phức tạp, $O(E\log E)$, là độ phức tạp sắp xếp cạnh; trong bài này có thể tối ưu thêm. Dù trong quá trình nhị phân WQS cần tính cây khung nhỏ nhất nhiều lần, mỗi lần chỉ có trọng số của các cạnh trắng đồng loạt cộng hoặc trừ một số. Vì vậy, có thể tiền xử lý bằng cách sắp xếp riêng cạnh trắng và cạnh đen, rồi mỗi lần tính cây khung nhỏ nhất chỉ cần trộn các cạnh trắng sau khi điều chỉnh trọng số với các cạnh đen. Như vậy độ phức tạp tổng thể giảm xuống $O(E\log E+E\alpha(V)\log L)$, trong đó $L$ là độ dài phạm vi giá trị của trọng số cạnh.
     
-    参考实现如下：
+    Cài đặt tham khảo như sau:
     
-    === "传统方法"
+    === "Phương pháp truyền thống"
         ```cpp
         --8<-- "docs/dp/code/opt/wqs-binary-search/black-white-mst-1.cpp"
         ```
     
-    === "对偶方法"
+    === "Phương pháp đối ngẫu"
         ```cpp
         --8<-- "docs/dp/code/opt/wqs-binary-search/black-white-mst-2.cpp"
         ```
 
-### 区间分拆问题
+<span id="&#21306;&#38388;&#20998;&#25286;&#38382;&#39064;"></span>
+### Bài toán phân đoạn khoảng
 
-???+ example "[Luogu P6246 \[IOI 2000\] 邮局 加强版 加强版](https://www.luogu.com.cn/problem/P6246)"
-    给定长度为 $n$ 且递增的正整数序列 $\{a_i\}$ 表示一条高速公路旁的 $n$ 个村庄的位置，需要修建 $m$ 个邮局．邮局位置的选择，需要最小化所有村庄与其最近邮局的距离之和．求这个最小值．
+???+ example "[Luogu P6246 IOI 2000 Bưu điện, bản tăng cường](https://www.luogu.com.cn/problem/P6246)"
+    Cho dãy số nguyên dương tăng dần độ dài $n$, $\{a_i\}$, biểu thị vị trí của $n$ ngôi làng bên một đường cao tốc. Cần xây $m$ bưu điện. Việc chọn vị trí bưu điện cần tối thiểu hóa tổng khoảng cách từ mỗi làng đến bưu điện gần nó nhất. Hãy tìm giá trị nhỏ nhất này.
 
-??? note "解答"
-    这是典型的 [区间分拆问题](./quadrangle.md#区间分拆问题)．二分队列的实现细节请参考该页面．
+??? note "Lời giải"
+    Đây là một [bài toán phân đoạn khoảng](./quadrangle.md#%E5%8C%BA%E9%97%B4%E5%88%86%E6%8B%86%E9%97%AE%E9%A2%98) điển hình. Chi tiết cài đặt hàng đợi nhị phân có thể tham khảo trang đó.
     
-    每个邮局服务离它最近的村庄，那么，这些村庄必然是高速公路旁连续的若干个村庄．所以，修建 $m$ 个邮局，就相当于将所有村庄划分为连续的 $m$ 段，并为每一段村庄修建一个成本最低的邮局．众所周知，邮局应当修建在村庄位置的中位数的位置．由此，可以写出区间 $[l,r]$ 的成本函数为
+    Mỗi bưu điện phục vụ các làng gần nó nhất, nên những làng này nhất định là một số làng liên tiếp bên đường cao tốc. Vì vậy, xây $m$ bưu điện tương đương với chia tất cả các làng thành $m$ đoạn liên tiếp, rồi xây một bưu điện có chi phí thấp nhất cho mỗi đoạn làng. Như đã biết, bưu điện nên được xây tại vị trí trung vị của các làng. Từ đó có thể viết hàm chi phí của khoảng $[l,r]$ là
     
     $$
     w(l,r) = \sum_{i=l}^r|a_i-a_{\lfloor(l+r)/2\rfloor}|.
     $$
     
-    它满足四边形不等式，因为它的二阶混合差分非正：
+    Nó thỏa bất đẳng thức tứ giác, vì sai phân hỗn hợp bậc hai của nó không dương:
     
     $$
     \Delta_l\Delta_r w(l,r)
@@ -804,77 +820,79 @@ $$
     = a_{\lfloor(l+r+1)/2\rfloor}-a_{\lfloor(l+r+2)/2\rfloor} \le 0.
     $$
     
-    这说明，可以通过二分队列结合 WQS 二分的方法在 $O(n\log n\log L)$ 的复杂度内求解该问题．
+    Điều này cho thấy có thể dùng hàng đợi nhị phân kết hợp với tìm kiếm nhị phân WQS để giải bài toán trong độ phức tạp $O(n\log n\log L)$.
     
-    参考实现如下：
+    Cài đặt tham khảo như sau:
     
-    === "传统方法"
+    === "Phương pháp truyền thống"
         ```cpp
         --8<-- "docs/dp/code/opt/wqs-binary-search/post-office-1.cpp"
         ```
     
-    === "对偶方法"
+    === "Phương pháp đối ngẫu"
         ```cpp
         --8<-- "docs/dp/code/opt/wqs-binary-search/post-office-2.cpp"
         ```
 
-### 二维的限制条件
+<span id="&#20108;&#32500;&#30340;&#38480;&#21046;&#26465;&#20214;"></span>
+### Điều kiện ràng buộc hai chiều
 
 ???+ example "[Codeforces 739 E. Gosha is hunting](https://codeforces.com/problemset/problem/739/E)"
-    有 $n$ 只神奇宝贝，序列 $\{p_i\}$ 和 $\{q_i\}$ 分别表示用宝贝球和超级球抓到第 $i$ 只神奇宝贝的概率．可以向一个神奇宝贝扔一个宝贝球，或者扔一个超级球，或者两种球各扔一个，或者什么球都不扔．现有 $m_1$ 个宝贝球和 $m_2$ 个神奇球，需要合理分配，并同时扔出．求抓到的神奇宝贝的期望数量的最大值．单次抓捕成功与否，与其它抓捕的结果无关．
+    Có $n$ Pokemon, hai dãy $\{p_i\}$ và $\{q_i\}$ lần lượt biểu thị xác suất bắt được Pokemon thứ $i$ bằng Poke Ball và Great Ball. Có thể ném vào một Pokemon một Poke Ball, hoặc một Great Ball, hoặc mỗi loại một quả, hoặc không ném quả nào. Hiện có $m_1$ Poke Ball và $m_2$ Great Ball, cần phân phối hợp lý và ném đồng thời. Việc bắt thành công hay không trong mỗi lần độc lập với kết quả của các lần bắt khác. Hãy tìm giá trị kỳ vọng lớn nhất của số Pokemon bắt được.
     
-    更一般地，可以抽象为如下问题：
+    Tổng quát hơn, có thể trừu tượng hóa thành bài toán sau:
     
-    给定长度为 $n$ 的三个正实数序列 $\{A_i\},\{B_i\},\{C_i\}$，而且，对所有 $i=1,\cdots,n$ 都有 $C_i\le A_i+B_i$ 成立．求最优的下标集合 $X$ 和 $Y$ 满足 $|X|=m_1$ 和 $|Y|=m_2$ 且最大化
+    Cho ba dãy số thực dương độ dài $n$ là $\{A_i\},\{B_i\},\{C_i\}$, và với mọi $i=1,\cdots,n$ đều có $C_i\le A_i+B_i$. Hãy tìm các tập chỉ số tối ưu $X$ và $Y$ thỏa $|X|=m_1$ và $|Y|=m_2$, đồng thời cực đại hóa
     
     $$
     \sum_{i\in X\setminus Y}A_i + \sum_{i\in Y\setminus X}B_i + \sum_{i\in X\cap Y}C_i.
     $$
 
-??? note "解答"
-    原问题可以看作是这个更一般的问题在
+??? note "Lời giải"
+    Bài toán gốc có thể xem là trường hợp đặc biệt của bài toán tổng quát hơn này khi
     
     $$
     A_i = p_i,~ B_i = q_i,~ C_i = p_i+q_i-p_iq_i
     $$
     
-    时的特殊情形．因此，只需要讨论更一般的问题的解决方案就可以了．
+    Vì vậy, chỉ cần thảo luận lời giải cho bài toán tổng quát hơn.
     
-    用 $v(m_1,m_2)$ 表示该问题的价值函数，需要证明它是关于 $(m_1,m_2)$ 的凹函数．考虑如下费用流模型：
+    Dùng $v(m_1,m_2)$ để biểu thị hàm giá trị của bài toán này; cần chứng minh nó là hàm lõm theo $(m_1,m_2)$. Xét mô hình luồng chi phí sau:
     
-    -   从源点 $s$ 出发，分别向结点 $x$ 和 $y$ 连一条边，容量分别为 $m_1$ 和 $m_2$，费用均为 $0$；
-    -   对于所有 $i=1,\cdots,n$，分别从结点 $x$ 和 $y$ 向结点 $i$ 连一条边，容量均为 $1$，费用分别为 $A_i$ 和 $B_i$；
-    -   对于所有 $i=1,\cdots,n$，从结点 $i$ 出发向汇点 $t$ 连两条边，容量均为 $1$，费用分别为 $0$ 和 $C_i-A_i-B_i$．
+    -   Từ nguồn $s$ nối lần lượt đến các nút $x$ và $y$ một cạnh, dung lượng lần lượt là $m_1$ và $m_2$, chi phí đều là $0$;
+    -   với mọi $i=1,\cdots,n$, từ các nút $x$ và $y$ lần lượt nối đến nút $i$ một cạnh, dung lượng đều là $1$, chi phí lần lượt là $A_i$ và $B_i$;
+    -   với mọi $i=1,\cdots,n$, từ nút $i$ nối đến đích $t$ hai cạnh, dung lượng đều là $1$, chi phí lần lượt là $0$ và $C_i-A_i-B_i$.
     
-    问题的答案就是该费用流模型的最大费用最大流．条件 $C_i-A_i-B_i\le 0$ 保证了当流经结点 $i$ 的流量为 $1$ 时，会优先选择费用为 $0$ 的那条边流出．将这个费用流模型写成线性规划问题，那么，$m_1$ 和 $m_2$ 就会分别出现在表示边 $(s,x)$ 和边 $(s,y)$ 的流量限制的不等式中．因此，$v(m_1,m_2)$ 确实是 $(m_1,m_2)$ 的凹函数．
+    Đáp án của bài toán là luồng cực đại chi phí lớn nhất của mô hình luồng chi phí này. Điều kiện $C_i-A_i-B_i\le 0$ bảo đảm rằng khi lưu lượng đi qua nút $i$ bằng $1$, nó sẽ ưu tiên chọn cạnh ra có chi phí $0$. Viết mô hình luồng chi phí này thành bài toán quy hoạch tuyến tính, $m_1$ và $m_2$ sẽ lần lượt xuất hiện trong các bất đẳng thức biểu thị giới hạn lưu lượng của cạnh $(s,x)$ và cạnh $(s,y)$. Do đó, $v(m_1,m_2)$ quả thật là hàm lõm theo $(m_1,m_2)$.
     
-    为了应用 WQS 二分，需要考虑移除数量限制后的最优化问题．设 $k_1$ 和 $k_2$ 分别为将一个下标放入集合 $X$ 和 $Y$ 时获得的额外奖励．没有数量限制后，关于每个下标的决策都是独立的，因此，有
+    Để áp dụng tìm kiếm nhị phân WQS, cần xét bài toán tối ưu sau khi bỏ ràng buộc số lượng. Gọi $k_1$ và $k_2$ lần lượt là phần thưởng phụ thêm khi đưa một chỉ số vào tập $X$ và $Y$. Sau khi không còn ràng buộc số lượng, quyết định đối với mỗi chỉ số là độc lập, do đó
     
     $$
     h(k_1,k_2) = \sum_{i=1}^n\max\{0,A_i+k_1,B_i+k_2,C_i+k_1+k_2\}.
     $$
     
-    原问题的答案就由
+    Đáp án của bài toán gốc được cho bởi
     
     $$
     v(m_1,m_2) = \min_{k_1,k_2} h(k_1,k_2) - k_1m_1 - k_2m_2
     $$
     
-    给出．总的时间复杂度为 $O(n\log^2L)$，其中，$O(\log L)$ 为对单个维度二分的次数．
+    Tổng độ phức tạp thời gian là $O(n\log^2L)$, trong đó $O(\log L)$ là số lần nhị phân trên một chiều.
     
-    抓捕神奇宝贝问题的参考实现如下：
+    Cài đặt tham khảo cho bài toán bắt Pokemon như sau:
     
     ```cpp
     --8<-- "docs/dp/code/opt/wqs-binary-search/gosha-is-hunting.cpp"
     ```
 
-### 更广泛的限制条件
+<span id="&#26356;&#24191;&#27867;&#30340;&#38480;&#21046;&#26465;&#20214;"></span>
+### Điều kiện ràng buộc tổng quát hơn
 
 ???+ example "[Codeforces 1661 F. Teleporters](https://codeforces.com/problemset/problem/1661/F)"
-    有 $n$ 条线段，它们的长度由序列 $\{a_i\}$ 给出．可以将它们任意切割为若干条整数长度的线段，目标是最小化所有线段长度平方的总和．求至少需要切割多少次，才能使这个平方和降到不超过 $V$．
+    Có $n$ đoạn thẳng, độ dài của chúng được cho bởi dãy $\{a_i\}$. Có thể cắt chúng tùy ý thành một số đoạn có độ dài nguyên; mục tiêu là tối thiểu hóa tổng bình phương độ dài của mọi đoạn. Hỏi cần cắt ít nhất bao nhiêu lần để tổng bình phương này giảm xuống không vượt quá $V$.
 
-??? note "解答"
-    设将长度为 $a$ 的线段切割 $m$ 次能得到的最小平方和为 $f(a,m)$．由于均值不等式，当两数之和一定时，两数之差越小，两数的平方和也越小．所以，切割之后得到的线段长度越均匀，总的长度平方和也就越小．但是由于整数约束的存在，最均匀的情形就是得到了 $a\bmod (m+1)$ 条长度为 $\lceil a/(m+1)\rceil$ 的线段和 $m+1-(a\bmod (m+1))$ 条长度为 $\lfloor a/(m+1)\rfloor$ 的线段．因此，有如下表达式：
+??? note "Lời giải"
+    Gọi $f(a,m)$ là tổng bình phương nhỏ nhất có thể đạt được khi cắt đoạn thẳng độ dài $a$ đúng $m$ lần. Theo bất đẳng thức trung bình, khi tổng của hai số cố định, hai số càng gần nhau thì tổng bình phương của chúng càng nhỏ. Vì vậy, sau khi cắt, độ dài các đoạn càng đều nhau thì tổng bình phương độ dài càng nhỏ. Nhưng do tồn tại ràng buộc nguyên, trường hợp đều nhất là thu được $a\bmod (m+1)$ đoạn có độ dài $\lceil a/(m+1)\rceil$ và $m+1-(a\bmod (m+1))$ đoạn có độ dài $\lfloor a/(m+1)\rfloor$. Do đó có biểu thức sau:
     
     $$
     \begin{aligned}
@@ -883,9 +901,9 @@ $$
     \end{aligned}
     $$
     
-    第二步的等号成立，是因为 $\lceil a/(m+1)\rceil \neq \lfloor a/(m+1)\rfloor + 1$ 当且仅当 $a\bmod (m+1) = 0$．
+    Dấu bằng ở bước thứ hai đúng vì $\lceil a/(m+1)\rceil \neq \lfloor a/(m+1)\rfloor + 1$ khi và chỉ khi $a\bmod (m+1) = 0$.
     
-    可以证明，函数 $f(a,m)$ 是关于 $m$ 的凸函数．为此，需要将它延拓到 $m\in\mathbf R_{+}$ 的情形．当 $\lfloor a/(m+1)\rfloor = q$ 时，有
+    Có thể chứng minh hàm $f(a,m)$ là hàm lồi theo $m$. Để làm điều này, cần mở rộng nó sang trường hợp $m\in\mathbf R_{+}$. Khi $\lfloor a/(m+1)\rfloor = q$, ta có
     
     $$
     \begin{aligned}
@@ -894,75 +912,76 @@ $$
     \end{aligned}
     $$
     
-    这是斜率为 $-q(q+1)$ 的直线．因此，$f(a,m)$ 是分段线性函数，且斜率随着 $m$ 的增加而增加．这就说明了 $f(a,m)$ 是凸函数，它限制在整点上当然也是凸函数[^conv-int]．
+    Đây là đường thẳng có hệ số góc $-q(q+1)$. Vì vậy, $f(a,m)$ là hàm tuyến tính từng đoạn, và hệ số góc tăng khi $m$ tăng. Điều này cho thấy $f(a,m)$ là hàm lồi, nên giới hạn của nó trên các điểm nguyên đương nhiên cũng là hàm lồi[^conv-int].
     
-    利用 $f(\cdot,\cdot)$，可以将所有线段总共切割 $m$ 次得到的最小平方和写作如下最优化问题的价值函数：
+    Dùng $f(\cdot,\cdot)$, có thể viết tổng bình phương nhỏ nhất thu được khi cắt tất cả đoạn thẳng tổng cộng $m$ lần thành hàm giá trị của bài toán tối ưu sau:
     
     $$
     v(m) = \min_{\{m_i\}}\sum_i f(a_i,m_i)\text{ subject to }\sum_i m_i=m,~m_i\in\mathbf N.
     $$
     
-    这是若干个凸函数的 [卷积下确界](./slope-trick.md#卷积下确界minkowski-和)，所以也是凸函数．如果题目要求的是 $v(m)$，那么，可以使用与之前的例题一致的方法求解，时间复杂度为 $O(n\log^2L)$；但是，本题求的是满足 $v(m)\le V$ 的最小的 $m$．利用 WQS 二分计算 $v(m)$ 再对 $m$ 二分的方法是行不通的，它的复杂度达到了 $O(n\log^3L)$．就本题而言，有如下两种处理方法．
+    Đây là [chập lấy cận dưới đúng](./slope-trick.md#%E5%8D%B7%E7%A7%AF%E4%B8%8B%E7%A1%AE%E7%95%8Cminkowski-%E5%92%8C) của một số hàm lồi, nên cũng là hàm lồi. Nếu đề bài yêu cầu $v(m)$, có thể dùng phương pháp nhất quán với các ví dụ trước để giải, với độ phức tạp thời gian $O(n\log^2L)$. Tuy nhiên, bài này yêu cầu $m$ nhỏ nhất thỏa $v(m)\le V$. Cách dùng tìm kiếm nhị phân WQS để tính $v(m)$ rồi lại nhị phân trên $m$ không khả thi, vì độ phức tạp lên tới $O(n\log^3L)$. Với bài này, có hai cách xử lý sau.
     
-    **方法一**：仍然二分斜率 $k$，但是二分的依据是对 $v(m)$ 上下界的估计．
+    **Cách một**: Vẫn nhị phân hệ số góc $k$, nhưng căn cứ nhị phân là ước lượng cận trên và cận dưới của $v(m)$.
     
-    传统的 WQS 二分的方法中，对于给定的斜率 $k$，可以计算出相应的最优的 $m$ 的取值范围．因为这些 $(m,v(m))$ 共线，所以这相当于确定了 $v(m)$ 的取值范围．因此，可以直接二分斜率 $k$．得到斜率 $k$ 之后，可以利用直线方程
+    Trong phương pháp tìm kiếm nhị phân WQS truyền thống, với hệ số góc $k$ cho trước, có thể tính ra phạm vi giá trị tối ưu tương ứng của $m$. Vì các điểm $(m,v(m))$ này thẳng hàng, điều này tương đương với việc xác định phạm vi giá trị của $v(m)$. Do đó, có thể nhị phân trực tiếp trên hệ số góc $k$. Sau khi thu được hệ số góc $k$, có thể dùng phương trình đường thẳng
     
     $$
     v(m) = h(k) + km
     $$
     
-    计算出最小的 $m$．整体复杂度为 $O(n\log^2L)$．
+    để tính $m$ nhỏ nhất. Độ phức tạp tổng thể là $O(n\log^2L)$.
     
-    为了确定 $v(m)$ 的取值范围，需要确定 $m$ 的取值范围．一种做法是，在计算 $h(k)$ 时记录相应的最大最优解，利用它可以计算相应的 $v(m)$ 的下界；另一种做法是，利用 $h(k)-h(k-1)$ 得到相应的 $m$ 的上界，进而得到相应的 $v(m)$ 的下界．参考实现中，采用的是第二种做法，它不依赖于问题的具体结构，无需特别处理．
+    Để xác định phạm vi giá trị của $v(m)$, cần xác định phạm vi của $m$. Một cách làm là khi tính $h(k)$, ghi lại nghiệm tối ưu lớn nhất tương ứng, dùng nó để tính cận dưới tương ứng của $v(m)$. Một cách khác là dùng $h(k)-h(k-1)$ để thu được cận trên tương ứng của $m$, rồi suy ra cận dưới tương ứng của $v(m)$. Trong cài đặt tham khảo, cách thứ hai được sử dụng; nó không phụ thuộc vào cấu trúc cụ thể của bài toán và không cần xử lý đặc biệt.
     
-    **方法二**：改写最优化问题，使得对偶问题的价值函数就是本问题的解．
+    **Cách hai**: Viết lại bài toán tối ưu sao cho hàm giá trị của bài toán đối ngẫu chính là nghiệm của bài này.
     
-    本问题可以直接看作是如下最优化问题：
+    Bài này có thể được xem trực tiếp là bài toán tối ưu sau:
     
     $$
     m(v) = \min_{\{m_i\}} \sum_i m_i \text{ subject to }\sum_i f(a_i,m_i) \le V.
     $$
     
-    本文的分析仍然适用于这一问题．故而，可以利用它的对偶问题求解所要求的 $m(v)$：
+    Phân tích trong bài viết này vẫn áp dụng cho bài toán này. Vì vậy, có thể dùng bài toán đối ngẫu của nó để giải $m(v)$ cần tìm:
     
     $$
     m(v) = \max_{k} \sum_i\min_{m_i}(m_i - \lambda f(a_i,m_i)) + \lambda V.
     $$
     
-    整体算法复杂度仍然是 $O(n\log^2L)$ 的．
+    Độ phức tạp tổng thể của thuật toán vẫn là $O(n\log^2L)$.
     
-    参考代码如下：
+    Mã tham khảo như sau:
     
-    === "方法一"
-        代码仅做示意，为通过原题数据范围，需要 128 位整数，并调整二分初始区间为 $[0,10^{60}]$．
+    === "Cách một"
+        Mã chỉ mang tính minh họa; để vượt qua phạm vi dữ liệu gốc, cần dùng số nguyên 128 bit và điều chỉnh khoảng nhị phân ban đầu thành $[0,10^{60}]$.
         
         ```cpp
         --8<-- "docs/dp/code/opt/wqs-binary-search/teleporters-1.cpp"
         ```
     
-    === "方法二"
-        代码仅做示意，由于浮点数精度问题无法通过原题数据范围．
+    === "Cách hai"
+        Mã chỉ mang tính minh họa; do vấn đề độ chính xác số thực nên không thể vượt qua phạm vi dữ liệu gốc.
         
         ```cpp
         --8<-- "docs/dp/code/opt/wqs-binary-search/teleporters-2.cpp"
         ```
 
-## 习题
+<span id="&#20064;&#39064;"></span>
+## Bài tập
 
-最后，列举一些可以通过 WQS 二分解决的题目，以供练习：
+Cuối cùng, liệt kê một số bài có thể giải bằng tìm kiếm nhị phân WQS để luyện tập:
 
--   [Luogu P1484 种树](https://www.luogu.com.cn/problem/P1484)
--   [Luogu P1792 \[国家集训队\] 种树](https://www.luogu.com.cn/problem/P1792)
--   [Luogu P2619 \[国家集训队\] Tree I](https://www.luogu.com.cn/problem/P2619)
--   [Luogu P3620 \[APIO/CTSC2007\] 数据备份](https://www.luogu.com.cn/problem/P3620)
--   [Luogu P4072 \[SDOI2016\] 征途](https://www.luogu.com.cn/problem/P4072)
--   [Luogu P4383 \[八省联考 2018\] 林克卡特树](https://www.luogu.com.cn/problem/P4383)
--   [Luogu P4983 忘情](https://www.luogu.com.cn/problem/P4983)
--   [Luogu P5308 \[COCI 2018/2019 #4\] Akvizna](https://www.luogu.com.cn/problem/P5308)
--   [Luogu P5633 最小度限制生成树](https://www.luogu.com.cn/problem/P5633)
--   [Luogu P5896 \[IOI 2016\] aliens](https://www.luogu.com.cn/problem/P5896)
--   [Luogu P6246 \[IOI 2000\] 邮局 加强版 加强版](https://www.luogu.com.cn/problem/P6246)
+-   [Luogu P1484 Trồng cây](https://www.luogu.com.cn/problem/P1484)
+-   [Luogu P1792 Đội tuyển quốc gia: Trồng cây](https://www.luogu.com.cn/problem/P1792)
+-   [Luogu P2619 Đội tuyển quốc gia: Tree I](https://www.luogu.com.cn/problem/P2619)
+-   [Luogu P3620 APIO/CTSC2007 Sao lưu dữ liệu](https://www.luogu.com.cn/problem/P3620)
+-   [Luogu P4072 SDOI2016 Hành trình](https://www.luogu.com.cn/problem/P4072)
+-   [Luogu P4383 Liên khảo tám tỉnh 2018: Cây Link-Cut](https://www.luogu.com.cn/problem/P4383)
+-   [Luogu P4983 Quên tình](https://www.luogu.com.cn/problem/P4983)
+-   [Luogu P5308 COCI 2018/2019 #4 Akvizna](https://www.luogu.com.cn/problem/P5308)
+-   [Luogu P5633 Cây khung có ràng buộc bậc nhỏ nhất](https://www.luogu.com.cn/problem/P5633)
+-   [Luogu P5896 IOI 2016 aliens](https://www.luogu.com.cn/problem/P5896)
+-   [Luogu P6246 IOI 2000 Bưu điện, bản tăng cường](https://www.luogu.com.cn/problem/P6246)
 -   [AtCoder Beginner Contest 218 H - Red and Blue Lamps](https://atcoder.jp/contests/abc218/tasks/abc218_h)
 -   [AtCoder Beginner Contest 305 Ex - Shojin](https://atcoder.jp/contests/abc305/tasks/abc305_h)
 -   [AtCoder Regular Contest 164 E - Segment-Tree Optimization](https://atcoder.jp/contests/arc164/tasks/arc164_e)
@@ -976,26 +995,27 @@ $$
 -   [Codeforces 1799 F. Halve or Subtract](https://codeforces.com/problemset/problem/1799/F)
 -   [2019 Summer Petrozavodsk Camp H. Honorable Mention](https://codeforces.com/gym/102331/problem/H)
 
-## 参考资料与注释
+<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+## Tài liệu tham khảo và chú thích
 
--   [王钦石《浅析一类二分方法》](https://github.com/hzwer/shareOI/blob/master/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B5%85%E6%9E%90%E4%B8%80%E7%B1%BB%E4%BA%8C%E5%88%86%E6%96%B9%E6%B3%95_%E7%8E%8B%E9%92%A6%E7%9F%B3.pdf)
+-   [Wang Qinshi, "Phân tích sơ lược một lớp phương pháp nhị phân"](https://github.com/hzwer/shareOI/blob/master/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B5%85%E6%9E%90%E4%B8%80%E7%B1%BB%E4%BA%8C%E5%88%86%E6%96%B9%E6%B3%95_%E7%8E%8B%E9%92%A6%E7%9F%B3.pdf)
 -   [Theoretical grounds of lambda optimization by adamant - Codeforces blog](https://codeforces.com/blog/entry/98334)
--   [严谨的 WQS 二分方法 by YeahPotato - 洛谷博客](https://www.luogu.com.cn/article/vsffwrc3)
--   [【学习笔记】WQS 二分详解及常见理解误区解释 by ikrvxt - CSDN 博客](https://blog.csdn.net/Emm_Titan/article/details/124035796)
+-   [Phương pháp WQS nhị phân chặt chẽ by YeahPotato - Luogu Blog](https://www.luogu.com.cn/article/vsffwrc3)
+-   [Ghi chú học tập: giải thích chi tiết WQS nhị phân và các hiểu lầm thường gặp by ikrvxt - CSDN Blog](https://blog.csdn.net/Emm_Titan/article/details/124035796)
 -   [Convex conjugate - Wikipedia](https://en.wikipedia.org/wiki/Convex_conjugate)
--   [Fenchel–Moreau theorem - Wikipedia](https://en.wikipedia.org/wiki/Fenchel%E2%80%93Moreau_theorem)
+-   [Fenchel-Moreau theorem - Wikipedia](https://en.wikipedia.org/wiki/Fenchel%E2%80%93Moreau_theorem)
 -   [Subderivative - Wikipedia](https://en.wikipedia.org/wiki/Subderivative)
 -   [Boyd, Stephen P., and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
 -   Papadimitriou, Christos H., and Kenneth Steiglitz. Combinatorial optimization: algorithms and complexity. Courier Corporation, 1998.
--   Conforti, Michele, Gérard Cornuéjols, and Giacomo Zambelli. Integer programming. Springer International Publishing, 2014.
+-   Conforti, Michele, Gerard Cornuejols, and Giacomo Zambelli. Integer programming. Springer International Publishing, 2014.
 -   Schrijver, Alexander. Combinatorial optimization: polyhedra and efficiency. Vol. 24, no. 2. Berlin: Springer, 2003.
 
-[^high-d-convex]: 实际问题中，$y$ 可能只能取到 $\mathbf R^d$ 中的有限多个格点．此处实际需要的条件是，原问题的解 $v(y)$ 可以延拓为 $\mathbf R^d$ 上的凸函数 $\tilde v:\mathbf R^d\rightarrow \mathbf R\cup\{\pm\infty\}$，也就是说 $v(y)$ 是 **可凸延拓的**（convex-extensible）．为行文方便，正文中仍然用 $v(y)$ 表示延拓后的函数．几何直观上，这相当于说点集 $\{(y,v(y))\}$ 全部都位于它们的凸包的下凸壳上．对于一维的情形，这一条件利用代数语言 [很容易刻画](./slope-trick.md#离散点集上的凸函数)；但是，对于高维的情形，这稍微有些复杂，[这份讲义](https://kzmurota.fpark.tmu.ac.jp/paper/HIMSummerSchool15Murota.pdf) 中提供了一些简单的充分条件．
+[^high-d-convex]: Trong bài toán thực tế, $y$ có thể chỉ nhận hữu hạn nhiều điểm lưới trong $\mathbf R^d$. Điều kiện thật sự cần ở đây là nghiệm $v(y)$ của bài toán gốc có thể được mở rộng thành một hàm lồi $\tilde v:\mathbf R^d\rightarrow \mathbf R\cup\{\pm\infty\}$ trên $\mathbf R^d$, tức $v(y)$ là **có thể mở rộng lồi** (convex-extensible). Để tiện trình bày, trong phần chính vẫn dùng $v(y)$ để chỉ hàm sau khi mở rộng. Về trực quan hình học, điều này tương đương với việc toàn bộ tập điểm $\{(y,v(y))\}$ đều nằm trên bao lồi dưới của bao lồi của chúng. Với trường hợp một chiều, điều kiện này [rất dễ mô tả](./slope-trick.md#%E7%A6%BB%E6%95%A3%E7%82%B9%E9%9B%86%E4%B8%8A%E7%9A%84%E5%87%B8%E5%87%BD%E6%95%B0) bằng ngôn ngữ đại số; nhưng với trường hợp nhiều chiều thì hơi phức tạp hơn, và [bài giảng này](https://kzmurota.fpark.tmu.ac.jp/paper/HIMSummerSchool15Murota.pdf) cung cấp một số điều kiện đủ đơn giản.
 
-[^other-conditions]: 定理中提供的条件看似比凸函数更强一些，但是，对于算法竞赛能够遇到的情形，特别是 $X$ 为有限集合时，仅强调凸函数就已经足够．由离散集合上的正常凸函数 $v$ 延拓而来的函数 $\tilde v$ 必然是下半连续的凸函数，因为有限多个点的凸包必然是闭凸包，而所谓下半连续的凸函数，就等价于它的上境图是闭凸包．至于正常凸函数中的「正常」一词，只要 $v(y)$ 在至少一个点处取得有限值且是凸函数，就可以保证．
+[^other-conditions]: Các điều kiện trong định lý trông có vẻ mạnh hơn tính lồi một chút, nhưng với các trường hợp thường gặp trong lập trình thi đấu, đặc biệt khi $X$ là tập hữu hạn, chỉ nhấn mạnh tính lồi đã đủ. Hàm $\tilde v$ được mở rộng từ hàm lồi proper $v$ trên tập rời rạc nhất định là hàm lồi nửa liên tục dưới, vì bao lồi của hữu hạn điểm nhất định là bao lồi đóng, còn cái gọi là hàm lồi nửa liên tục dưới tương đương với việc epigraph của nó là bao lồi đóng. Còn từ "proper" trong hàm lồi proper được bảo đảm miễn là $v(y)$ nhận giá trị hữu hạn tại ít nhất một điểm và là hàm lồi.
 
-[^mst]: 最小生成树问题有两种常见的写成线性规划问题的 [方法](https://math.arizona.edu/~glickenstein/math443f14/golari.pdf)：子回路消除模型（subtour-elimination formulation）和基于割集的模型（cut-based formulation）．只有前一种建模方式能够保证得到的线性规划问题和原问题是等价的．
+[^mst]: Bài toán cây khung nhỏ nhất có hai [cách](https://math.arizona.edu/~glickenstein/math443f14/golari.pdf) thường gặp để viết thành bài toán quy hoạch tuyến tính: mô hình khử chu trình con (subtour-elimination formulation) và mô hình dựa trên tập cắt (cut-based formulation). Chỉ cách mô hình hóa thứ nhất mới bảo đảm bài toán quy hoạch tuyến tính thu được tương đương với bài toán gốc.
 
-[^edge-swap]: 这一引理对于一般的 [拟阵](../../math/matroid.md) 也是成立的．它称为 **对称基交换性质**（symmetric base-exchange property），相关资料可以参考 [Wikipedia 页面](https://en.wikipedia.org/wiki/Basis_of_a_matroid)．因此，本题关于凸性的结论可以推广到一般的拟阵上．
+[^edge-swap]: Bổ đề này cũng đúng với [matroid](../../math/matroid.md) tổng quát. Nó được gọi là **tính chất trao đổi cơ sở đối xứng** (symmetric base-exchange property); có thể tham khảo [trang Wikipedia](https://en.wikipedia.org/wiki/Basis_of_a_matroid) để biết thêm. Vì vậy, kết luận về tính lồi của bài này có thể mở rộng sang matroid tổng quát.
 
-[^conv-int]: 当然，$f(a,m)$ 和它限制在整点上得到的函数的凸包并不相同，因为 $f(a,m)$ 可能存在非整数位置处的极点．这说明，并不能将定义域为实数的 $f(a,m)$ 直接用于本题的最优化问题中．
+[^conv-int]: Tất nhiên, $f(a,m)$ và bao lồi của hàm thu được khi giới hạn nó trên các điểm nguyên không giống nhau, vì $f(a,m)$ có thể có điểm cực trị tại vị trí không nguyên. Điều này cho thấy không thể trực tiếp dùng $f(a,m)$ có miền xác định là số thực trong bài toán tối ưu của đề này.

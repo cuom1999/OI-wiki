@@ -5,7 +5,7 @@
 #include <type_traits>
 #include <vector>
 
-// Golden section search on integer domain (unimodal function)
+// Tìm kiếm theo tỉ lệ vàng trên miền số nguyên (hàm đơn đỉnh)
 template <typename T, typename F>
 typename std::enable_if<
     std::is_integral<T>::value,
@@ -42,7 +42,7 @@ golden_section_search(T ll, T rr, F func) {
   return {best_x, best_val};
 }
 
-// Golden section search on floating-point domain (unimodal function)
+// Tìm kiếm theo tỉ lệ vàng trên miền số thực (hàm đơn đỉnh)
 template <typename T, typename F>
 typename std::enable_if<
     std::is_floating_point<T>::value,
@@ -79,13 +79,13 @@ int main() {
   for (int i = n; i >= 1; --i) a[i] -= a[i - 1];
   long long v;
   std::cin >> v;
-  // Cost of adding M more teleporters to a segment of length LEN.
+  // Chi phí khi thêm M bộ dịch chuyển vào một đoạn có độ dài LEN.
   auto f = [&](int len, int m) -> long long {
     long long rem = len % (m + 1);
     int q = len / (m + 1);
     return (m + 1 - rem) * q * q + rem * (q + 1) * (q + 1);
   };
-  // Calculate h(k) = min_x f(x) - k * g(x).
+  // Tính h(k) = min_x f(x) - k * g(x).
   auto calc = [&](long double k) -> long double {
     long double res = 0;
     for (int i = 1; i <= n; ++i) {
@@ -95,7 +95,7 @@ int main() {
     }
     return res;
   };
-  // Solve the dual problem.
+  // Giải bài toán đối ngẫu.
   auto res =
       golden_section_search(
           -1.0l, 0.0l,

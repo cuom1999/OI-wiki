@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <vector>
 
-// Golden section search on integer domain (unimodal function)
+// Tìm kiếm theo tỉ lệ vàng trên miền số nguyên (hàm đơn đỉnh)
 template <typename T, typename F>
 typename std::enable_if<
     std::is_integral<T>::value,
@@ -49,13 +49,13 @@ int main() {
   for (int i = n; i >= 1; --i) a[i] -= a[i - 1];
   long long v;
   std::cin >> v;
-  // Cost of adding M more teleporters to a segment of length LEN.
+  // Chi phí khi thêm M bộ dịch chuyển vào một đoạn có độ dài LEN.
   auto f = [&](int len, int m) -> long long {
     long long rem = len % (m + 1);
     int q = len / (m + 1);
     return (m + 1 - rem) * q * q + rem * (q + 1) * (q + 1);
   };
-  // Calculate h(k) = min_x f(x) - k * g(x).
+  // Tính h(k) = min_x f(x) - k * g(x).
   auto calc = [&](long long k) -> long long {
     long long res = 0;
     for (int i = 1; i <= n; ++i) {
@@ -65,7 +65,7 @@ int main() {
     }
     return res;
   };
-  // Find the smallest k such that h(k) + k * m <= v.
+  // Tìm k nhỏ nhất sao cho h(k) + k * m <= v.
   long long ll = -(1LL << 30), rr = 0, ti = 0;
   while (ll <= rr) {
     auto mm = ll + (rr - ll) / 2;

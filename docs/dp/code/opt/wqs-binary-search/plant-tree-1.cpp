@@ -9,8 +9,8 @@ int main() {
   std::cin >> n >> m;
   std::vector<int> a(n + 1);
   for (int i = 1; i <= n; ++i) std::cin >> a[i];
-  // Calculate h(k) = max_x f(x) - k * g(x).
-  // Meanwhile, obtain the maximum value g(x) of the optimizer x.
+  // Tính h(k) = max_x f(x) - k * g(x).
+  // Đồng thời lấy giá trị g(x) lớn nhất của nghiệm tối ưu x.
   auto calc = [&](int k) -> std::pair<long long, int> {
     long long dp[2] = {0, -0x3f3f3f3f3f3f3f3f};
     int opt[2] = {0, 0};
@@ -46,16 +46,16 @@ int main() {
     }
     return {val, opt_m};
   };
-  // WQS binary search.
+  // Tìm kiếm nhị phân WQS.
   long long val, tar_val;
   int opt_m, tar_k;
   std::tie(val, opt_m) = calc(0);
   if (opt_m <= m) {
-    // Have already reached the peak.
+    // Đã đạt tới đỉnh.
     tar_k = 0;
     tar_val = val;
   } else {
-    // Find the maximum k such that g(x) >= m.
+    // Tìm k lớn nhất sao cho g(x) >= m.
     int ll = 0, rr = 1000000;
     while (ll <= rr) {
       int mm = (ll + rr) / 2;
