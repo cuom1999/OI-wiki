@@ -2,7 +2,7 @@
 
 Cú pháp trong bài viết này tham chiếu chuẩn **C++11**. Cú pháp của các chuẩn mới hơn sẽ được nhắc đến tùy trường hợp và được đánh dấu riêng.
 
-<a id="lambda-&#34920;&#36798;&#24335;"></a>
+<a id="biểu-thức-lambda"></a>
 
 ## Biểu thức Lambda
 
@@ -44,13 +44,13 @@ void (*f)(int, int) = [](int, int) -> void {};
 
 Dưới đây, chúng ta sẽ lần lượt giới thiệu từng phần trong cú pháp.
 
-<a id="statement-&#20989;&#25968;&#20307;"></a>
+<a id="statement-thân-hàm"></a>
 
 ### statement thân hàm
 
-Thân hàm của biểu thức Lambda tương tự thân hàm thông thường. Ngoài việc có thể truy cập tham số, biến toàn cục, v.v., nó còn có thể truy cập các biến được [bắt giữ](#capture-%E6%8D%95%E8%8E%B7%E5%AD%90%E5%8F%A5).
+Thân hàm của biểu thức Lambda tương tự thân hàm thông thường. Ngoài việc có thể truy cập tham số, biến toàn cục, v.v., nó còn có thể truy cập các biến được [bắt giữ](#capture-mệnh-đề-bắt-giữ).
 
-<a id="capture-&#25429;&#33719;&#23376;&#21477;"></a>
+<a id="capture-mệnh-đề-bắt-giữ"></a>
 
 ### capture mệnh đề bắt giữ
 
@@ -85,7 +85,7 @@ auto f3 = [v = a + 1]() {
 auto b = f2();  // f2 lấy giá trị của a từ danh sách bắt giữ, không cần truyền a qua tham số
 ```
 
-<a id="generalized-capture-&#24102;&#21021;&#22987;&#21270;&#30340;&#25429;&#33719;c14"></a>
+<a id="generalized-capture-bắt-giữ-có-khởi-tạo-c14"></a>
 
 #### generalized capture, bắt giữ có khởi tạo (C++14)
 
@@ -188,7 +188,7 @@ int value = 520;
 }
 ```
 
-Xem thêm [đặc tả mutable](#mutable-%E5%8F%AF%E5%8F%98%E8%A7%84%E8%8C%83).
+Xem thêm [đặc tả mutable](#mutable-đặc-tả-có-thể-thay-đổi).
 
 Vòng đời của biến được định nghĩa trong capture đi theo đối tượng tiếp nhận biểu thức Lambda; trong các ví dụ trên là biến $f$. Lý do là bản thân Lambda thực chất là một lớp, và mọi nội dung trong capture đều là biến thành viên `private` của lớp này, ví dụ:
 
@@ -202,7 +202,7 @@ int main() {
 }  // val bị hủy theo f
 ```
 
-<a id="parameters-&#21442;&#25968;&#21015;&#34920;"></a>
+<a id="parameters-danh-sách-tham-số"></a>
 
 ### parameters danh sách tham số
 
@@ -216,16 +216,16 @@ for (auto i : x) std::cout << i << " ";
 
 Đoạn này sẽ in ra kết quả sau khi mảng `x` được sắp xếp theo thứ tự giảm dần.
 
-Vì **parameters danh sách tham số** là tùy chọn, nếu không truyền tham số cho lambda, khai báo của nó không chứa [mutable](#mutable-%E5%8F%AF%E5%8F%98%E8%A7%84%E8%8C%83), và không có kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
+Vì **parameters danh sách tham số** là tùy chọn, nếu không truyền tham số cho lambda, khai báo của nó không chứa [mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
 
 ??? note "Tham số được khai báo bằng `auto`"
-    Sau **C++14**, nếu tham số dùng `auto` để khai báo kiểu, một [biểu thức Lambda tổng quát](#%E6%B3%9B%E5%9E%8B-lambdac14) sẽ được tạo.
+    Sau **C++14**, nếu tham số dùng `auto` để khai báo kiểu, một [biểu thức Lambda tổng quát](#lambda-tổng-quát-c14) sẽ được tạo.
 
-<a id="&#26174;&#24335;&#23545;&#35937;&#24418;&#21442;c23"></a>
+<a id="tham-số-đối-tượng-tường-minh-c23"></a>
 
 #### Tham số đối tượng tường minh (C++23)
 
-Từ **C++23** trở đi, [tham số đối tượng tường minh](https://zh.cppreference.com/w/cpp/language/function#.E5.BD.A2.E5.8F.82.E5.88.97.E8.A1.A8) có thể được dùng trong danh sách tham số của lambda.
+Từ **C++23** trở đi, [tham số đối tượng tường minh](https://en.cppreference.com/w/cpp/language/lambda) có thể được dùng trong danh sách tham số của lambda.
 
 ```cpp
 auto nth_fibonacci = [](this auto self, unsigned n) -> unsigned {
@@ -235,7 +235,7 @@ auto nth_fibonacci = [](this auto self, unsigned n) -> unsigned {
 cout << nth_fibonacci(10u);
 ```
 
-<a id="mutable-&#21487;&#21464;&#35268;&#33539;"></a>
+<a id="mutable-đặc-tả-có-thể-thay-đổi"></a>
 
 ### mutable đặc tả có thể thay đổi
 
@@ -253,7 +253,7 @@ by_ref();
 Sau khi thực thi `by_value()`, thành viên bắt giữ `a` của `by_value` có giá trị 1, nhưng biến `a` bên ngoài vẫn là 0.
 Còn sau khi thực thi `by_ref()`, giá trị của `a` bên ngoài trở thành 1.
 
-<a id="return-type-&#36820;&#22238;&#31867;&#22411;"></a>
+<a id="return-type-kiểu-trả-về"></a>
 
 ### return-type kiểu trả về
 
@@ -272,7 +272,7 @@ auto x2 = [](bool condition) {
 };  // Error, các kiểu suy diễn không nhất quán
 ```
 
-<a id="&#27867;&#22411;-lambdac14"></a>
+<a id="lambda-tổng-quát-c14"></a>
 
 ### Lambda tổng quát (C++14)
 
@@ -468,11 +468,11 @@ Giải quyết vấn đề này như thế nào?
         cout << lambda(10);
         ```
 
-<a id="lambda-&#34920;&#36798;&#24335;&#30340;&#24212;&#29992;"></a>
+<a id="ứng-dụng-của-biểu-thức-lambda"></a>
 
 ### Ứng dụng của biểu thức Lambda
 
-<a id="&#20316;&#20026;&#26631;&#20934;&#24211;&#31639;&#27861;&#30340;-predicate&#35859;&#35789;"></a>
+<a id="làm-predicate-vị-từ-cho-thuật-toán-thư-viện-chuẩn"></a>
 
 #### Làm Predicate (vị từ) cho thuật toán thư viện chuẩn
 
@@ -483,14 +483,14 @@ std::vector<int> v = {1, 2, 3, 4, 5};
 std::sort(v.begin(), v.end(), [](int a, int b) { return a > b; });
 ```
 
-Dùng [std::find\_if](https://zh.cppreference.com/w/cpp/algorithm/find) để tìm phần tử đầu tiên lớn hơn 3:
+Dùng [std::find\_if](https://en.cppreference.com/w/cpp/algorithm/find) để tìm phần tử đầu tiên lớn hơn 3:
 
 ```cpp
 std::vector<int> v = {1, 2, 3, 4, 5};
 auto it = std::find_if(v.begin(), v.end(), [](int a) { return a > 3; });
 ```
 
-<a id="&#25511;&#21046;&#20013;&#38388;&#21464;&#37327;&#30340;&#29983;&#21629;&#21608;&#26399;"></a>
+<a id="kiểm-soát-vòng-đời-của-biến-trung-gian"></a>
 
 #### Kiểm soát vòng đời của biến trung gian
 
@@ -518,7 +518,7 @@ void solution(const vector<int>& input) {
 
 So với việc dùng phạm vi khối lệnh, lambda cho phép ta dùng giá trị trả về, giúp mã ngắn gọn hơn; so với hàm, ta không cần đặt thêm tên và khai báo riêng các tham số được bắt giữ, giúp mã chặt chẽ hơn.
 
-<a id="&#21442;&#32771;&#25991;&#29486;"></a>
+<a id="tài-liệu-tham-khảo"></a>
 
 ## Tài liệu tham khảo
 
