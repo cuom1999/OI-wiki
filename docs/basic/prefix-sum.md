@@ -1,37 +1,37 @@
-## 引入
+## Dẫn nhập
 
-前缀和与差分是算法竞赛中常用的技巧，前者用于快速求区间和，后者用于高效进行区间修改．
+Tổng tiền tố và sai phân là các kỹ thuật thường dùng trong lập trình thi đấu. Tổng tiền tố dùng để tính nhanh tổng trên đoạn, còn sai phân dùng để thực hiện hiệu quả các phép sửa đổi trên đoạn.
 
-???+ tip "规定"
-    为方便讨论，本文默认数组 $\{a_i\}$ 下标从 $1$ 开始，并补充定义 $a_0 = 0$．
+???+ tip "Quy ước"
+    Để tiện thảo luận, bài viết này mặc định mảng $\{a_i\}$ được đánh chỉ số từ $1$, và định nghĩa bổ sung $a_0 = 0$.
 
-## 前缀和
+## Tổng tiền tố
 
-前缀和可以简单理解为「数列的前 $n$ 项的和」，是一种重要的预处理方式．
+Tổng tiền tố có thể hiểu đơn giản là "tổng của $n$ phần tử đầu của dãy", và là một phương pháp tiền xử lý quan trọng.
 
-### 一维前缀和
+### Tổng tiền tố một chiều
 
-对于长度为 $n$ 的序列 $\{a_i\}$，如果要多次查询区间 $[l,r]$ 中序列数字的和，就可以考虑使用前缀和．序列的前缀和就是
+Với dãy $\{a_i\}$ độ dài $n$, nếu cần truy vấn nhiều lần tổng các số trong đoạn $[l,r]$, ta có thể cân nhắc dùng tổng tiền tố. Tổng tiền tố của dãy là
 
 $$
 S_{i} = \sum_{j=1}^i a_j.
 $$
 
-它可以通过递推关系式
+Nó có thể được tính lần lượt bằng công thức truy hồi
 
 $$
 S_0 = 0,~ S_i = S_{i-1} + a_i
 $$
 
-逐项计算得到．要询问区间 $[l,r]$ 内的序列的和，只需要计算差值
+Để truy vấn tổng của dãy trên đoạn $[l,r]$, chỉ cần tính hiệu
 
 $$
 S([l,r]) = S_r - S_{l-1}.
 $$
 
-就这样，通过 $O(n)$ 时间预处理，能够将单次查询区间和的复杂度降低到 $O(1)$．
+Như vậy, sau khi tiền xử lý trong thời gian $O(n)$, độ phức tạp của mỗi truy vấn tổng đoạn giảm xuống $O(1)$.
 
-???+ example "参考实现"
+???+ example "Cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.cpp:core"
@@ -42,53 +42,53 @@ $$
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.py:core"
         ```
 
-C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cppreference.com/w/cpp/algorithm/partial_sum)，定义于头文件 `<numeric>` 中．从 C++17 开始，标准库还提供了一个功能相同的前缀和函数 [`std::inclusive_scan`](https://zh.cppreference.com/w/cpp/algorithm/inclusive_scan)，同样定义于头文件 `<numeric>` 中．
+Thư viện chuẩn C++ cung cấp hàm tổng tiền tố [`std::partial_sum`](https://zh.cppreference.com/w/cpp/algorithm/partial_sum), được định nghĩa trong header `<numeric>`. Từ C++17, thư viện chuẩn còn cung cấp hàm tổng tiền tố có chức năng tương tự là [`std::inclusive_scan`](https://zh.cppreference.com/w/cpp/algorithm/inclusive_scan), cũng được định nghĩa trong header `<numeric>`.
 
-### 二维/多维前缀和
+### Tổng tiền tố hai chiều / nhiều chiều
 
-将一维前缀和拓展到多维的情形，就是多维前缀和．常见的多维前缀和的求解方法有两种．
+Mở rộng tổng tiền tố một chiều sang trường hợp nhiều chiều ta được tổng tiền tố nhiều chiều. Có hai phương pháp thường gặp để tính tổng tiền tố nhiều chiều.
 
-#### 基于容斥原理
+#### Dựa trên nguyên lý bao hàm - loại trừ
 
-这种方法多用于二维前缀和的情形．给定大小为 $m\times n$ 的二维数组 $A$，要求出其前缀和 $S$．那么，$S$ 同样是大小为 $m\times n$ 的二维数组，且
+Phương pháp này thường dùng cho trường hợp tổng tiền tố hai chiều. Cho mảng hai chiều $A$ kích thước $m\times n$, cần tính tổng tiền tố $S$ của nó. Khi đó $S$ cũng là mảng hai chiều kích thước $m\times n$, và
 
 $$
 S_{i,j} = \sum_{i'\le i}\sum_{j'\le j}A_{i',j'}.
 $$
 
-类比一维的情形，$S_{i,j}$ 应该可以基于 $S_{i-1,j}$ 或 $S_{i,j-1}$ 计算，从而避免重复计算前面若干项的和．但是，如果直接将 $S_{i-1,j}$ 和 $S_{i,j-1}$ 相加，再加上 $A_{i,j}$，会导致重复计算 $S_{i-1,j-1}$ 这一重叠部分的前缀和，所以还需要再将这部分减掉．这就是 [容斥原理](../math/combinatorics/inclusion-exclusion-principle.md)．由此得到如下递推关系：
+Tương tự trường hợp một chiều, $S_{i,j}$ lẽ ra có thể được tính dựa trên $S_{i-1,j}$ hoặc $S_{i,j-1}$ để tránh tính lặp tổng của một số phần tử phía trước. Tuy nhiên, nếu cộng trực tiếp $S_{i-1,j}$ và $S_{i,j-1}$ rồi cộng thêm $A_{i,j}$, phần giao nhau $S_{i-1,j-1}$ sẽ bị tính lặp, nên cần trừ phần này đi. Đây chính là [nguyên lý bao hàm - loại trừ](../math/combinatorics/inclusion-exclusion-principle.md). Từ đó thu được công thức truy hồi:
 
 $$
 S_{i,j} = A_{i,j} + S_{i-1,j} + S_{i,j-1} - S_{i-1,j-1}. 
 $$
 
-实现时，直接遍历 $(i,j)$ 求和即可．
+Khi cài đặt, chỉ cần duyệt trực tiếp các $(i,j)$ để tính tổng.
 
-???+ note "示例"
-    考虑一个具体的例子．
+???+ note "Ví dụ"
+    Xét một ví dụ cụ thể.
     
-    ![二维前缀和示例](./images/prefix-sum-2d.svg)
+    ![Ví dụ tổng tiền tố hai chiều](./images/prefix-sum-2d.svg)
     
-    其中，$S$ 是矩阵 $A$ 的前缀和．根据定义，$S_{3,3}$ 是左图中虚线方框中的子矩阵的和．而且，$S_{3,2}$ 是蓝色子矩阵的和，$S_{2,3}$ 是红色子矩阵的和，它们重叠部分的和是 $S_{2,2}$．由此可见，如果直接相加 $S_{3,2}$ 和 $S_{2,3}$，会重复计算 $S_{2,2}$，所以应该有
+    Trong đó, $S$ là tổng tiền tố của ma trận $A$. Theo định nghĩa, $S_{3,3}$ là tổng của ma trận con trong khung nét đứt ở hình bên trái. Ngoài ra, $S_{3,2}$ là tổng của ma trận con màu xanh, $S_{2,3}$ là tổng của ma trận con màu đỏ, và tổng phần giao nhau của chúng là $S_{2,2}$. Vì vậy, nếu cộng trực tiếp $S_{3,2}$ và $S_{2,3}$, $S_{2,2}$ sẽ bị tính lặp, nên phải có
     
     $$
     S_{3,3} = A_{3,3} + S_{2,3} + S_{3,2} - S_{2,2} = 5 + 18 + 15 - 9 = 29.
     $$
 
-同样的道理，在已经预处理出二维前缀和后，要查询左上角为 $(i_1,j_1)$、右下角为 $(i_2,j_2)$ 的子矩阵的和，可以计算
+Tương tự, sau khi đã tiền xử lý tổng tiền tố hai chiều, để truy vấn tổng của ma trận con có góc trên trái $(i_1,j_1)$ và góc dưới phải $(i_2,j_2)$, có thể tính
 
 $$
 S_{i_2,j_2} - S_{i_1-1,j_2} - S_{i_2,j_1-1} + S_{i_1-1,j_1-1}.
 $$
 
-这可以在 $O(1)$ 时间内完成．
+Việc này hoàn thành trong thời gian $O(1)$.
 
-在二维的情形，以上算法的时间复杂度可以简单认为是 $O(mn)$，即与给定数组的大小成线性关系．但是，当维度 $k$ 增大时，由于容斥原理涉及的项数以指数级的速度增长，时间复杂度会成为 $O(2^kN)$，其中 $k$ 是数组维度，而 $N$ 是给定数组大小．因此，该算法不再适用．
+Trong trường hợp hai chiều, độ phức tạp thời gian của thuật toán trên có thể xem đơn giản là $O(mn)$, tức tuyến tính theo kích thước mảng đã cho. Tuy nhiên, khi số chiều $k$ tăng lên, do số hạng liên quan đến nguyên lý bao hàm - loại trừ tăng theo cấp số mũ, độ phức tạp thời gian sẽ trở thành $O(2^kN)$, trong đó $k$ là số chiều của mảng và $N$ là kích thước mảng đã cho. Vì vậy, thuật toán này không còn phù hợp.
 
-???+ example "[洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)"
-    在一个 $n\times m$ 的只包含 $0$ 和 $1$ 的矩阵里找出一个不包含 $0$ 的最大正方形，输出边长．
+???+ example "[Luogu P1387 Hình vuông lớn nhất](https://www.luogu.com.cn/problem/P1387)"
+    Trong một ma trận $n\times m$ chỉ gồm $0$ và $1$, hãy tìm hình vuông lớn nhất không chứa $0$ và xuất độ dài cạnh.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_2.cpp:full-text"
@@ -99,156 +99,156 @@ $$
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_2.py:full-text"
         ```
 
-#### 逐维前缀和
+#### Tổng tiền tố theo từng chiều
 
-对于一般的情形，给定 $k$ 维数组 $A$，大小为 $N$，同样要求得其前缀和 $S$．这里，
+Với trường hợp tổng quát, cho mảng $k$ chiều $A$ kích thước $N$, cũng cần tính tổng tiền tố $S$ của nó. Ở đây,
 
 $$
 S_{i_1,\cdots,i_k} = \sum_{i'_1\le i_1}\cdots\sum_{i'_k\le i_k} A_{i'_1,\cdots,i'_k}.
 $$
 
-从上式可以看出，$k$ 维前缀和就等于 $k$ 次求和．所以，一个显然的算法是，每次只考虑一个维度，固定所有其它维度，然后求若干个一维前缀和，这样对所有 $k$ 个维度分别求和之后，得到的就是 $k$ 维前缀和．
+Từ công thức trên có thể thấy, tổng tiền tố $k$ chiều chính là thực hiện phép lấy tổng $k$ lần. Vì vậy, một thuật toán hiển nhiên là mỗi lần chỉ xét một chiều, cố định tất cả các chiều còn lại, rồi tính một số tổng tiền tố một chiều. Sau khi lần lượt tính tổng theo cả $k$ chiều, ta thu được tổng tiền tố $k$ chiều.
 
-??? example "三维前缀和的参考实现"
+??? example "Cài đặt tham khảo cho tổng tiền tố ba chiều"
     ```cpp
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_4.cpp:core"
     ```
 
-因为考虑每一个维度的时候，都只遍历了整个数组一遍，这样的算法复杂度是 $O(kN)$ 的，通常可以接受．
+Vì khi xét mỗi chiều, ta chỉ duyệt toàn bộ mảng một lần, độ phức tạp của thuật toán này là $O(kN)$ và thường chấp nhận được.
 
-#### 特例：子集和 DP
+#### Trường hợp đặc biệt: DP tổng trên tập con
 
-维度比较大的情形，经常出现在一类叫做 **子集和**（sum over subsets, SOS）的问题中．这是高维前缀和的特例．
+Trường hợp số chiều khá lớn thường xuất hiện trong một lớp bài toán gọi là **tổng trên tập con** (sum over subsets, SOS). Đây là một trường hợp đặc biệt của tổng tiền tố nhiều chiều.
 
-问题描述如下．考虑大小为 $n$ 的集合的全体子集上面定义的函数 $f$，现在要求出其子集和函数 $g$，它满足
+Mô tả bài toán như sau. Xét một hàm $f$ được định nghĩa trên toàn bộ các tập con của một tập kích thước $n$. Cần tính hàm tổng trên tập con $g$, thỏa mãn
 
 $$
 g(S) = \sum_{T\subseteq S}f(T).
 $$
 
-即 $g(S)$ 等于其所有子集 $T\subseteq S$ 上的函数值 $f(T)$ 的和．
+Tức là $g(S)$ bằng tổng giá trị hàm $f(T)$ trên mọi tập con $T\subseteq S$ của nó.
 
-首先，子集和问题可以写成高维前缀和的形式．注意到，$S$ 的子集可以通过状态压缩的思想表示为长度为 $n$ 的 0-1 字符串 $s$．将字符串的每一位都看作是数组下标的一个维度，那么 $f$ 其实就是一个 $n$ 维数组，且每个维度下标都一定在 $\{0,1\}$ 中．同时，子集的包含关系就等价于下标的大小关系，即
+Trước hết, bài toán tổng trên tập con có thể viết dưới dạng tổng tiền tố nhiều chiều. Chú ý rằng tập con của $S$ có thể được biểu diễn bằng tư tưởng nén trạng thái thành xâu 0-1 độ dài $n$. Xem mỗi bit của xâu là một chiều trong chỉ số mảng, khi đó $f$ thực chất là một mảng $n$ chiều, và chỉ số ở mỗi chiều chắc chắn nằm trong $\{0,1\}$. Đồng thời, quan hệ bao hàm giữa các tập con tương đương với quan hệ lớn nhỏ của chỉ số, tức là
 
 $$
 T\subseteq S \iff \forall i(t_i \le s_i). 
 $$
 
-所以，对子集求和，就是求这个 $n$ 维数组的前缀和．
+Vì vậy, lấy tổng trên các tập con chính là tính tổng tiền tố của mảng $n$ chiều này.
 
-现在，可以直接使用前文所述的逐维前缀和的方法求得子集和．时间复杂度是 $O(n2^n)$．
+Bây giờ, có thể dùng trực tiếp phương pháp tổng tiền tố theo từng chiều đã nêu ở trên để tính tổng trên tập con. Độ phức tạp thời gian là $O(n2^n)$.
 
-??? example "参考实现"
+??? example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_5.cpp:core"
     ```
 
-子集和的逆操作需要通过 [容斥原理](../math/combinatorics/inclusion-exclusion-principle.md) 进行．子集和问题也是快速莫比乌斯变换的必要步骤之一．
+Phép ngược của tổng trên tập con cần thực hiện bằng [nguyên lý bao hàm - loại trừ](../math/combinatorics/inclusion-exclusion-principle.md). Bài toán tổng trên tập con cũng là một trong những bước cần thiết của biến đổi Mobius nhanh.
 
-### 树上前缀和
+### Tổng tiền tố trên cây
 
-一维前缀和还可以推广到有根树（树根为 $1$）的情形．通过预处理前缀和，可以快速求解树上一段路径的权值和．
+Tổng tiền tố một chiều còn có thể mở rộng sang trường hợp cây có gốc (gốc cây là $1$). Bằng cách tiền xử lý tổng tiền tố, có thể nhanh chóng tính tổng trọng số trên một đường đi của cây.
 
-#### 点权的情形
+#### Trường hợp trọng số đỉnh
 
-首先讨论权值存储在结点处的情形．设结点 $x$ 处有权值 $a_x$．可以通过递推关系
+Trước hết xét trường hợp trọng số được lưu ở đỉnh. Giả sử đỉnh $x$ có trọng số $a_x$. Có thể dùng công thức truy hồi
 
 $$
 S_1 = a_1,~ S_{x} = S_{\operatorname{fa}(x)} + a_x
 $$
 
-求出从根结点到结点 $x$ 的路径上的结点的权值和，其中，$\operatorname{fa}(x)$ 表示 $x$ 的父结点．预处理完前缀和后，就可以通过
+để tính tổng trọng số các đỉnh trên đường đi từ gốc tới đỉnh $x$, trong đó $\operatorname{fa}(x)$ biểu thị cha của $x$. Sau khi tiền xử lý tổng tiền tố, có thể tính tổng trọng số đỉnh trên đường đi nối đỉnh $x$ và $y$ bằng
 
 $$
 S_x + S_y - S_{\operatorname{lca}(x, y)} - S_{\operatorname{fa}(\operatorname{lca}(x, y))}
 $$
 
-计算连接结点 $x$ 和 $y$ 的路径上的结点权值和．其中，$\operatorname{lca}(x, y)$ 表示结点 $x$ 与 $y$ 的 [最近公共祖先](../graph/lca.md)．
+Trong đó, $\operatorname{lca}(x, y)$ biểu thị [tổ tiên chung gần nhất](../graph/lca.md) của đỉnh $x$ và $y$.
 
-#### 边权的情形
+#### Trường hợp trọng số cạnh
 
-权值储存在边上的情形几乎可以转化为点权的情形．对于所有非根结点 $x\neq 1$，记 $\operatorname{edge}(x)$ 表示连接结点 $x$ 和它的父结点 $\operatorname{fa}(x)$ 的边．那么，可以假设边权存储在离根远的结点上．也就是说，结点 $x$ 处存储的是边 $\operatorname{edge}(x)$ 上的边权．根结点处存储的权值是 $0$．那么，通过上一小节讨论过的递推关系，同样可以预处理出根结点到结点 $x$ 的路径经过的所有边的权值和 $S_x$．
+Trường hợp trọng số lưu trên cạnh gần như có thể chuyển về trường hợp trọng số đỉnh. Với mọi đỉnh không phải gốc $x\neq 1$, ký hiệu $\operatorname{edge}(x)$ là cạnh nối đỉnh $x$ với cha của nó $\operatorname{fa}(x)$. Khi đó, có thể giả sử trọng số cạnh được lưu ở đỉnh xa gốc hơn. Nói cách khác, tại đỉnh $x$ lưu trọng số của cạnh $\operatorname{edge}(x)$. Trọng số lưu ở đỉnh gốc là $0$. Khi đó, bằng công thức truy hồi đã thảo luận ở tiểu mục trước, ta cũng có thể tiền xử lý tổng trọng số $S_x$ của tất cả các cạnh trên đường đi từ gốc tới đỉnh $x$.
 
-此时，连接结点 $x$ 和 $y$ 的路径上的结点权值和可以通过
+Lúc này, tổng trọng số cạnh trên đường đi nối đỉnh $x$ và $y$ có thể được truy vấn bằng
 
 $$
 S_x + S_y - 2S_{\operatorname{lca}(x, y)}
 $$
 
-进行查询．注意与点权的情形不同，所查询的权值和不包括 $\operatorname{lca}(x, y)$ 处的权值，因为它存储的边权不在所求路径中．
+Chú ý khác với trường hợp trọng số đỉnh, tổng trọng số được truy vấn không bao gồm trọng số tại $\operatorname{lca}(x, y)$, vì trọng số cạnh được lưu ở đó không nằm trên đường đi cần tính.
 
-#### 子树和
+#### Tổng cây con
 
-和数组的情形不同，由于树的首尾不对称，所以自下而上（从树叶到树根）和自上而下（从树根到树叶）求「前缀和」得到的结果并不相同．一般情况下，「树上前缀和」指的是自上而下计算的前缀和．为方便讨论，本文将自下而上计算的「前缀和」称为 **子树和**．
+Khác với trường hợp mảng, do cây không đối xứng đầu-cuối, kết quả tính "tổng tiền tố" từ dưới lên (từ lá tới gốc) và từ trên xuống (từ gốc tới lá) không giống nhau. Thông thường, "tổng tiền tố trên cây" chỉ tổng tiền tố được tính từ trên xuống. Để tiện thảo luận, bài viết này gọi "tổng tiền tố" tính từ dưới lên là **tổng cây con**.
 
-以结点 $x$ 为根的子树的点权权值和，即相应的子树和，就是
+Tổng trọng số đỉnh của cây con gốc $x$, tức tổng cây con tương ứng, là
 
 $$
 T_x = \sum_{y\in\operatorname{desc}(x)} a_x.
 $$
 
-其中，$\operatorname{desc}(x)$ 表示 $x$ 的所有子孙结点（包括其自身）的集合．
+Trong đó, $\operatorname{desc}(x)$ biểu thị tập mọi đỉnh con cháu của $x$ (bao gồm chính nó).
 
-与树上前缀和不同，子树和并不能应用于 $O(1)$ 求路径权值和，但是它可以用于理解下文的树上差分．
+Khác với tổng tiền tố trên cây, tổng cây con không thể dùng để tính tổng trọng số đường đi trong $O(1)$, nhưng nó có thể giúp hiểu phần sai phân trên cây bên dưới.
 
-## 差分
+## Sai phân
 
-差分是一种与前缀和相对的策略，是前缀和的逆运算．相较于给定某一序列求它的差分，竞赛中更为常见的情景是，通过维护差分序列的信息，实现多次区间修改．在区间修改结束后，可以通过前缀和恢复原序列的信息，实现对原序列的查询．注意修改操作一定要在查询操作之前．
+Sai phân là một chiến lược đối ngẫu với tổng tiền tố, là phép toán ngược của tổng tiền tố. So với việc cho một dãy rồi tính sai phân của nó, tình huống thường gặp hơn trong thi đấu là duy trì thông tin của dãy sai phân để thực hiện nhiều lần sửa đổi đoạn. Sau khi kết thúc các phép sửa đổi đoạn, có thể dùng tổng tiền tố để khôi phục thông tin của dãy ban đầu, rồi truy vấn dãy ban đầu. Chú ý rằng mọi thao tác sửa đổi phải diễn ra trước thao tác truy vấn.
 
-如果需要支持多次修改和查询的混合操作，需要使用 [树状数组](../ds/fenwick.md)，但是它们的思想是共通的．
+Nếu cần hỗ trợ nhiều thao tác sửa đổi và truy vấn xen kẽ, cần dùng [cây Fenwick](../ds/fenwick.md), nhưng tư tưởng của chúng là tương thông.
 
-### 一维差分
+### Sai phân một chiều
 
-对于序列 $\{a_i\}$，它的差分序列 $\{D_i\}$ 是指
+Với dãy $\{a_i\}$, dãy sai phân $\{D_i\}$ của nó được định nghĩa là
 
 $$
 D_i = a_i - a_{i-1},~ a_0 = 0.
 $$
 
-C++ 标准库中实现了差分函数 [`std::adjacent_difference`](https://zh.cppreference.com/w/cpp/algorithm/adjacent_difference)，定义于头文件 `<numeric>` 中．
+Thư viện chuẩn C++ cung cấp hàm sai phân [`std::adjacent_difference`](https://zh.cppreference.com/w/cpp/algorithm/adjacent_difference), được định nghĩa trong header `<numeric>`.
 
-前缀和与差分的关系如下：
+Quan hệ giữa tổng tiền tố và sai phân như sau:
 
-???+ note "性质"
-    设 $\{D_i\}$ 是 $\{a_i\}$ 的差分序列，那么，有
+???+ note "Tính chất"
+    Giả sử $\{D_i\}$ là dãy sai phân của $\{a_i\}$. Khi đó:
     
-    -   序列 $\{a_i\}$ 是序列 $\{D_i\}$ 的前缀和，即
+    -   Dãy $\{a_i\}$ là tổng tiền tố của dãy $\{D_i\}$, tức là
     
         $$
         a_i = \sum_{j=1}^i D_j.
         $$
-    -   序列 $\{a_i\}$ 的前缀和为
+    -   Tổng tiền tố của dãy $\{a_i\}$ là
     
         $$
         S_i = \sum_{j=1}^i\sum_{k=1}^jD_k = \sum_{j=1}^i(i-j+1)D_j. 
         $$
 
-差分信息常常用于维护多次对序列的一个区间加上一个数，并在之后一次或多次询问序列某一位的取值．
+Thông tin sai phân thường được dùng để duy trì nhiều lần cộng một số vào một đoạn của dãy, rồi sau đó truy vấn một hoặc nhiều lần giá trị tại một vị trí của dãy.
 
-假设要将序列 $\{a_i\}$ 在区间 $[l,r]$ 中的每个数都加上一个 $v$．可以在它的差分序列 $\{D_i\}$ 上做如下操作：
+Giả sử cần cộng $v$ vào mỗi số trong đoạn $[l,r]$ của dãy $\{a_i\}$. Có thể thực hiện thao tác sau trên dãy sai phân $\{D_i\}$ của nó:
 
 $$
 D_{l} \gets D_{l} + v,~ D_{r+1}\gets D_{r+1} - v.
 $$
 
-在所有修改操作结束后，可以通过前缀和操作恢复更新后的 $\{a_i\}$ 的值．单次修改是 $O(1)$ 的．查询时，需要做一次 $O(n)$ 的前缀和操作，随后每次查询都是 $O(1)$ 的．
+Sau khi mọi thao tác sửa đổi kết thúc, có thể dùng tổng tiền tố để khôi phục giá trị của $\{a_i\}$ sau cập nhật. Mỗi lần sửa đổi là $O(1)$. Khi truy vấn, cần thực hiện một lần tính tổng tiền tố $O(n)$, rồi mỗi truy vấn sau đó là $O(1)$.
 
-???+ example "参考代码"
+???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_6.cpp:core"
     ```
 
-### 二维/多维差分
+### Sai phân hai chiều / nhiều chiều
 
-差分同样可以推广到多维的情形．将多维差分看作多维前缀和的逆运算，那么，求多维差分数组的操作就相当于根据多维前缀和求它的原数组．根据前文讨论，可以利用容斥原理．例如，二维差分的定义是
+Sai phân cũng có thể mở rộng sang trường hợp nhiều chiều. Xem sai phân nhiều chiều là phép toán ngược của tổng tiền tố nhiều chiều, thao tác tính mảng sai phân nhiều chiều tương đương với việc biết tổng tiền tố nhiều chiều rồi tính mảng gốc của nó. Theo thảo luận ở trên, có thể dùng nguyên lý bao hàm - loại trừ. Chẳng hạn, định nghĩa của sai phân hai chiều là
 
 $$
 D_{i,j} = a_{i,j} - a_{i-1,j} - a_{i,j-1} + a_{i-1,j-1}.
 $$
 
-但是，如果要计算整个差分数组，更为简单高效的做法是逐维差分，即穷举所有维度，沿着每个维度都计算一遍数组的差分．
+Tuy nhiên, nếu cần tính toàn bộ mảng sai phân, cách đơn giản và hiệu quả hơn là sai phân theo từng chiều, tức liệt kê mọi chiều và dọc theo mỗi chiều tính sai phân của mảng một lần.
 
-二维差分信息常用于维护二维数组的多次矩形加．例如，要对左上角为 $(x_1,y_1)$、右下角为 $(x_2,y_2)$ 的矩阵中的每个数字都加上 $v$，可以对它的差分数组 $\{D_{i,j}\}$ 做如下操作：
+Thông tin sai phân hai chiều thường dùng để duy trì nhiều lần cộng trên hình chữ nhật của mảng hai chiều. Ví dụ, để cộng $v$ vào mỗi số trong ma trận có góc trên trái $(x_1,y_1)$ và góc dưới phải $(x_2,y_2)$, có thể thực hiện thao tác sau trên mảng sai phân $\{D_{i,j}\}$ của nó:
 
 $$
 \begin{aligned}
@@ -259,22 +259,22 @@ D_{x_2+1,y_2+1} &\gets D_{x_2+1,y_2+1} + v.
 \end{aligned}
 $$
 
-在所有修改操作结束后，只需要执行一遍二维前缀和，就可以快速查询更新后的数组的值．
+Sau khi mọi thao tác sửa đổi kết thúc, chỉ cần thực hiện một lần tổng tiền tố hai chiều để nhanh chóng truy vấn giá trị của mảng sau cập nhật.
 
-??? example "参考代码"
+??? example "Mã tham khảo"
     ```cpp
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_7.cpp:core"
     ```
 
-当然，类似的想法对于维度 $k>2$ 也成立，但是单次修改操作需要的时间复杂度为 $O(2^k)$，随着 $k$ 增大而不再实用．
+Dĩ nhiên, tư tưởng tương tự cũng đúng với số chiều $k>2$, nhưng độ phức tạp thời gian của một thao tác sửa đổi là $O(2^k)$, nên không còn thực dụng khi $k$ tăng.
 
-### 树上差分
+### Sai phân trên cây
 
-差分可以推广到有根树的情形，用于实现树上一段路径的区间加操作．取决于维护的信息存储在结点上还是边上，树上差分可以分为 **点差分** 与 **边差分**，在实现上会稍有不同．另外，相对于树上前缀和操作，更常用的是在所有修改操作后做子树和再查询．本节讨论的就是这种情形．
+Sai phân có thể mở rộng sang trường hợp cây có gốc, dùng để thực hiện thao tác cộng trên đoạn là một đường đi của cây. Tùy thông tin được lưu trên đỉnh hay trên cạnh, sai phân trên cây có thể chia thành **sai phân đỉnh** và **sai phân cạnh**, cách cài đặt hơi khác nhau. Ngoài ra, so với thao tác tổng tiền tố trên cây, cách thường dùng hơn là sau mọi thao tác sửa đổi thì tính tổng cây con rồi truy vấn. Mục này thảo luận đúng trường hợp đó.
 
-#### 点差分
+#### Sai phân đỉnh
 
-如果要对结点 $x$ 和 $y$ 之间的路径上的所有点权都加 $v$，可以对它的差分序列 $\{D_x\}$ 做如下操作：
+Nếu cần cộng $v$ vào toàn bộ trọng số đỉnh trên đường đi giữa hai đỉnh $x$ và $y$, có thể thực hiện thao tác sau trên dãy sai phân $\{D_x\}$:
 
 $$
 \begin{aligned}
@@ -285,18 +285,18 @@ D_{\operatorname{fa}(\operatorname{lca}(x, y))} &\gets D_{\operatorname{fa}(\ope
 \end{aligned}
 $$
 
-在所有修改操作完成后，可以计算一次子树和，就能得到更新后的点权．
+Sau khi mọi thao tác sửa đổi hoàn tất, tính một lần tổng cây con là có thể nhận được trọng số đỉnh sau cập nhật.
 
-???+ example "示例"
-    对结点 $S$ 和 $T$ 之间的路径上的点权做区间加操作时，上述公式中的前两条是对蓝色方框内的路径进行一维差分操作，后两条是对红色方框内的路径进行一维差分操作：
+???+ example "Ví dụ"
+    Khi thực hiện thao tác cộng đoạn trên trọng số đỉnh của đường đi giữa hai đỉnh $S$ và $T$, hai công thức đầu ở trên là thao tác sai phân một chiều trên đường đi trong khung màu xanh, còn hai công thức sau là thao tác sai phân một chiều trên đường đi trong khung màu đỏ:
     
     ![](./images/prefix_sum1.svg)
     
-    自下而上求和，就相当于对这两个区间从下向上计算前缀和．由此，对比上文的一维差分操作，就能知道点差分操作的正确性．
+    Tính tổng từ dưới lên tương đương với tính tổng tiền tố từ dưới lên trên hai đoạn này. Từ đó, so sánh với thao tác sai phân một chiều ở trên là có thể hiểu tính đúng đắn của sai phân đỉnh.
 
-#### 边差分
+#### Sai phân cạnh
 
-如果要对结点 $x$ 和 $y$ 之间的路径上的所有边权都加 $v$，可以对它的差分序列 $\{D_x\}$ 做如下操作：
+Nếu cần cộng $v$ vào toàn bộ trọng số cạnh trên đường đi giữa hai đỉnh $x$ và $y$, có thể thực hiện thao tác sau trên dãy sai phân $\{D_x\}$:
 
 $$
 \begin{aligned}
@@ -306,68 +306,68 @@ D_{\operatorname{lca}(x, y)} &\gets D_{\operatorname{lca}(x, y)} - 2v.
 \end{aligned}
 $$
 
-在所有修改操作完成后，可以计算一次子树和，就能得到更新后的点权．
+Sau khi mọi thao tác sửa đổi hoàn tất, tính một lần tổng cây con là có thể nhận được trọng số cạnh sau cập nhật.
 
-???+ example "示例"
-    如图所示，边差分操作可以用于解决红色路径上的边权区间加问题．
+???+ example "Ví dụ"
+    Như hình vẽ, thao tác sai phân cạnh có thể dùng để giải bài toán cộng đoạn trên trọng số cạnh của đường đi màu đỏ.
     
     ![](./images/prefix_sum2.svg)
     
-    由于在边上直接进行差分比较困难，所以将本来应当累加到红色边上的值向下移动到相邻的结点里，操作起来就方便了．对比点差分的公式，就可以理解边差分的公式．
+    Vì thực hiện sai phân trực tiếp trên cạnh khá khó, ta chuyển giá trị vốn cần cộng vào cạnh màu đỏ xuống đỉnh kề phía dưới, khi đó thao tác sẽ thuận tiện hơn. So sánh với công thức sai phân đỉnh là có thể hiểu công thức sai phân cạnh.
 
-### 例题
+### Bài mẫu
 
-???+ example "[洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128)"
-    FJ 给他的牛棚的 $N(2 \le N \le 50,000)$ 个隔间之间安装了 $N-1$ 根管道，隔间编号从 $1$ 到 $N$．所有隔间都被管道连通了．
+???+ example "[Luogu 3128 Dòng chảy lớn nhất](https://www.luogu.com.cn/problem/P3128)"
+    FJ lắp đặt $N-1$ đường ống giữa $N(2 \le N \le 50,000)$ ngăn trong chuồng bò của mình; các ngăn được đánh số từ $1$ đến $N$. Tất cả các ngăn đều được đường ống nối thông.
     
-    FJ 有 $K(1 \le K \le 100,000)$ 条运输牛奶的路线，第 $i$ 条路线从隔间 $s_i$ 运输到隔间 $t_i$．一条运输路线会给它的两个端点处的隔间以及中间途径的所有隔间带来一个单位的运输压力，你需要计算压力最大的隔间的压力是多少．
+    FJ có $K(1 \le K \le 100,000)$ tuyến vận chuyển sữa. Tuyến thứ $i$ vận chuyển từ ngăn $s_i$ tới ngăn $t_i$. Một tuyến vận chuyển sẽ tạo một đơn vị áp lực vận chuyển lên hai ngăn ở hai đầu mút của nó cũng như mọi ngăn đi qua ở giữa. Bạn cần tính áp lực lớn nhất trên một ngăn là bao nhiêu.
 
-??? note "解题思路"
-    需要统计每个点经过了多少次，那么就用树上差分将每一次的路径上的点加一，可以很快得到每个点经过的次数．这里采用倍增法计算 LCA，最后对 DFS 遍历整棵树，在回溯时对差分数组求和就能求得答案了．
+??? note "Ý tưởng giải"
+    Cần thống kê mỗi đỉnh được đi qua bao nhiêu lần, vì vậy dùng sai phân trên cây để cộng một cho đường đi của mỗi lần, từ đó có thể nhanh chóng thu được số lần đi qua mỗi đỉnh. Ở đây dùng phương pháp nhân đôi để tính LCA; cuối cùng DFS duyệt cả cây, khi quay lui thì tính tổng trên mảng sai phân để thu được đáp án.
 
-??? note "参考代码"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_3.cpp"
     ```
 
-## 习题
+## Bài tập
 
-前缀和：
+Tổng tiền tố:
 
--   [洛谷 B3612【深进 1. 例 1】求区间和](https://www.luogu.com.cn/problem/B3612)
--   [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096)
--   [AtCoder joi2007ho\_a 最大の和](https://atcoder.jp/contests/joi2007ho/tasks/joi2007ho_a)
--   [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
+-   [Luogu B3612【Nhập môn sâu 1. Ví dụ 1】Tính tổng đoạn](https://www.luogu.com.cn/problem/B3612)
+-   [Luogu U69096 Nghịch đảo của tổng tiền tố](https://www.luogu.com.cn/problem/U69096)
+-   [AtCoder joi2007ho\_a Tổng lớn nhất](https://atcoder.jp/contests/joi2007ho/tasks/joi2007ho_a)
+-   [「USACO16JAN」Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
 -   [「USACO05JAN」Moo Volume S](https://www.luogu.com.cn/problem/P6067)
 
-二维/多维前缀和：
+Tổng tiền tố hai chiều / nhiều chiều:
 
 -   [HDU 6514 Monitor](https://acm.hdu.edu.cn/showproblem.php?pid=6514)
--   [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
--   [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280)
+-   [Luogu P1387 Hình vuông lớn nhất](https://www.luogu.com.cn/problem/P1387)
+-   [「HNOI2003」Bom laser](https://www.luogu.com.cn/problem/P2280)
 -   [CF 165E Compatible Numbers](https://codeforces.com/contest/165/problem/E)
 -   [CF 383E Vowels](https://codeforces.com/problemset/problem/383/E)
 -   [ARC 100C Or Plus Max](https://atcoder.jp/contests/arc100/tasks/arc100_c)
 
-树上前缀和：
+Tổng tiền tố trên cây:
 
 -   [LOJ 10134.Dis](https://loj.ac/problem/10134)
--   [LOJ 2491. 求和](https://loj.ac/problem/2491)
+-   [LOJ 2491. Tính tổng](https://loj.ac/problem/2491)
 
-差分：
+Sai phân:
 
--   [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132)
+-   [Cây Fenwick 3: sửa đoạn, truy vấn đoạn](https://loj.ac/problem/132)
 -   [「Poetize6」IncDec Sequence](https://www.luogu.com.cn/problem/P4552)
--   [洛谷 P4231 三步必杀](https://www.luogu.com.cn/problem/P4231)
+-   [Luogu P4231 Ba bước tất sát](https://www.luogu.com.cn/problem/P4231)
 
-二维/多维差分：
+Sai phân hai chiều / nhiều chiều:
 
--   [洛谷 P3397 地毯](https://www.luogu.com.cn/problem/P3397)
--   [洛谷 P8228「Wdoi-5」模块化核熔炉](https://www.luogu.com.cn/problem/P8228)
+-   [Luogu P3397 Thảm](https://www.luogu.com.cn/problem/P3397)
+-   [Luogu P8228「Wdoi-5」Lò phản ứng hạt nhân mô-đun hóa](https://www.luogu.com.cn/problem/P8228)
 
-树上差分：
+Sai phân trên cây:
 
--   [洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128)
--   [JLOI2014 松鼠的新家](https://loj.ac/problem/2236)
--   [NOIP2015 运输计划](http://uoj.ac/problem/150)
--   [NOIP2016 天天爱跑步](http://uoj.ac/problem/261)
+-   [Luogu 3128 Dòng chảy lớn nhất](https://www.luogu.com.cn/problem/P3128)
+-   [JLOI2014 Nhà mới của sóc](https://loj.ac/problem/2236)
+-   [NOIP2015 Kế hoạch vận chuyển](http://uoj.ac/problem/150)
+-   [NOIP2016 Chạy bộ mỗi ngày](http://uoj.ac/problem/261)

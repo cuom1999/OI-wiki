@@ -29,6 +29,10 @@ MkDocs source layout intact.
   `docs/basic/tournament-sort.md`, `docs/basic/merge-sort.md`,
   `docs/basic/radix-sort.md`, `docs/basic/stl-sort.md`: translated more basic
   greedy and sorting pages.
+- `docs/basic/divide-and-conquer.md`, `docs/basic/binary.md`,
+  `docs/basic/prefix-sum.md`, `docs/basic/quick-sort.md`,
+  `docs/basic/shell-sort.md`: translated the remaining medium-sized basic
+  algorithm and sorting pages.
 - `docs/contest/resources.md`, `docs/contest/roadmap.md`: translated learning
   resources and roadmap pages.
 - `docs/intro/htc.md`, `docs/intro/faq.md`: translated contributor guide and

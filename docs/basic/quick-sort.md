@@ -1,31 +1,31 @@
-本页面将简要介绍快速排序．
+Trang này giới thiệu ngắn gọn về sắp xếp nhanh.
 
-## 定义
+## Định nghĩa
 
-快速排序（英语：Quicksort），又称分区交换排序（英语：partition-exchange sort），简称「快排」，是一种被广泛运用的排序算法．
+Sắp xếp nhanh (tiếng Anh: Quicksort), còn gọi là sắp xếp trao đổi phân hoạch (tiếng Anh: partition-exchange sort), thường gọi tắt là quicksort, là một thuật toán sắp xếp được sử dụng rộng rãi.
 
-## 基本原理与实现
+## Nguyên lý cơ bản và cài đặt
 
-### 过程
+### Quy trình
 
-快速排序的工作原理是通过 [分治](./divide-and-conquer.md) 的方式来将一个数组排序．
+Sắp xếp nhanh hoạt động bằng cách dùng phương pháp [chia để trị](./divide-and-conquer.md) để sắp xếp một mảng.
 
-快速排序分为三个过程：
+Sắp xếp nhanh gồm ba bước:
 
-1.  将数列划分为两部分（要求保证相对大小关系）；
-2.  递归到两个子序列中分别进行快速排序；
-3.  不用合并，因为此时数列已经完全有序．
+1.  Chia dãy số thành hai phần (cần bảo đảm quan hệ lớn nhỏ tương đối);
+2.  Đệ quy sắp xếp nhanh trên hai dãy con;
+3.  Không cần trộn, vì lúc này dãy đã hoàn toàn có thứ tự.
 
-和归并排序不同，第一步并不是直接分成前后两个序列，而是在分的过程中要保证相对大小关系．具体来说，第一步要是要把数列分成两个部分，然后保证前一个子数列中的数都小于后一个子数列中的数．为了保证平均时间复杂度，一般是随机选择一个数 $m$ 来当做两个子数列的分界．
+Khác với sắp xếp trộn, bước đầu tiên không trực tiếp chia thành hai dãy trước và sau, mà trong quá trình chia phải bảo đảm quan hệ lớn nhỏ tương đối. Cụ thể, bước đầu tiên là chia dãy số thành hai phần, đồng thời bảo đảm mọi số trong dãy con phía trước đều nhỏ hơn mọi số trong dãy con phía sau. Để bảo đảm độ phức tạp thời gian trung bình, thông thường ta chọn ngẫu nhiên một số $m$ làm mốc phân chia giữa hai dãy con.
 
-之后，维护一前一后两个指针 $p$ 和 $q$，依次考虑当前的数是否放在了应该放的位置（前还是后）．如果当前的数没放对，比如说如果后面的指针 $q$ 遇到了一个比 $m$ 小的数，那么可以交换 $p$ 和 $q$ 位置上的数，再把 $p$ 向后移一位．当前的数的位置全放对后，再移动指针继续处理，直到两个指针相遇．
+Sau đó, duy trì hai con trỏ $p$ và $q$ ở hai đầu, lần lượt xét xem phần tử hiện tại đã nằm ở vị trí nên thuộc về nó hay chưa (phía trước hay phía sau). Nếu phần tử hiện tại đặt sai, chẳng hạn con trỏ phía sau $q$ gặp một số nhỏ hơn $m$, ta có thể hoán đổi các số ở vị trí $p$ và $q$, rồi dịch $p$ sang phải một vị trí. Khi các phần tử hiện tại đã được đặt đúng phía, tiếp tục di chuyển con trỏ để xử lý cho đến khi hai con trỏ gặp nhau.
 
-其实，快速排序没有指定应如何具体实现第一步，不论是选择 $m$ 的过程还是划分的过程，都有不止一种实现方法．
+Trên thực tế, sắp xếp nhanh không quy định cụ thể phải cài đặt bước đầu tiên như thế nào; cả quá trình chọn $m$ lẫn quá trình phân hoạch đều có nhiều cách cài đặt.
 
-第三步中的序列已经分别有序且第一个序列中的数都小于第二个数，所以直接拼接起来就好了．
+Ở bước thứ ba, hai dãy con đã lần lượt có thứ tự và mọi số trong dãy thứ nhất đều nhỏ hơn dãy thứ hai, nên chỉ cần ghép trực tiếp lại là được.
 
 === "C++"
-    === " 非递归实现[^ref2]"
+    === "Cài đặt không đệ quy[^ref2]"
         ```cpp
         struct Range {
           int start, end;
@@ -59,7 +59,7 @@
         }
         ```
     
-    === "递归实现"
+    === "Cài đặt đệ quy"
         ```cpp
         template <typename T>
         int Partition(T A[], int low, int high) {
@@ -109,116 +109,116 @@
         quick_sort(alist, low + 1, last)
     ```
 
-## 性质
+## Tính chất
 
-### 稳定性
+### Tính ổn định
 
-快速排序是一种不稳定的排序算法．
+Sắp xếp nhanh là một thuật toán sắp xếp không ổn định.
 
-### 时间复杂度
+### Độ phức tạp thời gian
 
-快速排序的最优时间复杂度和平均时间复杂度为 $O(n\log n)$，最坏时间复杂度为 $O(n^2)$．
+Độ phức tạp thời gian tốt nhất và trung bình của sắp xếp nhanh là $O(n\log n)$, còn độ phức tạp thời gian xấu nhất là $O(n^2)$.
 
-对于最优情况，每一次选择的分界值都是序列的中位数，此时算法时间复杂度满足的递推式为 $T(n) = 2T(\dfrac{n}{2}) + \Theta(n)$，由主定理，$T(n) = \Theta(n\log n)$．
+Trong trường hợp tốt nhất, giá trị mốc được chọn ở mỗi lần đều là trung vị của dãy. Khi đó độ phức tạp thời gian của thuật toán thỏa mãn truy hồi $T(n) = 2T(\dfrac{n}{2}) + \Theta(n)$; theo định lý Master, $T(n) = \Theta(n\log n)$.
 
-对于最坏情况，每一次选择的分界值都是序列的最值，此时算法时间复杂度满足的递推式为 $T(n) = T(n - 1) + \Theta(n)$，累加可得 $T(n) = \Theta(n^2)$．
+Trong trường hợp xấu nhất, giá trị mốc được chọn ở mỗi lần đều là giá trị cực trị của dãy. Khi đó độ phức tạp thời gian của thuật toán thỏa mãn truy hồi $T(n) = T(n - 1) + \Theta(n)$; cộng dồn suy ra $T(n) = \Theta(n^2)$.
 
-对于平均情况，每一次选择的分界值可以看作是等概率随机的．
+Trong trường hợp trung bình, giá trị mốc được chọn ở mỗi lần có thể xem là ngẫu nhiên đều.
 
-??? note "证明"
-    下面我们来证明这种情况下算法的时间复杂度是 $O(n\log n)$．
+??? note "Chứng minh"
+    Dưới đây ta chứng minh độ phức tạp thời gian của thuật toán trong trường hợp này là $O(n\log n)$.
     
-    **引理 1：** 当对 $n$ 个元素的数组进行快速排序时，假设在划分元素时总共的比较次数为 $X$，则快速排序的时间复杂度是 $O(n + X)$．
+    **Bổ đề 1:** Khi sắp xếp nhanh một mảng có $n$ phần tử, giả sử tổng số phép so sánh trong quá trình phân hoạch phần tử là $X$, thì độ phức tạp thời gian của sắp xếp nhanh là $O(n + X)$.
     
-    由于在每次划分元素的过程中，都会选择一个元素作为分界，所以划分元素的过程至多发生 $n$ 次．又由于划分元素的过程中比较的次数和其他基础操作的次数在一个数量级，所以总时间复杂度是 $O(n + X)$ 的．
+    Vì trong mỗi lần phân hoạch phần tử, ta sẽ chọn một phần tử làm mốc, nên quá trình phân hoạch phần tử xảy ra nhiều nhất $n$ lần. Hơn nữa, số phép so sánh và số thao tác cơ bản khác trong quá trình phân hoạch cùng bậc độ lớn, nên tổng độ phức tạp thời gian là $O(n + X)$.
     
-    设 $a_i$ 为原数组中第 $i$ 小的数，定义 $A_{i,j}$ 为 $\{ a_i, a_{i+1}, \dots, a_j \}$，$X_{i,j}$ 是一个取值为 $0$ 或者 $1$ 的离散随机变量表示在排序过程中 $a_i$ 是否和 $a_j$ 发生比较．
+    Gọi $a_i$ là số nhỏ thứ $i$ trong mảng ban đầu, định nghĩa $A_{i,j}$ là $\{ a_i, a_{i+1}, \dots, a_j \}$, và $X_{i,j}$ là biến ngẫu nhiên rời rạc nhận giá trị $0$ hoặc $1$, biểu thị trong quá trình sắp xếp $a_i$ có được so sánh với $a_j$ hay không.
     
-    显然每次选取的分界值是不同的，而元素只会和分界值比较，所以总比较次数
+    Rõ ràng các giá trị mốc được chọn ở mỗi lần là khác nhau, và phần tử chỉ được so sánh với mốc, nên tổng số phép so sánh là
     
     $$
     \begin{aligned} X = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{i,j} \end{aligned}
     $$
     
-    由期望的线性性，
+    Theo tính tuyến tính của kỳ vọng,
     
     $$
-    \begin{aligned} E[X] & = E \left[ \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{i,j} \right] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n E[X_{i,j}] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{和}\ a_j\ \text{比较}) \end{aligned}
+    \begin{aligned} E[X] & = E \left[ \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{i,j} \right] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n E[X_{i,j}] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{và}\ a_j\ \text{được so sánh}) \end{aligned}
     $$
     
-    **引理 2：** $a_i$ 和 $a_j$ 比较的充要条件是 $a_i$ 或 $a_j$ 是集合 $A_{i,j}$ 中第一个被选中的分界值．
+    **Bổ đề 2:** Điều kiện cần và đủ để $a_i$ và $a_j$ được so sánh là $a_i$ hoặc $a_j$ là giá trị mốc đầu tiên được chọn trong tập $A_{i,j}$.
     
-    先证必要性，即若 $a_i$ 和 $a_j$ 都不是集合 $A_{i,j}$ 中第一个被选中的分界值，则 $a_i$ 不和 $a_j$ 比较．
+    Trước hết chứng minh tính cần thiết: nếu cả $a_i$ và $a_j$ đều không phải giá trị mốc đầu tiên được chọn trong tập $A_{i,j}$, thì $a_i$ không được so sánh với $a_j$.
     
-    若 $a_i$ 和 $a_j$ 都不是集合 $A_{i,j}$ 中第一个被选中的分界值，则一定存在一个 $x$ 满足 $i < x < j$，使得 $a_x$ 是 $A_{i,j}$ 中第一个被选中的分界值．在以 $a_x$ 为分界值的划分中，$a_i$ 和 $a_j$ 被划分到数组的两个不同的子序列中，所以之后 $a_i$ 和 $a_j$ 一定不会比较．又因为元素只和分界值比较，所以 $a_i$ 和 $a_j$ 在此次划分前和划分中没有比较．所以 $a_i$ 不和 $a_j$ 比较．
+    Nếu cả $a_i$ và $a_j$ đều không phải giá trị mốc đầu tiên được chọn trong tập $A_{i,j}$, thì chắc chắn tồn tại một $x$ thỏa mãn $i < x < j$ sao cho $a_x$ là giá trị mốc đầu tiên được chọn trong $A_{i,j}$. Trong lần phân hoạch lấy $a_x$ làm mốc, $a_i$ và $a_j$ bị chia vào hai dãy con khác nhau của mảng, nên về sau $a_i$ và $a_j$ chắc chắn không được so sánh. Lại vì phần tử chỉ so sánh với mốc, nên $a_i$ và $a_j$ cũng không được so sánh trước và trong lần phân hoạch này. Do đó $a_i$ không được so sánh với $a_j$.
     
-    再证充分性，即若 $a_i$ 或 $a_j$ 是集合 $A_{i,j}$ 中第一个被选中的分界值，则 $a_i$ 和 $a_j$ 比较．
+    Tiếp theo chứng minh tính đủ: nếu $a_i$ hoặc $a_j$ là giá trị mốc đầu tiên được chọn trong tập $A_{i,j}$, thì $a_i$ và $a_j$ được so sánh.
     
-    不失一般地，假设 $a_i$ 是集合 $A_{i,j}$ 中第一个被选中的分界值．由于 $A_{i,j}$ 中没有其他数选为分界值，所以 $A_{i,j}$ 中的元素都在数组的同一子序列中．在以 $a_i$ 为分界值的划分中，$a_i$ 和当前子序列中所有元素都进行了比较，所以 $a_i$ 和 $a_j$ 进行了比较．
+    Không mất tính tổng quát, giả sử $a_i$ là giá trị mốc đầu tiên được chọn trong tập $A_{i,j}$. Vì chưa có số nào khác trong $A_{i,j}$ được chọn làm mốc, các phần tử trong $A_{i,j}$ đều nằm trong cùng một dãy con của mảng. Trong lần phân hoạch lấy $a_i$ làm mốc, $a_i$ được so sánh với mọi phần tử trong dãy con hiện tại, nên $a_i$ được so sánh với $a_j$.
     
-    考虑计算 $P(a_i\ \text{和}\ a_j\ \text{比较})$．在 $A_{i,j}$ 中某个元素被选为分界值之前，$A_{i,j}$ 中的元素都在数组的同一子序列中．所以 $A_{i,j}$ 中每个元素都会被等可能地第一个被选为分界值．由于 $A_{i,j}$ 中有 $j - i + 1$ 个元素，由引理 2，
-    
-    $$
-    P(a_i \text{和} a_j \text{比较}) = P(a_i \text{或} a_j \text{是集合} A_{i,j} \text{中第一个被选中的分界值}) = \dfrac{2}{j-i+1}
-    $$
-    
-    所以
+    Xét cách tính $P(a_i\ \text{và}\ a_j\ \text{được so sánh})$. Trước khi một phần tử nào đó trong $A_{i,j}$ được chọn làm mốc, các phần tử của $A_{i,j}$ đều nằm trong cùng một dãy con của mảng. Vì vậy mỗi phần tử trong $A_{i,j}$ đều có xác suất bằng nhau để trở thành giá trị mốc đầu tiên được chọn. Do $A_{i,j}$ có $j - i + 1$ phần tử, theo bổ đề 2,
     
     $$
-    \begin{aligned} E[X] & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{和}\ a_j\ \text{比较}) \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n \dfrac{2}{j - i + 1} \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {k = 2} ^ {n - i + 1} \dfrac{2}{k} \\ & = \sum \limits _ {i = 1} ^ {n - 1} O(\log n) \\ & = O(n \log n) \end{aligned}
+    P(a_i \text{và} a_j \text{được so sánh}) = P(a_i \text{hoặc} a_j \text{là mốc đầu tiên được chọn trong tập} A_{i,j}) = \dfrac{2}{j-i+1}
     $$
     
-    由此，快速排序的期望时间复杂度为 $O(n \log n)$．
+    Do đó
+    
+    $$
+    \begin{aligned} E[X] & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{và}\ a_j\ \text{được so sánh}) \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n \dfrac{2}{j - i + 1} \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {k = 2} ^ {n - i + 1} \dfrac{2}{k} \\ & = \sum \limits _ {i = 1} ^ {n - 1} O(\log n) \\ & = O(n \log n) \end{aligned}
+    $$
+    
+    Từ đó, độ phức tạp thời gian kỳ vọng của sắp xếp nhanh là $O(n \log n)$.
 
-在实践中，几乎不可能达到最坏情况，而快速排序的内存访问遵循局部性原理，所以多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 $O(n \log n)$ 的排序算法．[^ref1]
+Trong thực tế, gần như không thể gặp trường hợp xấu nhất, còn truy cập bộ nhớ của sắp xếp nhanh tuân theo nguyên lý cục bộ, nên trong đa số trường hợp sắp xếp nhanh hoạt động tốt hơn đáng kể so với sắp xếp vun đống và các thuật toán sắp xếp khác có độ phức tạp $O(n \log n)$.[^ref1]
 
-## 优化
+## Tối ưu hóa
 
-### 朴素优化思想
+### Ý tưởng tối ưu hóa đơn giản
 
-如果仅按照上文所述的基本思想来实现快速排序（或者是直接照抄模板）的话，那大概率是通不过 [P1177【模板】快速排序](https://www.luogu.com.cn/problem/P1177) 这道模板的．因为有毒瘤数据能够把朴素的快速排序卡成 $O(n^2)$．
+Nếu chỉ cài đặt sắp xếp nhanh theo ý tưởng cơ bản đã nêu ở trên (hoặc chép nguyên mẫu cài đặt), rất có thể sẽ không qua được bài mẫu [Luogu P1177 - Mẫu sắp xếp nhanh](https://www.luogu.com.cn/problem/P1177), vì có dữ liệu ác ý có thể làm sắp xếp nhanh đơn giản suy biến thành $O(n^2)$.
 
-所以，我们需要对朴素快速排序思想加以优化．较为常见的优化思路有以下三种[^ref3]．
+Vì vậy, ta cần tối ưu hóa ý tưởng sắp xếp nhanh đơn giản. Các hướng tối ưu hóa thường gặp gồm ba loại sau[^ref3].
 
--   通过 **三数取中（即选取第一个、最后一个以及中间的元素中的中位数）** 的方法来选择两个子序列的分界元素（即比较基准）．这样可以避免极端数据（如升序序列或降序序列）带来的退化；
--   当序列较短时，使用 **插入排序** 的效率更高；
--   每趟排序后，**将与分界元素相等的元素聚集在分界元素周围**，这样可以避免极端数据（如序列中大部分元素都相等）带来的退化．
+-   Dùng phương pháp **lấy trung vị của ba số (tức chọn trung vị trong ba phần tử đầu, cuối và giữa)** để chọn phần tử phân chia hai dãy con (tức pivot). Cách này tránh suy biến do dữ liệu cực đoan, chẳng hạn dãy tăng hoặc dãy giảm;
+-   Khi dãy ngắn, dùng **sắp xếp chèn** sẽ hiệu quả hơn;
+-   Sau mỗi lượt sắp xếp, **gom các phần tử bằng phần tử mốc quanh phần tử mốc**, từ đó tránh suy biến do dữ liệu cực đoan, chẳng hạn phần lớn phần tử trong dãy đều bằng nhau.
 
-下面列举了几种较为成熟的快速排序优化方式．
+Dưới đây là một số cách tối ưu hóa sắp xếp nhanh tương đối hoàn thiện.
 
-### 三路快速排序
+### Sắp xếp nhanh ba đường
 
-#### 定义
+#### Định nghĩa
 
-三路快速排序（英语：3-way Radix Quicksort）是快速排序和 [基数排序](./radix-sort.md) 的混合．它的算法思想基于 [荷兰国旗问题](https://en.wikipedia.org/wiki/Dutch_national_flag_problem) 的解法．
+Sắp xếp nhanh ba đường (tiếng Anh: 3-way Radix Quicksort) là sự kết hợp giữa sắp xếp nhanh và [sắp xếp cơ số](./radix-sort.md). Ý tưởng thuật toán của nó dựa trên lời giải của [bài toán quốc kỳ Hà Lan](https://en.wikipedia.org/wiki/Dutch_national_flag_problem).
 
-#### 过程
+#### Quy trình
 
-与原始的快速排序不同，三路快速排序在随机选取分界点 $m$ 后，将待排数列划分为三个部分：小于 $m$、等于 $m$ 以及大于 $m$．这样做即实现了将与分界元素相等的元素聚集在分界元素周围这一效果．
+Khác với sắp xếp nhanh nguyên bản, sau khi chọn ngẫu nhiên điểm mốc $m$, sắp xếp nhanh ba đường chia dãy cần sắp xếp thành ba phần: nhỏ hơn $m$, bằng $m$ và lớn hơn $m$. Nhờ vậy, nó đạt được hiệu quả gom các phần tử bằng phần tử mốc quanh phần tử mốc.
 
-#### 性质
+#### Tính chất
 
-三路快速排序在处理含有多个重复值的数组时，效率远高于原始快速排序．其最佳时间复杂度为 $O(n)$．
+Khi xử lý mảng có nhiều giá trị trùng lặp, sắp xếp nhanh ba đường hiệu quả hơn rất nhiều so với sắp xếp nhanh nguyên bản. Độ phức tạp thời gian tốt nhất của nó là $O(n)$.
 
-#### 实现
+#### Cài đặt
 
-三路快速排序实现起来非常简单，下面给出了一种三路快排的 C++ 实现．
+Sắp xếp nhanh ba đường rất dễ cài đặt; dưới đây là một cài đặt C++ của sắp xếp nhanh ba đường.
 
 === "C++"
     ```cpp
-    // 模板的 T 参数表示元素的类型，此类型需要定义小于（<）运算
+    // Tham số mẫu T biểu thị kiểu của phần tử; kiểu này cần định nghĩa toán tử nhỏ hơn (<)
     template <typename T>
-    // arr 为需要被排序的数组，len 为数组长度
+    // arr là mảng cần được sắp xếp, len là độ dài mảng
     void quick_sort(T arr[], const int len) {
       if (len <= 1) return;
-      // 随机选择基准（pivot）
+      // Chọn ngẫu nhiên pivot
       const T pivot = arr[rand() % len];
-      // i：当前操作的元素下标
-      // arr[0, j)：存储小于 pivot 的元素
-      // arr[k, len)：存储大于 pivot 的元素
+      // i: chỉ số của phần tử đang xử lý
+      // arr[0, j): lưu các phần tử nhỏ hơn pivot
+      // arr[k, len): lưu các phần tử lớn hơn pivot
       int i = 0, j = 0, k = len;
-      // 完成一趟三路快排，将序列分为：
-      // 小于 pivot 的元素 | 等于 pivot 的元素 | 大于 pivot 的元素
+      // Hoàn thành một lượt quicksort ba đường, chia dãy thành:
+      // phần tử nhỏ hơn pivot | phần tử bằng pivot | phần tử lớn hơn pivot
       while (i < k) {
         if (arr[i] < pivot)
           swap(arr[i++], arr[j++]);
@@ -227,7 +227,7 @@
         else
           i++;
       }
-      // 递归完成对于两个子序列的快速排序
+      // Đệ quy hoàn tất sắp xếp nhanh trên hai dãy con
       quick_sort(arr, j);
       quick_sort(arr + k, len - k);
     }
@@ -259,46 +259,46 @@
         quick_sort(arr, k, r)
     ```
 
-### 内省排序
+### Sắp xếp nội quan
 
-#### 定义
+#### Định nghĩa
 
-内省排序（英语：Introsort 或 Introspective sort）[^ref4]是快速排序和 [堆排序](./heap-sort.md) 的结合，由 David Musser 于 1997 年发明．内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$．
+Sắp xếp nội quan (tiếng Anh: Introsort hoặc Introspective sort)[^ref4] là sự kết hợp giữa sắp xếp nhanh và [sắp xếp vun đống](./heap-sort.md), do David Musser phát minh năm 1997. Sắp xếp nội quan thực chất là một dạng tối ưu hóa của sắp xếp nhanh, bảo đảm độ phức tạp thời gian xấu nhất là $O(n\log n)$.
 
-#### 性质
+#### Tính chất
 
-内省排序将快速排序的最大递归深度限制为 $\lfloor \log_2n \rfloor$，超过限制时就转换为堆排序．这样既保留了快速排序内存访问的局部性，又可以防止快速排序在某些情况下性能退化为 $O(n^2)$．
+Sắp xếp nội quan giới hạn độ sâu đệ quy tối đa của sắp xếp nhanh ở $\lfloor \log_2n \rfloor$; nếu vượt quá giới hạn thì chuyển sang sắp xếp vun đống. Cách này vừa giữ được tính cục bộ trong truy cập bộ nhớ của sắp xếp nhanh, vừa ngăn sắp xếp nhanh suy giảm hiệu năng thành $O(n^2)$ trong một số trường hợp.
 
-#### 实现
+#### Cài đặt
 
-从 2000 年 6 月起，SGI C++ STL 的 `stl_algo.h` 中 `sort()` 函数的实现采用了内省排序算法．
+Từ tháng 6 năm 2000, phần cài đặt hàm `sort()` trong `stl_algo.h` của SGI C++ STL đã sử dụng thuật toán sắp xếp nội quan.
 
-## 线性找第 k 大的数
+## Tìm tuyến tính phần tử hạng k
 
-在下面的代码示例中，第 $k$ 大的数被定义为序列排成升序时，第 $k$ 个位置上的数（编号从 0 开始）．
+Trong ví dụ mã dưới đây, phần tử hạng $k$ được định nghĩa là số ở vị trí thứ $k$ khi dãy được sắp xếp tăng dần (đánh số từ 0).
 
-找第 $k$ 大的数（K-th order statistic），最简单的方法是先排序，然后直接找到第 $k$ 大的位置的元素．这样做的时间复杂度是 $O(n\log n)$，对于这个问题来说很不划算．
+Để tìm phần tử hạng $k$ (K-th order statistic), cách đơn giản nhất là sắp xếp trước rồi trực tiếp lấy phần tử ở vị trí hạng $k$. Cách làm này có độ phức tạp thời gian $O(n\log n)$, rất không kinh tế đối với bài toán này.
 
-我们可以借助快速排序的思想解决这个问题．考虑快速排序的划分过程，在快速排序的「划分」结束后，数列 $A_{p} \cdots A_{r}$ 被分成了 $A_{p} \cdots A_{q}$ 和 $A_{q+1} \cdots A_{r}$，此时可以按照左边元素的个数（$q - p + 1$）和 $k$ 的大小关系来判断是只在左边还是只在右边递归地求解．
+Ta có thể mượn ý tưởng của sắp xếp nhanh để giải bài toán. Xét quá trình phân hoạch của sắp xếp nhanh: sau khi quá trình "phân hoạch" kết thúc, dãy $A_{p} \cdots A_{r}$ được chia thành $A_{p} \cdots A_{q}$ và $A_{q+1} \cdots A_{r}$. Khi đó có thể dựa vào số lượng phần tử bên trái ($q - p + 1$) và quan hệ lớn nhỏ với $k$ để quyết định chỉ đệ quy giải ở bên trái hay chỉ ở bên phải.
 
-和快速排序一样，该方法的时间复杂度依赖于每次划分时选择的分界值．如果采用随机选取分界值的方式，可以证明在期望意义下，程序的时间复杂度为 $O(n)$．
+Giống như sắp xếp nhanh, độ phức tạp thời gian của phương pháp này phụ thuộc vào giá trị mốc được chọn trong mỗi lần phân hoạch. Nếu chọn mốc ngẫu nhiên, có thể chứng minh theo nghĩa kỳ vọng rằng độ phức tạp thời gian của chương trình là $O(n)$.
 
-### 实现（C++）
+### Cài đặt (C++)
 
 ```cpp
-// 模板的 T 参数表示元素的类型，此类型需要定义小于（<）运算
+// Tham số mẫu T biểu thị kiểu của phần tử; kiểu này cần định nghĩa toán tử nhỏ hơn (<)
 template <typename T>
-// arr 为查找范围数组，rk 为需要查找的排名（从 0 开始），len 为数组长度
+// arr là mảng trong phạm vi tìm kiếm, rk là hạng cần tìm (tính từ 0), len là độ dài mảng
 T find_kth_element(T arr[], int rk, const int len) {
   if (len <= 1) return arr[0];
-  // 随机选择基准（pivot）
+  // Chọn ngẫu nhiên pivot
   const T pivot = arr[rand() % len];
-  // i：当前操作的元素下标
-  // arr[0, j)：存储小于 pivot 的元素
-  // arr[k, len)：存储大于 pivot 的元素
+  // i: chỉ số của phần tử đang xử lý
+  // arr[0, j): lưu các phần tử nhỏ hơn pivot
+  // arr[k, len): lưu các phần tử lớn hơn pivot
   int i = 0, j = 0, k = len;
-  // 完成一趟三路快排，将序列分为：
-  // 小于 pivot 的元素 ｜ 等于 pivot 的元素 ｜ 大于 pivot 的元素
+  // Hoàn thành một lượt quicksort ba đường, chia dãy thành:
+  // phần tử nhỏ hơn pivot | phần tử bằng pivot | phần tử lớn hơn pivot
   while (i < k) {
     if (arr[i] < pivot)
       swap(arr[i++], arr[j++]);
@@ -307,43 +307,43 @@ T find_kth_element(T arr[], int rk, const int len) {
     else
       i++;
   }
-  // 根据要找的排名与两条分界线的位置，去不同的区间递归查找第 k 大的数
-  // 如果小于 pivot 的元素个数比k多，则第 k 大的元素一定是一个小于 pivot 的元素
+  // Dựa vào hạng cần tìm và vị trí của hai đường phân cách để đệ quy tìm phần tử hạng k trong đoạn tương ứng
+  // Nếu số phần tử nhỏ hơn pivot nhiều hơn k, thì phần tử hạng k chắc chắn là một phần tử nhỏ hơn pivot
   if (rk < j) return find_kth_element(arr, rk, j);
-  // 否则，如果小于 pivot 和等于 pivot 的元素加起来也没有 k 多，
-  // 则第 k 大的元素一定是一个大于 pivot 的元素
+  // Ngược lại, nếu tổng số phần tử nhỏ hơn pivot và bằng pivot vẫn không nhiều đến k,
+  // thì phần tử hạng k chắc chắn là một phần tử lớn hơn pivot
   else if (rk >= k)
     return find_kth_element(arr + k, rk - k, len - k);
-  // 否则，pivot 就是第 k 大的元素
+  // Nếu không, pivot chính là phần tử hạng k
   return pivot;
 }
 ```
 
-### 改进：中位数中的中位数
+### Cải tiến: trung vị của các trung vị
 
-中位数中的中位数（英文：Median of medians），提供了一种确定性的选择划分过程中分界值的方法，从而能够让找第 $k$ 大的数算法在最坏情况下也能实现线性时间复杂度．
+Trung vị của các trung vị (tiếng Anh: Median of medians) cung cấp một cách chọn giá trị mốc xác định trong quá trình phân hoạch, nhờ đó thuật toán tìm phần tử hạng $k$ cũng đạt độ phức tạp thời gian tuyến tính trong trường hợp xấu nhất.
 
-该算法的流程如下：
+Quy trình của thuật toán như sau:
 
-1.  将整个序列划分为 $\left \lfloor \dfrac{n}{5} \right \rfloor$ 组，每组元素数不超过 5 个；
-2.  寻找每组元素的中位数（因为元素个数较少，可以直接使用 [插入排序](./insertion-sort.md) 等算法）．
-3.  找出这 $\left \lfloor \dfrac{n}{5} \right \rfloor$ 组元素中位数中的中位数．将该元素作为前述算法中每次划分时的分界值即可．
+1.  Chia toàn bộ dãy thành $\left \lfloor \dfrac{n}{5} \right \rfloor$ nhóm, mỗi nhóm có không quá 5 phần tử;
+2.  Tìm trung vị của mỗi nhóm phần tử (vì số phần tử ít, có thể dùng trực tiếp các thuật toán như [sắp xếp chèn](./insertion-sort.md)).
+3.  Tìm trung vị trong các trung vị của $\left \lfloor \dfrac{n}{5} \right \rfloor$ nhóm phần tử này. Dùng phần tử đó làm giá trị mốc trong mỗi lần phân hoạch của thuật toán nói trên.
 
-#### 时间复杂度证明
+#### Chứng minh độ phức tạp thời gian
 
-下面将证明，该算法在最坏情况下的时间复杂度为 $O(n)$．设 $T(n)$ 为问题规模为 $n$ 时，解决问题需要的计算量．
+Dưới đây ta chứng minh thuật toán này có độ phức tạp thời gian xấu nhất là $O(n)$. Gọi $T(n)$ là lượng tính toán cần thiết để giải bài toán có kích thước $n$.
 
-先分析前两步——划分与寻找中位数．由于划分后每组内的元素数量非常少，可以认为寻找一组元素的中位数的时间复杂度为 $O(1)$．因此找出所有 $\left \lfloor \dfrac{n}{5} \right \rfloor$ 组元素中位数的时间复杂度为 $O(n)$．
+Trước hết phân tích hai bước đầu: chia nhóm và tìm trung vị. Vì số phần tử trong mỗi nhóm sau khi chia rất ít, có thể xem thời gian tìm trung vị của một nhóm phần tử là $O(1)$. Do đó thời gian tìm ra trung vị của tất cả $\left \lfloor \dfrac{n}{5} \right \rfloor$ nhóm phần tử là $O(n)$.
 
-接下来分析第三步——递归过程．这一步进行了两次递归调用：第一次是寻找各组中位数中的中位数，需要的开销显然为 $T(\dfrac{n}{5})$，第二次是进入分界值的左侧部分或右侧部分．根据我们选取的划分元素，有 $\dfrac{1}{2} \times \left \lfloor \dfrac{n}{5} \right \rfloor = \left \lfloor \dfrac{n}{10} \right \rfloor$ 组元素的中位数小于分界值，这几组元素中，比中位数还小的元素也一定比分界值要小，从而整个序列中小于分界值的元素至少有 $3 \times \left \lfloor \dfrac{n}{10} \right \rfloor = \left \lfloor \dfrac{3n}{10} \right \rfloor$ 个．同理，整个序列中大于分界值的元素也至少有 $\left \lfloor \dfrac{3n}{10} \right \rfloor$ 个．因此，分界值的左边或右边至多有 $\dfrac{7n}{10}$ 个元素，这次递归的时间开销的上界为 $T(\dfrac{7n}{10})$．
+Tiếp theo phân tích bước thứ ba: quá trình đệ quy. Bước này thực hiện hai lời gọi đệ quy: lần thứ nhất tìm trung vị của các trung vị trong từng nhóm, với chi phí hiển nhiên là $T(\dfrac{n}{5})$; lần thứ hai đi vào phần bên trái hoặc bên phải của giá trị mốc. Theo phần tử phân hoạch đã chọn, có $\dfrac{1}{2} \times \left \lfloor \dfrac{n}{5} \right \rfloor = \left \lfloor \dfrac{n}{10} \right \rfloor$ nhóm có trung vị nhỏ hơn giá trị mốc. Trong các nhóm này, những phần tử nhỏ hơn trung vị cũng chắc chắn nhỏ hơn giá trị mốc, nên trong toàn bộ dãy có ít nhất $3 \times \left \lfloor \dfrac{n}{10} \right \rfloor = \left \lfloor \dfrac{3n}{10} \right \rfloor$ phần tử nhỏ hơn giá trị mốc. Tương tự, toàn bộ dãy cũng có ít nhất $\left \lfloor \dfrac{3n}{10} \right \rfloor$ phần tử lớn hơn giá trị mốc. Vì vậy, bên trái hoặc bên phải của giá trị mốc có nhiều nhất $\dfrac{7n}{10}$ phần tử, và cận trên cho chi phí thời gian của lần đệ quy này là $T(\dfrac{7n}{10})$.
 
-综上，我们可以列出这样的不等式：
+Tổng hợp lại, ta có thể viết bất đẳng thức:
 
 $$
 T(n) \leq T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)
 $$
 
-假设 $T(n) = O(n)$ 在问题规模足够小时成立．根据定义，此时有 $T(n) \leq cn$，其中 $c$ 为一正常数．将不等式右边的所有 $T(n)$ 进行代换：
+Giả sử $T(n) = O(n)$ đúng khi kích thước bài toán đủ nhỏ. Theo định nghĩa, khi đó có $T(n) \leq cn$, trong đó $c$ là một hằng số dương. Thay tất cả $T(n)$ ở vế phải của bất đẳng thức:
 
 $$
 \begin{aligned}
@@ -354,14 +354,14 @@ T(n) & \leq T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)\\
 \end{aligned}
 $$
 
-到这里我们就证明了，该算法在最坏情况下也具有 $O(n)$ 的时间复杂度．
+Đến đây ta đã chứng minh thuật toán này cũng có độ phức tạp thời gian $O(n)$ trong trường hợp xấu nhất.
 
-## 参考资料与注释
+## Tài liệu tham khảo và chú thích
 
-[^ref1]: [C++ 性能榨汁机之局部性原理 - I'm Root lee !](http://irootlee.com/juicer_locality/)
+[^ref1]: [Nguyên lý cục bộ trong hiệu năng C++ - I'm Root lee !](http://irootlee.com/juicer_locality/)
 
-[^ref2]: [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
+[^ref2]: [Cài đặt thuật toán / Sắp xếp / Sắp xếp nhanh - Wikibooks tiếng Trung](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
 
-[^ref3]: [三种快速排序以及快速排序的优化](https://blog.csdn.net/insistGoGo/article/details/7785038)
+[^ref3]: [Ba dạng sắp xếp nhanh và tối ưu hóa sắp xếp nhanh](https://blog.csdn.net/insistGoGo/article/details/7785038)
 
 [^ref4]: [introsort](https://en.wikipedia.org/wiki/Introsort)
