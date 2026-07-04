@@ -1,50 +1,58 @@
-## 多项式与生成函数
+<span id="&#x591A;&#x9879;&#x5F0F;&#x4E0E;&#x751F;&#x6210;&#x51FD;&#x6570;"></span>
 
-操纵 有限项/无限项 的多项式是 OI 数学中，尤其是生成函数中的重要内容．
+## Đa thức và hàm sinh
 
-以 [快速傅里叶变换](./fft.md) 为基石的多项式算法赋予了算法竞赛选手直接操纵生成函数的能力．
+Thao tác với các đa thức có số hạng hữu hạn hoặc vô hạn là một nội dung quan trọng trong toán học OI, đặc biệt là trong hàm sinh.
 
-## 基本概念
+Các thuật toán đa thức dựa trên nền tảng [biến đổi Fourier nhanh](./fft.md) trao cho thí sinh lập trình khả năng thao tác trực tiếp với hàm sinh.
 
-对于求和式 $\sum a_nx^n$，如果是有限项相加，称为多项式，记作 $f(x)=\sum_{n=0}^m a_nx^n$．
+<span id="&#x57FA;&#x672C;&#x6982;&#x5FF5;"></span>
 
-可列项相加的求和式称为级数．在和式 $\sum_{n=0}^\infty a_nx^n$ 中，每项均为非负整数次幂函数乘常数系数，这种形式的级数称为幂级数．
+## Khái niệm cơ bản
 
-研究多项式算术时先考虑较简单的多项式，幂级数概念仅用于方便理解．到了数学分析中会进一步研究幂级数的敛散性．
+Với tổng $\sum a_nx^n$, nếu tổng chỉ gồm hữu hạn số hạng, ta gọi nó là đa thức, ký hiệu $f(x)=\sum_{n=0}^m a_nx^n$.
 
-环、域及其衍生结构的一般定义详见 [抽象代数基本概念](../algebra/basic.md)．
+Tổng gồm một số đếm được các số hạng được gọi là chuỗi. Trong tổng $\sum_{n=0}^\infty a_nx^n$, mỗi số hạng đều là một lũy thừa không âm của biến nhân với một hệ số hằng; chuỗi có dạng này được gọi là chuỗi lũy thừa.
 
-对于一般环 $R$，定义 $R$ 上的 **多项式环**（polynomial ring）$R[x]$．
+Khi nghiên cứu số học đa thức, trước hết ta xét các đa thức đơn giản hơn; khái niệm chuỗi lũy thừa chỉ dùng để tiện cho việc hiểu. Trong giải tích toán học, tính hội tụ hay phân kỳ của chuỗi lũy thừa sẽ được nghiên cứu sâu hơn.
 
-每个元素 $f$ 称为 $R$ 上的 **多项式**（polynomial），可表示为
+Định nghĩa tổng quát về vành, trường và các cấu trúc dẫn xuất của chúng xem tại [khái niệm cơ bản của đại số trừu tượng](../algebra/basic.md).
+
+Với một vành tổng quát $R$, định nghĩa **vành đa thức** (polynomial ring) trên $R$ là $R[x]$.
+
+Mỗi phần tử $f$ được gọi là một **đa thức** (polynomial) trên $R$, và có thể biểu diễn dưới dạng
 
 $$
 f=\left<f_0,f_1,f_2,\cdots,f_n\right>\quad(f_0,f_1,f_2,\cdots,f_n\in R)
 $$
 
-换言之，我们将多项式直接定义为系数序列．也可以表示为
+Nói cách khác, ta định nghĩa trực tiếp đa thức là dãy các hệ số. Cũng có thể viết thành
 
 $$
 f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n
 $$
 
-此处我们认为 $x$ 只是一个 **形式符号**，一个对系数位置的标识符．
+Ở đây ta xem $x$ chỉ là một **ký hiệu hình thức**, một dấu hiệu để nhận diện vị trí của hệ số.
 
-如果我们还允许无穷项的存在，即
+Nếu ta còn cho phép có vô hạn số hạng, tức là
 
 $$
 f(x)=f_0+f_1x+f_2x^2+\cdots
 $$
 
-则可得到 **形式幂级数环**（formal power series ring）$R[[x]]$，其中的每个元素 $f$ 称为 **形式幂级数**（formal power series），以下简称幂级数．
+thì thu được **vành chuỗi lũy thừa hình thức** (formal power series ring) $R[[x]]$, trong đó mỗi phần tử $f$ được gọi là **chuỗi lũy thừa hình thức** (formal power series), dưới đây gọi tắt là chuỗi lũy thừa.
 
-### 多项式的次数
+<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x6B21;&#x6570;"></span>
 
-对于一个多项式 $f(x)$，称其最高次项的次数为该多项式的 **次数（degree）**，记作 $\operatorname{deg}{f}$．
+### Bậc của đa thức
 
-### 多项式的乘法
+Với một đa thức $f(x)$, bậc của số hạng có bậc cao nhất được gọi là **bậc** (degree) của đa thức, ký hiệu $\operatorname{deg}{f}$.
 
-最核心的操作是两个多项式的乘法，即给定多项式 $f(x)$ 和 $g(x)$：
+<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x4E58;&#x6CD5;"></span>
+
+### Phép nhân đa thức
+
+Phép toán cốt lõi nhất là phép nhân hai đa thức, tức là cho các đa thức $f(x)$ và $g(x)$:
 
 $$
 \begin{alignedat}{3}
@@ -53,93 +61,100 @@ g(x)&=b_0+b_1x+\dots+b_mx^m\quad \quad &(2)
 \end{alignedat}
 $$
 
-要计算多项式 $Q(x)=f(x)\cdot g(x)$：
+Cần tính đa thức $Q(x)=f(x)\cdot g(x)$:
 
 $$
 \boxed {Q(x) = \sum \limits_ {i = 0} ^ n \sum \limits_ {j = 0 } ^ m a_i b_j x ^ {i + j}} = c_0 + c_1 x + \dots + c_ {n + m} x ^ {n + m}
 $$
 
-多项式或幂级数的乘法，满足结合律，关于加法满足分配律．若 $R$ 为交换环或幺环，乘法相应的有交换律和单位元．
+Phép nhân đa thức hoặc chuỗi lũy thừa thỏa mãn tính kết hợp và tính phân phối đối với phép cộng. Nếu $R$ là vành giao hoán hoặc vành có đơn vị, phép nhân tương ứng có tính giao hoán và phần tử đơn vị.
 
-若 $R$ 上存在 $2^n$ 次单位根，[快速傅里叶变换](./fft.md) 允许我们在 $O(n2^n)$ 而不是 $O(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的乘积．
+Nếu trên $R$ tồn tại căn đơn vị bậc $2^n$, [biến đổi Fourier nhanh](./fft.md) cho phép tính tích của hai đa thức bậc $2^n$ trong thời gian $O(n2^n)$ thay vì $O(2^{2n})$.
 
-### 复合
+<span id="&#x590D;&#x5408;"></span>
 
-定义 $R[[x]]$ 中元素 $f$ 的乘方为
+### Phép hợp thành
+
+Định nghĩa lũy thừa của phần tử $f$ trong $R[[x]]$ là
 
 $$
 f^1=f,f^k=f^{k-1}\times f
 $$
 
-在此基础上，定义 $R[[x]]$ 中元素 $f,g$ 的复合为
+Trên cơ sở đó, định nghĩa phép hợp thành của hai phần tử $f,g$ trong $R[[x]]$ là
 
 $$
 (f\circ g)(x)=f(g(x))=f_0+\sum_{k=1}^{+\infty}f_kg^k(x)
 $$
 
-我们规定 $f\circ g$ 存在当且仅当 $f$ 为有限项或 $g_0=0$，这样就不涉及 $R$ 上的极限了．
+Ta quy ước $f\circ g$ tồn tại khi và chỉ khi $f$ có hữu hạn số hạng hoặc $g_0=0$, như vậy không cần xét giới hạn trên $R$.
 
-$\circ$ 满足结合律（$(f\circ g)\circ h$ 和 $f\circ (g\circ h)$ 均存在时），不满足交换律．$R$ 为幺环时 $\circ$ 存在单位元 $1\times x$．
+$\circ$ thỏa mãn tính kết hợp khi cả $(f\circ g)\circ h$ và $f\circ (g\circ h)$ đều tồn tại, nhưng không thỏa mãn tính giao hoán. Khi $R$ là vành có đơn vị, $\circ$ có phần tử đơn vị $1\times x$.
 
-多项式复合（与复合逆）有 $\Theta(n\log^2 n)$ 的做法，其由 Yasunori Kinoshita 与李白天于 2024 年提出，详见 [形式幂级数复合 | 复合逆](./comp-rev.md)．
+Phép hợp thành đa thức và nghịch đảo hợp thành có cách làm $\Theta(n\log^2 n)$, được Yasunori Kinoshita và Li Baitian đề xuất năm 2024; xem chi tiết tại [hợp thành chuỗi lũy thừa hình thức | nghịch đảo hợp thành](./comp-rev.md).
 
-### 导数
+<span id="&#x5BFC;&#x6570;"></span>
 
-尽管一般环甚至未必存在极限，  
-我们依然可以定义形式幂级数的 **形式导数**（formal derivative）为
+### Đạo hàm
+
+Dù một vành tổng quát thậm chí có thể không tồn tại giới hạn, ta vẫn có thể định nghĩa **đạo hàm hình thức** (formal derivative) của chuỗi lũy thừa hình thức là
 
 $$
 \left(\sum_{k=0}^{+\infty}f_kx^k\right)'=\sum_{k=1}^{+\infty}kf_kx^{k-1}
 $$
 
-其中
+trong đó
 
 $$
-kf_k=\underbrace{f_k+f_k+\cdots+f_k}_{k \text{个} f_k}
+kf_k=\underbrace{f_k+f_k+\cdots+f_k}_{k \text{ lần } f_k}
 $$
 
-基本求导法则——加法法则、乘法法则、链式法则（复合允许的情况下）依然是正确的．
+Những quy tắc đạo hàm cơ bản, gồm quy tắc cộng, quy tắc nhân và quy tắc dây chuyền khi phép hợp thành được phép, vẫn đúng.
 
-如果 $R$ 上允许作除法，同样可以类似定义形式幂级数的 **形式不定积分**（formal indefinite integral）．
+Nếu trên $R$ cho phép thực hiện phép chia, ta cũng có thể định nghĩa tương tự **nguyên hàm hình thức** (formal indefinite integral) của chuỗi lũy thừa hình thức.
 
-### 乘法逆元
+<span id="&#x4E58;&#x6CD5;&#x9006;&#x5143;"></span>
 
-根据例子
+### Nghịch đảo nhân
+
+Từ ví dụ
 
 $$
 \dfrac{1}{1-x}=1+x+x^2+\cdots
 $$
 
-可以知道，多项式的倒数是能展开为无穷级数的．存在倒数，当且仅当常数项不为 $0$，并且倒数也满足常数项不为 $0$．
+có thể thấy nghịch đảo của một đa thức có thể khai triển thành một chuỗi vô hạn. Nghịch đảo tồn tại khi và chỉ khi hạng tự do khác $0$, và nghịch đảo cũng có hạng tự do khác $0$.
 
-因此定义：对于形式幂级数 $f$，若 $f_0\not=0$，其 **乘法逆元**（multiplicative inversion）$f^{-1}$ 为另一形式幂级数，满足
+Vì vậy định nghĩa: đối với chuỗi lũy thừa hình thức $f$, nếu $f_0\not=0$, **nghịch đảo nhân** (multiplicative inversion) $f^{-1}$ của nó là một chuỗi lũy thừa hình thức khác thỏa mãn
 
 $$
 f\times f^{-1}=f^{-1}\times f=1
 $$
 
-用形式幂级数乘法定义展开该式，可得 $f^{-1}$ 系数的递推式
+Khai triển công thức này theo định nghĩa phép nhân chuỗi lũy thừa hình thức, ta được công thức truy hồi cho các hệ số của $f^{-1}$:
 
 $$
 f^{-1}_0=\dfrac{1}{f_0},f^{-1}_n=\dfrac{-1}{f_0}\sum_{k=0}^{n-1}f^{-1}_kf_{n-k}
 $$
 
-直接用递推式计算前 $n$ 项是 $O(n^2)$ 的，[运用 FFT](./elementary-func.md#多项式求逆) 可得到 $O(n\log n)$ 的算法．
+Tính trực tiếp $n$ số hạng đầu bằng công thức truy hồi mất $O(n^2)$; [sử dụng FFT](./elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86) có thể thu được thuật toán $O(n\log n)$.
 
-???+ note "注"
-    容易发现，$f(x)$ 的倒数就是 $\frac{1}{f(x)}$ 的无穷项麦克劳林展开（在 $x=0$ 处的无穷项泰勒展开）．
+???+ note "Ghi chú"
+    Dễ thấy rằng nghịch đảo của $f(x)$ chính là khai triển Maclaurin vô hạn số hạng của $\frac{1}{f(x)}$, tức khai triển Taylor vô hạn số hạng tại $x=0$.
 
-### 常见的幂级数展开式
+<span id="&#x5E38;&#x89C1;&#x7684;&#x5E42;&#x7EA7;&#x6570;&#x5C55;&#x5F00;&#x5F0F;"></span>
 
-在数学分析中，在某点处或某区间上若干阶可导的一元函数可以在相应范围进行多项式展开，一般统称为泰勒展开，如果在 $0$ 处展开，也称为麦克劳林展开．
+### Các khai triển chuỗi lũy thừa thường gặp
 
-如果无穷阶可导，则可以进行幂级数展开．最常见的还是在 $0$ 处展开．
+Trong giải tích toán học, một hàm một biến khả vi đến một số bậc nào đó tại một điểm hoặc trên một khoảng có thể được khai triển thành đa thức trong phạm vi tương ứng; nói chung gọi là khai triển Taylor. Nếu khai triển tại $0$, nó cũng được gọi là khai triển Maclaurin.
 
-在复变函数中，一些函数在奇点上虽然不能进行泰勒展开，但是可以进行洛朗展开．
+Nếu khả vi vô hạn bậc, có thể thực hiện khai triển thành chuỗi lũy thừa. Trường hợp thường gặp nhất vẫn là khai triển tại $0$.
 
-下列等式只在幂级数收敛时成立，在不收敛时不成立．这里只写出展开式，不讨论收敛域．
+Trong hàm biến phức, một số hàm tuy không thể khai triển Taylor tại điểm kỳ dị, nhưng có thể khai triển Laurent.
 
-基本的展开式有以下两个，指数函数和幂函数：
+Những đẳng thức dưới đây chỉ đúng khi chuỗi lũy thừa hội tụ, và không đúng khi không hội tụ. Ở đây chỉ liệt kê các khai triển, không thảo luận miền hội tụ.
+
+Hai khai triển cơ bản là của hàm mũ và hàm lũy thừa:
 
 $$
 \mathrm{e}^x=1+x+\frac{1}{2!}x^2+\ldots+\frac{1}{n!}x^n+\ldots
@@ -149,7 +164,7 @@ $$
 (1+x)^a=1+ax+\frac{a(a-1)}{2!}x^2+\ldots+\frac{a(a-1)\ldots(a-n+1)}{n!}x^n+\ldots
 $$
 
-更多的展开式经常由上述两个变形得到．比如正余弦函数由指数函数代入复数得到：
+Nhiều khai triển khác thường được suy ra bằng biến đổi hai khai triển trên. Cosin và sin thu được bằng cách thay số phức vào hàm mũ:
 
 $$
 \cos x=1-\frac{1}{2!}x^2+\frac{1}{4!}x^4+\ldots+\frac{(-1)^n}{(2n)!}x^{2n}+\ldots
@@ -159,7 +174,7 @@ $$
 \sin x=x-\frac{1}{3!}x^3+\frac{1}{5!}x^5+\ldots+\frac{(-1)^n}{(2n+1)!}x^{2n+1}+\ldots
 $$
 
-对数和反正切、反正弦函数由积分得到：
+Logarit, arctan và arcsin thu được từ phép tích phân:
 
 $$
 \frac{1}{1+x}=1-x+x^2+\ldots+{(-1)}^n x^n+\ldots
@@ -189,33 +204,39 @@ $$
 \arcsin x=x+\frac{1}{6}x^3+\frac{3}{40}x^5+\ldots+\frac{(2n)!}{{(n!)}^2(2n+1)4^n} x^{2n+1}+\ldots
 $$
 
-### 复合逆
+<span id="&#x590D;&#x5408;&#x9006;"></span>
 
-**复合逆**（compound inversion）即反函数概念在形式幂级数环上的推广．
+### Nghịch đảo hợp thành
 
-对于满足 $f_0=0$ 且 $f_1\not=0$ 的形式幂级数 $f$，其复合逆为满足 $g(f(x))=f(g(x))=x$ 的形式幂级数 $g$．由拉格朗日反演可得对于任意整数 $n,k$ 有
+**Nghịch đảo hợp thành** (compound inversion) là sự mở rộng của khái niệm hàm ngược trên vành chuỗi lũy thừa hình thức.
+
+Đối với chuỗi lũy thừa hình thức $f$ thỏa mãn $f_0=0$ và $f_1\not=0$, nghịch đảo hợp thành của nó là chuỗi lũy thừa hình thức $g$ thỏa mãn $g(f(x))=f(g(x))=x$. Từ đảo ngược Lagrange, với mọi số nguyên $n,k$ có
 
 $$
 n[x^n]f^k=k[x^{n-k}]\left(\dfrac{x}{g}\right)^n
 $$
 
-其中 $[x^k]f(x)$ 表示 $f(x)$ 在 $x^k$ 处的系数．
+trong đó $[x^k]f(x)$ biểu thị hệ số của $f(x)$ tại $x^k$.
 
-### 多项式整除
+<span id="&#x591A;&#x9879;&#x5F0F;&#x6574;&#x9664;"></span>
 
-对于多项式 $f(x)$ 和多项式 $g(x)$，如果存在一个多项式 $h(x)$，使得：
+### Tính chia hết của đa thức
+
+Đối với hai đa thức $f(x)$ và $g(x)$, nếu tồn tại một đa thức $h(x)$ sao cho:
 
 $$
 f(x)=g(x)h(x)
 $$
 
-则多项式 $g(x)$ 整除多项式 $f(x)$．
+thì đa thức $g(x)$ chia hết đa thức $f(x)$.
 
-显而易见，多项式 $g(x)$ 整除多项式 $f(x)$，当且仅当 $g(x)$ 的根全部为 $f(x)$ 的根，并且在 $g(x)$ 中的重数不超过在 $f(x)$ 中的相应重数．
+Hiển nhiên, đa thức $g(x)$ chia hết đa thức $f(x)$ khi và chỉ khi tất cả các nghiệm của $g(x)$ đều là nghiệm của $f(x)$, và bội số của chúng trong $g(x)$ không vượt quá bội số tương ứng trong $f(x)$.
 
-### 多项式的余数和商
+<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x4F59;&#x6570;&#x548C;&#x5546;"></span>
 
-对于多项式 $f(x), g(x)$，存在 **唯一** 的 $Q(x), R(x)$ 满足：
+### Số dư và thương của đa thức
+
+Đối với các đa thức $f(x), g(x)$, tồn tại **duy nhất** $Q(x), R(x)$ thỏa mãn:
 
 $$
 \begin{aligned}
@@ -224,143 +245,148 @@ $$
 \end{aligned}
 $$
 
-当 $\operatorname{deg}{f} \ge \operatorname{deg}{g}$ 时有 $\operatorname{deg}{Q} = \operatorname{deg}{f} - \operatorname{deg}{g}$，否则有 $Q(x) = 0$．我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商（quotient）**，$R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数（remainder）**．
+Khi $\operatorname{deg}{f} \ge \operatorname{deg}{g}$, có $\operatorname{deg}{Q} = \operatorname{deg}{f} - \operatorname{deg}{g}$; ngược lại $Q(x) = 0$. Ta gọi $Q(x)$ là **thương** (quotient) khi chia $f(x)$ cho $g(x)$, và $R(x)$ là **số dư** (remainder) khi chia $f(x)$ cho $g(x)$.
 
-## 模多项式
+<span id="&#x6A21;&#x591A;&#x9879;&#x5F0F;"></span>
 
-模多项式是多项式环的子环，由多项式环除以同余的等价关系得到．
+## Đa thức modulo
 
-在上文提到的带余除法中，多项式 $f(x)$ 与它的余式 $R(x)$ 在模多项式 $g(x)$ 的意义下同余．
+Đa thức modulo là vành thương của vành đa thức, thu được bằng cách lấy vành đa thức theo quan hệ tương đương đồng dư.
+
+Trong phép chia có dư nói ở trên, đa thức $f(x)$ và số dư $R(x)$ của nó đồng dư theo modulo đa thức $g(x)$.
 
 $$
 f(x) \equiv R(x) \pmod{g(x)}
 $$
 
-这个同余式也意味着，对于多项式 $g(x)$ 的任意一个根 $x_0$，代入 $f(x)$ 和 $R(x)$ 中，得到的点值相同．即：
+Đồng dư thức này cũng có nghĩa là: với bất kỳ nghiệm $x_0$ nào của đa thức $g(x)$, khi thay vào $f(x)$ và $R(x)$, giá trị điểm thu được là như nhau. Tức là:
 
 $$
 f(x_0)=R(x_0)
 $$
 
-并且，如果根 $x_0$ 在多项式 $g(x)$ 中的重数是 $k$，即 $(x-x_0)^k$ 整除 $g(x)$，则对任意大于等于 $0$ 小于 $k$ 的整数 $t$，有：
+Hơn nữa, nếu nghiệm $x_0$ có bội số $k$ trong đa thức $g(x)$, tức $(x-x_0)^k$ chia hết $g(x)$, thì với mọi số nguyên $t$ thỏa mãn $0\le t<k$, có:
 
 $$
 f^{t}(x_0)=R^{t}(x_0)
 $$
 
-这里的记号表示 $t$ 阶导数．
+Ký hiệu ở đây biểu thị đạo hàm bậc $t$.
 
-模多项式同余可以应用于幂级数．一个无限项的幂级数，可以在模具体的多项式情形下，和一个有限项的多项式同余．例如：
+Đồng dư modulo đa thức có thể áp dụng cho chuỗi lũy thừa. Một chuỗi lũy thừa có vô hạn số hạng có thể đồng dư với một đa thức hữu hạn số hạng trong trường hợp modulo một đa thức cụ thể. Ví dụ:
 
 $$
 1+x+x^2+x^3+\ldots \equiv 1+x+\ldots+x^{n-1} \pmod{x^n}
 $$
 
-显然剩余的所有项都被 $x^n$ 整除，因此模 $x^n$ 的操作等价于「截断」，将无穷项的幂级数截断到前 $n$ 项，直接将更高位的信息丢失．
+Rõ ràng tất cả các số hạng còn lại đều chia hết cho $x^n$, vì vậy phép toán modulo $x^n$ tương đương với "cắt cụt": cắt chuỗi lũy thừa vô hạn thành $n$ số hạng đầu và trực tiếp bỏ mất thông tin ở các bậc cao hơn.
 
-在一些特定的情况下，也可以模其他的多项式，下文将解释相应情况．
+Trong một số trường hợp cụ thể, cũng có thể lấy modulo theo các đa thức khác; phần sau sẽ giải thích những trường hợp tương ứng.
 
-### 多项式的多点求值和插值
+<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x591A;&#x70B9;&#x6C42;&#x503C;&#x548C;&#x63D2;&#x503C;"></span>
 
-**多项式的多点求值（multi-point evaluation）** 即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
+### Tính giá trị nhiều điểm và nội suy đa thức
+
+**Tính giá trị nhiều điểm của đa thức** (multi-point evaluation) là bài toán: cho một đa thức $f(x)$ và $n$ điểm $x_{1}, x_{2}, \dots, x_{n}$, tính
 
 $$
 f(x_{1}), f(x_{2}), \dots, f(x_{n})
 $$
 
-**多项式的插值（interpolation）** 即给出 $n+1$ 个点
+**Nội suy đa thức** (interpolation) là bài toán: cho $n+1$ điểm
 
 $$
 (x_{0}, y_{0}), (x_{1}, y_{1}), \dots, (x_{n}, y_{n})
 $$
 
-求一个 $n$ 次多项式 $f(x)$ 使得这 $n+1$ 个点都在 $f(x)$ 上．
+tìm một đa thức bậc $n$ là $f(x)$ sao cho cả $n+1$ điểm đó nằm trên $f(x)$.
 
-这两种操作的实质就是将多项式在 **系数表示** 和 **点值表示** 间转化．多点求值将多项式的系数表示转为点值表示，插值将多项式的点值表示转为系数表示．
+Bản chất của hai thao tác này là chuyển đổi đa thức giữa **biểu diễn hệ số** và **biểu diễn giá trị điểm**. Tính giá trị nhiều điểm biến biểu diễn hệ số của đa thức thành biểu diễn giá trị điểm; nội suy biến biểu diễn giá trị điểm của đa thức thành biểu diễn hệ số.
 
-???+ note "注"
-    按照幂级数的观点看，多点求值相当于将无穷项的信息「压缩」到有限个点值表示，因此丢失了一些信息，而插值相当于还原到相应次数的系数表示．
-    
-    编程常见的求值与插值，例如离散傅里叶变换（及其逆变换）等等，选择的 $n+1$ 个点重数均为 $1$，即两两不同，免去求导的麻烦．
-    
-    这种「压缩」只保证了在 $n+1$ 个点上的一致．根据上文对模多项式同余的解释，如果幂级数 $f(x)$ 经过在 $x_0$ 到 $x_n$ 点处求值再插值，得到多项式 $R(x)$，则作多项式：
-    
+???+ note "Ghi chú"
+    Nhìn theo quan điểm chuỗi lũy thừa, tính giá trị nhiều điểm tương đương với việc "nén" thông tin vô hạn số hạng thành biểu diễn bằng hữu hạn giá trị điểm, nên sẽ mất một phần thông tin; còn nội suy tương đương với khôi phục về biểu diễn hệ số ở bậc tương ứng.
+
+    Các phép tính giá trị và nội suy thường gặp trong lập trình, chẳng hạn biến đổi Fourier rời rạc và biến đổi ngược của nó, chọn $n+1$ điểm đều có bội số $1$, tức đôi một khác nhau, nên tránh được phiền phức của việc tính đạo hàm.
+
+    Việc "nén" này chỉ bảo đảm sự nhất quán trên $n+1$ điểm đó. Theo giải thích về đồng dư modulo đa thức ở trên, nếu chuỗi lũy thừa $f(x)$ được tính giá trị tại các điểm từ $x_0$ đến $x_n$ rồi nội suy để thu được đa thức $R(x)$, thì đặt đa thức:
+
     $$
     g(x)=(x-x_0)\ldots(x-x_n)
     $$
-    
-    就有：
-    
+
+    sẽ có:
+
     $$
     f(x) \equiv R(x) \pmod{g(x)}
     $$
-    
-    由于 $R(x)$ 的次数严格小于 $g(x)$，所以利用求值与插值求出的 $R(x)$ 就是余式．因此在这种情况下，如果幂级数在根处可以求值，就可以模多项式．一个反例例如：
-    
+
+    Vì bậc của $R(x)$ nhỏ hơn nghiêm ngặt bậc của $g(x)$, $R(x)$ tìm được bằng tính giá trị và nội suy chính là số dư. Do đó trong trường hợp này, nếu chuỗi lũy thừa có thể tính giá trị tại các nghiệm, thì có thể lấy modulo đa thức. Một phản ví dụ là:
+
     $$
     \frac{1}{1-x}=1+x+x^2+x^3+\ldots
     $$
-    
-    在 $x=1$ 处不可求值，因此级数 $1+x+x^2+x^3+\ldots$ 不能模多项式 $x-1$．
-    
-    由于幂级数的任意阶导数，在 $0$ 处的值总是存在，因此模 $x^n$ 始终可以计算，与上文「截断」的意义一致．离散傅里叶变换（及其逆变换）相当于模多项式 $x^n-1$．
 
-### 因式分解和欧几里得
+    Tại $x=1$ nó không thể tính giá trị, vì vậy chuỗi $1+x+x^2+x^3+\ldots$ không thể lấy modulo đa thức $x-1$.
 
-初等数论中的许多结论可以推广到多项式上．
+    Vì đạo hàm bậc bất kỳ của chuỗi lũy thừa tại $0$ luôn tồn tại, modulo $x^n$ luôn có thể tính được, phù hợp với ý nghĩa "cắt cụt" đã nêu ở trên. Biến đổi Fourier rời rạc và biến đổi ngược của nó tương đương với modulo đa thức $x^n-1$.
 
-复数域上，由代数基本定理可得，对于 $n$ 次多项式 $f$，方程
+<span id="&#x56E0;&#x5F0F;&#x5206;&#x89E3;&#x548C;&#x6B27;&#x51E0;&#x91CC;&#x5F97;"></span>
+
+### Phân tích nhân tử và Euclid
+
+Nhiều kết luận trong số học sơ cấp có thể mở rộng sang đa thức.
+
+Trên trường số phức, từ định lý cơ bản của đại số suy ra: đối với đa thức bậc $n$ là $f$, phương trình
 
 $$
 f(x)=0
 $$
 
-有且仅有 $n$ 个解（重根按重数计）．
+có đúng $n$ nghiệm, tính cả nghiệm bội theo bội số.
 
-于是 $f(x)$ 在复数域内可唯一因式分解为如下形式
+Do đó $f(x)$ có thể phân tích duy nhất trên trường số phức thành dạng
 
 $$
 a(x-x_1)^{c_1}(x-x_2)^{c_2}\cdots(x-x_m)^{c_m}
 $$
 
 $$
-c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{ 互不相同}
+c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{ đôi một khác nhau}
 $$
 
-此时类比正整数的最大公因数，可得多项式的 [**最大公因式**](../number-theory/gcd.md)  
-（greatest common divisor, gcd）．其可用欧几里得算法求解
+Khi đó, tương tự ước chung lớn nhất của các số nguyên dương, ta có [**ước chung lớn nhất**](../number-theory/gcd.md) (greatest common divisor, gcd) của đa thức. Nó có thể được tính bằng thuật toán Euclid
 
 $$
 \gcd(f,0)=f,\gcd(f,g)=\gcd(g,f\bmod g)
 $$
 
-该性质可以推广到较为一般的情况：
+Tính chất này có thể mở rộng đến trường hợp tổng quát hơn:
 
-> 对于任意域 $P$ 上的多项式环 $P[x]$，  
-> 多项式均可唯一因式分解，且可用欧几里得算法计算最大公因式．
-> 需要注意的是，对于一般环上的多项式，该结论未必成立．
+> Đối với vành đa thức $P[x]$ trên một trường bất kỳ $P$,
+> mọi đa thức đều có thể phân tích nhân tử duy nhất, và có thể dùng thuật toán Euclid để tính ước chung lớn nhất.
+> Cần chú ý rằng, với đa thức trên vành tổng quát, kết luận này chưa chắc đúng.
 
-欧几里得算法成立时，可用扩展欧几里得给出不定方程
+Khi thuật toán Euclid dùng được, có thể dùng Euclid mở rộng để tìm một nghiệm riêng $(P(x),Q(x))$ của phương trình vô định
 
 $$
 f(x)P(x)+g(x)Q(x)=\gcd(f(x),g(x))
 $$
 
-的一组特解 $(P(x),Q(x))$，并用 [裴蜀定理](../number-theory/bezouts.md) 判断不定方程
+và dùng [định lý Bezout](../number-theory/bezouts.md) để xét tính giải được của phương trình vô định
 
 $$
 f(x)P(x)+g(x)Q(x)=h(x)
 $$
 
-的可解性．
+[HALF-GCD](https://loj.ac/p/172) cho phép tính Euclid đa thức trong thời gian $O(n\log^2 n)$.
 
-[HALF-GCD](https://loj.ac/p/172) 允许我们在 $O(n\log^2 n)$ 时间内计算多项式欧几里得．
+<span id="&#x6A21;&#x591A;&#x9879;&#x5F0F;&#x7684;&#x4E58;&#x6CD5;&#x9006;&#x5143;"></span>
 
-### 模多项式的乘法逆元
+### Nghịch đảo nhân modulo đa thức
 
-在模多项式 $h(x)$ 意义下，幂级数 $f(x)$ 有时存在逆元．逆元就是幂级数 $f(x)$ 的倒数模多项式 $h(x)$ 得到的余式．
+Theo modulo đa thức $h(x)$, chuỗi lũy thừa $f(x)$ đôi khi có nghịch đảo. Nghịch đảo chính là số dư thu được khi lấy nghịch đảo của chuỗi lũy thừa $f(x)$ theo modulo đa thức $h(x)$.
 
-这个定义也等价于，对于多项式 $f(x)$，若存在 $g(x)$ 满足：
+Định nghĩa này cũng tương đương với: đối với đa thức $f(x)$, nếu tồn tại $g(x)$ thỏa mãn:
 
 $$
 \begin{aligned}
@@ -368,41 +394,45 @@ $$
 \end{aligned}
 $$
 
-则称 $g(x)$ 为 $f(x)$ 在模 $h(x)$ 意义下的 **逆元（inverse element）**．当多项式欧几里得允许时，逆元存在当且仅当 $\gcd(f,g)=1$．
+thì gọi $g(x)$ là **nghịch đảo** (inverse element) của $f(x)$ theo modulo $h(x)$. Khi có thể dùng Euclid đa thức, nghịch đảo tồn tại khi và chỉ khi $\gcd(f,h)=1$.
 
-模多项式 $h(x)$ 意义下逆元总是唯一的．如果多项式 $f(x)$ 的次数也小于 $h(x)$，则得到的 $g(x)$ 与 $f(x)$ 互为逆元．
+Nghịch đảo theo modulo đa thức $h(x)$ luôn là duy nhất. Nếu bậc của đa thức $f(x)$ cũng nhỏ hơn bậc của $h(x)$, thì $g(x)$ thu được và $f(x)$ là nghịch đảo của nhau.
 
-考虑「截断」的概念，一般把模 $x^n$ 意义下的逆元记作 $f^{-1}(x)$，也是后文默认使用的逆元概念．如果不加说明，逆元的模就是指 $x^n$．
+Xét khái niệm "cắt cụt", thông thường nghịch đảo theo modulo $x^n$ được ký hiệu là $f^{-1}(x)$, và đây cũng là khái niệm nghịch đảo mặc định được dùng ở các phần sau. Nếu không nói rõ, modulo của nghịch đảo được hiểu là $x^n$.
 
-???+ note "注"
-    一个问题是，可不可以用各种插值变换，直接求解「逆元」，比如计算：
-    
+???+ note "Ghi chú"
+    Một câu hỏi là: có thể dùng các phép biến đổi nội suy để trực tiếp tìm "nghịch đảo" hay không, chẳng hạn tính:
+
     $$
     IDFT\left(\frac{DFT(1)}{DFT(f(x))}\right)
     $$
-    
-    答案是否定的，不可以这样做．根据上文的解释，这里利用离散傅里叶变换（及其逆变换）直接求出的逆元是模多项式 $x^n-1$ 的逆元，不是通常的模多项式 $x^n$ 的逆元．并且，由于原多项式在各点值处可能为 $0$，这个求解未必可以进行．
 
-## 生成函数
+    Câu trả lời là không. Theo giải thích ở trên, nghịch đảo thu được trực tiếp bằng biến đổi Fourier rời rạc và biến đổi ngược của nó là nghịch đảo theo modulo đa thức $x^n-1$, không phải nghịch đảo theo modulo đa thức $x^n$ thông thường. Hơn nữa, vì đa thức ban đầu có thể bằng $0$ tại một số giá trị điểm, cách tính này chưa chắc thực hiện được.
 
-生成函数（generating function），又称母函数，是一种形式幂级数，其每一项的系数可以提供关于这个序列的信息．
+<span id="&#x751F;&#x6210;&#x51FD;&#x6570;"></span>
 
-生成函数有许多不同的种类，但大多可以表示为单一的形式：
+## Hàm sinh
+
+Hàm sinh (generating function), còn gọi là hàm mẹ, là một loại chuỗi lũy thừa hình thức mà hệ số của mỗi số hạng có thể cung cấp thông tin về dãy đó.
+
+Hàm sinh có nhiều loại khác nhau, nhưng phần lớn có thể biểu diễn bằng một dạng duy nhất:
 
 $$
 F(x)=\sum_n a_nk_n(x)
 $$
 
-其中 $k_n(x)$ 被称为核函数．不同的核函数会导出不同的生成函数，拥有不同的性质．举个例子：
+trong đó $k_n(x)$ được gọi là hàm nhân. Các hàm nhân khác nhau sẽ sinh ra các hàm sinh khác nhau, có các tính chất khác nhau. Ví dụ:
 
-1.  普通生成函数：$k_n(x)=x^n$．
-2.  指数生成函数：$k_n(x)=\dfrac{x^n}{n!}$．
-3.  [狄利克雷生成函数](../number-theory/dirichlet.md#dirichlet-生成函数)：$k_n(x)=\dfrac{1}{n^x}$．
+1.  Hàm sinh thường: $k_n(x)=x^n$.
+2.  Hàm sinh mũ: $k_n(x)=\dfrac{x^n}{n!}$.
+3.  [Hàm sinh Dirichlet](../number-theory/dirichlet.md#dirichlet-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0): $k_n(x)=\dfrac{1}{n^x}$.
 
-## 参考资料与拓展阅读
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+
+## Tài liệu tham khảo và đọc thêm
 
 -   [**Picks's Blog**](https://picks.logdown.com)
 -   [**Miskcoo's Space**](https://blog.miskcoo.com)
 -   [**Polynomial ring - Wikipedia**](https://en.wikipedia.org/wiki/Polynomial_ring)
 -   [**Formal power series - Wikipedia**](https://en.wikipedia.org/wiki/Formal_power_series#The_ring_of_formal_power_series)
--   《信息学竞赛中的生成函数计算理论框架》
+-   Khung lý thuyết tính toán hàm sinh trong thi lập trình tin học

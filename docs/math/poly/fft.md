@@ -1,12 +1,13 @@
 author: H-J-Granger, ranwen, abc1763613206, Ahacad, Allenyou1126, AndrewWayne, AngelKitty, AtomAlpaca, Backl1ght, billchenchina, c-forrest, CCXXXI, Cheuring, Chrogeek, ChungZH, countercurrent-time, DepletedPrism, Early0v0, EarthMessenger, Enter-tainer, F1shAndCat, GavinZhengOI, Gesrua, Great-designer, greyqz, Haohu Shen, henryrabbit, heroming, hly1204, Ir1d, isdanni, jiang1997, kenlig, Lewy Zeng, lucifer1004, Menci, muoshuosha, NachtgeistW, needtocalmdown, opsiff, ouuan, ouuan, partychicken, schtonn, Sshwy, sshwy, StudyingFather, SukkaW, Taoran-01, Tiphereth-A, TrisolarisHD, untitledunrevised, Xeonacid, YouXam, Yukimaikoriya
 
-前置知识：[复数](../complex.md)．
+Kiến thức nền: [số phức](../complex.md).
 
-本文将介绍一种算法，它支持在 $O(n\log n)$ 的时间内计算两个 $n$ 次多项式的乘法，比朴素的 $O(n^2)$ 算法更高效．由于两个整数的乘法也可以被当作多项式乘法，因此这个算法也可以用来加速大整数的乘法计算．
+Bài viết này giới thiệu một thuật toán hỗ trợ tính tích của hai đa thức bậc $n$ trong thời gian $O(n\log n)$, hiệu quả hơn thuật toán trực tiếp $O(n^2)$. Vì phép nhân hai số nguyên cũng có thể xem như phép nhân đa thức, thuật toán này cũng có thể dùng để tăng tốc phép nhân số nguyên lớn.
 
-## 引入
+<span id="&#x5F15;&#x5165;"></span>
+## Mở đầu
 
-我们现在引入两个多项式 $A$ 和 $B$：
+Ta xét hai đa thức $A$ và $B$:
 
 $$
 \begin{aligned}
@@ -15,7 +16,7 @@ B ={}& 7x^2 + 2x + 1 \\
 \end{aligned}
 $$
 
-两个多项式相乘的积 $C = A \times B$，我们可以在 $O(n^2)$ 的时间复杂度中解得（这里 $n$ 为 $A$ 或者 $B$ 多项式的次数）：
+Tích $C = A \times B$ của hai đa thức có thể tính trong độ phức tạp thời gian $O(n^2)$ (ở đây $n$ là bậc của đa thức $A$ hoặc $B$):
 
 $$
 \begin{aligned}
@@ -24,105 +25,108 @@ C ={}& A \times B \\
 \end{aligned}
 $$
 
-很明显，多项式 $C$ 的系数 $c_i$ 满足 $c_i = \sum_{j = 0}^i a_j b_{i - j}$．而对于这种朴素算法而言，计算每一项的时间复杂度都为 $O(n)$，一共有 $O(n)$ 项，那么时间复杂度为 $O(n^2)$．
+Rõ ràng hệ số $c_i$ của đa thức $C$ thỏa mãn $c_i = \sum_{j = 0}^i a_j b_{i - j}$. Với thuật toán trực tiếp này, mỗi hạng cần thời gian $O(n)$ để tính, và có tổng cộng $O(n)$ hạng, nên độ phức tạp thời gian là $O(n^2)$.
 
-能否加速使得它的时间复杂度降低呢？如果使用快速傅里叶变换的话，那么我们可以使得其复杂度降低到 $O(n \log n)$．
+Có thể tăng tốc để giảm độ phức tạp thời gian không? Nếu dùng biến đổi Fourier nhanh, ta có thể giảm độ phức tạp xuống $O(n \log n)$.
 
-## 傅里叶变换
+<span id="&#x5085;&#x91CC;&#x53F6;&#x53D8;&#x6362;"></span>
+## Biến đổi Fourier
 
-傅里叶变换（Fourier Transform）是一种分析信号的方法，它可分析信号的成分，也可用这些成分合成信号．许多波形可作为信号的成分，傅里叶变换用正弦波作为信号的成分．
+Biến đổi Fourier (Fourier Transform) là một phương pháp phân tích tín hiệu: nó có thể phân tích các thành phần của tín hiệu, và cũng có thể tổng hợp tín hiệu từ các thành phần đó. Nhiều dạng sóng có thể được dùng làm thành phần của tín hiệu; biến đổi Fourier dùng sóng sin làm thành phần tín hiệu.
 
-设 $f(t)$ 是关于时间 $t$ 的函数，则傅里叶变换可以检测频率 $\omega$ 的周期在 $f(t)$ 出现的程度：
+Đặt $f(t)$ là hàm theo thời gian $t$. Khi đó biến đổi Fourier có thể đo mức độ xuất hiện của chu kỳ có tần số $\omega$ trong $f(t)$:
 
 $$
 F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)\mathrm{e}^{-\mathrm{i}{\omega}t}dt
 $$
 
-它的逆变换是
+Biến đổi ngược của nó là
 
 $$
 f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)\mathrm{e}^{\mathrm{i}{\omega}t}d\omega
 $$
 
-逆变换的形式与正变换非常类似，分母 $2\pi$ 恰好是指数函数的周期．
+Dạng của biến đổi ngược rất giống biến đổi thuận; mẫu số $2\pi$ đúng bằng chu kỳ của hàm mũ.
 
-傅里叶变换相当于将时域的函数与周期为 $2\pi$ 的复指数函数进行连续的内积．逆变换仍旧为一个内积．
+Biến đổi Fourier tương đương với việc lấy tích vô hướng liên tục giữa hàm trong miền thời gian và hàm mũ phức có chu kỳ $2\pi$. Biến đổi ngược vẫn là một tích vô hướng.
 
-傅里叶变换有相应的卷积定理，可以将时域的卷积转化为频域的乘积，也可以将频域的卷积转化为时域的乘积．
+Biến đổi Fourier có định lý chập tương ứng: nó có thể chuyển phép chập trong miền thời gian thành phép nhân trong miền tần số, và cũng có thể chuyển phép chập trong miền tần số thành phép nhân trong miền thời gian.
 
-## 离散傅里叶变换
+<span id="&#x79BB;&#x6563;&#x5085;&#x91CC;&#x53F6;&#x53D8;&#x6362;"></span>
+## Biến đổi Fourier rời rạc
 
-**离散傅里叶变换**（Discrete Fourier transform，DFT）是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT（discrete-time Fourier transform）的频域采样．
+**Biến đổi Fourier rời rạc** (Discrete Fourier transform, DFT) là dạng rời rạc của biến đổi Fourier trên cả miền thời gian lẫn miền tần số; nó biến đổi các mẫu trong miền thời gian của tín hiệu thành các mẫu trong miền tần số của DTFT (discrete-time Fourier transform).
 
-傅里叶变换是积分形式的连续的函数内积，离散傅里叶变换是求和形式的内积．
+Biến đổi Fourier là tích vô hướng của các hàm liên tục dưới dạng tích phân, còn biến đổi Fourier rời rạc là tích vô hướng dưới dạng tổng.
 
-设 $\{x_n\}_{n=0}^{N-1}$ 是某一满足有限性条件的序列，它的离散傅里叶变换（DFT）为：
+Đặt $\{x_n\}_{n=0}^{N-1}$ là một dãy thỏa mãn điều kiện hữu hạn nào đó. Biến đổi Fourier rời rạc (DFT) của nó là:
 
 $$
 X_k=\sum_{n=0}^{N-1}x_n\mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}kn}
 $$
 
-其中 $\mathrm{e}$ 是自然对数的底数，$i$ 是虚数单位．通常以符号 $\mathcal {F}$ 表示这一变换，即
+Trong đó $\mathrm{e}$ là cơ số của logarit tự nhiên, $i$ là đơn vị ảo. Thường dùng ký hiệu $\mathcal {F}$ để biểu diễn phép biến đổi này, tức là
 
 $$
 \hat{x}=\mathcal{F}x
 $$
 
-类似于积分形式，它的 **逆离散傅里叶变换**（IDFT）为：
+Tương tự dạng tích phân, **biến đổi Fourier rời rạc ngược** (IDFT) là:
 
 $$
 x_n=\frac{1}{N}\sum_{k=0}^{N-1}X_k\mathrm{e}^{\mathrm{i}\frac{2\pi}{N}kn}
 $$
 
-可以记为：
+Có thể viết là:
 
 $$
 x=\mathcal{F}^{-1}\hat{x}
 $$
 
-实际上，DFT 和 IDFT 变换式中和式前面的归一化系数并不重要．在上面的定义中，DFT 和 IDFT 前的系数分别为 $1$ 和 $\frac {1}{N}$．有时我们会将这两个系数都改 $\frac{1}{{\sqrt{N}}}$．
+Thực ra, hệ số chuẩn hóa đứng trước các tổng trong công thức DFT và IDFT không quá quan trọng. Trong định nghĩa trên, hệ số trước DFT và IDFT lần lượt là $1$ và $\frac {1}{N}$. Đôi khi ta sẽ đổi cả hai hệ số thành $\frac{1}{{\sqrt{N}}}$.
 
-离散傅里叶变换仍旧是时域到频域的变换．由于求和形式的特殊性，可以有其他的解释方法．
+Biến đổi Fourier rời rạc vẫn là phép biến đổi từ miền thời gian sang miền tần số. Do dạng tổng có tính chất đặc biệt, ta có thể giải thích nó theo những cách khác.
 
-如果把序列 $x_n$ 看作多项式 $f(x)$ 的 $x^n$ 项系数，则计算得到的 $X_k$ 恰好是多项式 $f(x)$ 代入单位根 $\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}}$ 的点值 $f(\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}})$．
+Nếu xem dãy $x_n$ là các hệ số của hạng $x^n$ trong đa thức $f(x)$, thì $X_k$ tính được đúng bằng giá trị của đa thức $f(x)$ tại căn đơn vị $\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}}$, tức $f(\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}})$.
 
-这便构成了卷积定理的另一种解释办法，即对多项式进行特殊的求值操作．离散傅里叶变换恰好是多项式在单位根处进行求值．
+Điều này tạo thành một cách giải thích khác cho định lý chập: thực hiện phép tính giá trị đặc biệt trên đa thức. Biến đổi Fourier rời rạc chính là tính giá trị của đa thức tại các căn đơn vị.
 
-例如计算：
+Ví dụ tính:
 
 $$
 \dbinom{n}{3}+\dbinom{n}{7}+\dbinom{n}{11}+\dbinom{n}{15}+\ldots
 $$
 
-定义函数 $f(x)$ 为：
+Định nghĩa hàm $f(x)$:
 
 $$
 f(x)={(1+x)}^n=\dbinom{n}{0}x^0+\dbinom{n}{1}x^1+\dbinom{n}{2}x^2+\dbinom{n}{3}x^3+\ldots
 $$
 
-然后可以发现，代入四次单位根 $f(\mathrm{i})$ 得到这样的序列：
+Khi thay căn bậc bốn của đơn vị $f(\mathrm{i})$, ta thu được dãy sau:
 
 $$
 f(\mathrm{i})={(1+\mathrm{i})}^n=\dbinom{n}{0}+\dbinom{n}{1}\mathrm{i}-\dbinom{n}{2}-\dbinom{n}{3}\mathrm{i}+\ldots
 $$
 
-于是下面的求和恰好可以把其余各项消掉：
+Do đó tổng dưới đây vừa đúng triệt tiêu các hạng còn lại:
 
 $$
 f(1)+\mathrm{i}f(\mathrm{i})-f(-1)-\mathrm{i}f(-\mathrm{i})=4\dbinom{n}{3}+4\dbinom{n}{7}+4\dbinom{n}{11}+4\dbinom{n}{15}+\ldots
 $$
 
-因此这道数学题的答案为：
+Vì vậy đáp án của bài toán này là:
 
 $$
 \dbinom{n}{3}+\dbinom{n}{7}+\dbinom{n}{11}+\dbinom{n}{15}+\ldots=\frac{2^n+\mathrm{i}(1+\mathrm{i})^n-\mathrm{i}(1-\mathrm{i})^n}{4}
 $$
 
-这道数学题在单位根处求值，恰好构成离散傅里叶变换．
+Bài toán này tính giá trị tại các căn đơn vị, vừa đúng tạo thành biến đổi Fourier rời rạc.
 
-### 矩阵公式
+<span id="&#x77E9;&#x9635;&#x516C;&#x5F0F;"></span>
+### Công thức ma trận
 
-由于离散傅立叶变换是一个 **线性** 算子，所以它可以用矩阵乘法来描述．在矩阵表示法中，离散傅立叶变换表示如下：
+Vì biến đổi Fourier rời rạc là một toán tử **tuyến tính**, nó có thể được mô tả bằng phép nhân ma trận. Trong biểu diễn ma trận, biến đổi Fourier rời rạc có dạng:
 
 $$
 \begin{bmatrix}
@@ -149,25 +153,27 @@ $$
 \end{bmatrix}
 $$
 
-其中 $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}}$．
+Trong đó $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}}$.
 
-## 快速傅里叶变换
+<span id="&#x5FEB;&#x901F;&#x5085;&#x91CC;&#x53F6;&#x53D8;&#x6362;"></span>
+## Biến đổi Fourier nhanh
 
-FFT 是一种高效实现 DFT 的算法，称为快速傅立叶变换（Fast Fourier Transform，FFT）．它对傅里叶变换的理论并没有新的发现，但是对于在计算机系统或者说数字系统中应用离散傅立叶变换，可以说是进了一大步．快速数论变换（NTT）是快速傅里叶变换（FFT）在数论基础上的实现．
+FFT là một thuật toán cài đặt DFT hiệu quả, gọi là biến đổi Fourier nhanh (Fast Fourier Transform, FFT). Nó không phát hiện thêm điều gì mới về lý thuyết biến đổi Fourier, nhưng đối với việc ứng dụng biến đổi Fourier rời rạc trong hệ thống máy tính, hay nói cách khác là hệ thống số, có thể nói đây là một bước tiến lớn. Biến đổi số học nhanh (NTT) là cách cài đặt biến đổi Fourier nhanh (FFT) trên cơ sở số học.
 
-在 1965 年，Cooley 和 Tukey 发表了快速傅里叶变换算法．事实上 FFT 早在这之前就被发现过了，但是在当时现代计算机并未问世，人们没有意识到 FFT 的重要性．一些调查者认为 FFT 是由 Runge 和 König 在 1924 年发现的．但事实上高斯早在 1805 年就发明了这个算法，但一直没有发表．
+Năm 1965, Cooley và Tukey công bố thuật toán biến đổi Fourier nhanh. Thực ra FFT đã được phát hiện trước đó, nhưng máy tính hiện đại khi ấy chưa ra đời, nên người ta chưa nhận ra tầm quan trọng của FFT. Một số nhà khảo cứu cho rằng FFT do Runge và König phát hiện năm 1924. Nhưng thực tế Gauss đã phát minh thuật toán này từ năm 1805, chỉ là không công bố.
 
-### 分治法实现
+<span id="&#x5206;&#x6CBB;&#x6CD5;&#x5B9E;&#x73B0;"></span>
+### Cài đặt bằng chia để trị
 
-FFT 算法的基本思想是分治．就 DFT 来说，它分治地来求当 $x=\omega_n^k$ 的时候 $f(x)$ 的值．基 - 2 FFT 的分治思想体现在将多项式分为奇次项和偶次项处理．
+Tư tưởng cơ bản của thuật toán FFT là chia để trị. Với DFT, nó dùng chia để trị để tính giá trị của $f(x)$ khi $x=\omega_n^k$. Tư tưởng chia để trị của FFT cơ số 2 nằm ở việc tách đa thức thành các hạng bậc chẵn và bậc lẻ.
 
-举个例子，对于一共 $8$ 项的多项式：
+Lấy ví dụ đa thức có tổng cộng $8$ hạng:
 
 $$
 f(x) = a_0 + a_1x + a_2x^2+a_3x^3+a_4x^4+a_5x^5+a_6x^6+a_7x^7
 $$
 
-按照次数的奇偶来分成两组，然后右边提出来一个 $x$：
+Tách thành hai nhóm theo tính chẵn lẻ của bậc, rồi rút $x$ ra ở phần bên phải:
 
 $$
 \begin{aligned}
@@ -176,7 +182,7 @@ f(x) &= (a_0+a_2x^2+a_4x^4+a_6x^6) + (a_1x+a_3x^3+a_5x^5+a_7x^7)\\
 \end{aligned}
 $$
 
-分别用奇偶次次项数建立新的函数：
+Lần lượt dùng các hệ số bậc chẵn và bậc lẻ để lập hàm mới:
 
 $$
 \begin{aligned}
@@ -185,13 +191,13 @@ H(x) &= a_1+a_3x+a_5x^2+a_7x^3
 \end{aligned}
 $$
 
-那么原来的 $f(x)$ 用新函数表示为：
+Khi đó $f(x)$ ban đầu có thể biểu diễn bằng các hàm mới:
 
 $$
 f(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
 $$
 
-利用偶数次单位根的性质 $\omega^i_n = -\omega^{i + n/2}_n$，和 $G\left(x^2\right)$ 和 $H\left(x^2\right)$ 是偶函数，我们知道在复平面上 $\omega^i_n$ 和 $\omega^{i+n/2}_n$ 的 $G(x^2)$ 的 $H(x^2)$ 对应的值相同．得到：
+Dùng tính chất của căn đơn vị bậc chẵn $\omega^i_n = -\omega^{i + n/2}_n$, và vì $G\left(x^2\right)$ cũng như $H\left(x^2\right)$ là các hàm chẵn, ta biết trên mặt phẳng phức, tại $\omega^i_n$ và $\omega^{i+n/2}_n$, các giá trị tương ứng của $G(x^2)$ và $H(x^2)$ là như nhau. Suy ra:
 
 $$
 \begin{aligned}
@@ -201,7 +207,7 @@ f(\omega_n^k) &= G((\omega_n^k)^2) + \omega_n^k  \times H((\omega_n^k)^2) \\
 \end{aligned}
 $$
 
-和：
+và:
 
 $$
 \begin{aligned}
@@ -211,36 +217,36 @@ f(\omega_n^{k+n/2}) &= G(\omega_n^{2k+n}) + \omega_n^{k+n/2}  \times H(\omega_n^
 \end{aligned}
 $$
 
-因此我们求出了 $G(\omega_{n/2}^k)$ 和 $H(\omega_{n/2}^k)$ 后，就可以同时求出 $f(\omega_n^k)$ 和 $f(\omega_n^{k+n/2})$．于是对 $G$ 和 $H$ 分别递归 DFT 即可．
+Do đó sau khi tính được $G(\omega_{n/2}^k)$ và $H(\omega_{n/2}^k)$, ta có thể đồng thời tính $f(\omega_n^k)$ và $f(\omega_n^{k+n/2})$. Vì vậy chỉ cần đệ quy DFT riêng cho $G$ và $H$.
 
-考虑到分治 DFT 能处理的多项式长度只能是 $2^m(m \in \mathbf{N}^ \ast )$，否则在分治的时候左右不一样长，右边就取不到系数了．所以要在第一次 DFT 之前就把序列向上补成长度为 $2^m(m \in \mathbf{N}^\ast )$（高次系数补 $0$）、最高项次数为 $2^m-1$ 的多项式．
+Vì DFT chia để trị chỉ xử lý được độ dài đa thức bằng $2^m(m \in \mathbf{N}^ \ast )$; nếu không, khi chia để trị hai bên sẽ không dài bằng nhau và phần bên phải sẽ không lấy được hệ số. Vì thế trước lần DFT đầu tiên cần bổ sung dãy lên độ dài $2^m(m \in \mathbf{N}^\ast )$ (bổ sung hệ số bậc cao bằng $0$), thành một đa thức có bậc cao nhất là $2^m-1$.
 
-在代入值的时候，因为要代入 $n$ 个不同值，所以我们代入 $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in \mathbf{N}^ \ast ))$ 一共 $2^m$ 个不同值．
+Khi thay giá trị, vì cần thay $n$ giá trị khác nhau, ta thay $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in \mathbf{N}^ \ast ))$, tổng cộng $2^m$ giá trị khác nhau.
 
-代码实现方面，STL 提供了复数的模板，当然也可以手动实现．两者区别在于，使用 STL 的 `complex` 可以调用 `exp` 函数求出 $\omega_n$．但事实上使用欧拉公式得到的虚数来求 $\omega_n$ 也是等价的．
+Về cài đặt, STL cung cấp mẫu số phức; tất nhiên cũng có thể tự cài đặt thủ công. Điểm khác nhau là khi dùng `complex` của STL, có thể gọi hàm `exp` để tính $\omega_n$. Nhưng thực ra dùng số phức thu được từ công thức Euler để tính $\omega_n$ cũng tương đương.
 
-以上就是 FFT 算法中 DFT 的介绍，它将一个多项式从系数表示法变成了点值表示法．
+Trên đây là phần giới thiệu DFT trong thuật toán FFT: nó chuyển một đa thức từ biểu diễn hệ số sang biểu diễn bằng giá trị tại điểm.
 
-值的注意的是，因为是单位复根，所以说我们需要令 $n$ 项式的高位补为零，使得 $n = 2 ^ k, k \in \mathbf{N}^ \ast$．
+Cần lưu ý là, vì ta dùng các căn phức của đơn vị, nên cần bổ sung các hạng bậc cao của đa thức $n$ hạng bằng không, sao cho $n = 2 ^ k, k \in \mathbf{N}^ \ast$.
 
-???+ note "递归版 FFT"
+???+ note "FFT đệ quy"
     ```cpp
     #include <cmath>
     #include <complex>
     
-    using Comp = std::complex<double>;  // STL complex
+    using Comp = std::complex<double>;  // complex của STL
     
     constexpr Comp I(0, 1);  // i
     constexpr int MAX_N = 1 << 20;
     
     Comp tmp[MAX_N];
     
-    // rev=1, DFT; rev=-1, IDFT
-    // 应用完本函数后需要注意归一化系数的处理
+    // rev=1: DFT; rev=-1: IDFT
+    // Sau khi gọi hàm này cần chú ý xử lý hệ số chuẩn hóa
     void DFT(Comp* f, int n, int rev) {
       if (n == 1) return;
       for (int i = 0; i < n; ++i) tmp[i] = f[i];
-      // 偶数放左边，奇数放右边
+      // Đưa chỉ số chẵn sang trái, chỉ số lẻ sang phải
       for (int i = 0; i < n; ++i) {
         if (i & 1)
           f[n / 2 + i / 2] = tmp[i];
@@ -248,11 +254,11 @@ $$
           f[i / 2] = tmp[i];
       }
       Comp *g = f, *h = f + n / 2;
-      // 递归 DFT
+      // DFT đệ quy
       DFT(g, n / 2, rev), DFT(h, n / 2, rev);
-      // cur 是当前单位复根，对于 k = 0 而言，它对应的单位复根 omega^0_n = 1．
-      // step 是两个单位复根的差，即满足 omega^k_n = step*omega^{k-1}*n，
-      // 定义等价于 exp(I*(-2*M_PI/n*rev))
+      // cur là căn phức đơn vị hiện tại; với k = 0, nó ứng với omega^0_n = 1.
+      // step là khoảng cách giữa hai căn phức đơn vị, thỏa mãn omega^k_n = step*omega^{k-1}*n,
+      // định nghĩa tương đương với exp(I*(-2*M_PI/n*rev))
       Comp cur(1, 0), step(cos(2 * M_PI / n), sin(-2 * M_PI * rev / n));
       for (int k = 0; k < n / 2;
            ++k) {  // F(omega^k_n) = G(omega^k*{n/2}) + omega^k*n\*H(omega^k*{n/2})
@@ -265,47 +271,49 @@ $$
     }
     ```
 
-时间复杂度 $O(n\log n)$．
+Độ phức tạp thời gian là $O(n\log n)$.
 
-### 倍增法实现
+<span id="&#x500D;&#x589E;&#x6CD5;&#x5B9E;&#x73B0;"></span>
+### Cài đặt bằng phương pháp nhân đôi
 
-这个算法还可以从「分治」的角度继续优化．对于基 - 2 FFT，我们每一次都会把整个多项式的奇数次项和偶数次项系数分开，一直分到只剩下一个系数．但是，这个递归的过程需要更多的内存．因此，我们可以先「模仿递归」把这些系数在原数组中「拆分」，然后再「倍增」地去合并这些算出来的值．
+Thuật toán này còn có thể tiếp tục tối ưu theo góc nhìn "chia để trị". Với FFT cơ số 2, mỗi lần ta tách hệ số của các hạng bậc lẻ và bậc chẵn trong toàn bộ đa thức, cho đến khi chỉ còn một hệ số. Tuy nhiên, quá trình đệ quy này cần nhiều bộ nhớ hơn. Do đó, ta có thể trước hết "mô phỏng đệ quy" để "tách" các hệ số này ngay trong mảng ban đầu, rồi sau đó "nhân đôi" để gộp các giá trị đã tính.
 
-对于「拆分」，可以使用位逆序置换实现．
+Việc "tách" có thể thực hiện bằng hoán vị đảo bit.
 
-对于「合并」，使用蝶形运算优化可以做到只用 $O(1)$ 的额外空间来完成．
+Việc "gộp" có thể dùng phép toán cánh bướm để tối ưu, chỉ cần thêm $O(1)$ bộ nhớ phụ.
 
-#### 位逆序置换
+<span id="&#x4F4D;&#x9006;&#x5E8F;&#x7F6E;&#x6362;"></span>
+#### Hoán vị đảo bit
 
-以 $8$ 项多项式为例，模拟拆分的过程：
+Lấy đa thức $8$ hạng làm ví dụ, mô phỏng quá trình tách:
 
--   初始序列为 $\{x_0, x_1, x_2, x_3, x_4, x_5, x_6, x_7\}$
--   一次二分之后 $\{x_0, x_2, x_4, x_6\},\{x_1, x_3, x_5, x_7 \}$
--   两次二分之后 $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_5\},\{x_3, x_7 \}$
--   三次二分之后 $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_5\}\{x_3\}\{x_7 \}$
+-   Dãy ban đầu là $\{x_0, x_1, x_2, x_3, x_4, x_5, x_6, x_7\}$
+-   Sau một lần chia đôi: $\{x_0, x_2, x_4, x_6\},\{x_1, x_3, x_5, x_7 \}$
+-   Sau hai lần chia đôi: $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_5\},\{x_3, x_7 \}$
+-   Sau ba lần chia đôi: $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_5\}\{x_3\}\{x_7 \}$
 
-规律：其实就是原来的那个序列，每个数用二进制表示，然后把二进制翻转对称一下，就是最终那个位置的下标．比如 $x_1$ 是 001，翻转是 100，也就是 4，而且最后那个位置确实是 4．我们称这个变换为位逆序置换（bit-reversal permutation），证明留给读者自证．
+Quy luật: thực ra đó là dãy ban đầu, mỗi số được biểu diễn nhị phân, rồi đảo ngược các bit nhị phân, ta được chỉ số của vị trí cuối cùng. Ví dụ $x_1$ là 001, đảo ngược thành 100, tức là 4, và vị trí cuối cùng thật sự là 4. Ta gọi phép biến đổi này là hoán vị đảo bit (bit-reversal permutation); phần chứng minh dành cho bạn đọc tự kiểm chứng.
 
-根据它的定义，我们可以在 $O(n)$ 的时间内求出每个数变换后的结果：
+Theo định nghĩa, ta có thể tính kết quả biến đổi của mỗi số trong thời gian $O(n)$:
 
-???+ note "位逆序置换实现（$O(n)$）"
+???+ note "Cài đặt hoán vị đảo bit ($O(n)$)"
     ```cpp
     /*
-     * 进行 FFT 和 IFFT 前的反置变换
-     * 位置 i 和 i 的二进制反转后的位置互换
-     * len 必须为 2 的幂
+     * Biến đổi đảo vị trí trước khi thực hiện FFT và IFFT
+     * Hoán đổi vị trí i với vị trí thu được sau khi đảo bit nhị phân của i
+     * len phải là lũy thừa của 2
      */
     void change(Complex y[], int len) {
-      // 一开始 i 是 0...01，而 j 是 10...0，在二进制下相反对称．
-      // 之后 i 逐渐加一，而 j 依然维持着和 i 相反对称，一直到 i = 1...11．
+      // Ban đầu i là 0...01, còn j là 10...0; chúng đối xứng nhau trong nhị phân.
+      // Sau đó i tăng dần một đơn vị, còn j vẫn duy trì đối xứng ngược với i cho đến i = 1...11.
       for (int i = 1, j = len / 2, k; i < len - 1; i++) {
-        // 交换互为小标反转的元素，i < j 保证交换一次
+        // Hoán đổi hai phần tử có chỉ số đảo bit của nhau; i < j đảm bảo chỉ đổi một lần
         if (i < j) swap(y[i], y[j]);
-        // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的．
-        // 这里 k 代表了 0 出现的最高位．j 先减去高位的全为 1 的数字，
-        // 直到遇到了 0，之后再加上即可．
-        // 考虑 j 中比特位的翻转次数，最高位将会翻转 n 次，
-        // 第二高位将会翻转 n/2 次，以此类推，所以时间复杂度为：
+        // i tăng bình thường thêm 1, j tăng theo kiểu đảo bit, luôn giữ i và j là đảo bit của nhau.
+        // Ở đây k biểu thị bit cao nhất nơi 0 xuất hiện. j trước hết trừ đi số có các bit cao đều là 1,
+        // cho đến khi gặp 0, sau đó cộng lại là được.
+        // Xét số lần lật bit trong j: bit cao nhất sẽ lật n lần,
+        // bit cao thứ hai sẽ lật n/2 lần, và cứ tiếp tục như vậy, nên độ phức tạp thời gian là:
         // T(n) = n + n/2 + n/4 + ... = O(n)
         k = len / 2;
         while (j >= k) {
@@ -317,36 +325,36 @@ $$
     }
     ```
 
-位逆序置换也可以 $O(n)$ 从小到大递推实现，设 $len=2^k$，其中 $k$ 表示二进制数的长度，设 $R(x)$ 表示长度为 $k$ 的二进制数 $x$ 翻转后的数（高位补 $0$）．我们要求的是 $R(0),R(1),\cdots,R(n-1)$．
+Hoán vị đảo bit cũng có thể được suy dẫn từ nhỏ đến lớn trong $O(n)$. Đặt $len=2^k$, trong đó $k$ là độ dài của số nhị phân; đặt $R(x)$ là số thu được sau khi đảo ngược số nhị phân $x$ có độ dài $k$ (bổ sung $0$ ở bit cao). Giá trị cần tính là $R(0),R(1),\cdots,R(n-1)$.
 
-首先 $R(0)=0$．
+Trước hết $R(0)=0$.
 
-我们从小到大求 $R(x)$．因此在求 $R(x)$ 时，$R\left(\left\lfloor \dfrac{x}{2} \right\rfloor\right)$ 的值是已知的．因此我们把 $x$ 右移一位（除以 $2$），然后翻转，再右移一位，就得到了 $x$  **除了（二进制）个位** 之外其它位的翻转结果．
+Ta tính $R(x)$ từ nhỏ đến lớn. Vì vậy khi tính $R(x)$, giá trị $R\left(\left\lfloor \dfrac{x}{2} \right\rfloor\right)$ đã biết. Do đó ta dịch phải $x$ một bit (chia cho $2$), rồi đảo bit, sau đó dịch phải một bit, sẽ thu được kết quả đảo bit của $x$ **trừ bit hàng đơn vị (trong nhị phân)**.
 
-考虑个位的翻转结果：如果个位是 $0$，翻转之后最高位就是 $0$．如果个位是 $1$，则翻转后最高位是 $1$，因此还要加上 $\dfrac{len}{2}=2^{k-1}$．综上
+Xét kết quả đảo của bit hàng đơn vị: nếu bit hàng đơn vị là $0$, sau khi đảo, bit cao nhất là $0$. Nếu bit hàng đơn vị là $1$, sau khi đảo, bit cao nhất là $1$, nên còn phải cộng $\dfrac{len}{2}=2^{k-1}$. Tóm lại
 
 $$
 R(x)=\left\lfloor \frac{R\left(\left\lfloor \frac{x}{2} \right\rfloor\right)}{2} \right\rfloor + (x\bmod 2)\times \frac{len}{2}
 $$
 
-举个例子：设 $k=5$，$len=(100000)_2$．为了翻转 $(11001)_2$：
+Ví dụ: đặt $k=5$, $len=(100000)_2$. Để đảo $(11001)_2$:
 
-1.  考虑 $(1100)_2$，我们知道 $R((1100)_2)=R((01100)_2)=(00110)_2$，再右移一位就得到了 $(00011)_2$．
-2.  考虑个位，如果是 $1$，它就要翻转到数的最高位，即翻转数加上 $(10000)_2=2^{k-1}$，如果是 $0$ 则不用更改．
+1.  Xét $(1100)_2$, ta biết $R((1100)_2)=R((01100)_2)=(00110)_2$, dịch phải một bit sẽ được $(00011)_2$.
+2.  Xét bit hàng đơn vị: nếu là $1$, nó sẽ được đảo lên bit cao nhất của số, tức là cộng thêm $(10000)_2=2^{k-1}$ vào số đã đảo; nếu là $0$ thì không cần thay đổi.
 
-???+ note "位逆序置换实现（$O(n)$）"
+???+ note "Cài đặt hoán vị đảo bit ($O(n)$)"
     ```cpp
-    // 同样需要保证 len 是 2 的幂
-    // 记 rev[i] 为 i 翻转后的值
+    // Cũng cần đảm bảo len là lũy thừa của 2
+    // Gọi rev[i] là giá trị sau khi đảo bit của i
     void change(Complex y[], int len) {
       for (int i = 0; i < len; ++i) {
         rev[i] = rev[i >> 1] >> 1;
-        if (i & 1) {  // 如果最后一位是 1，则翻转成 len/2
+        if (i & 1) {  // Nếu bit cuối là 1, đảo thành len/2
           rev[i] |= len >> 1;
         }
       }
       for (int i = 0; i < len; ++i) {
-        if (i < rev[i]) {  // 保证每对数只翻转一次
+        if (i < rev[i]) {  // Đảm bảo mỗi cặp số chỉ đảo một lần
           swap(y[i], y[rev[i]]);
         }
       }
@@ -354,9 +362,10 @@ $$
     }
     ```
 
-#### 蝶形运算优化
+<span id="&#x8776;&#x5F62;&#x8FD0;&#x7B97;&#x4F18;&#x5316;"></span>
+#### Tối ưu bằng phép toán cánh bướm
 
-已知 $G(\omega_{n/2}^k)$ 和 $H(\omega_{n/2}^k)$ 后，需要使用下面两个式子求出 $f(\omega_n^k)$ 和 $f(\omega_n^{k+n/2})$：
+Sau khi biết $G(\omega_{n/2}^k)$ và $H(\omega_{n/2}^k)$, cần dùng hai công thức sau để tính $f(\omega_n^k)$ và $f(\omega_n^{k+n/2})$:
 
 $$
 \begin{aligned}
@@ -365,27 +374,29 @@ $$
 \end{aligned}
 $$
 
-使用位逆序置换后，对于给定的 $n, k$：
+Sau khi dùng hoán vị đảo bit, với $n, k$ cho trước:
 
--   $G(\omega_{n/2}^k)$ 的值存储在数组下标为 $k$ 的位置，$H(\omega_{n/2}^k)$ 的值存储在数组下标为 $k + \dfrac{n}{2}$ 的位置．
--   $f(\omega_n^k)$ 的值将存储在数组下标为 $k$ 的位置，$f(\omega_n^{k+n/2})$ 的值将存储在数组下标为 $k + \dfrac{n}{2}$ 的位置．
+-   Giá trị $G(\omega_{n/2}^k)$ được lưu ở vị trí có chỉ số mảng $k$, giá trị $H(\omega_{n/2}^k)$ được lưu ở vị trí có chỉ số mảng $k + \dfrac{n}{2}$.
+-   Giá trị $f(\omega_n^k)$ sẽ được lưu ở vị trí có chỉ số mảng $k$, giá trị $f(\omega_n^{k+n/2})$ sẽ được lưu ở vị trí có chỉ số mảng $k + \dfrac{n}{2}$.
 
-因此可以直接在数组下标为 $k$ 和 $k + \frac{n}{2}$ 的位置进行覆写，而不用开额外的数组保存值．此方法即称为 **蝶形运算**，或更准确的，基 - 2 蝶形运算．
+Do đó có thể ghi đè trực tiếp tại các vị trí có chỉ số mảng $k$ và $k + \frac{n}{2}$ mà không cần mở mảng phụ để lưu giá trị. Phương pháp này được gọi là **phép toán cánh bướm**, hay chính xác hơn là phép toán cánh bướm cơ số 2.
 
-再详细说明一下如何借助蝶形运算完成所有段长度为 $\frac{n}{2}$ 的合并操作：
+Giải thích chi tiết hơn cách dùng phép toán cánh bướm để hoàn thành tất cả các phép gộp có độ dài đoạn $\frac{n}{2}$:
 
-1.  令段长度为 $s = \frac{n}{2}$；
-2.  同时枚举序列 $\{G(\omega_{n/2}^k)\}$ 的左端点 $l_g = 0, 2s, 4s, \cdots, N-2s$ 和序列 $\{H(\omega_{n/2}^k)\}$ 的左端点 $l_h = s, 3s, 5s, \cdots, N-s$；
-3.  合并两个段时，枚举 $k = 0, 1, 2, \cdots, s-1$，此时 $G(\omega_{n/2}^k)$ 存储在数组下标为 $l_g + k$ 的位置，$H(\omega_{n/2}^k)$ 存储在数组下标为 $l_h + k$ 的位置；
-4.  使用蝶形运算求出 $f(\omega_n^k)$ 和 $f(\omega_n^{k+n/2})$，然后直接在原位置覆写．
+1.  Đặt độ dài đoạn là $s = \frac{n}{2}$;
+2.  Đồng thời duyệt đầu trái $l_g = 0, 2s, 4s, \cdots, N-2s$ của dãy $\{G(\omega_{n/2}^k)\}$ và đầu trái $l_h = s, 3s, 5s, \cdots, N-s$ của dãy $\{H(\omega_{n/2}^k)\}$;
+3.  Khi gộp hai đoạn, duyệt $k = 0, 1, 2, \cdots, s-1$; lúc này $G(\omega_{n/2}^k)$ được lưu ở vị trí có chỉ số mảng $l_g + k$, và $H(\omega_{n/2}^k)$ được lưu ở vị trí có chỉ số mảng $l_h + k$;
+4.  Dùng phép toán cánh bướm để tính $f(\omega_n^k)$ và $f(\omega_n^{k+n/2})$, rồi ghi đè trực tiếp tại vị trí ban đầu.
 
-## 快速傅里叶逆变换
+<span id="&#x5FEB;&#x901F;&#x5085;&#x91CC;&#x53F6;&#x9006;&#x53D8;&#x6362;"></span>
+## Biến đổi Fourier ngược nhanh
 
-傅里叶逆变换可以用傅里叶变换表示．对此我们有两种理解方式．
+Biến đổi Fourier ngược có thể biểu diễn bằng biến đổi Fourier. Ta có hai cách hiểu điều này.
 
-### 线性代数角度
+<span id="&#x7EBF;&#x6027;&#x4EE3;&#x6570;&#x89D2;&#x5EA6;"></span>
+### Theo góc nhìn đại số tuyến tính
 
-IDFT（傅里叶反变换）的作用，是把目标多项式的点值形式转换成系数形式．而 DFT 本身是个线性变换，可以理解为将目标多项式当作向量，左乘一个矩阵得到变换后的向量，以模拟把单位复根代入多项式的过程：
+Tác dụng của IDFT (biến đổi Fourier ngược) là chuyển dạng giá trị tại điểm của đa thức mục tiêu về dạng hệ số. Bản thân DFT là một phép biến đổi tuyến tính; có thể hiểu là xem đa thức mục tiêu như một vector, nhân bên trái với một ma trận để thu được vector sau biến đổi, qua đó mô phỏng quá trình thay các căn phức của đơn vị vào đa thức:
 
 $$
 \begin{bmatrix}y_0 \\ y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_{n-1} \end{bmatrix}
@@ -399,41 +410,43 @@ $$
 \begin{bmatrix} a_0 \\ a_1 \\ a_2 \\ a_3 \\ \vdots \\ a_{n-1} \end{bmatrix}
 $$
 
-现在我们已经得到最左边的结果了，中间的 $x$ 值在目标多项式的点值表示中也是一一对应的，所以，根据矩阵的基础知识，我们只要在式子两边左乘中间那个大矩阵的逆矩阵就行了．
+Bây giờ ta đã có kết quả ở vế trái. Các giá trị $x$ trong ma trận giữa cũng tương ứng một-một với biểu diễn bằng giá trị tại điểm của đa thức mục tiêu. Vì vậy, theo kiến thức cơ bản về ma trận, chỉ cần nhân bên trái cả hai vế với ma trận nghịch đảo của ma trận lớn ở giữa.
 
-由于这个矩阵的元素非常特殊，它的逆矩阵也有特殊的性质，就是每一项 **取倒数**，再 **除以变换的长度 $n$**，就能得到它的逆矩阵．
+Do các phần tử của ma trận này rất đặc biệt, ma trận nghịch đảo của nó cũng có tính chất đặc biệt: chỉ cần **lấy nghịch đảo** từng phần tử, rồi **chia cho độ dài biến đổi $n$**, là thu được ma trận nghịch đảo.
 
-注意：傅里叶变换的长度，并不是多项式的长度，变换的长度应比乘积多项式的长度长．待相乘的多项式不够长，需要在高次项处补 $0$．
+Lưu ý: độ dài của biến đổi Fourier không phải là độ dài của đa thức; độ dài biến đổi phải lớn hơn độ dài của đa thức tích. Các đa thức cần nhân nếu chưa đủ dài thì cần bổ sung $0$ ở các hạng bậc cao.
 
-为了使计算的结果为原来的倒数，根据欧拉公式，可以得到
+Để kết quả tính được là nghịch đảo của ban đầu, theo công thức Euler, ta có
 
 $$
 \frac{1}{\omega_k}=\omega_k^{-1}=\mathrm{e}^{-\frac{2\pi \mathrm{i}}{k}}=\cos\left(\frac{2\pi}{k}\right)+\mathrm{i} \sin\left(-\frac{2\pi}{k}\right)
 $$
 
-因此我们可以尝试着把单位根 $\omega_k$ 取成 $\mathrm{e}^{-\frac{2\pi \mathrm{i}}{k}}$，这样我们的计算结果就会变成原来的倒数，之后唯一多的操作就只有再 **除以它的长度 $n$**，而其它的操作过程与 DFT 是完全相同的．我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$，然后把它乘到 $\pi$ 上．传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT．
+Do đó ta có thể thử chọn căn đơn vị $\omega_k$ là $\mathrm{e}^{-\frac{2\pi \mathrm{i}}{k}}$, như vậy kết quả tính được sẽ thành nghịch đảo của ban đầu; sau đó thao tác duy nhất thêm vào là **chia cho độ dài $n$** của nó, còn các thao tác khác hoàn toàn giống DFT. Ta có thể định nghĩa một hàm, thêm một tham số $1$ hoặc $-1$ trong hàm, rồi nhân nó với $\pi$. Truyền vào $1$ là DFT, truyền vào $-1$ là IDFT.
 
-### 单位复根周期性
+<span id="&#x5355;&#x4F4D;&#x590D;&#x6839;&#x5468;&#x671F;&#x6027;"></span>
+### Tính chu kỳ của căn phức đơn vị
 
-利用单位复根的周期性同样可以理解 IDFT 与 DFT 之间的关系．
+Dùng tính chu kỳ của căn phức đơn vị cũng có thể hiểu quan hệ giữa IDFT và DFT.
 
-考虑原本的多项式是 $f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}=\sum_{i=0}^{n-1}a_ix^i$．而 IDFT 就是把你的点值表示还原为系数表示．
+Xét đa thức ban đầu $f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}=\sum_{i=0}^{n-1}a_ix^i$. IDFT chính là khôi phục biểu diễn bằng giá trị tại điểm về biểu diễn hệ số.
 
-考虑 **构造法**．我们已知 $y_i=f\left( \omega_n^i \right),i\in\{0,1,\cdots,n-1\}$，求 $\{a_0,a_1,\cdots,a_{n-1}\}$．构造多项式如下
+Xét **phương pháp xây dựng**. Đã biết $y_i=f\left( \omega_n^i \right),i\in\{0,1,\cdots,n-1\}$, cần tìm $\{a_0,a_1,\cdots,a_{n-1}\}$. Lập đa thức sau:
 
 $$
 A(x)=\sum_{i=0}^{n-1}y_ix^i
 $$
 
-相当于把 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 当做多项式 $A$ 的系数表示法．
+Tương đương với việc xem $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ là biểu diễn hệ số của đa thức $A$.
 
-这时我们有两种推导方式，这对应了两种实现方法．
+Lúc này ta có hai cách suy diễn, tương ứng với hai cách cài đặt.
 
-#### 方法一
+<span id="&#x65B9;&#x6CD5;&#x4E00;"></span>
+#### Cách 1
 
-设 $b_i=\omega_n^{-i}$，则多项式 $A$ 在 $x=b_0,b_1,\cdots,b_{n-1}$ 处的点值表示法为 $\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}$．
+Đặt $b_i=\omega_n^{-i}$, khi đó biểu diễn bằng giá trị tại các điểm $x=b_0,b_1,\cdots,b_{n-1}$ của đa thức $A$ là $\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}$.
 
-对 $A(x)$ 的定义式做一下变换，可以将 $A(b_k)$ 表示为
+Biến đổi một chút công thức định nghĩa của $A(x)$, có thể biểu diễn $A(b_k)$ thành
 
 $$
 \begin{aligned}
@@ -442,11 +455,11 @@ A(b_k)&=\sum_{i=0}^{n-1}f(\omega_n^i)\omega_n^{-ik}=\sum_{i=0}^{n-1}\omega_n^{-i
 \end{aligned}
 $$
 
-记 $S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$．
+Ký hiệu $S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$.
 
-当 $a=0 \pmod{n}$ 时，$S\left(\omega_n^a\right)=n$．
+Khi $a=0 \pmod{n}$, $S\left(\omega_n^a\right)=n$.
 
-当 $a\neq 0 \pmod{n}$ 时，我们错位相减
+Khi $a\neq 0 \pmod{n}$, dùng phép trừ lệch chỉ số:
 
 $$
 \begin{aligned}
@@ -456,7 +469,7 @@ S\left(\omega_n^a\right)&=\frac{\left(\omega_n^a\right)^n-\left(\omega_n^a\right
 \end{aligned}
 $$
 
-也就是说
+Nói cách khác
 
 $$
 S\left(\omega_n^a\right)=
@@ -466,13 +479,13 @@ n,&a=0\\
 \end{cases}
 $$
 
-那么代回原式
+Thế lại vào công thức ban đầu:
 
 $$
 A(b_k)=\sum_{j=0}^{n-1}a_jS\left(\omega_n^{j-k}\right)=a_k\cdot n
 $$
 
-也就是说给定点 $b_i=\omega_n^{-i}$，则 $A$ 的点值表示法为
+Nói cách khác, với các điểm $b_i=\omega_n^{-i}$, biểu diễn bằng giá trị tại điểm của $A$ là
 
 $$
 \begin{aligned}
@@ -481,56 +494,58 @@ $$
 \end{aligned}
 $$
 
-综上所述，我们取单位根为其倒数，对 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 跑一遍 FFT，然后除以 $n$ 即可得到 $f(x)$ 的系数表示．
+Tóm lại, ta lấy căn đơn vị thành nghịch đảo của nó, chạy FFT một lần trên $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$, rồi chia cho $n$ là thu được biểu diễn hệ số của $f(x)$.
 
-#### 方法二
+<span id="&#x65B9;&#x6CD5;&#x4E8C;"></span>
+#### Cách 2
 
-我们直接将 $\omega_n^i$ 代入 $A(x)$．
+Ta trực tiếp thế $\omega_n^i$ vào $A(x)$.
 
-推导的过程与方法一大同小异，最终我们得到 $A(\omega_n^k) = \sum_{j=0}^{n-1}a_jS\left(\omega_n^{j+k}\right)$．
+Quá trình suy diễn gần giống cách 1; cuối cùng ta thu được $A(\omega_n^k) = \sum_{j=0}^{n-1}a_jS\left(\omega_n^{j+k}\right)$.
 
-当且仅当 $j+k=0 \pmod{n}$ 时有 $S\left(\omega_n^{j+k}\right) = n$，否则为 $0$．因此 $A(\omega_n^k) = a_{n-k}\cdot n$．
+Khi và chỉ khi $j+k=0 \pmod{n}$ thì $S\left(\omega_n^{j+k}\right) = n$, ngược lại bằng $0$. Do đó $A(\omega_n^k) = a_{n-k}\cdot n$.
 
-这意味着我们将 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 做 DFT 变换后除以 $n$，再反转后 $n - 1$ 个元素，同样可以还原 $f(x)$ 的系数表示．
+Điều này có nghĩa là sau khi thực hiện DFT trên $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$, chia cho $n$, rồi đảo ngược $n - 1$ phần tử phía sau, ta cũng khôi phục được biểu diễn hệ số của $f(x)$.
 
-### 代码实现
+<span id="&#x4EE3;&#x7801;&#x5B9E;&#x73B0;"></span>
+### Cài đặt mã nguồn
 
-所以我们 FFT 函数可以集 DFT 和 IDFT 于一身．代码实现如下：
+Vì vậy hàm FFT của ta có thể kiêm nhiệm cả DFT lẫn IDFT. Cài đặt như sau:
 
-???+ note "非递归版 FFT（对应方法一）"
+???+ note "FFT không đệ quy (tương ứng cách 1)"
     ```cpp
     /*
-     * 做 FFT
-     * len 必须是 2^k 形式
-     * on == 1 时是 DFT，on == -1 时是 IDFT
+     * Thực hiện FFT
+     * len phải có dạng 2^k
+     * on == 1 là DFT, on == -1 là IDFT
      */
     void fft(Complex y[], int len, int on) {
-      // 位逆序置换
+      // Hoán vị đảo bit
       change(y, len);
-      // 模拟合并过程，一开始，从长度为一合并到长度为二，一直合并到长度为 len．
+      // Mô phỏng quá trình gộp: ban đầu gộp từ độ dài 1 lên độ dài 2, tiếp tục đến độ dài len.
       for (int h = 2; h <= len; h <<= 1) {
-        // wn：当前单位复根的间隔：w^1_h
+        // wn: khoảng cách giữa các căn đơn vị hiện tại, w^1_h
         Complex wn(cos(2 * PI / h), sin(on * 2 * PI / h));
-        // 合并，共 len / h 次．
+        // Gộp, tổng cộng len / h lần.
         for (int j = 0; j < len; j += h) {
-          // 计算当前单位复根，一开始是 1 = w^0_n，之后是以 wn 为间隔递增： w^1_n
+          // Tính căn đơn vị hiện tại, ban đầu là 1 = w^0_n, sau đó tăng theo khoảng cách wn: w^1_n
           // ...
           Complex w(1, 0);
           for (int k = j; k < j + h / 2; k++) {
-            // 左侧部分和右侧是子问题的解
+            // Phần bên trái và bên phải là lời giải của các bài toán con
             Complex u = y[k];
             Complex t = w * y[k + h / 2];
-            // 这就是把两部分分治的结果加起来
+            // Đây là việc cộng kết quả chia để trị của hai phần lại với nhau
             y[k] = u + t;
             y[k + h / 2] = u - t;
-            // 后半个 「step」 中的ω一定和 「前半个」 中的成相反数
-            // 「红圈」上的点转一整圈「转回来」，转半圈正好转成相反数
-            // 一个数相反数的平方与这个数自身的平方相等
+            // omega trong nửa "step" sau nhất định đối dấu với omega trong "nửa trước"
+            // Điểm trên "vòng tròn đỏ" quay tròn một vòng sẽ "quay về", quay nửa vòng thì thành số đối
+            // Bình phương của số đối bằng bình phương của chính số đó
             w = w * wn;
           }
         }
       }
-      // 如果是 IDFT，它的逆矩阵的每一个元素不只是原元素取倒数，还要除以长度 len．
+      // Nếu là IDFT, mỗi phần tử của ma trận nghịch đảo không chỉ là nghịch đảo của phần tử gốc, mà còn phải chia cho độ dài len.
       if (on == -1) {
         for (int i = 0; i < len; i++) {
           y[i].x /= len;
@@ -540,27 +555,27 @@ $$
     }
     ```
 
-???+ note "非递归版 FFT（对应方法二）"
+???+ note "FFT không đệ quy (tương ứng cách 2)"
     ```cpp
     /*
-     * 做 FFT
-     * len 必须是 2^k 形式
-     * on == 1 时是 DFT，on == -1 时是 IDFT
+     * Thực hiện FFT
+     * len phải có dạng 2^k
+     * on == 1 là DFT, on == -1 là IDFT
      */
     void fft(Complex y[], int len, int on) {
       change(y, len);
-      for (int h = 2; h <= len; h <<= 1) {             // 模拟合并过程
-        Complex wn(cos(2 * PI / h), sin(2 * PI / h));  // 计算当前单位复根
+      for (int h = 2; h <= len; h <<= 1) {             // Mô phỏng quá trình gộp
+        Complex wn(cos(2 * PI / h), sin(2 * PI / h));  // Tính căn đơn vị hiện tại
         for (int j = 0; j < len; j += h) {
-          Complex w(1, 0);  // 计算当前单位复根
+          Complex w(1, 0);  // Tính căn đơn vị hiện tại
           for (int k = j; k < j + h / 2; k++) {
             Complex u = y[k];
             Complex t = w * y[k + h / 2];
-            y[k] = u + t;  // 这就是把两部分分治的结果加起来
+            y[k] = u + t;  // Đây là việc cộng kết quả chia để trị của hai phần lại với nhau
             y[k + h / 2] = u - t;
-            // 后半个 「step」 中的ω一定和 「前半个」 中的成相反数
-            // 「红圈」上的点转一整圈「转回来」，转半圈正好转成相反数
-            // 一个数相反数的平方与这个数自身的平方相等
+            // omega trong nửa "step" sau nhất định đối dấu với omega trong "nửa trước"
+            // Điểm trên "vòng tròn đỏ" quay tròn một vòng sẽ "quay về", quay nửa vòng thì thành số đối
+            // Bình phương của số đối bằng bình phương của chính số đó
             w = w * wn;
           }
         }
@@ -575,11 +590,12 @@ $$
     }
     ```
 
-??? note "FFT 模板（[HDU 1402 - A * B Problem Plus](http://acm.hdu.edu.cn/showproblem.php?pid=1402)）"
+??? note "Mẫu FFT ([HDU 1402 - A * B Problem Plus](http://acm.hdu.edu.cn/showproblem.php?pid=1402))"
     ```cpp
     --8<-- "docs/math/code/poly/fft/fft_3.cpp"
     ```
 
-## 参考文献
+<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+## Tài liệu tham khảo
 
-1.  [桃酱的算法笔记](https://zhuanlan.zhihu.com/p/41867199).
+1.  [Ghi chú thuật toán của Taojiang](https://zhuanlan.zhihu.com/p/41867199).

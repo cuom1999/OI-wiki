@@ -269,13 +269,13 @@ nav:
       - Cây Stern–Brocot và dãy Farey: math/number-theory/stern-brocot.md
       - Trường bậc hai: math/number-theory/quadratic.md
       - Phương trình Pell: math/number-theory/pell-equation.md
-    - 多项式与生成函数:
-      - 多项式与生成函数简介: math/poly/intro.md
-      - 代数基本定理: math/poly/fundamental.md
-      - 快速傅里叶变换: math/poly/fft.md
-      - 快速数论变换: math/poly/ntt.md
-      - 快速沃尔什变换: math/poly/fwt.md
-      - Chirp Z 变换: math/poly/czt.md
+    - Đa thức và hàm sinh:
+      - Giới thiệu đa thức và hàm sinh: math/poly/intro.md
+      - Định lý cơ bản của đại số: math/poly/fundamental.md
+      - Biến đổi Fourier nhanh: math/poly/fft.md
+      - Biến đổi số học nhanh: math/poly/ntt.md
+      - Biến đổi Walsh nhanh: math/poly/fwt.md
+      - Biến đổi Chirp Z: math/poly/czt.md
       - 多项式牛顿迭代: math/poly/newton.md
       - 多项式多点求值|快速插值: math/poly/multipoint-eval-interpolation.md
       - 多项式初等函数: math/poly/elementary-func.md

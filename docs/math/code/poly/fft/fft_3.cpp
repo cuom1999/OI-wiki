@@ -26,9 +26,9 @@ struct Complex {
 };
 
 /*
- * 进行 FFT 和 IFFT 前的反置变换
- * 位置 i 和 i 的二进制反转后的位置互换
- *len 必须为 2 的幂
+ * Biến đổi đảo vị trí trước khi thực hiện FFT và IFFT
+ * Hoán đổi vị trí i với vị trí thu được sau khi đảo bit nhị phân của i
+ * len phải là lũy thừa của 2
  */
 void change(Complex y[], int len) {
   int i, j, k;
@@ -36,8 +36,8 @@ void change(Complex y[], int len) {
   for (int i = 1, j = len / 2; i < len - 1; i++) {
     if (i < j) std::swap(y[i], y[j]);
 
-    // 交换互为小标反转的元素，i<j 保证交换一次
-    // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的
+    // Hoán đổi hai phần tử có chỉ số đảo bit của nhau; i < j đảm bảo chỉ đổi một lần
+    // i tăng bình thường thêm 1, j tăng theo kiểu đảo bit, luôn giữ i và j là đảo bit của nhau
     k = len / 2;
 
     while (j >= k) {
@@ -50,9 +50,9 @@ void change(Complex y[], int len) {
 }
 
 /*
- * 做 FFT
- *len 必须是 2^k 形式
- *on == 1 时是 DFT，on == -1 时是 IDFT
+ * Thực hiện FFT
+ * len phải có dạng 2^k
+ * on == 1 là DFT, on == -1 là IDFT
  */
 void fft(Complex y[], int len, int on) {
   change(y, len);

@@ -1,28 +1,36 @@
 author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494, Tiphereth-A, XuYueming520
 
-## 简介
+<span id="&#x7B80;&#x4ECB;"></span>
 
-**数论变换**（number-theoretic transform, NTT）是离散傅里叶变换（DFT）在数论基础上的实现；**快速数论变换**（fast number-theoretic transform, FNTT）是 [快速傅里叶变换](./fft.md)（FFT）在数论基础上的实现．
+## Giới thiệu
 
-**数论变换** 是一种计算卷积（convolution）的快速算法．最常用算法就包括了前文提到的快速傅里叶变换．然而快速傅立叶变换具有一些实现上的缺点，举例来说，资料向量必须乘上复数系数的矩阵加以处理，而且每个复数系数的实部和虚部是一个正弦及余弦函数，因此大部分的系数都是浮点数，也就是说，必须做复数而且是浮点数的运算，因此计算量会比较大，而且浮点数运算产生的误差会比较大．
+**Biến đổi số học** (number-theoretic transform, NTT) là cách hiện thực biến đổi Fourier rời rạc (DFT) trên nền tảng số học; **biến đổi số học nhanh** (fast number-theoretic transform, FNTT) là cách hiện thực [biến đổi Fourier nhanh](./fft.md) (FFT) trên nền tảng số học.
 
-NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的限制，数也比较大．目前最常见的模数是 998244353．
+**Biến đổi số học** là một thuật toán nhanh để tính tích chập (convolution). Một trong những thuật toán thường dùng nhất chính là biến đổi Fourier nhanh đã nhắc ở phần trước. Tuy nhiên, FFT có một số nhược điểm khi hiện thực: vector dữ liệu phải được xử lí bằng cách nhân với ma trận hệ số phức, mà phần thực và phần ảo của mỗi hệ số phức là các giá trị của hàm sin và cos, nên phần lớn hệ số là số thực dấu phẩy động. Nói cách khác, ta phải thực hiện phép toán trên số phức và số dấu phẩy động, khiến lượng tính toán lớn hơn và sai số do phép toán dấu phẩy động cũng đáng kể hơn.
 
-## 前置知识
+NTT xử lí trường hợp nhân đa thức có lấy modulo. Có thể nói nó chịu một số ràng buộc từ modulo, và các số thường tương đối lớn. Modulo phổ biến nhất hiện nay là 998244353.
 
-学习数论变换需要前置知识：离散傅里叶变换、生成子群、[原根](../number-theory/primitive-root.md)、离散对数．相关知识可以在对应页面中学习，此处不再赘述．
+<span id="&#x524D;&#x7F6E;&#x77E5;&#x8BC6;"></span>
 
-## 定义
+## Kiến thức cần có
 
-### 数论变换
+Để học biến đổi số học, cần biết trước về biến đổi Fourier rời rạc, nhóm con sinh, [căn nguyên thủy](../number-theory/primitive-root.md) và logarit rời rạc. Các kiến thức liên quan có thể học ở các trang tương ứng, nên ở đây không nhắc lại.
 
-在数学中，NTT 是关于任意 [环](../algebra/basic.md#环) 上的离散傅立叶变换（DFT）．在有限域的情况下，通常称为数论变换（NTT）．
+<span id="&#x5B9A;&#x4E49;"></span>
 
-**数论变换**（NTT）是通过将离散傅立叶变换化为 $F={\mathbb {Z}/p}$，整数模质数 $p$．这是一个 **有限域**，只要 $n$ 可除 $p-1$，就存在本原 $n$ 次方根，所以我们有 $p=\xi n+1$ 对于 正整数 $ξ$．具体来说，对于质数 $p=qn+1, (n=2^m)$，原根 $g$ 满足 $g^{qn} \equiv 1 \pmod p$, 将 $g_n=g^q\pmod p$ 看做 $\omega_n$ 的等价，则其满足相似的性质，比如 $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$．
+## Định nghĩa
 
-因为这里涉及到数论变化，所以 $N$（为了区分 FFT 中的 $n$，我们把这里的 $n$ 称为 $N$）可以比 FFT 中的 $n$ 大，但是只要把 $\frac{qN}{n}$ 看做这里的 $q$ 就行了，能够避免大小问题．
+<span id="&#x6570;&#x8BBA;&#x53D8;&#x6362;"></span>
 
-常见的有：
+### Biến đổi số học
+
+Trong toán học, NTT là biến đổi Fourier rời rạc (DFT) trên một [vành](../algebra/basic.md#%E7%8E%AF) bất kì. Trong trường hợp trường hữu hạn, nó thường được gọi là biến đổi số học (NTT).
+
+**Biến đổi số học** (NTT) thu được bằng cách chuyển biến đổi Fourier rời rạc sang $F={\mathbb {Z}/p}$, tức các số nguyên modulo số nguyên tố $p$. Đây là một **trường hữu hạn**. Miễn là $n$ chia hết $p-1$, sẽ tồn tại căn nguyên thủy bậc $n$, nên ta có $p=\xi n+1$ với số nguyên dương $\xi$. Cụ thể, với số nguyên tố $p=qn+1, (n=2^m)$, căn nguyên thủy $g$ thỏa mãn $g^{qn} \equiv 1 \pmod p$; nếu xem $g_n=g^q\pmod p$ là phần tử tương ứng với $\omega_n$, thì nó thỏa mãn các tính chất tương tự, chẳng hạn $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$.
+
+Vì ở đây liên quan đến biến đổi số học, nên $N$ (để phân biệt với $n$ trong FFT, ta gọi $n$ ở đây là $N$) có thể lớn hơn $n$ trong FFT; chỉ cần xem $\frac{qN}{n}$ là $q$ ở đây là được, qua đó tránh được vấn đề về kích thước.
+
+Các modulo thường gặp gồm:
 
 $$
 p = 167772161 = 5 \times 2^{25}+1, g=3
@@ -44,47 +52,53 @@ $$
 p = 1004535809 = 479 \times 2^{21}+1, g=3
 $$
 
-就是 $g^{qn}$ 的等价 $\mathrm{e}^{2\pi \mathrm{i} n}$．
+Tức là $g^{qn}$ tương ứng với $\mathrm{e}^{2\pi \mathrm{i} n}$.
 
-迭代到长度 $l$ 时 $g_l = g^{\frac{p-1}{l}}$，或者 $\omega_n = g_l = g_N^{\frac{N}{l}} = g_N^{\frac{p-1}{l}}$．
+Khi lặp đến độ dài $l$, ta có $g_l = g^{\frac{p-1}{l}}$, hoặc $\omega_n = g_l = g_N^{\frac{N}{l}} = g_N^{\frac{p-1}{l}}$.
 
-## 快速数论变换
+<span id="&#x5FEB;&#x901F;&#x6570;&#x8BBA;&#x53D8;&#x6362;"></span>
 
-**快速数论变换**（FNTT）是数论变换（NTT）增加分治操作之后的快速算法．
+## Biến đổi số học nhanh
 
-快速数论变换使用的分治办法，与快速傅里叶变换使用的分治办法完全一致．这意味着，只需在快速傅里叶变换的代码基础上进行简单修改，即可得到快速数论变换的代码．
+**Biến đổi số học nhanh** (FNTT) là thuật toán nhanh thu được bằng cách thêm thao tác chia để trị vào biến đổi số học (NTT).
 
-在算法竞赛中常提到的 NTT 一词，往往实际指的是快速数论变换，一般默认「数论变换」是指「快速数论变换」．
+Phương pháp chia để trị mà FNTT sử dụng hoàn toàn giống với phương pháp chia để trị của FFT. Điều này có nghĩa là chỉ cần sửa đơn giản từ mã FFT là có thể thu được mã FNTT.
 
-这样简写的逻辑与快速傅里叶变换相似．事实上，「快速傅里叶变换」（FFT）一词指的是「快速离散傅里叶变换」（FDFT），但由于「快速」只能作用于离散，甚至是本原单位根阶数为 $2$ 的幂的特殊情形，不能作用于连续，因此「离散」一词被省略掉，FDFT 变为 FFT，即 FFT 永远指的是特殊的离散情形．
+Trong thi lập trình, thuật ngữ NTT thường thật ra chỉ FNTT; thông thường, khi nói "biến đổi số học" thì mặc định là "biến đổi số học nhanh".
 
-数论变换或快速数论变换是在取模意义下进行的操作，不存在连续的情形，永远是离散的，自然也无需提到离散一词．
+Logic viết tắt này tương tự biến đổi Fourier nhanh. Trên thực tế, thuật ngữ "biến đổi Fourier nhanh" (FFT) chỉ "biến đổi Fourier rời rạc nhanh" (FDFT), nhưng vì tính chất "nhanh" chỉ áp dụng cho trường hợp rời rạc, thậm chí là trường hợp đặc biệt mà bậc của căn đơn vị nguyên thủy là lũy thừa của $2$, chứ không áp dụng cho trường hợp liên tục, nên từ "rời rạc" bị lược bỏ. Vì vậy FDFT trở thành FFT, tức FFT luôn chỉ trường hợp rời rạc đặc biệt đó.
 
-在算法领域，不进行提速的操作是无意义的．在快速傅里叶变换中介绍 DFT 一词，是因为 DFT 在信号处理、图像处理领域也有其他的具体应用，同时 DFT 也是 FFT 的原理或前置知识．
+Biến đổi số học hoặc biến đổi số học nhanh là phép toán trong nghĩa modulo, không có trường hợp liên tục, nên luôn là rời rạc và tự nhiên không cần nhắc đến từ "rời rạc".
 
-在不引起混淆的情形下，常用 NTT 来代指 FNTT．为了不引起下文进一步介绍的混淆，下文的 NTT 与 FNTT 两个词进行了分离．
+Trong lĩnh vực thuật toán, các thao tác không được tăng tốc thường không có ý nghĩa thực tiễn. Khi giới thiệu thuật ngữ DFT trong biến đổi Fourier nhanh, lí do là DFT còn có các ứng dụng cụ thể khác trong xử lí tín hiệu và xử lí ảnh, đồng thời DFT cũng là nguyên lí hoặc kiến thức nền của FFT.
 
-DFT、FFT、NTT、FNTT 的具体关系是：
+Khi không gây nhầm lẫn, người ta thường dùng NTT để chỉ FNTT. Để tránh nhầm lẫn trong phần trình bày tiếp theo, dưới đây hai thuật ngữ NTT và FNTT được tách riêng.
 
--   在 DFT 与 NTT 的基础上，增加分治操作，得到 FFT 与 FNTT．分治操作的办法与原理，可以参见快速傅里叶变换一文．
+Quan hệ cụ thể giữa DFT, FFT, NTT và FNTT là:
 
--   在 DFT 与 FFT 的基础上，将复数加法与复数乘法替换为模 $p$ 意义下的加法和乘法，一般大小限制在 $0$ 到 $p-1$ 之间；将本原单位根改为模 $p$ 意义下的相同阶数的本原单位根，阶数为 $2$ 的幂，即可得到 NTT 与 FNTT．
+-   Trên cơ sở DFT và NTT, thêm thao tác chia để trị để thu được FFT và FNTT. Phương pháp và nguyên lí của thao tác chia để trị có thể xem trong bài về biến đổi Fourier nhanh.
 
-由于替换的运算只涉及加法和乘法，因此 DFT、FFT、NTT、FNTT 拥有相同的原理，均在满足加法与乘法的环上进行，无需域上满足除法运算的更加严格的条件．
+-   Trên cơ sở DFT và FFT, thay phép cộng và phép nhân số phức bằng phép cộng và phép nhân theo modulo $p$, thường giới hạn giá trị trong khoảng từ $0$ đến $p-1$; thay căn đơn vị nguyên thủy bằng căn đơn vị nguyên thủy cùng bậc trong nghĩa modulo $p$, với bậc là lũy thừa của $2$, thì có thể thu được NTT và FNTT.
 
-事实上，只要拥有原根，即群论中的生成元，该模数下的 NTT 或 FNTT 即可进行．考虑到模数为 $1$、$2$ 和 $4$ 的情形太小，不具有实际意义，对于奇素数 $p$ 和正整数 $\alpha$，只要给出模数为 $p^\alpha$ 和 $2p^\alpha$ 的原根 $g$，采用同样的办法，则 NTT 或 FNTT 仍然可以进行．
+Vì các phép toán được thay thế chỉ gồm cộng và nhân, nên DFT, FFT, NTT và FNTT có cùng nguyên lí: đều thực hiện trên một vành thỏa mãn phép cộng và phép nhân, không cần điều kiện chặt hơn là phải có phép chia như trên trường.
 
-## 模板
+Thực ra, miễn là có căn nguyên thủy, tức phần tử sinh trong lí thuyết nhóm, thì NTT hoặc FNTT dưới modulo đó có thể thực hiện được. Xét rằng các modulo $1$, $2$ và $4$ quá nhỏ và không có ý nghĩa thực tế, với số nguyên tố lẻ $p$ và số nguyên dương $\alpha$, chỉ cần cho căn nguyên thủy $g$ của modulo $p^\alpha$ và $2p^\alpha$, dùng cùng phương pháp thì NTT hoặc FNTT vẫn có thể thực hiện.
+
+<span id="&#x6A21;&#x677F;"></span>
+
+## Mẫu
 
 ??? example "[Library Checker - Convolution](https://judge.yosupo.jp/problem/convolution_mod)"
     ```cpp
     --8<-- "docs/math/code/poly/ntt/ntt_1.cpp"
     ```
 
-## 参考资料与拓展阅读
+<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
 
-1.  [FWT（快速沃尔什变换）零基础详解 qaq（ACM/OI）](https://zhuanlan.zhihu.com/p/41867199)
-2.  [FFT（快速傅里叶变换）0 基础详解！附 NTT（ACM/OI）](https://zhuanlan.zhihu.com/p/40505277)
+## Tài liệu tham khảo và đọc thêm
+
+1.  [FWT (biến đổi Walsh nhanh) giải thích chi tiết từ con số 0 qaq (ACM/OI)](https://zhuanlan.zhihu.com/p/41867199)
+2.  [FFT (biến đổi Fourier nhanh) giải thích chi tiết từ cơ bản, kèm NTT (ACM/OI)](https://zhuanlan.zhihu.com/p/40505277)
 3.  [Number-theoretic transform(NTT) - Wikipedia](https://en.wikipedia.org/wiki/Discrete_Fourier_transform_%28general%29#Number-theoretic_transform)
-4.  [Tutorial on FFT/NTT—The tough made simple. (Part 1)](https://codeforces.com/blog/entry/43499)
-5.  [NTT 模板 - BlackJack\_ CSDN 博客](https://blog.csdn.net/blackjack_/article/details/79346433)
+4.  [Tutorial on FFT/NTT-The tough made simple. (Part 1)](https://codeforces.com/blog/entry/43499)
+5.  [Mẫu NTT - blog CSDN của BlackJack_](https://blog.csdn.net/blackjack_/article/details/79346433)

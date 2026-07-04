@@ -153,6 +153,12 @@ MkDocs source layout intact.
   number-theory tail covering Euclidean-like algorithms, continued fractions,
   Stern-Brocot/Farey structures, quadratic fields, and Pell equations, plus
   explanatory comments in included Stern-Brocot snippets.
+- `docs/math/poly/intro.md`, `docs/math/poly/fundamental.md`,
+  `docs/math/poly/fft.md`, `docs/math/poly/ntt.md`,
+  `docs/math/poly/fwt.md`, `docs/math/poly/czt.md`: translated the opening
+  polynomial/generating-function pages and Fourier/number-theoretic/Walsh/Chirp
+  Z transform material, plus explanatory comments in included FFT and CZT
+  snippets.
 - Section introductions for search, dynamic programming, strings, mathematics,
   data structures, graph theory, computational geometry, and miscellaneous
   topics are translated.

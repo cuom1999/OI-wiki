@@ -23,7 +23,7 @@ constexpr int LOG2_ORD = 23;  // __builtin_ctz(MOD - 1)
 constexpr uint ZETA = PowMod(QUAD_NONRESIDUE, (MOD - 1) >> LOG2_ORD);
 constexpr uint INV_ZETA = InvMod(ZETA);
 
-// 返回做 n 长 FFT 所需的单位根数组，长度为一半
+// Trả về mảng căn đơn vị cần cho FFT độ dài n, có độ dài bằng một nửa.
 std::pair<std::vector<uint>, std::vector<uint>> GetFFTRoot(int n) {
   assert((n & (n - 1)) == 0);
   if (n / 2 == 0) return {};
@@ -99,9 +99,9 @@ std::vector<uint> Product(std::vector<uint> f, std::vector<uint> g) {
 // The Middle Product Algorithm I.
 // Appl. Algebra Eng. Commun. Comput. 14(6): 415-438 (2004)
 // url: https://inria.hal.science/inria-00071921/document
-// 与论文中稍微不同的是我们令 f 的长度大于等于 g 的长度，
-// 然后计算出 fg 的高位系数，这就是在计算 fg mod x^m，
-// 然后丢掉系数“混乱”的部分。
+// Hơi khác với bài báo: ta đặt độ dài của f lớn hơn hoặc bằng độ dài của g,
+// sau đó tính các hệ số bậc cao của fg. Điều này tương đương tính fg mod x^m,
+// rồi bỏ phần hệ số bị "lẫn".
 std::vector<uint> MiddleProduct(std::vector<uint> f, std::vector<uint> g) {
   assert(!g.empty());
   const int m = f.size();
