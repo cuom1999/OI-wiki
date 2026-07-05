@@ -19,7 +19,7 @@ Nén trạng thái thường liên quan tới thao tác bit; xem thêm các thao
 
 Với trạng thái có số hiệu $j$, dùng số nhị phân $sit(j)$ để biểu diễn cách đặt vua. Một bit bằng $0$ nghĩa là vị trí tương ứng không đặt vua, còn bit bằng $1$ nghĩa là đặt vua tại vị trí đó. Gọi $sta(j)$ là số quân vua trong trạng thái này, tức là số bit $1$ trong $sit(j)$. Ví dụ, trạng thái trong hình dưới có thể biểu diễn bằng số nhị phân $100101$ (phía trái bàn cờ ứng với bit thấp), nên $sit(j)=100101_{(2)}=37, sta(j)=3$.
 
-![](./images/SCOI2005-%E4%BA%92%E4%B8%8D%E4%BE%B5%E7%8A%AF.png)
+![](./images/scoi2005-non-attacking-kings.png)
 
 Giả sử trạng thái hàng hiện tại là $j$, trạng thái hàng trước là $x$, ta có phương trình chuyển: $f(i,j,l) = \sum f(i-1,x,l-sta(j))$.
 
