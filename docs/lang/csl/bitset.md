@@ -5,7 +5,7 @@ author: i-Yirannn, Xeonacid, ouuan
 
 `std::bitset` là một bộ chứa có kích thước cố định trong thư viện chuẩn, dùng để lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
 
-??? note "bitset và STL"
+??? note "`bitset` và STL"
     > Thư viện chuẩn C++ cung cấp một số lớp bộ chứa đặc biệt, gọi là bộ chuyển đổi bộ chứa (`stack`, `queue`, `priority_queue`). Ngoài ra, một vài lớp cung cấp giao diện giống bộ chứa, ví dụ `string`, `bitset` và `valarray`. Tất cả các lớp này được trình bày riêng. Bộ chuyển đổi bộ chứa và `bitset` được nói ở Chương 12.
     >
     > Thư viện chuẩn C++ không chỉ cung cấp các bộ chứa cho khung STL, mà còn có những bộ chứa phù hợp với các nhu cầu đặc biệt và đưa ra giao diện đơn giản, gần như tự giải thích. Có thể chia chúng thành bộ chuyển đổi bộ chứa, tức các lớp điều chỉnh bộ chứa STL chuẩn cho nhu cầu đặc biệt, hoặc `bitset`, một bộ chứa dành cho bit hay giá trị logic. Có ba bộ chuyển đổi bộ chứa chuẩn: `stack`, `queue` và `priority_queue`. Trong `priority_queue`, các phần tử được tự động sắp xếp theo một tiêu chí sắp xếp; vì vậy phần tử "kế tiếp" của `priority_queue` là phần tử có giá trị "cao nhất". `bitset` là một trường bit với số bit tùy ý nhưng cố định. Lưu ý rằng thư viện chuẩn C++ cũng cung cấp một bộ chứa đặc biệt có kích thước thay đổi được cho giá trị logic: `vector`.
@@ -58,7 +58,7 @@ std::bitset<1000> bs;  // một bitset gồm 1000 bit
 <span id="toán-tử"></span>
 ### Toán tử
 
--   `operator []`: truy cập một bit cụ thể.
+-   `operator[]`: truy cập một bit cụ thể.
 
 -   `operator ==`/`operator !=`: so sánh xem nội dung hai `bitset` có hoàn toàn giống nhau hay không.
 

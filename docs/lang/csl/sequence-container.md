@@ -254,9 +254,9 @@ Vì mỗi `array` đều là bộ chứa kích thước cố định, giá trị
 Dưới đây là một ví dụ sử dụng `array`:
 
 ```cpp
-// 1. Tạo array rỗng, độ dài là 3; độ phức tạp hằng số
+// 1. Tạo std::array rỗng, độ dài là 3; độ phức tạp hằng số
 std::array<int, 3> v0;
-// 2. Tạo array bằng các hằng số chỉ định; độ phức tạp hằng số
+// 2. Tạo std::array bằng các hằng số chỉ định; độ phức tạp hằng số
 std::array<int, 3> v1{1, 2, 3};
 
 v0.fill(1);  // điền mảng

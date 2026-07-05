@@ -18,7 +18,7 @@ có thể khác nhau.
 Sử dụng `pair` linh hoạt giúp xử lý dễ dàng các tình huống **cần buộc dữ liệu
 liên quan lại để lưu trữ và xử lý**.
 
-??? note "Cấu trúc"
+??? note "Cấu trúc (`struct`)"
     So với `struct` tự định nghĩa, `pair` không cần định nghĩa thêm cấu trúc và
     nạp chồng toán tử, nên dùng đơn giản hơn.
 
@@ -53,7 +53,7 @@ pair<int, double> p2 = make_pair(1, 2.0);
 ```
 
 Một cách dùng phổ biến là định nghĩa macro `#define mp make_pair`, rút gọn
-`make_pair` hơi dài thành `mp`.
+tên hàm `make_pair` hơi dài thành `mp`.
 
 Trong C++11 và các phiên bản mới hơn, `make_pair` có thể dùng cùng `auto` để
 tránh khai báo kiểu dữ liệu tường minh.
@@ -152,7 +152,7 @@ for (int i = 0; i < n; i++) {
 
 Như đã nói, `pair` có thể làm kiểu dữ liệu của `priority_queue`.
 
-Trong tối ưu heap của thuật toán Dijkstra, có thể dùng `pair` và
+Trong tối ưu bằng heap của thuật toán Dijkstra, có thể dùng `pair` và
 `priority_queue` để duy trì đỉnh: lưu khoảng cách hiện tại từ đỉnh đến điểm
 nguồn làm biến thứ nhất, và số hiệu đỉnh làm biến thứ hai.
 
@@ -168,11 +168,11 @@ priority_queue<pair<int, int>, std::vector<pair<int, int>>,
 }
 ```
 
-### pair và map
+### `pair` và `map`
 
 `map` là cấu trúc dữ liệu lưu cặp khóa-giá trị trong C++. Trong nhiều trường
-hợp, các cặp khóa-giá trị được lưu trong `map` được phơi ra bên ngoài thông qua
-`pair`.
+hợp, các cặp khóa-giá trị được lưu trong `map` được biểu diễn ra bên ngoài thông
+qua `pair`.
 
 ```cpp
 map<int, double> m;

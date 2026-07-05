@@ -74,8 +74,8 @@ printf("độ dài của s là %zu", strlen(s.c_str()));
 
 ### Tìm vị trí xuất hiện đầu tiên của ký tự/chuỗi
 
-Hàm `find(str,pos)` có thể dùng để tìm vị trí xuất hiện đầu tiên của một ký tự
-hoặc chuỗi trong chuỗi, bắt đầu từ sau `pos` (bao gồm `pos`; nếu không truyền
+Hàm `find(str, pos)` có thể dùng để tìm vị trí xuất hiện đầu tiên của một ký tự
+hoặc chuỗi trong chuỗi, bắt đầu từ vị trí `pos` (bao gồm `pos`; nếu không truyền
 tham số `pos` thì mặc định là `0`). Nếu không xuất hiện thì trả về
 `string::npos` (được định nghĩa là `-1`, nhưng kiểu vẫn là
 `size_t`/`unsigned long`).
@@ -127,11 +127,11 @@ chuỗi con gồm tối đa ba ký tự bắt đầu từ vị trí thứ hai c�
 
 ### Chèn/xóa ký tự hoặc chuỗi
 
-`insert(index,count,ch)` và `insert(index,str)` là hai hàm chèn thường gặp.
+`insert(index, count, ch)` và `insert(index, str)` là hai hàm chèn thường gặp.
 Chúng lần lượt biểu thị chèn liên tiếp `count` lần ký tự `ch` tại `index`, và
 chèn chuỗi `str` tại `index`.
 
-Hàm `erase(index,count)` xóa `count` ký tự bắt đầu từ vị trí `index` của chuỗi
+Hàm `erase(index, count)` xóa `count` ký tự bắt đầu từ vị trí `index` của chuỗi
 (bao gồm `index`; nếu không truyền tham số `count` thì xóa toàn bộ ký tự từ
 `index` trở đi).
 
@@ -159,7 +159,7 @@ sau khi chèn liên tiếp 3 lần ký tự u vào vị trí thứ tám của s,
 
 ### Thay thế ký tự hoặc chuỗi
 
-`replace(pos,count,str)` và `replace(first,last,str)` là hai hàm thay thế thường
+`replace(pos, count, str)` và `replace(first, last, str)` là hai hàm thay thế thường
 gặp. Chúng lần lượt biểu thị thay chuỗi con gồm `count` ký tự bắt đầu từ `pos`
 bằng `str`, và thay chuỗi con bắt đầu từ `first` (bao gồm) đến `last` (không bao
 gồm) bằng `str`, trong đó `first` và `last` đều là bộ lặp.
