@@ -35,13 +35,15 @@ Chuyển trong *Document -> Set Filetype*.
 
 Ví dụ với ngôn ngữ C++, nhấp *Document -> Set Filetype -> Programming Languages -> C++ Source File*, bạn sẽ thấy tệp đã được chuyển sang tô sáng cú pháp của ngôn ngữ C++.
 
-### Đặt template tệp
+<span id="đặt-template-tệp"></span>
 
-Tạo thư mục `templates/files` trong thư mục cấu hình; các tệp được tạo trong đó sẽ là tệp template. Sau khi mở lại Geany, bạn có thể tìm thấy chúng trong *File -> New (with Template)*.
+### Đặt mẫu tệp
+
+Tạo thư mục `templates/files` trong thư mục cấu hình; các tệp đặt trong đó sẽ trở thành mẫu tệp. Sau khi mở lại Geany, bạn có thể tìm thấy chúng trong *File -> New (with Template)*.
 
 Thư mục cấu hình có thể được tìm thấy qua dòng thứ hai và thứ ba trong *Help -> Debug Messages*.
 
-Dưới đây là thư mục cấu hình template mặc định trên macOS và Linux:
+Dưới đây là thư mục cấu hình mẫu mặc định trên macOS và Linux:
 
 -   Thư mục hệ thống: `/usr/share/geany/templates/files/`
 -   Thư mục người dùng: `~/.config/geany/templates/files/`[^2]
@@ -50,7 +52,7 @@ Dưới đây là thư mục cấu hình template mặc định trên macOS và 
 
 ### Tương thích với Deepin Terminal
 
-Trong *Preferences -> Tools -> Virtual Terminal*, sửa lệnh terminal thành:
+Trong *Preferences -> Tools -> Virtual Terminal*, sửa lệnh trình dòng lệnh thành:
 
 ```bash
 deepin-terminal -x "/bin/sh" %c
