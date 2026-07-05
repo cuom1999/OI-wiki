@@ -1,5 +1,5 @@
 Loại giá trị là một khái niệm rất quan trọng trong C++. Tuy trong lập trình thi
-đấu có thể không được dùng nhiều, hiểu nó giúp ta phát hiện và tránh những phép
+đấu có thể không được dùng nhiều, hiểu nó giúp phát hiện và tránh những phép
 sao chép không cần thiết, từ đó cải thiện hiệu quả và hiệu năng của mã.
 
 Khái niệm loại giá trị đã trải qua nhiều lần phát triển trong ngôn ngữ C, C++98,
@@ -7,7 +7,7 @@ C++11 và C++17, rồi dần trở thành một khái niệm tương đối ph�
 
 ## Sao chép không cần thiết
 
-Hãy xét quá trình đưa chuỗi vào một vector:
+Xét quá trình đưa chuỗi vào một vector:
 
 ```cpp
 int main() {
@@ -25,9 +25,9 @@ int main() {
 Có thể thấy trong quá trình đưa chuỗi vào `vec`, cả `str` và phần tử mới trong
 `vec` đều giữ một bản, làm lượng bộ nhớ sử dụng tăng lên.
 
-Nếu nhất định muốn tiết kiệm phần bộ nhớ này, ta có thể tự cài đặt một thao tác
+Nếu nhất định muốn tiết kiệm phần bộ nhớ này, có thể tự cài đặt một thao tác
 di chuyển đơn giản: tự định nghĩa cấu trúc `MyString`, bên trong có một con trỏ
-trỏ tới vùng dữ liệu chuỗi. Như vậy ta chỉ cần sao chép con trỏ sang nơi mới,
+trỏ tới vùng dữ liệu chuỗi. Như vậy chỉ cần sao chép con trỏ sang nơi mới,
 đồng thời cẩn thận dọn con trỏ của đối tượng gốc để tránh bị hủy sai.
 
 ```cpp
@@ -50,7 +50,7 @@ C++11 đã đưa ngữ nghĩa di chuyển vào phần lõi của ngôn ngữ.
 ## Loại giá trị trong ngôn ngữ C
 
 Trong chuẩn ngôn ngữ C, đối tượng là một khái niệm tổng quát hơn biến; nó chỉ một
-vùng dữ liệu trong môi trường thực thi. Các thuộc tính chính của đối tượng gồm
+vùng dữ liệu trong môi trường thực thi. Các tính chất chính của đối tượng gồm
 kích thước, kiểu hiệu lực và giá trị. Giá trị là ý nghĩa của vùng dữ liệu đó khi
 được diễn giải theo kiểu của nó. Ví dụ, tuy kiểu `int` và `float` thường đều
 chiếm 4 byte, cùng một vùng nhớ sẽ được diễn giải ra các ý nghĩa khác nhau.
@@ -58,7 +58,7 @@ chiếm 4 byte, cùng một vùng nhớ sẽ được diễn giải ra các ý n
 Trong ngôn ngữ C, mỗi biểu thức đều có kiểu và loại giá trị. Loại giá trị chủ
 yếu được chia thành ba loại:
 
--   Trái trị (lvalue): biểu thức xác định một đối tượng. Nói cách khác, ta có
+-   Trái trị (lvalue): biểu thức xác định một đối tượng. Nói cách khác, có
     thể lấy địa chỉ của biểu thức đó.
 -   Phải trị (rvalue): biểu thức không xác định một đối tượng có thể lấy địa chỉ;
     nó chỉ biểu diễn một giá trị tạm thời.
@@ -97,7 +97,7 @@ C++ cho phép trình biên dịch thực hiện **loại bỏ sao chép** (copy 
 đó giảm việc tạo và hủy đối tượng tạm.
 
 Ví dụ, đoạn mã dưới đây kích hoạt tối ưu hóa giá trị trả về (return value
-optimization, RVO) trong cơ chế loại bỏ sao chép. Bạn chỉ thấy một lần khởi tạo
+optimization, RVO) trong cơ chế loại bỏ sao chép. Chương trình chỉ in ra một lần khởi tạo
 và một lần khởi tạo sao chép, kể cả khi việc khởi tạo và hủy có tác dụng phụ.
 
 ```cpp
@@ -124,7 +124,7 @@ int main() {
 ## Loại giá trị trong C++11
 
 C++11 đưa vào ngữ nghĩa di chuyển và tham chiếu phải trị (`T&&`), bao gồm hàm
-tạo di chuyển và toán tử gán di chuyển. Nhờ đó ta có cách tận dụng các đối tượng
+tạo di chuyển và toán tử gán di chuyển. Nhờ đó có thể tận dụng các đối tượng
 tạm.
 
 Hàm `move_to` ở trên có thể được viết lại như sau:
@@ -140,14 +140,14 @@ struct MyString {
 };
 ```
 
-Lúc này các đặc tính biểu thức mà ta quan tâm tăng thêm một điểm:
+Lúc này các tính chất biểu thức cần quan tâm tăng thêm một điểm:
 
 -   Có danh tính hay không: có xác định một thực thể cụ thể hay không, tức có thể
     phân biệt bằng địa chỉ hay không.
 -   Có thể được di chuyển từ hay không: biểu thức có thể được xem như nguồn để di
     chuyển tài nguyên hay không.
 
-Vì vậy ta có ba loại giá trị:
+Vì vậy có ba loại giá trị:
 
 -   Có danh tính, không thể di chuyển: trái trị (lvalue).
 -   Có danh tính, có thể di chuyển: giá trị sắp hết hạn (xvalue).
@@ -178,7 +178,7 @@ int main() {
 }
 ```
 
-Vì vậy ta chỉ cần đổi `push_back(str)` thành `push_back(std::move(str))` là có
+Vì vậy chỉ cần đổi `push_back(str)` thành `push_back(std::move(str))` là có
 thể cho phép `vector` dùng hàm tạo di chuyển thay vì sao chép.
 
 ```cpp
@@ -197,8 +197,8 @@ int main() {
 ```
 
 > Do `std::string` có tối ưu hóa chuỗi nhỏ (small string optimization, SSO), các
-> chuỗi ngắn được lưu trực tiếp bên trong đối tượng. Có thể bạn cần nhập chuỗi
-> dài hơn mới quan sát rõ việc vùng dữ liệu được chuyển giao khi di chuyển.
+> chuỗi ngắn được lưu trực tiếp bên trong đối tượng. Cần nhập chuỗi dài hơn mới
+> dễ quan sát việc vùng dữ liệu được chuyển giao khi di chuyển.
 
 ## Loại giá trị trong C++17
 
@@ -211,10 +211,10 @@ C++17 tiếp tục đơn giản hóa loại giá trị:
 C++11 đã mở rộng loại bỏ sao chép sang cả di chuyển; trước C++17, đoạn mã dưới
 đây có thể không tạo thao tác di chuyển nếu trình biên dịch áp dụng RVO.
 
-C++17 yêu cầu giá trị thuần phải không nhất thiết phải được hiện thực hóa thành
+C++17 yêu cầu giá trị thuần phải không nhất thiết phải được vật chất hóa thành
 đối tượng tạm riêng, mà được khởi tạo trực tiếp vào vùng lưu trữ của đích cuối
 cùng; trước khi khởi tạo, đối tượng tạm đó còn chưa tồn tại. Vì vậy trong C++17,
-ta không còn bước tạo rồi trả về một đối tượng tạm riêng, và cũng không cần phụ
+không còn bước tạo rồi trả về một đối tượng tạm riêng, và cũng không cần phụ
 thuộc vào RVO cho trường hợp này. Cũng có thể hiểu là URVO (RVO không tên,
 unnamed RVO) đã trở thành bắt buộc, nhưng NRVO (RVO có tên, named RVO) thì vẫn
 không bắt buộc.
@@ -236,7 +236,7 @@ int main() {
 }
 ```
 
-Đồng thời, C++17 đưa vào cơ chế hiện thực hóa đối tượng tạm: khi ta cần truy cập
+Đồng thời, C++17 đưa vào cơ chế vật chất hóa đối tượng tạm: khi cần truy cập
 thành viên dữ liệu, gọi hàm thành viên, hoặc gặp các tình huống khác cần một giá
 trị trái tổng quát (glvalue), giá trị thuần phải có thể được chuyển ngầm định
 thành giá trị sắp hết hạn.
@@ -270,5 +270,5 @@ std::string&& f2() {
 1.  [Value categories](https://en.cppreference.com/w/cpp/language/value_category)
 2.  [Wording for guaranteed copy elision through simplified value categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html)
 3.  [Loại giá trị trong C++](https://paul.pub/cpp-value-category/)
-4.  [Tham chiếu phải trị, di chuyển và hệ thống loại giá trị của C++: mọi thứ bạn cần biết](https://zclll.com/index.php/cpp/value_category.html)
+4.  [Tham chiếu phải trị, di chuyển và hệ thống loại giá trị của C++](https://zclll.com/index.php/cpp/value_category.html)
 5.  [Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision)
