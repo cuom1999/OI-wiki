@@ -28,10 +28,14 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số b
 ???+ note "Kiểu luận lý trong ngôn ngữ C"
     Xem thêm [Khác biệt giữa C++ và các ngôn ngữ thường dùng khác - bool](./cpp-other-langs.md#bool).
 
-    Ban đầu ngôn ngữ C không có kiểu luận lý. Đến C99, từ khóa `_Bool` mới được đưa vào làm kiểu luận lý, và kiểu này được xem như một kiểu số nguyên không dấu.
+    Ban đầu ngôn ngữ C không có kiểu luận lý. Đến C99, từ khóa `_Bool` mới được
+    đưa vào làm kiểu luận lý, và kiểu này được xem như một kiểu số nguyên không
+    dấu.
 
     ???+ note "Ghi chú"
-        Từ C23, kiểu `bool` của C không còn được định nghĩa bằng giá trị nguyên bằng không và khác không nữa, mà được định nghĩa là kiểu đủ để lưu hai hằng `true` và `false`.
+        Từ C23, kiểu `bool` của C không còn được định nghĩa bằng giá trị nguyên
+        bằng không và khác không nữa, mà được định nghĩa là kiểu đủ để lưu hai
+        hằng `true` và `false`.
 
     Để tiện sử dụng, `stdbool.h` cung cấp ba macro `bool`, `true`, `false`, thường được định nghĩa như sau:
 
@@ -41,7 +45,9 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số b
     #define false 0
     ```
 
-    Các macro này bị loại bỏ trong C23. Từ C23, `true`, `false` và `bool` được đưa vào làm từ khóa, đồng thời vẫn giữ `_Bool` như một cách viết thay thế[^note10].
+    Các macro này bị loại bỏ trong C23. Từ C23, `true`, `false` và `bool` được
+    đưa vào làm từ khóa, đồng thời vẫn giữ `_Bool` như một cách viết thay
+    thế[^note10].
 
     Ngoài ra, từ C23 cũng có thể lấy độ rộng bit của kiểu luận lý thông qua hằng macro `BOOL_WIDTH` trong `<limits.h>`.
 
@@ -60,7 +66,9 @@ Các kiểu số nguyên thường được chia thành 5 mức theo độ rộn
 
 Chuẩn C++ bảo đảm `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)`.
 
-Do nguyên nhân lịch sử, độ rộng bit của kiểu số nguyên có nhiều mô hình phổ biến khác nhau. Để giải quyết vấn đề này, C99/C++11 đã đưa vào [kiểu số nguyên có độ rộng cố định](#kiểu-số-nguyên-có-độ-rộng-cố-định).
+Do nguyên nhân lịch sử, độ rộng bit của kiểu số nguyên có nhiều mô hình phổ biến
+khác nhau. Để giải quyết vấn đề này, C99/C++11 đã đưa vào [kiểu số nguyên có độ
+rộng cố định](#kiểu-số-nguyên-có-độ-rộng-cố-định).
 
 ???+ note "Kích thước của kiểu `int`"
     Trong chuẩn C++, số bit của `int` được quy định là **ít nhất** $16$ bit.
@@ -80,7 +88,9 @@ Kích thước:
 -   `long`: biểu thị số nguyên **ít nhất** $32$ bit;
 -   (Từ C++11) `long long`: biểu thị số nguyên **ít nhất** $64$ bit.
 
-Bảng dưới đây cho biết độ rộng bit và phạm vi biểu diễn của các kiểu số nguyên trong **trường hợp thông thường** (trên một số ít nền tảng, phạm vi biểu diễn của vài kiểu có thể khác bảng này):
+Bảng sau cho biết độ rộng bit và phạm vi biểu diễn của các kiểu số nguyên trong
+**trường hợp thông thường** (trên một số ít nền tảng, phạm vi biểu diễn của vài
+kiểu có thể khác bảng này):
 
 | Tên kiểu                                                               | Kiểu tương đương          | Độ rộng bit (chuẩn C++) | Độ rộng bit (thường gặp) | Độ rộng bit (hiếm gặp hơn)               |
 | --------------------------------------------------------------------- | ------------------------ | ----------------------- | ------------------------ | ---------------------------------------- |
@@ -95,7 +105,9 @@ Bảng dưới đây cho biết độ rộng bit và phạm vi biểu diễn c�
 | `long long`, `long long int`, `signed long long`, `signed long long int` | `long long int`        | $\geq 64$               | $64$                     | -                                        |
 | `unsigned long long`, `unsigned long long int`                        | `unsigned long long int` | $\geq 64$               | $64$                     | -                                        |
 
-Khi độ rộng bit là $x$, phạm vi biểu diễn của kiểu có dấu là $-2^{x-1}\sim 2^{x-1}-1$[^note16], còn phạm vi biểu diễn của kiểu không dấu là $0 \sim 2^x-1$. Cụ thể như bảng sau:
+Khi độ rộng bit là $x$, phạm vi biểu diễn của kiểu có dấu là
+$-2^{x-1}\sim 2^{x-1}-1$[^note16], còn phạm vi biểu diễn của kiểu không dấu là
+$0 \sim 2^x-1$. Cụ thể như bảng sau:
 
 | Độ rộng bit | Phạm vi biểu diễn                                      |
 | ----------- | ------------------------------------------------------ |
@@ -105,11 +117,17 @@ Khi độ rộng bit là $x$, phạm vi biểu diễn của kiểu có dấu là
 | $64$        | Có dấu: $-2^{63}\sim 2^{63}-1$, không dấu: $0 \sim 2^{64}-1$ |
 
 ???+ note "Các cách viết kiểu tương đương"
-    Khi không gây nhập nhằng, có thể lược bỏ một số từ khóa bổ nghĩa, hoặc điều chỉnh thứ tự của các từ khóa bổ nghĩa. Điều này có nghĩa là cùng một kiểu có thể có nhiều cách viết tương đương.
+    Khi không gây nhập nhằng, có thể lược bỏ một số từ khóa bổ nghĩa, hoặc điều
+    chỉnh thứ tự của các từ khóa bổ nghĩa. Điều này có nghĩa là cùng một kiểu có
+    thể có nhiều cách viết tương đương.
 
     Ví dụ, `int`, `signed`, `int signed`, `signed int` biểu thị cùng một kiểu, còn `unsigned long` và `unsigned long int` biểu thị cùng một kiểu.
 
-Ngoài ra, một số trình biên dịch triển khai các kiểu số nguyên mở rộng. Chẳng hạn GCC hỗ trợ số nguyên 128 bit: bản có dấu `__int128_t` và bản không dấu `__uint128_t`. Nếu muốn dùng các kiểu này trong kỳ thi, **cần đọc kỹ quy định của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng có được cho phép hoặc được hỗ trợ hay không.
+Ngoài ra, một số trình biên dịch triển khai các kiểu số nguyên mở rộng. Chẳng hạn
+GCC hỗ trợ số nguyên 128 bit: bản có dấu `__int128_t` và bản không dấu
+`__uint128_t`. Nếu muốn dùng các kiểu này trong kỳ thi, **cần đọc kỹ quy định
+của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng có được cho phép hoặc
+được hỗ trợ hay không.
 
 ???+ warning "Chú ý"
     STL không nhất thiết hỗ trợ đầy đủ các kiểu số nguyên mở rộng, vì vậy cần đặc biệt cẩn thận khi dùng chúng.
@@ -147,11 +165,15 @@ Ngoài ra, một số trình biên dịch triển khai các kiểu số nguyên 
 
     Mã ví dụ trên có các vấn đề sau:
 
-    1.  Trong `__int128_t f3(__int128_t)`, hàm trị tuyệt đối được dùng là hàm kiểu C, có chữ ký `int abs(int)`, nên trước hết `n` sẽ bị chuyển kiểu thành `int`, rồi mới gọi hàm `abs`.
-    2.  Trong `__int128_t f4(__int128_t)`, hàm trị tuyệt đối được dùng là hàm kiểu C++. Hàm này không có overload với chữ ký `__int128_t std::abs(__int128_t)`, nên không thể biên dịch.
+    1.  Trong `__int128_t f3(__int128_t)`, hàm trị tuyệt đối được dùng là hàm
+        kiểu C, có chữ ký `int abs(int)`, nên trước hết `n` sẽ bị chuyển kiểu
+        thành `int`, rồi mới gọi hàm `abs`.
+    2.  Trong `__int128_t f4(__int128_t)`, hàm trị tuyệt đối được dùng là hàm
+        kiểu C++. Hàm này không có overload với chữ ký
+        `__int128_t std::abs(__int128_t)`, nên không thể biên dịch.
     3.  Xuất luồng của C++ không hỗ trợ `__int128_t` và `__uint128_t`.
 
-    Dưới đây là một cách giải quyết:
+    Sau đây là một cách giải quyết:
 
     ??? note "Mã sau khi sửa"
         ```cpp
@@ -191,17 +213,27 @@ Ngoài ra, một số trình biên dịch triển khai các kiểu số nguyên 
 
 ### Kiểu ký tự
 
-Kiểu ký tự được chia thành "kiểu ký tự hẹp" và "kiểu ký tự rộng". Vì trong thi lập trình thuật toán hầu như không dùng đến kiểu ký tự rộng, phần này chỉ giới thiệu kiểu ký tự hẹp.
+Kiểu ký tự được chia thành "kiểu ký tự hẹp" và "kiểu ký tự rộng". Vì trong thi
+lập trình thuật toán hầu như không dùng đến kiểu ký tự rộng, phần này chỉ giới
+thiệu kiểu ký tự hẹp.
 
-Kiểu ký tự hẹp thường có $8$ bit. Về cách lưu trữ tầng dưới, ký tự vẫn là số nguyên; trong các bài toán OI thông thường, quan hệ giữa ký tự và số nguyên thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba loại sau:
+Kiểu ký tự hẹp thường có $8$ bit. Về cách lưu trữ tầng dưới, ký tự vẫn là số
+nguyên; trong các bài toán OI thông thường, quan hệ giữa ký tự và số nguyên
+thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba loại sau:
 
 -   `signed char`: kiểu biểu diễn ký tự có dấu, phạm vi biểu diễn từ $-128 \sim 127$.
 -   `unsigned char`: kiểu biểu diễn ký tự không dấu, phạm vi biểu diễn từ $0 \sim 255$.
 -   `char` có cùng cách biểu diễn và căn chỉnh với một trong hai kiểu `signed char` hoặc `unsigned char`, nhưng luôn là một kiểu độc lập.
 
-    Tính có dấu của `char` phụ thuộc vào trình biên dịch và nền tảng đích: cấu hình mặc định trên ARM và PowerPC thường là không dấu, còn cấu hình mặc định trên x86 và x64 thường là có dấu.
+    Tính có dấu của `char` phụ thuộc vào trình biên dịch và nền tảng đích: cấu
+    hình mặc định trên ARM và PowerPC thường là không dấu, còn cấu hình mặc định
+    trên x86 và x64 thường là có dấu.
 
-    Với GCC, có thể thêm `-fsigned-char` hoặc `-funsigned-char` vào tham số biên dịch để chỉ định xem `char` là `signed char` hay `unsigned char`; với các trình biên dịch khác, cần tham khảo tài liệu tương ứng. Cần chú ý rằng việc chỉ định tính có dấu khác với giá trị mặc định của kiến trúc có thể phá vỡ ABI, khiến chương trình không hoạt động bình thường.
+    Với GCC, có thể thêm `-fsigned-char` hoặc `-funsigned-char` vào tham số biên
+    dịch để chỉ định xem `char` là `signed char` hay `unsigned char`; với các
+    trình biên dịch khác, cần tham khảo tài liệu tương ứng. Cần chú ý rằng việc
+    chỉ định tính có dấu khác với giá trị mặc định của kiến trúc có thể phá vỡ
+    ABI, khiến chương trình không hoạt động bình thường.
 
 ???+ warning "Chú ý"
     Khác với các kiểu số nguyên khác, `char`, `signed char`, `unsigned char` là **ba kiểu khác nhau**.
@@ -212,11 +244,17 @@ Kiểu ký tự hẹp thường có $8$ bit. Về cách lưu trữ tầng dướ
 
 ### Kiểu số thực dấu phẩy động
 
-Dùng để lưu "số thực" (chú ý rằng đây không phải số thực theo nghĩa chặt chẽ, mà là giá trị xấp xỉ của số thực theo một số quy tắc nhất định), gồm ba kiểu sau:
+Dùng để lưu "số thực" (chú ý rằng đây không phải số thực theo nghĩa chặt chẽ, mà
+là giá trị xấp xỉ của số thực theo một số quy tắc nhất định), gồm ba kiểu sau:
 
 -   `float`: kiểu dấu phẩy động độ chính xác đơn. Nếu được hỗ trợ, kiểu này khớp với định dạng IEEE-754 binary32.
 -   `double`: kiểu dấu phẩy động độ chính xác kép. Nếu được hỗ trợ, kiểu này khớp với định dạng IEEE-754 binary64.
--   `long double`: kiểu dấu phẩy động độ chính xác mở rộng. Nếu được hỗ trợ, kiểu này khớp với định dạng IEEE-754 binary128; nếu không, nếu được hỗ trợ thì khớp với định dạng mở rộng IEEE-754 binary64; nếu không nữa thì khớp với một định dạng dấu phẩy động mở rộng không phải IEEE-754 có độ chính xác tốt hơn binary64 và miền giá trị ít nhất tốt bằng binary64; nếu không nữa thì khớp với định dạng IEEE-754 binary64.
+-   `long double`: kiểu dấu phẩy động độ chính xác mở rộng. Nếu được hỗ trợ, kiểu
+    này khớp với định dạng IEEE-754 binary128; nếu không, nếu được hỗ trợ thì
+    khớp với định dạng mở rộng IEEE-754 binary64; nếu không nữa thì khớp với một
+    định dạng dấu phẩy động mở rộng không phải IEEE-754 có độ chính xác tốt hơn
+    binary64 và miền giá trị ít nhất tốt bằng binary64; nếu không nữa thì khớp
+    với định dạng IEEE-754 binary64.
 
 | Định dạng dấu phẩy động            | Độ rộng bit | Số dương lớn nhất              | Số chữ số chính xác |
 | ---------------------------------- | ----------- | ------------------------------ | ------------------- |
@@ -233,7 +271,10 @@ Ngoài ra, kiểu dấu phẩy động có thể hỗ trợ một số giá tr�
 
 -   Vô cùng (dương hoặc âm): `INFINITY`.
 -   Âm không: `-0.0`, ví dụ `1.0 / 0.0 == INFINITY`, `1.0 / -0.0 == -INFINITY`.
--   Không phải số (NaN): `std::nan`, `NAN`, thường có thể sinh ra bởi các phép tính như `0.0 / 0.0`. Nó không bằng bất kỳ giá trị nào khi so sánh (kể cả chính nó); từ C++11 có thể dùng `std::isnan` để kiểm tra một số dấu phẩy động có phải NaN hay không.
+-   Không phải số (NaN): `std::nan`, `NAN`, thường có thể sinh ra bởi các phép
+    tính như `0.0 / 0.0`. Nó không bằng bất kỳ giá trị nào khi so sánh (kể cả
+    chính nó); từ C++11 có thể dùng `std::isnan` để kiểm tra một số dấu phẩy
+    động có phải NaN hay không.
 
 <a id="kiểu-không-có-giá-trị"></a>
 
@@ -502,7 +543,7 @@ Khi chuyển các kiểu khác sang kiểu `bool`, giá trị bằng không chuy
 
 Nói đơn giản[^note14], để định nghĩa một biến, cần có bộ mô tả kiểu (chỉ rõ kiểu của biến) và tên biến cần định nghĩa.
 
-Ví dụ, các câu lệnh dưới đây đều là câu lệnh định nghĩa biến.
+Ví dụ, các câu lệnh sau đều là câu lệnh định nghĩa biến.
 
 ```cpp
 int oi;
