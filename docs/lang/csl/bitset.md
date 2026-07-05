@@ -3,31 +3,66 @@ author: i-Yirannn, Xeonacid, ouuan
 <span id="giới-thiệu"></span>
 ## Giới thiệu
 
-`std::bitset` là một bộ chứa có kích thước cố định trong thư viện chuẩn, dùng để lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
+`std::bitset` là một bộ chứa có kích thước cố định trong thư viện chuẩn, dùng để
+lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
 
 ??? note "`bitset` và STL"
-    > Thư viện chuẩn C++ cung cấp một số lớp bộ chứa đặc biệt, gọi là bộ chuyển đổi bộ chứa (`stack`, `queue`, `priority_queue`). Ngoài ra, một vài lớp cung cấp giao diện giống bộ chứa, ví dụ `string`, `bitset` và `valarray`. Tất cả các lớp này được trình bày riêng. Bộ chuyển đổi bộ chứa và `bitset` được nói ở Chương 12.
+    > Thư viện chuẩn C++ cung cấp một số lớp bộ chứa đặc biệt, gọi là bộ chuyển
+    > đổi bộ chứa (`stack`, `queue`, `priority_queue`). Ngoài ra, một vài lớp
+    > cung cấp giao diện giống bộ chứa, ví dụ `string`, `bitset` và `valarray`.
+    > Tất cả các lớp này được trình bày riêng. Bộ chuyển đổi bộ chứa và `bitset`
+    > được nói ở Chương 12.
     >
-    > Thư viện chuẩn C++ không chỉ cung cấp các bộ chứa cho khung STL, mà còn có những bộ chứa phù hợp với các nhu cầu đặc biệt và đưa ra giao diện đơn giản, gần như tự giải thích. Có thể chia chúng thành bộ chuyển đổi bộ chứa, tức các lớp điều chỉnh bộ chứa STL chuẩn cho nhu cầu đặc biệt, hoặc `bitset`, một bộ chứa dành cho bit hay giá trị logic. Có ba bộ chuyển đổi bộ chứa chuẩn: `stack`, `queue` và `priority_queue`. Trong `priority_queue`, các phần tử được tự động sắp xếp theo một tiêu chí sắp xếp; vì vậy phần tử "kế tiếp" của `priority_queue` là phần tử có giá trị "cao nhất". `bitset` là một trường bit với số bit tùy ý nhưng cố định. Lưu ý rằng thư viện chuẩn C++ cũng cung cấp một bộ chứa đặc biệt có kích thước thay đổi được cho giá trị logic: `vector`.
+    > Thư viện chuẩn C++ không chỉ cung cấp các bộ chứa cho khung STL, mà còn có
+    > những bộ chứa phù hợp với các nhu cầu đặc biệt và đưa ra giao diện đơn
+    > giản, gần như tự giải thích. Có thể chia chúng thành bộ chuyển đổi bộ chứa,
+    > tức các lớp điều chỉnh bộ chứa STL chuẩn cho nhu cầu đặc biệt, hoặc
+    > `bitset`, một bộ chứa dành cho bit hay giá trị logic. Có ba bộ chuyển đổi
+    > bộ chứa chuẩn: `stack`, `queue` và `priority_queue`. Trong
+    > `priority_queue`, các phần tử được tự động sắp xếp theo một tiêu chí sắp
+    > xếp; vì vậy phần tử "kế tiếp" của `priority_queue` là phần tử có giá trị
+    > "cao nhất". `bitset` là một trường bit với số bit tùy ý nhưng cố định. Lưu
+    > ý rằng thư viện chuẩn C++ cũng cung cấp một bộ chứa đặc biệt có kích thước
+    > thay đổi được cho giá trị logic: `vector`.
     
     Trích từ *The C++ Standard Library 2nd Edition*
     
-    Như vậy, `bitset` không thuộc STL mà là một bộ chứa đặc biệt trong thư viện chuẩn. Trên thực tế, dù nó là một bộ chứa, nó cũng không thỏa mãn các yêu cầu của bộ chứa STL. Gọi nó là bộ chuyển đổi cũng không chính xác, vì nó không dựa vào bộ chứa STL nào khác làm tầng hiện thực bên dưới.
+    Như vậy, `bitset` không thuộc STL mà là một bộ chứa đặc biệt trong thư viện
+    chuẩn. Trên thực tế, dù nó là một bộ chứa, nó cũng không thỏa mãn các yêu cầu
+    của bộ chứa STL. Gọi nó là bộ chuyển đổi cũng không chính xác, vì nó không
+    dựa vào bộ chứa STL nào khác làm lớp cài đặt bên dưới.
 
-Vì địa chỉ bộ nhớ được đánh địa chỉ theo byte, chứ không phải theo bit, nên một biến kiểu `bool`, dù chỉ biểu diễn được `0/1`, vẫn chiếm 1 byte bộ nhớ.
+Vì bộ nhớ được đánh địa chỉ theo byte, chứ không phải theo bit, nên một biến
+kiểu `bool`, dù chỉ biểu diễn được `0/1`, vẫn chiếm 1 byte bộ nhớ.
 
-`bitset` dùng cách tối ưu cố định để tám bit trong một byte có thể riêng rẽ lưu 8 giá trị `0/1`.
+`bitset` dùng cách tối ưu cố định để tám bit trong một byte có thể lần lượt lưu
+8 giá trị `0/1`.
 
-Với một biến `int` 4 byte, nếu chỉ xét mục đích lưu `0/1`, `bitset` chỉ tốn dung lượng bằng $\frac{1}{32}$ của nó; khi tính một số thông tin, thời gian cần thiết cũng chỉ bằng $\frac 1{32}$.
+Với một biến `int` 4 byte, nếu chỉ xét mục đích lưu `0/1`, `bitset` chỉ tốn dung
+lượng bằng $\frac{1}{32}$ của nó; khi tính một số thông tin, thời gian cần thiết
+cũng có thể giảm theo tỷ lệ tương tự.
 
-Trong một số trường hợp, `bitset` có thể tối ưu hiệu năng chạy của chương trình. Việc tối ưu này được xem là tối ưu độ phức tạp hay chỉ là hằng số phụ thuộc vào góc nhìn phân tích. Thông thường, độ phức tạp của `bitset` có các cách ghi sau (giả sử độ phức tạp ban đầu là $O(n)$):
+Trong một số trường hợp, `bitset` có thể tối ưu hiệu năng chạy của chương trình.
+Việc tối ưu này được xem là tối ưu độ phức tạp hay chỉ là hằng số phụ thuộc vào
+góc nhìn phân tích. Thông thường, độ phức tạp của `bitset` có các cách ghi sau
+(giả sử độ phức tạp ban đầu là $O(n)$):
 
 1.  $O(n)$: cách ghi này xem như `bitset` hoàn toàn không tối ưu độ phức tạp.
-2.  $O(\frac n{32})$: cách ghi này không thật chặt chẽ (không nên có hằng số trong ký hiệu độ phức tạp), nhưng thể hiện rằng `bitset` có thể giảm thời gian cần thiết xuống $\frac 1{32}$.
-3.  $O(\frac n w)$, trong đó $w=32$ (số bit của máy tính); đây là cách ghi được chấp nhận phổ biến hơn.
+2.  $O(\frac n{32})$: cách ghi này không thật chặt chẽ (không nên có hằng số
+    trong ký hiệu độ phức tạp), nhưng thể hiện rằng `bitset` có thể giảm thời
+    gian cần thiết xuống $\frac 1{32}$.
+3.  $O(\frac n w)$, trong đó $w=32$ (số bit của kiểu máy); đây là cách ghi được
+    chấp nhận phổ biến hơn.
 4.  $O(\frac n {\log w})$, trong đó $w$ là kích thước của một biến số nguyên trên máy tính.
 
-Ngoài ra, một phiên bản đặc biệt hóa của `vector`, là `vector<bool>`, có cách lưu trữ giống `bitset`. Điểm khác là nó hỗ trợ cấp phát kích thước động, còn `bitset` giống mảng tĩnh thông thường: kích thước được xác định từ lúc biên dịch. Tuy nhiên, `bitset` có một số hàm thư viện rất tiện dụng; chúng không chỉ thuận tiện mà đôi khi còn có thể được hiện thực bằng SIMD để giảm hằng số. Bên cạnh đó, một phần hành vi của `vector<bool>` không nhất quán với `vector` (ví dụ với `std::vector<bool> vec`, `&vec[0] + i` không bằng `&vec[i]`). Vì vậy thông thường không dùng `vector<bool>`.
+Ngoài ra, phiên bản chuyên biệt hóa `vector<bool>` có cách lưu trữ giống
+`bitset`. Điểm khác là nó hỗ trợ cấp phát kích thước động, còn `bitset` giống
+mảng tĩnh thông thường: kích thước được xác định từ lúc biên dịch. Tuy nhiên,
+`bitset` có một số hàm thư viện rất tiện dụng; chúng không chỉ thuận tiện mà đôi
+khi còn có thể được cài đặt bằng SIMD để giảm hằng số. Bên cạnh đó, một phần
+hành vi của `vector<bool>` không nhất quán với `vector` thông thường, vì phần tử
+của nó được truy cập qua đối tượng proxy thay vì tham chiếu `bool&` thật. Vì vậy
+thông thường không dùng `vector<bool>`.
 
 <span id="cách-sử-dụng"></span>
 ## Cách sử dụng
@@ -52,47 +87,65 @@ std::bitset<1000> bs;  // một bitset gồm 1000 bit
 ### Hàm khởi tạo
 
 -   `bitset()`: mọi bit đều là `false`.
--   `bitset(unsigned long val)`: gán thành dạng nhị phân của `val`.
--   `bitset(const string& str)`: gán thành xâu $01$ `str`.
+-   `bitset(unsigned long val)`: khởi tạo từ biểu diễn nhị phân của `val`.
+-   `bitset(const string& str)`: khởi tạo từ xâu `str` gồm các ký tự `0`/`1`.
 
 <span id="toán-tử"></span>
 ### Toán tử
 
 -   `operator[]`: truy cập một bit cụ thể.
 
--   `operator ==`/`operator !=`: so sánh xem nội dung hai `bitset` có hoàn toàn giống nhau hay không.
+-   `operator ==`/`operator !=`: so sánh xem nội dung hai `bitset` có hoàn toàn
+    giống nhau hay không.
 
--   `operator &`/`operator &=`/`operator |`/`operator |=`/`operator ^`/`operator ^=`/`operator ~`: thực hiện các phép AND/OR/XOR/NOT theo bit.
+-   `operator &`/`operator &=`/`operator |`/`operator |=`/`operator ^`/
+    `operator ^=`/`operator ~`: thực hiện các phép AND/OR/XOR/NOT theo bit.
 
-    Lưu ý: **`bitset` chỉ có thể thực hiện phép toán theo bit với `bitset`**. Nếu muốn tính theo bit với số nguyên, cần chuyển số nguyên đó thành `bitset` trước.
+    Lưu ý: **`bitset` chỉ có thể thực hiện phép toán theo bit với `bitset`**.
+    Nếu muốn tính theo bit với số nguyên, cần chuyển số nguyên đó thành `bitset`
+    trước.
 
 -   `operator <<`/`operator >>`/`operator <<=`/`operator >>=`: thực hiện dịch trái/dịch phải nhị phân.
 
-Ngoài ra, `bitset` còn hỗ trợ nhập xuất kiểu luồng của C++, nghĩa là có thể nhập xuất bằng `cin`/`cout`.
+Ngoài ra, `bitset` còn hỗ trợ nhập xuất kiểu luồng của C++, nghĩa là có thể nhập
+xuất bằng `cin`/`cout`.
 
 <span id="hàm-thành-viên"></span>
 ### Hàm thành viên
 
 -   `count()`: trả về số bit có giá trị `true`.
 -   `size()`: trả về kích thước của `bitset`.
--   `test(pos)`: có tác dụng giống `at()` trong `vector`; khác với toán tử `[]` ở chỗ có kiểm tra vượt biên.
--   `any()`: nếu tồn tại ít nhất một bit là `true` thì trả về `true`, ngược lại trả về `false`.
--   `none()`: nếu mọi bit đều là `false` thì trả về `true`, ngược lại trả về `false`.
--   `all()`: nếu mọi bit đều là `true` thì trả về `true`, ngược lại trả về `false`.
--   1.  `set()`: gán toàn bộ `bitset` thành `true`.
-    2.  `set(pos, val = true)`: gán một bit cụ thể thành `true`/`false`.
--   1.  `reset()`: gán toàn bộ `bitset` thành `false`.
-    2.  `reset(pos)`: gán một bit cụ thể thành `false`, tương đương `set(pos, false)`.
--   1.  `flip()`: lật mọi bit ($0\leftrightarrow1$, tương đương XOR với một `bitset` toàn bit $1$).
-    2.  `flip(pos)`: lật một bit cụ thể.
+-   `test(pos)`: có tác dụng giống `at()` trong `vector`; khác với toán tử `[]`
+    ở chỗ có kiểm tra vượt biên.
+-   `any()`: nếu tồn tại ít nhất một bit là `true` thì trả về `true`, ngược lại
+    trả về `false`.
+-   `none()`: nếu mọi bit đều là `false` thì trả về `true`, ngược lại trả về
+    `false`.
+-   `all()`: nếu mọi bit đều là `true` thì trả về `true`, ngược lại trả về
+    `false`.
+-   `set()`: gán toàn bộ `bitset` thành `true`.
+-   `set(pos, val = true)`: gán một bit cụ thể thành `true`/`false`.
+-   `reset()`: gán toàn bộ `bitset` thành `false`.
+-   `reset(pos)`: gán một bit cụ thể thành `false`, tương đương
+    `set(pos, false)`.
+-   `flip()`: lật mọi bit ($0\leftrightarrow1$, tương đương XOR với một `bitset`
+    toàn bit $1$).
+-   `flip(pos)`: lật một bit cụ thể.
 -   `to_string()`: trả về biểu diễn xâu sau khi chuyển đổi.
--   `to_ulong()`: trả về biểu diễn `unsigned long` sau khi chuyển đổi (`long` giống `int` trên NT và hệ POSIX 32 bit, giống `long long` trên POSIX 64 bit).
--   `to_ullong()`: (từ **C++11**) trả về biểu diễn `unsigned long long` sau khi chuyển đổi.
+-   `to_ulong()`: trả về biểu diễn `unsigned long` sau khi chuyển đổi.
+-   `to_ullong()`: (từ **C++11**) trả về biểu diễn `unsigned long long` sau khi
+    chuyển đổi.
+
+    Nếu giá trị của `bitset` không chứa vừa kiểu số nguyên đích, hai hàm chuyển
+    đổi số nguyên này sẽ ném `std::overflow_error`.
 
 Ngoài ra, trong libstdc++ có một số hàm thành viên nội bộ khá hữu dụng[^bitset1]:
 
--   `_Find_first()`: trả về chỉ số của bit `true` đầu tiên trong `bitset`; nếu không có bit `true` nào thì trả về kích thước của `bitset`.
--   `_Find_next(pos)`: trả về chỉ số của bit `true` đầu tiên nằm sau `pos` (vị trí có chỉ số lớn hơn hẳn `pos`); nếu sau `pos` không có bit `true` nào thì trả về kích thước của `bitset`.
+-   `_Find_first()`: trả về chỉ số của bit `true` đầu tiên trong `bitset`; nếu
+    không có bit `true` nào thì trả về kích thước của `bitset`.
+-   `_Find_next(pos)`: trả về chỉ số của bit `true` đầu tiên nằm sau `pos` (vị
+    trí có chỉ số lớn hơn hẳn `pos`); nếu sau `pos` không có bit `true` nào thì
+    trả về kích thước của `bitset`.
 
 <span id="ứng-dụng"></span>
 ## Ứng dụng
@@ -142,7 +195,10 @@ Nhận thấy có thể dùng `bitset` để tối ưu: chỉ cần dịch trái
     }
     ```
 
-Vì hiện thực của libstdc++ nén các bit theo từng nhóm `__CHAR_BIT__ * sizeof(unsigned long)`[^bitset2], trên một số nền là $32$. Do đó, có thể tự viết `bitset` (chỉ cần hỗ trợ thao tác dịch trái rồi OR) nén $64$ bit (`__CHAR_BIT__ * sizeof(unsigned long long)`) để tối ưu tiếp:
+Vì cài đặt của libstdc++ nén các bit theo từng nhóm
+`__CHAR_BIT__ * sizeof(unsigned long)`[^bitset2], trên một số nền là $32$. Do
+đó, có thể tự viết `bitset` (chỉ cần hỗ trợ thao tác dịch trái rồi OR) nén $64$
+bit (`__CHAR_BIT__ * sizeof(unsigned long long)`) để tối ưu tiếp:
 
 ??? note "Bản nộp: [bitset tự viết](https://loj.ac/submission/395619)"
     ```cpp
