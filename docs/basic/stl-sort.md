@@ -4,7 +4,7 @@ Trừ các hàm đã được nêu riêng, các hàm liệt kê trong trang này
 
 ## qsort
 
-Xem thêm: [`qsort`](https://zh.cppreference.com/w/c/algorithm/qsort), [`std::qsort`](https://zh.cppreference.com/w/cpp/algorithm/qsort)
+Xem thêm: [`qsort`](https://en.cppreference.com/w/c/algorithm/qsort), [`std::qsort`](https://en.cppreference.com/w/cpp/algorithm/qsort)
 
 Hàm này là [sắp xếp nhanh](./quick-sort.md) được cài đặt trong thư viện chuẩn C, định nghĩa trong `<stdlib.h>`. Trong thư viện chuẩn C++, hàm này được định nghĩa trong `<cstdlib>`.
 
@@ -59,7 +59,7 @@ Từ đây cũng có thể thấy rằng tương đương không có nghĩa là 
 
 ## std::sort
 
-Xem thêm: [`std::sort`](https://zh.cppreference.com/w/cpp/algorithm/sort)
+Xem thêm: [`std::sort`](https://en.cppreference.com/w/cpp/algorithm/sort)
 
 Cách dùng:
 
@@ -84,7 +84,7 @@ Chuẩn C++ không quy định chặt chẽ thuật toán cài đặt của hàm
 
 ## std::nth\_element
 
-Xem thêm: [`std::nth_element`](https://zh.cppreference.com/w/cpp/algorithm/nth_element)
+Xem thêm: [`std::nth_element`](https://en.cppreference.com/w/cpp/algorithm/nth_element)
 
 Cách dùng:
 
@@ -103,7 +103,7 @@ Hàm này thường được dùng để xây dựng [K-D Tree](../ds/kdt.md).
 
 ## std::stable\_sort
 
-Xem thêm: [`std::stable_sort`](https://zh.cppreference.com/w/cpp/algorithm/stable_sort)
+Xem thêm: [`std::stable_sort`](https://en.cppreference.com/w/cpp/algorithm/stable_sort)
 
 Cách dùng:
 
@@ -118,7 +118,7 @@ std::stable_sort(first, last, cmp);
 
 ## std::partial\_sort
 
-Xem thêm: [`std::partial_sort`](https://zh.cppreference.com/w/cpp/algorithm/partial_sort)
+Xem thêm: [`std::partial_sort`](https://en.cppreference.com/w/cpp/algorithm/partial_sort)
 
 Cách dùng:
 
@@ -138,7 +138,7 @@ Nguyên lý:
 
 ## So sánh tự định nghĩa
 
-Xem thêm: [Nạp chồng toán tử](https://zh.cppreference.com/w/cpp/language/operators)
+Xem thêm: [Nạp chồng toán tử](https://en.cppreference.com/w/cpp/language/operators)
 
 Các kiểu dựng sẵn (như `int`) và cấu trúc do người dùng định nghĩa đều cho phép tùy biến hàm so sánh được dùng khi gọi các hàm sắp xếp STL. Khi gọi hàm, có thể truyền vào tham số cuối cùng một hàm cài đặt phép so sánh nhị phân.
 
