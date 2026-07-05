@@ -1,12 +1,12 @@
 Trang này giới thiệu ngắn gọn về danh sách liên kết.
 
-<span id="&#24341;&#20837;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
 Danh sách liên kết là một cấu trúc dữ liệu dùng để lưu trữ dữ liệu, trong đó các phần tử được nối với nhau bằng các con trỏ giống như các mắt xích. Đặc điểm của nó là chèn và xóa dữ liệu rất thuận tiện, nhưng tìm kiếm và đọc dữ liệu lại kém hiệu quả hơn.
 
-<span id="&#19982;&#25968;&#32452;&#30340;&#21306;&#21035;"></span>
+<span id="khác-biệt-với-mảng"></span>
 
 ## Khác biệt với mảng
 
@@ -16,14 +16,14 @@ Nhờ cấu trúc dạng chuỗi, danh sách liên kết có thể xóa và chè
 
 Mảng có thể tìm kiếm và đọc dữ liệu thuận tiện, với số thao tác khi truy cập ngẫu nhiên là $O(1)$. Nhưng số thao tác để xóa và chèn là $O(n)$.
 
-<span id="&#26500;&#24314;&#38142;&#34920;"></span>
+<span id="xây-dựng-danh-sách-liên-kết"></span>
 
 ## Xây dựng danh sách liên kết
 
 ???+ tip "Mẹo"
     Khi xây dựng danh sách liên kết, phần sử dụng con trỏ khá trừu tượng. Chỉ đọc mô tả bằng chữ và mã nguồn có thể khó hiểu, nên kết hợp vẽ hình để nắm rõ hơn.
 
-<span id="&#21333;&#21521;&#38142;&#34920;"></span>
+<span id="danh-sách-liên-kết-đơn"></span>
 
 ### Danh sách liên kết đơn
 
@@ -48,7 +48,7 @@ Danh sách liên kết đơn gồm vùng dữ liệu và vùng con trỏ. Vùng 
                 self.next = next
         ```
 
-<span id="&#21452;&#21521;&#38142;&#34920;"></span>
+<span id="danh-sách-liên-kết-đôi"></span>
 
 ### Danh sách liên kết đôi
 
@@ -75,11 +75,11 @@ Danh sách liên kết đôi cũng có vùng dữ liệu và vùng con trỏ. Đ
                 self.right = right
         ```
 
-<span id="&#21521;&#38142;&#34920;&#20013;&#25554;&#20837;&#65288;&#20889;&#20837;&#65289;&#25968;&#25454;"></span>
+<span id="chèn-ghi-dữ-liệu-vào-danh-sách-liên-kết"></span>
 
 ## Chèn (ghi) dữ liệu vào danh sách liên kết
 
-<span id="&#21333;&#21521;&#38142;&#34920;_1"></span>
+<span id="danh-sách-liên-kết-đơn_1"></span>
 
 ### Danh sách liên kết đơn
 
@@ -117,7 +117,7 @@ Mã cài đặt như sau:
             p.next = node
         ```
 
-<span id="&#21333;&#21521;&#24490;&#29615;&#38142;&#34920;"></span>
+<span id="danh-sách-liên-kết-vòng-đơn"></span>
 
 ### Danh sách liên kết vòng đơn
 
@@ -170,7 +170,7 @@ Mã cài đặt như sau:
                 p.next = node
         ```
 
-<span id="&#21452;&#21521;&#24490;&#29615;&#38142;&#34920;"></span>
+<span id="danh-sách-liên-kết-vòng-đôi"></span>
 
 ### Danh sách liên kết vòng đôi
 
@@ -223,11 +223,11 @@ Mã cài đặt như sau:
                 p.right = node
         ```
 
-<span id="&#20174;&#38142;&#34920;&#20013;&#21024;&#38500;&#25968;&#25454;"></span>
+<span id="xóa-dữ-liệu-khỏi-danh-sách-liên-kết"></span>
 
 ## Xóa dữ liệu khỏi danh sách liên kết
 
-<span id="&#21333;&#21521;&#65288;&#24490;&#29615;&#65289;&#38142;&#34920;"></span>
+<span id="danh-sách-liên-kết-đơn-vòng"></span>
 
 ### Danh sách liên kết đơn (vòng)
 
@@ -266,7 +266,7 @@ Mã cài đặt như sau:
             p.next = p.next.next
         ```
 
-<span id="&#21452;&#21521;&#24490;&#29615;&#38142;&#34920;_1"></span>
+<span id="danh-sách-liên-kết-vòng-đôi_1"></span>
 
 ### Danh sách liên kết vòng đôi
 
@@ -300,11 +300,11 @@ Mã cài đặt như sau:
             p = p.right
         ```
 
-<span id="&#25216;&#24039;"></span>
+<span id="kỹ-thuật"></span>
 
 ## Kỹ thuật
 
-<span id="&#24322;&#25110;&#38142;&#34920;"></span>
+<span id="danh-sách-liên-kết-xor"></span>
 
 ### Danh sách liên kết XOR
 
