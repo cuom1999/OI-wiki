@@ -154,7 +154,7 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
     -   $(\forall x\in\mathbf{Z}),~~x^{p-1}-1 \equiv \prod_{i=1}^{p-1}(x-i)\pmod p$.
     -   ([Định lý Wilson](./factorial.md#wilson-%E5%AE%9A%E7%90%86)) $(p-1)! \equiv -1 \pmod p$.
 
-<span id="&#23450;&#29702;-3lagrange-&#23450;&#29702;"></span>
+<span id="định-lý-3-lagrange"></span>
 
 ???+ note "Định lý 3 (định lý Lagrange)"
     Phương trình $(6)$ có nhiều nhất $n$ nghiệm phân biệt.
@@ -235,9 +235,9 @@ Ta có thể dùng định lý này để hạ bậc phương trình đồng dư
     
         Tức phương trình $f(x)q(x)\equiv 0\pmod p$ có $p$ nghiệm.
     
-        Gọi số nghiệm của $(7)$ là $s$. Theo [định lý Lagrange](#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86), ta có $s\leq n$.
+        Gọi số nghiệm của $(7)$ là $s$. Theo [định lý Lagrange](#định-lý-3-lagrange), ta có $s\leq n$.
     
-        Mặt khác, vì $\deg q=p-n$, theo [định lý Lagrange](#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86), phương trình $q(x)\equiv 0\pmod p$ có không quá $p-n$ nghiệm. Tập nghiệm của $f(x)q(x)\equiv 0\pmod p$ là hợp của tập nghiệm $f(x)\equiv 0\pmod p$ và tập nghiệm $q(x)\equiv 0\pmod p$, nên $s+(p-n)\geq p$, suy ra $s\geq n$.
+        Mặt khác, vì $\deg q=p-n$, theo [định lý Lagrange](#định-lý-3-lagrange), phương trình $q(x)\equiv 0\pmod p$ có không quá $p-n$ nghiệm. Tập nghiệm của $f(x)q(x)\equiv 0\pmod p$ là hợp của tập nghiệm $f(x)\equiv 0\pmod p$ và tập nghiệm $q(x)\equiv 0\pmod p$, nên $s+(p-n)\geq p$, suy ra $s\geq n$.
     
         Vì vậy $s=n$.
 

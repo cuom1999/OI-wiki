@@ -5,7 +5,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 Hàm đếm số nguyên tố: số lượng số nguyên tố nhỏ hơn hoặc bằng $x$, ký hiệu là
 $\pi(x)$. Khi $x$ tăng, ta có xấp xỉ: $\pi(x) \sim \dfrac{x}{\ln(x)}$.
 
-<span id="&#x7D20;&#x6027;&#x6D4B;&#x8BD5;"></span>
+<span id="kiểm-tra-tính-nguyên-tố"></span>
 ## Kiểm tra tính nguyên tố
 
 **Kiểm tra tính nguyên tố** (Primality test) dùng để xác định một số tự nhiên
@@ -26,7 +26,7 @@ Có hai loại kiểm tra tính nguyên tố:
     tức các hợp số thỏa mãn định lý nhỏ Fermat. Ví dụ thường gặp của kiểm tra
     xác suất là kiểm tra Miller-Rabin.
 
-<span id="&#x8BD5;&#x9664;&#x6CD5;"></span>
+<span id="thử-chia"></span>
 ### Thử chia
 
 Cách làm vét cạn tự nhiên là liệt kê mọi số từ nhỏ đến lớn và xem nó có chia
@@ -86,7 +86,7 @@ Vì $1$ chắc chắn là ước nên ta không cần kiểm tra nó.
             return True
         ```
 
-<span id="fermat-&#x7D20;&#x6027;&#x6D4B;&#x8BD5;"></span>
+<span id="kiểm-tra-tính-nguyên-tố-fermat"></span>
 ### Kiểm tra tính nguyên tố Fermat
 
 **Kiểm tra tính nguyên tố Fermat** là phép kiểm tra tính nguyên tố xác suất đơn
@@ -139,11 +139,11 @@ nhiên là kiểm tra nhiều cơ số. Tuy nhiên, ngay cả khi kiểm tra t�
 nguyên tố cùng nhau với $n$, vẫn không thể bảo đảm $n$ là số nguyên tố. Nói cách
 khác, mệnh đề đảo của định lý nhỏ Fermat không đúng: ngay cả khi với mọi
 $a\perp n$ đều có $a^{n-1}\equiv 1\pmod n$, $n$ vẫn có thể không phải số nguyên
-tố. Các số như vậy được gọi là [số Carmichael](./primitive-root.md#carmichael-%E6%95%B0),
+tố. Các số như vậy được gọi là [số Carmichael](./primitive-root.md#số-carmichael),
 và cũng có vô hạn số. Điều này buộc ta tìm phép kiểm tra tính nguyên tố chặt
 chẽ hơn.
 
-<span id="miller–rabin-&#x7D20;&#x6027;&#x6D4B;&#x8BD5;"></span>
+<span id="kiểm-tra-tính-nguyên-tố-miller-rabin"></span>
 ### Kiểm tra tính nguyên tố Miller-Rabin
 
 **Kiểm tra tính nguyên tố Miller-Rabin** (Miller-Rabin primality test) là một
@@ -170,7 +170,7 @@ chất sau của số nguyên tố:
 ??? note "Chứng minh"
     Dễ kiểm tra trực tiếp rằng khi $p$ là số nguyên tố lẻ, cả
     $x\equiv 1\pmod p$ và $x\equiv p-1\pmod p$ đều làm công thức trên đúng.
-    Theo [định lý Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86),
+    Theo [định lý Lagrange](./congruence-equation.md#định-lý-3-lagrange),
     đây là tất cả nghiệm của phương trình.
 
 Kết hợp định lý nhỏ Fermat với định lý căn bậc hai, ta thu được kiểm tra tính
@@ -289,7 +289,7 @@ là số nguyên tố không vượt quá $1/4^k$.
     ràng $a^{u2^{\ell-1}}\equiv 1\pmod n$ cũng đúng, tức $a\in S'$. Nếu tồn tại
     $0\le i < t$ sao cho $a^{u2^i}\equiv -1\pmod n$, thì với mọi thừa số nguyên
     tố $p\mid n$ đều có $a^{u2^i}\equiv-1\pmod p$. Gọi $\delta_p(a)$ là
-    [cấp](./primitive-root.md#%E9%98%B6) của $a$ theo modulo $p$. Khi đó rõ ràng
+    [cấp](./primitive-root.md#bậc) của $a$ theo modulo $p$. Khi đó rõ ràng
     $\delta_p(a)\mid u2^{i+1}$ nhưng $\delta_p(a)\nmid u2^{i}$, nên trong phân
     tích thừa số nguyên tố của $\delta_p(a)$, số mũ của $2$ đúng bằng $i+1$, vì
     vậy $2^{i+1}\mid\delta_p(a)$. Theo định lý nhỏ Fermat,
@@ -305,9 +305,9 @@ là số nguyên tố không vượt quá $1/4^k$.
     [định lý thặng dư Trung Hoa](./crt.md), điều kiện
     $a^{u2^{\ell - 1}}\equiv 1\pmod n$ tương đương với
     $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ đúng với mọi $p_i^{e_i}$. Vì
-    [căn nguyên thủy](./primitive-root.md#%E5%8E%9F%E6%A0%B9) modulo lũy thừa
+    [căn nguyên thủy](./primitive-root.md#căn-nguyên-thủy) modulo lũy thừa
     của số nguyên tố lẻ $p_i^{e_i}$ luôn tồn tại, số
-    [nghiệm](./residue.md#%E6%80%A7%E8%B4%A8) của phương trình đồng dư
+    [nghiệm](./residue.md#tính-chất) của phương trình đồng dư
     $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ là
 
     $$
@@ -416,7 +416,7 @@ $n$:
 -   Nếu $a \equiv 0 \pmod n$ hoặc $a \equiv \pm 1 \pmod n$, thì vòng kiểm tra
     đó vượt qua trực tiếp.
 
-<span id="&#x53CD;&#x7D20;&#x6570;"></span>
+<span id="số-phản-nguyên-tố"></span>
 ## Số phản nguyên tố
 
 Theo tên gọi, số nguyên tố là số chỉ có hai ước, còn số phản nguyên tố là số có
@@ -436,7 +436,7 @@ và giá trị nhỏ nhất là số phản nguyên tố.
     nguyên tố mà khi đảo ngược các chữ số thì thu được một số nguyên tố khác (ví
     dụ 149 và 941 đều là emirp, còn 101 không phải emirp).
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quá-trình"></span>
 ### Quá trình
 
 Vậy tính số phản nguyên tố như thế nào?
@@ -503,7 +503,7 @@ cây, rồi tìm dần theo từng tầng. Khi nào dừng?
 
 Sau đó trong DFS, liên tục liệt kê số mũ theo từng tầng và đệ quy xuống dưới.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="bài-tập-ví-dụ"></span>
 ### Bài tập ví dụ
 
 ???+ example "[Codeforces 27E. A number with a given number of divisors](https://codeforces.com/problemset/problem/27/E)"
@@ -531,7 +531,7 @@ Sau đó trong DFS, liên tục liệt kê số mũ theo từng tầng và đệ
     --8<-- "docs/math/code/prime/prime_2.cpp"
     ```
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 1.  Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.

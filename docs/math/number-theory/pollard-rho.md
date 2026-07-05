@@ -275,7 +275,7 @@ Cần nói thêm rằng phân tích phía trên dựa trên hàm ánh xạ tự 
 
 Bài tập ví dụ: [P4718 - Mẫu thuật toán Pollard-Rho](https://www.luogu.com.cn/problem/P4718)
 
-Với một số $n$, dùng [thuật toán Miller Rabin](./prime.md#kiem-tra-tinh-nguyen-to-miller-rabin) để kiểm tra nó có phải số nguyên tố hay không. Nếu có thì có thể trả về trực tiếp; nếu không, dùng thuật toán Pollard-Rho để tìm một thừa số $p$, rồi chia $n$ cho thừa số $p$. Sau đó tiếp tục phân tích đệ quy $n$ và $p$, dùng Miller Rabin để nhận biết các thừa số nguyên tố xuất hiện, và cập nhật `max_factor` để tìm thừa số nguyên tố lớn nhất. Vì dữ liệu của bài này rất lớn, cách phát hiện chu trình Floyd là chưa đủ; ở đây ta dùng phương pháp tối ưu nhân đôi.
+Với một số $n$, dùng [thuật toán Miller Rabin](./prime.md#kiểm-tra-tính-nguyên-tố-miller-rabin) để kiểm tra nó có phải số nguyên tố hay không. Nếu có thì có thể trả về trực tiếp; nếu không, dùng thuật toán Pollard-Rho để tìm một thừa số $p$, rồi chia $n$ cho thừa số $p$. Sau đó tiếp tục phân tích đệ quy $n$ và $p$, dùng Miller Rabin để nhận biết các thừa số nguyên tố xuất hiện, và cập nhật `max_factor` để tìm thừa số nguyên tố lớn nhất. Vì dữ liệu của bài này rất lớn, cách phát hiện chu trình Floyd là chưa đủ; ở đây ta dùng phương pháp tối ưu nhân đôi.
 
 ??? note "Cài đặt"
     ```cpp

@@ -1,4 +1,4 @@
-Kiến thức nền: [định lí nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), [định lí Euler](./fermat.md#định-lý-euler), [định lí Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86)
+Kiến thức nền: [định lí nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), [định lí Euler](./fermat.md#định-lý-euler), [định lí Lagrange](./congruence-equation.md#định-lý-3-lagrange)
 
 Bậc và căn nguyên thủy là các công cụ quan trọng để hiểu cấu trúc nhân của
 [hệ thặng dư thu gọn](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
@@ -410,7 +410,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         phương trình đồng dư
         $(x^d-1)f(x)=x^{p-1}-1\equiv 0\pmod{p}$ có đúng $p-1$ nghiệm đôi một
         khác nhau. Các nghiệm này lần lượt là nghiệm của $x^d-1$ và $f(x)$.
-        Theo [định lí Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86),
+        Theo [định lí Lagrange](./congruence-equation.md#định-lý-3-lagrange),
         chúng lần lượt có nhiều nhất $d$ và $d(k-1)$ nghiệm đôi một khác nhau.
         Vì $d+d(k-1)=p-1$, trường hợp đầu chỉ có thể có đúng $d$ nghiệm đôi một
         khác nhau. Điều này chứng minh phương trình đồng dư
@@ -764,7 +764,7 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
     $p$ đều là nghiệm của phương trình đồng dư
     $x^{\lambda(p)}\equiv 1\pmod{p}$. Theo nghĩa modulo $p$, phương trình này có
     tổng cộng $p-1$ nghiệm đôi một khác nhau. Theo
-    [định lí Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86),
+    [định lí Lagrange](./congruence-equation.md#định-lý-3-lagrange),
     ta có $p-1\le\lambda(p)$. Đồng thời, định lí Euler yêu cầu
     $\lambda(p)\mid\varphi(p)=p-1$. Do đó $\lambda(p)=p-1$.
 
