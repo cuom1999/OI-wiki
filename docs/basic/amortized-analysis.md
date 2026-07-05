@@ -10,20 +10,20 @@ Phân tích khấu hao thường dùng ba phương pháp chính: phân tích g�
 
 ## Nội dung
 
-Xét một mảng có thể mở rộng, chẳng hạn `vector` trong C++, với dung lượng ban đầu $m = 1$. Mỗi khi chèn một phần tử mới, nếu mảng đã đầy, ta cần nhân đôi kích thước mảng, sao chép các phần tử từ mảng cũ sang mảng mới, rồi cuối cùng chèn phần tử mới.
+Xét một mảng có thể mở rộng, chẳng hạn `vector` trong C++, với dung lượng ban đầu $m = 1$. Mỗi khi chèn một phần tử mới, nếu mảng đã đầy, cần nhân đôi kích thước mảng, sao chép các phần tử từ mảng cũ sang mảng mới, rồi cuối cùng chèn phần tử mới.
 
-Tiếp theo, ta dùng thao tác chèn vào mảng động làm ví dụ và phân tích chi phí khấu hao của nó bằng ba phương pháp: phân tích gộp, phân tích kế toán và phân tích thế năng.
+Tiếp theo, dùng thao tác chèn vào mảng động làm ví dụ và phân tích chi phí khấu hao của nó bằng ba phương pháp: phân tích gộp, phân tích kế toán và phân tích thế năng.
 
 ### Phân tích gộp
 
 Phân tích gộp tính tổng chi phí của một chuỗi thao tác rồi chia đều cho từng thao tác, từ đó thu được độ phức tạp thời gian khấu hao của mỗi thao tác.
 
-Với ví dụ mảng động, trước hết ta có hai loại chi phí chính của thao tác chèn:
+Với ví dụ mảng động, trước hết có hai loại chi phí chính của thao tác chèn:
 
 -   Nếu mảng chưa đầy, chi phí chèn là $O(1)$.
 -   Nếu mảng đã đầy, thao tác chèn cần mở rộng dung lượng; chi phí sao chép phần tử sau khi mở rộng là $O(m)$, trong đó $m$ là kích thước hiện tại của mảng.
 
-Vì vậy, để tính tổng chi phí của $n$ thao tác chèn, ta có thể tách thành hai phần:
+Vì vậy, để tính tổng chi phí của $n$ thao tác chèn, có thể tách thành hai phần:
 
 1.  **Chi phí thao tác chèn**: chi phí trực tiếp của mỗi lần chèn phần tử mới là thời gian hằng số $O(1)$; với $n$ thao tác, tổng chi phí là $O(n)$.
 2.  **Chi phí mở rộng mảng**: mỗi lần mở rộng cần sao chép các phần tử của mảng cũ sang mảng mới. Các thao tác này xảy ra khi kích thước mảng là $1, 2, 4, \ldots , 2^k$, trong đó $2^k$ là lũy thừa lớn nhất không vượt quá $n$. Chi phí của các lần mở rộng lần lượt là $1, 2, 4, \ldots , 2^{k-1}$, tổng là $1 + 2 + 4 + \ldots  + 2^{k-1} = 2^k - 1$. Đây là tổng của một cấp số nhân, nên kết quả là $O(n)$.
@@ -34,7 +34,7 @@ Do đó, tổng chi phí chèn của mảng là $O(n)$, và chi phí khấu hao 
 
 Phương pháp kế toán gán trước một chi phí khấu hao cố định cho mỗi thao tác để bảo đảm tổng chi phí thực tế của mọi thao tác không vượt quá tổng chi phí đã phân bổ trước. Phương pháp kế toán giống một cơ chế **trả trước chi phí**: các thao tác có chi phí thấp sẽ lưu lại một phần “tín dụng” để trả cho các thao tác có chi phí cao trong tương lai.
 
-Với ví dụ mảng động, ta có thể phân bổ một chi phí khấu hao cố định cho mỗi thao tác chèn để bảo đảm khi cần mở rộng dung lượng, ta đã dự trữ đủ chi phí.
+Với ví dụ mảng động, có thể phân bổ một chi phí khấu hao cố định cho mỗi thao tác chèn để bảo đảm khi cần mở rộng dung lượng, chi phí đã được dự trữ đủ.
 
 1.  **Phân bổ chi phí**:
     -   Giả sử chi phí thực tế của mỗi thao tác chèn là $1$, và đặt chi phí khấu hao là $3$.
@@ -44,7 +44,7 @@ Với ví dụ mảng động, ta có thể phân bổ một chi phí khấu hao
     -   Khi mảng đã đầy, cần thực hiện thao tác mở rộng, với chi phí thực tế là $O(m)$, trong đó $m$ là kích thước hiện tại của mảng.
     -   Giả sử trước khi mở rộng, số phần tử trong mảng là $n$. Vì $n/2$ phần tử ở nửa sau của mảng cũ đã dự trữ tổng cộng $n$ đơn vị chi phí khấu hao khi được chèn, khoản này vừa đủ trả chi phí mở rộng.
 
-Dưới đây là một ví dụ cụ thể:
+Sau đây là một ví dụ cụ thể:
 
 ```text
 Trạng thái ban đầu:
@@ -87,7 +87,7 @@ $$
 
 Trong đó $c$ là chi phí thực tế của thao tác, còn $S$ và $S'$ lần lượt là trạng thái cấu trúc dữ liệu trước và sau thao tác. Công thức này cho thấy chi phí khấu hao bằng chi phí thực tế cộng với độ thay đổi của thế năng. Nếu thao tác làm tăng thế năng (tức $\Phi(S') > \Phi(S)$), chi phí khấu hao tăng; nếu thao tác tiêu hao thế năng (tức $\Phi(S') < \Phi(S)$), chi phí khấu hao giảm.
 
-Ta có thể dùng hàm thế năng để phân tích tổng chi phí của một chuỗi thao tác. Gọi $S_1, S_2, \dots, S_m$ là chuỗi trạng thái sinh ra sau $m$ thao tác bắt đầu từ trạng thái ban đầu $S_0$, và $c_i$ là chi phí thực tế của thao tác thứ $i$. Khi đó chi phí khấu hao $p_i$ của thao tác thứ $i$ là:
+Có thể dùng hàm thế năng để phân tích tổng chi phí của một chuỗi thao tác. Gọi $S_1, S_2, \dots, S_m$ là chuỗi trạng thái sinh ra sau $m$ thao tác bắt đầu từ trạng thái ban đầu $S_0$, và $c_i$ là chi phí thực tế của thao tác thứ $i$. Khi đó chi phí khấu hao $p_i$ của thao tác thứ $i$ là:
 
 $$
 p_i = c_i + \Phi(S_i) - \Phi(S_{i-1})
@@ -142,7 +142,7 @@ Thao tác trên ngăn xếp là một trong những ứng dụng kinh điển c�
 | `S.pop()`        | Lấy phần tử ở đỉnh           | $1$                            |
 | `S.multi-pop(k)` | Lấy k phần tử ở đỉnh         | $O(\min{\lvert S\rvert, k})$   |
 
-Ta sẽ phân tích chi phí khấu hao của các thao tác ngăn xếp này bằng ba phương pháp: phân tích gộp, phân tích kế toán và phân tích thế năng.
+Phần này phân tích chi phí khấu hao của các thao tác ngăn xếp này bằng ba phương pháp: phân tích gộp, phân tích kế toán và phân tích thế năng.
 
 ### Phương pháp phân tích gộp
 
