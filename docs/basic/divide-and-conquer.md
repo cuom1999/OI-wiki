@@ -100,7 +100,7 @@ int func(giá_trị_đầu_vào) {
     Rõ ràng phiên bản đệ quy dễ hiểu hơn phiên bản không đệ quy. Cách làm của
     phiên bản đệ quy rất trực quan: sắp xếp nửa trái, sắp xếp nửa phải, rồi
     trộn hai nửa. Phiên bản không đệ quy thì khó đọc hơn, chứa nhiều chi tiết
-    tính biên khó hiểu, rất dễ lỗi và khó debug.
+    tính biên khó hiểu, rất dễ lỗi và khó gỡ lỗi.
 
 2.  Rèn luyện khả năng phân tích cấu trúc bài toán. Khi nhận ra bài toán có thể
     được tách thành các bài toán nhỏ có cùng cấu trúc, việc quen viết đệ quy sẽ
@@ -134,7 +134,7 @@ int size_recursion(Node *head) {
 }
 ```
 
-![[So sánh hai cách, compiler đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.svg "[So sánh hai cách, compiler đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
+![[So sánh hai cách, trình biên dịch đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.svg "[So sánh hai cách, trình biên dịch đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
 
 ### Tối ưu đệ quy
 
