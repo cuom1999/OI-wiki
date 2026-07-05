@@ -247,7 +247,7 @@ R=
 \end{bmatrix}.
 $$
 
-Trong không gian ba chiều, quay vectơ cần dùng hai tham số góc, tức góc thiên đỉnh và góc phương vị; có thể dùng [hệ tọa độ cầu trong không gian](../coordinate.md#%E7%A9%BA%E9%97%B4%E7%90%83%E5%9D%90%E6%A0%87%E7%B3%BB) để thực hiện phép quay.
+Trong không gian ba chiều, quay vectơ cần dùng hai tham số góc, tức góc thiên đỉnh và góc phương vị; có thể dùng [hệ tọa độ cầu trong không gian](../coordinate.md#hệ-tọa-độ-cầu-trong-không-gian) để thực hiện phép quay.
 
 <span id="&#21521;&#37327;&#32469;&#30452;&#32447;&#26059;&#36716;"></span>
 #### Quay vectơ quanh một đường thẳng

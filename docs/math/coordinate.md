@@ -73,7 +73,7 @@ Trong hệ tọa độ Descartes phẳng, với mỗi điểm bất kỳ trên m
 
 Với một điểm bất kỳ $C$ trong mặt phẳng, từ $C$ kẻ các đường vuông góc xuống trục $x$ và trục $y$. Các điểm chân trên trục $x$ và trục $y$ tương ứng là $a, b$, lần lượt được gọi là hoành độ và tung độ của điểm $C$; cặp có thứ tự (ordered pair) $(a, b)$ được gọi là tọa độ Descartes của điểm $C$. Khi một điểm nằm ở các góc phần tư khác nhau hoặc trên các trục tọa độ khác nhau, tọa độ của nó cũng khác nhau.
 
-<span id="&#24179;&#38754;&#26497;&#22352;&#26631;&#31995;"></span>
+<span id="hệ-tọa-độ-cực-trong-mặt-phẳng"></span>
 
 ## Hệ tọa độ cực trong mặt phẳng
 
@@ -100,7 +100,7 @@ Theo định nghĩa các góc có cùng vị trí cạnh cuối, $(\rho,\varphi)
 
 Nếu quy ước $\rho \ge 0,0 \le \varphi < 2\pi$, thì ngoài cực ra, mọi điểm khác trong mặt phẳng có thể được biểu diễn bằng duy nhất một cặp có thứ tự $(\rho,\varphi)$; còn điểm được biểu diễn bởi tọa độ cực $(\rho,\varphi)$ thì được xác định duy nhất.
 
-<span id="&#24179;&#38754;&#30452;&#35282;&#22352;&#26631;&#31995;&#19982;&#26497;&#22352;&#26631;&#31995;&#30340;&#30456;&#20114;&#36716;&#25442;"></span>
+<span id="chuyển-đổi-giữa-hệ-tọa-độ-descartes-phẳng-và-hệ-tọa-độ-cực"></span>
 
 ### Chuyển đổi giữa hệ tọa độ Descartes phẳng và hệ tọa độ cực
 
@@ -173,9 +173,9 @@ Hệ tọa độ trụ trong không gian là cách mở rộng hệ tọa độ 
 
 Giá trị $z$ trong hai hệ tọa độ là như nhau.
 
-Phần chuyển đổi giữa $(x,y)$ và $(\rho, \varphi)$ xem mục trên [chuyển đổi giữa hệ tọa độ Descartes phẳng và hệ tọa độ cực](#%E5%B9%B3%E9%9D%A2%E7%9B%B4%E8%A7%92%E5%9D%90%E6%A0%87%E7%B3%BB%E4%B8%8E%E6%9E%81%E5%9D%90%E6%A0%87%E7%B3%BB%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2).
+Phần chuyển đổi giữa $(x,y)$ và $(\rho, \varphi)$ xem mục trên [chuyển đổi giữa hệ tọa độ Descartes phẳng và hệ tọa độ cực](#chuyển-đổi-giữa-hệ-tọa-độ-descartes-phẳng-và-hệ-tọa-độ-cực).
 
-<span id="&#31354;&#38388;&#29699;&#22352;&#26631;&#31995;"></span>
+<span id="hệ-tọa-độ-cầu-trong-không-gian"></span>
 
 ## Hệ tọa độ cầu trong không gian
 
@@ -194,7 +194,7 @@ Như vậy sẽ đến điểm được mô tả bởi tọa độ cầu $(r,\va
     
     Đồng thời, khi viết bài, nếu dùng hệ tọa độ cầu, nên tuyên bố rõ từ trước ký hiệu nào biểu diễn góc thiên đỉnh và góc phương vị.
 
-<span id="&#26609;&#22352;&#26631;&#31995;&#19982;&#29699;&#22352;&#26631;&#31995;&#30340;&#30456;&#20114;&#36716;&#25442;"></span>
+<span id="chuyển-đổi-giữa-hệ-tọa-độ-trụ-và-hệ-tọa-độ-cầu"></span>
 
 ### Chuyển đổi giữa hệ tọa độ trụ và hệ tọa độ cầu
 
@@ -226,7 +226,7 @@ $$
 
 ### Chuyển đổi giữa hệ tọa độ Descartes không gian và hệ tọa độ cầu
 
-Có thể kết hợp mục trên [chuyển đổi giữa hệ tọa độ Descartes phẳng và hệ tọa độ cực](#%E5%B9%B3%E9%9D%A2%E7%9B%B4%E8%A7%92%E5%9D%90%E6%A0%87%E7%B3%BB%E4%B8%8E%E6%9E%81%E5%9D%90%E6%A0%87%E7%B3%BB%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2) và mục trên [chuyển đổi giữa hệ tọa độ trụ và hệ tọa độ cầu](#%E6%9F%B1%E5%9D%90%E6%A0%87%E7%B3%BB%E4%B8%8E%E7%90%83%E5%9D%90%E6%A0%87%E7%B3%BB%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2), hoặc dùng trực tiếp các công thức dưới đây:
+Có thể kết hợp mục trên [chuyển đổi giữa hệ tọa độ Descartes phẳng và hệ tọa độ cực](#chuyển-đổi-giữa-hệ-tọa-độ-descartes-phẳng-và-hệ-tọa-độ-cực) và mục trên [chuyển đổi giữa hệ tọa độ trụ và hệ tọa độ cầu](#chuyển-đổi-giữa-hệ-tọa-độ-trụ-và-hệ-tọa-độ-cầu), hoặc dùng trực tiếp các công thức dưới đây:
 
 Từ hệ tọa độ Descartes không gian sang hệ tọa độ cầu:
 
@@ -238,7 +238,7 @@ r &= \sqrt{x^2 + y^2 + z^2} \\
 \end{aligned}
 $$
 
-Trong đó định nghĩa của $\operatorname{atan2}$ xem tại [chuyển đổi giữa hệ tọa độ Descartes phẳng và hệ tọa độ cực](#%E5%B9%B3%E9%9D%A2%E7%9B%B4%E8%A7%92%E5%9D%90%E6%A0%87%E7%B3%BB%E4%B8%8E%E6%9E%81%E5%9D%90%E6%A0%87%E7%B3%BB%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2).
+Trong đó định nghĩa của $\operatorname{atan2}$ xem tại [chuyển đổi giữa hệ tọa độ Descartes phẳng và hệ tọa độ cực](#chuyển-đổi-giữa-hệ-tọa-độ-descartes-phẳng-và-hệ-tọa-độ-cực).
 
 Lưu ý với điểm $(0,0,0)$ trong hệ tọa độ Descartes không gian, các giá trị $\vartheta$ và $\varphi$ của tọa độ cầu không xác định.
 
