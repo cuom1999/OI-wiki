@@ -627,7 +627,7 @@ Bài mẫu:
 
     Hiển nhiên, với bài này, duy trì riêng các đoạn độ dốc âm và dương sẽ tiện
     lợi hơn. Vì thao tác chủ yếu tập trung quanh đoạn độ dốc bằng không, ta dùng
-    [hai heap đối đỉnh](../../ds/binary-heap.md#%E5%AF%B9%E9%A1%B6%E5%A0%86),
+    [hai heap đối đỉnh](../../ds/binary-heap.md#heap-đối-đỉnh),
     tức dùng riêng max-heap và min-heap để duy trì các điểm gãy của đoạn độ dốc
     âm và dương. Các phép tịnh tiến toàn bộ điểm gãy được thực hiện bằng lazy
     tag. Vì bước thứ hai cần chèn một $a_i$ vào mỗi heap, sau khi chèn, đỉnh
@@ -674,7 +674,7 @@ Bài mẫu:
 
 Còn có một số bài toán mà việc duy trì độ dốc tiện lợi hơn. Lớp bài toán này
 thường cũng có thể giải bằng tư tưởng
-[tham lam hối tiếc](../../basic/greedy.md#%E5%90%8E%E6%82%94%E8%A7%A3%E6%B3%95)
+[tham lam hối tiếc](../../basic/greedy.md#lời-giải-hối-tiếc)
 hoặc mô phỏng luồng chi phí. Trong mô hình luồng chi phí, chi phí nhỏ nhất
 thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope Trick.
 
