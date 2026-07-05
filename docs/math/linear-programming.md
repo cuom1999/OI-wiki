@@ -1,11 +1,11 @@
 author: Ir1d, YZircon, huhaoo, QAQAutoMaton, Enter-tainer, Marcythm, sshwy, partychicken, Konano, H-J-Granger, baker221, isdanni, ksyx
 
-<span id="&#24341;&#20837;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Quy hoạch tuyến tính (linear programming, LP) là tên gọi chung cho các phương pháp nghiên cứu bài toán tối ưu một hàm mục tiêu tuyến tính dưới các ràng buộc tuyến tính. Đây là một nhánh của vận trù học và có ứng dụng trong nhiều lĩnh vực. Một số trường hợp đặc biệt của quy hoạch tuyến tính, chẳng hạn như luồng mạng và luồng đa hàng hóa, có thể xuất hiện trong các bài toán thi lập trình. Trong thi thuật toán, hiếm khi có bài toán chỉ có thể giải bằng thuật toán quy hoạch tuyến tính; phần lớn các bài toán kiểu này có thể được mô hình hóa bằng luồng mạng hoặc các phương pháp chuyên biệt khác để giải hiệu quả hơn.
 
-<span id="&#19968;&#20010;&#31616;&#21333;&#30340;&#20363;&#23376;"></span>
+<span id="một-ví-dụ-đơn-giản"></span>
 ### Một ví dụ đơn giản
 
 Để một bài toán có thể viết dưới dạng quy hoạch tuyến tính, nó cần có một số ràng buộc tuyến tính và một hàm mục tiêu tuyến tính.
@@ -51,7 +51,7 @@ $$
 
 Đây là một bài toán quy hoạch tuyến tính điển hình. Hàm mục tiêu là một hàm tuyến tính theo các biến quyết định, còn các ràng buộc là các đẳng thức hoặc bất đẳng thức tuyến tính tạo bởi các biến quyết định.
 
-<span id="&#22270;&#35299;&#27861;"></span>
+<span id="phương-pháp-đồ-thị"></span>
 ### Phương pháp đồ thị
 
 Với bài toán quy hoạch tuyến tính chỉ có hai biến quyết định, ta có thể giải trực quan bằng phương pháp đồ thị.
@@ -80,12 +80,12 @@ Khi bài toán có nhiều hơn hai biến quyết định, phương pháp đồ
 
 Một điểm khác đáng chú ý là về nguyên tắc, số bánh bao và quẩy người bán làm ra không thể chia nhỏ vô hạn mà phải là số nguyên nào đó. Tuy trong quá trình giải bài toán này ta không ràng buộc rõ điều đó, nghiệm tối ưu cuối cùng quả thực là số nguyên, nên đáp án vẫn khả thi ngay cả khi thêm ràng buộc nguyên. Nhưng với nhiều bài toán quy hoạch, nghiệm tối ưu có thể không đạt tại điểm nguyên; những bài toán đó thực chất thuộc lớp quy hoạch nguyên, chứ không phải quy hoạch tuyến tính đơn giản. Cuối bài viết sẽ bàn ngắn gọn về lớp bài toán này.
 
-<span id="&#22522;&#26412;&#27010;&#24565;"></span>
+<span id="khái-niệm-cơ-bản"></span>
 ## Khái niệm cơ bản
 
 Phần này giới thiệu các khái niệm cơ bản của quy hoạch tuyến tính.
 
-<span id="&#32447;&#24615;&#35268;&#21010;&#38382;&#39064;"></span>
+<span id="bài-toán-quy-hoạch-tuyến-tính"></span>
 ### Bài toán quy hoạch tuyến tính
 
 Một bài toán quy hoạch tuyến tính $P$ thường gồm hai phần sau:
@@ -108,7 +108,7 @@ Một bài toán quy hoạch tuyến tính $P$ thường gồm hai phần sau:
 
 Bài toán quy hoạch tuyến tính yêu cầu tối đa hóa hoặc tối thiểu hóa hàm mục tiêu với điều kiện các ràng buộc đã cho được thỏa mãn. Một nghiệm $(x_1,x_2,\cdots,x_n)\in\mathbf R^n$ thỏa mãn các ràng buộc gọi là **nghiệm khả thi** (feasible solution); trong tất cả nghiệm khả thi, nghiệm làm hàm mục tiêu đạt cực trị gọi là **nghiệm tối ưu** (optimal solution).
 
-<span id="&#26631;&#20934;&#24418;&#24335;"></span>
+<span id="dạng-chuẩn"></span>
 ### Dạng chuẩn
 
 Để tiện mô tả và xử lý tiếp, thông thường cần quy định một dạng chuẩn cho bài toán quy hoạch tuyến tính. Các tài liệu khác nhau có thể có quy ước khác nhau; trong bài này, dạng chuẩn của quy hoạch tuyến tính được quy định như sau:
@@ -194,7 +194,7 @@ Kích thước của bài toán quy hoạch tuyến tính thu được sau các 
     \end{aligned}
     $$
 
-<span id="&#21487;&#34892;&#22495;&#19982;&#38382;&#39064;&#30340;&#35299;"></span>
+<span id="miền-khả-thi-và-nghiệm-của-bài-toán"></span>
 ### Miền khả thi và nghiệm của bài toán
 
 Tập tất cả nghiệm khả thi $\mathcal D\subseteq\mathbf R^n$ gọi là **miền khả thi** (feasible region) của bài toán quy hoạch tuyến tính $P$. Về mặt hình học, mỗi ràng buộc bất đẳng thức $a_j^T x \le b_j$ mô tả một nửa không gian $\{x\in\mathbf R^n:a_j^T x \le b_j\}$, và mỗi ràng buộc đẳng thức $a^T_jx = b_j$ mô tả một siêu phẳng $\{x\in\mathbf R^n:a_j^Tx=b_j\}$. Vì vậy miền khả thi luôn là giao của hữu hạn nửa không gian và siêu phẳng. Trong tối ưu hóa[^poly-names], hình học như vậy thường được gọi là **đa diện** (polyhedron) trong $\mathbf R^n$. Đa diện luôn là tập lồi đóng, nhưng không nhất thiết bị chặn. Đa diện bị chặn còn gọi là **đa bào** (polytope). Đa bào có thể xem là sự mở rộng của đa giác phẳng lên không gian nhiều chiều, còn đa diện tiếp tục mở rộng khái niệm đó sang trường hợp có thể không bị chặn.
@@ -241,7 +241,7 @@ Cần chỉ ra rằng các bài toán như quyết định một quy hoạch tuy
 
 Ngoài ra, nếu một ràng buộc của bài toán quy hoạch tuyến tính không chặt trên mọi mặt của miền khả thi, thì ràng buộc đó là **dư thừa** (redundant). Trong ví dụ người bán bữa sáng ở đầu bài, ràng buộc về thời gian làm việc là một ràng buộc dư thừa. Để quyết định một bất đẳng thức $a_j^Tx\le b_j$ trong hệ đã cho có dư thừa hay không, có thể giải bài toán quy hoạch tuyến tính $\max\{a_j^Tx:x\in\mathcal D\}$ rồi so sánh kết quả với $b_j$.
 
-<span id="&#24120;&#35265;&#31639;&#27861;"></span>
+<span id="các-thuật-toán-thường-gặp"></span>
 ## Các thuật toán thường gặp
 
 Trong thi thuật toán, hiếm khi có bài toán chỉ có thể giải bằng thuật toán quy hoạch tuyến tính. Phần lớn bài toán có thể giải bằng phương pháp quy hoạch tuyến tính thường cũng có thể giải bằng luồng mạng hoặc các thuật toán chuyên biệt hơn và hiệu quả hơn.
@@ -256,7 +256,7 @@ Dù độ phức tạp trường hợp xấu nhất của phương pháp đơn h
 
 Hiện vẫn chưa rõ liệu bài toán quy hoạch tuyến tính có thuật toán độ phức tạp đa thức mạnh hay không.
 
-<span id="&#23545;&#20598;&#38382;&#39064;"></span>
+<span id="bài-toán-đối-ngẫu"></span>
 ## Bài toán đối ngẫu
 
 Mỗi bài toán quy hoạch tuyến tính đều có một bài toán đối ngẫu tương ứng. Nghiệm của bài toán gốc và bài toán đối ngẫu có liên hệ chặt chẽ. Thông qua bài toán đối ngẫu, ta không chỉ hiểu sâu hơn cấu trúc bài toán mà còn thường có thể cải thiện hiệu quả giải bài toán gốc.
@@ -312,7 +312,7 @@ $$
 \max\{b^Ty:A^Ty\le c\}.
 $$
 
-<span id="&#23545;&#20598;&#21407;&#29702;"></span>
+<span id="nguyên-lý-đối-ngẫu"></span>
 ### Nguyên lý đối ngẫu
 
 Bài toán gốc và bài toán đối ngẫu không chỉ là ảnh gương nhau về hình thức; nghiệm của chúng cũng liên hệ chặt chẽ. Điều này gọi là **nguyên lý đối ngẫu** (duality principle). Để tiện trình bày, phần này dùng bài toán gốc ở dạng chuẩn khi phát biểu và chứng minh các định lý.
@@ -425,7 +425,7 @@ Từ quá trình chứng minh định lý đối ngẫu mạnh còn suy ra hệ 
 
 Định lý đối ngẫu mạnh nói rằng với một bài toán quy hoạch tuyến tính khả thi, chỉ cần giải bài toán đối ngẫu của nó là có thể thu được giá trị tối ưu của bài toán gốc.
 
-<span id="&#20114;&#34917;&#26494;&#24347;&#26465;&#20214;"></span>
+<span id="điều-kiện-bù-trừ-độ-lỏng"></span>
 ### Điều kiện bù trừ độ lỏng
 
 Giống các bài toán tối ưu khác, điều kiện bù trừ độ lỏng là một phần của điều kiện tối ưu của bài toán quy hoạch tuyến tính. Hơn nữa, vì hàm mục tiêu là tuyến tính, nên với quy hoạch tuyến tính, điều kiện bù trừ độ lỏng là điều kiện cần và đủ để một nghiệm khả thi trở thành nghiệm tối ưu.
@@ -472,7 +472,7 @@ Dạng chuẩn có thể hơi đặc biệt. Một dạng tổng quát hơn mộ
 
 Điều kiện bù trừ độ lỏng cung cấp một điều kiện đơn giản để kiểm tra tính tối ưu của nghiệm khả thi của bài toán quy hoạch tuyến tính.
 
-<span id="&#21407;&#22987;&#8209;&#23545;&#20598;&#26041;&#27861;"></span>
+<span id="phương-pháp-nguyên-thủy-đối-ngẫu"></span>
 ### Phương pháp nguyên thủy-đối ngẫu
 
 Bài toán đối ngẫu có thể hỗ trợ giải bài toán gốc. Khi giải quy hoạch tuyến tính, một phương pháp thường dùng là **phương pháp nguyên thủy-đối ngẫu** (primal-dual method). Phương pháp này giải một chuỗi các bài toán phụ tương đối đơn giản, dần cải thiện nghiệm của bài toán đối ngẫu, rồi thu được nghiệm tối ưu của bài toán nguyên thủy.
@@ -545,7 +545,7 @@ Trong quá trình này, thực ra chỉ có bài toán $(DRP)$ thật sự cần
 
 Trong thi thuật toán, phương pháp nguyên thủy-đối ngẫu được dùng rộng rãi trong nhiều bài toán tối ưu tổ hợp. Ví dụ, [thuật toán Hungary](../graph/graph-matching/bigraph-weight-match.md#hungarian-algorithmkuhnmunkres-algorithm) cho ghép cặp hai phía trọng số lớn nhất, [thuật toán khử chu trình](../graph/flow/min-cost.md) và [thuật toán SSP (thuật toán nguyên thủy-đối ngẫu)](../graph/flow/min-cost.md#thuật-toán-ssp) cho luồng chi phí nhỏ nhất, [thuật toán Dijkstra](../graph/shortest-path.md#thuật-toán-dijkstra) cho đường đi ngắn nhất, [thuật toán tăng luồng Ford-Fulkerson](../graph/flow/max-flow.md#tăng-luồng-fordfulkerson) cho luồng cực đại, v.v. đều có thể xem là ứng dụng trực tiếp của phương pháp nguyên thủy-đối ngẫu.
 
-<span id="&#25972;&#25968;&#35268;&#21010;"></span>
+<span id="quy-hoạch-nguyên"></span>
 ## Quy hoạch nguyên
 
 **Quy hoạch nguyên** (integer programming) thường chỉ **quy hoạch tuyến tính nguyên** (integer linear programming, ILP). Dạng chuẩn của quy hoạch tuyến tính nguyên như sau:
@@ -563,7 +563,7 @@ trong đó $A\in\mathbf R^{m\times n}$, $b\in\mathbf R^m$, $c\in\mathbf R^n$. N�
 
 Ràng buộc nguyên làm tăng đáng kể độ phức tạp của bài toán quy hoạch nguyên. Nhiều bài toán tối ưu tổ hợp, chẳng hạn bài toán ba lô, bài toán thỏa mãn và rất nhiều bài toán tối ưu trong lý thuyết đồ thị, đều có thể biểu diễn bằng mô hình quy hoạch nguyên; phần lớn các bài toán đó đã được chứng minh là NP-khó.
 
-<span id="&#20840;&#24186;&#27169;&#30697;&#38453;"></span>
+<span id="ma-trận-hoàn-toàn-đơn-môđun"></span>
 ### Ma trận hoàn toàn đơn môđun
 
 Chính vì vậy, với nhiều bài toán tối ưu nguyên quy mô lớn, đôi khi người ta nới lỏng ràng buộc nguyên và chuyển sang giải một bài toán quy hoạch tuyến tính. Thông thường, giá trị tối ưu của quy hoạch tuyến tính sau khi nới lỏng chỉ là một cận dưới của bài toán quy hoạch nguyên ban đầu (giả sử là bài toán tối thiểu hóa). Nhưng nếu nghiệm tối ưu của bài toán quy hoạch tuyến tính sau khi nới lỏng tình cờ là nghiệm nguyên, thì nó nhất định cũng là nghiệm tối ưu của bài toán quy hoạch nguyên ban đầu.
@@ -603,7 +603,7 @@ Trong các mô hình đồ thị thường gặp, ma trận hệ số của các
 
 Ngoài ra, còn có một số mô hình đồ thị thường gặp mà mọi nghiệm khả thi của chúng vừa đúng là toàn bộ các đỉnh của một đa bào có các đỉnh nguyên. Vì vậy, bằng cách chọn ràng buộc khéo léo, có thể làm cho nghiệm của bài toán tối ưu tổ hợp tương ứng đúng bằng nghiệm tối ưu của một bài toán quy hoạch tuyến tính. Ví dụ, ghép cặp trong đồ thị tổng quát và cây khung đều thuộc trường hợp này, nên các bài toán [ghép cặp lớn nhất (có trọng số) trong đồ thị tổng quát](../graph/graph-matching/general-weight-match.md) và [cây khung nhỏ nhất](../graph/mst.md) cũng có thể chuyển thành bài toán quy hoạch tuyến tính.
 
-<span id="&#21442;&#32771;&#25991;&#29486;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   Schrijver, Alexander. Theory of linear and integer programming. John Wiley & Sons, 1998.

@@ -2,7 +2,7 @@ author: Wajov, Early0v0, Enter-tainer, Great-designer, iamtwz, Ir1d, MegaOwIer, 
 
 Kiến thức cần có: [hoán vị và sắp xếp](../permutation.md)
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Nguyên lí đếm Pólya thường được dùng để giải các bài toán đếm liên quan đến những đối tượng "khác nhau về bản chất".
@@ -13,7 +13,7 @@ Nguyên lí đếm Pólya thường được dùng để giải các bài toán 
 ??? info "\"Nhóm đối xứng không gian\", \"nhóm đối xứng\" và \"nhóm hoán vị\""
     Trong bài này sẽ không tránh khỏi việc dùng đồng thời ba tên gọi nhóm trên. Dù dễ gây nhầm lẫn, chúng thật sự chỉ các khái niệm khác nhau. Với một cấu trúc hình học cho trước, phép đối xứng trên nó là một phép biến đổi hình học có thể đưa nó trùng lại với chính nó; nhóm đối xứng không gian (symmetry group) là tập hợp các phép đối xứng đó. Nhóm đối xứng (symmetric group) là tập hợp tất cả các hoán vị trên một tập cho trước. Nhóm hoán vị (permutation group) là một nhóm con của nhóm đối xứng, tức một nhóm gồm một số hoán vị, không nhất thiết là toàn bộ. Phần sau sẽ giải thích cách biểu diễn nhóm đối xứng không gian của một cấu trúc hình học cho trước dưới dạng nhóm hoán vị và dùng nó cho bài toán đếm.
 
-<span id="burnside-&#x5F15;&#x7406;"></span>
+<span id="bổ-đề-burnside"></span>
 ## Bổ đề Burnside
 
 Đọc thêm: [bổ đề Burnside](../algebra/group-theory.md#bổ-đề-burnside)
@@ -155,7 +155,7 @@ Khi áp dụng, chỉ cần liệt kê mọi phép đối xứng và cho biết 
     \frac{1\times3^6+6\times3^3+3\times3^4+6\times3^3+8\times3^2}{1+6+3+6+8}=57.
     $$
 
-<span id="pólya-&#x8BA1;&#x6570;&#x539F;&#x7406;"></span>
+<span id="nguyên-lí-đếm-pólya"></span>
 ## Nguyên lí đếm Pólya
 
 Trong phát biểu của bổ đề Burnside, ta không dùng tính chất rằng tập $X$ là toàn bộ các cách tô trên một cấu trúc nào đó. Thật ra phạm vi áp dụng của bổ đề Burnside không chỉ giới hạn ở bài toán đếm tô màu. Với bài toán tô màu, nguyên lí đếm Pólya cung cấp một cách tính chính xác hơn; có thể xem nó là ứng dụng của bổ đề Burnside tổng quát vào bài toán tô màu.
@@ -201,7 +201,7 @@ Như một ứng dụng đơn giản của nguyên lí đếm Pólya, ta tính l
 ??? example "Một cách giải khác cho bài toán tô màu lập phương"
     Phân tích phía trước thực chất đã cho biểu diễn chu trình của từng loại hoán vị, chỉ chưa viết tường minh bằng kí hiệu số. Ở đây không lặp lại phân tích đó, chỉ minh họa trường hợp quay $180^\circ$ quanh trục nối trung điểm của hai cạnh đối diện. Đánh số sáu mặt trước, sau, trên, dưới, trái, phải lần lượt là $1\sim6$, hoán vị tương ứng là $(13)(24)(56)$, do đó $c(g)=3$. Các loại hoán vị khác cũng phân tích tương tự, và biểu thức đếm cuối cùng giống hệt phần trên.
 
-<span id="&#x5E26;&#x6743;&#x91CD;&#x5F62;&#x5F0F;&#x7684;&#x63A8;&#x5E7F;"></span>
+<span id="mở-rộng-có-trọng-số"></span>
 ## Mở rộng có trọng số
 
 Phiên bản không trọng số của nguyên lí đếm Pólya chỉ cho số lượng tất cả các cách tô khác nhau về bản chất; khi xử lí bài toán tinh hơn thì không đủ. Chẳng hạn, nếu trong bài toán tô màu ở trên, ta cho trước số lần được dùng của từng màu, thì không thể áp dụng trực tiếp công thức Pólya trên. Khi giải loại bài toán này trong thực tế, cần dùng lại bổ đề Burnside để suy luận; tổng kết các kết quả đó dưới dạng hàm sinh chính là phiên bản có trọng số của nguyên lí đếm Pólya.
@@ -277,10 +277,10 @@ Phát biểu định lí dùng khái niệm chỉ số chu trình của nhóm ho
     
     Số cần tìm là hệ số của $r^2b^2$, tức có tổng cộng $2$ cách tô khác nhau về bản chất. Đồng thời, công thức này cũng cho số cách đếm dưới các ràng buộc khác.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ### Ứng dụng
 
-Phiên bản có trọng số của nguyên lí đếm Pólya đóng vai trò quan trọng trong các bài toán đếm tổ hợp. Ở đây chỉ thảo luận ngắn gọn ứng dụng của nó; phần tổng quát hơn có thể xem ở [phương pháp hình thức cho bài toán tổ hợp](../poly/symbolic-method.md#%E6%9C%89%E9%99%90%E5%88%B6%E7%9A%84%E6%9E%84%E9%80%A0).
+Phiên bản có trọng số của nguyên lí đếm Pólya đóng vai trò quan trọng trong các bài toán đếm tổ hợp. Ở đây chỉ thảo luận ngắn gọn ứng dụng của nó; phần tổng quát hơn có thể xem ở [phương pháp hình thức cho bài toán tổ hợp](../poly/symbolic-method.md#cấu-trúc-có-ràng-buộc).
 
 ???+ example "Vòng cổ kim cương"
     Có một vòng cổ gồm bốn hạt giống nhau, mỗi hạt có thể gắn một số viên kim cương. Nếu có tổng cộng bốn viên kim cương, hỏi có bao nhiêu cách gắn khác nhau về bản chất? (Nếu hai cách gắn có thể trùng nhau sau khi quay vòng cổ, chúng được xem là giống nhau.)
@@ -311,7 +311,7 @@ Phiên bản có trọng số của nguyên lí đếm Pólya đóng vai trò qu
 
 Ví dụ này cho thấy phiên bản có trọng số của nguyên lí đếm Pólya giải được phạm vi bài toán rộng hơn nhiều so với bài toán tô màu. Nó cung cấp cách mở rộng phép đếm tại một điểm đơn lẻ thành phép đếm khác nhau về bản chất trên toàn cấu trúc. Bài toán tô màu chỉ là một trường hợp đặc biệt của lớp bài toán này.
 
-<span id="&#x5E38;&#x89C1;&#x7A7A;&#x95F4;&#x5BF9;&#x79F0;&#x7FA4;"></span>
+<span id="các-nhóm-đối-xứng-không-gian-thường-gặp"></span>
 ## Các nhóm đối xứng không gian thường gặp
 
 Một khó khăn của các bài toán đếm Pólya là phân tích cấu trúc của nhóm hoán vị. Ở đây thảo luận ngắn gọn cấu trúc của các nhóm đối xứng không gian thường gặp và mô tả chúng bằng chỉ số chu trình. Cần chú ý rằng với cùng một nhóm đối xứng không gian của một cấu trúc, nếu tập đối tượng mà nó tác động lên khác nhau thì [tác động nhóm](../algebra/group-theory.md#tác-động-nhóm) tương ứng cũng khác nhau, do đó biểu diễn hoán vị cũng khác nhau. Ví dụ, nhóm đối xứng không gian của khối lập phương khi tác động lên đỉnh, cạnh, mặt lần lượt cho nhóm hoán vị đỉnh, nhóm hoán vị cạnh và nhóm hoán vị mặt của khối lập phương; số lượng đỉnh, cạnh, mặt đôi một khác nhau, nên các nhóm hoán vị đó và chỉ số chu trình tương ứng cũng khác nhau. Vì vậy trong bài toán cụ thể, không được bỏ qua việc chỉ rõ đối tượng mà nhóm tác động lên.
@@ -328,7 +328,7 @@ Cho một cấu trúc, nhóm đối xứng không gian của nó là tập mọi
 
 [Nhóm](../algebra/basic.md#nhóm) là sự trừu tượng hóa của mọi khái niệm thỏa mãn các điều kiện trên. Việc nghiên cứu cấu trúc nhóm là nội dung chính của [lí thuyết nhóm](../algebra/group-theory.md). Phân tích ở đây chủ yếu tập trung vào nhóm đối xứng không gian và dùng quan điểm hình học để thảo luận cấu trúc của chúng. Các ví dụ thường gặp dưới đây nhằm giúp người đọc nắm được cách phân tích loại bài toán này.
 
-<span id="&#x5FAA;&#x73AF;&#x7FA4;"></span>
+<span id="nhóm-cyclic"></span>
 ### Nhóm cyclic
 
 Cho đa giác đều $n$ cạnh, nhóm đối xứng không gian gồm tất cả các phép quay của nó được gọi là nhóm cyclic, kí hiệu $C_n$. Kí hiệu phép quay ngược chiều kim đồng hồ $(360/n)^\circ$ là $r$, khi đó các phần tử của nhóm $C_n$ có thể viết là
@@ -364,7 +364,7 @@ Nếu chỉ tính phép quay, nhóm đối xứng không gian của vòng cổ �
     
     Điều này có nghĩa là độ dài chu trình chứa bất kì đỉnh $i$ nào đều là $\dfrac{n}{\gcd(k,n)}$. Vì vậy hoán vị $r^k$ có $\gcd(k,n)$ chu trình cùng độ dài. Xét việc gộp các hạng đồng dạng trong biểu thức chỉ số chu trình: với $d\mid n$ cho trước, các $k$ thỏa $\gcd(k,n)=n/d$ có tổng cộng $\varphi(d)$ giá trị, và chúng ứng với cùng một đơn thức dạng $t_d^{n/d}$. Từ đó suy ra biểu thức chỉ số chu trình ở trên.
 
-<span id="&#x4E8C;&#x9762;&#x4F53;&#x7FA4;"></span>
+<span id="nhóm-nhị-diện"></span>
 ### Nhóm nhị diện
 
 Cho đa giác đều $n$ cạnh, tất cả các phép quay và phép lật qua trục đối xứng cũng tạo thành một nhóm đối xứng không gian, gọi là nhóm nhị diện (dihedral group), kí hiệu $D_{2n}$. Kí hiệu phép quay ngược chiều kim đồng hồ $(360/n)^\circ$ là $r$, và kí hiệu phép lật qua một trục đối xứng cố định (ví dụ đường nối tâm với một đỉnh) là $s$, khi đó các phép toán của nhóm $D_{2n}$ có thể viết là
@@ -392,7 +392,7 @@ $$
     
     Từ phân tích này có thể viết được biểu thức chỉ số chu trình ở trên.
 
-<span id="&#x5BF9;&#x79F0;&#x7FA4;"></span>
+<span id="nhóm-đối-xứng"></span>
 ### Nhóm đối xứng
 
 Cho $n$ phần tử, tập tất cả các hoán vị trên chúng tạo thành một nhóm, gọi là nhóm đối xứng bậc $n$ (symmetric group), kí hiệu $S_n$. Nó mô tả mọi đối xứng mà $n$ đỉnh này có thể có. Nó cũng chính là biểu diễn hoán vị của các phép đối xứng đó khi tác động lên tập đỉnh.
@@ -443,7 +443,7 @@ Với đồ thị đầy đủ trên $n$ đỉnh, nhóm đối xứng không gia
     \frac{2^6+9\times 2^4+8\times 2^2+6\times 2^2}{24} = 11.
     $$
 
-<span id="&#x591A;&#x9762;&#x4F53;&#x7FA4;"></span>
+<span id="nhóm-đa-diện"></span>
 ### Nhóm đa diện
 
 Nhóm đa diện (polyhedral group) là nhóm đối xứng không gian của khối đa diện đều. Chỉ có năm khối đa diện đều: tứ diện đều, lập phương, bát diện đều, thập nhị diện đều và nhị thập diện đều. Nếu giữ quan hệ kề nhau giữa đỉnh, cạnh, mặt và hoán đổi vai trò đỉnh với mặt, ta được khối đa diện đều đối ngẫu. Trong đó, tứ diện đều đối ngẫu với chính nó, lập phương đối ngẫu với bát diện đều, thập nhị diện đều đối ngẫu với nhị thập diện đều. Có thể dùng quan hệ đối ngẫu để đơn giản hóa thảo luận nhóm đối xứng không gian của chúng.
@@ -499,10 +499,10 @@ Nếu chỉ tính các phép quay trong không gian ba chiều, nhóm đối x�
 
 Các chỉ số chu trình ở đây đều dành cho nhóm hoán vị tác động riêng lên các đối tượng như đỉnh, cạnh, mặt. Nếu cần tô màu đồng thời nhiều loại đối tượng, phải viết chỉ số chu trình liên hợp.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
-<span id="&#x67D3;&#x8272;&#x95EE;&#x9898;"></span>
+<span id="bài-toán-tô-màu"></span>
 ### Bài toán tô màu
 
 Các bài này chỉ cần phân tích cấu trúc của nhóm hoán vị và áp dụng nguyên lí đếm Pólya.
@@ -519,7 +519,7 @@ Khi tổ hợp màu được phép dùng bị ràng buộc, cần dùng DP ba l�
 -   [UVA10601 Cubes](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1542)
 -   [Luogu P4916 [MtOI2018] Vòng ma lực](https://www.luogu.com.cn/problem/P4916)
 
-<span id="&#x56FE;&#x8BBA;&#x8BA1;&#x6570;"></span>
+<span id="đếm-đồ-thị"></span>
 ### Đếm đồ thị
 
 Nguyên lí đếm Pólya có thể dùng cho bài toán [đếm đồ thị](../combinatorics/graph-enumeration.md); khó khăn của loại bài này nằm ở việc liệt kê nhóm hoán vị cạnh của đồ thị.
@@ -535,7 +535,7 @@ Một loại bài toán đếm đồ thị khác có thể áp dụng nguyên l�
 -   [Luogu P6597 Đếm alkene](https://www.luogu.com.cn/problem/P6597)
 -   [Luogu P5818 [JSOI2011] Đếm đồng phân](https://www.luogu.com.cn/problem/P5818)
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Pólya enumeration theorem - Wikipedia](https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem)

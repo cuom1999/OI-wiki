@@ -4,7 +4,7 @@ Kiến thức nền: [số phức](../complex.md).
 
 Bài viết này giới thiệu một thuật toán hỗ trợ tính tích của hai đa thức bậc $n$ trong thời gian $O(n\log n)$, hiệu quả hơn thuật toán trực tiếp $O(n^2)$. Vì phép nhân hai số nguyên cũng có thể xem như phép nhân đa thức, thuật toán này cũng có thể dùng để tăng tốc phép nhân số nguyên lớn.
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Ta xét hai đa thức $A$ và $B$:
@@ -29,7 +29,7 @@ Rõ ràng hệ số $c_i$ của đa thức $C$ thỏa mãn $c_i = \sum_{j = 0}^i
 
 Có thể tăng tốc để giảm độ phức tạp thời gian không? Nếu dùng biến đổi Fourier nhanh, ta có thể giảm độ phức tạp xuống $O(n \log n)$.
 
-<span id="&#x5085;&#x91CC;&#x53F6;&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-fourier"></span>
 ## Biến đổi Fourier
 
 Biến đổi Fourier (Fourier Transform) là một phương pháp phân tích tín hiệu: nó có thể phân tích các thành phần của tín hiệu, và cũng có thể tổng hợp tín hiệu từ các thành phần đó. Nhiều dạng sóng có thể được dùng làm thành phần của tín hiệu; biến đổi Fourier dùng sóng sin làm thành phần tín hiệu.
@@ -52,7 +52,7 @@ Biến đổi Fourier tương đương với việc lấy tích vô hướng li�
 
 Biến đổi Fourier có định lý chập tương ứng: nó có thể chuyển phép chập trong miền thời gian thành phép nhân trong miền tần số, và cũng có thể chuyển phép chập trong miền tần số thành phép nhân trong miền thời gian.
 
-<span id="&#x79BB;&#x6563;&#x5085;&#x91CC;&#x53F6;&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-fourier-rời-rạc"></span>
 ## Biến đổi Fourier rời rạc
 
 **Biến đổi Fourier rời rạc** (Discrete Fourier transform, DFT) là dạng rời rạc của biến đổi Fourier trên cả miền thời gian lẫn miền tần số; nó biến đổi các mẫu trong miền thời gian của tín hiệu thành các mẫu trong miền tần số của DTFT (discrete-time Fourier transform).
@@ -123,7 +123,7 @@ $$
 
 Bài toán này tính giá trị tại các căn đơn vị, vừa đúng tạo thành biến đổi Fourier rời rạc.
 
-<span id="&#x77E9;&#x9635;&#x516C;&#x5F0F;"></span>
+<span id="công-thức-ma-trận"></span>
 ### Công thức ma trận
 
 Vì biến đổi Fourier rời rạc là một toán tử **tuyến tính**, nó có thể được mô tả bằng phép nhân ma trận. Trong biểu diễn ma trận, biến đổi Fourier rời rạc có dạng:
@@ -155,14 +155,14 @@ $$
 
 Trong đó $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}}$.
 
-<span id="&#x5FEB;&#x901F;&#x5085;&#x91CC;&#x53F6;&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-fourier-nhanh"></span>
 ## Biến đổi Fourier nhanh
 
 FFT là một thuật toán cài đặt DFT hiệu quả, gọi là biến đổi Fourier nhanh (Fast Fourier Transform, FFT). Nó không phát hiện thêm điều gì mới về lý thuyết biến đổi Fourier, nhưng đối với việc ứng dụng biến đổi Fourier rời rạc trong hệ thống máy tính, hay nói cách khác là hệ thống số, có thể nói đây là một bước tiến lớn. Biến đổi số học nhanh (NTT) là cách cài đặt biến đổi Fourier nhanh (FFT) trên cơ sở số học.
 
 Năm 1965, Cooley và Tukey công bố thuật toán biến đổi Fourier nhanh. Thực ra FFT đã được phát hiện trước đó, nhưng máy tính hiện đại khi ấy chưa ra đời, nên người ta chưa nhận ra tầm quan trọng của FFT. Một số nhà khảo cứu cho rằng FFT do Runge và König phát hiện năm 1924. Nhưng thực tế Gauss đã phát minh thuật toán này từ năm 1805, chỉ là không công bố.
 
-<span id="&#x5206;&#x6CBB;&#x6CD5;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-bằng-chia-để-trị"></span>
 ### Cài đặt bằng chia để trị
 
 Tư tưởng cơ bản của thuật toán FFT là chia để trị. Với DFT, nó dùng chia để trị để tính giá trị của $f(x)$ khi $x=\omega_n^k$. Tư tưởng chia để trị của FFT cơ số 2 nằm ở việc tách đa thức thành các hạng bậc chẵn và bậc lẻ.
@@ -273,7 +273,7 @@ Cần lưu ý là, vì ta dùng các căn phức của đơn vị, nên cần b�
 
 Độ phức tạp thời gian là $O(n\log n)$.
 
-<span id="&#x500D;&#x589E;&#x6CD5;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-bằng-phương-pháp-nhân-đôi"></span>
 ### Cài đặt bằng phương pháp nhân đôi
 
 Thuật toán này còn có thể tiếp tục tối ưu theo góc nhìn "chia để trị". Với FFT cơ số 2, mỗi lần ta tách hệ số của các hạng bậc lẻ và bậc chẵn trong toàn bộ đa thức, cho đến khi chỉ còn một hệ số. Tuy nhiên, quá trình đệ quy này cần nhiều bộ nhớ hơn. Do đó, ta có thể trước hết "mô phỏng đệ quy" để "tách" các hệ số này ngay trong mảng ban đầu, rồi sau đó "nhân đôi" để gộp các giá trị đã tính.
@@ -282,7 +282,7 @@ Việc "tách" có thể thực hiện bằng hoán vị đảo bit.
 
 Việc "gộp" có thể dùng phép toán cánh bướm để tối ưu, chỉ cần thêm $O(1)$ bộ nhớ phụ.
 
-<span id="&#x4F4D;&#x9006;&#x5E8F;&#x7F6E;&#x6362;"></span>
+<span id="hoán-vị-đảo-bit"></span>
 #### Hoán vị đảo bit
 
 Lấy đa thức $8$ hạng làm ví dụ, mô phỏng quá trình tách:
@@ -362,7 +362,7 @@ Ví dụ: đặt $k=5$, $len=(100000)_2$. Để đảo $(11001)_2$:
     }
     ```
 
-<span id="&#x8776;&#x5F62;&#x8FD0;&#x7B97;&#x4F18;&#x5316;"></span>
+<span id="tối-ưu-bằng-phép-toán-cánh-bướm"></span>
 #### Tối ưu bằng phép toán cánh bướm
 
 Sau khi biết $G(\omega_{n/2}^k)$ và $H(\omega_{n/2}^k)$, cần dùng hai công thức sau để tính $f(\omega_n^k)$ và $f(\omega_n^{k+n/2})$:
@@ -388,12 +388,12 @@ Giải thích chi tiết hơn cách dùng phép toán cánh bướm để hoàn 
 3.  Khi gộp hai đoạn, duyệt $k = 0, 1, 2, \cdots, s-1$; lúc này $G(\omega_{n/2}^k)$ được lưu ở vị trí có chỉ số mảng $l_g + k$, và $H(\omega_{n/2}^k)$ được lưu ở vị trí có chỉ số mảng $l_h + k$;
 4.  Dùng phép toán cánh bướm để tính $f(\omega_n^k)$ và $f(\omega_n^{k+n/2})$, rồi ghi đè trực tiếp tại vị trí ban đầu.
 
-<span id="&#x5FEB;&#x901F;&#x5085;&#x91CC;&#x53F6;&#x9006;&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-fourier-ngược-nhanh"></span>
 ## Biến đổi Fourier ngược nhanh
 
 Biến đổi Fourier ngược có thể biểu diễn bằng biến đổi Fourier. Ta có hai cách hiểu điều này.
 
-<span id="&#x7EBF;&#x6027;&#x4EE3;&#x6570;&#x89D2;&#x5EA6;"></span>
+<span id="theo-góc-nhìn-đại-số-tuyến-tính"></span>
 ### Theo góc nhìn đại số tuyến tính
 
 Tác dụng của IDFT (biến đổi Fourier ngược) là chuyển dạng giá trị tại điểm của đa thức mục tiêu về dạng hệ số. Bản thân DFT là một phép biến đổi tuyến tính; có thể hiểu là xem đa thức mục tiêu như một vector, nhân bên trái với một ma trận để thu được vector sau biến đổi, qua đó mô phỏng quá trình thay các căn phức của đơn vị vào đa thức:
@@ -424,7 +424,7 @@ $$
 
 Do đó ta có thể thử chọn căn đơn vị $\omega_k$ là $\mathrm{e}^{-\frac{2\pi \mathrm{i}}{k}}$, như vậy kết quả tính được sẽ thành nghịch đảo của ban đầu; sau đó thao tác duy nhất thêm vào là **chia cho độ dài $n$** của nó, còn các thao tác khác hoàn toàn giống DFT. Ta có thể định nghĩa một hàm, thêm một tham số $1$ hoặc $-1$ trong hàm, rồi nhân nó với $\pi$. Truyền vào $1$ là DFT, truyền vào $-1$ là IDFT.
 
-<span id="&#x5355;&#x4F4D;&#x590D;&#x6839;&#x5468;&#x671F;&#x6027;"></span>
+<span id="tính-chu-kỳ-của-căn-phức-đơn-vị"></span>
 ### Tính chu kỳ của căn phức đơn vị
 
 Dùng tính chu kỳ của căn phức đơn vị cũng có thể hiểu quan hệ giữa IDFT và DFT.
@@ -441,7 +441,7 @@ Tương đương với việc xem $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ là biểu di
 
 Lúc này ta có hai cách suy diễn, tương ứng với hai cách cài đặt.
 
-<span id="&#x65B9;&#x6CD5;&#x4E00;"></span>
+<span id="cách-1"></span>
 #### Cách 1
 
 Đặt $b_i=\omega_n^{-i}$, khi đó biểu diễn bằng giá trị tại các điểm $x=b_0,b_1,\cdots,b_{n-1}$ của đa thức $A$ là $\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}$.
@@ -496,7 +496,7 @@ $$
 
 Tóm lại, ta lấy căn đơn vị thành nghịch đảo của nó, chạy FFT một lần trên $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$, rồi chia cho $n$ là thu được biểu diễn hệ số của $f(x)$.
 
-<span id="&#x65B9;&#x6CD5;&#x4E8C;"></span>
+<span id="cách-2"></span>
 #### Cách 2
 
 Ta trực tiếp thế $\omega_n^i$ vào $A(x)$.
@@ -507,7 +507,7 @@ Khi và chỉ khi $j+k=0 \pmod{n}$ thì $S\left(\omega_n^{j+k}\right) = n$, ngư
 
 Điều này có nghĩa là sau khi thực hiện DFT trên $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$, chia cho $n$, rồi đảo ngược $n - 1$ phần tử phía sau, ta cũng khôi phục được biểu diễn hệ số của $f(x)$.
 
-<span id="&#x4EE3;&#x7801;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-mã-nguồn"></span>
 ### Cài đặt mã nguồn
 
 Vì vậy hàm FFT của ta có thể kiêm nhiệm cả DFT lẫn IDFT. Cài đặt như sau:
@@ -595,7 +595,7 @@ Vì vậy hàm FFT của ta có thể kiêm nhiệm cả DFT lẫn IDFT. Cài đ
     --8<-- "docs/math/code/poly/fft/fft_3.cpp"
     ```
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 1.  [Ghi chú thuật toán của Taojiang](https://zhuanlan.zhihu.com/p/41867199).
