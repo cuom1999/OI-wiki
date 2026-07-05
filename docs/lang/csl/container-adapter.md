@@ -4,7 +4,7 @@ author: Xeonacid, ksyx, Early0v0
 
 ## Ngăn xếp
 
-STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một container adapter theo nguyên tắc vào sau ra trước (Last In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ iterator.
+STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đổi bộ chứa theo nguyên tắc vào sau ra trước (Last In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ bộ lặp.
 
 <span id="tệp-tiêu-đề-ngăn-xếp"></span>
 
@@ -19,8 +19,8 @@ STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một container adapter 
 ### Định nghĩa
 
 ```cpp
-std::stack<TypeName> s;  // dùng container nền mặc định là deque, kiểu dữ liệu là TypeName
-std::stack<TypeName, Container> s;  // dùng Container làm container nền
+std::stack<TypeName> s;  // dùng bộ chứa nền mặc định là deque, kiểu dữ liệu là TypeName
+std::stack<TypeName, Container> s;  // dùng Container làm bộ chứa nền
 std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 ```
 
@@ -33,8 +33,8 @@ std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 -   `top()` truy cập phần tử đỉnh ngăn xếp (nếu ngăn xếp rỗng thì thao tác này gây lỗi)
 -   `push(x)` chèn phần tử `x` vào ngăn xếp
 -   `pop()` xóa phần tử đỉnh ngăn xếp
--   `size()` truy vấn số lượng phần tử trong container
--   `empty()` kiểm tra container có rỗng hay không
+-   `size()` truy vấn số lượng phần tử trong bộ chứa
+-   `empty()` kiểm tra bộ chứa có rỗng hay không
 
 <span id="ví-dụ-đơn-giản-ngăn-xếp"></span>
 
@@ -56,7 +56,7 @@ std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 
 ## Hàng đợi
 
-STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một container adapter theo nguyên tắc vào trước ra trước (First In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ iterator.
+STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một bộ chuyển đổi bộ chứa theo nguyên tắc vào trước ra trước (First In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ bộ lặp.
 
 <span id="tệp-tiêu-đề-hàng-đợi"></span>
 
@@ -71,8 +71,8 @@ STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một container adapter
 ### Định nghĩa
 
 ```cpp
-std::queue<TypeName> q;  // dùng container nền mặc định là deque, kiểu dữ liệu là TypeName
-std::queue<TypeName, Container> q;  // dùng Container làm container nền
+std::queue<TypeName> q;  // dùng bộ chứa nền mặc định là deque, kiểu dữ liệu là TypeName
+std::queue<TypeName, Container> q;  // dùng Container làm bộ chứa nền
 
 std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
 ```
@@ -86,8 +86,8 @@ std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
 -   `front()` truy cập phần tử đầu hàng đợi (nếu hàng đợi rỗng thì thao tác này gây lỗi)
 -   `push(x)` chèn phần tử `x` vào hàng đợi
 -   `pop()` xóa phần tử đầu hàng đợi
--   `size()` truy vấn số lượng phần tử trong container
--   `empty()` kiểm tra container có rỗng hay không
+-   `size()` truy vấn số lượng phần tử trong bộ chứa
+-   `empty()` kiểm tra bộ chứa có rỗng hay không
 
 <span id="ví-dụ-đơn-giản-hàng-đợi"></span>
 
@@ -125,11 +125,11 @@ Hàng đợi ưu tiên `std::priority_queue` là một dạng [heap](../../ds/he
 
 ```cpp
 std::priority_queue<TypeName> q;             // kiểu dữ liệu là TypeName
-std::priority_queue<TypeName, Container> q;  // dùng Container làm container nền
+std::priority_queue<TypeName, Container> q;  // dùng Container làm bộ chứa nền
 std::priority_queue<TypeName, Container, Compare> q;
-// dùng Container làm container nền, dùng Compare làm kiểu so sánh
+// dùng Container làm bộ chứa nền, dùng Compare làm kiểu so sánh
 
-// Mặc định dùng vector làm container nền
+// Mặc định dùng vector làm bộ chứa nền
 // Kiểu so sánh là less<TypeName> (khi đó top() trả về giá trị lớn nhất)
 // Nếu muốn top() trả về giá trị nhỏ nhất, có thể đặt kiểu so sánh là greater<TypeName>
 // Lưu ý: không thể bỏ qua Container để truyền trực tiếp Compare
@@ -151,12 +151,12 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
 **Tất cả các hàm sau đều có độ phức tạp hằng số**
 
 -   `top()` truy cập phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
--   `empty()` kiểm tra container có rỗng hay không
--   `size()` truy vấn số lượng phần tử trong container
+-   `empty()` kiểm tra bộ chứa có rỗng hay không
+-   `size()` truy vấn số lượng phần tử trong bộ chứa
 
 **Tất cả các hàm sau đều có độ phức tạp logarit**
 
--   `push(x)` chèn phần tử và sắp xếp container nền
+-   `push(x)` chèn phần tử và sắp xếp bộ chứa nền
 -   `pop()` xóa phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
 
 <span id="ví-dụ-đơn-giản-hàng-đợi-ưu-tiên"></span>

@@ -1,34 +1,34 @@
 <span id="tổng-quan"></span>
 ## Tổng quan
 
-Từ chuẩn C++11, bốn container kết hợp không có thứ tự được cài đặt dựa trên [băm](../../ds/hash.md) chính thức được đưa vào thư viện mẫu chuẩn của C++: `unordered_set`, `unordered_multiset`, `unordered_map`, `unordered_multimap`.
+Từ chuẩn C++11, bốn bộ chứa kết hợp không thứ tự được cài đặt dựa trên [băm](../../ds/hash.md) chính thức được đưa vào thư viện khuôn mẫu chuẩn của C++: `unordered_set`, `unordered_multiset`, `unordered_map`, `unordered_multimap`.
 
 ??? note "Cách dùng khi trình biên dịch không hỗ trợ C++11"
-    Trước C++11, các container kết hợp không có thứ tự thuộc phần mở rộng TR1 của C++. Vì vậy, nếu trình biên dịch không hỗ trợ C++11, khi sử dụng cần thêm tiền tố `tr1/` vào tên header, đồng thời dùng namespace `std::tr1`. Chẳng hạn `#include <unordered_map>` cần đổi thành `#include <tr1/unordered_map>`; `std::unordered_map` cần đổi thành `std::tr1::unordered_map` (nếu dùng `using namespace std;` thì là `tr1::unordered_map`).
+    Trước C++11, các bộ chứa kết hợp không thứ tự thuộc phần mở rộng TR1 của C++. Vì vậy, nếu trình biên dịch không hỗ trợ C++11, khi sử dụng cần thêm tiền tố `tr1/` vào tên tệp tiêu đề, đồng thời dùng không gian tên `std::tr1`. Chẳng hạn `#include <unordered_map>` cần đổi thành `#include <tr1/unordered_map>`; `std::unordered_map` cần đổi thành `std::tr1::unordered_map` (nếu dùng `using namespace std;` thì là `tr1::unordered_map`).
 
-Chúng có nhiều điểm chung với các container kết hợp tương ứng về chức năng, hàm thành viên, v.v. Khác biệt lớn nhất nằm ở chỗ các container kết hợp thông thường thường được cài đặt bằng cây đỏ đen, các phần tử bên trong được sắp xếp theo một thứ tự xác định; còn các container kết hợp không có thứ tự này lưu phần tử bằng bảng băm, các phần tử bên trong không được sắp xếp theo bất kỳ thứ tự xác định nào. Vì vậy, khi truy cập phần tử trong container kết hợp không có thứ tự, thứ tự truy cập không được đảm bảo.
+Chúng có nhiều điểm chung với các bộ chứa kết hợp tương ứng về chức năng, hàm thành viên, v.v. Khác biệt lớn nhất nằm ở chỗ các bộ chứa kết hợp thông thường thường được cài đặt bằng cây đỏ đen, các phần tử bên trong được sắp xếp theo một thứ tự xác định; còn các bộ chứa kết hợp không thứ tự này lưu phần tử bằng bảng băm, các phần tử bên trong không được sắp xếp theo bất kỳ thứ tự xác định nào. Vì vậy, khi truy cập phần tử trong bộ chứa kết hợp không thứ tự, thứ tự truy cập không được đảm bảo.
 
-Nhờ cách lưu trữ bằng băm, container kết hợp không có thứ tự **trong trường hợp trung bình** có thể thực hiện hầu hết thao tác (bao gồm tìm kiếm, chèn, xóa) với độ phức tạp hằng số, tốt hơn độ phức tạp logarit theo kích thước container của container kết hợp có thứ tự.
+Nhờ cách lưu trữ bằng băm, bộ chứa kết hợp không thứ tự **trong trường hợp trung bình** có thể thực hiện hầu hết thao tác (bao gồm tìm kiếm, chèn, xóa) với độ phức tạp hằng số, tốt hơn độ phức tạp logarit theo kích thước bộ chứa của bộ chứa kết hợp có thứ tự.
 
 ??? warning "Cảnh báo"
-    Trong trường hợp xấu nhất, độ phức tạp thời gian của các thao tác chèn, xóa, tìm kiếm trên container kết hợp không có thứ tự sẽ **tuyến tính theo kích thước container**! Tình huống này thường xảy ra khi trong container có nhiều va chạm băm.
+    Trong trường hợp xấu nhất, độ phức tạp thời gian của các thao tác chèn, xóa, tìm kiếm trên bộ chứa kết hợp không thứ tự sẽ **tuyến tính theo kích thước bộ chứa**! Tình huống này thường xảy ra khi trong bộ chứa có nhiều va chạm băm.
     
-    Đồng thời, do các thao tác trên container kết hợp không có thứ tự thường có hằng số khá lớn, hiệu năng của chúng đôi khi không tốt hơn container kết hợp thông thường quá nhiều.
+    Đồng thời, do các thao tác trên bộ chứa kết hợp không thứ tự thường có hằng số khá lớn, hiệu năng của chúng đôi khi không tốt hơn bộ chứa kết hợp thông thường quá nhiều.
     
-    Vì vậy cần thận trọng khi sử dụng container kết hợp không có thứ tự, tránh lạm dụng (ví dụ vì ngại rời rạc hóa mà trực tiếp dùng `unordered_map<int, int>` như một mảng thông thường có không gian vô hạn).
+    Vì vậy cần thận trọng khi sử dụng bộ chứa kết hợp không thứ tự, tránh lạm dụng (ví dụ vì ngại rời rạc hóa mà trực tiếp dùng `unordered_map<int, int>` như một mảng thông thường có không gian vô hạn).
 
-Do container kết hợp không có thứ tự và container kết hợp tương ứng có nhiều điểm chung về mục đích và thao tác, phần này không giới thiệu lại từng thao tác của container kết hợp không có thứ tự. Bạn đọc có thể tham khảo [container kết hợp](./associative-container.md).
+Do bộ chứa kết hợp không thứ tự và bộ chứa kết hợp tương ứng có nhiều điểm chung về mục đích và thao tác, phần này không giới thiệu lại từng thao tác của bộ chứa kết hợp không thứ tự. Bạn đọc có thể tham khảo [bộ chứa kết hợp](./associative-container.md).
 
 <span id="tạo-va-chạm-băm"></span>
 ## Tạo va chạm băm
 
-Phần trên đã đề cập rằng trong trường hợp xấu nhất, độ phức tạp thời gian của một số thao tác trên container kết hợp không có thứ tự sẽ tuyến tính theo kích thước container.
+Phần trên đã đề cập rằng trong trường hợp xấu nhất, độ phức tạp thời gian của một số thao tác trên bộ chứa kết hợp không thứ tự sẽ tuyến tính theo kích thước bộ chứa.
 
-Khi hàm băm đã cố định, có thể xây dựng dữ liệu sao cho trong container phát sinh nhiều va chạm băm, làm độ phức tạp đạt đến cận trên.
+Khi hàm băm đã cố định, có thể xây dựng dữ liệu sao cho trong bộ chứa phát sinh nhiều va chạm băm, làm độ phức tạp đạt đến cận trên.
 
-Trong các cài đặt của thư viện chuẩn, giá trị băm của mỗi phần tử được lấy bằng cách lấy giá trị đó modulo một số nguyên tố; cụ thể hơn, là các số nguyên tố trong [danh sách này](https://github.com/gcc-mirror/gcc/blob/releases/gcc-8.1.0/libstdc%2B%2B-v3/src/shared/hashtable-aux.cc) (với trình biên dịch g++ 6 trở về trước, số nguyên tố này thường là $126271$; với trình biên dịch g++ 7 trở về sau, số nguyên tố này thường là $107897$).
+Trong các cài đặt của thư viện chuẩn, giá trị băm của mỗi phần tử được lấy bằng cách lấy phần dư của giá trị đó theo một số nguyên tố; cụ thể hơn, là các số nguyên tố trong [danh sách này](https://github.com/gcc-mirror/gcc/blob/releases/gcc-8.1.0/libstdc%2B%2B-v3/src/shared/hashtable-aux.cc) (với trình biên dịch g++ 6 trở về trước, số nguyên tố này thường là $126271$; với trình biên dịch g++ 7 trở về sau, số nguyên tố này thường là $107897$).
 
-Vì vậy, có thể chèn vào container các bội của những modulo này để tạo ra nhiều va chạm băm.
+Vì vậy, có thể chèn vào bộ chứa các bội của những số nguyên tố này để tạo ra nhiều va chạm băm.
 
 <span id="tùy-biến-hàm-băm"></span>
 ## Tùy biến hàm băm
@@ -43,7 +43,7 @@ struct my_hash {
 };
 ```
 
-Tất nhiên, để đảm bảo hàm băm không bị phân tích nhanh chóng (ví dụ các bài nộp dùng container kết hợp không có thứ tự trên Codeforces bị hack), có thể thử thêm một số yếu tố ngẫu nhiên (như thời gian) vào hàm băm để tăng độ khó khi phân tích.
+Tất nhiên, để đảm bảo hàm băm không bị phân tích nhanh chóng (ví dụ các bài nộp dùng bộ chứa kết hợp không thứ tự trên Codeforces bị khai thác), có thể thử thêm một số yếu tố ngẫu nhiên (như thời gian) vào hàm băm để tăng độ khó khi phân tích.
 
 Ví dụ, [bài blog này](https://codeforces.com/blog/entry/62393) đưa ra hàm băm sau:
 
@@ -72,4 +72,4 @@ struct my_hash {
 };
 ```
 
-Sau khi viết xong hàm băm tùy biến, có thể truyền hàm băm tùy biến này vào container bằng cách định nghĩa `unordered_map<int, int, my_hash> my_map;` hoặc `unordered_map<pair<int, int>, int, my_hash> my_pair_map;`.
+Sau khi viết xong hàm băm tùy biến, có thể truyền hàm băm tùy biến này vào bộ chứa bằng cách định nghĩa `unordered_map<int, int, my_hash> my_map;` hoặc `unordered_map<pair<int, int>, int, my_hash> my_pair_map;`.
