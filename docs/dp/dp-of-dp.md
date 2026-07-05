@@ -1,11 +1,11 @@
 author: Hope666666
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 Bài viết này giới thiệu tư tưởng DP lồng DP, đồng thời thông qua hai ví dụ để minh họa cách áp dụng kỹ thuật này vào các bài toán cụ thể.
 
-<span id="&#x601D;&#x60F3;"></span>
+<span id="tư-tưởng"></span>
 ## Tư tưởng
 
 Cái gọi là "DP lồng DP" thực chất là phương pháp trong quá trình quy hoạch động, ta trừu tượng hóa quá trình giải một bài toán con (thường cũng là một DP) thành một automaton (DFA), rồi thiết kế thêm một lớp DP mới trên automaton đó.
@@ -39,12 +39,12 @@ $$
 
 Trạng thái bắt đầu dĩ nhiên là $f(0,q_0)$, còn đáp án cuối cùng thường có thể được tính đơn giản từ $\{f(n,q):q\in F\}$. DP bên ngoài thực chất là một trường hợp đặc biệt của [DP trên DAG](./dag.md).
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 Hai ví dụ tiếp theo sẽ giải thích chi tiết cách làm chung của DP lồng DP.
 
-<span id="&#x4F8B;&#x4E00;"></span>
+<span id="ví-dụ-1"></span>
 ### Ví dụ 1
 
 ???+ example "[Hero meet devil](https://www.luogu.com.cn/problem/P10614)"
@@ -72,7 +72,7 @@ Hai ví dụ tiếp theo sẽ giải thích chi tiết cách làm chung của DP
     --8<-- "docs/dp/code/dp-of-dp/dp-of-dp_1.cpp"
     ```
 
-<span id="&#x4F8B;&#x4E8C;"></span>
+<span id="ví-dụ-2"></span>
 ### Ví dụ 2
 
 ???+ example "[\[ZJOI2019\] Mạt chược](https://loj.ac/p/3042)"
@@ -142,7 +142,7 @@ Hai ví dụ tiếp theo sẽ giải thích chi tiết cách làm chung của DP
     --8<-- "docs/dp/code/dp-of-dp/dp-of-dp_2.cpp"
     ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [CF979E Kuro and Topological Parity](https://codeforces.com/problemset/problem/979/E)
