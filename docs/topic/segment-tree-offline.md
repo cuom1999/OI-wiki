@@ -75,7 +75,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_1.cpp"
         ```
 
-???+ note "Color restriction"
+???+ note "Ràng buộc màu"
     Cho một đồ thị vô hướng có $n$ đỉnh và $m$ cạnh, có $k$ màu được đánh số từ $0\sim k-1$, mỗi cạnh có một màu.
     
     Với mỗi màu, hãy xác định rằng nếu xóa tất cả cạnh có màu đó thì đồ thị thu được có liên thông không? Có phải là một cây không?

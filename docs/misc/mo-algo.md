@@ -205,7 +205,7 @@ Mã sắp xếp:
     };
     ```
 
-???+ warning "Chi tiet nho"
+???+ warning "Chi tiết nhỏ"
     Khi dùng `sort` để so sánh hai cấu trúc, không được để xảy ra trường hợp $a < b$ và $b < a$ cùng đúng; nếu không chương trình sẽ lỗi khi chạy. Xem thêm [lỗi thường gặp](../contest/common-mistakes.md#lỗi-dẫn-đến-re).
 
 Với bản viết gọn, nếu không có trường hợp đặc biệt `r == x.r`, khi l thuộc cùng một khối lẻ và r bằng nhau, vấn đề trong chi tiết nhỏ ở trên sẽ xuất hiện; bạn có thể tự mô phỏng thủ công. Với bản viết rõ, nếu viết thành nhỏ hơn hoặc bằng, hoặc lớn hơn hoặc bằng, thì cũng sẽ xuất hiện vấn đề tương tự.

@@ -388,7 +388,7 @@ Thuật toán chuẩn của bài này là luồng mạng, nhưng ở đây ta d�
 
 -   Mỗi lần chọn ngẫu nhiên một vị trí, lật giá trị tại vị trí đó, rồi tính giá trị và cập nhật đáp án.
 
-??? note "Code"
+??? note "Mã"
     ```cpp
     #include <algorithm>
     #include <cstdlib>
@@ -433,7 +433,7 @@ Cách viết meldable heap thường gặp nhất có lẽ là leftist tree, b�
 
 Vậy có thể xét dùng randomized heap: không đổi con theo chiều cao, mà đổi ngẫu nhiên.
 
-???+ note "Code"
+???+ note "Mã"
     ```cpp
     struct Node {
       int child[2];

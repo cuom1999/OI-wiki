@@ -4,7 +4,7 @@ author: sbofgayschool
 để liên kết hai biến lại với nhau thành một "cặp", và kiểu dữ liệu của hai biến
 có thể khác nhau.
 
-??? note "Class template"
+??? note "Khuôn mẫu lớp"
     Bản thân class template không phải là một lớp, mà là một "khuôn mẫu" có thể
     sinh ra **các lớp khác nhau** theo **các kiểu dữ liệu khác nhau**.
     
@@ -18,7 +18,7 @@ có thể khác nhau.
 Sử dụng `pair` linh hoạt giúp xử lý dễ dàng các tình huống **cần buộc dữ liệu
 liên quan lại để lưu trữ và xử lý**.
 
-??? note "Struct"
+??? note "Cấu trúc"
     So với `struct` tự định nghĩa, `pair` không cần định nghĩa thêm cấu trúc và
     nạp chồng toán tử, nên dùng đơn giản hơn.
     
