@@ -35,7 +35,7 @@ Nếu cũng xem một đỉnh lẻ là một chuỗi nặng, thì toàn bộ câ
 
 Như hình sau:
 
-![HLD](./images/hld.png)
+![Ví dụ phân rã cây thành các chuỗi nặng](./images/hld.png)
 
 ## Cài đặt
 
@@ -354,7 +354,7 @@ Nếu cũng xem một đỉnh lẻ là một chuỗi nặng, thì toàn bộ câ
 
 Như hình sau, cách phân rã này vừa có thể xem là phân rã chuỗi nặng, vừa có thể xem là phân rã chuỗi dài:
 
-![HLD](./images/hld.png)
+![Ví dụ phân rã cây theo chuỗi dài](./images/hld.png)
 
 Cách cài đặt phân rã chuỗi dài tương tự phân rã chuỗi nặng, nên không trình bày thêm ở đây.
 

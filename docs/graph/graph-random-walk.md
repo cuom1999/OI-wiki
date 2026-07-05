@@ -52,7 +52,7 @@ Nhận thấy hầu hết các hệ số trong những phương trình cần kh�
 
 Xét quá trình khử. Ta khử các phương trình theo thứ tự từ trên xuống dưới trong hệ tọa độ, và trong cùng một lớp thì từ trái sang phải. Tô các phương trình đã khử màu vàng, các điểm kề với điểm vàng màu xanh lá, còn lại màu đen, như hình dưới:
 
-![graph-random-walk-1](images/graph-random-walk-1.svg)
+![Trạng thái các phương trình trong quá trình khử trực tiếp](images/graph-random-walk-1.svg)
 
 Tiếp theo cần khử phương trình tương ứng với ô xanh lá kế tiếp. Trong phương trình này, chỉ các hệ số của biến tương ứng với các ô xanh lá và ô đen đầu tiên bên dưới nó mới có thể khác 0; ngược lại, chỉ trong các phương trình tương ứng với các ô xanh lá và ô đen đầu tiên bên dưới nó thì hệ số của biến ứng với ô hiện tại mới có thể khác 0.
 

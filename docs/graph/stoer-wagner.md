@@ -72,7 +72,7 @@ Khi đó, với một đỉnh $s$ bất kỳ khác $t$, lát cắt tách $t$ kh�
 
 Định nghĩa một đỉnh $v$ là được kích hoạt khi và chỉ khi, vào lúc thêm $v$ vào $A$, đỉnh cuối cùng $u$ trong $A$ tại thời điểm đó được thêm vào tập sớm hơn $v$, đồng thời trong đồ thị $G'' = (V', E'/C)$, $u$ và $v$ không nằm trong cùng một thành phần liên thông.
 
-![Stoer-Wagner1](./images/Stoer-Wagner1.png)
+![Đỉnh được kích hoạt trong chứng minh thuật toán Stoer-Wagner](./images/Stoer-Wagner1.png)
 
 Như hình vẽ, vùng màu xanh lam và vùng màu vàng là hai thành phần liên thông khác nhau; các số trong ngoặc vuông là thứ tự thêm vào $A$. Đỉnh màu xám là đỉnh được kích hoạt, còn đỉnh màu trắng thì không.
 

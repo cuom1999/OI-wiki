@@ -271,7 +271,7 @@ Ban đầu, $E'=\varnothing$, mỗi đỉnh là một thành phần liên thông
 
 Dưới đây là một ví dụ bằng ảnh động; nguồn ảnh từ [Wikipedia](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm):
 
-![eg](./images/mst-1.apng)
+![Ảnh động minh họa thuật toán Boruvka](./images/mst-1.apng)
 
 Khi đồ thị ban đầu liên thông, trong mỗi vòng lặp số thành phần liên thông ít nhất giảm một nửa, nên thuật toán chỉ lặp không quá $O(\log V)$ lần. Khi đồ thị ban đầu không liên thông, bài toán tương đương với nhiều bài toán con, vì vậy độ phức tạp của thuật toán là $O(E\log V)$. Mã giả dưới đây được sửa từ [Wikipedia](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm):
 

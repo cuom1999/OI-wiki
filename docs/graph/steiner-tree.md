@@ -16,13 +16,13 @@ Bài toán cây Steiner là một bài toán tối ưu tổ hợp, tương tự 
 
 Mạng ngắn nhất nối nhiều hơn ba điểm:
 
-![steiner-tree1](./images/steiner-tree-1.svg)
+![Mạng ngắn nhất nối nhiều điểm trong bài toán Steiner](./images/steiner-tree-1.svg)
 
 Trong trường hợp thứ nhất, nghiệm gồm năm đoạn thẳng, trong đó có hai điểm Steiner (màu đỏ $s_1,s_2$); tại mỗi điểm này có ba đoạn thẳng giao nhau và các góc giữa chúng đều là $120^{\circ}$. Trường hợp thứ hai có nghiệm chứa ba điểm Steiner. Trong trường hợp thứ ba, một hoặc vài điểm Steiner có thể bị suy biến, hoặc được thay bằng một hoặc vài điểm đã cho.
 
 Ta biểu diễn mô hình bài toán cây Steiner dưới dạng đồ thị.
 
-![steiner-tree2](./images/steiner-tree-2.svg)
+![Mô hình đồ thị của bài toán cây Steiner](./images/steiner-tree-2.svg)
 
 Với dạng thứ nhất, nếu đặt tập đỉnh quan trọng là $\{1,2,3,4\}$, có thể thấy tổng trọng số cạnh nhỏ nhất khi nối trực tiếp bốn đỉnh quan trọng này là 12, rõ ràng chưa tối ưu. Nếu xét thêm đỉnh số 5, tổng trọng số cạnh nhỏ nhất trở thành 9, cho một đáp án tốt hơn.
 
