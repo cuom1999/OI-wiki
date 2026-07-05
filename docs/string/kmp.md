@@ -60,7 +60,7 @@ Tương tự, có thể tính được hàm tiền tố của chuỗi `aabaaab` 
 Một thuật toán trực tiếp tính hàm tiền tố theo đúng định nghĩa có quy trình như sau:
 
 -   Trong một vòng lặp, tính các giá trị của hàm tiền tố $\pi[i]$ theo thứ tự $i = 1\to n - 1$ ($\pi[0]$ được gán bằng $0$).
--   Để tính giá trị hàm tiền tố hiện tại $\pi[i]$, ta cho biến $j$ bắt đầu thử từ độ dài tiền tố thực sự lớn nhất là $i$.
+-   Để tính giá trị hàm tiền tố hiện tại $\pi[i]$, cho biến $j$ bắt đầu thử từ độ dài tiền tố thực sự lớn nhất là $i$.
 -   Nếu với độ dài hiện tại, tiền tố thực sự và hậu tố thực sự bằng nhau, thì độ dài đó chính là $\pi[i]$; nếu không, giảm j đi 1 và tiếp tục so khớp cho đến khi $j=0$.
 -   Nếu $j = 0$ mà vẫn không có lần so khớp nào thành công, đặt $\pi[i] = 0$ rồi chuyển sang chỉ số tiếp theo $i + 1$.
 
@@ -114,7 +114,7 @@ Một thuật toán trực tiếp tính hàm tiền tố theo đúng định ngh
         }
         ```
 
-Rõ ràng thuật toán này có độ phức tạp thời gian $O(n^3)$, nên còn rất nhiều không gian để cải tiến.
+Thuật toán này có độ phức tạp thời gian $O(n^3)$, nên còn rất nhiều không gian để cải tiến.
 
 <span id="thuật-toán-hiệu-quả-để-tính-hàm-tiền-tố"></span>
 ## Thuật toán hiệu quả để tính hàm tiền tố
@@ -184,24 +184,24 @@ Trong thuật toán cải tiến sơ bộ này, khi tính mỗi $\pi[i]$, trư�
 
 Do ràng buộc `j = pi[i-1]+1` (`pi[0]=0`) lên số lần so sánh chuỗi tối đa, có thể thấy rằng chỉ trong trường hợp tốt nhất mỗi bước mới tích lũy thêm $1$ vào cận trên của số lần so sánh chuỗi, còn mỗi phép so sánh vượt quá một lần sẽ tiêu hao phần tăng trưởng của các bước về sau.
 
-Từ đó ta có thể suy ra một tình huống đạt số lần so sánh chuỗi nhiều nhất: ít nhất $1$ lần so sánh bị tiêu hao và nhiều nhất $n-2$ lần so sánh được tích lũy; khi đó số lần so sánh chuỗi là $n-1 + n-2 = 2n-3$.
+Từ đó có thể suy ra một tình huống đạt số lần so sánh chuỗi nhiều nhất: ít nhất $1$ lần so sánh bị tiêu hao và nhiều nhất $n-2$ lần so sánh được tích lũy; khi đó số lần so sánh chuỗi là $n-1 + n-2 = 2n-3$.
 
 Như vậy sau tối ưu này, việc tính hàm tiền tố chỉ cần thực hiện $O(n)$ lần so sánh chuỗi, và tổng độ phức tạp giảm xuống $O(n^2)$.
 
 <span id="tối-ưu-thứ-hai"></span>
 ### Tối ưu thứ hai
 
-Trong tối ưu thứ nhất, ta đã thảo luận trường hợp tốt nhất khi tính $\pi[i+1]$: $s[i+1]=s[\pi[i]]$, khi đó $\pi[i+1] = \pi[i]+1$. Bây giờ hãy đi xa hơn theo hướng này: xét cách nhảy khi $s[i+1] \neq s[\pi[i]]$.
+Trong tối ưu thứ nhất đã thảo luận trường hợp tốt nhất khi tính $\pi[i+1]$: $s[i+1]=s[\pi[i]]$, khi đó $\pi[i+1] = \pi[i]+1$. Tiếp tục xét cách nhảy khi $s[i+1] \neq s[\pi[i]]$.
 
 ![](images/prefix_str_1.svg)
 
-Như hình trên, khi xảy ra không khớp, ta muốn tìm độ dài lớn thứ hai $j$ sau $\pi[i]$ đối với xâu con $s[0\dots i]$, sao cho tính chất tiền tố tại vị trí $i$ vẫn được giữ, tức là $s[0 \dots j - 1] = s[i - j + 1 \dots i]$:
+Như hình trên, khi xảy ra không khớp, cần tìm độ dài lớn thứ hai $j$ sau $\pi[i]$ đối với xâu con $s[0\dots i]$, sao cho tính chất tiền tố tại vị trí $i$ vẫn được giữ, tức là $s[0 \dots j - 1] = s[i - j + 1 \dots i]$:
 
 $$
 \overbrace{\underbrace{s_0 ~ s_1}_j ~ s_2 ~ s_3}^{\pi[i]} ~ \dots ~ \overbrace{s_{i-3} ~ s_{i-2} ~ \underbrace{s_{i-1} ~ s_{i}}_j}^{\pi[i]} ~ s_{i+1}
 $$
 
-Nếu tìm được một độ dài $j$ như vậy, ta chỉ cần so sánh lại $s[i + 1]$ với $s[j]$. Nếu chúng bằng nhau, ta có $\pi[i + 1] = j + 1$. Nếu không, ta cần tìm độ dài lớn thứ hai $j^{(2)}$ sau $j$ của xâu con $s[0\dots i]$ sao cho tính chất tiền tố vẫn được giữ, rồi lặp lại như vậy cho đến khi $j = 0$. Nếu $s[i + 1] \neq s[0]$, thì $\pi[i + 1] = 0$. Sơ đồ cho lần so sánh thứ hai như sau:
+Nếu tìm được một độ dài $j$ như vậy, chỉ cần so sánh lại $s[i + 1]$ với $s[j]$. Nếu chúng bằng nhau, có $\pi[i + 1] = j + 1$. Nếu không, cần tìm độ dài lớn thứ hai $j^{(2)}$ sau $j$ của xâu con $s[0\dots i]$ sao cho tính chất tiền tố vẫn được giữ, rồi lặp lại như vậy cho đến khi $j = 0$. Nếu $s[i + 1] \neq s[0]$, thì $\pi[i + 1] = 0$. Sơ đồ cho lần so sánh thứ hai như sau:
 
 ![](images/prefix_str_2.svg)
 
@@ -217,12 +217,12 @@ Sơ đồ của công thức này như sau:
 
 Nói cách khác, $j$ tương đương với giá trị hàm tiền tố của xâu con $s[\pi[i]-1]$, ứng với phần dưới của hình trên, tức là $j=\pi[\pi[i]-1]$. Tương tự, độ dài lớn thứ hai sau $j$ tương đương với giá trị hàm tiền tố của $s[j-1]$, $j^{(2)}=\pi[j-1]$.
 
-Rõ ràng ta có thể thu được phương trình chuyển trạng thái theo $j$: $j^{(n)}=\pi[j^{(n-1)}-1], \ \ (j^{(n-1)}>0)$.
+Có thể thu được phương trình chuyển trạng thái theo $j$: $j^{(n)}=\pi[j^{(n-1)}-1], \ \ (j^{(n-1)}>0)$.
 
 <span id="thuật-toán-cuối-cùng"></span>
 ### Thuật toán cuối cùng
 
-Vì vậy cuối cùng ta có thể xây dựng một thuật toán không cần thực hiện bất kỳ phép so sánh chuỗi nào và chỉ thực hiện $O(n)$ thao tác.
+Vì vậy cuối cùng có thể xây dựng một thuật toán không cần thực hiện bất kỳ phép so sánh chuỗi nào và chỉ thực hiện $O(n)$ thao tác.
 
 Hơn nữa, phần cài đặt của thuật toán này ngắn và trực quan một cách bất ngờ:
 
@@ -276,7 +276,7 @@ Hơn nữa, phần cài đặt của thuật toán này ngắn và trực quan m
         }
         ```
 
-Đây là một thuật toán **trực tuyến**, tức là nó xử lý dữ liệu khi dữ liệu đến. Chẳng hạn, bạn có thể đọc chuỗi từng ký tự một và xử lý ngay để tính giá trị hàm tiền tố cho từng ký tự. Thuật toán vẫn cần lưu trữ chính chuỗi và các giá trị hàm tiền tố đã tính trước đó; nhưng nếu ta biết trước giá trị lớn nhất có thể của hàm tiền tố của chuỗi là $M$, thì chỉ cần lưu $M + 1$ ký tự đầu của chuỗi và các giá trị hàm tiền tố tương ứng.
+Đây là một thuật toán **trực tuyến**, tức là nó xử lý dữ liệu khi dữ liệu đến. Chẳng hạn, có thể đọc chuỗi từng ký tự một và xử lý ngay để tính giá trị hàm tiền tố cho từng ký tự. Thuật toán vẫn cần lưu trữ chính chuỗi và các giá trị hàm tiền tố đã tính trước đó; nhưng nếu biết trước giá trị lớn nhất có thể của hàm tiền tố của chuỗi là $M$, thì chỉ cần lưu $M + 1$ ký tự đầu của chuỗi và các giá trị hàm tiền tố tương ứng.
 
 <span id="ứng-dụng"></span>
 ## Ứng dụng
@@ -289,17 +289,17 @@ Thuật toán này được Knuth, Pratt và Morris cùng công bố vào năm 1
 <span id="quá-trình_2"></span>
 #### Quá trình
 
-Cho một văn bản $t$ và một chuỗi $s$, ta muốn tìm và hiển thị tất cả các lần xuất hiện (occurrence) của $s$ trong $t$.
+Cho một văn bản $t$ và một chuỗi $s$, cần tìm và hiển thị tất cả các lần xuất hiện (occurrence) của $s$ trong $t$.
 
-Để đơn giản, ta dùng $n$ để chỉ độ dài của chuỗi $s$, và $m$ để chỉ độ dài của văn bản $t$.
+Để đơn giản, dùng $n$ để chỉ độ dài của chuỗi $s$, và $m$ để chỉ độ dài của văn bản $t$.
 
-Ta xây dựng chuỗi $s + \# + t$, trong đó $\#$ là một ký tự phân tách không xuất hiện trong $s$ cũng như trong $t$. Tiếp theo, tính hàm tiền tố của chuỗi này. Bây giờ xét ý nghĩa của các giá trị hàm tiền tố sau khi bỏ đi $n + 1$ giá trị đầu tiên (tức là các giá trị thuộc chuỗi $s$ và ký tự phân tách). Theo định nghĩa, $\pi[i]$ là độ dài xâu con thực sự dài nhất có đầu mút phải tại $i$ và đồng thời là một tiền tố; trong trường hợp cụ thể này, giá trị đó là độ dài xâu con dài nhất có đầu mút phải tại $i$ và trùng với một tiền tố của $s$. Do có ký tự phân tách, độ dài này không thể vượt quá $n$. Nếu đẳng thức $\pi[i] = n$ đúng, điều đó có nghĩa là $s$ xuất hiện trọn vẹn tại vị trí này (tức là đầu mút phải của nó nằm ở vị trí $i$). Lưu ý rằng chỉ số này được tính trên chuỗi $s + \# + t$.
+Xây dựng chuỗi $s + \# + t$, trong đó $\#$ là một ký tự phân tách không xuất hiện trong $s$ cũng như trong $t$. Tiếp theo, tính hàm tiền tố của chuỗi này. Bây giờ xét ý nghĩa của các giá trị hàm tiền tố sau khi bỏ đi $n + 1$ giá trị đầu tiên (tức là các giá trị thuộc chuỗi $s$ và ký tự phân tách). Theo định nghĩa, $\pi[i]$ là độ dài xâu con thực sự dài nhất có đầu mút phải tại $i$ và đồng thời là một tiền tố; trong trường hợp cụ thể này, giá trị đó là độ dài xâu con dài nhất có đầu mút phải tại $i$ và trùng với một tiền tố của $s$. Do có ký tự phân tách, độ dài này không thể vượt quá $n$. Nếu đẳng thức $\pi[i] = n$ đúng, điều đó có nghĩa là $s$ xuất hiện trọn vẹn tại vị trí này (tức là đầu mút phải của nó nằm ở vị trí $i$). Lưu ý rằng chỉ số này được tính trên chuỗi $s + \# + t$.
 
 Vì vậy nếu tại một vị trí $i$ có $\pi[i] = n$, thì chuỗi $s$ xuất hiện trong chuỗi $t$ tại vị trí $i - (n - 1) - (n + 1) = i - 2n$. Hình dưới đây minh họa cách đánh chỉ số.
 
 ![](./images/strstr_kmp_indices.svg)
 
-Như đã đề cập khi tính hàm tiền tố, nếu ta biết giá trị hàm tiền tố không bao giờ vượt quá một giá trị nhất định, thì không cần lưu toàn bộ chuỗi và toàn bộ hàm tiền tố, mà chỉ cần lưu phần đầu của cả hai. Trong trường hợp này, điều đó có nghĩa là chỉ cần lưu chuỗi $s + \#$ cùng các giá trị hàm tiền tố tương ứng. Ta có thể đọc từng ký tự của chuỗi $t$ và tính giá trị hàm tiền tố tại vị trí hiện tại.
+Như đã đề cập khi tính hàm tiền tố, nếu biết giá trị hàm tiền tố không bao giờ vượt quá một giá trị nhất định, thì không cần lưu toàn bộ chuỗi và toàn bộ hàm tiền tố, mà chỉ cần lưu phần đầu của cả hai. Trong trường hợp này, điều đó có nghĩa là chỉ cần lưu chuỗi $s + \#$ cùng các giá trị hàm tiền tố tương ứng. Có thể đọc từng ký tự của chuỗi $t$ và tính giá trị hàm tiền tố tại vị trí hiện tại.
 
 Do đó thuật toán Knuth-Morris-Pratt (viết tắt là KMP) giải bài toán này trong thời gian $O(n + m)$ và bộ nhớ $O(n)$.
 
@@ -356,16 +356,16 @@ Với chuỗi $s$ và $0 \le r < |s|$, nếu tiền tố độ dài $r$ của $s
 
 Từ việc $s$ có một border độ dài $r$, có thể suy ra $|s|-r$ là một chu kỳ của $s$.
 
-Theo định nghĩa của hàm tiền tố, ta có thể nhận được mọi độ dài border của $s$, tức là $\pi[n-1],\pi[\pi[n-1]-1], \ldots$.[^ref1]
+Theo định nghĩa của hàm tiền tố, có thể nhận được mọi độ dài border của $s$, tức là $\pi[n-1],\pi[\pi[n-1]-1], \ldots$.[^ref1]
 
-Vì vậy, dựa vào hàm tiền tố, ta có thể tính mọi chu kỳ của $s$ trong thời gian $O(n)$. Trong đó, vì $\pi[n-1]$ là độ dài border dài nhất của $s$, nên $n - \pi[n-1]$ là chu kỳ nhỏ nhất của $s$.
+Vì vậy, dựa vào hàm tiền tố, có thể tính mọi chu kỳ của $s$ trong thời gian $O(n)$. Trong đó, vì $\pi[n-1]$ là độ dài border dài nhất của $s$, nên $n - \pi[n-1]$ là chu kỳ nhỏ nhất của $s$.
 
 <span id="đếm-số-lần-xuất-hiện-của-mỗi-tiền-tố"></span>
 ### Đếm số lần xuất hiện của mỗi tiền tố
 
-Trong phần này ta sẽ thảo luận đồng thời hai bài toán. Cho một chuỗi $s$ có độ dài $n$; ở biến thể thứ nhất, ta muốn đếm số lần xuất hiện của mỗi tiền tố $s[0 \dots i]$ trong chính chuỗi đó; ở biến thể thứ hai, ta muốn đếm số lần xuất hiện của mỗi tiền tố $s[0 \dots i]$ trong một chuỗi $t$ cho trước khác.
+Phần này thảo luận đồng thời hai bài toán. Cho một chuỗi $s$ có độ dài $n$; ở biến thể thứ nhất, cần đếm số lần xuất hiện của mỗi tiền tố $s[0 \dots i]$ trong chính chuỗi đó; ở biến thể thứ hai, cần đếm số lần xuất hiện của mỗi tiền tố $s[0 \dots i]$ trong một chuỗi $t$ cho trước khác.
 
-Trước hết hãy giải bài toán thứ nhất. Xét giá trị hàm tiền tố $\pi[i]$ tại vị trí $i$. Theo định nghĩa, nó có nghĩa là một tiền tố độ dài $\pi[i]$ của chuỗi $s$ xuất hiện tại vị trí $i$ và có đầu mút phải là $i$, đồng thời không tồn tại tiền tố dài hơn nào thỏa mãn định nghĩa trên. Trong khi đó, các tiền tố ngắn hơn vẫn có thể có đầu mút phải tại vị trí này. Dễ thấy ta gặp lại câu hỏi đã được trả lời khi tính hàm tiền tố: cho một tiền tố độ dài $j$ đồng thời là hậu tố có đầu mút phải tại $i$, độ dài tiền tố nhỏ hơn tiếp theo $k < j$ là bao nhiêu? Tiền tố có độ dài đó cũng phải đồng thời là một hậu tố có đầu mút phải tại $i$. Vì vậy, với đầu mút phải tại vị trí $i$, ta có tiền tố độ dài $\pi[i]$, tiền tố độ dài $\pi[\pi[i] - 1]$, tiền tố độ dài $\pi[\pi[\pi[i] - 1] - 1]$, v.v. cho đến khi độ dài trở thành $0$. Do đó ta có thể tính đáp án theo cách sau.
+Trước hết giải bài toán thứ nhất. Xét giá trị hàm tiền tố $\pi[i]$ tại vị trí $i$. Theo định nghĩa, nó có nghĩa là một tiền tố độ dài $\pi[i]$ của chuỗi $s$ xuất hiện tại vị trí $i$ và có đầu mút phải là $i$, đồng thời không tồn tại tiền tố dài hơn nào thỏa mãn định nghĩa trên. Trong khi đó, các tiền tố ngắn hơn vẫn có thể có đầu mút phải tại vị trí này. Khi đó gặp lại câu hỏi đã được trả lời khi tính hàm tiền tố: cho một tiền tố độ dài $j$ đồng thời là hậu tố có đầu mút phải tại $i$, độ dài tiền tố nhỏ hơn tiếp theo $k < j$ là bao nhiêu? Tiền tố có độ dài đó cũng phải đồng thời là một hậu tố có đầu mút phải tại $i$. Vì vậy, với đầu mút phải tại vị trí $i$, có tiền tố độ dài $\pi[i]$, tiền tố độ dài $\pi[\pi[i] - 1]$, tiền tố độ dài $\pi[\pi[\pi[i] - 1] - 1]$, v.v. cho đến khi độ dài trở thành $0$. Do đó có thể tính đáp án theo cách sau.
 
 ???+ note "Cài đặt"
     === "C++"
@@ -390,42 +390,42 @@ Trước hết hãy giải bài toán thứ nhất. Xét giá trị hàm tiền 
 <span id="giải-thích"></span>
 #### Giải thích
 
-Trong đoạn mã trên, trước hết ta đếm mỗi giá trị hàm tiền tố xuất hiện bao nhiêu lần trong mảng $\pi$, rồi tính đáp án cuối cùng: nếu ta biết tiền tố độ dài $i$ xuất hiện đúng $\text{ans}[i]$ lần, thì giá trị này phải được cộng dồn vào số lần xuất hiện của xâu con dài nhất vừa là hậu tố vừa là tiền tố của nó. Cuối cùng, để tính cả chính các tiền tố ban đầu, ta cộng thêm $1$ vào mỗi kết quả.
+Trong đoạn mã trên, trước hết đếm mỗi giá trị hàm tiền tố xuất hiện bao nhiêu lần trong mảng $\pi$, rồi tính đáp án cuối cùng: nếu biết tiền tố độ dài $i$ xuất hiện đúng $\text{ans}[i]$ lần, thì giá trị này phải được cộng dồn vào số lần xuất hiện của xâu con dài nhất vừa là hậu tố vừa là tiền tố của nó. Cuối cùng, để tính cả chính các tiền tố ban đầu, cộng thêm $1$ vào mỗi kết quả.
 
-Bây giờ xét bài toán thứ hai. Ta áp dụng thủ thuật từ Knuth-Morris-Pratt: xây dựng chuỗi $s + \# + t$ và tính hàm tiền tố của nó. Điểm khác biệt duy nhất so với bài toán thứ nhất là ta chỉ quan tâm đến các giá trị hàm tiền tố liên quan đến chuỗi $t$, tức là các $\pi[i]$ với $i \ge n + 1$. Sau khi có các giá trị này, ta có thể áp dụng cùng thuật toán như trong bài toán thứ nhất để giải bài toán.
+Tiếp theo xét bài toán thứ hai. Áp dụng thủ thuật từ Knuth-Morris-Pratt: xây dựng chuỗi $s + \# + t$ và tính hàm tiền tố của nó. Điểm khác biệt duy nhất so với bài toán thứ nhất là chỉ quan tâm đến các giá trị hàm tiền tố liên quan đến chuỗi $t$, tức là các $\pi[i]$ với $i \ge n + 1$. Sau khi có các giá trị này, có thể áp dụng cùng thuật toán như trong bài toán thứ nhất để giải bài toán.
 
 <span id="số-xâu-con-khác-nhau-trong-một-chuỗi"></span>
 ### Số xâu con khác nhau trong một chuỗi
 
-Cho một chuỗi $s$ có độ dài $n$, ta muốn tính số xâu con khác nhau của nó.
+Cho một chuỗi $s$ có độ dài $n$, cần tính số xâu con khác nhau của nó.
 
-Ta sẽ giải bài toán này theo cách lặp. Nói cách khác, khi đã biết số xâu con khác nhau hiện tại, ta cần tìm cách tính lại số đó sau khi thêm một ký tự vào cuối $s$.
+Bài toán này được giải theo cách lặp. Nói cách khác, khi đã biết số xâu con khác nhau hiện tại, cần tìm cách tính lại số đó sau khi thêm một ký tự vào cuối $s$.
 
-Gọi $k$ là số xâu con khác nhau hiện tại của $s$. Ta thêm một ký tự mới $c$ vào $s$. Rõ ràng sẽ có một số xâu con mới kết thúc bằng ký tự $c$. Ta muốn đếm các xâu con kết thúc bằng ký tự này mà trước đó chưa từng gặp.
+Gọi $k$ là số xâu con khác nhau hiện tại của $s$. Thêm một ký tự mới $c$ vào $s$. Khi đó sẽ có một số xâu con mới kết thúc bằng ký tự $c$. Cần đếm các xâu con kết thúc bằng ký tự này mà trước đó chưa từng gặp.
 
-Xây dựng chuỗi $t = s + c$ rồi đảo ngược nó để được chuỗi $t^{\sim}$. Bây giờ nhiệm vụ của ta trở thành tính xem có bao nhiêu tiền tố của $t^{\sim}$ không xuất hiện ở bất kỳ vị trí nào khác trong $t^{\sim}$. Nếu ta tính giá trị lớn nhất của hàm tiền tố của $t^{\sim}$ là $\pi_{\max}$, thì tiền tố dài nhất xuất hiện trong $s$ có độ dài $\pi_{\max}$. Hiển nhiên, mọi tiền tố ngắn hơn cũng đã xuất hiện.
+Xây dựng chuỗi $t = s + c$ rồi đảo ngược nó để được chuỗi $t^{\sim}$. Khi đó nhiệm vụ trở thành tính xem có bao nhiêu tiền tố của $t^{\sim}$ không xuất hiện ở bất kỳ vị trí nào khác trong $t^{\sim}$. Nếu tính giá trị lớn nhất của hàm tiền tố của $t^{\sim}$ là $\pi_{\max}$, thì tiền tố dài nhất xuất hiện trong $s$ có độ dài $\pi_{\max}$. Mọi tiền tố ngắn hơn cũng đã xuất hiện.
 
 Vì vậy, sau khi thêm một ký tự mới, số xâu con mới xuất hiện là $|s| + 1 - \pi_{\max}$.
 
-Do đó với mỗi ký tự được thêm vào, ta có thể tính số xâu con mới trong thời gian $O(n)$, nên độ phức tạp cuối cùng là $O(n^2)$.
+Do đó với mỗi ký tự được thêm vào, có thể tính số xâu con mới trong thời gian $O(n)$, nên độ phức tạp cuối cùng là $O(n^2)$.
 
-Đáng chú ý là ta cũng có thể tính lại số xâu con khác nhau khi thêm một ký tự vào đầu, hoặc khi xóa một ký tự ở cuối hay ở đầu.
+Đáng chú ý là cũng có thể tính lại số xâu con khác nhau khi thêm một ký tự vào đầu, hoặc khi xóa một ký tự ở cuối hay ở đầu.
 
 <span id="nén-chuỗi"></span>
 ### Nén chuỗi
 
-Cho một chuỗi $s$ có độ dài $n$, ta muốn tìm biểu diễn "nén" ngắn nhất của nó, tức là muốn tìm một chuỗi $t$ ngắn nhất sao cho $s$ có thể được biểu diễn bằng cách ghép một hoặc nhiều bản sao của $t$.
+Cho một chuỗi $s$ có độ dài $n$, cần tìm biểu diễn "nén" ngắn nhất của nó, tức là cần tìm một chuỗi $t$ ngắn nhất sao cho $s$ có thể được biểu diễn bằng cách ghép một hoặc nhiều bản sao của $t$.
 
-Rõ ràng ta chỉ cần tìm độ dài của $t$. Khi đã biết độ dài đó, đáp án của bài toán chính là tiền tố của $s$ có độ dài bằng giá trị này.
+Chỉ cần tìm độ dài của $t$. Khi đã biết độ dài đó, đáp án của bài toán chính là tiền tố của $s$ có độ dài bằng giá trị này.
 
-Hãy tính hàm tiền tố của $s$. Dùng giá trị cuối cùng của hàm này $\pi[n - 1]$, ta định nghĩa $k = n - \pi[n - 1]$. Ta sẽ chứng minh rằng nếu $k$ là ước của $n$, thì $k$ chính là đáp án; nếu không, không tồn tại một cách nén hợp lệ, nên đáp án là $n$.
+Tính hàm tiền tố của $s$. Dùng giá trị cuối cùng của hàm này $\pi[n - 1]$, định nghĩa $k = n - \pi[n - 1]$. Cần chứng minh rằng nếu $k$ là ước của $n$, thì $k$ chính là đáp án; nếu không, không tồn tại một cách nén hợp lệ, nên đáp án là $n$.
 
-Giả sử $n$ chia hết cho $k$. Khi đó chuỗi có thể được chia thành các khối độ dài $k$. Theo định nghĩa của hàm tiền tố, tiền tố độ dài $n - k$ của chuỗi bằng hậu tố của nó. Nhưng điều này có nghĩa là khối cuối cùng bằng khối áp chót, khối áp chót bằng khối ngay trước nó, và cứ tiếp tục như vậy. Kết quả là mọi khối đều bằng nhau, do đó ta có thể nén chuỗi $s$ xuống độ dài $k$.
+Giả sử $n$ chia hết cho $k$. Khi đó chuỗi có thể được chia thành các khối độ dài $k$. Theo định nghĩa của hàm tiền tố, tiền tố độ dài $n - k$ của chuỗi bằng hậu tố của nó. Nhưng điều này có nghĩa là khối cuối cùng bằng khối áp chót, khối áp chót bằng khối ngay trước nó, và cứ tiếp tục như vậy. Kết quả là mọi khối đều bằng nhau, do đó có thể nén chuỗi $s$ xuống độ dài $k$.
 
 ???+ note "Chứng minh"
-    Tất nhiên, ta vẫn cần chứng minh giá trị này là tối ưu. Thực ra, nếu tồn tại một biểu diễn nén ngắn hơn $k$, thì giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ chắc chắn phải lớn hơn $n - k$. Vì vậy $k$ chính là đáp án.
+    Tất nhiên, vẫn cần chứng minh giá trị này là tối ưu. Thực ra, nếu tồn tại một biểu diễn nén ngắn hơn $k$, thì giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ chắc chắn phải lớn hơn $n - k$. Vì vậy $k$ chính là đáp án.
     
-    Bây giờ giả sử $n$ không chia hết cho $k$, ta sẽ chứng minh bằng phản chứng rằng điều này có nghĩa đáp án là $n$[^1]. Giả sử biểu diễn nén nhỏ nhất của nó là $r$ có độ dài $p$ ($p$ là ước của $n$), và chuỗi $s$ được chia thành $n / p \ge 2$ khối. Khi đó giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ chắc chắn phải lớn hơn $n - p$ (nếu bằng thì $n$ sẽ chia hết cho $k$), tức là hậu tố mà nó biểu diễn sẽ phủ một phần lên khối đầu tiên. Bây giờ xét khối thứ hai của chuỗi. Khối này có hai cách diễn giải: cách thứ nhất là $r_0 r_1 \dots r_{p - 1}$, cách thứ hai là $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$. Vì hai cách diễn giải tương ứng với cùng một chuỗi, ta thu được một hệ gồm $p$ phương trình, có thể viết gọn là $r_{(i + k) \bmod p} = r_{i \bmod p}$, trong đó $\cdot \bmod p$ biểu thị phần dư không âm nhỏ nhất theo modulo $p$.
+    Bây giờ giả sử $n$ không chia hết cho $k$, chứng minh bằng phản chứng rằng điều này có nghĩa đáp án là $n$[^1]. Giả sử biểu diễn nén nhỏ nhất của nó là $r$ có độ dài $p$ ($p$ là ước của $n$), và chuỗi $s$ được chia thành $n / p \ge 2$ khối. Khi đó giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ chắc chắn phải lớn hơn $n - p$ (nếu bằng thì $n$ sẽ chia hết cho $k$), tức là hậu tố mà nó biểu diễn sẽ phủ một phần lên khối đầu tiên. Tiếp theo xét khối thứ hai của chuỗi. Khối này có hai cách diễn giải: cách thứ nhất là $r_0 r_1 \dots r_{p - 1}$, cách thứ hai là $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$. Vì hai cách diễn giải tương ứng với cùng một chuỗi, thu được một hệ gồm $p$ phương trình, có thể viết gọn là $r_{(i + k) \bmod p} = r_{i \bmod p}$, trong đó $\cdot \bmod p$ biểu thị phần dư không âm nhỏ nhất theo modulo $p$.
     
     $$
     \begin{gathered}
@@ -434,7 +434,7 @@ Giả sử $n$ chia hết cho $k$. Khi đó chuỗi có thể được chia thà
     \end{gathered}
     $$
     
-    Theo thuật toán Euclid mở rộng, ta có thể tìm được một cặp $x$ và $y$ sao cho $xk + yp = \gcd(k, p)$. Bằng cách cộng thêm thích hợp đẳng thức $pk - kp = 0$, ta có thể thu được một cặp $x' > 0$ và $y' < 0$ sao cho $x'k + y'p = \gcd(k, p)$. Điều này có nghĩa là bằng cách liên tục áp dụng các phương trình trong hệ trên, ta có thể thu được hệ phương trình mới $r_{(i + \gcd(k, p)) \bmod p} = r_{i \bmod p}$.
+    Theo thuật toán Euclid mở rộng, có thể tìm được một cặp $x$ và $y$ sao cho $xk + yp = \gcd(k, p)$. Bằng cách cộng thêm thích hợp đẳng thức $pk - kp = 0$, có thể thu được một cặp $x' > 0$ và $y' < 0$ sao cho $x'k + y'p = \gcd(k, p)$. Điều này có nghĩa là bằng cách liên tục áp dụng các phương trình trong hệ trên, có thể thu được hệ phương trình mới $r_{(i + \gcd(k, p)) \bmod p} = r_{i \bmod p}$.
     
     Vì $\gcd(k, p)$ là ước của $p$, điều này có nghĩa $\gcd(k, p)$ là một chu kỳ của $r$. Lại vì $\pi[n - 1] > n - p$, nên $n - \pi[n - 1] = k < p$; do đó $\gcd(k, p)$ là một chu kỳ của $r$ nhỏ hơn $p$. Vì thế chuỗi $s$ có một biểu diễn nén độ dài $\gcd(k, p) < p$, mâu thuẫn với tính nhỏ nhất của $p$.
     
@@ -445,7 +445,7 @@ Giả sử $n$ chia hết cho $k$. Khi đó chuỗi có thể được chia thà
 <span id="xây-dựng-một-ô-tô-mát-từ-hàm-tiền-tố"></span>
 ### Xây dựng một ô-tô-mát từ hàm tiền tố
 
-Hãy quay lại chuỗi mới được tạo bằng cách nối hai chuỗi qua một ký tự phân tách. Với các chuỗi $s$ và $t$, ta tính hàm tiền tố của $s + \# + t$. Rõ ràng, vì $\#$ là một ký tự phân tách, giá trị hàm tiền tố không bao giờ vượt quá $|s|$. Do đó ta chỉ cần lưu chuỗi $s + \#$ và các giá trị hàm tiền tố tương ứng của nó; sau đó có thể tính động giá trị hàm tiền tố cho mọi ký tự tiếp theo:
+Quay lại chuỗi mới được tạo bằng cách nối hai chuỗi qua một ký tự phân tách. Với các chuỗi $s$ và $t$, tính hàm tiền tố của $s + \# + t$. Vì $\#$ là một ký tự phân tách, giá trị hàm tiền tố không bao giờ vượt quá $|s|$. Do đó chỉ cần lưu chuỗi $s + \#$ và các giá trị hàm tiền tố tương ứng của nó; sau đó có thể tính động giá trị hàm tiền tố cho mọi ký tự tiếp theo:
 
 $$
 \underbrace{s_0 ~ s_1 ~ \dots ~ s_{n-1} ~ \#}_{\text{cần lưu}} ~ \underbrace{t_0 ~ t_1 ~ \dots ~ t_{m-1}}_{\text{không cần lưu}}
@@ -453,9 +453,9 @@ $$
 
 Thực ra trong trường hợp này, chỉ cần biết ký tự tiếp theo $c$ của $t$ và giá trị hàm tiền tố ở vị trí trước đó là đủ để tính giá trị hàm tiền tố ở vị trí tiếp theo, không cần dùng đến bất kỳ ký tự nào khác của $t$ hay giá trị hàm tiền tố tương ứng của chúng.
 
-Nói cách khác, ta có thể xây dựng một **ô-tô-mát** (một máy trạng thái hữu hạn): trạng thái của nó là giá trị hàm tiền tố hiện tại, còn chuyển tiếp từ trạng thái này sang trạng thái khác được xác định bởi ký tự tiếp theo.
+Nói cách khác, có thể xây dựng một **ô-tô-mát** (một máy trạng thái hữu hạn): trạng thái của nó là giá trị hàm tiền tố hiện tại, còn chuyển tiếp từ trạng thái này sang trạng thái khác được xác định bởi ký tự tiếp theo.
 
-Vì vậy, ngay cả khi không có chuỗi $t$, ta vẫn có thể áp dụng thuật toán xây dựng bảng chuyển tiếp để tạo một bảng chuyển tiếp $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$:
+Vì vậy, ngay cả khi không có chuỗi $t$, vẫn có thể áp dụng thuật toán xây dựng bảng chuyển tiếp để tạo một bảng chuyển tiếp $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$:
 
 ???+ note "Cài đặt"
     ```cpp
@@ -475,7 +475,7 @@ Vì vậy, ngay cả khi không có chuỗi $t$, ta vẫn có thể áp dụng t
     }
     ```
 
-Tuy nhiên ở dạng này, với bảng chữ cái chữ thường, độ phức tạp thời gian của thuật toán là $O(|\Sigma|n^2)$. Nhận thấy ta có thể áp dụng quy hoạch động để tận dụng các phần đã tính trong bảng. Mỗi khi ta chuyển từ giá trị $j$ sang $\pi[j - 1]$, thực chất ta đang nói rằng chuyển tiếp $(j, c)$ đi đến cùng trạng thái với chuyển tiếp $(\pi[j - 1], c)$, mà đáp án này trước đó ta đã tính chính xác.
+Tuy nhiên ở dạng này, với bảng chữ cái chữ thường, độ phức tạp thời gian của thuật toán là $O(|\Sigma|n^2)$. Có thể áp dụng quy hoạch động để tận dụng các phần đã tính trong bảng. Mỗi khi chuyển từ giá trị $j$ sang $\pi[j - 1]$, thực chất đang nói rằng chuyển tiếp $(j, c)$ đi đến cùng trạng thái với chuyển tiếp $(\pi[j - 1], c)$, mà đáp án này trước đó đã được tính chính xác.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -495,17 +495,17 @@ Tuy nhiên ở dạng này, với bảng chữ cái chữ thường, độ phứ
     }
     ```
 
-Cuối cùng, ta có thể xây dựng ô-tô-mát này trong độ phức tạp thời gian $O(|\Sigma|n)$.
+Cuối cùng, có thể xây dựng ô-tô-mát này trong độ phức tạp thời gian $O(|\Sigma|n)$.
 
-Ô-tô-mát này hữu ích khi nào? Trước hết, hãy nhớ rằng phần lớn thời gian ta dùng hàm tiền tố của chuỗi $s + \# + t$ cho một mục đích: tìm mọi lần xuất hiện của chuỗi $s$ trong chuỗi $t$.
+Ô-tô-mát này hữu ích khi nào? Trước hết, phần lớn thời gian hàm tiền tố của chuỗi $s + \# + t$ được dùng cho một mục đích: tìm mọi lần xuất hiện của chuỗi $s$ trong chuỗi $t$.
 
 Vì vậy lợi ích trực tiếp nhất của việc dùng ô-tô-mát này là **tăng tốc việc tính hàm tiền tố của chuỗi $s + \# + t$**.
 
-Bằng cách xây dựng ô-tô-mát của $s + \#$, ta không còn cần lưu chuỗi $s$ và các giá trị hàm tiền tố tương ứng của nó. Mọi chuyển tiếp đã được tính sẵn trong bảng.
+Bằng cách xây dựng ô-tô-mát của $s + \#$, không còn cần lưu chuỗi $s$ và các giá trị hàm tiền tố tương ứng của nó. Mọi chuyển tiếp đã được tính sẵn trong bảng.
 
-Ngoài ra còn có một ứng dụng thứ hai ít trực tiếp hơn. Ta có thể dùng ô-tô-mát này để tăng tốc tính toán khi chuỗi $t$ là **một chuỗi khổng lồ được xây dựng theo một số quy tắc**. Chuỗi Gray, hoặc một chuỗi được tạo bằng cách tổ hợp đệ quy một số chuỗi đầu vào ngắn, là các ví dụ như vậy.
+Ngoài ra còn có một ứng dụng thứ hai ít trực tiếp hơn. Có thể dùng ô-tô-mát này để tăng tốc tính toán khi chuỗi $t$ là **một chuỗi khổng lồ được xây dựng theo một số quy tắc**. Chuỗi Gray, hoặc một chuỗi được tạo bằng cách tổ hợp đệ quy một số chuỗi đầu vào ngắn, là các ví dụ như vậy.
 
-Để đầy đủ, ta giải bài toán sau: cho một số $k \le 10^5$ và một chuỗi $s$ có độ dài $\le 10^5$, cần tính số lần xuất hiện của $s$ trong chuỗi Gray thứ $k$. Nhắc lại rằng chuỗi Gray được định nghĩa như sau:
+Để đầy đủ, xét bài toán sau: cho một số $k \le 10^5$ và một chuỗi $s$ có độ dài $\le 10^5$, cần tính số lần xuất hiện của $s$ trong chuỗi Gray thứ $k$. Nhắc lại rằng chuỗi Gray được định nghĩa như sau:
 
 $$
 \begin{aligned}
@@ -516,11 +516,11 @@ g_4 &= \mathtt{abacabadabacaba}
 \end{aligned}
 $$
 
-Do độ dài lớn đến mức thiên văn, trong trường hợp này ngay cả việc dựng chuỗi $t$ cũng là không thể: chuỗi Gray thứ $k$ có $2^k - 1$ ký tự. Tuy nhiên ta có thể tính hiệu quả giá trị hàm tiền tố ở cuối chuỗi này khi chỉ biết một số giá trị hàm tiền tố ban đầu.
+Do độ dài lớn đến mức thiên văn, trong trường hợp này ngay cả việc dựng chuỗi $t$ cũng là không thể: chuỗi Gray thứ $k$ có $2^k - 1$ ký tự. Tuy nhiên có thể tính hiệu quả giá trị hàm tiền tố ở cuối chuỗi này khi chỉ biết một số giá trị hàm tiền tố ban đầu.
 
-Bên cạnh ô-tô-mát, ta còn cần tính giá trị $G[i][j]$: trạng thái của ô-tô-mát sau khi xử lý $g_i$ bắt đầu từ trạng thái $j$, và giá trị $K[i][j]$: số lần xuất hiện của $s$ trong $g_i$ khi xử lý $g_i$ bắt đầu từ trạng thái $j$. Thực chất, $K[i][j]$ là số lần trong quá trình thực hiện mà giá trị hàm tiền tố bằng $|s|$. Dễ thấy đáp án của bài toán là $K[k][0]$.
+Bên cạnh ô-tô-mát, còn cần tính giá trị $G[i][j]$: trạng thái của ô-tô-mát sau khi xử lý $g_i$ bắt đầu từ trạng thái $j$, và giá trị $K[i][j]$: số lần xuất hiện của $s$ trong $g_i$ khi xử lý $g_i$ bắt đầu từ trạng thái $j$. Thực chất, $K[i][j]$ là số lần trong quá trình thực hiện mà giá trị hàm tiền tố bằng $|s|$. Đáp án của bài toán là $K[k][0]$.
 
-Ta tính các giá trị này như thế nào? Trước hết, theo định nghĩa, điều kiện ban đầu là $G[0][j] = j$ và $K[0][j] = 0$. Sau đó mọi giá trị có thể được tính từ các giá trị trước đó và bằng cách dùng ô-tô-mát. Để tính giá trị tương ứng cho một $i$ nào đó, nhớ rằng chuỗi $g_i$ được tạo bằng cách ghép $g_{i - 1}$, ký tự thứ $i$ trong bảng chữ cái, và $g_{i - 1}$. Vì vậy ô-tô-mát sẽ đi qua các trạng thái sau:
+Các giá trị này được tính như thế nào? Trước hết, theo định nghĩa, điều kiện ban đầu là $G[0][j] = j$ và $K[0][j] = 0$. Sau đó mọi giá trị có thể được tính từ các giá trị trước đó và bằng cách dùng ô-tô-mát. Để tính giá trị tương ứng cho một $i$ nào đó, nhớ rằng chuỗi $g_i$ được tạo bằng cách ghép $g_{i - 1}$, ký tự thứ $i$ trong bảng chữ cái, và $g_{i - 1}$. Vì vậy ô-tô-mát sẽ đi qua các trạng thái sau:
 
 $$
 \begin{gathered}
@@ -535,7 +535,7 @@ $$
 K[i][j] = K[i - 1][j] + [\text{mid} == |s|] + K[i - 1][\text{mid}]
 $$
 
-Trong đó $[\cdot]$ có giá trị $1$ khi biểu thức bên trong là đúng, ngược lại có giá trị $0$. Tóm lại, ta đã có thể giải bài toán về chuỗi Gray, cũng như một lớp lớn các bài toán tương tự. Chẳng hạn, có thể áp dụng cùng phương pháp để giải bài toán sau: cho một chuỗi $s$ và một số mẫu $t_i$, trong đó mỗi mẫu được cho theo cách sau: mẫu gồm các ký tự thông thường, đồng thời có thể chèn đệ quy các chuỗi trước đó dưới dạng $t_{k}^{\text{cnt}}$, tức là tại vị trí đó ta phải chèn chuỗi $t_k$ đúng $\text{cnt}$ lần. Dưới đây là một ví dụ về các mẫu như vậy:
+Trong đó $[\cdot]$ có giá trị $1$ khi biểu thức bên trong là đúng, ngược lại có giá trị $0$. Tóm lại, đã có thể giải bài toán về chuỗi Gray, cũng như một lớp lớn các bài toán tương tự. Chẳng hạn, có thể áp dụng cùng phương pháp để giải bài toán sau: cho một chuỗi $s$ và một số mẫu $t_i$, trong đó mỗi mẫu được cho theo cách sau: mẫu gồm các ký tự thông thường, đồng thời có thể chèn đệ quy các chuỗi trước đó dưới dạng $t_{k}^{\text{cnt}}$, tức là tại vị trí đó phải chèn chuỗi $t_k$ đúng $\text{cnt}$ lần. Dưới đây là một ví dụ về các mẫu như vậy:
 
 $$
 \begin{aligned}
@@ -546,9 +546,9 @@ t_4 &= t_2^{10} + t_3^{100}
 \end{aligned}
 $$
 
-Việc thay thế đệ quy sẽ khiến độ dài chuỗi tăng bùng nổ; độ dài của chúng thậm chí có thể đạt cỡ $100^{100}$. Ta cần tìm số lần xuất hiện của chuỗi $s$ trong từng chuỗi.
+Việc thay thế đệ quy sẽ khiến độ dài chuỗi tăng bùng nổ; độ dài của chúng thậm chí có thể đạt cỡ $100^{100}$. Cần tìm số lần xuất hiện của chuỗi $s$ trong từng chuỗi.
 
-Bài toán này cũng có thể được giải bằng cách xây dựng ô-tô-mát của hàm tiền tố. Tương tự như trước, ta tận dụng các kết quả đã tính để tính chuyển tiếp cho mỗi mẫu rồi thống kê đáp án tương ứng.
+Bài toán này cũng có thể được giải bằng cách xây dựng ô-tô-mát của hàm tiền tố. Tương tự như trước, tận dụng các kết quả đã tính để tính chuyển tiếp cho mỗi mẫu rồi thống kê đáp án tương ứng.
 
 <span id="bài-tập"></span>
 ## Bài tập
