@@ -1,6 +1,6 @@
 Cây hậu tố là một cấu trúc dữ liệu duy trì tất cả hậu tố của một chuỗi.
 
-<span id="&#19968;&#20123;&#35760;&#21495;"></span>
+<span id="một-số-ký-hiệu"></span>
 ## Một số ký hiệu
 
 Gọi chuỗi mẹ dùng để xây dựng cây hậu tố là $S$, có độ dài $n$, và bảng chữ cái là $\Sigma$.
@@ -11,7 +11,7 @@ Gọi $S [l, r]$ là chuỗi tạo bởi các ký tự từ vị trí $l$ đến
 
 Gọi $S [i, n]$ là hậu tố của $S$ bắt đầu tại $i$, và $S [1, i]$ là tiền tố của $S$ kết thúc tại $i$.
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Định nghĩa **trie hậu tố** của chuỗi $S$ là cây từ điển thu được bằng cách chèn tất cả hậu tố của $S$ vào trie. Trong trie hậu tố, chuỗi tương ứng với nút $x$ là chuỗi tạo bởi việc nối các ký tự trên đường đi từ gốc đến $x$. Gọi mọi nút tương ứng với một hậu tố nào đó của $S$ trong trie hậu tố là nút hậu tố.
@@ -28,10 +28,10 @@ Hình dưới đây, từ trái sang phải, lần lượt là trie hậu tố, 
 
 Xét việc chèn từng hậu tố của $S$ vào trie hậu tố. Từ lần chèn thứ hai trở đi, mỗi lần nhiều nhất chỉ thêm một nút có nhiều hơn một con và một nút hậu tố, nên số nút trong cây hậu tố nhiều nhất là $2n$, rất tốt.
 
-<span id="&#21518;&#32512;&#26641;&#30340;&#24314;&#31435;"></span>
+<span id="xây-dựng-cây-hậu-tố"></span>
 ## Xây dựng cây hậu tố
 
-<span id="&#25903;&#25345;&#21069;&#31471;&#21160;&#24577;&#28155;&#21152;&#23383;&#31526;&#30340;&#31639;&#27861;"></span>
+<span id="thuật-toán-hỗ-trợ-thêm-ký-tự-động-ở-đầu"></span>
 ### Thuật toán hỗ trợ thêm ký tự động ở đầu
 
 Cây parent của SAM được xây dựng trên chuỗi đảo chính là cây hậu tố của chuỗi đó, vì vậy ta chỉ cần lần lượt thêm các ký tự của chuỗi đảo vào SAM.
@@ -73,12 +73,12 @@ Cây parent của SAM được xây dựng trên chuỗi đảo chính là cây 
     } SAM;
     ```
 
-<span id="&#25903;&#25345;&#21518;&#31471;&#21160;&#24577;&#28155;&#21152;&#23383;&#31526;&#30340;&#31639;&#27861;"></span>
+<span id="thuật-toán-hỗ-trợ-thêm-ký-tự-động-ở-cuối"></span>
 ### Thuật toán hỗ trợ thêm ký tự động ở cuối
 
 Thuật toán Ukkonen là một thuật toán xây dựng tăng dần. Ta lần lượt chèn từng ký tự của chuỗi $S$ vào cây, và sau mỗi lần chèn duy trì đúng cây hậu tố hiện tại.
 
-<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+<span id="thuật-toán-ngây-thơ"></span>
 #### Thuật toán ngây thơ
 
 Trước hết giới thiệu một cách xây dựng khá trực tiếp. Ta dùng chuỗi $\texttt {abbbc}$ để minh họa quá trình xây dựng.
@@ -115,7 +115,7 @@ Quá trình xây dựng kết thúc.
 
 Thuật toán này mỗi lần đều tìm và chèn thẳng từ gốc xuống, độ phức tạp xấu nhất là $O(n)$, nên tổng độ phức tạp là $O(n^2)$.
 
-<span id="&#21518;&#32512;&#38142;&#25509;"></span>
+<span id="liên-kết-hậu-tố"></span>
 #### Liên kết hậu tố
 
 Thuật toán ngây thơ chậm chủ yếu vì mỗi lần `extend` đều phải tìm từ gốc đến vị trí chèn của hậu tố ẩn dài nhất. Vì vậy ta cân nhắc ghi lại vị trí này. Trước hết, dùng một cặp $(now,rem)$ để mô tả hậu tố dài nhất hiện đang được chứa ẩn, $S[k,m]$. Đi theo cạnh đi ra từ nút $now$ có ký tự đầu là $S[m-rem+1]$ với độ dài $rem$ sẽ đến một vị trí biểu diễn duy nhất một chuỗi. Mỗi lần chèn ký tự mới, ta chỉ cần tìm từ vị trí được mô tả bởi $now$ và $rem$.
@@ -128,7 +128,7 @@ Chứng minh. Gọi $s$ là chuỗi thu được từ $str_x$ sau khi bỏ ký t
 
 Từ bổ đề này, ta định nghĩa $\operatorname{Link}(x)=y$, gọi là **liên kết hậu tố (Suffix Link)** của $x$. Khi đó $now'=\operatorname{Link}(now)$ chắc chắn tồn tại. Bây giờ ta chỉ cần tính được $\operatorname{Link}$ cho mọi nút không phải gốc và không phải lá trong cây hậu tố ẩn.
 
-<span id="ukkonen-&#31639;&#27861;"></span>
+<span id="thuật-toán-ukkonen"></span>
 #### Thuật toán Ukkonen
 
 Quy trình tổng thể của thuật toán Ukkonen như sau:
@@ -188,17 +188,17 @@ Vì thuật toán Ukkonen chỉ xây dựng được cây hậu tố ẩn của 
     } Tree;
     ```
 
-<span id="&#20316;&#29992;"></span>
+<span id="vai-trò"></span>
 ## Vai trò
 
 Mỗi đường đi từ một nút trên cây hậu tố đến gốc đều là một chuỗi con không rỗng của $S$, điều này rất hữu ích khi xử lý nhiều bài toán chuỗi.
 
 Thứ tự DFS của cây hậu tố chính là mảng hậu tố. Một cây con của cây hậu tố cũng tương ứng với một đoạn trên mảng hậu tố. Tiền tố chung dài nhất của hai hậu tố trên cây hậu tố là LCA của hai nút lá tương ứng với chúng. Vì vậy, kết luận về `height` của mảng hậu tố có thể hiểu là: LCA của một số nút trên cây bằng LCA của nút nhỏ nhất và lớn nhất theo thứ tự DFS trong số đó.
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập-ví-dụ"></span>
 ## Bài tập ví dụ
 
-<span id="&#27931;&#35895;-p3804&#27169;&#26495;&#21518;&#32512;&#33258;&#21160;&#26426;sam"></span>
+<span id="luogu-p3804-mẫu-máy-tự-động-hậu-tố-sam"></span>
 ### [Luogu P3804 [Mẫu] Máy tự động hậu tố (SAM)](https://www.luogu.com.cn/problem/P3804)
 
 Tóm tắt đề bài:
@@ -238,7 +238,7 @@ Tóm tắt đề bài: Cho một chuỗi mẹ $S$ chỉ gồm chữ cái thườ
     --8<-- "docs/string/code/suffix-tree/suffix-tree_2.cpp"
     ```
 
-<span id="&#21442;&#32771;&#25991;&#29486;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 1.  Bài luận đội tuyển quốc gia năm 2021 "Xây dựng cây hậu tố", Dai Chenxin
