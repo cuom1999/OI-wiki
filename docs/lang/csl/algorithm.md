@@ -1,4 +1,4 @@
-STL cung cấp khoảng 100 hàm template hiện thực thuật toán; phần lớn nằm trong
+STL cung cấp khoảng 100 mẫu hàm cài đặt thuật toán; phần lớn nằm trong
 `<algorithm>`, một phần khác nằm trong `<numeric>` và `<functional>`. Danh sách
 hàm đầy đủ có thể [xem trong sổ tay tham khảo](https://en.cppreference.com/w/cpp/algorithm);
 các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương ứng về sắp xếp](../../basic/stl-sort.md).
@@ -9,23 +9,23 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
 -   `reverse`: đảo ngược mảng hoặc chuỗi. `reverse(v.begin(), v.end())` hoặc
     `reverse(a + begin, a + end)`.
 
--   `unique`: loại bỏ các phần tử trùng nhau liền kề trong container.
-    `unique(ForwardIterator first, ForwardIterator last)` trả về iterator trỏ
-    đến cuối container **sau khi loại trùng**, còn kích thước container gốc
-    không đổi. Kết hợp với `sort` có thể loại trùng toàn bộ container.
+-   `unique`: loại bỏ các phần tử trùng nhau liền kề trong bộ chứa.
+    `unique(ForwardIterator first, ForwardIterator last)` trả về bộ lặp trỏ
+    đến cuối bộ chứa **sau khi loại trùng**, còn kích thước bộ chứa gốc
+    không đổi. Kết hợp với `sort` có thể loại trùng toàn bộ bộ chứa.
 
 -   `random_shuffle`: xáo trộn ngẫu nhiên mảng. `random_shuffle(v.begin(),
     v.end())` hoặc `random_shuffle(v + begin, v + end)`.
 
     ???+ warning "Hàm `random_shuffle` đã bị loại bỏ khỏi chuẩn C++ mới nhất"
-        `random_shuffle` bị deprecated từ C++14 và bị loại bỏ từ C++17.
-        
+        `random_shuffle` bị đánh dấu lỗi thời từ C++14 và bị loại bỏ từ C++17.
+
         Trong C++11 và các chuẩn mới hơn, bạn có thể dùng hàm `shuffle` thay
         cho `random_shuffle` cũ. Cách dùng là `shuffle(v.begin(), v.end(), rng)`;
         tham số cuối truyền vào bộ sinh số ngẫu nhiên, thường dùng Mersenne
         Twister [`mt19937`](https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine)
-        được seed bằng bộ sinh số ngẫu nhiên thật [`random_device`](https://en.cppreference.com/w/cpp/numeric/random/random_device).
-        
+        được khởi tạo hạt giống bằng bộ sinh số ngẫu nhiên thật [`random_device`](https://en.cppreference.com/w/cpp/numeric/random/random_device).
+
         ```cpp
         // #include <random>
         std::mt19937 rng(std::random_device{}());
@@ -46,7 +46,7 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
 -   `binary_search`: tìm kiếm nhị phân. `binary_search(v.begin(), v.end(),
     value)`, trong đó `value` là giá trị cần tìm.
 
--   `merge`: **gộp có thứ tự** hai dãy đã sắp xếp vào **insertion iterator** của
+-   `merge`: **gộp có thứ tự** hai dãy đã sắp xếp vào **bộ lặp chèn** của
     dãy thứ ba. `merge(v1.begin(), v1.end(), v2.begin(), v2.end(),
     back_inserter(v3))`.
 
@@ -54,21 +54,21 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
     sắp theo toán tử nhỏ hơn: `[first,middle), [middle,last)`.
     `inplace_merge(v.begin(), v.begin() + middle, v.end())`.
 
--   `lower_bound`: tìm kiếm nhị phân trong một dãy có thứ tự, trả về iterator
+-   `lower_bound`: tìm kiếm nhị phân trong một dãy có thứ tự, trả về bộ lặp
     trỏ đến vị trí của phần tử đầu tiên **lớn hơn hoặc bằng** $x$. Nếu không tồn
-    tại phần tử như vậy thì trả về iterator cuối. `lower_bound(v.begin(),
+    tại phần tử như vậy thì trả về bộ lặp cuối. `lower_bound(v.begin(),
     v.end(), x)`.
 
--   `upper_bound`: tìm kiếm nhị phân trong một dãy có thứ tự, trả về iterator
+-   `upper_bound`: tìm kiếm nhị phân trong một dãy có thứ tự, trả về bộ lặp
     trỏ đến vị trí của phần tử đầu tiên **lớn hơn** $x$. Nếu không tồn tại phần
-    tử như vậy thì trả về iterator cuối. `upper_bound(v.begin(), v.end(), x)`.
+    tử như vậy thì trả về bộ lặp cuối. `upper_bound(v.begin(), v.end(), x)`.
 
     ???+ warning "Độ phức tạp thời gian của `lower_bound` và `upper_bound`"
         Trên mảng thông thường, độ phức tạp thời gian của hai hàm này đều là
-        $O(\log n)$. Nhưng trong container kết hợp như `set`, gọi trực tiếp
+        $O(\log n)$. Nhưng trong bộ chứa kết hợp như `set`, gọi trực tiếp
         `lower_bound(s.begin(), s.end(), val)` có độ phức tạp $O(n)$.
-        
-        Các container kết hợp như `set` đã đóng gói các hàm như `lower_bound`
+
+        Các bộ chứa kết hợp như `set` đã đóng gói các hàm như `lower_bound`
         (ví dụ `s.lower_bound(val)`); gọi theo cách này có độ phức tạp
         $O(\log n)$.
 
@@ -82,7 +82,7 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
 -   `prev_permutation`: đổi hoán vị hiện tại thành **hoán vị trước đó trong toàn
     bộ các hoán vị**. Cách dùng giống `next_permutation`.
 
--   `partial_sum`: tính tổng tiền tố. Giả sử container nguồn là $x$, container
+-   `partial_sum`: tính tổng tiền tố. Giả sử bộ chứa nguồn là $x$, bộ chứa
     đích là $y$, khi đó đặt $y[i]=x[0]+x[1]+\dots+x[i]$.
     `partial_sum(src.begin(), src.end(), back_inserter(dst))`.
 
@@ -117,7 +117,7 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
         ```cpp
         vector<int> src = {1, 2, 3, 4, 5}, dst;
         // Tính tổng tiền tố của các phần tử trong src, dst[i] = src[0] + ... + src[i]
-        // Hàm back_inserter tác động lên container dst và cung cấp một iterator
+        // Hàm back_inserter tác động lên bộ chứa dst và cung cấp một bộ lặp
         partial_sum(src.begin(), src.end(), back_inserter(dst));
         for (unsigned int i = 0; i < dst.size(); i++) cout << dst[i] << " ";
         ```

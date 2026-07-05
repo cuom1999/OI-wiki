@@ -1,18 +1,18 @@
 author: sbofgayschool
 
-`std::pair` là một class template được định nghĩa trong thư viện chuẩn. Nó dùng
+`std::pair` là một mẫu lớp được định nghĩa trong thư viện chuẩn. Nó dùng
 để liên kết hai biến lại với nhau thành một "cặp", và kiểu dữ liệu của hai biến
 có thể khác nhau.
 
-??? note "Khuôn mẫu lớp"
-    Bản thân class template không phải là một lớp, mà là một "khuôn mẫu" có thể
+??? note "Mẫu lớp"
+    Bản thân mẫu lớp không phải là một lớp, mà là một "khuôn mẫu" có thể
     sinh ra **các lớp khác nhau** theo **các kiểu dữ liệu khác nhau**.
-    
+
     Khi sử dụng, trình biên dịch sẽ sinh lớp tương ứng theo kiểu dữ liệu được
     truyền vào, rồi tạo thực thể tương ứng.
-    
-    Template là một đặc tính tương đối nâng cao của C++; trong thi đấu tin học
-    gần như không cần viết template. Nếu quan tâm, bạn có thể đọc thêm
+
+    Khuôn mẫu là một đặc tính tương đối nâng cao của C++; trong thi đấu tin học
+    gần như không cần tự viết `template`. Nếu quan tâm, bạn có thể đọc thêm
     "C++ Primer" để học sâu hơn về C++.
 
 Sử dụng `pair` linh hoạt giúp xử lý dễ dàng các tình huống **cần buộc dữ liệu
@@ -21,7 +21,7 @@ liên quan lại để lưu trữ và xử lý**.
 ??? note "Cấu trúc"
     So với `struct` tự định nghĩa, `pair` không cần định nghĩa thêm cấu trúc và
     nạp chồng toán tử, nên dùng đơn giản hơn.
-    
+
     Tuy nhiên, tên biến trong `struct` tự định nghĩa thường rõ ràng hơn (`pair`
     chỉ có thể dùng `first` và `second` để truy cập hai biến bên trong). Đồng
     thời, nếu cần liên kết nhiều hơn hai biến, `struct` tự định nghĩa sẽ phù hợp
@@ -63,7 +63,7 @@ auto p3 = make_pair(1, 2.0);
 ```
 
 Về cách dùng `auto` trong thi đấu tin học, xem giải thích ở phần
-[iterator](./iterator.md).
+[bộ lặp](./iterator.md).
 
 ### Truy cập
 
@@ -179,5 +179,5 @@ map<int, double> m;
 m.insert(make_pair(1, 2.0));
 ```
 
-Xem thêm nội dung về `map` trong các phần liên quan ở [container kết hợp](./associative-container.md)
-và [container kết hợp không thứ tự](./unordered-container.md).
+Xem thêm nội dung về `map` trong các phần liên quan ở [bộ chứa kết hợp](./associative-container.md)
+và [bộ chứa kết hợp không thứ tự](./unordered-container.md).

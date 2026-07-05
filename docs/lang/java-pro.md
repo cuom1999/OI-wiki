@@ -505,8 +505,8 @@ Bảng dưới đây liệt kê mức truy cập của các thành viên lớp c
 | Mức truy cập thành viên lớp cha | Ý nghĩa trong lớp cha | Ý nghĩa trong lớp con |
 | :----------------------------: | :-------------------: | :-------------------: |
 |            `public`            | Mở cho mọi lớp | Mở cho mọi lớp |
-|          `protected`           | Chỉ các lớp cùng package, chính nó và lớp con được truy cập | Chỉ các lớp cùng package, chính nó và lớp con được truy cập |
-| Mặc định (`default`) | Chỉ các lớp cùng package được truy cập | Nếu lớp con và lớp cha cùng package thì chỉ các lớp cùng package được truy cập; nếu không thì tương đương `private`, không thể truy cập |
+|          `protected`           | Chỉ các lớp cùng gói, chính nó và lớp con được truy cập | Chỉ các lớp cùng gói, chính nó và lớp con được truy cập |
+| Mặc định (`default`) | Chỉ các lớp cùng gói được truy cập | Nếu lớp con và lớp cha cùng gói thì chỉ các lớp cùng gói được truy cập; nếu không thì tương đương `private`, không thể truy cập |
 |           `private`            | Chỉ chính nó được truy cập | Không thể truy cập |
 
 <span id="đa-hình"></span>

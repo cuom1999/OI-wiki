@@ -30,16 +30,17 @@ chuẩn C++14, đồng thời hỗ trợ C++17, đủ đáp ứng nhu cầu củ
 sinh. Vì vậy khi học C++, cần chú ý chuẩn mà cuộc thi hỗ trợ để tránh lỗi biên
 dịch trên sân thi.
 
-## Thư viện mẫu chuẩn (STL)
+## Thư viện khuôn mẫu chuẩn (STL)
 
-STL, tức Thư viện mẫu chuẩn (Standard Template Library), là một phần của thư
-viện chuẩn C++ và chứa một số cấu trúc dữ liệu cùng thuật toán tổng quát được
-template hóa. Nhờ đặc điểm template, nó tương thích với kiểu dữ liệu tự định
-nghĩa và tránh rất nhiều việc "tự chế lại" mã có sẵn. Các cuộc thi NOI và ICPC
-đều cho phép dùng STL, vì vậy sử dụng STL hợp lý có thể tránh viết các thuật
-toán không cần thiết, đồng thời tận dụng tối ưu hóa của trình biên dịch cho thư
-viện template để cải thiện hiệu suất. Giới thiệu chi tiết về STL nằm ở các trang
-tương ứng: [STL container](./container.md) và [STL algorithm](./algorithm.md).
+STL, tức Thư viện khuôn mẫu chuẩn (Standard Template Library), là một phần của
+thư viện chuẩn C++ và chứa một số cấu trúc dữ liệu cùng thuật toán tổng quát
+được viết bằng khuôn mẫu. Nhờ cơ chế khuôn mẫu, nó tương thích với kiểu dữ liệu
+tự định nghĩa và tránh rất nhiều việc "tự chế lại" mã có sẵn. Các cuộc thi NOI
+và ICPC đều cho phép dùng STL, vì vậy sử dụng STL hợp lý có thể tránh viết các
+thuật toán không cần thiết, đồng thời tận dụng tối ưu hóa của trình biên dịch cho
+mã thư viện dựa trên khuôn mẫu để cải thiện hiệu suất. Giới thiệu chi tiết về
+STL nằm ở các trang tương ứng: [bộ chứa STL](./container.md) và
+[thuật toán STL](./algorithm.md).
 
 ??? note "Tự chế lại bánh xe là gì?"
     Tự chế lại bánh xe ([Reinventing\_the\_wheel](https://en.wikipedia.org/wiki/Reinventing_the_wheel))
@@ -52,14 +53,14 @@ tương ứng: [STL container](./container.md) và [STL algorithm](./algorithm.m
 
 [Boost](https://www.boost.org/) là một thư viện công cụ C++ mã nguồn mở nổi
 tiếng bên cạnh thư viện chuẩn. Mã của Boost có tính khả chuyển, chất lượng cao,
-hiệu năng cao và độ tin cậy cao. Boost có số lượng module rất lớn, chức năng
+hiệu năng cao và độ tin cậy cao. Boost có số lượng mô-đun rất lớn, chức năng
 toàn diện và hỗ trợ đa nền tảng đầy đủ, nên thường được xem như một thư viện gần
 chuẩn của C++. Không ít đặc tính trong chuẩn C++ cũng bắt nguồn từ Boost, như
-smart pointer, metaprogramming, ngày giờ, v.v. Dù trong OI không thể dùng Boost,
-Boost vẫn có nhiều "bánh xe" hữu ích để kiểm chứng thuật toán hoặc đối chiếu
-kết quả, như Boost.Geometry có hiện thực R-tree, Boost.Graph có các thuật toán
-đồ thị, Boost.Intrusive cung cấp một bộ container xâm nhập có cách dùng tương tự
-STL container. Bạn đọc quan tâm có thể tự tìm hướng dẫn trên mạng.
+con trỏ thông minh, lập trình meta, ngày giờ, v.v. Dù trong OI không thể dùng
+Boost, Boost vẫn có nhiều "bánh xe" hữu ích để kiểm chứng thuật toán hoặc đối
+chiếu kết quả, như Boost.Geometry có hiện thực R-tree, Boost.Graph có các thuật
+toán đồ thị, Boost.Intrusive cung cấp một bộ chứa xâm nhập có cách dùng tương tự
+bộ chứa STL. Bạn đọc quan tâm có thể tự tìm hướng dẫn trên mạng.
 
 ## Tài liệu tham khảo
 

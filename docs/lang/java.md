@@ -98,16 +98,16 @@ thuộc gói nào. Ví dụ:
 package org.oi-wiki.tutorial;
 ```
 
-Quy ước đặt tên package thường là: `tên_miền_cấp_cao_của_chủ_sở_hữu_dự_án.tên_miền_cấp_hai_của_chủ_sở_hữu_dự_án.tên_dự_án`.
+Quy ước đặt tên gói thường là: `tên_miền_cấp_cao_của_chủ_sở_hữu_dự_án.tên_miền_cấp_hai_của_chủ_sở_hữu_dự_án.tên_dự_án`.
 
-Dùng từ khóa `import` để nhập lớp không nằm trong package của lớp hiện tại. Ví
+Dùng từ khóa `import` để nhập lớp không nằm trong gói của lớp hiện tại. Ví
 dụ, lớp `Scanner` được dùng bên dưới:
 
 ```java
 import java.util.Scanner;
 ```
 
-Nếu muốn nhập toàn bộ lớp dưới một package, chỉ cần thay tên lớp trước dấu chấm
+Nếu muốn nhập toàn bộ lớp dưới một gói, chỉ cần thay tên lớp trước dấu chấm
 phẩy cuối câu lệnh bằng `*`.
 
 ### Nhập dữ liệu
