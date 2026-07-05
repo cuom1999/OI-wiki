@@ -79,7 +79,7 @@ Tương tác kiểu grader xem [hướng dẫn chính thức](https://codeforces
 
 ### Checker
 
-testlib.h cung cấp một số checker tích hợp sẵn; trong hộp chọn có giới thiệu ngắn gọn, và sau khi chọn cũng có thể nhấp "View source" để xem mã nguồn.
+testlib.h cung cấp một số checker tích hợp sẵn; trong hộp chọn có giới thiệu ngắn gọn, và sau khi chọn cũng có thể nhấp "View source" (xem mã nguồn).
 
 Nếu cần tự viết checker, hãy tham khảo [hướng dẫn checker](./testlib/checker.md).
 
@@ -105,7 +105,7 @@ Trên Polygon, cách làm được khuyến nghị là dùng một số ít [gen
 
 "Add Test" dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng generator với một bộ tham số nào đó.
 
-Nếu chọn "Use in statements", bộ dữ liệu này sẽ trở thành mẫu và được tự động thêm vào đề bài. Nếu cần nội dung hiển thị trong đề bài không phải đầu vào/đầu ra của mẫu (thường dùng cho bài tương tác), có thể nhấp "If you want to specify custom content of input or output data for statements click here", rồi nhập đầu vào/đầu ra muốn hiển thị trong đề bài.
+Nếu chọn "Use in statements" (dùng trong đề bài), bộ dữ liệu này sẽ trở thành mẫu và được tự động thêm vào đề bài. Nếu cần nội dung hiển thị trong đề bài không phải đầu vào/đầu ra của mẫu (thường dùng cho bài tương tác), có thể nhấp "If you want to specify custom content of input or output data for statements click here" (nếu muốn chỉ định nội dung đầu vào hoặc đầu ra tùy chỉnh cho đề bài, hãy nhấp vào đây), rồi nhập đầu vào/đầu ra muốn hiển thị trong đề bài.
 
 Phần dưới của trang Tests dùng để nhập script sinh dữ liệu, ví dụ `generator-name [params] > test-index`. Có thể dùng `generator-name [params] > $` để không phải chỉ định thủ công số thứ tự test.
 
@@ -145,7 +145,7 @@ Nơi dùng để tạo Issue.
 
 Gói chứa toàn bộ thông tin của một bài. Khi ra đề CF, gói là căn cứ để CF chấm (ví dụ, nếu cần sửa lỗi trong lúc thi, chỉ khi cập nhật gói thì mới ảnh hưởng đến CF); những lúc khác có thể dùng để xuất ra.
 
-"Verify" dùng để kiểm tra tất cả lời giải có phù hợp với tag (AC, WA, TLE) hay không, đồng thời checker có qua checker tests và validator có qua validator tests hay không.
+"Verify" (xác minh) dùng để kiểm tra tất cả lời giải có phù hợp với thẻ (AC, WA, TLE) hay không, đồng thời checker có qua bộ kiểm thử checker và validator có qua bộ kiểm thử validator hay không.
 
 ### Quản lý quyền truy cập
 

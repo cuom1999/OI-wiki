@@ -6,7 +6,7 @@ Bài tương tác không đòi hỏi quá nhiều thuật toán nền tảng, th
 
 Các lỗi đặc thù của bài tương tác:
 
--   Sau mỗi lần thí sinh xuất dữ liệu đều cần flush bộ đệm, nếu không sẽ gây lỗi Idleness limit exceeded. Ngoài ra, nếu bài có nhiều bộ dữ liệu và chương trình có thể biết đáp án trước khi đọc hết mọi dữ liệu, vẫn phải đọc hết toàn bộ dữ liệu; nếu không, việc đọc bị rối cũng sẽ gây ILE (có thể đưa ra nhiều truy vấn một lần rồi nhận toàn bộ câu trả lời của các truy vấn đó cùng lúc). Đồng thời, cố gắng không dùng fast input.
+-   Sau mỗi lần thí sinh xuất dữ liệu đều cần xả bộ đệm, nếu không sẽ gây lỗi Idleness limit exceeded. Ngoài ra, nếu bài có nhiều bộ dữ liệu và chương trình có thể biết đáp án trước khi đọc hết mọi dữ liệu, vẫn phải đọc hết toàn bộ dữ liệu; nếu không, việc đọc bị rối cũng sẽ gây ILE (có thể đưa ra nhiều truy vấn một lần rồi nhận toàn bộ câu trả lời của các truy vấn đó cùng lúc). Đồng thời, cố gắng không dùng nhập nhanh.
 -   Nếu chương trình truy vấn quá nhiều lần, Codeforces sẽ trả kết quả Wrong Answer (nhưng hệ thống chấm sẽ nêu nguyên nhân của Wrong Answer), còn UVa sẽ trả kết quả Protocol Limit Exceeded (PLE).
 -   Nếu định dạng tương tác của chương trình sai, UVa sẽ trả kết quả Protocol Violation (PV).
 

@@ -51,12 +51,12 @@ $$
 2 & u.\textit{hson}.\textit{size}\gets 0 \\
 3 & u.\textit{depth}\gets \textit{dep} \\
 4 & u.\textit{size}\gets 1 \\
-5 & \textbf{for }\text{each child }v\text{ of }u \\
+5 & \textbf{với mỗi }\text{con }v\text{ của }u \\
 6 & \qquad u.\textit{size}\gets u.\textit{size} + \text{TREE-BUILD }(v,\textit{dep}+1) \\
 7 & \qquad v.\textit{father}\gets u \\
-8 & \qquad \textbf{if }v.\textit{size}> u.\textit{hson}.\textit{size} \\
+8 & \qquad \textbf{nếu }v.\textit{size}> u.\textit{hson}.\textit{size} \\
 9 & \qquad \qquad u.\textit{hson}\gets v \\
-10 & \textbf{return } u.\textit{size}
+10 & \textbf{trả về } u.\textit{size}
 \end{array}
 \end{array}
 $$
@@ -71,10 +71,10 @@ $$
 2 & \textit{tot}\gets \textit{tot}+1\\
 3 & u.\textit{dfn}\gets \textit{tot} \\
 4 & \textit{rank}(\textit{tot})\gets u \\
-5 & \textbf{if }u.\textit{hson}\text{ is not }0 \\
+5 & \textbf{nếu }u.\textit{hson}\text{ khác }0 \\
 6 & \qquad \text{TREE-DECOMPOSITION }(u.\textit{hson},\textit{top}) \\
-7 & \qquad \textbf{for }\text{each child }v\text{ of }u \\
-8 & \qquad \qquad \textbf{if }v\text{ is not }u.\textit{hson} \\
+7 & \qquad \textbf{với mỗi }\text{con }v\text{ của }u \\
+8 & \qquad \qquad \textbf{nếu }v\text{ khác }u.\textit{hson} \\
 9 & \qquad \qquad \qquad \text{TREE-DECOMPOSITION }(v,v) 
 \end{array}
 \end{array}
@@ -151,13 +151,13 @@ $$
 \text{TREE-PATH-SUM }(u,v) \\
 \begin{array}{ll}
 1 & \textit{tot}\gets 0 \\
-2 & \textbf{while }u.\textit{top}\text{ is not }v.\textit{top} \\
-3 & \qquad \textbf{if }u.\textit{top}.\textit{depth}< v.\textit{top}.\textit{depth} \\
+2 & \textbf{trong khi }u.\textit{top}\text{ khác }v.\textit{top} \\
+3 & \qquad \textbf{nếu }u.\textit{top}.\textit{depth}< v.\textit{top}.\textit{depth} \\
 4 & \qquad \qquad \text{SWAP}(u, v) \\
-5 & \qquad \textit{tot}\gets \textit{tot} + \text{sum of values between }u\text{ and }u.\textit{top} \\
+5 & \qquad \textit{tot}\gets \textit{tot} + \text{tổng các giá trị giữa }u\text{ và }u.\textit{top} \\
 6 & \qquad u\gets u.\textit{top}.\textit{father} \\
-7 & \textit{tot}\gets \textit{tot} + \text{sum of values between }u\text{ and }v \\
-8 & \textbf{return } \textit{tot} 
+7 & \textit{tot}\gets \textit{tot} + \text{tổng các giá trị giữa }u\text{ và }v \\
+8 & \textbf{trả về } \textit{tot}
 \end{array}
 \end{array}
 $$

@@ -183,7 +183,7 @@ Sau khi dùng đồng thời nén đường đi và hợp nhất theo heuristic,
 ???+ info "Hàm Ackermann ngược"
     [Hàm Ackermann](https://en.wikipedia.org/wiki/Ackermann_function)  $A(m, n)$ được định nghĩa như sau:
     
-    $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0\\A(m-1,A(m,n-1))&\text{otherwise}\end{cases}$
+    $A(m, n) = \begin{cases}n+1&\text{nếu }m=0\\A(m-1,1)&\text{nếu }m>0\text{ và }n=0\\A(m-1,A(m,n-1))&\text{ngược lại}\end{cases}$
     
     Còn hàm Ackermann ngược $\alpha(n)$ là hàm ngược của hàm Ackermann, tức là số nguyên lớn nhất $m$ sao cho $A(m, m) \leqslant n$.
 

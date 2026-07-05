@@ -9,8 +9,8 @@ Thực ra, bài toán này cũng có thể viết dưới dạng ma trận. Đ�
 $$
 P_{x, y}=
 \begin{cases}
-w_{(x, y)} & \text{if } (x, y) \in E \text{ and } x \neq t \\
-0 & \text{if } (x, y) \notin E \text{ or } x=t \\
+w_{(x, y)} & \text{nếu } (x, y) \in E \text{ và } x \neq t \\
+0 & \text{nếu } (x, y) \notin E \text{ hoặc } x=t \\
 \end{cases}
 $$
 

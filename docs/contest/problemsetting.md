@@ -128,11 +128,11 @@ Mỗi khái niệm xuất hiện trong đề nên được mô tả bằng một
 
 Không nên dùng một từ với nghĩa khác nghĩa gốc hoặc nghĩa thông dụng mà không giải thích. Ví dụ: không nên dùng "đường đi" để chỉ một cạnh nếu không nói rõ.
 
-Bạn cần bảo đảm đề bài của mình không tự mâu thuẫn. Ví dụ: trong [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A), dấu "?" không được coi là một loại "result", vì ý nghĩa của "?" là "there are more than one possible results".
+Bạn cần bảo đảm đề bài của mình không tự mâu thuẫn. Ví dụ: trong [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A), dấu "?" không được coi là một loại "kết quả", vì ý nghĩa của "?" là "có nhiều hơn một kết quả khả dĩ".
 
-Bạn cần bảo đảm đề bài không thể bị hiểu sai mà vẫn tự hợp lý hóa được, kể cả khi cách hiểu đó trái với lẽ thường và không ai sẽ nghĩ như vậy. Ví dụ: trong [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D), lý do phải định nghĩa rườm rà "walk into" và phân biệt với "teleport" là để ngăn cách hiểu như sau: đi qua portal có thể tới một portal khác, mà tới portal thì sẽ teleport, nên sẽ nhảy qua lại vô hạn.
+Bạn cần bảo đảm đề bài không thể bị hiểu sai mà vẫn tự hợp lý hóa được, kể cả khi cách hiểu đó trái với lẽ thường và không ai sẽ nghĩ như vậy. Ví dụ: trong [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D), lý do phải định nghĩa rườm rà "đi vào" và phân biệt với "dịch chuyển" là để ngăn cách hiểu như sau: đi qua portal có thể tới một portal khác, mà tới portal thì sẽ dịch chuyển, nên sẽ nhảy qua lại vô hạn.
 
-Đọc xuôi phần mô tả bài toán nên hiểu được từng câu, đồng thời hiểu nhiệm vụ và yêu cầu của bài. Ít nhất, nếu có thắc mắc thì thắc mắc đó phải được giải thích ngay ở đoạn tiếp theo, chứ không phải đợi vài đoạn sau mới được giải thích, hoặc phải đọc phần định dạng vào ra mới hiểu ý đề, thậm chí phải dựa vào ví dụ để đoán đề. Ví dụ: trong [GuOJ Round #1: Bữa tiệc băng tuyết của Cirno](https://github.com/OI-wiki/problemset/blob/master/contest/online/GuOJ/OI%20Archive%20-%20GuOJ1171.pdf), mục tiêu của bài "lượng nước lớn nhất mà Hồ Sương Mù cuối cùng có thể nhận được" lần đầu tiên mới xuất hiện trong phần định dạng đầu ra; cộng thêm câu "Reimu đương nhiên có thể nhanh chóng tính ra tổng chi phí sau khi dọn sạch toàn bộ suối nhỏ" mang tính gây hiểu nhầm, càng dễ khiến người đọc hiểu sai ý đề. Điều này không nên xảy ra; mục tiêu của bài nên được nêu ngay trong mô tả bài toán. (Trong ví dụ này còn có vấn đề bối cảnh bài toán ảnh hưởng nghiêm trọng đến việc hiểu ý đề.) Lỗi tương tự cũng xuất hiện trong [CF1423(4)N Bubblesquare Tokens](https://codeforces.com/problemset/problem/1423/N), khi mục tiêu của bài "friend pairs and number of tokens each of them gets on behalf of their friendship" lần đầu tiên mới xuất hiện ở phần định dạng đầu ra.
+Đọc xuôi phần mô tả bài toán nên hiểu được từng câu, đồng thời hiểu nhiệm vụ và yêu cầu của bài. Ít nhất, nếu có thắc mắc thì thắc mắc đó phải được giải thích ngay ở đoạn tiếp theo, chứ không phải đợi vài đoạn sau mới được giải thích, hoặc phải đọc phần định dạng vào ra mới hiểu ý đề, thậm chí phải dựa vào ví dụ để đoán đề. Ví dụ: trong [GuOJ Round #1: Bữa tiệc băng tuyết của Cirno](https://github.com/OI-wiki/problemset/blob/master/contest/online/GuOJ/OI%20Archive%20-%20GuOJ1171.pdf), mục tiêu của bài "lượng nước lớn nhất mà Hồ Sương Mù cuối cùng có thể nhận được" lần đầu tiên mới xuất hiện trong phần định dạng đầu ra; cộng thêm câu "Reimu đương nhiên có thể nhanh chóng tính ra tổng chi phí sau khi dọn sạch toàn bộ suối nhỏ" mang tính gây hiểu nhầm, càng dễ khiến người đọc hiểu sai ý đề. Điều này không nên xảy ra; mục tiêu của bài nên được nêu ngay trong mô tả bài toán. (Trong ví dụ này còn có vấn đề bối cảnh bài toán ảnh hưởng nghiêm trọng đến việc hiểu ý đề.) Lỗi tương tự cũng xuất hiện trong [CF1423(4)N Bubblesquare Tokens](https://codeforces.com/problemset/problem/1423/N), khi mục tiêu của bài "các cặp bạn bè và số token mỗi người nhận được nhờ tình bạn của họ" lần đầu tiên mới xuất hiện ở phần định dạng đầu ra.
 
 ### Định dạng vào ra
 
@@ -485,7 +485,7 @@ Nếu có liên quan đến một số chi tiết cài đặt không được gi
 
 ### Độ khó bài trong thông báo cuộc thi cần đúng với thực tế
 
-> Remember that authors tend to underestimate the difficulty of their problems.
+> Hãy nhớ rằng tác giả thường đánh giá thấp độ khó của bài mình.
 >
 > --Lời nhắc trên trang PROPOSE A PROBLEM của Codeforces
 
@@ -550,7 +550,7 @@ Liên hệ với quản trị có hai tác dụng:
 
 Cách liên hệ chính quy là gửi đơn trong hệ thống đề xuất dưới dạng đề xuất; sau khi quản trị bắt đầu xét duyệt, thảo luận ở bên dưới đề xuất dưới dạng bình luận.
 
-Trên thực tế, nếu đề xuất lâu không được duyệt, có thể cân nhắc nhắn tin riêng cho quản trị (thật ra trên CF có viết "Don't send private messages or emails to coordinators", nhưng 300iq trong [bình luận](http://codeforces.com/blog/entry/64077#comment-478933) nói rằng có thể nhắn tin riêng cho anh ấy).
+Trên thực tế, nếu đề xuất lâu không được duyệt, có thể cân nhắc nhắn tin riêng cho quản trị (thật ra trên CF có viết "Đừng gửi tin nhắn riêng hoặc email cho điều phối viên", nhưng 300iq trong [bình luận](http://codeforces.com/blog/entry/64077#comment-478933) nói rằng có thể nhắn tin riêng cho anh ấy).
 
 ### Comet OJ
 

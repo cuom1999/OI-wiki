@@ -56,14 +56,14 @@ $$
 3 &  \textbf{Phương pháp. } \\
 4 &  \textbf{Hàm } \text{Hierholzer } (v) \\
 5 &  \qquad circle \gets \text{Tìm một chu trình trong } e \text{ bắt đầu từ } v \\
-6 &  \qquad \textbf{if } circle=\varnothing \\
-7 &  \qquad\qquad \textbf{return } v \\
+6 &  \qquad \textbf{nếu } circle=\varnothing \\
+7 &  \qquad\qquad \textbf{trả về } v \\
 8 &  \qquad e \gets e-circle \\
-9 &  \qquad \textbf{for} \text{ each } v \in circle \\
+9 &  \qquad \textbf{với mỗi } v \in circle \\
 10&  \qquad\qquad v \gets \text{Hierholzer}(v) \\
-11&  \qquad \textbf{return } circle \\
-12&  \textbf{Endfunction}\\
-13&  \textbf{return } \text{Hierholzer}(\text{một đỉnh bất kỳ})
+11&  \qquad \textbf{trả về } circle \\
+12&  \textbf{Kết thúc hàm}\\
+13&  \textbf{trả về } \text{Hierholzer}(\text{một đỉnh bất kỳ})
 \end{array}
 $$
 

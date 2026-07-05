@@ -1,4 +1,4 @@
-Generator, tức trình sinh dữ liệu. Khi dữ liệu rất lớn và việc tạo thủ công trở nên quá vất vả, ta cần generator để tự động tạo dữ liệu.
+Trình sinh dữ liệu (generator) dùng để tự động tạo dữ liệu khi dữ liệu rất lớn và việc tạo thủ công trở nên quá vất vả.
 
 ## Ví dụ đơn giản
 

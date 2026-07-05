@@ -128,12 +128,12 @@ Nhưng với cùng một giá trị $\dfrac{y}{x}$, $\tan\varphi$ có hai giá t
 
 $$
 \operatorname{atan2}(y, x) = \begin{cases}
-\arctan(\frac{y}{x}) & \text{if } x > 0 \\
-\arctan(\frac{y}{x}) + \pi & \text{if } y \ge 0, x < 0 \\
-\arctan(\frac{y}{x}) - \pi & \text{if } y < 0, x < 0 \\
-\pi/2 & \text{if } y > 0, x = 0 \\
--\pi/2 & \text{if } y < 0, x = 0 \\
-\text{any} & \text{if } y = 0, x = 0
+\arctan(\frac{y}{x}) & \text{nếu } x > 0 \\
+\arctan(\frac{y}{x}) + \pi & \text{nếu } y \ge 0, x < 0 \\
+\arctan(\frac{y}{x}) - \pi & \text{nếu } y < 0, x < 0 \\
+\pi/2 & \text{nếu } y > 0, x = 0 \\
+-\pi/2 & \text{nếu } y < 0, x = 0 \\
+\text{bất kỳ} & \text{nếu } y = 0, x = 0
 \end{cases}
 $$
 
@@ -206,9 +206,9 @@ $$
 \begin{aligned}
 r &= \sqrt{\rho^2 + z^2} \\
 \vartheta &= \begin{cases}
-\arctan\left(\frac{\rho}{z}\right) & \text{if }z > 0 \\
-\pi/2 & \text{if }z = 0, \rho \not= 0 \\
-\arctan\left(\frac{\rho}{z}\right) + \pi & \text{if }z < 0 \\
+\arctan\left(\frac{\rho}{z}\right) & \text{nếu }z > 0 \\
+\pi/2 & \text{nếu }z = 0, \rho \not= 0 \\
+\arctan\left(\frac{\rho}{z}\right) + \pi & \text{nếu }z < 0 \\
 \end{cases}
 \end{aligned}
 $$

@@ -69,14 +69,14 @@ $$
 \textbf{Phương pháp.}\\
 \begin{array}{ll}
 1 & \textit{result}\gets\mathrm{Id}\\
-2 & \textbf{while }n > 0\textbf{ do}\\
-3 & \qquad \textbf{if }n \bmod 2 = 1\textbf{ then}\\
+2 & \textbf{trong khi }n > 0\textbf{ thực hiện}\\
+3 & \qquad \textbf{nếu }n \bmod 2 = 1\textbf{ thì}\\
 4 & \qquad \qquad \textit{result} \gets \textit{result}\cdot a\\
-5 & \qquad \textbf{end if}\\
+5 & \qquad \textbf{kết thúc nếu}\\
 6 & \qquad a \gets a \cdot a\\
 7 & \qquad n \gets n / 2\\
-8 & \textbf{end while}\\
-9 & \textbf{return }\textit{result}
+8 & \textbf{kết thúc vòng lặp}\\
+9 & \textbf{trả về }\textit{result}
 \end{array}
 \end{array}
 $$
@@ -97,8 +97,8 @@ Do đó, lũy thừa $a^n$ có thể được tính đệ quy theo công thức
 $$
 a^n = \begin{cases}
 1, & n = 0,\\
-(a^{\lfloor n/2\rfloor})^2, & n > 0 \text{ and }n\text{ is even},\\
-(a^{\lfloor n/2\rfloor})^2\cdot a, & n > 0 \text{ and }n\text{ is odd}.\\
+(a^{\lfloor n/2\rfloor})^2, & n > 0 \text{ và }n\text{ chẵn},\\
+(a^{\lfloor n/2\rfloor})^2\cdot a, & n > 0 \text{ và }n\text{ lẻ}.\\
 \end{cases}
 $$
 
@@ -113,15 +113,15 @@ $$
 \textbf{Đầu ra. }\text{Lũy thừa }a^n.\\
 \textbf{Phương pháp.}\\
 \begin{array}{ll}
-1 & \textbf{if }n = 0\textbf{ then}\\
-2 & \qquad \textbf{return }\mathrm{Id}\\
-3 & \textbf{end if}\\
+1 & \textbf{nếu }n = 0\textbf{ thì}\\
+2 & \qquad \textbf{trả về }\mathrm{Id}\\
+3 & \textbf{kết thúc nếu}\\
 4 & \textit{result} \gets \text{FastPow}(a, n / 2) \\
-5 & \textbf{if }n\bmod 2 = 0\textbf{ then}\\
-6 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\\
-7 & \textbf{else}\\
-8 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\cdot a\\
-9 & \textbf{end if}
+5 & \textbf{nếu }n\bmod 2 = 0\textbf{ thì}\\
+6 & \qquad \textbf{trả về }\textit{result}\cdot\textit{result}\\
+7 & \textbf{ngược lại}\\
+8 & \qquad \textbf{trả về }\textit{result}\cdot\textit{result}\cdot a\\
+9 & \textbf{kết thúc nếu}
 \end{array}
 \end{array}
 $$
@@ -217,9 +217,9 @@ Tương tự ý tưởng lũy thừa nhị phân, lần này ta biểu diễn m�
 
 $$
 a \cdot b = \begin{cases}
-0 &\text{if }a = 0 \\
-2 \cdot \frac{a}{2} \cdot b &\text{if }a > 0 \text{ and }a \text{ even} \\
-2 \cdot \frac{a-1}{2} \cdot b + b &\text{if }a > 0 \text{ and }a \text{ odd}
+0 &\text{nếu }a = 0 \\
+2 \cdot \frac{a}{2} \cdot b &\text{nếu }a > 0 \text{ và }a \text{ chẵn} \\
+2 \cdot \frac{a-1}{2} \cdot b + b &\text{nếu }a > 0 \text{ và }a \text{ lẻ}
 \end{cases}
 $$
 

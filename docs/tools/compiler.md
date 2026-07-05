@@ -10,7 +10,7 @@ Truy cập trang tải xuống của [MinGW-w64](https://www.mingw-w64.org/downl
 
 Trước hết, vào [WinLibs](https://winlibs.com) để tải gói cài đặt mới nhất và chọn phiên bản phù hợp. Bài viết này chọn GCC 12.3.0 + LLVM/Clang/LLD/LLDB 16.0.4 + MinGW-w64 11.0.0 (UCRT):
 
-Mặc định gói này sẽ cài kèm LLVM Clang. Nếu không muốn cài, bạn cũng có thể chọn bản without LLVM/Clang/LLD/LLDB ở bên phải.
+Mặc định gói này sẽ cài kèm LLVM Clang. Nếu không muốn cài, bạn cũng có thể chọn bản không kèm LLVM/Clang/LLD/LLDB ở bên phải.
 
 ![](./images/compiler1.png)
 

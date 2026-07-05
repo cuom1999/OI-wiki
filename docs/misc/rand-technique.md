@@ -124,19 +124,19 @@ Tổng hợp lại, độ phức tạp của thuật toán là $O\big(|S|\cdot -
 ???+ note "Tóm tắt đề bài"
     Cho một đồ thị có hướng. Hãy thêm ít cạnh nhất để đồ thị liên thông mạnh, và phải **in ra phương án**.
 
-Trước hết co đồ thị gốc theo các thành phần liên thông mạnh. Mục tiêu của ta hiển nhiên là làm cho mỗi sink có thể đi đến mỗi source.
+Trước hết co đồ thị gốc theo các thành phần liên thông mạnh. Mục tiêu của ta hiển nhiên là làm cho mỗi đỉnh đích có thể đi đến mỗi đỉnh nguồn.
 
-Không khó chứng minh rằng ta chỉ cần nối cạnh từ sink đến source, vì mọi cạnh nối khác đều có thể tương ứng với một cạnh từ sink đến source không yếu hơn nó.
+Không khó chứng minh rằng ta chỉ cần nối cạnh từ đỉnh đích đến đỉnh nguồn, vì mọi cạnh nối khác đều có thể tương ứng với một cạnh từ đỉnh đích đến đỉnh nguồn không yếu hơn nó.
 
-Một thao tác cốt lõi là chọn sink $t$ và source $s$ (không nhất thiết nằm trong cùng một thành phần liên thông yếu), rồi nối cạnh $t\to s$ để **làm cho cả $s$ và $t$ không còn là source hoặc sink** (gọi là mục tiêu I). Lý tưởng thì mỗi thao tác như vậy giảm được một sink và một source; ta liên tục thao tác cho đến khi chỉ còn một sink hoặc chỉ còn một source, và trường hợp đó rất đơn giản. Từ đó ta đoán đáp án là số lớn hơn giữa số source và số sink.
+Một thao tác cốt lõi là chọn đỉnh đích $t$ và đỉnh nguồn $s$ (không nhất thiết nằm trong cùng một thành phần liên thông yếu), rồi nối cạnh $t\to s$ để **làm cho cả $s$ và $t$ không còn là đỉnh nguồn hoặc đỉnh đích** (gọi là mục tiêu I). Lý tưởng thì mỗi thao tác như vậy giảm được một đỉnh đích và một đỉnh nguồn; ta liên tục thao tác cho đến khi chỉ còn một đỉnh đích hoặc chỉ còn một đỉnh nguồn, và trường hợp đó rất đơn giản. Từ đó ta đoán đáp án là số lớn hơn giữa số đỉnh nguồn và số đỉnh đích.
 
-Dễ thấy rằng điều kiện cần và đủ để thao tác trên đạt mục tiêu I là: $t$ có một tiền nhiệm khác $s$, và $s$ có một hậu nhiệm khác $t$. Có thể chứng minh (lát nữa sẽ đưa ra chứng minh) rằng với bất kỳ DAG nào có ít nhất hai source và ít nhất hai sink, luôn tồn tại cặp $(s,t)$ như vậy; nhưng kết luận tồn tại không giúp ta xây dựng phương án, nên cần phân tích thêm.
+Dễ thấy rằng điều kiện cần và đủ để thao tác trên đạt mục tiêu I là: $t$ có một tiền nhiệm khác $s$, và $s$ có một hậu nhiệm khác $t$. Có thể chứng minh (lát nữa sẽ đưa ra chứng minh) rằng với bất kỳ DAG nào có ít nhất hai đỉnh nguồn và ít nhất hai đỉnh đích, luôn tồn tại cặp $(s,t)$ như vậy; nhưng kết luận tồn tại không giúp ta xây dựng phương án, nên cần phân tích thêm.
 
 -   Dùng điều kiện cần và đủ này vẫn khó suy ra thuật toán trực tiếp, chủ yếu vì sau khi nối cạnh $t\to s$, tính hợp lệ của các cặp $(s',t')$ khác có thể bị ảnh hưởng, điều này khá khó xử lý.
 
-Chú ý rằng ta biết rất ít về quan hệ giữa source và sink (thực ra ngay cả truy vấn nhanh một cặp $s-t$ có thể đi tới nhau hay không cũng cần tiền xử lý dfs + bitset, mà giới hạn thời gian không cho phép). Điều này gợi ý rằng ta cần một tính chất rất tổng quát và mạnh.
+Chú ý rằng ta biết rất ít về quan hệ giữa đỉnh nguồn và đỉnh đích (thực ra ngay cả truy vấn nhanh một cặp $s-t$ có thể đi tới nhau hay không cũng cần tiền xử lý dfs + bitset, mà giới hạn thời gian không cho phép). Điều này gợi ý rằng ta cần một tính chất rất tổng quát và mạnh.
 
-Nhận xét: số cặp $(s,t)$ không thỏa mục tiêu I nhiều nhất là $n+m-1$, trong đó $n$ là số source và $m$ là số sink.
+Nhận xét: số cặp $(s,t)$ không thỏa mục tiêu I nhiều nhất là $n+m-1$, trong đó $n$ là số đỉnh nguồn và $m$ là số đỉnh đích.
 
 -   Lý do: với mỗi cặp $(s,t)$ như vậy, nếu xem nó như một cạnh giữa $s$ và $t$, thì đồ thị tạo bởi tất cả các cạnh này có dạng một số chuỗi rời nhau, nên số cạnh không vượt quá số đỉnh trừ một.
 -   Động cơ của nhận xét này là: để áp dụng một kết quả tồn tại vào thuật toán, bước tiền đề thường là tăng cường kết quả định tính thành kết quả định lượng.

@@ -56,11 +56,11 @@ $$
 3 &  \textbf{Phương pháp. } \\
 4 &  result \gets \varnothing \\
 5 &  \text{sắp xếp } e \text{ theo thứ tự không giảm của trọng số } w \\
-6 &  \textbf{for} \text{ mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
-7 &  \qquad \textbf{if } u \text{ và } v \text{ chưa liên thông trong DSU } \\
+6 &  \textbf{với mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
+7 &  \qquad \textbf{nếu } u \text{ và } v \text{ chưa liên thông trong DSU } \\
 8 &  \qquad\qquad \text{nối } u \text{ và } v \text{ trong DSU} \\
 9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
-10 &  \textbf{return }  result
+10 &  \textbf{trả về }  result
 \end{array}
 $$
 
@@ -147,16 +147,16 @@ $$
 4 &  result \gets 0 \\
 5 & \text{chọn một đỉnh bất kỳ trong }V\text{ làm }root \\
 6 &  dis(root)\gets 0 \\
-7 &  \textbf{for } \text{mỗi đỉnh }v\in(V-\{root\}) \\
+7 &  \textbf{với mỗi } \text{đỉnh }v\in(V-\{root\}) \\
 8 &  \qquad  dis(v)\gets\infty \\
 9 &  rest\gets V \\
-10 &  \textbf{while }  rest\ne\varnothing \\
+10 &  \textbf{trong khi }  rest\ne\varnothing \\
 11 &  \qquad cur\gets \text{đỉnh có }dis\text{ nhỏ nhất trong }rest \\
 12 &  \qquad  result\gets result+dis(cur) \\
 13 &  \qquad  rest\gets rest-\{cur\} \\
-14 &  \qquad  \textbf{for}\text{ mỗi đỉnh }v\in adj(cur) \\
+14 &  \qquad  \textbf{với mỗi }\text{đỉnh }v\in adj(cur) \\
 15 &  \qquad\qquad  dis(v)\gets\min(dis(v), g(cur, v)) \\
-16 &  \textbf{return }  result
+16 &  \textbf{trả về }  result
 \end{array}
 $$
 
@@ -281,18 +281,18 @@ $$
 2 &  \textbf{Đầu ra. } \text{Rừng khung nhỏ nhất của }G .  \\
 3 &  \textbf{Phương pháp. }  \\
 4 & \text{Khởi tạo một rừng }F\text{ gồm các cây một đỉnh} \\
-5 &  \textbf{while } \text{True} \\
+5 &  \textbf{lặp vô hạn} \\
 6 &  \qquad \text{Tìm các thành phần của }F\text{ và gán nhãn thành phần cho mỗi đỉnh của }G \\
-7 &  \qquad \text{Khởi tạo cạnh rẻ nhất của mỗi thành phần là "None"} \\
-8 &  \qquad  \textbf{for } \text{mỗi cạnh }(u, v)\text{ của }G  \\
-9 &  \qquad\qquad  \textbf{if }  u\text{ và }v\text{ có nhãn thành phần khác nhau} \\
-10 &  \qquad\qquad\qquad  \textbf{if }  (u, v)\text{ rẻ hơn cạnh rẻ nhất của thành phần chứa }u  \\
+7 &  \qquad \text{Khởi tạo cạnh rẻ nhất của mỗi thành phần là "không có"} \\
+8 &  \qquad  \textbf{với mỗi } \text{cạnh }(u, v)\text{ của }G  \\
+9 &  \qquad\qquad  \textbf{nếu }  u\text{ và }v\text{ có nhãn thành phần khác nhau} \\
+10 &  \qquad\qquad\qquad  \textbf{nếu }  (u, v)\text{ rẻ hơn cạnh rẻ nhất của thành phần chứa }u  \\
 11 &  \qquad\qquad\qquad\qquad\text{ Đặt }(u, v)\text{ làm cạnh rẻ nhất của thành phần chứa }u \\
-12 &  \qquad\qquad\qquad  \textbf{if }  (u, v)\text{ rẻ hơn cạnh rẻ nhất của thành phần chứa }v  \\
+12 &  \qquad\qquad\qquad  \textbf{nếu }  (u, v)\text{ rẻ hơn cạnh rẻ nhất của thành phần chứa }v  \\
 13 &  \qquad\qquad\qquad\qquad\text{ Đặt }(u, v)\text{ làm cạnh rẻ nhất của thành phần chứa }v  \\
-14 &  \qquad  \textbf{if }\text{ cạnh rẻ nhất của mọi thành phần đều là "None"} \\
-15 &  \qquad\qquad  \textbf{return }  F \\
-16 &  \qquad  \textbf{for }\text{ mỗi thành phần có cạnh rẻ nhất khác "None"} \\
+14 &  \qquad  \textbf{nếu }\text{ cạnh rẻ nhất của mọi thành phần đều là "không có"} \\
+15 &  \qquad\qquad  \textbf{trả về }  F \\
+16 &  \qquad  \textbf{với mỗi }\text{ thành phần có cạnh rẻ nhất khác "không có"} \\
 17 &  \qquad\qquad\text{ Thêm cạnh rẻ nhất của nó vào }F \\
 \end{array}
 $$
