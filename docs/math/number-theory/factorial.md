@@ -1,9 +1,9 @@
 author: aofall, c-forrest, CoelacanthusHex, Early0v0, Enter-tainer, Great-designer, iamtwz, Marcythm, Persdre, shuzhouliu, Tiphereth-A, wsyhb, Xeonacid
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
-Bài viết này thảo luận các kết quả liên quan đến việc tính giai thừa theo một modulo, đồng thời đưa ra một phương pháp có độ phức tạp thời gian tuyến tính theo kích thước modulo. Vì vậy, phương pháp này chủ yếu phù hợp khi modulo không quá lớn ($\sim 10^6$). Ngoài phương pháp được trình bày ở đây, tùy ngữ cảnh cũng có thể dùng [kỹ thuật đa thức](../poly/shift.md#%E6%A8%A1%E7%B4%A0%E6%95%B0%E6%84%8F%E4%B9%89%E4%B8%8B%E9%98%B6%E4%B9%98) để tính nhanh.
+Bài viết này thảo luận các kết quả liên quan đến việc tính giai thừa theo một modulo, đồng thời đưa ra một phương pháp có độ phức tạp thời gian tuyến tính theo kích thước modulo. Vì vậy, phương pháp này chủ yếu phù hợp khi modulo không quá lớn ($\sim 10^6$). Ngoài phương pháp được trình bày ở đây, tùy ngữ cảnh cũng có thể dùng [kỹ thuật đa thức](../poly/shift.md#giai-thừa-theo-modulo-số-nguyên-tố) để tính nhanh.
 
 Theo [định lý phần dư Trung Hoa](./crt.md), bài toán lấy modulo của giai thừa có thể chuyển về trường hợp modulo là lũy thừa nguyên tố $p^\alpha$. Khi xử lý dạng bài này, với số nguyên tố $p$ và số nguyên dương $n$, ta thường cần tách toàn bộ các thừa số $p$ trong giai thừa $n!$ ra, từ đó thu được phân tích:
 
@@ -17,7 +17,7 @@ Phân tích này đặc biệt hữu ích khi giai thừa xuất hiện đồng 
 
 Bài viết cũng giới thiệu định lý Wilson và mở rộng của nó, công thức Legendre, định lý Kummer cùng một số nội dung liên quan.
 
-<span id="wilson-&#x5B9A;&#x7406;"></span>
+<span id="định-lý-wilson"></span>
 ## Định lý Wilson
 
 Định lý Wilson cho một điều kiện cần và đủ để kiểm tra một số tự nhiên có phải số nguyên tố hay không.
@@ -26,7 +26,7 @@ Bài viết cũng giới thiệu định lý Wilson và mở rộng của nó, c
     Với số tự nhiên $n>1$, ta có $(n-1)!\equiv -1\pmod n$ khi và chỉ khi $n$ là số nguyên tố.
 
 ??? note "Chứng minh"
-    Trước hết, chứng minh rằng với số nguyên tố $p$ thì $(p-1)!\equiv -1\pmod{p}$. Điều này có thể được chứng minh ngắn gọn bằng [phương trình đồng dư](./congruence-equation.md#%E6%8E%A8%E8%AE%BA-2) hoặc [căn nguyên thủy](./primitive-root.md); ở đây không trình bày hai cách đó. Sau đây là một chứng minh cần ít kiến thức chuẩn bị hơn.
+    Trước hết, chứng minh rằng với số nguyên tố $p$ thì $(p-1)!\equiv -1\pmod{p}$. Điều này có thể được chứng minh ngắn gọn bằng [phương trình đồng dư](./congruence-equation.md#hệ-quả-2) hoặc [căn nguyên thủy](./primitive-root.md); ở đây không trình bày hai cách đó. Sau đây là một chứng minh cần ít kiến thức chuẩn bị hơn.
     
     Khi $p=2$, mệnh đề hiển nhiên đúng. Xét $p\geq 3$. Ta cần chứng minh tích của tất cả phần tử khác không trong $\mathbf{Z}_p$ (tức các lớp đồng dư khác không) bằng $\overline{-1}$. Vì mọi phần tử khác không $\overline{a}$ trong $\mathbf{Z}_p$ đều có nghịch đảo $\overline{a}^{-1}$, tích của các cặp phần tử nghịch đảo nhau trong $\mathbf{Z}_p$ bằng $\overline{1}$. Tuy nhiên, cần chú ý rằng $\overline{a}$ có thể bằng $\overline{a}^{-1}$: $\overline{a}=\overline{a}^{-1}$ khi và chỉ khi $a^2\equiv 1\pmod p$, tức là
     
@@ -40,7 +40,7 @@ Bài viết cũng giới thiệu định lý Wilson và mở rộng của nó, c
 
 Theo ký hiệu của bài viết này, định lý Wilson có thể viết thành $(p!)_p\equiv -1\pmod{p}$.
 
-<span id="&#x63A8;&#x5E7F;"></span>
+<span id="mở-rộng"></span>
 ### Mở rộng
 
 Định lý Wilson có thể được mở rộng cho modulo tổng quát.
@@ -52,10 +52,10 @@ Theo ký hiệu của bài viết này, định lý Wilson có thể viết thà
     \prod_{1\le k<m,\ k\perp m} k \equiv \pm 1 \pmod{m}.
     $$
     
-    Hơn nữa, giá trị $\pm 1$ của phần dư bằng $-1$ khi và chỉ khi [căn nguyên thủy modulo $m$ tồn tại](./primitive-root.md#%E5%8E%9F%E6%A0%B9%E5%AD%98%E5%9C%A8%E5%AE%9A%E7%90%86), tức $m=2,4,p^\alpha,2p^\alpha$, trong đó $p$ là số nguyên tố lẻ và $\alpha$ là số nguyên dương.
+    Hơn nữa, giá trị $\pm 1$ của phần dư bằng $-1$ khi và chỉ khi [căn nguyên thủy modulo $m$ tồn tại](./primitive-root.md#định-lí-tồn-tại-căn-nguyên-thủy), tức $m=2,4,p^\alpha,2p^\alpha$, trong đó $p$ là số nguyên tố lẻ và $\alpha$ là số nguyên dương.
 
 ??? note "Chứng minh"
-    Định lý này có thể được chứng minh đơn giản bằng cấu trúc của [nhóm nhân các lớp đồng dư nguyên modulo $n$](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4). Dưới đây là một chứng minh có ý tưởng tương tự nhưng sơ cấp hơn.
+    Định lý này có thể được chứng minh đơn giản bằng cấu trúc của [nhóm nhân các lớp đồng dư nguyên modulo $n$](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên). Dưới đây là một chứng minh có ý tưởng tương tự nhưng sơ cấp hơn.
     
     Với $m=2$, ta có $1!=1\equiv -1\pmod{2}$. Với các trường hợp còn lại có căn nguyên thủy, gọi một căn nguyên thủy là $g$. Khi đó mọi số nguyên dương $k<m$ và nguyên tố cùng nhau với $m$ đều có thể biểu diễn duy nhất dưới dạng $g^i\bmod m$, trong đó $0\le i<\varphi(m)$ và $\varphi(m)$ là [hàm Euler](./euler-totient.md). Kiểm tra trực tiếp cho thấy $\varphi(m)$ luôn chẵn. Vì $g^i$ và $g^{\varphi(m)-i}$ là nghịch đảo nhân của nhau, ghép cặp chúng trong tích sẽ cho
     
@@ -107,12 +107,12 @@ Trong tính toán, trường hợp modulo là lũy thừa nguyên tố đặc bi
 
 Chú ý rằng vế trái không phải $(p^\alpha!)_p$, vì biểu thức sau còn cần tính cả đóng góp của các bội của $p$.
 
-<span id="&#x9636;&#x4E58;&#x4F59;&#x6570;&#x7684;&#x8BA1;&#x7B97;"></span>
+<span id="tính-phần-dư-của-giai-thừa"></span>
 ## Tính phần dư của giai thừa
 
 Phần này thảo luận cách tính phần dư $(n!)_p\bmod p^{\alpha}$.
 
-<span id="&#x7D20;&#x6570;&#x6A21;&#x7684;&#x60C5;&#x5F62;"></span>
+<span id="trường-hợp-modulo-số-nguyên-tố"></span>
 ### Trường hợp modulo số nguyên tố
 
 Biểu thức $(n!)_p$ có cấu trúc đệ quy rõ ràng. Để thấy điều đó, trước hết xét một ví dụ cụ thể:
@@ -212,7 +212,7 @@ Khi cài đặt, vì đây là đệ quy đuôi nên có thể viết bằng vò
 
 Nếu bộ nhớ hạn chế và không thể lưu toàn bộ giai thừa, cũng có thể chỉ tính các giá trị $n$ thực sự được dùng trong những lần gọi hàm cho $n!\bmod p$, sau đó sắp xếp chúng để tính tất cả các giai thừa cần thiết trong một lượt cuối cùng và gộp vào kết quả, tránh phải lưu mọi giá trị giai thừa.
 
-<span id="&#x7D20;&#x6570;&#x5E42;&#x6A21;&#x7684;&#x60C5;&#x5F62;"></span>
+<span id="trường-hợp-modulo-lũy-thừa-nguyên-tố"></span>
 ### Trường hợp modulo lũy thừa nguyên tố
 
 Với trường hợp modulo là lũy thừa nguyên tố, có thể giải tương tự trường hợp modulo số nguyên tố, chỉ cần thay định lý Wilson bằng dạng mở rộng của nó. Trong hai kết quả của phần này, ký hiệu $\pm 1$ luôn được hiểu theo định nghĩa sau: lấy $1$ khi modulo có $p=2$ và $\alpha\ge 3$, còn các trường hợp khác lấy $-1$.
@@ -224,7 +224,7 @@ Với trường hợp modulo là lũy thừa nguyên tố, có thể giải tư�
     (n!)_{p} \equiv (\pm 1)^{\lfloor n/p^\alpha\rfloor}\cdot\left(\prod_{1\le j\le (n\bmod p^\alpha),\ j\perp p}j\right)\cdot(\lfloor n/p\rfloor!)_p\pmod{p^\alpha}.
     $$
     
-    Trong đó, giá trị của $\pm 1$ được quy định như trong [mở rộng của định lý Wilson](#%E6%8E%A8%E5%B9%BF).
+    Trong đó, giá trị của $\pm 1$ được quy định như trong [mở rộng của định lý Wilson](#mở-rộng).
 
 ??? note "Chứng minh"
     Ý tưởng chứng minh hoàn toàn giống trường hợp modulo số nguyên tố. Ký hiệu $(k)_p$ là kết quả sau khi loại bỏ mọi lũy thừa của $p$ trong phân tích thừa số nguyên tố của $k$. Khi đó
@@ -296,12 +296,12 @@ Cài đặt cho trường hợp modulo lũy thừa nguyên tố tương tự tr�
 
 Độ phức tạp tiền xử lý là $O(p^\alpha)$, độ phức tạp cho mỗi truy vấn là $O(\log_p n)$.
 
-<span id="&#x5E42;&#x6B21;&#x7684;&#x8BA1;&#x7B97;"></span>
+<span id="tính-số-mũ"></span>
 ## Tính số mũ
 
 Phần này thảo luận cách tính số mũ $\nu_p(n!)$ của $p$ trong giai thừa $n!$, có thể dùng để tính phần dư của hệ số nhị thức. Vì trong hệ số nhị thức, cả tử và mẫu đều chứa giai thừa, việc thừa số nguyên tố $p$ ở tử và mẫu có triệt tiêu được nhau hay không trở thành yếu tố quan trọng quyết định phần dư cuối cùng.
 
-<span id="legendre-&#x516C;&#x5F0F;"></span>
+<span id="công-thức-legendre"></span>
 ### Công thức Legendre
 
 Số mũ của số nguyên tố $p$ trong giai thừa $n!$ có thể được tính bằng công thức Legendre, và có liên quan đến biểu diễn của $n$ trong hệ cơ số $p$.
@@ -359,7 +359,7 @@ Cài đặt tham khảo để tính số mũ của số nguyên tố trong giai 
 
 Độ phức tạp thời gian là $O(\log n)$.
 
-<span id="kummer-&#x5B9A;&#x7406;"></span>
+<span id="định-lý-kummer"></span>
 ### Định lý Kummer
 
 Kết quả lấy modulo của hệ số nhị thức thường tạo thành cấu trúc phân hình; ví dụ tam giác Sierpinski có thể thu được từ hệ số nhị thức modulo $2$.
@@ -395,7 +395,7 @@ Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay kh�
     
     khi và chỉ khi có một lần mượn xảy ra; nếu không, hiệu này bằng $0$. Do đó tổng ở biểu thức trên chính là số lần mượn. Đây là phát biểu bằng lời của định lý Kummer.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="bài-tập-ví-dụ"></span>
 ## Bài tập ví dụ
 
 ???+ example "Bài tập [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
@@ -443,7 +443,7 @@ Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay kh�
     --8<-- "docs/math/code/factorial/wilson_1.cpp"
     ```
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 -   Feng Keqin, *Elementary Number Theory and Its Applications*.

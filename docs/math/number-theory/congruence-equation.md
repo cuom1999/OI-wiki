@@ -146,13 +146,13 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
     
         Vì vậy mệnh đề được chứng minh.
 
-<span id="&#25512;&#35770;-2"></span>
+<span id="hệ-quả-2"></span>
 
 ???+ note "Hệ quả 2"
     Với số nguyên tố $p$,
     
     -   $(\forall x\in\mathbf{Z}),~~x^{p-1}-1 \equiv \prod_{i=1}^{p-1}(x-i)\pmod p$.
-    -   ([Định lý Wilson](./factorial.md#wilson-%E5%AE%9A%E7%90%86)) $(p-1)! \equiv -1 \pmod p$.
+    -   ([Định lý Wilson](./factorial.md#định-lý-wilson)) $(p-1)! \equiv -1 \pmod p$.
 
 <span id="định-lý-3-lagrange"></span>
 
@@ -199,7 +199,7 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
     
     Theo [định lý nhỏ Fermat](./fermat.md), với mọi số nguyên $x$ ta có $x^p\equiv x\pmod p$, do đó
     
-    -   Nếu $r(x)\equiv 0\pmod p$, theo [Hệ quả 2](#%E6%8E%A8%E8%AE%BA-2), $f(x)$ có $p$ nghiệm phân biệt.
+    -   Nếu $r(x)\equiv 0\pmod p$, theo [Hệ quả 2](#hệ-quả-2), $f(x)$ có $p$ nghiệm phân biệt.
     -   Nếu $r(x)\not\equiv 0\pmod p$, từ $f(x)\equiv r(x)\pmod p$ suy ra $f(x)$ và $r(x)$ có cùng tập nghiệm.
 
 Ta có thể dùng định lý này để hạ bậc phương trình đồng dư.

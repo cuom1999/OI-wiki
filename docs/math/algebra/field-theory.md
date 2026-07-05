@@ -620,7 +620,7 @@ Các tính chất này cho thấy trọng tâm của việc tính đa thức cyc
 ??? note "Chứng minh"
     Toàn bộ phần tử khác không của trường hữu hạn chính là $q-1$ nghiệm của đa thức $x^{q-1}-1$. Áp dụng định lý Vieta là đủ.
 
-Trong trường nguyên tố $\mathbf F_p$, kết luận về tích trong hệ quả này chính là một phần của [định lý Wilson](../number-theory/factorial.md#wilson-%E5%AE%9A%E7%90%86) trong số học.
+Trong trường nguyên tố $\mathbf F_p$, kết luận về tích trong hệ quả này chính là một phần của [định lý Wilson](../number-theory/factorial.md#định-lý-wilson) trong số học.
 
 <span id="&#x4E58;&#x6CD5;&#x7ED3;&#x6784;"></span>
 
