@@ -12,13 +12,13 @@ Khi $n$ là số nguyên tố, hiển nhiên $\varphi(n) = n - 1$.
 <span id="&#24615;&#36136;"></span>
 ## Tính chất
 
--   Hàm Euler là [hàm nhân tính](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0).
+-   Hàm Euler là [hàm nhân tính](./basic.md#hàm-nhân-tính).
 
     Tức với mọi số nguyên $a,b$ thỏa $\gcd(a, b) = 1$, ta có $\varphi(ab) = \varphi(a)\varphi(b)$.
 
     Đặc biệt, khi $n$ là số lẻ, $\varphi(2n) = \varphi(n)$.
 
-    Chứng minh xem tại [hợp thành hệ thặng dư](./basic.md#%E5%89%A9%E4%BD%99%E7%B3%BB%E7%9A%84%E5%A4%8D%E5%90%88).
+    Chứng minh xem tại [hợp thành hệ thặng dư](./basic.md#phép-ghép-hệ-thặng-dư).
 
 -   $n = \sum_{d \mid n}{\varphi(d)}$.
 

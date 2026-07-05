@@ -17,7 +17,7 @@ Có hai loại kiểm tra tính nguyên tố:
     không. Các ví dụ thường gặp gồm phép thử chia, kiểm tra Lucas-Lehmer và
     chứng minh tính nguyên tố bằng đường cong elliptic.
 2.  Kiểm tra xác suất: thường nhanh hơn rất nhiều so với kiểm tra tất định,
-    nhưng có khả năng, dù rất nhỏ, nhận nhầm [hợp số](../number-theory/basic.md#%E7%B4%A0%E6%95%B0%E4%B8%8E%E5%90%88%E6%95%B0)
+    nhưng có khả năng, dù rất nhỏ, nhận nhầm [hợp số](../number-theory/basic.md#số-nguyên-tố-và-hợp-số)
     thành số nguyên tố; chiều ngược lại thì không xảy ra. Vì vậy, những số vượt
     qua kiểm tra xác suất được gọi là **số có khả năng nguyên tố** cho đến khi
     tính nguyên tố của chúng được chứng minh một cách tất định. Những số vượt

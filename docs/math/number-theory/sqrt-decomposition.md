@@ -116,7 +116,7 @@ Ngoài các tính chất trên, tập $D(n)$ còn có tính chất đệ quy thu
     \left\lfloor\dfrac{m}{i}\right\rfloor = \left\lfloor\dfrac{\lfloor n/k\rfloor}{i}\right\rfloor = \left\lfloor\dfrac{n}{ki}\right\rfloor \in D(n),
     $$
     
-    nên $D(m)\subseteq D(n)$. Đẳng thức thứ hai dùng tính chất của [hàm lấy phần nguyên](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0) đối với phân thức lồng nhau.
+    nên $D(m)\subseteq D(n)$. Đẳng thức thứ hai dùng tính chất của [hàm lấy phần nguyên](./basic.md#hàm-lấy-phần-nguyên) đối với phân thức lồng nhau.
 
 Như đã nói ở trên, $D(n)$ vừa là tập giá trị của $\left\lfloor\dfrac{n}{i}\right\rfloor$ trong các khối, vừa là tập các đầu mút phải của khối. Điều này có nghĩa là nếu áp dụng phân khối số học theo kiểu đệ quy (tức là giá trị của một hàm tại $n$ phụ thuộc vào giá trị của nó tại $m\in D(n)\setminus\{n\}$), thì trong toàn bộ quá trình tính toán, tập các đối số và tập các đầu mút phải thực ra đều là $D(n)$. Một ví dụ điển hình là [sàng Dujiao](./du.md).
 

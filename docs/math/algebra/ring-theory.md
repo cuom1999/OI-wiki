@@ -173,7 +173,7 @@ Nếu đối chiếu với lý thuyết chia hết, iđêan cực đại tương
 ???+ abstract "Iđêan nguyên tố"
     Với vành giao hoán $R$ và iđêan $P$ của nó, nếu $P\neq R$ và với mọi phần tử $a,b\in R$, hễ $ab\in P$ thì luôn có $a\in P$ hoặc $b\in P$, thì iđêan $P$ được gọi là một **iđêan nguyên tố** (prime ideal).
 
-Định nghĩa này thoạt nhìn có vẻ đột ngột, nhưng nếu so sánh với [định nghĩa số nguyên tố](../number-theory/basic.md#%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86), ta thấy nó rất tự nhiên.
+Định nghĩa này thoạt nhìn có vẻ đột ngột, nhưng nếu so sánh với [định nghĩa số nguyên tố](../number-theory/basic.md#định-lý-cơ-bản-của-số-học), ta thấy nó rất tự nhiên.
 
 ???+ note "Định lý"
     Giả sử vành giao hoán có đơn vị, khác không $R$ có iđêan $P$. Khi đó vành thương $R/P$ là miền nguyên khi và chỉ khi $P$ là iđêan nguyên tố.
@@ -324,7 +324,7 @@ Nói cách khác, [định lý Bézout](../number-theory/bezouts.md) vẫn đún
 <span id="&#21807;&#19968;&#20998;&#35299;&#25972;&#29615;"></span>
 ### Miền phân tích duy nhất
 
-Khái niệm tổng quát hơn miền iđêan chính là miền phân tích duy nhất. Định lý phân tích duy nhất của số nguyên được gọi là [định lý cơ bản của số học](../number-theory/basic.md#%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86). Một định lý phân tích duy nhất tương tự vẫn đúng trong một số miền nguyên không phải miền iđêan chính. Những miền nguyên như vậy được gọi là miền phân tích duy nhất.
+Khái niệm tổng quát hơn miền iđêan chính là miền phân tích duy nhất. Định lý phân tích duy nhất của số nguyên được gọi là [định lý cơ bản của số học](../number-theory/basic.md#định-lý-cơ-bản-của-số-học). Một định lý phân tích duy nhất tương tự vẫn đúng trong một số miền nguyên không phải miền iđêan chính. Những miền nguyên như vậy được gọi là miền phân tích duy nhất.
 
 ???+ abstract "Miền phân tích duy nhất"
     Với miền nguyên $R$, nếu mọi phần tử khác không và không khả nghịch $r$ đều có thể viết dưới dạng $r=p_1\cdots p_n$, trong đó $p_1,\cdots,p_n$ là các phần tử bất khả quy có thể lặp lại, và phân tích như vậy là duy nhất theo nghĩa liên hợp và hoán vị lại thứ tự, thì miền nguyên $R$ được gọi là **miền phân tích duy nhất** (unique factorization domain, UFD).

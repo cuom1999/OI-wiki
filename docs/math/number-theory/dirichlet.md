@@ -243,7 +243,7 @@ Dựa vào sự tương ứng giữa tích chập Dirichlet và phép nhân hàm
 <span id="euler-&#x4e58;&#x79ef;"></span>
 ### Tích Euler
 
-Tính đặc biệt của hàm nhân tính cũng được phản ánh trên hàm sinh Dirichlet. Do số nguyên có [định lý phân tích duy nhất](./basic.md#%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86), hàm sinh $F(s)$ của hàm nhân tính $f(n)$ có thể viết dưới dạng sau:
+Tính đặc biệt của hàm nhân tính cũng được phản ánh trên hàm sinh Dirichlet. Do số nguyên có [định lý phân tích duy nhất](./basic.md#định-lý-cơ-bản-của-số-học), hàm sinh $F(s)$ của hàm nhân tính $f(n)$ có thể viết dưới dạng sau:
 
 $$
 \begin{aligned}

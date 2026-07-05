@@ -72,7 +72,7 @@ Mệnh đề đảo của định lý nhỏ Fermat không đúng. Ngay cả khi 
     R = \{r\in\mathbf N : 0 < r < m,~\gcd(r,m)=1\}.
     $$
     
-    Đây là [hệ thặng dư thu gọn](./basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB) modulo $m$. Theo định nghĩa của hàm Euler, $|R|=\varphi(m)$. Tương tự phần trên, nhân các phần tử của tập này với $a$ chỉ tạo ra một hoán vị của chính tập đó:
+    Đây là [hệ thặng dư thu gọn](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư) modulo $m$. Theo định nghĩa của hàm Euler, $|R|=\varphi(m)$. Tương tự phần trên, nhân các phần tử của tập này với $a$ chỉ tạo ra một hoán vị của chính tập đó:
     
     $$
     R = \{ar\bmod m: r\in R\}.

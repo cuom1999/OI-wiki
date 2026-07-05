@@ -43,7 +43,7 @@ assert(-5 % -3 == -2);
 ## Lớp số nguyên modulo
 
 Số học modulo có thể xem là việc thực hiện các phép toán trên [lớp đồng
-dư](./basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB)
+dư](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
 theo một modulo. Nếu dùng một struct để biểu diễn một lớp đồng dư, rồi đóng
 gói phép cộng, trừ, nhân giữa các lớp đồng dư thành phương thức của struct hoặc
 toán tử nạp chồng, số học modulo có thể được cài đặt tự nhiên thành một lớp số
@@ -178,7 +178,7 @@ tính thương bằng vế phải chỉ cần một phép nhân và một phép 
 thức của $a\bmod m$, ta thu được ước lượng $z'$ của số dư cần tìm.
 
 Phân tích sai số của cách làm này.
-[Hàm lấy phần nguyên](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0) có tính
+[Hàm lấy phần nguyên](./basic.md#hàm-lấy-phần-nguyên) có tính
 chất: với $x > y > 0$, luôn có
 $\lfloor x\rfloor - \lfloor y\rfloor \le \lceil x - y\rceil$. Vì vậy sai số
 

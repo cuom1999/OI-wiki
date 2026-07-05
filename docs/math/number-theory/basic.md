@@ -1,6 +1,6 @@
 Bài viết này giới thiệu phần mở đầu của số học.
 
-<span id="&#x6574;&#x9664;"></span>
+<span id="tính-chia-hết"></span>
 ## Tính chia hết
 
 ???+ note "Định nghĩa"
@@ -18,7 +18,7 @@ Tính chất của quan hệ chia hết:
 -   Cho $b\ne0$, khi đó $a\mid b\implies|a|\le|b|$.
 -   Cho $a\ne0,b=qa+c$, khi đó $a\mid b\iff a\mid c$.
 
-<span id="&#x7EA6;&#x6570;"></span>
+<span id="ước-số"></span>
 ### Ước số
 
 ???+ note "Định nghĩa"
@@ -45,7 +45,7 @@ Tính chất của ước số:
 Trong các bài toán cụ thể, **nếu không nói rõ, ước số luôn được hiểu là ước số
 dương.**
 
-<span id="&#x5E26;&#x4F59;&#x6570;&#x9664;&#x6CD5;"></span>
+<span id="phép-chia-có-dư"></span>
 ## Phép chia có dư
 
 ???+ note "Số dư"
@@ -76,7 +76,7 @@ Tính chất của số dư:
     lần mỗi số dư nói trên. Đặc biệt, chắc chắn có đúng một số chia hết cho
     $a$.
 
-<span id="&#x6700;&#x5927;&#x516C;&#x7EA6;&#x6570;&#x4E0E;&#x6700;&#x5C0F;&#x516C;&#x500D;&#x6570;"></span>
+<span id="ước-chung-lớn-nhất-và-bội-chung-nhỏ-nhất"></span>
 ## Ước chung lớn nhất và bội chung nhỏ nhất
 
 Về các định nghĩa ước chung, bội chung, ước chung lớn nhất và bội chung nhỏ
@@ -134,10 +134,10 @@ Bội chung nhỏ nhất có các tính chất sau:
 -   $\dfrac{(a,b,c)^2}{(a,b)(b,c)(a,c)}=\dfrac{[a,b,c]^2}{[a,b][b,c][a,c]}$.
 
 Tất cả các tính chất này đều có thể chứng minh từ định nghĩa hoặc từ [định lý
-phân tích duy nhất](#%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86);
+phân tích duy nhất](#định-lý-cơ-bản-của-số-học);
 chứng minh dùng định lý phân tích duy nhất thường dễ hiểu hơn.
 
-<span id="&#x4E92;&#x7D20;"></span>
+<span id="nguyên-tố-cùng-nhau"></span>
 ### Nguyên tố cùng nhau
 
 ???+ note "Định nghĩa"
@@ -154,13 +154,13 @@ trong đó cũng không nguyên tố cùng nhau.
 Tính chất của nguyên tố cùng nhau và lý thuyết ước chung lớn nhất: định lý
 Bézout (Bézout's identity). Xem [Định lý Bézout](./bezouts.md).
 
-<span id="&#x8F97;&#x8F6C;&#x76F8;&#x9664;&#x6CD5;"></span>
+<span id="thuật-toán-euclid"></span>
 ### Thuật toán Euclid
 
 Thuật toán Euclid là một thuật toán, còn gọi là phép chia liên tiếp. Xem [Ước
 chung lớn nhất](./gcd.md).
 
-<span id="&#x7D20;&#x6570;&#x4E0E;&#x5408;&#x6570;"></span>
+<span id="số-nguyên-tố-và-hợp-số"></span>
 ## Số nguyên tố và hợp số
 
 Về các thuật toán liên quan đến số nguyên tố, xem [Số nguyên tố](./prime.md).
@@ -189,7 +189,7 @@ Tính chất đơn giản của số nguyên tố và hợp số:
 -   Có vô hạn số nguyên tố.
 -   Mọi số nguyên tố lớn hơn $3$ đều có dạng $6n\pm 1$[^ref1].
 
-<span id="&#x7B97;&#x672F;&#x57FA;&#x672C;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-cơ-bản-của-số-học"></span>
 ## Định lý cơ bản của số học
 
 ???+ note "Bổ đề cơ bản của số học"
@@ -205,7 +205,7 @@ Mệnh đề đảo của bổ đề cơ bản của số học, sau khi điều
     tố.
 
 ??? tip "Mẹo"
-    Động cơ của định nghĩa này có thể tìm thấy trong [ideal nguyên tố](../algebra/ring-theory.md#%E7%B4%A0%E7%90%86%E6%83%B3).
+    Động cơ của định nghĩa này có thể tìm thấy trong [iđêan nguyên tố](../algebra/ring-theory.md#iđêan-nguyên-tố).
 
 ???+ note "Định lý cơ bản của số học (định lý phân tích duy nhất)"
     Cho số nguyên dương $a$, khi đó luôn có biểu diễn:
@@ -230,7 +230,7 @@ Mệnh đề đảo của bổ đề cơ bản của số học, sau khi điều
 Định lý cơ bản của số học và bổ đề cơ bản của số học là hai định lý tương
 đương.
 
-<span id="&#x540C;&#x4F59;"></span>
+<span id="đồng-dư"></span>
 ## Đồng dư
 
 ???+ note "Định nghĩa"
@@ -285,7 +285,7 @@ Tính chất của đồng dư:
 
 Còn một tính chất khác là nghịch đảo nhân. Xem [Nghịch đảo nhân](./inverse.md).
 
-<span id="&#x540C;&#x4F59;&#x7C7B;&#x4E0E;&#x5269;&#x4F59;&#x7CFB;"></span>
+<span id="lớp-đồng-dư-và-hệ-thặng-dư"></span>
 ## Lớp đồng dư và hệ thặng dư
 
 Để thuận tiện thảo luận, với tập hợp $A,B$ và phần tử $r$, ta dùng các kí hiệu
@@ -330,7 +330,7 @@ Dễ thấy rằng:
 -   Với mọi số nguyên $b$ nguyên tố cùng nhau với $m$,
     $b\mathbf{Z}_m=\mathbf{Z}_m$.
 
-Theo định nghĩa [nhóm thương](../algebra/group-theory.md#%E5%95%86%E7%BE%A4),
+Theo định nghĩa [nhóm thương](../algebra/group-theory.md#nhóm-thương),
 $\mathbf{Z}_m=\mathbf{Z}/m\mathbf{Z}$, vì vậy đôi khi ta cũng dùng
 $\mathbf{Z}/m\mathbf{Z}$ để biểu diễn $\mathbf{Z}_m$.
 
@@ -408,7 +408,7 @@ khái niệm khác.
 Nếu không có ghi chú đặc biệt, thông thường ta chỉ dùng hệ thặng dư thu gọn không
 âm nhỏ nhất.
 
-<span id="&#x5269;&#x4F59;&#x7CFB;&#x7684;&#x590D;&#x5408;"></span>
+<span id="phép-ghép-hệ-thặng-dư"></span>
 ### Phép ghép hệ thặng dư
 
 Với số nguyên dương $m$, ta có định lý sau:
@@ -466,7 +466,7 @@ Với số nguyên dương $m$, ta có định lý sau:
 
 ???+ tip "Mẹo"
     Định lý này tương đương với việc chứng minh hàm Euler là
-    [hàm nhân tính](#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0).
+    [hàm nhân tính](#hàm-nhân-tính).
 
 ???+ note "Chứng minh"
     Gọi $Z_{m_1},Z_{m_2}$ lần lượt là các hệ thặng dư đầy đủ modulo $m_1,m_2$.
@@ -517,13 +517,13 @@ Với số nguyên dương $m$, ta có định lý sau:
     
     Đây là một hệ thặng dư **thu gọn** modulo $m$.
 
-<span id="&#x6570;&#x8BBA;&#x51FD;&#x6570;"></span>
+<span id="hàm-số-học"></span>
 ## Hàm số học
 
 Hàm số học (còn gọi là hàm số số học) là hàm có miền xác định là các số nguyên
 dương. Hàm số học cũng có thể xem như một dãy số.
 
-<span id="&#x79EF;&#x6027;&#x51FD;&#x6570;"></span>
+<span id="hàm-nhân-tính"></span>
 ### Hàm nhân tính
 
 ???+ note "Định nghĩa"
@@ -534,7 +534,7 @@ dương. Hàm số học cũng có thể xem như một dãy số.
     Trong số học, nếu hàm $f(n)$ thỏa mãn $f(1)=1$ và $f(xy)=f(x)f(y)$ với mọi
     $x, y \in\mathbf{N}^*$, thì $f(n)$ là **hàm nhân tính hoàn toàn**.
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 #### Tính chất
 
 Nếu $f(x)$ và $g(x)$ đều là hàm nhân tính, thì các hàm sau cũng là hàm nhân tính:
@@ -556,7 +556,7 @@ Nếu $F(x)$ là hàm nhân tính, thì $F(x)=\prod F(p_i^{k_i})$.
 Nếu $F(x)$ là hàm nhân tính hoàn toàn, thì
 $F(x)=\prod F(p_i^{k_i})=\prod F(p_i)^{k_i}$.
 
-<span id="&#x4F8B;&#x5B50;"></span>
+<span id="ví-dụ"></span>
 #### Ví dụ
 
 -   Hàm đơn vị: $\varepsilon(n)=[n=1]$. (nhân tính hoàn toàn)
@@ -571,7 +571,7 @@ $F(x)=\prod F(p_i^{k_i})=\prod F(p_i)^{k_i}$.
     $\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$,
     trong đó $\omega(n)$ là số lượng thừa số nguyên tố phân biệt của $n$.
 
-<span id="&#x52A0;&#x6027;&#x51FD;&#x6570;"></span>
+<span id="hàm-cộng-tính"></span>
 ### Hàm cộng tính
 
 ???+ note "Định nghĩa"
@@ -586,7 +586,7 @@ $F(x)=\prod F(p_i^{k_i})=\prod F(p_i)^{k_i}$.
     Hàm cộng tính trong mục này chỉ hàm cộng tính trong số học (Additive
     function), cần phân biệt với ánh xạ cộng (Additive map) trong đại số.
 
-<span id="&#x6027;&#x8D28;_1"></span>
+<span id="tính-chất-1"></span>
 #### Tính chất
 
 Với số nguyên dương $x$, giả sử phân tích thừa số nguyên tố duy nhất của nó là
@@ -597,7 +597,7 @@ Nếu $F(x)$ là hàm cộng tính, thì $F(x)=\sum F(p_i^{k_i})$.
 Nếu $F(x)$ là hàm cộng tính hoàn toàn, thì
 $F(x)=\sum F(p_i^{k_i})=\sum F(p_i)\cdot k_i$.
 
-<span id="&#x4F8B;&#x5B50;_1"></span>
+<span id="ví-dụ-1"></span>
 #### Ví dụ
 
 Để thuận tiện trình bày, gọi tập hợp tất cả các số nguyên tố là $\mathbf P$.
@@ -613,7 +613,7 @@ $F(x)=\sum F(p_i^{k_i})=\sum F(p_i)\cdot k_i$.
 -   Tổng các thừa số nguyên tố phân biệt:
     $a_1(n)=\sum_{p \in\mathbf P} [p \mid n] \cdot p$.
 
-<span id="&#x53D6;&#x6574;&#x51FD;&#x6570;"></span>
+<span id="hàm-lấy-phần-nguyên"></span>
 ## Hàm lấy phần nguyên
 
 Với số thực $x$, định nghĩa **hàm sàn** (floor function) và **hàm trần**
@@ -711,17 +711,17 @@ Có thể tham khảo thêm các tính chất và ứng dụng của hàm lấy 
 trang sau:
 
 -   Phép modulo: $n\bmod m = n - \left\lfloor\dfrac{n}{m}\right\rfloor m$.
-    Nó có thể dùng để [tối ưu phép modulo số nguyên](./mod-arithmetic.md#%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95).
+    Nó có thể dùng để [tối ưu phép modulo số nguyên](./mod-arithmetic.md#thuật-toán-liên-quan).
 -   Dùng bổ đề Gauss để chứng minh
-    [luật tương hỗ bậc hai](./quad-residue.md#%E4%BA%8C%E6%AC%A1%E4%BA%92%E5%8F%8D%E5%BE%8B).
+    [luật tương hỗ bậc hai](./quad-residue.md#luật-thuận-nghịch-bậc-hai).
 -   [Chia khối số học](./sqrt-decomposition.md), đặc biệt là phần chứng minh
     tính chất của nó.
 -   Tính số mũ của thừa số nguyên tố trong giai thừa bằng
-    [công thức Legendre](./factorial.md#legendre-%E5%85%AC%E5%BC%8F).
--   [Dãy Beatty](../game-theory/impartial-game.md#wythoff-%E6%B8%B8%E6%88%8F),
+    [công thức Legendre](./factorial.md#công-thức-legendre).
+-   [Dãy Beatty](../game-theory/impartial-game.md#trò-chơi-wythoff),
     định lý Rayleigh và trò chơi Wythoff.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   Pan Chengdong, Pan Chengbiao. *Số học sơ cấp*. Nhà xuất bản Đại học Bắc

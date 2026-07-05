@@ -66,7 +66,7 @@ $$
 \end{aligned}
 $$
 
-Trong quá trình biến đổi ta nhiều lần dùng tính chất của [hàm lấy phần nguyên](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0). Thay điều kiện đã biến đổi vào, biểu thức ban đầu trở thành:
+Trong quá trình biến đổi ta nhiều lần dùng tính chất của [hàm lấy phần nguyên](./basic.md#hàm-lấy-phần-nguyên). Thay điều kiện đã biến đổi vào, biểu thức ban đầu trở thành:
 
 $$
 \begin{aligned}

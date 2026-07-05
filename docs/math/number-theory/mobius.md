@@ -601,7 +601,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     \sum_{i=1}^{\lfloor n/k\rfloor}i[d\mid i] = d\sum_{i=1}^{\lfloor\lfloor n/k\rfloor/d\rfloor}i = dG\left(\left\lfloor\dfrac{\lfloor n/k\rfloor}{d}\right\rfloor\right) = dG\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right).
     $$
     
-    Trong đó $G(n)=\dfrac{1}{2}n(n+1)$ là tổng cấp số cộng, còn dấu bằng cuối dùng tính chất của [hàm lấy phần nguyên dưới](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0). Tổng còn lại được tính tương tự. Thay trở lại biểu thức trước đó, ta có
+    Trong đó $G(n)=\dfrac{1}{2}n(n+1)$ là tổng cấp số cộng, còn dấu bằng cuối dùng tính chất của [hàm lấy phần nguyên dưới](./basic.md#hàm-lấy-phần-nguyên). Tổng còn lại được tính tương tự. Thay trở lại biểu thức trước đó, ta có
     
     $$
     f(n,m) = \sum_k k\sum_{d}\mu(d)d^2G\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right)G\left(\left\lfloor\dfrac{m}{kd}\right\rfloor\right).
@@ -750,7 +750,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/k\rfloor}\prod_{j=1}^{\lfloor n/k\rfloor}k\uparrow(\mu(d)[d\mid i][d\mid j]).
     $$
     
-    Tiếp tục tách nhân tử, tức đặt $i=di'$, $j=dj'$, và áp dụng tính chất của [hàm lấy phần nguyên dưới](./basic.md#%E5%8F%96%E6%95%B4%E5%87%BD%E6%95%B0), ta được:
+    Tiếp tục tách nhân tử, tức đặt $i=di'$, $j=dj'$, và áp dụng tính chất của [hàm lấy phần nguyên dưới](./basic.md#hàm-lấy-phần-nguyên), ta được:
     
     $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/(kd)\rfloor}\prod_{j=1}^{\lfloor n/(kd)\rfloor}k\uparrow\mu(d).

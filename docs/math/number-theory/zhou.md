@@ -3,7 +3,7 @@ author: Early0v0
 <span id="&#x524D;&#x7F6E;&#x77E5;&#x8BC6;"></span>
 ## Kiến thức chuẩn bị
 
--   [Hàm nhân](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0)
+-   [Hàm nhân](./basic.md#hàm-nhân-tính)
 
 <span id="&#x5B9A;&#x4E49;"></span>
 ## Định nghĩa

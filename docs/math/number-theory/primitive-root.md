@@ -1,7 +1,7 @@
 Kiến thức nền: [định lí nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), [định lí Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), [định lí Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86)
 
 Bậc và căn nguyên thủy là các công cụ quan trọng để hiểu cấu trúc nhân của
-[hệ thặng dư thu gọn](./basic.md#%E5%90%8C%E4%BD%99%E7%B1%BB%E4%B8%8E%E5%89%A9%E4%BD%99%E7%B3%BB)
+[hệ thặng dư thu gọn](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
 $\mathbf Z_m^*$ modulo $m$. Dựa trên chúng, ta có thể định nghĩa các khái niệm
 như [logarit rời rạc](./discrete-logarithm.md). Phần thảo luận tổng quát hơn có
 thể xem ở các mục liên quan trong phần đại số trừu tượng, chẳng hạn
@@ -682,7 +682,7 @@ nguyên thủy** modulo $m$. Nó tồn tại với mọi modulo $m$.
 
 ### Công thức truy hồi
 
-Hàm Carmichael là một [hàm số học](./basic.md#%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0).
+Hàm Carmichael là một [hàm số học](./basic.md#hàm-số-học).
 Mục này thảo luận một công thức truy hồi của nó, từ đó đưa ra một chứng minh
 khác cho định lí tồn tại căn nguyên thủy.
 

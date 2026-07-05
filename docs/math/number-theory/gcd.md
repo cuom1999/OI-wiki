@@ -19,7 +19,7 @@ của chúng được ký hiệu là $\gcd(a_1,\dots,a_n)$; khi không gây nh�
 viết gọn là $(a_1,\dots,a_n)$.
 
 Tính chất của ước chung lớn nhất và bội chung nhỏ nhất xem tại [cơ sở lý thuyết
-số](./basic.md#%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0).
+số](./basic.md#ước-chung-lớn-nhất-và-bội-chung-nhỏ-nhất).
 
 Vậy làm thế nào để tìm ước chung lớn nhất? Trước hết xét trường hợp hai số.
 

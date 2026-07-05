@@ -121,7 +121,7 @@ Bảng dưới đây liệt kê một phần giá trị của ký hiệu Legendr
 
 2.  $a_1\equiv a_2\pmod p\implies \left(\dfrac{a_1}{p}\right)=\left(\dfrac{a_2}{p}\right).$
 
-3.  ([Tính nhân hoàn toàn](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0)) Với mọi số nguyên $a_1,a_2$,
+3.  ([Tính nhân hoàn toàn](./basic.md#hàm-nhân-tính)) Với mọi số nguyên $a_1,a_2$,
 
     $$
     \left(\frac{a_1a_2}{p}\right)=\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right).
@@ -164,7 +164,7 @@ Bảng dưới đây liệt kê một phần giá trị của ký hiệu Legendr
         $$
         \left(\frac{a_1a_2}{p}\right)=\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right).
         $$
-    4.  Xem [luật thuận nghịch bậc hai](#%E4%BA%8C%E6%AC%A1%E4%BA%92%E5%8F%8D%E5%BE%8B).
+    4.  Xem [luật thuận nghịch bậc hai](#luật-thuận-nghịch-bậc-hai).
 
 Dựa trên các tính chất trên, nếu tính được giá trị của $\left(\dfrac{p}{q}\right)$ với mọi số nguyên tố lẻ $p$ và $q$, thì ta có thể tính ký hiệu Legendre trong mọi trường hợp hợp lệ. Tiếp theo là một định lý đẹp, thiết lập liên hệ khéo léo giữa $\left(\dfrac{p}{q}\right)$ và $\left(\dfrac{q}{p}\right)$, nhờ đó ta có thể tính theo ý tưởng tương tự [thuật toán Euclid](./gcd.md#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95).
 

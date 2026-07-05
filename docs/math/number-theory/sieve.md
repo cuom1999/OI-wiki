@@ -627,7 +627,7 @@ $p^0+p^1+p^2+\dots p^k$ ứng với thừa số nguyên tố nhỏ nhất của 
 <span id="&#x4E00;&#x822C;&#x7684;&#x79EF;&#x6027;&#x51FD;&#x6570;"></span>
 ## Hàm nhân tính tổng quát
 
-Giả sử một [hàm nhân tính](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0) $f$
+Giả sử một [hàm nhân tính](./basic.md#hàm-nhân-tính) $f$
 thỏa mãn: với mọi số nguyên tố $p$ và số nguyên dương $k$, có thể tính $f(p^k)$
 trong thời gian đa thức bậc thấp theo $k$. Khi đó có thể sàng các giá trị
 $f(1),f(2),\dots,f(n)$ trong thời gian $O(n)$.

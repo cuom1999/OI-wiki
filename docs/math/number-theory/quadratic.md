@@ -439,7 +439,7 @@ $$
 
 Đặt $f(n)$ là số nghiệm nguyên của phương trình $x^2+y^2=n$. Khi phương trình
 có nghiệm, $f(n)$ được cho bởi biểu thức trên; nếu không thì $f(n)=0$. Dễ thấy,
-$\dfrac14f(n)$ là [hàm nhân tính](./basic.md#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0).
+$\dfrac14f(n)$ là [hàm nhân tính](./basic.md#hàm-nhân-tính).
 Giá trị của hàm nhân tính được xác định bởi giá trị trên các lũy thừa nguyên
 tố. Từ biểu thức của $f(n)$ có thể xác định giá trị của $\dfrac14f(n)$ trên
 lũy thừa nguyên tố $p^k$ như sau:
