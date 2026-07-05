@@ -64,7 +64,7 @@ Tất nhiên, tối đa hóa giá trị nhỏ nhất cũng tương tự.
 
 ### Tìm kiếm nhị phân trong STL
 
-Thư viện chuẩn C++ cung cấp hàm [`std::lower_bound`](https://zh.cppreference.com/w/cpp/algorithm/lower_bound) để tìm phần tử đầu tiên không nhỏ hơn giá trị cho trước, và hàm [`std::upper_bound`](https://zh.cppreference.com/w/cpp/algorithm/upper_bound) để tìm phần tử đầu tiên lớn hơn giá trị cho trước. Cả hai đều được định nghĩa trong header `<algorithm>`.
+Thư viện chuẩn C++ cung cấp hàm [`std::lower_bound`](https://en.cppreference.com/w/cpp/algorithm/lower_bound) để tìm phần tử đầu tiên không nhỏ hơn giá trị cho trước, và hàm [`std::upper_bound`](https://en.cppreference.com/w/cpp/algorithm/upper_bound) để tìm phần tử đầu tiên lớn hơn giá trị cho trước. Cả hai đều được định nghĩa trong header `<algorithm>`.
 
 Cả hai đều được cài đặt bằng nhị phân, nên trước khi gọi phải bảo đảm các phần tử đã được sắp xếp.
 

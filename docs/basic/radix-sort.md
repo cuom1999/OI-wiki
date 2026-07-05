@@ -55,7 +55,7 @@ Dưới đây là mã C++ tham khảo dùng sắp xếp cơ số MSD dạng lặ
 
 #### Sắp xếp xâu
 
-Dưới đây là mã C++ tham khảo dùng sắp xếp cơ số MSD dạng lặp để sắp xếp [xâu byte kết thúc bằng ký tự rỗng](https://zh.cppreference.com/w/cpp/string/byte) theo thứ tự từ điển:
+Dưới đây là mã C++ tham khảo dùng sắp xếp cơ số MSD dạng lặp để sắp xếp [xâu byte kết thúc bằng ký tự rỗng](https://en.cppreference.com/w/cpp/string/byte) theo thứ tự từ điển:
 
 ??? example "Mã tham khảo"
     ```cpp

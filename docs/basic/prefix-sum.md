@@ -42,7 +42,7 @@ Như vậy, sau khi tiền xử lý trong thời gian $O(n)$, độ phức tạp
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.py:core"
         ```
 
-Thư viện chuẩn C++ cung cấp hàm tổng tiền tố [`std::partial_sum`](https://zh.cppreference.com/w/cpp/algorithm/partial_sum), được định nghĩa trong header `<numeric>`. Từ C++17, thư viện chuẩn còn cung cấp hàm tổng tiền tố có chức năng tương tự là [`std::inclusive_scan`](https://zh.cppreference.com/w/cpp/algorithm/inclusive_scan), cũng được định nghĩa trong header `<numeric>`.
+Thư viện chuẩn C++ cung cấp hàm tổng tiền tố [`std::partial_sum`](https://en.cppreference.com/w/cpp/algorithm/partial_sum), được định nghĩa trong header `<numeric>`. Từ C++17, thư viện chuẩn còn cung cấp hàm tổng tiền tố có chức năng tương tự là [`std::inclusive_scan`](https://en.cppreference.com/w/cpp/algorithm/inclusive_scan), cũng được định nghĩa trong header `<numeric>`.
 
 ### Tổng tiền tố hai chiều / nhiều chiều
 
@@ -205,7 +205,7 @@ $$
 D_i = a_i - a_{i-1},~ a_0 = 0.
 $$
 
-Thư viện chuẩn C++ cung cấp hàm sai phân [`std::adjacent_difference`](https://zh.cppreference.com/w/cpp/algorithm/adjacent_difference), được định nghĩa trong header `<numeric>`.
+Thư viện chuẩn C++ cung cấp hàm sai phân [`std::adjacent_difference`](https://en.cppreference.com/w/cpp/algorithm/adjacent_difference), được định nghĩa trong header `<numeric>`.
 
 Quan hệ giữa tổng tiền tố và sai phân như sau:
 
