@@ -61,7 +61,7 @@ trong khi (hàng đợi q không rỗng)
     --8<-- "docs/search/code/bidirectional/bidirectional_1.cpp"
     ```
 
-## Gặp nhau ở giữa (meet in the middle)
+## Gặp nhau ở giữa
 
 ???+ warning "Cảnh báo"
     Phần này không nói về [**tìm kiếm nhị phân**](../basic/binary.md), dù tìm
@@ -69,9 +69,8 @@ trong khi (hàng đợi q không rỗng)
 
 ### Dẫn nhập
 
-Thuật toán gặp nhau ở giữa (meet in the middle) không có tên dịch chính thức;
-các cách dịch thường gặp gồm "tìm kiếm chia đôi", "tìm kiếm hai chiều" hoặc
-"gặp nhau ở giữa".
+Thuật toán gặp nhau ở giữa không có tên dịch chính thức; các cách dịch thường
+gặp gồm "tìm kiếm chia đôi", "tìm kiếm hai chiều" hoặc "gặp nhau ở giữa".
 
 Nó phù hợp với trường hợp dữ liệu đầu vào nhỏ, nhưng chưa nhỏ đến mức có thể
 dùng vét cạn trực tiếp.

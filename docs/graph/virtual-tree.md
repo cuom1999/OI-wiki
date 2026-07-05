@@ -48,7 +48,7 @@ Xét ràng buộc của đề bài, tổng số đỉnh màu đỏ (đỉnh then
 
 Do đó ta cần **nén thông tin, biến một cây lớn thành một cây nhỏ**.
 
-## Cây ảo (Virtual Tree)
+## Cây ảo
 
 Từ đó ta đưa ra khái niệm **cây ảo**.
 

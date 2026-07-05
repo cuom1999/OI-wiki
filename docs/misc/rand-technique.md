@@ -192,7 +192,7 @@ Xem chi tiết tại [phương pháp gia tăng ngẫu nhiên](../geometry/random
     
     $n\leq 50$
 
-Dễ nghĩ ngay đến kỹ thuật gặp nhau ở giữa (meet-in-the-middle). Chia đều tập đỉnh thành hai nửa trái/phải $V_L,V_R$ (mỗi bên có kích thước $\dfrac n2$), tính mảng $f_{L,k}$ biểu thị tổng trọng số lớn nhất của mọi clique có kích thước $\geq k$ trong tập đỉnh $L\subseteq V_L$. Sau đó ta liệt kê mỗi clique $C_R$ ở nửa phải, tính các đỉnh bên trái nối với tất cả đỉnh trong $C_R$ (ký hiệu tập này là $N_L$), và dùng $f_{N_L,\frac 23 n-|C_R|}+\textit{value}(C_R)$ để cập nhật đáp án.
+Dễ nghĩ ngay đến kỹ thuật gặp nhau ở giữa. Chia đều tập đỉnh thành hai nửa trái/phải $V_L,V_R$ (mỗi bên có kích thước $\dfrac n2$), tính mảng $f_{L,k}$ biểu thị tổng trọng số lớn nhất của mọi clique có kích thước $\geq k$ trong tập đỉnh $L\subseteq V_L$. Sau đó ta liệt kê mỗi clique $C_R$ ở nửa phải, tính các đỉnh bên trái nối với tất cả đỉnh trong $C_R$ (ký hiệu tập này là $N_L$), và dùng $f_{N_L,\frac 23 n-|C_R|}+\textit{value}(C_R)$ để cập nhật đáp án.
 
 -   Chú ý có thể chuyển trạng thái mỗi $f_{L,k}$ trong $O(1)$. Cụ thể, lấy $d$ là một phần tử bất kỳ trong $L$, rồi chia trường hợp:
     -   Giả sử trong nghiệm tối ưu $d$ không nằm trong clique, thì chuyển từ $f_{L\setminus \{d\},k}$.
@@ -427,11 +427,11 @@ Thuật toán chuẩn của bài này là luồng mạng, nhưng ở đây ta d�
     }
     ```
 
-### Ví dụ: (*) heap ngẫu nhiên (randomized heap)[^ref3]
+### Ví dụ: (*) heap ngẫu nhiên[^ref3]
 
-Cách viết heap gộp được (meldable heap) thường gặp nhất có lẽ là cây nghiêng trái (leftist tree), bảo đảm độ phức tạp của phép gộp bằng cách duy trì chiều cao để cây nghiêng trái. Tuy nhiên duy trì chiều cao hơi phiền, nên ta muốn tránh việc này nếu có thể.
+Cách viết heap gộp được thường gặp nhất có lẽ là cây nghiêng trái, bảo đảm độ phức tạp của phép gộp bằng cách duy trì chiều cao để cây nghiêng trái. Tuy nhiên duy trì chiều cao hơi phiền, nên ta muốn tránh việc này nếu có thể.
 
-Vậy có thể xét dùng heap ngẫu nhiên (randomized heap): không đổi con theo chiều cao, mà đổi ngẫu nhiên.
+Vậy có thể xét dùng heap ngẫu nhiên: không đổi con theo chiều cao, mà đổi ngẫu nhiên.
 
 ???+ note "Mã"
     ```cpp

@@ -791,7 +791,7 @@ Toàn bộ quá trình có thể cài đặt bằng đệ quy. Để rõ ràng, 
     ```
 
 ??? note "Về `new` và `delete`"
-    Xem [memory pool](../contest/common-tricks.md#vùng-nhớ-cấp-phát-sẵn-memory-pool).
+    Xem [vùng nhớ cấp phát sẵn](../contest/common-tricks.md#vùng-nhớ-cấp-phát-sẵn-memory-pool).
 
 Tuy nhiên, cách cài đặt này có một vấn đề: trong hệ cơ số $b$, mỗi hệ số của đa thức đều có thể đạt cấp độ $n \cdot b^2$, nên trong cài đặt độ chính xác cao gộp chữ số có thể gây tràn số nguyên. Nếu xử lý nhớ ngay trong quá trình nhân đa thức, kết quả của $x_1 + x_0$ và $y_1 + y_0$ có thể đạt $2 \cdot b^m$, làm tăng thêm một chữ số (nếu dùng cách tính $x_1 - x_0$ thì lại phải xử lý riêng trường hợp số âm). Vì vậy, cần dựa vào bối cảnh ứng dụng thực tế để quyết định dùng cách cài đặt nào.
 

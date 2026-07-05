@@ -1,6 +1,6 @@
-Chương này sẽ giới thiệu tư tưởng của thuật toán ngoại tuyến (offline algorithm), các thuật toán thường gặp và những cách tối ưu liên quan.
+Chương này sẽ giới thiệu tư tưởng của thuật toán ngoại tuyến, các thuật toán thường gặp và những cách tối ưu liên quan.
 
-Thuật toán ngoại tuyến được thiết kế dựa trên giả thiết "**đã biết tất cả dữ liệu trước khi giải**", phù hợp với các bài toán có nhiều truy vấn. Đối lập với nó là [thuật toán trực tuyến](https://en.wikipedia.org/wiki/Online_algorithm) (online algorithm).
+Thuật toán ngoại tuyến được thiết kế dựa trên giả thiết "**đã biết tất cả dữ liệu trước khi giải**", phù hợp với các bài toán có nhiều truy vấn. Đối lập với nó là [thuật toán trực tuyến](https://en.wikipedia.org/wiki/Online_algorithm).
 
 Ví dụ, [sắp xếp chọn](../basic/selection-sort.md) phải biết phần tử nhỏ nhất toàn cục của mảng mới có thể thực hiện, nên đó là thuật toán ngoại tuyến. Trong khi đó, [sắp xếp chèn](../basic/insertion-sort.md) có thể nhận dữ liệu động để sắp xếp và không bắt buộc phải biết toàn bộ dữ liệu trước khi chạy, nên đó là thuật toán trực tuyến.
 

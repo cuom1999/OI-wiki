@@ -343,11 +343,11 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
     Thử sửa chuỗi literal như vậy dẫn đến **hành vi không xác định**. Nên dùng
     kiểu dữ liệu **phù hợp** khác, chẳng hạn `std::string` hoặc `char[]`.
 
--   Giải phóng nhiều lần hoặc dereference vùng nhớ không hợp lệ.
+-   Giải phóng nhiều lần hoặc giải tham chiếu vùng nhớ không hợp lệ.
 
     Ví dụ:
 
-    -   Dereference con trỏ khi chưa khởi tạo.
+    -   Giải tham chiếu con trỏ khi chưa khởi tạo.
 
     -   Vùng nhớ mà con trỏ trỏ tới đã được giải phóng.
 
@@ -367,8 +367,8 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
     delete pointer;
     ```
 
-    Thường gặp khi dùng memory pool để cấp phát trước một khối nhớ lớn, rồi thử
-    dùng `delete` hoặc `free()` để giải phóng một đối tượng đơn lẻ lấy từ pool.
+    Thường gặp khi dùng vùng nhớ cấp phát sẵn để cấp phát trước một khối nhớ lớn,
+    rồi thử dùng `delete` hoặc `free()` để giải phóng một đối tượng đơn lẻ lấy từ vùng nhớ đó.
 
 -   Dereference con trỏ null hoặc con trỏ rác.
 
@@ -695,7 +695,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
         const int mod = 998244353;  // Đúng, giúp trình biên dịch xử lý như hằng số
         ```
 
--   Dùng đệ quy không cần thiết, trừ đệ quy đuôi (tail recursion).
+-   Dùng đệ quy không cần thiết, trừ đệ quy đuôi.
 
 -   Khi chuyển đệ quy thành lặp, đưa thêm quá nhiều phép tính phụ.
 

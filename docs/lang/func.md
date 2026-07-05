@@ -2,8 +2,8 @@ author: Ir1d, tsagaanbar, yang-lile
 
 ## Khai báo hàm
 
-Hàm (function) trong lập trình thường là một tập hợp gồm nhiều câu lệnh. Ta cũng
-có thể gọi nó là **thủ tục con** (subroutine). Trong lập trình, nếu có một số
+Hàm trong lập trình thường là một tập hợp gồm nhiều câu lệnh. Ta cũng
+có thể gọi nó là **thủ tục con**. Trong lập trình, nếu có một số
 quy trình bị lặp lại, ta có thể tách chúng ra để tạo thành một hàm. Hàm có thể
 nhận một số giá trị; các giá trị này được gọi là tham số của hàm. Hàm cũng có
 thể trả về một giá trị; giá trị đó được gọi là giá trị trả về của hàm.
@@ -24,10 +24,10 @@ một kết quả cùng kiểu.
 
 ## Cài đặt hàm: viết định nghĩa hàm
 
-Chỉ có khai báo hàm (declaration) là chưa đủ. Khai báo chỉ cho phép ta biết kiểu
+Chỉ có khai báo hàm là chưa đủ. Khai báo chỉ cho phép ta biết kiểu
 **giao diện** của hàm khi gọi (tức nhận dữ liệu gì, trả về dữ liệu gì), nhưng
-chưa có phần cài đặt cụ thể bên trong, tức **định nghĩa** (definition) của hàm.
-Ta có thể viết mã **cài đặt** (implement) hàm này ở **một nơi khác sau phần khai
+chưa có phần cài đặt cụ thể bên trong, tức **định nghĩa** của hàm.
+Ta có thể viết mã **cài đặt** hàm này ở **một nơi khác sau phần khai
 báo**. Cũng có thể cài đặt trong tệp khác, nhưng khi liên kết cần cung cấp cả
 các tệp đã được biên dịch riêng.
 
@@ -75,9 +75,9 @@ void say_hello() {
 ## Gọi hàm
 
 Giống như biến, hàm cần được khai báo trước rồi mới có thể sử dụng. Hành vi sử
-dụng hàm được gọi là "gọi" (call). Ta có thể gọi hàm khác bên trong bất kỳ hàm
+dụng hàm được gọi là "gọi". Ta có thể gọi hàm khác bên trong bất kỳ hàm
 nào, bao gồm cả chính hàm đó. Hành vi một hàm gọi chính nó được gọi là **đệ
-quy** (recursion).
+quy**.
 
 Trong hầu hết ngôn ngữ, cách gọi hàm là **tên hàm cộng với một cặp ngoặc**
 `()`; ví dụ `foo()`. Nếu hàm cần tham số, ta điền các tham số cần thiết vào
@@ -132,7 +132,7 @@ foo(a, b);  // gọi foo
 ```
 
 Trong đoạn mã trên, ta thấy sau "`int`" trong danh sách tham số hàm có thêm dấu
-"`&`" (ký hiệu và). Điều này biểu thị **tham chiếu** (reference) tới kiểu
+"`&`" (ký hiệu và). Điều này biểu thị **tham chiếu** tới kiểu
 `int`. Khi gọi `foo`, các biến `a` và `b` tại nơi gọi lần lượt khởi tạo hai
 tham chiếu tới kiểu `int` là `x` và `y` trong `foo`. Có thể hiểu `x` và `y`
 trong `foo` là "bí danh" của các biến `a` và `b` tại nơi gọi; tức thao tác lên

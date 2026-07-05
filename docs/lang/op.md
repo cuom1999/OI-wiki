@@ -13,8 +13,8 @@ author: aofall, greyqz, Ir1d, Link-cute, Marcythm, ouuan, Shen-Linwood, sshwy, S
 | `-` (hai ngôi) | trừ       |
 
 ??? note "Toán tử một ngôi và hai ngôi"
-    Toán tử một ngôi (unary operator) là toán tử chỉ có một toán hạng, còn toán
-    tử hai ngôi (binary operator) là toán tử có hai toán hạng. Ví dụ, dấu cộng
+    Toán tử một ngôi là toán tử chỉ có một toán hạng, còn toán
+    tử hai ngôi là toán tử có hai toán hạng. Ví dụ, dấu cộng
     trong `1 + 2` là toán tử hai ngôi, có hai toán hạng là `1` và `2`. Ngoài ra
     trong C++ còn có một toán tử ba ngôi duy nhất là `?:`.
 

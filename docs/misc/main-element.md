@@ -8,7 +8,7 @@ Cho một dãy có $n$ phần tử, bảo đảm có một phần tử $a$ xuấ
 
 <span id="thuật-toán-offline"></span>
 
-### Thuật toán ngoại tuyến (offline)
+### Thuật toán ngoại tuyến
 
 Nếu biết toàn bộ dãy ngay từ đầu, một ý tưởng tự nhiên là thống kê số lần xuất hiện của từng phần tử trong dãy; phần tử có số lần xuất hiện lớn hơn $n/2$ chính là phần tử đa số. Có thể tạo một mảng đếm để thống kê số lần xuất hiện của từng giá trị, rồi xuất ra phần tử xuất hiện nhiều hơn $n/2$ lần.
 
@@ -16,7 +16,7 @@ Tuy nhiên, cách trên dùng thêm mảng đếm nên hiệu quả bộ nhớ k
 
 <span id="thuật-toán-online"></span>
 
-### Thuật toán trực tuyến (online)
+### Thuật toán trực tuyến
 
 Trong một số trường hợp, ta cần xử lý dữ liệu dạng luồng theo thời gian thực. Khi đó cần một thuật toán không cần biết trước toàn bộ dữ liệu, mà chỉ dùng dữ liệu hiện có để dần dần tìm đáp án. **Thuật toán bỏ phiếu đa số** [^ref1] là một thuật toán có thể giải bài toán phần tử đa số theo cách trực tuyến.
 

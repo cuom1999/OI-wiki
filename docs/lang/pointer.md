@@ -31,7 +31,7 @@ Trong C/C++, kiểu của biến con trỏ được viết bằng tên kiểu c�
 
 Ta có thể dùng ký hiệu `&` để lấy địa chỉ của một biến.
 
-Muốn truy cập vùng nhớ tương ứng với địa chỉ mà biến con trỏ lưu, còn gọi là vùng nhớ mà con trỏ **trỏ tới**, ta cần **giải tham chiếu** (dereference) biến con trỏ bằng ký hiệu `*`.
+Muốn truy cập vùng nhớ tương ứng với địa chỉ mà biến con trỏ lưu, còn gọi là vùng nhớ mà con trỏ **trỏ tới**, ta cần **giải tham chiếu** biến con trỏ bằng ký hiệu `*`.
 
 ```cpp
 int main() {
@@ -225,19 +225,19 @@ Các phần tử trong mảng được lưu liên tiếp, tức `p + 1` trỏ t�
 
 Khi lưu dữ liệu dạng ma trận, ta có thể cần dùng đến kiểu dữ liệu như "mảng hai chiều". Về mặt ngữ nghĩa, mảng hai chiều là một mảng của các mảng. Còn bộ nhớ máy tính có thể được xem như một mảng một chiều rất dài. Khi lưu một mảng hai chiều trong bộ nhớ máy tính, sẽ có khái niệm có "liên tiếp" hay không.
 
-"Liên tiếp" nghĩa là cuối của bất kỳ hàng (row) nào trong mảng hai chiều và đầu của hàng tiếp theo nằm kề nhau về địa chỉ vật lý; nói cách khác, toàn bộ mảng hai chiều có thể được xem như một mảng một chiều. Ngược lại, hai phần đó không nhất thiết kề nhau về mặt vật lý.
+"Liên tiếp" nghĩa là cuối của bất kỳ hàng nào trong mảng hai chiều và đầu của hàng tiếp theo nằm kề nhau về địa chỉ vật lý; nói cách khác, toàn bộ mảng hai chiều có thể được xem như một mảng một chiều. Ngược lại, hai phần đó không nhất thiết kề nhau về mặt vật lý.
 
 Với mảng hai chiều "liên tiếp", chỉ cần dùng một vòng lặp và một con trỏ tăng dần là có thể duyệt toàn bộ dữ liệu trong mảng. Với mảng hai chiều không liên tiếp, do từng hàng không liên tiếp với nhau, ta cần lấy địa chỉ đầu của một hàng nào đó trước, rồi mới truy cập các phần tử trong hàng đó.
 
 ???+ note "Cách lưu trữ mảng hai chiều"
-    Cách lưu dữ liệu theo "hàng (row)" như vậy được gọi là lưu trữ theo thứ tự hàng trước; tương ứng, cũng có thể lưu dữ liệu theo cột (column). Do đặc tính truy cập bộ nhớ của máy tính, nhìn chung, truy cập dữ liệu liên tiếp sẽ hiệu quả hơn. Vì vậy, cần chọn cách lưu trữ "hàng trước" hoặc "cột trước" theo cách dữ liệu có thể được sử dụng.
+    Cách lưu dữ liệu theo "hàng" như vậy được gọi là lưu trữ theo thứ tự hàng trước; tương ứng, cũng có thể lưu dữ liệu theo cột. Do đặc tính truy cập bộ nhớ của máy tính, nhìn chung, truy cập dữ liệu liên tiếp sẽ hiệu quả hơn. Vì vậy, cần chọn cách lưu trữ "hàng trước" hoặc "cột trước" theo cách dữ liệu có thể được sử dụng.
 
 ### Tạo mảng hai chiều động
 
-Trong C/C++, ta có thể dùng câu lệnh tương tự dưới đây để khai báo một mảng hai chiều gồm N hàng (row) và M cột (column), có vùng nhớ liên tiếp về mặt vật lý.
+Trong C/C++, ta có thể dùng câu lệnh tương tự dưới đây để khai báo một mảng hai chiều gồm N hàng và M cột, có vùng nhớ liên tiếp về mặt vật lý.
 
 ???+ note "Mô tả số chiều của mảng"
-    Cách tổng quát hơn là dùng cách nói chiều thứ n (dimension). Với dạng lưu trữ "hàng trước", độ dài của chiều thứ nhất của mảng là N, và độ dài của chiều thứ hai là M.
+    Cách tổng quát hơn là dùng cách nói chiều thứ n. Với dạng lưu trữ "hàng trước", độ dài của chiều thứ nhất của mảng là N, và độ dài của chiều thứ hai là M.
 
 ```cpp
 int a[N][M];
@@ -307,7 +307,7 @@ int main() {
 }
 ```
 
-Cách này cũng thu được bộ nhớ liên tiếp, nhưng có thể trực tiếp dùng dạng `a[n]` để lấy địa chỉ đầu của hàng (row) thứ n + 1 của mảng. Vì vậy, dùng dạng `a[r][c]` là có thể truy cập phần tử có chỉ số `(r, c)`.
+Cách này cũng thu được bộ nhớ liên tiếp, nhưng có thể trực tiếp dùng dạng `a[n]` để lấy địa chỉ đầu của hàng thứ n + 1 của mảng. Vì vậy, dùng dạng `a[r][c]` là có thể truy cập phần tử có chỉ số `(r, c)`.
 
 Vì con trỏ trỏ tới mảng cũng là một kiểu dữ liệu xác định, nên ngoại trừ chiều thứ nhất của mảng, độ dài của các chiều khác đều phải là hằng có thể được trình biên dịch xác định. Nếu không, trình biên dịch sẽ không thể dịch các biểu thức như `a[n]`, trong đó `a` là con trỏ trỏ tới mảng.
 

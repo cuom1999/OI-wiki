@@ -19,7 +19,7 @@ Các tính chất này đảm bảo đường đi dài nhất từ gốc đến 
 
 Việc duy trì các tính chất này khá phức tạp. Khi chèn một nút, trước hết nút đó chắc chắn phải được tô màu đỏ, nếu không sẽ phá vỡ tính chất 4. Nhưng ngay cả như vậy, ta vẫn có thể phá vỡ tính chất 3, nên cần thực hiện điều chỉnh. Xóa nút còn rắc rối hơn: tương tự như khi chèn, ta không thể xóa trực tiếp một nút đen, nếu không cân bằng chiều cao đen sẽ bị phá vỡ. Làm thế nào để giải quyết những vấn đề này một cách thuận tiện?
 
-## Cây đỏ-đen nghiêng trái (left-leaning red-black tree)
+## Cây đỏ-đen nghiêng trái
 
 ### Giải thích
 
@@ -131,7 +131,7 @@ Sau đó ta có thể thực hiện xóa:
         Set::Node *root) const {
       color_flip(root);
       if (is_red(root->rc->lc)) {
-        // assume that root->rc != nullptr when calling this function
+        // Giả sử root->rc != nullptr khi gọi hàm này
         root->rc = rotate_right(root->rc);
         root = rotate_left(root);
         color_flip(root);
@@ -175,10 +175,9 @@ Vậy nếu không có cây con phải thì sao? Ta cần xoay cây con trái l�
         // key < root->key
         if (!is_red(root->lc) && !(is_red(root->lc->lc)))
           root = move_red_left(root);
-        // ensure the invariant: either root->lc or root->lc->lc (or root and
-        // root->lc after dive into the function) is red, to ensure we will
-        // eventually delete a red node. therefore we will not break the black
-        // height balance
+        // Bảo đảm bất biến: root->lc hoặc root->lc->lc (hoặc root và
+        // root->lc sau khi đi sâu vào hàm) là đỏ, để cuối cùng ta sẽ xóa
+        // một nút đỏ. Nhờ đó cân bằng chiều cao đen không bị phá vỡ.
         root->lc = delete_arbitrary(root->lc, key);
       } else {
         // key >= root->key
@@ -407,8 +406,8 @@ Vậy nếu không có cây con phải thì sao? Ta cần xoay cây con trái l�
     typename Set<Key, Compare>::Node *Set<Key, Compare>::move_red_right(
         Set::Node *root) const {
       color_flip(root);
-      if (is_red(root->lc->lc)) {  // assume that root->lc != nullptr when calling
-                                   // this function
+      if (is_red(root->lc->lc)) {  // Giả sử root->lc != nullptr khi gọi
+                                   // hàm này
         root = rotate_right(root);
         color_flip(root);
       }
@@ -420,7 +419,7 @@ Vậy nếu không có cây con phải thì sao? Ta cần xoay cây con trái l�
         Set::Node *root) const {
       color_flip(root);
       if (is_red(root->rc->lc)) {
-        // assume that root->rc != nullptr when calling this function
+        // Giả sử root->rc != nullptr khi gọi hàm này
         root->rc = rotate_right(root->rc);
         root = rotate_left(root);
         color_flip(root);
@@ -464,10 +463,9 @@ Vậy nếu không có cây con phải thì sao? Ta cần xoay cây con trái l�
         // key < root->key
         if (!is_red(root->lc) && !(is_red(root->lc->lc)))
           root = move_red_left(root);
-        // ensure the invariant: either root->lc or root->lc->lc (or root and
-        // root->lc after dive into the function) is red, to ensure we will
-        // eventually delete a red node. therefore we will not break the black
-        // height balance
+        // Bảo đảm bất biến: root->lc hoặc root->lc->lc (hoặc root và
+        // root->lc sau khi đi sâu vào hàm) là đỏ, để cuối cùng ta sẽ xóa
+        // một nút đỏ. Nhờ đó cân bằng chiều cao đen không bị phá vỡ.
         root->lc = delete_arbitrary(root->lc, key);
       } else {
         // key >= root->key

@@ -6,7 +6,7 @@ Trang này chủ yếu liệt kê một số mẹo nhỏ trong thi đấu.
 
 Tính cục bộ là xu hướng chương trình tham chiếu tới các mục dữ liệu nằm gần những mục dữ liệu vừa được tham chiếu gần đây, hoặc tham chiếu lại chính các mục dữ liệu vừa được tham chiếu gần đây. Tính cục bộ được chia thành tính cục bộ theo thời gian và tính cục bộ theo không gian.
 
-Có thể xem cụ thể hơn ở các phần [mở vòng lặp (loop unroll)](../lang/optimizations.md#mở-vòng-lặp-loop-unroll), [tối ưu hóa bố cục mã](../lang/optimizations.md#tối-ưu-hóa-bố-cục-mã-code-layout-optimizations), v.v.
+Có thể xem cụ thể hơn ở các phần [mở vòng lặp](../lang/optimizations.md#mở-vòng-lặp-loop-unroll), [tối ưu hóa bố cục mã](../lang/optimizations.md#tối-ưu-hóa-bố-cục-mã-code-layout-optimizations), v.v.
 
 ## Định nghĩa macro cho vòng lặp
 
@@ -118,7 +118,7 @@ Nhiều OJ đều bật tùy chọn biên dịch `-DONLINE_JUDGE`; tận dụng 
 
 ## Đối chiếu chương trình
 
-Đối chiếu chương trình (stress test) là một phương pháp kiểm nghiệm hoặc gỡ lỗi bằng cách so sánh đầu ra của hai chương trình để kiểm tra tính đúng đắn của chương trình. Có thể so sánh đầu ra của chương trình của mình với đầu ra của chương trình khác, từ đó phán đoán chương trình của mình có đúng hay không.
+Đối chiếu chương trình là một phương pháp kiểm nghiệm hoặc gỡ lỗi bằng cách so sánh đầu ra của hai chương trình để kiểm tra tính đúng đắn của chương trình. Có thể so sánh đầu ra của chương trình của mình với đầu ra của chương trình khác, từ đó phán đoán chương trình của mình có đúng hay không.
 
 Quá trình đối chiếu cần thực hiện nhiều lần, vì vậy cần dùng phương pháp xử lý hàng loạt để tự động hóa.
 
@@ -151,11 +151,12 @@ int main() {
 }
 ```
 
-## Vùng nhớ cấp phát sẵn (memory pool)
+<span id="vùng-nhớ-cấp-phát-sẵn-memory-pool"></span>
+## Vùng nhớ cấp phát sẵn
 
 Khi cấp phát bộ nhớ động, việc thường xuyên dùng `new`/`malloc` sẽ tốn rất nhiều thời gian và không gian, thậm chí tạo ra nhiều mảnh bộ nhớ rời rạc làm giảm hiệu năng chương trình, có thể khiến chương trình vốn đúng bị TLE/MLE.
 
-Lúc này cần dùng kỹ thuật "memory pool": trước khi thật sự sử dụng bộ nhớ, cấp phát trước một vùng bộ nhớ kích thước nhất định để dự phòng. Khi cần cấp phát động, chỉ cần lấy trực tiếp một khối từ vùng bộ nhớ dự phòng đó.
+Lúc này cần dùng kỹ thuật vùng nhớ cấp phát sẵn: trước khi thật sự sử dụng bộ nhớ, cấp phát trước một vùng bộ nhớ kích thước nhất định để dự phòng. Khi cần cấp phát động, chỉ cần lấy trực tiếp một khối từ vùng bộ nhớ dự phòng đó.
 
 Trong phần lớn bài OI, có thể tính trước lượng bộ nhớ tối đa cần dùng và cấp phát một lần.
 
@@ -168,7 +169,7 @@ int* newarr(int sz) {
   return allocp += sz, allocp - sz;
 }
 
-// Mã cấp phát nút động cho cây phân đoạn (segment tree):
+// Mã cấp phát nút động cho cây phân đoạn:
 Node* newnode() {
   static Node pool[MAXN << 1], *allocp = pool - 1;
   return ++allocp;
