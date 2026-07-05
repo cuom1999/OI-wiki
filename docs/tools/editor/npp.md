@@ -8,7 +8,7 @@ Chức năng của nó mạnh hơn nhiều trình soạn thảo khác; khi mở 
 
 ## Tải xuống và cài đặt
 
-Xem [Getting started | Notepad++ User Manual](https://npp-user-manual.org/docs/getting-started/).
+Xem [Hướng dẫn bắt đầu | Notepad++ User Manual](https://npp-user-manual.org/docs/getting-started/) trong tài liệu chính thức.
 
 ## Đổi ngôn ngữ giao diện
 

@@ -22,7 +22,7 @@ Thường dùng lệnh `es` hoặc `eshell` để mở Eshell (tương tự mộ
 
 Việc nhập lệnh thường có thể được thay bằng phím tắt.
 
-### Buffer
+### Bộ đệm
 
 Buffer là các tệp và tiến trình đang mở. Khi chưa lưu, sửa đổi trong buffer sẽ không sửa trực tiếp vào tệp.
 

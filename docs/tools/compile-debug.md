@@ -32,7 +32,7 @@ Với mã nguồn C/C++ tên `qwq.c/cpp`, có thể dùng `make qwq` để tự 
 
 Nếu cần thêm tùy chọn biên dịch, có thể dùng `export CFLAGS="xxx"` (chương trình C) hoặc `export CXXFLAGS="xxx"` (chương trình C++) để chỉ định. Nếu cần thêm tùy chọn tiền xử lý, có thể dùng `export CPPFLAGS="xxx"` để chỉ định. Các thiết lập trên cũng có thể viết dưới dạng như `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` để chỉ định biến môi trường dùng trong một lần chạy lệnh.
 
-### Sanitizers
+### Công cụ sanitizer
 
 #### Giới thiệu
 

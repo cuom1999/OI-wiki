@@ -440,7 +440,7 @@ Thông thường có thể sinh dữ liệu có xuống dòng kiểu Linux bằn
 3.  Mở file output ở chế độ nhị phân và dùng định dạng xuống dòng `\n`.
 4.  Tham khảo mã `dos2unix.cpp` trong [trang này](https://help.luogu.com.cn/manual/luogu/problem/testcase-format#%E9%99%84%E5%BD%95windows-%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%80%A0%E6%95%B0%E6%8D%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9) để tự viết công cụ.
 
-## Special Judge
+## Trình chấm đặc biệt
 
 [Hướng dẫn viết SPJ](../tools/special-judge.md)
 

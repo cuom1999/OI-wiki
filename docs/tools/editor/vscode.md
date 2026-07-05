@@ -114,9 +114,7 @@ Nếu bạn dùng trình biên dịch Clang, trong "IntelliSense Mode" hãy ch�
 
 ### Giới thiệu clangd
 
-Trang chủ LLVM giới thiệu clangd như sau:
-
-> Clangd is an implementation of the Language Server Protocol leveraging Clang. Clangd’s goal is to provide language "smartness" features like code completion, find references, etc. for clients such as C/C++ Editors.
+Theo phần giới thiệu của LLVM, clangd là một phần hiện thực Language Server Protocol dựa trên Clang, cung cấp các tính năng "thông minh" như hoàn thành mã và tìm tham chiếu cho các trình soạn thảo C/C++.
 
 Nói đơn giản, clangd là phần triển khai Language Server Protocol của Clang. Nó cung cấp một số tính năng thông minh như lập chỉ mục toàn project, nhảy tới mã, đổi tên biến, hoàn thành mã nhanh hơn, gợi ý thông tin, định dạng mã, v.v.; đồng thời có thể phối hợp với các trình soạn thảo như Vim, Emacs, VSCode thông qua LSP. Dù định nghĩa chính thức nói clangd là phần triển khai LSP, chức năng của clangd gần với language server hơn là chỉ bản thân giao thức.
 
@@ -124,7 +122,7 @@ Extension C/C++ của VS Code cũng có các chức năng như tự động hoà
 
 ### Cài đặt
 
-Xem [Getting started](https://clangd.llvm.org/installation).
+Xem [hướng dẫn bắt đầu](https://clangd.llvm.org/installation).
 
 ### Tiện ích mở rộng VS Code
 

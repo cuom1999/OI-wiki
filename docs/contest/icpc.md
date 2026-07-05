@@ -56,7 +56,7 @@ trên Nowcoder,...
 
 ## Hướng dẫn luyện tập
 
-### Multi-University Training
+### Huấn luyện nhiều trường
 
 Đây là loạt contest mùa hè trên [HDU OJ](http://acm.hdu.edu.cn). Contest có
 giải thưởng, chất lượng đề cao và đã tích lũy nhiều tài nguyên qua nhiều năm.
@@ -68,7 +68,7 @@ Từ khóa để tìm trong OJ: `Multi-University Training Contest`.
 Bạn có thể tìm các bộ đề chọn lọc trên
 [Virtual Judge](https://vjudge.net/).
 
-### Training camp
+### Trại huấn luyện
 
 -   Các camp mùa đông do Toutiao/Tsinghua/CCPC tổ chức, chẳng hạn Wannafly
     Camp.

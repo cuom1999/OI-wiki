@@ -44,7 +44,7 @@ Thao tác cụ thể không khác nhiều so với các trình soạn thảo kh�
 3.  Phạm vi từ tệp hiện tại, nhiều tệp, cho tới project hiện tại.
 4.  Thay thế có chọn lọc trong kết quả tìm kiếm.
 
-### Language Server Protocol
+### Giao thức máy chủ ngôn ngữ
 
 Kate hỗ trợ LSP Client từ phiên bản 19.12. Ban đầu chỉ hỗ trợ C/C++, D, Fortran, Go, Latex/BibTeX, OCaml, Python, Rust; hiện nay hỗ trợ các ngôn ngữ trong bảng sau:
 
@@ -162,7 +162,7 @@ Chức năng định dạng yêu cầu gói hoặc ứng dụng tương ứng kh
 
 Mở bất kỳ tệp nguồn nào, tìm `Format with xxx` trong công cụ ngoài, rồi nhấp vào đó. Ngoài ra, với tệp nguồn C/C++, `clang-format` có thể định dạng phần văn bản được chọn.
 
-### Git Blame
+### Truy vết dòng bằng Git blame
 
 Để bật tính năng này, cần vào thanh menu `Settings` -> `Configure Kate`, rồi trong `Plugins`, chọn `Git Blame`.
 
