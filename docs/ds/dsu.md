@@ -2,7 +2,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 ![](images/disjoint-set.svg)
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
@@ -13,12 +13,12 @@ DSU (disjoint-set union, cấu trúc tập hợp rời nhau) là một cấu tr�
 -   Hợp nhất (Unite): hợp nhất hai tập hợp chứa hai phần tử đã cho (tức hợp nhất hai cây tương ứng).
 -   Tìm (Find): tìm tập hợp chứa một phần tử (tức tìm nút gốc của cây tương ứng); thao tác này có thể dùng để kiểm tra hai phần tử có thuộc cùng một tập hợp hay không.
 
-Sau một số biến đổi, DSU có thể hỗ trợ xóa hoặc di chuyển một phần tử riêng lẻ, hoặc duy trì trọng số trên các cạnh của cây. Với cây phân đoạn mở nút động, ta còn có thể cài đặt [DSU bền vững](./persistent-seg.md#%E6%8B%93%E5%B1%95%E5%9F%BA%E4%BA%8E%E4%B8%BB%E5%B8%AD%E6%A0%91%E7%9A%84%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E5%B9%B6%E6%9F%A5%E9%9B%86).
+Sau một số biến đổi, DSU có thể hỗ trợ xóa hoặc di chuyển một phần tử riêng lẻ, hoặc duy trì trọng số trên các cạnh của cây. Với cây phân đoạn mở nút động, ta còn có thể cài đặt [DSU bền vững](./persistent-seg.md#mở-rộng-dsu-bền-vững-dựa-trên-cây-chủ-tịch).
 
 ???+ warning "Cảnh báo"
     DSU không thể tách một tập hợp với độ phức tạp thấp.
 
-<span id="&#x521D;&#x59CB;&#x5316;"></span>
+<span id="khởi-tạo"></span>
 
 ## Khởi tạo
 
@@ -41,7 +41,7 @@ Ban đầu, mỗi phần tử nằm trong một tập hợp riêng, được bi�
                 self.pa = list(range(size))
         ```
 
-<span id="&#x67E5;&#x8BE2;"></span>
+<span id="tìm"></span>
 
 ## Tìm
 
@@ -61,7 +61,7 @@ Ta cần đi ngược lên theo cây cho đến khi gặp nút gốc.
             return x if self.pa[x] == x else self.find(self.pa[x])
         ```
 
-<span id="&#x8DEF;&#x5F84;&#x538B;&#x7F29;"></span>
+<span id="nén-đường-đi"></span>
 
 ### Nén đường đi
 
@@ -83,7 +83,7 @@ Mọi phần tử đi qua trong quá trình tìm đều thuộc cùng tập hợ
             return self.pa[x]
         ```
 
-<span id="&#x5408;&#x5E76;"></span>
+<span id="hợp-nhất"></span>
 
 ## Hợp nhất
 
@@ -103,7 +103,7 @@ Mọi phần tử đi qua trong quá trình tìm đều thuộc cùng tập hợ
             self.pa[self.find(x)] = self.find(y)
         ```
 
-<span id="&#x542F;&#x53D1;&#x5F0F;&#x5408;&#x5E76;"></span>
+<span id="hợp-nhất-theo-heuristic"></span>
 
 ### Hợp nhất theo heuristic
 
@@ -157,7 +157,7 @@ Cài đặt tham khảo cho hợp nhất theo kích thước tập hợp: (lưu 
                 self.size[x] += self.size[y]
         ```
 
-<span id="&#x53C2;&#x8003;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-tham-khảo"></span>
 
 ## Cài đặt tham khảo
 
@@ -174,7 +174,7 @@ Cài đặt đầy đủ của DSU có nén đường đi và hợp nhất theo 
         --8<-- "docs/ds/code/dsu/dsu_0.py"
         ```
 
-<span id="&#x590D;&#x6742;&#x5EA6;"></span>
+<span id="độ-phức-tạp"></span>
 
 ## Độ phức tạp
 
@@ -189,13 +189,13 @@ Sau khi dùng đồng thời nén đường đi và hợp nhất theo heuristic,
 
 Độ phức tạp bộ nhớ của DSU hiển nhiên là $O(n)$.
 
-<span id="&#x62D3;&#x5C55;&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-mở-rộng"></span>
 
 ## Thao tác mở rộng
 
 Trên nền DSU thông thường, ta có thể thực hiện nhiều chỉnh sửa để hỗ trợ thêm thao tác hoặc duy trì thông tin phức tạp hơn.
 
-<span id="&#x5E26;&#x5220;&#x9664;&#x5E76;&#x67E5;&#x96C6;"></span>
+<span id="dsu-hỗ-trợ-xóa"></span>
 
 ### DSU hỗ trợ xóa
 
@@ -216,7 +216,7 @@ Lưu ý rằng sau khi xóa một nút riêng lẻ, cần tạo lại một nút
 
 Cách tương tự cũng có thể dùng để di chuyển một phần tử riêng lẻ giữa các tập hợp. Chi tiết cài đặt xem trong ví dụ.
 
-<span id="&#x5E26;&#x6743;&#x5E76;&#x67E5;&#x96C6;"></span>
+<span id="dsu-có-trọng-số"></span>
 
 ### DSU có trọng số
 
@@ -235,7 +235,7 @@ Ta cũng có thể định nghĩa một loại trọng số trên các cạnh c�
         --8<-- "docs/ds/code/dsu/dsu_5.py"
         ```
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 
 ## Ví dụ
 
@@ -349,7 +349,7 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
         --8<-- "docs/ds/code/dsu/dsu_3.py"
         ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 
 ## Bài tập
 
@@ -358,7 +358,7 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
 -   [NOIP2023 Three-Valued Logic](https://www.luogu.com.cn/problem/P9869)
 -   [NOI2002 Legend of Galactic Heroes](https://www.luogu.com.cn/problem/P1196)
 
-<span id="&#x5176;&#x4ED6;&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng-khác"></span>
 
 ## Ứng dụng khác
 
@@ -366,7 +366,7 @@ Thuật toán Kruskal trong [cây khung nhỏ nhất](../graph/mst.md) và thu�
 
 Xem thêm chuyên đề liên quan ở [ứng dụng DSU](../topic/dsu-app.md).
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+<span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 
 ## Tài liệu tham khảo và đọc thêm
 
