@@ -4,10 +4,10 @@
 
 ### Bộ chứa tuần tự
 
--   **Vector** (`vector`): bảng tuần tự có thể thêm phần tử ở cuối hiệu quả.
--   **Array** (`array`) **C++11**: bảng tuần tự độ dài cố định, lớp bọc đơn giản
+-   **Vector** (`vector`): dãy có thể thêm phần tử ở cuối hiệu quả.
+-   **Array** (`array`) **C++11**: dãy độ dài cố định, lớp bọc đơn giản
     cho mảng kiểu C.
--   **Deque** (`deque`): bảng tuần tự có thể thêm phần tử hiệu quả ở cả hai đầu.
+-   **Deque** (`deque`): dãy có thể thêm phần tử hiệu quả ở cả hai đầu.
 -   **List** (`list`): danh sách liên kết có thể duyệt hai chiều.
 -   **Forward list** (`forward_list`): danh sách liên kết chỉ có thể duyệt một
     chiều.
@@ -15,12 +15,12 @@
 ### Bộ chứa kết hợp
 
 -   **Set** (`set`): bộ chứa dùng để lưu có thứ tự các phần tử **khác nhau**.
-    Cấu trúc bên dưới thường là cây đỏ-đen gồm các nút; mỗi nút chứa một phần
-    tử, các nút được sắp xếp theo một vị từ so sánh phần tử.
+    Cấu trúc nội bộ thường là cây đỏ-đen gồm các nút; mỗi nút chứa một phần tử,
+    các nút được sắp xếp theo một vị từ so sánh phần tử.
 -   **Multiset** (`multiset`): bộ chứa dùng để lưu có thứ tự các phần tử, cho
     phép có các phần tử bằng nhau.
--   **Map** (`map`): tập hợp các cặp {khóa, giá trị}, được sắp xếp theo một
-    vị từ so sánh quan hệ lớn nhỏ giữa các khóa.
+-   **Map** (`map`): tập hợp các cặp {khóa, giá trị}, được sắp xếp theo một vị
+    từ so sánh giữa các khóa.
 -   **Multimap** (`multimap`): multiset gồm các cặp {khóa, giá trị}, tức là map
     cho phép các khóa bằng nhau.
 
@@ -35,11 +35,11 @@
     có tồn tại hay không", và được cài đặt bằng bảng băm.
 -   **Ánh xạ/đa ánh xạ không thứ tự** (`unordered_map`/`unordered_multimap`) **C++11**:
     khác `map`/`multimap` ở chỗ khóa (`key`) không có thứ tự, chỉ quan tâm "quan
-    hệ tương ứng giữa khóa và giá trị", và được cài đặt bằng bảng băm.
+    hệ giữa khóa và giá trị", và được cài đặt bằng bảng băm.
 
 ### Bộ chuyển đổi bộ chứa
 
-Bộ chuyển đổi bộ chứa thật ra không phải là bộ chứa. Chúng không có một số đặc
+Bộ chuyển đổi bộ chứa không hẳn là bộ chứa. Chúng không có một số đặc
 điểm của bộ chứa, chẳng hạn bộ lặp hoặc hàm `clear()`.
 
 > "Bộ chuyển đổi là cơ chế làm hành vi của một sự vật giống hành vi của một sự
@@ -60,8 +60,8 @@ Bộ chuyển đổi bộ chứa thật ra không phải là bộ chứa. Chúng
 Đều có dạng `containerName<typeName,...> name`, nhưng số lượng và hình thức tham
 số template (các tham số trong `<>`) thay đổi theo từng bộ chứa cụ thể.
 
-Nguyên nhân bản chất: STL chính là "thư viện template chuẩn", nên các bộ chứa
-đều là template lớp.
+Nguyên nhân bản chất: STL là Standard Template Library, nên các bộ chứa đều là
+mẫu lớp.
 
 ### Bộ lặp
 
@@ -81,7 +81,7 @@ một phần tử nào, mà là vị trí ngay sau phần tử cuối.
 `max_size()`: trả về số phần tử tối đa mà bộ chứa **về lý thuyết** có thể lưu.
 Giá trị này thay đổi theo loại bộ chứa và kiểu biến được lưu.
 
-`empty()`: trả về việc bộ chứa có rỗng hay không.
+`empty()`: trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`.
 
 `swap()`: hoán đổi hai bộ chứa.
 
