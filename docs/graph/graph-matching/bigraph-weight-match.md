@@ -40,7 +40,7 @@ Sau đó chọn một đỉnh chưa ghép cặp và tìm đường tăng giống
 
 Gọi $S$, $T$ lần lượt là các đỉnh phía trái và phía phải nằm trong cây luân phiên, còn $S'$, $T'$ là các đỉnh không nằm trong cây luân phiên.
 
-![bigraph-weight-match-1](./images/bigraph-weight-match-1.png)
+![Các tập S, T, S' và T' trong cây luân phiên của KM](./images/bigraph-weight-match-1.png)
 
 Trong đồ thị con đẳng thức:
 

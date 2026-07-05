@@ -103,7 +103,7 @@ Thuật toán này có thể chia thành bốn bước.
 3.  SHRINK (co hoa): co hoa thành một đỉnh.
 4.  EXPAND (bung hoa): tách hoa ra.
 
-![general-weight-match-1](images/general-weight-match-1.png)
+![Bốn bước grow, augment, shrink và expand của thuật toán](images/general-weight-match-1.png)
 
 Trong giai đoạn AUGMENT, vì mọi đỉnh chưa ghép cặp nằm trên các cây luân phiên khác nhau, nên khi hai đỉnh chẵn của hai cây luân phiên được nối với nhau trong lúc tăng cường, điều đó có nghĩa là đã tìm được một đường tăng cường.
 
@@ -191,7 +191,7 @@ Các đỉnh có nhãn đỉnh bằng $0$ cuối cùng sẽ trở thành đỉnh
 
 Dưới đây là ví dụ về hoa lồng nhau.
 
-![general-weight-match-2](images/general-weight-match-2.png)
+![Ví dụ hoa lồng nhau trong ghép cặp trọng số tổng quát](images/general-weight-match-2.png)
 
 Trong đó $\{ 6, 5, 8\} \in b1,\{ b1, 4, 3, 2, 11, 10, 9\} \in b2$. Lưu trữ thành:
 
@@ -200,7 +200,7 @@ flower[b2] = {b1, 4, 3, 2, 11, 10, 9}
 flower[b1] = {6, 5, 8}
 ```
 
-![general-weight-match-3](images/general-weight-match-3.png)
+![Cách lưu các đỉnh của hoa lồng nhau bằng mảng flower](images/general-weight-match-3.png)
 
 ```text
 flower[b2] = {9, b1, 4, 3, 2, 11, 10} 
@@ -229,7 +229,7 @@ queue<int> q;
 // queue dùng cho BFS tìm đường tăng cường
 ```
 
-![general-weight-match-4](images/general-weight-match-4.png)
+![Ánh xạ flower_from trong hoa lồng nhau](images/general-weight-match-4.png)
 
 ```text
 flower_from[b2][6] = b1 
@@ -305,7 +305,7 @@ int get_pr(int b, int xr) {
 }
 ```
 
-![general-weight-match-5](images/general-weight-match-5.png)
+![Ví dụ tính vị trí trong hoa bằng get_pr](images/general-weight-match-5.png)
 
 Nếu dùng `get_pr(b2,11)`, `flower[b2]` sẽ trở thành `{9,10,11,2,3,4,b1}` và trả về 2.
 
