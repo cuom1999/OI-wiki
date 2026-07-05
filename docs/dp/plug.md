@@ -19,7 +19,7 @@ Một số bài toán [DP nén trạng thái](./state.md) yêu cầu ta ghi lạ
 
 Khi $n$ hoặc $m$ không quá lớn, dạng bài này có thể giải bằng [DP nén trạng thái](./state.md). Nếu chia giai đoạn theo từng hàng, đặt $dp(i,s)$ là số cách sau khi đã xét $i$ hàng đầu, và trạng thái của hàng thứ $i$ là $s$. Mỗi bit của trạng thái $s$ có thể biểu thị vị trí tương ứng đã được phủ từ hàng trước hay chưa.
 
-![domino](./images/domino.svg)
+![Trạng thái phủ ô trong bài toán lát domino](./images/domino.svg)
 
 Một cách chia giai đoạn khác là DP theo từng ô, còn gọi là DP đường biên. $dp(i,j,s)$ biểu thị số cách khi đã xét đến hàng $i$, cột $j$, và trạng thái hiện tại trên đường biên là $s$.
 
@@ -85,11 +85,11 @@ Giai đoạn: thứ tự thực hiện quy hoạch động; kết quả của c�
 
 Đường biên: ranh giới giữa phần trạng thái đã quyết định và phần chưa quyết định.
 
-![contour line](./images/contour_line.svg)
+![Đường biên giữa phần đã quyết định và chưa quyết định](./images/contour_line.svg)
 
 Đầu nối: nếu một ô có đầu nối ở một hướng nào đó, nghĩa là ô này nối với ô kề nó theo hướng đó.
 
-![plug](./images/plug.svg)
+![Đầu nối giữa các ô kề nhau](./images/plug.svg)
 
 ## Mô hình đường đi
 
@@ -402,7 +402,7 @@ Ngoài mô hình đường đi, còn có một loại mô hình thường gặp 
 ???+ note "Ví dụ [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513)"
     Tóm tắt đề bài: tô đen trắng các điểm lưới chưa tô trong một bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời màu trong bất kỳ hình chữ nhật con $2\times 2$ nào không được hoàn toàn giống nhau (ví dụ trường hợp trong hình dưới là không hợp lệ). Hãy đếm số phương án hợp lệ và dựng một phương án hợp lệ.
     
-    ![black\_and\_white1](./images/black_and_white1.svg)
+    ![Cấu hình 2x2 không hợp lệ trong bài Black & White](./images/black_and_white1.svg)
 
 ### Mã hóa trạng thái
 
@@ -641,7 +641,7 @@ Ta xử lý riêng trường hợp này. Nhờ vậy trong bài này có thể v
 
 Có một lớp bài toán DP đầu nối yêu cầu ta dựng một tập tường trên bàn cờ để phân tách một số phần tử trên đó. Có thể tạm gọi đây là bài toán xây tường; loại bài toán này có thể xem như mô hình tô màu, cũng có thể xem như mô hình đường đi.
 
-![greatwall](./images/greatwall.svg)
+![Mô hình xây tường để phân tách các phần tử trên bàn cờ](./images/greatwall.svg)
 
 Trong bài này, nếu xem như mô hình tô màu, ta không chỉ cần thảo luận thêm về chu vi của vùng được tô, mà còn phải kiểm tra trường hợp không hợp lệ do chạm nhau ở góc (hình 2). Ngoài ra, khác với [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513), bài này yêu cầu tường là đa giác đơn, nên trường hợp dạng vòng trong vòng dưới đây là không hợp lệ trong bài này.
 
@@ -813,7 +813,7 @@ Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chi�
 ??? note "Bài tập [「HDU 4796」Winter's Coming](https://acm.hdu.edu.cn/showproblem.php?pid=4796)"
     Tóm tắt đề bài: tô đen, trắng, xám các điểm lưới chưa tô trong bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời vùng đen và vùng trắng lần lượt liên thông với biên trên và biên dưới của bàn cờ, và vùng đen với vùng trắng không được kề nhau. Mỗi ô có một chi phí tương ứng; hãy tìm một phương án tô màu sao cho chi phí vùng xám nhỏ nhất.
     
-    ![4796](./images/4796.jpg)
+    ![Ví dụ tô màu trong bài Winter's Coming](./images/4796.jpg)
 
 ??? note "Bài tập [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365624)"
     Tóm tắt đề bài: trên bản đồ $9\times6$, mỗi ô chứa một loại ống (`-`, `T`, `L`, `+` hoặc không có). Có thể xoay ống 0°, 90°, 180°, 270°. Hỏi tối đa có bao nhiêu hàng có biên phải nối được với biên trái của hàng X thông qua ống.
@@ -837,7 +837,7 @@ Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chi�
 ??? note "Bài tập [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
     Tóm tắt đề bài: có tổng cộng 12 loại mẫu gạch, mỗi loại có số lượng cho trước. Cần lát chúng lên một sàn hình chữ nhật xem như đồ thị lưới $R\times C$, mỗi ô đặt một viên gạch, sao cho tâm của ô góc trên trái liên thông với tâm của ô góc dưới phải thông qua các đường trên mẫu gạch. $(2 \le R \times C \le 15)$
     
-    ![plug2](./images/plug2.png)
+    ![Các mẫu gạch trong bài Pipeline Plans](./images/plug2.png)
 
 ??? note "Bài tập [「SDOI 2014」Bảng mạch](https://www.luogu.com.cn/problem/P3314)"
     Tóm tắt đề bài: một bảng mạch $N\times M$ có một số vị trí là chướng ngại mà dây điện không thể đi qua. Cho $K$ cặp ô, yêu cầu mỗi cặp ô đều được nối bằng dây điện, và các dây điện không giao nhau (cho phép một đường dây đi vào ô hiện tại từ biên trên rồi rời khỏi ô qua biên trái, đồng thời một đường dây khác đi vào từ biên dưới rồi ra qua biên phải). Xem dây điện là cạnh vô hướng; hãy tìm tổng chiều dài dây điện ngắn nhất thỏa mãn yêu cầu và số phương án.
@@ -864,7 +864,7 @@ Khi giới hạn $m=2$, lát domino tương đương với dãy Fibonacci. [Conc
 
 Khi $m\le 10,n\le 10^9$, có thể tiền xử lý công thức chuyển thành dạng ma trận và dùng [nhân ma trận để tăng tốc](http://www.matrix67.com/blog/archives/276).
 
-![domino\_v2\_transform\_matrix](./images/domino_v2_transform_matrix.svg)
+![Ma trận chuyển cho bài toán lát domino V2](./images/domino_v2_transform_matrix.svg)
 
 Khi $n,m\le 100$, có thể dùng [thuật toán FKT](https://en.wikipedia.org/wiki/FKT_algorithm) để tính số ghép cặp hoàn hảo của đồ thị phẳng tương ứng.
 
