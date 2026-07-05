@@ -8,17 +8,17 @@ Trong toán học, hai thuật ngữ này cũng có thể dịch trực tiếp l
 
 Trong phép "tích chấm", dấu chấm của phép toán thường được lược bỏ; trong đại số tuyến tính, nó còn thường được xem trực tiếp như phép nhân ma trận và không viết dấu chấm.
 
-<span id="&#20869;&#31215;"></span>
+<span id="tích-trong"></span>
 ## Tích trong
 
 Khái niệm tích trong **áp dụng cho vectơ ở mọi số chiều**.
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ### Định nghĩa
 
 Tích trong có nhiều cách định nghĩa khác nhau nhưng tương đương. Dưới đây giới thiệu một vài cách.
 
-<span id="&#20960;&#20309;&#23450;&#20041;"></span>
+<span id="định-nghĩa-hình-học"></span>
 #### Định nghĩa hình học
 
 Trong không gian Euclid $n$ chiều $\mathbf{R}^n$, cho hai vectơ $\boldsymbol{a}, \boldsymbol{b}$, góc giữa chúng là $\theta$, khi đó:
@@ -29,7 +29,7 @@ $$
 
 được gọi là **tích trong** của hai vectơ này, cũng gọi là **tích chấm** hoặc **tích vô hướng**. Trong đó $|\boldsymbol{b}|\cos \theta$ được gọi là hình chiếu của $\boldsymbol{b}$ lên hướng của $\boldsymbol{a}$. Ý nghĩa hình học của tích trong là: tích trong $\boldsymbol{a} \cdot \boldsymbol{b}$ bằng tích giữa độ dài của $\boldsymbol{a}$ và hình chiếu của $\boldsymbol{b}$ lên hướng của $\boldsymbol{a}$.
 
-<span id="&#20195;&#25968;&#23450;&#20041;"></span>
+<span id="định-nghĩa-đại-số"></span>
 #### Định nghĩa đại số
 
 Trong không gian Euclid $n$ chiều $\mathbf{R}^n$, cho hai vectơ $\boldsymbol{a} = (a_1, a_2, \dots, a_n), \boldsymbol{b} = (b_1, b_2, \dots, b_n)$, khi đó:
@@ -42,7 +42,7 @@ $$
 
 Khi không gây nhầm lẫn, dấu chấm của tích trong có thể được lược bỏ. Nếu ở góc trên bên phải của vectơ có số mũ $2$, đó là cách viết tắt của tích trong của vectơ với chính nó, tức **bình phương độ dài vectơ**, lược bỏ ký hiệu độ dài. Số mũ $2$ này không được hiểu là bình phương vectơ, vì kết quả của tích trong vectơ là một vô hướng, và không tồn tại tích trong của số lượng vectơ khác $2$. Tương tự, bình phương của bình phương độ dài vectơ không thể viết tắt bằng số mũ $4$, mà phải xem kết quả mang số mũ $2$ là một chỉnh thể rồi tiếp tục xử lý.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ### Tính chất
 
 Có thể thấy kết quả của tích trong là một vô hướng. Điểm đặc biệt của nó là phép toán song tuyến tính theo từng vectơ. Cụ thể, tích trong thỏa:
@@ -62,7 +62,7 @@ $$
 \boldsymbol{a} \cdot \boldsymbol{b} = \boldsymbol{b} \cdot \boldsymbol{a}
 $$
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ### Ứng dụng
 
 Dưới đây giới thiệu một số ứng dụng thường gặp của phép tích trong.
@@ -93,7 +93,7 @@ Dưới đây giới thiệu một số ứng dụng thường gặp của phép
     \theta = \arccos \frac{\boldsymbol{a} \cdot \boldsymbol{b}}{|\boldsymbol a| |\boldsymbol b|}
     $$
 
-<span id="&#20108;&#38454;&#19982;&#19977;&#38454;&#34892;&#21015;&#24335;"></span>
+<span id="định-thức-bậc-hai-và-bậc-ba"></span>
 ## Định thức bậc hai và bậc ba
 
 Định thức bậc hai và bậc ba có thể được định nghĩa riêng như những trường hợp đơn giản hơn của định thức. Trong phần cuối của giải tích về trường vectơ, công thức Green dùng định thức bậc hai, công thức Gauss dùng tích chấm, và công thức Stokes dùng định thức bậc ba.
@@ -121,7 +121,7 @@ Một cách ghi nhớ đặc biệt là dùng "quy tắc đường chéo"; quy t
 
 Cần đặc biệt chú ý: định thức bậc bốn khi khai triển có tổng cộng 24 hạng tử, và hạng tử theo đường chéo phụ có dấu dương. Nếu cố áp dụng "quy tắc đường chéo" của định thức bậc ba, không chỉ thiếu hạng tử mà dấu của hạng tử theo đường chéo phụ cũng sai. Vì vậy, "quy tắc đường chéo" của định thức bậc ba không áp dụng cho định thức bậc cao hơn, và định thức bậc cao hơn cũng không thích hợp để tính bằng cách khai triển trực tiếp.
 
-<span id="&#22806;&#31215;"></span>
+<span id="tích-ngoài"></span>
 ## Tích ngoài
 
 Tích ngoài là phép toán **riêng của vectơ ba chiều**.
@@ -130,12 +130,12 @@ Trong vật lý, vectơ ba chiều mặc định là vectơ liên quan đến v�
 
 Trong đại số tuyến tính, mọi vectơ đều được biểu diễn bằng chữ đậm; hơn nữa vì khá phiền, và trong đại số tuyến tính phần lớn là phép toán giữa vectơ và ma trận nên khó gây nhầm lẫn, khi viết tay có thể lược bỏ ký hiệu vectơ.
 
-<span id="&#23450;&#20041;_1"></span>
+<span id="định-nghĩa_1"></span>
 ### Định nghĩa
 
 Tích ngoài có nhiều cách định nghĩa khác nhau nhưng tương đương. Dưới đây giới thiệu một vài cách.
 
-<span id="&#20960;&#20309;&#23450;&#20041;_1"></span>
+<span id="định-nghĩa-hình-học_1"></span>
 #### Định nghĩa hình học
 
 Trong không gian Euclid ba chiều $\mathbf{R}^3$, định nghĩa tích ngoài của hai vectơ $\boldsymbol{a}, \boldsymbol{b}$ là một vectơ, ký hiệu $\boldsymbol{a} \times \boldsymbol{b}$, có độ dài và hướng được định nghĩa như sau:
@@ -145,7 +145,7 @@ Trong không gian Euclid ba chiều $\mathbf{R}^3$, định nghĩa tích ngoài 
 
 Nhìn vào độ dài của tích ngoài và liên hệ với công thức diện tích tam giác $S=\frac{1}{2}ab\sin C$, ta thấy ý nghĩa hình học của tích ngoài là: **$|\boldsymbol{a} \times \boldsymbol{b}|$ là diện tích hình bình hành có $\boldsymbol{a}, \boldsymbol{b}$ làm hai cạnh kề**.
 
-<span id="&#20195;&#25968;&#23450;&#20041;_1"></span>
+<span id="định-nghĩa-đại-số_1"></span>
 #### Định nghĩa đại số
 
 Trong không gian Euclid ba chiều $\mathbf{R}^3$, định nghĩa tích ngoài của hai vectơ $\boldsymbol{a} = (x_1, y_1, z_1), \boldsymbol{b} = (x_2, y_2, z_2)$ là một vectơ $\boldsymbol{c}$, ký hiệu $\boldsymbol{c} = \boldsymbol{a} \times \boldsymbol{b}$. Kết quả của nó có thể biểu diễn bằng định thức bậc ba:
@@ -168,7 +168,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#24615;&#36136;_1"></span>
+<span id="tính-chất_1"></span>
 ### Tính chất
 
 1.  Tích ngoài là phép toán song tuyến tính theo từng vectơ. Cụ thể, tích ngoài thỏa:
@@ -212,7 +212,7 @@ $$
     \boldsymbol a \times (\boldsymbol b \times \boldsymbol c) + \boldsymbol b \times (\boldsymbol c \times \boldsymbol a) + \boldsymbol c \times (\boldsymbol a \times \boldsymbol b) = \boldsymbol 0
     $$
 
-<span id="&#24212;&#29992;_1"></span>
+<span id="ứng-dụng_1"></span>
 ### Ứng dụng
 
 Dưới đây giới thiệu một số ứng dụng thường gặp của phép tích ngoài.
@@ -231,7 +231,7 @@ Dưới đây giới thiệu một số ứng dụng thường gặp của phép
     S \langle \boldsymbol a, \boldsymbol b \rangle = |\boldsymbol a \times \boldsymbol b|
     $$
 
-<span id="&#20108;&#32500;&#21521;&#37327;&#30340;&#24773;&#24418;"></span>
+<span id="trường-hợp-vectơ-hai-chiều"></span>
 #### Trường hợp vectơ hai chiều
 
 Với vectơ hai chiều, không thể tính tích ngoài, nhưng vẫn có thể tính diện tích hình bình hành căng bởi hai vectơ:
@@ -242,12 +242,12 @@ Khi đó tích ngoài của hai vectơ là $(0, 0, mq - np)$, nên diện tích 
 
 Lúc này, theo quy tắc bàn tay phải và dấu của tọa độ $z$, có thể suy ra hướng của $\boldsymbol b$ so với $\boldsymbol a$: nếu theo chiều ngược kim đồng hồ thì tọa độ $z$ dương, ngược lại là âm. Có thể ghi nhớ ngắn gọn là **thuận âm, nghịch dương**.
 
-<span id="&#28151;&#21512;&#31215;"></span>
+<span id="tích-hỗn-hợp"></span>
 ## Tích hỗn hợp
 
 Giống như tích ngoài, tích hỗn hợp của vectơ là phép toán **riêng của vectơ ba chiều**.
 
-<span id="&#23450;&#20041;_2"></span>
+<span id="định-nghĩa_2"></span>
 ### Định nghĩa
 
 Giả sử $\boldsymbol a, \boldsymbol b, \boldsymbol c$ là ba vectơ trong không gian ba chiều. Khi đó $(\boldsymbol a \times \boldsymbol b) \cdot \boldsymbol c$ được gọi là tích hỗn hợp của ba vectơ $\boldsymbol a, \boldsymbol b, \boldsymbol c$, ký hiệu là $[\boldsymbol a \boldsymbol b \boldsymbol c]$ hoặc $(\boldsymbol a, \boldsymbol b, \boldsymbol c)$ hoặc $(\boldsymbol a \boldsymbol b \boldsymbol c)$ hoặc $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)$. Ý nghĩa hình học của giá trị tuyệt đối $|(\boldsymbol a \times \boldsymbol b) \cdot \boldsymbol c|$ của tích hỗn hợp là thể tích hình hộp song song có $\boldsymbol a, \boldsymbol b, \boldsymbol c$ làm các cạnh.
@@ -266,7 +266,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#24615;&#36136;_2"></span>
+<span id="tính-chất_2"></span>
 ### Tính chất
 
 1.  Tích hỗn hợp tuyến tính theo từng vectơ. Cụ thể, có:
@@ -291,7 +291,7 @@ $$
     (\boldsymbol a \times \boldsymbol b) \cdot \boldsymbol c = \boldsymbol a \cdot (\boldsymbol b \times \boldsymbol c)
     $$
 
-<span id="&#24212;&#29992;_2"></span>
+<span id="ứng-dụng_2"></span>
 ### Ứng dụng
 
 Tích hỗn hợp của vectơ có các ứng dụng thường gặp sau.
@@ -313,7 +313,7 @@ Tích hỗn hợp của vectơ có các ứng dụng thường gặp sau.
     -   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) < 0$ tương đương với $\boldsymbol a, \boldsymbol b, \boldsymbol c$ theo thứ tự tạo thành hệ tay trái;
     -   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) > 0$ tương đương với $\boldsymbol a, \boldsymbol b, \boldsymbol c$ theo thứ tự tạo thành hệ tay phải.
 
-<span id="&#20108;&#37325;&#22806;&#31215;"></span>
+<span id="tích-ngoài-kép"></span>
 ## Tích ngoài kép
 
 Tích hỗn hợp của vectơ ba chiều là sự kết hợp giữa tích trong và tích ngoài, có tính đối xứng luân phiên. Tích ngoài của hai vectơ ba chiều vẫn là một vectơ ba chiều, vậy tích ngoài của tích ngoài có kết luận liên quan nào không?

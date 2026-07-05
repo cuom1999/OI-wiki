@@ -899,7 +899,7 @@ Phần lớn các kết luận ở trên về liên phân số đều có diễn
 
 ??? note "Diễn giải hình học"
     -   Mỗi phân số $\nu=\dfrac{p}{q}$ tương ứng với một điểm nguyên $\vec\nu=(q,p)$ trong góc phần tư thứ nhất; độ lớn của phân số tương ứng với hệ số góc của đường nối điểm đó với gốc tọa độ.
-    -   Véc-tơ chỉ phương của đường thẳng $y=\xi x$ là $\vec\xi=(1,\xi)$. Dùng khái niệm [tích có hướng](../linear-algebra/product.md#%E4%BA%8C%E7%BB%B4%E5%90%91%E9%87%8F%E7%9A%84%E6%83%85%E5%BD%A2) $(x_1,y_1)\times(x_2,y_2)=x_1y_2-x_2y_1$, có thể xét dấu của $\vec\xi\times\vec\nu=p-q\xi$ để xác định điểm nằm phía trên hay phía dưới đường thẳng. Vì vậy, điểm phía trên đường thẳng tương ứng với phân số lớn hơn hoặc bằng $\xi$, còn điểm phía dưới đường thẳng tương ứng với phân số nhỏ hơn hoặc bằng $\xi$. Giá trị tuyệt đối của tích có hướng $|\vec\xi\times\vec\nu|$ tỉ lệ với khoảng cách từ điểm $\vec\nu$ tới đường thẳng $y=\xi x$:
+    -   Véc-tơ chỉ phương của đường thẳng $y=\xi x$ là $\vec\xi=(1,\xi)$. Dùng khái niệm [tích có hướng](../linear-algebra/product.md#trường-hợp-vectơ-hai-chiều) $(x_1,y_1)\times(x_2,y_2)=x_1y_2-x_2y_1$, có thể xét dấu của $\vec\xi\times\vec\nu=p-q\xi$ để xác định điểm nằm phía trên hay phía dưới đường thẳng. Vì vậy, điểm phía trên đường thẳng tương ứng với phân số lớn hơn hoặc bằng $\xi$, còn điểm phía dưới đường thẳng tương ứng với phân số nhỏ hơn hoặc bằng $\xi$. Giá trị tuyệt đối của tích có hướng $|\vec\xi\times\vec\nu|$ tỉ lệ với khoảng cách từ điểm $\vec\nu$ tới đường thẳng $y=\xi x$:
     
         $$
         \dfrac{|p-qx|}{\sqrt{1+\xi^2}},
@@ -984,7 +984,7 @@ Hiểu biểu diễn liên phân số như đường đi trên cây Stern-Brocot
     Cho hai liên phân số $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$ và $\beta=[\beta_0,\beta_1,\cdots,\beta_m]$, hãy so sánh độ lớn của chúng.
 
 ??? note "Lời giải"
-    Trước hết, chuyển cả hai biểu diễn liên phân số về dạng kết thúc bằng $1$. Không mất tính tổng quát, giả sử liên phân số đề bài cho đã ở dạng này, tức $\alpha_n=\beta_m=1$. Vì các vị trí chẵn (đánh số từ $0$) là số bước đi sang phải, còn các vị trí lẻ là số bước đi sang trái, nên $\alpha<\beta$ khi và chỉ khi theo so sánh [thứ tự từ điển](../../string/basic.md#%E5%AD%97%E5%85%B8%E5%BA%8F), ta có
+    Trước hết, chuyển cả hai biểu diễn liên phân số về dạng kết thúc bằng $1$. Không mất tính tổng quát, giả sử liên phân số đề bài cho đã ở dạng này, tức $\alpha_n=\beta_m=1$. Vì các vị trí chẵn (đánh số từ $0$) là số bước đi sang phải, còn các vị trí lẻ là số bước đi sang trái, nên $\alpha<\beta$ khi và chỉ khi theo so sánh [thứ tự từ điển](../../string/basic.md#thứ-tự-từ-điển), ta có
     
     $$
     (\alpha_0,-\alpha_1,\alpha_2,\cdots,(-1)^{n-1}\alpha_{n-1},0,\cdots)<(\beta_0,-\beta_1,\beta_2,\cdots,(-1)^{m-1}\beta_{m-1},0,\cdots).
