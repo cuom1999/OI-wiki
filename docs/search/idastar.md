@@ -2,7 +2,7 @@ Kiến thức nền: [Thuật toán A\*](./astar.md), [Tìm kiếm sâu dần](.
 
 Trang này giới thiệu ngắn gọn về thuật toán IDA\*. IDA\* chính là thuật toán A\* áp dụng chiến lược tìm kiếm sâu dần.
 
-<span id="&#x8fc7;&#x7a0b;"></span>
+<span id="quy-trình"></span>
 ## Quy trình
 
 IDA\* là một biến thể của tìm kiếm sâu dần. Tìm kiếm sâu dần giới hạn độ sâu tìm kiếm trong mỗi lần DFS, còn IDA\* giới hạn chi phí đường đi trong một lần DFS.
@@ -17,7 +17,7 @@ vượt quá ngưỡng $C$, thuật toán dừng tìm kiếm trên nhánh đó.
 
 Ngưỡng $C$ được cập nhật động giữa các vòng lặp. Ngưỡng ban đầu lấy bằng tổng chi phí ước lượng tại đỉnh xuất phát, tức $h(s)$. Trong một vòng lặp, mỗi khi dừng vì vượt ngưỡng, ta ghi lại giá trị nhỏ nhất trong các tổng chi phí ước lượng của những đỉnh kế tiếp chưa được thăm. Sau khi vòng lặp kết thúc, cập nhật ngưỡng thành giá trị nhỏ nhất này rồi tiếp tục vòng tìm kiếm kế tiếp.
 
-<span id="&#x6027;&#x8d28;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 Vì IDA\* dùng cùng chiến lược cắt tỉa với A\*, các tính chất đã thảo luận cho thuật toán A\* cũng áp dụng cho IDA\*.
@@ -31,7 +31,7 @@ So với A\*, IDA\* có các ưu điểm sau:
 
 -   Tìm kiếm lặp lại. Ngay cả khi hai lần tìm kiếm liên tiếp chỉ khác nhau rất ít, mỗi lần nới lỏng giới hạn vẫn phải tìm lại từ đầu.
 
-<span id="&#x5b9e;&#x73b0;"></span>
+<span id="cài-đặt"></span>
 ## Cài đặt
 
 Giả sử $h$ là một hàm ước lượng phù hợp và $s$ là đỉnh xuất phát. Quy trình đầy đủ của thuật toán có thể mô tả đại khái như sau:
@@ -76,7 +76,7 @@ $$
 \end{array}
 $$
 
-<span id="&#x4f8b;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 ???+ example "[Phân số Ai Cập](https://www.luogu.com.cn/problem/P1763)"
@@ -148,7 +148,7 @@ $$
     --8<-- "docs/search/code/idastar/idastar_1.cpp"
     ```
 
-<span id="&#x4e60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [UVa1343 Trò chơi xoay](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4089)
