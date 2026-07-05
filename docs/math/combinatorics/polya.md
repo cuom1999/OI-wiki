@@ -166,7 +166,7 @@ So với bổ đề Burnside, điểm cải tiến của nguyên lí đếm Pól
 
 Chọn một cách tô cho một cấu trúc, viết bằng ngôn ngữ toán học, là chọn một ánh xạ $f:X\rightarrow C$ từ tập các đối tượng có thể tô của cấu trúc (ví dụ hạt trong vòng cổ, mặt của lập phương) đến tập màu $C$. Vì vậy tập các cách tô là $C^X$. Nhóm đối xứng không gian $G$ của cấu trúc tác động lên cấu trúc, và tự nhiên cũng tác động lên tập $X$. Mỗi phép đối xứng như vậy luôn tương ứng với một song ánh trên tập $X$, tức một **hoán vị** (permutation).[^perm-group]
 
-Bây giờ phân tích cấu trúc của tập điểm bất động $(C^X)^g$. Với $g$ cho trước, xem nó là một hoán vị trên $X$. Tương tự phân tích trong ví dụ, nếu vị trí $x$ trong $X$ có thể chuyển đến vị trí $y$ sau khi lặp hữu hạn lần phép toán $g$, thì với một điểm bất động $f\in (C^X)^g$, bắt buộc $f(x)=f(y)$. Theo ngôn ngữ quỹ đạo ở phần trước, vì vị trí $x$ và $y$ nằm trong cùng một quỹ đạo dưới tác động[^g-act] của $g$, chúng phải được tô cùng màu. Theo ngôn ngữ hoán vị, trong [phân tích thành chu trình](../permutation.md#%E8%BD%AE%E6%8D%A2%E8%A1%A8%E7%A4%BA) của hoán vị $g$, vị trí $x$ và $y$ nằm trong cùng một chu trình nên phải tô cùng màu. Các chu trình khác nhau trong phân tích chu trình không nhất thiết phải cùng màu và có thể tô độc lập. Vì vậy số vùng có thể tô độc lập chính là $c(g)$, tức số chu trình trong phân tích chu trình của $g$.
+Bây giờ phân tích cấu trúc của tập điểm bất động $(C^X)^g$. Với $g$ cho trước, xem nó là một hoán vị trên $X$. Tương tự phân tích trong ví dụ, nếu vị trí $x$ trong $X$ có thể chuyển đến vị trí $y$ sau khi lặp hữu hạn lần phép toán $g$, thì với một điểm bất động $f\in (C^X)^g$, bắt buộc $f(x)=f(y)$. Theo ngôn ngữ quỹ đạo ở phần trước, vì vị trí $x$ và $y$ nằm trong cùng một quỹ đạo dưới tác động[^g-act] của $g$, chúng phải được tô cùng màu. Theo ngôn ngữ hoán vị, trong [phân tích thành chu trình](../permutation.md#biểu-diễn-bằng-chu-trình) của hoán vị $g$, vị trí $x$ và $y$ nằm trong cùng một chu trình nên phải tô cùng màu. Các chu trình khác nhau trong phân tích chu trình không nhất thiết phải cùng màu và có thể tô độc lập. Vì vậy số vùng có thể tô độc lập chính là $c(g)$, tức số chu trình trong phân tích chu trình của $g$.
 
 Từ đó, số điểm bất động của phép toán $g$ là $|C|^{c(g)}$. Thay kết luận này vào bổ đề Burnside, ta thu được phiên bản không trọng số của **nguyên lí đếm Pólya** (Pólya enumeration theorem).
 
@@ -225,7 +225,7 @@ Phiên bản không trọng số của nguyên lí đếm Pólya chỉ cho số 
 
 Từ ví dụ này có thể rút ra cách tính sau. Với bài toán ràng buộc số lượng của từng màu, ta vẫn phải tô các chu trình của từng hoán vị trong nhóm đối xứng không gian, nhưng số lượng màu được dùng phải đúng bằng các giá trị cho trước. Bài toán tổ hợp này thường không có nghiệm tường minh; ngoài vài trường hợp đặc biệt có thể tính bằng [phương pháp hoán vị - tổ hợp](../combinatorics/combination.md), thường cần xem như [bài toán ba lô](../../dp/knapsack.md) để giải.
 
-Hàm sinh có thể mô tả đáp án của loại bài toán đếm này. Với một hoán vị $g$ cho trước, nếu [kiểu](../permutation.md#%E7%BD%AE%E6%8D%A2%E7%9A%84%E5%9E%8B) của nó là $1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}$, tức nó có $\alpha_k$ chu trình độ dài $k$, và mỗi chu trình có thể tô bằng một trong $m$ màu, thì trong hàm sinh
+Hàm sinh có thể mô tả đáp án của loại bài toán đếm này. Với một hoán vị $g$ cho trước, nếu [kiểu](../permutation.md#kiểu-chu-trình-của-hoán-vị) của nó là $1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}$, tức nó có $\alpha_k$ chu trình độ dài $k$, và mỗi chu trình có thể tô bằng một trong $m$ màu, thì trong hàm sinh
 
 $$
 \prod_{k=1}^n\left(\sum_{i=1}^mx_i^k\right)^{\alpha_k}
@@ -397,7 +397,7 @@ $$
 
 Cho $n$ phần tử, tập tất cả các hoán vị trên chúng tạo thành một nhóm, gọi là nhóm đối xứng bậc $n$ (symmetric group), kí hiệu $S_n$. Nó mô tả mọi đối xứng mà $n$ đỉnh này có thể có. Nó cũng chính là biểu diễn hoán vị của các phép đối xứng đó khi tác động lên tập đỉnh.
 
-Theo phân tích trong bài [hoán vị và sắp xếp](../permutation.md#%E7%BD%AE%E6%8D%A2%E7%9A%84%E5%9E%8B), chỉ số chu trình của nó là
+Theo phân tích trong bài [hoán vị và sắp xếp](../permutation.md#kiểu-chu-trình-của-hoán-vị), chỉ số chu trình của nó là
 
 $$
 Z(S_n)=\sum_{a_1+2\alpha_2+\cdots+n\alpha_n=n}\frac{t_1^{\alpha_1}t_2^{\alpha_2}\cdots t_n^{\alpha_n}}{1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}\alpha_1!\alpha_2!\cdots\alpha_n!}.

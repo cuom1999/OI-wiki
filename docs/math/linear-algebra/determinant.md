@@ -5,7 +5,7 @@ Bài này giới thiệu ba cách định nghĩa định thức. Có thể chứ
 <span id="&#20840;&#25490;&#21015;&#26041;&#27861;&#23450;&#20041;"></span>
 ## Định nghĩa bằng hoán vị
 
-Kiến thức chuẩn bị: [hoán vị](../permutation.md), [số nghịch thế](../permutation.md#%E9%80%86%E5%BA%8F%E6%95%B0).
+Kiến thức chuẩn bị: [hoán vị](../permutation.md), [số nghịch thế](../permutation.md#số-nghịch-thế).
 
 Khi tính tay định thức bậc thấp, có thể dùng cách này; độ phức tạp thời gian của nó ở cấp giai thừa.
 

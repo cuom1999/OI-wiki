@@ -8,7 +8,7 @@ Hoán vị và cách sắp xếp là những khái niệm rất thường gặp 
 ???+ info "Quy ước"
     Trong bài này, nếu không nói rõ, ta luôn xét các tập hợp hữu hạn.
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Một song ánh, tức tương ứng một-một, $\sigma$ từ tập hợp $X$ đến chính nó được gọi là một **hoán vị** (permutation) của $X$. Nếu trên tập hợp $X$ còn có quan hệ [thứ tự toàn phần](./order-theory.md#quan-hệ-hai-ngôi), thì một hoán vị của nó cũng thường được gọi là một **cách sắp xếp (toàn phần)**. Thứ tự toàn phần này được gọi là thứ tự tự nhiên trên tập hợp.
@@ -23,7 +23,7 @@ Giả sử kích thước của tập hợp $X$ là $n$. Khi đó số hoán v�
 ???+ info "Ký hiệu"
     Hoán vị xét quan hệ tương ứng giữa các phần tử, và không quan tâm bản thân các phần tử cụ thể là gì. Vì vậy, khi xét một tập hợp có kích thước $n$, ta thường giả định tập hợp đang xét là $\{1,2,\cdots,n\}$; khi cần thứ tự tự nhiên trên tập hợp, ta thường giả định dùng thứ tự tự nhiên trên các số tự nhiên.
 
-<span id="&#x8868;&#x793A;&#x65B9;&#x6CD5;"></span>
+<span id="cách-biểu-diễn"></span>
 ## Cách biểu diễn
 
 Hoán vị có nhiều cách biểu diễn. Ở đây, ta dùng hoán vị sau làm ví dụ để thảo luận các cách biểu diễn khác nhau.
@@ -37,7 +37,7 @@ $$
 \sigma(6) = 1.
 $$
 
-<span id="&#x53CC;&#x884C;&#x8BB0;&#x53F7;"></span>
+<span id="ký-hiệu-hai-dòng"></span>
 ### Ký hiệu hai dòng
 
 Một hoán vị trên tập hợp $X=\{x_1,x_2,\cdots,x_n\}$ có thể được biểu diễn thành
@@ -70,7 +70,7 @@ $$
 \end{pmatrix}.
 $$
 
-<span id="&#x5355;&#x884C;&#x8BB0;&#x53F7;"></span>
+<span id="ký-hiệu-một-dòng"></span>
 ### Ký hiệu một dòng
 
 Trong nhiều trường hợp, trên tập hợp $X$ có thứ tự tự nhiên. Nếu trong ký hiệu hai dòng ta ngầm định dòng đầu được viết theo thứ tự tự nhiên và bỏ qua dòng đầu, thì hoán vị có thể được biểu diễn thành
@@ -89,7 +89,7 @@ $$
 
 Ký hiệu một dòng như vậy thường được dùng để so sánh thứ tự giữa các cách sắp xếp khác nhau.
 
-<span id="&#x8F6E;&#x6362;&#x8868;&#x793A;"></span>
+<span id="biểu-diễn-bằng-chu-trình"></span>
 ### Biểu diễn bằng chu trình
 
 Hoán vị còn có một cách biểu diễn gọn hơn, gọi là biểu diễn chu trình của hoán vị. Cách này biểu diễn hoán vị thành tích của một loạt các chu trình đôi một không giao nhau. Dưới đây là các bước để viết một hoán vị cho trước dưới dạng chu trình.
@@ -112,7 +112,7 @@ $$
 
 Trong phép biến đổi đồng nhất, mọi chu trình đều có độ dài bằng một, và thường được ký hiệu là $(1)$ thay vì bỏ qua tất cả.
 
-<span id="&#x590D;&#x5408;"></span>
+<span id="hợp-thành"></span>
 ## Hợp thành
 
 Hợp thành của các hoán vị chính là hợp thành của các ánh xạ. Hợp thành của hoán vị cũng thường được gọi là phép nhân hoán vị.
@@ -136,7 +136,7 @@ Vì về bản chất $\sigma$ và $\pi$ là hai ánh xạ, nên $(\pi\circ\sigm
 
 Tích của nhiều hoán vị liên tiếp được gọi là lũy thừa của cách sắp xếp; có thể dùng [lũy thừa nhanh](./binary-exponentiation.md#hoán-vị-nhiều-lần) để tăng tốc tính toán.
 
-<span id="&#x9006;&#x7F6E;&#x6362;"></span>
+<span id="hoán-vị-nghịch-đảo"></span>
 ### Hoán vị nghịch đảo
 
 Vì hoán vị là song ánh, mọi hoán vị đều có hoán vị nghịch đảo tương ứng.
@@ -161,7 +161,7 @@ $$
 
 Một cách sắp xếp của $1\sim n$ và dãy thứ hạng của từng phần tử trong cách sắp xếp đó là hai cách sắp xếp nghịch đảo của nhau.
 
-<span id="&#x8F6E;&#x6362;"></span>
+<span id="chu-trình"></span>
 ## Chu trình
 
 Bản thân **chu trình** (cycle) là một hoán vị đặc biệt. Đặc trưng của chu trình là: từ bất kỳ điểm $x$ nào trong chu trình, ta đều có thể nhận được một điểm $y$ khác trong chu trình bằng cách áp dụng lặp lại hoán vị $\sigma$. Chu trình độ dài $k$ còn được gọi là **$k$-chu trình** ($k$-cycle). Áp dụng lặp lại một $k$-chu trình $k$ lần sẽ thu được phép biến đổi đồng nhất, tức là mọi phần tử trở về vị trí ban đầu.
@@ -170,12 +170,12 @@ Biểu diễn chu trình của hoán vị có thể xem là viết hoán vị th
 
 Phân rã chu trình của hoán vị có ý nghĩa hình học rõ ràng. Nếu xem mỗi cặp có thứ tự $(x,\sigma(x))$ trong hoán vị trên tập hợp $S$ là một cạnh của đồ thị có hướng có tập đỉnh là $S$, thì các chu trình chính là các vòng trên đồ thị này. Nếu hoán vị $\sigma$ có thể phân rã thành $m$ chu trình, điều đó có nghĩa là đồ thị có hướng tương ứng có tổng cộng $m$ vòng, bao gồm cả khuyên. Các vòng này tự nhiên đôi một không giao nhau.
 
-<span id="&#x4E0D;&#x52A8;&#x70B9;"></span>
+<span id="điểm-bất-động"></span>
 ### Điểm bất động
 
 $1$-chu trình chính là **điểm bất động** (fixed point) của hoán vị. Với một hoán vị $\sigma$ trên tập hợp $X$, ta thường dùng $X^\sigma$ để biểu thị tập các điểm bất động của $\sigma$, tức là $X^\sigma=\{x\in X:\sigma(x)=x\}$.
 
-<span id="&#x5BF9;&#x6362;"></span>
+<span id="phép-đổi-chỗ"></span>
 ### Phép đổi chỗ
 
 $2$-chu trình cũng được gọi là **phép đổi chỗ** (transposition). Nói cách khác, phép đổi chỗ là hoán vị chỉ trao đổi vị trí của một cặp phần tử. Biểu diễn chu trình của nó là $(x_ix_j)$, biểu thị việc trao đổi vị trí của $x_i$ và $x_j$.
@@ -184,12 +184,12 @@ Mọi hoán vị đều có thể viết thành tích của một loạt các ph
 
 Hơn nữa, tính đúng đắn của [thuật toán sắp xếp nổi bọt](../basic/bubble-sort.md) thực chất cho thấy mọi hoán vị đều có thể viết thành tích của một loạt các phép đổi chỗ kề nhau. Ở đây, **phép đổi chỗ kề nhau** (adjacent transposition) là phép đổi chỗ chỉ trao đổi hai phần tử liền kề.
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 Trong ứng dụng, ta thường cần quan tâm đến tính chất của từng hoán vị riêng lẻ.
 
-<span id="&#x5947;&#x5076;&#x6027;"></span>
+<span id="tính-chẵn-lẻ"></span>
 ### Tính chẵn lẻ
 
 Cách phân rã một chu trình thành các phép đổi chỗ không phải là duy nhất. Ví dụ,
@@ -202,7 +202,7 @@ Tuy nhiên, khi phân rã một hoán vị thành một loạt các phép đổi
 
 Hoán vị có thể phân rã thành tích của một số chẵn phép đổi chỗ được gọi là hoán vị chẵn; hoán vị có thể phân rã thành tích của một số lẻ phép đổi chỗ được gọi là hoán vị lẻ. Khi $n\ge2$, số hoán vị lẻ và số hoán vị chẵn có kích thước $n$ là bằng nhau.
 
-<span id="&#x7B26;&#x53F7;"></span>
+<span id="dấu"></span>
 ### Dấu
 
 Dựa trên tính chẵn lẻ của hoán vị, ta còn có thể định nghĩa **dấu** (sign) của hoán vị, ký hiệu là $\operatorname{sgn}\sigma$. Dấu của hoán vị chẵn được định nghĩa là $+1$, và dấu của hoán vị lẻ được định nghĩa là $-1$.
@@ -218,9 +218,9 @@ Nói cách khác, hợp thành của hai hoán vị có cùng tính chẵn lẻ 
 
 Đặc biệt, một phép đổi chỗ đơn lẻ nhất định làm thay đổi tính chẵn lẻ của hoán vị. Điều này cũng giải thích vì sao, dù cách phân rã thành các phép đổi chỗ không duy nhất, tính chẵn lẻ của số phép đổi chỗ cần dùng vẫn được xác định.
 
-Dấu của hoán vị xuất hiện trong [khai triển Leibniz của định thức](../math/linear-algebra/determinant.md#%E5%85%A8%E6%8E%92%E5%88%97%E6%96%B9%E6%B3%95%E5%AE%9A%E4%B9%89).
+Dấu của hoán vị xuất hiện trong [khai triển Leibniz của định thức](../math/linear-algebra/determinant.md#khai-triển-định-thức).
 
-<span id="&#x7F6E;&#x6362;&#x7684;&#x9636;"></span>
+<span id="bậc-của-hoán-vị"></span>
 ### Bậc của hoán vị
 
 **Bậc** (order) của hoán vị là số nguyên dương nhỏ nhất $a$ thỏa mãn điều kiện sau: sau khi lặp lại hoán vị đó $a$ lần, mọi phần tử đều trở về vị trí ban đầu. Tức là
@@ -231,7 +231,7 @@ $$
 
 Trên tập hợp hữu hạn, bậc của mọi hoán vị đều hữu hạn. Điều này có nghĩa là, bắt đầu từ thứ tự ban đầu, chỉ cần lặp lại việc xáo trộn dãy cho trước theo một mẫu cố định thì trong thời gian hữu hạn, cách sắp xếp luôn có thể trở lại như cũ.
 
-<span id="&#x7F6E;&#x6362;&#x7684;&#x578B;"></span>
+<span id="kiểu-chu-trình-của-hoán-vị"></span>
 ### Kiểu chu trình của hoán vị
 
 Khi phân rã chu trình một hoán vị của $n$ phần tử, **kiểu chu trình** (cycle type) của hoán vị là đa tập hợp các độ dài chu trình trong phân rã đó. Các độ dài chu trình này tạo thành một phân hoạch nguyên của độ dài hoán vị $n$. Nếu trong phân rã thu được có tổng cộng $\alpha_k$ chu trình độ dài $k$, thì kiểu chu trình của hoán vị thường được ký hiệu là
@@ -251,7 +251,7 @@ $$
 ??? note "Phân tích"
     Lý do là: với bất kỳ cách sắp xếp nào của $1\sim n$, ta đều có thể chia nó theo kiểu chu trình của hoán vị để thu được phân rã chu trình tương ứng. Tuy nhiên, thứ tự giữa các chu trình có cùng độ dài không ảnh hưởng đến hoán vị, nên tổng số cần chia cho $\prod_k\alpha_k!$. Ngoài ra, bên trong cùng một chu trình thực chất là một sắp xếp vòng tròn, việc chọn điểm bắt đầu cũng không ảnh hưởng đến hoán vị, nên cần chia cho $\prod_kk^{\alpha_k}$. Từ đó thu được công thức trên.
 
-Nếu chỉ biết số chu trình $c(\sigma)$ trong phân rã của hoán vị, thì số hoán vị khác nhau là [số Stirling loại một](./combinatorics/stirling.md#%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0stirling-number) $\begin{bmatrix}n\\ k\end{bmatrix}$. Số kiểu chu trình khác nhau bằng [số phân hoạch](./combinatorics/partition.md) $p_n$ của độ dài hoán vị $n$.
+Nếu chỉ biết số chu trình $c(\sigma)$ trong phân rã của hoán vị, thì số hoán vị khác nhau là [số Stirling loại một](./combinatorics/stirling.md#số-stirling-loại-một-stirling-number) $\begin{bmatrix}n\\ k\end{bmatrix}$. Số kiểu chu trình khác nhau bằng [số phân hoạch](./combinatorics/partition.md) $p_n$ của độ dài hoán vị $n$.
 
 Từ kiểu chu trình của hoán vị, ta có thể dễ dàng xác định các tính chất như bậc và tính chẵn lẻ của hoán vị.
 
@@ -271,7 +271,7 @@ $$
 
 Kiểu chu trình của hoán vị có vai trò quan trọng trong [đếm Pólya](./combinatorics/polya.md).
 
-<span id="&#x6392;&#x5217;&#x76F8;&#x5173;"></span>
+<span id="các-nội-dung-liên-quan-đến-cách-sắp-xếp"></span>
 ## Các nội dung liên quan đến cách sắp xếp
 
 Nếu bản thân tập hợp $X$ có thứ tự tự nhiên, khi đó hoán vị $\sigma$ thường được gọi là cách sắp xếp và được biểu diễn bằng ký hiệu một dòng
@@ -282,14 +282,14 @@ $$
 
 Chú ý không nhầm lẫn với chu trình.
 
-<span id="&#x9006;&#x5E8F;&#x6570;"></span>
+<span id="số-nghịch-thế"></span>
 ### Số nghịch thế
 
 Trong một cách sắp xếp, nếu một số lớn hơn đứng trước một số nhỏ hơn, ta nói hai số này tạo thành một **nghịch thế** (inversion), hay cặp ngược thứ tự. Việc so sánh ở đây được thực hiện theo thứ tự tự nhiên.
 
 Tổng số nghịch thế xuất hiện trong một cách sắp xếp được gọi là **số nghịch thế** của hoán vị đó. Số nghịch thế của một cách sắp xếp là số phép đổi chỗ kề nhau tối thiểu cần thực hiện để khôi phục nó thành dãy đúng thứ tự. Vì vậy, tính chẵn lẻ của số nghịch thế của cách sắp xếp trùng với tính chẵn lẻ của hoán vị tương ứng. Điều này có thể dùng làm một định nghĩa tương đương cho tính chẵn lẻ của hoán vị.
 
-Để tính số nghịch thế, có thể dùng [sắp xếp trộn](../basic/merge-sort.md#%E9%80%86%E5%BA%8F%E5%AF%B9) hoặc [cây Fenwick](../ds/fenwick.md#%E5%85%A8%E5%B1%80%E9%80%86%E5%BA%8F%E5%AF%B9%E5%85%A8%E5%B1%80%E4%BA%8C%E7%BB%B4%E5%81%8F%E5%BA%8F), đều có độ phức tạp thời gian $O(n\log n)$. Phần giải thích của hai thuật toán nằm ở các chương tương ứng; ở đây đưa ra các cài đặt tham khảo.
+Để tính số nghịch thế, có thể dùng [sắp xếp trộn](../basic/merge-sort.md#nghịch-thế) hoặc [cây Fenwick](../ds/fenwick.md#cặp-nghịch-thế-toàn-cục-thứ-tự-bộ-phận-hai-chiều-toàn-cục), đều có độ phức tạp thời gian $O(n\log n)$. Phần giải thích của hai thuật toán nằm ở các chương tương ứng; ở đây đưa ra các cài đặt tham khảo.
 
 ??? example "Cài đặt tham khảo"
     === "Sắp xếp trộn"
@@ -302,14 +302,14 @@ Tổng số nghịch thế xuất hiện trong một cách sắp xếp được 
         --8<-- "docs/math/code/permutation/inversion_1.cpp"
         ```
 
-<span id="&#x987A;&#x5E8F;"></span>
+<span id="thứ-tự"></span>
 ### Thứ tự
 
-Các cách sắp xếp có thể so sánh lớn nhỏ với nhau. Vì mỗi ký hiệu một dòng là một chuỗi, thứ tự của các cách sắp xếp chính là [thứ tự từ điển](../string/basic.md#%E5%AD%97%E5%85%B8%E5%BA%8F) trên chuỗi đó.
+Các cách sắp xếp có thể so sánh lớn nhỏ với nhau. Vì mỗi ký hiệu một dòng là một chuỗi, thứ tự của các cách sắp xếp chính là [thứ tự từ điển](../string/basic.md#thứ-tự-từ-điển) trên chuỗi đó.
 
 Trong thư viện STL `<algorithm>` của C++, có thể dùng `prev_permutation` và `next_permutation` để tìm lần lượt cách sắp xếp liền trước và liền sau của cách sắp xếp hiện tại theo thứ tự từ điển.
 
-<span id="&#x6392;&#x540D;"></span>
+<span id="thứ-hạng"></span>
 ### Thứ hạng
 
 Nếu liệt kê các cách sắp xếp của $n$ phần tử theo thứ tự từ điển từ nhỏ đến lớn, thì vị trí của một cách sắp xếp trong dãy này chính là thứ hạng của cách sắp xếp đó. Nó thiết lập một tương ứng một-một giữa cách sắp xếp và số nguyên dương, và thường được dùng để nén trạng thái trong các bài toán liên quan đến cách sắp xếp.
@@ -317,7 +317,7 @@ Nếu liệt kê các cách sắp xếp của $n$ phần tử theo thứ tự t�
 Trong giới lập trình thi đấu Trung Quốc, thứ hạng này thường được gọi là "khai triển Cantor" của cách sắp xếp, nhưng tên gọi này không chuẩn xác. Cách nói chặt chẽ hơn là: **khai triển Cantor** (Cantor expansion) của thứ hạng của một cách sắp xếp tương ứng với **mã Lehmer** (Lehmer code) của cách sắp xếp đó.
 
 ??? info "Về \"khai triển Cantor\""
-    Đúng như tên gọi gợi ý, khai triển Cantor là một phương pháp khai triển số tự nhiên thành một dãy số. Nó có thể xem là một hệ đếm đặc biệt, cũng gọi là [hệ cơ số giai thừa](./numeral-sys/base.md#%E6%B7%B7%E5%90%88%E5%9F%BA%E6%95%B0%E8%BF%9B%E5%88%B6). Trong hệ đếm này, cơ số (radix) ứng với các vị trí khác nhau không giống nhau. Chẳng hạn, số thập phân $463_{10}$ có thể được biểu diễn trong hệ cơ số giai thừa thành
+    Đúng như tên gọi gợi ý, khai triển Cantor là một phương pháp khai triển số tự nhiên thành một dãy số. Nó có thể xem là một hệ đếm đặc biệt, cũng gọi là [hệ cơ số giai thừa](./numeral-sys/base.md#hệ-cơ-số-hỗn-hợp). Trong hệ đếm này, cơ số (radix) ứng với các vị trí khác nhau không giống nhau. Chẳng hạn, số thập phân $463_{10}$ có thể được biểu diễn trong hệ cơ số giai thừa thành
 
     $$
     463_{10}=341010_{!}.
@@ -382,7 +382,7 @@ Khi cài đặt, điểm quan trọng là phải tính nhanh "thứ hạng của
         --8<-- "docs/math/code/permutation/rank_perm.cpp"
         ```
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   [Permutation - Wikipedia](https://en.wikipedia.org/wiki/Permutation)

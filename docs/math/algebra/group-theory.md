@@ -667,7 +667,7 @@ Cho nhóm vòng $C_{n}$. Nếu theo định lý cơ bản của số học có $
 
 [^cayley]: Bản thân định lý Cayley không phản ánh nhiều thông tin về cấu trúc nội tại của nhóm, vì nhóm $S_G$ thường có kích thước rất lớn, và khó nói một nhóm con nào đó của nó có kích thước đúng bằng $|G|$ sẽ có tính chất xác định nào. Tuy nhiên, sự phát triển thời kỳ đầu của lý thuyết nhóm chủ yếu tập trung vào nhóm hoán vị. Vì vậy, định lý Cayley thực ra nói rằng mọi cấu trúc nhóm có thể đều nằm trong những đối tượng đã được nghiên cứu kỹ này, dù khi nghiên cứu thực tế ta cần công cụ tinh vi hơn.
 
-[^conjugate]: Tổng quát hơn, các phần tử liên hợp trong nhóm hoán vị tất yếu có cùng [kiểu](../permutation.md#%E7%BD%AE%E6%8D%A2%E7%9A%84%E5%9E%8B).
+[^conjugate]: Tổng quát hơn, các phần tử liên hợp trong nhóm hoán vị tất yếu có cùng [kiểu](../permutation.md#kiểu-chu-trình-của-hoán-vị).
 
 [^proof-abelian]: Xem Milne, J.S. (2021) Group Theory, trang 25.
 

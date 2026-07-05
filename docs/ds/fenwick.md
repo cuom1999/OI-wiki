@@ -754,7 +754,7 @@ Như vậy, độ phức tạp thời gian giảm xuống $\Theta(\log n)$.
 
 ### Cặp nghịch thế toàn cục (thứ tự bộ phận hai chiều toàn cục)
 
-Đọc thêm và cài đặt tham khảo: [cặp nghịch thế](../math/permutation.md#%E9%80%86%E5%BA%8F%E6%95%B0)
+Đọc thêm và cài đặt tham khảo: [cặp nghịch thế](../math/permutation.md#số-nghịch-thế)
 
 Cặp nghịch thế toàn cục cũng có thể được giải khéo léo bằng cây Fenwick theo giá trị. Bài toán như sau: cho dãy $a$ độ dài $n$, hãy tính số cặp $(i, j)$ trong $a$ thỏa mãn $i < j$ và $a[i] > a[j]$.
 
@@ -800,7 +800,7 @@ Ngoài ra, với bài toán nghịch thế ban đầu còn có một cách khác
 
 Lý do: các phần tử xuất hiện trong $b[x + 1 \ldots V]$ chắc chắn lớn hơn $x = a[j]$ hiện tại, còn việc duyệt xuôi $j$ bảo đảm những phần tử đã có trong mảng tần suất giá trị có chỉ số $i$ trong mảng gốc nhỏ hơn chỉ số $j$ đang duyệt.
 
-Ngoài ra, việc đếm nghịch thế cũng có thể giải bằng [sắp xếp trộn](../basic/merge-sort.md#%E9%80%86%E5%BA%8F%E5%AF%B9). Cách này tránh được rời rạc hóa, và độ phức tạp thời gian cũng là $O(n\log n)$. Cài đặt tham khảo của cả hai thuật toán đều nằm trong chương [nghịch thế](../math/permutation.md#%E9%80%86%E5%BA%8F%E6%95%B0).
+Ngoài ra, việc đếm nghịch thế cũng có thể giải bằng [sắp xếp trộn](../basic/merge-sort.md#nghịch-thế). Cách này tránh được rời rạc hóa, và độ phức tạp thời gian cũng là $O(n\log n)$. Cài đặt tham khảo của cả hai thuật toán đều nằm trong chương [nghịch thế](../math/permutation.md#số-nghịch-thế).
 
 ## Cây Fenwick duy trì thông tin không thể lấy sai phân
 

@@ -255,7 +255,7 @@ Trong hệ cơ số tiêu chuẩn, cơ số tương ứng với mỗi chữ số
 
 $a_n\cdots a_1a_0$ biểu diễn số $\sum_{i=0}^n a_ib^i$ trong hệ cơ số $b$; trong hệ cơ số hỗn hợp, nó biểu diễn số $\sum_{i=0}^n a_i\prod_{j=0}^{i-1}b_j$, trong đó $b_j$ là cơ số tương ứng với $a_j$.
 
-Trong lập trình thi đấu, hệ cơ số hỗn hợp thường gặp nhất là [**hệ cơ số giai thừa**](https://en.wikipedia.org/wiki/Factorial_number_system) (factorial number system). Số trong hệ này có thể ký hiệu là ${a_n\cdots a_1a_0}_{~!}$, và biểu diễn giá trị $\sum_{i=0}^na_i i!$[^note2]. Ứng dụng của hệ cơ số giai thừa trong lập trình thi đấu có thể xem tại [mã Lehmer/khai triển Cantor](../permutation.md#%E6%8E%92%E5%90%8D).
+Trong lập trình thi đấu, hệ cơ số hỗn hợp thường gặp nhất là [**hệ cơ số giai thừa**](https://en.wikipedia.org/wiki/Factorial_number_system) (factorial number system). Số trong hệ này có thể ký hiệu là ${a_n\cdots a_1a_0}_{~!}$, và biểu diễn giá trị $\sum_{i=0}^na_i i!$[^note2]. Ứng dụng của hệ cơ số giai thừa trong lập trình thi đấu có thể xem tại [mã Lehmer/khai triển Cantor](../permutation.md#thứ-hạng).
 
 ???+ note "Cài đặt (thập phân sang hệ cơ số giai thừa)"
     ```cpp

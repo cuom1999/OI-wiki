@@ -178,7 +178,7 @@ Vấn đề là nên dùng cấu trúc dữ liệu nào để lưu hệ đại d
 <span id="&#30452;&#25509;&#23384;&#20648;"></span>
 #### Lưu trực tiếp
 
-Cách đơn giản nhất hiển nhiên là lưu trực tiếp mỗi phần tử $t$ của hệ đại diện lớp kề $T$. Một hoán vị đơn lẻ khi lưu bằng [ký hiệu một dòng](../permutation.md#%E5%8D%95%E8%A1%8C%E8%AE%B0%E5%8F%B7) cần dùng đúng $n$ ô nhớ, nên độ phức tạp không gian để lưu hệ đại diện lớp kề như vậy là $O(|T|n)$. Lợi ích là truy cập một đại diện lớp kề đơn lẻ trong $O(1)$ thời gian; cái giá phải trả là lần đầu tính các đại diện lớp kề này tốn $O(|T|n)$ thời gian.
+Cách đơn giản nhất hiển nhiên là lưu trực tiếp mỗi phần tử $t$ của hệ đại diện lớp kề $T$. Một hoán vị đơn lẻ khi lưu bằng [ký hiệu một dòng](../permutation.md#ký-hiệu-một-dòng) cần dùng đúng $n$ ô nhớ, nên độ phức tạp không gian để lưu hệ đại diện lớp kề như vậy là $O(|T|n)$. Lợi ích là truy cập một đại diện lớp kề đơn lẻ trong $O(1)$ thời gian; cái giá phải trả là lần đầu tính các đại diện lớp kề này tốn $O(|T|n)$ thời gian.
 
 <span id="Schreier &#26641;"></span>
 #### Cây Schreier
