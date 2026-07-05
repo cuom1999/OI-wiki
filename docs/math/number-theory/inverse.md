@@ -1,6 +1,6 @@
 Bài viết này giới thiệu nghịch đảo của phép nhân theo modulo và các cách thường dùng để tính nó.
 
-<span id="&#22522;&#26412;&#27010;&#24565;"></span>
+<span id="khái-niệm-cơ-bản"></span>
 ## Khái niệm cơ bản
 
 Nghịch đảo nhân của số thực khác $0$ $a\in\mathbf R$ chính là số nghịch đảo $a^{-1}$. Tương tự, trong số học có thể định nghĩa nghịch đảo của một số nguyên $a$ theo modulo $m$, ký hiệu là $a^{-1}\bmod m$, hoặc đơn giản là $a^{-1}$. Đây là **nghịch đảo modulo** (modular multiplicative inverse), cũng gọi là **nghịch đảo số học**.
@@ -10,15 +10,15 @@ Nghịch đảo nhân của số thực khác $0$ $a\in\mathbf R$ chính là s�
 
 Điều này tương đương với việc $b$ là nghiệm của phương trình đồng dư tuyến tính $ax\equiv 1\pmod m$. Theo tính chất của [phương trình đồng dư tuyến tính](./linear-equation.md), nghịch đảo $a^{-1}\bmod m$ tồn tại khi và chỉ khi $\gcd(a,m)=1$, tức $a,m$ nguyên tố cùng nhau; khi tồn tại, nó là duy nhất theo modulo $m$.
 
-<span id="&#21333;&#20010;&#36870;&#20803;&#30340;&#27714;&#27861;"></span>
+<span id="cách-tính-một-nghịch-đảo"></span>
 ## Cách tính một nghịch đảo
 
 Dùng thuật toán Euclid mở rộng hoặc lũy thừa nhị phân, có thể tính nghịch đảo của một số nguyên trong thời gian $O(\log m)$.
 
-<span id="&#25193;&#23637;&#27431;&#20960;&#37324;&#24471;&#31639;&#27861;"></span>
+<span id="thuật-toán-euclid-mở-rộng"></span>
 ### Thuật toán Euclid mở rộng
 
-Tính nghịch đảo tương đương với giải phương trình đồng dư tuyến tính. Vì vậy có thể dùng [thuật toán Euclid mở rộng](./gcd.md#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95) để tính nghịch đảo trong thời gian $O(\log\min\{a,m\})$. Đồng thời, vì phương trình tuyến tính tương ứng với nghịch đảo khá đặc biệt, có thể giản lược một số bước.
+Tính nghịch đảo tương đương với giải phương trình đồng dư tuyến tính. Vì vậy có thể dùng [thuật toán Euclid mở rộng](./gcd.md#thuật-toán-euclid-mở-rộng) để tính nghịch đảo trong thời gian $O(\log\min\{a,m\})$. Đồng thời, vì phương trình tuyến tính tương ứng với nghịch đảo khá đặc biệt, có thể giản lược một số bước.
 
 ???+ example "Cài đặt tham khảo"
     === "C++"
@@ -33,7 +33,7 @@ Tính nghịch đảo tương đương với giải phương trình đồng dư 
 
 Thuật toán này áp dụng cho mọi trường hợp nghịch đảo tồn tại.
 
-<span id="&#24555;&#36895;&#24130;&#27861;"></span>
+<span id="phương-pháp-lũy-thừa-nhị-phân"></span>
 ### Phương pháp lũy thừa nhị phân
 
 Phương pháp này chủ yếu áp dụng khi modulo là số nguyên tố $p$. Khi đó, theo [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), với mọi $a\perp p$ đều có
@@ -57,7 +57,7 @@ Theo tính duy nhất của nghịch đảo, nghịch đảo $a^{-1}\bmod p$ b�
 
 Về lý thuyết, phương pháp này có thể được mở rộng sang modulo tổng quát $m$ bằng [định lý Euler](./fermat.md#định-lý-euler), tức dùng $a^{\varphi(m)-1}\bmod m$ để tính nghịch đảo. Tuy nhiên, tính riêng [hàm Euler](./euler-totient.md) $\varphi(m)$ không dễ, nên thuật toán này không hiệu quả trong trường hợp tổng quát.
 
-<span id="&#22810;&#20010;&#36870;&#20803;&#30340;&#27714;&#27861;"></span>
+<span id="cách-tính-nhiều-nghịch-đảo"></span>
 ## Cách tính nhiều nghịch đảo
 
 Trong một số tình huống, cần xử lý nhanh nghịch đảo của nhiều số nguyên $a_1,a_2,\cdots,a_n$ theo modulo $m$. Nếu tính từng nghịch đảo riêng lẻ thì tổng thời gian là $O(n\log m)$. Thực tế, nếu xử lý chung, có thể tính tất cả nghịch đảo trong thời gian $O(n+\log m)$.
@@ -95,7 +95,7 @@ Cài đặt tham khảo:
 
 Trong thuật toán chỉ tính nghịch đảo của một phần tử một lần, nên tổng độ phức tạp thời gian là $O(n+\log m)$.
 
-<span id="&#32447;&#24615;&#26102;&#38388;&#39044;&#22788;&#29702;&#36870;&#20803;"></span>
+<span id="tiền-xử-lý-nghịch-đảo-trong-thời-gian-tuyến-tính"></span>
 ## Tiền xử lý nghịch đảo trong thời gian tuyến tính
 
 Nếu cần tiền xử lý nghịch đảo của $n$ số nguyên dương đầu tiên theo modulo nguyên tố $p$, có thể dùng hệ thức truy hồi trong phần này để tính trong thời gian $O(n)$. Phương pháp này thường dùng khi tiền xử lý nghịch đảo của giai thừa các số nguyên dương đầu tiên trong tính tổ hợp.
@@ -137,7 +137,7 @@ Thuật toán này chỉ áp dụng khi modulo là số nguyên tố. Nếu modu
 
 Sau khi có công thức truy hồi này, một ý tưởng tự nhiên là dùng đệ quy để tính nghịch đảo của một số bất kỳ $a$. Mỗi lần đệ quy dùng công thức truy hồi để chuyển nó thành nghịch đảo của số dư nhỏ hơn $p\bmod a$, cho đến khi số dư bằng $1$. Hiện chưa rõ độ phức tạp của cách làm này[^linear-recursion], nên khuyến nghị dùng các phương pháp thông thường đã nêu ở trên.
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [LOJ 110 Nghịch đảo nhân](https://loj.ac/problem/110)
@@ -146,7 +146,7 @@ Sau khi có công thức truy hồi này, một ý tưởng tự nhiên là dùn
 -   [Luogu P2054 [AHOI2005] Xáo bài](https://www.luogu.com.cn/problem/P2054)
 -   [LOJ 2034 [SDOI2016] Đếm hoán vị](https://loj.ac/problem/2034)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Modular multiplicative inverse - Wikipedia](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)

@@ -192,7 +192,7 @@ $$
 \binom{n}{k} = p^{\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)}\dfrac{(n!)_p}{(k!)_p((n-k)!)_p}.
 $$
 
-Các giá trị $\nu_p(n!)$ có thể tính bằng [công thức Legendre](./factorial.md#legendre-%E5%85%AC%E5%BC%8F), còn các giá trị $(n!)_p$ có thể tính bằng [quan hệ truy hồi](./factorial.md#%E7%B4%A0%E6%95%B0%E5%B9%82%E6%A8%A1%E7%9A%84%E6%83%85%E5%BD%A2). Vì phần sau nguyên tố cùng nhau với $p^\alpha$, nghịch đảo của tích ở mẫu số có thể tính bằng [thuật toán Euclid mở rộng](./inverse.md#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95). Như vậy bài toán được giải quyết.
+Các giá trị $\nu_p(n!)$ có thể tính bằng [công thức Legendre](./factorial.md#legendre-%E5%85%AC%E5%BC%8F), còn các giá trị $(n!)_p$ có thể tính bằng [quan hệ truy hồi](./factorial.md#%E7%B4%A0%E6%95%B0%E5%B9%82%E6%A8%A1%E7%9A%84%E6%83%85%E5%BD%A2). Vì phần sau nguyên tố cùng nhau với $p^\alpha$, nghịch đảo của tích ở mẫu số có thể tính bằng [thuật toán Euclid mở rộng](./inverse.md#thuật-toán-euclid-mở-rộng). Như vậy bài toán được giải quyết.
 
 Chú ý rằng nếu số mũ $\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)\ge\alpha$, phần dư chắc chắn bằng không và không cần tính tiếp.
 
