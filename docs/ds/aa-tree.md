@@ -1,14 +1,14 @@
 Cây AA là một cấu trúc cây cân bằng dùng để lưu trữ và truy xuất dữ liệu có thứ tự một cách hiệu quả. Giáo sư Arne Andersson giới thiệu cấu trúc này vào năm 1993 trong bài báo "Balanced search trees made simple", với mục tiêu giảm số trường hợp cần xét so với cây đỏ-đen. Cây AA có thể thực hiện tìm kiếm, chèn và xóa trong thời gian $O(\log N)$. Dưới đây là một ví dụ về cây AA.
 
-![aa-tree-1](images/aa-tree-1.jpg)
+![Ví dụ cây AA](images/aa-tree-1.jpg)
 
 Cây AA là một biến thể của cây đỏ-đen. Khác với cây đỏ-đen, trong cây AA, nút đỏ chỉ được xuất hiện dưới dạng con phải. Điều này khiến cây AA mô phỏng cây 2-3 thay vì cây 2-3-4, qua đó đơn giản hóa đáng kể các thao tác duy trì cân bằng. Thuật toán duy trì cân bằng của cây đỏ-đen cần xét bảy trường hợp khác nhau để cân bằng cây một cách chính xác.
 
-![red-black tree](images/aa-tree-2.svg)
+![Cây đỏ-đen tương ứng](images/aa-tree-2.svg)
 
 Vì nút đỏ chỉ có thể là con phải, cây AA chỉ cần xét hai trường hợp.
 
-![aa-tree](images/aa-tree-3.svg)
+![Cây AA tương ứng](images/aa-tree-3.svg)
 
 ## Định nghĩa
 
@@ -35,13 +35,13 @@ Mỗi nút của cây AA duy trì một trường **level**, tương tự như m
 
 5.  Mỗi nút có level lớn hơn 1 đều có hai con.
 
-![aa-tree-4](images/aa-tree-4.jpg)
+![Level trong cây AA](images/aa-tree-4.jpg)
 
 ### Liên kết ngang (Horizontal Link)
 
 Liên kết mà level của nút con bằng level của nút cha được gọi là **liên kết ngang**, tương tự liên kết đỏ trong cây đỏ-đen. Một liên kết ngang bên phải đơn lẻ được cho phép, nhưng các liên kết ngang bên phải liên tiếp thì không; liên kết ngang bên trái cũng không được phép. Những ràng buộc này chặt hơn các ràng buộc của cây đỏ-đen, vì vậy quy trình cân bằng cây AA đơn giản hơn nhiều về mặt cài đặt so với cây đỏ-đen.
 
-![aa-tree-5](images/aa-tree-5.jpg)
+![Liên kết ngang trong cây AA](images/aa-tree-5.jpg)
 
 Các thao tác chèn và xóa có thể tạm thời làm cây AA mất cân bằng, tức là vi phạm các bất biến của cây AA. Để khôi phục cân bằng, chỉ cần hai thao tác khác nhau: "**skew**" (xoay phải để loại bỏ liên kết ngang bên trái) và "**split**" (xoay trái và tăng level để xử lý các liên kết ngang bên phải liên tiếp). Thao tác "skew" xoay phải một cây con có liên kết ngang bên trái để thay bằng một cây con có liên kết ngang bên phải. Thao tác "split" xoay trái và tăng level để thay một cây con có từ hai liên kết ngang bên phải liên tiếp trở lên bằng một cây con có ít liên kết ngang bên phải liên tiếp hơn. Việc cài đặt chèn và xóa có duy trì cân bằng trở nên đơn giản hơn nhờ dựa vào hai thao tác "skew" và "split" để chỉ chỉnh sửa cây khi cần, thay vì để phía gọi tự quyết định có thực hiện "skew" hay "split" hay không.
 
@@ -55,7 +55,7 @@ Khi đó xoay trái nút *T*, xem các nút có level nhỏ hơn hoặc bằng l
 2.  Gốc cũ của cây con trở thành con trái của gốc mới;
 3.  Level của gốc mới tăng thêm 1.
 
-![aa-tree-split](images/aa-tree-split.svg)
+![Thao tác split trong cây AA](images/aa-tree-split.svg)
 
 ???+ note "Cài đặt giả mã"
     $$
@@ -76,7 +76,7 @@ Xoay phải nút *T*, xem các nút có level nhỏ hơn hoặc bằng level nà
 1.  Con trái của gốc cây con trở thành gốc mới của cây con;
 2.  Gốc cũ của cây con trở thành con phải của gốc mới.
 
-![aa-tree-skew](images/aa-tree-skew.svg)
+![Thao tác skew trong cây AA](images/aa-tree-skew.svg)
 
 ???+ note "Cài đặt giả mã"
     $$
