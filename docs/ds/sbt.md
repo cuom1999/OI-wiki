@@ -79,7 +79,7 @@ static void rotateRight(NodePtr& node) {
 
 ### Duy trì
 
-#### Case 1
+#### Trường hợp 1
 
 `size(N.left) < size(N.right.left)`
 
@@ -102,7 +102,7 @@ if (size(node->right->left) > size(node->left)) {
 }
 ```
 
-#### Case 2
+#### Trường hợp 2
 
 `size(N.left) < size(N.right.right)`
 
@@ -123,7 +123,7 @@ if (size(node->right->right) > size(node->left)) {
 }
 ```
 
-#### Case 3
+#### Trường hợp 3
 
 `size(N.right) < size(N.left.left)`
 
@@ -144,7 +144,7 @@ if (size(node->left->left) > size(node->right)) {
 }
 ```
 
-#### Case 4
+#### Trường hợp 4
 
 `size(N.right) < size(N.left.right)`
 

@@ -32,7 +32,7 @@ Ta muốn duy trì tất cả các nút sao cho đầu trái của các khoảng
 
 Khi khởi tạo, chèn vào Chtholly Tree một khoảng rất dài (ví dụ nếu đề bài yêu cầu duy trì thông tin tại các vị trí từ $1$ đến $n$, hãy chèn khoảng $[1,n+1]$).
 
-### Thao tác split
+### Thao tác `split`
 
 Thao tác `split` là cốt lõi của Chtholly Tree. Nó nhận một vị trí $x$, tách khoảng ban đầu chứa điểm $x$ (giả sử là $[l, r]$) thành hai khoảng $[l, x)$ và $[x, r]$, đồng thời trả về iterator trỏ đến khoảng sau.
 
@@ -52,7 +52,7 @@ auto split(int x) {
 
 Trên các trình biên dịch không hỗ trợ suy diễn kiểu trả về bằng `auto`, có thể đổi kiểu trả về của hàm thành `set<Node_t>::iterator`.
 
-### Thao tác assign
+### Thao tác `assign`
 
 Một thao tác quan trọng khác là `assign`. Nó dùng để gán giá trị cho một đoạn. Giả sử cần gán khoảng $[l,r]$ thành $v$.
 
@@ -77,7 +77,7 @@ void assign(int l, int r, int v) {
     2.  Phương thức `std::set::insert` không làm mất hiệu lực bất kì iterator hay tham chiếu nào.
     3.  Thao tác `split` sẽ tách khoảng. Sau khi gọi `split(r + 1)`, $r + 1$ sẽ trở thành đầu trái của khoảng bên phải trong hai khoảng mới. Lúc này khi `split` khoảng bên trái, chắc chắn ta không truy cập đến khoảng có đầu trái là $r + 1$, nên cũng không tách và xóa khoảng có đầu trái là $r + 1$ khiến iterator mất hiệu lực. Ngược lại, nếu gọi `split(l)` trước rồi mới gọi `split(r + 1)`, có thể xóa khoảng có đầu trái là $l$, làm iterator mất hiệu lực.
 
-### Thao tác perform
+### Thao tác `perform`
 
 Trích một đoạn trên Chtholly Tree ra rồi thực hiện thao tác. Nó tương tự thao tác `assign`, chỉ khác là thay việc xóa khoảng bằng việc duyệt khoảng.
 
@@ -104,7 +104,7 @@ Vì các khoảng được Chtholly Tree lưu trữ là liên tục, ta không n
 
 Khi khởi tạo, nếu đề bài yêu cầu duy trì thông tin tại các vị trí từ $1$ đến $n$, gọi `mp[1] = -1, mp[n + 1] = -1` để biểu thị rằng $[1,n+1)$, tức $[1, n]$, đều được gán thành giá trị đặc biệt $-1$. Khoảng $[n+1, +\infty)$ được dùng làm lính canh, và cũng có thể khởi tạo nó.
 
-### Thao tác split
+### Thao tác `split`
 
 Mã tham khảo (bản thứ nhất):
 
@@ -127,7 +127,7 @@ auto split(int pos) {
 
 Ở đây dùng overload `iterator insert( const_iterator pos, const value_type& value );` của `std::map::insert`. Nó chèn `value` vào vị trí gần nhất có thể ngay trước `pos`. Nếu việc chèn thực sự xảy ra ngay trước `pos`, độ phức tạp là hằng số theo phân tích khấu hao; nếu không, độ phức tạp là logarit theo kích thước container.
 
-### Thao tác assign
+### Thao tác `assign`
 
 Với thao tác assign, ta cần xóa tất cả đầu trái của các khoảng nằm trong $[l,r-1]$, rồi tạo khoảng mới.
 
@@ -143,7 +143,7 @@ void assign(int l, int r, int v) {  // Chú ý: ở đây r là đầu phải c�
 }
 ```
 
-### Thao tác perform
+### Thao tác `perform`
 
 ```cpp
 void perform(int l, int r) {  // Chú ý: ở đây r là đầu phải của khoảng + 1
@@ -178,7 +178,7 @@ struct Block {
 } *root;
 ```
 
-### Thao tác split
+### Thao tác `split`
 
 ```cpp
 // Trả về khoảng có đầu trái là mid+1
@@ -211,7 +211,7 @@ void prepare(int l, int r) {
 }
 ```
 
-### Thao tác assign
+### Thao tác `assign`
 
 ```cpp
 void assign(int l, int r, i64 val) {
@@ -224,7 +224,7 @@ void assign(int l, int r, i64 val) {
 // Ghi chú: ở đây không giải phóng bộ nhớ của các nút bị xóa; nếu cần, bạn có thể tự thêm
 ```
 
-### Thao tác perform
+### Thao tác `perform`
 
 ```cpp
 void perform(int l, int r) {

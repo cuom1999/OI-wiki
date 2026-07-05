@@ -88,7 +88,7 @@ Ta bắt đầu từ vị trí chèn và duy trì đệ quy lên trên. Nếu $p
 --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-aux2"
 ```
 
-#### Insert case 1
+#### Trường hợp chèn 1
 
 $p$ và $u$ đều có màu đỏ. Lúc này ta chỉ cần tô màu lại.
 
@@ -99,7 +99,7 @@ $p$ và $u$ đều có màu đỏ. Lúc này ta chỉ cần tô màu lại.
     --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-case1"
     ```
 
-#### Insert case 2
+#### Trường hợp chèn 2
 
 $p$ có màu đỏ, $u$ có màu đen, hướng của $p$ và hướng của $n$ khác nhau.
 
@@ -112,7 +112,7 @@ Lúc này ta cần xoay nút $p$ để chuyển thành trường hợp thứ ba.
     --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-case2"
     ```
 
-#### Insert case 3
+#### Trường hợp chèn 3
 
 $p$ có màu đỏ, $u$ có màu đen, hướng của $p$ và hướng của $n$ giống nhau.
 
@@ -153,15 +153,15 @@ Việc duy trì sau khi xóa cũng bắt đầu từ $n$ và duy trì đệ quy 
 
 ```cpp
 --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-aux1"
-      // Delete case 1
+      // Trường hợp xóa 1
       // ...
-      // Other cases
+      // Các trường hợp khác
 --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-aux2"
       // ...
 --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-aux3"
 ```
 
-#### Delete case 1
+#### Trường hợp xóa 1
 
 $s$ có màu đỏ.
 
@@ -174,7 +174,7 @@ Lúc này ta xoay $p$, đưa $s$ thành nút gốc của cây con, rồi hoán �
     --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-case1"
     ```
 
-#### Delete case 2
+#### Trường hợp xóa 2
 
 Màu của $p$ chưa xác định; $s$, $c$, $d$ đều có màu đen.
 
@@ -189,7 +189,7 @@ Cần chú ý rằng nếu $p$ có màu đỏ thì sẽ vi phạm tính chất 3
     --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-case2"
     ```
 
-#### Delete case 3
+#### Trường hợp xóa 3
 
 Màu của $p$ chưa xác định; $s$ và $d$ đều có màu đen, $c$ có màu đỏ.
 
@@ -202,7 +202,7 @@ Lúc này cần xoay $s$ để $c$ trở thành nút gốc của cây con tươn
     --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-case3"
     ```
 
-#### Delete case 4
+#### Trường hợp xóa 4
 
 Màu của $p$ và $c$ chưa xác định; $s$ có màu đen, $d$ có màu đỏ.
 

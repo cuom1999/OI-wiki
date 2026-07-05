@@ -47,7 +47,7 @@ Những thứ cần có:
 
 -   `build()` để xây cây.
 
-#### Split
+#### Tách (split)
 
 Với **thao tác tách**, mỗi khi đi qua đường tách thì **tạo nút mới** trỏ đến đường được tách ra, và dùng `std::pair` để lưu gốc của hai cây mới được tách.
 
@@ -81,9 +81,9 @@ static std::pair<int, int> _split(int _x, int k) {
 }
 ```
 
-#### Merge
+#### Hợp nhất (merge)
 
-`merge(x,y)` trả về gốc của cây sau khi merge.
+`merge(x,y)` trả về gốc của cây sau khi hợp nhất.
 
 Cũng cài đặt bằng đệ quy. Nếu **khóa ngẫu nhiên của x** > **khóa ngẫu nhiên của y** thì gọi `merge(x_{rc},y)`, ngược lại gọi `merge(x,y_{lc})`.
 
