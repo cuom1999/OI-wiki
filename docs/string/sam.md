@@ -91,7 +91,7 @@ Trong ví dụ cuối cùng, nếu trực tiếp xây AC automaton cho tất c�
 
 ## Thuật toán xây dựng tuyến tính
 
-Trước khi mô tả thuật toán xây SAM trong thời gian tuyến tính, ta cần giới thiệu hai khái niệm rất quan trọng để hiểu quá trình xây dựng, đồng thời chứng minh ngắn gọn các tính chất của chúng. Trong đó, tập vị trí kết thúc $\operatorname{endpos}$ định nghĩa các đỉnh trong SAM, tức chỉ ra điều kiện cần và đủ để gộp các đỉnh; còn liên kết hậu tố $\operatorname{link}$ chỉ là đối ứng tự nhiên trong SAM của [con trỏ thất bại](./ac-automaton.md#%E5%A4%B1%E9%85%8D%E6%8C%87%E9%92%88) trong AC automaton.
+Trước khi mô tả thuật toán xây SAM trong thời gian tuyến tính, ta cần giới thiệu hai khái niệm rất quan trọng để hiểu quá trình xây dựng, đồng thời chứng minh ngắn gọn các tính chất của chúng. Trong đó, tập vị trí kết thúc $\operatorname{endpos}$ định nghĩa các đỉnh trong SAM, tức chỉ ra điều kiện cần và đủ để gộp các đỉnh; còn liên kết hậu tố $\operatorname{link}$ chỉ là đối ứng tự nhiên trong SAM của [con trỏ thất bại](./ac-automaton.md#con-trỏ-thất-bại) trong AC automaton.
 
 <span id="&#x7ED3;&#x675F;&#x4F4D;&#x7F6E;-endpos"></span>
 

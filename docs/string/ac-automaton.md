@@ -1,6 +1,6 @@
 author: Ir1d, Tiphereth-A, sshwy, ksyx, Marcythm, orzAtalod, Xeonacid, Enter-tainer, GavinZhengOI, Henry-ZHR, iamtwz, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusHex, Dafenghh, DanJoshua, Gesrua, kenlig, lyccrius, Menci, opsiff, ouuan, partychicken, Persdre, Ruakker, shuzhouliu, StudyingFather, szdytom, XuYueming520, ZXyaang, alphagocc, c-forrest, Early0v0, GoodCoder666, HeRaNO, liangbob2023, qq2964, r-value, rickyxrc, Rickyxrc, shawlleyw, Unnamed2964, zica87, ZnPdCo, sun2snow
 
-<span id="&#x6982;&#x8ff0;"></span>
+<span id="tổng-quan"></span>
 ## Tổng quan
 
 AC automaton (Aho-Corasick automaton) là một automaton **dựa trên cấu trúc Trie** và kết hợp **ý tưởng của KMP**, dùng để giải các bài toán như khớp nhiều mẫu.
@@ -9,7 +9,7 @@ Về bản chất, AC automaton là một automaton trên Trie.
 
 Trước khi đọc bài này, hãy đọc trước [KMP](./kmp.md) và [Trie](./trie.md).
 
-<span id="&#x89e3;&#x91ca;"></span>
+<span id="giải-thích"></span>
 ## Giải thích
 
 Nói đơn giản, việc xây dựng một AC automaton gồm hai bước:
@@ -19,7 +19,7 @@ Nói đơn giản, việc xây dựng một AC automaton gồm hai bước:
 
 Sau khi xây dựng xong, ta có thể dùng nó để khớp nhiều mẫu.
 
-<span id="&#x5b57;&#x5178;&#x6811;&#x6784;&#x5efa;"></span>
+<span id="xây-dựng-trie"></span>
 ## Xây dựng Trie
 
 Ban đầu, AC automaton chèn một số xâu mẫu vào một Trie, rồi xây dựng AC automaton trên Trie đó. Trie này là Trie thông thường, chỉ cần xây dựng theo cách dựng cây Trie cơ bản.
@@ -28,7 +28,7 @@ Cần chú ý rằng mỗi đỉnh trong Trie biểu diễn một tiền tố c�
 
 Nói một cách hình thức, với các xâu mẫu $s_1,s_2,\cdots,s_n$, sau khi xây dựng Trie từ chúng, gọi tập tất cả các trạng thái là $Q$.
 
-<span id="&#x5931;&#x914d;&#x6307;&#x9488;"></span>
+<span id="con-trỏ-thất-bại"></span>
 ## Con trỏ thất bại
 
 AC automaton dùng một con trỏ `fail` để hỗ trợ khớp nhiều xâu mẫu.
@@ -46,7 +46,7 @@ Tóm lại, con trỏ thất bại của AC automaton trỏ tới trạng thái 
 
 Lưu ý: khi AC automaton thực hiện khớp, tại cùng một vị trí có thể khớp nhiều xâu mẫu.
 
-<span id="&#x6784;&#x5efa;&#x6307;&#x9488;"></span>
+<span id="xây-dựng-con-trỏ"></span>
 ### Xây dựng con trỏ
 
 Dưới đây là **ý tưởng cơ bản** để xây dựng con trỏ `fail`:
@@ -61,7 +61,7 @@ Xét đỉnh hiện tại $u$ trong Trie. Cha của $u$ là $p$, và $p$ trỏ t
 
 Như vậy ta xây dựng xong $\operatorname{fail}(u)$.
 
-<span id="&#x4f8b;&#x5b50;"></span>
+<span id="ví-dụ"></span>
 ### Ví dụ
 
 Dưới đây dùng một số ảnh GIF để minh họa quá trình xây dựng con trỏ `fail` cho Trie tạo bởi các xâu $\mathtt{i}$, $\mathtt{he}$, $\mathtt{his}$, $\mathtt{she}$, $\mathtt{hers}$:
@@ -83,7 +83,7 @@ Hình dưới đây thể hiện trạng thái sau khi xây dựng xong:
 
 ![finish](./images/ac-automaton4.png)
 
-<span id="&#x5b57;&#x5178;&#x6811;&#x4e0e;&#x5b57;&#x5178;&#x56fe;"></span>
+<span id="trie-và-đồ-thị-từ-điển"></span>
 ## Trie và đồ thị từ điển
 
 Xét hàm xây dựng `build`. Hàm này có hai mục tiêu: xây dựng con trỏ `fail` và xây dựng automaton. Các biến liên quan được định nghĩa như sau:
@@ -129,7 +129,7 @@ Xét hàm xây dựng `build`. Hàm này có hai mục tiêu: xây dựng con tr
                         tr[u][i] = tr[fail[u]][i]
         ```
 
-<span id="&#x89e3;&#x91ca;_1"></span>
+<span id="giải-thích_1"></span>
 ### Giải thích
 
 Hàm `build` đưa các đỉnh vào hàng đợi theo thứ tự BFS và lần lượt tính con trỏ `fail`. Ở đây gốc của Trie là đỉnh $0$, ta đưa từng đỉnh con của gốc vào hàng đợi. Nếu đưa chính đỉnh gốc vào hàng đợi, trong lần BFS đầu tiên, con trỏ `fail` của các con của gốc sẽ bị đánh dấu thành chính chúng. Vì vậy ta đưa từng con của gốc vào hàng đợi, thay vì đưa gốc vào.
@@ -149,7 +149,7 @@ Mảng con `son` của các đỉnh Trie còn có một cách hiểu đơn giả
 
 Việc sửa cấu trúc Trie ở đây giúp các phép chuyển khi khớp trở nên đầy đủ hơn. Đồng thời nó nén đường đi nhảy theo con trỏ `fail`, biến việc phải nhảy nhiều lần thành chỉ nhảy một lần.
 
-<span id="&#x8fc7;&#x7a0b;"></span>
+<span id="quá-trình"></span>
 ### Quá trình
 
 Ở đây vẫn dùng một số ảnh GIF để minh họa quá trình xây dựng:
@@ -171,7 +171,7 @@ Chiến lược ban đầu là tìm theo con trỏ `fail`: ta nhảy tới $\ope
 
 Đây chính là hai việc mà `build` hoàn thành: xây dựng con trỏ `fail` và xây dựng đồ thị từ điển. Đồ thị từ điển này cũng đóng vai trò then chốt khi truy vấn.
 
-<span id="&#x591a;&#x6a21;&#x5f0f;&#x5339;&#x914d;"></span>
+<span id="khớp-nhiều-mẫu"></span>
 ## Khớp nhiều mẫu
 
 Tiếp theo phân tích hàm khớp `query`:
@@ -205,7 +205,7 @@ Tiếp theo phân tích hàm khớp `query`:
             return res
         ```
 
-<span id="&#x89e3;&#x91ca;_2"></span>
+<span id="giải-thích_2"></span>
 ### Giải thích
 
 Ở đây $u$ là đỉnh hiện đang khớp tới trên Trie, còn `res` là đáp án trả về. Vòng lặp duyệt xâu cần khớp, $u$ theo dõi ký tự hiện tại trên Trie. Ta dùng con trỏ `fail` để tìm mọi xâu mẫu đã khớp và cộng vào đáp án. Sau đó đặt số lần xuất hiện của xâu đã khớp thành không còn xét nữa, để tránh đếm lặp cùng một xâu. Như đã phân tích ở trên, cấu trúc Trie thực chất là một hàm `trans`; sau khi xây dựng hàm này, trong quá trình khớp xâu, ta sẽ bỏ bớt một phần tiền tố để đạt tới mức khớp tối thiểu. Con trỏ `fail` thì trỏ tới nhiều trạng thái khớp hơn. Cuối cùng xem lại một hình. Với automaton vừa rồi:
@@ -221,7 +221,7 @@ Ta bắt đầu từ gốc và thử khớp $\mathtt{ushersheishis}$, khi đó s
 3.  Cạnh màu xanh dương: xâu mẫu được khớp thành công.
 4.  Đỉnh màu xanh dương: đỉnh (trạng thái) khi nhảy theo con trỏ `fail`.
 
-<span id="&#x6548;&#x7387;&#x4f18;&#x5316;"></span>
+<span id="tối-ưu-hiệu-suất"></span>
 ## Tối ưu hiệu suất
 
 Bài toán tham khảo: Luogu [P5357 - Mẫu AC automaton](https://www.luogu.com.cn/problem/P5357).
@@ -236,7 +236,7 @@ Như vậy, việc khớp trên AC automaton có thể chuyển thành bài toá
 
 Dưới đây đưa ra hai hướng.
 
-<span id="&#x62d3;&#x6251;&#x6392;&#x5e8f;&#x4f18;&#x5316;"></span>
+<span id="tối-ưu-bằng-sắp-xếp-topo"></span>
 ### Tối ưu bằng sắp xếp topo
 
 Quan sát thấy thời gian chủ yếu bị lãng phí do mỗi lần đều phải nhảy theo `fail`. Nếu ta có thể ghi nhận trước rồi cuối cùng cộng dồn một lượt, hiệu suất sẽ được cải thiện.
@@ -313,14 +313,14 @@ Cuối cùng là hàm `main`:
     --8<-- "docs/string/code/ac-automaton/ac-automaton_topu.cpp"
     ```
 
-<span id="dfs-&#x4f18;&#x5316;"></span>
+<span id="tối-ưu-bằng-dfs"></span>
 ### Tối ưu bằng DFS
 
 Ý tưởng gần giống với sắp xếp topo, nhưng ta dùng DFS thay cho sắp xếp topo. Thực ra bản chất hai cách này giống nhau: đều tính tổng các cây con trên cây `fail`.
 
 Mã đầy đủ xem ở mẫu tổng kết 3.
 
-<span id="ac-&#x81ea;&#x52a8;&#x673a;&#x4e0a;-dp"></span>
+<span id="dp-trên-ac-automaton"></span>
 ## DP trên AC automaton
 
 Phần này dùng bài [P2292 [HNOI2004] Ngôn ngữ L](https://www.luogu.com.cn/problem/P2292) làm ví dụ để giải thích.
@@ -411,7 +411,7 @@ Nếu kết quả phép toán `&` khác $0$, nghĩa là giao của hai tập đ�
     --8<-- "docs/string/code/ac-automaton/ac_automaton_luoguP2292.cpp"
     ```
 
-<span id="&#x603b;&#x7ed3;"></span>
+<span id="tổng-kết"></span>
 ## Tổng kết
 
 Độ phức tạp thời gian: định nghĩa $|s_i|$ là độ dài xâu mẫu, $|S|$ là độ dài xâu văn bản, $|\Sigma|$ là kích thước bảng chữ cái (hằng số, thường là $26$). Nếu nối thành đồ thị Trie, độ phức tạp thời gian là $O(\sum|s_i|+n|\Sigma|+|S|)$, trong đó $n$ là số đỉnh của AC automaton và tối đa có thể đạt $O(\sum|s_i|)$. Nếu không nối đồ thị Trie, đồng thời tránh duyệt các con rỗng khi xây dựng con trỏ `fail`, độ phức tạp thời gian là $O(\sum|s_i|+|S|)$.
