@@ -8,7 +8,7 @@ Sau một số sửa đổi, nó cũng có thể giải bài toán ghép cặp t
 
 Điểm khác biệt giữa ghép cặp trong đồ thị tổng quát và ghép cặp trong đồ thị hai phía (bipartite matching) là đồ thị có thể chứa chu trình lẻ.
 
-![general-matching-1](./images/general-matching-1.png)
+![Chu trình lẻ gây xung đột khi đảo trạng thái cạnh ghép cặp](./images/general-matching-1.png)
 
 Lấy đồ thị này làm ví dụ. Nếu trực tiếp đảo trạng thái các cạnh (đổi cạnh ghép cặp và cạnh chưa ghép cặp cho nhau), thì $M$ sau khi đảo sẽ không hợp lệ: một số đỉnh sẽ xuất hiện trong hai cạnh ghép cặp. Vấn đề nằm ở chu trình lẻ.
 
@@ -22,14 +22,14 @@ Giả sử đỉnh hiện tại là $v$, đỉnh kề là $u$, có thể chia th
 
 Trường hợp gặp chu trình chẵn có thể xem như xử lý trong đồ thị hai phía, nên có thể bỏ qua. Sau khi **co hoa**, tiếp tục tìm đường tăng trong đồ thị mới.
 
-![general-matching-2](./images/general-matching-2.png)
+![Co hoa trong thuật toán blossom](./images/general-matching-2.png)
 
 Gọi đồ thị ban đầu là $G$, đồ thị sau khi **co hoa** là $G'$. Ta chỉ cần chứng minh:
 
 1.  Nếu $G$ tồn tại đường tăng, thì $G'$ cũng tồn tại.
 2.  Nếu $G'$ tồn tại đường tăng, thì $G$ cũng tồn tại.
 
-![general-matching-3](./images/general-matching-3.png)
+![Đồ thị ban đầu và đồ thị sau khi co hoa](./images/general-matching-3.png)
 
 Gọi cạnh không thuộc cây (cạnh tạo thành chu trình) là $(u,v)$, định nghĩa gốc hoa $h=LCA(u,v)$.
 Chu trình lẻ là chu trình xen kẽ, và chỉ có hai cạnh kề với $h$ có cùng loại, đều là cạnh không ghép cặp.
@@ -37,7 +37,7 @@ Khi đó cạnh cây đi vào $h$ chắc chắn là cạnh ghép cặp; ngoài $
 
 Quan sát cho thấy khi đi ra bằng một cạnh ngoài chu trình, có hai khả năng: theo chiều kim đồng hồ hoặc ngược chiều kim đồng hồ.
 
-![general-matching-4](./images/general-matching-4.png)
+![Hai hướng đi ra khỏi chu trình lẻ của hoa](./images/general-matching-4.png)
 
 Vì vậy, **co hoa** hay **không co hoa** đều không ảnh hưởng đến tính đúng đắn.
 
