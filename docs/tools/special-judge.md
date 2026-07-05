@@ -1,17 +1,17 @@
 author: Xeonacid, NachtgeistW, 2014CAIS01, sshwy, Chrogeek, Menci, yzy-1
 
-Trang này chủ yếu giới thiệu cách viết spj cho một số công cụ chấm/OJ.
+Trang này chủ yếu giới thiệu cách viết SPJ cho một số công cụ chấm/OJ.
 
 ## Giới thiệu
 
-**Trình chấm đặc biệt** (Special Judge, viết tắt: spj, còn gọi là checker) là chương trình dùng để kiểm tra tính hợp lệ của đáp án khi một bài có nhiều lời giải hoặc nhiều đáp án đúng.
+**Trình chấm đặc biệt** (Special Judge, viết tắt: SPJ, còn gọi là checker hoặc trình kiểm tra đáp án) là chương trình dùng để kiểm tra tính hợp lệ của đáp án khi một bài có nhiều lời giải hoặc nhiều đáp án đúng.
 
 ???+ warning "Cảnh báo"
-    spj cũng nên kiểm tra cuối tệp có nội dung thừa hay không, và định dạng đầu ra có đúng hay không (ví dụ đề yêu cầu các số cách nhau bằng một dấu cách, nhưng thí sinh lại dùng xuống dòng). Tuy nhiên, hiện nay việc kiểm tra cuối tệp chỉ có Testlib làm được thuận tiện, còn kiểm tra định dạng kiểu này thì hầu như không ai cố ý làm riêng.
+    SPJ cũng nên kiểm tra cuối tệp có nội dung thừa hay không, và định dạng đầu ra có đúng hay không (ví dụ đề yêu cầu các số cách nhau bằng một dấu cách, nhưng thí sinh lại dùng xuống dòng). Tuy nhiên, hiện nay việc kiểm tra cuối tệp chỉ có Testlib làm được thuận tiện, còn kiểm tra định dạng kiểu này thì hầu như không ai cố ý làm riêng.
 
     Khi kiểm tra số thực, cần chú ý NaN. Cách kiểm tra không hợp lý có thể dẫn đến tình huống chỉ cần xuất NaN là AC.
 
-    Khi đọc tệp của thí sinh, nên kiểm tra xem đã đọc đúng nội dung cần thiết hay chưa, để tránh làm spj bị lỗi chạy. Một số OJ xử lý lỗi chạy của spj như lỗi hệ thống.
+    Khi đọc tệp của thí sinh, nên kiểm tra xem đã đọc đúng nội dung cần thiết hay chưa, để tránh làm SPJ bị lỗi chạy. Một số OJ xử lý lỗi chạy của SPJ như lỗi hệ thống.
 
 ???+ note "Ghi chú"
     Các ví dụ bên dưới đều dùng C++ làm ngôn ngữ lập trình, với tình huống mẫu: yêu cầu sai khác giữa đáp án chuẩn và đáp án thí sinh nhỏ hơn `1e-3`, tên tệp là `num`, và điểm tối đa của một test là 10.
@@ -22,19 +22,19 @@ Xem thêm: [Testlib/Giới thiệu](./testlib/index.md), [Testlib/Checker](./tes
 
 Testlib là một thư viện C++ hỗ trợ người ra đề viết bài thi thuật toán bằng C++.
 
-Các công cụ chấm/OJ bắt buộc dùng Testlib làm spj: Codeforces, Luogu, UOJ, v.v.
+Các công cụ chấm/OJ bắt buộc dùng Testlib làm SPJ: Codeforces, Luogu, UOJ, v.v.
 
-Các công cụ chấm/OJ có thể dùng Testlib làm spj: LibreOJ ([Lyrio](https://github.com/lyrio-dev)), Lemon, Nowcoder, v.v.
+Các công cụ chấm/OJ có thể dùng Testlib làm SPJ: LibreOJ ([Lyrio](https://github.com/lyrio-dev)), Lemon, Nowcoder, v.v.
 
 Phiên bản Testlib đã chỉnh sửa cần cho SYZOJ 2 được lưu tại [pastebin](https://pastebin.com/3GANXMG7)[^1], nhưng phiên bản này chưa chỉnh sửa chế độ tương tác. Tại [syzoj/testlib](https://github.com/syzoj/testlib) có lưu một bản Testlib có thể dùng chế độ tương tác trên SYZOJ 2.
 
 Phiên bản Testlib đã chỉnh sửa cần cho Lemon được lưu tại [GitHub - GitPinkRabbit/Testlib-for-Lemons](https://github.com/GitPinkRabbit/Testlib-for-Lemons). Chú ý rằng khi đăng ký checker bằng phiên bản Testlib này, nên dùng `registerLemonChecker()` thay vì `registerTestlibCmd()`. Phiên bản này kế thừa từ [bản cũ của matthew99](https://paste.ubuntu.com/p/JsTspHHnmB/) và bổ sung một số chức năng mới của Testlib. Nếu bạn dùng LemonLime, có thể dùng Testlib gốc.
 
-Phiên bản Testlib đã chỉnh sửa cần cho DOMJudge được lưu tại [cn-xcpc-tools/testlib-for-domjudge](https://github.com/cn-xcpc-tools/testlib-for-domjudge). Phiên bản Testlib này có thể dùng đồng thời làm checker cho Special Judge và interactor cho bài tương tác.
+Phiên bản Testlib đã chỉnh sửa cần cho DOMJudge được lưu tại [cn-xcpc-tools/testlib-for-domjudge](https://github.com/cn-xcpc-tools/testlib-for-domjudge). Phiên bản Testlib này có thể dùng đồng thời làm checker cho SPJ và interactor cho bài tương tác.
 
 Phiên bản Testlib đã chỉnh sửa cần cho Arbiter được lưu tại [testlib-for-arbiter](https://github.com/HeRaNO/ChickenRibs/tree/master/testlib-for-arbiter).
 
-Với đa số công cụ chấm/OJ khác, cần chỉnh sửa Testlib theo định dạng spj của hệ thống đó, rồi tải `testlib.h` lên cùng spj; hoặc đặt `testlib.h` trong thư mục include.
+Với đa số công cụ chấm/OJ khác, cần chỉnh sửa Testlib theo định dạng SPJ của hệ thống đó, rồi tải `testlib.h` lên cùng SPJ; hoặc đặt `testlib.h` trong thư mục include.
 
 ```cpp
 #include "testlib.h"
@@ -143,7 +143,7 @@ int main(int argc, char* argv[]) {
 
 int main(int argc, char* argv[]) {
   /*
-   * stdin: đầu vào
+   * stdin: đầu vào chuẩn
    * argv[2]: đầu ra chuẩn
    * argv[3]: đầu ra của thí sinh
    * stdout:L1: ghi tỉ lệ điểm cuối cùng (0 ~ 1)
@@ -213,7 +213,7 @@ int main(int argc, char* argv[]) {
    * argv[1]: đầu vào
    * argv[2]: đầu ra chuẩn
    * argv[3]: đầu ra của thí sinh
-   * exit code: trả về kết quả chấm
+   * exit code: mã thoát trả về kết quả chấm
    */
   FILE* fin = fopen(argv[1], "r");
   FILE* fout = fopen(argv[3], "r");
@@ -232,7 +232,7 @@ int main(int argc, char* argv[]) {
 
 ## QDUOJ
 
-So với các hệ thống trên, QDUOJ hơi phiền hơn. Bài có spj trên QDUOJ không có đầu ra chuẩn, nên chỉ có thể viết lời giải chuẩn vào trong spj; sau khi chạy ra đầu ra chuẩn thì mới so sánh.
+So với các hệ thống trên, QDUOJ hơi phiền hơn. Bài có SPJ trên QDUOJ không có đầu ra chuẩn, nên chỉ có thể viết lời giải chuẩn vào trong SPJ; sau khi chạy ra đầu ra chuẩn thì mới so sánh.
 
 ```cpp
 #include <cmath>
@@ -250,7 +250,7 @@ int main(int argc, char* argv[]) {
   /*
    * argv[1]: đầu vào
    * argv[2]: đầu ra của thí sinh
-   * exit code: trả về kết quả chấm
+   * exit code: mã thoát trả về kết quả chấm
    */
   FILE* fin = fopen(argv[1], "r");
   FILE* fout = fopen(argv[2], "r");
@@ -268,7 +268,7 @@ int main(int argc, char* argv[]) {
 
 ## HDOJ
 
-Tình huống của HDOJ về cơ bản giống QDUOJ: cũng cần triển khai lời giải chuẩn trong spj rồi so sánh với đầu ra của thí sinh. Tuy nhiên, khác với QDUOJ, HDOJ sẽ so sánh đáp án với nội dung mà spj xuất ra làm đầu ra chuẩn rồi đưa ra kết quả cuối cùng. Vì vậy, khi tải đầu ra lên, chỉ cần tải đầu ra của spj trong trường hợp đúng.
+Tình huống của HDOJ về cơ bản giống QDUOJ: cũng cần triển khai lời giải chuẩn trong SPJ rồi so sánh với đầu ra của thí sinh. Tuy nhiên, khác với QDUOJ, HDOJ sẽ so sánh đáp án với nội dung mà SPJ xuất ra làm đầu ra chuẩn rồi đưa ra kết quả cuối cùng. Vì vậy, khi tải đầu ra lên, chỉ cần tải đầu ra của SPJ trong trường hợp đúng.
 
 HDOJ yêu cầu tải lên tệp nhị phân đã biên dịch trên Windows, không phải mã nguồn.
 
@@ -283,7 +283,7 @@ double solve(FILE* fin) {
 int main(int argc, char* argv[]) {
   /*
    * argv[1]: đầu vào
-   * stdin: đầu ra của thí sinh
+   * stdin: đầu ra của thí sinh qua đầu vào chuẩn
    */
   FILE* fin = fopen(argv[1], "r");
 
@@ -370,7 +370,7 @@ int main(int argc, char* argv[]) {
    * input: đầu vào
    * user_output: đầu ra của thí sinh
    * output: đầu ra chuẩn
-   * exit code: trả về kết quả chấm
+   * exit code: mã thoát trả về kết quả chấm
    */
   FILE* fin = fopen("input", "r");
   FILE* fout = fopen("user_output", "r");
@@ -390,11 +390,11 @@ int main(int argc, char* argv[]) {
 ## DOMJudge
 
 ???+ note "Ghi chú"
-    DOMJudge hỗ trợ spj viết bằng bất kỳ ngôn ngữ nào; xem: [định dạng trình kiểm tra đầu ra của problemarchive.org](https://www.problemarchive.org/wiki/index.php/Output_validator).
+    DOMJudge hỗ trợ SPJ viết bằng bất kỳ ngôn ngữ nào; xem: [định dạng trình kiểm tra đầu ra của problemarchive.org](https://www.problemarchive.org/wiki/index.php/Output_validator).
 
     DOMJudge có sẵn phiên bản [Testlib](#testlib) đã chỉnh sửa, nên khuyến nghị dùng Testlib.
 
-Tài liệu về Testlib dùng cho DOMJudge và cách import gói bài Polygon: <https://github.com/cn-xcpc-tools/testlib-for-domjudge>
+Tài liệu về Testlib dùng cho DOMJudge và cách nhập gói bài Polygon: <https://github.com/cn-xcpc-tools/testlib-for-domjudge>
 
 [Bộ so sánh mặc định](https://github.com/Kattis/problemtools/blob/master/support/default_validator/) của DOMJudge đã có sẵn so sánh số thực kèm độ chính xác; chỉ cần thêm `float_tolerance 1e-3` vào `validator_flags` trong cấu hình bài.
 
@@ -411,7 +411,7 @@ int main(int argc, char* argv[]) {
    * argv[1]: đầu vào
    * argv[2]: đầu ra chuẩn
    * argv[3]: thư mục ghi thông tin chấm
-   * stdin: đầu ra của thí sinh
+   * stdin: đầu ra của thí sinh qua đầu vào chuẩn
    */
   FILE* fin = fopen(argv[1], "r");
   FILE* fstd = fopen(argv[2], "r");
@@ -437,4 +437,4 @@ Cũng có thể dùng tệp tiêu đề [validate.h](https://github.com/Kattis/p
 
 ## Tài liệu tham khảo
 
-[^1]: [LibreOJ da ho tro checker testlib!](https://loj.ac/article/124)
+[^1]: [LibreOJ đã hỗ trợ checker Testlib!](https://loj.ac/article/124)

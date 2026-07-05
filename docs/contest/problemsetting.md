@@ -251,7 +251,7 @@ Vì vậy, về nguyên tắc, giới hạn thời gian nên được chọn l�
 
 Thông thường, giới hạn thời gian nên thỏa mãn các yêu cầu sau:
 
-1.  Ít nhất bằng hai lần thời gian chạy của std trong trường hợp xấu nhất.
+1.  Ít nhất bằng hai lần thời gian chạy của lời giải chuẩn (std) trong trường hợp xấu nhất.
 2.  Nếu cuộc thi cho phép dùng Java, phải để Java có thể qua.
 3.  Không nên để lời giải sai vượt qua (trừ khi thật sự không chặn được, hoặc muốn cho một loại lời giải sai nào đó qua).
 
@@ -275,9 +275,9 @@ Giới hạn dữ liệu nhỏ hơn thường nên được chia thành nhiều 
 
 Việc đặt điểm thành phần cho tính chất đặc biệt cần tùy theo bài cụ thể. Điểm thành phần cho tính chất đặc biệt lý tưởng nên có khả năng dẫn dắt thí sinh suy nghĩ về lời giải đúng. Khác với điểm thành phần theo giới hạn dữ liệu nhỏ hơn, nếu bạn không biết lời giải cho một tính chất đặc biệt nào đó, tốt nhất đừng cho tính chất ấy một mức điểm. Ví dụ: mức điểm $k=1$ của [CTS2019: Lập phương ngẫu nhiên](https://loj.ac/problem/3119) đã bị nhiều người phàn nàn khi giảng bài, cho rằng mức điểm này cản trở việc suy nghĩ lời giải đúng.
 
-Nếu cách tính điểm của bài khác với mặc định (ví dụ: trong một cuộc thi theo thể thức OI thông thường nhưng chấm theo subtask buộc chặt), nhất định phải nói rõ trong đề.
+Nếu cách tính điểm của bài khác với mặc định (ví dụ: trong một cuộc thi theo thể thức OI thông thường nhưng chấm theo bài con buộc chặt), nhất định phải nói rõ trong đề.
 
-Không khuyến nghị dùng cách nói "$XX$% dữ liệu thỏa mãn XX", đặc biệt khi giới hạn dữ liệu có nhiều biến. Ví dụ, "$30\%$ dữ liệu thỏa mãn $n \le 1000$" và "$40\%$ dữ liệu thỏa mãn $m \le 100$" có thể đang mô tả tính chất của $70\%$ dữ liệu, cũng có thể chỉ mô tả tính chất của $40\%$ dữ liệu. Nói chung, subtask hoặc bảng giới hạn dữ liệu là lựa chọn tốt hơn.
+Không khuyến nghị dùng cách nói "$XX$% dữ liệu thỏa mãn XX", đặc biệt khi giới hạn dữ liệu có nhiều biến. Ví dụ, "$30\%$ dữ liệu thỏa mãn $n \le 1000$" và "$40\%$ dữ liệu thỏa mãn $m \le 100$" có thể đang mô tả tính chất của $70\%$ dữ liệu, cũng có thể chỉ mô tả tính chất của $40\%$ dữ liệu. Nói chung, bài con (subtask) hoặc bảng giới hạn dữ liệu là lựa chọn tốt hơn.
 
 ## Tạo dữ liệu
 
@@ -291,7 +291,7 @@ Hãy tham khảo trang [hàm ngẫu nhiên](../misc/random.md).
 
 Cần đặc biệt nhắc rằng khi sinh một số có miền giá trị lớn hơn giá trị trả về của hàm ngẫu nhiên, **đừng** dùng cách viết như `rand() * rand()`, vì số ngẫu nhiên sinh ra theo cách này rất không đều.
 
-Ngoài ra, khi ra đề nên dùng [testlib](../tools/testlib/generator.md) để tạo dữ liệu. Cách này có thể bảo đảm cùng một seed sinh ra cùng một dãy số ngẫu nhiên trên các nền tảng khác nhau, và seed sẽ được tự động sinh theo tham số dòng lệnh.
+Ngoài ra, khi ra đề nên dùng [Testlib](../tools/testlib/generator.md) để tạo dữ liệu. Cách này có thể bảo đảm cùng một hạt giống (seed) sinh ra cùng một dãy số ngẫu nhiên trên các nền tảng khác nhau, và hạt giống sẽ được tự động sinh theo tham số dòng lệnh.
 
 #### Sinh hoán vị ngẫu nhiên
 
@@ -377,7 +377,7 @@ int main(int argc, char* argv[]) {
   for (i = 1; i <= n; ++i) p.push_back(i);
 
   shuffle(p.begin(), p.end());
-  // Dùng rnd.next() để shuffle
+  // Dùng rnd.next() để xáo trộn
 
   printf("%d %d %d\n", n, m, k);
   for (i = 0; i < n; ++i) {
@@ -408,7 +408,7 @@ Dữ liệu nên bao gồm giá trị nhỏ nhất và lớn nhất của từng
 
 Dữ liệu nên bao gồm các trường hợp biên khác nhau.
 
-Khi dùng subtask, dữ liệu (bao gồm đầu vào và đầu ra) tốt nhất nên bao phủ các khoảng khác nhau trong miền giá trị, chứ không chỉ có giá trị lớn nhất của giới hạn dữ liệu.
+Khi dùng bài con (subtask), dữ liệu (bao gồm đầu vào và đầu ra) tốt nhất nên bao phủ các khoảng khác nhau trong miền giá trị, chứ không chỉ có giá trị lớn nhất của giới hạn dữ liệu.
 
 Để tránh lời giải xét riêng cấu trúc đặc biệt qua được, có thể kết hợp nhiều cấu trúc khác nhau trong một bộ kiểm thử, hoặc để phần lớn dữ liệu là dữ liệu dựng, xen lẫn một phần nhỏ dữ liệu ngẫu nhiên.
 
@@ -444,14 +444,14 @@ Thông thường có thể sinh dữ liệu có xuống dòng kiểu Linux bằn
 
 [Hướng dẫn viết SPJ](../tools/special-judge.md)
 
-Bài yêu cầu in phương án và bài yêu cầu in số thực là hai dạng bài khá thường gặp cần dùng SPJ; các bài khác cũng có thể cần dùng SPJ tùy tình huống. Trên CF, mọi bài đều phải dùng checker dựa trên testlib. Ví dụ: khi bài yêu cầu in một vài số nguyên, dùng checker ncmp có sẵn của testlib; thí sinh có thể in ký tự trắng tùy ý (có thể là dấu cách hoặc xuống dòng).
+Bài yêu cầu in phương án và bài yêu cầu in số thực là hai dạng bài khá thường gặp cần dùng SPJ; các bài khác cũng có thể cần dùng SPJ tùy tình huống. Trên CF, mọi bài đều phải dùng checker dựa trên Testlib. Ví dụ: khi bài yêu cầu in một vài số nguyên, dùng checker `ncmp` có sẵn của Testlib; thí sinh có thể in ký tự trắng tùy ý (có thể là dấu cách hoặc xuống dòng).
 
-checker thường được viết bằng testlib. Vì checker phải xử lý đủ loại đầu ra không hợp lệ, nó cần độ vững rất cao; nếu không dùng testlib thì rất khó viết checker tốt.
+Checker thường được viết bằng Testlib. Vì checker phải xử lý đủ loại đầu ra không hợp lệ, nó cần độ vững rất cao; nếu không dùng Testlib thì rất khó viết checker tốt.
 
 Khi viết checker cần chú ý hai điểm sau:
 
-1.  Bạn cần xử lý mọi loại đầu ra không hợp lệ, vì vậy hãy kiểm tra từng biến đọc vào có nằm trong phạm vi hợp lệ hay không (`readInt(minvalue, maxvalue)`). Ví dụ: khi đọc một biến sẽ được dùng làm chỉ số mảng trong quá trình check, bắt buộc phải kiểm tra phạm vi của nó, nếu không có thể gây vượt biên mảng; đôi khi điều này dẫn đến RE, đôi khi lại có thể bị chấm là AC.
-2.  Về nguyên tắc, không nên kiểm tra ký tự trắng trong checker (tức không nên dùng `readSpace()`, `readEoln()`, `readEof()`; đáng nói là testlib sẽ tự động kiểm tra có đầu ra thừa hay không).
+1.  Bạn cần xử lý mọi loại đầu ra không hợp lệ, vì vậy hãy kiểm tra từng biến đọc vào có nằm trong phạm vi hợp lệ hay không (`readInt(minvalue, maxvalue)`). Ví dụ: khi đọc một biến sẽ được dùng làm chỉ số mảng trong quá trình kiểm tra, bắt buộc phải kiểm tra phạm vi của nó, nếu không có thể gây vượt biên mảng; đôi khi điều này dẫn đến RE, đôi khi lại có thể bị chấm là AC.
+2.  Về nguyên tắc, không nên kiểm tra ký tự trắng trong checker (tức không nên dùng `readSpace()`, `readEoln()`, `readEof()`; đáng nói là Testlib sẽ tự động kiểm tra có đầu ra thừa hay không).
 
 ## Lời giải
 
@@ -495,10 +495,10 @@ Người ra đề rất có thể đánh giá sai độ khó của bài. Vì v�
 
 Trong các kỳ thi thử kiểu OI Trung Quốc, thường chỉ cần tổng thể độ khó của ba bài tương đương với độ khó cuộc thi.
 
-Trong các cuộc thi trực tuyến kiểu CF/ATC, cần cố gắng bảo đảm độ khó tăng dần (mặc dù do đánh giá sai độ khó nên nhiều khi không thật sự làm được), đồng thời cố gắng tránh xuất hiện khoảng cách độ khó lớn. Có thể giảm khoảng cách độ khó bằng cách tách một bài thành hai phiên bản dễ/khó (hai subtask), nhưng việc chia subtask cần được cân nhắc thận trọng. Cũng có nhiều người không thích subtask trong thể thức CF ([Are subtasks evil?](https://codeforces.com/blog/entry/71700)), với các lý do bao gồm nhưng không giới hạn ở:
+Trong các cuộc thi trực tuyến kiểu CF/ATC, cần cố gắng bảo đảm độ khó tăng dần (mặc dù do đánh giá sai độ khó nên nhiều khi không thật sự làm được), đồng thời cố gắng tránh xuất hiện khoảng cách độ khó lớn. Có thể giảm khoảng cách độ khó bằng cách tách một bài thành hai phiên bản dễ/khó (hai bài con), nhưng việc chia bài con cần được cân nhắc thận trọng. Cũng có nhiều người không thích bài con trong thể thức CF ([Are subtasks evil?](https://codeforces.com/blog/entry/71700)), với các lý do bao gồm nhưng không giới hạn ở:
 
 -   Do thể thức thi, làm phiên bản dễ trước rồi làm phiên bản khó có thể bị phạt thời gian ít hơn và tổng điểm cao hơn.
--   Điểm của subtask thường không tỉ lệ thuận với độ khó của bài.
+-   Điểm của bài con thường không tỉ lệ thuận với độ khó của bài.
 -   Rất nhiều khi phiên bản dễ không phải là một bài đạt chuẩn (không thú vị).
 -   Rất nhiều khi lời giải của phiên bản dễ không giúp ích cho việc nghĩ lời giải đúng của phiên bản khó.
 
