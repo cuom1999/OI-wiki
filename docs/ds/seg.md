@@ -4,25 +4,36 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 Cây phân đoạn là một cấu trúc dữ liệu thường dùng trong lập trình thi đấu để duy trì **thông tin trên đoạn**.
 
-Cây phân đoạn có thể thực hiện các thao tác như sửa đổi một điểm, sửa đổi đoạn, truy vấn đoạn (tính tổng đoạn, tìm giá trị lớn nhất/nhỏ nhất trên đoạn) trong thời gian $O(\log N)$.
+Cây phân đoạn hỗ trợ các thao tác như sửa đổi một điểm, sửa đổi đoạn và truy vấn đoạn trong thời gian $O(\log N)$,
+chẳng hạn tính tổng đoạn hoặc tìm giá trị lớn nhất/nhỏ nhất trên đoạn.
 
 ## Cấu trúc cơ bản và xây cây
 
 ### Quy trình
 
-Cây phân đoạn chia mỗi đoạn có độ dài khác $1$ thành hai đoạn trái/phải và giải đệ quy, từ đó biến toàn bộ đoạn thành một cấu trúc dạng cây. Thông tin của một đoạn được tính bằng cách hợp nhất thông tin của hai đoạn con trái/phải. Cấu trúc dữ liệu này xử lý thuận tiện phần lớn các thao tác trên đoạn.
+Cây phân đoạn chia mỗi đoạn có độ dài khác $1$ thành hai đoạn trái/phải và xử lý đệ quy, từ đó biến toàn bộ đoạn thành
+một cấu trúc dạng cây. Thông tin của một đoạn được tính bằng cách hợp nhất thông tin của hai đoạn con trái/phải. Cấu trúc
+dữ liệu này xử lý thuận tiện phần lớn các thao tác trên đoạn.
 
-Với mảng kích thước $5$ là $a=\{10,11,12,13,14\}$, để chuyển nó thành cây phân đoạn, ta làm như sau: đặt nút gốc của cây phân đoạn có số hiệu $1$, dùng mảng $d$ để lưu cây phân đoạn, và $d_i$ lưu giá trị của nút có số hiệu $i$ trên cây phân đoạn (ở đây giá trị mà mỗi nút duy trì là tổng đoạn mà nút đó biểu diễn).
+Với mảng kích thước $5$ là $a=\{10,11,12,13,14\}$, có thể xây cây phân đoạn như sau: đặt nút gốc của cây phân đoạn có số
+hiệu $1$, dùng mảng $d$ để lưu cây phân đoạn, và $d_i$ lưu giá trị của nút có số hiệu $i$ trên cây phân đoạn. Trong ví dụ
+này, giá trị mà mỗi nút duy trì là tổng đoạn mà nút đó biểu diễn.
 
 Trước hết, hình dạng của cây phân đoạn này như sau:
 
 ![](./images/segt1.svg)
 
-Trong hình, đoạn được đánh dấu bằng chữ đỏ trong mỗi nút biểu thị phạm vi vị trí trên mảng $a$ mà nút đó quản lý. Chẳng hạn, đoạn do $d_1$ quản lý là $[1,5]$ ($a_1,a_2, \cdots ,a_5$), tức giá trị được lưu trong $d_1$ là $a_1+a_2+ \cdots +a_5$; $d_1=60$ nghĩa là $a_1+a_2+ \cdots +a_5=60$.
+Trong hình, đoạn được đánh dấu bằng chữ đỏ trong mỗi nút biểu thị phạm vi vị trí trên mảng $a$ mà nút đó quản lý. Chẳng
+hạn, đoạn do $d_1$ quản lý là $[1,5]$ ($a_1,a_2, \cdots ,a_5$), tức giá trị được lưu trong $d_1$ là
+$a_1+a_2+ \cdots +a_5$; $d_1=60$ nghĩa là $a_1+a_2+ \cdots +a_5=60$.
 
-Quan sát dễ thấy, con trái của $d_i$ là $d_{2\times i}$, còn con phải của $d_i$ là $d_{2\times i+1}$. Nếu $d_i$ biểu diễn đoạn $[s,t]$ (tức $d_i=a_s+a_{s+1}+ \cdots +a_t$), thì con trái của $d_i$ biểu diễn đoạn $[ s, \frac{s+t}{2} ]$, còn con phải của $d_i$ biểu diễn đoạn $[ \frac{s+t}{2} +1,t ]$.
+Theo cách đánh số này, con trái của $d_i$ là $d_{2\times i}$, còn con phải của $d_i$ là $d_{2\times i+1}$. Nếu $d_i$ biểu
+diễn đoạn $[s,t]$ (tức $d_i=a_s+a_{s+1}+ \cdots +a_t$), thì con trái của $d_i$ biểu diễn đoạn
+$[ s, \frac{s+t}{2} ]$, còn con phải của $d_i$ biểu diễn đoạn $[ \frac{s+t}{2} +1,t ]$.
 
-Khi cài đặt, ta thường xây cây bằng đệ quy. Giả sử nút gốc hiện tại là $p$. Nếu đoạn mà nút gốc quản lý đã có độ dài $1$, có thể khởi tạo trực tiếp nút này bằng giá trị tại vị trí tương ứng trong mảng $a$. Ngược lại, ta chia đoạn này tại trung điểm thành hai đoạn con, lần lượt đi vào con trái và con phải để xây cây đệ quy, cuối cùng hợp nhất thông tin của hai nút con.
+Khi cài đặt, thường xây cây bằng đệ quy. Giả sử nút gốc hiện tại là $p$. Nếu đoạn mà nút gốc quản lý đã có độ dài $1$, có
+thể khởi tạo nút này bằng giá trị tại vị trí tương ứng trong mảng $a$. Ngược lại, chia đoạn này tại trung điểm thành hai
+đoạn con, lần lượt đi vào con trái và con phải để xây cây đệ quy, rồi hợp nhất thông tin của hai nút con.
 
 ### Cài đặt
 
@@ -61,27 +72,39 @@ Dưới đây là mã cài đặt; có thể đọc thêm các chú thích để
         d[p] = d[p * 2] + d[(p * 2) + 1]
     ```
 
-Về bộ nhớ của cây phân đoạn: nếu dùng cách lưu kiểu heap ($2p$ là con trái của $p$, $2p+1$ là con phải của $p$), khi có $n$ nút lá thì kích thước lớn nhất cần cho mảng $d$ là $2^{\left\lceil\log{n}\right\rceil+1}$.
+Về bộ nhớ của cây phân đoạn: nếu dùng cách lưu kiểu heap ($2p$ là con trái của $p$, $2p+1$ là con phải của $p$), khi có
+$n$ nút lá thì kích thước lớn nhất cần cho mảng $d$ là $2^{\left\lceil\log{n}\right\rceil+1}$.
 
-Phân tích: dễ thấy độ sâu của cây phân đoạn là $\left\lceil\log{n}\right\rceil$. Khi lưu kiểu heap, số nút lá (kể cả các nút lá vô dụng) là $2^{\left\lceil\log{n}\right\rceil}$. Vì đây là một cây nhị phân đầy đủ, tổng số nút là $2^{\left\lceil\log{n}\right\rceil+1}-1$. Dĩ nhiên nếu không muốn tính kỹ, có thể đặt độ dài mảng là $4n$, vì giá trị lớn nhất của $\frac{2^{\left\lceil\log{n}\right\rceil+1}-1}{n}$ đạt được khi $n=2^{x}+1(x\in N_{+})$; khi đó số nút là $2^{\left\lceil\log{n}\right\rceil+1}-1=2^{x+2}-1=4n-5$.
+Phân tích: độ sâu của cây phân đoạn là $\left\lceil\log{n}\right\rceil$. Khi lưu kiểu heap, số nút lá (kể cả các nút lá
+vô dụng) là $2^{\left\lceil\log{n}\right\rceil}$. Vì đây là một cây nhị phân đầy đủ, tổng số nút là
+$2^{\left\lceil\log{n}\right\rceil+1}-1$. Nếu không muốn tính kỹ, có thể đặt độ dài mảng là $4n$, vì giá trị lớn nhất của
+$\frac{2^{\left\lceil\log{n}\right\rceil+1}-1}{n}$ đạt được khi $n=2^{x}+1(x\in N_{+})$; khi đó số nút là
+$2^{\left\lceil\log{n}\right\rceil+1}-1=2^{x+2}-1=4n-5$.
 
-Vì lưu kiểu heap có các nút lá vô dụng, có thể cân nhắc dùng bộ nhớ dạng pool để quản lý nút cây phân đoạn, mỗi khi cần tạo nút mới thì lấy từ pool. Xét từ dưới lên, cứ hai nút tầng dưới sẽ hợp nhất thành một nút tầng trên, nên có thể chứng minh tương tự cây Huffman rằng nếu có $n$ nút lá, cây phân đoạn như vậy có tổng cộng $2n-1$ nút. Hiệu quả bộ nhớ của cách này tốt hơn lưu kiểu heap và có thể là tối ưu.
+Vì lưu kiểu heap có các nút lá vô dụng, có thể cân nhắc dùng bộ nhớ dạng pool để quản lý nút cây phân đoạn: mỗi khi cần
+tạo nút mới thì lấy từ pool. Xét từ dưới lên, cứ hai nút tầng dưới sẽ hợp nhất thành một nút tầng trên, nên có thể chứng
+minh tương tự cây Huffman rằng nếu có $n$ nút lá, cây phân đoạn như vậy có tổng cộng $2n-1$ nút. Hiệu quả bộ nhớ của cách
+này tốt hơn lưu kiểu heap và có thể là tối ưu.
 
-Cây phân đoạn kiểu này có thể được duy trì từ dưới lên; tham khảo "[Sức mạnh của thống kê - Zhang Kunwei](https://github.com/hzwer/shareOI/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BB%9F%E8%AE%A1%E7%9A%84%E5%8A%9B%E9%87%8F%E2%80%94%E2%80%94%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%85%A8%E6%8E%A5%E8%A7%A6_%E5%BC%A0%E6%98%86%E7%8E%AE.pptx)".
+Cây phân đoạn kiểu này có thể được duy trì từ dưới lên; tham khảo
+"[Sức mạnh của thống kê - Zhang Kunwei][zhang-seg-ppt]".
 
 ## Truy vấn đoạn trên cây phân đoạn
 
 ### Quy trình
 
-Truy vấn đoạn là các thao tác như tính tổng đoạn $[l,r]$ (tức $a_l+a_{l+1}+ \cdots +a_r$), tìm giá trị lớn nhất/nhỏ nhất trên đoạn, v.v.
+Truy vấn đoạn là các thao tác như tính tổng đoạn $[l,r]$ (tức $a_l+a_{l+1}+ \cdots +a_r$), tìm giá trị lớn nhất/nhỏ nhất
+trên đoạn, v.v.
 
 ![](./images/segt1.svg)
 
 Vẫn lấy hình ban đầu làm ví dụ, nếu cần truy vấn tổng đoạn $[1,5]$, chỉ cần lấy trực tiếp giá trị của $d_1$ ($60$).
 
-Nếu đoạn cần truy vấn là $[3,5]$, lúc này không thể lấy trực tiếp giá trị của đoạn. Tuy nhiên $[3,5]$ có thể tách thành $[3,3]$ và $[4,5]$, rồi hợp nhất đáp án của hai đoạn này để thu được đáp án của cả đoạn.
+Nếu đoạn cần truy vấn là $[3,5]$, lúc này không thể lấy trực tiếp giá trị của đoạn. Tuy nhiên $[3,5]$ có thể tách thành
+$[3,3]$ và $[4,5]$, rồi hợp nhất đáp án của hai đoạn này để thu được đáp án của cả đoạn.
 
-Nói chung, nếu đoạn cần truy vấn là $[l,r]$, ta có thể tách nó thành nhiều nhất $O(\log n)$ đoạn **cực đại**, rồi hợp nhất các đoạn đó để tính đáp án của $[l,r]$.
+Nói chung, nếu đoạn cần truy vấn là $[l,r]$, có thể tách nó thành nhiều nhất $O(\log n)$ đoạn **cực đại**, rồi hợp nhất các
+đoạn đó để tính đáp án của $[l,r]$.
 
 ### Cài đặt
 
@@ -123,27 +146,37 @@ Dưới đây là mã cài đặt; có thể đọc thêm các chú thích để
 
 ### Quy trình
 
-Nếu cần sửa đoạn $[l,r]$, việc duyệt và sửa mọi nút nằm trong đoạn $[l,r]$ sẽ có độ phức tạp không chấp nhận được. Vì vậy, ta cần đưa vào một thứ gọi là **nhãn lười**.
+Nếu cần sửa đoạn $[l,r]$, việc duyệt và sửa mọi nút nằm trong đoạn $[l,r]$ sẽ có độ phức tạp không chấp nhận được. Vì vậy,
+cần đưa vào **nhãn lười**.
 
-Nói ngắn gọn, nhãn lười trì hoãn việc thay đổi thông tin của nút, qua đó giảm số thao tác có thể không cần thiết. Mỗi lần thực hiện sửa đổi, ta gắn nhãn để biểu thị đoạn tương ứng với nút này đã bị thay đổi trong một thao tác nào đó, nhưng chưa cập nhật thông tin của các nút con. Việc sửa đổi thực sự chỉ được thực hiện vào lần sau khi ta truy cập một nút đang mang nhãn.
+Nói ngắn gọn, nhãn lười trì hoãn việc thay đổi thông tin của nút, qua đó giảm số thao tác không cần thiết. Mỗi lần thực
+hiện sửa đổi, gắn nhãn để biểu thị đoạn tương ứng với nút này đã bị thay đổi trong một thao tác nào đó, nhưng thông tin
+của các nút con chưa được cập nhật. Việc sửa đổi thật sự chỉ được thực hiện vào lần sau khi truy cập một nút đang mang
+nhãn.
 
-Vẫn lấy hình ban đầu làm ví dụ. Ta sẽ thực hiện một số thao tác cộng một giá trị vào mọi số trong đoạn. Bây giờ, thêm vào mỗi nút một $t_i$, biểu thị giá trị nhãn mà nút đó đang mang.
+Vẫn lấy hình ban đầu làm ví dụ. Xét thao tác cộng một giá trị vào mọi số trong đoạn. Bây giờ, thêm vào mỗi nút một $t_i$,
+biểu thị giá trị nhãn mà nút đó đang mang.
 
-Ban đầu tình hình như sau (để tiết kiệm không gian, ở đây không hiển thị đoạn do từng nút quản lý):
+Ban đầu trạng thái như sau (để tiết kiệm không gian, hình không hiển thị đoạn do từng nút quản lý):
 
 ![](./images/segt2.svg)
 
-Bây giờ ta chuẩn bị cộng $5$ vào mọi số trên $[3,5]$. Dựa vào kinh nghiệm truy vấn đoạn phía trước, ta nhanh chóng tìm được hai đoạn cực đại $[3,3]$ và $[4,5]$ (lần lượt tương ứng với nút số $5$ và nút số $3$ trên cây phân đoạn).
+Bây giờ cần cộng $5$ vào mọi số trên $[3,5]$. Dựa vào cách truy vấn đoạn phía trước, có thể tìm được hai đoạn cực đại
+$[3,3]$ và $[4,5]$ (lần lượt tương ứng với nút số $5$ và nút số $3$ trên cây phân đoạn).
 
-Ta sửa trực tiếp hai nút này và gắn nhãn cho chúng:
+Sửa trực tiếp hai nút này và gắn nhãn cho chúng:
 
 ![](./images/segt3.svg)
 
-Ta thấy thông tin của nút số $3$ tuy đã bị sửa (vì đoạn này quản lý hai số, nên lượng cộng vào $d_3$ là $5 \times 2=10$), nhưng hai nút con của nó vẫn chưa được cập nhật và vẫn giữ thông tin trước khi sửa. Tuy nhiên không cần lo: dù việc sửa chưa được thực hiện xuống dưới, khi cần truy vấn thông tin của hai nút con này, ta sẽ dùng nhãn để sửa thông tin của chúng, bảo đảm kết quả truy vấn vẫn chính xác.
+Thông tin của nút số $3$ tuy đã bị sửa (vì đoạn này quản lý hai số, nên lượng cộng vào $d_3$ là $5 \times 2=10$), nhưng
+hai nút con của nó vẫn chưa được cập nhật và vẫn giữ thông tin trước khi sửa. Tuy nhiên, dù việc sửa chưa được đẩy xuống
+dưới, khi cần truy vấn thông tin của hai nút con này, nhãn sẽ được dùng để cập nhật thông tin của chúng, nhờ đó kết quả
+truy vấn vẫn chính xác.
 
-Tiếp theo, hãy truy vấn tổng các số trên đoạn $[4,4]$.
+Tiếp theo, xét truy vấn tổng các số trên đoạn $[4,4]$.
 
-Ta tìm được đoạn $[4,5]$ bằng đệ quy, phát hiện đoạn này không phải đoạn mục tiêu và vẫn đang có nhãn. Lúc này cần đẩy nhãn xuống. Ta cập nhật thông tin của hai đoạn con của đoạn này và xóa nhãn trên đoạn hiện tại.
+Quá trình đệ quy tìm được đoạn $[4,5]$, phát hiện đoạn này không phải đoạn mục tiêu và vẫn đang có nhãn. Lúc này cần đẩy
+nhãn xuống: cập nhật thông tin của hai đoạn con của đoạn này và xóa nhãn trên đoạn hiện tại.
 
 ![](./images/segt4.svg)
 
@@ -334,9 +367,14 @@ Nếu cần gán cả đoạn thành một giá trị thay vì cộng thêm mộ
 
 ## Cây phân đoạn mở nút động
 
-Phía trước đã nói rằng khi lưu kiểu heap, cần cấp mảng kích thước $4n$ cho cây phân đoạn. Để tiết kiệm bộ nhớ, ta có thể không xây toàn bộ cây ngay từ đầu, mà ban đầu chỉ tạo một nút gốc biểu diễn toàn bộ đoạn. Khi cần truy cập một đoạn con nào đó, ta mới tạo nút con biểu diễn đoạn đó. Như vậy, ta không còn dùng $2p$ và $2p+1$ để biểu diễn các con của nút $p$, mà dùng $\text{ls}$ và $\text{rs}$ để ghi số hiệu con. Tóm lại, ý tưởng cốt lõi của cây phân đoạn mở nút động là: **nút chỉ được tạo khi thật sự cần**.
+Như đã nói ở trên, khi lưu kiểu heap, cần cấp mảng kích thước $4n$ cho cây phân đoạn. Để tiết kiệm bộ nhớ, có thể không
+xây toàn bộ cây ngay từ đầu, mà ban đầu chỉ tạo một nút gốc biểu diễn toàn bộ đoạn. Khi cần truy cập một đoạn con nào đó,
+mới tạo nút con biểu diễn đoạn đó. Như vậy, không còn dùng $2p$ và $2p+1$ để biểu diễn các con của nút $p$, mà dùng
+$\text{ls}$ và $\text{rs}$ để ghi số hiệu con. Tóm lại, ý tưởng cốt lõi của cây phân đoạn mở nút động là: **nút chỉ được
+tạo khi thật sự cần**.
 
-Độ phức tạp của một thao tác không đổi, vẫn là $O(\log n)$. Vì mỗi thao tác đều có thể tạo và truy cập một loạt nút mới, sau $m$ thao tác một điểm, số lượng nút có quy mô $O(m\log n)$. Tối đa cũng chỉ cần $2n-1$ nút, không lãng phí.
+Độ phức tạp của một thao tác không đổi, vẫn là $O(\log n)$. Vì mỗi thao tác đều có thể tạo và truy cập một loạt nút mới,
+sau $m$ thao tác một điểm, số lượng nút có quy mô $O(m\log n)$. Tối đa cũng chỉ cần $2n-1$ nút, không lãng phí.
 
 Sửa đổi một điểm:
 
@@ -375,7 +413,8 @@ int query(int p, int s, int t, int l, int r) {
 }
 ```
 
-Sửa đổi đoạn cũng tương tự, nhưng khi đẩy nhãn xuống cần chú ý: nếu thiếu con thì tạo trực tiếp một con mới. Hoặc có thể dùng kỹ thuật vĩnh cửu hóa nhãn.
+Sửa đổi đoạn cũng tương tự, nhưng khi đẩy nhãn xuống cần lưu ý: nếu thiếu con thì tạo một con mới. Hoặc có thể dùng kỹ
+thuật vĩnh cửu hóa nhãn.
 
 ## Một số tối ưu
 
@@ -383,9 +422,13 @@ Dưới đây là một số tối ưu cho cây phân đoạn:
 
 -   Không cần đẩy nhãn lười ở nút lá, nên nhãn lười có thể không cần được đẩy xuống nút lá.
 
--   Có thể viết một hàm riêng `pushdown` để đẩy nhãn lười xuống, và một hàm riêng `maintain` (hoặc đối xứng là `pushup`) để cập nhật nút hiện tại từ các nút con, giúp giảm độ khó khi viết mã.
+-   Có thể viết một hàm riêng `pushdown` để đẩy nhãn lười xuống, và một hàm riêng `maintain` (hoặc đối xứng là `pushup`)
+    để cập nhật nút hiện tại từ các nút con, giúp giảm độ khó khi viết mã.
 
--   Vĩnh cửu hóa nhãn: nếu chắc chắn nhãn lười không bị cộng dồn đến mức tràn (tức vượt quá miền biểu diễn của kiểu dữ liệu), có thể vĩnh cửu hóa nhãn. Vĩnh cửu hóa nhãn tránh việc đẩy nhãn lười xuống; khi truy vấn chỉ cần cộng ảnh hưởng của nhãn vào đáp án, nhờ đó giảm hằng số chương trình. Cách xử lý cụ thể phụ thuộc vào đặc điểm bài toán. Đây cũng là một kỹ thuật được dùng trong cây lồng cây và cấu trúc dữ liệu bền vững.
+-   Vĩnh cửu hóa nhãn: nếu chắc chắn nhãn lười không bị cộng dồn đến mức tràn (tức vượt quá miền biểu diễn của kiểu dữ
+    liệu), có thể vĩnh cửu hóa nhãn. Vĩnh cửu hóa nhãn tránh việc đẩy nhãn lười xuống; khi truy vấn chỉ cần cộng ảnh hưởng
+    của nhãn vào đáp án, nhờ đó giảm hằng số chương trình. Cách xử lý cụ thể phụ thuộc vào đặc điểm bài toán. Đây cũng là
+    một kỹ thuật được dùng trong cây lồng cây và cấu trúc dữ liệu bền vững.
 
 ## Mẫu C++
 
@@ -428,7 +471,11 @@ Dưới đây là một số tối ưu cho cây phân đoạn:
         ```
 
 ???+ note "[HihoCoder 1078 Sửa đổi đoạn bằng cây phân đoạn](https://vjudge.net/problem/HihoCoder-1078)"
-    Giả sử trên kệ có $N$ loại hàng hóa xếp từ trái sang phải, được đánh số lần lượt từ $1$ đến $N$; giá của hàng hóa số $i$ là $Pi$. Mỗi thao tác của Hi nhỏ có một trong hai loại. Loại thứ nhất là sửa giá: Hi nhỏ cho một đoạn $[L, R]$ và một giá mới $\textit{NewP}$, mọi hàng hóa có số hiệu trong đoạn này đều đổi giá thành $\textit{NewP}$. Loại thứ hai là hỏi: Hi nhỏ cho một đoạn $[L, R]$, còn Ho nhỏ cần tính tổng giá của mọi hàng hóa có số hiệu trong đoạn này rồi nói cho Hi nhỏ biết.
+    Giả sử trên kệ có $N$ loại hàng hóa xếp từ trái sang phải, được đánh số lần lượt từ $1$ đến $N$; giá của hàng hóa số
+    $i$ là $Pi$. Mỗi thao tác của Hi nhỏ có một trong hai loại. Loại thứ nhất là sửa giá: Hi nhỏ cho một đoạn $[L, R]$ và
+    một giá mới $\textit{NewP}$, mọi hàng hóa có số hiệu trong đoạn này đều đổi giá thành $\textit{NewP}$. Loại thứ hai là
+    hỏi: Hi nhỏ cho một đoạn $[L, R]$, còn Ho nhỏ cần tính tổng giá của mọi hàng hóa có số hiệu trong đoạn này rồi nói cho
+    Hi nhỏ biết.
     
     ??? note "Mã tham khảo"
         ```cpp
@@ -437,7 +484,8 @@ Dưới đây là một số tối ưu cho cây phân đoạn:
 
 ???+ note "[2018 Multi-University Training Contest 5 Problem G. Glad You Came](https://acm.hdu.edu.cn/showproblem.php?pid=6356)"
     ??? note "Ý tưởng giải"
-        Chỉ cần duy trì nhãn vĩnh cửu cho mỗi đoạn, cuối cùng chạy một lần DFS trên cây phân đoạn để thống kê kết quả. Chú ý thêm tối ưu cắt tỉa khi gắn nhãn, nếu không sẽ TLE.
+        Chỉ cần duy trì nhãn vĩnh cửu cho mỗi đoạn, cuối cùng chạy một lần DFS trên cây phân đoạn để thống kê kết quả.
+        Lưu ý thêm tối ưu cắt tỉa khi gắn nhãn, nếu không sẽ TLE.
 
 ## Mở rộng
 
@@ -457,17 +505,20 @@ Chi tiết xem các trang tương ứng.
 
 ## Ứng dụng: tối ưu xây đồ thị bằng cây phân đoạn
 
-Trong quá trình xây đồ thị và nối cạnh, đôi khi ta gặp các bài toán kiểu: một điểm nối cạnh tới mọi điểm trong một đoạn liên tiếp, hoặc mọi điểm trong một đoạn liên tiếp nối cạnh tới một điểm. Nếu thật sự nối từng cạnh một, khi số điểm lớn thì độ phức tạp sẽ bùng nổ. Lúc này cần dùng tính chất đoạn của cây phân đoạn để tối ưu quá trình xây đồ thị.
+Trong quá trình xây đồ thị và nối cạnh, đôi khi gặp các bài toán kiểu: một điểm nối cạnh tới mọi điểm trong một đoạn liên
+tiếp, hoặc mọi điểm trong một đoạn liên tiếp nối cạnh tới một điểm. Nếu thật sự nối từng cạnh một, khi số điểm lớn thì độ
+phức tạp sẽ bùng nổ. Lúc này cần dùng tính chất đoạn của cây phân đoạn để tối ưu quá trình xây đồ thị.
 
 Dưới đây là một cây phân đoạn.
 
 ![](./images/segt5.svg)
 
-Mỗi nút đều biểu diễn một đoạn. Giả sử ta muốn nối cạnh tới đoạn $[2, 4]$.
+Mỗi nút đều biểu diễn một đoạn. Giả sử cần nối cạnh tới đoạn $[2, 4]$.
 
 ![](./images/segt6.svg)
 
-Trong một số bài, cũng có trường hợp một đoạn nối tới một điểm. Khi đó chỉ cần đảo chiều toàn bộ các cạnh có hướng trong hình đầu tiên ở trên. Cây phía trên gọi là cây vào, còn cây dưới đây gọi là cây ra.
+Trong một số bài, cũng có trường hợp một đoạn nối tới một điểm. Khi đó chỉ cần đảo chiều toàn bộ các cạnh có hướng trong
+hình đầu tiên ở trên. Cây phía trên gọi là cây vào, còn cây dưới đây gọi là cây ra.
 
 ![](./images/segt7.svg)
 
@@ -495,3 +546,5 @@ Trong một số bài, cũng có trường hợp một đoạn nối tới một
 -   [Luogu P4588 [TJOI2018] Tính toán toán học](https://www.luogu.com.cn/problem/P4588)
 -   [Luogu P5490 [Mẫu] Đường quét & hợp diện tích hình chữ nhật](https://www.luogu.com.cn/problem/P5490)
 -   [Luogu P1471 Phương sai](https://www.luogu.com.cn/problem/P1471)
+
+[zhang-seg-ppt]: https://github.com/hzwer/shareOI/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BB%9F%E8%AE%A1%E7%9A%84%E5%8A%9B%E9%87%8F%E2%80%94%E2%80%94%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%85%A8%E6%8E%A5%E8%A7%A6_%E5%BC%A0%E6%98%86%E7%8E%AE.pptx
