@@ -1,4 +1,4 @@
-<span id="&#24341;&#20837;"></span>
+<span id="mở-đầu"></span>
 
 ## Mở đầu
 
@@ -6,7 +6,7 @@
 
 Bảng băm còn được gọi là bảng phân tán, là một cấu trúc dữ liệu lưu trữ dữ liệu theo dạng khóa-giá trị. Lưu trữ theo dạng khóa-giá trị nghĩa là mỗi khóa `key` bất kỳ sẽ tương ứng duy nhất với một vị trí nào đó trong bộ nhớ. Chỉ cần nhập khóa cần tìm, ta có thể nhanh chóng tìm được `value` tương ứng. Có thể xem bảng băm như một loại mảng nâng cao, trong đó chỉ số của mảng có thể là số nguyên rất lớn, số thực, chuỗi, thậm chí là cấu trúc.
 
-<span id="&#21704;&#24076;&#20989;&#25968;"></span>
+<span id="hàm-băm"></span>
 
 ## Hàm băm
 
@@ -25,13 +25,13 @@ Ta có thể lấy $x$ thu được modulo $2^{64}$ (tức giá trị lớn nh�
 Phương pháp này tuy đơn giản nhưng không hoàn hảo. Có thể xây dựng dữ liệu khiến phương pháp này xảy ra va chạm (tức là hai chuỗi có cùng kết quả sau khi lấy $x$ modulo $2^{64}$).
 Ta có thể dùng băm kép: chọn hai số nguyên tố lớn $a,b$. Chỉ khi giá trị băm của hai chuỗi sau khi lấy modulo $a$ và modulo $b$ đều bằng nhau, ta mới xem hai chuỗi đó là bằng nhau. Cách này có thể giảm mạnh xác suất va chạm băm.
 
-<span id="&#20914;&#31361;"></span>
+<span id="va-chạm"></span>
 
 ## Va chạm
 
 Nếu với mọi khóa, chỉ số do hàm băm tính ra đều khác nhau, ta chỉ cần dựa vào chỉ số để đặt `(key, value)` vào vị trí tương ứng. Nhưng trên thực tế, thường sẽ có hai khóa khác nhau cho ra cùng một chỉ số sau khi qua hàm băm. Khi đó cần một số phương pháp để xử lý va chạm. Trong OI, phương pháp thường dùng nhất là phương pháp nối chuỗi.
 
-<span id="&#25289;&#38142;&#27861;"></span>
+<span id="phương-pháp-nối-chuỗi"></span>
 
 ### Phương pháp nối chuỗi
 
@@ -39,7 +39,7 @@ Phương pháp nối chuỗi còn được gọi là băm mở (open hashing).
 
 Phương pháp nối chuỗi tạo một danh sách liên kết tại mỗi vị trí lưu dữ liệu. Nếu nhiều khóa được ánh xạ tới cùng một vị trí, chỉ cần đưa tất cả chúng vào danh sách liên kết ở vị trí đó. Khi truy vấn, cần duyệt toàn bộ danh sách liên kết tại vị trí tương ứng và so sánh khóa của từng phần tử với khóa đang truy vấn. Nếu phạm vi chỉ số là $1\ldots M$ và kích thước bảng băm là $N$, thì một lần chèn/truy vấn cần kỳ vọng $O(\frac{N}{M})$ phép so sánh.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 
 #### Cài đặt
 
@@ -160,7 +160,7 @@ struct hash_map {  // Mẫu bảng băm
 
 Ở đây, hàm `hash` được thiết kế theo kiểu của khóa và trả về một con trỏ đầu của danh sách liên kết để phục vụ truy vấn. Trong mẫu này, ta viết một bảng băm có kiểu cặp khóa-giá trị là `(long long, int)`, và khi truy vấn một khóa không tồn tại thì trả về `-1`. Hàm `hash_map()` dùng để khởi tạo khi định nghĩa.
 
-<span id="&#38381;&#25955;&#21015;&#27861;"></span>
+<span id="băm-đóng"></span>
 
 ### Băm đóng
 
@@ -168,7 +168,7 @@ Băm đóng lưu trực tiếp mọi bản ghi trong bảng băm; nếu xảy ra
 
 Ví dụ với thăm dò tuyến tính: nếu xảy ra va chạm tại `d`, thì lần lượt kiểm tra `d + 1`, `d + 2`, ...
 
-<span id="&#23454;&#29616;_1"></span>
+<span id="cài-đặt_1"></span>
 
 #### Cài đặt
 
@@ -197,7 +197,7 @@ class Hash {
 };
 ```
 
-<span id="&#20363;&#39064;"></span>
+<span id="ví-dụ"></span>
 
 ## Ví dụ
 
