@@ -167,9 +167,9 @@ Tóm lại, SATT có các tính chất sau:
 
 1.  SATT gồm cây nén và cây gom lá. Cây nén là một top tree đặc biệt; cây gom lá là một cây tam phân. Cả hai đều tương ứng với quá trình co rút cây của một cây.
 
-2.  Một nút trong cây nén có nhiều nhất ba con. Cây nén có thể thực hiện các phép xoay tương tự Splay tree, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
+2.  Một nút trong cây nén có nhiều nhất ba con. Cây nén có thể thực hiện các phép xoay tương tự cây Splay, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
 
-3.  Một nút trong cây gom lá nhất định có một con giữa. Cây gom lá có thể thực hiện các phép xoay tương tự Splay tree, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
+3.  Một nút trong cây gom lá nhất định có một con giữa. Cây gom lá có thể thực hiện các phép xoay tương tự cây Splay, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
 
 4.  Thứ tự topo của SATT phản ánh thứ tự co rút cây của cây ban đầu $T$.
 

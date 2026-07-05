@@ -49,7 +49,7 @@ Ngoài ra, trong chú thích mã của phần duy trì cân bằng khi chèn/xó
 
 ### Phép xoay
 
-Thao tác xoay là điểm mấu chốt giúp phần lớn các cây cân bằng duy trì cân bằng. Nó có thể thay đổi độ sâu của các nút cục bộ mà không làm thay đổi kết quả duyệt trung thứ tự của một cây BST hợp lệ.
+Thao tác xoay là điểm mấu chốt giúp phần lớn các cây cân bằng duy trì cân bằng. Nó có thể thay đổi độ sâu của các nút cục bộ mà không làm thay đổi kết quả duyệt trung thứ tự của một cây tìm kiếm nhị phân hợp lệ.
 
 ![Các phép xoay trong cây đỏ-đen](images/rbtree-rotate.svg)
 
@@ -60,7 +60,7 @@ Thao tác xoay là điểm mấu chốt giúp phần lớn các cây cân bằng
 
 ### Chèn
 
-Thao tác chèn của cây đỏ-đen tương tự BST thông thường. Với cây đỏ-đen, nút mới chèn ban đầu có màu đỏ; sau khi chèn xong, cần chỉnh sửa dựa trên trạng thái của nút vừa chèn và các nút liên quan để thỏa mãn bốn tính chất đã nêu ở trên.
+Thao tác chèn của cây đỏ-đen tương tự cây tìm kiếm nhị phân thông thường. Với cây đỏ-đen, nút mới chèn ban đầu có màu đỏ; sau khi chèn xong, cần chỉnh sửa dựa trên trạng thái của nút vừa chèn và các nút liên quan để thỏa mãn bốn tính chất đã nêu ở trên.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -127,7 +127,7 @@ Lúc này ta cần xoay nút $g$ để đưa $p$ thành gốc của cây con, r�
 
 ### Xóa
 
-So với BST thông thường, thao tác xóa của cây đỏ-đen có thêm một số bước. Cụ thể:
+So với cây tìm kiếm nhị phân thông thường, thao tác xóa của cây đỏ-đen có thêm một số bước. Cụ thể:
 
 -   Nếu nút cần xóa $n$ có hai nút con, hoán đổi dữ liệu của $n$ với nút nhỏ nhất $s$ trong cây con phải, rồi đặt $n$ thành $s$. Lúc này $n$ không thể có hai nút con.
 -   Nếu nút cần xóa $n$ có một nút con $s$. Theo tính chất 4, $s$ chắc chắn có màu đỏ; tiếp đó theo tính chất 3, $n$ chắc chắn có màu đen. Vì vậy chỉ cần thay con trỏ tương ứng của $n$ trong nút cha $p$ bằng địa chỉ của $s$, thay con trỏ cha của $s$ bằng địa chỉ của $p$, rồi tô $s$ thành đen.

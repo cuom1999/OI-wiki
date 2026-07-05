@@ -201,7 +201,7 @@ if (compare(key, node->key)) {
 
 Theo mô tả về thao tác xóa trong bài báo của Chen Qifeng, người đề xuất cây cân bằng theo kích thước:
 
-> Điều này có thể làm hỏng tính chất của SBT. Nhưng với cách chèn ở trên, BST vẫn giữ chiều cao $O(\log n)$, trong đó $n$ là tổng số lần chèn, không phải kích thước hiện tại.
+> Điều này có thể làm hỏng tính chất của SBT. Nhưng với cách chèn ở trên, cây tìm kiếm nhị phân vẫn giữ chiều cao $O(\log n)$, trong đó $n$ là tổng số lần chèn, không phải kích thước hiện tại.
 
 Thao tác xóa tuy có thể phá vỡ tính chất của SBT, nhưng không làm chiều cao cây tăng lên, nên không ảnh hưởng đến hiệu quả của các thao tác sau đó. Tuy nhiên trong thực tế, nếu sau một đợt chèn hàng loạt chỉ thực hiện nhiều thao tác xóa và truy vấn, cây vẫn có thể mất cân bằng và ảnh hưởng đến hiệu suất tổng thể. Vì vậy, trong cách cài đặt thao tác xóa của SBT ở bài này, ta vẫn chọn thêm bước duy trì cân bằng. Mã tham khảo như sau:
 

@@ -38,11 +38,11 @@ Hệ số cân bằng: chiều cao cây con phải - chiều cao cây con trái.
 
 ### Chèn nút
 
-Tương tự BST (cây tìm kiếm nhị phân), trước hết thực hiện một lần tìm kiếm thất bại để xác định vị trí chèn. Sau khi chèn nút, dựa vào hệ số cân bằng để quyết định có cần điều chỉnh hay không.
+Tương tự cây tìm kiếm nhị phân (BST), trước hết thực hiện một lần tìm kiếm thất bại để xác định vị trí chèn. Sau khi chèn nút, dựa vào hệ số cân bằng để quyết định có cần điều chỉnh hay không.
 
 ### Xóa nút
 
-Thao tác xóa tương tự BST: hoán đổi nút cần xóa với nút kế tiếp của nó rồi xóa.
+Thao tác xóa tương tự cây tìm kiếm nhị phân: hoán đổi nút cần xóa với nút kế tiếp của nó rồi xóa.
 
 Việc xóa có thể làm thay đổi chiều cao cây và hệ số cân bằng. Khi đó cần điều chỉnh dọc theo đường đi từ nút bị xóa đến gốc.
 

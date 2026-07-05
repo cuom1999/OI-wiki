@@ -2,7 +2,7 @@ author: Alex-McAvoy, lingkerio, LvCGame
 
 ## Độ dài đường đi có trọng số của cây
 
-Giả sử một cây nhị phân có $n$ nút lá có trọng số. Tổng các tích giữa độ dài đường đi từ nút gốc đến từng nút lá và trọng số tương ứng của nút lá đó được gọi là **độ dài đường đi có trọng số của cây (Weighted Path Length of Tree, WPL)**.
+Giả sử một cây nhị phân có $n$ nút lá có trọng số. Tổng các tích giữa độ dài đường đi từ nút gốc đến từng nút lá và trọng số tương ứng của nút lá đó được gọi là **độ dài đường đi có trọng số của cây** (Weighted Path Length of Tree, WPL).
 
 Gọi $w_i$ là trọng số của nút lá thứ $i$ trong cây nhị phân, $l_i$ là độ dài đường đi từ nút gốc đến nút lá thứ $i$, khi đó công thức tính WPL như sau:
 
@@ -20,7 +20,7 @@ $$
 
 ## Cấu trúc
 
-Với một tập nút lá có trọng số xác định cho trước, có thể xây dựng nhiều cây nhị phân khác nhau. Trong đó, **cây nhị phân có WPL nhỏ nhất** được gọi là **cây Huffman (Huffman Tree)**.
+Với một tập nút lá có trọng số xác định cho trước, có thể xây dựng nhiều cây nhị phân khác nhau. Trong đó, **cây nhị phân có WPL nhỏ nhất** được gọi là **cây Huffman** (Huffman Tree).
 
 Đối với cây Huffman, nút lá có trọng số càng nhỏ thì càng xa gốc, nút lá có trọng số càng lớn thì càng gần gốc. Ngoài ra, chỉ các nút lá của nó có bậc bằng $0$, còn bậc của các nút khác đều bằng $2$.
 
@@ -72,7 +72,7 @@ Nếu **tần suất sử dụng** của mỗi ký tự bằng nhau, thì mã h�
 
 Khi thiết kế mã hóa độ dài thay đổi, cần xét đến tính duy nhất khi giải mã. Nếu trong một tập mã, không có mã nào là tiền tố của bất kỳ mã nào khác, thì tập mã đó được gọi là **mã tiền tố**; điều này bảo đảm tính duy nhất khi giải mã.
 
-Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn nhất**, tức **mã Huffman (Huffman Code)**. Các bước xây dựng như sau:
+Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn nhất**, tức **mã Huffman** (Huffman Code). Các bước xây dựng như sau:
 
 1.  Giả sử tập ký tự cần mã hóa là: $d_1,d_2,\dots,d_n$, tần suất xuất hiện của chúng trong chuỗi là: $w_1,w_2,\dots,w_n$.
 2.  Dùng $d_1,d_2,\dots,d_n$ làm các nút lá, $w_1,w_2,\dots,w_n$ làm trọng số của các nút lá, rồi xây dựng một cây Huffman.

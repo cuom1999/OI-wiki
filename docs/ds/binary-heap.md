@@ -164,7 +164,7 @@ Nếu điều kiện mạnh như trong sắp xếp thì chưa chắc làm đư�
 
 Bài toán này có thể được trừu tượng hóa thêm thành: duy trì động phần tử lớn thứ $k$ trên một dãy, trong đó giá trị $k$ có thể thay đổi.
 
-Với loại bài toán này, ta có thể dùng kỹ thuật **heap đối đỉnh** để giải quyết, tránh sự rườm rà khi phải viết cây đoạn theo trọng số hoặc BST.
+Với loại bài toán này, ta có thể dùng kỹ thuật **heap đối đỉnh** để giải quyết, tránh sự rườm rà khi phải viết cây đoạn theo trọng số hoặc cây tìm kiếm nhị phân.
 
 Heap đối đỉnh gồm một heap lớn và một heap nhỏ. Heap nhỏ duy trì các giá trị lớn, tức $k$ giá trị lớn nhất (bao gồm phần tử lớn thứ $k$); heap lớn duy trì các giá trị nhỏ, tức các số còn lại nhỏ hơn phần tử lớn thứ $k$.
 

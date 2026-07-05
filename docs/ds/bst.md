@@ -2,7 +2,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 ## Định nghĩa
 
-Cây tìm kiếm nhị phân (binary search tree, BST) là một cấu trúc cây nhị phân được định nghĩa như sau:
+Cây tìm kiếm nhị phân (tiếng Anh: binary search tree, viết tắt là BST) là một cấu trúc cây nhị phân được định nghĩa như sau:
 
 1.  Cây rỗng là một cây tìm kiếm nhị phân.
 
@@ -35,7 +35,7 @@ Thời gian của các thao tác cơ bản trên cây tìm kiếm nhị phân t�
 
 ### Duyệt cây tìm kiếm nhị phân
 
-Từ định nghĩa đệ quy của BST, dãy khóa thu được khi duyệt trung thứ tự (inorder traversal) là một dãy không giảm. Độ phức tạp thời gian là $O(n)$.
+Từ định nghĩa đệ quy của cây tìm kiếm nhị phân, dãy khóa thu được khi duyệt trung thứ tự (inorder traversal) là một dãy không giảm. Độ phức tạp thời gian là $O(n)$.
 
 Đoạn mã duyệt một cây tìm kiếm nhị phân như sau:
 
@@ -53,7 +53,7 @@ Từ định nghĩa đệ quy của BST, dãy khóa thu được khi duyệt tru
 
 ### Tìm giá trị nhỏ nhất/lớn nhất
 
-Theo tính chất của BST, giá trị nhỏ nhất nằm ở nút cuối của chuỗi đi liên tục sang trái, còn giá trị lớn nhất nằm ở nút cuối của chuỗi đi liên tục sang phải. Độ phức tạp thời gian là $O(h)$.
+Theo tính chất của cây tìm kiếm nhị phân, giá trị nhỏ nhất nằm ở nút cuối của chuỗi đi liên tục sang trái, còn giá trị lớn nhất nằm ở nút cuối của chuỗi đi liên tục sang phải. Độ phức tạp thời gian là $O(h)$.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -107,7 +107,7 @@ Xét các trường hợp sau:
     }
     ```
 
-Các thao tác chèn, xóa và sửa đều cần tìm kiếm trong BST trước.
+Các thao tác chèn, xóa và sửa đều cần tìm kiếm trong cây tìm kiếm nhị phân trước.
 
 ### Chèn một phần tử
 
@@ -148,7 +148,7 @@ Xét các trường hợp sau:
 
 Xóa một nút có giá trị `value` khỏi cây tìm kiếm nhị phân gốc `root`.
 
-Trước tiên tìm nút có khóa `value` trong BST, rồi xét các trường hợp sau:
+Trước tiên tìm nút có khóa `value` trong cây tìm kiếm nhị phân, rồi xét các trường hợp sau:
 
 -   Nếu trường phụ `count` của nút này lớn hơn $1$, chỉ cần giảm `count`.
 
@@ -266,13 +266,13 @@ Một mục đích của việc dùng cây tìm kiếm là rút ngắn thời gi
 
 Về hiệu quả tìm kiếm, nếu chiều cao của cây là $h$, trong trường hợp xấu nhất cần so sánh $h$ lần để tìm một khóa; độ phức tạp tìm kiếm (cũng là độ dài tìm kiếm trung bình ASL, Average Search Length) không vượt quá $O(h)$. Với một cây tìm kiếm nhị phân lý tưởng, mọi thao tác có thể được rút xuống $O(\log n)$, trong đó $n$ là tổng số nút.
 
-Tuy nhiên, độ phức tạp $O(\log n)$ chỉ là tình huống lý tưởng. Trong trường hợp xấu nhất, cây tìm kiếm có thể suy biến thành danh sách liên kết. Hãy hình dung một BST mà mỗi nút chỉ có con phải; khi đó nó hoạt động giống danh sách liên kết, và mọi thao tác (chèn, xóa, sửa, tìm) đều mất $O(n)$.
+Tuy nhiên, độ phức tạp $O(\log n)$ chỉ là tình huống lý tưởng. Trong trường hợp xấu nhất, cây tìm kiếm có thể suy biến thành danh sách liên kết. Hãy hình dung một cây tìm kiếm nhị phân mà mỗi nút chỉ có con phải; khi đó nó hoạt động giống danh sách liên kết, và mọi thao tác (chèn, xóa, sửa, tìm) đều mất $O(n)$.
 
 Có thể thấy độ phức tạp của thao tác liên quan trực tiếp đến chiều cao $h$ của cây. Vì vậy ta đưa vào cây cân bằng: thông qua một số thao tác điều chỉnh để duy trì chiều cao, hay tính cân bằng của cây, từ đó giảm độ phức tạp thao tác.
 
 ### Định nghĩa tính cân bằng
 
-Việc một cây tìm kiếm có được xem là "**cân bằng**" hay không phụ thuộc vào định nghĩa của từng loại cây cân bằng. Chẳng hạn, với một BST gốc $T$, nếu chiều cao cây con trái và cây con phải chênh lệch rất lớn, hoặc số nút trong cây con trái lớn hơn rất nhiều so với cây con phải, thì cây đó rõ ràng không cân bằng.
+Việc một cây tìm kiếm có được xem là "**cân bằng**" hay không phụ thuộc vào định nghĩa của từng loại cây cân bằng. Chẳng hạn, với một cây tìm kiếm nhị phân gốc $T$, nếu chiều cao cây con trái và cây con phải chênh lệch rất lớn, hoặc số nút trong cây con trái lớn hơn rất nhiều so với cây con phải, thì cây đó rõ ràng không cân bằng.
 
 Với cây tìm kiếm nhị phân, một định nghĩa cân bằng thường gặp là: trong cây gốc $T$, tại mọi nút, độ chênh lệch chiều cao giữa cây con trái và cây con phải không vượt quá 1.
 
