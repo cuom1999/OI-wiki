@@ -2,7 +2,8 @@ author: accelsao, Enter-tainer, guodong2005, StudyingFather, Backl1ght, Chrogeek
 
 Ghép cặp hai phía có trọng số lớn nhất là một ghép cặp trong đồ thị hai phía sao cho tổng trọng số các cạnh được chọn là lớn nhất.
 
-## Hungarian Algorithm (Kuhn–Munkres Algorithm)
+<span id="hungarian-algorithm-kuhnmunkres-algorithm"></span>
+## Thuật toán Hungarian (Kuhn-Munkres)
 
 Thuật toán Hungarian, còn gọi là thuật toán **KM**, có thể tìm **ghép cặp hoàn hảo có trọng số lớn nhất** trong đồ thị hai phía trong thời gian $O(n^3)$.
 
@@ -83,11 +84,11 @@ Ban đầu ta duyệt $n$ đỉnh để tìm đường tăng. Để tìm một �
     template <typename T>
     struct hungarian {  // km
       int n;
-      vector<int> matchx;  // matched vertex for the left set
-      vector<int> matchy;  // matched vertex for the right set
-      vector<int> pre;     // left vertex connected to the right set
-      vector<bool> visx;   // visited array for the left set
-      vector<bool> visy;   // visited array for the right set
+      vector<int> matchx;  // đỉnh được ghép ở tập trái
+      vector<int> matchy;  // đỉnh được ghép ở tập phải
+      vector<int> pre;     // đỉnh trái nối với tập phải
+      vector<bool> visx;   // mảng đánh dấu đã thăm cho tập trái
+      vector<bool> visy;   // mảng đánh dấu đã thăm cho tập phải
       vector<T> lx;
       vector<T> ly;
       vector<vector<T>> g;
@@ -116,17 +117,17 @@ Ban đầu ta duyệt $n$ đỉnh để tìm đường tăng. Để tìm một �
       }
     
       void addEdge(int u, int v, int w) {
-        g[u][v] = max(w, 0);  // negative values are worse than not matching, so setting them to 0 has no effect
+        g[u][v] = max(w, 0);  // trọng số âm còn kém hơn không ghép, nên đặt thành 0 không ảnh hưởng
       }
     
       bool check(int v) {
         visy[v] = true;
         if (matchy[v] != -1) {
           q.push(matchy[v]);
-          visx[matchy[v]] = true;  // in S
+            visx[matchy[v]] = true;  // thuộc S
           return false;
         }
-        // Found a new unmatched vertex. Update matches; pre records the vertex connected by a non-matching edge.
+          // Tìm được một đỉnh chưa ghép. Cập nhật ghép cặp; pre ghi lại đỉnh nối bằng cạnh không thuộc ghép cặp.
         while (v != -1) {
           matchy[v] = pre[v];
           swap(v, matchx[pre[v]]);
@@ -151,15 +152,15 @@ Ban đầu ta duyệt $n$ đỉnh để tìm đường tăng. Để tìm một �
                   pre[v] = u;
                   if (delta) {
                     slack[v] = delta;
-                  } else if (check(v)) {  // delta = 0 means the edge can enter the equality subgraph and form an augmenting path
-                                          // return after finding it and rebuild the alternating tree
+                  } else if (check(v)) {  // delta = 0 nghĩa là cạnh có thể vào đồ thị con đẳng thức và tạo đường tăng
+                                          // sau khi tìm được thì trả về và xây lại cây luân phiên
                     return;
                   }
                 }
               }
             }
           }
-          // No augmenting path; adjust labels.
+          // Không có đường tăng; điều chỉnh nhãn.
           T a = inf;
           for (int j = 0; j < n; j++) {
             if (!visy[j]) {
@@ -185,7 +186,7 @@ Ban đầu ta duyệt $n$ đỉnh để tìm đường tăng. Để tìm một �
       }
     
       void solve() {
-        // Initial labels
+        // Nhãn ban đầu
         for (int i = 0; i < n; i++) {
           for (int j = 0; j < n; j++) {
             lx[i] = max(lx[i], g[i][j]);
@@ -216,7 +217,8 @@ Ban đầu ta duyệt $n$ đỉnh để tìm đường tăng. Để tìm một �
     };
     ```
 
-## Dynamic Hungarian Algorithm
+<span id="dynamic-hungarian-algorithm"></span>
+## Thuật toán Hungarian động
 
 Bài báo gốc: [The Dynamic Hungarian Algorithm for the Assignment Problem with Changing Costs](https://www.ri.cmu.edu/publications/the-dynamic-hungarian-algorithm-for-the-assignment-problem-with-changing-costs/)
 

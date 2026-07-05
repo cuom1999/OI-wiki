@@ -1,8 +1,8 @@
 author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, ShizuhaAki, pukui
 
-## Thuật toán blossom (Blossom Algorithm)
+## Thuật toán blossom (Blossom algorithm)
 
-Thuật toán blossom (Blossom Algorithm, còn được gọi là cây hoa) có thể giải bài toán ghép cặp lớn nhất trong đồ thị tổng quát (maximum cardinality matchings). Thuật toán này được Jack Edmonds đề xuất vào năm 1961.
+Thuật toán blossom (Blossom algorithm, còn được gọi là cây hoa) có thể giải bài toán ghép cặp lớn nhất trong đồ thị tổng quát (maximum cardinality matching). Thuật toán này được Jack Edmonds đề xuất vào năm 1961.
 Sau một số sửa đổi, nó cũng có thể giải bài toán ghép cặp trọng số lớn nhất trong đồ thị tổng quát.
 Đây là thuật toán đầu tiên đưa ra chứng minh rằng bài toán ghép cặp lớn nhất có độ phức tạp đa thức.
 

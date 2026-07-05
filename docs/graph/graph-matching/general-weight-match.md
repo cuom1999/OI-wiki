@@ -4,15 +4,16 @@ Trang này đi từ ghép cặp hoàn hảo trọng số lớn nhất trên đ�
 
 ## Kiến thức chuẩn bị
 
-### Blossom/hoa (blossom)
+<span id="blossomhoa-blossom"></span>
+### Hoa (blossom)
 
 Điểm khác nhau giữa ghép cặp trên đồ thị tổng quát và ghép cặp trên đồ thị hai phía là đồ thị có thể có chu trình lẻ. Chu trình chẵn có thể được xem như đồ thị hai phía.
 
-Cách xử lý của thuật toán blossom (Blossom Algorithm) là khi gặp một chu trình lẻ thì co nó lại thành một **blossom/hoa (Blossom)**, đồng thời đặt tất cả các đỉnh trong hoa thành đỉnh chẵn. Vì mọi đỉnh trên hoa đều có thể trở thành đỉnh chẵn, ta có thể co cả hoa trực tiếp thành một đỉnh chẵn. Lưu ý rằng một hoa có thể chứa các hoa khác.
+Cách xử lý của thuật toán blossom (Blossom algorithm) là khi gặp một chu trình lẻ thì co nó lại thành một **hoa (blossom)**, đồng thời đặt tất cả các đỉnh trong hoa thành đỉnh chẵn. Vì mọi đỉnh trên hoa đều có thể trở thành đỉnh chẵn, ta có thể co cả hoa trực tiếp thành một đỉnh chẵn. Lưu ý rằng một hoa có thể chứa các hoa khác.
 
 Vấn đề này cũng có thể được chuyển thành quy hoạch tuyến tính và bài toán đối ngẫu, nhưng cần xử lý thêm đối với hoa.
 
-### Nhãn đỉnh (vertex labeling) và cạnh đẳng thức (Equality Edge)
+### Nhãn đỉnh (vertex labeling) và cạnh đẳng thức (equality edge)
 
 Định nghĩa $z_u$ là nhãn đỉnh (vertex labeling) của đỉnh $u$, có ý nghĩa giống nhãn đỉnh trong thuật toán $KM$. Định nghĩa cạnh $e(u,v)$ là "cạnh đẳng thức" khi và chỉ khi tổng nhãn của đỉnh $u$ và đỉnh $v$ bằng trọng số của cạnh $e$ ($z_u + z_v = w(e)$). Khi đó nhãn của cạnh là $z_e = z_u + z_v - w(e) = 0$.
 
@@ -97,7 +98,7 @@ Như vậy sẽ đồng thời sinh ra nhiều cây luân phiên.
 
 Thuật toán này có thể chia thành bốn bước.
 
-1.  GROW (cạnh đẳng thức): dùng "cạnh đẳng thức" để xây dựng cây luân phiên.
+1.  GROW (mở rộng bằng cạnh đẳng thức): dùng "cạnh đẳng thức" để xây dựng cây luân phiên.
 2.  AUGMENT (tăng cường): tìm đường tăng cường và mở rộng ghép cặp.
 3.  SHRINK (co hoa): co hoa thành một đỉnh.
 4.  EXPAND (bung hoa): tách hoa ra.
@@ -108,11 +109,12 @@ Trong giai đoạn AUGMENT, vì mọi đỉnh chưa ghép cặp nằm trên các
 
 ### Không tìm được cạnh đẳng thức để mở rộng
 
-Giống như trong đồ thị hai phía, cũng có trường hợp không tìm được "cạnh đẳng thức" để mở rộng. Khi đó cần điều chỉnh vertex labeling.
+Giống như trong đồ thị hai phía, cũng có trường hợp không tìm được "cạnh đẳng thức" để mở rộng. Khi đó cần điều chỉnh nhãn đỉnh (vertex labeling).
 
-### Điều chỉnh VERTEX LABELING
+<span id="điều-chỉnh-vertex-labeling"></span>
+### Điều chỉnh nhãn đỉnh (vertex labeling)
 
-Vertex labeling vẫn phải duy trì tính chất lớn hơn hoặc bằng, các "cạnh đẳng thức" đã có không được thay đổi, đồng thời cần làm cho $z_B$ nhỏ nhất có thể.
+Nhãn đỉnh vẫn phải duy trì tính chất lớn hơn hoặc bằng, các "cạnh đẳng thức" đã có không được thay đổi, đồng thời cần làm cho $z_B$ nhỏ nhất có thể.
 
 ???+ note "Ký hiệu đỉnh chẵn lẻ"
     Dùng $u^-$ để biểu thị $u$ là đỉnh lẻ trên cây luân phiên.
@@ -151,13 +153,14 @@ Như vậy ta tạo ra một hoặc nhiều cạnh đẳng thức, giữ nguyên
 
 ## Ghép cặp trọng số lớn nhất trên đồ thị tổng quát
 
-Phần trên tìm ghép cặp hoàn hảo trọng số lớn nhất. Để tìm ghép cặp trọng số lớn nhất, cần thêm một ràng buộc vào vertex labeling: với mọi đỉnh đã ghép cặp $u$, $z_u>0$.
+Phần trên tìm ghép cặp hoàn hảo trọng số lớn nhất. Để tìm ghép cặp trọng số lớn nhất, cần thêm một ràng buộc vào nhãn đỉnh: với mọi đỉnh đã ghép cặp $u$, $z_u>0$.
 
 Ban đầu đặt mọi $z_u=max(\{w(e):e\in E\})/2$.
 
-Các đỉnh có vertex labeling bằng $0$ cuối cùng sẽ trở thành đỉnh chưa ghép cặp.
+Các đỉnh có nhãn đỉnh bằng $0$ cuối cùng sẽ trở thành đỉnh chưa ghép cặp.
 
-### Code tham khảo
+<span id="code-tham-khảo"></span>
+### Mã tham khảo
 
 Ở đây, để tiện cài đặt, ta nhân trọng số cạnh với $2$ khi tính giá trị $z_e$, nhờ vậy sẽ không có sai số số thực.
 

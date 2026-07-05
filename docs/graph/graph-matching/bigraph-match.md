@@ -139,9 +139,10 @@ $$
 
 Ta sẽ thấy ngay sau đây rằng đây chính là bài toán phủ đỉnh nhỏ nhất trên đồ thị hai phía.
 
-## Dulmage-Mendelsohn decomposition
+<span id="dulmage-mendelsohn-decomposition"></span>
+## Phân rã Dulmage-Mendelsohn
 
-Dựa vào một ghép cặp lớn nhất của đồ thị hai phía, có thể chia các đỉnh thành nhiều tập con rời nhau, qua đó mô tả đầy đủ phân bố và cấu trúc của tất cả các ghép cặp lớn nhất trong đồ thị hai phía đó. Đây gọi là Dulmage-Mendelsohn decomposition, tức phân rã Dulmage-Mendelsohn. Trong lập trình thi đấu, phân rã này có thể dùng để nhận diện các đỉnh và cạnh then chốt trong ghép cặp lớn nhất, từ đó phán đoán tính duy nhất của ghép cặp lớn nhất hoặc giải các bài toán trò chơi trên đồ thị hai phía.
+Dựa vào một ghép cặp lớn nhất của đồ thị hai phía, có thể chia các đỉnh thành nhiều tập con rời nhau, qua đó mô tả đầy đủ phân bố và cấu trúc của tất cả các ghép cặp lớn nhất trong đồ thị hai phía đó. Đây gọi là phân rã Dulmage-Mendelsohn. Trong lập trình thi đấu, phân rã này có thể dùng để nhận diện các đỉnh và cạnh then chốt trong ghép cặp lớn nhất, từ đó phán đoán tính duy nhất của ghép cặp lớn nhất hoặc giải các bài toán trò chơi trên đồ thị hai phía.
 
 ### Cách xây dựng
 
@@ -169,35 +170,35 @@ Có thể chứng minh rằng ba tập đỉnh $\mathcal E,\mathcal O,\mathcal U
     2.  Nếu một cạnh thuộc ghép cặp xuất hiện trong một đường luân phiên xuất phát từ một đỉnh chưa ghép $v$, thì tính chẵn lẻ của khoảng cách từ hai đầu mút của cạnh đó tới $v$ nhất định khác nhau, nên chúng lần lượt thuộc $\mathcal E$ và $\mathcal O$; nếu không, hai đầu mút của cạnh đó nhất định đều nằm trong $\mathcal U$. Điều này cho thấy các cạnh thuộc ghép cặp trong ghép cặp lớn nhất nhất định là cạnh $\mathcal E\mathcal O$ hoặc cạnh $\mathcal U\mathcal U$. Ngược lại, một đỉnh chưa ghép có thể tới chính nó bằng đường luân phiên độ dài không, nên chỉ có thể xuất hiện trong $\mathcal E$. Do đó, mọi đỉnh trong $\mathcal O$ và $\mathcal U$ đều là đỉnh đã ghép. Đếm đơn giản suy ra kích thước của ghép cặp lớn nhất là $|\mathcal O|+|\mathcal U|/2$.
     3.  Theo định nghĩa, mọi đỉnh $a$ trong $\mathcal E$ đều có thể tới được từ một đỉnh chưa ghép $v$ bằng một đường luân phiên độ dài chẵn; nói cách khác, đỉnh trong $\mathcal E$ hoặc là đỉnh chưa ghép, hoặc đường luân phiên $P$ tới đỉnh đó kết thúc bằng một cạnh thuộc ghép cặp. Nếu trong đồ thị $G$ tồn tại một cạnh nối $a$ với một đỉnh $b$ trong $\mathcal E\cup\mathcal U$, thì theo thảo luận ở đoạn trước, cạnh này nhất định không thuộc ghép cặp, và có thể dùng nó để kéo dài đường luân phiên $P$. Điều này cho thấy đỉnh $b$ cũng thuộc $\mathcal O$, mâu thuẫn với tính chất thứ nhất. Vì vậy, trong đồ thị $G$ không tồn tại cạnh nối đỉnh trong $\mathcal E$ với đỉnh trong $\mathcal E\cup\mathcal U$.
 
-Phân rã tập đỉnh $V=\mathcal E\cup\mathcal O\cup\mathcal U$ thu được như trên được gọi là **Dulmage-Mendelsohn decomposition** (phân rã Dulmage-Mendelsohn). Sau khi dùng các thuật toán ở trên để tìm một ghép cặp lớn nhất, có thể dùng BFS để tìm Dulmage-Mendelsohn decomposition trong thời gian $O(|V|+|E|)$.
+Phân rã tập đỉnh $V=\mathcal E\cup\mathcal O\cup\mathcal U$ thu được như trên được gọi là **phân rã Dulmage-Mendelsohn**. Sau khi dùng các thuật toán ở trên để tìm một ghép cặp lớn nhất, có thể dùng BFS để tìm phân rã Dulmage-Mendelsohn trong thời gian $O(|V|+|E|)$.
 
 ### Đỉnh then chốt của ghép cặp lớn nhất
 
 Nếu một đỉnh $v$ luôn là đỉnh đã ghép trong mọi ghép cặp lớn nhất của đồ thị hai phía $G$, thì nó được gọi là đỉnh then chốt của ghép cặp lớn nhất. Kết luận dưới đây cho biết: một đỉnh là đỉnh then chốt khi và chỉ khi trong một ghép cặp lớn nhất, không tồn tại đường luân phiên độ dài chẵn xuất phát từ một đỉnh chưa ghép và đi tới đỉnh đó.
 
 ???+ note "Định lý"
-    Giả sử Dulmage-Mendelsohn decomposition của đồ thị hai phía $G=(X,Y,E)$ là $V=\mathcal E\cup\mathcal O\cup\mathcal U$. Khi đó, đỉnh $v\in V$ là đỉnh then chốt khi và chỉ khi $v\in\mathcal O\cup \mathcal U$.
+    Giả sử phân rã Dulmage-Mendelsohn của đồ thị hai phía $G=(X,Y,E)$ là $V=\mathcal E\cup\mathcal O\cup\mathcal U$. Khi đó, đỉnh $v\in V$ là đỉnh then chốt khi và chỉ khi $v\in\mathcal O\cup \mathcal U$.
 
 ??? note "Chứng minh"
-    Theo các tính chất của Dulmage-Mendelsohn decomposition, trong mọi ghép cặp lớn nhất của đồ thị $G$, các đỉnh trong $\mathcal O$ và $\mathcal U$ nhất định đều là đỉnh đã ghép. Vì vậy, các đỉnh trong $\mathcal O\cup \mathcal U$ nhất định là đỉnh then chốt. Tiếp theo, cần chứng minh rằng trong tập $\mathcal E$ chắc chắn không có đỉnh then chốt. Nếu trong ghép cặp lớn nhất $M$, đỉnh $a\in\mathcal E$ là đỉnh then chốt, thì tồn tại một đường luân phiên độ dài chẵn $P$ nối đỉnh $a$ với một đỉnh chưa ghép $b\in\mathcal E$. Lật tất cả các cạnh trên đường này, ta nhận được ghép cặp lớn nhất $M\oplus P$ trong đó đỉnh $a$ trở thành đỉnh chưa ghép. Vì vậy, trong tập $\mathcal E$ không có đỉnh then chốt.
+    Theo các tính chất của phân rã Dulmage-Mendelsohn, trong mọi ghép cặp lớn nhất của đồ thị $G$, các đỉnh trong $\mathcal O$ và $\mathcal U$ nhất định đều là đỉnh đã ghép. Vì vậy, các đỉnh trong $\mathcal O\cup \mathcal U$ nhất định là đỉnh then chốt. Tiếp theo, cần chứng minh rằng trong tập $\mathcal E$ chắc chắn không có đỉnh then chốt. Nếu trong ghép cặp lớn nhất $M$, đỉnh $a\in\mathcal E$ là đỉnh then chốt, thì tồn tại một đường luân phiên độ dài chẵn $P$ nối đỉnh $a$ với một đỉnh chưa ghép $b\in\mathcal E$. Lật tất cả các cạnh trên đường này, ta nhận được ghép cặp lớn nhất $M\oplus P$ trong đó đỉnh $a$ trở thành đỉnh chưa ghép. Vì vậy, trong tập $\mathcal E$ không có đỉnh then chốt.
 
-Do đó, để tìm các đỉnh then chốt của ghép cặp lớn nhất, chỉ cần tìm Dulmage-Mendelsohn decomposition.
+Do đó, để tìm các đỉnh then chốt của ghép cặp lớn nhất, chỉ cần tìm phân rã Dulmage-Mendelsohn.
 
 ### Cạnh then chốt của ghép cặp lớn nhất
 
 Tương tự, nếu một cạnh $e$ luôn là cạnh thuộc ghép cặp trong mọi ghép cặp lớn nhất của đồ thị hai phía $G$, thì nó được gọi là cạnh then chốt của ghép cặp lớn nhất. Ghép cặp lớn nhất của đồ thị hai phía là duy nhất khi và chỉ khi trong một ghép cặp lớn nhất của nó, mọi cạnh thuộc ghép cặp đều là cạnh then chốt.
 
 ???+ note "Định lý"
-    Giả sử Dulmage-Mendelsohn decomposition của đồ thị hai phía $G=(X,Y,E)$ là $V=\mathcal E\cup\mathcal O\cup\mathcal U$, và $M$ là một ghép cặp lớn nhất của nó. Khi đó, cạnh $e\in E$ là cạnh then chốt khi và chỉ khi hai đầu mút của $e$ đều nằm trong $\mathcal U$, cạnh $e$ là cạnh thuộc ghép cặp trong $M$, và không tồn tại một chu trình luân phiên đối với $M$ chứa cạnh $e$.
+    Giả sử phân rã Dulmage-Mendelsohn của đồ thị hai phía $G=(X,Y,E)$ là $V=\mathcal E\cup\mathcal O\cup\mathcal U$, và $M$ là một ghép cặp lớn nhất của nó. Khi đó, cạnh $e\in E$ là cạnh then chốt khi và chỉ khi hai đầu mút của $e$ đều nằm trong $\mathcal U$, cạnh $e$ là cạnh thuộc ghép cặp trong $M$, và không tồn tại một chu trình luân phiên đối với $M$ chứa cạnh $e$.
 
 ??? note "Chứng minh"
-    Hai đầu mút của cạnh then chốt bắt buộc phải là đỉnh then chốt. Theo các tính chất của Dulmage-Mendelsohn decomposition, cạnh của ghép cặp lớn nhất chỉ có thể là cạnh $\mathcal E\mathcal O$ hoặc cạnh $\mathcal U\mathcal U$. Tuy nhiên, trong $\mathcal E$ không có đỉnh then chốt, nên cạnh then chốt chỉ có thể là cạnh $\mathcal U\mathcal U$. Dĩ nhiên, cạnh then chốt cũng phải là cạnh thuộc ghép cặp trong $M$. Xét một cạnh $\mathcal U\mathcal U$ $e\in M$. Cạnh này không phải cạnh then chốt khi và chỉ khi tồn tại một ghép cặp lớn nhất khác $M'\neq M$ sao cho $e\in M\oplus M'$. Lặp lại [chứng minh bổ đề Berge](./graph-match.md#bổ-đề-berge), có thể chỉ ra rằng $M'\oplus M$ chỉ gồm các đường đi độ dài chẵn và các chu trình chẵn. Một đầu mút của các đường đi này là đỉnh chưa ghép đối với $M$, nên các đỉnh trên đường đi đều không thuộc $\mathcal U$, mâu thuẫn với cách chọn cạnh $e$. Vì vậy, cạnh $e$ chỉ có thể xuất hiện trong một chu trình chẵn. Do đó, một cạnh $\mathcal U\mathcal U$ $e\in M$ không phải cạnh then chốt khi và chỉ khi tồn tại một chu trình luân phiên đối với $M$ chứa cạnh $e$. Đây chính là điều cần chứng minh.
+    Hai đầu mút của cạnh then chốt bắt buộc phải là đỉnh then chốt. Theo các tính chất của phân rã Dulmage-Mendelsohn, cạnh của ghép cặp lớn nhất chỉ có thể là cạnh $\mathcal E\mathcal O$ hoặc cạnh $\mathcal U\mathcal U$. Tuy nhiên, trong $\mathcal E$ không có đỉnh then chốt, nên cạnh then chốt chỉ có thể là cạnh $\mathcal U\mathcal U$. Dĩ nhiên, cạnh then chốt cũng phải là cạnh thuộc ghép cặp trong $M$. Xét một cạnh $\mathcal U\mathcal U$ $e\in M$. Cạnh này không phải cạnh then chốt khi và chỉ khi tồn tại một ghép cặp lớn nhất khác $M'\neq M$ sao cho $e\in M\oplus M'$. Lặp lại [chứng minh bổ đề Berge](./graph-match.md#bổ-đề-berge), có thể chỉ ra rằng $M'\oplus M$ chỉ gồm các đường đi độ dài chẵn và các chu trình chẵn. Một đầu mút của các đường đi này là đỉnh chưa ghép đối với $M$, nên các đỉnh trên đường đi đều không thuộc $\mathcal U$, mâu thuẫn với cách chọn cạnh $e$. Vì vậy, cạnh $e$ chỉ có thể xuất hiện trong một chu trình chẵn. Do đó, một cạnh $\mathcal U\mathcal U$ $e\in M$ không phải cạnh then chốt khi và chỉ khi tồn tại một chu trình luân phiên đối với $M$ chứa cạnh $e$. Đây chính là điều cần chứng minh.
 
 Vì vậy, để tìm các cạnh then chốt của ghép cặp lớn nhất, cần thực hiện các bước sau:
 
 1.  Tìm ghép cặp lớn nhất $M$ của đồ thị $G$;
 2.  Định hướng các cạnh của đồ thị $G$ theo $M$, thu được đồ thị có hướng $G_M$;
-3.  Dùng BFS để tìm tập $\mathcal U$ trong Dulmage-Mendelsohn decomposition, tức tập các đỉnh không thể tới được từ các đỉnh chưa ghép bằng đường luân phiên;
+3.  Dùng BFS để tìm tập $\mathcal U$ trong phân rã Dulmage-Mendelsohn, tức tập các đỉnh không thể tới được từ các đỉnh chưa ghép bằng đường luân phiên;
 4.  Dùng [thuật toán Tarjan](../scc.md#thuật-toán-tarjan) để tìm tất cả các thành phần liên thông mạnh của đồ thị có hướng $G_M$;
 5.  Duyệt các cạnh trong ghép cặp $M$; nếu hai đầu mút của một cạnh đều nằm trong $\mathcal U$ nhưng không nằm trong cùng một thành phần liên thông mạnh, thì cạnh đó là cạnh then chốt.
 
