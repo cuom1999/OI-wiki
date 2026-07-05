@@ -6,7 +6,7 @@ Phân rã cây thành chuỗi được dùng để chia cây thành nhiều chu�
 
 Cụ thể, ta phân rã toàn bộ cây thành một số chuỗi để biến nó thành một cấu trúc tuyến tính, rồi dùng các cấu trúc dữ liệu khác để duy trì thông tin.
 
-**Phân rã cây thành chuỗi** còn gọi là phân rã chuỗi trên cây, có nhiều dạng, chẳng hạn **phân rã chuỗi nặng** (heavy-light decomposition, HLD), **phân rã chuỗi dài** và phép phân rã dùng trong Link/cut Tree, đôi khi gọi là "phân rã chuỗi thực". Trong phần lớn trường hợp, nếu không nói rõ thêm, "phân rã cây thành chuỗi" thường chỉ "phân rã chuỗi nặng".
+**Phân rã cây thành chuỗi** còn gọi là phân rã chuỗi trên cây, có nhiều dạng, chẳng hạn **phân rã chuỗi nặng** (heavy-light decomposition, HLD), **phân rã chuỗi dài** và phép phân rã dùng trong cây Link-Cut, đôi khi gọi là "phân rã chuỗi thực". Trong phần lớn trường hợp, nếu không nói rõ thêm, "phân rã cây thành chuỗi" thường chỉ "phân rã chuỗi nặng".
 
 Phân rã chuỗi nặng có thể chia một đường đi bất kỳ trên cây thành không quá $O(\log n)$ chuỗi liên tiếp. Các đỉnh trên mỗi chuỗi có độ sâu đôi một khác nhau, tức là một chuỗi đi từ dưới lên, và LCA của mọi đỉnh trên chuỗi là một đầu mút của chuỗi.
 

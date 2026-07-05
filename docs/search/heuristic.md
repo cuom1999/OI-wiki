@@ -1,13 +1,13 @@
-Trang này giới thiệu ngắn gọn tìm kiếm heuristic và cách sử dụng.
+Trang này giới thiệu ngắn gọn tìm kiếm theo kinh nghiệm và cách sử dụng.
 
 ## Định nghĩa
 
-Tìm kiếm heuristic (tiếng Anh: heuristic search) là một loại thuật toán tìm kiếm
-đưa thêm hàm heuristic vào trên nền các thuật toán tìm kiếm thông thường.
+Tìm kiếm theo kinh nghiệm (tiếng Anh: heuristic search) là một loại thuật toán tìm kiếm
+đưa thêm hàm đánh giá theo kinh nghiệm (heuristic function) vào trên nền các thuật toán tìm kiếm thông thường.
 
-Vai trò của hàm heuristic là dựa trên thông tin đã có để đánh giá từng lựa chọn
+Vai trò của hàm đánh giá theo kinh nghiệm là dựa trên thông tin đã có để đánh giá từng lựa chọn
 nhánh trong quá trình tìm kiếm, rồi từ đó chọn nhánh. Nói đơn giản, tìm kiếm
-heuristic phân tích cả hai khả năng chọn và không chọn, từ đó lấy lời giải tốt
+theo kinh nghiệm phân tích cả hai khả năng chọn và không chọn, từ đó lấy lời giải tốt
 hơn hoặc loại bỏ lời giải không hợp lệ.
 
 ## Ví dụ

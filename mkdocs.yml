@@ -142,17 +142,17 @@ nav:
     - Sắp xếp:
       - Tổng quan sắp xếp: basic/sort-intro.md
       - Selection sort: basic/selection-sort.md
-      - Bubble sort: basic/bubble-sort.md
-      - Insertion sort: basic/insertion-sort.md
-      - Counting sort: basic/counting-sort.md
-      - Radix sort: basic/radix-sort.md
-      - Quick sort: basic/quick-sort.md
-      - Merge sort: basic/merge-sort.md
-      - Heap sort: basic/heap-sort.md
-      - Bucket sort: basic/bucket-sort.md
-      - Shell sort: basic/shell-sort.md
-      - Tournament sort: basic/tournament-sort.md
-      - Tim sort: basic/tim-sort.md
+      - Sắp xếp nổi bọt: basic/bubble-sort.md
+      - Sắp xếp chèn: basic/insertion-sort.md
+      - Sắp xếp đếm: basic/counting-sort.md
+      - Sắp xếp cơ số: basic/radix-sort.md
+      - Sắp xếp nhanh: basic/quick-sort.md
+      - Sắp xếp trộn: basic/merge-sort.md
+      - Sắp xếp heap: basic/heap-sort.md
+      - Sắp xếp theo thùng: basic/bucket-sort.md
+      - Sắp xếp Shell: basic/shell-sort.md
+      - Sắp xếp tournament: basic/tournament-sort.md
+      - Sắp xếp Tim: basic/tim-sort.md
       - STL liên quan đến sắp xếp: basic/stl-sort.md
       - Ứng dụng của sắp xếp: basic/use-of-sort.md
     - Tổng tiền tố và sai phân: basic/prefix-sum.md
@@ -164,7 +164,7 @@ nav:
     - DFS (tìm kiếm): search/dfs.md
     - BFS (tìm kiếm): search/bfs.md
     - Tìm kiếm hai chiều: search/bidirectional.md
-    - Tìm kiếm heuristic: search/heuristic.md
+    - Tìm kiếm theo kinh nghiệm: search/heuristic.md
     - A*: search/astar.md
     - Tìm kiếm sâu dần: search/iterative.md
     - IDA*: search/idastar.md

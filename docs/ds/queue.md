@@ -172,7 +172,7 @@ Ngoài ra, `deque` còn cung cấp một số toán tử. Những toán tử th�
 -   Dùng toán tử gán `=` để gán giá trị cho `deque`, tương tự `queue`.
 -   Dùng `[]` để truy cập phần tử, tương tự `vector`.
 
-Header `<queue>` còn cung cấp hàng đợi ưu tiên `std::priority_queue`. Vì cấu trúc này giống với [heap](./heap.md) hơn, trang này không giới thiệu sâu.
+Tệp tiêu đề `<queue>` còn cung cấp hàng đợi ưu tiên `std::priority_queue`. Vì cấu trúc này giống với [heap](./heap.md) hơn, trang này không giới thiệu sâu.
 
 <span id="hàng-đợi-hai-đầu-trong-python"></span>
 #### Hàng đợi hai đầu trong Python

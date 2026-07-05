@@ -138,7 +138,7 @@ Các thuật toán trên đều có thể gọi là thuật toán Euclid (Euclid
 
 Ngoài ra, với C++17, ta có thể dùng
 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) và
-[`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) trong header
+[`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) trong tệp tiêu đề
 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) để tính ước
 chung lớn nhất và bội chung nhỏ nhất.
 
@@ -251,7 +251,7 @@ dịch phải (có thể thay bằng nhân chia độ chính xác thấp), số 
     }
     ```
 
-Đoạn code trên tham khảo cách cài đặt C++17 `std::gcd` của
+Đoạn mã trên tham khảo cách cài đặt C++17 `std::gcd` của
 [libstdc++](https://github.com/gcc-mirror/gcc/blob/1667962ae755db27965778b8c8c684c6c0c4da21/libstdc%2B%2B-v3/include/std/numeric#L173)
 và [MSVC](https://github.com/microsoft/STL/blob/9aca22477df4eed3222b4974746ee79129eb44e7/stl/inc/numeric#L591).
 Trong phạm vi dữ liệu của `unsigned int` và `unsigned long long`, nếu có thể
@@ -491,7 +491,7 @@ $$
 
 Từ đó có thể tính exgcd bằng phương pháp lặp.
 
-Vì cách lặp tránh đệ quy, code sẽ nhanh hơn bản đệ quy một chút.
+Vì cách lặp tránh đệ quy, mã sẽ nhanh hơn bản đệ quy một chút.
 
 ```cpp
 int gcd(int a, int b, int& x, int& y) {
