@@ -82,7 +82,7 @@ Ban đầu có $v_o=a$, trong đó $a$ là một đỉnh bất kỳ trong đồ 
 
 2.  Nếu $b$ đã được ghi nhận, nghĩa là đã xuất hiện chu trình. Tăng tổng số đỉnh lên một, đánh số lại mọi đỉnh trên chu trình, gộp các heap, đồng thời cập nhật tổng trọng số của các đỉnh hoặc siêu đỉnh. Thao tác cập nhật trọng số là gom tất cả cạnh vào của các đỉnh trên chu trình và trừ đi trọng số của cạnh vào tương ứng trên chu trình.
 
-![dmst1](./images/dmst1.png)
+![Co chu trình trong đồ thị thành cây co](./images/dmst1.png)
 
 Trong hình minh họa, đồ thị liên thông mạnh bên trái sau khi co sẽ tạo thành cây co ở bên phải. Trong đó, $a$ là siêu đỉnh thu được sau khi co đỉnh 1 và đỉnh 2; $b$ là siêu đỉnh thu được sau khi co đỉnh 3, đỉnh 4 và đỉnh 5; còn $A$ được tạo thành sau khi co hai siêu đỉnh $a$ và $b$.
 

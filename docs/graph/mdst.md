@@ -20,15 +20,15 @@ Với một đỉnh bất kỳ $i$ trong đồ thị, khoảng cách từ tâm t
 
 Lấy một đỉnh $i$ làm ví dụ, quan hệ vị trí giữa đỉnh này và tâm tuyệt đối của đồ thị được minh họa như sau.
 
-![mdst1](./images/mdst-graph.svg)
+![Quan hệ vị trí giữa đỉnh và tâm tuyệt đối của đồ thị](./images/mdst-graph.svg)
 
 Khi tâm tuyệt đối của đồ thị $c$ thay đổi vị trí trên cạnh, ta thu được đồ thị hàm số biểu diễn khoảng cách theo vị trí của $c$. Rõ ràng, đồ thị hàm số của $d(c,i)$ hiện tại là một đường gấp khúc gồm hai đoạn thẳng có hệ số góc cố định.
 
-![mdst2](./images/mdst-plot1.svg)
+![Đồ thị hàm khoảng cách từ tâm tuyệt đối đến một đỉnh](./images/mdst-plot1.svg)
 
 Với mọi đỉnh trên đồ thị, hàm số mô tả khoảng cách từ tâm tuyệt đối của đồ thị đến đỉnh xa nhất được viết là $f = \max\{ d(c,i)\},i \in[1,n]$; đồ thị hàm số của nó như sau.
 
-![mdst3](./images/mdst-plot2.svg)
+![Đồ thị hàm khoảng cách lớn nhất từ tâm tuyệt đối đến các đỉnh](./images/mdst-plot2.svg)
 
 Điểm thấp nhất trong các giao điểm của những đường gấp khúc này có hoành độ chính là vị trí của tâm tuyệt đối của đồ thị.
 
