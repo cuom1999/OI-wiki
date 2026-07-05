@@ -47,11 +47,11 @@ Trên cơ sở cây không gốc, nếu chỉ định một nút làm **gốc** 
 -   **Hậu duệ** (descendant): nút con và các hậu duệ của nút con.
     Cũng có thể hiểu là: nếu $u$ là tổ tiên của $v$, thì $v$ là hậu duệ của $u$.
 
-![tree-definition.svg](images/tree-definition.svg)
+![Minh họa định nghĩa cây](images/tree-definition.svg)
 
 -   **Cây con** (subtree): sau khi xóa cạnh nối với cha, đó là đồ thị con chứa nút này.
 
-    ![tree-definition-subtree.svg](images/tree-definition-subtree.svg)
+    ![Minh họa cây con](images/tree-definition-subtree.svg)
 
 ## Các loại cây đặc biệt
 
@@ -160,7 +160,7 @@ Có thể dùng để tìm độ sâu, nút cha và các thông tin khác của 
 
 #### Duyệt tiền thứ tự
 
-![preorder](images/tree-basic-preorder.svg)
+![Duyệt tiền thứ tự](images/tree-basic-preorder.svg)
 
 Duyệt cây nhị phân theo thứ tự **gốc, trái, phải**.
 
@@ -177,7 +177,7 @@ Duyệt cây nhị phân theo thứ tự **gốc, trái, phải**.
 
 #### Duyệt trung thứ tự
 
-![inorder](images/tree-basic-inorder.svg)
+![Duyệt trung thứ tự](images/tree-basic-inorder.svg)
 
 Duyệt cây nhị phân theo thứ tự **trái, gốc, phải**.
 
@@ -194,7 +194,7 @@ Duyệt cây nhị phân theo thứ tự **trái, gốc, phải**.
 
 #### Duyệt hậu thứ tự
 
-![postorder](images/tree-basic-postorder.svg)
+![Duyệt hậu thứ tự](images/tree-basic-postorder.svg)
 
 Duyệt cây nhị phân theo thứ tự **trái, phải, gốc**.
 
@@ -213,7 +213,7 @@ Duyệt cây nhị phân theo thứ tự **trái, phải, gốc**.
 
 Khi đã biết dãy duyệt trung thứ tự và một dãy duyệt khác, có thể suy ra dãy duyệt thứ ba.
 
-![reverse](images/tree-basic-reverse.svg)
+![Suy ngược từ các thứ tự duyệt](images/tree-basic-reverse.svg)
 
 1.  Phần tử đầu tiên của tiền thứ tự là `root`, phần tử cuối cùng của hậu thứ tự là `root`.
 2.  Trước hết xác định nút gốc, sau đó dựa vào duyệt trung thứ tự: phần nằm bên trái gốc là cây con trái, phần nằm bên phải gốc là cây con phải.
@@ -231,7 +231,7 @@ Duyệt cây theo mức là duyệt ngang từng nút theo từng tầng, dựa 
 
 Ví dụ, kết quả duyệt theo mức của cây trong hình dưới là `[[1], [2, 3, 4], [5, 6]]`, với mỗi tầng đi từ trái sang phải.
 
-![tree-basic-levelOrder](images/tree-basic-levelOrder.svg)
+![Duyệt cây theo mức](images/tree-basic-levelOrder.svg)
 
 ???+ note "Cài đặt"
     ```cpp
@@ -276,15 +276,15 @@ Giả sử ta đang ở nút hiện tại `cur`; ban đầu `cur` ở vị trí 
 
 Ví dụ, `cur` bắt đầu thăm từ nút 1.
 
-![tree-basic-morris-1](images/tree-basic-morris-1.svg)
+![Ví dụ duyệt Morris bước đầu](images/tree-basic-morris-1.svg)
 
 Khi `cur` thăm nút 2 lần đầu, tìm nút ngoài cùng bên phải trên cây con trái là 4, rồi cho con trỏ `right` của 4 trỏ đến `cur`, tức nút 2.
 
-![tree-basic-morris-2](images/tree-basic-morris-2.svg)
+![Ví dụ duyệt Morris tạo liên kết tạm](images/tree-basic-morris-2.svg)
 
 `cur` thông qua con trỏ `right` của 4 để quay lại tầng trên. Khi thăm nút 2 lần thứ hai, tìm nút ngoài cùng bên phải trên cây con trái là 4, đổi con trỏ `right` của 4 thành `null`, rồi tiếp tục thăm cây con phải. Các bước sau được lược bỏ.
 
-![tree-basic-morris-1](images/tree-basic-morris-1.svg)
+![Ví dụ duyệt Morris khôi phục liên kết](images/tree-basic-morris-1.svg)
 
 Thứ tự thăm toàn bộ cây là `1242513637`. Có thể thấy các nút có cây con trái được thăm hai lần, còn các nút không có cây con trái chỉ được thăm một lần.
 

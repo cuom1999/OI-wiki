@@ -21,19 +21,19 @@ Rõ ràng, nếu đỉnh $z$ mà lần DFS thứ nhất tìm được là một 
     
     -   Nếu $y$ nằm trên $\delta(s,t)$:
     
-    ![y nam tren s-t](./images/tree-diameter1.svg)
+    ![Trường hợp y nằm trên đường s-t](./images/tree-diameter1.svg)
     
     Ta có $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$, mâu thuẫn với việc $\delta(s,t)$ là đường đi đơn dài nhất giữa hai đỉnh bất kỳ trên cây.
     
     -   Nếu $y$ không nằm trên $\delta(s,t)$ và $\delta(y,z)$ có đoạn đường trùng với $\delta(s,t)$:
     
-    ![y khong nam tren s-t, y-z co doan trung voi s-t](./images/tree-diameter2.svg)
+    ![Trường hợp y không nằm trên s-t và y-z có đoạn trùng với s-t](./images/tree-diameter2.svg)
     
     Ta có $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$, mâu thuẫn với việc $\delta(s,t)$ là đường đi đơn dài nhất giữa hai đỉnh bất kỳ trên cây.
     
     -   Nếu $y$ không nằm trên $\delta(s,t)$ và $\delta(y,z)$ không có đoạn đường nào trùng với $\delta(s,t)$:
     
-    ![y khong nam tren s-t, y-z khong co doan trung voi s-t](./images/tree-diameter3.svg)
+    ![Trường hợp y không nằm trên s-t và y-z không có đoạn trùng với s-t](./images/tree-diameter3.svg)
     
     Ta có $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x',z) > \delta(x',t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$, mâu thuẫn với việc $\delta(s,t)$ là đường đi đơn dài nhất giữa hai đỉnh bất kỳ trên cây.
     
@@ -89,7 +89,7 @@ Với đường kính của cây, thực chất có thể tìm bằng cách xét
 ???+ note "Chứng minh"
     Chứng minh: Dùng phản chứng. Giả sử có hai đường kính có trung điểm không trùng nhau, lần lượt là $\delta(s,t)$ và $\delta(s',t')$, với trung điểm tương ứng là $x$ và $x'$. Hiển nhiên, $\delta(s,x) = \delta(x,t) = \delta(s',x') = \delta(x',t')$.
     
-    ![trung diem cua moi duong kinh trong cay khong co canh am trung nhau](./images/tree-diameter4.svg)
+    ![Trung điểm của mọi đường kính trong cây không có cạnh âm trùng nhau](./images/tree-diameter4.svg)
     
     Ta có $\delta(s,t') = \delta(s,x) + \delta(x,x') + \delta(x',t') > \delta(s,x) + \delta(x,t) = \delta(s,t)$, mâu thuẫn với việc $\delta(s,t)$ là đường đi đơn dài nhất giữa hai đỉnh bất kỳ trên cây. Do đó tính chất được chứng minh.
 
