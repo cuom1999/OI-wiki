@@ -14,33 +14,33 @@ Giới hạn thời gian là giới hạn về thời gian chạy của chương
 
 Giới hạn bộ nhớ là giới hạn về lượng bộ nhớ mà chương trình sử dụng. Lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng khi chạy không được vượt quá giới hạn đã cho.
 
-Sau khi chương trình kết thúc bình thường, dữ liệu xuất ra của thí sinh sẽ được so sánh với dữ liệu ra của test. Việc so sánh này thường bỏ qua dòng mới ở cuối file và khoảng trắng cuối dòng, rồi so sánh toàn văn. Với một số bài đặc biệt, hệ thống sẽ dùng [Special Judge](../tools/special-judge.md) để so sánh.
+Sau khi chương trình kết thúc bình thường, dữ liệu xuất ra của thí sinh sẽ được so sánh với dữ liệu ra của test. Việc so sánh này thường bỏ qua dòng mới ở cuối tệp và khoảng trắng cuối dòng, rồi so sánh toàn văn. Với một số bài đặc biệt, hệ thống sẽ dùng [trình chấm đặc biệt (Special Judge)](../tools/special-judge.md) để so sánh.
 
 Khi quá trình này kết thúc, hệ thống chấm sẽ căn cứ vào trạng thái chạy của chương trình để đưa ra các **kết quả chấm** khác nhau[^note5]:
 
--   Accepted (AC): chương trình của thí sinh được chấp nhận.
--   Compile Error (CE): chương trình của thí sinh không thể biên dịch bình thường.
--   Wrong Answer (WA): chương trình của thí sinh kết thúc bình thường, nhưng dữ liệu xuất ra không khớp với dữ liệu ra của test.
--   Presentation Error (PE): chương trình của thí sinh kết thúc bình thường, nhưng định dạng không đúng yêu cầu[^note6].
--   Runtime Error (RE): chương trình của thí sinh kết thúc bất thường (giá trị trả về khi chương trình kết thúc không bằng không).
--   Time Limit Exceeded (TLE): thời gian chạy của chương trình thí sinh vượt quá giới hạn thời gian đã cho.
--   Memory Limit Exceeded (MLE): lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng vượt quá giới hạn bộ nhớ đã cho.
--   Output Limit Exceeded (OLE): lượng nội dung chương trình thí sinh xuất ra vượt quá giới hạn tối đa.
+-   Được chấp nhận (Accepted, AC): chương trình của thí sinh được chấp nhận.
+-   Lỗi biên dịch (Compile Error, CE): chương trình của thí sinh không thể biên dịch bình thường.
+-   Đáp án sai (Wrong Answer, WA): chương trình của thí sinh kết thúc bình thường, nhưng dữ liệu xuất ra không khớp với dữ liệu ra của test.
+-   Lỗi trình bày (Presentation Error, PE): chương trình của thí sinh kết thúc bình thường, nhưng định dạng không đúng yêu cầu[^note6].
+-   Lỗi khi chạy (Runtime Error, RE): chương trình của thí sinh kết thúc bất thường (giá trị trả về khi chương trình kết thúc không bằng không).
+-   Quá giới hạn thời gian (Time Limit Exceeded, TLE): thời gian chạy của chương trình thí sinh vượt quá giới hạn thời gian đã cho.
+-   Quá giới hạn bộ nhớ (Memory Limit Exceeded, MLE): lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng vượt quá giới hạn bộ nhớ đã cho.
+-   Quá giới hạn đầu ra (Output Limit Exceeded, OLE): lượng nội dung chương trình thí sinh xuất ra vượt quá giới hạn tối đa.
 
 Trong các kỳ thi ICPC, chương trình của bạn cần đạt trạng thái AC trên tất cả test của một bài thì mới được xem là giải được bài đó. Trong các kỳ thi OI, đạt trạng thái AC trên một test là có thể nhận điểm của test đó[^note7].
 
 ## Bài nộp đáp án
 
-**Bài nộp đáp án** là dạng bài nộp trực tiếp đáp án. Dạng bài này thường cung cấp các file dữ liệu vào và yêu cầu nộp một file nén, thư mục hoặc các file thuần chứa `XXX1.out`, `XXX2.out`, `XXX3.out`…`XXXn.out`.
+**Bài nộp đáp án** là dạng bài nộp trực tiếp đáp án. Dạng bài này thường cung cấp các tệp dữ liệu vào và yêu cầu nộp một tệp nén, thư mục hoặc các tệp thuần chứa `XXX1.out`, `XXX2.out`, `XXX3.out`…`XXXn.out`.
 
-Sau khi nộp đáp án, hệ thống chấm sẽ so sánh các file đáp án với đáp án chuẩn, rồi cho một số điểm nhất định dựa trên chất lượng đáp án của thí sinh và mức độ hoàn thành nhiệm vụ.
+Sau khi nộp đáp án, hệ thống chấm sẽ so sánh các tệp đáp án với đáp án chuẩn, rồi cho một số điểm nhất định dựa trên chất lượng đáp án của thí sinh và mức độ hoàn thành nhiệm vụ.
 
 Vì bài nộp đáp án không cần chạy chương trình nguồn, dạng bài này không có giới hạn thời gian và bộ nhớ.
 
 Thông thường có hai cách làm dạng bài này:
 
 -   Làm thủ công. Cách này đơn giản và trực diện, nhưng gặp dữ liệu lớn thì gần như không xử lý được.
--   Viết một chương trình để sinh các file đáp án.
+-   Viết một chương trình để sinh các tệp đáp án.
 
 ## Bài tương tác
 
@@ -67,7 +67,7 @@ Tương tác STDIO (tương tác I/O chuẩn) là phương thức tương tác t
 
     Ở trong bóng tối quá lâu sẽ khiến bạn sợ hãi, vì vậy bạn cần ra khỏi mê cung càng sớm càng tốt. Nếu bạn không ra khỏi mê cung trong số bước giới hạn, thử thách sẽ thất bại.
 
-Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩn như bình thường, **xả bộ đệm đầu ra** rồi đọc kết quả từ đầu vào chuẩn. Sau khi chương trình của thí sinh xả bộ đệm đầu ra, chương trình chấm được nối với nó qua pipe (gọi là interactor) mới có thể nhận ngay các dữ liệu này. Trong C/C++, có thể dùng `fflush(stdout)` và `std::cout << std::flush` để thực hiện thao tác này (khi xuống dòng bằng `std::cout << std::endl` thì bộ đệm cũng được tự động xả, nhưng `std::cout << '\n'` thì không); trong Pascal là `flush(output)`.
+Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩn như bình thường, **xả bộ đệm đầu ra** rồi đọc kết quả từ đầu vào chuẩn. Sau khi chương trình của thí sinh xả bộ đệm đầu ra, chương trình chấm được nối với nó qua ống dẫn (pipe, gọi là interactor) mới có thể nhận ngay các dữ liệu này. Trong C/C++, có thể dùng `fflush(stdout)` và `std::cout << std::flush` để thực hiện thao tác này (khi xuống dòng bằng `std::cout << std::endl` thì bộ đệm cũng được tự động xả, nhưng `std::cout << '\n'` thì không); trong Pascal là `flush(output)`.
 
 ### Tương tác Grader
 
@@ -80,14 +80,14 @@ Phương thức tương tác Grader thường gặp trong các kỳ thi OI quố
 
     Bạn cần cài đặt một hàm trả về giá trị lớn nhất trong $a_{i+1}−a_i (0\leq i\leq N−1)$.
 
-Với dạng bài này, thí sinh chỉ cần viết một hàm cụ thể để hoàn thành một nhiệm vụ; hàm này tương tác bằng cách gọi một số hàm phụ trợ được cho sẵn. Để thí sinh tiện kiểm thử cục bộ, đề bài sẽ phát một file header và một chương trình chấm tham khảo `grader.cpp` (với Pascal là một thư viện `graderlib`); thí sinh cần biên dịch chương trình của mình cùng với `grader.cpp` để thu được file thực thi.
+Với dạng bài này, thí sinh chỉ cần viết một hàm cụ thể để hoàn thành một nhiệm vụ; hàm này tương tác bằng cách gọi một số hàm phụ trợ được cho sẵn. Để thí sinh tiện kiểm thử cục bộ, đề bài sẽ phát một tệp header và một chương trình chấm tham khảo `grader.cpp` (với Pascal là một thư viện `graderlib`); thí sinh cần biên dịch chương trình của mình cùng với `grader.cpp` để thu được tệp thực thi.
 
 ```sh
 g++ grader.cpp my_solution.cpp -o my_solution -Wall -O2
 ./my_solution   # Thực thi chương trình
 ```
 
-Chương trình sau khi biên dịch có hành vi giống chương trình của bài truyền thống. Nó sẽ mở các file cố định, đọc dữ liệu theo định dạng cố định, gọi hàm do thí sinh viết, rồi hiển thị kết quả và một số thông tin (ví dụ số lần truy vấn, tính đúng sai của đáp án) ra đầu ra chuẩn.
+Chương trình sau khi biên dịch có hành vi giống chương trình của bài truyền thống. Nó sẽ mở các tệp cố định, đọc dữ liệu theo định dạng cố định, gọi hàm do thí sinh viết, rồi hiển thị kết quả và một số thông tin (ví dụ số lần truy vấn, tính đúng sai của đáp án) ra đầu ra chuẩn.
 
 Khi chấm thật, chương trình của thí sinh sẽ được biên dịch với một `grader.cpp` khác. `grader.cpp` này sẽ gọi hàm do thí sinh viết theo cách tương tự và ghi nhận điểm số. Nói chung, mọi ký hiệu toàn cục trong phiên bản `grader.cpp` này đều được đặt là `static`, tức không thể phá bằng cách đặt tên xung đột; tuy nhiên mọi hành vi cố gắng vượt qua giới hạn của grader đều sẽ bị truất quyền (disqualification).
 
@@ -107,7 +107,7 @@ Phương pháp kiểm thử cục bộ rất đa dạng tùy theo thiết lập 
 
 -   Nhập thủ công
 -   Viết một chương trình phụ trợ để chuyển đổi đầu ra của chương trình thứ nhất thành đầu vào của chương trình thứ hai
--   Dùng pipe hai chiều để nối đầu vào/đầu ra chuẩn của hai chương trình với nhau
+-   Dùng ống dẫn (pipe) hai chiều để nối đầu vào/đầu ra chuẩn của hai chương trình với nhau
 
 Do các nền tảng chấm còn hỗ trợ hạn chế cho bài truyền tin, đến nay dạng bài này chỉ thường gặp trong các kỳ thi hệ IOI và các cuộc thi do một số ít nền tảng trực tuyến như UOJ tổ chức. Đây vẫn là một lĩnh vực còn cần được khám phá.
 
