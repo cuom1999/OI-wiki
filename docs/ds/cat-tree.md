@@ -44,7 +44,7 @@ Quá trình này chỉ cần $O(1)$ phép hợp nhất!
 
 Nhưng có vẻ ta đã bỏ sót điều gì đó?
 
-Có vẻ độ phức tạp để tìm LCA vẫn chưa phải $O(1)$: tìm thô là $O(\log{n})$, dùng binary lifting là $O(\log{\log{n}})$, còn chuyển sang bảng ST thì chi phí lại quá lớn...
+Có vẻ độ phức tạp để tìm LCA vẫn chưa phải $O(1)$: tìm thô là $O(\log{n})$, dùng nhảy nhị phân là $O(\log{\log{n}})$, còn chuyển sang bảng ST thì chi phí lại quá lớn...
 
 ## Dựng cây kiểu heap
 

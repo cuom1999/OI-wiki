@@ -2,9 +2,9 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ## Giới thiệu
 
-Trong một số bài toán, khi chuyển trạng thái giữa các đoạn, có thể thao tác thêm hoặc xóa không hiện thực được. Khi chỉ thao tác thêm không hiện thực được, hoặc chỉ thao tác xóa không hiện thực được, ta có thể dùng Mo rollback để giải trong thời gian $O(n \sqrt m)$. Ý tưởng cốt lõi của Mo rollback là: nếu chỉ hiện thực được một thao tác, thì chỉ dùng thao tác đó, phần còn lại giao cho cơ chế rollback xử lý.
+Trong một số bài toán, khi chuyển trạng thái giữa các đoạn, có thể thao tác thêm hoặc xóa không hiện thực được. Khi chỉ thao tác thêm không hiện thực được, hoặc chỉ thao tác xóa không hiện thực được, ta có thể dùng Mo có khôi phục trạng thái (Mo rollback) để giải trong thời gian $O(n \sqrt m)$. Ý tưởng cốt lõi của Mo có khôi phục trạng thái là: nếu chỉ hiện thực được một thao tác, thì chỉ dùng thao tác đó, phần còn lại giao cho cơ chế khôi phục trạng thái xử lý.
 
-Mo rollback được chia thành loại chỉ dùng thao tác thêm và loại chỉ dùng thao tác xóa. Phần dưới chỉ giới thiệu Mo rollback chỉ dùng thao tác thêm; loại chỉ dùng thao tác xóa chỉ khác đôi chút trong hiện thực thuật toán, nên không trình bày thêm.
+Mo có khôi phục trạng thái được chia thành loại chỉ dùng thao tác thêm và loại chỉ dùng thao tác xóa. Phần dưới chỉ giới thiệu Mo có khôi phục trạng thái chỉ dùng thao tác thêm; loại chỉ dùng thao tác xóa chỉ khác đôi chút trong hiện thực thuật toán, nên không trình bày thêm.
 
 ## Ví dụ [JOISC 2014 Day1 Historical Research](https://loj.ac/problem/2874)
 
@@ -22,11 +22,11 @@ Trong bài toán này, cập nhật đáp án khi thêm phần tử rất dễ h
         -   Nếu đầu phải của truy vấn lớn hơn đầu phải của đoạn Mo, liên tục mở rộng đầu phải cho đến khi đầu phải của đoạn Mo bằng đầu phải của truy vấn.
         -   Liên tục mở rộng đầu trái của đoạn Mo cho đến khi đầu trái của đoạn Mo bằng đầu trái của truy vấn.
         -   Trả lời truy vấn.
-        -   Hủy các thay đổi trên đầu trái của đoạn Mo, để đầu trái rollback về đầu phải của khối $B$ cộng $1$.
+        -   Hủy các thay đổi trên đầu trái của đoạn Mo, để đầu trái khôi phục về đầu phải của khối $B$ cộng $1$.
 
 ## Chứng minh độ phức tạp
 
-Giả sử kích thước khối của Mo rollback là $b$:
+Giả sử kích thước khối của Mo có khôi phục trạng thái là $b$:
 
 -   Với truy vấn có đầu trái và đầu phải nằm trong cùng một khối, có thể tính trong thời gian $O(b)$.
 -   Với các truy vấn còn lại, xét các truy vấn có đầu trái nằm trong cùng một khối. Đầu phải của chúng tăng đơn điệu, nên độ phức tạp để di chuyển đầu phải là $O(n)$; còn đầu trái của mỗi truy vấn di chuyển không quá $b$. Vì có $\frac{n}{b}$ khối, tổng độ phức tạp là $O(mb+\frac{n^2}{b})$. Lấy $b=\frac{n}{\sqrt{m}}$ là tối ưu, cho độ phức tạp thời gian $O(n\sqrt{m})$.

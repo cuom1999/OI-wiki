@@ -333,7 +333,7 @@ Trong đồ thị vô hướng, đây là cây khung có tổng trọng số nh�
 
 Làm thế nào để tìm trọng số cạnh lớn nhất trên đường đi $u,v$?
 
-Ta có thể dùng kỹ thuật binary lifting để duy trì: tiền xử lý tổ tiên cấp $2^i$ của mỗi nút và trọng số cạnh lớn nhất trên đường đi từ nút đó đến tổ tiên cấp $2^i$ của nó. Khi đó trong quá trình tìm LCA bằng binary lifting, ta có thể lấy trực tiếp giá trị này.
+Ta có thể dùng kỹ thuật nhảy nhị phân để duy trì: tiền xử lý tổ tiên cấp $2^i$ của mỗi nút và trọng số cạnh lớn nhất trên đường đi từ nút đó đến tổ tiên cấp $2^i$ của nó. Khi đó trong quá trình tìm LCA bằng nhảy nhị phân, ta có thể lấy trực tiếp giá trị này.
 
 ### Cây khung nhỏ thứ hai nghiêm ngặt
 
@@ -349,7 +349,7 @@ Vì cây khung nhỏ nhất đảm bảo rằng trong cây khung, giá trị l�
 
 Cách xử lý rất tự nhiên: khi duy trì trọng số cạnh lớn nhất trên đường đi đến tổ tiên cấp $2^i$, ta đồng thời duy trì **trọng số cạnh lớn thứ hai nghiêm ngặt**. Khi trọng số của cạnh dùng để thay thế bằng trọng số lớn nhất trên đường đi trong cây khung ban đầu, ta thay bằng giá trị lớn thứ hai nghiêm ngặt.
 
-Quá trình này có thể giải bằng binary lifting, với độ phức tạp $O(m \log m)$.
+Quá trình này có thể giải bằng nhảy nhị phân, với độ phức tạp $O(m \log m)$.
 
 ??? note "Cài đặt mã"
     ```cpp
@@ -599,6 +599,6 @@ Nếu cần tìm giá trị lớn nhất của trọng số cạnh nhỏ nhất 
 
     Nói cách khác, ta chỉ cần tính giá trị min của các lá trong mỗi cây con của cây tái cấu trúc Kruskal để hỗ trợ truy vấn cây con.
 
-    Nút gốc của truy vấn có thể được tìm bằng binary lifting trên cây tái cấu trúc Kruskal.
+    Nút gốc của truy vấn có thể được tìm bằng nhảy nhị phân trên cây tái cấu trúc Kruskal.
 
     Độ phức tạp thời gian là $O((n+m+Q) \log n)$.

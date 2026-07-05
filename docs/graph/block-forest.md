@@ -287,7 +287,7 @@ Ta trình bày một vài bài tập có thể giải bằng cây tròn-vuông.
     ??? note "Lời giải"
         Tương tự, ta xây dựng cây tròn-vuông của đồ thị gốc, cho trọng số của đỉnh vuông bằng giá trị nhỏ nhất trong các đỉnh tròn kề với nó; bài toán chuyển thành tìm giá trị nhỏ nhất trên đường đi.
         
-        Giá trị nhỏ nhất trên đường đi có thể được duy trì bằng heavy-light decomposition và cây phân đoạn, nhưng còn thao tác sửa thì sao?
+        Giá trị nhỏ nhất trên đường đi có thể được duy trì bằng phân rã nặng-nhẹ và cây phân đoạn, nhưng còn thao tác sửa thì sao?
         
         Mỗi lần sửa trọng số của một đỉnh tròn, ta cần sửa tất cả các đỉnh vuông kề với nó; khi đó rất dễ bị chạm đến $O(n)$ lần sửa.
         

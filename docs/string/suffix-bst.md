@@ -84,7 +84,7 @@ Tương tự thao tác chèn, có thể dựa vào thao tác xóa nút của câ
     2.  Xóa một số ký tự ở cuối chuỗi hiện tại.
     3.  Hỏi chuỗi $t$ xuất hiện bao nhiêu lần dưới dạng chuỗi con liên tiếp trong chuỗi hiện tại?
     
-    Bài toán **bắt buộc online**, tổng độ dài biến đổi của chuỗi và độ dài ban đầu $\le 8 \times 10^5$, $q \le 10^5$, tổng độ dài các chuỗi truy vấn $\le 3 \times 10^6$.
+    Bài toán **bắt buộc xử lý trực tuyến**, tổng độ dài biến đổi của chuỗi và độ dài ban đầu $\le 8 \times 10^5$, $q \le 10^5$, tổng độ dài các chuỗi truy vấn $\le 3 \times 10^6$.
 
 Với thao tác 1 và thao tác 2, vì cây cân bằng hậu tố xử lý chèn đầu và xóa đầu thuận tiện hơn, ta biến chèn cuối và xóa cuối thành chèn đầu và xóa đầu. Nếu duy trì cây cân bằng hậu tố của chuỗi đảo của $s$, thay vì của chính $s$, phép biến đổi trên sẽ thực hiện được. Thêm và xóa trên cây cân bằng đều tốn $O(\log n)$, nên thêm hoặc xóa một ký tự tốn $O(\log n)$. Gọi tổng số ký tự được thêm và xóa là $N$, phần này có tổng độ phức tạp $O(N \log n)$.
 

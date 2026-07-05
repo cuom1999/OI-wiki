@@ -327,7 +327,7 @@ Ngoài ra, với thao tác trên cây con, cần xét cả con nhẹ; cần duy 
       int lastans = 0;
       for (int i = 1; i <= m; i++) {
         u = read(), v = read();
-        u ^= lastans;  // Bắt buộc online
+        u ^= lastans;  // Bắt buộc xử lý trực tuyến
         Modify(u, v);
         lastans = getmx1(root);  // Lấy giá trị trực tiếp
         if (lastans == 0)
