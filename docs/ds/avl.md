@@ -1,15 +1,18 @@
-Cây AVL là một loại cây tìm kiếm nhị phân cân bằng. Do nhiều giáo trình thuật toán trình bày AVL khá dài dòng, không ít người có ấn tượng rằng cây AVL phức tạp và thiếu thực dụng. Thực ra, nguyên lý của cây AVL đơn giản, cách cài đặt cũng không quá phức tạp.
+Cây AVL là một loại cây tìm kiếm nhị phân cân bằng. Do nhiều giáo trình thuật toán trình bày AVL khá dài dòng, không ít
+người có ấn tượng rằng cây AVL phức tạp và thiếu thực dụng. Thực ra, nguyên lý của cây AVL đơn giản, cách cài đặt cũng
+không quá phức tạp.
 
 ## Tính chất
 
 1.  Cây nhị phân rỗng là một cây AVL.
-2.  Nếu T là một cây AVL, thì cây con trái và cây con phải của nó cũng là cây AVL, đồng thời $|h(ls) - h(rs)| \leq 1$, trong đó h là chiều cao của cây con trái/phải tương ứng.
+2.  Nếu T là một cây AVL, thì cây con trái và cây con phải của nó cũng là cây AVL, đồng thời
+    $|h(ls) - h(rs)| \leq 1$, trong đó h là chiều cao của cây con trái/phải tương ứng.
 3.  Chiều cao của cây là $O(\log n)$.
 
 Hệ số cân bằng: chiều cao cây con phải - chiều cao cây con trái.
 
 ???+ note "Chứng minh chiều cao của cây"
-    Gọi $f_n$ là số nút ít nhất trong một cây AVL có chiều cao $n$, ta có
+    Gọi $f_n$ là số nút ít nhất trong một cây AVL có chiều cao $n$, có:
 
     $$
     f_n=
@@ -20,13 +23,14 @@ Hệ số cân bằng: chiều cao cây con phải - chiều cao cây con trái.
     \end{cases}
     $$
 
-    Theo cách giải phương trình sai phân tuyến tính không thuần nhất với hệ số hằng, $\{f_n+1\}$ là một dãy Fibonacci. Công thức tổng quát của $f_n$ ở đây là:
+    Theo cách giải phương trình sai phân tuyến tính không thuần nhất với hệ số hằng, $\{f_n+1\}$ là một dãy Fibonacci.
+    Công thức tổng quát của $f_n$ là:
 
     $$
     f_n=\frac{5+2\sqrt{5}}{5}\left(\frac{1+\sqrt{5}}{2}\right)^n+\frac{5-2\sqrt{5}}{5}\left(\frac{1-\sqrt{5}}{2}\right)^n-1
     $$
 
-    Dãy Fibonacci tăng theo tốc độ hàm mũ. Với chiều cao cây $n$, ta có:
+    Dãy Fibonacci tăng theo tốc độ hàm mũ. Với chiều cao cây $n$, có:
 
     $$
     n<\log_{\frac{1+\sqrt{5}}{2}} (f_n+1)<\frac{3}{2}\log_2 (f_n+1)
@@ -38,7 +42,8 @@ Hệ số cân bằng: chiều cao cây con phải - chiều cao cây con trái.
 
 ### Chèn nút
 
-Tương tự cây tìm kiếm nhị phân (BST), trước hết thực hiện một lần tìm kiếm thất bại để xác định vị trí chèn. Sau khi chèn nút, dựa vào hệ số cân bằng để quyết định có cần điều chỉnh hay không.
+Tương tự cây tìm kiếm nhị phân (BST), trước hết thực hiện một lần tìm kiếm thất bại để xác định vị trí chèn. Sau khi
+chèn nút, dựa vào hệ số cân bằng để quyết định có cần điều chỉnh hay không.
 
 ### Xóa nút
 
@@ -48,13 +53,19 @@ Việc xóa có thể làm thay đổi chiều cao cây và hệ số cân bằn
 
 ### Duy trì cân bằng
 
-Sau khi chèn hoặc xóa nút, tính chất 2 của cây AVL có thể bị phá vỡ. Vì vậy cần duy trì cây dọc theo đường đi từ nút vừa được chèn/xóa đến gốc. Nếu tại một nút nào đó, tính chất 2 không còn thỏa mãn, do ta chỉ chèn/xóa một nút nên ảnh hưởng đến chiều cao cây không vượt quá 1; vì thế trị tuyệt đối của hệ số cân bằng tại nút đó nhiều nhất là 2. Do tính đối xứng, ở đây ta chỉ xét trường hợp cây con trái cao hơn cây con phải 2 đơn vị, tức $h(B)-h(E)=2$ trong hình dưới. Khi đó còn cần chia hai trường hợp theo quan hệ lớn nhỏ giữa $h(A)$ và $h(C)$. Cần chú ý rằng vì ta duy trì cân bằng từ dưới lên trên, với mọi hậu duệ của nút D, tính chất 2 vẫn đang được thỏa mãn.
+Sau khi chèn hoặc xóa nút, tính chất 2 của cây AVL có thể bị phá vỡ. Vì vậy cần duy trì cây dọc theo đường đi từ nút
+vừa được chèn/xóa đến gốc. Nếu tại một nút nào đó, tính chất 2 không còn thỏa mãn, do chỉ chèn/xóa một nút nên ảnh
+hưởng đến chiều cao cây không vượt quá 1; vì thế trị tuyệt đối của hệ số cân bằng tại nút đó nhiều nhất là 2.
+
+Do tính đối xứng, chỉ xét trường hợp cây con trái cao hơn cây con phải 2 đơn vị, tức $h(B)-h(E)=2$ trong hình dưới. Khi
+đó còn cần chia hai trường hợp theo quan hệ lớn nhỏ giữa $h(A)$ và $h(C)$. Cần chú ý rằng vì quá trình duy trì cân bằng
+đi từ dưới lên trên, với mọi hậu duệ của nút D, tính chất 2 vẫn đang được thỏa mãn.
 
 ![](./images/avl1.svg)
 
 #### Trường hợp 1: chiều cao cây tại A không nhỏ hơn chiều cao cây tại C
 
-Giả sử $h(E)=x$, ta có
+Giả sử $h(E)=x$, có:
 
 $$
 \begin{cases}
@@ -64,11 +75,13 @@ $$
 \end{cases}
 $$
 
-Trong đó $h(C)\geq x$ là vì nút B thỏa mãn tính chất 2, nên độ chênh giữa $h(C)$ và $h(A)$ không vượt quá 1. Lúc này ta thực hiện một phép xoay phải trên nút D (thao tác xoay giống như trong các loại cây tìm kiếm nhị phân cân bằng khác), như hình dưới.
+Trong đó $h(C)\geq x$ là vì nút B thỏa mãn tính chất 2, nên độ chênh giữa $h(C)$ và $h(A)$ không vượt quá 1. Lúc này
+thực hiện một phép xoay phải trên nút D (thao tác xoay giống như trong các loại cây tìm kiếm nhị phân cân bằng khác),
+như hình dưới.
 
 ![](./images/avl2.svg)
 
-Rõ ràng chiều cao của các nút A, C, E không thay đổi, đồng thời có
+Chiều cao của các nút A, C, E không thay đổi, đồng thời có:
 
 $$
 \begin{cases}
@@ -82,7 +95,7 @@ Vì vậy sau phép xoay, các nút B và D cũng thỏa mãn tính chất 2.
 
 #### Trường hợp 2: chiều cao cây tại A nhỏ hơn chiều cao cây tại C
 
-Giả sử $h(E)=x$, tương tự như trên, ta có
+Giả sử $h(E)=x$, tương tự như trên, có:
 
 $$
 \begin{cases}
@@ -92,11 +105,12 @@ $$
 \end{cases}
 $$
 
-Lúc này ta trước hết thực hiện một phép xoay trái trên nút B, rồi thực hiện một phép xoay phải trên nút D, như hình dưới.
+Lúc này trước hết thực hiện một phép xoay trái trên nút B, rồi thực hiện một phép xoay phải trên nút D, như hình dưới.
 
 ![](./images/avl3.svg)
 
-Rõ ràng chiều cao của các nút A và E không thay đổi. Ngoài ra, con phải mới của B và con trái mới của D lần lượt là con trái và con phải ban đầu của C, nên có
+Chiều cao của các nút A và E không thay đổi. Ngoài ra, con phải mới của B và con trái mới của D lần lượt là con trái và
+con phải ban đầu của C, nên có:
 
 $$
 \begin{cases}
@@ -131,7 +145,8 @@ Vì vậy sau các phép xoay, các nút B, C, D cũng thỏa mãn tính chất 
     \end{array}
     $$
 
-Giống như các cây tìm kiếm nhị phân cân bằng khác, các thông tin như chiều cao nút, kích thước cây con trong cây AVL cần được cập nhật khi xoay.
+Giống như các cây tìm kiếm nhị phân cân bằng khác, các thông tin như chiều cao nút, kích thước cây con trong cây AVL cần
+được cập nhật khi xoay.
 
 ## Các thao tác khác
 
@@ -148,6 +163,7 @@ Các thao tác khác trên cây AVL (Predecessor, Successor, Select, Rank, v.v.)
 
 ## Tài liệu khác
 
-Có thể quan sát quá trình duy trì cân bằng của cây AVL tại [AVL Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html).
+Có thể quan sát quá trình duy trì cân bằng của cây AVL tại
+[AVL Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html).
 
 [Wikipedia -- AVL tree](https://en.wikipedia.org/wiki/AVL_tree)
