@@ -16,7 +16,7 @@ Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đ
 
 -   Có hệ thống quản lý phiên bản; khi nhiều người cùng làm sẽ không rối, và cũng không cần truyền tệp qua lại.
 
--   Hệ thống ra đề hoàn chỉnh; validator, generator, checker và lời giải liên kết chặt chẽ với nhau, đầu ra được tự động sinh.
+-   Hệ thống ra đề hoàn chỉnh; trình kiểm tra dữ liệu, trình sinh dữ liệu, trình kiểm tra đáp án và lời giải liên kết chặt chẽ với nhau, đầu ra được tự động sinh.
 
 -   Có thể đặt nhãn cho lời giải; nếu lời giải sai AC hoặc lời giải đúng không AC thì hệ thống đều cảnh báo, thuận tiện để lần lượt chặn các lời giải sai.
 
@@ -30,7 +30,7 @@ Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đ
 
 ## Danh sách bài
 
-Danh sách bài sẽ hiển thị thông tin cơ bản của một bài, chẳng hạn tình trạng viết đề bài, hướng dẫn, tình trạng sinh dữ liệu, cũng như thiết lập của lời giải chuẩn, validator và checker.
+Danh sách bài sẽ hiển thị thông tin cơ bản của một bài, chẳng hạn tình trạng viết đề bài, hướng dẫn, tình trạng sinh dữ liệu, cũng như thiết lập của lời giải chuẩn, trình kiểm tra dữ liệu và trình kiểm tra đáp án.
 
 Có thể nhấp đúp vào cột "Name" trong danh sách bài để ghi chú, ví dụ những việc cần tự nhắc (cần thêm test/cần viết hướng dẫn), hoặc phân bố điểm dự kiến của bài. Có thể điền tùy nhu cầu, và dĩ nhiên cũng có thể để trống.
 
@@ -51,17 +51,17 @@ Phần lớn chức năng của Polygon không cần học riêng; đọc hiểu
 
 -   Stress dùng để kiểm thử stress.
 
--   Dữ liệu được tạo bằng generator trong Tests; generator được tải lên trong Files.
+-   Dữ liệu được tạo bằng trình sinh dữ liệu trong Tests; trình sinh dữ liệu được tải lên trong Files.
 
 ### Thông tin chung
 
-Trong trang này, có thể thiết lập giới hạn thời gian, giới hạn bộ nhớ, loại bài, tag của bài và cuộc thi chứa bài.
+Trong trang này, có thể thiết lập giới hạn thời gian, giới hạn bộ nhớ, loại bài, thẻ của bài và cuộc thi chứa bài.
 
 Ở cuối trang, "statement sketch" và "tutorial sketch" cho phép chỉnh sửa **bản nháp** của đề bài và hướng dẫn. Chú ý rằng hai mục này sẽ không xuất hiện trong đề bài và hướng dẫn chính thức.
 
 ### Đề bài và hướng dẫn
 
-Trang này dùng để viết đề bài và hướng dẫn. Cũng có thể dùng nút "Review" để xem đề bài, validator và checker, thường dùng cho việc rà soát.
+Trang này dùng để viết đề bài và hướng dẫn. Cũng có thể dùng nút "Review" để xem đề bài, trình kiểm tra dữ liệu và trình kiểm tra đáp án, thường dùng cho việc rà soát.
 
 Đề bài và hướng dẫn đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ thực ra chỉ là một tập con rất nhỏ; có thể tự thử cụ thể.
 
@@ -71,43 +71,43 @@ Nếu cần thêm ảnh vào đề bài, trước hết cần tải ảnh lên t
 
 ### Tệp
 
-"Source Files" dùng để lưu các mã nguồn **ngoại trừ lời giải**, chẳng hạn validator, checker, generator, và nếu là bài tương tác kiểu IO thì còn có interactor.
+"Source Files" dùng để lưu các mã nguồn **ngoại trừ lời giải**, chẳng hạn trình kiểm tra dữ liệu, trình kiểm tra đáp án, trình sinh dữ liệu, và nếu là bài tương tác kiểu IO thì còn có trình tương tác.
 
 Nếu các mã nguồn này cần include tệp khác, ví dụ [Tree-Generator](https://github.com/ouuan/Tree-Generator), thì cần đặt chúng trong "Resource Files".
 
 Tương tác kiểu grader xem [hướng dẫn chính thức](https://codeforces.com/blog/entry/66916).
 
-### Checker
+### Trình kiểm tra đáp án (Checker)
 
-testlib.h cung cấp một số checker tích hợp sẵn; trong hộp chọn có giới thiệu ngắn gọn, và sau khi chọn cũng có thể nhấp "View source" (xem mã nguồn).
+testlib.h cung cấp một số trình kiểm tra đáp án tích hợp sẵn; trong hộp chọn có giới thiệu ngắn gọn, và sau khi chọn cũng có thể nhấp "View source" (xem mã nguồn).
 
-Nếu cần tự viết checker, hãy tham khảo [hướng dẫn checker](./testlib/checker.md).
+Nếu cần tự viết trình kiểm tra đáp án, hãy tham khảo [hướng dẫn viết trình kiểm tra đáp án](./testlib/checker.md).
 
-"Checker tests" bên dưới dùng "Add test" để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" để kiểm tra checker có trả về đúng kết quả chấm hay không.
+"Checker tests" bên dưới dùng "Add test" để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" để kiểm tra trình kiểm tra đáp án có trả về đúng kết quả chấm hay không.
 
-### Interactor
+### Trình tương tác (Interactor)
 
-Chỉ bài tương tác kiểu IO mới cần mục này; hãy tham khảo [hướng dẫn interactor](./testlib/interactor.md).
+Chỉ bài tương tác kiểu IO mới cần mục này; hãy tham khảo [hướng dẫn viết trình tương tác](./testlib/interactor.md).
 
-### Validator
+### Trình kiểm tra dữ liệu (Validator)
 
-Validator dùng để kiểm tra tính hợp lệ của dữ liệu. Cách viết xem [hướng dẫn validator](./testlib/validator.md).
+Trình kiểm tra dữ liệu dùng để kiểm tra tính hợp lệ của dữ liệu. Cách viết xem [hướng dẫn viết trình kiểm tra dữ liệu](./testlib/validator.md).
 
-"Validator tests" bên dưới tương tự "Checker tests"; cần cung cấp đầu vào và kỳ vọng hợp lệ hay không, dùng để kiểm thử validator.
+"Validator tests" bên dưới tương tự "Checker tests"; cần cung cấp đầu vào và kỳ vọng hợp lệ hay không, dùng để kiểm thử trình kiểm tra dữ liệu.
 
 ### Dữ liệu kiểm thử
 
 Trang này dùng để quản lý dữ liệu.
 
-Trên Polygon, cách làm được khuyến nghị là dùng một số ít [generator](./testlib/generator.md) **có tham số dòng lệnh** để sinh dữ liệu, thay vì viết nhiều generator hoặc mỗi lần sinh một bộ dữ liệu lại sửa generator. Ngoài ra, chỉ cần sinh đầu vào; đầu ra sẽ được sinh tự động.
+Trên Polygon, cách làm được khuyến nghị là dùng một số ít [trình sinh dữ liệu](./testlib/generator.md) **có tham số dòng lệnh** để sinh dữ liệu, thay vì viết nhiều trình sinh dữ liệu hoặc mỗi lần sinh một bộ dữ liệu lại sửa trình sinh dữ liệu. Ngoài ra, chỉ cần sinh đầu vào; đầu ra sẽ được sinh tự động.
 
 "Testset" là một tập kiểm thử. Nếu ra đề cho CF, cần tự thêm Testset tên "pretests", và "pretests" cần là tập con của "tests".
 
-"Add Test" dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng generator với một bộ tham số nào đó.
+"Add Test" dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng trình sinh dữ liệu với một bộ tham số nào đó.
 
 Nếu chọn "Use in statements" (dùng trong đề bài), bộ dữ liệu này sẽ trở thành mẫu và được tự động thêm vào đề bài. Nếu cần nội dung hiển thị trong đề bài không phải đầu vào/đầu ra của mẫu (thường dùng cho bài tương tác), có thể nhấp "If you want to specify custom content of input or output data for statements click here" (nếu muốn chỉ định nội dung đầu vào hoặc đầu ra tùy chỉnh cho đề bài, hãy nhấp vào đây), rồi nhập đầu vào/đầu ra muốn hiển thị trong đề bài.
 
-Phần dưới của trang Tests dùng để nhập script sinh dữ liệu, ví dụ `generator-name [params] > test-index`. Có thể dùng `generator-name [params] > $` để không phải chỉ định thủ công số thứ tự test.
+Phần dưới của trang Tests dùng để nhập kịch bản sinh dữ liệu, ví dụ `generator-name [params] > test-index`. Có thể dùng `generator-name [params] > $` để không phải chỉ định thủ công số thứ tự test.
 
 Có thể tham khảo [hướng dẫn do Polygon cung cấp](https://polygon.codeforces.com/docs/freemarker-manual) để dùng Freemarker sinh script hàng loạt.
 
@@ -131,7 +131,7 @@ Trang này dùng để chạy lời giải.
 
 Chọn mã nguồn và test rồi chạy; sau đó có thể nhấp vào mục trong danh sách ("View") để xem thông tin chi tiết.
 
-Trạng thái chấm "FL" nghĩa là chấm bị lỗi, thường là dữ liệu không qua xác thực hoặc validator/checker/interactor bị RE. "RJ" có hai trường hợp: một là đã xuất hiện "FL", hai là mã nguồn này không qua ngay test đầu tiên.
+Trạng thái chấm "FL" nghĩa là chấm bị lỗi, thường là dữ liệu không qua xác thực hoặc trình kiểm tra dữ liệu/trình kiểm tra đáp án/trình tương tác bị RE. "RJ" có hai trường hợp: một là đã xuất hiện "FL", hai là mã nguồn này không qua ngay test đầu tiên.
 
 Nếu thời gian chạy nằm trong khoảng từ một nửa đến hai lần giới hạn thời gian, nó sẽ được đánh dấu màu vàng.
 
@@ -145,7 +145,7 @@ Nơi dùng để tạo Issue.
 
 Gói chứa toàn bộ thông tin của một bài. Khi ra đề CF, gói là căn cứ để CF chấm (ví dụ, nếu cần sửa lỗi trong lúc thi, chỉ khi cập nhật gói thì mới ảnh hưởng đến CF); những lúc khác có thể dùng để xuất ra.
 
-"Verify" (xác minh) dùng để kiểm tra tất cả lời giải có phù hợp với thẻ (AC, WA, TLE) hay không, đồng thời checker có qua bộ kiểm thử checker và validator có qua bộ kiểm thử validator hay không.
+"Verify" (xác minh) dùng để kiểm tra tất cả lời giải có phù hợp với thẻ (AC, WA, TLE) hay không, đồng thời trình kiểm tra đáp án và trình kiểm tra dữ liệu có qua bộ kiểm thử tương ứng hay không.
 
 ### Quản lý quyền truy cập
 
@@ -173,7 +173,7 @@ Nếu muốn ra một cuộc thi, có thể tạo bằng "New Contest", từ đ�
 
 "Manage problem access" (quản lý quyền truy cập bài) ở phía trên dùng để xem quyền của từng bài; "Manage developers list" (quản lý danh sách người phát triển) ở phía dưới dùng để quản lý những người có quyền trong cuộc thi này. Khi tạo bài bằng "New problem" và khi thêm người phát triển mới, quyền sẽ được tự động thêm; nhưng bài thêm vào bằng "Add problems?" sẽ không cấp quyền cho người phát triển đã có.
 
-Thanh bên còn có thể xem trước toàn bộ đề bài, toàn bộ hướng dẫn, toàn bộ validator & checker, tải gói của cả cuộc thi và đánh số lại các bài.
+Thanh bên còn có thể xem trước toàn bộ đề bài, toàn bộ hướng dẫn, toàn bộ trình kiểm tra dữ liệu và trình kiểm tra đáp án, tải gói của cả cuộc thi và đánh số lại các bài.
 
 ## Giải quyết xung đột
 

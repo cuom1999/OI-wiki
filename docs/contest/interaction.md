@@ -12,7 +12,7 @@ Các lỗi đặc thù của bài tương tác:
 
 Vì nhập xuất của bài tương tác khá rườm rà, nên đóng gói riêng các hàm nhập và xuất.
 
-Khi thi, nếu tác giả bài cho sẵn tệp tiêu đề grader (dùng để gỡ lỗi bài tương tác kiểu grader) hoặc chương trình checker (dùng để gỡ lỗi bài tương tác kiểu stdio), việc gỡ lỗi bài tương tác sẽ tương đối đơn giản, vì đối chiếu kiểm thử bài tương tác khó hơn nhiều so với bài thông thường. Khi không có `testlib.h`, thư viện tương tác stdio cho một bài có nhiều chi tiết tương tác thường đã có khoảng 3k dòng mã; cộng thêm một bộ đối chiếu dài khoảng 3k nữa thì ít nhất cần một giờ để cài đặt. Tuy nhiên, bất kể có chương trình gỡ lỗi hay không, khi gỡ lỗi mã bài tương tác, thí sinh thường phải tự mô phỏng quá trình tương tác với chương trình. Vì vậy bài tương tác đòi hỏi thí sinh thiết kế được chương trình chất lượng cao, cố gắng làm đúng ngay từ đầu, đồng thời có năng lực kiểm lỗi tĩnh tốt.
+Khi thi, nếu tác giả bài cho sẵn tệp tiêu đề của trình chấm (dùng để gỡ lỗi bài tương tác kiểu grader) hoặc chương trình kiểm tra đáp án (dùng để gỡ lỗi bài tương tác kiểu nhập xuất chuẩn), việc gỡ lỗi bài tương tác sẽ tương đối đơn giản, vì đối chiếu kiểm thử bài tương tác khó hơn nhiều so với bài thông thường. Khi không có `testlib.h`, thư viện tương tác nhập xuất chuẩn cho một bài có nhiều chi tiết tương tác thường đã có khoảng 3k dòng mã; cộng thêm một bộ đối chiếu dài khoảng 3k nữa thì ít nhất cần một giờ để cài đặt. Tuy nhiên, bất kể có chương trình gỡ lỗi hay không, khi gỡ lỗi mã bài tương tác, thí sinh thường phải tự mô phỏng quá trình tương tác với chương trình. Vì vậy bài tương tác đòi hỏi thí sinh thiết kế được chương trình chất lượng cao, cố gắng làm đúng ngay từ đầu, đồng thời có năng lực kiểm lỗi tĩnh tốt.
 
 Ví dụ:
 

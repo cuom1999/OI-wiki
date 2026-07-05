@@ -83,7 +83,7 @@ Nhấn OPEN để mở một kỳ thi đã tạo; sau đó cần chọn tệp `s
 
 Trong phần tổng quan bài ở bên trái, "nhấp chuột phải" - "Thêm kỳ thi", rồi trên nhãn kỳ thi "nhấp chuột phải" - "Thêm bài", là có thể tạo bài mới.
 
-Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ nhớ và cách so sánh. Rất không khuyến nghị dùng cách so sánh "so sánh trực tiếp toàn văn", vì cách này không thân thiện với dữ liệu được tạo trên Windows. Có thể tự chọn checker theo bài, nhưng cần lưu ý bắt buộc phải chọn một checker, nếu không kết quả chấm sẽ là `No Score.`.
+Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ nhớ và cách so sánh. Rất không khuyến nghị dùng cách so sánh "so sánh trực tiếp toàn văn", vì cách này không thân thiện với dữ liệu được tạo trên Windows. Có thể tự chọn trình kiểm tra đáp án theo bài, nhưng cần lưu ý bắt buộc phải chọn một trình kiểm tra đáp án, nếu không kết quả chấm sẽ là `No Score.`.
 
 ![Danh sách bài trong Arbiter](./images/arbiter_problem.png)
 
@@ -108,9 +108,9 @@ Lúc này, mở thư mục kỳ thi, ta sẽ thấy các nội dung sau.
 `-- team.info
 ```
 
-Thư mục `filter` chứa một số checker; thư mục `result` lưu kết quả chấm của thí sinh; thư mục `tmp` là thư mục cache khi chấm. Trong đó, `day<x>.info` là tệp cấu hình buổi thi, `<x>` là số hiệu buổi thi; tệp `task<x>_<y>.info` là tệp cấu hình bài, `<x>` là số hiệu buổi thi, `<y>` là số thứ tự bài.
+Thư mục `filter` chứa một số trình kiểm tra đáp án; thư mục `result` lưu kết quả chấm của thí sinh; thư mục `tmp` là thư mục bộ nhớ đệm khi chấm. Trong đó, `day<x>.info` là tệp cấu hình buổi thi, `<x>` là số hiệu buổi thi; tệp `task<x>_<y>.info` là tệp cấu hình bài, `<x>` là số hiệu buổi thi, `<y>` là số thứ tự bài.
 
-Đặt thư mục chương trình thí sinh đã tạo vào thư mục `players/`. Lưu ý lớp ngoài cùng nên tạo thư mục `day<x>` tương ứng theo ngày thi. Đặt toàn bộ dữ liệu test (không đặt trong thư mục con) vào `evaldata`. Nếu dùng checker tùy chỉnh, cần đặt checker tùy chỉnh vào `filter`.
+Đặt thư mục chương trình thí sinh đã tạo vào thư mục `players/`. Lưu ý lớp ngoài cùng nên tạo thư mục `day<x>` tương ứng theo ngày thi. Đặt toàn bộ dữ liệu test (không đặt trong thư mục con) vào `evaldata`. Nếu dùng trình kiểm tra đáp án tùy chỉnh, cần đặt trình kiểm tra đáp án tùy chỉnh vào `filter`.
 
 #### Chấm chính thức
 
@@ -130,13 +130,13 @@ Trong ví dụ, mã là `HL-001`; chương trình sẽ tự nhận ra cột "Thu
 
 Chi tiết từng test cần xem trong thư mục `result`. Trong thư mục này sẽ có thư mục kết quả của thí sinh; tệp kết quả có hậu tố `.result`, có thể mở bằng văn bản thuần. Nếu xuất hiện lỗi `No score file.`, có thể kiểm tra khi chấm có sinh tệp `/tmp/_eval.score` hay không.
 
-### Viết checker tùy chỉnh
+### Viết trình kiểm tra đáp án tùy chỉnh
 
-Khi dịch ngược các checker khác, có thể biết lệnh chạy checker tùy chỉnh là `<problem>_e <in> <out> <ans>`. Ba tham số sau lần lượt biểu thị đầu vào, đầu ra của thí sinh và tệp đáp án. Kết quả chấm cuối cùng cần được ghi vào tệp `/tmp/_eval.score`: dòng đầu tiên là thông tin chấm, dòng thứ hai là điểm, với 10 điểm là điểm tối đa.
+Khi dịch ngược các trình kiểm tra đáp án khác, có thể biết lệnh chạy trình kiểm tra đáp án tùy chỉnh là `<problem>_e <in> <out> <ans>`. Ba tham số sau lần lượt biểu thị đầu vào, đầu ra của thí sinh và tệp đáp án. Kết quả chấm cuối cùng cần được ghi vào tệp `/tmp/_eval.score`: dòng đầu tiên là thông tin chấm, dòng thứ hai là điểm, với 10 điểm là điểm tối đa.
 
-Tên checker tùy chỉnh sau khi biên dịch bắt buộc phải là `<problem>_e`, trong đó `<problem>` là tên bài. Khi cấu hình bài, chọn checker tùy chỉnh rồi chọn checker tùy chỉnh cần dùng.
+Tên trình kiểm tra đáp án tùy chỉnh sau khi biên dịch bắt buộc phải là `<problem>_e`, trong đó `<problem>` là tên bài. Khi cấu hình bài, chọn trình kiểm tra đáp án tùy chỉnh rồi chọn trình kiểm tra đáp án cần dùng.
 
-Trong phần cấu hình bài của quản lý bài, đổi phương thức nộp từ mã nguồn sang tệp đáp án, rồi chọn checker tùy chỉnh; cách này có thể kiểm thử bài nộp đáp án.
+Trong phần cấu hình bài của quản lý bài, đổi phương thức nộp từ mã nguồn sang tệp đáp án, rồi chọn trình kiểm tra đáp án tùy chỉnh; cách này có thể kiểm thử bài nộp đáp án.
 
 ### Lưu ý
 
@@ -146,7 +146,7 @@ Các điểm đã xác nhận cần chú ý:
 -   Nếu chưa từng chấm, đừng nhấn thống kê điểm ở phía trên, nếu không Arbiter sẽ thoát ngay.
 -   Do giới hạn stack khi chạy trên Linux, nếu muốn mở stack không giới hạn, nên nhập `ulimit -s unlimited` trong trình dòng lệnh trước rồi chạy `arbiter_local` để mở trình chấm; nếu không có thể gặp vấn đề `Exceeding memory limit`.
 -   Khi chấm chính thức, lúc chuẩn bị đề cần để mọi bài có cùng giới hạn bộ nhớ. Khi chấm, thay `unlimited` trong lệnh bằng số KiB tương ứng với giới hạn bộ nhớ của bài; ví dụ giới hạn bộ nhớ là 512 MiB thì lệnh là `ulimit -s $((512 * 1024))`. Nguyên nhân chính của vấn đề này là khi khởi động Arbiter trực tiếp, tiến trình cha là GNOME, và tiến trình con kế thừa giới hạn stack của tiến trình cha.
--   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu cách, rất có thể khi tạo kỳ thi, toàn bộ checker mặc định không được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời trong tệp kết quả sinh ra có thể thấy thông báo `Compile Failed.`.
+-   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu cách, rất có thể khi tạo kỳ thi, toàn bộ trình kiểm tra đáp án mặc định không được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời trong tệp kết quả sinh ra có thể thấy thông báo `Compile Failed.`.
 -   Khi xem mã mà hiện thông báo "không tìm thấy tệp đáp án", điều đó nghĩa là không tìm thấy mã nguồn của thí sinh.
 
 Các điểm còn nghi ngờ:
@@ -162,7 +162,7 @@ Do thiếu bảo trì lâu dài, hệ thống tồn tại một số lỗ hổng
 
 ### Đánh giá
 
-Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nhật thực chất nào, khiến trải nghiệm chấm rất tệ và UI không còn phù hợp với thẩm mỹ hiện đại. Trong NOI Linux 1.4.1, nó cùng với GUIDE đi kèm NOI Linux trở thành đối tượng bị thí sinh và huấn luyện viên phàn nàn rất nhiều. Trong NOI Linux 2.0, ngoài việc checker bị loại bỏ mã nguồn và toàn bộ phần mềm được biên dịch lại bằng Qt 5, không có nhiều thay đổi lớn; một số vấn đề ổn định vẫn chưa được giải quyết.
+Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nhật thực chất nào, khiến trải nghiệm chấm rất tệ và giao diện không còn phù hợp với thẩm mỹ hiện đại. Trong NOI Linux 1.4.1, nó cùng với GUIDE đi kèm NOI Linux trở thành đối tượng bị thí sinh và huấn luyện viên phàn nàn rất nhiều. Trong NOI Linux 2.0, ngoài việc trình kiểm tra đáp án bị loại bỏ mã nguồn và toàn bộ phần mềm được biên dịch lại bằng Qt 5, không có nhiều thay đổi lớn; một số vấn đề ổn định vẫn chưa được giải quyết.
 
 ??? note "Phụ lục: cách dùng lệnh ren và rename"
     Trong hệ điều hành Windows có sẵn một lệnh đổi tên tệp: `ren`.

@@ -657,7 +657,7 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
     a_{ij} = 
     \begin{cases}
     1,& l_j\le i\le r_j,\\
-    0,& \text{otherwise.}
+    0,& \text{trường hợp còn lại.}
     \end{cases}
     $$
     

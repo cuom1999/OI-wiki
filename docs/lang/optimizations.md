@@ -195,7 +195,7 @@ int hotpath_again;  // <-- nóng!
 <a id="đặt-khối-cơ-bản-basic-block-placement"></a>
 #### Đặt khối cơ bản (basic block placement)
 
-Ta dùng label để biểu diễn một loại "mã máy giả". Chương trình C++ này có hai cách dịch:
+Ta dùng nhãn để biểu diễn một loại "mã máy giả". Chương trình C++ này có hai cách dịch:
 
 ???+ note "Bố cục 1"
     ```cpp

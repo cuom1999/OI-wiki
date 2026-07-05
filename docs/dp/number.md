@@ -242,7 +242,7 @@ Với một số nhỏ hơn $n$, nếu xét từ cao xuống thấp thì chắc 
 
 Dựa vào tính chất này, ta có thể định nghĩa $f(i,st,op)$ là số lượng các số khi vị trí hiện tại cần xét là chữ số thứ $i$ tính từ cao xuống thấp, trạng thái hiện tại của tiền tố là $st$, và quan hệ lớn nhỏ giữa tiền tố với số đang xét là $op$ ($op=1$ nghĩa là bằng, $op=0$ nghĩa là nhỏ hơn). Trong bài này, trạng thái của tiền tố chính là giá trị của chữ số trước đó, vì các chữ số mà vị trí hiện tại không được chọn chỉ phụ thuộc vào chữ số trước. Trong các bài khác, giá trị này có thể là tổng chữ số của tiền tố, $\gcd$ của tất cả chữ số trong tiền tố, phần dư của tiền tố khi lấy modulo một số nào đó, hoặc cũng có thể là tổ hợp của hai hay nhiều loại trạng thái.
 
-Viết **phương trình chuyển trạng thái**: $f(i,st,op)=\sum_{k=1}^{\mathit{maxx}} f(i+1,k,op=1~ \operatorname{and}~ k=\mathit{maxx} )\quad (|\mathit{st}-k|\ge 2)$
+Viết **phương trình chuyển trạng thái**: $f(i,st,op)=\sum_{k=1}^{\mathit{maxx}} f(i+1,k,op=1~ \text{và}~ k=\mathit{maxx} )\quad (|\mathit{st}-k|\ge 2)$
 
 Ở đây $k$ là giá trị của chữ số tiếp theo đang được duyệt, còn $\mathit{maxx}$ là chữ số lớn nhất hiện có thể chọn. Nếu $\mathit{op}=1$, giá trị chọn ở vị trí này không được lớn hơn chữ số tương ứng của số đang xét; nếu không thì không có giới hạn này.
 

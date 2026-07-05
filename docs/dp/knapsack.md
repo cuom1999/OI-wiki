@@ -377,11 +377,11 @@ Xuất phương án thực chất là ghi lại một trạng thái nào đó tr
 int v = V;  // Ghi lại dung lượng lưu trữ hiện tại
 
 // Vì vật phẩm cuối cùng lưu trạng thái cuối cùng, nên duyệt từ vật phẩm cuối về vật phẩm đầu
-for (duyệt từ vật phẩm cuối đến vật phẩm đầu) {
-  if (g[i][v]) {
+duyệt từ vật phẩm cuối về vật phẩm đầu {
+  nếu (g[i][v]) {
     đã chọn vật phẩm thứ i;
     v -= trọng lượng của vật phẩm thứ i;
-  } else {
+  } ngược lại {
     không chọn vật phẩm thứ i;
   }
 }

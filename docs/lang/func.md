@@ -132,7 +132,7 @@ foo(a, b);  // gọi foo
 ```
 
 Trong đoạn mã trên, ta thấy sau "`int`" trong danh sách tham số hàm có thêm dấu
-"`&`" (ký hiệu and). Điều này biểu thị **tham chiếu** (reference) tới kiểu
+"`&`" (ký hiệu và). Điều này biểu thị **tham chiếu** (reference) tới kiểu
 `int`. Khi gọi `foo`, các biến `a` và `b` tại nơi gọi lần lượt khởi tạo hai
 tham chiếu tới kiểu `int` là `x` và `y` trong `foo`. Có thể hiểu `x` và `y`
 trong `foo` là "bí danh" của các biến `a` và `b` tại nơi gọi; tức thao tác lên

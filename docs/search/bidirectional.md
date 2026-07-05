@@ -22,7 +22,7 @@ Các bước của BFS hai chiều:
 Đưa nút bắt đầu và nút mục tiêu vào hàng đợi q
 Đánh dấu nút bắt đầu là 1
 Đánh dấu nút mục tiêu là 2
-while (hàng đợi q không rỗng)
+trong khi (hàng đợi q không rỗng)
 {
   Mở rộng q.front() ra s nút mới
   

@@ -155,9 +155,9 @@ sudo zypper in llvm clang
 
 ## MSVC (Visual Studio)
 
-Truy cập trang [Tải xuống Visual Studio](https://visualstudio.microsoft.com/downloads/), tìm phần "Community" trong mục "Tải xuống", rồi nhấn "Tải miễn phí". Sau khi tải xong, mở trình cài đặt và chọn "Cài đặt Community 2022". Trong cửa sổ hiện ra sau đó, chỉ chọn "Desktop development with C++", rồi nhấn cài đặt.
+Truy cập trang [Tải xuống Visual Studio](https://visualstudio.microsoft.com/downloads/), tìm phần "Community" trong mục "Tải xuống", rồi nhấn "Tải miễn phí". Sau khi tải xong, mở trình cài đặt và chọn "Cài đặt Community 2022". Trong cửa sổ hiện ra sau đó, chỉ chọn "Desktop development with C++" ("Phát triển desktop bằng C++"), rồi nhấn cài đặt.
 
-Nếu không muốn cài Visual Studio đầy đủ, bạn có thể cuộn xuống mục "Tất cả tải xuống", tìm "Build Tools for Visual Studio" trong phần "Tools for Visual Studio", rồi nhấn nút "Download" phía sau. Sau khi tải xong, mở trình cài đặt, làm theo hướng dẫn để chọn "Desktop development with C++" rồi cài đặt. Cũng có thể dùng công cụ [PortableBuildTools](https://github.com/Data-Oriented-House/PortableBuildTools) để chỉ cài trình biên dịch MSVC.
+Nếu không muốn cài Visual Studio đầy đủ, bạn có thể cuộn xuống mục "Tất cả tải xuống", tìm "Build Tools for Visual Studio" trong phần "Tools for Visual Studio", rồi nhấn nút "Download" ("Tải xuống") phía sau. Sau khi tải xong, mở trình cài đặt, làm theo hướng dẫn để chọn "Desktop development with C++" ("Phát triển desktop bằng C++") rồi cài đặt. Cũng có thể dùng công cụ [PortableBuildTools](https://github.com/Data-Oriented-House/PortableBuildTools) để chỉ cài trình biên dịch MSVC.
 
 [^temurin]: [Eclipse Temurin](https://adoptium.net/) chính là [AdoptOpenJDK](https://adoptopenjdk.net/) trước đây; dự án sau đã được chuyển giao cho [Eclipse Foundation](https://www.eclipse.org/org/foundation/) vào tháng 7 năm 2021. Xem chi tiết trong [thông báo này](https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/).
 

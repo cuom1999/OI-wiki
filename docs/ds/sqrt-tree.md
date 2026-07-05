@@ -1,7 +1,7 @@
 <span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
-Cho một dãy độ dài $n$ là ${\left\langle a_i\right\rangle}_{i=1}^n$, cùng một phép toán kết hợp $\circ$ (ví dụ $\gcd,\min,\max,+,\operatorname{and},\operatorname{or},\operatorname{xor}$ đều có tính kết hợp). Với mỗi truy vấn đoạn $[l,r]$, ta cần tính $a_l\circ a_{l+1}\circ\dotsb\circ a_{r}$.
+Cho một dãy độ dài $n$ là ${\left\langle a_i\right\rangle}_{i=1}^n$, cùng một phép toán kết hợp $\circ$ (ví dụ $\gcd,\min,\max,+,\text{và},\text{hoặc},\operatorname{xor}$ đều có tính kết hợp). Với mỗi truy vấn đoạn $[l,r]$, ta cần tính $a_l\circ a_{l+1}\circ\dotsb\circ a_{r}$.
 
 Sqrt Tree có thể tiền xử lý trong thời gian $O(n\log\log n)$ và trả lời truy vấn trong thời gian $O(1)$.
 

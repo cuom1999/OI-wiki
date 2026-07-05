@@ -35,7 +35,7 @@ Kate có thể tự động nhận diện tệp hiện tại dùng mã hóa nào
 
 ### Tìm kiếm và thay thế
 
-Lần lượt nhấp `Edit` -> `Find` (phím tắt <kbd>Ctrl</kbd>+<kbd>F</kbd>) để mở trang "Find". Lần lượt nhấp `Edit` -> `Replace` (phím tắt <kbd>Ctrl</kbd>+<kbd>R</kbd>) để mở trang "Find and Replace". Đồng thời, nhấp `Search and Replace` ở góc dưới bên trái cũng có thể mở trang "Find and Replace".
+Lần lượt nhấp `Edit` -> `Find` (phím tắt <kbd>Ctrl</kbd>+<kbd>F</kbd>) để mở trang "Find" ("Tìm kiếm"). Lần lượt nhấp `Edit` -> `Replace` (phím tắt <kbd>Ctrl</kbd>+<kbd>R</kbd>) để mở trang "Find and Replace" ("Tìm kiếm và thay thế"). Đồng thời, nhấp `Search and Replace` ("Tìm kiếm và thay thế") ở góc dưới bên trái cũng có thể mở trang "Find and Replace" ("Tìm kiếm và thay thế").
 
 Thao tác cụ thể không khác nhiều so với các trình soạn thảo khác, nhưng Kate hỗ trợ thêm một số đặc tính, ví dụ:
 

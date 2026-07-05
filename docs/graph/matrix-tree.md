@@ -177,7 +177,7 @@ Với đồ thị có hướng $G=(V,E)$, số đỉnh là $n$, số cạnh là 
 $$
 M^\mathrm{out}_{ij}=\begin{cases}
 \sqrt{w(e_i)},&\exists u(e_i=(v_j,u)),\\
-0,&\textrm{otherwise},
+0,&\textrm{trường hợp còn lại},
 \end{cases}
 $$
 
@@ -186,7 +186,7 @@ và ma trận liên thuộc bậc vào cấp $m\times n$
 $$
 M^\mathrm{in}_{ij}=\begin{cases}
 \sqrt{w(e_i)},&\exists u(e_i=(u,v_j)),\\
-0,&\textrm{otherwise}.
+0,&\textrm{trường hợp còn lại}.
 \end{cases}
 $$
 

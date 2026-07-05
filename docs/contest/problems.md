@@ -67,7 +67,7 @@ Tương tác STDIO (tương tác I/O chuẩn) là phương thức tương tác t
 
     Ở trong bóng tối quá lâu sẽ khiến bạn sợ hãi, vì vậy bạn cần ra khỏi mê cung càng sớm càng tốt. Nếu bạn không ra khỏi mê cung trong số bước giới hạn, thử thách sẽ thất bại.
 
-Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩn như bình thường, **xả bộ đệm đầu ra** rồi đọc kết quả từ đầu vào chuẩn. Sau khi chương trình của thí sinh xả bộ đệm đầu ra, chương trình chấm được nối với nó qua ống dẫn (pipe, gọi là interactor) mới có thể nhận ngay các dữ liệu này. Trong C/C++, có thể dùng `fflush(stdout)` và `std::cout << std::flush` để thực hiện thao tác này (khi xuống dòng bằng `std::cout << std::endl` thì bộ đệm cũng được tự động xả, nhưng `std::cout << '\n'` thì không); trong Pascal là `flush(output)`.
+Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩn như bình thường, **xả bộ đệm đầu ra** rồi đọc kết quả từ đầu vào chuẩn. Sau khi chương trình của thí sinh xả bộ đệm đầu ra, chương trình chấm được nối với nó qua ống dẫn (pipe, gọi là trình tương tác) mới có thể nhận ngay các dữ liệu này. Trong C/C++, có thể dùng `fflush(stdout)` và `std::cout << std::flush` để thực hiện thao tác này (khi xuống dòng bằng `std::cout << std::endl` thì bộ đệm cũng được tự động xả, nhưng `std::cout << '\n'` thì không); trong Pascal là `flush(output)`.
 
 ### Tương tác với trình chấm (Grader)
 
@@ -89,7 +89,7 @@ g++ grader.cpp my_solution.cpp -o my_solution -Wall -O2
 
 Chương trình sau khi biên dịch có hành vi giống chương trình của bài truyền thống. Nó sẽ mở các tệp cố định, đọc dữ liệu theo định dạng cố định, gọi hàm do thí sinh viết, rồi hiển thị kết quả và một số thông tin (ví dụ số lần truy vấn, tính đúng sai của đáp án) ra đầu ra chuẩn.
 
-Khi chấm thật, chương trình của thí sinh sẽ được biên dịch với một `grader.cpp` khác. `grader.cpp` này sẽ gọi hàm do thí sinh viết theo cách tương tự và ghi nhận điểm số. Nói chung, mọi ký hiệu toàn cục trong phiên bản `grader.cpp` này đều được đặt là `static`, tức không thể phá bằng cách đặt tên xung đột; tuy nhiên mọi hành vi cố gắng vượt qua giới hạn của grader đều sẽ bị truất quyền (disqualification).
+Khi chấm thật, chương trình của thí sinh sẽ được biên dịch với một `grader.cpp` khác. `grader.cpp` này sẽ gọi hàm do thí sinh viết theo cách tương tự và ghi nhận điểm số. Nói chung, mọi ký hiệu toàn cục trong phiên bản `grader.cpp` này đều được đặt là `static`, tức không thể phá bằng cách đặt tên xung đột; tuy nhiên mọi hành vi cố gắng vượt qua giới hạn của trình chấm đều sẽ bị truất quyền (disqualification).
 
 ### Khác biệt
 

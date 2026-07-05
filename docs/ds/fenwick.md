@@ -515,7 +515,7 @@ Khi đó chỉ các phần tử $c(f(x, i), f(y, j))$ mới quản lý $a(x, y)$
 Với truy vấn, đặt:
 
 $$
-g(x, i) = \begin{cases}x &i = 0\\g(x, i - 1) - \operatorname{lowbit}(g(x, i - 1)) & i, g(x, i - 1) > 0\\0&\text{otherwise.}\end{cases}
+g(x, i) = \begin{cases}x &i = 0\\g(x, i - 1) - \operatorname{lowbit}(g(x, i - 1)) & i, g(x, i - 1) > 0\\0&\text{trường hợp còn lại.}\end{cases}
 $$
 
 Khi đó gộp mọi $c(g(x, i), g(y, j))$ với $g(x, i), g(y, j) > 0$.

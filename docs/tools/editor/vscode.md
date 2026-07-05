@@ -59,7 +59,7 @@ Trong VS Code, mở kho tiện ích mở rộng, nhập `C++` hoặc `@category:
 #### GDB
 
 Trong VS Code, tạo một tệp mã C++ mới, viết một số nội dung theo cú pháp C++ (ví dụ `int main(){}`), lưu lại rồi nhấn <kbd>F5</kbd> để vào chế độ gỡ lỗi.
-Nếu xuất hiện lời nhắc "Select debugger", chọn `C++ (GDB/LLDB)`. Trong "Select configuration", người dùng G++ chọn `g++.exe - Build and debug active file`; người dùng Clang chọn `clang++ - Build and debug active file`.
+Nếu xuất hiện lời nhắc "Select debugger" ("Chọn trình gỡ lỗi"), chọn `C++ (GDB/LLDB)`. Trong "Select configuration" ("Chọn cấu hình"), người dùng G++ chọn `g++.exe - Build and debug active file`; người dùng Clang chọn `clang++ - Build and debug active file`.
 
 ???+ warning "Cảnh báo"
     Tên cấu hình không cố định mà có thể tùy chỉnh. Các hệ điều hành khác nhau có thể có tên cấu hình khác nhau.
@@ -103,7 +103,7 @@ Trong chế độ gỡ lỗi, trình soạn thảo sẽ dùng nền màu vàng �
 
 Dùng để điều chỉnh hoàn thành thông minh của VS Code.
 
-Nếu bạn dùng trình biên dịch Clang, trong "IntelliSense Mode" hãy chọn `clang-x64` thay vì `msvc-x64` mặc định; nếu dùng trình biên dịch G++, chọn `gcc-x64` để dùng tự động hoàn thành và các chức năng tương tự. Nếu không, bạn sẽ gặp lỗi "IntelliSense mode msvc-x64 is incompatible with compiler path."
+Nếu bạn dùng trình biên dịch Clang, trong "IntelliSense Mode" ("Chế độ IntelliSense") hãy chọn `clang-x64` thay vì `msvc-x64` mặc định; nếu dùng trình biên dịch G++, chọn `gcc-x64` để dùng tự động hoàn thành và các chức năng tương tự. Nếu không, bạn sẽ gặp lỗi "IntelliSense mode msvc-x64 is incompatible with compiler path." ("Chế độ IntelliSense msvc-x64 không tương thích với đường dẫn trình biên dịch.")
 
 ![](images/vscode-4.png)
 
