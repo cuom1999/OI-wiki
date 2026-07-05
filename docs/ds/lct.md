@@ -367,11 +367,11 @@ Trong đó, độ phức tạp của `Access` chủ yếu đến từ nhiều th
 
     -   Định nghĩa hàm thế năng $\Phi = \sum_{x \in T} w(x)$, trong đó $T$ là tập tất cả các nút.
 
-    Từ phân tích [độ phức tạp thời gian của Splay](./splay.md#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6), dễ biết độ phức tạp khấu hao của thao tác splay là $O(\log n)$.
+    Từ phân tích [độ phức tạp thời gian của Splay](./splay.md#độ-phức-tạp-thời-gian), dễ biết độ phức tạp khấu hao của thao tác splay là $O(\log n)$.
 
 2.  Truy cập cạnh ảo
 
-    Tham khảo [phân rã chuỗi nặng](../graph/hld.md#%E9%87%8D%E9%93%BE%E5%89%96%E5%88%86), định nghĩa hai loại cạnh ảo:
+    Tham khảo [phân rã chuỗi nặng](../graph/hld.md#phân-rã-chuỗi-nặng), định nghĩa hai loại cạnh ảo:
 
     -   **Cạnh ảo nặng**: cạnh ảo từ nút $v$ tới cha của nó, với $size(v) > \frac{1}{2} size(parent(v))$.
 

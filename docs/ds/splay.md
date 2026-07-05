@@ -294,7 +294,7 @@ Thao tác hợp nhất như sau:
     --8<-- "docs/ds/code/splay/splay-1.cpp:merge"
     ```
 
-Thao tác tách cũng tương tự. Vì vậy, cây Splay có thể mô phỏng tư tưởng của [treap không xoay](./treap.md#%E6%97%A0%E6%97%8B-treap) để thực hiện nhiều thao tác, bao gồm thao tác đoạn. [Phần sau](#thao-tac-tren-day) sẽ giới thiệu phương pháp xử lý thao tác đoạn mang phong cách cây Splay hơn.
+Thao tác tách cũng tương tự. Vì vậy, cây Splay có thể mô phỏng tư tưởng của [treap không xoay](./treap.md#treap-không-xoay) để thực hiện nhiều thao tác, bao gồm thao tác đoạn. [Phần sau](#thao-tac-tren-day) sẽ giới thiệu phương pháp xử lý thao tác đoạn mang phong cách cây Splay hơn.
 
 ### Thao tác chèn
 
@@ -373,7 +373,7 @@ Cuối phần này, đưa ra cài đặt tham khảo cho bài mẫu [Cây cân b
 
 ## Thao tác trên dãy
 
-Cây Splay cũng có thể được dùng trên dãy để duy trì thông tin đoạn. So với cây đoạn, hằng số của cây Splay lớn hơn, nhưng nó hỗ trợ các thao tác trên dãy phức tạp hơn, chẳng hạn đảo ngược đoạn. Như đã đề cập ở trên, cây Splay cũng hỗ trợ thao tác tách và hợp nhất, vì vậy có thể mô phỏng [treap không xoay](./treap.md#%E6%97%A0%E6%97%8B-treap) để thực hiện thao tác đoạn; ở đây không thảo luận thêm. Phần này chủ yếu thảo luận phương pháp cài đặt thao tác đoạn dựa trên thao tác splay.
+Cây Splay cũng có thể được dùng trên dãy để duy trì thông tin đoạn. So với cây đoạn, hằng số của cây Splay lớn hơn, nhưng nó hỗ trợ các thao tác trên dãy phức tạp hơn, chẳng hạn đảo ngược đoạn. Như đã đề cập ở trên, cây Splay cũng hỗ trợ thao tác tách và hợp nhất, vì vậy có thể mô phỏng [treap không xoay](./treap.md#treap-không-xoay) để thực hiện thao tác đoạn; ở đây không thảo luận thêm. Phần này chủ yếu thảo luận phương pháp cài đặt thao tác đoạn dựa trên thao tác splay.
 
 Cây Splay được xây từ dãy có các tính chất sau:
 
