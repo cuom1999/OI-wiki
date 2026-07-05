@@ -11,7 +11,7 @@ Tổng tiền tố có thể hiểu đơn giản là "tổng của $n$ phần t�
 
 ### Tổng tiền tố một chiều
 
-Với dãy $\{a_i\}$ độ dài $n$, nếu cần truy vấn nhiều lần tổng các số trong đoạn $[l,r]$, ta có thể cân nhắc dùng tổng tiền tố. Tổng tiền tố của dãy là
+Với dãy $\{a_i\}$ độ dài $n$, nếu cần truy vấn nhiều lần tổng các số trong đoạn $[l,r]$, có thể cân nhắc dùng tổng tiền tố. Tổng tiền tố của dãy là
 
 $$
 S_{i} = \sum_{j=1}^i a_j.
@@ -46,7 +46,7 @@ Thư viện chuẩn C++ cung cấp hàm tổng tiền tố [`std::partial_sum`](
 
 ### Tổng tiền tố hai chiều / nhiều chiều
 
-Mở rộng tổng tiền tố một chiều sang trường hợp nhiều chiều ta được tổng tiền tố nhiều chiều. Có hai phương pháp thường gặp để tính tổng tiền tố nhiều chiều.
+Mở rộng tổng tiền tố một chiều sang trường hợp nhiều chiều sẽ thu được tổng tiền tố nhiều chiều. Có hai phương pháp thường gặp để tính tổng tiền tố nhiều chiều.
 
 #### Dựa trên nguyên lý bao hàm - loại trừ
 
@@ -86,7 +86,7 @@ Việc này hoàn thành trong thời gian $O(1)$.
 Trong trường hợp hai chiều, độ phức tạp thời gian của thuật toán trên có thể xem đơn giản là $O(mn)$, tức tuyến tính theo kích thước mảng đã cho. Tuy nhiên, khi số chiều $k$ tăng lên, do số hạng liên quan đến nguyên lý bao hàm - loại trừ tăng theo cấp số mũ, độ phức tạp thời gian sẽ trở thành $O(2^kN)$, trong đó $k$ là số chiều của mảng và $N$ là kích thước mảng đã cho. Vì vậy, thuật toán này không còn phù hợp.
 
 ???+ example "[Luogu P1387 Hình vuông lớn nhất](https://www.luogu.com.cn/problem/P1387)"
-    Trong một ma trận $n\times m$ chỉ gồm $0$ và $1$, hãy tìm hình vuông lớn nhất không chứa $0$ và xuất độ dài cạnh.
+    Trong một ma trận $n\times m$ chỉ gồm $0$ và $1$, tìm hình vuông lớn nhất không chứa $0$ và xuất độ dài cạnh.
 
 ??? note "Mã tham khảo"
     === "C++"
@@ -107,14 +107,14 @@ $$
 S_{i_1,\cdots,i_k} = \sum_{i'_1\le i_1}\cdots\sum_{i'_k\le i_k} A_{i'_1,\cdots,i'_k}.
 $$
 
-Từ công thức trên có thể thấy, tổng tiền tố $k$ chiều chính là thực hiện phép lấy tổng $k$ lần. Vì vậy, một thuật toán hiển nhiên là mỗi lần chỉ xét một chiều, cố định tất cả các chiều còn lại, rồi tính một số tổng tiền tố một chiều. Sau khi lần lượt tính tổng theo cả $k$ chiều, ta thu được tổng tiền tố $k$ chiều.
+Từ công thức trên có thể thấy, tổng tiền tố $k$ chiều chính là thực hiện phép lấy tổng $k$ lần. Vì vậy, một thuật toán hiển nhiên là mỗi lần chỉ xét một chiều, cố định tất cả các chiều còn lại, rồi tính một số tổng tiền tố một chiều. Sau khi lần lượt tính tổng theo cả $k$ chiều, sẽ thu được tổng tiền tố $k$ chiều.
 
 ??? example "Cài đặt tham khảo cho tổng tiền tố ba chiều"
     ```cpp
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_4.cpp:core"
     ```
 
-Vì khi xét mỗi chiều, ta chỉ duyệt toàn bộ mảng một lần, độ phức tạp của thuật toán này là $O(kN)$ và thường chấp nhận được.
+Vì khi xét mỗi chiều, chỉ cần duyệt toàn bộ mảng một lần, độ phức tạp của thuật toán này là $O(kN)$ và thường chấp nhận được.
 
 #### Trường hợp đặc biệt: DP tổng trên tập con
 
@@ -128,7 +128,7 @@ $$
 
 Tức là $g(S)$ bằng tổng giá trị hàm $f(T)$ trên mọi tập con $T\subseteq S$ của nó.
 
-Trước hết, bài toán tổng trên tập con có thể viết dưới dạng tổng tiền tố nhiều chiều. Chú ý rằng tập con của $S$ có thể được biểu diễn bằng tư tưởng nén trạng thái thành xâu 0-1 độ dài $n$. Xem mỗi bit của xâu là một chiều trong chỉ số mảng, khi đó $f$ thực chất là một mảng $n$ chiều, và chỉ số ở mỗi chiều chắc chắn nằm trong $\{0,1\}$. Đồng thời, quan hệ bao hàm giữa các tập con tương đương với quan hệ lớn nhỏ của chỉ số, tức là
+Trước hết, bài toán tổng trên tập con có thể viết dưới dạng tổng tiền tố nhiều chiều. Chú ý rằng tập con của $S$ có thể được biểu diễn bằng tư tưởng nén trạng thái thành chuỗi 0-1 độ dài $n$. Xem mỗi bit của chuỗi là một chiều trong chỉ số mảng, khi đó $f$ thực chất là một mảng $n$ chiều, và chỉ số ở mỗi chiều chắc chắn nằm trong $\{0,1\}$. Đồng thời, quan hệ bao hàm giữa các tập con tương đương với quan hệ lớn nhỏ của chỉ số, tức là
 
 $$
 T\subseteq S \iff \forall i(t_i \le s_i). 
@@ -167,7 +167,7 @@ Trong đó, $\operatorname{lca}(x, y)$ biểu thị [tổ tiên chung gần nh�
 
 #### Trường hợp trọng số cạnh
 
-Trường hợp trọng số lưu trên cạnh gần như có thể chuyển về trường hợp trọng số đỉnh. Với mọi đỉnh không phải gốc $x\neq 1$, ký hiệu $\operatorname{edge}(x)$ là cạnh nối đỉnh $x$ với cha của nó $\operatorname{fa}(x)$. Khi đó, có thể giả sử trọng số cạnh được lưu ở đỉnh xa gốc hơn. Nói cách khác, tại đỉnh $x$ lưu trọng số của cạnh $\operatorname{edge}(x)$. Trọng số lưu ở đỉnh gốc là $0$. Khi đó, bằng công thức truy hồi đã thảo luận ở tiểu mục trước, ta cũng có thể tiền xử lý tổng trọng số $S_x$ của tất cả các cạnh trên đường đi từ gốc tới đỉnh $x$.
+Trường hợp trọng số lưu trên cạnh gần như có thể chuyển về trường hợp trọng số đỉnh. Với mọi đỉnh không phải gốc $x\neq 1$, ký hiệu $\operatorname{edge}(x)$ là cạnh nối đỉnh $x$ với cha của nó $\operatorname{fa}(x)$. Khi đó, có thể giả sử trọng số cạnh được lưu ở đỉnh xa gốc hơn. Nói cách khác, tại đỉnh $x$ lưu trọng số của cạnh $\operatorname{edge}(x)$. Trọng số lưu ở đỉnh gốc là $0$. Khi đó, bằng công thức truy hồi đã thảo luận ở tiểu mục trước, cũng có thể tiền xử lý tổng trọng số $S_x$ của tất cả các cạnh trên đường đi từ gốc tới đỉnh $x$.
 
 Lúc này, tổng trọng số cạnh trên đường đi nối đỉnh $x$ và $y$ có thể được truy vấn bằng
 
@@ -184,7 +184,7 @@ Khác với trường hợp mảng, do cây không đối xứng đầu-cuối, 
 Tổng trọng số đỉnh của cây con gốc $x$, tức tổng cây con tương ứng, là
 
 $$
-T_x = \sum_{y\in\operatorname{desc}(x)} a_x.
+T_x = \sum_{y\in\operatorname{desc}(x)} a_y.
 $$
 
 Trong đó, $\operatorname{desc}(x)$ biểu thị tập mọi đỉnh con cháu của $x$ (bao gồm chính nó).
@@ -313,14 +313,14 @@ Sau khi mọi thao tác sửa đổi hoàn tất, tính một lần tổng cây 
     
     ![](./images/prefix_sum2.svg)
     
-    Vì thực hiện sai phân trực tiếp trên cạnh khá khó, ta chuyển giá trị vốn cần cộng vào cạnh màu đỏ xuống đỉnh kề phía dưới, khi đó thao tác sẽ thuận tiện hơn. So sánh với công thức sai phân đỉnh là có thể hiểu công thức sai phân cạnh.
+    Vì thực hiện sai phân trực tiếp trên cạnh khá khó, chuyển giá trị vốn cần cộng vào cạnh màu đỏ xuống đỉnh kề phía dưới sẽ làm thao tác thuận tiện hơn. So sánh với công thức sai phân đỉnh là có thể hiểu công thức sai phân cạnh.
 
 ### Bài mẫu
 
 ???+ example "[Luogu 3128 Dòng chảy lớn nhất](https://www.luogu.com.cn/problem/P3128)"
     FJ lắp đặt $N-1$ đường ống giữa $N(2 \le N \le 50,000)$ ngăn trong chuồng bò của mình; các ngăn được đánh số từ $1$ đến $N$. Tất cả các ngăn đều được đường ống nối thông.
     
-    FJ có $K(1 \le K \le 100,000)$ tuyến vận chuyển sữa. Tuyến thứ $i$ vận chuyển từ ngăn $s_i$ tới ngăn $t_i$. Một tuyến vận chuyển sẽ tạo một đơn vị áp lực vận chuyển lên hai ngăn ở hai đầu mút của nó cũng như mọi ngăn đi qua ở giữa. Bạn cần tính áp lực lớn nhất trên một ngăn là bao nhiêu.
+    FJ có $K(1 \le K \le 100,000)$ tuyến vận chuyển sữa. Tuyến thứ $i$ vận chuyển từ ngăn $s_i$ tới ngăn $t_i$. Một tuyến vận chuyển sẽ tạo một đơn vị áp lực vận chuyển lên hai ngăn ở hai đầu mút của nó cũng như mọi ngăn đi qua ở giữa. Cần tính áp lực lớn nhất trên một ngăn là bao nhiêu.
 
 ??? note "Ý tưởng giải"
     Cần thống kê mỗi đỉnh được đi qua bao nhiêu lần, vì vậy dùng sai phân trên cây để cộng một cho đường đi của mỗi lần, từ đó có thể nhanh chóng thu được số lần đi qua mỗi đỉnh. Ở đây dùng phương pháp nhân đôi để tính LCA; cuối cùng DFS duyệt cả cây, khi quay lui thì tính tổng trên mảng sai phân để thu được đáp án.
