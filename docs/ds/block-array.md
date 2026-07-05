@@ -32,7 +32,7 @@ Có hai loại thao tác:
 1.  Cộng $z$ vào mỗi số trong đoạn $[x,y]$;
 2.  Hỏi số lượng số lớn hơn hoặc bằng $z$ trong đoạn $[x,y]$.
 
-Ta cần hỏi số lượng số trong một khối lớn hơn hoặc bằng một giá trị, vì vậy cần một mảng `t` lưu các phần tử trong khối sau khi sắp xếp; `a` là mảng ban đầu (chưa sắp xếp). Với cập nhật trên cả khối, dùng cách tương tự tag lười được lưu bền vững: mảng `delta` ghi lại giá trị đang được cộng vào toàn bộ khối. Gọi $q$ là tổng số thao tác truy vấn và cập nhật, độ phức tạp thời gian là $O(q\sqrt{n}\log n)$.
+Ta cần hỏi số lượng số trong một khối lớn hơn hoặc bằng một giá trị, vì vậy cần một mảng `t` lưu các phần tử trong khối sau khi sắp xếp; `a` là mảng ban đầu (chưa sắp xếp). Với cập nhật trên cả khối, dùng cách tương tự đánh dấu lười được lưu bền vững: mảng `delta` ghi lại giá trị đang được cộng vào toàn bộ khối. Gọi $q$ là tổng số thao tác truy vấn và cập nhật, độ phức tạp thời gian là $O(q\sqrt{n}\log n)$.
 
 Dùng mảng `delta` để ghi lại lượng cộng toàn khối của từng khối.
 
@@ -53,7 +53,7 @@ Dùng mảng `delta` để ghi lại lượng cộng toàn khối của từng k
       }
       for (int i = l; i <= ed[x]; i++) a[i] += c;     // Sửa trực tiếp đoạn đầu
       for (int i = st[y]; i <= r; i++) a[i] += c;     // Sửa trực tiếp đoạn cuối
-      for (int i = x + 1; i < y; i++) delta[i] += c;  // Gắn tag lười cho toàn bộ các khối ở giữa
+      for (int i = x + 1; i < y; i++) delta[i] += c;  // Gắn đánh dấu lười cho toàn bộ các khối ở giữa
       Sort(x);
       Sort(y);
     }

@@ -294,7 +294,7 @@ Vì vậy, nếu đã duy trì độ dốc của các hàm lồi $f$ và $g$, đ
 của tổ hợp tuyến tính không âm $\alpha f+\beta g$, chỉ cần tính theo từng đoạn.
 
 Trong các bài toán duy trì độ dốc, thường có một hàm có dạng khá đơn giản; khi
-đó có thể giảm độ phức tạp sửa đổi bằng lazy tag. Trong các bài toán duy trì
+đó có thể giảm độ phức tạp sửa đổi bằng đánh dấu lười. Trong các bài toán duy trì
 điểm gãy, để tính các điểm gãy của độ dốc của $f+g$, chỉ cần trộn các điểm gãy
 độ dốc của $f$ và $g$.
 
@@ -806,9 +806,9 @@ Bài mẫu:
     dưới $-Y$, và số đoạn độ dốc nằm nghiêm ngặt giữa hai cận này không nhiều.
     Vì không có thao tác chèn, có thể dùng hai stack để duy trì các đoạn độ dốc
     hai phía gốc. Phép cộng trên khoảng và phép lấy cực trị trên khoảng đều được
-    xử lý bằng lazy tag. Ba bước trên lần lượt tương ứng với:
+    xử lý bằng đánh dấu lười. Ba bước trên lần lượt tương ứng với:
 
-    1.  Gắn lazy tag cho hai stack trái và phải: bên trái cộng $-Z$, bên phải
+    1.  Gắn đánh dấu lười cho hai stack trái và phải: bên trái cộng $-Z$, bên phải
         cộng $Z$;
     2.  Mỗi khi pop phần tử trong stack, lấy max với $-Y$ và min với $X$. Nếu
         stack trái rỗng thì pop $-Y$. Nếu stack phải rỗng thì pop $X$;

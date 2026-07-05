@@ -740,26 +740,26 @@ Thao tác đảo ngược cụ thể là hoán đổi vị trí mọi cặp nút
 
 Lưu ý nếu đảo ngược theo cách này, mỗi lần đảo ngược đoạn $[l, r]$ sẽ có $r - l$ nút bị hoán đổi vị trí. Thao tác thường xuyên như vậy rõ ràng không đáp ứng được giới hạn dữ liệu $10^5$; độ phức tạp một lần đảo ngược $O(n \times \log_2 n)$ kém hiệu quả hơn cả làm trực tiếp (vì ngoài thời gian tuyến tính để hoán đổi nút, ta còn cần tốn $O(\log_2 n)$ để tìm các nút cần hoán đổi trong cây).
 
-Quan sát lại yêu cầu bài toán, có thể thấy vì chỉ cần xuất đoạn cuối cùng sau tất cả thao tác, không cần mỗi lần đều hoán đổi thật. Do đó có thể dùng lazy tag thường gặp trong cây phân đoạn để tối ưu độ phức tạp. Khi hoán đổi, chỉ cần gán đánh dấu trên nút cha, biểu thị mọi cặp nút con trái/phải dưới cây con này đều cần hoán đổi.
+Quan sát lại yêu cầu bài toán, có thể thấy vì chỉ cần xuất đoạn cuối cùng sau tất cả thao tác, không cần mỗi lần đều hoán đổi thật. Do đó có thể dùng đánh dấu lười thường gặp trong cây phân đoạn để tối ưu độ phức tạp. Khi hoán đổi, chỉ cần gán đánh dấu trên nút cha, biểu thị mọi cặp nút con trái/phải dưới cây con này đều cần hoán đổi.
 
-Trong cây phân đoạn, ta thường đẩy lazy tag xuống khi cập nhật và truy vấn. Lý do là khi cập nhật/truy vấn, phạm vi ta muốn cập nhật/truy vấn không nhất thiết trùng với phạm vi mà lazy tag đại diện, nên phải đẩy tag xuống trước để đảm bảo giá trị tìm được và giá trị sau cập nhật là đúng.
+Trong cây phân đoạn, ta thường đẩy đánh dấu lười xuống khi cập nhật và truy vấn. Lý do là khi cập nhật/truy vấn, phạm vi ta muốn cập nhật/truy vấn không nhất thiết trùng với phạm vi mà đánh dấu lười đại diện, nên phải đẩy đánh dấu xuống trước để đảm bảo giá trị tìm được và giá trị sau cập nhật là đúng.
 
-Trong Treap không xoay cũng vậy. Khi thao tác cụ thể, ta tách Treap thành ba cây như đã nói ở trên, sau đó gán lazy tag cho cây ở giữa rồi hợp nhất ba cây này. Vì đoạn cần đảo ngược không nhất thiết trùng với đoạn mà lazy tag đại diện, cần đẩy tag xuống khi tách. Đồng thời, thao tác tách và hợp nhất làm thay đổi mỗi nút và tập nút mà lazy tag của nó đại diện, nên trước khi hợp nhất cũng cần đẩy lazy tag xuống.
+Trong Treap không xoay cũng vậy. Khi thao tác cụ thể, ta tách Treap thành ba cây như đã nói ở trên, sau đó gán đánh dấu lười cho cây ở giữa rồi hợp nhất ba cây này. Vì đoạn cần đảo ngược không nhất thiết trùng với đoạn mà đánh dấu lười đại diện, cần đẩy đánh dấu xuống khi tách. Đồng thời, thao tác tách và hợp nhất làm thay đổi mỗi nút và tập nút mà đánh dấu lười của nó đại diện, nên trước khi hợp nhất cũng cần đẩy đánh dấu lười xuống.
 
-Nói cách khác, khi cấu trúc cây thay đổi, trước thời điểm một thao tác tách hoặc hợp nhất cần thay đổi thông tin con trái/con phải của một nút, ta nên đẩy tag xuống, không phải sau đó. Vì lazy tag cần được đẩy cho các nút con; nếu đã thay đổi thông tin con trái/con phải mà lazy tag chưa được đẩy xuống, lazy tag sẽ mất đối tượng để đẩy xuống.[^ref4]
+Nói cách khác, khi cấu trúc cây thay đổi, trước thời điểm một thao tác tách hoặc hợp nhất cần thay đổi thông tin con trái/con phải của một nút, ta nên đẩy đánh dấu xuống, không phải sau đó. Vì đánh dấu lười cần được đẩy cho các nút con; nếu đã thay đổi thông tin con trái/con phải mà đánh dấu lười chưa được đẩy xuống, đánh dấu lười sẽ mất đối tượng để đẩy xuống.[^ref4]
 
-<!-- TODO: Có thể thêm một hình giải thích vì sao cần đẩy tag khi tách và hợp nhất -->
+<!-- TODO: Có thể thêm một hình giải thích vì sao cần đẩy đánh dấu khi tách và hợp nhất -->
 
 Dưới đây là phần giải thích mã, mã tham khảo từ [^ref3].
 
 Vì phần lớn thao tác trong thao tác đoạn giống Treap không xoay thông thường, ở đây chỉ giải thích những điểm khác với Treap không xoay thông thường.
 
-#### Đẩy tag xuống
+#### Đẩy đánh dấu xuống
 
-Cần lưu ý lazy tag ở đây biểu thị cần hoán đổi vị trí mọi cặp nút con trong cây này. Vì vậy nếu nút con của nút hiện tại cũng có lazy tag, hai lần đảo ngược sẽ triệt tiêu nhau. Nếu nút con không cần đảo ngược, lazy tag này cần tiếp tục được đẩy xuống nút con.
+Cần lưu ý đánh dấu lười ở đây biểu thị cần hoán đổi vị trí mọi cặp nút con trong cây này. Vì vậy nếu nút con của nút hiện tại cũng có đánh dấu lười, hai lần đảo ngược sẽ triệt tiêu nhau. Nếu nút con không cần đảo ngược, đánh dấu lười này cần tiếp tục được đẩy xuống nút con.
 
 ```cpp
-// pushdown ở đây là hàm thành viên của lớp Node, trong đó to_rev là lazy tag
+// pushdown ở đây là hàm thành viên của lớp Node, trong đó to_rev là đánh dấu lười
 void pushdown() {
   swap(ch[0], ch[1]);
   if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
@@ -787,7 +787,7 @@ pair<Node*, Node*> split(Node* cur, int sz) {
   // Xác định theo kích thước cây
   if (cur == nullptr) return {nullptr, nullptr};
   cur->check_tag();
-  // Đẩy tag xuống trước khi tách
+  // Đẩy đánh dấu xuống trước khi tách
   if (sz <= siz(cur->ch[0])) {
     auto temp = split(cur->ch[0], sz);
     cur->ch[0] = temp.second;
@@ -807,7 +807,7 @@ pair<Node*, Node*> split(Node* cur, int sz) {
 
 #### Hợp nhất
 
-Điểm duy nhất cần chú ý là đẩy lazy tag xuống trước khi hợp nhất.
+Điểm duy nhất cần chú ý là đẩy đánh dấu lười xuống trước khi hợp nhất.
 
 ```cpp
 Node *merge(Node *sm, Node *bg) {
@@ -846,7 +846,7 @@ void seg_rev(int l, int r) {
 
 #### In bằng duyệt trung thứ tự
 
-Cần chú ý đẩy tag xuống khi in.
+Cần chú ý đẩy đánh dấu xuống khi in.
 
 ```cpp
 void print(Node* cur) {

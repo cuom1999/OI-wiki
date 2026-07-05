@@ -402,35 +402,35 @@ Lấy đảo ngược đoạn làm ví dụ để hiểu phương pháp thao tá
 
 -   Trước hết đưa nút $L-1$ lên nút gốc, rồi trong cây con phải của nó, đưa nút $R+1$ lên nút gốc của cây con phải;
 -   Lúc này, gọi $x$ là nút con trái của nút con phải của nút gốc, thì cây con có gốc là $x$ sẽ tương ứng với đoạn $[L,R]$;
--   Thực hiện thao tác trên đoạn $[L,R]$ tại $x$ và gắn lazy tag;
--   Tại $x$, đẩy tag xuống một lần, rồi dùng thao tác splay đưa $x$ lên gốc.
+-   Thực hiện thao tác trên đoạn $[L,R]$ tại $x$ và gắn đánh dấu lười;
+-   Tại $x$, đẩy đánh dấu xuống một lần, rồi dùng thao tác splay đưa $x$ lên gốc.
 
-Thao tác cần ở bước đầu tiên chính là "truy cập theo thứ hạng" trong phần thao tác cây cân bằng phía trước, vì chỉ số của phần tử chính là thứ hạng của nó. Do liên quan tới quản lý lazy tag, cài đặt của nó hơi khác phần trên.
+Thao tác cần ở bước đầu tiên chính là "truy cập theo thứ hạng" trong phần thao tác cây cân bằng phía trước, vì chỉ số của phần tử chính là thứ hạng của nó. Do liên quan tới quản lý đánh dấu lười, cài đặt của nó hơi khác phần trên.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-2.cpp:reverse"
     ```
 
-Thao tác splay ở bước cuối không nhằm bảo đảm độ phức tạp đúng, mà để cập nhật thông tin nút. Vì thao tác splay liên quan đến nút con trái và phải của nút $x$, nên trước đó cần đẩy tag tại nút $x$ xuống một lần. Tất nhiên, nếu chỉ xét thao tác đảo ngược đoạn, việc đảo ngược đoạn con sẽ không ảnh hưởng tới các nút tổ tiên, nên bỏ qua bước này cũng đúng. Cài đặt ở đây giữ lại hai dòng này để minh họa phương pháp thao tác trong trường hợp tổng quát.
+Thao tác splay ở bước cuối không nhằm bảo đảm độ phức tạp đúng, mà để cập nhật thông tin nút. Vì thao tác splay liên quan đến nút con trái và phải của nút $x$, nên trước đó cần đẩy đánh dấu tại nút $x$ xuống một lần. Tất nhiên, nếu chỉ xét thao tác đảo ngược đoạn, việc đảo ngược đoạn con sẽ không ảnh hưởng tới các nút tổ tiên, nên bỏ qua bước này cũng đúng. Cài đặt ở đây giữ lại hai dòng này để minh họa phương pháp thao tác trong trường hợp tổng quát.
 
-### Quản lý lazy tag
+### Quản lý đánh dấu lười
 
-Trước hết, cần các hàm phụ trợ `lazy_reverse(x)` và `push_down(x)`. Hàm trước hoán đổi nút trái và nút phải, đồng thời cập nhật lazy tag; hàm sau đẩy tag xuống.
+Trước hết, cần các hàm phụ trợ `lazy_reverse(x)` và `push_down(x)`. Hàm trước hoán đổi nút trái và nút phải, đồng thời cập nhật đánh dấu lười; hàm sau đẩy đánh dấu xuống.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-2.cpp:push-down"
     ```
 
-Sau đó, chỉ cần đẩy tag xuống khi đi qua nút theo hướng xuống. Thao tác mà bài mẫu yêu cầu khá đơn giản, chỉ có thao tác tìm theo thứ hạng (tức `loc`) là liên quan đến việc truy cập nút theo hướng xuống. Chú ý, cần đẩy tag xuống **trước** mỗi lần hàm truy cập một nút mới.
+Sau đó, chỉ cần đẩy đánh dấu xuống khi đi qua nút theo hướng xuống. Thao tác mà bài mẫu yêu cầu khá đơn giản, chỉ có thao tác tìm theo thứ hạng (tức `loc`) là liên quan đến việc truy cập nút theo hướng xuống. Chú ý, cần đẩy đánh dấu xuống **trước** mỗi lần hàm truy cập một nút mới.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/splay/splay-2.cpp:push-down-lazy"
     ```
 
-Vì khi truy cập nút theo hướng xuống, tất cả lazy tag trên đường đi đã được gỡ bỏ, nên khi dùng thao tác splay để đưa nút lên trên không cần xử lý lazy tag nữa. Tuy nhiên, cần xử lý cẩn thận nút tương ứng với thao tác đoạn: vì nó cũng nằm trên đường đi của thao tác splay, nhưng vừa được thao tác xong nên có thể còn tag chưa được đẩy xuống; cần đẩy xuống trước rồi mới thực hiện thao tác splay, đúng như cách đã làm ở trên.
+Vì khi truy cập nút theo hướng xuống, tất cả đánh dấu lười trên đường đi đã được gỡ bỏ, nên khi dùng thao tác splay để đưa nút lên trên không cần xử lý đánh dấu lười nữa. Tuy nhiên, cần xử lý cẩn thận nút tương ứng với thao tác đoạn: vì nó cũng nằm trên đường đi của thao tác splay, nhưng vừa được thao tác xong nên có thể còn đánh dấu chưa được đẩy xuống; cần đẩy xuống trước rồi mới thực hiện thao tác splay, đúng như cách đã làm ở trên.
 
 ### Cài đặt tham khảo
 

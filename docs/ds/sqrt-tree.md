@@ -136,24 +136,24 @@ Lưu ý rằng độ phức tạp truy vấn vẫn là $O(1)$, vì ta dùng cây
 
 Sqrt Tree cũng hỗ trợ thao tác phủ đoạn $\operatorname{Update}(l,r,x)$, tức là biến mọi số trong đoạn $[l,r]$ thành $x$. Có hai cách cài đặt: một cách cập nhật thông tin trong $O(\sqrt{n}\log\log n)$ và truy vấn trong $O(1)$; cách còn lại cập nhật thông tin trong $O(\sqrt{n})$, nhưng thời gian truy vấn tăng lên $O(\log\log n)$.
 
-Ta có thể gắn tag lười trên Sqrt Tree tương tự như trên cây đoạn. Tuy nhiên, với Sqrt Tree có một điểm khác: việc đẩy xuống tag lười của một nút có thể tốn tới $O(\sqrt{n})$. Vì vậy ta không đẩy tag khi truy vấn, mà kiểm tra xem nút cha có tag hay không; nếu có thì đẩy tag đó xuống.
+Ta có thể gắn đánh dấu lười trên Sqrt Tree tương tự như trên cây đoạn. Tuy nhiên, với Sqrt Tree có một điểm khác: việc đẩy đánh dấu lười của một nút xuống có thể tốn tới $O(\sqrt{n})$. Vì vậy ta không đẩy đánh dấu khi truy vấn, mà kiểm tra xem nút cha có đánh dấu hay không; nếu có thì đẩy đánh dấu đó xuống.
 
 <span id="cài-đặt-thứ-nhất"></span>
 #### Cài đặt thứ nhất
 
-Trong cách cài đặt thứ nhất, ta chỉ gắn tag lười cho các nút ở tầng $1$ (độ dài đoạn của nút là $O(\sqrt{n})$). Khi đẩy tag xuống, ta cập nhật trực tiếp toàn bộ cây con, với độ phức tạp $O(\sqrt{n}\log\log n)$. Quy trình thao tác như sau:
+Trong cách cài đặt thứ nhất, ta chỉ gắn đánh dấu lười cho các nút ở tầng $1$ (độ dài đoạn của nút là $O(\sqrt{n})$). Khi đẩy đánh dấu xuống, ta cập nhật trực tiếp toàn bộ cây con, với độ phức tạp $O(\sqrt{n}\log\log n)$. Quy trình thao tác như sau:
 
-1.  Xét các nút trên tầng $1$; với những nút được đoạn cần sửa bao phủ hoàn toàn, gắn cho chúng một tag lười.
+1.  Xét các nút trên tầng $1$; với những nút được đoạn cần sửa bao phủ hoàn toàn, gắn cho chúng một đánh dấu lười.
 
-2.  Có hai khối chỉ bị bao phủ một phần. Ta trực tiếp **xây dựng lại** hai khối này trong thời gian $O(\sqrt{n}\log\log n)$. Nếu bản thân chúng mang tag lười từ lần sửa trước, ta đồng thời đẩy tag xuống trong lúc xây dựng lại.
+2.  Có hai khối chỉ bị bao phủ một phần. Ta trực tiếp **xây dựng lại** hai khối này trong thời gian $O(\sqrt{n}\log\log n)$. Nếu bản thân chúng mang đánh dấu lười từ lần sửa trước, ta đồng thời đẩy đánh dấu xuống trong lúc xây dựng lại.
 
 3.  Cập nhật $\left\langle P_i\right\rangle$ và $\left\langle S_i\right\rangle$ của nút gốc, độ phức tạp $O(\sqrt{n})$.
 
 4.  Xây dựng lại cây $index$, độ phức tạp $O(\sqrt{n}\log\log n)$.
 
-Đến đây ta đã có thể cập nhật đoạn một cách hiệu quả. Vậy sử dụng tag lười để trả lời truy vấn như thế nào? Các bước như sau:
+Đến đây ta đã có thể cập nhật đoạn một cách hiệu quả. Vậy sử dụng đánh dấu lười để trả lời truy vấn như thế nào? Các bước như sau:
 
-1.  Nếu truy vấn nằm trong một khối có tag lười, có thể dùng tag lười để tính đáp án.
+1.  Nếu truy vấn nằm trong một khối có đánh dấu lười, có thể dùng đánh dấu lười để tính đáp án.
 
 2.  Nếu truy vấn chứa nhiều khối, ta chỉ cần quan tâm đến đáp án của hai khối không trọn vẹn ở ngoài cùng bên trái và bên phải. Đáp án của các khối ở giữa có thể truy vấn trên cây $index$ (vì cây $index$ được xây dựng lại sau mỗi lần sửa), với độ phức tạp $O(1)$.
 
@@ -162,9 +162,9 @@ Do đó độ phức tạp truy vấn vẫn là $O(1)$.
 <span id="cài-đặt-thứ-hai"></span>
 #### Cài đặt thứ hai
 
-Trong cách cài đặt này, mỗi nút đều có thể được gắn tag lười. Vì vậy khi xử lý một truy vấn, ta cần xét các tag lười trên những nút tổ tiên, khiến độ phức tạp truy vấn trở thành $O(\log\log n)$. Đổi lại, cập nhật thông tin sẽ nhanh hơn. Các bước như sau:
+Trong cách cài đặt này, mỗi nút đều có thể được gắn đánh dấu lười. Vì vậy khi xử lý một truy vấn, ta cần xét các đánh dấu lười trên những nút tổ tiên, khiến độ phức tạp truy vấn trở thành $O(\log\log n)$. Đổi lại, cập nhật thông tin sẽ nhanh hơn. Các bước như sau:
 
-1.  Với các khối được đoạn cần sửa bao phủ hoàn toàn, thêm tag lười vào các khối đó, độ phức tạp $O(\sqrt{n})$.
+1.  Với các khối được đoạn cần sửa bao phủ hoàn toàn, thêm đánh dấu lười vào các khối đó, độ phức tạp $O(\sqrt{n})$.
 2.  Với các khối bị đoạn cần sửa bao phủ một phần, cập nhật $\left\langle P_i\right\rangle$ và $\left\langle S_i\right\rangle$, độ phức tạp $O(\sqrt{n})$ (vì chỉ có hai khối bị sửa).
 3.  Cập nhật cây $index$, độ phức tạp $O(\sqrt{n})$ (dùng cùng thuật toán cập nhật).
 4.  Với các cây con không có chỉ mục, cập nhật $\left\langle B_{i,j}\right\rangle$ của chúng.
