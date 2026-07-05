@@ -8,7 +8,7 @@ Nếu có thể tính $\sum_{i=l}^{r}f(i)$ trong $O(1)$, hoặc đã tiền xử
 
 Phân khối số học thường được dùng cùng các kỹ thuật như [đảo Möbius](./mobius.md).
 
-<span id="&#24605;&#36335;"></span>
+<span id="ý-tưởng"></span>
 ## Ý tưởng
 
 Trước hết, ta dùng một ví dụ đơn giản để minh họa ý tưởng của phân khối số học. Giả sử cần đếm số điểm nguyên nằm dưới hyperbol trong hình sau:
@@ -27,7 +27,7 @@ Cách trực tiếp nhất là tính từng cột rồi cộng lại, tức là 
 
 Đó là ý tưởng cơ bản của phân khối theo phép chia lấy phần nguyên.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 Mục này xét một số kết luận về cách chia khối các điểm nguyên dưới hyperbol $y = \dfrac{n}{x}$. Cụ thể, ta cần chia các số nguyên từ $1$ đến $n$ thành các khối theo giá trị của $\left\lfloor\dfrac{n}{i}\right\rfloor$. Đặt
@@ -120,7 +120,7 @@ Ngoài các tính chất trên, tập $D(n)$ còn có tính chất đệ quy thu
 
 Như đã nói ở trên, $D(n)$ vừa là tập giá trị của $\left\lfloor\dfrac{n}{i}\right\rfloor$ trong các khối, vừa là tập các đầu mút phải của khối. Điều này có nghĩa là nếu áp dụng phân khối số học theo kiểu đệ quy (tức là giá trị của một hàm tại $n$ phụ thuộc vào giá trị của nó tại $m\in D(n)\setminus\{n\}$), thì trong toàn bộ quá trình tính toán, tập các đối số và tập các đầu mút phải thực ra đều là $D(n)$. Một ví dụ điển hình là [sàng Dujiao](./du.md).
 
-<span id="&#36807;&#31243;"></span>
+<span id="quy-trình"></span>
 ## Quy trình
 
 Từ các kết luận ở mục trước, ta có quy trình cụ thể của phân khối số học.
@@ -162,12 +162,12 @@ $$
 
 Nếu mỗi lần tính $s(\cdot)$ mất $O(1)$, toàn bộ quy trình có độ phức tạp thời gian $O(\sqrt{n})$.
 
-<span id="&#25193;&#23637;"></span>
+<span id="mở-rộng"></span>
 ## Mở rộng
 
 Phần trên đã xét dạng phổ biến và cơ bản nhất của phân khối số học. Mục này tiếp tục xét các dạng mở rộng.
 
-<span id="&#21521;&#19978;&#21462;&#25972;&#30340;&#25968;&#35770;&#20998;&#22359;"></span>
+<span id="phân-khối-số-học-với-làm-tròn-lên"></span>
 ### Phân khối số học với làm tròn lên
 
 Phân khối số học có thể dùng để tính các tổng chứa phép làm tròn lên:
@@ -184,7 +184,7 @@ $$
 
 Cần chú ý rằng cận trên của tổng đã thay đổi, và hạng tử ứng với $i=n$ được tách riêng.
 
-<span id="&#22810;&#32500;&#25968;&#35770;&#20998;&#22359;"></span>
+<span id="phân-khối-số-học-nhiều-chiều"></span>
 ### Phân khối số học nhiều chiều
 
 Phân khối số học cũng có thể xử lý các tổng chứa nhiều hơn một biểu thức lấy phần nguyên:
@@ -209,7 +209,7 @@ $$
 r \gets \min\left\{\left\lfloor \dfrac{n_1}{\lfloor n_1/l \rfloor}\right\rfloor,\left\lfloor \dfrac{n_2}{\lfloor n_2/l \rfloor}\right\rfloor\right\}.
 $$
 
-<span id="&#20219;&#24847;&#25351;&#25968;&#25968;&#35770;&#20998;&#22359;"></span>
+<span id="phân-khối-số-học-với-số-mũ-tùy-ý"></span>
 ### Phân khối số học với số mũ tùy ý
 
 Phân khối số học có thể dùng để tính các tổng có biểu thức lấy phần nguyên với số mũ tùy ý:
@@ -263,7 +263,7 @@ Dựa vào các tính chất này, ta có thể thực hiện phân khối số 
     
     có thể được giải bằng phân khối số học trong $O(n^{1/3})$. Khi biết đầu mút trái của khối là $l$, ta có thể tính đầu mút phải là $r=\left\lfloor\dfrac{n}{\lfloor\sqrt{n/l}\rfloor^2}\right\rfloor$.
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập-ví-dụ"></span>
 ## Bài tập ví dụ
 
 ???+ example "[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
@@ -296,14 +296,14 @@ Dựa vào các tính chất này, ta có thể thực hiện phân khối số 
     --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_2.cpp"
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)
 -   [Luogu P2261 CQOI2007 Tổng phần dư](https://www.luogu.com.cn/problem/P2261)
 -   [Luogu P3455 POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Phân tích độ phức tạp thời gian và bộ nhớ của sàng Dujiao, bởi riteme](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)
