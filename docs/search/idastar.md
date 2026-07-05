@@ -38,40 +38,40 @@ Giả sử $h$ là một hàm ước lượng phù hợp và $s$ là đỉnh xu�
 
 $$
 \begin{array}{l}
-\textbf{Algorithm. }\textrm{IdaStar}():\\
-\textbf{Output. }\text{The shortest path, }\textit{path}\text{, and its cost, }C\text{, if a path exists,}\\
-\quad \text{and }\textrm{NOT}\_\textrm{FOUND}\text{, otherwise.}\\
-\textbf{Method.}\\
+\textbf{Thuật toán. }\textrm{IdaStar}():\\
+\textbf{Đầu ra. }\text{Đường đi ngắn nhất, }\textit{path}\text{, và chi phí của nó, }C\text{, nếu tồn tại đường đi,}\\
+\quad \text{và }\textrm{NOT}\_\textrm{FOUND}\text{ trong trường hợp ngược lại.}\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
 1  & C \gets h(s) \\
 2  & path \gets [s] \\
-3  & \textbf{while }\text{true}\\
+3  & \textbf{trong khi }\text{đúng}\\
 4  & \quad t \gets \textrm{Search}(\textit{path},0,C)\\
-5  & \quad \textbf{if } t=\text{FOUND}\textbf{ then return }(\textit{path},C) \\
-6  & \quad \textbf{if } t=\infty\textbf{ then return }\textrm{NOT}\_\textrm{FOUND} \\
+5  & \quad \textbf{nếu } t=\text{FOUND}\textbf{ thì trả về }(\textit{path},C) \\
+6  & \quad \textbf{nếu } t=\infty\textbf{ thì trả về }\textrm{NOT}\_\textrm{FOUND} \\
 7  & \quad C \gets t
 \end{array}\\
 \\
-\textbf{Sub-Algorithm. }\textrm{Search}(\textit{path},g,C):\\
-\textbf{Input. }\text{The current path, }\textit{path}\text{, its cost, }g\text{, and search limit }C.\\
-\textbf{Output. }\text{FOUND, if the target node has been reached; }\infty\text{, if all}\\
-\quad \text{reachable nodes have been explored; otherwise, the minimum}\\
-\quad \text{total cost, }t\text{, among nodes not yet explored.}\\
-\textbf{Method.}\\
+\textbf{Thuật toán con. }\textrm{Search}(\textit{path},g,C):\\
+\textbf{Đầu vào. }\text{Đường đi hiện tại, }\textit{path}\text{, chi phí của nó, }g\text{, và giới hạn tìm kiếm }C.\\
+\textbf{Đầu ra. }\text{FOUND, nếu đã đến đỉnh đích; }\infty\text{, nếu mọi đỉnh}\\
+\quad \text{có thể đến đã được khám phá; ngược lại là chi phí tổng nhỏ nhất }\\
+\quad t\text{ trong các đỉnh chưa được khám phá.}\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
-1  & \textit{node} \gets \text{the last element in }\textit{path}\\
+1  & \textit{node} \gets \text{phần tử cuối trong }\textit{path}\\
 2  & f \gets g + h(\textit{node}) \\
-3  & \textbf{if } f > C \textbf{ then return } f \\
-4  & \textbf{if }\textit{node}\text{ is the target }\textbf{then return }\text{FOUND}\\
+3  & \textbf{nếu } f > C \textbf{ thì trả về } f \\
+4  & \textbf{nếu }\textit{node}\text{ là đỉnh đích }\textbf{ thì trả về }\text{FOUND}\\
 5  & \textit{min} \gets \infty \\
-6  & \textbf{for }\text{each }\textit{child}\text{ of }\textit{node }\textbf{do}\\
-7  & \quad \textbf{if }\textit{child}\text{ not in }\textit{path}\textbf{ then}\\
-8  & \quad \quad \text{append }\textit{child}\text{ to }\textit{path}\\
+6  & \textbf{với mỗi }\textit{child}\text{ của }\textit{node}\\
+7  & \quad \textbf{nếu }\textit{child}\text{ không nằm trong }\textit{path}\textbf{ thì}\\
+8  & \quad \quad \text{thêm }\textit{child}\text{ vào }\textit{path}\\
 9  & \quad \quad t \gets \text{Search}(\textit{path}, g + \text{Cost}(\textit{node},\textit{child}), C)\\
-10 & \quad \quad \textbf{if }t = \text{FOUND}\textbf{ then return }\text{FOUND}\\
-11 & \quad \quad \textbf{if }t < \textit{min}\textbf{ then }\textit{min}\gets t\\
-12 & \quad \quad \text{remove the last element of }\textit{path}\\
-13 & \textbf{return }\textit{min}
+10 & \quad \quad \textbf{nếu }t = \text{FOUND}\textbf{ thì trả về }\text{FOUND}\\
+11 & \quad \quad \textbf{nếu }t < \textit{min}\textbf{ thì }\textit{min}\gets t\\
+12 & \quad \quad \text{xóa phần tử cuối của }\textit{path}\\
+13 & \textbf{trả về }\textit{min}
 \end{array}
 \end{array}
 $$

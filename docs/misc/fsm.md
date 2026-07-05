@@ -311,25 +311,25 @@ Viết quá trình trên thành mã giả:
 
 $$
 \begin{array}{l}
-\textbf{Algorithm } \text{Hopcroft's Algorithm}(Q, \Sigma, \delta, q_0, F): \\
-\textbf{Input. } \text{DFA } A=(Q, \Sigma, \delta, q_0, F). \\
-\textbf{Output. } \text{A partition of } Q \text{ into equivalence classes of the minimal DFA.} \\
-\textbf{Method. } \\
+\textbf{Thuật toán } \text{Hopcroft}(Q, \Sigma, \delta, q_0, F): \\
+\textbf{Đầu vào. } \text{DFA } A=(Q, \Sigma, \delta, q_0, F). \\
+\textbf{Đầu ra. } \text{Một phân hoạch của } Q \text{ thành các lớp tương đương của DFA tối thiểu.} \\
+\textbf{Phương pháp. } \\
 \begin{array}{ll}
 1 & P \gets \{F,\; Q \setminus F\} \\
 2 & W \gets \{F\} \\
-3 & \textbf{while } W \ne \varnothing \\
-4 & \quad \text{choose and remove any } A \in W \\
-5 & \quad \textbf{for each } c \in \Sigma \\
+3 & \textbf{trong khi } W \ne \varnothing \\
+4 & \quad \text{chọn và xóa một } A \in W \text{ bất kỳ} \\
+5 & \quad \textbf{với mỗi } c \in \Sigma \\
 6 & \quad \quad S \gets \{ q \in Q \mid \delta(q,c) \in A \} \\
-7 & \quad \quad \textbf{for each } Y \in P \text{ such that } S \cap Y \ne \varnothing \text{ and } Y \setminus S \ne \varnothing \\
+7 & \quad \quad \textbf{với mỗi } Y \in P \text{ sao cho } S \cap Y \ne \varnothing \text{ và } Y \setminus S \ne \varnothing \\
 8 & \quad \quad \quad Y_1 \gets S \cap Y,~Y_2 \gets Y \setminus S \\
 9 & \quad \quad \quad P \gets (P \setminus \{Y\}) \cup \{Y_1, Y_2\} \\
-10 & \quad \quad \quad \textbf{if } Y \in W \\
+10 & \quad \quad \quad \textbf{nếu } Y \in W \\
 11 & \quad \quad \quad \quad W \gets (W \setminus \{Y\}) \cup \{Y_1, Y_2\} \\
-12 & \quad \quad \quad \textbf{else} \\
-13 & \quad \quad \quad \quad \text{add the smaller of } Y_1 \text{ and } Y_2 \text{ to } W \\
-14 & \textbf{return } P
+12 & \quad \quad \quad \textbf{ngược lại} \\
+13 & \quad \quad \quad \quad \text{thêm tập nhỏ hơn trong } Y_1 \text{ và } Y_2 \text{ vào } W \\
+14 & \textbf{trả về } P
 \end{array}
 \end{array}
 $$

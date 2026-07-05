@@ -143,19 +143,19 @@ Khi lần lượt tính hai đầu mút của từng khối, đầu mút trái $
 
 $$
 \begin{array}{l}
-\textbf{Algorithm }\text{Sum}(f,g,n):\\
-\textbf{Input. }n,~s(k)=\sum_{i=1}^kf(k),~g(k).\\
-\textbf{Output. }S(n) = \sum_{i=1}^nf(i)g(\lfloor n/i\rfloor).\\
-\textbf{Method.}\\
+\textbf{Thuật toán }\text{Sum}(f,g,n):\\
+\textbf{Đầu vào. }n,~s(k)=\sum_{i=1}^kf(k),~g(k).\\
+\textbf{Đầu ra. }S(n) = \sum_{i=1}^nf(i)g(\lfloor n/i\rfloor).\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
 1 & l \gets 1\\
 2 & \textit{result} \gets 0 \\
-3 & \textbf{while } l \leq n \textbf{ do}\\
+3 & \textbf{trong khi } l \leq n\\
 4 & \qquad r \gets \left\lfloor \dfrac{n}{\lfloor n/l \rfloor} \right\rfloor\\
 5 & \qquad \textit{result} \gets \textit{result} + (s(r)-s(l-1))\cdot g\left(\left\lfloor \dfrac{n}{l} \right\rfloor\right)\\
 6 & \qquad l \gets r+1\\
-7 & \textbf{end while}\\
-8 & \textbf{return }\textit{result}
+7 & \textbf{kết thúc vòng lặp}\\
+8 & \textbf{trả về }\textit{result}
 \end{array}
 \end{array}
 $$
