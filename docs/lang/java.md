@@ -88,11 +88,11 @@ char[] stringArray = { 'H', 'e', 'l', 'l', 'o' };
 String s = new String(stringArray);
 ```
 
-### Package và import package
+### Gói và import gói
 
-Các lớp (`Class`) trong Java đều được đặt trong các package. Trong cùng một
-package không được có hai lớp trùng tên. Dòng đầu của lớp thường nêu lớp này
-thuộc package nào. Ví dụ:
+Các lớp (`Class`) trong Java đều được đặt trong các gói (`package`). Trong cùng
+một gói không được có hai lớp trùng tên. Dòng đầu của lớp thường nêu lớp này
+thuộc gói nào. Ví dụ:
 
 ```java
 package org.oi-wiki.tutorial;

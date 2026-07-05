@@ -454,22 +454,22 @@ Phần này lấy `int` và `Integer` làm ví dụ:
 5.  Với `Integer`, dùng `==` để kiểm tra hai biến có giống nhau không có thể cho kết quả sai, chỉ nên dùng `equals()`; còn `int` có thể dùng trực tiếp `==`.
 
 <span id="boxing-và-unboxing"></span>
-### Boxing và unboxing
+### Đóng hộp và mở hộp
 
 Phần này lấy `int` và `Integer` làm ví dụ:
 
-Bản chất của `Integer` là đối tượng, còn `int` là kiểu nguyên thủy, nên không thể gán trực tiếp giữa hai kiểu này. Khi cần chuyển đổi, đưa kiểu nguyên thủy thành kiểu bao được gọi là boxing; chiều ngược lại gọi là unboxing.
+Bản chất của `Integer` là đối tượng, còn `int` là kiểu nguyên thủy, nên không thể gán trực tiếp giữa hai kiểu này. Khi cần chuyển đổi, đưa kiểu nguyên thủy thành kiểu bao được gọi là đóng hộp (boxing); chiều ngược lại gọi là mở hộp (unboxing).
 
 ```java
 // Kiểu nguyên thủy
 int value1 = 1;
-// Boxing: chuyển sang kiểu bao
+// Đóng hộp: chuyển sang kiểu bao
 Integer integer = Integer.valueOf(value1);
-// Unboxing: chuyển về kiểu nguyên thủy
+// Mở hộp: chuyển về kiểu nguyên thủy
 int value2 = integer.intValue();
 ```
 
-Java 5 đưa vào cơ chế autoboxing và auto-unboxing:
+Java 5 đưa vào cơ chế tự động đóng hộp (autoboxing) và tự động mở hộp (auto-unboxing):
 
 ```java
 Integer integer = 1;
@@ -477,7 +477,7 @@ int value = integer;
 ```
 
 ???+ warning "Lưu ý"
-    Dù JDK đã thêm cơ chế autoboxing và auto-unboxing, hãy chọn kiểu phù hợp khi khai báo biến. Kiểu bao `Integer` có thể nhận `null`, còn kiểu nguyên thủy `int` thì không. Vì vậy, khi unbox một kiểu bao đang có giá trị `null`, chương trình sẽ ném ngoại lệ. Đoạn mã sau minh họa hành vi này.
+    Dù JDK đã thêm cơ chế tự động đóng hộp và tự động mở hộp, hãy chọn kiểu phù hợp khi khai báo biến. Kiểu bao `Integer` có thể nhận `null`, còn kiểu nguyên thủy `int` thì không. Vì vậy, khi mở hộp một kiểu bao đang có giá trị `null`, chương trình sẽ ném ngoại lệ. Đoạn mã sau minh họa hành vi này.
     
     ```java
     Integer integer = Integer.valueOf(null);
@@ -525,19 +525,19 @@ Biến đa hình:
 3.  Khi gán đối tượng của lớp con cho biến của lớp cha, upcasting xảy ra.
 
 <span id="generics"></span>
-## Generic (kiểu tham số hóa)
+## Kiểu generic (kiểu tham số hóa)
 
-Generics nghĩa là khi định nghĩa lớp, ta không cố định kiểu cụ thể của thuộc tính hoặc tham số phương thức trong lớp, mà chỉ xác định kiểu khi sử dụng hoặc tạo đối tượng. Bản chất của generics là kiểu tham số hóa, tức kiểu dữ liệu được thao tác được chỉ định như một tham số.
+Generic nghĩa là khi định nghĩa lớp, ta không cố định kiểu cụ thể của thuộc tính hoặc tham số phương thức trong lớp, mà chỉ xác định kiểu khi sử dụng hoặc tạo đối tượng. Bản chất của generic là kiểu tham số hóa, tức kiểu dữ liệu được thao tác được chỉ định như một tham số.
 
-Generics cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm biên dịch, cho phép phát hiện kiểu không hợp lệ khi biên dịch.
+Generic cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm biên dịch, cho phép phát hiện kiểu không hợp lệ khi biên dịch.
 
 <span id="interface"></span>
-## Interface (giao diện)
+## Giao diện (interface)
 
 <span id="interface-giới-thiệu"></span>
 ### Giới thiệu
 
-Interface trong Java là một kiểu trừu tượng, là tập hợp các phương thức trừu tượng, thường được khai báo bằng `interface`. Một lớp hiện thực interface để kế thừa các phương thức trừu tượng của interface đó.
+Giao diện (interface) trong Java là một kiểu trừu tượng, là tập hợp các phương thức trừu tượng, thường được khai báo bằng `interface`. Một lớp hiện thực interface để kế thừa các phương thức trừu tượng của interface đó.
 
 Interface không phải là lớp. Cách viết interface khá giống lớp, nhưng chúng thuộc hai khái niệm khác nhau. Lớp mô tả thuộc tính và phương thức của đối tượng; interface chứa các phương thức mà lớp phải hiện thực.
 
@@ -658,7 +658,7 @@ public class Main {
 Trong đó, `->` là ký hiệu suy diễn: ngoặc phía trước nhận tham số, rồi suy diễn giá trị trả về ở phía sau; thực chất là truyền phương thức.
 
 <span id="functional-interface"></span>
-### Functional interface (giao diện hàm)
+### Giao diện hàm (functional interface)
 
 1.  Là một interface, phù hợp với định nghĩa interface của Java.
 2.  Chỉ chứa một phương thức trừu tượng.
@@ -725,9 +725,9 @@ Cách dùng functional interface như sau:
     }
     ```
 
-## Collection (tập hợp)
+## Tập hợp (Collection)
 
-`Collection` là interface trong Java, được nhiều interface container generic hiện thực. Ở đây, `Collection` chỉ các cấu trúc dữ liệu dùng để lưu kiểu đối tượng.
+`Collection` là interface trong Java, được nhiều interface bộ chứa generic hiện thực. Ở đây, `Collection` chỉ các cấu trúc dữ liệu dùng để lưu kiểu đối tượng.
 
 Trong Java, kiểu phần tử của `Collection` khi định nghĩa phải là đối tượng, không thể là kiểu dữ liệu nguyên thủy.
 
@@ -736,9 +736,9 @@ Các nội dung dưới đây đều dựa trên tính đa hình của Java và 
 Các interface thường dùng gồm `List`, `Queue`, `Set` và `Map`.
 
 <span id="định-nghĩa-container"></span>
-### Định nghĩa container
+### Định nghĩa bộ chứa
 
-Khi định nghĩa lớp container generic, cần chỉ định kiểu dữ liệu lúc định nghĩa. Nếu không chỉ định kiểu dữ liệu mà coi là kiểu `Object` rồi thêm dữ liệu tùy ý, trong Java 8 tuy vẫn biên dịch được nhưng sẽ có nhiều cảnh báo và rủi ro.
+Khi định nghĩa lớp bộ chứa generic, cần chỉ định kiểu dữ liệu lúc định nghĩa. Nếu không chỉ định kiểu dữ liệu mà coi là kiểu `Object` rồi thêm dữ liệu tùy ý, trong Java 8 tuy vẫn biên dịch được nhưng sẽ có nhiều cảnh báo và rủi ro.
 
 Ví dụ, cách định nghĩa dưới đây là an toàn; container chỉ nhận kiểu `Integer`.
 
