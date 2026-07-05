@@ -1,8 +1,8 @@
-Đôi khi, chúng ta cần làm một việc nhiều lần. Để không phải viết quá nhiều đoạn
-mã lặp lại, ta cần dùng vòng lặp.
+Đôi khi ta cần thực hiện cùng một nhóm câu lệnh nhiều lần. Để không phải viết
+lặp lại cùng một đoạn mã, ta dùng vòng lặp.
 
-Đôi khi, số lần lặp không phải là một hằng số, nên ta không thể viết lặp lại mã
-nguồn nhiều lần mà bắt buộc phải dùng vòng lặp.
+Trong nhiều bài toán, số lần lặp chỉ được biết khi chương trình đang chạy, nên
+không thể sao chép thủ công mã nguồn nhiều lần mà bắt buộc phải dùng vòng lặp.
 
 ## Câu lệnh for
 
@@ -18,7 +18,7 @@ Thứ tự thực thi:
 
 ![](images/for-loop.svg)
 
-Ví dụ, đọc vào n số:
+Ví dụ, đọc vào $n$ số:
 
 ```cpp
 for (int i = 1; i <= n; ++i) {
@@ -26,8 +26,8 @@ for (int i = 1; i <= n; ++i) {
 }
 ```
 
-Trong ba phần của câu lệnh `for`, bất kỳ phần nào cũng có thể được bỏ qua. Trong
-đó, nếu bỏ qua điều kiện kiểm tra thì tương đương với việc điều kiện luôn đúng.
+Trong ba phần của câu lệnh `for`, bất kỳ phần nào cũng có thể được bỏ qua. Nếu
+bỏ qua điều kiện kiểm tra thì tương đương với việc điều kiện luôn đúng.
 
 ## Câu lệnh while
 
@@ -43,7 +43,7 @@ Thứ tự thực thi:
 
 ![](images/while-loop.svg)
 
-Ví dụ, kiểm chứng giả thuyết 3x+1:
+Ví dụ, kiểm chứng giả thuyết $3x+1$:
 
 ```cpp
 while (x > 1) {
@@ -69,14 +69,15 @@ Thứ tự thực thi:
 
 ![](images/do-while-loop.svg)
 
-Điểm khác với câu lệnh `while` là câu lệnh `do...while` thực thi thân vòng lặp
-trước rồi mới kiểm tra điều kiện.
+Khác với câu lệnh `while`, câu lệnh `do...while` thực thi thân vòng lặp trước
+rồi mới kiểm tra điều kiện. Vì vậy, thân vòng lặp của `do...while` luôn được
+thực thi ít nhất một lần.
 
 Ví dụ, liệt kê các hoán vị:
 
 ```cpp
 do {
-  // làm gì đó...
+  // Xử lý hoán vị hiện tại
 } while (next_permutation(a + 1, a + n + 1));
 ```
 
@@ -98,8 +99,9 @@ while (statement2) {
 }
 ```
 
-Khi trong `statement4` không có câu lệnh `continue` (xem bên dưới), hai cách
-viết này là tương đương, nhưng cách viết bên dưới rất ít khi được dùng.
+Nếu trong `statement4` không có câu lệnh `continue` (xem bên dưới), hai cách
+viết này là tương đương, nhưng cách viết bằng `while` bên dưới rất ít khi được
+dùng để thay thế trực tiếp cho `for`.
 
 ```cpp
 // Câu lệnh while
@@ -116,47 +118,48 @@ do {
 } while (statement2);
 ```
 
-Khi trong `statement1` không có câu lệnh `continue`, hai cách viết này cũng
+Nếu trong `statement1` không có câu lệnh `continue`, hai cách viết này cũng
 tương đương.
 
 ```cpp
 while (1) {
-  // làm gì đó...
+  // Thân vòng lặp
 }
 
 for (;;) {
-  // làm gì đó...
+  // Thân vòng lặp
 }
 ```
 
 Hai cách viết này đều tạo vòng lặp vô hạn. Có thể dùng `break` (xem bên dưới) để
 thoát.
 
-Có thể thấy ba loại câu lệnh có thể thay thế lẫn nhau, nhưng nói chung việc lựa
-chọn câu lệnh nên tuân theo các nguyên tắc sau:
+Có thể thấy ba loại câu lệnh lặp có thể thay thế lẫn nhau trong nhiều tình
+huống, nhưng nói chung nên chọn theo các nguyên tắc sau:
 
-1.  Khi trong quá trình lặp có một bước tăng cố định (thường gặp nhất là liệt
-    kê), dùng câu lệnh `for`;
-2.  Khi chỉ xác định điều kiện kết thúc vòng lặp, dùng câu lệnh `while`;
+1.  Khi quá trình lặp có biến đếm hoặc bước cập nhật rõ ràng, ví dụ liệt kê một
+    dãy chỉ số, dùng câu lệnh `for`;
+2.  Khi chủ yếu chỉ biết điều kiện tiếp tục hoặc điều kiện kết thúc vòng lặp,
+    dùng câu lệnh `while`;
 3.  Khi cần thực thi thân vòng lặp trước rồi mới kiểm tra điều kiện, dùng câu
-    lệnh `do...while`. Loại này thường ít dùng, tình huống phổ biến là xử lý dữ
-    liệu người dùng nhập vào.
+    lệnh `do...while`. Loại này thường ít dùng hơn; một tình huống phổ biến là
+    xử lý dữ liệu nhập vào rồi mới quyết định có tiếp tục hay không.
 
 ## Câu lệnh break và continue
 
-Tác dụng của câu lệnh `break` là thoát khỏi vòng lặp.
+Tác dụng của câu lệnh `break` là thoát khỏi vòng lặp gần nhất đang chứa nó.
 
 Tác dụng của câu lệnh `continue` là bỏ qua phần còn lại của thân vòng lặp và
 chuyển sang bước tiếp theo của vòng lặp. Trong `for`, chương trình sẽ thực hiện
 biểu thức cập nhật rồi kiểm tra điều kiện; trong `while` và `do...while`, chương
-trình sẽ chuyển tới bước kiểm tra điều kiện. Dưới đây là ví dụ về cách dùng
-`continue` trong câu lệnh `do...while`:
+trình sẽ chuyển tới bước kiểm tra điều kiện. Dưới đây là ví dụ minh họa vị trí
+mà `continue` trong câu lệnh `do...while` sẽ nhảy tới:
 
 ```cpp
 do {
-  // làm gì đó...
+  // Phần trước continue
   continue;  // tương đương với goto END;
-  // làm gì đó...
+  // Phần này bị bỏ qua
 END:;
 } while (statement);
 ```
@@ -164,8 +167,8 @@ END:;
 Cả hai câu lệnh `break` và `continue` đều có thể được dùng trong thân vòng lặp
 của ba loại câu lệnh lặp.
 
-Nói chung, câu lệnh `break` và `continue` được dùng để làm cho logic của mã
-nguồn rõ ràng hơn, ví dụ:
+Nói chung, câu lệnh `break` và `continue` có thể làm logic của mã nguồn rõ ràng
+hơn, ví dụ:
 
 ```cpp
 // Logic chưa rõ ràng, các tầng dấu ngoặc nhọn phức tạp
@@ -174,7 +177,7 @@ for (int i = 1; i <= n; ++i) {
   if (i != x) {
     for (int j = 1; j <= n; ++j) {
       if (j != x) {
-        // làm gì đó...
+        // Xử lý cặp (i, j)
       }
     }
   }
@@ -186,23 +189,23 @@ for (int i = 1; i <= n; ++i) {
   if (i == x) continue;
   for (int j = 1; j <= n; ++j) {
     if (j == x) continue;
-    // làm gì đó...
+    // Xử lý cặp (i, j)
   }
 }
 ```
 
 ```cpp
-// Điều kiện kiểm tra của câu lệnh for phức tạp, không thể hiện bản chất "liệt kê"
+// Điều kiện kiểm tra của câu lệnh for phức tạp, không thể hiện rõ bản chất "liệt kê"
 
 for (int i = l; i <= r && i % 10 != 0; ++i) {
-  // làm gì đó...
+  // Xử lý i
 }
 
-// Câu lệnh for dùng để liệt kê, break dùng để chỉ "dừng ở đâu"
+// Câu lệnh for dùng để liệt kê, break dùng để chỉ điểm dừng
 
 for (int i = l; i <= r; ++i) {
   if (i % 10 == 0) break;
-  // làm gì đó...
+  // Xử lý i
 }
 ```
 
