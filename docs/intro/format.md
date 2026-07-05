@@ -4,7 +4,7 @@ Trang này liệt kê các quy chuẩn định dạng và phương châm biên t
 
 Nếu bạn muốn bắt đầu thật nhanh, nên đọc trước các mục [Tóm tắt nhanh](#tom-tat-nhanh) và [Hình minh họa](#hinh-minh-hoa).
 
-??? abstract "Changelog"
+??? abstract "Nhật ký thay đổi"
     **Chú ý**: chỉ ghi các thay đổi liên quan đến viết bài, duyệt bài, v.v.; không ghi các thay đổi chỉ sửa định dạng.
     
     | Thời gian  | Nội dung chính                                                                | Liên kết Issue/Pull Request liên quan                                                                     |
@@ -195,7 +195,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
         ␣␣␣␣Câu hỏi `???` này là gì sẽ được giải thích ở [phần sau](#MDFM-5).
         ```
         
-        ???+ warning "Warning"
+        ???+ warning "Cảnh báo"
             Hãy nhớ thêm 4 khoảng trắng trước văn bản. Các cú pháp khác vẫn giống cú pháp Markdown.
             
             Nếu không thêm 4 khoảng trắng, văn bản sẽ không xuất hiện trong hộp Details.

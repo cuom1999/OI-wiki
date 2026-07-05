@@ -311,7 +311,7 @@ eJOI công khai đề bài, dữ liệu kiểm thử và lời giải hằng nă
 
 ### NOI
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Phần này không giới thiệu "National Olympiad in Informatics" của Trung Quốc.
 
 **NOI** có tên đầy đủ là Nordic Olympiads in Informatics.

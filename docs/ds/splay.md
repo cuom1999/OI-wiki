@@ -94,7 +94,7 @@ Giả sử nút vừa được truy cập là $x$. Để thực hiện thao tác
 
     ![Hình 5](./images/splay-rotate5.svg)![Hình 6](./images/splay-rotate6.svg)
 
-???+ tip "Tip"
+???+ tip "Mẹo"
     Bạn đọc hãy thử tự mô phỏng $6$ trường hợp xoay để hiểu tư tưởng cơ bản của thao tác splay.
 
 So sánh ba loại bước splay có thể thấy, để phân biệt lúc này nên dùng thao tác nào, điểm mấu chốt là cần xác định $x$ có phải là con của nút gốc hay không, và $x$ cùng nút cha của nó có nằm cùng phía so với nút cha tương ứng của chúng hay không.

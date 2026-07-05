@@ -1,6 +1,6 @@
 Trang này giới thiệu cách triển khai môi trường **OI Wiki** bằng Docker.
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Các bước sau cần được thực hiện với quyền root hoặc bằng người dùng thuộc nhóm docker.
 
 ## Kéo image **OI Wiki**
@@ -57,7 +57,7 @@ docker run -d -it [image]
 
 ## Sử dụng container
 
-???+ note "Note"
+???+ note "Ghi chú"
     Ví dụ dựa trên triển khai bằng Ubuntu latest.
 
 Vào container:

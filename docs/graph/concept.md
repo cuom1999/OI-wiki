@@ -1,6 +1,6 @@
 Trang này tóm lược một số khái niệm trong lý thuyết đồ thị. Không phải tất cả các khái niệm này đều thường gặp trong OI; với OIer, chỉ cần nắm phần cơ bản trong trang này là đủ. Nếu trong quá trình học gặp khái niệm chưa hiểu, bạn có thể quay lại tra cứu.
 
-??? warning "Warning"
+??? warning "Cảnh báo"
     Các định nghĩa liên quan đến lý thuyết đồ thị thường khác nhau giữa các giáo trình. Khi gặp chúng, cần phán đoán theo ngữ cảnh.
 
 ## Đồ thị
@@ -52,10 +52,10 @@ $$
 
 Nếu một đồ thị có khuyên hoặc cạnh song song, nó được gọi là **đa đồ thị (multigraph)**.
 
-??? warning "Warning"
+??? warning "Cảnh báo"
     Trong đồ thị vô hướng, $(u, v)$ và $(v, u)$ được tính là một cặp cạnh song song; còn trong đồ thị có hướng, $u \to v$ và $v \to u$ không phải là cạnh song song.
 
-??? warning "Warning"
+??? warning "Cảnh báo"
     Trong đề bài, nếu không có mô tả đặc biệt, khuyên và cạnh song song có thể tồn tại, nên khi giải bài cần xét riêng.
 
 ## Bậc
@@ -106,7 +106,7 @@ Nếu cho một dãy a và có thể tìm được một đồ thị đơn G nh�
 
 **Chu trình/vòng (cycle)**, còn gọi là **mạch đơn/chu trình đơn (simple circuit)**: với một mạch $w$, nếu $v_0 = v_k$ là cặp điểm duy nhất xuất hiện lặp lại trong dãy đỉnh, thì $w$ được gọi là một chu trình.
 
-??? warning "Warning"
+??? warning "Cảnh báo"
     Định nghĩa về đường đi có thể khác nhau ở các tài liệu. Ví dụ, "đường đi" có thể chỉ "hành trình" trong bài này, còn "chu trình" có thể chỉ "mạch" trong bài này. Nếu trong đề bài gặp các thuật ngữ tương tự mà không có mô tả đặc biệt như "đường đi đơn"/"đường đi không đơn" (tức là "hành trình" trong bài này), tốt nhất nên hỏi rõ nghĩa cụ thể.
 
 ## Đồ thị con
@@ -197,7 +197,7 @@ Nếu đồ thị vô hướng đơn $G$ thỏa mãn giữa mọi cặp điểm 
 
 Đồ thị có tập cạnh rỗng được gọi là **đồ thị không cạnh (edgeless graph)**, **đồ thị rỗng (empty graph)** hoặc **đồ thị không (null graph)**; đồ thị không cạnh cấp $n$ được ký hiệu là $\overline{K}_n$ hoặc $N_n$. $N_n$ và $K_n$ là đồ thị bù của nhau.
 
-??? warning "Warning"
+??? warning "Cảnh báo"
     **Đồ thị không (null graph)** cũng có thể chỉ **đồ thị cấp không (order-zero graph)** $K_0$, tức là đồ thị có cả tập đỉnh và tập cạnh đều rỗng.
 
 Nếu đồ thị có hướng đơn $G$ thỏa mãn giữa mọi cặp điểm khác nhau có đúng một cạnh (một chiều), thì $G$ được gọi là **đồ thị đấu loại (tournament graph)**.

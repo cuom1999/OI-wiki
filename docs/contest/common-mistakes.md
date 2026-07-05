@@ -255,7 +255,7 @@ Những lỗi này compiler không phát hiện được, chỉ có thể tự t
 
 #### Khác biệt ký tự xuống dòng
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Trong thi chính thức, ban tổ chức sẽ cố gắng bảo đảm môi trường làm bài và
     môi trường kiểm thử cuối cùng giống nhau.
 

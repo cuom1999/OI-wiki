@@ -5,7 +5,7 @@ Bài này giới thiệu một nội dung rất quan trọng trong đại số t
 
 Trong đại số tuyến tính, vectơ được chia thành vectơ cột và vectơ hàng.
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Ở một số vùng dùng tiếng Trung, cách dịch "column" và "row" có thể ngược nhau. Trong **OI Wiki**, theo thói quen ở đại lục, dùng "cột" cho column và "hàng" cho row.
 
 Đối tượng nghiên cứu chính của đại số tuyến tính là vectơ cột; quy ước dùng chữ thường in đậm để biểu diễn vectơ cột. Khi làm việc với nhiều vectơ và ma trận trong đại số tuyến tính, nếu không gây nhầm lẫn, ký hiệu vectơ phía trên chữ cái có thể được lược bỏ khi viết tay.

@@ -1,5 +1,5 @@
-???+ note "Note"
-    Trang này tập trung giới thiệu hệ thống quản lý phiên bản Git. Nội dung liên quan đến GitHub xem tại [GitHub Docs](https://docs.github.com/cn) và [Cách tham gia - OI Wiki](../intro/htc.md).
+???+ note "Ghi chú"
+    Trang này tập trung giới thiệu hệ thống quản lý phiên bản Git. Nội dung liên quan đến GitHub xem tại [GitHub Docs](https://docs.github.com/en) và [Cách tham gia - OI Wiki](../intro/htc.md).
 
 Git hiện là một trong những hệ thống quản lý phiên bản được sử dụng rộng rãi nhất. **OI Wiki** cũng dùng Git làm hệ thống quản lý phiên bản.
 
@@ -27,7 +27,7 @@ $ git config --global user.name "OI Wiki"
 $ git config --global user.email oi-wiki@example.com
 ```
 
-???+ note "Note"
+???+ note "Ghi chú"
     Tên người dùng và email ở đây chỉ dùng để minh họa. Khi cấu hình theo nội dung trang này, hãy nhớ đổi thành thông tin của chính bạn.
 
 Ở đây `--global` nghĩa là sửa cấu hình toàn cục, tức thiết lập này có hiệu lực với mọi kho của người dùng hiện tại. Nếu không thêm tùy chọn `--global`, Git sẽ mặc định sửa tệp cấu hình của kho hiện tại.
@@ -491,7 +491,7 @@ Trước khi bắt đầu theo dõi, bạn cần chạy `git fetch <remote-name>
 
 Tiếp theo chạy `git switch <remote-branch>`; Git sẽ tự động tạo một nhánh mới tên `<remote-branch>` ở local và thiết lập nhánh này tự động theo dõi nhánh từ xa tương ứng.
 
-???+ note "Note"
+???+ note "Ghi chú"
     Cần chú ý: chỉ khi local chưa tồn tại nhánh này và đúng một nhánh từ xa có tên khớp với nhánh đó, Git mới tự động tạo nhánh này và thiết lập nó theo dõi nhánh từ xa tương ứng.
 
 Lúc này chạy lệnh `git status`, Git sẽ thông báo khác biệt giữa nhánh hiện tại và nhánh từ xa.
@@ -506,7 +506,7 @@ So với HTTP(S), dùng ssh để kết nối kho từ xa thuận tiện và an 
 
 Trước khi dùng ssh để kết nối kho từ xa, cần thêm ssh key ở local. Sau đó cần tải **public key** của ssh key đã thêm ở local lên tài khoản kho từ xa.
 
-Xét việc bài này chủ yếu là hướng dẫn dùng Git cho người đóng góp **OI Wiki**, ở đây trực tiếp đưa [hướng dẫn do GitHub Docs cung cấp](https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh) để bạn đọc tham khảo.
+Xét việc bài này chủ yếu là hướng dẫn dùng Git cho người đóng góp **OI Wiki**, ở đây trực tiếp đưa [hướng dẫn do GitHub Docs cung cấp](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) để bạn đọc tham khảo.
 
 Sau khi hoàn thành các bước trên, bạn có thể kết nối đến kho từ xa bằng ssh. Dưới đây là một lệnh clone kho **OI Wiki** thông qua ssh:
 

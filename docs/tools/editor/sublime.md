@@ -50,7 +50,7 @@ Vào `Preferences->Settings`, trong phần thiết lập người dùng ở bên
 
 Nên chọn phông chữ monospace có hỗ trợ Unicode và dấu tiếng Việt đầy đủ, chẳng hạn Cascadia Mono, Consolas, JetBrains Mono hoặc Noto Sans Mono.
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Chú ý: dù có thể sửa, không nên sửa bất kỳ thiết lập nào (kể cả thiết lập plugin) trong phần thiết lập mặc định bên trái. Đây là cách không được khuyến nghị, vì khi phần mềm (hoặc plugin) cập nhật, thiết lập mặc định sẽ bị đặt lại.
 
 ### Cài plugin và theme
@@ -447,7 +447,7 @@ Nếu khi biên dịch chọn `C++ Single File - Run` (tức chạy sau khi biê
 
 Sau khi chạy xong, ST sẽ hiển thị thời gian chạy của chương trình. Bộ đếm thời gian này tính từ lúc nhấn <kbd>Ctrl</kbd>+<kbd>B</kbd> đến khi toàn bộ lệnh CMD kết thúc, nghĩa là bao gồm cả thời gian biên dịch, thời gian nhập liệu, và nếu chạy trong CMD bên ngoài thì còn gồm cả thời gian mở/đóng CMD.
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Cửa sổ này không thể nhập <kbd>F6</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>Z</kbd>. Nếu chương trình cần đọc đến cuối tệp, hãy dùng input từ tệp hoặc cấu hình chạy trong CMD bên ngoài.
 
 ### Gỡ lỗi

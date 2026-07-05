@@ -63,7 +63,7 @@ Windows 10 ra mắt Linux subsystem (WSL) trong bản Anniversary Update, rồi 
 
 ### Cài đặt tự động
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Phần này áp dụng cho Windows 10 phiên bản 2004 trở lên (build 19041 trở lên) hoặc Windows 11.
 
     Nếu bạn đang dùng phiên bản trước 2004 hoặc máy tính không hỗ trợ ảo hóa, hãy đọc phần cài đặt thủ công bên dưới.
@@ -80,7 +80,7 @@ Windows 10 ra mắt Linux subsystem (WSL) trong bản Anniversary Update, rồi 
 
 ### Cài đặt thủ công[^ref4]
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Dưới đây là các bước cài đặt WSL thủ công. Nếu bạn đã hoàn tất cài đặt tự động, hãy bỏ qua phần này.
 
 #### Bật Windows Subsystem for Linux
@@ -138,7 +138,7 @@ wsl --set-default-version 2
 
 Vào Microsoft Store, tìm "Ubuntu", sau đó chọn "Ubuntu" và nhấp "Install" để cài đặt. Cũng có thể mở [trang Store của Ubuntu](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6).
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Ubuntu trong Microsoft Store sẽ cập nhật theo Ubuntu, vì vậy nội dung có thể thay đổi. Nếu muốn có bản Ubuntu hỗ trợ dài hạn ổn định, có thể cài phiên bản LTS của Ubuntu trong Microsoft Store.
 
 ## Cấu hình bản phân phối[^ref5]
@@ -271,7 +271,7 @@ $ ./cpuid
 AMD Ryzen 5 1400 Quad-Core Processor
 ```
 
-???+ note "Note"
+???+ note "Ghi chú"
     Trong môi trường Linux, tệp thực thi có thể không có phần mở rộng; cách chạy xem lệnh phía trên.
 
 ## Thao tác nâng cao
@@ -403,7 +403,7 @@ Trang Getting Started của plugin `Remote - WSL` có giới thiệu chi tiết 
 
 ## Nâng cấp WSL1 lên WSL2
 
-???+ warning "Warning"
+???+ warning "Cảnh báo"
     Hãy xác nhận bạn đã hoàn thành các bước cài WSL1 ở phía trước.
 
 Chạy lệnh `wsl -l -v` để thấy phiên bản WSL hiện là 1; cần nâng cấp thì mới lên được 2.
