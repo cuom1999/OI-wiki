@@ -41,7 +41,7 @@ Timsort là một thuật toán sắp xếp ổn định, tức là các phần 
 
 Nếu ba Run ở đỉnh ngăn xếp không thỏa mãn các điều kiện trên, Timsort sẽ hợp nhất Y với Run nhỏ hơn trong X và Z, rồi kiểm tra lại điều kiện. Khi các điều kiện đã thỏa mãn, thuật toán tiếp tục tìm Run mới, thêm nó vào ngăn xếp và bắt đầu vòng trộn tiếp theo.
 
-![Merge Rules](./images/tim-sort-1.png)
+![Quy tắc trộn](./images/tim-sort-1.png)
 
 #### Tối ưu hóa quá trình trộn
 
@@ -63,7 +63,7 @@ Thông qua tìm kiếm nhị phân, có thể xác định:
 
 Do đó, $3$ phần tử đầu của Run A và $3$ phần tử cuối của Run B đã ở đúng vị trí, không cần xử lý. Ta chỉ cần trộn $[6, 10]$ của Run A với $[4, 5, 7, 9]$ của Run B; quá trình trộn được minh họa như hình sau:
 
-![Timsort Merge](./images/tim-sort-2.apng)
+![Quá trình trộn trong Timsort](./images/tim-sort-2.apng)
 
 #### Chế độ tăng tốc
 

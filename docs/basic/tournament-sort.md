@@ -12,13 +12,13 @@ Tên của sắp xếp giải đấu bắt nguồn từ thể thức thi đấu 
 
 Lấy **cây sắp xếp giải đấu nhỏ nhất** làm ví dụ:
 
-![tournament-sort1](./images/tournament-sort1.png)
+![Ví dụ sắp xếp giải đấu 1](./images/tournament-sort1.png)
 
 Các phần tử cần sắp xếp là những phần tử được hiển thị ở các nút lá. Cạnh màu đỏ biểu diễn đường đi chiến thắng của phần tử nhỏ hơn trong mỗi vòng so sánh. Rõ ràng, sau khi hoàn thành một "giải đấu", ta có thể chọn ra phần tử nhỏ nhất trong một nhóm phần tử.
 
 Sau mỗi vòng so sánh trên $n$ phần tử, ta có thể thu được $\frac{n}{2}$ "người thắng"; phần tử nhỏ hơn trong mỗi cặp đi tiếp vào vòng so sánh sau. Nếu một phần tử không ghép được thành cặp, nó trực tiếp đi tiếp vào vòng sau.
 
-![tournament-sort2](./images/tournament-sort2.png)
+![Ví dụ sắp xếp giải đấu 2](./images/tournament-sort2.png)
 
 Sau khi hoàn thành một "giải đấu", cần loại bỏ phần tử đã được chọn. Ta trực tiếp đặt nó thành $\infty$ (thao tác này tương tự [sắp xếp vun đống](./heap-sort.md)), rồi tổ chức "giải đấu" lần nữa để chọn phần tử nhỏ thứ hai.
 

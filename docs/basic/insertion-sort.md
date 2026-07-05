@@ -6,7 +6,7 @@ Sắp xếp chèn (tiếng Anh: Insertion sort) là một thuật toán sắp x�
 
 Một thao tác tương tự sắp xếp chèn là khi chơi bài: lấy một lá bài từ bàn, chèn nó vào tay bài theo thứ tự giá trị, rồi mới lấy lá tiếp theo.
 
-![insertion sort animate example](images/insertion-sort-animate.svg)
+![Minh họa động sắp xếp chèn](images/insertion-sort-animate.svg)
 
 ## Tính chất
 
