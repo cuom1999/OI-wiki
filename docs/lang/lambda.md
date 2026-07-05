@@ -1,23 +1,23 @@
-**Lưu ý**: Xét đến thực tế của lập trình thi đấu, bài viết này sẽ không khảo sát toàn bộ cú pháp một cách đầy đủ, mà chỉ trình bày những phần có thể được dùng trong lập trình thi đấu.
+**Lưu ý**: Xét đến nhu cầu thực tế của lập trình thi đấu, bài viết này không khảo sát toàn bộ cú pháp lambda một cách đầy đủ, mà chỉ trình bày những phần thường dùng trong lập trình thi đấu.
 
 Cú pháp trong bài viết này tham chiếu chuẩn **C++11**. Cú pháp của các chuẩn mới hơn sẽ được nhắc đến tùy trường hợp và được đánh dấu riêng.
 
 <a id="biểu-thức-lambda"></a>
 
-## Biểu thức Lambda
+## Biểu thức lambda
 
-Biểu thức Lambda được đặt tên theo phép tính $\lambda$ trong toán học, tương ứng trực tiếp với phép trừu tượng lambda trong đó. Khi biên dịch, dựa trên cú pháp, trình biên dịch sẽ sinh ra một [**đối tượng hàm**](./new.md#đối-tượng-hàm) ẩn danh, dùng các biến đã bắt giữ làm thành viên, còn danh sách tham số và thân hàm dùng để cài đặt nạp chồng `operator()`.
+Biểu thức lambda được đặt tên theo phép tính $\lambda$ trong toán học, tương ứng trực tiếp với phép trừu tượng lambda trong đó. Khi biên dịch, dựa trên cú pháp, trình biên dịch sẽ sinh ra một [**đối tượng hàm**](./new.md#đối-tượng-hàm) ẩn danh: các biến được bắt giữ trở thành thành viên, còn danh sách tham số và thân hàm được dùng để cài đặt toán tử gọi hàm `operator()`.
 
 ??? note "Đối tượng hàm"
     Đối tượng hàm là một đối tượng lớp, thường được cài đặt bằng cách nạp chồng `operator()`, vì vậy có thể được gọi như một hàm. So với việc dùng hàm thông thường, đối tượng hàm có nhiều ưu điểm, chẳng hạn có thể lưu trạng thái và có thể truyền làm tham số cho các hàm khác.
 
-Sau đây là một dạng cú pháp của lambda:
+Một dạng cú pháp của lambda là:
 
 ```text
 [capture] (parameters) mutable -> return-type {statement}
 ```
 
-Bản thân biểu thức Lambda là một lớp; nếu khai triển ra thì có dạng như sau:
+Kiểu của biểu thức lambda là một kiểu lớp ẩn danh; nếu khai triển gần đúng thì có dạng như sau:
 
 <!-- scripts.linter.preprocess.fix_details off -->
 
@@ -36,27 +36,27 @@ class Lambda_1 {
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Danh sách bắt giữ rỗng có thể được chuyển đổi ngầm định thành con trỏ hàm, ví dụ:
+Biểu thức lambda có danh sách bắt giữ rỗng có thể được chuyển đổi ngầm định thành con trỏ hàm, ví dụ:
 
 ```cpp
 void (*f)(int, int) = [](int, int) -> void {};
 ```
 
-Dưới đây, chúng ta sẽ lần lượt giới thiệu từng phần trong cú pháp.
+Dưới đây là từng phần trong cú pháp.
 
 <a id="thân-hàm"></a>
 
 ### Thân hàm
 
-Thân hàm của biểu thức Lambda tương tự thân hàm thông thường. Ngoài việc có thể truy cập tham số, biến toàn cục, v.v., nó còn có thể truy cập các biến được [bắt giữ](#capture-mệnh-đề-bắt-giữ).
+Thân hàm của biểu thức lambda tương tự thân hàm thông thường. Ngoài tham số, biến toàn cục và các tên có thể nhìn thấy trong phạm vi, nó còn có thể truy cập các biến được [bắt giữ](#capture-mệnh-đề-bắt-giữ).
 
 <a id="capture-mệnh-đề-bắt-giữ"></a>
 
 ### Mệnh đề bắt giữ
 
-Biểu thức lambda bắt đầu bằng mệnh đề bắt giữ, dùng để chỉ định những biến nào được bắt giữ. Danh sách bắt giữ có thể rỗng, hoặc chỉ định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua [tham chiếu](./reference.md), còn biến không có tiền tố này được truy cập theo giá trị.
+Biểu thức lambda bắt đầu bằng mệnh đề bắt giữ, dùng để chỉ định những biến nào từ phạm vi bên ngoài được đưa vào lambda. Danh sách bắt giữ có thể rỗng, hoặc chỉ định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua [tham chiếu](./reference.md), còn biến không có tiền tố này được truy cập theo giá trị.
 
-Ta cũng có thể dùng chế độ bắt giữ mặc định để bắt giữ tất cả các biến được nhắc đến trong Lambda: `&` nghĩa là mọi biến được bắt giữ sẽ được truy cập thông qua tham chiếu, còn `=` nghĩa là mọi biến được bắt giữ sẽ được truy cập theo giá trị.
+Có thể dùng chế độ bắt giữ mặc định để bắt giữ tất cả các biến được nhắc đến trong lambda: `&` nghĩa là mọi biến được bắt giữ sẽ được truy cập thông qua tham chiếu, còn `=` nghĩa là mọi biến được bắt giữ sẽ được truy cập theo giá trị.
 
 Sau chế độ bắt giữ mặc định, vẫn có thể chỉ định **tường minh** chế độ bắt giữ cho một biến cụ thể.
 
@@ -68,20 +68,20 @@ Nếu cần truy cập biến ngoài `a` bằng tham chiếu và truy cập bi�
 -   `[b, &]`
 -   `[=, &a]`
 
-Đồng thời, danh sách bắt giữ cũng có thể được dùng để khai báo biến; kiểu của biến được suy diễn từ bộ khởi tạo, tương tự việc khai báo biến bằng `auto`.
+Đồng thời, danh sách bắt giữ cũng có thể được dùng để khai báo biến mới; kiểu của biến được suy luận từ bộ khởi tạo, tương tự khai báo biến bằng `auto`.
 
 Dưới đây là một số ví dụ thường gặp:
 
 ```cpp
 int a = 0;
 auto f0 = []() { return a * 9; };   // Lỗi, không thể truy cập 'a'
-auto f1 = [a]() { return a * 9; };  // Hợp lệ, 'a' được "bắt giữ" theo giá trị
-auto f2 = [&a]() { return a++; };   // Hợp lệ, 'a' được "bắt giữ" bằng tham chiếu
+auto f1 = [a]() { return a * 9; };  // Hợp lệ, 'a' được bắt giữ theo giá trị
+auto f2 = [&a]() { return a++; };   // Hợp lệ, 'a' được bắt giữ bằng tham chiếu
 auto f3 = [v = a + 1]() {
   return v + 1;
 };  // Hợp lệ, dùng bộ khởi tạo để khai báo biến v, có cùng kiểu với a
 
-// Lưu ý: khi dùng bắt giữ bằng tham chiếu, hãy đảm bảo a chưa bị hủy lúc gọi
+// Lưu ý: khi bắt giữ bằng tham chiếu, cần bảo đảm a chưa bị hủy lúc gọi
 auto b = f2();  // f2 lấy giá trị của a từ danh sách bắt giữ, không cần truyền a qua tham số
 ```
 
@@ -89,7 +89,7 @@ auto b = f2();  // f2 lấy giá trị của a từ danh sách bắt giữ, khô
 
 #### Bắt giữ tổng quát, bắt giữ có khởi tạo (C++14)
 
-Từ C++14 trở đi, mệnh đề bắt giữ không chỉ có thể bắt giữ biến bên ngoài, mà còn có thể khai báo biến mới và khởi tạo nó, ví dụ:
+Từ C++14 trở đi, mệnh đề bắt giữ không chỉ có thể bắt giữ biến bên ngoài, mà còn có thể khai báo biến mới và khởi tạo biến đó, ví dụ:
 
 ```cpp
 auto f1 = [val = 520]() {
@@ -150,7 +150,7 @@ auto f = [val = value]() { return val; };
 std::cout << f();  // Kết quả: 520
 ```
 
-`val` cũng có thể là một kiểu tham chiếu, tham chiếu đến một biến bên ngoài. Bằng cách này, ta có thể đặt bí danh cho biến ngoài được bắt giữ bằng tham chiếu, ví dụ:
+`val` cũng có thể là một tham chiếu đến biến bên ngoài. Bằng cách này, có thể đặt bí danh cho biến ngoài được bắt giữ bằng tham chiếu, ví dụ:
 
 ```cpp
 int value = 520;
@@ -168,7 +168,7 @@ std::cout << f() << '\n';  // Kết quả: 1314
 
 Có thể vừa bắt giữ biến bên ngoài vừa định nghĩa biến mới.
 
-Nếu muốn sửa đổi biến mới được định nghĩa trong mệnh đề bắt giữ ở bên trong biểu thức Lambda, cần dùng từ khóa `mutable`; nếu biến đó là tham chiếu thì không cần, ví dụ:
+Nếu muốn sửa đổi biến mới được định nghĩa trong mệnh đề bắt giữ ở bên trong biểu thức lambda, cần dùng từ khóa `mutable`; nếu biến đó là tham chiếu thì không cần, ví dụ:
 
 ```cpp
 int value = 520;
@@ -190,7 +190,7 @@ int value = 520;
 
 Xem thêm [đặc tả mutable](#mutable-đặc-tả-có-thể-thay-đổi).
 
-Vòng đời của biến được định nghĩa trong mệnh đề bắt giữ đi theo đối tượng tiếp nhận biểu thức Lambda; trong các ví dụ trên là biến $f$. Lý do là bản thân Lambda thực chất là một lớp, và mọi nội dung trong mệnh đề bắt giữ đều là biến thành viên `private` của lớp này, ví dụ:
+Vòng đời của biến được định nghĩa trong mệnh đề bắt giữ đi theo đối tượng lambda; trong các ví dụ trên là biến $f$. Lý do là lambda thực chất được biểu diễn bằng một kiểu lớp, và mọi nội dung trong mệnh đề bắt giữ đều là biến thành viên `private` của lớp này, ví dụ:
 
 ```cpp
 int main() {
@@ -206,7 +206,7 @@ int main() {
 
 ### Danh sách tham số
 
-Trong phần lớn trường hợp, nó tương tự danh sách tham số của hàm, ví dụ:
+Trong phần lớn trường hợp, danh sách tham số của lambda tương tự danh sách tham số của hàm, ví dụ:
 
 ```cpp
 int x[] = {5, 1, 7, 6, 1, 4, 2};
@@ -219,7 +219,7 @@ for (auto i : x) std::cout << i << " ";
 Vì **danh sách tham số** là tùy chọn, nếu không truyền tham số cho lambda, khai báo của nó không chứa [mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
 
 ??? note "Tham số được khai báo bằng `auto`"
-    Sau **C++14**, nếu tham số dùng `auto` để khai báo kiểu, một [biểu thức Lambda tổng quát](#lambda-tổng-quát-c14) sẽ được tạo.
+    Từ **C++14** trở đi, nếu tham số dùng `auto` để khai báo kiểu, một [biểu thức lambda tổng quát](#lambda-tổng-quát-c14) sẽ được tạo.
 
 <a id="tham-số-đối-tượng-tường-minh-c23"></a>
 
@@ -237,9 +237,9 @@ cout << nth_fibonacci(10u);
 
 <a id="mutable-đặc-tả-có-thể-thay-đổi"></a>
 
-### mutable đặc tả có thể thay đổi
+### Đặc tả `mutable`
 
-Cho phép thân hàm sửa đổi các biến được bắt giữ theo giá trị.
+Đặc tả `mutable` cho phép thân hàm sửa đổi các biến được bắt giữ theo giá trị.
 
 ```cpp
 int a = 0;
@@ -257,9 +257,9 @@ Còn sau khi thực thi `by_ref()`, giá trị của `a` bên ngoài trở thàn
 
 ### Kiểu trả về
 
-Dùng để chỉ định kiểu trả về của biểu thức lambda. Nếu bỏ qua, kiểu trả về sẽ được tự động suy diễn (hành vi giống hàm có giá trị trả về được khai báo bằng `auto`).
+Dùng để chỉ định kiểu trả về của biểu thức lambda. Nếu bỏ qua, kiểu trả về sẽ được tự động suy luận, tương tự hàm có kiểu trả về được khai báo bằng `auto`.
 
-Nếu có nhiều câu lệnh `return` và các kiểu suy diễn không nhất quán, sẽ phát sinh lỗi biên dịch.
+Nếu có nhiều câu lệnh `return` và các kiểu suy luận không nhất quán, sẽ phát sinh lỗi biên dịch.
 
 ```cpp
 auto lam = [](int a, int b) -> int { return 0; };
@@ -269,7 +269,7 @@ auto x1 = [](int i) { return i; };
 auto x2 = [](bool condition) {
   if (condition) return 1;
   return 1.0;
-};  // Lỗi, các kiểu suy diễn không nhất quán
+};  // Lỗi, các kiểu suy luận không nhất quán
 ```
 
 <a id="lambda-tổng-quát-c14"></a>
@@ -282,7 +282,7 @@ Dùng `auto` làm kiểu tham số có thể tạo lambda tổng quát.
 auto add = [](auto a, auto b) { return a + b; };
 ```
 
-Trong [cpp insights](https://cppinsights.io), có thể quan sát định nghĩa lớp `lambda` do trình biên dịch sinh ra:
+Trong [cpp insights](https://cppinsights.io), có thể quan sát định nghĩa lớp lambda do trình biên dịch sinh ra:
 
 ```cpp
 class add_lambda {
@@ -296,11 +296,11 @@ class add_lambda {
 add_lambda add{};
 ```
 
-Cả hai tham số của `add` đều được khai báo bằng `auto`, tương ứng với hai tham số khuôn mẫu `T` và `U` của khuôn mẫu hàm `operator()` trong lớp `add_lambda`.
+Cả hai tham số của `add` đều được khai báo bằng `auto`, tương ứng với hai tham số mẫu `T` và `U` của mẫu hàm `operator()` trong lớp `add_lambda`.
 
 <a id="đệ-quy-trong-lambda"></a>
 
-### Đệ quy trong Lambda
+### Đệ quy trong lambda
 
 Trước hết hãy xem một ví dụ biên dịch thất bại:
 
@@ -316,9 +316,9 @@ auto dfs = [&](int i) -> void {
 };
 ```
 
-Ở đây chúng ta thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề: kiểu của $dfs$ là `auto`, nên phải chờ đến khi kiểu của vế phải dấu bằng được suy diễn xong thì mới suy diễn được kiểu của $dfs$. Trong khi đó, để Lambda bắt giữ $dfs$, nó lại phải biết kiểu của $dfs$ trước mới tạo được biến tham chiếu của nó. Như vậy ta rơi vào một vòng phụ thuộc lẫn nhau.
+Ở đây đoạn mã thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề: kiểu của $dfs$ là `auto`, nên phải chờ đến khi kiểu của vế phải dấu bằng được suy luận xong thì mới suy luận được kiểu của $dfs$. Trong khi đó, để lambda bắt giữ $dfs$, nó lại phải biết kiểu của $dfs$ trước mới tạo được biến tham chiếu tương ứng. Như vậy ta rơi vào một vòng phụ thuộc lẫn nhau.
 
-Giải quyết vấn đề này như thế nào?
+Có một số cách giải quyết vấn đề này:
 
 1.  Chỉ định tường minh kiểu của $dfs$, có thể dùng `std::function` để thay thế.
 
@@ -406,8 +406,8 @@ Giải quyết vấn đề này như thế nào?
         int n = 10;
         
         // Nếu danh sách tham số có tham số kiểu auto, thì operator()
-        // trong lớp Lambda này sẽ được định nghĩa là hàm khuôn mẫu;
-        // hàm khuôn mẫu có thể được hiện thực hóa sau, khi được gọi
+        // trong lớp lambda này sẽ được định nghĩa là mẫu hàm;
+        // mẫu hàm có thể được hiện thực hóa sau, khi được gọi
         auto dfs = [&](auto& self,
                        int i) -> void  // [&] chỉ bắt giữ các biến được dùng, nên sẽ không bắt giữ auto dfs
         {
@@ -421,9 +421,9 @@ Giải quyết vấn đề này như thế nào?
         ```
 
     ???+ note "Khác biệt giữa `auto self`, `auto& self` và `auto&& self`:"
-        Về lý thuyết, `auto& self` và `auto&& self` đều chỉ dùng $8$ byte (kích thước của con trỏ) để truyền tham số, và sẽ không phát sinh bản sao nào khác. Cụ thể còn phụ thuộc vào cách trình biên dịch cài đặt Lambda và các tối ưu tương ứng.
-        Còn với `auto self`, sẽ phát sinh sao chép đối tượng. Kích thước bản sao phụ thuộc vào các phần tử trong danh sách bắt giữ, vì chúng đều là biến thành viên riêng của lớp Lambda này.
-3.  Có thể khai triển thủ công lớp Lambda, hoặc dùng cách viết tương tự; như vậy có thể khai báo trực tiếp kiểu của $dfs$.
+        Về lý thuyết, `auto& self` và `auto&& self` đều chỉ dùng $8$ byte (kích thước của con trỏ) để truyền tham số, và sẽ không phát sinh bản sao nào khác. Cụ thể còn phụ thuộc vào cách trình biên dịch cài đặt lambda và các tối ưu tương ứng.
+        Còn với `auto self`, sẽ phát sinh bản sao của đối tượng. Kích thước bản sao phụ thuộc vào các phần tử trong danh sách bắt giữ, vì chúng đều là biến thành viên riêng của lớp lambda này.
+3.  Có thể khai triển thủ công lớp lambda, hoặc dùng cách viết tương tự; như vậy có thể khai báo trực tiếp kiểu của $dfs$.
 
     ???+ example "Sửa đoạn mã trên thành:"
         ```cpp
@@ -470,7 +470,7 @@ Giải quyết vấn đề này như thế nào?
 
 <a id="ứng-dụng-của-biểu-thức-lambda"></a>
 
-### Ứng dụng của biểu thức Lambda
+### Ứng dụng của biểu thức lambda
 
 <a id="làm-vị-từ-cho-thuật-toán-thư-viện-chuẩn"></a>
 
