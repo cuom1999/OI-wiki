@@ -1,4 +1,4 @@
-<span id="&#24314;&#31435;&#22359;&#29366;&#25968;&#32452;"></span>
+<span id="xây-dựng-mảng-chia-khối"></span>
 ## Xây dựng mảng chia khối
 
 Mảng chia khối là cách chia một mảng thành vài khối, lưu thông tin tổng hợp bên trong mỗi khối; khi truy vấn gặp hai khối biên không đầy đủ thì xử lý trực tiếp bằng vét cạn. Thông thường, độ dài khối là $O(\sqrt{n})$. Phần phân tích chi tiết có thể xem trong bài viết của Xu Mingkuan, "Bước đầu tìm hiểu thuật toán chia khối kích thước phi thông thường", trong tuyển tập luận văn đội tuyển quốc gia năm 2017.
@@ -21,10 +21,10 @@ Dưới đây là một cách xây dựng mảng chia khối.
 
 Trong đó `st[i]` và `ed[i]` lần lượt là đầu và cuối của khối, còn `size[i]` là kích thước của khối.
 
-<span id="&#20445;&#23384;&#19982;&#20462;&#25913;&#22359;&#20869;&#20449;&#24687;"></span>
+<span id="lưu-và-sửa-thông-tin-trong-khối"></span>
 ## Lưu và sửa thông tin trong khối
 
-<span id="&#20363;&#39064; 1&#65306;&#25945;&#20027;&#30340;&#39764;&#27861;"></span>
+<span id="ví-dụ-1-phép-thuật-của-giáo-chủ"></span>
 ### Ví dụ 1: [Phép thuật của giáo chủ](https://www.luogu.com.cn/problem/P2801)
 
 Có hai loại thao tác:
@@ -77,7 +77,7 @@ Dùng mảng `delta` để ghi lại lượng cộng toàn khối của từng k
     }
     ```
 
-<span id="&#20363;&#39064; 2&#65306;&#23506;&#22812;&#26041;&#33311;"></span>
+<span id="ví-dụ-2-ark-trong-đêm-lạnh"></span>
 ### Ví dụ 2: Ark trong đêm lạnh
 
 Có hai loại thao tác:
@@ -151,7 +151,7 @@ Dùng mảng `delta` để ghi lại giá trị mà cả khối hiện đang đ�
     }
     ```
 
-<span id="&#32451;&#20064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 1.  [Sửa một điểm, truy vấn đoạn](https://loj.ac/problem/130)

@@ -38,11 +38,11 @@ Thực ra không cần. Chỉ cần đặt $\sqrt{n}$ thành một hằng số c
 list<vector<char>> orz_list;
 ```
 
-<span id="libstdc-&#x4E2D;&#x7684;-rope"></span>
+<span id="rope-trong-libstdc"></span>
 
 ## `rope` trong libstdc++
 
-<span id="&#x5BFC;&#x5165;"></span>
+<span id="nhập-thư-viện"></span>
 
 ### Nhập thư viện
 
@@ -60,7 +60,7 @@ using namespace __gnu_cxx;
 ???+ warning "Về các hàm thư viện bắt đầu bằng hai dấu gạch dưới"
     Trong OI, việc có được dùng các hàm thư viện bắt đầu bằng hai dấu gạch dưới hay không từng không rõ ràng. Năm 2021, CCF công bố [thuyết minh bổ sung về hạn chế sử dụng ngôn ngữ lập trình trong chuỗi hoạt động NOI](https://www.noi.cn/xw/2021-09-01/735729.shtml), trong đó nêu rằng được phép dùng các hàm thư viện hoặc macro bắt đầu bằng dấu gạch dưới, trừ các hàm thư viện và macro có thao tác bị cấm rõ ràng. Vì vậy hiện nay `rope` có thể dùng bình thường trong OI.
 
-<span id="&#x57FA;&#x672C;&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-cơ-bản"></span>
 
 ### Thao tác cơ bản
 
@@ -73,7 +73,7 @@ using namespace __gnu_cxx;
 |        `a.at(x)` hoặc `a[x]`    |           Truy cập phần tử thứ `x` của `a`     |
 |    `a.length()` hoặc `a.size()` |              Lấy kích thước của `a`            |
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="bài-mẫu"></span>
 
 ## Bài mẫu
 
