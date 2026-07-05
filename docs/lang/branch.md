@@ -1,7 +1,7 @@
-Theo mặc định, một chương trình sẽ được thực thi theo thứ tự các dòng mã. Đôi
-khi ta cần chọn lọc để chỉ thực thi một số câu lệnh nhất định; khi đó cần dùng
-cấu trúc rẽ nhánh. Việc chọn câu lệnh rẽ nhánh phù hợp có thể làm logic chương
-trình rõ ràng hơn.
+Theo mặc định, chương trình được thực thi theo thứ tự xuất hiện của các câu lệnh.
+Đôi khi ta cần chỉ thực thi một số câu lệnh khi điều kiện nhất định được thỏa
+mãn; khi đó cần dùng cấu trúc rẽ nhánh. Việc chọn câu lệnh rẽ nhánh phù hợp giúp
+logic chương trình rõ ràng hơn.
 
 ## Câu lệnh if
 
@@ -15,10 +15,12 @@ if (dieu_kien) {
 }
 ```
 
-Câu lệnh `if` đánh giá điều kiện; nếu kết quả là đúng (khác 0), câu lệnh bên
-trong sẽ được thực thi, ngược lại thì không thực thi.
+Câu lệnh `if` đánh giá điều kiện; nếu kết quả là đúng, các câu lệnh bên trong
+phần thân sẽ được thực thi, ngược lại thì bị bỏ qua.
 
-Nếu phần thân chỉ có một câu lệnh, có thể lược bỏ cặp dấu ngoặc nhọn.
+Nếu phần thân chỉ có một câu lệnh, có thể lược bỏ cặp dấu ngoặc nhọn. Tuy vậy,
+khi mới học hoặc khi mã có nhiều nhánh lồng nhau, giữ lại dấu ngoặc nhọn thường
+giúp mã dễ đọc và khó nhầm hơn.
 
 ### Câu lệnh if...else
 
@@ -31,10 +33,9 @@ if (dieu_kien) {
 ```
 
 Câu lệnh `if...else` tương tự câu lệnh `if`; phần `else` không cần viết thêm
-điều kiện. Khi điều kiện của `if` được thỏa mãn, các câu lệnh trong `if` sẽ được
-thực thi; khi điều kiện của `if` không được thỏa mãn, các câu lệnh trong `else`
-sẽ được thực thi. Tương tự, khi phần thân chỉ có một câu lệnh, có thể lược bỏ
-cặp dấu ngoặc nhọn.
+điều kiện. Khi điều kiện của `if` được thỏa mãn, phần thân của `if` sẽ được thực
+thi; khi điều kiện không được thỏa mãn, phần thân của `else` sẽ được thực thi.
+Tương tự, khi phần thân chỉ có một câu lệnh, có thể lược bỏ cặp dấu ngoặc nhọn.
 
 ### Câu lệnh else if
 
@@ -51,25 +52,25 @@ if (dieu_kien1) {
 ```
 
 Câu lệnh `else if` là sự kết hợp giữa `if` và `else`, dùng để xét nhiều điều
-kiện và chọn các nhánh câu lệnh khác nhau. Câu lệnh `else` cuối cùng không cần
-viết thêm điều kiện. Ví dụ, nếu điều kiện 1 đúng thì thực thi thân 1; nếu điều
-kiện 3 đúng còn điều kiện 1 và điều kiện 2 đều sai thì thực thi thân 3; chỉ khi
-tất cả điều kiện đều sai mới thực thi thân 4.
+kiện và chọn một trong nhiều nhánh câu lệnh khác nhau. Câu lệnh `else` cuối cùng
+không cần viết thêm điều kiện. Ví dụ, nếu điều kiện 1 đúng thì thực thi thân 1;
+nếu điều kiện 3 đúng còn điều kiện 1 và điều kiện 2 đều sai thì thực thi thân 3;
+chỉ khi tất cả điều kiện đều sai mới thực thi thân 4.
 
 Thực ra, câu lệnh này tương đương với việc trong nhánh `else` của `if` đầu tiên
 chỉ có một câu lệnh `if`, rồi lược bỏ cặp dấu ngoặc nhọn và viết chúng liền
 nhau. Nếu các điều kiện có quan hệ ngang hàng với nhau, cách viết này có thể làm
 logic của mã rõ ràng hơn.
 
-Về mặt logic, nó gần tương đương với đoạn mô tả sau:
+Về mặt logic, nó tương tự đoạn mô tả sau:
 
 > Khi giải phương trình bậc hai một ẩn, quan hệ giữa nghiệm của phương trình và biệt thức là:
 >
-> -   Nếu ($\Delta<0$)
+> -   Nếu $\Delta<0$,
 >     phương trình vô nghiệm;
-> -   Ngược lại, nếu ($\Delta=0$)
+> -   Ngược lại, nếu $\Delta=0$,
 >     phương trình có hai nghiệm thực bằng nhau;
-> -   Ngược lại
+> -   Ngược lại,
 >     phương trình có hai nghiệm thực phân biệt;
 
 ## Câu lệnh switch
@@ -87,11 +88,13 @@ switch (bieu_thuc_chon) {
 
 Khi câu lệnh `switch` được thực thi, trước tiên chương trình tính giá trị của
 biểu thức chọn, sau đó dựa vào giá trị đó để chọn nhãn tương ứng và bắt đầu thực
-thi từ vị trí nhãn ấy. Trong đó, biểu thức chọn phải là một biểu thức kiểu số
-nguyên, còn các nhãn đều phải là hằng kiểu số nguyên. Ví dụ:
+thi từ vị trí nhãn ấy. Trong C++, biểu thức chọn thường là biểu thức kiểu số
+nguyên hoặc kiểu liệt kê; các kiểu lớp chuyển đổi được sang những kiểu này cũng
+có thể dùng được. Các nhãn `case` phải là biểu thức hằng có thể chuyển đổi sang
+kiểu của biểu thức chọn. Ví dụ:
 
 ```cpp
-int i = 1;  // kiểu dữ liệu của i là int, thỏa mãn yêu cầu của biểu thức kiểu số nguyên
+int i = 1;  // i có kiểu int, thỏa mãn yêu cầu của biểu thức chọn
 
 switch (i) {
   case 1:
@@ -102,18 +105,19 @@ switch (i) {
 ```cpp
 char i = 'A';
 
-// kiểu dữ liệu của i là char, nhưng char cũng thuộc nhóm kiểu số nguyên,
-// nên thỏa mãn yêu cầu của biểu thức kiểu số nguyên
+// i có kiểu char, nhưng char cũng thuộc nhóm kiểu số nguyên,
+// nên thỏa mãn yêu cầu của biểu thức chọn
 switch (i) {
   case 'A':
     cout << "OI WIKI" << endl;
 }
 ```
 
-Trong câu lệnh `switch`, tùy theo nhu cầu còn cần thêm câu lệnh `break` để ngắt.
-Nếu không có `break`, sau khi `case` tương ứng được chọn, chương trình sẽ tiếp
-tục chạy xuống các câu lệnh trong những `case` phía sau và cả `default`. Đây gọi
-là hiện tượng rơi tiếp (`fallthrough`). Có thể xem ví dụ cụ thể bên dưới.
+Trong câu lệnh `switch`, tùy theo nhu cầu còn cần thêm câu lệnh `break` để ngắt
+nhánh hiện tại. Nếu không có `break`, sau khi `case` tương ứng được chọn, chương
+trình sẽ tiếp tục chạy xuống các câu lệnh trong những `case` phía sau và cả
+`default`. Đây gọi là hiện tượng rơi tiếp (`fallthrough`). Có thể xem ví dụ cụ
+thể bên dưới.
 
 ```cpp
 char i = 'B';
@@ -132,8 +136,8 @@ switch (i) {
 ```
 
 Sau khi chạy đoạn mã trên, kết quả được in ra là `WIKI` và `Hello World`. Nếu
-không muốn các câu lệnh ở những nhánh phía dưới được chạy, ta cần dùng `break`;
-có thể xem ví dụ cụ thể bên dưới.
+không muốn các câu lệnh ở những nhánh phía dưới được chạy tiếp, ta cần dùng
+`break`; có thể xem ví dụ cụ thể bên dưới.
 
 ```cpp
 char i = 'B';
@@ -153,8 +157,8 @@ switch (i) {
 ```
 
 Sau khi chạy đoạn mã trên, kết quả được in ra là `WIKI`. Vì có `break`, các câu
-lệnh tiếp theo sẽ không tiếp tục được thực thi. Câu lệnh cuối cùng không cần
-`break`, vì phía dưới không còn câu lệnh nào nữa.
+lệnh ở những nhánh tiếp theo sẽ không được thực thi. Câu lệnh cuối cùng không
+cần `break`, vì phía dưới không còn câu lệnh nào nữa.
 
 Giá trị của các nhãn `case` không được trùng nhau, nhưng thứ tự xuất hiện của
 từng `case` (bao gồm cả `default`) có thể tùy ý. Ví dụ:
@@ -182,6 +186,7 @@ phạm vi cục bộ rõ ràng và tránh lỗi do nhảy qua phần khởi tạ
 
 ```cpp
 char i = 'B';
+int ans = 0;
 
 switch (i) {
   case 'A': {
@@ -207,5 +212,5 @@ switch (i) {
 ??? note "Hiểu switch như thế nào"
     Ở phần trên đã dùng nhiều cách nói như "nhánh case", "mệnh đề case", v.v.
     Ở tầng triển khai bên dưới, `switch` tương đương với một nhóm câu lệnh nhảy.
-    Cũng vì vậy mới có kỹ thuật đặc biệt như Duff's Device; những ai muốn tìm
-    hiểu thêm có thể tự nghiên cứu.
+    Cũng vì vậy mới có kỹ thuật đặc biệt như Duff's Device; nếu muốn tìm hiểu
+    sâu hơn, có thể tự nghiên cứu thêm.
