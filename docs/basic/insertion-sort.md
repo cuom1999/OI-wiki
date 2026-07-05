@@ -29,10 +29,10 @@ $$
 1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử.} \\
 2 & \textbf{Đầu ra. } A\text{ được sắp xếp không giảm một cách ổn định.} \\
 3 & \textbf{Phương pháp. }  \\
-4 & \textbf{for } i\gets 2\textbf{ to }n\\
+4 & \textbf{với } i\gets 2\textbf{ đến }n\\
 5 & \qquad key\gets A[i]\\
 6 & \qquad j\gets i-1\\
-7 & \qquad\textbf{while }j>0\textbf{ and }A[j]>key\\
+7 & \qquad\textbf{trong khi }j>0\textbf{ và }A[j]>key\\
 8 & \qquad\qquad A[j + 1]\gets A[j]\\
 9 & \qquad\qquad j\gets j - 1\\
 10 & \qquad A[j + 1]\gets key

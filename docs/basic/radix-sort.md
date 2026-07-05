@@ -117,7 +117,7 @@ $$
 1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử, mỗi phần tử có }k\text{ khóa.}\\
 2 & \textbf{Đầu ra. } \text{Mảng }A\text{ được sắp xếp không giảm một cách ổn định.} \\
 3 & \textbf{Phương pháp. }  \\
-4 & \textbf{for }i\gets k\textbf{ down to }1\\
+4 & \textbf{với }i\gets k\textbf{ giảm đến }1\\
 5 & \qquad\text{sắp xếp }A\text{ theo thứ tự không giảm dựa trên khóa thứ }i\text{ một cách ổn định}
 \end{array}
 $$

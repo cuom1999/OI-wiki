@@ -50,16 +50,16 @@ $$
 1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ số nguyên dương không vượt quá } w. \\
 2 & \textbf{Đầu ra. } \text{Mảng }A\text{ sau khi được sắp xếp không giảm một cách ổn định.} \\
 3 & \textbf{Phương pháp. }  \\
-4 & \textbf{for }i\gets0\textbf{ to }w\\
+4 & \textbf{với }i\gets0\textbf{ đến }w\\
 5 & \qquad \textit{cnt}[i]\gets0\\
-6 & \textbf{for }i\gets1\textbf{ to }n\\
+6 & \textbf{với }i\gets1\textbf{ đến }n\\
 7 & \qquad \textit{cnt}[A[i]]\gets\textit{cnt}[A[i]]+1\\
-8 & \textbf{for }i\gets1\textbf{ to }w\\
+8 & \textbf{với }i\gets1\textbf{ đến }w\\
 9 & \qquad \textit{cnt}[i]\gets \textit{cnt}[i]+\textit{cnt}[i-1]\\
-10 & \textbf{for }i\gets n\textbf{ downto }1\\
+10 & \textbf{với }i\gets n\textbf{ giảm đến }1\\
 11 & \qquad B[\textit{cnt}[A[i]]]\gets A[i]\\
 12 & \qquad \textit{cnt}[A[i]]\gets \textit{cnt}[A[i]]-1\\
-13 & \textbf{return } B
+13 & \textbf{trả về } B
 \end{array}
 $$
 

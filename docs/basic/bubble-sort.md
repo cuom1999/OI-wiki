@@ -34,10 +34,10 @@ $$
 2 & \textbf{Đầu ra. } A\text{ được sắp xếp không giảm một cách ổn định.} \\
 3 & \textbf{Phương pháp. }  \\
 4 & flag\gets True\\
-5 & \textbf{while }flag\\
+5 & \textbf{trong khi }flag\\
 6 & \qquad flag\gets False\\
-7 & \qquad\textbf{for }i\gets1\textbf{ to }n-1\\
-8 & \qquad\qquad\textbf{if }A[i]>A[i + 1]\\
+7 & \qquad\textbf{với }i\gets1\textbf{ đến }n-1\\
+8 & \qquad\qquad\textbf{nếu }A[i]>A[i + 1]\\
 9 & \qquad\qquad\qquad flag\gets True\\
 10 & \qquad\qquad\qquad \text{Hoán đổi } A[i]\text{ và }A[i + 1]
 \end{array}

@@ -111,18 +111,18 @@ Về độ phức tạp bộ nhớ, do Timsort nhìn chung cần thêm $O(n)$ kh
     1 & nRemaining \gets \text{độ dài mảng} \\
     2 & minRun \gets \text{chọn giá trị MinRun phù hợp}(nRemaining) \\
     3 & startIndex \gets 0 \\
-    4 & \textbf{while } nRemaining > 0 \ \textbf{do} \\
+    4 & \textbf{trong khi } nRemaining > 0 \ \textbf{thực hiện} \\
     5 & \qquad runLength \gets \text{nhận diện Run }(array, startIndex, nRemaining) \\
-    6 & \qquad \textbf{if } runLength < minRun \ \textbf{then} \\
+    6 & \qquad \textbf{nếu } runLength < minRun \ \textbf{thì} \\
     7 & \qquad \qquad extendLength \gets \min(minRun, nRemaining) \\
     8 & \qquad \qquad \text{dùng sắp xếp chèn để mở rộng đoạn } [startIndex, startIndex + extendLength - 1]\\
     9 & \qquad \qquad runLength \gets extendLength \\
-    10 & \qquad \textbf{end if} \\
+    10 & \qquad \textbf{kết thúc nếu} \\
     11 & \qquad \text{đẩy Run } (startIndex, runLength) \text{ vào ngăn xếp} \\
     12 & \qquad \textbf{gọi } \text{mergeCollapse(ngăn xếp)} \ \text{để kiểm tra và hợp nhất các Run trong ngăn xếp} \\
     13 & \qquad startIndex \gets startIndex + runLength \ \text{cập nhật vị trí bắt đầu} \\
     14 & \qquad nRemaining \gets nRemaining - runLength \ \text{cập nhật độ dài còn lại} \\
-    15 & \textbf{end while} \\
+    15 & \textbf{kết thúc vòng lặp} \\
     16 & \textbf{gọi } \text{mergeForceCollapse(ngăn xếp)} \ \text{để hợp nhất lần cuối tất cả Run trong ngăn xếp} \\
     \end{array}
     $$

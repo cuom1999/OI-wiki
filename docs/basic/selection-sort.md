@@ -31,10 +31,10 @@ $$
 1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử.} \\
 2 & \textbf{Đầu ra. } A\text{ được sắp xếp theo thứ tự không giảm.} \\
 3 & \textbf{Phương pháp. }  \\
-4 & \textbf{for } i\gets 1\textbf{ to }n-1\\
+4 & \textbf{với } i\gets 1\textbf{ đến }n-1\\
 5 & \qquad ith\gets i\\
-6 & \qquad \textbf{for }j\gets i+1\textbf{ to }n\\
-7 & \qquad\qquad\textbf{if }A[j]<A[ith]\\
+6 & \qquad \textbf{với }j\gets i+1\textbf{ đến }n\\
+7 & \qquad\qquad\textbf{nếu }A[j]<A[ith]\\
 8 & \qquad\qquad\qquad ith\gets j\\
 9 & \qquad \text{hoán đổi }A[i]\text{ và }A[ith]\\
 \end{array}
