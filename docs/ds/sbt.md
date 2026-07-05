@@ -1,8 +1,14 @@
-Cây cân bằng theo kích thước (Size Balanced Tree, SBT) là một loại cây tìm kiếm nhị phân tự cân bằng (Self-Balanced Binary Search Tree, SBBST) do tuyển thủ OI Trung Quốc Chen Qifeng đề xuất vào năm 2007. Cấu trúc này duy trì cân bằng bằng cách kiểm tra số lượng nút trong các cây con. So với các cây tìm kiếm nhị phân tự cân bằng phổ biến như cây đỏ-đen hay AVL, SBT hỗ trợ truy vấn thứ hạng của một khóa trong cây với độ phức tạp thời gian $O(\log n)$.
+Cây cân bằng theo kích thước (Size Balanced Tree, SBT) là một loại cây tìm kiếm nhị phân tự cân bằng
+(Self-Balanced Binary Search Tree, SBBST) do tuyển thủ OI Trung Quốc Chen Qifeng đề xuất vào năm 2007.
+Cấu trúc này duy trì cân bằng bằng cách kiểm tra số lượng nút trong các cây con.
+So với các cây tìm kiếm nhị phân tự cân bằng phổ biến như cây đỏ-đen hay AVL,
+SBT hỗ trợ truy vấn thứ hạng của một khóa trong cây với độ phức tạp thời gian $O(\log n)$.
 
 ## Định nghĩa nút
 
-So với cây tìm kiếm nhị phân thông thường, mỗi nút $N$ của SBT chỉ cần duy trì thêm một trường số nguyên `size`, dùng để lưu số nút trong cây con có gốc là $N$. Kiểu nút `Node` được định nghĩa như sau:
+So với cây tìm kiếm nhị phân thông thường, mỗi nút $N$ của SBT chỉ cần duy trì thêm một trường số nguyên `size`,
+dùng để lưu số nút trong cây con có gốc là $N$.
+Kiểu nút `Node` được định nghĩa như sau:
 
 | Định danh  | Kiểu    | Mô tả           |
 | ---------- | ------- | --------------- |
@@ -21,13 +27,19 @@ size(N.right) >= size(N.left.left)
 size(N.right) >= size(N.left.right)
 ```
 
-Diễn đạt bằng ngôn ngữ tự nhiên: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút con của nút anh em của nó (sibling), tức các nút cháu theo nhánh bên (nephew).
+Diễn đạt bằng ngôn ngữ tự nhiên:
+`size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút con của nút anh em của nó (sibling),
+tức các nút cháu theo nhánh bên (nephew).
 
 ## Duy trì cân bằng
 
 ### Phép xoay
 
-SBT chủ yếu duy trì cân bằng bằng các phép xoay làm thay đổi chiều cao của cây. Phép xoay của nó tương tự hầu hết cây tìm kiếm nhị phân tự cân bằng khác; điểm khác biệt duy nhất là sau khi xoay xong, cần cập nhật `size` cho các nút có con trái/phải thay đổi trong quá trình xoay. Mã ví dụ như sau:
+SBT chủ yếu duy trì cân bằng bằng các phép xoay làm thay đổi chiều cao của cây.
+Phép xoay của nó tương tự hầu hết cây tìm kiếm nhị phân tự cân bằng khác.
+Điểm khác biệt duy nhất là sau khi xoay xong,
+cần cập nhật `size` cho các nút có con trái/phải thay đổi trong quá trình xoay.
+Mã ví dụ như sau:
 
 ```cpp
 void updateSize() {
@@ -171,7 +183,9 @@ if (size(node->left->right) > size(node->right)) {
 
 ### Chèn
 
-Thao tác chèn của SBT cần thực hiện thao tác chèn như cây tìm kiếm nhị phân thông thường, đồng thời cập nhật đệ quy trường `size` của các nút và duy trì cân bằng. Mã ví dụ như sau:
+Thao tác chèn của SBT giống thao tác chèn trong cây tìm kiếm nhị phân thông thường,
+đồng thời cập nhật đệ quy trường `size` của các nút và duy trì cân bằng.
+Mã ví dụ như sau:
 
 ```cpp
 if (compare(key, node->key)) {
@@ -201,9 +215,16 @@ if (compare(key, node->key)) {
 
 Theo mô tả về thao tác xóa trong bài báo của Chen Qifeng, người đề xuất cây cân bằng theo kích thước:
 
-> Điều này có thể làm hỏng tính chất của SBT. Nhưng với cách chèn ở trên, cây tìm kiếm nhị phân vẫn giữ chiều cao $O(\log n)$, trong đó $n$ là tổng số lần chèn, không phải kích thước hiện tại.
+> Điều này có thể làm hỏng tính chất của SBT. Nhưng với cách chèn ở trên,
+> cây tìm kiếm nhị phân vẫn giữ chiều cao $O(\log n)$,
+> trong đó $n$ là tổng số lần chèn, không phải kích thước hiện tại.
 
-Thao tác xóa tuy có thể phá vỡ tính chất của SBT, nhưng không làm chiều cao cây tăng lên, nên không ảnh hưởng đến hiệu quả của các thao tác sau đó. Tuy nhiên trong thực tế, nếu sau một đợt chèn hàng loạt chỉ thực hiện nhiều thao tác xóa và truy vấn, cây vẫn có thể mất cân bằng và ảnh hưởng đến hiệu suất tổng thể. Vì vậy, trong cách cài đặt thao tác xóa của SBT ở bài này, ta vẫn chọn thêm bước duy trì cân bằng. Mã tham khảo như sau:
+Thao tác xóa tuy có thể phá vỡ tính chất của SBT, nhưng không làm chiều cao cây tăng lên,
+nên không ảnh hưởng đến hiệu quả của các thao tác sau đó.
+Tuy nhiên trong thực tế, nếu sau một đợt chèn hàng loạt chỉ thực hiện nhiều thao tác xóa và truy vấn,
+cây vẫn có thể mất cân bằng và ảnh hưởng đến hiệu suất tổng thể.
+Vì vậy, cách cài đặt thao tác xóa của SBT trong bài này vẫn thêm bước duy trì cân bằng.
+Mã tham khảo như sau:
 
 ```cpp
 bool remove(NodePtr& node, K key, NodeConsumer action) {
@@ -327,11 +348,19 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
 }
 ```
 
-Cần chú ý rằng trong Case 5 của đoạn mã trên, sau khi dùng nút kế nhiệm $S$ (cũng có thể chọn nút tiền nhiệm) để thay thế nút cần xóa $N$ và xóa $N$ sau khi thay thế, cần cập nhật trường `size` của mọi nút trên đường từ nút cha $P$ của $S$ trước khi thay thế đến nút $S$ sau khi thay thế (như chú thích trong mã). Cài đặt trong bài này dùng ngăn xếp để lần lượt ghi lại các nút trên đường đi, cuối cùng bật ra theo thứ tự ngược với khi duyệt để cập nhật.
+Cần chú ý rằng trong Case 5 của đoạn mã trên,
+sau khi dùng nút kế nhiệm $S$ (cũng có thể chọn nút tiền nhiệm) để thay thế nút cần xóa $N$
+và xóa $N$ sau khi thay thế,
+cần cập nhật trường `size` của mọi nút trên đường từ nút cha $P$ của $S$ trước khi thay thế
+đến nút $S$ sau khi thay thế, như chú thích trong mã.
+Cài đặt trong bài này dùng ngăn xếp để lần lượt ghi lại các nút trên đường đi,
+cuối cùng bật ra theo thứ tự ngược với khi duyệt để cập nhật.
 
 ### Truy vấn thứ hạng
 
-Vì mỗi nút SBT lưu thông tin số nút trong cây con, ta có thể truy vấn thứ hạng của một `key` (hoặc số nút lớn hơn/nhỏ hơn một `key`) trong thời gian $O(\log n)$. Mã ví dụ như sau:
+Vì mỗi nút SBT lưu thông tin số nút trong cây con,
+có thể truy vấn thứ hạng của một `key` (hoặc số nút lớn hơn/nhỏ hơn một `key`) trong thời gian $O(\log n)$.
+Mã ví dụ như sau:
 
 ```cpp
 USize countLess(ConstNodePtr node, K key, bool countEqual = false) const {
