@@ -523,13 +523,13 @@ Cây 2-3 là cây B bậc 3. Mỗi nút là nút 2 hoặc nút 3, lưu trữ m�
 
 Về bản chất, cây 2-3 và cây đỏ-đen nghiêng trái là tương đương. Trong cây 2-3, một nút có thể lưu 1 phần tử hoặc 2 phần tử, còn một nút trong cây đỏ-đen chỉ có thể lưu một phần tử. Như hình dưới đây, nút 2 của cây 2-3 tương ứng với một nút đen, còn nút 3 tương ứng với một nút đỏ và một nút đen. Có thể xem `b` và `c` là song song.
 
-![2-3-tree-rbt](images/2-3-tree-rbt-1.svg)
+![Nút 2 của cây 2-3 tương ứng với nút đen](images/2-3-tree-rbt-1.svg)
 
-![2-3-tree-rbt](images/2-3-tree-rbt-2.svg)
+![Nút 3 của cây 2-3 tương ứng với liên kết đỏ nghiêng trái](images/2-3-tree-rbt-2.svg)
 
 Hình dưới đây là cây đỏ-đen nghiêng trái tương ứng với một cây 2-3.
 
-![2-3-tree-rbt](images/2-3-tree-rbt-3.svg)
+![Cây 2-3 và cây đỏ-đen nghiêng trái tương ứng](images/2-3-tree-rbt-3.svg)
 
 Các thao tác chèn và xóa của cây 2-3 và cây đỏ-đen nghiêng trái tương ứng một-một với nhau.[^23-vs-llrbt]
 

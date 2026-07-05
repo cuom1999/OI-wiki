@@ -236,11 +236,11 @@ Cây 2-3-4 là cây B bậc 4. Giống như cây B nói chung, cây 2-3-4 có th
 
 Cây 2-3-4 và cây đỏ-đen là đẳng cấu; bất kỳ cây đỏ-đen nào cũng tương ứng duy nhất với một cây 2-3-4. Các thao tác chèn và xóa trên cây 2-3-4 gây ra việc mở rộng, tách và gộp nút, tương đương với đổi màu và xoay trong cây đỏ-đen. Hình dưới đây cho thấy các nút 2, nút 3 và nút 4 của cây 2-3-4 tương ứng với các nút trong cây đỏ-đen. Lưu ý rằng nút 3 của cây 2-3-4 tương ứng với hai trường hợp trong cây đỏ-đen: nút đỏ nghiêng trái và nút đỏ nghiêng phải; do đó một cây đỏ-đen có thể tương ứng với nhiều cây 2-3-4.
 
-![2-3-4-tree-rbt-1](images/2-3-4-tree-rbt-1.svg)
+![Đối ứng giữa nút 2, nút 3, nút 4 và cây đỏ-đen](images/2-3-4-tree-rbt-1.svg)
 
 Hình dưới đây là một cây đỏ-đen và cây 2-3-4 tương ứng với nó. Nếu đưa các nút đỏ trong cây đỏ-đen lên hai phía trái phải của nút cha để tạo thành một nút cây B, ta có thể thu được cây 2-3-4 tương ứng. Có thể thấy số nút của cây đỏ-đen bằng số phần tử dữ liệu của cây 2-3-4.
 
-![2-3-4-tree-rbt](images/2-3-4-tree-rbt-2.svg)
+![Cây đỏ-đen và cây 2-3-4 tương ứng](images/2-3-4-tree-rbt-2.svg)
 
 Có thể hiểu thao tác chèn và xóa của cây đỏ-đen bằng cách đối chiếu với cây 2-3-4.[^234-vs-rbt]
 
