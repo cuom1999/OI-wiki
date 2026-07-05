@@ -1,12 +1,12 @@
 Mảng là một bộ chứa lưu các đối tượng cùng kiểu. Các đối tượng trong mảng không
-có tên riêng, mà được truy cập thông qua vị trí của chúng. Kích thước của mảng
-là cố định, không thể tùy ý thay đổi độ dài mảng.
+có tên riêng, mà được truy cập thông qua vị trí của chúng. Sau khi đã khai báo,
+kích thước của mảng là cố định và không thể tùy ý thay đổi.
 
 ## Định nghĩa mảng
 
 Khai báo mảng có dạng `a[d]`, trong đó `a` là tên mảng, còn `d` là số phần tử
-trong mảng. Tại thời điểm biên dịch, `d` phải là giá trị đã biết; nói cách khác,
-`d` nên là một biểu thức hằng kiểu nguyên.
+trong mảng. Trong C++ chuẩn, tại thời điểm biên dịch `d` phải là giá trị đã biết;
+nói cách khác, `d` phải là một biểu thức hằng kiểu nguyên.
 
 ```cpp
 unsigned int d1 = 42;
@@ -23,21 +23,21 @@ int arr2[3];
 arr2 = arr1;      // sai
 ```
 
-Nên cố gắng định nghĩa các mảng lớn ở phạm vi toàn cục. Vì biến cục bộ được tạo
-trên vùng stack, mảng quá lớn (lớn hơn kích thước stack) sẽ làm tràn stack và
-dẫn đến lỗi chạy (RE). Nếu khai báo mảng ở phạm vi toàn cục, mảng sẽ được tạo
+Nên cố gắng định nghĩa các mảng lớn ở phạm vi toàn cục. Vì biến cục bộ thường
+được tạo trên stack, mảng quá lớn (lớn hơn giới hạn stack) có thể làm tràn stack
+và dẫn đến lỗi thực thi (RE). Nếu khai báo mảng ở phạm vi toàn cục, mảng sẽ nằm
 trong vùng nhớ tĩnh.
 
 ## Truy cập phần tử mảng
 
 Có thể dùng toán tử chỉ số `[]` để truy cập phần tử trong mảng. Chỉ số của mảng
 (tức giá trị trong cặp ngoặc vuông) bắt đầu từ 0. Lấy một mảng có 10 phần tử làm
-ví dụ, chỉ số của nó là từ 0 đến 9, không phải từ 1 đến 10. Tuy nhiên trong OI,
-để tiện sử dụng, ta thường khai báo mảng lớn hơn một chút, không dùng phần tử
-đầu tiên của mảng và bắt đầu truy cập từ chỉ số 1.
+ví dụ, các chỉ số hợp lệ của nó là từ 0 đến 9, không phải từ 1 đến 10. Tuy nhiên
+trong OI, để tiện sử dụng, ta thường khai báo mảng lớn hơn một chút, bỏ qua phần
+tử đầu tiên của mảng và bắt đầu truy cập từ chỉ số 1.
 
 Ví dụ 1: đọc một số nguyên $n$ từ chuẩn nhập, rồi đọc tiếp $n$ số và lưu vào
-mảng. Trong đó, $n\leq 1000$.
+mảng, trong đó $n\leq 1000$.
 
 ```cpp
 #include <iostream>
@@ -75,7 +75,7 @@ int main() {
     sum += arr[i];
   }
 
-  printf("%d\n", sum);
+  cout << sum << '\n';
   return 0;
 }
 ```
@@ -83,19 +83,19 @@ int main() {
 ### Truy cập vượt biên
 
 Chỉ số mảng $\mathit{idx}$ phải thỏa mãn
-$0\leq \mathit{idx}< \mathit{size}$. Nếu chỉ số không nằm trong phạm vi này, đó
-là hành vi không xác định và có thể sinh ra hậu quả không dự đoán được, như lỗi
-segmentation fault hoặc sửa nhầm biến ngoài dự kiến, v.v.
+$0\leq \mathit{idx}< \mathit{size}$. Nếu chỉ số không nằm trong phạm vi này,
+chương trình có hành vi không xác định: có thể sinh ra hậu quả khó dự đoán, như
+lỗi segmentation fault, đọc dữ liệu rác hoặc sửa nhầm biến ngoài dự kiến.
 
 ## Mảng nhiều chiều
 
 Bản chất của mảng nhiều chiều là "mảng của mảng", tức phần tử của mảng ngoài
-cũng là mảng. Một mảng hai chiều cần hai kích thước để định nghĩa: độ dài của
-mảng ngoài và độ dài của mỗi mảng bên trong. Khi truy cập mảng hai chiều, cần
-viết hai chỉ số:
+cũng là mảng. Một mảng hai chiều cần hai kích thước để định nghĩa: số phần tử
+của mảng ngoài và số phần tử của mỗi mảng bên trong. Khi truy cập mảng hai
+chiều, cần viết hai chỉ số:
 
 ```cpp
-int arr[3][4];  // một mảng độ dài 3, mỗi phần tử là mảng độ dài 4
+int arr[3][4];  // một mảng có 3 phần tử, mỗi phần tử là một mảng có 4 phần tử
                 // gồm các phần tử kiểu int
 arr[2][1] = 1;  // truy cập mảng hai chiều
 ```
@@ -108,14 +108,20 @@ theo, mỗi dòng có $m$ số cách nhau bằng khoảng trắng, biểu thị 
 tại vị trí đó. Ta sẽ đọc ảnh này và lưu vào mảng hai chiều.
 
 ```cpp
+#include <iostream>
+using namespace std;
+
 const int MAXN = 1001;
 int pic[MAXN][MAXN];
-int n, m;
 
-cin >> n >> m;
-for (int i = 1; i <= n; ++i)
-  for (int j = 1; j <= m; ++j) cin >> pic[i][j];
+int main() {
+  int n, m;
+  cin >> n >> m;
+  for (int i = 1; i <= n; ++i)
+    for (int j = 1; j <= m; ++j) cin >> pic[i][j];
+  return 0;
+}
 ```
 
-Tương tự, bạn có thể định nghĩa mảng ba chiều, bốn chiều và các mảng có số
+Tương tự, ta có thể định nghĩa mảng ba chiều, bốn chiều và các mảng có số
 chiều cao hơn.
