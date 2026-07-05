@@ -34,11 +34,11 @@ Cây đỏ-đen nghiêng trái đặt thêm ràng buộc lên cây đỏ-đen. V
 
 Các trường hợp hợp lệ:
 
-![llrbt1](./images/llrbt-1.png)
+![Biểu diễn 3-node hợp lệ trong cây đỏ-đen nghiêng trái](./images/llrbt-1.png)
 
 Các trường hợp không hợp lệ:
 
-![llrbt2](./images/llrbt-2.png)
+![Các biểu diễn không hợp lệ trong cây đỏ-đen nghiêng trái](./images/llrbt-2.png)
 
 Đây chính là tính chất "nghiêng trái" của LLRB: cạnh đỏ chỉ được phép nghiêng về bên trái.
 
@@ -48,19 +48,19 @@ Các trường hợp không hợp lệ:
 
 Trước hết, ta dùng cách chèn BST thông thường để chèn một nút lá màu đỏ ở đáy cây. Sau đó, thông qua các điều chỉnh từ dưới lên, ta bảo đảm cây sau khi chèn vẫn thỏa mãn các tính chất của cây đỏ-đen nghiêng trái. Quy trình điều chỉnh được mô tả dưới đây:
 
-![llrbt3](./images/llrbt-3.png)
+![Các khả năng sau khi chèn nút đỏ](./images/llrbt-3.png)
 
 Sau khi chèn, có thể xuất hiện một cạnh đỏ nghiêng phải, vì vậy trong trường hợp cạnh đỏ nghiêng phải ta cần thực hiện một phép xoay trái:
 
-![llrbt4](./images/llrbt-4.png)
+![Xoay trái để sửa cạnh đỏ nghiêng phải](./images/llrbt-4.png)
 
 Sau phép xoay trái, có thể xuất hiện hai cạnh đỏ nghiêng trái liên tiếp:
 
-![llrbt5](./images/llrbt-5.png)
+![Xoay phải để sửa hai cạnh đỏ nghiêng trái liên tiếp](./images/llrbt-5.png)
 
 Vì vậy ta cần thực hiện một phép xoay phải. Với trạng thái sau phép xoay phải, ta nên gọi `color_flip`, tức là đảo màu của nút đó và hai con của nó.
 
-![llrbt6](./images/llrbt-6.png)
+![Đảo màu sau khi xoay phải](./images/llrbt-6.png)
 
 Nhờ đó cạnh đỏ nghiêng phải bị loại bỏ.
 
@@ -112,13 +112,13 @@ Bây giờ ta xét cách thỏa mãn tính chất này. Lưu ý rằng trong lú
 
 Như hình dưới mô tả, đây là một trường hợp tương đối đơn giản. Lúc này `h->rc->lc` là màu đen, ta chỉ cần đảo màu một lần:
 
-![llrbt-7](./images/llrbt-7.png)
+![Trường hợp đơn giản khi xóa nút nhỏ nhất với h->rc->lc màu đen](./images/llrbt-7.png)
 
 Hơn nữa, sau phép đảo màu như trên, `h->rc` và `h->rc->lc` sẽ không tạo thành các cạnh đỏ liên tiếp.
 
 Nhưng nếu `h->rc->lc` là màu đỏ thì tình huống phức tạp hơn:
 
-![llrbt-8](./images/llrbt-8.png)
+![Trường hợp khó khi xóa nút nhỏ nhất với h->rc->lc màu đỏ](./images/llrbt-8.png)
 
 Nếu chỉ đảo màu, các cạnh đỏ liên tiếp sẽ xuất hiện. Khi xét quá trình quay lui khỏi đệ quy, ta không thể sửa được tình huống như vậy, nên cần xử lý thêm.
 
@@ -162,7 +162,7 @@ Trước hết ta xét việc xóa lá. Tương tự như xóa giá trị nhỏ 
 
 Tiếp theo xét việc xóa nút không phải lá. Ta chỉ cần tìm nút nhỏ nhất trong cây con phải của nó, nếu có, rồi dùng giá trị của nút nhỏ nhất trong cây con phải để thay thế giá trị của nút đó. Cuối cùng xóa nút nhỏ nhất trong cây con phải.
 
-![llrbt-9](./images/llrbt-9.png)
+![Xóa nút bất kỳ bằng cách thay bằng nút kế tiếp](./images/llrbt-9.png)
 
 Vậy nếu không có cây con phải thì sao? Ta cần xoay cây con trái lên, như vậy vấn đề này sẽ không xuất hiện.
 
