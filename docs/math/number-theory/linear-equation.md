@@ -1,6 +1,6 @@
 Bài viết này thảo luận cách giải phương trình đồng dư tuyến tính.
 
-<span id="&#22522;&#26412;&#27010;&#24565;"></span>
+<span id="khái-niệm-cơ-bản"></span>
 ## Khái niệm cơ bản
 
 Gọi $a,b,n$ là các số nguyên và $x$ là ẩn. Phương trình có dạng
@@ -13,9 +13,9 @@ $$
 
 Giải phương trình đồng dư tuyến tính nghĩa là tìm toàn bộ nghiệm $x$ trong đoạn $[0,n-1]$. Tất nhiên, cộng hoặc trừ bội tùy ý của $n$ vào các nghiệm này vẫn cho nghiệm của phương trình. Theo modulo $n$, đó là toàn bộ nghiệm của phương trình.
 
-Bài viết này giới thiệu hai cách giải phương trình đồng dư tuyến tính, lần lượt dùng nghịch đảo và phương trình bất định. Trong trường hợp tổng quát, cả việc tính nghịch đảo lẫn giải phương trình bất định đều cần dùng [thuật toán Euclid mở rộng](./gcd.md#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95), nên hai cách này về bản chất là nhất quán.
+Bài viết này giới thiệu hai cách giải phương trình đồng dư tuyến tính, lần lượt dùng nghịch đảo và phương trình bất định. Trong trường hợp tổng quát, cả việc tính nghịch đảo lẫn giải phương trình bất định đều cần dùng [thuật toán Euclid mở rộng](./gcd.md#thuật-toán-euclid-mở-rộng), nên hai cách này về bản chất là nhất quán.
 
-<span id="&#29992;&#36870;&#20803;&#27714;&#35299;"></span>
+<span id="giải-bằng-nghịch-đảo"></span>
 ## Giải bằng nghịch đảo
 
 Trước hết xét trường hợp $a$ và $n$ nguyên tố cùng nhau, tức $\gcd(a,n)=1$. Khi đó có thể tính [nghịch đảo](./inverse.md) $a^{-1}$ của $a$, rồi nhân hai vế phương trình với $a^{-1}$, thu được nghiệm duy nhất:
@@ -50,10 +50,10 @@ Tiếp theo xét trường hợp $a$ và $n$ không nguyên tố cùng nhau, t�
 
 Tóm lại, **số nghiệm** của phương trình đồng dư tuyến tính bằng $d=\gcd(a,n)$ hoặc bằng $0$.
 
-<span id="&#29992;&#19981;&#23450;&#26041;&#31243;&#27714;&#35299;"></span>
+<span id="giải-bằng-phương-trình-bất-định"></span>
 ## Giải bằng phương trình bất định
 
-Phương trình đồng dư tuyến tính tương đương với [phương trình bất định bậc nhất hai ẩn](./bezouts.md#%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E6%83%85%E5%BD%A2) theo $x,y$:
+Phương trình đồng dư tuyến tính tương đương với [phương trình bất định bậc nhất hai ẩn](./bezouts.md#trường-hợp-hai-biến) theo $x,y$:
 
 $$
 ax + ny = b.
@@ -78,7 +78,7 @@ $$
 
 Lấy $x_0$ theo modulo $n/d$ sẽ nhận được nghiệm nguyên không âm nhỏ nhất của phương trình đồng dư, tức $x'$ ở phần trên.
 
-<span id="&#21442;&#32771;&#23454;&#29616;"></span>
+<span id="cài-đặt-tham-khảo"></span>
 ## Cài đặt tham khảo
 
 Cài đặt tham khảo trong phần này trả về nghiệm nguyên không âm nhỏ nhất của phương trình đồng dư. Nếu nghiệm không tồn tại, trả về $-1$.
@@ -94,7 +94,7 @@ Cài đặt tham khảo trong phần này trả về nghiệm nguyên không âm
         --8<-- "docs/math/code/linear-equation/linear-equation.py:core"
         ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [[NOIP2012] Phương trình đồng dư](https://loj.ac/problem/2605)
