@@ -1,6 +1,6 @@
 Bài viết này giải thích cách dùng cây phân đoạn để xử lý cực trị lịch sử trên đoạn,
 dựa trên hướng tiếp cận được Ji Ruyi nhắc tới trong
-[luận văn đội tuyển quốc gia năm 2016](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf).
+[luận văn đội tuyển quốc gia năm 2016][national-training-2016].
 
 ## Cực trị đoạn
 
@@ -15,7 +15,7 @@ tức $a_i=\max(a_i,x)$ hoặc $a_i=\min(a_i,x)$.
     2.  `1 l r` xuất $\max\limits_{i=l}^r a_i$.
     3.  `2 l r` xuất $\sum\limits_{i=l}^r a_i$.
 
-    Có nhiều bộ dữ liệu, bảo đảm $T\le 100,~\sum n,\sum m\le 10^6$.
+    Có nhiều bộ dữ liệu, thỏa $T\le 100,~\sum n,\sum m\le 10^6$.
 
 Lấy $\min$ trên đoạn nghĩa là chỉ những số lớn hơn $t$ mới bị thay đổi.
 Vì vậy đối tượng của thao tác không còn là toàn bộ đoạn,
@@ -28,7 +28,7 @@ Tiếp theo, xét thao tác lấy $\min$ với $t$ trên đoạn.
 2.  Nếu $Se<t < Max$, thì $t$ có thể cập nhật các giá trị lớn nhất trong đoạn hiện tại.
     Cộng $Cnt(t-Max)$ vào tổng đoạn, rồi cập nhật $Max$ thành $t$ và gắn một nhãn.
 3.  Nếu $t\le Se$, lúc này chưa biết có bao nhiêu số sẽ bị cập nhật.
-    Chiến lược là đệ quy trực tiếp xuống dưới, rồi đẩy thông tin lên.
+    Chiến lược là đệ quy xuống dưới, rồi đẩy thông tin lên.
 
 Độ phức tạp của thuật toán này là bao nhiêu?
 Dùng phân tích thế năng có thể chứng minh độ phức tạp là $O(m\log n)$.
@@ -61,7 +61,7 @@ Chiến lược xử lý như sau:
     ngoài việc dùng $v$ để cập nhật thông tin phụ và nhãn cộng đoạn của nút hiện tại,
     còn dùng $v$ để cập nhật các nhãn $\max$ đoạn và $\min$ đoạn.
 3.  Khi lấy $\min$ với $v$ cho một nút
-    (trong bước này bỏ qua quá trình tìm kiếm thô, giả sử nhãn thỏa điều kiện để được gắn),
+    (trong bước này bỏ qua quá trình đi xuống tìm nút, giả sử nhãn thỏa điều kiện để được gắn),
     ngoài việc cập nhật thông tin phụ, cần so sánh với nhãn $\max$ đoạn.
     Nếu $v$ nhỏ hơn nhãn $\max$ đoạn, thì cuối cùng mọi số đều sẽ trở thành $v$,
     nên cũng đổi nhãn $\max$ đoạn thành $v$.
@@ -97,9 +97,9 @@ Về bản chất, chia các số của dãy thành ba loại:
 giá trị lớn nhất, giá trị nhỏ nhất và không phải cực trị,
 rồi duy trì riêng từng loại.
 Dù không thực sự dựng ra tập cực trị cụ thể, điều đó không cản trở việc duy trì.
-Vì vậy khi gắn nhãn, có thể tiện thể cập nhật thông tin cho $B$
-(chú ý: không phải gắn nhãn cho $B$, mà là cập nhật thông tin).
-Khi truy vấn, truy vấn trên $A$; lúc đẩy nhãn xuống thì tiện thể cập nhật thông tin cho $B$.
+Vì vậy khi gắn nhãn, có thể đồng thời cập nhật thông tin cho $B$
+(lưu ý: không phải gắn nhãn cho $B$, mà là cập nhật thông tin).
+Khi truy vấn, truy vấn trên $A$; lúc đẩy nhãn xuống thì đồng thời cập nhật thông tin cho $B$.
 Sau khi tìm được nút cần thiết, trả về thông tin của $B$.
 Về bản chất, thao tác này giao việc duy trì thông tin cực trị cho $B$.
 Ngoài ra vẫn phải xử lý vấn đề các tập giá trị bị trùng.
@@ -127,7 +127,7 @@ cách xử lý giá trị lớn nhất và lớn thứ hai của $A,B$ giống h
 Nhãn $\min$ của $A$ sẽ ảnh hưởng tới $C_{1,1}$ và $C_{1,0}$,
 còn nhãn của $B$ sẽ ảnh hưởng tới $C_{1,1}$ và $C_{0,1}$.
 Phép cộng của $A,B$ sẽ ảnh hưởng tới cả $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$.
-Chỉ cần chú ý các trường hợp biên khi $C_{0,0},C_{1,0},C_{0,1}$ không tồn tại
+Chỉ cần lưu ý các trường hợp biên khi $C_{0,0},C_{1,0},C_{0,1}$ không tồn tại
 (ví dụ đoạn $[i,i]$ chỉ có giá trị lớn nhất của $A,B$ và $C_{1,1}$ tồn tại).
 
 Tiếp theo cần xét cách duy trì $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ khi pushup.
@@ -172,13 +172,13 @@ Phần tiếp theo thảo luận các vấn đề liên quan đến cực trị 
 
 ### Cực trị lịch sử không phải là tính bền vững
 
-Chú ý, bài toán cực trị lịch sử được nói tới trong phần này khác với cấu trúc dữ liệu bền vững.
+Lưu ý, bài toán cực trị lịch sử được nhắc tới trong phần này khác với cấu trúc dữ liệu bền vững.
 Gọi riêng lớp bài toán đặc biệt này là bài toán cực trị lịch sử.
 Bài toán cực trị lịch sử có thể chia thành ba loại.
 
 #### Cực đại lịch sử
 
-Nói đơn giản, cực đại lịch sử của một vị trí là giá trị lớn nhất từng xuất hiện tại vị trí đó.
+Hiểu đơn giản, cực đại lịch sử của một vị trí là giá trị lớn nhất từng xuất hiện tại vị trí đó.
 Định nghĩa hình thức như sau: định nghĩa một mảng phụ $B$, ban đầu hoàn toàn giống $A$.
 Sau mỗi thao tác trên $A$, lấy $\max$ cho toàn bộ mảng:
 
@@ -228,7 +228,7 @@ Tiếp theo xét $\max$ đoạn lịch sử.
 Định nghĩa nhãn $Pre$ với ý nghĩa:
 trong vòng đời của nhãn này, đó là giá trị lớn nhất lịch sử của nhãn $Add$.
 
-Định nghĩa này có thể hơi mơ hồ, nên trước hết cần giải thích vòng đời của một nhãn.
+Định nghĩa này chưa thật trực quan, nên trước hết cần giải thích vòng đời của một nhãn.
 Một nhãn sẽ trải qua quá trình sau:
 
 1.  Được tạo tại nút $u$.
@@ -245,9 +245,9 @@ Vì sao cần định nghĩa vòng đời?
 Dựa vào khái niệm này, có thể chứng minh:
 trong vòng đời của nhãn tại một nút,
 các nút con của nó đều không thay đổi và vẫn giữ trạng thái trước vòng đời này.
-Lý do rất đơn giản: trong khoảng thời gian đó không hề đẩy nhãn xuống.
+Lý do là trong khoảng thời gian đó không có thao tác đẩy nhãn xuống.
 
-Do đó có thể bảo đảm rằng giá trị lớn nhất lịch sử của $Add$ trong vòng đời của nhãn hiện tại
+Do đó giá trị lớn nhất lịch sử của $Add$ trong vòng đời của nhãn hiện tại
 có thể được cập nhật vào nhãn và thông tin của các nút con,
 vì nhãn và thông tin của nút con trong khoảng thời gian này đều không thay đổi.
 Khi đẩy nhãn của $u$ xuống con $s$ của nó, có:
@@ -264,7 +264,7 @@ Thao tác gán đoạn sẽ biến mọi số thành cùng một số.
 Sau đó, dù là cộng/trừ đoạn hay gán đoạn, mọi số trong cả đoạn vẫn là cùng một số
 (trừ khi kết thúc vòng đời của nhãn hiện tại và đẩy nhãn xuống).
 Vì vậy có thể xem mọi nhãn sau thao tác gán đoạn đầu tiên đều là nhãn gán đoạn.
-Nói cách khác, vòng đời của một nhãn được chia đại khái thành hai giai đoạn:
+Nói cách khác, vòng đời của một nhãn có thể chia thành hai giai đoạn:
 
 1.  Giai đoạn hợp nhất một số nhãn cộng/trừ, chưa từng nhận nhãn gán.
 2.  Giai đoạn nhãn gán, không còn nhãn cộng/trừ theo nghĩa riêng nữa (nhãn cộng/trừ được chuyển hóa thành nhãn gán).
@@ -279,3 +279,5 @@ bài này không có thao tác lấy cực trị với $x$ trên đoạn.
 ```cpp
 --8<-- "docs/ds/code/seg-beats/seg-beats_3.cpp"
 ```
+
+[national-training-2016]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf
