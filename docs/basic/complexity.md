@@ -163,8 +163,8 @@ Cần chú ý rằng trong các thảo luận lý thuyết về độ phức t�
 
 ## Định lý chính (Master Theorem)
 
-Ta có thể dùng Master Theorem để nhanh chóng tìm độ phức tạp của các thuật toán đệ quy.
-Hệ thức truy hồi của Master Theorem như sau
+Ta có thể dùng định lý chính để nhanh chóng tìm độ phức tạp của các thuật toán đệ quy.
+Hệ thức truy hồi của định lý chính như sau
 
 $$
 T(n) = a T\left(\frac{n}{b}\right)+f(n)\qquad \forall n > b

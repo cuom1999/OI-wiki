@@ -880,7 +880,7 @@ def fib(n):
 
 <a id="khai-báo-struct-forward-star-và-các-biến-khác"></a>
 
-### Khai báo struct forward star và các biến khác
+### Khai báo cấu trúc forward star và các biến khác
 
 === "C++"
     ```cpp

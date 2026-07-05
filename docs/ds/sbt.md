@@ -1,10 +1,10 @@
-Size Balanced Tree (SBT) là một loại cây tìm kiếm nhị phân tự cân bằng (Self-Balanced Binary Search Tree, SBBST) do tuyển thủ OI Trung Quốc Chen Qifeng đề xuất vào năm 2007. Cấu trúc này duy trì cân bằng bằng cách kiểm tra số lượng nút trong các cây con. So với các cây tìm kiếm nhị phân tự cân bằng phổ biến như cây đỏ-đen hay AVL, Size Balanced Tree hỗ trợ truy vấn thứ hạng (rank) của một khóa trong cây với độ phức tạp thời gian $O(\log n)$.
+Cây cân bằng theo kích thước (Size Balanced Tree, SBT) là một loại cây tìm kiếm nhị phân tự cân bằng (Self-Balanced Binary Search Tree, SBBST) do tuyển thủ OI Trung Quốc Chen Qifeng đề xuất vào năm 2007. Cấu trúc này duy trì cân bằng bằng cách kiểm tra số lượng nút trong các cây con. So với các cây tìm kiếm nhị phân tự cân bằng phổ biến như cây đỏ-đen hay AVL, SBT hỗ trợ truy vấn thứ hạng của một khóa trong cây với độ phức tạp thời gian $O(\log n)$.
 
 ## Định nghĩa nút
 
 So với cây tìm kiếm nhị phân thông thường, mỗi nút $N$ của SBT chỉ cần duy trì thêm một trường số nguyên `size`, dùng để lưu số nút trong cây con có gốc là $N$. Kiểu nút `Node` được định nghĩa như sau:
 
-| Identifier | Type    | Description     |
+| Định danh  | Kiểu    | Mô tả           |
 | ---------- | ------- | --------------- |
 | `left`     | `Node*` | tham chiếu tới con trái |
 | `right`    | `Node*` | tham chiếu tới con phải |
@@ -12,7 +12,7 @@ So với cây tìm kiếm nhị phân thông thường, mỗi nút $N$ của SBT
 
 ## Tính chất
 
-Mọi nút $N$ trong Size Balanced Tree thỏa mãn các tính chất sau:
+Mọi nút $N$ trong cây cân bằng theo kích thước thỏa mãn các tính chất sau:
 
 ```text
 size(N.left) >= size(N.right.left)
@@ -21,7 +21,7 @@ size(N.right) >= size(N.left.left)
 size(N.right) >= size(N.left.right)
 ```
 
-Diễn đạt bằng ngôn ngữ tự nhiên: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút con của nút anh em của nó (Sibling), tức các nút cháu theo nhánh bên (Nephew).
+Diễn đạt bằng ngôn ngữ tự nhiên: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút con của nút anh em của nó (sibling), tức các nút cháu theo nhánh bên (nephew).
 
 ## Duy trì cân bằng
 
@@ -199,9 +199,9 @@ if (compare(key, node->key)) {
 
 ### Xóa
 
-Theo mô tả về thao tác xóa trong bài báo của Chen Qifeng, người đề xuất Size Balanced Tree:
+Theo mô tả về thao tác xóa trong bài báo của Chen Qifeng, người đề xuất cây cân bằng theo kích thước:
 
-> It can result in a destroyed SBT. But with the insertion above, a BST is still kept at the height of $O(\log n)$ where $n$ is the total number of insertions, not the current size.
+> Điều này có thể làm hỏng tính chất của SBT. Nhưng với cách chèn ở trên, BST vẫn giữ chiều cao $O(\log n)$, trong đó $n$ là tổng số lần chèn, không phải kích thước hiện tại.
 
 Thao tác xóa tuy có thể phá vỡ tính chất của SBT, nhưng không làm chiều cao cây tăng lên, nên không ảnh hưởng đến hiệu quả của các thao tác sau đó. Tuy nhiên trong thực tế, nếu sau một đợt chèn hàng loạt chỉ thực hiện nhiều thao tác xóa và truy vấn, cây vẫn có thể mất cân bằng và ảnh hưởng đến hiệu suất tổng thể. Vì vậy, trong cách cài đặt thao tác xóa của SBT ở bài này, ta vẫn chọn thêm bước duy trì cân bằng. Mã tham khảo như sau:
 
