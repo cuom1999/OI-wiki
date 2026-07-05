@@ -2,7 +2,7 @@ author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, odeinjul, xyf007, Good
 
 Kiến thức nền: [Giới thiệu phần quy hoạch động](./index.md).
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Trước khi nói cụ thể "DP ba lô" là gì, hãy xem bài ví dụ sau:
@@ -12,10 +12,10 @@ Trước khi nói cụ thể "DP ba lô" là gì, hãy xem bài ví dụ sau:
 
 Trong ví dụ trên, mỗi vật phẩm chỉ có hai trạng thái có thể xảy ra (chọn hoặc không chọn), tương ứng với $0$ và $1$ trong hệ nhị phân, nên loại bài toán này được gọi là "bài toán ba lô 0-1".
 
-<span id="0-1-&#x80CC;&#x5305;"></span>
+<span id="ba-lô-0-1"></span>
 ## Ba lô 0-1
 
-<span id="&#x89E3;&#x91CA;"></span>
+<span id="giải-thích"></span>
 ### Giải thích
 
 Trong bài ví dụ, các dữ kiện đã biết gồm trọng lượng $w_{i}$ của vật phẩm thứ $i$, giá trị $v_{i}$ của nó, và tổng sức chứa $W$ của ba lô.
@@ -40,7 +40,7 @@ $$
 
 **Hãy ghi nhớ và hiểu thật rõ phương trình chuyển trạng thái này, vì phần lớn các phương trình chuyển của bài toán ba lô đều được suy ra dựa trên nó.**
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
 Còn một điểm cần chú ý: rất dễ viết ra đoạn **mã lõi sai** như sau:
@@ -89,10 +89,10 @@ Vì vậy, mã lõi đúng là:
     --8<-- "docs/dp/code/knapsack/knapsack_1.cpp"
     ```
 
-<span id="&#x5B8C;&#x5168;&#x80CC;&#x5305;"></span>
+<span id="ba-lô-đầy-đủ"></span>
 ## Ba lô đầy đủ
 
-<span id="&#x89E3;&#x91CA;_1"></span>
+<span id="giải-thích_1"></span>
 ### Giải thích
 
 Mô hình ba lô đầy đủ tương tự ba lô 0-1; điểm khác biệt so với ba lô 0-1 là mỗi loại vật phẩm có thể được chọn vô hạn lần, chứ không chỉ được chọn một lần.
@@ -101,7 +101,7 @@ Ta có thể mượn ý tưởng của ba lô 0-1 để định nghĩa trạng t
 
 Cần chú ý rằng tuy định nghĩa giống ba lô 0-1, phương trình chuyển trạng thái của nó lại không giống ba lô 0-1.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quá-trình"></span>
 ### Quá trình
 
 Trước hết có thể xét một cách làm ngây thơ: với vật phẩm thứ $i$, duyệt số lượng vật phẩm đó được chọn để chuyển trạng thái. Độ phức tạp thời gian của cách làm này là $O(n^3)$.
@@ -130,7 +130,7 @@ Giống ba lô 0-1, ta có thể bỏ chiều thứ nhất để tối ưu độ
     --8<-- "docs/dp/code/knapsack/knapsack_2.cpp"
     ```
 
-<span id="&#x591A;&#x91CD;&#x80CC;&#x5305;"></span>
+<span id="ba-lô-nhiều-vật-phẩm"></span>
 ## Ba lô nhiều vật phẩm
 
 Ba lô nhiều vật phẩm cũng là một biến thể của ba lô 0-1. Điểm khác biệt so với ba lô 0-1 là mỗi loại vật phẩm có $k_i$ món, chứ không phải chỉ một món.
@@ -155,19 +155,19 @@ $$
     }
     ```
 
-<span id="&#x4E8C;&#x8FDB;&#x5236;&#x5206;&#x7EC4;&#x4F18;&#x5316;"></span>
+<span id="tối-ưu-bằng-phân-nhóm-nhị-phân"></span>
 ### Tối ưu bằng phân nhóm nhị phân
 
 Xét tối ưu. Ta vẫn xét việc chuyển ba lô nhiều vật phẩm thành mô hình ba lô 0-1 để giải.
 
-<span id="&#x89E3;&#x91CA;_2"></span>
+<span id="giải-thích_2"></span>
 ### Giải thích
 
 Hiển nhiên phần $O(nW)$ trong độ phức tạp không thể tối ưu thêm, nên ta chỉ có thể bắt đầu từ phần $O(\sum k_i)$. Để tiện trình bày, dùng $A_{i,j}$ biểu diễn vật phẩm thứ $j$ được tách ra từ loại vật phẩm thứ $i$.
 
 Trong cách làm ngây thơ, với $\forall j\le k_i$, mọi $A_{i,j}$ đều biểu diễn cùng một loại vật phẩm. Vì vậy nguyên nhân chính khiến hiệu suất thấp là ta đã làm rất nhiều việc lặp lại. Ví dụ, ta xét hai trường hợp "đồng thời chọn $A_{i,1},A_{i,2}$" và "đồng thời chọn $A_{i,2},A_{i,3}$"; hai trường hợp này hoàn toàn tương đương. Ta đã thực hiện kiểu công việc trùng lặp như vậy rất nhiều lần. Do đó, tối ưu cách tách vật phẩm trở thành điểm then chốt để giải quyết bài toán.
 
-<span id="&#x8FC7;&#x7A0B;_1"></span>
+<span id="quá-trình_1"></span>
 ### Quá trình
 
 Ta có thể dùng cách "phân nhóm nhị phân" để việc tách vật phẩm đẹp hơn.
@@ -185,7 +185,7 @@ Hiển nhiên, với cách tách trên, ta có thể biểu diễn mọi cách c
 
 Độ phức tạp thời gian là $O(W\sum_{i=1}^n\log_2k_i)$.
 
-<span id="&#x5B9E;&#x73B0;_1"></span>
+<span id="cài-đặt_1"></span>
 ### Cài đặt
 
 ??? note "Mã phân nhóm nhị phân"
@@ -223,14 +223,14 @@ Hiển nhiên, với cách tách trên, ta có thể biểu diễn mọi cách c
             list[index].v = h * k
         ```
 
-<span id="&#x5355;&#x8C03;&#x961F;&#x5217;&#x4F18;&#x5316;"></span>
+<span id="tối-ưu-bằng-hàng-đợi-đơn-điệu"></span>
 ### Tối ưu bằng hàng đợi đơn điệu
 
 Xem [Tối ưu bằng hàng đợi đơn điệu/ngăn xếp đơn điệu](./opt/monotonic-queue-stack.md).
 
 Bài tập: [Luogu P1776 - Sàng lọc bảo vật, NOI Guide 2010 Advanced (02)](https://www.luogu.com.cn/problem/P1776)
 
-<span id="&#x6DF7;&#x5408;&#x80CC;&#x5305;"></span>
+<span id="ba-lô-hỗn-hợp"></span>
 ## Ba lô hỗn hợp
 
 Ba lô hỗn hợp là bài toán trộn ba loại ba lô ở trên: có vật phẩm chỉ được chọn một lần, có vật phẩm được chọn vô hạn lần, và có vật phẩm chỉ được chọn $k$ lần.
@@ -248,7 +248,7 @@ for (duyet tung loai vat pham) {
 }
 ```
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="bài-ví-dụ"></span>
 ### Bài ví dụ
 
 ???+ note "[Luogu P1833 - Hoa anh đào](https://www.luogu.com.cn/problem/P1833)"
@@ -273,7 +273,7 @@ for (duyet tung loai vat pham) {
 
 Bài tập: [HDU 5410 CRB and His Birthday](https://acm.hdu.edu.cn/showproblem.php?pid=5410)
 
-<span id="&#x4E8C;&#x7EF4;&#x8D39;&#x7528;&#x80CC;&#x5305;"></span>
+<span id="ba-lô-với-chi-phí-hai-chiều"></span>
 ## Ba lô với chi phí hai chiều
 
 ???+ note "[Luogu P1855 - Vắt kiệt kkksc03](https://www.luogu.com.cn/problem/P1855)"
@@ -285,7 +285,7 @@ Bài này rõ ràng là bài toán ba lô 0-1, nhưng điểm khác là chọn m
 
 Lúc này cần chú ý rằng mở thêm một chiều để lưu số thứ tự vật phẩm là không phù hợp, vì dễ bị MLE.
 
-<span id="&#x5B9E;&#x73B0;_2"></span>
+<span id="cài-đặt_2"></span>
 ### Cài đặt
 
 === "C++"
@@ -304,7 +304,7 @@ Lúc này cần chú ý rằng mở thêm một chiều để lưu số thứ t�
                 dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
     ```
 
-<span id="&#x5206;&#x7EC4;&#x80CC;&#x5305;"></span>
+<span id="ba-lô-theo-nhóm"></span>
 ## Ba lô theo nhóm
 
 ???+ note "[Luogu P1757 - Ba lô phân nhóm vươn tới trời cao](https://www.luogu.com.cn/problem/P1757)"
@@ -314,7 +314,7 @@ Với dạng bài này nên nghĩ thế nào? Thực ra bài toán đã chuyển
 
 Nói thêm về cách lưu trữ. Có thể dùng $t_{k,i}$ để biểu diễn số thứ tự của vật phẩm thứ $i$ trong nhóm thứ $k$, rồi dùng $\mathit{cnt}_k$ để biểu diễn số vật phẩm trong nhóm thứ $k$.
 
-<span id="&#x5B9E;&#x73B0;_3"></span>
+<span id="cài-đặt_3"></span>
 ### Cài đặt
 
 === "C++"
@@ -340,7 +340,7 @@ Nói thêm về cách lưu trữ. Có thể dùng $t_{k,i}$ để biểu diễn 
 
 Ở đây cần chú ý: **tuyệt đối không được nhầm thứ tự vòng lặp**, như vậy mới bảo đảm tính đúng đắn.
 
-<span id="&#x6709;&#x4F9D;&#x8D56;&#x7684;&#x80CC;&#x5305;"></span>
+<span id="ba-lô-có-phụ-thuộc"></span>
 ## Ba lô có phụ thuộc
 
 ???+ note "[Luogu P1064 - Phương án ngân sách của Jinming](https://www.luogu.com.cn/problem/P1064)"
@@ -352,23 +352,23 @@ Xét bằng cách chia trường hợp. Với một vật phẩm chính và mộ
 
 Nếu là một tập các cây đa phân, cần tính tập của các nút con trước, rồi cuối cùng mới tính tập của nút cha.
 
-<span id="&#x6CDB;&#x5316;&#x7269;&#x54C1;&#x7684;&#x80CC;&#x5305;"></span>
+<span id="ba-lô-với-vật-phẩm-tổng-quát"></span>
 ## Ba lô với vật phẩm tổng quát
 
 Loại ba lô này không có chi phí và giá trị cố định; giá trị của nó phụ thuộc vào lượng chi phí được phân bổ cho nó. Trong một bài toán ba lô có sức chứa $V$, khi phân bổ cho nó chi phí $v_i$, giá trị nhận được là $h\left(v_i\right)$. Lúc này, chỉ cần thay giá trị cố định bằng tham chiếu đến hàm.
 
-<span id="&#x6742;&#x9879;"></span>
+<span id="linh-tinh"></span>
 ## Linh tinh
 
-<span id="&#x5C0F;&#x4F18;&#x5316;"></span>
+<span id="tối-ưu-nhỏ"></span>
 ### Tối ưu nhỏ
 
 Theo nguyên lý tham lam, khi chi phí bằng nhau thì chỉ cần giữ vật phẩm có giá trị cao nhất; khi giá trị cố định thì chỉ cần giữ vật phẩm có chi phí thấp nhất; khi có hai vật phẩm $i,j$ mà giá trị của $i$ lớn hơn giá trị của $j$ và chi phí của $i$ nhỏ hơn chi phí của $j$, chỉ cần giữ $i$.
 
-<span id="&#x80CC;&#x5305;&#x95EE;&#x9898;&#x53D8;&#x79CD;"></span>
+<span id="biến-thể-của-bài-toán-ba-lô"></span>
 ### Biến thể của bài toán ba lô
 
-<span id="&#x8F93;&#x51FA;&#x65B9;&#x6848;"></span>
+<span id="xuất-phương-án"></span>
 #### Xuất phương án
 
 Xuất phương án thực chất là ghi lại một trạng thái nào đó trong ba lô được suy ra như thế nào. Ta có thể dùng $g_{i,v}$ để biểu diễn khi vật phẩm thứ $i$ chiếm dung lượng $v$ thì có chọn vật phẩm này hay không. Sau đó, trong lúc chuyển trạng thái, ghi lại đã dùng chiến lược nào (chọn hoặc không chọn). Mã giả khi xuất:
@@ -387,7 +387,7 @@ for (duyet tu vat pham cuoi den vat pham dau) {
 }
 ```
 
-<span id="&#x6C42;&#x65B9;&#x6848;&#x6570;"></span>
+<span id="đếm-số-phương-án"></span>
 #### Đếm số phương án
 
 Với bài toán cho trước sức chứa ba lô, chi phí vật phẩm, các quan hệ khác, v.v., cần đếm tổng số phương án đạt đến một sức chứa nhất định.
@@ -404,7 +404,7 @@ $$
 
 Vì khi sức chứa bằng $0$ cũng có một phương án, tức là không cho gì vào.
 
-<span id="&#x6C42;&#x6700;&#x4F18;&#x65B9;&#x6848;&#x603B;&#x6570;"></span>
+<span id="đếm-tổng-số-phương-án-tối-ưu"></span>
 #### Đếm tổng số phương án tối ưu
 
 Để đếm tổng số phương án tối ưu, ta cần sửa nhẹ định nghĩa của mảng $\mathit{dp}$ trong ba lô 0-1: trạng thái DP $f_{i,j}$ là tổng giá trị lớn nhất có thể đạt được khi ba lô có sức chứa $j$ được "lấp đầy chính xác" và chỉ được xét $i$ vật phẩm đầu tiên.
@@ -461,7 +461,7 @@ Cuối cùng, ta tìm giá trị của nghiệm tối ưu, rồi cộng tất c�
     }
     ```
 
-<span id="&#x80CC;&#x5305;&#x7684;&#x7B2C;-k-&#x4F18;&#x89E3;"></span>
+<span id="nghiệm-tốt-thứ-k-của-bài-toán-ba-lô"></span>
 #### Nghiệm tốt thứ $k$ của bài toán ba lô
 
 Ba lô 0-1 thông thường yêu cầu nghiệm tối ưu. Trên phương pháp DP ba lô thông thường, chỉ cần sửa nhẹ bằng cách thêm một chiều để ghi các nghiệm tốt nhất thứ 1 đến thứ $k$ dưới trạng thái hiện tại, ta sẽ thu được thuật toán tìm nghiệm tốt thứ $k$ của ba lô 0-1.
@@ -497,7 +497,7 @@ Cụ thể, $\mathit{dp_{i,j,k}}$ ghi tổng giá trị lớn thứ $k$ có th�
     printf("%d\n", dp[m][K]);
     ```
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   [Nine Lectures on the Knapsack Problem - Cui Tianyi](https://github.com/tianyicui/pack).
