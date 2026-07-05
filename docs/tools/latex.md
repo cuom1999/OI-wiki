@@ -80,9 +80,9 @@ Lúc này tệp nguồn của bạn sẽ được chuyển thành tài liệu PD
 
 ### Xử lý sự cố
 
-Nếu tài liệu có lỗi và TeXworks không thể tạo tài liệu PDF, nút **Typeset** sẽ biến thành dấu gạch chéo màu đỏ, đồng thời phần xuất của terminal ở phía dưới vẫn mở. Khi đó:
+Nếu tài liệu có lỗi và TeXworks không thể tạo tài liệu PDF, nút **Typeset** sẽ biến thành dấu gạch chéo màu đỏ, đồng thời phần xuất của trình dòng lệnh ở phía dưới vẫn mở. Khi đó:
 
-$\rightarrow$ Nhấp nút **Abort typesetting**. $\rightarrow$ Đọc nội dung xuất ra trong terminal; dòng cuối có thể cho biết số dòng nơi lỗi xuất hiện. $\rightarrow$ Tìm dòng tương ứng trong tài liệu và sửa lỗi. $\rightarrow$ Nhấp lại nút **Typeset** để thử biên dịch tệp nguồn.
+$\rightarrow$ Nhấp nút **Abort typesetting**. $\rightarrow$ Đọc nội dung xuất ra trong trình dòng lệnh; dòng cuối có thể cho biết số dòng nơi lỗi xuất hiện. $\rightarrow$ Tìm dòng tương ứng trong tài liệu và sửa lỗi. $\rightarrow$ Nhấp lại nút **Typeset** để thử biên dịch tệp nguồn.
 
 ### Thêm tiêu đề tài liệu
 
@@ -291,7 +291,7 @@ $\rightarrow$ Thêm nhiều văn bản hơn vào tài liệu của bạn và th�
 
 ### Chữ màu
 
-Để tài liệu hỗ trợ chữ màu, bạn cần dùng package. Bạn có thể nạp nhiều package để tăng cường khả năng dàn trang của LaTeX. Lệnh nạp package được đặt trong phần lệnh tiền tố của tài liệu, tức là trước lệnh `\begin{document}`. Dùng `\usepackage[options]{package}` để nạp package. Trong đó, **package** là tên package, còn **options** là các tham số chỉ định đặc tính của package.
+Để tài liệu hỗ trợ chữ màu, bạn cần dùng gói lệnh. Bạn có thể nạp nhiều gói lệnh để tăng cường khả năng dàn trang của LaTeX. Lệnh nạp gói được đặt trong phần lệnh tiền tố của tài liệu, tức là trước lệnh `\begin{document}`. Dùng `\usepackage[options]{package}` để nạp gói. Trong đó, **package** là tên gói, còn **options** là các tham số chỉ định đặc tính của gói.
 
 Sau khi dùng `\usepackage{color}`, chúng ta có thể gọi các màu thường gặp:
 
@@ -303,7 +303,7 @@ Mã dùng chữ màu là:
 {\color{colorname}text}
 ```
 
-Trong đó **colorname** là tên màu bạn muốn dùng, còn **text** là nội dung văn bản có màu. Lưu ý rằng trong hình ví dụ, chữ màu vàng và trắng có màu nền; điều này cũng có thể thực hiện bằng lệnh `\colorbox` trong package Color. Cách dùng như sau:
+Trong đó **colorname** là tên màu bạn muốn dùng, còn **text** là nội dung văn bản có màu. Lưu ý rằng trong hình ví dụ, chữ màu vàng và trắng có màu nền; điều này cũng có thể thực hiện bằng lệnh `\colorbox` trong gói Color. Cách dùng như sau:
 
 ```tex
 \colorbox{colorname}{text}
@@ -496,7 +496,7 @@ Hãy thử vẽ bảng sau:
 
 ## Hình ảnh
 
-Chương này giới thiệu cách chèn hình ảnh vào tài liệu LaTeX. Ở đây chúng ta cần nạp package **graphicx**. Hình ảnh nên là tệp PDF, PNG, JPEG hoặc GIF. Đoạn mã sau sẽ chèn một hình tên myimage:
+Chương này giới thiệu cách chèn hình ảnh vào tài liệu LaTeX. Ở đây chúng ta cần nạp gói **graphicx**. Hình ảnh nên là tệp PDF, PNG, JPEG hoặc GIF. Đoạn mã sau sẽ chèn một hình tên myimage:
 
 ```tex
 \begin{figure}[h]
@@ -581,7 +581,7 @@ tạo ra kết quả:
 ??? warning "Cảnh báo"
     Có thể thấy rằng khi dùng `eqnarray`, sẽ xuất hiện các vấn đề như khoảng trống quanh dấu bằng quá lớn.
     
-    Có thể dùng môi trường `align` trong package `amsmath`:
+    Có thể dùng môi trường `align` trong gói `amsmath`:
     
     ```tex
     \usepackage{amsmath}
@@ -750,9 +750,9 @@ LaTeX có nhiều kiểu trích dẫn đánh số trong dòng:
 
 #### Trích dẫn tác giả-ngày
 
-Nếu muốn dùng kiểu trích dẫn tác giả-ngày, hãy dùng package **natbib**. Nó dùng lệnh `\citep{...}` để tạo chú thích trong ngoặc vuông, chẳng hạn $[Koppe,2010]$, và dùng `\citet{...}` để tạo chú thích chỉ đặt năm trong ngoặc vuông, chẳng hạn $Koppe [2010]$. Xem thêm cách dùng của nó [tại đây](http://mirror.ctan.org/macros/latex/contrib/natbib/natnotes.pdf).
+Nếu muốn dùng kiểu trích dẫn tác giả-ngày, hãy dùng gói **natbib**. Nó dùng lệnh `\citep{...}` để tạo chú thích trong ngoặc vuông, chẳng hạn $[Koppe,2010]$, và dùng `\citet{...}` để tạo chú thích chỉ đặt năm trong ngoặc vuông, chẳng hạn $Koppe [2010]$. Xem thêm cách dùng của nó [tại đây](http://mirror.ctan.org/macros/latex/contrib/natbib/natnotes.pdf).
 
-Package Natbib cũng có ba kiểu: **plainnat**, **abbrvnat** và **unsrtnat**; chúng có hiệu quả tương tự **plain**, **abbrv** và **unsrt**.
+Gói Natbib cũng có ba kiểu: **plainnat**, **abbrvnat** và **unsrtnat**; chúng có hiệu quả tương tự **plain**, **abbrv** và **unsrt**.
 
 #### Kiểu trích dẫn khác
 

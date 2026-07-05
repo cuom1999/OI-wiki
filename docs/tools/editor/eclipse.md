@@ -2,7 +2,7 @@ author: ouuan, Doveqise, partychicken, Xeonacid, StudyingFather
 
 ## Giới thiệu
 
-Eclipse là một môi trường phát triển tích hợp (IDE) mã nguồn mở, đa nền tảng nổi tiếng. Ban đầu nó chủ yếu được dùng để phát triển bằng ngôn ngữ Java; hiện nay cũng có người dùng phần bổ trợ (plugin) để biến nó thành công cụ phát triển cho C++, Python, PHP và các ngôn ngữ khác.
+Eclipse là một môi trường phát triển tích hợp (IDE) mã nguồn mở, đa nền tảng nổi tiếng. Ban đầu nó chủ yếu được dùng để phát triển bằng ngôn ngữ Java; hiện nay cũng có người dùng phần bổ trợ để biến nó thành công cụ phát triển cho C++, Python, PHP và các ngôn ngữ khác.
 
 Bản thân Eclipse chỉ là một nền tảng khung, nhưng nhờ sự hỗ trợ của rất nhiều phần bổ trợ, Eclipse có tính linh hoạt khá tốt. Vì vậy, nhiều nhà phát triển phần mềm dùng Eclipse làm khung để phát triển IDE của riêng mình.
 

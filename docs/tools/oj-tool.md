@@ -40,7 +40,7 @@ Dưới đây là một mô phỏng đơn giản về quy trình tham gia một 
 
 `cf race 1136`
 
-Bắt đầu tham gia contest 1136. Trong đó, 1136 có thể lấy từ liên kết của cuộc thi; ví dụ liên kết cuộc thi trong ví dụ này là <https://codeforces.com/contest/1136>.
+Bắt đầu tham gia cuộc thi 1136. Trong đó, 1136 có thể lấy từ liên kết của cuộc thi; ví dụ liên kết cuộc thi trong ví dụ này là <https://codeforces.com/contest/1136>.
 
 Nếu cuộc thi chưa bắt đầu, lệnh này sẽ đếm ngược. Khi cuộc thi đã bắt đầu hoặc đếm ngược kết thúc, công cụ sẽ tự động mở trang của tất cả bài bằng trình duyệt mặc định và tải mẫu về cục bộ.
 
