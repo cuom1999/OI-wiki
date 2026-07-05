@@ -17,9 +17,9 @@ Cách cài ST3 xem tại [trang tải Sublime Text 3](https://www.sublimetext.co
 
 ## Plugin và tùy biến
 
-### Việt hóa hoặc bản địa hóa giao diện
+### Cài gói mở rộng bằng Package Control
 
-ST không hỗ trợ tiếng Trung sẵn; nếu cần giao diện tiếng Trung thì phải cài plugin bản địa hóa. Với người dùng tiếng Việt, cách cài plugin dưới đây cũng là quy trình chung để cài các gói mở rộng khác.
+ST có hệ sinh thái gói mở rộng phong phú. Package Control là cách phổ biến nhất để cài plugin, theme, bảng màu hoặc gói hỗ trợ ngôn ngữ.
 
 #### Cài trình quản lý plugin
 
@@ -36,26 +36,26 @@ Nếu cửa sổ hoàn tất báo cài đặt thất bại (liên quan đến m�
 
     Có thể dùng `Preferences->Browse Packages...` để xem nhanh thư mục `\Packages` nằm dưới đường dẫn thư mục dữ liệu.
 
-#### Cài plugin bản địa hóa tiếng Trung
+#### Cài một gói mở rộng
 
 Nhấn lại <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` rồi nhấn Enter (lệnh đầy đủ là `Package Control: Install Package`), đợi tải xong. Tiếp theo sẽ thấy giao diện như sau:
 
 ![](./images/sublime3-1.png)
 
-Nhập `Chinese`, chọn ChineseLocalizations rồi nhấn Enter, chờ cài đặt hoàn tất. Sau khi xong, giao diện sẽ tự chuyển sang tiếng Trung (nếu là ST4, vì plugin bản địa hóa chưa cập nhật nên một số mục menu mới sẽ thiếu bản dịch, nhưng thường không ảnh hưởng đến việc soạn thảo).
+Nhập tên gói cần cài, chọn đúng gói rồi nhấn Enter. Sau khi cài xong, một số gói có thể cần cấu hình thêm trong `Preferences->Package Settings`.
 
 ### Điều chỉnh phông chữ
 
 Vào `Preferences->Settings`, trong phần thiết lập người dùng ở bên phải, thêm một dòng `"font_face": "tên phông",` vào trong cặp ngoặc nhọn. Thiết lập của ST được lưu bằng định dạng JSON. Sau khi sửa xong và lưu lại, nếu hệ thống đã cài phông tương ứng thì ST sẽ tự chuyển.
 
-Nhìn chung, nếu chỉ xét khả năng hiển thị tiếng Trung, Microsoft Yahei Consolas và Microsoft YaHei Mono là các lựa chọn tương đối tốt.
+Nên chọn phông chữ monospace có hỗ trợ Unicode và dấu tiếng Việt đầy đủ, chẳng hạn Cascadia Mono, Consolas, JetBrains Mono hoặc Noto Sans Mono.
 
 ???+ warning "Warning"
     Chú ý: dù có thể sửa, không nên sửa bất kỳ thiết lập nào (kể cả thiết lập plugin) trong phần thiết lập mặc định bên trái. Đây là cách không được khuyến nghị, vì khi phần mềm (hoặc plugin) cập nhật, thiết lập mặc định sẽ bị đặt lại.
 
 ### Cài plugin và theme
 
-Cách cài plugin và theme giống cách cài plugin bản địa hóa.
+Cách cài plugin và theme giống cách cài một gói mở rộng ở trên.
 
 Nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` rồi nhấn Enter, sau đó tìm plugin/theme/bảng màu cần cài.
 

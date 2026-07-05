@@ -62,7 +62,7 @@ Nhưng nếu muốn viết một chương trình hoàn chỉnh, tốt hơn hết
 ???+ warning "Lưu ý"
     Bảng này đúng tại thời điểm bài viết được soạn (2025/01/15); nên kiểm tra lại trên các nền tảng liên quan.
 
-Hiện nay các mirror cache **mã nguồn** trong nước Trung Quốc chủ yếu gồm [Beijing Jiaotong University Free and Open Source Software Mirror](https://mirror.bjtu.edu.cn/python/) và [Huawei Open Source Mirror](https://repo.huaweicloud.com/python/). Bạn có thể thử tải bộ cài Python từ đó.
+Nên tải Python từ [trang tải chính thức](https://www.python.org/downloads/) hoặc trình quản lý gói của hệ điều hành. Nếu tốc độ tải không ổn định, có thể chọn một mirror đáng tin cậy gần vị trí của bạn.
 
 <a id="cài-thư-viện-bên-thứ-ba-bằng-pip"></a>
 
@@ -70,11 +70,11 @@ Hiện nay các mirror cache **mã nguồn** trong nước Trung Quốc chủ y�
 
 Sức sống của Python phần lớn đến từ hệ sinh thái thư viện bên thứ ba phong phú. Khi viết các tiện ích thực dụng, việc "gọi thư viện" là thao tác rất thường gặp, và `pip` là chương trình cài thư viện bên thứ ba được ưu tiên. Từ Python 3.4, `pip` được kèm sẵn trong bộ cài nhị phân Python.
 
-Thư viện bên thứ ba trong `pip` chủ yếu được lưu trên [Python Package Index (PyPI)](https://pypi.org/), và người dùng cũng có thể chỉ định các nền tảng lưu trữ thư viện bên thứ ba khác. Cách dùng có thể tham khảo các hướng dẫn như [pypi mirror help - Tsinghua Open Source Mirror](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/). Bạn có thể xem thêm mirror PyPI trên [MirrorZ](https://mirrorz.org/list/pypi).
+Thư viện bên thứ ba trong `pip` chủ yếu được lưu trên [Python Package Index (PyPI)](https://pypi.org/), và người dùng cũng có thể chỉ định các nền tảng lưu trữ thư viện bên thứ ba khác. Nếu cần dùng mirror, hãy chọn mirror đáng tin cậy và khớp với chính sách mạng của bạn; có thể xem thêm danh sách mirror PyPI trên [MirrorZ](https://mirrorz.org/list/pypi).
 
-???+ info "Cài một gói bằng Tsinghua Open Source Mirror"
+???+ info "Cài một gói bằng index PyPI tùy chọn"
     ```sh
-    pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple <some-package>
+    pip install -i <index-url> <some-package>
     ```
 
 <a id="cú-pháp-cơ-bản"></a>

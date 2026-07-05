@@ -196,12 +196,12 @@ The program 'g++' is currently not installed. You can install it by typing:
 sudo apt install g++
 ```
 
-### Đổi sang nguồn phần mềm trong nước
+### Đổi sang mirror phần mềm
 
-Nguồn phần mềm mặc định của Ubuntu nằm ở nước ngoài. Có thể đổi sang nguồn trong nước để tăng tốc, ví dụ [nguồn phần mềm của Tsinghua TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/).
+Nguồn phần mềm mặc định của Ubuntu đôi khi có tốc độ không ổn định. Có thể đổi sang một mirror Ubuntu đáng tin cậy và gần vị trí của bạn để tăng tốc tải gói, ví dụ từ [danh sách mirror Ubuntu](https://launchpad.net/ubuntu/+archivemirrors).
 
 ???+ warning "Dùng nguồn phần mềm khớp với phiên bản hệ thống của bạn"
-    Hãy tìm nguồn tương ứng với phiên bản hệ thống của mình trên trang đó (có thể dùng `sudo lsb_release -a` để xem phiên bản Ubuntu).
+    Hãy tìm nguồn tương ứng với phiên bản hệ thống của mình (có thể dùng `sudo lsb_release -a` để xem phiên bản Ubuntu).
 
     Trừ khi bạn biết rõ mình đang làm gì, đừng dùng nguồn không khớp với phiên bản hệ thống của mình!
 
@@ -450,7 +450,7 @@ Xem: [Câu hỏi thường gặp](https://learn.microsoft.com/en-us/windows/wsl/
 ## Liên kết ngoài
 
 -   [Về Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/)
--   [Hướng dẫn dùng mirror Ubuntu, Tsinghua TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+-   [Danh sách mirror Ubuntu](https://launchpad.net/ubuntu/+archivemirrors)
 -   [Dev on Windows with WSL](https://dowww.spencerwoo.com)
 -   [Awesome-WSL trên GitHub](https://github.com/sirredbeard/Awesome-WSL)
 -   [Khắc phục sự cố Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/troubleshooting)

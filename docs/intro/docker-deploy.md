@@ -9,9 +9,9 @@ Trang này giới thiệu cách triển khai môi trường **OI Wiki** bằng D
 # Chỉ cần chạy một trong các lệnh sau trên máy chủ
 # Image Docker Hub (kho image chính thức)
 docker pull 24oi/oi-wiki
-# Image DaoCloud Hub (kho image trong nước)
+# Image DaoCloud Hub (mirror của dự án gốc)
 docker pull daocloud.io/sirius/oi-wiki
-# Image Tencent Hub (kho image trong nước)
+# Image Tencent Hub (mirror của dự án gốc)
 docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 ```
 
@@ -20,7 +20,7 @@ docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 ```bash
 # Chạy các lệnh sau trên máy chủ
 # Clone Git repository
-git clone https://github.com/OI-wiki/OI-wiki.git
+git clone https://github.com/cuom1999/OI-wiki.git
 cd OI-wiki/
 # Build image
 docker build -t [name][:tag] . --build-arg [variable1]=[value1] [variable2]=[value2]...
@@ -33,15 +33,15 @@ Các biến môi trường có thể dùng:
 
 -   Có thể đặt `WIKI_REPO` để dùng mirror site của kho Wiki (nếu không đặt thì tự động dùng GitHub)
 -   Có thể đặt `PYPI_MIRROR` để dùng mirror site của kho PyPI (nếu không đặt thì tự động dùng PyPI chính thức)
-    -   Ở Trung Quốc, nên dùng mirror TUNA `https://pypi.tuna.tsinghua.edu.cn/simple/`
+    -   Chỉ nên đặt mirror nếu bạn tin cậy mirror đó và cần tăng tốc tải gói trong môi trường mạng hiện tại.
 -   Có thể đặt `LISTEN_IP` để đổi IP lắng nghe (nếu không đặt thì là `0.0.0.0`, tức lắng nghe truy cập từ mọi IP)
 -   Có thể đặt `LISTEN_PORT` để đổi cổng lắng nghe (nếu không đặt thì là `8000`)
 
 Ví dụ:
 
 ```bash
-docker build -t OI_Wiki . --build-arg WIKI_REPO=https://hub.fastgit.xyz/OI-wiki/OI-wiki.git PYPI_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple/
-# Xây dựng một image tên là OI_Wiki (tag mặc định), dùng dịch vụ FastGit để tăng tốc clone và dùng mirror TUNA.
+docker build -t OI_Wiki . --build-arg WIKI_REPO=https://github.com/cuom1999/OI-wiki.git PYPI_MIRROR=https://pypi.org/simple/
+# Xây dựng một image tên là OI_Wiki (tag mặc định), dùng kho bản dịch tiếng Việt và PyPI chính thức.
 ```
 
 ## Chạy container

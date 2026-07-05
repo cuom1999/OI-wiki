@@ -109,9 +109,9 @@ Vào trang [Free Educational Licenses](https://www.jetbrains.com/community/educa
 
 ![Educational Licenses](./images/clion-edu.png)
 
-Chú ý: khi đăng ký, ở mục email hãy điền email giáo dục có hậu tố như `@edu.cn`; giấy phép đặc biệt chỉ nhận được sau khi xác minh email.
+Chú ý: khi đăng ký, ở mục email hãy điền email giáo dục do trường cấp; giấy phép đặc biệt chỉ nhận được sau khi xác minh email.
 
-Bạn có thể tới trang web phòng đào tạo của trường đại học nơi mình học để đăng ký email giáo dục. Nếu không đăng ký được, cần dùng [CHSI](https://www.chsi.com.cn) để xác thực (chỉ áp dụng tại Trung Quốc đại lục).
+Nếu không có email giáo dục, hãy xem các phương thức xác minh khác được JetBrains hỗ trợ trên trang đăng ký.
 
 ### Dùng dự án mã nguồn mở để nhận
 
