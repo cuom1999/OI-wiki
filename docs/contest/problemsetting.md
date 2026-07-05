@@ -400,7 +400,7 @@ gen 2000 1000 > 4.in
 gen 100000 100000 > 5.in
 ```
 
-Lợi ích của cách này là với các bộ dữ liệu khác nhau, chỉ cần viết một generator, đồng thời có thể dễ dàng sửa tham số của một test nào đó.
+Lợi ích của cách này là với các bộ dữ liệu khác nhau, chỉ cần viết một bộ sinh dữ liệu, đồng thời có thể dễ dàng sửa tham số của một bộ kiểm thử nào đó.
 
 ### Yêu cầu đối với dữ liệu
 
@@ -410,17 +410,17 @@ Dữ liệu nên bao gồm các trường hợp biên khác nhau.
 
 Khi dùng subtask, dữ liệu (bao gồm đầu vào và đầu ra) tốt nhất nên bao phủ các khoảng khác nhau trong miền giá trị, chứ không chỉ có giá trị lớn nhất của giới hạn dữ liệu.
 
-Để tránh lời giải xét riêng cấu trúc đặc biệt qua được, có thể kết hợp nhiều cấu trúc khác nhau trong một test, hoặc để phần lớn dữ liệu là dữ liệu dựng, xen lẫn một phần nhỏ dữ liệu ngẫu nhiên.
+Để tránh lời giải xét riêng cấu trúc đặc biệt qua được, có thể kết hợp nhiều cấu trúc khác nhau trong một bộ kiểm thử, hoặc để phần lớn dữ liệu là dữ liệu dựng, xen lẫn một phần nhỏ dữ liệu ngẫu nhiên.
 
-Dữ liệu nên bao gồm nhiều loại cấu trúc khác nhau, ngay cả khi bạn không biết lời giải sai nào sẽ chết trên cấu trúc đó. (Trong thể thức tính điểm theo test cần cân nhắc xử lý.)
+Dữ liệu nên bao gồm nhiều loại cấu trúc khác nhau, ngay cả khi bạn không biết lời giải sai nào sẽ chết trên cấu trúc đó. (Trong thể thức tính điểm theo bộ kiểm thử cần cân nhắc xử lý.)
 
 Dĩ nhiên, nếu bạn biết một lời giải sai về tính đúng đắn mà người bình thường có thể nghĩ ra và viết ra, hãy cố gắng chặn nó.
 
 Cần đặc biệt nhắc rằng nếu có khả năng tràn số nguyên, nhất định phải chặn các lời giải sẽ bị tràn. Trong thể thức có điểm thành phần, không nên để người không dùng long long nhận điểm bằng với brute force, thậm chí thấp hơn.
 
-Nếu có pretests, pretests nên mạnh hết mức có thể (đồng thời càng ít càng tốt). Nói cách khác, bạn cần đưa tất cả các điểm yếu đã biết của bài vào pretests bằng số lượng test ít nhất có thể.
+Nếu có bộ kiểm thử sơ bộ (pretests), các bộ này nên mạnh hết mức có thể (đồng thời càng ít càng tốt). Nói cách khác, bạn cần đưa tất cả các điểm yếu đã biết của bài vào bộ kiểm thử sơ bộ bằng số lượng bộ kiểm thử ít nhất có thể.
 
-Nếu bạn hy vọng có một lượng nhỏ FST chứ không phải không có FST, vẫn cần bảo đảm độ mạnh của pretests, vì trong cuộc thi thật rất có thể xuất hiện những lỗi bạn không ngờ tới, khiến số lượng FST cao hơn dự kiến rất nhiều.
+Nếu bạn hy vọng có một lượng nhỏ FST chứ không phải không có FST, vẫn cần bảo đảm độ mạnh của bộ kiểm thử sơ bộ, vì trong cuộc thi thật rất có thể xuất hiện những lỗi bạn không ngờ tới, khiến số lượng FST cao hơn dự kiến rất nhiều.
 
 ### Định dạng dữ liệu
 

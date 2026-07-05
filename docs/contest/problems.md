@@ -6,28 +6,28 @@ Trong lập trình thi đấu, có rất nhiều kiểu bài toán khác nhau.
 
 **Bài truyền thống** là dạng bài hiện khá phổ biến trong lập trình thi đấu.
 
-Thí sinh cần nộp mã nguồn. Hệ thống chấm sẽ dùng một số dữ liệu vào và dữ liệu ra tương ứng đã được chuẩn bị trước làm các test[^note1], biên dịch mã nguồn thí sinh nộp[^note2], cho chương trình của thí sinh đọc dữ liệu vào, rồi so sánh dữ liệu thí sinh xuất ra với dữ liệu ra đã chuẩn bị trước để phán định chương trình có đúng hay không. Cách chấm này được gọi là **chấm hộp đen**[^note3].
+Thí sinh cần nộp mã nguồn. Hệ thống chấm sẽ dùng một số dữ liệu vào và dữ liệu ra tương ứng đã được chuẩn bị trước làm các bộ kiểm thử[^note1], biên dịch mã nguồn thí sinh nộp[^note2], cho chương trình của thí sinh đọc dữ liệu vào, rồi so sánh dữ liệu thí sinh xuất ra với dữ liệu ra đã chuẩn bị trước để phán định chương trình có đúng hay không. Cách chấm này được gọi là **chấm hộp đen**[^note3].
 
-Với một test, thường sẽ có thêm giới hạn thời gian và giới hạn bộ nhớ.
+Với một bộ kiểm thử, thường sẽ có thêm giới hạn thời gian và giới hạn bộ nhớ.
 
-Giới hạn thời gian là giới hạn về thời gian chạy của chương trình[^note4]. Thời gian chạy của chương trình thí sinh trên một test không được vượt quá giới hạn đã cho.
+Giới hạn thời gian là giới hạn về thời gian chạy của chương trình[^note4]. Thời gian chạy của chương trình thí sinh trên một bộ kiểm thử không được vượt quá giới hạn đã cho.
 
 Giới hạn bộ nhớ là giới hạn về lượng bộ nhớ mà chương trình sử dụng. Lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng khi chạy không được vượt quá giới hạn đã cho.
 
-Sau khi chương trình kết thúc bình thường, dữ liệu xuất ra của thí sinh sẽ được so sánh với dữ liệu ra của test. Việc so sánh này thường bỏ qua dòng mới ở cuối tệp và khoảng trắng cuối dòng, rồi so sánh toàn văn. Với một số bài đặc biệt, hệ thống sẽ dùng [trình chấm đặc biệt (Special Judge)](../tools/special-judge.md) để so sánh.
+Sau khi chương trình kết thúc bình thường, dữ liệu xuất ra của thí sinh sẽ được so sánh với dữ liệu ra của bộ kiểm thử. Việc so sánh này thường bỏ qua dòng mới ở cuối tệp và khoảng trắng cuối dòng, rồi so sánh toàn văn. Với một số bài đặc biệt, hệ thống sẽ dùng [trình chấm đặc biệt (Special Judge)](../tools/special-judge.md) để so sánh.
 
 Khi quá trình này kết thúc, hệ thống chấm sẽ căn cứ vào trạng thái chạy của chương trình để đưa ra các **kết quả chấm** khác nhau[^note5]:
 
 -   Được chấp nhận (Accepted, AC): chương trình của thí sinh được chấp nhận.
 -   Lỗi biên dịch (Compile Error, CE): chương trình của thí sinh không thể biên dịch bình thường.
--   Đáp án sai (Wrong Answer, WA): chương trình của thí sinh kết thúc bình thường, nhưng dữ liệu xuất ra không khớp với dữ liệu ra của test.
+-   Đáp án sai (Wrong Answer, WA): chương trình của thí sinh kết thúc bình thường, nhưng dữ liệu xuất ra không khớp với dữ liệu ra của bộ kiểm thử.
 -   Lỗi trình bày (Presentation Error, PE): chương trình của thí sinh kết thúc bình thường, nhưng định dạng không đúng yêu cầu[^note6].
 -   Lỗi khi chạy (Runtime Error, RE): chương trình của thí sinh kết thúc bất thường (giá trị trả về khi chương trình kết thúc không bằng không).
 -   Quá giới hạn thời gian (Time Limit Exceeded, TLE): thời gian chạy của chương trình thí sinh vượt quá giới hạn thời gian đã cho.
 -   Quá giới hạn bộ nhớ (Memory Limit Exceeded, MLE): lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng vượt quá giới hạn bộ nhớ đã cho.
 -   Quá giới hạn đầu ra (Output Limit Exceeded, OLE): lượng nội dung chương trình thí sinh xuất ra vượt quá giới hạn tối đa.
 
-Trong các kỳ thi ICPC, chương trình của bạn cần đạt trạng thái AC trên tất cả test của một bài thì mới được xem là giải được bài đó. Trong các kỳ thi OI, đạt trạng thái AC trên một test là có thể nhận điểm của test đó[^note7].
+Trong các kỳ thi ICPC, chương trình của bạn cần đạt trạng thái AC trên tất cả bộ kiểm thử của một bài thì mới được xem là giải được bài đó. Trong các kỳ thi OI, đạt trạng thái AC trên một bộ kiểm thử là có thể nhận điểm của bộ kiểm thử đó[^note7].
 
 ## Bài nộp đáp án
 
@@ -145,7 +145,7 @@ Bài toán này rất kinh điển, nhưng trên phần lớn OJ thì rất khó
 
 ## Tài liệu tham khảo và chú thích
 
-[^note1]: Do hạn chế về kỹ thuật và tài nguyên, trong đa số trường hợp, các test của một bài không thể bao phủ toàn bộ dữ liệu thỏa mãn phạm vi dữ liệu.
+[^note1]: Do hạn chế về kỹ thuật và tài nguyên, trong đa số trường hợp, các bộ kiểm thử của một bài không thể bao phủ toàn bộ dữ liệu thỏa mãn phạm vi dữ liệu.
 
 [^note2]: Với các ngôn ngữ thông dịch như Python, chương trình sẽ được trình thông dịch trực tiếp thông dịch và chạy.
 
@@ -157,4 +157,4 @@ Bài toán này rất kinh điển, nhưng trên phần lớn OJ thì rất khó
 
 [^note6]: Hầu hết hệ thống chấm sẽ quy trạng thái PE vào trạng thái WA.
 
-[^note7]: Một số test có thể có điểm thành phần; khi thí sinh hoàn thành một phần nhiệm vụ của một test, hoặc dữ liệu xuất ra của thí sinh đúng nhưng chưa đủ tối ưu, thí sinh có thể nhận một tỷ lệ điểm nhất định.
+[^note7]: Một số bộ kiểm thử có thể có điểm thành phần; khi thí sinh hoàn thành một phần nhiệm vụ của một bộ kiểm thử, hoặc dữ liệu xuất ra của thí sinh đúng nhưng chưa đủ tối ưu, thí sinh có thể nhận một tỷ lệ điểm nhất định.

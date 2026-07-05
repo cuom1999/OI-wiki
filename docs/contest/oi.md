@@ -28,16 +28,16 @@ Với phần lớn thí sinh, mùa thi mới hằng năm bắt đầu từ vòng
 
 ### Thể thức OI
 
-Thí sinh chỉ có một cơ hội nộp bài. Trong lúc thi không thể xem kết quả chấm; điểm số sẽ được công bố sau cuộc thi. Mỗi bài có nhiều test point, và điểm tương ứng được tính theo số test point mà lời giải vượt qua; mỗi test point cũng có thể có điểm thành phần, nên ngay cả khi chỉ qua một phần dữ liệu vẫn có thể nhận điểm.
+Thí sinh chỉ có một cơ hội nộp bài. Trong lúc thi không thể xem kết quả chấm; điểm số sẽ được công bố sau cuộc thi. Mỗi bài có nhiều điểm kiểm thử (test point), và điểm tương ứng được tính theo số điểm kiểm thử mà lời giải vượt qua; mỗi điểm kiểm thử cũng có thể có điểm thành phần, nên ngay cả khi chỉ qua một phần dữ liệu vẫn có thể nhận điểm.
 
 ???+ note "Công cụ tự chấm selfEval"
-    Hiện nay, trong một số cuộc thi thuộc hệ thống NOI, công cụ tự chấm selfEval được cung cấp. selfEval được tích hợp trong bản NOI Linux tùy chỉnh cho các kỳ thi toàn quốc. Sau khi được công bố chính thức và đưa vào sử dụng từ NOI2023, selfEval lần lượt được dùng trong các kỳ NOI toàn quốc, APIO (khu vực Trung Quốc), NOI Winter Camp, v.v. Thí sinh có thể dùng selfEval để kiểm thử chương trình của mình trên một bộ dữ liệu kiểm thử (gọi là dữ liệu pretest) và nhận phản hồi. Số lần tự kiểm thử của thí sinh trong mỗi buổi thi có giới hạn cụ thể (NOI2024 giới hạn 50 lần tự kiểm thử, NOI2025 giới hạn 30 lần tự kiểm thử), và dữ liệu pretest cũng không hiển thị cho thí sinh. Vì dữ liệu pretest khác với dữ liệu chấm chính thức, kết quả tự kiểm thử chỉ dùng cho việc gỡ lỗi, không thể xem là điểm chấm chính thức. Nếu thí sinh pretest nhiều lần trên cùng một bài, bộ dữ liệu pretest được sử dụng là như nhau.
+    Hiện nay, trong một số cuộc thi thuộc hệ thống NOI, công cụ tự chấm selfEval được cung cấp. selfEval được tích hợp trong bản NOI Linux tùy chỉnh cho các kỳ thi toàn quốc. Sau khi được công bố chính thức và đưa vào sử dụng từ NOI2023, selfEval lần lượt được dùng trong các kỳ NOI toàn quốc, APIO (khu vực Trung Quốc), NOI Winter Camp, v.v. Thí sinh có thể dùng selfEval để kiểm thử chương trình của mình trên một bộ dữ liệu kiểm thử sơ bộ (pretest) và nhận phản hồi. Số lần tự kiểm thử của thí sinh trong mỗi buổi thi có giới hạn cụ thể (NOI2024 giới hạn 50 lần tự kiểm thử, NOI2025 giới hạn 30 lần tự kiểm thử), và dữ liệu kiểm thử sơ bộ cũng không hiển thị cho thí sinh. Vì dữ liệu kiểm thử sơ bộ khác với dữ liệu chấm chính thức, kết quả tự kiểm thử chỉ dùng cho việc gỡ lỗi, không thể xem là điểm chấm chính thức. Nếu thí sinh tự kiểm thử nhiều lần trên cùng một bài, bộ dữ liệu kiểm thử sơ bộ được sử dụng là như nhau.
 
 CSP-J/S vòng hai, NOIP, vòng tuyển chọn cấp tỉnh và NOI đều dùng thể thức OI.
 
 ### Thể thức IOI
 
-Thí sinh có nhiều cơ hội nộp bài trong lúc thi. Bài nộp được chấm theo thời gian thực và trả về kết quả; nếu kết quả nộp sai thì không có hình phạt nào. Mỗi bài có nhiều test point, và điểm tương ứng được tính theo số test point mà lời giải vượt qua.
+Thí sinh có nhiều cơ hội nộp bài trong lúc thi. Bài nộp được chấm theo thời gian thực và trả về kết quả; nếu kết quả nộp sai thì không có hình phạt nào. Mỗi bài có nhiều điểm kiểm thử, và điểm tương ứng được tính theo số điểm kiểm thử mà lời giải vượt qua.
 
 APIO và IOI đều dùng thể thức IOI. Hiện nay các cuộc thi trong nước Trung Quốc cũng đang dần tiến gần hơn đến thể thức IOI.
 
@@ -45,9 +45,9 @@ APIO và IOI đều dùng thể thức IOI. Hiện nay các cuộc thi trong nư
 
 [Codeforces](https://codeforces.com) là một hệ thống chấm trực tuyến, định kỳ tổ chức các cuộc thi.
 
-Đặc điểm của cuộc thi trên Codeforces là trong lúc thi chỉ kiểm thử trên một phần dữ liệu (Pretests), còn sau khi cuộc thi kết thúc mới trả về kết quả kiểm thử trên toàn bộ test point đầy đủ (System Tests). Trong lúc thi có thể nộp nhiều lần và được phép Hack mã nguồn của người khác (ở đây Hack có nghĩa là nộp một bộ dữ liệu kiểm thử khiến mã nguồn của người khác không thể đưa ra đáp án đúng). Nếu muốn Hack, thí sinh phải khóa mã nguồn của mình (nói cách khác, trong lúc thi không thể nộp lại bài đó nữa). Khi Hack, không được sao chép chương trình của thí sinh khác về máy cục bộ để kiểm thử; mã nguồn sẽ được chuyển thành hình ảnh.
+Đặc điểm của cuộc thi trên Codeforces là trong lúc thi chỉ kiểm thử trên một phần dữ liệu (pretests, các bộ kiểm thử sơ bộ), còn sau khi cuộc thi kết thúc mới trả về kết quả kiểm thử trên toàn bộ điểm kiểm thử đầy đủ (System Tests, kiểm thử hệ thống). Trong lúc thi có thể nộp nhiều lần và được phép hack mã nguồn của người khác (ở đây hack có nghĩa là nộp một bộ dữ liệu kiểm thử khiến mã nguồn của người khác không thể đưa ra đáp án đúng). Nếu muốn hack, thí sinh phải khóa mã nguồn của mình (nói cách khác, trong lúc thi không thể nộp lại bài đó nữa). Khi hack, không được sao chép chương trình của thí sinh khác về máy cục bộ để kiểm thử; mã nguồn sẽ được chuyển thành hình ảnh.
 
-Codeforces đồng thời cung cấp một thể thức khác, gọi là Extended ICPC (Extended ICPC hoặc ICPC+). Trong thể thức này, toàn bộ dữ liệu được kiểm thử trong lúc thi, nhưng sau khi cuộc thi kết thúc sẽ có 12 giờ Hack toàn mạng. Khi Hack được phép sao chép chương trình của thí sinh khác về máy cục bộ để kiểm thử.
+Codeforces đồng thời cung cấp một thể thức khác, gọi là Extended ICPC (Extended ICPC hoặc ICPC+). Trong thể thức này, toàn bộ dữ liệu được kiểm thử trong lúc thi, nhưng sau khi cuộc thi kết thúc sẽ có 12 giờ hack toàn mạng. Khi hack được phép sao chép chương trình của thí sinh khác về máy cục bộ để kiểm thử.
 
 ## Các cuộc thi chính
 
@@ -220,9 +220,9 @@ ROI (tiếng Nga: олимпиадная информатика, tiếng Trung: 
 
 Quy trình:
 
--   Municipal Stage/Муниципальный этап
--   Regional Stage/Региональный этап
--   Final Stage/Заключительный этап
+-   Vòng thành phố (Municipal Stage/Муниципальный этап)
+-   Vòng khu vực (Regional Stage/Региональный этап)
+-   Vòng chung kết (Final Stage/Заключительный этап)
 
 Hiện LibreOJ có bản dịch các bài vòng chung kết ROI trong vài năm gần đây.
 

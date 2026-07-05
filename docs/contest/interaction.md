@@ -6,9 +6,9 @@ Bài tương tác không đòi hỏi quá nhiều thuật toán nền tảng, th
 
 Các lỗi đặc thù của bài tương tác:
 
--   Sau mỗi lần thí sinh xuất dữ liệu đều cần xả bộ đệm, nếu không sẽ gây lỗi Idleness limit exceeded. Ngoài ra, nếu bài có nhiều bộ dữ liệu và chương trình có thể biết đáp án trước khi đọc hết mọi dữ liệu, vẫn phải đọc hết toàn bộ dữ liệu; nếu không, việc đọc bị rối cũng sẽ gây ILE (có thể đưa ra nhiều truy vấn một lần rồi nhận toàn bộ câu trả lời của các truy vấn đó cùng lúc). Đồng thời, cố gắng không dùng nhập nhanh.
--   Nếu chương trình truy vấn quá nhiều lần, Codeforces sẽ trả kết quả Wrong Answer (nhưng hệ thống chấm sẽ nêu nguyên nhân của Wrong Answer), còn UVa sẽ trả kết quả Protocol Limit Exceeded (PLE).
--   Nếu định dạng tương tác của chương trình sai, UVa sẽ trả kết quả Protocol Violation (PV).
+-   Sau mỗi lần thí sinh xuất dữ liệu đều cần xả bộ đệm, nếu không sẽ gây lỗi vượt giới hạn nhàn rỗi (Idleness Limit Exceeded, ILE). Ngoài ra, nếu bài có nhiều bộ dữ liệu và chương trình có thể biết đáp án trước khi đọc hết mọi dữ liệu, vẫn phải đọc hết toàn bộ dữ liệu; nếu không, việc đọc bị rối cũng sẽ gây ILE (có thể đưa ra nhiều truy vấn một lần rồi nhận toàn bộ câu trả lời của các truy vấn đó cùng lúc). Đồng thời, cố gắng không dùng nhập nhanh.
+-   Nếu chương trình truy vấn quá nhiều lần, Codeforces sẽ trả kết quả đáp án sai (Wrong Answer, WA; nhưng hệ thống chấm sẽ nêu nguyên nhân), còn UVa sẽ trả kết quả vượt giới hạn giao thức (Protocol Limit Exceeded, PLE).
+-   Nếu định dạng tương tác của chương trình sai, UVa sẽ trả kết quả vi phạm giao thức (Protocol Violation, PV).
 
 Vì nhập xuất của bài tương tác khá rườm rà, nên đóng gói riêng các hàm nhập và xuất.
 
@@ -56,7 +56,7 @@ Với trường hợp $n < 2000$ thì liệt kê trực tiếp. Khi $n \ge 2000$
 
 Tuy ý tưởng tổng thể đơn giản, nhưng trên thực tế nếu chưa từng học các thuật toán ngẫu nhiên không hoàn hảo như mô phỏng luyện kim, việc nghĩ ra có thể sẽ khó hơn một chút.
 
-Đồng thời, vì Codeforces có cơ chế hack, nhiều người sẽ cố tình hack các mã không khởi tạo hạt giống ngẫu nhiên, nên trước hàm `random_shuffle()` cần gọi `srand((size_t)new char)`.
+Đồng thời, vì Codeforces có cơ chế hack, nhiều người sẽ cố tình tạo bộ hack cho các mã không khởi tạo hạt giống ngẫu nhiên, nên trước hàm `random_shuffle()` cần gọi `srand((size_t)new char)`.
 
 ??? note "Mã tham khảo"
     ```cpp

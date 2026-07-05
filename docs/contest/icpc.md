@@ -52,7 +52,7 @@ trên Nowcoder,...
 -   Cuộc thi trực tuyến ICPC/CCPC: cuối tháng 8 đến đầu tháng 9.
 -   Vòng khu vực ICPC/CCPC: cuối tháng 9 đến cuối tháng 11.
 -   ICPC EC Final/CCPC Final: giữa tháng 12.
--   ICPC World Finals: tháng 4 đến tháng 6 năm sau.
+-   Vòng chung kết thế giới ICPC (ICPC World Finals): tháng 4 đến tháng 6 năm sau.
 
 ## Hướng dẫn luyện tập
 
@@ -63,7 +63,7 @@ giải thưởng, chất lượng đề cao và đã tích lũy nhiều tài ngu
 
 Từ khóa để tìm trong OJ: `Multi-University Training Contest`.
 
-### Vòng khu vực (Regional)
+### Vòng khu vực
 
 Bạn có thể tìm các bộ đề chọn lọc trên
 [Virtual Judge](https://vjudge.net/).
