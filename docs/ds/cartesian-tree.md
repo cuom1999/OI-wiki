@@ -3,11 +3,11 @@ author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer
 ## Giới thiệu
 
 Cây Descartes là một loại cây nhị phân,
-trong đó mỗi nút gồm một cặp khóa-giá trị $(k,w)$.
+trong đó mỗi nút chứa một cặp khóa-giá trị $(k,w)$.
 Yêu cầu $k$ thỏa tính chất của cây tìm kiếm nhị phân (BST),
 còn $w$ thỏa tính chất heap.
-Nếu các khóa $k,w$ của cây Descartes đã được xác định,
-đồng thời các $k$ đôi một khác nhau và các $w$ cũng đôi một khác nhau,
+Nếu các giá trị $k,w$ của cây Descartes đã được xác định,
+đồng thời các khóa $k$ đôi một khác nhau và các giá trị $w$ cũng đôi một khác nhau,
 thì cấu trúc của cây Descartes này là duy nhất.
 Ví dụ như hình sau:
 
@@ -15,10 +15,10 @@ Ví dụ như hình sau:
 
 (Hình lấy từ Wikipedia)
 
-Cây Descartes ở trên tương ứng với việc xem giá trị phần tử của mảng là khóa $w$,
+Cây Descartes ở trên tương ứng với việc xem giá trị phần tử của mảng là $w$,
 còn chỉ số mảng là khóa $k$.
-Có thể thấy khóa $k$ của cây này thỏa tính chất cây tìm kiếm nhị phân,
-còn khóa $w$ thỏa tính chất heap nhỏ (min-heap).
+Khi đó, khóa $k$ của cây này thỏa tính chất cây tìm kiếm nhị phân,
+còn $w$ thỏa tính chất heap nhỏ (min-heap).
 Đồng thời, theo tính chất của cây tìm kiếm nhị phân,
 cây Descartes đặc biệt này có đặc điểm:
 các chỉ số nằm trong một cây con tạo thành một đoạn liên tiếp.
@@ -35,7 +35,7 @@ Trong phần sau, khi dùng $k,w$, mặc định $k$ thỏa tính chất cây t�
 
 Xét việc lần lượt chèn các phần tử vào cây Descartes hiện tại theo thứ tự tăng dần của $k$.
 
-Với một cây Descartes, định nghĩa "chuỗi phải" là chuỗi thu được bằng cách bắt đầu từ nút gốc
+Với một cây Descartes, "chuỗi phải" là chuỗi thu được bằng cách bắt đầu từ nút gốc
 rồi liên tục đi theo con phải cho đến một nút lá.
 Sau khi chèn một nút, nút đó chắc chắn nằm trên chuỗi phải.
 Vì các nút được chèn theo thứ tự tăng dần của $k$,
@@ -45,7 +45,7 @@ Nút này không thể là con trái và cũng không có con phải.
 
 Do đó thực hiện quy trình sau:
 so sánh $w$ của các nút trên chuỗi phải với nút hiện tại $u$ từ dưới lên.
-Nếu tìm được một nút $x$ trên chuỗi phải sao cho $w_x<w_u$,
+Nếu tìm được một nút $x$ trên chuỗi phải sao cho $w_x < w_u$,
 gắn $u$ làm con phải của $x$,
 còn cây con phải ban đầu của $x$ trở thành cây con trái của $u$.
 
@@ -55,7 +55,7 @@ Phần được khoanh đỏ trong hình là chuỗi phải luôn được duy t
 
 Mỗi số nhiều nhất chỉ vào và rời chuỗi phải một lần
 (nói cách khác, thời gian một điểm tồn tại trên chuỗi phải là một khoảng liên tục).
-Quy trình này có thể được duy trì bằng ngăn xếp đơn điệu:
+Quy trình này có thể duy trì bằng ngăn xếp đơn điệu:
 ngăn xếp lưu các nút trên chuỗi phải của cây Descartes hiện tại.
 Khi một điểm không còn nằm trên chuỗi phải nữa, bật nó khỏi ngăn xếp.
 Như vậy mỗi điểm nhiều nhất vào và ra một lần, nên độ phức tạp là $O(n)$.
@@ -94,15 +94,15 @@ for (int i = 1; i <= n; i++) {
 
 ??? note "Ý tưởng giải"
     Cụ thể, dùng chỉ số làm khóa $k$,
-    dùng $h_i$ làm khóa $w$ thỏa tính chất heap nhỏ,
+    dùng $h_i$ làm giá trị $w$ thỏa tính chất heap nhỏ,
     rồi dựng một cây Descartes của các cặp $(i,h_i)$.
 
     Khi đó, duyệt từng nút $u$ và lấy $w_u$ (tức chiều cao $h$ của nút $u$)
-    làm chiều cao của hình chữ nhật con lớn nhất tương ứng.
+    làm chiều cao của hình chữ nhật lớn nhất tương ứng.
     Vì cây Descartes đã dựng thỏa tính chất heap nhỏ,
     mọi nút trong cây con của $u$ đều có chiều cao lớn hơn hoặc bằng $u$.
     Mặt khác, các chỉ số trong cây con của $u$ tạo thành một đoạn liên tiếp.
-    Vì vậy, chỉ cần biết kích thước cây con là có thể tính diện tích hình chữ nhật con lớn nhất của đoạn này.
+    Vì vậy, chỉ cần biết kích thước cây con là có thể tính diện tích hình chữ nhật lớn nhất của đoạn này.
     Dùng giá trị tính được từ từng điểm để cập nhật đáp án.
     Việc này có thể hoàn thành bằng một lần DFS, nên độ phức tạp là $O(n)$.
 
