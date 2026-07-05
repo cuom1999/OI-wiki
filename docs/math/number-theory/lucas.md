@@ -1,6 +1,6 @@
 Kiến thức nền: [Giai thừa theo modulo](./factorial.md)
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Bài viết này thảo luận cách tính hệ số tổ hợp lớn theo modulo. Hệ số tổ hợp, còn gọi là hệ số nhị thức, là biểu thức:
@@ -9,11 +9,11 @@ $$
 \binom{n}{k} = \dfrac{n!}{k!(n-k)!}.
 $$
 
-Khi quy mô không lớn, hệ số tổ hợp có thể được tính bằng [công thức truy hồi](../combinatorics/combination.md#%E7%BB%84%E5%90%88%E6%95%B0%E6%80%A7%E8%B4%A8--%E4%BA%8C%E9%A1%B9%E5%BC%8F%E6%8E%A8%E8%AE%BA) với độ phức tạp thời gian $O(nk)$. Nếu modulo là số nguyên tố lớn $p>n$, cũng có thể tính giai thừa của tử số và mẫu số trong $O(n)$ thời gian. Tuy nhiên, khi quy mô bài toán rất lớn ($n\sim 10^{18}$), các phương pháp này không còn phù hợp.
+Khi quy mô không lớn, hệ số tổ hợp có thể được tính bằng [công thức truy hồi](../combinatorics/combination.md#tinh-chat-cua-so-to-hop-he-qua-nhi-thuc) với độ phức tạp thời gian $O(nk)$. Nếu modulo là số nguyên tố lớn $p>n$, cũng có thể tính giai thừa của tử số và mẫu số trong $O(n)$ thời gian. Tuy nhiên, khi quy mô bài toán rất lớn ($n\sim 10^{18}$), các phương pháp này không còn phù hợp.
 
 Dựa trên định lý Lucas và các mở rộng của nó, bài viết này trình bày một phương pháp tính hệ số tổ hợp khi modulo không quá lớn ($m \sim 10^6$). Chính xác hơn, chỉ cần tổng các lũy thừa nguyên tố trong phân tích duy nhất $m=\prod p_i^{e_i}$, tức $\sum p_i^{e_i}$, ở cỡ $10^6$ là có thể dùng phương pháp này, vì phần tiền xử lý của thuật toán có quy mô xấp xỉ như vậy.
 
-<span id="lucas-&#x5B9A;&#x7406;"></span>
+<span id="định-lý-lucas"></span>
 ## Định lý Lucas
 
 Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó ta có định lý Lucas:
@@ -40,7 +40,7 @@ Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó t
     \binom{p}{n} \equiv [n=0\lor n=p] \pmod p.
     $$
     
-    Đặt $f(x) = ax^n + bx^m$. Tổng quát hơn, theo [khai triển nhị thức](../combinatorics/combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86) và [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), ta có
+    Đặt $f(x) = ax^n + bx^m$. Tổng quát hơn, theo [khai triển nhị thức](../combinatorics/combination.md#định-lý-nhị-thức) và [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), ta có
     
     $$
     \begin{aligned}
@@ -79,7 +79,7 @@ Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó t
     Cho hai hệ số ở hai vế bằng nhau, ta thu được định lý Lucas.
 
 ??? note "Chứng minh bằng kết quả về giai thừa theo modulo"
-    Ở đây đưa ra một chứng minh dựa trên các kết quả liên quan đến [giai thừa theo modulo](./factorial.md#%E7%B4%A0%E6%95%B0%E6%A8%A1%E7%9A%84%E6%83%85%E5%BD%A2), nhằm liên hệ thuận tiện với phương pháp ở phần exLucas phía sau. Ta biết hệ số nhị thức là
+    Ở đây đưa ra một chứng minh dựa trên các kết quả liên quan đến [giai thừa theo modulo](./factorial.md#trường-hợp-modulo-số-nguyên-tố), nhằm liên hệ thuận tiện với phương pháp ở phần exLucas phía sau. Ta biết hệ số nhị thức là
     
     $$
     \binom{n}{k} = \dfrac{n!}{k!(n-k)!}.
@@ -160,7 +160,7 @@ Trong đó, `C(n, k, p)` dùng để tính hệ số tổ hợp quy mô nhỏ.
 
 Đệ quy thực hiện nhiều nhất $O(\log_p n)$ lần, nên độ phức tạp của thuật toán là $O(f(p)+g(p)\log_p n)$, trong đó $f(p)$ là độ phức tạp tiền xử lý hệ số tổ hợp, còn $g(p)$ là độ phức tạp cho một lần tính hệ số tổ hợp.
 
-<span id="&#x53C2;&#x8003;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-tham-khảo-lucas"></span>
 ### Cài đặt tham khảo
 
 Cài đặt tham khảo dưới đây tiền xử lý giai thừa và nghịch đảo của chúng trong phạm vi $p$ trong $O(p)$ thời gian, rồi tính một hệ số tổ hợp trong $O(1)$ thời gian:
@@ -172,12 +172,12 @@ Cài đặt tham khảo dưới đây tiền xử lý giai thừa và nghịch �
 
 Độ phức tạp thời gian của cài đặt này là $O(p+T\log_p n)$, trong đó $T$ là số truy vấn.
 
-<span id="exlucas-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-exlucas"></span>
 ## Thuật toán exLucas
 
 Trong định lý Lucas, modulo $p$ bắt buộc phải là số nguyên tố. Khi $p$ không phải số nguyên tố, ta cần dùng thuật toán exLucas. Dù tên gọi là vậy, khi vận hành thuật toán này không thực sự dùng định lý Lucas. Bước mấu chốt của nó là [tính giai thừa theo modulo lũy thừa nguyên tố](./factorial.md). Chứng minh thứ hai ở trên đã chỉ ra mối liên hệ giữa nó và định lý Lucas.
 
-<span id="&#x7D20;&#x6570;&#x5E42;&#x6A21;&#x7684;&#x60C5;&#x5F62;"></span>
+<span id="trường-hợp-modulo-lũy-thừa-nguyên-tố"></span>
 ### Trường hợp modulo lũy thừa nguyên tố
 
 Trước hết xét trường hợp modulo là lũy thừa nguyên tố $p^\alpha$. Tách số mũ của $p$ trong giai thừa $n!$ và các thừa số còn lại, ta thu được phân tích:
@@ -192,11 +192,11 @@ $$
 \binom{n}{k} = p^{\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)}\dfrac{(n!)_p}{(k!)_p((n-k)!)_p}.
 $$
 
-Các giá trị $\nu_p(n!)$ có thể tính bằng [công thức Legendre](./factorial.md#legendre-%E5%85%AC%E5%BC%8F), còn các giá trị $(n!)_p$ có thể tính bằng [quan hệ truy hồi](./factorial.md#%E7%B4%A0%E6%95%B0%E5%B9%82%E6%A8%A1%E7%9A%84%E6%83%85%E5%BD%A2). Vì phần sau nguyên tố cùng nhau với $p^\alpha$, nghịch đảo của tích ở mẫu số có thể tính bằng [thuật toán Euclid mở rộng](./inverse.md#thuật-toán-euclid-mở-rộng). Như vậy bài toán được giải quyết.
+Các giá trị $\nu_p(n!)$ có thể tính bằng [công thức Legendre](./factorial.md#công-thức-legendre), còn các giá trị $(n!)_p$ có thể tính bằng [quan hệ truy hồi](./factorial.md#trường-hợp-modulo-lũy-thừa-nguyên-tố). Vì phần sau nguyên tố cùng nhau với $p^\alpha$, nghịch đảo của tích ở mẫu số có thể tính bằng [thuật toán Euclid mở rộng](./inverse.md#thuật-toán-euclid-mở-rộng). Như vậy bài toán được giải quyết.
 
 Chú ý rằng nếu số mũ $\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)\ge\alpha$, phần dư chắc chắn bằng không và không cần tính tiếp.
 
-<span id="&#x4E00;&#x822C;&#x6A21;&#x6570;&#x7684;&#x60C5;&#x5F62;"></span>
+<span id="trường-hợp-modulo-tổng-quát"></span>
 ### Trường hợp modulo tổng quát
 
 Với trường hợp $m$ là hợp số tổng quát, trước hết chỉ cần [phân tích thừa số nguyên tố](./pollard-rho.md) của nó:
@@ -216,9 +216,9 @@ $$
 \end{cases}
 $$
 
-Cuối cùng, dùng [định lý phần dư Trung Hoa](./crt.md) để tìm phần dư modulo $m$.
+Cuối cùng, dùng [định lý phần dư Trung Hoa](./crt.md#định-nghĩa) để tìm phần dư modulo $m$.
 
-<span id="&#x53C2;&#x8003;&#x5B9E;&#x73B0;_1"></span>
+<span id="cài-đặt-tham-khảo-exlucas"></span>
 ### Cài đặt tham khảo
 
 Cuối cùng là cài đặt tham khảo cho bài mẫu [Hệ số nhị thức](https://loj.ac/p/181).
@@ -230,7 +230,7 @@ Cuối cùng là cài đặt tham khảo cho bài mẫu [Hệ số nhị thức]
 
 Thuật toán này phân tích modulo $m$ thành các lũy thừa nguyên tố trong bước tiền xử lý, sau đó với mọi $p^\alpha$ tiền xử lý tích của các số tự nhiên từ $1$ đến $p^\alpha$ không phải bội của $p$, cũng như hệ số tương ứng khi gộp đáp án bằng định lý phần dư Trung Hoa. Độ phức tạp tiền xử lý là $O(\sqrt{m}+\sum_ip_i^{\alpha_i})$. Với mỗi truy vấn, độ phức tạp là $O(\log m+\sum_i\log_{p_i}n)$; hai hạng trong độ phức tạp lần lượt đến từ việc tính nghịch đảo và việc tính số mũ, phần dư giai thừa.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Luogu P3807 [Template] Định lý Lucas](https://www.luogu.com.cn/problem/P3807)
