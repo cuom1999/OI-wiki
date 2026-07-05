@@ -4,13 +4,13 @@ Cơ chế **không gian tên** (`namespace`) của C++ có thể dùng để gi�
 xung đột tên trong các dự án phức tạp.
 
 Lấy một ví dụ: toàn bộ nội dung của thư viện chuẩn C++ đều được định nghĩa trong
-không gian tên `std`. Nếu bạn định nghĩa một biến tên là `cin`, bạn có thể truy cập
-biến `cin` do mình định nghĩa bằng `cin`, đồng thời truy cập đối tượng `cin` của
-thư viện chuẩn bằng `std::cin`, mà không cần lo xung đột.
+không gian tên `std`. Nếu bạn định nghĩa một biến tên là `cin`, bạn có thể truy
+cập biến `cin` do mình định nghĩa bằng `cin`, đồng thời truy cập đối tượng `cin`
+của thư viện chuẩn bằng `std::cin`, mà không cần lo xung đột.
 
-## Khai báo
+## Định nghĩa
 
-Đoạn mã sau khai báo một không gian tên có tên `A`:
+Đoạn mã sau định nghĩa một không gian tên có tên `A`:
 
 ```cpp
 namespace A {
@@ -20,11 +20,11 @@ void f(int x) { cnt = x; }
 }  // namespace A
 ```
 
-Sau khi khai báo, ở bên ngoài không gian tên này, bạn có thể dùng `A::f(x)` để truy
-cập hàm `f` bên trong không gian tên `A`, cũng có thể dùng `A::cnt` để truy cập biến
-`cnt` bên trong không gian tên `A`.
+Sau khi định nghĩa, ở bên ngoài không gian tên này, bạn có thể dùng `A::f(x)` để
+truy cập hàm `f` bên trong không gian tên `A`, cũng có thể dùng `A::cnt` để truy
+cập biến `cnt` bên trong không gian tên `A`.
 
-Khai báo không gian tên có thể lồng nhau, vì vậy đoạn mã sau cũng được phép:
+Không gian tên có thể lồng nhau, vì vậy đoạn mã sau cũng được phép:
 
 ```cpp
 namespace A {
@@ -48,20 +48,22 @@ void f()  // ở đây định nghĩa hàm f trong không gian tên toàn cục,
 
 ## Khai báo và chỉ thị `using`
 
-Sau khi khai báo không gian tên, nếu ở bên ngoài không gian tên mà muốn truy cập thành
-viên bên trong không gian tên, cần thêm `tên_không_gian_tên::` trước tên thành viên.
+Sau khi định nghĩa không gian tên, nếu ở bên ngoài không gian tên mà muốn truy
+cập thành viên bên trong không gian tên, cần thêm `tên_không_gian_tên::` trước
+tên thành viên.
 
 Có cách nào tiện hơn để ta trực tiếp truy cập thành viên trong không gian tên bằng
 tên thành viên không? Câu trả lời là có. Ta có thể dùng `using`.
 
 `using` có hai dạng thường gặp sau:
 
-1.  `using tên_không_gian_tên::tên_thành_viên;`: khai báo này cho phép ta lược bỏ tên không gian tên
-    trước tên của một thành viên nào đó và truy cập trực tiếp bằng tên thành
-    viên. Tương đương với việc đưa thành viên này vào phạm vi hiện tại.
-2.  `using namespace tên_không_gian_tên;`: chỉ thị này cho phép trực tiếp truy cập
-    **mọi** thành viên trong không gian tên bằng tên thành viên. Tương đương với việc
-    đưa toàn bộ thành viên của không gian tên này vào phạm vi hiện tại.
+1.  `using tên_không_gian_tên::tên_thành_viên;`: khai báo này cho phép ta lược
+    bỏ tên không gian tên trước tên của một thành viên nào đó và truy cập trực
+    tiếp bằng tên thành viên. Tương đương với việc đưa thành viên này vào phạm vi
+    hiện tại.
+2.  `using namespace tên_không_gian_tên;`: chỉ thị này cho phép trực tiếp truy
+    cập **mọi** thành viên trong không gian tên bằng tên thành viên. Tương đương
+    với việc đưa toàn bộ thành viên của không gian tên này vào phạm vi hiện tại.
 
 Vì vậy, nếu thực thi `using namespace std;`, mọi tên trong `std` sẽ được đưa vào
 phạm vi hiện tại. Khi đó ta có thể dùng `cin` thay cho
@@ -69,8 +71,8 @@ phạm vi hiện tại. Khi đó ta có thể dùng `cin` thay cho
 
 ??? warning "Chỉ thị `using namespace` có thể gây xung đột tên!"
     Vì `using namespace std;` sẽ đưa **toàn bộ tên** trong `std` vào phạm vi
-    hiện tại, nếu khai báo biến hoặc hàm trùng với tên trong `std`, có thể xảy ra lỗi
-    biên dịch do xung đột tên.
+    hiện tại, nếu khai báo biến hoặc hàm trùng với tên trong `std`, có thể xảy
+    ra lỗi biên dịch do xung đột tên.
 
     Vì vậy trong phát triển phần mềm, không khuyến nghị dùng chỉ thị
     `using namespace tên_không_gian_tên;`.
@@ -108,17 +110,17 @@ int main() {
 
 ## Không gian tên vô danh
 
-Khi trong một phạm vi ta chỉ định nghĩa một không gian tên (`namespace`) để tránh
-xung đột tên, cách định nghĩa và sử dụng nó có thể trở nên rất gọn. Ta có thể
-dùng không gian tên vô danh.
+Khi trong một phạm vi ta chỉ cần định nghĩa một không gian tên (`namespace`) để
+tránh xung đột tên, cách định nghĩa và sử dụng nó có thể trở nên rất gọn. Ta có
+thể dùng không gian tên vô danh.
 
 Không gian tên được định nghĩa dưới dạng `namespace { /* something ... */ }`,
 tức bỏ qua tên `namespace`, được gọi là không gian tên vô danh. Không gian tên
-vô danh trong một file được xem như có một tên riêng duy nhất, khác với mọi
+vô danh trong một tệp được xem như có một tên riêng duy nhất, khác với mọi
 không gian tên khác, nhưng nhiều không gian tên vô danh trong cùng một phạm vi
 được xem là cùng một không gian tên. Sau khi không gian tên vô danh được định
 nghĩa, các tên bên trong nó có thể được tìm thấy khi dùng ở phạm vi bên ngoài,
-giống như sau định nghĩa không gian tên vô danh đã thêm một chỉ thị
+giống như sau phần định nghĩa không gian tên vô danh đã thêm một chỉ thị
 `using namespace`.
 
 ## Ứng dụng
@@ -134,8 +136,9 @@ năng đọc của chương trình.
 
 ### Tránh xung đột với thư viện chuẩn và tên do môi trường đưa vào
 
-Đồng thời, dùng không gian tên cũng có thể tránh việc một số tên thường dùng trong
-lập trình thi đấu xung đột với chuẩn, như ví dụ sau:
+Đồng thời, dùng không gian tên cũng có thể tránh việc một số tên thường dùng
+trong lập trình thi đấu xung đột với thư viện chuẩn hoặc môi trường biên dịch,
+như ví dụ sau:
 
 ```cpp
 #include <math.h>
@@ -155,11 +158,11 @@ int y1;  // y1 là hàm Bessel loại hai do POSIX định nghĩa
 void solve() {
   // Trong Sol::solve(), việc dùng end và y1 mà ta đã khai báo theo cách không
   // định danh đầy đủ (không dùng ::) sẽ không gây xung đột tên. Nếu đoạn mã
-  // trên nằm trong không gian tên toàn cục thì sẽ gây xung đột: end chỉ xung đột với
-  // std::end khi tra cứu tên (tức khi biên dịch mã sử dụng nó), còn y1 xung đột
-  // ngay lúc khai báo. Hơn nữa, xung đột của y1 phụ thuộc vào môi trường, nên
-  // thậm chí có thể không bị phát hiện trên Windows nhưng lại gây lỗi biên dịch
-  // trong môi trường chấm Linux.
+  // trên nằm trong không gian tên toàn cục thì sẽ gây xung đột: end chỉ xung
+  // đột với std::end khi tra cứu tên (tức khi biên dịch mã sử dụng nó), còn y1
+  // xung đột ngay lúc khai báo. Hơn nữa, xung đột của y1 phụ thuộc vào môi
+  // trường, nên thậm chí có thể không bị phát hiện trên Windows nhưng lại gây
+  // lỗi biên dịch trong môi trường chấm Linux.
 }
 }  // namespace Sol
 
