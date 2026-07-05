@@ -99,14 +99,14 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Ở đây, Untracked files chỉ các tệp trước đó chưa được Git đưa vào theo dõi phiên bản. Nếu một tệp chưa được theo dõi phiên bản, các thay đổi đối với tệp đó sẽ không được Git ghi lại.
+Ở đây, `Untracked files` chỉ các tệp trước đó chưa được Git theo dõi. Nếu một tệp chưa được theo dõi, các thay đổi đối với tệp đó sẽ không được Git ghi lại.
 
-Chạy lệnh `git add <tệp>` để đưa tệp chỉ định vào theo dõi phiên bản.
+Chạy lệnh `git add <tệp>` để đưa tệp chỉ định vào vùng staging. Với tệp mới, thao tác này cũng bắt đầu để Git theo dõi tệp đó.
 
 <!-- scripts.linter.preprocess.fix_details off -->
 
 ```console
-$ git add README.md # Đưa tệp này vào theo dõi phiên bản
+$ git add README.md # Đưa tệp này vào vùng staging
 $ git status
 On branch master
 
@@ -120,7 +120,7 @@ Changes to be committed:
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Lúc này `README.md` đã được đưa vào theo dõi phiên bản và đặt vào vùng tạm (staging area). Tiếp theo chỉ cần chạy lệnh `git commit` là có thể commit thay đổi này.
+Lúc này `README.md` đã được Git theo dõi và đặt vào vùng staging. Tiếp theo chỉ cần chạy lệnh `git commit` là có thể commit thay đổi này.
 
 Nhưng trước khi làm việc đó, hãy sửa nhẹ `README.md`.
 
@@ -147,23 +147,23 @@ Changes not staged for commit:
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Bạn sẽ thấy `README.md` đồng thời nằm trong vùng tạm và ngoài vùng tạm. Thực ra, việc "đã đưa vào vùng tạm hay chưa" là đối với từng thay đổi, không phải đối với cả tệp. Vì vậy, thay đổi trước đó của `README.md` đã được đưa vào vùng tạm, còn thay đổi sau thì chưa. Nếu lúc này chạy `git commit`, chỉ các thay đổi đã nằm trong vùng tạm được commit, còn thay đổi chưa đưa vào vùng tạm sẽ không được commit.
+Bạn sẽ thấy `README.md` đồng thời có thay đổi đã nằm trong vùng staging và thay đổi chưa nằm trong vùng staging. Thực ra, việc "đã stage hay chưa" áp dụng cho từng thay đổi, không phải cho cả tệp. Vì vậy, thay đổi trước đó của `README.md` đã được đưa vào vùng staging, còn thay đổi sau thì chưa. Nếu lúc này chạy `git commit`, chỉ các thay đổi đã nằm trong vùng staging được commit, còn thay đổi chưa stage sẽ không được commit.
 
-Git đã đưa ra gợi ý: chạy `git add README.md` là có thể đưa các thay đổi chưa nằm trong vùng tạm vào vùng tạm.
+Git đã đưa ra gợi ý: chạy `git add README.md` là có thể đưa các thay đổi chưa stage vào vùng staging.
 
-???+ note "Đưa tất cả thay đổi vào vùng tạm cùng lúc"
-    Lệnh `git add` sẽ đưa các thay đổi của tệp chỉ định vào vùng tạm.
+???+ note "Đưa tất cả thay đổi vào vùng staging cùng lúc"
+    Lệnh `git add` sẽ đưa các thay đổi của tệp chỉ định vào vùng staging.
 
-    Trong đa số trường hợp, người dùng muốn đưa tất cả thay đổi vào vùng tạm cùng lúc. Khi đó có thể dùng lệnh `git add -A`. Lệnh này sẽ đưa mọi thay đổi (bao gồm tệp chưa được theo dõi phiên bản, không bao gồm tệp bị bỏ qua) vào vùng tạm.
+    Trong đa số trường hợp, người dùng muốn đưa tất cả thay đổi vào vùng staging cùng lúc. Khi đó có thể dùng lệnh `git add -A`. Lệnh này sẽ đưa mọi thay đổi (bao gồm tệp chưa được theo dõi, không bao gồm tệp bị bỏ qua) vào vùng staging.
 
-    Nếu chỉ cần cập nhật các tệp đã được theo dõi phiên bản, không đưa tệp chưa theo dõi vào vùng tạm, có thể dùng `git add -u`.
+    Nếu chỉ cần cập nhật các tệp đã được theo dõi, không đưa tệp chưa được theo dõi vào vùng staging, có thể dùng `git add -u`.
 
 ???+ note "Bỏ qua tệp"
-    Đôi khi ta không muốn đưa một số tệp (như tệp thực thi, v.v.) vào theo dõi phiên bản. Khi đó có thể tạo tệp `.gitignore` ở thư mục gốc của kho và ghi các tệp muốn bỏ qua vào đó. Git sẽ không đưa các tệp này vào theo dõi phiên bản.
+    Đôi khi ta không muốn để Git theo dõi một số tệp (như tệp thực thi, v.v.). Khi đó có thể tạo tệp `.gitignore` ở thư mục gốc của kho và ghi các tệp muốn bỏ qua vào đó. Git sẽ không theo dõi các tệp này.
 
     Ví dụ, `*.exe` sẽ tự động bỏ qua mọi tệp có phần mở rộng `.exe` trong kho.
 
-Bây giờ đưa các tệp chưa nằm trong vùng tạm vào vùng tạm, rồi commit tất cả thay đổi cùng lúc.
+Bây giờ đưa các thay đổi chưa stage vào vùng staging, rồi commit tất cả thay đổi cùng lúc.
 
 ```console
 $ git add README.md
@@ -175,22 +175,22 @@ $ git commit # Sau đó trình soạn thảo sẽ bật lên; bạn cần viết
 
 Bây giờ hãy chú ý thông tin của commit này.
 
-`master` nghĩa là hiện đang ở nhánh `master` (vấn đề về nhánh sẽ được giới thiệu chi tiết bên dưới), `f992763` là một vài ký tự đầu của mã kiểm tra SHA-1 của lần commit này, phía sau là thông tin của commit.
+`master` nghĩa là hiện đang ở nhánh `master` (vấn đề về nhánh sẽ được giới thiệu chi tiết bên dưới), `f992763` là một vài ký tự đầu của mã băm SHA-1 của commit này, phía sau là thông tin của commit.
 
-Điểm cần đặc biệt chú ý là mã kiểm tra SHA-1 ở đây: mỗi mã kiểm tra tương ứng với một ảnh chụp (snapshot) của kho tại một thời điểm nào đó. Nhờ đặc tính này, ta có thể truy cập ảnh chụp của kho ở một thời điểm trong lịch sử và sửa đổi trên ảnh chụp đó.
+Điểm cần đặc biệt chú ý là mã băm SHA-1 ở đây: mỗi mã băm tương ứng với một ảnh chụp (snapshot) của kho tại một thời điểm nào đó. Nhờ đặc tính này, ta có thể truy cập ảnh chụp của kho ở một thời điểm trong lịch sử và sửa đổi trên ảnh chụp đó.
 
 Hai dòng tiếp theo mô tả chi tiết các thay đổi tệp liên quan đến lần cập nhật này.
 
 Ngoài ra, trong quá trình commit có thể dùng một vài tham số để đơn giản hóa:
 
--   `-a`: trước khi commit, đưa mọi thay đổi của các tệp đã được theo dõi vào vùng tạm. Cần chú ý rằng các tệp chưa được theo dõi (tệp mới tạo) sẽ không tự động được thêm vào vùng tạm; cần dùng lệnh `git add` để thêm thủ công.
+-   `-a`: trước khi commit, đưa mọi thay đổi của các tệp đã được theo dõi vào vùng staging. Cần chú ý rằng các tệp chưa được theo dõi (tệp mới tạo) sẽ không tự động được thêm vào vùng staging; cần dùng lệnh `git add` để thêm thủ công.
 -   `-m`: phía sau tham số này là thông điệp commit, nghĩa là commit lần thay đổi này với thông điệp đó. Ví dụ `git commit -m "fix: typo"` sẽ tạo một commit có tiêu đề `fix: typo`.
 
 ### Xem lịch sử commit
 
 Dùng lệnh `git log` để xem lịch sử commit của kho.
 
-Có thể thấy lịch sử commit ghi lại mã kiểm tra SHA-1, tác giả commit, thời gian commit và thông điệp commit của mỗi lần commit.
+Có thể thấy lịch sử commit ghi lại mã băm SHA-1, tác giả commit, thời gian commit và thông điệp commit của mỗi lần commit.
 
 ```console
 $ git log
@@ -288,7 +288,7 @@ Lần gộp này cụ thể được thực hiện như thế nào?
 
 Trước khi gộp, `master` trỏ đến `5ca15f0`, còn `dev` trỏ đến `5da093b`; hai trạng thái này không nằm trên cùng một chuỗi.
 
-Git sẽ tìm tổ tiên chung gần nhất của hai trạng thái này (trong hình trên là `ae9dd37`) và thực hiện một lần gộp đối với ba ảnh chụp. Kết quả gộp của ba ảnh chụp trở thành một ảnh chụp mới, rồi nhánh hiện tại được trỏ đến ảnh chụp này.
+Git sẽ tìm tổ tiên chung gần nhất của hai trạng thái này (trong hình trên là `ae9dd37`) và thực hiện một lần gộp dựa trên ba ảnh chụp. Kết quả gộp của ba ảnh chụp trở thành một ảnh chụp mới, rồi nhánh hiện tại được trỏ đến ảnh chụp này.
 
 Bản thân quá trình gộp cũng là một commit. Tuy nhiên, khác với commit thông thường, merge commit có nhiều hơn một commit tiền nhiệm; nó là kết quả sau khi gộp nhiều trạng thái commit.
 
@@ -352,24 +352,22 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Giải quyết xung đột thế nào? Với mỗi tệp xảy ra xung đột khi gộp, Git sẽ thêm các dấu chuẩn để giải quyết xung đột vào những tệp này. Ví dụ trong tệp `README.md` của ví dụ này, khi mở ra sẽ thấy như sau:
+Giải quyết xung đột thế nào? Với mỗi tệp xảy ra xung đột khi gộp, Git sẽ thêm các dấu đánh dấu xung đột vào tệp đó. Ví dụ trong tệp `README.md` của ví dụ này, khi mở ra sẽ thấy như sau:
 
-```markdown
-<<<<<< HEAD
-# Đây là một thư viện mã.
-======
-# Thư viện mã
->>>>>> readme-refactor
+    <<<<<<< HEAD
+    # Đây là một thư viện mã.
+    =======
+    # Thư viện mã
+    >>>>>>> readme-refactor
 
-Kho này chứa một số mã C++.
-```
+    Kho này chứa một số mã C++.
 
-`======` là đường phân cách chia nội dung của hai nhánh; phần giữa dấu `<<<<<< HEAD` và `======` là nội dung của con trỏ HEAD (nhánh `master`), còn phần giữa `======` và dấu `>>>>>> readme-refactor` là nội dung của nhánh `readme-refactor`.
+`=======` là đường phân cách chia nội dung của hai nhánh; phần giữa dấu `<<<<<<< HEAD` và `=======` là nội dung của con trỏ HEAD (nhánh `master`), còn phần giữa `=======` và dấu `>>>>>>> readme-refactor` là nội dung của nhánh `readme-refactor`.
 
-Xử lý xung đột bằng cách chỉnh sửa văn bản, xóa các dấu xung đột này, lưu tệp, đưa các tệp đó vào vùng tạm rồi commit là có thể giải quyết xung đột khi gộp.
+Xử lý xung đột bằng cách chỉnh sửa văn bản, xóa các dấu xung đột này, lưu tệp, đưa các tệp đó vào vùng staging rồi commit là có thể giải quyết xung đột khi gộp.
 
 ```console
-$ git add README.md # Đưa tệp bị xung đột vào vùng tạm
+$ git add README.md # Đưa tệp đã giải quyết xung đột vào vùng staging
 $ git commit
 [master fe92c6b] Merge branch readme-refactor into master
 ```
@@ -390,7 +388,7 @@ Thêm tham số `--squash` vào `git merge` là có thể dùng cách Squash đ�
 $ git merge <branch> --squash
 ```
 
-Cần chú ý rằng sau khi chạy lệnh trên, Git chỉ đưa toàn bộ thay đổi của nhánh B vào vùng đệm của nhánh A; tiếp theo vẫn cần chạy một lần `git commit` để hoàn thành việc gộp.
+Cần chú ý rằng sau khi chạy lệnh trên, Git chỉ đưa toàn bộ thay đổi của nhánh B vào vùng staging của nhánh A; tiếp theo vẫn cần chạy một lần `git commit` để hoàn thành việc gộp.
 
 Dùng Squash để gộp có thể đơn giản hóa lịch sử commit, nhưng sẽ mất thông tin chi tiết của từng commit (người commit từng lần, thay đổi của từng commit, v.v.), chỉ giữ lại thông tin sau khi gộp thành một tổng thể (người commit của từng commit sẽ được liệt kê trong thông điệp commit dưới dạng "Co-authored-by"). Tuy nhiên, nếu Squash and Merge trên GitHub, thông tin ban đầu vẫn có thể xem trong Pull Request.
 
