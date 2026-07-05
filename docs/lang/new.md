@@ -46,9 +46,12 @@ int main() {
 
 ## Vòng lặp `for` dựa trên phạm vi
 
-Dùng vòng lặp `for` dựa trên phạm vi để duyệt đối tượng có thể lặp, với hiệu suất tương đương duyệt trực tiếp bằng bộ lặp. Hai cách này thường phù hợp hơn duyệt bằng chỉ số khi ta chỉ cần đi qua từng phần tử, vì không cần tự quản lý chỉ số.
+Dùng vòng lặp `for` dựa trên phạm vi để duyệt đối tượng có thể lặp, với hiệu
+suất tương đương duyệt trực tiếp bằng bộ lặp. Hai cách này thường phù hợp hơn
+duyệt bằng chỉ số khi chỉ cần đi qua từng phần tử, vì không cần tự quản lý chỉ
+số.
 
-Dưới đây là cú pháp đơn giản của vòng lặp `for` dựa trên phạm vi:
+Sau đây là cú pháp đơn giản của vòng lặp `for` dựa trên phạm vi:
 
 ```cpp
 for (item_declaration : range_initializer) statement
@@ -88,7 +91,7 @@ std::vector<int> b{1, 1, 4, 5, 1, 4};
 std::map<std::string, int> c{{"114", 114}, {"514", 514}};
 for (int i : a) std::cout << i;
 for (auto i : b) std::cout << i;
-// Kiểu của i bên dưới là std::pair<const std::string, int>&
+// Kiểu của i ở dòng sau là std::pair<const std::string, int>&
 for (auto& i : c) std::cout << i.first << i.second;
 for (auto i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 ```
@@ -97,7 +100,7 @@ for (auto i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 
 Chỉ cần cung cấp các hàm thành viên `begin` và `end`; kiểu trả về cần hỗ trợ so sánh, tăng và giải tham chiếu (toán tử `*`).
 
-Dưới đây là một ví dụ:
+Sau đây là một ví dụ:
 
 ```cpp
 #include <iostream>
@@ -248,9 +251,11 @@ std::cout << x << std::endl;
 
 ## Đối tượng hàm
 
-Đối tượng có thể được gọi bằng toán tử gọi hàm `operator()` được gọi là đối tượng hàm.
+Đối tượng có thể được gọi bằng toán tử gọi hàm `operator()` là đối tượng hàm.
 
-Đây không phải một đặc tính cú pháp riêng của ngôn ngữ, mà là một [khái niệm/yêu cầu](https://en.cppreference.com/w/cpp/named_req/FunctionObject) được dùng rộng rãi trong thư viện chuẩn.
+Đây không phải một tính năng cú pháp riêng của ngôn ngữ, mà là một
+[khái niệm/yêu cầu](https://en.cppreference.com/w/cpp/named_req/FunctionObject)
+được dùng rộng rãi trong thư viện chuẩn.
 
 Đối tượng hàm có thể được chia đại khái thành hai loại:
 
@@ -268,9 +273,11 @@ std::cout << x << std::endl;
 ???+ warning "Chú ý chi phí hiệu năng"
     `std::function` có thể gây thêm chi phí hiệu năng. Theo thử nghiệm [benchmark](./lambda.md#đệ-quy-trong-lambda), nó thường làm hiệu năng giảm từ 2 đến hơn 3 lần.
     
-    Nguyên nhân là nó sử dụng kỹ thuật xóa kiểu (type erasure), thường được hiện thực bằng cơ chế hàm ảo; lời gọi hàm ảo sẽ gây thêm [chi phí](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction).
+    Nguyên nhân là nó sử dụng kỹ thuật xóa kiểu (type erasure), thường được cài
+    đặt bằng cơ chế hàm ảo; lời gọi hàm ảo sẽ gây thêm [chi phí](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction).
     
-    Hãy cân nhắc dùng [**Biểu thức lambda**](./lambda.md) hoặc [**đối tượng hàm**](#đối-tượng-hàm) thay thế.
+    Nên cân nhắc dùng [**Biểu thức lambda**](./lambda.md) hoặc
+    [**đối tượng hàm**](#đối-tượng-hàm) thay thế.
 
 `std::function` là một bộ bao bọc hàm đa hình tổng quát, được định nghĩa trong tệp tiêu đề `<functional>`.
 
