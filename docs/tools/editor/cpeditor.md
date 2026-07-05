@@ -2,7 +2,7 @@ author: zarttic, xk2013
 
 ## Giới thiệu
 
-[CP Editor](https://github.com/cpeditor/cpeditor) được thiết kế riêng cho thi đấu thuật toán, không giống các IDE khác chủ yếu được thiết kế cho phát triển phần mềm. Nó có thể giúp bạn tự động hóa việc biên dịch, chạy và kiểm thử, để bạn tập trung vào thiết kế thuật toán. Nó thậm chí có thể lấy sample từ nhiều website thi đấu thuật toán và nộp mã lên [Codeforces](https://codeforces.com/)!
+[CP Editor](https://github.com/cpeditor/cpeditor) được thiết kế riêng cho thi đấu thuật toán, không giống các IDE khác chủ yếu được thiết kế cho phát triển phần mềm. Nó có thể giúp bạn tự động hóa việc biên dịch, chạy và kiểm thử, để bạn tập trung vào thiết kế thuật toán. Nó thậm chí có thể lấy mẫu từ nhiều trang web thi đấu thuật toán và nộp mã lên [Codeforces](https://codeforces.com/)!
 
 ## Tải xuống và cài đặt
 
@@ -49,9 +49,9 @@ Xem [Installation | CP Editor](https://cpeditor.org/docs/installation/).
 
     Chi tiết có thể xem trong [tài liệu chính thức](https://cpeditor.org/docs/preferences/key-bindings/).
 
--   Kiểm thử sample
+-   Kiểm thử mẫu
 
-    Có thể sao chép sample trong statement để CP Editor tự động chấm, và còn có thể đặt giới hạn thời gian!
+    Có thể sao chép mẫu trong đề bài để CP Editor tự động chấm, và còn có thể đặt giới hạn thời gian!
 
     ![cp-setting-limits](images/cp-setting-limits.png)
 
