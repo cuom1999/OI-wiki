@@ -6,6 +6,11 @@ Trang này chủ yếu liệt kê một số tài nguyên liên quan đến lậ
 
 Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết tắt: OJ) thường được dùng để luyện giải bài, tham gia và tổ chức cuộc thi, cũng như trao đổi và chia sẻ giữa người dùng.
 
+### Việt Nam
+
+-   [VNOJ](https://oj.vnoi.info/): hệ thống online judge chính thức của VNOI, dựa trên DMOJ; phù hợp để luyện tập, tham gia contest và theo dõi các hoạt động của cộng đồng lập trình thi đấu Việt Nam.
+-   [Code Tour](https://codetour.org/contest): nền tảng tổ chức contest lập trình, có các vòng thi và mirror phù hợp để luyện tập.
+
 ### Trung Quốc
 
 -   [51Nod](https://www.51nod.com/): có nhiều bài toán và bài tư duy đáng thử.
@@ -48,7 +53,9 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 
 ## Tài liệu hướng dẫn
 
--   [**OI Wiki**](https://oi-wiki.org)
+-   [**OI Wiki tiếng Việt**](https://cuom1999.github.io/OI-wiki/)
+-   [**OI Wiki** gốc](https://oi-wiki.org)
+-   [VNOI Wiki](https://wiki.vnoi.info/): tài liệu thuật toán tiếng Việt, có VNOI Roadmap cho nhiều mức độ học.
 -   [Một bộ sưu tập tutorial do người dùng Codeforces tổng hợp](https://codeforces.com/blog/entry/125623)
 -   [E-Maxx Algorithms bản tiếng Anh](https://cp-algorithms.com/)
 -   [Algorithm Notes](https://web.ntnu.edu.tw/~algo/): tài liệu hướng dẫn do National Taiwan Normal University tổng hợp
