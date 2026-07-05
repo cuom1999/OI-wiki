@@ -27,7 +27,8 @@ lấy LCA trên cây phân đoạn của nút biểu diễn $[l,l]$ và nút bi�
 Giả sử nút này là $p$ và đoạn mà nó biểu diễn là $[L,R]$.
 Khi đó có hai tính chất quan trọng:
 
-1.  Đoạn $[L,R]$ chắc chắn chứa $[l,r]$. Điều này hiển nhiên, vì nó vừa là tổ tiên của $l$ vừa là tổ tiên của $r$.
+1.  Đoạn $[L,R]$ chắc chắn chứa $[l,r]$,
+    vì nó vừa là tổ tiên của $l$ vừa là tổ tiên của $r$.
 
 2.  Đoạn $[l,r]$ chắc chắn băng qua trung điểm của $[L,R]$.
     Vì $p$ là LCA của $l$ và $r$, con trái của $p$ là tổ tiên của $l$ nhưng không phải tổ tiên của $r$,
