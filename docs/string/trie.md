@@ -1,9 +1,9 @@
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Trie, hay cây từ điển, đúng như tên gọi: đây là một cấu trúc cây giống như một cuốn từ điển.
 
-<span id="&#24341;&#20837;"></span>
+<span id="giới-thiệu"></span>
 ## Giới thiệu
 
 Trước hết hãy xem hình sau:
@@ -16,7 +16,7 @@ Cấu trúc trie rất dễ hiểu. Ta dùng $\delta(u,c)$ để chỉ đỉnh t
 
 Đôi khi cần đánh dấu những xâu nào đã được chèn vào trie. Khi chèn xong, chỉ cần đánh dấu tại đỉnh biểu diễn xâu đó.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ## Cài đặt
 
 Một mẫu cài đặt đóng gói bằng struct:
@@ -112,10 +112,10 @@ Một mẫu cài đặt đóng gói bằng struct:
     }
     ```
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
-<span id="&#26816;&#32034;&#23383;&#31526;&#20018;"></span>
+<span id="truy-vấn-xâu"></span>
 ### Truy vấn xâu
 
 Ứng dụng cơ bản nhất của trie là kiểm tra một xâu có từng xuất hiện trong "từ điển" hay không.
@@ -133,12 +133,12 @@ Một mẫu cài đặt đóng gói bằng struct:
         --8<-- "docs/string/code/trie/trie_1.cpp"
         ```
 
-<span id="AC-&#33258;&#21160;&#26426;"></span>
+<span id="máy-tự-động-ac"></span>
 ### Máy tự động AC
 
 Trie là một phần của [máy tự động AC](./ac-automaton.md).
 
-<span id="&#32500;&#25252;&#24322;&#25110;&#26497;&#20540;"></span>
+<span id="duy-trì-cực-trị-xor"></span>
 ### Duy trì cực trị xor
 
 Nếu xem biểu diễn nhị phân của một số như một xâu, ta có thể xây dựng một trie với bảng chữ cái $\{0,1\}$.
@@ -162,7 +162,7 @@ Nếu xem biểu diễn nhị phân của một số như một xâu, ta có th�
         --8<-- "docs/string/code/trie/trie_2.cpp"
         ```
 
-<span id="&#32500;&#25252;&#24322;&#25110;&#21644;"></span>
+<span id="duy-trì-tổng-xor"></span>
 ### Duy trì tổng xor
 
 01-trie là trie có bảng chữ cái $\{0,1\}$. 01-trie có thể dùng để duy trì tổng xor của một tập số, hỗ trợ sửa đổi (xóa + chèn lại) và cộng một toàn cục (tức là tăng tất cả các giá trị đang được duy trì lên `1`; về bản chất đây là một thao tác sửa đổi đặc biệt).
@@ -171,7 +171,7 @@ Nếu cần duy trì tổng xor, cần xây trie theo giá trị từ bit thấp
 
 **Quy ước**: trong phần này, hướng **lên trên** từ đỉnh hiện tại là đường đi từ đỉnh hiện tại đến gốc; hướng **xuống dưới** là cây con của đỉnh hiện tại.
 
-<span id="&#25554;&#20837;-&#21024;&#38500;"></span>
+<span id="chèn--xóa"></span>
 #### Chèn & xóa
 
 Để duy trì tổng xor, ta **chỉ cần** biết **tính chẵn lẻ** của số lượng `0` và `1` trên từng bit. Nói cách khác, đối với bit `1`, bit kết quả chỉ bằng `1` khi và chỉ khi số lượng bit `1` tại vị trí đó là lẻ. Hãy luôn ghi nhớ điều này: nếu chỉ duy trì tổng xor, ta chỉ cần biết số lượng `1` trên từng bit, không cần biết trie đang duy trì chính xác những số nào.
@@ -249,7 +249,7 @@ Những điểm cần chú ý:
     }  // namespace trie
     ```
 
-<span id="&#20840;&#23616;&#21152;&#19968;"></span>
+<span id="cộng-một-toàn-cục"></span>
 #### Cộng một toàn cục
 
 Cộng một toàn cục nghĩa là tăng tất cả các giá trị trong trie lên `+1`.
@@ -264,7 +264,7 @@ void addall(int o) {
 }
 ```
 
-<span id="&#36807;&#31243;"></span>
+<span id="quá-trình"></span>
 ##### Quá trình
 
 Hãy xem trong hệ nhị phân thao tác `+1` diễn ra như thế nào.
@@ -285,7 +285,7 @@ Nhắc lại định nghĩa của `w[o]`: `w[o]` chỉ số lượng giá trị 
 
 Có thể thấy định nghĩa này hơi lạ. Nếu lưu trọng số của hai cạnh đến các con tại đỉnh cha thì có vẻ quen thuộc hơn. Tuy nhiên ở đây, khi hoán đổi hai con, việc lưu khoảng cách đến cha tại đỉnh con rõ ràng tiện hơn.
 
-<span id="01-trie-&#21512;&#24182;"></span>
+<span id="hợp-nhất-01-trie"></span>
 ### Hợp nhất 01-trie
 
 Đây là thao tác hợp nhất hai 01-trie nói trên, đồng thời hợp nhất các thông tin được duy trì.
@@ -294,7 +294,7 @@ Có lẽ không có nhiều bài viết về hợp nhất trie. Thực ra ý tư
 
 Hợp nhất trie thực ra rất đơn giản. Hãy xét một hàm `int merge(int a, int b)`: hàm này nhận vào chỉ số hai đỉnh nằm cùng một vị trí tương đối trong hai trie, và trả về chỉ số đỉnh sau khi hợp nhất xong.
 
-<span id="&#36807;&#31243;_1"></span>
+<span id="quá-trình_1"></span>
 #### Quá trình
 
 Xét cách cài đặt.
@@ -307,7 +307,7 @@ Có ba trường hợp:
 
     **Gợi ý**: nếu cần hợp nhất `a` và `b` vào một cây mới, có thể tạo đỉnh mới rồi hợp nhất vào đỉnh mới đó. Phần mã ở đây chỉ hợp nhất thông tin của `b` vào `a`.
 
-<span id="&#23454;&#29616;_1"></span>
+<span id="cài-đặt_1"></span>
 #### Cài đặt
 
 ```cpp
@@ -444,7 +444,7 @@ Thực ra trie nào cũng có thể hợp nhất. Nói cách khác, thao tác h�
         }
         ```
 
-<span id="&#21487;&#25345;&#20037;&#21270;&#23383;&#20856;&#26641;"></span>
+<span id="trie-bền-vững"></span>
 ### Trie bền vững
 
 Xem thêm [trie bền vững](../ds/persistent-trie.md).
