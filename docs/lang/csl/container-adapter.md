@@ -7,8 +7,8 @@ author: Xeonacid, ksyx, Early0v0
 STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đổi bộ chứa
 theo nguyên tắc vào sau ra trước (LIFO, Last In, First Out). Nó chỉ hỗ trợ truy
 vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ
-trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không
-hỗ trợ bộ lặp.
+trợ truy cập ngẫu nhiên. Để giữ đúng thứ tự LIFO, `std::stack` cũng không hỗ trợ
+bộ lặp.
 
 <span id="tệp-tiêu-đề-ngăn-xếp"></span>
 
@@ -23,8 +23,8 @@ hỗ trợ bộ lặp.
 ### Định nghĩa
 
 ```cpp
-std::stack<TypeName> s;             // dùng deque làm bộ chứa nền mặc định, kiểu dữ liệu là TypeName
-std::stack<TypeName, Container> s;  // dùng Container làm bộ chứa nền
+std::stack<TypeName> s;             // dùng deque làm bộ chứa cơ sở mặc định, kiểu dữ liệu là TypeName
+std::stack<TypeName, Container> s;  // dùng Container làm bộ chứa cơ sở
 std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 ```
 
@@ -39,7 +39,7 @@ std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 -   `push(x)` chèn phần tử `x` vào ngăn xếp
 -   `pop()` xóa phần tử đỉnh ngăn xếp
 -   `size()` trả về số lượng phần tử trong bộ chứa
--   `empty()` kiểm tra bộ chứa có rỗng hay không
+-   `empty()` trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`
 
 <span id="ví-dụ-đơn-giản-ngăn-xếp"></span>
 
@@ -64,8 +64,8 @@ std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một bộ chuyển đổi bộ chứa
 theo nguyên tắc vào trước ra trước (FIFO, First In, First Out). Nó chỉ hỗ trợ
 truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không
-hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng
-không hỗ trợ bộ lặp.
+hỗ trợ truy cập ngẫu nhiên. Để giữ đúng thứ tự FIFO, `std::queue` cũng không hỗ
+trợ bộ lặp.
 
 <span id="tệp-tiêu-đề-hàng-đợi"></span>
 
@@ -80,8 +80,8 @@ không hỗ trợ bộ lặp.
 ### Định nghĩa
 
 ```cpp
-std::queue<TypeName> q;             // dùng deque làm bộ chứa nền mặc định, kiểu dữ liệu là TypeName
-std::queue<TypeName, Container> q;  // dùng Container làm bộ chứa nền
+std::queue<TypeName> q;             // dùng deque làm bộ chứa cơ sở mặc định, kiểu dữ liệu là TypeName
+std::queue<TypeName, Container> q;  // dùng Container làm bộ chứa cơ sở
 
 std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
 ```
@@ -97,7 +97,7 @@ std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
 -   `push(x)` chèn phần tử `x` vào hàng đợi
 -   `pop()` xóa phần tử đầu hàng đợi
 -   `size()` trả về số lượng phần tử trong bộ chứa
--   `empty()` kiểm tra bộ chứa có rỗng hay không
+-   `empty()` trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`
 
 <span id="ví-dụ-đơn-giản-hàng-đợi"></span>
 
@@ -136,11 +136,11 @@ thường là [heap nhị phân](../../ds/binary-heap.md).
 
 ```cpp
 std::priority_queue<TypeName> q;             // kiểu dữ liệu là TypeName
-std::priority_queue<TypeName, Container> q;  // dùng Container làm bộ chứa nền
+std::priority_queue<TypeName, Container> q;  // dùng Container làm bộ chứa cơ sở
 std::priority_queue<TypeName, Container, Compare> q;
-// dùng Container làm bộ chứa nền, dùng Compare làm kiểu so sánh
+// dùng Container làm bộ chứa cơ sở, dùng Compare làm kiểu so sánh
 
-// Mặc định dùng vector làm bộ chứa nền
+// Mặc định dùng vector làm bộ chứa cơ sở
 // Kiểu so sánh là less<TypeName> (khi đó top() trả về giá trị lớn nhất)
 // Nếu muốn top() trả về giá trị nhỏ nhất, có thể đặt kiểu so sánh là greater<TypeName>
 // Lưu ý: không thể bỏ qua Container để truyền trực tiếp Compare
@@ -162,12 +162,12 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
 **Tất cả các hàm sau đều có độ phức tạp hằng số**
 
 -   `top()` truy cập phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
--   `empty()` kiểm tra bộ chứa có rỗng hay không
+-   `empty()` trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`
 -   `size()` trả về số lượng phần tử trong bộ chứa
 
 **Tất cả các hàm sau đều có độ phức tạp logarit**
 
--   `push(x)` chèn phần tử và sắp xếp bộ chứa nền
+-   `push(x)` chèn phần tử rồi điều chỉnh lại heap trong bộ chứa cơ sở
 -   `pop()` xóa phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
 
 <span id="ví-dụ-đơn-giản-hàng-đợi-ưu-tiên"></span>
