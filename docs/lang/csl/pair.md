@@ -1,29 +1,29 @@
 author: sbofgayschool
 
-`std::pair` là một mẫu lớp được định nghĩa trong thư viện chuẩn. Nó dùng
-để liên kết hai biến lại với nhau thành một "cặp", và kiểu dữ liệu của hai biến
+`std::pair` là một template lớp được định nghĩa trong thư viện chuẩn. Nó dùng
+để ghép hai giá trị lại với nhau thành một "cặp", và kiểu dữ liệu của hai giá trị
 có thể khác nhau.
 
-??? note "Mẫu lớp"
-    Bản thân mẫu lớp không phải là một lớp, mà là một "khuôn mẫu" có thể
+??? note "Template lớp"
+    Bản thân template lớp không phải là một lớp cụ thể, mà là một "khuôn mẫu" có thể
     sinh ra **các lớp khác nhau** theo **các kiểu dữ liệu khác nhau**.
 
     Khi sử dụng, trình biên dịch sẽ sinh lớp tương ứng theo kiểu dữ liệu được
-    truyền vào, rồi tạo thực thể tương ứng.
+    truyền vào, rồi tạo đối tượng tương ứng.
 
-    Khuôn mẫu là một đặc tính tương đối nâng cao của C++; trong thi đấu tin học
+    Template là một đặc tính tương đối nâng cao của C++; trong thi đấu tin học
     gần như không cần tự viết `template`. Nếu quan tâm, bạn có thể đọc thêm
     "C++ Primer" để học sâu hơn về C++.
 
-Sử dụng `pair` linh hoạt giúp xử lý dễ dàng các tình huống **cần buộc dữ liệu
-liên quan lại để lưu trữ và xử lý**.
+Sử dụng `pair` linh hoạt giúp xử lý dễ dàng các tình huống **cần ghép hai dữ liệu
+liên quan để lưu trữ và xử lý**.
 
 ??? note "Cấu trúc (`struct`)"
     So với `struct` tự định nghĩa, `pair` không cần định nghĩa thêm cấu trúc và
     nạp chồng toán tử, nên dùng đơn giản hơn.
 
-    Tuy nhiên, tên biến trong `struct` tự định nghĩa thường rõ ràng hơn (`pair`
-    chỉ có thể dùng `first` và `second` để truy cập hai biến bên trong). Đồng
+    Tuy nhiên, tên thành viên trong `struct` tự định nghĩa thường rõ ràng hơn (`pair`
+    chỉ có thể dùng `first` và `second` để truy cập hai thành viên bên trong). Đồng
     thời, nếu cần liên kết nhiều hơn hai biến, `struct` tự định nghĩa sẽ phù hợp
     hơn.
 
@@ -45,15 +45,16 @@ p1.first = 1;
 p1.second = 2.0;
 ```
 
-Cũng có thể dùng hàm `std::make_pair`. Hàm này nhận hai biến và trả về `pair`
-được tạo từ hai biến đó.
+Cũng có thể dùng hàm `std::make_pair`. Hàm này nhận hai giá trị và trả về `pair`
+được tạo từ hai giá trị đó.
 
 ```cpp
 pair<int, double> p2 = make_pair(1, 2.0);
 ```
 
-Một cách dùng phổ biến là định nghĩa macro `#define mp make_pair`, rút gọn
-tên hàm `make_pair` hơi dài thành `mp`.
+Trong một số mã thi đấu cũ, người viết định nghĩa macro `#define mp make_pair`
+để rút gọn tên hàm `make_pair` thành `mp`. Cách này không bắt buộc; dùng trực tiếp
+`make_pair` hoặc khởi tạo bằng dấu `{}` thường rõ ràng hơn.
 
 Trong C++11 và các phiên bản mới hơn, `make_pair` có thể dùng cùng `auto` để
 tránh khai báo kiểu dữ liệu tường minh.
@@ -67,7 +68,7 @@ Về cách dùng `auto` trong thi đấu tin học, xem giải thích ở phần
 
 ### Truy cập
 
-Thông qua hai thành viên `first` và `second`, có thể truy cập hai biến chứa
+Thông qua hai thành viên `first` và `second`, có thể truy cập hai giá trị được lưu
 trong `pair`.
 
 ```cpp
@@ -87,8 +88,8 @@ p1.first++;
 `==`, `!=`. Tất nhiên, điều này yêu cầu kiểu dữ liệu của hai biến tạo thành
 `pair` đã định nghĩa toán tử `==` và/hoặc `<`.
 
-Trong đó, bốn toán tử `<`, `>`, `<=`, `>=` sẽ so sánh biến thứ nhất của hai
-`pair` trước; nếu biến thứ nhất bằng nhau thì tiếp tục so sánh biến thứ hai.
+Trong đó, bốn toán tử `<`, `>`, `<=`, `>=` sẽ so sánh thành viên thứ nhất của hai
+`pair` trước; nếu thành viên thứ nhất bằng nhau thì tiếp tục so sánh thành viên thứ hai.
 
 ```cpp
 if (p2 >= p3) {
@@ -123,10 +124,10 @@ p2.swap(p3);
 
 ### Rời rạc hóa
 
-`pair` có thể hiện thực rời rạc hóa rất dễ dàng.
+`pair` có thể dùng để cài đặt rời rạc hóa rất dễ dàng.
 
-Ta có thể tạo một mảng `pair`, dùng biến thứ nhất của mỗi `pair` để lưu giá trị
-dữ liệu gốc, và biến thứ hai để lưu vị trí ban đầu của dữ liệu gốc. Sau khi sắp
+Ta có thể tạo một mảng `pair`, dùng thành viên thứ nhất của mỗi `pair` để lưu giá trị
+dữ liệu gốc, và thành viên thứ hai để lưu vị trí ban đầu của dữ liệu gốc. Sau khi sắp
 xếp, gán thứ hạng của giá trị dữ liệu gốc (vị trí của giá trị đó sau khi sắp
 xếp) về vị trí ban đầu của giá trị đó là được.
 
@@ -153,15 +154,15 @@ for (int i = 0; i < n; i++) {
 Như đã nói, `pair` có thể làm kiểu dữ liệu của `priority_queue`.
 
 Trong tối ưu bằng heap của thuật toán Dijkstra, có thể dùng `pair` và
-`priority_queue` để duy trì đỉnh: lưu khoảng cách hiện tại từ đỉnh đến điểm
-nguồn làm biến thứ nhất, và số hiệu đỉnh làm biến thứ hai.
+`priority_queue` để duy trì đỉnh: lưu khoảng cách hiện tại từ nguồn đến đỉnh
+làm thành viên thứ nhất, và số hiệu đỉnh làm thành viên thứ hai.
 
 ```cpp
 priority_queue<pair<int, int>, std::vector<pair<int, int>>,
                std::greater<pair<int, int>>>
     q;
 ... while (!q.empty()) {
-  // dis là khoảng cách từ đỉnh đến nguồn khi được đưa vào heap, i là số hiệu đỉnh
+  // dis là khoảng cách từ nguồn đến đỉnh khi được đưa vào heap, i là số hiệu đỉnh
   int dis = q.top().first, i = q.top().second;
   q.pop();
   ...
@@ -170,9 +171,9 @@ priority_queue<pair<int, int>, std::vector<pair<int, int>>,
 
 ### `pair` và `map`
 
-`map` là cấu trúc dữ liệu lưu cặp khóa-giá trị trong C++. Trong nhiều trường
-hợp, các cặp khóa-giá trị được lưu trong `map` được biểu diễn ra bên ngoài thông
-qua `pair`.
+`map` là cấu trúc dữ liệu lưu cặp khóa-giá trị trong C++. Phần tử của `map` về
+cơ bản là một cặp gồm khóa và giá trị, nên khi chèn dữ liệu ta thường dùng `pair`
+hoặc `make_pair`.
 
 ```cpp
 map<int, double> m;
