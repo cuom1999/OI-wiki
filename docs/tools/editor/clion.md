@@ -111,7 +111,7 @@ CLion là sản phẩm trả phí, nhưng có thể xin giấy phép đặc bi�
 
 ### Dùng email giáo dục để nhận
 
-Vào trang [Free Educational Licenses](https://www.jetbrains.com/community/education/#students) trên trang chính thức, nhấp nút `Apply`, rồi điền thông tin liên quan để đăng ký.
+Vào trang [Free Educational Licenses](https://www.jetbrains.com/community/education/#students) trên trang chính thức, nhấp nút `Apply` (`Áp dụng`), rồi điền thông tin liên quan để đăng ký.
 
 ![Giấy phép giáo dục](./images/clion-edu.png)
 

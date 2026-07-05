@@ -2,7 +2,7 @@ author: GoodCoder666, Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tain
 
 ![Ảnh đầu trang](./images/wsl-header.png)
 
-Chương này chủ yếu giới thiệu cách dùng Windows Subsystem for Linux để chạy môi trường Linux trên hệ thống Windows.
+Chương này chủ yếu giới thiệu cách dùng Hệ thống con Windows cho Linux (Windows Subsystem for Linux, WSL) để chạy môi trường Linux trên hệ thống Windows.
 
 ## Dẫn nhập[^ref1]
 
@@ -18,7 +18,7 @@ Yêu cầu môi trường của kỳ thi NOI (từ ngày 1 tháng 9 năm 2021) n
 | | Python 2 | `2.7` | Ngôn ngữ không dùng để thi |
 | | Python 3 | `3.8` | Ngôn ngữ không dùng để thi |
 | Công cụ gỡ lỗi | GDB | `9.1` | |
-| | DDD | `3.3.12` | Frontend GUI của GDB |
+| | DDD | `3.3.12` | Giao diện đồ họa (frontend GUI) của GDB |
 | Môi trường phát triển tích hợp (IDE) | Code::Blocks | `20.03` | C/C++ IDE |
 | | Lazarus | `2.0.6` | Pascal IDE |
 | | Geany | `1.36` | C/C++/Pascal IDE nhẹ |
@@ -109,7 +109,7 @@ Dùng giao diện đồ họa:
 
 3.  Chọn "Windows Subsystem for Linux" ("Hệ thống con Windows cho Linux") và "Virtual Machine Platform" ("Nền tảng máy ảo").
 
-4.  Nhấp OK.
+4.  Nhấp OK ("Đồng ý").
 
 5.  Khởi động lại.
 

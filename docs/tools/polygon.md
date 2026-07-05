@@ -101,7 +101,7 @@ Trang này dùng để quản lý dữ liệu.
 
 Trên Polygon, cách làm được khuyến nghị là dùng một số ít [trình sinh dữ liệu](./testlib/generator.md) **có tham số dòng lệnh** để sinh dữ liệu, thay vì viết nhiều trình sinh dữ liệu hoặc mỗi lần sinh một bộ dữ liệu lại sửa trình sinh dữ liệu. Ngoài ra, chỉ cần sinh đầu vào; đầu ra sẽ được sinh tự động.
 
-"Testset" là một tập kiểm thử. Nếu ra đề cho CF, cần tự thêm Testset tên "pretests", và "pretests" cần là tập con của "tests".
+"Testset" ("Tập kiểm thử") là một tập kiểm thử. Nếu ra đề cho CF, cần tự thêm Testset tên "pretests", và "pretests" cần là tập con của "tests".
 
 "Add Test" ("Thêm test") dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng trình sinh dữ liệu với một bộ tham số nào đó.
 
@@ -117,7 +117,7 @@ Có thể tham khảo [hướng dẫn do Polygon cung cấp](https://polygon.cod
 
 Trang này dùng để kiểm thử stress.
 
-Nhấp "Add Stress" ("Thêm stress") để thêm một bộ kiểm thử stress. "Script pattern" ("Mẫu script") là script sinh dữ liệu, trong đó có thể dùng dạng như "\[10..100]" để biểu thị chọn ngẫu nhiên trong một khoảng.
+Nhấp "Add Stress" ("Thêm stress") để thêm một bộ kiểm thử stress. "Script pattern" ("Mẫu kịch bản") là kịch bản sinh dữ liệu, trong đó có thể dùng dạng như "\[10..100]" để biểu thị chọn ngẫu nhiên trong một khoảng.
 
 Sau đó chạy kiểm thử stress; nếu tìm được lỗi, hệ thống sẽ hiển thị "Crashed" ("Bị lỗi"), và có thể thêm bộ dữ liệu đó vào Tests bằng một lần nhấp.
 
@@ -177,6 +177,6 @@ Thanh bên còn có thể xem trước toàn bộ đề bài, toàn bộ hướn
 
 ## Giải quyết xung đột
 
-Khi nhiều người cùng dùng Polygon để ra đề, nếu phiên bản bài đang sửa khác với phiên bản bài ở remote, và khi lấy phiên bản mới nhất từ remote hoặc commit cập nhật mà tệp đã sửa không thể tự động merge, xung đột (Conflicted) sẽ xảy ra.
+Khi nhiều người cùng dùng Polygon để ra đề, nếu phiên bản bài đang sửa khác với phiên bản bài trên kho từ xa (remote), và khi lấy phiên bản mới nhất từ kho từ xa hoặc ghi nhận thay đổi (commit) cập nhật mà tệp đã sửa không thể tự động gộp (merge), xung đột (Conflicted) sẽ xảy ra.
 
 Sau khi xảy ra xung đột, Polygon sẽ cung cấp tùy chọn "Resolve conflicts" ("Giải quyết xung đột") trong các tùy chọn của bài bị xung đột; người dùng có thể vào đó để giải quyết xung đột trên các tệp bị xung đột.

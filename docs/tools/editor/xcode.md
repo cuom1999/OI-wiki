@@ -36,7 +36,7 @@ Nhấp `Create a new Xcode project` (tạo một dự án Xcode mới), sau đó
 
 ![](images/xcode-5.jpg)
 
-Tiếp theo, ta có thể đặt tên cho dự án, nhưng điều quan trọng nhất là chọn ngôn ngữ của dự án. Tùy nhu cầu, tại mục `Language` ở phía dưới cùng, ta có thể chọn C hoặc C++:
+Tiếp theo, ta có thể đặt tên cho dự án, nhưng điều quan trọng nhất là chọn ngôn ngữ của dự án. Tùy nhu cầu, tại mục `Language` (`Ngôn ngữ`) ở phía dưới cùng, ta có thể chọn C hoặc C++:
 
 ![](images/xcode-6.jpg)
 

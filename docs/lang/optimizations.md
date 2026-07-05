@@ -143,7 +143,7 @@ a[2] = 2;
 <a id="đưa-điều-kiện-vòng-lặp-ra-ngoài-loop-unswitching"></a>
 ### Đưa điều kiện vòng lặp ra ngoài (Loop Unswitching)
 
-Loop unswitching đưa biểu thức điều kiện trong vòng lặp ra ngoài vòng lặp, rồi đặt hai vòng lặp riêng trong hai nhánh điều kiện bên ngoài. Cách này có thể tăng khả năng vector hóa và song song hóa vòng lặp (thông thường vòng lặp đơn giản dễ được vector hóa hơn).
+Kỹ thuật đưa điều kiện vòng lặp ra ngoài (loop unswitching) đưa biểu thức điều kiện trong vòng lặp ra ngoài vòng lặp, rồi đặt hai vòng lặp riêng trong hai nhánh điều kiện bên ngoài. Cách này có thể tăng khả năng vector hóa và song song hóa vòng lặp (thông thường vòng lặp đơn giản dễ được vector hóa hơn).
 
 ```cpp
 // clang-format off
@@ -341,7 +341,7 @@ Khi một lời gọi hàm nằm ở vị trí cuối thân hàm, lời gọi đ
 <a id="dùng-lệnh-nhảy-thay-cho-lời-gọi-hàm"></a>
 #### Dùng lệnh nhảy thay cho lời gọi hàm
 
-Trên tuyệt đại đa số kiến trúc, lời gọi hàm cần lưu vị trí bộ đếm chương trình hiện tại `$pc`, đồng thời lưu một số caller-saved register để có thể quay lại ngữ cảnh cũ. Tail call không cần quá trình này và sẽ được dịch trực tiếp thành lệnh nhảy, vì lời gọi đuôi không bao giờ quay lại vị trí đang chạy của hàm hiện tại.
+Trên tuyệt đại đa số kiến trúc, lời gọi hàm cần lưu vị trí bộ đếm chương trình hiện tại `$pc`, đồng thời lưu một số thanh ghi do bên gọi lưu (caller-saved register) để có thể quay lại ngữ cảnh cũ. Lời gọi đuôi (tail call) không cần quá trình này và sẽ được dịch trực tiếp thành lệnh nhảy, vì lời gọi đuôi không bao giờ quay lại vị trí đang chạy của hàm hiện tại.
 
 Một ví dụ đơn giản: <https://godbolt.org/z/e7b1safaW>
 
@@ -477,7 +477,7 @@ for (int i = 1; i < 10; i++) {
 }
 ```
 
-Ở đây việc viết trực tiếp `a = 3 * i` rất thường gặp trong OI, nhưng trình biên dịch có thể tự động phân tích được phép biến đổi tương đương `a = a + 3`, dùng phép cộng rẻ hơn thay cho phép nhân. Phân tích quá trình lặp của biến vòng lặp được gọi là SCEV (Scalar Evolution).
+Ở đây việc viết trực tiếp `a = 3 * i` rất thường gặp trong OI, nhưng trình biên dịch có thể tự động phân tích được phép biến đổi tương đương `a = a + 3`, dùng phép cộng rẻ hơn thay cho phép nhân. Phân tích quá trình lặp của biến vòng lặp được gọi là SCEV (tiến triển vô hướng, Scalar Evolution).
 
 SCEV còn có thể tối ưu một số vòng lặp:
 

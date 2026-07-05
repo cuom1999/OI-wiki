@@ -33,7 +33,7 @@ Trong cửa sổ chỉnh sửa, nhấn nút "Mới" ở bên phải, tạo một
     
     ![](./images/compiler5.png)
 
-Sau khi hoàn tất, nhấn "OK" liên tiếp để thoát.
+Sau khi hoàn tất, nhấn "OK" ("Đồng ý") liên tiếp để thoát.
 
 Tiếp theo, mở trình dòng lệnh, nhập `g++ --version` rồi nhấn Enter. Nếu xuất hiện thông báo như hình minh họa thì nghĩa là cài đặt thành công.
 

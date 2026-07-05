@@ -152,15 +152,15 @@ Trên hệ thống \*nix, mở bất kỳ tệp nguồn C++ nào, tìm `Compile 
 
     Để chỉnh sửa, trước hết hãy đảm bảo hệ thống của bạn có một trình biên dịch C++ dùng được. Sau đó thêm `Compile Run cpp` (`Biên dịch và chạy cpp`) từ công cụ mặc định, đổi `Executable` (`Tệp thực thi`) từ `sh` thành `powershell`, và đổi tham số thành `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2].
 
-##### Git Blame
+##### Git Blame (truy vết dòng Git)
 
-Mở bất kỳ tệp nào, tìm `git blame` trong công cụ ngoài; sau khi nhấp, một cửa sổ sẽ mở ra và hiển thị kết quả git blame.
+Mở bất kỳ tệp nào, tìm `git blame` (`truy vết dòng Git`) trong công cụ ngoài; sau khi nhấp, một cửa sổ sẽ mở ra và hiển thị kết quả git blame.
 
 ##### Định dạng
 
 Chức năng định dạng yêu cầu gói hoặc ứng dụng tương ứng khả dụng; ví dụ, định dạng C/C++ yêu cầu `clang-format` khả dụng. Với các ngôn ngữ khác, người dùng có thể vào cấu hình công cụ ngoài để xem tệp thực thi mặc định làm tham khảo.
 
-Mở bất kỳ tệp nguồn nào, tìm `Format with xxx` trong công cụ ngoài, rồi nhấp vào đó. Ngoài ra, với tệp nguồn C/C++, `clang-format` có thể định dạng phần văn bản được chọn.
+Mở bất kỳ tệp nguồn nào, tìm `Format with xxx` (`Định dạng bằng xxx`) trong công cụ ngoài, rồi nhấp vào đó. Ngoài ra, với tệp nguồn C/C++, `clang-format` có thể định dạng phần văn bản được chọn.
 
 ### Truy vết dòng bằng Git blame
 

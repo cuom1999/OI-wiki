@@ -525,11 +525,11 @@ Biến đa hình:
 3.  Khi gán đối tượng của lớp con cho biến của lớp cha, upcasting xảy ra.
 
 <span id="generics"></span>
-## Kiểu generic (kiểu tham số hóa)
+## Kiểu tổng quát (generic, kiểu tham số hóa)
 
-Generic nghĩa là khi định nghĩa lớp, ta không cố định kiểu cụ thể của thuộc tính hoặc tham số phương thức trong lớp, mà chỉ xác định kiểu khi sử dụng hoặc tạo đối tượng. Bản chất của generic là kiểu tham số hóa, tức kiểu dữ liệu được thao tác được chỉ định như một tham số.
+Kiểu tổng quát (generic) nghĩa là khi định nghĩa lớp, ta không cố định kiểu cụ thể của thuộc tính hoặc tham số phương thức trong lớp, mà chỉ xác định kiểu khi sử dụng hoặc tạo đối tượng. Bản chất của kiểu tổng quát là kiểu tham số hóa, tức kiểu dữ liệu được thao tác được chỉ định như một tham số.
 
-Generic cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm biên dịch, cho phép phát hiện kiểu không hợp lệ khi biên dịch.
+Kiểu tổng quát cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm biên dịch, cho phép phát hiện kiểu không hợp lệ khi biên dịch.
 
 <span id="interface"></span>
 ## Giao diện (interface)
@@ -537,13 +537,13 @@ Generic cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm bi�
 <span id="interface-giới-thiệu"></span>
 ### Giới thiệu
 
-Giao diện (interface) trong Java là một kiểu trừu tượng, là tập hợp các phương thức trừu tượng, thường được khai báo bằng `interface`. Một lớp hiện thực interface để kế thừa các phương thức trừu tượng của interface đó.
+Giao diện (interface) trong Java là một kiểu trừu tượng, là tập hợp các phương thức trừu tượng, thường được khai báo bằng `interface`. Một lớp hiện thực giao diện để kế thừa các phương thức trừu tượng của giao diện đó.
 
-Interface không phải là lớp. Cách viết interface khá giống lớp, nhưng chúng thuộc hai khái niệm khác nhau. Lớp mô tả thuộc tính và phương thức của đối tượng; interface chứa các phương thức mà lớp phải hiện thực.
+Giao diện không phải là lớp. Cách viết giao diện khá giống lớp, nhưng chúng thuộc hai khái niệm khác nhau. Lớp mô tả thuộc tính và phương thức của đối tượng; giao diện chứa các phương thức mà lớp phải hiện thực.
 
-Trừ khi lớp hiện thực interface là lớp trừu tượng, lớp đó phải định nghĩa tất cả phương thức trong interface.
+Trừ khi lớp hiện thực giao diện là lớp trừu tượng, lớp đó phải định nghĩa tất cả phương thức trong giao diện.
 
-Interface không thể được khởi tạo, nhưng có thể được hiện thực. Một lớp hiện thực interface phải hiện thực mọi phương thức được mô tả trong interface, nếu không thì phải khai báo là lớp trừu tượng. Ngoài ra, trong Java, kiểu interface có thể dùng để khai báo biến; biến đó có thể là con trỏ null, hoặc được gắn với một đối tượng hiện thực interface này.
+Giao diện không thể được khởi tạo, nhưng có thể được hiện thực. Một lớp hiện thực giao diện phải hiện thực mọi phương thức được mô tả trong giao diện, nếu không thì phải khai báo là lớp trừu tượng. Ngoài ra, trong Java, kiểu giao diện có thể dùng để khai báo biến; biến đó có thể là con trỏ null, hoặc được gắn với một đối tượng hiện thực giao diện này.
 
 <span id="khác-biệt-với-lớp"></span>
 ### Khác biệt với lớp

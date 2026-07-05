@@ -41,7 +41,7 @@ Khi khởi động Code::Blocks lần đầu, phần mềm sẽ tự động qu�
 2.  Trong danh sách thả xuống `Selected compiler` (`Trình biên dịch đã chọn`), chọn trình biên dịch cần cấu hình, ví dụ `GNU GCC Compiler`.
 3.  Trong thẻ `Toolchain executables` (`Tệp thực thi của chuỗi công cụ`), nhấp nút `Auto-detect` (`Tự động phát hiện`); Code::Blocks sẽ tự động quét các trình biên dịch đã cài trong hệ thống.
 4.  Nếu tự động quét thất bại, bạn có thể đặt thủ công đường dẫn trình biên dịch. Trong `Compiler's installation directory` (`Thư mục cài đặt trình biên dịch`), nhập đường dẫn cài đặt của trình biên dịch, ví dụ `C:\MinGW\bin`.
-5.  Sau khi thiết lập xong, nhấp `OK` để lưu; bây giờ bạn có thể dùng trình biên dịch đó để biên dịch và chạy dự án.
+5.  Sau khi thiết lập xong, nhấp `OK` (`Đồng ý`) để lưu; bây giờ bạn có thể dùng trình biên dịch đó để biên dịch và chạy dự án.
 
 ## Sử dụng
 

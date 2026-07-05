@@ -22,11 +22,11 @@ Phần này chủ yếu nói về một số chức năng cơ bản và đặc t
 
 ### Tìm kiếm và thay thế
 
-Lần lượt nhấp "(thanh menu) Search" -> "Find" (phím tắt `CTRL`+`F`) để mở trang "Find" (như hình dưới).
+Lần lượt nhấp "(thanh menu) Search" ("Tìm kiếm") -> "Find" ("Tìm") (phím tắt `CTRL`+`F`) để mở trang "Find" ("Tìm") (như hình dưới).
 
 ![Tìm kiếm trong Notepad++](./images/npp-search.png)
 
-Lần lượt nhấp "(thanh menu) Search" -> "Replace" (phím tắt `CTRL`+`H`) để mở trang "Replace" (như hình dưới).
+Lần lượt nhấp "(thanh menu) Search" ("Tìm kiếm") -> "Replace" ("Thay thế") (phím tắt `CTRL`+`H`) để mở trang "Replace" ("Thay thế") (như hình dưới).
 
 ![Thay thế trong Notepad++](./images/npp-replace.png)
 
@@ -104,7 +104,7 @@ Trước hết là ghi macro: nhất định phải nhấn phím `HOME` hoặc `
 
 Ví dụ với trường hợp vừa rồi, có thể nhấn `END`, rồi lần lượt nhấn `←`, `Backspace`, `←`, `Backspace`, `F`, cuối cùng nhấn `↓` hai lần, rồi dừng ghi.
 
-Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên cần xử lý (dòng 3), rồi nhấp "Macro" -> "Run a Macro Multiple Times" ("Macro -> Chạy macro nhiều lần"). Trong cửa sổ bật lên, chọn macro cần chạy (macro vừa ghi thường là cái đầu tiên), đặt số lần chạy (hoặc chạy thẳng đến cuối tệp), rồi nhấp OK.
+Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên cần xử lý (dòng 3), rồi nhấp "Macro" -> "Run a Macro Multiple Times" ("Macro -> Chạy macro nhiều lần"). Trong cửa sổ bật lên, chọn macro cần chạy (macro vừa ghi thường là cái đầu tiên), đặt số lần chạy (hoặc chạy thẳng đến cuối tệp), rồi nhấp OK ("Đồng ý").
 
 #### Lưu macro
 
@@ -131,7 +131,7 @@ Sau đó chọn "Plugins Admin" ("Quản lý phần bổ trợ") để quản l�
 
 1.  Tải phần bổ trợ (địa chỉ chính thức do bên thứ ba lưu trữ: <https://sourceforge.net/projects/npp-plugins/>). Chú ý nhất định phải chọn phần bổ trợ **cùng kiến trúc bộ xử lý với lúc cài Notepad++**.
 2.  Tìm tệp tên "XXX.dll" (thường được đặt theo tên phần bổ trợ).
-3.  Trong Notepad++, nhấp Plugins trên thanh chức năng, rồi nhấp "Open Plugins Folder" ("Mở thư mục phần bổ trợ") trong danh sách.
+3.  Trong Notepad++, nhấp Plugins ("Phần bổ trợ") trên thanh chức năng, rồi nhấp "Open Plugins Folder" ("Mở thư mục phần bổ trợ") trong danh sách.
 4.  Đặt tệp DLL vừa tìm được vào thư mục đó, rồi khởi động lại Notepad++.
 5.  [Tùy chọn] Xóa tệp vừa sao chép, **nhưng đừng xóa thư mục đã được sinh ra!**
 

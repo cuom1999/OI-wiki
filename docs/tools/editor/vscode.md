@@ -142,7 +142,7 @@ Trong trình soạn thảo mới mở, nhấp "Select Language" ("Chọn ngôn n
 
 ### Phím tắt
 
-Các tệp PDF phím tắt chính thức như dưới đây; cũng có thể nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> trong VS Code để mở bảng lệnh, rồi nhập lệnh `> Help: Keyboard Shortcuts Reference` để mở.[^ref3]
+Các tệp PDF phím tắt chính thức như dưới đây; cũng có thể nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> trong VS Code để mở bảng lệnh, rồi nhập lệnh `> Help: Keyboard Shortcuts Reference` (`> Trợ giúp: Tham khảo phím tắt`) để mở.[^ref3]
 
 -   [Phím tắt hệ Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 -   [Phím tắt hệ Linux](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
