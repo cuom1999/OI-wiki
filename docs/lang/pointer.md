@@ -155,7 +155,7 @@ int main() {
 }
 ```
 
-C++ đưa vào khái niệm tham chiếu; so với con trỏ, tham chiếu dễ dùng hơn và cũng an toàn hơn. Chi tiết có thể xem [C++: Tham chiếu](./reference.md) và [Khác biệt giữa C và C++: Con trỏ và tham chiếu](./cpp-other-langs.md#%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8).
+C++ đưa vào khái niệm tham chiếu; so với con trỏ, tham chiếu dễ dùng hơn và cũng an toàn hơn. Chi tiết có thể xem [C++: Tham chiếu](./reference.md) và [Khác biệt giữa C và C++: Con trỏ và tham chiếu](./cpp-other-langs.md#con-trỏ-và-tham-chiếu).
 
 ### Khởi tạo động
 

@@ -60,7 +60,7 @@ std::cout << "Hello World!" << std::endl;
 `std::cout` là lệnh xuất dữ liệu. Có thể bạn đã từng thấy một số chương trình C++ viết trực tiếp là `cout`.
 
 ??? note "Về tiền tố std::"
-    Về vấn đề tiền tố `std::`, xem ghi chú "std là gì?" dưới [phần này](basic.md#cin-%E4%B8%8E-cout).
+    Về vấn đề tiền tố `std::`, xem ghi chú "std là gì?" dưới [phần này](basic.md#cin-và-cout).
 
 Toán tử `<<` ở giữa gợi hình ảnh luồng dữ liệu đang chảy; thực chất nó biểu thị dữ liệu được "đẩy" ra luồng xuất như thế nào. Câu lệnh này có nghĩa là `"Hello World!"` được đẩy vào luồng xuất trước, sau đó `std::endl` cũng được đẩy vào luồng xuất.
 
@@ -135,7 +135,7 @@ int a = 0, b = 0, c = 0;
 #### Bài tập đơn giản
 
 1.  Viết lại đoạn mã, nộp lên OJ và đạt AC.
-2.  Tham khảo thêm cú pháp nhập xuất trong [phần này](basic.md#scanf-%E4%B8%8E-printf), đồng thời thử tìm hiểu cách xuất dữ liệu có định dạng trong C++.
+2.  Tham khảo thêm cú pháp nhập xuất trong [phần này](basic.md#scanf-và-printf), đồng thời thử tìm hiểu cách xuất dữ liệu có định dạng trong C++.
 
 ### Lời kết và bước tiếp theo
 
