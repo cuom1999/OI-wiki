@@ -46,7 +46,7 @@ còn `data()` thì không bảo đảm). Ví dụ:
 
 ```cpp
 printf("%s", s);          // lỗi biên dịch
-printf("%s", s.data());   // biên dịch được, nhưng là undefined behavior
+printf("%s", s.data());   // biên dịch được, nhưng là hành vi không xác định
 printf("%s", s.c_str());  // chắc chắn xuất đúng
 ```
 

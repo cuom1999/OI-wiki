@@ -105,7 +105,7 @@ Tương tự khi viết mà không dùng Testlib, bạn chỉ cần chuyển hư
 
 -   Tuân thủ nghiêm ngặt yêu cầu định dạng của đề, chẳng hạn dấu cách và xuống dòng; lưu ý cuối tệp nên có một ký tự xuống dòng.
 -   Với dữ liệu lớn, ưu tiên `printf` thay vì `cout` để cải thiện hiệu năng. (Không khuyến nghị tắt đồng bộ luồng khi dùng Testlib.)
--   Không dùng UB (hành vi không xác định, undefined behavior). Ví dụ, trong ví dụ đầu bài, nếu viết đầu ra thành `cout << rnd.next(1, n) << " " << rnd.next(1, n) << endl;`, thứ tự gọi `rnd.next()` là không xác định.
+-   Không dùng UB (hành vi không xác định). Ví dụ, trong ví dụ đầu bài, nếu viết đầu ra thành `cout << rnd.next(1, n) << " " << rnd.next(1, n) << endl;`, thứ tự gọi `rnd.next()` là không xác định.
 
 ## Tính năng mới: phân tích tham số dòng lệnh
 

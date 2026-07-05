@@ -67,12 +67,12 @@ Viết thuật toán trên thành giả mã:
     TARJAN_SEARCH(int u)
         vis[u]=true
         low[u]=dfn[u]=++dfncnt
-        push u to the stack
-        for each (u,v) then do
-            if v hasn't been searched then
+        đưa u vào ngăn xếp
+        với mỗi (u,v) thì
+            nếu v chưa được tìm kiếm thì
                 TARJAN_SEARCH(v) // Tìm kiếm
                 low[u]=min(low[u],low[v]) // Quay lui
-            else if v has been in the stack then
+            ngược lại nếu v đang nằm trong ngăn xếp thì
                 low[u]=min(low[u],dfn[v])
     ```
 

@@ -337,9 +337,9 @@ Giải quyết vấn đề này như thế nào?
         ```
 
     ??? warning "Không khuyến nghị dùng [`std::function`](./new.md#stdfunction) để cài đặt đệ quy"
-        Type erasure của `std::function` thường cần cấp phát thêm bộ nhớ; đồng thời, lời gọi gián tiếp làm tăng thao tác định địa chỉ và tiếp tục làm giảm hiệu năng.
+        Kỹ thuật xóa kiểu của `std::function` thường cần cấp phát thêm bộ nhớ; đồng thời, lời gọi gián tiếp làm tăng thao tác định địa chỉ và tiếp tục làm giảm hiệu năng.
         
-        Trong bài [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c), với trình biên dịch Clang 17 và libc++ làm thư viện chuẩn, cách cài đặt bằng `std::function` chậm hơn đệ quy bằng lambda khoảng 2.5 lần.
+        Trong bài [đo kiểm](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c), với trình biên dịch Clang 17 và libc++ làm thư viện chuẩn, cách cài đặt bằng `std::function` chậm hơn đệ quy bằng lambda khoảng 2.5 lần.
         
         ??? note "Mã kiểm thử"
             ```cpp

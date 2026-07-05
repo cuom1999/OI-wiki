@@ -292,7 +292,7 @@ Một số cách xử lý:
 
 ### Lỗi dẫn đến kết quả không xác định
 
-Hành vi không xác định (undefined behavior) có thể dẫn đến kết quả không xác định, có thể là WA, RE,...
+Hành vi không xác định (UB) có thể dẫn đến kết quả không xác định, có thể là WA, RE,...
 Trình biên dịch thường giả định chương trình của bạn không có hành vi không xác định, vì
 vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hành vi khác nhau.
 
@@ -555,7 +555,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
 
     [Cách viết này](https://godbolt.org/z/eGh33Grf3) thêm trực tiếp ký tự `b`
     vào xâu `a`, chỉ gọi một lần `operator+=`. Có thể xem so sánh hiệu năng chi
-    tiết hơn tại [Benchmark](https://quick-bench.com/q/JNDGl7HgOszNG-bo7AgVc42owv4).
+    tiết hơn tại [bài đo kiểm](https://quick-bench.com/q/JNDGl7HgOszNG-bo7AgVc42owv4).
 
 -   Không xóa thao tác tệp (trên một số OJ).
 

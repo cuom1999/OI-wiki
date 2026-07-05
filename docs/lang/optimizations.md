@@ -109,7 +109,7 @@ for (int i = 0; i < n; ++i) {
 }
 ```
 
-Nhưng trên thực tế, nếu `n <= 0` thì vòng lặp không bao giờ được vào, trong khi ta lại thực thi thêm một lệnh (có thể có tác dụng phụ!). Vì vậy, vòng lặp thường được Rotate thành dạng do-while để có thể chèn một "loop guard" một cách thuận tiện, rồi sau đó mới thực hiện đưa bất biến vòng lặp ra ngoài.
+Nhưng trên thực tế, nếu `n <= 0` thì vòng lặp không bao giờ được vào, trong khi ta lại thực thi thêm một lệnh (có thể có tác dụng phụ!). Vì vậy, vòng lặp thường được xoay thành dạng do-while để có thể chèn một "điều kiện bảo vệ vòng lặp" một cách thuận tiện, rồi sau đó mới thực hiện đưa bất biến vòng lặp ra ngoài.
 
 ```cpp
 if (0 < n) {  // điều kiện bảo vệ vòng lặp
@@ -564,9 +564,9 @@ Trình biên dịch hiện đại sẽ bỏ qua trực tiếp từ khóa `regist
 <https://en.cppreference.com/w/cpp/keyword/register>
 
 <a id="hành-vi-không-xác-định-undefined-behavior-và-tối-ưu-hóa-biên-dịch"></a>
-## Hành vi không xác định (Undefined Behavior) và tối ưu hóa biên dịch
+## Hành vi không xác định (UB) và tối ưu hóa biên dịch
 
-Trình biên dịch có thể coi chương trình C++ là không tồn tại [hành vi không xác định](https://en.cppreference.com/w/cpp/language/ub) (undefined behavior, UB). Vì vậy, khi biên dịch một chương trình có UB, trình biên dịch có thể tạo ra kết quả ngoài dự kiến. Đồng thời, trình biên dịch cũng có thể dựa trên giả định không có UB để thực hiện tối ưu hóa tự do và mạnh tay hơn.
+Trình biên dịch có thể coi chương trình C++ là không tồn tại [hành vi không xác định](https://en.cppreference.com/w/cpp/language/ub) (UB). Vì vậy, khi biên dịch một chương trình có UB, trình biên dịch có thể tạo ra kết quả ngoài dự kiến. Đồng thời, trình biên dịch cũng có thể dựa trên giả định không có UB để thực hiện tối ưu hóa tự do và mạnh tay hơn.
 
 Các UB thường gặp gồm:
 
