@@ -1,4 +1,4 @@
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 > Bài toán "không biết số vật": Có một số vật chưa rõ là bao nhiêu. Đếm theo nhóm $3$ thì dư $2$, theo nhóm $5$ thì dư $3$, theo nhóm $7$ thì dư $2$. Hỏi có bao nhiêu vật?
@@ -11,7 +11,7 @@ Bài toán này xuất hiện sớm nhất trong *Sunzi Suanjing*, kèm theo l�
 
 $2\times 70+3\times 21+2\times 15=233=2\times 105+23$, nên đáp án là $23$.
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Định lý số dư Trung Hoa (Chinese Remainder Theorem, CRT) có thể giải hệ phương trình đồng dư tuyến tính một ẩn có dạng sau, trong đó $n_1, n_2, \cdots, n_k$ đôi một nguyên tố cùng nhau:
@@ -27,7 +27,7 @@ $$
 
 Bài toán "không biết số vật" ở trên là một ví dụ của hệ phương trình đồng dư tuyến tính một ẩn.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trình"></span>
 ## Quy trình
 
 1.  Tính tích $n$ của tất cả các modulo.
@@ -37,7 +37,7 @@ Bài toán "không biết số vật" ở trên là một ví dụ của hệ ph
     3.  Tính $c_i=m_im_i^{-1}$ (**không lấy modulo theo $n_i$**).
 3.  Nghiệm duy nhất của hệ phương trình theo modulo $n$ là: $x=\sum_{i=1}^k a_ic_i \pmod n$.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 ## Cài đặt
 
 === "C++"
@@ -69,7 +69,7 @@ Bài toán "không biết số vật" ở trên là một ví dụ của hệ ph
         return (ans % n + n) % n
     ```
 
-<span id="&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh"></span>
 ## Chứng minh
 
 Cần chứng minh rằng $x$ do thuật toán trên tính được thỏa $x\equiv a_i \pmod {n_i}$ với mọi $i=1,2,\cdots,k$.
@@ -89,7 +89,7 @@ Tức là với mọi $i=1,2,\cdots,k$, giá trị $x$ thu được từ thuật
 
 Vì không đặt ràng buộc đặc biệt nào lên đầu vào $a_i$, mọi bộ đầu vào $\{a_i\}$ đều tương ứng với một nghiệm $x$. Ngoài ra, nếu $x\neq y$ thì luôn tồn tại $i$ sao cho $x$ và $y$ không đồng dư modulo $n_i$. Vì vậy danh sách hệ số $\{a_i\}$ và nghiệm $x$ tạo thành một ánh xạ một-một, nên hệ phương trình luôn có nghiệm duy nhất.
 
-<span id="&#x89E3;&#x91CA;"></span>
+<span id="giải-thích"></span>
 ## Giải thích
 
 Dưới đây minh họa cách CRT giải bài toán "không biết số vật".
@@ -100,7 +100,7 @@ Dưới đây minh họa cách CRT giải bài toán "không biết số vật".
 4.  "Bảy con sum họp: đúng **nửa tháng**": $n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$, nên $c_3=15\times 1=15$.
 5.  Do đó nghiệm duy nhất của hệ là $x\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$. (Trừ đi **một trăm linh năm** là biết.)
 
-<span id="garner-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-garner"></span>
 ## Thuật toán Garner
 
 Một ứng dụng khác của CRT là dùng một nhóm số nguyên tố tương đối nhỏ để biểu diễn một số nguyên lớn.
@@ -202,7 +202,7 @@ $$
 
 Có thể thấy phép tính ở dòng 6 tương ứng với biểu diễn cơ số hỗn hợp ở trên.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Trong một số bài toán đếm hoặc bài toán số học, để kéo dài mã nguồn, tăng độ khó, hoặc vì một lý do khác nào đó, modulo được cho **không phải số nguyên tố**.
@@ -222,7 +222,7 @@ Bài sau là một ví dụ tốt.
 
 Trước hết, khi $G=999~911~659$, giá trị cần tìm hiển nhiên bằng $0$.
 
-Ngược lại, theo [định lý Euler](./fermat.md), giá trị cần tìm là:
+Ngược lại, theo [định lý Euler](./fermat.md#định-lý-euler), giá trị cần tìm là:
 
 $$
 G^{\sum_{k\mid n}\binom{n}{k} \bmod 999~911~658} \bmod 999~911~659
@@ -251,28 +251,28 @@ $$
 
 Để tính một tổ hợp modulo một số nguyên tố nhỏ hơn, có thể dùng [định lý Lucas](./lucas.md).
 
-<span id="&#x6269;&#x5C55;&#xFF1A;&#x6A21;&#x6570;&#x4E0D;&#x4E92;&#x8D28;&#x7684;&#x60C5;&#x51B5;"></span>
+<span id="mở-rộng-trường-hợp-các-modulo-không-nguyên-tố-cùng-nhau"></span>
 ## Mở rộng: trường hợp các modulo không nguyên tố cùng nhau
 
-<span id="&#x4E24;&#x4E2A;&#x65B9;&#x7A0B;"></span>
+<span id="hai-phương-trình"></span>
 ### Hai phương trình
 
 Giả sử hai phương trình là $x\equiv a_1 \pmod {m_1}$ và $x\equiv a_2 \pmod {m_2}$.
 
 Chuyển chúng thành phương trình nghiệm nguyên: $x=m_1p+a_1=m_2q+a_2$, trong đó $p, q$ là các số nguyên. Khi đó $m_1p-m_2q=a_2-a_1$.
 
-Theo [định lý Bezout](./bezouts.md), nếu $a_2-a_1$ không chia hết cho $\gcd(m_1,m_2)$ thì hệ vô nghiệm.
+Theo [định lý Bézout](./bezouts.md#định-lý-bézout), nếu $a_2-a_1$ không chia hết cho $\gcd(m_1,m_2)$ thì hệ vô nghiệm.
 
-Trong các trường hợp còn lại, có thể dùng [thuật toán Euclid mở rộng](./gcd.md) để tìm một nghiệm khả thi $(p, q)$.
+Trong các trường hợp còn lại, có thể dùng [thuật toán Euclid mở rộng](./gcd.md#thuật-toán-euclid-mở-rộng) để tìm một nghiệm khả thi $(p, q)$.
 
 Khi đó nghiệm của hệ modulo gồm hai phương trình ban đầu là $x\equiv b\pmod M$, trong đó $b=m_1p+a_1$ và $M=\text{lcm}(m_1, m_2)$.
 
-<span id="&#x591A;&#x4E2A;&#x65B9;&#x7A0B;"></span>
+<span id="nhiều-phương-trình"></span>
 ### Nhiều phương trình
 
 Dùng phương pháp trên để ghép từng cặp phương trình.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Mẫu: định lý số dư Trung Hoa (CRT) / Cao Chong nuôi lợn](https://www.luogu.com.cn/problem/P1495)
