@@ -134,7 +134,7 @@ Nói đơn giản là ánh xạ qua $\sigma$ trước, rồi ánh xạ qua $\pi$
 
 Vì về bản chất $\sigma$ và $\pi$ là hai ánh xạ, nên $(\pi\circ\sigma)(x)=\pi(\sigma(x))$. Thứ tự thực hiện hợp thành hoán vị là từ phải sang trái. Phép nhân hoán vị không thỏa mãn tính giao hoán, vì vậy tính theo thứ tự sai có thể dẫn đến kết quả sai.
 
-Tích của nhiều hoán vị liên tiếp được gọi là lũy thừa của cách sắp xếp; có thể dùng [lũy thừa nhanh](./binary-exponentiation.md#%E5%A4%9A%E6%AC%A1%E7%BD%AE%E6%8D%A2) để tăng tốc tính toán.
+Tích của nhiều hoán vị liên tiếp được gọi là lũy thừa của cách sắp xếp; có thể dùng [lũy thừa nhanh](./binary-exponentiation.md#hoán-vị-nhiều-lần) để tăng tốc tính toán.
 
 <span id="&#x9006;&#x7F6E;&#x6362;"></span>
 ### Hoán vị nghịch đảo

@@ -61,7 +61,7 @@ mã nguồn có đưa ra cách cài đặt tương đương và trực tiếp h�
 các tối ưu đơn giản này là: khi cộng trừ hai số nguyên trong $[0,M)$, kết quả
 chắc chắn nằm trong khoảng $(-M,2M)$, nên có thể đưa về lại $[0,M)$ bằng một
 lần cộng hoặc trừ. Phép lũy thừa trong cài đặt này dùng kỹ thuật [lũy thừa
-nhanh](../binary-exponentiation.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%8F%96%E5%B9%82).
+nhanh](../binary-exponentiation.md#lũy-thừa-theo-mô-đun).
 
 Ngoài các phép toán cơ bản này, ta còn có thể thực hiện các phép sau dưới nhiều
 modulo:

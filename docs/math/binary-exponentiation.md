@@ -1,13 +1,13 @@
 autor: iamtwz, billchenchina, CBW2007, CCXXXI, chinggg, Enter-tainer, eyedeng, FFjet, gaojude, Great-designer, H-J-Granger, Henry-ZHR, hsfzLZH1, Ir1d, kenlig, Konano, ksyx, luoguyuntianming, Marcythm, Menci, NachtgeistW, ouuan, Peanut-Tang, qwqAutomaton, sshwy, StudyingFather, Tiphereth-A, TrisolarisHD, TRSWNCA, Xeonacid, Yuuko10032, Zhangjiacheng2006, Zhoier, Hszzzx, shenshuaijie, kfy666
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="giới-thiệu"></span>
 ## Giới thiệu
 
 **Lũy thừa nhanh** (fast exponentiation), còn gọi là **lũy thừa nhị phân** (binary exponentiation) hoặc **phương pháp bình phương liên tiếp** (exponentiation by squaring), là một kỹ thuật nhỏ để tính $a^n$ trong thời gian $\Theta(\log n)$, trong khi cách tính trực tiếp cần thời gian $\Theta(n)$.
 
-Kỹ thuật này áp dụng được trong mọi tình huống mà phép nhân của $a$ có tính kết hợp, chẳng hạn lũy thừa theo mô đun, lũy thừa ma trận, v.v. Xem thêm phần [Ứng dụng](#%E5%BA%94%E7%94%A8) ở bên dưới.
+Kỹ thuật này áp dụng được trong mọi tình huống mà phép nhân của $a$ có tính kết hợp, chẳng hạn lũy thừa theo mô đun, lũy thừa ma trận, v.v. Xem thêm phần [Ứng dụng](#ứng-dụng) ở bên dưới.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trình"></span>
 ## Quy trình
 
 Tính lũy thừa bậc $n$ của $a$ nghĩa là nhân $n$ thừa số $a$ với nhau: $a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ thừa số }a}$. Tuy nhiên, khi $n$ quá lớn hoặc chi phí cho một phép nhân quá cao, cách này sẽ không còn phù hợp. Ý tưởng của lũy thừa nhị phân là chia bài toán lũy thừa thành các bài toán nhỏ hơn theo **biểu diễn nhị phân** của số mũ.
@@ -37,7 +37,7 @@ Tính lũy thừa bậc $n$ của $a$ nghĩa là nhân $n$ thừa số $a$ với
 
 Đó là ý tưởng cơ bản của lũy thừa nhanh. Về cách cài đặt cụ thể, có hai phiên bản thường gặp.
 
-<span id="&#x8FED;&#x4EE3;&#x7248;&#x672C;"></span>
+<span id="phiên-bản-lặp"></span>
 ### Phiên bản lặp
 
 Giả sử biểu diễn nhị phân của $n$ là $(n_tn_{t-1}\cdots n_1n_0)_2$, nghĩa là
@@ -83,7 +83,7 @@ $$
 
 Khi dùng phương pháp này để tính lũy thừa nhanh, ta cần $\Theta(\log n)$ phép nhân.
 
-<span id="&#x9012;&#x5F52;&#x7248;&#x672C;"></span>
+<span id="phiên-bản-đệ-quy"></span>
 ### Phiên bản đệ quy
 
 Quy trình trên cũng có thể được cài đặt bằng đệ quy. Chú ý rằng khai triển nhị phân của số mũ $n$ có thể được viết đệ quy như sau:
@@ -128,10 +128,10 @@ $$
 
 Khi dùng phương pháp này để tính lũy thừa nhanh, ta cần $\Theta(\log n)$ tầng đệ quy và cũng cần $\Theta(\log n)$ phép nhân. Dù độ phức tạp giống nhau, bản lặp thường nhanh hơn trong thực tế vì bản đệ quy có thêm chi phí gọi hàm.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
-<span id="&#x6A21;&#x610F;&#x4E49;&#x4E0B;&#x53D6;&#x5E42;"></span>
+<span id="lũy-thừa-theo-mô-đun"></span>
 ### Lũy thừa theo mô đun
 
 ???+ example "[Luogu P1226 - Mẫu lũy thừa nhanh](https://www.luogu.com.cn/problem/P1226)"
@@ -167,25 +167,25 @@ Cách cài đặt thứ hai là dạng không đệ quy. Trong vòng lặp, nó 
 
 ???+ warning "Lưu ý"
     -   Thông thường mô đun lớn hơn $1$. Trong trường hợp rất đặc biệt, mô đun $p$ có thể bằng $1$; khi đó cần xét riêng trường hợp $b=0$.
-    -   Khi số mũ rất lớn, cần dùng [định lý Euler mở rộng](./number-theory/fermat.md#%E6%89%A9%E5%B1%95%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86) để hạ bậc trước khi tính.
+    -   Khi số mũ rất lớn, cần dùng [định lý Euler mở rộng](./number-theory/fermat.md#định-lý-euler-mở-rộng) để hạ bậc trước khi tính.
 
-<span id="&#x8BA1;&#x7B97;&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;"></span>
+<span id="tính-số-fibonacci"></span>
 ### Tính số Fibonacci
 
-Dựa vào công thức truy hồi của dãy Fibonacci $F_n = F_{n-1} + F_{n-2}$, ta có thể xây dựng một ma trận $2\times 2$ để biểu diễn phép biến đổi từ $F_i,F_{i+1}$ sang $F_{i+1},F_{i+2}$. Khi cần tính lũy thừa bậc $n$ của ma trận này, ta dùng ý tưởng lũy thừa nhanh để thu được kết quả trong thời gian $\Theta(\log n)$. Xem thêm chi tiết tại [dãy Fibonacci](./combinatorics/fibonacci.md); phần cài đặt lũy thừa nhanh cho ma trận có thể tham khảo ở [tăng tốc truy hồi bằng ma trận](../math/linear-algebra/matrix.md#%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E9%80%92%E6%8E%A8).
+Dựa vào công thức truy hồi của dãy Fibonacci $F_n = F_{n-1} + F_{n-2}$, ta có thể xây dựng một ma trận $2\times 2$ để biểu diễn phép biến đổi từ $F_i,F_{i+1}$ sang $F_{i+1},F_{i+2}$. Khi cần tính lũy thừa bậc $n$ của ma trận này, ta dùng ý tưởng lũy thừa nhanh để thu được kết quả trong thời gian $\Theta(\log n)$. Xem thêm chi tiết tại [dãy Fibonacci](./combinatorics/fibonacci.md); phần cài đặt lũy thừa nhanh cho ma trận có thể tham khảo ở [tăng tốc truy hồi bằng ma trận](../math/linear-algebra/matrix.md#dùng-ma-trận-tăng-tốc-truy-hồi).
 
-<span id="&#x591A;&#x6B21;&#x7F6E;&#x6362;"></span>
+<span id="hoán-vị-nhiều-lần"></span>
 ### Hoán vị nhiều lần
 
 ???+ note "Mô tả bài toán"
     Cho một dãy độ dài $n$ và một hoán vị, hãy áp dụng hoán vị đó lên dãy $k$ lần.
 
-Chỉ cần lấy lũy thừa bậc $k$ của hoán vị này, rồi áp dụng nó lên dãy. Độ phức tạp thời gian là $O(n \log k)$. Xem thêm chi tiết tại [hợp thành hoán vị](./permutation.md#%E5%A4%8D%E5%90%88).
+Chỉ cần lấy lũy thừa bậc $k$ của hoán vị này, rồi áp dụng nó lên dãy. Độ phức tạp thời gian là $O(n \log k)$. Xem thêm chi tiết tại [hợp thành hoán vị](./permutation.md#hợp-thành).
 
 ???+ warning "Lưu ý"
     Nếu dựng đồ thị cho hoán vị rồi xử lý riêng từng chu trình bằng cách lấy lũy thừa bậc $k$ (thực chất tương đương với lấy $k$ theo mô đun độ dài chu trình), bài toán có thể được giải trong thời gian $O(n)$.
 
-<span id="&#x52A0;&#x901F;&#x51E0;&#x4F55;&#x4E2D;&#x5BF9;&#x70B9;&#x96C6;&#x7684;&#x64CD;&#x4F5C;"></span>
+<span id="tăng-tốc-thao-tác-trên-tập-điểm-trong-hình-học"></span>
 ### Tăng tốc thao tác trên tập điểm trong hình học
 
 ???+ example "[HDU 4087 A Letter to Programmers](https://acm.hdu.edu.cn/showproblem.php?pid=4087)"
@@ -199,15 +199,15 @@ Chỉ cần lấy lũy thừa bậc $k$ của hoán vị này, rồi áp dụng 
 
 Theo nội dung trong [véc-tơ và ma trận](./linear-algebra/vector.md#vectơ-và-ma-trận), mỗi thao tác đều có thể được biểu diễn bằng một ma trận biến đổi, và một chuỗi biến đổi liên tiếp có thể được biểu diễn bằng tích các ma trận. Một thao tác Repeat tương đương với việc lấy lũy thừa bậc $k$ của một ma trận. Nhờ vậy, ta có thể tính ma trận cuối cùng của toàn bộ dãy biến đổi trong thời gian $O(m \log k)$. Cuối cùng áp dụng ma trận đó lên $n$ điểm, tổng độ phức tạp là $O(n + m \log k)$.
 
-<span id="&#x5B9A;&#x957F;&#x8DEF;&#x5F84;&#x8BA1;&#x6570;"></span>
+<span id="đếm-đường-đi-có-độ-dài-cố-định"></span>
 ### Đếm đường đi có độ dài cố định
 
 ???+ note "Mô tả bài toán"
     Cho một đồ thị có hướng (trọng số mỗi cạnh bằng 1), hãy tính số đường đi độ dài $k$ từ $u$ đến $v$ với mọi cặp đỉnh $u,v$.
 
-Ta lấy lũy thừa bậc $k$ của ma trận kề $M$ của đồ thị. Khi đó $M_{i,j}$ biểu thị số đường đi độ dài $k$ từ $i$ đến $j$. Độ phức tạp của thuật toán này là $O(n^3 \log k)$. Chi tiết của thuật toán có thể xem ở trang [ma trận](./linear-algebra/matrix.md#%E5%AE%9A%E9%95%BF%E8%B7%AF%E5%BE%84%E7%BB%9F%E8%AE%A1).
+Ta lấy lũy thừa bậc $k$ của ma trận kề $M$ của đồ thị. Khi đó $M_{i,j}$ biểu thị số đường đi độ dài $k$ từ $i$ đến $j$. Độ phức tạp của thuật toán này là $O(n^3 \log k)$. Chi tiết của thuật toán có thể xem ở trang [ma trận](./linear-algebra/matrix.md#đếm-đường-đi-độ-dài-cố-định).
 
-<span id="&#x6A21;&#x610F;&#x4E49;&#x4E0B;&#x7684;&#x6574;&#x6570;&#x4E58;&#x6CD5;"></span>
+<span id="phép-nhân-số-nguyên-theo-mô-đun"></span>
 ### Phép nhân số nguyên theo mô đun
 
 ???+ note "Mô tả bài toán"
@@ -223,12 +223,12 @@ a \cdot b = \begin{cases}
 \end{cases}
 $$
 
-Tuy nhiên, trong thực tế, phương pháp này không có hiệu quả thời gian tốt vì đưa vào độ phức tạp tính toán lớn hơn. Khi lập trình, với phép nhân có mô đun trong phạm vi `long long`, ta thường dùng [nhân nhanh](./number-theory/mod-arithmetic.md#%E5%BF%AB%E9%80%9F%E4%B9%98).
+Tuy nhiên, trong thực tế, phương pháp này không có hiệu quả thời gian tốt vì đưa vào độ phức tạp tính toán lớn hơn. Khi lập trình, với phép nhân có mô đun trong phạm vi `long long`, ta thường dùng [nhân nhanh](./number-theory/mod-arithmetic.md#nhân-nhanh).
 
-<span id="&#x9AD8;&#x7CBE;&#x5EA6;&#x5FEB;&#x901F;&#x5E42;"></span>
+<span id="lũy-thừa-nhanh-độ-chính-xác-cao"></span>
 ### Lũy thừa nhanh độ chính xác cao
 
-Kỹ năng cần có: [nhân số nguyên lớn](./bignum.md#%E4%B9%98%E6%B3%95)
+Kỹ năng cần có: [nhân số nguyên lớn](./bignum.md#phép-nhân)
 
 ???+ example "[Luogu P1045 - \[NOIP 2003 Nhóm phổ cập\] Số Mersenne](https://www.luogu.com.cn/problem/P1045)"
     Cho số nguyên $P$ ($1000 < P < 3100000$), hãy tính số chữ số của $2^P−1$ và $500$ chữ số cuối cùng của nó (biểu diễn theo hệ thập phân). Nếu chưa đủ $500$ chữ số thì thêm các chữ số 0 ở đầu.
@@ -238,7 +238,7 @@ Kỹ năng cần có: [nhân số nguyên lớn](./bignum.md#%E4%B9%98%E6%B3%95)
     --8<-- "docs/math/code/binary-exponentiation/luogu-P1045.cpp"
     ```
 
-<span id="&#x5E95;&#x6570;&#x56FA;&#x5B9A;&#x7684;&#x9884;&#x5904;&#x7406;&#x5FEB;&#x901F;&#x5E42;"></span>
+<span id="lũy-thừa-nhanh-tiền-xử-lý-với-cơ-số-cố-định"></span>
 ## Lũy thừa nhanh tiền xử lý với cơ số cố định
 
 Khi cơ số $a$ cố định, ta có thể dùng [tư tưởng phân khối](../ds/decompose.md) để tiền xử lý trong một khoảng thời gian nhất định, rồi trả lời mỗi truy vấn lũy thừa trong thời gian $O(1)$. Thuật toán này cũng thường được gọi là lũy thừa tốc độ ánh sáng. Quy trình như sau:
@@ -248,14 +248,14 @@ Khi cơ số $a$ cố định, ta có thể dùng [tư tưởng phân khối](..
 
 Giả sử phạm vi của số mũ $b$ là $[0,n]$, khi đó độ dài khối $s$ thường được chọn là $\sqrt{n}$ hoặc một lũy thừa của $2$ gần với giá trị này. Chọn $\sqrt{n}$ cho độ phức tạp tiền xử lý tối ưu $O(\sqrt{n})$, còn chọn lũy thừa của $2$ giúp đơn giản hóa phép tính bằng thao tác bit.
 
-Đặc biệt, đối với phép tính lũy thừa theo mô đun, việc cơ số $a$ giống nhau cũng ngầm yêu cầu mô đun $m$ phải giống nhau. Theo [định lý Euler mở rộng](./number-theory/fermat.md#%E6%89%A9%E5%B1%95%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), với mô đun bất kỳ $m$, cận trên của phạm vi số mũ cần tiền xử lý là $n = 2\varphi(m)$; với mô đun nguyên tố $p$, cận trên là $n = p - 1$. Trong cả hai trường hợp, độ phức tạp tiền xử lý đều là $O(\sqrt{m})$.
+Đặc biệt, đối với phép tính lũy thừa theo mô đun, việc cơ số $a$ giống nhau cũng ngầm yêu cầu mô đun $m$ phải giống nhau. Theo [định lý Euler mở rộng](./number-theory/fermat.md#định-lý-euler-mở-rộng), với mô đun bất kỳ $m$, cận trên của phạm vi số mũ cần tiền xử lý là $n = 2\varphi(m)$; với mô đun nguyên tố $p$, cận trên là $n = p - 1$. Trong cả hai trường hợp, độ phức tạp tiền xử lý đều là $O(\sqrt{m})$.
 
 ???+ example "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/binary-exponentiation/pre-exp.cpp:core"
     ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671)
