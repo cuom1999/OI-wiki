@@ -1,6 +1,6 @@
 author: AtomAlpaca, billchenchina, caibyte, Chrogeek, Early0v0, EndlessCheng, Enter-tainer, Henry-ZHR, hly1204, hsfzLZH1, Ir1d, Ghastlcon, kenlig, Marcythm, megakite, Peanut-Tang, qwqAutomaton, qz-cqy, StudyingFather, swift-zym, swiftqwq, Tiphereth-A, TrisolarisHD, Watersail2005, x4Cx58x54, Xeonacid, xiaopangfeiyu, YanWQ-monad
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Nội suy là phương pháp suy ra các điểm dữ liệu mới trong một phạm vi nhất định từ những điểm dữ liệu rời rạc đã biết. Phương pháp nội suy thường được dùng trong khớp hàm.
@@ -40,7 +40,7 @@ Dạng tổng quát của nội suy đa thức như sau:
 
 Dưới đây giới thiệu hai phương pháp trong nội suy đa thức: nội suy Lagrange và nội suy Newton. Không khó để chứng minh hai phương pháp này cho cùng một kết quả.
 
-<span id="lagrange-&#x63D2;&#x503C;&#x6CD5;"></span>
+<span id="phương-pháp-nội-suy-lagrange"></span>
 ## Phương pháp nội suy Lagrange
 
 Ta cần xây dựng một hàm $f(x)$ đi qua các điểm $P_1(x_1, y_1), P_2(x_2,y_2),\cdots,P_n(x_n,y_n)$. Trước hết, đặt hình chiếu của điểm thứ $i$ lên trục $x$ là $P_i^{\prime}(x_i,0)$.
@@ -59,7 +59,7 @@ $$
 f(x)=\sum_{i=1}^ny_i\cdot\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}
 $$
 
-Cài đặt trực tiếp có độ phức tạp thời gian $O(n^2)$; có thể tối ưu xuống $O(n\log^2 n)$, xem [nội suy nhanh đa thức](../poly/multipoint-eval-interpolation.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8F%92%E5%80%BC).
+Cài đặt trực tiếp có độ phức tạp thời gian $O(n^2)$; có thể tối ưu xuống $O(n\log^2 n)$, xem [nội suy nhanh đa thức](../poly/multipoint-eval-interpolation.md#nội-suy-nhanh-đa-thức).
 
 ???+ note "[Luogu P4781 [Mẫu] Nội suy Lagrange](https://www.luogu.com.cn/problem/P4781)"
     Cho $n$ cặp điểm $(x_i,y_i)$ và $k$, đồng thời với mọi $i,j$ có $i\neq j \iff x_i\neq x_j$, $f(x_i)\equiv y_i\pmod{998244353}$ và $\deg(f(x)) < n$ (định nghĩa $\deg(0)=-\infty$). Hãy tính $f(k)\bmod{998244353}$.
@@ -80,7 +80,7 @@ Cài đặt trực tiếp có độ phức tạp thời gian $O(n^2)$; có thể
         --8<-- "docs/math/code/numerical/interp/interp_1.cpp"
         ```
 
-<span id="&#x6A2A;&#x5750;&#x6807;&#x662F;&#x8FDE;&#x7EED;&#x6574;&#x6570;&#x7684;-lagrange-&#x63D2;&#x503C;"></span>
+<span id="nội-suy-lagrange-khi-hoành-độ-là-các-số-nguyên-liên-tiếp"></span>
 ### Nội suy Lagrange khi hoành độ là các số nguyên liên tiếp
 
 Nếu hoành độ của các điểm đã biết là các số nguyên liên tiếp, ta có thể nội suy trong $O(n)$.
@@ -131,7 +131,7 @@ Tiền xử lý tích tiền tố và hậu tố của $(x-i)$, giai thừa và 
         --8<-- "docs/math/code/numerical/interp/interp_2.cpp"
         ```
 
-<span id="newton-&#x63D2;&#x503C;&#x6CD5;"></span>
+<span id="phương-pháp-nội-suy-newton"></span>
 ## Phương pháp nội suy Newton
 
 Nội suy Newton là phương pháp nội suy dựa trên sai phân bậc cao; ưu điểm của nó là hỗ trợ chèn điểm dữ liệu mới trong $O(n)$.
@@ -190,7 +190,7 @@ $$
     --8<-- "docs/math/code/numerical/interp/interp_3.cpp"
     ```
 
-<span id="&#x6A2A;&#x5750;&#x6807;&#x662F;&#x8FDE;&#x7EED;&#x6574;&#x6570;&#x7684;-newton-&#x63D2;&#x503C;"></span>
+<span id="nội-suy-newton-khi-hoành-độ-là-các-số-nguyên-liên-tiếp"></span>
 ### Nội suy Newton khi hoành độ là các số nguyên liên tiếp
 
 Ví dụ: cần tìm các hệ số của đa thức $f(x)=\sum_{i=0}^{3} a_ix^i$, biết các giá trị từ $f(1)$ đến $f(6)$ lần lượt là $1, 5, 14, 30, 55, 91$.
@@ -214,19 +214,19 @@ $$
 
 Độ phức tạp thời gian là $O(n^2)$.
 
-<span id="c++-&#x4E2D;&#x7684;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-trong-c"></span>
 ## Cài đặt trong C++
 
 Từ C++20 trở đi, thư viện chuẩn bổ sung các hàm [`std::midpoint`](https://en.cppreference.com/w/cpp/numeric/midpoint) và [`std::lerp`](https://en.cppreference.com/w/cpp/numeric/lerp), lần lượt dùng để tính trung điểm và nội suy tuyến tính.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   ["NOIP2020" Số bước WeChat](https://loj.ac/p/3389)
 -   ["Tuyển chọn liên tỉnh 2022" Điền cây](https://loj.ac/p/3701)
 -   ["NOI2019" Robot](https://loj.ac/p/3157)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 1.  [Interpolation - Wikipedia](https://en.wikipedia.org/wiki/Interpolation)

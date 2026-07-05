@@ -1,6 +1,6 @@
 Tương tự biến đổi Fourier rời rạc, biến đổi Chirp Z là một thuật toán nhận đa thức $f(x) = \sum_{i = 0}^{m - 1} f_i x^i \in \mathbb{C}\lbrack x\rbrack$ và $q \in \mathbb{C} \setminus \{0\}$, rồi tính $f(1), f(q), \dots, f(q^{n - 1})$; thuật toán không yêu cầu $q$ là căn đơn vị. Nó cũng có thể dùng cho biến đổi số học. Phần sau sẽ giới thiệu biến đổi Chirp Z và biến đổi ngược của nó.
 
-<span id="chirp-z-&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-chirp-z"></span>
 
 ## Biến đổi Chirp Z
 
@@ -15,7 +15,7 @@ $$
 
 trong đó $f(x) := \sum_{i = 0}^{m - 1} f_i x^i \in \mathbb{C}\lbrack x\rbrack$ và $q \in \mathbb{C} \setminus \{0\}$.
 
-<span id="bluestein-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-bluestein"></span>
 
 ### Thuật toán Bluestein
 
@@ -52,7 +52,7 @@ Ngoài ra $q^{\binom{i + 1}{2}} = q^{\binom{i}{2}}\cdot q^i$ và $\binom{-i}{2} 
     --8<-- "docs/math/code/poly/czt/czt_1.cpp:core"
     ```
 
-<span id="&#x9006;-chirp-z-&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-chirp-z-ngược"></span>
 
 ## Biến đổi Chirp Z ngược
 
@@ -69,17 +69,17 @@ $$
 
 trong đó $f(x) \in \mathbb{C}\left\lbrack x\right\rbrack_{< n}$ và $q \in \mathbb{C} \setminus \{0\}$, đồng thời $q^i \neq q^j$ với mọi $i \neq j$; đây là điều kiện của nội suy đa thức.
 
-<span id="bostanschost-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-bostan-schost"></span>
 
 ### Thuật toán Bostan-Schost
 
-Nhắc lại [công thức nội suy Lagrange](../numerical/interp.md#lagrange-%E6%8F%92%E5%80%BC%E6%B3%95):
+Nhắc lại [công thức nội suy Lagrange](../numerical/interp.md#phương-pháp-nội-suy-lagrange):
 
 $$
 f(x) = \sum_{i = 0}^{n - 1}\left(f\left(x_i\right)\prod_{0 \leq j < n \atop j \neq i} \frac{x - x_j}{x_i - x_j}\right)
 $$
 
-với $x_i \neq x_j$ cho mọi $i \neq j$. Tương tự như trong [nội suy nhanh đa thức](./multipoint-eval-interpolation.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8F%92%E5%80%BC), đặt $M(x) := \prod_{i = 0}^{n - 1}\left(x - x_i\right)$. Theo quy tắc L'Hopital, ta có
+với $x_i \neq x_j$ cho mọi $i \neq j$. Tương tự như trong [nội suy nhanh đa thức](./multipoint-eval-interpolation.md#nội-suy-nhanh-đa-thức), đặt $M(x) := \prod_{i = 0}^{n - 1}\left(x - x_i\right)$. Theo quy tắc L'Hopital, ta có
 
 $$
 M'(x_i) = \lim_{x \to x_i} \frac{M(x)}{x - x_i} = \prod_{0 \leq j < n \atop j \neq i}\left(x_i - x_j\right)
@@ -135,7 +135,7 @@ Nói ngắn gọn, ta lần lượt thực hiện các phép tính sau:
     --8<-- "docs/math/code/poly/czt/inv_czt_1.cpp:core"
     ```
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 

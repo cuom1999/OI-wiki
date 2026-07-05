@@ -101,7 +101,7 @@ Kết quả thu được giống với phương pháp trên.
 
 ### Phương pháp công thức nội suy Lagrange
 
-Xét [công thức nội suy Lagrange](../numerical/interp.md#lagrange-%E6%8F%92%E5%80%BC%E6%B3%95):
+Xét [công thức nội suy Lagrange](../numerical/interp.md#phương-pháp-nội-suy-lagrange):
 
 $$
 \begin{aligned}

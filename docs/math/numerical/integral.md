@@ -1,13 +1,13 @@
 author: H-J-Granger, Chrogeek, countercurrent-time, Enter-tainer, Great-designer, iamtwz, Ir1d, ksyx, mao1t, Menci, NachtgeistW, Nanarikom, ShaoChenHeng, StudyingFather, SukkaW, Tiphereth-A, zyj-111
 
-<span id="&#23450;&#31215;&#20998;&#30340;&#23450;&#20041;"></span>
+<span id="định-nghĩa-tích-phân-xác-định"></span>
 ## Định nghĩa tích phân xác định
 
 Nói đơn giản, tích phân xác định $\int_{l}^{r}f(x)\mathrm{d}x$ của hàm $f(x)$ trên đoạn $[l,r]$ là diện tích miền được bao bởi $f(x)$ và trục $x$ trên đoạn $[l,r]$; phần nằm phía trên trục $x$ được tính dương, còn phần nằm phía dưới trục $x$ được tính âm.
 
 Trong nhiều tình huống, ta cần tính xấp xỉ một tích phân một cách hiệu quả và chính xác. **Phương pháp Simpson** được giới thiệu dưới đây là một phương pháp tích phân số như vậy.
 
-<span id="&#36763;&#26222;&#26862;&#27861;"></span>
+<span id="phương-pháp-simpson"></span>
 ## Phương pháp Simpson
 
 Ý tưởng của phương pháp này là chia khoảng lấy tích phân thành nhiều đoạn nhỏ, rồi trên mỗi đoạn áp dụng công thức tích phân của hàm bậc hai.
@@ -35,12 +35,12 @@ Trong nhiều tình huống, ta cần tính xấp xỉ một tích phân một c
 
 Dựa trên công thức Simpson này, trước hết ta giới thiệu phương pháp Simpson thông thường.
 
-<span id="&#26222;&#36890;&#36763;&#26222;&#26862;&#27861;"></span>
+<span id="phương-pháp-simpson-thông-thường"></span>
 ### Phương pháp Simpson thông thường
 
 Phương pháp này được công bố trong một bài báo của Thomas Simpson vào năm 1743.
 
-<span id="&#25551;&#36848;"></span>
+<span id="mô-tả"></span>
 #### Mô tả
 
 Cho một số tự nhiên $n$, chia đoạn $[l, r]$ thành $2n$ đoạn con bằng nhau.
@@ -57,7 +57,7 @@ Cộng theo từng đoạn sẽ cho kết luận sau:
 
 $\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2 f(x_4) + \ldots + 4 f(x_{2N-1}) + f(x_{2N}) \right)\frac {h} {3}$
 
-<span id="&#35823;&#24046;"></span>
+<span id="sai-số"></span>
 #### Sai số
 
 Ta nêu trực tiếp kết luận: sai số của phương pháp Simpson thông thường là
@@ -68,7 +68,7 @@ $$
 
 trong đó $\xi$ là một giá trị nào đó thuộc đoạn $[l,r]$.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 #### Cài đặt
 
 === "C++"
@@ -105,7 +105,7 @@ trong đó $\xi$ là một giá trị nào đó thuộc đoạn $[l,r]$.
         return s
     ```
 
-<span id="&#33258;&#36866;&#24212;&#36763;&#26222;&#26862;&#27861;"></span>
+<span id="phương-pháp-simpson-thích-nghi"></span>
 ### Phương pháp Simpson thích nghi
 
 Để bảo đảm độ chính xác, phương pháp thông thường chắc chắn bị ràng buộc bởi $n$ về mặt thời gian. Ta nên tìm một phương pháp phù hợp hơn.
@@ -167,14 +167,14 @@ Mã tham khảo như sau:
         return asr(l, r, eps, simpson(l, r), 12)
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Luogu4525【Mẫu】Phương pháp Simpson thích nghi 1](https://www.luogu.com.cn/problem/P4525)
 -   [HDU1724 Ellipse](https://acm.hdu.edu.cn/showproblem.php?pid=1724)
 -   [NOI2005 Cây chanh dưới trăng](https://www.luogu.com.cn/problem/P4207)
 
-<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 <https://doi.org/10.1145/321526.321537>: bài viết này thảo luận về các cải tiến của phương pháp Simpson thích nghi, trong đó trình bày chi tiết nguồn gốc và ưu điểm của hằng số `15` trong đoạn mã ở trên.

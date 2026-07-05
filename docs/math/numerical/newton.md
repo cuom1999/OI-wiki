@@ -1,13 +1,13 @@
 author: Marcythm, iamtwz, nutshellfool, sshwy, allenanswerzq, countercurrent-time, Enter-tainer, H-J-Granger, hly1204, Ir1d, Menci, NachtgeistW, SukkaW, Tiphereth-A, Xeonacid
 
-<span id="&#24341;&#20837;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 Bài viết này giới thiệu cách dùng phương pháp Newton (Newton's method for finding roots) để tìm nghiệm xấp xỉ của phương trình. Phương pháp này được Newton đề xuất vào thế kỷ 17.
 
 Nhiệm vụ cụ thể là: với hàm $f(x)$ liên tục và đơn điệu trên $[a,b]$, tìm nghiệm xấp xỉ của phương trình $f(x)=0$.
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 ## Giải thích
 
 Ban đầu, ta xuất phát từ hàm $f(x)$ đã cho và một nghiệm xấp xỉ $x_0$; vấn đề chọn giá trị ban đầu liên quan đến fractal Newton, có thể tham khảo video [Newton fractal](https://www.bilibili.com/video/BV1HQ4y1q78v) của 3Blue1Brown.
@@ -32,7 +32,7 @@ Chứng minh tính hội tụ của phương pháp Newton có thể tham khảo 
 
 Tất nhiên phương pháp Newton cũng có nhược điểm; xem phân tích ở trang 18-20 trong [Xiaolin Wu - Roots of Equations](https://www.ece.mcmaster.ca/~xwu/part2.pdf).
 
-<span id="&#27714;&#35299;&#24179;&#26041;&#26681;"></span>
+<span id="tìm-căn-bậc-hai"></span>
 ## Tìm căn bậc hai
 
 Ta thử dùng phương pháp Newton để tính căn bậc hai. Đặt $f(x)=x^2-n$, nghiệm xấp xỉ của phương trình này chính là giá trị xấp xỉ của $\sqrt{n}$. Từ đó ta có
@@ -43,7 +43,7 @@ $$
 
 Khi cài đặt, cần đặt độ chính xác phù hợp. Mã như sau:
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
 === "C++"
@@ -73,12 +73,12 @@ Khi cài đặt, cần đặt độ chính xác phù hợp. Mã như sau:
         return x
     ```
 
-<span id="&#27714;&#35299;&#25972;&#25968;&#24179;&#26041;&#26681;"></span>
+<span id="tìm-căn-bậc-hai-nguyên"></span>
 ## Tìm căn bậc hai nguyên
 
 Dù ta có thể gọi hàm `sqrt()` để lấy giá trị căn bậc hai, ở đây vẫn trình bày một biến thể của phương pháp Newton dùng để tìm nghiệm nguyên lớn nhất của bất đẳng thức $x^2\le n$. Ta vẫn xét một quá trình tương tự lặp Newton, nhưng cần điều chỉnh nhẹ ở điều kiện biên. Nếu trong quá trình lặp, lần lặp trước làm nghiệm xấp xỉ giảm, còn lần lặp này lại làm nghiệm xấp xỉ tăng, thì ta không thực hiện lần lặp này nữa và thoát vòng lặp.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt_1"></span>
 ### Cài đặt
 
 === "C++"
@@ -110,12 +110,12 @@ Dù ta có thể gọi hàm `sqrt()` để lấy giá trị căn bậc hai, ở 
         return x
     ```
 
-<span id="&#39640;&#31934;&#24230;&#24179;&#26041;&#26681;"></span>
+<span id="căn-bậc-hai-độ-chính-xác-cao"></span>
 ## Căn bậc hai độ chính xác cao
 
 Cuối cùng, xét phương pháp Newton độ chính xác cao. Cách lặp không đổi, nhưng lần này ta cần quan tâm đến cách đặt nghiệm xấp xỉ ban đầu, tức giá trị $x_0$. Vì các số cần tính với độ chính xác cao thường rất lớn, giá trị ban đầu khác nhau có ảnh hưởng lớn đến hiệu quả thuật toán. Một ý tưởng tự nhiên là xét $x_0=2^{\left\lfloor\frac{1}{2}\log_2n\right\rfloor}$; giá trị này vừa tính được nhanh, vừa khá gần nghiệm xấp xỉ của căn bậc hai.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt_2"></span>
 ### Cài đặt
 
 Dưới đây là cài đặt bằng Java:
@@ -137,7 +137,7 @@ public static BigInteger isqrtNewton(BigInteger n) {
 
 Hiệu quả thực tế: khi $n=10^{1000}$, thời gian chạy của thuật toán là 60 ms. Nếu không tối ưu giá trị $x_0$ mà bắt đầu lặp trực tiếp từ $x_0=1$, thời gian chạy sẽ tăng lên 120 ms.
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [UVa 10428 - The Roots](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1369)
