@@ -136,7 +136,7 @@ Nếu phía dưới hiện hộp thoại clangd yêu cầu tắt IntelliSense, h
 
 ### Thiết lập cú pháp
 
-Trong trình soạn thảo mới mở, nhấp "Select Language" để bật tô sáng cú pháp tương ứng, như hình:
+Trong trình soạn thảo mới mở, nhấp "Select Language" ("Chọn ngôn ngữ") để bật tô sáng cú pháp tương ứng, như hình:
 
 ![](images/vscode-11.apng)
 

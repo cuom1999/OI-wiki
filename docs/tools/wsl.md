@@ -103,11 +103,11 @@ Dùng giao diện đồ họa:
 
 ![Tính năng Windows cần bật cho WSL](./images/wsl-windows-features.png)
 
-1.  Mở Control Panel.
+1.  Mở Control Panel ("Bảng điều khiển").
 
-2.  Vào menu con "Turn Windows features on or off" trong "Programs and Features".
+2.  Vào menu con "Turn Windows features on or off" ("Bật hoặc tắt tính năng Windows") trong "Programs and Features" ("Chương trình và Tính năng").
 
-3.  Chọn "Windows Subsystem for Linux" và "Virtual Machine Platform".
+3.  Chọn "Windows Subsystem for Linux" ("Hệ thống con Windows cho Linux") và "Virtual Machine Platform" ("Nền tảng máy ảo").
 
 4.  Nhấp OK.
 

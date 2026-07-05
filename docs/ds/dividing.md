@@ -62,7 +62,7 @@ toleft\[log(N),n]: số lượng phần tử trong đoạn 1\~i của mỗi tầ
 
 Trước hết nhắc lại một chút về cây phân đoạn bền vững. Khi dùng cây phân đoạn bền vững để tìm phần tử nhỏ thứ $K$ trong đoạn, ta lấy $K$ làm mốc: nếu đi sang trái thì giữ nguyên $K$, còn nếu đi sang phải thì phải trừ đi số lượng phần tử đã đi sang trái. Trong cây phân hoạch cũng tương tự.
 
-Phần khó hiểu của truy vấn nằm ở thao tác **thu hẹp đoạn**. Trong hình dưới, đoạn cần truy vấn là từ $3$ đến $7$, nên ở tầng tiếp theo chỉ cần truy vấn từ $2$ đến $3$. Ở đây, ta định nghĩa $[\text{left},\text{right}]$ là đoạn sau khi thu hẹp (đoạn mục tiêu), còn $[l,r]$ vẫn là đoạn của nút hiện tại. Vì sao cần đánh dấu đoạn mục tiêu? Vì đó là **cơ sở để phán đoán đáp án nằm ở bên trái hay bên phải**.
+Phần khó hiểu của truy vấn nằm ở thao tác **thu hẹp đoạn**. Trong hình dưới, đoạn cần truy vấn là từ $3$ đến $7$, nên ở tầng tiếp theo chỉ cần truy vấn từ $2$ đến $3$. Ở đây, ta định nghĩa $[\text{trái},\text{phải}]$ là đoạn sau khi thu hẹp (đoạn mục tiêu), còn $[l,r]$ vẫn là đoạn của nút hiện tại. Vì sao cần đánh dấu đoạn mục tiêu? Vì đó là **cơ sở để phán đoán đáp án nằm ở bên trái hay bên phải**.
 
 ![](./images/dividing-2.svg)
 

@@ -52,7 +52,7 @@ Dưới đây là thư mục cấu hình mẫu mặc định trên macOS và Lin
 
 ### Tương thích với Deepin Terminal
 
-Trong *Preferences -> Tools -> Virtual Terminal*, sửa lệnh trình dòng lệnh thành:
+Trong *Preferences -> Tools -> Virtual Terminal* (*Tùy chọn -> Công cụ -> Terminal ảo*), sửa lệnh trình dòng lệnh thành:
 
 ```bash
 deepin-terminal -x "/bin/sh" %c

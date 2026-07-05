@@ -86,7 +86,7 @@ Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng qt5 phát triển 
 
 ### Thêm tùy chọn biên dịch
 
-Nhấp Tools -> Compiler Options, rồi chọn thẻ "Code Generation/Optimization" ("Sinh mã/Tối ưu hóa"). Dưới đây giới thiệu một vài tùy chọn biên dịch thường dùng.
+Nhấp Tools -> Compiler Options ("Công cụ -> Tùy chọn trình biên dịch"), rồi chọn thẻ "Code Generation/Optimization" ("Sinh mã/Tối ưu hóa"). Dưới đây giới thiệu một vài tùy chọn biên dịch thường dùng.
 
 #### Bật tối ưu hóa
 
@@ -122,7 +122,7 @@ Chọn nhãn tùy chọn "Generate debugging information" ("Sinh thông tin gỡ
 
 ### Một số mẹo biên dịch
 
-Nhấp Tools -> Compiler Options, rồi chọn thẻ "Compiler". Dưới đây giới thiệu một vài mẹo thường dùng.
+Nhấp Tools -> Compiler Options ("Công cụ -> Tùy chọn trình biên dịch"), rồi chọn thẻ "Compiler" ("Trình biên dịch"). Dưới đây giới thiệu một vài mẹo thường dùng.
 
 #### Tăng stack
 
@@ -155,7 +155,7 @@ freopen("test.out", "w", stdout);
 
 #### Định dạng mã
 
-Nhấp Astyle -> Format Current File, hoặc nhấn Ctrl+Shift+A để định dạng mã.
+Nhấp Astyle -> Format Current File ("Astyle -> Định dạng tệp hiện tại"), hoặc nhấn Ctrl+Shift+A để định dạng mã.
 
 ![](./images/Dev-C++-17.png)
 
@@ -163,13 +163,13 @@ Nhấp Astyle -> Format Current File, hoặc nhấn Ctrl+Shift+A để định d
 
 #### Phông chữ
 
-Nhấp Tools -> Editor Options, rồi chọn thẻ "Display".
+Nhấp Tools -> Editor Options ("Công cụ -> Tùy chọn trình soạn thảo"), rồi chọn thẻ "Display" ("Hiển thị").
 
 ![](./images/Dev-C++-9.png)
 
 #### Giao diện
 
-Nhấp Tools -> Editor Options, rồi chọn thẻ "Syntax". Có thể dùng giao diện có sẵn hoặc tự điều chỉnh.
+Nhấp Tools -> Editor Options ("Công cụ -> Tùy chọn trình soạn thảo"), rồi chọn thẻ "Syntax" ("Cú pháp"). Có thể dùng giao diện có sẵn hoặc tự điều chỉnh.
 
 ![](./images/Dev-C++-10.png)
 

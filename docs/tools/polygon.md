@@ -103,7 +103,7 @@ Trên Polygon, cách làm được khuyến nghị là dùng một số ít [tr�
 
 "Testset" là một tập kiểm thử. Nếu ra đề cho CF, cần tự thêm Testset tên "pretests", và "pretests" cần là tập con của "tests".
 
-"Add Test" dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng trình sinh dữ liệu với một bộ tham số nào đó.
+"Add Test" ("Thêm test") dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng trình sinh dữ liệu với một bộ tham số nào đó.
 
 Nếu chọn "Use in statements" (dùng trong đề bài), bộ dữ liệu này sẽ trở thành mẫu và được tự động thêm vào đề bài. Nếu cần nội dung hiển thị trong đề bài không phải đầu vào/đầu ra của mẫu (thường dùng cho bài tương tác), có thể nhấp "If you want to specify custom content of input or output data for statements click here" (nếu muốn chỉ định nội dung đầu vào hoặc đầu ra tùy chỉnh cho đề bài, hãy nhấp vào đây), rồi nhập đầu vào/đầu ra muốn hiển thị trong đề bài.
 
@@ -111,15 +111,15 @@ Phần dưới của trang Tests dùng để nhập kịch bản sinh dữ liệ
 
 Có thể tham khảo [hướng dẫn do Polygon cung cấp](https://polygon.codeforces.com/docs/freemarker-manual) để dùng Freemarker sinh script hàng loạt.
 
-"Preview Tests" có thể xem trước dữ liệu được sinh.
+"Preview Tests" ("Xem trước test") có thể xem trước dữ liệu được sinh.
 
 ### Kiểm thử stress
 
 Trang này dùng để kiểm thử stress.
 
-Nhấp "Add Stress" để thêm một bộ kiểm thử stress. "Script pattern" là script sinh dữ liệu, trong đó có thể dùng dạng như "\[10..100]" để biểu thị chọn ngẫu nhiên trong một khoảng.
+Nhấp "Add Stress" ("Thêm stress") để thêm một bộ kiểm thử stress. "Script pattern" ("Mẫu script") là script sinh dữ liệu, trong đó có thể dùng dạng như "\[10..100]" để biểu thị chọn ngẫu nhiên trong một khoảng.
 
-Sau đó chạy kiểm thử stress; nếu tìm được lỗi, hệ thống sẽ hiển thị "Crashed", và có thể thêm bộ dữ liệu đó vào Tests bằng một lần nhấp.
+Sau đó chạy kiểm thử stress; nếu tìm được lỗi, hệ thống sẽ hiển thị "Crashed" ("Bị lỗi"), và có thể thêm bộ dữ liệu đó vào Tests bằng một lần nhấp.
 
 ### Tệp lời giải
 

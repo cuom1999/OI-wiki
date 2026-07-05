@@ -94,9 +94,9 @@ Lấy $NAME$ của cây con gốc tại đỉnh $r$ làm $NAME$ của đỉnh $r
     4 & \qquad \text{ASSIGN-NAME(}r_1\text{)}\\
     5 & \qquad \text{ASSIGN-NAME(}r_2\text{)}\\
     6 & \qquad \text{nếu NAME}(r_1) = \text{NAME}(r_2)\\
-    7 & \qquad \qquad \text{trả về true}\\
+    7 & \qquad \qquad \text{trả về đúng}\\
     8 & \qquad \text{ngược lại}\\
-    10 & \qquad \qquad \text{trả về false}
+    10 & \qquad \qquad \text{trả về sai}
     \end{array}
     $$
 

@@ -45,16 +45,16 @@ Khi khởi động Code::Blocks lần đầu, phần mềm sẽ tự động qu�
 
 ## Sử dụng
 
-Code::Blocks có trình quản lý dự án tích hợp và hỗ trợ người dùng tự định nghĩa cách biên dịch dự án. Bạn có thể đặt tùy chọn biên dịch trong `Project -> Build options`, chọn trình biên dịch, tùy chọn biên dịch, tùy chọn liên kết, v.v.; cũng có thể đặt thuộc tính dự án trong `Project -> Properties`, chẳng hạn tên dự án, đường dẫn và danh sách tệp.
+Code::Blocks có trình quản lý dự án tích hợp và hỗ trợ người dùng tự định nghĩa cách biên dịch dự án. Bạn có thể đặt tùy chọn biên dịch trong `Project -> Build options` (`Dự án -> Tùy chọn biên dịch`), chọn trình biên dịch, tùy chọn biên dịch, tùy chọn liên kết, v.v.; cũng có thể đặt thuộc tính dự án trong `Project -> Properties` (`Dự án -> Thuộc tính`), chẳng hạn tên dự án, đường dẫn và danh sách tệp.
 
 ??? note "Cấu hình Makefile"
-    Mặc định Code::Blocks không yêu cầu viết Makefile. Nếu cần dùng Makefile tùy chỉnh, có thể chọn tùy chọn `This is a custom Makefile` trong `Project -> Properties`, rồi đặt đường dẫn Makefile trong `Project -> Build options`.
+    Mặc định Code::Blocks không yêu cầu viết Makefile. Nếu cần dùng Makefile tùy chỉnh, có thể chọn tùy chọn `This is a custom Makefile` (`Đây là Makefile tùy chỉnh`) trong `Project -> Properties` (`Dự án -> Thuộc tính`), rồi đặt đường dẫn Makefile trong `Project -> Build options` (`Dự án -> Tùy chọn biên dịch`).
 
 ### Tạo dự án
 
-Các ngôn ngữ lập trình mà Code::Blocks hỗ trợ bao gồm C, C++ và Fortran. Sau khi khởi động Code::Blocks, có thể tạo dự án mới qua `File -> New -> Project`, chọn loại dự án và mẫu, rồi làm theo hướng dẫn để đặt tên dự án, đường dẫn, trình biên dịch, v.v.; cuối cùng nhấp `Finish` để hoàn tất tạo dự án.
+Các ngôn ngữ lập trình mà Code::Blocks hỗ trợ bao gồm C, C++ và Fortran. Sau khi khởi động Code::Blocks, có thể tạo dự án mới qua `File -> New -> Project` (`Tệp -> Mới -> Dự án`), chọn loại dự án và mẫu, rồi làm theo hướng dẫn để đặt tên dự án, đường dẫn, trình biên dịch, v.v.; cuối cùng nhấp `Finish` (`Hoàn tất`) để hoàn tất tạo dự án.
 
-Code::Blocks cũng hỗ trợ biên dịch và chạy tệp đơn. Có thể tạo tệp mới qua `File -> New -> File`; sau khi viết mã và lưu, nhấp nút `Build and run` trên thanh công cụ, hoặc nhấn phím `F9`, để tự động biên dịch và chạy tệp hiện tại.
+Code::Blocks cũng hỗ trợ biên dịch và chạy tệp đơn. Có thể tạo tệp mới qua `File -> New -> File` (`Tệp -> Mới -> Tệp`); sau khi viết mã và lưu, nhấp nút `Build and run` (`Biên dịch và chạy`) trên thanh công cụ, hoặc nhấn phím `F9`, để tự động biên dịch và chạy tệp hiện tại.
 
 <span id="build-và-chạy"></span>
 
@@ -63,9 +63,9 @@ Code::Blocks cũng hỗ trợ biên dịch và chạy tệp đơn. Có thể t�
 Lấy một dự án Console Application đơn giản làm ví dụ, dưới đây là cách biên dịch và chạy dự án:
 
 1.  Sau khi tạo dự án xong, bạn sẽ thấy một tệp `main.cpp` mặc định. Bạn có thể viết mã trong tệp này rồi lưu lại.
-2.  Sau khi viết mã xong, nhấp nút `Build and run` trên thanh công cụ, hoặc nhấn phím `F9`; Code::Blocks sẽ tự động biên dịch và chạy dự án.
+2.  Sau khi viết mã xong, nhấp nút `Build and run` (`Biên dịch và chạy`) trên thanh công cụ, hoặc nhấn phím `F9`; Code::Blocks sẽ tự động biên dịch và chạy dự án.
 3.  Sau khi biên dịch và chạy, cửa sổ đầu ra sẽ hiển thị kết quả xuất của chương trình. Bạn có thể xem đầu ra trong cửa sổ này và điều chỉnh mã khi cần.
-4.  Nếu chỉ cần biên dịch dự án mà không chạy, có thể nhấp nút `Build` trên thanh công cụ, hoặc nhấn `Ctrl + F9`; Code::Blocks sẽ chỉ biên dịch dự án, không chạy chương trình.
+4.  Nếu chỉ cần biên dịch dự án mà không chạy, có thể nhấp nút `Build` (`Biên dịch`) trên thanh công cụ, hoặc nhấn `Ctrl + F9`; Code::Blocks sẽ chỉ biên dịch dự án, không chạy chương trình.
 
 ### Gỡ lỗi
 
@@ -84,9 +84,9 @@ Code::Blocks cung cấp nhiều tùy chọn thiết lập để giúp điều ch
 
 ### Thiết lập giao diện
 
-1.  Trong `Settings -> Editor`, có thể đặt phông chữ, màu sắc, thụt lề, tự động hoàn thành, v.v. của trình soạn thảo.
-2.  Trong `Settings -> Environment`, có thể đặt hành vi toàn cục của Code::Blocks, chẳng hạn tự động lưu, tự động sao lưu, tự động gợi ý, v.v.
-3.  Trong menu `View`, có thể điều chỉnh bố cục của trình soạn thảo, chẳng hạn bật/tắt trình duyệt tệp, thanh công cụ, thanh trạng thái, cửa sổ đầu ra, v.v.
+1.  Trong `Settings -> Editor` (`Thiết lập -> Trình soạn thảo`), có thể đặt phông chữ, màu sắc, thụt lề, tự động hoàn thành, v.v. của trình soạn thảo.
+2.  Trong `Settings -> Environment` (`Thiết lập -> Môi trường`), có thể đặt hành vi toàn cục của Code::Blocks, chẳng hạn tự động lưu, tự động sao lưu, tự động gợi ý, v.v.
+3.  Trong menu `View` (`Xem`), có thể điều chỉnh bố cục của trình soạn thảo, chẳng hạn bật/tắt trình duyệt tệp, thanh công cụ, thanh trạng thái, cửa sổ đầu ra, v.v.
 
 ### Thiết lập phần bổ trợ
 

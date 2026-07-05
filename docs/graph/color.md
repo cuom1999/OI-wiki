@@ -113,7 +113,7 @@ Ngoài ra, vì đồ thị này có đồ thị con $C_3$, nên số sắc chắ
     
     -   $V_1\neq\varnothing$
     -   $V_i\cap V_j=\varnothing\iff i\neq j$
-    -   $\exists \alpha(G)\in\Bbb{N}^*,\forall i>\alpha(G),~s.t.~ V_i=\varnothing$
+    -   $\exists \alpha(G)\in\Bbb{N}^*,\forall i>\alpha(G),~\text{sao cho}~ V_i=\varnothing$
     
     Ta chỉ cần chứng minh:
     

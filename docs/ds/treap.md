@@ -550,16 +550,16 @@ Nếu tiếp tục tách $T_1$ theo $\textit{val} - 1$, ta sẽ có hai cây sau
 
 $$
 \begin{gathered}
-T_{1\ \text{left}} \le val - 1\\
-T_{1\ \text{right}} > val - 1 \ \text{và}\ T_{1\ \text{right}} \le val
+T_{1\ \text{trái}} \le val - 1\\
+T_{1\ \text{phải}} > val - 1 \ \text{và}\ T_{1\ \text{phải}} \le val
 \end{gathered}
 $$
 
-Trong đó $T_{1\ \text{left}}$ biểu thị tập tất cả nút được tách vào Treap thứ nhất sau khi tách $T_1$, còn $T_{1\ \text{right}}$ là tập thứ hai. Trong công thức trên, phần sau $\text{và}\ T_{1\ \text{right}} \le val$ đến từ điều kiện $T_1 \le val$ mà $T_1$ thỏa mãn.
+Trong đó $T_{1\ \text{trái}}$ biểu thị tập tất cả nút được tách vào Treap thứ nhất sau khi tách $T_1$, còn $T_{1\ \text{phải}}$ là tập thứ hai. Trong công thức trên, phần sau $\text{và}\ T_{1\ \text{phải}} \le val$ đến từ điều kiện $T_1 \le val$ mà $T_1$ thỏa mãn.
 
-Không khó thấy, chỉ cần $\textit{val}$ và giá trị của nút là số nguyên (hầu hết trường hợp sử dụng đều dùng số nguyên), thì các nút thỏa mãn điều kiện $T_{1\ \text{right}}$ chỉ có một loại, đó là nút có giá trị bằng $\textit{val}$.
+Không khó thấy, chỉ cần $\textit{val}$ và giá trị của nút là số nguyên (hầu hết trường hợp sử dụng đều dùng số nguyên), thì các nút thỏa mãn điều kiện $T_{1\ \text{phải}}$ chỉ có một loại, đó là nút có giá trị bằng $\textit{val}$.
 
-Khi chèn, nếu ta thấy nút thỏa mãn $T_{1\ \text{right}}$ tồn tại, có thể trực tiếp tăng số lần lặp; ngược lại thì tạo một nút mới.
+Khi chèn, nếu ta thấy nút thỏa mãn $T_{1\ \text{phải}}$ tồn tại, có thể trực tiếp tăng số lần lặp; ngược lại thì tạo một nút mới.
 
 Lưu ý sau khi tách cây xong, vẫn cần dùng hợp nhất để "dán" nó lại, để lần sau có thể tiếp tục sử dụng. Đồng thời cần chú ý thứ tự tham số của thao tác hợp nhất có yêu cầu: mọi nút của cây thứ nhất phải nhỏ hơn các nút của cây thứ hai.
 

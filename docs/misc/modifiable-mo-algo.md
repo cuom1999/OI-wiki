@@ -10,16 +10,16 @@ Ta có thể cưỡng ép nó hỗ trợ sửa đổi, tương tự như trong D
 
 Chiều thời gian biểu diễn số lần sửa đổi đã trải qua.
 
-Tức là biến truy vấn $[l,r]$ thành $[l,r,\text{time}]$.
+Tức là biến truy vấn $[l,r]$ thành $[l,r,\text{thời gian}]$.
 
-Khi đó tọa độ của ta cũng có thể di chuyển trên chiều thời gian. Nói cách khác, $[l,r,\text{time}]$ có thêm một chiều di chuyển và có thể chuyển thành:
+Khi đó tọa độ của ta cũng có thể di chuyển trên chiều thời gian. Nói cách khác, $[l,r,\text{thời gian}]$ có thêm một chiều di chuyển và có thể chuyển thành:
 
--   $[l-1,r,\text{time}]$
--   $[l+1,r,\text{time}]$
--   $[l,r-1,\text{time}]$
--   $[l,r+1,\text{time}]$
--   $[l,r,\text{time}-1]$
--   $[l,r,\text{time}+1]$
+-   $[l-1,r,\text{thời gian}]$
+-   $[l+1,r,\text{thời gian}]$
+-   $[l,r-1,\text{thời gian}]$
+-   $[l,r+1,\text{thời gian}]$
+-   $[l,r,\text{thời gian}-1]$
+-   $[l,r,\text{thời gian}+1]$
 
 Các chuyển trạng thái như vậy cũng là $O(1)$, nhưng khi sắp xếp ta có thêm một khóa nữa cần xử lý.
 

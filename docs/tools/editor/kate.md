@@ -133,11 +133,11 @@ Nhấp `Tools` -> `External Tools` -> `Configure` để cấu hình công cụ n
 
 ##### Thêm từ cấu hình có sẵn
 
-Sau khi vào trang cấu hình, nhấp `Add` -> `Add from Defaults` ở góc dưới bên trái, rồi nhấp công cụ tương ứng.
+Sau khi vào trang cấu hình, nhấp `Add` -> `Add from Defaults` (`Thêm -> Thêm từ mặc định`) ở góc dưới bên trái, rồi nhấp công cụ tương ứng.
 
 ##### Thêm bằng cấu hình tự viết
 
-Sau khi vào trang cấu hình, nhấp `Add` -> `Add Tool` ở góc dưới bên trái, rồi điền theo hướng dẫn. Có thể tham khảo [tài liệu này (tiếng Anh)](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) để viết cấu hình công cụ ngoài của riêng mình. Chú ý có thể nhấp biểu tượng dưới đây để xem các biến có thể dùng.
+Sau khi vào trang cấu hình, nhấp `Add` -> `Add Tool` (`Thêm -> Thêm công cụ`) ở góc dưới bên trái, rồi điền theo hướng dẫn. Có thể tham khảo [tài liệu này (tiếng Anh)](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) để viết cấu hình công cụ ngoài của riêng mình. Chú ý có thể nhấp biểu tượng dưới đây để xem các biến có thể dùng.
 
 ![](images/kate-3-var.png)
 
