@@ -1,14 +1,14 @@
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 Cho một dãy độ dài $n$ là ${\left\langle a_i\right\rangle}_{i=1}^n$, cùng một phép toán kết hợp $\circ$ (ví dụ $\gcd,\min,\max,+,\operatorname{and},\operatorname{or},\operatorname{xor}$ đều có tính kết hợp). Với mỗi truy vấn đoạn $[l,r]$, ta cần tính $a_l\circ a_{l+1}\circ\dotsb\circ a_{r}$.
 
 Sqrt Tree có thể tiền xử lý trong thời gian $O(n\log\log n)$ và trả lời truy vấn trong thời gian $O(1)$.
 
-<span id="&#x89E3;&#x91CA;"></span>
+<span id="giải-thích"></span>
 ## Giải thích
 
-<span id="&#x5E8F;&#x5217;&#x5206;&#x5757;"></span>
+<span id="chia-dãy-thành-các-khối"></span>
 ### Chia dãy thành các khối
 
 Trước hết, ta chia cả dãy thành $O(\sqrt{n})$ khối, mỗi khối có kích thước $O(\sqrt{n})$. Với mỗi khối, ta tính:
@@ -45,7 +45,7 @@ $$
 
 Rõ ràng ta có thể tiền xử lý các giá trị này trong thời gian $O(n)$, và độ phức tạp bộ nhớ cũng là $O(n)$. Sau khi xử lý xong, ta có thể dùng chúng để trả lời một số truy vấn đi qua nhiều khối trong thời gian $O(1)$. Tuy nhiên, ta vẫn chưa xử lý được các truy vấn mà toàn bộ đoạn nằm trong cùng một khối, nên cần bổ sung thêm cấu trúc.
 
-<span id="&#x6784;&#x5EFA;&#x4E00;&#x68F5;&#x6811;"></span>
+<span id="xây-dựng-cây"></span>
 ### Xây dựng cây
 
 Một ý tưởng tự nhiên là dựng đệ quy cấu trúc trên trong từng khối để hỗ trợ truy vấn bên trong khối. Với khối kích thước $1$, ta có thể trả lời truy vấn trong $O(1)$. Như vậy ta xây được một cây, trong đó mỗi nút biểu diễn một đoạn của dãy. Nút lá có độ dài đoạn là $1$ hoặc $2$. Một nút kích thước $k$ có $O(\sqrt{k})$ nút con, nên chiều cao của cả cây là $O(\log\log n)$. Tổng độ dài các đoạn trên mỗi tầng là $O(n)$, do đó độ phức tạp xây dựng cây là $O(n\log\log n)$.
@@ -73,7 +73,7 @@ Một ý tưởng tự nhiên là dựng đệ quy cấu trúc trên trong từn
 
 Bây giờ ta đã có thể trả lời truy vấn trong thời gian $O(\log\log n)$. Với truy vấn $[l,r]$, chỉ cần nhanh chóng tìm nút $u$ có độ dài đoạn nhỏ nhất sao cho $u$ chứa được $[l,r]$. Khi đó $[l,r]$ chắc chắn đi qua nhiều khối trong phân hoạch của $u$, nên có thể tính đáp án trong $O(1)$. Độ phức tạp tổng thể của một truy vấn là $O(\log\log n)$, vì chiều cao cây là $O(\log\log n)$. Tuy nhiên, quá trình này vẫn có thể tối ưu thêm.
 
-<span id="&#x4F18;&#x5316;&#x8BE2;&#x95EE;&#x590D;&#x6742;&#x5EA6;"></span>
+<span id="tối-ưu-độ-phức-tạp-truy-vấn"></span>
 ### Tối ưu độ phức tạp truy vấn
 
 Ta có thể nghĩ đến việc chặt nhị phân theo chiều cao, rồi kiểm tra tính hợp lệ trong $O(1)$. Khi đó độ phức tạp trở thành $O(\log\log\log n)$. Nhưng ta vẫn có thể tăng tốc thêm.
@@ -101,24 +101,24 @@ Vì vậy ta chỉ cần kiểm tra hai đầu mút của đoạn có chỉ khá
 
 Như vậy ta có thể trả lời truy vấn trong thời gian $O(1)$.
 
-<span id="&#x66F4;&#x65B0;&#x5143;&#x7D20;&#x7684;&#x8FC7;&#x7A0B;"></span>
+<span id="quá-trình-cập-nhật-phần-tử"></span>
 ## Quá trình cập nhật phần tử
 
 Ta có thể cập nhật phần tử trên Sqrt Tree; cả cập nhật điểm và cập nhật đoạn đều được hỗ trợ.
 
-<span id="&#x5355;&#x70B9;&#x4FEE;&#x6539;"></span>
+<span id="cập-nhật-điểm"></span>
 ### Cập nhật điểm
 
 Xét một thao tác gán tại một điểm $a_x=val$. Ta muốn cập nhật các thông tin liên quan một cách hiệu quả.
 
-<span id="&#x6734;&#x7D20;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-đơn-giản"></span>
 #### Cài đặt đơn giản
 
 Trước hết, hãy xem Sqrt Tree thay đổi như thế nào sau một lần cập nhật điểm.
 
 Xét một nút độ dài $l$ cùng các dãy tương ứng: $\left\langle P_i\right\rangle,\left\langle S_i\right\rangle,\left\langle B_{i,j}\right\rangle$. Dễ thấy trong $\left\langle P_i\right\rangle$ và $\left\langle S_i \right\rangle$, mỗi dãy chỉ có $O(\sqrt{l})$ phần tử thay đổi. Còn trong $\left\langle B_{i,j}\right\rangle$, có $O(l)$ phần tử bị thay đổi. Do đó có $O(l)$ phần tử trên cây phải cập nhật. Vì vậy độ phức tạp cập nhật điểm trên Sqrt Tree là $O(n+\sqrt{n}+\sqrt{\sqrt{n}}+\dotsb)=O(n)$.
 
-<span id="&#x4F7F;&#x7528;-sqrt-tree-&#x66FF;&#x4EE3;-b-&#x6570;&#x7EC4;"></span>
+<span id="dùng-sqrt-tree-thay-cho-mảng-b"></span>
 #### Dùng Sqrt Tree thay cho mảng B
 
 Lưu ý rằng nút thắt của cập nhật điểm nằm ở việc cập nhật $\left\langle B_{i,j}\right\rangle$ của nút gốc. Vì vậy ta thử dùng một Sqrt Tree khác để thay cho $\left\langle B_{i,j}\right\rangle$ ở nút gốc, gọi là $index$. Vai trò của nó giống mảng hai chiều ban đầu: duy trì đáp án cho các truy vấn trên cả đoạn. Các nút không phải gốc vẫn dùng $\left\langle B_{i,j}\right\rangle$ để duy trì thông tin. Cần chú ý: nếu nút gốc của một Sqrt Tree có cấu trúc $index$, ta gọi Sqrt Tree đó là **có chỉ mục**; nếu nút gốc của một Sqrt Tree có cấu trúc $\left\langle B_{i,j}\right\rangle$, ta gọi nó là **không có chỉ mục**. Bản thân cây $index$ là không có chỉ mục.
@@ -131,14 +131,14 @@ Do đó ta có thể cập nhật cây $index$ như sau:
 
 Lưu ý rằng độ phức tạp truy vấn vẫn là $O(1)$, vì ta dùng cây $index$ nhiều nhất một lần. Như vậy độ phức tạp cập nhật điểm là $O(\sqrt{n})$.
 
-<span id="&#x66F4;&#x65B0;&#x4E00;&#x4E2A;&#x533A;&#x95F4;"></span>
+<span id="cập-nhật-một-đoạn"></span>
 ### Cập nhật một đoạn
 
 Sqrt Tree cũng hỗ trợ thao tác phủ đoạn $\operatorname{Update}(l,r,x)$, tức là biến mọi số trong đoạn $[l,r]$ thành $x$. Có hai cách cài đặt: một cách cập nhật thông tin trong $O(\sqrt{n}\log\log n)$ và truy vấn trong $O(1)$; cách còn lại cập nhật thông tin trong $O(\sqrt{n})$, nhưng thời gian truy vấn tăng lên $O(\log\log n)$.
 
 Ta có thể gắn tag lười trên Sqrt Tree tương tự như trên cây đoạn. Tuy nhiên, với Sqrt Tree có một điểm khác: việc đẩy xuống tag lười của một nút có thể tốn tới $O(\sqrt{n})$. Vì vậy ta không đẩy tag khi truy vấn, mà kiểm tra xem nút cha có tag hay không; nếu có thì đẩy tag đó xuống.
 
-<span id="&#x7B2C;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-thứ-nhất"></span>
 #### Cài đặt thứ nhất
 
 Trong cách cài đặt thứ nhất, ta chỉ gắn tag lười cho các nút ở tầng $1$ (độ dài đoạn của nút là $O(\sqrt{n})$). Khi đẩy tag xuống, ta cập nhật trực tiếp toàn bộ cây con, với độ phức tạp $O(\sqrt{n}\log\log n)$. Quy trình thao tác như sau:
@@ -159,7 +159,7 @@ Trong cách cài đặt thứ nhất, ta chỉ gắn tag lười cho các nút �
 
 Do đó độ phức tạp truy vấn vẫn là $O(1)$.
 
-<span id="&#x7B2C;&#x4E8C;&#x79CD;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-thứ-hai"></span>
 #### Cài đặt thứ hai
 
 Trong cách cài đặt này, mỗi nút đều có thể được gắn tag lười. Vì vậy khi xử lý một truy vấn, ta cần xét các tag lười trên những nút tổ tiên, khiến độ phức tạp truy vấn trở thành $O(\log\log n)$. Đổi lại, cập nhật thông tin sẽ nhanh hơn. Các bước như sau:
@@ -172,7 +172,7 @@ Trong cách cài đặt này, mỗi nút đều có thể được gắn tag lư
 
 Độ phức tạp thời gian là $O(\sqrt{n}+\sqrt{\sqrt{n}}+\dotsb)=O(\sqrt{n})$.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 ## Cài đặt
 
 Cài đặt dưới đây xây cây trong thời gian $O(n\log\log n)$, trả lời truy vấn trong thời gian $O(1)$, và cập nhật điểm trong thời gian $O(\sqrt{n})$.
@@ -331,7 +331,7 @@ class SqrtTree {
 };
 ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 [CodeChef - SEGPROD](https://www.codechef.com/NOV17/problems/SEGPROD)
