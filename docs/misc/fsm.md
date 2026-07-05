@@ -79,7 +79,7 @@ Khi một DFA đọc một chuỗi, nó bắt đầu từ trạng thái ban đ�
     Một **ngôn ngữ hình thức** (language), hay gọi tắt là **ngôn ngữ**, trên tập ký tự $\Sigma$ là một tập hợp các chuỗi trên $\Sigma$, ký hiệu là $L$.
 
 ???+ abstract "Ngôn ngữ được automaton nhận dạng"
-    Với một automaton $M$, ngôn ngữ $L(M)$ mà nó nhận dạng được định nghĩa là tập tất cả các chuỗi mà nó chấp nhận: $\{w\mid M\text{ accepts }w\}$.
+    Với một automaton $M$, ngôn ngữ $L(M)$ mà nó nhận dạng được định nghĩa là tập tất cả các chuỗi mà nó chấp nhận: $\{w\mid M\text{ chấp nhận }w\}$.
 
 Không phải mọi ngôn ngữ đều có thể được nhận dạng bởi DFA.
 

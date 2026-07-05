@@ -140,9 +140,9 @@ Vì vậy, ta có: mỗi khi đệ quy lên một tầng, $\mathrm{dist}$ ban đ
 
 ### Cộng/trừ một giá trị cho toàn bộ heap, nhân với một số dương
 
-Thực ra, mọi thao tác có thể gắn tag mà không làm thay đổi thứ tự tương đối đều xử lý được.
+Thực ra, mọi thao tác có thể gắn đánh dấu mà không làm thay đổi thứ tự tương đối đều xử lý được.
 
-Gắn tag ở gốc, rồi khi xóa gốc/hợp nhất heap (tức là khi truy cập con) thì đẩy tag xuống:
+Gắn đánh dấu ở gốc, rồi khi xóa gốc/hợp nhất heap (tức là khi truy cập con) thì đẩy đánh dấu xuống:
 
 ???+ note "Cài đặt"
     ```cpp
@@ -236,9 +236,9 @@ Trong dạng bài này, thường mỗi nút duy trì một heap, hợp nhất v
 
 Trước hết, để tìm đỉnh heap chứa một nút, cần dùng DSU, không thể nhảy lên trên bằng vét cạn.
 
-Tiếp theo xét truy vấn một điểm. Nếu dùng cách thông thường để gắn tag, ta phải truy vấn tổng tag trên đường từ điểm đó tới gốc, trường hợp xấu nhất có thể đạt độ phức tạp $O(n)$. Nếu chỉ đỉnh heap có tag thì có thể truy vấn nhanh, nhưng làm thế nào để đạt được điều đó?
+Tiếp theo xét truy vấn một điểm. Nếu dùng cách thông thường để gắn đánh dấu, ta phải truy vấn tổng các đánh dấu trên đường từ điểm đó tới gốc, trường hợp xấu nhất có thể đạt độ phức tạp $O(n)$. Nếu chỉ đỉnh heap có đánh dấu thì có thể truy vấn nhanh, nhưng làm thế nào để đạt được điều đó?
 
-Có thể dùng cách tương tự hợp nhất theo kinh nghiệm: mỗi lần hợp nhất, đẩy tag của heap nhỏ hơn xuống từng nút bằng vét cạn, rồi dùng tag của heap lớn hơn làm tag của heap sau khi hợp nhất. Vì sau khi hợp nhất sẽ có tag của heap còn lại, khi đẩy tag của heap nhỏ hơn xuống ta cần đẩy giá trị bằng tag của nó trừ tag của heap kia. Do mỗi lần một nút được hợp nhất, kích thước heap chứa nó ít nhất nhân đôi, nên mỗi nút nhiều nhất bị đẩy tag xuống $O(\log n)$ lần; tổng độ phức tạp của việc đẩy tag vét cạn là $O(n\log n)$.
+Có thể dùng cách tương tự hợp nhất theo kinh nghiệm: mỗi lần hợp nhất, đẩy đánh dấu của heap nhỏ hơn xuống từng nút bằng vét cạn, rồi dùng đánh dấu của heap lớn hơn làm đánh dấu của heap sau khi hợp nhất. Vì sau khi hợp nhất sẽ có đánh dấu của heap còn lại, khi đẩy đánh dấu của heap nhỏ hơn xuống ta cần đẩy giá trị bằng đánh dấu của nó trừ đánh dấu của heap kia. Do mỗi lần một nút được hợp nhất, kích thước heap chứa nó ít nhất nhân đôi, nên mỗi nút nhiều nhất bị đẩy đánh dấu xuống $O(\log n)$ lần; tổng độ phức tạp của việc đẩy đánh dấu vét cạn là $O(n\log n)$.
 
 Tiếp theo xét cộng vào một điểm: xóa trước, cập nhật, rồi chèn lại.
 
@@ -246,13 +246,13 @@ Cuối cùng là giá trị lớn nhất toàn cục. Có thể dùng cây cân 
 
 Vì vậy, các thao tác lần lượt như sau:
 
-1.  Đẩy tag của heap có ít nút hơn bằng vét cạn, hợp nhất hai heap, cập nhật size và tag, rồi trong multiset xóa đỉnh heap cũ không còn là đỉnh heap sau hợp nhất.
+1.  Đẩy đánh dấu của heap có ít nút hơn bằng vét cạn, hợp nhất hai heap, cập nhật kích thước và đánh dấu, rồi trong multiset xóa đỉnh heap cũ không còn là đỉnh heap sau hợp nhất.
 2.  Xóa nút, cập nhật giá trị, chèn lại, rồi cập nhật multiset. Cần xét riêng trường hợp nút bị xóa có phải là gốc hay không.
-3.  Gắn tag lên đỉnh heap, cập nhật multiset.
-4.  Gắn tag toàn cục.
-5.  Truy vấn giá trị + tag của đỉnh heap + tag toàn cục.
-6.  Truy vấn giá trị của gốc + tag của đỉnh heap + tag toàn cục.
-7.  Truy vấn giá trị lớn nhất trong multiset + tag toàn cục.
+3.  Gắn đánh dấu lên đỉnh heap, cập nhật multiset.
+4.  Gắn đánh dấu toàn cục.
+5.  Truy vấn giá trị + đánh dấu của đỉnh heap + đánh dấu toàn cục.
+6.  Truy vấn giá trị của gốc + đánh dấu của đỉnh heap + đánh dấu toàn cục.
+7.  Truy vấn giá trị lớn nhất trong multiset + đánh dấu toàn cục.
 
 ??? note "Mã tham khảo cho Thao tác hóc búa"
     ```cpp

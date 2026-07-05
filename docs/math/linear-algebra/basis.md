@@ -373,7 +373,7 @@ Cơ sở tuyến tính tiền tố cho phép với mỗi tiền tố của dãy,
 Ta gọi nhãn $t$ của mỗi vectơ $v$ là dấu thời gian của nó. Một vectơ $v$ trong cơ sở tuyến tính luôn có thể được biểu diễn thành XOR của một số phần tử trong dãy ban đầu, chẳng hạn $v_{i_1}\oplus v_{i_2}\oplus\cdots\oplus v_{i_k}$. Trong tất cả các biểu diễn khả dĩ như vậy, giá trị lớn nhất của chỉ số nhỏ nhất chính là $t$, tức:
 
 $$
-t(v) = \max\{j:\exists i_1,\cdots,i_k\in[j,i]\text{ s.t. }v=v_{i_1}\oplus v_{i_2}\oplus\cdots\oplus v_{i_k}\}.
+t(v) = \max\{j:\exists i_1,\cdots,i_k\in[j,i]\text{ với điều kiện }v=v_{i_1}\oplus v_{i_2}\oplus\cdots\oplus v_{i_k}\}.
 $$
 
 Biểu thức này chỉ là cách viết hình thức cho mô tả ở đoạn trước. Nó gợi ý rằng để duy trì dấu thời gian của mỗi vectơ $v$ trong cơ sở tuyến tính, ta chỉ cần tham lam chọn vectơ mới nhất có thể để thay thế vectơ cũ.

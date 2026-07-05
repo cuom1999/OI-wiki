@@ -320,7 +320,7 @@ $$
 \left(a^{(p+1)/4}\right)^2&\equiv a^{(p+1)/2}&\pmod p\\
 &\equiv x^{p+1}&\pmod p\\
 &\equiv \left(x^2\right)\left(x^{p-1}\right)&\pmod p\\
-&\equiv x^2&\pmod p&\quad (\because{\text{Fermat's little theorem}})
+&\equiv x^2&\pmod p&\quad (\because{\text{định lý nhỏ Fermat}})
 \end{aligned}
 $$
 
@@ -391,7 +391,7 @@ Bước đầu tiên của thuật toán là tìm một $r$ sao cho $r^2-a$ là 
     \begin{aligned}
     x^p&= x(x^2)^{\frac{p-1}{2}}\\
     &\equiv x(r^2-a)^{\frac{p-1}{2}}&\pmod{f(x)}&\quad (\because{x^2\equiv r^2-a\pmod{f(x)}})\\
-    &\equiv -x&\pmod{f(x)}&\quad (\because{r^2-a}\text{ is quadratic non-residue})
+    &\equiv -x&\pmod{f(x)}&\quad (\because{r^2-a}\text{ là bất thặng dư bậc hai})
     \end{aligned}
     $$
     

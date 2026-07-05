@@ -346,7 +346,7 @@ Thực ra trie nào cũng có thể hợp nhất. Nói cách khác, thao tác h�
     
     ??? note "Lời giải"
         Với mỗi đỉnh, xây một trie để duy trì trọng số của các con của nó; trie cần hỗ trợ cộng một toàn cục.
-        Có thể đặt lazy tag trên mỗi đỉnh để đánh dấu lượng tăng của trọng số các con.
+        Có thể đặt đánh dấu lười trên mỗi đỉnh để ghi lại lượng tăng của trọng số các con.
     
     ??? note "Mã tham khảo"
         ```cpp

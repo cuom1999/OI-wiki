@@ -31,9 +31,9 @@ Xem [Download | Geany](https://geany.org/download/)
 
 ### Chuyển loại tệp
 
-Chuyển trong *Document -> Set Filetype*.
+Chuyển trong *Document -> Set Filetype* (*Tài liệu -> Đặt loại tệp*).
 
-Ví dụ với ngôn ngữ C++, nhấp *Document -> Set Filetype -> Programming Languages -> C++ Source File*, bạn sẽ thấy tệp đã được chuyển sang tô sáng cú pháp của ngôn ngữ C++.
+Ví dụ với ngôn ngữ C++, nhấp *Document -> Set Filetype -> Programming Languages -> C++ Source File* (*Tài liệu -> Đặt loại tệp -> Ngôn ngữ lập trình -> Tệp nguồn C++*), bạn sẽ thấy tệp đã được chuyển sang tô sáng cú pháp của ngôn ngữ C++.
 
 <span id="đặt-template-tệp"></span>
 

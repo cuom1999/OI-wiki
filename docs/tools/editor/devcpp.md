@@ -86,13 +86,13 @@ Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng qt5 phát triển 
 
 ### Thêm tùy chọn biên dịch
 
-Nhấp Tools -> Compiler Options, rồi chọn thẻ "Code Generation/Optimization". Dưới đây giới thiệu một vài tùy chọn biên dịch thường dùng.
+Nhấp Tools -> Compiler Options, rồi chọn thẻ "Code Generation/Optimization" ("Sinh mã/Tối ưu hóa"). Dưới đây giới thiệu một vài tùy chọn biên dịch thường dùng.
 
 #### Bật tối ưu hóa
 
 Tối ưu hóa thời gian chạy hoặc dung lượng chương trình.
 
-Chọn nhãn tùy chọn "Optimization level (-Ox)" trong thẻ con "Code Generation".
+Chọn nhãn tùy chọn "Optimization level (-Ox)" ("Mức tối ưu hóa (-Ox)") trong thẻ con "Code Generation" ("Sinh mã").
 
 ![](./images/Dev-C++-11.png)
 
@@ -100,7 +100,7 @@ Chọn nhãn tùy chọn "Optimization level (-Ox)" trong thẻ con "Code Genera
 
 Dùng tính năng ngôn ngữ mới, hoặc thử biên dịch mã dưới chuẩn cũ.
 
-Chọn nhãn tùy chọn "Language standard (-std)" trong thẻ con "Code Generation".
+Chọn nhãn tùy chọn "Language standard (-std)" ("Chuẩn ngôn ngữ (-std)") trong thẻ con "Code Generation" ("Sinh mã").
 
 ![](./images/Dev-C++-12.png)
 
@@ -108,7 +108,7 @@ Chọn nhãn tùy chọn "Language standard (-std)" trong thẻ con "Code Genera
 
 Trợ thủ nhỏ khi tìm lỗi.
 
-Chọn nhãn tùy chọn "Show most warnings (-Wall)" trong thẻ con "Code Warnings".
+Chọn nhãn tùy chọn "Show most warnings (-Wall)" ("Hiển thị hầu hết cảnh báo (-Wall)") trong thẻ con "Code Warnings" ("Cảnh báo mã").
 
 ![](./images/Dev-C++-13.png)
 
@@ -116,7 +116,7 @@ Chọn nhãn tùy chọn "Show most warnings (-Wall)" trong thẻ con "Code Warn
 
 Khi xuất hiện thông báo "Project does not have debugging information, do you want to enable debugging and rebuild?" ("Dự án chưa có thông tin gỡ lỗi, bạn có muốn bật gỡ lỗi và biên dịch lại không?") rồi bị thoát sau khi nhấp, hoặc khi muốn dùng chức năng gỡ lỗi, cần bật chức năng này.
 
-Chọn nhãn tùy chọn "Generate debugging information" trong thẻ con "Linker".
+Chọn nhãn tùy chọn "Generate debugging information" ("Sinh thông tin gỡ lỗi") trong thẻ con "Linker" ("Trình liên kết").
 
 ![](./images/Dev-C++-14.png)
 

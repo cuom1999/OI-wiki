@@ -25,7 +25,7 @@ Các tệp đi kèm Kate nằm tại [Syntax Highlighting Powered By KSyntaxHigh
 
 ### Chuyển ngôn ngữ
 
-Nhấp `Settings`/`Setting` trên thanh công cụ phía trên, rồi nhấp `Configure Language`, sau đó chọn ngôn ngữ. Chú ý rằng có thể chọn ngôn ngữ dự phòng.
+Nhấp `Settings`/`Setting` ("Thiết lập"/"Cài đặt") trên thanh công cụ phía trên, rồi nhấp `Configure Language` ("Cấu hình ngôn ngữ"), sau đó chọn ngôn ngữ. Chú ý rằng có thể chọn ngôn ngữ dự phòng.
 
 ### Mã hóa và ký tự cuối dòng
 

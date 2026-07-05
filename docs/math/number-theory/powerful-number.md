@@ -48,7 +48,7 @@ F(n) &= \sum_{i = 1}^{n} f(i)\\
      &= \sum_{d=1}^{n} \sum_{i=1}^{\lfloor \frac{n}{d}\rfloor} h(d) g(i)\\
      &= \sum_{d=1}^{n} h(d) \sum_{i=1}^{\lfloor \frac{n}{d}\rfloor}  g(i) \\
      &= \sum_{d=1}^{n} h(d) G\left(\left\lfloor \frac{n}{d}\right\rfloor\right)\\
-     &= \sum_{\substack{d=1 \\ d \text{ is PN}}}^{n}h(d) G\left(\left\lfloor \frac{n}{d}\right\rfloor\right)
+     &= \sum_{\substack{d=1 \\ d \text{ là PN}}}^{n}h(d) G\left(\left\lfloor \frac{n}{d}\right\rfloor\right)
 \end{aligned}
 $$
 

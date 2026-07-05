@@ -32,11 +32,11 @@ Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đ
 
 Danh sách bài sẽ hiển thị thông tin cơ bản của một bài, chẳng hạn tình trạng viết đề bài, hướng dẫn, tình trạng sinh dữ liệu, cũng như thiết lập của lời giải chuẩn, trình kiểm tra dữ liệu và trình kiểm tra đáp án.
 
-Có thể nhấp đúp vào cột "Name" trong danh sách bài để ghi chú, ví dụ những việc cần tự nhắc (cần thêm test/cần viết hướng dẫn), hoặc phân bố điểm dự kiến của bài. Có thể điền tùy nhu cầu, và dĩ nhiên cũng có thể để trống.
+Có thể nhấp đúp vào cột "Name" ("Tên") trong danh sách bài để ghi chú, ví dụ những việc cần tự nhắc (cần thêm test/cần viết hướng dẫn), hoặc phân bố điểm dự kiến của bài. Có thể điền tùy nhu cầu, và dĩ nhiên cũng có thể để trống.
 
-Trong "Rev.", "x/y" nghĩa là x là phiên bản hiện tại của bài, còn y là phiên bản gói. Nếu hai số khác nhau, y sẽ hiển thị màu đỏ.
+Trong "Rev." ("Phiên bản"), "x/y" nghĩa là x là phiên bản hiện tại của bài, còn y là phiên bản gói. Nếu hai số khác nhau, y sẽ hiển thị màu đỏ.
 
-Trong "Edit session", "Start" nghĩa là tài khoản của bạn chưa từng xem bài này; "Continue (x) Discard" nghĩa là tài khoản của bạn đang ở phiên bản thứ x của bài này. Nhấp "Start" hoặc "Continue (x)" sẽ đi vào giao diện quản lý bài; nhấp "Discard" sẽ hủy **không thể khôi phục** toàn bộ thay đổi của bạn và trở về trạng thái như chưa từng xem bài.
+Trong "Edit session" ("Phiên chỉnh sửa"), "Start" ("Bắt đầu") nghĩa là tài khoản của bạn chưa từng xem bài này; "Continue (x) Discard" ("Tiếp tục (x) / Hủy bỏ") nghĩa là tài khoản của bạn đang ở phiên bản thứ x của bài này. Nhấp "Start" hoặc "Continue (x)" sẽ đi vào giao diện quản lý bài; nhấp "Discard" ("Hủy bỏ") sẽ hủy **không thể khôi phục** toàn bộ thay đổi của bạn và trở về trạng thái như chưa từng xem bài.
 
 Nếu tài khoản của bạn có thay đổi chưa commit trong một bài, cả hàng tương ứng trong danh sách bài sẽ chuyển sang màu đỏ.
 
@@ -57,7 +57,7 @@ Phần lớn chức năng của Polygon không cần học riêng; đọc hiểu
 
 Trong trang này, có thể thiết lập giới hạn thời gian, giới hạn bộ nhớ, loại bài, thẻ của bài và cuộc thi chứa bài.
 
-Ở cuối trang, "statement sketch" và "tutorial sketch" cho phép chỉnh sửa **bản nháp** của đề bài và hướng dẫn. Chú ý rằng hai mục này sẽ không xuất hiện trong đề bài và hướng dẫn chính thức.
+Ở cuối trang, "statement sketch" ("bản nháp đề bài") và "tutorial sketch" ("bản nháp hướng dẫn") cho phép chỉnh sửa **bản nháp** của đề bài và hướng dẫn. Chú ý rằng hai mục này sẽ không xuất hiện trong đề bài và hướng dẫn chính thức.
 
 ### Đề bài và hướng dẫn
 
@@ -65,15 +65,15 @@ Trang này dùng để viết đề bài và hướng dẫn. Cũng có thể dù
 
 Đề bài và hướng dẫn đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ thực ra chỉ là một tập con rất nhỏ; có thể tự thử cụ thể.
 
-Có thể dùng liên kết "In HTML" ở phía trên cùng để xem đề bài sau khi dựng HTML, và dùng "Tutorial in HTML" để xem hướng dẫn sau khi dựng HTML.
+Có thể dùng liên kết "In HTML" ("Dạng HTML") ở phía trên cùng để xem đề bài sau khi dựng HTML, và dùng "Tutorial in HTML" ("Hướng dẫn dạng HTML") để xem hướng dẫn sau khi dựng HTML.
 
-Nếu cần thêm ảnh vào đề bài, trước hết cần tải ảnh lên trong "Statement Resource Files" bên dưới, rồi thêm `\includegraphics{filename.png}` vào đề bài.
+Nếu cần thêm ảnh vào đề bài, trước hết cần tải ảnh lên trong "Statement Resource Files" ("Tệp tài nguyên của đề bài") bên dưới, rồi thêm `\includegraphics{filename.png}` vào đề bài.
 
 ### Tệp
 
-"Source Files" dùng để lưu các mã nguồn **ngoại trừ lời giải**, chẳng hạn trình kiểm tra dữ liệu, trình kiểm tra đáp án, trình sinh dữ liệu, và nếu là bài tương tác kiểu IO thì còn có trình tương tác.
+"Source Files" ("Tệp nguồn") dùng để lưu các mã nguồn **ngoại trừ lời giải**, chẳng hạn trình kiểm tra dữ liệu, trình kiểm tra đáp án, trình sinh dữ liệu, và nếu là bài tương tác kiểu IO thì còn có trình tương tác.
 
-Nếu các mã nguồn này cần include tệp khác, ví dụ [Tree-Generator](https://github.com/ouuan/Tree-Generator), thì cần đặt chúng trong "Resource Files".
+Nếu các mã nguồn này cần include tệp khác, ví dụ [Tree-Generator](https://github.com/ouuan/Tree-Generator), thì cần đặt chúng trong "Resource Files" ("Tệp tài nguyên").
 
 Tương tác kiểu grader xem [hướng dẫn chính thức](https://codeforces.com/blog/entry/66916).
 
@@ -83,7 +83,7 @@ testlib.h cung cấp một số trình kiểm tra đáp án tích hợp sẵn; t
 
 Nếu cần tự viết trình kiểm tra đáp án, hãy tham khảo [hướng dẫn viết trình kiểm tra đáp án](./testlib/checker.md).
 
-"Checker tests" bên dưới dùng "Add test" để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" để kiểm tra trình kiểm tra đáp án có trả về đúng kết quả chấm hay không.
+"Checker tests" ("Test cho checker") bên dưới dùng "Add test" ("Thêm test") để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" ("Chạy test") để kiểm tra trình kiểm tra đáp án có trả về đúng kết quả chấm hay không.
 
 ### Trình tương tác (Interactor)
 

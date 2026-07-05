@@ -502,7 +502,7 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
     $\{b'_i\}$ và số thứ $i$ không vượt quá $x$:
 
     $$
-    f_i(x) = \min\sum_{j=1}^i|a'_j-b'_j|\text{ s.t. }b'_1\le b'_2\le\cdots\le b'_i\le x.
+    f_i(x) = \min\sum_{j=1}^i|a'_j-b'_j|\text{ với điều kiện }b'_1\le b'_2\le\cdots\le b'_i\le x.
     $$
 
     Dễ thấy phương trình chuyển trạng thái là
@@ -600,7 +600,7 @@ Bài mẫu:
     $i$ số đầu khi số thứ $i$ nhận giá trị $x$:
 
     $$
-    f_i(x) = \min\sum_{j=1}^i|a_j-b_j|\text{ s.t. }|b_{j-1}-b_j|\le h,\forall 1<j\le i,~b_i=x.
+    f_i(x) = \min\sum_{j=1}^i|a_j-b_j|\text{ với điều kiện }|b_{j-1}-b_j|\le h,\forall 1<j\le i,~b_i=x.
     $$
 
     Suy ra phương trình chuyển trạng thái

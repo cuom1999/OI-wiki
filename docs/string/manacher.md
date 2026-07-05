@@ -100,13 +100,13 @@ Giả sử cần tính $d_1[i]$ cho vị trí tiếp theo $i$, và mọi giá tr
         s_l\ \ldots\
         \underbrace{
             s_{j-d_1[j]+1}\ \ldots\ s_j\ \ldots\ s_{j+d_1[j]-1}
-        }_\text{palindrome}\
+        }_\text{đối xứng}\
         \ldots\
         \underbrace{
             s_{i-d_1[j]+1}\ \ldots\ s_i\ \ldots\ s_{i+d_1[j]-1}
-        }_\text{palindrome}\
+        }_\text{đối xứng}\
         \ldots\ s_r
-    }^\text{palindrome}\
+    }^\text{đối xứng}\
     \ldots
     $$
 
@@ -121,18 +121,18 @@ Giả sử cần tính $d_1[i]$ cho vị trí tiếp theo $i$, và mọi giá tr
     \overbrace{
         \underbrace{
             s_l\ \ldots\ s_j\ \ldots\ s_{j+(j-l)}
-        }_\text{palindrome}\
+        }_\text{đối xứng}\
         \ldots\
         \underbrace{
             s_{i-(r-i)}\ \ldots\ s_i\ \ldots\ s_r
-        }_\text{palindrome}
-    }^\text{palindrome}\
+        }_\text{đối xứng}
+    }^\text{đối xứng}\
     \underbrace{
         \ldots \ldots \ldots \ldots \ldots
-    }_\text{try moving here}
+    }_\text{thử mở rộng ở đây}
     $$
 
-    Hình này cho thấy dù xâu đối xứng tâm $j$ có thể dài hơn và vượt ra ngoài xâu đối xứng "bên ngoài", tại vị trí $i$ ta chỉ có thể dùng phần hoàn toàn nằm trong xâu đối xứng "bên ngoài". Tuy nhiên đáp án tại vị trí $i$ có thể lớn hơn giá trị này, nên tiếp theo ta chạy thuật toán đơn giản để thử mở rộng ra ngoài xâu đối xứng "bên ngoài", tức vùng được đánh dấu "try moving here".
+    Hình này cho thấy dù xâu đối xứng tâm $j$ có thể dài hơn và vượt ra ngoài xâu đối xứng "bên ngoài", tại vị trí $i$ ta chỉ có thể dùng phần hoàn toàn nằm trong xâu đối xứng "bên ngoài". Tuy nhiên đáp án tại vị trí $i$ có thể lớn hơn giá trị này, nên tiếp theo ta chạy thuật toán đơn giản để thử mở rộng ra ngoài xâu đối xứng "bên ngoài", tức vùng được đánh dấu "thử mở rộng ở đây".
 
 Cuối cùng, cần nhắc lại rằng sau khi tính xong mỗi $d_1[i]$, phải nhớ cập nhật $(l, r)$.
 
