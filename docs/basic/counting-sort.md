@@ -47,9 +47,9 @@ Sắp xếp đếm là một thuật toán sắp xếp ổn định.
 
 $$
 \begin{array}{ll}
-1 & \textbf{Input. } \text{An array } A \text{ consisting of }n\text{ positive integers no greater than } w. \\
-2 & \textbf{Output. } \text{Array }A\text{ after sorting in nondecreasing order stably.} \\
-3 & \textbf{Method. }  \\
+1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ số nguyên dương không vượt quá } w. \\
+2 & \textbf{Đầu ra. } \text{Mảng }A\text{ sau khi được sắp xếp không giảm một cách ổn định.} \\
+3 & \textbf{Phương pháp. }  \\
 4 & \textbf{for }i\gets0\textbf{ to }w\\
 5 & \qquad \textit{cnt}[i]\gets0\\
 6 & \textbf{for }i\gets1\textbf{ to }n\\

@@ -30,16 +30,16 @@ Trong trường hợp xấu nhất, sắp xếp nổi bọt phải thực hiện
 
 $$
 \begin{array}{ll}
-1 & \textbf{Input. } \text{An array } A \text{ consisting of }n\text{ elements.} \\
-2 & \textbf{Output. } A\text{ will be sorted in nondecreasing order stably.} \\
-3 & \textbf{Method. }  \\
+1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử.} \\
+2 & \textbf{Đầu ra. } A\text{ được sắp xếp không giảm một cách ổn định.} \\
+3 & \textbf{Phương pháp. }  \\
 4 & flag\gets True\\
 5 & \textbf{while }flag\\
 6 & \qquad flag\gets False\\
 7 & \qquad\textbf{for }i\gets1\textbf{ to }n-1\\
 8 & \qquad\qquad\textbf{if }A[i]>A[i + 1]\\
 9 & \qquad\qquad\qquad flag\gets True\\
-10 & \qquad\qquad\qquad \text{Swap } A[i]\text{ and }A[i + 1]
+10 & \qquad\qquad\qquad \text{Hoán đổi } A[i]\text{ và }A[i + 1]
 \end{array}
 $$
 

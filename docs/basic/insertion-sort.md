@@ -26,9 +26,9 @@ Sắp xếp chèn là một thuật toán sắp xếp ổn định.
 
 $$
 \begin{array}{ll}
-1 & \textbf{Input. } \text{An array } A \text{ consisting of }n\text{ elements.} \\
-2 & \textbf{Output. } A\text{ will be sorted in nondecreasing order stably.} \\
-3 & \textbf{Method. }  \\
+1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử.} \\
+2 & \textbf{Đầu ra. } A\text{ được sắp xếp không giảm một cách ổn định.} \\
+3 & \textbf{Phương pháp. }  \\
 4 & \textbf{for } i\gets 2\textbf{ to }n\\
 5 & \qquad key\gets A[i]\\
 6 & \qquad j\gets i-1\\

@@ -114,11 +114,11 @@ Trong quá trình này, vừa so sánh từng khóa vừa sắp xếp lại th�
 
 $$
 \begin{array}{ll}
-1 & \textbf{Input. } \text{An array } A \text{ consisting of }n\text{ elements, where each element has }k\text{ keys.}\\
-2 & \textbf{Output. } \text{Array }A\text{ will be sorted in nondecreasing order stably.} \\
-3 & \textbf{Method. }  \\
+1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử, mỗi phần tử có }k\text{ khóa.}\\
+2 & \textbf{Đầu ra. } \text{Mảng }A\text{ được sắp xếp không giảm một cách ổn định.} \\
+3 & \textbf{Phương pháp. }  \\
 4 & \textbf{for }i\gets k\textbf{ down to }1\\
-5 & \qquad\text{sort }A\text{ into nondecreasing order by the }i\text{-th key stably}
+5 & \qquad\text{sắp xếp }A\text{ theo thứ tự không giảm dựa trên khóa thứ }i\text{ một cách ổn định}
 \end{array}
 $$
 
