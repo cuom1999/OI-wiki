@@ -2,47 +2,84 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
 
 ## Giới thiệu
 
-Phân khối lồng cây Fenwick có thể dùng để làm một số việc mà cây lồng cây làm được trong những điều kiện nhất định. Tuy nhiên, so với cây lồng cây, mã của phân khối lồng cây Fenwick ngắn hơn và dễ cài đặt hơn.
+Phân khối lồng cây Fenwick có thể dùng để làm một số việc
+mà cây lồng cây làm được trong những điều kiện nhất định.
+Tuy nhiên, so với cây lồng cây,
+mã của phân khối lồng cây Fenwick ngắn hơn và dễ cài đặt hơn.
 
 ## Ví dụ đơn giản
 
 Một ví dụ đơn giản là truy vấn số điểm trong một vùng ma trận trên mặt phẳng hai chiều.
 
 ???+ note "Truy vấn vùng chữ nhật"
-    Cho $n$ điểm $(x_i, y_i)$ trên mặt phẳng hai chiều, trong đó $1 \le i \le n, 1 \le x_i, y_i \le n, 1 \le n \le 10^5$. Cần thực hiện các thao tác sau:
+    Cho $n$ điểm $(x_i, y_i)$ trên mặt phẳng hai chiều,
+    trong đó $1 \le i \le n, 1 \le x_i, y_i \le n, 1 \le n \le 10^5$.
+    Cần thực hiện các thao tác sau:
     
     1.  Cho $a, b, c, d$, hỏi số điểm trong vùng chữ nhật có góc trên trái là $(a, b)$ và góc dưới phải là $(c, d)$.
     2.  Cho $x, y$, đổi tung độ của điểm có hoành độ $x$ thành $y$.
     
     Bài toán **bắt buộc xử lý trực tuyến**, và bảo đảm $x_i \ne x_j(1 \le i, j \le n, i \ne j)$.
 
-Với thao tác 1, ta có thể dùng bao hàm - loại trừ trên hình chữ nhật để chuyển nó thành 4 truy vấn thứ tự bộ phận hai chiều. Vì bài toán bắt buộc xử lý trực tuyến, các thuật toán ngoại tuyến như chia để trị CDQ không áp dụng được, nên ta nghĩ đến cây lồng cây, chẳng hạn cây Fenwick lồng Treap. Cách này thật sự giải được bài toán, nhưng mã khá dài và không quá dễ cài đặt.
+Với thao tác 1, có thể dùng bao hàm - loại trừ trên hình chữ nhật
+để chuyển nó thành 4 truy vấn thứ tự bộ phận hai chiều.
+Vì bài toán bắt buộc xử lý trực tuyến,
+các thuật toán ngoại tuyến như chia để trị CDQ không áp dụng được,
+nên một hướng tự nhiên là dùng cây lồng cây, chẳng hạn cây Fenwick lồng Treap.
+Cách này thật sự giải được bài toán,
+nhưng mã khá dài và không quá dễ cài đặt.
 
-Chú ý rằng bài toán còn bảo đảm thêm $x_i \ne x_j(1 \le i, j \le n, i \ne j)$, khi đó có thể dùng phân khối lồng cây Fenwick để giải.
+Chú ý rằng bài toán còn bảo đảm thêm $x_i \ne x_j(1 \le i, j \le n, i \ne j)$.
+Khi đó có thể dùng phân khối lồng cây Fenwick để giải.
 
 ### Khởi tạo
 
-Trước hết, mỗi $x$ chỉ tương ứng với một $y$, nên có thể dùng một mảng để ghi lại ánh xạ này. Chẳng hạn, đặt $Y_i$ là tung độ của điểm có hoành độ $i$.
+Trước hết, mỗi $x$ chỉ tương ứng với một $y$,
+nên có thể dùng một mảng để ghi lại ánh xạ này.
+Chẳng hạn, đặt $Y_i$ là tung độ của điểm có hoành độ $i$.
 
-Sau đó, phân khối các hoành độ với kích thước khối là $\sqrt n$. Với mỗi khối, xây một cây Fenwick trên miền giá trị. Kí hiệu $T_i$ là cây Fenwick tương ứng với khối thứ $i$, và $T_{i, j}$ là số điểm trong khối $i$ có tung độ thuộc $(j - lowbit(j), j]$.
+Sau đó, phân khối các hoành độ với kích thước khối là $\sqrt n$.
+Với mỗi khối, xây một cây Fenwick trên miền giá trị.
+Kí hiệu $T_i$ là cây Fenwick tương ứng với khối thứ $i$,
+và $T_{i, j}$ là số điểm trong khối $i$ có tung độ thuộc $(j - lowbit(j), j]$.
 
 ### Truy vấn
 
-Với thao tác 1, chuyển nó thành 4 truy vấn thứ tự bộ phận hai chiều. Bây giờ chỉ cần giải bài toán: cho $a, b$, hỏi có bao nhiêu điểm thỏa mãn $1 \le x_i \le a, 1\le y_i \le b$.
+Với thao tác 1, chuyển nó thành 4 truy vấn thứ tự bộ phận hai chiều.
+Bây giờ chỉ cần giải bài toán:
+cho $a, b$, hỏi có bao nhiêu điểm thỏa mãn $1 \le x_i \le a, 1\le y_i \le b$.
 
-Ta cần truy vấn phạm vi hoành độ $[1, a]$. Vì ở mép phải của phạm vi truy vấn có thể có một đoạn không phải là khối hoàn chỉnh, ta duyệt trực tiếp đoạn này, kiểm tra điều kiện $Y_i \le b$, rồi đếm số điểm thỏa mãn trong đoạn đó.
+Cần truy vấn phạm vi hoành độ $[1, a]$.
+Vì ở mép phải của phạm vi truy vấn có thể có một đoạn không phải là khối hoàn chỉnh,
+duyệt trực tiếp đoạn này, kiểm tra điều kiện $Y_i \le b$,
+rồi đếm số điểm thỏa mãn trong đoạn đó.
 
-Bây giờ chỉ còn cần xử lý các khối hoàn chỉnh. Duyệt trực tiếp các khối phía trước, truy vấn trong cây Fenwick tương ứng với mỗi khối số giá trị nhỏ hơn $b$, rồi cộng dồn vào đáp án.
+Bây giờ chỉ còn cần xử lý các khối hoàn chỉnh.
+Duyệt trực tiếp các khối phía trước,
+truy vấn trong cây Fenwick tương ứng với mỗi khối số giá trị nhỏ hơn $b$,
+rồi cộng dồn vào đáp án.
 
-Như vậy là xong chưa? Chưa. Chú ý rằng khi xử lý các khối hoàn chỉnh, thực chất ta đang truy vấn tổng tiền tố của $T$. Nếu khi cập nhật cũng dùng kĩ thuật cây Fenwick để xử lý $T$, độ phức tạp truy vấn sẽ thấp hơn.
+Đến đây vẫn còn một điểm có thể tối ưu.
+Khi xử lý các khối hoàn chỉnh,
+thực chất đang truy vấn tổng tiền tố của $T$.
+Nếu khi cập nhật cũng dùng kĩ thuật cây Fenwick để xử lý $T$,
+độ phức tạp truy vấn sẽ thấp hơn.
 
 ### Cập nhật
 
-Cách thông thường là trước hết tìm khối chứa điểm $x$, sau đó thực hiện hai cập nhật điểm trên cây Fenwick theo miền giá trị, một lần trừ và một lần cộng, rồi đặt $Y_x$ thành $y$.
+Cách thông thường là trước hết tìm khối chứa điểm $x$,
+sau đó thực hiện hai cập nhật điểm trên cây Fenwick theo miền giá trị:
+một lần trừ và một lần cộng, rồi đặt $Y_x$ thành $y$.
 
-Nếu dùng tối ưu nói trên, ta cũng thực hiện quy trình cập nhật kiểu cây Fenwick trên $T$. Mỗi lần cập nhật vẫn là hai cập nhật điểm trên cây Fenwick theo miền giá trị, một lần trừ và một lần cộng.
+Nếu dùng tối ưu nói trên,
+cũng thực hiện quy trình cập nhật kiểu cây Fenwick trên $T$.
+Mỗi lần cập nhật vẫn là hai cập nhật điểm trên cây Fenwick theo miền giá trị:
+một lần trừ và một lần cộng.
 
-Thay đổi nhẹ các bước trên sẽ cho các thao tác khác. Ví dụ, đổi từ một lần trừ và một lần cộng thành chỉ trừ thì đó là xóa điểm; đổi thành chỉ cộng thì đó là thêm điểm. Tuy nhiên, cần chú ý rằng mỗi $x$ chỉ được tương ứng với một $y$.
+Thay đổi nhẹ các bước trên sẽ cho các thao tác khác.
+Ví dụ, đổi từ một lần trừ và một lần cộng thành chỉ trừ thì đó là xóa điểm;
+đổi thành chỉ cộng thì đó là thêm điểm.
+Tuy nhiên, cần chú ý rằng mỗi $x$ chỉ được tương ứng với một $y$.
 
 ### Độ phức tạp không gian
 
@@ -50,7 +87,11 @@ Phân khối tạo ra $\sqrt n$ khối, mỗi khối có một cây Fenwick dùn
 
 ### Độ phức tạp thời gian
 
-Khi truy vấn, việc duyệt đoạn thuộc khối không hoàn chỉnh tốn $O(\sqrt n)$. Sau đó, thực hiện truy vấn cây Fenwick trên $T$; với mỗi $T_i$ đi qua, lại thực hiện một truy vấn cây Fenwick, bước này có độ phức tạp $O(\log (\sqrt n) \log n)$. Vì vậy độ phức tạp thời gian của truy vấn là $O (\sqrt n + \log (\sqrt n) \log n)$.
+Khi truy vấn, việc duyệt đoạn thuộc khối không hoàn chỉnh tốn $O(\sqrt n)$.
+Sau đó, thực hiện truy vấn cây Fenwick trên $T$.
+Với mỗi $T_i$ đi qua, lại thực hiện một truy vấn cây Fenwick;
+bước này có độ phức tạp $O(\log (\sqrt n) \log n)$.
+Vì vậy độ phức tạp thời gian của truy vấn là $O (\sqrt n + \log (\sqrt n) \log n)$.
 
 Cập nhật có độ phức tạp giống truy vấn, là $O (\sqrt n + \log (\sqrt n) \log n)$.
 
@@ -59,12 +100,19 @@ Cập nhật có độ phức tạp giống truy vấn, là $O (\sqrt n + \log (
 ???+ note "[Intersection of Permutations](https://codeforces.com/problemset/problem/1093/E)"
     Cho hai hoán vị $a$ và $b$, cần thực hiện hai loại thao tác sau:
     
-    1.  Cho $l_a, r_a, l_b, r_b$, cần truy vấn số phần tử vừa xuất hiện trong $a[l_a ... r_a]$ vừa xuất hiện trong $b[l_b ... r_b]$.
+    1.  Cho $l_a, r_a, l_b, r_b$,
+        cần truy vấn số phần tử vừa xuất hiện trong $a[l_a \ldots r_a]$
+        vừa xuất hiện trong $b[l_b \ldots r_b]$.
     2.  Cho $x, y$, thực hiện $swap(b_x, b_y)$.
     
     Độ dài dãy $n$ thỏa mãn $2 \le n \le 2 \cdot 10^5$, số thao tác $q$ thỏa mãn $1 \le q \le 2 \cdot 10^5$.
 
-Với mỗi giá trị $i$, kí hiệu $x_i$ là chỉ số của nó trong hoán vị $b$, và $y_i$ là chỉ số của nó trong hoán vị $a$. Khi đó, thao tác 1 trở thành một truy vấn số điểm trong vùng chữ nhật, còn thao tác 2 có thể xem là hai thao tác cập nhật. Hơn nữa, vì đây là hoán vị nên điều kiện mỗi $x$ tương ứng với một $y$ được thỏa mãn, do đó bài này có thể viết bằng phân khối lồng cây Fenwick.
+Với mỗi giá trị $i$, kí hiệu $x_i$ là chỉ số của nó trong hoán vị $b$,
+và $y_i$ là chỉ số của nó trong hoán vị $a$.
+Khi đó, thao tác 1 trở thành một truy vấn số điểm trong vùng chữ nhật,
+còn thao tác 2 có thể xem là hai thao tác cập nhật.
+Hơn nữa, vì đây là hoán vị nên điều kiện mỗi $x$ tương ứng với một $y$ được thỏa mãn,
+do đó bài này có thể viết bằng phân khối lồng cây Fenwick.
 
 ??? note "Mã tham khảo (phân khối lồng cây Fenwick - 1s)"
     ```cpp
@@ -299,19 +347,39 @@ Với mỗi giá trị $i$, kí hiệu $x_i$ là chỉ số của nó trong hoá
 ## Ví dụ 2
 
 ???+ note "[Complicated Computations](https://codeforces.com/contest/1436/problem/E)"
-    Cho một dãy $a$. Lấy tất cả MEX của mọi dãy con liên tiếp của $a$ để tạo thành mảng $b$, hỏi MEX của $b$. MEX của một dãy là **số nguyên dương** nhỏ nhất chưa xuất hiện trong dãy đó.
+    Cho một dãy $a$.
+    Lấy tất cả MEX của mọi dãy con liên tiếp của $a$ để tạo thành mảng $b$,
+    hỏi MEX của $b$.
+    MEX của một dãy là **số nguyên dương** nhỏ nhất chưa xuất hiện trong dãy đó.
     
     Độ dài dãy $n$ thỏa mãn $1 \le n \le 10^5$.
 
 **Nhận xét**: MEX của một dãy là $mex$ khi và chỉ khi dãy đó chứa các số từ $1$ đến $mex-1$, nhưng không chứa $mex$.
 
-Lần lượt kiểm tra có tồn tại dãy con liên tiếp có MEX bằng từng giá trị từ $1$ đến $n+1$ hay không. Nếu không có dãy con liên tiếp nào có MEX bằng $i$, thì đáp án là $i$. Nếu tất cả đều tồn tại, đáp án là $n + 2$.
+Lần lượt kiểm tra có tồn tại dãy con liên tiếp có MEX bằng từng giá trị
+từ $1$ đến $n+1$ hay không.
+Nếu không có dãy con liên tiếp nào có MEX bằng $i$,
+thì đáp án là $i$.
+Nếu tất cả đều tồn tại, đáp án là $n + 2$.
 
-Khi kiểm tra $i$, xem dãy như nhiều đoạn được ngăn cách bởi không hoặc nhiều phần tử có giá trị $i$. Nếu tồn tại một đoạn chứa các giá trị từ $1$ đến $i - 1$ nhưng không chứa $i$, thì tồn tại một dãy con liên tiếp có MEX bằng $i$.
+Khi kiểm tra $i$,
+xem dãy như nhiều đoạn được ngăn cách bởi không hoặc nhiều phần tử có giá trị $i$.
+Nếu tồn tại một đoạn chứa các giá trị từ $1$ đến $i - 1$ nhưng không chứa $i$,
+thì tồn tại một dãy con liên tiếp có MEX bằng $i$.
 
-Dùng một mảng $Y_j$ để ghi lại vị trí của phần tử gần nhất trước đó có giá trị bằng $a_j$. Lấy $j$ làm $x$, $Y_j$ làm $y$, và $a_j$ làm $z$. Khi đó, tính xem trong đoạn có chứa các giá trị từ $1$ đến $i - 1$ hay không trở thành một bài toán thứ tự bộ phận ba chiều. Nói chính thức, để kiểm tra MEX của đoạn $[l, r]$ có bằng $i$ hay không, ta xem số điểm thỏa mãn $l \le j \le r, Y_j \le l - 1, a_j \le i - 1$ có bằng $i-1$ hay không.
+Dùng một mảng $Y_j$ để ghi lại vị trí của phần tử gần nhất trước đó
+có giá trị bằng $a_j$.
+Lấy $j$ làm $x$, $Y_j$ làm $y$, và $a_j$ làm $z$.
+Khi đó, tính xem trong đoạn có chứa các giá trị từ $1$ đến $i - 1$ hay không
+trở thành một bài toán thứ tự bộ phận ba chiều.
+Nói chính thức, để kiểm tra MEX của đoạn $[l, r]$ có bằng $i$ hay không,
+xem số điểm thỏa mãn $l \le j \le r, Y_j \le l - 1, a_j \le i - 1$
+có bằng $i-1$ hay không.
 
-Nếu sau khi kiểm tra xong các phần tử có giá trị $i$ mới chèn các điểm tương ứng, thì lúc này trong $[l, r]$ chỉ tồn tại các phần tử có $a_j \le i - 1$. Vì vậy bài toán thứ tự bộ phận ba chiều ở trên có thể chuyển thành bài toán thứ tự bộ phận hai chiều.
+Nếu sau khi kiểm tra xong các phần tử có giá trị $i$ mới chèn các điểm tương ứng,
+thì lúc này trong $[l, r]$ chỉ tồn tại các phần tử có $a_j \le i - 1$.
+Vì vậy bài toán thứ tự bộ phận ba chiều ở trên
+có thể chuyển thành bài toán thứ tự bộ phận hai chiều.
 
 ??? note "Mã tham khảo (phân khối lồng cây Fenwick - 78ms)"
     ```cpp
