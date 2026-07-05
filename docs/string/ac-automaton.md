@@ -71,17 +71,17 @@ Dưới đây dùng một số ảnh GIF để minh họa quá trình xây dựn
 3.  Cạnh màu cam: con trỏ `fail`.
 4.  Cạnh màu đỏ: con trỏ `fail` hiện đang được tính.
 
-![AC automaton gif b 3](./images/ac-automaton1.gif)
+![Quá trình xây con trỏ fail trong AC automaton](./images/ac-automaton1.gif)
 
 Ta phân tích kỹ việc xây dựng con trỏ `fail` của đỉnh $6$:
 
-![AC automaton 6 9](./images/ac-automaton1.png)
+![Ví dụ tính con trỏ fail của đỉnh 6](./images/ac-automaton1.png)
 
 Tìm cha của $6$ là đỉnh $5$, $\operatorname{fail}(5)=10$. Tuy nhiên đỉnh $10$ không có cạnh đi ra bằng chữ $\mathtt{s}$; tiếp tục nhảy tới con trỏ `fail` của $10$, tức $\operatorname{fail}(10)=0$. Ta thấy đỉnh $0$ có cạnh đi ra bằng chữ $\mathtt{s}$ tới đỉnh $7$; vì vậy $\operatorname{fail}(6)=7$.
 
 Hình dưới đây thể hiện trạng thái sau khi xây dựng xong:
 
-![finish](./images/ac-automaton4.png)
+![Trạng thái sau khi xây xong con trỏ fail](./images/ac-automaton4.png)
 
 <span id="trie-và-đồ-thị-từ-điển"></span>
 ## Trie và đồ thị từ điển
@@ -154,7 +154,7 @@ Việc sửa cấu trúc Trie ở đây giúp các phép chuyển khi khớp tr�
 
 Ở đây vẫn dùng một số ảnh GIF để minh họa quá trình xây dựng:
 
-![AC automaton gif b pro3](./images/ac-automaton2.gif)
+![Quá trình xây đồ thị từ điển của AC automaton](./images/ac-automaton2.gif)
 
 1.  Đỉnh màu xanh dương: đỉnh $u$ đang được BFS duyệt tới.
 2.  Cạnh màu xanh dương: cạnh mà AC automaton thêm ra khi sửa cấu trúc Trie tại đỉnh hiện tại.
@@ -165,7 +165,7 @@ Việc sửa cấu trúc Trie ở đây giúp các phép chuyển khi khớp tr�
 
 Có thể thấy rất nhiều cạnh đen đan xen đã biến Trie thành **đồ thị từ điển**. Trong hình đã lược bỏ các cạnh đen trỏ về gốc (nếu không hình sẽ rối hơn). Ta phân tích kỹ trường hợp khi duyệt đỉnh $5$. Ta cần tính con trỏ `fail` của $\operatorname{trans}(5, \mathtt{s})=6$:
 
-![AC automaton b 7](./images/ac-automaton2.png)
+![Ví dụ chuyển trạng thái khi duyệt đỉnh 5](./images/ac-automaton2.png)
 
 Chiến lược ban đầu là tìm theo con trỏ `fail`: ta nhảy tới $\operatorname{fail}(5)=10$, thấy không có cạnh Trie đi ra bằng $\mathtt{s}$; rồi nhảy tới $\operatorname{fail}(10)=0$, thấy có $\operatorname{trie}(0, \mathtt{s})=7$, nên $\operatorname{fail}(6)=7$. Nhưng khi đã có các cạnh đen và cạnh xanh dương, sau khi nhảy tới $\operatorname{fail}(5)=10$, ta chỉ cần đi trực tiếp theo $\operatorname{trans}(10, \mathtt{s})=7$ là tới đỉnh $7$.
 
@@ -210,11 +210,11 @@ Tiếp theo phân tích hàm khớp `query`:
 
 Ở đây $u$ là đỉnh hiện đang khớp tới trên Trie, còn `res` là đáp án trả về. Vòng lặp duyệt xâu cần khớp, $u$ theo dõi ký tự hiện tại trên Trie. Ta dùng con trỏ `fail` để tìm mọi xâu mẫu đã khớp và cộng vào đáp án. Sau đó đặt số lần xuất hiện của xâu đã khớp thành không còn xét nữa, để tránh đếm lặp cùng một xâu. Như đã phân tích ở trên, cấu trúc Trie thực chất là một hàm `trans`; sau khi xây dựng hàm này, trong quá trình khớp xâu, ta sẽ bỏ bớt một phần tiền tố để đạt tới mức khớp tối thiểu. Con trỏ `fail` thì trỏ tới nhiều trạng thái khớp hơn. Cuối cùng xem lại một hình. Với automaton vừa rồi:
 
-![AC automaton b 13](./images/ac-automaton3.png)
+![AC automaton sau khi xây dựng](./images/ac-automaton3.png)
 
 Ta bắt đầu từ gốc và thử khớp $\mathtt{ushersheishis}$, khi đó sự thay đổi của $p$ là:
 
-![AC automaton gif c](./images/ac-automaton3.gif)
+![Quá trình khớp xâu trên AC automaton](./images/ac-automaton3.gif)
 
 1.  Đỉnh màu đỏ: đỉnh $p$.
 2.  Mũi tên màu hồng: bước chuyển của $p$ trên automaton.
