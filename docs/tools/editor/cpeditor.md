@@ -16,21 +16,21 @@ Xem [Installation | CP Editor](https://cpeditor.org/docs/installation/).
 
     Ngôn ngữ mặc định của trình soạn thảo là `C++`.
 
-    ![cp-setting-lang-1](images/cp-setting-lang-1.png)
+    ![Mở phần cấu hình ngôn ngữ mặc định trong CP Editor](images/cp-setting-lang-1.png)
 
-    ![cp-setting-lang-2](images/cp-setting-lang-2.png)
+    ![Chọn C++ làm ngôn ngữ mặc định trong CP Editor](images/cp-setting-lang-2.png)
 
 -   Đặt lệnh `C++`
 
     Cần đặt một số lệnh biên dịch cần thiết; phần này phải cấu hình theo trình biên dịch đang dùng.
 
-    ![cp-setting-lang-3](images/cp-setting-lang-3.png)
+    ![Cấu hình lệnh biên dịch và chạy C++ trong CP Editor](images/cp-setting-lang-3.png)
 
 -   Đặt mẫu
 
     Mẫu sẽ tự động khởi tạo khi tạo tệp mới. Cần chú ý rằng CP Editor cần một tệp `xxx.cpp` làm mẫu tệp.
 
-    ![cp-setting-lang-4](images/cp-setting-lang-4.png)
+    ![Cấu hình tệp mẫu C++ trong CP Editor](images/cp-setting-lang-4.png)
 
 > Sau khi hoàn thành các thao tác cơ bản trên, bạn đã có thể dùng các chức năng cơ bản nhất.
 
@@ -53,15 +53,15 @@ Xem [Installation | CP Editor](https://cpeditor.org/docs/installation/).
 
     Có thể sao chép mẫu trong đề bài để CP Editor tự động chấm, và còn có thể đặt giới hạn thời gian!
 
-    ![cp-setting-limits](images/cp-setting-limits.png)
+    ![Thiết lập giới hạn thời gian cho kiểm thử mẫu](images/cp-setting-limits.png)
 
-    ![cp-judge-1](images/cp-judge-1.png)
+    ![Thêm dữ liệu mẫu để chấm trong CP Editor](images/cp-judge-1.png)
 
-    ![cp-judge-2](images/cp-judge-2.png)
+    ![Chạy kiểm thử mẫu trong CP Editor](images/cp-judge-2.png)
 
-    ![cp-judge-3](images/cp-judge-3.png)
+    ![Kết quả kiểm thử mẫu trong CP Editor](images/cp-judge-3.png)
 
-    ![cp-judge-4](images/cp-judge-4.png)
+    ![So sánh đầu ra khi kiểm thử mẫu trong CP Editor](images/cp-judge-4.png)
 
 ## Tài liệu tham khảo
 
