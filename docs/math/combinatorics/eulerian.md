@@ -37,7 +37,7 @@ Với các giá trị nhỏ của $n$ và $m$, ta có thể nhận được kế
 | $A(3, 1)$ | $(1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2)$     | 4        |
 | $A(3, 2)$ | $(1, 2, 3)$                                      | 1        |
 
-<span id="&#20844;&#24335;"></span>
+<span id="công-thức"></span>
 ## Công thức
 
 Có thể tính số Eulerian bằng phương pháp truy hồi hoặc đệ quy.
@@ -64,7 +64,7 @@ A(n, m) = \begin{cases}
 \end{cases}
 $$
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ## Cài đặt
 
 === "C++"
@@ -89,7 +89,7 @@ $$
         )
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [CF1349F1 Slime and Sequences (Easy Version)](https://codeforces.com/problemset/problem/1349/F1)

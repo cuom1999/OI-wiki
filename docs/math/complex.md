@@ -164,7 +164,7 @@ Số phức có môđun nhỏ hơn $1$ tạo thành hình **đĩa đơn vị** t
 
 Dưới góc nhìn tọa độ cực, phép nhân và phép chia số phức trở nên rất đơn giản. Khi nhân số phức, môđun được nhân với nhau, argument được cộng với nhau. Khi chia số phức, môđun được chia cho nhau, argument được trừ cho nhau.
 
-<span id="&#27431;&#25289;&#20844;&#24335;"></span>
+<span id="công-thức-euler"></span>
 
 ### Công thức Euler
 
@@ -175,9 +175,9 @@ Dưới góc nhìn tọa độ cực, phép nhân và phép chia số phức tr�
     \mathrm{e}^{\mathrm{i}x}=\cos x+\mathrm{i}\sin x
     $$
     
-    Sau khi bổ sung định nghĩa của [hàm mũ phức và hàm lượng giác phức](#%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E4%B8%8E%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0), công thức này có thể mở rộng cho toàn bộ số phức.
+    Sau khi bổ sung định nghĩa của [hàm mũ phức và hàm lượng giác phức](#hàm-mũ-và-hàm-lượng-giác), công thức này có thể mở rộng cho toàn bộ số phức.
 
-<span id="&#25351;&#25968;&#20989;&#25968;&#19982;&#19977;&#35282;&#20989;&#25968;"></span>
+<span id="hàm-mũ-và-hàm-lượng-giác"></span>
 
 ### Hàm mũ và hàm lượng giác
 
@@ -204,7 +204,7 @@ $$
 \sin z=\frac{\exp (\mathrm{i}z)-\exp (-\mathrm{i}z)}{2\mathrm{i}}
 $$
 
-Nếu lấy $z\in\mathbf{R}$, thì từ [công thức Euler](#%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F) có:
+Nếu lấy $z\in\mathbf{R}$, thì từ [công thức Euler](#công-thức-euler) có:
 
 $$
 \cos z=\operatorname{Re}\left(\mathrm{e}^{\mathrm{i}z}\right)
@@ -242,7 +242,7 @@ $$
 
 Hai dạng này thuận tiện hơn cho việc tính hai phép toán nhân, chia và các phép toán phía sau. Nếu chỉ dùng các hàm đã gặp ở bậc phổ thông, có thể dùng dạng lượng giác. Nếu đã đưa vào hàm mũ phức, viết dưới dạng mũ tương đương sẽ thuận tiện hơn.
 
-<span id="&#21333;&#20301;&#26681;"></span>
+<span id="căn-đơn-vị"></span>
 
 ## Căn đơn vị
 

@@ -1,4 +1,4 @@
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 
 ## Định nghĩa
 
@@ -6,7 +6,7 @@ Nguyên lý ngăn kéo, còn gọi là nguyên lý chuồng bồ câu (the pigeo
 
 Nó thường được dùng trong các chứng minh tồn tại và trong việc tìm lời giải ở trường hợp xấu nhất.
 
-<span id="&#x7B80;&#x5355;&#x60C5;&#x51B5;"></span>
+<span id="trường-hợp-đơn-giản"></span>
 
 ## Trường hợp đơn giản
 
@@ -14,7 +14,7 @@ Nếu đưa $n+1$ vật vào $n$ nhóm, thì tồn tại ít nhất một nhóm 
 
 Định lý này khá hiển nhiên. Ta có thể chứng minh bằng phản chứng: nếu mỗi nhóm có nhiều nhất $1$ vật, tổng số vật tối đa chỉ là $1\times n$, trong khi thực tế có $n+1$ vật, mâu thuẫn.
 
-<span id="&#x63A8;&#x5E7F;"></span>
+<span id="mở-rộng"></span>
 
 ## Mở rộng
 
@@ -30,7 +30,7 @@ Cho tập $S$, xét một họ các tập con khác rỗng của $S$: $\{A_1,A_2
 
 Nguyên lý chuồng bồ câu có thể được phát biểu như sau: với một phủ $\{A_1,A_2\ldots A_k\}$ của $S$, tồn tại ít nhất một tập $A_i$ thỏa $\left\vert A_i \right\vert \geq \left\lceil \dfrac{\left\vert S \right\vert}{k} \right\rceil$.
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 
