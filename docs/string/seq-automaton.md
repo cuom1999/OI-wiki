@@ -10,13 +10,13 @@ Trong bài này, dùng $s$ để chỉ xâu đó.
 <span id="trạng-thái"></span>
 ### Trạng thái
 
-Nếu $s$ chứa $n$ ký tự, sequence automaton có $n+1$ trạng thái.
+Nếu $s$ chứa $n$ ký tự, tự động dãy có $n+1$ trạng thái.
 
 Gọi $t$ là một dãy con của $s$, khi đó $\delta(start, t)$ là vị trí kết thúc khi $t$ xuất hiện lần đầu trong $s$.
 
 Nói cách khác, trạng thái $i$ biểu diễn hiệu của tập dãy con của tiền tố $s[1..i]$ và tập dãy con của tiền tố $s[1..i-1]$.
 
-Mọi trạng thái trên sequence automaton đều là trạng thái chấp nhận.
+Mọi trạng thái trên tự động dãy đều là trạng thái chấp nhận.
 
 <span id="chuyển-trạng-thái"></span>
 ### Chuyển trạng thái
@@ -33,7 +33,7 @@ Quét từ sau ra trước, trong quá trình đó duy trì vị trí xuất hi�
 $$
 \begin{array}{ll}
 1 & \textbf{Đầu vào. } \text{Một xâu } S\\
-2 & \textbf{Đầu ra. } \text{Hàm chuyển trạng thái của automaton dãy của }S \\
+2 & \textbf{Đầu ra. } \text{Hàm chuyển trạng thái của tự động dãy của }S \\
 3 & \textbf{Phương pháp. }  \\
 4 & \textbf{for }c\in\Sigma\\
 5 & \qquad next[c]\gets null\\
@@ -61,9 +61,9 @@ $$
 ??? note "Lời giải"
     Câu 1 và câu 3 của bài cần hậu tố tự động, hơn nữa cách làm tương tự nhau; ở đây chỉ giải thích câu 2 và câu 4.
     
-    Câu 2 khá đơn giản: duyệt các xâu con liên tiếp của $A$ rồi đưa vào sequence automaton của $B$; nếu không được chấp nhận thì cập nhật đáp án.
+    Câu 2 khá đơn giản: duyệt các xâu con liên tiếp của $A$ rồi đưa vào tự động dãy của $B$; nếu không được chấp nhận thì cập nhật đáp án.
     
-    Câu 4 cần quy hoạch động. Gọi $f(i, j)$ là số ký tự tối thiểu cần thêm để không còn là dãy con chung, khi đang ở trạng thái $i$ trong sequence automaton của $A$ và trạng thái $j$ trong sequence automaton của $B$. Phương trình chuyển trạng thái là:
+    Câu 4 cần quy hoạch động. Gọi $f(i, j)$ là số ký tự tối thiểu cần thêm để không còn là dãy con chung, khi đang ở trạng thái $i$ trong tự động dãy của $A$ và trạng thái $j$ trong tự động dãy của $B$. Phương trình chuyển trạng thái là:
     
     $$
     f(i, j)=\min_{\delta_A(i,c)\ne \textit{null}}f(\delta_A(i, c), \delta_B(j, c))+1.

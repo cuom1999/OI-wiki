@@ -8,7 +8,7 @@ Xcode là một môi trường phát triển tích hợp (IDE) chạy trên macO
 
 ### Cách 1
 
-Mở App Store có sẵn trên máy Mac (hoặc thử [liên kết nhanh](https://apps.apple.com/cn/app/xcode/id497799835?mt=12)) để tải Xcode. Nhấp `Get`, rồi nhập mật khẩu tài khoản Apple để bắt đầu tải xuống và cài đặt.
+Mở App Store có sẵn trên máy Mac (hoặc thử [liên kết nhanh](https://apps.apple.com/cn/app/xcode/id497799835?mt=12)) để tải Xcode. Nhấp `Get` (Tải), rồi nhập mật khẩu tài khoản Apple để bắt đầu tải xuống và cài đặt.
 
 ![](images/xcode-1.jpg)
 
@@ -26,7 +26,7 @@ Khi mở Xcode lần đầu, bạn có thể gặp cửa sổ bật lên sau:
 
 ![](images/xcode-3.jpg)
 
-Cửa sổ này là trình hướng dẫn cài đặt các thành phần của Xcode. Nhấp `Install` và nhập mật khẩu của người dùng hiện tại.
+Cửa sổ này là trình hướng dẫn cài đặt các thành phần của Xcode. Nhấp `Install` (Cài đặt) và nhập mật khẩu của người dùng hiện tại.
 
 Sau khi cài đặt xong, phía bên trái giao diện sẽ hiển thị:
 

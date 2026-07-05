@@ -143,7 +143,7 @@ Trong trình quản lý phần bổ trợ, chọn thẻ "Updates" (Bản cập n
 
 #### Gỡ phần bổ trợ
 
-Cũng trong trình quản lý phần bổ trợ, chọn thẻ "Installed", đánh dấu phần bổ trợ cần gỡ, rồi nhấp nút "Remove" ở góc trên bên phải.
+Cũng trong trình quản lý phần bổ trợ, chọn thẻ "Installed" (Đã cài đặt), đánh dấu phần bổ trợ cần gỡ, rồi nhấp nút "Remove" (Gỡ bỏ) ở góc trên bên phải.
 
 ### Dựng môi trường phát triển
 

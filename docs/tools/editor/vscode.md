@@ -4,15 +4,15 @@ author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink,
 
 Visual Studio Code (dưới đây gọi tắt là VS Code) là một trình soạn thảo mã nguồn mở do Microsoft phát triển, hỗ trợ các hệ điều hành như Windows, Linux và macOS. Nó được viết bằng TypeScript và dùng kiến trúc Electron. VS Code có sẵn hỗ trợ cho JavaScript, TypeScript và Node.js, đồng thời cung cấp hệ sinh thái tiện ích mở rộng phong phú cho các ngôn ngữ khác như C, C++, Java, Python, PHP, Go.
 
-Trang chủ: [Visual Studio Code - The open source AI code editor](https://code.visualstudio.com/)
+Trang chủ: [Visual Studio Code - trình soạn thảo mã nguồn mở có AI](https://code.visualstudio.com/)
 
-Trước khi đọc các nội dung bên dưới, bạn nên tìm hiểu sơ qua cách dùng cơ bản của VS Code: [Get started](https://code.visualstudio.com/docs/getstarted/getting-started).
+Trước khi đọc các nội dung bên dưới, bạn nên tìm hiểu sơ qua cách dùng cơ bản của VS Code: [Bắt đầu](https://code.visualstudio.com/docs/getstarted/getting-started).
 
 ## Chạy mã bằng tiện ích mở rộng C/C++ Compile Run
 
 C/C++ Compile Run là một tiện ích mở rộng tập trung vào biên dịch và chạy tệp đơn C/C++. Nó tránh được các bước cấu hình rườm rà của tiện ích mở rộng C/C++ truyền thống, rất phù hợp với nhu cầu lập trình thi đấu, dễ bắt đầu và thao tác đơn giản.
 
-Mở VS Code, nhấp biểu tượng "Extensions" ở thanh bên trái (hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>), nhập `C++` vào ô tìm kiếm, tìm C/C++ Compile Run, rồi nhấp "Install".
+Mở VS Code, nhấp biểu tượng "Extensions" (Tiện ích mở rộng) ở thanh bên trái (hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>), nhập `C++` vào ô tìm kiếm, tìm C/C++ Compile Run, rồi nhấp "Install" (Cài đặt).
 
 ![](./images/vscode-14.png)
 
@@ -32,7 +32,7 @@ Sau khi cài đặt và cấu hình tiện ích mở rộng, VS Code có thể h
 
 Code Runner là một tiện ích mở rộng có thể chạy mã bằng một lần nhấp. Trong công việc phát triển, nó thường được dùng để kiểm tra đoạn mã, và hỗ trợ hơn 40 ngôn ngữ như Node.js, Python, C, C++, Java, PHP, Perl, Ruby, Go.
 
-Cách cài đặt là tìm Code Runner trong kho tiện ích mở rộng rồi nhấp "Install"; hoặc vào [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) và nhấp "Install", trình duyệt sẽ tự mở VS Code để cài đặt.
+Cách cài đặt là tìm Code Runner trong kho tiện ích mở rộng rồi nhấp "Install" (Cài đặt); hoặc vào [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) và nhấp "Install" (Cài đặt), trình duyệt sẽ tự mở VS Code để cài đặt.
 
 ![](./images/vscode-1.jpg)
 
@@ -41,13 +41,13 @@ Sau khi cài đặt xong, mở tệp cần chạy, nhấp biểu tượng tam gi
 ???+ warning "Cảnh báo"
     Nếu sau khi cài VS Code và Code Runner mà mã vẫn không chạy được, rất có thể hệ thống chưa cài môi trường chạy C/C++; hãy tham khảo [trang Hello, World!](../../lang/helloworld.md) để cài đặt.
 
-    Nhớ chọn tùy chọn "Run In Terminal" trong phần cài đặt, như hình: ![](./images/vscode-7.png)
+    Nhớ chọn tùy chọn "Run In Terminal" (chạy trong terminal) trong phần cài đặt, như hình: ![](./images/vscode-7.png)
 
 ## Dùng tiện ích mở rộng C/C++ để biên dịch, gỡ lỗi và hoàn thành thông minh
 
 ### Cài tiện ích mở rộng
 
-Trong VS Code, mở kho tiện ích mở rộng, nhập `C++` hoặc `@category:"programming languages"` vào thanh tìm kiếm, tìm C/C++, rồi nhấp "Install" để cài đặt.
+Trong VS Code, mở kho tiện ích mở rộng, nhập `C++` hoặc `@category:"programming languages"` vào thanh tìm kiếm, tìm C/C++, rồi nhấp "Install" (Cài đặt) để cài đặt.
 
 ![](./images/vscode-2.png)
 
