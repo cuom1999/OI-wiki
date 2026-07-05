@@ -36,8 +36,8 @@ dù sao tốc độ tăng của chúng đều rất chậm, và giá trị đề
 ### Định nghĩa cơ bản
 
 Mỗi nút đều có một hạng. Ở đây hạng không phải là số lượng nút, mà là độ sâu.
-Hạng ban đầu của một nút là 0; khi hợp nhất, nếu hạng của hai nút khác nhau thì gắn nút có hạng nhỏ hơn vào nút có hạng lớn hơn,
-đồng thời không cập nhật hạng của nút lớn hơn.
+Hạng ban đầu của một nút là 0. Khi hợp nhất, nếu hạng của hai nút khác nhau thì gắn nút có hạng nhỏ hơn vào nút có hạng
+lớn hơn, đồng thời không cập nhật hạng của nút lớn hơn.
 Nếu hạng bằng nhau, tùy ý gắn một nút vào nút còn lại và tăng hạng của nút gốc thêm 1.
 Ở đây hạng của nút gốc cho biết chiều cao của cây.
 Ký hiệu hạng của $x$ là $rnk(x)$; tương tự, ký hiệu nút cha của $x$ là $fa(x)$.
@@ -67,7 +67,7 @@ $$
 1\leq iter(x)\leq rnk(x)
 $$
 
-Dựa vào định nghĩa của $level(x)$, $iter(x)$ và $A_k^j$, các bất đẳng thức này không khó chứng minh.
+Dựa vào định nghĩa của $level(x)$, $iter(x)$ và $A_k^j$, có thể chứng minh các bất đẳng thức này trực tiếp.
 Phần này được để lại như một bài kiểm tra nhỏ để làm quen với các định nghĩa.
 
 Định nghĩa hàm thế năng $\Phi(S)=\sum\limits_{x\in S}\Phi(x)$,
@@ -87,7 +87,7 @@ thông qua biến thiên thế năng do các thao tác gây ra.
 Lưu ý rằng thao tác $union(x,y)$ đang xét bảo đảm $x$ và $y$ đều là gốc của một cây,
 vì vậy không cần thực hiện thêm $find(x)$ và $find(y)$.
 
-Dễ thấy thế năng luôn là một số không âm. Ngoài ra, ở thời điểm ban đầu, thế năng của DSU bằng $0$.
+Theo định nghĩa, thế năng luôn là một số không âm. Ngoài ra, ở thời điểm ban đầu, thế năng của DSU bằng $0$.
 
 <span id="chứng-minh"></span>
 ## Chứng minh
@@ -108,7 +108,7 @@ Gọi thế năng của $c$ trước thao tác là $\Phi(c)$ và sau thao tác l
 và thao tác có thể là bất kỳ thao tác nào, bao gồm cả thao tác find bên dưới.
 Xét bốn trường hợp.
 
-1.  $iter(c)$ và $level(c)$ đều không tăng. Rõ ràng $\Phi(c)=\Phi(c')$.
+1.  $iter(c)$ và $level(c)$ đều không tăng. Khi đó $\Phi(c)=\Phi(c')$.
 2.  $iter(c)$ tăng, còn $level(c)$ không tăng.
     Khi đó $iter(c)$ tăng ít nhất một, tức là $\Phi(c')\leq \Phi(c)-1$;
     hàm thế năng giảm, và giảm ít nhất 1.
@@ -166,7 +166,7 @@ $rnk(root_x)\geq A_{k(x)}(A_{k(x)}^{i(x)}(rnk(x)))$.
 Ở đây cần thêm một lớp $A_{k(x)}$ ở bên ngoài, nghĩa là cần tìm thêm một điểm $y$.
 Cho $y$ là điểm nằm sau $x$ trên đường tìm kiếm và thỏa $k(y)=k(x)$;
 trong ngữ cảnh này, "nằm sau trên đường tìm kiếm" tương đương với "là tổ tiên của $x$".
-Rõ ràng không phải mọi $x$ đều có một $y$ như vậy.
+Không phải mọi $x$ đều có một $y$ như vậy.
 Có thể chứng minh rằng số lượng $x$ không có $y$ như vậy không vượt quá $\alpha(n)+2$,
 vì chỉ có $x$ cuối cùng của mỗi $k$, cùng với $a$ và $root_a$, là không có $y$ như vậy.
 
@@ -183,7 +183,7 @@ Kết hợp các bất đẳng thức trên, nhận được $rnk(fa(y))\geq A_k
 Nói cách khác, để lặp từ $rnk(x)$ đến $rnk(fa(y))$,
 có thể lặp $A_k$ ít nhất $i(x)+1$ lần mà vẫn không vượt quá $rnk(fa(y))$.
 
-Rõ ràng $rnk(root_y)\geq rnk(fa(y))$, và $rnk(x)$ không đổi khi nén đường đi.
+Theo định nghĩa của gốc, $rnk(root_y)\geq rnk(fa(y))$, và $rnk(x)$ không đổi khi nén đường đi.
 Vì vậy, có thể suy ra $rnk(root_x)\geq A_k^{i(x)+1}(rnk(x))$,
 nghĩa là giá trị $iter(x)$ tăng ít nhất 1;
 nếu $iter(x)$ không tăng thì chắc chắn $level(x)$ đã tăng.
@@ -205,7 +205,7 @@ thì đặt $rnk$ của nút có $rnk$ nhỏ hơn đó bằng $rnk$ của nút c
 Như vậy vẫn bảo đảm được $rnk(fa(x))\geq rnk(x)+1$,
 tránh việc các tính chất cần dùng bị phá vỡ hàng loạt.
 
-Rõ ràng, nếu làm như vậy, thứ bị phá vỡ chính là câu trong hàm $union(x,y)$: "thế năng của y tăng nhiều nhất $\alpha(n)$".
+Nếu làm như vậy, thứ bị phá vỡ chính là câu trong hàm $union(x,y)$: "thế năng của y tăng nhiều nhất $\alpha(n)$".
 
 Tồn tại một cấu trúc có thể làm độ phức tạp thời gian của DSU có nén đường đi xấu đến
 $\Omega(m\log_{1+\frac{m}{n}}n)$, được định nghĩa như sau:
@@ -257,14 +257,14 @@ Tóm tắt nhanh, hạng tham gia vào chứng minh thông qua ba tính chất s
 2.  Luôn có $rnk(fa(x))\geq rnk(x)+1$.
 3.  Hạng của nút không giảm.
 
-Với tính chất thứ hai và thứ ba, $siz$ rõ ràng thỏa mãn.
+Với tính chất thứ hai và thứ ba, $siz$ thỏa mãn trực tiếp.
 Tuy nhiên tính chất thứ nhất thì không, vì nếu hợp nhất $x$ vào $y$, $siz(y)$ sẽ tăng thêm đúng $siz(x)$.
 
 Vì vậy, có thể cân nhắc dùng $\log_2 siz(x)$ thay cho $rnk(x)$.
 
 Đối với tính chất thứ nhất, vì $siz$ của một nút nhiều nhất chỉ gấp đôi,
 nên $\log_2 siz(x)$ tăng nhiều nhất 1.
-Đối với tính chất thứ hai và thứ ba, kết luận khá rõ ràng, nên lược bỏ chứng minh.
+Đối với tính chất thứ hai và thứ ba, kết luận tương tự nên lược bỏ chứng minh.
 
 Tóm lại, nếu không muốn viết hợp nhất theo hạng thì có thể viết hợp nhất theo heuristic;
 độ phức tạp thời gian vẫn là $\Theta(m\alpha(n))$.
