@@ -1,11 +1,14 @@
-Trang này giới thiệu các cấu trúc dữ liệu liên quan đến hàng đợi và ứng dụng của chúng.
+Trang này giới thiệu các cấu trúc dữ liệu liên quan đến hàng đợi và ứng dụng
+của chúng.
 
 ![](./images/queue.svg)
 
 <span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
-Hàng đợi (queue) là một dạng danh sách có tính chất "phần tử vào hàng đợi trước chắc chắn sẽ ra khỏi hàng đợi trước". Vì tính chất này, hàng đợi thường được gọi là danh sách vào trước ra trước (first in first out), viết tắt là FIFO.
+Hàng đợi (queue) là một dạng danh sách có tính chất "phần tử vào hàng đợi trước
+chắc chắn sẽ ra khỏi hàng đợi trước". Vì tính chất này, hàng đợi thường được
+gọi là danh sách vào trước ra trước (first in first out), viết tắt là FIFO.
 
 <span id="cài-đặt"></span>
 ## Cài đặt
@@ -13,7 +16,8 @@ Hàng đợi (queue) là một dạng danh sách có tính chất "phần tử v
 <span id="mô-phỏng-hàng-đợi-bằng-mảng"></span>
 ### Mô phỏng hàng đợi bằng mảng
 
-Thông thường ta dùng một mảng để mô phỏng một hàng đợi, cùng hai biến đánh dấu đầu và cuối hàng đợi.
+Thông thường, có thể dùng một mảng để mô phỏng hàng đợi, cùng hai biến đánh dấu
+đầu và cuối hàng đợi.
 
 ```cpp
 int q[SIZE], ql = 1, qr;
@@ -35,14 +39,20 @@ Các thao tác hàng đợi tương ứng với đoạn mã sau:
 <span id="mô-phỏng-hàng-đợi-bằng-hai-ngăn-xếp"></span>
 ### Mô phỏng hàng đợi bằng hai ngăn xếp
 
-Còn một cách ít phổ biến hơn là dùng hai [ngăn xếp](./stack.md) để mô phỏng một hàng đợi.
+Còn một cách ít phổ biến hơn là dùng hai [ngăn xếp](./stack.md) để mô phỏng một
+hàng đợi.
 
-Cách này dùng hai ngăn xếp $F$ và $S$ để mô phỏng một hàng đợi, trong đó $F$ là ngăn xếp ở phía cuối hàng đợi, còn $S$ biểu diễn phía đầu hàng đợi. Nó hỗ trợ các thao tác push (chèn vào cuối hàng đợi) và pop (lấy ra ở đầu hàng đợi):
+Cách này dùng hai ngăn xếp $F$ và $S$ để mô phỏng một hàng đợi, trong đó $F$ là
+ngăn xếp ở phía cuối hàng đợi, còn $S$ biểu diễn phía đầu hàng đợi. Nó hỗ trợ
+các thao tác push (chèn vào cuối hàng đợi) và pop (lấy ra ở đầu hàng đợi):
 
 -   push: chèn vào ngăn xếp $F$.
--   pop: nếu $S$ không rỗng thì pop khỏi $S$; nếu không, chuyển ngược các phần tử của $F$ sang $S$ (thực chất là pop rồi push từng phần tử, sau khi làm xong thứ tự đầu cuối bị đảo ngược), rồi pop khỏi $S$.
+-   pop: nếu $S$ không rỗng thì pop khỏi $S$; nếu không, chuyển ngược các phần
+    tử của $F$ sang $S$ (thực chất là pop rồi push từng phần tử, sau khi làm
+    xong thứ tự đầu cuối bị đảo ngược), rồi pop khỏi $S$.
 
-Dễ chứng minh rằng mỗi phần tử chỉ được đưa vào, chuyển sang ngăn xếp kia, và lấy ra một lần; do đó độ phức tạp khấu hao là $O(1)$.
+Dễ chứng minh rằng mỗi phần tử chỉ được đưa vào, chuyển sang ngăn xếp kia, và
+lấy ra một lần; do đó độ phức tạp khấu hao là $O(1)$.
 
 ??? example "[Luogu B3616【Mẫu】Hàng đợi](https://www.luogu.com.cn/problem/B3616) Cài đặt tham khảo bằng mô phỏng hai ngăn xếp"
     ```cpp
@@ -52,7 +62,8 @@ Dễ chứng minh rằng mỗi phần tử chỉ được đưa vào, chuyển s
 <span id="hàng-đợi-trong-c-stl"></span>
 ## Hàng đợi trong C++ STL
 
-C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần nạp tệp tiêu đề `<queue>`.
+C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần nạp tệp tiêu
+đề `<queue>`.
 
 ???+ info "Định nghĩa `queue` trong STL"
     ```cpp
@@ -65,16 +76,19 @@ C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần nạp
     
     `T` là kiểu dữ liệu của các phần tử được lưu trong queue.
     
-    `Container` là kiểu container nền dùng để lưu phần tử. Container này phải cung cấp các hàm sau với ngữ nghĩa thông thường:
+    `Container` là kiểu container nền dùng để lưu phần tử. Container này phải
+    cung cấp các hàm sau với ngữ nghĩa thông thường:
     
     -   `back()`
     -   `front()`
     -   `push_back()`
     -   `pop_front()`
     
-    Các container STL `std::deque` và `std::list` thỏa mãn các yêu cầu này. Nếu không chỉ định, `std::deque` sẽ được dùng làm container nền mặc định.
+    Các container STL `std::deque` và `std::list` thỏa mãn các yêu cầu này. Nếu
+    không chỉ định, `std::deque` sẽ được dùng làm container nền mặc định.
 
-Container `queue` trong STL cung cấp nhiều hàm thành viên để sử dụng. Những hàm thường dùng gồm:
+Container `queue` trong STL cung cấp nhiều hàm thành viên để sử dụng. Những hàm
+thường dùng gồm:
 
 -   Truy cập phần tử
     -   `q.front()` trả về phần tử đầu hàng đợi
@@ -86,7 +100,8 @@ Container `queue` trong STL cung cấp nhiều hàm thành viên để sử dụ
     -   `q.empty()` kiểm tra hàng đợi có rỗng hay không
     -   `q.size()` trả về số phần tử trong hàng đợi
 
-Ngoài ra, `queue` còn cung cấp một số toán tử. Toán tử thường dùng là toán tử gán `=` để gán giá trị cho `queue`, ví dụ:
+Ngoài ra, `queue` còn cung cấp một số toán tử. Toán tử thường dùng là toán tử
+gán `=` để gán giá trị cho `queue`, ví dụ:
 
 ```cpp
 std::queue<int> q1, q2;
@@ -108,7 +123,9 @@ std::cout << q2.front() << std::endl;
 <span id="hàng-đợi-hai-đầu"></span>
 ### Hàng đợi hai đầu
 
-Hàng đợi hai đầu là hàng đợi cho phép chèn hoặc xóa phần tử ở cả đầu và cuối hàng đợi. Có thể xem nó như sự kết hợp giữa chức năng của ngăn xếp và hàng đợi. Cụ thể, hàng đợi hai đầu hỗ trợ 4 thao tác:
+Hàng đợi hai đầu là hàng đợi cho phép chèn hoặc xóa phần tử ở cả đầu và cuối
+hàng đợi. Có thể xem nó như sự kết hợp giữa chức năng của ngăn xếp và hàng đợi.
+Cụ thể, hàng đợi hai đầu hỗ trợ 4 thao tác:
 
 -   Chèn một phần tử ở đầu hàng đợi
 -   Chèn một phần tử ở cuối hàng đợi
@@ -117,16 +134,30 @@ Hàng đợi hai đầu là hàng đợi cho phép chèn hoặc xóa phần tử
 
 Cách dùng mảng để mô phỏng hàng đợi hai đầu giống với hàng đợi thông thường.
 
-Tương tự, ta cũng có thể dùng ý tưởng mô phỏng hàng đợi bằng hai ngăn xếp để duy trì hàng đợi hai đầu. Tuy nhiên, cần chú ý rằng khi một ngăn xếp rỗng, việc truy vấn luân phiên đầu và cuối hàng đợi sẽ làm phân tích khấu hao mất hiệu lực. Khi cần chuyển phần tử, ta chỉ chuyển một nửa số phần tử của ngăn xếp không rỗng sang ngăn xếp rỗng, đồng thời giữ đúng tính chất của ngăn xếp phía đầu và phía cuối hàng đợi. Sau cách xử lý này, các thao tác chèn và xóa vẫn có thời gian hằng số khấu hao.
+Tương tự, cũng có thể dùng ý tưởng mô phỏng hàng đợi bằng hai ngăn xếp để duy
+trì hàng đợi hai đầu. Tuy nhiên, cần chú ý rằng khi một ngăn xếp rỗng, việc
+truy vấn luân phiên đầu và cuối hàng đợi sẽ làm phân tích khấu hao mất hiệu
+lực. Khi cần chuyển phần tử, chỉ chuyển một nửa số phần tử của ngăn xếp không
+rỗng sang ngăn xếp rỗng, đồng thời giữ đúng tính chất của ngăn xếp phía đầu và
+phía cuối hàng đợi. Sau cách xử lý này, các thao tác chèn và xóa vẫn có thời
+gian hằng số khấu hao.
 
 ??? note "Chứng minh ngắn gọn"
-    Vì thao tác chèn chỉ đóng góp độ phức tạp hằng số, bây giờ xét thao tác pop. Giả sử ban đầu hàng đợi có $m$ phần tử; ta tính độ phức tạp thời gian để pop toàn bộ phần tử (bất kể từ đầu hay từ cuối). Lần cân bằng đầu tiên có độ phức tạp $O(m)$. Sau đó, mỗi ngăn xếp có $\frac{m}{2}$ phần tử. Lúc này cần $O(\frac{m}{2})$ thời gian để làm rỗng một trong hai ngăn xếp, rồi lại kích hoạt một thao tác cân bằng có độ phức tạp $O(\frac{m}{2})$, cứ tiếp tục như vậy cho đến khi toàn bộ phần tử được pop ra. Vì vậy, tổng độ phức tạp là
+    Vì thao tác chèn chỉ đóng góp độ phức tạp hằng số, bây giờ xét thao tác
+    pop. Giả sử ban đầu hàng đợi có $m$ phần tử; xét độ phức tạp thời gian để
+    pop toàn bộ phần tử (bất kể từ đầu hay từ cuối). Lần cân bằng đầu tiên có
+    độ phức tạp $O(m)$. Sau đó, mỗi ngăn xếp có $\frac{m}{2}$ phần tử. Lúc này
+    cần $O(\frac{m}{2})$ thời gian để làm rỗng một trong hai ngăn xếp, rồi lại
+    kích hoạt một thao tác cân bằng có độ phức tạp $O(\frac{m}{2})$, cứ tiếp
+    tục như vậy cho đến khi toàn bộ phần tử được pop ra. Vì vậy, tổng độ phức
+    tạp là
     
     $$
     T(m)=T\left(\frac{m}{2}\right)+O(m)
     $$
     
-    Theo định lý Master, ta giải được $T(m)=O(m)$. Do đó tổng độ phức tạp của cách duy trì này vẫn là hằng số khấu hao.
+    Theo định lý Master, giải được $T(m)=O(m)$. Do đó tổng độ phức tạp của cách
+    duy trì này vẫn là hằng số khấu hao.
 
 ??? example "[Luogu B3656【Mẫu】Hàng đợi hai đầu 1](https://www.luogu.com.cn/problem/B3656) Cài đặt tham khảo"
     ```cpp
@@ -136,7 +167,8 @@ Tương tự, ta cũng có thể dùng ý tưởng mô phỏng hàng đợi bằ
 <span id="hàng-đợi-hai-đầu-trong-c-stl"></span>
 #### Hàng đợi hai đầu trong C++ STL
 
-C++ cũng cung cấp container `std::deque` trong STL. Trước khi dùng, cần nạp tệp tiêu đề `<deque>`.
+C++ cũng cung cấp container `std::deque` trong STL. Trước khi dùng, cần nạp tệp
+tiêu đề `<deque>`.
 
 ??? info "Định nghĩa `deque` trong STL"
     ```cpp
@@ -149,9 +181,11 @@ C++ cũng cung cấp container `std::deque` trong STL. Trước khi dùng, cần
     
     `T` là kiểu dữ liệu của các phần tử được lưu trong deque.
     
-    `Allocator` là bộ cấp phát; ở đây không giải thích sâu, thông thường cứ giữ giá trị mặc định.
+    `Allocator` là bộ cấp phát; ở đây không giải thích sâu, thông thường cứ giữ
+    giá trị mặc định.
 
-Container `deque` trong STL cung cấp nhiều hàm thành viên để sử dụng. Những hàm thường dùng gồm:
+Container `deque` trong STL cung cấp nhiều hàm thành viên để sử dụng. Những hàm
+thường dùng gồm:
 
 -   Truy cập phần tử
     -   `q.front()` trả về phần tử đầu hàng đợi
@@ -172,7 +206,8 @@ Ngoài ra, `deque` còn cung cấp một số toán tử. Những toán tử th�
 -   Dùng toán tử gán `=` để gán giá trị cho `deque`, tương tự `queue`.
 -   Dùng `[]` để truy cập phần tử, tương tự `vector`.
 
-Tệp tiêu đề `<queue>` còn cung cấp hàng đợi ưu tiên `std::priority_queue`. Vì cấu trúc này giống với [heap](./heap.md) hơn, trang này không giới thiệu sâu.
+Tệp tiêu đề `<queue>` còn cung cấp hàng đợi ưu tiên `std::priority_queue`. Vì
+cấu trúc này giống với [heap](./heap.md) hơn, trang này không giới thiệu sâu.
 
 <span id="hàng-đợi-hai-đầu-trong-python"></span>
 #### Hàng đợi hai đầu trong Python
@@ -202,9 +237,15 @@ Ví dụ như sau:
 <span id="hàng-đợi-vòng"></span>
 ### Hàng đợi vòng
 
-Dùng mảng để mô phỏng hàng đợi sẽ gây ra một vấn đề: theo thời gian, toàn bộ hàng đợi dịch dần về phía cuối mảng. Khi đã đến cuối mảng, dù phía đầu mảng vẫn còn vị trí trống, thao tác enqueue tiếp theo vẫn gây tràn (hiện tượng mảng thực tế vẫn còn vị trí trống nhưng lại bị tràn trên được gọi là "tràn giả").
+Dùng mảng để mô phỏng hàng đợi sẽ gây ra một vấn đề: theo thời gian, toàn bộ
+hàng đợi dịch dần về phía cuối mảng. Khi đã đến cuối mảng, dù phía đầu mảng vẫn
+còn vị trí trống, thao tác enqueue tiếp theo vẫn gây tràn (hiện tượng mảng thực
+tế vẫn còn vị trí trống nhưng lại bị tràn trên được gọi là "tràn giả").
 
-Cách giải quyết tràn giả là tổ chức mảng lưu phần tử hàng đợi theo dạng vòng, tức xem vị trí có chỉ số 0 của mảng là phần tử kế tiếp của vị trí cuối cùng. (Với phần tử có chỉ số mảng là `x`, phần tử kế tiếp của nó là `(x + 1) % SIZE`.) Như vậy ta có hàng đợi vòng.
+Cách giải quyết tràn giả là tổ chức mảng lưu phần tử hàng đợi theo dạng vòng,
+tức xem vị trí có chỉ số 0 của mảng là phần tử kế tiếp của vị trí cuối cùng.
+(Với phần tử có chỉ số mảng là `x`, phần tử kế tiếp của nó là
+`(x + 1) % SIZE`.) Như vậy sẽ có hàng đợi vòng.
 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
