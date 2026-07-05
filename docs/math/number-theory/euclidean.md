@@ -371,7 +371,7 @@ Dĩ nhiên, định nghĩa như vậy còn cần xét một loạt trường h�
 
 Nếu phần mô tả trực giác hình học còn chỗ nào chưa rõ, có thể đối chiếu với định nghĩa trong phương pháp đại số ở trên. Mô tả trực giác hình học giúp hiểu quá trình thuật toán phía dưới.
 
-Ý tưởng cơ bản của thuật toán Euclid vạn năng là xem $U$ và $R$ trong dãy thao tác đều là phần tử của một [vị nhóm](../algebra/basic.md#%E7%BE%A4), xem toàn bộ dãy thao tác là tích của các phần tử trong vị nhóm, và đáp án cuối cùng của bài toán liên quan đến tích này.
+Ý tưởng cơ bản của thuật toán Euclid vạn năng là xem $U$ và $R$ trong dãy thao tác đều là phần tử của một [vị nhóm](../algebra/basic.md#nhóm), xem toàn bộ dãy thao tác là tích của các phần tử trong vị nhóm, và đáp án cuối cùng của bài toán liên quan đến tích này.
 
 Ví dụ trong bài này, có thể định nghĩa vector trạng thái $v = (1,y,\sum y)$, biểu thị trạng thái hiện tại sau khi bắt đầu từ gốc tọa độ và trải qua một số lần đi lên, đi sang phải qua đường lưới. Trong đó, thành phần thứ nhất là hằng số, thành phần thứ hai là tung độ $y$, thành phần thứ ba là tổng cần tìm. Ban đầu, $v=(1,0,0)$. Mỗi lần đi lên qua một đường lưới ngang, tung độ tăng thêm một, tương đương với việc nhân phải vector trạng thái với ma trận
 

@@ -132,7 +132,7 @@ $$
 f(n) = F^n(f(0))
 $$
 
-và thu được đáp án cuối. Vì một thao tác $F$ thường có thể viết dưới dạng ma trận, phương pháp này thường được gọi là tối ưu DP bằng lũy thừa ma trận nhanh. Trên thực tế, mọi phép biến đổi thỏa tính kết hợp (tức mọi phần tử trong một [monoid](../../math/algebra/basic.md#%E7%BE%A4)) đều có thể dùng phương pháp này để tăng tốc.
+và thu được đáp án cuối. Vì một thao tác $F$ thường có thể viết dưới dạng ma trận, phương pháp này thường được gọi là tối ưu DP bằng lũy thừa ma trận nhanh. Trên thực tế, mọi phép biến đổi thỏa tính kết hợp (tức mọi phần tử trong một [monoid](../../math/algebra/basic.md#nhóm)) đều có thể dùng phương pháp này để tăng tốc.
 
 Bài tập:
 

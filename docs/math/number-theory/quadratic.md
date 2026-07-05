@@ -34,7 +34,7 @@ Hiển nhiên, cách biểu diễn một số vô tỉ bậc hai dưới dạng 
 Với mỗi số nguyên không chứa nhân tử chính phương $d\neq 0,1$, có thể kiểm tra
 tập $Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ đóng dưới phép cộng, trừ,
 nhân, chia. Vì một tập đóng dưới bốn phép toán số học được gọi là
-[trường](../algebra/basic.md#%E5%9F%9F), tập $Q(\sqrt{d})$ được gọi là
+[trường](../algebra/basic.md#trường), tập $Q(\sqrt{d})$ được gọi là
 **trường bậc hai** (quadratic field). Mọi trường bậc hai đều chứa toàn bộ các
 số hữu tỉ, do đó chúng đều là [mở rộng bậc hai](../algebra/field-theory.md#%E5%9F%9F%E7%9A%84%E6%89%A9%E5%BC%A0)
 của trường số hữu tỉ $\mathbf Q$. Khi $d>0$, mọi số trong trường bậc hai

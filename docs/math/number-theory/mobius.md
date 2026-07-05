@@ -206,7 +206,7 @@ Ngoài dạng cơ bản trên, đảo Möbius còn có một số dạng mở r�
     
     Suy luận này hoàn toàn đối ngẫu với dạng cơ bản.
 
-Tiếp theo, đảo Möbius không chỉ giới hạn ở phép cộng; thực ra nó đúng với phép toán trong bất kỳ [nhóm Abel](../algebra/basic.md#%E7%BE%A4) nào. Chẳng hạn, nó có dạng nhân sau:
+Tiếp theo, đảo Möbius không chỉ giới hạn ở phép cộng; thực ra nó đúng với phép toán trong bất kỳ [nhóm Abel](../algebra/basic.md#nhóm) nào. Chẳng hạn, nó có dạng nhân sau:
 
 ???+ note "Mở rộng 2"
     Giả sử $f(n),g(n)$ là hai hàm số học. Khi đó

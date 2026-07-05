@@ -10,7 +10,7 @@ Chương này giới thiệu ngắn gọn các kiến thức liên quan đến �
 
 Trên cơ sở đó, chương này sẽ tập trung giới thiệu các kiến thức cơ sở không thể bỏ qua và các phần liên quan trực tiếp đến những ứng dụng này. Để bắt đầu, bài này giới thiệu các khái niệm cơ bản về nhóm, vành và trường.
 
-<span id="&#x7FA4;"></span>
+<span id="nhóm"></span>
 ## Nhóm
 
 Định nghĩa của nhóm như sau.
@@ -150,7 +150,7 @@ Một số ví dụ đơn giản nhất về vành như sau.
 
 Tất nhiên, việc thảo luận về cấu trúc của vành còn vượt xa những nội dung này. Để tìm hiểu thêm, có thể tham khảo [lý thuyết vành](./ring-theory.md) hoặc các sách liên quan.
 
-<span id="&#x57DF;"></span>
+<span id="trường"></span>
 ## Trường
 
 Trường là một cấu trúc đại số có tính chất mạnh hơn vành. Cụ thể, trường là vành chia giao hoán. Tất nhiên, ta cũng có thể viết định nghĩa đầy đủ của nó.
@@ -182,7 +182,7 @@ Ví dụ thường gặp về trường như sau.
 
 So với vành, trường có cấu trúc cộng và nhân rất đơn giản. Vì thế, cấu trúc của bản thân trường thường khá đơn giản. Điều này làm cho việc nghiên cứu trường và việc nghiên cứu vành rất khác nhau: thông thường người ta chuyển sang nghiên cứu các mở rộng trường và lý thuyết Galois tương ứng. Trong thi đấu thuật toán, đôi khi cần tính toán trên các trường mở rộng của trường số hữu tỷ hoặc trường hữu hạn. Nội dung liên quan đến lý thuyết trường có thể tham khảo tại [lý thuyết trường](./field-theory.md) hoặc các sách liên quan.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Cuối cùng, lấy bài toán dưới đây làm ví dụ để minh họa các đối tượng đại số trừu tượng hỗ trợ phân tích vấn đề cụ thể như thế nào.
@@ -258,7 +258,7 @@ Cuối cùng, lấy bài toán dưới đây làm ví dụ để minh họa các
     
     Nửa vành nhiệt đới và các phép toán ma trận trên nó được nhắc tới ở đây thực ra không hiếm gặp. Nếu thay $\max$ ở trên bằng $\min$, nửa vành nhiệt đới tương ứng thường được dùng trong các bài toán đường đi ngắn nhất. Nếu ma trận vuông cấp $n$ là $A$ cho biết trọng số cạnh (ngắn nhất) giữa từng cặp đỉnh của một đồ thị có $n$ đỉnh, thì phần tử tại vị trí $(i,j)$ của $A^k$ là khoảng cách ngắn nhất từ đỉnh $i$ đến đỉnh $j$ qua nhiều nhất $k$ cạnh; đặc biệt, $A^n$ chính là ma trận khoảng cách của đồ thị này. Tất nhiên khi cài đặt thực tế, ta không thật sự tính lũy thừa ma trận này bằng vét cạn, mà dùng thuật toán Floyd với độ phức tạp $O(n^3)$.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.

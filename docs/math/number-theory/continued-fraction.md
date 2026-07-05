@@ -1074,7 +1074,7 @@ Biến đổi tuyến tính phân thức có các tính chất sau:
     
     Khi đó chúng có các tính chất sau:[^pgl2]
     
-    1.  Hợp thành $L_1\circ L_2$ và biến đổi ngược $L_1^{-1}$ của biến đổi tuyến tính phân thức vẫn là biến đổi tuyến tính phân thức, tức toàn bộ các biến đổi tuyến tính phân thức tạo thành một [nhóm](../algebra/basic.md#%E7%BE%A4);
+    1.  Hợp thành $L_1\circ L_2$ và biến đổi ngược $L_1^{-1}$ của biến đổi tuyến tính phân thức vẫn là biến đổi tuyến tính phân thức, tức toàn bộ các biến đổi tuyến tính phân thức tạo thành một [nhóm](../algebra/basic.md#nhóm);
     2.  Biến đổi tuyến tính phân thức không đổi khi các hệ số cùng nhân với một hằng số khác không, tức với mọi $\lambda\neq 0$, nếu $M_2=\lambda M_1$ thì $L_2=L_1$;
     3.  Ma trận hệ số của hợp thành các biến đổi tuyến tính phân thức tương ứng với tích của các ma trận hệ số, tức nếu $M_1M_2=M_3$ thì $L_1\circ L_2=L_3$;
     4.  Ma trận hệ số của biến đổi ngược tương ứng với ma trận nghịch đảo của ma trận hệ số, tức nếu $M_1^{-1}=M_2$ thì $L_1^{-1}=L_2$.

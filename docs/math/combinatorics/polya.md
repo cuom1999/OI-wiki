@@ -326,7 +326,7 @@ Cho một cấu trúc, nhóm đối xứng không gian của nó là tập mọi
 -   Tồn tại phép đối xứng đồng nhất, tức việc giữ nguyên cấu trúc cũng được xem là một phép toán;
 -   Mọi phép toán đều có phép nghịch đảo, có thể triệt tiêu hiệu quả của phép toán đã cho.
 
-[Nhóm](../algebra/basic.md#%E7%BE%A4) là sự trừu tượng hóa của mọi khái niệm thỏa mãn các điều kiện trên. Việc nghiên cứu cấu trúc nhóm là nội dung chính của [lí thuyết nhóm](../algebra/group-theory.md). Phân tích ở đây chủ yếu tập trung vào nhóm đối xứng không gian và dùng quan điểm hình học để thảo luận cấu trúc của chúng. Các ví dụ thường gặp dưới đây nhằm giúp người đọc nắm được cách phân tích loại bài toán này.
+[Nhóm](../algebra/basic.md#nhóm) là sự trừu tượng hóa của mọi khái niệm thỏa mãn các điều kiện trên. Việc nghiên cứu cấu trúc nhóm là nội dung chính của [lí thuyết nhóm](../algebra/group-theory.md). Phân tích ở đây chủ yếu tập trung vào nhóm đối xứng không gian và dùng quan điểm hình học để thảo luận cấu trúc của chúng. Các ví dụ thường gặp dưới đây nhằm giúp người đọc nắm được cách phân tích loại bài toán này.
 
 <span id="&#x5FAA;&#x73AF;&#x7FA4;"></span>
 ### Nhóm cyclic

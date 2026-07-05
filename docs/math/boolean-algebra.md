@@ -105,8 +105,8 @@ Sau đây là các tập toán tử đầy đủ cực tiểu thường gặp[^v
 
 Trước hết là các tính chất liên quan đến cấu trúc đại số:
 
--   AND và OR đều lập thành [vị nhóm giao hoán](./algebra/basic.md#%E7%BE%A4) trên $\mathbf{B}$. Tức là phép AND và phép OR đều có tính giao hoán, tính kết hợp và phần tử đơn vị ($x\land 1=x\lor 0=x$).
--   XOR và XNOR đều lập thành [nhóm](./algebra/basic.md#%E7%BE%A4) trên $\mathbf{B}$. Tức là phép XOR và phép XNOR đều có tính giao hoán, tính kết hợp, phần tử đơn vị ($x\oplus 0=x\odot 1=x$) và phần tử nghịch đảo ($x\oplus x=0$, $x\odot x=1$).
+-   AND và OR đều lập thành [vị nhóm giao hoán](./algebra/basic.md#nhóm) trên $\mathbf{B}$. Tức là phép AND và phép OR đều có tính giao hoán, tính kết hợp và phần tử đơn vị ($x\land 1=x\lor 0=x$).
+-   XOR và XNOR đều lập thành [nhóm](./algebra/basic.md#nhóm) trên $\mathbf{B}$. Tức là phép XOR và phép XNOR đều có tính giao hoán, tính kết hợp, phần tử đơn vị ($x\oplus 0=x\odot 1=x$) và phần tử nghịch đảo ($x\oplus x=0$, $x\odot x=1$).
 -   NAND và NOR đều không có tính kết hợp, nên không lập thành nửa nhóm.
 
 Với $\land$ và $\lor$, ta có:
