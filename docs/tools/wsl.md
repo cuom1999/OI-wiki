@@ -50,7 +50,7 @@ Môi trường trong phòng thi có một loạt điểm khác với môi trư�
 
 Mặc dù trang chính thức của NOI đã cung cấp ảnh ISO của NOI Linux, việc cấu hình máy ảo tương đối phiền phức. Hơn nữa, do NOI Linux mặc định có sẵn giao diện đồ họa, khó bảo đảm chạy mượt trên các máy cấu hình thấp.
 
-Windows 10 ra mắt Linux subsystem (WSL) trong bản Anniversary Update, rồi nâng cấp lên WSL 2 trong bản cập nhật tháng 5 năm 2020. Tính đến ngày 1 tháng 6 năm 2020, WSL đã hỗ trợ cài các bản phân phối Linux phổ biến như Ubuntu, openSUSE Leap, Kali, Debian. Tuy nhiên, WSL không hỗ trợ Arbiter dùng để chấm trong NOI.
+Windows 10 ra mắt hệ thống con Linux (WSL) trong bản Anniversary Update, rồi nâng cấp lên WSL 2 trong bản cập nhật tháng 5 năm 2020. Tính đến ngày 1 tháng 6 năm 2020, WSL đã hỗ trợ cài các bản phân phối Linux phổ biến như Ubuntu, openSUSE Leap, Kali, Debian. Tuy nhiên, WSL không hỗ trợ Arbiter dùng để chấm trong NOI.
 
 ???+ note "[Windows Subsystem for Linux (WSL) là gì?](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)"
     Windows Subsystem for Linux (viết tắt là WSL) là một lớp tương thích cho phép chạy trực tiếp các tệp thực thi nhị phân Linux (định dạng ELF) trên Windows 10, Windows 11 và Windows Server 2019.
@@ -208,7 +208,7 @@ Nguồn phần mềm mặc định của Ubuntu đôi khi có tốc độ không
 Dùng các lệnh sau để cập nhật phần mềm và nguồn phần mềm:
 
 ```console
-$ sudo su # Sau khi chạy lệnh này, prompt terminal sẽ đổi từ $ thành #; trước khi chạy các lệnh bên dưới hãy chú ý prompt
+$ sudo su # Sau khi chạy lệnh này, dấu nhắc dòng lệnh sẽ đổi từ $ thành #; trước khi chạy các lệnh bên dưới hãy chú ý dấu nhắc
 [sudo] mat khau cua xxx:
 # cp /etc/apt/sources.list /etc/apt/sources.list.bak
 # vim /etc/apt/sources.list
@@ -389,17 +389,17 @@ Cũng có thể dùng trực tiếp các đường dẫn như `\\wsl$\Ubuntu\hom
 
 ### Phối hợp với Visual Studio Code để soạn thảo
 
-Nếu quen dùng [Visual Studio Code](./editor/vscode.md) trong môi trường Windows để soạn thảo mã, có thể cài plugin `Remote - WSL` trong VS Code để chỉnh sửa tệp trong hệ thống WSL thuận tiện hơn.
+Nếu quen dùng [Visual Studio Code](./editor/vscode.md) trong môi trường Windows để soạn thảo mã, có thể cài phần mở rộng `Remote - WSL` trong VS Code để chỉnh sửa tệp trong hệ thống WSL thuận tiện hơn.
 
-Thông qua `Remote - WSL`, có thể thao tác trực tiếp với subsystem WSL trong giao diện VS Code trên Windows, chỉnh sửa tệp dưới thư mục của subsystem thuận tiện hơn và dùng terminal để gỡ lỗi tiện hơn.
+Thông qua `Remote - WSL`, có thể thao tác trực tiếp với hệ thống con WSL trong giao diện VS Code trên Windows, chỉnh sửa tệp dưới thư mục của hệ thống con thuận tiện hơn và dùng trình dòng lệnh để gỡ lỗi tiện hơn.
 
 Bằng cách nhập trực tiếp `code .` trong WSL, có thể gọi Visual Studio Code ngay tại thư mục đó để chỉnh sửa các tệp trong thư mục.
 
 Đồng thời, cũng có thể dùng lệnh tương tự `code filename` để chỉnh sửa tệp chỉ định.
 
-Trang Getting Started của plugin `Remote - WSL` có giới thiệu chi tiết về thao tác soạn thảo.
+Trang Getting Started của phần mở rộng `Remote - WSL` có giới thiệu chi tiết về thao tác soạn thảo.
 
-Đồng thời, cũng có thể tham khảo nội dung về WSL trong tài liệu chính thức của Visual Studio Code ([Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)); bài viết này giới thiệu toàn bộ quy trình từ cài WSL đến sử dụng cùng plugin một cách chi tiết hơn.
+Đồng thời, cũng có thể tham khảo nội dung về WSL trong tài liệu chính thức của Visual Studio Code ([Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)); bài viết này giới thiệu toàn bộ quy trình từ cài WSL đến sử dụng cùng phần mở rộng một cách chi tiết hơn.
 
 ## Nâng cấp WSL1 lên WSL2
 
@@ -435,7 +435,7 @@ Chạy lệnh `wsl -l -v` để thấy phiên bản WSL hiện là 1; cần nân
 
 Xem: [Câu hỏi thường gặp](https://learn.microsoft.com/en-us/windows/wsl/faq).
 
--   Làm thế nào để thực hiện xxx trong subsystem?
+-   Làm thế nào để thực hiện xxx trong hệ thống con?
 
     Có thể dùng dòng lệnh có sẵn hoặc dùng giao diện đồ họa.
     Ví dụ với vim, nhập `man vim` trong dòng lệnh sẽ có một hướng dẫn sử dụng rất chi tiết.
