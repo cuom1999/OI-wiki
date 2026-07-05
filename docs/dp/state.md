@@ -41,7 +41,7 @@ $$
 ???+ note "[\[POI2004\] PRZ](https://www.luogu.com.cn/problem/P5911)"
     Có $n$ người cần qua cầu. Người thứ $i$ có cân nặng $w_i$ và thời gian qua cầu là $t_i$. Khi qua cầu, họ được chia thành nhiều nhóm; chỉ khi toàn bộ người trong một nhóm đã qua cầu thì nhóm tiếp theo mới được qua. Tải trọng tối đa của cầu là $W$. Hỏi thời gian ngắn nhất để tất cả mọi người qua cầu.
     
-    $100\le W \le 400$，$1\le n\le 16$，$1\le t_i\le 50$，$10\le w_i\le 100$.
+    $100\le W \le 400$, $1\le n\le 16$, $1\le t_i\le 50$, $10\le w_i\le 100$.
 
 ### Giải thích
 

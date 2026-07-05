@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 
 HTML_TRANSLATIONS = {
     "Switch to dark mode": "Chuyển sang chế độ tối",
@@ -38,3 +39,11 @@ def on_post_page(output, page, config, **kwargs):
     for source, target in HTML_TRANSLATIONS.items():
         output = output.replace(source, target)
     return output
+
+def on_post_build(config, **kwargs):
+    site_dir = Path(config["site_dir"])
+    for html_file in site_dir.rglob("*.html"):
+        output = html_file.read_text(encoding="utf-8")
+        for source, target in HTML_TRANSLATIONS.items():
+            output = output.replace(source, target)
+        html_file.write_text(output, encoding="utf-8")
