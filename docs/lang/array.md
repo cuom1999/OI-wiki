@@ -5,8 +5,8 @@ kích thước của mảng là cố định và không thể tùy ý thay đổ
 ## Định nghĩa mảng
 
 Khai báo mảng có dạng `a[d]`, trong đó `a` là tên mảng, còn `d` là số phần tử
-trong mảng. Trong C++ chuẩn, tại thời điểm biên dịch `d` phải là giá trị đã biết;
-nói cách khác, `d` phải là một biểu thức hằng kiểu nguyên.
+trong mảng. Trong C++ chuẩn, `d` phải là giá trị đã biết tại thời điểm biên
+dịch; nói cách khác, `d` phải là một biểu thức hằng kiểu nguyên.
 
 ```cpp
 unsigned int d1 = 42;
@@ -33,8 +33,8 @@ trong vùng nhớ tĩnh.
 Có thể dùng toán tử chỉ số `[]` để truy cập phần tử trong mảng. Chỉ số của mảng
 (tức giá trị trong cặp ngoặc vuông) bắt đầu từ 0. Lấy một mảng có 10 phần tử làm
 ví dụ, các chỉ số hợp lệ của nó là từ 0 đến 9, không phải từ 1 đến 10. Tuy nhiên
-trong OI, để tiện sử dụng, ta thường khai báo mảng lớn hơn một chút, bỏ qua phần
-tử đầu tiên của mảng và bắt đầu truy cập từ chỉ số 1.
+trong OI, để tiện sử dụng, thường khai báo mảng lớn hơn một chút, bỏ qua phần tử
+đầu tiên của mảng và bắt đầu truy cập từ chỉ số 1.
 
 Ví dụ 1: đọc một số nguyên $n$ từ chuẩn nhập, rồi đọc tiếp $n$ số và lưu vào
 mảng, trong đó $n\leq 1000$.
@@ -100,7 +100,7 @@ int arr[3][4];  // một mảng có 3 phần tử, mỗi phần tử là một m
 arr[2][1] = 1;  // truy cập mảng hai chiều
 ```
 
-Ta thường dùng vòng lặp `for` lồng nhau để xử lý mảng hai chiều.
+Mảng hai chiều thường được xử lý bằng các vòng lặp `for` lồng nhau.
 
 Ví dụ: đọc hai số $n$ và $m$ từ chuẩn nhập, lần lượt biểu thị chiều cao và chiều
 rộng của một ảnh đen trắng, thỏa mãn $n,m\leq 1000$. Trong $n$ dòng dữ liệu tiếp
@@ -123,5 +123,5 @@ int main() {
 }
 ```
 
-Tương tự, ta có thể định nghĩa mảng ba chiều, bốn chiều và các mảng có số
-chiều cao hơn.
+Tương tự, có thể định nghĩa mảng ba chiều, bốn chiều và các mảng có số chiều
+cao hơn.
