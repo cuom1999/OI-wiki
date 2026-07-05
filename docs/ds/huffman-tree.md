@@ -80,7 +80,7 @@ Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn
 
 ![](./images/huffman-tree-3.svg)
 
-## Code mẫu
+## Mã mẫu
 
 ??? note "Xây dựng cây Huffman"
     ```cpp

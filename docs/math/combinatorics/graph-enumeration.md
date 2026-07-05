@@ -238,9 +238,10 @@ $$
 -   [Luogu U152448. Đếm đồ thị liên thông mạnh có nhãn](https://www.luogu.com.cn/problem/U152448)
 -   [Project Euler 434. Rigid graphs](https://projecteuler.net/problem=434)
 
-## Riddell's Formula
+<span id="riddells-formula"></span>
+## Công thức Riddell
 
-Cách dùng exp của EGF ở trên đôi khi được gọi là Riddell's formula for labeled graphs. [Biến đổi Euler](../poly/symbolic-method.md#cấu-trúc-multiset-của-tập-hợp) của hàm sinh đôi khi cũng được gọi là Riddell's formula for unlabeled graphs; công thức sau xuất hiện sớm nhất trong nghiên cứu của Euler về số phân hoạch. Ngoài việc giải các bài toán đếm đồ thị, nó còn xuất hiện trong bài toán ba lô hoàn toàn.
+Cách dùng exp của EGF ở trên đôi khi được gọi là công thức Riddell cho đồ thị có nhãn. [Biến đổi Euler](../poly/symbolic-method.md#cấu-trúc-multiset-của-tập-hợp) của hàm sinh đôi khi cũng được gọi là công thức Riddell cho đồ thị không nhãn; công thức sau xuất hiện sớm nhất trong nghiên cứu của Euler về số phân hoạch. Ngoài việc giải các bài toán đếm đồ thị, nó còn xuất hiện trong bài toán ba lô hoàn toàn.
 
 Với dãy cho trước $a_i$ và OGF tương ứng $A(x)$, định nghĩa biến đổi Euler của $A(x)$ là:
 

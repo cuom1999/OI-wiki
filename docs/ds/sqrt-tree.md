@@ -119,7 +119,7 @@ Trước hết, hãy xem Sqrt Tree thay đổi như thế nào sau một lần c
 Xét một nút độ dài $l$ cùng các dãy tương ứng: $\left\langle P_i\right\rangle,\left\langle S_i\right\rangle,\left\langle B_{i,j}\right\rangle$. Dễ thấy trong $\left\langle P_i\right\rangle$ và $\left\langle S_i \right\rangle$, mỗi dãy chỉ có $O(\sqrt{l})$ phần tử thay đổi. Còn trong $\left\langle B_{i,j}\right\rangle$, có $O(l)$ phần tử bị thay đổi. Do đó có $O(l)$ phần tử trên cây phải cập nhật. Vì vậy độ phức tạp cập nhật điểm trên Sqrt Tree là $O(n+\sqrt{n}+\sqrt{\sqrt{n}}+\dotsb)=O(n)$.
 
 <span id="dùng-sqrt-tree-thay-cho-mảng-b"></span>
-#### Dùng Sqrt Tree thay cho mảng B
+#### Dùng cây Sqrt Tree thay cho mảng B
 
 Lưu ý rằng nút thắt của cập nhật điểm nằm ở việc cập nhật $\left\langle B_{i,j}\right\rangle$ của nút gốc. Vì vậy ta thử dùng một Sqrt Tree khác để thay cho $\left\langle B_{i,j}\right\rangle$ ở nút gốc, gọi là $index$. Vai trò của nó giống mảng hai chiều ban đầu: duy trì đáp án cho các truy vấn trên cả đoạn. Các nút không phải gốc vẫn dùng $\left\langle B_{i,j}\right\rangle$ để duy trì thông tin. Cần chú ý: nếu nút gốc của một Sqrt Tree có cấu trúc $index$, ta gọi Sqrt Tree đó là **có chỉ mục**; nếu nút gốc của một Sqrt Tree có cấu trúc $\left\langle B_{i,j}\right\rangle$, ta gọi nó là **không có chỉ mục**. Bản thân cây $index$ là không có chỉ mục.
 

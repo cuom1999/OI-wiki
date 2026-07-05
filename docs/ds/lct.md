@@ -98,9 +98,9 @@ Theo định nghĩa vừa nêu, cấu trúc cây phụ trợ như hình sau.
 1.  `PushUp(x)`
 2.  `PushDown(x)`
 
-#### Các hàm của Splay Tree
+#### Các hàm của cây Splay
 
-Sau đây là các hàm dùng trong Splay Tree; xem chi tiết tại [Splay Tree](./splay.md).
+Sau đây là các hàm dùng trong cây Splay; xem chi tiết tại [Splay Tree](./splay.md).
 
 1.  `Get(x)` lấy xem $x$ là con nào của cha nó.
 2.  `Splay(x)` phối hợp với thao tác `Rotate` để xoay $x$ lên **gốc của Splay hiện tại**.

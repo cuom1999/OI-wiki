@@ -859,14 +859,14 @@ void print(Node* cur) {
 }
 ```
 
-## Code đầy đủ
+## Mã đầy đủ
 
 ### Treap xoay
 
 #### Cài đặt bằng con trỏ
 
-??? note "Code đầy đủ"
-    Dưới đây là phiên bản đầy đủ của code đã giải thích ở trên, là code mẫu cho bài cây cân bằng thông thường.
+??? note "Mã đầy đủ"
+    Dưới đây là phiên bản đầy đủ của mã đã giải thích ở trên, là mã mẫu cho bài cây cân bằng thông thường.
 
     ```cpp
     // author: (ttzytt)[ttzytt.com]
@@ -1072,9 +1072,9 @@ void print(Node* cur) {
 
 #### Cài đặt bằng mảng
 
-Dưới đây là code mẫu bzoj cho bài cây cân bằng thông thường, cài đặt bằng mảng.
+Dưới đây là mã mẫu bzoj cho bài cây cân bằng thông thường, cài đặt bằng mảng.
 
-??? note "Code đầy đủ"
+??? note "Mã đầy đủ"
     ```cpp
     --8<-- "docs/ds/code/treap/treap_1.cpp"
     ```
@@ -1083,8 +1083,8 @@ Dưới đây là code mẫu bzoj cho bài cây cân bằng thông thường, c�
 
 #### Cài đặt bằng con trỏ
 
-??? note "Code đầy đủ"
-    Dưới đây là phiên bản đầy đủ của code đã giải thích ở trên, là code mẫu cho bài cây cân bằng thông thường.
+??? note "Mã đầy đủ"
+    Dưới đây là phiên bản đầy đủ của mã đã giải thích ở trên, là mã mẫu cho bài cây cân bằng thông thường.
 
     ```cpp
 
@@ -1275,8 +1275,8 @@ Dưới đây là code mẫu bzoj cho bài cây cân bằng thông thường, c�
 
 #### Cài đặt bằng con trỏ
 
-??? note "Code đầy đủ"
-    Dưới đây là phiên bản đầy đủ của code đã giải thích ở trên, là code mẫu cho bài cây cân bằng nghệ thuật.
+??? note "Mã đầy đủ"
+    Dưới đây là phiên bản đầy đủ của mã đã giải thích ở trên, là mã mẫu cho bài cây cân bằng nghệ thuật.
 
     ```cpp
 

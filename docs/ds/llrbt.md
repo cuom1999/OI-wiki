@@ -19,7 +19,7 @@ Các tính chất này đảm bảo đường đi dài nhất từ gốc đến 
 
 Việc duy trì các tính chất này khá phức tạp. Khi chèn một nút, trước hết nút đó chắc chắn phải được tô màu đỏ, nếu không sẽ phá vỡ tính chất 4. Nhưng ngay cả như vậy, ta vẫn có thể phá vỡ tính chất 3, nên cần thực hiện điều chỉnh. Xóa nút còn rắc rối hơn: tương tự như khi chèn, ta không thể xóa trực tiếp một nút đen, nếu không cân bằng chiều cao đen sẽ bị phá vỡ. Làm thế nào để giải quyết những vấn đề này một cách thuận tiện?
 
-## Cây đỏ-đen nghiêng trái (Left-Leaning Red-Black Tree)
+## Cây đỏ-đen nghiêng trái (left-leaning red-black tree)
 
 ### Giải thích
 

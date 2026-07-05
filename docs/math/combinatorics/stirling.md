@@ -1,5 +1,5 @@
 <span id="số-stirling-loại-hai-stirling-number"></span>
-## Số Stirling loại hai (Stirling Number)
+## Số Stirling loại hai
 
 ??? note "Vì sao giới thiệu số Stirling loại hai trước"
     Tuy được gọi là "loại hai", số Stirling loại hai lại được mô tả trước trong các công trình liên quan của Stirling và trong Concrete Mathematics; đồng thời nó cũng thường dùng hơn nhiều so với số Stirling loại một.
@@ -698,7 +698,7 @@ Ngoài ra, $\exp F(x)=\sum\limits_{i=0}^{+\infty}\dfrac{F^i(x)}{i!}$ chính là 
     ```
 
 <span id="số-stirling-loại-một-stirling-number"></span>
-## Số Stirling loại một (Stirling Number)
+## Số Stirling loại một
 
 **Số Stirling loại một** (số Stirling chu trình) $\begin{bmatrix}n\\ k\end{bmatrix}$, cũng có thể kí hiệu là $s(n,k)$, biểu diễn số cách chia $n$ phần tử đôi một khác nhau thành $k$ chu trình không rỗng và không phân biệt thứ tự.
 
