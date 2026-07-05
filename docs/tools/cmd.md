@@ -6,9 +6,9 @@ Trang này giới thiệu ngắn gọn một số cách sử dụng dòng lệnh
 
 ## Cơ bản
 
-Windows có sẵn hai giao diện dòng lệnh. "Command Prompt" ("Dấu nhắc lệnh", `cmd`) là giao diện cũ hơn, chức năng cũng tương đối đơn giản. PowerShell là giao diện dòng lệnh mới hơn, có nhiều tính năng tích hợp nhưng tương đối nặng. Cả hai đều có thể tìm thấy trong Start Menu (menu Start).
+Windows có sẵn hai giao diện dòng lệnh. `Command Prompt` (`Dấu nhắc lệnh`, `cmd`) là giao diện cũ hơn, chức năng cũng tương đối đơn giản. PowerShell là giao diện dòng lệnh mới hơn, có nhiều tính năng tích hợp nhưng tương đối nặng. Cả hai đều có thể tìm thấy trong menu Start.
 
-Các hệ thống kiểu Unix (bao gồm macOS và Linux, dưới đây gọi chung là Unix) có hai trường hợp: có giao diện đồ họa và không có giao diện đồ họa. Nếu hệ thống có giao diện đồ họa (ví dụ dùng macOS, hoặc Linux có cài GNOME, KDE, v.v.), dòng lệnh thường có thể được mở bằng chương trình tên là "Terminal" ("Thiết bị đầu cuối") hoặc "Console" ("Bảng điều khiển"). Hệ thống không có giao diện đồ họa sẽ tự động đi vào dòng lệnh sau khi khởi động xong.
+Các hệ thống kiểu Unix (bao gồm macOS và Linux, dưới đây gọi chung là Unix) có hai trường hợp: có giao diện đồ họa và không có giao diện đồ họa. Nếu hệ thống có giao diện đồ họa (ví dụ dùng macOS, hoặc Linux có cài GNOME, KDE, v.v.), dòng lệnh thường có thể được mở bằng chương trình tên là `Terminal` (`Thiết bị đầu cuối`) hoặc `Console` (`Bảng điều khiển`). Hệ thống không có giao diện đồ họa sẽ tự động đi vào dòng lệnh sau khi khởi động xong.
 
 Dòng lệnh trên Windows trông như sau:
 
@@ -40,7 +40,7 @@ Nếu đăng nhập dòng lệnh trên Unix bằng `root`, dấu `$` sẽ đư�
 root@seniorious:~# apt-get install gcc
 ```
 
-Trước dấu `>`, `$` hoặc `#` trên dòng lệnh sẽ hiển thị một đường dẫn. Đường dẫn đó là thư mục làm việc (working directory), hay thư mục hiện tại. Trên Unix, thư mục hiện tại đôi khi được hiển thị dưới dạng như `~/folder`; ký tự `~` ở đầu chính là thư mục nhà của người dùng hiện đang đăng nhập. Vị trí thư mục nhà của người dùng `chtholly` khác nhau tùy hệ thống; trên Linux, nó nằm ở `/home/chtholly`, còn trên macOS, nó nằm ở `/Users/chtholly`.
+Trước dấu `>`, `$` hoặc `#` trên dòng lệnh sẽ hiển thị một đường dẫn. Đường dẫn đó là thư mục làm việc, hay thư mục hiện tại. Trên Unix, thư mục hiện tại đôi khi được hiển thị dưới dạng như `~/folder`; ký tự `~` ở đầu chính là thư mục nhà của người dùng hiện đang đăng nhập. Vị trí thư mục nhà của người dùng `chtholly` khác nhau tùy hệ thống; trên Linux, nó nằm ở `/home/chtholly`, còn trên macOS, nó nằm ở `/Users/chtholly`.
 
 ## Cú pháp và các lệnh thường dùng[^1]
 
@@ -97,7 +97,7 @@ Trên thực tế, đa số OJ đều dùng cơ chế chuyển hướng như v�
 
 ### Thực thi chương trình
 
-Với một chương trình thực thi hoặc một script batch, chỉ cần nhập trực tiếp tên tệp của nó trong dòng lệnh là có thể chạy.
+Với một chương trình thực thi hoặc một tập lệnh batch, chỉ cần nhập trực tiếp tên tệp của nó trong dòng lệnh là có thể chạy.
 
 Dĩ nhiên, khi thực thi một tệp, dòng lệnh sẽ không tìm qua tất cả thư mục. Biến môi trường `PATH` mô tả phạm vi đường dẫn tìm kiếm của dòng lệnh; dòng lệnh sẽ tìm tệp mục tiêu trong các đường dẫn thuộc `PATH`.
 
@@ -180,7 +180,7 @@ Dưới đây là khả năng hoàn thành của một số shell thường gặ
 
 Nói chung, chương trình chạy dưới dòng lệnh đều kèm theo "trợ giúp". Trên Windows, thường dùng `command /?` hoặc `command -?` để lấy trợ giúp; trên hệ thống Unix-like (ví dụ Linux), thường dùng `command --help` hoặc `command -h` (nhưng "trợ giúp" trên BSD thường quá ngắn gọn nên khó dùng).
 
-Ngoài ra, trên hệ thống Unix-like còn có "sổ tay" (manual) có thể xem bằng `man command`, thường chi tiết hơn "trợ giúp".
+Ngoài ra, trên hệ thống kiểu Unix còn có sổ tay (`manual`) có thể xem bằng `man command`, thường chi tiết hơn trợ giúp ngắn của chương trình.
 
 ### built-in time và GNU time
 

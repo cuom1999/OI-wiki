@@ -10,11 +10,11 @@ Dev-C++ bắt nguồn từ Bloodshed Dev-C++ do Colin Laplace viết. Phiên b�
 
 Orwell Dev-C++ là một phiên bản phái sinh của Dev-C++, do lập trình viên độc lập Orwell (Johan Mes) phát triển và duy trì. Phiên bản này sửa lỗi cho Dev-C++ gốc và cập nhật phiên bản trình biên dịch. Nói chung, Dev-C++ 5.x đều là Orwell Dev-C++. Lần cập nhật cuối cùng của nó là vào năm 2015, với phiên bản 5.11.
 
-Embarcadero Dev-C++[^ref1] là phiên bản kế nhiệm Bloodshed Dev-C++ và Orwell Dev-C++. Năm 2020, Embarcadero tài trợ và tiếp quản dự án Dev-C++ cũ để tiếp tục phát triển. Embarcadero Dev-C++ bổ sung hỗ trợ DPI cao, cập nhật trình biên dịch để hỗ trợ các chuẩn C++ mới hơn, đồng thời thêm dark mode.
+Embarcadero Dev-C++[^ref1] là phiên bản kế nhiệm Bloodshed Dev-C++ và Orwell Dev-C++. Năm 2020, Embarcadero tài trợ và tiếp quản dự án Dev-C++ cũ để tiếp tục phát triển. Embarcadero Dev-C++ bổ sung hỗ trợ DPI cao, cập nhật trình biên dịch để hỗ trợ các chuẩn C++ mới hơn, đồng thời thêm chế độ tối.
 
 Các bản phân phối Dev-C++ nêu trên đều được coi là "chính thức". Ngoài ra, sau khi Orwell Dev-C++ ngừng cập nhật vào năm 2015, vì nhu cầu giảng dạy, một nhà phát triển cá nhân từ Trung Quốc là [royqh1979](https://github.com/royqh1979) quyết định tiếp tục phát triển nhánh Dev-C++ cá nhân của mình, đặt tên là Red Panda Dev-C++[^ref2]. Nhánh này tích hợp gợi ý thông minh và MinGW64 phiên bản cao, rất thuận tiện cho việc tự học và sử dụng cá nhân.
 
-Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng qt5 phát triển Red Panda C++[^ref3] hoàn toàn mới, có thể chạy nguyên sinh trên Windows, Linux, macOS và các hệ thống khác. Giao diện của Red Panda C++ tương tự Dev-C++; ngoài các chức năng giống Dev-C++ nhưng hoàn thiện hơn như biên dịch tệp đơn, gỡ lỗi, tô sáng cú pháp, tìm kiếm/thay thế, nó còn cung cấp các chức năng cơ bản thường thấy ở IDE hiện đại như **giao diện tối**, **gợi ý mã thông minh**, **đổi tên biến/hàm**, **chuyển/tự nhận diện mã hóa tệp**. Ngoài ra, Red Panda C++ còn có chức năng bộ đề tương tự CP Editor: có thể tự viết hoặc **tải mẫu bài từ các trang web OJ/cuộc thi thường gặp**, rồi **tự động chạy và kiểm thử chương trình**.
+Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng Qt 5 phát triển Red Panda C++[^ref3] hoàn toàn mới, có thể chạy nguyên sinh trên Windows, Linux, macOS và các hệ thống khác. Giao diện của Red Panda C++ tương tự Dev-C++; ngoài các chức năng giống Dev-C++ nhưng hoàn thiện hơn như biên dịch tệp đơn, gỡ lỗi, tô sáng cú pháp, tìm kiếm/thay thế, nó còn cung cấp các chức năng cơ bản thường thấy ở IDE hiện đại như **giao diện tối**, **gợi ý mã thông minh**, **đổi tên biến/hàm**, **chuyển/tự nhận diện mã hóa tệp**. Ngoài ra, Red Panda C++ còn có chức năng bộ đề tương tự CP Editor: có thể tự viết hoặc **tải mẫu bài từ các trang web OJ/cuộc thi thường gặp**, rồi **tự động chạy và kiểm thử chương trình**.
 
 ## Hướng dẫn sử dụng
 
@@ -49,8 +49,8 @@ Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng qt5 phát triển 
 -   `Shift + F3`: tìm trước
 -   `Ctrl + G`: tới số dòng chỉ định
 -   `Shift + Ctrl + G`: tới hàm chỉ định
--   `Ctrl + [1 ~ 9]`: đặt bookmark
--   `Alt + [1 ~ 9]`: nhảy tới bookmark
+-   `Ctrl + [1 ~ 9]`: đặt dấu trang
+-   `Alt + [1 ~ 9]`: nhảy tới dấu trang
 
 #### Nhóm hiển thị
 
@@ -66,8 +66,8 @@ Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng qt5 phát triển 
 
 #### Nhóm gỡ lỗi
 
--   `F2`: tới breakpoint
--   `F4`: đặt hoặc hủy breakpoint
+-   `F2`: tới điểm dừng
+-   `F4`: đặt hoặc hủy điểm dừng
 -   `F5`: chạy gỡ lỗi
 -   `F6`: dừng
 -   `F7`: gỡ lỗi từng bước
@@ -75,24 +75,24 @@ Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng qt5 phát triển 
 ### Quy trình gỡ lỗi
 
 1.  Đặt cấu hình trình biên dịch thành `TDM-GCC 4.9.2 64-bit Debug`.
-2.  Nhấn `F4` để đặt hoặc hủy breakpoint gỡ lỗi.
+2.  Nhấn `F4` để đặt hoặc hủy điểm dừng gỡ lỗi.
 3.  Đặt con trỏ lên biến, nhấn `Alt + A` để thêm biến cần theo dõi vào cửa sổ gỡ lỗi.
 4.  Nhấn `F5` để bắt đầu gỡ lỗi.
 5.  Nhấn `F7` hoặc `Alt + N` để gỡ lỗi từng bước.
-6.  Nhấn `Alt + S` để nhảy tới breakpoint gỡ lỗi tiếp theo.
+6.  Nhấn `Alt + S` để nhảy tới điểm dừng gỡ lỗi tiếp theo.
 7.  Nhấn `F6` để dừng gỡ lỗi.
 
 ## Mở rộng
 
 ### Thêm tùy chọn biên dịch
 
-Nhấp Tools -> Compiler Options ("Công cụ -> Tùy chọn trình biên dịch"), rồi chọn thẻ "Code Generation/Optimization" ("Sinh mã/Tối ưu hóa"). Dưới đây giới thiệu một vài tùy chọn biên dịch thường dùng.
+Nhấp `Tools -> Compiler Options` (`Công cụ -> Tùy chọn trình biên dịch`), rồi chọn thẻ `Code Generation/Optimization` (`Sinh mã/Tối ưu hóa`). Dưới đây giới thiệu một vài tùy chọn biên dịch thường dùng.
 
 #### Bật tối ưu hóa
 
 Tối ưu hóa thời gian chạy hoặc dung lượng chương trình.
 
-Chọn nhãn tùy chọn "Optimization level (-Ox)" ("Mức tối ưu hóa (-Ox)") trong thẻ con "Code Generation" ("Sinh mã").
+Chọn nhãn tùy chọn `Optimization level (-Ox)` (`Mức tối ưu hóa (-Ox)`) trong thẻ con `Code Generation` (`Sinh mã`).
 
 ![](./images/Dev-C++-11.png)
 
@@ -100,7 +100,7 @@ Chọn nhãn tùy chọn "Optimization level (-Ox)" ("Mức tối ưu hóa (-Ox)
 
 Dùng tính năng ngôn ngữ mới, hoặc thử biên dịch mã dưới chuẩn cũ.
 
-Chọn nhãn tùy chọn "Language standard (-std)" ("Chuẩn ngôn ngữ (-std)") trong thẻ con "Code Generation" ("Sinh mã").
+Chọn nhãn tùy chọn `Language standard (-std)` (`Chuẩn ngôn ngữ (-std)`) trong thẻ con `Code Generation` (`Sinh mã`).
 
 ![](./images/Dev-C++-12.png)
 
@@ -108,29 +108,29 @@ Chọn nhãn tùy chọn "Language standard (-std)" ("Chuẩn ngôn ngữ (-std)
 
 Trợ thủ nhỏ khi tìm lỗi.
 
-Chọn nhãn tùy chọn "Show most warnings (-Wall)" ("Hiển thị hầu hết cảnh báo (-Wall)") trong thẻ con "Code Warnings" ("Cảnh báo mã").
+Chọn nhãn tùy chọn `Show most warnings (-Wall)` (`Hiển thị hầu hết cảnh báo (-Wall)`) trong thẻ con `Code Warnings` (`Cảnh báo mã`).
 
 ![](./images/Dev-C++-13.png)
 
 #### Sinh thông tin gỡ lỗi
 
-Khi xuất hiện thông báo "Project does not have debugging information, do you want to enable debugging and rebuild?" ("Dự án chưa có thông tin gỡ lỗi, bạn có muốn bật gỡ lỗi và biên dịch lại không?") rồi bị thoát sau khi nhấp, hoặc khi muốn dùng chức năng gỡ lỗi, cần bật chức năng này.
+Khi xuất hiện thông báo `Project does not have debugging information, do you want to enable debugging and rebuild?` (`Dự án chưa có thông tin gỡ lỗi, bạn có muốn bật gỡ lỗi và biên dịch lại không?`) rồi bị thoát sau khi nhấp, hoặc khi muốn dùng chức năng gỡ lỗi, cần bật chức năng này.
 
-Chọn nhãn tùy chọn "Generate debugging information" ("Sinh thông tin gỡ lỗi") trong thẻ con "Linker" ("Trình liên kết").
+Chọn nhãn tùy chọn `Generate debugging information` (`Sinh thông tin gỡ lỗi`) trong thẻ con `Linker` (`Trình liên kết`).
 
 ![](./images/Dev-C++-14.png)
 
 ### Một số mẹo biên dịch
 
-Nhấp Tools -> Compiler Options ("Công cụ -> Tùy chọn trình biên dịch"), rồi chọn thẻ "Compiler" ("Trình biên dịch"). Dưới đây giới thiệu một vài mẹo thường dùng.
+Nhấp `Tools -> Compiler Options` (`Công cụ -> Tùy chọn trình biên dịch`), rồi chọn thẻ `Compiler` (`Trình biên dịch`). Dưới đây giới thiệu một vài mẹo thường dùng.
 
-#### Tăng stack
+#### Tăng ngăn xếp
 
-Tránh các tình huống như DFS làm tràn stack hệ thống.
+Tránh các tình huống như DFS làm tràn ngăn xếp hệ thống.
 
-Thêm lệnh `-Wl,--stack=128000000` vào mục "Add the following commands when calling the linker" (thêm các lệnh sau khi gọi trình liên kết).
+Thêm lệnh `-Wl,--stack=128000000` vào mục `Add the following commands when calling the linker` (`thêm các lệnh sau khi gọi trình liên kết`).
 
-Lệnh này đặt stack khoảng 128 MB; nếu cần, có thể tự tăng thêm.
+Lệnh này đặt kích thước ngăn xếp khoảng 128 MB; nếu cần, có thể tự tăng thêm.
 
 ![](./images/Dev-C++-15.png)
 
@@ -138,7 +138,7 @@ Lệnh này đặt stack khoảng 128 MB; nếu cần, có thể tự tăng thê
 
 Thuận tiện để chấm cục bộ bằng tệp đầu vào/đầu ra hoặc dùng cho mục đích khác.
 
-Thêm lệnh `-D[String]` vào mục "Add the following commands when calling the linker" (thêm các lệnh sau khi gọi trình liên kết).
+Thêm lệnh `-D[String]` vào mục `Add the following commands when calling the linker` (`thêm các lệnh sau khi gọi trình liên kết`).
 
 Trong đó `[String]` đổi thành tên macro bạn cần.
 
@@ -155,7 +155,7 @@ freopen("test.out", "w", stdout);
 
 #### Định dạng mã
 
-Nhấp Astyle -> Format Current File ("Astyle -> Định dạng tệp hiện tại"), hoặc nhấn Ctrl+Shift+A để định dạng mã.
+Nhấp `Astyle -> Format Current File` (`Astyle -> Định dạng tệp hiện tại`), hoặc nhấn `Ctrl + Shift + A` để định dạng mã.
 
 ![](./images/Dev-C++-17.png)
 
@@ -163,13 +163,13 @@ Nhấp Astyle -> Format Current File ("Astyle -> Định dạng tệp hiện t�
 
 #### Phông chữ
 
-Nhấp Tools -> Editor Options ("Công cụ -> Tùy chọn trình soạn thảo"), rồi chọn thẻ "Display" ("Hiển thị").
+Nhấp `Tools -> Editor Options` (`Công cụ -> Tùy chọn trình soạn thảo`), rồi chọn thẻ `Display` (`Hiển thị`).
 
 ![](./images/Dev-C++-9.png)
 
 #### Giao diện
 
-Nhấp Tools -> Editor Options ("Công cụ -> Tùy chọn trình soạn thảo"), rồi chọn thẻ "Syntax" ("Cú pháp"). Có thể dùng giao diện có sẵn hoặc tự điều chỉnh.
+Nhấp `Tools -> Editor Options` (`Công cụ -> Tùy chọn trình soạn thảo`), rồi chọn thẻ `Syntax` (`Cú pháp`). Có thể dùng giao diện có sẵn hoặc tự điều chỉnh.
 
 ![](./images/Dev-C++-10.png)
 

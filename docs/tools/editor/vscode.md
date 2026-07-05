@@ -12,7 +12,7 @@ Trước khi đọc các nội dung bên dưới, bạn nên tìm hiểu sơ qua
 
 C/C++ Compile Run là một tiện ích mở rộng tập trung vào biên dịch và chạy tệp đơn C/C++. Nó tránh được các bước cấu hình rườm rà của tiện ích mở rộng C/C++ truyền thống, rất phù hợp với nhu cầu lập trình thi đấu, dễ bắt đầu và thao tác đơn giản.
 
-Mở VS Code, nhấp biểu tượng "Extensions" (Tiện ích mở rộng) ở thanh bên trái (hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>), nhập `C++` vào ô tìm kiếm, tìm C/C++ Compile Run, rồi nhấp "Install" (Cài đặt).
+Mở VS Code, nhấp biểu tượng `Extensions` (`Tiện ích mở rộng`) ở thanh bên trái (hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>), nhập `C++` vào ô tìm kiếm, tìm C/C++ Compile Run, rồi nhấp `Install` (`Cài đặt`).
 
 ![](./images/vscode-14.png)
 
@@ -32,7 +32,7 @@ Sau khi cài đặt và cấu hình tiện ích mở rộng, VS Code có thể h
 
 Code Runner là một tiện ích mở rộng có thể chạy mã bằng một lần nhấp. Trong công việc phát triển, nó thường được dùng để kiểm tra đoạn mã, và hỗ trợ hơn 40 ngôn ngữ như Node.js, Python, C, C++, Java, PHP, Perl, Ruby, Go.
 
-Cách cài đặt là tìm Code Runner trong kho tiện ích mở rộng rồi nhấp "Install" (Cài đặt); hoặc vào [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) và nhấp "Install" (Cài đặt), trình duyệt sẽ tự mở VS Code để cài đặt.
+Cách cài đặt là tìm Code Runner trong kho tiện ích mở rộng rồi nhấp `Install` (`Cài đặt`); hoặc vào [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) và nhấp `Install` (`Cài đặt`), trình duyệt sẽ tự mở VS Code để cài đặt.
 
 ![](./images/vscode-1.jpg)
 
@@ -41,13 +41,13 @@ Sau khi cài đặt xong, mở tệp cần chạy, nhấp biểu tượng tam gi
 ???+ warning "Cảnh báo"
     Nếu sau khi cài VS Code và Code Runner mà mã vẫn không chạy được, rất có thể hệ thống chưa cài môi trường chạy C/C++; hãy tham khảo [trang Hello, World!](../../lang/helloworld.md) để cài đặt.
 
-    Nhớ chọn tùy chọn "Run In Terminal" (chạy trong terminal) trong phần cài đặt, như hình: ![](./images/vscode-7.png)
+    Nhớ chọn tùy chọn `Run In Terminal` (`chạy trong trình dòng lệnh`) trong phần cài đặt, như hình: ![](./images/vscode-7.png)
 
 ## Dùng tiện ích mở rộng C/C++ để biên dịch, gỡ lỗi và hoàn thành thông minh
 
 ### Cài tiện ích mở rộng
 
-Trong VS Code, mở kho tiện ích mở rộng, nhập `C++` hoặc `@category:"programming languages"` vào thanh tìm kiếm, tìm C/C++, rồi nhấp "Install" (Cài đặt) để cài đặt.
+Trong VS Code, mở kho tiện ích mở rộng, nhập `C++` hoặc `@category:"programming languages"` vào thanh tìm kiếm, tìm C/C++, rồi nhấp `Install` (`Cài đặt`) để cài đặt.
 
 ![](./images/vscode-2.png)
 
@@ -59,7 +59,7 @@ Trong VS Code, mở kho tiện ích mở rộng, nhập `C++` hoặc `@category:
 #### GDB
 
 Trong VS Code, tạo một tệp mã C++ mới, viết một số nội dung theo cú pháp C++ (ví dụ `int main(){}`), lưu lại rồi nhấn <kbd>F5</kbd> để vào chế độ gỡ lỗi.
-Nếu xuất hiện lời nhắc "Select debugger" ("Chọn trình gỡ lỗi"), chọn `C++ (GDB/LLDB)`. Trong "Select configuration" ("Chọn cấu hình"), người dùng G++ chọn `g++.exe - Build and debug active file`; người dùng Clang chọn `clang++ - Build and debug active file`.
+Nếu xuất hiện lời nhắc `Select debugger` (`Chọn trình gỡ lỗi`), chọn `C++ (GDB/LLDB)`. Trong `Select configuration` (`Chọn cấu hình`), người dùng G++ chọn `g++.exe - Build and debug active file`; người dùng Clang chọn `clang++ - Build and debug active file`.
 
 ???+ warning "Cảnh báo"
     Tên cấu hình không cố định mà có thể tùy chỉnh. Các hệ điều hành khác nhau có thể có tên cấu hình khác nhau.
@@ -68,7 +68,7 @@ Sau khi hoàn tất, VS Code sẽ tự động hoàn thành thao tác khởi t�
 
 #### LLDB
 
-Nếu cần dùng LLDB, cần cài một tiện ích mở rộng khác[^ref1]: [CodeLLDB](https://github.com/vadimcn/vscode-lldb/). Sau khi tải tệp `.vsix` từ trang Release của dự án này[^ref2], hãy cài đặt từ trang tiện ích mở rộng của VS Code.
+Nếu cần dùng LLDB, cần cài một tiện ích mở rộng khác[^ref1]: [CodeLLDB](https://github.com/vadimcn/vscode-lldb/). Sau khi tải tệp `.vsix` từ trang phát hành của dự án này[^ref2], hãy cài đặt từ trang tiện ích mở rộng của VS Code.
 
 ![](images/vscode-9.png)
 
@@ -88,11 +88,11 @@ Nhấn <kbd>F5</kbd> để vào chế độ gỡ lỗi. Phía trên trình soạ
 
 ![](images/vscode-6.png)
 
-Nếu trình soạn thảo không tự động chuyển tới, hãy nhấp biểu tượng "Debug" ("Gỡ lỗi") trên thanh công cụ bên trái để vào cửa sổ gỡ lỗi; khi đó có thể thấy giá trị biến ở bên trái.
+Nếu trình soạn thảo không tự động chuyển tới, hãy nhấp biểu tượng `Debug` (`Gỡ lỗi`) trên thanh công cụ bên trái để vào cửa sổ gỡ lỗi; khi đó có thể thấy giá trị biến ở bên trái.
 
-Trong "Watch" ("Theo dõi"), bạn có thể nhập biểu thức; mỗi lần thực hiện thao tác như `next` hoặc `step`, biểu thức sẽ được tính lại và hiển thị.
+Trong `Watch` (`Theo dõi`), bạn có thể nhập biểu thức; mỗi lần thực hiện thao tác như `next` hoặc `step`, biểu thức sẽ được tính lại và hiển thị.
 
-Trong "Call Stack" ("Ngăn xếp lời gọi"), bạn có thể thấy khung ngăn xếp của hàm hiện tại.
+Trong `Call Stack` (`Ngăn xếp lời gọi`), bạn có thể thấy khung ngăn xếp của hàm hiện tại.
 
 ???+ note "Mẹo"
     Bạn có thể tham khảo [tài liệu chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Arrays.html) để xem nội dung của một đoạn trong mảng.
@@ -103,7 +103,7 @@ Trong chế độ gỡ lỗi, trình soạn thảo sẽ dùng nền màu vàng �
 
 Dùng để điều chỉnh hoàn thành thông minh của VS Code.
 
-Nếu bạn dùng trình biên dịch Clang, trong "IntelliSense Mode" ("Chế độ IntelliSense") hãy chọn `clang-x64` thay vì `msvc-x64` mặc định; nếu dùng trình biên dịch G++, chọn `gcc-x64` để dùng tự động hoàn thành và các chức năng tương tự. Nếu không, bạn sẽ gặp lỗi "IntelliSense mode msvc-x64 is incompatible with compiler path." ("Chế độ IntelliSense msvc-x64 không tương thích với đường dẫn trình biên dịch.")
+Nếu bạn dùng trình biên dịch Clang, trong `IntelliSense Mode` (`Chế độ IntelliSense`) hãy chọn `clang-x64` thay vì `msvc-x64` mặc định; nếu dùng trình biên dịch G++, chọn `gcc-x64` để dùng tự động hoàn thành và các chức năng tương tự. Nếu không, bạn sẽ gặp lỗi `IntelliSense mode msvc-x64 is incompatible with compiler path.` (`Chế độ IntelliSense msvc-x64 không tương thích với đường dẫn trình biên dịch.`)
 
 ![](images/vscode-4.png)
 
@@ -130,13 +130,13 @@ Mở kho tiện ích mở rộng của VS Code, nhập `clangd` vào thanh tìm 
 
 ![](images/vscode-8.png)
 
-Nếu phía dưới hiện hộp thoại clangd yêu cầu tắt IntelliSense, hãy nhấp "Disable Intellisense" ("Tắt IntelliSense"), tải lại không gian làm việc, rồi bạn có thể dùng các chức năng như tự động hoàn thành của clangd.
+Nếu phía dưới hiện hộp thoại clangd yêu cầu tắt IntelliSense, hãy nhấp `Disable Intellisense` (`Tắt IntelliSense`), tải lại không gian làm việc, rồi bạn có thể dùng các chức năng như tự động hoàn thành của clangd.
 
 ## Chỉnh sửa
 
 ### Thiết lập cú pháp
 
-Trong trình soạn thảo mới mở, nhấp "Select Language" ("Chọn ngôn ngữ") để bật tô sáng cú pháp tương ứng, như hình:
+Trong trình soạn thảo mới mở, nhấp `Select Language` (`Chọn ngôn ngữ`) để bật tô sáng cú pháp tương ứng, như hình:
 
 ![](images/vscode-11.apng)
 
@@ -171,7 +171,7 @@ Giữ <kbd>Alt</kbd> rồi nhấp để thêm con trỏ trong trình soạn th�
 
 ![](images/vscode-12.gif)
 
-Nhấn <kbd>Ctrl</kbd>+<kbd>F2</kbd> để đồng thời sửa tất cả kết quả khớp trong trình soạn thảo; cũng có thể tìm "Change All Occurrences" ("Thay đổi tất cả kết quả khớp") trong menu chuột phải, như hình:
+Nhấn <kbd>Ctrl</kbd>+<kbd>F2</kbd> để đồng thời sửa tất cả kết quả khớp trong trình soạn thảo; cũng có thể tìm `Change All Occurrences` (`Thay đổi tất cả kết quả khớp`) trong menu chuột phải, như hình:
 
 ![](images/vscode-13.gif)
 

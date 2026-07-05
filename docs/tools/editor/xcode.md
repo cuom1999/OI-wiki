@@ -8,7 +8,7 @@ Xcode là một môi trường phát triển tích hợp (IDE) chạy trên macO
 
 ### Cách 1
 
-Mở App Store có sẵn trên máy Mac (hoặc thử [liên kết nhanh](https://apps.apple.com/cn/app/xcode/id497799835?mt=12)) để tải Xcode. Nhấp `Get` (Tải), rồi nhập mật khẩu tài khoản Apple để bắt đầu tải xuống và cài đặt.
+Mở App Store có sẵn trên máy Mac (hoặc thử [liên kết nhanh](https://apps.apple.com/cn/app/xcode/id497799835?mt=12)) để tải Xcode. Nhấp `Get` (`Tải`), rồi nhập mật khẩu tài khoản Apple để bắt đầu tải xuống và cài đặt.
 
 ![](images/xcode-1.jpg)
 
@@ -26,13 +26,13 @@ Khi mở Xcode lần đầu, bạn có thể gặp cửa sổ bật lên sau:
 
 ![](images/xcode-3.jpg)
 
-Cửa sổ này là trình hướng dẫn cài đặt các thành phần của Xcode. Nhấp `Install` (Cài đặt) và nhập mật khẩu của người dùng hiện tại.
+Cửa sổ này là trình hướng dẫn cài đặt các thành phần của Xcode. Nhấp `Install` (`Cài đặt`) và nhập mật khẩu của người dùng hiện tại.
 
 Sau khi cài đặt xong, phía bên trái giao diện sẽ hiển thị:
 
 ![](images/xcode-4.jpg)
 
-Nhấp `Create a new Xcode project` (tạo một dự án Xcode mới), sau đó chọn `Command Line Tool` (công cụ dòng lệnh) trong mục `macOS` ở phía trên, rồi nhấp `Next` (`Tiếp theo`) ở góc dưới bên phải.
+Nhấp `Create a new Xcode project` (`Tạo một dự án Xcode mới`), sau đó chọn `Command Line Tool` (`Công cụ dòng lệnh`) trong mục `macOS` ở phía trên, rồi nhấp `Next` (`Tiếp theo`) ở góc dưới bên phải.
 
 ![](images/xcode-5.jpg)
 
@@ -46,7 +46,7 @@ Nhấp vào tệp này để mở vùng soạn thảo:
 
 ![](images/xcode-7.jpg)
 
-Sau khi viết mã, có thể nhấn ⌘B để biên dịch (Build), ⌘R để chạy (Run). Sau khi chạy, kéo giao diện ra sẽ thấy ba phần:
+Sau khi viết mã, có thể nhấn `⌘B` để biên dịch (`Build`), `⌘R` để chạy (`Run`). Sau khi chạy, kéo giao diện ra sẽ thấy ba phần:
 
 ![](images/xcode-8.jpg)
 
@@ -101,7 +101,7 @@ Giao diện như sau:
 
 ![](images/xcode-11.jpg)
 
-Tiếp theo, ta cần chỉnh sửa tệp bằng vim. Nhấn phím i (insert) để vào chế độ chèn/chỉnh sửa (bên dưới xuất hiện `-- INSERT --`):
+Tiếp theo, ta cần chỉnh sửa tệp bằng vim. Nhấn phím `i` (`insert`, chèn) để vào chế độ chèn/chỉnh sửa (bên dưới xuất hiện `-- INSERT --`):
 
 ![](images/xcode-12.jpg)
 
