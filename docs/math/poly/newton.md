@@ -229,7 +229,7 @@ Phần này mở rộng nội dung phía trên và dùng ngôn ngữ đại số
 ### Chứng minh sự tồn tại nghiệm
 
 ???+ note "Bổ đề 1"
-    Cho [miền nguyên](../algebra/ring-theory.md#%E6%95%B4%E7%8E%AF) $R$ có đa thức hoặc [chuỗi lũy thừa hình thức](../algebra/ring-theory.md#%E5%BD%A2%E5%BC%8F%E5%B9%82%E7%BA%A7%E6%95%B0%E7%8E%AF) $f(X) = \sum_{i\geq 0}a_iX^i$ và $r,p\in R$ sao cho $f(r)\in Rp$ (tức $r$ là nghiệm của $f(X)$ theo modulo $p$) và $f'(r)\in R$ khả nghịch theo modulo $p$. Ở đây $f'(X) := \sum_{i\geq 0}(i+1)a_{i+1}X^i$ là **đạo hàm hình thức** của $f(X)$. Khi đó $f\left(r-\dfrac{f(r)}{f'(r)}\right) \equiv 0\pmod {p^2}$.
+    Cho [miền nguyên](../algebra/ring-theory.md#miền-nguyên) $R$ có đa thức hoặc [chuỗi lũy thừa hình thức](../algebra/ring-theory.md#vành-chuỗi-lũy-thừa-hình-thức) $f(X) = \sum_{i\geq 0}a_iX^i$ và $r,p\in R$ sao cho $f(r)\in Rp$ (tức $r$ là nghiệm của $f(X)$ theo modulo $p$) và $f'(r)\in R$ khả nghịch theo modulo $p$. Ở đây $f'(X) := \sum_{i\geq 0}(i+1)a_{i+1}X^i$ là **đạo hàm hình thức** của $f(X)$. Khi đó $f\left(r-\dfrac{f(r)}{f'(r)}\right) \equiv 0\pmod {p^2}$.
 
 ??? note "Chứng minh"
     Với mọi $s\in R$,
@@ -262,7 +262,7 @@ $$
 ### Chứng minh thu được toàn bộ nghiệm
 
 ???+ note "Bổ đề 2"
-    Nếu $R$ là [UFD](../algebra/ring-theory.md#%E5%94%AF%E4%B8%80%E5%88%86%E8%A7%A3%E6%95%B4%E7%8E%AF), và $f,r,p$ được định nghĩa như trong bổ đề 1, thì $r-\dfrac{f(r)}{f'(r)}$ do bổ đề 1 đưa ra là giá trị $x$ duy nhất theo modulo $p^{2}$ thỏa hai điều kiện sau:
+    Nếu $R$ là [UFD](../algebra/ring-theory.md#miền-phân-tích-duy-nhất), và $f,r,p$ được định nghĩa như trong bổ đề 1, thì $r-\dfrac{f(r)}{f'(r)}$ do bổ đề 1 đưa ra là giá trị $x$ duy nhất theo modulo $p^{2}$ thỏa hai điều kiện sau:
     
     -   $f(x)\in Rp^{2}$
     -   $x-r\in Rp$

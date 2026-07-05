@@ -251,7 +251,7 @@ hiện các mở rộng như vậy trên một vành số nguyên bậc hai hay 
 ánh tính chất của vành đó có đủ gần với vành số nguyên hay không. Không phải
 mọi vành số nguyên bậc hai đều thỏa mãn định lý phân tích duy nhất; trong các
 vành thỏa mãn định lý phân tích duy nhất, cũng chỉ một phần cho phép thực hiện
-phép chia có dư. Có thể tham khảo mục [vành số nguyên bậc hai](../algebra/ring-theory.md#%E4%BE%8B%E5%AD%90%E4%BA%8C%E6%AC%A1%E6%95%B4%E6%95%B0%E7%8E%AF)
+phép chia có dư. Có thể tham khảo mục [vành số nguyên bậc hai](../algebra/ring-theory.md#ví-dụ-vành-số-nguyên-bậc-hai)
 trong phần lí thuyết vành hoặc các sách liên quan để biết thêm về nội dung này.
 
 <span id="&#x552f;&#x4e00;&#x5206;&#x89e3;"></span>
@@ -261,7 +261,7 @@ Nếu định lý phân tích duy nhất của số nguyên có thể mở rộn
 bậc hai, nó nên có dạng sau: mọi số nguyên bậc hai trong vành
 $\mathbf Z[\omega]$ đều có thể viết thành tích của một số phần tử bất khả quy,
 và phân tích này là duy nhất nếu bỏ qua liên kết và thứ tự. Ở đây [phần tử bất
-khả quy](../algebra/ring-theory.md#%E6%95%B4%E9%99%A4%E5%85%B3%E7%B3%BB) là số
+khả quy](../algebra/ring-theory.md#quan-hệ-chia-hết) là số
 nguyên bậc hai không thể tiếp tục phân tích thành tích của các phần tử không
 phải đơn vị, tương tự số nguyên tố trong định lý phân tích duy nhất của số
 nguyên. Nhưng như đã nói, không phải mọi vành số nguyên bậc hai đều thỏa mãn
@@ -280,7 +280,7 @@ nguyên bậc hai tổng quát là việc phân tích chỉ bằng số nguyên 
 tinh vi. Chuyện tương tự là cần phân tích tích $abcd$, nhưng các phần tử cơ bản
 khả dụng chỉ là $\{ab,cd,ac,bd\}$, thì phân tích thu được tất nhiên không duy
 nhất; để có định lý phân tích duy nhất, phải xét thêm $\{a,b,c,d\}$. Trong
-vành số nguyên bậc hai, cấu trúc tinh vi hơn số nguyên bậc hai là [ideal](../algebra/ring-theory.md#%E7%90%86%E6%83%B3)
+vành số nguyên bậc hai, cấu trúc tinh vi hơn số nguyên bậc hai là [ideal](../algebra/ring-theory.md#iđêan)
 của vành số nguyên bậc hai. Ánh xạ một số nguyên bậc hai đến ideal chính tương
 ứng của nó sẽ nhúng lớp liên kết của nó vào tập các ideal, vì vậy phân tích số
 nguyên chỉ là trường hợp đặc biệt của phân tích ideal. Nếu xét phân tích ideal
@@ -294,7 +294,7 @@ ideal nguyên tố của nó tương ứng một-một với các phần tử b�
 tương đương liên kết). Vì vậy, với lớp vành số nguyên bậc hai này, phân tích
 ideal thành ideal nguyên tố tương đương với phân tích số nguyên bậc hai thành
 phần tử bất khả quy. Hơn nữa, khi đó các phần tử bất khả quy cũng được gọi là
-[phần tử nguyên tố](../algebra/ring-theory.md#%E6%95%B4%E9%99%A4%E5%85%B3%E7%B3%BB),
+[phần tử nguyên tố](../algebra/ring-theory.md#quan-hệ-chia-hết),
 tương ứng với khái niệm số nguyên tố trong số nguyên. Phần thảo luận dưới đây
 sẽ dùng ideal nguyên tố và các khái niệm liên quan; độc giả chưa quen khái
 niệm này có thể thay chúng từng chữ một bằng phần tử nguyên tố, khi đó các phát
