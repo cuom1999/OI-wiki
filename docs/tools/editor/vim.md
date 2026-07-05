@@ -8,13 +8,13 @@ Vim là một trình soạn thảo văn bản phát triển từ vi. Các chức
 
 ## Cài đặt
 
-Hệ thống Linux thường có sẵn Vim; mở terminal và nhập `vim` là có thể dùng.
+Hệ thống Linux thường có sẵn Vim; mở trình dòng lệnh và nhập `vim` là có thể dùng.
 
 Nếu cần cài thủ công, [trang web chính thức](https://www.vim.org/) của Vim có [tài liệu hướng dẫn tải xuống](https://www.vim.org/download.php); hãy biên dịch và cài đặt theo nhu cầu.
 
 ## Chế độ và phím thường dùng của Vim
 
-Các thao tác cơ bản của Vim sẽ được giới thiệu trong tutorial đi kèm Vim. Mở terminal và nhập `vimtutor` để vào tutorial.
+Các thao tác cơ bản của Vim sẽ được giới thiệu trong hướng dẫn nhập môn đi kèm Vim. Mở trình dòng lệnh và nhập `vimtutor` để vào hướng dẫn này.
 
 Thông thường cần khoảng hai đến ba mươi phút để làm quen sơ bộ với các thao tác này.
 
@@ -102,27 +102,27 @@ Trong chế độ dòng lệnh cuối, các lệnh cơ bản gồm:
 -   Lệnh `:s` là thay thế.
 
 ```vim
-" Thay the ket qua khop str1 dau tien trong dong hien tai bang str2
+" Thay thế kết quả khớp str1 đầu tiên trong dòng hiện tại bằng str2
 :s/str1/str2/
-" Thay the tat ca str1 trong dong hien tai bang str2
+" Thay thế tất cả str1 trong dòng hiện tại bằng str2
 :s/str1/str2/g
-" Thay the tat ca str1 trong dong hien tai bang str2, hoi truoc khi thay
+" Thay thế tất cả str1 trong dòng hiện tại bằng str2, hỏi trước khi thay
 :s/str1/str2/gc
-" Trong cac dong tu x1 den x2, thay the ket qua khop str1 dau tien moi dong bang str2
+" Trong các dòng từ x1 đến x2, thay thế kết quả khớp str1 đầu tiên mỗi dòng bằng str2
 :x1,x2 s/str1/str2/
-" Trong cac dong tu x1 den x2, thay the tat ca str1 bang str2
+" Trong các dòng từ x1 đến x2, thay thế tất cả str1 bằng str2
 :x1,x2 s/str1/str2/g
-" Trong cac dong tu x1 den x2, thay the tat ca str1 bang str2, hoi truoc khi thay
+" Trong các dòng từ x1 đến x2, thay thế tất cả str1 bằng str2, hỏi trước khi thay
 :x1,x2 s/str1/str2/gc
-" Thay the ket qua khop str1 dau tien tren moi dong bang str2
+" Thay thế kết quả khớp str1 đầu tiên trên mỗi dòng bằng str2
 :%s/str1/str2/
-" Thay the tat ca str1 trong toan bo tep bang str2
+" Thay thế tất cả str1 trong toàn bộ tệp bằng str2
 :%s/str1/str2/g
-" Thay the tat ca str1 trong toan bo tep bang str2, hoi truoc khi thay
+" Thay thế tất cả str1 trong toàn bộ tệp bằng str2, hỏi trước khi thay
 :%s/str1/str2/gc
 ```
 
-Nếu dạng lệnh là `:! command`, lệnh đó sẽ được thực thi trong terminal bash.
+Nếu dạng lệnh là `:! command`, lệnh đó sẽ được thực thi trong bash của trình dòng lệnh.
 
 Nhấn <kbd>Esc</kbd> để thoát chế độ dòng lệnh cuối.
 
@@ -163,7 +163,7 @@ Kết hợp `.` với lệnh `A` để di chuyển tới cuối dòng rồi chè
 
 ```vim
 A;<Esc>
-" Lap lai lenh ben duoi
+" Lặp lại lệnh bên dưới
 j.
 ```
 
