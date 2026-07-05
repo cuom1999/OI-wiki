@@ -9,13 +9,15 @@ thiệu ngắn gọn khác biệt giữa Python, Java và C++.
 
 ## Khác biệt giữa C và C++
 
-### Macro và template
+<span id="macro-và-template"></span>
 
-Một trong các mục đích ban đầu khi thiết kế template của C++ là thay thế định
-nghĩa macro. Học lập trình template là một bước quan trọng khi chuyển từ C sang
-C++. Khác với việc thay thế văn bản của macro, template nhận được kiểm tra trình
+### Macro và mẫu
+
+Một trong các mục đích ban đầu khi thiết kế mẫu của C++ là thay thế định
+nghĩa macro. Học lập trình mẫu là một bước quan trọng khi chuyển từ C sang
+C++. Khác với việc thay thế văn bản của macro, mẫu nhận được kiểm tra trình
 biên dịch toàn diện hơn trong lúc biên dịch, giúp viết mã vững chắc hơn. Sau
-C++11, template hỗ trợ danh sách tham số template có độ dài biến đổi, có thể
+C++11, mẫu hỗ trợ danh sách tham số mẫu có độ dài biến đổi, có thể
 dùng để thay thế hàm tham số biến thiên trong C và bảo đảm an toàn kiểu.
 
 ### Con trỏ và tham chiếu

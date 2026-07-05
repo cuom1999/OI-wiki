@@ -22,7 +22,7 @@ cần tải và cài từ [trang Visual Studio](https://visualstudio.microsoft.c
 
 #### macOS
 
-Chạy trong terminal:
+Chạy trong trình dòng lệnh:
 
 ```bash
 xcode-select --install

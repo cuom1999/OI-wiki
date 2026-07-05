@@ -45,8 +45,8 @@ nhất là:
     khi phần "phần tử lớn nhất/nhỏ nhất trong XXX" có thể được tối ưu, ví dụ
     dùng hàng đợi ưu tiên để duy trì.
 
-Khác biệt giữa hai dạng là: dạng đầu là offline, xử lý trước rồi chọn; dạng sau
-là online, vừa xử lý vừa chọn.
+Khác biệt giữa hai dạng là: dạng đầu là xử lý ngoại tuyến, xử lý trước rồi chọn;
+dạng sau là xử lý trực tuyến, vừa xử lý vừa chọn.
 
 ### Lời giải bằng sắp xếp
 

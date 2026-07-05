@@ -158,10 +158,10 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
     cho tổng thể tích đúng bằng $w$. Vì đáp án có thể rất lớn, chỉ cần in đáp
     án modulo $P$.
 
-    Do thức khuya luyện bài lâu ngày, cậu chỉ nhìn thấy trong input mẫu có $w$
-    và $P$, output mẫu là $k$, còn không nhìn rõ có bao nhiêu đồ vật và thể
+    Do thức khuya luyện bài lâu ngày, cậu chỉ nhìn thấy trong đầu vào mẫu có $w$
+    và $P$, đầu ra mẫu là $k$, còn không nhìn rõ có bao nhiêu đồ vật và thể
     tích từng đồ vật là bao nhiêu. Đến khi tỉnh dậy, Tiểu Q vẫn không nhớ được
-    $n$ và $v$. Hãy viết chương trình giúp Tiểu Q nhớ lại input mẫu năm xưa.
+    $n$ và $v$. Hãy viết chương trình giúp Tiểu Q nhớ lại đầu vào mẫu năm xưa.
 
 ??? note "Ý tưởng giải"
     Đây là một trong những bài xây dựng có độ tự do cao nhất. Chính điều đó làm
