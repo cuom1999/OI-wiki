@@ -1,10 +1,10 @@
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 
 ## Mở đầu
 
 Heap ghép cặp là một cấu trúc dữ liệu hỗ trợ các thao tác chèn, truy vấn/xóa phần tử nhỏ nhất, hợp nhất, sửa phần tử, v.v. Đây là một loại heap có thể hợp nhất. Nó có ưu điểm là nhanh và có cấu trúc đơn giản, nhưng vì độ phức tạp khấu hao của nó dựa trên phân tích thế năng nên không thể làm bền vững hóa.
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 
 ## Định nghĩa
 
@@ -31,17 +31,17 @@ Từ định nghĩa có thể thấy, so với các cấu trúc heap thường g
 
 Heap ghép cặp đảm bảo tổng độ phức tạp thông qua một trình tự thao tác được thiết kế cẩn thận. Bài báo gốc[^ref1] gọi nó là "một heap tự điều chỉnh (Self Adjusting Heap)". Ở khía cạnh này, nó khá giống cây Splay (trong bài báo gốc được gọi là "Self Adjusting Binary Tree").
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trình"></span>
 
 ## Quy trình
 
-<span id="&#x67E5;&#x8BE2;&#x6700;&#x5C0F;&#x503C;"></span>
+<span id="truy-vấn-phần-tử-nhỏ-nhất"></span>
 
 ### Truy vấn phần tử nhỏ nhất
 
 Từ định nghĩa của heap ghép cặp, có thể thấy trọng số của nút gốc luôn là nhỏ nhất, vì vậy chỉ cần trả về nút gốc.
 
-<span id="&#x5408;&#x5E76;"></span>
+<span id="hợp-nhất"></span>
 
 ### Hợp nhất
 
@@ -65,13 +65,13 @@ Cần lưu ý rằng danh sách con của một nút được sắp theo thời 
     }
     ```
 
-<span id="&#x63D2;&#x5165;"></span>
+<span id="chèn"></span>
 
 ### Chèn
 
 Khi đã có thao tác hợp nhất, thao tác chèn chỉ cần xem phần tử mới như một heap ghép cặp mới rồi hợp nhất với heap ban đầu.
 
-<span id="&#x5220;&#x9664;&#x6700;&#x5C0F;&#x503C;"></span>
+<span id="xóa-phần-tử-nhỏ-nhất"></span>
 
 ### Xóa phần tử nhỏ nhất
 
@@ -123,7 +123,7 @@ Khi đã có hàm `merges`, thao tác `delete-min` trở nên hiển nhiên.
     }
     ```
 
-<span id="&#x51CF;&#x5C0F;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x503C;"></span>
+<span id="giảm-khóa-của-một-phần-tử"></span>
 
 ### Giảm khóa của một phần tử
 
@@ -202,7 +202,7 @@ Do đó, ta tách cả cây con gốc `x` ra. Lúc này hai cây đều thỏa m
     }
     ```
 
-<span id="&#x590D;&#x6742;&#x5EA6;&#x5206;&#x6790;"></span>
+<span id="phân-tích-độ-phức-tạp"></span>
 
 ## Phân tích độ phức tạp
 
@@ -214,7 +214,7 @@ Bài báo gốc[^ref1] chỉ phân tích được rằng các thao tác `meld` v
 
 Hiện nay, một vài ước lượng tốt hơn về cận trên độ phức tạp gồm có: kết quả của Iacono với `meld` $O(1)$ và `decrease-key` $O(\log n)$[^ref3]; kết quả của Pettie với `meld` và `decrease-key` $O(2^{2 \sqrt{\log \log n}})$[^ref4]. Cần lưu ý rằng các độ phức tạp nói trên đều là độ phức tạp khấu hao, vì vậy không thể lấy giá trị nhỏ nhất riêng lẻ giữa các kết quả.
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 
