@@ -408,7 +408,7 @@ $$
 trong đó $1 < e_1 < e_2 < \cdots < e_s < e$. Lý do là khi khai triển trực tiếp
 tích này, bit bằng $1$ thấp thứ hai trong biểu diễn nhị phân của $a$ chính là
 bit thứ $e_1$ (chỉ số bắt đầu từ $0$), từ đó có thể tìm biểu diễn này một cách
-đệ quy. Theo [tính chất](./discrete-logarithm.md#%E6%80%A7%E8%B4%A8) của
+đệ quy. Theo [tính chất](./discrete-logarithm.md#tính-chất) của
 logarit rời rạc, ta có
 
 $$

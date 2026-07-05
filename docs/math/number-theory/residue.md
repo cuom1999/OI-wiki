@@ -398,7 +398,7 @@ cùng nhau với modulo $m$. Quá trình thuật toán tóm tắt như sau:
     $$
 
     Trong đó, $\operatorname{ind}_g a$ có thể được tính bằng
-    [thuật toán BSGS](./discrete-logarithm.md#%E5%A4%A7%E6%AD%A5%E5%B0%8F%E6%AD%A5%E7%AE%97%E6%B3%95),
+    [thuật toán BSGS](./discrete-logarithm.md#thuật-toán-bước-lớn-bước-nhỏ),
     còn toàn bộ nghiệm của
     [phương trình đồng dư tuyến tính](./linear-equation.md) thì dễ tìm. Từ đó
     thu được tất cả căn bậc $k$ của $a$, có dạng $x\equiv g^y\pmod m$.

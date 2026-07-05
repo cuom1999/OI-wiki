@@ -266,7 +266,7 @@ Dựa trên các kết luận trên, ta có thể dùng phân tích thừa số 
     --8<-- "docs/math/code/combinatorics/fibonacci/pisano_estimate.cpp:pisano"
     ```
 
-Chu kỳ thu được theo cách này có thể chỉ là một bội của chu kỳ Pisano. Để tìm chu kỳ Pisano chính xác, có thể tiếp tục xét các ước của chu kỳ đó; hoặc trực tiếp dùng [thuật toán BSGS](../number-theory/discrete-logarithm.md#%E5%A4%A7%E6%AD%A5%E5%B0%8F%E6%AD%A5%E7%AE%97%E6%B3%95) để tính trong độ phức tạp $O(\sqrt{m})$.
+Chu kỳ thu được theo cách này có thể chỉ là một bội của chu kỳ Pisano. Để tìm chu kỳ Pisano chính xác, có thể tiếp tục xét các ước của chu kỳ đó; hoặc trực tiếp dùng [thuật toán BSGS](../number-theory/discrete-logarithm.md#thuật-toán-bước-lớn-bước-nhỏ) để tính trong độ phức tạp $O(\sqrt{m})$.
 
 <span id="&#35777;&#26126;"></span>
 ### Chứng minh

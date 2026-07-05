@@ -1,4 +1,4 @@
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Kiến thức cần có: [bậc và căn nguyên thủy](./primitive-root.md).
@@ -13,7 +13,7 @@ Ta gọi $k$ là logarit rời rạc cơ số $g$ modulo $m$ của $a$, ký hi�
 
 Hiển nhiên $\operatorname{ind}_g 1=0$ và $\operatorname{ind}_g g=1$.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 Logarit rời rạc cũng có nhiều tính chất tương tự logarit thông thường.
@@ -42,7 +42,7 @@ Logarit rời rạc cũng có nhiều tính chất tương tự logarit thông t
         \end{aligned}
         $$
 
-<span id="&#22823;&#27493;&#23567;&#27493;&#31639;&#27861;"></span>
+<span id="thuật-toán-bước-lớn-bước-nhỏ"></span>
 ## Thuật toán bước lớn bước nhỏ
 
 Hiện nay bài toán logarit rời rạc vẫn chưa có thuật toán cổ điển chạy trong thời gian đa thức, trong đó kích thước đầu vào của bài toán được tính theo số bit của dữ liệu đầu vào. Trong mật mã học, dựa trên điều này người ta đã thiết kế nhiều thuật toán mã hóa bất đối xứng, chẳng hạn như [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519).
@@ -55,7 +55,7 @@ $$
 
 trong đó $a\perp m$. Nghiệm $x$ của phương trình thỏa mãn $0 \le x < m$. Lưu ý rằng $m$ không nhất thiết là số nguyên tố.
 
-<span id="&#31639;&#27861;&#25551;&#36848;"></span>
+<span id="mô-tả-thuật-toán"></span>
 ### Mô tả thuật toán
 
 Đặt $x = A \left \lceil \sqrt m \right \rceil - B$, trong đó $0\le A,B \le \left \lceil \sqrt m \right \rceil$. Khi đó $a^{A\left \lceil \sqrt m \right \rceil -B} \equiv b \pmod m$; biến đổi một chút, ta có $a^{A\left \lceil \sqrt m \right \rceil} \equiv ba^B \pmod m$.
@@ -67,7 +67,7 @@ Vì cả $A$ và $B$ đều nhỏ hơn $\left \lceil \sqrt m \right \rceil$, đ�
 ??? note "Vì sao cần $a$ và $m$ nguyên tố cùng nhau"
     Lưu ý rằng thứ ta tìm được là $A,B$. Ta cần bảo đảm rằng từ $a^{A\left \lceil \sqrt m \right \rceil} \equiv ba^B \pmod m$ có thể suy ngược lại $a^{A\left \lceil \sqrt m \right \rceil -B} \equiv b \pmod m$. Công thức sau thu được bằng cách chia hai vế của công thức trước cho $a^B$, nên bắt buộc phải có $a^B \perp m$, tức là $a\perp m$.
 
-<span id="&#25193;&#23637;-bsgs-&#31639;&#27861;"></span>
+<span id="thuật-toán-bsgs-mở-rộng"></span>
 ## Thuật toán BSGS mở rộng
 
 Với $a,b,m\in\mathbf{Z}^+$, cần giải
@@ -104,7 +104,7 @@ Vì $a\perp\dfrac{m}{D}$, suy ra $\dfrac{a^k}{D}\perp \dfrac{m}{D}$. Như vậy 
 
 Lưu ý rằng vẫn có thể tồn tại nghiệm nhỏ hơn hoặc bằng $k$. Vì vậy trước khi khử các nhân tử, ta thực hiện một lượt duyệt $\Theta(k)$ và kiểm tra trực tiếp $a^i\equiv b \pmod m$ để tránh bỏ sót trường hợp này.
 
-<span id="&#22522;&#20110;&#20540;&#22495;&#39044;&#22788;&#29702;&#30340;&#24555;&#36895;&#31163;&#25955;&#23545;&#25968;"></span>
+<span id="logarit-rời-rạc-nhanh-dựa-trên-tiền-xử-lý-miền-giá-trị"></span>
 ## Logarit rời rạc nhanh dựa trên tiền xử lý miền giá trị
 
 Thuật toán BSGS ở trên có độ phức tạp thời gian $O(\sqrt m)$ cho mỗi lần hỏi, nên kém hiệu quả khi số lượng truy vấn lớn. Nếu modulo cần giải ở mỗi lần là một số nguyên tố cố định $p$, ta có một thuật toán nhanh dựa trên tiền xử lý miền giá trị.
@@ -140,7 +140,7 @@ Kết hợp hai cách tính trên, ta có $\min\{r,y-r\}\le \dfrac{y}{2}$, nên 
     --8<-- "docs/math/code/discrete-logarithm/discrete-logarithm-1.cpp"
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [SPOJ MOD](https://www.spoj.com/problems/MOD/) mẫu
@@ -153,7 +153,7 @@ Kết hợp hai cách tính trên, ta có $\min\{r,y-r\}\le \dfrac{y}{2}$, nên 
 
 **Một phần nội dung và mã nguồn của trang này được dịch từ bài viết [Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root) và bản dịch tiếng Anh [Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html). Giấy phép của bản tiếng Nga là Public Domain + Leave a Link; giấy phép của bản tiếng Anh là CC-BY-SA 4.0.**
 
-<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 1.  [Discrete logarithm - Wikipedia](https://en.wikipedia.org/wiki/Discrete_logarithm)
