@@ -5,10 +5,10 @@ Bậc và căn nguyên thủy là các công cụ quan trọng để hiểu cấ
 $\mathbf Z_m^*$ modulo $m$. Dựa trên chúng, ta có thể định nghĩa các khái niệm
 như [logarit rời rạc](./discrete-logarithm.md). Phần thảo luận tổng quát hơn có
 thể xem ở các mục liên quan trong phần đại số trừu tượng, chẳng hạn
-[lý thuyết nhóm](../algebra/group-theory.md#%E9%98%B6) và
+[lý thuyết nhóm](../algebra/group-theory.md#cấp) và
 [lý thuyết vành](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên).
 
-<span id="&#x9636;"></span>
+<span id="bậc"></span>
 
 ## Bậc
 
@@ -28,7 +28,7 @@ $a^0\bmod m = 1$:
     $\operatorname{ord}_m(a)$.
 
 ???+ tip "Ghi chú"
-    Trong [đại số trừu tượng](../algebra/group-theory.md#%E9%98%B6), "bậc" ở
+    Trong [đại số trừu tượng](../algebra/group-theory.md#cấp), "bậc" ở
     đây chính là bậc của phần tử $a$ trong nhóm tạo bởi hệ thặng dư thu gọn
     modulo $m$ theo phép nhân. Ký hiệu $\delta$ để biểu diễn bậc chỉ dùng cho
     nhóm đặc biệt này. Nhiều tính chất bên dưới có thể mở rộng trực tiếp thành
@@ -39,7 +39,7 @@ $a^0\bmod m = 1$:
     $a^n \equiv -1 \pmod m$. Nửa bậc không phải là khái niệm trong lý thuyết
     nhóm. Bậc luôn tồn tại, còn nửa bậc thì không nhất thiết tồn tại.
 
-<span id="&#x5E42;&#x7684;&#x5FAA;&#x73AF;&#x7ED3;&#x6784;"></span>
+<span id="cấu-trúc-tuần-hoàn-của-lũy-thừa"></span>
 
 ### Cấu trúc tuần hoàn của lũy thừa
 
@@ -120,7 +120,7 @@ bậc của $a$.
     \delta_m(a^k)=\dfrac{\delta_m(a)}{\left(\delta_m(a),k\right)}.
     $$
 
-<span id="&#x4E58;&#x79EF;&#x7684;&#x9636;"></span>
+<span id="bậc-của-tích"></span>
 
 ### Bậc của tích
 
@@ -275,7 +275,7 @@ bằng bội chung nhỏ nhất đó.
 
 Kết luận này thường được dùng để xây dựng phần tử có bậc chỉ định.
 
-<span id="&#x539F;&#x6839;"></span>
+<span id="căn-nguyên-thủy"></span>
 
 ## Căn nguyên thủy
 
@@ -306,7 +306,7 @@ $g^i\bmod p$ đôi một khác nhau với $i=1,2,\cdots,p-1$.
 Khi modulo bằng $1$, nhóm nhân các số nguyên modulo $1$ là $\{0\}$. Hiển nhiên
 đây là nhóm cyclic, nên căn nguyên thủy là $0$.
 
-<span id="&#x539F;&#x6839;&#x5224;&#x5B9A;&#x5B9A;&#x7406;"></span>
+<span id="định-lí-kiểm-tra-căn-nguyên-thủy"></span>
 
 ### Định lí kiểm tra căn nguyên thủy
 
@@ -336,7 +336,7 @@ kiểm tra một số có phải căn nguyên thủy modulo $m$ hay không.
     Nhưng $p$ cũng là một ước của $\varphi(m)$, mâu thuẫn với giả thiết. Vì vậy
     chiều đủ của mệnh đề được chứng minh.
 
-<span id="&#x539F;&#x6839;&#x4E2A;&#x6570;"></span>
+<span id="số-lượng-căn-nguyên-thủy"></span>
 
 ### Số lượng căn nguyên thủy
 
@@ -374,7 +374,7 @@ số phần tử có một bậc nào đó, ta có kết luận sau:
     vượt quá $d$ và nguyên tố cùng nhau với $d$. Theo định nghĩa hàm Euler, số
     lượng đó là $\varphi(d)$.
 
-<span id="&#x539F;&#x6839;&#x5B58;&#x5728;&#x5B9A;&#x7406;"></span>
+<span id="định-lí-tồn-tại-căn-nguyên-thủy"></span>
 
 ### Định lí tồn tại căn nguyên thủy
 
@@ -584,7 +584,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
 Tổng hợp bốn bổ đề trên, ta đã đưa ra điều kiện cần và đủ để một số có căn
 nguyên thủy.
 
-<span id="&#x6C42;&#x539F;&#x6839;&#x7684;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-tìm-căn-nguyên-thủy"></span>
 
 ### Thuật toán tìm căn nguyên thủy
 
@@ -642,7 +642,7 @@ $\varphi(m)$ chưa biết, bất kể dùng cách liệt kê nào, nút thắt �
 việc tìm căn nguyên thủy nằm ở bước phân tích thừa số nguyên tố, chứ không phải
 phần liệt kê và kiểm tra.
 
-<span id="carmichael-&#x51FD;&#x6570;"></span>
+<span id="hàm-carmichael"></span>
 
 ## Hàm Carmichael
 
@@ -678,7 +678,7 @@ $$
 Phần tử $a\perp m$ đạt giá trị lớn nhất này cũng được gọi là **$\lambda$-căn
 nguyên thủy** modulo $m$. Nó tồn tại với mọi modulo $m$.
 
-<span id="&#x9012;&#x63A8;&#x516C;&#x5F0F;"></span>
+<span id="công-thức-truy-hồi"></span>
 
 ### Công thức truy hồi
 
@@ -817,7 +817,7 @@ hồi của hàm Carmichael, dễ dàng quy nạp ra kết quả sau:
 Vì chứng minh công thức truy hồi trong mục này không dùng đến định lí tồn tại
 căn nguyên thủy, đây tạo thành một chứng minh khác cho định lí đó.
 
-<span id="carmichael-&#x6570;"></span>
+<span id="số-carmichael"></span>
 
 ### Số Carmichael
 
@@ -885,7 +885,7 @@ $C(n) < n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$, trong đó $c$
 là hằng số. Vì vậy phân bố của số Carmichael rất thưa (so với số nguyên tố).
 Thực tế, có[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 
 ## Tài liệu tham khảo và ghi chú
 

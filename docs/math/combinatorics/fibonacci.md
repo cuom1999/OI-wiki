@@ -281,7 +281,7 @@ $$
 A^k = \begin{pmatrix} 1&1\\1&0 \end{pmatrix}^k \equiv I \pmod{m}.
 $$
 
-Nói cách khác, nó là [bậc](../algebra/group-theory.md#%E9%98%B6) của ma trận $A$ trong modulo $m$[^mod-m].
+Nói cách khác, nó là [bậc](../algebra/group-theory.md#cấp) của ma trận $A$ trong modulo $m$[^mod-m].
 
 Với modulo lũy thừa nguyên tố $m=p^e$, ta có thể dùng lập luận nâng lũy thừa cổ điển để liên hệ với trường hợp modulo nguyên tố tương ứng. Đặt $k=\pi(p^e)$, khi đó tồn tại một ma trận vuông cấp hai $\Lambda$ sao cho
 
@@ -295,7 +295,7 @@ $$
 A^{kp} = (p^e\Lambda + I)^p = I + \sum_{i=1}^p\binom{p}{i}(p^e\Lambda)^i \equiv I\pmod{p^{e+1}}. 
 $$
 
-Vì vậy, theo [tính chất của bậc](../number-theory/primitive-root.md#%E5%B9%82%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84), có $\pi(p^{e+1})\mid kp = p\pi(p^e)$. Quy nạp theo $e$ cho thấy $\pi(p^e)\mid p^{e-1}\pi(p)$ luôn đúng.
+Vì vậy, theo [tính chất của bậc](../number-theory/primitive-root.md#cấu-trúc-tuần-hoàn-của-lũy-thừa), có $\pi(p^{e+1})\mid kp = p\pi(p^e)$. Quy nạp theo $e$ cho thấy $\pi(p^e)\mid p^{e-1}\pi(p)$ luôn đúng.
 
 Với trường hợp modulo nguyên tố $p$, bài viết xét hai cách chứng minh.
 
