@@ -408,7 +408,7 @@ Dữ liệu nên bao gồm giá trị nhỏ nhất và lớn nhất của từng
 
 Dữ liệu nên bao gồm các trường hợp biên khác nhau.
 
-Khi dùng subtask, dữ liệu (bao gồm input và output) tốt nhất nên bao phủ các khoảng khác nhau trong miền giá trị, chứ không chỉ có giá trị lớn nhất của giới hạn dữ liệu.
+Khi dùng subtask, dữ liệu (bao gồm đầu vào và đầu ra) tốt nhất nên bao phủ các khoảng khác nhau trong miền giá trị, chứ không chỉ có giá trị lớn nhất của giới hạn dữ liệu.
 
 Để tránh lời giải xét riêng cấu trúc đặc biệt qua được, có thể kết hợp nhiều cấu trúc khác nhau trong một test, hoặc để phần lớn dữ liệu là dữ liệu dựng, xen lẫn một phần nhỏ dữ liệu ngẫu nhiên.
 
@@ -427,17 +427,17 @@ Nếu bạn hy vọng có một lượng nhỏ FST chứ không phải không c�
 Ở đây cung cấp một số yêu cầu định dạng đầu vào thường gặp, có thể dùng làm tham khảo trong trường hợp thông thường:
 
 > 1.  Dùng định dạng xuống dòng của môi trường chấm.
-> 2.  Cuối dòng cuối cùng của file có ký tự xuống dòng, tức ký tự cuối cùng của toàn bộ file cần là `\n`.
+> 2.  Cuối dòng cuối cùng của tệp có ký tự xuống dòng, tức ký tự cuối cùng của toàn bộ tệp cần là `\n`.
 > 3.  Đầu và cuối bất kỳ dòng nào đều không có ký tự trắng.
 > 4.  Không có quá 1 dấu cách liên tiếp.
 
-Dữ liệu sinh trong môi trường Windows thường có định dạng xuống dòng `\r\n`, trong khi các hệ thống chấm phổ biến đều chạy trên môi trường Linux, với định dạng xuống dòng `\n`. Nếu đọc dữ liệu xuống dòng kiểu Windows trong môi trường Linux, có thể khiến việc xử lý xuống dòng khi đọc xâu bị bất thường, từ đó dẫn đến kết quả chạy khác nhau giữa các môi trường. Nếu trong môi trường Linux so sánh output sinh trong môi trường Linux với output chuẩn sinh trong môi trường Windows, có thể phát sinh khác biệt do định dạng xuống dòng khác nhau. Để giữ hành vi chương trình nhất quán, định dạng xuống dòng của toàn bộ dữ liệu phải được chuyển sang định dạng xuống dòng của môi trường chạy chương trình.
+Dữ liệu sinh trong môi trường Windows thường có định dạng xuống dòng `\r\n`, trong khi các hệ thống chấm phổ biến đều chạy trên môi trường Linux, với định dạng xuống dòng `\n`. Nếu đọc dữ liệu xuống dòng kiểu Windows trong môi trường Linux, có thể khiến việc xử lý xuống dòng khi đọc xâu bị bất thường, từ đó dẫn đến kết quả chạy khác nhau giữa các môi trường. Nếu trong môi trường Linux so sánh đầu ra sinh trong môi trường Linux với đầu ra chuẩn sinh trong môi trường Windows, có thể phát sinh khác biệt do định dạng xuống dòng khác nhau. Để giữ hành vi chương trình nhất quán, định dạng xuống dòng của toàn bộ dữ liệu phải được chuyển sang định dạng xuống dòng của môi trường chạy chương trình.
 
 Thông thường có thể sinh dữ liệu có xuống dòng kiểu Linux bằng các cách sau:
 
 1.  Trực tiếp sinh dữ liệu trong môi trường Linux.
-2.  Dùng công cụ [`dos2unix`](https://dos2unix.sourceforge.io/) để chuyển đổi file input/output; công cụ này có trong các bộ công cụ như Cygwin, MinGW.
-3.  Mở file output ở chế độ nhị phân và dùng định dạng xuống dòng `\n`.
+2.  Dùng công cụ [`dos2unix`](https://dos2unix.sourceforge.io/) để chuyển đổi tệp đầu vào/đầu ra; công cụ này có trong các bộ công cụ như Cygwin, MinGW.
+3.  Mở tệp đầu ra ở chế độ nhị phân và dùng định dạng xuống dòng `\n`.
 4.  Tham khảo mã `dos2unix.cpp` trong [trang này](https://help.luogu.com.cn/manual/luogu/problem/testcase-format#%E9%99%84%E5%BD%95windows-%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%80%A0%E6%95%B0%E6%8D%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9) để tự viết công cụ.
 
 ## Trình chấm đặc biệt
@@ -477,7 +477,7 @@ Nếu chi tiết cài đặt cụ thể tương đối khéo, tốt nhất nên 
 
 ### Lời giải chuẩn
 
-Trong lời giải chuẩn, tốt nhất nên bỏ các phần dư thừa. Ví dụ, một số lời giải giữ lại toàn bộ template define (để tăng tốc độ làm bài, chứa rất nhiều define và hàm thường dùng, thường dùng trong các cuộc thi online như CF), và phần lớn trong đó không được dùng đến; điều này là không tốt.
+Trong lời giải chuẩn, tốt nhất nên bỏ các phần dư thừa. Ví dụ, một số lời giải giữ lại toàn bộ mẫu và macro `define` (để tăng tốc độ làm bài, chứa rất nhiều `define` và hàm thường dùng, thường dùng trong các cuộc thi trực tuyến như CF), và phần lớn trong đó không được dùng đến; điều này là không tốt.
 
 Nếu có liên quan đến một số chi tiết cài đặt không được giải thích kỹ trong lời giải, tốt nhất nên thêm lượng chú thích vừa phải.
 
@@ -495,12 +495,12 @@ Người ra đề rất có thể đánh giá sai độ khó của bài. Vì v�
 
 Trong các kỳ thi thử kiểu OI Trung Quốc, thường chỉ cần tổng thể độ khó của ba bài tương đương với độ khó cuộc thi.
 
-Trong các cuộc thi online kiểu CF/ATC, cần cố gắng bảo đảm độ khó tăng dần (mặc dù do đánh giá sai độ khó nên nhiều khi không thật sự làm được), đồng thời cố gắng tránh xuất hiện difficulty gap lớn. Có thể giảm difficulty gap bằng cách tách một bài thành hai bài dễ/khó (hai subtask), nhưng việc chia subtask cần được cân nhắc thận trọng. Cũng có nhiều người không thích subtask trong thể thức CF ([Are subtasks evil?](https://codeforces.com/blog/entry/71700)), với các lý do bao gồm nhưng không giới hạn ở:
+Trong các cuộc thi trực tuyến kiểu CF/ATC, cần cố gắng bảo đảm độ khó tăng dần (mặc dù do đánh giá sai độ khó nên nhiều khi không thật sự làm được), đồng thời cố gắng tránh xuất hiện khoảng cách độ khó lớn. Có thể giảm khoảng cách độ khó bằng cách tách một bài thành hai phiên bản dễ/khó (hai subtask), nhưng việc chia subtask cần được cân nhắc thận trọng. Cũng có nhiều người không thích subtask trong thể thức CF ([Are subtasks evil?](https://codeforces.com/blog/entry/71700)), với các lý do bao gồm nhưng không giới hạn ở:
 
--   Do thể thức thi, làm easy version trước rồi làm hard version có thể bị phạt thời gian ít hơn và tổng điểm cao hơn.
+-   Do thể thức thi, làm phiên bản dễ trước rồi làm phiên bản khó có thể bị phạt thời gian ít hơn và tổng điểm cao hơn.
 -   Điểm của subtask thường không tỉ lệ thuận với độ khó của bài.
--   Rất nhiều khi easy version không phải là một bài đạt chuẩn (không thú vị).
--   Rất nhiều khi lời giải của easy version không giúp ích cho việc nghĩ lời giải đúng của hard version.
+-   Rất nhiều khi phiên bản dễ không phải là một bài đạt chuẩn (không thú vị).
+-   Rất nhiều khi lời giải của phiên bản dễ không giúp ích cho việc nghĩ lời giải đúng của phiên bản khó.
 
 ### Phân bổ kiến thức của bài
 
@@ -516,26 +516,26 @@ Phản ví dụ kinh điển: CTS2019, bao phủ nhiều kiến thức như quy 
 
 ### Polygon
 
-Polygon là một nền tảng ra đề hợp tác nhiều người rất mạnh. Nó có thể là lựa chọn ưu tiên để ra đề cộng tác nhiều người cho bất kỳ website nào (dùng chức năng package để xuất sang những website không hỗ trợ Polygon), và cũng là lựa chọn khá tốt khi ra đề một mình (đặc biệt là khi ra đề trên nhiều thiết bị khác nhau). Cách sử dụng xem [Giới thiệu Polygon](../tools/polygon.md).
+Polygon là một nền tảng ra đề hợp tác nhiều người rất mạnh. Nó có thể là lựa chọn ưu tiên để ra đề cộng tác nhiều người cho bất kỳ trang web nào (dùng chức năng gói để xuất sang những trang web không hỗ trợ Polygon), và cũng là lựa chọn khá tốt khi ra đề một mình (đặc biệt là khi ra đề trên nhiều thiết bị khác nhau). Cách sử dụng xem [Giới thiệu Polygon](../tools/polygon.md).
 
 ### Codeforces
 
-Codeforces là một trong những website thi đấu thuật toán nổi tiếng nhất thế giới, chất lượng bài tương đối cao, rất phù hợp với người ra đề đã có một ít kinh nghiệm và muốn nâng cao trình độ ra đề hơn nữa, muốn ra một bộ bài chất lượng cao. Điểm chưa thuận lợi là tốc độ duyệt khá chậm (thường mất vài tháng), nhưng bạn cũng có thể bắt đầu chuẩn bị bài trong thời gian chờ duyệt (dù có rủi ro bài bị từ chối khiến công chuẩn bị trở nên vô ích).
+Codeforces là một trong những trang web thi đấu thuật toán nổi tiếng nhất thế giới, chất lượng bài tương đối cao, rất phù hợp với người ra đề đã có một ít kinh nghiệm và muốn nâng cao trình độ ra đề hơn nữa, muốn ra một bộ bài chất lượng cao. Điểm chưa thuận lợi là tốc độ duyệt khá chậm (thường mất vài tháng), nhưng bạn cũng có thể bắt đầu chuẩn bị bài trong thời gian chờ duyệt (dù có rủi ro bài bị từ chối khiến công chuẩn bị trở nên vô ích).
 
 #### Tư cách ra đề
 
--   Tên xanh lam và đã tham gia ít nhất 25 cuộc thi rated;
--   Tên tím và đã tham gia ít nhất 15 cuộc thi rated;
--   Tên cam và đã tham gia ít nhất 5 cuộc thi rated;
+-   Tên xanh lam và đã tham gia ít nhất 25 cuộc thi được tính rating;
+-   Tên tím và đã tham gia ít nhất 15 cuộc thi được tính rating;
+-   Tên cam và đã tham gia ít nhất 5 cuộc thi được tính rating;
 -   Tên đỏ hoặc đen-đỏ.
 
 #### Gửi đề xuất cuộc thi
 
 Sau khi có tư cách ra đề, ở thanh bên có thể thấy nút [Propose a contest/problems](http://codeforces.com/proposals/new-contest).
 
-Nhấn vào đó, trước hết viết một contest proposal (viết trong PROPOSE A CONTEST), sau đó viết problem proposal và thêm vào cuộc thi.
+Nhấn vào đó, trước hết viết một đề xuất cuộc thi (viết trong PROPOSE A CONTEST), sau đó viết đề xuất bài và thêm vào cuộc thi.
 
-Sau khi đã quyết định xong các bài, có thể open to review contest proposal (gửi để xét duyệt).
+Sau khi đã quyết định xong các bài, có thể gửi đề xuất cuộc thi để xét duyệt.
 
 #### Chuẩn bị bài trên Polygon
 
@@ -548,9 +548,9 @@ Liên hệ với quản trị có hai tác dụng:
 1.  Đẩy nhanh tốc độ xét duyệt.
 2.  Sau khi vào giai đoạn chuẩn bị, quản trị sẽ đưa ra góp ý và hỗ trợ.
 
-Cách liên hệ chính quy là gửi đơn trong proposal system dưới dạng proposal; sau khi quản trị bắt đầu xét duyệt, thảo luận ở bên dưới proposal dưới dạng comment.
+Cách liên hệ chính quy là gửi đơn trong hệ thống đề xuất dưới dạng đề xuất; sau khi quản trị bắt đầu xét duyệt, thảo luận ở bên dưới đề xuất dưới dạng bình luận.
 
-Trên thực tế, nếu proposal lâu không được duyệt, có thể cân nhắc nhắn tin riêng cho quản trị (thật ra trên CF có viết "Don't send private messages or emails to coordinators", nhưng 300iq trong [bình luận](http://codeforces.com/blog/entry/64077#comment-478933) nói rằng có thể nhắn tin riêng cho anh ấy).
+Trên thực tế, nếu đề xuất lâu không được duyệt, có thể cân nhắc nhắn tin riêng cho quản trị (thật ra trên CF có viết "Don't send private messages or emails to coordinators", nhưng 300iq trong [bình luận](http://codeforces.com/blog/entry/64077#comment-478933) nói rằng có thể nhắn tin riêng cho anh ấy).
 
 ### Comet OJ
 
