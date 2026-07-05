@@ -2,23 +2,23 @@ author: GoodCoder666, Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tain
 
 ![Ảnh đầu trang](./images/wsl-header.png)
 
-Chương này chủ yếu giới thiệu cách dùng Hệ thống con Windows cho Linux (Windows Subsystem for Linux, WSL) để chạy môi trường Linux trên hệ thống Windows.
+Chương này chủ yếu giới thiệu cách dùng Hệ thống con Windows cho Linux (Windows Subsystem for Linux, WSL) để chạy môi trường Linux trên Windows.
 
 ## Dẫn nhập[^ref1]
 
-Hiện nay, môi trường luyện tập thi đấu ở phần lớn trường học được xây dựng trên hệ điều hành họ Windows, nhưng trong các kỳ thi thuộc hệ thống NOI, môi trường đã chuyển sang NOI Linux, một bản Ubuntu được tùy biến.
+Hiện nay, môi trường luyện tập thi đấu ở phần lớn trường học được xây dựng trên Windows, nhưng trong các kỳ thi thuộc hệ thống NOI, môi trường đã chuyển sang NOI Linux, một bản Ubuntu được tùy biến.
 
 Yêu cầu môi trường của kỳ thi NOI (từ ngày 1 tháng 9 năm 2021) như sau.[^ref2]
 
 | Loại | Phần mềm hoặc mô-đun | Phiên bản | Ghi chú |
 | :--- | :------------------- | :-------- | :------ |
-| Hệ thống | Linux kernel | `5.4.0-42-generic` | x86 64-bit (AMD64) |
+| Hệ thống | Nhân Linux | `5.4.0-42-generic` | x86 64-bit (AMD64) |
 | Môi trường ngôn ngữ | GCC (`gcc` và `g++`) | `9.3.0` | Trình biên dịch C và C++ |
 | | FPC | `3.0.4` | Trình biên dịch Pascal (chú ý: từ năm 2022, các kỳ thi NOI không còn hỗ trợ Pascal) |
 | | Python 2 | `2.7` | Ngôn ngữ không dùng để thi |
 | | Python 3 | `3.8` | Ngôn ngữ không dùng để thi |
 | Công cụ gỡ lỗi | GDB | `9.1` | |
-| | DDD | `3.3.12` | Giao diện đồ họa (frontend GUI) của GDB |
+| | DDD | `3.3.12` | Giao diện đồ họa cho GDB |
 | Môi trường phát triển tích hợp (IDE) | Code::Blocks | `20.03` | C/C++ IDE |
 | | Lazarus | `2.0.6` | Pascal IDE |
 | | Geany | `1.36` | C/C++/Pascal IDE nhẹ |
@@ -36,26 +36,26 @@ Yêu cầu môi trường của kỳ thi NOI (từ ngày 1 tháng 9 năm 2021) n
 
 Môi trường trong phòng thi có một loạt điểm khác với môi trường thông thường:
 
--   Thao tác trên dòng lệnh và thao tác trên giao diện đồ họa có khác biệt.
--   Linux và Windows có khác biệt, chẳng hạn khác biệt về phân biệt chữ hoa chữ thường.
+-   Thao tác trên dòng lệnh và thao tác trên giao diện đồ họa không hoàn toàn giống nhau.
+-   Linux và Windows có khác biệt, chẳng hạn Linux thường phân biệt chữ hoa chữ thường trong tên tệp.
 -   Hành vi của các trình biên dịch khác nhau (MSVC và GCC), cũng như các phiên bản trình biên dịch khác nhau (GCC trên Windows và Linux, Linux GCC 32-bit và 64-bit, GCC 7 và GCC 8, v.v.) có thể khác nhau; ví dụ cách xử lý khởi tạo biến và truy cập mảng vượt biên.
 -   Các hệ thống chấm bài khác nhau (Luogu và Arbiter) có thể khác nhau về kiểm tra quá thời gian và kiểm tra giới hạn bộ nhớ.
 
 Điều này có thể dẫn đến một số tình huống khó xử:
 
 -   Muốn dùng <kbd>Ctrl</kbd>+<kbd>C</kbd> để sao chép, nhưng lại thoát chương trình.
--   Mẫu chương trình thường ngày AC, khi đưa lên Linux lại WA.
+-   Chương trình thường ngày AC, nhưng khi đưa lên Linux lại WA.
 
 Để tránh những tình huống như vậy trong phòng thi, ta phải làm quen trước với cách thao tác trên hệ thống Linux.
 
 Mặc dù trang chính thức của NOI đã cung cấp ảnh ISO của NOI Linux, việc cấu hình máy ảo tương đối phiền phức. Hơn nữa, do NOI Linux mặc định có sẵn giao diện đồ họa, khó bảo đảm chạy mượt trên các máy cấu hình thấp.
 
-Windows 10 ra mắt hệ thống con Linux (WSL) trong bản Anniversary Update, rồi nâng cấp lên WSL 2 trong bản cập nhật tháng 5 năm 2020. Tính đến ngày 1 tháng 6 năm 2020, WSL đã hỗ trợ cài các bản phân phối Linux phổ biến như Ubuntu, openSUSE Leap, Kali, Debian. Tuy nhiên, WSL không hỗ trợ Arbiter dùng để chấm trong NOI.
+Windows 10 giới thiệu WSL trong bản Anniversary Update, rồi nâng cấp lên WSL 2 trong bản cập nhật tháng 5 năm 2020. Tính đến ngày 1 tháng 6 năm 2020, WSL đã hỗ trợ cài các bản phân phối Linux phổ biến như Ubuntu, openSUSE Leap, Kali và Debian. Tuy nhiên, WSL không hỗ trợ Arbiter dùng để chấm trong NOI.
 
 ???+ note "[Windows Subsystem for Linux (WSL) là gì?](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)"
     Windows Subsystem for Linux (viết tắt là WSL) là một lớp tương thích cho phép chạy trực tiếp các tệp thực thi nhị phân Linux (định dạng ELF) trên Windows 10, Windows 11 và Windows Server 2019.
 
-    WSL cho phép nhà phát triển chạy nguyên trạng môi trường GNU/Linux, bao gồm hầu hết công cụ dòng lệnh, tiện ích và ứng dụng, mà không phát sinh chi phí của máy ảo.
+    WSL cho phép nhà phát triển chạy nguyên trạng môi trường GNU/Linux, bao gồm hầu hết công cụ dòng lệnh, tiện ích và ứng dụng, mà không phải chịu chi phí vận hành của một máy ảo đầy đủ.
 
     WSL chỉ khả dụng trên Windows 10 64-bit phiên bản 1607 trở lên, Windows 11 và Windows Server 2019/2022.
 
@@ -72,7 +72,7 @@ Windows 10 ra mắt hệ thống con Linux (WSL) trong bản Anniversary Update,
 
 1.  Mở Windows PowerShell với quyền quản trị viên (nhấp chuột phải vào nút Start, chọn Windows PowerShell (Administrator) hoặc Windows Terminal (Administrator)).
 
-2.  Nhập `wsl --install`, rồi chờ tất cả thành phần tự động cài đặt xong. Trong quá trình này, bạn có thể cần khởi động lại máy tính để bật các tính năng Windows cần thiết.
+2.  Nhập `wsl --install`, rồi chờ các thành phần được cài đặt tự động. Trong quá trình này, bạn có thể cần khởi động lại máy tính để bật các tính năng Windows cần thiết.
 
 3.  Sau khi cài xong, bạn có thể tìm bản phân phối đã cài trong menu Start hoặc trong tab của Windows Terminal.
 
@@ -85,7 +85,7 @@ Windows 10 ra mắt hệ thống con Linux (WSL) trong bản Anniversary Update,
 
 #### Bật Windows Subsystem for Linux
 
-Trước khi cài bất kỳ bản phân phối Linux nào cho WSL, phải chọn một trong hai cách dưới đây để bảo đảm tính năng tùy chọn "Windows Subsystem for Linux" đã được bật:
+Trước khi cài bất kỳ bản phân phối Linux nào cho WSL, hãy chọn một trong hai cách dưới đây để bảo đảm tính năng tùy chọn "Windows Subsystem for Linux" đã được bật:
 
 Dùng dòng lệnh:
 
@@ -105,19 +105,19 @@ Dùng giao diện đồ họa:
 
 1.  Mở Control Panel ("Bảng điều khiển").
 
-2.  Vào menu con "Turn Windows features on or off" ("Bật hoặc tắt tính năng Windows") trong "Programs and Features" ("Chương trình và Tính năng").
+2.  Vào mục "Turn Windows features on or off" ("Bật hoặc tắt tính năng Windows") trong "Programs and Features" ("Chương trình và Tính năng").
 
 3.  Chọn "Windows Subsystem for Linux" ("Hệ thống con Windows cho Linux") và "Virtual Machine Platform" ("Nền tảng máy ảo").
 
-4.  Nhấp OK ("Đồng ý").
+4.  Nhấp OK.
 
 5.  Khởi động lại.
 
-#### Cài gói cập nhật kernel
+#### Cài gói cập nhật nhân
 
 Nếu bạn muốn dùng WSL 1, hãy bỏ qua bước này.
 
-Tải và cài [gói cập nhật WSL2 Linux kernel dành cho máy x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
+Tải và cài [gói cập nhật nhân Linux của WSL 2 dành cho máy x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
 
 #### Thiết lập phiên bản WSL mặc định
 
@@ -143,13 +143,13 @@ Vào Microsoft Store, tìm "Ubuntu", sau đó chọn "Ubuntu" và nhấp "Instal
 
 ## Cấu hình bản phân phối[^ref5]
 
-Chương này lấy Ubuntu được Windows tự động cài đặt làm ví dụ.
+Phần này lấy Ubuntu được Windows tự động cài đặt làm ví dụ.
 
 ### Chạy Ubuntu
 
 Mở menu Start, tìm Ubuntu rồi khởi động; hoặc dùng lệnh `wsl` để khởi động từ dòng lệnh Windows.
 
-Có thể tạo ô ứng dụng cho Ubuntu hoặc ghim vào taskbar để lần sau mở thuận tiện hơn.
+Có thể tạo ô ghim cho Ubuntu hoặc ghim vào thanh tác vụ để lần sau mở thuận tiện hơn.
 
 ### Khởi tạo
 
@@ -196,16 +196,16 @@ The program 'g++' is currently not installed. You can install it by typing:
 sudo apt install g++
 ```
 
-### Đổi sang máy chủ bản sao phần mềm
+### Đổi máy chủ mirror cho kho phần mềm
 
-Nguồn phần mềm mặc định của Ubuntu đôi khi có tốc độ không ổn định. Có thể đổi sang một máy chủ bản sao Ubuntu đáng tin cậy và gần vị trí của bạn để tăng tốc tải gói, ví dụ từ [danh sách máy chủ bản sao Ubuntu](https://launchpad.net/ubuntu/+archivemirrors).
+Nguồn phần mềm mặc định của Ubuntu đôi khi có tốc độ không ổn định. Có thể đổi sang một máy chủ mirror Ubuntu đáng tin cậy và gần vị trí của bạn để tăng tốc tải gói, ví dụ từ [danh sách máy chủ mirror Ubuntu](https://launchpad.net/ubuntu/+archivemirrors).
 
 ???+ warning "Dùng nguồn phần mềm khớp với phiên bản hệ thống của bạn"
     Hãy tìm nguồn tương ứng với phiên bản hệ thống của mình (có thể dùng `sudo lsb_release -a` để xem phiên bản Ubuntu).
 
     Trừ khi bạn biết rõ mình đang làm gì, đừng dùng nguồn không khớp với phiên bản hệ thống của mình!
 
-Dùng các lệnh sau để cập nhật phần mềm và nguồn phần mềm:
+Dùng các lệnh sau để cập nhật nguồn phần mềm và các gói đã cài:
 
 ```console
 $ sudo su # Sau khi chạy lệnh này, dấu nhắc dòng lệnh sẽ đổi từ $ thành #; trước khi chạy các lệnh bên dưới hãy chú ý dấu nhắc
@@ -256,7 +256,7 @@ Sau đó đóng WSL rồi khởi động lại. Có thể dùng lệnh `locale` 
 # apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
 ```
 
-Việc cài GUIDE xem tại [Cài GUIDE trên Debian hoặc Ubuntu](./editor/guide.md#cài-đặt-trên-debian-hoặc-ubuntu).
+Cách cài GUIDE xem tại [Cài GUIDE trên Debian hoặc Ubuntu](./editor/guide.md#cài-đặt-trên-debian-hoặc-ubuntu).
 
 Ở đây cài đặt môi trường cơ bản và môi trường chính thức mà NOI yêu cầu. Nếu cần, có thể dùng `sudo apt install <tên_chương_trình>` để cài các gói phần mềm khác.
 Nếu muốn cài phiên bản khác, có thể tham khảo [sổ tay quản lý gói](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html) chính thức của Debian.
@@ -276,15 +276,15 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 ## Thao tác nâng cao
 
-### Dùng WSLg để chạy chương trình GUI
+### Dùng WSLg để chạy ứng dụng đồ họa
 
-Nếu bạn dùng Windows 10 phiên bản 19044 trở lên hoặc Windows 11, có thể dùng trải nghiệm desktop tích hợp do WSL 2 cung cấp. Chức năng này cho phép cài và khởi động trực tiếp chương trình desktop Linux mà không cần cấu hình khác.
+Nếu bạn dùng Windows 10 phiên bản 19044 trở lên hoặc Windows 11, có thể dùng môi trường desktop tích hợp do WSL 2 cung cấp. Chức năng này cho phép cài và khởi động trực tiếp ứng dụng đồ họa Linux mà không cần cấu hình thêm.
 
 Xem [Chạy ứng dụng Linux GUI trên Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps).
 
 ### Cài môi trường đồ họa và kết nối bằng Remote Desktop
 
-Nếu phiên bản bạn dùng chưa hỗ trợ WSLg, có thể thử bật chức năng giao diện đồ họa theo hướng dẫn dưới đây.
+Nếu phiên bản bạn dùng chưa hỗ trợ WSLg, có thể thử bật môi trường đồ họa theo hướng dẫn dưới đây.
 
 Dưới đây lấy Xfce làm ví dụ.
 
@@ -300,7 +300,7 @@ Nếu muốn cài thêm nhiều phần mềm ngoài Xfce, có thể chạy lện
 $ sudo apt install xubuntu-desktop -y
 ```
 
-Tệp môi trường đồ họa khá lớn, việc tải và giải nén cần một khoảng thời gian.
+Các gói của môi trường đồ họa khá lớn, việc tải và giải nén sẽ mất một khoảng thời gian.
 
 Cấu hình xrdp:
 
@@ -310,7 +310,7 @@ $ echo "xfce4-session" >~/.xsession
 $ sudo service xrdp restart
 ```
 
-Để tránh xung đột với Remote Desktop vốn có của máy tính, cần đổi cổng mặc định.
+Để tránh xung đột với Remote Desktop sẵn có trên máy tính, cần đổi cổng mặc định.
 
 ![Kết quả khi không đổi cổng](./images/wsl-result-of-not-changing-ports.png)
 
@@ -320,7 +320,7 @@ Chạy lệnh `sudo sed -i 's/port=[0-9]\{1,5\}/port=otherport/' /etc/xrdp/xrdp.
     ...
     port=3390
 
-Chạy `sudo service xrdp restart`, rồi vào menu Start và dùng `localhost:otherport` để truy cập.
+Chạy `sudo service xrdp restart`, rồi vào menu Start và dùng `localhost:otherport` để kết nối.
 
 ![](./images/wsl-login-using-non-root.png)
 
@@ -366,7 +366,7 @@ Kết quả chạy như hình. (Trong Xming, dùng <kbd>Ctrl</kbd>+<kbd>C</kbd> 
 
 ### Truy cập qua lại giữa tệp WSL và Windows
 
-Ổ đĩa trong Windows được tự động mount vào thư mục `/mnt` trong môi trường Linux.
+Ổ đĩa trong Windows được tự động gắn vào thư mục `/mnt` trong môi trường Linux.
 Ví dụ đường dẫn ổ C trong WSL là `/mnt/c`.
 
 ```console
@@ -389,15 +389,15 @@ Cũng có thể dùng trực tiếp các đường dẫn như `\\wsl$\Ubuntu\hom
 
 ### Phối hợp với Visual Studio Code để soạn thảo
 
-Nếu quen dùng [Visual Studio Code](./editor/vscode.md) trong môi trường Windows để soạn thảo mã, có thể cài phần mở rộng `Remote - WSL` trong VS Code để chỉnh sửa tệp trong hệ thống WSL thuận tiện hơn.
+Nếu quen dùng [Visual Studio Code](./editor/vscode.md) trong môi trường Windows để soạn thảo mã, có thể cài phần mở rộng `Remote - WSL` trong VS Code để chỉnh sửa tệp trong WSL thuận tiện hơn.
 
-Thông qua `Remote - WSL`, có thể thao tác trực tiếp với hệ thống con WSL trong giao diện VS Code trên Windows, chỉnh sửa tệp dưới thư mục của hệ thống con thuận tiện hơn và dùng trình dòng lệnh để gỡ lỗi tiện hơn.
+Thông qua `Remote - WSL`, có thể thao tác trực tiếp với WSL trong giao diện VS Code trên Windows, chỉnh sửa tệp trong thư mục của WSL thuận tiện hơn và dùng terminal để gỡ lỗi tiện hơn.
 
 Bằng cách nhập trực tiếp `code .` trong WSL, có thể gọi Visual Studio Code ngay tại thư mục đó để chỉnh sửa các tệp trong thư mục.
 
 Đồng thời, cũng có thể dùng lệnh tương tự `code filename` để chỉnh sửa tệp chỉ định.
 
-Trang Getting Started của phần mở rộng `Remote - WSL` có giới thiệu chi tiết về thao tác soạn thảo.
+Trang Getting Started của phần mở rộng `Remote - WSL` giới thiệu chi tiết các thao tác soạn thảo.
 
 Đồng thời, cũng có thể tham khảo nội dung về WSL trong tài liệu chính thức của Visual Studio Code ([Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)); bài viết này giới thiệu toàn bộ quy trình từ cài WSL đến sử dụng cùng phần mở rộng một cách chi tiết hơn.
 
@@ -406,7 +406,7 @@ Trang Getting Started của phần mở rộng `Remote - WSL` có giới thiệu
 ???+ warning "Cảnh báo"
     Hãy xác nhận bạn đã hoàn thành các bước cài WSL1 ở phía trước.
 
-Chạy lệnh `wsl -l -v` để thấy phiên bản WSL hiện là 1; cần nâng cấp thì mới lên được 2.
+Chạy lệnh `wsl -l -v` để xem phiên bản WSL hiện là 1; nếu cần dùng WSL 2 thì phải nâng cấp.
 
 1.  Bật tính năng "Virtual Machine Platform" ("Nền tảng máy ảo")
 
@@ -418,10 +418,10 @@ Chạy lệnh `wsl -l -v` để thấy phiên bản WSL hiện là 1; cần nân
 
     Sau đó **khởi động lại máy tính**.
 
-2.  Tải gói cập nhật Linux kernel
+2.  Tải gói cập nhật nhân Linux
 
-    -   Gói cập nhật kernel cho [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
-    -   Gói cập nhật kernel cho [ARM64/AArch64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi).
+    -   Gói cập nhật nhân cho [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
+    -   Gói cập nhật nhân cho [ARM64/AArch64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi).
 
 3.  Thiết lập phiên bản bản phân phối
 
@@ -435,22 +435,22 @@ Chạy lệnh `wsl -l -v` để thấy phiên bản WSL hiện là 1; cần nân
 
 Xem: [Câu hỏi thường gặp](https://learn.microsoft.com/en-us/windows/wsl/faq).
 
--   Làm thế nào để thực hiện xxx trong hệ thống con?
+-   Làm thế nào để thực hiện một thao tác nào đó trong WSL?
 
     Có thể dùng dòng lệnh có sẵn hoặc dùng giao diện đồ họa.
-    Ví dụ với vim, nhập `man vim` trong dòng lệnh sẽ có một hướng dẫn sử dụng rất chi tiết.
+    Ví dụ với Vim, nhập `man vim` trong dòng lệnh sẽ có một hướng dẫn sử dụng rất chi tiết.
     Cũng có thể dùng `vim --help`.
 
     Về dòng lệnh, có thể đọc [Dòng lệnh](./cmd.md).
 
 -   Mức chiếm dụng tài nguyên hệ thống?
 
-    Hệ thống này dùng chung host với Windows 10, nên về lý thuyết tiêu thụ tài nguyên ít hơn máy ảo.
+    WSL dùng chung hệ thống chủ với Windows 10, nên về lý thuyết tiêu thụ tài nguyên ít hơn máy ảo.
 
 ## Liên kết ngoài
 
 -   [Về Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/)
--   [Danh sách máy chủ bản sao Ubuntu](https://launchpad.net/ubuntu/+archivemirrors)
+-   [Danh sách máy chủ mirror Ubuntu](https://launchpad.net/ubuntu/+archivemirrors)
 -   [Dev on Windows with WSL](https://dowww.spencerwoo.com)
 -   [Awesome-WSL trên GitHub](https://github.com/sirredbeard/Awesome-WSL)
 -   [Khắc phục sự cố Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/troubleshooting)
