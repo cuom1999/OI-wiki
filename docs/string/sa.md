@@ -189,11 +189,11 @@ Trong quá trình tính mảng hậu tố, khóa sắp xếp là thứ hạng, c
 <span id="một-số-tối-ưu-hằng-số"></span>
 ### Một số tối ưu hằng số
 
-Nếu nộp đoạn code trên lên [LOJ #111: Suffix Sorting](https://loj.ac/problem/111):
+Nếu nộp đoạn mã trên lên [LOJ #111: Suffix Sorting](https://loj.ac/problem/111):
 
 ![](./images/sa3.png)
 
-Nguyên nhân là hằng số của đoạn code trên thực sự khá lớn.
+Nguyên nhân là hằng số của đoạn mã trên thực sự khá lớn.
 
 <span id="khóa-thứ-hai-không-cần-sắp-xếp-đếm"></span>
 #### Khóa thứ hai không cần sắp xếp đếm

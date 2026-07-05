@@ -245,7 +245,7 @@ Chương trình dưới đây mô phỏng một con xúc xắc sáu mặt.
 #include <random>
 
 int main() {
-  std::random_device rd;   // Dùng để lấy hạt giống cho engine ngẫu nhiên
+  std::random_device rd;   // Dùng để lấy hạt giống cho bộ sinh ngẫu nhiên
   std::mt19937 gen(rd());  // Gieo hạt giống cho mersenne_twister_engine chuẩn
   std::uniform_int_distribution<> dis(1, 6);
 

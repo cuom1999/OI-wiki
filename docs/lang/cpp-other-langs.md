@@ -38,7 +38,7 @@ Khác với C++, ban đầu ngôn ngữ C không có kiểu luận lý.
 
 Chuẩn C99 thêm từ khóa `_Bool`, macro tương đương `bool`, cùng hai macro `true`
 và `false`. Nếu cần dùng ba macro `bool`, `true`, `false`, chương trình cần
-nạp tệp header `stdbool.h`. Còn nếu dùng `_Bool` thì không cần nạp tệp header
+nạp tệp tiêu đề `stdbool.h`. Còn nếu dùng `_Bool` thì không cần nạp tệp tiêu đề
 bổ sung nào.
 
 ```c
@@ -47,7 +47,7 @@ _Bool x = 1;    // không cần include stdbool.h
 ```
 
 Từ C23, `true`,`false` và `bool` trở thành từ khóa trong ngôn ngữ C; dùng chúng
-không cần nạp tệp header `stdbool.h` nữa, đồng thời vẫn giữ `_Bool` làm cách
+không cần nạp tệp tiêu đề `stdbool.h` nữa, đồng thời vẫn giữ `_Bool` làm cách
 viết thay thế cho `bool`[^boolean-keyword].
 
 Bảng dưới đây cho thấy sự thay đổi về hỗ trợ kiểu `bool` trong các chuẩn C khác
@@ -56,7 +56,7 @@ nhau, kèm C++ để đối chiếu:
 | Chuẩn ngôn ngữ | `bool` | `true`/`false` | `_Bool` |
 | -------------- | ------ | -------------- | ------- |
 | C89 | / | / | được giữ riêng[^reserved-identifiers] |
-| Từ C99 đến trước C23 | macro, tương đương `_Bool`, cần tệp header `stdbool.h` | macro, `true` tương đương `1`, `false` tương đương `0`, cần tệp header `stdbool.h` | từ khóa |
+| Từ C99 đến trước C23 | macro, tương đương `_Bool`, cần tệp tiêu đề `stdbool.h` | macro, `true` tương đương `1`, `false` tương đương `0`, cần tệp tiêu đề `stdbool.h` | từ khóa |
 | Từ C23 | từ khóa | từ khóa | cách viết thay thế của từ khóa `bool` |
 | C++ | từ khóa | từ khóa | được giữ riêng[^reserved-identifiers] |
 

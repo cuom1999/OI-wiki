@@ -80,7 +80,7 @@ Phương thức tương tác Grader thường gặp trong các kỳ thi OI quố
 
     Bạn cần cài đặt một hàm trả về giá trị lớn nhất trong $a_{i+1}−a_i (0\leq i\leq N−1)$.
 
-Với dạng bài này, thí sinh chỉ cần viết một hàm cụ thể để hoàn thành một nhiệm vụ; hàm này tương tác bằng cách gọi một số hàm phụ trợ được cho sẵn. Để thí sinh tiện kiểm thử cục bộ, đề bài sẽ phát một tệp header và một chương trình chấm tham khảo `grader.cpp` (với Pascal là một thư viện `graderlib`); thí sinh cần biên dịch chương trình của mình cùng với `grader.cpp` để thu được tệp thực thi.
+Với dạng bài này, thí sinh chỉ cần viết một hàm cụ thể để hoàn thành một nhiệm vụ; hàm này tương tác bằng cách gọi một số hàm phụ trợ được cho sẵn. Để thí sinh tiện kiểm thử cục bộ, đề bài sẽ phát một tệp tiêu đề và một chương trình chấm tham khảo `grader.cpp` (với Pascal là một thư viện `graderlib`); thí sinh cần biên dịch chương trình của mình cùng với `grader.cpp` để thu được tệp thực thi.
 
 ```sh
 g++ grader.cpp my_solution.cpp -o my_solution -Wall -O2

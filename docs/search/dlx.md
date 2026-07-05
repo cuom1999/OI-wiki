@@ -552,7 +552,7 @@ Mã cài đặt `dance()` như sau:
 
 Trong đó `stk[]` dùng để ghi đáp án.
 
-Chú ý rằng mỗi lần ta ưu tiên chọn cột có số phần tử ít nhất để xóa. Như vậy chương trình có một mức độ heuristic nhất định, làm số nhánh của cây tìm kiếm nhỏ nhất.
+Chú ý rằng mỗi lần ta ưu tiên chọn cột có số phần tử ít nhất để xóa. Như vậy chương trình có một mức độ theo kinh nghiệm nhất định, làm số nhánh của cây tìm kiếm nhỏ nhất.
 
 Với bài toán phủ lặp, khi tìm kiếm có thể dùng hàm đánh giá (tương tự trong [A\*](astar.md)) để cắt tỉa: nếu trong trường hợp tốt nhất hiện tại, số hàng đã chọn vẫn vượt quá nghiệm tối ưu hiện có, ta có thể trả về ngay.
 

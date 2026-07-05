@@ -52,7 +52,7 @@ Dễ chứng minh rằng mỗi phần tử chỉ được đưa vào, chuyển s
 <span id="hàng-đợi-trong-c-stl"></span>
 ## Hàng đợi trong C++ STL
 
-C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần include header `<queue>`.
+C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần nạp tệp tiêu đề `<queue>`.
 
 ???+ info "Định nghĩa `queue` trong STL"
     ```cpp
@@ -136,7 +136,7 @@ Tương tự, ta cũng có thể dùng ý tưởng mô phỏng hàng đợi bằ
 <span id="hàng-đợi-hai-đầu-trong-c-stl"></span>
 #### Hàng đợi hai đầu trong C++ STL
 
-C++ cũng cung cấp container `std::deque` trong STL. Trước khi dùng, cần include header `<deque>`.
+C++ cũng cung cấp container `std::deque` trong STL. Trước khi dùng, cần nạp tệp tiêu đề `<deque>`.
 
 ??? info "Định nghĩa `deque` trong STL"
     ```cpp

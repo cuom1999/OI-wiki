@@ -106,7 +106,7 @@ Thông thường không cần giữ các điểm nằm trên cạnh của bao l�
         ans = tp - 1
         ```
 
-Theo đoạn code trên, cuối cùng trên bao lồi có $\textit{ans}$ phần tử (điểm số $1$ được lưu thêm, nên mảng $h$ có $\textit{ans}+1$ phần tử), và các điểm được sắp theo chiều ngược kim đồng hồ. Chu vi là
+Theo đoạn mã trên, cuối cùng trên bao lồi có $\textit{ans}$ phần tử (điểm số $1$ được lưu thêm, nên mảng $h$ có $\textit{ans}+1$ phần tử), và các điểm được sắp theo chiều ngược kim đồng hồ. Chu vi là
 
 $$
 \sum_{i=1}^{\textit{ans}}\left|\overrightarrow{h_ih_{i+1}}\right|

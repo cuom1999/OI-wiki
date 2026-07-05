@@ -69,7 +69,7 @@ Ta có thể dễ dàng dùng mảng để mô phỏng một ngăn xếp như sa
 
 ## Ngăn xếp trong C++ STL
 
-STL trong C++ cung cấp container `std::stack`; trước khi dùng cần include header `stack`.
+STL trong C++ cung cấp container `std::stack`; trước khi dùng cần nạp tệp tiêu đề `stack`.
 
 ???+ info "Định nghĩa `stack` trong STL"
     ```cpp

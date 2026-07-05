@@ -122,6 +122,6 @@ Theo kinh nghiệm từ [đường đi ngắn nhất](./shortest-path.md), nút 
 
 Trong một lần *contract*, cần lấy đỉnh heap $|V|$ lần và tăng trọng số $|E|$ lần.
 
-Heap Fibonacci có thể đảm nhiệm việc tìm đỉnh heap trong $O(\log|V|)$ và tăng trọng số trong $O(1)$, nhờ đó độ phức tạp lý thuyết có thể đạt $O(|E| + |V|\log|V|)$. Tuy nhiên, vì heap Fibonacci có hằng số quá lớn và lượng code nhiều, giá trị ứng dụng thực tế tương đối thấp.
+Heap Fibonacci có thể đảm nhiệm việc tìm đỉnh heap trong $O(\log|V|)$ và tăng trọng số trong $O(1)$, nhờ đó độ phức tạp lý thuyết có thể đạt $O(|E| + |V|\log|V|)$. Tuy nhiên, vì heap Fibonacci có hằng số quá lớn và lượng mã nhiều, giá trị ứng dụng thực tế tương đối thấp.
 
 Trong thử nghiệm thực tế, ngay cả bật O2 vẫn phải phụ thuộc vào dao động của trình chấm mới qua được.

@@ -646,7 +646,7 @@ Về đoạn mã:
 
     **Chú ý**: không dùng cú pháp [Snippet Lines](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines).
 
-    Để tăng tỷ lệ tái sử dụng mã, bạn cũng có thể tách mã thành tệp header và khi kiểm thử thì dẫn vào các mã kiểm thử khác nhau. Nếu phần thân bài cần xuất hiện đầy đủ mã kiểm thử làm hiện thực tham khảo cho bài mẫu, trong phần thân bài nên dùng riêng cú pháp Snippet Sections để ghép thành mã một tệp, để người đọc dễ đọc. Ví dụ: [cây đỏ-đen](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231).
+    Để tăng tỷ lệ tái sử dụng mã, bạn cũng có thể tách mã thành tệp tiêu đề và khi kiểm thử thì dẫn vào các mã kiểm thử khác nhau. Nếu phần thân bài cần xuất hiện đầy đủ mã kiểm thử làm hiện thực tham khảo cho bài mẫu, trong phần thân bài nên dùng riêng cú pháp Snippet Sections để ghép thành mã một tệp, để người đọc dễ đọc. Ví dụ: [cây đỏ-đen](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231).
 
 Về mã bài mẫu:
 
@@ -669,7 +669,7 @@ Nếu bạn cần thêm bài mẫu:
 **OI Wiki** sẽ kiểm thử mã bài mẫu trên tất cả nền tảng. Để bảo đảm mã của bạn có thể vượt qua kiểm thử thuận lợi, vui lòng tuân thủ các quy tắc sau:
 
 -   <a id="CODE-3.1"></a>CODE-3.1: mã của bạn cần hỗ trợ biên dịch và chạy đồng thời theo các chuẩn C++14, C++17, C++20.
--   <a id="CODE-3.2"></a>CODE-3.2: không dùng các header không chuẩn như `<bits/stdc++.h>`, `<bits/extc++.h>`.
+-   <a id="CODE-3.2"></a>CODE-3.2: không dùng các tệp tiêu đề không chuẩn như `<bits/stdc++.h>`, `<bits/extc++.h>`.
 -   <a id="CODE-3.3"></a>CODE-3.3: tệp đáp án chuẩn không được có khoảng trắng thừa.
 -   <a id="CODE-3.4"></a>CODE-3.4: không dùng [alternative tokens](https://en.cppreference.com/w/cpp/language/operator_alternative#Alternative_tokens).
 -   <a id="CODE-3.5"></a>CODE-3.5: khi dùng [aggregate initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization), không được viết `object{args}` thành `(object){args}`.

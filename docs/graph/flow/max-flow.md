@@ -911,9 +911,9 @@ Trong khi BFS, ta đồng thời kiểm tra tính liên thông của đồ thị
 
 Điều kiện đẩy của HLPP là $h(u)=h(v)+1$. Nếu tại một thời điểm nào đó của thuật toán tồn tại một $k$ sao cho số đỉnh có $h(u)=k$ bằng $0$, thì các đỉnh có $h(u)>k$ sẽ mãi không thể đẩy luồng dư đến $t$, mà chỉ có thể đưa ngược về $s$. Vì vậy lúc này ta trực tiếp đặt độ cao của chúng thành ít nhất $n+1$ để nhanh chóng đẩy ngược về $s$, giảm thao tác gán lại nhãn.
 
-Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụng $N*2-1$ bucket `B`, trong đó `B[i]` ghi lại tất cả các đỉnh đang hoạt động hiện có độ cao $i$. Cài đặt đã thêm hai tối ưu nói trên, và chỉ xử lý các đỉnh đang hoạt động có độ cao nhỏ hơn $n$.
+Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụng $N*2-1$ xô `B`, trong đó `B[i]` ghi lại tất cả các đỉnh đang hoạt động hiện có độ cao $i$. Cài đặt đã thêm hai tối ưu nói trên, và chỉ xử lý các đỉnh đang hoạt động có độ cao nhỏ hơn $n$.
 
-Điều đáng chú ý là bucket trong bài báo[^ref2] được cài đặt bằng stack dựa trên danh sách liên kết, còn container mặc định của `stack` trong STL là `deque`. Qua kiểm thử đơn giản, `vector`, `deque`, `list` không khác biệt nhiều về hiệu suất trong quá trình chạy thực tế của bài này.
+Điều đáng chú ý là xô trong bài báo[^ref2] được cài đặt bằng stack dựa trên danh sách liên kết, còn container mặc định của `stack` trong STL là `deque`. Qua kiểm thử đơn giản, `vector`, `deque`, `list` không khác biệt nhiều về hiệu suất trong quá trình chạy thực tế của bài này.
 
 #### Cài đặt
 

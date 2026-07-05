@@ -48,14 +48,14 @@ Ví dụ:
 
 ### Tận dụng đặc tính dữ liệu
 
-Xét [DSU](../ds/dsu.md) hỗ trợ nén đường đi và gộp theo heuristic. Cách làm truyền thống cần hai mảng, lần lượt ghi lại chỉ số nút cha và kích thước cây con.
+Xét [DSU](../ds/dsu.md) hỗ trợ nén đường đi và gộp theo kinh nghiệm. Cách làm truyền thống cần hai mảng, lần lượt ghi lại chỉ số nút cha và kích thước cây con.
 
 Lưu ý:
 
 1.  Sau khi áp dụng nén đường đi, với một cây trong DSU, ta chỉ cần ghi lại kích thước cây con tương ứng với nút gốc.
 2.  Cha của nút gốc chắc chắn là chính nó.
 
-Ta có thể tận dụng đặc tính của số nguyên có dấu: dùng số âm để biểu diễn nút gốc, số dương để biểu diễn nút không phải gốc. Vì vậy chỉ cần một mảng là có thể cài đặt DSU hỗ trợ nén đường đi và gộp theo heuristic.
+Ta có thể tận dụng đặc tính của số nguyên có dấu: dùng số âm để biểu diễn nút gốc, số dương để biểu diễn nút không phải gốc. Vì vậy chỉ cần một mảng là có thể cài đặt DSU hỗ trợ nén đường đi và gộp theo kinh nghiệm.
 
 ???+ note "Cài đặt"
     ```cpp

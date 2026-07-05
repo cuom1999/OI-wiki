@@ -66,7 +66,7 @@ Ghi chú: Trước khi viết, hãy chú ý bật bộ gõ tiếng Anh.
 Ngôn ngữ C++
 
 ```cpp
-#include <iostream>  // nạp tệp header
+#include <iostream>  // nạp tệp tiêu đề
 
 int main() {                     // định nghĩa hàm main
   std::cout << "Hello, world!";  // dùng cout trong không gian tên chuẩn
@@ -78,7 +78,7 @@ int main() {                     // định nghĩa hàm main
 Ngôn ngữ C
 
 ```c
-#include <stdio.h>  // nạp tệp header
+#include <stdio.h>  // nạp tệp tiêu đề
 
 int main() {                // định nghĩa hàm main
   printf("Hello, world!");  // in Hello, world!

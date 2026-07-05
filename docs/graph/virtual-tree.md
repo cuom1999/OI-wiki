@@ -228,7 +228,7 @@ Trong đó có nhiều chi tiết, chẳng hạn nếu dùng danh sách kề đ�
 
 Mã C++ xây dựng cây ảo đại khái như sau:
 
-???+ note "Cài đặt code"
+???+ note "Cài đặt mã"
     ```cpp
     bool cmp(const int x, const int y) { return id[x] < id[y]; }
     

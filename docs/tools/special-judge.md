@@ -433,7 +433,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-Cũng có thể dùng tệp header [validate.h](https://github.com/Kattis/problemtools/blob/master/examples/different/output_validators/different_validator/validate.h) do Kattis Problem Tools cung cấp để viết, nhằm triển khai các chức năng phức tạp hơn.
+Cũng có thể dùng tệp tiêu đề [validate.h](https://github.com/Kattis/problemtools/blob/master/examples/different/output_validators/different_validator/validate.h) do Kattis Problem Tools cung cấp để viết, nhằm triển khai các chức năng phức tạp hơn.
 
 ## Tài liệu tham khảo
 

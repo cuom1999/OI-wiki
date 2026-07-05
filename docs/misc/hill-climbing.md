@@ -1,6 +1,6 @@
 ## Giới thiệu
 
-Thuật toán leo đồi là một phương pháp chọn tối ưu cục bộ. Đây là một phương pháp heuristic, có thể xem như một cải tiến của tìm kiếm theo chiều sâu, dùng thông tin phản hồi để hỗ trợ việc sinh quyết định cho lời giải.
+Thuật toán leo đồi là một phương pháp chọn tối ưu cục bộ. Đây là một phương pháp theo kinh nghiệm, có thể xem như một cải tiến của tìm kiếm theo chiều sâu, dùng thông tin phản hồi để hỗ trợ việc sinh quyết định cho lời giải.
 
 Nói trực tiếp hơn, khi hiện tại không thể đi thẳng tới nghiệm tối ưu, nhưng có thể so sánh được hai nghiệm để biết nghiệm nào tốt hơn, ta sẽ dựa trên một số thông tin phản hồi để sinh ra một nghiệm khả dĩ mới.
 
