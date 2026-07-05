@@ -393,7 +393,7 @@ True
 >>> vis2 = vis[:]  # Sao chép một danh sách hai chiều
 >>> vis[0][1] = 2; vis  # vis bị sửa hàng loạt
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
->>> vis2  # Nhưng vis2 được copy bằng slice vẫn bị sửa
+>>> vis2  # Nhưng vis2 được sao chép bằng cắt lát vẫn bị sửa
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
 >>> id(vis) != id(vis2)  # vis và vis2 không phải cùng một đối tượng
 True
@@ -444,11 +444,11 @@ array([[0., 0., 0.],
 >>> a1.shape  # Hình dạng của mảng
 (3, 3)
 
->>> a1[:2, :2]  # Lấy ma trận con gồm hai dòng đầu, hai cột đầu, không copy
+>>> a1[:2, :2]  # Lấy ma trận con gồm hai dòng đầu, hai cột đầu, không sao chép
 array([[1, 0],
        [0, 0]])
 
->>> a1[:, [0, 2]]  # Lấy cột 1 và 3, không copy
+>>> a1[:, [0, 2]]  # Lấy cột 1 và 3, không sao chép
 array([[1, 0],
        [0, 0],
        [0, 0]])
@@ -487,7 +487,7 @@ Trong lập trình thi đấu, thông thường chỉ cần xuất số và chu�
 ```pycon
 >>> pi = 3.1415926; print('%.4f' % pi)   # Định dạng: %[flags][width][.precision]type
 3.1416
->>> '%.4f - %8f = %d' % (pi, 0.1416, 3)  # Nếu bên phải có nhiều tham số, dùng () bao lại; sau này sẽ thấy đây thực ra là "tuple"
+>>> '%.4f - %8f = %d' % (pi, 0.1416, 3)  # Nếu bên phải có nhiều tham số, dùng () bao lại; sau này sẽ thấy đây thực ra là tuple
 '3.1416 - 0.141600 = 3'
 ```
 
@@ -561,7 +561,7 @@ Có nhiều hàm liên quan đến đọc ghi tệp, phù hợp với các tình
 
 ### [Luồng điều khiển](https://docs.python.org/3/tutorial/controlflow.html)
 
-Tuy đã học nhiều tính năng của Python, đến lúc này các đoạn mã Python được trình bày đều là câu lệnh một dòng. Điều đó che đi khác biệt lớn giữa Python và C về phong cách mã: thứ nhất, Python không dùng `{}` mà dùng thụt lề để biểu diễn khối lệnh; nếu thụt lề không thẳng hàng sẽ báo lỗi ngay, nếu trộn tab và dấu cách cũng sẽ báo lỗi. Thứ hai, nơi bắt đầu khối lệnh, chẳng hạn dòng `if` và `for`, phải kết thúc bằng dấu hai chấm `:`. Điều này giúp mã dễ đọc hơn, nhưng bạn cũng có thể nhớ cảm giác tự do của C, vì khi copy paste làm mất thụt lề rồi phải căn lại thủ công thì rất phiền.
+Tuy đã học nhiều tính năng của Python, đến lúc này các đoạn mã Python được trình bày đều là câu lệnh một dòng. Điều đó che đi khác biệt lớn giữa Python và C về phong cách mã: thứ nhất, Python không dùng `{}` mà dùng thụt lề để biểu diễn khối lệnh; nếu thụt lề không thẳng hàng sẽ báo lỗi ngay, nếu trộn tab và dấu cách cũng sẽ báo lỗi. Thứ hai, nơi bắt đầu khối lệnh, chẳng hạn dòng `if` và `for`, phải kết thúc bằng dấu hai chấm `:`. Điều này giúp mã dễ đọc hơn, nhưng bạn cũng có thể nhớ cảm giác tự do của C, vì khi sao chép và dán làm mất thụt lề rồi phải căn lại thủ công thì rất phiền.
 
 <a id="cấu-trúc-vòng-lặp"></a>
 
@@ -570,13 +570,13 @@ Tuy đã học nhiều tính năng của Python, đến lúc này các đoạn m
 Biểu thức sinh danh sách có thể thực hiện thao tác hàng loạt hiệu quả trong một dòng, nhưng đôi khi việc ép dòng trở nên quá gượng ép. Nhiều tình huống vẫn chỉ có thể dùng cấu trúc vòng lặp, nên ta tiếp tục lấy ví dụ đọc nhiều dòng dữ liệu để minh họa cách viết vòng lặp trong Python:
 
 ```python
-# Lưu ý từ đây trở đi ta không dùng REPL nữa; hãy tự copy dữ liệu nhiều dòng
+# Lưu ý từ đây trở đi ta không dùng REPL nữa; hãy tự sao chép dữ liệu nhiều dòng
 u, v, w = ([] for i in range(3))  # Gán nhiều biến
 for i in range(4):  # Ở đây giả sử nhập 4 dòng dữ liệu
     _u, _v, _w = [int(x) for x in input().split()]
     u.append(_u), v.append(_v), w.append(_w)
-    # Không thể làm kiểu cin >> u[i] >> v[i] >> w[i], vì chắc chắn vượt quá độ dài hiện tại của list
-    # Tất nhiên bạn có thể khởi tạo list toàn 0 độ dài MAXN, nhưng cần nhớ độ dài thật và xóa phần dư
+    # Không thể làm kiểu cin >> u[i] >> v[i] >> w[i], vì chắc chắn vượt quá độ dài hiện tại của danh sách
+    # Tất nhiên bạn có thể khởi tạo danh sách toàn 0 độ dài MAXN, nhưng cần nhớ độ dài thật và xóa phần dư
 print(u, v, w)
 ```
 
@@ -588,7 +588,7 @@ Dưới đây dùng vòng lặp `while` để minh họa cách nhập khi số d
 u, v, w = [], [], []  # Gán nhiều biến, thực ra giống trên
 s = input()  # Lưu ý câu lệnh gán trong Python không thể đặt trong biểu thức điều kiện
 while s:  # Không thể viết như C: while(!scanf())
-    # Dùng slice để nối, tránh append(); lưu ý trong biểu thức sinh danh sách lại lồng list
+    # Dùng cắt lát để nối, tránh append(); lưu ý trong biểu thức sinh danh sách lại lồng danh sách
     u[len(u) :], v[len(v) :], w[len(w) :] = [[int(x)] for x in s.split()]
     s = input()
 # Từ Python 3.8 có toán tử hải tượng, bạn có thể tiết kiệm hai dòng, nhưng môi trường thi có thể không hỗ trợ
@@ -673,7 +673,7 @@ dic = {
 }  # Sắp xếp dict giảm dần theo giá trị, dùng biểu thức lambda
 
 print(dic["A"])  # Trả về mục trong dic có khóa 'A', ở đây giá trị là 65
-dic["a"] = 97  # Gán d[key] thành value; nếu dict chưa có key thì chèn trực tiếp
+dic["a"] = 97  # Gán giá trị cho khóa; nếu dict chưa có khóa thì chèn trực tiếp
 if "b" in dic:  # Phong cách LBYL (Look Before You Leap)
     print(dic["b"])  # Nếu dict không có khóa này sẽ lỗi, nên kiểm tra trước
 else:
@@ -869,9 +869,9 @@ def fib(n):
 === "Python"
     ```python
     try:  # Nạp mô-đun hàng đợi ưu tiên
-        import Queue as pq  # python version < 3.0
+        import Queue as pq  # Phiên bản Python < 3.0
     except ImportError:
-        import queue as pq  # python3.*
+        import queue as pq  # Python 3.*
 
     N = int(1e5 + 5)
     M = int(2e5 + 5)
@@ -912,7 +912,7 @@ def fib(n):
     cnt = 0
 
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là min-heap theo phần tử đầu
+    q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là heap nhỏ nhất theo phần tử đầu
 
 
     def add_path(f, t, v):  # Thêm cạnh vào sao tiến
@@ -952,7 +952,7 @@ def fib(n):
 
 === "Python"
     ```python
-    def nextedgeid(u):  # Generator, có thể dùng trong vòng lặp for
+    def nextedgeid(u):  # Bộ sinh, có thể dùng trong vòng lặp for
         i = h[u]
         while i:
             yield i
@@ -1073,9 +1073,9 @@ def fib(n):
 === "Python"
     ```python
     try:  # Nạp mô-đun hàng đợi ưu tiên
-        import Queue as pq  # python version < 3.0
+        import Queue as pq  # Phiên bản Python < 3.0
     except ImportError:
-        import queue as pq  # python3.*
+        import queue as pq  # Python 3.*
 
     N = int(1e5 + 5)
     M = int(2e5 + 5)
@@ -1094,7 +1094,7 @@ def fib(n):
     cnt = 0
 
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là min-heap theo phần tử đầu
+    q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là heap nhỏ nhất theo phần tử đầu
 
 
     def add_path(f, t, v):  # Thêm cạnh vào sao tiến
@@ -1109,7 +1109,7 @@ def fib(n):
         h[f] = cnt
 
 
-    def nextedgeid(u):  # Generator, có thể dùng trong vòng lặp for
+    def nextedgeid(u):  # Bộ sinh, có thể dùng trong vòng lặp for
         i = h[u]
         while i:
             yield i
