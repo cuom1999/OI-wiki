@@ -21,7 +21,10 @@ HTML_TRANSLATIONS = {
     "黑ICP备19005132号-2": "Giấy phép ICP Hắc Long Giang 19005132-2",
     "少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.oi-wiki.org": "Chúc mừng bạn đã tìm thấy easter egg. Chúng tôi đang làm một số việc thú vị liên quan đến OI; nếu quan tâm, hãy truy cập https://join-us.oi-wiki.org",
     '"data-lang":"en-US"': '"data-lang":"vi"',
+    "Made with": "Tạo bằng",
 }
+
+FOOTNOTE_BACKREF_RE = re.compile(r'title="Jump back to footnote ([^"]+?) in the text"')
 
 def _nav_math():
     raw_re = r"\\\((.+?)\\\)"
@@ -38,6 +41,7 @@ def on_env(env, config, files, **kwargs):
 def on_post_page(output, page, config, **kwargs):
     for source, target in HTML_TRANSLATIONS.items():
         output = output.replace(source, target)
+    output = FOOTNOTE_BACKREF_RE.sub(r'title="Quay lại chú thích \1 trong văn bản"', output)
     return output
 
 def on_post_build(config, **kwargs):
@@ -46,4 +50,5 @@ def on_post_build(config, **kwargs):
         output = html_file.read_text(encoding="utf-8")
         for source, target in HTML_TRANSLATIONS.items():
             output = output.replace(source, target)
+        output = FOOTNOTE_BACKREF_RE.sub(r'title="Quay lại chú thích \1 trong văn bản"', output)
         html_file.write_text(output, encoding="utf-8")
