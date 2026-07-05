@@ -12,7 +12,7 @@ sử, C++ giữ lại và mở rộng `struct`.
 
 ## Định nghĩa lớp
 
-Lớp được định nghĩa bằng từ khóa `class` hoặc `struct`; phần dưới đây lấy
+Lớp được định nghĩa bằng từ khóa `class` hoặc `struct`; phần sau lấy
 `class` làm ví dụ.
 
 ```cpp
@@ -148,7 +148,7 @@ Nếu muốn gọi hàm thành viên `print` của `var`, có thể dùng `var.p
 Nạp chồng toán tử có thể thay thế hàm ở một mức độ nhất định và làm mã ngắn gọn
 hơn.
 
-Dưới đây là ví dụ nạp chồng toán tử.
+Sau đây là ví dụ nạp chồng toán tử.
 
 ```cpp
 class Vector {
@@ -226,7 +226,7 @@ class Object {
 ```
 
 Ví dụ này định nghĩa hàm tạo mặc định của `Object`. Hàm này có thể khởi tạo mọi
-thành viên dữ liệu thành `0` khi ta tạo biến kiểu `Object`.
+thành viên dữ liệu thành `0` khi tạo biến kiểu `Object`.
 
 Nếu không có hàm tạo do người viết tự định nghĩa, trình biên dịch xem lớp đó là
 có hàm tạo mặc định ngầm định. Nói cách khác, nếu không định nghĩa bất kỳ hàm tạo
@@ -260,7 +260,7 @@ Khi dùng C++11 trở lên, có thể dùng `{}` để khởi tạo biến.
     Các bước khởi tạo đại khái như sau:
 
     1.  Thử tìm hàm tạo nhận `std::initializer_list`; nếu có thì gọi hàm đó, và
-        sau khi gọi xong không tiếp tục tìm các cách bên dưới nữa. Các bước sau
+        sau khi gọi xong không tiếp tục tìm các cách phía sau nữa. Các bước sau
         cũng tương tự.
     2.  Thử điền các phần tử trong `{}` vào tham số của các hàm tạo khác; nếu có
         thể điền đầy đủ tham số theo thứ tự, tính cả tham số mặc định, thì gọi
@@ -303,7 +303,7 @@ Object C{1, 2};  // hợp lệ (C++11)
 ```
 
 ??? note "Về chuyển đổi kiểu ngầm định"
-    Đôi khi ta sẽ viết đoạn mã sau:
+    Đôi khi có thể viết đoạn mã sau:
 
     ```cpp
     class Node {
@@ -357,7 +357,7 @@ này. Khi đó cần dùng hàm hủy để giải phóng bộ nhớ động th�
 Hàm **hủy** (destructor) sẽ được gọi khi biến đó bị hủy. Cách định nghĩa tương tự
 hàm tạo, nhưng cần thêm `~` phía trước.
 
-*Hàm hủy mặc định thường đã đủ dùng trong lập trình thi đấu; ta thường chỉ tự
+*Hàm hủy mặc định thường đã đủ dùng trong lập trình thi đấu; thường chỉ tự
 định nghĩa hàm hủy khi thành viên có chứa con trỏ cần tự quản lý.*
 
 ```cpp
@@ -380,13 +380,13 @@ class Object {
 ### Gán giá trị cho biến lớp
 
 Theo mặc định, khi gán giữa hai đối tượng cùng lớp, chương trình sẽ gán lần lượt
-từng thành viên tương ứng. Cũng có thể dùng `TênLớp(...)` hoặc `TênLớp{...}` làm
+từng thành viên cùng vị trí. Cũng có thể dùng `TênLớp(...)` hoặc `TênLớp{...}` làm
 đối tượng tạm để gán.
 
 Khi dùng đối tượng tạm, trước hết chương trình tạo đối tượng tạm bằng hàm tạo
-tương ứng, sau đó dùng toán tử gán để gán vào biến bên trái.
+phù hợp, sau đó dùng toán tử gán để gán vào biến bên trái.
 
-Ngoài ra, theo mặc định, việc gán giữa các thành viên tương ứng đều là **sao chép
+Ngoài ra, theo mặc định, việc gán giữa các thành viên cùng vị trí đều là **sao chép
 nông**. Nếu thành viên có con trỏ, sau khi gán xong, con trỏ thành viên của hai
 biến sẽ có cùng địa chỉ.
 
