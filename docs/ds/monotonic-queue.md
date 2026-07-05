@@ -16,7 +16,7 @@ $O(n \times k)$.
 
 Cách này thực hiện rất nhiều công việc lặp lại. Ngoài $k-1$ số ở đầu và
 $k-1$ số ở cuối, mỗi số đều bị so sánh $k$ lần; trong khi $100\%$ dữ liệu của
-bài có $n \le 1000000$, nên khi $k$ hơi lớn thì chắc chắn sẽ TLE.
+bài có $n \le 1000000$, nên khi $k$ tương đối lớn thì chắc chắn sẽ TLE.
 
 Lúc này cần dùng hàng đợi đơn điệu.
 
@@ -29,7 +29,7 @@ và "hàng đợi".
 
 "Hàng đợi" nghĩa là các phần tử chỉ được thao tác ở đầu hàng đợi và cuối hàng đợi.
 
-P.S. "Hàng đợi" trong hàng đợi đơn điệu có một số khác biệt so với hàng đợi
+Lưu ý rằng "hàng đợi" trong hàng đợi đơn điệu có một số khác biệt so với hàng đợi
 thông thường; phần sau sẽ nhắc tới.
 
 ## Phân tích ví dụ
@@ -52,8 +52,8 @@ nghĩa hàng đợi đơn điệu và giảm số lần so sánh lặp lại. H�
 hàng đợi chắc chắn là giá trị lớn nhất trong vùng truy vấn, nên khi in kết quả
 chỉ cần in đầu hàng đợi.
 
-Dễ thấy trong thuật toán này, mỗi số chỉ vào hàng đợi và ra khỏi hàng đợi nhiều
-nhất một lần, vì vậy độ phức tạp thời gian giảm xuống $O(n)$.
+Trong thuật toán này, mỗi số chỉ vào hàng đợi và ra khỏi hàng đợi nhiều nhất một lần,
+vì vậy độ phức tạp thời gian giảm xuống $O(n)$.
 
 Do độ dài đoạn truy vấn là cố định, một giá trị dù lớn đến đâu cũng không được
 in nếu đã vượt ra ngoài phạm vi truy vấn. Vì vậy, còn cần mảng `site` ghi lại
@@ -89,9 +89,9 @@ như sau (giả sử $k = 3$):
     --8<-- "docs/ds/code/monotonic-queue/monotonic-queue_1.cpp"
     ```
 
-P.S. Một khác biệt lớn giữa "hàng đợi" trong cấu trúc này và hàng đợi thông
-thường là có thể thao tác ở cuối hàng đợi; trong STL có cấu trúc dữ liệu tương
-tự là `deque`.
+Một khác biệt lớn giữa "hàng đợi" trong cấu trúc này và hàng đợi thông thường
+là có thể thao tác ở cuối hàng đợi;
+trong STL có cấu trúc dữ liệu tương tự là `deque`.
 
 ???+ note "Ví dụ 2 [Luogu P2698 Flowerpot S](https://www.luogu.com.cn/problem/P2698)"
     Cho tọa độ của $N$ giọt nước, trong đó $y$ biểu thị độ cao của giọt nước,

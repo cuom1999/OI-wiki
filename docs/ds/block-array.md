@@ -1,7 +1,14 @@
 <span id="xây-dựng-mảng-chia-khối"></span>
 ## Xây dựng mảng chia khối
 
-Mảng chia khối là cách chia một mảng thành vài khối, lưu thông tin tổng hợp bên trong mỗi khối; khi truy vấn gặp hai khối biên không đầy đủ thì xử lý trực tiếp bằng vét cạn. Thông thường, độ dài khối là $O(\sqrt{n})$. Phần phân tích chi tiết có thể xem trong bài viết của Xu Mingkuan, "Bước đầu tìm hiểu thuật toán chia khối kích thước phi thông thường", trong tuyển tập luận văn đội tuyển quốc gia năm 2017.
+Mảng chia khối là cách chia một mảng thành vài khối
+và lưu thông tin tổng hợp bên trong mỗi khối.
+Khi truy vấn gặp hai khối biên không đầy đủ,
+các phần tử ở hai biên được xử lý trực tiếp bằng vét cạn.
+Thông thường, độ dài khối là $O(\sqrt{n})$.
+Phần phân tích chi tiết có thể xem trong bài viết của Xu Mingkuan,
+"Bước đầu tìm hiểu thuật toán chia khối kích thước phi thông thường",
+trong tuyển tập luận văn đội tuyển quốc gia năm 2017.
 
 Dưới đây là một cách xây dựng mảng chia khối.
 
@@ -32,7 +39,14 @@ Có hai loại thao tác:
 1.  Cộng $z$ vào mỗi số trong đoạn $[x,y]$;
 2.  Hỏi số lượng số lớn hơn hoặc bằng $z$ trong đoạn $[x,y]$.
 
-Ta cần hỏi số lượng số trong một khối lớn hơn hoặc bằng một giá trị, vì vậy cần một mảng `t` lưu các phần tử trong khối sau khi sắp xếp; `a` là mảng ban đầu (chưa sắp xếp). Với cập nhật trên cả khối, dùng cách tương tự đánh dấu lười được lưu bền vững: mảng `delta` ghi lại giá trị đang được cộng vào toàn bộ khối. Gọi $q$ là tổng số thao tác truy vấn và cập nhật, độ phức tạp thời gian là $O(q\sqrt{n}\log n)$.
+Cần hỏi số lượng số trong một khối lớn hơn hoặc bằng một giá trị,
+vì vậy dùng mảng `t` để lưu các phần tử trong khối sau khi sắp xếp;
+`a` là mảng ban đầu, chưa sắp xếp.
+Với cập nhật trên cả khối,
+có thể dùng cách tương tự đánh dấu lười được lưu bền vững:
+mảng `delta` ghi lại giá trị đang được cộng vào toàn bộ khối.
+Gọi $q$ là tổng số thao tác truy vấn và cập nhật,
+độ phức tạp thời gian là $O(q\sqrt{n}\log n)$.
 
 Dùng mảng `delta` để ghi lại lượng cộng toàn khối của từng khối.
 
@@ -85,7 +99,13 @@ Có hai loại thao tác:
 1.  Gán mọi số trong đoạn $[x,y]$ thành $z$;
 2.  Hỏi số lượng số nhỏ hơn hoặc bằng $z$ trong đoạn $[x,y]$.
 
-Dùng mảng `delta` để ghi lại giá trị mà cả khối hiện đang được gán. Khi khối chưa bị gán toàn bộ, dùng một giá trị đặc biệt (chẳng hạn `0x3f3f3f3f3f3f3f3fll`) để biểu diễn. Với các khối ở biên, trước khi truy vấn cần `pushdown`, tức đẩy thông tin đang lưu trong khối xuống từng phần tử. Sau khi gán, nhớ `sort` lại. Các phần còn lại giống bài trước.
+Dùng mảng `delta` để ghi lại giá trị mà cả khối hiện đang được gán.
+Khi khối chưa bị gán toàn bộ,
+dùng một giá trị đặc biệt (chẳng hạn `0x3f3f3f3f3f3f3f3fll`) để biểu diễn.
+Với các khối ở biên, trước khi truy vấn cần `pushdown`,
+tức đẩy thông tin đang lưu trong khối xuống từng phần tử.
+Sau khi gán, cần `sort` lại.
+Các phần còn lại giống bài trước.
 
 ???+ note "Cài đặt"
     ```cpp
