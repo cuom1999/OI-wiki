@@ -26,9 +26,9 @@ Xem [Installation | CP Editor](https://cpeditor.org/docs/installation/).
 
     ![cp-setting-lang-3](images/cp-setting-lang-3.png)
 
--   Đặt template
+-   Đặt mẫu
 
-    Template sẽ tự động khởi tạo khi tạo tệp mới. Cần chú ý rằng CP Editor cần một tệp `xxx.cpp` làm tệp template.
+    Mẫu sẽ tự động khởi tạo khi tạo tệp mới. Cần chú ý rằng CP Editor cần một tệp `xxx.cpp` làm mẫu tệp.
 
     ![cp-setting-lang-4](images/cp-setting-lang-4.png)
 
@@ -43,7 +43,7 @@ Xem [Installation | CP Editor](https://cpeditor.org/docs/installation/).
     | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>    |         Biên dịch          |
     | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>    |     Biên dịch và chạy      |
     |          <kbd>Ctrl</kbd>+<kbd>R</kbd>            |            Chạy            |
-    |  <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>     |    Chạy trong terminal     |
+    |  <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>     | Chạy trong trình dòng lệnh |
     |          <kbd>Ctrl</kbd>+<kbd>K</kbd>            | Dừng toàn bộ tiến trình    |
     | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>    |       Định dạng mã         |
 
