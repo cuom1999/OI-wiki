@@ -22,7 +22,7 @@ Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đ
 
 -   Có thể kiểm thử stress rất thuận tiện; dữ liệu tìm được khi kiểm thử stress có thể thêm trực tiếp vào dữ liệu của bài.
 
--   Khi phát hiện vấn đề có thể tạo issue, tránh việc bị tin nhắn trôi mất mà vẫn chưa được sửa.
+-   Khi phát hiện vấn đề có thể tạo issue (mục vấn đề), tránh việc vấn đề bị trôi trong tin nhắn mà vẫn chưa được sửa.
 
 -   Chuẩn bị cho việc ra đề CF trong tương lai.
 
@@ -32,13 +32,13 @@ Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đ
 
 Danh sách bài sẽ hiển thị thông tin cơ bản của một bài, chẳng hạn tình trạng viết đề bài, hướng dẫn, tình trạng sinh dữ liệu, cũng như thiết lập của lời giải chuẩn, trình kiểm tra dữ liệu và trình kiểm tra đáp án.
 
-Có thể nhấp đúp vào cột "Name" ("Tên") trong danh sách bài để ghi chú, ví dụ những việc cần tự nhắc (cần thêm test/cần viết hướng dẫn), hoặc phân bố điểm dự kiến của bài. Có thể điền tùy nhu cầu, và dĩ nhiên cũng có thể để trống.
+Có thể nhấp đúp vào cột "Name" ("Tên") trong danh sách bài để ghi chú, ví dụ những việc cần tự nhắc (cần thêm bộ kiểm thử/cần viết hướng dẫn), hoặc phân bố điểm dự kiến của bài. Có thể điền tùy nhu cầu, và dĩ nhiên cũng có thể để trống.
 
 Trong "Rev." ("Phiên bản"), "x/y" nghĩa là x là phiên bản hiện tại của bài, còn y là phiên bản gói. Nếu hai số khác nhau, y sẽ hiển thị màu đỏ.
 
 Trong "Edit session" ("Phiên chỉnh sửa"), "Start" ("Bắt đầu") nghĩa là tài khoản của bạn chưa từng xem bài này; "Continue (x) Discard" ("Tiếp tục (x) / Hủy bỏ") nghĩa là tài khoản của bạn đang ở phiên bản thứ x của bài này. Nhấp "Start" hoặc "Continue (x)" sẽ đi vào giao diện quản lý bài; nhấp "Discard" ("Hủy bỏ") sẽ hủy **không thể khôi phục** toàn bộ thay đổi của bạn và trở về trạng thái như chưa từng xem bài.
 
-Nếu tài khoản của bạn có thay đổi chưa commit trong một bài, cả hàng tương ứng trong danh sách bài sẽ chuyển sang màu đỏ.
+Nếu tài khoản của bạn có thay đổi chưa ghi nhận (commit) trong một bài, cả hàng tương ứng trong danh sách bài sẽ chuyển sang màu đỏ.
 
 ## Quản lý bài
 
@@ -47,11 +47,11 @@ Phần lớn chức năng của Polygon không cần học riêng; đọc hiểu
 ???+ warning "Cảnh báo"
     Đề bài không thể dùng Markdown, chỉ có thể dùng TeX.
 
--   Invocation dùng để kiểm thử lời giải.
+-   Invocation (lượt chạy kiểm thử) dùng để kiểm thử lời giải.
 
 -   Stress dùng để kiểm thử stress.
 
--   Dữ liệu được tạo bằng trình sinh dữ liệu trong Tests; trình sinh dữ liệu được tải lên trong Files.
+-   Dữ liệu được tạo bằng trình sinh dữ liệu trong mục "Tests"; trình sinh dữ liệu được tải lên trong mục "Files".
 
 ### Thông tin chung
 
@@ -73,17 +73,17 @@ Nếu cần thêm ảnh vào đề bài, trước hết cần tải ảnh lên t
 
 "Source Files" ("Tệp nguồn") dùng để lưu các mã nguồn **ngoại trừ lời giải**, chẳng hạn trình kiểm tra dữ liệu, trình kiểm tra đáp án, trình sinh dữ liệu, và nếu là bài tương tác kiểu IO thì còn có trình tương tác.
 
-Nếu các mã nguồn này cần include tệp khác, ví dụ [Tree-Generator](https://github.com/ouuan/Tree-Generator), thì cần đặt chúng trong "Resource Files" ("Tệp tài nguyên").
+Nếu các mã nguồn này cần nạp tệp khác bằng `#include`, ví dụ [Tree-Generator](https://github.com/ouuan/Tree-Generator), thì cần đặt chúng trong "Resource Files" ("Tệp tài nguyên").
 
 Tương tác kiểu grader xem [hướng dẫn chính thức](https://codeforces.com/blog/entry/66916).
 
 ### Trình kiểm tra đáp án
 
-testlib.h cung cấp một số trình kiểm tra đáp án tích hợp sẵn; trong hộp chọn có giới thiệu ngắn gọn, và sau khi chọn cũng có thể nhấp "View source" (xem mã nguồn).
+`testlib.h` cung cấp một số trình kiểm tra đáp án tích hợp sẵn; trong hộp chọn có giới thiệu ngắn gọn, và sau khi chọn cũng có thể nhấp "View source" ("Xem mã nguồn").
 
 Nếu cần tự viết trình kiểm tra đáp án, hãy tham khảo [hướng dẫn viết trình kiểm tra đáp án](./testlib/checker.md).
 
-"Checker tests" ("Test cho checker") bên dưới dùng "Add test" ("Thêm test") để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" ("Chạy test") để kiểm tra trình kiểm tra đáp án có trả về đúng kết quả chấm hay không.
+"Checker tests" ("Kiểm thử checker") bên dưới dùng "Add test" ("Thêm bộ kiểm thử") để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" ("Chạy kiểm thử") để kiểm tra trình kiểm tra đáp án có trả về đúng kết quả chấm hay không.
 
 ### Trình tương tác
 
@@ -93,7 +93,7 @@ Chỉ bài tương tác kiểu IO mới cần mục này; hãy tham khảo [hư�
 
 Trình kiểm tra dữ liệu dùng để kiểm tra tính hợp lệ của dữ liệu. Cách viết xem [hướng dẫn viết trình kiểm tra dữ liệu](./testlib/validator.md).
 
-"Validator tests" ("Test cho validator") bên dưới tương tự "Checker tests"; cần cung cấp đầu vào và kỳ vọng hợp lệ hay không, dùng để kiểm thử trình kiểm tra dữ liệu.
+"Validator tests" ("Kiểm thử validator") bên dưới tương tự "Checker tests"; cần cung cấp đầu vào và kỳ vọng hợp lệ hay không, dùng để kiểm thử trình kiểm tra dữ liệu.
 
 ### Dữ liệu kiểm thử
 
@@ -101,17 +101,17 @@ Trang này dùng để quản lý dữ liệu.
 
 Trên Polygon, cách làm được khuyến nghị là dùng một số ít [trình sinh dữ liệu](./testlib/generator.md) **có tham số dòng lệnh** để sinh dữ liệu, thay vì viết nhiều trình sinh dữ liệu hoặc mỗi lần sinh một bộ dữ liệu lại sửa trình sinh dữ liệu. Ngoài ra, chỉ cần sinh đầu vào; đầu ra sẽ được sinh tự động.
 
-"Testset" ("Tập kiểm thử") là một tập kiểm thử. Nếu ra đề cho CF, cần tự thêm Testset tên "pretests", và "pretests" cần là tập con của "tests".
+"Testset" ("Tập kiểm thử") là một tập kiểm thử. Nếu ra đề cho CF, cần tự thêm tập kiểm thử tên `pretests`, và `pretests` cần là tập con của `tests`.
 
-"Add Test" ("Thêm test") dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng trình sinh dữ liệu với một bộ tham số nào đó.
+"Add Test" ("Thêm bộ kiểm thử") dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng trình sinh dữ liệu với một bộ tham số nào đó.
 
 Nếu chọn "Use in statements" (dùng trong đề bài), bộ dữ liệu này sẽ trở thành mẫu và được tự động thêm vào đề bài. Nếu cần nội dung hiển thị trong đề bài không phải đầu vào/đầu ra của mẫu (thường dùng cho bài tương tác), có thể nhấp "If you want to specify custom content of input or output data for statements click here" (nếu muốn chỉ định nội dung đầu vào hoặc đầu ra tùy chỉnh cho đề bài, hãy nhấp vào đây), rồi nhập đầu vào/đầu ra muốn hiển thị trong đề bài.
 
-Phần dưới của trang Tests dùng để nhập kịch bản sinh dữ liệu, ví dụ `generator-name [params] > test-index`. Có thể dùng `generator-name [params] > $` để không phải chỉ định thủ công số thứ tự test.
+Phần dưới của trang "Tests" dùng để nhập kịch bản sinh dữ liệu, ví dụ `generator-name [params] > test-index`. Có thể dùng `generator-name [params] > $` để không phải chỉ định thủ công số thứ tự bộ kiểm thử.
 
-Có thể tham khảo [hướng dẫn do Polygon cung cấp](https://polygon.codeforces.com/docs/freemarker-manual) để dùng Freemarker sinh script hàng loạt.
+Có thể tham khảo [hướng dẫn do Polygon cung cấp](https://polygon.codeforces.com/docs/freemarker-manual) để dùng Freemarker sinh kịch bản hàng loạt.
 
-"Preview Tests" ("Xem trước test") có thể xem trước dữ liệu được sinh.
+"Preview Tests" ("Xem trước bộ kiểm thử") có thể xem trước dữ liệu được sinh.
 
 ### Kiểm thử stress
 
@@ -119,7 +119,7 @@ Trang này dùng để kiểm thử stress.
 
 Nhấp "Add Stress" ("Thêm stress") để thêm một bộ kiểm thử stress. "Script pattern" ("Mẫu kịch bản") là kịch bản sinh dữ liệu, trong đó có thể dùng dạng như "\[10..100]" để biểu thị chọn ngẫu nhiên trong một khoảng.
 
-Sau đó chạy kiểm thử stress; nếu tìm được lỗi, hệ thống sẽ hiển thị "Crashed" ("Bị lỗi"), và có thể thêm bộ dữ liệu đó vào Tests bằng một lần nhấp.
+Sau đó chạy kiểm thử stress; nếu tìm được lỗi, hệ thống sẽ hiển thị "Crashed" ("Bị lỗi"), và có thể thêm bộ dữ liệu đó vào mục "Tests" bằng một lần nhấp.
 
 ### Tệp lời giải
 
@@ -139,7 +139,7 @@ Nếu trong dữ liệu có biến chưa đạt giá trị nhỏ nhất hoặc l
 
 ### Vấn đề
 
-Nơi dùng để tạo Issue.
+Nơi dùng để tạo issue (mục vấn đề).
 
 ### Gói xuất bản
 
@@ -153,15 +153,15 @@ Quản lý quyền truy cập của bài.
 
 ### Thanh bên
 
-Cột đầu tiên sẽ hiển thị một số thông tin cơ bản. Nếu có chỗ nào không đúng quy chuẩn (ví dụ tests không chứa pretests, hoặc có test bị trùng), nó sẽ hiển thị màu vàng; đưa chuột lên đó sẽ thấy thông tin cụ thể.
+Cột đầu tiên sẽ hiển thị một số thông tin cơ bản. Nếu có chỗ nào không đúng quy chuẩn (ví dụ `tests` không chứa `pretests`, hoặc có bộ kiểm thử bị trùng), nó sẽ hiển thị màu vàng; đưa chuột lên đó sẽ thấy thông tin cụ thể.
 
 "View changes" ("Xem thay đổi") dùng để xem lịch sử thay đổi. Cần chú ý rằng "switch" ("chuyển") không dùng để quay lại một phiên bản nào đó; nó chỉ có thể thực hiện sửa đổi không sinh xung đột trên cơ sở một phiên bản nào đó, điều này thực ra không có ý nghĩa, nên switch tương đương chỉ đọc.
 
 "Update Working Copy" ("Cập nhật bản làm việc") dùng để lấy cập nhật của người khác.
 
-"Commit Changes" ("Commit thay đổi") dùng để commit cập nhật của bạn.
+"Commit Changes" ("Ghi nhận thay đổi") dùng để ghi nhận (commit) cập nhật của bạn.
 
-Khi commit, nếu có chỗ không đúng quy chuẩn hoặc cần cảnh báo, chúng sẽ được liệt kê ra.
+Khi ghi nhận thay đổi, nếu có chỗ không đúng quy chuẩn hoặc cần cảnh báo, chúng sẽ được liệt kê ra.
 
 ## Quản lý cuộc thi
 
@@ -177,6 +177,6 @@ Thanh bên còn có thể xem trước toàn bộ đề bài, toàn bộ hướn
 
 ## Giải quyết xung đột
 
-Khi nhiều người cùng dùng Polygon để ra đề, nếu phiên bản bài đang sửa khác với phiên bản bài trên kho từ xa (remote), và khi lấy phiên bản mới nhất từ kho từ xa hoặc ghi nhận thay đổi (commit) cập nhật mà tệp đã sửa không thể tự động gộp (merge), xung đột (Conflicted) sẽ xảy ra.
+Khi nhiều người cùng dùng Polygon để ra đề, nếu phiên bản bài đang sửa khác với phiên bản bài trên kho từ xa (remote), và khi lấy phiên bản mới nhất từ kho từ xa hoặc khi ghi nhận thay đổi (commit) mà tệp đã sửa không thể tự động gộp (merge), xung đột (Conflicted) sẽ xảy ra.
 
 Sau khi xảy ra xung đột, Polygon sẽ cung cấp tùy chọn "Resolve conflicts" ("Giải quyết xung đột") trong các tùy chọn của bài bị xung đột; người dùng có thể vào đó để giải quyết xung đột trên các tệp bị xung đột.
