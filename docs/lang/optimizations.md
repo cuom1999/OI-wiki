@@ -12,7 +12,11 @@ Theo [quy tắc as-if](https://en.cppreference.com/w/cpp/language/as_if), trình
 
 ### Những cuộc thi nào bật tối ưu hóa?
 
-Việc có bật tối ưu hóa hay không phụ thuộc vào quy chế và hệ thống chấm của từng cuộc thi. Trước khi thi, hãy đọc kỹ thông báo môi trường biên dịch, đặc biệt là tiêu chuẩn C++ và các cờ như `-O2`, `-std=gnu++17`, `-Wall`. Khi luyện tập trên OJ, cũng nên kiểm tra trang trợ giúp hoặc phần cấu hình ngôn ngữ của hệ thống để biết chương trình sẽ được biên dịch bằng lệnh nào.
+Việc có bật tối ưu hóa hay không phụ thuộc vào quy chế và hệ thống chấm của từng
+cuộc thi. Trước khi thi, cần đọc kỹ thông báo môi trường biên dịch, đặc biệt là
+tiêu chuẩn C++ và các cờ như `-O2`, `-std=gnu++17`, `-Wall`. Khi luyện tập trên
+OJ, cũng nên kiểm tra trang trợ giúp hoặc phần cấu hình ngôn ngữ của hệ thống để
+biết chương trình sẽ được biên dịch bằng lệnh nào.
 
 Nếu môi trường chính thức bật `-O2`, nên luyện tập và kiểm thử bằng cùng mức tối ưu hóa đó. Một số lỗi liên quan đến hành vi không xác định chỉ bộc lộ rõ khi bật tối ưu hóa, nên không nên chỉ dựa vào kết quả chạy ở chế độ không tối ưu.
 
@@ -111,7 +115,11 @@ for (int i = 0; i < n; ++i) {
 }
 ```
 
-Nhưng trên thực tế, nếu `n <= 0` thì thân vòng lặp không bao giờ được thực thi, trong khi ta lại thực thi thêm một lệnh (có thể có tác dụng phụ!). Vì vậy, vòng lặp thường được xoay thành dạng do-while để có thể chèn một "điều kiện bảo vệ vòng lặp" một cách thuận tiện, rồi sau đó mới thực hiện đưa bất biến vòng lặp ra ngoài.
+Nhưng thực tế, nếu `n <= 0` thì thân vòng lặp không bao giờ được thực thi, trong
+khi lại thực thi thêm một lệnh (có thể có tác dụng phụ!). Vì vậy, vòng lặp
+thường được xoay thành dạng do-while để có thể chèn một "điều kiện bảo vệ vòng
+lặp" một cách thuận tiện, rồi sau đó mới thực hiện đưa bất biến vòng lặp ra
+ngoài.
 
 ```cpp
 if (0 < n) {  // điều kiện bảo vệ vòng lặp
@@ -179,7 +187,13 @@ void after(int x) {
 <a id="tối-ưu-hóa-bố-cục-mã-code-layout-optimizations"></a>
 ### Tối ưu hóa bố cục mã
 
-Khi chương trình thực thi, các đường đi có thể được chia thành đường lạnh và đường nóng. Trong tuyệt đại đa số trường hợp, CPU nhảy đến một vị trí khác không nhanh bằng thực thi tuần tự trực tiếp; kiểu thực thi sau thường được tác giả trình biên dịch gọi là "đi tiếp" (fall-through). Tương ứng với nó, mã thường được thực thi là mã nóng, còn phần đối lập là mã lạnh. Trong mã OI, nếu có một đoạn xử lý điều kiện biên đặc biệt trong vòng lặp, xử lý ngoại lệ, hoặc logic tương tự, đoạn đó là mã lạnh.
+Khi chương trình thực thi, các đường đi có thể được chia thành đường lạnh và
+đường nóng. Trong hầu hết trường hợp, CPU nhảy đến một vị trí khác không nhanh
+bằng thực thi tuần tự trực tiếp; kiểu thực thi sau thường được tác giả trình biên
+dịch gọi là "đi tiếp" (fall-through). Tương ứng với nó, mã thường được thực thi
+là mã nóng, còn phần đối lập là mã lạnh. Trong mã OI, nếu có một đoạn xử lý điều
+kiện biên đặc biệt trong vòng lặp, xử lý ngoại lệ, hoặc logic tương tự, đoạn đó
+là mã lạnh.
 
 Khối cơ bản là cấu trúc cơ bản của luồng điều khiển. Một thủ tục gồm nhiều khối cơ bản, tạo thành một đồ thị có hướng. Trong quá trình sinh tệp thực thi, trình biên dịch cần sắp xếp bố cục để đặt các khối cơ bản; cách sắp xếp bố cục chính là trọng tâm của tối ưu hóa này.
 
@@ -197,7 +211,8 @@ int hotpath_again;  // <-- nóng!
 <a id="đặt-khối-cơ-bản-basic-block-placement"></a>
 #### Đặt khối cơ bản
 
-Ta dùng nhãn để biểu diễn một loại "mã máy giả". Chương trình C++ này có hai cách bố trí:
+Dùng nhãn để biểu diễn một loại "mã máy giả". Chương trình C++ này có hai cách
+bố trí:
 
 ???+ note "Bố cục 1"
     ```cpp
@@ -237,7 +252,8 @@ Một bố cục khác là:
         Stmt; // <- lạnh
     ```
 
-Ta thấy trong bố cục thứ hai, hai khối mã nóng được đặt gần nhau, nên hiệu năng thực thi tốt hơn.
+Trong bố cục thứ hai, hai khối mã nóng được đặt gần nhau, nên hiệu năng thực thi
+tốt hơn.
 
 Để báo cho trình biên dịch biết một nhánh có dễ được thực thi hay không, có thể dùng `[[likely]]` và `[[unlikely]]` của C++20: <https://en.cppreference.com/w/cpp/language/attributes/likely>
 
@@ -255,7 +271,11 @@ if (unlikely(/* một số kiểm tra điều kiện biên */ false)) {
 <a id="tách-mã-nóng-lạnh-hot-cold-splitting"></a>
 #### Tách mã nóng/lạnh
 
-Một thủ tục có thể chứa đồng thời cả đường nóng và đường lạnh. Khi mã lạnh khá dài, cách tốt hơn là tách mã lạnh thành một lời gọi hàm, thay vì để nó chặn đường nóng. Điều này cũng nhắc ta không nên tự tin quá mức mà biến mọi hàm thành `inline`. Trở ngại mà mã lạnh gây ra cho tốc độ thực thi lớn hơn chi phí gọi hàm rất nhiều.
+Một thủ tục có thể chứa đồng thời cả đường nóng và đường lạnh. Khi mã lạnh khá
+dài, cách tốt hơn là tách mã lạnh thành một lời gọi hàm, thay vì để nó chặn
+đường nóng. Điều này cũng nhắc rằng không nên tự tin quá mức mà biến mọi hàm
+thành `inline`. Trở ngại mà mã lạnh gây ra cho tốc độ thực thi lớn hơn chi phí
+gọi hàm rất nhiều.
 
 ???+ note "Bố cục mã không tốt"
     ```cpp
@@ -333,17 +353,27 @@ int foo() {
 
 <https://clang.llvm.org/docs/AttributeReference.html#always-inline-force-inline>
 
-Một số trình biên dịch cung cấp cách nội tuyến lời gọi hàm thủ công bằng cách thêm `__attribute__((always_inline))` trước hàm. Dùng như vậy không nhất thiết nhanh hơn lời gọi hàm; lúc này trình biên dịch tin rằng lập trình viên có đủ năng lực phán đoán.
+Một số trình biên dịch cung cấp cách nội tuyến lời gọi hàm thủ công bằng cách
+thêm `__attribute__((always_inline))` trước hàm. Dùng cách này không nhất thiết
+nhanh hơn lời gọi hàm; lúc này trình biên dịch tin rằng lập trình viên có đủ năng
+lực phán đoán.
 
 <a id="tối-ưu-hóa-lời-gọi-đuôi-tail-call-optimization"></a>
 ### Tối ưu hóa lời gọi đuôi
 
-Khi một lời gọi hàm nằm ở vị trí cuối thân hàm, lời gọi đó được gọi là lời gọi đuôi. Với dạng lời gọi đặc biệt này, có thể thực hiện một số tối ưu hóa riêng. Tuyệt đại đa số kiến trúc có con trỏ khung (còn gọi là FP) và con trỏ ngăn xếp (còn gọi là SP) để duy trì khung gọi hàm của hàm; nếu lời gọi nằm ở cuối hàm, ta có thể không giữ lại bản ghi gọi của hàm bên ngoài mà dùng trực tiếp hàm bên trong thay thế.
+Khi một lời gọi hàm nằm ở vị trí cuối thân hàm, lời gọi đó được gọi là lời gọi
+đuôi. Với dạng lời gọi đặc biệt này, có thể thực hiện một số tối ưu hóa riêng.
+Hầu hết kiến trúc có con trỏ khung (còn gọi là FP) và con trỏ ngăn xếp (còn gọi
+là SP) để duy trì khung gọi hàm của hàm; nếu lời gọi nằm ở cuối hàm, có thể không
+giữ lại bản ghi gọi của hàm bên ngoài mà dùng trực tiếp hàm bên trong thay thế.
 
 <a id="dùng-lệnh-nhảy-thay-cho-lời-gọi-hàm"></a>
 #### Dùng lệnh nhảy thay cho lời gọi hàm
 
-Trên tuyệt đại đa số kiến trúc, lời gọi hàm cần lưu vị trí bộ đếm chương trình hiện tại `$pc`, đồng thời lưu một số thanh ghi do bên gọi lưu để có thể quay lại ngữ cảnh cũ. Lời gọi đuôi không cần quá trình này và sẽ được dịch trực tiếp thành lệnh nhảy, vì lời gọi đuôi không bao giờ quay lại vị trí đang chạy của hàm hiện tại.
+Trên hầu hết kiến trúc, lời gọi hàm cần lưu vị trí bộ đếm chương trình hiện tại
+`$pc`, đồng thời lưu một số thanh ghi do bên gọi lưu để có thể quay lại ngữ cảnh
+cũ. Lời gọi đuôi không cần quá trình này và sẽ được dịch trực tiếp thành lệnh
+nhảy, vì lời gọi đuôi không bao giờ quay lại vị trí đang chạy của hàm hiện tại.
 
 Một ví dụ đơn giản: <https://godbolt.org/z/e7b1safaW>
 
@@ -381,12 +411,18 @@ int fac(int acc, int n) {
 
 Đoạn mã mới là đệ quy đuôi.
 
-Trình biên dịch hiện đại có thể tự động làm việc này cho bạn. Nếu mã của bạn có cơ hội được viết lại thành đệ quy đuôi, trình biên dịch có thể nhận diện dạng này và hoàn tất việc viết lại.
+Trình biên dịch hiện đại có thể tự động làm việc này. Nếu mã có thể được viết lại
+thành đệ quy đuôi, trình biên dịch có thể nhận diện dạng này và hoàn tất việc
+viết lại.
 
 <a id="loại-bỏ-đệ-quy-đuôi-rpass-tailcallelim"></a>
 #### Loại bỏ đệ quy đuôi -Rpass=tailcallelim
 
-Khi hàm đã là đệ quy đuôi, có thể xóa trực tiếp câu lệnh đệ quy và, thông qua một số phân tích tĩnh, biến hàm thành dạng không đệ quy. Ở đây ta không đi sâu vào cách tác giả trình biên dịch làm được điều này. Từ trải nghiệm thực tế, phần lớn mã OI nếu có cả phiên bản đệ quy và không đệ quy thì thường có thể được tự động tối ưu thành phiên bản không đệ quy. Dưới đây là một số ví dụ cụ thể cho độc giả:
+Khi hàm đã là đệ quy đuôi, có thể xóa trực tiếp câu lệnh đệ quy và, thông qua một
+số phân tích tĩnh, biến hàm thành dạng không đệ quy. Ở đây không đi sâu vào cách
+tác giả trình biên dịch làm được điều này. Từ trải nghiệm thực tế, phần lớn mã OI
+nếu có cả phiên bản đệ quy và không đệ quy thì thường có thể được tự động tối ưu
+thành phiên bản không đệ quy. Sau đây là một số ví dụ cụ thể:
 
 ???+ note "[GCD](https://godbolt.org/z/8Wb6WEnzv)"
     ```cpp
@@ -412,7 +448,11 @@ Khi hàm đã là đệ quy đuôi, có thể xóa trực tiếp câu lệnh đ�
     }
     ```
 
-Hợp ngữ sau tối ưu hóa của các hàm này hoàn toàn giống phiên bản không đệ quy; đệ quy sẽ bị loại bỏ trực tiếp. Với thí sinh OI, khi bật `-O2` có thể yên tâm viết các thuật toán dạng đệ quy, vì sẽ không khác dạng không đệ quy. Nếu hàm bạn viết về bản chất không thể được viết lại thành dạng không đệ quy, trình biên dịch cũng bó tay.
+Hợp ngữ sau tối ưu hóa của các hàm này hoàn toàn giống phiên bản không đệ quy; đệ
+quy sẽ bị loại bỏ trực tiếp. Với thí sinh OI, khi bật `-O2` có thể yên tâm viết
+các thuật toán dạng đệ quy, vì sẽ không khác dạng không đệ quy. Nếu hàm về bản
+chất không thể được viết lại thành dạng không đệ quy, trình biên dịch cũng bó
+tay.
 
 <a id="giảm-độ-mạnh-phép-toán-strength-reduction"></a>
 ### Giảm độ mạnh phép toán
@@ -532,7 +572,9 @@ void test(int *a, int *b, int n) {
 
 #### Bộ chỉ định kiểu `__restrict` (GNU, MSVC)
 
-Hai vùng nhớ tương ứng với hai con trỏ bất kỳ có thể bị chồng lấp, khi đó cần xử lý riêng xem có thể dùng mã vector hay không. Hình dưới đây minh họa một ví dụ về chồng lấp con trỏ:
+Hai vùng nhớ tương ứng với hai con trỏ bất kỳ có thể bị chồng lấp, khi đó cần xử
+lý riêng xem có thể dùng mã vector hay không. Hình sau minh họa một ví dụ về
+chồng lấp con trỏ:
 
 ![](./images/overlap.png)
 
@@ -561,7 +603,10 @@ Trong C++ hiện đại, từ khóa `inline` được xem là một hành vi ng�
 <a id="register---gợi-ý-thanh-ghi-không-còn-thực-chất"></a>
 ### register - gợi ý thanh ghi không còn thực chất
 
-Trình biên dịch hiện đại sẽ bỏ qua trực tiếp từ khóa `register`; cách phân bổ thanh ghi bạn tự nghĩ ra thường không thông minh bằng việc để trình biên dịch chạy thuật toán phân bổ thanh ghi. Từ khóa này không còn được khuyến nghị từ C++11 và bị xóa từ C++17[^p0001r1].
+Trình biên dịch hiện đại sẽ bỏ qua trực tiếp từ khóa `register`; cách phân bổ
+thanh ghi tự chọn thường không thông minh bằng việc để trình biên dịch chạy thuật
+toán phân bổ thanh ghi. Từ khóa này không còn được khuyến nghị từ C++11 và bị
+xóa từ C++17[^p0001r1].
 
 <https://en.cppreference.com/w/cpp/keyword/register>
 
@@ -665,7 +710,7 @@ Ví dụ: <https://godbolt.org/z/GY1jvsrb5>, <https://godbolt.org/z/4ronPsnxf>.
 ### Vòng lặp vô hạn không có tác dụng phụ
 
 ???+ note "Kiểm chứng Định lý lớn Fermat"
-    Theo [Định lý lớn Fermat](https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem), phương trình vô định $a^3=b^3+c^3$ không có nghiệm nguyên dương. Chương trình dưới đây thử liệt kê các số nguyên trong $[1,1000]$ để kiểm chứng phương trình này có đúng hay không; nếu trả về `true` thì nghĩa là đã tìm thấy một bộ nghiệm nguyên trong phạm vi $[1,1000]$, từ đó Định lý lớn Fermat không đúng.
+    Theo [Định lý lớn Fermat](https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem), phương trình vô định $a^3=b^3+c^3$ không có nghiệm nguyên dương. Chương trình sau thử liệt kê các số nguyên trong $[1,1000]$ để kiểm chứng phương trình này có đúng hay không; nếu trả về `true` thì nghĩa là đã tìm thấy một bộ nghiệm nguyên trong phạm vi $[1,1000]$, từ đó Định lý lớn Fermat không đúng.
 
     ```cpp
     #include <iostream>
@@ -709,7 +754,9 @@ Ví dụ: <https://godbolt.org/z/d834MK7bz>, <https://godbolt.org/z/Eov9nsKqf>.
 
 ## Công cụ sanitizer
 
-Sanitizer là công cụ hỗ trợ bảo đảm tính đúng đắn: nó kiểm tra lúc chạy xem chương trình của bạn có hành vi không xác định, vượt biên mảng, con trỏ null, và các lỗi tương tự hay không.
+Sanitizer là công cụ hỗ trợ bảo đảm tính đúng đắn: nó kiểm tra lúc chạy xem
+chương trình có hành vi không xác định, vượt biên mảng, con trỏ null, và các lỗi
+tương tự hay không.
 Ở chế độ gỡ lỗi cục bộ, nên bật một số sanitizer; chúng có thể rút ngắn đáng kể thời gian gỡ lỗi. Các sanitizer này do Google phát triển, phần lớn có thể dùng với GCC và Clang. Sanitizer trong LLVM trưởng thành hơn, vì vậy nên dùng trình biên dịch Clang để gỡ lỗi các vấn đề liên quan trên máy cá nhân.
 
 <span id="address-sanitizer-fsanitizeaddress"></span>
@@ -733,7 +780,9 @@ Cả GCC và Clang đều hỗ trợ sanitizer này. Nó bao gồm các mục ki
 
 <https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html>
 
-UndefinedBehaviorSanitizer (a.k.a UBSan) dùng để kiểm tra hành vi không xác định trong mã. Cả GCC và Clang đều hỗ trợ sanitizer này. Nó tự động kiểm tra chương trình của bạn có UB hay không. Các mục kiểm tra của UBSan gồm:
+UndefinedBehaviorSanitizer (a.k.a UBSan) dùng để kiểm tra hành vi không xác định
+trong mã. Cả GCC và Clang đều hỗ trợ sanitizer này. Nó tự động kiểm tra chương
+trình có UB hay không. Các mục kiểm tra của UBSan gồm:
 
 -   Tràn phép dịch bit, ví dụ dịch trái một số nguyên 32 bit thêm 72 bit
 -   Tràn số nguyên có dấu
