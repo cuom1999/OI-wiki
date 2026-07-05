@@ -69,9 +69,9 @@ Tương tác STDIO (tương tác I/O chuẩn) là phương thức tương tác t
 
 Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩn như bình thường, **xả bộ đệm đầu ra** rồi đọc kết quả từ đầu vào chuẩn. Sau khi chương trình của thí sinh xả bộ đệm đầu ra, chương trình chấm được nối với nó qua ống dẫn (pipe, gọi là interactor) mới có thể nhận ngay các dữ liệu này. Trong C/C++, có thể dùng `fflush(stdout)` và `std::cout << std::flush` để thực hiện thao tác này (khi xuống dòng bằng `std::cout << std::endl` thì bộ đệm cũng được tự động xả, nhưng `std::cout << '\n'` thì không); trong Pascal là `flush(output)`.
 
-### Tương tác Grader
+### Tương tác với trình chấm (Grader)
 
-Phương thức tương tác Grader thường gặp trong các kỳ thi OI quốc tế như IOI, APIO (đặc biệt là các kỳ thi trên nền tảng CMS).
+Phương thức tương tác với trình chấm thường gặp trong các kỳ thi OI quốc tế như IOI, APIO (đặc biệt là các kỳ thi trên nền tảng CMS).
 
 ???+ note "Ví dụ [UOJ #206. APIO2016 Gap](https://uoj.ac/problem/206)"
     Có $N$ số nguyên không âm tăng nghiêm ngặt $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$. Bạn cần tìm giá trị lớn nhất trong các hiệu $a_{i+1}−a_i (0\leq i\leq N−1)$.
@@ -93,7 +93,7 @@ Khi chấm thật, chương trình của thí sinh sẽ được biên dịch v�
 
 ### Khác biệt
 
-Một ưu điểm rõ ràng của tương tác STDIO là nó hỗ trợ được mọi ngôn ngữ lập trình, nhưng chi phí thời gian của nhập xuất dễ trở thành nút thắt khi thiết kế bài, khiến đôi khi khó phân biệt chênh lệch hiệu quả thời gian giữa các chương trình. Tương tác Grader thì ngược lại: vì chi phí gọi hàm không lớn, nó thường cho phép số lượt truy vấn ở cỡ $10^6$, nhưng điểm yếu là bị hạn chế về ngôn ngữ.
+Một ưu điểm rõ ràng của tương tác STDIO là nó hỗ trợ được mọi ngôn ngữ lập trình, nhưng chi phí thời gian của nhập xuất dễ trở thành nút thắt khi thiết kế bài, khiến đôi khi khó phân biệt chênh lệch hiệu quả thời gian giữa các chương trình. Tương tác với trình chấm thì ngược lại: vì chi phí gọi hàm không lớn, nó thường cho phép số lượt truy vấn ở cỡ $10^6$, nhưng điểm yếu là bị hạn chế về ngôn ngữ.
 
 Nếu tự thiết kế bài hoặc tổ chức kỳ thi, cần cân nhắc và so sánh hai phương thức này một cách nghiêm túc.
 

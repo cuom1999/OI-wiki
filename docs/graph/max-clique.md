@@ -43,9 +43,9 @@ P := node set of G
 X := {}
 
 BronKerbosch1(R, P, X):
-    if P and X are both empty:
-        report R as a maximal clique
-    for each vertex v in P:
+    nếu P và X đều rỗng:
+        báo cáo R là một clique cực đại
+    với mỗi đỉnh v trong P:
         BronKerbosch1(R ⋃ {v}, P ⋂ N(v), X ⋂ N(v))
         P := P \ {v}
         X := X ⋃ {v}
@@ -69,9 +69,9 @@ Mã giả:
 
 ```text
  BronKerbosch(All, Some, None):
-     if Some and None are both empty:
-         report All as a maximal clique // Tất cả các đỉnh đã được chọn, và không còn đỉnh bị cấm chọn; cộng vào đáp án
-     for each vertex v in Some: // Liệt kê từng phần tử trong Some
+     nếu Some và None đều rỗng:
+         báo cáo All là một clique cực đại // Tất cả các đỉnh đã được chọn, và không còn đỉnh bị cấm chọn; cộng vào đáp án
+     với mỗi đỉnh v trong Some: // Liệt kê từng phần tử trong Some
          BronKerbosch1(All ⋃ {v}, Some ⋂ N(v), None ⋂ N(v))
          // Thêm v vào All; rõ ràng chỉ những người là bạn của v mới có thể tiếp tục là ứng viên, và trong None cũng chỉ những người là bạn của v mới ảnh hưởng đến bước tìm kiếm tiếp theo
          Some := Some - {v} // Đã tìm kiếm xong; xóa khỏi Some và thêm vào None

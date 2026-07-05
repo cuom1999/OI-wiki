@@ -33,12 +33,12 @@ kiếm.
 ???+ note "Hiện thực (mã giả)"
     ```text
     IDDFS(u,d)
-        if d>limit
-            return
-        else
-            for each edge (u,v)
+        nếu d>limit
+            trả về
+        ngược lại
+            với mỗi cạnh (u,v)
                 IDDFS(v,d+1)
-    return
+    trả về
     ```
 
 ## Chú ý

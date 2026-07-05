@@ -459,8 +459,8 @@ Viết chương trình trực tiếp theo các biểu thức trên là có thể
     $$
     \begin{aligned}
                & \mathrm{i} = \sqrt{-1} \equiv \sqrt{998244352} \pmod{998244353}       \\
-      \implies & \phantom{\text{or}} \quad \mathrm{i} \equiv 86583718 \pmod{998244353} \\
-               & \text{or} \quad \mathrm{i} \equiv 911660635 \pmod{998244353}
+      \implies & \phantom{\text{hoặc}} \quad \mathrm{i} \equiv 86583718 \pmod{998244353} \\
+               & \text{hoặc} \quad \mathrm{i} \equiv 911660635 \pmod{998244353}
     \end{aligned}
     $$
     

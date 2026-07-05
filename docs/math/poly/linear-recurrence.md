@@ -121,9 +121,9 @@ với $Q(x)=x^d\Gamma\left(x^{-1}\right)$ và $\deg{P}<d$. Ta gọi nó là "**h
 $$
 \tilde{q}_N=
 \begin{cases}
-p_0q_0^{-1},&\text{ if }N=0, \\
-\left(p_N-\sum_{j=1}^{N}q_j\tilde{q}_{N-j}\right)\cdot q_0^{-1},&\text{ else if }N<d, \\
--q_0^{-1}\sum_{j=1}^{d}q_j\tilde{q}_{N-j},&\text{ otherwise}.
+p_0q_0^{-1},&\text{ nếu }N=0, \\
+\left(p_N-\sum_{j=1}^{N}q_j\tilde{q}_{N-j}\right)\cdot q_0^{-1},&\text{ ngược lại nếu }N<d, \\
+-q_0^{-1}\sum_{j=1}^{d}q_j\tilde{q}_{N-j},&\text{ ngược lại}.
 \end{cases}
 $$
 

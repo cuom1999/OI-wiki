@@ -22,8 +22,8 @@ Dùng mã giả có thể mô tả như sau:
 
 ???+ note "Cài đặt"
     ```text
-    insert x
-    while !sta.empty() && sta.top()<x
+    chèn x
+    trong khi sta không rỗng và sta.top()<x
         sta.pop()
     sta.push(x)
     ```

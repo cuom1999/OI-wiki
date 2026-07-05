@@ -332,7 +332,7 @@ Danh sách (`list`) có lẽ là kiểu tuần tự thường dùng và mạnh n
 >>> nums.clear(); nums  # Giống clear() của vector
 ```
 
-Ví dụ trên cho thấy danh sách có nhiều điểm giống `vector`: các thao tác thường dùng trong `vector` thường cũng có phương thức tương ứng trong danh sách. Tuy nhiên, một số thao tác như `len()`, `sorted()` xuất hiện dưới dạng hàm dựng sẵn; còn các hàm trong STL algorithm như `find()`, `count()`, `max_element()`, `sort()`, `reverse()` lại trở thành phương thức của đối tượng trong Python. Khi dùng cần phân biệt. Xem thêm [mô tả chi tiết về `list`](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists) trong tài liệu chính thức. Dưới đây là một số tính năng mạnh của danh sách với vai trò kiểu tuần tự cơ bản của Python:
+Ví dụ trên cho thấy danh sách có nhiều điểm giống `vector`: các thao tác thường dùng trong `vector` thường cũng có phương thức tương ứng trong danh sách. Tuy nhiên, một số thao tác như `len()`, `sorted()` xuất hiện dưới dạng hàm dựng sẵn; còn các hàm trong nhóm thuật toán STL như `find()`, `count()`, `max_element()`, `sort()`, `reverse()` lại trở thành phương thức của đối tượng trong Python. Khi dùng cần phân biệt. Xem thêm [mô tả chi tiết về `list`](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists) trong tài liệu chính thức. Dưới đây là một số tính năng mạnh của danh sách với vai trò kiểu tuần tự cơ bản của Python:
 
 Python hỗ trợ nhiều kiểu dữ liệu hợp, có thể gom các giá trị khác nhau lại với nhau. Kiểu thường dùng nhất là `list`, được viết bằng một nhóm giá trị phân cách bằng dấu phẩy và đặt trong ngoặc vuông. Ví dụ, `[1, 2, 3]` và `['a','b','c']` đều là danh sách.
 
@@ -773,7 +773,7 @@ Python là ngôn ngữ kiểm tra kiểu động: xử lý kiểu một cách li
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ```
 
-Từ Python 3.5, type hint được thêm vào, cho phép đặt kiểu cho tham số hàm và giá trị trả về. Tuy nhiên, chúng chỉ là gợi ý, không có tác dụng ràng buộc thực tế; cần công cụ kiểm tra tĩnh mới phát hiện loại lỗi này (ví dụ [PyCharm](https://www.jetbrains.com/pycharm/) và [Mypy](http://mypy-lang.org/)). Vì vậy tính năng này không thật thiết yếu với OIer, chỉ cần biết là đủ. Có thể gán type hint cho tham số và giá trị trả về của hàm như sau:
+Từ Python 3.5, gợi ý kiểu được thêm vào, cho phép đặt kiểu cho tham số hàm và giá trị trả về. Tuy nhiên, chúng chỉ là gợi ý, không có tác dụng ràng buộc thực tế; cần công cụ kiểm tra tĩnh mới phát hiện loại lỗi này (ví dụ [PyCharm](https://www.jetbrains.com/pycharm/) và [Mypy](http://mypy-lang.org/)). Vì vậy tính năng này không thật thiết yếu với OIer, chỉ cần biết là đủ. Có thể gán gợi ý kiểu cho tham số và giá trị trả về của hàm như sau:
 
 ```python
 def headline(
@@ -787,7 +787,7 @@ def headline(
 print(headline("type comments work", width=40))
 ```
 
-Ngoài tham số hàm, biến cũng có thể có type hint. Bạn có thể gọi `__annotations__` để xem mọi type hint trong hàm. Type hint cho biến đem lại cho Python một phần tính chất của ngôn ngữ tĩnh: khai báo và gán giá trị tách nhau.
+Ngoài tham số hàm, biến cũng có thể có gợi ý kiểu. Bạn có thể gọi `__annotations__` để xem mọi gợi ý kiểu trong hàm. Gợi ý kiểu cho biến đem lại cho Python một phần tính chất của ngôn ngữ tĩnh: khai báo và gán giá trị tách nhau.
 
 ```pycon
 >>> nothing: str

@@ -155,7 +155,7 @@ hơn nữa, có thể xét các phương pháp trong hai mục tiếp theo.
 
 Như đã nói ở trên, phép chia và modulo thường tốn thời gian hơn các phép toán số
 học khác. Để giảm chi phí modulo, có một số thuật toán cho kết quả tương tự mà
-không trực tiếp thực hiện modulo. Barrett reduction, hay phép rút gọn Barrett,
+không trực tiếp thực hiện modulo. Phép rút gọn Barrett
 là một trong số đó.
 
 Cho $m$ là modulo cố định, giả sử cần tính $a\bmod m$ nhiều lần với các giá trị
@@ -193,10 +193,10 @@ Chỉ cần $a \le R$, sai số $\Delta$ không vượt quá $m$. Do $z' \ge z$,
 ước lượng $z'$ chỉ có thể là $z$ hoặc $z + m$. Sau khi có ước lượng, nếu
 $z' \ge m$ thì trừ đi phần $m$ thừa là đủ để bảo đảm đáp án đúng.
 
-Trong quá trình tính Barrett reduction, chỉ cần hai phép nhân, một phép dịch bit
+Trong quá trình tính phép rút gọn Barrett, chỉ cần hai phép nhân, một phép dịch bit
 và tối đa hai phép trừ để hoàn thành modulo số nguyên. Tuy nhiên, hiệu năng tăng
-không miễn phí: các biến trung gian trong Barrett reduction thường dài hơn biến
-đầu vào. Dễ thấy biến trung gian dài nhất trong Barrett reduction là
+không miễn phí: các biến trung gian trong phép rút gọn Barrett thường dài hơn biến
+đầu vào. Dễ thấy biến trung gian dài nhất trong phép rút gọn Barrett là
 $a\left\lfloor\dfrac{R}{m}\right\rfloor$. Đặt $\ell(x)$ là độ dài biểu diễn nhị
 phân của số nguyên $x$. Khi đó
 
@@ -210,7 +210,7 @@ $2\ell(a) - \ell(m)$. Nhưng khi cần modulo, thường có $\ell(m)\le\ell(a)$
 cần lấy modulo một số nguyên $64$ bit theo một số nguyên $32$ bit, thực tế cần
 biến trung gian $64 \times 2 - 32 = 96$ bit.
 
-Một ứng dụng của Barrett reduction là tính số dư của tích $ab\bmod m$. Nếu một
+Một ứng dụng của phép rút gọn Barrett là tính số dư của tích $ab\bmod m$. Nếu một
 thừa số cố định, chẳng hạn $b$ cố định, có thể ước lượng tương tự bằng
 
 $$
@@ -221,17 +221,17 @@ chỉ cần tiền xử lý giá trị $\left\lfloor\dfrac{bR}{m}\right\rfloor$.
 $b$ cố định này đôi khi được gọi là phép nhân modulo Shoup[^shoup].
 
 Trường hợp phổ biến hơn là cả $a,b$ đều không cố định. Khi đó cần tính giá trị
-$ab$ trước, rồi dùng Barrett reduction để thu được $ab\bmod m$. Ví dụ, khi cài
+$ab$ trước, rồi dùng phép rút gọn Barrett để thu được $ab\bmod m$. Ví dụ, khi cài
 đặt phép nhân modulo, cần tính $ab\bmod m$ với $0 \le a,b < m$. Lúc này $R$
 được chọn cần thỏa mãn $ab < R$. Theo phân tích trên, biến trung gian dài nhất
 trong quá trình tính có độ dài $2\ell(ab)-\ell(m)$. Khi
 $\ell(a)\approx\ell(b)\approx\ell(m)$, độ dài này là $3\ell(m)$. Nói cách khác,
-nếu dùng Barrett reduction để cài đặt phép nhân modulo cho số nguyên $32$ bit,
-biến trung gian cần số nguyên $96$ bit. Đây cũng là một hạn chế của Barrett
-reduction khi áp dụng trong lập trình thi đấu.
+nếu dùng phép rút gọn Barrett để cài đặt phép nhân modulo cho số nguyên $32$ bit,
+biến trung gian cần số nguyên $96$ bit. Đây cũng là một hạn chế của phép rút gọn
+Barrett khi áp dụng trong lập trình thi đấu.
 
 Làm ví dụ, cài đặt tham khảo cho phép nhân modulo số nguyên có dấu $32$ bit bằng
-Barrett reduction như sau:
+phép rút gọn Barrett như sau:
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
@@ -340,7 +340,7 @@ sau:
     --8<-- "docs/math/code/mod-arithmetic/i32-mul.cpp:montgomery"
     ```
 
-So với việc dùng Barrett reduction để cài đặt phép nhân modulo, phép nhân modulo
+So với việc dùng phép rút gọn Barrett để cài đặt phép nhân modulo, phép nhân modulo
 Montgomery gồm nhiều bước như chuyển đổi, nhân trong dạng Montgomery và chuyển
 ngược. Vì vậy, chỉ khi số phép toán modulo giữa chuyển đổi và chuyển ngược đủ
 nhiều, chi phí chuyển đổi mới được khấu hao và hiệu năng tổng thể mới cao. Tuy
@@ -355,7 +355,7 @@ phù hợp hơn.
 
 Mục này thảo luận cách cài đặt lớp số nguyên modulo khi modulo là lũy thừa của
 $2$. Trong trường hợp đặc biệt này, phép chia và modulo có thể thực hiện bằng
-thao tác bit, nên rất hiệu quả. Barrett reduction và phép nhân modulo Montgomery
+thao tác bit, nên rất hiệu quả. Phép rút gọn Barrett và phép nhân modulo Montgomery
 đều tận dụng đặc tính này khi dùng $2^e$ làm số chia và modulo để tăng tốc. Đặc
 biệt, khi modulo đúng bằng các số đặc biệt như $2^{32}$ và $2^{64}$, có thể
 dùng số nguyên không dấu có độ dài bit tương ứng kết hợp với tràn tự nhiên để
@@ -536,7 +536,7 @@ $$
     $\left\lfloor\dfrac{r}{m}\right\rceil$, miễn là điều chỉnh bước sửa sai số
     của giá trị ước lượng tương ứng.
 
-[^shoup]: Shoup đã cài đặt mở rộng này của Barrett reduction trong thư viện tính
+[^shoup]: Shoup đã cài đặt mở rộng này của phép rút gọn Barrett trong thư viện tính
     toán số học [NTL](https://libntl.org/), nên cách làm được đặt tên như vậy.
 
 [^newton-hensel]: Kiểm tra trực tiếp: từ $mx \equiv 1 \pmod{2^e}$, đặt

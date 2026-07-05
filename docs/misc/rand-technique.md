@@ -161,10 +161,10 @@ Sau khi chọn liên tiếp $k$ cặp $(s,t)$, việc kiểm tra chúng có tấ
 
 ???+ note "Mã giả của thuật toán"
     ```text
-    while(n>1 and m>1):
-        randomly choose k=min(n,m)/2 pairs (s,t)
-        add edge t->s for all these pairs
-        if new_n>n-k or new_m>m-k:
+    trong khi n>1 và m>1:
+        chọn ngẫu nhiên k=min(n,m)/2 cặp (s,t)
+        thêm cạnh t->s cho tất cả các cặp này
+        nếu new_n>n-k hoặc new_m>m-k:
             roll_back()
     solve_trivial()
     ```
@@ -192,7 +192,7 @@ Xem chi tiết tại [phương pháp gia tăng ngẫu nhiên](../geometry/random
     
     $n\leq 50$
 
-Dễ nghĩ ngay đến meet-in-the-middle. Chia đều tập đỉnh thành hai nửa trái/phải $V_L,V_R$ (mỗi bên có kích thước $\dfrac n2$), tính mảng $f_{L,k}$ biểu thị tổng trọng số lớn nhất của mọi clique có kích thước $\geq k$ trong tập đỉnh $L\subseteq V_L$. Sau đó ta liệt kê mỗi clique $C_R$ ở nửa phải, tính các đỉnh bên trái nối với tất cả đỉnh trong $C_R$ (ký hiệu tập này là $N_L$), và dùng $f_{N_L,\frac 23 n-|C_R|}+\textit{value}(C_R)$ để cập nhật đáp án.
+Dễ nghĩ ngay đến kỹ thuật gặp nhau ở giữa (meet-in-the-middle). Chia đều tập đỉnh thành hai nửa trái/phải $V_L,V_R$ (mỗi bên có kích thước $\dfrac n2$), tính mảng $f_{L,k}$ biểu thị tổng trọng số lớn nhất của mọi clique có kích thước $\geq k$ trong tập đỉnh $L\subseteq V_L$. Sau đó ta liệt kê mỗi clique $C_R$ ở nửa phải, tính các đỉnh bên trái nối với tất cả đỉnh trong $C_R$ (ký hiệu tập này là $N_L$), và dùng $f_{N_L,\frac 23 n-|C_R|}+\textit{value}(C_R)$ để cập nhật đáp án.
 
 -   Chú ý có thể chuyển trạng thái mỗi $f_{L,k}$ trong $O(1)$. Cụ thể, lấy $d$ là một phần tử bất kỳ trong $L$, rồi chia trường hợp:
     -   Giả sử trong nghiệm tối ưu $d$ không nằm trong clique, thì chuyển từ $f_{L\setminus \{d\},k}$.

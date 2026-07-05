@@ -6,7 +6,7 @@ Cú pháp trong bài viết này tham chiếu chuẩn **C++11**. Cú pháp của
 
 ## Biểu thức Lambda
 
-Biểu thức Lambda được đặt tên theo phép tính $\lambda$ trong toán học, tương ứng trực tiếp với lambda abstraction trong đó. Khi biên dịch, dựa trên cú pháp, trình biên dịch sẽ sinh ra một [**đối tượng hàm**](./new.md#đối-tượng-hàm) ẩn danh, dùng các biến đã bắt giữ làm thành viên, còn danh sách tham số và thân hàm dùng để cài đặt nạp chồng `operator()`.
+Biểu thức Lambda được đặt tên theo phép tính $\lambda$ trong toán học, tương ứng trực tiếp với phép trừu tượng lambda trong đó. Khi biên dịch, dựa trên cú pháp, trình biên dịch sẽ sinh ra một [**đối tượng hàm**](./new.md#đối-tượng-hàm) ẩn danh, dùng các biến đã bắt giữ làm thành viên, còn danh sách tham số và thân hàm dùng để cài đặt nạp chồng `operator()`.
 
 ??? note "Đối tượng hàm (Function Object)"
     Đối tượng hàm là một đối tượng lớp, thường được cài đặt bằng cách nạp chồng `operator()`, vì vậy có thể được gọi như một hàm. So với việc dùng hàm thông thường, đối tượng hàm có nhiều ưu điểm, chẳng hạn có thể lưu trạng thái và có thể truyền làm tham số cho các hàm khác.

@@ -20,12 +20,12 @@ Các cài đặt C++ và Python bên dưới dựa trên cách lưu đồ thị 
 === "Mã giả"
     ```text
     bfs(s) {
-      q = new queue()
+      q = hàng đợi mới()
       q.push(s), visited[s] = true
-      while (!q.empty()) {
+      trong khi q không rỗng {
         u = q.pop()
-        for each edge(u, v) {
-          if (!visited[v]) {
+        với mỗi cạnh (u, v) {
+          nếu v chưa được thăm {
             q.push(v)
             visited[v] = true
           }
@@ -166,18 +166,16 @@ Trong trường hợp thông thường, ta đưa đỉnh được mở rộng qu
 
 Dưới đây là mã giả:
 
-```cpp
-while (!q.empty()) {
-  int u = q.front();
-  q.pop_front();
-  for (int v : adj[u]) {
-    update_data(u, v);
-    if (is_zero_weight_edge(u, v))
-      q.push_front(v);
-    else
-      q.push_back(v);
-  }
-}
+```text
+trong khi q không rỗng:
+  u = q.front()
+  q.pop_front()
+  với mỗi v kề u:
+    update_data(u, v)
+    nếu cạnh (u, v) có trọng số 0:
+      q.push_front(v)
+    ngược lại:
+      q.push_back(v)
 ```
 
 ### Bài tập ví dụ

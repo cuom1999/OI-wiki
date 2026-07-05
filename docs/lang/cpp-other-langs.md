@@ -95,8 +95,8 @@ C++ xem giải thích ở trang [hằng](./const.md).
 
 ### Cấp phát bộ nhớ
 
-C++ thêm từ khóa `new` và `delete` để cấp phát không gian trên "free store". Free
-store này có thể là heap hoặc vùng lưu trữ tĩnh; chúng xuất hiện để phối hợp với
+C++ thêm từ khóa `new` và `delete` để cấp phát không gian trên "vùng lưu trữ tự do".
+Vùng lưu trữ tự do này có thể là heap hoặc vùng lưu trữ tĩnh; chúng xuất hiện để phối hợp với
 "lớp". Trong đó `delete[]` còn có thể trực tiếp giải phóng bộ nhớ của mảng động,
 rất tiện lợi. Từ khóa `new` và `delete` sẽ gọi hàm tạo và hàm hủy của kiểu; so
 với các hàm `malloc()`, `realloc()`, `free()` trong C, chúng hỗ trợ kiểu đầy đủ

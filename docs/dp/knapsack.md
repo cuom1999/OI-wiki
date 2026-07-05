@@ -238,13 +238,13 @@ Ba lô hỗn hợp là bài toán trộn ba loại ba lô ở trên: có vật p
 Dạng bài này thoạt nhìn khá đáng sợ, nhưng chỉ cần hiểu tư tưởng cốt lõi của các loại ba lô phía trên và ghép chúng lại là được. Dưới đây là mã giả:
 
 ```plain
-for (duyet tung loai vat pham) {
-  if (la ba lo 0-1)
-    ap dung ma ba lo 0-1;
-  else if (la ba lo day du)
-    ap dung ma ba lo day du;
-  else if (la ba lo nhieu vat pham)
-    ap dung ma ba lo nhieu vat pham;
+với mỗi loại vật phẩm {
+  nếu là ba lô 0-1
+    áp dụng mã ba lô 0-1;
+  ngược lại nếu là ba lô đầy đủ
+    áp dụng mã ba lô đầy đủ;
+  ngược lại nếu là ba lô nhiều vật phẩm
+    áp dụng mã ba lô nhiều vật phẩm;
 }
 ```
 
@@ -373,16 +373,16 @@ Theo nguyên lý tham lam, khi chi phí bằng nhau thì chỉ cần giữ vật
 
 Xuất phương án thực chất là ghi lại một trạng thái nào đó trong ba lô được suy ra như thế nào. Ta có thể dùng $g_{i,v}$ để biểu diễn khi vật phẩm thứ $i$ chiếm dung lượng $v$ thì có chọn vật phẩm này hay không. Sau đó, trong lúc chuyển trạng thái, ghi lại đã dùng chiến lược nào (chọn hoặc không chọn). Mã giả khi xuất:
 
-```cpp
-int v = V;  // Ghi lai dung luong luu tru hien tai
+```plain
+int v = V;  // Ghi lại dung lượng lưu trữ hiện tại
 
-// Vi vat pham cuoi cung luu trang thai cuoi cung, nen duyet tu vat pham cuoi ve vat pham dau
-for (duyet tu vat pham cuoi den vat pham dau) {
+// Vì vật phẩm cuối cùng lưu trạng thái cuối cùng, nên duyệt từ vật phẩm cuối về vật phẩm đầu
+for (duyệt từ vật phẩm cuối đến vật phẩm đầu) {
   if (g[i][v]) {
-    da chon vat pham thu i;
-    v -= trong luong cua vat pham thu i;
+    đã chọn vật phẩm thứ i;
+    v -= trọng lượng của vật phẩm thứ i;
   } else {
-    khong chon vat pham thu i;
+    không chọn vật phẩm thứ i;
   }
 }
 ```

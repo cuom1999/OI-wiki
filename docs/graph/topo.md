@@ -83,17 +83,17 @@ Trước hết, xét mã giả từ [Wikipedia](https://en.wikipedia.org/wiki/To
     ```text
     L ← danh sách rỗng sẽ chứa các phần tử sau khi sắp xếp
     S ← tập tất cả các nút không có cạnh đi vào
-    while S không rỗng do
+    trong khi S không rỗng thực hiện
         lấy một nút n khỏi S
         đưa n vào L
-        for mỗi nút m có một cạnh e từ n đến m do
+        với mỗi nút m có một cạnh e từ n đến m thực hiện
             xóa cạnh e khỏi đồ thị
-            if m không còn cạnh đi vào nào khác then
+            nếu m không còn cạnh đi vào nào khác thì
                 đưa m vào S
-    if đồ thị còn cạnh then
-        return lỗi (đồ thị có ít nhất một chu trình)
-    else
-        return L (một thứ tự topo)
+    nếu đồ thị còn cạnh thì
+        trả về lỗi (đồ thị có ít nhất một chu trình)
+    ngược lại
+        trả về L (một thứ tự topo)
     ```
 
 Cốt lõi của mã là duy trì một tập các đỉnh có bậc vào bằng 0.

@@ -63,7 +63,7 @@ giải thưởng, chất lượng đề cao và đã tích lũy nhiều tài ngu
 
 Từ khóa để tìm trong OJ: `Multi-University Training Contest`.
 
-### Regional khu vực
+### Vòng khu vực (Regional)
 
 Bạn có thể tìm các bộ đề chọn lọc trên
 [Virtual Judge](https://vjudge.net/).

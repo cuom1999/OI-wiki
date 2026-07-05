@@ -18,9 +18,9 @@ Hình dưới đây là một cây đỏ-đen hợp lệ:
 ![Ví dụ cây đỏ-đen hợp lệ](images/rbtree-example.svg)
 
 ???+ note "Ghi chú"
-    Một số tài liệu còn thêm tính chất thứ năm, tức nút gốc phải có màu đen. Tính chất này yêu cầu sau khi hoàn tất thao tác chèn, nếu nút gốc có màu đỏ thì tô nó thành đen. Tuy nhiên, thao tác tô đen nút gốc cũng có thể được trì hoãn đến khi thực hiện thao tác xóa, nên tính chất này không bắt buộc phải thỏa mãn (phần cài đặt mã trong bài này có thỏa mãn tính chất đó). Để chặt chẽ, ở đây trích dẫn thêm nguyên văn từ [Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Properties):
+    Một số tài liệu còn thêm tính chất thứ năm, tức nút gốc phải có màu đen. Tính chất này yêu cầu sau khi hoàn tất thao tác chèn, nếu nút gốc có màu đỏ thì tô nó thành đen. Tuy nhiên, thao tác tô đen nút gốc cũng có thể được trì hoãn đến khi thực hiện thao tác xóa, nên tính chất này không bắt buộc phải thỏa mãn (phần cài đặt mã trong bài này có thỏa mãn tính chất đó). Để chặt chẽ, ở đây dịch ý thêm từ [Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Properties):
     
-    > Some authors, e.g. Cormen & al.,[^cite_note-cormen2009-18]claim "the root is black" as fifth requirement; but not Mehlhorn & Sanders[^cite_note-mehlhorn2008-17]or Sedgewick & Wayne.[^cite_note-algs4-16]Since the root can always be changed from red to black, this rule has little effect on analysis. This article also omits it, because it slightly disturbs the recursive algorithms and proofs.
+    > Một số tác giả, chẳng hạn Cormen và cộng sự,[^cite_note-cormen2009-18] xem "gốc là nút đen" là yêu cầu thứ năm; nhưng Mehlhorn & Sanders[^cite_note-mehlhorn2008-17] và Sedgewick & Wayne[^cite_note-algs4-16] thì không. Vì luôn có thể đổi gốc từ đỏ sang đen, quy tắc này ít ảnh hưởng đến phân tích. Bài viết này cũng bỏ qua quy tắc đó, vì nó làm các thuật toán và chứng minh đệ quy hơi kém gọn.
 
 ## Định nghĩa lớp cây đỏ-đen
 

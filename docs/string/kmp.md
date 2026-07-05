@@ -448,7 +448,7 @@ Giả sử $n$ chia hết cho $k$. Khi đó chuỗi có thể được chia thà
 Hãy quay lại chuỗi mới được tạo bằng cách nối hai chuỗi qua một ký tự phân tách. Với các chuỗi $s$ và $t$, ta tính hàm tiền tố của $s + \# + t$. Rõ ràng, vì $\#$ là một ký tự phân tách, giá trị hàm tiền tố không bao giờ vượt quá $|s|$. Do đó ta chỉ cần lưu chuỗi $s + \#$ và các giá trị hàm tiền tố tương ứng của nó; sau đó có thể tính động giá trị hàm tiền tố cho mọi ký tự tiếp theo:
 
 $$
-\underbrace{s_0 ~ s_1 ~ \dots ~ s_{n-1} ~ \#}_{\text{need to store}} ~ \underbrace{t_0 ~ t_1 ~ \dots ~ t_{m-1}}_{\text{do not need to store}}
+\underbrace{s_0 ~ s_1 ~ \dots ~ s_{n-1} ~ \#}_{\text{cần lưu}} ~ \underbrace{t_0 ~ t_1 ~ \dots ~ t_{m-1}}_{\text{không cần lưu}}
 $$
 
 Thực ra trong trường hợp này, chỉ cần biết ký tự tiếp theo $c$ của $t$ và giá trị hàm tiền tố ở vị trí trước đó là đủ để tính giá trị hàm tiền tố ở vị trí tiếp theo, không cần dùng đến bất kỳ ký tự nào khác của $t$ hay giá trị hàm tiền tố tương ứng của chúng.

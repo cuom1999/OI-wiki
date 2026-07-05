@@ -209,10 +209,10 @@ Dùng các lệnh sau để cập nhật phần mềm và nguồn phần mềm:
 
 ```console
 $ sudo su # Sau khi chạy lệnh này, dấu nhắc dòng lệnh sẽ đổi từ $ thành #; trước khi chạy các lệnh bên dưới hãy chú ý dấu nhắc
-[sudo] mat khau cua xxx:
+[sudo] mật khẩu của xxx:
 # cp /etc/apt/sources.list /etc/apt/sources.list.bak
 # vim /etc/apt/sources.list
-... (sau khi nhan i, nhap chuot phai de dan source o tren vao; sua xong nhan Esc, roi nhap :wq va Enter)
+... (sau khi nhấn i, nhấp chuột phải để dán nguồn ở trên vào; sửa xong nhấn Esc, rồi nhập :wq và Enter)
 # apt update
 # apt upgrade -y
 # exit

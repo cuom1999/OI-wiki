@@ -16,12 +16,12 @@ Nói cụ thể hơn, DFS có cấu trúc đại khái như sau:
 
     DFS(v) // v có thể là một đỉnh của đồ thị, hoặc một khái niệm trừu tượng như trạng thái dp.
       Đánh dấu v là đã thăm
-      for u in các đỉnh kề của v
-        if u chưa được đánh dấu là đã thăm then
+      với mỗi u trong các đỉnh kề của v
+        nếu u chưa được đánh dấu là đã thăm thì
           DFS(u)
-        end
-      end
-    end
+        kết thúc nếu
+      kết thúc vòng lặp
+    kết thúc hàm
 
 Đoạn giả mã trên chỉ chứa cấu trúc chính bắt buộc của DFS. Trong cài đặt thực tế, ta thường bổ sung thêm một số thao tác dựa trên các tính chất của DFS.
 

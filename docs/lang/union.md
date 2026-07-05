@@ -5,7 +5,7 @@ Liên hiệp chính thức được thêm vào đề cương NOI cấp nhập m�
 
 ## Định nghĩa liên hiệp
 
-Class-specifier trong khai báo liên hiệp tương tự khai báo lớp hoặc
+Bộ chỉ định lớp trong khai báo liên hiệp tương tự khai báo lớp hoặc
 [cấu trúc](./struct.md):
 
 ```cpp

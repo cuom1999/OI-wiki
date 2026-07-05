@@ -15,8 +15,8 @@ Nếu với $f:=\sum_{k\geq N}f_kx^k$ và $f_N\neq 0$, tồn tại $g=\sum_{k\ge
 $$
 g_k:=
 \begin{cases}
-f_N^{-1}, &\text{ if }k=-N\text{,} \\
--f_N^{-1}\sum_{i> N}f_ig_{k-i}, &\text{ otherwise}
+f_N^{-1}, &\text{ nếu }k=-N\text{,} \\
+-f_N^{-1}\sum_{i> N}f_ig_{k-i}, &\text{ ngược lại}
 \end{cases}
 $$
 

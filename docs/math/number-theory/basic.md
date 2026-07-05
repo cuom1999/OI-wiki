@@ -583,8 +583,8 @@ $F(x)=\prod F(p_i^{k_i})=\prod F(p_i)^{k_i}$.
     $x, y \in\mathbf{N}^*$, thì $f(n)$ là **hàm cộng tính hoàn toàn**.
 
 ???+ warning "Hàm cộng tính"
-    Hàm cộng tính trong mục này chỉ hàm cộng tính trong số học (Additive
-    function), cần phân biệt với ánh xạ cộng (Additive map) trong đại số.
+    Hàm cộng tính trong mục này chỉ hàm cộng tính trong số học, cần phân biệt
+    với ánh xạ cộng trong đại số.
 
 <span id="tính-chất-1"></span>
 #### Tính chất
