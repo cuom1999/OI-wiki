@@ -14,7 +14,7 @@ Nhược điểm:
 
 -   **Phạm vi chức năng hạn chế**: so với các IDE như CLion hoặc Eclipse, chức năng và công cụ tích hợp còn khá cơ bản, có thể chưa đủ cho nhu cầu của các dự án phức tạp.
 
--   **Hệ sinh thái phần bổ trợ yếu**: dù hỗ trợ phần bổ trợ (plugin) để mở rộng chức năng, số lượng và chất lượng plugin bên thứ ba còn hạn chế, nên hệ sinh thái phần bổ trợ tương đối yếu.
+-   **Hệ sinh thái phần bổ trợ yếu**: dù hỗ trợ phần bổ trợ để mở rộng chức năng, số lượng và chất lượng phần bổ trợ bên thứ ba còn hạn chế, nên hệ sinh thái phần bổ trợ tương đối yếu.
 
 ## Cài đặt
 
@@ -90,16 +90,16 @@ Code::Blocks cung cấp nhiều tùy chọn thiết lập để giúp điều ch
 
 ### Thiết lập phần bổ trợ
 
-Code::Blocks hỗ trợ phần bổ trợ (plugin) để mở rộng chức năng. Có thể xem và cài đặt plugin khả dụng qua `Settings -> Plugins`, chẳng hạn DoxyBlocks, wxSmith, v.v. Dưới đây là một số phần bổ trợ thường dùng:
+Code::Blocks hỗ trợ phần bổ trợ để mở rộng chức năng. Có thể xem và cài đặt phần bổ trợ khả dụng qua `Settings -> Plugins`, chẳng hạn DoxyBlocks, wxSmith, v.v. Dưới đây là một số phần bổ trợ thường dùng:
 
--   **DoxyBlocks**: plugin tích hợp công cụ sinh tài liệu nổi tiếng Doxygen, có thể sinh tài liệu dự án trực tiếp trong Code::Blocks.
--   **wxSmith**: plugin dùng để phát triển ứng dụng wxWidgets, cung cấp công cụ thiết kế giao diện trực quan, cho phép tạo và bố trí giao diện GUI nhanh chóng, đơn giản hóa quy trình phát triển.
--   **Thread Search**: plugin hỗ trợ tìm kiếm đa luồng, có thể nhanh chóng tìm kiếm và thay thế ký hiệu và văn bản trong dự án, phù hợp cho phát triển dự án lớn.
+-   **DoxyBlocks**: phần bổ trợ tích hợp công cụ sinh tài liệu nổi tiếng Doxygen, có thể sinh tài liệu dự án trực tiếp trong Code::Blocks.
+-   **wxSmith**: phần bổ trợ dùng để phát triển ứng dụng wxWidgets, cung cấp công cụ thiết kế giao diện trực quan, cho phép tạo và bố trí giao diện GUI nhanh chóng, đơn giản hóa quy trình phát triển.
+-   **Thread Search**: phần bổ trợ hỗ trợ tìm kiếm đa luồng, có thể nhanh chóng tìm kiếm và thay thế ký hiệu và văn bản trong dự án, phù hợp cho phát triển dự án lớn.
 
-Cách cài đặt và sử dụng plugin xem trong [tài liệu plugin của Code::Blocks](https://wiki.codeblocks.org/index.php/Code::Blocks_Plugins). Hãy chọn plugin phù hợp để cài đặt và sử dụng theo nhu cầu và chức năng của plugin.
+Cách cài đặt và sử dụng phần bổ trợ xem trong [tài liệu phần bổ trợ của Code::Blocks](https://wiki.codeblocks.org/index.php/Code::Blocks_Plugins). Hãy chọn phần bổ trợ phù hợp để cài đặt và sử dụng theo nhu cầu và chức năng của phần bổ trợ.
 
 ???+ warning "Chú ý"
-    Plugin của Code::Blocks tương đối đơn giản và cơ bản; phần lớn plugin đã được tích hợp vào phần mềm, còn số lượng và chất lượng plugin bên thứ ba thì hạn chế. Nên chọn plugin phù hợp theo nhu cầu thực tế.
+    Phần bổ trợ của Code::Blocks tương đối đơn giản và cơ bản; phần lớn phần bổ trợ đã được tích hợp vào phần mềm, còn số lượng và chất lượng phần bổ trợ bên thứ ba thì hạn chế. Nên chọn phần bổ trợ phù hợp theo nhu cầu thực tế.
 
 ### Thiết lập phím tắt
 
