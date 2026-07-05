@@ -197,7 +197,7 @@ Chỉ cần lấy lũy thừa bậc $k$ của hoán vị này, rồi áp dụng 
     
     Ngoài ra còn có một thao tác đặc biệt: lặp lại một dãy thao tác $k$ lần (Repeat). Các thao tác Repeat có thể lồng nhau. Hãy xuất tọa độ của từng điểm sau khi thực hiện xong mọi thao tác.
 
-Theo nội dung trong [véc-tơ và ma trận](./linear-algebra/vector.md#%E5%90%91%E9%87%8F%E4%B8%8E%E7%9F%A9%E9%98%B5), mỗi thao tác đều có thể được biểu diễn bằng một ma trận biến đổi, và một chuỗi biến đổi liên tiếp có thể được biểu diễn bằng tích các ma trận. Một thao tác Repeat tương đương với việc lấy lũy thừa bậc $k$ của một ma trận. Nhờ vậy, ta có thể tính ma trận cuối cùng của toàn bộ dãy biến đổi trong thời gian $O(m \log k)$. Cuối cùng áp dụng ma trận đó lên $n$ điểm, tổng độ phức tạp là $O(n + m \log k)$.
+Theo nội dung trong [véc-tơ và ma trận](./linear-algebra/vector.md#vectơ-và-ma-trận), mỗi thao tác đều có thể được biểu diễn bằng một ma trận biến đổi, và một chuỗi biến đổi liên tiếp có thể được biểu diễn bằng tích các ma trận. Một thao tác Repeat tương đương với việc lấy lũy thừa bậc $k$ của một ma trận. Nhờ vậy, ta có thể tính ma trận cuối cùng của toàn bộ dãy biến đổi trong thời gian $O(m \log k)$. Cuối cùng áp dụng ma trận đó lên $n$ điểm, tổng độ phức tạp là $O(n + m \log k)$.
 
 <span id="&#x5B9A;&#x957F;&#x8DEF;&#x5F84;&#x8BA1;&#x6570;"></span>
 ### Đếm đường đi có độ dài cố định
