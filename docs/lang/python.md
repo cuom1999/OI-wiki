@@ -1,12 +1,12 @@
 author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran, CuriosityQiu
 
-<a id="&#20851;&#20110;-python"></a>
+<a id="về-python"></a>
 
 ## Về Python
 
 Python là một ngôn ngữ thông dịch được sử dụng rộng rãi trên thế giới. Ngôn ngữ này cung cấp các cấu trúc dữ liệu bậc cao hiệu quả, hỗ trợ lập trình hướng đối tượng đơn giản mà mạnh mẽ, và cũng có thể dùng trong lập trình thi đấu.
 
-<a id="python-&#30340;&#20248;&#28857;"></a>
+<a id="ưu-điểm-của-python"></a>
 
 ### Ưu điểm của Python
 
@@ -18,15 +18,15 @@ Python là một ngôn ngữ thông dịch được sử dụng rộng rãi trê
 -   Chương trình Python **ngắn gọn và dễ đọc**: mã Python thường ngắn hơn mã của các ngôn ngữ khác khi thực hiện cùng một chức năng.
 -   Python **hỗ trợ mở rộng**: Python được phát triển bằng C (tức CPython), hỗ trợ liên kết trình thông dịch Python với ứng dụng viết bằng C, nhờ đó có thể dùng Python để mở rộng và điều khiển ứng dụng đó.
 
-<a id="&#23398;&#20064;-python-&#30340;&#27880;&#24847;&#20107;&#39033;"></a>
+<a id="lưu-ý-khi-học-python"></a>
 
 ### Lưu ý khi học Python
 
--   Phiên bản Python được dùng chủ yếu hiện nay là Python 3.7 trở lên. Python 2 và Python 3.6 trở về trước đã [không còn được hỗ trợ](https://devguide.python.org/versions/#unsupported-versions), nhưng vẫn có thể xuất hiện trong một số hệ thống và mã cũ. Bài này sẽ **giới thiệu các phiên bản Python mới hơn**. Nếu gặp mã Python 2, bạn có thể thử dùng chương trình [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) để chuyển mã Python 2 sang Python 3.
+-   Phiên bản Python được dùng chủ yếu hiện nay là Python 3.7 trở lên. Python 2 và Python 3.6 trở về trước đã [không còn được hỗ trợ](https://devguide.python.org/versions/#unsupported-versions), nhưng vẫn có thể xuất hiện trong một số hệ thống và mã cũ. Bài này sẽ **giới thiệu các phiên bản Python mới hơn**. Nếu gặp mã Python 2, bạn có thể thử dùng chương trình [`2to3`](https://docs.python.org/3/library/2to3.html) để chuyển mã Python 2 sang Python 3.
 -   Tư tưởng thiết kế và cấu trúc cú pháp của Python **khác khá nhiều so với một số ngôn ngữ khác**. Python che giấu nhiều chi tiết tầng thấp, vì vậy mang phong cách thực dụng và gọn gàng.
 -   Python là ngôn ngữ thông dịch có tính động cao, nên **tốc độ chạy chương trình tương đối chậm**, đặc biệt khi dùng vòng lặp `for` thuần Python. Khi dùng Python, nên tận dụng các hàm dựng sẵn như `filter`, `map`, hoặc dùng cú pháp [list comprehension](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) để cải thiện hiệu năng.
 
-<a id="&#29615;&#22659;&#25645;&#24314;"></a>
+<a id="thiết-lập-môi-trường"></a>
 
 ## Thiết lập môi trường
 
@@ -47,7 +47,7 @@ Khi gõ `python3` trên dòng lệnh hoặc vừa mở IDLE, thực chất bạn
 
 Nhưng nếu muốn viết một chương trình hoàn chỉnh, tốt hơn hết hãy tạo một tệp văn bản mới (thường có đuôi `.py`), sau đó chạy `python3 filename.py` trên dòng lệnh để xem kết quả.
 
-<a id="&#19968;&#20123;&#24179;&#21488;&#25552;&#20379;&#30340;-python-&#29256;&#26412;"></a>
+<a id="một-số-phiên-bản-python-trên-các-nền-tảng"></a>
 
 ### Một số phiên bản Python trên các nền tảng
 
@@ -64,7 +64,7 @@ Nhưng nếu muốn viết một chương trình hoàn chỉnh, tốt hơn hết
 
 Hiện nay các mirror cache **mã nguồn** trong nước Trung Quốc chủ yếu gồm [Beijing Jiaotong University Free and Open Source Software Mirror](https://mirror.bjtu.edu.cn/python/) và [Huawei Open Source Mirror](https://repo.huaweicloud.com/python/). Bạn có thể thử tải bộ cài Python từ đó.
 
-<a id="&#20351;&#29992;-pip-&#23433;&#35013;&#31532;&#19977;&#26041;&#24211;"></a>
+<a id="cài-thư-viện-bên-thứ-ba-bằng-pip"></a>
 
 ## Cài thư viện bên thứ ba bằng `pip`
 
@@ -77,13 +77,13 @@ Thư viện bên thứ ba trong `pip` chủ yếu được lưu trên [Python Pa
     pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple <some-package>
     ```
 
-<a id="&#22522;&#26412;&#35821;&#27861;"></a>
+<a id="cú-pháp-cơ-bản"></a>
 
 ## Cú pháp cơ bản
 
-Cú pháp Python ngắn gọn và dễ hiểu, đồng thời có nhiều tài liệu và giáo trình cả chính thức lẫn bên thứ ba. Ở đây chỉ giới thiệu một số đặc điểm ngôn ngữ hữu ích với OIer. Bạn có thể đọc thêm các bài học Python trên [tài liệu Python](https://docs.python.org/zh-cn/3/) và [Python Wiki](https://wiki.python.org/moin/).
+Cú pháp Python ngắn gọn và dễ hiểu, đồng thời có nhiều tài liệu và giáo trình cả chính thức lẫn bên thứ ba. Ở đây chỉ giới thiệu một số đặc điểm ngôn ngữ hữu ích với OIer. Bạn có thể đọc thêm các bài học Python trên [tài liệu Python](https://docs.python.org/3/) và [Python Wiki](https://wiki.python.org/moin/).
 
-<a id="&#27880;&#37322;"></a>
+<a id="chú-thích"></a>
 
 ### Chú thích
 
@@ -101,11 +101,11 @@ nhưng nó cũng thường được dùng làm chú thích
 
 Thêm mã chú thích sẽ không ảnh hưởng đến chương trình. Nên thêm chú thích để mã dễ hiểu và dễ dùng hơn.
 
-<a id="&#22522;&#26412;&#25968;&#25454;&#31867;&#22411;"></a>
+<a id="kiểu-dữ-liệu-cơ-bản"></a>
 
 ### Kiểu dữ liệu cơ bản
 
-<a id="&#19968;&#20999;&#30342;&#23545;&#35937;"></a>
+<a id="mọi-thứ-đều-là-đối-tượng"></a>
 
 #### Mọi thứ đều là đối tượng
 
@@ -140,10 +140,10 @@ True
 <class 'bool'>
 ```
 
-???+ note "[**Hàm dựng sẵn**](https://docs.python.org/zh-cn/3/library/functions.html) là gì?"
+???+ note "[**Hàm dựng sẵn**](https://docs.python.org/3/library/functions.html) là gì?"
     Trong C/C++, nhiều hàm thường dùng nằm rải rác trong các tệp header khác nhau. Còn trình thông dịch Python tích hợp sẵn nhiều hàm thực dụng và tổng quát; bạn có thể dùng trực tiếp mà không cần quan tâm chúng nằm ở đâu. Điều này cũng tạo ra một vấn đề nhỏ: tên các hàm dựng sẵn thường là từ thông dụng, vì vậy cần tránh đặt biến trùng tên, nếu không có thể sinh ra kết quả kỳ lạ.
 
-Như đã thấy, Python có sẵn các kiểu số nguyên, số thực dấu phẩy động, chuỗi và boolean, có thể đối chiếu với `int`, `float`, `string` và `bool` trong C++. Nhưng có một số khác biệt rõ ràng: Python không có kiểu ký tự `char`, cũng không có kiểu `double` (nhưng `float` thực ra tương ứng với số chính xác kép trong C). Nếu cần phép tính dấu phẩy động chính xác hơn, có thể dùng module [decimal](https://docs.python.org/zh-cn/3/library/decimal.html) trong thư viện chuẩn. Nếu cần số phức, Python có sẵn kiểu `complex` (tất nhiên tốt nhất là không đặt biến tên `complex`).
+Như đã thấy, Python có sẵn các kiểu số nguyên, số thực dấu phẩy động, chuỗi và boolean, có thể đối chiếu với `int`, `float`, `string` và `bool` trong C++. Nhưng có một số khác biệt rõ ràng: Python không có kiểu ký tự `char`, cũng không có kiểu `double` (nhưng `float` thực ra tương ứng với số chính xác kép trong C). Nếu cần phép tính dấu phẩy động chính xác hơn, có thể dùng module [decimal](https://docs.python.org/3/library/decimal.html) trong thư viện chuẩn. Nếu cần số phức, Python có sẵn kiểu `complex` (tất nhiên tốt nhất là không đặt biến tên `complex`).
 
 Có thể thấy các kiểu này đều bắt đầu bằng `class`, và đây là điểm cốt lõi khiến Python khác C++: mọi dữ liệu trong chương trình Python được biểu diễn bằng đối tượng hoặc quan hệ giữa các đối tượng. Hàm là đối tượng, bản thân kiểu cũng là đối tượng:
 
@@ -158,7 +158,7 @@ Có thể thấy các kiểu này đều bắt đầu bằng `class`, và đây 
 
 Có thể bạn thấy các khái niệm này tạm thời khó hiểu và chưa hữu ích, nên ta chưa đi sâu. Qua các ví dụ sau, bạn có thể dần cảm nhận được: đối tượng Python cung cấp nhiều phương thức mạnh. Khi lập trình, nên ưu tiên suy nghĩ thao tác quanh đối tượng thay vì quanh quy trình; mã sẽ gọn và rõ hơn.
 
-<a id="&#25968;&#23383;&#36816;&#31639;"></a>
+<a id="phép-toán-số-học"></a>
 
 #### Phép toán số học
 
@@ -202,15 +202,15 @@ Từ các thử nghiệm trên có thể thấy phép chia (`/`) luôn trả v�
 False
 ```
 
-<a id="&#25968;&#25454;&#31867;&#22411;&#21028;&#26029;"></a>
+<a id="kiểm-tra-kiểu-dữ-liệu"></a>
 
 #### Kiểm tra kiểu dữ liệu
 
 Với một biến, có thể dùng `type(object)` để trả về kiểu của biến. Ví dụ, giá trị của `type(8)` và `type('a')` lần lượt là `<class 'int'>` và `<class 'str'>`.
 
-<a id="&#22522;&#26412;&#36755;&#20837;&#36755;&#20986;"></a>
+<a id="nhập-xuất-cơ-bản"></a>
 
-#### [Nhập xuất cơ bản](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
+#### [Nhập xuất cơ bản](https://docs.python.org/3/tutorial/inputoutput.html)
 
 Nhập xuất trong Python chủ yếu thực hiện qua hai hàm dựng sẵn `input()` và `print()`. Cách dùng `print()` rất trực quan:
 
@@ -234,11 +234,11 @@ Nhập dãy số: 1 2 3 4 5 6
 '1 2 3 4 5 6'
 ```
 
-<a id="&#23383;&#31526;&#20018;"></a>
+<a id="chuỗi"></a>
 
 #### Chuỗi
 
-Python 3 cung cấp kiểu chuỗi dựa trên [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) rất mạnh, cách dùng gần với `string` trong C++. Nhiều khái niệm như ký tự thoát cũng tương tự. Ngoài phép cộng để nối chuỗi và truy cập bằng chỉ số, Python còn hỗ trợ nhân với số `*` để lặp chuỗi và toán tử `in`.
+Python 3 cung cấp kiểu chuỗi dựa trên [Unicode](https://docs.python.org/3/howto/unicode.html#unicode-howto) rất mạnh, cách dùng gần với `string` trong C++. Nhiều khái niệm như ký tự thoát cũng tương tự. Ngoài phép cộng để nối chuỗi và truy cập bằng chỉ số, Python còn hỗ trợ nhân với số `*` để lặp chuỗi và toán tử `in`.
 
 ```pycon
 >>> s1 = "O"  # Dấu nháy đơn và dấu nháy kép đều bao được chuỗi; đôi khi giúp tiết kiệm ký tự thoát
@@ -286,15 +286,15 @@ Trong các phiên bản Python 3 mới, chuỗi được mã hóa bằng Unicode
 
 Nếu muốn chuyển số thành chuỗi tương ứng, có thể dùng hàm dựng sẵn `str()`; chiều ngược lại có thể dùng `int()` và `float()`. Có thể xem như ép kiểu trong C/C++, nhưng ngoặc không đặt sau kiểu mà là một phần của lời gọi hàm.
 
-Kiểu chuỗi của Python cung cấp nhiều phương thức mạnh, bao gồm tìm chỉ số và số lần xuất hiện của một ký tự, đổi hoa thường, v.v. Ở đây không liệt kê từng cái; rất nên đọc [tài liệu chính thức](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str) để làm quen các phương thức thường dùng. Khi gặp thao tác chuỗi, hãy nghĩ đến các phương thức sẵn có trước khi tự viết lại.
+Kiểu chuỗi của Python cung cấp nhiều phương thức mạnh, bao gồm tìm chỉ số và số lần xuất hiện của một ký tự, đổi hoa thường, v.v. Ở đây không liệt kê từng cái; rất nên đọc [tài liệu chính thức](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str) để làm quen các phương thức thường dùng. Khi gặp thao tác chuỗi, hãy nghĩ đến các phương thức sẵn có trước khi tự viết lại.
 
-<a id="&#21019;&#24314;&#25968;&#32452;"></a>
+<a id="tạo-mảng"></a>
 
 ### Tạo mảng
 
-Bạn nào chuyển từ C++ sang có thể bối rối về cách tạo mảng trong Python. Phần này giới thiệu cú pháp "mô phỏng mảng" trong Python. Cần nhấn mạnh rằng thực chất ta đang nói về một số [kiểu sequence](https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types), khác bản chất với mảng C và gần với `vector` trong C++ hơn.
+Bạn nào chuyển từ C++ sang có thể bối rối về cách tạo mảng trong Python. Phần này giới thiệu cú pháp "mô phỏng mảng" trong Python. Cần nhấn mạnh rằng thực chất ta đang nói về một số [kiểu sequence](https://docs.python.org/3/library/stdtypes.html#iterator-types), khác bản chất với mảng C và gần với `vector` trong C++ hơn.
 
-<a id="&#20351;&#29992;-list"></a>
+<a id="dùng-list"></a>
 
 #### Dùng `list`
 
@@ -332,7 +332,7 @@ Danh sách (`list`) có lẽ là kiểu sequence thường dùng và mạnh nh�
 >>> nums.clear(); nums  # Giống clear() của vector
 ```
 
-Ví dụ trên cho thấy danh sách có nhiều điểm giống `vector`: các thao tác thường dùng trong `vector` thường cũng có phương thức tương ứng trong danh sách. Tuy nhiên, một số thao tác như `len()`, `sorted()` xuất hiện dưới dạng hàm dựng sẵn; còn các hàm trong STL algorithm như `find()`, `count()`, `max_element()`, `sort()`, `reverse()` lại trở thành phương thức của đối tượng trong Python. Khi dùng cần phân biệt. Xem thêm [mô tả chi tiết về list](https://docs.python.org/zh-cn/3/tutorial/datastructures.html#more-on-lists) trong tài liệu chính thức. Dưới đây là một số tính năng mạnh của danh sách với vai trò kiểu sequence cơ bản của Python:
+Ví dụ trên cho thấy danh sách có nhiều điểm giống `vector`: các thao tác thường dùng trong `vector` thường cũng có phương thức tương ứng trong danh sách. Tuy nhiên, một số thao tác như `len()`, `sorted()` xuất hiện dưới dạng hàm dựng sẵn; còn các hàm trong STL algorithm như `find()`, `count()`, `max_element()`, `sort()`, `reverse()` lại trở thành phương thức của đối tượng trong Python. Khi dùng cần phân biệt. Xem thêm [mô tả chi tiết về list](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists) trong tài liệu chính thức. Dưới đây là một số tính năng mạnh của danh sách với vai trò kiểu sequence cơ bản của Python:
 
 Python hỗ trợ nhiều kiểu dữ liệu hợp, có thể gom các giá trị khác nhau lại với nhau. Kiểu thường dùng nhất là `list`, được viết bằng một nhóm giá trị phân cách bằng dấu phẩy và đặt trong ngoặc vuông. Ví dụ, `[1, 2, 3]` và `['a','b','c']` đều là danh sách.
 
@@ -421,7 +421,7 @@ Có một sự thật quan trọng: phép gán trong Python chỉ truyền tham 
 
 Ta đã giới thiệu list comprehension trước khi nói về vòng lặp, vì Python là ngôn ngữ thông dịch có tính động cao, nên việc chạy chương trình có nhiều overhead. Đặc biệt, **vòng lặp for trong Python chạy khá chậm**. Vì vậy khi dùng Python mà muốn đạt hiệu năng cao, hãy cố gắng dùng list comprehension, hoặc các hàm dựng sẵn như `filter`, `map` để thao tác trực tiếp trên cả sequence nhằm tránh vòng lặp. Tất nhiên, vẫn phải tùy bài toán cụ thể.
 
-<a id="&#20351;&#29992;-numpy"></a>
+<a id="dùng-numpy"></a>
 
 #### Dùng NumPy
 
@@ -464,25 +464,25 @@ array([[0, 0, 1],
 >>> a1.sort(axis = 1)  # Sắp xếp tại chỗ theo chiều dòng
 ```
 
-<a id="&#20351;&#29992;-array"></a>
+<a id="dùng-array"></a>
 
 #### Dùng `array`
 
-[`array`](https://docs.python.org/zh-cn/3/library/array.html) là một kiểu mảng số hiệu quả do thư viện chuẩn Python cung cấp. Nó biểu diễn mảng các giá trị kiểu cơ bản một cách gọn trong bộ nhớ, nhưng không hỗ trợ lồng mảng và cũng hiếm khi được dùng; ở đây chỉ nhắc qua.
+[`array`](https://docs.python.org/3/library/array.html) là một kiểu mảng số hiệu quả do thư viện chuẩn Python cung cấp. Nó biểu diễn mảng các giá trị kiểu cơ bản một cách gọn trong bộ nhớ, nhưng không hỗ trợ lồng mảng và cũng hiếm khi được dùng; ở đây chỉ nhắc qua.
 
 Nếu không nói gì thêm, "mảng" trong phần sau thường chỉ "danh sách".
 
-<a id="&#36755;&#20837;&#36755;&#20986;"></a>
+<a id="nhập-xuất"></a>
 
-### [Nhập xuất](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
+### [Nhập xuất](https://docs.python.org/3/tutorial/inputoutput.html)
 
 Nhập xuất trong Python chủ yếu thực hiện bằng các hàm dựng sẵn `input()` và `print()`. Phần trước đã giới thiệu cơ bản; dưới đây là cách dùng nâng cao hơn.
 
-<a id="&#26684;&#24335;&#21270;&#36755;&#20986;"></a>
+<a id="xuất-định-dạng"></a>
 
 #### Xuất định dạng
 
-Trong lập trình thi đấu, thông thường chỉ cần xuất số và chuỗi cơ bản, `print()` về cơ bản đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo phong cách `printf()`; cách khác là dùng [hàm `format`](https://docs.python.org/3/library/string.html#formatstrings); cách thứ ba là [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals) thêm từ Python 3.6, ngắn gọn nhất nhưng không đảm bảo phiên bản Python trong phòng thi đủ mới. Có thể xem giải thích chi tiết hơn tại [trang này](https://www.python-course.eu/python3_formatted_output.php). Dù khuyến nghị dùng phương thức `format()`, để có trải nghiệm gần với C, dưới đây chỉ minh họa cách cũ tương tự `printf()`:
+Trong lập trình thi đấu, thông thường chỉ cần xuất số và chuỗi cơ bản, `print()` về cơ bản đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo phong cách `printf()`; cách khác là dùng [hàm `format`](https://docs.python.org/3/library/string.html#formatstrings); cách thứ ba là [f-string](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) thêm từ Python 3.6, ngắn gọn nhất nhưng không đảm bảo phiên bản Python trong phòng thi đủ mới. Có thể xem giải thích chi tiết hơn tại [trang này](https://www.python-course.eu/python3_formatted_output.php). Dù khuyến nghị dùng phương thức `format()`, để có trải nghiệm gần với C, dưới đây chỉ minh họa cách cũ tương tự `printf()`:
 
 ```pycon
 >>> pi = 3.1415926; print('%.4f' % pi)   # Định dạng: %[flags][width][.precision]type
@@ -491,7 +491,7 @@ Trong lập trình thi đấu, thông thường chỉ cần xuất số và chu�
 '3.1416 - 0.141600 = 3'
 ```
 
-<a id="split-&#20989;&#25968;"></a>
+<a id="hàm-split"></a>
 
 #### Hàm `split()`
 
@@ -537,9 +537,9 @@ Trong đề bài thường gặp trường hợp nhập N dòng. Ta chưa nói v
 [1, 1, 2, 3] [3, 4, 3, 4] [3, 1, 4, 1]
 ```
 
-Chương trình trên thực chất tương đương đọc trước một ma trận N dòng 3 cột, sau đó chuyển vị thành ma trận 3 dòng N cột, tức danh sách ngoài lồng 3 danh sách, cuối cùng gán riêng 3 danh sách đại diện điểm đầu, điểm cuối và trọng số cho `u`, `v`, `w`. Hàm dựng sẵn [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) có thể ghép các phần tử tương ứng trong nhiều sequence cùng độ dài vào "tuple" để tạo sequence mới. Còn `map()` là một thao tác lập trình hàm: áp dụng một hàm cho từng phần tử của sequence do `zip()` sinh ra; ở đây là dùng `list()` để biến tuple thành list. Bạn có thể tự luyện tập với `*`, [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) và [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) để hiểu ý nghĩa. Cần lưu ý trong Python 3, `zip()` và `map()` không còn trả về list mà trả về iterator. Ở đây tạm thời không giải thích khác biệt giữa chúng; có thể hiểu iterator là thứ có thể sinh ra từng phần tử của list, và dùng `list()` bọc iterator sẽ tạo ra list.
+Chương trình trên thực chất tương đương đọc trước một ma trận N dòng 3 cột, sau đó chuyển vị thành ma trận 3 dòng N cột, tức danh sách ngoài lồng 3 danh sách, cuối cùng gán riêng 3 danh sách đại diện điểm đầu, điểm cuối và trọng số cho `u`, `v`, `w`. Hàm dựng sẵn [`zip()`](https://docs.python.org/3/library/functions.html#zip) có thể ghép các phần tử tương ứng trong nhiều sequence cùng độ dài vào "tuple" để tạo sequence mới. Còn `map()` là một thao tác lập trình hàm: áp dụng một hàm cho từng phần tử của sequence do `zip()` sinh ra; ở đây là dùng `list()` để biến tuple thành list. Bạn có thể tự luyện tập với `*`, [`zip()`](https://docs.python.org/3/library/functions.html#zip) và [`map()`](https://docs.python.org/3/library/functions.html#map) để hiểu ý nghĩa. Cần lưu ý trong Python 3, `zip()` và `map()` không còn trả về list mà trả về iterator. Ở đây tạm thời không giải thích khác biệt giữa chúng; có thể hiểu iterator là thứ có thể sinh ra từng phần tử của list, và dùng `list()` bọc iterator sẽ tạo ra list.
 
-<a id="&#25991;&#20214;&#35835;&#20889;"></a>
+<a id="đọc-ghi-tệp"></a>
 
 #### [Đọc ghi tệp](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
 
@@ -557,13 +557,13 @@ with open("out.txt", "w") as f:
 
 Có nhiều hàm liên quan đến đọc ghi tệp, phù hợp với các tình huống khác nhau. Vì các kỳ thi OI hiện chưa hỗ trợ dùng Python, ở đây không đi sâu.
 
-<a id="&#25511;&#21046;&#27969;&#31243;"></a>
+<a id="luồng-điều-khiển"></a>
 
-### [Luồng điều khiển](https://docs.python.org/zh-cn/3/tutorial/controlflow.html)
+### [Luồng điều khiển](https://docs.python.org/3/tutorial/controlflow.html)
 
 Tuy đã học nhiều tính năng của Python, đến lúc này các đoạn mã Python được trình bày đều là câu lệnh một dòng. Điều đó che đi khác biệt lớn giữa Python và C về phong cách mã: thứ nhất, Python không dùng `{}` mà dùng thụt lề để biểu diễn khối lệnh; nếu thụt lề không thẳng hàng sẽ báo lỗi ngay, nếu trộn tab và dấu cách cũng sẽ báo lỗi. Thứ hai, nơi bắt đầu khối lệnh, chẳng hạn dòng `if` và `for`, phải kết thúc bằng dấu hai chấm `:`. Điều này giúp mã dễ đọc hơn, nhưng bạn cũng có thể nhớ cảm giác tự do của C, vì khi copy paste làm mất thụt lề rồi phải căn lại thủ công thì rất phiền.
 
-<a id="&#24490;&#29615;&#32467;&#26500;"></a>
+<a id="cấu-trúc-vòng-lặp"></a>
 
 #### Cấu trúc vòng lặp
 
@@ -597,11 +597,11 @@ while s := input():
 print(u, v, w)
 ```
 
-<a id="&#36873;&#25321;&#32467;&#26500;"></a>
+<a id="cấu-trúc-rẽ-nhánh"></a>
 
 #### Cấu trúc rẽ nhánh
 
-Nhìn chung gần giống C/C++; các khác biệt về hình thức được minh họa trong ví dụ dưới đây. Ngoài ra cần lưu ý biểu thức điều kiện không cho phép dùng toán tử gán (Python 3.8 trở lên có thể dùng [`:=`](https://www.python.org/dev/peps/pep-0572/)), và [không có câu lệnh switch](https://docs.python.org/zh-cn/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python).
+Nhìn chung gần giống C/C++; các khác biệt về hình thức được minh họa trong ví dụ dưới đây. Ngoài ra cần lưu ý biểu thức điều kiện không cho phép dùng toán tử gán (Python 3.8 trở lên có thể dùng [`:=`](https://www.python.org/dev/peps/pep-0572/)), và [không có câu lệnh switch](https://docs.python.org/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python).
 
 ```python
 # Biểu thức điều kiện không cần ngoặc hai bên
@@ -618,11 +618,11 @@ if 4 >= 3 > 2 and 3 != 5 == 5 != 7:
         print("Cũng có toán tử ba ngôi") if x else print("Chú ý cấu trúc")
 ```
 
-<a id="&#24322;&#24120;&#22788;&#29702;"></a>
+<a id="xử-lý-ngoại-lệ"></a>
 
 #### Xử lý ngoại lệ
 
-Tuy C++ có [try block](https://zh.cppreference.com/w/cpp/language/try_catch) để xử lý ngoại lệ, trong thi đấu thông thường gần như không dùng. Còn trong Python, phong cách [EAFP](https://docs.python.org/zh-cn/3/glossary.html#term-eafp) rất phổ biến, nên trong mã có thể dùng nhiều câu lệnh [`try-except`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-try-statement). Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; ở đây minh họa trước:
+Tuy C++ có [try block](https://en.cppreference.com/w/cpp/language/try_catch) để xử lý ngoại lệ, trong thi đấu thông thường gần như không dùng. Còn trong Python, phong cách [EAFP](https://docs.python.org/3/glossary.html#term-eafp) rất phổ biến, nên trong mã có thể dùng nhiều câu lệnh [`try-except`](https://docs.python.org/3/reference/compound_stmts.html#the-try-statement). Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; ở đây minh họa trước:
 
 ```python
 s = "OI-wiki"
@@ -640,13 +640,13 @@ except ValueError:
         print("Lý do:", e)
 ```
 
-<a id="&#20869;&#32622;&#23481;&#22120;"></a>
+<a id="container-dựng-sẵn"></a>
 
 ### Container dựng sẵn
 
-Python có sẵn nhiều kiểu container mạnh. Chỉ khi dùng thành thạo và hiểu đặc điểm của chúng, Python mới thật sự hữu ích trong lập trình thi đấu. Ngoài `list` (danh sách) đã giới thiệu kỹ, còn có `tuple` (bộ), [`dict`](https://docs.python.org/zh-cn/3/library/stdtypes.html#mapping-types-dict) (từ điển) và `set` (tập hợp).
+Python có sẵn nhiều kiểu container mạnh. Chỉ khi dùng thành thạo và hiểu đặc điểm của chúng, Python mới thật sự hữu ích trong lập trình thi đấu. Ngoài `list` (danh sách) đã giới thiệu kỹ, còn có `tuple` (bộ), [`dict`](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict) (từ điển) và `set` (tập hợp).
 
-Có thể hiểu đơn giản tuple như một danh sách bất biến, nhưng cần chú ý nội hàm của "bất biến": nếu một phần tử trong tuple là kiểu khả biến như list, giá trị của list đó vẫn có thể sửa. Tuple lưu tham chiếu đến list, nên bản thân tuple không thay đổi. Ưu điểm của tuple là overhead nhỏ và ["hashable"](https://docs.python.org/zh-cn/3/glossary.html), điểm sau rất hữu ích khi tạo dict và set.
+Có thể hiểu đơn giản tuple như một danh sách bất biến, nhưng cần chú ý nội hàm của "bất biến": nếu một phần tử trong tuple là kiểu khả biến như list, giá trị của list đó vẫn có thể sửa. Tuple lưu tham chiếu đến list, nên bản thân tuple không thay đổi. Ưu điểm của tuple là overhead nhỏ và ["hashable"](https://docs.python.org/3/glossary.html), điểm sau rất hữu ích khi tạo dict và set.
 
 ```python
 tup = tuple([[1, 2], 4])  # Tạo tuple từ list
@@ -660,7 +660,7 @@ print(id(a), id(b))  # Bạn sẽ thấy id của a, b đã hoán đổi
 # Điều này càng cho thấy trong Python, biến giống như tên gọi; phép gán chỉ làm tên đó trỏ đến đối tượng
 ```
 
-Dict giống [`map`](./csl/associative-container.md#map) trong C++ STL (lưu ý phân biệt với hàm dựng sẵn [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) của Python), dùng để lưu cặp khóa-giá trị. Hình thức gần với [JSON](https://docs.python.org/3/library/json.html), nhưng khóa trong JSON bắt buộc là chuỗi đặt trong dấu nháy kép, còn dict linh hoạt và mạnh hơn: mọi đối tượng hashable đều có thể làm khóa. Cần lưu ý sau nhiều lần cập nhật phiên bản Python, đặc tính của dict đã thay đổi khá nhiều, bao gồm thứ tự các phần tử; bạn có thể tự tìm hiểu thêm.
+Dict giống [`map`](./csl/associative-container.md#map) trong C++ STL (lưu ý phân biệt với hàm dựng sẵn [`map()`](https://docs.python.org/3/library/functions.html#map) của Python), dùng để lưu cặp khóa-giá trị. Hình thức gần với [JSON](https://docs.python.org/3/library/json.html), nhưng khóa trong JSON bắt buộc là chuỗi đặt trong dấu nháy kép, còn dict linh hoạt và mạnh hơn: mọi đối tượng hashable đều có thể làm khóa. Cần lưu ý sau nhiều lần cập nhật phiên bản Python, đặc tính của dict đã thay đổi khá nhiều, bao gồm thứ tự các phần tử; bạn có thể tự tìm hiểu thêm.
 
 ```python
 dic = {"key": "value"}  # Dạng cơ bản
@@ -689,7 +689,7 @@ except KeyError:
 
 Set giống [`set`](./csl/associative-container.md#set) trong C++ STL: không lưu phần tử lặp, có thể xem như dict chỉ lưu khóa. Cần lưu ý set và dict đều dùng `{}` bao lại, nhưng riêng `{}` sẽ tạo dict rỗng chứ không phải set rỗng. Ở đây không đưa thêm ví dụ.
 
-<a id="&#32534;&#20889;&#20989;&#25968;"></a>
+<a id="viết-hàm"></a>
 
 ### Viết hàm
 
@@ -718,7 +718,7 @@ print("outside func #2:", id(lst1), id(lst2))
 print(lst1, lst2)
 ```
 
-<a id="&#40664;&#35748;&#21442;&#25968;"></a>
+<a id="tham-số-mặc-định"></a>
 
 #### Tham số mặc định
 
@@ -755,7 +755,7 @@ print(lst1, lst2)
 # Kết quả chạy là [12] [42]
 ```
 
-<a id="&#31867;&#22411;&#26631;&#27880;"></a>
+<a id="type-hint"></a>
 
 #### Type hint
 
@@ -798,7 +798,7 @@ NameError: name 'nothing' is not defined
 {'nothing': <class 'str'>}
 ```
 
-<a id="&#35013;&#39280;&#22120;"></a>
+<a id="decorator"></a>
 
 ## Decorator
 
@@ -822,7 +822,7 @@ def fib(n):
     return fib(n - 1) + fib(n - 2)
 ```
 
-<a id="&#24120;&#29992;&#20869;&#32622;&#24211;"></a>
+<a id="thư-viện-chuẩn-thường-dùng"></a>
 
 ## Thư viện chuẩn thường dùng
 
@@ -845,14 +845,14 @@ def fib(n):
 | [`struct`](https://docs.python.org/3/library/struct.html)           | Chuyển đổi struct và dữ liệu nhị phân          |
 | [`sys`](https://docs.python.org/3/library/sys.html)                 | Thông tin hệ thống                             |
 
-<a id="&#20174;&#20363;&#39064;&#23545;&#27604;-c-&#19982;-python"></a>
+<a id="đối-chiếu-c-và-python-qua-bài-mẫu"></a>
 
 ## Đối chiếu C++ và Python qua bài mẫu
 
 ??? note "[Bài mẫu Luogu P4779: Template Single-Source Shortest Path (Standard Version)](https://www.luogu.com.cn/problem/P4779)"
     Cho một đồ thị có hướng gồm $n(1 \leq n \leq 10^5)$ đỉnh và $m(1 \leq m \leq 2\times 10^5)$ cạnh có trọng số không âm. Hãy tính khoảng cách từ $s$ đến mọi đỉnh. Dữ liệu đảm bảo có thể đi từ $s$ đến mọi đỉnh.
 
-<a id="&#22768;&#26126;&#24120;&#37327;"></a>
+<a id="khai-báo-hằng-số"></a>
 
 ### Khai báo hằng số
 
@@ -878,7 +878,7 @@ def fib(n):
     INF = 0x3F3F3F3F
     ```
 
-<a id="&#22768;&#26126;&#21069;&#21521;&#26143;&#32467;&#26500;&#20307;&#21644;&#20854;&#23427;&#21464;&#37327;"></a>
+<a id="khai-báo-struct-forward-star-và-các-biến-khác"></a>
 
 ### Khai báo struct forward star và các biến khác
 
@@ -927,7 +927,7 @@ def fib(n):
         h[f] = cnt
     ```
 
-<a id="dijkstra-&#31639;&#27861;"></a>
+<a id="thuật-toán-dijkstra"></a>
 
 ### Thuật toán Dijkstra
 
@@ -975,7 +975,7 @@ def fib(n):
                 q.put((dist[v], v))
     ```
 
-<a id="&#20027;&#20989;&#25968;"></a>
+<a id="hàm-main"></a>
 
 ### Hàm main
 
@@ -1013,7 +1013,7 @@ def fib(n):
         print()
     ```
 
-<a id="&#23436;&#25972;&#20195;&#30721;"></a>
+<a id="mã-hoàn-chỉnh"></a>
 
 ### Mã hoàn chỉnh
 
@@ -1150,21 +1150,21 @@ def fib(n):
         print()  # Xuống dòng ở cuối
     ```
 
-<a id="&#21442;&#32771;&#25991;&#26723;"></a>
+<a id="tài-liệu-tham-khảo"></a>
 
 ## Tài liệu tham khảo
 
 1.  [Python Documentation](https://www.python.org/doc/)
-2.  [Python tutorial chính thức bằng tiếng Trung](https://docs.python.org/zh-cn/3/tutorial/)
+2.  [Python tutorial chính thức bằng tiếng Anh](https://docs.python.org/3/tutorial/)
 3.  [Learn Python3 In Y Minutes](https://learnxinyminutes.com/docs/python3/)
 4.  [Real Python Tutorials](https://realpython.com/)
 5.  [Python tutorial của Liao Xuefeng](https://www.liaoxuefeng.com/wiki/1016959663602400/)
 6.  [GeeksforGeeks: Python Tutorials](https://www.geeksforgeeks.org/python-programming-language/)
 
-<a id="&#21442;&#32771;&#36164;&#26009;&#21644;&#27880;&#37322;"></a>
+<a id="tài-liệu-và-chú-thích-tham-khảo"></a>
 
 ## Tài liệu và chú thích tham khảo
 
-[^ref1]: [2. Trình thông dịch Python - Tài liệu Python 3](https://docs.python.org/zh-cn/3/tutorial/interpreter.html#id1)
+[^ref1]: [2. Trình thông dịch Python - Tài liệu Python 3](https://docs.python.org/3/tutorial/interpreter.html#id1)
 
-[^ref2]: [Hướng dẫn Unicode - Tài liệu Python 3](https://docs.python.org/zh-cn/3/howto/unicode.html#the-string-type)
+[^ref2]: [Hướng dẫn Unicode - Tài liệu Python 3](https://docs.python.org/3/howto/unicode.html#the-string-type)
