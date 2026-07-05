@@ -1,4 +1,4 @@
-STL cung cấp khoảng 100 mẫu hàm cài đặt thuật toán; phần lớn nằm trong
+STL cung cấp khoảng 100 hàm template cài đặt thuật toán; phần lớn nằm trong
 `<algorithm>`, một phần khác nằm trong `<numeric>` và `<functional>`. Danh sách
 hàm đầy đủ có thể [xem trong sổ tay tham khảo](https://en.cppreference.com/w/cpp/algorithm);
 các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương ứng về sắp xếp](../../basic/stl-sort.md).
@@ -11,13 +11,14 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
 
 -   `unique`: loại bỏ các phần tử trùng nhau liền kề trong bộ chứa.
     `unique(ForwardIterator first, ForwardIterator last)` trả về bộ lặp trỏ
-    đến cuối bộ chứa **sau khi loại trùng**, còn kích thước bộ chứa gốc
-    không đổi. Kết hợp với `sort` có thể loại trùng toàn bộ bộ chứa.
+    đến vị trí ngay sau phần tử cuối của dãy **sau khi loại trùng**, còn kích
+    thước bộ chứa gốc không đổi. Kết hợp với `sort` có thể loại trùng toàn bộ bộ
+    chứa.
 
 -   `random_shuffle`: xáo trộn ngẫu nhiên mảng. `random_shuffle(v.begin(),
     v.end())` hoặc `random_shuffle(v + begin, v + end)`.
 
-    ???+ warning "Hàm `random_shuffle` đã bị loại bỏ khỏi chuẩn C++ mới nhất"
+    ???+ warning "Hàm `random_shuffle` đã bị loại bỏ từ C++17"
         `random_shuffle` bị đánh dấu lỗi thời từ C++14 và bị loại bỏ từ C++17.
 
         Trong C++11 và các chuẩn mới hơn, bạn có thể dùng hàm `shuffle` thay
@@ -38,10 +39,11 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
 
 -   `stable_sort`: sắp xếp ổn định, cách dùng giống `sort()`.
 
--   `nth_element`: phân hoạch theo phạm vi chỉ định, tức tìm phần tử lớn thứ $n$
-    trong dãy sao cho các phần tử bên trái đều nhỏ hơn nó và các phần tử bên
-    phải đều lớn hơn nó. `nth_element(v.begin(), v.begin() + n, v.end(), cmp)`
-    hoặc `nth_element(a + begin, a + begin + n, a + end, cmp)`.
+-   `nth_element`: phân hoạch theo phạm vi chỉ định, tức đưa phần tử sẽ đứng ở
+    vị trí thứ $n$ sau khi sắp xếp về đúng vị trí đó, sao cho các phần tử bên
+    trái không lớn hơn nó và các phần tử bên phải không nhỏ hơn nó.
+    `nth_element(v.begin(), v.begin() + n, v.end(), cmp)` hoặc
+    `nth_element(a + begin, a + begin + n, a + end, cmp)`.
 
 -   `binary_search`: tìm kiếm nhị phân. `binary_search(v.begin(), v.end(),
     value)`, trong đó `value` là giá trị cần tìm.
@@ -91,7 +93,7 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
 -   Dùng `next_permutation` sinh toàn bộ hoán vị của $1$ đến $9$. Bài ví dụ:
     [Luogu P1706 Toàn hoán vị](https://www.luogu.com.cn/problem/P1706)
 
-    ???+ note "Hiện thực"
+    ???+ note "Mã mẫu"
         ```cpp
         int N = 9, a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         do {
@@ -102,21 +104,24 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
 -   Dùng `lower_bound` và `upper_bound` tìm ranh giới giữa các phần tử nhỏ hơn
     $x$, bằng $x$, và lớn hơn $x$ trong mảng có thứ tự $a$.
 
-    ???+ note "Hiện thực"
+    ???+ note "Mã mẫu"
         ```cpp
         int N = 10, a[] = {1, 1, 2, 4, 5, 5, 7, 7, 9, 9}, x = 5;
-        int i = lower_bound(a, a + N, x) - a, j = upper_bound(a, a + N, x) - a;
-        // a[0] ~ a[i - 1] là các phần tử nhỏ hơn x, a[i] ~ a[j - 1] là các phần tử bằng x,
+        int i = lower_bound(a, a + N, x) - a;
+        int j = upper_bound(a, a + N, x) - a;
+        // a[0] ~ a[i - 1] là các phần tử nhỏ hơn x,
+        // a[i] ~ a[j - 1] là các phần tử bằng x,
         // a[j] ~ a[N - 1] là các phần tử lớn hơn x
         cout << i << " " << j << endl;
         ```
 -   Dùng `partial_sum` tính tổng tiền tố các phần tử trong $src$ và lưu vào
     $dst$.
 
-    ???+ note "Hiện thực"
+    ???+ note "Mã mẫu"
         ```cpp
         vector<int> src = {1, 2, 3, 4, 5}, dst;
-        // Tính tổng tiền tố của các phần tử trong src, dst[i] = src[0] + ... + src[i]
+        // Tính tổng tiền tố của các phần tử trong src,
+        // dst[i] = src[0] + ... + src[i]
         // Hàm back_inserter tác động lên bộ chứa dst và cung cấp một bộ lặp
         partial_sum(src.begin(), src.end(), back_inserter(dst));
         for (unsigned int i = 0; i < dst.size(); i++) cout << dst[i] << " ";
@@ -124,14 +129,16 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
 -   Dùng `lower_bound` tìm phần tử gần $x$ nhất trong mảng có thứ tự $a$. Bài ví
     dụ: [UVa10487 Closest Sums](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1428)
 
-    ???+ note "Hiện thực"
+    ???+ note "Mã mẫu"
         ```cpp
         int N = 10, a[] = {1, 1, 2, 4, 5, 5, 8, 8, 9, 9}, x = 6;
-        // lower_bound trả về địa chỉ của phần tử đầu tiên trong a lớn hơn hoặc bằng x; i là chỉ số tính được
+        // lower_bound trả về địa chỉ của phần tử đầu tiên trong a lớn hơn hoặc bằng x;
+        // i là chỉ số tính được
         int i = lower_bound(a, a + N, x) - a;
         // Trong hai trường hợp sau, a[i] (phần tử đầu tiên trong a lớn hơn hoặc bằng x) là đáp án:
         // 1. Phần tử nhỏ nhất trong a cũng lớn hơn hoặc bằng x;
-        // 2. Trong a tồn tại phần tử lớn hơn hoặc bằng x, và phần tử đầu tiên lớn hơn hoặc bằng x (a[i])
+        // 2. Trong a tồn tại phần tử lớn hơn hoặc bằng x,
+        //    và phần tử đầu tiên lớn hơn hoặc bằng x (a[i])
         // gần x hơn phần tử đầu tiên nhỏ hơn x (a[i - 1]);
         // Ngược lại, a[i - 1] (phần tử đầu tiên trong a nhỏ hơn x) là đáp án
         if (i == 0 || (i < N && a[i] - x < x - a[i - 1]))
@@ -143,11 +150,12 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
     giá trị lặp lại chỉ tính một lần, nên bài này không phải tìm phần tử nhỏ thứ
     $k$). Bài ví dụ: [Luogu P1138 Số nguyên nhỏ thứ k](https://www.luogu.com.cn/problem/P1138)
 
-    ???+ note "Hiện thực"
+    ???+ note "Mã mẫu"
         ```cpp
         int N = 10, a[] = {1, 3, 3, 7, 2, 5, 1, 2, 4, 6}, k = 3;
         sort(a, a + N);
-        // unique trả về địa chỉ sau phần tử cuối của mảng sau khi loại trùng; cnt là độ dài mảng sau loại trùng
+        // unique trả về địa chỉ sau phần tử cuối của mảng sau khi loại trùng;
+        // cnt là độ dài mảng sau loại trùng
         int cnt = unique(a, a + N) - a;
         cout << a[k - 1];
         ```

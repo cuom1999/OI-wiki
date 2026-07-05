@@ -1,8 +1,8 @@
 ## Chuẩn C++
 
 Trước hết cần giới thiệu các phiên bản của chính C++. Vì C++ chỉ là một ngôn
-ngữ, còn các trình biên dịch khác nhau có cách hiện thực C++ không hoàn toàn
-giống nhau, nên cần chuẩn hóa để ràng buộc cách trình biên dịch hiện thực, giúp
+ngữ, còn các trình biên dịch khác nhau có cách triển khai C++ không hoàn toàn
+giống nhau, nên cần chuẩn hóa để ràng buộc cách trình biên dịch triển khai, giúp
 mã C++ có hành vi nhất quán trên các trình biên dịch khác nhau. Từ khi ra đời
 năm 1985, C++ đã có 7 chuẩn chính thức do Tổ chức Tiêu chuẩn hóa Quốc tế (ISO)
 công bố, lần lượt là C++98, C++03, C++11 (còn gọi là C++0x), C++14 (còn gọi là
@@ -12,10 +12,11 @@ tiến độ xây dựng chuẩn mới nhất có thể xem tại [Current Statu
 Ngoài ra còn có một số chuẩn bổ sung, chẳng hạn C++ TR1.
 
 Mỗi phiên bản chuẩn C++ không chỉ quy định cú pháp và đặc tính ngôn ngữ của C++,
-mà còn quy định đặc tả hiện thực cho một bộ thư viện dựng sẵn của C++; đó chính
-là thư viện chuẩn C++. Thư viện chuẩn C++ chứa rất nhiều hiện thực mã thường
-dùng, như nhập xuất, cấu trúc dữ liệu cơ bản, quản lý bộ nhớ, hỗ trợ đa luồng,
-v.v. Nắm được thư viện chuẩn C++ là bước cần thiết để viết mã C++ hiện đại hơn.
+mà còn quy định đặc tả cho một bộ thư viện dựng sẵn của C++; đó chính là thư
+viện chuẩn C++. Thư viện chuẩn C++ chứa rất nhiều mã thường dùng đã được cài
+đặt sẵn, như nhập xuất, cấu trúc dữ liệu cơ bản, quản lý bộ nhớ, hỗ trợ đa
+luồng, v.v. Nắm được thư viện chuẩn C++ là bước cần thiết để viết mã C++ hiện
+đại hơn.
 Tài liệu chi tiết của thư viện chuẩn C++ có trên [cppreference](https://en.cppreference.com/);
 tài liệu này giới thiệu cách dùng, hiệu suất, điểm cần chú ý, v.v. của các kiểu
 và hàm trong thư viện chuẩn, nên hãy tận dụng.
@@ -30,15 +31,15 @@ chuẩn C++14, đồng thời hỗ trợ C++17, đủ đáp ứng nhu cầu củ
 sinh. Vì vậy khi học C++, cần chú ý chuẩn mà cuộc thi hỗ trợ để tránh lỗi biên
 dịch trên sân thi.
 
-## Thư viện khuôn mẫu chuẩn (STL)
+## Thư viện template chuẩn (STL)
 
-STL, tức Thư viện khuôn mẫu chuẩn (Standard Template Library), là một phần của
+STL, tức Thư viện template chuẩn (Standard Template Library), là một phần của
 thư viện chuẩn C++ và chứa một số cấu trúc dữ liệu cùng thuật toán tổng quát
-được viết bằng khuôn mẫu. Nhờ cơ chế khuôn mẫu, nó tương thích với kiểu dữ liệu
+được viết bằng template. Nhờ cơ chế template, nó tương thích với kiểu dữ liệu
 tự định nghĩa và tránh rất nhiều việc "tự chế lại" mã có sẵn. Các cuộc thi NOI
 và ICPC đều cho phép dùng STL, vì vậy sử dụng STL hợp lý có thể tránh viết các
 thuật toán không cần thiết, đồng thời tận dụng tối ưu hóa của trình biên dịch cho
-mã thư viện dựa trên khuôn mẫu để cải thiện hiệu suất. Giới thiệu chi tiết về
+mã thư viện dựa trên template để cải thiện hiệu suất. Giới thiệu chi tiết về
 STL nằm ở các trang tương ứng: [bộ chứa STL](./container.md) và
 [thuật toán STL](./algorithm.md).
 
@@ -58,7 +59,7 @@ toàn diện và hỗ trợ đa nền tảng đầy đủ, nên thường đư�
 chuẩn của C++. Không ít đặc tính trong chuẩn C++ cũng bắt nguồn từ Boost, như
 con trỏ thông minh, lập trình meta, ngày giờ, v.v. Dù trong OI không thể dùng
 Boost, Boost vẫn có nhiều "bánh xe" hữu ích để kiểm chứng thuật toán hoặc đối
-chiếu kết quả, như Boost.Geometry có hiện thực R-tree, Boost.Graph có các thuật
+chiếu kết quả, như Boost.Geometry có cài đặt R-tree, Boost.Graph có các thuật
 toán đồ thị, Boost.Intrusive cung cấp một bộ chứa xâm nhập có cách dùng tương tự
 bộ chứa STL. Bạn đọc quan tâm có thể tự tìm hướng dẫn trên mạng.
 
