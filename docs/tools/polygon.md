@@ -53,13 +53,13 @@ Phần lớn chức năng của Polygon không cần học riêng; đọc hiểu
 
 -   Dữ liệu được tạo bằng generator trong Tests; generator được tải lên trong Files.
 
-### General Info
+### Thông tin chung
 
 Trong trang này, có thể thiết lập giới hạn thời gian, giới hạn bộ nhớ, loại bài, tag của bài và contest chứa bài.
 
 Ở cuối trang, "statement sketch" và "tutorial sketch" cho phép chỉnh sửa **bản nháp** của statement và tutorial. Chú ý rằng hai mục này sẽ không xuất hiện trong statement và tutorial chính thức.
 
-### Statement
+### Đề bài và lời giải thích
 
 Trang này dùng để viết statement và tutorial. Cũng có thể dùng nút "Review" để xem statement, validator và checker, thường dùng cho việc rà soát.
 
@@ -69,7 +69,7 @@ Có thể dùng liên kết "In HTML" ở phía trên cùng để xem statement 
 
 Nếu cần thêm ảnh vào statement, trước hết cần tải ảnh lên trong "Statement Resource Files" bên dưới, rồi thêm `\includegraphics{filename.png}` vào statement.
 
-### Files
+### Tệp
 
 "Source Files" dùng để lưu các mã nguồn **ngoại trừ solutions**, chẳng hạn validator, checker, generator, và nếu là bài tương tác kiểu IO thì còn có interactor.
 
@@ -95,7 +95,7 @@ Validator dùng để kiểm tra tính hợp lệ của dữ liệu. Cách viế
 
 "Validator tests" bên dưới tương tự "Checker tests"; cần cung cấp input và kỳ vọng hợp lệ hay không, dùng để kiểm thử validator.
 
-### Tests
+### Dữ liệu kiểm thử
 
 Trang này dùng để quản lý dữ liệu.
 
@@ -113,7 +113,7 @@ Có thể tham khảo [hướng dẫn do Polygon cung cấp](https://polygon.cod
 
 "Preview Tests" có thể xem trước dữ liệu được sinh.
 
-### Stresses
+### Kiểm thử stress
 
 Trang này dùng để stress test.
 
@@ -121,11 +121,11 @@ Nhấp "Add Stress" để thêm một bộ stress test. "Script pattern" là scr
 
 Sau đó chạy stress test; nếu tìm được lỗi, hệ thống sẽ hiển thị "Crashed", và có thể thêm bộ dữ liệu đó vào Tests bằng một lần nhấp.
 
-### Solution Files
+### Tệp lời giải
 
 Trang này dùng để đặt mã nguồn lời giải của bài, có thể là lời giải đúng hoặc lời giải sai. Tải lời giải sai lên giúp chặn chúng thuận tiện hơn, và cũng có thể nhắc chính mình rằng cần chặn các lời giải đó.
 
-### Invocations
+### Lượt chạy kiểm thử
 
 Trang này dùng để chạy solutions.
 
@@ -137,17 +137,17 @@ Nếu thời gian chạy nằm trong khoảng từ một nửa đến hai lần 
 
 Nếu trong dữ liệu có biến chưa đạt giá trị nhỏ nhất hoặc lớn nhất, phía dưới cùng sẽ nhắc.
 
-### Issues
+### Vấn đề
 
 Nơi dùng để tạo Issue.
 
-### Packages
+### Gói xuất bản
 
 Package chứa toàn bộ thông tin của một bài. Khi ra đề CF, package là căn cứ để CF chấm (ví dụ, nếu cần sửa lỗi trong lúc thi, chỉ khi cập nhật package thì mới ảnh hưởng đến CF); những lúc khác có thể dùng để xuất ra.
 
 "Verify" dùng để kiểm tra tất cả solution có phù hợp với tag (AC, WA, TLE) hay không, đồng thời checker có qua checker tests và validator có qua validator tests hay không.
 
-### Manage access
+### Quản lý quyền truy cập
 
 Quản lý quyền truy cập của bài.
 
