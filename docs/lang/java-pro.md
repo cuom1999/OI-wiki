@@ -492,7 +492,7 @@ int value = integer;
 
 Tạo thiết kế mới dựa trên thiết kế đã có chính là kế thừa trong lập trình hướng đối tượng. Trong kế thừa, lớp mới không xuất hiện từ hư không mà được định nghĩa dựa trên một lớp đã tồn tại. Thông qua kế thừa, lớp mới tự động nhận được mọi thành viên của lớp cơ sở, gồm biến thành viên và phương thức, cũng như các thành viên thuộc nhiều mức truy cập khác nhau, dù là `public` hay `private`. Rõ ràng, định nghĩa lớp mới bằng kế thừa đơn giản, nhanh và tiện hơn nhiều so với viết một lớp mới từ đầu. Kế thừa là một trong những cơ chế quan trọng hỗ trợ tái sử dụng mã.
 
-Trong Java, từ khóa kế thừa là `extends`. Java chỉ hỗ trợ đơn kế thừa lớp, nhưng có thể hiện thực nhiều interface.
+Trong Java, từ khóa kế thừa là `extends`. Java chỉ hỗ trợ đơn kế thừa lớp, nhưng có thể hiện thực nhiều giao diện.
 
 Trong Java, mọi lớp đều là lớp con của lớp `Object`.
 
@@ -514,7 +514,7 @@ Bảng dưới đây liệt kê mức truy cập của các thành viên lớp c
 
 Trong Java, khi gán một đối tượng cho một biến, kiểu của đối tượng phải khớp với kiểu của biến. Nhưng vì Java có khái niệm kế thừa, quy tắc này có thể được mở rộng thành: **một biến có thể lưu đối tượng thuộc kiểu được khai báo của nó hoặc bất kỳ kiểu con nào của kiểu đó**.
 
-Nếu một kiểu hiện thực một interface, nó cũng có thể được xem là kiểu con của interface đó.
+Nếu một kiểu hiện thực một giao diện, nó cũng có thể được xem là kiểu con của giao diện đó.
 
 Biến lưu kiểu đối tượng trong Java là biến đa hình. Thuật ngữ "đa hình" chỉ việc một biến có thể lưu các đối tượng thuộc nhiều kiểu khác nhau, tức kiểu khai báo của nó hoặc bất kỳ kiểu con nào.
 
@@ -548,12 +548,12 @@ Giao diện không thể được khởi tạo, nhưng có thể được hiện
 <span id="khác-biệt-với-lớp"></span>
 ### Khác biệt với lớp
 
-1.  Interface không thể dùng để khởi tạo đối tượng.
-2.  Interface không có constructor.
-3.  Tất cả phương thức trong interface phải là phương thức trừu tượng; sau Java 8, interface có thể có phương thức không trừu tượng được sửa bằng từ khóa `default`.
-4.  Interface không thể chứa biến thành viên, ngoại trừ biến `static` và `final`.
-5.  Interface không được lớp kế thừa, mà được lớp hiện thực.
-6.  Interface hỗ trợ đa kế thừa, còn lớp thì không.
+1.  Giao diện không thể dùng để khởi tạo đối tượng.
+2.  Giao diện không có constructor.
+3.  Tất cả phương thức trong giao diện phải là phương thức trừu tượng; sau Java 8, giao diện có thể có phương thức không trừu tượng được sửa bằng từ khóa `default`.
+4.  Giao diện không thể chứa biến thành viên, ngoại trừ biến `static` và `final`.
+5.  Giao diện không được lớp kế thừa, mà được lớp hiện thực.
+6.  Giao diện hỗ trợ đa kế thừa, còn lớp thì không.
 
 <span id="khai-báo-interface"></span>
 ### Khai báo
@@ -660,11 +660,11 @@ Trong đó, `->` là ký hiệu suy diễn: ngoặc phía trước nhận tham s
 <span id="functional-interface"></span>
 ### Giao diện hàm (functional interface)
 
-1.  Là một interface, phù hợp với định nghĩa interface của Java.
+1.  Là một giao diện, phù hợp với định nghĩa giao diện của Java.
 2.  Chỉ chứa một phương thức trừu tượng.
 3.  Vì chỉ có một phương thức chưa hiện thực, biểu thức lambda có thể tự động điền vào.
 
-Cách dùng functional interface như sau:
+Cách dùng giao diện hàm như sau:
 
 ???+ example "Xuất các chuỗi có độ dài là bội số của 2"
     ```java
@@ -675,7 +675,7 @@ Cách dùng functional interface như sau:
         
         public static void main(String[] args) {
             String[] plants = {"Mercury", "venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"};
-            Test test = s -> {  // Biểu thức lambda làm thực thể của functional interface
+            Test test = s -> {  // Biểu thức lambda làm thực thể của giao diện hàm
                 if (s.length() % 2 == 0) {
                     return true;
                 }
@@ -707,7 +707,7 @@ Cách dùng functional interface như sau:
         }
         
         public static void main(String[] args) {
-            Calculator util[] = new Calculator[4];  // Định nghĩa mảng functional interface
+            Calculator util[] = new Calculator[4];  // Định nghĩa mảng giao diện hàm
             util[0] = (a, b) -> a + b;
             util[1] = (a, b) -> a - b;
             util[2] = (a, b) -> a * b;
@@ -738,9 +738,9 @@ Các giao diện thường dùng gồm `List`, `Queue`, `Set` và `Map`.
 <span id="định-nghĩa-container"></span>
 ### Định nghĩa bộ chứa
 
-Khi định nghĩa lớp bộ chứa generic, cần chỉ định kiểu dữ liệu lúc định nghĩa. Nếu không chỉ định kiểu dữ liệu mà coi là kiểu `Object` rồi thêm dữ liệu tùy ý, trong Java 8 tuy vẫn biên dịch được nhưng sẽ có nhiều cảnh báo và rủi ro.
+Khi định nghĩa lớp bộ chứa tổng quát, cần chỉ định kiểu dữ liệu lúc định nghĩa. Nếu không chỉ định kiểu dữ liệu mà coi là kiểu `Object` rồi thêm dữ liệu tùy ý, trong Java 8 tuy vẫn biên dịch được nhưng sẽ có nhiều cảnh báo và rủi ro.
 
-Ví dụ, cách định nghĩa dưới đây là an toàn; container chỉ nhận kiểu `Integer`.
+Ví dụ, cách định nghĩa dưới đây là an toàn; bộ chứa chỉ nhận kiểu `Integer`.
 
 ```java
 List<Integer> list1 = new LinkedList<>();
@@ -927,7 +927,7 @@ Có thể dùng `LinkedList` để hiện thực hàng đợi thông thường; 
 Queue<Integer> q = new LinkedList<>();
 ```
 
-Bên dưới, `LinkedList` hiện thực cả interface `List` và interface `Deque`; `Deque` lại kế thừa từ interface `Queue`, nên `LinkedList` có thể đồng thời hiện thực `List` và `Queue`.
+Bên dưới, `LinkedList` hiện thực cả giao diện `List` và giao diện `Deque`; `Deque` lại kế thừa từ giao diện `Queue`, nên `LinkedList` có thể đồng thời hiện thực `List` và `Queue`.
 
 #### ArrayDeque
 
@@ -940,12 +940,12 @@ Có thể dùng `ArrayDeque` để hiện thực hàng đợi thông thường; 
 Queue<Integer> q = new ArrayDeque<>();
 ```
 
-Bên dưới, `ArrayDeque` hiện thực interface `Deque`; `Deque` lại kế thừa từ interface `Queue`, nên `ArrayDeque` có thể hiện thực `Queue`.
+Bên dưới, `ArrayDeque` hiện thực giao diện `Deque`; `Deque` lại kế thừa từ giao diện `Queue`, nên `ArrayDeque` có thể hiện thực `Queue`.
 
 <span id="khác-biệt-giữa-linkedlist-và-arraydeque-khi-hiện-thực-queue"></span>
 #### Khác biệt giữa LinkedList và ArrayDeque khi hiện thực Queue
 
-1.  Cấu trúc dữ liệu: về cấu trúc dữ liệu, `ArrayDeque` và `LinkedList` đều hiện thực interface deque hai đầu `Deque` của Java. Nhưng `ArrayDeque` không hiện thực interface danh sách `List` của Java, nên không có thao tác theo vị trí chỉ số.
+1.  Cấu trúc dữ liệu: về cấu trúc dữ liệu, `ArrayDeque` và `LinkedList` đều hiện thực giao diện deque hai đầu `Deque` của Java. Nhưng `ArrayDeque` không hiện thực giao diện danh sách `List` của Java, nên không có thao tác theo vị trí chỉ số.
 2.  An toàn luồng: `ArrayDeque` và `LinkedList` đều không xử lý đồng bộ luồng, nên không bảo đảm thread-safe.
 3.  Hiện thực bên dưới: `ArrayDeque` dựa trên mảng động, còn `LinkedList` dựa trên danh sách liên kết đôi.
 4.  Tốc độ duyệt: `ArrayDeque` là một vùng bộ nhớ liên tục, theo nguyên lý locality nên dễ trúng cache line CPU hơn; `LinkedList` là các vùng bộ nhớ rời rạc nên không thân thiện với cache line.
@@ -1127,7 +1127,7 @@ public class Main {
 
 ### Set
 
-`Set` là cấu trúc dữ liệu giữ cho các phần tử trong container không bị trùng lặp.
+`Set` là cấu trúc dữ liệu giữ cho các phần tử trong bộ chứa không bị trùng lặp.
 
 #### HashSet
 
@@ -1153,7 +1153,7 @@ Set<Integer> s2 = new LinkedHashSet<>();
 
 #### TreeSet
 
-`Set` giữ các phần tử trong container có thứ tự; mặc định là tăng dần.
+`Set` giữ các phần tử trong bộ chứa có thứ tự; mặc định là tăng dần.
 
 <span id="treeset-khởi-tạo"></span>
 ##### Khởi tạo
@@ -1166,7 +1166,7 @@ Set<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // Giảm dần
 <span id="sử-dụng-treeset-nâng-cao"></span>
 ##### Sử dụng TreeSet nâng cao
 
-Các phương thức này được `TreeSet` tạo và hiện thực riêng; ta không thể gọi các phương thức dưới đây qua interface `Set`, nên cách tạo là:
+Các phương thức này được `TreeSet` tạo và hiện thực riêng; ta không thể gọi các phương thức dưới đây qua giao diện `Set`, nên cách tạo là:
 
 ```java
 TreeSet<Integer> s3 = new TreeSet<>();
@@ -1227,9 +1227,9 @@ public class Main {
 |           `size()`           | Trả về kích thước tập hợp hiện tại |
 |      `add(Integer val)`      | Chèn `val` vào tập hợp |
 |   `contains(Integer val)`    | Kiểm tra tập hợp có phần tử `val` hay không |
-|    `addAll(Collection e)`    | Thêm toàn bộ phần tử trong container `e` vào tập hợp hiện tại |
-|  `retainAll(Collection e)`   | Xóa các phần tử trong tập hợp hiện tại không xuất hiện trong container `e`, tức lấy giao của tập hợp hiện tại và `e` |
-|  `removeAll(Collection e)`   | Xóa các phần tử trong tập hợp hiện tại xuất hiện trong container `e`, tức lấy hiệu của tập hợp hiện tại và `e` |
+|    `addAll(Collection e)`    | Thêm toàn bộ phần tử trong bộ chứa `e` vào tập hợp hiện tại |
+|  `retainAll(Collection e)`   | Xóa các phần tử trong tập hợp hiện tại không xuất hiện trong bộ chứa `e`, tức lấy giao của tập hợp hiện tại và `e` |
+|  `removeAll(Collection e)`   | Xóa các phần tử trong tập hợp hiện tại xuất hiện trong bộ chứa `e`, tức lấy hiệu của tập hợp hiện tại và `e` |
 
 ```java
 import java.io.PrintWriter;
@@ -1456,8 +1456,8 @@ public class Main {
 6.  Tương tự 4, dùng biểu thức Lambda để rút gọn mã.
 
 ???+ note "Hàm bên dưới của `Arrays.sort()`"
-    1.  Khi kiểu phần tử của mảng truyền vào `Arrays.sort` là kiểu dữ liệu nguyên thủy (`byte`, `short`, `char`, `int`, `long`, `double`, `float`), mặc định dùng `DualPivotQuicksort` (quick sort hai chốt), độ phức tạp xấu nhất có thể đạt $O(n^2)$.
-    2.  Khi kiểu phần tử của mảng truyền vào `Arrays.sort` không phải kiểu dữ liệu nguyên thủy, mặc định dùng `legacyMergeSort` và `TimSort` (merge sort), độ phức tạp là $O(n\log n)$.
+    1.  Khi kiểu phần tử của mảng truyền vào `Arrays.sort` là kiểu dữ liệu nguyên thủy (`byte`, `short`, `char`, `int`, `long`, `double`, `float`), mặc định dùng `DualPivotQuicksort` (sắp xếp nhanh hai chốt), độ phức tạp xấu nhất có thể đạt $O(n^2)$.
+    2.  Khi kiểu phần tử của mảng truyền vào `Arrays.sort` không phải kiểu dữ liệu nguyên thủy, mặc định dùng `legacyMergeSort` và `TimSort` (sắp xếp trộn), độ phức tạp là $O(n\log n)$.
 
 Có thể kiểm chứng bằng đoạn mã sau:
 
@@ -1604,13 +1604,13 @@ Phương thức `Arrays.fill()` gán cùng một giá trị cho các phần tử
 
 ## Collections (lớp tiện ích tập hợp)
 
-`Collections` là một lớp tiện ích trong `java.util` dùng để thao tác với collection. Các phương thức đều là phương thức tĩnh, có thể gọi trực tiếp bằng tên lớp.
+`Collections` là một lớp tiện ích trong `java.util` dùng để thao tác với tập hợp. Các phương thức đều là phương thức tĩnh, có thể gọi trực tiếp bằng tên lớp.
 
 ### Collections.sort()
 
-Nguyên lý bên dưới của `Collections.sort()` là chuyển toàn bộ phần tử trong đó thành mảng rồi gọi `Arrays.sort()`. Sau khi sắp xếp xong, nó gán lại vào collection ban đầu. Vì trong Java, kiểu phần tử của `Collection` đều là kiểu đối tượng, nên nó luôn dùng merge sort để xử lý.
+Nguyên lý bên dưới của `Collections.sort()` là chuyển toàn bộ phần tử trong đó thành mảng rồi gọi `Arrays.sort()`. Sau khi sắp xếp xong, nó gán lại vào tập hợp ban đầu. Vì trong Java, kiểu phần tử của `Collection` đều là kiểu đối tượng, nên nó luôn dùng sắp xếp trộn để xử lý.
 
-Phương thức này không thể sắp xếp một đoạn chỉ định của collection.
+Phương thức này không thể sắp xếp một đoạn chỉ định của tập hợp.
 
 Mã nguồn bên dưới:
 
@@ -1628,7 +1628,7 @@ default void sort(Comparator<? super E> c) {
 
 ### Collections.binarySearch()
 
-`Collections.binarySearch()` là tìm kiếm nhị phân trên collection; chức năng giống `Arrays.binarySearch()`.
+`Collections.binarySearch()` là tìm kiếm nhị phân trên tập hợp; chức năng giống `Arrays.binarySearch()`.
 
 ```java
 Collections.binarySearch(list, key);
@@ -1638,7 +1638,7 @@ Phương thức này không thể tìm kiếm trên một đoạn chỉ định.
 
 ### Collections.swap()
 
-Chức năng của `Collections.swap()` là hoán đổi phần tử ở hai vị trí chỉ định trong collection.
+Chức năng của `Collections.swap()` là hoán đổi phần tử ở hai vị trí chỉ định trong tập hợp.
 
 ```java
  Collections.swap(list, i, j);
