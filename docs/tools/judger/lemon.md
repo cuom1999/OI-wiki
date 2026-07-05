@@ -23,7 +23,7 @@ sudo apt update
 sudo apt install qt5-default build-essential git -y
 git clone --depth=1 https://github.com/Menci/Lemon.git
 cd lemon
-# Có thể sửa số sau -j để điều chỉnh số luồng make job
+# Có thể sửa số sau -j để điều chỉnh số tác vụ make chạy song song
 ./make -j2
 sudo install -Dm755 -t /usr/bin/ Lemon
 ```
@@ -48,4 +48,4 @@ Trước hết, mở Lemon và chọn "Tạo bài mới", rồi mở thư mục 
 ...
 ```
 
-Sau khi thêm xong tất cả bài, quay lại Lemon và chọn "Tự động thêm bài". Lúc này, các bài và test sẽ xuất hiện trong Lemon.
+Sau khi thêm xong tất cả bài, quay lại Lemon và chọn "Tự động thêm bài". Lúc này, các bài và bộ kiểm thử sẽ xuất hiện trong Lemon.

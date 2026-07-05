@@ -55,21 +55,21 @@ Trong `day<x>`, `<x>` là số hiệu buổi thi; `<contestant_x's ID>` là mã 
 ...
 ```
 
-Trong đó, `<contestant_x's name>` biểu thị tên thí sinh. Hãy lưu tệp này dưới dạng tệp văn bản thuần hoặc tệp csv; có thể dùng mã hóa `UTF-8`.
+Trong đó, `<contestant_x's name>` biểu thị tên thí sinh. Hãy lưu tệp này dưới dạng tệp văn bản thuần hoặc tệp CSV; có thể dùng mã hóa `UTF-8`.
 
 Cũng có thể thêm danh sách thí sinh thủ công sau khi khởi động Arbiter.
 
-Tiếp theo, cấu hình dữ liệu test. Định dạng tên của mỗi bộ dữ liệu như sau:
+Tiếp theo, cấu hình dữ liệu kiểm thử. Định dạng tên của mỗi bộ dữ liệu như sau:
 
 ```text
 <problem_x><y>.in <problem_x><y>.ans
 ```
 
-Trong đó, `<y>` là số hiệu dữ liệu, bắt đầu từ 1. Hậu tố mặc định của dữ liệu test là `.ans`, còn hậu tố đầu ra của thí sinh là `.out`; không được nhầm lẫn hai loại này.
+Trong đó, `<y>` là số hiệu dữ liệu, bắt đầu từ 1. Hậu tố mặc định của dữ liệu kiểm thử là `.ans`, còn hậu tố đầu ra của thí sinh là `.out`; không được nhầm lẫn hai loại này.
 
 Nếu cần đổi định dạng `out` đã sinh trước đó thành định dạng `ans`, trong NOI Linux 2.0 có thể dùng lệnh `rename` để đổi hàng loạt, còn trong Windows có thể dùng lệnh `ren`. Phần sau sẽ giới thiệu cách dùng các lệnh này.
 
-Không cần đặt dữ liệu test của từng bài trong thư mục riêng của bài đó; chỉ cần đặt chung với nhau là được.
+Không cần đặt dữ liệu kiểm thử của từng bài trong thư mục riêng của bài đó; chỉ cần đặt chung với nhau là được.
 
 Sau đó bắt đầu cấu hình thư mục chấm.
 
@@ -83,7 +83,7 @@ Nhấn OPEN ("Mở") để mở một kỳ thi đã tạo; sau đó cần chọn
 
 Trong phần tổng quan bài ở bên trái, "nhấp chuột phải" - "Thêm kỳ thi", rồi trên nhãn kỳ thi "nhấp chuột phải" - "Thêm bài", là có thể tạo bài mới.
 
-Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ nhớ và cách so sánh. Rất không khuyến nghị dùng cách so sánh "so sánh trực tiếp toàn văn", vì cách này không thân thiện với dữ liệu được tạo trên Windows. Có thể tự chọn trình kiểm tra đáp án theo bài, nhưng cần lưu ý bắt buộc phải chọn một trình kiểm tra đáp án, nếu không kết quả chấm sẽ là `No Score.` (`Không có điểm.`).
+Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ nhớ và cách so sánh. Rất không khuyến nghị dùng cách so sánh "so sánh trực tiếp toàn văn", vì cách này không thân thiện với dữ liệu được tạo trên Windows. Có thể tự chọn trình kiểm tra đáp án theo bài, nhưng cần lưu ý bắt buộc phải chọn một trình kiểm tra đáp án, nếu không kết quả chấm sẽ là `No Score.` (`Không có điểm`).
 
 ![Danh sách bài trong Arbiter](./images/arbiter_problem.png)
 
@@ -110,7 +110,7 @@ Lúc này, mở thư mục kỳ thi, ta sẽ thấy các nội dung sau.
 
 Thư mục `filter` chứa một số trình kiểm tra đáp án; thư mục `result` lưu kết quả chấm của thí sinh; thư mục `tmp` là thư mục bộ nhớ đệm khi chấm. Trong đó, `day<x>.info` là tệp cấu hình buổi thi, `<x>` là số hiệu buổi thi; tệp `task<x>_<y>.info` là tệp cấu hình bài, `<x>` là số hiệu buổi thi, `<y>` là số thứ tự bài.
 
-Đặt thư mục chương trình thí sinh đã tạo vào thư mục `players/`. Lưu ý lớp ngoài cùng nên tạo thư mục `day<x>` tương ứng theo ngày thi. Đặt toàn bộ dữ liệu test (không đặt trong thư mục con) vào `evaldata`. Nếu dùng trình kiểm tra đáp án tùy chỉnh, cần đặt trình kiểm tra đáp án tùy chỉnh vào `filter`.
+Đặt thư mục chương trình thí sinh đã tạo vào thư mục `players/`. Lưu ý lớp ngoài cùng nên tạo thư mục `day<x>` tương ứng theo ngày thi. Đặt toàn bộ dữ liệu kiểm thử (không đặt trong thư mục con) vào `evaldata`. Nếu dùng trình kiểm tra đáp án tùy chỉnh, cần đặt trình kiểm tra đáp án tùy chỉnh vào `filter`.
 
 #### Chấm chính thức
 
@@ -128,7 +128,7 @@ Trong ví dụ, mã là `HL-001`; chương trình sẽ tự nhận ra cột "Thu
 
 Đổi buổi chấm thứ 0 thành buổi chấm thứ 1 (hoặc buổi khác). Sau đó chọn tất cả ở bên phải (hoặc chọn các thí sinh chỉ định), rồi chọn chấm các thí sinh đã chọn ở phía dưới, chọn bài cần chấm (hoặc toàn bộ bài), cuối cùng chờ quá trình chấm kết thúc.
 
-Chi tiết từng test cần xem trong thư mục `result`. Trong thư mục này sẽ có thư mục kết quả của thí sinh; tệp kết quả có hậu tố `.result`, có thể mở bằng văn bản thuần. Nếu xuất hiện lỗi `No score file.`, có thể kiểm tra khi chấm có sinh tệp `/tmp/_eval.score` hay không.
+Chi tiết từng bộ kiểm thử cần xem trong thư mục `result`. Trong thư mục này sẽ có thư mục kết quả của thí sinh; tệp kết quả có hậu tố `.result`, có thể mở bằng văn bản thuần. Nếu xuất hiện lỗi `No score file.`, có thể kiểm tra khi chấm có sinh tệp `/tmp/_eval.score` hay không.
 
 ### Viết trình kiểm tra đáp án tùy chỉnh
 
@@ -144,8 +144,8 @@ Các điểm đã xác nhận cần chú ý:
 
 -   Cần chú ý lưu kỳ thi kịp thời, nếu không khi thao tác có thể bị thoát đột ngột. Để tránh bị thoát, có thể thử lưu kỳ thi nhiều lần, hoặc lưu ngay sau mỗi lần sửa.
 -   Nếu chưa từng chấm, đừng nhấn thống kê điểm ở phía trên, nếu không Arbiter sẽ thoát ngay.
--   Do giới hạn stack khi chạy trên Linux, nếu muốn mở stack không giới hạn, nên nhập `ulimit -s unlimited` trong trình dòng lệnh trước rồi chạy `arbiter_local` để mở trình chấm; nếu không có thể gặp vấn đề `Exceeding memory limit` (`Vượt giới hạn bộ nhớ`).
--   Khi chấm chính thức, lúc chuẩn bị đề cần để mọi bài có cùng giới hạn bộ nhớ. Khi chấm, thay `unlimited` trong lệnh bằng số KiB tương ứng với giới hạn bộ nhớ của bài; ví dụ giới hạn bộ nhớ là 512 MiB thì lệnh là `ulimit -s $((512 * 1024))`. Nguyên nhân chính của vấn đề này là khi khởi động Arbiter trực tiếp, tiến trình cha là GNOME, và tiến trình con kế thừa giới hạn stack của tiến trình cha.
+-   Do giới hạn ngăn xếp (stack) khi chạy trên Linux, nếu muốn mở ngăn xếp không giới hạn, nên nhập `ulimit -s unlimited` trong trình dòng lệnh trước rồi chạy `arbiter_local` để mở trình chấm; nếu không có thể gặp vấn đề `Exceeding memory limit` (`Vượt giới hạn bộ nhớ`).
+-   Khi chấm chính thức, lúc chuẩn bị đề cần để mọi bài có cùng giới hạn bộ nhớ. Khi chấm, thay `unlimited` trong lệnh bằng số KiB tương ứng với giới hạn bộ nhớ của bài; ví dụ giới hạn bộ nhớ là 512 MiB thì lệnh là `ulimit -s $((512 * 1024))`. Nguyên nhân chính của vấn đề này là khi khởi động Arbiter trực tiếp, tiến trình cha là GNOME, và tiến trình con kế thừa giới hạn ngăn xếp của tiến trình cha.
 -   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu cách, rất có thể khi tạo kỳ thi, toàn bộ trình kiểm tra đáp án mặc định không được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời trong tệp kết quả sinh ra có thể thấy thông báo `Compile Failed.` (`Biên dịch thất bại.`).
 -   Khi xem mã mà hiện thông báo "không tìm thấy tệp đáp án", điều đó nghĩa là không tìm thấy mã nguồn của thí sinh.
 
@@ -207,7 +207,7 @@ Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nh�
     
     Gợi ý: nếu thiếu `\.`, giả sử trong tệp của bạn có một tệp tên `outtest.out`, sau khi chạy lệnh này, tệp đó sẽ bị đổi thành `anstest.out`.
     
-    Tương tự, nếu bạn cần đổi đồng loạt tất cả tệp tên `atmost<x>.ans` (trong đó `<x>` biểu thị số hiệu test) thành `test<x>.ans`, có thể viết như sau:
+    Tương tự, nếu bạn cần đổi đồng loạt tất cả tệp tên `atmost<x>.ans` (trong đó `<x>` biểu thị số hiệu bộ kiểm thử) thành `test<x>.ans`, có thể viết như sau:
     
     ```shell
     rename 's/atmost/test/' *.ans
