@@ -17,10 +17,10 @@ __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
     cần dùng cách tương tự `std::pair` hoặc `struct`, rồi kết hợp các hàm thành
     viên `lower_bound` và `upper_bound` để tìm kiếm.
 -   `Mapped`: kiểu chính sách ánh xạ (mapped policy). Nếu muốn biểu diễn
-    bộ chứa kết hợp là **tập hợp**, tương tự lưu phần tử trong `std::set`, hãy
+    bộ chứa kết hợp là **tập hợp**, tương tự lưu phần tử trong `std::set`, cần
     điền `null_type` tại đây; với phiên bản `g++` cũ, vị trí này là
     `null_mapped_type`. Nếu muốn biểu diễn bộ chứa kết hợp là **ánh xạ**,
-    tương tự lưu phần tử trong `std::map`, hãy điền kiểu `Value`
+    tương tự lưu phần tử trong `std::map`, cần điền kiểu `Value`
     giống như trong `std::map<Key, Value>`.
 -   `Cmp_Fn`: đối tượng hàm so sánh khóa, ví dụ `std::less<Key>`.
 -   `Tag`: chọn loại cấu trúc dữ liệu nền; mặc định là `rb_tree_tag`.
@@ -28,8 +28,8 @@ __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
     -   `rb_tree_tag`: cây đỏ-đen; thường dùng loại này, hai loại sau thường có
         hiệu năng kém cây đỏ-đen.
     -   `splay_tree_tag`: cây splay.
-    -   `ov_tree_tag`: cây vector có thứ tự, chỉ là một cấu trúc có thứ tự hiện
-        thực bằng `vector`, tương tự dùng `vector` đã sắp xếp để hiện thực cây
+    -   `ov_tree_tag`: cây vector có thứ tự, tức một cấu trúc có thứ tự được
+        triển khai bằng `vector`, tương tự dùng `vector` đã sắp xếp để mô phỏng cây
         cân bằng; hiệu năng phụ thuộc dữ liệu có cố tình gây khó hay không.
 -   `Node_Update`: chính sách dùng để cập nhật nút; mặc định là
     `null_node_update`. Nếu muốn dùng `order_of_key` và `find_by_order`, cần dùng
@@ -64,7 +64,7 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
     `x` (theo logic so sánh của `Cmp_Fn`).
 -   `join(x)`: gộp cây `x` vào cây hiện tại, rồi làm rỗng cây `x` (phải bảo đảm
     **hàm so sánh** và **kiểu phần tử** của hai cây giống nhau).
--   `split(x,b)`: theo so sánh của `Cmp_Fn`, các phần tử nhỏ hơn hoặc bằng `x`
+-   `split(x, b)`: theo so sánh của `Cmp_Fn`, các phần tử nhỏ hơn hoặc bằng `x`
     thuộc cây hiện tại, các phần tử còn lại thuộc cây `b`.
 -   `empty()`: trả về cây có rỗng hay không.
 -   `size()`: trả về kích thước.
@@ -139,5 +139,5 @@ int main() {
 ## Tài liệu tham khảo
 
 -   [Tree-Based Containers](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
--   [Hiện thực hàm `join` trong GCC 14.1.0](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18391_source.html#l00043)
--   [Hiện thực hàm `erase` trong GCC 14.1.0](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18211_source.html#l00043)
+-   [Mã triển khai hàm `join` trong GCC 14.1.0](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18391_source.html#l00043)
+-   [Mã triển khai hàm `erase` trong GCC 14.1.0](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18211_source.html#l00043)
