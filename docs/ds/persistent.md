@@ -2,15 +2,17 @@ author: morris821028
 
 ## Giới thiệu
 
-Cấu trúc dữ liệu bền vững (persistent data structure) luôn có thể giữ lại mọi phiên bản lịch sử, đồng thời hỗ trợ tính bất biến (immutable) của thao tác.
+Cấu trúc dữ liệu bền vững luôn có thể giữ lại mọi phiên bản lịch sử, đồng thời hỗ trợ tính bất biến của thao tác.
 
 ## Phân loại bền vững hóa
 
-### Một phần bền vững (Partially Persistent)
+<span id="một-phần-bền-vững-partially-persistent"></span>
+### Một phần bền vững
 
 Mọi phiên bản đều có thể được truy cập, nhưng chỉ phiên bản mới nhất có thể được sửa đổi.
 
-### Hoàn toàn bền vững (Fully Persistent)
+<span id="hoàn-toàn-bền-vững-fully-persistent"></span>
+### Hoàn toàn bền vững
 
 Mọi phiên bản đều có thể vừa được truy cập vừa được sửa đổi.
 

@@ -63,7 +63,7 @@ static std::pair<int, int> _split(int _x, int k) {
   if (_x == 0)
     return std::make_pair(0, 0);
   else {
-    int _vs = ++_cnt;  // Tao nut moi (cot loi cua ben vung hoa)
+    int _vs = ++_cnt;  // Tạo nút mới (cốt lõi của bền vững hóa)
     _trp[_vs] = _trp[_x];
     std::pair<int, int> _y;
     if (_trp[_vs].key <= k) {

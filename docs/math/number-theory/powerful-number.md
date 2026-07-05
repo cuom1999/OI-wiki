@@ -1,7 +1,7 @@
 <span id="định-nghĩa"></span>
 ## Định nghĩa
 
-Sàng số lũy thừa mạnh (Powerful Number, sau đây viết tắt là PN) tương tự sàng Dujiao, hoặc có thể xem là một mở rộng của sàng Dujiao, dùng để tính tổng tiền tố của một số hàm nhân.
+Sàng số lũy thừa mạnh, sau đây viết tắt là PN, tương tự sàng Dujiao, hoặc có thể xem là một mở rộng của sàng Dujiao, dùng để tính tổng tiền tố của một số hàm nhân.
 
 **Yêu cầu**:
 
@@ -12,7 +12,7 @@ Sàng số lũy thừa mạnh (Powerful Number, sau đây viết tắt là PN) t
 
 Giả sử hiện cần tính tổng tiền tố của hàm nhân $f$: $F(n) = \sum_{i=1}^{n} f(i)$.
 
-## Số lũy thừa mạnh (powerful number)
+## Số lũy thừa mạnh
 
 **Định nghĩa**: Với số nguyên dương $n$, giả sử phân tích thừa số nguyên tố của $n$ là $n = \prod_{i=1}^{m} p_{i}^{e_{i}}$. $n$ là PN khi và chỉ khi $\forall 1 \le i \le m, e_{i} > 1$.
 

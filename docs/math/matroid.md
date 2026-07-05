@@ -35,7 +35,7 @@ Nếu một cấu trúc dạng $(E, \mathcal{I})$ thỏa mãn ba tính chất tr
 
 **Tính chất**:
 
-1.  **Cùng lực lượng**: mọi cơ sở đều có cùng kích thước, gọi là **hạng** (Rank) của matroid.
+1.  **Cùng lực lượng**: mọi cơ sở đều có cùng kích thước, gọi là **hạng** của matroid.
 
 2.  **Tính mở rộng**: mọi tập độc lập đều có thể được mở rộng thành một cơ sở bằng cách thêm các phần tử thuộc một cơ sở.
 
@@ -49,7 +49,7 @@ Nếu một cấu trúc dạng $(E, \mathcal{I})$ thỏa mãn ba tính chất tr
 
 ### Hạng
 
-**Hàm hạng** (Rank Function) $r: 2^E \rightarrow \mathbb{Z}_{\geq 0}$ ánh xạ mỗi tập con của tập nền $E$ tới một số nguyên không âm. Với mọi $S \subseteq E$, $r(S)$ được định nghĩa là kích thước của tập độc lập lớn nhất trong $S$, tức là
+**Hàm hạng** $r: 2^E \rightarrow \mathbb{Z}_{\geq 0}$ ánh xạ mỗi tập con của tập nền $E$ tới một số nguyên không âm. Với mọi $S \subseteq E$, $r(S)$ được định nghĩa là kích thước của tập độc lập lớn nhất trong $S$, tức là
 
 $$
 r(S) = \max \{ |I| \mid I \subseteq S \wedge I \in \mathcal{I} \}.
@@ -69,7 +69,7 @@ $$
 
 <span id="1-matroid-đều-uniform-matroid"></span>
 
-### 1. Matroid đều (Uniform Matroid)
+### 1. Matroid đều
 
 **Định nghĩa**: cho tập nền $E$ và số nguyên không âm $k$, họ tập độc lập của matroid đều $U_{k,E}$ gồm tất cả các tập con có kích thước không vượt quá $k$, được biểu diễn bởi:
 
@@ -77,15 +77,15 @@ $$
 \mathcal{I} = \{ I \subseteq E \mid |I| \leq k \}.
 $$
 
--   **Cơ sở** (Bases): tất cả các tập con có kích thước bằng $k$.
+-   **Cơ sở**: tất cả các tập con có kích thước bằng $k$.
 
--   **Mạch** (Circuits): tất cả các tập con có kích thước bằng $k + 1$.
+-   **Mạch**: tất cả các tập con có kích thước bằng $k + 1$.
 
--   **Hạng** (Rank): $r(E) = \min(k, |E|)$, tức là một tập độc lập có nhiều nhất $k$ phần tử.
+-   **Hạng**: $r(E) = \min(k, |E|)$, tức là một tập độc lập có nhiều nhất $k$ phần tử.
 
 <span id="2-matroid-đồ-thị-graphical-matroid"></span>
 
-### 2. Matroid đồ thị (Graphical Matroid)
+### 2. Matroid đồ thị
 
 **Định nghĩa**: cho một đồ thị vô hướng $G = (V, E)$, tập nền của matroid đồ thị $M(G)$ là tập cạnh $E$, còn họ tập độc lập của nó gồm tất cả các tập cạnh không chứa chu trình, tức là tất cả các rừng.
 
@@ -97,7 +97,7 @@ $$
 
 <span id="3-matroid-tuyến-tính-linear-matroid"></span>
 
-### 3. Matroid tuyến tính (Linear Matroid)
+### 3. Matroid tuyến tính
 
 **Định nghĩa**: matroid tuyến tính được xây dựng trên không gian vectơ. Cho không gian vectơ $V$, tập nền $E$ là một tập hữu hạn các vectơ trong $V$, và họ tập độc lập của nó gồm tất cả các tập con vectơ độc lập tuyến tính của $E$.
 
@@ -109,7 +109,7 @@ $$
 
 <span id="4-matroid-phân-hoạch-partition-matroid"></span>
 
-### 4. Matroid phân hoạch (Partition Matroid)
+### 4. Matroid phân hoạch
 
 **Định nghĩa**: chia tập nền $E$ thành các tập con rời nhau $E_1, E_2, \dots, E_m$, rồi gán cho mỗi tập con $E_i$ một số nguyên không âm $k_i$. Họ tập độc lập của matroid phân hoạch gồm các tập con sao cho số phần tử được chọn trong mỗi phần không vượt quá $k_i$, được biểu diễn bởi:
 
@@ -125,7 +125,7 @@ $$
 
 <span id="5-matroid-màu-colored-matroid"></span>
 
-### 5. Matroid màu (Colored Matroid)
+### 5. Matroid màu
 
 **Định nghĩa**: matroid màu là một dạng đặc biệt của matroid phân hoạch, trong đó mỗi phần tử được gán một màu. Cho tập nền $E$ và tập màu $C$, mỗi phần tử $e \in E$ được liên kết với một màu $c \in C$. Tập độc lập của matroid màu không chỉ cần thỏa mãn điều kiện độc lập thông thường của matroid, mà còn phải tuân thủ các ràng buộc theo màu, chẳng hạn số phần tử cùng một màu được chọn vào tập độc lập không vượt quá một giới hạn nhất định.
 

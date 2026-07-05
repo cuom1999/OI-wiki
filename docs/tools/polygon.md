@@ -77,7 +77,7 @@ Nếu các mã nguồn này cần include tệp khác, ví dụ [Tree-Generator]
 
 Tương tác kiểu grader xem [hướng dẫn chính thức](https://codeforces.com/blog/entry/66916).
 
-### Trình kiểm tra đáp án (Checker)
+### Trình kiểm tra đáp án
 
 testlib.h cung cấp một số trình kiểm tra đáp án tích hợp sẵn; trong hộp chọn có giới thiệu ngắn gọn, và sau khi chọn cũng có thể nhấp "View source" (xem mã nguồn).
 
@@ -85,11 +85,11 @@ Nếu cần tự viết trình kiểm tra đáp án, hãy tham khảo [hướng 
 
 "Checker tests" ("Test cho checker") bên dưới dùng "Add test" ("Thêm test") để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" ("Chạy test") để kiểm tra trình kiểm tra đáp án có trả về đúng kết quả chấm hay không.
 
-### Trình tương tác (Interactor)
+### Trình tương tác
 
 Chỉ bài tương tác kiểu IO mới cần mục này; hãy tham khảo [hướng dẫn viết trình tương tác](./testlib/interactor.md).
 
-### Trình kiểm tra dữ liệu (Validator)
+### Trình kiểm tra dữ liệu
 
 Trình kiểm tra dữ liệu dùng để kiểm tra tính hợp lệ của dữ liệu. Cách viết xem [hướng dẫn viết trình kiểm tra dữ liệu](./testlib/validator.md).
 
