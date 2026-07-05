@@ -595,16 +595,16 @@ Ví dụ tham khảo:
 
 $$
 \begin{array}{l}
-\textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
-\text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
-\textbf{Output. } \text{The edges of the MST of the input graph}. \\
-\textbf{Method. } \\
+\textbf{Đầu vào. } \text{Tập cạnh của đồ thị } e , \text{ trong đó mỗi phần tử của } e \text{ là } (u, v, w) \\
+\text{ biểu thị một cạnh giữa } u \text{ và } v \text{ có trọng số } w . \\
+\textbf{Đầu ra. } \text{Các cạnh của MST của đồ thị đầu vào}. \\
+\textbf{Phương pháp. } \\
 \begin{array}{ll} 
 1 &  \textit{result} \gets \varnothing \\
-2 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
-3 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
-4 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
-5 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+2 &  \text{sắp xếp } e \text{ theo thứ tự không giảm của trọng số } w \\
+3 &  \textbf{for} \text{ mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
+4 &  \qquad \textbf{if } u \text{ và } v \text{ chưa liên thông trong DSU } \\
+5 &  \qquad\qquad \text{hợp nhất } u \text{ và } v \text{ trong DSU} \\
 6 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
 7 &  \textbf{return } \textit{result}
 \end{array}
@@ -614,16 +614,16 @@ $$
 ```latex
 $$
 \begin{array}{l}
-\textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
-\text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
-\textbf{Output. } \text{The edges of the MST of the input graph}. \\
-\textbf{Method. } \\
+\textbf{Đầu vào. } \text{Tập cạnh của đồ thị } e , \text{ trong đó mỗi phần tử của } e \text{ là } (u, v, w) \\
+\text{ biểu thị một cạnh giữa } u \text{ và } v \text{ có trọng số } w . \\
+\textbf{Đầu ra. } \text{Các cạnh của MST của đồ thị đầu vào}. \\
+\textbf{Phương pháp. } \\
 \begin{array}{ll} 
 1 &  \textit{result} \gets \varnothing \\
-2 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
-3 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
-4 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
-5 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+2 &  \text{sắp xếp } e \text{ theo thứ tự không giảm của trọng số } w \\
+3 &  \textbf{for} \text{ mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
+4 &  \qquad \textbf{if } u \text{ và } v \text{ chưa liên thông trong DSU } \\
+5 &  \qquad\qquad \text{hợp nhất } u \text{ và } v \text{ trong DSU} \\
 6 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
 7 &  \textbf{return } \textit{result}
 \end{array}
@@ -646,7 +646,7 @@ Về đoạn mã:
 
     **Chú ý**: không dùng cú pháp [Snippet Lines](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines).
 
-    Để tăng tỷ lệ tái sử dụng mã, bạn cũng có thể tách mã thành header file và khi kiểm thử thì dẫn vào các mã kiểm thử khác nhau. Nếu phần thân bài cần xuất hiện đầy đủ mã kiểm thử làm hiện thực tham khảo cho bài mẫu, trong phần thân bài nên dùng riêng cú pháp Snippet Sections để ghép thành mã một tệp, để người đọc dễ đọc. Ví dụ: [cây đỏ-đen](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231).
+    Để tăng tỷ lệ tái sử dụng mã, bạn cũng có thể tách mã thành tệp header và khi kiểm thử thì dẫn vào các mã kiểm thử khác nhau. Nếu phần thân bài cần xuất hiện đầy đủ mã kiểm thử làm hiện thực tham khảo cho bài mẫu, trong phần thân bài nên dùng riêng cú pháp Snippet Sections để ghép thành mã một tệp, để người đọc dễ đọc. Ví dụ: [cây đỏ-đen](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231).
 
 Về mã bài mẫu:
 
