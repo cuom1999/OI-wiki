@@ -1,17 +1,17 @@
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Bài viết này giới thiệu các cấu trúc dữ liệu dùng để lưu các phân số tối giản, cùng một số khái niệm liên quan. Chúng gắn rất chặt với [liên phân số](./continued-fraction.md), có thể dùng để giải một loạt bài toán số học trong lập trình thi đấu, và đôi khi xuất hiện như nền tảng ẩn của một số đề bài.
 
-<span id="stern–brocot-&#x6811;"></span>
+<span id="cây-stern-brocot"></span>
 ## Cây Stern-Brocot
 
 Cây Stern-Brocot là một cấu trúc thanh nhã để quản lý phân số, chứa tất cả các số hữu tỉ dương phân biệt. Cấu trúc này được Moritz Stern phát hiện năm 1858 và Achille Brocot phát hiện độc lập năm 1861.
 
-<span id="&#x6784;&#x9020;"></span>
+<span id="xây-dựng"></span>
 ### Xây dựng
 
-<span id="&#x9010;&#x5C42;&#x6784;&#x9020;"></span>
+<span id="xây-dựng-theo-từng-tầng"></span>
 #### Xây dựng theo từng tầng
 
 Cây Stern-Brocot có thể thu được trong quá trình lặp để xây dựng dãy Stern-Brocot bậc $k$ (Stern-Brocot sequence of order $k$). Dãy Stern-Brocot bậc $0$ gồm hai phân số đơn giản:
@@ -38,7 +38,7 @@ Nối các phân số mới được thêm ở mỗi lần lặp thành một c�
 
 Dãy Stern-Brocot bậc $k$, nếu bỏ hai đầu mút trái phải, chính là thứ tự duyệt trung tự của cây Stern-Brocot có độ sâu $k-1$.
 
-<span id="&#x4E09;&#x5143;&#x7EC4;&#x6784;&#x9020;"></span>
+<span id="xây-dựng-bằng-bộ-ba"></span>
 #### Xây dựng bằng bộ ba
 
 Một cách xây dựng tương đương khác là lấy bộ ba
@@ -61,7 +61,7 @@ $$
 
 làm hai nút con trái và phải. Trong bộ ba được ghi ở mỗi nút của cây Stern-Brocot, phân số thực sự được lưu là phân số ở giữa $\dfrac{p}{q}$; hai phân số trái phải $\dfrac{a}{b}$ và $\dfrac{c}{d}$ là các phân số đã xuất hiện sớm hơn. Hơn nữa, nhìn từ cách xây dựng trước, phân số $\dfrac{p}{q}$ chính là trung vị phân số được chèn giữa $\dfrac{a}{b}$ và $\dfrac{c}{d}$.
 
-<span id="&#x77E9;&#x9635;&#x8868;&#x793A;&#x4E0E;-stern–brocot-&#x6570;&#x7CFB;"></span>
+<span id="biểu-diễn-ma-trận-và-hệ-đếm-stern-brocot"></span>
 #### Biểu diễn ma trận và hệ đếm Stern-Brocot
 
 Cách xây dựng bằng bộ ba cho thấy mỗi nút trên cây Stern-Brocot tương ứng với một ma trận
@@ -88,7 +88,7 @@ $$
 
 Phân số thực sự ứng với mỗi nút là $f(S)=\dfrac{a+c}{b+d}$. Ma trận $S$ của mỗi nút đều có thể viết thành tích của một dãy các ma trận $L$ và $R$; điều này cũng có thể hiểu là một chuỗi tạo bởi $L$ và $R$, biểu diễn đường đi từ gốc đến nút đó. Việc biểu diễn duy nhất mọi số hữu tỉ dương bằng một chuỗi như vậy có thể xem là một cách biểu diễn các số hữu tỉ dương, nên còn được gọi là **hệ đếm Stern-Brocot** (Stern-Brocot number system).
 
-<span id="&#x5EFA;&#x6811;&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-xây-cây"></span>
 #### Cài đặt xây cây
 
 Thuật toán xây cây chỉ cần mô phỏng quá trình trên. Dưới đây là mã duyệt trung tự $n$ tầng đầu của cây Stern-Brocot.
@@ -106,12 +106,12 @@ Thuật toán xây cây chỉ cần mô phỏng quá trình trên. Dưới đây
 
 Độ phức tạp của thuật toán xây cây là $O(n^2)$.
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 ### Tính chất
 
 Tiếp theo ta xét các tính chất của cây Stern-Brocot. Nói ngắn gọn, cây Stern-Brocot là một [cây tìm kiếm nhị phân](../../ds/bst.md) chứa tất cả các phân số hữu tỉ dương tối giản; nó cũng là một [heap](../../ds/binary-heap.md) theo tử số và mẫu số, đồng thời là [cây Descartes](../../ds/cartesian-tree.md) của các cặp gồm mẫu số và tử số. Nếu xét các đoạn được tạo bởi hai đầu mút trái phải trong cách xây dựng bằng bộ ba ở trên, cây Stern-Brocot cũng có thể xem là một [cây đoạn](../../ds/seg.md) trên $[0,\infty]$. Những phát biểu này đều có thể suy ra từ ba tính chất cơ bản sau.
 
-<span id="&#x5355;&#x8C03;&#x6027;"></span>
+<span id="tính-đơn-điệu"></span>
 #### Tính đơn điệu
 
 Trong cách xây dựng trên, các phân số ở mỗi tầng đều tăng đơn điệu. Ta chỉ cần chứng minh bằng quy nạp. Nếu $\dfrac{a}{b} < \dfrac{c}{d}$, thì tất yếu có
@@ -122,7 +122,7 @@ $$
 
 Điều này nhận được bằng cách khử mẫu trong các bất đẳng thức. Cơ sở quy nạp là $\dfrac{0}{1} < \dfrac{1}{0}$, nên tính đơn điệu cũng hiển nhiên đúng.
 
-<span id="&#x6700;&#x7B80;&#x6027;"></span>
+<span id="tính-tối-giản"></span>
 #### Tính tối giản
 
 Trong cách xây dựng trên, mọi phân số đều là phân số tối giản. Để chứng minh, cũng dùng quy nạp để chỉ ra rằng trong mỗi tầng của cách xây dựng trên, hai phân số kề nhau $\dfrac{a}{b}$ và $\dfrac{c}{d}$ luôn thỏa mãn
@@ -142,7 +142,7 @@ $$
 
 Với cơ sở quy nạp $\dfrac{0}{1}$ và $\dfrac{1}{0}$, điều này cũng hiển nhiên. Từ đó, theo [định lý Bezout](./bezouts.md), tử số và mẫu số của mọi phân số phải nguyên tố cùng nhau, tức mọi phân số đều tối giản.
 
-<span id="&#x5B8C;&#x5168;&#x6027;"></span>
+<span id="tính-đầy-đủ"></span>
 #### Tính đầy đủ
 
 Cuối cùng, cần chỉ ra rằng cây Stern-Brocot chứa tất cả các phân số tối giản dương. Vì hai tính chất trước đã cho thấy cây Stern-Brocot là một cây tìm kiếm nhị phân, còn mọi phân số tối giản dương $\dfrac{p}{q}$ đều nằm giữa $\dfrac{0}{1}$ và $\dfrac{1}{0}$, nên theo cách tìm kiếm trên cây tìm kiếm nhị phân, khả năng duy nhất để trên cây không có $\dfrac{p}{q}$ là quá trình tìm kiếm kéo dài vô hạn. Điều này là không thể.
@@ -173,12 +173,12 @@ $$
 
 Mỗi lần quá trình tìm kiếm đi sâu thêm một tầng, vế phải của đẳng thức này tăng nghiêm ngặt, còn vế trái không đổi; do đó quá trình tìm kiếm chắc chắn dừng sau hữu hạn bước.
 
-<span id="&#x67E5;&#x627E;&#x5206;&#x6570;"></span>
+<span id="tìm-phân-số"></span>
 ### Tìm phân số
 
 Trong ứng dụng thực tế của cây Stern-Brocot, ta thường cần truy vấn vị trí của một phân số cho trước trên cây Stern-Brocot.
 
-<span id="&#x6734;&#x7D20;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-đơn-giản"></span>
 #### Thuật toán đơn giản
 
 Vì Stern-Brocot là cây tìm kiếm nhị phân, chỉ cần so sánh phân số hiện tại với phân số cần tìm để xác định đường đi từ gốc đến phân số đã cho. Ghi mỗi bước đi sang nút con trái và nút con phải lần lượt là $L$ và $R$, thì mỗi đường đi tương ứng với một chuỗi tạo bởi $L$ và $R$; đây chính là biểu diễn trong hệ đếm Stern-Brocot của số hữu tỉ đã nhắc ở trên. Quá trình tìm đường đi tới một số hữu tỉ tương đương với việc tìm biểu diễn của số hữu tỉ đó trong hệ đếm Stern-Brocot.
@@ -200,7 +200,7 @@ Cài đặt thuật toán tìm phân số đơn giản như sau:
 
 Trong hệ đếm Stern-Brocot, mỗi số vô tỉ dương tương ứng với một chuỗi vô hạn duy nhất. Có thể dùng cùng thuật toán để xây dựng chuỗi này. Mỗi tiền tố của chuỗi vô hạn đó tương ứng với một phân số hữu tỉ tối giản. Xếp các phân số tối giản ấy thành một dãy, mẫu số của các phân số trong dãy tăng nghiêm ngặt, và giới hạn của dãy chính là số vô tỉ đó. Vì vậy, cây Stern-Brocot có thể dùng để tìm xấp xỉ hữu tỉ với độ chính xác tùy ý cho một số vô tỉ. Tuy nhiên, cần lưu ý rằng khoảng cách giữa dãy số hữu tỉ này và số vô tỉ không nhất thiết giảm nghiêm ngặt. Để có lý thuyết chặt chẽ về xấp xỉ hữu tỉ, nên tham khảo mục [xấp xỉ Diophantine](./continued-fraction.md#xấp-xỉ-diophantine) trong trang liên phân số. Khi dùng cây Stern-Brocot để tìm xấp xỉ tốt nhất của một số thực với mẫu số không vượt quá một giới hạn nào đó, cuối cùng cần chú ý so sánh khoảng cách từ hai đầu mút của đoạn hiện tại đến số thực đó.
 
-<span id="&#x5FEB;&#x901F;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-nhanh"></span>
 #### Thuật toán nhanh
 
 Thuật toán tìm phân số đơn giản có hiệu quả không cao, nhưng chỉ cần tối ưu nhẹ là có thể thu được thuật toán tìm kiếm nhanh $O(\log(p+q))$. Điểm mấu chốt là gộp các đoạn $L$ liên tiếp và $R$ liên tiếp để xử lý cùng lúc.
@@ -220,7 +220,7 @@ Nếu phân số cần tìm $\dfrac{p}{q}$ nằm giữa $\dfrac{a}{b}$ và $\dfr
 
 Thuật toán tìm kiếm hiện tại yêu cầu phân số $\dfrac{p}{q}$ đã biết. Nếu phân số mục tiêu chưa biết, thường cần tìm kiếm lũy thừa hai hoặc tìm kiếm nhị phân số bước mỗi lần đi sang phải hoặc sang trái. Khi đó, độ phức tạp của thuật toán tìm phân số là $O(\log^2(p+q))$.
 
-<span id="&#x57FA;&#x4E8E;&#x8FDE;&#x5206;&#x6570;&#x7684;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-dựa-trên-liên-phân-số"></span>
 #### Thuật toán dựa trên liên phân số
 
 Với trường hợp phân số đã biết, có thể dùng liên phân số để đưa ra một thuật toán đơn giản hơn. Không mất tính tổng quát, giả sử nhóm bước đi đầu tiên là sang phải; nếu không, đặt số lần đi sang phải của nhóm đầu tiên bằng không. Di chuyển hai đầu mút xen kẽ sang phải và sang trái, rồi liệt kê vị trí đầu mút sau mỗi nhóm bước đi như sau:
@@ -270,7 +270,7 @@ Biểu diễn liên phân số của số hữu tỉ có thể tìm bằng thu�
 
 Dùng biểu diễn liên phân số, có thể mô tả đơn giản nút cha và các nút con của một nút. Với nút $[t_0,t_1,\cdots,t_n,1]$, nút cha của nó là nút đi ít hơn một bước theo hướng di chuyển cuối cùng: khi $t_k>1$, nút cha là $[t_0,t_1,\cdots,t_n - 1,1]$; ngược lại, nút cha là $[t_0,t_1,\cdots,t_{n-1},1]$. Hai nút con của nó lần lượt là $[t_0,t_1,\cdots,t_n+1,1]$ và $[t_0,t_1,\cdots,t_n,1,1]$; nút nào là con trái và nút nào là con phải cần được xác định theo tính chẵn lẻ của $n$.
 
-<span id="calkin–wilf-&#x6811;"></span>
+<span id="cây-calkin-wilf"></span>
 ## Cây Calkin-Wilf
 
 Một cấu trúc đơn giản hơn để lưu các phân số hữu tỉ dương là cây Calkin-Wilf. Nó thường được vẽ như sau:
@@ -279,7 +279,7 @@ Một cấu trúc đơn giản hơn để lưu các phân số hữu tỉ dươn
 
 Nút gốc của cây là $\dfrac{1}{1}$. Với một nút chứa phân số $\dfrac{p}{q}$, hai nút con trái và phải lần lượt là $\dfrac{p}{p+q}$ và $\dfrac{p+q}{q}$. Tương tự cây Stern-Brocot, mọi phân số của nó đều tối giản, và nó chứa mỗi phân số tối giản dương đúng một lần.
 
-<span id="&#x4E0E;&#x8FDE;&#x5206;&#x6570;&#x7684;&#x5173;&#x7CFB;"></span>
+<span id="quan-hệ-với-liên-phân-số"></span>
 ### Quan hệ với liên phân số
 
 Khác với cây Stern-Brocot, cây Calkin-Wilf không phải cây tìm kiếm nhị phân, nên không thể dùng để tìm kiếm nhị phân các số hữu tỉ.
@@ -296,7 +296,7 @@ Với nút chứa phân số $\dfrac{p}{q}=[t_0,t_1,\cdots,t_n,1]$, nút cha c�
 
 Ngược lại, hai nút con của nó lần lượt là $\dfrac{p+q}{q}=[t_0+1,t_1,\cdots,t_n,1]$ và $\dfrac{p}{p+q}=[0,1,t_0,t_1,\cdots,t_n,1]$. Với biểu diễn liên phân số của nút con thứ hai, khi $t_0=0$ thì nên hiểu là $[0,1+t_1,\cdots,t_n,1]$.
 
-<span id="&#x4E0E;-stern–brocot-&#x6811;&#x7684;&#x5173;&#x7CFB;"></span>
+<span id="quan-hệ-với-cây-stern-brocot"></span>
 ### Quan hệ với cây Stern-Brocot
 
 Cùng thiết lập quan hệ với liên phân số, các nút trên đường đi trong cây Stern-Brocot thể hiện quan hệ truy hồi của các phân số hội tụ, còn các nút trên đường đi trong cây Calkin-Wilf thể hiện quan hệ truy hồi của các phần dư. Biểu diễn liên phân số của cùng một phân số là cố định, nên mã hóa đường đi từ nó đến gốc trong cây Calkin-Wilf hoàn toàn giống mã hóa đường đi từ gốc đến nó trong cây Stern-Brocot. Tuy nhiên, do hướng của đường đi ngược nhau, nên dù hai cây Stern-Brocot và Calkin-Wilf lưu cùng một tập phân số ở cùng một tầng, vị trí của chúng lại không giống nhau.
@@ -321,7 +321,7 @@ Chính vì vậy, các nút trên cây Stern-Brocot đôi khi được đánh s�
 
 Cách đánh số này có thể xây dựng đệ quy: nút gốc có chỉ số $1$; mỗi lần đi tới nút con trái, thay bit $1$ đầu tiên của chỉ số bằng $10$, còn khi đi tới nút con phải thì thay bit $1$ đầu tiên bằng $11$. Đọc chỉ số này từ phải sang trái sẽ thu được đường đi từ gốc đến nút đó.
 
-<span id="stern-&#x53CC;&#x539F;&#x5B50;&#x5E8F;&#x5217;"></span>
+<span id="dãy-hai-nguyên-tử-stern"></span>
 ### Dãy hai nguyên tử Stern
 
 Sắp xếp tất cả phân số trong cây Calkin-Wilf theo chỉ số tìm kiếm theo chiều rộng, hoặc sắp xếp tất cả phân số trong cây Stern-Brocot theo cách đánh số trong hình trên, ta thu được dãy sau:
@@ -343,7 +343,7 @@ $$
 
 Cơ sở truy hồi là $a_0=0$ và $a_1=1$. Để tính giá trị $a_n$ trong dãy hai nguyên tử Stern, dùng trực tiếp quan hệ truy hồi có độ phức tạp $O(\log^2n)$, chưa tốt. Cách tốt hơn là xem nó là tử số của phân số có chỉ số $n$ trên cây Calkin-Wilf, rồi dùng quan hệ truy hồi dựa trên liên phân số đã mô tả ở trên; độ phức tạp là $O(\log n)$.
 
-<span id="farey-&#x5E8F;&#x5217;"></span>
+<span id="dãy-farey"></span>
 ## Dãy Farey
 
 Dãy Farey có những đặc trưng rất giống cây Stern-Brocot. Ký hiệu **dãy Farey bậc $n$** (Farey sequence of order $n$) là $F_n$. Nó là dãy thu được bằng cách sắp xếp theo thứ tự tăng dần tất cả các phân số tối giản nằm trong $[0,1]$ có mẫu số không vượt quá $n$:
@@ -375,7 +375,7 @@ Thuật toán xây cây Stern-Brocot ở trên cũng có thể dùng để xây 
 
 Độ phức tạp của việc xây dựng trực tiếp dãy Farey là $O(|F_n|)=O(n^2)$.
 
-<span id="&#x5E8F;&#x5217;&#x957F;&#x5EA6;&#x4E0E;&#x5206;&#x6570;&#x67E5;&#x627E;"></span>
+<span id="độ-dài-dãy-và-tìm-phân-số"></span>
 ### Độ dài dãy và tìm phân số
 
 Độ dài của dãy Farey có thể tính bằng truy hồi. So với $F_{n-1}$, các phân số mới xuất hiện trong $F_n$ đều có mẫu số là $n$, còn tử số không vượt quá $n$ và nguyên tố cùng nhau với $n$, nên có:
@@ -396,14 +396,14 @@ $$
 
 Để thu được vế phải, ta áp dụng [nghịch đảo Mobius](./mobius.md). Kết hợp sàng tuyến tính với việc liệt kê ước, có thể đạt $O(n)$ tiền xử lý và $O(n\log n)$ cho mỗi truy vấn; kết hợp sàng Du với [thuật toán Euclid mở rộng](./euclidean.md), có thể đạt $O(n^{2/3})$ tiền xử lý và $O(\sqrt n\log n)$ cho mỗi truy vấn.
 
-Ngược lại, nếu biết chỉ số và cần tìm phân số, ta cần tìm kiếm nhị phân trên các số thực trong $[0,1]$, hoặc [tìm kiếm nhị phân](#%E5%BF%AB%E9%80%9F%E7%AE%97%E6%B3%95) trên cây Stern-Brocot. Cách trước có thể chịu ảnh hưởng của sai số số thực, và cần $O(\log V)$ truy vấn chỉ số phân số, trong đó $V$ là phạm vi độ chính xác; cách sau không chịu giới hạn bởi sai số số thực, nhưng cần $O(\log^2n)$ truy vấn chỉ số phân số.
+Ngược lại, nếu biết chỉ số và cần tìm phân số, ta cần tìm kiếm nhị phân trên các số thực trong $[0,1]$, hoặc [tìm kiếm nhị phân](#thuật-toán-nhanh) trên cây Stern-Brocot. Cách trước có thể chịu ảnh hưởng của sai số số thực, và cần $O(\log V)$ truy vấn chỉ số phân số, trong đó $V$ là phạm vi độ chính xác; cách sau không chịu giới hạn bởi sai số số thực, nhưng cần $O(\log^2n)$ truy vấn chỉ số phân số.
 
-<span id="farey-&#x90BB;&#x9879;"></span>
+<span id="các-phần-tử-kề-farey"></span>
 ### Các phần tử kề Farey
 
 Nếu hai phân số $\dfrac{a}{b}$ và $\dfrac{c}{d}$ kề nhau trong một dãy Farey nào đó, ta gọi chúng là **hai phần tử kề Farey** (Farey neighbors), cũng gọi là một cặp Farey (Farey pair).
 
-Giả sử $\dfrac{a}{b}<\dfrac{c}{d}$. Từ quá trình xây dựng dãy Farey, trong hai phân số kề nhau, phân số được thêm vào sau chắc chắn là trung vị phân số của phân số còn lại với phần tử kề trước đó của nó. Do vậy, hai phần tử kề Farey cũng kề nhau trong một dãy Stern-Brocot bậc nào đó; theo kết luận đã chứng minh trong phần [tính tối giản](#%E6%9C%80%E7%AE%80%E6%80%A7), tất yếu có
+Giả sử $\dfrac{a}{b}<\dfrac{c}{d}$. Từ quá trình xây dựng dãy Farey, trong hai phân số kề nhau, phân số được thêm vào sau chắc chắn là trung vị phân số của phân số còn lại với phần tử kề trước đó của nó. Do vậy, hai phần tử kề Farey cũng kề nhau trong một dãy Stern-Brocot bậc nào đó; theo kết luận đã chứng minh trong phần [tính tối giản](#tính-tối-giản), tất yếu có
 
 $$
 bc-ad=1.
@@ -439,7 +439,7 @@ Tất nhiên, hai phân số $\dfrac{a}{b}<\dfrac{c}{d}$ tìm được trong qu�
 
 Để tính các phần tử kề Farey khác của phân số hiện tại $\dfrac{p}{q}$, chỉ cần dùng [thuật toán Euclid mở rộng](./bezouts.md#trường-hợp-hai-biến) để tìm tất cả nghiệm thỏa mãn điều kiện.
 
-<span id="&#x9012;&#x63A8;&#x5173;&#x7CFB;"></span>
+<span id="quan-hệ-truy-hồi"></span>
 ### Quan hệ truy hồi
 
 Dãy Farey có một quan hệ truy hồi gọn, có thể dùng để sinh toàn bộ phân số của dãy Farey bậc $n$ theo thứ tự từ trái sang phải.
@@ -481,7 +481,7 @@ $$
 
 Cơ sở truy hồi là $(p_0,q_0)=(0,1)$ và $(p_1,q_1)=(1,n)$.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 Các bài toán có nền tảng là nội dung trong bài này:
@@ -500,7 +500,7 @@ Các bài toán cần tìm kiếm nhị phân trên cây Stern-Brocot:
 -   [SPOJ DIVCNT1 - Counting Divisors](https://www.spoj.com/problems/DIVCNT1/)
 -   [SPOJ AFS3 - Amazing Factor Sequence (hard)](https://www.spoj.com/problems/AFS3/)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Stern-Brocot tree - Wikipedia](https://en.wikipedia.org/wiki/Stern%E2%80%93Brocot_tree)
