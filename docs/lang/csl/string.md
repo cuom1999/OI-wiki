@@ -10,14 +10,14 @@ không phải thư viện `<string.h>` của ngôn ngữ C); về bản chất n
 
 Trong ngôn ngữ C, có các thao tác xử lý chuỗi, nhưng chỉ có thể cài đặt chuỗi
 bằng mảng ký tự. Còn `string` là một lớp đơn giản, dễ dùng và được sử dụng rộng
-rãi trong các cuộc thi OI. So với các bộ chứa STL khác, hằng số của `string`
-có thể xem là rất tốt, gần như không thua mảng ký tự.
+rãi trong các cuộc thi OI. So với các bộ chứa STL khác, chi phí hằng số của
+`string` khá tốt, gần như không thua mảng ký tự.
 
 ### `string` có thể cấp phát bộ nhớ động
 
 Giống nhiều bộ chứa STL khác, `string` có thể cấp phát bộ nhớ động, nhờ đó có
-thể dùng trực tiếp `std::cin` để nhập, dù tốc độ nhập như vậy cũng chậm. Điều
-này cũng giúp người viết không phải tự quản lý bộ nhớ quá nhiều.
+thể dùng trực tiếp `std::cin` để nhập, dù cách nhập này vẫn chậm. Điều này cũng
+giúp giảm nhu cầu tự quản lý bộ nhớ.
 
 ### `string` nạp chồng toán tử cộng và toán tử so sánh
 
@@ -68,9 +68,9 @@ printf("độ dài của s là %zu", strlen(s.c_str()));
     biến, ngay cả với C++98, độ phức tạp của hai hàm này cũng là hằng số.
 
 ???+ warning "Cảnh báo"
-    Kiểu trả về của ba hàm này (và hàm `find` sẽ nhắc tới bên dưới) đều là
+    Kiểu trả về của ba hàm này (và hàm `find` sẽ nhắc tới ở phần sau) đều là
     `size_t` (một kiểu số nguyên không dấu). Vì vậy, các giá trị trả về này
-    không hỗ trợ so sánh hoặc tính toán trực tiếp với số âm; nên ép kiểu khi cần.
+    không nên so sánh hoặc tính toán trực tiếp với số âm; nên ép kiểu khi cần.
 
 ### Tìm vị trí xuất hiện đầu tiên của ký tự/chuỗi
 
@@ -173,7 +173,7 @@ Ví dụ:
 ```cpp
 string s = "OI Wiki";
 s.replace(2, 5, "");
-printf("sau khi thay vị trí thứ 3~7 của s bằng chuỗi rỗng, "
+printf("sau khi thay các vị trí từ 3 đến 7 của s bằng chuỗi rỗng, "
        "chuỗi thu được là %s\n",
        s.c_str());
 s.replace(s.begin(), s.begin() + 2, "NOI");
@@ -184,6 +184,6 @@ printf("sau khi thay hai vị trí đầu của s bằng NOI, chuỗi thu đư�
 Kết quả:
 
 ```text
-sau khi thay vị trí thứ 3~7 của s bằng chuỗi rỗng, chuỗi thu được là OI
+sau khi thay các vị trí từ 3 đến 7 của s bằng chuỗi rỗng, chuỗi thu được là OI
 sau khi thay hai vị trí đầu của s bằng NOI, chuỗi thu được là NOI
 ```
