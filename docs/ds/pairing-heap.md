@@ -2,7 +2,7 @@
 
 ## Mở đầu
 
-Heap ghép cặp là một cấu trúc dữ liệu hỗ trợ các thao tác chèn, truy vấn/xóa phần tử nhỏ nhất, hợp nhất, sửa phần tử, v.v. Đây là một loại heap có thể hợp nhất. Nó có ưu điểm là nhanh và có cấu trúc đơn giản, nhưng vì độ phức tạp khấu hao của nó dựa trên phân tích thế năng nên không thể làm bền vững hóa.
+Heap ghép cặp (pairing heap) là một cấu trúc dữ liệu hỗ trợ các thao tác chèn, truy vấn/xóa phần tử nhỏ nhất, hợp nhất, sửa phần tử, v.v. Đây là một loại heap có thể hợp nhất. Nó có ưu điểm là nhanh và có cấu trúc đơn giản, nhưng vì độ phức tạp khấu hao của nó dựa trên phân tích thế năng nên không thể làm bền vững hóa.
 
 <span id="định-nghĩa"></span>
 
@@ -29,7 +29,7 @@ struct Node {
 
 Từ định nghĩa có thể thấy, so với các cấu trúc heap thường gặp khác, heap ghép cặp không duy trì thêm bất kỳ thông tin nào như kích thước cây, độ sâu, hạng, v.v. (heap nhị phân cũng không duy trì thông tin phụ, nhưng nó đảm bảo độ phức tạp thao tác bằng cách giữ một cấu trúc cây nhị phân hoàn chỉnh nghiêm ngặt). Hơn nữa, bất kỳ cây nào thỏa mãn tính chất heap cũng là một heap ghép cặp hợp lệ. Chính cấu trúc đơn giản nhưng rất linh hoạt này là nền tảng cho hiệu quả tốt của heap ghép cặp trong thực tế. Để so sánh, hằng số lớn của heap Fibonacci xuất phát từ việc nó phải duy trì rất nhiều thông tin phụ.
 
-Heap ghép cặp đảm bảo tổng độ phức tạp thông qua một trình tự thao tác được thiết kế cẩn thận. Bài báo gốc[^ref1] gọi nó là "một heap tự điều chỉnh (Self Adjusting Heap)". Ở khía cạnh này, nó khá giống cây Splay (trong bài báo gốc được gọi là "Self Adjusting Binary Tree").
+Heap ghép cặp đảm bảo tổng độ phức tạp thông qua một trình tự thao tác được thiết kế cẩn thận. Bài báo gốc[^ref1] gọi nó là "heap tự điều chỉnh" (Self Adjusting Heap). Ở khía cạnh này, nó khá giống cây Splay (trong bài báo gốc gọi là Self Adjusting Binary Tree, tức cây nhị phân tự điều chỉnh).
 
 <span id="quy-trình"></span>
 

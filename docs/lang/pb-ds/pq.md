@@ -17,7 +17,7 @@ __gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
 -   `Tag`: năm loại heap khác nhau do `__gnu_pbds` cung cấp; tham số `Tag` mặc
     định là `pairing_heap_tag`. Năm loại này gồm:
     -   `pairing_heap_tag`: heap ghép cặp (pairing heap)
-        Tài liệu chính thức cho rằng pairing heap có hiệu năng tốt nhất với các
+        Tài liệu chính thức cho rằng heap ghép cặp có hiệu năng tốt nhất với các
         phần tử không nguyên thủy (như struct tự định nghĩa, `std::string`,
         `pair`).
     -   `binary_heap_tag`: heap nhị phân
@@ -28,7 +28,7 @@ __gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
         Heap nhị thức có hiệu năng hợp nhất tốt hơn heap nhị phân, nhưng thao
         tác lấy phần tử đỉnh heap có độ phức tạp cao hơn heap nhị phân.
     -   `rc_binomial_heap_tag`: heap nhị thức đếm dư thừa
-    -   `thin_heap_tag`: một thẻ có mọi độ phức tạp giống Fibonacci heap, trừ
+    -   `thin_heap_tag`: một thẻ có mọi độ phức tạp giống heap Fibonacci, trừ
         thao tác hợp nhất
 -   `Allocator`: bộ cấp phát bộ nhớ; vì hiếm gặp trong OI nên không giải thích ở
     đây
@@ -40,9 +40,9 @@ viên và cách dùng.
 Qua thử nghiệm các thao tác heap cơ bản trên máy của tác giả (Core i5 @3.1 GHz
 trên macOS), kết hợp với kiểm thử độ phức tạp chính thức của GNU và kiểm thử
 Dijkstra, có thể thấy rằng:
-ít nhất với OIer, bốn thẻ ngoài pairing heap đều không đáng dùng: hoặc không có
+ít nhất với OIer, bốn thẻ ngoài heap ghép cặp đều không đáng dùng: hoặc không có
 tác dụng thực tế, hoặc hằng số lớn đến mức thua `std`, thậm chí có thể gây MLE.
-Vì vậy, ở đây chỉ khuyến nghị dùng pairing heap mặc định. Tương tự, pairing heap
+Vì vậy, ở đây chỉ khuyến nghị dùng heap ghép cặp mặc định. Tương tự, heap ghép cặp
 cũng tốt hơn `make_heap()` trong tệp tiêu đề `<algorithm>`.
 
 ## Cách khởi tạo
@@ -92,7 +92,7 @@ using namespace __gnu_pbds;
 // Vì hướng đến OIer, bài này dùng heap thường gặp pairing_heap_tag làm ví dụ
 // Để dễ đọc hơn, định nghĩa bí danh như sau:
 using pair_heap = __gnu_pbds::priority_queue<int>;
-pair_heap q1;  // heap lớn, pairing heap
+pair_heap q1;  // heap lớn, heap ghép cặp
 pair_heap q2;
 pair_heap::point_iterator id;  // một bộ lặp
 

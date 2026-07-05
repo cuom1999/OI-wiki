@@ -1,6 +1,6 @@
 author: ouuan, HeRaNO
 
-Heap là một cây mà mỗi nút có một khóa, và khóa của mỗi nút đều lớn hơn hoặc bằng / nhỏ hơn hoặc bằng khóa của cha nó.
+Heap (đống) là một cây mà mỗi nút có một khóa, và khóa của mỗi nút đều lớn hơn hoặc bằng / nhỏ hơn hoặc bằng khóa của cha nó.
 
 Heap trong đó khóa của mỗi nút đều lớn hơn hoặc bằng khóa của cha được gọi là heap nhỏ; ngược lại gọi là heap lớn. [`priority_queue` trong STL](../lang/csl/container-adapter.md#hàng-đợi-ưu-tiên) thực chất là một heap lớn.
 
