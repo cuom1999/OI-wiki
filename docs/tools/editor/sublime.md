@@ -1,6 +1,6 @@
 ## Giới thiệu
 
-Sublime Text (sau đây gọi tắt là ST; khi cần phân biệt phiên bản sẽ thêm số ở sau, nếu không ghi thì áp dụng cho mọi phiên bản) là một trình soạn thảo văn bản nhẹ, hỗ trợ tô sáng cú pháp và hoàn thành mã cho nhiều ngôn ngữ. ST có khả năng mở rộng cao, có chế độ Vim, và cơ chế hot exit đặc biệt giúp giảm đáng kể khả năng mất tệp.
+Sublime Text (sau đây gọi tắt là ST; khi cần phân biệt phiên bản sẽ thêm số ở sau, nếu không ghi thì áp dụng cho mọi phiên bản) là một trình soạn thảo văn bản nhẹ, hỗ trợ tô sáng cú pháp và hoàn thành mã cho nhiều ngôn ngữ. ST có khả năng mở rộng cao, có chế độ Vim, và cơ chế thoát nóng đặc biệt giúp giảm đáng kể khả năng mất tệp.
 
 Trong bản NOI Linux mới, phiên bản được hỗ trợ là bản cuối của ST3, tức 3.2.2[^ref1], vì vậy trang này chủ yếu lấy ST3 làm ví dụ. Hiện nay bản chính thức của ST4 đã được phát hành[^ref2]; nếu vẫn dùng ST3, chương trình sẽ nhắc cập nhật.
 
@@ -15,17 +15,17 @@ Cách cài ST3 xem tại [trang tải Sublime Text 3](https://www.sublimetext.co
 ???+ note "Nhắc mua bản quyền"
     ST là phần mềm trả phí, nhưng có chế độ dùng thử không giới hạn thời gian. Bản dùng thử không thiếu chức năng, nhưng thỉnh thoảng sẽ hiện cửa sổ nhắc kích hoạt.
 
-## Plugin và tùy biến
+## Phần bổ trợ và tùy biến
 
 ### Cài gói mở rộng bằng Package Control
 
-ST có hệ sinh thái gói mở rộng phong phú. Package Control là cách phổ biến nhất để cài plugin, theme, bảng màu hoặc gói hỗ trợ ngôn ngữ.
+ST có hệ sinh thái gói mở rộng phong phú. Package Control là cách phổ biến nhất để cài phần bổ trợ, giao diện, bảng màu hoặc gói hỗ trợ ngôn ngữ.
 
-#### Cài trình quản lý plugin
+#### Cài trình quản lý gói
 
 Sau khi mở ST, nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> để gọi hộp lệnh, nhập `Install` rồi nhấn Enter (lệnh đầy đủ là `Install Package Control`, không phân biệt chữ hoa chữ thường). Lúc này ở góc dưới bên trái thường sẽ thấy một dấu `=` di chuyển qua lại liên tục. Khi Package Control cài xong (hoặc thất bại), sẽ có cửa sổ thông báo; thời gian tải cụ thể phụ thuộc vào mạng.
 
-Nếu cửa sổ hoàn tất báo cài đặt thất bại (liên quan đến mạng), cần tải thủ công [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) rồi đặt tệp đã tải vào thư mục `\Installed Packages` trong thư mục dữ liệu của ST. Chờ một lát, ST sẽ tự nhận diện plugin này (đôi khi cần khởi động lại ST).
+Nếu cửa sổ hoàn tất báo cài đặt thất bại (liên quan đến mạng), cần tải thủ công [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) rồi đặt tệp đã tải vào thư mục `\Installed Packages` trong thư mục dữ liệu của ST. Chờ một lát, ST sẽ tự nhận diện gói này (đôi khi cần khởi động lại ST).
 
 ???+ note "Đường dẫn thư mục dữ liệu của ST"
     Trên Windows, nếu trong **thư mục cài đặt** của ST có thư mục `\data`, ST sẽ tự động dùng (hoặc khởi tạo) thư mục đó làm thư mục dữ liệu.
@@ -48,21 +48,21 @@ Nhập tên gói cần cài, chọn đúng gói rồi nhấn Enter. Sau khi cài
 
 Vào `Preferences->Settings`, trong phần thiết lập người dùng ở bên phải, thêm một dòng `"font_face": "tên phông",` vào trong cặp ngoặc nhọn. Thiết lập của ST được lưu bằng định dạng JSON. Sau khi sửa xong và lưu lại, nếu hệ thống đã cài phông tương ứng thì ST sẽ tự chuyển.
 
-Nên chọn phông chữ monospace có hỗ trợ Unicode và dấu tiếng Việt đầy đủ, chẳng hạn Cascadia Mono, Consolas, JetBrains Mono hoặc Noto Sans Mono.
+Nên chọn phông chữ đơn cách có hỗ trợ Unicode và dấu tiếng Việt đầy đủ, chẳng hạn Cascadia Mono, Consolas, JetBrains Mono hoặc Noto Sans Mono.
 
 ???+ warning "Cảnh báo"
-    Chú ý: dù có thể sửa, không nên sửa bất kỳ thiết lập nào (kể cả thiết lập plugin) trong phần thiết lập mặc định bên trái. Đây là cách không được khuyến nghị, vì khi phần mềm (hoặc plugin) cập nhật, thiết lập mặc định sẽ bị đặt lại.
+    Chú ý: dù có thể sửa, không nên sửa bất kỳ thiết lập nào (kể cả thiết lập phần bổ trợ) trong phần thiết lập mặc định bên trái. Đây là cách không được khuyến nghị, vì khi phần mềm (hoặc phần bổ trợ) cập nhật, thiết lập mặc định sẽ bị đặt lại.
 
-### Cài plugin và theme
+### Cài phần bổ trợ và giao diện
 
-Cách cài plugin và theme giống cách cài một gói mở rộng ở trên.
+Cách cài phần bổ trợ và giao diện giống cách cài một gói mở rộng ở trên.
 
-Nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` rồi nhấn Enter, sau đó tìm plugin/theme/bảng màu cần cài.
+Nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` rồi nhấn Enter, sau đó tìm phần bổ trợ, giao diện hoặc bảng màu cần cài.
 
-Plugin khuyến nghị:
+Phần bổ trợ khuyến nghị:
 
 -   BracketHighlighter: tăng cường khả năng tô sáng cặp ngoặc so với bản gốc, gần như bắt buộc nên có.
--   C++ Snippets: ST đã có hoàn thành mã C++ sẵn, với phong cách dấu ngoặc nhọn không xuống dòng. Nếu không quen phong cách có sẵn hoặc muốn thêm một số mẫu hoàn thành, có thể cài plugin này.
+-   C++ Snippets: ST đã có hoàn thành mã C++ sẵn, với phong cách dấu ngoặc nhọn không xuống dòng. Nếu không quen phong cách có sẵn hoặc muốn thêm một số mẫu hoàn thành, có thể cài phần bổ trợ này.
 -   C++ 11: hỗ trợ tô sáng chuẩn C++ 11 (không cần trong ST4).
 -   SublimeAstyleFormatter: Astyle, dùng để định dạng mã.
 -   Diffy: nhấn <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>D</kbd> để nhanh chóng so sánh khác biệt giữa tệp đang mở ở khung nhìn thứ nhất và thứ hai; cách so sánh là theo từng dòng.
@@ -72,21 +72,21 @@ Plugin khuyến nghị:
 
 Nếu có nhu cầu khác, có thể thử tìm kiếm thêm.
 
-Một số theme:[^ref3]
+Một số giao diện:[^ref3]
 
-1337 (chỉ bảng màu), 3024 (chỉ bảng màu), Grandson-of-Obsidian (chỉ bảng màu), Seti\_UI (chỉ theme, có thêm tô sáng cho git và một số định dạng khác, khá đáng dùng), Material Theme, Predawn, Agila, Materialize.
+1337 (chỉ bảng màu), 3024 (chỉ bảng màu), Grandson-of-Obsidian (chỉ bảng màu), Seti\_UI (chỉ giao diện, có thêm tô sáng cho Git và một số định dạng khác, khá đáng dùng), Material Theme, Predawn, Agila, Materialize.
 
 Nếu muốn chỉnh bảng màu riêng, có thể truy cập [tmTheme Editor](http://tmtheme-editor.herokuapp.com/).
 
-Nếu dùng ST4, có thể chỉnh bảng màu trong `Preferences->Customize Color Scheme` hoặc chỉnh theme trong `Preferences->Customize Scheme`.
+Nếu dùng ST4, có thể chỉnh bảng màu trong `Preferences->Customize Color Scheme` hoặc chỉnh giao diện trong `Preferences->Customize Scheme`.
 
-### Bật Vi Mode
+### Bật chế độ Vi
 
-Nhà phát triển ST cung cấp cho người dùng Vi một plugin tùy chọn tên là Vintage, có thể mô phỏng phần lớn chức năng của Vi.
+Nhà phát triển ST cung cấp cho người dùng Vi một phần bổ trợ tùy chọn tên là Vintage, có thể mô phỏng phần lớn chức năng của Vi.
 
 #### Cách bật
 
-Plugin Vintage mặc định bị tắt. Có thể vào `Preferences->Settings`, trong thiết lập người dùng, xóa Vintage khỏi mục `"ignored_packages"` rồi lưu lại (không xóa cả mục, chỉ xóa Vintage). Bên trái thanh trạng thái của ST sẽ xuất hiện `INSERT MODE`, tức là plugin Vintage đã được bật.
+Vintage mặc định bị tắt. Có thể vào `Preferences->Settings`, trong thiết lập người dùng, xóa Vintage khỏi mục `"ignored_packages"` rồi lưu lại (không xóa cả mục, chỉ xóa Vintage). Bên trái thanh trạng thái của ST sẽ xuất hiện `INSERT MODE`, tức là Vintage đã được bật.
 
 Hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Enable`, chọn `Package Control: Enable Package` rồi nhấn Enter, sau đó chọn Vintage. Cách này cần Package Control.
 
@@ -111,11 +111,11 @@ Cũng có thể dùng thiết lập phím tắt để gán thao tác vào chế 
 
 #### Khác biệt so với Vi
 
-Plugin Vintage của ST có một số điểm khác với Vi, một phần được liệt kê dưới đây:
+Vintage của ST có một số điểm khác với Vi, một phần được liệt kê dưới đây:
 
--   Trong chế độ chèn, thao tác chọn bằng chuột sẽ không vào chế độ visual; lúc này nội dung nhập vào không được nhận diện là lệnh mà sẽ trực tiếp thay thế văn bản. Chế độ visual chỉ có thể vào từ chế độ lệnh.
+-   Trong chế độ chèn, thao tác chọn bằng chuột sẽ không vào chế độ chọn trực quan; lúc này nội dung nhập vào không được nhận diện là lệnh mà sẽ trực tiếp thay thế văn bản. Chế độ chọn trực quan chỉ có thể vào từ chế độ lệnh.
 -   Không có các lệnh `r`, `R`, `zA`, `za`, `zi`, `z=`, `@` và các lệnh dùng phím <kbd>\[</kbd>, <kbd>]</kbd> hoặc <kbd>"</kbd>.
--   Các phím tắt dùng <kbd>Ctrl</kbd>, <kbd>Shift</kbd> và <kbd>Alt</kbd> vẫn giữ nguyên phím tắt do ST thiết lập; ví dụ <kbd>Ctrl</kbd>+<kbd>V</kbd> sẽ không vào chế độ visual mà vẫn dán bình thường.
+-   Các phím tắt dùng <kbd>Ctrl</kbd>, <kbd>Shift</kbd> và <kbd>Alt</kbd> vẫn giữ nguyên phím tắt do ST thiết lập; ví dụ <kbd>Ctrl</kbd>+<kbd>V</kbd> sẽ không vào chế độ chọn trực quan mà vẫn dán bình thường.
 -   Chế độ dòng lệnh chỉ giữ lại `:e`, `:0`, `:$`, `:s`.
 -   Khi dùng lệnh `\` và `?`, ST sẽ tự gọi hộp tìm kiếm thay vì nhập trực tiếp từ cần tìm trong lệnh. Đồng thời, số đếm sẽ không có hiệu lực.
 -   Lệnh ghi macro `q` sẽ khởi động chức năng ghi macro có sẵn của ST. Sau khi nhấn <kbd>Q</kbd>, cần nhấn thêm một phím để bắt đầu ghi, nhưng macro đã ghi sẽ không được gắn với phím đó; cần nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd> mới chạy. Nếu cần lưu, dùng `Tools->Save Macro`; phím tắt cần tự thiết lập.
@@ -150,7 +150,7 @@ Thiết lập trong `Preferences->Settings`. Dưới đây liệt kê một số
   // Khi đang chọn văn bản, tìm kiếm chỉ tìm trong phạm vi đã chọn
   "auto_find_in_selection": true,
 
-  // Tắt các plugin ít khi dùng trong OI; có thể tự điều chỉnh
+  // Tắt các phần bổ trợ ít khi dùng trong OI; có thể tự điều chỉnh
   "ignored_packages": [
     "ActionScript", "AppleScript", "ASP", "Batch File", "C#",
     "Clojure", "CSS", "D", "Diff", "Erlang", "Git Formats",
@@ -181,9 +181,9 @@ Ví dụ, nếu muốn đổi phím biên dịch từ <kbd>Ctrl</kbd>+<kbd>B</kb
 { "keys": ["shift+f9"], "command": "sort_lines", "args": {"case_sensitive": false} },
 ```
 
-#### Thiết lập plugin
+#### Thiết lập phần bổ trợ
 
-Thiết lập của plugin có thể tìm trong `Preferences->Package Settings->tên plugin`; khi sửa, chú ý không sửa thiết lập mặc định.
+Thiết lập của phần bổ trợ có thể tìm trong `Preferences->Package Settings->tên phần bổ trợ`; khi sửa, chú ý không sửa thiết lập mặc định.
 
 Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, chỉnh trong `Preferences->Package Settings->BracketHighlighter->Bracket Settings`:
 
@@ -193,7 +193,7 @@ Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, c
   // giúp nhanh chóng tìm phạm vi cặp ngoặc
   "content_highlight_bar": true,
 
-  // Hiện cặp ngoặc khớp nhau trong minimap
+  // Hiện cặp ngoặc khớp nhau trong bản đồ thu nhỏ
   "show_in_minimap": true,
 
   // Bỏ qua giới hạn phạm vi khớp
@@ -221,17 +221,17 @@ Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, c
 
 ### Sửa và thêm mới
 
-Đôi khi một số chỗ trong plugin có thể chưa thật vừa ý, hoặc muốn bản địa hóa plugin; khi đó cần sửa plugin.
+Đôi khi một số chỗ trong phần bổ trợ có thể chưa thật vừa ý, hoặc muốn bản địa hóa phần bổ trợ; khi đó cần sửa phần bổ trợ.
 
-Plugin được đặt trong thư mục `\Installed Packages` dưới thư mục dữ liệu.
+Phần bổ trợ được đặt trong thư mục `\Installed Packages` dưới thư mục dữ liệu.
 
 Các tệp bên trong có hậu tố `.sublime-package`; thực chất đây là định dạng `.zip`, có thể mở bằng phần mềm giải nén.
 
-Ví dụ, nếu muốn sửa hoàn thành tự động, có thể mở các tệp `\Snippets\*.sublime-snippet` trong plugin `\Packages\C++` ở **thư mục cài đặt** của ST để sửa. Nếu muốn **thêm** hoàn thành tự động, có thể cài C++ Snippets rồi sửa hoặc thêm tệp trong đó (hoặc tạo một plugin mới, nhưng không được thêm trực tiếp vào plugin C++ có sẵn, nếu không ST sẽ không nhận diện). Khi lưu bất kỳ sửa đổi nào, **bắt buộc** phải đóng ST và nên sao lưu trước, nếu không có thể mất tệp.
+Ví dụ, nếu muốn sửa hoàn thành tự động, có thể mở các tệp `\Snippets\*.sublime-snippet` trong gói `\Packages\C++` ở **thư mục cài đặt** của ST để sửa. Nếu muốn **thêm** hoàn thành tự động, có thể cài C++ Snippets rồi sửa hoặc thêm tệp trong đó (hoặc tạo một phần bổ trợ mới, nhưng không được thêm trực tiếp vào gói C++ có sẵn, nếu không ST sẽ không nhận diện). Khi lưu bất kỳ sửa đổi nào, **bắt buộc** phải đóng ST và nên sao lưu trước, nếu không có thể mất tệp.
 
 Dĩ nhiên, mọi phần thêm mới đều có thể đặt dưới `\Packages\User\` trong thư mục dữ liệu; cách này luôn được hỗ trợ.
 
-Ví dụ, một snippet mẫu tệp có thể viết như sau:
+Ví dụ, một đoạn mẫu tệp có thể viết như sau:
 
 ```XML
 <snippet>
@@ -252,21 +252,21 @@ int main() {
 </snippet>
 ```
 
-Dưới đây liệt kê một số hậu tố tệp và công dụng của chúng. Hướng dẫn phát triển plugin chi tiết xem [tài liệu cộng đồng](https://docs.sublimetext.io/guide/extensibility/plugins/) và [tài liệu chính thức](https://www.sublimetext.com/docs/3/):
+Dưới đây liệt kê một số hậu tố tệp và công dụng của chúng. Hướng dẫn phát triển phần bổ trợ chi tiết xem [tài liệu cộng đồng](https://docs.sublimetext.io/guide/extensibility/plugins/) và [tài liệu chính thức](https://www.sublimetext.com/docs/3/):
 
 | Hậu tố | Công dụng |
 | ------ | --------- |
 | .sublime-build | Tệp hệ thống biên dịch |
-| .sublime-completions | Danh sách hoàn thành tên tệp (thường là tệp header) |
+| .sublime-completions | Danh sách hoàn thành tên tệp (thường là tệp tiêu đề) |
 | .sublime-syntax | Tệp tô sáng cú pháp |
 | .sublime-settings | Tệp thiết lập |
-| .tmPreferences | Tệp danh sách trong Preferences |
+| .tmPreferences | Tệp danh sách trong `Preferences` |
 | .sublime-keymap | Tệp thiết lập phím tắt |
 | .sublime-snippet | Tệp hoàn thành mã |
 | .sublime-commands | Tệp định nghĩa lệnh |
-| .sublime-menu | Tệp UI của ST, gồm thanh bên và thanh menu phía trên (đối tượng chính khi bản địa hóa) |
+| .sublime-menu | Tệp giao diện của ST, gồm thanh bên và thanh menu phía trên (đối tượng chính khi bản địa hóa) |
 
-Do cập nhật plugin sẽ trực tiếp ghi đè tệp gốc, nên nên sao lưu các tệp đã sửa.
+Do cập nhật phần bổ trợ sẽ trực tiếp ghi đè tệp gốc, nên cần sao lưu các tệp đã sửa.
 
 ## Soạn thảo
 
@@ -294,8 +294,8 @@ Một số phím tắt:
 | <kbd>Ctrl</kbd>+<kbd>D</kbd> | Chọn từ; lặp lại để chọn nhiều từ giống nhau và vào chế độ chọn nhiều điểm (dùng để sửa hàng loạt nhanh) |
 | <kbd>Ctrl</kbd>+<kbd>M</kbd> | Nhảy đến ngoặc khớp |
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> | Chọn nội dung trong cặp ngoặc (không gồm ngoặc); lặp lại để bao gồm cả ngoặc |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd> | Xóa đến cuối dòng (phím tắt phức hợp, nên dùng Vim mode thay thế) |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd> | Xóa đến đầu dòng (phím tắt phức hợp, nên dùng Vim mode thay thế) |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd> | Xóa đến cuối dòng (phím tắt phức hợp, nên dùng chế độ Vim thay thế) |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd> | Xóa đến đầu dòng (phím tắt phức hợp, nên dùng chế độ Vim thay thế) |
 | <kbd>Ctrl</kbd>+<kbd>]</kbd> | Thụt lề dòng hiện tại (hoặc các dòng đang chọn) |
 | <kbd>Ctrl</kbd>+<kbd>\[</kbd> | Bỏ thụt lề dòng hiện tại (hoặc các dòng đang chọn) |
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> | Sao chép dòng hiện tại và chèn vào dòng kế tiếp |
@@ -311,9 +311,9 @@ Một số phím tắt:
 
 ### Hoàn thành tự động
 
-ST có chức năng hoàn thành phong phú. Các mục hoàn thành có thể dùng sẽ hiển thị dưới con trỏ; nhấn <kbd>Tab</kbd> hoặc <kbd>Enter</kbd> để hoàn thành (trong ST4, nếu thực hiện một hoàn thành không phải kiểu Snippet, nhấn tiếp <kbd>Tab</kbd> có thể tiếp tục chọn mục hoàn thành chứa mục này làm chuỗi con).
+ST có chức năng hoàn thành phong phú. Các mục hoàn thành có thể dùng sẽ hiển thị dưới con trỏ; nhấn <kbd>Tab</kbd> hoặc <kbd>Enter</kbd> để hoàn thành (trong ST4, nếu thực hiện một hoàn thành không phải kiểu đoạn mẫu, nhấn tiếp <kbd>Tab</kbd> có thể tiếp tục chọn mục hoàn thành chứa mục này làm chuỗi con).
 
-Hoàn thành kiểu Snippet thường có một số khối có thể chỉnh sửa. Sau khi hoàn thành, ST sẽ tự chọn phần cần thay thế; nếu là hoàn thành phức tạp như `for` có nhiều khối chỉnh sửa, sau khi sửa xong một khối thì nhấn lại <kbd>Tab</kbd> để sang khối tiếp theo. Khi đang ở trong khối chỉnh sửa mà muốn kích hoạt hoàn thành, cần dùng <kbd>Enter</kbd> (trong ST4 vẫn có thể tiếp tục dùng <kbd>Tab</kbd>).
+Hoàn thành bằng đoạn mẫu thường có một số khối có thể chỉnh sửa. Sau khi hoàn thành, ST sẽ tự chọn phần cần thay thế; nếu là hoàn thành phức tạp như `for` có nhiều khối chỉnh sửa, sau khi sửa xong một khối thì nhấn lại <kbd>Tab</kbd> để sang khối tiếp theo. Khi đang ở trong khối chỉnh sửa mà muốn kích hoạt hoàn thành, cần dùng <kbd>Enter</kbd> (trong ST4 vẫn có thể tiếp tục dùng <kbd>Tab</kbd>).
 
 Nếu không có hoàn thành tự động, hãy sửa như sau:
 
@@ -336,7 +336,7 @@ Giữ <kbd>Ctrl</kbd> và nhấp chuột để thêm con trỏ trên màn hình.
 
 Năm tùy chọn tìm kiếm lần lượt là khớp biểu thức chính quy, phân biệt hoa thường, khớp cả từ, tìm vòng, và tìm trong vùng chọn.
 
-Nên đặt `"auto_find_in_selection"` thành `true` trong Preferences. Khi đó, nếu chọn hơn một từ rồi tìm kiếm, ST sẽ tự chỉ tìm trong vùng đã chọn.
+Nên đặt `"auto_find_in_selection"` thành `true` trong `Preferences`. Khi đó, nếu chọn hơn một từ rồi tìm kiếm, ST sẽ tự chỉ tìm trong vùng đã chọn.
 
 ## Minh họa
 
@@ -376,7 +376,7 @@ a + b*a + b*a + b
 
 ### Tìm kiếm và thay thế
 
-Nếu muốn đổi toàn bộ phần sau dấu bằng trong tệp dưới đây thành `"good"`, cũng có thể dùng <kbd>Ctrl</kbd>+<kbd>H</kbd> để thay thế, bật regex, nhập `".*"`, rồi thay bằng `"good"`.
+Nếu muốn đổi toàn bộ phần sau dấu bằng trong tệp dưới đây thành `"good"`, cũng có thể dùng <kbd>Ctrl</kbd>+<kbd>H</kbd> để thay thế, bật biểu thức chính quy, nhập `".*"`, rồi thay bằng `"good"`.
 
 ```cpp
 s[1] = "aaa";
@@ -387,7 +387,7 @@ s[5] = "aae";
 s[6] = "aaf";
 ```
 
-Nếu muốn thêm dấu chấm phẩy cho đoạn mã sau, chỉ cần dùng thay thế trong vùng chọn, bật regex, nhập `\n`, rồi thay bằng `;\n`.
+Nếu muốn thêm dấu chấm phẩy cho đoạn mã sau, chỉ cần dùng thay thế trong vùng chọn, bật biểu thức chính quy, nhập `\n`, rồi thay bằng `;\n`.
 
 ```plain
 int main() {  int a, b  cin >> a >> b  cout << a + b  return 0}
@@ -406,7 +406,7 @@ int main() {
 }
 ```
 
-??? note "Nếu đã bật plugin Vintage"
+??? note "Nếu đã bật Vintage"
     Sau khi chạy <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd> một lần, có thể nhấn <kbd>Esc</kbd> để vào chế độ lệnh rồi nhập `..` (lệnh `.` có thể lặp lại lệnh ST3).
 
 Về cách lưu macro và gán phím, xem [tài liệu cộng đồng](https://docs.sublimetext.io/guide/extensibility/macros.html).
@@ -443,16 +443,16 @@ Tệp đã lưu nằm tại `\Packages\User\tên_hệ_thống_biên_dịch.subli
 
 ### Chạy
 
-Nếu khi biên dịch chọn `C++ Single File - Run` (tức chạy sau khi biên dịch) hoặc đã cấu hình tự chạy, cửa sổ thông tin biên dịch bật lên ở phía dưới thường sẽ không hiển thị gì (trừ khi lỗi biên dịch), vì cửa sổ thông tin biên dịch của ST thực chất là một terminal, có thể nhập dữ liệu trực tiếp.
+Nếu khi biên dịch chọn `C++ Single File - Run` (tức chạy sau khi biên dịch) hoặc đã cấu hình tự chạy, cửa sổ thông tin biên dịch bật lên ở phía dưới thường sẽ không hiển thị gì (trừ khi lỗi biên dịch), vì cửa sổ thông tin biên dịch của ST thực chất là một cửa sổ dòng lệnh, có thể nhập dữ liệu trực tiếp.
 
 Sau khi chạy xong, ST sẽ hiển thị thời gian chạy của chương trình. Bộ đếm thời gian này tính từ lúc nhấn <kbd>Ctrl</kbd>+<kbd>B</kbd> đến khi toàn bộ lệnh CMD kết thúc, nghĩa là bao gồm cả thời gian biên dịch, thời gian nhập liệu, và nếu chạy trong CMD bên ngoài thì còn gồm cả thời gian mở/đóng CMD.
 
 ???+ warning "Cảnh báo"
-    Cửa sổ này không thể nhập <kbd>F6</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>Z</kbd>. Nếu chương trình cần đọc đến cuối tệp, hãy dùng input từ tệp hoặc cấu hình chạy trong CMD bên ngoài.
+    Cửa sổ này không thể nhập <kbd>F6</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>Z</kbd>. Nếu chương trình cần đọc đến cuối tệp, hãy dùng đầu vào từ tệp hoặc cấu hình chạy trong CMD bên ngoài.
 
 ### Gỡ lỗi
 
-Có thể cài plugin để ST hỗ trợ gỡ lỗi gdb bằng giao diện đồ họa, nhưng không nên phụ thuộc vào plugin để gỡ lỗi gdb.
+Có thể cài phần bổ trợ để ST hỗ trợ gỡ lỗi gdb bằng giao diện đồ họa, nhưng không nên phụ thuộc vào phần bổ trợ để gỡ lỗi gdb.
 
 Cách tốt hơn là thêm lệnh liên quan khi cấu hình hệ thống biên dịch để khởi động gdb, rồi gỡ lỗi bằng dòng lệnh ở bên ngoài.
 
@@ -460,7 +460,7 @@ Cách tốt hơn là thêm lệnh liên quan khi cấu hình hệ thống biên 
 
 -   Kéo thư mục vào ST rồi nhấn <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>B</kbd> để mở thanh bên, từ đó chuyển tệp nhanh.
 -   Tận dụng chức năng nhảy, đặc biệt là <kbd>Ctrl</kbd>+<kbd>P</kbd> để nhảy giữa các tệp và <kbd>Ctrl</kbd>+<kbd>R</kbd> để nhảy đến hàm.
--   ST hỗ trợ git[^ref4].
+-   ST hỗ trợ Git[^ref4].
 -   Toàn bộ cấu hình của ST được lưu dưới thư mục dữ liệu và có thể đóng gói tùy ý, nhưng thông tin đăng ký không thể dùng trên nhiều máy.
 
 ## Liên kết ngoài
