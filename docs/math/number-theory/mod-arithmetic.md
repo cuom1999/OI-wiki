@@ -12,7 +12,7 @@ kiểu số nguyên thông dụng. Khi đó, để tránh dùng số nguyên l�
 chữ số dài, đề bài thường yêu cầu in đáp án sau khi lấy modulo. Vì vậy cần nắm
 vững các kỹ thuật số học modulo.
 
-<span id="c/c++-&#x7684;&#x6574;&#x6570;&#x9664;&#x6CD5;&#x548C;&#x53D6;&#x6A21;&#x8FD0;&#x7B97;"></span>
+<span id="phép-chia-nguyên-và-phép-modulo-trong-c-cpp"></span>
 ## Phép chia nguyên và phép modulo trong C/C++
 
 Trong C/C++, phép chia nguyên và phép modulo không trùng với phép modulo và
@@ -39,7 +39,7 @@ assert(-5 % 3 == -2);
 assert(-5 % -3 == -2);
 ```
 
-<span id="&#x6A21;&#x6574;&#x6570;&#x7C7B;"></span>
+<span id="lớp-số-nguyên-modulo"></span>
 ## Lớp số nguyên modulo
 
 Số học modulo có thể xem là việc thực hiện các phép toán trên [lớp đồng
@@ -70,9 +70,9 @@ modulo:
 -   [Phép chia](./linear-equation.md)
 -   [Giai thừa](./factorial.md)
 -   [Tổ hợp](./lucas.md)
--   [Khai căn bậc hai](./quad-residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E5%B9%B3%E6%96%B9)
+-   [Khai căn bậc hai](./quad-residue.md#khai-căn-bậc-hai-trong-nghĩa-modulo)
 -   [Logarit rời rạc](./discrete-logarithm.md)
--   [Khai căn](./residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E6%96%B9)
+-   [Khai căn](./residue.md#khai-căn-theo-modulo)
 
 Các phép toán này thường dễ hơn khi modulo là số nguyên tố. Với modulo hợp số,
 thường cần dùng các phiên bản mở rộng của thuật toán tương ứng và [định lý phần
@@ -80,7 +80,7 @@ dư Trung Hoa](./crt.md). Phần lớn các phép toán dưới modulo có thể
 toán giải một loại phương trình đồng dư. Về phương pháp chung để giải phương
 trình đồng dư, có thể tham khảo trang [Phương trình đồng dư](./congruence-equation.md).
 
-<span id="&#x76F8;&#x5173;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-liên-quan"></span>
 ## Thuật toán liên quan
 
 Mục này giới thiệu một vài phương pháp tối ưu phép modulo, phép nhân và lũy
@@ -89,7 +89,7 @@ thừa nhanh dưới modulo. Với đại đa số bài toán, cách cài đặt
 ưu này có thể phát huy tác dụng bằng cách giảm tính toán và thao tác modulo
 không cần thiết.
 
-<span id="&#x5FEB;&#x901F;&#x4E58;"></span>
+<span id="nhân-nhanh"></span>
 ### Nhân nhanh
 
 Trong kiểm tra tính nguyên tố và phân tích thừa số, ta thường gặp phép nhân lấy
@@ -150,7 +150,7 @@ rồi lấy modulo trực tiếp:
 Tất nhiên, phép modulo trên `__int128` cũng không rẻ. Nếu cần tối ưu hằng số
 hơn nữa, có thể xét các phương pháp trong hai mục tiếp theo.
 
-<span id="barrett-&#x7EA6;&#x51CF;"></span>
+<span id="rút-gọn-barrett"></span>
 ### Rút gọn Barrett
 
 Như đã nói ở trên, phép chia và modulo thường tốn thời gian hơn các phép toán số
@@ -240,7 +240,7 @@ Barrett reduction như sau:
 
 Cài đặt này cần dùng số nguyên $128$ bit[^int128].
 
-<span id="montgomery-&#x6A21;&#x4E58;"></span>
+<span id="phép-nhân-modulo-montgomery"></span>
 ### Phép nhân modulo Montgomery
 
 Thuật toán nhân modulo Montgomery có chức năng rất giống thuật toán Barrett: nó
@@ -326,7 +326,7 @@ vậy, phép rút gọn Montgomery có thể thực hiện hiệu quả.
 
 Để thực hiện phép nhân modulo Montgomery, cần tiền xử lý một loạt hằng số. Trước
 hết, phép rút gọn Montgomery cần $m' = m^{-1}\bmod R$, có thể tính bằng phương
-pháp Newton-Hensel giới thiệu [bên dưới](#%E6%A8%A1-2-%E7%9A%84%E5%B9%82%E6%AC%A1%E7%9A%84%E6%95%B4%E6%95%B0%E7%B1%BB).
+pháp Newton-Hensel giới thiệu [bên dưới](#lớp-số-nguyên-modulo-lũy-thừa-của-2).
 Tiếp theo, khi quy các thao tác khác về phép rút gọn Montgomery, còn cần các
 hằng số như $R^2\bmod m$. Để tính nó, trước hết tính $R\bmod m$, cộng nó với
 chính nó để được $2R\bmod m$. Sau đó xem nó là dạng Montgomery của $2$, tính lũy
@@ -350,7 +350,7 @@ $32$ bit chỉ cần biến trung gian $64$ bit. Do đó, nếu cần cài đặ
 nguyên modulo để thực hiện nhiều tính toán số học, phép nhân modulo Montgomery
 phù hợp hơn.
 
-<span id="&#x6A21;-2-&#x7684;&#x5E42;&#x6B21;&#x7684;&#x6574;&#x6570;&#x7C7B;"></span>
+<span id="lớp-số-nguyên-modulo-lũy-thừa-của-2"></span>
 ### Lớp số nguyên modulo lũy thừa của 2
 
 Mục này thảo luận cách cài đặt lớp số nguyên modulo khi modulo là lũy thừa của
@@ -421,7 +421,7 @@ thặng dư modulo $m$. Do đó, chỉ cần tiền xử lý tất cả giá tr�
 $1 < d < e$, là có thể tính nhanh $4L(a)$.
 
 Ngược lại, từ $L(a)$ cũng dễ thu được giá trị $g^a\bmod{m}$. Theo
-[định lý nhị thức](../combinatorics/combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86),
+[định lý nhị thức](../combinatorics/combination.md#định-lý-nhị-thức),
 với $1 < d < e$ đều có
 
 $$
@@ -502,7 +502,7 @@ $$
 5^{\operatorname{ind}_5(2^{\lceil e/2\rceil})/2^{\lceil e/2\rceil - 2}}\bmod{2^e}.
 $$
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   [Fast modular multiplication by orz - Codeforces](https://codeforces.com/blog/entry/96759)
