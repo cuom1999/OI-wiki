@@ -1,9 +1,9 @@
-<span id="&#21021;&#31561;&#30697;&#38453;"></span>
+<span id="ma-trận-sơ-cấp"></span>
 ## Ma trận sơ cấp
 
 Ba loại ma trận vuông sau được gọi là ma trận sơ cấp.
 
-<span id="&#20493;&#20056;&#30697;&#38453;"></span>
+<span id="ma-trận-nhân-bội"></span>
 ### Ma trận nhân bội
 
 Ma trận nhân bội là một dạng đặc biệt của ma trận đường chéo.
@@ -16,7 +16,7 @@ Biểu thức này biểu thị một ma trận đường chéo, trong đó ph�
 
 Đặc biệt, khi $k$ bằng $1$, $D_i(1)$ chính là ma trận đơn vị $I$.
 
-<span id="&#23545;&#25442;&#30697;&#38453;"></span>
+<span id="ma-trận-hoán-đổi"></span>
 ### Ma trận hoán đổi
 
 Ma trận hoán đổi là một dạng đặc biệt của ma trận đối xứng.
@@ -35,7 +35,7 @@ Các phần tử của ma trận hoán đổi đều là $1$ và $0$. Những ph
 
 Ma trận hoán đổi yêu cầu $i$ và $j$ khác nhau.
 
-<span id="&#20493;&#21152;&#30697;&#38453;"></span>
+<span id="ma-trận-cộng-bội"></span>
 ### Ma trận cộng bội
 
 Ma trận cộng bội được tạo từ ma trận đơn vị $I$ bằng cách đặt phần tử ở hàng $i$ cột $j$ bằng $k$.
@@ -56,7 +56,7 @@ Ma trận cộng bội yêu cầu $i$ và $j$ khác nhau. Nếu $k$ bằng $0$, 
 
 Ma trận cộng bội là một ma trận tam giác trên hoặc tam giác dưới.
 
-<span id="&#21021;&#31561;&#30697;&#38453;&#30340;&#34892;&#21015;&#24335;"></span>
+<span id="định-thức-của-ma-trận-sơ-cấp"></span>
 ### Định thức của ma trận sơ cấp
 
 Ba loại ma trận sơ cấp có định thức:
@@ -75,7 +75,7 @@ $$
 
 Vì định thức của tích các ma trận vuông bằng tích các định thức, nhờ tính tương đương giữa biến đổi sơ cấp và phép nhân ma trận ở phần dưới, tính chất này của ma trận sơ cấp có thể dùng để tính định thức.
 
-<span id="&#21021;&#31561;&#21464;&#25442;"></span>
+<span id="biến-đổi-sơ-cấp"></span>
 ## Biến đổi sơ cấp
 
 Không chỉ với ma trận vuông, với ma trận tổng quát $A$ cũng có thể thực hiện biến đổi sơ cấp trên hàng và biến đổi sơ cấp trên cột; gọi chung là biến đổi sơ cấp.
@@ -92,14 +92,14 @@ Trong các biến đổi sơ cấp, phép hoán đổi có thể được thực
 
 Vì vậy, so với phép hoán đổi, phép nhân bội và cộng bội là các thao tác bản chất hơn. Phép hoán đổi được đưa vào như một thao tác phụ trợ để bảo đảm thứ tự khử trong phương pháp khử.
 
-<span id="&#21021;&#31561;&#21464;&#25442;&#19982;&#30697;&#38453;&#20056;&#27861;"></span>
+<span id="biến-đổi-sơ-cấp-và-phép-nhân-ma-trận"></span>
 ## Biến đổi sơ cấp và phép nhân ma trận
 
 Có thể thấy ba loại ma trận sơ cấp đều là kết quả của việc thực hiện đúng một biến đổi tương ứng trên ma trận đơn vị $I$. Trong phần biến đổi tuyến tính về sau sẽ chỉ ra rằng biến đổi tuyến tính và ma trận có quan hệ tương ứng, tương tự quan hệ ở đây.
 
 Bất kể ma trận $A$ có vuông hay không, thực hiện biến đổi sơ cấp trên hàng của $A$ tương đương với nhân trái $A$ bởi một ma trận sơ cấp. Thực hiện biến đổi sơ cấp trên cột của $A$ tương đương với nhân phải $A$ bởi một ma trận sơ cấp.
 
-<span id="&#20493;&#20056;&#25805;&#20316;"></span>
+<span id="thao-tác-nhân-bội"></span>
 ### Thao tác nhân bội
 
 Nhân trái với một ma trận nhân bội $D_i(k)$ tương đương với biến hàng thứ $i$ thành $k$ lần chính nó. Nhân phải với một ma trận nhân bội $D_i(k)$ tương đương với biến cột thứ $i$ thành $k$ lần chính nó.
@@ -114,7 +114,7 @@ Phép nhân các ma trận nhân bội có tính giao hoán, và phép nhân cá
 
 Thao tác nhân bội tương ứng với ma trận đơn vị là giữ nguyên ma trận $A$; trong ứng dụng thực tế không thực hiện thao tác như vậy.
 
-<span id="&#23545;&#25442;&#25805;&#20316;"></span>
+<span id="thao-tác-hoán-đổi"></span>
 ### Thao tác hoán đổi
 
 Nhân trái với một ma trận hoán đổi $P_{ij}$ tương đương với hoán đổi hàng thứ $i$ và hàng thứ $j$. Nhân phải với một ma trận hoán đổi $P_{ij}$ tương đương với hoán đổi cột thứ $i$ và cột thứ $j$.
@@ -133,7 +133,7 @@ Phép nhân các ma trận hoán đổi không có tính giao hoán, và phép n
 
 Định thức của ma trận hoán vị là ${(-1)}^p$, trong đó $p$ là số nghịch thế của hoán vị tương ứng với ma trận hoán vị, tức số phép hoán đổi trong một phân tích của hoán vị đó thành tích các phép hoán đổi.
 
-<span id="&#20493;&#21152;&#25805;&#20316;"></span>
+<span id="thao-tác-cộng-bội"></span>
 ### Thao tác cộng bội
 
 Nhân trái với ma trận cộng bội $T_{ij}(k)$ tương đương với cộng $k$ lần hàng thứ $j$ vào hàng thứ $i$. Nhân phải với ma trận cộng bội $T_{ij}(k)$ tương đương với cộng $k$ lần cột thứ $i$ vào cột thứ $j$.
@@ -146,7 +146,7 @@ Phép nhân các ma trận cộng bội không có tính giao hoán.
 
 Thao tác cộng bội tương ứng với ma trận đơn vị là giữ nguyên ma trận $A$; trong ứng dụng thực tế không thực hiện thao tác như vậy.
 
-<span id="&#19978;&#19977;&#35282;&#30697;&#38453;"></span>
+<span id="ma-trận-tam-giác-trên"></span>
 #### Ma trận tam giác trên
 
 Ma trận cộng bội là một ma trận tam giác trên hoặc tam giác dưới. Vì hai loại ma trận này đối xứng qua đường chéo chính, ở đây chỉ xét ma trận tam giác trên. Thực ra trong ví dụ này chỉ cần biến đổi sơ cấp trên hàng, không cần biến đổi trên cột.
@@ -161,7 +161,7 @@ Nếu đường chéo chính của một ma trận tam giác trên có phần t�
 
 Bất kể đường chéo chính của ma trận tam giác trên có phần tử $0$ hay không, định thức của ma trận tam giác trên đều bằng tích các phần tử trên đường chéo chính, giống như ma trận đường chéo.
 
-<span id="&#20493;&#21152;&#25805;&#20316;&#23558;&#26041;&#38453;&#36716;&#21270;&#20026;&#23545;&#35282;&#38453;"></span>
+<span id="dùng-thao-tác-cộng-bội-để-đưa-ma-trận-vuông-về-ma-trận-đường-chéo"></span>
 #### Dùng thao tác cộng bội để đưa ma trận vuông về ma trận đường chéo
 
 Chỉ dùng thao tác cộng bội cũng có thể đưa một ma trận vuông bất kỳ về ma trận đường chéo. Ví dụ này cần cả biến đổi sơ cấp trên hàng lẫn trên cột.
@@ -176,7 +176,7 @@ Nếu hàng thứ nhất và cột thứ nhất đều đã toàn là $0$, ta x�
 
 Chỉ khi phần hàng và cột còn lại cũng đều không có phần tử khác không thì góc trên bên trái mới không thể trở thành phần tử khác không; khi đó ma trận vuông còn lại đã là ma trận không.
 
-<span id="&#26631;&#20934;&#24418;&#30697;&#38453;"></span>
+<span id="ma-trận-dạng-chuẩn"></span>
 #### Ma trận dạng chuẩn
 
 Nhờ biến đổi sơ cấp, có thể đưa một ma trận bất kỳ, bất kể hình dạng, về ma trận dạng chuẩn.
@@ -185,7 +185,7 @@ Ma trận dạng chuẩn có một ma trận đơn vị $I$ làm ma trận con �
 
 Sau khi ma trận được đưa về dạng chuẩn, số phần tử bằng $1$ đúng bằng hạng của ma trận.
 
-<span id="&#21487;&#36870;&#30697;&#38453;"></span>
+<span id="ma-trận-khả-nghịch"></span>
 ## Ma trận khả nghịch
 
 Giả sử $A$ là một ma trận bậc $n$. Nếu tồn tại một ma trận bậc $n$ $B$ sao cho $AB=BA=I$, thì $A$ được gọi là ma trận khả nghịch hoặc ma trận không suy biến, $B$ được gọi là ma trận nghịch đảo của $A$, ký hiệu là $A^{-1}$.
@@ -198,7 +198,7 @@ Tích $AB$ của hai ma trận khả nghịch $A$ và $B$ cũng khả nghịch, 
 
 Ma trận chuyển vị $A^T$ của ma trận khả nghịch $A$ cũng khả nghịch, và nghịch đảo của chuyển vị bằng chuyển vị của nghịch đảo.
 
-<span id="&#21021;&#31561;&#30697;&#38453;&#30340;&#36870;"></span>
+<span id="nghịch-đảo-của-ma-trận-sơ-cấp"></span>
 ### Nghịch đảo của ma trận sơ cấp
 
 Mọi ma trận sơ cấp đều khả nghịch, và nghịch đảo của chúng vẫn là ma trận sơ cấp cùng loại:
@@ -233,17 +233,17 @@ Một cách ghi nhớ đơn giản là: ký hiệu $E_{ij}$ là ma trận $n\tim
 
 Cách ký hiệu này cũng có thể áp dụng cho các ma trận nghịch đảo của chúng.
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
-<span id="&#32447;&#24615;&#26041;&#31243;&#32452;&#27714;&#35299;"></span>
+<span id="giải-hệ-phương-trình-tuyến-tính"></span>
 ### Giải hệ phương trình tuyến tính
 
 Với một hệ phương trình tuyến tính, các hệ số đứng trước ẩn tạo thành ma trận hệ số; nếu ghép thêm cột hằng số của hệ phương trình vào bên phải ma trận hệ số, ta được ma trận bổ sung.
 
 Dùng biến đổi sơ cấp trên hàng, có thể đưa ma trận bổ sung tương ứng với hệ phương trình tuyến tính trước hết về ma trận bậc thang hàng, rồi về ma trận hàng rút gọn, từ đó hoàn thành việc giải hệ phương trình tuyến tính. Phương pháp này gọi là khử để giải hệ phương trình tuyến tính; thuật toán khử Gauss-Jordan ở phần sau là thuật toán khử theo một thứ tự nhất định.
 
-<span id="&#34892;&#21015;&#24335;&#35745;&#31639;"></span>
+<span id="tính-định-thức"></span>
 ### Tính định thức
 
 Vì định thức của tích các ma trận vuông bằng tích các định thức của chúng, định thức của ma trận sơ cấp dễ tính, và biến đổi sơ cấp tương đương với phép nhân ma trận sơ cấp, nên trong tính định thức cũng thường dùng biến đổi sơ cấp.

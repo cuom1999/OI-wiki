@@ -1,21 +1,21 @@
 author: StudyingFather, CCXXXI, Chrogeek, ChungZH, countercurrent-time, Early0v0, Enter-tainer, GavinZhengOI, Great-designer, H-J-Granger, henrytbtrue, HeRaNO, huayucaiji, iamtwz, Ir1d, ksyx, MegaOwIer, NachtgeistW, P-Y-Y, qwqAutomaton, shuzhouliu, shuzhouliu-bot, Siger Young, sshwy, SukkaW, Tiphereth-A, tsentau, WhenMelancholy, Xeonacid, Yukimaikoriya, Zhoier, zyj-111, qute-firefly-26710-zjyjoe-lg-592080
 
-<span id="&#24341;&#20837;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Phương pháp khử Gauss (Gauss-Jordan elimination) là thuật toán kinh điển để giải hệ phương trình tuyến tính. Nó có vị trí và giá trị quan trọng trong toán học hiện đại, đồng thời là một phần trọng tâm trong việc giảng dạy đại số tuyến tính.
 
 Ngoài việc giải hệ phương trình tuyến tính, phương pháp khử Gauss còn có thể dùng để tính định thức, tìm ma trận nghịch đảo, cũng như trong nhiều bài toán máy tính và kỹ thuật khác.
 
-<span id="&#28040;&#20803;&#27861;&#21450;&#39640;&#26031;&#28040;&#20803;&#27861;&#24605;&#24819;"></span>
+<span id="phương-pháp-khử-và-tư-tưởng-khử-gauss"></span>
 ## Phương pháp khử và tư tưởng khử Gauss
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ### Định nghĩa
 
 Phương pháp khử là cách biểu diễn một ẩn trong một phương trình của hệ bằng biểu thức đại số chứa một ẩn khác, rồi thay biểu thức đó vào phương trình còn lại; nhờ vậy ta khử được một ẩn và thu được nghiệm. Ta cũng có thể nhân một phương trình với một hằng số rồi cộng vào phương trình khác để khử một ẩn. Phương pháp khử chủ yếu được dùng để giải hệ hai phương trình bậc nhất hai ẩn.
 
-<span id="&#35299;&#37322;"></span>
+<span id="diễn-giải"></span>
 ### Diễn giải
 
 Ví dụ 1: dùng phương pháp khử để giải hệ phương trình tuyến tính hai ẩn:
@@ -45,7 +45,7 @@ $$
 y = -60
 $$
 
-<span id="&#28040;&#20803;&#27861;&#29702;&#35770;&#30340;&#26680;&#24515;"></span>
+<span id="cốt-lõi-của-lý-thuyết-khử"></span>
 ### Cốt lõi của lý thuyết khử
 
 Cốt lõi của lý thuyết khử chủ yếu gồm các tính chất sau:
@@ -56,7 +56,7 @@ Cốt lõi của lý thuyết khử chủ yếu gồm các tính chất sau:
 
 -   Nhân một phương trình với số $k$ rồi cộng với phương trình khác thì nghiệm không đổi.
 
-<span id="&#39640;&#26031;&#28040;&#20803;&#27861;&#24605;&#24819;&#27010;&#24565;"></span>
+<span id="khái-niệm-tư-tưởng-của-phương-pháp-khử-gauss"></span>
 ### Khái niệm tư tưởng của phương pháp khử Gauss
 
 Nhà toán học người Đức Gauss đã phân tích phương pháp khử và rút ra các kết luận sau:
@@ -71,10 +71,10 @@ Nhà toán học người Đức Gauss đã phân tích phương pháp khử và
 
 Dựa trên các kết luận này, Gauss đề xuất phương pháp khử Gauss: trước hết dùng các phép biến đổi sơ cấp trên hàng để đưa ma trận mở rộng của hệ về dạng rút gọn theo hàng; sau đó gán giá trị cho các ẩn tự do theo tiêu chí độc lập tuyến tính; cuối cùng viết nghiệm tổng quát của hệ phương trình.
 
-<span id="&#39640;&#26031;&#28040;&#20803;&#20116;&#27493;&#39588;&#27861;"></span>
+<span id="phương-pháp-khử-gauss-năm-bước"></span>
 ## Phương pháp khử Gauss năm bước
 
-<span id="&#35299;&#37322;_1"></span>
+<span id="diễn-giải_1"></span>
 ### Diễn giải
 
 Sau khi phương pháp khử Gauss đưa ma trận mở rộng về dạng rút gọn, việc gán giá trị cho các ẩn tự do đòi hỏi kiến thức về phụ thuộc tuyến tính; đồng thời cách gán cũng có yếu tố kinh nghiệm, khiến quá trình học có phần khó khăn. Vì vậy có thể chia phương pháp khử Gauss thành năm bước như sau:
@@ -91,7 +91,7 @@ Sau khi phương pháp khử Gauss đưa ma trận mở rộng về dạng rút 
 
 Dưới đây dùng một ví dụ để minh họa thêm cách thuật toán vận hành.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quá-trình"></span>
 ### Quá trình
 
 Ví dụ 2: dùng phương pháp khử Gauss năm bước để giải hệ phương trình tuyến tính:
@@ -104,7 +104,7 @@ x_3+x_4&=-4 \\
 \end{cases}
 $$
 
-<span id="&#22686;&#24191;&#30697;&#38453;&#34892;&#65288;&#21021;&#31561;&#65289;&#21464;&#25442;&#20026;&#34892;&#26368;&#31616;&#24418;"></span>
+<span id="biến-đổi-hàng-sơ-cấp-ma-trận-mở-rộng-thành-dạng-rút-gọn-theo-hàng"></span>
 ### Biến đổi hàng sơ cấp ma trận mở rộng thành dạng rút gọn theo hàng
 
 Ma trận mở rộng là ma trận mới được tạo bằng cách ghép ma trận hệ số $A$ của hệ phương trình với cột hằng số $b$, tức $(A | b)$. Việc dùng các phép biến đổi sơ cấp trên hàng để đưa ma trận mở rộng về dạng rút gọn theo hàng chính là vận dụng tư tưởng của phương pháp khử Gauss: lược bỏ biến và dùng vị trí hệ số để biểu diễn biến. Trong ma trận mở rộng, đường thẳng đứng tách ma trận hệ số và cột hằng số, đại diện cho dấu bằng.
@@ -168,7 +168,7 @@ $$
 
 Đưa về dạng rút gọn
 
-<span id="&#36824;&#21407;&#32447;&#24615;&#26041;&#31243;&#32452;"></span>
+<span id="khôi-phục-hệ-phương-trình-tuyến-tính"></span>
 ### Khôi phục hệ phương trình tuyến tính
 
 $$
@@ -181,7 +181,7 @@ $$
 ???+ note "Diễn giải"
     Khôi phục hệ phương trình tuyến tính nghĩa là dựa trên dạng rút gọn theo hàng để viết lại nó thành hệ phương trình tuyến tính: gán lại biến cho các hệ số ở từng vị trí trong dạng rút gọn, đồng thời khôi phục đường thẳng đứng ở giữa thành dấu bằng.
 
-<span id="&#27714;&#35299;&#31532;&#19968;&#20010;&#21464;&#37327;"></span>
+<span id="giải-biến-đầu-tiên"></span>
 ### Giải biến đầu tiên
 
 $$
@@ -194,7 +194,7 @@ $$
 ???+ note "Diễn giải"
     Với hệ phương trình tuyến tính đã khôi phục, bước này biểu diễn biến đầu tiên của mỗi phương trình bằng các đại lượng còn lại. Chẳng hạn, trong hai phương trình trên, các biến đầu tiên lần lượt là $x_1$ và $x_3$.
 
-<span id="&#34917;&#20805;&#33258;&#30001;&#26410;&#30693;&#37327;"></span>
+<span id="bổ-sung-các-ẩn-tự-do"></span>
 ### Bổ sung các ẩn tự do
 
 $$
@@ -209,7 +209,7 @@ $$
 ???+ note "Diễn giải"
     Ở bước 3, ta đã giải được các biến $x_1$ và $x_3$. Điều này cho thấy các biến còn lại $x_2$ và $x_4$ không bị hệ phương trình ràng buộc, tức là các ẩn tự do và có thể nhận giá trị tùy ý. Vì vậy, trên cơ sở nghiệm thu được ở bước 3, cần bổ sung nghiệm bằng cách viết $x_2 = x_2, x_4 = x_4$. Cách bổ sung này phù hợp với định nghĩa ẩn tự do và dễ hiểu: vì là ẩn tự do, không chịu ràng buộc, nên chúng chỉ có thể bằng chính chúng.
 
-<span id="&#21015;&#34920;&#31034;&#26041;&#31243;&#32452;&#30340;&#36890;&#35299;"></span>
+<span id="viết-nghiệm-tổng-quát-của-hệ-phương-trình-dưới-dạng-cột"></span>
 ### Viết nghiệm tổng quát của hệ phương trình dưới dạng cột
 
 $$
@@ -229,10 +229,10 @@ Trong đó $C_1$ và $C_2$ là các hằng số tùy ý.
 ???+ note "Diễn giải"
     Dựa trên bước 4, ta biểu diễn nghiệm dưới dạng tổ hợp các vector cột. Đồng thời, vì $x_2$ và $x_4$ là ẩn tự do, có thể nhận giá trị tùy ý, nên ở vế phải của nghiệm ta lần lượt đặt chúng bằng các hằng số tùy ý $C_1$ và $C_2$. Như vậy, hệ phương trình đã được giải xong.
 
-<span id="&#34892;&#21015;&#24335;&#35745;&#31639;"></span>
+<span id="tính-định-thức"></span>
 ## Tính định thức
 
-<span id="&#35299;&#37322;_2"></span>
+<span id="diễn-giải_2"></span>
 ### Diễn giải
 
 Định thức (determinant) của ma trận vuông $N \times N$ có thể được hiểu là thể tích có hướng của khối hình học được căng bởi tất cả các vector cột.
@@ -273,7 +273,7 @@ Từ đó, sau khi áp dụng khử Gauss lên ma trận, ta có thể thu đư�
 
 Lưu ý rằng nếu tại một thời điểm nào đó ta không tìm được phần tử khác không trong cột hiện tại, thuật toán nên dừng và trả về 0.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
 ```cpp
@@ -302,7 +302,7 @@ for (int i = 0; i < n; ++i) {
 cout << det;
 ```
 
-<span id="&#30697;&#38453;&#27714;&#36870;"></span>
+<span id="tìm-ma-trận-nghịch-đảo"></span>
 ## Tìm ma trận nghịch đảo
 
 Với ma trận vuông $A$, nếu tồn tại ma trận vuông $A^{-1}$ sao cho $A \times A^{-1} = A^{-1} \times A = I$, thì ma trận $A$ được gọi là khả nghịch, còn $A^{-1}$ được gọi là ma trận nghịch đảo của nó.
@@ -314,7 +314,7 @@ Cho ma trận vuông cấp $n$ là $A$, cách tìm ma trận nghịch đảo c�
 
 Chứng minh tính đúng đắn của phương pháp này cần khá nhiều kiến thức đại số tuyến tính, nên do giới hạn dung lượng, phần này không trình bày ở đây. Bạn đọc quan tâm có thể tự tra cứu các tài liệu liên quan.
 
-<span id="&#39640;&#26031;&#28040;&#20803;&#27861;&#35299;&#24322;&#25110;&#26041;&#31243;&#32452;"></span>
+<span id="giải-hệ-phương-trình-xor-bằng-khử-gauss"></span>
 ## Giải hệ phương trình XOR bằng khử Gauss
 
 Hệ phương trình XOR là hệ có dạng
@@ -356,7 +356,7 @@ std::vector<bool> GaussElimination(
 }
 ```
 
-<span id="&#32451;&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Codeforces - Phù thủy và tiền cược](http://codeforces.com/contest/167/problem/E)

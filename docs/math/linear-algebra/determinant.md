@@ -2,7 +2,7 @@
 
 Bài này giới thiệu ba cách định nghĩa định thức. Có thể chứng minh rằng các định nghĩa trong bài là tương đương.
 
-<span id="&#20840;&#25490;&#21015;&#26041;&#27861;&#23450;&#20041;"></span>
+<span id="định-nghĩa-bằng-hoán-vị"></span>
 ## Định nghĩa bằng hoán vị
 
 Kiến thức chuẩn bị: [hoán vị](../permutation.md), [số nghịch thế](../permutation.md#số-nghịch-thế).
@@ -61,12 +61,12 @@ $$
 
 Khi đó định thức này bằng tổng của hai định thức $\det A_1$ và $\det A_2$. Trong đó hàng thứ $i$ của $A_1$ là $b_{i1},b_{i2},\cdots,b_{in}$, hàng thứ $i$ của $A_2$ là $c_{i1},c_{i2},\cdots,c_{in}$, còn các hàng khác của $A_1$ và $A_2$ đều giống $A$. Tính chất tương tự cũng đúng với cột.
 
-<span id="&#24402;&#32435;&#26041;&#27861;&#23450;&#20041;"></span>
+<span id="định-nghĩa-bằng-quy-nạp"></span>
 ## Định nghĩa bằng quy nạp
 
 Cách này chỉ mô tả một tính chất đại số của định thức; độ phức tạp thời gian cũng ở cấp giai thừa, nên không phù hợp để tính toán.
 
-<span id="&#20195;&#25968;&#20313;&#23376;&#24335;"></span>
+<span id="phần-bù-đại-số"></span>
 ### Phần bù đại số
 
 Trong định thức bậc $n$ $\det A$, chọn tùy ý $k$ hàng và $k$ cột của ma trận $A$. Các phần tử nằm tại giao của những hàng và cột này tạo thành một ma trận con bậc $k$, và định thức của nó được gọi là một định thức con bậc $k$.
@@ -79,7 +79,7 @@ Từ định nghĩa bằng hoán vị ở phần trước có thể suy ra kết
 
 Định lý: Nếu trong một định thức bậc $n$ $\det A$, các phần tử ở hàng thứ $i$ hoặc cột thứ $j$ đều bằng $0$ trừ $a_{ij}$, thì định thức đó bằng tích của $a_{ij}$ và phần bù đại số $A_{ij}$ của nó.
 
-<span id="&#34892;&#21015;&#24335;&#23637;&#24320;"></span>
+<span id="khai-triển-định-thức"></span>
 ### Khai triển định thức
 
 Vì định thức không đổi khi chuyển vị ma trận vuông, chỉ cần giới thiệu một trong hai cách khai triển theo hàng hoặc theo cột.
@@ -120,14 +120,14 @@ $$
 a_{1i}A_{1j}+a_{2i}A_{2j}+\cdots+a_{ni}A_{nj}=0
 $$
 
-<span id="&#20844;&#29702;&#21270;&#23450;&#20041;"></span>
+<span id="định-nghĩa-tiên-đề-hóa"></span>
 ## Định nghĩa tiên đề hóa
 
 Định nghĩa tiên đề hóa nói rằng một phép toán thỏa một số tính chất nhất định thì chỉ có thể là định thức.
 
 Kiến thức chuẩn bị: [phép biến đổi sơ cấp](./elementary-operations.md).
 
-Ký hiệu $D_i(k)$ là [ma trận nhân hàng/cột](./elementary-operations.md#%E5%80%8D%E4%B9%98%E7%9F%A9%E9%98%B5), $P_{ij}$ là [ma trận hoán đổi](./elementary-operations.md#%E5%AF%B9%E6%8D%A2%E7%9F%A9%E9%98%B5), $T_{ij}(k)$ là [ma trận cộng bội](./elementary-operations.md#%E5%80%8D%E5%8A%A0%E7%9F%A9%E9%98%B5).
+Ký hiệu $D_i(k)$ là [ma trận nhân hàng/cột](./elementary-operations.md#ma-trận-nhân-bội), $P_{ij}$ là [ma trận hoán đổi](./elementary-operations.md#ma-trận-hoán-đổi), $T_{ij}(k)$ là [ma trận cộng bội](./elementary-operations.md#ma-trận-cộng-bội).
 
 Với một phép toán $\det$ trên ma trận bậc $n$ $A$, nếu thỏa bốn tính chất sau thì nó được gọi là định thức:
 
@@ -155,7 +155,7 @@ Với một phép toán $\det$ trên ma trận bậc $n$ $A$, nếu thỏa bốn
     \det I = 1
     $$
 
-Dùng các tính chất của định thức đối với biến đổi sơ cấp, ta có thể tính tay định thức bậc cao thuận tiện hơn. [Tính định thức bằng khử Gauss](../numerical/gauss.md#%E8%A1%8C%E5%88%97%E5%BC%8F%E8%AE%A1%E7%AE%97) cũng dùng tính chất này, với độ phức tạp thời gian $O(n^3)$.
+Dùng các tính chất của định thức đối với biến đổi sơ cấp, ta có thể tính tay định thức bậc cao thuận tiện hơn. [Tính định thức bằng khử Gauss](../numerical/gauss.md#tính-định-thức) cũng dùng tính chất này, với độ phức tạp thời gian $O(n^3)$.
 
 Các tính chất trên cũng có một số hệ quả:
 

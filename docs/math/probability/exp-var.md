@@ -1,14 +1,14 @@
 Bài viết này giới thiệu các đặc trưng số của biến ngẫu nhiên như kỳ vọng và phương sai.
 
-<span id="&#x671F;&#x671B;"></span>
+<span id="kỳ-vọng"></span>
 
 ## Kỳ vọng
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 
 ### Định nghĩa
 
-<span id="&#x79BB;&#x6563;&#x578B;&#x968F;&#x673A;&#x53D8;&#x91CF;"></span>
+<span id="biến-ngẫu-nhiên-rời-rạc"></span>
 
 #### Biến ngẫu nhiên rời rạc
 
@@ -20,7 +20,7 @@ $$
 
 hội tụ tuyệt đối, thì giá trị của nó được gọi là **kỳ vọng** của $X$, ký hiệu là $EX$.
 
-<span id="&#x8FDE;&#x7EED;&#x578B;&#x968F;&#x673A;&#x53D8;&#x91CF;"></span>
+<span id="biến-ngẫu-nhiên-liên-tục"></span>
 
 #### Biến ngẫu nhiên liên tục
 
@@ -32,7 +32,7 @@ $$
 
 hội tụ tuyệt đối, thì giá trị của nó được gọi là **kỳ vọng** của $X$, ký hiệu là $EX$.
 
-<span id="&#x7EDF;&#x4E00;&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa-thống-nhất"></span>
 
 #### Định nghĩa thống nhất
 
@@ -61,11 +61,11 @@ hội tụ tuyệt đối, thì giá trị của nó được gọi là **kỳ v
     
     Dễ kiểm chứng rằng kỳ vọng của $Y$ cũng không tồn tại.
 
-<span id="&#x671F;&#x671B;&#x7684;&#x6027;&#x8D28;"></span>
+<span id="tính-chất-của-kỳ-vọng"></span>
 
 ### Tính chất của kỳ vọng
 
-<span id="&#x7EBF;&#x6027;&#x6027;"></span>
+<span id="tính-tuyến-tính"></span>
 
 #### Tính tuyến tính
 
@@ -74,7 +74,7 @@ Nếu kỳ vọng của các biến ngẫu nhiên $X, Y$ tồn tại, thì:
 -   Với mọi số thực $a, b$, ta có $E(aX + b) = a \cdot EX + b$.
 -   $E(X + Y) = EX + EY$.
 
-<span id="&#x968F;&#x673A;&#x53D8;&#x91CF;&#x4E58;&#x79EF;&#x7684;&#x671F;&#x671B;"></span>
+<span id="kỳ-vọng-của-tích-các-biến-ngẫu-nhiên"></span>
 
 #### Kỳ vọng của tích các biến ngẫu nhiên
 
@@ -89,7 +89,7 @@ Chú ý: tính độc lập trong tính chất trên **không phải** là đi�
 ??? example "Phản ví dụ"
     Xét các biến ngẫu nhiên $X$ và $Y$, trong đó $X$ tuân theo phân phối đều trên $[-1, 1]$, còn $Y = X^2$.
 
-<span id="&#x671F;&#x671B;&#x4E0E;&#x6982;&#x7387;&#x7684;&#x8F6C;&#x5316;"></span>
+<span id="chuyển-đổi-giữa-kỳ-vọng-và-xác-suất"></span>
 
 ### Chuyển đổi giữa kỳ vọng và xác suất
 
@@ -121,13 +121,13 @@ Theo định nghĩa, ta tính được kỳ vọng của nó là $EI_A = P(A)$. 
     ES = E \left( \sum_{k=1}^{n} k \cdot I_k \right) = \sum_{k=1}^{n} k \cdot E[I_k] = \sum_{k=1}^{n} k \cdot p_k
     $$
 
-<span id="&#x6761;&#x4EF6;&#x5206;&#x5E03;&#x4E0E;&#x6761;&#x4EF6;&#x671F;&#x671B;"></span>
+<span id="phân-phối-có-điều-kiện-và-kỳ-vọng-có-điều-kiện"></span>
 
 ## Phân phối có điều kiện và kỳ vọng có điều kiện
 
 Trước đây ta đã nghiên cứu xác suất có điều kiện; tương tự, cũng có thể đưa ra khái niệm gọi là kỳ vọng có điều kiện.
 
-<span id="&#x5B9A;&#x4E49;_1"></span>
+<span id="định-nghĩa_1"></span>
 
 ### Định nghĩa
 
@@ -139,7 +139,7 @@ $$
 
 Trong điều kiện này, kỳ vọng của $X$ được gọi là **kỳ vọng có điều kiện**, ký hiệu là $E[X|Y=y]$.
 
-<span id="&#x6761;&#x4EF6;&#x671F;&#x671B;&#x7684;&#x6027;&#x8D28;"></span>
+<span id="tính-chất-của-kỳ-vọng-có-điều-kiện"></span>
 
 ### Tính chất của kỳ vọng có điều kiện
 
@@ -153,7 +153,7 @@ $$
 
 Công thức trên được gọi là **công thức kỳ vọng toàn phần**.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 
 ### Ứng dụng
 
@@ -184,11 +184,11 @@ Công thức trên được gọi là **công thức kỳ vọng toàn phần**.
     f(x) = 1 + \ln \frac{x}{d}
     $$
 
-<span id="&#x65B9;&#x5DEE;"></span>
+<span id="phương-sai"></span>
 
 ## Phương sai
 
-<span id="&#x5B9A;&#x4E49;_2"></span>
+<span id="định-nghĩa_2"></span>
 
 ### Định nghĩa
 
@@ -200,7 +200,7 @@ $$
 
 cũng tồn tại. Khi đó giá trị của biểu thức trên được gọi là **phương sai** của biến ngẫu nhiên $X$, ký hiệu là $DX$ hoặc $Var(x)$. Căn bậc hai số học của phương sai được gọi là **độ lệch chuẩn**, ký hiệu là $\sigma(X) = \sqrt{DX}$.
 
-<span id="&#x65B9;&#x5DEE;&#x7684;&#x6027;&#x8D28;"></span>
+<span id="tính-chất-của-phương-sai"></span>
 
 ### Tính chất của phương sai
 
@@ -209,7 +209,7 @@ Nếu phương sai của biến ngẫu nhiên $X$ tồn tại, thì:
 -   Với mọi hằng số $a, b$, ta có $D(aX + b) = a^2 \cdot DX$.
 -   $DX = E(X^2) - (EX)^2$.
 
-<span id="&#x534F;&#x65B9;&#x5DEE;&#x4E0E;&#x76F8;&#x5173;&#x7CFB;&#x6570;"></span>
+<span id="hiệp-phương-sai-và-hệ-số-tương-quan"></span>
 
 ## Hiệp phương sai và hệ số tương quan
 
@@ -220,7 +220,7 @@ Nói chung, đẳng thức $D(X + Y) = DX + DY$ không đúng. Một cách tự 
 
 Với câu hỏi thứ nhất, ta đưa vào hiệp phương sai để trả lời.
 
-<span id="&#x534F;&#x65B9;&#x5DEE;&#x7684;&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa-hiệp-phương-sai"></span>
 
 ### Định nghĩa hiệp phương sai
 
@@ -232,7 +232,7 @@ $$
 
 là **hiệp phương sai** của $X$ và $Y$, ký hiệu là $\operatorname{Cov}(X, Y)$.
 
-<span id="&#x534F;&#x65B9;&#x5DEE;&#x7684;&#x6027;&#x8D28;"></span>
+<span id="tính-chất-của-hiệp-phương-sai"></span>
 
 ### Tính chất của hiệp phương sai
 
@@ -259,7 +259,7 @@ $$
 
 Nhưng điều kiện này không cần thiết. Để mô tả quan hệ giữa các biến ngẫu nhiên $X$, $Y$ thỏa mãn $\operatorname{Cov}(X, Y) = 0$, ta đưa vào hệ số tương quan.
 
-<span id="&#x76F8;&#x5173;&#x7CFB;&#x6570;"></span>
+<span id="hệ-số-tương-quan"></span>
 
 ### Hệ số tương quan
 
