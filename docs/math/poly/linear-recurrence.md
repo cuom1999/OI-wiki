@@ -1,4 +1,4 @@
-<span id="&#x7B80;&#x4ECB;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
@@ -14,7 +14,7 @@ trong đó các $c_j$ không đồng thời bằng không, mục tiêu là tính
 
 Ở đây $\left(a_j\right)_{j\geq 0}$ được gọi là dãy truy hồi tuyến tính thuần nhất hệ số hằng bậc $d$.
 
-<span id="fiduccia-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-fiduccia"></span>
 
 ### Thuật toán Fiduccia
 
@@ -104,7 +104,7 @@ $$
 
 Do đó hàng đầu tiên của $\left(\left(C_\Gamma\right)^{k}\right)^{\intercal}$ là $B_{x^k\bmod{\Gamma}}$. Kết luận suy ra trực tiếp từ định nghĩa của phép nhân ma trận.
 
-<span id="&#x8868;&#x793A;&#x4E3A;&#x6709;&#x7406;&#x51FD;&#x6570;"></span>
+<span id="biểu-diễn-bằng-hàm-hữu-tỉ"></span>
 
 ### Biểu diễn bằng hàm hữu tỉ
 
@@ -135,11 +135,11 @@ $$
 
 Khi đó theo định nghĩa của $\tilde{q}_N$, tất yếu có $\dfrac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j$.
 
-<span id="bostan&#x2013;mori-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-bostan-mori"></span>
 
 ### Thuật toán Bostan-Mori
 
-<span id="&#x8BA1;&#x7B97;&#x5355;&#x9879;"></span>
+<span id="tính-một-hạng"></span>
 
 #### Tính một hạng
 
@@ -159,7 +159,7 @@ $$
 
 Ta trả giá bằng hai phép nhân đa thức để giảm kích thước bài toán xuống ít nhất một nửa. Khi $k=0$ thì hiển nhiên $\left\lbrack x^0\right\rbrack \dfrac{P(x)}{Q(x)}=\dfrac{P(0)}{Q(0)}$, nên độ phức tạp thời gian giống như trên.
 
-<span id="&#x8BA1;&#x7B97;&#x8FDE;&#x7EED;&#x82E5;&#x5E72;&#x9879;"></span>
+<span id="tính-một-đoạn-nhiều-hạng-liên-tiếp"></span>
 
 #### Tính một đoạn nhiều hạng liên tiếp
 
@@ -238,7 +238,7 @@ $$
 
 Tuy nhiên chỉ thuật toán này vẫn chưa đủ; ta cần tìm lại một biểu diễn hàm hữu tỉ và tính thêm nhiều hệ số hơn.
 
-<span id="&#x627E;&#x5230;&#x65B0;&#x7684;&#x6709;&#x7406;&#x51FD;&#x6570;&#x8868;&#x793A;"></span>
+<span id="tìm-biểu-diễn-hàm-hữu-tỉ-mới"></span>
 
 #### Tìm biểu diễn hàm hữu tỉ mới
 
@@ -264,7 +264,7 @@ $$
 
 Cuối cùng dùng phép chia chuỗi lũy thừa hình thức để tính $\left\lbrack x^{\left\lbrack 0,R-L\right)}\right\rbrack\dfrac{\widetilde{P}(x)}{Q(x)}$. Độ phức tạp thời gian là $O(\mathsf{M}(d)\log L+\mathsf{M}(R-L))$.
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 

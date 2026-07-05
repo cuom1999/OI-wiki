@@ -14,7 +14,7 @@ Các số phân hoạch bắt đầu từ $0$:
 | ----- | - | - | - | - | - | - | -- | -- | -- |
 | $p_n$ | 1 | 1 | 2 | 3 | 5 | 7 | 11 | 15 | 22 |
 
-<span id="k-&#x90E8;&#x5206;&#x62C6;&#x6570;"></span>
+<span id="số-phân-hoạch-thành-k-phần"></span>
 ## Số phân hoạch thành $k$ phần
 
 Phân hoạch chia $n$ thành đúng $k$ phần được gọi là phân hoạch $k$ phần, kí hiệu là $p(n,k)$.
@@ -51,7 +51,7 @@ Nếu lập bảng, giá trị trong mỗi ô bằng giá trị ở góc trái t
 | $p(7,k)$ | 0 | 1 | 3 | 4 | 3 | 2 | 1 | 1 | 0 |
 | $p(8,k)$ | 0 | 1 | 4 | 5 | 5 | 3 | 2 | 1 | 1 |
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ### Ví dụ
 
 ???+ note "Tính số phân hoạch thành k phần"
@@ -86,7 +86,7 @@ Nếu lập bảng, giá trị trong mỗi ô bằng giá trị ở góc trái t
     }
     ```
 
-<span id="&#x751F;&#x6210;&#x51FD;&#x6570;"></span>
+<span id="hàm-sinh"></span>
 ### Hàm sinh
 
 Từ công thức tổng cấp số nhân, ta có:
@@ -105,7 +105,7 @@ $$
 \sum_{n,k=0}^\infty {p(n,k) x^n y^k }=\frac{1}{1-xy}  \frac{1}{1-x^2 y}  \frac{1}{1-x^3 y}\ldots
 $$
 
-<span id="ferrers-&#x56FE;"></span>
+<span id="biểu-đồ-ferrers"></span>
 ### Biểu đồ Ferrers
 
 Biểu đồ Ferrers: biểu diễn mỗi phần của một phân hoạch bằng một hàng gồm các điểm. Số điểm trong hàng bằng kích thước của phần đó.
@@ -126,7 +126,7 @@ Từ định nghĩa liên hợp, ta có kết luận hiển nhiên:
 
 Số phân hoạch có phần lớn nhất bằng $k$ bằng số phân hoạch $k$ phần, đều là $p(n,k)$.
 
-<span id="&#x4E92;&#x5F02;&#x5206;&#x62C6;&#x6570;"></span>
+<span id="số-phân-hoạch-thành-các-phần-phân-biệt"></span>
 ## Số phân hoạch thành các phần phân biệt
 
 Số phân hoạch phân biệt: $pd_n$, là số cách phân hoạch số tự nhiên $n$ sao cho mọi phần đôi một khác nhau (Different).
@@ -167,7 +167,7 @@ Cũng có thể lập bảng giống như với số tổ hợp. Mỗi ô bằng
 | $pd(7,k)$ | 0 | 1 | 3 | 1 | 0 | 0 | 0 | 0 | 0 |
 | $pd(8,k)$ | 0 | 1 | 3 | 2 | 0 | 0 | 0 | 0 | 0 |
 
-<span id="&#x4F8B;&#x9898;_1"></span>
+<span id="ví-dụ_1"></span>
 ### Ví dụ
 
 ???+ note "Tính số phân hoạch phân biệt"
@@ -207,7 +207,7 @@ Cũng có thể lập bảng giống như với số tổ hợp. Mỗi ô bằng
     }
     ```
 
-<span id="&#x5947;&#x5206;&#x62C6;&#x6570;"></span>
+<span id="số-phân-hoạch-lẻ"></span>
 ### Số phân hoạch lẻ
 
 Số phân hoạch lẻ: $po_n$, là số cách phân hoạch số tự nhiên $n$ sao cho mọi phần đều là số lẻ (Odd).
@@ -240,7 +240,7 @@ $$
 
 Cũng có các khái niệm $k$ phần tương ứng. Vì chúng quá phức tạp nên không liệt kê ở đây.
 
-<span id="&#x4E94;&#x8FB9;&#x5F62;&#x6570;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-số-ngũ-giác"></span>
 ## Định lý số ngũ giác
 
 Xét riêng phần mẫu số trong hàm sinh của số phân hoạch:
@@ -317,7 +317,7 @@ $$
 
 Công thức truy hồi này có vô hạn hạng, nhưng nếu quy ước số phân hoạch của số âm là $0$ (số phân hoạch của $0$ đã được định nghĩa là $1$), thì nó rút gọn thành hữu hạn hạng.
 
-<span id="&#x4F8B;&#x9898;_2"></span>
+<span id="ví-dụ_2"></span>
 ### Ví dụ
 
 ???+ note "Tính số phân hoạch"

@@ -4,7 +4,7 @@ Ta gọi một lớp tổ hợp, hoặc gọi tắt là lớp, là $(\mathcal{A}
 
 Bài viết này là một bản giản lược dựa trên chương 1 của sách Analytic Combinatorics.
 
-<span id="&#x65E0;&#x6807;&#x53F7;&#x4F53;&#x7CFB;"></span>
+<span id="hệ-không-gắn-nhãn"></span>
 
 ## Hệ không gắn nhãn
 
@@ -33,7 +33,7 @@ $$
 
 trong đó $\times$ là phép toán hai ngôi, biểu thị tích Descartes của các tập hợp.
 
-<span id="&#x96C6;&#x5408;&#x7684;&#xFF08;&#x4E0D;&#x76F8;&#x4EA4;&#xFF09;&#x5E76;&#x6784;&#x9020;"></span>
+<span id="cấu-trúc-hợp-rời-nhau-của-tập-hợp"></span>
 
 ### Cấu trúc hợp rời nhau của tập hợp
 
@@ -59,7 +59,7 @@ $$
 
 tương ứng với phép cộng chuỗi lũy thừa hình thức.
 
-<span id="&#x96C6;&#x5408;&#x7684;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#x6784;&#x9020;"></span>
+<span id="cấu-trúc-tích-descartes-của-tập-hợp"></span>
 
 ### Cấu trúc tích Descartes của tập hợp
 
@@ -89,7 +89,7 @@ $$
 
 tương ứng với phép nhân chuỗi lũy thừa hình thức.
 
-<span id="&#x96C6;&#x5408;&#x7684;-sequence-&#x6784;&#x9020;"></span>
+<span id="cấu-trúc-sequence-của-tập-hợp"></span>
 
 ### Cấu trúc Sequence của tập hợp
 
@@ -139,7 +139,7 @@ trong đó $Q$ là giả nghịch đảo Pólya (quasi-inversion).
     
     Các hệ số đầu tiên là `0 1 1 2 5 14 42 132 429 1430 4862 16796`; bỏ qua hằng số thì chính là OEIS [A000108](http://oeis.org/A000108).
 
-<span id="&#x96C6;&#x5408;&#x7684;-multiset-&#x6784;&#x9020;"></span>
+<span id="cấu-trúc-multiset-của-tập-hợp"></span>
 
 ### Cấu trúc Multiset của tập hợp
 
@@ -235,7 +235,7 @@ Trong đó $\operatorname{Exp}$ là chỉ số Pólya, cũng được gọi là 
     
     Các hệ số đầu tiên là `1 1 1 2 3 6 11 23 47 106`; bỏ qua hằng số thì chính là OEIS [A000055](https://oeis.org/A000055).
 
-<span id="&#x96C6;&#x5408;&#x7684;-powerset-&#x6784;&#x9020;"></span>
+<span id="cấu-trúc-powerset-của-tập-hợp"></span>
 
 ### Cấu trúc Powerset của tập hợp
 
@@ -279,7 +279,7 @@ Trong đó $\overline{\operatorname{Exp}}$ là chỉ số Pólya sửa đổi.
 
 Dễ thấy $\operatorname{PSET}(\mathcal{A})\subset \operatorname{MSET}(\mathcal{A})$.
 
-<span id="&#x96C6;&#x5408;&#x7684;-cycle-&#x6784;&#x9020;"></span>
+<span id="cấu-trúc-cycle-của-tập-hợp"></span>
 
 ### Cấu trúc Cycle của tập hợp
 
@@ -318,7 +318,7 @@ trong đó $\varphi$ là hàm Euler, còn $\operatorname{Log}$ là logarit Póly
 
 Vì chứng minh khá phức tạp, độc giả có thể tham khảo bài báo [The Cycle Construction](https://epubs.siam.org/doi/10.1137/0404006) của Flajolet hoặc phụ lục của Analytic Combinatorics.
 
-<span id="&#x6709;&#x9650;&#x5236;&#x7684;&#x6784;&#x9020;"></span>
+<span id="cấu-trúc-có-ràng-buộc"></span>
 
 ### Cấu trúc có ràng buộc
 
@@ -464,7 +464,7 @@ Cách tính trên tuy hiệu quả nhưng khá rườm rà. Độc giả có th�
     
     và sẽ thu được cùng một kết quả.
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 
