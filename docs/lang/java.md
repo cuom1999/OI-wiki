@@ -1,7 +1,7 @@
 ## Về Java
 
-Java là một ngôn ngữ lập trình máy tính được sử dụng rộng rãi, có các đặc tính
-**đa nền tảng**, **hướng đối tượng**, **lập trình generic**, và được dùng phổ
+Java là một ngôn ngữ lập trình máy tính được sử dụng rộng rãi, có các tính chất
+**đa nền tảng**, **hướng đối tượng**, **lập trình tổng quát (generic)**, và được dùng phổ
 biến trong phát triển ứng dụng Web cấp doanh nghiệp cũng như ứng dụng di động.
 
 ## Cài đặt môi trường
@@ -12,8 +12,8 @@ Xem [JDK](../tools/compiler.md#jdk).
 
 ### Hàm chính
 
-Java tương tự C/C++: cần một hàm (trong hướng đối tượng gọi là phương thức) làm
-điểm vào để chương trình bắt đầu thực thi.
+Tương tự C/C++, chương trình Java cần một hàm (trong hướng đối tượng gọi là
+phương thức) làm điểm vào để bắt đầu thực thi.
 
 Dạng hàm chính của Java là cố định, như sau:
 
@@ -25,10 +25,10 @@ class Test {
 }
 ```
 
-Một chương trình Java đã đóng gói (tên thường là `*.jar`) có thể có nhiều hàm
-tương tự, nhưng khi chạy chương trình, chỉ một hàm trong số đó được chạy. Hàm
-này được định nghĩa trong tệp `Manifest` của `Jar`; trong các kỳ thi OI thường
-không cần biết đến phần này.
+Một chương trình Java đã đóng gói (thường có tên dạng `*.jar`) có thể có nhiều
+phương thức tương tự, nhưng khi chạy chương trình, chỉ một phương thức trong số
+đó được dùng làm điểm vào. Phương thức này được chỉ định trong tệp `Manifest` của
+JAR; trong các kỳ thi OI thường không cần quan tâm đến phần này.
 
 ### Chú thích
 
@@ -37,31 +37,33 @@ dòng.
 
 ### Kiểu dữ liệu cơ bản
 
-| Tên kiểu | Ý nghĩa |
-| :------: | :-----: |
-| boolean | kiểu Boolean |
-| byte | kiểu byte |
-| char | kiểu ký tự |
-| double | số thực dấu phẩy động độ chính xác kép |
-| float | số thực dấu phẩy động độ chính xác đơn |
-| int | kiểu số nguyên |
-| long | kiểu số nguyên dài |
-| short | kiểu số nguyên ngắn |
-| null | giá trị rỗng |
+Java có tám kiểu nguyên thủy và một giá trị rỗng đặc biệt thường gặp:
+
+| Tên | Ý nghĩa |
+| :-: | :----- |
+| `boolean` | kiểu luận lý |
+| `byte` | số nguyên 8 bit có dấu |
+| `char` | ký tự Unicode 16 bit |
+| `double` | số thực dấu phẩy động độ chính xác kép |
+| `float` | số thực dấu phẩy động độ chính xác đơn |
+| `int` | số nguyên 32 bit có dấu |
+| `long` | số nguyên 64 bit có dấu |
+| `short` | số nguyên 16 bit có dấu |
+| `null` | giá trị rỗng của kiểu tham chiếu, không phải kiểu nguyên thủy |
 
 ### Khai báo biến
 
 ```java
-int a = 12; // đặt a là kiểu số nguyên và gán giá trị 12 cho a
-String str = "Hello, OI-wiki"; // khai báo biến chuỗi str
+int a = 12;  // khai báo a là số nguyên và gán giá trị 12
+String str = "Hello, OI-wiki";  // khai báo biến chuỗi str
 char ch = 'W';
 double PI = 3.1415926;
 ```
 
 ### Từ khóa final
 
-`final` có nghĩa là kết quả cuối cùng, không thể thay đổi. Biến được `final` sửa
-đổi chỉ có thể được gán một lần; sau khi gán thì không thay đổi nữa.
+Từ khóa `final` biểu thị rằng biến chỉ có thể được gán một lần; sau khi gán thì
+không thể gán lại.
 
 ```java
 final double PI = 3.1415926;
@@ -80,25 +82,26 @@ int[] ary = new int[10];
 -   Chuỗi là một lớp dựng sẵn của Java.
 
 ```java
-// Cách đơn giản nhất để tạo một biến chuỗi như sau
+// Cách đơn giản nhất để tạo một biến chuỗi
 String a = "Hello";
 
-// Cũng có thể dùng mảng ký tự để tạo một biến chuỗi
+// Cũng có thể dùng mảng ký tự để tạo biến chuỗi
 char[] stringArray = { 'H', 'e', 'l', 'l', 'o' };
 String s = new String(stringArray);
 ```
 
 ### Gói và import gói
 
-Các lớp (`Class`) trong Java đều được đặt trong các gói (`package`). Trong cùng
-một gói không được có hai lớp trùng tên. Dòng đầu của lớp thường nêu lớp này
+Các lớp (`class`) trong Java có thể được đặt trong các gói (`package`). Trong cùng
+một gói không được có hai lớp trùng tên. Dòng đầu của tệp thường nêu lớp này
 thuộc gói nào. Ví dụ:
 
 ```java
-package org.oi-wiki.tutorial;
+package org.oiwiki.tutorial;
 ```
 
-Quy ước đặt tên gói thường là: `tên_miền_cấp_cao_của_chủ_sở_hữu_dự_án.tên_miền_cấp_hai_của_chủ_sở_hữu_dự_án.tên_dự_án`.
+Quy ước đặt tên gói thường là:
+`tên_miền_cấp_cao_của_chủ_sở_hữu_dự_án.tên_miền_cấp_hai_của_chủ_sở_hữu_dự_án.tên_dự_án`.
 
 Dùng từ khóa `import` để nhập lớp không nằm trong gói của lớp hiện tại. Ví
 dụ, lớp `Scanner` được dùng bên dưới:
@@ -107,12 +110,12 @@ dụ, lớp `Scanner` được dùng bên dưới:
 import java.util.Scanner;
 ```
 
-Nếu muốn nhập toàn bộ lớp dưới một gói, chỉ cần thay tên lớp trước dấu chấm
+Nếu muốn nhập toàn bộ các lớp trong một gói, có thể thay tên lớp trước dấu chấm
 phẩy cuối câu lệnh bằng `*`.
 
 ### Nhập dữ liệu
 
-Có thể dùng lớp `Scanner` để xử lý dữ liệu nhập từ dòng lệnh.
+Có thể dùng lớp `Scanner` để đọc dữ liệu từ luồng nhập chuẩn.
 
 ```java
 package org.oiwiki.tutorial;
@@ -124,14 +127,14 @@ class Test {
         Scanner scan = new Scanner(System.in); // System.in là luồng nhập
         int a = scan.nextInt();
         double b = scan.nextDouble();
-        String c = scan.nextLine();
+        String c = scan.next();
     }
 }
 ```
 
 ### Xuất dữ liệu
 
-Có thể xuất biến theo định dạng.
+Có thể xuất biến theo định dạng bằng `System.out.printf`.
 
 | Ký hiệu | Ý nghĩa |
 | :----: | :-----: |
@@ -167,7 +170,7 @@ Các câu lệnh điều khiển luồng của Java về cơ bản giống C++.
 class Test {
     public static void main(String[] args) {
         if ( /* điều kiện */ ){
-            // thực thi mã trong này khi điều kiện đúng
+            // thực thi đoạn mã này khi điều kiện đúng
         }
     }
 }
@@ -179,9 +182,9 @@ class Test {
 class Test {
     public static void main(String[] args) {
         if ( /* điều kiện */ ) {
-            // thực thi mã trong này khi điều kiện đúng
+            // thực thi đoạn mã này khi điều kiện đúng
         } else {
-            // thực thi mã trong này khi điều kiện sai
+            // thực thi đoạn mã này khi điều kiện sai
         }
     }
 }
@@ -193,11 +196,11 @@ class Test {
 class Test {
     public static void main(String[] args) {
         if ( /* điều kiện */ ) {
-            // thực thi mã trong này khi điều kiện đúng
+            // thực thi đoạn mã này khi điều kiện đúng
         } else if ( /* điều kiện 2 */ ) {
-            // thực thi mã trong này khi điều kiện 2 đúng
+            // thực thi đoạn mã này khi điều kiện 2 đúng
         } else {
-          // thực thi mã trong này khi các điều kiện trên đều sai
+          // thực thi đoạn mã này khi các điều kiện trên đều sai
         }
     }
 }
@@ -216,7 +219,7 @@ class Test {
               // thực thi đoạn mã này khi giá trị của biểu thức khớp giá trị 2
               break;
           default:
-              // thực thi mã trong này khi biểu thức không khớp các giá trị nêu trên
+              // thực thi đoạn mã này khi biểu thức không khớp các giá trị nêu trên
         }
     }
 }
@@ -240,14 +243,14 @@ class Test {
 ```
 
 Cách thứ hai giống cách dùng `foreach` của C++, dùng để lặp qua dữ liệu trong
-mảng hoặc collection. Có thể xem như biến lặp trong cách trước đã được ẩn đi,
+mảng hoặc bộ chứa. Có thể xem như biến lặp trong cách trước đã được ẩn đi,
 dạng như sau:
 
 ```java
 class Test {
     public static void main(String[] args) {
-        for ( /* kiểu phần tử X */ /* tên phần tử Y */ : /* collection Z */ ) {
-            // mỗi lần lặp của khối lệnh này, phần tử Y lần lượt là một phần tử trong collection Z.
+        for ( /* kiểu phần tử X */ /* tên phần tử Y */ : /* bộ chứa Z */ ) {
+            // mỗi lần lặp, phần tử Y lần lượt là một phần tử trong bộ chứa Z.
         }
     }
 }
@@ -281,20 +284,21 @@ class Test {
 
 ### Tên lớp và tên tệp phải nhất quán
 
-Khi tạo chương trình nguồn Java, tên lớp và tên tệp phải nhất quán thì mới biên
-dịch được; nếu không, trình biên dịch sẽ báo không tìm thấy lớp. Thông thường
-tên tệp này sẽ được chỉ định trong từng OJ cụ thể.
+Khi một lớp được khai báo là `public`, tên lớp và tên tệp nguồn Java phải trùng
+nhau thì mới biên dịch được. Trong OJ, tên lớp hoặc tên tệp thường được quy định
+cụ thể trong đề hoặc cấu hình ngôn ngữ.
 
 Ví dụ:
 
 `Add.java`
 
 ```java
-class Add {
+public class Add {
     public static void main(String[] args) {
         // ...
     }
 }
 ```
 
-Trong tệp này cần dùng `Add` làm tên lớp thì mới biên dịch được.
+Vì lớp `Add` được khai báo là `public`, tệp nguồn tương ứng phải có tên
+`Add.java`.
