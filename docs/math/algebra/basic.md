@@ -264,7 +264,7 @@ Cuối cùng, lấy bài toán dưới đây làm ví dụ để minh họa các
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Tropical semiring - Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring)
 
-[^oi-wiki-not-wikipedia]: Vì [OI Wiki không phải bách khoa toàn thư](../../intro/what-oi-wiki-is-not.md#oi-wiki-%E4%B8%8D%E6%98%AF%E7%99%BE%E7%A7%91%E5%85%A8%E4%B9%A6).
+[^oi-wiki-not-wikipedia]: Vì [OI Wiki không phải bách khoa toàn thư](../../intro/what-oi-wiki-is-not.md#oi-wiki-không-phải-bách-khoa-toàn-thư).
 
 [^ring-wiki]: [Ring (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
 

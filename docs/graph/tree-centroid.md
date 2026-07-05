@@ -13,7 +13,7 @@ Nếu sau khi xóa một đỉnh $v$ trong cây $T$, mọi thành phần liên t
     
     Khi thực tế tìm trọng tâm hoặc xử lý một số bài toán, thường có một gốc cây ngầm định. Khi đó, trong các thành phần liên thông thu được sau khi xóa một đỉnh không phải gốc $v$, ngoài các cây con tương ứng với các đỉnh con của đỉnh đó, còn có một cây con "hướng lên". Nếu cha của đỉnh $v$ là $u$, thì cây con "hướng lên" này chính là $T_u^{(v)}$. Khi đề cập đến loại đồ thị con này, bài viết sẽ gọi rõ ràng là cây con "hướng lên". Nếu không có ghi chú đặc biệt, các cây con được đề cập trong bài viết đều không bao gồm loại cây con "hướng lên" này.
 
-Lưu ý rằng các thành phần liên thông thu được cũng là cây không gốc. Bằng cách xóa trọng tâm của cây, một cây sẽ biến thành nhiều cây có kích thước nhiều nhất bằng một nửa cây ban đầu. Tính chất này của trọng tâm giúp có thể áp dụng tư tưởng chia để trị trên cây. Đây là [phân trị theo điểm](./tree-divide.md#%E7%82%B9%E5%88%86%E6%B2%BB), còn được gọi là phân rã trọng tâm của cây.
+Lưu ý rằng các thành phần liên thông thu được cũng là cây không gốc. Bằng cách xóa trọng tâm của cây, một cây sẽ biến thành nhiều cây có kích thước nhiều nhất bằng một nửa cây ban đầu. Tính chất này của trọng tâm giúp có thể áp dụng tư tưởng chia để trị trên cây. Đây là [phân trị theo đỉnh](./tree-divide.md#phân-trị-theo-đỉnh), còn được gọi là phân rã trọng tâm của cây.
 
 ## Tính chất
 

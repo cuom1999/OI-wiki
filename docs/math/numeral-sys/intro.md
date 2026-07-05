@@ -7,7 +7,7 @@ Nói chung, một số trong một hệ ghi số là một chuỗi ký hiệu, �
 
 Trong lập trình thi đấu, ta thường chỉ quan tâm đến quan hệ chuyển đổi giữa các hệ ghi số khác nhau; xem chi tiết tại [hệ cơ số](./base.md).
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Numeral system - Wikipedia](https://en.wikipedia.org/wiki/Numeral_system)
