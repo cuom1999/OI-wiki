@@ -1,7 +1,7 @@
 author: 0x03A6, abc1763613206, auuuu4, CCXXXI, Conless, Enter-tainer, fanenr, happyZYM, hsfzLZH1, iamtwz, LeverImmy, leverimmy, Lhcfl, Marcythm, RIvance, Tiphereth-A, trudbot, Xeniume, Xeonacid, YBYCS, yuhuoji
 
-Cây đỏ-đen là một loại cây tìm kiếm nhị phân tự cân bằng.
-Mỗi nút lưu thêm một trường màu ("RED" hoặc "BLACK"), dùng để bảo đảm cây vẫn cân bằng khi chèn và xóa.
+Cây đỏ-đen là một loại cây tìm kiếm nhị phân tự cân bằng. Mỗi nút lưu thêm một trường màu ("RED" hoặc "BLACK"), dùng để
+bảo đảm cây vẫn cân bằng khi chèn và xóa.
 
 Cây đỏ-đen là một biến thể của cây B bậc 4 ([cây 2-3-4](https://en.wikipedia.org/wiki/2%E2%80%933%E2%80%934_tree)).[^gilbas1978]
 
@@ -49,9 +49,8 @@ Hình dưới đây là một cây đỏ-đen hợp lệ:
     Bài này dùng cách cài đặt trong *Introduction to Algorithms*,
     chia việc duy trì cân bằng sau khi chèn thành 3 trường hợp và sau khi xóa thành 4 trường hợp.
 
-Các thao tác duyệt cây, tìm giá trị nhỏ nhất/lớn nhất, tìm kiếm phần tử, tìm hạng của phần tử,
-truy ngược phần tử theo hạng, tìm tiền nhiệm/kế nhiệm, v.v. của cây đỏ-đen giống với [cây tìm kiếm nhị phân](./bst.md),
-nên không trình bày lại.
+Các thao tác duyệt cây, tìm giá trị nhỏ nhất/lớn nhất, tìm kiếm phần tử, tìm hạng của phần tử, truy ngược phần tử theo
+hạng, tìm tiền nhiệm/kế nhiệm, v.v. của cây đỏ-đen giống với [cây tìm kiếm nhị phân](./bst.md), nên không trình bày lại.
 
 Ngoài ra, trong chú thích mã của phần duy trì cân bằng khi chèn/xóa bên dưới, dùng các quy ước sau:
 
@@ -62,8 +61,8 @@ Ngoài ra, trong chú thích mã của phần duy trì cân bằng khi chèn/xó
 
 ### Phép xoay
 
-Thao tác xoay là điểm mấu chốt giúp phần lớn các cây cân bằng duy trì cân bằng.
-Nó có thể thay đổi độ sâu của các nút cục bộ mà không làm thay đổi kết quả duyệt trung thứ tự của một cây tìm kiếm nhị phân hợp lệ.
+Thao tác xoay là điểm mấu chốt giúp phần lớn các cây cân bằng duy trì cân bằng. Nó có thể thay đổi độ sâu của các nút
+cục bộ mà không làm thay đổi kết quả duyệt trung thứ tự của một cây tìm kiếm nhị phân hợp lệ.
 
 ![Các phép xoay trong cây đỏ-đen](images/rbtree-rotate.svg)
 
@@ -93,11 +92,13 @@ Sau khi chèn xong, cần chỉnh sửa dựa trên trạng thái của nút v�
 ???+ note "Ghi chú"
     Để hiểu sâu hơn, có thể tự kiểm tra xem sau khi duy trì cân bằng thì tính chất 4 có được thỏa mãn hay không.
 
-Vì nút được chèn, nếu không phải là nút gốc, chắc chắn là nút đỏ, nên sau khi chèn có thể vi phạm tính chất 3 và cần duy trì tính cân bằng.
+Vì nút được chèn, nếu không phải là nút gốc, chắc chắn là nút đỏ, nên sau khi chèn có thể vi phạm tính chất 3 và cần duy
+trì cân bằng.
 
 Gọi nút được chèn là $n$, nút cha là $p$, nút ông là $g$, nút chú là $u$. Theo tính chất 3, $g$ chắc chắn có màu đen.
 
-Ta bắt đầu từ vị trí chèn và duy trì đệ quy lên trên. Nếu $p$ có màu đen thì có thể dừng; nếu không, chia thành 3 trường hợp.
+Bắt đầu từ vị trí chèn và duy trì đệ quy lên trên. Nếu $p$ có màu đen thì có thể dừng; nếu không, chia thành 3 trường
+hợp.
 
 ```cpp
 --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-aux1"
@@ -245,14 +246,17 @@ rồi tô $d$ thành đen là có thể kết thúc việc duy trì cân bằng.
 
 ## Mã tham khảo
 
-Đoạn mã dưới đây là một set được cài đặt bằng cây đỏ-đen:
+Đoạn mã dưới đây là một `set` được cài đặt bằng cây đỏ-đen:
 
 ??? note "Cài đặt"
     ```cpp
     --8<-- "docs/ds/code/rbtree/rbtree.hpp:full"
     ```
 
-??? note "Bài tập ví dụ: [Luogu P3369 - mẫu cây cân bằng thông thường](https://www.luogu.com.cn/problem/P3369) và [Luogu P6136 - mẫu cây cân bằng thông thường, bản tăng cường dữ liệu](https://www.luogu.com.cn/problem/P6136)"
+??? note "Bài tập ví dụ"
+    [Luogu P3369 - mẫu cây cân bằng thông thường](https://www.luogu.com.cn/problem/P3369) và
+    [Luogu P6136 - mẫu cây cân bằng thông thường, bản tăng cường dữ liệu](https://www.luogu.com.cn/problem/P6136)
+
     ```cpp
     --8<-- "docs/ds/code/rbtree/rbtree.hpp:class"
     --8<-- "docs/ds/code/rbtree/rbtree_1.cpp:main"
@@ -260,25 +264,22 @@ rồi tô $d$ thành đen là có thể kết thúc việc duy trì cân bằng.
 
 ## Quan hệ với cây 2-3-4
 
-Cây 2-3-4 là cây B bậc 4. Giống như cây B nói chung,
-cây 2-3-4 có thể thực hiện tìm kiếm, chèn và xóa trong thời gian $O(\log n)$.
-Các nút của cây 2-3-4 được chia thành ba loại: nút 2, nút 3 và nút 4,
-lần lượt chứa một, hai hoặc ba phần tử dữ liệu.
-Tất cả các nút lá đều ở cùng một độ sâu (tầng dưới cùng), và mọi dữ liệu đều được lưu trữ có thứ tự.
+Cây 2-3-4 là cây B bậc 4. Giống như cây B nói chung, cây 2-3-4 có thể thực hiện tìm kiếm, chèn và xóa trong thời gian
+$O(\log n)$. Các nút của cây 2-3-4 được chia thành ba loại: nút 2, nút 3 và nút 4, lần lượt chứa một, hai hoặc ba phần
+tử dữ liệu. Tất cả các nút lá đều ở cùng một độ sâu (tầng dưới cùng), và mọi dữ liệu đều được lưu trữ có thứ tự.
 
-Cây 2-3-4 và cây đỏ-đen là đẳng cấu; bất kỳ cây đỏ-đen nào cũng tương ứng duy nhất với một cây 2-3-4.
-Các thao tác chèn và xóa trên cây 2-3-4 gây ra việc mở rộng, tách và gộp nút,
-tương đương với đổi màu và xoay trong cây đỏ-đen.
-Hình dưới đây cho thấy các nút 2, nút 3 và nút 4 của cây 2-3-4 tương ứng với các nút trong cây đỏ-đen.
-Lưu ý rằng nút 3 của cây 2-3-4 tương ứng với hai trường hợp trong cây đỏ-đen:
-nút đỏ nghiêng trái và nút đỏ nghiêng phải; do đó một cây 2-3-4 có thể tương ứng với nhiều cây đỏ-đen.
+Cây 2-3-4 và cây đỏ-đen là đẳng cấu; bất kỳ cây đỏ-đen nào cũng tương ứng duy nhất với một cây 2-3-4. Các thao tác chèn
+và xóa trên cây 2-3-4 gây ra việc mở rộng, tách và gộp nút, tương đương với đổi màu và xoay trong cây đỏ-đen.
+
+Hình dưới đây cho thấy các nút 2, nút 3 và nút 4 của cây 2-3-4 tương ứng với các nút trong cây đỏ-đen. Lưu ý rằng nút 3
+của cây 2-3-4 tương ứng với hai trường hợp trong cây đỏ-đen: nút đỏ nghiêng trái và nút đỏ nghiêng phải. Do đó, một cây
+2-3-4 có thể tương ứng với nhiều cây đỏ-đen.
 
 ![Đối ứng giữa nút 2, nút 3, nút 4 và cây đỏ-đen](images/2-3-4-tree-rbt-1.svg)
 
-Hình dưới đây là một cây đỏ-đen và cây 2-3-4 tương ứng với nó.
-Nếu đưa các nút đỏ trong cây đỏ-đen lên hai phía trái phải của nút cha để tạo thành một nút cây B,
-có thể thu được cây 2-3-4 tương ứng.
-Số nút của cây đỏ-đen bằng số phần tử dữ liệu của cây 2-3-4.
+Hình dưới đây là một cây đỏ-đen và cây 2-3-4 tương ứng với nó. Nếu đưa các nút đỏ trong cây đỏ-đen lên hai phía trái
+phải của nút cha để tạo thành một nút cây B, có thể thu được cây 2-3-4 tương ứng. Số nút của cây đỏ-đen bằng số phần tử
+dữ liệu của cây 2-3-4.
 
 ![Cây đỏ-đen và cây 2-3-4 tương ứng](images/2-3-4-tree-rbt-2.svg)
 
@@ -286,9 +287,9 @@ Có thể hiểu thao tác chèn và xóa của cây đỏ-đen bằng cách đ�
 
 ## Sử dụng trong các dự án kỹ thuật thực tế
 
-Cây đỏ-đen là một trong những cây cân bằng trong bộ nhớ có hiệu quả tổng hợp cao và được dùng rộng rãi trong công nghiệp,
-nên có phạm vi ứng dụng rộng trong các dự án kỹ thuật thực tế.
-Dưới đây liệt kê một vài trường hợp sử dụng thực tế, kèm liên kết mã nguồn tương ứng để tiện đối chiếu.
+Cây đỏ-đen là một trong những cây cân bằng trong bộ nhớ có hiệu quả tổng hợp cao và được dùng rộng rãi trong công
+nghiệp, nên có phạm vi ứng dụng rộng trong các dự án kỹ thuật thực tế. Dưới đây liệt kê một vài trường hợp sử dụng thực
+tế, kèm liên kết mã nguồn tương ứng để tiện đối chiếu.
 
 ### Linux
 
@@ -296,9 +297,9 @@ Mã nguồn:
 
 -   [`linux/lib/rbtree.c`](https://elixir.bootlin.com/linux/latest/source/lib/rbtree.c)
 
-Trong Linux, mọi thao tác trên cây đỏ-đen đều được cài đặt bằng vòng lặp,
-vừa bảo đảm hiệu suất vừa bổ sung nhiều chú thích để tăng khả năng đọc mã.
-Cây đỏ-đen trong nhân Linux được sử dụng rất rộng rãi; dưới đây chỉ liệt kê vài ví dụ kinh điển.
+Trong Linux, mọi thao tác trên cây đỏ-đen đều được cài đặt bằng vòng lặp, vừa bảo đảm hiệu suất vừa bổ sung nhiều chú
+thích để tăng khả năng đọc mã. Cây đỏ-đen trong nhân Linux được sử dụng rất rộng rãi; dưới đây chỉ liệt kê vài ví dụ
+kinh điển.
 
 -   [Lập lịch tác vụ không thời gian thực CFS](https://www.kernel.org/doc/html/latest/scheduler/sched-design-CFS.html)
 
@@ -307,14 +308,13 @@ Cây đỏ-đen trong nhân Linux được sử dụng rất rộng rãi; dướ
     nhằm lập lịch mọi tác vụ công bằng và hiệu quả hơn.
     CFS bỏ active/expired array và việc tính toán động độ ưu tiên,
     không còn theo dõi thời gian ngủ của tác vụ hay phân biệt tác vụ có tương tác hay không.
-    Thay vào đó, trong quá trình lập lịch, nó dùng cây đỏ-đen có khóa được tính dựa trên thời gian để chọn tác vụ tiếp theo,
-    và xác định độ ưu tiên lập lịch theo trạng thái thời gian CPU mà mọi tác vụ đã chiếm dụng.
+    Thay vào đó, trong quá trình lập lịch, nó dùng cây đỏ-đen có khóa được tính dựa trên thời gian để chọn tác vụ tiếp
+    theo, và xác định độ ưu tiên lập lịch theo trạng thái thời gian CPU mà mọi tác vụ đã chiếm dụng.
 
 -   [epoll](https://man7.org/linux/man-pages/man7/epoll.7.html)
 
-    Tên đầy đủ của epoll là event poll, một cách cài đặt IO multiplexing trong nhân Linux
-    và là phiên bản cải tiến của poll/select ban đầu.
-    Cài đặt epoll trong Linux chọn dùng cây đỏ-đen để lưu trữ file descriptor.
+    Tên đầy đủ của epoll là event poll, một cách cài đặt IO multiplexing trong nhân Linux và là phiên bản cải tiến của
+    poll/select ban đầu. Cài đặt epoll trong Linux chọn dùng cây đỏ-đen để lưu trữ file descriptor.
 
 ### Nginx
 
@@ -323,12 +323,11 @@ Mã nguồn:
 -   [`nginx/src/core/ngx_rbtree.h`](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.h)
 -   [`nginx/src/core/ngx_rbtree.c`](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.c)
 
-Bộ định thời ở user space trong nginx được cài đặt bằng cây đỏ-đen.
-Trong nginx, mọi nút timer đều được duy trì bởi một cây đỏ-đen;
-trong mỗi vòng lặp của tiến trình worker đều gọi hàm `ngx_process_events_and_timers`,
-và trong hàm này sẽ gọi hàm xử lý bộ định thời `ngx_event_expire_timers`.
-Mỗi lần, hàm này liên tục lấy ra nút có giá trị thời gian nhỏ nhất từ cây đỏ-đen,
-kiểm tra xem chúng đã timeout hay chưa, rồi thực thi hàm của chúng cho đến khi nút được lấy ra chưa timeout.
+Bộ định thời ở user space trong nginx được cài đặt bằng cây đỏ-đen. Trong nginx, mọi nút timer đều được duy trì bởi một
+cây đỏ-đen; trong mỗi vòng lặp của tiến trình worker đều gọi hàm `ngx_process_events_and_timers`, và trong hàm này sẽ
+gọi hàm xử lý bộ định thời `ngx_event_expire_timers`. Mỗi lần, hàm này liên tục lấy ra nút có giá trị thời gian nhỏ nhất
+từ cây đỏ-đen, kiểm tra xem chúng đã timeout hay chưa, rồi thực thi hàm của chúng cho đến khi nút được lấy ra chưa
+timeout.
 
 Có nhiều tài nguyên công khai phân tích mã nguồn cây đỏ-đen trong nginx, có thể tham khảo thêm khi cần.
 
@@ -341,7 +340,9 @@ Mã nguồn:
     -   [`libstdc++-v3/include/bits/stl_tree.h`](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_tree.h)
     -   [`libstdc++-v3/src/c++98/tree.cc`](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/src/c%2B%2B98/tree.cc)
 
-    Ngoài ra, `libstdc++` cung cấp [`__gnu_cxx::rb_tree`](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/ext/rb_tree) trong `<ext/rb_tree>`.
+    Ngoài ra, `libstdc++` cung cấp
+    [`__gnu_cxx::rb_tree`](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/ext/rb_tree) trong
+    `<ext/rb_tree>`.
     Nó kế thừa `std::_Rb_tree` và có thể xem là một bí danh kiểu dành cho sử dụng bên ngoài.
     Cần chú ý rằng header này **không phải** là một phần của tiêu chuẩn C++,
     nên không khuyến nghị sử dụng nếu không thật cần thiết.
@@ -354,10 +355,9 @@ Mã nguồn:
 -   Microsoft STL
     -   [`stl/inc/xtree`](https://github.com/microsoft/STL/blob/main/stl/inc/xtree)
 
-Cấu trúc dữ liệu bên trong của `std::set` và `std::map` trong phần lớn các STL chính là cây đỏ-đen
-(ví dụ những cài đặt đã nêu ở trên).
-Tuy nhiên, tiêu chuẩn C++ không quy định bắt buộc phải cài đặt `std::set` và `std::map` bằng cây đỏ-đen,
-nên trong dự án kỹ thuật không nên sử dụng trực tiếp cấu trúc dữ liệu nội bộ của `std::set` và `std::map`.
+Cấu trúc dữ liệu bên trong của `std::set` và `std::map` trong phần lớn các STL chính là cây đỏ-đen (ví dụ những cài đặt
+đã nêu ở trên). Tuy nhiên, tiêu chuẩn C++ không quy định bắt buộc phải cài đặt `std::set` và `std::map` bằng cây
+đỏ-đen, nên trong dự án kỹ thuật không nên sử dụng trực tiếp cấu trúc dữ liệu nội bộ của `std::set` và `std::map`.
 
 ### OpenJDK
 
@@ -367,9 +367,9 @@ Mã nguồn:
 -   [`java.util.TreeSet<K, V>`](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/TreeSet.java)
 -   [`java.util.HashMap<K, V>`](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/HashMap.java)
 
-Trong JDK, `TreeMap` và `TreeSet` đều dùng cây đỏ-đen làm cấu trúc dữ liệu nền.
-Đồng thời, sau JDK 1.8, khi độ dài danh sách liên kết của mỗi bucket trong bảng băm nội bộ của `HashMap` vượt quá 8,
-nó cũng tự động chuyển thành cây đỏ-đen để nâng cao hiệu suất tìm kiếm.
+Trong JDK, `TreeMap` và `TreeSet` đều dùng cây đỏ-đen làm cấu trúc dữ liệu nền. Đồng thời, sau JDK 1.8, khi độ dài danh
+sách liên kết của mỗi bucket trong bảng băm nội bộ của `HashMap` vượt quá 8, nó cũng tự động chuyển thành cây đỏ-đen để
+nâng cao hiệu suất tìm kiếm.
 
 ## Tài liệu tham khảo
 
@@ -377,7 +377,9 @@ nó cũng tự động chuyển thành cây đỏ-đen để nâng cao hiệu su
 -   [Red-Black Tree - Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
 -   [Red-Black Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
 
-[^gilbas1978]: L. J. Guibas and R. Sedgewick, "A dichromatic framework for balanced trees,"*19th Annual Symposium on Foundations of Computer Science (sfcs 1978)*, Ann Arbor, MI, USA, 1978, pp. 8-21, doi:[10.1109/SFCS.1978.3](https://doi.org/10.1109%2FSFCS.1978.3).
+[^gilbas1978]: L. J. Guibas and R. Sedgewick, "A dichromatic framework for balanced trees," *19th Annual Symposium on
+    Foundations of Computer Science (sfcs 1978)*, Ann Arbor, MI, USA, 1978, pp. 8-21,
+    doi:[10.1109/SFCS.1978.3](https://doi.org/10.1109%2FSFCS.1978.3).
 
 [^cite_note-cormen2009-18]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Cormen2009-18>
 
