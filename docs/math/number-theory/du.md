@@ -2,7 +2,7 @@ author: hsfzLZH1, sshwy, StudyingFather, Marcythm
 
 Sàng Dujiao được dùng để xử lí một lớp bài toán tính tổng tiền tố của hàm số học. Với hàm số học $f$, sàng Dujiao có thể tính $S(n)=\sum_{i=1}^{n}f(i)$ với độ phức tạp thấp hơn tuyến tính.
 
-<span id="&#x7B97;&#x6CD5;&#x601D;&#x60F3;"></span>
+<span id="ý-tưởng-thuật-toán"></span>
 ## Ý tưởng thuật toán
 
 Ta tìm cách xây dựng một công thức truy hồi của $S(n)$ theo $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$.
@@ -16,7 +16,7 @@ $$
 \end{aligned}
 $$
 
-Trong đó $f*g$ là [tích chập Dirichlet](./dirichlet.md#dirichlet-%E5%8D%B7%E7%A7%AF) của hai hàm số học $f$ và $g$.
+Trong đó $f*g$ là [tích chập Dirichlet](./dirichlet.md#tích-chập-dirichlet) của hai hàm số học $f$ và $g$.
 
 ???+ note "Chứng minh sơ lược"
     $g(d)f\left(\frac{i}{d}\right)$ chính là phần đóng góp của mọi $i\leq n$. Vì vậy ta đổi thứ tự liệt kê, lần lượt liệt kê $d$ và $\frac{i}{d}$ (tương ứng với $i,j$ mới):
@@ -56,10 +56,10 @@ Khi đó ta có thể tính $g(1)S(n)$ trong thời gian ngắn.
 
     Độ phức tạp để tính $\sum_{k\leq m} (f*g)(k)$ và $\sum_{k \leq m} g(k)$ đều là $O(1)$, nên có thể cân nhắc dùng sàng Dujiao.
 
-<span id="&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;"></span>
+<span id="độ-phức-tạp-thời-gian"></span>
 ## Độ phức tạp thời gian
 
-Đặt $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$. Từ [tính chất](./sqrt-decomposition.md#%E6%80%A7%E8%B4%A8) của chia đoạn số học, với mọi $m\in R(n)$ đều có $R(m)\subseteq R(n)$. Nói cách khác, sau khi dùng ghi nhớ, chỉ cần tính $S(k)$ một lần với mọi $k\in R(n)$ là có thể thu được giá trị trên $R(n)$. Số lượng điểm này là $|R(n)|=O(\sqrt{n})$.
+Đặt $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$. Từ [tính chất](./sqrt-decomposition.md#tính-chất) của chia đoạn số học, với mọi $m\in R(n)$ đều có $R(m)\subseteq R(n)$. Nói cách khác, sau khi dùng ghi nhớ, chỉ cần tính $S(k)$ một lần với mọi $k\in R(n)$ là có thể thu được giá trị trên $R(n)$. Số lượng điểm này là $|R(n)|=O(\sqrt{n})$.
 
 Giả sử độ phức tạp để tính $\sum_{i=1}^n(f * g)(i)$ và $\sum_{i=1}^n g(i)$ đều là $O(1)$. Gọi độ phức tạp tính $S(n)$ là $T(n)$, khi đó:
 
@@ -134,16 +134,16 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
 
         Trên thực tế, độ phức tạp dưới tuyến tính của sàng Dujiao được bảo đảm bởi ghi nhớ. Chỉ sau khi dùng ghi nhớ mới bảo đảm không xuất hiện hạng tổng nhiều tầng đó.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
-<span id="&#x95EE;&#x9898;&#x4E00;"></span>
+<span id="bài-toán-1"></span>
 ### Bài toán 1
 
 ???+ note "[P4213 mẫu sàng Dujiao (Sum)](https://www.luogu.com.cn/problem/P4213)"
     Tính giá trị của $S_1(n)= \sum_{i=1}^{n} \mu(i)$ và $S_2(n)= \sum_{i=1}^{n} \varphi(i)$, với $1\leq n<2^{31}$.
 
-=== "Tổng tiền tố của hàm Mobius"
+=== "Tổng tiền tố của hàm Möbius"
     Ta biết:
 
     $$
@@ -157,14 +157,14 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
     \end{aligned}
     $$
 
-    Phần suy ra độ phức tạp thời gian xem tại mục [Độ phức tạp thời gian](#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6).
+    Phần suy ra độ phức tạp thời gian xem tại mục [Độ phức tạp thời gian](#độ-phức-tạp-thời-gian).
 
     Với các giá trị lớn, cần dùng `map`/`unordered_map` để lưu giá trị tương ứng, thuận tiện cho việc dùng lại kết quả đã tính trước đó.
 
 === "Tổng tiền tố của hàm Euler"
-    Dĩ nhiên cũng có thể dùng sàng Dujiao để tính tổng tiền tố của $\varphi (x)$, nhưng cách tốt hơn là áp dụng đảo Mobius.
+    Dĩ nhiên cũng có thể dùng sàng Dujiao để tính tổng tiền tố của $\varphi (x)$, nhưng cách tốt hơn là áp dụng đảo Möbius.
 
-    === "Đảo Mobius"
+    === "Đảo Möbius"
         $$
         \begin{aligned}
             \sum_{i=1}^n \sum_{j=1}^n [\gcd(i,j)=1] & =\sum_{i=1}^n \sum_{j=1}^n \sum_{d \mid i,d \mid j} \mu(d)    \\
@@ -174,7 +174,7 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
 
         Vì đề bài yêu cầu $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$, ta chỉ cần loại trường hợp $i=1,j=1$ rồi chia kết quả cho $2$.
 
-        Có thể thấy chỉ cần tính tổng tiền tố của hàm Mobius là có thể nhanh chóng tính được tổng tiền tố của hàm Euler. Độ phức tạp thời gian là $O\left(n^{\frac 2 3}\right)$.
+        Có thể thấy chỉ cần tính tổng tiền tố của hàm Möbius là có thể nhanh chóng tính được tổng tiền tố của hàm Euler. Độ phức tạp thời gian là $O\left(n^{\frac 2 3}\right)$.
 
     === "Sàng Dujiao"
         Tính $S(n)=\sum_{i=1}^n\varphi(i)$.
@@ -193,7 +193,7 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
     --8<-- "docs/math/code/du/du_1.cpp"
     ```
 
-<span id="&#x95EE;&#x9898;&#x4E8C;"></span>
+<span id="bài-toán-2"></span>
 ### Bài toán 2
 
 ???+ note "[Luogu P3768: Bài toán toán học đơn giản](https://www.luogu.com.cn/problem/P3768)"
@@ -205,7 +205,7 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
 
     Trong đó $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$, và $p$ là số nguyên tố.
 
-Dùng $\varphi * 1=\operatorname{id}$ để biến đổi bằng đảo Mobius:
+Dùng $\varphi * 1=\operatorname{id}$ để biến đổi bằng đảo Möbius:
 
 $$
 \sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
@@ -259,7 +259,7 @@ Sau đó chỉ cần chia đoạn để tính.
     --8<-- "docs/math/code/du/du_2.cpp"
     ```
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ### Tài liệu tham khảo
 
 1.  Ren Zhizhou, 2016, "Một số phương pháp tính tổng hàm nhân", luận văn đội tuyển dự bị Olympic Tin học Quốc gia Trung Quốc năm 2016

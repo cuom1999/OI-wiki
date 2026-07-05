@@ -386,7 +386,7 @@ $$
 \end{aligned}
 $$
 
-Ở đây $\varphi(n)$ là [hàm Euler](./euler-totient.md). Công thức này có thể được tính trong $O(n)$ bằng [sàng tuyến tính](./sieve.md#tính-hàm-euler-bằng-sàng), và giảm xuống $O(n^{2/3})$ bằng [sàng Du](./du.md#%E9%97%AE%E9%A2%98%E4%B8%80).
+Ở đây $\varphi(n)$ là [hàm Euler](./euler-totient.md). Công thức này có thể được tính trong $O(n)$ bằng [sàng tuyến tính](./sieve.md#tính-hàm-euler-bằng-sàng), và giảm xuống $O(n^{2/3})$ bằng [sàng Du](./du.md#bài-toán-1).
 
 So với việc trực tiếp tính độ dài dãy, tình huống thường gặp hơn là cần tìm chỉ số của một phân số $r=\dfrac{p}{q}$ trong dãy $F_k$. Điều này tương đương với việc tính
 
