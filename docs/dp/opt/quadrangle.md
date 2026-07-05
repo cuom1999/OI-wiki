@@ -4,7 +4,7 @@ Tối ưu bằng bất đẳng thức tứ giác sử dụng tính đơn điệu
 
 ## Kiến thức cơ bản
 
-<span id="&#22522;&#30784;&#30693;&#35782;"></span>
+<span id="kiến-thức-cơ-bản"></span>
 
 Xét trường hợp đơn giản nhất: ta cần giải một loạt bài toán tối ưu sau:
 
@@ -55,7 +55,7 @@ Hai tính chất này không loại trừ nhau; có thể tồn tại trường 
 
 ### Chia để trị
 
-<span id="&#20998;&#27835;"></span>
+<span id="chia-để-trị"></span>
 
 Để tính mọi trạng thái, ta chỉ cần tìm mọi điểm quyết định tối ưu. Để tìm $\operatorname{opt}(i)$ cho mọi $1 \leq i \leq n$, trước hết tính $\operatorname{opt}(n/2)$, rồi lần lượt tính $\operatorname{opt}(i)$ trên các đoạn $1 \leq i < n/2$ và $n/2 < i \leq n$. Lúc này, $\operatorname{opt}(i)$ của nửa trước chắc chắn nằm giữa $1$ và $\operatorname{opt}(n/2)$ (kể cả hai đầu), còn $\operatorname{opt}(i)$ của nửa sau chắc chắn nằm giữa $\operatorname{opt}(n/2)$ và $n$ (kể cả hai đầu). Với hai đoạn con, ta xử lý tương tự cho đến khi tính được quyết định tối ưu của mọi bài toán. Nếu trong quá trình chia để trị ta ghi lại cận dưới và cận trên của vùng tìm kiếm, có thể bảo đảm độ phức tạp thuật toán là $O(n\log n)$. Cây đệ quy có $O(\log n)$ tầng, và trên mỗi tầng, một điểm quyết định được tính nhiều nhất hai lần, nên tổng số lần tính là $O(n\log n)$.
 
@@ -64,11 +64,11 @@ Hai tính chất này không loại trừ nhau; có thể tồn tại trường 
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle-divide-conquer.cpp:core"
     ```
 
-Ngoài trường hợp cơ bản có truy cập ngẫu nhiên, thuật toán chia để trị cũng có thể áp dụng khi $w(j,i)$ chỉ hỗ trợ truy cập bằng di chuyển. Chỉ cần duy trì con trỏ $(j,i)$ và giá trị hàm tương ứng $w(j,i)$ trong quá trình tính; khi cần truy vấn giá trị mới, di chuyển con trỏ một cách trực tiếp đến vị trí hiện tại và cập nhật giá trị hàm. Cách làm này vẫn có độ phức tạp thời gian $O(n\log n)$. Thảo luận chi tiết hơn về việc này có trong mục [thuật toán LARSCH giản lược](#%E7%AE%80%E5%8C%96-larsch-%E7%AE%97%E6%B3%95) bên dưới. Tuy nhiên, thuật toán chia để trị không giải quyết được trường hợp $w(j,i)$ cần tính động, vì nó không thể tính điểm quyết định tối ưu nhỏ nhất $\operatorname{opt}(n/2)$ ở trung điểm khi các bài toán ở nửa trái vẫn chưa được giải.
+Ngoài trường hợp cơ bản có truy cập ngẫu nhiên, thuật toán chia để trị cũng có thể áp dụng khi $w(j,i)$ chỉ hỗ trợ truy cập bằng di chuyển. Chỉ cần duy trì con trỏ $(j,i)$ và giá trị hàm tương ứng $w(j,i)$ trong quá trình tính; khi cần truy vấn giá trị mới, di chuyển con trỏ một cách trực tiếp đến vị trí hiện tại và cập nhật giá trị hàm. Cách làm này vẫn có độ phức tạp thời gian $O(n\log n)$. Thảo luận chi tiết hơn về việc này có trong mục [thuật toán LARSCH giản lược](#thuật-toán-larsch-giản-lược) bên dưới. Tuy nhiên, thuật toán chia để trị không giải quyết được trường hợp $w(j,i)$ cần tính động, vì nó không thể tính điểm quyết định tối ưu nhỏ nhất $\operatorname{opt}(n/2)$ ở trung điểm khi các bài toán ở nửa trái vẫn chưa được giải.
 
 ### Hàng đợi nhị phân
 
-<span id="&#20108;&#20998;&#38431;&#21015;"></span>
+<span id="hàng-đợi-nhị-phân"></span>
 
 Chú ý rằng với mỗi điểm quyết định $j$, các bài toán $i$ mà trong đó $j$ trở thành điểm quyết định tối ưu nhỏ nhất chắc chắn tạo thành một khoảng. Có thể dùng hàng đợi đơn điệu để ghi lại, cho đến hiện tại, khoảng bài toán mà mỗi điểm quyết định có thể giải. Khi đó nghiệm tối ưu của bài toán có thể được tính trực tiếp từ các điểm quyết định ghi trong hàng đợi.
 
@@ -125,7 +125,7 @@ Vì thuật toán hàng đợi nhị phân xét tuần tự mọi bài toán và
 
 ### Thuật toán LARSCH giản lược
 
-<span id="&#31616;&#21270;-larsch-&#31639;&#27861;"></span>
+<span id="thuật-toán-larsch-giản-lược"></span>
 
 Hai thuật toán đầu đều không xử lý được trường hợp $w(j,i)$ vừa cần tính động, vừa chỉ hỗ trợ truy cập bằng di chuyển. Mục này giới thiệu một thuật toán có thể đồng thời vượt qua hai khó khăn đó. Nó là phiên bản giản lược của thuật toán LARSCH[^larsch] do Larmore và Schieber đề xuất năm 1991, nên được gọi là **thuật toán LARSCH giản lược**. Phiên bản gốc của thuật toán có thể giải bài toán DP có tính đơn điệu quyết định trong thời gian $O(n)$, nhưng cài đặt phức tạp hơn nên bài viết không giới thiệu.
 
@@ -191,7 +191,7 @@ Vì trước khi giải các bài toán trong khoảng $(l,r]$, thuật toán n�
 
 ## Bài toán phân tách khoảng
 
-<span id="&#21306;&#38388;&#20998;&#25286;&#38382;&#39064;"></span>
+<span id="bài-toán-phân-tách-khoảng"></span>
 
 Xét bài toán tách một khoảng thành nhiều khoảng con. Nói hình thức, tách khoảng cho trước $[1,n]$ thành $[a_1,b_1],\cdots,[a_k,b_k]$, trong đó $a_1=1$, $b_k=n$, và $b_{i}+1=a_{i+1}$ với mọi $i < k$. Với một cách tách cho trước, chi phí là $\sum_{i=1}^kw(a_i,b_i)$. Bài toán yêu cầu cực tiểu hóa chi phí này. Có thể viết công thức chuyển trạng thái 1D1D như sau.
 
@@ -203,7 +203,7 @@ $$
 
 ### Trường hợp giới hạn số khoảng
 
-<span id="&#38480;&#21046;&#21306;&#38388;&#20010;&#25968;&#30340;&#24773;&#24418;"></span>
+<span id="trường-hợp-giới-hạn-số-khoảng"></span>
 
 Bài toán trên có thể được tăng cường thành trường hợp giới hạn số khoảng, tức đề bài chỉ định tách khoảng thành $m$ khoảng con. Khi đó cần dùng số khoảng sau khi tách làm một chiều của trạng thái chuyển. Tương ứng, ta có công thức chuyển trạng thái 2D1D như sau.
 
@@ -309,7 +309,7 @@ Với ba thuật toán cho bài toán phân tách khoảng có giới hạn số
 
 ## Bài toán gộp khoảng
 
-<span id="&#21306;&#38388;&#21512;&#24182;&#38382;&#39064;"></span>
+<span id="bài-toán-gộp-khoảng"></span>
 
 Một loại bài toán quy hoạch động khác có thể tối ưu bằng bất đẳng thức tứ giác là bài toán gộp khoảng: cần gộp đôi một $n$ khoảng độ dài một $[i,i]$ cho đến khi thu được khoảng $[1,n]$. Mỗi lần gộp $[j,k]$ và $[k+1,i]$ cần trả chi phí $w(j,i)$. Bài toán yêu cầu tìm cách gộp có chi phí thấp nhất. Với loại bài toán này, có công thức chuyển trạng thái 2D1D sau:
 
@@ -388,7 +388,7 @@ Nhờ kết luận này, ta cũng có thể giới hạn phạm vi tìm kiếm c
 
 ## Các lớp hàm thỏa mãn bất đẳng thức tứ giác
 
-<span id="&#28385;&#36275;&#22235;&#36793;&#24418;&#19981;&#31561;&#24335;&#30340;&#20989;&#25968;&#31867;"></span>
+<span id="các-lớp-hàm-thỏa-mãn-bất-đẳng-thức-tứ-giác"></span>
 
 Để chứng minh một hàm thỏa mãn bất đẳng thức tứ giác thuận tiện hơn, ta có các tính chất sau:
 
@@ -428,7 +428,7 @@ Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex F
 
 ## Bài tập
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 
 -   [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E)(Be careful with I/O!)
 -   [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/)
@@ -438,7 +438,7 @@ Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex F
 
 ## Tài liệu tham khảo và chú thích
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 
 -   [Quora Answer by Michael Levin](https://www.quora.com/What-is-divide-and-conquer-optimization-in-dynamic-programming)
 -   [Video Tutorial by "Sothe" the Algorithm Wolf](https://www.youtube.com/watch?v=wLXEWuDWnzI)

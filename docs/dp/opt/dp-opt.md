@@ -62,7 +62,7 @@ Tương tự phần trên, xem toàn bộ quá trình DP như một chuỗi truy
 Tối ưu DP bằng chia để trị CDQ cũng thường xuất hiện trong các nhóm bài sau:
 
 -   [Tối ưu DP bằng độ dốc dựa trên chia để trị CDQ](./slope.md#%E4%BA%8C%E5%88%86cdq%E5%B9%B3%E8%A1%A1%E6%A0%91%E4%BC%98%E5%8C%96-dp)
--   [Chia để trị tối ưu DP có đơn điệu quyết định](./quadrangle.md#%E5%88%86%E6%B2%BB)
+-   [Chia để trị tối ưu DP có đơn điệu quyết định](./quadrangle.md#chia-để-trị)
 
 ### Tối ưu DP bằng nhân đôi
 

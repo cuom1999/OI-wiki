@@ -638,7 +638,7 @@ Phương pháp này cũng có thể dùng để chứng minh tính lồi của b
 <span id="&#22235;&#36793;&#24418;&#19981;&#31561;&#24335;"></span>
 ### Bất đẳng thức tứ giác
 
-Trong lập trình thi đấu, một lớp bài toán thường gặp khác có tính lồi là [bài toán phân đoạn khoảng](./quadrangle.md#%E5%8C%BA%E9%97%B4%E5%88%86%E6%8B%86%E9%97%AE%E9%A2%98). Trang đó chứng minh rằng nếu hàm chi phí của một khoảng đơn lẻ thỏa bất đẳng thức tứ giác, thì chi phí nhỏ nhất của bài toán phân đoạn khoảng với số đoạn bị ràng buộc là hàm lồi theo số đoạn. Trang đó cũng cung cấp một số cách phán đoán liệu một hàm $w(l,r)$ có thỏa bất đẳng thức tứ giác hay không. Cách trực tiếp nhất là tính sai phân hỗn hợp bậc hai của nó:
+Trong lập trình thi đấu, một lớp bài toán thường gặp khác có tính lồi là [bài toán phân đoạn khoảng](./quadrangle.md#bài-toán-phân-tách-khoảng). Trang đó chứng minh rằng nếu hàm chi phí của một khoảng đơn lẻ thỏa bất đẳng thức tứ giác, thì chi phí nhỏ nhất của bài toán phân đoạn khoảng với số đoạn bị ràng buộc là hàm lồi theo số đoạn. Trang đó cũng cung cấp một số cách phán đoán liệu một hàm $w(l,r)$ có thỏa bất đẳng thức tứ giác hay không. Cách trực tiếp nhất là tính sai phân hỗn hợp bậc hai của nó:
 
 $$
 \begin{aligned}
@@ -804,7 +804,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
     Cho dãy số nguyên dương tăng dần độ dài $n$, $\{a_i\}$, biểu thị vị trí của $n$ ngôi làng bên một đường cao tốc. Cần xây $m$ bưu điện. Việc chọn vị trí bưu điện cần tối thiểu hóa tổng khoảng cách từ mỗi làng đến bưu điện gần nó nhất. Hãy tìm giá trị nhỏ nhất này.
 
 ??? note "Lời giải"
-    Đây là một [bài toán phân đoạn khoảng](./quadrangle.md#%E5%8C%BA%E9%97%B4%E5%88%86%E6%8B%86%E9%97%AE%E9%A2%98) điển hình. Chi tiết cài đặt hàng đợi nhị phân có thể tham khảo trang đó.
+    Đây là một [bài toán phân đoạn khoảng](./quadrangle.md#bài-toán-phân-tách-khoảng) điển hình. Chi tiết cài đặt hàng đợi nhị phân có thể tham khảo trang đó.
     
     Mỗi bưu điện phục vụ các làng gần nó nhất, nên những làng này nhất định là một số làng liên tiếp bên đường cao tốc. Vì vậy, xây $m$ bưu điện tương đương với chia tất cả các làng thành $m$ đoạn liên tiếp, rồi xây một bưu điện có chi phí thấp nhất cho mỗi đoạn làng. Như đã biết, bưu điện nên được xây tại vị trí trung vị của các làng. Từ đó có thể viết hàm chi phí của khoảng $[l,r]$ là
     
