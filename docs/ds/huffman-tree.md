@@ -126,14 +126,14 @@ Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn
           }
         }
     
-        // Xay dung cay moi
+        // Xây dựng cây mới
         root = (Htree)malloc(sizeof(HNode));
         root->weight = forest[minn]->weight + forest[minnSub]->weight;
         root->lchild = forest[minn];
         root->rchild = forest[minnSub];
     
-        forest[minn] = root;     // Gan con tro tro den cay moi vao vi tri minn
-        forest[minnSub] = NULL;  // Vi tri minnSub de trong
+        forest[minn] = root;     // Gán con trỏ trỏ đến cây mới vào vị trí minn
+        forest[minnSub] = NULL;  // Vị trí minnSub để trống
       }
       return root;
     }
@@ -148,11 +148,11 @@ Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn
     
     using Htree = HNode *;
     
-    int getWPL(Htree root, int len) {  // Cai dat de quy de tinh WPL cua cay Huffman da xay dung
+    int getWPL(Htree root, int len) {  // Cài đặt đệ quy để tính WPL của cây Huffman đã xây dựng
       if (root == NULL)
         return 0;
       else {
-        if (root->lchild == NULL && root->rchild == NULL)  // Nut la
+        if (root->lchild == NULL && root->rchild == NULL)  // Nút lá
           return root->weight * len;
         else {
           int left = getWPL(root->lchild, len + 1);
@@ -165,8 +165,8 @@ Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn
 
 ??? note "Tính trực tiếp WPL khi chưa xây dựng cây Huffman"
     ```cpp
-    int getWPL(int arr[], int n) {  // Tinh truc tiep WPL khi chua xay dung cay Huffman
-      priority_queue<int, vector<int>, greater<int>> huffman;  // Heap min
+    int getWPL(int arr[], int n) {  // Tính trực tiếp WPL khi chưa xây dựng cây Huffman
+      priority_queue<int, vector<int>, greater<int>> huffman;  // Heap nhỏ
       for (int i = 0; i < n; i++) huffman.push(arr[i]);
     
       int res = 0;
@@ -192,10 +192,10 @@ Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn
     
     using Htree = HNode *;
     
-    void huffmanCoding(Htree root, int len, int arr[]) {  // Tinh ma Huffman
+    void huffmanCoding(Htree root, int len, int arr[]) {  // Tính mã Huffman
       if (root != NULL) {
         if (root->lchild == NULL && root->rchild == NULL) {
-          printf("Ma cua ky tu tai nut %d la: ", root->weight);
+          printf("Mã của ký tự tại nút %d là: ", root->weight);
           for (int i = 0; i < len; i++) printf("%d", arr[i]);
           printf("\n");
         } else {

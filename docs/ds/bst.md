@@ -24,9 +24,9 @@ Thời gian của các thao tác cơ bản trên cây tìm kiếm nhị phân t�
       int key;
       TreeNode* left;
       TreeNode* right;
-      // Duy tri cac thong tin khac, nhu chieu cao, so nut, ...
-      int size;   // Kich thuoc cay con co nut hien tai lam goc
-      int count;  // So lan xuat hien cua khoa tai nut hien tai
+      // Duy trì các thông tin khác, như chiều cao, số nút, ...
+      int size;   // Kích thước cây con có nút hiện tại làm gốc
+      int count;  // Số lần xuất hiện của khóa tại nút hiện tại
     
       TreeNode(int value)
           : key(value), size(1), count(1), left(nullptr), right(nullptr) {}
@@ -136,7 +136,7 @@ Xét các trường hợp sau:
       } else if (value > root->key) {
         root->right = insert(root->right, value);
       } else {
-        root->count++;  // Khoa bang nhau, tang so luong lap
+        root->count++;  // Khóa bằng nhau, tăng số lượng lặp
       }
       root->size = root->count + (root->left ? root->left->size : 0) +
                    (root->right ? root->right->size : 0);  // Cập nhật kích thước cây con
@@ -191,21 +191,21 @@ Trước tiên tìm nút có khóa `value` trong BST, rồi xét các trường 
             TreeNode* successor = findMinNode(root->right);
             root->key = successor->key;
             root->count = successor->count;  // Cập nhật số lần lặp
-            // Khi successor->count > 1, van can xoa nut nay;
+            // Khi successor->count > 1, vẫn cần xóa nút này;
             // nếu không, lần xóa tiếp theo chỉ giảm số lần lặp.
             successor->count = 1;
             root->right = remove(root->right, successor->key);
           }
         }
       }
-      // Tiep tuc duy tri size, khong viet thanh --root->size;
-      // vi value co the khong ton tai trong cay, nen co the khong xoa gi.
+      // Tiếp tục duy trì size, không viết thành --root->size;
+      // vì value có thể không tồn tại trong cây, nên có thể không xóa gì.
       root->size = root->count + (root->left ? root->left->size : 0) +
                    (root->right ? root->right->size : 0);
       return root;
     }
     
-    // Vi du nay dung gia tri nho nhat trong cay con phai
+    // Ví dụ này dùng giá trị nhỏ nhất trong cây con phải
     TreeNode* findMinNode(TreeNode* root) {
       while (root->left != nullptr) {
         root = root->left;
@@ -248,7 +248,7 @@ Trong một cây con, thứ hạng của nút gốc phụ thuộc vào kích th�
 ???+ note "Cài đặt"
     ```cpp
     int querykth(TreeNode* root, int k) {
-      if (root == nullptr) return -1;  // Hoac tra ve gia tri phu hop khac
+      if (root == nullptr) return -1;  // Hoặc trả về giá trị phù hợp khác
       if (root->left) {
         if (root->left->size >= k) return querykth(root->left, k);
         if (root->left->size + root->count >= k) return root->key;
