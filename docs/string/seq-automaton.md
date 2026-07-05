@@ -3,7 +3,7 @@ Trước khi đọc bài này, hãy đọc trước [tự động hữu hạn](.
 <span id="định-nghĩa"></span>
 ## Định nghĩa
 
-Sequence automaton là tự động chỉ chấp nhận các dãy con của một xâu duy nhất.
+Tự động dãy (sequence automaton) là tự động chỉ chấp nhận các dãy con của một xâu duy nhất.
 
 Trong bài này, dùng $s$ để chỉ xâu đó.
 

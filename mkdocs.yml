@@ -100,20 +100,20 @@ nav:
       - Thao tác tệp: lang/file-op.md
     - Thư viện chuẩn C++:
       - Giới thiệu thư viện chuẩn C++: lang/csl/index.md
-      - STL container:
-        - Giới thiệu STL container: lang/csl/container.md
-        - Iterator: lang/csl/iterator.md
+      - Bộ chứa STL:
+        - Giới thiệu bộ chứa STL: lang/csl/container.md
+        - Bộ lặp: lang/csl/iterator.md
         - Container tuần tự: lang/csl/sequence-container.md
         - Container kết hợp: lang/csl/associative-container.md
         - Container kết hợp không thứ tự: lang/csl/unordered-container.md
-        - Container adaptor: lang/csl/container-adapter.md
-      - STL algorithm: lang/csl/algorithm.md
+        - Bộ chuyển đổi bộ chứa: lang/csl/container-adapter.md
+      - Thuật toán STL: lang/csl/algorithm.md
       - bitset: lang/csl/bitset.md
       - string: lang/csl/string.md
       - pair: lang/csl/pair.md
     - C++ nâng cao:
       - Lớp: lang/class.md
-      - Namespace: lang/namespace.md
+      - Không gian tên: lang/namespace.md
       - Loại giá trị: lang/value-category.md
       - Nạp chồng toán tử: lang/op-overload.md
       - Tham chiếu: lang/reference.md
@@ -141,7 +141,7 @@ nav:
     - Tham lam: basic/greedy.md
     - Sắp xếp:
       - Tổng quan sắp xếp: basic/sort-intro.md
-      - Selection sort: basic/selection-sort.md
+      - Sắp xếp chọn: basic/selection-sort.md
       - Sắp xếp nổi bọt: basic/bubble-sort.md
       - Sắp xếp chèn: basic/insertion-sort.md
       - Sắp xếp đếm: basic/counting-sort.md
@@ -216,7 +216,7 @@ nav:
     - Cây hậu tố: string/suffix-tree.md
     - Manacher: string/manacher.md
     - Cây đối xứng: string/pam.md
-    - Sequence automaton: string/seq-automaton.md
+    - Tự động dãy: string/seq-automaton.md
     - Biểu diễn nhỏ nhất: string/minimal-string.md
     - Phân tích Lyndon: string/lyndon.md
     - Thuật toán Main-Lorentz: string/main-lorentz.md
@@ -296,8 +296,8 @@ nav:
       - Số Stirling: math/combinatorics/stirling.md
       - Số Bell: math/combinatorics/bell.md
       - Số Bernoulli: math/combinatorics/bernoulli.md
-      - Entringer Number: math/combinatorics/entringer.md
-      - Eulerian Number: math/combinatorics/eulerian.md
+      - Số Entringer: math/combinatorics/entringer.md
+      - Số Eulerian: math/combinatorics/eulerian.md
       - Số phân hoạch: math/combinatorics/partition.md
       - Tích chập Vandermonde: math/combinatorics/vandermonde-convolution.md
       - Đếm Pólya: math/combinatorics/polya.md

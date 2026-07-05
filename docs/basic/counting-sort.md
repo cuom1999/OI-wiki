@@ -29,7 +29,7 @@ Giá trị của mỗi mục trong mảng phụ $C$ chính là số phần tử 
 
 Nếu xếp theo thứ tự ngược của $A$, thì rõ ràng mảng sau khi sắp xếp sẽ giữ nguyên thứ tự ban đầu của $A$ trong trường hợp các phần tử có cùng khóa; do đó ta thu được một thuật toán sắp xếp ổn định.
 
-![counting sort animate example](images/counting-sort-animate.svg)
+![Minh họa động sắp xếp đếm](images/counting-sort-animate.svg)
 
 ## Tính chất
 

@@ -38,6 +38,6 @@ Dĩ nhiên, nếu thứ tự byte không thống nhất, dữ liệu nhị phân
 
 ## Quy ước thường gặp
 
--   Little endian: x86, ARM processors running Android, iOS, and Windows
+-   Little endian: x86, các bộ xử lý ARM chạy Android, iOS và Windows
 
--   Big endian: Sun, PPC Mac, Internet
+-   Big endian: Sun, PPC Mac, mạng Internet

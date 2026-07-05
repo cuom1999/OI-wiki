@@ -148,4 +148,4 @@ Dịch đề: Cho hai cây không gốc, hãy xác định hai cây đó có đ�
 
 Phần lớn nội dung bài viết này được dịch từ [Paper](http://wwwmayr.in.tum.de/konferenzen/Jass08/courses/1/smal/Smal_Paper.pdf) và [Slide](https://logic.pdmi.ras.ru/~smal/files/smal_jass08_slides.pdf). Các chứng minh trong tài liệu tham khảo đầy đủ và chặt chẽ hơn; bài viết này đã lược giản một phần.
 
-Về phân tích độ phức tạp của thuật toán AHU, cũng như thuật toán sắp xếp cơ số tuyến tính cho chuỗi, có thể tham khảo mục 3.2 Radix sorting và Example 3.2 trong The Design and Analysis of Computer Algorithms.
+Về phân tích độ phức tạp của thuật toán AHU, cũng như thuật toán sắp xếp cơ số tuyến tính cho chuỗi, có thể tham khảo mục 3.2 Sắp xếp cơ số và Ví dụ 3.2 trong *The Design and Analysis of Computer Algorithms*.

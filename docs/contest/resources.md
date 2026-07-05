@@ -108,7 +108,7 @@ Danh sách này ghi tác giả của sách, không liệt kê dịch giả. Vì 
 -   *Từ nhập môn đến nâng cao trong lập trình thi đấu* - Luo Yongjun, Guo Weibin
 -   *Introduction to Algorithms* bản thứ ba - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein
     Sách đen, giáo trình kinh điển ở bậc đại học. Tên bản tiếng Anh là *Introduction to Algorithms*
-    -   [Lời giải (English)](https://github.com/walkccc/CLRS)
+    -   [Lời giải (tiếng Anh)](https://github.com/walkccc/CLRS)
 -   *Concrete Mathematics* bản thứ hai - Ronald L. Graham/Donald E. Knuth/Oren Patashnik
     Tên bản tiếng Anh là *Concrete Mathematics*
 -   *Introductory Combinatorics* bản thứ năm - Richard A.Brualdi

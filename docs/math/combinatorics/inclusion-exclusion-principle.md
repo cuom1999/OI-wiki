@@ -626,7 +626,7 @@ Quay lại phần bao hàm-loại trừ, ta biết $E(\max_{i\in S}x_i)=\sum_{T\
 
 ## Tài liệu tham khảo
 
-[A Brief Study of the Inclusion-Exclusion Principle - Wang Di](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2013%E8%AE%BA%E6%96%87%E9%9B%86.pdf), 2013 Informatics Olympiad Chinese National Training Team candidate paper collection
+[A Brief Study of the Inclusion-Exclusion Principle - Wang Di](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2013%E8%AE%BA%E6%96%87%E9%9B%86.pdf), tuyển tập luận văn ứng viên đội tuyển quốc gia Olympic Tin học Trung Quốc năm 2013
 
 [A series of problems on counting labeled DAGs - Cyhlnj](https://www.cnblogs.com/cjoieryl/p/10078167.html)
 

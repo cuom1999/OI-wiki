@@ -4,7 +4,7 @@ Trang này giới thiệu ngắn gọn về sắp xếp chọn.
 
 Sắp xếp chọn (tiếng Anh: Selection sort) là một thuật toán sắp xếp đơn giản và trực quan. Nguyên lý của nó là mỗi lần tìm phần tử nhỏ thứ $i$ (tức phần tử nhỏ nhất trong $A_{i..n}$), rồi hoán đổi phần tử này với phần tử ở vị trí thứ $i$ của mảng.
 
-![selection sort animate example](images/selection-sort-animate.svg)
+![Minh họa động sắp xếp chọn](images/selection-sort-animate.svg)
 
 ## Tính chất
 

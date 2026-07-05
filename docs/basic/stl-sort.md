@@ -1,6 +1,6 @@
 Trang này giới thiệu ngắn gọn về các thuật toán sắp xếp được cài đặt trong thư viện chuẩn C và C++.
 
-Trừ các hàm đã được nêu riêng, các hàm liệt kê trong trang này mặc định được định nghĩa trong tệp đầu `<algorithm>`.
+Trừ các hàm đã được nêu riêng, các hàm liệt kê trong trang này mặc định được định nghĩa trong tệp tiêu đề `<algorithm>`.
 
 ## qsort
 
