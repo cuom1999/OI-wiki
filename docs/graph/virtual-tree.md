@@ -32,11 +32,11 @@ Nghe khá thú vị.
 
 Ta dễ nhận thấy rằng thực ra có rất nhiều đỉnh không hữu ích. Xét hình dưới đây:
 
-![vtree-1](images/vtree-tree.svg)
+![Cây gốc trước khi nén thành cây ảo](images/vtree-tree.svg)
 
 Nếu các đỉnh then chốt được chọn là:
 
-![vtree-2](images/vtree-key-vertex.svg)
+![Các đỉnh then chốt được chọn trên cây gốc](images/vtree-key-vertex.svg)
 
 Trong hình chỉ có hai đỉnh màu đỏ là **đỉnh then chốt**, các đỉnh khác đều là đỉnh không then chốt.
 
@@ -56,13 +56,13 @@ Trước hết hãy nhìn trực quan xem cây ảo trông như thế nào.
 
 Trong hình dưới, các đỉnh màu đỏ là đỉnh then chốt đã chọn. Các đỉnh màu đỏ và màu đen đều là đỉnh trong cây ảo. Các cạnh màu đen là cạnh trong cây ảo.
 
-![vtree-3](images/vtree-vtree1.svg)
+![Ví dụ cây ảo giữ lại các đỉnh then chốt và LCA](images/vtree-vtree1.svg)
 
-![vtree-4](images/vtree-vtree2.svg)
+![Các cạnh trong cây ảo nối các đỉnh được giữ lại](images/vtree-vtree2.svg)
 
-![vtree-5](images/vtree-vtree3.svg)
+![Cây ảo sau khi loại bỏ các đỉnh không cần thiết](images/vtree-vtree3.svg)
 
-![vtree-6](images/vtree-vtree4.svg)
+![Cấu trúc cây ảo tương ứng với cây gốc](images/vtree-vtree4.svg)
 
 Vì LCA của hai đỉnh then chốt bất kỳ cũng cần lưu thông tin quan trọng, ta cần giữ lại LCA của chúng. Vì vậy cây ảo không nhất thiết chỉ gồm các đỉnh then chốt.
 
@@ -153,23 +153,23 @@ Sau đó lần lượt thêm các đỉnh then chốt theo thứ tự DFS tăng 
 
 Nếu LCA của đỉnh hiện tại và đỉnh trên đỉnh ngăn xếp chính là đỉnh trên đỉnh ngăn xếp, điều đó cho thấy chúng nằm trên cùng một chuỗi. Khi đó chỉ cần đưa đỉnh hiện tại vào ngăn xếp.
 
-![vtree-7](./images/vtree-add1.svg)
+![Thêm đỉnh hiện tại khi LCA là đỉnh trên đỉnh ngăn xếp](./images/vtree-add1.svg)
 
 Nếu LCA của đỉnh hiện tại và đỉnh trên đỉnh ngăn xếp không phải đỉnh trên đỉnh ngăn xếp:
 
-![vtree-8](./images/vtree-add2.svg)
+![Trường hợp LCA của đỉnh hiện tại và đỉnh trên ngăn xếp khác đỉnh trên ngăn xếp](./images/vtree-add2.svg)
 
 Lúc này, chuỗi mà ngăn xếp đơn điệu đang duy trì là:
 
-![vtree-9](./images/vtree-add3.svg)
+![Chuỗi hiện tại được duy trì bởi ngăn xếp đơn điệu](./images/vtree-add3.svg)
 
 Còn chuỗi ta cần biến thành là:
 
-![vtree-10](./images/vtree-add4.svg)
+![Chuỗi cần thu được sau khi thêm đỉnh hiện tại](./images/vtree-add4.svg)
 
 Khi đó ta chỉ cần pop các đỉnh được đánh dấu bằng đường đứt nét; trước khi pop, đừng quên nối cạnh từ đỉnh đó đến cha của nó trong cây ảo.
 
-![vtree-11](./images/vtree-add5.svg)
+![Pop các đỉnh không còn nằm trên chuỗi và nối cạnh cây ảo](./images/vtree-add5.svg)
 
 Nếu sau khi pop mà phát hiện đỉnh ngăn xếp không phải LCA, cần đưa LCA vào ngăn xếp.
 
@@ -177,48 +177,48 @@ Sau đó đưa đỉnh hiện tại vào ngăn xếp.
 
 Dưới đây là một ví dụ cụ thể. Giả sử ta cần lập cây ảo cho các đỉnh số 4, 6 và 7 trên cây sau:
 
-![vtree-12](./images/vtree-construction1.svg)
+![Cây gốc trong ví dụ xây cây ảo cho các đỉnh 4, 6 và 7](./images/vtree-construction1.svg)
 
 Các bước như sau:
 
 -   Sắp xếp 3 đỉnh then chốt $6,4,7$ theo thứ tự DFS, được dãy $[4,6,7]$.
 -   Đưa $1$ vào ngăn xếp.
 
-![vtree-13](./images/vtree-construction2.svg)
+![Khởi tạo ngăn xếp với đỉnh gốc 1](./images/vtree-construction2.svg)
 
 Ta dùng đỉnh màu đỏ để biểu thị các đỉnh đang nằm trong ngăn xếp, và đỉnh màu xanh lam nhạt để biểu thị các đỉnh đã bị pop khỏi ngăn xếp.
 
 -   Lấy phần tử đầu tiên trong dãy làm đỉnh hiện tại, tức là $4$. Lấy tiếp phần tử trên đỉnh ngăn xếp, là $1$. Tính LCA của $1$ và $4$: $LCA(1,4)=1$.
 -   Thấy $LCA(1,4)=$ phần tử trên đỉnh ngăn xếp, điều này cho thấy chúng nằm trên một chuỗi của cây ảo, nên đưa trực tiếp đỉnh hiện tại $4$ vào ngăn xếp. Ngăn xếp hiện tại là $4,1$.
 
-![vtree-14](./images/vtree-construction3.svg)
+![Đưa đỉnh 4 vào ngăn xếp](./images/vtree-construction3.svg)
 
 -   Lấy phần tử thứ hai trong dãy làm đỉnh hiện tại, là $6$. Lấy tiếp phần tử trên đỉnh ngăn xếp, là $4$. Tính LCA của $6$ và $4$: $LCA(6,4)=1$.
 -   Thấy $LCA(6,4)\neq$ phần tử trên đỉnh ngăn xếp, nên bước vào giai đoạn xét.
 -   Giai đoạn xét: thấy thứ tự DFS của đỉnh trên đỉnh ngăn xếp $4$ lớn hơn thứ tự DFS của $LCA(6,4)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ bằng LCA (thực ra thứ tự DFS bằng nhau nghĩa là hai đỉnh cũng bằng nhau). Điều này cho thấy LCA đã nằm trong ngăn xếp, nên nối trực tiếp cạnh $1\to4$, tức là cạnh từ LCA đến phần tử trên đỉnh ngăn xếp, rồi pop $4$ khỏi ngăn xếp.
 
-![vtree-15](./images/vtree-construction4.svg)
+![Nối cạnh 1 đến 4 rồi pop đỉnh 4](./images/vtree-construction4.svg)
 
 -   Kết thúc giai đoạn xét, đưa $6$ vào ngăn xếp. Ngăn xếp hiện tại là $6,1$.
 
-![vtree-16](./images/vtree-construction5.svg)
+![Đưa đỉnh 6 vào ngăn xếp](./images/vtree-construction5.svg)
 
 -   Lấy phần tử thứ ba trong dãy làm đỉnh hiện tại, là $7$. Lấy tiếp phần tử trên đỉnh ngăn xếp, là $6$. Tính LCA của $7$ và $6$: $LCA(7,6)=3$.
 -   Thấy $LCA(7,6)\neq$ phần tử trên đỉnh ngăn xếp, nên bước vào giai đoạn xét.
 -   Giai đoạn xét: thấy thứ tự DFS của đỉnh trên đỉnh ngăn xếp $6$ lớn hơn thứ tự DFS của $LCA(7,6)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ nhỏ hơn LCA. Điều này cho thấy LCA chưa từng vào ngăn xếp, nên nối trực tiếp cạnh $3\to6$, tức là cạnh từ LCA đến phần tử trên đỉnh ngăn xếp. Pop $6$ khỏi ngăn xếp, đồng thời đưa $LCA(6,7)$ vào ngăn xếp.
 -   Kết thúc giai đoạn xét, đưa $7$ vào ngăn xếp. Ngăn xếp hiện tại là $1,3,7$.
 
-![vtree-17](./images/vtree-construction6.svg)
+![Thêm LCA 3 và đưa đỉnh 7 vào ngăn xếp](./images/vtree-construction6.svg)
 
 -   Thấy 3 đỉnh trong dãy đều đã được đưa vào ngăn xếp, thoát vòng lặp.
 -   Lúc này trong ngăn xếp còn 3 đỉnh: $1,3,7$. Rõ ràng chúng nằm trên một chuỗi, nên nối trực tiếp các cạnh $1\to3$ và $3\to7$.
 -   Cây ảo đã được xây xong!
 
-![vtree-18](./images/vtree-construction7.svg)
+![Nối các cạnh còn lại trên chuỗi trong ngăn xếp](./images/vtree-construction7.svg)
 
 Tiếp theo ta xóa các đỉnh chưa từng vào ngăn xếp (các đỉnh không phải màu xanh lam nhạt), cây ảo tương ứng có dạng như sau:
 
-![vtree-19](./images/vtree-construction8.svg)
+![Cây ảo cuối cùng của ví dụ](./images/vtree-construction8.svg)
 
 Trong đó có nhiều chi tiết, chẳng hạn nếu dùng danh sách kề để lưu cây ảo thì cần xóa danh sách kề. Nhưng xóa toàn bộ danh sách kề trực tiếp sẽ rất chậm, vì vậy ta chỉ cần **khi một phần tử chưa từng vào ngăn xếp được đưa vào ngăn xếp, xóa danh sách kề ứng với phần tử đó**.
 
