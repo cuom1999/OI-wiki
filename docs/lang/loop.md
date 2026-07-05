@@ -1,8 +1,8 @@
-Đôi khi ta cần thực hiện cùng một nhóm câu lệnh nhiều lần. Để không phải viết
-lặp lại cùng một đoạn mã, ta dùng vòng lặp.
+Đôi khi cần thực hiện cùng một nhóm câu lệnh nhiều lần. Để không phải viết lặp
+lại cùng một đoạn mã, có thể dùng vòng lặp.
 
 Trong nhiều bài toán, số lần lặp chỉ được biết khi chương trình đang chạy, nên
-không thể sao chép thủ công mã nguồn nhiều lần mà bắt buộc phải dùng vòng lặp.
+không thể sao chép mã nguồn nhiều lần bằng tay mà cần dùng vòng lặp.
 
 ## Câu lệnh for
 
@@ -99,8 +99,8 @@ while (statement2) {
 }
 ```
 
-Nếu trong `statement4` không có câu lệnh `continue` (xem bên dưới), hai cách
-viết này là tương đương, nhưng cách viết bằng `while` bên dưới rất ít khi được
+Nếu trong `statement4` không có câu lệnh `continue` (xem phần sau), hai cách
+viết này là tương đương, nhưng cách viết bằng `while` sau đây rất ít khi được
 dùng để thay thế trực tiếp cho `for`.
 
 ```cpp
@@ -131,7 +131,7 @@ for (;;) {
 }
 ```
 
-Hai cách viết này đều tạo vòng lặp vô hạn. Có thể dùng `break` (xem bên dưới) để
+Hai cách viết này đều tạo vòng lặp vô hạn. Có thể dùng `break` (xem phần sau) để
 thoát.
 
 Có thể thấy ba loại câu lệnh lặp có thể thay thế lẫn nhau trong nhiều tình
@@ -152,7 +152,7 @@ Tác dụng của câu lệnh `break` là thoát khỏi vòng lặp gần nhất
 Tác dụng của câu lệnh `continue` là bỏ qua phần còn lại của thân vòng lặp và
 chuyển sang bước tiếp theo của vòng lặp. Trong `for`, chương trình sẽ thực hiện
 biểu thức cập nhật rồi kiểm tra điều kiện; trong `while` và `do...while`, chương
-trình sẽ chuyển tới bước kiểm tra điều kiện. Dưới đây là ví dụ minh họa vị trí
+trình sẽ chuyển tới bước kiểm tra điều kiện. Sau đây là ví dụ minh họa vị trí
 mà `continue` trong câu lệnh `do...while` sẽ nhảy tới:
 
 ```cpp
