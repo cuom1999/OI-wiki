@@ -256,7 +256,7 @@ $a$ theo modulo $m$.
 
 Tính chất của đồng dư:
 
--   Đồng dư là một [quan hệ tương đương](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB),
+-   Đồng dư là một [quan hệ tương đương](../order-theory.md#quan-hệ-hai-ngôi),
     nghĩa là đồng dư có:
     -   Tính phản xạ: $a\equiv a\pmod m$.
     -   Tính đối xứng: nếu $a\equiv b\pmod m$, thì $b\equiv a\pmod m$.

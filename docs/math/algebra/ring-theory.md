@@ -228,7 +228,7 @@ Trước hết, ta khái quát các khái niệm liên quan trong lý thuyết c
 ???+ abstract "Liên hợp"
     Giả sử vành giao hoán $R$ có các phần tử $a,b\in R$. Nếu chúng chỉ khác nhau bởi một phần tử khả nghịch, tức là tồn tại phần tử khả nghịch $u\in R$ sao cho $a=bu$, thì $a$ và $b$ được gọi là **liên hợp** (associate).
 
-Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB) trên vành, còn quan hệ liên hợp là một quan hệ tương đương trên vành. Từ góc nhìn iđêan, $a\mid b$ tương đương với $(b)\subseteq (a)$, còn $a$ và $b$ liên hợp tương đương với $(a)=(b)$. Vì vậy, khi thảo luận các phần tử trong vành, ta thường không phân biệt các phần tử liên hợp. Tương tự trường hợp số nguyên, ước chung lớn nhất của $a$ và $b$ trong vành giao hoán được định nghĩa là cận dưới lớn nhất của $\{a,b\}$ theo quan hệ chia hết.
+Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#quan-hệ-hai-ngôi) trên vành, còn quan hệ liên hợp là một quan hệ tương đương trên vành. Từ góc nhìn iđêan, $a\mid b$ tương đương với $(b)\subseteq (a)$, còn $a$ và $b$ liên hợp tương đương với $(a)=(b)$. Vì vậy, khi thảo luận các phần tử trong vành, ta thường không phân biệt các phần tử liên hợp. Tương tự trường hợp số nguyên, ước chung lớn nhất của $a$ và $b$ trong vành giao hoán được định nghĩa là cận dưới lớn nhất của $\{a,b\}$ theo quan hệ chia hết.
 
 ???+ abstract "Ước chung lớn nhất"
     Với vành giao hoán $R$ và các phần tử $a,b\in R$ của nó, nếu tồn tại phần tử khác không $d\in R$ thỏa mãn $d\mid a$ và $d\mid b$, đồng thời với mọi $d'$ thỏa mãn $d'\mid a$ và $d'\mid b$ đều có $d'\mid d$, thì $d$ được gọi là **ước chung lớn nhất** (greatest common divisor) của $a$ và $b$, ký hiệu là $\gcd(a,b)$.

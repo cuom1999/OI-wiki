@@ -40,7 +40,7 @@ Bảng chân trị tương ứng (From [Wikipedia](https://commons.wikimedia.org
 
 ![](./images/logical-connectives-table.svg)
 
-Biểu đồ Venn và [biểu đồ Hasse](./order-theory.md#%E5%81%8F%E5%BA%8F%E9%9B%86%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E8%A1%A8%E7%A4%BAhasse-%E5%9B%BE) tương ứng (lấy quan hệ bao hàm tập hợp $\subseteq$ làm thứ tự riêng phần, From [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)):
+Biểu đồ Venn và [biểu đồ Hasse](./order-theory.md#biểu-diễn-trực-quan-tập-có-thứ-tự-bộ-phận-biểu-đồ-hasse) tương ứng (lấy quan hệ bao hàm tập hợp $\subseteq$ làm thứ tự riêng phần, From [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)):
 
 ![](./images/logical-connectives-hasse-diagram.svg)
 

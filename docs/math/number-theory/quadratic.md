@@ -179,7 +179,7 @@ nguyên bậc hai.
 Với các số nguyên bậc hai $\alpha$ và $\beta$ trong vành số nguyên bậc hai
 $\mathbf Z[\omega]$, nếu tồn tại số nguyên bậc hai $\gamma$ trong cùng vành sao
 cho $\beta=\alpha\gamma$, thì nói $\alpha$ chia hết $\beta$, kí hiệu
-$\alpha\mid\beta$. Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB)
+$\alpha\mid\beta$. Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#quan-hệ-hai-ngôi)
 trên vành số nguyên bậc hai. Nếu đồng thời có $\alpha\mid\beta$ và
 $\beta\mid\alpha$, thì khi nghiên cứu lí thuyết chia hết có thể xem $\alpha$
 và $\beta$ như cùng một số; chúng được gọi là **liên kết** (associate). Quan hệ

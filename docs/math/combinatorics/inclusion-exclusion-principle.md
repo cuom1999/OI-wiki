@@ -411,7 +411,7 @@ $$
 
 ## Bao hàm-loại trừ min-max
 
-Với một dãy $\{x_i\}$ thỏa quan hệ [thứ tự toàn phần](../order-theory.md#%E5%81%8F%E5%BA%8F%E9%9B%86) và các phần tử trong dãy có thể cộng trừ, đặt độ dài dãy là $n$, và $S=\{1,2,3,\cdots,n\}$, ta có:
+Với một dãy $\{x_i\}$ thỏa quan hệ [thứ tự toàn phần](../order-theory.md#tập-có-thứ-tự-bộ-phận) và các phần tử trong dãy có thể cộng trừ, đặt độ dài dãy là $n$, và $S=\{1,2,3,\cdots,n\}$, ta có:
 
 $$
 \max_{i\in S}{x_i}=\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{x_j}}

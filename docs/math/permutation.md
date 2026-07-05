@@ -11,7 +11,7 @@ Hoán vị và cách sắp xếp là những khái niệm rất thường gặp 
 <span id="&#x5B9A;&#x4E49;"></span>
 ## Định nghĩa
 
-Một song ánh, tức tương ứng một-một, $\sigma$ từ tập hợp $X$ đến chính nó được gọi là một **hoán vị** (permutation) của $X$. Nếu trên tập hợp $X$ còn có quan hệ [thứ tự toàn phần](./order-theory.md#%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB), thì một hoán vị của nó cũng thường được gọi là một **cách sắp xếp (toàn phần)**. Thứ tự toàn phần này được gọi là thứ tự tự nhiên trên tập hợp.
+Một song ánh, tức tương ứng một-một, $\sigma$ từ tập hợp $X$ đến chính nó được gọi là một **hoán vị** (permutation) của $X$. Nếu trên tập hợp $X$ còn có quan hệ [thứ tự toàn phần](./order-theory.md#quan-hệ-hai-ngôi), thì một hoán vị của nó cũng thường được gọi là một **cách sắp xếp (toàn phần)**. Thứ tự toàn phần này được gọi là thứ tự tự nhiên trên tập hợp.
 
 ??? info "\"Hoán vị\" và \"cách sắp xếp\""
     Trong ngữ cảnh tiếng Trung, "hoán vị" thường chỉ việc thay đổi thứ tự của các phần tử, còn "cách sắp xếp" thường chỉ việc xếp các phần tử thành một dãy. Khi giữa các phần tử có thứ tự tự nhiên, hai khái niệm này là một: "cách sắp xếp" có thể xem là kết quả của "hoán vị"; ngược lại, so với thứ tự tự nhiên của các phần tử, thứ tự các phần tử trong "cách sắp xếp" xác định "hoán vị". Vì trong bài này, khi dùng thuật ngữ "cách sắp xếp", ta luôn ngầm định rằng tập hợp có thứ tự tự nhiên, nên sẽ không cố ý phân biệt hai khái niệm này.

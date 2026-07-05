@@ -1,12 +1,12 @@
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Lý thuyết thứ tự là một nhánh toán học dùng quan hệ hai ngôi để hình thức hóa khái niệm "thứ tự". Phần dưới đây giới thiệu các định nghĩa cơ bản của nhánh này.
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
-<span id="&#x4E8C;&#x5143;&#x5173;&#x7CFB;"></span>
+<span id="quan-hệ-hai-ngôi"></span>
 ### Quan hệ hai ngôi
 
 ???+ note "Định nghĩa"
@@ -44,7 +44,7 @@ Khi nghiên cứu quan hệ hai ngôi, ta thường quan tâm liệu chúng có 
 | Thứ tự yếu nghiêm ngặt (strict weak order) | | Có | | | Có | Có | | | Có |
 | Thứ tự toàn phần nghiêm ngặt (strict total order) | | Có | | | Có | Có | Có | | |
 
-<span id="&#x5173;&#x7CFB;&#x95F4;&#x7684;&#x8FD0;&#x7B97;"></span>
+<span id="các-phép-toán-giữa-quan-hệ"></span>
 ### Các phép toán giữa quan hệ
 
 Với hai quan hệ hai ngôi $R$ và $S$ trên tập $X$ và tập $Y$, ta có thể định nghĩa các phép toán sau:
@@ -56,7 +56,7 @@ Với hai quan hệ hai ngôi $R$ và $S$ trên tập $X$ và tập $Y$, ta có 
 
 Với quan hệ hai ngôi $R$ trên tập $X$ và tập $Y$, cùng quan hệ hai ngôi $S$ trên tập $Y$ và tập $Z$, ta có thể định nghĩa hợp thành $S\circ R$ của chúng sao cho $G(S\circ R):=\{(x,z):(\exists~y\in Y)~~xRy\land ySz\}$.
 
-<span id="&#x504F;&#x5E8F;&#x96C6;"></span>
+<span id="tập-có-thứ-tự-bộ-phận"></span>
 ### Tập có thứ tự bộ phận
 
 ???+ note "Định nghĩa"
@@ -66,7 +66,7 @@ Với quan hệ hai ngôi $R$ trên tập $X$ và tập $Y$, cùng quan hệ hai
 
 Dễ thấy $\mathbf{N}$, $\mathbf{Z}$, $\mathbf{Q}$ và $\mathbf{R}$ đều tạo thành tập có thứ tự toàn phần theo $\leq$.
 
-<span id="&#x504F;&#x5E8F;&#x96C6;&#x7684;&#x53EF;&#x89C6;&#x5316;&#x8868;&#x793A;&#xFF1A;Hasse &#x56FE;"></span>
+<span id="biểu-diễn-trực-quan-tập-có-thứ-tự-bộ-phận-biểu-đồ-hasse"></span>
 ### Biểu diễn trực quan tập có thứ tự bộ phận: biểu đồ Hasse
 
 Với tập có thứ tự bộ phận hữu hạn, ta có thể dùng biểu đồ Hasse để biểu diễn trực quan quan hệ thứ tự bộ phận trên đó.
@@ -83,7 +83,7 @@ Ví dụ, với lũy tập $S$ của tập $\{0,1,2\}$ và quan hệ bao hàm t�
 
 Vì thứ tự bộ phận có tính phản đối xứng, biểu đồ Hasse chắc chắn là [đồ thị có hướng không chu trình](../graph/dag.md). Do đó, ta có thể dựa vào [sắp xếp topo](../graph/topo.md) để xây dựng một thứ tự toàn phần cho bất kỳ tập có thứ tự bộ phận hữu hạn nào.
 
-<span id="&#x94FE;&#x4E0E;&#x53CD;&#x94FE;"></span>
+<span id="xích-và-phản-xích"></span>
 ### Xích và phản xích
 
 ???+ note "Định nghĩa"
@@ -93,7 +93,7 @@ Vì thứ tự bộ phận có tính phản đối xứng, biểu đồ Hasse ch
 
 Ví dụ, với lũy tập $S$ của tập $\{0,1,2\}$ và quan hệ bao hàm tập hợp $\subseteq$, $\{\varnothing,\{1\},\{1,2\}\}$ là một xích, $\{\{1\},\{0,2\}\}$ là một phản xích, và độ rộng của $S$ là $3$.
 
-<span id="&#x9884;&#x5E8F;&#x96C6;&#x4E2D;&#x7684;&#x7279;&#x6B8A;&#x5143;&#x7D20;"></span>
+<span id="các-phần-tử-đặc-biệt-trong-tập-tiền-thứ-tự"></span>
 ### Các phần tử đặc biệt trong tập tiền thứ tự
 
 Trong tập tiền thứ tự, ta có thể định nghĩa các khái niệm như phần tử cực đại (cực tiểu), cận trên (cận dưới), cận trên đúng (cận dưới đúng). Các khái niệm này có thể được mở rộng sang các quan hệ thứ tự khác.
@@ -124,7 +124,7 @@ Trong tập có thứ tự bộ phận vô hạn, phần tử cực đại khôn
 
 Bổ đề Zorn tương đương với **[tiên đề chọn](https://en.wikipedia.org/wiki/Axiom_of_choice)** và **[định lý thứ tự tốt](https://en.wikipedia.org/wiki/Well-ordering_theorem)**.
 
-<span id="&#x6709;&#x5411;&#x96C6;&#x4E0E;&#x683C;"></span>
+<span id="tập-định-hướng-và-dàn"></span>
 ### Tập định hướng và dàn
 
 Ta biết rằng nếu một tập con của tập có thứ tự bộ phận có cận trên đúng (cận dưới đúng), thì cận đó chắc chắn duy nhất. Tuy nhiên, điều này không áp dụng cho phần tử cực đại (cực tiểu). Ví dụ: xét tập có thứ tự bộ phận $S=\{\{0\},\{1\},\{2\},\{0,1\},\{0,2\},\{1,2\}\}$ với thứ tự bộ phận $\subseteq$ trên đó. Dễ thấy nó có $3$ phần tử cực đại và $3$ phần tử cực tiểu.
@@ -161,14 +161,14 @@ Với tập có thứ tự bộ phận $S$ và thứ tự bộ phận $\preceq$ 
 
 Ví dụ, tập $S=\{1,2,3,4,5,6,10,12,15,20,30,60\}$ gồm các ước dương của $60$ tạo thành một tập có thứ tự bộ phận theo quan hệ chia hết. Với hai số nguyên dương bất kỳ $a,b$ trong tập này, $\operatorname{lcm}(a,b)$ là hợp của $a$ và $b$, còn $\gcd(a,b)$ là giao của $a$ và $b$; do đó $S$ là một dàn.
 
-<span id="&#x5BF9;&#x5076;"></span>
+<span id="đối-ngẫu"></span>
 ### Đối ngẫu
 
 Trong lý thuyết thứ tự, đối ngẫu là một khái niệm rất thường gặp, chẳng hạn các cặp đối ngẫu đã nhắc ở trên: phần tử cực đại và phần tử cực tiểu, cận trên và cận dưới, cận trên đúng và cận dưới đúng.
 
 Với tập có thứ tự bộ phận $P$ và thứ tự bộ phận $\preceq$ trên đó, định nghĩa tập có thứ tự bộ phận **đối ngẫu** (dual, opposite) $P^d$ của nó như sau: $x \preceq y$ đúng trong $P$ khi và chỉ khi $y \preceq x$ đúng trong $P^d$. Đảo chiều các cạnh trong biểu đồ Hasse của $P$ sẽ thu được biểu đồ Hasse của $P^d$.
 
-<span id="Dilworth &#x5B9A;&#x7406;&#x4E0E; Mirsky &#x5B9A;&#x7406;"></span>
+<span id="định-lý-dilworth-và-định-lý-mirsky"></span>
 ## Định lý Dilworth và định lý Mirsky
 
 Với tập có thứ tự bộ phận hữu hạn $S$ và thứ tự bộ phận $\preceq$ trên đó, ta có cặp định lý đối ngẫu sau:
@@ -227,7 +227,7 @@ Ta có thể dùng định lý Dilworth để chứng minh định lý sau:
         
         Giả sử độ rộng của tập có thứ tự bộ phận này không vượt quá $s$. Khi đó, theo định lý Dilworth, tập có thứ tự bộ phận này có thể được phủ bởi nhiều nhất $s$ xích. Nếu độ dài của mỗi xích đều không vượt quá $r$, thì số phần tử của dãy nhiều nhất là $rs$, mâu thuẫn với điều kiện.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="bài-tập-ví-dụ"></span>
 ### Bài tập ví dụ
 
 ???+ note "[Luogu P1020 \[NOIP1999 Nhóm nâng cao\] Chặn tên lửa](https://www.luogu.com.cn/problem/P1020)"
@@ -274,13 +274,13 @@ Ta có thể dùng định lý Dilworth để chứng minh định lý sau:
         --8<-- "docs/math/code/order-theory/order-theory_2.cpp"
         ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ### Bài tập
 
 -   [\[CTSC2008\] Tế lễ](https://www.luogu.com.cn/problem/P4298)
 -   [CodeForces 590E Birthday](https://codeforces.com/problemset/problem/590/E)
 
-<span id="C++ &#x4E2D;&#x7684;&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng-trong-c"></span>
 ## Ứng dụng trong C++
 
 Xem thêm: [STL liên quan đến sắp xếp - Cơ sở thuật toán](../basic/stl-sort.md).
@@ -292,7 +292,7 @@ Trong các [thuật toán và cấu trúc dữ liệu cần dùng so sánh](http
 -   $x \geq y$ là $x \nless y$;
 -   $x=y$ là $x \nless y\land y \nless x$.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+<span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 ## Tài liệu tham khảo và đọc thêm
 
 1.  [Order theory - From Academic Kids](https://academickids.com/encyclopedia/index.php/Order_theory)
