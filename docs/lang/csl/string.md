@@ -15,15 +15,15 @@ có thể xem là rất tốt, gần như không thua mảng ký tự.
 
 ### `string` có thể cấp phát bộ nhớ động
 
-Giống nhiều bộ chứa STL khác, `string` có thể cấp phát bộ nhớ động, nhờ đó ta
-có thể dùng trực tiếp `std::cin` để nhập, dù tốc độ nhập như vậy cũng chậm. Điều
-này cũng giúp ta không phải lo quá nhiều về bộ nhớ.
+Giống nhiều bộ chứa STL khác, `string` có thể cấp phát bộ nhớ động, nhờ đó có
+thể dùng trực tiếp `std::cin` để nhập, dù tốc độ nhập như vậy cũng chậm. Điều
+này cũng giúp người viết không phải tự quản lý bộ nhớ quá nhiều.
 
 ### `string` nạp chồng toán tử cộng và toán tử so sánh
 
 Toán tử cộng của `string` có thể nối trực tiếp hai chuỗi, hoặc một chuỗi với một
 ký tự. Tương tự `std::vector`, `string` nạp chồng toán tử so sánh theo thứ tự từ
-điển, nên ta có thể gọi trực tiếp `std::sort` để sắp xếp nhiều chuỗi.
+điển, nên có thể gọi trực tiếp `std::sort` để sắp xếp nhiều chuỗi.
 
 ## Cách dùng
 
@@ -42,7 +42,7 @@ Trong ngôn ngữ C cũng có nhiều hàm xử lý chuỗi, nhưng tham số c�
 kiểu con trỏ `char`. Để tiện dùng, `string` có hai hàm thành viên trả về con trỏ
 đến dữ liệu ký tự bên trong: `data()`/`c_str()`. Từ C++11 trở đi, hai hàm này
 đều trả về vùng dữ liệu kết thúc bằng ký tự rỗng; nếu cần tương thích với chuẩn
-cũ hơn, hãy ưu tiên dùng `c_str()`. Ví dụ:
+cũ hơn, nên ưu tiên dùng `c_str()`. Ví dụ:
 
 ```cpp
 printf("%s", s);          // lỗi biên dịch
