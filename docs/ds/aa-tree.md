@@ -17,7 +17,8 @@ Vì nút đỏ chỉ có thể là con phải, cây AA chỉ cần xét hai trư
 
 ## Định nghĩa
 
-Cây AA tuân theo các quy tắc giống cây đỏ-đen, nhưng bổ sung thêm một quy tắc mới: **nút đỏ không được xuất hiện dưới dạng con trái**.
+Cây AA tuân theo các quy tắc giống cây đỏ-đen, nhưng bổ sung thêm một quy tắc mới: **nút đỏ không được xuất hiện dưới
+dạng con trái**.
 
 1.  Mỗi nút có thể là đỏ hoặc đen.
 2.  Nút gốc luôn là nút đen.
@@ -56,11 +57,11 @@ Các thao tác chèn và xóa có thể tạm thời làm cây AA mất cân b�
 cân bằng, chỉ cần hai thao tác khác nhau: **nghiêng** (xoay phải để loại bỏ liên kết ngang bên trái) và **tách** (xoay
 trái và tăng mức để xử lý các liên kết ngang bên phải liên tiếp).
 
-Thao tác nghiêng xoay phải một cây con có liên kết ngang bên trái để thay bằng một cây con có liên kết ngang bên phải.
-Thao tác tách xoay trái và tăng mức để thay một cây con có từ hai liên kết ngang bên phải liên tiếp trở lên bằng một cây
-con có ít liên kết ngang bên phải liên tiếp hơn. Nhờ dựa vào hai thao tác nghiêng và tách, việc cài đặt chèn/xóa có duy
-trì cân bằng trở nên đơn giản hơn: cây chỉ được chỉnh sửa khi cần, thay vì để phía gọi tự quyết định có thực hiện thao
-tác nào hay không.
+Thao tác nghiêng xoay phải một cây con có liên kết ngang bên trái, biến nó thành một cây con có liên kết ngang bên phải.
+Thao tác tách xoay trái và tăng mức, biến một cây con có từ hai liên kết ngang bên phải liên tiếp trở lên thành cây con
+có ít liên kết ngang bên phải liên tiếp hơn. Nhờ dựa vào hai thao tác nghiêng và tách, việc cài đặt chèn/xóa có duy trì
+cân bằng trở nên đơn giản hơn: cây chỉ được chỉnh sửa khi cần, thay vì để phía gọi tự quyết định có thực hiện thao tác
+nào hay không.
 
 ### Tách (xoay trái)
 
@@ -109,7 +110,7 @@ Xoay phải nút *T*, xem các nút có mức nhỏ hơn hoặc bằng mức nà
 ## Các thao tác trên cây AA
 
 Bản thân cây AA là một cây tìm kiếm nhị phân, nên thao tác tìm kiếm giống như trên các cây tìm kiếm nhị phân khác. Thao
-tác chèn và xóa giống cây *AVL*: trước hết chèn hoặc xóa key trong cây, sau đó lần ngược theo đường tìm kiếm về nút gốc
+tác chèn và xóa giống cây *AVL*: trước hết chèn hoặc xóa khóa trong cây, sau đó lần ngược theo đường tìm kiếm về nút gốc
 và tái cấu trúc cây trong quá trình đó.
 
 ### Chèn
@@ -161,12 +162,13 @@ giản.
 ## Hiệu năng
 
 Hiệu năng của cây AA tương đương cây đỏ-đen. Tuy cây AA thực hiện nhiều phép xoay hơn cây đỏ-đen, thuật toán của cây AA
-đơn giản hơn, nên cuối cùng vẫn cho hiệu năng xấp xỉ. Hiệu năng của cây đỏ-đen ổn định hơn trong nhiều tình huống, còn
-cây AA thường phẳng hơn, giúp thao tác tìm kiếm trên cây AA nhanh hơn đôi chút.
+đơn giản hơn, nên hiệu năng tổng thể vẫn xấp xỉ. Cây đỏ-đen ổn định hơn trong nhiều tình huống, còn cây AA thường phẳng
+hơn, giúp thao tác tìm kiếm trên cây AA nhanh hơn đôi chút.
 
 ## Tài liệu tham khảo
 
 1.  [AA tree - Wikipedia](https://en.wikipedia.org/wiki/AA_tree)
 2.  [Introduction to AA trees](https://iq.opengenus.org/aa-trees/)
 3.  [AA tree - Visualization](https://kubokovac.eu/gnarley-trees/AAtree.html)
-4.  [CMSC 420 Lecture 6: 2-3, Red-black, and AA trees](https://www.cs.umd.edu/class/fall2019/cmsc420-0201/Lects/lect06-aa.pdf)
+4.  [CMSC 420 Lecture 6: 2-3, Red-black, and AA
+    trees](https://www.cs.umd.edu/class/fall2019/cmsc420-0201/Lects/lect06-aa.pdf)
