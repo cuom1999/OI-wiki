@@ -3,12 +3,12 @@ Chương này giới thiệu thuật toán sắp xếp hậu tố tại chỗ v�
 ???+ warning "Cảnh báo"
     Chỉ nên đọc chương này khi bạn **rất, rất quen thuộc** với SA-IS[^nzc09a][^sa-is-gioi-thieu].
 
-<span id="&#20840;&#23616;&#35774;&#23450;"></span>
+<span id="thiết-lập-chung"></span>
 ## Thiết lập chung
 
 Xâu mục tiêu là $\texttt{Pat}$, mảng hậu tố là $\texttt{SA}$. Chỉ số xâu bắt đầu từ 0; ký tự cuối là lính canh, giả sử bằng 0.
 
-<span id="&#22312;&#25972;&#24418;&#23383;&#27597;&#34920;&#19978;&#30340;&#21518;&#32512;&#25490;&#24207;"></span>
+<span id="sắp-xếp-hậu-tố-trên-bảng-chữ-cái-số-nguyên"></span>
 ## Sắp xếp hậu tố trên bảng chữ cái số nguyên
 
 Thực ra phần này có thể xem là phiên bản tại chỗ của thuật toán SA-IS.
@@ -17,7 +17,7 @@ Thực ra phần này có thể xem là phiên bản tại chỗ của thuật t
 
 Nguyên lý tại chỗ là dùng $\texttt{Pat}$ đã được đổi tên để thay thế các bucket S và L, rồi dùng thêm $O(n)$ thao tác để thay cho bucket kiểu.
 
-<span id="&#37325;&#21629;&#21517;&#30446;&#26631;&#20018;-pat"></span>
+<span id="đổi-tên-xâu-mục-tiêu-pat"></span>
 ### Đổi tên xâu mục tiêu Pat
 
 Nói ngắn gọn, ta đổi tên $\texttt{Pat}$ mà không làm thay đổi thứ tự tương đối giữa các hậu tố. Sau đó dùng $\texttt{Pat}$ đã đổi tên để thay thế các bucket S và L ban đầu, nhằm chỉ ra đầu bucket hoặc cuối bucket.
@@ -52,12 +52,12 @@ Các bước đổi tên cụ thể:
 1.  Giống SA-IS, đếm từng ký tự trong $\texttt{Pat}$ và tính tổng tiền tố của chúng (sắp xếp đếm) để xây dựng bucket S/L; khác biệt là ở đây dùng $\texttt{SA}$ để chứa các tổng tiền tố này.
 2.  Quét từng ký tự của $\texttt{Pat}$ từ cuối lên đầu. Khi đó chỉ cần ghi nhớ kiểu của ký tự trước đó là có thể xác định động kiểu của từng ký tự, rồi đổi tên theo tổng tiền tố.
 
-<span id="&#23545;-lms-&#23383;&#31526;&#25490;&#24207;"></span>
+<span id="sắp-xếp-ký-tự-lms"></span>
 ### Sắp xếp ký tự LMS
 
 Điểm chính ở đây là kỹ thuật dùng bộ đếm nội bộ.
 
-<span id="&#21021;&#22987;&#21270;"></span>
+<span id="khởi-tạo"></span>
 #### Khởi tạo
 
 Ban đầu đặt mọi phần tử của $\texttt{SA}$ thành E (EMPTY).
@@ -81,7 +81,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#25226;-lms-&#23383;&#31526;&#30340;&#32034;&#24341;&#25918;&#20837;-sa"></span>
+<span id="đưa-chỉ-số-ký-tự-lms-vào-sa"></span>
 #### Đưa chỉ số ký tự LMS vào SA
 
 Quét $\texttt{Pat}$ từ cuối lên đầu. Với ký tự LMS $\texttt{Pat[i]}$, xét theo ký hiệu của $\texttt{SA[Pat[i]]}$:
@@ -130,10 +130,10 @@ $$
 
 Ở giai đoạn này, mỗi bucket chỉ cần được dịch chuyển và quét một lần, nên độ phức tạp thời gian là $O(n)$.
 
-<span id="&#35825;&#23548;&#25490;&#24207;-lms-&#23376;&#20018;"></span>
+<span id="sắp-xếp-cảm-ứng-xâu-con-lms"></span>
 ### Sắp xếp cảm ứng xâu con LMS
 
-<span id="&#35825;&#23548;&#25490;&#24207;-lms-&#21069;&#32512;"></span>
+<span id="sắp-xếp-cảm-ứng-tiền-tố-lms"></span>
 #### Sắp xếp cảm ứng tiền tố LMS
 
 Thực hiện sắp xếp cảm ứng các tiền tố LMS. Giống SA-IS, phần này hoàn toàn giống bước sắp xếp cảm ứng hậu tố ở phía sau (dùng cùng một hàm), nên ở đây bỏ qua chi tiết.
@@ -147,7 +147,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#23558;&#24050;&#25490;&#24207;&#30340;-lms-&#23376;&#20018;&#25918;&#21040;-sa-&#23614;&#37096;"></span>
+<span id="đưa-các-xâu-con-lms-đã-sắp-xếp-vào-cuối-sa"></span>
 #### Đưa các xâu con LMS đã sắp xếp vào cuối SA
 
 $$
@@ -157,7 +157,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#26500;&#24314;&#35268;&#27169;&#32553;&#20943;&#30340;&#23376;&#30446;&#26631;&#20018;-pat1"></span>
+<span id="xây-dựng-xâu-mục-tiêu-con-pat1-có-kích-thước-thu-gọn"></span>
 ### Xây dựng xâu mục tiêu con Pat1 có kích thước thu gọn
 
 Quét các xâu con LMS ở cuối $\texttt{SA}$ từ trái sang phải, xác định quan hệ thứ tự của chúng và "đổi tên"; lưu giá trị đổi tên của $\texttt{SA[i]}$ vào $\texttt{SA}\left[\left\lfloor\frac{\texttt{SA}[i]}{2} \right\rfloor\right]$.
@@ -180,7 +180,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#36890;&#36807;&#36882;&#24402;&#35299;&#20915;-pat1&#23436;&#25104;&#23545;-lms-&#21518;&#32512;&#30340;&#25490;&#24207;"></span>
+<span id="giải-đệ-quy-pat1-để-hoàn-tất-sắp-xếp-hậu-tố-lms"></span>
 ### Giải đệ quy Pat1 để hoàn tất sắp xếp hậu tố LMS
 
 Giống SA-IS, giải đệ quy bài toán sắp xếp hậu tố của $\texttt{Pat1}$ đã thu gọn ở đầu $\texttt{SA}$, rồi lưu kết quả vào cuối $\texttt{SA}$:
@@ -219,7 +219,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#23545;-pat1-&#20013;&#25152;&#26377;&#30340;&#21518;&#32512;&#36827;&#34892;&#35825;&#23548;&#25490;&#24207;"></span>
+<span id="sắp-xếp-cảm-ứng-tất-cả-hậu-tố-trong-pat1"></span>
 ### Sắp xếp cảm ứng tất cả hậu tố trong Pat1
 
 Phần này dùng lại kỹ thuật bộ đếm nội bộ ở trên để thực hiện sắp xếp cảm ứng phiên bản tại chỗ.
@@ -272,7 +272,7 @@ Còn việc cảm ứng hậu tố S từ hậu tố L hoàn toàn đối xứng
 
 Đến đây, bước sắp xếp cảm ứng đã hoàn tất.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 #### Cài đặt
 
 Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian sử dụng giảm xuống dưới $\dfrac{1}{3}$ so với ban đầu (đổi lại lượng code tăng khoảng gấp đôi). Như vậy khá xứng với tiêu đề Optimal In-Place Suffix Sorting[^in-place-sa-sort] của bài gốc.
@@ -803,7 +803,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
     }
     ```
 
-<span id="&#22312;&#21482;&#35835;&#30340;&#25972;&#24418;&#23383;&#27597;&#34920;&#19978;&#30340;&#21518;&#32512;&#25490;&#24207;"></span>
+<span id="sắp-xếp-hậu-tố-trên-bảng-chữ-cái-số-nguyên-chỉ-đọc"></span>
 ## Sắp xếp hậu tố trên bảng chữ cái số nguyên chỉ đọc
 
 Dùng phương pháp phức tạp để giải quyết vấn đề phức tạp: thông qua chia để trị, giải quyết hạn chế về không gian.
@@ -814,14 +814,14 @@ Khó khăn khi cài đặt thuật toán nằm ở việc xây dựng BitMaps[^n
 
 Nếu muốn tìm hiểu sâu hơn, hiện tại bạn nên đọc bài gốc và các bài báo liên quan đến BitMaps được trích dẫn trong bài này.
 
-<span id="&#22312;&#21482;&#35835;&#30340;&#19968;&#33324;&#23383;&#27597;&#34920;&#19978;&#30340;&#21518;&#32512;&#25490;&#24207;"></span>
+<span id="sắp-xếp-hậu-tố-trên-bảng-chữ-cái-tổng-quát-chỉ-đọc"></span>
 ## Sắp xếp hậu tố trên bảng chữ cái tổng quát chỉ đọc
 
 Kiến thức chuẩn bị là sắp xếp trộn và sắp xếp vun đống.
 
 Vì tác giả còn băn khoăn về độ phức tạp thời gian của phương pháp xác định kiểu ký tự trong phần này, nên không trình bày thêm ở đây; bạn nên đọc bài gốc để tự tìm hiểu.
 
-<span id="&#27880;&#35299;"></span>
+<span id="ghi-chú"></span>
 ## Ghi chú
 
 [^in-place-sa-sort]: Li, Zhize; Li, Jian; Huo, Hongwei (2016).*Optimal In-Place Suffix Sorting*. Proceedings of the 25th International Symposium on String Processing and Information Retrieval (SPIRE). Lecture Notes in Computer Science. 11147. Springer. pp. 268–284. arXiv:1610.08305. doi:10.1007/978-3-030-00479-8\_22. ISBN:978-3-030-00478-1.
