@@ -1,6 +1,6 @@
-STL cung cấp khoảng 100 hàm template cài đặt thuật toán; phần lớn nằm trong
+STL cung cấp khoảng 100 hàm template cho các thuật toán; phần lớn nằm trong
 `<algorithm>`, một phần khác nằm trong `<numeric>` và `<functional>`. Danh sách
-hàm đầy đủ có thể [xem trong sổ tay tham khảo](https://en.cppreference.com/w/cpp/algorithm);
+hàm đầy đủ có thể [xem trong tài liệu tham khảo](https://en.cppreference.com/w/cpp/algorithm);
 các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương ứng về sắp xếp](../../basic/stl-sort.md).
 
 -   `find`: tìm kiếm tuần tự. `find(v.begin(), v.end(), value)`, trong đó
@@ -21,11 +21,11 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
     ???+ warning "Hàm `random_shuffle` đã bị loại bỏ từ C++17"
         `random_shuffle` bị đánh dấu lỗi thời từ C++14 và bị loại bỏ từ C++17.
 
-        Trong C++11 và các chuẩn mới hơn, bạn có thể dùng hàm `shuffle` thay
+        Trong C++11 và các chuẩn mới hơn, có thể dùng hàm `shuffle` thay
         cho `random_shuffle` cũ. Cách dùng là `shuffle(v.begin(), v.end(), rng)`;
         tham số cuối truyền vào bộ sinh số ngẫu nhiên, thường dùng Mersenne
         Twister [`mt19937`](https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine)
-        được khởi tạo hạt giống bằng bộ sinh số ngẫu nhiên thật [`random_device`](https://en.cppreference.com/w/cpp/numeric/random/random_device).
+        được gieo hạt bằng bộ sinh số ngẫu nhiên thật [`random_device`](https://en.cppreference.com/w/cpp/numeric/random/random_device).
 
         ```cpp
         // #include <random>
@@ -39,7 +39,7 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
 
 -   `stable_sort`: sắp xếp ổn định, cách dùng giống `sort()`.
 
--   `nth_element`: phân hoạch theo phạm vi chỉ định, tức đưa phần tử sẽ đứng ở
+-   `nth_element`: phân hoạch theo phạm vi chỉ định, tức đưa phần tử đáng lẽ đứng ở
     vị trí thứ $n$ sau khi sắp xếp về đúng vị trí đó, sao cho các phần tử bên
     trái không lớn hơn nó và các phần tử bên phải không nhỏ hơn nó.
     `nth_element(v.begin(), v.begin() + n, v.end(), cmp)` hoặc
@@ -53,7 +53,7 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
     back_inserter(v3))`.
 
 -   `inplace_merge`: **gộp tại chỗ thành một dãy có thứ tự** hai phạm vi đã được
-    sắp theo toán tử nhỏ hơn: `[first,middle), [middle,last)`.
+    sắp xếp theo toán tử nhỏ hơn: `[first,middle), [middle,last)`.
     `inplace_merge(v.begin(), v.begin() + middle, v.end())`.
 
 -   `lower_bound`: tìm kiếm nhị phân trong một dãy có thứ tự, trả về bộ lặp
@@ -122,7 +122,7 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
         vector<int> src = {1, 2, 3, 4, 5}, dst;
         // Tính tổng tiền tố của các phần tử trong src,
         // dst[i] = src[0] + ... + src[i]
-        // Hàm back_inserter tác động lên bộ chứa dst và cung cấp một bộ lặp
+        // Hàm back_inserter tạo một bộ lặp chèn vào bộ chứa dst
         partial_sum(src.begin(), src.end(), back_inserter(dst));
         for (unsigned int i = 0; i < dst.size(); i++) cout << dst[i] << " ";
         ```
