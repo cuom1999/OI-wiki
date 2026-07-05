@@ -14,35 +14,35 @@ hằng số.
 Với OIer, yêu cầu về hiệu năng chương trình thường cao hơn rất nhiều so với độ
 ổn định ở mức dự án phần mềm. Do `vector` xử lý bộ nhớ động, trong một số trường
 hợp hiệu năng thời gian của nó kém hơn mảng tĩnh, và còn tệ hơn nếu máy chủ OJ
-không bật tối ưu hóa đầy đủ. Vì vậy khi chỉ cần lưu trữ dữ liệu thông thường, ta
-thường không chọn `vector`. Dưới đây là một số đặc tính nổi bật của `vector`;
-khi cần dùng đến các đặc tính này, `vector` có thể giúp ích rất nhiều.
+không bật tối ưu hóa đầy đủ. Vì vậy khi chỉ cần lưu trữ dữ liệu thông thường,
+`vector` thường không phải lựa chọn ưu tiên. Sau đây là một số điểm mạnh nổi bật
+của `vector`; khi cần đến những điểm này, `vector` có thể giúp ích rất nhiều.
 
 <span id="vector-có-thể-cấp-phát-bộ-nhớ-động"></span>
 
 #### `vector` có thể cấp phát bộ nhớ động
 
-Nhiều khi ta không thể mở sẵn một vùng nhớ lớn như vậy (ví dụ: tiền xử lý tất cả
+Nhiều khi không thể mở sẵn một vùng nhớ lớn như vậy (ví dụ: tiền xử lý tất cả
 ước của các số từ 1 đến n). Dù biết tổng lượng dữ liệu vẫn nằm trong giới hạn bộ
-nhớ, từng phần dữ liệu riêng lẻ vẫn có thể rất lớn; khi đó ta cần `vector` để
+nhớ, từng phần dữ liệu riêng lẻ vẫn có thể rất lớn; khi đó cần dùng `vector` để
 khống chế mức sử dụng bộ nhớ trong phạm vi phù hợp. `vector` cũng hỗ trợ mở rộng
-dung lượng động, đặc tính này rất hữu ích khi bộ nhớ thật sự căng thẳng.
+dung lượng động, rất hữu ích khi bộ nhớ thật sự căng thẳng.
 
 <span id="vector-nạp-chồng-toán-tử-so-sánh-và-toán-tử-gán"></span>
 
 #### `vector` nạp chồng toán tử so sánh và toán tử gán
 
 `vector` nạp chồng sáu toán tử so sánh, được cài đặt theo thứ tự từ điển. Điều
-này giúp ta dễ dàng kiểm tra hai bộ chứa có bằng nhau hay không (độ phức tạp
+này giúp dễ dàng kiểm tra hai bộ chứa có bằng nhau hay không (độ phức tạp
 tuyến tính theo kích thước bộ chứa). Chẳng hạn có thể dùng `vector<char>` để so
-sánh xâu (tất nhiên, dùng `std::string` vẫn nhanh và tiện hơn). Ngoài ra,
+sánh chuỗi (tất nhiên, dùng `std::string` vẫn nhanh và tiện hơn). Ngoài ra,
 `vector` cũng nạp chồng toán tử gán, giúp việc sao chép mảng thuận tiện hơn.
 
 <span id="khởi-tạo-vector-thuận-tiện"></span>
 
 #### Khởi tạo `vector` thuận tiện
 
-Vì `vector` nạp chồng toán tử `=`, ta có thể thực hiện phép gán toàn bộ
+Vì `vector` nạp chồng toán tử `=`, có thể thực hiện phép gán toàn bộ
 `vector` một cách thuận tiện. Ngoài ra, từ C++11, `vector` còn hỗ trợ
 [khởi tạo bằng danh sách](https://en.cppreference.com/w/cpp/language/list_initialization),
 ví dụ `vector<int> data {1, 2, 3};`.
@@ -51,14 +51,14 @@ ví dụ `vector<int> data {1, 2, 3};`.
 
 ### Cách dùng `vector`
 
-Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết có thể xem trong
+Phần này giới thiệu các cách dùng thường gặp; nội dung chi tiết có thể xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/container/vector).
 
 <span id="hàm-khởi-tạo-vector"></span>
 
 #### Hàm khởi tạo
 
-Ví dụ cách dùng như đoạn mã sau (giả sử bạn đã `using` các kiểu liên quan trong
+Ví dụ cách dùng như đoạn mã sau (giả sử đã `using` các kiểu liên quan trong
 không gian tên `std`):
 
 ```cpp
@@ -89,7 +89,7 @@ vector<int> v6(std::move(v2));  // hoặc v6 = std::move(v2);
 
 ??? note "Mã kiểm thử"
     ```cpp
-    // Dưới đây là mã kiểm thử; bạn nào quan tâm có thể tự biên dịch và chạy thử.
+    // Sau đây là mã kiểm thử; có thể tự biên dịch và chạy thử nếu cần.
     cout << "v1 = ";
     copy(v1.begin(), v1.end(), ostream_iterator<int>(cout, " "));
     cout << endl;
@@ -166,8 +166,8 @@ Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông
     Trả về bộ lặp trỏ đến vị trí sau phần tử cuối của dãy duyệt ngược, tương ứng
     với vị trí trước phần tử đầu của bộ chứa; vị trí này không có phần tử.
 
-Trong các bộ lặp liệt kê trên, những hàm có ký tự `c` trả về bộ lặp chỉ đọc; bạn
-không thể dùng bộ lặp chỉ đọc để sửa giá trị phần tử trong `vector`. Nếu bản
+Trong các bộ lặp liệt kê trên, những hàm có ký tự `c` trả về bộ lặp chỉ đọc; bộ
+lặp chỉ đọc không thể dùng để sửa giá trị phần tử trong `vector`. Nếu bản
 thân một `vector` là chỉ đọc, bộ lặp thông thường và bộ lặp chỉ đọc của nó hoàn
 toàn tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
 
@@ -177,8 +177,7 @@ toàn tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
 
 `vector` có các hàm sau liên quan đến độ dài và dung lượng bộ chứa. Lưu ý, độ
 dài (`size`) của `vector` là số phần tử hợp lệ, còn dung lượng (`capacity`) là
-độ dài vùng nhớ thực tế đã cấp phát; chi tiết xem phần về cách cài đặt ở bên
-dưới.
+độ dài vùng nhớ thực tế đã cấp phát; chi tiết xem phần về cách cài đặt ở sau.
 
 **Liên quan đến độ dài**:
 
@@ -223,7 +222,7 @@ dưới.
 
 ### Chi tiết cài đặt của `vector`
 
-Bên dưới `vector` thực ra vẫn là mảng có độ dài cố định. Lý do nó mở rộng động
+Về cài đặt, `vector` thực ra vẫn là mảng có độ dài cố định. Lý do nó mở rộng động
 được là vì có thêm thao tác cấp phát lại để tránh vượt quá dung lượng. Trước hết
 cần nói rõ: số phần tử (độ dài) $n$ trong `vector` và số phần tử tối đa mà vùng
 nhớ đã cấp phát có thể chứa (dung lượng) $N$ không nhất thiết giống nhau;
@@ -242,7 +241,7 @@ Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bo
 "`bool`" chỉ chiếm 1 bit và vẫn hỗ trợ tăng kích thước động. Tuy nhiên kiểu trả
 về của `operator[]` không phải `bool&` mà là `vector<bool>::reference`. Vì vậy
 cần thận trọng khi dùng `vector<bool>`; có thể cân nhắc thay bằng `deque<bool>`
-hoặc `vector<char>`. Nếu bạn cần tiết kiệm bộ nhớ, hãy dùng trực tiếp
+hoặc `vector<char>`. Nếu cần tiết kiệm bộ nhớ, nên dùng trực tiếp
 [`bitset`](./bitset.md).
 
 ## `array` (C++11)
