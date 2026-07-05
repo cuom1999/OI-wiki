@@ -15,7 +15,7 @@ thường IDE này cũng sẽ được cung cấp.
 
 #### Windows
 
-Nên dùng trình biên dịch GNU. Bạn cần tải và cài MinGW từ
+Nên dùng trình biên dịch GNU. Có thể tải và cài MinGW từ
 [MinGW Distro](https://nuwen.net/mingw.html). Ngoài ra, trên Windows cũng có thể
 chọn [trình biên dịch Microsoft Visual C++](https://docs.microsoft.com/en-us/cpp/build/projects-and-build-systems-cpp);
 công cụ này có thể tải và cài từ
@@ -42,7 +42,7 @@ sudo apt update && sudo apt install g++
 #### Biên dịch mã trong dòng lệnh
 
 Khi đã quen hơn, nhiều người sẽ dùng dòng lệnh để biên dịch mã vì cách này linh
-hoạt hơn. Khi đó, bạn không phụ thuộc vào IDE mà có thể dùng trình soạn thảo văn
+hoạt hơn. Khi đó, người viết không phụ thuộc vào IDE mà có thể dùng trình soạn thảo văn
 bản quen thuộc để viết mã.
 
 ```bash
@@ -60,9 +60,9 @@ C++, nên ở đây cũng thêm tùy chọn này.
 
 ## Đoạn mã đầu tiên
 
-Hãy bắt đầu hành trình nhập môn C++ bằng chương trình ví dụ sau.
+Bắt đầu hành trình nhập môn C++ bằng chương trình ví dụ sau.
 
-Ghi chú: Trước khi gõ mã, hãy chú ý chuyển bộ gõ sang tiếng Anh.
+Ghi chú: Trước khi gõ mã, cần chú ý chuyển bộ gõ sang tiếng Anh.
 
 Chương trình C++:
 
