@@ -30,10 +30,10 @@
 
 ### Bộ chứa không thứ tự (kết hợp)
 
--   **Unordered (multi)set** (`unordered_set`/`unordered_multiset`) **C++11**:
+-   **Tập/đa tập không thứ tự** (`unordered_set`/`unordered_multiset`) **C++11**:
     khác `set`/`multiset` ở chỗ phần tử không có thứ tự, chỉ quan tâm "phần tử
     có tồn tại hay không", và được hiện thực bằng băm.
--   **Unordered (multi)map** (`unordered_map`/`unordered_multimap`) **C++11**:
+-   **Ánh xạ/đa ánh xạ không thứ tự** (`unordered_map`/`unordered_multimap`) **C++11**:
     khác `map`/`multimap` ở chỗ khóa (`key`) không có thứ tự, chỉ quan tâm "quan
     hệ tương ứng giữa khóa và giá trị", và được hiện thực bằng băm.
 
@@ -49,7 +49,7 @@ Bộ chuyển đổi bộ chứa thật ra không phải là bộ chứa. Chúng
     `deque`.
 -   **Queue** (`queue`): hàng đợi vào trước ra trước (FIFO), mặc định bọc
     `deque`.
--   **Priority queue** (`priority_queue`): hàng đợi mà thứ tự phần tử được quyết
+-   **Hàng đợi ưu tiên** (`priority_queue`): hàng đợi mà thứ tự phần tử được quyết
     định bởi một vị từ tác động lên các giá trị được lưu, mặc định bọc
     `vector`.
 

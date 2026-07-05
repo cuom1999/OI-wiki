@@ -4,7 +4,7 @@ author: Xeonacid, ksyx, Early0v0
 
 ## Ngăn xếp
 
-STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đổi bộ chứa theo nguyên tắc vào sau ra trước (Last In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ bộ lặp.
+STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đổi bộ chứa theo nguyên tắc vào sau ra trước (LIFO, Last In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ bộ lặp.
 
 <span id="tệp-tiêu-đề-ngăn-xếp"></span>
 
@@ -56,7 +56,7 @@ std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 
 ## Hàng đợi
 
-STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một bộ chuyển đổi bộ chứa theo nguyên tắc vào trước ra trước (First In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ bộ lặp.
+STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một bộ chuyển đổi bộ chứa theo nguyên tắc vào trước ra trước (FIFO, First In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ bộ lặp.
 
 <span id="tệp-tiêu-đề-hàng-đợi"></span>
 
@@ -134,7 +134,7 @@ std::priority_queue<TypeName, Container, Compare> q;
 // Nếu muốn top() trả về giá trị nhỏ nhất, có thể đặt kiểu so sánh là greater<TypeName>
 // Lưu ý: không thể bỏ qua Container để truyền trực tiếp Compare
 
-// Từ C++11 trở đi, nếu dùng hàm lambda để tự định nghĩa Compare
+// Từ C++11 trở đi, nếu dùng biểu thức lambda để tự định nghĩa Compare
 // thì cần truyền nó vào dưới dạng tham số của hàm khởi tạo, ví dụ:
 auto cmp = [](const std::pair<int, int> &l, const std::pair<int, int> &r) {
   return l.second < r.second;

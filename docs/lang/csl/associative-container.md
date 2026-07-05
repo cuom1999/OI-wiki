@@ -7,14 +7,14 @@ Tương tự tập hợp trong toán học, `set` không có hai phần tử có
 <span id="thao-tác-chèn-và-xóa-set"></span>
 ### Thao tác chèn và xóa
 
--   `insert(x)` chèn phần tử x vào `set` nếu trong bộ chứa chưa có phần tử tương đương.
--   `erase(x)` xóa **tất cả** phần tử có giá trị bằng x, trả về số phần tử đã xóa.
--   `erase(pos)` xóa phần tử tại bộ lặp pos; bộ lặp này phải hợp lệ.
+-   `insert(x)` chèn phần tử `x` vào `set` nếu trong bộ chứa chưa có phần tử tương đương.
+-   `erase(x)` xóa **tất cả** phần tử có giá trị bằng `x`, trả về số phần tử đã xóa.
+-   `erase(pos)` xóa phần tử tại bộ lặp `pos`; bộ lặp này phải hợp lệ.
 -   `erase(first,last)` xóa tất cả phần tử có bộ lặp nằm trong khoảng $[first,last)$.
 -   `clear()` xóa rỗng `set`.
 
-???+ note "Giá trị trả về của hàm insert"
-    Kiểu trả về của hàm insert là `pair<iterator, bool>`, trong đó bộ lặp trỏ đến phần tử vừa được chèn (hoặc trỏ đến phần tử đã tồn tại sẵn trong bộ chứa và bằng với giá trị cần chèn), còn bool cho biết việc chèn có thành công hay không. Do các phần tử trong `set` có tính duy nhất, nếu trong `set` đã có phần tử bằng giá trị đó thì chèn thất bại và trả về false; ngược lại chèn thành công và trả về true. `insert` trong `map` cũng tương tự.
+???+ note "Giá trị trả về của hàm `insert`"
+    Kiểu trả về của hàm `insert` là `pair<iterator, bool>`, trong đó bộ lặp trỏ đến phần tử vừa được chèn (hoặc trỏ đến phần tử đã tồn tại sẵn trong bộ chứa và bằng với giá trị cần chèn), còn giá trị `bool` cho biết việc chèn có thành công hay không. Do các phần tử trong `set` có tính duy nhất, nếu trong `set` đã có phần tử bằng giá trị đó thì chèn thất bại và trả về `false`; ngược lại chèn thành công và trả về `true`. `insert` trong `map` cũng tương tự.
 
 <span id="iterator-set"></span>
 ### Bộ lặp
@@ -35,8 +35,8 @@ Trong các bộ lặp liệt kê ở trên, những hàm có chữ cái `c` tr�
 <span id="thao-tác-tìm-kiếm-set"></span>
 ### Thao tác tìm kiếm
 
--   `count(x)` trả về số phần tử trong `set` có khóa bằng x.
--   `find(x)` trả về bộ lặp của phần tử có khóa bằng x nếu phần tử đó tồn tại trong `set`; nếu không, trả về `end()`.
+-   `count(x)` trả về số phần tử trong `set` có khóa bằng `x`.
+-   `find(x)` trả về bộ lặp của phần tử có khóa bằng `x` nếu phần tử đó tồn tại trong `set`; nếu không, trả về `end()`.
 -   `lower_bound(x)` trả về bộ lặp trỏ đến phần tử đầu tiên không nhỏ hơn khóa đã cho. Nếu không có phần tử như vậy, trả về `end()`.
 -   `upper_bound(x)` trả về bộ lặp trỏ đến phần tử đầu tiên lớn hơn khóa đã cho. Nếu không có phần tử như vậy, trả về `end()`.
 -   `empty()` trả về việc bộ chứa có rỗng hay không.
@@ -106,7 +106,7 @@ Trong `map` không tồn tại hai phần tử có cùng khóa; `multimap` cho p
 -   Có thể truy cập trực tiếp bằng chỉ số để truy vấn hoặc chèn. Ví dụ: `mp["Alan"]=100`.
 -   Có thể chèn phần tử bằng cách chèn vào `map` một giá trị có kiểu `pair<Key, T>`, ví dụ `mp.insert(pair<string,int>("Alan",100));`.
 -   Hàm `erase(key)` xóa **tất cả** phần tử có khóa bằng `key`. Giá trị trả về là số phần tử đã xóa.
--   `erase(pos)`: xóa phần tử tại bộ lặp pos; bộ lặp này phải hợp lệ.
+-   `erase(pos)`: xóa phần tử tại bộ lặp `pos`; bộ lặp này phải hợp lệ.
 -   `erase(first,last)`: xóa tất cả phần tử có bộ lặp nằm trong khoảng $[first,last)$.
 -   Hàm `clear()` xóa rỗng toàn bộ bộ chứa.
 
@@ -118,8 +118,8 @@ Trong `map` không tồn tại hai phần tử có cùng khóa; `multimap` cho p
 <span id="thao-tác-truy-vấn-map"></span>
 ### Thao tác truy vấn
 
--   `count(x)`: trả về số phần tử trong bộ chứa có khóa bằng x. Độ phức tạp là $O(\log(size)+ans)$ (logarit theo kích thước bộ chứa, cộng với số phần tử khớp).
--   `find(x)`: nếu trong bộ chứa tồn tại phần tử có khóa bằng x, trả về bộ lặp của phần tử đó; nếu không, trả về `end()`.
+-   `count(x)`: trả về số phần tử trong bộ chứa có khóa bằng `x`. Độ phức tạp là $O(\log(size)+ans)$ (logarit theo kích thước bộ chứa, cộng với số phần tử khớp).
+-   `find(x)`: nếu trong bộ chứa tồn tại phần tử có khóa bằng `x`, trả về bộ lặp của phần tử đó; nếu không, trả về `end()`.
 -   `lower_bound(x)`: trả về bộ lặp trỏ đến phần tử đầu tiên không nhỏ hơn khóa đã cho.
 -   `upper_bound(x)`: trả về bộ lặp trỏ đến phần tử đầu tiên lớn hơn khóa đã cho. Nếu tất cả phần tử trong bộ chứa đều nhỏ hơn hoặc bằng khóa đã cho, trả về `end()`.
 -   `empty()`: trả về việc bộ chứa có rỗng hay không.
