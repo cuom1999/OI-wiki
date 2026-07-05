@@ -4,7 +4,7 @@ author: Frankaiyou, henrytbtrue, zymooll
 
 Thư viện chuẩn C thao tác trên mảng ký tự `char[]`/`const char*`.
 
-Tham khảo: [fprintf](https://zh.cppreference.com/w/c/io/fprintf), [fscanf](https://zh.cppreference.com/w/c/io/fscanf), [xâu byte kết thúc bằng null](https://zh.cppreference.com/w/c/string/byte)
+Tham khảo: [fprintf](https://en.cppreference.com/w/c/io/fprintf), [fscanf](https://en.cppreference.com/w/c/io/fscanf), [xâu byte kết thúc bằng null](https://en.cppreference.com/w/c/string/byte)
 
 -   `printf("%s", s)`: dùng `%s` để xuất một xâu (mảng ký tự).
 -   `scanf("%s", &s)`: dùng `%s` để đọc một xâu (mảng ký tự).
@@ -23,7 +23,7 @@ Tham khảo: [fprintf](https://zh.cppreference.com/w/c/io/fprintf), [fscanf](htt
 
 Thư viện chuẩn C++ thao tác trên đối tượng xâu [`std::string`](../lang/csl/string.md), đồng thời cũng cung cấp khả năng tương thích với mảng ký tự.
 
-Tham khảo: [std::basic\_string](https://zh.cppreference.com/w/cpp/string/basic_string), [std::basic\_string\_view](https://zh.cppreference.com/w/cpp/string/basic_string_view)
+Tham khảo: [std::basic\_string](https://en.cppreference.com/w/cpp/string/basic_string), [std::basic\_string\_view](https://en.cppreference.com/w/cpp/string/basic_string_view)
 
 -   Toán tử `+` được nạp chồng; khi hai vế của `+` có kiểu `string/char/char[]/const char*`, có thể nối hai biến này và trả về xâu đã nối (`string`).
 -   Vế phải của toán tử gán `=` có thể là `const string/string/const char*/char*`.
