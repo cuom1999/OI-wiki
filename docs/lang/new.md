@@ -171,7 +171,7 @@ for (auto& [k, v] : m) {
 
 ## Bộ `std::tuple`
 
-[Tuple](https://en.cppreference.com/w/cpp/utility/tuple) được định nghĩa trong header `<tuple>`, là sự khái quát hóa của `std::pair` và có thể lưu nhiều giá trị thuộc các kiểu khác nhau. Hãy xem ví dụ sau:
+[Tuple](https://en.cppreference.com/w/cpp/utility/tuple) được định nghĩa trong tệp header `<tuple>`, là sự khái quát hóa của `std::pair` và có thể lưu nhiều giá trị thuộc các kiểu khác nhau. Hãy xem ví dụ sau:
 
 ```cpp
 #include <iostream>
@@ -272,7 +272,7 @@ Nó không phải một đặc tính ngôn ngữ, mà là một [khái niệm ho
     
     Hãy cân nhắc dùng [**Biểu thức lambda**](./lambda.md) hoặc [**đối tượng hàm**](#đối-tượng-hàm) thay thế.
 
-`std::function` là một bộ bao bọc hàm đa hình tổng quát, được định nghĩa trong header `<functional>`.
+`std::function` là một bộ bao bọc hàm đa hình tổng quát, được định nghĩa trong tệp header `<functional>`.
 
 Một thể hiện của `std::function` có thể lưu trữ, sao chép và gọi bất kỳ đối tượng [**callable**](https://en.cppreference.com/w/cpp/named_req/Callable) nào, bao gồm [**biểu thức lambda**](./lambda.md), con trỏ hàm thành viên hoặc [**đối tượng hàm**](#đối-tượng-hàm) khác.
 

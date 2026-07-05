@@ -23,7 +23,7 @@ Ví dụ:
 
 -   Kiểu tham số hàm không khớp.
 
-    -   Ví dụ: khi dùng hàm `max` trong header `<algorithm>`, truyền vào một
+    -   Ví dụ: khi dùng hàm `max` trong tệp header `<algorithm>`, truyền vào một
         tham số kiểu `int` và một tham số kiểu `long long`.
 
         ```cpp
