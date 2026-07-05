@@ -37,9 +37,9 @@ std::cin.tie(nullptr);
     ```cpp
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    std::cout << "Please input your name: "
+    std::cout << "Vui lòng nhập tên của bạn: "
               << std::flush;  // Hoặc: std::endl;
-                              // vì mỗi lần gọi std::endl đều flush bộ đệm đầu ra,
+                              // vì mỗi lần gọi std::endl đều xả bộ đệm đầu ra,
                               // còn \n thì không.
     // Nếu bỏ std::flush, thông báo sẽ không hiển thị trước khi nhập tên
     std::cin >> name;
@@ -124,7 +124,7 @@ std::size_t fwrite(const void* buffer, std::size_t size, std::size_t count,
 
 Ví dụ `fread(Buf, 1, SIZE, stdin)` nghĩa là đọc `SIZE` khối dữ liệu kích thước 1 byte từ đầu vào chuẩn vào `Buf`. Giá trị trả về cho biết đã đọc thành công bao nhiêu byte dữ liệu.
 
-Vì `fread` và `fwrite` đọc và ghi theo từng đoạn, chúng có lợi thế về tốc độ so với `getchar()` và `putchar()`. Nếu bộ đệm đủ lớn, có thể đọc toàn bộ file trong một lần. Nhưng nếu bộ đệm không đủ lớn, cần đọc nhiều lần để đảm bảo đọc hết toàn bộ nội dung đầu vào. Để thực hiện chức năng này, chỉ cần định nghĩa lại `getchar`.
+Vì `fread` và `fwrite` đọc và ghi theo từng đoạn, chúng có lợi thế về tốc độ so với `getchar()` và `putchar()`. Nếu bộ đệm đủ lớn, có thể đọc toàn bộ tệp trong một lần. Nhưng nếu bộ đệm không đủ lớn, cần đọc nhiều lần để đảm bảo đọc hết toàn bộ nội dung đầu vào. Để thực hiện chức năng này, chỉ cần định nghĩa lại `getchar`.
 
 ```cpp
 char buf[1 << 20], *p1, *p2;
@@ -145,11 +145,11 @@ Mã cốt lõi như sau.
 Khi dùng phương pháp này cần chú ý:
 
 -   Khi tắt cờ gỡ lỗi thì dùng `fread()`, `fwrite()`, và khi thoát sẽ tự động gọi hàm hủy để thực thi `fwrite()`. Khi bật cờ gỡ lỗi thì dùng `getchar()`, `putchar()` để tiện gỡ lỗi.
--   Nếu cần đọc ghi file, phải thêm `freopen()` trước mọi thao tác đọc ghi.
+-   Nếu cần đọc ghi tệp, phải thêm `freopen()` trước mọi thao tác đọc ghi.
 
 #### Cài đặt bằng `mmap`
 
-`mmap` là system call của Linux, có thể ánh xạ toàn bộ file vào bộ nhớ trong một lần, tương tự một vùng bộ nhớ có thể tham chiếu bằng con trỏ, và trong một số tình huống có tốc độ tốt hơn. Chữ ký hàm như sau:
+`mmap` là lời gọi hệ thống (system call) của Linux, có thể ánh xạ toàn bộ tệp vào bộ nhớ trong một lần, tương tự một vùng bộ nhớ có thể tham chiếu bằng con trỏ, và trong một số tình huống có tốc độ tốt hơn. Chữ ký hàm như sau:
 
 ```c
 void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
@@ -157,11 +157,11 @@ void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
 ```
 
 ???+ warning "Chú ý"
-    `mmap` không thể dùng trong môi trường Windows (ví dụ hệ thống chấm của CodeForces và HDU), đồng thời cũng không khuyến nghị dùng trong phòng thi chính thức. Trên thực tế, dùng `fread` đã đủ nhanh; nếu dùng `mmap` để lặp đi lặp lại việc đọc một file nhỏ, chi phí thực hiện ánh xạ bộ nhớ một lần và chi phí kernel xử lý page fault sẽ lớn hơn nhiều so với chi phí dùng `fread`.
+    `mmap` không thể dùng trong môi trường Windows (ví dụ hệ thống chấm của CodeForces và HDU), đồng thời cũng không khuyến nghị dùng trong phòng thi chính thức. Trên thực tế, dùng `fread` đã đủ nhanh; nếu dùng `mmap` để lặp đi lặp lại việc đọc một tệp nhỏ, chi phí thực hiện ánh xạ bộ nhớ một lần và chi phí nhân hệ điều hành xử lý lỗi trang (page fault) sẽ lớn hơn nhiều so với chi phí dùng `fread`.
 
-Trước hết cần lấy file descriptor `fd`, sau đó dùng `fstat` để lấy kích thước file, rồi dùng `mmap` để thu được con trỏ `*pc` trỏ tới file đã ánh xạ vào bộ nhớ. Sau đó có thể trực tiếp dùng `*pc++` thay cho `getchar()` để đọc file.
+Trước hết cần lấy bộ mô tả tệp (file descriptor) `fd`, sau đó dùng `fstat` để lấy kích thước tệp, rồi dùng `mmap` để thu được con trỏ `*pc` trỏ tới tệp đã ánh xạ vào bộ nhớ. Sau đó có thể trực tiếp dùng `*pc++` thay cho `getchar()` để đọc tệp.
 
-Nếu cần đọc từ đầu vào chuẩn, có thể đặt `fd` là `0`. **Tuy nhiên, dùng mmap trên đầu vào chuẩn là hành vi cực kỳ nguy hiểm, đồng thời không thể nhập từ terminal; có thể chọn cách redirect file vào đầu vào chuẩn.**
+Nếu cần đọc từ đầu vào chuẩn, có thể đặt `fd` là `0`. **Tuy nhiên, dùng mmap trên đầu vào chuẩn là hành vi cực kỳ nguy hiểm, đồng thời không thể nhập từ thiết bị đầu cuối; có thể chọn cách chuyển hướng tệp vào đầu vào chuẩn.**
 
 ???+ note "Ví dụ: [Luogu P10815 Mẫu: đọc nhanh](https://www.luogu.com.cn/problem/P10815)"
     Đọc $n$ số nguyên trong phạm vi $[-n, n]$, tính tổng và xuất ra. Trong đó $n \leq 10^8$. Dữ liệu đảm bảo với mọi tiền tố của dãy, tổng của tiền tố đó nằm trong phạm vi lưu trữ của số nguyên có dấu $32$ bit.
