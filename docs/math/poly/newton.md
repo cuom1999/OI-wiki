@@ -1,4 +1,4 @@
-<span id="&#x63CF;&#x8FF0;"></span>
+<span id="mô-tả"></span>
 ## Mô tả
 
 Cho đa thức $G\left(x, y\right)$. Biết đa thức $f\left(x\right)$ thỏa mãn:
@@ -53,11 +53,11 @@ $$
 f_{2n}\left(x\right)\equiv f_n\left(x\right)-\frac{G\left(x, f_n\left(x\right)\right)}{\frac{\partial G}{\partial y}\left(x, f_n\left(x\right)\right)}\pmod{x^{2n}}
 $$
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x6C42;&#x9006;"></span>
-### [Nghịch đảo đa thức](./elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86)
+<span id="nghịch-đảo-đa-thức"></span>
+### [Nghịch đảo đa thức](./elementary-func.md#nghịch-đảo-đa-thức)
 
 Giả sử hàm đã cho là $h\left(x\right)$, đặt:
 
@@ -80,8 +80,8 @@ $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x5F00;&#x65B9;"></span>
-### [Khai căn đa thức](./elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%BC%80%E6%96%B9)
+<span id="khai-căn-đa-thức"></span>
+### [Khai căn đa thức](./elementary-func.md#khai-căn-đa-thức)
 
 Giả sử hàm đã cho là $h\left(x\right)$, đặt:
 
@@ -104,8 +104,8 @@ $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x6307;&#x6570;&#x51FD;&#x6570;"></span>
-### [Hàm mũ của đa thức](./elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AF%B9%E6%95%B0%E5%87%BD%E6%95%B0--%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0)
+<span id="hàm-mũ-của-đa-thức"></span>
+### [Hàm mũ của đa thức](./elementary-func.md#hàm-logarit-và-hàm-mũ-của-đa-thức)
 
 Giả sử hàm đã cho là $h\left(x\right)$, đặt:
 
@@ -128,12 +128,12 @@ $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-<span id="&#x624B;&#x7B97;&#x6F14;&#x793A;"></span>
+<span id="minh-họa-tính-tay"></span>
 ## Minh họa tính tay
 
 Để dễ hiểu, phần này đưa ra vài ví dụ minh họa quy trình thuật toán.
 
-<span id="&#x590D;&#x6570;&#x591A;&#x9879;&#x5F0F;&#x6A21;&#x591A;&#x9879;&#x5F0F;&#x7684;&#x5E73;&#x65B9;&#x6839;"></span>
+<span id="căn-bậc-hai-của-đa-thức-hệ-số-phức-theo-modulo-một-lũy-thừa-đa-thức"></span>
 ### Căn bậc hai của đa thức hệ số phức theo modulo một lũy thừa đa thức
 
 Giả sử $h$ là một đa thức phức không chia hết cho $x$ (tức có hệ số tự do). Hãy tìm căn bậc hai của nó theo modulo $x^n$.
@@ -177,7 +177,7 @@ Lấy $h(x)=x+1$ làm ví dụ:
 
 Có thể kiểm chứng cả hai đều là các dãy đa thức căn bậc hai đúng theo modulo tương ứng.
 
-<span id="&#x6574;&#x6570;&#x6A21;&#x7D20;&#x6570;&#x5E42;&#x7684;&#x5E73;&#x65B9;&#x6839;"></span>
+<span id="căn-bậc-hai-của-số-nguyên-theo-modulo-lũy-thừa-của-số-nguyên-tố"></span>
 ### Căn bậc hai của số nguyên theo modulo lũy thừa của số nguyên tố
 
 Thuật toán lặp Newton cũng có thể chuyển sang trường hợp số nguyên modulo lũy thừa của một số nguyên tố.
@@ -220,12 +220,12 @@ Ví dụ tính cụ thể với $h=46$.
 
 Có thể kiểm chứng cả hai đều là các dãy căn bậc hai đúng theo modulo tương ứng.
 
-<span id="&#x4EE3;&#x6570;&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh-đại-số"></span>
 ## Chứng minh đại số
 
 Phần này mở rộng nội dung phía trên và dùng ngôn ngữ đại số trừu tượng để chứng minh rằng chỉ cần $f$ thỏa điều kiện nghiệm ban đầu, phương pháp Newton sẽ cho nghiệm với mọi $n$, đồng thời có thể thu được toàn bộ nghiệm.
 
-<span id="&#x6709;&#x89E3;&#x7684;&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh-sự-tồn-tại-nghiệm"></span>
 ### Chứng minh sự tồn tại nghiệm
 
 ???+ note "Bổ đề 1"
@@ -258,7 +258,7 @@ $$
 
 Điều kiện ban đầu cho phép nhân đôi chỉ cần tồn tại $f_1\in k$ sao cho $G(X, f_1)\equiv 0\pmod X$ và $\dfrac{\partial G}{\partial Y}(X, f_1)\not\equiv 0\pmod X$. Điều kiện sau bảo đảm $\dfrac{\partial G}{\partial Y}$ có hệ số tự do khác không; đồng thời vì $X\left| \dfrac{G(X, f_n(X))}{\frac{\partial G}{\partial Y}(X, f_n(X))} \right.$, nên với mọi $n$, $\dfrac{\partial G}{\partial Y}(X, f_n)$ luôn khả nghịch theo modulo $X^n$, tức thỏa điều kiện của lần lặp tiếp theo.
 
-<span id="&#x5F97;&#x5230;&#x5168;&#x90E8;&#x89E3;&#x7684;&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh-thu-được-toàn-bộ-nghiệm"></span>
 ### Chứng minh thu được toàn bộ nghiệm
 
 ???+ note "Bổ đề 2"

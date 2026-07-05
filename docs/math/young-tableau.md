@@ -1,4 +1,4 @@
-<span id="&#24341;&#20837;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
@@ -9,15 +9,15 @@ Bảng Young là một dạng ma trận đặc biệt. Nó thuận tiện cho vi
 ???+ note "Ghi chú"
     **Lý thuyết biểu diễn** (Representation theory) là một nhánh của toán học nghiên cứu các cấu trúc đại số trừu tượng bằng cách biểu diễn phần tử của chúng thành các phép biến đổi tuyến tính trên không gian vectơ. **Phép tính Schubert** (Schubert calculus) là một nhánh của hình học đại số, được Hermann Schubert đưa ra vào thế kỷ 19 để giải các bài toán đếm trong hình học xạ ảnh.
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 
 ## Định nghĩa
 
-<span id="&#26472;&#22270;"></span>
+<span id="biểu-đồ-young"></span>
 
 ### Biểu đồ Young
 
-**Biểu đồ Young** (Young diagram; khi dùng các điểm để biểu diễn còn gọi là [biểu đồ Ferrers](https://en.wikipedia.org/wiki/Partition_%28number_theory%29#Ferrers_diagram), đã được giới thiệu trong mục [phân hoạch số nguyên](./combinatorics/partition.md#ferrers-%E5%9B%BE)) là một tập hữu hạn các ô, được căn trái, với độ dài các hàng sắp theo thứ tự không tăng. Nếu liệt kê số ô trên từng hàng của biểu đồ Young, ta thu được một **phân hoạch số nguyên** (integer partition) $\lambda$ của một số nguyên không âm $n$ (tổng số ô). Vì vậy ta có thể xem hình dạng của biểu đồ Young là $\lambda$, bởi nó mang cùng lượng thông tin với phân hoạch số nguyên tương ứng.
+**Biểu đồ Young** (Young diagram; khi dùng các điểm để biểu diễn còn gọi là [biểu đồ Ferrers](https://en.wikipedia.org/wiki/Partition_%28number_theory%29#Ferrers_diagram), đã được giới thiệu trong mục [phân hoạch số nguyên](./combinatorics/partition.md#biểu-đồ-ferrers)) là một tập hữu hạn các ô, được căn trái, với độ dài các hàng sắp theo thứ tự không tăng. Nếu liệt kê số ô trên từng hàng của biểu đồ Young, ta thu được một **phân hoạch số nguyên** (integer partition) $\lambda$ của một số nguyên không âm $n$ (tổng số ô). Vì vậy ta có thể xem hình dạng của biểu đồ Young là $\lambda$, bởi nó mang cùng lượng thông tin với phân hoạch số nguyên tương ứng.
 
 Quan hệ bao hàm giữa các biểu đồ Young định nghĩa một quan hệ [thứ tự bộ phận](../math/order-theory.md#tập-có-thứ-tự-bộ-phận) trên các phân hoạch số nguyên. Quan hệ này có cấu trúc [dàn](../math/order-theory.md#tập-định-hướng-và-dàn) và được gọi là **dàn Young** (Young's lattice). Nếu liệt kê số ô trên từng cột của biểu đồ Young, ta nhận được "phân hoạch liên hợp" hoặc "phân hoạch chuyển vị" của phân hoạch số nguyên $\lambda$; biểu đồ Young tương ứng có thể thu được bằng cách phản xạ biểu đồ ban đầu qua đường chéo chính.
 
@@ -28,7 +28,7 @@ Sau đây là hai cách vẽ khác nhau của biểu đồ Young ứng với ph�
 -   Kiểu Anh: ![](./images/young-diagram-1.svg)
 -   Kiểu Pháp: ![](./images/young-diagram-2.svg)
 
-<span id="&#26472;&#34920;"></span>
+<span id="bảng-young"></span>
 
 ### Bảng Young
 
@@ -45,7 +45,7 @@ $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$ (dãy [A000085](https://o
 
 Trong các ứng dụng khác, biểu đồ Young cũng có thể được điền các số trùng nhau. Nếu các số trong cùng một cột tăng nghiêm ngặt, còn các số trong cùng một hàng tăng không giảm, bảng Young đó được gọi là **nửa chuẩn** (Semistandard Young Tableaux, đôi khi gọi là chặt theo cột). Dãy ghi lại số lần xuất hiện của từng số trong bảng Young được xem là **trọng số** của bảng Young. Vì vậy, trọng số của bảng Young chuẩn nhất định là $(1,1,\ldots,1)$, bởi trong bảng Young chuẩn, mỗi số nguyên dương từ $1$ đến $n$ xuất hiện đúng một lần.
 
-<span id="&#26631;&#20934;&#26472;&#34920;&#30340;&#25554;&#20837;&#31639;&#27861;"></span>
+<span id="thuật-toán-chèn-bảng-young-chuẩn"></span>
 
 #### Thuật toán chèn bảng Young chuẩn
 
@@ -61,13 +61,13 @@ Ví dụ, các bước chèn $3$ vào bảng Young $(2, 5, 9)(6, 7)(8)$ là:
 
 ![](./images/young-tableau-insert.svg)
 
-<span id="&#21464;&#20307;"></span>
+<span id="các-biến-thể"></span>
 
 ### Các biến thể
 
 Bảng Young không hoàn toàn chuẩn theo nghĩa nghiêm ngặt có nhiều **biến thể** (variations). Chẳng hạn, bảng Young chặt theo hàng yêu cầu các số trong cùng hàng tăng nghiêm ngặt và các số trong cùng cột tăng không giảm; nó chính là liên hợp của bảng Young chặt theo cột. Ngoài ra, trong lý thuyết phân hoạch phẳng (plane partitions), người ta thường đổi các điều kiện tăng trong định nghĩa trên thành giảm. Một biến thể khác là bảng Young dạng dải: trước hết gom một số ô thành từng nhóm, rồi yêu cầu các ô trong cùng một nhóm phải được điền cùng một số.
 
-<span id="&#26012;&#26472;&#34920;"></span>
+<span id="bảng-young-lệch"></span>
 
 ### Bảng Young lệch
 
@@ -79,13 +79,13 @@ Ví dụ, hình sau là một bảng Young lệch chuẩn ứng với phân ho�
 
 Tương tự, nếu các số trong cùng một cột tăng nghiêm ngặt và các số trong cùng một hàng tăng không giảm, bảng Young lệch đó được gọi là **bảng Young lệch nửa chuẩn**; nếu bảng Young lệch nửa chuẩn điền các số không lặp từ $1$ đến $n$ (tổng số ô), nó được gọi là **bảng Young lệch chuẩn**. Lưu ý rằng các cặp $\lambda$ và $\mu$ khác nhau có thể cho cùng một $\lambda/\mu$. Mặc dù phần lớn tính chất của bảng Young lệch chỉ phụ thuộc vào các ô còn lại sau khi lấy hiệu, vẫn có một số phép toán phụ thuộc vào lựa chọn $\lambda$ và $\mu$. Vì vậy, $\lambda/\mu$ phải được xem là chứa thông tin của hai đối tượng: $\lambda$ và $\mu$. Khi $\mu$ là phân hoạch rỗng (phân hoạch duy nhất của $0$), bảng Young lệch $\lambda/\mu$ trở thành bảng Young $\lambda$.
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 
 ## Ứng dụng
 
 Bảng Young thường được dùng trong tổ hợp, lý thuyết biểu diễn và hình học đại số để định nghĩa hàm Schur và suy ra các đồng nhất thức liên quan thông qua nhiều cách đếm số bảng Young khác nhau. Trong lập trình thi đấu, các bài toán kiểm tra công thức độ dài móc của bảng Young cũng khá thường gặp.
 
-<span id="&#21246;&#38271;"></span>
+<span id="độ-dài-móc"></span>
 
 ### Độ dài móc
 
@@ -93,7 +93,7 @@ Cho một bảng Young $\pi_{\lambda}$ có tổng cộng $n$ ô. Điền $n$ s�
 
 Với một ô $v$ trong bảng Young, định nghĩa **độ dài móc** $\mathrm{hook}(v)$ bằng số ô ở bên phải trên cùng hàng cộng với số ô ở phía trên trên cùng cột, rồi cộng thêm 1 (chính ô đó).
 
-<span id="&#21246;&#38271;&#20844;&#24335;"></span>
+<span id="công-thức-độ-dài-móc"></span>
 
 ### Công thức độ dài móc
 
@@ -113,11 +113,11 @@ $$
 
 cách điền.
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập"></span>
 
 ## Bài tập
 
-<span id="&#23376;&#24207;&#21015;&#38382;&#39064;"></span>
+<span id="bài-toán-dãy-con"></span>
 
 ### Bài toán dãy con
 
@@ -153,7 +153,7 @@ Vì vậy, độ dài dãy con $k-LIS$ dài nhất có thể biểu diễn là $
 ???+ note "[CF1268B Domino Young](https://codeforces.com/problemset/problem/1268/B)"
     Cho một histogram gồm $n$ cột có độ dài $a_{1} ,a_{2},\ldots,a_{n}\,(a_{1} \geq a_{2} \geq \ldots \geq a_{n} \geq 1)$. Đây là biểu đồ Young của $a=[3,2,2,2,1]$. Hãy tìm số lượng domino không giao nhau lớn nhất có thể vẽ trong histogram này, trong đó mỗi domino là một hình chữ nhật $1 \times 2$ hoặc $2 \times 1$.
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#25299;&#23637;&#38405;&#35835;"></span>
+<span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 
 ## Tài liệu tham khảo và đọc thêm
 

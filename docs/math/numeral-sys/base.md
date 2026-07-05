@@ -23,10 +23,10 @@ Thông thường, ta thêm dấu thập phân "$.$" để biểu diễn số th�
 
 Trong máy tính, các hệ cơ số thường dùng gồm nhị phân, bát phân và thập lục phân.
 
-<span id="&#19981;&#21516;&#36827;&#20301;&#21046;&#38388;&#30340;&#36716;&#25442;"></span>
+<span id="chuyển-đổi-giữa-các-hệ-cơ-số"></span>
 ## Chuyển đổi giữa các hệ cơ số
 
-<span id="&#21313;&#36827;&#21046;&#36716;&#20854;&#20182;&#36827;&#21046;"></span>
+<span id="từ-thập-phân-sang-hệ-cơ-số-khác"></span>
 ### Từ thập phân sang hệ cơ số khác
 
 Ở đây ta minh họa bằng hệ nhị phân; nguyên lý của các hệ cơ số khác cũng tương tự.
@@ -65,7 +65,7 @@ Với phần nguyên, liên tục chia số thập phân cho $2$ cho đến khi 
     --8<-- "docs/math/code/base/base_1.cpp:from_dec"
     ```
 
-<span id="&#20854;&#20182;&#36827;&#21046;&#36716;&#21313;&#36827;&#21046;"></span>
+<span id="từ-hệ-cơ-số-khác-sang-thập-phân"></span>
 ### Từ hệ cơ số khác sang thập phân
 
 Vẫn lấy hệ nhị phân làm ví dụ. Để chuyển một số nhị phân sang thập phân, chỉ cần nhân giá trị của từng chữ số với $2^i$, trong đó $i$ là vị trí của chữ số hiện tại, và vị trí hàng đơn vị là $0$.
@@ -88,12 +88,12 @@ Vẫn lấy hệ nhị phân làm ví dụ. Để chuyển một số nhị phâ
     --8<-- "docs/math/code/base/base_1.cpp:to_dec"
     ```
 
-<span id="&#20108;&#36827;&#21046;&#20843;&#36827;&#21046;&#21313;&#20845;&#36827;&#21046;&#38388;&#30340;&#30456;&#20114;&#36716;&#25442;"></span>
+<span id="chuyển-đổi-qua-lại-giữa-nhị-phân-bát-phân-và-thập-lục-phân"></span>
 ### Chuyển đổi qua lại giữa nhị phân, bát phân và thập lục phân
 
 Một chữ số bát phân có thể biểu diễn bằng 3 bit nhị phân (vì $2^3 = 8$), một chữ số thập lục phân có thể biểu diễn bằng 4 bit nhị phân (vì $2^4 = 16$), và chiều ngược lại cũng tương tự.
 
-<span id="&#34917;&#25968;&#27861;"></span>
+<span id="phương-pháp-bù"></span>
 ## Phương pháp bù
 
 Xem thêm: [Mã bù một và mã bù hai](../bit.md#số-nguyên-và-chuỗi-bit)
@@ -182,12 +182,12 @@ Bên cạnh đó, ta có một định lý thú vị về phần bù và số th
     \sum_{i=0}^{n-1} b^{ik}\equiv 0\pmod p.
     $$
 
-<span id="&#24191;&#20041;&#36827;&#21046;&#31995;&#32479;"></span>
+<span id="hệ-cơ-số-tổng-quát"></span>
 ## Hệ cơ số tổng quát
 
 Trong hệ cơ số tiêu chuẩn, cơ số $b$ luôn là một số dương cố định, mỗi chữ số được chọn từ $b$ ký hiệu khác nhau để biểu diễn một số không âm (không xét dấu thập phân và dấu âm). Thực ra vẫn có nhiều hệ ghi số và hệ cơ số có đặc điểm tương tự, nhưng không hoàn toàn phù hợp với định nghĩa của hệ cơ số. Ta gọi các hệ ghi số như vậy là **hệ cơ số tổng quát** hay **hệ cơ số phi chuẩn** (Non-standard positional numeral systems). Dưới đây là một số hệ cơ số tổng quát thường gặp.
 
-<span id="&#21452;&#23556;&#35760;&#25968;&#31995;&#32479;"></span>
+<span id="hệ-ghi-số-song-ánh"></span>
 ### Hệ ghi số song ánh
 
 Hệ cơ số tiêu chuẩn không tạo được song ánh với các số mà nó biểu diễn; chẳng hạn $1$, $01$, $001$ đều biểu diễn cùng một số[^note1]. Ngược lại, **hệ ghi số song ánh** (bijective numeral system) có thể tạo song ánh với các số mà nó biểu diễn.
@@ -214,7 +214,7 @@ Ví dụ, nhãn cột trong Microsoft Excel dùng hệ song ánh cơ số $26$.
 
 Trong hệ ghi số song ánh, ta có [hệ một phân](https://en.wikipedia.org/wiki/Unary_numeral_system); chuỗi khác rỗng trong hệ một phân chỉ gồm các ký hiệu $1$, và độ dài chuỗi chính là số mà nó biểu diễn.
 
-Tương tự mô tả trong [phương pháp bù](#%E8%A1%A5%E6%95%B0%E6%B3%95), với hệ song ánh cơ số $k$ và $k>1$, đặt $d=k-1$, ta có $\cdots dd=:\overline{d}=\sum_{i=0}^{\infty} dk^i=-1$, suy ra $\overline{d}k=0$. Do đó, nếu biểu diễn của $x$ trong hệ song ánh cơ số $k$ là $a_{n-1}\cdots a_1a_0$, thì $\overline{d}ka_{n-1}\cdots a_1a_0$ chính là $-x$.
+Tương tự mô tả trong [phương pháp bù](#phương-pháp-bù), với hệ song ánh cơ số $k$ và $k>1$, đặt $d=k-1$, ta có $\cdots dd=:\overline{d}=\sum_{i=0}^{\infty} dk^i=-1$, suy ra $\overline{d}k=0$. Do đó, nếu biểu diễn của $x$ trong hệ song ánh cơ số $k$ là $a_{n-1}\cdots a_1a_0$, thì $\overline{d}ka_{n-1}\cdots a_1a_0$ chính là $-x$.
 
 Dưới đây là một số tính chất của số trong hệ song ánh cơ số $k$:
 
@@ -229,26 +229,26 @@ Mã chuyển từ hệ song ánh cơ số $k$ sang thập phân giống với m�
     --8<-- "docs/math/code/base/base_1.cpp:from_dec_bi"
     ```
 
-<span id="&#26377;&#31526;&#21495;&#20301;&#25968;&#36827;&#21046;"></span>
+<span id="hệ-cơ-số-có-chữ-số-mang-dấu"></span>
 ### Hệ cơ số có chữ số mang dấu
 
 Một số hệ cơ số cho phép chữ số nhận giá trị âm, chẳng hạn [hệ tam phân cân bằng](./balanced-ternary.md).
 
-<span id="gray-&#30721;"></span>
+<span id="mã-gray"></span>
 ### Mã Gray
 
 Mục chính: [Mã Gray](./gray-code.md)
 
 Mã Gray còn gọi là **mã nhị phân vòng** hoặc **mã nhị phân phản xạ** (reflected binary code, RBC), là một hệ số nhị phân đặc biệt, thường dùng trong kiểm tra dữ liệu.
 
-<span id="&#38750;&#27491;&#22522;&#25968;&#36827;&#21046;"></span>
+<span id="hệ-cơ-số-không-dương"></span>
 ### Hệ cơ số không dương
 
 Ta biết với số hệ $k$ là $a_n\cdots a_1a_0$, giá trị của nó là $\sum_{i=0}^n a_ik^i$. Chỉ cần sửa đổi nhẹ, ta có thể định nghĩa số hệ $-k$ là ${a_n\cdots a_1a_0}_{(-k)}$ biểu diễn $\sum_{i=0}^n a_i(-k)^i$, trong đó $a_n,\dots,a_1,a_0\in \{0,1,\dots,k-1\}$. Ví dụ $12345_{(-10)}=8265_{(10)}$. Hệ cơ số này được gọi là [**hệ cơ số âm**](https://en.wikipedia.org/wiki/Negative_base) (negative-base system).
 
 Tương tự, ta cũng có thể định nghĩa [**hệ cơ số phức**](https://en.wikipedia.org/wiki/Complex-base_system) (complex-base system), như [**hệ cơ số $2\mathrm{i}$**](https://en.wikipedia.org/wiki/Quater-imaginary_base) (quater-imaginary base, quater-imaginary numeral system). Ta còn có thể định nghĩa [**hệ cơ số không nguyên**](https://en.wikipedia.org/wiki/Non-integer_base_of_numeration) (non-integer base of numeration) để biểu diễn **khai triển $\beta$** ($\beta$-expansion) của số thực, v.v.
 
-<span id="&#28151;&#21512;&#22522;&#25968;&#36827;&#21046;"></span>
+<span id="hệ-cơ-số-hỗn-hợp"></span>
 ### Hệ cơ số hỗn hợp
 
 Trong hệ cơ số tiêu chuẩn, cơ số tương ứng với mỗi chữ số đều cố định, còn hệ cơ số hỗn hợp cho phép mỗi chữ số có một cơ số riêng. Ứng dụng phổ biến nhất của hệ cơ số hỗn hợp là đo thời gian: giờ dùng hệ $24$, phút và giây dùng hệ $60$.
@@ -267,7 +267,7 @@ Trong lập trình thi đấu, hệ cơ số hỗn hợp thường gặp nhất 
     --8<-- "docs/math/code/base/base_1.cpp:to_dec_factorial"
     ```
 
-<span id="c-&#20013;&#30340;&#23454;&#29616;"></span>
+<span id="cài-đặt-trong-c"></span>
 ## Cài đặt trong C++
 
 Với số không âm, C++ biểu diễn một literal số nguyên bằng `<tiền_tố><chữ_số><hậu_tố>`, trong đó `<chữ_số>` và `<hậu_tố>` đều có thể rỗng. `<hậu_tố>` dùng để biểu diễn kiểu của literal, chẳng hạn `u` hoặc `U` cho biết literal có kiểu `unsigned`, `l` hoặc `L` cho biết literal có kiểu `long`, v.v. Với `<tiền_tố>`:
@@ -277,7 +277,7 @@ Với số không âm, C++ biểu diễn một literal số nguyên bằng `<ti�
 -   Khi `<tiền_tố>` là `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8` hoặc `9`, đây là literal thập phân; khi đó các ký tự trong `<chữ_số>` chỉ có thể chọn từ `0, 1, 2, 3, 4, 5, 6, 7, 8, 9`;
 -   Từ C++14, khi `<tiền_tố>` là `0b` hoặc `0B`, đây là literal nhị phân; khi đó các ký tự trong `<chữ_số>` chỉ có thể chọn từ `0, 1`. Ví dụ `0b11001010` là $11001010_{(2)}=202$.
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   [Positional notation - Wikipedia](https://en.wikipedia.org/wiki/Positional_notation)

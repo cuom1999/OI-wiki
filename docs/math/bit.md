@@ -4,7 +4,7 @@ Thao tác bit là các phép toán một ngôi và hai ngôi trên biểu diễn
 
 ## Số nguyên và chuỗi bit
 
-Xem thêm: [kiểu số nguyên](../lang/var.md#kiểu-số-nguyên), [phương pháp biểu diễn bù](./numeral-sys/base.md#phương-pháp-biểu-diễn-bù)
+Xem thêm: [kiểu số nguyên](../lang/var.md#kiểu-số-nguyên), [phương pháp biểu diễn bù](./numeral-sys/base.md#phương-pháp-bù)
 
 Ta gọi một dãy có độ dài cố định chỉ gồm `0` và `1` là chuỗi bit. Bit ngoài cùng bên trái được gọi là bit cao nhất, bit ngoài cùng bên phải được gọi là bit thấp nhất.
 
