@@ -91,6 +91,6 @@ Nếu mã nguồn biên dịch bình thường, nhấp nút "Run" trên thanh c�
 
 Chức năng gỡ lỗi tích hợp của GUIDE có nhiều lỗi (ví dụ chương trình bị crash giữa chừng), nên không khuyến nghị dùng trực tiếp chức năng gỡ lỗi của GUIDE.
 
-Khuyến nghị dùng trực tiếp gdb trong [terminal](../cmd.md) để gỡ lỗi.
+Khuyến nghị dùng trực tiếp gdb trong [trình dòng lệnh](../cmd.md) để gỡ lỗi.
 
 [^ref1]: [NOI Linux 2.0 ra mắt, chính thức được đưa vào sử dụng từ ngày 1 tháng 9!](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
