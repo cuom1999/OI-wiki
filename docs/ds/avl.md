@@ -114,18 +114,18 @@ Vì vậy sau các phép xoay, các nút B, C, D cũng thỏa mãn tính chất 
 ???+ note "Thao tác duy trì cân bằng: mã giả"
     $$
     \begin{array}{ll}
-    1 &  \textbf{function } \mathrm{MaintainBalance}(p) \\
+    1 &  \textbf{hàm } \mathrm{MaintainBalance}(p) \\
     2 &  \qquad l \gets ls_p, r \gets rs_p \\
-    3 &  \qquad \textbf{if } h(l)-h(r)=2 \\
-    4 &  \qquad\qquad \textbf{if } h(ls_l) \ge h(rs_l) \\
+    3 &  \qquad \textbf{nếu } h(l)-h(r)=2 \\
+    4 &  \qquad\qquad \textbf{nếu } h(ls_l) \ge h(rs_l) \\
     5 &  \qquad\qquad\qquad \mathrm{RightRotate}(p) \\
-    6 &  \qquad\qquad \textbf{else} \\
+    6 &  \qquad\qquad \textbf{ngược lại} \\
     7 &  \qquad\qquad\qquad \mathrm{LeftRotate}(l) \\
     8 &  \qquad\qquad\qquad \mathrm{RightRotate}(p) \\
-    9 &  \qquad \textbf{else if } h(l)-h(r)=-2 \\
-    10 &  \qquad\qquad \textbf{if } h(ls_r) \le h(rs_r) \\
+    9 &  \qquad \textbf{ngược lại nếu } h(l)-h(r)=-2 \\
+    10 &  \qquad\qquad \textbf{nếu } h(ls_r) \le h(rs_r) \\
     11 &  \qquad\qquad\qquad \mathrm{LeftRotate}(p) \\
-    12 &  \qquad\qquad \textbf{else} \\
+    12 &  \qquad\qquad \textbf{ngược lại} \\
     13 &  \qquad\qquad\qquad \mathrm{RightRotate}(r) \\
     14 &  \qquad\qquad\qquad \mathrm{LeftRotate}(p) \\
     \end{array}

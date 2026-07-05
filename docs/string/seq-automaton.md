@@ -35,13 +35,13 @@ $$
 1 & \textbf{Đầu vào. } \text{Một xâu } S\\
 2 & \textbf{Đầu ra. } \text{Hàm chuyển trạng thái của tự động dãy của }S \\
 3 & \textbf{Phương pháp. }  \\
-4 & \textbf{for }c\in\Sigma\\
+4 & \textbf{với mỗi }c\in\Sigma\\
 5 & \qquad next[c]\gets null\\
-6 & \textbf{for }i\gets|S|\textbf{ downto }1\\
+6 & \textbf{với }i\gets|S|\textbf{ giảm đến }1\\
 7 & \qquad next[S[i]]\gets i\\
-8 & \qquad \textbf{for }c\in\Sigma\\
+8 & \qquad \textbf{với mỗi }c\in\Sigma\\
 9 & \qquad\qquad \delta(i-1,c)\gets next[c]\\
-10 & \textbf{return }\delta
+10 & \textbf{trả về }\delta
 \end{array}
 $$
 

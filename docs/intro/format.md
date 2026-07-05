@@ -602,11 +602,11 @@ $$
 \begin{array}{ll} 
 1 &  \textit{result} \gets \varnothing \\
 2 &  \text{sắp xếp } e \text{ theo thứ tự không giảm của trọng số } w \\
-3 &  \textbf{for} \text{ mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
-4 &  \qquad \textbf{if } u \text{ và } v \text{ chưa liên thông trong DSU } \\
+3 &  \textbf{với mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
+4 &  \qquad \textbf{nếu } u \text{ và } v \text{ chưa liên thông trong DSU } \\
 5 &  \qquad\qquad \text{hợp nhất } u \text{ và } v \text{ trong DSU} \\
 6 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
-7 &  \textbf{return } \textit{result}
+7 &  \textbf{trả về } \textit{result}
 \end{array}
 \end{array}
 $$
@@ -621,11 +621,11 @@ $$
 \begin{array}{ll} 
 1 &  \textit{result} \gets \varnothing \\
 2 &  \text{sắp xếp } e \text{ theo thứ tự không giảm của trọng số } w \\
-3 &  \textbf{for} \text{ mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
-4 &  \qquad \textbf{if } u \text{ và } v \text{ chưa liên thông trong DSU } \\
+3 &  \textbf{với mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
+4 &  \qquad \textbf{nếu } u \text{ và } v \text{ chưa liên thông trong DSU } \\
 5 &  \qquad\qquad \text{hợp nhất } u \text{ và } v \text{ trong DSU} \\
 6 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
-7 &  \textbf{return } \textit{result}
+7 &  \textbf{trả về } \textit{result}
 \end{array}
 \end{array}
 $$

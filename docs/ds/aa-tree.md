@@ -60,10 +60,10 @@ Khi đó xoay trái nút *T*, xem các nút có level nhỏ hơn hoặc bằng l
 ???+ note "Cài đặt giả mã"
     $$
     \begin{array}{ll}
-    1 & \textbf{function } \text{split}(\text{root}) \\
-    2 & \qquad \textbf{if } \text{root}\rightarrow\text{right}\rightarrow\text{right}\rightarrow\text{level} == \text{root}\rightarrow\text{level} \\
+    1 & \textbf{hàm } \text{split}(\text{root}) \\
+    2 & \qquad \textbf{nếu } \text{root}\rightarrow\text{right}\rightarrow\text{right}\rightarrow\text{level} == \text{root}\rightarrow\text{level} \\
     3 & \qquad\qquad \text{rotate\_left}(\text{root}) \\
-    4 & \textbf{end function}
+    4 & \textbf{kết thúc hàm}
     \end{array}
     $$
 
@@ -81,10 +81,10 @@ Xoay phải nút *T*, xem các nút có level nhỏ hơn hoặc bằng level nà
 ???+ note "Cài đặt giả mã"
     $$
     \begin{array}{ll}
-    1 & \textbf{function } \text{skew}(\text{root}) \\
-    2 & \qquad \textbf{if } \text{root}\rightarrow\text{left}\rightarrow\text{level} == \text{root}\rightarrow\text{level} \\
+    1 & \textbf{hàm } \text{skew}(\text{root}) \\
+    2 & \qquad \textbf{nếu } \text{root}\rightarrow\text{left}\rightarrow\text{level} == \text{root}\rightarrow\text{level} \\
     3 & \qquad\qquad \text{rotate\_right}(\text{root}) \\
-    4 & \textbf{end function}
+    4 & \textbf{kết thúc hàm}
     \end{array}
     $$
 
@@ -97,18 +97,18 @@ Bản thân cây AA là một cây tìm kiếm nhị phân, nên thao tác tìm 
 ???+ note "Cài đặt giả mã"
     $$
     \begin{array}{ll}
-    1 & \textbf{function } \text{insert}(\text{root}, \text{add}) \\
-    2 & \qquad \textbf{if } \text{root} == \text{NULL} \\
+    1 & \textbf{hàm } \text{insert}(\text{root}, \text{add}) \\
+    2 & \qquad \textbf{nếu } \text{root} == \text{NULL} \\
     3 & \qquad\qquad \text{root} \gets \text{add} \\
-    4 & \qquad \textbf{else if } \text{add}\rightarrow\text{key} < \text{root}\rightarrow\text{key} \qquad // \text{nếu cho phép phần tử trùng lặp thì dùng } <= \\
+    4 & \qquad \textbf{ngược lại nếu } \text{add}\rightarrow\text{key} < \text{root}\rightarrow\text{key} \qquad // \text{nếu cho phép phần tử trùng lặp thì dùng } <= \\
     5 & \qquad\qquad \text{insert}(\text{root}\rightarrow\text{left}, \text{add}) \\
-    6 & \qquad \textbf{else if } \text{add}\rightarrow\text{key} > \text{root}\rightarrow\text{key} \\
+    6 & \qquad \textbf{ngược lại nếu } \text{add}\rightarrow\text{key} > \text{root}\rightarrow\text{key} \\
     7 & \qquad\qquad \text{insert}(\text{root}\rightarrow\text{right}, \text{add}) \\
-    8 & \qquad \textbf{end if} \\
+    8 & \qquad \textbf{kết thúc nếu} \\
     9 & \qquad \text{// nếu không cho phép phần tử trùng lặp, thực hiện skew và split ở mỗi level} \\
     10 & \qquad \text{skew}(\text{root}); \\
     11 & \qquad \text{split}(\text{root}); \\
-    12 & \textbf{end function}
+    12 & \textbf{kết thúc hàm}
     \end{array}
     $$
 
@@ -120,9 +120,9 @@ Quá trình xóa tương tự các cây cân bằng nhị phân khác: trước 
     $$
     \begin{array}{ll}
     1 &  \text{// Tái cân bằng cây} \\
-    2 &  \textbf{if} \ \text{root->left->level} < \text{root->level} -1 \ \textbf{or} \ \text{root->right->level} < \text{root->level} -1 \\
+    2 &  \textbf{nếu} \ \text{root->left->level} < \text{root->level} -1 \ \textbf{hoặc} \ \text{root->right->level} < \text{root->level} -1 \\
     3 &  \{ \\
-    4 & \qquad \textbf{if} \ \text{root->right->level} > \text{--root->level} \\
+    4 & \qquad \textbf{nếu} \ \text{root->right->level} > \text{--root->level} \\
     5 & \qquad \{ \\
     6 & \qquad\qquad \text{root->right->level} \gets \text{root->level} \\
     7 & \qquad \} \\
