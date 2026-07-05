@@ -133,7 +133,7 @@ trị xác định được trong lúc biên dịch.
     ```
 
 Ví dụ sau minh họa rõ sự khác nhau giữa `const` và `constexpr`. Mã dùng đệ quy
-để tính dãy Fibonacci rồi xuất kết quả bằng luồng điều khiển.
+để tính dãy Fibonacci rồi xuất kết quả bằng luồng xuất chuẩn.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -224,9 +224,9 @@ Vì vậy, có thể dùng `constexpr` để thay thế các hằng được đ�
 tránh [rủi ro của định nghĩa macro](./basic.md#lệnh-define).
 
 Trong bài toán thuật toán, có thể dùng `constexpr` để lưu các giá trị tính trước
-với quy mô nhỏ nhằm loại bỏ chi phí tính toán tương ứng lúc chạy. Trường hợp đặc
-biệt thường gặp là trong kỹ thuật "[lập bảng](../contest/dictionary.md)", dùng
-các vùng chứa như mảng được bổ nghĩa bằng `constexpr` để lưu đáp án.
+với quy mô nhỏ nhằm loại bỏ chi phí tính toán lúc chạy. Một trường hợp thường
+gặp là kỹ thuật "[lập bảng](../contest/dictionary.md)", dùng các vùng chứa như
+mảng được bổ nghĩa bằng `constexpr` để lưu đáp án.
 
 ???+ note "Lượng tính toán trong lúc biên dịch quá lớn sẽ gây lỗi biên dịch"
     Trình biên dịch sẽ giới hạn chi phí tính toán trong lúc biên dịch. Nếu lượng
