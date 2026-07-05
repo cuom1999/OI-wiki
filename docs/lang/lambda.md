@@ -36,7 +36,7 @@ class Lambda_1 {
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Capture rỗng có thể được chuyển đổi ngầm định thành con trỏ hàm, ví dụ:
+Danh sách bắt giữ rỗng có thể được chuyển đổi ngầm định thành con trỏ hàm, ví dụ:
 
 ```cpp
 void (*f)(int, int) = [](int, int) -> void {};
@@ -89,7 +89,7 @@ auto b = f2();  // f2 lấy giá trị của a từ danh sách bắt giữ, khô
 
 #### Bắt giữ tổng quát, bắt giữ có khởi tạo (C++14)
 
-Từ C++14 trở đi, capture không chỉ có thể bắt giữ biến bên ngoài, mà còn có thể khai báo biến mới và khởi tạo nó, ví dụ:
+Từ C++14 trở đi, mệnh đề bắt giữ không chỉ có thể bắt giữ biến bên ngoài, mà còn có thể khai báo biến mới và khởi tạo nó, ví dụ:
 
 ```cpp
 auto f1 = [val = 520]() {
@@ -168,7 +168,7 @@ std::cout << f() << '\n';  // Kết quả: 1314
 
 Có thể vừa bắt giữ biến bên ngoài vừa định nghĩa biến mới.
 
-Nếu muốn sửa đổi biến mới được định nghĩa trong capture ở bên trong biểu thức Lambda, cần dùng từ khóa `mutable`; nếu biến đó là tham chiếu thì không cần, ví dụ:
+Nếu muốn sửa đổi biến mới được định nghĩa trong mệnh đề bắt giữ ở bên trong biểu thức Lambda, cần dùng từ khóa `mutable`; nếu biến đó là tham chiếu thì không cần, ví dụ:
 
 ```cpp
 int value = 520;
@@ -190,7 +190,7 @@ int value = 520;
 
 Xem thêm [đặc tả mutable](#mutable-đặc-tả-có-thể-thay-đổi).
 
-Vòng đời của biến được định nghĩa trong capture đi theo đối tượng tiếp nhận biểu thức Lambda; trong các ví dụ trên là biến $f$. Lý do là bản thân Lambda thực chất là một lớp, và mọi nội dung trong capture đều là biến thành viên `private` của lớp này, ví dụ:
+Vòng đời của biến được định nghĩa trong mệnh đề bắt giữ đi theo đối tượng tiếp nhận biểu thức Lambda; trong các ví dụ trên là biến $f$. Lý do là bản thân Lambda thực chất là một lớp, và mọi nội dung trong mệnh đề bắt giữ đều là biến thành viên `private` của lớp này, ví dụ:
 
 ```cpp
 int main() {

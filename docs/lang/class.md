@@ -204,8 +204,7 @@ toán tử so sánh `<`, thì có thể dùng các container hoặc thuật toá
 
 ### Đặt giá trị ban đầu khi tạo biến
 
-Để thực hiện thao tác này, cần định nghĩa **hàm tạo mặc định** (default
-constructor).
+Để thực hiện thao tác này, cần định nghĩa **hàm tạo mặc định** (default constructor).
 
 ```cpp
 class ClassName {
@@ -355,7 +354,7 @@ thủ công.
 Nếu phần tử thành viên của cấu trúc có chứa con trỏ, cũng sẽ gặp vấn đề này. Khi
 đó cần dùng hàm hủy để giải phóng bộ nhớ động thủ công.
 
-Hàm **hủy** (destructor) sẽ được gọi khi biến đó bị hủy. Cách nạp chồng tương tự
+Hàm **hủy** (destructor) sẽ được gọi khi biến đó bị hủy. Cách định nghĩa tương tự
 hàm tạo, nhưng cần thêm `~` phía trước.
 
 *Hàm hủy được định nghĩa mặc định thường đã đủ dùng trong lập trình thi đấu; ta
@@ -383,7 +382,7 @@ Theo mặc định, khi gán, chương trình sẽ gán theo quy tắc gán củ
 thành viên tương ứng. Cũng có thể dùng `TênLớp()` hoặc `TênLớp{}` làm biến tạm
 để gán.
 
-Cách trước chỉ gọi hàm tạo sao chép (copy constructor), còn cách sau gọi hàm tạo
+Cách trước chỉ gọi hàm tạo sao chép, còn cách sau gọi hàm tạo
 mặc định trước khi gọi hàm tạo sao chép.
 
 Ngoài ra, theo mặc định, việc gán giữa các phần tử tương ứng đều là **sao chép
@@ -400,7 +399,7 @@ tmp3 = {...};
 Nếu cần giải quyết vấn đề con trỏ hoặc cần thao tác khác, cần nạp chồng hàm tạo
 tương ứng.
 
-*Nội dung khác về hàm tạo (constructor), xem mục thứ sáu trong "Tài liệu tham
+*Nội dung khác về hàm tạo, xem mục thứ sáu trong "Tài liệu tham
 khảo".*
 
 ## Tài liệu tham khảo

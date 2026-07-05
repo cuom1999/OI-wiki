@@ -6,7 +6,8 @@ Nó cũng có thể được xem như một kiểu dữ liệu tự định ngh�
 
 ???+ note "Ghi chú"
     `struct` được mô tả trong trang này khác với `struct` trong C. Trong C++,
-    `struct` được mở rộng thành một class-key tương tự [`class`](./class.md).
+    `struct` được mở rộng thành một khóa khai báo lớp (class-key) tương tự
+    [`class`](./class.md).
 
 ## Định nghĩa cấu trúc
 

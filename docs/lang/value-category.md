@@ -69,7 +69,7 @@ C++98 gần như giống ngôn ngữ C về loại giá trị, nhưng bổ sung 
 
 ### Loại bỏ sao chép
 
-C++ cho phép trình biên dịch thực hiện loại bỏ sao chép (copy elision), nhờ đó giảm việc tạo và hủy đối tượng tạm.
+C++ cho phép trình biên dịch thực hiện **loại bỏ sao chép** (copy elision), nhờ đó giảm việc tạo và hủy đối tượng tạm.
 
 Ví dụ, đoạn mã dưới đây kích hoạt tối ưu hóa giá trị trả về (return value optimization, RVO) trong cơ chế loại bỏ sao chép. Bạn chỉ thấy một lần khởi tạo và một lần khởi tạo sao chép, kể cả khi việc khởi tạo và hủy có tác dụng phụ.
 
