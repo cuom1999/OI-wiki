@@ -29,15 +29,15 @@ Duy trì một rừng, hỗ trợ các thao tác sau:
 
 Với một cây bất kỳ, ta có thể dùng lý thuyết **co rút cây** để co nó thành một cạnh.
 
-Cụ thể, co rút cây có hai thao tác cơ bản: **nén** (Compress) và **gom lá** (Rake). Thao tác Compress chọn một đỉnh $x$ có bậc $2$; gọi hai đỉnh kề với $x$ là $y$ và $z$, ta nối một cạnh mới $yz$. Thông tin của đỉnh $x$, cạnh $xz$ và cạnh $xy$ được lưu vào $yz$, rồi xóa chúng đi. Minh họa như hình dưới.
+Cụ thể, co rút cây có hai thao tác cơ bản: **nén** (Compress) và **gom lá** (Rake). Thao tác nén chọn một đỉnh $x$ có bậc $2$; gọi hai đỉnh kề với $x$ là $y$ và $z$, ta nối một cạnh mới $yz$. Thông tin của đỉnh $x$, cạnh $xz$ và cạnh $xy$ được lưu vào $yz$, rồi xóa chúng đi. Minh họa như hình dưới.
 
 ![](./images/top-tree1.svg)
 
-Thao tác Rake chọn một đỉnh $x$ có bậc $1$, đồng thời đỉnh $y$ kề với $x$ phải có bậc lớn hơn $1$. Gọi một đỉnh kề khác của $y$ là $z$, ta đưa thông tin của đỉnh $x$ và cạnh $xy$ vào cạnh $yz$, rồi xóa chúng đi. Minh họa như hình dưới.
+Thao tác gom lá chọn một đỉnh $x$ có bậc $1$, đồng thời đỉnh $y$ kề với $x$ phải có bậc lớn hơn $1$. Gọi một đỉnh kề khác của $y$ là $z$, ta đưa thông tin của đỉnh $x$ và cạnh $xy$ vào cạnh $yz$, rồi xóa chúng đi. Minh họa như hình dưới.
 
 ![](./images/top-tree2.svg)
 
-Không khó để chứng minh rằng mọi cây đều có thể được co thành một cạnh chỉ bằng các thao tác Compress và Rake, như hình dưới.
+Không khó để chứng minh rằng mọi cây đều có thể được co thành một cạnh chỉ bằng các thao tác nén và gom lá, như hình dưới.
 
 ![](./images/top-tree3.svg)
 
@@ -47,7 +47,7 @@ Không khó để chứng minh rằng mọi cây đều có thể được co th
 
 Ta xét tình trạng thông tin được chứa trong một cạnh nào đó của một $T_x$.
 
-Ngoài thông tin của chính cạnh đó (dĩ nhiên, nếu cạnh này không tồn tại trong $T$ thì nó không có thông tin của bản thân), nó còn có thể chứa thông tin của các đỉnh và cạnh khác đã được gộp vào thông qua thao tác Compress/Rake. Trước hết, hãy chọn một cạnh trong quá trình co rút cây ở hình sau và xem thông tin mà nó chứa đại diện cho những đỉnh, cạnh nào trong $T$.
+Ngoài thông tin của chính cạnh đó (dĩ nhiên, nếu cạnh này không tồn tại trong $T$ thì nó không có thông tin của bản thân), nó còn có thể chứa thông tin của các đỉnh và cạnh khác đã được gộp vào thông qua thao tác nén/gom lá. Trước hết, hãy chọn một cạnh trong quá trình co rút cây ở hình sau và xem thông tin mà nó chứa đại diện cho những đỉnh, cạnh nào trong $T$.
 
 ![](./images/top-tree4.svg)
 
@@ -71,7 +71,7 @@ Với mọi cụm, có các tính chất sau:
 
 Trong hình, các cụm cơ sở nói trên đã được đánh dấu bằng đường đỏ.
 
-Nhìn thao tác Compress/Rake từ góc độ cụm, ta thấy hai thao tác này sẽ "gộp hai cụm thành một", chỉ còn lại một cụm mới. Vì vậy, quá trình co rút cây cũng là quá trình gộp tất cả cụm cơ sở thành một cụm.
+Nhìn thao tác nén/gom lá từ góc độ cụm, ta thấy hai thao tác này sẽ "gộp hai cụm thành một", chỉ còn lại một cụm mới. Vì vậy, quá trình co rút cây cũng là quá trình gộp tất cả cụm cơ sở thành một cụm.
 
 Do đó ta cũng có thể có hình sau, là một cách biểu diễn khác của một chuỗi thao tác co rút cây.
 
@@ -93,7 +93,7 @@ Top tree có các tính chất sau:
 
 1.  Một top tree tương ứng với một cây ban đầu và một cách co rút cây trên nó. Mỗi nút của top tree biểu diễn một cạnh nào đó trong một $T_x$, tức là một cụm được hình thành trong quá trình co rút cây. Trong hình, các nút dạng $N_x$ biểu diễn cụm được tạo bởi thao tác `compress(x)`.
 
-2.  Một nút trong top tree có hai con, mỗi con đều đại diện cho một cụm. Cụm do nút này đại diện là cụm mới thu được bằng cách gộp hai cụm con thông qua thao tác Compress hoặc Rake.
+2.  Một nút trong top tree có hai con, mỗi con đều đại diện cho một cụm. Cụm do nút này đại diện là cụm mới thu được bằng cách gộp hai cụm con thông qua thao tác nén hoặc gom lá.
 
 3.  Lá của top tree là các cụm cơ sở, còn gốc của nó là cụm gốc. Vì vậy, nếu chia một top tree theo thứ tự topo thành các tầng, mỗi tầng của nó biểu diễn một cây $T_x$.
 
@@ -123,41 +123,41 @@ Trước hết, ta gốc hóa cây ban đầu $T$ theo tầng. Sau đó xét c�
 
 Như hình, ta chọn một cặp đầu mút cho cụm gốc; khi đánh dấu cụm ở đây, cả đầu mút cũng được khoanh vào.
 
-Từ các thao tác cơ bản của co rút cây, có thể thấy thông tin của các đỉnh và cạnh trên đường cụm $(j,h,c,jh,hc)$ cuối cùng được thêm vào $C(k,g)$ thông qua thao tác Compress, còn thông tin của các đỉnh và cạnh không nằm trên đường cụm $(a,b,i,f,g,e,ig,\cdots)$ được thêm vào $C(k,g)$ thông qua thao tác Rake.
+Từ các thao tác cơ bản của co rút cây, có thể thấy thông tin của các đỉnh và cạnh trên đường cụm $(j,h,c,jh,hc)$ cuối cùng được thêm vào $C(k,g)$ thông qua thao tác nén, còn thông tin của các đỉnh và cạnh không nằm trên đường cụm $(a,b,i,f,g,e,ig,\cdots)$ được thêm vào $C(k,g)$ thông qua thao tác gom lá.
 
 Ta tách riêng đường cụm ra. Đây là một cây có hình dạng đặc biệt, cụ thể là một dây chuyền, và ta dựng một top tree cho cây này với thứ tự co rút cây tùy ý.
 
 ![](./images/top-tree10.jpg)
 
-Ta gọi cấu trúc này là **cây nén** (Compress Tree), vì trong top tree này, hai con của bất kỳ nút nào được gộp thành cha của chúng bằng thao tác Compress.
+Ta gọi cấu trúc này là **cây nén** (Compress Tree), vì trong top tree này, hai con của bất kỳ nút nào được gộp thành cha của chúng bằng thao tác nén.
 
-Các nút trong Compress Tree được gọi là **nút nén** (Compress Node). Nếu chỉ xét đường cụm hiện tại, một Compress Node không phải lá đại diện cho một quá trình compress: nó gộp thông tin của con trái và con phải, rồi thêm thông tin của chính đỉnh $x$ được lưu bởi `compress(x)`. Compress Tree này duy trì thông tin của đường cụm của $C(k,g)$.
+Các nút trong cây nén được gọi là **nút nén** (Compress Node). Nếu chỉ xét đường cụm hiện tại, một nút nén không phải lá đại diện cho một quá trình nén: nó gộp thông tin của con trái và con phải, rồi thêm thông tin của chính đỉnh $x$ được lưu bởi `compress(x)`. Cây nén này duy trì thông tin của đường cụm của $C(k,g)$.
 
-Ngoài ra, trong Compress Tree, ta thực ra còn đặt thêm một số ràng buộc lên top tree được sử dụng. Chú ý rằng Compress Tree duy trì một dây chuyền gồm các đỉnh trong $T$ có độ sâu đôi một khác nhau. Ta quy định rằng thứ tự duyệt trung thứ tự của các cụm cơ sở trong Compress Tree phải nhất quán với độ sâu của các cạnh tương ứng trong $T$, và thứ tự trung thứ tự càng nhỏ thì độ sâu càng nông. Tương tự, quan hệ của `compress(x)` ứng với mỗi đỉnh $x$ cũng như vậy.
+Ngoài ra, trong cây nén, ta thực ra còn đặt thêm một số ràng buộc lên top tree được sử dụng. Chú ý rằng cây nén duy trì một dây chuyền gồm các đỉnh trong $T$ có độ sâu đôi một khác nhau. Ta quy định rằng thứ tự duyệt trung thứ tự của các cụm cơ sở trong cây nén phải nhất quán với độ sâu của các cạnh tương ứng trong $T$, và thứ tự trung thứ tự càng nhỏ thì độ sâu càng nông. Tương tự, quan hệ của `compress(x)` ứng với mỗi đỉnh $x$ cũng như vậy.
 
-Bây giờ xét cách duy trì thông tin không nằm trên đường cụm. Giả sử các đỉnh và cạnh không nằm trên đường cụm đã hình thành từng cụm cực đại, và các cụm cực đại này được tạo ra bằng cách Rake lẫn nhau giữa các cụm nhỏ hơn được khoanh bằng đường xanh. Với quá trình gộp một số cụm nhỏ hơn thành một cụm cực đại, ta dùng một cây tam phân để biểu diễn. Tương tự, ta gọi cấu trúc này là **cây gom lá** (Rake Tree), và các nút trong Rake Tree tương ứng được gọi là **nút gom lá** (Rake Node). Mỗi Rake Node đều đại diện cho một cụm, được hình thành bằng cách Rake con trái và con phải vào cụm nhỏ hơn do con giữa đại diện. Cụ thể xem hình dưới; có thể thấy mỗi nút trong Rake Tree đều đại diện cho một cụm nhỏ hơn có cùng đầu mút trong $T$.
+Bây giờ xét cách duy trì thông tin không nằm trên đường cụm. Giả sử các đỉnh và cạnh không nằm trên đường cụm đã hình thành từng cụm cực đại, và các cụm cực đại này được tạo ra bằng cách gom lá lẫn nhau giữa các cụm nhỏ hơn được khoanh bằng đường xanh. Với quá trình gộp một số cụm nhỏ hơn thành một cụm cực đại, ta dùng một cây tam phân để biểu diễn. Tương tự, ta gọi cấu trúc này là **cây gom lá** (Rake Tree), và các nút trong cây gom lá tương ứng được gọi là **nút gom lá** (Rake Node). Mỗi nút gom lá đều đại diện cho một cụm, được hình thành bằng cách gom lá con trái và con phải vào cụm nhỏ hơn do con giữa đại diện. Cụ thể xem hình dưới; có thể thấy mỗi nút trong cây gom lá đều đại diện cho một cụm nhỏ hơn có cùng đầu mút trong $T$.
 
 ![](./images/top-tree11.jpg)
 
 Trong hình, đường xanh khoanh các cụm cực đại, đường vàng khoanh các cụm nhỏ hơn.
 
-Với các cụm nhỏ hơn đó, ta xử lý tương tự: chọn đường cụm cho chúng, dựng Compress Tree, rồi tiếp tục đệ quy như vậy. Khi đó ta dựng được nhiều Compress Tree và Rake Tree biểu diễn quá trình co rút cây.
+Với các cụm nhỏ hơn đó, ta xử lý tương tự: chọn đường cụm cho chúng, dựng cây nén, rồi tiếp tục đệ quy như vậy. Khi đó ta dựng được nhiều cây nén và cây gom lá biểu diễn quá trình co rút cây.
 
 ![](./images/top-tree12.jpg)
 
-Hình trên là Rake-Compress Tree của cây ban đầu (vì mỗi Rake Node đều nối với một Compress Tree, nên nó có dạng một Rake Tree nối với nhiều Compress Tree) và Compress Tree đại diện cho đường cụm gốc.
+Hình trên là cây gom lá - nén của cây ban đầu (vì mỗi nút gom lá đều nối với một cây nén, nên nó có dạng một cây gom lá nối với nhiều cây nén) và cây nén đại diện cho đường cụm gốc.
 
-Xét việc ghép các cây này với nhau theo một cách nào đó để chúng tạo thành một tổng thể có thứ tự. Gọi $x$ là đầu mút chung của tập các cụm nhỏ nhất mà một Rake Tree đại diện. Ta thêm đầu mút còn lại, không phải $x$, vào các con giữa của những Rake Node này (một tập Compress Tree), đồng thời vẫn giữ nguyên thứ tự trung thứ tự và các tính chất cơ bản của top tree, như hình.
+Xét việc ghép các cây này với nhau theo một cách nào đó để chúng tạo thành một tổng thể có thứ tự. Gọi $x$ là đầu mút chung của tập các cụm nhỏ nhất mà một cây gom lá đại diện. Ta thêm đầu mút còn lại, không phải $x$, vào các con giữa của những nút gom lá này (một tập cây nén), đồng thời vẫn giữ nguyên thứ tự trung thứ tự và các tính chất cơ bản của top tree, như hình.
 
 ![](./images/top-tree13.jpg)
 
-Bước này tương đương với việc để thao tác Rake thêm một đỉnh nào đó trong $T$ xảy ra trực tiếp trong Compress Tree. Điều này không chỉ giúp ta duy trì đúng thông tin của Rake Node (chỉ cần gộp thông tin của ba con), mà còn làm cho cấu trúc Compress Tree đầy đủ hơn. Tiếp theo, ta đổi Compress Tree thành cây tam phân. Nếu đầu mút chung của một Rake Tree là đỉnh $x$, ta treo Rake Tree đó vào con giữa của `compress(x)`, như hình.
+Bước này tương đương với việc để thao tác gom lá thêm một đỉnh nào đó trong $T$ xảy ra trực tiếp trong cây nén. Điều này không chỉ giúp ta duy trì đúng thông tin của nút gom lá (chỉ cần gộp thông tin của ba con), mà còn làm cho cấu trúc cây nén đầy đủ hơn. Tiếp theo, ta đổi cây nén thành cây tam phân. Nếu đầu mút chung của một cây gom lá là đỉnh $x$, ta treo cây gom lá đó vào con giữa của `compress(x)`, như hình.
 
 ![](./images/top-tree14.jpg)
 
-Lúc này, đỉnh `compress(x)` sau khi tam phân hóa có ý nghĩa là trước tiên Rake con giữa vào đường cụm, rồi thống kê thông tin của con trái, con phải và đỉnh $x$.
+Lúc này, đỉnh `compress(x)` sau khi tam phân hóa có ý nghĩa là trước tiên gom lá con giữa vào đường cụm, rồi thống kê thông tin của con trái, con phải và đỉnh $x$.
 
-Cuối cùng, ta xử lý Compress Tree của đường cụm gốc: giống như mọi Compress Tree khác, thêm hai đầu mút của nó theo thứ tự trung thứ tự, để gốc của nó lưu thông tin của toàn bộ $T$.
+Cuối cùng, ta xử lý cây nén của đường cụm gốc: giống như mọi cây nén khác, thêm hai đầu mút của nó theo thứ tự trung thứ tự, để gốc của nó lưu thông tin của toàn bộ $T$.
 
 Như vậy, ta đã thực hiện được việc dùng top tree tự điều chỉnh tam bậc hóa để duy trì thông tin của một cây.
 
@@ -165,11 +165,11 @@ Như vậy, ta đã thực hiện được việc dùng top tree tự điều ch
 
 Tóm lại, SATT có các tính chất sau:
 
-1.  SATT gồm Compress Tree và Rake Tree. Compress Tree là một top tree đặc biệt; Rake Tree là một cây tam phân. Cả hai đều tương ứng với quá trình co rút cây của một cây.
+1.  SATT gồm cây nén và cây gom lá. Cây nén là một top tree đặc biệt; cây gom lá là một cây tam phân. Cả hai đều tương ứng với quá trình co rút cây của một cây.
 
-2.  Một nút trong Compress Tree có nhiều nhất ba con. Compress Tree có thể thực hiện các phép xoay tương tự Splay tree, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
+2.  Một nút trong cây nén có nhiều nhất ba con. Cây nén có thể thực hiện các phép xoay tương tự Splay tree, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
 
-3.  Một nút trong Rake Tree nhất định có một con giữa. Rake Tree có thể thực hiện các phép xoay tương tự Splay tree, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
+3.  Một nút trong cây gom lá nhất định có một con giữa. Cây gom lá có thể thực hiện các phép xoay tương tự Splay tree, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
 
 4.  Thứ tự topo của SATT phản ánh thứ tự co rút cây của cây ban đầu $T$.
 
@@ -183,14 +183,14 @@ Thông qua thao tác `access(x)`, ta có thể đưa nút đại diện cho `com
 
 #### Các hàm đẩy (push)
 
-Trước hết xét việc đẩy thông tin lên, tức hàm `Pushup(x)`. Khi duy trì thông tin cho một nút nào đó của SATT, đầu tiên cần xét nút này nằm trong Compress Tree hay Rake Tree. Lý do đã được trình bày ở trên, nên không lặp lại nữa. Dưới đây lấy ví dụ duy trì kích thước cây con của một đỉnh.
+Trước hết xét việc đẩy thông tin lên, tức hàm `Pushup(x)`. Khi duy trì thông tin cho một nút nào đó của SATT, đầu tiên cần xét nút này nằm trong cây nén hay cây gom lá. Lý do đã được trình bày ở trên, nên không lặp lại nữa. Dưới đây lấy ví dụ duy trì kích thước cây con của một đỉnh.
 
 ```cpp
 // ls(x) con trái của x
 // rs(x) con phải của x
 // ms(x) con giữa của x
-// type==0 là Compress Node
-// type==1 là Rake Node
+// type==0 là nút nén
+// type==1 là nút gom lá
 void pushup(int x, int type) {
   if (type == 0)
     size[x] = size[rs(x)] + size[ms(x)] + 1;
@@ -204,7 +204,7 @@ void pushup(int x, int type) {
 
 Tiếp theo xét việc đẩy thông tin xuống, tức hàm `Pushdown(x)`. Nếu muốn cập nhật toàn bộ một cây con trong cây ban đầu, một ý tưởng rất tự nhiên là: đưa trực tiếp nút này Access lên gốc SATT, rồi đánh dấu vào con giữa của nó. Tương tự, truy vấn cây con thì sau Access trực tiếp truy vấn con giữa.
 
-Nếu muốn cập nhật toàn bộ một đường đi trong cây ban đầu, ta expose hai đầu mút của đường đi. Ở đây `expose(x, y)` nghĩa là làm cho đỉnh $x$ trở thành gốc của $T$, và làm cho đỉnh $y$ trở thành đầu mút còn lại của cụm gốc. Tương ứng trên SATT, lúc này Compress Tree của cụm gốc chính là đường đi từ $x$ đến $y$. Vì vậy, chỉ cần đánh dấu vào Compress Tree của cụm gốc. Tương tự, truy vấn đường đi thì expose rồi truy vấn nút gốc.
+Nếu muốn cập nhật toàn bộ một đường đi trong cây ban đầu, ta expose hai đầu mút của đường đi. Ở đây `expose(x, y)` nghĩa là làm cho đỉnh $x$ trở thành gốc của $T$, và làm cho đỉnh $y$ trở thành đầu mút còn lại của cụm gốc. Tương ứng trên SATT, lúc này cây nén của cụm gốc chính là đường đi từ $x$ đến $y$. Vì vậy, chỉ cần đánh dấu vào cây nén của cụm gốc. Tương tự, truy vấn đường đi thì expose rồi truy vấn nút gốc.
 
 Như vậy ta đã biết cách giải các thao tác trong phần đặt vấn đề.
 
@@ -245,15 +245,15 @@ void pushall(int x, int type) {
 
 #### Các hàm splay
 
-Ta biết rằng Rake Tree và Compress Tree trong SATT đều có thể xoay, tức là có thể dùng Splay để duy trì chúng. Do đó ta có thể viết mã sau:
+Ta biết rằng cây gom lá và cây nén trong SATT đều có thể xoay, tức là có thể dùng Splay để duy trì chúng. Do đó ta có thể viết mã sau:
 
 ```cpp
 // là con giữa của một nút hoặc không có cha
 // ls con trái của một nút SATT
 // rs con phải của một nút SATT
 // ms con giữa của một nút SATT
-// type==1 nằm trong Rake Tree
-// type==0 nằm trong Compress Tree
+// type==1 nằm trong cây gom lá
+// type==0 nằm trong cây nén
 bool isroot(int x) { return rs(father[x]) != x && ls(father[x]) != x; }
 
 bool direction(int x) { return rs(father[x]) == x; }
@@ -288,7 +288,7 @@ void splay(int x, int type, int goal = 0) {
 
 Ý nghĩa của `access(x)` là: xoay đỉnh $x$ lên gốc của toàn bộ SATT, làm cho đỉnh $x$ trở thành một trong hai đầu mút của cụm gốc (đầu mút còn lại là gốc của $T$), đồng thời không làm thay đổi cấu trúc của cây ban đầu và gốc của cây ban đầu.
 
-Để thực hiện `access(x)`, trước hết ta xoay nó lên gốc của Compress Tree mà nó đang thuộc về, rồi bỏ con phải của đỉnh $x$, khiến đỉnh $x$ trở thành đầu mút của cụm tương ứng với Compress Tree đó.
+Để thực hiện `access(x)`, trước hết ta xoay nó lên gốc của cây nén mà nó đang thuộc về, rồi bỏ con phải của đỉnh $x$, khiến đỉnh $x$ trở thành đầu mút của cụm tương ứng với cây nén đó.
 
 ```cpp
 if (rs(x)) {
@@ -302,15 +302,15 @@ if (rs(x)) {
 }
 ```
 
-Nếu lúc này đỉnh $x$ đã ở gốc thì thoát. Nếu chưa, thực hiện các bước sau để nó vượt qua Rake Tree phía trên:
+Nếu lúc này đỉnh $x$ đã ở gốc thì thoát. Nếu chưa, thực hiện các bước sau để nó vượt qua cây gom lá phía trên:
 
-1.  Đưa nút cha của nó (chắc chắn là một Rake Node) splay lên gốc của Rake Tree của nó.
+1.  Đưa nút cha của nó (chắc chắn là một nút gom lá) splay lên gốc của cây gom lá của nó.
 
-2.  Đưa nút ông của $x$ (chắc chắn là một Compress Node) splay lên gốc của Compress Tree của nó.
+2.  Đưa nút ông của $x$ (chắc chắn là một nút nén) splay lên gốc của cây nén của nó.
 
 3.  Nếu nút ông của $x$ có một con phải, hoán đổi đỉnh x với con phải của nút ông, cập nhật thông tin, rồi thoát.
 
-4.  Nếu nút ông không có con phải, trước hết cho đỉnh $x$ trở thành con phải của nút ông. Lúc này nút cha ban đầu của đỉnh $x$ không có con giữa; theo tính chất của Rake Node ở trên, nó không thể tồn tại. Do đó gọi hàm `Delete` để xóa nó, rồi thoát.
+4.  Nếu nút ông không có con phải, trước hết cho đỉnh $x$ trở thành con phải của nút ông. Lúc này nút cha ban đầu của đỉnh $x$ không có con giữa; theo tính chất của nút gom lá ở trên, nó không thể tồn tại. Do đó gọi hàm `Delete` để xóa nó, rồi thoát.
 
 Hai bước 1 và 2 được gọi chung là **splay cục bộ** (Local Splay). Hai bước 3 và 4 được gọi chung là **nối tách** (Splice). Để thuận tiện, ta viết tất cả trong hàm `Splice(x)`.
 
@@ -320,9 +320,9 @@ Hàm `Delete(x)` nói trên hoạt động như sau:
 
 2.  Nếu không có con trái, trực tiếp cho con phải thay thế đỉnh $x$.
 
-Không khó để nhận ra `Splice(x)` đã thay đổi cách chọn đầu mút của một số cụm trong cây ban đầu. Sau khi hoàn thành một lần splice, ta lấy nút cha của đỉnh $x$ làm đỉnh $x$ mới và thực hiện lần splice tiếp theo.
+Không khó để nhận ra `Splice(x)` đã thay đổi cách chọn đầu mút của một số cụm trong cây ban đầu. Sau khi hoàn thành một lần nối tách, ta lấy nút cha của đỉnh $x$ làm đỉnh $x$ mới và thực hiện lần nối tách tiếp theo.
 
-Cuối cùng ta sẽ thấy đỉnh $x$ ban đầu cần thao tác chắc chắn nằm ở đầu phải nhất của Compress Tree của cụm gốc. Ta chỉ cần thực hiện một lần **splay toàn cục** (Global Splay) cuối cùng để xoay nó lên gốc SATT.
+Cuối cùng ta sẽ thấy đỉnh $x$ ban đầu cần thao tác chắc chắn nằm ở đầu phải nhất của cây nén của cụm gốc. Ta chỉ cần thực hiện một lần **splay toàn cục** (Global Splay) cuối cùng để xoay nó lên gốc SATT.
 
 ```cpp
 // ls con trái của một nút SATT
@@ -331,8 +331,8 @@ Cuối cùng ta sẽ thấy đỉnh $x$ ban đầu cần thao tác chắc chắn
 // son[x][0] ls
 // son[x][1] rs
 // son[x][2] ms
-// type==1 nằm trong Rake Tree
-// type==0 nằm trong Compress Tree
+// type==1 nằm trong cây gom lá
+// type==0 nằm trong cây nén
 int new_node() {
   if (top) {
     top--;
@@ -398,7 +398,7 @@ void access(int x) {
 }
 ```
 
-Nếu muốn làm cho một đỉnh trở thành gốc của cây ban đầu, ta Access đỉnh $x$ lên gốc SATT. Khi đó có thể thấy đỉnh $x$ đã là một đầu mút của cụm ở trạng thái cuối cùng. Từ tính chất duyệt trung thứ tự của Compress Tree, nếu đảo trái phải Compress Tree chứa đỉnh $x$ (hoán đổi con trái và con phải của mọi nút), thì đỉnh $x$ trở thành gốc của cây ban đầu. Trong cài đặt cụ thể, ta đánh dấu đảo cho đỉnh $x$, sau đó đẩy dấu xuống để thực hiện quá trình này.
+Nếu muốn làm cho một đỉnh trở thành gốc của cây ban đầu, ta Access đỉnh $x$ lên gốc SATT. Khi đó có thể thấy đỉnh $x$ đã là một đầu mút của cụm ở trạng thái cuối cùng. Từ tính chất duyệt trung thứ tự của cây nén, nếu đảo trái phải cây nén chứa đỉnh $x$ (hoán đổi con trái và con phải của mọi nút), thì đỉnh $x$ trở thành gốc của cây ban đầu. Trong cài đặt cụ thể, ta đánh dấu đảo cho đỉnh $x$, sau đó đẩy dấu xuống để thực hiện quá trình này.
 
 ```cpp
 void makeroot(int x) {
@@ -467,7 +467,7 @@ Vì vậy với SATT, chỉ cần chứng minh độ phức tạp của hàm Acc
 
 Ta phân tích từng bước độ phức tạp khấu hao của Access.
 
-Trước hết cần xoay đỉnh $x$ lên gốc của Compress Tree chứa nó. Độ phức tạp khấu hao của bước này là
+Trước hết cần xoay đỉnh $x$ lên gốc của cây nén chứa nó. Độ phức tạp khấu hao của bước này là
 
 $$
 a \leq  3\log n +1
@@ -483,7 +483,7 @@ $$
 
 Hình trên minh họa quá trình bỏ con phải của đỉnh $x$.
 
-Sau đó là quá trình Local Splay và Splice diễn ra luân phiên. Sau một số lần Splice, đỉnh $x$ được xoay lên gốc SATT. Ta phân tích một cặp Local Splay, Splice:
+Sau đó là quá trình splay cục bộ và nối tách diễn ra luân phiên. Sau một số lần nối tách, đỉnh $x$ được xoay lên gốc SATT. Ta phân tích một cặp splay cục bộ, nối tách:
 
 ![](./images/top-tree17.jpg)
 
@@ -491,23 +491,23 @@ Sau đó là quá trình Local Splay và Splice diễn ra luân phiên. Sau mộ
 
 ![](./images/top-tree19.jpg)
 
-Các hình trên thể hiện quá trình thực hiện một lần Splice đối với đỉnh $x$, chưa bao gồm phần xoay trái đỉnh $x$ cuối cùng.
+Các hình trên thể hiện quá trình thực hiện một lần nối tách đối với đỉnh $x$, chưa bao gồm phần xoay trái đỉnh $x$ cuối cùng.
 
 Để diễn đạt thuận tiện, đặt $r_x(i)$ là giá trị $r$ của đỉnh $i$ ở trạng thái $x$.
 
-Từ hình, dễ thấy thao tác từ trạng thái 1 sang trạng thái 2 (Local Splay đưa cha của đỉnh $x$ lên gốc Rake Tree của nó) có độ phức tạp khấu hao
+Từ hình, dễ thấy thao tác từ trạng thái 1 sang trạng thái 2 (splay cục bộ đưa cha của đỉnh $x$ lên gốc cây gom lá của nó) có độ phức tạp khấu hao
 
 $$
 a \leq  3(r_2(\gamma)- r_1(\gamma))+1
 $$
 
-Từ hình, dễ thấy thao tác từ trạng thái 2 sang trạng thái 3 (Local Splay đưa nút ông của đỉnh $x$ lên gốc Compress Tree của nó) có độ phức tạp khấu hao
+Từ hình, dễ thấy thao tác từ trạng thái 2 sang trạng thái 3 (splay cục bộ đưa nút ông của đỉnh $x$ lên gốc cây nén của nó) có độ phức tạp khấu hao
 
 $$
 a \leq  3(r_3(B)- r_2(B))+1
 $$
 
-Tập trung phân tích thao tác từ trạng thái 3 sang trạng thái 4 (Splice):
+Tập trung phân tích thao tác từ trạng thái 3 sang trạng thái 4 (nối tách):
 
 $$
 a = r_4(\gamma) -r_3(\gamma) +1
@@ -524,27 +524,27 @@ a &\leq r_3(B)- r_3(\gamma)+1\\
 \end{aligned}
 $$
 
-Tổng hợp các bước trên, độ phức tạp của một lần Splice là
+Tổng hợp các bước trên, độ phức tạp của một lần nối tách là
 
 $$
 a\leq 3r_3(B)+3r_3(B)+3r_2(\gamma)-3r_3(\gamma)-3r_2(B)-3r_1(\gamma)+3
 $$
 
-Gọi điểm của lần Splice tiếp theo là $X$ (tức điểm $B$ trong trạng thái 4), giá trị $r$ của nó là $r'(X)$. Đồng thời chú ý rằng $r_3(\gamma),r_1(\gamma) \ge r_1(X)$, $r_3(B),r_2(\gamma) \leq r'(X)$ và $r_3(B)=r_2(B)$, nên
+Gọi điểm của lần nối tách tiếp theo là $X$ (tức điểm $B$ trong trạng thái 4), giá trị $r$ của nó là $r'(X)$. Đồng thời chú ý rằng $r_3(\gamma),r_1(\gamma) \ge r_1(X)$, $r_3(B),r_2(\gamma) \leq r'(X)$ và $r_3(B)=r_2(B)$, nên
 
 $$
 a\leq  9(r'(X)-r(X))+3
 $$
 
-Ngoài độ phức tạp trên, trong Splice còn có thể có phần độ phức tạp khấu hao phát sinh do `delete(x)`. Ký hiệu phần này là $a' \leq 3\log n +1$.
+Ngoài độ phức tạp trên, trong thao tác nối tách còn có thể có phần độ phức tạp khấu hao phát sinh do `delete(x)`. Ký hiệu phần này là $a' \leq 3\log n +1$.
 
-Tạm thời bỏ qua phần $a'$. Mỗi lần Splice có $r'(X)$ bằng $r(X)$ của lần tiếp theo, và $r(X)$ của lần Splice đầu tiên bằng $r(X)$ khi ban đầu ta xoay đỉnh $x$ lên gốc Compress Tree của nó. Vì vậy, với độ phức tạp của một lần `access(x)` nếu không tính `delete(x)`, ta có:
+Tạm thời bỏ qua phần $a'$. Mỗi lần nối tách có $r'(X)$ bằng $r(X)$ của lần tiếp theo, và $r(X)$ của lần nối tách đầu tiên bằng $r(X)$ khi ban đầu ta xoay đỉnh $x$ lên gốc cây nén của nó. Vì vậy, với độ phức tạp của một lần `access(x)` nếu không tính `delete(x)`, ta có:
 
 $$
 a \leq 9(r'(x)-r(x))+ 3k + 1
 $$
 
-trong đó $k$ là số lần Splice.
+trong đó $k$ là số lần nối tách.
 
 Nhìn qua thì $a$ có thêm hạng $3k+1$, khiến độ phức tạp khấu hao dường như khó phân tích. Nhưng ta có cách xử lý: chú ý rằng các phép xoay zig-zig/zig-zag có thể được khấu hao như sau
 
@@ -557,7 +557,7 @@ $$
 
 Nếu tìm được đủ nhiều thao tác zig-zig, zig-zag, ta có thể phân bổ $3k+1$ này vào các thao tác đó để triệt tiêu nó.
 
-Ta thấy trong Global Splay có đủ nhiều thao tác zig-zig, zag-zig để dùng, vì số nút trong Global Splay chắc chắn lớn hơn $k$, còn số nút trên đường từ đỉnh $x$ đến gốc Global Splay chắc chắn không nhỏ hơn $k$. Nói cách khác, trong một lần `access(x)` chắc chắn có ít nhất $\dfrac k2$ thao tác zig-zag. Tính thêm độ phức tạp khấu hao của Global Splay là $a \leq 3\log n +1$, độ phức tạp khấu hao của một lần `access(x)` khi không tính `delete(x)` là
+Ta thấy trong splay toàn cục có đủ nhiều thao tác zig-zig, zag-zig để dùng, vì số nút trong splay toàn cục chắc chắn lớn hơn $k$, còn số nút trên đường từ đỉnh $x$ đến gốc splay toàn cục chắc chắn không nhỏ hơn $k$. Nói cách khác, trong một lần `access(x)` chắc chắn có ít nhất $\dfrac k2$ thao tác zig-zag. Tính thêm độ phức tạp khấu hao của splay toàn cục là $a \leq 3\log n +1$, độ phức tạp khấu hao của một lần `access(x)` khi không tính `delete(x)` là
 
 $$
 \begin{aligned}
@@ -582,7 +582,7 @@ $$
 \end{aligned}
 $$
 
-Chú ý rằng bản chất của thao tác `delete(x)` là xóa một Rake Node, nhưng trong $m$ lần thao tác, ta nhiều nhất chỉ thêm $m$ Rake Node. Theo định nghĩa của Rake Node, ban đầu ta có nhiều nhất $n$ Rake Node, tức tổng cộng chỉ thực hiện nhiều nhất $m+n$ lần `delete(x)`. Từ $a' \leq 3\log n +1$ suy ra
+Chú ý rằng bản chất của thao tác `delete(x)` là xóa một nút gom lá, nhưng trong $m$ lần thao tác, ta nhiều nhất chỉ thêm $m$ nút gom lá. Theo định nghĩa của nút gom lá, ban đầu ta có nhiều nhất $n$ nút gom lá, tức tổng cộng chỉ thực hiện nhiều nhất $m+n$ lần `delete(x)`. Từ $a' \leq 3\log n +1$ suy ra
 
 $$
 \sum_{i=1}^m c_i \leq 3(m+n)\log n + 21m\log n +n\log n +4m +n
@@ -590,7 +590,7 @@ $$
 
 Do đó ta đã chứng minh được độ phức tạp của Access; các hàm khác hoặc dựa trên Access, hoặc có độ phức tạp thời gian mỗi lần là hằng số, nên ta cũng chứng minh được độ phức tạp của SATT.
 
-Nhân tiện, nếu giống LCT mà bỏ qua quá trình Global Splay, đổi thành trong mỗi lần Splice thì trực tiếp xoay đỉnh cần Access một lần, độ phức tạp thời gian vẫn đúng. Theo đo thực nghiệm, phiên bản bỏ Global Splay nhanh hơn rất nhiều và có thể chạy ngang ngửa LCT trên Luogu P3690.
+Nhân tiện, nếu giống LCT mà bỏ qua quá trình splay toàn cục, đổi thành trong mỗi lần nối tách thì trực tiếp xoay đỉnh cần Access một lần, độ phức tạp thời gian vẫn đúng. Theo đo thực nghiệm, phiên bản bỏ splay toàn cục nhanh hơn rất nhiều và có thể chạy ngang ngửa LCT trên Luogu P3690.
 
 ### Bài tập ví dụ
 
@@ -604,7 +604,7 @@ Duy trì đường kính động. Sau khi dựng SATT, ta chỉ cần duy trì �
 ```cpp
 void pushup(int x, int op) {
   if (op == 0) {
-    // là Compress Node
+    // là nút nén
     len[x] = len[ls(x)] + len[rs(x)];
     diam[x] = maxs[ls(x)][1] + maxs[rs(x)][0];
     diam[x] =
@@ -615,7 +615,7 @@ void pushup(int x, int op) {
     maxs[x][1] =
         max(maxs[rs(x)][1], len[rs(x)] + max(maxs[ms(x)][0], maxs[ls(x)][1]));
   } else {
-    // là Rake Node
+    // là nút gom lá
     diam[x] = maxs[ls(x)][0] + maxs[rs(x)][0];
     diam[x] =
         max(diam[x], maxs[ms(x)][0] + max(maxs[ls(x)][0], maxs[rs(x)][0]));
@@ -626,7 +626,7 @@ void pushup(int x, int op) {
 }
 ```
 
-Trong đó $diam$ là đáp án của nút hiện tại, tức đường kính của cụm do nút này đại diện. $len$ biểu diễn độ dài đường cụm của Compress Node hiện tại, còn $maxs_{0/1}$ biểu diễn khoảng cách lớn nhất từ Compress Node đến đỉnh trong và đầu mút của cụm khi không chọn con đường cụm/không chọn cha. Nếu là Rake Node thì chỉ lưu $maxs_0$, khoảng cách lớn nhất từ đầu mút trên của cụm hiện tại đến đỉnh trong và đầu mút của cụm. Mỗi lần truy vấn chỉ cần lấy diam của nút gốc SATT; tính đúng đắn là hiển nhiên.
+Trong đó $diam$ là đáp án của nút hiện tại, tức đường kính của cụm do nút này đại diện. $len$ biểu diễn độ dài đường cụm của nút nén hiện tại, còn $maxs_{0/1}$ biểu diễn khoảng cách lớn nhất từ nút nén đến đỉnh trong và đầu mút của cụm khi không chọn con đường cụm/không chọn cha. Nếu là nút gom lá thì chỉ lưu $maxs_0$, khoảng cách lớn nhất từ đầu mút trên của cụm hiện tại đến đỉnh trong và đầu mút của cụm. Mỗi lần truy vấn chỉ cần lấy diam của nút gốc SATT; tính đúng đắn là hiển nhiên.
 
 Chú ý cần sửa `Pushrev(x)` đôi chút.
 
@@ -646,7 +646,7 @@ void pushrev(int x) {
 
 Nếu có thể duy trì động trọng tâm của cây trong $O(\log n)$, ta sẽ giải được bài này.
 
-SATT hỗ trợ duy trì động trọng tâm của cây trong $O(\log n)$. Để làm được điều này cần **tìm kiếm phi cục bộ (Non-local Search)**.
+SATT hỗ trợ duy trì động trọng tâm của cây trong $O(\log n)$. Để làm được điều này cần **tìm kiếm phi cục bộ** (Non-local Search).
 
 Với một tính chất trên cây, nếu một đỉnh/một cạnh có tính chất đó trong toàn cây và cũng có tính chất đó trong mọi cây con chứa nó, ta gọi tính chất này là **cục bộ (Local)**; ngược lại gọi là **phi cục bộ (Non-local)**. Thông tin cục bộ thường có thể duy trì bằng `pushup(x)`.
 
@@ -658,15 +658,15 @@ Quay lại vấn đề chính, trọng tâm hiển nhiên là thông tin phi c�
 
 Tìm kiếm bắt đầu từ nút gốc của SATT, tức cụm gốc. Chú ý rằng trọng tâm có một tính chất rất tốt: nếu một phía của một cạnh có số đỉnh lớn hơn hoặc bằng phía còn lại, thì phía đó của cạnh chắc chắn có ít nhất một trọng tâm (trọng tâm có thể có hai).
 
-Gọi $sum$ là số đỉnh của một cụm, $maxs$ là giá trị $sum$ lớn nhất trong các con giữa của mọi Rake Node thuộc một Rake Tree.
+Gọi $sum$ là số đỉnh của một cụm, $maxs$ là giá trị $sum$ lớn nhất trong các con giữa của mọi nút gom lá thuộc một cây gom lá.
 
 ```cpp
 void pushup(int x, int op) {
   if (op == 0) {
-    // là Compress Node
+    // là nút nén
     sum[x] = sum[ls(x)] + sum[rs(x)] + sum[ms(x)] + 1;
   } else {
-    // là Rake Node
+    // là nút gom lá
     maxs[x] = max(maxs[ls(x)], max(maxs[rs(x)], sum[ms(x)]));
     sum[x] = sum[ls(x)] + sum[rs(x)] + sum[ms(x)];
   }
@@ -675,7 +675,7 @@ void pushup(int x, int op) {
 
 ![](./images/top-tree20.jpg)
 
-Hình trên là SATT khi thực hiện Non-local Search và cây ban đầu $T$ tương ứng.
+Hình trên là SATT khi thực hiện tìm kiếm phi cục bộ và cây ban đầu $T$ tương ứng.
 
 Ta thực hiện các phép so sánh sau:
 
@@ -683,7 +683,7 @@ Ta thực hiện các phép so sánh sau:
 
 2.  So sánh giá trị $sum$ của cụm $compress(Z)$ với giá trị $sum$ của hợp giữa cụm $compress(Y)$, cụm $A$ và đỉnh $X$ (tạm gọi là cụm $\beta$). Nếu $sum$ của $compress(Z)$ lớn hơn hoặc bằng vế sau, nghĩa là có ít nhất một trọng tâm trong cây con của $compress(Z)$, ta đệ quy tìm kiếm vào $compress(Z)$. Nếu ở đây bằng nhau, đỉnh $X$ cũng là một trọng tâm và cần ghi nhận.
 
-3.  So sánh giá trị $sum$ của cụm nhỏ hơn có $sum$ lớn nhất trong Rake tree là con giữa của điểm $x$ với giá trị $sum$ của hợp giữa cụm $compress(Y)$, cụm $A$, đỉnh $X$ và các cụm nhỏ hơn còn lại (tạm gọi là cụm $Y$). Nếu giá trị $sum$ của cụm nhỏ hơn đó lớn hơn hoặc bằng vế sau, nghĩa là có ít nhất một trọng tâm trong cây con của cụm nhỏ hơn đó, ta đệ quy tìm kiếm vào nó. Nếu ở đây bằng nhau, đỉnh $X$ cũng là một trọng tâm và cần ghi nhận.
+3.  So sánh giá trị $sum$ của cụm nhỏ hơn có $sum$ lớn nhất trong cây gom lá là con giữa của điểm $x$ với giá trị $sum$ của hợp giữa cụm $compress(Y)$, cụm $A$, đỉnh $X$ và các cụm nhỏ hơn còn lại (tạm gọi là cụm $Y$). Nếu giá trị $sum$ của cụm nhỏ hơn đó lớn hơn hoặc bằng vế sau, nghĩa là có ít nhất một trọng tâm trong cây con của cụm nhỏ hơn đó, ta đệ quy tìm kiếm vào nó. Nếu ở đây bằng nhau, đỉnh $X$ cũng là một trọng tâm và cần ghi nhận.
 
 4.  Nếu các phép so sánh trên đều không đệ quy, thì đỉnh $X$ chắc chắn là một trọng tâm; ghi nhận rồi thoát.
 
