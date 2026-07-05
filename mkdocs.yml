@@ -8,7 +8,7 @@ strict: false
 # Repository
 repo_name: 'cuom1999/OI-wiki'
 repo_url: 'https://github.com/cuom1999/OI-wiki'
-edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
+edit_uri: 'edit/vietnamese-translation/docs/'
 
 # Copyright
 copyright: 'Copyright &copy; 2016 - 2026 OI Wiki Team. Bản dịch tiếng Việt giữ cùng giấy phép.'
@@ -552,7 +552,7 @@ theme:
       accent: red
       toggle:
         icon: material/weather-sunny
-        name: Switch to dark mode
+        name: Chuyển sang chế độ tối
 
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
@@ -561,7 +561,7 @@ theme:
       accent: blue
       toggle:
         icon: material/weather-night
-        name: Switch to light mode
+        name: Chuyển sang chế độ sáng
   include_search_page: false
   search_index_only: true
   favicon: 'favicon.ico'

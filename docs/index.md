@@ -2,9 +2,9 @@ disqus:
 pagetime:
 title: OI Wiki tiếng Việt
 
-# Chào mừng đến với **OI Wiki tiếng Việt**! [![GitHub watchers](https://img.shields.io/github/watchers/OI-wiki/OI-wiki.svg?style=social&label=Watch)](https://github.com/OI-wiki/OI-wiki) [![GitHub stars](https://img.shields.io/github/stars/OI-wiki/OI-wiki.svg?style=social&label=Stars)](https://github.com/OI-wiki/OI-wiki)
+# Chào mừng đến với **OI Wiki tiếng Việt**! [![GitHub watchers](https://img.shields.io/github/watchers/cuom1999/OI-wiki.svg?style=social&label=Theo%20dõi)](https://github.com/cuom1999/OI-wiki) [![GitHub stars](https://img.shields.io/github/stars/cuom1999/OI-wiki.svg?style=social&label=Sao)](https://github.com/cuom1999/OI-wiki)
 
-[![Word Art](images/wordArt.webp)](https://github.com/OI-wiki/OI-wiki)
+[![Word Art](images/wordArt.webp)](https://github.com/cuom1999/OI-wiki)
 
 **OI** (Olympiad in Informatics, Olympic Tin học) là một mảng thi đấu tin học
 dành cho học sinh phổ thông. Ở Trung Quốc, OI bắt đầu từ năm 1984 và là một
@@ -20,8 +20,8 @@ bạn có thể tìm thấy kiến thức thú vị và hữu ích về thi đ�
 cơ bản, dạng bài thường gặp, hướng giải, công cụ và kinh nghiệm học tập.
 
 Bản tiếng Việt này dịch dần từ dự án gốc, giữ nguyên cấu trúc nguồn để dễ theo
-dõi thay đổi upstream. Một số trang vẫn còn tiếng Trung trong thời gian chuyển
-đổi.
+dõi thay đổi upstream. Một số trang vẫn còn dấu vết hoặc bối cảnh từ bản gốc
+trong thời gian chuyển đổi.
 
 Dự án gốc lấy cảm hứng từ [CTF Wiki](https://ctf-wiki.org/) và tham khảo nhiều
 tài liệu trong quá trình biên soạn.
@@ -35,26 +35,26 @@ tài liệu trong quá trình biên soạn.
 Nhấn vào một ô màu để đổi màu chính của giao diện.
 
 <div id="color-button">
-<button data-md-color-primary="red">Red</button>
-<button data-md-color-primary="pink">Pink</button>
-<button data-md-color-primary="purple">Purple</button>
-<button data-md-color-primary="deep-purple">Deep Purple</button>
-<button data-md-color-primary="indigo">Indigo</button>
-<button data-md-color-primary="blue">Blue</button>
-<button data-md-color-primary="light-blue">Light Blue</button>
-<button data-md-color-primary="cyan">Cyan</button>
-<button data-md-color-primary="teal">Teal</button>
-<button data-md-color-primary="green">Green</button>
-<button data-md-color-primary="light-green">Light Green</button>
-<button data-md-color-primary="lime">Lime</button>
-<button data-md-color-primary="yellow">Yellow</button>
-<button data-md-color-primary="amber">Amber</button>
-<button data-md-color-primary="orange">Orange</button>
-<button data-md-color-primary="deep-orange">Deep Orange</button>
-<button data-md-color-primary="brown">Brown</button>
-<button data-md-color-primary="grey">Grey</button>
-<button data-md-color-primary="blue-grey">Blue Grey</button>
-<button data-md-color-primary="white">White</button>
+<button data-md-color-primary="red">Đỏ</button>
+<button data-md-color-primary="pink">Hồng</button>
+<button data-md-color-primary="purple">Tím</button>
+<button data-md-color-primary="deep-purple">Tím đậm</button>
+<button data-md-color-primary="indigo">Chàm</button>
+<button data-md-color-primary="blue">Xanh lam</button>
+<button data-md-color-primary="light-blue">Xanh lam nhạt</button>
+<button data-md-color-primary="cyan">Lục lam</button>
+<button data-md-color-primary="teal">Xanh mòng két</button>
+<button data-md-color-primary="green">Xanh lá</button>
+<button data-md-color-primary="light-green">Xanh lá nhạt</button>
+<button data-md-color-primary="lime">Vàng chanh</button>
+<button data-md-color-primary="yellow">Vàng</button>
+<button data-md-color-primary="amber">Hổ phách</button>
+<button data-md-color-primary="orange">Cam</button>
+<button data-md-color-primary="deep-orange">Cam đậm</button>
+<button data-md-color-primary="brown">Nâu</button>
+<button data-md-color-primary="grey">Xám</button>
+<button data-md-color-primary="blue-grey">Xám xanh</button>
+<button data-md-color-primary="white">Trắng</button>
 </div>
 
 <script>
@@ -74,22 +74,22 @@ Nhấn vào một ô màu để đổi màu chính của giao diện.
 Nhấn vào một ô màu để đổi màu nhấn của giao diện.
 
 <div id="color-button">
-<button data-md-color-accent="red">Red</button>
-<button data-md-color-accent="pink">Pink</button>
-<button data-md-color-accent="purple">Purple</button>
-<button data-md-color-accent="deep-purple">Deep Purple</button>
-<button data-md-color-accent="indigo">Indigo</button>
-<button data-md-color-accent="blue">Blue</button>
-<button data-md-color-accent="light-blue">Light Blue</button>
-<button data-md-color-accent="cyan">Cyan</button>
-<button data-md-color-accent="teal">Teal</button>
-<button data-md-color-accent="green">Green</button>
-<button data-md-color-accent="light-green">Light Green</button>
-<button data-md-color-accent="lime">Lime</button>
-<button data-md-color-accent="yellow">Yellow</button>
-<button data-md-color-accent="amber">Amber</button>
-<button data-md-color-accent="orange">Orange</button>
-<button data-md-color-accent="deep-orange">Deep Orange</button>
+<button data-md-color-accent="red">Đỏ</button>
+<button data-md-color-accent="pink">Hồng</button>
+<button data-md-color-accent="purple">Tím</button>
+<button data-md-color-accent="deep-purple">Tím đậm</button>
+<button data-md-color-accent="indigo">Chàm</button>
+<button data-md-color-accent="blue">Xanh lam</button>
+<button data-md-color-accent="light-blue">Xanh lam nhạt</button>
+<button data-md-color-accent="cyan">Lục lam</button>
+<button data-md-color-accent="teal">Xanh mòng két</button>
+<button data-md-color-accent="green">Xanh lá</button>
+<button data-md-color-accent="light-green">Xanh lá nhạt</button>
+<button data-md-color-accent="lime">Vàng chanh</button>
+<button data-md-color-accent="yellow">Vàng</button>
+<button data-md-color-accent="amber">Hổ phách</button>
+<button data-md-color-accent="orange">Cam</button>
+<button data-md-color-accent="deep-orange">Cam đậm</button>
 </div>
 
 <script>
