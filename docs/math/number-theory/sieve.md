@@ -1,9 +1,9 @@
 author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China, HeRaNO, weilycoder
 
-<span id="&#x7D20;&#x6570;&#x7B5B;&#x6CD5;"></span>
+<span id="sàng-số-nguyên-tố"></span>
 ## Sàng số nguyên tố
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="giới-thiệu"></span>
 ### Giới thiệu
 
 Nếu muốn biết có bao nhiêu số nguyên tố nhỏ hơn hoặc bằng $n$ thì làm thế nào?
@@ -11,10 +11,10 @@ Nếu muốn biết có bao nhiêu số nguyên tố nhỏ hơn hoặc bằng $n
 Một ý tưởng tự nhiên là kiểm tra tính nguyên tố cho từng số không vượt quá
 $n$. Cách vét cạn này rõ ràng không đạt độ phức tạp tối ưu.
 
-<span id="&#x57C3;&#x62C9;&#x6258;&#x65AF;&#x7279;&#x5C3C;&#x7B5B;&#x6CD5;"></span>
+<span id="sàng-eratosthenes"></span>
 ### Sàng Eratosthenes
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quá-trình"></span>
 #### Quá trình
 
 Xét một nhận xét: với bất kỳ số nguyên dương $n$ lớn hơn $1$, bội $x$ của nó
@@ -25,7 +25,7 @@ Nếu xét từng số từ nhỏ đến lớn, đồng thời đánh dấu tấ
 hiện tại (lớn hơn chính nó) là hợp số, thì sau khi kết thúc, những số chưa bị
 đánh dấu chính là số nguyên tố.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-eratosthenes"></span>
 #### Cài đặt
 
 === "C++"
@@ -110,7 +110,7 @@ tạp thời gian $O(n\log\log n)$.
     Tất nhiên, cách trên vẫn chưa đủ nhanh trong thực tế; các phương pháp dưới
     đây có thể cải thiện hiệu năng một chút.
 
-<span id="&#x7B5B;&#x81F3;&#x5E73;&#x65B9;&#x6839;"></span>
+<span id="sàng-đến-căn-bậc-hai"></span>
 #### Sàng đến căn bậc hai
 
 Rõ ràng, để tìm tất cả số nguyên tố đến $n$, chỉ cần sàng bằng các số nguyên tố
@@ -158,7 +158,7 @@ Tối ưu này không ảnh hưởng đến độ phức tạp tiệm cận. Tr�
 chứng minh trên sẽ thu được $n \ln \ln \sqrt n + o(n)$; theo tính chất của
 logarit, chúng tương đương về tiệm cận, nhưng số thao tác giảm đáng kể.
 
-<span id="&#x53EA;&#x7B5B;&#x5947;&#x6570;"></span>
+<span id="chỉ-sàng-số-lẻ"></span>
 #### Chỉ sàng số lẻ
 
 Vì mọi số chẵn ngoài $2$ đều là hợp số, ta có thể bỏ qua trực tiếp và chỉ quan
@@ -167,7 +167,7 @@ tâm đến số lẻ.
 Trước hết, cách này làm giảm một nửa nhu cầu bộ nhớ; tiếp theo, số thao tác cần
 thiết cũng xấp xỉ giảm một nửa.
 
-<span id="&#x51CF;&#x5C11;&#x5185;&#x5B58;&#x7684;&#x5360;&#x7528;"></span>
+<span id="giảm-dung-lượng-bộ-nhớ"></span>
 #### Giảm dung lượng bộ nhớ
 
 Ta nhận thấy khi sàng chỉ cần mảng kiểu `bool`. Một phần tử của mảng `bool`
@@ -186,9 +186,9 @@ Eratosthenes có độ phức tạp $O(n \log \log n)$ sau khi tối ưu bằng 
 hoặc `vector<bool>` thậm chí có hiệu năng vượt qua sàng Euler có độ phức tạp
 $O(n)$.
 
-Xem [bitset: kết hợp với sàng Eratosthenes](../../lang/csl/bitset.md#%E4%B8%8E%E5%9F%83%E6%B0%8F%E7%AD%9B%E7%BB%93%E5%90%88).
+Xem [bitset: kết hợp với sàng Eratosthenes](../../lang/csl/bitset.md#kết-hợp-với-sàng-eratosthenes).
 
-<span id="&#x5206;&#x5757;&#x7B5B;&#x9009;"></span>
+<span id="sàng-theo-khối"></span>
 #### Sàng theo khối
 
 Từ tối ưu "sàng đến căn bậc hai", ta biết không cần giữ toàn bộ mảng
@@ -251,7 +251,7 @@ tệ hơn nhiều. Vì vậy cần cân bằng khi chọn hằng số $S$.
 
 Kích thước khối $S$ trong khoảng $10^4$ đến $10^5$ thường cho tốc độ tốt nhất.
 
-<span id="&#x7EBF;&#x6027;&#x7B5B;&#x6CD5;"></span>
+<span id="sàng-tuyến-tính"></span>
 ### Sàng tuyến tính
 
 Sàng Eratosthenes vẫn còn không gian tối ưu, vì nó đánh dấu một hợp số nhiều
@@ -318,7 +318,7 @@ Kiểu sàng trên được gọi là **sàng tuyến tính**, hay **sàng Euler
     Khi dùng sàng để tìm số nguyên tố, ta đồng thời thu được thừa số nguyên tố
     nhỏ nhất của mỗi số.
 
-<span id="&#x7B5B;&#x6CD5;&#x6C42;&#x6B27;&#x62C9;&#x51FD;&#x6570;"></span>
+<span id="tính-hàm-euler-bằng-sàng"></span>
 ## Tính hàm Euler bằng sàng
 
 Trong sàng tuyến tính, mỗi hợp số đều bị sàng bởi thừa số nguyên tố nhỏ nhất.
@@ -349,7 +349,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-hàm-euler"></span>
 ### Cài đặt
 
 === "C++"
@@ -401,10 +401,10 @@ $$
                 phi[i * pri_j] = phi[i] * phi[pri_j]
     ```
 
-<span id="&#x7B5B;&#x6CD5;&#x6C42;&#x83AB;&#x6BD4;&#x4E4C;&#x65AF;&#x51FD;&#x6570;"></span>
+<span id="tính-hàm-möbius-bằng-sàng"></span>
 ## Tính hàm Möbius bằng sàng
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa-hàm-möbius"></span>
 ### Định nghĩa
 
 Theo định nghĩa hàm Möbius, giả sử $n$ là hợp số, $p_1$ là thừa số nguyên tố
@@ -420,7 +420,7 @@ $$
 
 Nếu $n$ là số nguyên tố, $\mu(n)=-1$.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-hàm-möbius"></span>
 ### Cài đặt
 
 === "C++"
@@ -472,13 +472,13 @@ Nếu $n$ là số nguyên tố, $\mu(n)=-1$.
                 mu[i * pri_j] = -mu[i]
     ```
 
-<span id="&#x7B5B;&#x6CD5;&#x6C42;&#x7EA6;&#x6570;&#x4E2A;&#x6570;"></span>
+<span id="tính-số-lượng-ước-bằng-sàng"></span>
 ## Tính số lượng ước bằng sàng
 
 Dùng $d_i$ để biểu diễn số lượng ước của $i$, và $num_i$ để biểu diễn số lần
 xuất hiện của thừa số nguyên tố nhỏ nhất của $i$.
 
-<span id="&#x7EA6;&#x6570;&#x4E2A;&#x6570;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-về-số-lượng-ước"></span>
 ### Định lý về số lượng ước
 
 Định lý: nếu $n=\prod_{i=1}^m p_i^{c_i}$ thì
@@ -488,7 +488,7 @@ Chứng minh: ta biết các ước của $p_i^{c_i}$ là
 $p_i^0,p_i^1,\dots ,p_i^{c_i}$, tổng cộng $c_i+1$ ước. Theo quy tắc nhân, số
 lượng ước của $n$ chính là $\prod_{i=1}^m (c_i+1)$.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-số-lượng-ước"></span>
 ### Cài đặt
 
 Vì $d_i$ là hàm nhân tính, có thể dùng sàng tuyến tính.
@@ -559,13 +559,13 @@ Sau đây giới thiệu ngắn gọn nguyên lý cài đặt sàng tuyến tín
                 d[i * pri_j] = d[i] * 2
     ```
 
-<span id="&#x7B5B;&#x6CD5;&#x6C42;&#x7EA6;&#x6570;&#x548C;"></span>
+<span id="tính-tổng-ước-bằng-sàng"></span>
 ## Tính tổng ước bằng sàng
 
 $f_i$ biểu diễn tổng các ước của $i$, $g_i$ biểu diễn
 $p^0+p^1+p^2+\dots p^k$ ứng với thừa số nguyên tố nhỏ nhất của $i$.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-tổng-ước"></span>
 ### Cài đặt
 
 === "C++"
@@ -624,7 +624,7 @@ $p^0+p^1+p^2+\dots p^k$ ứng với thừa số nguyên tố nhỏ nhất của 
                 g[i * pri_j] = 1 + pri_j
     ```
 
-<span id="&#x4E00;&#x822C;&#x7684;&#x79EF;&#x6027;&#x51FD;&#x6570;"></span>
+<span id="hàm-nhân-tính-tổng-quát"></span>
 ## Hàm nhân tính tổng quát
 
 Giả sử một [hàm nhân tính](./basic.md#hàm-nhân-tính) $f$
