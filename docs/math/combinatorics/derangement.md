@@ -1,14 +1,14 @@
-<span id="&#38169;&#20301;&#25490;&#21015;"></span>
+<span id="hoán-vị-sai-vị-trí"></span>
 ## Hoán vị sai vị trí
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ### Định nghĩa
 
 Hoán vị sai vị trí (derangement) là một hoán vị mà không có phần tử nào nằm ở vị trí đúng của nó. Cụ thể, với một hoán vị $P$ của $1\sim n$, nếu $P_i\neq i$ với mọi $i$, thì $P$ được gọi là một hoán vị sai vị trí của $n$ phần tử.
 
 Ví dụ, các hoán vị sai vị trí của 3 phần tử là $\{2,3,1\}$ và $\{3,1,2\}$. Các hoán vị sai vị trí của 4 phần tử là $\{2,1,4,3\}$, $\{2,3,4,1\}$, $\{2,4,1,3\}$, $\{3,1,4,2\}$, $\{3,4,1,2\}$, $\{3,4,2,1\}$, $\{4,1,2,3\}$, $\{4,3,1,2\}$ và $\{4,3,2,1\}$. Hoán vị sai vị trí là hoán vị không có điểm bất động, tức là không có chu trình độ dài 1.
 
-<span id="&#23481;&#26021;&#21407;&#29702;&#30340;&#35745;&#31639;"></span>
+<span id="tính-bằng-nguyên-lý-bao-hàm-loại-trừ"></span>
 ### Tính bằng nguyên lý bao hàm - loại trừ
 
 Tập toàn cục $U$ là tập các hoán vị của $1\sim n$, nên $|U|=n!$; đặt $S_i$ là tập các hoán vị thỏa mãn $P_i\neq i$. Dùng bổ đề về phần bù và [nguyên lý bao hàm - loại trừ](./inclusion-exclusion-principle.md), bài toán trở thành tính:
@@ -52,7 +52,7 @@ $$
 
 Một vài số hạng đầu của dãy số hoán vị sai vị trí là $0,1,2,9,44,265$ ([OEIS A000166](http://oeis.org/A000166)).
 
-<span id="&#36882;&#25512;&#30340;&#35745;&#31639;"></span>
+<span id="tính-bằng-truy-hồi"></span>
 ### Tính bằng truy hồi
 
 Cụ thể hóa bài toán hoán vị sai vị trí, xét bài toán sau:
@@ -82,7 +82,7 @@ $$
 D_n=nD_{n-1}+{(-1)}^n
 $$
 
-<span id="&#20854;&#20182;&#20851;&#31995;"></span>
+<span id="các-quan-hệ-khác"></span>
 ### Các quan hệ khác
 
 Số hoán vị sai vị trí có một biểu thức làm tròn đơn giản; tốc độ tăng chỉ khác giai thừa bởi một hằng số:

@@ -1,4 +1,4 @@
-<span id="&#24681;&#29305;&#26519;&#26684;&#25968;"></span>
+<span id="số-entringer"></span>
 ## Số Entringer
 
 Số Entringer (Entringer number, [OEIS A008281](http://oeis.org/A008281)) $E(n,k)$ là số hoán vị của $n+1$ số từ $0$ đến $n$ thỏa mãn các điều kiện sau:
@@ -22,7 +22,7 @@ $$
 E(n,k)=E(n,k-1)+E(n-1,n-k)
 $$
 
-<span id="Seidel&#8211;Entringer&#8211;Arnold-&#19977;&#35282;"></span>
+<span id="tam-giác-seidel-entringer-arnold"></span>
 ## Tam giác Seidel-Entringer-Arnold
 
 Một tam giác số thu được bằng cách sắp xếp số Entringer một cách thích hợp được gọi là tam giác Seidel-Entringer-Arnold (Seidel-Entringer-Arnold triangle, [OEIS A008280](http://oeis.org/A008280)). Tam giác này sắp xếp các số Entringer $E(n,k)$ theo thứ tự "cày ruộng bằng bò" (ox-plowing order):
@@ -81,7 +81,7 @@ $$
 \end{aligned}
 $$
 
-<span id="zigzag-&#32622;&#25442;"></span>
+<span id="hoán-vị-zigzag"></span>
 ## Hoán vị zigzag
 
 Một hoán vị zigzag (zigzag permutation) là một hoán vị $c_1$ đến $c_i$ của các số từ $1$ đến $n$, sao cho mọi phần tử $c_i$ đều không nằm giữa $c_{i-1}$ và $c_{i+1}$ về giá trị.
@@ -104,7 +104,7 @@ n=4: & \{1,3,2,4\}, \{1,4,2,3\}, \{2,1,4,3\}, \{2,3,1,4\}, \{2,4,1,3\}, \\
 \end{aligned}
 $$
 
-<span id="&#20132;&#26367;&#32622;&#25442;&#19982;-zigzag-&#25968;"></span>
+<span id="hoán-vị-luân-phiên-và-số-zigzag"></span>
 ## Hoán vị luân phiên và số zigzag
 
 Lưu ý phân biệt khái niệm này với hoán vị sai vị trí.
@@ -185,7 +185,7 @@ $$
 
 Hàm tang là hàm lẻ, hàm sec là hàm chẵn; tổng của chúng tạo thành hàm sinh của số zigzag.
 
-<span id="&#24681;&#29305;&#26519;&#26684;&#25968;&#19982;-zigzag-&#25968;&#30340;&#20851;&#31995;"></span>
+<span id="quan-hệ-giữa-số-entringer-và-số-zigzag"></span>
 ## Quan hệ giữa số Entringer và số zigzag
 
 Theo định nghĩa của số Entringer, $E(n,k)$ là số hoán vị luân phiên của các số từ $0$ đến $n$ có phần tử đầu tiên là $k$. Vì vậy số Entringer thật ra có liên hệ với số zigzag:
@@ -238,7 +238,7 @@ $$
 
 đây là hàm sinh của số zigzag.
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#38142;&#25509;"></span>
+<span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết
 
 1.  [Alternating permutation - Wikipedia](https://en.wikipedia.org/wiki/Alternating_permutation)
