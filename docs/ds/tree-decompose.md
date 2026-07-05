@@ -4,11 +4,12 @@ author: ouuan, Ir1d, Marcythm, Xeonacid
 
 ## Cách chia khối trên cây
 
-Có thể tham khảo [Mo trên cây thật sự](../misc/mo-algo-on-tree.md).
+Có thể tham khảo trang [Mo trên cây](../misc/mo-algo-on-tree.md).
 
-Cũng có thể tham khảo [blog của ouuan/giải thích chi tiết Mo, Mo có sửa đổi, Mo trên cây/Mo trên cây](https://ouuan.github.io/%E8%8E%AB%E9%98%9F%E3%80%81%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F%E3%80%81%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F%E8%AF%A6%E8%A7%A3/#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F).
+Cũng có thể tham khảo
+[bài blog của ouuan về Mo, Mo có sửa đổi và Mo trên cây][ouuan-mo-tree].
 
-Bản thân Mo trên cây cũng có thể tham khảo hai bài viết trên.
+Các chi tiết về Mo trên cây có thể tham khảo hai bài viết trên.
 
 <span id="ứng-dụng-của-chia-khối-trên-cây"></span>
 
@@ -19,18 +20,17 @@ chia khối trên cây còn có thể được vận dụng linh hoạt trong m�
 Tuy nhiên, những bài có thể giải bằng chia khối trên cây thường vẫn có cách tốt hơn,
 nên số bài liên quan không nhiều.
 
-Nhân tiện, cách chia khối trên cây cho bài "cây cô gái của gty" có thể bị dữ liệu hình sao đánh bại.
+Nhân tiện, cách chia khối trên cây cho bài "gty's tree" có thể bị dữ liệu hình sao đánh bại.
 
 <span id="bzoj4763-tuyết-huy"></span>
 
 ### [BZOJ4763 Tuyết Huy](https://hydro.ac/p/bzoj-P4763)
 
 Trước hết thực hiện chia khối trên cây.
-Sau đó, với điểm then chốt của mỗi khối,
-tiền xử lý `bitset` màu trên đường đi từ nó tới từng điểm then chốt trong các tổ tiên,
-cũng như tổ tiên là điểm then chốt gần nhất của mỗi điểm then chốt.
+Sau đó, với điểm then chốt của mỗi khối, tiền xử lý `bitset` màu trên đường đi từ điểm đó tới từng điểm then chốt tổ tiên,
+cũng như điểm then chốt tổ tiên gần nhất của nó.
 Độ phức tạp là $O(n\sqrt n+\frac{nc}{32})$,
-trong đó $n\sqrt n$ là độ phức tạp của việc nhảy ngược lên một cách vét cạn từ từng điểm then chốt,
+trong đó $n\sqrt n$ là độ phức tạp của việc nhảy ngược lên bằng vét cạn từ từng điểm then chốt,
 còn $\frac{nc}{32}$ là độ phức tạp để lưu $O(n)$ `bitset`.
 
 Khi trả lời truy vấn,
@@ -57,7 +57,7 @@ Do đó, tổng độ phức tạp là $O((n+m)(\sqrt n+\frac c{32}))$.
 
 ### [BZOJ4812 Yuno chơi poker](https://hydro.ac/p/bzoj-P4812)
 
-Bài này về cơ bản giống bài trước; khác biệt duy nhất là cách tính đáp án sau khi có `bitset`.
+Bài này về cơ bản giống bài trước; khác biệt duy nhất nằm ở cách tính đáp án sau khi có `bitset`.
 
 ~~Vì BZOJ tính tổng giới hạn thời gian của mọi điểm kiểm thử và khó chặn cách làm này, có thể dùng `_Find_next()` để qua bài.~~
 
@@ -70,3 +70,5 @@ Tuy nhiên cách này cần tự viết `bitset`,
 vì `bitset` của thư viện chuẩn không thể lấy trực tiếp một đoạn $16$ bit bất kỳ.
 
 Có thể tham khảo mã ở [bài blog này](https://www.cnblogs.com/FallDream/p/bzoj4763.html).
+
+[ouuan-mo-tree]: https://ouuan.github.io/%E8%8E%AB%E9%98%9F%E3%80%81%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F%E3%80%81%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F%E8%AF%A6%E8%A7%A3/#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F
