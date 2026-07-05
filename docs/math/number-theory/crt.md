@@ -186,17 +186,17 @@ $$
 
 $$
 \begin{array}{ll}
-&\textbf{Chinese Remainder Algorithm }\operatorname{cra}(\mathbf{v}, \mathbf{m})\text{:} \\
-&\textbf{Input}\text{: }\mathbf{m}=(m_0,m_1,\dots ,m_{n-1})\text{, }m_i\in\mathbb{Z}^+\land\gcd(m_i,m_j)=1\text{ for all } i\neq j\text{,} \\
-&\qquad \mathbf{v}=(v_0,\dots ,v_{n-1}) \text{ where }v_i=x\bmod m_i\text{.} \\
-&\textbf{Output}\text{: }x\bmod{\prod_{i=0}^{n-1} m_i}\text{.} \\
-1&\qquad \textbf{for }i\text{ from }1\text{ to }(n-1)\textbf{ do} \\
+&\textbf{Thuật toán phần dư Trung Hoa }\operatorname{cra}(\mathbf{v}, \mathbf{m})\text{:} \\
+&\textbf{Đầu vào}\text{: }\mathbf{m}=(m_0,m_1,\dots ,m_{n-1})\text{, }m_i\in\mathbb{Z}^+\land\gcd(m_i,m_j)=1\text{ với mọi } i\neq j\text{,} \\
+&\qquad \mathbf{v}=(v_0,\dots ,v_{n-1}) \text{ trong đó }v_i=x\bmod m_i\text{.} \\
+&\textbf{Đầu ra}\text{: }x\bmod{\prod_{i=0}^{n-1} m_i}\text{.} \\
+1&\qquad \textbf{với }i\text{ từ }1\text{ đến }(n-1) \\
 2&\qquad \qquad C_i\gets \left(\prod_{j=0}^{i-1}m_j\right)^{-1}\bmod{m_i} \\
 3&\qquad x\gets v_0 \\
-4&\qquad \textbf{for }i\text{ from }1\text{ to }(n-1)\textbf{ do} \\
+4&\qquad \textbf{với }i\text{ từ }1\text{ đến }(n-1) \\
 5&\qquad \qquad u\gets (v_i-x)\cdot C_i\bmod{m_i} \\
 6&\qquad \qquad x\gets x+u\prod_{j=0}^{i-1}m_j \\
-7&\qquad \textbf{return }(x)
+7&\qquad \textbf{trả về }(x)
 \end{array}
 $$
 
