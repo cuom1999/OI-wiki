@@ -418,12 +418,12 @@ void func(C... args) {
   (std::cout << ... << args) << std::endl;
   // Cú pháp 4, tương đương với ↓
   // ( ( ( std::cout << 1 ) << 2.1 ) << true ) << std::endl;
-  // Output: 12.11  Lưu ý true được in thành 1, vì ở đây không chỉ định boolalpha
+  // Kết quả: 12.11  Lưu ý true được in thành 1, vì ở đây không chỉ định boolalpha
 
   std::cout << (args && ...) << std::endl;
   // Cú pháp 1, tương đương với ↓
   // std::cout << ( 1 && ( 2.1 && true ) ) ) << std::endl;
-  // Output: 1
+  // Kết quả: 1
 }
 
 func(1, 2.1, true);

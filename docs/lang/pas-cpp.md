@@ -540,7 +540,7 @@ void printWarning(int x) {
   if (x >= 0) {
     return;  // câu lệnh này ở đây tương đương với `exit;` trong Pascal
   }
-  std::cout << "Warning: input a negative number.";
+  std::cout << "Cảnh báo: đầu vào là số âm.";
 }
 
 int main() {

@@ -69,7 +69,7 @@ Một thuật toán trực tiếp tính hàm tiền tố theo đúng định ngh
     
     === "C++"
         ```cpp
-        // Note:
+        // Lưu ý:
         // string substr (size_t pos = 0, size_t len = npos) const;
         vector<int> prefix_function(string s) {
           int n = (int)s.length();

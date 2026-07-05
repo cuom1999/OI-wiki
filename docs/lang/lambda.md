@@ -74,12 +74,12 @@ Dưới đây là một số ví dụ thường gặp:
 
 ```cpp
 int a = 0;
-auto f0 = []() { return a * 9; };   // Error, không thể truy cập 'a'
-auto f1 = [a]() { return a * 9; };  // OK, 'a' được "bắt giữ" theo giá trị
-auto f2 = [&a]() { return a++; };   // OK, 'a' được "bắt giữ" bằng tham chiếu
+auto f0 = []() { return a * 9; };   // Lỗi, không thể truy cập 'a'
+auto f1 = [a]() { return a * 9; };  // Hợp lệ, 'a' được "bắt giữ" theo giá trị
+auto f2 = [&a]() { return a++; };   // Hợp lệ, 'a' được "bắt giữ" bằng tham chiếu
 auto f3 = [v = a + 1]() {
   return v + 1;
-};  // OK, dùng bộ khởi tạo để khai báo biến v, có cùng kiểu với a
+};  // Hợp lệ, dùng bộ khởi tạo để khai báo biến v, có cùng kiểu với a
 
 // Lưu ý: khi dùng bắt giữ bằng tham chiếu, hãy đảm bảo a chưa bị hủy lúc gọi
 auto b = f2();  // f2 lấy giá trị của a từ danh sách bắt giữ, không cần truyền a qua tham số
@@ -94,39 +94,39 @@ Từ C++14 trở đi, capture không chỉ có thể bắt giữ biến bên ngo
 ```cpp
 auto f1 = [val = 520]() {
   return val;
-};  // OK, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là int
+};  // Hợp lệ, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là int
 
 auto f2 = [val = 520LL]() {
   return val;
-};  // OK, định nghĩa val có kiểu long long, giá trị ban đầu là 520, kiểu trả về là long long
+};  // Hợp lệ, định nghĩa val có kiểu long long, giá trị ban đầu là 520, kiểu trả về là long long
 
 auto f3 = [val = "520"]() {
   return val;
-};  // OK, định nghĩa val có kiểu const char*, giá trị ban đầu là "520", kiểu trả về là const char*
+};  // Hợp lệ, định nghĩa val có kiểu const char*, giá trị ban đầu là "520", kiểu trả về là const char*
 
 auto f4 = [val = "520"s]() {
   return val;
-};  // OK, từ C++14 trở đi, cần using namespace std; hoặc using namespace std::literals;
+};  // Hợp lệ, từ C++14 trở đi, cần using namespace std; hoặc using namespace std::literals;
     // định nghĩa val có kiểu std::string, giá trị ban đầu là std::string("520"),
     // kiểu trả về là std::string
 
 auto f5 = [val = std::string("520")]() {
   return val;
-};  // OK, định nghĩa val có kiểu std::string, giá trị ban đầu là std::string("520"),
+};  // Hợp lệ, định nghĩa val có kiểu std::string, giá trị ban đầu là std::string("520"),
     // kiểu trả về là std::string
 
 auto f6 = [val = std::vector<int>(3, 6)]() {
   return val;
-};  // OK, định nghĩa val có kiểu std::vector<int>, kích thước là 3,
+};  // Hợp lệ, định nghĩa val có kiểu std::vector<int>, kích thước là 3,
     // các phần tử được gán giá trị 6, kiểu trả về là std::vector<int>
 
 auto f7 = [val = 520]() -> int {
   return val;
-};  // OK, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là int
+};  // Hợp lệ, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là int
 
 auto f8 = [val = 520]() -> long long {
   return val;
-};  // OK, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là long long
+};  // Hợp lệ, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là long long
 ```
 
 Khi định nghĩa biến mới, không được bỏ qua giá trị khởi tạo. Kiểu của biến do giá trị khởi tạo quyết định, tương đương với:
@@ -138,8 +138,8 @@ auto val = init-value;
 Sau đây là cách viết sai:
 
 ```cpp
-auto f = [val]() { return val; };  // Error: 'val' was not declared in this
-                                   // scope, identifier "val" is undefined
+auto f = [val]() { return val; };  // Lỗi: 'val' chưa được khai báo trong phạm vi này,
+                                   // định danh "val" chưa được định nghĩa
 ```
 
 Giá trị khởi tạo cũng có thể là biến bên ngoài, ví dụ:
@@ -147,7 +147,7 @@ Giá trị khởi tạo cũng có thể là biến bên ngoài, ví dụ:
 ```cpp
 int value = 520;
 auto f = [val = value]() { return val; };
-std::cout << f();  // Output: 520
+std::cout << f();  // Kết quả: 520
 ```
 
 `val` cũng có thể là một kiểu tham chiếu, tham chiếu đến một biến bên ngoài. Bằng cách này, ta có thể đặt bí danh cho biến ngoài được bắt giữ bằng tham chiếu, ví dụ:
@@ -157,13 +157,13 @@ int value = 520;
 
 auto f = [&val = value]() {
   return val;
-};  // OK, định nghĩa val có kiểu int&, kiểu trả về là int, tương đương int& val = value;
+};  // Hợp lệ, định nghĩa val có kiểu int&, kiểu trả về là int, tương đương int& val = value;
 
-std::cout << f() << '\n';  // Output: 520
+std::cout << f() << '\n';  // Kết quả: 520
 
 value = 1314;
 
-std::cout << f() << '\n';  // Output: 1314
+std::cout << f() << '\n';  // Kết quả: 1314
 ```
 
 Có thể vừa bắt giữ biến bên ngoài vừa định nghĩa biến mới.
@@ -178,13 +178,13 @@ int value = 520;
     return val = 1314;
   };  // cần mutable
   auto val_f = f();
-  std::cout << value << ' ' << val_f << std::endl;  // Output: 520 1314
+  std::cout << value << ' ' << val_f << std::endl;  // Kết quả: 520 1314
 }
 
 {
   auto f = [&val = value]() -> int { return val = 1314; };  // không cần mutable
   auto val_f = f();
-  std::cout << value << ' ' << val_f << std::endl;  // Output: 1314 1314
+  std::cout << value << ' ' << val_f << std::endl;  // Kết quả: 1314 1314
 }
 ```
 
@@ -196,9 +196,9 @@ Vòng đời của biến được định nghĩa trong capture đi theo đối 
 int main() {
   auto f = [val = 0]() mutable -> int { return ++val; };  // val được khởi tạo và cấu tạo
 
-  std::cout << f() << '\n';  // Output: 1
-  std::cout << f() << '\n';  // Output: 2
-  std::cout << f() << '\n';  // Output: 3
+  std::cout << f() << '\n';  // Kết quả: 1
+  std::cout << f() << '\n';  // Kết quả: 2
+  std::cout << f() << '\n';  // Kết quả: 3
 }  // val bị hủy theo f
 ```
 
@@ -269,7 +269,7 @@ auto x1 = [](int i) { return i; };
 auto x2 = [](bool condition) {
   if (condition) return 1;
   return 1.0;
-};  // Error, các kiểu suy diễn không nhất quán
+};  // Lỗi, các kiểu suy diễn không nhất quán
 ```
 
 <a id="lambda-tổng-quát-c14"></a>
@@ -311,8 +311,8 @@ auto dfs = [&](int i) -> void {
   if (i == n)
     return;
   else
-    dfs(i + 1);  // Error: a variable declared with an auto type specifier
-                 // cannot appear in its own initializer
+    dfs(i + 1);  // Lỗi: biến được khai báo với bộ chỉ định kiểu auto
+                 // không thể xuất hiện trong chính bộ khởi tạo của nó
 };
 ```
 
@@ -330,7 +330,7 @@ Giải quyết vấn đề này như thế nào?
           if (i == n)
             return;
           else
-            dfs(i + 1);  // OK
+            dfs(i + 1);  // Hợp lệ
         };
         
         dfs(1);
@@ -414,7 +414,7 @@ Giải quyết vấn đề này như thế nào?
           if (i == n)
             return;
           else
-            self(self, i + 1);  // OK
+            self(self, i + 1);  // Hợp lệ
         };
         
         dfs(dfs, 1);
@@ -435,7 +435,7 @@ Giải quyết vấn đề này như thế nào?
             if (i == n)
               return;
             else
-              (*this)(i + 1);  // OK
+              (*this)(i + 1);  // Hợp lệ
           }
         
           explicit Lambda_1(int& __n) : n(__n) {}

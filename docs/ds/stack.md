@@ -115,7 +115,7 @@ st2 = st1;
 
 // In phần tử ở đỉnh của st2.
 cout << st2.top() << endl;
-// Output: 1
+// Kết quả: 1
 ```
 
 <span id="mô-phỏng-ngăn-xếp-bằng-list-trong-python"></span>

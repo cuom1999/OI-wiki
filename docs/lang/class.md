@@ -20,7 +20,7 @@ class ClassName {
   ...
 };
 
-// Example:
+// Ví dụ:
 class Object {
  public:
   int weight;
@@ -98,7 +98,7 @@ class Class_Name {
   ... type Function_Name(...) { ... }
 };
 
-// Example:
+// Ví dụ:
 class Object {
  public:
   int weight;
@@ -212,7 +212,7 @@ class ClassName {
   ... ClassName(...)... { ... }
 };
 
-// Example:
+// Ví dụ:
 class Object {
  public:
   int weight;
