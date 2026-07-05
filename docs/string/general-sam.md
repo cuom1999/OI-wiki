@@ -1,4 +1,4 @@
-<span id="&#21069;&#32622;&#30693;&#35782;"></span>
+<span id="kiến-thức-nền"></span>
 ## Kiến thức nền
 
 Máy tự động hậu tố tổng quát dựa trên các kiến thức sau:
@@ -8,17 +8,17 @@ Máy tự động hậu tố tổng quát dựa trên các kiến thức sau:
 
 Hãy chắc chắn rằng bạn đã rất quen thuộc với hai chủ đề trên trước khi đọc bài này, đặc biệt là có hiểu biết nhất định về **liên kết hậu tố** trong **máy tự động hậu tố**.
 
-<span id="&#24341;&#20837;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
-<span id="&#36215;&#28304;"></span>
+<span id="nguồn-gốc"></span>
 ### Nguồn gốc
 
 Máy tự động hậu tố tổng quát là một cấu trúc do Liu Yanyi đề xuất trong bài luận đội tuyển quốc gia năm 2015 "Mở rộng máy tự động hậu tố trên cây từ điển"; nói ngắn gọn là xây dựng trực tiếp máy tự động hậu tố trên cây từ điển.
 
 > Phần lớn các bài toán chuỗi có thể xử lý bằng máy tự động hậu tố đều có thể mở rộng lên cây Trie. -- Liu Yanyi
 
-<span id="&#32422;&#23450;"></span>
+<span id="quy-ước"></span>
 ### Quy ước
 
 Tham khảo [quy ước về chuỗi](./basic.md).
@@ -27,14 +27,14 @@ Số lượng chuỗi là $k$, tức $S_1, S_2, S_3 \dots S_k$.
 
 Quy ước nút gốc của cây từ điển và máy tự động hậu tố tổng quát là nút số $0$.
 
-<span id="&#27010;&#36848;"></span>
+<span id="tổng-quan"></span>
 ### Tổng quan
 
 Máy tự động hậu tố (suffix automaton, SAM) là một công cụ mạnh để xử lý các bài toán chuỗi con của một chuỗi đơn.
 
 Máy tự động hậu tố tổng quát (General Suffix Automaton) tích hợp máy tự động hậu tố vào cây từ điển để giải các bài toán chuỗi con trên nhiều chuỗi.
 
-<span id="&#24120;&#35265;&#30340;&#20266;&#24191;&#20041;&#21518;&#32512;&#33258;&#21160;&#26426;"></span>
+<span id="các-máy-tự-động-hậu-tố-tổng-quát-giả-thường-gặp"></span>
 ## Các máy tự động hậu tố tổng quát giả thường gặp
 
 1.  Nối trực tiếp nhiều chuỗi bằng các ký hiệu đặc biệt rồi xây dựng SAM.
@@ -44,12 +44,12 @@ Cách 1 và cách 2 có cài đặt đơn giản, và khi giải bài thường 
 
 Tuy nhiên, cả cách 1 lẫn cách 2 đều có độ phức tạp thời gian khá rủi ro.
 
-<span id="&#26500;&#36896;&#24191;&#20041;&#21518;&#32512;&#33258;&#21160;&#26426;"></span>
+<span id="xây-dựng-máy-tự-động-hậu-tố-tổng-quát"></span>
 ## Xây dựng máy tự động hậu tố tổng quát
 
 Theo mô tả trong bài luận gốc, ta nên xây dựng cây từ điển trên nhiều chuỗi trước, rồi xây dựng máy tự động hậu tố tổng quát trên cơ sở cây từ điển đó.
 
-<span id="&#23383;&#20856;&#26641;&#30340;&#20351;&#29992;"></span>
+<span id="sử-dụng-cây-từ-điển"></span>
 ### Sử dụng cây từ điển
 
 Trước hết cần tạo một cây từ điển cho nhiều chuỗi. Đây không phải việc khó; nếu bạn đã nắm chắc kiến thức nền thì có thể xây dựng nhanh chóng. Để thống nhất mã trong phần giải thích, dưới đây là một cài đặt cây từ điển khả dĩ.
@@ -79,7 +79,7 @@ Trước hết cần tạo một cây từ điển cho nhiều chuỗi. Đây kh
 
 Đến đây ta đã thu được một cây từ điển được xây dựng dựa trên mảng `next`.
 
-<span id="&#21518;&#32512;&#33258;&#21160;&#26426;&#30340;&#24314;&#31435;"></span>
+<span id="xây-dựng-máy-tự-động-hậu-tố"></span>
 ### Xây dựng máy tự động hậu tố
 
 Nếu xem trực tiếp cây này như một máy tự động hậu tố, ta có các kết luận sau:
@@ -97,7 +97,7 @@ Thao tác cập nhật cho mỗi điểm có thể thu được bằng cách s�
 
 Trong toàn bộ quá trình chèn, cần chú ý rằng do các nút được chèn theo thứ tự `len` không giảm, khi sao chép dữ liệu sau khi `clone`, không được sao chép dữ liệu có `len` nhỏ hơn `len` hiện tại.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quy-trình"></span>
 ### Quy trình
 
 Theo logic trên, toàn bộ quá trình xây dựng có thể mô tả như sau:
@@ -106,7 +106,7 @@ Theo logic trên, toàn bộ quá trình xây dựng có thể mô tả như sau
 2.  Bắt đầu BFS từ gốc cây từ điển, ghi lại thứ tự và nút cha của từng nút.
 3.  Duyệt dãy BFS theo thứ tự nhận được, xây dựng cho từng nút trên cây từ điển ban đầu, chú ý không thao tác trên dữ liệu có `len` nhỏ hơn `len` hiện tại.
 
-<span id="&#23545;&#25805;&#20316;&#27425;&#25968;&#20026;&#32447;&#24615;&#30340;&#35777;&#26126;"></span>
+<span id="chứng-minh-số-thao-tác-là-tuyến-tính"></span>
 ### Chứng minh số thao tác là tuyến tính
 
 Vì chỉ xử lý dãy thu được từ BFS, ta bảo đảm mỗi nút trên cây từ điển chỉ được đi qua một lần.
@@ -119,7 +119,7 @@ Do đó có thể chứng minh độ phức tạp xấu nhất là tuyến tính
 
 Thông thường, độ phức tạp trung bình của máy tự động hậu tố tổng quát giả ngang với độ phức tạp xấu nhất của máy tự động hậu tố tổng quát chuẩn. Khi phải xử lý lượng lớn chuỗi, hiệu suất của máy tự động hậu tố tổng quát giả kém xa cấu trúc chuẩn.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
 Chỉ cần sửa một lượng nhỏ cần thiết trong hàm chèn là có thể thu được hàm cần dùng.
@@ -185,16 +185,16 @@ Chỉ cần sửa một lượng nhỏ cần thiết trong hàm chèn là có th
 -   Trong thao tác chèn, `int cur = next[last][c];` khác với `int cur = tot++;` của máy tự động hậu tố thông thường, vì nút cần chèn đã được tạo xong trong cấu trúc cây, nên chỉ cần lấy trực tiếp.
 -   Khi sao chép dữ liệu sau `clone`, có kiểm tra `next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;`. Điều này khác với phép gán trực tiếp `next[clone][i] = next[q][i];` trong máy tự động hậu tố thông thường, nhằm tránh cập nhật các giá trị có `len` lớn hơn nút hiện tại. Trong mảng, `len` chỉ được gán khi và chỉ khi giá trị đó đã được BFS duyệt tới và chèn vào máy tự động hậu tố.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 1.  Máy tự động hậu tố tổng quát có cấu trúc nhất quán với máy tự động hậu tố; phần lớn các tính chất trên máy tự động hậu tố đều có hiệu lực trên máy tự động hậu tố tổng quát ([tính chất của máy tự động hậu tố](./sam.md)).
 2.  Sau khi xây dựng máy tự động hậu tố tổng quát, cấu trúc cây từ điển thường sẽ bị phá vỡ, tức là thông thường không thể dùng máy tự động hậu tố tổng quát để giải bài toán cây từ điển. Dĩ nhiên cũng có thể chuẩn bị gấp đôi bộ nhớ và xây dựng máy tự động hậu tố trong một vùng khác.
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
-<span id="&#25152;&#26377;&#23383;&#31526;&#20013;&#19981;&#21516;&#23376;&#20018;&#20010;&#25968;"></span>
+<span id="số-chuỗi-con-khác-nhau-trong-tất-cả-chuỗi"></span>
 ### Số chuỗi con khác nhau trong tất cả chuỗi
 
 Theo tính chất của máy tự động hậu tố, số chuỗi con có nút kết thúc là điểm $i$ bằng $len[i] - len[link[i]]$.
@@ -208,7 +208,7 @@ Bài ví dụ: [[Mẫu] Máy tự động hậu tố tổng quát (SAM tổng qu
     --8<-- "docs/string/code/general-sam/general-sam_1.cpp"
     ```
 
-<span id="&#22810;&#20010;&#23383;&#31526;&#20018;&#38388;&#30340;&#26368;&#38271;&#20844;&#20849;&#23376;&#20018;"></span>
+<span id="chuỗi-con-chung-dài-nhất-giữa-nhiều-chuỗi"></span>
 ### Chuỗi con chung dài nhất giữa nhiều chuỗi
 
 Ta cần xây dựng cho mỗi nút một mảng `flag` có độ dài $k$ (với bài này, có thể chỉ là mảng đánh dấu; nếu cần tính số lần xuất hiện của chuỗi con này, cần đổi thành mảng đếm).
