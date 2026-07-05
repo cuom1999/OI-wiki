@@ -1,6 +1,6 @@
 author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, CoelacanthusHex, frank-xjh, Great-designer, greyqz, guodong2005, henrytbtrue, Ir1d, kZime, lihaoyu1234, Marcythm, MegaOwIer, Menci, nalemy, orzAtalod, ouuan, Persdre, segment-tree, ShaoChenHeng, shuzhouliu, sshwy, Struggler-q, Tiphereth-A, TrisolarisHD, Xeonacid, yuhuoji
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Hàm Euler (Euler's totient function), tức $\varphi(n)$, biểu thị số lượng số không vượt quá $n$ và nguyên tố cùng nhau với $n$.
@@ -9,7 +9,7 @@ Ví dụ $\varphi(1) = 1$.
 
 Khi $n$ là số nguyên tố, hiển nhiên $\varphi(n) = n - 1$.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 -   Hàm Euler là [hàm nhân tính](./basic.md#hàm-nhân-tính).
@@ -23,7 +23,7 @@ Khi $n$ là số nguyên tố, hiển nhiên $\varphi(n) = n - 1$.
 -   $n = \sum_{d \mid n}{\varphi(d)}$.
 
     ???+ note "Chứng minh"
-        Có thể suy ra bằng kiến thức liên quan đến [đảo Mobius](./mobius.md).
+        Có thể suy ra bằng kiến thức liên quan đến [đảo Möbius](./mobius.md).
         
         Cũng có thể suy nghĩ như sau: nếu $\gcd(k, n) = d$, thì $\gcd(\dfrac{k}{d},\dfrac{n}{d}) = 1, ( k < n )$.
         
@@ -57,7 +57,7 @@ Khi $n$ là số nguyên tố, hiển nhiên $\varphi(n) = n - 1$.
 
     Có thể tính trực tiếp từ tính chất trước.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ## Cài đặt
 
 Nếu chỉ cần tính giá trị hàm Euler của một số, có thể vừa phân tích thừa số nguyên tố theo định nghĩa vừa tính trực tiếp. Quá trình này có thể được tối ưu bằng thuật toán [Pollard Rho](./pollard-rho.md).
@@ -98,9 +98,9 @@ Nếu chỉ cần tính giá trị hàm Euler của một số, có thể vừa 
 
 Nếu cần giá trị hàm Euler của nhiều số, có thể dùng sàng tuyến tính sẽ nhắc ở phần sau.
 
-Xem chi tiết: [sàng tính hàm Euler](./sieve.md#%E7%AD%9B%E6%B3%95%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0)
+Xem chi tiết: [tính hàm Euler bằng sàng](./sieve.md#tính-hàm-euler-bằng-sàng)
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Hàm Euler thường được dùng để rút gọn tổng của một dãy ước chung lớn nhất. Một số bài viết tiếng Trung gọi kỹ thuật này là **đảo Euler**[^1].
@@ -143,14 +143,14 @@ Dùng công thức này, có thể duyệt các ước để tính tổng. Khi c
         
         Lúc này cần duyệt từ $1$ đến $n$ để tính hàm Euler; dùng sàng tuyến tính có thể nhận đáp án trong $O(n)$.
 
-<span id="&#27431;&#25289;&#23450;&#29702;"></span>
+<span id="định-lý-euler"></span>
 ## Định lý Euler
 
 Một định lý liên quan chặt chẽ đến hàm Euler là định lý Euler. Nội dung như sau:
 
 Nếu $\gcd(a, m) = 1$, thì $a^{\varphi(m)} \equiv 1 \pmod{m}$.
 
-<span id="&#25193;&#23637;&#27431;&#25289;&#23450;&#29702;"></span>
+<span id="định-lý-euler-mở-rộng"></span>
 ### Định lý Euler mở rộng
 
 Cũng có định lý Euler mở rộng để xử lý trường hợp tổng quát của $a$ và $m$.
@@ -167,7 +167,7 @@ $$
 
 Chứng minh và bài tập xem tại [định lý Euler](./fermat.md).
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [SPOJ ETF. Euler Totient Function](http://www.spoj.com/problems/ETF/)
@@ -179,7 +179,7 @@ Chứng minh và bài tập xem tại [định lý Euler](./fermat.md).
 -   [Luogu P2155 [SDOI2008] Nỗi băn khoăn của công chúa salad](https://www.luogu.com.cn/problem/P2155)
 -   [Luogu P2568 GCD](https://www.luogu.com.cn/problem/P2568)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 [^1]: Cách gọi này chưa thấy xuất hiện trong tạp chí học thuật hoặc diễn đàn nước ngoài; cần chú ý khi sử dụng.
