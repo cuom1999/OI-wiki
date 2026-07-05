@@ -38,7 +38,7 @@ int numSubarrayProductLessThanK(vector<int>& nums, int k) {
 }
 ```
 
-Dùng hai con trỏ để duy trì thông tin đoạn cũng có thể kết hợp với các cấu trúc dữ liệu khác, như sai phân, hàng đợi đơn điệu, cây phân đoạn, cây chủ tịch, v.v. Ngoài ra, thuật toán Mo cũng tích hợp kỹ thuật hai con trỏ: sau khi sắp xếp offline các truy vấn, thuật toán Mo thường dùng hai con trỏ để ghi đoạn hiện tại cần xử lý, rồi cập nhật dần thông tin của đoạn khi các con trỏ từng bước di chuyển.
+Dùng hai con trỏ để duy trì thông tin đoạn cũng có thể kết hợp với các cấu trúc dữ liệu khác, như sai phân, hàng đợi đơn điệu, cây phân đoạn, cây chủ tịch, v.v. Ngoài ra, thuật toán Mo cũng tích hợp kỹ thuật hai con trỏ: sau khi sắp xếp ngoại tuyến các truy vấn, thuật toán Mo thường dùng hai con trỏ để ghi đoạn hiện tại cần xử lý, rồi cập nhật dần thông tin của đoạn khi các con trỏ từng bước di chuyển.
 
 ### Ví dụ 2
 
@@ -100,7 +100,7 @@ Nhiều khi việc dùng hai con trỏ trên dãy có thể đạt đúng mục 
 
 ### Quá trình
 
-Đây cũng là một ứng dụng kinh điển của hai con trỏ. Tìm kiếm nhị phân cũng khá tiện, nhưng độ phức tạp thời gian sẽ thêm một thừa số $\log{n}$, và code cũng không gọn bằng.
+Đây cũng là một ứng dụng kinh điển của hai con trỏ. Tìm kiếm nhị phân cũng khá tiện, nhưng độ phức tạp thời gian sẽ thêm một thừa số $\log{n}$, và mã cũng không gọn bằng.
 
 Sau đây là cách làm bằng hai con trỏ: vì cần tìm hai số và hai số này không thể ở cùng một vị trí, nên vị trí của chúng chắc chắn là một trái một phải. Do tổng hai số cố định, trong hai số đó, nếu số nhỏ hơn càng lớn thì số lớn hơn càng nhỏ. Dựa trên các tính chất này, ta có thể thu hẹp dần từ hai đầu.
 

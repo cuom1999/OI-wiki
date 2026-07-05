@@ -42,7 +42,7 @@ Về tính ngẫu nhiên của `rand()` và `rand()%n`:
 
 ### Bộ sinh số ngẫu nhiên định nghĩa sẵn
 
-Thư viện định nghĩa một số thuật toán phổ biến đặc biệt. Nếu không nói rõ thêm, tất cả đều được định nghĩa trong header `<random>`.
+Thư viện định nghĩa một số thuật toán phổ biến đặc biệt. Nếu không nói rõ thêm, tất cả đều được định nghĩa trong tệp tiêu đề `<random>`.
 
 ??? warning "Cảnh báo"
     Các bộ sinh số ngẫu nhiên định nghĩa sẵn chỉ bắt đầu được dùng từ chuẩn C++11[^ref2].
@@ -186,9 +186,9 @@ int main() {
 
 ### Bộ sinh số nguyên ngẫu nhiên phân bố đều không xác định
 
-`random_device` là một bộ sinh số ngẫu nhiên phân bố đều dựa trên phần cứng, có thể sinh số ngẫu nhiên với tốc độ cao **trước khi cạn entropy pool**. Lớp này được định nghĩa trong C++11 và cần header `random`. Vì hiệu năng giảm mạnh sau khi entropy pool cạn, nên khuyến nghị dùng phương pháp này để sinh hạt giống cho các bộ sinh số giả ngẫu nhiên như `mt19937`, thay vì dùng trực tiếp để sinh số.
+`random_device` là một bộ sinh số ngẫu nhiên phân bố đều dựa trên phần cứng, có thể sinh số ngẫu nhiên với tốc độ cao **trước khi cạn nguồn entropy**. Lớp này được định nghĩa trong C++11 và cần tệp tiêu đề `random`. Vì hiệu năng giảm mạnh sau khi nguồn entropy cạn, nên khuyến nghị dùng phương pháp này để sinh hạt giống cho các bộ sinh số giả ngẫu nhiên như `mt19937`, thay vì dùng trực tiếp để sinh số.
 
-`random_device` là một bộ sinh bit ngẫu nhiên đều không tất định, mặc dù nếu việc sinh số ngẫu nhiên không tất định không được hỗ trợ, hiện thực vẫn được phép dùng một engine số giả ngẫu nhiên để hiện thực nó. Hiện tại tác giả chưa nhận được báo cáo nào nói rằng máy chấm NOIP không hỗ trợ bộ sinh số ngẫu nhiên phân bố đều dựa trên phần cứng. Tuy vậy, để thận trọng, nên dùng thuật toán này để sinh hạt giống ngẫu nhiên.
+`random_device` là một bộ sinh bit ngẫu nhiên đều không tất định, mặc dù nếu việc sinh số ngẫu nhiên không tất định không được hỗ trợ, hiện thực vẫn được phép dùng một bộ sinh số giả ngẫu nhiên để hiện thực nó. Hiện tại tác giả chưa nhận được báo cáo nào nói rằng máy chấm NOIP không hỗ trợ bộ sinh số ngẫu nhiên phân bố đều dựa trên phần cứng. Tuy vậy, để thận trọng, nên dùng thuật toán này để sinh hạt giống ngẫu nhiên.
 
 Mã tham khảo như sau.
 
@@ -203,7 +203,7 @@ int main() {
   std::map<int, int> hist;
   std::uniform_int_distribution<int> dist(0, 9);
   for (int n = 0; n < 20000; ++n) {
-    ++hist[dist(rd)];  // Lưu ý: chỉ dùng để minh họa. Khi entropy pool
+    ++hist[dist(rd)];  // Lưu ý: chỉ dùng để minh họa. Khi nguồn entropy
                        // cạn, nhiều hiện thực random_device sẽ giảm
                        // hiệu năng rất mạnh. Trong thực tế, random_device
                        // thường chỉ dùng để gieo hạt giống cho các

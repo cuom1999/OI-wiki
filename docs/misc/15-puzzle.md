@@ -1,6 +1,6 @@
 ## Giới thiệu
 
-**15-puzzle** (tiếng Anh: 15-puzzle, còn gọi là Gem Puzzle, Boss Puzzle, Game of 15, Mystic Square, N-puzzle, etc) là một trò chơi trượt ô (tiếng Anh: sliding puzzle). Bàn trượt có kích thước $4\times 4$ ô vuông, trong đó 15 vị trí chứa các ô được đánh số và xáo trộn, vị trí còn lại để trống. Các ô cùng hàng hoặc cùng cột với ô trống có thể di chuyển bằng cách trượt theo chiều ngang hoặc chiều dọc. Mục tiêu của trò chơi là sắp xếp các ô theo thứ tự số.
+**15-puzzle** (tiếng Anh: 15-puzzle, còn gọi là Gem Puzzle, Boss Puzzle, Game of 15, Mystic Square, N-puzzle, v.v.) là một trò chơi trượt ô (tiếng Anh: sliding puzzle). Bàn trượt có kích thước $4\times 4$ ô vuông, trong đó 15 vị trí chứa các ô được đánh số và xáo trộn, vị trí còn lại để trống. Các ô cùng hàng hoặc cùng cột với ô trống có thể di chuyển bằng cách trượt theo chiều ngang hoặc chiều dọc. Mục tiêu của trò chơi là sắp xếp các ô theo thứ tự số.
 
 15-puzzle thường còn được gọi là **n-puzzle**, trong đó số $n$ chỉ tổng số ô vuông trong bàn. Các biến thể kích thước khác của 15-puzzle cũng dùng tên tương tự, ví dụ $8$-puzzle chỉ trò chơi có $8$ ô đặt trong bàn $3\times3$. Tuy vậy, $15$-puzzle cũng có thể được gọi là $16$-puzzle, trong đó 16 chỉ sức chứa của bàn. Các bài toán mở rộng của nó đôi khi cũng bao gồm bàn trượt kích thước $n \times m$.
 

@@ -204,8 +204,8 @@ vì
 $$
 \left\lbrack x^{k}\right\rbrack\dfrac{1}{Q(x)Q(-x)}=
 \begin{cases}
-\left\lbrack x^{k/2}\right\rbrack\dfrac{1}{V(x)},&\text{if }k\equiv 0\pmod{2}, \\
-0,&\text{otherwise}.
+\left\lbrack x^{k/2}\right\rbrack\dfrac{1}{V(x)},&\text{nếu }k\equiv 0\pmod{2}, \\
+0,&\text{ngược lại}.
 \end{cases}
 $$
 
@@ -214,8 +214,8 @@ Ta biết $L+\deg Q$ và $L-\deg Q$ có cùng tính chẵn lẻ, nên
 $$
 \left\lceil \frac{L+\deg Q+1}{2}\right\rceil -\left\lceil \frac{L-\deg Q}{2}\right\rceil =
 \begin{cases}
-\deg Q+1,&\text{if }L+\deg Q\equiv 0\pmod{2}, \\
-\deg Q,&\text{otherwise}.
+\deg Q+1,&\text{nếu }L+\deg Q\equiv 0\pmod{2}, \\
+\deg Q,&\text{ngược lại}.
 \end{cases}
 $$
 
@@ -223,16 +223,16 @@ Như vậy có thể viết mã giả:
 
 $$
 \begin{array}{ll}
-&\textbf{Algorithm }\operatorname{Slice-Coefficients}(Q,L)\text{:} \\
-&\textbf{Input}\text{: }Q(x)\in\mathbb{C}\left\lbrack x\right\rbrack,L\in\mathbb{Z}\text{.} \\
-&\textbf{Output}\text{: }\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack Q(x)^{-1}\text{.} \\
-1&\textbf{if }L\leq 1\textbf{ then return }\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack Q(x)^{-1} \\
-&\text{Use other algorithm to compute }Q(x)^{-1} \\
+&\textbf{Thuật toán }\operatorname{Slice-Coefficients}(Q,L)\text{:} \\
+&\textbf{Đầu vào}\text{: }Q(x)\in\mathbb{C}\left\lbrack x\right\rbrack,L\in\mathbb{Z}\text{.} \\
+&\textbf{Đầu ra}\text{: }\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack Q(x)^{-1}\text{.} \\
+1&\textbf{nếu }L\leq 1\textbf{ thì trả về }\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack Q(x)^{-1} \\
+&\text{Dùng thuật toán khác để tính }Q(x)^{-1} \\
 2&V(x^2)\gets Q(x)Q(-x) \\
 3&k\gets \left\lceil \frac{L-\deg Q}{2}\right\rceil \\
 4&(t_k,\dots ,t_{k+\deg Q})\gets \operatorname{Slice-Coefficients}\left(V,k\right) \\
 5&T(x)\gets x^{(L-\deg Q)\bmod{2}}\sum_{j=0}^{\deg Q}t_{j+k}x^{2j} \\
-6&\textbf{return }\left\lbrack x^{\left\lbrack \deg Q,2\deg Q+1\right)}\right\rbrack T(x)Q(-x)
+6&\textbf{trả về }\left\lbrack x^{\left\lbrack \deg Q,2\deg Q+1\right)}\right\rbrack T(x)Q(-x)
 \end{array}
 $$
 

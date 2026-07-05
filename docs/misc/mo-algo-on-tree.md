@@ -48,7 +48,7 @@ Ngoài ra, đoạn đang xét có thể không chứa LCA. Với trường hợp
 
 #### Cài đặt
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cmath>
@@ -310,7 +310,7 @@ Cộng hai phần lại, giá trị nhỏ nhất xấp xỉ đạt được tạ
 
 Vì có thêm chiều thời gian, lấy kích thước khối khoảng $n^{0.6}$ là tương đối ổn.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cmath>

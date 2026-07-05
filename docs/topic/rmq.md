@@ -26,33 +26,33 @@ Vì **OI Wiki** đã có phần mô tả cho nội dung này, bài viết này c
 
 ## Thuật toán Four Russians
 
-Four Russians là một thuật toán dựa trên ST table, do bốn nhà khoa học máy tính người Nga đề xuất.
+Four Russians là một thuật toán dựa trên bảng ST, do bốn nhà khoa học máy tính người Nga đề xuất.
 
-Cải tiến mà thuật toán Four Russians thực hiện trên nền ST table là chia dãy thành các khối.
+Cải tiến mà thuật toán Four Russians thực hiện trên nền bảng ST là chia dãy thành các khối.
 
 Cụ thể, ta chia mảng gốc, gọi là mảng A, thành các khối có kích thước $S$, tổng cộng $n/S$ khối.
 
-Với mỗi khối, ta tiền xử lý giá trị nhỏ nhất trong khối để xây dựng một mảng B có độ dài $n/S$, rồi tiền xử lý mảng B theo cách của ST table.
+Với mỗi khối, ta tiền xử lý giá trị nhỏ nhất trong khối để xây dựng một mảng B có độ dài $n/S$, rồi tiền xử lý mảng B theo cách của bảng ST.
 
-Đồng thời, với mỗi khối rời rạc của mảng A, ta cũng xây dựng một ST table.
+Đồng thời, với mỗi khối rời rạc của mảng A, ta cũng xây dựng một bảng ST.
 
-Khi truy vấn, ta có thể chia đoạn truy vấn thành không quá 1 đoạn khối liên tiếp trên mảng B và không quá 2 đoạn liên tiếp nằm trọn trong một khối trên mảng A. Rõ ràng các bài toán này đều có thể được giải bằng truy vấn đoạn trên ST table.
+Khi truy vấn, ta có thể chia đoạn truy vấn thành không quá 1 đoạn khối liên tiếp trên mảng B và không quá 2 đoạn liên tiếp nằm trọn trong một khối trên mảng A. Rõ ràng các bài toán này đều có thể được giải bằng truy vấn đoạn trên bảng ST.
 
 Khi $S=\log n$, độ phức tạp tiền xử lý đạt tối ưu, bằng $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$.
 
 Độ phức tạp thời gian $O(n\log \log n) \sim O(1)$, độ phức tạp không gian $O(n\log \log n)$.
 
-Dĩ nhiên, vì mỗi truy vấn phải chạy trên ba ST table, cách cài đặt này có hằng số khá lớn.
+Dĩ nhiên, vì mỗi truy vấn phải chạy trên ba bảng ST, cách cài đặt này có hằng số khá lớn.
 
 ??? note "Một vài cải tiến thuật toán nhỏ"
     Ta nhận thấy rằng, khi hai đầu mút của truy vấn thuộc hai khối khác nhau trong mảng A, các truy vấn nội bộ khối trong mảng A đều là truy vấn trên tiền tố hoặc hậu tố của mỗi khối.
     
     Rõ ràng các truy vấn này có thể được giải trong $O(n)$ bằng cách tiền xử lý đáp án.
     
-    Như vậy, khi truy vấn ta chỉ cần thực hiện nhiều nhất một phép truy vấn trên ST table.
+    Như vậy, khi truy vấn ta chỉ cần thực hiện nhiều nhất một phép truy vấn trên bảng ST.
 
 ??? note "Một vài cải tiến thuật toán mang tính kinh nghiệm"
-    Vì thuật toán Four Russians dựa trên ST table, mà trong lập trình thi đấu thường không có yêu cầu độ phức tạp thời gian quá khắt khe, nên thuật toán Four Russians nhìn chung có thể được thay bằng ST table và không thực dụng lắm trong lập trình thi đấu. Ở đây đưa ra một biến thể cải tiến của Four Russians thực dụng hơn trong lập trình thi đấu.
+    Vì thuật toán Four Russians dựa trên bảng ST, mà trong lập trình thi đấu thường không có yêu cầu độ phức tạp thời gian quá khắt khe, nên thuật toán Four Russians nhìn chung có thể được thay bằng bảng ST và không thực dụng lắm trong lập trình thi đấu. Ở đây đưa ra một biến thể cải tiến của Four Russians thực dụng hơn trong lập trình thi đấu.
     
     Ta đặt kích thước khối là $\sqrt n$, sau đó tiền xử lý RMQ trên tiền tố và hậu tố trong mỗi khối, rồi tiền xử lý vét cạn RMQ giữa hai khối nguyên liên tiếp bất kỳ; độ phức tạp thời gian là $O(n)$.
     
@@ -92,7 +92,7 @@ Tóm lại, ứng dụng cây Cartesian trong RMQ là chuyển bài toán RMQ th
 
 Nếu dữ liệu ngẫu nhiên, ta cũng có thể tìm kiếm vét cạn trên cây Cartesian. Khi đó độ phức tạp thời gian là kỳ vọng $O(n) \sim O(\log n)$, và trong thực tế hằng số của thuật toán này thường rất nhỏ.
 
-### Bài ví dụ [Luogu P3865 [Mẫu] ST table](https://www.luogu.com.cn/problem/P3865)
+### Bài ví dụ [Luogu P3865 [Mẫu] bảng ST](https://www.luogu.com.cn/problem/P3865)
 
 ## Thuật toán RMQ tuyến tính dựa trên nén trạng thái
 
@@ -114,7 +114,7 @@ Chia dãy gốc $A[1\cdots n]$ thành $O(\frac{n}{\log_2{n}})$ khối, mỗi kh�
 
 > Nghe nói khi đặt độ dài khối là $1.5\times \log_2{n}$ thì hằng số nhỏ hơn.
 
-Ghi lại giá trị lớn nhất của mỗi khối, và dùng ST table để duy trì giá trị lớn nhất giữa các khối; độ phức tạp là $O(n)$.
+Ghi lại giá trị lớn nhất của mỗi khối, và dùng bảng ST để duy trì giá trị lớn nhất giữa các khối; độ phức tạp là $O(n)$.
 
 Ghi lại giá trị lớn nhất theo tiền tố và hậu tố tại mỗi vị trí trong khối, $Pre[1\cdots n], Sub[1\cdots n]$ ($Pre[i]$ là giá trị lớn nhất từ $A[i]$ đến đầu khối chứa nó); độ phức tạp là $O(n)$.
 

@@ -37,7 +37,7 @@ for (int i = 1; i <= n; ++i)                              // step 4
   arr[i] = std::lower_bound(tmp + 1, tmp + len + 1, arr[i]) - tmp;
 ```
 
-Các thuật toán STL được dùng trong code tham khảo có thể xem tại [Thuật toán STL](../lang/csl/algorithm.md).
+Các thuật toán STL được dùng trong mã tham khảo có thể xem tại [Thuật toán STL](../lang/csl/algorithm.md).
 
 Tương tự, ta cũng có thể rời rạc hóa [std::vector](../lang/csl/sequence-container.md#vector):
 

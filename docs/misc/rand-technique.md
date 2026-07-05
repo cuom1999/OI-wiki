@@ -342,7 +342,7 @@ Trong thực hành ta không nhất thiết phải chọn modulo ngẫu nhiên, 
 ### Ví dụ: (*) số lượng phần tử khác nhau trong ma trận con
 
 ???+ note "Bài toán"
-    Cho ma trận $n\times m$, có $q$ truy vấn hỏi số lượng phần tử khác nhau trong một ma trận con liên tiếp. Yêu cầu thuật toán online.
+    Cho ma trận $n\times m$, có $q$ truy vấn hỏi số lượng phần tử khác nhau trong một ma trận con liên tiếp. Yêu cầu thuật toán trực tuyến.
     
     Cho phép sai số tương đối $\epsilon$ và tỉ lệ sai $\delta$. Nói cách khác, bạn cần trả lời ít nhất $(1-\delta)q$ truy vấn với sai số tương đối không vượt quá $\epsilon$ so với đáp án đúng.
     
@@ -507,7 +507,7 @@ Kết luận này trông rất tự nhiên, nhưng chứng minh nghiêm ngặt l
     
     Bây giờ ta gộp hai bộ sinh thành một. Xét bộ sinh số ngẫu nhiên $T$, mỗi lần xuất ra 0 với xác suất $q$, xuất ra 1 với xác suất $p-q$, và xuất ra 2 với xác suất $1-p$. Nếu chạy $T$ $\dfrac {n(n-1)}2$ lần, ta có thể đồng thời xây dựng $G_1$ và $G_2$. Cụ thể, nếu kết quả là 0 thì xem như cả $G_1$ và $G_2$ đều không có cạnh đang xét; nếu kết quả là 1 thì xem như chỉ $G_1$ có cạnh đang xét; nếu kết quả là 2 thì xem như cả $G_1$ và $G_2$ đều có cạnh đang xét.
     
-    Dễ kiểm tra rằng $G_1$ và $G_2$ sinh ra như vậy phù hợp với định nghĩa của chúng, và trong mọi instance, tập cạnh của $G_2$ đều là tập con của tập cạnh của $G_1$. Vì thế trong mọi instance, số thành phần liên thông của $G_2$ không nhỏ hơn số thành phần liên thông của $G_1$; khi đó kỳ vọng tự nhiên cũng thỏa cùng quan hệ lớn nhỏ.
+    Dễ kiểm tra rằng $G_1$ và $G_2$ sinh ra như vậy phù hợp với định nghĩa của chúng, và trong mọi trường hợp cụ thể, tập cạnh của $G_2$ đều là tập con của tập cạnh của $G_1$. Vì thế trong mọi trường hợp cụ thể, số thành phần liên thông của $G_2$ không nhỏ hơn số thành phần liên thông của $G_1$; khi đó kỳ vọng tự nhiên cũng thỏa cùng quan hệ lớn nhỏ.
 
 Tư tưởng được dùng trong đoạn chứng minh này gọi là "coupling"; có thể hiểu theo nghĩa mặt chữ. Trong ví dụ này, nó thể hiện ở việc gộp hai quá trình ngẫu nhiên vốn độc lập thành một.
 
@@ -569,7 +569,7 @@ Nhận xét: tại một thời điểm, ta nên chọn mua khi và chỉ khi ch
 
 -   Có thể chứng minh rằng theo thời gian, tốc độ tăng của chi phí rút chắc chắn không thấp hơn tốc độ tăng của giá trung bình các vật phẩm còn lại. Điều này cho thấy chỉ có một "điểm tới hạn" từ rút sang mua, và tiếp tục xác nhận kết luận trước đó.
 
-Cuối cùng, ta liệt kê mọi trạng thái có thể, tức tập các phần tử đã sở hữu; tính xác suất xuất hiện của trạng thái đó (số hoán vị của các phần tử đã có chia cho tổng số phương án), nhân với chi phí của quyết định tối ưu ở trạng thái hiện tại (được xác định bởi số phần tử đã sở hữu và tổng giá các vật phẩm còn lại), rồi cộng lại. Quá trình này có thể tối ưu bằng DP kiểu ba lô, như vậy là qua được bài này.
+Cuối cùng, ta liệt kê mọi trạng thái có thể, tức tập các phần tử đã sở hữu; tính xác suất xuất hiện của trạng thái đó (số hoán vị của các phần tử đã có chia cho tổng số phương án), nhân với chi phí của quyết định tối ưu ở trạng thái hiện tại (được xác định bởi số phần tử đã sở hữu và tổng giá các vật phẩm còn lại), rồi cộng lại. Quá trình này có thể tối ưu bằng quy hoạch động kiểu ba lô, như vậy là qua được bài này.
 
 ***
 

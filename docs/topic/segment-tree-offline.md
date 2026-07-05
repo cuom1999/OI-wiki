@@ -6,7 +6,7 @@ Nếu cần duy trì một số thông tin chỉ tồn tại trong từng khoả
 
 Trong thực tế, chia để trị bằng cây đoạn thường có các công dụng sau:
 
-1.  Dùng một cấu trúc dữ liệu vốn không hỗ trợ xóa, nhưng hỗ trợ rollback, để mô phỏng thao tác xóa. Ví dụ, DSU thông thường không thể hỗ trợ xóa cạnh một cách hiệu quả.
+1.  Dùng một cấu trúc dữ liệu vốn không hỗ trợ xóa, nhưng hỗ trợ khôi phục trạng thái, để mô phỏng thao tác xóa. Ví dụ, DSU thông thường không thể hỗ trợ xóa cạnh một cách hiệu quả.
 2.  Tính riêng dữ liệu theo các thuộc tính khác nhau. Ví dụ, cần tính đáp án của các dữ liệu có màu khác sau khi loại trừ một màu nào đó.
 
 Nếu hiện tại chưa rõ cũng không sao, hai công dụng này sẽ được minh họa trong các ví dụ.
@@ -17,9 +17,9 @@ Trước hết, xây dựng một cây đoạn để quản lý trục thời gi
 
 Chèn một thông tin vào cây đoạn tương tự như thao tác cập nhật đoạn trên cây đoạn thông thường.
 
-Sau đó xét cách xử lý hợp thông tin của mỗi khoảng thời gian. Bắt đầu chia để trị từ nút gốc, duy trì hợp thông tin hiện tại; mỗi khi đi đến một nút, hợp nhất tất cả thông tin lưu trong nút đó. Khi quay lui, rollback phần đóng góp này. Khi đến nút lá, hợp thông tin hiện tại chính là đáp án tương ứng.
+Sau đó xét cách xử lý hợp thông tin của mỗi khoảng thời gian. Bắt đầu chia để trị từ nút gốc, duy trì hợp thông tin hiện tại; mỗi khi đi đến một nút, hợp nhất tất cả thông tin lưu trong nút đó. Khi quay lui, khôi phục phần đóng góp này. Khi đến nút lá, hợp thông tin hiện tại chính là đáp án tương ứng.
 
-Nếu độ phức tạp thời gian để thay đổi thông tin là $O(T(n))$, có thể dùng một ngăn xếp để ghi lại các thay đổi và rollback với độ phức tạp $O(T(n))$. Khi rollback, không được dựa vào độ phức tạp trung bình khấu hao.
+Nếu độ phức tạp thời gian để thay đổi thông tin là $O(T(n))$, có thể dùng một ngăn xếp để ghi lại các thay đổi và khôi phục với độ phức tạp $O(T(n))$. Khi khôi phục, không được dựa vào độ phức tạp trung bình khấu hao.
 
 Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gian là $O(n\log n(T(n) + M(n)))$, trong đó $O(M(n))$ là độ phức tạp thời gian để hợp nhất thông tin; độ phức tạp không gian là $O(n\log n)$.
 
@@ -40,18 +40,18 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
       if (qr > mid) update(ql, qr, obj, rs, mid + 1, r);
     }
     
-    stack<Object> sta;  // ngăn xếp để rollback
+    stack<Object> sta;  // ngăn xếp để khôi phục
     Object now;         // hợp thông tin hiện tại
     Object ans[N];      // đáp án
     
     void solve(int i, int l, int r) {
-      auto lvl = sta.size();  // ghi lại mốc cần rollback về
+      auto lvl = sta.size();  // ghi lại mốc cần khôi phục về
       for (Object x : tree[i]) sta.push(now), now = Merge(now, x);  // hợp nhất thông tin
       if (l == r)
         ans[i] = now;  // ghi lại đáp án
       else
         solve(ls, l, mid), solve(rs, mid + 1, r);  // chia để trị
-      while (sta.size() != lvl) {                  // rollback thông tin
+      while (sta.size() != lvl) {                  // khôi phục thông tin
         now = sta.top();
         sta.pop();
       }
@@ -66,11 +66,11 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
     Với mỗi thời điểm, nếu đồ thị lúc đó là đồ thị hai phía thì in `Yes`, ngược lại in `No`.
     
     ??? note "Ý tưởng giải"
-        Dùng DSU parity để duy trì việc một đồ thị có phải là đồ thị hai phía hay không, sau đó áp dụng trực tiếp chia để trị bằng cây đoạn.
+        Dùng DSU duy trì tính chẵn lẻ để kiểm tra một đồ thị có phải là đồ thị hai phía hay không, sau đó áp dụng trực tiếp chia để trị bằng cây đoạn.
         
-        Chú ý DSU có thể rollback không được nén đường, chỉ có thể hợp nhất theo rank.
+        Chú ý DSU có thể khôi phục trạng thái không được nén đường, chỉ có thể hợp nhất theo hạng.
     
-    ??? note "Code tham khảo"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_1.cpp"
         ```
@@ -85,7 +85,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
     ??? note "Ý tưởng giải"
         Với mỗi màu, tạo một thời điểm; tại thời điểm này không có cạnh nào mang màu đó, còn các cạnh khác đều tồn tại. Khi đó chỉ cần dùng một DSU để duy trì.
     
-    ??? note "Code tham khảo"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_2.cpp"
         ```
@@ -107,7 +107,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
         
         Vì vậy, có thể tách một thao tác `Q` thành ba thời điểm $k-1,k,k+1$. Trong đó $k-1$ là thời điểm kết thúc của cạnh này, còn $k+1$ là thời điểm bắt đầu của cạnh này. Khi đó tại thời điểm $k$ không có cạnh này, vừa đúng để trả lời truy vấn.
     
-    ??? note "Code tham khảo"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_3.cpp"
         ```
@@ -125,23 +125,23 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
         
         > Với một tập $S$ và tập chỉ có một điểm $\{P\}$. Nếu đường kính của tập $S$ là $(U,V)$, thì đường kính của tập đỉnh $S\cap\{P\}$ chỉ có thể là $(U,V),(U,P)$ hoặc $(V,P)$.
         
-        Sau đó quay lại bài toán gốc. Có thể duy trì tập các đỉnh đen, đồng thời duy trì các khoảng thời gian mà mỗi đỉnh nằm trong tập đỉnh đen. Cụ thể, chỉ cần mở một mảng bucket để ghi lại thời điểm lần gần nhất đỉnh đó đi vào tập đỉnh đen.
+        Sau đó quay lại bài toán gốc. Có thể duy trì tập các đỉnh đen, đồng thời duy trì các khoảng thời gian mà mỗi đỉnh nằm trong tập đỉnh đen. Cụ thể, chỉ cần mở một mảng xô để ghi lại thời điểm lần gần nhất đỉnh đó đi vào tập đỉnh đen.
         
         Khi đó có thể xử lý ngoại tuyến một cách tự nhiên: chèn tất cả khoảng thời gian vào cây đoạn. Sau đó chia để trị trên cây đoạn; mỗi nút trên cây đoạn ghi lại các đỉnh được thêm vào tập đỉnh trong đoạn thời gian hiện tại. Với các đỉnh mới thêm, có thể dùng suy luận trên để tìm hai đầu mút đường kính của tập đỉnh mới.
         
-        Việc rollback rất trực tiếp: chỉ cần dùng một ngăn xếp để ghi lại các thay đổi của hai đầu mút đường kính.
+        Việc khôi phục trạng thái rất trực tiếp: chỉ cần dùng một ngăn xếp để ghi lại các thay đổi của hai đầu mút đường kính.
     
-    ??? note "Code tham khảo"
+    ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_4.cpp"
         ```
 
 ## Bài tập
 
--   [CF601E A Museum Robbery](https://codeforces.com/problemset/problem/601/E) chia để trị bằng cây đoạn + knapsack DP.
--   [CF19E Fairy](https://codeforces.com/problemset/problem/19/E) chia để trị bằng cây đoạn + DSU parity.
+-   [CF601E A Museum Robbery](https://codeforces.com/problemset/problem/601/E) chia để trị bằng cây đoạn + quy hoạch động ba lô.
+-   [CF19E Fairy](https://codeforces.com/problemset/problem/19/E) chia để trị bằng cây đoạn + DSU duy trì tính chẵn lẻ.
 -   [luogu P5227 \[AHOI2013\] Đồ thị liên thông](https://www.luogu.com.cn/problem/P5227) chia để trị bằng cây đoạn + DSU.
--   [luogu P4319 Những con đường thay đổi](https://www.luogu.com.cn/problem/P4319) chia để trị bằng cây đoạn + Link Cut Tree để duy trì cây khung nhỏ nhất.
--   [luogu P3733 \[HAOI2017\] Tám tung tám hoành](https://www.luogu.com.cn/problem/P3733) chia để trị bằng cây đoạn + linear basis.
+-   [luogu P4319 Những con đường thay đổi](https://www.luogu.com.cn/problem/P4319) chia để trị bằng cây đoạn + cây Link-Cut để duy trì cây khung nhỏ nhất.
+-   [luogu P3733 \[HAOI2017\] Tám tung tám hoành](https://www.luogu.com.cn/problem/P3733) chia để trị bằng cây đoạn + cơ sở tuyến tính.
 
 **Một phần nội dung của trang này tham khảo từ bài viết [Deleting from a data structure](https://cp-algorithms.com/data_structures/deleting_in_log_n.html), với giấy phép CC-BY-SA 4.0.**

@@ -269,15 +269,15 @@ Mục này giới thiệu cách áp dụng thực tế định lý Myhill-Nerode
     
     Để thuận tiện, ta sẽ dựng $6$ automaton; $6$ automaton này lần lượt biểu diễn việc có thể dùng một cách thực hiện phép toán để tạo ra $0,1,00,01,10,11$ hay không. Với mọi bảng toán tử có thể, số trạng thái lớn nhất của automaton là $47$.
     
-    Dùng automaton, thông qua tiền xử lý thích hợp, có thể dùng binary lifting hoặc cat tree để hiện thực truy vấn tĩnh trên đoạn: một đoạn có tồn tại cách thực hiện phép toán để kết quả là $1$ hay không. Cách trước truy vấn một lần là $O(\log n)$, cách sau truy vấn một lần là $O(1)$.
+    Dùng automaton, thông qua tiền xử lý thích hợp, có thể dùng nhảy nhị phân hoặc cat tree để hiện thực truy vấn tĩnh trên đoạn: một đoạn có tồn tại cách thực hiện phép toán để kết quả là $1$ hay không. Cách trước truy vấn một lần là $O(\log n)$, cách sau truy vấn một lần là $O(1)$.
     
-    Xét dùng chia để trị để giải bài toán dựng phương án. Gọi $f(l,r,t)$ biểu diễn phương án gộp đoạn $[l,r]$ thành $t\in\{{0,1,00,01,10,11}\}$. Lúc này dùng tách theo heuristic, duy trì hai con trỏ $i,j$, một con trỏ quét từ trái sang phải, một con trỏ quét từ phải sang trái, để liệt kê điểm cắt $\textit{mid}$ là $i$ hoặc $j$. Với $t\in\{{0,1}\}$, liệt kê $t$ được tách thành hai phần trái phải như thế nào, trong đó một phần có độ dài $2$ và phần còn lại có độ dài $1$. (Ví dụ với bảng toán tử lấy trung vị $s=00010111$, $1$ có thể tách thành $01$ và $1$.) Với $t\in\{{00,01,10,11}\}$, $type$ được tách trực tiếp thành hai phần trái phải.
+    Xét dùng chia để trị để giải bài toán dựng phương án. Gọi $f(l,r,t)$ biểu diễn phương án gộp đoạn $[l,r]$ thành $t\in\{{0,1,00,01,10,11}\}$. Lúc này dùng cách tách theo kinh nghiệm, duy trì hai con trỏ $i,j$, một con trỏ quét từ trái sang phải, một con trỏ quét từ phải sang trái, để liệt kê điểm cắt $\textit{mid}$ là $i$ hoặc $j$. Với $t\in\{{0,1}\}$, liệt kê $t$ được tách thành hai phần trái phải như thế nào, trong đó một phần có độ dài $2$ và phần còn lại có độ dài $1$. (Ví dụ với bảng toán tử lấy trung vị $s=00010111$, $1$ có thể tách thành $01$ và $1$.) Với $t\in\{{00,01,10,11}\}$, $type$ được tách trực tiếp thành hai phần trái phải.
     
-    Nếu lúc này hai phần trái phải được tách ra lần lượt là $t_1$ và $t_2$, thì tiếp tục kiểm tra $[l,mid]$ có thể sinh $t_1$ và $[\textit{mid}+1,r]$ có thể sinh $t_2$ hay không; nếu có thì chia để trị tiếp. Nếu dùng cat tree để phán định $O(1)$, độ phức tạp của cách dựng bằng tách heuristic này là $O(n\log n)$; nếu dùng binary lifting để phán định, độ phức tạp dựng là $O(n\log^2n)$.
+    Nếu lúc này hai phần trái phải được tách ra lần lượt là $t_1$ và $t_2$, thì tiếp tục kiểm tra $[l,mid]$ có thể sinh $t_1$ và $[\textit{mid}+1,r]$ có thể sinh $t_2$ hay không; nếu có thì chia để trị tiếp. Nếu dùng cat tree để phán định $O(1)$, độ phức tạp của cách dựng bằng cách tách theo kinh nghiệm này là $O(n\log n)$; nếu dùng nhảy nhị phân để phán định, độ phức tạp dựng là $O(n\log^2n)$.
     
-    Nếu dùng cat tree, tổng độ phức tạp là $O(n|Q|\log n+n\log n)$, trong đó $|Q|\le 47$. Code tham khảo để thuận tiện đã dùng binary lifting, đồng thời giảm hằng số bằng cách chia khối ở tầng dưới; tổng độ phức tạp tương ứng là $O(n|Q|\log n+n\log^2 n)$.
+    Nếu dùng cat tree, tổng độ phức tạp là $O(n|Q|\log n+n\log n)$, trong đó $|Q|\le 47$. Mã tham khảo để thuận tiện đã dùng nhảy nhị phân, đồng thời giảm hằng số bằng cách chia khối ở tầng dưới; tổng độ phức tạp tương ứng là $O(n|Q|\log n+n\log^2 n)$.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/fsm/fsm_1.cpp:main"
     ```
@@ -305,7 +305,7 @@ Nếu $S_x$ và $P_x\setminus S_x$ đều không rỗng, thì trong phép chia h
 
 Ban đầu, đưa tập trạng thái chấp nhận $F$ vào tập chứng cứ $W$, tức $W\gets\{F\}$, và duy trì phép chia hiện tại là $P\gets\{F,~Q\setminus F\}$. Chứng cứ ban đầu hiển nhiên đúng: các trạng thái trong $F$ và $Q\setminus F$ tuyệt đối không thể tương đương. Mỗi lần tùy ý lấy một tập $A$ từ tập chứng cứ $W$ để tinh chỉnh phép chia hiện tại. Liệt kê mọi ký tự $c\in\Sigma$. Với mỗi tập trạng thái $P_x$ trong phép chia hiện tại $P$, tính $S_x$ như đã mô tả ở trên. Nếu $S_x\neq\varnothing$ và $|S_x|\neq|P_x|$, nghĩa là $P_x$ có thể tiếp tục được tách thành hai tập $S_x$ và $P_x\setminus S_x$; khi đó trực tiếp dùng chúng thay thế $P_x$ trong $P$.
 
-Mỗi khi thu được phép chia tinh hơn, tức là đã thu được chứng cứ mới. Về nguyên tắc, có thể đưa cả $S_x$ và $P_x\setminus S_x$ mới thu được vào tập chứng cứ $W$, chờ các bước kiểm tra tiếp theo. Nhưng làm như vậy là không cần thiết. Dễ thấy với ba chứng cứ $P_x,S_x,P_x\setminus S_x$, chỉ cần kiểm tra hai chứng cứ bất kỳ là đã đủ đảm bảo tính đúng đắn: vì kết quả chỉ có ba loại $\delta(u,c)\in S_x$, $\delta(u,c)\in P_x\setminus S_x$ và $\delta(u,c)\notin P_x$, còn chia một tập thành ba phần chỉ cần hai lần phán định. Vì vậy, khi chia $P_x$ thành $S_x$ và $P_x\setminus S_x$, nếu $P_x$ vẫn nằm trong tập chứng cứ $W$, điều này nghĩa là chứng cứ $P_x$ vẫn chưa được kiểm tra, nên cần thay $P_x$ trong tập chứng cứ $W$ bằng cả $S_x$ và $P_x\setminus S_x$; ngược lại, phép chia hiện tại nhất định tương đương với[^smaller-evidence] kết quả sau khi đã kiểm tra $P_x$, nên chỉ cần đưa tập nhỏ hơn trong $S_x$ và $P_x\setminus S_x$ vào tập chứng cứ $W$. Tương tự tách theo heuristic, cách làm này cho độ phức tạp tốt.
+Mỗi khi thu được phép chia tinh hơn, tức là đã thu được chứng cứ mới. Về nguyên tắc, có thể đưa cả $S_x$ và $P_x\setminus S_x$ mới thu được vào tập chứng cứ $W$, chờ các bước kiểm tra tiếp theo. Nhưng làm như vậy là không cần thiết. Dễ thấy với ba chứng cứ $P_x,S_x,P_x\setminus S_x$, chỉ cần kiểm tra hai chứng cứ bất kỳ là đã đủ đảm bảo tính đúng đắn: vì kết quả chỉ có ba loại $\delta(u,c)\in S_x$, $\delta(u,c)\in P_x\setminus S_x$ và $\delta(u,c)\notin P_x$, còn chia một tập thành ba phần chỉ cần hai lần phán định. Vì vậy, khi chia $P_x$ thành $S_x$ và $P_x\setminus S_x$, nếu $P_x$ vẫn nằm trong tập chứng cứ $W$, điều này nghĩa là chứng cứ $P_x$ vẫn chưa được kiểm tra, nên cần thay $P_x$ trong tập chứng cứ $W$ bằng cả $S_x$ và $P_x\setminus S_x$; ngược lại, phép chia hiện tại nhất định tương đương với[^smaller-evidence] kết quả sau khi đã kiểm tra $P_x$, nên chỉ cần đưa tập nhỏ hơn trong $S_x$ và $P_x\setminus S_x$ vào tập chứng cứ $W$. Tương tự cách tách theo kinh nghiệm, cách làm này cho độ phức tạp tốt.
 
 Viết quá trình trên thành mã giả:
 
@@ -367,7 +367,7 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
     
     Xét trực tiếp xây dựng chuyển của $j$ thành DFA, sau đó chạy tối thiểu hóa DFA, rồi làm DP.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/fsm/fsm_2.cpp:main"
     ```
@@ -399,7 +399,7 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
     
     Độ phức tạp thời gian $O(|S||\Sigma|\log |S|+(|Q||\Sigma|+T)|\Sigma|\log_{10} V)$ ($|S|=19564$, $|Q|=715$).
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/misc/code/fsm/fsm_3.cpp:main"
     ```

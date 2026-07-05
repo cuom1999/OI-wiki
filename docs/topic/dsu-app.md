@@ -22,7 +22,7 @@ DSU và cây tái cấu trúc Kruskal có cách tư duy rất giống nhau; cả
     
     Tiếp theo có $q$ truy vấn. Truy vấn thứ $i$ hỏi $u_i$ và $v_i$ sớm nhất liên thông sau thao tác thứ mấy.
 
-Xét việc ghi lại "cây sinh bởi DSU" trong quá trình hợp nhất DSU. Nói cách khác, nếu ở thao tác thứ $i$, $a_i$ và $b_i$ thuộc hai cây con khác nhau, ta đưa cạnh $(a_i,b_i)$ vào cây khung, với trọng số cạnh là $i$. Khi đó, một truy vấn trở thành bài toán hỏi trọng số cạnh lớn nhất trên đường đi từ $u$ đến $v$; có thể duy trì bằng binary lifting trên cây hoặc phân rã heavy-light. Độ phức tạp thời gian là $O(n\log n)$.
+Xét việc ghi lại "cây sinh bởi DSU" trong quá trình hợp nhất DSU. Nói cách khác, nếu ở thao tác thứ $i$, $a_i$ và $b_i$ thuộc hai cây con khác nhau, ta đưa cạnh $(a_i,b_i)$ vào cây khung, với trọng số cạnh là $i$. Khi đó, một truy vấn trở thành bài toán hỏi trọng số cạnh lớn nhất trên đường đi từ $u$ đến $v$; có thể duy trì bằng nâng nhị phân trên cây hoặc phân rã nặng-nhẹ. Độ phức tạp thời gian là $O(n\log n)$.
 
 Một cách khác là duy trì cây tái cấu trúc Kruskal. Về bản chất, nó giống với cây sinh bởi DSU và có cùng độ phức tạp.
 
@@ -41,7 +41,7 @@ Thuật toán trực tuyến: với bài này, thuật toán trực tuyến ch�
 
 Đối với mỗi truy vấn, ta chỉ cần tìm thành phần liên thông lớn nhất chứa $x_i$ trong cây tái cấu trúc sao cho trọng số đỉnh lớn nhất trong thành phần đó không vượt quá $t_i$. Đáp án của truy vấn là số đỉnh có trọng số $0$ trong thành phần liên thông này, tức số đỉnh lá.
 
-Do chỉ số thao tác tăng dần, trọng số của đỉnh cha trên cây tái cấu trúc luôn lớn hơn trọng số của đỉnh con. Điều này có nghĩa là ta có thể dùng binary lifting trên đường đi từ $x_i$ đến gốc trong cây tái cấu trúc để tìm đỉnh có trọng số lớn nhất nhưng không vượt quá $t_i$. Như vậy ta thu được đáp án. Độ phức tạp thời gian là $O(n\log n)$.
+Do chỉ số thao tác tăng dần, trọng số của đỉnh cha trên cây tái cấu trúc luôn lớn hơn trọng số của đỉnh con. Điều này có nghĩa là ta có thể dùng nâng nhị phân trên đường đi từ $x_i$ đến gốc trong cây tái cấu trúc để tìm đỉnh có trọng số lớn nhất nhưng không vượt quá $t_i$. Như vậy ta thu được đáp án. Độ phức tạp thời gian là $O(n\log n)$.
 
 ## D
 
@@ -99,12 +99,12 @@ Nếu ở thao tác thứ $i$, $a_i$ và $b_i$ thuộc cùng một thành phần
 
 Để co đỉnh, trước hết ta phải tìm LCA của $a_i$ và $b_i$ trên cây thành phần song liên thông cạnh. Có thể duy trì một mảng đánh dấu cho việc này. Sau đó, bắt đầu từ $a_i$ và $b_i$, luân phiên nhảy từng bước lên tổ tiên và đánh dấu các đỉnh đi qua. Một khi nhảy tới một đỉnh đã được đánh dấu trước đó, đỉnh này chính là LCA của $a_i$ và $b_i$. Độ phức tạp của thuật toán này tuyến tính theo độ dài đường đi từ $a_i$ đến $b_i$, nên có thể chấp nhận được.
 
-Nếu $a_i$ và $b_i$ thuộc hai thành phần liên thông khác nhau, ta hợp nhất hai thành phần đó và tăng số cầu thêm $1$. Lúc này cần nối hai cây thành phần song liên thông cạnh chứa hai đỉnh đó, tức thêm một cạnh từ $a_i$ đến $b_i$. Vì vậy ta cần đặt lại gốc cho một trong hai cây, rồi nối nó vào cây còn lại. Ở đây dùng ý tưởng hợp nhất theo heuristic: đặt lại gốc cho cây có ít đỉnh hơn. Tổng độ phức tạp của phần này là $O(n\log n)$.
+Nếu $a_i$ và $b_i$ thuộc hai thành phần liên thông khác nhau, ta hợp nhất hai thành phần đó và tăng số cầu thêm $1$. Lúc này cần nối hai cây thành phần song liên thông cạnh chứa hai đỉnh đó, tức thêm một cạnh từ $a_i$ đến $b_i$. Vì vậy ta cần đặt lại gốc cho một trong hai cây, rồi nối nó vào cây còn lại. Ở đây dùng ý tưởng hợp nhất theo kinh nghiệm: đặt lại gốc cho cây có ít đỉnh hơn. Tổng độ phức tạp của phần này là $O(n\log n)$.
 
 Tổng hợp lại, độ phức tạp toàn bộ thuật toán là $O(n\log n+m\log n)$.
 
 ## Tổng kết
 
-DSU và cây tái cấu trúc Kruskal có nhiều điểm chung, còn tối ưu hóa của DSU, tức hợp nhất theo hạng, chính là một ứng dụng của tư tưởng hợp nhất theo heuristic. Vì vậy, vận dụng linh hoạt DSU có thể xử lý thuận tiện nhiều bài toán đồ thị liên quan đến tính liên thông.
+DSU và cây tái cấu trúc Kruskal có nhiều điểm chung, còn tối ưu hóa của DSU, tức hợp nhất theo hạng, chính là một ứng dụng của tư tưởng hợp nhất theo kinh nghiệm. Vì vậy, vận dụng linh hoạt DSU có thể xử lý thuận tiện nhiều bài toán đồ thị liên quan đến tính liên thông.
 
 **Một phần nội dung của trang này được dịch từ bài viết [Поиск мостов в режиме онлайн](http://e-maxx.ru/algo/bridge_searching_online) và bản dịch tiếng Anh của nó, [Finding Bridges Online](https://cp-algorithms.com/graph/bridge-searching-online.html). Phiên bản tiếng Nga có giấy phép Public Domain + Leave a Link; phiên bản tiếng Anh có giấy phép CC-BY-SA 4.0.**
