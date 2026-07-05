@@ -49,7 +49,7 @@ g++ test.cpp -o test -lm
 ```
 
 `g++` là trình biên dịch của ngôn ngữ C++ (trình biên dịch của C là `gcc`),
-`-o` dùng để chỉ định tên file thực thi, còn tùy chọn biên dịch `-lm` dùng để
+`-o` dùng để chỉ định tên tệp thực thi, còn tùy chọn biên dịch `-lm` dùng để
 liên kết thư viện toán học `libm`, giúp mã dùng `math.h` có thể biên dịch và
 chạy bình thường.
 
@@ -66,11 +66,11 @@ Ghi chú: Trước khi viết, hãy chú ý bật bộ gõ tiếng Anh.
 Ngôn ngữ C++
 
 ```cpp
-#include <iostream>  // include header
+#include <iostream>  // nạp tệp header
 
 int main() {                     // định nghĩa hàm main
-  std::cout << "Hello, world!";  // dùng cout trong namespace chuẩn
-  return 0;  // trả về 0, kết thúc hàm main; compiler thường tự thêm dòng này,
+  std::cout << "Hello, world!";  // dùng cout trong không gian tên chuẩn
+  return 0;  // trả về 0, kết thúc hàm main; trình biên dịch thường tự thêm dòng này,
              // nên thông thường có thể bỏ qua
 }
 ```
@@ -78,7 +78,7 @@ int main() {                     // định nghĩa hàm main
 Ngôn ngữ C
 
 ```c
-#include <stdio.h>  // include header
+#include <stdio.h>  // nạp tệp header
 
 int main() {                // định nghĩa hàm main
   printf("Hello, world!");  // in Hello, world!
