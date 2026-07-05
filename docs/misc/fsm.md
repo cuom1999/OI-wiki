@@ -14,7 +14,7 @@ Có thể giải thích cụ thể hơn vài thuật ngữ trong câu trên. "D�
 
 Cách hoạt động của automaton rất giống lưu đồ. Giả sử bạn muốn đặt mua một cốc trà sữa trên nền tảng giao đồ ăn, toàn bộ lựa chọn của bạn tạo thành một dãy. Lưu đồ sau là một ví dụ:
 
-![order fsm](./images/fsm1.svg)
+![Automaton mô phỏng quy trình đặt hàng](./images/fsm1.svg)
 
 Ví dụ, dãy lựa chọn của bạn là "mở giao diện đặt món -> chọn trà sữa -> có tiền mua trà sữa", thì các trạng thái bạn đi qua theo thứ tự có thể là "nền tảng giao đồ ăn -> giao diện đặt món -> thanh toán tiền trà sữa -> mua được trà sữa". Như vậy, "automaton trà sữa" này dựa vào lựa chọn của ta để giúp phán định ta có mua được trà sữa hay không. Ta cũng có thể thấy rằng có thể có nhiều hơn một cách để đi tới cùng một trạng thái. Cùng là không mua được trà sữa, có thể bạn thoát ngay ở giao diện đặt món, hoặc không có tiền mua trà sữa nên không mua được.
 
@@ -28,7 +28,7 @@ Cách hoạt động của automaton tương tự lưu đồ, nhưng có các đ
 
 Ví dụ, automaton để "kiểm tra một số nhị phân có phải số chẵn hay không" như sau:
 
-![example fsm](./images/fsm2.svg)
+![Automaton kiểm tra số nhị phân chẵn](./images/fsm2.svg)
 
 Bắt đầu từ đỉnh khởi đầu, đọc dãy nhị phân của số đó từ bit cao xuống bit thấp, rồi xem cuối cùng dừng ở đâu. Nếu cuối cùng dừng tại đỉnh được khoanh đỏ thì đó là số chẵn; ngược lại thì không.
 
@@ -98,7 +98,7 @@ Như đã nói ở trên, một automaton có thể được biểu diễn bằn
 
 Ví dụ, vẫn là "automaton trà sữa". Sau khi đặt hàng, dù có tiền mua trà sữa, vẫn có thể vì mạng kém mà không mua được trà sữa, đây là trường hợp tồn tại nhiều trạng thái kế tiếp; cũng có thể vì thao tác chậm, dù chuỗi đầu vào (tức dãy thao tác) là như nhau, nhưng trà sữa đã bán hết nên không mua được, đây là sự tồn tại của ký tự rỗng: cạnh ký tự rỗng có thể đi hoặc không đi. Chỉ cần sửa nhẹ automaton ở trên là có thể mô tả các chức năng này:
 
-![order nfa](./images/fsm4.svg)
+![NFA mô phỏng quy trình đặt hàng](./images/fsm4.svg)
 
 Rõ ràng mọi DFA đều là một NFA, nên NFA ít nhất có thể nhận dạng mọi ngôn ngữ chính quy. Nhưng với vai trò là một mở rộng của DFA, liệu NFA có thể nhận dạng nhiều ngôn ngữ hơn không? Thực ra là không; sau đây ta sẽ bàn về tính tương đương giữa DFA và NFA.
 

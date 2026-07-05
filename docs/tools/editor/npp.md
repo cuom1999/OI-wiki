@@ -2,7 +2,7 @@ author: ouuan, CBW2007, partychicken, StudyingFather, Xeonacid, Henry-ZHR
 
 ## Giới thiệu phần mềm
 
-Notepad++ là trình soạn thảo văn bản trên hệ điều hành Windows, hỗ trợ nhiều ngôn ngữ, nhiều kiểu mã hóa, cũng như tô sáng và tự động hoàn thành cho nhiều ngôn ngữ lập trình. Logo của nó cũng khá đáng yêu: một con tắc kè hoa (![Logo Notepad++](./images/npp-logo.webp)).
+Notepad++ là trình soạn thảo văn bản trên hệ điều hành Windows, hỗ trợ nhiều ngôn ngữ, nhiều kiểu mã hóa, cũng như tô sáng và tự động hoàn thành cho nhiều ngôn ngữ lập trình. Logo của nó cũng khá đáng yêu: một con tắc kè hoa (![Biểu trưng Notepad++](./images/npp-logo.webp)).
 
 Chức năng của nó mạnh hơn nhiều trình soạn thảo khác; khi mở tệp lớn thì ổn định hơn, và undo liên tục cũng không gặp vấn đề. Khi đóng phần mềm cũng không cần lưu ngay, vì nó sẽ tự lưu vào vùng đệm cho bạn (có thể cần cấu hình). Hơn nữa, nó rất nhỏ gọn, chỉ hơn 10 MB, thậm chí có thể đặt trong USB để mang theo.
 

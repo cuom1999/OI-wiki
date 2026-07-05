@@ -4,7 +4,7 @@ title: OI Wiki tiếng Việt
 
 # Chào mừng đến với **OI Wiki tiếng Việt**! [![GitHub watchers](https://img.shields.io/github/watchers/cuom1999/OI-wiki.svg?style=social&label=Theo%20dõi)](https://github.com/cuom1999/OI-wiki) [![GitHub stars](https://img.shields.io/github/stars/cuom1999/OI-wiki.svg?style=social&label=Sao)](https://github.com/cuom1999/OI-wiki)
 
-[![Word Art](images/wordArt.webp)](https://github.com/cuom1999/OI-wiki)
+[![Chữ nghệ thuật OI Wiki](images/wordArt.webp)](https://github.com/cuom1999/OI-wiki)
 
 **OI** (Olympiad in Informatics, Olympic Tin học) là một mảng thi đấu tin học
 dành cho học sinh phổ thông. Ở Trung Quốc, OI bắt đầu từ năm 1984 và là một
