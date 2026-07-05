@@ -32,15 +32,15 @@ Sau khi cài đặt xong, phía bên trái giao diện sẽ hiển thị:
 
 ![](images/xcode-4.jpg)
 
-Nhấp `Create a new Xcode project` (tạo một project Xcode mới), sau đó chọn `Command Line Tool` (công cụ dòng lệnh) trong mục `macOS` ở phía trên, rồi nhấp `Next` ở góc dưới bên phải.
+Nhấp `Create a new Xcode project` (tạo một dự án Xcode mới), sau đó chọn `Command Line Tool` (công cụ dòng lệnh) trong mục `macOS` ở phía trên, rồi nhấp `Next` ở góc dưới bên phải.
 
 ![](images/xcode-5.jpg)
 
-Tiếp theo, ta có thể đặt tên cho project, nhưng điều quan trọng nhất là chọn ngôn ngữ của project. Tùy nhu cầu, tại mục `Language` ở phía dưới cùng, ta có thể chọn C hoặc C++:
+Tiếp theo, ta có thể đặt tên cho dự án, nhưng điều quan trọng nhất là chọn ngôn ngữ của dự án. Tùy nhu cầu, tại mục `Language` ở phía dưới cùng, ta có thể chọn C hoặc C++:
 
 ![](images/xcode-6.jpg)
 
-Thư mục của project có thể chọn theo nhu cầu. Sau khi tạo xong, Xcode sẽ tự động mở project này và tự tạo một tệp `main` (đuôi của C là `.c`, đuôi của C++ là `.cpp`).
+Thư mục của dự án có thể chọn theo nhu cầu. Sau khi tạo xong, Xcode sẽ tự động mở dự án này và tự tạo một tệp `main` (đuôi của C là `.c`, đuôi của C++ là `.cpp`).
 
 Nhấp vào tệp này để mở vùng soạn thảo:
 
@@ -56,21 +56,21 @@ Thông thường ta chỉ dùng vùng soạn thảo và vùng chạy. Nếu chư
 
 Làm theo cách này, ta có thể chạy bất kỳ chương trình C/C++ tệp đơn nào.
 
-## Sử dụng header tổng hợp
+## Sử dụng tệp tiêu đề tổng hợp
 
-Trong quá trình viết mã, ta có thể cần dùng nhiều header. Một cách xử lý phổ biến là dùng header tổng hợp.
+Trong quá trình viết mã, ta có thể cần dùng nhiều tệp tiêu đề. Một cách xử lý phổ biến là dùng tệp tiêu đề tổng hợp.
 
-Khi thêm header tổng hợp ở dòng đầu tiên của mã nguồn, quá trình biên dịch lại báo: `'bits/stdc++.h' file not found`, nghĩa là không tìm thấy header này.
+Khi thêm tệp tiêu đề tổng hợp ở dòng đầu tiên của mã nguồn, quá trình biên dịch lại báo: `'bits/stdc++.h' file not found`, nghĩa là không tìm thấy tệp tiêu đề này.
 
 ![](images/xcode-10.jpg)
 
-Nguyên nhân là trên macOS, mặc định [libc++](https://libcxx.llvm.org/) được dùng làm phần triển khai thư viện chuẩn C++, còn header tổng hợp `bits/stdc++.h` là phần riêng của [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/).
+Nguyên nhân là trên macOS, mặc định [libc++](https://libcxx.llvm.org/) được dùng làm phần triển khai thư viện chuẩn C++, còn tệp tiêu đề tổng hợp `bits/stdc++.h` là phần riêng của [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/).
 
-Tuy vậy, ta có thể tự tạo một header tổng hợp để sử dụng.
+Tuy vậy, ta có thể tự tạo một tệp tiêu đề tổng hợp để sử dụng.
 
 ### Bước 1
 
-Mở Terminal.app, đi tới thư mục nơi Xcode lưu các header, tức là:
+Mở Terminal.app, đi tới thư mục nơi Xcode lưu các tệp tiêu đề, tức là:
 
 ```bash
 cd /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
@@ -105,9 +105,9 @@ Tiếp theo, ta cần chỉnh sửa tệp bằng vim. Nhấn phím i (insert) đ
 
 ![](images/xcode-12.jpg)
 
-Sao chép đoạn mã dưới đây và dán vào terminal:
+Sao chép đoạn mã dưới đây và dán vào trình dòng lệnh:
 
-??? note "Đoạn mã header tổng hợp"
+??? note "Đoạn mã tệp tiêu đề tổng hợp"
     ```cpp
     // C++ includes used for precompiling -*- C++ -*-
     
@@ -266,7 +266,7 @@ Nhấn <kbd>Esc</kbd> ở góc trên bên trái bàn phím để thoát chế đ
 
 ### Bước 3
 
-Đóng terminal và quay lại Xcode. Nhấn lại ⌘B/⌘R để biên dịch/chạy; lúc này quá trình biên dịch sẽ thành công:
+Đóng trình dòng lệnh và quay lại Xcode. Nhấn lại ⌘B/⌘R để biên dịch/chạy; lúc này quá trình biên dịch sẽ thành công:
 
 ![](images/xcode-13.jpg)
 
