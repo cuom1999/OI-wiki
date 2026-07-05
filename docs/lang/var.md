@@ -4,14 +4,14 @@
 
 Hệ thống kiểu của C++ gồm các phần sau:
 
-1.  Kiểu cơ bản (trong ngoặc là từ khóa/kiểu đại diện)
-    1.  Kiểu không có giá trị/kiểu `void` (`void`)
+1.  Kiểu cơ bản (trong ngoặc là từ khóa hoặc kiểu đại diện)
+    1.  Kiểu không có giá trị, tức kiểu `void` (`void`)
     2.  (Từ C++11) kiểu con trỏ null (`std::nullptr_t`)
     3.  Kiểu số học
         1.  Kiểu số nguyên (`int`)
-        2.  Kiểu luận lý/kiểu `bool` (`bool`)
+        2.  Kiểu luận lý, tức kiểu `bool` (`bool`)
         3.  Kiểu ký tự (`char`)
-        4.  Kiểu số thực dấu phẩy động (`float`,`double`)
+        4.  Kiểu số thực dấu phẩy động (`float`, `double`)
 2.  Kiểu hợp thành[^note11]
 
 <a id="kiểu-luận-lý"></a>
@@ -20,7 +20,7 @@ Hệ thống kiểu của C++ gồm các phần sau:
 
 Một biến kiểu `bool` chỉ có thể nhận một trong hai giá trị: `true` và `false`.
 
-Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ (thông thường, $1$ byte = $8$ bit).
+Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số bit trong một byte tùy thuộc nền tảng, nhưng thường là $8$ bit.
 
 ???+ tip "Mẹo"
     Có thể lấy số bit trong một byte thông qua hằng macro `CHAR_BIT` trong tệp tiêu đề `<climits>` (C++)/`<limits.h>` (C).
@@ -33,7 +33,7 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ (thông
     ???+ note "Ghi chú"
         Từ C23, kiểu `bool` của C không còn được định nghĩa bằng giá trị nguyên bằng không và khác không nữa, mà được định nghĩa là kiểu đủ để lưu hai hằng `true` và `false`.
 
-    Để tiện sử dụng, `stdbool.h` cung cấp ba macro `bool`, `true`, `false`, được định nghĩa như sau:
+    Để tiện sử dụng, `stdbool.h` cung cấp ba macro `bool`, `true`, `false`, thường được định nghĩa như sau:
 
     ```c
     #define bool _Bool
@@ -49,14 +49,14 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ (thông
 
 ### Kiểu số nguyên
 
-Dùng để lưu số nguyên. Kiểu số nguyên cơ bản nhất là `int`.
+Kiểu số nguyên dùng để lưu các giá trị nguyên. Kiểu số nguyên cơ bản nhất là `int`.
 
 ???+ warning "Chú ý"
     Do nguyên nhân lịch sử, trong C++, kiểu luận lý và kiểu ký tự được xem là các kiểu số nguyên đặc biệt.
 
     Trong hầu hết mọi trường hợp, **không nên** dùng các kiểu ký tự khác `signed char` và `unsigned char` như kiểu số nguyên.
 
-Các kiểu số nguyên thường được chia thành 5 mức theo độ rộng bit: `char`,`short`,`int`,`long`,`long long`.
+Các kiểu số nguyên thường được chia thành 5 mức theo độ rộng bit: `char`, `short`, `int`, `long`, `long long`.
 
 Chuẩn C++ bảo đảm `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)`.
 
@@ -65,7 +65,7 @@ Do nguyên nhân lịch sử, độ rộng bit của kiểu số nguyên có nhi
 ???+ note "Kích thước của kiểu `int`"
     Trong chuẩn C++, số bit của `int` được quy định là **ít nhất** $16$ bit.
 
-    Trên thực tế, ở đại đa số nền tảng hiện nay, `int` đều có $32$ bit.
+    Trên đa số nền tảng hiện nay, `int` có $32$ bit.
 
 Với từ khóa `int`, có thể dùng các từ khóa bổ nghĩa sau:
 
@@ -84,16 +84,16 @@ Bảng dưới đây cho biết độ rộng bit và phạm vi biểu diễn c�
 
 | Tên kiểu                                                               | Kiểu tương đương          | Độ rộng bit (chuẩn C++) | Độ rộng bit (thường gặp) | Độ rộng bit (hiếm gặp hơn)               |
 | --------------------------------------------------------------------- | ------------------------ | ----------------------- | ------------------------ | ---------------------------------------- |
-| `signed char`                                                         | `signed char`            | $8$                     | -                        | -                                        |
-| `unsigned char`                                                       | `unsigned char`          | $8$                     | -                        | -                                        |
-| `short`,`short int`,`signed short`,`signed short int`                 | `short int`              | $\geq 16$               | $16$                     | -                                        |
-| `unsigned short`,`unsigned short int`                                 | `unsigned short int`     | $\geq 16$               | $16$                     | -                                        |
-| `int`,`signed`,`signed int`                                           | `int`                    | $\geq 16$               | $32$                     | $16$ (thường gặp trong Win16 API)        |
-| `unsigned`,`unsigned int`                                             | `unsigned int`           | $\geq 16$               | $32$                     | $16$ (thường gặp trong Win16 API)        |
-| `long`,`long int`,`signed long`,`signed long int`                     | `long int`               | $\geq 32$               | $32$                     | $64$ (thường gặp trên Linux, macOS 64-bit) |
-| `unsigned long`,`unsigned long int`                                   | `unsigned long int`      | $\geq 32$               | $32$                     | $64$ (thường gặp trên Linux, macOS 64-bit) |
-| `long long`,`long long int`,`signed long long`,`signed long long int` | `long long int`          | $\geq 64$               | $64$                     | -                                        |
-| `unsigned long long`,`unsigned long long int`                         | `unsigned long long int` | $\geq 64$               | $64$                     | -                                        |
+| `signed char`                                                         | `signed char`            | $\geq 8$                | $8$                      | -                                        |
+| `unsigned char`                                                       | `unsigned char`          | $\geq 8$                | $8$                      | -                                        |
+| `short`, `short int`, `signed short`, `signed short int`              | `short int`              | $\geq 16$               | $16$                     | -                                        |
+| `unsigned short`, `unsigned short int`                                | `unsigned short int`     | $\geq 16$               | $16$                     | -                                        |
+| `int`, `signed`, `signed int`                                         | `int`                    | $\geq 16$               | $32$                     | $16$ (thường gặp trong Win16 API)        |
+| `unsigned`, `unsigned int`                                            | `unsigned int`           | $\geq 16$               | $32$                     | $16$ (thường gặp trong Win16 API)        |
+| `long`, `long int`, `signed long`, `signed long int`                  | `long int`               | $\geq 32$               | $32$                     | $64$ (thường gặp trên Linux, macOS 64-bit) |
+| `unsigned long`, `unsigned long int`                                  | `unsigned long int`      | $\geq 32$               | $32$                     | $64$ (thường gặp trên Linux, macOS 64-bit) |
+| `long long`, `long long int`, `signed long long`, `signed long long int` | `long long int`        | $\geq 64$               | $64$                     | -                                        |
+| `unsigned long long`, `unsigned long long int`                        | `unsigned long long int` | $\geq 64$               | $64$                     | -                                        |
 
 Khi độ rộng bit là $x$, phạm vi biểu diễn của kiểu có dấu là $-2^{x-1}\sim 2^{x-1}-1$[^note16], còn phạm vi biểu diễn của kiểu không dấu là $0 \sim 2^x-1$. Cụ thể như bảng sau:
 
@@ -109,7 +109,7 @@ Khi độ rộng bit là $x$, phạm vi biểu diễn của kiểu có dấu là
 
     Ví dụ, `int`, `signed`, `int signed`, `signed int` biểu thị cùng một kiểu, còn `unsigned long` và `unsigned long int` biểu thị cùng một kiểu.
 
-Ngoài ra, một số trình biên dịch có hiện thực các kiểu số nguyên mở rộng. Chẳng hạn GCC hiện thực số nguyên 128 bit: bản có dấu `__int128_t` và bản không dấu `__uint128_t`. Nếu bạn muốn dùng các kiểu này trong kỳ thi, **hãy đọc kỹ quy định của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng có được cho phép hoặc được hỗ trợ hay không.
+Ngoài ra, một số trình biên dịch triển khai các kiểu số nguyên mở rộng. Chẳng hạn GCC hỗ trợ số nguyên 128 bit: bản có dấu `__int128_t` và bản không dấu `__uint128_t`. Nếu muốn dùng các kiểu này trong kỳ thi, **cần đọc kỹ quy định của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng có được cho phép hoặc được hỗ trợ hay không.
 
 ???+ warning "Chú ý"
     STL không nhất thiết hỗ trợ đầy đủ các kiểu số nguyên mở rộng, vì vậy cần đặc biệt cẩn thận khi dùng chúng.
@@ -147,7 +147,7 @@ Ngoài ra, một số trình biên dịch có hiện thực các kiểu số ngu
 
     Mã ví dụ trên có các vấn đề sau:
 
-    1.  Trong `__int128_t f3(__int128_t)`, hàm trị tuyệt đối được dùng là hàm kiểu C, có chữ ký `int abs(int)`, nên trước hết `n` sẽ bị ép kiểu thành `int`, rồi mới gọi hàm `abs`.
+    1.  Trong `__int128_t f3(__int128_t)`, hàm trị tuyệt đối được dùng là hàm kiểu C, có chữ ký `int abs(int)`, nên trước hết `n` sẽ bị chuyển kiểu thành `int`, rồi mới gọi hàm `abs`.
     2.  Trong `__int128_t f4(__int128_t)`, hàm trị tuyệt đối được dùng là hàm kiểu C++. Hàm này không có overload với chữ ký `__int128_t std::abs(__int128_t)`, nên không thể biên dịch.
     3.  Xuất luồng của C++ không hỗ trợ `__int128_t` và `__uint128_t`.
 
@@ -193,7 +193,7 @@ Ngoài ra, một số trình biên dịch có hiện thực các kiểu số ngu
 
 Kiểu ký tự được chia thành "kiểu ký tự hẹp" và "kiểu ký tự rộng". Vì trong thi lập trình thuật toán hầu như không dùng đến kiểu ký tự rộng, phần này chỉ giới thiệu kiểu ký tự hẹp.
 
-Kiểu ký tự hẹp thường có $8$ bit. Thực chất cách lưu trữ ở tầng dưới vẫn là số nguyên; thông thường, việc tương ứng một-một giữa ký tự và số nguyên được hiện thực thông qua [mã ASCII](http://www.asciitable.com/). Có ba loại sau:
+Kiểu ký tự hẹp thường có $8$ bit. Về cách lưu trữ tầng dưới, ký tự vẫn là số nguyên; trong các bài toán OI thông thường, quan hệ giữa ký tự và số nguyên thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba loại sau:
 
 -   `signed char`: kiểu biểu diễn ký tự có dấu, phạm vi biểu diễn từ $-128 \sim 127$.
 -   `unsigned char`: kiểu biểu diễn ký tự không dấu, phạm vi biểu diễn từ $0 \sim 255$.
@@ -201,12 +201,12 @@ Kiểu ký tự hẹp thường có $8$ bit. Thực chất cách lưu trữ ở 
 
     Tính có dấu của `char` phụ thuộc vào trình biên dịch và nền tảng đích: cấu hình mặc định trên ARM và PowerPC thường là không dấu, còn cấu hình mặc định trên x86 và x64 thường là có dấu.
 
-    Với GCC, có thể thêm `-fsigned-char` hoặc `-funsigned-char` vào tham số biên dịch để chỉ định xem `char` là `signed char` hay `unsigned char`; với các trình biên dịch khác, hãy tham khảo tài liệu tương ứng. Cần chú ý rằng việc chỉ định tính có dấu khác với giá trị mặc định của kiến trúc có thể phá vỡ ABI, khiến chương trình không hoạt động bình thường.
+    Với GCC, có thể thêm `-fsigned-char` hoặc `-funsigned-char` vào tham số biên dịch để chỉ định xem `char` là `signed char` hay `unsigned char`; với các trình biên dịch khác, cần tham khảo tài liệu tương ứng. Cần chú ý rằng việc chỉ định tính có dấu khác với giá trị mặc định của kiến trúc có thể phá vỡ ABI, khiến chương trình không hoạt động bình thường.
 
 ???+ warning "Chú ý"
     Khác với các kiểu số nguyên khác, `char`, `signed char`, `unsigned char` là **ba kiểu khác nhau**.
 
-    Nói chung, không nên dùng `signed char`,`unsigned char` để lưu ký tự. Trong tuyệt đại đa số trường hợp, hai kiểu này đều được xem như kiểu số nguyên.
+    Nói chung, không nên dùng `signed char`, `unsigned char` để lưu ký tự. Trong hầu hết trường hợp, hai kiểu này được xem như kiểu số nguyên.
 
 <a id="kiểu-số-thực-dấu-phẩy-động"></a>
 
@@ -232,8 +232,8 @@ Vì kiểu `float` có phạm vi biểu diễn nhỏ và độ chính xác khôn
 Ngoài ra, kiểu dấu phẩy động có thể hỗ trợ một số giá trị đặc biệt:
 
 -   Vô cùng (dương hoặc âm): `INFINITY`.
--   Âm không: `-0.0`, ví dụ `1.0 / 0.0 == INFINITY`,`1.0 / -0.0 == -INFINITY`.
--   Không phải số (NaN): `std::nan`,`NAN`, thường có thể sinh ra bởi các phép tính như `0.0 / 0.0`. Nó không bằng bất kỳ giá trị nào khi so sánh (kể cả chính nó); từ C++11 có thể dùng `std::isnan` để kiểm tra một số dấu phẩy động có phải NaN hay không.
+-   Âm không: `-0.0`, ví dụ `1.0 / 0.0 == INFINITY`, `1.0 / -0.0 == -INFINITY`.
+-   Không phải số (NaN): `std::nan`, `NAN`, thường có thể sinh ra bởi các phép tính như `0.0 / 0.0`. Nó không bằng bất kỳ giá trị nào khi so sánh (kể cả chính nó); từ C++11 có thể dùng `std::isnan` để kiểm tra một số dấu phẩy động có phải NaN hay không.
 
 <a id="kiểu-không-có-giá-trị"></a>
 
@@ -262,25 +262,25 @@ Số nguyên có độ rộng cố định có các loại sau:
 -   `int_fastN_t`: kiểu số nguyên có dấu **nhanh nhất** có độ rộng **ít nhất** $N$ bit, ví dụ `int_fast32_t`.
 -   `int_leastN_t`: kiểu số nguyên có dấu **nhỏ nhất** có độ rộng **ít nhất** $N$ bit, ví dụ `int_least32_t`.
 
-Phiên bản không dấu chỉ cần thêm chữ cái u trước phiên bản có dấu, ví dụ `uint32_t`,`uint_least8_t`.
+Phiên bản không dấu chỉ cần thêm tiền tố `u` trước phiên bản có dấu, ví dụ `uint32_t`, `uint_least8_t`.
 
-Chuẩn quy định bắt buộc hiện thực 16 kiểu sau:
+Chuẩn quy định bắt buộc phải triển khai 16 kiểu sau:
 
-`int_fast8_t`,`int_fast16_t`,`int_fast32_t`,`int_fast64_t`,
+`int_fast8_t`, `int_fast16_t`, `int_fast32_t`, `int_fast64_t`,
 
-`int_least8_t`,`int_least16_t`,`int_least32_t`,`int_least64_t`,
+`int_least8_t`, `int_least16_t`, `int_least32_t`, `int_least64_t`,
 
-`uint_fast8_t`,`uint_fast16_t`,`uint_fast32_t`,`uint_fast64_t`,
+`uint_fast8_t`, `uint_fast16_t`, `uint_fast32_t`, `uint_fast64_t`,
 
-`uint_least8_t`,`uint_least16_t`,`uint_least32_t`,`uint_least64_t`.
+`uint_least8_t`, `uint_least16_t`, `uint_least32_t`, `uint_least64_t`.
 
-Trên cơ sở đó, tuyệt đại đa số trình biên dịch đều hiện thực thêm 8 kiểu sau:
+Trên cơ sở đó, hầu hết trình biên dịch còn triển khai thêm 8 kiểu sau:
 
-`int8_t`,`int16_t`,`int32_t`,`int64_t`,
+`int8_t`, `int16_t`, `int32_t`, `int64_t`,
 
-`uint8_t`,`uint16_t`,`uint32_t`,`uint64_t`.
+`uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`.
 
-Khi đã hiện thực kiểu tương ứng, chuẩn C++ quy định bắt buộc hiện thực các hằng macro biểu diễn giá trị lớn nhất, giá trị nhỏ nhất và độ rộng bit của kiểu tương ứng. Tên của chúng có dạng: bỏ `_t` ở cuối tên kiểu, đổi sang chữ hoa và thêm hậu tố:
+Khi đã triển khai kiểu tương ứng, chuẩn C++ quy định bắt buộc phải triển khai các hằng macro biểu diễn giá trị lớn nhất, giá trị nhỏ nhất và độ rộng bit của kiểu tương ứng. Tên của chúng có dạng: bỏ `_t` ở cuối tên kiểu, đổi sang chữ hoa và thêm hậu tố:
 
 -   `_MAX` biểu thị giá trị lớn nhất, ví dụ `INT32_MAX` là giá trị lớn nhất của `int32_t`.
 -   `_MIN` biểu thị giá trị nhỏ nhất, ví dụ `INT32_MIN` là giá trị nhỏ nhất của `int32_t`.
@@ -305,7 +305,7 @@ Khi đã hiện thực kiểu tương ứng, chuẩn C++ quy định bắt buộ
 
     `int64_t` trên Windows 64-bit thường là `long long int`, còn trên Linux 64-bit thường là `long int`. Vì vậy, đoạn mã này không thể biên dịch với GCC trên Linux 64-bit, nhưng có thể biên dịch với MSVC trên Windows 64-bit, vì `std::max` yêu cầu hai tham số đầu vào phải có cùng kiểu.
 
-Ngoài ra, từ C++17, `<limits>` cung cấp mẫu lớp `std::numeric_limits`, dùng để truy vấn các thuộc tính của nhiều kiểu số học khác nhau, chẳng hạn giá trị lớn nhất, giá trị nhỏ nhất, có phải kiểu số nguyên hay không, có dấu hay không, v.v.
+Ngoài ra, từ C++17, `<limits>` cung cấp mẫu lớp `std::numeric_limits`, dùng để truy vấn các tính chất của nhiều kiểu số học khác nhau, chẳng hạn giá trị lớn nhất, giá trị nhỏ nhất, có phải kiểu số nguyên hay không, có dấu hay không.
 
 ```cpp
 #include <cstdint>
@@ -314,7 +314,7 @@ Ngoài ra, từ C++17, `<limits>` cung cấp mẫu lớp `std::numeric_limits`, 
 std::numeric_limits<int32_t>::max();  // giá trị lớn nhất của int32_t, 2'147'483'647
 std::numeric_limits<int32_t>::min();  // giá trị nhỏ nhất của int32_t, -2'147'483'648
 
-std::numeric_limits<double>::min();  // giá trị nhỏ nhất của double, khoảng 2.22507e-308
+std::numeric_limits<double>::min();  // giá trị dương chuẩn hóa nhỏ nhất của double, khoảng 2.22507e-308
 std::numeric_limits<double>::epsilon();  // hiệu giữa 1.0 và giá trị kế tiếp có thể biểu diễn của double,
                                          // khoảng 2.22045e-16
 ```
@@ -323,7 +323,7 @@ std::numeric_limits<double>::epsilon();  // hiệu giữa 1.0 và giá trị k�
 
 ## Chuyển đổi kiểu
 
-Trong một số trường hợp (chẳng hạn một hàm nhận tham số kiểu `int`, nhưng biến truyền vào lại có kiểu `double`), ta cần chuyển một kiểu nào đó thành một kiểu khác.
+Trong một số trường hợp (chẳng hạn một hàm nhận tham số kiểu `int`, nhưng biến truyền vào lại có kiểu `double`), cần chuyển một kiểu nào đó thành một kiểu khác.
 
 Cơ chế chuyển đổi kiểu trong C++ khá phức tạp. Ở đây chủ yếu giới thiệu hai loại chuyển đổi đối với kiểu dữ liệu cơ bản: nâng hạng số học và chuyển đổi số học.
 
@@ -334,7 +334,7 @@ Cơ chế chuyển đổi kiểu trong C++ khá phức tạp. Ở đây chủ y�
 Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
 
 ???+ note "Ghi chú"
-    Vùng tham số biến thiên kiểu C sẽ thực hiện nâng hạng tham số mặc định khi truyền giá trị. Ví dụ:
+    Danh sách tham số biến thiên kiểu C sẽ thực hiện nâng hạng tham số mặc định khi truyền giá trị. Ví dụ:
 
     ???+ note "Mã ví dụ"
         ```c
@@ -353,7 +353,7 @@ Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
             double xx = va_arg(valist, double);  // Đúng
             // float xx = va_arg(valist, float); // Sai
 
-            // In nội dung lưu trữ tầng dưới của biến thứ i
+            // In biểu diễn lưu trữ tầng dưới của biến thứ i
             printf("i = %d, value = 0x%016llx\n", i, *(long long *)(&xx));
           }
 
@@ -371,7 +371,7 @@ Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
         }
         ```
 
-    Khi gọi `test`, `f` được nâng hạng thành `double`, nên nội dung lưu trữ tầng dưới giống với `fd`; kết quả in ra là
+    Khi gọi `test`, `f` được nâng hạng thành `double`, nên biểu diễn lưu trữ tầng dưới giống với `fd`; kết quả in ra là
 
     ```text
     i = 0, value = 0x405ec00000000000
@@ -401,7 +401,7 @@ Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
 
 Giá trị thuần phải (prvalue) của kiểu số nguyên nhỏ (như `char`) có thể được chuyển thành giá trị thuần phải của kiểu số nguyên lớn hơn (như `int`).
 
-Cụ thể, toán tử số học không nhận kiểu nhỏ hơn `int` làm đối số. Sau phép chuyển từ lvalue sang rvalue, nếu phù hợp thì nâng hạng số nguyên sẽ tự động được áp dụng.
+Nói cụ thể hơn, toán tử số học không nhận kiểu nhỏ hơn `int` làm đối số. Sau phép chuyển từ lvalue sang rvalue, nếu phù hợp thì nâng hạng số nguyên sẽ tự động được áp dụng.
 
 Cụ thể có các quy tắc sau:
 
@@ -510,9 +510,9 @@ double wiki;
 char org = 'c';
 ```
 
-Trong các đoạn chương trình hiện tại mà chúng ta tiếp xúc, biến được định nghĩa trong nơi được bao bởi cặp ngoặc nhọn là biến cục bộ, còn biến được định nghĩa ở nơi không được bao bởi cặp ngoặc nhọn là biến toàn cục. Trên thực tế có ngoại lệ, nhưng hiện tại chưa cần tìm hiểu.
+Trong các đoạn chương trình cơ bản ở đây, biến được định nghĩa trong phạm vi được bao bởi cặp ngoặc nhọn là biến cục bộ, còn biến được định nghĩa bên ngoài các khối đó là biến toàn cục. C++ vẫn có ngoại lệ phức tạp hơn, nhưng chưa cần xét trong phần nhập môn này.
 
-Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$. Biến cục bộ không có đặc tính này, cần được gán giá trị ban đầu thủ công; nếu không có thể gây ra lỗi khó phát hiện.
+Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$. Biến cục bộ không có tính chất này, nên cần được gán giá trị ban đầu rõ ràng; nếu không có thể gây ra lỗi khó phát hiện.
 
 <a id="phạm-vi-của-biến"></a>
 
@@ -536,9 +536,9 @@ int main() {
 }
 ```
 
-Nếu trong khối lồng bên trong của một khối mã có định nghĩa biến cùng tên, thì trong khối bên trong sẽ không thể truy cập biến cùng tên ở khối bên ngoài.
+Nếu trong khối lồng bên trong của một khối mã có định nghĩa biến cùng tên, thì tên ở khối bên trong sẽ che khuất biến cùng tên ở khối bên ngoài.
 
-Ví dụ trong đoạn mã trên, giá trị $g$ được in ra sẽ là $10$. Vì vậy, để tránh lỗi ngoài dự kiến, hãy cố gắng tránh để biến cục bộ trùng tên với biến toàn cục.
+Ví dụ trong đoạn mã trên, giá trị $g$ được in ra sẽ là $10$. Vì vậy, để tránh lỗi ngoài dự kiến, nên cố gắng tránh để biến cục bộ trùng tên với biến toàn cục.
 
 <a id="hằng"></a>
 
@@ -571,14 +571,14 @@ Nếu sửa giá trị của hằng, lỗi sẽ xuất hiện ở giai đoạn b
 
 [^note10]: Xem <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf>
 
-[^note11]: Bao gồm kiểu mảng, kiểu tham chiếu, kiểu con trỏ, kiểu lớp, kiểu hàm, v.v. Vì bài viết này hướng tới người mới bắt đầu, nên các kiểu đó không được giới thiệu cụ thể tại đây. Xem chi tiết tại [Kiểu - cppreference.com](https://en.cppreference.com/w/cpp/language/type)
+[^note11]: Bao gồm kiểu mảng, kiểu tham chiếu, kiểu con trỏ, kiểu lớp, kiểu hàm và các kiểu khác. Vì bài viết này hướng tới người mới bắt đầu, nên các kiểu đó không được giới thiệu cụ thể tại đây. Xem chi tiết tại [Kiểu - cppreference.com](https://en.cppreference.com/w/cpp/language/type)
 
 [^note12]: Không bao gồm kiểu ký tự rộng, trường bit và kiểu liệt kê; xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
 
-[^note13]: Có hiệu lực từ C++20. Trước C++20, kết quả là do hiện thực định nghĩa. Xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
+[^note13]: Có hiệu lực từ C++20. Trước C++20, kết quả là do bản triển khai định nghĩa (implementation-defined). Xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
 
 [^note14]: Khi định nghĩa một biến, ngoài bộ mô tả kiểu, còn có thể chứa các bộ mô tả khác. Xem chi tiết tại [khai báo - cppreference](https://en.cppreference.com/w/cpp/language/declarations).
 
 [^note15]: Nói chính xác hơn là [điểm khai báo](https://en.cppreference.com/w/cpp/language/scope#Point_of_declaration).
 
-[^note16]: Trước C++20, chuẩn quy định số nguyên có dấu ít nhất phải bao phủ phạm vi biểu diễn của [mã bù một](../math/bit.md#số-nguyên-và-chuỗi-bit) (tức $-2^{x-1}+1\sim 2^{x-1}-1$), nhưng trên thực tế tuyệt đại đa số hiện thực đều dùng [mã bù hai](../math/bit.md#số-nguyên-và-chuỗi-bit); từ C++20, chuẩn quy định thêm rằng số nguyên có dấu bắt buộc phải dùng mã bù hai. Xem chi tiết tại [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values).
+[^note16]: Trước C++20, chuẩn quy định số nguyên có dấu ít nhất phải bao phủ phạm vi biểu diễn của [mã bù một](../math/bit.md#số-nguyên-và-chuỗi-bit) (tức $-2^{x-1}+1\sim 2^{x-1}-1$), nhưng hầu hết bản triển khai đều dùng [mã bù hai](../math/bit.md#số-nguyên-và-chuỗi-bit); từ C++20, chuẩn quy định thêm rằng số nguyên có dấu bắt buộc phải dùng mã bù hai. Xem chi tiết tại [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values).
