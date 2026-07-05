@@ -2,7 +2,7 @@ author: LeoJacob, Marcythm, minghu6
 
 Quy ước: chỉ số xâu bắt đầu từ $0$.
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Với một xâu $s$ có độ dài $n$, định nghĩa hàm $z[i]$ là độ dài tiền tố chung dài nhất (LCP) của $s$ và $s[i,n-1]$ (tức hậu tố bắt đầu tại $s[i]$). Khi đó $z$ được gọi là **hàm Z** của $s$. Đặc biệt, $z[0] = 0$.
@@ -11,7 +11,7 @@ Với một xâu $s$ có độ dài $n$, định nghĩa hàm $z[i]$ là độ d�
 
 Bài viết này giới thiệu thuật toán tính hàm Z trong thời gian $O(n)$ và một số ứng dụng của nó.
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 ## Giải thích
 
 Một vài ví dụ dưới đây minh họa hàm Z của các xâu khác nhau:
@@ -20,7 +20,7 @@ Một vài ví dụ dưới đây minh họa hàm Z của các xâu khác nhau:
 -   $z(\mathtt{aaabaab}) = [0, 2, 1, 0, 2, 1, 0]$
 -   $z(\mathtt{abacaba}) = [0, 0, 1, 0, 3, 0, 1]$
 
-<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+<span id="thuật-toán-đơn-giản"></span>
 ## Thuật toán đơn giản
 
 Thuật toán đơn giản để tính hàm Z có độ phức tạp $O(n^2)$:
@@ -48,7 +48,7 @@ Thuật toán đơn giản để tính hàm Z có độ phức tạp $O(n^2)$:
             return z
         ```
 
-<span id="&#32447;&#24615;&#31639;&#27861;"></span>
+<span id="thuật-toán-tuyến-tính"></span>
 ## Thuật toán tuyến tính
 
 Giống nhiều thuật toán trong chủ đề xâu, điểm then chốt là dùng tư tưởng tự động hóa để tìm hàm chuyển trạng thái dưới các ràng buộc, từ đó tận dụng các trạng thái đã biết để tăng tốc việc tính trạng thái mới.
@@ -69,7 +69,7 @@ Khi tính $z[i]$:
 
 Có thể xem mô phỏng quá trình tính hàm Z tại [trang này](https://personal.utdallas.edu/~besp/demo/John2010/z-algorithm.htm).
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
 === "C++"
@@ -109,7 +109,7 @@ Có thể xem mô phỏng quá trình tính hàm Z tại [trang này](https://pe
         return z
     ```
 
-<span id="&#22797;&#26434;&#24230;&#20998;&#26512;"></span>
+<span id="phân-tích-độ-phức-tạp"></span>
 ## Phân tích độ phức tạp
 
 Với vòng lặp `while` bên trong, mỗi lần thực hiện đều làm $r$ dịch sang phải ít nhất $1$ vị trí, trong khi $r<n-1$, nên tổng cộng vòng lặp này chỉ chạy $n$ lần.
@@ -118,14 +118,14 @@ Vòng lặp ngoài chỉ duyệt tuyến tính một lượt.
 
 Vì vậy tổng độ phức tạp là $O(n)$.
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Bây giờ xét các ứng dụng của hàm Z trong một số tình huống cụ thể.
 
 Các ứng dụng này phần lớn tương tự các ứng dụng của [hàm tiền tố](./kmp.md).
 
-<span id="&#21305;&#37197;&#25152;&#26377;&#23376;&#20018;"></span>
+<span id="khớp-mọi-lần-xuất-hiện-của-xâu-con"></span>
 ### Khớp mọi lần xuất hiện của xâu con
 
 Để tránh nhầm lẫn, gọi $t$ là **văn bản** và $p$ là **mẫu**. Bài toán đặt ra là tìm mọi lần xuất hiện (occurrence) của mẫu $p$ trong văn bản $t$.
@@ -136,7 +136,7 @@ Trước hết tính hàm Z của $s$. Sau đó, với mỗi $i$ trong đoạn $
 
 Độ phức tạp thời gian (và cũng là độ phức tạp bộ nhớ) là $O(|t| + |p|)$.
 
-<span id="&#26412;&#36136;&#19981;&#21516;&#23376;&#20018;&#25968;"></span>
+<span id="số-xâu-con-khác-nhau-về-bản-chất"></span>
 ### Số xâu con khác nhau về bản chất
 
 Cho một xâu $s$ có độ dài $n$, hãy tính số lượng xâu con khác nhau về bản chất của $s$.
@@ -153,7 +153,7 @@ Thuật toán có độ phức tạp thời gian $O(n^2)$.
 
 Đáng chú ý là với cùng phương pháp, ta có thể tính lại trong $O(n)$ số xâu con khác nhau về bản chất sau khi thêm một ký tự ở một đầu hoặc xóa một ký tự ở một đầu (từ cuối hoặc từ đầu).
 
-<span id="&#23383;&#31526;&#20018;&#25972;&#21608;&#26399;"></span>
+<span id="chu-kỳ-nguyên-của-xâu"></span>
 ### Chu kỳ nguyên của xâu
 
 Cho một xâu $s$ có độ dài $n$, hãy tìm chu kỳ nguyên ngắn nhất của nó, tức tìm xâu ngắn nhất $t$ sao cho $s$ có thể được biểu diễn bằng cách nối một số bản sao của $t$.
@@ -162,7 +162,7 @@ Tính hàm Z của $s$; độ dài chu kỳ nguyên của nó là ước nhỏ n
 
 Chứng minh tính chất này giống với chứng minh khi dùng [hàm tiền tố](./kmp.md).
 
-<span id="&#32451;&#20064;&#39064;&#30446;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [luogu P5410 [Mẫu] KMP mở rộng/exKMP (hàm Z)](https://www.luogu.com.cn/problem/P5410)
