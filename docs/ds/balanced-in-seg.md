@@ -2,21 +2,32 @@ author: Dev-jqe, HeRaNO, huaruoji
 
 ## Công dụng thường gặp
 
-Trong lập trình thi đấu, đôi khi ta cần duy trì thông tin nhiều chiều. Khi đó, ta thường cần dùng cấu trúc "cây lồng cây" để ghi lại thông tin. Khi cần duy trì tiền nhiệm, kế nhiệm, phần tử lớn thứ $k$, thứ hạng của một số, hoặc thao tác chèn/xóa, ta thường dùng cây cân bằng để đáp ứng nhu cầu đó, tức cây phân đoạn lồng cây cân bằng.
+Trong lập trình thi đấu, đôi khi cần duy trì thông tin nhiều chiều. Trường hợp đó thường có thể dùng cấu trúc
+"cây lồng cây" để ghi lại thông tin. Khi cần duy trì tiền nhiệm, kế nhiệm, phần tử lớn thứ $k$, thứ hạng của một số,
+hoặc thao tác chèn/xóa, tầng trong có thể dùng cây cân bằng; cấu trúc thu được là cây phân đoạn lồng cây cân bằng.
 
 ## Quy trình
 
-Ta lấy bài **cây cân bằng thông thường nâng cao** làm ví dụ để giải thích nguyên lý cài đặt.
+Dùng bài **cây cân bằng thông thường nâng cao** làm ví dụ để giải thích nguyên lý cài đặt.
 
-Khi xây cây lồng cây, ta xây cây phân đoạn ngoài như bình thường. Với mỗi nút trên cây phân đoạn, xây một cây cân bằng chứa đoạn dãy mà nút đó bao phủ. Khi thao tác cụ thể, có thể lần lượt chèn từng phần tử của dãy; mỗi khi đi qua một nút cây phân đoạn, thêm phần tử đó vào cây cân bằng của nút này.
+Khi xây cây lồng cây, tầng ngoài vẫn là cây phân đoạn như bình thường. Với mỗi nút trên cây phân đoạn, xây một cây
+cân bằng chứa đoạn dãy mà nút đó bao phủ. Khi cài đặt, có thể lần lượt chèn từng phần tử của dãy; mỗi khi đi qua một
+nút cây phân đoạn, thêm phần tử đó vào cây cân bằng của nút này.
 
-Thao tác 1, tìm thứ hạng của một giá trị trong một khoảng: thao tác bình thường trên cây phân đoạn ngoài. Với cây cân bằng của các nút nằm trong khoảng cần xét, trả về số phần tử nhỏ hơn giá trị đó trong cây cân bằng. Khi gộp các đoạn, chỉ cần cộng các số lượng phần tử nhỏ hơn. Cuối cùng lấy giá trị trả về cộng $1$, đó là thứ hạng của giá trị trong khoảng.
+Thao tác 1, tìm thứ hạng của một giá trị trong một khoảng: thực hiện truy vấn bình thường trên cây phân đoạn ngoài.
+Với cây cân bằng của các nút nằm trong khoảng cần xét, trả về số phần tử nhỏ hơn giá trị đó. Khi gộp các đoạn, chỉ
+cần cộng các số lượng phần tử nhỏ hơn. Cuối cùng lấy giá trị trả về cộng $1$, đó là thứ hạng của giá trị trong khoảng.
 
-Thao tác 2, tìm giá trị có thứ hạng $k$ trong một khoảng: có thể dùng chiến lược nhị phân. Vì một phần tử có thể xuất hiện nhiều lần, thứ hạng của nó là một đoạn, và một số giá trị có thể không tồn tại trong dãy ban đầu. Do đó ta dùng ý tưởng tương tự thao tác 1: dùng số phần tử nhỏ hơn giá trị đang xét làm căn cứ để nhị phân, từ đó tìm được đáp án.
+Thao tác 2, tìm giá trị có thứ hạng $k$ trong một khoảng: có thể dùng chiến lược nhị phân. Vì một phần tử có thể xuất
+hiện nhiều lần, thứ hạng của nó là một đoạn, và một số giá trị có thể không tồn tại trong dãy ban đầu. Do đó dùng ý
+tưởng tương tự thao tác 1: lấy số phần tử nhỏ hơn giá trị đang xét làm căn cứ nhị phân, từ đó tìm được đáp án.
 
-Thao tác 3, thay một số bằng một số khác: chỉ cần xóa số cũ khỏi mọi cây cân bằng chứa nó, rồi chèn số mới vào. Tầng ngoài vẫn thao tác trên cây phân đoạn như bình thường.
+Thao tác 3, thay một số bằng một số khác: chỉ cần xóa số cũ khỏi mọi cây cân bằng chứa nó, rồi chèn số mới vào. Tầng
+ngoài vẫn thao tác trên cây phân đoạn như bình thường.
 
-Thao tác 4, tìm tiền nhiệm của một giá trị trong một khoảng: thao tác bình thường trên cây phân đoạn ngoài. Với cây cân bằng của các nút nằm trong khoảng cần xét, trả về tiền nhiệm của giá trị đó trong cây cân bằng. Khi gộp kết quả của các đoạn cây phân đoạn, lấy giá trị lớn nhất.
+Thao tác 4, tìm tiền nhiệm của một giá trị trong một khoảng: thực hiện truy vấn bình thường trên cây phân đoạn ngoài.
+Với cây cân bằng của các nút nằm trong khoảng cần xét, trả về tiền nhiệm của giá trị đó. Khi gộp kết quả của các đoạn
+cây phân đoạn, lấy giá trị lớn nhất.
 
 ## Tính chất
 
@@ -26,7 +37,8 @@ Mỗi phần tử được thêm vào $O(\log n)$ cây cân bằng, nên độ p
 
 ### Độ phức tạp thời gian
 
--   Với các thao tác 1, 3, 4, ta thực hiện $O(\log{n})$ thao tác trên cây phân đoạn ngoài; mỗi thao tác lại thực hiện $O(\log{n})$ thao tác trên một cây cân bằng trong, nên độ phức tạp thời gian là $O(\log^2{n})$.
+-   Với các thao tác 1, 3, 4, cần thực hiện $O(\log{n})$ thao tác trên cây phân đoạn ngoài; mỗi thao tác lại thực hiện
+    $O(\log{n})$ thao tác trên một cây cân bằng trong, nên độ phức tạp thời gian là $O(\log^2{n})$.
 -   Với thao tác 2, có thêm một quá trình nhị phân, nên độ phức tạp là $O(\log^3{n})$.
 
 ## Bài ví dụ kinh điển
@@ -96,4 +108,6 @@ int vec_front(int k, int l, int r, int x, int y, int t) {
 
 ## Thuật toán liên quan
 
-Khi gặp bài toán có thông tin nhiều chiều, nếu đề không bắt buộc xử lý trực tuyến, ta cũng có thể cân nhắc các thuật toán chia để trị như [chia để trị CDQ](../misc/cdq-divide.md) hoặc [nhị phân song song](../misc/parallel-binsearch.md) để tránh dùng cấu trúc dữ liệu nâng cao và giảm độ khó cài đặt.
+Khi gặp bài toán có thông tin nhiều chiều, nếu đề không bắt buộc xử lý trực tuyến, có thể cân nhắc các thuật toán chia
+để trị như [chia để trị CDQ](../misc/cdq-divide.md) hoặc [nhị phân song song](../misc/parallel-binsearch.md) để tránh
+dùng cấu trúc dữ liệu nâng cao và giảm độ khó cài đặt.
