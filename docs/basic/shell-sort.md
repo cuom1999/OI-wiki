@@ -22,7 +22,7 @@ Sắp xếp Shell là một thuật toán sắp xếp không ổn định.
 
 Độ phức tạp thời gian tốt nhất của sắp xếp Shell là $O(n)$.
 
-Độ phức tạp thời gian trung bình và xấu nhất của sắp xếp Shell phụ thuộc vào cách chọn dãy khoảng cách. Gọi dãy khoảng cách là $H$; dưới đây là hai cách chọn kinh điển cho $H$. Cả hai cách này đều làm độ phức tạp của thuật toán sắp xếp giảm xuống bậc $o(n^2)$.
+Độ phức tạp thời gian trung bình và xấu nhất của sắp xếp Shell phụ thuộc vào cách chọn dãy khoảng cách. Gọi dãy khoảng cách là $H$; sau đây là hai cách chọn kinh điển cho $H$. Cả hai cách này đều làm độ phức tạp của thuật toán sắp xếp giảm xuống bậc $o(n^2)$.
 
 ???+ note "Mệnh đề 1"
     Nếu dãy khoảng cách là $H= \{ 2^k-1\mid k=1,2,\ldots,\lfloor\log_2 n\rfloor \}$ (theo thứ tự từ lớn đến nhỏ), thì độ phức tạp thời gian của thuật toán sắp xếp Shell là $O(n^{3/2})$.
@@ -30,7 +30,7 @@ Sắp xếp Shell là một thuật toán sắp xếp không ổn định.
 ???+ note "Mệnh đề 2"
     Nếu dãy khoảng cách là $H= \{ k=2^p\cdot 3^q\mid p,q\in \mathbb N,k\le n \}$ (theo thứ tự từ lớn đến nhỏ), thì độ phức tạp thời gian của thuật toán sắp xếp Shell là $O(n\log^2 n)$.
 
-Để chứng minh hai mệnh đề này, trước hết ta nêu và chứng minh một định lý quan trọng. Định lý này phản ánh đặc trưng chủ yếu nhất của sắp xếp Shell.
+Để chứng minh hai mệnh đề này, trước hết nêu và chứng minh một định lý quan trọng. Định lý này phản ánh đặc trưng chủ yếu nhất của sắp xếp Shell.
 
 ???+ note "Định lý 1"
     Chỉ cần chương trình đã thực hiện một lần $\text{InsertionSort}(h)$, thì bất kể sau đó gọi hàm $\text{InsertionSort}$ như thế nào và mảng $A$ biến đổi ra sao, tính chất sau vẫn luôn được duy trì:
@@ -44,7 +44,7 @@ Sắp xếp Shell là một thuật toán sắp xếp không ổn định.
     \end{array}
     $$
 
-Tiếp theo ta chứng minh định lý 1.
+Tiếp theo là phần chứng minh định lý 1.
 
 Trước hết chứng minh bổ đề 1.
 
@@ -55,7 +55,7 @@ Trước hết chứng minh bổ đề 1.
     y_1 \le x_{n+1},y_2 \le x_{n+2},\ldots,y_l \le x_{n+l}
     $$
     
-    Nếu ta sắp xếp riêng hai mảng theo thứ tự tăng dần, yêu cầu trên vẫn còn đúng.
+    Nếu sắp xếp riêng hai mảng theo thứ tự tăng dần, yêu cầu trên vẫn còn đúng.
 
 ??? note "Chứng minh bổ đề 1"
     Giả sử sau khi sắp xếp, mảng $X$ trở thành $X'(x'_1,\ldots,x'_{n+l})$ và mảng $Y$ trở thành $Y'(y'_1,\ldots,y'_{m+l})$.
@@ -74,7 +74,7 @@ Trước hết chứng minh bổ đề 1.
 
 Quay lại chứng minh mệnh đề ban đầu:
 
-Thực ra ta chỉ cần chứng minh rằng sau khi gọi xong $\text{InsertionSort}(h)$, rồi ngay ở lần gọi kế tiếp thực hiện $\text{InsertionSort}(k)$, $h$ dãy con vẫn có thứ tự. Sau đó dễ dàng dùng quy nạp để suy ra kết luận. Dưới đây chỉ xét lần gọi kế tiếp này.
+Thực ra chỉ cần chứng minh rằng sau khi gọi xong $\text{InsertionSort}(h)$, rồi ngay ở lần gọi kế tiếp thực hiện $\text{InsertionSort}(k)$, $h$ dãy con vẫn có thứ tự. Sau đó dễ dàng dùng quy nạp để suy ra kết luận. Sau đây chỉ xét lần gọi kế tiếp này.
 
 Sau khi thực hiện xong $\text{InsertionSort}(h)$, các nhóm sau đã được sắp xếp:
 
@@ -127,7 +127,7 @@ Vì vậy định lý 1 được chứng minh.
 
 Định lý này cho thấy điểm then chốt giúp sắp xếp Shell tối ưu được độ phức tạp với một tập $H$ cụ thể: trong toàn bộ quá trình, nó có thể luôn giữ lại kết quả đã đạt được trước đó (tức $h$ dãy con lần lượt có thứ tự), từ đó làm số lần di chuyển của con trỏ $i$ trong các lời gọi sau giảm đi rất nhiều.
 
-Tiếp theo ta tách riêng một bổ đề số học để chứng minh. Định lý này nổi tiếng trong cộng đồng OI nhờ bài [Luogu P3951 Nỗi băn khoăn của Xiao Kai](https://www.luogu.com.cn/problem/P3951). Trong chứng minh độ phức tạp của sắp xếp Shell, nó cũng giúp mở rộng định lý $1$ đáng kể.
+Tiếp theo, tách riêng một bổ đề số học để chứng minh. Định lý này nổi tiếng trong cộng đồng OI nhờ bài [Luogu P3951 Nỗi băn khoăn của Xiao Kai](https://www.luogu.com.cn/problem/P3951). Trong chứng minh độ phức tạp của sắp xếp Shell, nó cũng giúp mở rộng định lý $1$ đáng kể.
 
 ???+ note "Bổ đề 2"
     Nếu $a,b$ đều là số nguyên dương và nguyên tố cùng nhau, thì số nguyên dương lớn nhất không thuộc tập $\{ax+by\mid x,y\in \mathbb N \}$ là $ab-a-b$.
@@ -146,7 +146,7 @@ Tiếp theo ta tách riêng một bổ đề số học để chứng minh. Đ�
         Vì vậy không thể có nghiệm nguyên không âm.
     -   Tiếp theo chứng minh với mọi số nguyên $c > ab-a-b$, phương trình $ax+by=c$ có nghiệm nguyên không âm:
     
-        Ta tìm một nghiệm $(x_0,y_0)$ thỏa mãn $0\le x_0 < b$ (từ biểu thức nghiệm tổng quát, có thể làm được điều này).
+        Tìm một nghiệm $(x_0,y_0)$ thỏa mãn $0\le x_0 < b$ (từ biểu thức nghiệm tổng quát, có thể làm được điều này).
     
         Khi đó:
     
@@ -168,7 +168,7 @@ Tiếp theo ta tách riêng một bổ đề số học để chứng minh. Đ�
 ??? note "Chứng minh định lý 2"
     Với phần $j\le h_{t+1}h_t$, số lần di chuyển của $i$ hiển nhiên là bậc $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$.
     
-    Vì vậy dưới đây giả sử $j>h_{t+1}h_t$.
+    Vì vậy, sau đây giả sử $j>h_{t+1}h_t$.
     
     Với số nguyên dương tùy ý $k$ thỏa mãn $1\le k\le j-h_{t+1}h_t$, chú ý rằng: $h_{t+1}h_t-h_{t+1}-h_t<h_{t+1}h_t\le j-k\le j-1$.
     
@@ -194,11 +194,11 @@ Tiếp theo ta tách riêng một bổ đề số học để chứng minh. Đ�
     
     Kết hợp lại có: $A_k=A_{j-ah_{t+1}-bh_t}\le A_j$.
     
-    Vì vậy với mọi $1\le k\le j-h_{t+1}h_t$, ta có $A_k\le A_j$.
+    Vì vậy với mọi $1\le k\le j-h_{t+1}h_t$ đều có $A_k\le A_j$.
     
-    Trong mã giả Shell-Sort, con trỏ $i$ mỗi lần giảm $h_{t-1}$; sau khi giảm $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ lần, ta có thể làm cho $i\le j-h_{t+1}h_t$, từ đó có $A_i\le A_j$, điều kiện của vòng lặp while không còn thỏa mãn và vòng lặp kết thúc.
+    Trong mã giả Shell-Sort, con trỏ $i$ mỗi lần giảm $h_{t-1}$; sau khi giảm $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ lần, có thể làm cho $i\le j-h_{t+1}h_t$, từ đó có $A_i\le A_j$, điều kiện của vòng lặp while không còn thỏa mãn và vòng lặp kết thúc.
     
-    Sau khi chứng minh xong độ phức tạp di chuyển cho mỗi $j$, ta thu được tổng độ phức tạp thời gian:
+    Sau khi chứng minh xong độ phức tạp di chuyển cho mỗi $j$, thu được tổng độ phức tạp thời gian:
     
     $$
     \sum_{j=h_{t-1}+1}^n{O\left(\frac{h_{t+1}h_t}{h_{t-1}} \right)}=O\left(\frac{nh_{t+1}h_t}{h_{t-1}}\right)
@@ -208,7 +208,7 @@ Tiếp theo ta tách riêng một bổ đề số học để chứng minh. Đ�
 
 Quan sát kỹ quá trình chứng minh định lý $2$, có thể thấy: định lý 1 có thể được "tổ hợp tuyến tính", tức nếu $A$ có thứ tự theo khoảng cách $h$ và cũng có thứ tự theo khoảng cách $k$, thì nó vẫn có thứ tự theo tổ hợp tuyến tính với hệ số không âm của $h$ và $k$. Tính "tuyến tính" này được bảo đảm bởi bổ đề $2$.
 
-Có hai định lý trên, ta có thể chứng minh mệnh đề $1$ và $2$.
+Với hai định lý trên, có thể chứng minh mệnh đề $1$ và $2$.
 
 ??? note "Chứng minh mệnh đề 1"
     Viết $H$ dưới dạng dãy:
@@ -257,11 +257,11 @@ Có hai định lý trên, ta có thể chứng minh mệnh đề $1$ và $2$.
 ??? note "Chứng minh mệnh đề 2"
     Chú ý một sự thật: nếu đã thực hiện $\text{InsertionSort}(2)$ và $\text{InsertionSort}(3)$, thì vì $2\cdot 3-2-3=1$, theo định lý $2$, với mỗi phần tử, chỉ có phần tử đứng ngay trước nó là có thể lớn hơn nó; tất cả phần tử trước đó đều nhỏ hơn nó. Do đó con trỏ $i$ chỉ cần nhiều nhất hai lần là có thể thoát khỏi vòng lặp while. Nói cách khác, lúc này thực hiện tiếp $\text{InsertionSort}(1)$ thì độ phức tạp giảm xuống $O(n)$.
     
-    Xa hơn: nếu đã thực hiện $\text{InsertionSort}(4)$ và $\text{InsertionSort}(6)$, ta xét dãy con gồm tất cả phần tử có chỉ số lẻ và dãy con gồm tất cả phần tử có chỉ số chẵn. Điều này tương đương với việc thực hiện riêng $\text{InsertionSort}(2)$ và $\text{InsertionSort}(3)$ trên hai dãy con đó. Khi ấy cũng tương tự, thực hiện tiếp $\text{InsertionSort}(2)$ tương đương với thực hiện $\text{InsertionSort}(1)$ trên từng dãy con, và chỉ cần độ phức tạp cùng bậc với tổng độ dài của hai dãy, tức $O(n)$, là có thể làm mảng có thứ tự theo khoảng cách $2$.
+    Xa hơn: nếu đã thực hiện $\text{InsertionSort}(4)$ và $\text{InsertionSort}(6)$, xét dãy con gồm tất cả phần tử có chỉ số lẻ và dãy con gồm tất cả phần tử có chỉ số chẵn. Điều này tương đương với việc thực hiện riêng $\text{InsertionSort}(2)$ và $\text{InsertionSort}(3)$ trên hai dãy con đó. Khi ấy cũng tương tự, thực hiện tiếp $\text{InsertionSort}(2)$ tương đương với thực hiện $\text{InsertionSort}(1)$ trên từng dãy con, và chỉ cần độ phức tạp cùng bậc với tổng độ dài của hai dãy, tức $O(n)$, là có thể làm mảng có thứ tự theo khoảng cách $2$.
     
-    Quy nạp liên tục, ta có thể thu được: nếu đã thực hiện $\text{InsertionSort}(2h)$ và $\text{InsertionSort}(3h)$, thì độ phức tạp khi thực hiện $\text{InsertionSort}(h)$ cũng chỉ là $O(n)$.
+    Quy nạp liên tục cho thấy: nếu đã thực hiện $\text{InsertionSort}(2h)$ và $\text{InsertionSort}(3h)$, thì độ phức tạp khi thực hiện $\text{InsertionSort}(h)$ cũng chỉ là $O(n)$.
     
-    Tiếp theo chia việc phân tích độ phức tạp thành hai phần:
+    Tiếp theo, chia việc phân tích độ phức tạp thành hai phần:
     
     -   Với phần $h_t>n/3$, độ phức tạp khi thực hiện mỗi $\text{InsertionSort}(h_t)$ là $O(n^2/h_t)$.
     
