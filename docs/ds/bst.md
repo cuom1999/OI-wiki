@@ -12,7 +12,9 @@ Cây tìm kiếm nhị phân (tiếng Anh: binary search tree, viết tắt là 
 
 4.  Hai cây con trái và phải của một cây tìm kiếm nhị phân cũng đều là cây tìm kiếm nhị phân.
 
-Thời gian của các thao tác cơ bản trên cây tìm kiếm nhị phân tỉ lệ với chiều cao của cây. Với một cây có $n$ nút, độ phức tạp tốt nhất của các thao tác này là $O(\log n)$, còn xấu nhất là $O(n)$. Nếu xây dựng cây tìm kiếm nhị phân theo thứ tự ngẫu nhiên, chiều cao kỳ vọng là $O(\log n)$.
+Thời gian của các thao tác cơ bản trên cây tìm kiếm nhị phân tỉ lệ với chiều cao của cây.
+Với một cây có $n$ nút, độ phức tạp tốt nhất của các thao tác này là $O(\log n)$, còn xấu nhất là $O(n)$.
+Nếu xây dựng cây tìm kiếm nhị phân theo thứ tự ngẫu nhiên, chiều cao kỳ vọng là $O(\log n)$.
 
 ## Quy trình
 
@@ -35,7 +37,9 @@ Thời gian của các thao tác cơ bản trên cây tìm kiếm nhị phân t�
 
 ### Duyệt cây tìm kiếm nhị phân
 
-Từ định nghĩa đệ quy của cây tìm kiếm nhị phân, dãy khóa thu được khi duyệt trung thứ tự (inorder traversal) là một dãy không giảm. Độ phức tạp thời gian là $O(n)$.
+Từ định nghĩa đệ quy của cây tìm kiếm nhị phân,
+dãy khóa thu được khi duyệt trung thứ tự (inorder traversal) là một dãy không giảm.
+Độ phức tạp thời gian là $O(n)$.
 
 Đoạn mã duyệt một cây tìm kiếm nhị phân như sau:
 
@@ -53,7 +57,9 @@ Từ định nghĩa đệ quy của cây tìm kiếm nhị phân, dãy khóa thu
 
 ### Tìm giá trị nhỏ nhất/lớn nhất
 
-Theo tính chất của cây tìm kiếm nhị phân, giá trị nhỏ nhất nằm ở nút cuối của chuỗi đi liên tục sang trái, còn giá trị lớn nhất nằm ở nút cuối của chuỗi đi liên tục sang phải. Độ phức tạp thời gian là $O(h)$.
+Theo tính chất của cây tìm kiếm nhị phân, giá trị nhỏ nhất nằm ở nút cuối của chuỗi đi liên tục sang trái,
+còn giá trị lớn nhất nằm ở nút cuối của chuỗi đi liên tục sang phải.
+Độ phức tạp thời gian là $O(h)$.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -158,7 +164,9 @@ Trước tiên tìm nút có khóa `value` trong cây tìm kiếm nhị phân, r
 
     -   Nếu `root` là nút trên một chuỗi, tức chỉ có một con, trả về nút con đó.
 
-    -   Nếu `root` có cả hai con không rỗng, thông thường thay nó bằng giá trị lớn nhất trong cây con trái (nút ngoài cùng bên phải của cây con trái) hoặc giá trị nhỏ nhất trong cây con phải (nút ngoài cùng bên trái của cây con phải), rồi xóa nút thay thế đó.
+    -   Nếu `root` có cả hai con không rỗng, thông thường thay nó bằng giá trị lớn nhất trong cây con trái
+        (nút ngoài cùng bên phải của cây con trái) hoặc giá trị nhỏ nhất trong cây con phải
+        (nút ngoài cùng bên trái của cây con phải), rồi xóa nút thay thế đó.
 
 Độ phức tạp thời gian là $O(h)$.
 
@@ -218,7 +226,9 @@ Trước tiên tìm nút có khóa `value` trong cây tìm kiếm nhị phân, r
 
 Thứ hạng được định nghĩa là số phần tử đứng trước phần tử đầu tiên bằng nó trong dãy đã sắp xếp tăng dần, cộng thêm một.
 
-Để tìm thứ hạng của một phần tử, bắt đầu từ gốc và đi xuống nút chứa phần tử đó. Mỗi khi đi sang phải, cộng vào đáp án kích thước cây con trái và số lần lặp của nút hiện tại. Cuối cùng, cộng thêm kích thước cây con trái của nút đích và $1$.
+Để tìm thứ hạng của một phần tử, bắt đầu từ gốc và đi xuống nút chứa phần tử đó.
+Mỗi khi đi sang phải, cộng vào đáp án kích thước cây con trái và số lần lặp của nút hiện tại.
+Cuối cùng, cộng thêm kích thước cây con trái của nút đích và $1$.
 
 Độ phức tạp thời gian là $O(h)$.
 
@@ -239,7 +249,8 @@ Trong một cây con, thứ hạng của nút gốc phụ thuộc vào kích th�
 
 -   Nếu kích thước cây con trái lớn hơn hoặc bằng $k$, phần tử nằm trong cây con trái.
 
--   Nếu kích thước cây con trái nằm trong đoạn $[k-\textit{count},k-1]$ (`count` là số lần xuất hiện của giá trị ở nút hiện tại), phần tử chính là nút gốc của cây con.
+-   Nếu kích thước cây con trái nằm trong đoạn $[k-\textit{count},k-1]$
+    (`count` là số lần xuất hiện của giá trị ở nút hiện tại), phần tử chính là nút gốc của cây con.
 
 -   Nếu kích thước cây con trái nhỏ hơn $k-\textit{count}$, phần tử nằm trong cây con phải.
 
@@ -264,41 +275,67 @@ Trong một cây con, thứ hạng của nút gốc phụ thuộc vào kích th�
 
 Một mục đích của việc dùng cây tìm kiếm là rút ngắn thời gian chèn, xóa, sửa và tìm kiếm nút (trong đó chèn, xóa, sửa đều bao gồm thao tác tìm kiếm).
 
-Về hiệu quả tìm kiếm, nếu chiều cao của cây là $h$, trong trường hợp xấu nhất cần so sánh $h$ lần để tìm một khóa; độ phức tạp tìm kiếm (cũng là độ dài tìm kiếm trung bình ASL, Average Search Length) không vượt quá $O(h)$. Với một cây tìm kiếm nhị phân lý tưởng, mọi thao tác có thể được rút xuống $O(\log n)$, trong đó $n$ là tổng số nút.
+Về hiệu quả tìm kiếm, nếu chiều cao của cây là $h$, trong trường hợp xấu nhất cần so sánh $h$ lần để tìm một khóa.
+Độ phức tạp tìm kiếm, cũng là độ dài tìm kiếm trung bình ASL (Average Search Length), không vượt quá $O(h)$.
+Với một cây tìm kiếm nhị phân lý tưởng, mọi thao tác có thể được rút xuống $O(\log n)$, trong đó $n$ là tổng số nút.
 
-Tuy nhiên, độ phức tạp $O(\log n)$ chỉ là tình huống lý tưởng. Trong trường hợp xấu nhất, cây tìm kiếm có thể suy biến thành danh sách liên kết. Hãy hình dung một cây tìm kiếm nhị phân mà mỗi nút chỉ có con phải; khi đó nó hoạt động giống danh sách liên kết, và mọi thao tác (chèn, xóa, sửa, tìm) đều mất $O(n)$.
+Tuy nhiên, độ phức tạp $O(\log n)$ chỉ là tình huống lý tưởng.
+Trong trường hợp xấu nhất, cây tìm kiếm có thể suy biến thành danh sách liên kết.
+Chẳng hạn, nếu một cây tìm kiếm nhị phân có mỗi nút chỉ có con phải, nó hoạt động giống danh sách liên kết,
+và mọi thao tác (chèn, xóa, sửa, tìm) đều mất $O(n)$.
 
-Có thể thấy độ phức tạp của thao tác liên quan trực tiếp đến chiều cao $h$ của cây. Vì vậy ta đưa vào cây cân bằng: thông qua một số thao tác điều chỉnh để duy trì chiều cao, hay tính cân bằng của cây, từ đó giảm độ phức tạp thao tác.
+Độ phức tạp của thao tác liên quan trực tiếp đến chiều cao $h$ của cây.
+Vì vậy cần dùng cây cân bằng: thông qua một số thao tác điều chỉnh để duy trì chiều cao,
+hay tính cân bằng của cây, từ đó giảm độ phức tạp thao tác.
 
 ### Định nghĩa tính cân bằng
 
-Việc một cây tìm kiếm có được xem là "**cân bằng**" hay không phụ thuộc vào định nghĩa của từng loại cây cân bằng. Chẳng hạn, với một cây tìm kiếm nhị phân gốc $T$, nếu chiều cao cây con trái và cây con phải chênh lệch rất lớn, hoặc số nút trong cây con trái lớn hơn rất nhiều so với cây con phải, thì cây đó rõ ràng không cân bằng.
+Việc một cây tìm kiếm có được xem là "**cân bằng**" hay không phụ thuộc vào định nghĩa của từng loại cây cân bằng.
+Chẳng hạn, với một cây tìm kiếm nhị phân gốc $T$, nếu chiều cao cây con trái và cây con phải chênh lệch rất lớn,
+hoặc số nút trong cây con trái lớn hơn rất nhiều so với cây con phải, thì cây đó không cân bằng.
 
-Với cây tìm kiếm nhị phân, một định nghĩa cân bằng thường gặp là: trong cây gốc $T$, tại mọi nút, độ chênh lệch chiều cao giữa cây con trái và cây con phải không vượt quá 1.
+Với cây tìm kiếm nhị phân, một định nghĩa cân bằng thường gặp là:
+trong cây gốc $T$, tại mọi nút, độ chênh lệch chiều cao giữa cây con trái và cây con phải không vượt quá 1.
 
 -   Trong [cây splay](splay.md), mỗi thao tác truy cập đến một nút bất kỳ (tìm kiếm, chèn hoặc xóa) đều đưa nút được truy cập lên vị trí gốc của cây.
 
--   [Cây AVL](avl.md) lưu thông tin chiều cao của cây gốc $N$ tại mỗi nút $N$. Định nghĩa cân bằng của cây AVL: $T$ là một cây AVL khi và chỉ khi hai cây con trái/phải cũng là cây AVL và $|height(T->left) - height(T->right)| \leq 1$.
+-   [Cây AVL](avl.md) lưu thông tin chiều cao của cây gốc $N$ tại mỗi nút $N$.
+    Định nghĩa cân bằng của cây AVL: $T$ là một cây AVL khi và chỉ khi hai cây con trái/phải cũng là cây AVL
+    và $|height(T->left) - height(T->right)| \leq 1$.
 
--   [Size Balanced Tree](sbt.md) duy trì `size`, tức số nút trong cây gốc $N$, tại mỗi nút $N$. Định nghĩa cân bằng: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút cháu gọi qua nút anh em của nó (nephew qua sibling).
+-   [Size Balanced Tree](sbt.md) duy trì `size`, tức số nút trong cây gốc $N$, tại mỗi nút $N$.
+    Định nghĩa cân bằng: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút cháu gọi qua nút anh em của nó
+    (nephew qua sibling).
 
-Ngoài ra, với các cây tìm kiếm chứa cùng một tập giá trị, trạng thái cân bằng có thể không duy nhất. Nói cách khác, có thể tồn tại hai cây tìm kiếm khác nhau, chứa cùng tập giá trị, và cả hai đều cân bằng.
+Ngoài ra, với các cây tìm kiếm chứa cùng một tập giá trị, trạng thái cân bằng có thể không duy nhất.
+Nói cách khác, có thể tồn tại hai cây tìm kiếm khác nhau, chứa cùng tập giá trị, và cả hai đều cân bằng.
 
 ### Quá trình điều chỉnh cân bằng
 
-Với một cây tìm kiếm không thỏa điều kiện cân bằng, ta có thể thực hiện các thao tác điều chỉnh để cây không cân bằng trở lại cân bằng.
+Với một cây tìm kiếm không thỏa điều kiện cân bằng,
+có thể thực hiện các thao tác điều chỉnh để đưa cây trở lại trạng thái cân bằng.
 
-Với cây nhị phân cân bằng, thao tác điều chỉnh cân bằng gồm hai loại: **xoay trái (Left Rotate hoặc zag)** và **xoay phải (Right Rotate hoặc zig)**. Khi điều chỉnh cây nhị phân cân bằng, ta cần giữ nguyên thứ tự duyệt trung thứ tự; cả hai phép xoay này đều không làm thay đổi dãy trung thứ tự.
+Với cây nhị phân cân bằng, thao tác điều chỉnh cân bằng gồm hai loại:
+**xoay trái (Left Rotate hoặc zag)** và **xoay phải (Right Rotate hoặc zig)**.
+Khi điều chỉnh cây nhị phân cân bằng, cần giữ nguyên thứ tự duyệt trung thứ tự;
+cả hai phép xoay này đều không làm thay đổi dãy trung thứ tự.
 
-Trước hết xét phép xoay phải, còn gọi là "xoay đơn phải" hoặc "xoay cân bằng LL". Xoay phải tại nút $A$ nghĩa là đưa con trái $B$ của $A$ lên trên về bên phải để thay $A$ làm gốc, đưa $A$ xuống thành gốc của cây con phải của $B$, và cây con phải ban đầu của $B$ trở thành cây con trái của $A$.
+Trước hết xét phép xoay phải, còn gọi là "xoay đơn phải" hoặc "xoay cân bằng LL".
+Xoay phải tại nút $A$ nghĩa là đưa con trái $B$ của $A$ lên trên về bên phải để thay $A$ làm gốc,
+đưa $A$ xuống thành gốc của cây con phải của $B$,
+và cây con phải ban đầu của $B$ trở thành cây con trái của $A$.
 
 ![Phép xoay trong cây nhị phân cân bằng](images/bst-rotate.svg)
 
-Phép xoay phải chỉ thay đổi ba nhóm liên kết giữa các nút, tương đương một phép hoán vị vòng trên ba cạnh; vì vậy cần tạm lưu một nút rồi cập nhật lần lượt.
+Phép xoay phải chỉ thay đổi ba nhóm liên kết giữa các nút, tương đương một phép hoán vị vòng trên ba cạnh;
+vì vậy cần tạm lưu một nút rồi cập nhật lần lượt.
 
-Thứ tự cập nhật thường dùng cho xoay phải là: tạm lưu nút $B$ (gốc mới), cho con trái của $A$ trỏ đến cây con phải $T2$ của $B$, cho con phải của $B$ trỏ đến $A$, rồi cuối cùng cho cha của $A$ trỏ đến $B$ đã tạm lưu.
+Thứ tự cập nhật thường dùng cho xoay phải là:
+tạm lưu nút $B$ (gốc mới), cho con trái của $A$ trỏ đến cây con phải $T2$ của $B$,
+cho con phải của $B$ trỏ đến $A$, rồi cuối cùng cho cha của $A$ trỏ đến $B$ đã tạm lưu.
 
-Tương tự hoàn toàn, ta có phép xoay trái, còn gọi là "xoay đơn trái" hoặc "xoay cân bằng RR". Xoay trái là ảnh gương của xoay phải.
+Tương tự hoàn toàn là phép xoay trái, còn gọi là "xoay đơn trái" hoặc "xoay cân bằng RR".
+Xoay trái là ảnh gương của xoay phải.
 
 Mã cho xoay trái và xoay phải như sau.
 
@@ -328,7 +365,11 @@ Với đoạn mã ví dụ này, khi gọi cần lưu nút cha `pre` của `root
 
 #### Bốn trường hợp phá vỡ cân bằng
 
-Dù các loại cây nhị phân cân bằng có định nghĩa khác nhau, khác biệt chủ yếu nằm ở thông tin được duy trì tại mỗi nút và cách cập nhật thông tin đó sau khi xoay. Có đúng bốn kiểu phá vỡ cân bằng trong cây nhị phân cân bằng. Các thao tác điều chỉnh cân bằng chỉ gồm xoay trái và xoay phải. Phần dưới đây giới thiệu bốn trường hợp trước, rồi so sánh giữa các loại cây nhị phân cân bằng khác nhau.
+Dù các loại cây nhị phân cân bằng có định nghĩa khác nhau,
+khác biệt chủ yếu nằm ở thông tin được duy trì tại mỗi nút và cách cập nhật thông tin đó sau khi xoay.
+Có đúng bốn kiểu phá vỡ cân bằng trong cây nhị phân cân bằng.
+Các thao tác điều chỉnh cân bằng chỉ gồm xoay trái và xoay phải.
+Phần dưới đây giới thiệu bốn trường hợp trước, rồi so sánh giữa các loại cây nhị phân cân bằng khác nhau.
 
 Kiểu LL: cây con trái của con trái của $T$ quá dài, làm phá vỡ cân bằng.
 
