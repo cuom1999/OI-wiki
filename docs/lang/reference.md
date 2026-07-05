@@ -102,7 +102,7 @@ Khi đối tượng mà tham chiếu gắn với đã bị hủy, tham chiếu s
 treo. Truy cập tham chiếu treo là hành vi không xác định và có thể khiến chương
 trình bị sập.
 
-Dưới đây là các ví dụ thường gặp về tham chiếu treo:
+Sau đây là các ví dụ thường gặp về tham chiếu treo:
 
 -   Tham chiếu tới biến cục bộ
 
@@ -157,8 +157,8 @@ Dưới đây là các ví dụ thường gặp về tham chiếu treo:
 Khi sử dụng tham chiếu, cần luôn chú ý tới thời gian sống của đối tượng mà tham
 chiếu gắn với để tránh tạo ra tham chiếu treo.
 
-Thông thường, công cụ kiểm tra tĩnh và thói quen viết mã tốt có thể giúp ta
-tránh vấn đề tham chiếu treo.
+Thông thường, công cụ kiểm tra tĩnh và thói quen viết mã tốt có thể giúp tránh
+vấn đề tham chiếu treo.
 
 ## Kỹ thuật tối ưu liên quan đến tham chiếu
 
@@ -221,7 +221,7 @@ int main() {
 }
 ```
 
-Tuy nhiên, không phải lúc nào cũng cần làm như vậy, ví dụ như khi có
+Tuy nhiên, không phải lúc nào cũng cần làm như vậy, chẳng hạn khi có
 [tối ưu giá trị trả về của hàm](./value-category.md#các-hiểu-lầm-thường-gặp).
 Trong ví dụ `world` ở trên, không cần viết `return std::move(str);`.
 
