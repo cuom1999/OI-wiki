@@ -1,6 +1,6 @@
-Checker, tức [Special Judge](../special-judge.md), dùng để kiểm tra đáp án có hợp lệ hay không. Dùng Testlib giúp ta không phải tự kiểm tra nhiều chi tiết, nên việc viết checker đơn giản hơn đáng kể.
+Checker, tức [trình chấm đặc biệt](../special-judge.md), dùng để kiểm tra đáp án có hợp lệ hay không. Dùng Testlib giúp ta không phải tự kiểm tra nhiều chi tiết, nên việc viết checker đơn giản hơn đáng kể.
 
-Checker đọc tên tệp input, tên tệp output của thí sinh và tên tệp output chuẩn từ tham số dòng lệnh, sau đó xác định output của thí sinh có đúng hay không và trả về một kết quả đã định nghĩa trước.
+Checker đọc tên tệp đầu vào, tên tệp đầu ra của thí sinh và tên tệp đầu ra chuẩn từ tham số dòng lệnh, sau đó xác định đầu ra của thí sinh có đúng hay không và trả về một kết quả đã định nghĩa trước.
 
 Hãy đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
 
   int pans = ouf.readInt(-2000, 2000, "sum of numbers");
 
-  // Giả định output chuẩn là đúng, không kiểm tra phạm vi của nó.
+  // Giả định đầu ra chuẩn là đúng, không kiểm tra phạm vi của nó.
   // Lát nữa ta sẽ thấy điều này không hợp lý.
   int jans = ans.readInt();
 
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 
 ## Viết hàm readAns
 
-Giả sử bạn có một bài mà input và output đều chứa nhiều số, chẳng hạn: cho một DAG, hãy tìm đường đi dài nhất từ $s$ đến $t$ và in ra đường đi đó (có thể có nhiều đường, in ra một đường bất kỳ).
+Giả sử bạn có một bài mà đầu vào và đầu ra đều chứa nhiều số, chẳng hạn: cho một DAG, hãy tìm đường đi dài nhất từ $s$ đến $t$ và in ra đường đi đó (có thể có nhiều đường, in ra một đường bất kỳ).
 
 Dưới đây là một ví dụ checker **không tốt**.
 
@@ -50,7 +50,7 @@ map<pair<int, int>, int> edges;
 int main(int argc, char* argv[]) {
   registerTestlibCmd(argc, argv);
   int n = inf.readInt();  // Không cần readSpace() hoặc readEoln()
-  int m = inf.readInt();  // Vì không cần kiểm tra tính hợp lệ của input chuẩn
+  int m = inf.readInt();  // Vì không cần kiểm tra tính hợp lệ của đầu vào chuẩn
                           // trong checker (đã có validator)
   for (int i = 0; i < m; i++) {
     int a = inf.readInt();
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
   int s = inf.readInt();
   int t = inf.readInt();
 
-  // Đọc output chuẩn
+  // Đọc đầu ra chuẩn
   int jvalue = 0;
   vector<int> jpath;
   int jlen = ans.readInt();
@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) {
     jvalue += edges[make_pair(jpath[i], jpath[i + 1])];
   }
 
-  // Đọc output của thí sinh
+  // Đọc đầu ra của thí sinh
   int pvalue = 0;
   vector<int> ppath;
   vector<bool> used(n);
@@ -108,10 +108,10 @@ int main(int argc, char* argv[]) {
 
 Checker này chủ yếu có hai vấn đề:
 
-1.  Nó tin chắc output chuẩn là đúng. Nếu output của thí sinh tốt hơn output chuẩn, thí sinh sẽ bị chấm WA, điều này không ổn. Đồng thời, nếu output chuẩn không hợp lệ thì cũng sẽ sinh WA. Trong cả hai trường hợp, thao tác đúng là trả về trạng thái Fail.
-2.  Phần mã đọc output chuẩn và output của thí sinh bị lặp. Với bài này, viết hai lần phần đọc không phải vấn đề lớn, vì chỉ cần một vòng `for`; nhưng nếu gặp bài có output phức tạp, checker sẽ trở nên rối. Mã lặp làm giảm mạnh khả năng bảo trì và khiến việc debug hoặc sửa định dạng khó hơn.
+1.  Nó tin chắc đầu ra chuẩn là đúng. Nếu đầu ra của thí sinh tốt hơn đầu ra chuẩn, thí sinh sẽ bị chấm WA, điều này không ổn. Đồng thời, nếu đầu ra chuẩn không hợp lệ thì cũng sẽ sinh WA. Trong cả hai trường hợp, thao tác đúng là trả về trạng thái Fail.
+2.  Phần mã đọc đầu ra chuẩn và đầu ra của thí sinh bị lặp. Với bài này, viết hai lần phần đọc không phải vấn đề lớn, vì chỉ cần một vòng `for`; nhưng nếu gặp bài có đầu ra phức tạp, checker sẽ trở nên rối. Mã lặp làm giảm mạnh khả năng bảo trì và khiến việc gỡ lỗi hoặc sửa định dạng khó hơn.
 
-Cách đọc output chuẩn và output của thí sinh thực ra hoàn toàn giống nhau. Đây là lý do ta thường viết một hàm đọc nhận luồng làm tham số.
+Cách đọc đầu ra chuẩn và đầu ra của thí sinh thực ra hoàn toàn giống nhau. Đây là lý do ta thường viết một hàm đọc nhận luồng làm tham số.
 
 ### Cài đặt tốt
 
@@ -130,10 +130,10 @@ int n, m, s, t;
 // kiểm tra tính hợp lệ của đường đi và trả về độ dài đường đi.
 // Khi stream là ans, mọi stream.quitf(_wa, ...)
 // và mọi readXxx() thất bại đều trả về _fail thay vì _wa.
-// Nói cách khác, nếu output không hợp lệ, với luồng output của thí sinh
-// hàm này trả về _wa, còn với luồng output chuẩn nó trả về _fail.
+// Nói cách khác, nếu đầu ra không hợp lệ, với luồng đầu ra của thí sinh
+// hàm này trả về _wa, còn với luồng đầu ra chuẩn nó trả về _fail.
 int readAns(InStream& stream) {
-  // Đọc output
+  // Đọc đầu ra
   int value = 0;
   vector<int> path;
   vector<bool> used(n);
@@ -187,7 +187,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-Có thể thấy cách viết này đồng thời kiểm tra cả output chuẩn có hợp lệ hay không, giúp checker ngắn hơn, dễ hiểu hơn và dễ debug hơn. Cách viết này cũng áp dụng được cho các bài có output YES (kèm một phương án nào đó), hoặc NO.
+Có thể thấy cách viết này đồng thời kiểm tra cả đầu ra chuẩn có hợp lệ hay không, giúp checker ngắn hơn, dễ hiểu hơn và dễ gỡ lỗi hơn. Cách viết này cũng áp dụng được cho các bài có đầu ra YES (kèm một phương án nào đó), hoặc NO.
 
 ???+ note "Ghi chú"
     Một số kiểm tra ràng buộc có thể được viết gọn hơn bằng hàm `InStream::ensure/ensuref()`. Ví dụ, dòng 23 đến 25 trong ví dụ trên cũng có thể được viết tương đương như sau:
@@ -197,13 +197,13 @@ Có thể thấy cách viết này đồng thời kiểm tra cả output chuẩn
     ```
 
 ???+ warning "Cảnh báo"
-    Hãy tránh gọi hàm **toàn cục** `::ensure/ensuref()` trong `readAns`, vì điều này có thể làm checker trả về `_fail` cho một số output của thí sinh đáng lẽ phải bị chấm WA, từ đó tạo ra kết quả sai.
+    Hãy tránh gọi hàm **toàn cục** `::ensure/ensuref()` trong `readAns`, vì điều này có thể làm checker trả về `_fail` cho một số đầu ra của thí sinh đáng lẽ phải bị chấm WA, từ đó tạo ra kết quả sai.
 
 ## Khuyến nghị và lỗi thường gặp
 
 -   Viết hàm `readAns`; nó thật sự có thể làm checker của bạn tốt hơn rất nhiều.
 
--   Khi đọc output của thí sinh, luôn giới hạn phạm vi rõ ràng. Nếu quên giới hạn một số biến rồi dùng chúng làm tham số, checker của bạn có thể chấm sai, RE, v.v.
+-   Khi đọc đầu ra của thí sinh, luôn giới hạn phạm vi rõ ràng. Nếu quên giới hạn một số biến rồi dùng chúng làm tham số, checker của bạn có thể chấm sai, RE, v.v.
 
     -   Ví dụ phản diện
 
@@ -235,7 +235,7 @@ Có thể thấy cách viết này đồng thời kiểm tra cả output chuẩn
 
 -   Dùng bí danh hạng mục.
 
--   Khác với validator, checker không cần cố ý kiểm tra các ký tự không trắng. Ví dụ, với một checker so sánh các số nguyên theo thứ tự, ta chỉ cần xác định các số nguyên trong output của thí sinh có lần lượt bằng các số nguyên trong đáp án hay không; checker không cần quan tâm thí sinh in mỗi số trên một dòng hay in tất cả số trên cùng một dòng.
+-   Khác với validator, checker không cần cố ý kiểm tra các ký tự không trắng. Ví dụ, với một checker so sánh các số nguyên theo thứ tự, ta chỉ cần xác định các số nguyên trong đầu ra của thí sinh có lần lượt bằng các số nguyên trong đáp án hay không; checker không cần quan tâm thí sinh in mỗi số trên một dòng hay in tất cả số trên cùng một dòng.
 
 ## Cách dùng
 
@@ -247,7 +247,7 @@ Thông thường ta không cần chạy checker cục bộ, vì công cụ chấ
 
 ## Một số checker có sẵn
 
-Trong nhiều trường hợp, công việc checker cần làm rất đơn giản, chẳng hạn kiểm tra output là số nguyên có đúng không, hoặc output là số thực có thỏa sai số yêu cầu không. [Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) đã cung cấp sẵn các cài đặt checker này, và ta có thể dùng trực tiếp.
+Trong nhiều trường hợp, công việc checker cần làm rất đơn giản, chẳng hạn kiểm tra đầu ra là số nguyên có đúng không, hoặc đầu ra là số thực có thỏa sai số yêu cầu không. [Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) đã cung cấp sẵn các cài đặt checker này, và ta có thể dùng trực tiếp.
 
 Một số checker thường dùng:
 

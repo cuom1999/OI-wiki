@@ -8,17 +8,17 @@ Trang này giới thiệu một số trạng thái, đối tượng và hàm dù
 | Wrong Answer       | `_wa`        | Đáp án sai.                                                                                                                      |
 | Presentation Error | `_pe`        | Định dạng đáp án sai. Lưu ý rằng nhiều OJ, bao gồm Codeforces, không phân biệt PE và WA.                                        |
 | Partially Correct  | `_pc(score)` | Đáp án đúng một phần. Chỉ dùng cho các test có điểm thành phần; `score` là một số nguyên dương từ $0$ (không có điểm) đến $100$ (điểm tối đa có thể đạt). (`quitf+_pc` chỉ nhằm tương thích với pascal-testlib cũ; nếu muốn xuất điểm thành phần, nên dùng `quitp`[^1].) |
-| Fail               | `_fail`      | Trong validator, trạng thái này nghĩa là đầu vào không hợp lệ và không qua kiểm tra.<br>Trong checker, trạng thái này biểu thị lỗi nội bộ của chương trình, output chuẩn sai, hoặc output của thí sinh tốt hơn output chuẩn, cần giám khảo/người ra đề xem xét. Nói cách khác, lỗi thuộc về đề. |
+| Fail               | `_fail`      | Trong validator, trạng thái này nghĩa là đầu vào không hợp lệ và không qua kiểm tra.<br>Trong checker, trạng thái này biểu thị lỗi nội bộ của chương trình, đầu ra chuẩn sai, hoặc đầu ra của thí sinh tốt hơn đầu ra chuẩn, cần giám khảo/người ra đề xem xét. Nói cách khác, lỗi thuộc về đề. |
 
-Thông thường kết quả được biểu thị bằng giá trị trả về của chương trình, nhưng cũng có một số cách khác: tạo tệp XML output, in thông tin ra stdout hoặc vị trí khác, v.v. Các cách này đều được thực hiện thông qua hàm `quitf` trong bảng hàm bên dưới.
+Thông thường kết quả được biểu thị bằng giá trị trả về của chương trình, nhưng cũng có một số cách khác: tạo tệp XML đầu ra, in thông tin ra stdout hoặc vị trí khác, v.v. Các cách này đều được thực hiện thông qua hàm `quitf` trong bảng hàm bên dưới.
 
 ## Đối tượng chung
 
 | Đối tượng | Ý nghĩa |
 | ----- | ----- |
 | `inf` | Luồng tệp đầu vào |
-| `ouf` | Luồng output của thí sinh |
-| `ans` | Luồng output tham chiếu |
+| `ouf` | Luồng đầu ra của thí sinh |
+| `ans` | Luồng đầu ra tham chiếu |
 
 ## Hàm chung
 
@@ -103,7 +103,7 @@ Hàm này có phiên bản rút gọn `ensure()`: ta có thể dùng trực ti�
     
     Hàm toàn cục `::ensuref/ensure()` thường dùng trong generator và validator; nếu kiểm tra thất bại, chúng sẽ luôn trả về `_fail`.
     
-    Hàm thành viên `InStream::ensuref/ensure()` thường dùng để xác định output của thí sinh và chương trình tham chiếu có hợp lệ hay không. Khi `InStream` là `ouf`, chúng trả về `_wa`; khi là `inf` (thông thường không kiểm tra dữ liệu đầu vào trong checker, việc này nên được thực hiện trong validator) hoặc `ans`, chúng trả về `_fail`. Xem thêm phần viết hàm `readAns` trong [trang Checker](./checker.md).
+    Hàm thành viên `InStream::ensuref/ensure()` thường dùng để xác định đầu ra của thí sinh và chương trình tham chiếu có hợp lệ hay không. Khi `InStream` là `ouf`, chúng trả về `_wa`; khi là `inf` (thông thường không kiểm tra dữ liệu đầu vào trong checker, việc này nên được thực hiện trong validator) hoặc `ans`, chúng trả về `_fail`. Xem thêm phần viết hàm `readAns` trong [trang Checker](./checker.md).
 
 **Bài viết này chủ yếu được dịch và tổng hợp từ loạt bài [Testlib - Codeforces](https://codeforces.com/testlib). Kho GitHub của `testlib.h` là [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib).**
 
