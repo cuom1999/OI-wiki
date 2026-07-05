@@ -39,38 +39,38 @@ Khi tập điểm đã có thứ tự, ta liên tục chia nó thành hai phần
 
 ![Chia để trị thành các tập điểm gồm 2 hoặc 3 điểm](./images/triangulation-3.svg)
 
-Sau đó, trong quá trình quay lui của chia để trị, các tập điểm con bên trái và bên phải đã được tam giác phân sẽ lần lượt được hợp nhất. Tam giác phân sau khi hợp nhất chứa LL-edge, tức cạnh của tập điểm con bên trái, RR-edge, tức cạnh của tập điểm con bên phải, và LR-edge, tức cạnh mới nối hai tam giác phân trái phải. Trong hình, LL-edge có màu xám, RR-edge có màu đỏ, LR-edge có màu xanh. Với tam giác phân sau khi hợp nhất, để duy trì tính chất DT, ta **có thể** cần xóa một số LL-edge và RR-edge, nhưng khi hợp nhất ta **không** thêm LL-edge hay RR-edge mới.
+Sau đó, trong quá trình quay lui của chia để trị, các tập điểm con bên trái và bên phải đã được tam giác phân sẽ lần lượt được hợp nhất. Tam giác phân sau khi hợp nhất chứa cạnh LL, tức cạnh của tập điểm con bên trái, cạnh RR, tức cạnh của tập điểm con bên phải, và cạnh LR, tức cạnh mới nối hai tam giác phân trái phải. Trong hình, cạnh LL có màu xám, cạnh RR có màu đỏ, cạnh LR có màu xanh. Với tam giác phân sau khi hợp nhất, để duy trì tính chất DT, ta **có thể** cần xóa một số cạnh LL và cạnh RR, nhưng khi hợp nhất ta **không** thêm cạnh LL hay cạnh RR mới.
 
 ![Cạnh](./images/triangulation-4.svg)
 
-Bước đầu tiên khi hợp nhất hai tam giác phân trái phải là chèn base LR-edge. Base LR-edge là LR-edge ở **dưới cùng** và không cắt **bất kỳ** LL-edge hay RR-edge nào.
+Bước đầu tiên khi hợp nhất hai tam giác phân trái phải là chèn cạnh LR cơ sở. Cạnh LR cơ sở là cạnh LR ở **dưới cùng** và không cắt **bất kỳ** cạnh LL hay cạnh RR nào.
 
 ![Hợp nhất hai tam giác phân trái phải](./images/triangulation-5.svg)
 
-Tiếp theo, ta cần xác định LR-edge **ngay phía trên** base LR-edge. Ví dụ, với tập điểm bên phải, các đỉnh có thể làm đầu mút tiếp theo của LR-edge, tức đầu mút phải, là đầu mút còn lại của các RR-edge nối với đầu mút phải của base LR-edge, tương ứng các điểm số $6, 7, 9$; đầu mút trái là điểm số $2$.
+Tiếp theo, ta cần xác định cạnh LR **ngay phía trên** cạnh LR cơ sở. Ví dụ, với tập điểm bên phải, các đỉnh có thể làm đầu mút tiếp theo của cạnh LR, tức đầu mút phải, là đầu mút còn lại của các cạnh RR nối với đầu mút phải của cạnh LR cơ sở, tương ứng các điểm số $6, 7, 9$; đầu mút trái là điểm số $2$.
 
-![LR-edge tiếp theo](./images/triangulation-6.svg)
+![Cạnh LR tiếp theo](./images/triangulation-6.svg)
 
 Với các đầu mút ứng viên, ta cần kiểm tra theo hai tiêu chí sau:
 
-1.  Góc giữa RR-edge tương ứng và base LR-edge nhỏ hơn $180$ độ.
-2.  Đường tròn đi qua hai đầu mút của base LR-edge và điểm ứng viên đó không chứa bất kỳ **điểm ứng viên** nào khác.
+1.  Góc giữa cạnh RR tương ứng và cạnh LR cơ sở nhỏ hơn $180$ độ.
+2.  Đường tròn đi qua hai đầu mút của cạnh LR cơ sở và điểm ứng viên đó không chứa bất kỳ **điểm ứng viên** nào khác.
 
 ![Kiểm tra điểm ứng viên](./images/triangulation-7.svg)
 
-Như trong hình trên, đường tròn màu xanh lục ứng với điểm ứng viên số $6$ chứa điểm ứng viên số $9$, còn đường tròn màu tím ứng với điểm ứng viên số $7$ không chứa điểm ứng viên nào khác, vì vậy điểm số $7$ là đầu mút phải của LR-edge tiếp theo.
+Như trong hình trên, đường tròn màu xanh lục ứng với điểm ứng viên số $6$ chứa điểm ứng viên số $9$, còn đường tròn màu tím ứng với điểm ứng viên số $7$ không chứa điểm ứng viên nào khác, vì vậy điểm số $7$ là đầu mút phải của cạnh LR tiếp theo.
 
 Với tập điểm bên trái, ta xử lý đối xứng.
 
 ![Kiểm tra điểm ứng viên bên trái](./images/triangulation-8.svg)
 
-Khi cả hai tập điểm trái và phải đều không còn điểm ứng viên nào thỏa tiêu chí, quá trình hợp nhất hoàn tất. Khi một điểm ứng viên thỏa tiêu chí, cần thêm một LR-edge; các LL-edge và RR-edge cắt LR-edge cần thêm này sẽ bị xóa.
+Khi cả hai tập điểm trái và phải đều không còn điểm ứng viên nào thỏa tiêu chí, quá trình hợp nhất hoàn tất. Khi một điểm ứng viên thỏa tiêu chí, cần thêm một cạnh LR; các cạnh LL và cạnh RR cắt cạnh LR cần thêm này sẽ bị xóa.
 
 Khi cả hai tập điểm trái và phải đều có điểm ứng viên, ta kiểm tra đường tròn ứng với điểm bên trái có chứa điểm bên phải hay không; nếu có thì điểm bên trái không hợp lệ. Với điểm bên phải cũng kiểm tra tương tự. Thông thường chỉ có một điểm ứng viên thỏa tiêu chí, trừ khi bốn điểm cùng nằm trên một đường tròn.
 
-![LR-edge tiếp theo](./images/triangulation-9.svg)
+![Cạnh LR tiếp theo](./images/triangulation-9.svg)
 
-Sau khi LR-edge này được thêm, lấy nó làm base LR-edge rồi lặp lại các bước trên, tiếp tục thêm cạnh tiếp theo cho đến khi hợp nhất xong.
+Sau khi cạnh LR này được thêm, lấy nó làm cạnh LR cơ sở rồi lặp lại các bước trên, tiếp tục thêm cạnh tiếp theo cho đến khi hợp nhất xong.
 
 ![Hợp nhất](./images/triangulation-10.svg)
 

@@ -1,8 +1,8 @@
 ## Dẫn nhập
 
-Thuật toán **Kahan summation**, còn gọi là thuật toán cộng bù hoặc cộng có bù sai số, là một thuật toán dùng để **giảm sai số của tổng tích lũy trên một dãy số thực dấu phẩy động có độ chính xác hữu hạn**. Thuật toán chủ yếu làm việc này bằng cách giữ một biến riêng để tích lũy sai số, thường dùng tên biến $c$.
+Thuật toán **cộng Kahan** (Kahan summation), còn gọi là thuật toán cộng bù hoặc cộng có bù sai số, là một thuật toán dùng để **giảm sai số của tổng tích lũy trên một dãy số thực dấu phẩy động có độ chính xác hữu hạn**. Thuật toán chủ yếu làm việc này bằng cách giữ một biến riêng để tích lũy sai số, thường dùng tên biến $c$.
 
-Thuật toán này chủ yếu do William Kahan phát hiện vào thập niên 1960. Vì Ivo Babuška cũng từng độc lập đề xuất một thuật toán tương tự, thuật toán Kahan summation còn được gọi là thuật toán Kahan–Babuška summation.
+Thuật toán này chủ yếu do William Kahan phát hiện vào thập niên 1960. Vì Ivo Babuška cũng từng độc lập đề xuất một thuật toán tương tự, thuật toán cộng Kahan còn được gọi là thuật toán cộng Kahan–Babuška (Kahan–Babuška summation).
 
 ## Sai số làm tròn
 
@@ -10,13 +10,13 @@ Trong chương trình máy tính, ta cần biểu diễn xấp xỉ số thực 
 
 Trong phép cộng dấu phẩy động, tính giao hoán (commutativity) đúng, nhưng tính kết hợp (associativity) không đúng. Nói cách khác, $a+b = b+a$ nhưng $(a+b)+c \neq a+(b+c)$. Vì vậy, khi cộng một dãy số dấu phẩy động, ta có thể cộng lần lượt từ trái sang phải, hoặc giữ nguyên thứ tự ban đầu rồi ghép các phần tử thành từng cặp để cộng. Thuật toán thứ hai thường chậm hơn và cần nhiều bộ nhớ hơn, cũng thường được một số hàm tính tổng chuyên dụng của các ngôn ngữ sử dụng, nhưng kết quả tương đối chính xác hơn.
 
-Để thu được kết quả cộng tích lũy dấu phẩy động chính xác hơn, ta cần dùng thuật toán Kahan summation.
+Để thu được kết quả cộng tích lũy dấu phẩy động chính xác hơn, ta cần dùng thuật toán cộng Kahan.
 
 Khi tính $S_{new}=S_{old}+a$ (trong đó $a$ là một giá trị của dãy dấu phẩy động), định nghĩa giá trị thực sự được cộng vào $S$ là $a_{eff}=S_{new}-S_{old}$. Nếu $a_{eff}$ lớn hơn $a$, nghĩa là có sai số làm tròn lên; nếu $a_{eff}$ nhỏ hơn $a$, nghĩa là có sai số làm tròn xuống. Khi đó sai số làm tròn được định nghĩa là $E_{roundoff} = a_{eff} - a$. Giá trị dùng để hiệu chỉnh phần sai số làm tròn này là $a-a_{eff}$, tức là giá trị đối của $E_{roundoff}$. Gọi $c$ là biến bù cho các bit thấp bị mất trong phép tính, ta có $c_{new} = c_{old} + (a - a_{eff})$.
 
 ## Quy trình
 
-Thuật toán Kahan summation chủ yếu dùng một biến riêng để tích lũy sai số. Như đoạn mã tham khảo dưới đây, $sum$ là kết quả tổng cuối cùng được trả về. $c$ là biến bù cho các bit thấp bị mất trong phép tính (phần đã bị loại bỏ), và cũng là biến cần thiết trong thuật toán Kahan summation.
+Thuật toán cộng Kahan chủ yếu dùng một biến riêng để tích lũy sai số. Như đoạn mã tham khảo dưới đây, $sum$ là kết quả tổng cuối cùng được trả về. $c$ là biến bù cho các bit thấp bị mất trong phép tính (phần đã bị loại bỏ), và cũng là biến cần thiết trong thuật toán cộng Kahan.
 
 Vì $sum$ lớn còn $y$ nhỏ, các bit thấp của $y$ bị mất. $(t - sum)$ triệt tiêu phần bậc cao của $y$, rồi trừ $y$ sẽ khôi phục giá trị âm, tức phần bậc thấp của $y$. Do đó, về mặt đại số, $c$ luôn bằng không. Trong vòng lặp tiếp theo, phần bit thấp bị mất sẽ được cập nhật và cộng vào $y$.
 
@@ -39,7 +39,7 @@ Vì $sum$ lớn còn $y$ nhỏ, các bit thấp của $y$ bị mất. $(t - sum)
 
 ## Bài tập
 
-Trong OI, Kahan summation chủ yếu tồn tại như một công cụ phụ trợ, cung cấp giá trị có sai số nhỏ hơn cho kết quả tính toán.
+Trong OI, cộng Kahan chủ yếu tồn tại như một công cụ phụ trợ, cung cấp giá trị có sai số nhỏ hơn cho kết quả tính toán.
 
 ???+ note "Ví dụ [CodeForces Contest 800 Problem A. Voltage Keepsake](https://codeforces.com/contest/800/problem/A)"
     Có $n$ thiết bị đang được sử dụng đồng thời. Thiết bị thứ $i$ tiêu thụ $a_{i}$ đơn vị năng lượng mỗi giây. Việc tiêu thụ này là liên tục. Nghĩa là trong $\lambda$ giây, thiết bị sẽ tiêu thụ $\lambda \times a_{i}$ đơn vị năng lượng. Thiết bị thứ $i$ hiện lưu trữ $b_{i}$ đơn vị điện năng. Mọi thiết bị đều có thể lưu trữ lượng điện bất kỳ. Có một bộ sạc có thể cắm vào bất kỳ một thiết bị đơn lẻ nào. Mỗi giây, bộ sạc bổ sung $p$ đơn vị điện năng cho thiết bị. Việc sạc cũng là liên tục. Nghĩa là nếu cắm thiết bị trong $\lambda$ giây, nó sẽ nhận được $\lambda \times p$ đơn vị năng lượng. Ta có thể chuyển thiết bị đang được sạc tại bất kỳ thời điểm nào, kể cả thời điểm thực, và thời gian chuyển đổi được bỏ qua. Hãy tìm thời gian dài nhất có thể sử dụng các thiết bị trước khi một thiết bị nào đó đạt mức $0$ đơn vị năng lượng.

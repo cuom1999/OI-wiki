@@ -3,16 +3,16 @@ author: Ir1d, Tiphereth-A, sshwy, ksyx, Marcythm, orzAtalod, Xeonacid, Enter-tai
 <span id="tổng-quan"></span>
 ## Tổng quan
 
-AC automaton (Aho-Corasick automaton) là một automaton **dựa trên cấu trúc Trie** và kết hợp **ý tưởng của KMP**, dùng để giải các bài toán như khớp nhiều mẫu.
+Ô-tô-mát AC (ô-tô-mát Aho-Corasick) là một ô-tô-mát **dựa trên cấu trúc Trie** và kết hợp **ý tưởng của KMP**, dùng để giải các bài toán như khớp nhiều mẫu.
 
-Về bản chất, AC automaton là một automaton trên Trie.
+Về bản chất, ô-tô-mát AC là một ô-tô-mát trên Trie.
 
 Trước khi đọc bài này, hãy đọc trước [KMP](./kmp.md) và [Trie](./trie.md).
 
 <span id="giải-thích"></span>
 ## Giải thích
 
-Nói đơn giản, việc xây dựng một AC automaton gồm hai bước:
+Nói đơn giản, việc xây dựng một ô-tô-mát AC gồm hai bước:
 
 1.  Cấu trúc Trie cơ bản: đưa tất cả các xâu mẫu vào một cây Trie;
 2.  Ý tưởng của KMP: xây dựng con trỏ thất bại cho mọi đỉnh trên cây Trie.
@@ -22,7 +22,7 @@ Sau khi xây dựng xong, ta có thể dùng nó để khớp nhiều mẫu.
 <span id="xây-dựng-trie"></span>
 ## Xây dựng Trie
 
-Ban đầu, AC automaton chèn một số xâu mẫu vào một Trie, rồi xây dựng AC automaton trên Trie đó. Trie này là Trie thông thường, chỉ cần xây dựng theo cách dựng cây Trie cơ bản.
+Ban đầu, ô-tô-mát AC chèn một số xâu mẫu vào một Trie, rồi xây dựng ô-tô-mát AC trên Trie đó. Trie này là Trie thông thường, chỉ cần xây dựng theo cách dựng cây Trie cơ bản.
 
 Cần chú ý rằng mỗi đỉnh trong Trie biểu diễn một tiền tố của một xâu mẫu nào đó. Ở các phần sau, ta cũng gọi nó là một trạng thái. Một đỉnh biểu diễn một trạng thái, còn các cạnh của Trie là các phép chuyển trạng thái.
 
@@ -31,7 +31,7 @@ Nói một cách hình thức, với các xâu mẫu $s_1,s_2,\cdots,s_n$, sau k
 <span id="con-trỏ-thất-bại"></span>
 ## Con trỏ thất bại
 
-AC automaton dùng một con trỏ `fail` để hỗ trợ khớp nhiều xâu mẫu.
+Ô-tô-mát AC dùng một con trỏ `fail` để hỗ trợ khớp nhiều xâu mẫu.
 
 Con trỏ `fail` của trạng thái $u$ trỏ tới một trạng thái khác $v$, trong đó $v\in Q$ và $v$ là hậu tố dài nhất của $u$ (tức là trong các trạng thái hậu tố, chọn trạng thái dài nhất làm con trỏ `fail`).
 
@@ -40,11 +40,11 @@ So sánh con trỏ `fail` với con trỏ `next` trong [KMP](./kmp.md):
 1.  Điểm giống nhau: cả hai đều là con trỏ dùng để nhảy khi khớp thất bại.
 2.  Điểm khác nhau: con trỏ `next` tìm Border dài nhất (tiền tố và hậu tố giống nhau dài nhất), còn con trỏ `fail` trỏ tới tiền tố của một xâu mẫu nào đó khớp với hậu tố dài nhất của trạng thái hiện tại.
 
-Lý do là KMP chỉ khớp một xâu mẫu, còn AC automaton phải khớp nhiều xâu mẫu. Có thể đỉnh mà con trỏ `fail` trỏ tới tương ứng với một xâu mẫu khác, nên tiền tố của hai xâu có thể khác nhau.
+Lý do là KMP chỉ khớp một xâu mẫu, còn ô-tô-mát AC phải khớp nhiều xâu mẫu. Có thể đỉnh mà con trỏ `fail` trỏ tới tương ứng với một xâu mẫu khác, nên tiền tố của hai xâu có thể khác nhau.
 
-Tóm lại, con trỏ thất bại của AC automaton trỏ tới trạng thái hậu tố dài nhất của trạng thái hiện tại.
+Tóm lại, con trỏ thất bại của ô-tô-mát AC trỏ tới trạng thái hậu tố dài nhất của trạng thái hiện tại.
 
-Lưu ý: khi AC automaton thực hiện khớp, tại cùng một vị trí có thể khớp nhiều xâu mẫu.
+Lưu ý: khi ô-tô-mát AC thực hiện khớp, tại cùng một vị trí có thể khớp nhiều xâu mẫu.
 
 <span id="xây-dựng-con-trỏ"></span>
 ### Xây dựng con trỏ

@@ -2,49 +2,50 @@ author: CCXXXI, countercurrent-time, Enter-tainer, FFjet, H-J-Granger, Ir1d, mgt
 
 Kiến thức nền: [Ngôn ngữ và bài toán quyết định](./cc-basic.md#bài-toán)
 
-**Automaton trạng thái hữu hạn** (Finite State Machine, FSM, dưới đây cũng gọi tắt là automaton) là một trong những mô hình tính toán đơn giản nhất: cả khả năng mô tả lẫn tài nguyên của nó đều rất hạn chế. Automaton được dùng rộng rãi trong OI và khoa học máy tính; tư tưởng của nó xuất hiện trong nhiều thuật toán chuỗi, vì vậy nên học xong automaton trước khi học một số thuật toán chuỗi như [KMP](../string/kmp.md), [AC automaton](../string/ac-automaton.md), [SAM](../string/sam.md).
+**Ô-tô-mát trạng thái hữu hạn** (Finite State Machine, FSM, dưới đây cũng gọi tắt là ô-tô-mát) là một trong những mô hình tính toán đơn giản nhất: cả khả năng mô tả lẫn tài nguyên của nó đều rất hạn chế. Ô-tô-mát được dùng rộng rãi trong OI và khoa học máy tính; tư tưởng của nó xuất hiện trong nhiều thuật toán chuỗi, vì vậy nên học xong ô-tô-mát trước khi học một số thuật toán chuỗi như [KMP](../string/kmp.md), [ô-tô-mát AC](../string/ac-automaton.md), [SAM](../string/sam.md).
 
-## Nhập môn automaton
+## Nhập môn ô-tô-mát
 
-Trước hết, hãy hiểu automaton dùng để làm gì: automaton là một mô hình toán học dùng để phán định một dãy tín hiệu có thỏa một mẫu hoặc quy tắc cụ thể nào đó hay không.
+Trước hết, hãy hiểu ô-tô-mát dùng để làm gì: ô-tô-mát là một mô hình toán học dùng để phán định một dãy tín hiệu có thỏa một mẫu hoặc quy tắc cụ thể nào đó hay không.
 
 Có thể giải thích cụ thể hơn vài thuật ngữ trong câu trên. "Dãy tín hiệu" là một dãy các tín hiệu được sắp theo thứ tự, chẳng hạn từng ký tự của một chuỗi từ đầu đến cuối, từng số của một mảng từ $1$ đến $n$, hoặc từng chữ số của một số từ cao xuống thấp. "Phán định có thỏa một quy tắc nào đó hay không" có thể hiểu là: ta quan tâm dãy này có thuộc một tập cụ thể nào đó hay không. Tập này được định nghĩa bởi các quy tắc đã đặt trước, chẳng hạn "mọi chuỗi nhị phân có độ dài chẵn" hoặc "mọi chuỗi đối xứng".
 
-Đôi khi ta cần trả lời các câu hỏi kiểu này: một dãy cho trước có thỏa tính chất nào đó không? Ví dụ, một số nhị phân có phải số lẻ không, một chuỗi có phải chuỗi đối xứng không, hoặc có phải dãy con của một chuỗi khác không, v.v. Automaton chính là công cụ toán học dùng để giải quyết các vấn đề như vậy.
+Đôi khi ta cần trả lời các câu hỏi kiểu này: một dãy cho trước có thỏa tính chất nào đó không? Ví dụ, một số nhị phân có phải số lẻ không, một chuỗi có phải chuỗi đối xứng không, hoặc có phải dãy con của một chuỗi khác không, v.v. Ô-tô-mát chính là công cụ toán học dùng để giải quyết các vấn đề như vậy.
 
-Cách hoạt động của automaton rất giống lưu đồ. Giả sử bạn muốn đặt mua một cốc trà sữa trên nền tảng giao đồ ăn, toàn bộ lựa chọn của bạn tạo thành một dãy. Lưu đồ sau là một ví dụ:
+Cách hoạt động của ô-tô-mát rất giống lưu đồ. Giả sử bạn muốn đặt mua một cốc trà sữa trên nền tảng giao đồ ăn, toàn bộ lựa chọn của bạn tạo thành một dãy. Lưu đồ sau là một ví dụ:
 
-![Automaton mô phỏng quy trình đặt hàng](./images/fsm1.svg)
+![Ô-tô-mát mô phỏng quy trình đặt hàng](./images/fsm1.svg)
 
-Ví dụ, dãy lựa chọn của bạn là "mở giao diện đặt món -> chọn trà sữa -> có tiền mua trà sữa", thì các trạng thái bạn đi qua theo thứ tự có thể là "nền tảng giao đồ ăn -> giao diện đặt món -> thanh toán tiền trà sữa -> mua được trà sữa". Như vậy, "automaton trà sữa" này dựa vào lựa chọn của ta để giúp phán định ta có mua được trà sữa hay không. Ta cũng có thể thấy rằng có thể có nhiều hơn một cách để đi tới cùng một trạng thái. Cùng là không mua được trà sữa, có thể bạn thoát ngay ở giao diện đặt món, hoặc không có tiền mua trà sữa nên không mua được.
+Ví dụ, dãy lựa chọn của bạn là "mở giao diện đặt món -> chọn trà sữa -> có tiền mua trà sữa", thì các trạng thái bạn đi qua theo thứ tự có thể là "nền tảng giao đồ ăn -> giao diện đặt món -> thanh toán tiền trà sữa -> mua được trà sữa". Như vậy, "ô-tô-mát trà sữa" này dựa vào lựa chọn của ta để giúp phán định ta có mua được trà sữa hay không. Ta cũng có thể thấy rằng có thể có nhiều hơn một cách để đi tới cùng một trạng thái. Cùng là không mua được trà sữa, có thể bạn thoát ngay ở giao diện đặt món, hoặc không có tiền mua trà sữa nên không mua được.
 
-Thông qua automaton này, ta chia các dãy tín hiệu thành hai loại: dãy tín hiệu mua được trà sữa và dãy tín hiệu không mua được trà sữa. Dựa vào trạng thái cuối cùng, ta hoàn thành một bài toán quyết định.
+Thông qua ô-tô-mát này, ta chia các dãy tín hiệu thành hai loại: dãy tín hiệu mua được trà sữa và dãy tín hiệu không mua được trà sữa. Dựa vào trạng thái cuối cùng, ta hoàn thành một bài toán quyết định.
 
-Dù vừa dùng lưu đồ để so sánh với quá trình hoạt động của automaton, bản thân lưu đồ chỉ là một công cụ trực quan hóa dễ hiểu, không phải định nghĩa toán học của automaton. Để mô tả chính xác hơn cấu trúc của automaton, ta cần trừu tượng hóa các phần tử trong lưu đồ. Sau khi trừu tượng hóa, ta thấy cấu trúc của lưu đồ thực ra có thể rút gọn thành một đồ thị có hướng, trong đó mỗi đỉnh biểu diễn một trạng thái, mỗi cạnh có hướng biểu diễn một phép chuyển giữa các trạng thái.
+Dù vừa dùng lưu đồ để so sánh với quá trình hoạt động của ô-tô-mát, bản thân lưu đồ chỉ là một công cụ trực quan hóa dễ hiểu, không phải định nghĩa toán học của ô-tô-mát. Để mô tả chính xác hơn cấu trúc của ô-tô-mát, ta cần trừu tượng hóa các phần tử trong lưu đồ. Sau khi trừu tượng hóa, ta thấy cấu trúc của lưu đồ thực ra có thể rút gọn thành một đồ thị có hướng, trong đó mỗi đỉnh biểu diễn một trạng thái, mỗi cạnh có hướng biểu diễn một phép chuyển giữa các trạng thái.
 
-Vì vậy, cấu trúc cốt lõi của automaton có thể được hình thức hóa như một đồ thị có hướng, gọi là **đồ thị trạng thái**.
+Vì vậy, cấu trúc cốt lõi của ô-tô-mát có thể được hình thức hóa như một đồ thị có hướng, gọi là **đồ thị trạng thái**.
 
-Cách hoạt động của automaton tương tự lưu đồ, nhưng có các điểm khác: mỗi đỉnh của automaton đều là một đỉnh phán định; đỉnh của automaton chỉ là một trạng thái đơn thuần chứ không phải nhiệm vụ; cạnh của automaton có thể nhận nhiều loại ký tự (không chỉ giới hạn ở `T` hoặc `F`).
+Cách hoạt động của ô-tô-mát tương tự lưu đồ, nhưng có các điểm khác: mỗi đỉnh của ô-tô-mát đều là một đỉnh phán định; đỉnh của ô-tô-mát chỉ là một trạng thái đơn thuần chứ không phải nhiệm vụ; cạnh của ô-tô-mát có thể nhận nhiều loại ký tự (không chỉ giới hạn ở `T` hoặc `F`).
 
-Ví dụ, automaton để "kiểm tra một số nhị phân có phải số chẵn hay không" như sau:
+Ví dụ, ô-tô-mát để "kiểm tra một số nhị phân có phải số chẵn hay không" như sau:
 
-![Automaton kiểm tra số nhị phân chẵn](./images/fsm2.svg)
+![Ô-tô-mát kiểm tra số nhị phân chẵn](./images/fsm2.svg)
 
 Bắt đầu từ đỉnh khởi đầu, đọc dãy nhị phân của số đó từ bit cao xuống bit thấp, rồi xem cuối cùng dừng ở đâu. Nếu cuối cùng dừng tại đỉnh được khoanh đỏ thì đó là số chẵn; ngược lại thì không.
 
-Ở đây cần nhấn mạnh rằng dưới đây ta sẽ nhiều lần nhắc tới các khái niệm như "ký tự", "bảng chữ cái". Điều này không có nghĩa automaton chỉ áp dụng cho lĩnh vực chuỗi; ký tự không nhất thiết là các chữ cái kiểu $\tt abc\cdots z$, mà cũng có thể là một lựa chọn nào đó.
+Ở đây cần nhấn mạnh rằng dưới đây ta sẽ nhiều lần nhắc tới các khái niệm như "ký tự", "bảng chữ cái". Điều này không có nghĩa ô-tô-mát chỉ áp dụng cho lĩnh vực chuỗi; ký tự không nhất thiết là các chữ cái kiểu $\tt abc\cdots z$, mà cũng có thể là một lựa chọn nào đó.
 
-Nếu cần phán định quan hệ giữa một dãy tín hiệu hữu hạn và một dãy tín hiệu khác (ví dụ dãy tín hiệu kia có phải dãy con của một dãy tín hiệu nào đó hay không), cách thường dùng là xây dựng một automaton cho dãy tín hiệu hữu hạn đó. Nội dung này sẽ được nói tới khi học KMP.
+Nếu cần phán định quan hệ giữa một dãy tín hiệu hữu hạn và một dãy tín hiệu khác (ví dụ dãy tín hiệu kia có phải dãy con của một dãy tín hiệu nào đó hay không), cách thường dùng là xây dựng một ô-tô-mát cho dãy tín hiệu hữu hạn đó. Nội dung này sẽ được nói tới khi học KMP.
 
-Cần chú ý rằng automaton chỉ là một **mô hình toán học**, **không phải thuật toán**, và cũng **không phải cấu trúc dữ liệu**. Có nhiều cách hiện thực cùng một automaton, có thể có độ phức tạp thời gian và không gian khác nhau.
+Cần chú ý rằng ô-tô-mát chỉ là một **mô hình toán học**, **không phải thuật toán**, và cũng **không phải cấu trúc dữ liệu**. Có nhiều cách hiện thực cùng một ô-tô-mát, có thể có độ phức tạp thời gian và không gian khác nhau.
 
-Tiếp theo, bạn có thể tiếp tục nghiên cứu sâu hơn về automaton trên trang này, hoặc đi học các ví dụ cụ thể như [KMP](../string/kmp.md), [AC automaton](../string/ac-automaton.md), [SAM](../string/sam.md).
+Tiếp theo, bạn có thể tiếp tục nghiên cứu sâu hơn về ô-tô-mát trên trang này, hoặc đi học các ví dụ cụ thể như [KMP](../string/kmp.md), [ô-tô-mát AC](../string/ac-automaton.md), [SAM](../string/sam.md).
 
-FSM được chia thành hai loại: automaton trạng thái hữu hạn xác định và automaton trạng thái hữu hạn không xác định.
+FSM được chia thành hai loại: ô-tô-mát trạng thái hữu hạn xác định và ô-tô-mát trạng thái hữu hạn không xác định.
 
-## Automaton trạng thái hữu hạn xác định
+<span id="automaton-trạng-thái-hữu-hạn-xác-định"></span>
+## Ô-tô-mát trạng thái hữu hạn xác định
 
-**Automaton trạng thái hữu hạn xác định** (Deterministic Finite Automaton, DFA) có quá trình phán định là xác định. Lấy "automaton trà sữa" làm ví dụ: chỉ cần bạn mở giao diện đặt món thì sẽ đi vào giao diện đặt món, không xuất hiện các tình huống ngoài ý muốn như mạng sập không mở được, điện thoại hết pin đen màn hình, v.v.
+**Ô-tô-mát trạng thái hữu hạn xác định** (Deterministic Finite Automaton, DFA) có quá trình phán định là xác định. Lấy "ô-tô-mát trà sữa" làm ví dụ: chỉ cần bạn mở giao diện đặt món thì sẽ đi vào giao diện đặt món, không xuất hiện các tình huống ngoài ý muốn như mạng sập không mở được, điện thoại hết pin đen màn hình, v.v.
 
 ???+ abstract "DFA"
     DFA là một bộ năm $(Q,\Sigma,\delta,q_0,F)$, bao gồm:
@@ -184,7 +185,7 @@ Dĩ nhiên, sau khi quy định thứ tự ưu tiên của các phép toán, có
     -   $R_2^\ast = R_2$,
     -   $L(R_1 + R_2) = \{0,\ 01,\ \varepsilon,\ 1,\ 11,\ 111,\ \dots\}$.
 
-Mỗi biểu thức chính quy đều có thể được chuyển thành một NFA bằng [Thompson's construction](https://en.wikipedia.org/wiki/Thompson%27s_construction). Mỗi DFA cũng có thể được chuyển thành một biểu thức chính quy bằng phương pháp loại bỏ trạng thái[^state-elimination-method] (State Elimination Method). Vì vậy, biểu thức chính quy và FSM là tương đương.
+Mỗi biểu thức chính quy đều có thể được chuyển thành một NFA bằng [phép xây dựng Thompson](https://en.wikipedia.org/wiki/Thompson%27s_construction). Mỗi DFA cũng có thể được chuyển thành một biểu thức chính quy bằng phương pháp loại bỏ trạng thái[^state-elimination-method] (State Elimination Method). Vì vậy, biểu thức chính quy và FSM là tương đương.
 
 ### Ngôn ngữ chính quy
 
@@ -343,7 +344,7 @@ Hiện thực tham khảo như sau:[^detail]
     --8<-- "docs/misc/code/fsm/dfa.hpp:hopcroft"
     ```
 
-Hiện thực tham khảo này cho phép trạng thái của automaton mang nhãn là giá trị nguyên bất kỳ, chứ không chỉ là nhãn nhị phân "chấp nhận" và "không chấp nhận". Từ hiện thực tham khảo có thể thấy, điểm khác duy nhất so với thuật toán Hopcroft cơ bản nằm ở cách xây dựng phép chia ban đầu và tập chứng cứ. Automaton mở rộng kiểu này cũng được gọi là [Moore machine](https://en.wikipedia.org/wiki/Moore_machine). Một ứng dụng của nó có thể xem ở ví dụ thứ hai của mục này.
+Hiện thực tham khảo này cho phép trạng thái của ô-tô-mát mang nhãn là giá trị nguyên bất kỳ, chứ không chỉ là nhãn nhị phân "chấp nhận" và "không chấp nhận". Từ hiện thực tham khảo có thể thấy, điểm khác duy nhất so với thuật toán Hopcroft cơ bản nằm ở cách xây dựng phép chia ban đầu và tập chứng cứ. Ô-tô-mát mở rộng kiểu này cũng được gọi là [máy Moore](https://en.wikipedia.org/wiki/Moore_machine). Một ứng dụng của nó có thể xem ở ví dụ thứ hai của mục này.
 
 ### Ví dụ
 
@@ -409,17 +410,17 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
 -   [Language Recognition](http://poj.org/problem?id=3576)
 -   [Equanimous](https://qoj.ac/problem/7083)
 
-## Ứng dụng thường gặp của automaton
+## Ứng dụng thường gặp của ô-tô-mát
 
-Mục này liệt kê một số ứng dụng thường gặp của automaton trong lập trình thi đấu[^is-dfa].
+Mục này liệt kê một số ứng dụng thường gặp của ô-tô-mát (automaton) trong lập trình thi đấu[^is-dfa].
 
 ### Trie
 
-[Trie](../string/trie.md) là automaton đầu tiên mà phần lớn OIer tiếp xúc, chấp nhận và chỉ chấp nhận các phần tử trong tập chuỗi được chỉ định. Hàm chuyển chính là các cạnh trên Trie, còn trạng thái chấp nhận là trạng thái đi tới khi chèn từng chuỗi vào Trie.
+[Trie](../string/trie.md) là ô-tô-mát đầu tiên mà phần lớn OIer tiếp xúc, chấp nhận và chỉ chấp nhận các phần tử trong tập chuỗi được chỉ định. Hàm chuyển chính là các cạnh trên Trie, còn trạng thái chấp nhận là trạng thái đi tới khi chèn từng chuỗi vào Trie.
 
-### KMP automaton
+### Ô-tô-mát KMP (KMP automaton)
 
-[Thuật toán KMP](../string/kmp.md) có thể được xem như automaton. KMP automaton dựa trên chuỗi $s$ chấp nhận và chỉ chấp nhận các chuỗi có $s$ là hậu tố; trạng thái chấp nhận của nó là $|s|$.
+[Thuật toán KMP](../string/kmp.md) có thể được xem như ô-tô-mát. Ô-tô-mát KMP dựa trên chuỗi $s$ chấp nhận và chỉ chấp nhận các chuỗi có $s$ là hậu tố; trạng thái chấp nhận của nó là $|s|$.
 
 Hàm chuyển:
 
@@ -432,41 +433,41 @@ i+1&s[i+1]=c\\
 \end{cases}
 $$
 
-### AC automaton
+### Ô-tô-mát AC (AC automaton)
 
-[AC automaton](../string/ac-automaton.md) chấp nhận và chỉ chấp nhận các chuỗi có hậu tố là một phần tử trong tập chuỗi được chỉ định. Nói cách khác là Trie + KMP.
+[Ô-tô-mát AC](../string/ac-automaton.md) chấp nhận và chỉ chấp nhận các chuỗi có hậu tố là một phần tử trong tập chuỗi được chỉ định. Nói cách khác là Trie + KMP.
 
-### Suffix automaton
+### Ô-tô-mát hậu tố (Suffix automaton)
 
-[Suffix automaton](../string/sam.md) chấp nhận và chỉ chấp nhận các hậu tố của chuỗi được chỉ định.
+[Ô-tô-mát hậu tố](../string/sam.md) chấp nhận và chỉ chấp nhận các hậu tố của chuỗi được chỉ định.
 
-### Generalized suffix automaton
+### Ô-tô-mát hậu tố tổng quát (Generalized suffix automaton)
 
-[Generalized suffix automaton](../string/general-sam.md) chấp nhận và chỉ chấp nhận các hậu tố của một phần tử nào đó trong tập chuỗi được chỉ định. Nói cách khác là Trie + SAM.
+[Ô-tô-mát hậu tố tổng quát](../string/general-sam.md) chấp nhận và chỉ chấp nhận các hậu tố của một phần tử nào đó trong tập chuỗi được chỉ định. Nói cách khác là Trie + SAM.
 
-Quan hệ giữa generalized SAM và SAM chính là quan hệ giữa AC automaton và KMP automaton.
+Quan hệ giữa generalized SAM và SAM chính là quan hệ giữa ô-tô-mát AC và ô-tô-mát KMP.
 
-### Palindromic automaton
+### Ô-tô-mát đối xứng (Palindromic automaton)
 
-[Palindromic automaton](../string/pam.md) khá đặc biệt, nó không thể được định nghĩa rất thuận tiện như một automaton.
+[Ô-tô-mát đối xứng](../string/pam.md) khá đặc biệt, nó không thể được định nghĩa rất thuận tiện như một ô-tô-mát.
 
 Nếu cần định nghĩa, nó chấp nhận và chỉ chấp nhận **tâm và nửa phải** của mọi chuỗi con đối xứng của một chuỗi nào đó.
 
-"Tâm và phần bên phải" trong chuỗi đối xứng lẻ là ý nghĩa theo mặt chữ; trong chuỗi đối xứng chẵn, nó được định nghĩa là một ký tự đặc biệt cộng với phần bên phải. Định nghĩa này trông hơi lạ, nhưng nó giúp PAM thực sự trở thành một automaton, chứ không chỉ là hai cây.
+"Tâm và phần bên phải" trong chuỗi đối xứng lẻ là ý nghĩa theo mặt chữ; trong chuỗi đối xứng chẵn, nó được định nghĩa là một ký tự đặc biệt cộng với phần bên phải. Định nghĩa này trông hơi lạ, nhưng nó giúp PAM thực sự trở thành một ô-tô-mát, chứ không chỉ là hai cây.
 
-### Sequence automaton
+### Ô-tô-mát dãy con (Sequence automaton)
 
-[Sequence automaton](../string/seq-automaton.md) chấp nhận và chỉ chấp nhận các dãy con của chuỗi được chỉ định.
+[Ô-tô-mát dãy con](../string/seq-automaton.md) chấp nhận và chỉ chấp nhận các dãy con của chuỗi được chỉ định.
 
 ### DP lồng DP
 
-[DP lồng DP](../dp/dp-of-dp.md) là một ứng dụng của automaton, có thể xem như kỹ thuật trước hết xây dựng automaton bằng DP tầng trong, rồi ở tầng ngoài thực hiện các nhiệm vụ đếm hoặc tối ưu hóa bằng DP trên automaton.
+[DP lồng DP](../dp/dp-of-dp.md) là một ứng dụng của ô-tô-mát, có thể xem như kỹ thuật trước hết xây dựng ô-tô-mát bằng DP tầng trong, rồi ở tầng ngoài thực hiện các nhiệm vụ đếm hoặc tối ưu hóa bằng DP trên ô-tô-mát.
 
 ## Liên kết hậu tố
 
-Vì automaton và so khớp có quan hệ rất chặt chẽ, mà một tư tưởng cơ bản của so khớp là "chuỗi này không được thì thử xem hậu tố của nó có được không", nên trong nhiều automaton (KMP, AC automaton, SAM, PAM) đều có khái niệm liên kết hậu tố.
+Vì ô-tô-mát và so khớp có quan hệ rất chặt chẽ, mà một tư tưởng cơ bản của so khớp là "chuỗi này không được thì thử xem hậu tố của nó có được không", nên trong nhiều ô-tô-mát (KMP, ô-tô-mát AC, SAM, PAM) đều có khái niệm liên kết hậu tố.
 
-Một trạng thái sẽ tương ứng với một số chuỗi. Liên kết hậu tố của nó trỏ tới trạng thái tương ứng với hậu tố thực chung dài nhất trong các chuỗi mà trạng thái đó biểu diễn. Nói chung, các liên kết hậu tố sẽ tạo thành một cây, và cây liên kết hậu tố của các automaton khác nhau có một số tính chất giống nhau; khi học có thể chú ý thêm.
+Một trạng thái sẽ tương ứng với một số chuỗi. Liên kết hậu tố của nó trỏ tới trạng thái tương ứng với hậu tố thực chung dài nhất trong các chuỗi mà trạng thái đó biểu diễn. Nói chung, các liên kết hậu tố sẽ tạo thành một cây, và cây liên kết hậu tố của các ô-tô-mát khác nhau có một số tính chất giống nhau; khi học có thể chú ý thêm.
 
 ## Đọc thêm
 

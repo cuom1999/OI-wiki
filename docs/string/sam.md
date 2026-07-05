@@ -16,9 +16,9 @@ author: GoodCoder666, abc1763613206, ksyx
 
 <span id="tổng-quan-về-suffix-automaton"></span>
 
-## Tổng quan về suffix automaton
+## Tổng quan về ô-tô-mát hậu tố
 
-**Suffix automaton** (SAM) là một cấu trúc dữ liệu mạnh, có thể giải quyết nhiều bài toán liên quan đến xâu.
+**Ô-tô-mát hậu tố** (Suffix automaton, SAM) là một cấu trúc dữ liệu mạnh, có thể giải quyết nhiều bài toán liên quan đến xâu.
 
 Ví dụ, các bài toán xâu sau đều có thể được giải bằng SAM trong thời gian tuyến tính:
 
@@ -39,9 +39,9 @@ Nói cách khác:
 -   Đồ thị có một đỉnh nguồn $t_0$, gọi là **trạng thái ban đầu**; mọi đỉnh khác đều có thể đi tới được từ $t_0$.
 -   Mỗi **chuyển trạng thái** được gán nhãn bằng một ký tự. Mọi chuyển trạng thái xuất phát từ cùng một đỉnh có nhãn **khác nhau**.
 -   Có một hoặc nhiều **trạng thái kết thúc**. Nếu ta bắt đầu từ trạng thái ban đầu $t_0$ và cuối cùng chuyển tới một trạng thái kết thúc, thì chuỗi nhãn của các chuyển trạng thái trên đường đi chắc chắn là một hậu tố của xâu $s$. Ngược lại, mỗi hậu tố của $s$ đều có thể được tạo bởi một đường đi từ $t_0$ tới một trạng thái kết thúc nào đó.
--   Trong tất cả các automaton thỏa các điều kiện trên, SAM có số đỉnh nhỏ nhất.
+-   Trong tất cả các ô-tô-mát thỏa các điều kiện trên, SAM có số đỉnh nhỏ nhất.
 
-Điểm cốt lõi của SAM chính là tính nhỏ nhất này. Thực ra, nếu trực tiếp xây [AC automaton](./ac-automaton.md) cho tất cả hậu tố của xâu $s$, ta cũng thu được một DFA chấp nhận tất cả hậu tố của $s$. Nhưng trong trường hợp xấu nhất, automaton đó có $\Theta(n^2)$ đỉnh, nên độ phức tạp không chấp nhận được. Từ ví dụ bên dưới có thể thấy DFA nhận được khi xây AC automaton cho mọi hậu tố có nhiều đỉnh trùng lặp và có thể gộp lại. SAM đẩy việc gộp đỉnh đến mức tối đa, nhờ đó kích thước DFA thu được được khống chế ở $O(n)$. Theo nghĩa này, SAM là AC automaton "nén" của toàn bộ các hậu tố của xâu.
+Điểm cốt lõi của SAM chính là tính nhỏ nhất này. Thực ra, nếu trực tiếp xây [ô-tô-mát AC](./ac-automaton.md) cho tất cả hậu tố của xâu $s$, ta cũng thu được một DFA chấp nhận tất cả hậu tố của $s$. Nhưng trong trường hợp xấu nhất, ô-tô-mát đó có $\Theta(n^2)$ đỉnh, nên độ phức tạp không chấp nhận được. Từ ví dụ bên dưới có thể thấy DFA nhận được khi xây ô-tô-mát AC cho mọi hậu tố có nhiều đỉnh trùng lặp và có thể gộp lại. SAM đẩy việc gộp đỉnh đến mức tối đa, nhờ đó kích thước DFA thu được được khống chế ở $O(n)$. Theo nghĩa này, SAM là ô-tô-mát AC "nén" của toàn bộ các hậu tố của xâu.
 
 <span id="xâu-con-và-đường-đi"></span>
 
@@ -57,7 +57,7 @@ Có thể có nhiều hơn một đường đi đi tới cùng một trạng th�
 
 ### Ví dụ đơn giản
 
-Ở đây ta trình bày suffix automaton của một vài xâu đơn giản.
+Ở đây ta trình bày ô-tô-mát hậu tố của một vài xâu đơn giản.
 
 Ta dùng màu xanh lam cho trạng thái ban đầu và màu xanh lục cho trạng thái kết thúc.
 
@@ -85,13 +85,13 @@ Với xâu $s=\texttt{abbb}$:
 
 ![](./images/SAM/SAabbb.svg)
 
-Trong ví dụ cuối cùng, nếu trực tiếp xây AC automaton cho tất cả hậu tố của nó, đường đi $\texttt{bbb}$ và đường đi $\texttt{abbb}$ đáng ra sẽ dẫn tới hai đỉnh khác nhau. Tuy nhiên hai đỉnh này đều là trạng thái kết thúc, và dù thêm bất kỳ ký tự nào nữa cũng không thể nhận được một xâu khớp dài hơn. Điều đó cho thấy hai đỉnh này có hành vi chuyển trạng thái giống nhau trong automaton, nên có thể gộp thành cùng một đỉnh. Khi đó ta thu được SAM như hình. Phần thảo luận bên dưới sẽ mở rộng ý tưởng gộp đỉnh này cho mọi trường hợp và chứng minh rằng, nếu gộp đỉnh hợp lý, SAM cuối cùng chỉ có $O(n)$ đỉnh và chuyển trạng thái.
+Trong ví dụ cuối cùng, nếu trực tiếp xây ô-tô-mát AC cho tất cả hậu tố của nó, đường đi $\texttt{bbb}$ và đường đi $\texttt{abbb}$ đáng ra sẽ dẫn tới hai đỉnh khác nhau. Tuy nhiên hai đỉnh này đều là trạng thái kết thúc, và dù thêm bất kỳ ký tự nào nữa cũng không thể nhận được một xâu khớp dài hơn. Điều đó cho thấy hai đỉnh này có hành vi chuyển trạng thái giống nhau trong ô-tô-mát, nên có thể gộp thành cùng một đỉnh. Khi đó ta thu được SAM như hình. Phần thảo luận bên dưới sẽ mở rộng ý tưởng gộp đỉnh này cho mọi trường hợp và chứng minh rằng, nếu gộp đỉnh hợp lý, SAM cuối cùng chỉ có $O(n)$ đỉnh và chuyển trạng thái.
 
 <span id="thuật-toán-xây-dựng-tuyến-tính"></span>
 
 ## Thuật toán xây dựng tuyến tính
 
-Trước khi mô tả thuật toán xây SAM trong thời gian tuyến tính, ta cần giới thiệu hai khái niệm rất quan trọng để hiểu quá trình xây dựng, đồng thời chứng minh ngắn gọn các tính chất của chúng. Trong đó, tập vị trí kết thúc $\operatorname{endpos}$ định nghĩa các đỉnh trong SAM, tức chỉ ra điều kiện cần và đủ để gộp các đỉnh; còn liên kết hậu tố $\operatorname{link}$ chỉ là đối ứng tự nhiên trong SAM của [con trỏ thất bại](./ac-automaton.md#con-trỏ-thất-bại) trong AC automaton.
+Trước khi mô tả thuật toán xây SAM trong thời gian tuyến tính, ta cần giới thiệu hai khái niệm rất quan trọng để hiểu quá trình xây dựng, đồng thời chứng minh ngắn gọn các tính chất của chúng. Trong đó, tập vị trí kết thúc $\operatorname{endpos}$ định nghĩa các đỉnh trong SAM, tức chỉ ra điều kiện cần và đủ để gộp các đỉnh; còn liên kết hậu tố $\operatorname{link}$ chỉ là đối ứng tự nhiên trong SAM của [con trỏ thất bại](./ac-automaton.md#con-trỏ-thất-bại) trong ô-tô-mát AC.
 
 <span id="tập-vị-trí-kết-thúc-endpos"></span>
 
@@ -176,7 +176,7 @@ Dưới đây là một **ví dụ** về cây liên kết hậu tố sinh ra kh
 
 ![](./images/SAM/SA_suffix_links.svg)
 
-Kết hợp với hình minh họa, nếu hình thành được một số trực giác về suffix automaton thì việc hiểu thuật toán xây dựng và các ứng dụng bên dưới sẽ dễ hơn.
+Kết hợp với hình minh họa, nếu hình thành được một số trực giác về ô-tô-mát hậu tố thì việc hiểu thuật toán xây dựng và các ứng dụng bên dưới sẽ dễ hơn.
 
 ???+ example "Giải thích hình minh họa"
     -   Trên SAM tồn tại một đường đi dài nhất có nhãn đúng bằng chính xâu $\texttt{abcbc}$. Đường đi này bắt đầu từ trạng thái ban đầu; mỗi trạng thái đi qua đều ứng với một tiền tố của xâu $\texttt{abcbc}$ ($\varnothing,\texttt{a},\texttt{ab},\texttt{abc},\texttt{abcb},\texttt{abcbc}$). Các trạng thái này rất quan trọng trong phần [ứng dụng](#cây-liên-kết-hậu-tố) phía sau.
@@ -191,9 +191,9 @@ Kết hợp với hình minh họa, nếu hình thành được một số trự
         -   Sau khi thêm ký tự, các trạng thái khác nhau có thể chuyển tới cùng một trạng thái vì ký tự mới khiến việc mở rộng tập vị trí kết thúc trở nên khó hơn.
     -   Trên cây liên kết hậu tố, tập $\operatorname{endpos}$ của mỗi đỉnh là hợp của các tập $\operatorname{endpos}$ của các nút con, nhiều nhất thêm một vị trí nữa. Vị trí mới này tồn tại khi và chỉ khi đỉnh đó đúng là tiền tố của xâu gốc kết thúc tại vị trí ấy. Trong hình minh họa, các đỉnh không phải gốc và không phải lá của cây liên kết hậu tố đều không ứng với tiền tố của xâu $\texttt{abcbc}$, nên trường hợp đó không xảy ra.
 
-Suffix automaton lưu thông tin về toàn bộ xâu con của xâu. Có thể hiểu điều này từ hai góc nhìn:
+Ô-tô-mát hậu tố lưu thông tin về toàn bộ xâu con của xâu. Có thể hiểu điều này từ hai góc nhìn:
 
--   Bản thân SAM có thể được xem là phiên bản nén của AC automaton trên toàn bộ hậu tố của xâu. Vì vậy, nó lưu thông tin về mọi tiền tố của mọi hậu tố, tương đương với lưu thông tin về mọi xâu con của xâu.
+-   Bản thân SAM có thể được xem là phiên bản nén của ô-tô-mát AC trên toàn bộ hậu tố của xâu. Vì vậy, nó lưu thông tin về mọi tiền tố của mọi hậu tố, tương đương với lưu thông tin về mọi xâu con của xâu.
 -   Cây liên kết hậu tố của SAM có thể được xem là phiên bản nén của các đường đi hậu tố của toàn bộ tiền tố của xâu. Vì vậy, nó lưu thông tin về mọi hậu tố của mọi tiền tố, cũng tương đương với lưu thông tin về mọi xâu con của xâu.
 
 Cả hai cách nhìn này đều hữu ích khi xử lý các bài toán khác nhau.
@@ -302,7 +302,7 @@ Ta giải thích chi tiết từng bước của thuật toán và chứng minh 
     
         Tuy nhiên, ta chỉ có thể thêm các chuyển trạng thái không xung đột với chuyển trạng thái đã có. Vì vậy, hễ tìm thấy một chuyển trạng thái $c$ đã tồn tại, ta phải dừng lại.
     -   Trường hợp đơn giản nhất là ta đi tới trạng thái ảo $-1$. Điều này có nghĩa là ta đã thêm chuyển trạng thái $c$ cho mọi hậu tố của $s$. Nó cũng có nghĩa là ký tự $c$ chưa từng xuất hiện trong xâu $s$. Vì vậy liên kết hậu tố của $\textit{cur}$ là trạng thái $0$.
-    -   Trong trường hợp thứ hai, ta tìm được chuyển trạng thái có sẵn $(p,q)$. Điều này có nghĩa là ta đang thử thêm vào automaton một xâu **đã tồn tại** $x+c$, trong đó $x$ là một hậu tố của $s$ và xâu $x+c$ đã xuất hiện như một xâu con của $s$. Vì giả sử automaton của xâu $s$ đã được xây đúng, ta không nên thêm một chuyển trạng thái mới ở đây.
+    -   Trong trường hợp thứ hai, ta tìm được chuyển trạng thái có sẵn $(p,q)$. Điều này có nghĩa là ta đang thử thêm vào ô-tô-mát một xâu **đã tồn tại** $x+c$, trong đó $x$ là một hậu tố của $s$ và xâu $x+c$ đã xuất hiện như một xâu con của $s$. Vì giả sử ô-tô-mát của xâu $s$ đã được xây đúng, ta không nên thêm một chuyển trạng thái mới ở đây.
     
         Tuy nhiên, điểm khó là liên kết hậu tố từ trạng thái $\textit{cur}$ nên nối tới trạng thái nào? Ta cần nối liên kết hậu tố tới một trạng thái có xâu dài nhất đúng bằng $x+c$, tức $\operatorname{len}$ của trạng thái đó phải là $\operatorname{len}(p)+1$. Nhưng trạng thái như vậy có thể chưa tồn tại, tức $\operatorname{len}(q)>\operatorname{len}(p)+1$. Trong trường hợp này, ta phải tách trạng thái $q$ để tạo ra một trạng thái như vậy.
     -   Tất nhiên, nếu chuyển trạng thái $(p,\,q)$ là liên tục, thì $\operatorname{len}(q)=\operatorname{len}(p)+1$. Khi đó mọi thứ rất đơn giản: chỉ cần cho liên kết hậu tố của $\textit{cur}$ trỏ tới trạng thái $q$.
@@ -329,7 +329,7 @@ Ta giả sử kích thước bảng chữ cái là **hằng số**, tức mỗi 
     
     Ta dùng sự thật rằng kích thước của SAM (số trạng thái và số chuyển trạng thái) là **tuyến tính**. Với số trạng thái, chứng minh tuyến tính chính là bản thân thuật toán; với số chuyển trạng thái, chứng minh tuyến tính sẽ được đưa ra sau khi cài đặt thuật toán.
     
-    Vì vậy tổng độ phức tạp của **phần thứ nhất và phần thứ hai** rõ ràng là tuyến tính, vì theo trung bình mỗi thao tác chỉ thêm một chuyển trạng thái mới vào automaton.
+    Vì vậy tổng độ phức tạp của **phần thứ nhất và phần thứ hai** rõ ràng là tuyến tính, vì theo trung bình mỗi thao tác chỉ thêm một chuyển trạng thái mới vào ô-tô-mát.
     
     Còn cần ước lượng tổng độ phức tạp của **phần thứ ba**, nơi ta nối lại các chuyển trạng thái ban đầu trỏ tới $q$ sang $\textit{clone}$. Gọi $v=\operatorname{longest}(p)$; đây là một hậu tố của xâu $s$. Mỗi lần lặp, độ dài của $v$ giảm đi, nên vị trí bắt đầu của $v$ với vai trò hậu tố của $s$ chắc chắn dịch sang phải. Do đó, số lần $p$ di chuyển theo liên kết hậu tố trong vòng lặp không vượt quá quãng đường mà vị trí bắt đầu của $v$ với vai trò hậu tố của $s$ dịch sang phải. Vì $p$ phải di chuyển ít nhất một lần để kết thúc vòng lặp, và $p$ ít nhất là kết quả của một lần đi theo liên kết hậu tố từ $last$, nên khi vòng lặp kết thúc, vị trí bắt đầu của $v$ với vai trò hậu tố của $s$ không nằm trước vị trí bắt đầu của xâu $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$. Hơn nữa, khi vòng lặp kết thúc, vị trí bắt đầu của xâu $v$ với vai trò hậu tố của $s$ đúng bằng vị trí bắt đầu của $v+c$ với vai trò hậu tố của $s+c$; còn với vai trò hậu tố của $s+c$, xâu $v+c$ đúng là xâu $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{cur}))$. Vì $cur$ là giá trị mới của $last$, số lần di chuyển trong vòng lặp không vượt quá quãng đường vị trí bắt đầu của $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$ với vai trò hậu tố của xâu hiện tại dịch sang phải trước và sau cập nhật, cộng thêm một (số lần di chuyển bắt buộc để kết thúc vòng lặp).
     
@@ -350,7 +350,7 @@ struct state {
 };
 ```
 
-Bản thân SAM sẽ được lưu trong một mảng các cấu trúc `state`. Ta ghi lại kích thước hiện tại của automaton trong `sz`, và biến `last`, tức trạng thái ứng với toàn bộ xâu hiện tại.
+Bản thân SAM sẽ được lưu trong một mảng các cấu trúc `state`. Ta ghi lại kích thước hiện tại của ô-tô-mát trong `sz`, và biến `last`, tức trạng thái ứng với toàn bộ xâu hiện tại.
 
 ```cpp
 constexpr int MAXLEN = 100000;

@@ -371,14 +371,14 @@ Ta dùng $C$ nhóm hàm băm khác nhau để thực hiện riêng quá trình t
 
 Thực nghiệm cho thấy lấy $C\approx 80$ là đủ thỏa yêu cầu. Chứng minh chặt chẽ rất dài dòng, nên lược bỏ ở đây.
 
-Cuối cùng, làm sao tìm min trong ma trận con? Dùng bảng S-T hai chiều là đủ, tiền xử lý $O(nm\log n\log m)$, trả lời truy vấn $O(1)$.
+Cuối cùng, làm sao tìm giá trị nhỏ nhất trong ma trận con? Dùng bảng S-T hai chiều là đủ, tiền xử lý $O(nm\log n\log m)$, trả lời truy vấn $O(1)$.
 
 ## Các ứng dụng khác của ngẫu nhiên hóa trong thuật toán
 
 Những vai trò khác của ngẫu nhiên hóa còn bao gồm:
 
 -   Tránh bị người tạo test dùng dữ liệu có chủ đích để làm hack. Ví dụ, khi tìm kiếm thì xáo trộn ngẫu nhiên thứ tự các đỉnh kề.
--   Bảo đảm các "thao tác" trong quá trình thuật toán có tính đều theo một ý nghĩa nào đó. Ví dụ thuật toán [simulated annealing](../misc/simulated-annealing.md).
+-   Bảo đảm các "thao tác" trong quá trình thuật toán có tính đều theo một ý nghĩa nào đó. Ví dụ thuật toán [mô phỏng luyện kim](../misc/simulated-annealing.md).
 
 Trong các bối cảnh này, ngẫu nhiên hóa thường, nhưng không phải lúc nào cũng, gắn với các cách làm thử nghiệm hoặc lấy điểm một phần.
 
@@ -427,11 +427,11 @@ Thuật toán chuẩn của bài này là luồng mạng, nhưng ở đây ta d�
     }
     ```
 
-### Ví dụ: (*) randomized heap[^ref3]
+### Ví dụ: (*) heap ngẫu nhiên (randomized heap)[^ref3]
 
-Cách viết meldable heap thường gặp nhất có lẽ là leftist tree, bảo đảm độ phức tạp của phép gộp bằng cách duy trì chiều cao để cây nghiêng trái. Tuy nhiên duy trì chiều cao hơi phiền, nên ta muốn tránh việc này nếu có thể.
+Cách viết heap gộp được (meldable heap) thường gặp nhất có lẽ là cây nghiêng trái (leftist tree), bảo đảm độ phức tạp của phép gộp bằng cách duy trì chiều cao để cây nghiêng trái. Tuy nhiên duy trì chiều cao hơi phiền, nên ta muốn tránh việc này nếu có thể.
 
-Vậy có thể xét dùng randomized heap: không đổi con theo chiều cao, mà đổi ngẫu nhiên.
+Vậy có thể xét dùng heap ngẫu nhiên (randomized heap): không đổi con theo chiều cao, mà đổi ngẫu nhiên.
 
 ???+ note "Mã"
     ```cpp
@@ -452,12 +452,12 @@ Vậy có thể xét dùng randomized heap: không đổi con theo chiều cao, 
     void pop(int &now) { now = merge(nd[now].child[0], nd[now].child[1]); }
     ```
 
-Randomized heap không đặt bất kỳ yêu cầu cứng hay mềm nào lên hình dạng của heap; độ phức tạp kỳ vọng của phép gộp đúng cho bất kỳ hai heap nào, khi chúng là tham số của hàm `merge`. Chứng minh như sau.
+Heap ngẫu nhiên không đặt bất kỳ yêu cầu cứng hay mềm nào lên hình dạng của heap; độ phức tạp kỳ vọng của phép gộp đúng cho bất kỳ hai heap nào, khi chúng là tham số của hàm `merge`. Chứng minh như sau.
 
 ???+ note "Chứng minh độ phức tạp kỳ vọng"
     Sẽ chứng minh rằng với bất kỳ heap $A$ nào, nếu bắt đầu từ nút gốc và mỗi lần chọn ngẫu nhiên đi sang trái hoặc phải cho đến khi không còn đường, thì kỳ vọng độ dài đường đi (tức số nút trên đường đi) là $h(A)\leq\log_2 (|A|+1)$.
     
-    -   Chú ý trong quá trình trên, độ phức tạp kỳ vọng khi gộp hai heap $A,B$ là $O\big(h(A)+h(B)\big)$, nên kết luận trên bảo đảm độ phức tạp kỳ vọng của randomized heap.
+    -   Chú ý trong quá trình trên, độ phức tạp kỳ vọng khi gộp hai heap $A,B$ là $O\big(h(A)+h(B)\big)$, nên kết luận trên bảo đảm độ phức tạp kỳ vọng của heap ngẫu nhiên.
     
     Chứng minh bằng quy nạp toán học. Trường hợp cơ sở là $A$ rỗng, hiển nhiên đúng. Giả sử $A$ không rỗng.
     

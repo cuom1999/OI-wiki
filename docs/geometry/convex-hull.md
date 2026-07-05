@@ -20,7 +20,7 @@ Bao lồi bao quanh toàn bộ các điểm đã cho với chu vi nhỏ nhất. 
 
 ### Thuật toán Andrew để tìm bao lồi
 
-Các cách thường dùng để tìm bao lồi gồm Graham scan và thuật toán Andrew; ở đây chủ yếu giới thiệu thuật toán Andrew.
+Các cách thường dùng để tìm bao lồi gồm quét Graham (Graham scan) và thuật toán Andrew; ở đây chủ yếu giới thiệu thuật toán Andrew.
 
 #### Tính chất
 
@@ -112,11 +112,11 @@ $$
 \sum_{i=1}^{\textit{ans}}\left|\overrightarrow{h_ih_{i+1}}\right|
 $$
 
-### Graham scan
+### Quét Graham (Graham scan)
 
 #### Tính chất
 
-Tương tự thuật toán Andrew, độ phức tạp thời gian của Graham scan là $O(n\log n)$, nút thắt độ phức tạp cũng nằm ở việc sắp xếp tất cả các điểm.
+Tương tự thuật toán Andrew, độ phức tạp thời gian của quét Graham (Graham scan) là $O(n\log n)$, nút thắt độ phức tạp cũng nằm ở việc sắp xếp tất cả các điểm.
 
 #### Quy trình
 

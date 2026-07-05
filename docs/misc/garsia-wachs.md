@@ -40,7 +40,7 @@ Chứng minh cho giai đoạn thứ ba của thuật toán Garsia–Wachs, tức
 
 ## Ứng dụng
 
-Gói [garsia-wachs package](https://hackage.haskell.org/package/garsia-wachs) của ngôn ngữ lập trình hàm Haskell cung cấp một cài đặt hàm cho thuật toán Garsia–Wachs. Nó chủ yếu được dùng để xây dựng bảng tìm kiếm tối ưu, hoặc cân bằng cấu trúc dữ liệu [rope](https://hackage.haskell.org/package/rope) với độ phức tạp tối ưu.
+Gói [garsia-wachs](https://hackage.haskell.org/package/garsia-wachs) của ngôn ngữ lập trình hàm Haskell cung cấp một cài đặt hàm cho thuật toán Garsia–Wachs. Nó chủ yếu được dùng để xây dựng bảng tìm kiếm tối ưu, hoặc cân bằng cấu trúc dữ liệu [rope](https://hackage.haskell.org/package/rope) với độ phức tạp tối ưu.
 
 ???+ note "Ghi chú"
     **rope** là công cụ trong Haskell dùng để thao tác bytestring có chú thích tùy chọn, dựa trên [finger tree](../ds/finger-tree.md).

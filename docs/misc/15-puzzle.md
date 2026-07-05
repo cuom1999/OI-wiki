@@ -21,7 +21,7 @@ Johnson & Story (1879) đã chứng minh rằng nếu $m$ và $n$ đều ít nh�
 
 ## Thuật toán
 
-Tìm một nghiệm cho trò chơi trượt số tương đối dễ, nhưng tìm **nghiệm tối ưu** là một bài toán **NP-hard**. Nghiệm tối ưu của 15-Puzzle có nhiều nhất 80 bước; còn nghiệm tối ưu của 8-Puzzle có nhiều nhất 31 bước.
+Tìm một nghiệm cho trò chơi trượt số tương đối dễ, nhưng tìm **nghiệm tối ưu** là một bài toán **NP-khó** (NP-hard). Nghiệm tối ưu của 15-Puzzle có nhiều nhất 80 bước; còn nghiệm tối ưu của 8-Puzzle có nhiều nhất 31 bước.
 
 N-Puzzle hỗ trợ các thuật toán tìm kiếm trên đồ thị thường gặp như tìm kiếm theo chiều rộng và tìm kiếm theo chiều sâu. Tương tự, ta cũng có thể dùng thuật toán [tìm kiếm A \*](../search/astar.md) để tìm nghiệm tối ưu. Hàm heuristic $h(n)$ có thể là:
 
