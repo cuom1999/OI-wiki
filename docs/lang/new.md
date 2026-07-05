@@ -72,11 +72,11 @@ for (auto px = arr.begin(), ed = arr.end(); px != ed; ++px) {
 }
 ```
 
-### Khai báo mục item-declaration
+### Khai báo mục `item-declaration`
 
 Khai báo một biến để nhận phần tử trong container ở bên phải; kiểu biến phải thống nhất với kiểu phần tử con trong container. Có thể dùng `auto` để tự động suy luận kiểu; với kiểu phức tạp, thường dùng `auto&` để tránh chi phí sao chép.
 
-### Bộ khởi tạo phạm vi range-initializer
+### Bộ khởi tạo phạm vi `range-initializer`
 
 Bộ khởi tạo phạm vi có thể là bất kỳ đối tượng có thể lặp nào (chẳng hạn mảng, hoặc đối tượng lớp định nghĩa các hàm thành viên `begin` và `end`). Nếu đưa vào một biểu thức, biểu thức đó cũng chỉ được tính một lần.
 
@@ -93,7 +93,7 @@ for (auto& i : c) std::cout << i.first << i.second;
 for (auto i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 ```
 
-### Hỗ trợ range for cho kiểu tự định nghĩa
+### Hỗ trợ vòng lặp range-for cho kiểu tự định nghĩa
 
 Chỉ cần cung cấp các hàm thành viên `begin` và `end`; kiểu trả về cần hỗ trợ so sánh, tăng và giải tham chiếu (toán tử `*`).
 
@@ -135,9 +135,9 @@ int main() {
 }
 ```
 
-## Structured binding (C++17)
+## Ràng buộc có cấu trúc (structured binding, C++17)
 
-Structured binding là một dạng cú pháp tiện ích do C++17 cung cấp, giúp trích xuất phần tử con hoặc tham chiếu đến phần tử con một cách thuận tiện, như sau:
+Ràng buộc có cấu trúc là một dạng cú pháp tiện ích do C++17 cung cấp, giúp trích xuất phần tử con hoặc tham chiếu đến phần tử con một cách thuận tiện, như sau:
 
 ```cpp
 struct C {
@@ -192,14 +192,14 @@ int main() {
 }
 ```
 
-Sau C++17, có thể dùng structured binding để trích xuất giá trị, như sau:
+Sau C++17, có thể dùng ràng buộc có cấu trúc (structured binding) để trích xuất giá trị, như sau:
 
 ```cpp
 std::vector<int> vec = {1, 9, 2, 6, 0};
 std::tuple<int, int, std::string, std::vector<int>> tup =
     std::make_tuple(817, 114, "514", vec);
 
-auto& [a, b, c, d] = tup;  // C++17 Structured binding
+auto& [a, b, c, d] = tup;  // C++17: ràng buộc có cấu trúc
 std::cout << a << ' ' << b << c << std::endl;
 std::cout << d.size() << ' ' << d[2] << std::endl;
 ```
@@ -242,7 +242,7 @@ std::tie(x, std::ignore) = tupB;
 std::cout << x << std::endl;
 ```
 
-`std::tie` gán các phần tử tuple cho những biến đã có; có thể dùng `std::ignore` để bỏ qua phần tử không cần. Structured binding trực tiếp khai báo biến mới (hỗ trợ binding theo giá trị/tham chiếu), và bắt buộc phải nhận tất cả phần tử.
+`std::tie` gán các phần tử tuple cho những biến đã có; có thể dùng `std::ignore` để bỏ qua phần tử không cần. Ràng buộc có cấu trúc trực tiếp khai báo biến mới (hỗ trợ ràng buộc theo giá trị/tham chiếu), và bắt buộc phải nhận tất cả phần tử.
 
 <a id="đối-tượng-hàm"></a>
 
@@ -401,7 +401,7 @@ func(1, 2, 1.1, 2.1f);
 
 Như vậy, khi số lượng tham số khác 0 thì template sẽ được gọi, còn khi không có tham số thì hàm thông thường sẽ được gọi, nên chương trình có thể chạy bình thường.
 
-### Biểu thức fold (C++17)
+### Biểu thức gấp (fold expression, C++17)
 
 C++17 cung cấp một cú pháp tiện lợi để xử lý **gói tham số hàm**. Cú pháp của nó như sau (bắt buộc phải bọc bằng dấu ngoặc đơn):
 
@@ -454,19 +454,19 @@ Range là một dãy có thể duyệt, bao gồm mảng, container, view, v.v.
 
 Khi cần thực hiện các thao tác phức tạp trên container hoặc các range khác, [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) có thể giúp viết thuật toán dễ hơn và rõ ràng hơn.
 
-### View (khung nhìn)
+### Khung nhìn (view)
 
-View là một đối tượng nhẹ, hiện thực một số thuật toán thông qua cơ chế đặc thù (như iterator tự định nghĩa), cung cấp thêm nhiều cách duyệt cho range để đáp ứng nhu cầu.
+Khung nhìn (view) là một đối tượng nhẹ, hiện thực một số thuật toán thông qua cơ chế đặc thù (như iterator tự định nghĩa), cung cấp thêm nhiều cách duyệt cho range để đáp ứng nhu cầu.
 
 Trong thư viện ranges đã hiện thực một số view thường dùng, đại khái chia thành hai loại:
 
 1.  **Range factory**, dùng để xây dựng một số range đặc biệt. Dùng loại factory này có thể bỏ qua bước tự xây dựng container, giảm chi phí và trực tiếp sinh ra một range.
-2.  **Range adaptor**, cung cấp nhiều kiểu hỗ trợ duyệt đa dạng; vừa có thể gọi như hàm, vừa có thể nối bằng toán tử pipe `|` để gọi dạng chuỗi.
+2.  **Range adaptor**, cung cấp nhiều kiểu hỗ trợ duyệt đa dạng; vừa có thể gọi như hàm, vừa có thể nối bằng toán tử ống dẫn `|` để gọi dạng chuỗi.
 
-Với vai trò là [**range adaptor closure object**](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject), **range adaptor** cũng thuộc về [**đối tượng hàm**](#đối-tượng-hàm); chúng nạp chồng `operator|`, nhờ đó có thể ghép lại với nhau như pipe.
+Với vai trò là [**range adaptor closure object**](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject), **range adaptor** cũng thuộc về [**đối tượng hàm**](#đối-tượng-hàm); chúng nạp chồng `operator|`, nhờ đó có thể ghép lại với nhau như toán tử ống dẫn (pipe).
 
-??? note "Toán tử pipe"
-    Ở đây nên hiểu `|` là toán tử pipe, chứ không phải toán tử OR theo bit. Cách dùng này bắt nguồn từ [pipe](https://en.wikipedia.org/wiki/Pipeline_(Unix)) trong Linux.
+??? note "Toán tử ống dẫn"
+    Ở đây nên hiểu `|` là toán tử ống dẫn (pipe), chứ không phải toán tử OR theo bit. Cách dùng này bắt nguồn từ [pipe](https://en.wikipedia.org/wiki/Pipeline_(Unix)) trong Linux.
 
 Trong các thao tác phức tạp, nó vẫn giữ được tính dễ đọc tốt và có các đặc tính sau:
 
@@ -494,7 +494,7 @@ int main() {
 
 1.  Range factory `std::views::iota(0, 6)` sinh ra một range gồm dãy số nguyên từ 0 đến 5
 2.  Range adaptor `std::views::filter(even)` lọc range trước đó, sinh ra một range chỉ còn các số chẵn
-3.  Hai thao tác được liên kết bằng toán tử pipe
+3.  Hai thao tác được liên kết bằng toán tử ống dẫn (pipe)
 
 Đoạn mã trên không cần cấp phát thêm bộ nhớ heap để lưu range sinh ra ở mỗi bước. Việc sinh và lọc thực tế xảy ra trong thao tác duyệt (cụ thể hơn là trong quá trình xây dựng, tăng và giải tham chiếu của iterator nội bộ), tức là zero overhead.
 
