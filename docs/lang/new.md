@@ -330,11 +330,13 @@ int main() {
 
 ## Mẫu hàm tham số biến thiên
 
-Trước C++11, cả mẫu lớp và mẫu hàm đều chỉ có thể nhận số lượng tham số mẫu cố định. C++11 cho phép tham số mẫu có **số lượng bất kỳ, kiểu bất kỳ**.
+Trước C++11, cả mẫu lớp và mẫu hàm đều chỉ có thể nhận số lượng tham số mẫu cố
+định. C++11 cho phép tham số mẫu có **số lượng bất kỳ, kiểu bất kỳ**.
 
 Ở đây chỉ giới thiệu ngắn gọn về mẫu **hàm** tham số biến thiên.
 
-Mẫu hàm `fun` được khai báo trong đoạn mã sau có thể nhận số lượng tùy ý các tham số mẫu với kiểu bất kỳ.
+Mẫu hàm `fun` được khai báo trong đoạn mã sau có thể nhận số lượng tùy ý các
+tham số mẫu với kiểu bất kỳ.
 
 ```cpp
 template <typename... Clazz>
@@ -361,7 +363,8 @@ fun(1, 0.0, "abc");
 
 #### Cú pháp mở rộng gói tham số
 
-Mở rộng gói tham số rất đơn giản: chỉ cần dùng `...`; các phần tử sẽ tự động được phân tách bằng dấu phẩy. Ví dụ:
+Mở rộng gói tham số rất đơn giản: chỉ cần dùng `...`; các phần tử sẽ tự động
+được phân tách bằng dấu phẩy. Ví dụ:
 
 ```cpp
 template <class A, class... C>
@@ -390,7 +393,8 @@ func(1, 2, 1.1, 2.1f);
 
 #### Hàm kết thúc
 
-Hàm ở trên không thể chạy riêng lẻ, vì số lượng tham số liên tục giảm; cuối cùng lời gọi sẽ không còn tham số và gây lỗi biên dịch.
+Hàm ở trên không thể chạy riêng lẻ, vì số lượng tham số liên tục giảm; cuối cùng
+lời gọi sẽ không còn tham số và gây lỗi biên dịch.
 
 Ta cần chỉ định điều kiện kết thúc; có thể cung cấp một hàm thông thường như sau:
 
@@ -406,7 +410,8 @@ void func(A arg1, C... arg2) {
 func(1, 2, 1.1, 2.1f);
 ```
 
-Như vậy, khi số lượng tham số khác 0 thì mẫu hàm sẽ được gọi; khi không còn tham số thì hàm thông thường sẽ được gọi, nên chương trình có thể chạy bình thường.
+Như vậy, khi số lượng tham số khác 0 thì mẫu hàm sẽ được gọi; khi không còn tham
+số thì hàm thông thường sẽ được gọi, nên chương trình có thể chạy bình thường.
 
 ### Biểu thức gấp (fold expression, C++17)
 
@@ -438,7 +443,8 @@ func(1, 2.1, true);
 
 ### Mẫu hàm rút gọn (C++20)
 
-Từ C++20, có thể trực tiếp dùng `auto ...` làm kiểu tham số để viết mẫu hàm ở dạng rút gọn:
+Từ C++20, có thể trực tiếp dùng `auto ...` làm kiểu tham số để viết mẫu hàm ở
+dạng rút gọn:
 
 ```cpp
 void func(auto... args) { (std::cout << ... << args) << std::endl; }
@@ -463,9 +469,12 @@ Khi cần thực hiện các thao tác phức tạp trên bộ chứa hoặc cá
 
 ### Khung nhìn (view)
 
-Khung nhìn (`view`) là một đối tượng nhẹ, hiện thực một số thao tác thông qua cơ chế đặc thù (như bộ lặp tự định nghĩa), nhờ đó cung cấp nhiều cách duyệt khác nhau cho phạm vi.
+Khung nhìn (`view`) là một đối tượng nhẹ, cài đặt một số thao tác thông qua cơ
+chế đặc thù (như bộ lặp tự định nghĩa), nhờ đó cung cấp nhiều cách duyệt khác
+nhau cho phạm vi.
 
-Thư viện ranges hiện thực sẵn một số khung nhìn thường dùng, có thể chia đại khái thành hai loại:
+Thư viện ranges cài đặt sẵn một số khung nhìn thường dùng, có thể chia đại khái
+thành hai loại:
 
 1.  **Bộ sinh phạm vi** (range factory), dùng để xây dựng một số phạm vi đặc biệt. Dùng loại bộ sinh này có thể bỏ qua bước tự xây dựng bộ chứa, giảm chi phí và trực tiếp sinh ra một phạm vi.
 2.  **Bộ chuyển đổi phạm vi** (range adaptor), cung cấp nhiều cách duyệt đa dạng; vừa có thể gọi như hàm, vừa có thể nối bằng toán tử ống dẫn `|` để gọi theo chuỗi.
@@ -485,7 +494,7 @@ tương đương với
 
     C(B(A(R, a), b), c, d)
 
-Dưới đây lấy `ranges::take_view` và `ranges::iota_view` làm ví dụ:
+Sau đây lấy `ranges::take_view` và `ranges::iota_view` làm ví dụ:
 
 ```cpp
 #include <iostream>
@@ -558,7 +567,10 @@ int main() {
 }
 ```
 
-`ranges::sort` và `sort` có cùng hiện thực thuật toán, nhưng cung cấp cách nạp chồng dựa trên phạm vi, giúp truyền tham số ngắn gọn hơn. Đa số thuật toán khác trong không gian tên `std` cũng có phiên bản nạp chồng tương ứng cho phạm vi nằm trong không gian tên `ranges`.
+`ranges::sort` và `sort` có cùng cách cài đặt thuật toán, nhưng cung cấp cách
+nạp chồng dựa trên phạm vi, giúp truyền tham số ngắn gọn hơn. Đa số thuật toán
+khác trong không gian tên `std` cũng có phiên bản nạp chồng tương ứng cho phạm
+vi nằm trong không gian tên `ranges`.
 
 Dùng các tham số đầu vào dạng phạm vi này, kết hợp với khung nhìn ở phần trước, giúp mã vẫn dễ đọc khi thực hiện những thao tác phức tạp. Ví dụ:
 
