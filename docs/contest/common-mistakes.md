@@ -263,7 +263,7 @@ Những lỗi này trình biên dịch không phát hiện được, chỉ có t
     Trong thi chính thức, ban tổ chức sẽ cố gắng bảo đảm môi trường làm bài và
     môi trường kiểm thử cuối cùng giống nhau.
 
-    Phần này chỉ áp dụng cho các tình huống như contest mô phỏng. Chúng tôi
+    Phần này chỉ áp dụng cho các tình huống như cuộc thi mô phỏng. Chúng tôi
     cũng khuyến nghị người ra đề cố gắng để dữ liệu tuân thủ
     [định dạng dữ liệu](problemsetting.md#định-dạng-dữ-liệu).
 
@@ -465,8 +465,8 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
     vùng stack/heap. Thao tác này trong đa số trường hợp làm chương trình thoát
     ngay và hiển thị thông báo như `segmentation fault (core dumped)`.
 
-    Có thể dùng `ulimit -s SIZE` trong terminal để sửa giới hạn stack của
-    terminal hiện tại, trong đó `SIZE` là số KB.
+    Có thể dùng `ulimit -s SIZE` trong trình dòng lệnh để sửa giới hạn stack của
+    phiên trình dòng lệnh hiện tại, trong đó `SIZE` là số KB.
 
     **Lưu ý: nếu đặt giới hạn stack quá lớn, đệ quy vô hạn có thể làm stack đệ
     quy quá lớn và khiến hệ thống sập.**

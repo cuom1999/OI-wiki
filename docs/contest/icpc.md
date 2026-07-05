@@ -44,13 +44,13 @@ Trong các sự kiện liên quan đến ICPC, thí sinh thường được mang
 liệu giấy nhất định.
 
 Ngoài ICPC và CCPC, nhiều cuộc thi khác cũng dùng thể thức này, chẳng hạn
-LeetCode Weekly Contest và National Programming Contest, các contest luyện tập
+LeetCode Weekly Contest và National Programming Contest, các cuộc thi luyện tập
 trên Nowcoder,...
 
 ## Lịch mùa thi
 
--   ICPC/CCPC online contest: cuối tháng 8 đến đầu tháng 9.
--   ICPC/CCPC regional contest: cuối tháng 9 đến cuối tháng 11.
+-   Cuộc thi trực tuyến ICPC/CCPC: cuối tháng 8 đến đầu tháng 9.
+-   Vòng khu vực ICPC/CCPC: cuối tháng 9 đến cuối tháng 11.
 -   ICPC EC Final/CCPC Final: giữa tháng 12.
 -   ICPC World Finals: tháng 4 đến tháng 6 năm sau.
 
@@ -58,7 +58,7 @@ trên Nowcoder,...
 
 ### Huấn luyện nhiều trường
 
-Đây là loạt contest mùa hè trên [HDU OJ](http://acm.hdu.edu.cn). Contest có
+Đây là loạt cuộc thi mùa hè trên [HDU OJ](http://acm.hdu.edu.cn). Cuộc thi có
 giải thưởng, chất lượng đề cao và đã tích lũy nhiều tài nguyên qua nhiều năm.
 
 Từ khóa để tìm trong OJ: `Multi-University Training Contest`.

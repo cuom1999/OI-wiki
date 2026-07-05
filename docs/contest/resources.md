@@ -8,8 +8,8 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 
 ### Việt Nam
 
--   [VNOJ](https://oj.vnoi.info/): hệ thống online judge chính thức của VNOI, dựa trên DMOJ; phù hợp để luyện tập, tham gia contest và theo dõi các hoạt động của cộng đồng lập trình thi đấu Việt Nam.
--   [Code Tour](https://codetour.org/contest): nền tảng tổ chức contest lập trình, có các vòng thi và mirror phù hợp để luyện tập.
+-   [VNOJ](https://oj.vnoi.info/): hệ thống chấm trực tuyến chính thức của VNOI, dựa trên DMOJ; phù hợp để luyện tập, tham gia cuộc thi và theo dõi các hoạt động của cộng đồng lập trình thi đấu Việt Nam.
+-   [Code Tour](https://codetour.org/contest): nền tảng tổ chức cuộc thi lập trình, có các vòng thi và bản sao phù hợp để luyện tập.
 
 ### Trung Quốc
 
@@ -44,7 +44,7 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 -   [Kattis](https://open.kattis.com/) có kho bài chủ yếu gồm các bài giống phong cách ICPC; hệ thống đánh giá cấp độ người dùng dựa trên tình hình giải bài và gợi ý các bài ở bốn mức trivial/easy/medium/hard phù hợp với trình độ, trong đó độ khó bài được đánh giá bằng hệ thống tương tự [điểm xếp hạng Elo](https://en.wikipedia.org/wiki/Elo_rating_system).
 -   [LeetCode](https://leetcode.com/) là trang luyện bài phỏng vấn cho lập trình viên, có nhánh tiếng Trung: [LeetCode China](https://leetcode.cn).
 -   [Light OJ](https://lightoj.com)
--   [Open Trains](https://opentrains.opencup.org/) là nền tảng luyện tập cho Russian Open Cup, xây dựng trên hệ thống mã nguồn mở [ejudge](https://ejudge.ru/), hỗ trợ virtual contest; kho bài gồm đề Open Cup qua các năm và bài từ Petrozavodsk training camp.
+-   [Open Trains](https://opentrains.opencup.org/) là nền tảng luyện tập cho Russian Open Cup, xây dựng trên hệ thống mã nguồn mở [ejudge](https://ejudge.ru/), hỗ trợ cuộc thi ảo; kho bài gồm đề Open Cup qua các năm và bài từ trại huấn luyện Petrozavodsk.
 -   [SPOJ](http://www.spoj.com) bắt đầu từ năm 2003; hệ thống nền [Sphere Engine](https://sphere-engine.com/) được thương mại hóa vào năm 2008; hỗ trợ chức năng thích bài và gắn thẻ.
 -   [TopCoder](https://www.topcoder.com/) bắt đầu từ năm 2001; [cộng đồng lập trình thi đấu](https://www.topcoder.com/community/competitive-programming/) của nền tảng này có nhiều cuộc thi; hiện mảng kinh doanh chính là crowdsourcing kỹ thuật.
 -   [TimusOJ](http://acm.timus.ru/) bắt đầu từ năm 2000, do Ural Federal University phát triển, sở hữu kho bài chấm trực tuyến lớn nhất của Nga; bài chủ yếu đến từ các cuộc thi nội bộ Ural Federal University, Ural Championship, ICPC Ural Regional Contest và Petrozavodsk training camp.
@@ -56,7 +56,7 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 -   [**OI Wiki tiếng Việt**](https://cuom1999.github.io/OI-wiki/)
 -   [**OI Wiki** gốc](https://oi-wiki.org)
 -   [VNOI Wiki](https://wiki.vnoi.info/): tài liệu thuật toán tiếng Việt, có VNOI Roadmap cho nhiều mức độ học.
--   [Một bộ sưu tập tutorial do người dùng Codeforces tổng hợp](https://codeforces.com/blog/entry/125623)
+-   [Một bộ sưu tập hướng dẫn do người dùng Codeforces tổng hợp](https://codeforces.com/blog/entry/125623)
 -   [E-Maxx Algorithms bản tiếng Anh](https://cp-algorithms.com/)
 -   [Algorithm Notes](https://web.ntnu.edu.tw/~algo/): tài liệu hướng dẫn do National Taiwan Normal University tổng hợp
 -   [How to prepare for ACM-ICPC? - geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
