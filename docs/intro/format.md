@@ -146,7 +146,7 @@ Khi bạn dự định đóng góp nội dung cho một phần nào đó, bạn 
 
         1.  Nguyên lý: giải thích nguyên lý tương ứng của nội dung đó;
         2.  Ví dụ: đưa ra 1 đến 2 ví dụ điển hình;
-        3.  Bài tập: dưới tiêu đề này, **chỉ cần đưa ra tên bài và liên kết bài**. Với bài tập thuật toán, thứ tự ưu tiên của OJ trong liên kết bài là: OJ gốc (với OJ nước ngoài, yêu cầu có thể truy cập mượt mà trong nước) > UOJ > LOJ > Luogu.
+        3.  Bài tập: dưới tiêu đề này, **chỉ cần đưa ra tên bài và liên kết bài**. Với bài tập thuật toán, thứ tự ưu tiên của OJ trong liên kết bài là: OJ gốc (nếu có thể truy cập ổn định) > UOJ > LOJ > Luogu.
 
         Trang ví dụ: [IDA\*](../search/idastar.md).
 

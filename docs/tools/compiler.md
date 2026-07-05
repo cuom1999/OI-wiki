@@ -118,7 +118,7 @@ Python cũng có nhiều bản hiện thực[^pythonimpl]. Lấy CPython 3 làm 
 
 Truy cập trang tải xuống của [LLVM](https://github.com/llvm/llvm-project/releases/latest), chọn LLVM-\*-win64.exe để tải.
 
-Nếu chất lượng mạng không tốt, bạn cũng có thể truy cập [Tsinghua University Open Source Software Mirror](https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LatestRelease/) để tải.
+Nếu chất lượng mạng không tốt, bạn có thể chọn một mirror GitHub Releases đáng tin cậy hoặc tải lại từ mạng ổn định hơn.
 
 Mở tệp .exe, khi cài đặt hãy chọn Add LLVM to system PATH for current user, sau đó cứ nhấn Next cho đến khi cài đặt hoàn tất.
 

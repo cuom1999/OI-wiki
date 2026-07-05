@@ -77,7 +77,7 @@ Sau đó bắt đầu cấu hình thư mục chấm.
 
 ![Arbiter\_Home](./images/arbiter_home.png)
 
-Nhấn OPEN để mở một kỳ thi đã tạo; sau đó cần chọn tệp `setup.cfg` trong thư mục kỳ thi tương ứng. Nhấn NEW để tạo một kỳ thi mới và đặt tên cùng thư mục kỳ thi. Lưu ý, cần tạo một thư mục trong **thư mục home** của người dùng rồi chọn thư mục đó làm thư mục kỳ thi; nếu tạo thư mục kỳ thi trên desktop thì sẽ không chấm được. Vấn đề này rất có thể xảy ra vì đường dẫn thư mục kỳ thi không được chứa ký tự tiếng Trung.
+Nhấn OPEN để mở một kỳ thi đã tạo; sau đó cần chọn tệp `setup.cfg` trong thư mục kỳ thi tương ứng. Nhấn NEW để tạo một kỳ thi mới và đặt tên cùng thư mục kỳ thi. Lưu ý, cần tạo một thư mục trong **thư mục home** của người dùng rồi chọn thư mục đó làm thư mục kỳ thi; nếu tạo thư mục kỳ thi trên desktop thì sẽ không chấm được. Nên tránh dùng ký tự ngoài ASCII trong đường dẫn thư mục kỳ thi, bao gồm cả dấu tiếng Việt, để hạn chế lỗi tương thích.
 
 ![add\_problem](./images/arbiter_addproblem.png)
 
