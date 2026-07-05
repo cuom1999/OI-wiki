@@ -6,7 +6,7 @@ Trong trò chơi tổng bằng không, tổng lợi ích của hai người chơ
 
 Trong thi thuật toán, các trò chơi tổng bằng không thường gặp có thể chia đại khái thành hai loại: trò chơi tuần tự tổng bằng không và trò chơi đồng thời tổng bằng không.
 
-<span id="&#24207;&#36143;&#38646;&#21644;&#28216;&#25103;"></span>
+<span id="trò-chơi-tuần-tự-tổng-bằng-không"></span>
 ## Trò chơi tuần tự tổng bằng không
 
 Trong trò chơi tuần tự tổng bằng không, hai người chơi luân phiên hành động cho đến khi trò chơi kết thúc.
@@ -21,13 +21,13 @@ v(s), & s \in S_0,\\
 \end{cases}
 $$
 
-Trong đó, $t\in s$ nghĩa là $t$ là một trạng thái kế tiếp của $s$. Đây chính là [tư tưởng minimax](../../search/alpha-beta.md#minimax-%E7%AE%97%E6%B3%95).
+Trong đó, $t\in s$ nghĩa là $t$ là một trạng thái kế tiếp của $s$. Đây chính là [tư tưởng minimax](../../search/alpha-beta.md#thuật-toán-minimax).
 
 Khi áp dụng thuật toán này vào bài toán thực tế, thường có các cách cụ thể sau:
 
 -   Nếu số lượng trạng thái xuất hiện trong trò chơi tương đối ít, có thể cài đặt trực tiếp thuật toán này bằng vét cạn.
 
--   Nếu số lượng trạng thái xuất hiện trong trò chơi rất lớn và không có cấu trúc đặc biệt, có thể cân nhắc dùng [cắt tỉa Alpha-Beta](../../search/alpha-beta.md#alphabeta-%E5%89%AA%E6%9E%9D) kết hợp với các thuật toán cắt tỉa tìm kiếm khác.
+-   Nếu số lượng trạng thái xuất hiện trong trò chơi rất lớn và không có cấu trúc đặc biệt, có thể cân nhắc dùng [cắt tỉa Alpha-Beta](../../search/alpha-beta.md#cắt-tỉa-alpha-beta) kết hợp với các thuật toán cắt tỉa tìm kiếm khác.
 
 -   Nếu một trạng thái trong trò chơi thường là trạng thái kế tiếp của nhiều trạng thái khác, để tránh tìm kiếm lặp lại, có thể dùng tìm kiếm có nhớ hoặc các thuật toán quy hoạch động khác.
 
@@ -54,7 +54,7 @@ Khi áp dụng thuật toán này vào bài toán thực tế, thường có cá
 
     Phương pháp này cũng có thể mở rộng cho [trò chơi trên đồ thị có hướng](./impartial-game.md#%E6%9C%89%E5%90%91%E5%9B%BE%E6%B8%B8%E6%88%8F) nói chung.
 
-<span id="&#20363;&#39064;"></span>
+<span id="ví-dụ"></span>
 ### Ví dụ
 
 ???+ example "[Codeforces 794 E. Choosing Carrot](https://codeforces.com/problemset/problem/794/E)"
@@ -95,7 +95,7 @@ Khi áp dụng thuật toán này vào bài toán thực tế, thường có cá
     --8<-- "docs/math/code/zero-sum-game/zero-sum-game-1.cpp"
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ### Bài tập
 
 -   [Luogu P2734 \[USACO3.3\] Trò chơi A Game](https://www.luogu.com.cn/problem/P2734)
@@ -106,7 +106,7 @@ Khi áp dụng thuật toán này vào bài toán thực tế, thường có cá
 -   [Codeforces 1628 D2. Game on Sum (Hard Version)](https://codeforces.com/problemset/problem/1628/D2)
 -   [Luogu P3210 \[HNOI2010\] Trò chơi lấy đá](https://www.luogu.com.cn/problem/P3210)
 
-<span id="&#21516;&#26102;&#38646;&#21644;&#28216;&#25103;"></span>
+<span id="trò-chơi-đồng-thời-tổng-bằng-không"></span>
 ## Trò chơi đồng thời tổng bằng không
 
 Trong trò chơi đồng thời tổng bằng không, hai người chơi hành động cùng lúc.
@@ -136,7 +136,7 @@ Trò chơi đồng thời tổng bằng không thường được biểu diễn 
 
 Vấn đề cần giải quyết là: cho ma trận lợi ích $V = (v(a_1,a_2))_{(a_1,a_2)\in A_1\times A_2}$, làm thế nào để tìm chiến lược tối ưu và lợi ích lớn nhất của hai người chơi?
 
-<span id="&#28151;&#21512;&#31574;&#30053;"></span>
+<span id="chiến-lược-hỗn-hợp"></span>
 ### Chiến lược hỗn hợp
 
 So với trò chơi tuần tự tổng bằng không, vai trò của hai người chơi trong trò chơi đồng thời là đối xứng. Tuy nhiên, vì ta đã giải quyết trò chơi tuần tự tổng bằng không, có thể xét phiên bản tuần tự của trò chơi đồng thời. Chẳng hạn, nếu giả định người chơi $1$ hành động trước, rồi người chơi $2$ hành động sau, thì theo phần thảo luận ở trên, lợi ích của người chơi $1$ khi trò chơi kết thúc sẽ được cho bởi
@@ -186,7 +186,7 @@ $$
 
 Nếu xem mỗi hành động đơn lẻ như chiến lược thuần tương ứng, ta có thể nhúng tập hành động $A_i$ vào tập chiến lược hỗn hợp $S_i$, và $v(s_1,s_2)$ được định nghĩa ở trên có thể được xem là phần mở rộng của $v(a_1,a_2)$ từ $A_1\times A_2$ lên $S_1\times S_2$.
 
-<span id="von Neumann &#23450;&#29702;"></span>
+<span id="định-lý-von-neumann"></span>
 ### Định lý von Neumann
 
 Sau khi đưa vào chiến lược hỗn hợp, kết quả thu được từ tư tưởng cực đại hóa cực tiểu và cực tiểu hóa cực đại là nhất quán; do đó, kết quả của trò chơi đồng thời tổng bằng không cũng được xác định duy nhất.
@@ -235,7 +235,7 @@ Sau khi đưa vào chiến lược hỗn hợp, kết quả thu được từ t�
 
 Kết quả này chính là [cân bằng Nash](https://en.wikipedia.org/wiki/Nash_equilibrium) của trò chơi này. Nói cách khác, giả sử hai bên đều chọn chiến lược tối ưu trong cân bằng, thì không người chơi nào có thể thu lợi nghiêm ngặt bằng cách lệch khỏi chiến lược cân bằng.
 
-<span id="&#36716;&#21270;&#20026;&#32447;&#24615;&#35268;&#21010;&#38382;&#39064;"></span>
+<span id="chuyển-thành-bài-toán-quy-hoạch-tuyến-tính"></span>
 ### Chuyển thành bài toán quy hoạch tuyến tính
 
 Chứng minh của định lý von Neumann đồng thời cũng chỉ ra cách giải trò chơi đồng thời tổng bằng không. Gọi $n$ và $m$ lần lượt là số hành động mà người chơi $1$ và $2$ có thể chọn. Cho ma trận lợi ích $V\in\mathbf R^{n\times m}$ của người chơi $1$, có thể giải bài toán quy hoạch tuyến tính sau:
@@ -251,12 +251,12 @@ $$
 
 Đây là một bài toán quy hoạch tuyến tính có kích thước $\Theta(n+m)$, có thể giải hiệu quả bằng [phương pháp đơn hình](../simplex.md). Nghiệm tối ưu $s$ mà thuật toán thu được chính là chiến lược hỗn hợp tối ưu của người chơi $1$. Để tìm chiến lược tối ưu của người chơi $2$, chỉ cần lấy biến đối ngẫu (tức giá bóng) của nghiệm tối ưu bài toán này từ bảng đơn hình.
 
-<span id="&#20064;&#39064;_1"></span>
+<span id="bài-tập_1"></span>
 ### Bài tập
 
 -   [Luogu P4232 Trốn tìm ngoài vô thức](https://www.luogu.com.cn/problem/P4232)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Zero-sum game - Wikipedia](https://en.wikipedia.org/wiki/Zero-sum_game)

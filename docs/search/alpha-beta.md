@@ -1,6 +1,6 @@
 Trang này giới thiệu ngắn gọn thuật toán Minimax và cắt tỉa Alpha-Beta.
 
-<span id="minimax-&#31639;&#27861;"></span>
+<span id="thuật-toán-minimax"></span>
 
 ## Thuật toán Minimax
 
@@ -34,7 +34,7 @@ Thuật toán Minimax đơn giản thường phải xây dựng một cây tìm 
 
 Cần chú ý rằng với các bài toán khác nhau, giá trị trên mỗi nút của cây tìm kiếm có thể mang những ý nghĩa khác nhau: giá trị đánh giá, điểm số, xác suất thắng, v.v. Để tiện trình bày, phần dưới thống nhất gọi chung là điểm số.
 
-<span id="alphabeta-&#21098;&#26525;"></span>
+<span id="cắt-tỉa-alpha-beta"></span>
 
 ## Cắt tỉa Alpha-Beta
 

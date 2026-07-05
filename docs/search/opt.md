@@ -1,6 +1,6 @@
 author: CBW2007, ChungZH, Marcythm, abc1763613206, Ir1d
 
-<span id="&#x524d;&#x8a00;"></span>
+<span id="lời-nói-đầu"></span>
 ## Lời nói đầu
 
 DFS (tìm kiếm theo chiều sâu) là một thuật toán phổ biến. Phần lớn bài toán đều có thể giải bằng DFS, nhưng trong đa số trường hợp, đó chỉ là cách làm để lấy một phần điểm; rất hiếm bài toán mà vét cạn bằng tìm kiếm lại là lời giải chuẩn, vì độ phức tạp thời gian của DFS đặc biệt cao. Nếu chưa học DFS, hãy bổ sung kiến thức này trước.
@@ -25,12 +25,12 @@ void dfs(input_state) {
 
 Trong đó `ans` cũng có thể là bản ghi của nghiệm; khi đó thao tác chọn phương án tốt hơn giữa nghiệm hiện tại và nghiệm đã có sẽ trở thành thao tác xuất nghiệm.
 
-<span id="&#x526a;&#x679d;&#x65b9;&#x6cd5;"></span>
+<span id="các-phương-pháp-cắt-tỉa"></span>
 ## Các phương pháp cắt tỉa
 
 Ba dạng cắt tỉa thông dụng nhất là tìm kiếm có ghi nhớ, cắt tỉa tối ưu và cắt tỉa khả thi.
 
-<span id="&#x8bb0;&#x5fc6;&#x5316;&#x641c;&#x7d22;"></span>
+<span id="tìm-kiếm-có-ghi-nhớ"></span>
 ### Tìm kiếm có ghi nhớ
 
 Trong quá trình tìm kiếm, cùng một giá trị truyền vào thường dẫn đến cùng một nghiệm. Vì vậy, ta có thể dùng mảng để ghi nhớ; xem thêm tại [Tìm kiếm có ghi nhớ](../dp/memo.md).
@@ -59,7 +59,7 @@ int main() {
 }
 ```
 
-<span id="&#x6700;&#x4f18;&#x6027;&#x526a;&#x679d;"></span>
+<span id="cắt-tỉa-tối-ưu"></span>
 ### Cắt tỉa tối ưu
 
 Một nguyên nhân khác làm tìm kiếm chạy chậm là vẫn tiếp tục tìm khi lời giải hiện tại đã kém hơn lời giải tốt nhất đã biết. Khi đó, chỉ cần kiểm tra xem lời giải hiện tại có đã tệ hơn lời giải đã có hay không.
@@ -81,7 +81,7 @@ void dfs(input_state) {
 }
 ```
 
-<span id="&#x53ef;&#x884c;&#x6027;&#x526a;&#x679d;"></span>
+<span id="cắt-tỉa-khả-thi"></span>
 ### Cắt tỉa khả thi
 
 Nếu lời giải hiện tại đã không còn khả thi mà vẫn tiếp tục tìm xuống, đó cũng là một nguyên nhân làm chương trình chạy chậm.
@@ -103,7 +103,7 @@ void dfs(input_state) {
 }
 ```
 
-<span id="&#x526a;&#x679d;&#x601d;&#x8def;"></span>
+<span id="ý-tưởng-cắt-tỉa"></span>
 ## Ý tưởng cắt tỉa
 
 Có rất nhiều hướng suy nghĩ để cắt tỉa; phần lớn cần phân tích theo từng bài toán cụ thể. Dưới đây là một vài ý tưởng cắt tỉa thường gặp.
@@ -114,7 +114,7 @@ Có rất nhiều hướng suy nghĩ để cắt tỉa; phần lớn cần phân
 
 -   Phương pháp toán học: chẳng hạn trong lý thuyết đồ thị có thể dựa vào các thành phần liên thông, trong số học có thể phân tích phương trình đồng dư, hoặc dùng bất đẳng thức để ước lượng cận dưới, v.v.
 
-<span id="&#x4f8b;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 ???+ note "Bài toán phân công công việc"
