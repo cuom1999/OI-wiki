@@ -1,6 +1,6 @@
 author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Menci, shawlleyw, shuzhouliu, StudyingFather, Tiphereth-A, untitledunrevised, c-forrest
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 
 ## Mở đầu
 
@@ -9,7 +9,7 @@ Liên phân số có thể biểu diễn một số thực dưới dạng giới
 ???+ info "Về các cài đặt thuật toán liên quan đến liên phân số"
     Bài viết này cung cấp một loạt cài đặt thuật toán về liên phân số. Một số thuật toán không bảo đảm mọi số nguyên trung gian đều nằm trong phạm vi của kiểu số nguyên 32 bit hoặc 64 bit. Trong các trường hợp đó, hãy tham khảo bản cài đặt Python tương ứng, hoặc thay kiểu số nguyên trong bản C++ bằng [lớp số nguyên chính xác cao](../bignum.md). Để tập trung vào ý chính, một số đoạn mã trong bài có thể gọi những hàm đã cài đặt ở phần trước mà không lặp lại phần cài đặt.
 
-<span id="&#x8FDE;&#x5206;&#x6570;"></span>
+<span id="liên-phân-số"></span>
 
 ## Liên phân số
 
@@ -38,7 +38,7 @@ Dĩ nhiên, liên phân số cũng có thể được mở rộng cho trường 
     
     Liên phân số có nghĩa khi và chỉ khi giới hạn tương ứng có nghĩa. Trong đó, $x_k=[a_0,a_1,\cdots,a_k]$ được gọi là **phân số tiệm cận** thứ $k$ (convergent) của $x$, còn $r_k=[a_k,a_{k+1},\cdots]$ được gọi là **phần dư** thứ $k$ hoặc **thương đầy đủ** (complete quotient) của $x$. Tương ứng, hạng $a_k$ đôi khi cũng được gọi là **thương riêng** thứ $k$ (partial quotient).
 
-<span id="&#x7B80;&#x5355;&#x8FDE;&#x5206;&#x6570;"></span>
+<span id="liên-phân-số-đơn-giản"></span>
 
 ### Liên phân số đơn giản
 
@@ -77,7 +77,7 @@ Hai liên phân số này được gọi là **biểu diễn liên phân số** 
 
 Liên phân số vô hạn tương ứng với số vô tỉ. Hơn nữa, mỗi số vô tỉ chỉ có một cách duy nhất để biểu diễn thành liên phân số, gọi là biểu diễn liên phân số của số vô tỉ đó.
 
-<span id="&#x8FDE;&#x5206;&#x6570;&#x8868;&#x793A;&#x7684;&#x6C42;&#x6CD5;"></span>
+<span id="cách-tìm-biểu-diễn-liên-phân-số"></span>
 
 ### Cách tìm biểu diễn liên phân số
 
@@ -116,7 +116,7 @@ Quá trình tính toán lúc này thực chất là áp dụng [thuật toán Eu
         --8<-- "docs/math/code/continued-fraction/diophantine.py:fraction"
         ```
 
-<span id="&#x6E10;&#x8FD1;&#x5206;&#x6570;"></span>
+<span id="phân-số-tiệm-cận"></span>
 
 ## Phân số tiệm cận
 
@@ -157,7 +157,7 @@ Khái niệm phân số tiệm cận đã được giới thiệu trong định 
 
 Các phân số tiệm cận này tiến tới số thực tương ứng, nên có thể dùng để xấp xỉ số thực đó. Do đó, ta cần hiểu các tính chất của phân số tiệm cận.
 
-<span id="&#x9012;&#x63A8;&#x5173;&#x7CFB;"></span>
+<span id="quan-hệ-truy-hồi"></span>
 
 ### Quan hệ truy hồi
 
@@ -309,7 +309,7 @@ Dùng quan hệ truy hồi trong phần này, ta có thuật toán tính phân s
         --8<-- "docs/math/code/continued-fraction/diophantine.py:convergents"
         ```
 
-<span id="&#x8BEF;&#x5DEE;&#x4F30;&#x8BA1;"></span>
+<span id="ước-lượng-sai-số"></span>
 
 ### Ước lượng sai số
 
@@ -471,13 +471,13 @@ Thực ra, nghiệm của phương trình Diophantine tuyến tính hai ẩn cũ
         --8<-- "docs/math/code/continued-fraction/diophantine.py:dio"
         ```
 
-<span id="&#x4E22;&#x756A;&#x56FE;&#x903C;&#x8FD1;"></span>
+<span id="xấp-xỉ-diophantine"></span>
 
 ## Xấp xỉ Diophantine
 
 Một ứng dụng quan trọng của lý thuyết liên phân số là lý thuyết xấp xỉ Diophantine. Xấp xỉ Diophantine (Diophantine approximation) là việc dùng số hữu tỉ để xấp xỉ số thực. Dĩ nhiên, do tính trù mật của số hữu tỉ, nếu không đặt ràng buộc thì có thể đạt sai số nhỏ tùy ý. Vì vậy, cần ràng buộc các số hữu tỉ được phép dùng, chẳng hạn chỉ chọn các số hữu tỉ có mẫu nhỏ hơn một giá trị nào đó. Phần này thảo luận mối quan hệ giữa xấp xỉ tốt nhất dưới ràng buộc như vậy và liên phân số.
 
-<span id="&#x7528;&#x6E10;&#x8FD1;&#x5206;&#x6570;&#x903C;&#x8FD1;&#x5B9E;&#x6570;"></span>
+<span id="dùng-phân-số-tiệm-cận-để-xấp-xỉ-số-thực"></span>
 
 ### Dùng phân số tiệm cận để xấp xỉ số thực
 
@@ -582,7 +582,7 @@ Các chứng minh trên cho thấy phân số tiệm cận cung cấp xấp xỉ
 ???+ warning "Có những trường hợp kết luận về xấp xỉ tốt nhất không còn đúng"
     Hai phần tiếp theo trình bày một số kết quả về xấp xỉ tốt nhất. Các kết quả này có thể không đúng trong một vài trường hợp biên không thú vị. Chẳng hạn, cả hai định nghĩa xấp xỉ tốt nhất đều yêu cầu bất đẳng thức nghiêm ngặt, nhưng với nửa số lẻ $x=n+\dfrac12$ và $n\in\mathbf Z$, liên phân số của nó có thể có dạng $[n,1,1]$. Khi đó, hai phân số tiệm cận đầu $x_0=n$ và $x_1=n+1$ đều có mẫu bằng $1$, và khoảng cách tới $x$ bằng nhau. Điều này cho thấy chúng đều không phải là xấp xỉ tốt nhất. Khi đọc các kết luận trong phần này, nên mặc định rằng những trường hợp như vậy đã được loại trừ. Nếu không quan tâm tới vài phân số tiệm cận cuối cùng, hoặc chỉ quan tâm tới xấp xỉ số vô tỉ, thì có thể bỏ qua các trường hợp phức tạp bổ sung này.
 
-<span id="&#x7B2C;&#x4E00;&#x7C7B;&#x6700;&#x4F73;&#x903C;&#x8FD1;&#xFF1A;&#x4E2D;&#x95F4;&#x5206;&#x6570;"></span>
+<span id="xấp-xỉ-tốt-nhất-loại-một-phân-số-trung-gian"></span>
 
 ### Xấp xỉ tốt nhất loại một: phân số trung gian
 
@@ -729,7 +729,7 @@ Vì vậy, nếu sắp tất cả xấp xỉ tốt nhất loại một của s�
     \end{aligned}
     $$
 
-<span id="&#x7B2C;&#x4E8C;&#x7C7B;&#x6700;&#x4F73;&#x903C;&#x8FD1;"></span>
+<span id="xấp-xỉ-tốt-nhất-loại-hai"></span>
 
 ### Xấp xỉ tốt nhất loại hai
 
@@ -805,7 +805,7 @@ Xấp xỉ tốt nhất loại hai chính xác là các phân số tiệm cận.
 
 Tính chất này cho thấy phân số tiệm cận thật sự là các xấp xỉ Diophantine rất tốt.
 
-<span id="&#x6E10;&#x8FD1;&#x5206;&#x6570;&#x7684;&#x5224;&#x5B9A;"></span>
+<span id="nhận-biết-phân-số-tiệm-cận"></span>
 
 ### Nhận biết phân số tiệm cận
 
@@ -885,7 +885,7 @@ Tiêu chuẩn này cho thấy chỉ cần mức xấp xỉ đủ tốt thì phâ
     
     Điều này cho thấy $q_k=q_{k+1}$. Vì vậy chắc chắn $k=0$ và $a_1=1$. Khi đó hai phân số tiệm cận đầu là $x_0=a_0$ và $x_1=a_0+1$. Do đó phản ví dụ duy nhất của mệnh đề là nửa số lẻ; như đã nói ở trên, bài viết này không xét trường hợp đó.
 
-<span id="&#x51E0;&#x4F55;&#x89E3;&#x91CA;"></span>
+<span id="diễn-giải-hình-học"></span>
 
 ## Diễn giải hình học
 
@@ -970,7 +970,7 @@ Phần lớn các kết luận ở trên về liên phân số đều có diễn
 
 Hai bao lồi trên và dưới thu được như vậy được gọi là đa giác Klein. Trong không gian chiều cao hơn cũng có thể định nghĩa tương tự để thu được [đa diện Klein](https://en.wikipedia.org/wiki/Klein_polyhedron) (Klein polyhedron), qua đó mở rộng khái niệm liên phân số lên không gian nhiều chiều.
 
-<span id="&#x8FDE;&#x5206;&#x6570;&#x7684;&#x6811;"></span>
+<span id="cây-của-liên-phân-số"></span>
 
 ## Cây của liên phân số
 
@@ -1045,7 +1045,7 @@ Hiểu biểu diễn liên phân số như đường đi trên cây Stern-Brocot
 
 Để tìm hiểu thêm về các tính chất và ứng dụng của cây Stern-Brocot, có thể tham khảo trang bài chính của nó.
 
-<span id="&#x5206;&#x5F0F;&#x7EBF;&#x6027;&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-tuyến-tính-phân-thức"></span>
 
 ## Biến đổi tuyến tính phân thức
 
@@ -1154,7 +1154,7 @@ Từ đó có thể thu được dạng trên bằng quy nạp. Biến đổi tu
         --8<-- "docs/math/code/continued-fraction/flt-presum.py"
         ```
 
-<span id="&#x8FDE;&#x5206;&#x6570;&#x7684;&#x56DB;&#x5219;&#x8FD0;&#x7B97;"></span>
+<span id="bốn-phép-toán-trên-liên-phân-số"></span>
 
 ### Bốn phép toán trên liên phân số
 
@@ -1230,7 +1230,7 @@ $$
     
     So với trường hợp một biến, trường hợp hai biến cần quyết định nên hợp thành $L_{\alpha_i}$ hay $L_{\beta_j}$ trước. Vì thứ tự hợp thành không ảnh hưởng tới kết quả cuối cùng, có thể tự do chọn thứ tự, chẳng hạn hợp thành xen kẽ $L_{\alpha_i}$ và $L_{\beta_j}$. Hoặc dùng quy tắc kinh nghiệm: ưu tiên hợp thành theo chiều có độ chênh tỉ số lớn hơn. Nếu $\left|\dfrac{b}{f}-\dfrac{d}{h}\right|>\left|\dfrac{c}{g}-\dfrac{d}{h}\right|$, thì hợp thành $L_{\alpha_i}$ trước; ngược lại, hợp thành $L_{\beta_j}$ trước.
 
-<span id="&#x5FAA;&#x73AF;&#x8FDE;&#x5206;&#x6570;"></span>
+<span id="liên-phân-số-tuần-hoàn"></span>
 
 ## Liên phân số tuần hoàn
 
@@ -1239,7 +1239,7 @@ Tương tự khái niệm số thập phân tuần hoàn, nếu các hệ số c
 ???+ abstract "Liên phân số tuần hoàn"
     Giả sử liên phân số $x=[a_0,a_1,a_2,\cdots]$, và tồn tại số tự nhiên $K$ cùng số nguyên dương $L$ sao cho với mọi $k\ge K$, ta có $a_k=a_{k+L}$. Khi đó $x$ được gọi là **liên phân số tuần hoàn** (periodic continued fraction). Giá trị nhỏ nhất của $L$ thỏa mãn điều kiện này được gọi là chu kỳ dương nhỏ nhất của nó, còn dãy $a_{k},\cdots,a_{k+L-1}$ lặp lại trong liên phân số được gọi là khối tuần hoàn. Dùng khối tuần hoàn, liên phân số tuần hoàn có thể viết là $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$. Nếu có thể lấy $K=0$, tức $x=[\overline{a_0,\cdots,a_{L-1}}]$, thì nó được gọi là **liên phân số thuần tuần hoàn** (purely periodic continued fraction); ngược lại gọi là **liên phân số hỗn tuần hoàn** (eventually periodic continued fraction).
 
-<span id="&#x4E8C;&#x6B21;&#x65E0;&#x7406;&#x6570;"></span>
+<span id="số-vô-tỉ-bậc-hai"></span>
 
 ### Số vô tỉ bậc hai
 
@@ -1430,7 +1430,7 @@ Công thức truy hồi này có thể dùng trực tiếp để tính liên ph�
         --8<-- "docs/math/code/continued-fraction/surd-convergent.py"
         ```
 
-<span id="&#x7EAF;&#x5FAA;&#x73AF;&#x8FDE;&#x5206;&#x6570;"></span>
+<span id="liên-phân-số-thuần-tuần-hoàn"></span>
 
 ### Liên phân số thuần tuần hoàn
 
@@ -1611,7 +1611,7 @@ Từ quan sát này, Galois tiếp tục đưa ra điều kiện cần và đủ
 
 Khai triển liên phân số của số vô tỉ bậc hai $\sqrt{D}$ chủ yếu được dùng để giải [phương trình Pell](./pell-equation.md).
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="bài-tập-ví-dụ"></span>
 
 ## Bài tập ví dụ
 
@@ -1633,7 +1633,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
     
     Bất đẳng thức thứ hai đúng vì điều kiện $\Delta y>r\Delta x$ mâu thuẫn với việc $(x,y)$ đã nằm trên bao lồi trên. Quan sát các điều kiện mà $(\Delta x,\Delta y)$ cần thỏa mãn: với các điểm $(x,y)$ khác nhau, chỉ cận trên của $\Delta x$ thay đổi. Vì vậy, chỉ cần giải được bài toán con này là có thể tìm đệ quy mọi điểm nguyên của bài toán ban đầu.
     
-    Tiếp theo xét cách giải bài toán con. So với bài toán ban đầu, bài toán con tương đương với việc đổi cận trên của $x$ thành $N'$, rồi tìm điểm nguyên đầu tiên trên bao lồi trên kề với gốc tọa độ. Gọi nghiệm của bài toán con là $(q,p)$. Khi đó $p$ và $q$ chắc chắn nguyên tố cùng nhau (nếu không thì đó không phải điểm nguyên đầu tiên), và hệ số góc $\dfrac{p}{q}$ của đường nối với gốc tọa độ là lớn nhất trong các điểm nguyên nằm dưới đường thẳng $y=rx$ và có hoành độ không vượt quá $N'$ (nếu không thì điểm đó không nằm trên bao lồi). Kết hợp với [diễn giải hình học](#%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A) ở trên, điểm $(x,y)$ như vậy chắc chắn tương ứng với một phân số trung gian dưới của $r$. Vì phân số trung gian dưới có mẫu càng lớn thì càng gần $r$, nên nghiệm $(q,p)$ của bài toán con tương ứng với phân số trung gian dưới có mẫu lớn nhất trong tất cả các phân số trung gian dưới có mẫu không vượt quá $N'$.
+    Tiếp theo xét cách giải bài toán con. So với bài toán ban đầu, bài toán con tương đương với việc đổi cận trên của $x$ thành $N'$, rồi tìm điểm nguyên đầu tiên trên bao lồi trên kề với gốc tọa độ. Gọi nghiệm của bài toán con là $(q,p)$. Khi đó $p$ và $q$ chắc chắn nguyên tố cùng nhau (nếu không thì đó không phải điểm nguyên đầu tiên), và hệ số góc $\dfrac{p}{q}$ của đường nối với gốc tọa độ là lớn nhất trong các điểm nguyên nằm dưới đường thẳng $y=rx$ và có hoành độ không vượt quá $N'$ (nếu không thì điểm đó không nằm trên bao lồi). Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, điểm $(x,y)$ như vậy chắc chắn tương ứng với một phân số trung gian dưới của $r$. Vì phân số trung gian dưới có mẫu càng lớn thì càng gần $r$, nên nghiệm $(q,p)$ của bài toán con tương ứng với phân số trung gian dưới có mẫu lớn nhất trong tất cả các phân số trung gian dưới có mẫu không vượt quá $N'$.
     
     Dĩ nhiên, khi giải thực tế, không cần tìm lại phân số trung gian dưới như vậy cho từng bài toán con. Nên tìm tất cả phân số tiệm cận trước; điều này tương đương với việc có cách duyệt tất cả phân số trung gian dưới. Sau đó duyệt các phân số trung gian dưới theo mẫu giảm dần, mỗi lần thử cộng nó vào điểm nguyên trước đó $(x,y)$, cho tới khi không thể cộng nữa thì mới thử phân số trung gian dưới tiếp theo.
     
@@ -1673,7 +1673,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
     \Delta y \le \dfrac{A}{B}\Delta x+\dfrac{C-(By-Ax)}{B}.
     $$
     
-    Kết hợp với [diễn giải hình học](#%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A) ở trên, chỉ cần hằng số phía sau nhỏ hơn $1$, thì trong các điểm nguyên $(\Delta x,\Delta y)$ thỏa mãn bất đẳng thức này, điểm có hoành độ nhỏ nhất chắc chắn tương ứng với một phân số trung gian trên. Lý do là nó là phân số xấp xỉ một số thực từ phía trên tốt nhất trong tất cả các phân số có mẫu không vượt quá mẫu của nó, và điều đó chỉ có thể là phân số trung gian trên. Sau mỗi lần cộng gia lượng, cận trên của $\Delta y$ sẽ chặt hơn, nghĩa là phải xét các phân số trung gian trên có mẫu lớn hơn.
+    Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, chỉ cần hằng số phía sau nhỏ hơn $1$, thì trong các điểm nguyên $(\Delta x,\Delta y)$ thỏa mãn bất đẳng thức này, điểm có hoành độ nhỏ nhất chắc chắn tương ứng với một phân số trung gian trên. Lý do là nó là phân số xấp xỉ một số thực từ phía trên tốt nhất trong tất cả các phân số có mẫu không vượt quá mẫu của nó, và điều đó chỉ có thể là phân số trung gian trên. Sau mỗi lần cộng gia lượng, cận trên của $\Delta y$ sẽ chặt hơn, nghĩa là phải xét các phân số trung gian trên có mẫu lớn hơn.
     
     Làm tương tự ví dụ trước. Xét tất cả phân số trung gian trên theo mẫu tăng dần; nếu tìm được phân số trung gian trên có cả hoành độ và tung độ không vượt giới hạn, thì cộng nó vào và cập nhật cận trên tương ứng. Khi đã cộng xong mọi phân số trung gian trên khả thi, ta thu được nghiệm tối ưu. So với trước, bài này cần đồng thời bảo đảm cả hoành độ và tung độ không vượt giới hạn, nên cần đặc biệt chú ý. Dựa trên lập luận tương tự ví dụ trước, nhưng lần này dùng $B\Delta y-A\Delta x$ thay cho $\Delta x$, có thể chỉ ra rằng độ phức tạp của thuật toán là $O(\log\min\{A,B\})$.
     
@@ -1760,7 +1760,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
     
     Bây giờ bài toán quy về: cho môđun $m$ và phần dư $r$, tìm cặp số nguyên dương $(p,q)$ không vượt quá $n$ sao cho $qr\equiv p\pmod m$. Khi đã biết nghiệm như vậy là duy nhất, thật ra chỉ cần tìm $q\in[1,n]$ làm cho $qr\bmod m$ nhỏ nhất, vì khi đó có đúng một $q$ khiến phần dư không vượt quá $n$. Đây chính là phát biểu tương đương đã nêu ở trên.
     
-    Trong hệ tọa độ phẳng $(q,k)$, điều này tương đương với việc tìm điểm nguyên với $q\in[1,n]$ nằm dưới đường thẳng $qr-km=0$ và gần nó nhất, vì phần dư $qr\bmod m$ tỉ lệ với khoảng cách từ điểm nguyên tới đường thẳng. Kết hợp với [diễn giải hình học](#%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A) ở trên, điểm nguyên như vậy chắc chắn tương ứng với một phân số trung gian dưới của phân số hữu tỉ $\dfrac{r}{m}$. Độ phức tạp thuật toán là $O(\log\min\{r,m\})$.
+    Trong hệ tọa độ phẳng $(q,k)$, điều này tương đương với việc tìm điểm nguyên với $q\in[1,n]$ nằm dưới đường thẳng $qr-km=0$ và gần nó nhất, vì phần dư $qr\bmod m$ tỉ lệ với khoảng cách từ điểm nguyên tới đường thẳng. Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, điểm nguyên như vậy chắc chắn tương ứng với một phân số trung gian dưới của phân số hữu tỉ $\dfrac{r}{m}$. Độ phức tạp thuật toán là $O(\log\min\{r,m\})$.
     
     === "C++"
         ```cpp
@@ -1772,7 +1772,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         --8<-- "docs/math/code/continued-fraction/recover-fraction.py:core"
         ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 
 ## Bài tập
 
@@ -1788,7 +1788,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 -   [Luogu P5179. Fraction](https://www.luogu.com.cn/problem/P5179)
 -   [Luogu P7739. \[NOI2021\] Hộp mật mã](https://www.luogu.com.cn/problem/P7739)
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+<span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 
 ## Tài liệu tham khảo và đọc thêm
 

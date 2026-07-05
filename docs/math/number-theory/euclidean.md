@@ -9,7 +9,7 @@ $$
 \left\lfloor\dfrac{ai+b}{c}\right\rfloor
 $$
 
-Ý tưởng chính của nó là tận dụng cấu trúc đệ quy của chính phân số để chuyển bài toán thành bài toán quy mô nhỏ hơn rồi giải đệ quy. Vì cấu trúc đệ quy của phân số có [liên hệ](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%B1%82%E6%B3%95) trực tiếp với [thuật toán Euclid](./gcd.md#thuật-toán-euclid), phương pháp tính tổng này cũng được gọi là thuật toán Euclid tương tự.
+Ý tưởng chính của nó là tận dụng cấu trúc đệ quy của chính phân số để chuyển bài toán thành bài toán quy mô nhỏ hơn rồi giải đệ quy. Vì cấu trúc đệ quy của phân số có [liên hệ](./continued-fraction.md#cách-tìm-biểu-diễn-liên-phân-số) trực tiếp với [thuật toán Euclid](./gcd.md#thuật-toán-euclid), phương pháp tính tổng này cũng được gọi là thuật toán Euclid tương tự.
 
 Do các phương pháp như [liên phân số](./continued-fraction.md) và [cây Stern-Brocot](./stern-brocot.md) cũng mô tả cấu trúc đệ quy của phân số, những bài toán có thể giải bằng thuật toán Euclid tương tự thường cũng có thể giải bằng các phương pháp đó. So với chúng, thuật toán Euclid tương tự thường dễ hiểu hơn và cài đặt cũng ngắn gọn hơn.
 
@@ -140,7 +140,7 @@ $$
 
 Thuật toán đệ quy này hoạt động được chủ yếu vì hai lý do:
 
--   Thứ nhất, hệ số góc của đường thẳng liên tục được lấy phần thập phân rồi lấy nghịch đảo, điều này tương đương với việc tính [khai triển liên phân số](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%B1%82%E6%B3%95) của hệ số góc $k=a/c$. Vì độ dài khai triển liên phân số của một phân số hữu tỉ là $O(\log\min\{a,c\})$, quá trình này chắc chắn kết thúc sau $O(\log\min\{a,c\})$ bước;
+-   Thứ nhất, hệ số góc của đường thẳng liên tục được lấy phần thập phân rồi lấy nghịch đảo, điều này tương đương với việc tính [khai triển liên phân số](./continued-fraction.md#cách-tìm-biểu-diễn-liên-phân-số) của hệ số góc $k=a/c$. Vì độ dài khai triển liên phân số của một phân số hữu tỉ là $O(\log\min\{a,c\})$, quá trình này chắc chắn kết thúc sau $O(\log\min\{a,c\})$ bước;
 -   Thứ hai, mỗi lần lật trục tọa độ thì hệ số góc của đường thẳng đều nhỏ hơn một, nên trực giác cho thấy phải có $m<n$, tức sau một vòng lặp như vậy, phạm vi hoành độ luôn thu nhỏ. Phần phân tích độ phức tạp ở trên đã chứng minh chặt chẽ rằng sau mỗi hai vòng lặp, $n$ nhiều nhất giảm còn một nửa, nên quá trình này chắc chắn kết thúc sau $O(\log n)$ bước.
 
 Đây cũng là lý do độ phức tạp của thuật toán Euclid tương tự khi hệ số góc là số hữu tỉ là $O(\log\min\{a,c,n\})$.
@@ -298,7 +298,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     f(a,b,c,n) = nm - f(ca,-cb,a^2r-b^2,m).
     $$
     
-    Để tránh tràn số nguyên, mỗi lần cần chia đồng thời $a,b,c$ cho ước chung lớn nhất của chúng. Vì quá trình tính này hoàn toàn giống quá trình tính liên phân số của $k$, theo [lý thuyết liên phân số](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0), chỉ cần bảo đảm $\gcd(a,b,c)=1$ thì trong quá trình tính chúng chắc chắn nằm trong phạm vi kiểu số nguyên. Ngoài ra, dù $(a,b,c,n)$ không bị tràn, trong phạm vi dữ liệu của bài này, $f(a,b,c,n)$ có thể vượt quá phạm vi số nguyên $64$ bit; cứ để tràn tự nhiên, không cần xử lý thêm, vì kết quả cuối cùng chắc chắn nằm trong $[-n,n]$.
+    Để tránh tràn số nguyên, mỗi lần cần chia đồng thời $a,b,c$ cho ước chung lớn nhất của chúng. Vì quá trình tính này hoàn toàn giống quá trình tính liên phân số của $k$, theo [lý thuyết liên phân số](./continued-fraction.md#số-vô-tỉ-bậc-hai), chỉ cần bảo đảm $\gcd(a,b,c)=1$ thì trong quá trình tính chúng chắc chắn nằm trong phạm vi kiểu số nguyên. Ngoài ra, dù $(a,b,c,n)$ không bị tràn, trong phạm vi dữ liệu của bài này, $f(a,b,c,n)$ có thể vượt quá phạm vi số nguyên $64$ bit; cứ để tràn tự nhiên, không cần xử lý thêm, vì kết quả cuối cùng chắc chắn nằm trong $[-n,n]$.
     
     Dù hệ số góc không bao giờ trở thành không, độ phức tạp của thuật toán vẫn là $O(\log n)$; điều này dễ thấy từ lập luận về độ phức tạp thuật toán ở trên.
     
@@ -310,7 +310,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     Cho các số nguyên dương $a,b,c,d$, hãy tìm trong tất cả các phân số tối giản $p/q$ thỏa mãn $a/b<p/q<c/d$ phân số có thứ tự từ điển của $(q,p)$ nhỏ nhất.
 
 ??? note "Lời giải"
-    Bài này cũng là một ứng dụng kinh điển của [cây Stern-Brocot](./stern-brocot.md); lời giải liên quan có thể tìm ở [đây](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E7%9A%84%E6%A0%91). Vì nó chỉ phụ thuộc vào cấu trúc đệ quy của phân số, nó cũng có thể được giải bằng phương pháp tương tự thuật toán Euclid, nên cũng có thể xem là một ứng dụng của thuật toán Euclid tương tự.
+    Bài này cũng là một ứng dụng kinh điển của [cây Stern-Brocot](./stern-brocot.md); lời giải liên quan có thể tìm ở [đây](./continued-fraction.md#cây-của-liên-phân-số). Vì nó chỉ phụ thuộc vào cấu trúc đệ quy của phân số, nó cũng có thể được giải bằng phương pháp tương tự thuật toán Euclid, nên cũng có thể xem là một ứng dụng của thuật toán Euclid tương tự.
     
     Nếu giữa $a/b$ và $c/d$ (không tính hai đầu mút) tồn tại ít nhất một số tự nhiên, có thể lấy trực tiếp $(q,p)=(1,\lfloor a/b\rfloor+1)$. Nếu không, chắc chắn có
     
@@ -318,7 +318,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     \left\lfloor\dfrac{a}{b}\right\rfloor \le \dfrac{a}{b} <\dfrac{p}{q} <\dfrac{c}{d}\le\left\lfloor\dfrac{a}{b}\right\rfloor+1.
     $$
     
-    Từ bất đẳng thức này có thể thấy phần nguyên của $p/q$ được xác định là $\lfloor a/b\rfloor$; loại bỏ trực tiếp phần nguyên đó rồi lấy nghịch đảo toàn bộ để xác định phần thập phân của nó. Đây chính là [phương pháp cơ bản](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%B1%82%E6%B3%95) để xác định liên phân số của $p/q$. Nếu đáp án cuối cùng là $p/q$, độ phức tạp thời gian của thuật toán là $O(\log\min\{p,q\})$.
+    Từ bất đẳng thức này có thể thấy phần nguyên của $p/q$ được xác định là $\lfloor a/b\rfloor$; loại bỏ trực tiếp phần nguyên đó rồi lấy nghịch đảo toàn bộ để xác định phần thập phân của nó. Đây chính là [phương pháp cơ bản](./continued-fraction.md#cách-tìm-biểu-diễn-liên-phân-số) để xác định liên phân số của $p/q$. Nếu đáp án cuối cùng là $p/q$, độ phức tạp thời gian của thuật toán là $O(\log\min\{p,q\})$.
     
     Ở đây có một chi tiết cần xử lý: sau khi lấy nghịch đảo, phân số nhỏ nhất theo thứ tự từ điển có còn là phân số nhỏ nhất theo thứ tự từ điển trước khi lấy nghịch đảo hay không. Nói cách khác, trong các phân số $p/q$ thỏa mãn $a/b<p/q<c/d$, phân số có thứ tự từ điển $(q,p)$ nhỏ nhất có đồng thời là phân số có thứ tự từ điển $(p,q)$ nhỏ nhất hay không. Giả sử ngược lại, đặt $p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(q,p)$, nhưng $r/s\neq p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(r,s)$. Khi đó chắc chắn có $r<p$ và $q<s$. Nhưng điều này cho thấy
     
@@ -695,7 +695,7 @@ Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như s
         F(k,n,U,R) = F(k^{-1},m,R,U)R^{n-\lfloor k^{-1}m\rfloor}.
         $$
     
-    Trong thuật toán, quá trình lặp của $k$ thực chất là quá trình tìm khai triển liên phân số của $\sqrt{r}$. Vì vậy, có thể áp dụng [thuật toán PQa](./pell-equation.md#pqa-%E7%AE%97%E6%B3%95). Quá trình tìm liên phân số và quá trình lặp của thuật toán Euclid vạn năng có thể được thực hiện đồng thời.
+    Trong thuật toán, quá trình lặp của $k$ thực chất là quá trình tìm khai triển liên phân số của $\sqrt{r}$. Vì vậy, có thể áp dụng [thuật toán PQa](./pell-equation.md#thuật-toán-pqa). Quá trình tìm liên phân số và quá trình lặp của thuật toán Euclid vạn năng có thể được thực hiện đồng thời.
     
     Tương tự trường hợp của thuật toán Euclid tương tự, độ phức tạp của thuật toán vẫn là $O(\log n)$.
     

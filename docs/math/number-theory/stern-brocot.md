@@ -198,7 +198,7 @@ Cài đặt thuật toán tìm phân số đơn giản như sau:
 
 Độ phức tạp của thuật toán là $O(p+q)$, nên trong lập trình thi đấu nó không thực dụng.
 
-Trong hệ đếm Stern-Brocot, mỗi số vô tỉ dương tương ứng với một chuỗi vô hạn duy nhất. Có thể dùng cùng thuật toán để xây dựng chuỗi này. Mỗi tiền tố của chuỗi vô hạn đó tương ứng với một phân số hữu tỉ tối giản. Xếp các phân số tối giản ấy thành một dãy, mẫu số của các phân số trong dãy tăng nghiêm ngặt, và giới hạn của dãy chính là số vô tỉ đó. Vì vậy, cây Stern-Brocot có thể dùng để tìm xấp xỉ hữu tỉ với độ chính xác tùy ý cho một số vô tỉ. Tuy nhiên, cần lưu ý rằng khoảng cách giữa dãy số hữu tỉ này và số vô tỉ không nhất thiết giảm nghiêm ngặt. Để có lý thuyết chặt chẽ về xấp xỉ hữu tỉ, nên tham khảo mục [xấp xỉ Diophantine](./continued-fraction.md#%E4%B8%A2%E7%95%AA%E5%9B%BE%E9%80%BC%E8%BF%91) trong trang liên phân số. Khi dùng cây Stern-Brocot để tìm xấp xỉ tốt nhất của một số thực với mẫu số không vượt quá một giới hạn nào đó, cuối cùng cần chú ý so sánh khoảng cách từ hai đầu mút của đoạn hiện tại đến số thực đó.
+Trong hệ đếm Stern-Brocot, mỗi số vô tỉ dương tương ứng với một chuỗi vô hạn duy nhất. Có thể dùng cùng thuật toán để xây dựng chuỗi này. Mỗi tiền tố của chuỗi vô hạn đó tương ứng với một phân số hữu tỉ tối giản. Xếp các phân số tối giản ấy thành một dãy, mẫu số của các phân số trong dãy tăng nghiêm ngặt, và giới hạn của dãy chính là số vô tỉ đó. Vì vậy, cây Stern-Brocot có thể dùng để tìm xấp xỉ hữu tỉ với độ chính xác tùy ý cho một số vô tỉ. Tuy nhiên, cần lưu ý rằng khoảng cách giữa dãy số hữu tỉ này và số vô tỉ không nhất thiết giảm nghiêm ngặt. Để có lý thuyết chặt chẽ về xấp xỉ hữu tỉ, nên tham khảo mục [xấp xỉ Diophantine](./continued-fraction.md#xấp-xỉ-diophantine) trong trang liên phân số. Khi dùng cây Stern-Brocot để tìm xấp xỉ tốt nhất của một số thực với mẫu số không vượt quá một giới hạn nào đó, cuối cùng cần chú ý so sánh khoảng cách từ hai đầu mút của đoạn hiện tại đến số thực đó.
 
 <span id="&#x5FEB;&#x901F;&#x7B97;&#x6CD5;"></span>
 #### Thuật toán nhanh
@@ -241,7 +241,7 @@ $$
 \dfrac{p_k}{q_k} = \dfrac{t_kp_{k-1}+p_{k-2}}{t_kq_{k-1}+q_{k-2}}.
 $$
 
-Theo [quan hệ truy hồi](./continued-fraction.md#%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB) của liên phân số, ta biết đầu mút
+Theo [quan hệ truy hồi](./continued-fraction.md#quan-hệ-truy-hồi) của liên phân số, ta biết đầu mút
 
 $$
 \dfrac{p_k}{q_k} = [t_0,t_1,\cdots,t_k].
@@ -253,7 +253,7 @@ $$
 \dfrac{p}{q} = \dfrac{p_k+p_{k-1}}{q_k+q_{k-1}} = [t_0,t_1,\cdots,t_{n-1},t_n,1].
 $$
 
-Vì vậy, trong [biểu diễn liên phân số](./continued-fraction.md#%E7%AE%80%E5%8D%95%E8%BF%9E%E5%88%86%E6%95%B0) của phân số mục tiêu có phần tử cuối bằng một, nếu bỏ phần tử một cuối cùng thì các phần tử phía trước mã hóa đường đi từ gốc đến nút hiện tại trên cây Stern-Brocot. Trong đó, các phần tử chẵn (chỉ số bắt đầu từ $0$) là các cạnh đi sang nút con phải, còn các phần tử lẻ là các cạnh đi sang nút con trái.
+Vì vậy, trong [biểu diễn liên phân số](./continued-fraction.md#liên-phân-số-đơn-giản) của phân số mục tiêu có phần tử cuối bằng một, nếu bỏ phần tử một cuối cùng thì các phần tử phía trước mã hóa đường đi từ gốc đến nút hiện tại trên cây Stern-Brocot. Trong đó, các phần tử chẵn (chỉ số bắt đầu từ $0$) là các cạnh đi sang nút con phải, còn các phần tử lẻ là các cạnh đi sang nút con trái.
 
 Biểu diễn liên phân số của số hữu tỉ có thể tìm bằng thuật toán Euclid, nên thuật toán tìm phân số dựa trên biểu diễn liên phân số có độ phức tạp $O(\log\min\{p,q\})$.
 

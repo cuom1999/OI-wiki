@@ -1,6 +1,6 @@
 Kiến thức nền: [phân số liên tục](./continued-fraction.md), [trường bậc hai](./quadratic.md)
 
-<span id="&#x5f15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Bài viết này thảo luận cách giải phương trình Pell (tổng quát). Phương trình
@@ -22,7 +22,7 @@ Khi bài viết này nói đến phương trình Pell, mặc định là trườ
 ứng, trường hợp $N=-1$ được gọi là phương trình Pell âm[^neg-pell] (negative
 Pell's equation).
 
-<span id="&#x89e3;&#x7684;&#x7ed3;&#x6784;"></span>
+<span id="cấu-trúc-nghiệm"></span>
 ## Cấu trúc nghiệm
 
 Nghiệm nguyên $(x,y)$ của phương trình Pell tổng quát có liên hệ mật thiết với
@@ -43,7 +43,7 @@ Khác biệt này đặc biệt quan trọng khi tìm đơn vị cơ bản. Đơ
 nguyên bậc hai là số nguyên bậc hai có chuẩn bằng $\pm 1$. Với
 $D\equiv 2,3\pmod 4$, để tìm các đơn vị như vậy chỉ cần giải phương trình Pell
 tổng quát trong trường hợp $N=\pm 1$; nhưng với $D\equiv 1\pmod 4$, cần xét
-thêm trường hợp $N=\pm 4$. [Phần dưới](#%E8%8C%83%E6%95%B0%E4%B8%BA-4-%E7%9A%84%E6%83%85%E5%BD%A2)
+thêm trường hợp $N=\pm 4$. [Phần dưới](#trường-hợp-chuẩn-bằng-4)
 sẽ thảo luận cách tìm đơn vị.
 
 Để hiểu cấu trúc nghiệm của phương trình Pell tổng quát, cần bắt đầu từ
@@ -74,7 +74,7 @@ ra tất cả nghiệm. Nhưng ít nhất nó cho thấy việc hiểu cấu tr�
 phương trình Pell có vai trò quan trọng đối với cấu trúc nghiệm của phương trình
 Pell tổng quát.
 
-<span id="pell-&#x65b9;&#x7a0b;"></span>
+<span id="phương-trình-pell"></span>
 ### Phương trình Pell
 
 Ý nghĩa hình học của phương trình $x^2-Dy^2=1$ là một hyperbol có trục thực
@@ -140,7 +140,7 @@ Pell luôn có nghiệm không tầm thường.
     Phương trình Pell $x^2-Dy^2=1$ luôn có nghiệm nguyên khác $(\pm 1,0)$.
 
 ??? note "Chứng minh"
-    Trước hết, [định lý Dirichlet](./continued-fraction.md#%E7%94%A8%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E9%80%BC%E8%BF%91%E5%AE%9E%E6%95%B0)
+    Trước hết, [định lý Dirichlet](./continued-fraction.md#dùng-phân-số-tiệm-cận-để-xấp-xỉ-số-thực)
     cho biết tồn tại vô hạn cặp số nguyên dương $(x,y)$ sao cho
 
     $$
@@ -186,7 +186,7 @@ vành số nguyên bậc hai thực, nhưng với trường hợp $D\equiv 1\pmo
 vẫn chưa giải quyết hoàn toàn cấu trúc đơn vị của vành số nguyên bậc hai tương
 ứng; phần dưới sẽ thảo luận tiếp.
 
-<span id="&#x5e7f;&#x4e49;-pell-&#x65b9;&#x7a0b;"></span>
+<span id="phương-trình-pell-tổng-quát"></span>
 ### Phương trình Pell tổng quát
 
 Đồ thị của phương trình Pell tổng quát $x^2-Dy^2=N$ cũng là hyperbol trên mặt
@@ -241,13 +241,13 @@ của phương trình $x^2-2rx+1=0$, nên $x_n$ và $y_n$ đều thỏa mãn tru
 tính hệ số hằng bậc hai trên. So với phép ghép nghiệm, công thức truy hồi này
 cần ít phép nhân hơn.
 
-<span id="&#x6c42;&#x89e3;&#x65b9;&#x6cd5;"></span>
+<span id="phương-pháp-giải"></span>
 ## Phương pháp giải
 
 Việc giải phương trình Pell và phương trình Pell tổng quát đều có thể dựa trên
 phân số liên tục.
 
-<span id="pqa-&#x7b97;&#x6cd5;"></span>
+<span id="thuật-toán-pqa"></span>
 ### Thuật toán PQa
 
 Những thuật toán được thảo luận trong bài này đều dựa trên thuật toán PQa, dùng
@@ -261,7 +261,7 @@ $$
 $$
 
 có khai triển phân số liên tục $[a_0,a_1,\cdots]$ tính được bằng
-[công thức truy hồi](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0)
+[công thức truy hồi](./continued-fraction.md#số-vô-tỉ-bậc-hai)
 sau:
 
 $$
@@ -269,7 +269,7 @@ a_k = \left\lfloor\dfrac{P_k+\sqrt{D}}{Q_k}\right\rfloor,\ P_{k+1} = a_kQ_k - P_
 $$
 
 Tiếp theo, tử số và mẫu số $A_k$ và $B_k$ của phân số gần đúng thứ $k$ của
-$\omega$ được cho bởi [công thức truy hồi](./continued-fraction.md#%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB)
+$\omega$ được cho bởi [công thức truy hồi](./continued-fraction.md#quan-hệ-truy-hồi)
 
 $$
 A_k = a_kA_{k-1} + A_{k-2},\ B_k = a_kB_{k-1} + B_{k-2}
@@ -279,7 +279,7 @@ với $A_{-1} = 1$, $A_{-2}=0$, $B_{-1}=0$, $B_{-2}=1$.
 
 Tính đúng đắn của các công thức này đã được chứng minh trong bài phân số liên
 tục. Ở đó cũng đã giải thích rằng vì số vô tỉ bậc hai là
-[phân số liên tục tuần hoàn](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0),
+[phân số liên tục tuần hoàn](./continued-fraction.md#số-vô-tỉ-bậc-hai),
 nên bộ ba $(P_k,Q_k,a_k)$ cuối cùng sẽ đi vào chu kỳ, và thuật toán luôn kết
 thúc sau hữu hạn bước. Giả sử độ dài nhỏ nhất của chu kỳ là $\ell$, và vị trí
 bắt đầu sớm nhất của chu kỳ là $k_0$, khi đó khai triển phân số liên tục của số
@@ -337,7 +337,7 @@ $$
     \end{aligned}
     $$
 
-    Bước cuối dùng [công thức sai phân](./continued-fraction.md#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1)
+    Bước cuối dùng [công thức sai phân](./continued-fraction.md#ước-lượng-sai-số)
     của phân số gần đúng. Kết quả đầu tiên đã được chứng minh.
 
     Để chứng minh kết quả thứ hai, thay biểu thức của $G_k$ vào kết quả đầu
@@ -368,7 +368,7 @@ $G_{k-1}$ và $B_{k-1}$ nhất định nguyên tố cùng nhau.
 Sau khi hiểu ý tưởng này, ta xử lý một số chi tiết của thuật toán và chứng minh
 mọi nghiệm đều có thể thu được theo cách này.
 
-<span id="pell-&#x65b9;&#x7a0b;_1"></span>
+<span id="phương-trình-pell_1"></span>
 ### Phương trình Pell
 
 Để giải phương trình Pell $x^2-Dy^2=1$, chỉ cần chạy thuật toán PQa với
@@ -379,7 +379,7 @@ quá trình này chính xác hơn.
 
 Trước hết, nghiệm nhất định xuất hiện ở cuối chu kỳ. Quá trình trên tương đương
 với khai triển phân số liên tục của $\sqrt{D}$. Về điều này, đã có
-[kết quả](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0):
+[kết quả](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn):
 
 $$
 \sqrt{D} = [\lfloor\sqrt{D}\rfloor,\overline{a_1,\cdots,a_{\ell-1},2\lfloor\sqrt{D}\rfloor}].
@@ -413,14 +413,14 @@ ra. Hai lý do này lần lượt suy ra từ hai định lý sau:
     \left|\dfrac{x}{y}-\sqrt{D}\right| = \dfrac{N}{y(x+y\sqrt{D})}<\dfrac{N}{2y^2\sqrt{D}}<\dfrac{1}{2y^2}.
     $$
 
-    Theo [tiêu chuẩn Legendre](./continued-fraction.md#%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E7%9A%84%E5%88%A4%E5%AE%9A),
+    Theo [tiêu chuẩn Legendre](./continued-fraction.md#nhận-biết-phân-số-tiệm-cận),
     $\dfrac{x}{y}$ là phân số gần đúng của $\sqrt{D}$.
 
     Khi $N<0$, bất đẳng thức $x>y\sqrt{D}$ không còn đúng. Do đó xét phương
     trình $y^2-\dfrac{1}{D}x^2=-\dfrac{N}{D}$. Vì
     $\dfrac{|N|}{D}<\sqrt{\dfrac{1}{D}}$, lặp lại lập luận trên vẫn đúng. Điều
     này cho thấy $\dfrac{y}{x}$ là phân số gần đúng của $\dfrac{1}{\sqrt{D}}$.
-    Theo [định lý nghịch đảo](./continued-fraction.md#%E9%80%92%E6%8E%A8%E5%85%B3%E7%B3%BB),
+    Theo [định lý nghịch đảo](./continued-fraction.md#quan-hệ-truy-hồi),
     $\dfrac{x}{y}$ cũng là phân số gần đúng của $\sqrt{D}$.
 
 ???+ note "Định lý"
@@ -429,7 +429,7 @@ ra. Hai lý do này lần lượt suy ra từ hai định lý sau:
 
 ??? note "Chứng minh"
     Trong khai triển phân số liên tục của $\sqrt{D}$, ngoài thương hoàn toàn thứ
-    $0$, mọi thương hoàn toàn khác đều là [phân số liên tục thuần tuần hoàn](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0).
+    $0$, mọi thương hoàn toàn khác đều là [phân số liên tục thuần tuần hoàn](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn).
     Giả sử $Q_k=1$. Theo kết quả của Galois, nhất định có thương hoàn toàn
     $\omega_k=P_k+\sqrt{D}>1$, và liên hợp của nó $-1<P_k-\sqrt{D}<0$, suy ra
     $P_k=\lfloor\sqrt{D}\rfloor$. Do đó thương hoàn toàn $\omega_k$ bằng
@@ -484,7 +484,7 @@ tính từ nghiệm cơ bản.
         (32+5\sqrt{41})^2=2049+320\sqrt{41}.
         $$
 
-<span id="&#x8d1f;-pell-&#x65b9;&#x7a0b;"></span>
+<span id="phương-trình-pell-âm"></span>
 ### Phương trình Pell âm
 
 Theo thảo luận ở phần trước, nghiệm của phương trình Pell âm cũng nhất định
@@ -603,7 +603,7 @@ nghiệm; chẳng hạn $x^2-34y^2=-1$ vô nghiệm.
     nghiệm, và nghiệm nguyên dương nhỏ nhất của phương trình $x^2-41y^2=-1$ là
     $(G_2,B_2)=(32,5)$.
 
-<span id="&#x8303;&#x6570;&#x4e3a;-4-&#x7684;&#x60c5;&#x5f62;"></span>
+<span id="trường-hợp-chuẩn-bằng-4"></span>
 ### Trường hợp chuẩn bằng ±4
 
 Tiếp theo thảo luận nghiệm của phương trình $x^2-Dy^2=\pm 4$. Lúc này tính
@@ -651,7 +651,7 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     \left|\dfrac{(x+y)/2}{y}-\dfrac{1+\sqrt{D}}{2}\right| = \dfrac{2}{y(x+y\sqrt{D})}<\dfrac{1}{2y^2}.
     $$
 
-    Theo [tiêu chuẩn Legendre](./continued-fraction.md#%E6%B8%90%E8%BF%91%E5%88%86%E6%95%B0%E7%9A%84%E5%88%A4%E5%AE%9A),
+    Theo [tiêu chuẩn Legendre](./continued-fraction.md#nhận-biết-phân-số-tiệm-cận),
     $\dfrac{(x+y)/2}{y}$ là phân số gần đúng của $\dfrac{1+\sqrt{D}}{2}$.
 
     Nếu $(x,y)$ là nghiệm của phương trình $x^2-Dy^2=-4$, để thiết lập bất đẳng
@@ -677,7 +677,7 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
 ??? note "Chứng minh"
     Vì $\lfloor\omega\rfloor-1+\omega>1$, và liên hợp của nó bằng
     $\lfloor\omega\rfloor - \omega$, nằm giữa $-1$ và $0$, nên theo
-    [kết quả của Galois](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0),
+    [kết quả của Galois](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn),
     $\lfloor\omega\rfloor-1+\omega$ là phân số liên tục thuần tuần hoàn, có thể
     viết thành
 
@@ -707,12 +707,12 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
 ??? note "Chứng minh"
     Trong khai triển phân số liên tục của $\dfrac{1+\sqrt{D}}{2}$, ngoài thương
     hoàn toàn thứ $0$, mọi thương hoàn toàn khác đều là
-    [phân số liên tục thuần tuần hoàn](./continued-fraction.md#%E7%BA%AF%E5%BE%AA%E7%8E%AF%E8%BF%9E%E5%88%86%E6%95%B0).
+    [phân số liên tục thuần tuần hoàn](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn).
     Giả sử $Q_k=2$. Theo kết quả của Galois, liên hợp của thương hoàn toàn
     $\omega_k=\dfrac{P_k+\sqrt{D}}{2}$ nhất định thỏa
     $-1<\dfrac{P_k-\sqrt{D}}{2}<0$, tức $\sqrt{D}-2<P_k<\sqrt{D}$. Vì trong
     thuật toán PQa luôn có $Q_k\mid P_k^2-D$ (xem
-    [chứng minh tính đúng đắn của thuật toán](./continued-fraction.md#%E4%BA%8C%E6%AC%A1%E6%97%A0%E7%90%86%E6%95%B0)),
+    [chứng minh tính đúng đắn của thuật toán](./continued-fraction.md#số-vô-tỉ-bậc-hai)),
     nên $P_k$ nhất định lẻ; điều này cho thấy giá trị của $P_k$ là duy nhất,
     tức $P_k=P_0+2(\lfloor\omega\rfloor-1)$, hay thương hoàn toàn
     $\omega_k=\omega_\ell$. Nhưng sự lặp lại của thương hoàn toàn có nghĩa phân
@@ -930,7 +930,7 @@ $D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
         lượt là $(18,5)$ và $(649,180)$, nên nghiệm nguyên dương nhỏ nhất của
         phương trình $x^2-52y^2=\pm 4$ lần lượt là $(36,10)$ và $(1298,360)$.
 
-<span id="&#x4e00;&#x822c;&#x60c5;&#x5f62;"></span>
+<span id="trường-hợp-tổng-quát"></span>
 ### Trường hợp tổng quát
 
 Cuối cùng, ta thảo luận cách giải phương trình Pell tổng quát.
@@ -1015,14 +1015,14 @@ Tính đúng đắn của thuật toán được bảo đảm bởi định lý 
     $$
 
     Tiếp theo chứng minh $\dfrac{P}{Q}$ là một phân số gần đúng của $\omega$.
-    Giả sử $\dfrac{P}{Q}$ có [khai triển phân số liên tục](./continued-fraction.md#%E7%AE%80%E5%8D%95%E8%BF%9E%E5%88%86%E6%95%B0)
+    Giả sử $\dfrac{P}{Q}$ có [khai triển phân số liên tục](./continued-fraction.md#liên-phân-số-đơn-giản)
 
     $$
     \dfrac{P}{Q} = [a_0,a_1,\cdots,a_k]
     $$
 
     và $PS-QR = (-1)^{k-1}$. Nếu $\dfrac{p_k}{q_k}$ là phân số gần đúng thứ $k$
-    của nó, thì $(p_k,q_k)=(P,Q)$, và theo [công thức sai phân của phân số gần đúng](./continued-fraction.md#%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1),
+    của nó, thì $(p_k,q_k)=(P,Q)$, và theo [công thức sai phân của phân số gần đúng](./continued-fraction.md#ước-lượng-sai-số),
     $p_kq_{k-1}-q_kp_{k-1}=(-1)^{k-1}$. Điều này cho thấy
 
     $$
@@ -1151,7 +1151,7 @@ trước, ở đây chỉ số $k$ thỏa điều kiện có thể xuất hiện
 
         Độ dài chu kỳ $\ell=6$ là chẵn. Đến hết một chu kỳ vẫn không tồn tại $Q_k=\pm 1$, nên trường hợp này vô nghiệm. Tương tự, chạy thuật toán PQa với $(P_0,Q_0,D)=(-33,101,79)$ cũng quan sát được tình huống giống vậy. Vì thế phương trình vô nghiệm.
 
-<span id="&#x4e60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [LOJ 6687. Project Euler 66 - Giải phương trình](https://loj.ac/p/6687)
@@ -1160,7 +1160,7 @@ trước, ở đây chỉ số $k$ thỏa điều kiện có thể xuất hiện
 -   [UVa 12909. Numeric Center](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4774)
 -   [UVa 10241. Semi-triangular and also Square](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=14&page=show_problem&problem=1182)
 
-<span id="&#x53c2;&#x8003;&#x6587;&#x732e;&#x4e0e;&#x6ce8;&#x91ca;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Pell's equation - Wikipedia](https://en.wikipedia.org/wiki/Pell%27s_equation)
