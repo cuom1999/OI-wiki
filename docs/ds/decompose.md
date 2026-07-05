@@ -7,11 +7,17 @@ Thực ra, chia khối (sqrt decomposition) là một cách tư duy, không ph�
 
 Từ NOIP đến NOI rồi IOI, tư tưởng chia khối đã xuất hiện ở nhiều bài với độ khó khác nhau.
 
-Ý tưởng cơ bản của chia khối là chia dữ liệu gốc thành các phần phù hợp, rồi tiền xử lý một phần thông tin trên mỗi khối sau khi chia, qua đó đạt độ phức tạp thời gian tốt hơn thuật toán vét cạn thông thường.
+Ý tưởng cơ bản của chia khối là chia dữ liệu gốc thành các phần phù hợp,
+rồi tiền xử lý một phần thông tin trên mỗi khối sau khi chia,
+qua đó đạt độ phức tạp thời gian tốt hơn thuật toán vét cạn thông thường.
 
-Độ phức tạp thời gian của chia khối chủ yếu phụ thuộc vào độ dài khối. Thông thường có thể dùng bất đẳng thức trung bình để tìm độ dài khối tối ưu cho một bài toán cụ thể, cũng như độ phức tạp thời gian tương ứng.
+Độ phức tạp thời gian của chia khối chủ yếu phụ thuộc vào độ dài khối.
+Thông thường có thể dùng bất đẳng thức trung bình để tìm độ dài khối tối ưu cho một bài toán cụ thể,
+cũng như độ phức tạp thời gian tương ứng.
 
-Chia khối là một tư tưởng rất linh hoạt. So với cây Fenwick và cây đoạn, ưu điểm của chia khối là tính tổng quát cao hơn: nó có thể duy trì nhiều loại thông tin mà cây Fenwick và cây đoạn khó xử lý.
+Chia khối là một tư tưởng rất linh hoạt.
+So với cây Fenwick và cây đoạn, ưu điểm của chia khối là tính tổng quát cao hơn:
+nó có thể duy trì nhiều loại thông tin mà cây Fenwick và cây đoạn khó xử lý.
 
 Tất nhiên, nhược điểm của chia khối là độ phức tạp tiệm cận thường không tốt bằng cây đoạn hay cây Fenwick.
 
@@ -30,23 +36,42 @@ Dưới đây là một vài ví dụ.
     
         $1 \leq n \leq 5 \times 10^4$
 
-Ta chia dãy thành các khối, mỗi khối có $s$ phần tử, và ghi lại tổng đoạn của mỗi khối là $b_i$.
+Chia dãy thành các khối, mỗi khối có $s$ phần tử,
+và ghi lại tổng đoạn của mỗi khối là $b_i$.
 
 $$
 \underbrace{a_1, a_2, \ldots, a_s}_{b_1}, \underbrace{a_{s+1}, \ldots, a_{2s}}_{b_2}, \dots, \underbrace{a_{(s-1) \times s+1}, \dots, a_n}_{b_{\frac{n}{s}}}
 $$
 
-Khối cuối có thể không đầy đủ (vì $n$ rất có thể không phải bội của $s$), nhưng điều này không ảnh hưởng nhiều đến phần thảo luận của chúng ta.
+Khối cuối có thể không đầy đủ vì $n$ rất có thể không phải bội của $s$,
+nhưng điều này không ảnh hưởng nhiều đến phần thảo luận.
 
 Trước hết xét thao tác truy vấn:
 
--   Nếu $l$ và $r$ nằm trong cùng một khối, chỉ cần tính tổng trực tiếp bằng vét cạn. Vì độ dài khối là $s$, độ phức tạp xấu nhất là $O(s)$.
--   Nếu $l$ và $r$ không nằm trong cùng một khối, đáp án gồm ba phần: khối không đầy đủ bắt đầu từ $l$, một vài khối đầy đủ ở giữa, và khối không đầy đủ kết thúc tại $r$. Với các khối không đầy đủ, vẫn tính trực tiếp như trên; với các khối đầy đủ, chỉ cần cộng trực tiếp các tổng $b_i$ đã tính sẵn. Trong trường hợp này, độ phức tạp xấu nhất là $O(\dfrac{n}{s}+s)$.
+-   Nếu $l$ và $r$ nằm trong cùng một khối, chỉ cần tính tổng trực tiếp bằng vét cạn.
+    Vì độ dài khối là $s$, độ phức tạp xấu nhất là $O(s)$.
+-   Nếu $l$ và $r$ không nằm trong cùng một khối,
+    đáp án gồm ba phần:
+    khối không đầy đủ bắt đầu từ $l$,
+    một vài khối đầy đủ ở giữa,
+    và khối không đầy đủ kết thúc tại $r$.
+    Với các khối không đầy đủ, vẫn tính trực tiếp như trên;
+    với các khối đầy đủ, chỉ cần cộng trực tiếp các tổng $b_i$ đã tính sẵn.
+    Trong trường hợp này, độ phức tạp xấu nhất là $O(\dfrac{n}{s}+s)$.
 
 Tiếp theo là thao tác cập nhật:
 
--   Nếu $l$ và $r$ nằm trong cùng một khối, chỉ cần sửa trực tiếp bằng vét cạn. Vì độ dài khối là $s$, độ phức tạp xấu nhất là $O(s)$.
--   Nếu $l$ và $r$ không nằm trong cùng một khối, cần sửa ba phần: khối không đầy đủ bắt đầu từ $l$, một vài khối đầy đủ ở giữa, và khối không đầy đủ kết thúc tại $r$. Với các khối không đầy đủ, vẫn sửa giá trị từng phần tử bằng vét cạn (đừng quên cập nhật tổng đoạn $b_i$); với các khối đầy đủ, chỉ cần sửa trực tiếp tổng khối $b_i$. Trong trường hợp này, độ phức tạp xấu nhất vẫn là $O(\dfrac{n}{s}+s)$.
+-   Nếu $l$ và $r$ nằm trong cùng một khối, chỉ cần sửa trực tiếp bằng vét cạn.
+    Vì độ dài khối là $s$, độ phức tạp xấu nhất là $O(s)$.
+-   Nếu $l$ và $r$ không nằm trong cùng một khối,
+    cần sửa ba phần:
+    khối không đầy đủ bắt đầu từ $l$,
+    một vài khối đầy đủ ở giữa,
+    và khối không đầy đủ kết thúc tại $r$.
+    Với các khối không đầy đủ,
+    vẫn sửa giá trị từng phần tử bằng vét cạn và cập nhật tổng đoạn $b_i$;
+    với các khối đầy đủ, chỉ cần sửa trực tiếp tổng khối $b_i$.
+    Trong trường hợp này, độ phức tạp xấu nhất vẫn là $O(\dfrac{n}{s}+s)$.
 
 Theo bất đẳng thức trung bình, khi $\dfrac{n}{s}=s$, tức $s=\sqrt n$, độ phức tạp thời gian cho một thao tác là tối ưu, bằng $O(\sqrt n)$.
 
@@ -60,11 +85,12 @@ Theo bất đẳng thức trung bình, khi $\dfrac{n}{s}=s$, tức $s=\sqrt n$, 
 
 Cách làm trước có độ phức tạp là $\Omega(1) , O(\sqrt{n})$.
 
-Ở đây ta giới thiệu một thuật toán $O(\sqrt{n}) - O(1)$.
+Phần này giới thiệu một thuật toán $O(\sqrt{n}) - O(1)$.
 
-Để truy vấn $O(1)$, ta có thể duy trì các loại tổng tiền tố.
+Để truy vấn $O(1)$, có thể duy trì các loại tổng tiền tố.
 
-Tuy nhiên, khi có cập nhật thì việc duy trì không thuận tiện; ta chỉ có thể duy trì tổng tiền tố bên trong từng khối.
+Tuy nhiên, khi có cập nhật thì việc duy trì không thuận tiện;
+chỉ có thể duy trì tổng tiền tố bên trong từng khối.
 
 Đồng thời duy trì tổng tiền tố với mỗi khối nguyên vẹn được xem như một đơn vị.
 
@@ -77,7 +103,8 @@ Truy vấn: gồm ba phần, mỗi phần đều có thể lấy trực tiếp b
 
 Vẫn là bài toán đó, bây giờ độ dài dãy là $n$ và có $m$ thao tác.
 
-Nếu số thao tác tương đối ít, ta có thể ghi lại các thao tác đó, rồi khi truy vấn thì cộng thêm ảnh hưởng của chúng.
+Nếu số thao tác tương đối ít,
+có thể ghi lại các thao tác đó, rồi khi truy vấn thì cộng thêm ảnh hưởng của chúng.
 
 Giả sử ghi lại tối đa $T$ thao tác, khi đó cập nhật là $O(1)$, truy vấn là $O(T)$.
 
@@ -90,9 +117,19 @@ Khi $T=\sqrt{n}$, tổng độ phức tạp là $O(m \sqrt{n})$.
 <span id="các-vấn-đề-khác"></span>
 ### Các vấn đề khác
 
-Tư tưởng chia khối cũng có thể áp dụng cho nhiều bài toán liên quan đến số nguyên: tìm số lượng phần tử bằng không, tìm phần tử khác không đầu tiên, đếm số phần tử thỏa mãn một tính chất nào đó, v.v.
+Tư tưởng chia khối cũng có thể áp dụng cho nhiều bài toán liên quan đến số nguyên:
+tìm số lượng phần tử bằng không,
+tìm phần tử khác không đầu tiên,
+đếm số phần tử thỏa mãn một tính chất nào đó, v.v.
 
-Còn có một số bài toán khác có thể giải bằng chia khối, chẳng hạn duy trì một tập các số cho phép thêm hoặc xóa, kiểm tra một số có thuộc tập này hay không, và tìm số lớn thứ $k$. Để giải bài toán này, cần lưu các số theo thứ tự tăng dần và chia chúng thành nhiều khối, mỗi khối chứa $\sqrt{n}$ số. Mỗi khi thêm hoặc xóa một số, cần chia khối lại bằng cách di chuyển các số ở biên giữa các khối kề nhau.
+Còn có một số bài toán khác có thể giải bằng chia khối,
+chẳng hạn duy trì một tập các số cho phép thêm hoặc xóa,
+kiểm tra một số có thuộc tập này hay không,
+và tìm số lớn thứ $k$.
+Để giải bài toán này, cần lưu các số theo thứ tự tăng dần và chia chúng thành nhiều khối,
+mỗi khối chứa $\sqrt{n}$ số.
+Mỗi khi thêm hoặc xóa một số,
+cần chia khối lại bằng cách di chuyển các số ở biên giữa các khối kề nhau.
 
 Một thuật toán ngoại tuyến rất nổi tiếng, [thuật toán Mo](../misc/mo-algo.md), cũng được xây dựng dựa trên tư tưởng chia khối.
 
