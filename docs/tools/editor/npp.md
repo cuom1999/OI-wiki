@@ -46,15 +46,15 @@ Chức năng của nó gần giống trình soạn thảo thông thường, như
 
 Có chức năng này thì bạn không cần quá lo mã bị mất do sự cố bất ngờ.
 
-Tuy nhiên, chức năng này chỉ chụp một snapshot cho tệp của bạn, chứ chưa thật sự lưu tệp, nên vẫn nên giữ thói quen lưu tệp tốt. Hoặc bạn có thể vào kho plugin tích hợp để cài plugin "Auto Save" (xem [Cách dùng nâng cao -> Plugin](#plugin), các mục dưới tương tự).
+Tuy nhiên, chức năng này chỉ chụp một bản chụp nhanh cho tệp của bạn, chứ chưa thật sự lưu tệp, nên vẫn nên giữ thói quen lưu tệp tốt. Hoặc bạn có thể vào kho phần bổ trợ tích hợp để cài phần bổ trợ "Auto Save" (xem [Cách dùng nâng cao -> Phần bổ trợ](#plugin), các mục dưới tương tự).
 
-### Chức năng bookmark
+### Chức năng đánh dấu
 
-Tại dòng cần đánh dấu, nhấn `Ctrl`+`F2` để đặt/hủy bookmark. Dòng đã đặt bookmark sẽ có một chấm tròn màu xanh ở phía trước.
+Tại dòng cần đánh dấu, nhấn `Ctrl`+`F2` để đặt/hủy dấu đánh dấu. Dòng đã đặt dấu đánh dấu sẽ có một chấm tròn màu xanh ở phía trước.
 
-Nhấn `F2` để nhảy tới bookmark tiếp theo.
+Nhấn `F2` để nhảy tới dấu đánh dấu tiếp theo.
 
-Nếu thấy chưa tiện, có thể vào kho plugin tích hợp để cài plugin "Bookmarks".
+Nếu thấy chưa tiện, có thể vào kho phần bổ trợ tích hợp để cài phần bổ trợ "Bookmarks".
 
 ### Tô sáng mã
 
@@ -62,7 +62,7 @@ Nhấp chuột phải vào "XXX file" ở góc dưới bên trái, bạn có th�
 
 Nếu thấy mỗi lần mở tệp lại phải đổi tô sáng là phiền, có thể sửa tô sáng mặc định trong "Settings -> Preferences -> New Document -> Default Language".
 
-Nếu cần render Markdown, có thể vào kho plugin cài "Markdown Viewer"; còn nhiều plugin tương tự khác đang chờ bạn.
+Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Markdown Viewer"; còn nhiều phần bổ trợ tương tự khác đang chờ bạn.
 
 ### Hiển thị toàn bộ ký tự
 
@@ -110,42 +110,46 @@ Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên
 
 Nhấp "Macro" -> "Save Current Recorded Macro", đặt tên và phím tắt, là có thể lưu lại để tiện dùng về sau.
 
-### Plugin mở rộng
+<span id="plugin"></span>
 
-#### Quản lý plugin
+<span id="plugin-mở-rộng"></span>
 
-Mở nút "Plugins" trên thanh chức năng; danh sách sẽ hiển thị toàn bộ plugin bạn đã cài.
+### Phần bổ trợ mở rộng
 
-Sau đó chọn "Plugins Admin" để quản lý plugin.
+#### Quản lý phần bổ trợ
 
-#### Cài plugin (kho plugin)
+Mở nút "Plugins" trên thanh chức năng; danh sách sẽ hiển thị toàn bộ phần bổ trợ bạn đã cài.
 
-1.  Mở thẻ "Available", đánh dấu plugin bạn cần trong danh sách.
+Sau đó chọn "Plugins Admin" để quản lý phần bổ trợ.
+
+#### Cài phần bổ trợ (kho phần bổ trợ)
+
+1.  Mở thẻ "Available", đánh dấu phần bổ trợ bạn cần trong danh sách.
 2.  Nhấp nút "Install" ở góc trên bên phải, rồi khởi động lại phần mềm theo hướng dẫn.
 
-#### Cài plugin (thủ công)
+#### Cài phần bổ trợ (thủ công)
 
-1.  Tải plugin (địa chỉ chính thức do bên thứ ba lưu trữ: <https://sourceforge.net/projects/npp-plugins/>). Chú ý nhất định phải chọn plugin **cùng kiến trúc bộ xử lý với lúc cài Notepad++**.
-2.  Tìm tệp tên "XXX.dll" (thường được đặt theo tên plugin).
+1.  Tải phần bổ trợ (địa chỉ chính thức do bên thứ ba lưu trữ: <https://sourceforge.net/projects/npp-plugins/>). Chú ý nhất định phải chọn phần bổ trợ **cùng kiến trúc bộ xử lý với lúc cài Notepad++**.
+2.  Tìm tệp tên "XXX.dll" (thường được đặt theo tên phần bổ trợ).
 3.  Trong Notepad++, nhấp Plugins trên thanh chức năng, rồi nhấp "Open Plugins Folder" trong danh sách.
 4.  Đặt tệp DLL vừa tìm được vào thư mục đó, rồi khởi động lại Notepad++.
 5.  [Tùy chọn] Xóa tệp vừa sao chép, **nhưng đừng xóa thư mục đã được sinh ra!**
 
-Tips: Nếu thử nhiều lần vẫn không thành công, có thể tạo một thư mục trùng tên plugin rồi đặt tệp ".dll" vào thư mục vừa tạo.
+Mẹo: Nếu thử nhiều lần vẫn không thành công, có thể tạo một thư mục trùng tên phần bổ trợ rồi đặt tệp ".dll" vào thư mục vừa tạo.
 
-#### Cập nhật plugin
+#### Cập nhật phần bổ trợ
 
-Trong trình quản lý plugin, chọn thẻ "Updates", đánh dấu plugin cần cập nhật, rồi nhấp nút "Update" ở góc trên bên phải.
+Trong trình quản lý phần bổ trợ, chọn thẻ "Updates", đánh dấu phần bổ trợ cần cập nhật, rồi nhấp nút "Update" ở góc trên bên phải.
 
-#### Gỡ plugin
+#### Gỡ phần bổ trợ
 
-Cũng trong trình quản lý plugin, chọn thẻ "Installed", đánh dấu plugin cần gỡ, rồi nhấp nút "Remove" ở góc trên bên phải.
+Cũng trong trình quản lý phần bổ trợ, chọn thẻ "Installed", đánh dấu phần bổ trợ cần gỡ, rồi nhấp nút "Remove" ở góc trên bên phải.
 
 ### Dựng môi trường phát triển
 
 Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công cụ rất mạnh: nó có thể biên dịch mã theo cách đơn giản, thậm chí thay thế IDE. Ở đây lấy C++ làm ví dụ.
 
-1.  Cài trình biên dịch và thêm các thư mục tệp cần thiết của nó vào biến môi trường PATH. (Với C++ cần thêm `%APPPATH%\bin`.) Khi nhập `g++` trong cmd mà không còn báo `'g++' is not recognized as an internal or external command...` là được (có thể cần khởi động lại máy). Khuyến nghị [tải ConsolePauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download), đặt ở đâu cũng được rồi thêm thư mục của nó vào biến môi trường (đây là plugin của Dev-C++; trong thư mục gốc của phần mềm Dev-C++ cũng có).
+1.  Cài trình biên dịch và thêm các thư mục tệp cần thiết của nó vào biến môi trường PATH. (Với C++ cần thêm `%APPPATH%\bin`.) Khi nhập `g++` trong cmd mà không còn báo `'g++' is not recognized as an internal or external command...` là được (có thể cần khởi động lại máy). Khuyến nghị [tải ConsolePauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download), đặt ở đâu cũng được rồi thêm thư mục của nó vào biến môi trường (đây là phần bổ trợ của Dev-C++; trong thư mục gốc của phần mềm Dev-C++ cũng có).
 
 2.  Trên thanh menu, chọn "Run" -> "Run...", mở cửa sổ "Run".
 
@@ -171,7 +175,7 @@ Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công
 
 4.  Nhấp "Save"; tên có thể tự đặt, chẳng hạn "Compile", "Run", rồi đặt phím tắt bạn muốn (chọn phím dễ nhớ, ví dụ Dev-C++ lần lượt là `F9` và `F10`).
 
-5.  Enjoy it!
+5.  Thế là xong!
 
 ## Trứng phục sinh
 
