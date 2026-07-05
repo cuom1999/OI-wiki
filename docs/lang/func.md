@@ -28,8 +28,8 @@ Chỉ có khai báo hàm (declaration) là chưa đủ. Khai báo chỉ cho phé
 **giao diện** của hàm khi gọi (tức nhận dữ liệu gì, trả về dữ liệu gì), nhưng
 chưa có phần cài đặt cụ thể bên trong, tức **định nghĩa** (definition) của hàm.
 Ta có thể viết mã **cài đặt** (implement) hàm này ở **một nơi khác sau phần khai
-báo**. Cũng có thể cài đặt trong file khác, nhưng khi liên kết cần cung cấp cả
-các file đã được biên dịch riêng.
+báo**. Cũng có thể cài đặt trong tệp khác, nhưng khi liên kết cần cung cấp cả
+các tệp đã được biên dịch riêng.
 
 Nếu hàm có giá trị trả về, cần dùng câu lệnh `return` để trả giá trị cho nơi
 gọi. Khi hàm thực thi đến câu lệnh `return`, hàm hiện tại sẽ kết thúc ngay và
@@ -50,7 +50,7 @@ int some_function(int x, int y) {  // định nghĩa
 Khi định nghĩa, ta đặt tên cho các biến trong danh sách tham số của hàm. Nhờ
 vậy, ta có thể dùng các biến này trong định nghĩa hàm.
 
-Nếu ở cùng một file, ta cũng có thể trực tiếp **gộp khai báo và định nghĩa lại
+Nếu ở cùng một tệp, ta cũng có thể trực tiếp **gộp khai báo và định nghĩa lại
 với nhau**; nói cách khác, hoàn thành định nghĩa ngay lúc khai báo.
 
 ```cpp
