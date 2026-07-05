@@ -17,7 +17,7 @@ Dưới đây là danh sách mirror của **OI Wiki**:
 -   Maintainer: **OI Wiki**, tuyến: Netlify, tần suất đồng bộ: giống site chính
     -   <https://demo.oi-wiki.org>
 
--   Maintainer: 琴春 ([vx.st](https://vx.st)), tuyến: AWS, tần suất đồng bộ:
+-   Maintainer: Qinchun ([vx.st](https://vx.st)), tuyến: AWS, tần suất đồng bộ:
     giống site chính
     -   <https://oi-wiki.net>
     -   <https://oi-wiki.wiki>
