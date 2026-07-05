@@ -1,4 +1,4 @@
-<span id="jordan-&#x5206;&#x89E3;"></span>
+<span id="phân-rã-jordan"></span>
 ## Phân rã Jordan
 
 Giả sử $T$ là một biến đổi tuyến tính trên không gian $n$ chiều $V$. Nếu đa thức tối tiểu của $T$ là:
@@ -97,7 +97,7 @@ Chúng đều là các đa thức của ma trận $A$, và được xác định
 
 Định lý này đưa ra một phân rã của ma trận $A$, gọi là phân rã Jordan của $A$; $D$ được gọi là phần chéo hóa được của $A$, còn $N$ được gọi là phần lũy linh của $A$.
 
-<span id="lambda-&#x77E9;&#x9635;"></span>
+<span id="ma-trận-lambda"></span>
 ## Ma trận lambda
 
 Phần tiếp theo giới thiệu một loại ma trận tổng quát hơn có chứa tham số biến $\lambda$, không chỉ là một bảng số.
@@ -108,7 +108,7 @@ Ma trận có phần tử là các đa thức theo $\lambda$ được gọi là 
 
 Vì vành đa thức chứa trường số, ma trận số là một trường hợp đặc biệt của ma trận $\lambda$; ma trận đặc trưng $\lambda I-A$ của ma trận số $A$ là một loại ma trận $\lambda$.
 
-<span id="lambda-&#x77E9;&#x9635;&#x7684;&#x521D;&#x7B49;&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-sơ-cấp-của-ma-trận-lambda"></span>
 ### Biến đổi sơ cấp của ma trận lambda
 
 Với ma trận $\lambda$, ta cũng có thể định nghĩa phép cộng trừ, phép nhân, biến đổi sơ cấp, hạng. Với ma trận vuông $\lambda$, ta cũng có thể định nghĩa định thức, minor và phần bù đại số.
@@ -127,7 +127,7 @@ Nếu $A(\lambda)$ qua hữu hạn lần biến đổi sơ cấp trở thành $B
 
 Với ma trận $\lambda$, nếu hai ma trận tương đương thì chúng có cùng hạng. Chiều ngược lại không đúng; đây là điểm khác với ma trận số.
 
-<span id="smith-&#x6807;&#x51C6;&#x578B;"></span>
+<span id="dạng-chuẩn-smith"></span>
 ## Dạng chuẩn Smith
 
 Định lý: Giả sử hạng của ma trận $\lambda$ là $r$, thì $A(\lambda)$ nhất định tương đương với:
@@ -157,7 +157,7 @@ Cách cụ thể để tìm dạng chuẩn Smith là khử từ góc trên trái
 
 Định lý: Điều kiện $A(\lambda)$ và $B(\lambda)$ tương đương tương đương với điều kiện $A(\lambda)$ và $B(\lambda)$ có đúng cùng các nhân tử bất biến.
 
-<span id="&#x521D;&#x7B49;&#x56E0;&#x5B50;"></span>
+<span id="nhân-tử-sơ-cấp"></span>
 ### Nhân tử sơ cấp
 
 Theo định lý cơ bản của đại số, giả sử các nhân tử bất biến $d_1(\lambda),d_2(\lambda),\cdots,d_m(\lambda)$ của $A(\lambda)$ phân tích thành:
@@ -196,7 +196,7 @@ Khi đó toàn bộ các lũy thừa của nhân tử bậc nhất ${(\lambda-\l
 
 Phương pháp cụ thể để xây dựng nhân tử bất biến từ nhân tử sơ cấp và hạng là: trước hết phân loại các nhân tử sơ cấp theo nhân tử, xếp thành bảng; với các nhân tử cùng loại, sắp theo lũy thừa giảm dần và đặt trong cùng một hàng; đặt lũy thừa cao nhất của mỗi loại nhân tử vào cùng một cột; dùng $1$ để bổ sung số cột đến hạng $r$; khi đó tích của từng cột tạo thành một nhân tử bất biến.
 
-<span id="&#x5728;&#x7279;&#x5F81;&#x77E9;&#x9635;&#x4E2D;&#x7684;&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng-trong-ma-trận-đặc-trưng"></span>
 ### Ứng dụng trong ma trận đặc trưng
 
 Nếu $A$ và $B$ là ma trận số, thì ma trận đặc trưng của chúng là ma trận $\lambda$. Có kết luận:
@@ -213,7 +213,7 @@ Quan sát ba loại biến đổi sơ cấp: vì phép cộng bội duy nhất �
 
 Vì vậy định thức của ma trận đặc trưng $\lambda I-A$ là đa thức bậc $n$. Sau khi dùng biến đổi sơ cấp đưa nó về dạng chuẩn Smith, do hạng là $n$, định thức chính là tích của toàn bộ các nhân tử bất biến trên đường chéo chính, cũng bằng tích của toàn bộ các nhân tử sơ cấp. Do đó, tổng bậc của toàn bộ các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ bằng $n$.
 
-<span id="jordan-&#x6807;&#x51C6;&#x578B;"></span>
+<span id="dạng-chuẩn-jordan"></span>
 ## Dạng chuẩn Jordan
 
 Ma trận:
@@ -368,7 +368,7 @@ Từ định lý này, nhờ các nhân tử sơ cấp của ma trận đặc tr
 
 Một hệ quả là: ma trận $A$ chéo hóa được khi và chỉ khi các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ đều là bậc nhất.
 
-<span id="&#x5F17;&#x7F57;&#x8D1D;&#x5C3C;&#x4E4C;&#x65AF;&#xFF08;forbenious&#xFF09;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-frobenius"></span>
 ## Định lý Frobenius
 
 Phần trên đã chỉ ra rằng hạng của dạng chuẩn Smith của ma trận đặc trưng cấp $n$ là $n$.

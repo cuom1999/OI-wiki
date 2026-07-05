@@ -10,12 +10,12 @@ Chú ý rằng chỉ số của dãy bắt đầu từ $0$, tức $G(0)=000,G(4)
 
 Mã Gray do Frank Gray ở Bell Labs đề xuất vào thập niên 1940 và được cấp bằng sáng chế năm 1953.
 
-<span id="&#26500;&#36896;&#26684;&#38647;&#30721;&#21464;&#25442;"></span>
+<span id="xây-dựng-mã-gray-biến-đổi"></span>
 ## Xây dựng mã Gray (biến đổi)
 
 Có nhiều cách xây dựng mã Gray. Trước hết giới thiệu cách xây thủ công, sau đó đưa ra mã và chứng minh tính đúng đắn.
 
-<span id="&#25163;&#21160;&#26500;&#36896;"></span>
+<span id="xây-thủ-công"></span>
 ### Xây thủ công
 
 Mã Gray $k$ bit có thể được xây dựng như sau. Bắt đầu từ mã Gray toàn `0`, rồi luân phiên theo chiến lược:
@@ -25,7 +25,7 @@ Mã Gray $k$ bit có thể được xây dựng như sau. Bắt đầu từ mã 
 
 Luân phiên thực hiện các chiến lược trên $2^{k-1}$ lần sẽ nhận được dãy mã Gray $k$ bit.
 
-<span id="&#38236;&#20687;&#26500;&#36896;"></span>
+<span id="xây-bằng-phản-chiếu"></span>
 ### Xây bằng phản chiếu
 
 Mã Gray $k$ bit có thể được suy ra nhanh từ mã Gray $k-1$ bit bằng cách phản chiếu trên dưới rồi thêm bit mới, như hình dưới:
@@ -51,7 +51,7 @@ k=3\\
 \end{matrix}
 $$
 
-<span id="&#35745;&#31639;&#26041;&#27861;"></span>
+<span id="cách-tính"></span>
 ### Cách tính
 
 Quan sát biểu diễn nhị phân của $n$ và $G(n)$. Có thể thấy bit thứ $i$ trong biểu diễn nhị phân của $G(n)$ bằng $1$ khi và chỉ khi bit thứ $i$ của $n$ bằng $1$ còn bit thứ $i+1$ bằng $0$, hoặc bit thứ $i$ bằng $0$ còn bit thứ $i+1$ bằng $1$. Vì vậy có thể xem đây là phép xor:
@@ -64,7 +64,7 @@ $$
 int g(int n) { return n ^ (n >> 1); }
 ```
 
-<span id="&#27491;&#30830;&#24615;&#35777;&#26126;"></span>
+<span id="chứng-minh-tính-đúng-đắn"></span>
 ### Chứng minh tính đúng đắn
 
 Tiếp theo chứng minh dãy mã Gray sinh theo công thức trên có đúng một bit khác nhau giữa hai mã kề nhau.
@@ -82,7 +82,7 @@ Khi tính $g(n)$ và $g(n+1)$, $k$ bit cuối đều trở thành dạng $\displ
 
 Chứng minh hoàn tất.
 
-<span id="&#36890;&#36807;&#26684;&#38647;&#30721;&#26500;&#36896;&#21407;&#25968;&#36870;&#21464;&#25442;"></span>
+<span id="khôi-phục-số-gốc-từ-mã-gray-biến-đổi-ngược"></span>
 ## Khôi phục số gốc từ mã Gray (biến đổi ngược)
 
 Bây giờ xét biến đổi ngược của mã Gray: cho một mã Gray $g$, cần tìm số gốc $n$. Duyệt từ bit cao nhất xuống bit thấp nhất (bit thấp nhất có chỉ số $1$, tức hàng đơn vị; bit cao nhất có chỉ số $k$). Quan hệ giữa bit thứ $i$ của $n$ và bit thứ $i$ của $g$ là:
@@ -106,7 +106,7 @@ int rev_g(int g) {
 }
 ```
 
-<span id="&#23454;&#38469;&#24212;&#29992;"></span>
+<span id="ứng-dụng-thực-tế"></span>
 ## Ứng dụng thực tế
 
 Mã Gray có nhiều ứng dụng rất hữu ích, một số ứng dụng khá bất ngờ:
@@ -127,7 +127,7 @@ Mã Gray có nhiều ứng dụng rất hữu ích, một số ứng dụng khá
 
 -   Mã Gray cũng được ứng dụng trong lý thuyết thuật toán di truyền.
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) Difficulty: easy

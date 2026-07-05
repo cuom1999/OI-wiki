@@ -425,7 +425,7 @@ Với trường hợp tổng quát hơn, tương tự ví dụ thuật toán gia
     Cho các hệ số của mọi $P_k$ và $a_0,a_1,\dots,a_{m-1}$, hãy tính $a_n$.
     Lấy kết quả modulo $998244353$. $n\le6\times10^8$, $1\le m,d\le7$, giới hạn thời gian $7s$.
 
-Để mô tả có hệ thống hơn quá trình xây dựng ma trận trong vài bài tập trên, ta đưa vào khái niệm [ma trận $\lambda$](../linear-algebra/jordan.md#lambda-%E7%9F%A9%E9%98%B5).
+Để mô tả có hệ thống hơn quá trình xây dựng ma trận trong vài bài tập trên, ta đưa vào khái niệm [ma trận $\lambda$](../linear-algebra/jordan.md#ma-trận-lambda).
 
 Để thực hiện truy hồi đa thức, cần chú ý rằng trong thuật toán giai thừa nhanh, các giá trị tại điểm mà ta duy trì thực ra không phải là $n!$, mà là $\prod_{i=0}^{T-1}(aT+i)$, tức là **quan hệ bội số giữa một cặp giá trị**.
 

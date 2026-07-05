@@ -6,7 +6,7 @@ $$
 \hat{F}(x)=\sum_{n}a_n \frac{x^n}{n!}
 $$
 
-<span id="&#x57fa;&#x672c;&#x8fd0;&#x7b97;"></span>
+<span id="phép-toán-cơ-bản"></span>
 ## Phép toán cơ bản
 
 Phép cộng và trừ của hàm sinh mũ giống với hàm sinh thường, tức là cộng các hệ số tương ứng.
@@ -28,7 +28,7 @@ $$
 \left\langle \sum_{i=0}^n \binom{n}{i}a_ib_{n-i} \right\rangle
 $$
 
-<span id="&#x5c01;&#x95ed;&#x5f62;&#x5f0f;"></span>
+<span id="dạng-đóng"></span>
 ## Dạng đóng
 
 Ta cũng xét dạng đóng của hàm sinh mũ.
@@ -47,7 +47,7 @@ $$
 \hat{F}(x) = \sum_{n\ge 0}\frac{p^nx^n}{n!}=\mathrm{e}^{px}
 $$
 
-<span id="&#x6307;&#x6570;&#x751f;&#x6210;&#x51fd;&#x6570;&#x4e0e;&#x666e;&#x901a;&#x751f;&#x6210;&#x51fd;&#x6570;"></span>
+<span id="hàm-sinh-mũ-và-hàm-sinh-thường"></span>
 ## Hàm sinh mũ và hàm sinh thường
 
 Hiểu hàm sinh mũ như thế nào? Ta định nghĩa hàm sinh mũ của dãy $a$ là:
@@ -60,7 +60,7 @@ Nhưng thực ra $F(x)$ cũng là hàm sinh thường của dãy $\left\langle \
 
 Cả hai cách hiểu đều không có vấn đề. Nói cách khác, các loại hàm sinh khác nhau chỉ là những cách chuyển đổi góc nhìn đối với bài toán.
 
-<span id="egf-&#x4e2d;&#x591a;&#x9879;&#x5f0f;-exp-&#x7684;&#x7ec4;&#x5408;&#x610f;&#x4e49;"></span>
+<span id="ý-nghĩa-tổ-hợp-của-exp-đa-thức-trong-egf"></span>
 ## Ý nghĩa tổ hợp của exp đa thức trong EGF
 
 Nếu bạn chưa học exp đa thức, hãy tạm bỏ qua phần này. Đây là ý nghĩa được rút ra từ cách hiểu exp, và ở một mức độ nào đó có thể giúp hiểu EGF sâu hơn.
@@ -150,7 +150,7 @@ Từ góc độ truy hồi, tích của nhiều EGF cũng có thể xem như m�
 
 Tóm lại, ý nghĩa của $\exp$ đa thức là: **số cách tạo một họ tập hợp từ các phần tử có nhãn**, hoặc tổng số phương án chia thành tùy ý số tập con không rỗng.
 
-<span id="&#x6392;&#x5217;&#x4e0e;&#x5706;&#x6392;&#x5217;"></span>
+<span id="hoán-vị-và-hoán-vị-vòng"></span>
 ## Hoán vị và hoán vị vòng
 
 Hàm sinh mũ của số hoán vị độ dài $n$ là
@@ -203,10 +203,10 @@ Tổng quát hơn:
 
 Tiếp theo ta xem một số ứng dụng của hàm sinh mũ.
 
-<span id="&#x5e94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
-<span id="&#x9519;&#x6392;&#x6570;"></span>
+<span id="số-derangement"></span>
 ### Số derangement
 
 ???+ note "Số derangement"
@@ -222,7 +222,7 @@ $$
 
 Do đó hàm sinh mũ của số derangement là $\exp(-\ln(1-x)-x)$.
 
-<span id="&#x4e0d;&#x52a8;&#x70b9;"></span>
+<span id="điểm-bất-động"></span>
 ### Điểm bất động
 
 ???+ note "[Điểm bất động](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1728)"
