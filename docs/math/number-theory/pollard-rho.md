@@ -126,7 +126,7 @@ $$
 
 Có thể thấy từ sau $x_4$, dãy chỉ tuần hoàn giữa $31,17,45$. Nếu sắp các số này như hình dưới, ta sẽ thấy hình dạng rất giống chữ $\rho$, và đó cũng là nguồn gốc tên gọi rho của thuật toán.
 
-![pollard-rho](./images/pollard-rho.svg)
+![Dãy giả ngẫu nhiên có chu trình trong thuật toán Pollard Rho](./images/pollard-rho.svg)
 
 Quan trọng hơn, hàm như vậy đúng là cung cấp một ánh xạ tự thân trên $\mathbb Z_p$. Nói cách khác, nó thỏa mãn tính chất: nếu $x\equiv y\pmod p$ thì $f(x)\equiv f(y)\pmod p$.
 

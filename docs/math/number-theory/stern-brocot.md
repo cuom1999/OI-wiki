@@ -275,7 +275,7 @@ Dùng biểu diễn liên phân số, có thể mô tả đơn giản nút cha v
 
 Một cấu trúc đơn giản hơn để lưu các phân số hữu tỉ dương là cây Calkin-Wilf. Nó thường được vẽ như sau:
 
-![pic](./images/calkin-wilf-tree.svg)
+![Cây Calkin-Wilf của các phân số hữu tỉ dương](./images/calkin-wilf-tree.svg)
 
 Nút gốc của cây là $\dfrac{1}{1}$. Với một nút chứa phân số $\dfrac{p}{q}$, hai nút con trái và phải lần lượt là $\dfrac{p}{p+q}$ và $\dfrac{p+q}{q}$. Tương tự cây Stern-Brocot, mọi phân số của nó đều tối giản, và nó chứa mỗi phân số tối giản dương đúng một lần.
 
@@ -317,7 +317,7 @@ Nếu xóa bit $1$ ban đầu, các bit nhị phân còn lại tạo thành ch�
 
 Chính vì vậy, các nút trên cây Stern-Brocot đôi khi được đánh số theo chỉ số của nút tương ứng trên cây Calkin-Wilf; cách đánh số đó được minh họa dưới đây:
 
-![pic](./images/stern-brocot-index.svg)
+![Đánh số các nút trên cây Stern-Brocot](./images/stern-brocot-index.svg)
 
 Cách đánh số này có thể xây dựng đệ quy: nút gốc có chỉ số $1$; mỗi lần đi tới nút con trái, thay bit $1$ đầu tiên của chỉ số bằng $10$, còn khi đi tới nút con phải thì thay bit $1$ đầu tiên bằng $11$. Đọc chỉ số này từ phải sang trái sẽ thu được đường đi từ gốc đến nút đó.
 

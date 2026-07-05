@@ -28,7 +28,7 @@ Hệ thức truy hồi của số Catalan $C_n$ có cấu trúc đệ quy tự n
     ??? note "Chứng minh"
         Gọi số phương án là $T_n$. Xét trường hợp $n \ge 2$. Giả sử điểm mà đường đi **lần đầu** chạm đường chéo $y=x$ là $(k,k)~(k \in [1,n])$. Xét đoạn đường từ $(0,0)$ đến $(k,k)$ sao cho ngoài điểm đầu và điểm cuối, các điểm trung gian **không đi qua đường chéo**, tức là không được chạm vào.
         
-        ![catalan2](./images/catalan-2.svg)
+        ![Đường đi lần đầu chạm đường chéo trong bài toán Catalan](./images/catalan-2.svg)
         
         Như hình vẽ, bước đầu tiên của các đường đi này chắc chắn là sang phải, từ $(0,0)$ đến $(1,0)$; bước cuối cùng chắc chắn là đi lên, từ $(k,k-1)$ đến $(k,k)$. Vì vậy các đường đi này chính là các đường đi từ $(1,0)$ đến $(k,k-1)$ không vượt qua đường thẳng $y=x-1$, và số đường đi như vậy là $T_{k-1}$. Đồng thời, số đường đi hợp lệ từ $(k,k)$ đến $(n,n)$ là $T_{n-k}$. Theo quy tắc nhân, số đường đi lần đầu chạm đường chéo tại $(k,k)$ là $T_{k-1} T_{n-k}$. Duyệt mọi khả năng của $k$, tổng số đường đi hợp lệ là
         
@@ -232,7 +232,7 @@ Vì số Catalan có ý nghĩa tổ hợp rõ ràng, chỉ dùng phương pháp 
 ??? note "Chứng minh biểu thức $(3)$"
     Xét [bài toán đếm đường đi](#path-counting). Đây là một bài toán đếm đường đi trên lưới điển hình và có thể giải bằng nguyên lý phản xạ. Cụ thể trong bài toán này, ta lấy tổng số đường đi trừ đi số đường đi không hợp lệ. Mỗi đường đi có tổng cộng $2n$ bước, trong đó có $n$ bước sang phải, nên số phương án là $\dbinom{2n}{n}$. Một đường đi không hợp lệ khi và chỉ khi nó chạm đường thẳng $y = x+1$. Với một đường đi bất hợp lệ bất kỳ, ta có thể tìm vị trí đầu tiên chạm đường thẳng $y = x+1$, rồi lấy đối xứng phần đường đi sau vị trí đó qua đường thẳng $y=x+1$. Khi đó, một đường đi bất hợp lệ từ $(0,0)$ đến $(n,n)$ biến thành một đường đi từ $(0,0)$ đến $(n-1,n+1)$.
     
-    ![catalan1](./images/catalan-1.svg)
+    ![Phản xạ đường đi không hợp lệ qua đường thẳng y = x + 1](./images/catalan-1.svg)
     
     Vì mọi đường đi từ $(0,0)$ đến $(n-1,n+1)$ chắc chắn phải đi qua đường thẳng $y = x+1$, mỗi đường đi như vậy đều tương ứng với một đường đi bất hợp lệ từ $(0,0)$ đến $(n,n)$. Tương tự cách tính tổng số đường đi, tổng số đường đi bất hợp lệ là $\dbinom{2n}{n+1}$. Do đó tổng số đường đi hợp lệ là
     

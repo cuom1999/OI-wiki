@@ -111,7 +111,7 @@ Trường hợp thứ hai nói rằng nếu $k < \varphi(m)$ thì không cần t
 
 Trước khi chứng minh chặt chẽ, ta có thể hiểu trực quan ý nghĩa của định lý.
 
-![fermat1](./images/fermat.svg)
+![Chu trình của dãy số dư lũy thừa modulo m](./images/fermat.svg)
 
 Xét sự thay đổi của số dư $a^k\bmod m$ khi $k$ tăng. Vì giá trị số dư luôn nằm trong đoạn $[0,m)$, còn $k$ có vô hạn giá trị, nếu xem ánh xạ $a^k\bmod m \mapsto a^{k+1}\bmod m$ là các cạnh có hướng giữa các nút số dư, thì chắc chắn sẽ tạo thành một chu trình như hình vẽ.
 
