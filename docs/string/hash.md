@@ -1,14 +1,14 @@
 <span id="định-nghĩa"></span>
 ## Định nghĩa
 
-Ta định nghĩa một hàm $f$ ánh xạ chuỗi thành số nguyên; hàm $f$ này được gọi là hàm Hash.
+Ta định nghĩa một hàm $f$ ánh xạ chuỗi thành số nguyên; hàm $f$ này được gọi là hàm băm (hash).
 
 Ta mong hàm $f$ có thể giúp kiểm tra hai chuỗi có bằng nhau hay không một cách thuận tiện.
 
 <span id="ý-tưởng-của-hash"></span>
-## Ý tưởng của Hash
+## Ý tưởng của hàm băm (hash)
 
-Ý tưởng cốt lõi của Hash là ánh xạ dữ liệu đầu vào vào một miền giá trị nhỏ hơn và dễ so sánh.
+Ý tưởng cốt lõi của hàm băm là ánh xạ dữ liệu đầu vào vào một miền giá trị nhỏ hơn và dễ so sánh.
 
 ??? warning "Cảnh báo"
     "Miền giá trị nhỏ hơn" có ý nghĩa khác nhau trong từng tình huống.
@@ -22,51 +22,50 @@ Ta mong hàm $f$ có thể giúp kiểm tra hai chuỗi có bằng nhau hay khô
 <span id="tính-chất"></span>
 ## Tính chất
 
-Cụ thể, hai tính chất quan trọng nhất của hàm hash có thể tóm tắt như sau:
+Cụ thể, hai tính chất quan trọng nhất của hàm băm có thể tóm tắt như sau:
 
-1.  Khi giá trị của hàm Hash khác nhau, hai chuỗi chắc chắn khác nhau;
+1.  Khi giá trị của hàm băm khác nhau, hai chuỗi chắc chắn khác nhau;
 
-2.  Khi giá trị của hàm Hash bằng nhau, hai chuỗi chưa chắc bằng nhau (nhưng xác suất cao là bằng nhau, và tất nhiên ta mong chúng luôn bằng nhau).
+2.  Khi giá trị của hàm băm bằng nhau, hai chuỗi chưa chắc bằng nhau (nhưng xác suất cao là bằng nhau, và tất nhiên ta mong chúng luôn bằng nhau).
 
-    Hiện tượng giá trị hàm Hash bằng nhau nhưng chuỗi gốc khác nhau được gọi là va chạm hash.
+    Hiện tượng giá trị hàm băm bằng nhau nhưng chuỗi gốc khác nhau được gọi là va chạm hash.
 
 <span id="giải-thích"></span>
 ## Giải thích
 
 Ta cần quan tâm điều gì?
 
-Độ phức tạp thời gian và độ chính xác của Hash.
+Độ phức tạp thời gian và độ chính xác của hàm băm.
 
-Thông thường ta dùng phương pháp Hash đa thức. Với một chuỗi $s$ có độ dài $l$, ta có thể định nghĩa hàm Hash đa thức như sau: $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$. Ví dụ, với chuỗi $xyz$, giá trị hash của nó là $xb^2+yb+z$.
+Thông thường ta dùng phương pháp hash đa thức. Với một chuỗi $s$ có độ dài $l$, ta có thể định nghĩa hàm hash đa thức như sau: $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$. Ví dụ, với chuỗi $xyz$, giá trị hash của nó là $xb^2+yb+z$.
 
-Cần đặc biệt lưu ý rằng cũng có nhiều người dùng một định nghĩa khác cho hàm Hash, cụ thể là $f(s) = \sum_{i=1}^{l} s[i] \times b^{i-1} \pmod M$. Theo định nghĩa này, cùng chuỗi $xyz$ sẽ có giá trị hash là $x+yb+zb^2$.
+Cần đặc biệt lưu ý rằng cũng có nhiều người dùng một định nghĩa khác cho hàm hash, cụ thể là $f(s) = \sum_{i=1}^{l} s[i] \times b^{i-1} \pmod M$. Theo định nghĩa này, cùng chuỗi $xyz$ sẽ có giá trị hash là $x+yb+zb^2$.
 
-Rõ ràng cả hai cách định nghĩa hàm hash trên đều khả thi, nhưng công thức dùng để tính hash của chuỗi con (sẽ trình bày ở phần sau) sẽ khác nhau. Vì vậy cần đặc biệt chú ý **không nhầm lẫn hai cách Hash khác nhau này**.
+Rõ ràng cả hai cách định nghĩa hàm hash trên đều khả thi, nhưng công thức dùng để tính hash của chuỗi con (sẽ trình bày ở phần sau) sẽ khác nhau. Vì vậy cần đặc biệt chú ý **không nhầm lẫn hai cách hash khác nhau này**.
 
-Do định nghĩa Hash đầu tiên tính toán gọn hơn, được dùng phổ biến hơn, và có thể hiểu như một số trong hệ cơ số $b$, phần còn lại của bài viết sẽ thảo luận hàm Hash được định nghĩa bằng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$.
+Do định nghĩa hash đầu tiên tính toán gọn hơn, được dùng phổ biến hơn, và có thể hiểu như một số trong hệ cơ số $b$, phần còn lại của bài viết sẽ thảo luận hàm hash được định nghĩa bằng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$.
 
-Ngoài ra, để tiện lợi và để mở rộng modulo, trong C++ đôi khi ta dùng `unsigned long long` để lưu kết quả của hàm Hash. Do đặc tính của C++, điều này tương đương với việc đặt modulo $M$ là $2^{64}$, cũng là một lựa chọn tốt.
+Ngoài ra, để tiện lợi và để mở rộng modulo, trong C++ đôi khi ta dùng `unsigned long long` để lưu kết quả của hàm hash. Do đặc tính của C++, điều này tương đương với việc đặt modulo $M$ là $2^{64}$, cũng là một lựa chọn tốt.
 
 Độ chính xác sẽ được thảo luận ở phần sau.
 
 <span id="phân-tích-tỉ-lệ-lỗi-của-hash"></span>
-## Phân tích tỉ lệ lỗi của Hash
+## Phân tích tỉ lệ lỗi của hàm băm
 
-<span id="va-chạm-hash"></span>
-### Va chạm Hash
+### Va chạm hash
 
-Va chạm Hash chỉ việc hai chuỗi khác nhau được ánh xạ đến cùng một giá trị Hash.
+Va chạm hash chỉ việc hai chuỗi khác nhau được ánh xạ đến cùng một giá trị hash.
 
-Giả sử không gian giá trị của Hash (số lượng tất cả chuỗi có thể xuất hiện) là $d$, và số lần tính (số chuỗi cần tính) là $n$.
+Giả sử không gian giá trị của hash (số lượng tất cả chuỗi có thể xuất hiện) là $d$, và số lần tính (số chuỗi cần tính) là $n$.
 
-Khi đó xác suất xảy ra va chạm Hash là:
+Khi đó xác suất xảy ra va chạm hash là:
 
 $$
 p(n,d) = 1 - \frac{d!}{d^n\left(d-n\right)!} \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
 ??? note "Chứng minh"
-    Khi mỗi giá trị Hash được sinh ra với xác suất như nhau, xác suất không xảy ra va chạm Hash là:
+    Khi mỗi giá trị hash được sinh ra với xác suất như nhau, xác suất không xảy ra va chạm hash là:
     
     $$
     \overline{p}(n,d) = 1 \cdot \left (1 - \frac{1}{d} \right) \cdot \left ( 1- \frac{2}{d}\right) \cdots \left ( 1- \frac{n-1}{d}\right)
@@ -83,7 +82,7 @@ $$
     \end{aligned}
     $$
     
-    Vậy xác suất xảy ra va chạm Hash là:
+    Vậy xác suất xảy ra va chạm hash là:
     
     $$
     p(n,d) = 1 - \frac{d!}{d^n\left(d-n\right)!}
@@ -99,7 +98,7 @@ $$
     
     Khi $x$ là một giá trị rất nhỏ, $\exp(x)$ tiến gần đến $1+x$.
     
-    Thay vào công thức gốc của xác suất không va chạm Hash:
+    Thay vào công thức gốc của xác suất không va chạm hash:
     
     $$
     \overline{p}(n,d) \approx 1 \cdot \exp(-\frac{1}{d}) \cdot \exp(-\frac{2}{d}) \cdots \exp(-\frac{n-1}{d})
@@ -114,14 +113,13 @@ $$
     \end{aligned}
     $$
     
-    Do đó xác suất xảy ra va chạm Hash là:
+    Do đó xác suất xảy ra va chạm hash là:
     
     $$
     p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d})
     $$
 
-<span id="đánh-bại-hash-modulo-lớn"></span>
-### Đánh bại Hash modulo lớn
+### Đánh bại hash modulo lớn
 
 Xét công thức:
 
@@ -129,7 +127,7 @@ $$
 p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
-Để đánh bại Hash, ta cần thỏa mãn các điều kiện sau:
+Để đánh bại hash, ta cần thỏa mãn các điều kiện sau:
 
 1.  $d$ phải lớn hơn modulo.
 2.  $1-p(d,n)$ càng nhỏ càng tốt.
@@ -142,14 +140,13 @@ $\log_{62}10^9+7\approx 6$
 
 $p(10^6,62^{6}) \approx 0.9$
 
-Vì vậy trong phạm vi này, nếu sinh ngẫu nhiên $10^6$ chuỗi có độ dài $6$, xác suất chúng có cùng giá trị Hash có thể cao đến $90\%$.
+Vì vậy trong phạm vi này, nếu sinh ngẫu nhiên $10^6$ chuỗi có độ dài $6$, xác suất chúng có cùng giá trị hash có thể cao đến $90\%$.
 
-<span id="đánh-bại-hash-tràn-tự-nhiên"></span>
-### Đánh bại Hash tràn tự nhiên
+### Đánh bại hash tràn tự nhiên
 
-Vì loại Hash này có modulo quá lớn, không thể đánh bại bằng cách trên, nên ta cần một phương pháp khác.
+Vì loại hash này có modulo quá lớn, không thể đánh bại bằng cách trên, nên ta cần một phương pháp khác.
 
-Trước hết, dạng Hash này có dạng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i}$; ta phân loại theo $b$ để thảo luận.
+Trước hết, dạng hash này có dạng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i}$; ta phân loại theo $b$ để thảo luận.
 
 <span id="khi-b-là-số-chẵn"></span>
 #### Khi b là số chẵn
@@ -179,7 +176,7 @@ $!s_i = babba$
 
 Tức là biến `a` thành `b`, và biến `b` thành `a`.
 
-Tiếp theo, định nghĩa $hash_i$ là giá trị Hash của $s_i$, và $!hash_i$ là giá trị Hash của $!s_i$.
+Tiếp theo, định nghĩa $hash_i$ là giá trị hash của $s_i$, và $!hash_i$ là giá trị hash của $!s_i$.
 
 Liên tục xây dựng $s_i = s_{i-1} + !s_{i-1}$.
 
@@ -257,27 +254,26 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi ta cần.
 ### Bài tập ví dụ
 
 ???+ note "[Ví dụ: BZOJ 3097 Hash Killer I](https://hydro.ac/p/bzoj-P3097)"
-    Cho một Hash được cài đặt bằng **tràn tự nhiên**; yêu cầu xây dựng một chuỗi để đánh bại nó.
+    Cho một hash được cài đặt bằng **tràn tự nhiên**; yêu cầu xây dựng một chuỗi để đánh bại nó.
 
 ???+ note "[Ví dụ: BZOJ 3097 Hash Killer II](https://hydro.ac/p/bzoj-P3098)"
-    Cho một Hash được cài đặt bằng **modulo lớn**; yêu cầu xây dựng một chuỗi để đánh bại nó.
+    Cho một hash được cài đặt bằng **modulo lớn**; yêu cầu xây dựng một chuỗi để đánh bại nó.
 
 ???+ note "[Ví dụ: Luogu U461211 String Hash (dữ liệu tăng cường)](https://www.luogu.com.cn/problem/U461211)"
     Cho $n$ chuỗi, hãy xác định có bao nhiêu chuỗi khác nhau.
 
-<span id="cải-tiến-hash"></span>
-## Cải tiến Hash
+## Cải tiến hash
 
 <span id="hash-nhiều-giá-trị"></span>
-### Hash nhiều giá trị
+### Hàm băm nhiều giá trị
 
-Sau khi xem nhiều cách đánh bại Hash ở trên, tất nhiên cũng có cách khắc phục.
+Sau khi xem nhiều cách đánh bại hash ở trên, tất nhiên cũng có cách khắc phục.
 
-Hash nhiều giá trị nghĩa là dùng nhiều hàm Hash, mỗi hàm Hash có modulo khác nhau; như vậy có thể giải quyết vấn đề va chạm Hash.
+Hàm băm nhiều giá trị nghĩa là dùng nhiều hàm hash, mỗi hàm hash có modulo khác nhau; như vậy có thể giải quyết vấn đề va chạm hash.
 
-Khi so sánh, chỉ cần một trong các giá trị Hash khác nhau thì coi hai chuỗi là khác nhau; nếu tất cả giá trị Hash đều giống nhau thì coi hai chuỗi là giống nhau.
+Khi so sánh, chỉ cần một trong các giá trị hash khác nhau thì coi hai chuỗi là khác nhau; nếu tất cả giá trị hash đều giống nhau thì coi hai chuỗi là giống nhau.
 
-Thông thường, Hash hai giá trị là đủ dùng.
+Thông thường, hash hai giá trị là đủ dùng.
 
 <span id="nhiều-truy-vấn-hash-chuỗi-con"></span>
 ### Nhiều truy vấn hash chuỗi con
@@ -296,7 +292,7 @@ So sánh hai công thức trên, ta thấy $f(s[l..r])=f_r(s)-f_{l-1}(s) \times 
 ## Cài đặt
 
 <span id="hash-modulo"></span>
-### Hash modulo:
+### Hash theo modulo
 
 Ghi chú: hiệu năng thấp, không khuyến nghị dùng trong thực tế.
 
@@ -340,7 +336,7 @@ Ghi chú: hiệu năng thấp, không khuyến nghị dùng trong thực tế.
     ```
 
 <span id="hash-hai-giá-trị"></span>
-### Hash hai giá trị:
+### Hash kép (hai giá trị)
 
 === "C++"
     ```cpp
@@ -395,8 +391,7 @@ Ghi chú: hiệu năng thấp, không khuyến nghị dùng trong thực tế.
         return f1 or f2
     ```
 
-<span id="ứng-dụng-của-hash"></span>
-## Ứng dụng của Hash
+## Ứng dụng của hash
 
 <span id="so-khớp-chuỗi"></span>
 ### So khớp chuỗi
@@ -421,7 +416,7 @@ Tìm kiếm nhị phân đáp án; khi kiểm tra tính khả thi, liệt kê t�
 
 Bài toán này có thể được giải bằng [thuật toán Manacher](./manacher.md) trong thời gian $O(n)$.
 
-Hash cũng có thể giải bài này trong $O(n)$. Cách làm cụ thể là đặt $R_i$ là độ dài chuỗi đối xứng dài nhất kết thúc tại $i$, khi đó đáp án là $\max_{i=1}^nR_i$. Vì $R_i\leq R_{i-1}+2$, ta chỉ cần vét cạn giảm dần từ $R_{i-1}+2$ cho đến khi tìm được chuỗi đối xứng đầu tiên. Đặt biến $z$ là $R_i$ đang liệt kê, ban đầu bằng $0$; mỗi khi $i$ tăng, $z$ sẽ tăng thêm $2$, sau đó mỗi lần lặp vét cạn sẽ giảm $1$, nên vòng lặp vét cạn xảy ra tối đa $2n$ lần. Tổng độ phức tạp thời gian là $O(n)$.
+Phương pháp hash cũng có thể giải bài này trong $O(n)$. Cách làm cụ thể là đặt $R_i$ là độ dài chuỗi đối xứng dài nhất kết thúc tại $i$, khi đó đáp án là $\max_{i=1}^nR_i$. Vì $R_i\leq R_{i-1}+2$, ta chỉ cần vét cạn giảm dần từ $R_{i-1}+2$ cho đến khi tìm được chuỗi đối xứng đầu tiên. Đặt biến $z$ là $R_i$ đang liệt kê, ban đầu bằng $0$; mỗi khi $i$ tăng, $z$ sẽ tăng thêm $2$, sau đó mỗi lần lặp vét cạn sẽ giảm $1$, nên vòng lặp vét cạn xảy ra tối đa $2n$ lần. Tổng độ phức tạp thời gian là $O(n)$.
 
 <span id="chuỗi-con-chung-dài-nhất"></span>
 ### Chuỗi con chung dài nhất
@@ -437,7 +432,7 @@ Rõ ràng nếu tồn tại chuỗi con chung dài nhất có độ dài $k$, th
 
 Bài toán: Cho chuỗi độ dài $n$ chỉ gồm các chữ cái thường tiếng Anh, hãy tìm số lượng chuỗi con khác nhau của chuỗi đó.
 
-Để giải bài toán này, ta duyệt tất cả chuỗi con có độ dài $l=1,\cdots ,n$. Với mỗi độ dài $l$, ta nhân giá trị Hash của chuỗi con với cùng một lũy thừa của $b$ rồi lưu vào một mảng. Số lượng phần tử khác nhau trong mảng bằng số lượng chuỗi con khác nhau có độ dài $l$ trong chuỗi; cộng số này vào đáp án cuối cùng.
+Để giải bài toán này, ta duyệt tất cả chuỗi con có độ dài $l=1,\cdots ,n$. Với mỗi độ dài $l$, ta nhân giá trị hash của chuỗi con với cùng một lũy thừa của $b$ rồi lưu vào một mảng. Số lượng phần tử khác nhau trong mảng bằng số lượng chuỗi con khác nhau có độ dài $l$ trong chuỗi; cộng số này vào đáp án cuối cùng.
 
 Để tiện lợi, ta dùng $h [i]$ làm giá trị hash tiền tố và định nghĩa $h[0]=0$.
 
