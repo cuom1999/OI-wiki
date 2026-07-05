@@ -118,7 +118,7 @@ Giống như các bài toán luồng cực đại khác, bài toán ghép cặp 
 $$
 \begin{aligned}
 \max_{\{x_e\}}\;& \sum_{e\in E}x_e \\
-\text{subject to } & \sum_{e\sim v} x_{e} \le 1,~\forall v\in V,\\
+\text{với ràng buộc } & \sum_{e\sim v} x_{e} \le 1,~\forall v\in V,\\
 & x_e\ge 0,~\forall e\in E.
 \end{aligned}
 $$
@@ -132,7 +132,7 @@ Bài toán đối ngẫu của quy hoạch tuyến tính này có thể viết n
 $$
 \begin{aligned}
 \min_{\{y_v\}}\;& \sum_{v\in V}y_v \\
-\text{subject to } & y_u+y_v \ge 1,~\forall (u,v)\in E,\\
+\text{với ràng buộc } & y_u+y_v \ge 1,~\forall (u,v)\in E,\\
 & y_v\ge 0,~\forall v\in V.
 \end{aligned}
 $$

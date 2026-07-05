@@ -73,7 +73,7 @@ Khi áp dụng thuật toán này vào bài toán thực tế, thường có cá
     Điều kiện biên là $f(l,l,1)=f(l,l,2) = a_l$. Từ đó, có thể tính giá trị hàm của mọi trạng thái có thể trong thời gian $\Theta(n^2)$. Với mỗi $k$, đáp án là
     
     $$
-    g(k) = \max f(l,r,1) \text{ subject to } r - l + 1 = k.
+    g(k) = \max f(l,r,1) \text{ với ràng buộc } r - l + 1 = k.
     $$
     
     Thuật toán này không thể vượt qua phạm vi dữ liệu của đề gốc, nên cần tối ưu phép chuyển. Có nhiều cách xử lý; bài viết này chỉ trình bày một cách.
@@ -204,7 +204,7 @@ Sau khi đưa vào chiến lược hỗn hợp, kết quả thu được từ t�
     Đặt $w = \max_{s_1\in S_1}\min_{s_2\in S_2} v(s_1,s_2)$. Xét bài toán tối thiểu hóa ở lớp trong. Vì $v(s_1,s_2)=\sum_{a_2\in A_2}s_2(a_2)v(s_1,a_2)$, nên $\min_{s_2\in S_2}v(s_1,s_2)=\min_{a_2\in A_2}v(s_1,a_2)$; nghiệm tối ưu của vế trước chính là chiến lược thuần tương ứng với nghiệm tối ưu của vế sau. Do đó, $w = \max_{s_1\in S_1}\min_{a_2\in A_2} v(s_1,a_2)$. Tiếp theo, đưa vào biến phụ $u$, bài toán có thể viết lại thành
     
     $$
-    w = \max_{s_1\in S_1} u \text{ subject to }u \le \min_{a_2\in A_2} v(s_1,a_2).
+    w = \max_{s_1\in S_1} u \text{ với ràng buộc }u \le \min_{a_2\in A_2} v(s_1,a_2).
     $$
     
     Ràng buộc này tương đương với $u\le v(s_1,a_2)$ đúng với mọi $a_2\in A_2$. Cuối cùng, đưa vào định nghĩa của chiến lược hỗn hợp $s_1$ và biểu thức của hàm lợi ích $v(s_1,a_2)$, bài toán gốc tương đương với [bài toán quy hoạch tuyến tính](../linear-programming.md)
@@ -213,7 +213,7 @@ Sau khi đưa vào chiến lược hỗn hợp, kết quả thu được từ t�
     (P) \qquad
     \begin{aligned}
     w = \max_{u,s_1}\; & u\\
-    \text{subject to }& \sum_{a_1\in A_1}s_1(a_1)v(a_1,a_2) \ge u,~\forall a_2\in A_2,\\
+    \text{với ràng buộc }& \sum_{a_1\in A_1}s_1(a_1)v(a_1,a_2) \ge u,~\forall a_2\in A_2,\\
     & \sum_{a_1\in A_1}s_1(a_1) = 1,\\
     & s_1(a_1) \ge 0,~\forall a_1\in A_1.
     \end{aligned}
@@ -225,7 +225,7 @@ Sau khi đưa vào chiến lược hỗn hợp, kết quả thu được từ t�
     (D) \qquad
     \begin{aligned}
     w = \min_{t,s_2}\; & t\\
-    \text{subject to }&\sum_{a_2\in A_2}s_2(a_2)v(a_1,a_2) \le t,~\forall a_1\in A_1,\\
+    \text{với ràng buộc }&\sum_{a_2\in A_2}s_2(a_2)v(a_1,a_2) \le t,~\forall a_1\in A_1,\\
     &\sum_{a_2\in A_2}s_2(a_2) = 1,\\
     &s_2(a_2)\ge 0,~\forall a_2\in A_2.
     \end{aligned}
@@ -243,7 +243,7 @@ Chứng minh của định lý von Neumann đồng thời cũng chỉ ra cách g
 $$
 \begin{aligned}
 w = \max_{(u,s)\in\mathbf R\times\mathbf R^n}\; & u\\
-\text{subject to }& V^Ts \ge u\mathbf 1,\\
+\text{với ràng buộc }& V^Ts \ge u\mathbf 1,\\
 & \mathbf 1^Ts = 1,\\
 & s \ge 0.
 \end{aligned}

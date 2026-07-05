@@ -13,7 +13,7 @@ Giả sử cần giải bài toán quy hoạch tuyến tính [dạng chuẩn](./
 $$
 \begin{aligned}
 \min_{x}\; & z = c^Tx \\
-\text{subject to }& Ax = b, \\
+\text{với ràng buộc }& Ax = b, \\
 & x \ge 0.
 \end{aligned}
 $$
@@ -31,7 +31,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     $$
     \begin{aligned}
     \max\; & 10 x_1 + 12 x_2 + 12 x_3 \\
-    \text{subject to } & x_1 + 2 x_2 + 2x_3 \le 20, \\
+    \text{với ràng buộc } & x_1 + 2 x_2 + 2x_3 \le 20, \\
     & 2x_1 + x_2 + 2x_3 \le 20, \\
     & 2x_1 + 2x_2 + x_3 \le 20,\\
     & x_1,x_2,x_3 \ge 0.
@@ -43,7 +43,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     $$
     \begin{aligned}
     \min\; & -10 x_1 - 12 x_2 - 12 x_3 \\
-    \text{subject to } & x_1 + 2 x_2 + 2x_3 + x_4 = 20, \\
+    \text{với ràng buộc } & x_1 + 2 x_2 + 2x_3 + x_4 = 20, \\
     & 2x_1 + x_2 + 2x_3 + x_5 = 20, \\
     & 2x_1 + 2x_2 + x_3 + x_6 = 20,\\
     & x_1,x_2,x_3,x_4,x_5,x_6 \ge 0.
@@ -55,7 +55,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     $$
     \begin{array}{rrrrrr}
     \min_{x_i\ge 0}  &  z  = &  0 &  -10x_1 &  -12x_2 &  -12x_3\;\\
-    \text{subject to}& x_4 = & 20 &    -x_1 &   -2x_2 &   -2x_3, \\
+    \text{với ràng buộc}& x_4 = & 20 &    -x_1 &   -2x_2 &   -2x_3, \\
                 & x_5 = & 20 &   -2x_1 &    -x_2 &   -2x_3, \\
                 & x_6 = & 20 &   -2x_1 &   -2x_2 &    -x_3. \\
     \end{array}
@@ -92,7 +92,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     $$
     \begin{array}{rrrrrr}
     \min_{x_i\ge 0}  &   z = &-100&   +5x_5 &   -7x_2 &   -2x_3\;\\
-    \text{subject to}& x_4 = & 10 & +0.5x_5 & -1.5x_2 &    -x_3, \\
+    \text{với ràng buộc}& x_4 = & 10 & +0.5x_5 & -1.5x_2 &    -x_3, \\
                 & x_1 = & 10 & -0.5x_5 & -0.5x_2 &    -x_3, \\
                 & x_6 = &  0 &    +x_5 &    -x_2 &    +x_3. \\
     \end{array}
@@ -117,7 +117,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     $$
     \begin{array}{rrrrrr}
     \min_{x_i\ge 0}  &   z = &-120&   +4x_5 &   -4x_2 &   +2x_4\;\\
-    \text{subject to}& x_3 = & 10 & +0.5x_5 & -1.5x_2 &    -x_4, \\
+    \text{với ràng buộc}& x_3 = & 10 & +0.5x_5 & -1.5x_2 &    -x_4, \\
                 & x_1 = &  0 &    -x_5 &    +x_2 &    +x_4, \\
                 & x_6 = & 10 & +1.5x_5 & -2.5x_2 &    -x_4. \\
     \end{array}
@@ -148,7 +148,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     $$
     \begin{array}{rrrrrr}
     \min_{x_i\ge 0}  &   z = &-136& +1.6x_5 & +1.6x_6 & +3.6x_4\;\\
-    \text{subject to}& x_3 = &  4 & -0.4x_5 & +0.6x_6 & -0.4x_4, \\
+    \text{với ràng buộc}& x_3 = &  4 & -0.4x_5 & +0.6x_6 & -0.4x_4, \\
                 & x_1 = &  4 & -0.4x_5 & -0.4x_6 & +0.6x_4, \\
                 & x_2 = &  4 & +1.5x_5 & -2.5x_6 &    -x_4. \\
     \end{array}
@@ -284,7 +284,7 @@ Nó tương ứng với bài toán quy hoạch tuyến tính:
 $$
 \begin{array}{rrrr}
 \min_{x\ge 0}    &       & c_B^TA_B^{-1}b & + \tilde c_N^Tx_N\; \\
-\text{subject to}& x_B = & A_B^{-1}b      & - A_B^{-1}A_Nx_N.
+\text{với ràng buộc}& x_B = & A_B^{-1}b      & - A_B^{-1}A_Nx_N.
 \end{array}
 $$
 
@@ -646,7 +646,7 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
     $$
     \begin{align*}
     \max_{x}\; & \sum_{j=1}^mc_jx_j \\
-    \text{subject to }& \sum_{i=1}^n a_{ij}x_j \ge b_i,~i=1,\cdots,n,\\
+    \text{với ràng buộc }& \sum_{i=1}^n a_{ij}x_j \ge b_i,~i=1,\cdots,n,\\
     & x_j\ge 0,~j=1,\cdots,m.
     \end{align*}
     $$
@@ -666,7 +666,7 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
     $$
     \begin{align*}
     \min_{y}\; & \sum_{i=1}^n b_iy_i \\
-    \text{subject to } & \sum_{j=1}^na_{ij}y_i \le c_j,~j=1,\cdots,m,\\
+    \text{với ràng buộc } & \sum_{j=1}^na_{ij}y_i \le c_j,~j=1,\cdots,m,\\
     & y_i\ge 0,~i=1,\cdots,n.
     \end{align*}
     $$

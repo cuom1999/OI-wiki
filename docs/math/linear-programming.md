@@ -61,7 +61,7 @@ Xét bài toán trong phần này:
 $$
 \begin{aligned}
 \max_{x_1,x_2}\;& z = 5x_1 + 6x_2 \\
-\text{subject to } & 4x_1 + 7x_2 \le 66,\\
+\text{với ràng buộc } & 4x_1 + 7x_2 \le 66,\\
 & 7x_1 + 3x_2 \le 60,\\
 & 8x_1 + 6x_2 \le 96,\\
 & x_1,x_2\ge 0
@@ -116,7 +116,7 @@ Bài toán quy hoạch tuyến tính yêu cầu tối đa hóa hoặc tối thi�
 $$
 \begin{aligned}
 \min_{\{x_i\}}\;& \sum_{i=1}^n c_ix_i \\
-\text{subject to }& \sum_{i=1}^n a_{ji}x_i = b_i \ge 0,~j=1,\cdots,m,\\
+\text{với ràng buộc }& \sum_{i=1}^n a_{ji}x_i = b_i \ge 0,~j=1,\cdots,m,\\
 & x_i \ge 0,~i = 1,\cdots,n.
 \end{aligned}
 $$
@@ -161,7 +161,7 @@ Kích thước của bài toán quy hoạch tuyến tính thu được sau các 
     $$
     \begin{aligned}
     \max\;& 3x_1 - 2x_2 + x_3 \\
-    \text{subject to }& 2x_1 + 3x_2 + 4x_3 \ge 1,\\
+    \text{với ràng buộc }& 2x_1 + 3x_2 + 4x_3 \ge 1,\\
     & 3x_1 + 4x_2 \le 5,\\
     & 5x_2 - x_3 = -1, \\
     & x_1, x_2 \ge 0.
@@ -173,7 +173,7 @@ Kích thước của bài toán quy hoạch tuyến tính thu được sau các 
     $$
     \begin{aligned}
     \min\;& -3x_1 + 2x_2 - x_3 \\
-    \text{subject to }& 2x_1 + 3x_2 + 4x_3 \ge 1,\\
+    \text{với ràng buộc }& 2x_1 + 3x_2 + 4x_3 \ge 1,\\
     & -3x_1 - 4x_2 \ge -5,\\
     & 5x_2 - x_3 \ge -1, \\
     & -5x_2 + x_3 \ge 1, \\
@@ -187,7 +187,7 @@ Kích thước của bài toán quy hoạch tuyến tính thu được sau các 
     $$
     \begin{aligned}
     \max\;& 3x_1 - 2x_2 + x^+_3 - x^-_3 \\
-    \text{subject to }& 2x_1 + 3x_2 + 4x^+_3 - 4x^-_3 - x_4 = 1,\\
+    \text{với ràng buộc }& 2x_1 + 3x_2 + 4x^+_3 - 4x^-_3 - x_4 = 1,\\
     & 3x_1 + 4x_2 + x_5 = 5,\\
     & 5x_2 - x^+_3 + x^-_3 = -1, \\
     & x_1, x_2, x^+_3, x^-_3, x_4, x_5 \ge 0.
@@ -266,7 +266,7 @@ Với bài toán quy hoạch tuyến tính $P$ sau (các biến chữ thường 
 $$
 \begin{aligned}
 \min_{x_1,x_2,x_3}\;& c_1^Tx_1 + c_2^Tx_2 + c_3^Tx_3 \\
-\text{subject to }& A_{11}x_1 + A_{12}x_2 + A_{13}x_3 \ge b_1,\\
+\text{với ràng buộc }& A_{11}x_1 + A_{12}x_2 + A_{13}x_3 \ge b_1,\\
 & A_{21}x_1 + A_{22}x_2 + A_{23}x_3 = b_2,\\
 & A_{31}x_1 + A_{32}x_2 + A_{33}x_3 \le b_3,\\
 & x_1\ge 0,~ x_3\le 0,
@@ -278,7 +278,7 @@ bài toán đối ngẫu $D$ của nó là bài toán quy hoạch tuyến tính
 $$
 \begin{aligned}
 \max_{y_1,y_2,y_3}\;&b_1^Ty_1+b_2^Ty_2+b_3^Ty_3 \\
-\text{subject to }&A_{11}^Ty_1 + A_{21}^Ty_2 + A_{31}^Ty_3\le c_1,\\
+\text{với ràng buộc }&A_{11}^Ty_1 + A_{21}^Ty_2 + A_{31}^Ty_3\le c_1,\\
 &A_{12}^Ty_1 + A_{22}^Ty_2 + A_{32}^Ty_3 = c_2,\\
 &A_{13}^Ty_1 + A_{23}^Ty_2 + A_{33}^Ty_3 \ge c_3,\\
 &y_1\ge 0,~ y_3\le 0.
@@ -503,7 +503,7 @@ phần trước đã chỉ ra rằng để tìm nghiệm tối ưu của chúng,
     (RP)\qquad
     \begin{aligned}
     \min_{x,s}\;& \mathbf 1^Ts \\
-    \text{subject to } & Ax + s = b, \\
+    \text{với ràng buộc } & Ax + s = b, \\
     & x_i \ge 0,~\forall i \in I,\\
     & x_i = 0,~\forall i \notin I,\\
     & s \ge 0.
@@ -516,7 +516,7 @@ phần trước đã chỉ ra rằng để tìm nghiệm tối ưu của chúng,
     (DRP)\qquad
     \begin{aligned}
     \max_{y}\;& b^Ty \\
-    \text{subject to }& \sum_{j}a_{ji}y_j \le 0,~\forall i\in I,\\
+    \text{với ràng buộc }& \sum_{j}a_{ji}y_j \le 0,~\forall i\in I,\\
     & y \le 1.
     \end{aligned}
     $$
@@ -553,7 +553,7 @@ Trong thi thuật toán, phương pháp nguyên thủy-đối ngẫu được d�
 $$
 \begin{aligned}
 \min_{x}\; & c^Tx \\
-\text{subject to } & Ax = b \ge 0,\\
+\text{với ràng buộc } & Ax = b \ge 0,\\
 & x \ge 0,\\
 & x \in \mathbf Z^n,
 \end{aligned}
