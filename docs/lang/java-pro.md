@@ -1,12 +1,12 @@
 ???+ warning "Lưu ý"
     Nội dung dưới đây được viết dựa trên Java JDK 8. Ở các phiên bản cao hơn có thể có một vài thay đổi.
 
-<span id="&#26356;&#39640;&#36895;&#30340;&#36755;&#20837;&#36755;&#20986;"></span>
+<span id="nhập-xuất-nhanh-hơn"></span>
 ## Nhập xuất nhanh hơn
 
 `Scanner` và `System.out.print` hoạt động tốt lúc đầu, nhưng khi xử lý dữ liệu lớn chúng trở nên kém hiệu quả. Vì vậy ta cần dùng một số cách để tăng tốc IO.
 
-<span id="&#20351;&#29992;-kattio-stringtokenizer-&#20316;&#20026;&#36755;&#20837;"></span>
+<span id="dùng-kattio-stringtokenizer-để-nhập-dữ-liệu"></span>
 ### Dùng Kattio + StringTokenizer để nhập dữ liệu
 
 Một cách rất thường dùng là dùng [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java) từ Kattis để cải thiện hiệu suất IO.[^ref1] Cách này gói `StringTokenizer` và `PrintWriter` vào cùng một lớp để tiện sử dụng. Khi giải bài, nếu cuộc thi hoặc hệ thống cho phép, có thể dùng trực tiếp mẫu này.
@@ -61,7 +61,7 @@ class Test {
 }
 ```
 
-<span id="&#20351;&#29992;-streamtokenizer-&#20316;&#20026;&#36755;&#20837;"></span>
+<span id="dùng-streamtokenizer-để-nhập-dữ-liệu"></span>
 ### Dùng StreamTokenizer để nhập dữ liệu
 
 Trong một số trường hợp, dùng `StringTokenizer` có thể gây MLE (Memory Limit Exceeded, vượt giới hạn bộ nhớ). Khi đó ta cần dùng `StreamTokenizer` để nhập dữ liệu.
@@ -87,7 +87,7 @@ public class Main {
 }
 ```
 
-<span id="kattio-stringtokenizer-&#30340;&#26041;&#27861;&#19982;-streamtokenizer-&#30340;&#26041;&#27861;&#20043;&#38388;&#30340;&#20998;&#26512;&#19982;&#23545;&#27604;"></span>
+<span id="phân-tích-và-so-sánh-kattio-stringtokenizer-với-streamtokenizer"></span>
 ### Phân tích và so sánh Kattio + StringTokenizer với StreamTokenizer
 
 1.  `StreamTokenizer` dùng ít bộ nhớ hơn `StringTokenizer`. Khi chương trình chuẩn Java bị MLE, có thể thử `StreamTokenizer`, nhưng `StreamTokenizer` có thể làm mất độ chính xác và gặp lỗi khi đọc một số kiểu dữ liệu.
@@ -98,12 +98,12 @@ public class Main {
 
 Tóm lại, trong đa số trường hợp `StringTokenizer` thuận tiện hơn `StreamTokenizer`. Chỉ nên thử `StreamTokenizer` trong các trường hợp MLE cực đoan; ngoài ra, `StreamTokenizer` không xử lý tốt dữ liệu vượt phạm vi `int`.
 
-<span id="biginteger-&#19982;&#25968;&#35770;"></span>
+<span id="biginteger-và-số-học"></span>
 ## BigInteger và số học
 
 `BigInteger` là lớp tính toán độ chính xác cao do Java cung cấp, rất tiện để giải các bài toán số lớn.
 
-<span id="&#21021;&#22987;&#21270;"></span>
+<span id="biginteger-khởi-tạo"></span>
 ### Khởi tạo
 
 Có hai cách tạo `BigInteger` thường dùng:
@@ -125,7 +125,7 @@ class Main {
 
 ```
 
-<span id="&#22522;&#26412;&#36816;&#31639;"></span>
+<span id="biginteger-phép-toán-cơ-bản"></span>
 ### Phép toán cơ bản
 
 Dưới đây dùng `this` để chỉ `BigInteger` hiện tại:
@@ -355,7 +355,7 @@ public class Main {
 }
 ```
 
-<span id="&#25968;&#23398;&#36816;&#31639;"></span>
+<span id="biginteger-phép-toán-toán-học"></span>
 ### Phép toán toán học
 
 Dưới đây dùng `this` để chỉ `BigInteger` hiện tại:
@@ -421,12 +421,12 @@ public class Main {
 }
 ```
 
-Có thể xem thêm kiến thức liên quan đến Miller-Rabin tại [kiểm tra tính nguyên tố Miller-Rabin](../math/number-theory/prime.md#millerrabin-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95).
+Có thể xem thêm kiến thức liên quan đến Miller-Rabin tại [kiểm tra tính nguyên tố Miller-Rabin](../math/number-theory/prime.md#kiểm-tra-tính-nguyên-tố-miller-rabin).
 
-<span id="&#22522;&#26412;&#25968;&#25454;&#31867;&#22411;&#19982;&#21253;&#35013;&#25968;&#25454;&#31867;&#22411;"></span>
+<span id="kiểu-dữ-liệu-nguyên-thủy-và-kiểu-bao"></span>
 ## Kiểu dữ liệu nguyên thủy và kiểu bao
 
-<span id="&#31616;&#20171;"></span>
+<span id="kiểu-bao-giới-thiệu"></span>
 ### Giới thiệu
 
 Vì kiểu nguyên thủy không có đặc trưng hướng đối tượng, để chúng tham gia vào lập trình hướng đối tượng, Java cung cấp các lớp bao tương ứng cho tám kiểu nguyên thủy: `Byte`, `Double`, `Float`, `Integer`, `Long`, `Short`, `Character` và `Boolean`. Quan hệ tương ứng như sau:
@@ -442,7 +442,7 @@ Vì kiểu nguyên thủy không có đặc trưng hướng đối tượng, đ�
 |        `float`          |     `Float`      |
 |       `double`          |     `Double`     |
 
-<span id="&#21306;&#21035;"></span>
+<span id="kiểu-bao-khác-biệt"></span>
 ### Khác biệt
 
 Phần này lấy `int` và `Integer` làm ví dụ:
@@ -453,7 +453,7 @@ Phần này lấy `int` và `Integer` làm ví dụ:
 4.  Giá trị mặc định của `Integer` là `null`, có thể nhận dữ liệu kiểu `null` và `int`; giá trị mặc định của `int` là 0 và không thể nhận `null`.
 5.  Với `Integer`, dùng `==` để kiểm tra hai biến có giống nhau không có thể cho kết quả sai, chỉ nên dùng `equals()`; còn `int` có thể dùng trực tiếp `==`.
 
-<span id="&#35013;&#31665;&#19982;&#25286;&#31665;"></span>
+<span id="boxing-và-unboxing"></span>
 ### Boxing và unboxing
 
 Phần này lấy `int` và `Integer` làm ví dụ:
@@ -487,7 +487,7 @@ int value = integer;
     integer.intValue();  // Ném ngoại lệ java.lang.NullPointerException
     ```
 
-<span id="&#32487;&#25215;"></span>
+<span id="kế-thừa"></span>
 ## Kế thừa
 
 Tạo thiết kế mới dựa trên thiết kế đã có chính là kế thừa trong lập trình hướng đối tượng. Trong kế thừa, lớp mới không xuất hiện từ hư không mà được định nghĩa dựa trên một lớp đã tồn tại. Thông qua kế thừa, lớp mới tự động nhận được mọi thành viên của lớp cơ sở, gồm biến thành viên và phương thức, cũng như các thành viên thuộc nhiều mức truy cập khác nhau, dù là `public` hay `private`. Rõ ràng, định nghĩa lớp mới bằng kế thừa đơn giản, nhanh và tiện hơn nhiều so với viết một lớp mới từ đầu. Kế thừa là một trong những cơ chế quan trọng hỗ trợ tái sử dụng mã.
@@ -509,7 +509,7 @@ Bảng dưới đây liệt kê mức truy cập của các thành viên lớp c
 | Mặc định (`default`) | Chỉ các lớp cùng package được truy cập | Nếu lớp con và lớp cha cùng package thì chỉ các lớp cùng package được truy cập; nếu không thì tương đương `private`, không thể truy cập |
 |           `private`            | Chỉ chính nó được truy cập | Không thể truy cập |
 
-<span id="&#22810;&#24577;"></span>
+<span id="đa-hình"></span>
 ## Đa hình
 
 Trong Java, khi gán một đối tượng cho một biến, kiểu của đối tượng phải khớp với kiểu của biến. Nhưng vì Java có khái niệm kế thừa, quy tắc này có thể được mở rộng thành: **một biến có thể lưu đối tượng thuộc kiểu được khai báo của nó hoặc bất kỳ kiểu con nào của kiểu đó**.
@@ -524,17 +524,17 @@ Biến đa hình:
 2.  Chúng có thể lưu đối tượng thuộc kiểu khai báo, hoặc đối tượng thuộc lớp con của kiểu khai báo.
 3.  Khi gán đối tượng của lớp con cho biến của lớp cha, upcasting xảy ra.
 
-<span id="&#27867;&#22411;"></span>
+<span id="generics"></span>
 ## Generics
 
 Generics nghĩa là khi định nghĩa lớp, ta không cố định kiểu cụ thể của thuộc tính hoặc tham số phương thức trong lớp, mà chỉ xác định kiểu khi sử dụng hoặc tạo đối tượng. Bản chất của generics là kiểu tham số hóa, tức kiểu dữ liệu được thao tác được chỉ định như một tham số.
 
 Generics cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm biên dịch, cho phép phát hiện kiểu không hợp lệ khi biên dịch.
 
-<span id="&#25509;&#21475;"></span>
+<span id="interface"></span>
 ## Interface
 
-<span id="&#31616;&#20171;_1"></span>
+<span id="interface-giới-thiệu"></span>
 ### Giới thiệu
 
 Interface trong Java là một kiểu trừu tượng, là tập hợp các phương thức trừu tượng, thường được khai báo bằng `interface`. Một lớp hiện thực interface để kế thừa các phương thức trừu tượng của interface đó.
@@ -545,7 +545,7 @@ Trừ khi lớp hiện thực interface là lớp trừu tượng, lớp đó ph
 
 Interface không thể được khởi tạo, nhưng có thể được hiện thực. Một lớp hiện thực interface phải hiện thực mọi phương thức được mô tả trong interface, nếu không thì phải khai báo là lớp trừu tượng. Ngoài ra, trong Java, kiểu interface có thể dùng để khai báo biến; biến đó có thể là con trỏ null, hoặc được gắn với một đối tượng hiện thực interface này.
 
-<span id="&#19982;&#31867;&#30340;&#21306;&#21035;"></span>
+<span id="khác-biệt-với-lớp"></span>
 ### Khác biệt với lớp
 
 1.  Interface không thể dùng để khởi tạo đối tượng.
@@ -555,7 +555,7 @@ Interface không thể được khởi tạo, nhưng có thể được hiện t
 5.  Interface không được lớp kế thừa, mà được lớp hiện thực.
 6.  Interface hỗ trợ đa kế thừa, còn lớp thì không.
 
-<span id="&#22768;&#26126;"></span>
+<span id="khai-báo-interface"></span>
 ### Khai báo
 
 ```java
@@ -565,17 +565,17 @@ Interface không thể được khởi tạo, nhưng có thể được hiện t
 }
 ```
 
-<span id="&#23454;&#29616;"></span>
+<span id="hiện-thực-interface"></span>
 ### Hiện thực
 
 ```java
 ...implements TenInterface[, TenInterfaceKhac, TenInterfaceKhac..., ...] ...
 ```
 
-<span id="lambda-&#34920;&#36798;&#24335;"></span>
+<span id="biểu-thức-lambda"></span>
 ## Biểu thức lambda
 
-<span id="&#31616;&#20171;_2"></span>
+<span id="lambda-giới-thiệu"></span>
 ### Giới thiệu
 
 Biểu thức lambda cũng có thể gọi là closure; đây là một trong những tính năng mới quan trọng nhất của Java 8.
@@ -584,7 +584,7 @@ Biểu thức lambda cho phép truyền hàm làm tham số của một phương
 
 Dùng biểu thức lambda có thể làm mã ngắn gọn và chặt chẽ hơn.
 
-<span id="&#35821;&#27861;"></span>
+<span id="cú-pháp-lambda"></span>
 ### Cú pháp
 
 -   Khai báo kiểu tùy chọn: không cần khai báo kiểu tham số, trình biên dịch có thể suy luận thống nhất từ giá trị tham số.
@@ -657,7 +657,7 @@ public class Main {
 
 Trong đó, `->` là ký hiệu suy diễn: ngoặc phía trước nhận tham số, rồi suy diễn giá trị trả về ở phía sau; thực chất là truyền phương thức.
 
-<span id="&#20989;&#25968;&#24335;&#25509;&#21475;"></span>
+<span id="functional-interface"></span>
 ### Functional interface
 
 1.  Là một interface, phù hợp với định nghĩa interface của Java.
@@ -735,7 +735,7 @@ Các nội dung dưới đây đều dựa trên tính đa hình của Java và 
 
 Các interface thường dùng gồm `List`, `Queue`, `Set` và `Map`.
 
-<span id="&#23481;&#22120;&#23450;&#20041;"></span>
+<span id="định-nghĩa-container"></span>
 ### Định nghĩa container
 
 Khi định nghĩa lớp container generic, cần chỉ định kiểu dữ liệu lúc định nghĩa. Nếu không chỉ định kiểu dữ liệu mà coi là kiểu `Object` rồi thêm dữ liệu tùy ý, trong Java 8 tuy vẫn biên dịch được nhưng sẽ có nhiều cảnh báo và rủi ro.
@@ -767,7 +767,7 @@ Nếu đã xác định kiểu như `List<Integer>`, trình biên dịch sẽ ki
 
 `ArrayList` là mảng có thể tăng kích thước động theo nhu cầu; độ dài ban đầu mặc định là 10. Nếu vượt quá độ dài hiện tại, nó sẽ mở rộng thêm $\dfrac{3}{2}$.
 
-<span id="&#21021;&#22987;&#21270;_1"></span>
+<span id="arraylist-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -790,7 +790,7 @@ public class Main {
 
 `LinkedList` là danh sách liên kết đôi.
 
-<span id="&#21021;&#22987;&#21270;_2"></span>
+<span id="linkedlist-list-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -808,7 +808,7 @@ public class Main {
 }
 ```
 
-<span id="&#24120;&#29992;&#26041;&#27861;"></span>
+<span id="list-phương-thức-thường-dùng"></span>
 #### Phương thức thường dùng
 
 Dưới đây dùng `this` để chỉ `List<Integer>` hiện tại:
@@ -862,7 +862,7 @@ public class Main {
 }
 ```
 
-<span id="&#36941;&#21382;"></span>
+<span id="list-duyệt"></span>
 #### Duyệt
 
 ```java
@@ -920,7 +920,7 @@ public class Main {
 
 Có thể dùng `LinkedList` để hiện thực hàng đợi thông thường; bên dưới là hàng đợi mô phỏng bằng danh sách liên kết.
 
-<span id="&#21021;&#22987;&#21270;_3"></span>
+<span id="linkedlist-queue-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -933,7 +933,7 @@ Bên dưới, `LinkedList` hiện thực cả interface `List` và interface `De
 
 Có thể dùng `ArrayDeque` để hiện thực hàng đợi thông thường; bên dưới là hàng đợi mô phỏng bằng mảng.
 
-<span id="&#21021;&#22987;&#21270;_4"></span>
+<span id="arraydeque-queue-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -942,7 +942,7 @@ Queue<Integer> q = new ArrayDeque<>();
 
 Bên dưới, `ArrayDeque` hiện thực interface `Deque`; `Deque` lại kế thừa từ interface `Queue`, nên `ArrayDeque` có thể hiện thực `Queue`.
 
-<span id="linkedlist-&#19982;-arraydeque-&#22312;&#23454;&#29616;-queue-&#25509;&#21475;&#19978;&#30340;&#21306;&#21035;"></span>
+<span id="khác-biệt-giữa-linkedlist-và-arraydeque-khi-hiện-thực-queue"></span>
 #### Khác biệt giữa LinkedList và ArrayDeque khi hiện thực Queue
 
 1.  Cấu trúc dữ liệu: về cấu trúc dữ liệu, `ArrayDeque` và `LinkedList` đều hiện thực interface deque hai đầu `Deque` của Java. Nhưng `ArrayDeque` không hiện thực interface danh sách `List` của Java, nên không có thao tác theo vị trí chỉ số.
@@ -956,7 +956,7 @@ Bên dưới, `ArrayDeque` hiện thực interface `Deque`; `Deque` lại kế t
 
 `PriorityQueue` là hàng đợi ưu tiên; mặc định là heap nhỏ.
 
-<span id="&#21021;&#22987;&#21270;_5"></span>
+<span id="priorityqueue-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -964,7 +964,7 @@ Queue<Integer> q1 = new PriorityQueue<>();  // Heap nhỏ
 Queue<Integer> q2 = new PriorityQueue<>((x, y) -> {return y - x;});  // Heap lớn
 ```
 
-<span id="&#24120;&#29992;&#26041;&#27861;_1"></span>
+<span id="queue-phương-thức-thường-dùng"></span>
 #### Phương thức thường dùng
 
 Trong bảng dưới đây, hàng đợi được định nghĩa là `Queue<Integer>`.
@@ -1018,7 +1018,7 @@ public class Main {
 }
 ```
 
-<span id="&#36941;&#21382;_1"></span>
+<span id="queue-duyệt"></span>
 #### Duyệt
 
 ```java
@@ -1048,7 +1048,7 @@ public class Main {
 
 `Deque` là hàng đợi hai đầu trong `Java`; ta thường dùng nó để thao tác hàng đợi và thao tác stack.
 
-<span id="&#20027;&#35201;&#20989;&#25968;"></span>
+<span id="deque-hàm-chính"></span>
 #### Hàm chính
 
 Trong bảng dưới đây, hàng đợi được định nghĩa là `Deque<Integer>`.
@@ -1072,7 +1072,7 @@ Trong bảng dưới đây, hàng đợi được định nghĩa là `Deque<Inte
 |      `add(Integer val)`      | Chèn `val` vào cuối hàng đợi, tương đương `addLast` |
 |     `offer(Integer val)`     | Chèn `val` vào cuối hàng đợi, tương đương `offerLast` |
 
-<span id="&#26632;&#30340;&#25805;&#20316;"></span>
+<span id="thao-tác-stack"></span>
 #### Thao tác stack
 
 ```java
@@ -1095,7 +1095,7 @@ public class Main {
 
 ```
 
-<span id="&#21452;&#31471;&#38431;&#21015;&#30340;&#25805;&#20316;"></span>
+<span id="thao-tác-hàng-đợi-hai-đầu"></span>
 #### Thao tác hàng đợi hai đầu
 
 ```java
@@ -1133,7 +1133,7 @@ public class Main {
 
 `Set` chèn ở vị trí ngẫu nhiên.
 
-<span id="&#21021;&#22987;&#21270;_6"></span>
+<span id="hashset-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -1144,7 +1144,7 @@ Set<Integer> s1 = new HashSet<>();
 
 `Set` giữ thứ tự chèn.
 
-<span id="&#21021;&#22987;&#21270;_7"></span>
+<span id="linkedhashset-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -1155,7 +1155,7 @@ Set<Integer> s2 = new LinkedHashSet<>();
 
 `Set` giữ các phần tử trong container có thứ tự; mặc định là tăng dần.
 
-<span id="&#21021;&#22987;&#21270;_8"></span>
+<span id="treeset-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -1163,7 +1163,7 @@ Set<Integer> s3 = new TreeSet<>();
 Set<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // Giảm dần
 ```
 
-<span id="treeset-&#30340;&#26356;&#22810;&#20351;&#29992;"></span>
+<span id="sử-dụng-treeset-nâng-cao"></span>
 ##### Sử dụng TreeSet nâng cao
 
 Các phương thức này được `TreeSet` tạo và hiện thực riêng; ta không thể gọi các phương thức dưới đây qua interface `Set`, nên cách tạo là:
@@ -1219,7 +1219,7 @@ public class Main {
 }
 ```
 
-<span id="set-&#24120;&#29992;&#26041;&#27861;"></span>
+<span id="set-phương-thức-thường-dùng"></span>
 #### Phương thức thường dùng của Set
 
 |           Tên hàm            |                                  Chức năng                                  |
@@ -1270,7 +1270,7 @@ public class Main {
 }
 ```
 
-<span id="&#36941;&#21382;_2"></span>
+<span id="set-duyệt"></span>
 #### Duyệt
 
 ```java
@@ -1301,7 +1301,7 @@ public class Main {
 
 `Map` chèn ở vị trí ngẫu nhiên.
 
-<span id="&#21021;&#22987;&#21270;_9"></span>
+<span id="hashmap-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -1312,7 +1312,7 @@ Map<Integer, Integer> map1 = new HashMap<>();
 
 `Map` giữ thứ tự chèn.
 
-<span id="&#21021;&#22987;&#21270;_10"></span>
+<span id="linkedhashmap-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -1323,7 +1323,7 @@ Map<Integer, Integer> map2 = new LinkedHashMap<>();
 
 `Map` giữ `key` có thứ tự; mặc định là tăng dần.
 
-<span id="&#21021;&#22987;&#21270;_11"></span>
+<span id="treemap-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
@@ -1331,7 +1331,7 @@ Map<Integer, Integer> map3 = new TreeMap<>();
 Map<Integer, Integer> map4 = new TreeMap<>((x, y) -> {return y - x;});  // Giảm dần
 ```
 
-<span id="&#24120;&#29992;&#26041;&#27861;_2"></span>
+<span id="map-phương-thức-thường-dùng"></span>
 #### Phương thức thường dùng
 
 Dưới đây dùng `this` để chỉ `Map<Integer, Integer>` hiện tại:
@@ -1376,7 +1376,7 @@ public class Main {
 }
 ```
 
-<span id="&#36941;&#21382;_3"></span>
+<span id="map-duyệt"></span>
 #### Duyệt
 
 ```java
@@ -1644,10 +1644,10 @@ Chức năng của `Collections.swap()` là hoán đổi phần tử ở hai v�
  Collections.swap(list, i, j);
 ```
 
-<span id="&#20854;&#20182;"></span>
+<span id="khác"></span>
 ## Khác
 
-<span id="&#25968;&#20540;&#27604;&#36739;&#38382;&#39064;"></span>
+<span id="vấn-đề-so-sánh-số"></span>
 ### Vấn đề so sánh số
 
 Trong Java, nếu chỉ xét kiểu số nguyên thủy thì `-0.0 = 0.0`. Nếu là kiểu đối tượng thì `-0.0 != 0.0`. Khi thử dùng `Set` để đếm số lượng hệ số góc, vấn đề này sẽ gây rắc rối. Cách giải quyết là cộng thêm `0.0` vào mọi hệ số góc trước khi đưa vào `Set`.
@@ -1686,7 +1686,7 @@ public class Main {
 }
 ```
 
-<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 [^ref1]: [Input & Output - USACO Guide](https://usaco.guide/general/input-output?lang=java#method-3---io-template)
