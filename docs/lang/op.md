@@ -71,7 +71,7 @@ Xem thêm: [phép toán bit](../math/bit.md#phép-toán-bit).
 ý rằng độ ưu tiên của phép toán bit thấp hơn toán tử số học (trừ phép đảo bit);
 AND theo bit, OR theo bit và XOR còn thấp hơn toán tử so sánh (xem
 [bảng tổng hợp độ ưu tiên toán tử C++](#bảng-tổng-hợp-độ-ưu-tiên-toán-tử-c)).
-Vì vậy, khi dùng các toán tử này, hãy thêm ngoặc nếu thứ tự tính không thật rõ
+Vì vậy, khi dùng các toán tử này, nên thêm ngoặc nếu thứ tự tính không thật rõ
 ràng.
 
 Trong phép dịch bit, nếu xuất hiện các trường hợp sau thì hành vi không xác định:
@@ -88,17 +88,17 @@ thể được biểu diễn bởi kiểu của số ban đầu; nếu không, h
 
 Với phép dịch phải, các bit dư ở bên phải sẽ bị loại bỏ, còn phía bên trái phức
 tạp hơn: với số không dấu, bên trái được điền $0$[^note3]; với số có dấu, cách
-xử lý phụ thuộc vào chuẩn C++ và triển khai cụ thể, xem chú thích bên dưới.[^note4]
+xử lý phụ thuộc vào chuẩn C++ và triển khai cụ thể, xem chú thích ở sau.[^note4]
 
 ## Toán tử tự tăng/tự giảm
 
-Đôi khi ta cần tăng một biến thêm 1 (tự tăng) hoặc giảm đi 1 (tự giảm). Khi đó
+Đôi khi cần tăng một biến thêm 1 (tự tăng) hoặc giảm đi 1 (tự giảm). Khi đó
 toán tử tự tăng `++` và tự giảm `--` sẽ được dùng.
 
 Toán tử tự tăng/tự giảm có thể đặt trước hoặc sau biến. Đặt trước biến gọi là
 dạng tiền tố, đặt sau biến gọi là dạng hậu tố. Khi dùng riêng lẻ, hai dạng này
 không khác nhau đáng kể; nếu cần dùng giá trị của cả biểu thức thì phải chú ý
-như trong ví dụ bên dưới. Chi tiết có thể tham khảo phần ví dụ trong
+như trong ví dụ sau. Chi tiết có thể tham khảo phần ví dụ trong
 [tham chiếu](./reference.md).
 
 ```cpp
@@ -171,7 +171,7 @@ Result = !op1;  // nếu op1 sai thì Result đúng
 
 Toán tử **dựng sẵn** `&&` và `||` thực hiện đánh giá ngắn mạch: nếu sau khi đánh
 giá toán hạng thứ nhất đã biết kết quả thì không đánh giá toán hạng thứ hai.
-Toán tử được nạp chồng không có đặc tính này và luôn đánh giá cả hai toán hạng.
+Toán tử được nạp chồng không có tính chất này và luôn đánh giá cả hai toán hạng.
 
 ## Toán tử dấu phẩy
 
@@ -205,7 +205,7 @@ Result = (1 + 2, 3 + 4, 5 + 6);
 
 Các toán tử này dùng để truy cập thành viên của đối tượng hoặc truy cập bộ nhớ.
 Trong các toán tử ở bảng trên, `.` không thể được nạp chồng, còn `[]`, `&`, `*`
-và `->` có thể được nạp chồng. Với nội dung liên quan đến `&`, `*` và `->`, hãy
+và `->` có thể được nạp chồng. Với nội dung liên quan đến `&`, `*` và `->`, nên
 đọc hướng dẫn về [con trỏ](./pointer.md) và [tham chiếu](./reference.md). Ở đây
 cũng lược bỏ hai toán tử rất ít dùng là `.*` và `->*`; cách dùng cụ thể có thể
 xem tại
