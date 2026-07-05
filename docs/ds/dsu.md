@@ -214,9 +214,17 @@ Chứng minh độ phức tạp nằm ở [trang này](./dsu-complexity.md).
 ???+ info "Hàm Ackermann ngược"
     [Hàm Ackermann](https://en.wikipedia.org/wiki/Ackermann_function)  $A(m, n)$ được định nghĩa như sau:
 
-    $A(m, n) = \begin{cases}n+1&\text{nếu }m=0\\A(m-1,1)&\text{nếu }m>0\text{ và }n=0\\A(m-1,A(m,n-1))&\text{ngược lại}\end{cases}$
+    $$
+    A(m, n) =
+    \begin{cases}
+    n+1&\text{nếu }m=0\\
+    A(m-1,1)&\text{nếu }m>0\text{ và }n=0\\
+    A(m-1,A(m,n-1))&\text{ngược lại}
+    \end{cases}
+    $$
 
-    Còn hàm Ackermann ngược $\alpha(n)$ là hàm ngược của hàm Ackermann, tức là số nguyên lớn nhất $m$ sao cho $A(m, m) \leqslant n$.
+    Còn hàm Ackermann ngược $\alpha(n)$ là hàm ngược của hàm Ackermann, tức là số nguyên lớn nhất $m$ sao cho
+    $A(m, m) \leqslant n$.
 
 Độ phức tạp bộ nhớ của DSU là $O(n)$.
 
@@ -240,7 +248,8 @@ Vì mỗi lần hợp nhất hai tập hợp chỉ nối hai gốc của cây,
 từ đầu đến cuối chỉ các nút ảo mới có nút con.
 Nhờ vậy, khi xóa một nút, sẽ không xóa nhầm các nút khác.
 
-Lưu ý rằng sau khi xóa một nút riêng lẻ, cần tạo lại một nút ảo làm cha của nút đó; nếu không, các thao tác hợp nhất và xóa về sau sẽ không còn đúng.
+Lưu ý rằng sau khi xóa một nút riêng lẻ, cần tạo lại một nút ảo làm cha của nút đó; nếu không, các thao tác hợp nhất và
+xóa về sau sẽ không còn đúng.
 
 ??? example "Bài mẫu [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/), cài đặt tham khảo"
     === "C++"
@@ -410,7 +419,8 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
     $X=(X_1,X_2,\ldots,X_M)$, $Y=(Y_1,Y_2,\ldots,Y_M)$, $Z=(Z_1,Z_2,\ldots,Z_M)$.
     Bảo đảm mọi phần tử của $X$ và $Y$ đều nằm trong phạm vi từ $1$ đến $N$.
 
-    Định nghĩa một dãy số nguyên không âm độ dài $N$, $A=(A_1,A_2,\ldots,A_N)$, là một **dãy số nguyên tốt** khi và chỉ khi thỏa điều kiện sau:
+    Định nghĩa một dãy số nguyên không âm độ dài $N$, $A=(A_1,A_2,\ldots,A_N)$, là một **dãy số nguyên tốt** khi và chỉ
+    khi thỏa điều kiện sau:
 
     -   Với mọi số nguyên $i$ thỏa $1 \leq i \leq M$,
         có $A_{X_i} \oplus A_{Y_i} = Z_i$, trong đó $\oplus$ biểu thị phép XOR.
@@ -452,7 +462,8 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
 
 ## Ứng dụng khác
 
-Thuật toán Kruskal trong [cây khung nhỏ nhất](../graph/mst.md) và thuật toán Tarjan trong [tổ tiên chung gần nhất](../graph/lca.md) đều dựa trên DSU.
+Thuật toán Kruskal trong [cây khung nhỏ nhất](../graph/mst.md) và thuật toán Tarjan trong
+[tổ tiên chung gần nhất](../graph/lca.md) đều dựa trên DSU.
 
 Xem thêm chuyên đề liên quan ở [ứng dụng DSU](../topic/dsu-app.md).
 
@@ -461,9 +472,14 @@ Xem thêm chuyên đề liên quan ở [ứng dụng DSU](../topic/dsu-app.md).
 ## Tài liệu tham khảo và đọc thêm
 
 1.  [Zhihu: DSU có thật sự có tối ưu nén đường đi kiểu chia đôi không?](https://www.zhihu.com/question/28410263/answer/40966441)
-2.  Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union. JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221.[PDF](https://dl.acm.org/doi/pdf/10.1145/800061.808753)
+2.  Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union.
+    JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221.
+    [PDF](https://dl.acm.org/doi/pdf/10.1145/800061.808753)
 3.  [CSDN: DSU mở rộng miền & DSU có trọng số](https://blog.csdn.net/qqqqqwerttwtwe/article/details/145440100)
 
-[^tarjan1984worst]: Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.[ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
+[^tarjan1984worst]: Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the
+    ACM (JACM), 31(2), 245-281.
+    [ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
 
-[^yao1985expected]: Yao, A. C. (1985). On the expected performance of path compression algorithms.[SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat)
+[^yao1985expected]: Yao, A. C. (1985). On the expected performance of path compression algorithms.
+    [SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat)
