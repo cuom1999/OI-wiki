@@ -13,7 +13,7 @@ Mã nguồn được lưu trữ tại [xalanq/cf-tool](https://github.com/xalanq
 ### Tính năng
 
 -   Hỗ trợ mọi ngôn ngữ lập trình trên Codeforces.
--   Hỗ trợ Contests và Gym.
+-   Hỗ trợ Contest và Gym.
 -   Nộp mã.
 -   Làm mới động trạng thái sau khi nộp.
 -   Tải mẫu của bài.
@@ -84,11 +84,11 @@ Mở bảng xếp hạng bằng trình duyệt để xem thứ hạng.
 
     Nếu chưa rõ, hãy tìm kiếm trực tiếp "thêm đường dẫn vào PATH".
 
-3.  Cách thêm một dữ liệu test mới
+3.  Cách thêm một dữ liệu kiểm thử mới
 
-    Tạo thêm hai tệp dữ liệu test `inK.txt` và `ansK.txt` (K là một chuỗi gồm các chữ số 0\~9).
+    Tạo thêm hai tệp dữ liệu kiểm thử `inK.txt` và `ansK.txt` (K là một chuỗi gồm các chữ số 0\~9).
 
-4.  Cách bật hoàn thành bằng tab trong trình dòng lệnh
+4.  Cách bật tự động hoàn thành bằng Tab trong trình dòng lệnh
 
     Có thể dùng công cụ [Infinidat/infi.docopt\_completion](https://github.com/Infinidat/infi.docopt_completion).
 
@@ -104,7 +104,7 @@ Trang web này có ba chức năng:
 
 -   Dùng biểu đồ đẹp mắt để trực quan hóa nhiều thông tin của một người dùng (chẳng hạn phân bố độ khó của bài đã giải).
 -   So sánh hai người dùng.
--   Tính dự đoán Rating cho một cuộc thi.
+-   Dự đoán rating cho một cuộc thi.
 
 ## Competitive Companion
 
@@ -114,7 +114,7 @@ Mã nguồn được lưu trữ tại [jmerle/competitive-companion](https://git
 
 Cách dùng:
 
--   Cài tiện ích trên trình duyệt Chrome hoặc Firefox. Công cụ này sẽ gửi dữ liệu mẫu đã phân tích ở dạng JSON tới một cổng chỉ định.
+-   Cài tiện ích trên trình duyệt Chrome hoặc Firefox. Công cụ này sẽ gửi dữ liệu mẫu đã phân tích ở dạng JSON tới một cổng được chỉ định.
 -   Cài cục bộ bất kỳ công cụ nào có thể lắng nghe và đọc dữ liệu từ cổng đó; có thể tham khảo [ví dụ chính thức](https://github.com/jmerle/competitive-companion-example).
 
 Minh họa bằng hình ảnh:
@@ -127,10 +127,10 @@ Phần minh họa được thực hiện bằng [bytetools](https://github.com/z
 
 ac-predictor là một tiện ích giúp biết trước thay đổi rating của cuộc thi trước khi rating AtCoder được cập nhật.
 
-Công cụ này là một script Tampermonkey, vì vậy trước hết bạn cần cài [Tampermonkey](https://www.tampermonkey.net/).
+Công cụ này là một tập lệnh Tampermonkey, vì vậy trước hết bạn cần cài [Tampermonkey](https://www.tampermonkey.net/).
 
 Sau đó vào [Greasy Fork](https://greasyfork.org/en/scripts/369954-ac-predictor) và nhấn cài đặt.
 
 Sau khi cài đặt xong, giao diện bảng xếp hạng của cuộc thi sẽ hiển thị dự đoán thay đổi rating của từng người dùng.
 
-Nếu trang script có nhiều phiên bản, nên ưu tiên bản gốc hoặc bản đang được duy trì thường xuyên.
+Nếu trang tập lệnh có nhiều phiên bản, nên ưu tiên bản gốc hoặc bản đang được duy trì thường xuyên.
