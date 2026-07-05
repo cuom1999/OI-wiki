@@ -11,18 +11,18 @@ __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
                  Allocator = std::allocator<char>>
 ```
 
-## Tham số template
+## Tham số mẫu
 
 -   `Key`: kiểu phần tử được lưu trữ. Nếu muốn lưu nhiều phần tử có cùng `Key`,
     cần dùng cách tương tự `std::pair` hoặc `struct`, rồi kết hợp các hàm thành
     viên `lower_bound` và `upper_bound` để tìm kiếm.
 -   `Mapped`: kiểu chính sách ánh xạ (Mapped-Policy). Nếu muốn biểu diễn
-    container kết hợp là **tập hợp**, tương tự lưu phần tử trong `std::set`, hãy
+    bộ chứa kết hợp là **tập hợp**, tương tự lưu phần tử trong `std::set`, hãy
     điền `null_type` tại đây; với phiên bản `g++` cũ, vị trí này là
-    `null_mapped_type`. Nếu muốn biểu diễn container kết hợp là **tập hợp có
+    `null_mapped_type`. Nếu muốn biểu diễn bộ chứa kết hợp là **tập hợp có
     giá trị**, tương tự lưu phần tử trong `std::map`, hãy điền kiểu `Value`
     giống như trong `std::map<Key, Value>`.
--   `Cmp_Fn`: functor so sánh khóa, ví dụ `std::less<Key>`.
+-   `Cmp_Fn`: đối tượng hàm so sánh khóa, ví dụ `std::less<Key>`.
 -   `Tag`: chọn loại cấu trúc dữ liệu nền; mặc định là `rb_tree_tag`.
     `__gnu_pbds` cung cấp ba loại cây cân bằng khác nhau:
     -   `rb_tree_tag`: cây đỏ-đen; thường dùng loại này, hai loại sau thường có
@@ -48,19 +48,19 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 ## Hàm thành viên
 
 -   `insert(x)`: chèn một phần tử `x` vào cây, trả về
-    `std::pair<point_iterator, bool>`, trong đó phần tử thứ nhất là iterator tại
+    `std::pair<point_iterator, bool>`, trong đó phần tử thứ nhất là bộ lặp tại
     vị trí chèn, phần tử thứ hai cho biết chèn có thành công hay không.
--   `erase(x)`: xóa một phần tử/iterator `x` khỏi cây. Nếu `x` là iterator, hàm
-    trả về iterator trỏ đến phần tử sau `x` (nếu `x` là `end()` thì trả về
+-   `erase(x)`: xóa một phần tử/bộ lặp `x` khỏi cây. Nếu `x` là bộ lặp, hàm
+    trả về bộ lặp trỏ đến phần tử sau `x` (nếu `x` là `end()` thì trả về
     `end()`); nếu `x` là `Key`, hàm trả về xóa có thành công hay không (nếu
     không tồn tại thì xóa thất bại).
 -   `order_of_key(x)`: trả về số phần tử nhỏ hơn nghiêm ngặt `x` (theo logic so
     sánh của `Cmp_Fn`), tức thứ hạng bắt đầu từ $0$.
--   `find_by_order(x)`: trả về iterator của phần tử ứng với thứ hạng theo so
+-   `find_by_order(x)`: trả về bộ lặp của phần tử ứng với thứ hạng theo so
     sánh của `Cmp_Fn`.
--   `lower_bound(x)`: trả về iterator của phần tử đầu tiên không nhỏ hơn `x`
+-   `lower_bound(x)`: trả về bộ lặp của phần tử đầu tiên không nhỏ hơn `x`
     (theo logic so sánh của `Cmp_Fn`).
--   `upper_bound(x)`: trả về iterator của phần tử đầu tiên lớn hơn nghiêm ngặt
+-   `upper_bound(x)`: trả về bộ lặp của phần tử đầu tiên lớn hơn nghiêm ngặt
     `x` (theo logic so sánh của `Cmp_Fn`).
 -   `join(x)`: gộp cây `x` vào cây hiện tại, rồi làm rỗng cây `x` (phải bảo đảm
     **hàm so sánh** và **kiểu phần tử** của hai cây giống nhau).

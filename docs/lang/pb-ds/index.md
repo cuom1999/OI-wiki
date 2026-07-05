@@ -12,11 +12,11 @@ chức năng hơn.
 
 pb\_ds chỉ dùng được với trình biên dịch sử dụng libstdc++ làm thư viện chuẩn.
 
-Có thể dùng `begin()` và `end()` để lấy `iterator` rồi duyệt.
+Có thể dùng `begin()` và `end()` để lấy bộ lặp rồi duyệt.
 
 Có thể `increase_key`, `decrease_key` và xóa từng phần tử riêng lẻ.
 
-Vì nội dung chính của thư viện pb\_ds nằm trong namespace `__gnu_pbds`, bắt đầu
+Vì nội dung chính của thư viện pb\_ds nằm trong không gian tên `__gnu_pbds`, bắt đầu
 bằng dấu gạch dưới, tính hợp lệ của nó trong các hoạt động thuộc hệ thống NOI
 từng không rõ ràng. Ngày 1 tháng 9 năm 2021, theo [bổ sung về giới hạn sử dụng
 ngôn ngữ lập trình trong các hoạt động thuộc hệ thống NOI](https://www.noi.cn/xw/2021-09-01/735729.shtml),

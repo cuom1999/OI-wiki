@@ -10,7 +10,7 @@ using namespace __gnu_pbds;
 __gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
 ```
 
-## Tham số template
+## Tham số mẫu
 
 -   `T`: kiểu phần tử được lưu trữ
 -   `Compare`: kiểu so sánh cung cấp thứ tự yếu nghiêm ngặt
@@ -28,50 +28,50 @@ __gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
         Heap nhị thức có hiệu năng hợp nhất tốt hơn heap nhị phân, nhưng thao
         tác lấy phần tử đỉnh heap có độ phức tạp cao hơn heap nhị phân.
     -   `rc_binomial_heap_tag`: heap nhị thức đếm dư thừa
-    -   `thin_heap_tag`: một tag có mọi độ phức tạp giống Fibonacci heap, trừ
+    -   `thin_heap_tag`: một thẻ có mọi độ phức tạp giống Fibonacci heap, trừ
         thao tác hợp nhất
 -   `Allocator`: bộ cấp phát bộ nhớ; vì hiếm gặp trong OI nên không giải thích ở
     đây
 
-Vì bài này chỉ phục vụ người học lập trình thi đấu, bốn tag phía sau chỉ được
-giới thiệu sơ lược về độ phức tạp; tag đầu tiên sẽ được giới thiệu về hàm thành
+Vì bài này chỉ phục vụ người học lập trình thi đấu, bốn thẻ phía sau chỉ được
+giới thiệu sơ lược về độ phức tạp; thẻ đầu tiên sẽ được giới thiệu về hàm thành
 viên và cách dùng.
 
 Qua thử nghiệm các thao tác heap cơ bản trên máy của tác giả (Core i5 @3.1 GHz
 trên macOS), kết hợp với kiểm thử độ phức tạp chính thức của GNU và kiểm thử
 Dijkstra, có thể thấy rằng:
-ít nhất với OIer, bốn tag ngoài pairing heap đều không đáng dùng: hoặc không có
+ít nhất với OIer, bốn thẻ ngoài pairing heap đều không đáng dùng: hoặc không có
 tác dụng thực tế, hoặc hằng số lớn đến mức thua `std`, thậm chí có thể gây MLE.
 Vì vậy, ở đây chỉ khuyến nghị dùng pairing heap mặc định. Tương tự, pairing heap
-cũng tốt hơn `make_heap()` trong thư viện `algorithm`.
+cũng tốt hơn `make_heap()` trong tệp tiêu đề `<algorithm>`.
 
 ## Cách khởi tạo
 
-Cần ghi rõ namespace vì tên lớp trùng với `std`.
+Cần ghi rõ không gian tên vì tên lớp trùng với `std`.
 
 ```cpp
 // __gnu_pbds::priority_queue<int>;
 // __gnu_pbds::priority_queue<int, greater<int>>;
 // __gnu_pbds::priority_queue<int, greater<int>, pairing_heap_tag>;
-__gnu_pbds::priority_queue<int>::point_iterator id;  // iterator kiểu điểm
-// modify và push đều trả về một point_iterator; bên dưới sẽ giải thích cách dùng
+__gnu_pbds::priority_queue<int>::point_iterator id;  // bộ lặp kiểu điểm
+// modify và push đều trả về một `point_iterator`; bên dưới sẽ giải thích cách dùng
 id = q.push(1);
 ```
 
 ## Hàm thành viên
 
--   `push()`: đưa một phần tử vào heap, trả về iterator tại vị trí phần tử đó.
+-   `push()`: đưa một phần tử vào heap, trả về bộ lặp tại vị trí phần tử đó.
 -   `pop()`: lấy phần tử đỉnh heap ra.
 -   `top()`: trả về phần tử đỉnh heap.
 -   `size()`: trả về số phần tử.
 -   `empty()`: trả về heap có rỗng hay không.
--   `modify(point_iterator, const key)`: sửa `key` tại vị trí iterator thành
+-   `modify(point_iterator, const key)`: sửa `key` tại vị trí bộ lặp thành
     `key` được truyền vào, rồi sắp xếp lại cấu trúc lưu trữ bên dưới.
--   `erase(point_iterator)`: xóa khóa tại vị trí iterator khỏi heap.
+-   `erase(point_iterator)`: xóa khóa tại vị trí bộ lặp khỏi heap.
 -   `join(__gnu_pbds::priority_queue &other)`: hợp nhất `other` vào `*this` rồi
     làm rỗng `other`.
 
-Tag được dùng quyết định độ phức tạp thời gian của từng thao tác:
+Thẻ được dùng quyết định độ phức tạp thời gian của từng thao tác:
 
 |                        | push                                | pop                                 | modify                              | erase                               | Join              |
 | ---------------------- | ----------------------------------- | :---------------------------------- | ----------------------------------- | ----------------------------------- | ----------------- |
@@ -90,11 +90,11 @@ Tag được dùng quyết định độ phức tạp thời gian của từng t
 #include <iostream>
 using namespace __gnu_pbds;
 // Vì hướng đến OIer, bài này dùng heap thường gặp pairing_heap_tag làm ví dụ
-// Để dễ đọc hơn, định nghĩa alias như sau:
+// Để dễ đọc hơn, định nghĩa bí danh như sau:
 using pair_heap = __gnu_pbds::priority_queue<int>;
 pair_heap q1;  // heap lớn, pairing heap
 pair_heap q2;
-pair_heap::point_iterator id;  // một iterator
+pair_heap::point_iterator id;  // một bộ lặp
 
 int main() {
   id = q1.push(1);
@@ -124,37 +124,37 @@ int main() {
 }
 ```
 
-## Bảo đảm vô hiệu hóa iterator của \_\_gnu\_pbds (invalidation\_guarantee)
+## Bảo đảm vô hiệu hóa bộ lặp của \_\_gnu\_pbds (invalidation\_guarantee)
 
 Trong ví dụ trên và trong một số tình huống thực tế (như dùng heap pb-ds của
 chương này để viết thuật toán đường đi ngắn nhất một nguồn), ta thường cần lưu
-và dùng iterator của heap (như
+và dùng bộ lặp của heap (như
 `__gnu_pbds::priority_queue<int>::point_iterator`).
 
 Tuy nhiên, với các tham số `Tag` khác nhau của `__gnu_pbds::priority_queue`,
-hiện thực bên dưới không giống nhau, nên điều kiện vô hiệu hóa iterator cũng
+hiện thực bên dưới không giống nhau, nên điều kiện vô hiệu hóa bộ lặp cũng
 khác nhau. Theo thiết kế của thư viện \_\_gnu\_pbds, có ba trường hợp dẫn xuất từ
 trên xuống dưới:
 
-1.  Bảo đảm vô hiệu hóa cơ bản (basic\_invalidation\_guarantee): khi không sửa
-    container, iterator kiểu điểm (point\_iterator), con trỏ và tham chiếu
-    (key/value) **vẫn** hợp lệ.
+1.  Bảo đảm vô hiệu hóa cơ bản (`basic_invalidation_guarantee`): khi không sửa
+    bộ chứa, bộ lặp kiểu điểm (`point_iterator`), con trỏ và tham chiếu
+    (khóa/giá trị) **vẫn** hợp lệ.
 
-2.  Bảo đảm vô hiệu hóa điểm (point\_invalidation\_guarantee): sau khi **sửa**
-    container, iterator kiểu điểm (point\_iterator), con trỏ và tham chiếu
-    (key/value) **vẫn** hợp lệ miễn là phần tử tương ứng chưa bị xóa khỏi
-    container.
+2.  Bảo đảm vô hiệu hóa điểm (`point_invalidation_guarantee`): sau khi **sửa**
+    bộ chứa, bộ lặp kiểu điểm (`point_iterator`), con trỏ và tham chiếu
+    (khóa/giá trị) **vẫn** hợp lệ miễn là phần tử tương ứng chưa bị xóa khỏi
+    bộ chứa.
 
-3.  Bảo đảm vô hiệu hóa phạm vi (range\_invalidation\_guarantee): sau khi
-    **sửa** container, ngoài tính chất ở (2), mọi iterator kiểu phạm vi (bao gồm
-    giá trị trả về của `begin()` và `end()`) đều đúng. Các tag có bảo đảm vô
+3.  Bảo đảm vô hiệu hóa phạm vi (`range_invalidation_guarantee`): sau khi
+    **sửa** bộ chứa, ngoài tính chất ở (2), mọi bộ lặp kiểu phạm vi (bao gồm
+    giá trị trả về của `begin()` và `end()`) đều đúng. Các thẻ có bảo đảm vô
     hiệu hóa phạm vi gồm `rb_tree_tag`, `splay_tree_tag` dùng cho
     `__gnu_pbds::tree`, và `pat_trie_tag` dùng cho `__gnu_pbds::trie`.
 
 Từ kết quả chạy đoạn mã sau, có thể thấy ngoài `binary_heap_tag` là
-`basic_invalidation_guarantee` và iterator sẽ bị vô hiệu sau khi sửa, các tag
-còn lại đều là `point_invalidation_guarantee`, đáp ứng nhu cầu giữ iterator kiểu
-điểm (point\_iterator) không bị vô hiệu sau khi sửa.
+`basic_invalidation_guarantee` và bộ lặp sẽ bị vô hiệu sau khi sửa, các thẻ
+còn lại đều là `point_invalidation_guarantee`, đáp ứng nhu cầu giữ bộ lặp kiểu
+điểm (`point_iterator`) không bị vô hiệu sau khi sửa.
 
 ```cpp
 #include <iostream>
