@@ -4,7 +4,11 @@ author: Xeonacid, ksyx, Early0v0
 
 ## Ngăn xếp
 
-STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đổi bộ chứa theo nguyên tắc vào sau ra trước (LIFO, Last In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ bộ lặp.
+STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đổi bộ chứa
+theo nguyên tắc vào sau ra trước (LIFO, Last In, First Out). Nó chỉ hỗ trợ truy
+vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ
+trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không
+hỗ trợ bộ lặp.
 
 <span id="tệp-tiêu-đề-ngăn-xếp"></span>
 
@@ -19,7 +23,7 @@ STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đ�
 ### Định nghĩa
 
 ```cpp
-std::stack<TypeName> s;  // dùng bộ chứa nền mặc định là deque, kiểu dữ liệu là TypeName
+std::stack<TypeName> s;             // dùng deque làm bộ chứa nền mặc định, kiểu dữ liệu là TypeName
 std::stack<TypeName, Container> s;  // dùng Container làm bộ chứa nền
 std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 ```
@@ -30,10 +34,11 @@ std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 
 **Tất cả các hàm sau đều có độ phức tạp hằng số**
 
--   `top()` truy cập phần tử đỉnh ngăn xếp (nếu ngăn xếp rỗng thì thao tác này gây lỗi)
+-   `top()` truy cập phần tử đỉnh ngăn xếp (nếu ngăn xếp rỗng thì thao tác này
+    gây lỗi)
 -   `push(x)` chèn phần tử `x` vào ngăn xếp
 -   `pop()` xóa phần tử đỉnh ngăn xếp
--   `size()` truy vấn số lượng phần tử trong bộ chứa
+-   `size()` trả về số lượng phần tử trong bộ chứa
 -   `empty()` kiểm tra bộ chứa có rỗng hay không
 
 <span id="ví-dụ-đơn-giản-ngăn-xếp"></span>
@@ -56,7 +61,11 @@ std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 
 ## Hàng đợi
 
-STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một bộ chuyển đổi bộ chứa theo nguyên tắc vào trước ra trước (FIFO, First In, First Out). Nó chỉ hỗ trợ truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng không hỗ trợ bộ lặp.
+STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một bộ chuyển đổi bộ chứa
+theo nguyên tắc vào trước ra trước (FIFO, First In, First Out). Nó chỉ hỗ trợ
+truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không
+hỗ trợ truy cập ngẫu nhiên, và để bảo đảm thứ tự dữ liệu nghiêm ngặt, nó cũng
+không hỗ trợ bộ lặp.
 
 <span id="tệp-tiêu-đề-hàng-đợi"></span>
 
@@ -71,7 +80,7 @@ STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một bộ chuyển đ�
 ### Định nghĩa
 
 ```cpp
-std::queue<TypeName> q;  // dùng bộ chứa nền mặc định là deque, kiểu dữ liệu là TypeName
+std::queue<TypeName> q;             // dùng deque làm bộ chứa nền mặc định, kiểu dữ liệu là TypeName
 std::queue<TypeName, Container> q;  // dùng Container làm bộ chứa nền
 
 std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
@@ -83,10 +92,11 @@ std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
 
 **Tất cả các hàm sau đều có độ phức tạp hằng số**
 
--   `front()` truy cập phần tử đầu hàng đợi (nếu hàng đợi rỗng thì thao tác này gây lỗi)
+-   `front()` truy cập phần tử đầu hàng đợi (nếu hàng đợi rỗng thì thao tác này
+    gây lỗi)
 -   `push(x)` chèn phần tử `x` vào hàng đợi
 -   `pop()` xóa phần tử đầu hàng đợi
--   `size()` truy vấn số lượng phần tử trong bộ chứa
+-   `size()` trả về số lượng phần tử trong bộ chứa
 -   `empty()` kiểm tra bộ chứa có rỗng hay không
 
 <span id="ví-dụ-đơn-giản-hàng-đợi"></span>
@@ -109,7 +119,8 @@ std::cout << q1.empty() << " " << q2.empty() << std::endl;  // 1 0
 
 ## Hàng đợi ưu tiên
 
-Hàng đợi ưu tiên `std::priority_queue` là một dạng [heap](../../ds/heap.md), thường là [heap nhị phân](../../ds/binary-heap.md).
+Hàng đợi ưu tiên `std::priority_queue` là một dạng [heap](../../ds/heap.md),
+thường là [heap nhị phân](../../ds/binary-heap.md).
 
 <span id="tệp-tiêu-đề-hàng-đợi-ưu-tiên"></span>
 
@@ -152,7 +163,7 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
 
 -   `top()` truy cập phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
 -   `empty()` kiểm tra bộ chứa có rỗng hay không
--   `size()` truy vấn số lượng phần tử trong bộ chứa
+-   `size()` trả về số lượng phần tử trong bộ chứa
 
 **Tất cả các hàm sau đều có độ phức tạp logarit**
 
