@@ -46,7 +46,7 @@ int main() {
 
 ## Vòng lặp `for` dựa trên phạm vi
 
-Dùng range-based for để duyệt đối tượng có thể lặp, với hiệu suất tương đương duyệt bằng iterator. Hai cách trên thường hiệu quả hơn duyệt bằng chỉ số, vì không cần truy cập địa chỉ dựa trên chỉ số.
+Dùng vòng lặp `for` dựa trên phạm vi để duyệt đối tượng có thể lặp, với hiệu suất tương đương duyệt bằng bộ lặp. Hai cách trên thường hiệu quả hơn duyệt bằng chỉ số, vì không cần truy cập địa chỉ dựa trên chỉ số.
 
 Dưới đây là cú pháp đơn giản của vòng lặp `for` dựa trên phạm vi:
 
@@ -74,7 +74,7 @@ for (auto px = arr.begin(), ed = arr.end(); px != ed; ++px) {
 
 ### Khai báo mục `item-declaration`
 
-Khai báo một biến để nhận phần tử trong container ở bên phải; kiểu biến phải thống nhất với kiểu phần tử con trong container. Có thể dùng `auto` để tự động suy luận kiểu; với kiểu phức tạp, thường dùng `auto&` để tránh chi phí sao chép.
+Khai báo một biến để nhận phần tử trong bộ chứa ở bên phải; kiểu biến phải thống nhất với kiểu phần tử con trong bộ chứa. Có thể dùng `auto` để tự động suy luận kiểu; với kiểu phức tạp, thường dùng `auto&` để tránh chi phí sao chép.
 
 ### Bộ khởi tạo phạm vi `range-initializer`
 
@@ -93,7 +93,7 @@ for (auto& i : c) std::cout << i.first << i.second;
 for (auto i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 ```
 
-### Hỗ trợ vòng lặp range-for cho kiểu tự định nghĩa
+### Hỗ trợ vòng lặp `for` dựa trên phạm vi cho kiểu tự định nghĩa
 
 Chỉ cần cung cấp các hàm thành viên `begin` và `end`; kiểu trả về cần hỗ trợ so sánh, tăng và giải tham chiếu (toán tử `*`).
 
@@ -156,7 +156,7 @@ Lưu ý các điểm sau:
 -   Khai báo kiểu cần dùng `auto`
 -   Có thể dùng `&` để lấy tham chiếu
 
-Khi duyệt container `map`, bạn có thể viết như sau:
+Khi duyệt bộ chứa `map`, bạn có thể viết như sau:
 
 ```cpp
 std::map<std::string, int> m = {{"k1", 1}, {"k2", 2}};
@@ -171,7 +171,7 @@ for (auto& [k, v] : m) {
 
 ## Bộ `std::tuple`
 
-[Tuple](https://en.cppreference.com/w/cpp/utility/tuple) được định nghĩa trong tệp header `<tuple>`, là sự khái quát hóa của `std::pair` và có thể lưu nhiều giá trị thuộc các kiểu khác nhau. Hãy xem ví dụ sau:
+[Tuple](https://en.cppreference.com/w/cpp/utility/tuple) được định nghĩa trong tệp tiêu đề `<tuple>`, là sự khái quát hóa của `std::pair` và có thể lưu nhiều giá trị thuộc các kiểu khác nhau. Hãy xem ví dụ sau:
 
 ```cpp
 #include <iostream>
@@ -257,7 +257,7 @@ Nó không phải một đặc tính ngôn ngữ, mà là một [khái niệm ho
 1.  Con trỏ hàm
 2.  Đối tượng lớp đã nạp chồng toán tử `operator()`
 
-[Lambda](./lambda.md) là một đối tượng hàm điển hình thuộc loại thứ hai: nó lưu nội dung đã capture trong các biến thành viên và nạp chồng toán tử gọi hàm.
+[Lambda](./lambda.md) là một đối tượng hàm điển hình thuộc loại thứ hai: nó lưu nội dung đã thu giữ (capture) trong các biến thành viên và nạp chồng toán tử gọi hàm.
 
 ## Biểu thức lambda
 
@@ -266,17 +266,17 @@ Nó không phải một đặc tính ngôn ngữ, mà là một [khái niệm ho
 ## std::function
 
 ???+ warning "Chú ý chi phí hiệu năng"
-    `std::function` sẽ gây ra một phần chi phí hiệu năng. Theo thử nghiệm [Benchmark](./lambda.md#đệ-quy-trong-lambda), nó thường làm hiệu năng giảm từ 2 đến hơn 3 lần.
+    `std::function` sẽ gây ra một phần chi phí hiệu năng. Theo thử nghiệm [benchmark](./lambda.md#đệ-quy-trong-lambda), nó thường làm hiệu năng giảm từ 2 đến hơn 3 lần.
     
-    Nguyên nhân là nó sử dụng kỹ thuật type erasure, kỹ thuật này thường được hiện thực bằng cơ chế hàm ảo; gọi hàm ảo sẽ gây thêm [chi phí](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction).
+    Nguyên nhân là nó sử dụng kỹ thuật xóa kiểu (type erasure), kỹ thuật này thường được hiện thực bằng cơ chế hàm ảo; gọi hàm ảo sẽ gây thêm [chi phí](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction).
     
     Hãy cân nhắc dùng [**Biểu thức lambda**](./lambda.md) hoặc [**đối tượng hàm**](#đối-tượng-hàm) thay thế.
 
-`std::function` là một bộ bao bọc hàm đa hình tổng quát, được định nghĩa trong tệp header `<functional>`.
+`std::function` là một bộ bao bọc hàm đa hình tổng quát, được định nghĩa trong tệp tiêu đề `<functional>`.
 
-Một thể hiện của `std::function` có thể lưu trữ, sao chép và gọi bất kỳ đối tượng [**callable**](https://en.cppreference.com/w/cpp/named_req/Callable) nào, bao gồm [**biểu thức lambda**](./lambda.md), con trỏ hàm thành viên hoặc [**đối tượng hàm**](#đối-tượng-hàm) khác.
+Một thể hiện của `std::function` có thể lưu trữ, sao chép và gọi bất kỳ [**đối tượng có thể gọi**](https://en.cppreference.com/w/cpp/named_req/Callable) nào, bao gồm [**biểu thức lambda**](./lambda.md), con trỏ hàm thành viên hoặc [**đối tượng hàm**](#đối-tượng-hàm) khác.
 
-Nếu `std::function` không chứa đối tượng callable nào (ví dụ được khởi tạo mặc định), khi gọi nó sẽ ném ngoại lệ [`std::bad_function_call`](https://en.cppreference.com/w/cpp/utility/functional/bad_function_call).
+Nếu `std::function` không chứa đối tượng có thể gọi nào (ví dụ được khởi tạo mặc định), khi gọi nó sẽ ném ngoại lệ [`std::bad_function_call`](https://en.cppreference.com/w/cpp/utility/functional/bad_function_call).
 
 ```cpp
 #include <functional>
@@ -311,7 +311,7 @@ int main() {
   f_add_display(foo, 1);
   f_add_display(314159, 1);
 
-  // Lưu lời gọi đến accessor của thành viên dữ liệu
+  // Lưu lời gọi đến hàm truy cập của thành viên dữ liệu
   std::function<int(Foo const&)> f_num = &Foo::num_;
   std::cout << "num_: " << f_num(foo) << '\n';
 
@@ -334,11 +334,11 @@ template <typename... Clazz>
 void fun(Clazz... paras) {}
 ```
 
-`paras` là một gói tham số hàm (function parameter pack), nhận 0 hoặc nhiều đối số hàm. `Clazz` là một gói tham số mẫu (template parameter pack), nhận 0 hoặc nhiều đối số mẫu (không phải kiểu, kiểu hoặc template); khi được đánh dấu bằng `typename` thì chỉ nhận kiểu.
+`paras` là một gói tham số hàm (function parameter pack), nhận 0 hoặc nhiều đối số hàm. `Clazz` là một gói tham số mẫu (template parameter pack), nhận 0 hoặc nhiều đối số mẫu (không phải kiểu, kiểu hoặc mẫu); khi được đánh dấu bằng `typename` thì chỉ nhận kiểu.
 
 Có thể hiểu đơn giản như sau:
 
--   Gói tham số mẫu thường là một số tên kiểu (nhưng cũng có thể dùng hằng số thời gian biên dịch hoặc tên template)
+-   Gói tham số mẫu thường là một số tên kiểu (nhưng cũng có thể dùng hằng số thời gian biên dịch hoặc tên mẫu)
 -   Gói tham số hàm thường là một số tên biến
 
 Bây giờ có thể gọi hàm `fun` như sau:
@@ -399,7 +399,7 @@ void func(A arg1, C... arg2) {
 func(1, 2, 1.1, 2.1f);
 ```
 
-Như vậy, khi số lượng tham số khác 0 thì template sẽ được gọi, còn khi không có tham số thì hàm thông thường sẽ được gọi, nên chương trình có thể chạy bình thường.
+Như vậy, khi số lượng tham số khác 0 thì mẫu sẽ được gọi, còn khi không có tham số thì hàm thông thường sẽ được gọi, nên chương trình có thể chạy bình thường.
 
 ### Biểu thức gấp (fold expression, C++17)
 
@@ -448,29 +448,29 @@ void func(T... args) {
 
 ## Thư viện ranges (C++20)
 
-> Thư viện ranges là một phần mở rộng của iterator và thư viện thuật toán generic, giúp iterator và thuật toán mạnh hơn thông qua việc kết hợp, đồng thời giảm lỗi.
+> Thư viện ranges là một phần mở rộng của bộ lặp và thư viện thuật toán tổng quát, giúp bộ lặp và thuật toán mạnh hơn thông qua việc kết hợp, đồng thời giảm lỗi.
 
-Range là một dãy có thể duyệt, bao gồm mảng, container, view, v.v.
+Phạm vi (`range`) là một dãy có thể duyệt, bao gồm mảng, bộ chứa, khung nhìn (`view`), v.v.
 
-Khi cần thực hiện các thao tác phức tạp trên container hoặc các range khác, [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) có thể giúp viết thuật toán dễ hơn và rõ ràng hơn.
+Khi cần thực hiện các thao tác phức tạp trên bộ chứa hoặc các phạm vi khác, [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) có thể giúp viết thuật toán dễ hơn và rõ ràng hơn.
 
 ### Khung nhìn (view)
 
-Khung nhìn (view) là một đối tượng nhẹ, hiện thực một số thuật toán thông qua cơ chế đặc thù (như iterator tự định nghĩa), cung cấp thêm nhiều cách duyệt cho range để đáp ứng nhu cầu.
+Khung nhìn (`view`) là một đối tượng nhẹ, hiện thực một số thuật toán thông qua cơ chế đặc thù (như bộ lặp tự định nghĩa), cung cấp thêm nhiều cách duyệt cho phạm vi để đáp ứng nhu cầu.
 
-Trong thư viện ranges đã hiện thực một số view thường dùng, đại khái chia thành hai loại:
+Trong thư viện ranges đã hiện thực một số khung nhìn thường dùng, đại khái chia thành hai loại:
 
-1.  **Range factory**, dùng để xây dựng một số range đặc biệt. Dùng loại factory này có thể bỏ qua bước tự xây dựng container, giảm chi phí và trực tiếp sinh ra một range.
-2.  **Range adaptor**, cung cấp nhiều kiểu hỗ trợ duyệt đa dạng; vừa có thể gọi như hàm, vừa có thể nối bằng toán tử ống dẫn `|` để gọi dạng chuỗi.
+1.  **Bộ sinh phạm vi** (range factory), dùng để xây dựng một số phạm vi đặc biệt. Dùng loại bộ sinh này có thể bỏ qua bước tự xây dựng bộ chứa, giảm chi phí và trực tiếp sinh ra một phạm vi.
+2.  **Bộ chuyển đổi phạm vi** (range adaptor), cung cấp nhiều kiểu hỗ trợ duyệt đa dạng; vừa có thể gọi như hàm, vừa có thể nối bằng toán tử ống dẫn `|` để gọi dạng chuỗi.
 
-Với vai trò là [**range adaptor closure object**](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject), **range adaptor** cũng thuộc về [**đối tượng hàm**](#đối-tượng-hàm); chúng nạp chồng `operator|`, nhờ đó có thể ghép lại với nhau như toán tử ống dẫn (pipe).
+Với vai trò là [**đối tượng bao đóng bộ chuyển đổi phạm vi**](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject) (range adaptor closure object), **bộ chuyển đổi phạm vi** cũng thuộc về [**đối tượng hàm**](#đối-tượng-hàm); chúng nạp chồng `operator|`, nhờ đó có thể ghép lại với nhau như toán tử ống dẫn (pipe).
 
 ??? note "Toán tử ống dẫn"
     Ở đây nên hiểu `|` là toán tử ống dẫn (pipe), chứ không phải toán tử OR theo bit. Cách dùng này bắt nguồn từ [pipe](https://en.wikipedia.org/wiki/Pipeline_(Unix)) trong Linux.
 
 Trong các thao tác phức tạp, nó vẫn giữ được tính dễ đọc tốt và có các đặc tính sau:
 
-Nếu A, B, C là một số range adaptor closure object, R là một range nào đó, và các chữ cái khác là những tham số có thể hợp lệ, thì biểu thức
+Nếu A, B, C là một số đối tượng bao đóng bộ chuyển đổi phạm vi, R là một phạm vi nào đó, và các chữ cái khác là những tham số có thể hợp lệ, thì biểu thức
 
     R | A(a) | B(b) | C(c, d)
 
@@ -492,17 +492,17 @@ int main() {
 }
 ```
 
-1.  Range factory `std::views::iota(0, 6)` sinh ra một range gồm dãy số nguyên từ 0 đến 5
-2.  Range adaptor `std::views::filter(even)` lọc range trước đó, sinh ra một range chỉ còn các số chẵn
+1.  Bộ sinh phạm vi `std::views::iota(0, 6)` sinh ra một phạm vi gồm dãy số nguyên từ 0 đến 5
+2.  Bộ chuyển đổi phạm vi `std::views::filter(even)` lọc phạm vi trước đó, sinh ra một phạm vi chỉ còn các số chẵn
 3.  Hai thao tác được liên kết bằng toán tử ống dẫn (pipe)
 
-Đoạn mã trên không cần cấp phát thêm bộ nhớ heap để lưu range sinh ra ở mỗi bước. Việc sinh và lọc thực tế xảy ra trong thao tác duyệt (cụ thể hơn là trong quá trình xây dựng, tăng và giải tham chiếu của iterator nội bộ), tức là zero overhead.
+Đoạn mã trên không cần cấp phát thêm vùng nhớ heap để lưu phạm vi sinh ra ở mỗi bước. Việc sinh và lọc thực tế xảy ra trong thao tác duyệt (cụ thể hơn là trong quá trình xây dựng, tăng và giải tham chiếu của bộ lặp nội bộ), tức là không có chi phí phụ trội (zero overhead).
 
-Đồng thời, vòng đời của range đầu vào bên ngoài tương đương với vòng đời các phần tử nội bộ của **range adaptor**. Nếu range bên ngoài (chẳng hạn container hoặc range factory) đã bị hủy, thì việc duyệt view của chúng sau đó có hiệu quả giống như giải tham chiếu con trỏ treo, thuộc về hành vi không xác định.
+Đồng thời, vòng đời của phạm vi đầu vào bên ngoài tương đương với vòng đời các phần tử nội bộ của **bộ chuyển đổi phạm vi**. Nếu phạm vi bên ngoài (chẳng hạn bộ chứa hoặc bộ sinh phạm vi) đã bị hủy, thì việc duyệt khung nhìn của chúng sau đó có hiệu quả giống như giải tham chiếu con trỏ treo, thuộc về hành vi không xác định.
 
-Để tránh tình huống trên, cần yêu cầu nghiêm ngặt rằng vòng đời của adaptor nằm trong vòng đời của mọi range mà nó sử dụng.
+Để tránh tình huống trên, cần yêu cầu nghiêm ngặt rằng vòng đời của bộ chuyển đổi nằm trong vòng đời của mọi phạm vi mà nó sử dụng.
 
-???+ note "Khi range bị hủy, các phần tử trong view đều bị treo"
+???+ note "Khi phạm vi bị hủy, các phần tử trong khung nhìn đều bị treo"
     ```cpp
     #include <iostream>
     #include <ranges>
@@ -516,7 +516,7 @@ int main() {
         return vec | std::views::filter([](int i) { return 0 == i % 2; });
       }();
     
-      for (int i : view) cout << i << ' ';  // runtime undefined behavior
+      for (int i : view) cout << i << ' ';  // hành vi không xác định lúc chạy
     
       return 0;
     }
@@ -524,9 +524,9 @@ int main() {
 
 ### Thuật toán có ràng buộc
 
-> Trong C++20, namespace std::ranges cung cấp phiên bản có ràng buộc của hầu hết thuật toán. Có thể dùng cặp iterator-sentinel hoặc một range đơn làm đối số để chỉ định phạm vi, đồng thời hỗ trợ projection và callable object là con trỏ đến thành viên. Ngoài ra, kiểu trả về của hầu hết thuật toán cũng được thay đổi để trả về mọi thông tin có khả năng hữu ích được tính trong quá trình thực thi thuật toán.
+> Trong C++20, không gian tên `std::ranges` cung cấp phiên bản có ràng buộc của hầu hết thuật toán. Có thể dùng cặp bộ lặp-lính canh (iterator-sentinel) hoặc một phạm vi đơn làm đối số để chỉ định phạm vi, đồng thời hỗ trợ phép chiếu (projection) và đối tượng có thể gọi (callable object) là con trỏ đến thành viên. Ngoài ra, kiểu trả về của hầu hết thuật toán cũng được thay đổi để trả về mọi thông tin có khả năng hữu ích được tính trong quá trình thực thi thuật toán.
 
-Các thuật toán này có thể được hiểu là phiên bản cải tiến của thuật toán thư viện chuẩn cũ. Chúng đều là đối tượng hàm, cung cấp overload thân thiện hơn và kiểm tra kiểu tham số đầu vào tốt hơn (dựa trên [`concept`](https://en.cppreference.com/w/cpp/language/constraints)). Trước tiên, hãy lấy so sánh giữa `std::sort` và `ranges::sort` làm ví dụ:
+Các thuật toán này có thể được hiểu là phiên bản cải tiến của thuật toán thư viện chuẩn cũ. Chúng đều là đối tượng hàm, cung cấp cách nạp chồng thân thiện hơn và kiểm tra kiểu tham số đầu vào tốt hơn (dựa trên [`concept`](https://en.cppreference.com/w/cpp/language/constraints)). Trước tiên, hãy lấy so sánh giữa `std::sort` và `ranges::sort` làm ví dụ:
 
 ```cpp
 #include <algorithm>
@@ -551,9 +551,9 @@ int main() {
 }
 ```
 
-`ranges::sort` và `sort` có cùng hiện thực thuật toán, nhưng cung cấp overload dựa trên range, giúp truyền tham số ngắn gọn hơn. Đa số thuật toán khác trong namespace `std` cũng có phiên bản overload tương ứng cho range nằm trong namespace `ranges`.
+`ranges::sort` và `sort` có cùng hiện thực thuật toán, nhưng cung cấp cách nạp chồng dựa trên phạm vi, giúp truyền tham số ngắn gọn hơn. Đa số thuật toán khác trong không gian tên `std` cũng có phiên bản nạp chồng tương ứng cho phạm vi nằm trong không gian tên `ranges`.
 
-Dùng các tham số đầu vào dạng range này, kết hợp với view ở phần trước, cho phép ta giữ mã dễ đọc khi thực hiện những thao tác phức tạp. Hãy xem một ví dụ:
+Dùng các tham số đầu vào dạng phạm vi này, kết hợp với khung nhìn ở phần trước, cho phép ta giữ mã dễ đọc khi thực hiện những thao tác phức tạp. Hãy xem một ví dụ:
 
 ```cpp
 #include <algorithm>
