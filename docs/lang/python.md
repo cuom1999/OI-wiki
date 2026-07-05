@@ -229,7 +229,7 @@ Nhập xuất trong Python chủ yếu thực hiện qua hai hàm dựng sẵn `
 Hành vi của hàm `input()` gần với `getline()` trong C++: đọc cả một dòng thành chuỗi và không gồm ký tự xuống dòng ở cuối.
 
 ```pycon
->>> s = input('Nhập dãy số: '); s  # Khi tự debug, có thể truyền chuỗi vào input() làm lời nhắc
+>>> s = input('Nhập dãy số: '); s  # Khi tự gỡ lỗi, có thể truyền chuỗi vào input() làm lời nhắc
 Nhập dãy số: 1 2 3 4 5 6
 '1 2 3 4 5 6'
 ```
@@ -498,7 +498,7 @@ Trong lập trình thi đấu, thông thường chỉ cần xuất số và chu�
 Hành vi của hàm `input()` gần với `getline()` trong C++: đọc cả một dòng thành chuỗi và không gồm ký tự xuống dòng ở cuối. Nhưng trong lập trình thi đấu, dạng nhập thường gặp là một dòng có nhiều số, nên cần dùng phương thức `split()` của chuỗi kết hợp với list comprehension để lấy danh sách chứa các giá trị số. Dưới đây minh họa bằng bài nhập n số và tính trung bình:
 
 ```pycon
->>> s = input('Nhập dãy số: '); s  # Khi tự debug, có thể truyền chuỗi vào input() làm lời nhắc
+>>> s = input('Nhập dãy số: '); s  # Khi tự gỡ lỗi, có thể truyền chuỗi vào input() làm lời nhắc
 Nhập dãy số: 1 2 3 4 5 6
 '1 2 3 4 5 6'
 >>> a = s.split(); a
@@ -918,7 +918,7 @@ def fib(n):
     def add_path(f, t, v):  # Thêm cạnh vào forward star
         # Nếu muốn sửa biến toàn cục, phải khai báo bằng global
         global cnt, e, h
-        # Câu lệnh xuất khi debug; nhiều biến dùng tuple
+        # Câu lệnh xuất khi gỡ lỗi; nhiều biến dùng tuple
         # print("add_path(%d,%d,%d)" % (f,t,v))
         cnt += 1
         e[cnt].nex = h[f]
@@ -1100,7 +1100,7 @@ def fib(n):
     def add_path(f, t, v):  # Thêm cạnh vào forward star
         # Nếu muốn sửa biến toàn cục, phải khai báo bằng global
         global cnt, e, h
-        # Câu lệnh xuất khi debug; nhiều biến dùng tuple
+        # Câu lệnh xuất khi gỡ lỗi; nhiều biến dùng tuple
         # print("add_path(%d,%d,%d)" % (f,t,v))
         cnt += 1
         e[cnt].nex = h[f]
@@ -1132,7 +1132,7 @@ def fib(n):
                 q.put((dist[v], v))
 
 
-    # Nếu chạy trực tiếp file Python này (không phải import như module) thì thực thi lệnh
+    # Nếu chạy trực tiếp tệp Python này (không phải import như module) thì thực thi lệnh
     if __name__ == "__main__":
         # Đọc nhiều số nguyên trên một dòng. Lưu ý nó đọc cả dòng vào
         n, m, s = map(int, input().split())
