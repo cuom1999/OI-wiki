@@ -18,14 +18,14 @@ Có thể thu được biểu diễn chu trình Euler của cây $T$ bằng thu�
 
 $$
 \begin{array}{ll}
-1 & \textbf{Input. } \text{A rooted tree }T\\
-2 & \textbf{Output. } \text{The dfs sequence of rooted tree }T\\
+1 & \textbf{Đầu vào. } \text{Một cây có gốc }T\\
+2 & \textbf{Đầu ra. } \text{Thứ tự DFS của cây có gốc }T\\
 3 & \operatorname{ET}(u)\\
-4 & \qquad \text{visit vertex }u\\
-5 & \qquad \text{for all child } v \text{ of } u\\
-6 & \qquad \qquad \text{visit directed edge } u \to v\\
+4 & \qquad \text{thăm đỉnh }u\\
+5 & \qquad \text{với mọi con } v \text{ của } u\\
+6 & \qquad \qquad \text{thăm cạnh có hướng } u \to v\\
 7 & \qquad \qquad \operatorname{ET}(v)\\
-8 & \qquad \qquad \text{visit directed edge } v \to u\\
+8 & \qquad \qquad \text{thăm cạnh có hướng } v \to u\\
 \end{array}
 $$
 

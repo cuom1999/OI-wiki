@@ -32,9 +32,9 @@ Quét từ sau ra trước, trong quá trình đó duy trì vị trí xuất hi�
 
 $$
 \begin{array}{ll}
-1 & \textbf{Input. } \text{A string } S\\
-2 & \textbf{Output. } \text{The state transition of the sequence automaton of }S \\
-3 & \textbf{Method. }  \\
+1 & \textbf{Đầu vào. } \text{Một xâu } S\\
+2 & \textbf{Đầu ra. } \text{Hàm chuyển trạng thái của automaton dãy của }S \\
+3 & \textbf{Phương pháp. }  \\
 4 & \textbf{for }c\in\Sigma\\
 5 & \qquad next[c]\gets null\\
 6 & \textbf{for }i\gets|S|\textbf{ downto }1\\

@@ -63,10 +63,10 @@ Mã giả như sau:
 
 $$
 \begin{array}{l}
-\textbf{Algorithm }\text{FastPow}(a, n): \\
-\textbf{Input. }\text{Base }a\text{ and exponent }n.\\
-\textbf{Output. }\text{Power }a^n.\\
-\textbf{Method.}\\
+\textbf{Thuật toán }\text{FastPow}(a, n): \\
+\textbf{Đầu vào. }\text{Cơ số }a\text{ và số mũ }n.\\
+\textbf{Đầu ra. }\text{Lũy thừa }a^n.\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
 1 & \textit{result}\gets\mathrm{Id}\\
 2 & \textbf{while }n > 0\textbf{ do}\\
@@ -108,10 +108,10 @@ Mã giả như sau:
 
 $$
 \begin{array}{l}
-\textbf{Algorithm }\text{FastPow}(a, n): \\
-\textbf{Input. }\text{Base }a\text{ and exponent }n.\\
-\textbf{Output. }\text{Power }a^n.\\
-\textbf{Method.}\\
+\textbf{Thuật toán }\text{FastPow}(a, n): \\
+\textbf{Đầu vào. }\text{Cơ số }a\text{ và số mũ }n.\\
+\textbf{Đầu ra. }\text{Lũy thừa }a^n.\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
 1 & \textbf{if }n = 0\textbf{ then}\\
 2 & \qquad \textbf{return }\mathrm{Id}\\
