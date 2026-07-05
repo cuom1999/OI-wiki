@@ -10,7 +10,7 @@ author: iamtwz, aofall, CCXXXI, CoelacanthusHex, Great-designer, Marcythm, Persd
     f(x)\equiv 0\pmod m\tag{1}
     $$
     
-    được gọi là **phương trình đồng dư** (Congruence Equation) một ẩn theo $x$ modulo $m$.
+    được gọi là **phương trình đồng dư** (tiếng Anh: congruence equation) một ẩn theo $x$ modulo $m$.
     
     Nếu $a_n\not\equiv 0\pmod m$, phương trình trên được gọi là phương trình đồng dư bậc $n$.
     

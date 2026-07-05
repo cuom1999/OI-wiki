@@ -142,7 +142,7 @@ $$
 f(x)=\sum_{j=0}^n a_jn_j(x)
 $$
 
-Trong đó $n_j(x):=\prod_{i=0}^{j-1}(x-x_i)$ được gọi là **cơ sở Newton** (Newton basis).
+Trong đó $n_j(x):=\prod_{i=0}^{j-1}(x-x_i)$ được gọi là **cơ sở Newton** (tiếng Anh: Newton basis).
 
 Nếu tìm được $a_j$, ta sẽ thu được đa thức nội suy của $f(x)$. Ta định nghĩa **sai phân chia tiến** (forward divided differences) như sau:
 

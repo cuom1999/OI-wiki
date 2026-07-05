@@ -96,7 +96,7 @@ Trường có đặc trưng hữu hạn và trường có đặc trưng $0$ thư
     Giả sử $F$ có đặc trưng $p$, khi đó:
     
     1.  Trong nhóm cộng của trường $F$, mọi phần tử khác không đều có bậc $p$, tức với mọi $x\in F$ đều có $px=0$.
-    2.  "Giấc mơ của sinh viên năm nhất" (freshman's dream): với mọi $x,y\in F$ đều có $(x+y)^p=x^p+y^p$. Hơn nữa, ánh xạ $x\mapsto x^p$ là một tự đồng cấu đơn ánh trên $F$, gọi là **tự đồng cấu Frobenius** (Frobenius endomorphism).
+    2.  "Giấc mơ của sinh viên năm nhất" (freshman's dream): với mọi $x,y\in F$ đều có $(x+y)^p=x^p+y^p$. Hơn nữa, ánh xạ $x\mapsto x^p$ là một tự đồng cấu đơn ánh trên $F$, gọi là **tự đồng cấu Frobenius** (tiếng Anh: Frobenius endomorphism).
 
 ??? note "Chứng minh"
     Với tính chất thứ nhất, chỉ cần chú ý $px=(p1)x=0x=0$. Với tính chất thứ hai, trong khai triển nhị thức của $(x+y)^p$, mọi hệ số của các hạng tử khác $x^p$ và $y^p$ đều là bội của $p$, nên theo tính chất thứ nhất ta có $(x+y)^p=x^p+y^p$. Để kiểm tra $x\mapsto x^p$ là tự đồng cấu, chỉ cần kiểm tra thêm $(xy)^p=x^py^p$, điều này đúng vì phép nhân trong trường giao hoán. Cuối cùng, đồng cấu vành giữa các trường ánh xạ phần tử một sang phần tử một thì nhất định là đơn ánh.

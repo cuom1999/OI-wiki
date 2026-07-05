@@ -5,7 +5,7 @@ Bài viết này giới thiệu tích chập Dirichlet và hàm sinh Dirichlet.
 <span id="tích-chập-dirichlet"></span>
 ## Tích chập Dirichlet
 
-Với hai hàm số học $f(n)$ và $g(n)$, **tích chập Dirichlet** (Dirichlet convolution), ký hiệu là $f \ast g$, được định nghĩa là hàm số học
+Với hai hàm số học $f(n)$ và $g(n)$, **tích chập Dirichlet** (tiếng Anh: Dirichlet convolution), ký hiệu là $f \ast g$, được định nghĩa là hàm số học
 
 $$
 (f \ast g)(n) = \sum_{k\mid n}f(k)g\left(\dfrac{n}{k}\right) = \sum_{k\ell=n}f(k)g(\ell).
@@ -52,7 +52,7 @@ Tích chập Dirichlet có một loạt tính chất đại số.
     2.  **Kết hợp**: $(f\ast g)\ast h=f\ast(g\ast h)$.
     3.  **Phân phối**: $(f+g)\ast h = f\ast h + g\ast h$.
     4.  **Đơn vị**: $f\ast\varepsilon = \varepsilon \ast f = f$, trong đó $\varepsilon(n) = [n=1]$ là phần tử đơn vị của tích chập, còn $[\cdot]$ là ngoặc Iverson.
-    5.  **Nghịch đảo**: tồn tại $g$ sao cho $f\ast g=g\ast f=\varepsilon$ khi và chỉ khi $f(1)\neq 0$; khi đó $g$ được gọi là **nghịch đảo Dirichlet** (Dirichlet inverse) của $f$, có thể ký hiệu là $f^{-1}$. Hơn nữa, nghịch đảo $g$ thỏa công thức truy hồi
+    5.  **Nghịch đảo**: tồn tại $g$ sao cho $f\ast g=g\ast f=\varepsilon$ khi và chỉ khi $f(1)\neq 0$; khi đó $g$ được gọi là **nghịch đảo Dirichlet** (tiếng Anh: Dirichlet inverse) của $f$, có thể ký hiệu là $f^{-1}$. Hơn nữa, nghịch đảo $g$ thỏa công thức truy hồi
     
         $$
         g(n) = \dfrac{\varepsilon(n) - \sum_{k\ell = n,~k\neq 1}f(k)g(\ell)}{f(1)}.
@@ -102,7 +102,7 @@ Tích chập Dirichlet có một loạt tính chất đại số.
     
     Công thức này có thể dùng để tính đệ quy các giá trị của $g(n)$. Vì vậy, nghịch đảo $g$ tồn tại khi và chỉ khi $f(1)\neq 0$.
 
-Theo ngôn ngữ đại số trừu tượng, các tính chất đại số này nói rằng toàn bộ các hàm số học, với phép cộng theo điểm và tích chập Dirichlet, tạo thành một [vành giao hoán](../algebra/basic.md#vành); tập các phần tử khả nghịch của vành này chính là các hàm nhận giá trị khác không tại $n=1$. Vành này được gọi là **vành Dirichlet** (Dirichlet ring).
+Theo ngôn ngữ đại số trừu tượng, các tính chất đại số này nói rằng toàn bộ các hàm số học, với phép cộng theo điểm và tích chập Dirichlet, tạo thành một [vành giao hoán](../algebra/basic.md#vành); tập các phần tử khả nghịch của vành này chính là các hàm nhận giá trị khác không tại $n=1$. Vành này được gọi là **vành Dirichlet** (tiếng Anh: Dirichlet ring).
 
 Hàm nhân tính là một lớp hàm số học đặc biệt. Lớp này đóng với tích chập Dirichlet và nghịch đảo Dirichlet.
 
@@ -252,7 +252,7 @@ F(s) &= \sum_{n=1}^{\infty}\dfrac{f(n)}{n^s} = \sum_{n=1}^{\infty}\prod_{p\in\ma
 \end{aligned}
 $$
 
-Điều này nghĩa là $F(s)$ có thể phân tích thành tích của nhiều $F_p(s)$, trong đó mỗi $F_p(s)$ tương ứng với một hàm số học chỉ có thể khác không tại các lũy thừa của $p$. Tích vô hạn này cũng được gọi là **tích Euler** (Euler product). Nếu $F(s)$ và $G(s)$ đều có thể phân tích thành dạng tương tự, thì tích của chúng cũng có dạng đó; chuyển quan sát này về phía hàm số học, ta thu được kết luận rằng tích chập Dirichlet của các hàm nhân tính vẫn là hàm nhân tính.
+Điều này nghĩa là $F(s)$ có thể phân tích thành tích của nhiều $F_p(s)$, trong đó mỗi $F_p(s)$ tương ứng với một hàm số học chỉ có thể khác không tại các lũy thừa của $p$. Tích vô hạn này cũng được gọi là **tích Euler** (tiếng Anh: Euler product). Nếu $F(s)$ và $G(s)$ đều có thể phân tích thành dạng tương tự, thì tích của chúng cũng có dạng đó; chuyển quan sát này về phía hàm số học, ta thu được kết luận rằng tích chập Dirichlet của các hàm nhân tính vẫn là hàm nhân tính.
 
 Hơn nữa, nếu $f(n)$ còn là hàm hoàn toàn nhân tính, thì $f(p^e)=f(p)^e$, nên công thức trên có thể tiếp tục rút gọn:
 

@@ -278,7 +278,7 @@ $$
 $$
 
 nên khi tính tích của hai dạng Montgomery, cần thực hiện **phép rút gọn
-Montgomery** (Montgomery reduction) sau trên tích $x$ của chúng:
+Montgomery** (tiếng Anh: Montgomery reduction) sau trên tích $x$ của chúng:
 
 $$
 \operatorname{REDC}: x \mapsto xR^{-1}\bmod m.

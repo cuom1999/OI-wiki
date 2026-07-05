@@ -64,7 +64,7 @@ Nhóm xuất hiện rất phổ biến. Nói một cách bình dân, mọi phép
 Cuối cùng, nhiều phép toán trên các nhóm quen thuộc, ngoài việc thỏa mãn luật kết hợp, còn thỏa mãn luật giao hoán. Cấu trúc của loại nhóm này tương đối đơn giản; chúng được gọi là nhóm Abel, hay nhóm giao hoán.
 
 ???+ abstract "Nhóm Abel"
-    Với nhóm $(G,\cdot)$, nếu phép toán $\cdot$ còn thỏa mãn luật giao hoán (commutative property), tức là với mọi $a,b\in G$, đều có $a\cdot b=b\cdot a$, thì $(G,\cdot)$ được gọi là một **nhóm Abel** (Abelian group) hay **nhóm giao hoán** (commutative group).
+    Với nhóm $(G,\cdot)$, nếu phép toán $\cdot$ còn thỏa mãn luật giao hoán (tiếng Anh: commutative property), tức là với mọi $a,b\in G$, đều có $a\cdot b=b\cdot a$, thì $(G,\cdot)$ được gọi là một **nhóm Abel** (Abelian group) hay **nhóm giao hoán** (commutative group).
 
 ???+ example "Ví dụ về nhóm Abel và nhóm không Abel"
     -   Nhóm cộng các số nguyên $(\mathbf Z,+)$ là một nhóm Abel.
