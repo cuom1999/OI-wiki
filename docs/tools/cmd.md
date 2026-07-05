@@ -6,9 +6,9 @@ Trang này giới thiệu ngắn gọn một số cách sử dụng dòng lệnh
 
 ## Cơ bản
 
-Windows có sẵn hai giao diện dòng lệnh. "Command Prompt" (`cmd`) là giao diện cũ hơn, chức năng cũng tương đối đơn giản. PowerShell là giao diện dòng lệnh mới hơn, có nhiều tính năng tích hợp nhưng tương đối nặng. Cả hai đều có thể tìm thấy trong Start Menu.
+Windows có sẵn hai giao diện dòng lệnh. "Command Prompt" ("Dấu nhắc lệnh", `cmd`) là giao diện cũ hơn, chức năng cũng tương đối đơn giản. PowerShell là giao diện dòng lệnh mới hơn, có nhiều tính năng tích hợp nhưng tương đối nặng. Cả hai đều có thể tìm thấy trong Start Menu (menu Start).
 
-Các hệ thống kiểu Unix (bao gồm macOS và Linux, dưới đây gọi chung là Unix) có hai trường hợp: có giao diện đồ họa và không có giao diện đồ họa. Nếu hệ thống có giao diện đồ họa (ví dụ dùng macOS, hoặc Linux có cài GNOME, KDE, v.v.), dòng lệnh thường có thể được mở bằng chương trình tên là "Terminal" hoặc "Console". Hệ thống không có giao diện đồ họa sẽ tự động đi vào dòng lệnh sau khi khởi động xong.
+Các hệ thống kiểu Unix (bao gồm macOS và Linux, dưới đây gọi chung là Unix) có hai trường hợp: có giao diện đồ họa và không có giao diện đồ họa. Nếu hệ thống có giao diện đồ họa (ví dụ dùng macOS, hoặc Linux có cài GNOME, KDE, v.v.), dòng lệnh thường có thể được mở bằng chương trình tên là "Terminal" ("Thiết bị đầu cuối") hoặc "Console" ("Bảng điều khiển"). Hệ thống không có giao diện đồ họa sẽ tự động đi vào dòng lệnh sau khi khởi động xong.
 
 Dòng lệnh trên Windows trông như sau:
 

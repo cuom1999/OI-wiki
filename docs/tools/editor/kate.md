@@ -114,7 +114,7 @@ Ngoài ra, người dùng cũng có thể tự viết cấu hình thủ công. �
 
 Trong đó, mỗi mục trong `servers` đại diện cho một ngôn ngữ. Trong cấu hình của ngôn ngữ đó, `command` là lệnh dùng để khởi động máy chủ LSP; `command` là một mảng, chính là kết quả tách lệnh cần chạy theo dấu cách; `url` là trang web của LSP; `rootIndicationFileNames` là các tệp dùng để xác định thư mục gốc dự án; `highlightingModeRegex` khớp tên của một kiểu tô sáng cú pháp để xác định dùng LSP nào; nếu có mục `use`, nghĩa là dùng cấu hình của ngôn ngữ tương ứng với mục `use`.
 
-Mục cấu hình này nằm tại `Settings` -> `Configure Kate` -> `LSP Client` -> `User Server Settings` (`Thiết lập -> Cấu hình Kate -> Ứng dụng khách LSP -> Thiết lập máy chủ người dùng`); phần `LSP Client` chỉ hiện sau khi đã bật phần bổ trợ `LSP Client` trong `Plugins`.
+Mục cấu hình này nằm tại `Settings` -> `Configure Kate` -> `LSP Client` -> `User Server Settings` (`Thiết lập -> Cấu hình Kate -> Ứng dụng khách LSP -> Thiết lập máy chủ người dùng`); phần `LSP Client` chỉ hiện sau khi đã bật phần bổ trợ `LSP Client` trong `Plugins` (`Phần bổ trợ`).
 
 ### Trình dòng lệnh tích hợp
 

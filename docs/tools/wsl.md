@@ -136,7 +136,7 @@ wsl --set-default-version 2
 
 ![Trang tìm kiếm](./images/wsl-search-page.png)
 
-Vào Microsoft Store, tìm "Ubuntu", sau đó chọn "Ubuntu" và nhấp "Install" để cài đặt. Cũng có thể mở [trang Store của Ubuntu](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6).
+Vào Microsoft Store, tìm "Ubuntu", sau đó chọn "Ubuntu" và nhấp "Install" ("Cài đặt") để cài đặt. Cũng có thể mở [trang Store của Ubuntu](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6).
 
 ???+ warning "Cảnh báo"
     Ubuntu trong Microsoft Store sẽ cập nhật theo Ubuntu, vì vậy nội dung có thể thay đổi. Nếu muốn có bản Ubuntu hỗ trợ dài hạn ổn định, có thể cài phiên bản LTS của Ubuntu trong Microsoft Store.
@@ -408,7 +408,7 @@ Trang Getting Started của phần mở rộng `Remote - WSL` có giới thiệu
 
 Chạy lệnh `wsl -l -v` để thấy phiên bản WSL hiện là 1; cần nâng cấp thì mới lên được 2.
 
-1.  Bật tính năng "Virtual Machine Platform"
+1.  Bật tính năng "Virtual Machine Platform" ("Nền tảng máy ảo")
 
     Chạy PowerShell với quyền quản trị viên:
 

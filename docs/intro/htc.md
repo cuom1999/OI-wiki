@@ -77,15 +77,15 @@ theo các bước dưới đây, bạn vẫn có thể hoàn thành việc chỉ
     bạn đang sửa, làm ảnh hưởng đến cấu trúc thư mục);
 4.  Sau khi viết xong, cuộn xuống cuối trang, điền thông tin commit theo
     [quy chuẩn định dạng thông tin commit](#commit-format) trong bài này, rồi
-    nhấn nút **Propose changes** để gửi thay đổi. Sau khi nhấn nút, GitHub sẽ
+    nhấn nút **Propose changes** (**Đề xuất thay đổi**) để gửi thay đổi. Sau khi nhấn nút, GitHub sẽ
     tự động tạo một nhánh của kho **OI Wiki** cho bạn và thêm commit của bạn
     vào kho nhánh đó.
 5.  GitHub sẽ tự động chuyển đến trang kho nhánh của bạn. Lúc này phía trên
-    trang sẽ có nút màu xanh **Create pull request**; sau khi nhấn, GitHub sẽ
+    trang sẽ có nút màu xanh **Create pull request** (**Tạo Pull Request**); sau khi nhấn, GitHub sẽ
     chuyển đến trang tạo Pull Request. Cuộn xuống để kiểm tra thay đổi của bạn
     không có lỗi, rồi viết thông tin Pull Request theo
     [quy chuẩn định dạng thông tin Pull Request](#pull-request-format) trong
-    bài này, sau đó nhấn nút màu xanh **Create pull request** trên trang để tạo
+    bài này, sau đó nhấn nút màu xanh **Create pull request** (**Tạo Pull Request**) trên trang để tạo
     Pull Request.
 6.  Nếu không có sự cố, Pull Request của bạn đã được gửi thành công đến kho.
     Bạn chỉ cần chờ quản trị viên xem xét và hợp nhất vào kho chính.
@@ -107,14 +107,14 @@ nhau, hãy làm theo phần [chỉnh sửa nội dung trong một trang](#chinh-
 2.  Thực hiện thay đổi với tệp nguồn của trang trong trình chỉnh sửa. Bạn có
     thể dùng nút xem trước ở góc trên bên phải trang (hoặc nhấn phím tắt
     <kbd>Ctrl+K</kbd><kbd>V</kbd>) để mở giao diện xem trước ở bên phải;
-3.  Sau khi sửa xong, dùng thẻ Source Control ở bên trái, điền thông tin commit
+3.  Sau khi sửa xong, dùng thẻ Source Control ("Quản lý mã nguồn") ở bên trái, điền thông tin commit
     theo [quy chuẩn định dạng thông tin commit](#commit-format) trong bài này
     và commit. Khi được hỏi có tạo nhánh của kho này hay không, nhấn nút màu
-    xanh **Fork Repository**.
+    xanh **Fork Repository** (**Fork kho**).
 4.  Sau khi commit, một hộp nhắc sẽ xuất hiện ở giữa phía trên trang. Trong hộp
     nhắc đầu tiên, điền tiêu đề; trong hộp nhắc thứ hai, điền tên nhánh trong
     kho mà commit này sẽ được gửi đến. Sau đó, góc dưới bên phải sẽ xuất hiện
-    một hộp nhắc có nội dung tương tự `Created Pull Request #1 for OI-Wiki/OI-Wiki.`.
+    một hộp nhắc có nội dung tương tự `Created Pull Request #1 for OI-Wiki/OI-Wiki.` (`Đã tạo Pull Request #1 cho OI-Wiki/OI-Wiki.`).
     Nhấn liên kết màu xanh để xem Pull Request đó.
 
 #### Bổ sung thay đổi vào Pull Request
@@ -122,7 +122,7 @@ nhau, hãy làm theo phần [chỉnh sửa nội dung trong một trang](#chinh-
 1.  Mở [danh sách Pull Request của OI-Wiki](https://github.com/cuom1999/OI-wiki/pulls),
     tìm Pull Request bạn đã gửi và nhấn vào đó.
 2.  Bên dưới tiêu đề trang Pull Request sẽ có một dòng chữ chẳng hạn
-    `<ID của bạn> wants to merge x commits into cuom1999:vietnamese-translation from <ID của bạn>:patch-1`;
+    `<ID của bạn> wants to merge x commits into cuom1999:vietnamese-translation from <ID của bạn>:patch-1` (`<ID của bạn> muốn gộp x commit vào cuom1999:vietnamese-translation từ <ID của bạn>:patch-1`);
     hãy nhấn vào phần `<ID của bạn>:patch-1`.
 3.  Bạn sẽ được chuyển đến kho nhánh của mình, và tên nhánh ở góc trên bên trái
     danh sách tệp chính là tên nhánh Pull Request bạn đã gửi (trong ví dụ này
@@ -132,11 +132,11 @@ nhau, hãy làm theo phần [chỉnh sửa nội dung trong một trang](#chinh-
         liên quan với nhau, hãy tìm trực tiếp tệp cần sửa và chỉnh sửa. Sau khi
         sửa xong, cuộn xuống cuối trang, điền thông tin commit theo
         [quy chuẩn định dạng thông tin commit](#commit-format) trong bài này,
-        rồi nhấn nút **Commit changes** để gửi thay đổi.
+        rồi nhấn nút **Commit changes** (**Commit thay đổi**) để gửi thay đổi.
     -   Nếu bạn cần chỉnh sửa nhiều tệp, nhấn phím <kbd>.</kbd> trên bàn phím
         (hoặc đổi `github.com` trong URL thành `github.dev`)[^ref2], vào trình
         chỉnh sửa VS Code trên web của GitHub và thực hiện thay đổi. Sau đó,
-        dùng thẻ Source Control ở bên trái, điền thông tin commit theo
+        dùng thẻ Source Control ("Quản lý mã nguồn") ở bên trái, điền thông tin commit theo
         [quy chuẩn định dạng thông tin commit](#commit-format) trong bài này
         và commit thay đổi.
 5.  Khi đó, thay đổi của bạn sẽ tự động được bổ sung vào Pull Request.
@@ -169,7 +169,7 @@ Thay đổi của bạn sẽ tự động được bổ sung vào Pull Request.
 ### Xem trước thay đổi trên trang đã build
 
 Ở phía dưới trang Pull Request, bạn có thể xem trạng thái kiểm thử tự động. Nếu
-dự án bật preview cho Pull Request, hãy nhấn liên kết Details tương ứng để xem
+dự án bật preview cho Pull Request, hãy nhấn liên kết Details ("Chi tiết") tương ứng để xem
 trang được build tự động từ thay đổi của mình.
 
 ![Liên kết xem trước trang build tự động trong Pull Request](./images/deploy_preview.png)

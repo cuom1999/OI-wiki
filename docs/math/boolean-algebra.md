@@ -36,11 +36,11 @@ Sau đây là một số hàm Boolean thường gặp; ta cũng gọi chung các
 | Song điều kiện (biconditional), tương đương (equivalence)[^note1][^note2] |                    | $A \leftrightarrow B$            |
 | Không tương đương (non-equivalence)[^note1][^note3]       |                                        | $A \nleftrightarrow B$           |
 
-Bảng chân trị tương ứng (From [Wikipedia](https://commons.wikimedia.org/wiki/File:Logical_connectives_table.svg)):
+Bảng chân trị tương ứng (từ [Wikipedia](https://commons.wikimedia.org/wiki/File:Logical_connectives_table.svg)):
 
 ![](./images/logical-connectives-table.svg)
 
-Biểu đồ Venn và [biểu đồ Hasse](./order-theory.md#biểu-diễn-trực-quan-tập-có-thứ-tự-bộ-phận-biểu-đồ-hasse) tương ứng (lấy quan hệ bao hàm tập hợp $\subseteq$ làm thứ tự riêng phần, From [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)):
+Biểu đồ Venn và [biểu đồ Hasse](./order-theory.md#biểu-diễn-trực-quan-tập-có-thứ-tự-bộ-phận-biểu-đồ-hasse) tương ứng (lấy quan hệ bao hàm tập hợp $\subseteq$ làm thứ tự riêng phần, từ [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)):
 
 ![](./images/logical-connectives-hasse-diagram.svg)
 

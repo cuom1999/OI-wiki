@@ -61,7 +61,7 @@ Trong trang này, có thể thiết lập giới hạn thời gian, giới hạn
 
 ### Đề bài và hướng dẫn
 
-Trang này dùng để viết đề bài và hướng dẫn. Cũng có thể dùng nút "Review" để xem đề bài, trình kiểm tra dữ liệu và trình kiểm tra đáp án, thường dùng cho việc rà soát.
+Trang này dùng để viết đề bài và hướng dẫn. Cũng có thể dùng nút "Review" ("Rà soát") để xem đề bài, trình kiểm tra dữ liệu và trình kiểm tra đáp án, thường dùng cho việc rà soát.
 
 Đề bài và hướng dẫn đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ thực ra chỉ là một tập con rất nhỏ; có thể tự thử cụ thể.
 
@@ -129,7 +129,7 @@ Trang này dùng để đặt mã nguồn lời giải của bài, có thể là
 
 Trang này dùng để chạy lời giải.
 
-Chọn mã nguồn và test rồi chạy; sau đó có thể nhấp vào mục trong danh sách ("View") để xem thông tin chi tiết.
+Chọn mã nguồn và test rồi chạy; sau đó có thể nhấp vào mục trong danh sách "View" ("Xem") để xem thông tin chi tiết.
 
 Trạng thái chấm "FL" nghĩa là chấm bị lỗi, thường là dữ liệu không qua xác thực hoặc trình kiểm tra dữ liệu/trình kiểm tra đáp án/trình tương tác bị RE. "RJ" có hai trường hợp: một là đã xuất hiện "FL", hai là mã nguồn này không qua ngay test đầu tiên.
 
@@ -157,7 +157,7 @@ Cột đầu tiên sẽ hiển thị một số thông tin cơ bản. Nếu có 
 
 "View changes" ("Xem thay đổi") dùng để xem lịch sử thay đổi. Cần chú ý rằng "switch" ("chuyển") không dùng để quay lại một phiên bản nào đó; nó chỉ có thể thực hiện sửa đổi không sinh xung đột trên cơ sở một phiên bản nào đó, điều này thực ra không có ý nghĩa, nên switch tương đương chỉ đọc.
 
-"Update Working Copy" (cập nhật bản làm việc) dùng để lấy cập nhật của người khác.
+"Update Working Copy" ("Cập nhật bản làm việc") dùng để lấy cập nhật của người khác.
 
 "Commit Changes" ("Commit thay đổi") dùng để commit cập nhật của bạn.
 
@@ -179,4 +179,4 @@ Thanh bên còn có thể xem trước toàn bộ đề bài, toàn bộ hướn
 
 Khi nhiều người cùng dùng Polygon để ra đề, nếu phiên bản bài đang sửa khác với phiên bản bài ở remote, và khi lấy phiên bản mới nhất từ remote hoặc commit cập nhật mà tệp đã sửa không thể tự động merge, xung đột (Conflicted) sẽ xảy ra.
 
-Sau khi xảy ra xung đột, Polygon sẽ cung cấp tùy chọn "Resolve conflicts" trong các tùy chọn của bài bị xung đột; người dùng có thể vào đó để giải quyết xung đột trên các tệp bị xung đột.
+Sau khi xảy ra xung đột, Polygon sẽ cung cấp tùy chọn "Resolve conflicts" ("Giải quyết xung đột") trong các tùy chọn của bài bị xung đột; người dùng có thể vào đó để giải quyết xung đột trên các tệp bị xung đột.

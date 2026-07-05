@@ -54,27 +54,27 @@ Tại dòng cần đánh dấu, nhấn `Ctrl`+`F2` để đặt/hủy dấu đá
 
 Nhấn `F2` để nhảy tới dấu đánh dấu tiếp theo.
 
-Nếu thấy chưa tiện, có thể vào kho phần bổ trợ tích hợp để cài phần bổ trợ "Bookmarks".
+Nếu thấy chưa tiện, có thể vào kho phần bổ trợ tích hợp để cài phần bổ trợ "Bookmarks" ("Dấu đánh dấu").
 
 ### Tô sáng mã
 
-Nhấp chuột phải vào "XXX file" ở góc dưới bên trái, bạn có thể chọn tô sáng cho rất nhiều ngôn ngữ như C, C++, PASCAL, Markdown. Thậm chí bạn có thể tự định nghĩa tô sáng.
+Nhấp chuột phải vào "XXX file" ("Tệp XXX") ở góc dưới bên trái, bạn có thể chọn tô sáng cho rất nhiều ngôn ngữ như C, C++, PASCAL, Markdown. Thậm chí bạn có thể tự định nghĩa tô sáng.
 
 Nếu thấy mỗi lần mở tệp lại phải đổi tô sáng là phiền, có thể sửa tô sáng mặc định trong "Settings -> Preferences -> New Document -> Default Language" ("Thiết lập -> Tùy chọn -> Tài liệu mới -> Ngôn ngữ mặc định").
 
-Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Markdown Viewer"; còn nhiều phần bổ trợ tương tự khác đang chờ bạn.
+Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Markdown Viewer" ("Trình xem Markdown"); còn nhiều phần bổ trợ tương tự khác đang chờ bạn.
 
 ### Hiển thị toàn bộ ký tự
 
 ![Hiển thị toàn bộ ký tự trong Notepad++](./images/npp-settings-2.png)
 
-Nhấp nút được khoanh đỏ để hiển thị rất rõ các ký tự vốn không nhìn thấy như "space", "TAB", "newline".
+Nhấp nút được khoanh đỏ để hiển thị rất rõ các ký tự vốn không nhìn thấy như "space" ("dấu cách"), "TAB" và "newline" ("xuống dòng").
 
 ### Tự động nhận diện mã hóa tệp và ký tự xuống dòng
 
 Notepad++ có thể tự động nhận diện tệp hiện tại dùng mã hóa `UTF-8`, `GB2312` hoặc các kiểu mã hóa khác. Bạn không còn phải lo bị lỗi mojibake khi đọc nhầm mã hóa.
 
-Nếu muốn xem văn bản bằng mã hóa khác, lần lượt nhấp "(thanh menu) Encoding" -> "Use XXX encoding". Nếu muốn đổi mã hóa ký tự cho tệp, lần lượt nhấp "(thanh menu) Encoding" -> "Convert to XXX encoding".
+Nếu muốn xem văn bản bằng mã hóa khác, lần lượt nhấp "(thanh menu) Encoding" -> "Use XXX encoding" ("(thanh menu) Mã hóa -> Dùng mã hóa XXX"). Nếu muốn đổi mã hóa ký tự cho tệp, lần lượt nhấp "(thanh menu) Encoding" -> "Convert to XXX encoding" ("(thanh menu) Mã hóa -> Chuyển sang mã hóa XXX").
 
 Nó cũng có thể tự động nhận diện ký tự xuống dòng là `CR`, `LF` hay `CRLF`, nên không cần lo dữ liệu tải xuống bị mất dòng.
 
@@ -104,11 +104,11 @@ Trước hết là ghi macro: nhất định phải nhấn phím `HOME` hoặc `
 
 Ví dụ với trường hợp vừa rồi, có thể nhấn `END`, rồi lần lượt nhấn `←`, `Backspace`, `←`, `Backspace`, `F`, cuối cùng nhấn `↓` hai lần, rồi dừng ghi.
 
-Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên cần xử lý (dòng 3), rồi nhấp "Macro" -> "Run a Macro Multiple Times". Trong cửa sổ bật lên, chọn macro cần chạy (macro vừa ghi thường là cái đầu tiên), đặt số lần chạy (hoặc chạy thẳng đến cuối tệp), rồi nhấp OK.
+Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên cần xử lý (dòng 3), rồi nhấp "Macro" -> "Run a Macro Multiple Times" ("Macro -> Chạy macro nhiều lần"). Trong cửa sổ bật lên, chọn macro cần chạy (macro vừa ghi thường là cái đầu tiên), đặt số lần chạy (hoặc chạy thẳng đến cuối tệp), rồi nhấp OK.
 
 #### Lưu macro
 
-Nhấp "Macro" -> "Save Current Recorded Macro", đặt tên và phím tắt, là có thể lưu lại để tiện dùng về sau.
+Nhấp "Macro" -> "Save Current Recorded Macro" ("Macro -> Lưu macro vừa ghi"), đặt tên và phím tắt, là có thể lưu lại để tiện dùng về sau.
 
 <span id="plugin"></span>
 
@@ -118,9 +118,9 @@ Nhấp "Macro" -> "Save Current Recorded Macro", đặt tên và phím tắt, l�
 
 #### Quản lý phần bổ trợ
 
-Mở nút "Plugins" trên thanh chức năng; danh sách sẽ hiển thị toàn bộ phần bổ trợ bạn đã cài.
+Mở nút "Plugins" ("Phần bổ trợ") trên thanh chức năng; danh sách sẽ hiển thị toàn bộ phần bổ trợ bạn đã cài.
 
-Sau đó chọn "Plugins Admin" để quản lý phần bổ trợ.
+Sau đó chọn "Plugins Admin" ("Quản lý phần bổ trợ") để quản lý phần bổ trợ.
 
 #### Cài phần bổ trợ (kho phần bổ trợ)
 
@@ -131,7 +131,7 @@ Sau đó chọn "Plugins Admin" để quản lý phần bổ trợ.
 
 1.  Tải phần bổ trợ (địa chỉ chính thức do bên thứ ba lưu trữ: <https://sourceforge.net/projects/npp-plugins/>). Chú ý nhất định phải chọn phần bổ trợ **cùng kiến trúc bộ xử lý với lúc cài Notepad++**.
 2.  Tìm tệp tên "XXX.dll" (thường được đặt theo tên phần bổ trợ).
-3.  Trong Notepad++, nhấp Plugins trên thanh chức năng, rồi nhấp "Open Plugins Folder" trong danh sách.
+3.  Trong Notepad++, nhấp Plugins trên thanh chức năng, rồi nhấp "Open Plugins Folder" ("Mở thư mục phần bổ trợ") trong danh sách.
 4.  Đặt tệp DLL vừa tìm được vào thư mục đó, rồi khởi động lại Notepad++.
 5.  [Tùy chọn] Xóa tệp vừa sao chép, **nhưng đừng xóa thư mục đã được sinh ra!**
 
