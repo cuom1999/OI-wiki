@@ -1,10 +1,10 @@
-<span id="&#24341;&#20837;"></span>
+<span id="dẫn-nhập"></span>
 
 ## Dẫn nhập
 
 BFS (tìm kiếm theo chiều rộng) là một thuật toán cơ bản trong lý thuyết đồ thị; xem chi tiết ở trang [BFS (đồ thị)](../graph/bfs.md). Trong **thuật toán tìm kiếm**, BFS thường chỉ phương pháp tìm kiếm dùng cấu trúc hàng đợi để mở rộng trạng thái theo từng lớp. Tư tưởng của nó nhất quán với BFS trong lý thuyết đồ thị, và đặc biệt phù hợp để giải các bài toán **đường đi ngắn nhất** hoặc **số bước ít nhất**.
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 
 ## Giải thích
 
@@ -16,7 +16,7 @@ BFS rất thích hợp để nhanh chóng giải các bài toán **đường đi
 
 Tuy vậy, so với DFS, BFS cũng có nhược điểm. Thông thường BFS cần nhiều bộ nhớ hơn, không có quá trình quay lui tự nhiên, và việc cắt tỉa theo độ sâu kém linh hoạt hơn DFS.
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập-ví-dụ"></span>
 
 ## Bài tập ví dụ
 
@@ -44,7 +44,7 @@ Tuy vậy, so với DFS, BFS cũng có nhược điểm. Thông thường BFS c�
     --8<-- "docs/search/code/bfs/bfs-2.cpp"
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 
 ## Bài tập
 

@@ -1,10 +1,10 @@
-<span id="&#24341;&#20837;"></span>
+<span id="dẫn-nhập"></span>
 
 ## Dẫn nhập
 
 DFS (tìm kiếm theo chiều sâu) là một khái niệm trong lý thuyết đồ thị; xem chi tiết ở trang [DFS (đồ thị)](../graph/dfs.md). Trong **thuật toán tìm kiếm**, thuật ngữ này thường chỉ các thuật toán dùng hàm đệ quy để cài đặt vét cạn một cách thuận tiện. Cách làm này có một số điểm tương đồng với DFS trong lý thuyết đồ thị, nhưng không hoàn toàn giống nhau.
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 
 ## Giải thích
 
@@ -122,7 +122,7 @@ Mã như sau:
         dfs(N, 1, 1);
         ```
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập-ví-dụ"></span>
 
 ## Bài tập ví dụ
 
