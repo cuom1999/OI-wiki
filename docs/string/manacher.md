@@ -1,9 +1,9 @@
-<span id="&#25551;&#36848;"></span>
+<span id="mô-tả"></span>
 ## Mô tả
 
 Cho một xâu $s$ có độ dài $n$, hãy tìm mọi cặp $(i, j)$ sao cho xâu con $s[i \dots j]$ là một xâu đối xứng. Một xâu $t$ là xâu đối xứng khi $t = t_{\text{rev}}$, trong đó $t_{\text{rev}}$ là xâu đảo ngược của $t$.
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 ## Giải thích
 
 Rõ ràng trong trường hợp xấu nhất có thể có $O(n^2)$ xâu đối xứng, nên thoạt nhìn bài toán dường như không có thuật toán tuyến tính.
@@ -26,14 +26,14 @@ Vì vậy ý tưởng then chốt là: nếu có một xâu đối xứng độ 
 
 Một sự thật đáng chú ý là tồn tại một thuật toán tuyến tính và khá đơn giản để tính hai "mảng tính chất đối xứng" $d_1[]$ và $d_2[]$ nói trên. Bài viết này mô tả chi tiết thuật toán đó.
 
-<span id="&#35299;&#27861;"></span>
+<span id="cách-giải"></span>
 ## Cách giải
 
 Nhìn chung, bài toán này có nhiều cách giải: dùng hash xâu có thể giải trong $O(n \log n)$, còn dùng mảng hậu tố và LCA nhanh có thể giải trong $O(n)$.
 
 Tuy nhiên thuật toán mô tả ở đây **đơn giản hơn hẳn**, đồng thời có hằng số nhỏ hơn về cả thời gian lẫn bộ nhớ. Thuật toán này do **Glenn K. Manacher** đề xuất năm 1975.
 
-<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+<span id="thuật-toán-đơn-giản"></span>
 ## Thuật toán đơn giản
 
 Để tránh mơ hồ trong phần sau, trước hết nêu rõ "thuật toán đơn giản" là gì.
@@ -76,14 +76,14 @@ Cài đặt thuật toán đơn giản như sau:
                 d2[i] += 1
         ```
 
-<span id="Manacher-&#31639;&#27861;"></span>
+<span id="thuật-toán-manacher"></span>
 ## Thuật toán Manacher
 
 Ở đây chỉ mô tả trường hợp tìm mọi xâu con đối xứng có độ dài lẻ, tức chỉ tính $d_1[]$; thuật toán tìm mọi xâu con đối xứng độ dài chẵn (tức tính mảng $d_2[]$) chỉ cần sửa một chút từ trường hợp lẻ.
 
 Để tính nhanh, ta duy trì **biên $[l, r]$** của xâu con đối xứng đã tìm được có đầu phải xa nhất (tức xâu đối xứng có giá trị $r$ lớn nhất, trong đó $l$ và $r$ lần lượt là vị trí biên trái và biên phải của xâu đối xứng đó). Ban đầu đặt $l = 0$ và $r = -1$ (`-1` ở đây cần phân biệt với chỉ số đảo ngược; chỉ cần là một số âm bất kỳ để thuận tiện khi khởi tạo vòng lặp).
 
-<span id="&#36807;&#31243;"></span>
+<span id="quy-trình"></span>
 ### Quy trình
 
 Giả sử cần tính $d_1[i]$ cho vị trí tiếp theo $i$, và mọi giá trị trước đó của $d_1[]$ đã được tính. Ta tính như sau:
@@ -138,7 +138,7 @@ Cuối cùng, cần nhắc lại rằng sau khi tính xong mỗi $d_1[i]$, phả
 
 Đồng thời, nhắc lại một lần nữa: thuật toán tính mảng xâu đối xứng độ dài chẵn $d_2[]$ rất giống với thuật toán tính mảng xâu đối xứng độ dài lẻ $d_1[]$ ở trên.
 
-<span id="Manacher-&#31639;&#27861;&#30340;&#22797;&#26434;&#24230;"></span>
+<span id="độ-phức-tạp-của-thuật-toán-manacher"></span>
 ## Độ phức tạp của thuật toán Manacher
 
 Vì khi tính đáp án cho một vị trí cụ thể ta luôn chạy thuật toán đơn giản, thoạt nhìn không hiển nhiên rằng thuật toán có thời gian tuyến tính.
@@ -149,10 +149,10 @@ Thực tế, mỗi lần lặp của thuật toán đơn giản đều làm $r$ 
 
 Phần còn lại của thuật toán Manacher hiển nhiên cũng tuyến tính, nên tổng độ phức tạp là $O(n)$.
 
-<span id="Manacher-&#31639;&#27861;&#30340;&#23454;&#29616;"></span>
+<span id="cài-đặt-thuật-toán-manacher"></span>
 ## Cài đặt thuật toán Manacher
 
-<span id="&#20998;&#31867;&#35752;&#35770;"></span>
+<span id="tách-hai-trường-hợp"></span>
 ### Tách hai trường hợp
 
 Để tính $d_1[]$, ta có đoạn mã sau:
@@ -221,7 +221,7 @@ Mã tính $d_2[]$ rất giống, chỉ khác một chút trong các biểu thứ
             r = i + k
     ```
 
-<span id="&#32479;&#19968;&#22788;&#29702;"></span>
+<span id="xử-lý-thống-nhất"></span>
 ### Xử lý thống nhất
 
 Mặc dù trong phần giải thích và cài đặt ở trên ta tách riêng việc tính $d_1[]$ và $d_2[]$, trên thực tế có thể dùng một mẹo để quy cả hai về việc tính $d_1[]$.
@@ -236,7 +236,7 @@ Kết luận trên thiết lập quan hệ giữa $d_1[]$ của $s'$ với $d_1[
 
 Vì cách xử lý thống nhất này về bản chất là tính $d_1[]$ của $s'$, nên sau khi có $s'$, mã giống hệt phần tính $d_1[]$ ở trên.
 
-<span id="&#32451;&#20064;&#39064;&#30446;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [UVa #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
