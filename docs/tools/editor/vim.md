@@ -18,7 +18,7 @@ Các thao tác cơ bản của Vim sẽ được giới thiệu trong hướng d
 
 Thông thường cần khoảng hai đến ba mươi phút để làm quen sơ bộ với các thao tác này.
 
-### Chế độ lệnh (Command Mode)
+### Chế độ lệnh
 
 Đây là chế độ mặc định sau khi vào Vim.
 
@@ -67,7 +67,7 @@ Trong chế độ lệnh, nhấn <kbd>\*</kbd> để tìm từ dưới con trỏ
 
 Nếu trước khi nhập một lệnh bạn nhập một số `n`, lệnh đó sẽ được lặp lại `n` lần.
 
-### Chế độ nhập (Insert Mode)
+### Chế độ nhập
 
 Trong chế độ lệnh, nhấn <kbd>i</kbd> để vào chế độ nhập; nhấn <kbd>Esc</kbd> để quay lại chế độ lệnh.
 
@@ -126,7 +126,7 @@ Nếu dạng lệnh là `:! command`, lệnh đó sẽ được thực thi trong
 
 Nhấn <kbd>Esc</kbd> để thoát chế độ dòng lệnh cuối.
 
-### Chế độ trực quan (Visual mode)
+### Chế độ trực quan
 
 Nhấn `v` để vào chế độ trực quan, thường dùng để chọn vùng. Nhấn `V` (`Shift+v`) để vào chế độ trực quan theo dòng, dùng để chọn dòng.
 
@@ -219,7 +219,7 @@ Vì lệnh `normal` có thể được lệnh `.` gọi lặp lại, lại dễ 
 
 Ba loại lệnh trên có thể kết hợp với nhau. Ví dụ:
 
-> Tôi tải một cuốn sách, cần biến mỗi chương của nó thành "tiêu đề" để tiện chuyển thành định dạng như mobi, hoặc tiện sinh mục lục TOC để nhảy tới. Làm thế nào?
+> Tôi tải một cuốn sách, cần biến mỗi chương của nó thành "tiêu đề" để tiện chuyển thành định dạng như mobi, hoặc tiện sinh mục lục để nhảy tới. Làm thế nào?
 
 Dưới đây là quá trình xử lý bằng Vim:
 

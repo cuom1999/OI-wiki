@@ -217,7 +217,7 @@ $\rightarrow$ Biên dịch và kiểm tra tài liệu PDF. Có thể bạn cần
 
 ![Kết quả tham chiếu nhãn và số trang trong LaTeX](images/latex-for-beginners-2.png)
 
-### Tạo mục lục (TOC)
+### Tạo mục lục
 
 Nếu dùng các lệnh chia mục, bạn có thể dễ dàng tạo mục lục. Dùng `\tableofcontents` để tạo mục lục trong tài liệu. Thông thường, mục lục được đặt ngay sau tiêu đề.
 
