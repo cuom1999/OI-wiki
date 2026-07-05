@@ -18,27 +18,27 @@ Lệnh có vai trò rất lớn trong Emacs.
 
 Dùng phím Application[^note1] (trên Windows, Emacs chưa gán phím này, cần tự thiết lập) hoặc phím tắt M-x (<kbd>Alt</kbd>+<kbd>x</kbd>) để mở ô nhập lệnh; sau khi nhập xong, nhấn Enter để thực thi lệnh.
 
-Thường dùng lệnh `es` hoặc `eshell` để mở Eshell (tương tự một terminal).
+Thường dùng lệnh `es` hoặc `eshell` để mở Eshell (tương tự một trình dòng lệnh).
 
 Việc nhập lệnh thường có thể được thay bằng phím tắt.
 
 ### Bộ đệm
 
-Buffer là các tệp và tiến trình đang mở. Khi chưa lưu, sửa đổi trong buffer sẽ không sửa trực tiếp vào tệp.
+Bộ đệm (buffer) là các tệp và tiến trình đang mở. Khi chưa lưu, sửa đổi trong bộ đệm sẽ không sửa trực tiếp vào tệp.
 
-Có thể nhấp tên buffer ở đáy vùng buffer hoặc dùng phím tắt để chuyển buffer.
+Có thể nhấp tên bộ đệm ở đáy vùng bộ đệm hoặc dùng phím tắt để chuyển bộ đệm.
 
 ### Biên dịch, gỡ lỗi và chạy
 
 Lối vào chức năng biên dịch và gỡ lỗi nằm trong menu thả xuống Tools trên thanh menu phía trên. Người dùng cũng có thể dùng lệnh hoặc phím tắt tự định nghĩa để dùng chức năng biên dịch và gỡ lỗi.
 
-Có thể dùng terminal hoặc Eshell để chạy chương trình.
+Có thể dùng trình dòng lệnh hoặc Eshell để chạy chương trình.
 
-Sau khi nhấn debug (gud-gdb) trong Tools, nhập tên chương trình (thường sẽ được tự động điền sẵn, nhưng nếu giữa chừng lưu chương trình thành tên khác hoặc mở hai chương trình cần gỡ lỗi, **tên tệp tự động điền có thể sai**) là có thể bắt đầu gỡ lỗi.
+Sau khi nhấn gỡ lỗi (gud-gdb) trong Tools, nhập tên chương trình (thường sẽ được tự động điền sẵn, nhưng nếu giữa chừng lưu chương trình thành tên khác hoặc mở hai chương trình cần gỡ lỗi, **tên tệp tự động điền có thể sai**) là có thể bắt đầu gỡ lỗi.
 
 ### Chia cửa sổ
 
-Chức năng này cho phép người dùng đồng thời xem nội dung của nhiều buffer mà không cần chuyển qua lại giữa các buffer, thuận tiện cho kiểm thử và gỡ lỗi mã.
+Chức năng này cho phép người dùng đồng thời xem nội dung của nhiều bộ đệm mà không cần chuyển qua lại giữa các bộ đệm, thuận tiện cho kiểm thử và gỡ lỗi mã.
 
 Chức năng chia cửa sổ có thể hiển thị nhiều cửa sổ cùng lúc; kéo mép cửa sổ bằng chuột để thay đổi kích thước cửa sổ.
 
@@ -48,7 +48,7 @@ Một vài phím tắt:
 -   Chia ngang "C-x 3": chia cửa sổ này thành hai nửa theo chiều ngang.
 -   Chia dọc "C-x 2": chia cửa sổ này thành hai nửa theo chiều dọc.
 
-Bố cục cửa sổ được khuyến nghị là chia cửa sổ thành bốn phần: trước hết chia ngang, điều chỉnh một phần rộng khoảng 3/4 màn hình để làm cửa sổ chỉnh sửa. Chia ngang phần còn lại; một phần dùng để hiển thị thông tin gỡ lỗi và biên dịch, phần còn lại lại chia dọc, một phần mở tệp input, một phần mở tệp output.
+Bố cục cửa sổ được khuyến nghị là chia cửa sổ thành bốn phần: trước hết chia ngang, điều chỉnh một phần rộng khoảng 3/4 màn hình để làm cửa sổ chỉnh sửa. Chia ngang phần còn lại; một phần dùng để hiển thị thông tin gỡ lỗi và biên dịch, phần còn lại lại chia dọc, một phần mở tệp đầu vào, một phần mở tệp đầu ra.
 
 ![](./images/emacs.png)
 
@@ -75,7 +75,7 @@ Thông thường có ba dạng sau:
 Dưới đây là một số phím tắt thường dùng:
 
 -   `C-x h`: chọn tất cả.
--   `C-x left`, `C-x right`: chuyển tới buffer trước/sau.
+-   `C-x left`, `C-x right`: chuyển tới bộ đệm trước/sau.
 -   `C-x d`: mở một thư mục.
 -   `C-x C-f`: mở một tệp (nếu tệp không tồn tại thì tạo tệp mới).
 
@@ -101,98 +101,98 @@ Hiển thị tệp ẩn trong thư mục home (trên Windows là thư mục `App
 Cấu hình khuyến nghị cho phòng thi như sau.
 
 ```text
-;; Dat bien dich mot phim; co the tu them tham so; kho nho nen khong khuyen nghi dung o phong thi; khong nen phu thuoc vao bien dich mot phim
+;; Đặt biên dịch một phím; có thể tự thêm tham số; khó nhớ nên không khuyến nghị dùng ở phòng thi; không nên phụ thuộc vào biên dịch một phím
 (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
 (global-set-key [f9] 'compile-file)
-;;;; Dat phim tat bien dich (neu da dat bien dich mot phim thi khong duoc xung dot)
+;;;; Đặt phím tắt biên dịch (nếu đã đặt biên dịch một phím thì không được xung đột)
 ;;(global-set-key [f9] 'compile)
 
-(global-set-key (kbd "C-a") 'mark-whole-buffer) ;; Phim tat chon tat ca
-(global-set-key (kbd "C-z") 'undo) ;; Phim tat hoan tac
-(global-set-key [f10] 'gud-gdb) ;; Phim tat go loi GDB
-(global-set-key (kbd "RET") 'newline-and-indent) ;; Xuong dong tu dong thut le
-(global-set-key (kbd "C-s") 'save-buffer) ;; Dat phim tat luu
-(setq-default kill-ring-max 65535) ;; Mo rong lich su co the hoan tac
+(global-set-key (kbd "C-a") 'mark-whole-buffer) ;; Phím tắt chọn tất cả
+(global-set-key (kbd "C-z") 'undo) ;; Phím tắt hoàn tác
+(global-set-key [f10] 'gud-gdb) ;; Phím tắt gỡ lỗi GDB
+(global-set-key (kbd "RET") 'newline-and-indent) ;; Xuống dòng tự động thụt lề
+(global-set-key (kbd "C-s") 'save-buffer) ;; Đặt phím tắt lưu
+(setq-default kill-ring-max 65535) ;; Mở rộng lịch sử có thể hoàn tác
 
-;; Kieu ma C++; thuong dung de dieu khien quy tac thut le
-;;;"bsd" tat ca dau ngoac nhon xuong dong
-;;;"java" tat ca dau ngoac nhon khong xuong dong. else nam sau dau ngoac nhon phai
-;;;"awk" chi dau ngoac nhon canh namespace, dinh nghia lop, dinh nghia ham moi xuong dong. else nam sau dau ngoac nhon phai
-;;;"linux" chi dau ngoac nhon canh namespace, dinh nghia lop, dinh nghia ham moi xuong dong. else nam sau dau ngoac nhon phai. Noi chung kieu nay nen co thut le 8 dau cach
+;; Kiểu mã C++; thường dùng để điều khiển quy tắc thụt lề
+;;;"bsd" tất cả dấu ngoặc nhọn xuống dòng
+;;;"java" tất cả dấu ngoặc nhọn không xuống dòng. else nằm sau dấu ngoặc nhọn phải
+;;;"awk" chỉ dấu ngoặc nhọn cạnh namespace, định nghĩa lớp, định nghĩa hàm mới xuống dòng. else nằm sau dấu ngoặc nhọn phải
+;;;"linux" chỉ dấu ngoặc nhọn cạnh namespace, định nghĩa lớp, định nghĩa hàm mới xuống dòng. else nằm sau dấu ngoặc nhọn phải. Nói chung kiểu này nên có thụt lề 8 dấu cách
 (setq-default c-default-style "awk")
 ```
 
 ??? note "Cấu hình đầy đủ"
     ```text
-    ;; Dat bien dich mot phim
+    ;; Đặt biên dịch một phím
     (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
     (global-set-key [f9] 'compile-file)
-    ;;;; Dat phim tat bien dich (neu da dat bien dich mot phim thi khong duoc xung dot)
+    ;;;; Đặt phím tắt biên dịch (nếu đã đặt biên dịch một phím thì không được xung đột)
     ;;(global-set-key [f9] 'compile)
 
-    ;; Can thiet trong phong thi
-    (global-set-key (kbd "C-a") 'mark-whole-buffer) ;; Phim tat chon tat ca
-    (global-set-key (kbd "C-z") 'undo) ;; Phim tat hoan tac
-    (global-set-key [f10] 'gud-gdb) ;; Phim tat go loi GDB
-    (global-set-key (kbd "RET") 'newline-and-indent) ;; Xuong dong tu dong thut le
-    (global-set-key (kbd "C-s") 'save-buffer) ;; Dat phim tat luu
-    (setq-default kill-ring-max 65535) ;; Mo rong lich su co the hoan tac
-    ;;(define-key key-translation-map [apps] (kbd "M-x")) ;; Dat phim tat lenh tren Windows
+    ;; Cần thiết trong phòng thi
+    (global-set-key (kbd "C-a") 'mark-whole-buffer) ;; Phím tắt chọn tất cả
+    (global-set-key (kbd "C-z") 'undo) ;; Phím tắt hoàn tác
+    (global-set-key [f10] 'gud-gdb) ;; Phím tắt gỡ lỗi GDB
+    (global-set-key (kbd "RET") 'newline-and-indent) ;; Xuống dòng tự động thụt lề
+    (global-set-key (kbd "C-s") 'save-buffer) ;; Đặt phím tắt lưu
+    (setq-default kill-ring-max 65535) ;; Mở rộng lịch sử có thể hoàn tác
+    ;;(define-key key-translation-map [apps] (kbd "M-x")) ;; Đặt phím tắt lệnh trên Windows
 
-    ;; Dat thut le
-    ;;; Do dai thut le ma C++.
+    ;; Đặt thụt lề
+    ;;; Độ dài thụt lề mã C++.
     (setq-default c-basic-offset 4)
-    ;;; Dung tab de thut le
+    ;;; Dùng tab để thụt lề
     (setq-default indent-tabs-mode t)
-    ;;; Do dai tab. Nhat dinh phai trung voi do dai thut le
+    ;;; Độ dài tab. Nhất định phải trùng với độ dài thụt lề
     (setq-default default-tab-width 4)
     (setq-default tab-width 4)
 
-    ;; Dat moi truong ma hoa mac dinh
+    ;; Đặt môi trường mã hóa mặc định
     (set-language-environment "UTF-8")
     (set-default-coding-systems 'utf-8)
 
-    ;; Khong hien trang chao mung
+    ;; Không hiện trang chào mừng
     (setq-default inhibit-startup-screen t)
 
-    ;; Dat tieu de
+    ;; Đặt tiêu đề
     (setq-default frame-title-format "")
 
-    ;; Hien so dong
+    ;; Hiện số dòng
     (global-display-line-numbers-mode t)
 
-    ;; To sang
-    (global-hl-line-mode 1);; To sang dong hien tai
-    (show-paren-mode t);; To sang cap ngoac khop
-    (global-font-lock-mode t);; To sang cu phap
+    ;; Tô sáng
+    (global-hl-line-mode 1);; Tô sáng dòng hiện tại
+    (show-paren-mode t);; Tô sáng cặp ngoặc khớp
+    (global-font-lock-mode t);; Tô sáng cú pháp
 
-    ;; Cho phep dan giua emacs va cac chuong trinh ben ngoai; hinh nhu mac dinh da cho phep
+    ;; Cho phép dán giữa Emacs và các chương trình bên ngoài; hình như mặc định đã cho phép
     (setq-default x-select-enable-clipboard t)
 
-    ;; Dat font la Ubuntu Mono co 16 point; neu font khong ton tai se bao loi
+    ;; Đặt phông là Ubuntu Mono cỡ 16 point; nếu phông không tồn tại sẽ báo lỗi
     (set-face-attribute 'default nil :font "Ubuntu Mono-16")
-    ;(set-face-attribute 'default nil :font "Consolas-16") ;; He Windows hay dung dong nay
+    ;(set-face-attribute 'default nil :font "Consolas-16") ;; Hệ Windows hay dùng dòng này
 
-    ;; Ho tro con lan chuot
+    ;; Hỗ trợ con lăn chuột
     (mouse-wheel-mode t)
 
-    ;; Dat hinh dang con tro thanh vach dung (mac dinh la khoi vuong)
+    ;; Đặt hình dạng con trỏ thành vạch đứng (mặc định là khối vuông)
     (setq-default cursor-type 'bar)
 
-    ;; Doi cau tra loi yes/no thanh y/n
+    ;; Đổi câu trả lời yes/no thành y/n
     (fset 'yes-or-no-p 'y-or-n-p)
 
-    ;; Do trong suot
+    ;; Độ trong suốt
     (set-frame-parameter (selected-frame) 'alpha (list 85 60))
     (add-to-list 'default-frame-alist (cons 'alpha (list 85 60)))
 
-    ;; Giam so dong cuon trang, tranh cuon ca trang
+    ;; Giảm số dòng cuộn trang, tránh cuộn cả trang
     (setq-default scroll-margin 3 scroll-conservatively 10000)
 
-    ;; Toi uu cau truc cay tep
+    ;; Tối ưu cấu trúc cây tệp
     (ido-mode t)
 
-    ;; Bang mau
+    ;; Bảng màu
     (setq default-frame-alist
              '((vertical-scroll-bars)
                (top . 25)
@@ -220,23 +220,23 @@ Cấu hình khuyến nghị cho phòng thi như sau.
     (custom-set-variables
      '(ansi-color-faces-vector
        [default default default italic underline success warning error])
-    ;; Bat Ctrl-x Ctrl-c Ctrl-v = cat sao-chep dan
+    ;; Bật Ctrl-x Ctrl-c Ctrl-v = cắt sao chép dán
      '(cua-mode t nil (cua-base))
      '(show-paren-mode t)
-    ;; An thanh cong cu
+    ;; Ẩn thanh công cụ
      '(tool-bar-mode nil))
-    ;; Tat con tro nhap nhay
+    ;; Tắt con trỏ nhấp nháy
      '(blink-cursor-mode nil)
     (custom-set-faces)
     ```
 
 ### Đọc thêm
 
-Để khởi động Emacs ở chế độ terminal, thêm tham số `-nw` khi khởi động. Emacs có nhiều biến thể, chẳng hạn [GCC Emacs](http://akrl.sdf.org/gccemacs.html) dùng native-comp để giảm độ trễ và biến thể GTK thuần của nó, hoặc Emacs Macport được tối ưu cho macOS.
+Để khởi động Emacs ở chế độ trình dòng lệnh, thêm tham số `-nw` khi khởi động. Emacs có nhiều biến thể, chẳng hạn [GCC Emacs](http://akrl.sdf.org/gccemacs.html) dùng biên dịch mã gốc (native-comp) để giảm độ trễ và biến thể GTK thuần của nó, hoặc Emacs Macport được tối ưu cho macOS.
 
-Emacs có kho phần mềm tập trung; sau khi cấu hình, có thể dùng `M-x package-install` để cài plugin. Dùng [mirror](https://mirrors.bfsu.edu.cn/help/elpa/) có thể tăng tốc tải xuống.
+Emacs có kho phần mềm tập trung; sau khi cấu hình, có thể dùng `M-x package-install` để cài phần bổ trợ. Dùng [máy nhân bản](https://mirrors.bfsu.edu.cn/help/elpa/) có thể tăng tốc tải xuống.
 
-Emacs có thể dùng language server (Language Server Protocol) để cải thiện trải nghiệm chỉnh sửa. Backend C++ hiện được khuyến nghị là [Clangd](https://clangd.llvm.org/). Frontend có thể dùng [Eglot](https://github.com/joaotavora/eglot) hoặc [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/); tham khảo [mục này](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) có thể hữu ích khi chọn frontend.
+Emacs có thể dùng máy chủ ngôn ngữ (Language Server Protocol) để cải thiện trải nghiệm chỉnh sửa. Phần nền (backend) cho C++ hiện được khuyến nghị là [Clangd](https://clangd.llvm.org/). Phần giao diện phía trước (frontend) có thể dùng [Eglot](https://github.com/joaotavora/eglot) hoặc [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/); tham khảo [mục này](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) có thể hữu ích khi lựa chọn phần giao diện phía trước.
 
 Tài liệu Org Mode có phần mở rộng `.org` có thể được chuyển thành tài liệu Markdown bằng [Pandoc](https://pandoc.org/).
 
