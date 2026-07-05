@@ -18,18 +18,18 @@ bài toán thành các bài toán con cùng loại.
 
 Ý tưởng cơ bản của đệ quy là một hàm gọi trực tiếp hoặc gián tiếp chính nó. Nhờ
 đó, việc giải bài toán ban đầu được chuyển thành việc giải nhiều bài toán con
-có cùng bản chất nhưng kích thước nhỏ hơn. Khi giải, ta chỉ cần quan tâm làm
-thế nào để chia bài toán gốc thành các bài toán con hợp lệ, không cần đào quá
-sâu vào cách từng bài toán con được giải.
+có cùng bản chất nhưng kích thước nhỏ hơn. Khi giải, chỉ cần quan tâm cách chia
+bài toán gốc thành các bài toán con hợp lệ, không cần đào quá sâu vào cách từng
+bài toán con được giải.
 
 Một số ví dụ giúp hiểu đệ quy:
 
 1.  [Đệ quy là gì?](./divide-and-conquer.md)
 2.  Làm thế nào để sắp xếp một dãy số? Trả lời: chia dãy thành hai nửa, sắp xếp
     nửa trái, sắp xếp nửa phải, rồi trộn lại. Còn sắp xếp nửa trái và nửa phải
-    thế nào thì hãy đọc lại câu này.
-3.  Năm nay bạn bao nhiêu tuổi? Trả lời: tuổi năm ngoái cộng thêm một; tôi sinh
-    năm 1999.
+    thế nào thì đọc lại câu này.
+3.  Năm nay một người bao nhiêu tuổi? Trả lời: tuổi năm ngoái cộng thêm một;
+    người đó sinh năm 1999.
 4.  ![Một ví dụ để hiểu đệ quy](images/divide-and-conquer-1.svg)
 
 Đệ quy rất thường gặp trong toán học. Chẳng hạn trong lý thuyết tập hợp, một
@@ -49,7 +49,7 @@ int func(giá_trị_đầu_vào) {
 
 ### Vì sao nên viết đệ quy
 
-1.  Cấu trúc rõ ràng, dễ đọc. Ví dụ, dưới đây là hai cách cài đặt
+1.  Cấu trúc rõ ràng, dễ đọc. Ví dụ, sau đây là hai cách cài đặt
     [merge sort](./merge-sort.md):
 
     === "C++"
@@ -104,7 +104,7 @@ int func(giá_trị_đầu_vào) {
 
 2.  Rèn luyện khả năng phân tích cấu trúc bài toán. Khi nhận ra bài toán có thể
     được tách thành các bài toán nhỏ có cùng cấu trúc, việc quen viết đệ quy sẽ
-    giúp bạn phát hiện đặc điểm đó nhanh hơn và giải bài hiệu quả hơn.
+    giúp phát hiện đặc điểm đó nhanh hơn và giải bài hiệu quả hơn.
 
 ### Nhược điểm của đệ quy
 
@@ -114,20 +114,19 @@ bớt một khung ngăn xếp. Ngăn xếp không có kích thước vô hạn, 
 quy quá sâu sẽ dẫn đến **tràn ngăn xếp**.
 
 Rõ ràng có lúc đệ quy hiệu quả, chẳng hạn merge sort; nhưng **cũng có lúc đệ
-quy kém hiệu quả**, chẳng hạn đếm số sợi lông trên người Tôn Ngộ Không. Stack
-tiêu tốn thêm bộ nhớ, trong khi truy hồi hoặc vòng lặp đơn giản có thể không
-tốn thêm bộ nhớ. Ví dụ sau: cho đầu một danh sách liên kết, hãy tính độ dài của
-nó.
+quy kém hiệu quả**, chẳng hạn đếm số sợi lông trên người Tôn Ngộ Không. Ngăn
+xếp tiêu tốn thêm bộ nhớ, trong khi vòng lặp đơn giản có thể không tốn thêm bộ
+nhớ. Ví dụ sau: cho đầu một danh sách liên kết, tính độ dài của nó.
 
 ```cpp
-// khung duyệt truy hồi điển hình
+// khung duyệt lặp điển hình
 int size(Node *head) {
   int size = 0;
   for (Node *p = head; p != nullptr; p = p->next) size++;
   return size;
 }
 
-// cứ thích viết đệ quy: đệ quy là nhất
+// phiên bản đệ quy
 int size_recursion(Node *head) {
   if (head == nullptr) return 0;
   return size_recursion(head->next) + 1;
@@ -205,10 +204,10 @@ Cách cài đặt hàm `merge` giống với việc gộp hai danh sách liên k
 
 ### Điểm chính khi viết đệ quy
 
-**Hiểu nhiệm vụ của một hàm và tin rằng nó hoàn thành được nhiệm vụ đó; đừng
-nhảy vào bên trong hàm để cố truy thêm chi tiết**, nếu không bạn sẽ mắc kẹt
-trong vô hạn chi tiết. Bộ não con người đâu thể giữ được nhiều khung ngăn xếp như
-máy tính.
+**Hiểu nhiệm vụ của một hàm và tin rằng nó hoàn thành được nhiệm vụ đó; không
+nên nhảy vào bên trong hàm để cố truy thêm chi tiết**, nếu không sẽ mắc kẹt
+trong vô hạn chi tiết. Con người khó giữ đồng thời nhiều khung ngăn xếp như máy
+tính.
 
 Lấy duyệt cây nhị phân làm ví dụ.
 
@@ -222,7 +221,7 @@ void traverse(TreeNode* root) {
 
 Vài dòng này đã đủ để duyệt bất kỳ cây nhị phân nào. Với hàm đệ quy
 `traverse(root)`, chỉ cần tin rằng khi đưa cho nó một nút gốc `root`, nó có thể
-duyệt cả cây đó. Vì vậy ta chỉ cần truyền tiếp nút trái và nút phải cho hàm.
+duyệt cả cây đó. Vì vậy, chỉ cần truyền tiếp nút trái và nút phải cho hàm.
 
 Mở rộng tương tự sang duyệt cây N phân. Cách viết gần như giống cây nhị phân,
 chỉ có điều cây N phân rõ ràng không có duyệt trung tự.
@@ -252,7 +251,7 @@ loại bài toán.
 ???+ note "[437. Path Sum III](https://leetcode-cn.com/problems/path-sum-iii/)"
     Cho một cây nhị phân, mỗi nút chứa một giá trị nguyên.
 
-    Hãy tìm tổng số đường đi có tổng bằng giá trị cho trước.
+    Tìm tổng số đường đi có tổng bằng giá trị cho trước.
 
     Đường đi không nhất thiết bắt đầu từ nút gốc, cũng không nhất thiết kết
     thúc ở nút lá, nhưng hướng đi phải là đi xuống, tức chỉ được đi từ nút cha
@@ -298,10 +297,10 @@ loại bài toán.
     hàm đó trên cây con trái và phải, chắc chắn sẽ xuất hiện trong hàm chính
     `pathSum`. Vậy với mỗi nút, nó cần làm gì? Nó cần xem bản thân nó và các
     cây con của nó chứa bao nhiêu đường đi thỏa điều kiện. Đến đây bài toán đã
-    xong.
+    có cấu trúc lời giải rõ ràng.
 
-    Theo kỹ thuật đã nói ở trên, dựa vào phân tích vừa rồi, hãy định nghĩa rõ
-    từng hàm đệ quy cần làm gì:
+    Theo kỹ thuật đã nói ở trên, dựa vào phân tích vừa rồi, định nghĩa rõ từng
+    hàm đệ quy cần làm gì:
 
     Hàm `PathSum`: cho một nút và một giá trị mục tiêu, trả về tổng số đường đi
     có tổng bằng giá trị mục tiêu trong cây lấy nút đó làm gốc.
@@ -333,8 +332,8 @@ loại bài toán.
         }
         ```
 
-    Vẫn là câu đó: **hãy hiểu mỗi hàm có thể làm gì, và tin rằng chúng làm
-    được việc đó.**
+    Nhắc lại nguyên tắc: **cần hiểu mỗi hàm có thể làm gì, và tin rằng chúng
+    làm được việc đó.**
 
     Tóm lại, hàm `PathSum` cung cấp khung duyệt cây nhị phân; trong quá trình
     duyệt, nó gọi hàm `count` trên mỗi nút. Ở đây dùng duyệt tiền tự, nhưng
