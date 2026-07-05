@@ -1,6 +1,6 @@
 Bài này giới thiệu ngắn gọn về DP chữ số.
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 
 ## Dẫn nhập
 
@@ -26,18 +26,18 @@ Khi đã có mảng đáp án dùng chung, bước tiếp theo là thống kê �
 
 Tiếp theo, ta xét cụ thể một vài bài toán.
 
-<span id="&#x4F8B;&#x9898;&#x4E00;"></span>
+<span id="ví-dụ-1"></span>
 
 ## Ví dụ 1
 
 ???+ note "Ví dụ 1 [Luogu P2602 Đếm chữ số](https://www.luogu.com.cn/problem/P2602)"
     Tóm tắt đề bài: Cho hai số nguyên dương $a,b$, hãy tính trong tất cả các số nguyên thuộc $[a,b]$, mỗi chữ số (digit) xuất hiện bao nhiêu lần.
 
-<span id="&#x65B9;&#x6CD5;&#x4E00;"></span>
+<span id="cách-1"></span>
 
 ### Cách 1
 
-<span id="&#x89E3;&#x91CA;"></span>
+<span id="giải-thích"></span>
 
 #### Giải thích
 
@@ -45,7 +45,7 @@ Nhận thấy với tất cả các số đủ $i$ chữ số, số lần xuất
 
 Khi đã có mảng $\mathit{dp}$, ta xét cách thống kê đáp án. Tách cận trên theo từng chữ số rồi duyệt từ cao xuống thấp. Khi không bị ép sát cận trên, các chữ số phía sau có thể chọn tùy ý. Khi đang ép sát cận trên, phần phía sau chỉ có thể lấy từ $0$ đến cận trên tương ứng; ta chia thành hai phần để tính đóng góp. Cuối cùng xét số 0 ở đầu: khi chữ số thứ $i$ là số 0 dẫn đầu, các vị trí từ $1$ đến $\mathit{i-1}$ cũng đều là $0$, tức ta đã đếm thừa đáp án của phần điền đủ $i-1$ chữ số, nên cần trừ thêm.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 
 #### Cài đặt
 
@@ -84,11 +84,11 @@ Khi đã có mảng $\mathit{dp}$, ta xét cách thống kê đáp án. Tách c�
     }
     ```
 
-<span id="&#x65B9;&#x6CD5;&#x4E8C;"></span>
+<span id="cách-2"></span>
 
 ### Cách 2
 
-<span id="&#x89E3;&#x91CA;_1"></span>
+<span id="giải-thích_1"></span>
 
 #### Giải thích
 
@@ -96,7 +96,7 @@ Bài này cũng có thể dùng tìm kiếm có nhớ. $\mathit{dp}_i$ biểu th
 
 Xem chi tiết trong chú thích của mã.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trình"></span>
 
 #### Quy trình
 
@@ -157,20 +157,20 @@ Xem chi tiết trong chú thích của mã.
     }
     ```
 
-<span id="&#x4F8B;&#x9898;&#x4E8C;"></span>
+<span id="ví-dụ-2"></span>
 
 ## Ví dụ 2
 
 ???+ note "Ví dụ 2 [HDU 2089 Không có 62](https://acm.hdu.edu.cn/showproblem.php?pid=2089)"
     Tóm tắt đề bài: Đếm trong một khoảng có bao nhiêu số mà trong các chữ số không chứa 4 và cũng không chứa cặp liên tiếp 62.
 
-<span id="&#x89E3;&#x91CA;_2"></span>
+<span id="giải-thích_2"></span>
 
 ### Giải thích
 
 Với điều kiện không có 4, chỉ cần kiểm tra khi duyệt và không duyệt chữ số 4 là trạng thái đã hợp lệ, nên ràng buộc này không cần ghi nhớ. Còn với 62, vì liên quan đến hai chữ số, số cách đếm sẽ khác nhau tùy chữ số trước đó có phải là 6 hay không, nên cần dùng trạng thái để ghi lại các số phương án khác nhau. $\mathit{dp}_{\mathit{pos},\mathit{sta}}$ biểu thị trạng thái tại chữ số thứ $\mathit{pos}$, trong đó $\mathit{sta}$ cho biết chữ số trước có phải là 6 hay không. Ở đây $\mathit{sta}$ chỉ cần lấy hai trạng thái 0 và 1; mọi trường hợp "không phải 6" có thể xem là cùng một loại vì không ảnh hưởng đến việc đếm.
 
-<span id="&#x5B9E;&#x73B0;_1"></span>
+<span id="cài-đặt_1"></span>
 
 ### Cài đặt
 
@@ -225,14 +225,14 @@ Với điều kiện không có 4, chỉ cần kiểm tra khi duyệt và không
     }
     ```
 
-<span id="&#x4F8B;&#x9898;&#x4E09;"></span>
+<span id="ví-dụ-3"></span>
 
 ## Ví dụ 3
 
 ???+ note "Ví dụ 3 [SCOI2009 Số windy](https://loj.ac/problem/10165)"
     Tóm tắt đề bài: Cho một khoảng $[l,r]$, hãy tính số lượng các số trong đó thỏa điều kiện **không có số 0 ở đầu và hai chữ số kề nhau chênh lệch ít nhất $2$**.
 
-<span id="&#x89E3;&#x91CA;_3"></span>
+<span id="giải-thích_3"></span>
 
 ### Giải thích
 
@@ -248,7 +248,7 @@ Viết **phương trình chuyển trạng thái**: $f(i,st,op)=\sum_{k=1}^{\math
 
 Ta nhận thấy dù trạng thái tiền tố đã chọn có thể khác nhau, miễn ba tham số của $f$ giống nhau thì đáp án sẽ giống nhau. Để tránh tính cùng một đáp án nhiều lần, có thể dùng [tìm kiếm có nhớ](./memo.md).
 
-<span id="&#x5B9E;&#x73B0;_2"></span>
+<span id="cài-đặt_2"></span>
 
 ### Cài đặt
 
@@ -283,14 +283,14 @@ Ta nhận thấy dù trạng thái tiền tố đã chọn có thể khác nhau,
     }
     ```
 
-<span id="&#x4F8B;&#x9898;&#x56DB;"></span>
+<span id="ví-dụ-4"></span>
 
 ## Ví dụ 4
 
 ???+ note "Ví dụ 4 [SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
     Tóm tắt đề bài: Nếu viết tay tất cả các số nguyên trong $[n,m]$, có bao nhiêu số nhìn giống hệt chính nó trong gương? ($n,m<10^{44}, T<10^5$)
 
-<span id="&#x89E3;&#x91CA;_4"></span>
+<span id="giải-thích_4"></span>
 
 ### Giải thích
 
@@ -306,7 +306,7 @@ Ta cần dùng một mảng nhỏ để ghi lại các giá trị trước đó.
 
 Cần chú ý thêm rằng phần ghi nhớ của bài này không được dùng `memset`, nếu không sẽ dẫn đến quá thời gian.
 
-<span id="&#x5B9E;&#x73B0;_3"></span>
+<span id="cài-đặt_3"></span>
 
 ### Cài đặt
 
@@ -356,7 +356,7 @@ Cần chú ý thêm rằng phần ghi nhớ của bài này không được dùn
     printf("%lld\n", get(cc2) - get(cc1) + check(cc1));
     ```
 
-<span id="&#x4F8B;&#x9898;&#x4E94;"></span>
+<span id="ví-dụ-5"></span>
 
 ## Ví dụ 5
 
@@ -365,7 +365,7 @@ Cần chú ý thêm rằng phần ghi nhớ của bài này không được dùn
     
     $1 \leq n<10^{1201}, 1 \leq m \leq 100, 1 \leq \sum_{i = 1}^m |s_i| \leq 1500, \min_{i = 1}^m |s_i| \geq 1$, trong đó $|s_i|$ biểu thị độ dài của xâu $s_i$. $n$ không có số 0 ở đầu, nhưng $s_i$ có thể có số 0 ở đầu.
 
-<span id="&#x89E3;&#x91CA;_5"></span>
+<span id="giải-thích_5"></span>
 
 ### Giải thích
 
@@ -377,7 +377,7 @@ Với điều kiện "không chứa" trong đề, chỉ cần đánh dấu các 
 
 Chuyển trạng thái khá dễ nghĩ, xem chi tiết trong phần hàm chính của mã.
 
-<span id="&#x5B9E;&#x73B0;_4"></span>
+<span id="cài-đặt_4"></span>
 
 ### Cài đặt
 
@@ -457,7 +457,7 @@ Chuyển trạng thái khá dễ nghĩ, xem chi tiết trong phần hàm chính 
 
 Bài này rất hữu ích để hiểu nguyên lý của DP chữ số.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 
 ## Bài tập
 
