@@ -7,11 +7,11 @@ Trang này giới thiệu ngắn gọn về dạng bài xây dựng.
 Bài xây dựng là một dạng bài thường gặp trong các cuộc thi.
 
 Xét về hình thức, đáp án của bài thường có một quy luật nào đó, nhờ vậy khi
-kích thước bài toán tăng nhanh, ta vẫn có cơ hội tìm được đáp án tương đối dễ.
+kích thước bài toán tăng nhanh, vẫn có cơ hội tìm được đáp án tương đối dễ.
 
 Điều này đòi hỏi khi giải bài phải suy nghĩ xem việc tăng kích thước bài toán
 ảnh hưởng đến đáp án như thế nào, và ảnh hưởng đó có thể tổng quát hóa hay
-không. Chẳng hạn khi thiết kế quy hoạch động, ta phải xét việc chuyển từ một
+không. Chẳng hạn khi thiết kế quy hoạch động, cần xét việc chuyển từ một
 trạng thái sang trạng thái kế tiếp gây ra tác động gì.
 
 ## Đặc điểm
@@ -20,7 +20,7 @@ Một đặc điểm rất rõ của bài xây dựng là độ tự do cao. Nó
 có thể có nhiều cách xây dựng, nhưng thường tồn tại một cách tương đối đơn
 giản thỏa mãn đề bài. Thoạt nhìn yêu cầu có vẻ được nới lỏng và bài trở nên dễ
 hơn, nhưng nhiều khi chính độ tự do cao này làm bài không có hướng đi rõ ràng
-và khiến ta khó bắt đầu.
+và khiến việc bắt đầu trở nên khó khăn.
 
 Một đặc điểm khác là hình thức linh hoạt và biến hóa đa dạng. Không có một lời
 giải tổng quát hay khuôn mẫu nào giải được mọi bài xây dựng; thậm chí rất khó
@@ -28,14 +28,14 @@ tìm ra điểm chung trong tư duy giải.
 
 ## Bài ví dụ
 
-Dưới đây là một số bài ví dụ giúp người đọc cảm nhận tư tưởng của dạng bài xây
-dựng và gợi mở hướng suy nghĩ. Bạn nên suy nghĩ kỹ trước khi xem lời giải.
+Sau đây là một số bài ví dụ giúp người đọc cảm nhận tư tưởng của dạng bài xây
+dựng và gợi mở hướng suy nghĩ. Nên suy nghĩ kỹ trước khi xem lời giải.
 Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây dựng thú vị.
 
 ### Bài ví dụ 1
 
 ???+ note "[Codeforces Round #384 (Div. 2) C. Vladik and fractions](http://codeforces.com/problemset/problem/743/C)"
-    Hãy xây dựng một bộ $x,y,z$ sao cho với $n$ cho trước, ta có
+    Xây dựng một bộ $x,y,z$ sao cho với $n$ cho trước, đẳng thức sau đúng:
     $\dfrac{1}{x}+\dfrac{1}{y}+\dfrac{1}{z}=\dfrac{2}{n}$.
 
 ??? note "Ý tưởng giải"
@@ -50,11 +50,11 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
 ### Bài ví dụ 2
 
 ???+ note "[Luogu P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)"
-    Task 1: Hãy xét xem có thể xây dựng một hoán vị độ dài $n$ của
+    Nhiệm vụ 1: Xét xem có thể xây dựng một hoán vị độ dài $n$ của
     $1\dots n$ sao cho $n$ tổng tiền tố của nó đôi một khác nhau modulo $n$
     hay không, và nếu có thì xây dựng.
 
-    Task 2: Hãy xét xem có thể xây dựng một hoán vị độ dài $n$ của
+    Nhiệm vụ 2: Xét xem có thể xây dựng một hoán vị độ dài $n$ của
     $1\dots n$ sao cho $n$ tích tiền tố của nó đôi một khác nhau modulo $n$
     hay không, và nếu có thì xây dựng.
 
@@ -66,17 +66,17 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
     Khi $n$ là số chẵn, có thể xây dựng một dãy dạng
     $n,1,n-2,3,\cdots$.
 
-    Trước hết, ta thấy $n$ bắt buộc phải xuất hiện ở vị trí đầu tiên của dãy.
+    Trước hết, có thể thấy $n$ bắt buộc phải xuất hiện ở vị trí đầu tiên của dãy.
     Nếu không, hai tổng tiền tố trước và sau khi $n$ xuất hiện chắc chắn sẽ
     bằng nhau theo modulo.
 
     Sau đó xét cách xây dựng toàn bộ dãy:
 
-    Hãy thử xây dựng dãy tổng tiền tố rồi suy ra dãy ban đầu. Ta nhận thấy
+    Thử xây dựng dãy tổng tiền tố rồi suy ra dãy ban đầu. Có thể nhận thấy
     hiệu giữa hai tổng tiền tố bất kỳ không được bằng nhau theo modulo, vì dãy
     sai phân của dãy tổng tiền tố tương ứng với hoán vị ban đầu.
 
-    Vì vậy ta thử xây dựng dãy tổng tiền tố theo modulo dưới dạng
+    Vì vậy, thử xây dựng dãy tổng tiền tố theo modulo dưới dạng
 
     $$
     0,1,-1,2,-2,\cdots
@@ -102,22 +102,22 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
 
     Tiếp theo xét cách xây dựng dãy:
 
-    Tương tự task 1, ta thấy $1$ bắt buộc phải xuất hiện ở vị trí đầu tiên,
+    Tương tự task 1, có thể thấy $1$ bắt buộc phải xuất hiện ở vị trí đầu tiên,
     nếu không hai tích tiền tố trước và sau khi $1$ xuất hiện sẽ bằng nhau.
     Còn $n$ bắt buộc phải xuất hiện ở vị trí cuối cùng, vì sau vị trí xuất hiện
     của $n$, mọi tích tiền tố theo modulo đều bằng $0$. Sau khi phân tích vài
-    ví dụ trong đề, ta thấy mọi ví dụ đều có một nghiệm hợp lệ sao cho dãy tích
+    ví dụ trong đề, có thể thấy mọi ví dụ đều có một nghiệm hợp lệ sao cho dãy tích
     tiền tố theo modulo là $1,2,3,\cdots,n$. Vì vậy có thể xây dựng dãy đã nêu
     ở trên để thỏa điều kiện này. Khi đó chỉ cần chứng minh $n$ số này đôi một
     khác nhau.
 
-    Ta nhận thấy các số đó đều là nghịch đảo của $1\cdots n-2$ cộng thêm $1$,
+    Các số đó đều là nghịch đảo của $1\cdots n-2$ cộng thêm $1$,
     nên chúng đôi một khác nhau. Bài toán được giải.
 
 ### Bài ví dụ 3
 
 ???+ note "[AtCoder Grand Contest 032 B](https://atcoder.jp/contests/agc032/tasks/agc032_b)"
-    Cho một số nguyên $N$, hãy xây dựng một đồ thị vô hướng có $N$ đỉnh. Đánh
+    Cho một số nguyên $N$, xây dựng một đồ thị vô hướng có $N$ đỉnh. Đánh
     số các đỉnh là $1\ldots N$, và yêu cầu đồ thị thỏa mãn:
 
     -   Đây là một đồ thị đơn liên thông.
@@ -127,17 +127,17 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
     Dữ liệu bảo đảm có nghiệm.
 
 ??? note "Ý tưởng giải"
-    Bằng cách phân tích các trường hợp $n=3,4,5$, ta có thể tìm ra một cách
+    Bằng cách phân tích các trường hợp $n=3,4,5$, có thể tìm ra một cách
     xây dựng.
 
-    Hãy xây dựng một đồ thị $k$-phần đầy đủ, sao cho tổng chỉ số trong mỗi phần
+    Xây dựng một đồ thị $k$-phần đầy đủ, sao cho tổng chỉ số trong mỗi phần
     bằng nhau. Khi đó $S$ của mỗi đỉnh đều bằng
     $\dfrac{(k-1)\sum_{i=1}^{n}i}{k}$.
 
-    Nếu $n$ chẵn, ta ghép các số đầu-cuối thành từng cặp:
+    Nếu $n$ chẵn, ghép các số đầu-cuối thành từng cặp:
     $\{1,n\},\{2,n-1\}\cdots$.
 
-    Nếu $n$ lẻ, ta tách riêng $n$ thành một nhóm, rồi ghép cặp $n-1$ số còn
+    Nếu $n$ lẻ, tách riêng $n$ thành một nhóm, rồi ghép cặp $n-1$ số còn
     lại: $\{n\},\{1,n-1\},\{2,n-2\}\cdots$.
 
     Đồ thị xây dựng theo cách này dễ chứng minh là liên thông khi $n\ge 3$,
@@ -154,23 +154,23 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
     sau:
 
     Cho $n$ đồ vật, thể tích của từng đồ vật lần lượt là $v_1,v_2,\ldots,v_n$.
-    Hãy tính số cách chọn một số đồ vật, cũng có thể không chọn đồ vật nào, sao
+    Tính số cách chọn một số đồ vật, cũng có thể không chọn đồ vật nào, sao
     cho tổng thể tích đúng bằng $w$. Vì đáp án có thể rất lớn, chỉ cần in đáp
     án modulo $P$.
 
     Do thức khuya luyện bài lâu ngày, cậu chỉ nhìn thấy trong đầu vào mẫu có $w$
     và $P$, đầu ra mẫu là $k$, còn không nhìn rõ có bao nhiêu đồ vật và thể
     tích từng đồ vật là bao nhiêu. Đến khi tỉnh dậy, Tiểu Q vẫn không nhớ được
-    $n$ và $v$. Hãy viết chương trình giúp Tiểu Q nhớ lại đầu vào mẫu năm xưa.
+    $n$ và $v$. Viết chương trình giúp Tiểu Q nhớ lại đầu vào mẫu năm xưa.
 
 ??? note "Ý tưởng giải"
     Đây là một trong những bài xây dựng có độ tự do cao nhất. Chính điều đó làm
-    ta dễ rơi vào tình trạng không có manh mối và khó bắt đầu.
+    người giải dễ rơi vào tình trạng không có manh mối và khó bắt đầu.
 
-    Trước hết, không khó nhận ra modulo là giả. Vì ta được tự do xây dựng dữ
-    liệu, ta luôn có thể khiến số cách không vượt quá modulo.
+    Trước hết, không khó nhận ra modulo là giả. Vì dữ liệu được xây dựng tự do,
+    luôn có thể khiến số cách không vượt quá modulo.
 
-    Bằng một cách nghĩ khá lạ, ta có thể xây dựng $n$ đồ vật nhỏ có chi phí
+    Bằng một cách nghĩ khá lạ, có thể xây dựng $n$ đồ vật nhỏ có chi phí
     $1$ và một vài đồ vật lớn có chi phí lớn hơn $\dfrac{w}{2}$.
 
     Vì mỗi đồ vật lớn chỉ có thể chọn nhiều nhất một cái, nên một đồ vật lớn có
