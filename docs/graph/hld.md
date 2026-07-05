@@ -4,22 +4,22 @@ author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogee
 
 Phân rã cây thành chuỗi được dùng để chia cây thành nhiều chuỗi, qua đó duy trì thông tin trên các đường đi của cây.
 
-Cụ thể, ta phân rã toàn bộ cây thành một số chuỗi để biến nó thành một cấu trúc tuyến tính, rồi dùng các cấu trúc dữ liệu khác để duy trì thông tin.
+Cụ thể, phân rã toàn bộ cây thành một số chuỗi để biến nó thành một cấu trúc tuyến tính, rồi dùng các cấu trúc dữ liệu khác để duy trì thông tin.
 
 **Phân rã cây thành chuỗi** còn gọi là phân rã chuỗi trên cây, có nhiều dạng, chẳng hạn **phân rã chuỗi nặng** (heavy-light decomposition, HLD), **phân rã chuỗi dài** và phép phân rã dùng trong cây Link-Cut, đôi khi gọi là "phân rã chuỗi thực". Trong phần lớn trường hợp, nếu không nói rõ thêm, "phân rã cây thành chuỗi" thường chỉ "phân rã chuỗi nặng".
 
 Phân rã chuỗi nặng có thể chia một đường đi bất kỳ trên cây thành không quá $O(\log n)$ chuỗi liên tiếp. Các đỉnh trên mỗi chuỗi có độ sâu đôi một khác nhau, tức là một chuỗi đi từ dưới lên, và LCA của mọi đỉnh trên chuỗi là một đầu mút của chuỗi.
 
-Phân rã chuỗi nặng còn đảm bảo các đỉnh trên mỗi chuỗi được tách ra có thứ tự DFS liên tiếp, nên ta có thể thuận tiện dùng các cấu trúc dữ liệu duy trì dãy, như cây đoạn, để duy trì thông tin đường đi trên cây. Ví dụ:
+Phân rã chuỗi nặng còn bảo đảm các đỉnh trên mỗi chuỗi được tách ra có thứ tự DFS liên tiếp, nên có thể thuận tiện dùng các cấu trúc dữ liệu duy trì dãy, như cây đoạn, để duy trì thông tin đường đi trên cây. Ví dụ:
 
 1.  Sửa giá trị của tất cả các đỉnh **trên đường đi giữa hai đỉnh của cây**.
 2.  Truy vấn **tổng/cực trị/thông tin khác** của trọng số các đỉnh **trên đường đi giữa hai đỉnh của cây**, miễn là thông tin đó có thể được duy trì trên dãy và dễ gộp bằng cấu trúc dữ liệu.
 
-Ngoài việc phối hợp với cấu trúc dữ liệu để duy trì thông tin đường đi trên cây, HLD còn có thể dùng để tìm LCA trong $O(\log n)$ với hằng số nhỏ. Trong một số bài toán, ta cũng có thể khai thác các tính chất của nó một cách linh hoạt.
+Ngoài việc phối hợp với cấu trúc dữ liệu để duy trì thông tin đường đi trên cây, HLD còn có thể dùng để tìm LCA trong $O(\log n)$ với hằng số nhỏ. Trong một số bài toán, cũng có thể khai thác các tính chất của nó một cách linh hoạt.
 
 ## Phân rã chuỗi nặng
 
-Ta đưa ra một số định nghĩa:
+Một số định nghĩa:
 
 Định nghĩa **con nặng** là đỉnh con có cây con lớn nhất trong các con của một đỉnh. Nếu có nhiều con có cây con lớn nhất, chọn một đỉnh bất kỳ. Nếu không có con thì không có con nặng.
 
@@ -82,7 +82,7 @@ $$
 
 Sau đây là phần cài đặt.
 
-Trước hết ta đưa ra một số định nghĩa:
+Trước hết là một số định nghĩa:
 
 -   $\operatorname{fa}(x)$ biểu thị cha của đỉnh $x$ trên cây.
 -   $\operatorname{dep}(x)$ biểu thị độ sâu của đỉnh $x$ trên cây.
@@ -92,7 +92,7 @@ Trước hết ta đưa ra một số định nghĩa:
 -   $\operatorname{dfn}(x)$ biểu thị **thứ tự DFS** của đỉnh $x$, đồng thời cũng là chỉ số của nó trong cây đoạn.
 -   $\operatorname{rnk}(x)$ biểu thị số hiệu đỉnh tương ứng với một thứ tự DFS, có $\operatorname{rnk}(\operatorname{dfn}(x))=x$.
 
-Ta chạy hai lần DFS để tiền xử lý các giá trị này. Lần DFS thứ nhất tính $\operatorname{fa}(x)$, $\operatorname{dep}(x)$, $\operatorname{siz}(x)$, $\operatorname{son}(x)$; lần DFS thứ hai tính $\operatorname{top}(x)$, $\operatorname{dfn}(x)$, $\operatorname{rnk}(x)$.
+Chạy hai lần DFS để tiền xử lý các giá trị này. Lần DFS thứ nhất tính $\operatorname{fa}(x)$, $\operatorname{dep}(x)$, $\operatorname{siz}(x)$, $\operatorname{son}(x)$; lần DFS thứ hai tính $\operatorname{top}(x)$, $\operatorname{dfn}(x)$, $\operatorname{rnk}(x)$.
 
 ```cpp
 void dfs1(int u, int f) {
@@ -121,22 +121,22 @@ void dfs2(int u, int ftop) {
 
 Tất cả các chuỗi nặng **phân rã hoàn toàn** toàn bộ cây.
 
-Khi phân rã, ta **duyệt ưu tiên cạnh nặng**. Khi đó trên thứ tự DFS cuối cùng của cây, các thứ tự DFS trong cùng một chuỗi nặng là liên tiếp. Dãy sau khi sắp xếp theo DFN chính là các chuỗi sau phân rã.
+Khi phân rã, cần **duyệt ưu tiên cạnh nặng**. Khi đó trên thứ tự DFS cuối cùng của cây, các thứ tự DFS trong cùng một chuỗi nặng là liên tiếp. Dãy sau khi sắp xếp theo DFN chính là các chuỗi sau phân rã.
 
 Thứ tự DFS trong một cây con là liên tiếp.
 
 Có thể nhận thấy khi đi xuống qua một **cạnh nhẹ**, kích thước cây con đang xét ít nhất sẽ giảm một nửa.
 
-Do đó, với một đường đi bất kỳ trên cây, ta tách nó thành hai đoạn đi xuống từ [LCA](./lca.md) về hai phía. Mỗi phía nhiều nhất đi qua $O(\log n)$ cạnh nhẹ, vì vậy mỗi đường đi trên cây có thể được tách thành không quá $O(\log n)$ chuỗi nặng.
+Do đó, với một đường đi bất kỳ trên cây, có thể tách nó thành hai đoạn đi xuống từ [LCA](./lca.md) về hai phía. Mỗi phía nhiều nhất đi qua $O(\log n)$ cạnh nhẹ, vì vậy mỗi đường đi trên cây có thể được tách thành không quá $O(\log n)$ chuỗi nặng.
 
 ??? info "Cách tạo dữ liệu để ép HLD"
-    Trong trường hợp thông thường, hằng số của $O(\log n)$ trong HLD không đủ lớn nên rất khó ép thời gian. Nếu muốn ép, ta chỉ có thể xây cây nhị phân có độ sâu thấp.
+    Trong trường hợp thông thường, hằng số của $O(\log n)$ trong HLD không đủ lớn nên rất khó ép thời gian. Nếu muốn ép, chỉ có thể xây cây nhị phân có độ sâu thấp.
     
     Vì vậy có thể cân nhắc một phương án trung hòa.
     
-    Ta xây một cây nhị phân có $\sqrt{n}$ đỉnh. Với mỗi cạnh từ một đỉnh tới con của nó, thay cạnh đó bằng một chuỗi độ dài $\sqrt{n}$.
+    Xây một cây nhị phân có $\sqrt{n}$ đỉnh. Với mỗi cạnh từ một đỉnh tới con của nó, thay cạnh đó bằng một chuỗi độ dài $\sqrt{n}$.
     
-    Như vậy, với các truy vấn ngẫu nhiên, ta có thể ép số lần chuyển giữa chuỗi nhẹ và chuỗi nặng trung bình xuống khoảng $\frac{\log n}{2}$, đồng thời độ sâu là $O(\sqrt{n} \log n)$.
+    Như vậy, với các truy vấn ngẫu nhiên, có thể ép số lần chuyển giữa chuỗi nhẹ và chuỗi nặng trung bình xuống khoảng $\frac{\log n}{2}$, đồng thời độ sâu là $O(\sqrt{n} \log n)$.
     
     Thêm một số lá ngẫu nhiên trông có vẻ có thể ép HLD, nhưng do hằng số của HLD nhỏ nên chưa chắc ép được.
 
@@ -219,7 +219,7 @@ Bài viết dùng các ví dụ để minh họa cách áp dụng phân rã chu�
     2.  Truy vấn trọng số lớn nhất trên đường đi từ $u$ tới $v$.
     3.  Truy vấn tổng trọng số trên đường đi từ $u$ tới $v$.
     
-    Đảm bảo $1\le n\le 30000$, $0\le q\le 200000$.
+    Ràng buộc: $1\le n\le 30000$, $0\le q\le 200000$.
 
 ??? note "Lời giải"
     Theo đề bài và các tính chất đã nêu ở trên, cây đoạn cần duy trì ba thao tác:
@@ -234,11 +234,11 @@ Bài viết dùng các ví dụ để minh họa cách áp dụng phân rã chu�
     
     Vấn đề là làm sao sửa/truy vấn đường đi giữa hai đỉnh.
     
-    Hãy xét cách ta dùng **nhân đôi để tìm LCA**. Trước hết ta **nâng hai đỉnh lên cùng độ cao, rồi nâng cả hai đỉnh cùng lúc**. HLD cũng có thể dùng tư tưởng này.
+    Xét cách dùng **nhân đôi để tìm LCA**. Trước hết **nâng hai đỉnh lên cùng độ cao, rồi nâng cả hai đỉnh cùng lúc**. HLD cũng có thể dùng tư tưởng này.
     
     Trong quá trình nhảy lên, nếu đỉnh hiện tại nằm trên chuỗi nặng thì nhảy lên đầu chuỗi nặng; nếu đỉnh hiện tại không nằm trên chuỗi nặng thì nhảy lên một đỉnh. Lặp như vậy cho tới khi hai đỉnh trùng nhau. Trên đường đi, cập nhật hoặc truy vấn thông tin đoạn tương ứng.
     
-    Với mỗi truy vấn, ta đi qua nhiều nhất $O(\log n)$ chuỗi nặng; trên mỗi chuỗi, độ phức tạp của cây đoạn là $O(\log n)$. Do đó tổng độ phức tạp thời gian là $O(n\log n+q\log^2 n)$. Trên thực tế, số chuỗi nặng rất khó đạt tới $O(\log n)$, dù có thể dùng cây nhị phân hoàn chỉnh để ép đạt, nên HLD thường có hằng số nhỏ.
+    Với mỗi truy vấn, đi qua nhiều nhất $O(\log n)$ chuỗi nặng; trên mỗi chuỗi, độ phức tạp của cây đoạn là $O(\log n)$. Do đó tổng độ phức tạp thời gian là $O(n\log n+q\log^2 n)$. Trên thực tế, số chuỗi nặng rất khó đạt tới $O(\log n)$, dù có thể dùng cây nhị phân hoàn chỉnh để ép đạt, nên HLD thường có hằng số nhỏ.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -263,9 +263,9 @@ Tiếp theo là một bài mẫu về phân rã chuỗi nặng có thao tác đ�
 ??? note "Lời giải"
     Trước hết chạy DFS với $1$ làm gốc để tiền xử lý các thông tin cần thiết cho HLD. Để tiện trình bày, gọi cây có gốc $1$ là "cây ban đầu", còn cây sau một số thao tác đổi gốc là "cây hiện tại". Trong quá trình thao tác, cần duy trì $\textit{root}$ là gốc của cây hiện tại. Vì cây đoạn lưu thông tin theo thứ tự DFS của cây ban đầu, nên mỗi lần truy vấn và sửa cần chuyển thao tác trên cây hiện tại về cây ban đầu.
     
-    Với thao tác đổi gốc, ta trực tiếp đặt $\textit{root}\gets u$. Với thao tác trên đường đi, vì đổi gốc không ảnh hưởng tới đường đi, nên cứ xử lý tương ứng trên cây ban đầu.
+    Với thao tác đổi gốc, trực tiếp đặt $\textit{root}\gets u$. Với thao tác trên đường đi, vì đổi gốc không ảnh hưởng tới đường đi, nên cứ xử lý tương ứng trên cây ban đầu.
     
-    Trọng tâm là các thao tác trên cây con. Ta phân loại theo vị trí tương đối của $u$ và $\textit{root}$:
+    Trọng tâm là các thao tác trên cây con. Phân loại theo vị trí tương đối của $u$ và $\textit{root}$:
     
     -   $u = \textit{root}$: đây là trường hợp đặc biệt nhất, tương đương thao tác trên toàn bộ cây. Khi đó chỉ cần gắn đánh dấu vào gốc cây đoạn hoặc truy vấn đáp án tại đó.
     -   $u$ là tổ tiên của $\textit{root}$ trong cây ban đầu, tức $u$ nằm trên đường đi đơn từ $1$ tới $\textit{root}$.
@@ -298,18 +298,18 @@ Tiếp theo là một bài mẫu về phân rã chuỗi nặng có thao tác đ�
 Cuối cùng là một bài tương tác, cũng là một ứng dụng không truyền thống của HLD.
 
 ???+ example "[Nauuo and Binary Tree](https://loj.ac/problem/6669)"
-    Có một cây nhị phân gốc $1$. Bạn có thể hỏi khoảng cách giữa hai đỉnh bất kỳ, hãy tìm cha của mỗi đỉnh.
+    Có một cây nhị phân gốc $1$. Có thể hỏi khoảng cách giữa hai đỉnh bất kỳ; cần tìm cha của mỗi đỉnh.
     
-    Số đỉnh không vượt quá $3000$, bạn được hỏi nhiều nhất $30000$ lần.
+    Số đỉnh không vượt quá $3000$, số lần hỏi không quá $30000$.
 
 ??? note "Lời giải"
     Trước hết có thể xác định độ sâu của mỗi đỉnh bằng $n-1$ lần hỏi.
     
     Sau đó xét việc xác định cha của các đỉnh theo thứ tự độ sâu tăng dần. Khi xác định cha của một đỉnh, tất cả tổ tiên của nó chắc chắn đã biết.
     
-    Trước khi xác định cha của một đỉnh, hãy thực hiện phân rã chuỗi nặng trên phần cây đã biết.
+    Trước khi xác định cha của một đỉnh, thực hiện phân rã chuỗi nặng trên phần cây đã biết.
     
-    Giả sử cần tìm vị trí của đỉnh $k$ trong cây con $u$. Ta có thể hỏi khoảng cách giữa $k$ và đuôi chuỗi nặng chứa $u$, từ đó xác định thêm vị trí của $k$. Xem hình sau:
+    Giả sử cần tìm vị trí của đỉnh $k$ trong cây con $u$. Có thể hỏi khoảng cách giữa $k$ và đuôi chuỗi nặng chứa $u$, từ đó xác định thêm vị trí của $k$. Xem hình sau:
     
     ![](./images/hld2.png)
     
@@ -319,7 +319,7 @@ Cuối cùng là một bài tương tác, cũng là một ứng dụng không tr
     
     Độ phức tạp thời gian là $O(n^2)$, độ phức tạp số lần hỏi là $O(n\log n)$.
     
-    Cụ thể, đặt $T(n)$ là số lần hỏi cần thiết trong trường hợp xấu nhất để tìm vị trí của một đỉnh mới trong một cây kích thước $n$, ta có:
+    Cụ thể, đặt $T(n)$ là số lần hỏi cần thiết trong trường hợp xấu nhất để tìm vị trí của một đỉnh mới trong một cây kích thước $n$, có:
     
     $$
     T(n)\le
@@ -356,20 +356,20 @@ Như hình sau, cách phân rã này vừa có thể xem là phân rã chuỗi n
 
 ![Ví dụ phân rã cây theo chuỗi dài](./images/hld.png)
 
-Cách cài đặt phân rã chuỗi dài tương tự phân rã chuỗi nặng, nên không trình bày thêm ở đây.
+Cách cài đặt phân rã chuỗi dài tương tự phân rã chuỗi nặng, nên không trình bày thêm.
 
 ### Ứng dụng thường gặp
 
-Trước hết, ta nhận thấy trong phân rã chuỗi dài, số lần chuyển qua cạnh nhẹ trên đường đi từ một đỉnh tới gốc là cỡ $\sqrt{n}$.
+Trước hết, nhận thấy trong phân rã chuỗi dài, số lần chuyển qua cạnh nhẹ trên đường đi từ một đỉnh tới gốc là cỡ $\sqrt{n}$.
 
 ??? info "Cách dựng dữ liệu để ép đầy số lần chuyển cạnh nhẹ/nặng"
-    Ta có thể dựng một cây nhị phân T như sau:
+    Có thể dựng một cây nhị phân T như sau:
     
     Giả sử tham số của cây nhị phân cần dựng là $D$.
     
     Nếu $D \neq 0$, dựng một cây nhị phân tham số $D-1$ ở con trái, và dựng một chuỗi độ dài $2D-1$ ở con phải.
     
-    Nếu $D = 0$, ta có thể dựng trực tiếp một đỉnh lá đơn lẻ rồi kết thúc lời gọi.
+    Nếu $D = 0$, có thể dựng trực tiếp một đỉnh lá đơn lẻ rồi kết thúc lời gọi.
     
     Cách dựng này chắc chắn làm cho đường đi từ đỉnh lá đơn lẻ tới gốc toàn là cạnh nhẹ, đồng thời cần số đỉnh cỡ $D^2$.
     
@@ -379,7 +379,7 @@ Trước hết, ta nhận thấy trong phân rã chuỗi dài, số lần chuy�
 
 Thông thường, DP có thể được tối ưu bằng phân rã chuỗi dài sẽ có một chiều trạng thái là chiều độ sâu.
 
-Ta có thể cân nhắc dùng phân rã chuỗi dài để tối ưu DP trên cây.
+Có thể cân nhắc dùng phân rã chuỗi dài để tối ưu DP trên cây.
 
 Cụ thể, trạng thái của mỗi đỉnh trực tiếp kế thừa trạng thái của con nặng của nó, đồng thời gộp thô bạo các trạng thái DP của con nhẹ.
 
@@ -396,14 +396,14 @@ Cụ thể, trạng thái của mỗi đỉnh trực tiếp kế thừa trạng 
     -   Với mọi $k < j$, đều có $d_{x, k} < d_{x, j}$.
     -   Với mọi $k > j$, đều có $d_{x, k} \le d_{x, j}$.
     
-    Hãy tính chỉ số trội của mỗi đỉnh trong cây.
+    Tính chỉ số trội của mỗi đỉnh trong cây.
 
 ??? note "Lời giải"
     Đặt $f_{i,j}$ biểu thị số đỉnh trong cây con của $i$ có khoảng cách tới $i$ là $j$.
     
     Chuyển trạng thái thô bạo trực tiếp có độ phức tạp thời gian $O(n^2)$.
     
-    Ta xét mỗi lần chuyển trạng thái: trực tiếp kế thừa mảng DP và đáp án của con nặng, rồi cập nhật trên cơ sở đó.
+    Xét mỗi lần chuyển trạng thái: trực tiếp kế thừa mảng DP và đáp án của con nặng, rồi cập nhật trên cơ sở đó.
     
     Trước hết cần chèn một phần tử 1 vào đầu mảng DP của con nặng; phần tử này đại diện cho đỉnh hiện tại.
     
@@ -430,15 +430,15 @@ Tham khảo [blog của Zusu Yu](https://www.cnblogs.com/zhoushuyu/p/9468669.htm
 
 Tức là hỏi đỉnh thu được sau khi một đỉnh nhảy lên cha $k$ lần.
 
-Trước hết giả sử ta đã tiền xử lý tổ tiên cấp $2^i$ của mỗi đỉnh.
+Trước hết giả sử đã tiền xử lý tổ tiên cấp $2^i$ của mỗi đỉnh.
 
-Bây giờ giả sử ta đã tìm được tổ tiên cấp $2^i$ của đỉnh truy vấn sao cho $2^i \le k < 2^{i+1}$.
+Bây giờ giả sử đã tìm được tổ tiên cấp $2^i$ của đỉnh truy vấn sao cho $2^i \le k < 2^{i+1}$.
 
-Ta xét việc lấy các đỉnh trên chuỗi nặng chứa nó và đưa vào bảng theo thứ tự độ sâu. Giả sử độ dài chuỗi nặng là $d$.
+Xét việc lấy các đỉnh trên chuỗi nặng chứa nó và đưa vào bảng theo thứ tự độ sâu. Giả sử độ dài chuỗi nặng là $d$.
 
-Đồng thời, khi tiền xử lý, ta tìm các tổ tiên cấp $1$ tới $d$ của đỉnh gốc mỗi chuỗi nặng và cũng đưa vào bảng.
+Đồng thời, khi tiền xử lý, tìm các tổ tiên cấp $1$ tới $d$ của đỉnh gốc mỗi chuỗi nặng và cũng đưa vào bảng.
 
-Theo tính chất của phân rã chuỗi dài, $k-2^i \le 2^i \leq d$. Nói cách khác, ta có thể tìm tổ tiên cấp $k$ của đỉnh này trong bảng của chuỗi nặng đó trong $O(1)$.
+Theo tính chất của phân rã chuỗi dài, $k-2^i \le 2^i \leq d$. Nói cách khác, có thể tìm tổ tiên cấp $k$ của đỉnh này trong bảng của chuỗi nặng đó trong $O(1)$.
 
 Tiền xử lý cần tính tổ tiên cấp $2^i$ bằng nhân đôi, đồng thời cần tiền xử lý bảng ứng với mỗi chuỗi nặng.
 
