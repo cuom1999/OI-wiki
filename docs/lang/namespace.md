@@ -4,9 +4,9 @@ Cơ chế **không gian tên** (`namespace`) của C++ có thể dùng để gi�
 xung đột tên trong các dự án phức tạp.
 
 Lấy một ví dụ: toàn bộ nội dung của thư viện chuẩn C++ đều được định nghĩa trong
-không gian tên `std`. Nếu ta định nghĩa một biến tên là `cin`, ta có thể truy cập
-biến `cin` do mình định nghĩa bằng `cin`, đồng thời truy cập đối tượng `cin` của
-thư viện chuẩn bằng `std::cin`, nhờ đó tránh xung đột tên.
+không gian tên `std`. Nếu định nghĩa một biến tên là `cin`, có thể truy cập biến
+`cin` do mình định nghĩa bằng `cin`, đồng thời truy cập đối tượng `cin` của thư
+viện chuẩn bằng `std::cin`, nhờ đó tránh xung đột tên.
 
 ## Định nghĩa
 
@@ -20,9 +20,9 @@ void f(int x) { cnt = x; }
 }  // namespace A
 ```
 
-Sau khi định nghĩa, ở bên ngoài không gian tên này, ta có thể dùng `A::f(x)` để
-truy cập hàm `f` bên trong không gian tên `A`, đồng thời có thể dùng `A::cnt` để
-truy cập biến `cnt` bên trong không gian tên `A`.
+Sau khi định nghĩa, ở bên ngoài không gian tên này, có thể dùng `A::f(x)` để
+truy cập hàm `f` bên trong không gian tên `A`, đồng thời dùng `A::cnt` để truy
+cập biến `cnt` bên trong không gian tên `A`.
 
 Không gian tên có thể lồng nhau, vì vậy đoạn mã sau cũng được phép:
 
@@ -54,8 +54,8 @@ Sau khi định nghĩa không gian tên, nếu ở bên ngoài không gian tên 
 cập thành viên bên trong không gian tên, cần thêm `tên_không_gian_tên::` trước
 tên thành viên.
 
-Có cách nào tiện hơn để truy cập trực tiếp thành viên trong không gian tên bằng
-tên thành viên không? Câu trả lời là có. Ta có thể dùng `using`.
+Để truy cập trực tiếp thành viên trong không gian tên chỉ bằng tên thành viên,
+có thể dùng `using`.
 
 `using` có hai dạng thường gặp sau:
 
@@ -67,8 +67,8 @@ tên thành viên không? Câu trả lời là có. Ta có thể dùng `using`.
     là đưa toàn bộ thành viên của không gian tên này vào phạm vi hiện tại.
 
 Vì vậy, nếu viết `using namespace std;`, mọi tên trong `std` sẽ được đưa vào
-phạm vi hiện tại. Khi đó ta có thể dùng `cin` thay cho `std::cin`, dùng `cout`
-thay cho `std::cout`.
+phạm vi hiện tại. Khi đó có thể dùng `cin` thay cho `std::cin`, dùng `cout` thay
+cho `std::cout`.
 
 ??? warning "Chỉ thị `using namespace` có thể gây xung đột tên!"
     Vì `using namespace std;` sẽ đưa **toàn bộ tên** trong `std` vào phạm vi
@@ -111,9 +111,9 @@ int main() {
 
 ## Không gian tên vô danh
 
-Khi trong một phạm vi ta chỉ cần định nghĩa một không gian tên (`namespace`) để
-tránh xung đột tên nội bộ, cách định nghĩa và sử dụng nó có thể được viết gọn
-hơn bằng không gian tên vô danh.
+Khi trong một phạm vi chỉ cần định nghĩa một không gian tên (`namespace`) để
+tránh xung đột tên nội bộ, có thể viết gọn cách định nghĩa và sử dụng bằng không
+gian tên vô danh.
 
 Không gian tên được định nghĩa dưới dạng `namespace { /* something ... */ }`,
 tức bỏ qua tên sau từ khóa `namespace`, được gọi là không gian tên vô danh. Một
@@ -127,12 +127,11 @@ ngoài, giống như sau phần định nghĩa đã có thêm một chỉ thị 
 
 ### Tránh xung đột tên giữa các bài con
 
-Trong một số bài toán có nhiều bài con, ta có thể định nghĩa một không gian tên
-riêng cho từng bài con, rồi định nghĩa các biến và hàm cần thiết để giải bài con
-đó bên trong. Như vậy, ngay cả khi hai phần cài đặt bài con khai báo cùng một
-tên, chúng cũng không xung đột, giúp các bài con không ảnh hưởng lẫn nhau. Cách
-làm này giúp gỡ lỗi thuận tiện hơn và cũng cải thiện khả năng đọc của chương
-trình.
+Trong một số bài toán có nhiều bài con, có thể định nghĩa một không gian tên
+riêng cho từng bài con, rồi đặt các biến và hàm cần thiết để giải bài con đó bên
+trong. Như vậy, ngay cả khi hai phần cài đặt bài con khai báo cùng một tên,
+chúng cũng không xung đột, giúp các bài con không ảnh hưởng lẫn nhau. Cách làm
+này giúp gỡ lỗi thuận tiện hơn và cũng cải thiện khả năng đọc của chương trình.
 
 ### Tránh xung đột với thư viện chuẩn và tên do môi trường đưa vào
 
@@ -155,7 +154,7 @@ int y1;  // y1 là hàm Bessel loại hai do POSIX định nghĩa
 // Windows thì không.
 
 void solve() {
-  // Trong Sol::solve(), việc dùng end và y1 mà ta đã khai báo theo cách không
+  // Trong Sol::solve(), việc dùng end và y1 đã khai báo ở trên theo cách không
   // định danh đầy đủ (không dùng Sol::) sẽ không gây xung đột tên. Nếu các khai
   // báo trên nằm trong không gian tên toàn cục thì sẽ gây xung đột: end chỉ xung
   // đột với std::end khi tra cứu tên (tức khi biên dịch mã sử dụng nó), còn y1
