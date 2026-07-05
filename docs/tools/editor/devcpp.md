@@ -14,7 +14,7 @@ Embarcadero Dev-C++[^ref1] là phiên bản kế nhiệm Bloodshed Dev-C++ và O
 
 Các bản phân phối Dev-C++ nêu trên đều được coi là "chính thức". Ngoài ra, sau khi Orwell Dev-C++ ngừng cập nhật vào năm 2015, vì nhu cầu giảng dạy, một nhà phát triển cá nhân từ Trung Quốc là [royqh1979](https://github.com/royqh1979) quyết định tiếp tục phát triển nhánh Dev-C++ cá nhân của mình, đặt tên là Red Panda Dev-C++[^ref2]. Nhánh này tích hợp gợi ý thông minh và MinGW64 phiên bản cao, rất thuận tiện cho việc tự học và sử dụng cá nhân.
 
-Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng qt5 phát triển Red Panda C++[^ref3] hoàn toàn mới, có thể chạy native trên Windows, Linux, macOS và các hệ thống khác. Giao diện của Red Panda C++ tương tự Dev-C++; ngoài các chức năng giống Dev-C++ nhưng hoàn thiện hơn như biên dịch tệp đơn, gỡ lỗi, tô sáng cú pháp, tìm kiếm/thay thế, nó còn cung cấp các chức năng cơ bản thường thấy ở IDE hiện đại như **giao diện tối**, **gợi ý mã thông minh**, **đổi tên biến/hàm**, **chuyển/tự nhận diện mã hóa tệp**. Ngoài ra, Red Panda C++ còn có chức năng bộ đề tương tự CP Editor: có thể tự viết hoặc **tải sample bài từ các website OJ/contest thường gặp**, rồi **tự động chạy và kiểm thử chương trình**.
+Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng qt5 phát triển Red Panda C++[^ref3] hoàn toàn mới, có thể chạy nguyên sinh trên Windows, Linux, macOS và các hệ thống khác. Giao diện của Red Panda C++ tương tự Dev-C++; ngoài các chức năng giống Dev-C++ nhưng hoàn thiện hơn như biên dịch tệp đơn, gỡ lỗi, tô sáng cú pháp, tìm kiếm/thay thế, nó còn cung cấp các chức năng cơ bản thường thấy ở IDE hiện đại như **giao diện tối**, **gợi ý mã thông minh**, **đổi tên biến/hàm**, **chuyển/tự nhận diện mã hóa tệp**. Ngoài ra, Red Panda C++ còn có chức năng bộ đề tương tự CP Editor: có thể tự viết hoặc **tải mẫu bài từ các trang web OJ/cuộc thi thường gặp**, rồi **tự động chạy và kiểm thử chương trình**.
 
 ## Hướng dẫn sử dụng
 
@@ -169,7 +169,7 @@ Nhấp Tools -> Editor Options, rồi chọn thẻ "Display".
 
 #### Giao diện
 
-Nhấp Tools -> Editor Options, rồi chọn thẻ "Syntax". Có thể dùng theme có sẵn hoặc tự điều chỉnh.
+Nhấp Tools -> Editor Options, rồi chọn thẻ "Syntax". Có thể dùng giao diện có sẵn hoặc tự điều chỉnh.
 
 ![](./images/Dev-C++-10.png)
 
