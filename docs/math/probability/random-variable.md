@@ -1,7 +1,7 @@
-<span id="&#30456;&#20851;&#27010;&#24565;"></span>
+<span id="các-khái-niệm-liên-quan"></span>
 ## Các khái niệm liên quan
 
-<span id="&#38543;&#26426;&#21464;&#37327;"></span>
+<span id="biến-ngẫu-nhiên"></span>
 ### Biến ngẫu nhiên
 
 Cho không gian xác suất $(\Omega, \mathcal{F}, P)$. Nếu hàm $X : \Omega \to \mathbb{R}$ định nghĩa trên không gian mẫu $\Omega$ thỏa mãn: với mọi $t \in \mathbb{R}$ ta đều có
@@ -12,7 +12,7 @@ $$
 
 thì $X$ được gọi là một **biến ngẫu nhiên**.
 
-<span id="&#31034;&#24615;&#20989;&#25968;"></span>
+<span id="hàm-chỉ-báo"></span>
 ### Hàm chỉ báo
 
 Với biến cố $A$ trên không gian mẫu $\Omega$, định nghĩa biến ngẫu nhiên
@@ -26,7 +26,7 @@ $$
 
 Khi đó $I_A$ được gọi là **hàm chỉ báo** của biến cố $A$.
 
-<span id="&#20998;&#24067;&#20989;&#25968;"></span>
+<span id="hàm-phân-phối"></span>
 ### Hàm phân phối
 
 Với biến ngẫu nhiên $X$, hàm
@@ -45,17 +45,17 @@ Hàm phân phối có các tính chất sau:
 
 Đồng thời, ta có thể chứng minh rằng mọi hàm thỏa mãn các yêu cầu trên đều là hàm phân phối của một biến ngẫu nhiên nào đó. Vì vậy, hàm phân phối và biến ngẫu nhiên tương ứng một-một với nhau.
 
-<span id="&#38543;&#26426;&#21464;&#37327;&#30340;&#20998;&#31867;"></span>
+<span id="phân-loại-biến-ngẫu-nhiên"></span>
 ## Phân loại biến ngẫu nhiên
 
 Theo việc miền giá trị của biến ngẫu nhiên (theo định nghĩa, biến ngẫu nhiên là một hàm) có đếm được hay không, ta chia biến ngẫu nhiên thành hai loại: **rời rạc** và **liên tục**.
 
-<span id="&#31163;&#25955;&#22411;&#38543;&#26426;&#21464;&#37327;"></span>
+<span id="biến-ngẫu-nhiên-rời-rạc"></span>
 ### Biến ngẫu nhiên rời rạc
 
 Giả sử $X$ là biến ngẫu nhiên rời rạc, mọi giá trị có thể nhận của nó là $x_1, x_2, \cdots$. Khi đó ta có thể dùng một dãy các đẳng thức dạng $P\{ X = x_i \} = p_i$ để mô tả $X$. Đây chính là **bảng phân phối** mà ta đã học trong sách giáo khoa phổ thông.
 
-<span id="&#36830;&#32493;&#22411;&#38543;&#26426;&#21464;&#37327;"></span>
+<span id="biến-ngẫu-nhiên-liên-tục"></span>
 ### Biến ngẫu nhiên liên tục
 
 Giả sử $X$ là biến ngẫu nhiên liên tục. Việc xét $P\{ X = x \}$ thường không có nhiều ý nghĩa (vì xác suất này rất có thể bằng $0$).
@@ -81,12 +81,12 @@ $$
 
 Nếu tồn tại $f(x)$ như vậy, ta gọi nó là **hàm mật độ** của $X$.
 
-<span id="&#38543;&#26426;&#21464;&#37327;&#30340;&#29420;&#31435;&#24615;"></span>
+<span id="tính-độc-lập-của-biến-ngẫu-nhiên"></span>
 ## Tính độc lập của biến ngẫu nhiên
 
 Ở phần trước, ta đã thảo luận tính độc lập của các biến cố ngẫu nhiên. Do biến ngẫu nhiên và biến cố ngẫu nhiên có liên hệ chặt chẽ, ta cũng có thể định nghĩa tính độc lập của biến ngẫu nhiên theo cách tương tự.
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ### Định nghĩa
 
 Nếu các biến ngẫu nhiên $X, Y$ thỏa mãn với mọi $x, y \in \mathbb{R}$:
@@ -100,7 +100,7 @@ thì ta nói các biến ngẫu nhiên $X, Y$ **độc lập**.
 ??? note "Ghi chú"
     Một số bạn có thể để ý rằng trong sách giáo khoa phổ thông, tính độc lập của biến ngẫu nhiên được định nghĩa bằng các xác suất dạng $P(X = \alpha)$. Tuy nhiên, vì xác suất để biến ngẫu nhiên liên tục nhận một giá trị cụ thể thường bằng $0$, trong trường hợp tổng quát hơn, định nghĩa thông qua hàm phân phối là lựa chọn hợp lý hơn.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ### Tính chất
 
 Nếu các biến ngẫu nhiên $X$,$Y$ độc lập với nhau, thì với mọi hàm $f, g$, các biến ngẫu nhiên $f(X)$ và $g(Y)$ cũng độc lập với nhau.

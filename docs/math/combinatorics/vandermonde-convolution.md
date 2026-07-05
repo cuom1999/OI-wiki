@@ -1,10 +1,10 @@
-<span id="&#x5F15;&#x5165;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
 Tích chập Vandermonde là một công thức dùng để gộp các số tổ hợp, chủ yếu được áp dụng khi suy ra các công thức trong tổ hợp.
 
-<span id="&#x8303;&#x5FB7;&#x8499;&#x5FB7;&#x5377;&#x79EF;&#x516C;&#x5F0F;"></span>
+<span id="công-thức-tích-chập-vandermonde"></span>
 
 ## Công thức tích chập Vandermonde
 
@@ -12,7 +12,7 @@ $$
 \sum_{i=0}^k\binom{n}{i}\binom{m}{k-i}=\binom{n+m}{k}
 $$
 
-<span id="&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh"></span>
 
 ### Chứng minh
 
@@ -37,11 +37,11 @@ Nếu chứng minh theo ý nghĩa tổ hợp:
 
 Chọn $k$ phần tử từ một tập có kích thước $n+m$ có thể xem là tách tập này thành hai tập có kích thước lần lượt là $n$ và $m$, rồi chọn $i$ phần tử từ tập kích thước $n$ và $k-i$ phần tử từ tập kích thước $m$. Do ta đã cộng trên mọi giá trị $i$, chỉ cần xét một cách tách tập, vì các cách tách khác là tương đương.
 
-<span id="&#x63A8;&#x8BBA;"></span>
+<span id="hệ-quả"></span>
 
 ## Hệ quả
 
-<span id="&#x63A8;&#x8BBA;-1-&#x53CA;&#x8BC1;&#x660E;"></span>
+<span id="hệ-quả-1-và-chứng-minh"></span>
 
 ### Hệ quả 1 và chứng minh
 
@@ -51,7 +51,7 @@ $$
 
 Chứng minh tương tự chứng minh công thức gốc.
 
-<span id="&#x63A8;&#x8BBA;-2-&#x53CA;&#x8BC1;&#x660E;"></span>
+<span id="hệ-quả-2-và-chứng-minh"></span>
 
 ### Hệ quả 2 và chứng minh
 
@@ -65,7 +65,7 @@ $$
 \sum_{i=1}^n\binom{n}{i}\binom{n}{i-1}=\sum_{i=0}^{n-1}\binom{n}{i+1}\binom{n}{i}=\sum_{i=0}^{n-1}\binom{n}{n-1-i}\binom{n}{i}=\binom{2n}{n-1}
 $$
 
-<span id="&#x63A8;&#x8BBA;-3-&#x53CA;&#x8BC1;&#x660E;"></span>
+<span id="hệ-quả-3-và-chứng-minh"></span>
 
 ### Hệ quả 3 và chứng minh
 
@@ -79,7 +79,7 @@ $$
 \sum_{i=0}^n\binom{n}{i}^2=\sum_{i=0}^n\binom{n}{i}\binom{n}{n-i}=\binom{2n}{n}
 $$
 
-<span id="&#x63A8;&#x8BBA;-4-&#x53CA;&#x8BC1;&#x660E;"></span>
+<span id="hệ-quả-4-và-chứng-minh"></span>
 
 ### Hệ quả 4 và chứng minh
 
@@ -99,7 +99,7 @@ Trên một đồ thị lưới, để đi từ $(0,0)$ đến $(n,m)$ cần đi
 
 Nhìn theo cách khác, ta tách $n+m$ bước thành hai phần: đi $n$ bước trước, rồi đi $m$ bước sau. Nếu trong $n$ bước đầu có $i$ bước sang phải, thì trong $m$ bước sau sẽ có $m-i$ bước sang phải. Do đó công thức được chứng minh.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 
 ## Bài tập
 
@@ -107,7 +107,7 @@ Nhìn theo cách khác, ta tách $n+m$ bước thành hai phần: đi $n$ bướ
 
 -   [Luogu P2791 Kindergarten Basketball Problem](https://www.luogu.com.cn/problem/P2791)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 
 ## Tài liệu tham khảo và ghi chú
 

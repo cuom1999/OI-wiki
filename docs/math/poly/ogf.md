@@ -15,7 +15,7 @@ $a$ có thể là dãy hữu hạn hoặc dãy vô hạn. Một vài ví dụ th
 
 Nói cách khác, nếu dãy $a$ có công thức tổng quát thì các hệ số của hàm sinh thường chính là công thức tổng quát đó.
 
-<span id="&#x57fa;&#x672c;&#x8fd0;&#x7b97;"></span>
+<span id="phép-toán-cơ-bản"></span>
 ## Phép toán cơ bản
 
 Xét hai dãy $a,b$ có hàm sinh thường lần lượt là $F(x),G(x)$. Khi đó
@@ -34,7 +34,7 @@ $$
 
 Vì vậy $F(x)G(x)$ là hàm sinh thường của dãy $\langle \sum_{i=0}^n a_ib_{n-i} \rangle$.
 
-<span id="&#x5c01;&#x95ed;&#x5f62;&#x5f0f;"></span>
+<span id="dạng-đóng"></span>
 ## Dạng đóng
 
 Khi sử dụng hàm sinh, ta không phải lúc nào cũng làm việc trực tiếp với dạng chuỗi lũy thừa hình thức; tùy lúc ta sẽ chuyển sang dạng đóng để rút gọn tốt hơn.
@@ -121,7 +121,7 @@ Dạng đóng và dạng khai triển của cấp số nhân là hai phép biế
     \end{aligned}
     $$
 
-<span id="&#x6590;&#x6ce2;&#x90a3;&#x5951;&#x6570;&#x5217;&#x7684;&#x751f;&#x6210;&#x51fd;&#x6570;"></span>
+<span id="hàm-sinh-của-dãy-fibonacci"></span>
 ## Hàm sinh của dãy Fibonacci
 
 Tiếp theo ta suy ra hàm sinh của dãy Fibonacci.
@@ -140,7 +140,7 @@ $$
 
 Câu hỏi tiếp theo là: làm thế nào tìm dạng khai triển của nó?
 
-<span id="&#x5c55;&#x5f00;&#x65b9;&#x5f0f;&#x4e00;"></span>
+<span id="cách-khai-triển-thứ-nhất"></span>
 ### Cách khai triển thứ nhất
 
 Ta có thể xem $x+x^2$ như một khối, khi đó
@@ -163,7 +163,7 @@ $$
 
 Đây chưa phải dạng liên quan tới tỉ lệ vàng mà ta quen thuộc.
 
-<span id="&#x5c55;&#x5f00;&#x65b9;&#x5f0f;&#x4e8c;"></span>
+<span id="cách-khai-triển-thứ-hai"></span>
 ### Cách khai triển thứ hai
 
 Xét việc giải phương trình hệ số chưa biết:
@@ -239,7 +239,7 @@ $$
 [x^n]G(x)=1-2^{n+1}+(n+1)\cdot 2^{n+1}
 $$
 
-<span id="&#x725b;&#x987f;&#x4e8c;&#x9879;&#x5f0f;&#x5b9a;&#x7406;"></span>
+<span id="định-lý-nhị-thức-newton"></span>
 ## Định lý nhị thức Newton
 
 Ta định nghĩa lại phép toán tổ hợp:
@@ -256,17 +256,17 @@ $$
 
 Định lý nhị thức thông thường thực ra là một trường hợp đặc biệt của định lý nhị thức Newton.
 
-<span id="&#x5361;&#x7279;&#x5170;&#x6570;&#x7684;&#x751f;&#x6210;&#x51fd;&#x6570;"></span>
+<span id="hàm-sinh-của-số-catalan"></span>
 ## Hàm sinh của số Catalan
 
-Xem [suy diễn đại số cho dạng số Catalan](../combinatorics/catalan.md#%E4%BB%A3%E6%95%B0%E6%8E%A8%E6%BC%94).
+Xem [suy diễn đại số cho dạng số Catalan](../combinatorics/catalan.md#suy-diễn-đại-số).
 
-<span id="&#x5e94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Sau đây là một vài bài ví dụ để giới thiệu cách dùng hàm sinh trong OI.
 
-<span id="&#x98df;&#x7269;"></span>
+<span id="thức-ăn"></span>
 ### Thức ăn
 
 ???+ note "[Thức ăn](https://hydro.ac/p/bzoj-P3028)"
