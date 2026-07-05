@@ -292,7 +292,7 @@ Với cây nhị phân cân bằng, thao tác điều chỉnh cân bằng gồm 
 
 Trước hết xét phép xoay phải, còn gọi là "xoay đơn phải" hoặc "xoay cân bằng LL". Xoay phải tại nút $A$ nghĩa là đưa con trái $B$ của $A$ lên trên về bên phải để thay $A$ làm gốc, đưa $A$ xuống thành gốc của cây con phải của $B$, và cây con phải ban đầu của $B$ trở thành cây con trái của $A$.
 
-![bst-rotate](images/bst-rotate.svg)
+![Phép xoay trong cây nhị phân cân bằng](images/bst-rotate.svg)
 
 Phép xoay phải chỉ thay đổi ba nhóm liên kết giữa các nút, tương đương một phép hoán vị vòng trên ba cạnh; vì vậy cần tạm lưu một nút rồi cập nhật lần lượt.
 
@@ -334,22 +334,22 @@ Kiểu LL: cây con trái của con trái của $T$ quá dài, làm phá vỡ c�
 
 Cách điều chỉnh: xoay phải tại nút $T$.
 
-![bst-LL](images/bst-LL.svg)
+![Trường hợp mất cân bằng LL](images/bst-LL.svg)
 
 Kiểu RR: tương tự kiểu LL, cây con phải của con phải của $T$ quá dài, làm phá vỡ cân bằng.
 
 Cách điều chỉnh: xoay trái tại nút $T$.
 
-![bst-RR](images/bst-RR.svg)
+![Trường hợp mất cân bằng RR](images/bst-RR.svg)
 
 Kiểu LR: cây con phải của con trái của $T$ quá dài, làm phá vỡ cân bằng.
 
 Cách điều chỉnh: xoay trái tại nút $L$ trước để chuyển thành kiểu LL, rồi xoay phải tại nút $T$.
 
-![bst-LR](images/bst-LR.svg)
+![Trường hợp mất cân bằng LR](images/bst-LR.svg)
 
 Kiểu RL: tương tự kiểu LR, cây con trái của con phải của $T$ quá dài, làm phá vỡ cân bằng.
 
 Cách điều chỉnh: xoay phải tại nút $R$ trước để chuyển thành kiểu RR, rồi xoay trái tại nút $T$.
 
-![bst-RL](images/bst-RL.svg)
+![Trường hợp mất cân bằng RL](images/bst-RL.svg)
