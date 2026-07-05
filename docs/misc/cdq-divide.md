@@ -75,7 +75,7 @@ Trong ứng dụng thực tế, ta thường dùng một hàm `solve(l,r)` để
 
 ## Chia để trị CDQ tối ưu chuyển trạng thái của quy hoạch động 1D/1D
 
-Nội dung liên quan: [Chia để trị CDQ tối ưu DP](../dp/opt/dp-opt.md#cdq-%E5%88%86%E6%B2%BB%E4%BC%98%E5%8C%96-dp)
+Nội dung liên quan: [Chia để trị CDQ tối ưu DP](../dp/opt/dp-opt.md#tối-ưu-dp-bằng-chia-để-trị-cdq)
 
 Quy hoạch động 1D/1D chỉ một lớp bài toán DP cụ thể: mảng DP là một chiều, còn chuyển trạng thái là $O(n)$. Nếu điều kiện đủ tốt, đôi khi có thể dùng chia để trị CDQ để giảm độ phức tạp thời gian từ $O(n^2)$ xuống $O(n\log^2n)$.
 
