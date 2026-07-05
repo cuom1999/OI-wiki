@@ -25,7 +25,7 @@ của vị trí đó. Vì vậy, về bản chất, tịnh tiến đoạn các h
 trí.
 
 Để thể hiện cấu trúc chia để trị nhị phân đặc trưng của KTT,
-phần này bắt đầu trực tiếp từ phép tịnh tiến đoạn.
+phần này bắt đầu ngay từ phép tịnh tiến đoạn.
 
 <span id="cấu-trúc-dữ-liệu-động-học"></span>
 ## Cấu trúc dữ liệu động học
@@ -46,15 +46,15 @@ Hàng đợi sự kiện sẽ đưa ra các sự kiện theo thứ tự thời g
 
 Một điểm then chốt của KDS là cần có các sự kiện dễ duy trì.
 Nói cách khác, kiểu sự kiện trong hàng đợi sự kiện phải tương ứng với những thay đổi tổ hợp có thể xảy ra, và mỗi thay
-đổi chỉ liên quan đến một số lượng hằng số, thường là khá ít, các đối tượng.
+đổi chỉ liên quan đến một số lượng đối tượng không đổi, thường là rất ít.
 Ví dụ, trong phần duy trì của bài toán này,
 một kiểu sự kiện được dùng là "quan hệ lớn nhỏ giữa hàm $f_i(0)$ và hàm $f_{j}(0)$ thay đổi".
 
-Hàng đợi sự kiện có thể được duy trì một cách ngầm định.
+Hàng đợi sự kiện có thể được duy trì ngầm định.
 
 ### Chứng chỉ
 
-Các sự kiện này nên tương đương với việc được bảo đảm bởi giao của một loạt điều kiện đại số bậc thấp,
+Các sự kiện này nên tương đương với việc được xác nhận bởi giao của một loạt điều kiện đại số bậc thấp,
 trong đó mỗi điều kiện đại số chỉ liên quan đến hữu hạn đối tượng.
 Những điều kiện này được gọi là chứng chỉ của KDS.
 Ví dụ: $[f_i(0) > f_j(0)]$.
@@ -68,17 +68,16 @@ Cây đấu loại động học (Kinetic Tournament Tree, viết tắt là KTT)
 hiện lần đầu trong bài báo [Data Structures for Mobile
 Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889) năm 1999, dùng để duy trì dữ liệu biến đổi
 liên tục.
-Tổng quát hơn, mọi cấu trúc áp dụng chiến lược động hóa sau đây đều có thể được gọi là cây đấu loại động học:
+Tổng quát hơn, mọi cấu trúc áp dụng chiến lược động học hóa sau đây đều có thể được gọi là cây đấu loại động học:
 
--   Sinh chứng chỉ đúng đắn cho các thao tác then chốt trong thuật toán tĩnh (chẳng hạn phép so sánh),
+-   Sinh chứng chỉ kiểm chứng tính đúng đắn cho các thao tác then chốt trong thuật toán tĩnh (chẳng hạn phép so sánh),
     rồi gắn mỗi chứng chỉ với một hàng đợi sự kiện toàn cục,
     ghi lại thời điểm chứng chỉ đó có thể mất hiệu lực.
 -   Khi một chứng chỉ mất hiệu lực, cập nhật đầu ra của thuật toán và duy trì tập chứng chỉ một cách hiệu quả.
 
 Trong cộng đồng lập trình thi đấu, cấu trúc này trở nên phổ biến nhờ luận văn đội tuyển tập huấn quốc gia Trung Quốc
 năm 2020,
-"[Bàn về việc duy trì động giá trị cực trị của hàm
-số](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/IOI2020%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87%E9%9B%86%20%E9%9D%9E%E6%AD%A3%E5%BC%8F%E7%89%88.pdf)".
+"[Bàn về việc duy trì động giá trị cực trị của hàm số][ktt-training-2020]".
 KTT trong giới học thuật và KTT trong giới lập trình thi đấu khác nhau ở lĩnh vực ứng dụng và cách cài đặt,
 nên phần này giới thiệu KTT đã được tối ưu phần nào cho lập trình thi đấu.
 
@@ -88,7 +87,7 @@ Trước hết, xét việc thiết kế một cấu trúc dữ liệu tương t
 của cây phân đoạn; với mỗi nút không phải lá, trọng số của nó là trọng số lớn hơn trong hai nút con. Sau $O(n)$ phép so
 sánh, trọng số ở gốc chính là giá trị lớn nhất toàn cục.
 Bây giờ, các trọng số bắt đầu thay đổi.
-Miễn là KTT phát hiện được mỗi lần nguồn gốc của giá trị lớn nhất tại một nút trên cây thay đổi,
+Nếu KTT phát hiện được mỗi lần nguồn gốc của giá trị lớn nhất tại một nút trên cây thay đổi,
 có thể duy trì giá trị lớn nhất toàn cục.
 
 Để KTT phát hiện được mọi lần nguồn gốc của giá trị lớn nhất trên cây thay đổi, với một nút $x$ trên cây và hai hàm
@@ -123,7 +122,7 @@ thì sau khi tịnh tiến, hoành độ mất hiệu lực sẽ là $t-\delta$.
 Nếu lúc này $t-\delta$ vượt qua điểm $0$, chứng chỉ đã mất hiệu lực;
 khi đó cần đệ quy xuống dưới để tìm nút chứa chứng chỉ hiện tại,
 cập nhật nút đó, rồi cập nhật thông tin mới ngược lên gốc.
-Quá trình này có thể được thực hiện cùng lúc với thao tác sửa đổi.
+Quá trình này có thể thực hiện cùng lúc với thao tác sửa đổi.
 
 Từ đó thu được một cách cài đặt đơn giản.
 
@@ -188,19 +187,19 @@ $$
 
 Ngoài ra, xét ảnh hưởng của tịnh tiến đoạn lên thế năng.
 Với một lần tịnh tiến đoạn, các nút cần xét là những nút mà trong cây con của chúng
-có một số nhưng không phải toàn bộ nút của cây được thực hiện thao tác tịnh tiến đoạn.
+có một số nhưng không phải toàn bộ nút của cây chịu tác động của thao tác tịnh tiến đoạn.
 Những nút như vậy chính là các nút đi qua trên cây khi thực hiện thao tác sửa đổi;
 số lượng của chúng không vượt quá $O(\log n)$.
 Trong trường hợp xấu nhất, thế năng của mỗi nút tăng thêm $d(x)\le \log n$,
 nên mỗi thao tác làm thế năng tăng $O(\log^2 n)$.
 
-Để duy trì tịnh tiến đoạn, thao tác cập nhật chứng chỉ sẽ được thực hiện
+Để duy trì tịnh tiến đoạn, thao tác cập nhật chứng chỉ sẽ xảy ra
 $O(n\log n + m\log^2 n)$ lần.
 Mỗi lần cập nhật chứng chỉ,
 cần đi theo một đường đi trên cây đến nút có chứng chỉ mất hiệu lực; phần này tốn $O(\log n)$.
 Vì vậy tổng độ phức tạp thời gian là $O(n\log^2 n+ m\log^3 n)$.
 
-Điểm hay của phương pháp này là nó đã chạm tới cận dưới độ phức tạp thời gian của bài toán,
+Ưu điểm của phương pháp này là nó đã chạm tới cận dưới độ phức tạp thời gian của bài toán,
 $O(\lambda_{s}(n)\log^2 n)$.
 $\lambda_{s}(n)$ biểu thị độ dài của dãy Davenport-Schinzel $(n, s)$ dài nhất.
 Trong đó, các hàm tuyến tính tương ứng với $s=1$ và $\lambda_1(n)=n$.
@@ -302,3 +301,5 @@ không phụ thuộc vào bậc đa thức,
     1999.
 -   G. Alexandron, H. Kaplan, and M. Sharir. Kinetic and dynamic data structures for convex hulls and upper envelopes.
     Computational Geometry, 36(2):144-158, 2007.
+
+[ktt-training-2020]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/IOI2020%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87%E9%9B%86%20%E9%9D%9E%E6%AD%A3%E5%BC%8F%E7%89%88.pdf
