@@ -44,10 +44,10 @@ Do đó, trừ khi ký tự $char$ có thể khớp với ký tự cuối của 
 $$
 \begin{array}{ll}
 \textbf{int}\ delta1(\textbf{char}\ char) \\
-\qquad \textbf{if}\ \text{char không nằm trong pat || char là ký tự cuối cùng trong pat} \\
-\qquad\qquad\textbf{return}\ patlen \\
-\qquad \textbf{else} \\
-\qquad\qquad\textbf{return}\ patlastpos-i\quad\textbf{//}\ \text{i là vị trí xuất hiện ngoài cùng bên phải của char trong pat, tức pat[i]=char}
+\qquad \textbf{nếu}\ \text{char không nằm trong pat || char là ký tự cuối cùng trong pat} \\
+\qquad\qquad\textbf{trả về}\ patlen \\
+\qquad \textbf{ngược lại} \\
+\qquad\qquad\textbf{trả về}\ patlastpos-i\quad\textbf{//}\ \text{i là vị trí xuất hiện ngoài cùng bên phải của char trong pat, tức pat[i]=char}
 \end{array}
 $$
 
@@ -90,7 +90,7 @@ Vì vậy:
 $$
 \begin{array}{ll}
 \textbf{int}\ delta2(\textbf{int}\ j) \quad\textbf{//}\ \text{j là vị trí ký tự trong pat tương ứng với ký tự bất khớp} \\
-\qquad\qquad\textbf{return}\ patlastpos-rpr(j) \\
+\qquad\qquad\textbf{trả về}\ patlastpos-rpr(j) \\
 \end{array}
 $$
 
@@ -189,24 +189,24 @@ $$
 \begin{array}{ll}
 i \gets patlastpos. \\
 j \gets patlastpos. \\
-\textbf{loop}\\
-\qquad \textbf{if}\ j < 0 \\
-\qquad \qquad \textbf{return}\ i+1 \\
+\textbf{lặp}\\
+\qquad \textbf{nếu}\ j < 0 \\
+\qquad \qquad \textbf{trả về}\ i+1 \\
 \\
-\qquad \textbf{if}\ string[i]=pat[j] \\
+\qquad \textbf{nếu}\ string[i]=pat[j] \\
 \qquad \qquad j \gets j-1 \\
 \qquad \qquad i \gets i-1 \\
-\qquad \qquad \textbf{continue} \\
+\qquad \qquad \textbf{tiếp tục} \\
 \\
 \qquad i \gets i+max(delta_1(string[i]), delta_2(j)) \\
 \\
-\qquad \textbf{if}\ i > stringlastpos \\
-\qquad \qquad \textbf{return}\ false \\
+\qquad \textbf{nếu}\ i > stringlastpos \\
+\qquad \qquad \textbf{trả về}\ false \\
 \qquad j \gets patlastpos \\
 \end{array}
 $$
 
-Nếu thuật toán trên $\textbf{return}\ false$, điều đó cho biết $pat$ không nằm trong $string$; nếu trả về một số, số đó là vị trí xuất hiện đầu tiên của $pat$ tính từ trái sang trong $string$.
+Nếu thuật toán trên $\textbf{trả về}\ false$, điều đó cho biết $pat$ không nằm trong $string$; nếu trả về một số, số đó là vị trí xuất hiện đầu tiên của $pat$ tính từ trái sang trong $string$.
 
 Tiếp theo, ta mô tả kỹ hơn hàm $rpr(j)$ được dùng để tính $delta_2$.
 
@@ -296,9 +296,9 @@ Ta định nghĩa một $delta0$:
 $$
 \begin{array}{ll}
 \textbf{int}\ delta0(\textbf{char}\ char) \\
-\qquad \textbf{if}\ char=pat[patlastpos] \\
-\qquad\qquad \textbf{return}\ large\ \ \text{// large là một số nguyên, cần thỏa large>stringlastpos+patlen} \\
-\qquad \textbf{return}\ delta1(char)
+\qquad \textbf{nếu}\ char=pat[patlastpos] \\
+\qquad\qquad \textbf{trả về}\ large\ \ \text{// large là một số nguyên, cần thỏa large>stringlastpos+patlen} \\
+\qquad \textbf{trả về}\ delta1(char)
 \end{array}
 $$
 
@@ -307,23 +307,23 @@ Thay $delta_1$ bằng $delta0$, ta thu được thuật toán khớp cải tiế
 $$
 \begin{array}{ll}
 i \gets patlastpos \\
-\textbf{loop} \\
-\qquad\textbf{if} \ i > stringlastpos \\
-\qquad\qquad\textbf{return}\ false\\
+\textbf{lặp} \\
+\qquad\textbf{nếu} \ i > stringlastpos \\
+\qquad\qquad\textbf{trả về}\ false\\
 \\
-\qquad\textbf{while}\ i < stringlen \\
+\qquad\textbf{trong khi}\ i < stringlen \\
 \qquad\qquad i \gets i+delta0(string(i)) \ \ \text{// trừ khi string[i] khớp với ký tự cuối của pat, bước dịch tối đa là patlen}\\\
-\qquad\textbf{if}\ i \leqslant\ large \qquad\qquad\qquad\qquad \text{// lúc này không có ký tự nào trên string khớp với ký tự cuối của pat}\ \\
-\qquad\qquad\textbf{return}\ false\\
+\qquad\textbf{nếu}\ i \leqslant\ large \qquad\qquad\qquad\qquad \text{// lúc này không có ký tự nào trên string khớp với ký tự cuối của pat}\ \\
+\qquad\qquad\textbf{trả về}\ false\\
 \\
 \qquad i \gets i-large \\
 \qquad j \gets patlastpos. \\
-\qquad\textbf{while}\ j \geqslant\ 0 \ and \  string[i]=pat[j]\\
+\qquad\textbf{trong khi}\ j \geqslant\ 0 \ \text{và} \  string[i]=pat[j]\\
 \qquad \qquad j \gets j-1 \\
 \qquad \qquad i \gets i-1 \\
 \\
-\qquad \textbf{if}\ j < 0 \\
-\qquad \qquad \textbf{return}\ i+1 \\
+\qquad \textbf{nếu}\ j < 0 \\
+\qquad \qquad \textbf{trả về}\ i+1 \\
 \qquad i \gets i+max(delta_1(string[i]), delta_2(j)) \\
 \\
 \end{array}
