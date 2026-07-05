@@ -27,9 +27,9 @@ Cây ngón tay lưu dữ liệu tại các "ngón tay" (lá) của cây, với t
 điểm cho phép truy cập vào một phần của cấu trúc dữ liệu. Trong ngôn ngữ mệnh lệnh (imperative language), khái niệm này
 tương ứng với con trỏ.
 
-Trong cây ngón tay, "ngón tay" là cấu trúc trỏ tới đầu mút của dãy hoặc tới nút lá. Cây ngón tay cũng lưu trong mỗi nút
-trong kết quả của việc áp dụng một số phép toán kết hợp lên các hậu duệ của nút đó. Dữ liệu được lưu trong các nút
-trong có thể dùng để cung cấp những chức năng ngoài phạm vi của một cấu trúc dữ liệu dạng cây.
+Trong cây ngón tay, "ngón tay" là cấu trúc trỏ tới đầu mút của dãy hoặc tới nút lá. Mỗi nút trong của cây ngón tay cũng
+lưu kết quả của việc áp dụng một số phép toán kết hợp lên các hậu duệ của nút đó. Dữ liệu được lưu trong các nút trong có
+thể dùng để cung cấp những chức năng ngoài phạm vi của một cấu trúc dữ liệu dạng cây.
 
 1.  Độ sâu của cây ngón tay được tính từ dưới lên trên.
 2.  Cấp thứ nhất của cây ngón tay, tức các nút lá của cây, chỉ chứa giá trị và có độ sâu $0$. Cấp thứ hai có độ sâu
@@ -43,9 +43,9 @@ trong có thể dùng để cung cấp những chức năng ngoài phạm vi c�
 ### Biến một cây thành cây ngón tay
 
 ???+ note "Ghi chú"
-    **Cây 2-3** là một cấu trúc dữ liệu dạng cây. Mỗi nút có nút con (nút trong) có hai nút con (nút $2$) và một phần tử
-    dữ liệu, hoặc có ba nút con (nút $3$) và hai phần tử dữ liệu. Cây 2-3 là cây B bậc $3$. Các nút ngoài của cây (nút
-    lá) không có nút con và có một hoặc hai phần tử dữ liệu.
+    **Cây 2-3** là một cấu trúc dữ liệu dạng cây. Mỗi nút trong có hai nút con (nút $2$) và một phần tử dữ liệu, hoặc có
+    ba nút con (nút $3$) và hai phần tử dữ liệu. Cây 2-3 là cây B bậc $3$. Các nút ngoài của cây (nút lá) không có nút con
+    và có một hoặc hai phần tử dữ liệu.
 
 Quá trình này bắt đầu từ một cây 2-3 cân bằng. Để cây ngón tay hoạt động đúng, tất cả các nút lá cần nằm trên cùng một
 mức. Xem hình dưới đây (hình lấy từ bài báo về cây ngón tay):
@@ -108,9 +108,9 @@ data Digit a = One a | Two a a | Three a a a
 ## Độ phức tạp thời gian
 
 Cây ngón tay cung cấp truy cập thời gian hằng số khấu hao tới các "ngón tay" (lá) của cây, nơi lưu dữ liệu, đồng thời hỗ
-trợ phép nối và tách trong thời gian lôgarit theo kích thước của phần nhỏ hơn. Nó cũng lưu trong mỗi nút trong kết quả
-của việc áp dụng một số phép toán kết hợp lên các hậu duệ của nút đó. Dữ liệu "tóm tắt" lưu trong các nút trong có thể
-dùng để cung cấp chức năng của những cấu trúc dữ liệu khác ngoài cây.
+trợ phép nối và tách trong thời gian lôgarit theo kích thước của phần nhỏ hơn. Mỗi nút trong cũng lưu kết quả của việc áp
+dụng một số phép toán kết hợp lên các hậu duệ của nó. Dữ liệu "tóm tắt" này có thể dùng để cung cấp chức năng của những
+cấu trúc dữ liệu khác ngoài cây.
 
 | Thao tác                      | Cây ngón tay             | Cây 2-3 có chú thích (annotated 2-3 tree) | Danh sách (list)     | Vector     |
 | ----------------------------- | ------------------------ | ----------------------------------------- | -------------------- | ---------- |
@@ -125,9 +125,9 @@ dùng để cung cấp chức năng của những cấu trúc dữ liệu khác 
 
 ## Ứng dụng
 
-Cây ngón tay có thể dùng để xây dựng các cây khác. Ví dụ, có thể cài đặt hàng đợi ưu tiên bằng cách đánh dấu các nút
-trong theo độ ưu tiên nhỏ nhất của các nút con trong cây, hoặc cài đặt danh sách/mảng có chỉ số bằng cách đánh dấu nút
-theo số lượng lá trong các nút con của nó. Các ứng dụng khác bao gồm dãy truy cập ngẫu nhiên, dãy có thứ tự và cây
+Cây ngón tay có thể dùng để xây dựng các cây khác. Ví dụ, có thể cài đặt hàng đợi ưu tiên bằng cách gắn nhãn các nút trong
+theo độ ưu tiên nhỏ nhất của các nút con trong cây, hoặc cài đặt danh sách/mảng có chỉ số bằng cách gắn nhãn nút theo số
+lượng lá trong các nút con của nó. Các ứng dụng khác bao gồm dãy truy cập ngẫu nhiên, dãy có thứ tự và cây
 khoảng.
 
 Cây ngón tay có thể cung cấp thao tác đẩy, đảo ngược và lấy ra với thời gian trung bình $O(1)$, cùng với nối và tách
