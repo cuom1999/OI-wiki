@@ -1,8 +1,8 @@
 author: HeRaNO, Xeonacid, saffahyjp
 
-Tên đầy đủ của thư viện pb\_ds là Policy-Based Data Structures.
+Tên đầy đủ của thư viện pb\_ds là Policy-Based Data Structures, nghĩa là các cấu trúc dữ liệu dựa trên chính sách.
 
-Thư viện pb\_ds đóng gói nhiều cấu trúc dữ liệu, chẳng hạn bảng băm (Hash table),
+Thư viện pb\_ds đóng gói nhiều cấu trúc dữ liệu, chẳng hạn bảng băm (hash table),
 cây nhị phân cân bằng, trie, heap (hàng đợi ưu tiên), v.v.
 
 Giống như `vector`, `set`, `map`, các thành phần của nó đều tuân theo các quy ước

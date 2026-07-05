@@ -6,12 +6,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 ## Giới thiệu
 
-DSU (disjoint-set union, cấu trúc tập hợp rời nhau) là một cấu trúc dữ liệu dùng để quản lý tập hợp mà mỗi phần tử thuộc về. Nó được cài đặt như một rừng, trong đó mỗi cây biểu diễn một tập hợp, còn các nút trong cây biểu diễn các phần tử của tập hợp tương ứng.
+DSU (Disjoint Set Union, cấu trúc tập hợp rời nhau) là một cấu trúc dữ liệu dùng để quản lý tập hợp mà mỗi phần tử thuộc về. Nó được cài đặt như một rừng, trong đó mỗi cây biểu diễn một tập hợp, còn các nút trong cây biểu diễn các phần tử của tập hợp tương ứng.
 
-Đúng như tên gọi union-find, DSU hỗ trợ hai thao tác:
+Đúng như tên gọi hợp nhất - tìm kiếm (union-find), DSU hỗ trợ hai thao tác:
 
--   Hợp nhất (Unite): hợp nhất hai tập hợp chứa hai phần tử đã cho (tức hợp nhất hai cây tương ứng).
--   Tìm (Find): tìm tập hợp chứa một phần tử (tức tìm nút gốc của cây tương ứng); thao tác này có thể dùng để kiểm tra hai phần tử có thuộc cùng một tập hợp hay không.
+-   Hợp nhất (unite): hợp nhất hai tập hợp chứa hai phần tử đã cho (tức hợp nhất hai cây tương ứng).
+-   Tìm (find): tìm tập hợp chứa một phần tử (tức tìm nút gốc của cây tương ứng); thao tác này có thể dùng để kiểm tra hai phần tử có thuộc cùng một tập hợp hay không.
 
 Sau một số biến đổi, DSU có thể hỗ trợ xóa hoặc di chuyển một phần tử riêng lẻ, hoặc duy trì trọng số trên các cạnh của cây. Với cây phân đoạn mở nút động, ta còn có thể cài đặt [DSU bền vững](./persistent-seg.md#mở-rộng-dsu-bền-vững-dựa-trên-cây-chủ-tịch).
 

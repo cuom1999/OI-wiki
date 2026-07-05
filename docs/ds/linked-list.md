@@ -308,7 +308,7 @@ Mã cài đặt như sau:
 
 ### Danh sách liên kết XOR
 
-Danh sách liên kết XOR (XOR Linked List) về bản chất vẫn là **danh sách liên kết đôi**, nhưng nó tận dụng giá trị XOR theo bit để thực hiện chức năng của danh sách liên kết đôi chỉ với lượng bộ nhớ bằng một con trỏ.
+Danh sách liên kết XOR (XOR linked list) về bản chất vẫn là **danh sách liên kết đôi**, nhưng nó tận dụng giá trị XOR theo bit để thực hiện chức năng của danh sách liên kết đôi chỉ với lượng bộ nhớ bằng một con trỏ.
 
 Trong cấu trúc `Node`, ta định nghĩa `lr = left ^ right`, tức là **giá trị XOR theo bit** của địa chỉ hai phần tử trước và sau. Khi duyệt xuôi, lấy địa chỉ của phần tử trước XOR với `lr` của nút hiện tại sẽ thu được địa chỉ của phần tử sau; khi duyệt ngược, lấy địa chỉ của phần tử sau XOR với `lr` của nút hiện tại sẽ thu được địa chỉ của phần tử trước.
 Nhờ vậy, ta có thể dùng một nửa bộ nhớ mà vẫn thực hiện được chức năng tương tự danh sách liên kết đôi.

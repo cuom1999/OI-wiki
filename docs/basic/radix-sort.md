@@ -7,9 +7,9 @@ Trang này giới thiệu ngắn gọn về sắp xếp cơ số.
 
 Sắp xếp cơ số (tiếng Anh: Radix sort) là một thuật toán sắp xếp không dựa trên so sánh, ban đầu được dùng để giải bài toán sắp xếp thẻ. Sắp xếp cơ số tách các phần tử cần sắp xếp thành $k$ khóa, rồi lần lượt sắp xếp theo từng khóa để hoàn tất việc sắp xếp tất cả phần tử.
 
-Nếu so sánh lần lượt từ khóa thứ $1$ đến khóa thứ $k$, dạng sắp xếp cơ số đó được gọi là sắp xếp cơ số MSD (Most Significant Digit first);
+Nếu so sánh lần lượt từ khóa thứ $1$ đến khóa thứ $k$, dạng sắp xếp cơ số đó được gọi là sắp xếp cơ số MSD (Most Significant Digit first, xử lý chữ số quan trọng nhất trước);
 
-Nếu so sánh lần lượt từ khóa thứ $k$ đến khóa thứ $1$, dạng sắp xếp cơ số đó được gọi là sắp xếp cơ số LSD (Least Significant Digit first).
+Nếu so sánh lần lượt từ khóa thứ $k$ đến khóa thứ $1$, dạng sắp xếp cơ số đó được gọi là sắp xếp cơ số LSD (Least Significant Digit first, xử lý chữ số ít quan trọng nhất trước).
 
 ## So sánh phần tử có k khóa
 
@@ -32,7 +32,7 @@ Ví dụ:
 
 Dựa trên phương pháp so sánh phần tử có k khóa, ta có thể nghĩ như sau: trước hết so sánh khóa thứ $1$ của tất cả phần tử để xác định quan hệ lớn nhỏ tương đối giữa chúng; sau đó, với **các phần tử có cùng khóa thứ $1$**, tiếp tục so sánh khóa thứ $2$ của chúng…… cứ tiếp tục như vậy.
 
-Vì việc so sánh diễn ra lần lượt từ khóa thứ $1$ đến khóa thứ $k$, thuật toán sắp xếp suy ra từ ý tưởng trên được gọi là sắp xếp cơ số MSD (Most Significant Digit first).
+Vì việc so sánh diễn ra lần lượt từ khóa thứ $1$ đến khóa thứ $k$, thuật toán sắp xếp suy ra từ ý tưởng trên được gọi là sắp xếp cơ số MSD.
 
 ### Quy trình thuật toán
 
@@ -78,7 +78,7 @@ Cũng từ đó, có thể đưa ra một cách tối ưu hằng số thời gia
 
 Sắp xếp cơ số MSD so sánh lần lượt từ khóa thứ $1$ đến khóa thứ $k$, nên cần dùng đệ quy hoặc lặp để cài đặt; hằng số thời gian vẫn khá lớn, và khi so sánh số tự nhiên thì cũng hơi bất tiện.
 
-Nếu đảo ngược thao tác đệ quy, tức so sánh lần lượt từ khóa thứ $k$ đến khóa thứ $1$, ta thu được sắp xếp cơ số LSD (Least Significant Digit first), một thuật toán sắp xếp có thể hoàn thành mà không cần đệ quy.
+Nếu đảo ngược thao tác đệ quy, tức so sánh lần lượt từ khóa thứ $k$ đến khóa thứ $1$, ta thu được sắp xếp cơ số LSD, một thuật toán sắp xếp có thể hoàn thành mà không cần đệ quy.
 
 ### Quy trình thuật toán
 

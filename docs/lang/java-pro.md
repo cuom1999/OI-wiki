@@ -725,15 +725,15 @@ Cách dùng functional interface như sau:
     }
     ```
 
-## Tập hợp (Collection)
+## Tập hợp
 
-`Collection` là interface trong Java, được nhiều interface bộ chứa generic hiện thực. Ở đây, `Collection` chỉ các cấu trúc dữ liệu dùng để lưu kiểu đối tượng.
+`Collection` là giao diện trong Java, được nhiều giao diện bộ chứa tổng quát hiện thực. Ở đây, `Collection` chỉ các cấu trúc dữ liệu dùng để lưu kiểu đối tượng.
 
 Trong Java, kiểu phần tử của `Collection` khi định nghĩa phải là đối tượng, không thể là kiểu dữ liệu nguyên thủy.
 
-Các nội dung dưới đây đều dựa trên tính đa hình của Java và xuất hiện dưới dạng hiện thực interface.
+Các nội dung dưới đây đều dựa trên tính đa hình của Java và xuất hiện dưới dạng hiện thực giao diện.
 
-Các interface thường dùng gồm `List`, `Queue`, `Set` và `Map`.
+Các giao diện thường dùng gồm `List`, `Queue`, `Set` và `Map`.
 
 <span id="định-nghĩa-container"></span>
 ### Định nghĩa bộ chứa
