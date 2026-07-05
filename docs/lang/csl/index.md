@@ -11,15 +11,15 @@ C++2b). Dự thảo chuẩn C++ có trên trang [open-std](http://www.open-std.o
 tiến độ xây dựng chuẩn mới nhất có thể xem tại [Current Status : Standard C++](https://isocpp.org/std/status).
 Ngoài ra còn có một số chuẩn bổ sung, chẳng hạn C++ TR1.
 
-Mỗi phiên bản chuẩn C++ không chỉ quy định cú pháp và đặc tính ngôn ngữ của C++,
+Mỗi phiên bản chuẩn C++ không chỉ quy định cú pháp và tính năng ngôn ngữ của C++,
 mà còn quy định đặc tả cho một bộ thư viện dựng sẵn của C++; đó chính là thư
 viện chuẩn C++. Thư viện chuẩn C++ chứa rất nhiều mã thường dùng đã được cài
 đặt sẵn, như nhập xuất, cấu trúc dữ liệu cơ bản, quản lý bộ nhớ, hỗ trợ đa
-luồng, v.v. Nắm được thư viện chuẩn C++ là bước cần thiết để viết mã C++ hiện
+luồng và nhiều thành phần khác. Nắm được thư viện chuẩn C++ là bước cần thiết để viết mã C++ hiện
 đại hơn.
 Tài liệu chi tiết của thư viện chuẩn C++ có trên [cppreference](https://en.cppreference.com/);
-tài liệu này giới thiệu cách dùng, hiệu suất, điểm cần chú ý, v.v. của các kiểu
-và hàm trong thư viện chuẩn, nên hãy tận dụng.
+tài liệu này giới thiệu cách dùng, hiệu suất và điểm cần chú ý của các kiểu và
+hàm trong thư viện chuẩn, nên rất đáng tham khảo.
 
 Cần chú ý rằng các nền tảng OJ khác nhau hỗ trợ phiên bản C++ khác nhau. Ví dụ,
 [quy tắc ICPC mới nhất](https://docs.icpc.global/worldfinals-programming-environment/)
@@ -27,7 +27,7 @@ hỗ trợ chuẩn C++20. Theo nghị quyết của Ủy ban Khoa học NOI, t�
 năm 2021, [NOI Linux 2.0](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
 được dùng làm môi trường chuẩn cho hệ thống cuộc thi NOI và các hoạt động như
 CSP-J/S. g++ 9.3.0 được chỉ định trong NOI Linux 2.0 [mặc định hỗ trợ](https://gcc.gnu.org/projects/cxx-status.html#cxx14)
-chuẩn C++14, đồng thời hỗ trợ C++17, đủ đáp ứng nhu cầu của tuyệt đại đa số thí
+chuẩn C++14, đồng thời hỗ trợ C++17, đủ đáp ứng nhu cầu của hầu hết thí
 sinh. Vì vậy khi học C++, cần chú ý chuẩn mà cuộc thi hỗ trợ để tránh lỗi biên
 dịch trên sân thi.
 
@@ -56,12 +56,12 @@ STL nằm ở các trang tương ứng: [bộ chứa STL](./container.md) và
 tiếng bên cạnh thư viện chuẩn. Mã của Boost có tính khả chuyển, chất lượng cao,
 hiệu năng cao và độ tin cậy cao. Boost có số lượng mô-đun rất lớn, chức năng
 toàn diện và hỗ trợ đa nền tảng đầy đủ, nên thường được xem như một thư viện gần
-chuẩn của C++. Không ít đặc tính trong chuẩn C++ cũng bắt nguồn từ Boost, như
-con trỏ thông minh, lập trình meta, ngày giờ, v.v. Dù trong OI không thể dùng
+chuẩn của C++. Không ít tính năng trong chuẩn C++ cũng bắt nguồn từ Boost, như
+con trỏ thông minh, lập trình meta, thư viện ngày giờ và các thành phần khác. Dù trong OI không thể dùng
 Boost, Boost vẫn có nhiều "bánh xe" hữu ích để kiểm chứng thuật toán hoặc đối
 chiếu kết quả, như Boost.Geometry có cài đặt R-tree, Boost.Graph có các thuật
 toán đồ thị, Boost.Intrusive cung cấp một bộ chứa xâm nhập có cách dùng tương tự
-bộ chứa STL. Bạn đọc quan tâm có thể tự tìm hướng dẫn trên mạng.
+bộ chứa STL. Người đọc quan tâm có thể tự tìm thêm hướng dẫn trên mạng.
 
 ## Tài liệu tham khảo
 
