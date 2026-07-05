@@ -26,9 +26,9 @@ $$
 
 ### Tối ưu DP bằng tổng tiền tố
 
-Trang liên quan: [tổng tiền tố](../../basic/prefix-sum.md#%E5%89%8D%E7%BC%80%E5%92%8C)
+Trang liên quan: [tổng tiền tố](../../basic/prefix-sum.md#tổng-tiền-tố)
 
-Nếu việc tính trạng thái hiện tại phụ thuộc vào tổng một đoạn con của các trạng thái trước, có thể duy trì tổng tiền tố để tăng tốc. Một nhóm bài liên quan tới tổng tiền tố nhiều chiều còn được gọi là [SOS DP](../../basic/prefix-sum.md#%E7%89%B9%E4%BE%8B%E5%AD%90%E9%9B%86%E5%92%8C-dp).
+Nếu việc tính trạng thái hiện tại phụ thuộc vào tổng một đoạn con của các trạng thái trước, có thể duy trì tổng tiền tố để tăng tốc. Một nhóm bài liên quan tới tổng tiền tố nhiều chiều còn được gọi là [SOS DP](../../basic/prefix-sum.md#trường-hợp-đặc-biệt-dp-tổng-trên-tập-con).
 
 Bài tập:
 
@@ -61,7 +61,7 @@ Tương tự phần trên, xem toàn bộ quá trình DP như một chuỗi truy
 
 Tối ưu DP bằng chia để trị CDQ cũng thường xuất hiện trong các nhóm bài sau:
 
--   [Tối ưu DP bằng độ dốc dựa trên chia để trị CDQ](./slope.md#%E4%BA%8C%E5%88%86cdq%E5%B9%B3%E8%A1%A1%E6%A0%91%E4%BC%98%E5%8C%96-dp)
+-   [Tối ưu DP bằng độ dốc dựa trên chia để trị CDQ](./slope.md#tối-ưu-dp-bằng-nhị-phâncdqcây-cân-bằng)
 -   [Chia để trị tối ưu DP có đơn điệu quyết định](./quadrangle.md#chia-để-trị)
 
 ### Tối ưu DP bằng nhân đôi
@@ -154,7 +154,7 @@ Bài tập:
 
 ### Tối ưu DP bằng nội suy Lagrange
 
-Trang liên quan: [nội suy Lagrange](../../math/numerical/interp.md#lagrange-%E6%8F%92%E5%80%BC%E6%B3%95)
+Trang liên quan: [nội suy Lagrange](../../math/numerical/interp.md#phương-pháp-nội-suy-lagrange)
 
 Trong một số bài DP, hàm trạng thái $f(i,j)$ là đa thức bậc $k$ theo $j$. Khi đó có thể tính trực tiếp giá trị của nó tại $k+1$ điểm, rồi dùng nội suy Lagrange để tìm biểu thức của $f(i,\cdot)$, từ đó tối ưu chuyển trạng thái hoặc thậm chí trực tiếp lấy đáp án.
 
