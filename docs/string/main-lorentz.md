@@ -1,7 +1,7 @@
-<span id="&#37325;&#20018;"></span>
+<span id="xâu-lặp-kép"></span>
 ## Xâu lặp kép
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ### Định nghĩa
 
 Cho một xâu $s$ có độ dài $n$.
@@ -17,7 +17,7 @@ Thuật toán dưới đây do Michael Main và Richard J. Lorentz đề xuất 
     
     Ký hiệu $\overline{s}$ là xâu đảo ngược của $s$. Ví dụ $\overline{\tt abc} = \tt cba$.
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 ### Giải thích
 
 Xét xâu $\tt acababaee$. Xâu này có ba xâu lặp kép:
@@ -31,7 +31,7 @@ Một ví dụ khác là xâu $\tt abaaba$, chỉ có hai xâu lặp kép:
 -   $s[0 \dots 5] = \tt abaaba$
 -   $s[2 \dots 3] = \tt aa$
 
-<span id="&#37325;&#20018;&#30340;&#20010;&#25968;"></span>
+<span id="số-lượng-xâu-lặp-kép"></span>
 ### Số lượng xâu lặp kép
 
 Một xâu độ dài $n$ có thể có tới $O(n^2)$ xâu lặp kép; ví dụ hiển nhiên là xâu gồm $n$ ký tự giống nhau, khi đó mọi xâu con có độ dài chẵn đều là xâu lặp kép. Nói chung, một xâu tuần hoàn với chu kỳ nhỏ thường có rất nhiều xâu lặp kép.
@@ -50,10 +50,10 @@ $$
 
 Có thể thấy xâu Fibonacci có tính chu kỳ rất cao. Với xâu Fibonacci $t_i$ có độ dài $f_i$, ngay cả khi nén bằng bộ ba Crochemore, vẫn có $O(f_i \log f_i)$ bộ ba. Số xâu lặp kép nguyên thủy của nó cũng là $O(f_i \log f_i)$.
 
-<span id="Main-Lorentz-&#31639;&#27861;"></span>
+<span id="thuật-toán-main-lorentz"></span>
 ## Thuật toán Main-Lorentz
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích_1"></span>
 ### Giải thích
 
 Ý tưởng cốt lõi của thuật toán Main-Lorentz là **chia để trị**.
@@ -62,10 +62,10 @@ Thuật toán chia xâu thành hai phần trái và phải; trước hết tính
 
 Tính số lượng xâu lặp kép cắt ngang là điểm then chốt của thuật toán Main-Lorentz, và sẽ được thảo luận chi tiết dưới đây.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quy-trình"></span>
 ### Quy trình
 
-<span id="&#23547;&#25214;&#20132;&#21449;&#37325;&#20018;"></span>
+<span id="tìm-xâu-lặp-kép-cắt-ngang"></span>
 #### Tìm xâu lặp kép cắt ngang
 
 Gọi phần trái của một xâu là $u$, phần phải là $v$. Khi đó $s = u + v$, và độ dài của $u, v$ xấp xỉ một nửa độ dài của $s$.
@@ -80,7 +80,7 @@ Ta cố định $\textit{cntr}$ và tìm mọi xâu lặp kép thỏa điều ki
 
 Rõ ràng, một khi cố định $\textit{cntr}$, ta cũng cố định giá trị của $l$. Nếu biết cách tìm mọi xâu lặp kép, ta có thể duyệt $\textit{cntr}$ từ $0$ đến $|u|-1$ và tìm tất cả xâu lặp kép thỏa điều kiện.
 
-<span id="&#24038;&#20559;&#37325;&#20018;&#30340;&#21028;&#23450;"></span>
+<span id="kiểm-tra-xâu-lặp-kép-lệch-trái"></span>
 #### Kiểm tra xâu lặp kép lệch trái
 
 Ngay cả sau khi cố định $\textit{cntr}$, vẫn có thể có nhiều xâu lặp kép thỏa điều kiện. Làm thế nào để tìm tất cả chúng?
@@ -107,7 +107,7 @@ Tiếp theo chỉ còn cần xét cách tính nhanh $k_1$ và $k_2$. Nhờ [hàm
 -   Tính $k_1$: chỉ cần tính hàm Z của $\overline{u}$.
 -   Tính $k_2$: chỉ cần tính hàm Z của $v + \# + u$, trong đó $\#$ là một ký tự không xuất hiện trong $u$ hoặc $v$.
 
-<span id="&#21491;&#20559;&#37325;&#20018;"></span>
+<span id="xâu-lặp-kép-lệch-phải"></span>
 #### Xâu lặp kép lệch phải
 
 Cách tính xâu lặp kép lệch phải gần như giống với cách tính xâu lặp kép lệch trái. Xét ký tự đầu tiên của xâu lặp kép rơi vào $u$ (tức $s[|u| - 1]$); ký tự đó nhất định bằng một ký tự nào đó trong $v$, gọi vị trí của ký tự này trong $v$ là $\textit{cntr}$.
@@ -116,10 +116,10 @@ Gọi $k_1$ là số nguyên lớn nhất thỏa $v[\textit{cntr} - k_1 + 1 \dot
 
 Duyệt $\textit{cntr}$ và dùng phương pháp tương tự để tìm các xâu lặp kép lệch phải.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
-Thuật toán Main-Lorentz đưa ra tất cả xâu lặp kép dưới dạng bộ bốn $(\textit{cntr}, l, k_1, k_2)$. Nếu chỉ cần tính số lượng xâu lặp kép, hoặc chỉ cần tìm xâu lặp kép dài nhất, thông tin trong bộ bốn này là đủ. Theo [định lý chính](../basic/complexity.md#%E4%B8%BB%E5%AE%9A%E7%90%86-master-theorem), độ phức tạp thời gian của thuật toán Main-Lorentz là $O(n \log n)$.
+Thuật toán Main-Lorentz đưa ra tất cả xâu lặp kép dưới dạng bộ bốn $(\textit{cntr}, l, k_1, k_2)$. Nếu chỉ cần tính số lượng xâu lặp kép, hoặc chỉ cần tìm xâu lặp kép dài nhất, thông tin trong bộ bốn này là đủ. Theo [định lý chính](../basic/complexity.md#định-lý-chính-master-theorem), độ phức tạp thời gian của thuật toán Main-Lorentz là $O(n \log n)$.
 
 Chú ý rằng nếu muốn dùng các bộ bốn này để tìm mọi vị trí bắt đầu và kết thúc của xâu lặp kép, độ phức tạp thời gian trong trường hợp xấu nhất sẽ đạt $O(n^2)$. Chương trình dưới đây thực hiện điều đó, lưu mọi vị trí bắt đầu và kết thúc của xâu lặp kép vào `repetitions`.
 
