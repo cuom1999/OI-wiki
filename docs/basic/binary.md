@@ -215,10 +215,10 @@ Mã giả như sau:
 
 $$
 \begin{array}{l}
-\textbf{Algorithm}\operatorname{TernarySearch}(f,l,r):\\
-\textbf{Input. } \text{A unimodal function } f(x) \text{ and its domain } [l,r].  \\
-\textbf{Output. } \text{The maximizer }x^*\text{, up to an error of }\varepsilon\text{, and its value } f(x^*). \\
-\textbf{Method. } \\
+\textbf{Thuật toán }\operatorname{TernarySearch}(f,l,r):\\
+\textbf{Đầu vào. } \text{Hàm đơn đỉnh } f(x) \text{ và miền xác định } [l,r].  \\
+\textbf{Đầu ra. } \text{Điểm đạt cực đại }x^*\text{, với sai số không quá }\varepsilon\text{, và giá trị } f(x^*). \\
+\textbf{Phương pháp. } \\
 \begin{array}{ll}
 1 & \textbf{while } r - l > \varepsilon\\
 2 & \qquad mid\gets (l+r)/2\\
@@ -280,10 +280,10 @@ Mã giả như sau:
 
 $$
 \begin{array}{l}
-\textbf{Algorithm}\operatorname{GoldenSectionSearch}(f,l,r):\\
-\textbf{Input. } \text{A unimodal function } f(x) \text{ and its domain } [l,r].  \\
-\textbf{Output. } \text{The maximizer }x^*\text{, up to an error of }\varepsilon\text{, and its value } f(x^*). \\
-\textbf{Method. } \\
+\textbf{Thuật toán }\operatorname{GoldenSectionSearch}(f,l,r):\\
+\textbf{Đầu vào. } \text{Hàm đơn đỉnh } f(x) \text{ và miền xác định } [l,r].  \\
+\textbf{Đầu ra. } \text{Điểm đạt cực đại }x^*\text{, với sai số không quá }\varepsilon\text{, và giá trị } f(x^*). \\
+\textbf{Phương pháp. } \\
 \begin{array}{ll}
 1 & lmid \gets \phi l + (1-\phi)r \\
 2 & rmid \gets (1-\phi)l + \phi r \\

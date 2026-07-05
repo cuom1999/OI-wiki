@@ -50,10 +50,10 @@ Mã giả:
 
 $$
 \begin{array}{ll}
-1 &  \textbf{Input. } \text{Các cạnh của đồ thị } e , \text{ trong đó mỗi phần tử của } e \text{ là } (u, v, w) \\
+1 &  \textbf{Đầu vào. } \text{Các cạnh của đồ thị } e , \text{ trong đó mỗi phần tử của } e \text{ là } (u, v, w) \\
   &  \text{ biểu thị có một cạnh giữa } u \text{ và } v \text{ với trọng số } w . \\
-2 &  \textbf{Output. } \text{Các cạnh của MST của đồ thị đầu vào}.\\
-3 &  \textbf{Method. } \\
+2 &  \textbf{Đầu ra. } \text{Các cạnh của MST của đồ thị đầu vào}.\\
+3 &  \textbf{Phương pháp. } \\
 4 &  result \gets \varnothing \\
 5 &  \text{sắp xếp } e \text{ theo thứ tự không giảm của trọng số } w \\
 6 &  \textbf{for} \text{ mỗi } (u, v, w) \text{ trong } e \text{ đã sắp xếp} \\
@@ -139,11 +139,11 @@ Mã giả:
 
 $$
 \begin{array}{ll}
-1 &  \textbf{Input. } \text{Tập đỉnh của đồ thị }V\text{; hàm }g(u, v)\text{ biểu thị}\\
+1 &  \textbf{Đầu vào. } \text{Tập đỉnh của đồ thị }V\text{; hàm }g(u, v)\text{ biểu thị}\\
   &  \text{trọng số của cạnh }(u, v)\text{; hàm }adj(v)\text{ biểu thị}\\
   &  \text{các đỉnh kề với }v.\\
-2 &  \textbf{Output. } \text{Tổng trọng số của MST của đồ thị đầu vào.} \\
-3 &  \textbf{Method.} \\
+2 &  \textbf{Đầu ra. } \text{Tổng trọng số của MST của đồ thị đầu vào.} \\
+3 &  \textbf{Phương pháp.} \\
 4 &  result \gets 0 \\
 5 & \text{chọn một đỉnh bất kỳ trong }V\text{ làm }root \\
 6 &  dis(root)\gets 0 \\
@@ -277,9 +277,9 @@ Khi đồ thị ban đầu liên thông, trong mỗi vòng lặp số thành ph�
 
 $$
 \begin{array}{ll}
-1 &  \textbf{Input. } \text{Một đồ thị }G\text{ có các cạnh mang trọng số phân biệt. } \\
-2 &  \textbf{Output. } \text{Rừng khung nhỏ nhất của }G .  \\
-3 &  \textbf{Method. }  \\
+1 &  \textbf{Đầu vào. } \text{Một đồ thị }G\text{ có các cạnh mang trọng số phân biệt. } \\
+2 &  \textbf{Đầu ra. } \text{Rừng khung nhỏ nhất của }G .  \\
+3 &  \textbf{Phương pháp. }  \\
 4 & \text{Khởi tạo một rừng }F\text{ gồm các cây một đỉnh} \\
 5 &  \textbf{while } \text{True} \\
 6 &  \qquad \text{Tìm các thành phần của }F\text{ và gán nhãn thành phần cho mỗi đỉnh của }G \\

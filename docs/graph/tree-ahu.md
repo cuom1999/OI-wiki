@@ -69,8 +69,8 @@ Lấy $NAME$ của cây con gốc tại đỉnh $r$ làm $NAME$ của đỉnh $r
 ???+ note "Cài đặt"
     $$
     \begin{array}{ll}
-    1 & \textbf{Input. } \text{Một cây có gốc }T\\
-    2 & \textbf{Output. } \text{Tên của cây có gốc }T\\
+    1 & \textbf{Đầu vào. } \text{Một cây có gốc }T\\
+    2 & \textbf{Đầu ra. } \text{Tên của cây có gốc }T\\
     3 & \text{ASSIGN-NAME(u)}\\
     4 & \qquad \text{nếu } u \text{ là lá}\\
     5 & \qquad \qquad \text{NAME(} u \text{) = (0)}\\
@@ -88,8 +88,8 @@ Lấy $NAME$ của cây con gốc tại đỉnh $r$ làm $NAME$ của đỉnh $r
 ???+ note "Cài đặt"
     $$
     \begin{array}{ll}
-    1 & \textbf{Input. } \text{Hai cây có gốc }T_1(V_1,E_1,r_1)\text{ và }T_2(V_2,E_2,r_2) \\
-    2 & \textbf{Output. } \text{Hai cây có đẳng cấu hay không}\\
+    1 & \textbf{Đầu vào. } \text{Hai cây có gốc }T_1(V_1,E_1,r_1)\text{ và }T_2(V_2,E_2,r_2) \\
+    2 & \textbf{Đầu ra. } \text{Hai cây có đẳng cấu hay không}\\
     3 & \text{AHU}(T_1(V_1,E_1,r_1), T_2(V_2,E_2,r_2))\\
     4 & \qquad \text{ASSIGN-NAME(}r_1\text{)}\\
     5 & \qquad \text{ASSIGN-NAME(}r_2\text{)}\\
