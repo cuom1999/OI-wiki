@@ -1,4 +1,4 @@
-<span id="&#x5f15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Cho một số nguyên dương $N \in \mathbf{N}_{+}$, hãy nhanh chóng tìm một [ước không tầm thường](basic.md) của nó.
@@ -7,7 +7,7 @@ Xét thuật toán đơn giản: các ước xuất hiện theo từng cặp, n�
 
 Khi $N\ge10^{18}$, thời gian chạy của thuật toán này là không chấp nhận được, nên ta cần một thuật toán tốt hơn. Một ý tưởng là dùng phương pháp ngẫu nhiên để đoán xem một số có phải là ước của $N$ hay không. Nếu may mắn, ta có thể tìm được đáp án trong $O(1)$, nhưng với dữ liệu $N\ge10^{18}$, xác suất đoán trúng chỉ là $\frac{1}{10^{18}}$, nên số lần đoán kỳ vọng là $10^{18}$. Nếu chỉ đoán trong $[2,\sqrt N]$ thì xác suất thành công lớn hơn một chút. Ta muốn có cách tối ưu hóa quá trình đoán này.
 
-<span id="&#x6734;&#x7d20;&#x7b97;&#x6cd5;"></span>
+<span id="thuật-toán-đơn-giản"></span>
 ## Thuật toán đơn giản
 
 Thuật toán đơn giản nhất là duyệt trong khoảng $[2, \sqrt N]$.
@@ -58,10 +58,10 @@ Cần lưu ý rằng nếu đã có sẵn bảng số nguyên tố, độ phức
 
 Bài tập ví dụ: [CF 1445C](https://codeforces.com/problemset/problem/1445/C)
 
-<span id="pollard-rho-&#x7b97;&#x6cd5;"></span>
+<span id="thuật-toán-pollard-rho"></span>
 ## Thuật toán Pollard Rho
 
-<span id="&#x5f15;&#x5165;_1"></span>
+<span id="mở-đầu-pollard-rho"></span>
 ### Mở đầu
 
 Dùng thuật toán vét cạn để tìm một ước không tầm thường có độ phức tạp $O(p)=O(\sqrt N)$, trong đó $p$ là thừa số nguyên tố nhỏ nhất của $N$. Thuật toán Pollard-Rho được giới thiệu dưới đây là một thuật toán ngẫu nhiên hóa, có thể tìm được một ước không tầm thường trong độ phức tạp kỳ vọng $O(\sqrt p)=O(N^{1/4})$ (**chú ý**: ước không tầm thường không nhất thiết là thừa số nguyên tố).
@@ -70,7 +70,7 @@ Dùng thuật toán vét cạn để tìm một ước không tầm thường c�
 
 Để hiểu vì sao thời gian kỳ vọng để đi vào chu trình là $O(\sqrt p)$, có thể lấy cảm hứng từ nghịch lý ngày sinh.
 
-<span id="&#x751f;&#x65e5;&#x6096;&#x8bba;"></span>
+<span id="nghịch-lý-ngày-sinh"></span>
 ### Nghịch lý ngày sinh
 
 Bỏ qua năm sinh (giả sử mỗi năm có 365 ngày), hỏi: trong một căn phòng cần ít nhất bao nhiêu người để xác suất có hai người cùng ngày sinh đạt $50\%$?
@@ -113,7 +113,7 @@ $$
 
 Điều này gợi ý rằng nếu có thể chọn ngẫu nhiên một dãy số, kích thước mẫu kỳ vọng để xuất hiện số bị lặp cũng là $O(\sqrt n)$.
 
-<span id="&#x5229;&#x7528;&#x6700;&#x5927;&#x516c;&#x7ea6;&#x6570;&#x6c42;&#x51fa;&#x4e00;&#x4e2a;&#x7ea6;&#x6570;"></span>
+<span id="dùng-ước-chung-lớn-nhất-để-tìm-một-ước"></span>
 ### Dùng ước chung lớn nhất để tìm một ước
 
 Việc thật sự xây dựng một dãy số ngẫu nhiên modulo $p$ là không thực tế, vì $p$ chính là thứ cần tìm. Vì vậy, ta dùng $f(x)=(x^2+c)\bmod N$ để sinh một dãy giả ngẫu nhiên $\{x_i\}$: chọn ngẫu nhiên một $x_1$, đặt $x_2=f(x_1),\ x_3=f(x_2),\ \dots,\ x_i=f(x_{i-1})$, trong đó $c\in[1,N)$ là một hằng số được chọn ngẫu nhiên.
@@ -139,12 +139,12 @@ Thuật toán này không phải lúc nào cũng thành công, vì $\gcd(|x_i-x_
 
 Theo phân tích trên, về mặt lý thuyết, mọi hàm $f(x)$ thỏa mãn $\forall x \equiv y \pmod p, f(x) \equiv f(y) \pmod p$ và bảo đảm được một mức giả ngẫu nhiên nhất định (ví dụ một số hàm đa thức) đều có thể dùng ở đây. Trong thực tế, ta chủ yếu dùng $f(x)=x^2+c\ (c\neq 0,-2)$.[^pseudo]
 
-<span id="&#x5b9e;&#x73b0;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
 Thuật toán cần cài đặt phải nhanh chóng phát hiện trong quá trình lặp xem $\{x_n\bmod p\}$ đã xuất hiện giá trị lặp hay chưa. Nếu xem $f$ là các cạnh trên đồ thị có hướng với tập đỉnh $\mathbb Z_p$, việc ta cần làm thực chất là phát hiện chu trình. Khác biệt là phép kiểm tra bằng nhau được thay bằng kiểm tra liệu $\gcd(|x_i-x_j|,N)$ có lớn hơn một hay không.
 
-<span id="floyd-&#x5224;&#x73af;"></span>
+<span id="phát-hiện-chu-trình-bằng-floyd"></span>
 #### Phát hiện chu trình bằng Floyd
 
 Giả sử có hai người đang chạy đua, A chạy nhanh còn B chạy chậm. Sau một khoảng thời gian, A chắc chắn sẽ gặp B, và tại thời điểm gặp nhau, hiệu giữa tổng quãng đường A đã chạy và tổng quãng đường B đã chạy chắc chắn là bội của độ dài vòng.
@@ -191,14 +191,14 @@ Mỗi lần ta đặt $d=\gcd(|x_i-x_j|,N)$ và kiểm tra liệu $d$ có thỏa
             return N
         ```
 
-<span id="brent-&#x5224;&#x73af;"></span>
+<span id="phát-hiện-chu-trình-bằng-brent"></span>
 #### Phát hiện chu trình bằng Brent
 
 Thực ra, thuật toán phát hiện chu trình Floyd có thể được cải thiện về hằng số. Phát hiện chu trình Brent bắt đầu với $k=1$ rồi tăng dần $k$; ở vòng thứ $k$, để A đứng yên, cho B đi tiếp $2^k$ bước. Nếu trong quá trình đó B gặp A thì đã tìm được chu trình; nếu không, cho A nhảy đến vị trí của B rồi tiếp tục vòng tiếp theo.
 
 Có thể chứng minh[^brent] rằng số lần gọi $f$ trước khi tìm được chu trình theo cách này luôn không lớn hơn thuật toán Floyd. Thử nghiệm trong bài báo gốc cho thấy thời gian trung bình của Brent giảm $24\%$ so với Floyd.
 
-<span id="&#x500d;&#x589e;&#x4f18;&#x5316;"></span>
+<span id="tối-ưu-nhân-đôi"></span>
 #### Tối ưu nhân đôi
 
 Dù dùng Floyd hay Brent để phát hiện chu trình, số lần lặp đều là $O(\sqrt p)$. Tuy nhiên, nếu mỗi lần lặp đều dùng $\gcd$ để kiểm tra chu trình thì thuật toán sẽ chậm đi. Có thể dùng phép tích lũy bằng nhân để giảm số lần tính $\gcd$.
@@ -263,14 +263,14 @@ Dưới đây là cài đặt Pollard-Rho dùng phát hiện chu trình Brent k�
                 val = 1
         ```
 
-<span id="&#x590d;&#x6742;&#x5ea6;"></span>
+<span id="độ-phức-tạp"></span>
 #### Độ phức tạp
 
 Số lần lặp kỳ vọng trong thuật toán Pollard-Rho là $O(\sqrt p)$, trong đó $p$ là thừa số nguyên tố nhỏ nhất của $N$. Trong cài đặt cụ thể, dù dùng Floyd hay Brent để phát hiện chu trình, nếu không dùng tối ưu nhân đôi thì độ phức tạp kỳ vọng đều là $O(\sqrt p\log N)$; sau khi thêm tối ưu nhân đôi, có thể xấp xỉ đạt độ phức tạp kỳ vọng $O(\sqrt p)$.
 
 Cần nói thêm rằng phân tích phía trên dựa trên hàm ánh xạ tự thân hoàn toàn ngẫu nhiên, trong khi thuật toán Pollard-Rho thực tế dùng hàm giả ngẫu nhiên. Vì vậy thuật toán này không có phân tích độ phức tạp chặt chẽ, nhưng trong thực tế thường chạy nhanh.
 
-<span id="&#x4f8b;&#x9898;&#xff1a;&#x6c42;&#x4e00;&#x4e2a;&#x6570;&#x7684;&#x6700;&#x5927;&#x7d20;&#x56e0;&#x5b50;"></span>
+<span id="bài-tập-ví-dụ-tìm-thừa-số-nguyên-tố-lớn-nhất-của-một-số"></span>
 #### Bài tập ví dụ: tìm thừa số nguyên tố lớn nhất của một số
 
 Bài tập ví dụ: [P4718 - Mẫu thuật toán Pollard-Rho](https://www.luogu.com.cn/problem/P4718)
@@ -282,7 +282,7 @@ Với một số $n$, dùng [thuật toán Miller Rabin](./prime.md#kiem-tra-tin
     --8<-- "docs/math/code/pollard-rho/pollard-rho_1.cpp"
     ```
 
-<span id="&#x53c2;&#x8003;&#x8d44;&#x6599;&#x4e0e;&#x94fe;&#x63a5;"></span>
+<span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết
 
 [^ref1]: <https://en.wikipedia.org/wiki/Birthday_problem#Reverse_problem>

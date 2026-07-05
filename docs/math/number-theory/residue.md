@@ -604,7 +604,7 @@ phức tạp có thể giảm thêm xuống $O(\log m)$.
 
 Tiếp theo xét tổng độ phức tạp của thuật toán. Việc tính $\varphi(m),d,\ell$
 đều có độ phức tạp $O(\log m)$. Ngay sau đó cần phân tích thừa số nguyên tố
-$d=\prod_p{p^e}$; bước này có thể dùng [thuật toán Pollard Rho](./pollard-rho.md#pollard-rho-%E7%AE%97%E6%B3%95)
+$d=\prod_p{p^e}$; bước này có thể dùng [thuật toán Pollard Rho](./pollard-rho.md#thuật-toán-pollard-rho)
 trong $O(m^{1/4})$. Cuối cùng, tổng thời gian để lần lượt khai căn bậc $p^e$ là
 
 $$
