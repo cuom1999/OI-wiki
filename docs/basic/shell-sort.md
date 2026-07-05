@@ -316,4 +316,4 @@ Có hai định lý trên, ta có thể chứng minh mệnh đề $1$ và $2$.
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Sắp xếp Shell - Wikipedia tiếng Trung](https://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F)
+[^ref1]: [Shellsort - Wikipedia](https://en.wikipedia.org/wiki/Shellsort)

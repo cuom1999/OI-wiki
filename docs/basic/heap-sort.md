@@ -110,4 +110,4 @@ Vì có thể xây dựng đống ngay trên mảng đầu vào, đây là một
 
 ## Liên kết ngoài
 
--   [Sắp xếp vun đống - Wikipedia tiếng Trung](https://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F)
+-   [Heapsort - Wikipedia](https://en.wikipedia.org/wiki/Heapsort)

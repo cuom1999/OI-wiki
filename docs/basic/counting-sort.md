@@ -75,4 +75,4 @@ $$
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Sắp xếp đếm - Wikipedia tiếng Trung](https://zh.wikipedia.org/wiki/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F)
+[^ref1]: [Counting sort - Wikipedia](https://en.wikipedia.org/wiki/Counting_sort)

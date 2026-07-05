@@ -360,7 +360,7 @@ $$
 
 [^ref1]: [Nguyên lý cục bộ trong hiệu năng C++ - I'm Root lee !](http://irootlee.com/juicer_locality/)
 
-[^ref2]: [Cài đặt thuật toán / Sắp xếp / Sắp xếp nhanh - Wikibooks tiếng Trung](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
+[^ref2]: [Algorithm Implementation / Sorting / Quicksort - Wikibooks](https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Quicksort)
 
 [^ref3]: [Ba dạng sắp xếp nhanh và tối ưu hóa sắp xếp nhanh](https://blog.csdn.net/insistGoGo/article/details/7785038)
 

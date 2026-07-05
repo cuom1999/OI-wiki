@@ -40,4 +40,4 @@ Tương tự độ phức tạp thời gian, độ phức tạp bộ nhớ dùng
 
 ## Liên kết ngoài
 
--   [Thuật toán sắp xếp - Wikipedia tiếng Trung](https://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
+-   [Sorting algorithm - Wikipedia](https://en.wikipedia.org/wiki/Sorting_algorithm)

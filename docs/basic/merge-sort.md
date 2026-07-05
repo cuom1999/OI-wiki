@@ -189,5 +189,5 @@ Mảng sau khi sắp xếp không còn nghịch thế. Trong thao tác trộn c�
 ## Liên kết ngoài
 
 -   [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
--   [Sắp xếp trộn - Wikipedia tiếng Trung](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
--   [Nghịch thế - Wikipedia tiếng Trung](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)
+-   [Merge sort - Wikipedia](https://en.wikipedia.org/wiki/Merge_sort)
+-   [Inversion - Wikipedia](https://en.wikipedia.org/wiki/Inversion_(discrete_mathematics))
