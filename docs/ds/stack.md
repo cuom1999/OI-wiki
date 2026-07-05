@@ -147,4 +147,4 @@ Trong Python, bạn có thể dùng danh sách để mô phỏng một ngăn x�
 
 ## Tài liệu tham khảo
 
-1.  [std::stack - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/stack)
+1.  [std::stack - cppreference.com](https://en.cppreference.com/w/cpp/container/stack)

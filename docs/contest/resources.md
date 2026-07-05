@@ -153,7 +153,7 @@ Danh sách này ghi tác giả của sách, không liệt kê dịch giả. Vì 
 
 -   [100 mẹo nhỏ về gdb](https://github.com/hellogcc/100-gdb-tips)
 -   [Algorithm Visualizer](http://algorithm-visualizer.org)
--   [cppreference](https://zh.cppreference.com/w/): tài liệu tham khảo trực tuyến toàn diện về ngôn ngữ C/C++ và thư viện chuẩn
+-   [cppreference](https://en.cppreference.com/w/): tài liệu tham khảo trực tuyến toàn diện về ngôn ngữ C/C++ và thư viện chuẩn
 -   [Compiler Explorer](https://godbolt.org): xem trực tuyến mã hợp ngữ tương ứng với khối mã sau khi biên dịch, hỗ trợ chọn nhiều trình biên dịch khác nhau
 -   [C++ Insights](https://cppinsights.io/): xem mã nguồn C++ của bạn từ góc nhìn của trình biên dịch
 -   [Inverse Symbolic Calculator](http://wayback.cecm.sfu.ca/projects/ISC/ISCmain.html): tra ngược biểu thức cho số thực, hữu ích khi suy đoán hằng số

@@ -139,7 +139,7 @@ $$
 
 Khi đó $\varphi = \operatorname{atan2}(y, x)$. Lưu ý miền giá trị của hàm trên là $(-\pi, \pi]$.
 
-Trong thư viện `<math.h>` hoặc `<cmath>` của ngôn ngữ C/C++, [hàm này](https://zh.cppreference.com/w/cpp/numeric/math/atan2) đã được định nghĩa; chỉ cần gọi `atan2(y, x)`.
+Trong thư viện `<math.h>` hoặc `<cmath>` của ngôn ngữ C/C++, [hàm này](https://en.cppreference.com/w/cpp/numeric/math/atan2) đã được định nghĩa; chỉ cần gọi `atan2(y, x)`.
 
 ## Hệ tọa độ Descartes trong không gian
 

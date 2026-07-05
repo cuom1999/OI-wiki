@@ -234,7 +234,7 @@ Kết quả có thể như sau.
 
 Phần này giới thiệu việc yêu cầu số ngẫu nhiên được sinh ra xuất hiện theo một xác suất nhất định, chẳng hạn xác suất bằng nhau, [phân bố Bernoulli](https://en.wikipedia.org/wiki/Bernoulli_distribution), [phân bố nhị thức](https://en.wikipedia.org/wiki/Binomial_distribution), [phân bố hình học](https://en.wikipedia.org/wiki/Geometric_distribution), [phân bố chuẩn tắc, còn gọi là Gaussian](https://en.wikipedia.org/wiki/Normal_distribution).
 
-Tên lớp cụ thể có thể xem trong danh sách [sinh số giả ngẫu nhiên: phân bố số ngẫu nhiên](https://zh.cppreference.com/w/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.88.86.E5.B8.83).
+Tên lớp cụ thể có thể xem trong danh sách [sinh số giả ngẫu nhiên: phân bố số ngẫu nhiên](https://en.cppreference.com/w/cpp/numeric/random#Random_number_distributions).
 
 #### Cài đặt
 
@@ -351,7 +351,7 @@ So với bộ sinh số ngẫu nhiên đồng dư tuyến tính truyền thống
 
 [^ref1]: [Don't use rand(): a guide to random number generators in C++](https://codeforces.com/blog/entry/61587)
 
-[^ref2]: [Sinh số giả ngẫu nhiên - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/random#%E9%A2%84%E5%AE%9A%E4%B9%89%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8)
+[^ref2]: [Sinh số giả ngẫu nhiên - cppreference.com](https://en.cppreference.com/w/cpp/numeric/random#Predefined_random_number_generators)
 
 [^ref3]: [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)
 

@@ -334,7 +334,7 @@ Một đối tượng số phức còn có các hàm không phải thành viên:
 
 Một đối tượng số phức còn có các hàm không phải thành viên `exp`, `log` (giá trị chính của logarit cơ số $\mathrm{e}$), `log10` (giá trị chính của logarit cơ số 10, không có trong C), `pow`, `sqrt`, `sin`, `cos`, `tan`; ý nghĩa giống như trong C.
 
-Trong C++14 và các phiên bản sau, [toán tử literal `std::literals::complex_literals::""if, ""i, ""il`](https://zh.cppreference.com/w/cpp/numeric/complex/operator%2522%2522i.html) đã được định nghĩa. Ví dụ nhập `100if`, `100i` và `100il`, ba biểu thức này lần lượt trả về `std::complex<float>{0.0f, 100.0f}`, `std::complex<double>{0.0, 100.0}` và `std::complex<long double>{0.0l, 100.0l}`. Nhờ vậy ta có thể viết thuận tiện các khai báo số phức như `auto z = 4.0 + 3i`.
+Trong C++14 và các phiên bản sau, [toán tử literal `std::literals::complex_literals::""if, ""i, ""il`](https://en.cppreference.com/w/cpp/numeric/complex/operator%2522%2522i.html) đã được định nghĩa. Ví dụ nhập `100if`, `100i` và `100il`, ba biểu thức này lần lượt trả về `std::complex<float>{0.0f, 100.0f}`, `std::complex<double>{0.0, 100.0}` và `std::complex<long double>{0.0l, 100.0l}`. Nhờ vậy ta có thể viết thuận tiện các khai báo số phức như `auto z = 4.0 + 3i`.
 
 ## Tài liệu tham khảo và liên kết
 

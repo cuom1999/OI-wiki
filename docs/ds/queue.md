@@ -209,5 +209,5 @@ Cách giải quyết tràn giả là tổ chức mảng lưu phần tử hàng �
 <span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
 ## Tài liệu tham khảo
 
-1.  [std::queue - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/queue)
-2.  [std::deque - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/deque)
+1.  [std::queue - cppreference.com](https://en.cppreference.com/w/cpp/container/queue)
+2.  [std::deque - cppreference.com](https://en.cppreference.com/w/cpp/container/deque)
