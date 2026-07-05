@@ -20,11 +20,11 @@ Cây nhị phân cân bằng toàn cục là một cấu trúc dữ liệu có t
 
 Dưới đây là một ví dụ xây cây nhị phân cân bằng toàn cục. Hình thứ nhất là cây gốc, lấy đỉnh 1 làm gốc. Các đường liền là cạnh nặng.
 
-![global-bst-1](images/global-bst-1.svg)
+![Cây gốc với các cạnh nặng](images/global-bst-1.svg)
 
 Hình thứ hai là cây nhị phân cân bằng toàn cục được xây ra, trong đó đường nét đứt là cạnh nhẹ, đường liền là cạnh nặng, mỗi cây nhị phân được biểu diễn bằng một vòng tròn đỏ.
 
-![global-bst-2](images/global-bst-2.svg)
+![Cây nhị phân cân bằng toàn cục sau khi xây](images/global-bst-2.svg)
 
 ## Xây cây
 
