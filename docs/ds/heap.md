@@ -1,20 +1,20 @@
 author: ouuan, HeRaNO
 
-Heap (đống) là một cây mà mỗi nút có một khóa,
-và khóa của mỗi nút đều lớn hơn hoặc bằng, hoặc nhỏ hơn hoặc bằng, khóa của cha nó.
+Heap (đống) là một cây mà mỗi nút có một khóa.
+Tùy theo loại heap, khóa của mỗi nút luôn lớn hơn hoặc bằng, hoặc luôn nhỏ hơn hoặc bằng, khóa của nút cha.
 
-Heap trong đó khóa của mỗi nút đều lớn hơn hoặc bằng khóa của cha được gọi là heap nhỏ;
-ngược lại gọi là heap lớn.
+Heap trong đó khóa của mỗi nút đều lớn hơn hoặc bằng khóa của nút cha được gọi là heap nhỏ;
+trường hợp ngược lại được gọi là heap lớn.
 [`priority_queue` trong STL](../lang/csl/container-adapter.md#hàng-đợi-ưu-tiên) thực chất là một heap lớn.
 
 Heap nhỏ chủ yếu hỗ trợ các thao tác:
 chèn một số, truy vấn giá trị nhỏ nhất, xóa giá trị nhỏ nhất,
 hợp nhất hai heap, và giảm khóa của một phần tử.
 
-Một số heap mạnh hơn (heap có thể hợp nhất) còn hỗ trợ hiệu quả các thao tác như `merge`.
+Một số biến thể mạnh hơn, thường gọi là heap có thể hợp nhất, còn hỗ trợ hiệu quả thao tác `merge`.
 
-Một số heap mạnh hơn nữa còn hỗ trợ tính bền vững,
-tức là có thể truy vấn hoặc thao tác trên bất kỳ phiên bản lịch sử nào và sinh ra phiên bản mới.
+Một số biến thể khác còn hỗ trợ tính bền vững,
+tức có thể truy vấn hoặc thao tác trên bất kỳ phiên bản lịch sử nào và sinh ra phiên bản mới.
 
 <span id="phân-loại-heap"></span>
 
@@ -42,4 +42,4 @@ tức là có thể truy vấn hoặc thao tác trên bất kỳ phiên bản l�
 
 [^ref4]: Bảng lấy từ [Wikipedia](https://en.wikipedia.org/wiki/Priority_queue#Summary_of_running_times).
 
-Theo thói quen, khi nhắc đến "heap" mà không nói rõ thêm, thường mặc định là heap nhị phân.
+Theo thói quen, khi nhắc đến "heap" mà không nói rõ thêm, mặc định thường là heap nhị phân.
