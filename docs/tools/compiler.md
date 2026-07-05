@@ -6,7 +6,7 @@ Trang này chủ yếu giới thiệu các bước cài đặt những loại tr
 
 #### Tải xuống và cài đặt thủ công
 
-Truy cập trang tải xuống của [MinGW-w64](https://www.mingw-w64.org/downloads), nơi có nhiều bản build. Để thuận tiện, ta dùng bản build do WinLibs cung cấp.
+Truy cập trang tải xuống của [MinGW-w64](https://www.mingw-w64.org/downloads), nơi có nhiều bản dựng. Để thuận tiện, ta dùng bản dựng do WinLibs cung cấp.
 
 Trước hết, vào [WinLibs](https://winlibs.com) để tải gói cài đặt mới nhất và chọn phiên bản phù hợp. Bài viết này chọn GCC 12.3.0 + LLVM/Clang/LLD/LLDB 16.0.4 + MinGW-w64 11.0.0 (UCRT):
 
@@ -35,7 +35,7 @@ Trong cửa sổ chỉnh sửa, nhấn nút "Mới" ở bên phải, tạo một
 
 Sau khi hoàn tất, nhấn "OK" liên tiếp để thoát.
 
-Tiếp theo, mở terminal, nhập `g++ --version` rồi nhấn Enter. Nếu xuất hiện thông báo như hình minh họa thì nghĩa là cài đặt thành công.
+Tiếp theo, mở trình dòng lệnh, nhập `g++ --version` rồi nhấn Enter. Nếu xuất hiện thông báo như hình minh họa thì nghĩa là cài đặt thành công.
 
 ![](./images/compiler6.png)
 
@@ -122,7 +122,7 @@ Nếu chất lượng mạng không tốt, bạn có thể chọn một mirror G
 
 Mở tệp .exe, khi cài đặt hãy chọn Add LLVM to system PATH for current user, sau đó cứ nhấn Next cho đến khi cài đặt hoàn tất.
 
-Mở terminal, nhập `clang++ --version` rồi nhấn Enter. Nếu xuất hiện nội dung tương tự:
+Mở trình dòng lệnh, nhập `clang++ --version` rồi nhấn Enter. Nếu xuất hiện nội dung tương tự:
 
 ```text
 clang version 15.0.1
