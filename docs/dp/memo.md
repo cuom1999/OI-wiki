@@ -1,11 +1,11 @@
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Tìm kiếm có ghi nhớ là một cách cài đặt tìm kiếm bằng việc ghi lại thông tin của các trạng thái đã duyệt, từ đó tránh duyệt lặp lại cùng một trạng thái.
 
 Vì tìm kiếm có ghi nhớ bảo đảm mỗi trạng thái chỉ được truy cập một lần, nó cũng là một cách cài đặt quy hoạch động thường gặp.
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 ???+ note "[\[NOIP2005\] Hái thuốc](https://www.luogu.com.cn/problem/P1048)"
@@ -13,7 +13,7 @@ Vì tìm kiếm có ghi nhớ bảo đảm mỗi trạng thái chỉ được tr
     
     $1 \leq T \leq 10^3$, $1 \leq t_i,v_i,M \leq 100$
 
-<span id="&#x6734;&#x7D20;&#x7684;-dfs-&#x505A;&#x6CD5;"></span>
+<span id="cách-làm-dfs-đơn-giản"></span>
 ### Cách làm [DFS](../search/dfs.md) đơn giản
 
 Rất dễ cài đặt một cách tìm kiếm đơn giản như sau: trong quá trình tìm kiếm, ghi lại ba tham số gồm đang chuẩn bị xét vật phẩm thứ mấy, thời gian còn lại là bao nhiêu và giá trị đã thu được là bao nhiêu; sau đó liệt kê xem vật phẩm hiện tại có được chọn hay không và chuyển tới trạng thái tương ứng.
@@ -71,7 +71,7 @@ Rất dễ cài đặt một cách tìm kiếm đơn giản như sau: trong quá
 
 Độ phức tạp thời gian của cách làm này là cấp số mũ, nên không thể vượt qua bài này.
 
-<span id="&#x4F18;&#x5316;"></span>
+<span id="tối-ưu"></span>
 ### Tối ưu
 
 Vì sao cách làm trên có hiệu quả thấp? Vì cùng một trạng thái sẽ bị truy cập nhiều lần.
@@ -136,7 +136,7 @@ Thông qua cách xử lý này, ta bảo đảm mỗi trạng thái chỉ bị t
         print(dfs(1, t))
         ```
 
-<span id="&#x4E0E;&#x9012;&#x63A8;&#x7684;&#x8054;&#x7CFB;&#x4E0E;&#x533A;&#x522B;"></span>
+<span id="liên-hệ-và-khác-biệt-với-cài-đặt-lặp"></span>
 ## Liên hệ và khác biệt với cài đặt lặp
 
 Khi giải các bài toán quy hoạch động, mã của tìm kiếm có ghi nhớ và cài đặt lặp thường rất giống nhau về hình thức. Điều này là do chúng dùng cùng một cách biểu diễn trạng thái và các chuyển trạng thái tương tự nhau. Cũng vì vậy, nói chung độ phức tạp thời gian của hai cách cài đặt là như nhau.
@@ -164,10 +164,10 @@ Khi giải các bài toán quy hoạch động, cả tìm kiếm có ghi nhớ l
 
 So với cài đặt lặp, tìm kiếm có ghi nhớ đôi khi dễ cài đặt hơn vì không cần quy định rõ thứ tự truy cập, đồng thời xử lý biên khá thuận tiện; đây là một ưu điểm lớn của tìm kiếm có ghi nhớ. Nhưng mặt khác, tìm kiếm có ghi nhớ khó dùng các tối ưu như mảng cuộn, và do có đệ quy nên hiệu suất chạy sẽ thấp hơn cài đặt lặp. Vì vậy nên chọn cách cài đặt phù hợp hơn tùy theo bài toán.
 
-<span id="&#x5982;&#x4F55;&#x5199;&#x8BB0;&#x5FC6;&#x5316;&#x641C;&#x7D22;"></span>
+<span id="cách-viết-tìm-kiếm-có-ghi-nhớ"></span>
 ## Cách viết tìm kiếm có ghi nhớ
 
-<span id="&#x65B9;&#x6CD5;&#x4E00;"></span>
+<span id="cách-1"></span>
 ### Cách 1
 
 1.  Viết trạng thái DP và phương trình của bài này ra
@@ -214,7 +214,7 @@ Chuyển thành
         return mem[i]
     ```
 
-<span id="&#x65B9;&#x6CD5;&#x4E8C;"></span>
+<span id="cách-2"></span>
 ### Cách 2
 
 1.  Viết chương trình tìm kiếm vét cạn cho bài này (tốt nhất là [dfs](../search/dfs.md))
