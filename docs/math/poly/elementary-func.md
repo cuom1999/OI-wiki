@@ -101,9 +101,9 @@ $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-#### Newton's Method
+#### Phương pháp Newton
 
-Xem [Newton's Method](./newton.md#newtons-method).
+Xem [phương pháp Newton](./newton.md#newtons-method).
 
 <span id="phương-pháp-graeffe"></span>
 #### Phương pháp Graeffe
@@ -223,9 +223,9 @@ Nếu $\left[x^0\right]g(x) = 0$, hãy phân tích $g(x)$ thành $x^{k}h(x)$, tr
     --8<-- "docs/math/code/poly/sqrt/sqrt_1.cpp"
     ```
 
-#### Newton's Method
+#### Phương pháp Newton
 
-Xem [Newton's Method](./newton.md#newtons-method).
+Xem [phương pháp Newton](./newton.md#newtons-method).
 
 <span id="ví-dụ_1"></span>
 ### Ví dụ
@@ -333,9 +333,9 @@ Cho đa thức $f(x)$, hãy tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo modulo $x^{n}
     
     **Độ phức tạp thời gian**  $O(n\log^{2}{n})$.
 
-#### Newton's Method
+#### Phương pháp Newton
 
-Dùng [Newton's Method](./newton.md#newtons-method) có thể giải $\exp$ của đa thức trong độ phức tạp $O(n\log{n})$.
+Dùng [phương pháp Newton](./newton.md#newtons-method) có thể giải $\exp$ của đa thức trong độ phức tạp $O(n\log{n})$.
 
 <span id="mã-nguồn_1"></span>
 ### Mã nguồn

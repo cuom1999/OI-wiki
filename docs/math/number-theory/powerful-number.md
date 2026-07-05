@@ -1,7 +1,7 @@
 <span id="định-nghĩa"></span>
 ## Định nghĩa
 
-Sàng Powerful Number (sau đây viết tắt là PN) tương tự sàng Dujiao, hoặc có thể xem là một mở rộng của sàng Dujiao, dùng để tính tổng tiền tố của một số hàm nhân.
+Sàng số lũy thừa mạnh (Powerful Number, sau đây viết tắt là PN) tương tự sàng Dujiao, hoặc có thể xem là một mở rộng của sàng Dujiao, dùng để tính tổng tiền tố của một số hàm nhân.
 
 **Yêu cầu**:
 
@@ -12,7 +12,7 @@ Sàng Powerful Number (sau đây viết tắt là PN) tương tự sàng Dujiao,
 
 Giả sử hiện cần tính tổng tiền tố của hàm nhân $f$: $F(n) = \sum_{i=1}^{n} f(i)$.
 
-## Powerful Number
+## Số lũy thừa mạnh (powerful number)
 
 **Định nghĩa**: Với số nguyên dương $n$, giả sử phân tích thừa số nguyên tố của $n$ là $n = \prod_{i=1}^{m} p_{i}^{e_{i}}$. $n$ là PN khi và chỉ khi $\forall 1 \le i \le m, e_{i} > 1$.
 
@@ -208,5 +208,5 @@ $S_1$ có thể tính bằng sàng Dujiao, còn $S_2$ được suy trực tiếp
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
--   [wallbreaker5th - Giới thiệu ngắn về sàng Powerful Number](https://www.cnblogs.com/wallbreaker5th/p/13901487.html)
+-   [wallbreaker5th - Giới thiệu ngắn về sàng số lũy thừa mạnh](https://www.cnblogs.com/wallbreaker5th/p/13901487.html)
 -   [command_block - Sàng Dujiao (+ chuỗi Bell + powerful number)](https://www.luogu.com.cn/blog/command-block/du-jiao-shai)

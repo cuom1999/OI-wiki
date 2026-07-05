@@ -2,7 +2,7 @@ Trong thi đấu thuật toán, đôi khi ta dùng [thuật toán ngẫu nhiên 
 
 Bài viết này giới thiệu ngắn gọn một số công cụ dùng để phân tích thuật toán ngẫu nhiên hóa và đưa ra vài ví dụ ứng dụng đơn giản.
 
-## Union Bound
+## Cận hợp (Union bound)
 
 Ký hiệu $A_1, \cdots, A_m$ là các biến cố ngẫu nhiên, khi đó
 
@@ -183,7 +183,7 @@ Trong một hộp có $n$ quả bóng, trong đó đúng $k$ quả bóng tương
     \Big(1-\dfrac 1n\Big)^{n\log\epsilon^{-1}}\leq e^{\log\epsilon}=\epsilon
     $$
     
-    Bây giờ có $k>1$ quả bóng trúng thưởng. Theo Union Bound, ta chỉ cần đảm bảo xác suất mỗi quả bóng trúng thưởng bị bỏ sót đều không vượt quá $\dfrac \epsilon k$. Do đó đáp án là $n \log \dfrac{k}{\epsilon}$.
+    Bây giờ có $k>1$ quả bóng trúng thưởng. Theo cận hợp, ta chỉ cần đảm bảo xác suất mỗi quả bóng trúng thưởng bị bỏ sót đều không vượt quá $\dfrac \epsilon k$. Do đó đáp án là $n \log \dfrac{k}{\epsilon}$.
 
 <span id="ví-dụ-chọn-ngẫu-nhiên-một-nửa-số-phần-tử"></span>
 ### Ví dụ: chọn ngẫu nhiên một nửa số phần tử
@@ -236,6 +236,6 @@ Hãy đưa ra một thuật toán chọn ngẫu nhiên đều xác suất một 
         Tóm lại, thuật toán này cần tung đồng xu $n+2\sqrt{\pi n}\lceil\log_2 n\rceil$ lần theo kỳ vọng.
 
 <span id="bài-tập-balls-and-bins"></span>
-### Bài tập: Balls and Bins
+### Bài tập: Bóng và hộp (balls and bins)
 
 $n$ quả bóng được ném độc lập ngẫu nhiên vào $n$ hộp. Hãy chứng minh: số bóng trong hộp chứa nhiều bóng nhất không nhỏ hơn $\Omega \left( \dfrac{\log n}{\log \log n} \right)$ với xác suất $1 - \dfrac{1}{n}$.

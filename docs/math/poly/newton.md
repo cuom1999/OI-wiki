@@ -14,7 +14,8 @@ và tồn tại một giá trị $f_1$ sao cho $G\left(x, y\right)$ thỏa các 
 
 Hãy tìm $f\left(x\right)$ theo modulo $x^{n}$.
 
-## Newton's Method
+<span id="newtons-method"></span>
+## Phương pháp Newton
 
 Xét cách nhân đôi độ dài.
 
@@ -65,7 +66,7 @@ $$
 G\left(x, y\right)=\frac{1}{y}-h\left(x\right)
 $$
 
-Áp dụng Newton's Method, ta được:
+Áp dụng phương pháp Newton, ta được:
 
 $$
 \begin{aligned}
@@ -89,7 +90,7 @@ $$
 G\left(x, y\right)=y^{2}-h\left(x\right)\equiv 0
 $$
 
-Áp dụng Newton's Method, ta được:
+Áp dụng phương pháp Newton, ta được:
 
 $$
 \begin{aligned}
@@ -113,7 +114,7 @@ $$
 G\left(x, y\right)=\ln{y}-h\left(x\right)
 $$
 
-Áp dụng Newton's Method, ta được:
+Áp dụng phương pháp Newton, ta được:
 
 $$
 \begin{aligned}
