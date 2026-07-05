@@ -2,7 +2,7 @@ author: Peanut-Tang, Early0v0, Vxlimo, GHLinZhengyu, 1196131597
 
 Thuật toán Meissel–Lehmer là một thuật toán có thể tính số lượng số nguyên tố trong đoạn $1\sim n$ với độ phức tạp thời gian dưới tuyến tính.
 
-<span id="&#x8BB0;&#x53F7;&#x89C4;&#x5B9A;"></span>
+<span id="quy-ước-ký-hiệu"></span>
 ## Quy ước ký hiệu
 
 $\left[x\right]$ biểu thị kết quả làm tròn xuống của $x$.\
@@ -13,7 +13,7 @@ Với tập hợp $S$, $\# S$ biểu thị kích thước của tập hợp $S$.
 $\delta\left(x\right)$ biểu thị thừa số nguyên tố nhỏ nhất của $x$.\
 $P^+\left(x\right)$ biểu thị thừa số nguyên tố lớn nhất của $x$.
 
-<span id="meissel-lehmer-&#x7B97;&#x6CD5;&#x6C42;-π(x)"></span>
+<span id="dùng-thuật-toán-meissellehmer-để-tính-πx"></span>
 ## Dùng thuật toán Meissel–Lehmer để tính π(x)
 
 Định nghĩa $\phi\left(x,a\right)$ là số lượng số nguyên dương không vượt quá $x$ mà mọi thừa số nguyên tố của chúng đều lớn hơn $p_a$, tức là:
@@ -46,7 +46,7 @@ $$
 
 Như vậy, việc tính $\pi\left(x\right)$ có thể chuyển thành việc tính $\phi\left(x,a\right)$ và $P_2\left(x,a\right)$.
 
-<span id="&#x8BA1;&#x7B97;-p₂(x,a)"></span>
+<span id="tính-p₂xa"></span>
 ## Tính P₂(x,a)
 
 Từ đẳng thức $\left(2\right)$, ta có thể thấy $P_2\left(x,a\right)$ bằng số lượng cặp số nguyên tố $\left(p,q\right)$ thỏa mãn $y<p\le q$ và $pq\le x$.
@@ -59,7 +59,7 @@ $$
 
 Khi $p\in \left[y+1,\sqrt{x}\right]$, ta có $\dfrac{x}{p}\in \left[1,\dfrac{x}{y}\right]$. Vì vậy, ta có thể sàng khoảng $\left[1,\dfrac{x}{y}\right]$, rồi tính $\pi\left(\dfrac{x}{p}\right)-\pi\left(p\right)+1$ cho tất cả số nguyên tố $p\in \left[y+1,\sqrt{x}\right]$. Để giảm độ phức tạp không gian của thuật toán trên, ta có thể xét chia khối với độ dài khối là $L$. Nếu độ dài khối $L=y$, thì có thể tính $P_2\left(x,a\right)$ trong độ phức tạp thời gian $O\left(\dfrac{x}{y}\log{\log{x}}\right)$ và độ phức tạp không gian $O\left(y\right)$.
 
-<span id="&#x8BA1;&#x7B97;-ϕ(x,a)"></span>
+<span id="tính-ϕxa"></span>
 ## Tính ϕ(x,a)
 
 Với $b\le a$, xét tất cả số nguyên dương không vượt quá $x$ mà mọi thừa số nguyên tố của nó đều lớn hơn $p_{b-1}$. Các số này có thể chia thành hai loại:
@@ -140,7 +140,7 @@ Từ đó ta có:
 
 Việc tính $S_0$ rõ ràng có thể giải quyết trong độ phức tạp thời gian $O\left(y\log{\log x}\right)$; bây giờ ta xét cách tính $S$.
 
-<span id="&#x8BA1;&#x7B97;-s"></span>
+<span id="tính-s"></span>
 ## Tính S
 
 Ta có:
@@ -183,7 +183,7 @@ $$
 S_2=\sum_{x^{1/4}<p\le x^{1/3}}{\ \sum_{p<q\le y}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1\right)}}
 $$
 
-<span id="&#x8BA1;&#x7B97;-s₁"></span>
+<span id="tính-s₁"></span>
 ### Tính S₁
 
 Vì:
@@ -208,7 +208,7 @@ $$
 
 Với đẳng thức này, ta có thể tính $S_1$ trong thời gian $O\left(1\right)$.
 
-<span id="&#x8BA1;&#x7B97;-s₂"></span>
+<span id="tính-s₂"></span>
 ### Tính S₂
 
 Ta có:
@@ -233,7 +233,7 @@ $$
 V=\sum_{x^{1/4}<p\le x^{1/3}}{\ \sum_{\substack{p<q<y\\q\le x/p^2}}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)}}
 $$
 
-<span id="&#x8BA1;&#x7B97;-u"></span>
+<span id="tính-u"></span>
 ### Tính U
 
 Từ $q>\dfrac x{p^2}$ suy ra $p^2>\dfrac xq\le \dfrac xy$, nên $p>\sqrt{\dfrac xy}$. Do đó:
@@ -256,7 +256,7 @@ $$
 
 Vì $\dfrac x{p^2}<y$, ta có thể tiền xử lý tất cả giá trị $\pi\left(t\right)\left(t\le y\right)$, nhờ đó tính được $U$ trong độ phức tạp thời gian $O\left(y\right)$.
 
-<span id="&#x8BA1;&#x7B97;-v"></span>
+<span id="tính-v"></span>
 ### Tính V
 
 Với mỗi hạng trong tổng tính $V$, ta đều có $p\le \dfrac{x}{pq}<x^{1/2}<p^2$. Do đó:
@@ -319,32 +319,32 @@ $$
 W_5=\sum_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum_{\sqrt{x/p}<q\le x/p^2}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
 
-<span id="&#x8BA1;&#x7B97;-w₁-&#x4E0E;-w₂"></span>
+<span id="tính-w₁-và-w₂"></span>
 #### Tính W₁ và W₂
 
 Để tính hai giá trị này, cần tính các giá trị $\pi\left(\dfrac{x}{pq} \right)$ thỏa mãn $y<\dfrac{x}{pq}<x^{1/2}$. Có thể sàng phân khối trên khoảng $[1,\sqrt x]$. Trong mỗi khối, ta cộng dồn $\pi\left(\dfrac x{pq}\right)$ cho tất cả $(p,q)$ thỏa mãn điều kiện.
 
-<span id="&#x8BA1;&#x7B97;-w₃"></span>
+<span id="tính-w₃"></span>
 #### Tính W₃
 
 Với mỗi $p$, ta chia $q$ thành nhiều khoảng sao cho trong mỗi khoảng, $\pi\left(\dfrac x{pq}\right)$ là hằng số; đóng góp của mỗi khoảng đều có thể tính trong $O(1)$. Khi thu được một $q$ mới, ta dùng bảng giá trị $\pi(t)$ với $t\leq y$ để tính $\pi\left(\dfrac x{pq}\right)$. Bằng danh sách số nguyên tố không vượt quá $y$, ta có thể tìm $t$ sao cho $\pi(t)<\pi(t+1)=\pi\left(\dfrac x{pq}\right)$. Từ đó tiếp tục tìm giá trị $q$ kế tiếp làm $\pi\left(\dfrac x{pq}\right)$ thay đổi.
 
-<span id="&#x8BA1;&#x7B97;-w₄"></span>
+<span id="tính-w₄"></span>
 #### Tính W₄
 
 So với $W_3$, trong $W_4$ giá trị $q$ nhỏ hơn, nên $\pi\left(\dfrac x{pq}\right)$ thay đổi nhanh hơn. Lúc này nếu vẫn dùng cách tính $W_3$ cho $W_4$ thì không còn lợi thế nào đáng kể. Vì vậy ta trực tiếp duyệt tất cả cặp $(p,q)$ để tính $W_4$.
 
-<span id="&#x8BA1;&#x7B97;-w₅"></span>
+<span id="tính-w₅"></span>
 #### Tính W₅
 
 Ta tính $W_5$ tương tự như cách tính $W_3$.
 
-<span id="&#x8BA1;&#x7B97;-s₃"></span>
+<span id="tính-s₃"></span>
 ## Tính S₃
 
 Ta dùng tất cả số nguyên tố nhỏ hơn $x^{1/4}$ để sàng một lần khoảng $\left[1,\dfrac xy\right]$. Khi phép sàng đi tới $p_k$, ta đã tính được các giá trị $-\mu(m)\phi\left(\dfrac{x}{mp_k},k-1 \right)$ cho mọi $m$ thỏa mãn không chứa thừa số chính phương và $\delta(m)>p_k$. Phép sàng này được thực hiện theo phân khối; trong khoảng đang sàng, ta duy trì một cây nhị phân để cập nhật theo thời gian thực các kết quả trung gian sau khi sàng đến một số nguyên tố cho trước. Như vậy, chỉ cần độ phức tạp thời gian $O(\log x)$ để tìm số lượng các số chưa bị sàng khi phép sàng đi tới một giá trị nào đó.
 
-<span id="&#x7B97;&#x6CD5;&#x7684;&#x65F6;&#x7A7A;&#x590D;&#x6742;&#x5EA6;"></span>
+<span id="độ-phức-tạp-thời-gian-và-không-gian-của-thuật-toán"></span>
 ## Độ phức tạp thời gian và không gian của thuật toán
 
 Độ phức tạp thời gian và không gian bị ảnh hưởng bởi $3$ quá trình sau:
@@ -353,12 +353,12 @@ Ta dùng tất cả số nguyên tố nhỏ hơn $x^{1/4}$ để sàng một l�
 2.  Tính $W_1,W_2,W_3,W_4,W_5$;
 3.  Tính $S_3$.
 
-<span id="&#x8BA1;&#x7B97;-p₂(x,y)-&#x7684;&#x590D;&#x6742;&#x5EA6;"></span>
+<span id="độ-phức-tạp-khi-tính-p₂xy"></span>
 ### Độ phức tạp khi tính P₂(x,y)
 
 Ta đã biết quá trình này có độ phức tạp thời gian $O\left(\dfrac{x}{y}\log{\log x}\right)$ và độ phức tạp không gian $O\left(y\right)$.
 
-<span id="&#x8BA1;&#x7B97;-w₁,w₂,w₃,w₄,w₅-&#x7684;&#x590D;&#x6742;&#x5EA6;"></span>
+<span id="độ-phức-tạp-khi-tính-w₁w₂w₃w₄w₅"></span>
 ### Độ phức tạp khi tính W₁,W₂,W₃,W₄,W₅
 
 Phép sàng theo khối độ dài $y$ dùng để tính $W_1,W_2$ có độ phức tạp thời gian $O\left(\sqrt{x}\log{\log x}\right)$ và độ phức tạp không gian $O\left(y\right)$.
@@ -393,7 +393,7 @@ $$
 O\left(\sum_{\sqrt{x/y}<p\le x^{1/3}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{2/3}}{\log^2 x} \right)
 $$
 
-<span id="&#x8BA1;&#x7B97;-s₃-&#x7684;&#x590D;&#x6742;&#x5EA6;"></span>
+<span id="độ-phức-tạp-khi-tính-s₃"></span>
 ### Độ phức tạp khi tính S₃
 
 Với bước tiền xử lý: do cần truy vấn nhanh giá trị $\phi(u,b)$, ta không thể dùng phép sàng thông thường để lấy trong $O(1)$, mà phải duy trì một cấu trúc dữ liệu sao cho mỗi truy vấn có độ phức tạp thời gian $O(\log x)$. Vì vậy độ phức tạp thời gian là $O\left(\dfrac{x}{y}\log x\log\log x\right)$.
@@ -404,7 +404,7 @@ $$
 O\left(\dfrac{x}{y}\log x\log\log x+yx^{1/4}\right)
 $$
 
-<span id="&#x603B;&#x590D;&#x6742;&#x5EA6;"></span>
+<span id="tổng-độ-phức-tạp"></span>
 ### Tổng độ phức tạp
 
 Độ phức tạp không gian của thuật toán này là $O\left(y\right)$, và độ phức tạp thời gian là:
@@ -415,7 +415,7 @@ $$
 
 Chọn $y=x^{1/3}\log^3{x}\log{\log x}$, ta thu được độ phức tạp thời gian tối ưu $O\left(\dfrac{x^{2/3}}{\log^2 x}\right)$ và độ phức tạp không gian $O\left(x^{1/3}\log^3{x}\log{\log x}\right)$.
 
-<span id="&#x4E00;&#x4E9B;&#x6539;&#x8FDB;"></span>
+<span id="một-số-cải-tiến"></span>
 ## Một số cải tiến
 
 Ở đây ta đưa ra các cách cải tiến để giảm hằng số của thuật toán và nâng cao hiệu năng thực tế.
@@ -432,7 +432,7 @@ Chọn $y=x^{1/3}\log^3{x}\log{\log x}$, ta thu được độ phức tạp th�
 
 -   Tiền xử lý phép tính bằng vài số nguyên tố đầu tiên $2,3,5$ có thể tiết kiệm thêm thời gian.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+<span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 ## Tài liệu tham khảo và đọc thêm
 
 Bài viết này được dịch từ: [Computing $\pi(x)$: the Meissel, Lehmer, Lagarias, Miller, Odlyzko method](https://dl.acm.org/doi/abs/10.1090/s0025-5718-96-00674-6)
