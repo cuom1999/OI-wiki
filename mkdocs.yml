@@ -103,9 +103,9 @@ nav:
       - Bộ chứa STL:
         - Giới thiệu bộ chứa STL: lang/csl/container.md
         - Bộ lặp: lang/csl/iterator.md
-        - Container tuần tự: lang/csl/sequence-container.md
-        - Container kết hợp: lang/csl/associative-container.md
-        - Container kết hợp không thứ tự: lang/csl/unordered-container.md
+        - Bộ chứa tuần tự: lang/csl/sequence-container.md
+        - Bộ chứa kết hợp: lang/csl/associative-container.md
+        - Bộ chứa kết hợp không thứ tự: lang/csl/unordered-container.md
         - Bộ chuyển đổi bộ chứa: lang/csl/container-adapter.md
       - Thuật toán STL: lang/csl/algorithm.md
       - bitset: lang/csl/bitset.md
@@ -254,7 +254,7 @@ nav:
       - Phương trình đồng dư: math/number-theory/congruence-equation.md
       - Thặng dư bậc hai: math/number-theory/quad-residue.md
       - Bậc & căn nguyên thủy: math/number-theory/primitive-root.md
-      - Logarithm rời rạc: math/number-theory/discrete-logarithm.md
+      - Logarit rời rạc: math/number-theory/discrete-logarithm.md
       - Thặng dư bậc cao & căn đơn vị: math/number-theory/residue.md
       - Phân khối trong lý thuyết số: math/number-theory/sqrt-decomposition.md
       - Tích chập Dirichlet: math/number-theory/dirichlet.md
