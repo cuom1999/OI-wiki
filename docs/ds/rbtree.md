@@ -40,7 +40,7 @@ Hình dưới đây là một cây đỏ-đen hợp lệ:
 ```
 
 ???+ note "Ghi chú"
-    Trong phần lưu trữ nút của cây đỏ-đen, dùng mảng để lưu con trỏ đến các nút con có thể tăng khả năng tái sử dụng mã.
+    Khi lưu trữ nút của cây đỏ-đen, dùng mảng cho các con trỏ nút con có thể tăng khả năng tái sử dụng mã.
 
 ## Thao tác
 
@@ -49,10 +49,10 @@ Hình dưới đây là một cây đỏ-đen hợp lệ:
     Bài này dùng cách cài đặt trong *Introduction to Algorithms*,
     chia việc duy trì cân bằng sau khi chèn thành 3 trường hợp và sau khi xóa thành 4 trường hợp.
 
-Các thao tác duyệt cây, tìm giá trị nhỏ nhất/lớn nhất, tìm kiếm phần tử, tìm hạng của phần tử, truy ngược phần tử theo
-hạng, tìm tiền nhiệm/kế nhiệm, v.v. của cây đỏ-đen giống với [cây tìm kiếm nhị phân](./bst.md), nên không trình bày lại.
+Các thao tác duyệt cây, tìm giá trị nhỏ nhất/lớn nhất, tìm kiếm phần tử, tìm hạng của phần tử, tìm phần tử theo hạng,
+tìm tiền nhiệm/kế nhiệm, v.v. của cây đỏ-đen giống với [cây tìm kiếm nhị phân](./bst.md), nên không trình bày lại.
 
-Ngoài ra, trong chú thích mã của phần duy trì cân bằng khi chèn/xóa bên dưới, dùng các quy ước sau:
+Ngoài ra, chú thích mã trong phần duy trì cân bằng khi chèn/xóa bên dưới dùng các quy ước sau:
 
 -   Dùng `p` để biểu thị nút `p` có màu đen;
 -   Dùng `[p]` để biểu thị nút `p` có màu đỏ;
@@ -75,7 +75,7 @@ cục bộ mà không làm thay đổi kết quả duyệt trung thứ tự củ
 
 Thao tác chèn của cây đỏ-đen tương tự cây tìm kiếm nhị phân thông thường.
 Với cây đỏ-đen, nút mới chèn ban đầu có màu đỏ.
-Sau khi chèn xong, cần chỉnh sửa dựa trên trạng thái của nút vừa chèn và các nút liên quan
+Sau khi chèn xong, cần điều chỉnh dựa trên trạng thái của nút vừa chèn và các nút liên quan
 để thỏa mãn bốn tính chất đã nêu ở trên.
 
 ???+ note "Cài đặt"
@@ -92,13 +92,13 @@ Sau khi chèn xong, cần chỉnh sửa dựa trên trạng thái của nút v�
 ???+ note "Ghi chú"
     Để hiểu sâu hơn, có thể tự kiểm tra xem sau khi duy trì cân bằng thì tính chất 4 có được thỏa mãn hay không.
 
-Vì nút được chèn, nếu không phải là nút gốc, chắc chắn là nút đỏ, nên sau khi chèn có thể vi phạm tính chất 3 và cần duy
-trì cân bằng.
+Vì nút vừa chèn, nếu không phải nút gốc, chắc chắn có màu đỏ, nên thao tác chèn có thể vi phạm tính chất 3 và cần duy trì
+cân bằng.
 
 Gọi nút được chèn là $n$, nút cha là $p$, nút ông là $g$, nút chú là $u$. Theo tính chất 3, $g$ chắc chắn có màu đen.
 
-Bắt đầu từ vị trí chèn và duy trì đệ quy lên trên. Nếu $p$ có màu đen thì có thể dừng; nếu không, chia thành 3 trường
-hợp.
+Bắt đầu từ vị trí chèn, quá trình duy trì cân bằng tiếp tục đệ quy lên phía trên. Nếu $p$ có màu đen thì có thể dừng; nếu
+không, chia thành 3 trường hợp.
 
 ```cpp
 --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-aux1"
@@ -170,10 +170,10 @@ So với cây tìm kiếm nhị phân thông thường, thao tác xóa của câ
 ???+ note "Ghi chú"
     Để hiểu sâu hơn, có thể tự kiểm tra xem sau khi duy trì cân bằng thì tính chất 4 có được thỏa mãn hay không.
 
-Từ phần thảo luận ở trên, $n$ là nút lá màu đen và không phải nút gốc.
+Theo phần thảo luận trước đó, $n$ là nút lá màu đen và không phải nút gốc.
 Đặt nút cha của $n$ là $p$, nút anh em là $s$, các nút cháu lần lượt là $c$ và $d$.
 
-Việc duy trì sau khi xóa cũng bắt đầu từ $n$ và duy trì đệ quy lên trên.
+Quá trình duy trì cân bằng sau khi xóa cũng bắt đầu từ $n$ và tiếp tục đệ quy lên phía trên.
 Nếu $n$ là nút gốc hoặc $n$ có màu đỏ thì có thể dừng; nếu không, chia thành 4 trường hợp.
 
 ```cpp
@@ -287,9 +287,9 @@ Có thể hiểu thao tác chèn và xóa của cây đỏ-đen bằng cách đ�
 
 ## Sử dụng trong các dự án kỹ thuật thực tế
 
-Cây đỏ-đen là một trong những cây cân bằng trong bộ nhớ có hiệu quả tổng hợp cao và được dùng rộng rãi trong công
-nghiệp, nên có phạm vi ứng dụng rộng trong các dự án kỹ thuật thực tế. Dưới đây liệt kê một vài trường hợp sử dụng thực
-tế, kèm liên kết mã nguồn tương ứng để tiện đối chiếu.
+Cây đỏ-đen là một trong những cây cân bằng trong bộ nhớ có hiệu quả tổng thể cao và được dùng rộng rãi trong công nghiệp.
+Vì vậy, cấu trúc này xuất hiện trong nhiều dự án kỹ thuật thực tế. Phần dưới đây liệt kê một vài trường hợp sử dụng, kèm
+liên kết mã nguồn tương ứng để tiện đối chiếu.
 
 ### Linux
 
