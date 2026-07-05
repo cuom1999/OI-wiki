@@ -1,21 +1,21 @@
-Trong tổ hợp, đếm đồ thị (Graph Enumeration) là nhánh nghiên cứu bài toán đếm các đồ thị thỏa mãn những tính chất nhất định. [Hàm sinh](../poly/intro.md), [định lý đếm Polya](./polya.md), [phương pháp ký hiệu](../poly/symbolic-method.md#%E9%9B%86%E5%90%88%E7%9A%84-cycle-%E6%9E%84%E9%80%A0) và [OEIS](https://oeis.org/) là những công cụ toán học quan trọng nhất khi giải lớp bài toán này. Đếm đồ thị có thể chia thành hai nhóm lớn: có nhãn và không nhãn. Trong đa số trường hợp[^1], phiên bản có nhãn đơn giản hơn phiên bản không nhãn tương ứng, vì vậy ta sẽ xét việc đếm các bài toán có nhãn trước.
+Trong tổ hợp, đếm đồ thị (Graph Enumeration) là nhánh nghiên cứu bài toán đếm các đồ thị thỏa mãn những tính chất nhất định. [Hàm sinh](../poly/intro.md), [định lý đếm Polya](./polya.md), [phương pháp ký hiệu](../poly/symbolic-method.md#cấu-trúc-cycle-của-tập-hợp) và [OEIS](https://oeis.org/) là những công cụ toán học quan trọng nhất khi giải lớp bài toán này. Đếm đồ thị có thể chia thành hai nhóm lớn: có nhãn và không nhãn. Trong đa số trường hợp[^1], phiên bản có nhãn đơn giản hơn phiên bản không nhãn tương ứng, vì vậy ta sẽ xét việc đếm các bài toán có nhãn trước.
 
 [^1]: Có lẽ cây nhị phân không nhãn là một phản ví dụ. Khi cấu trúc đơn giản, nhóm hoán vị tương ứng là nhóm đồng nhất (Identity Group), lúc đó phiên bản có nhãn có thể thu được trực tiếp bằng cách nhân với $n!$.
 
-<span id="&#26377;&#26631;&#21495;&#26641;"></span>
+<span id="cây-có-nhãn"></span>
 ## Cây có nhãn
 
-Đây chính là công thức Cayley; xem bài về [dãy Prüfer](../../graph/prufer.md). Ta cũng có thể dùng [định lý cây ma trận Kirchhoff](../../graph/matrix-tree.md), hoặc [hàm sinh](../poly/intro.md#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0) và [định lý Lagrange](https://codeforces.com/blog/entry/104184) để thu được kết quả này.
+Đây chính là công thức Cayley; xem bài về [dãy Prüfer](../../graph/prufer.md). Ta cũng có thể dùng [định lý cây ma trận Kirchhoff](../../graph/matrix-tree.md), hoặc [hàm sinh](../poly/intro.md#hàm-sinh) và [định lý Lagrange](https://codeforces.com/blog/entry/104184) để thu được kết quả này.
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ### Bài tập
 
 -   [Hihocoder 1047. Random Tree](https://vjudge.net/problem/HihoCoder-1047)
 
-<span id="&#26377;&#26631;&#21495;&#36830;&#36890;&#22270;"></span>
+<span id="đồ-thị-liên-thông-có-nhãn"></span>
 ## Đồ thị liên thông có nhãn
 
-<span id="&#20363;&#39064;&#12300;poj-1737&#12301;connected-graph"></span>
+<span id="ví-dụ-poj-1737-connected-graph"></span>
 ### Ví dụ "POJ 1737" Connected Graph
 
 ???+ note "Ví dụ [\"POJ 1737\" Connected Graph](http://poj.org/problem?id=1737)"
@@ -32,7 +32,7 @@ $$
 
 Chuyển vế thu được công thức truy hồi $O(n^2)$ cho dãy $c_n$, đủ để qua bài này.
 
-<span id="&#20363;&#39064;&#12300;&#38598;&#35757;&#38431;&#20316;&#19994;-2013&#12301;&#22478;&#24066;&#35268;&#21010;"></span>
+<span id="ví-dụ-bài-tập-đội-tuyển-tập-huấn-2013-quy-hoạch-thành-phố"></span>
 ### Ví dụ "Bài tập đội tuyển tập huấn 2013" Quy hoạch thành phố
 
 ???+ note "Ví dụ [\"Bài tập đội tuyển tập huấn 2013\" Quy hoạch thành phố](https://www.luogu.com.cn/problem/P4841)"
@@ -40,12 +40,12 @@ Chuyển vế thu được công thức truy hồi $O(n^2)$ cho dãy $c_n$, đ�
 
 Với các bài toán về dãy có miền dữ liệu lớn hơn, ta thường cần xây dựng hàm sinh của các dãy này để có thể dùng các thuật toán đa thức hiệu quả.
 
-<span id="&#26041;&#27861;&#19968;&#65306;&#20998;&#27835;-fft"></span>
+<span id="cách-1-chia-để-trị-fft"></span>
 #### Cách 1: chia để trị FFT
 
 Truy hồi ở trên có thể xem là một dạng tự tích chập, nên có thể dùng chia để trị FFT để tính, với độ phức tạp $O(n\log^2n)$.
 
-<span id="&#26041;&#27861;&#20108;&#65306;&#22810;&#39033;&#24335;&#27714;&#36870;"></span>
+<span id="cách-2-nghịch-đảo-đa-thức"></span>
 #### Cách 2: nghịch đảo đa thức
 
 Khai triển hệ số tổ hợp trong truy hồi ở trên và biến đổi:
@@ -67,12 +67,12 @@ H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 \end{align}
 $$
 
-Thế vào biểu thức trên được $CG = H$. Sau khi dùng [nghịch đảo đa thức](../poly/elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86), tích chập một lần nữa là giải được $C(x)$.
+Thế vào biểu thức trên được $CG = H$. Sau khi dùng [nghịch đảo đa thức](../poly/elementary-func.md#nghịch-đảo-đa-thức), tích chập một lần nữa là giải được $C(x)$.
 
-<span id="&#26041;&#27861;&#19977;&#65306;&#22810;&#39033;&#24335;-exp"></span>
+<span id="cách-3-exp-của-đa-thức"></span>
 #### Cách 3: exp của đa thức
 
-Một cách khác là dùng [ý nghĩa tổ hợp của exp đa thức trong EGF](../poly/egf.md#egf-%E4%B8%AD%E5%A4%9A%E9%A1%B9%E5%BC%8F-exp-%E7%9A%84%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89). Đặt EGF của dãy đồ thị liên thông có nhãn và đồ thị đơn lần lượt là $C(x)$ và $G(x)$, khi đó chúng có quan hệ:
+Một cách khác là dùng [ý nghĩa tổ hợp của exp đa thức trong EGF](../poly/egf.md#ý-nghĩa-tổ-hợp-của-exp-đa-thức-trong-egf). Đặt EGF của dãy đồ thị liên thông có nhãn và đồ thị đơn lần lượt là $C(x)$ và $G(x)$, khi đó chúng có quan hệ:
 
 $$
 \begin{align}
@@ -81,12 +81,12 @@ C(x) &= \ln(G(x))
 \end{align}
 $$
 
-Dùng [ln đa thức](../poly/elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AF%B9%E6%95%B0%E5%87%BD%E6%95%B0--%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0) là giải được $C(x)$.
+Dùng [ln đa thức](../poly/elementary-func.md#hàm-logarit-và-hàm-mũ-của-đa-thức) là giải được $C(x)$.
 
-<span id="&#26377;&#26631;&#21495;&#27431;&#25289;&#22270;&#12289;&#20108;&#20998;&#22270;"></span>
+<span id="đồ-thị-euler-và-đồ-thị-hai-phía-có-nhãn"></span>
 ## Đồ thị Euler và đồ thị hai phía có nhãn
 
-<span id="&#20363;&#39064;&#12300;spoj-kpgraphs&#12301;counting-graphs"></span>
+<span id="ví-dụ-spoj-kpgraphs-counting-graphs"></span>
 ### Ví dụ "SPOJ KPGRAPHS" Counting Graphs
 
 ???+ note "Ví dụ [\"SPOJ KPGRAPHS\" Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
@@ -145,7 +145,7 @@ $$
 
 Tiếp theo ta dùng hai cách khác nhau để lập quan hệ giữa $g_n$ và $b_n$.
 
-<span id="&#26041;&#27861;&#19968;&#65306;&#31639;&#20004;&#27425;"></span>
+<span id="cách-1-đếm-hai-lần"></span>
 #### Cách 1: đếm hai lần
 
 Đặt $c_{n, k}$ là số đồ thị hai phía có k thành phần liên thông; khi đó dễ thấy có quan hệ sau:
@@ -168,7 +168,7 @@ $$
 
 Không khó để suy ra truy hồi cho $b_n$, với độ phức tạp $O(n^3)$. Nếu tiếp tục dùng nguyên lý bao hàm - loại trừ, có thể tối ưu xuống $O(n^2)$ và qua bài này.
 
-<span id="&#26041;&#27861;&#20108;&#65306;&#36830;&#36890;&#21270;&#36882;&#25512;"></span>
+<span id="cách-2-truy-hồi-liên-thông-hóa"></span>
 #### Cách 2: truy hồi liên thông hóa
 
 Cả cách 2 và cách 3 đều dùng số đồ thị hai phía liên thông $b1_n$ [A001832](https://oeis.org/A001832) để làm cầu nối giữa $g_n$ và $b_n$.
@@ -189,7 +189,7 @@ exp(B, B1);
 
 Cả hai quá trình truy hồi đều có độ phức tạp $O(n^2)$ và đều qua được bài này.
 
-<span id="&#26041;&#27861;&#19977;&#65306;&#22810;&#39033;&#24335;-exp_1"></span>
+<span id="cách-3-exp-của-đa-thức_1"></span>
 #### Cách 3: exp của đa thức
 
 Ta cũng có thể dùng EGF để hiểu quá trình truy hồi ở trên.
@@ -219,7 +219,7 @@ $$
     --8<-- "docs/math/code/combinatorics/graph-enumeration/graph-enumeration_1.cpp"
     ```
 
-<span id="&#20064;&#39064;_1"></span>
+<span id="bài-tập_1"></span>
 ### Bài tập
 
 -   [UOJ Goodbye Jihai D. Cuộc truy đuổi năm mới](https://uoj.ac/contest/50/problem/498)
@@ -240,7 +240,7 @@ $$
 
 ## Riddell's Formula
 
-Cách dùng exp của EGF ở trên đôi khi được gọi là Riddell's formula for labeled graphs. [Biến đổi Euler](../poly/symbolic-method.md#%E9%9B%86%E5%90%88%E7%9A%84-multiset-%E6%9E%84%E9%80%A0) của hàm sinh đôi khi cũng được gọi là Riddell's formula for unlabeled graphs; công thức sau xuất hiện sớm nhất trong nghiên cứu của Euler về số phân hoạch. Ngoài việc giải các bài toán đếm đồ thị, nó còn xuất hiện trong bài toán ba lô hoàn toàn.
+Cách dùng exp của EGF ở trên đôi khi được gọi là Riddell's formula for labeled graphs. [Biến đổi Euler](../poly/symbolic-method.md#cấu-trúc-multiset-của-tập-hợp) của hàm sinh đôi khi cũng được gọi là Riddell's formula for unlabeled graphs; công thức sau xuất hiện sớm nhất trong nghiên cứu của Euler về số phân hoạch. Ngoài việc giải các bài toán đếm đồ thị, nó còn xuất hiện trong bài toán ba lô hoàn toàn.
 
 Với dãy cho trước $a_i$ và OGF tương ứng $A(x)$, định nghĩa biến đổi Euler của $A(x)$ là:
 
@@ -257,10 +257,10 @@ $$
 n b_n = c_n + \sum_{i=1}^{n-1} c_i b_{n-i}
 $$
 
-<span id="&#26080;&#26631;&#21495;&#26641;"></span>
+<span id="cây-không-nhãn"></span>
 ## Cây không nhãn
 
-<span id="&#20363;&#39064;&#12300;spoj-pt07d&#12301;let-us-count-1-2-3"></span>
+<span id="ví-dụ-spoj-pt07d-let-us-count-1-2-3"></span>
 ### Ví dụ "SPOJ PT07D" Let us count 1 2 3
 
 ???+ note "Ví dụ [\"SPOJ PT07D\" Let us count 1 2 3](https://www.spoj.com/problems/PT07D/)"
@@ -271,7 +271,7 @@ $$
     -   Cây có gốc không nhãn [A000081](https://oeis.org/A000081).
     -   Cây không gốc không nhãn [A000055](https://oeis.org/A000055).
 
-<span id="&#26377;&#26681;&#26641;"></span>
+<span id="cây-có-gốc"></span>
 #### Cây có gốc
 
 Trường hợp có nhãn đã được giải quyết ở phần trước. Bây giờ xét cây có gốc không nhãn; đặt OGF của nó là $F(x)$, áp dụng biến đổi Euler thu được:
@@ -282,7 +282,7 @@ $$
 
 Lấy hệ số là được.
 
-<span id="&#26080;&#26681;&#26641;"></span>
+<span id="cây-không-gốc"></span>
 #### Cây không gốc
 
 Xét bao hàm - loại trừ: ta lấy số phương án cây có gốc trừ đi số phương án mà gốc không phải trọng tâm, và thảo luận theo tính chẵn lẻ của $n$.
@@ -303,7 +303,7 @@ $$
 g_n = f_n - \sum_{i=\left\lceil\frac{n}{2}\right\rceil}^{n-1} f_i f_{n-i} - \binom{f_{\frac{n}{2}}}{2}
 $$
 
-<span id="&#20363;&#39064;&#12300;luogu-p5900&#12301;&#26080;&#26631;&#21495;&#26080;&#26681;&#26641;&#35745;&#25968;"></span>
+<span id="ví-dụ-luogu-p5900-đếm-cây-không-gốc-không-nhãn"></span>
 ### Ví dụ "Luogu P5900" Đếm cây không gốc không nhãn
 
 ???+ note "Ví dụ [\"Luogu P5900\" Đếm cây không gốc không nhãn](https://www.luogu.com.cn/problem/P5900)"
@@ -311,10 +311,10 @@ $$
 
 Với miền dữ liệu lớn hơn, cách làm cũng tương tự; sau biến đổi Euler chỉ cần dùng template đa thức.
 
-<span id="&#26080;&#26631;&#21495;&#31616;&#21333;&#22270;"></span>
+<span id="đồ-thị-đơn-không-nhãn"></span>
 ## Đồ thị đơn không nhãn
 
-<span id="&#20363;&#39064;&#12300;sgu-282.-isomorphism&#12301;isomorphism"></span>
+<span id="ví-dụ-sgu-282-isomorphism-isomorphism"></span>
 ### Ví dụ "SGU 282. Isomorphism" Isomorphism
 
 ???+ note "Ví dụ [\"SGU 282. Isomorphism\" Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
@@ -353,7 +353,7 @@ Nếu một cạnh nối hai đỉnh nằm trong hai chu trình khác nhau, đ�
     --8<-- "docs/math/code/combinatorics/graph-enumeration/graph-enumeration_2.cpp"
     ```
 
-<span id="&#20064;&#39064;_2"></span>
+<span id="bài-tập_2"></span>
 ## Bài tập
 
 -   [CodeForces 438 E. The Child and Binary Tree](https://codeforces.com/problemset/problem/438/E)
@@ -369,7 +369,7 @@ Nếu một cạnh nối hai đỉnh nằm trong hai chu trình khác nhau, đ�
 -   [Luogu P7592. Đếm cây (2021 CoE-II E)](https://www.luogu.com.cn/problem/P7592)
 -   [Luogu P5206. \[WC2019\] Đếm cây](https://www.luogu.com.cn/problem/P5206)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 1.  [WC2015, tài liệu trao đổi của trại viên Gu Yuzhou: Graphical Enumeration](https://github.com/lychees/ACM-Training/blob/master/Note/%E5%86%AC%E4%BB%A4%E8%90%A5/2015/%E9%A1%BE%E6%98%B1%E6%B4%B2%E8%90%A5%E5%91%98%E4%BA%A4%E6%B5%81%E8%B5%84%E6%96%99%20Graphical%20Enumeration.pdf)

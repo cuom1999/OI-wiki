@@ -1,4 +1,4 @@
-<span id="&#x5F15;&#x5165;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
@@ -17,7 +17,7 @@ $$
 
 Mở rộng bài toán trên ra trường hợp tổng quát, ta thu được nguyên lý bao hàm-loại trừ quen thuộc.
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 
 ## Định nghĩa
 
@@ -36,7 +36,7 @@ $$
 \left|\bigcup_{i=1}^{n}S_i\right|=\sum_{m=1}^n(-1)^{m-1}\sum_{a_i<a_{i+1} }\left|\bigcap_{i=1}^mS_{a_i}\right|
 $$
 
-<span id="&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh"></span>
 
 ### Chứng minh
 
@@ -54,7 +54,7 @@ $$
 
 Vậy mỗi phần tử xuất hiện đúng một lần; gộp lại chính là phép hợp. Chứng minh hoàn tất.
 
-<span id="&#x8865;&#x96C6;"></span>
+<span id="phần-bù"></span>
 
 ### Phần bù
 
@@ -70,14 +70,14 @@ Vế phải lại dùng bao hàm-loại trừ.
 
 Tiếp theo ta đưa ra 3 ví dụ ở các mức độ khác nhau để minh họa ứng dụng của nguyên lý bao hàm-loại trừ.
 
-<span id="&#x4E0D;&#x5B9A;&#x65B9;&#x7A0B;&#x975E;&#x8D1F;&#x6574;&#x6570;&#x89E3;&#x8BA1;&#x6570;"></span>
+<span id="đếm-nghiệm-nguyên-không-âm-của-phương-trình-bất-định"></span>
 
 ## Đếm nghiệm nguyên không âm của phương trình bất định
 
 ???+ note "Đếm nghiệm nguyên không âm của phương trình bất định"
     Cho phương trình bất định $\sum_{i=1}^nx_i=m$ và $n$ điều kiện ràng buộc $x_i\leq b_i$, trong đó $m,b_i \in \mathbb{N}$. Hãy tính số nghiệm nguyên không âm của phương trình.
 
-<span id="&#x6CA1;&#x6709;&#x9650;&#x5236;&#x65F6;"></span>
+<span id="khi-không-có-ràng-buộc"></span>
 
 ### Khi không có ràng buộc
 
@@ -89,7 +89,7 @@ Tương đương với việc có $m$ quả bóng cần chia vào $n$ hộp, cho
 
 Ta thêm $n-1$ quả bóng nữa; khi đó bài toán trở thành chọn $n-1$ quả bóng trong một dãy bóng độ dài $m+n-1$. $n-1$ quả bóng được chọn này chia dãy thành $n$ phần, tương ứng một-một với cách chia vào $n$ hộp. Vậy số cách chọn $n-1$ quả bóng trong $m+n-1$ quả là $\dbinom{m+n-1}{n-1}$.
 
-<span id="&#x5BB9;&#x65A5;&#x6A21;&#x578B;"></span>
+<span id="mô-hình-bao-hàm-loại-trừ"></span>
 
 ### Mô hình bao hàm-loại trừ
 
@@ -119,7 +119,7 @@ $$
 
 Nên phần này cũng tính được bằng số tổ hợp. Mảng $a$ độ dài $k$ này tương đương với việc liệt kê tập con.
 
-<span id="haoi2008-&#x786C;&#x5E01;&#x8D2D;&#x7269;"></span>
+<span id="haoi2008-coin-shopping"></span>
 
 ## HAOI2008 Coin Shopping
 
@@ -143,7 +143,7 @@ $$
     --8<-- "docs/math/code/inclusion-exclusion-principle/inclusion-exclusion-principle_1.cpp"
     ```
 
-<span id="&#x5B8C;&#x5168;&#x56FE;&#x5B50;&#x56FE;&#x67D3;&#x8272;&#x95EE;&#x9898;"></span>
+<span id="bài-toán-tô-màu-đồ-thị-con-của-đồ-thị-đầy-đủ"></span>
 
 ## Bài toán tô màu đồ thị con của đồ thị đầy đủ
 
@@ -152,7 +152,7 @@ Ba bài trên đều là ứng dụng thuận chiều của nguyên lý bao hàm
 ???+ note "Bài toán tô màu đồ thị con của đồ thị đầy đủ"
     A và B thích tô màu đồ thị (không nhất thiết liên thông), với quy tắc: hai đỉnh kề nhau phải có cùng một màu. Hôm nay A và B chơi một trò chơi trên **đồ thị đầy đủ** bậc $n$ $G=(V,E)$. Họ định nghĩa hàm định giá $F(S)$, trong đó $S$ là tập cạnh, $S\subseteq E$. Giá trị $F(S)$ là tổng số cách tô màu đồ thị $G'=(V,S)$ bằng $m$ màu. Quy tắc khác của họ là: nếu $|S|$ lẻ, điểm của A tăng thêm $F(S)$; ngược lại điểm của B tăng thêm $F(S)$. Hỏi chênh lệch điểm của A và B.
 
-<span id="&#x6570;&#x5B66;&#x5F62;&#x5F0F;"></span>
+<span id="dạng-toán-học"></span>
 
 ### Dạng toán học
 
@@ -162,7 +162,7 @@ $$
 Ans=\sum_{S\subseteq E}(-1)^{|S|-1}F(S)
 $$
 
-<span id="&#x5BB9;&#x65A5;&#x6A21;&#x578B;_1"></span>
+<span id="mô-hình-bao-hàm-loại-trừ_1"></span>
 
 ### Mô hình bao hàm-loại trừ
 
@@ -188,7 +188,7 @@ $$
 F(S)\iff F(\{ {k_i}\})=\left|\bigcap_{k_i}Q_{k_i}\right|
 $$
 
-<span id="&#x9006;&#x5411;&#x5206;&#x6790;"></span>
+<span id="phân-tích-ngược"></span>
 
 ### Phân tích ngược
 
@@ -215,13 +215,13 @@ $$
 
 Để giải bài này, trước hết ta trừu tượng hóa đề bài thành dạng toán học; sau đó bắt đầu từ điều kiện chứa nhiều thông tin nhất, định nghĩa của hàm $F(S)$, và chuyển nó thành các phép giao, hợp, bù của tập hợp. Cuối cùng biến đổi biểu thức về dạng nguyên lý bao hàm-loại trừ và **suy ngược** ra kết quả. Bài này thể hiện cách dùng ngược của nguyên lý bao hàm-loại trừ.
 
-<span id="&#x6570;&#x8BBA;&#x4E2D;&#x7684;&#x5BB9;&#x65A5;"></span>
+<span id="bao-hàm-loại-trừ-trong-số-học"></span>
 
 ## Bao hàm-loại trừ trong số học
 
 Nguyên lý bao hàm-loại trừ có thể giải một số bài toán số học một cách khéo léo.
 
-<span id="&#x5BB9;&#x65A5;&#x539F;&#x7406;&#x6C42;&#x6700;&#x5927;&#x516C;&#x7EA6;&#x6570;&#x4E3A;-k-&#x7684;&#x6570;&#x5BF9;&#x4E2A;&#x6570;"></span>
+<span id="dùng-bao-hàm-loại-trừ-để-đếm-số-cặp-có-ước-chung-lớn-nhất-bằng-k"></span>
 
 ### Dùng bao hàm-loại trừ để đếm số cặp có ước chung lớn nhất bằng $k$
 
@@ -257,7 +257,7 @@ Thêm ba bài tập cùng dạng để luyện tập.
 -   [Luogu P2158\[SDOI2008\] Honor Guard](https://www.luogu.com.cn/problem/P2158)
 -   [Luogu P1447\[NOI2010\] Energy Collection](https://www.luogu.com.cn/problem/P1447)
 
-<span id="&#x5BB9;&#x65A5;&#x539F;&#x7406;&#x63A8;&#x5BFC;&#x6B27;&#x62C9;&#x51FD;&#x6570;"></span>
+<span id="suy-ra-hàm-euler-bằng-nguyên-lý-bao-hàm-loại-trừ"></span>
 
 ### Suy ra hàm Euler bằng nguyên lý bao hàm-loại trừ
 
@@ -298,7 +298,7 @@ $$
 
 Đây chính là biểu thức toán học của hàm Euler.
 
-<span id="&#x5BB9;&#x65A5;&#x539F;&#x7406;&#x4E00;&#x822C;&#x5316;"></span>
+<span id="tổng-quát-hóa-nguyên-lý-bao-hàm-loại-trừ"></span>
 
 ## Tổng quát hóa nguyên lý bao hàm-loại trừ
 
@@ -314,7 +314,7 @@ $$
 g(S)=\sum_{T\subseteq S}(-1)^{|S|-|T|}f(T)
 $$
 
-<span id="&#x8BC1;&#x660E;_1"></span>
+<span id="chứng-minh_1"></span>
 
 ### Chứng minh
 
@@ -358,7 +358,7 @@ $$
 
 Suy ra điều phải chứng minh.
 
-<span id="&#x63A8;&#x8BBA;"></span>
+<span id="hệ-quả"></span>
 
 ### Hệ quả
 
@@ -376,14 +376,14 @@ $$
 
 Hệ quả này thực chất là dạng phần bù, cách chứng minh tương tự.
 
-<span id="dag-&#x8BA1;&#x6570;"></span>
+<span id="đếm-dag"></span>
 
 ## Đếm DAG
 
 ???+ note "Đếm DAG"
     Đếm số đồ thị có hướng không chu trình có nhãn trên $n$ đỉnh, lấy modulo $10^9+7$. $n\leq 5\times 10^3$.
 
-<span id="&#x76F4;&#x63A5;-dp"></span>
+<span id="dp-trực-tiếp"></span>
 
 ### DP trực tiếp
 
@@ -395,7 +395,7 @@ $$
 
 Độ phức tạp tính công thức trên là $O(n^3)$.
 
-<span id="&#x653E;&#x5BBD;&#x9650;&#x5236;"></span>
+<span id="nới-lỏng-ràng-buộc"></span>
 
 ### Nới lỏng ràng buộc
 
@@ -407,7 +407,7 @@ $$
 
 Độ phức tạp tính công thức trên là $O(n^2)$.
 
-<span id="min-max-&#x5BB9;&#x65A5;"></span>
+<span id="bao-hàm-loại-trừ-min-max"></span>
 
 ## Bao hàm-loại trừ min-max
 
@@ -548,7 +548,7 @@ $$
 
 Vì $\operatorname{lcm},\gcd,a^{1},a^{-1}$ lần lượt tương ứng với $\max,\min,+,-$, tức là thực hiện bao hàm-loại trừ min-max trên các số mũ, nên công thức trên đúng.
 
-<span id="pkuwc2018-&#x968F;&#x673A;&#x6E38;&#x8D70;"></span>
+<span id="pkuwc2018-random-walk"></span>
 
 ## PKUWC2018 Random Walk
 
@@ -615,14 +615,14 @@ Quay lại phần bao hàm-loại trừ, ta biết $E(\max_{i\in S}x_i)=\sum_{T\
 
 Đặt $F'(T)=(-1)^{|T|-1}F(T)$, ta có thêm $E(\max_{i\in S}x_i)=\sum_{T\subseteq S}F'(T)$. Do đó có thể dùng FMT (còn gọi là tổng tiền tố trên tập con, hoặc FWT / phép biến đổi) để tính $E(\max_{i\in S}x_i)$ cho mỗi $S$ trong $O(2^nn)$, rồi trả lời mỗi truy vấn trong $O(1)$.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 
 ### Bài tập
 
 -   [ABC331- G - Collect Them All](https://atcoder.jp/contests/abc331/tasks/abc331_g)
 -   [Luogu P4707 Return to the Present World](https://www.luogu.com.cn/problem/P4707)
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 

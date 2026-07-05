@@ -54,15 +54,15 @@ Trang này trình bày các phép toán hàm sơ cấp thường gặp trên đa
         \operatorname{erf}(x):=\frac{2}{\sqrt{\pi}}\int_{0}^{x}\exp\left(-t^2\right)\mathrm{d}t
         $$
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x6C42;&#x9006;"></span>
+<span id="nghịch-đảo-đa-thức"></span>
 ## Nghịch đảo đa thức
 
 Cho đa thức $f\left(x\right)$, hãy tìm $f^{-1}\left(x\right)$.
 
-<span id="&#x89E3;&#x6CD5;"></span>
+<span id="cách-giải"></span>
 ### Cách giải
 
-<span id="&#x500D;&#x589E;&#x6CD5;"></span>
+<span id="phương-pháp-nhân-đôi"></span>
 #### Phương pháp nhân đôi
 
 Trước hết, dễ thấy
@@ -105,7 +105,7 @@ $$
 
 Xem [Newton's Method](./newton.md#newtons-method).
 
-<span id="graeffe-&#x6CD5;"></span>
+<span id="phương-pháp-graeffe"></span>
 #### Phương pháp Graeffe
 
 Để tìm $f^{-1}(x)\bmod x^{2n}$, xét
@@ -119,7 +119,7 @@ $$
 
 Chỉ cần tìm $g^{-1}(x)\bmod x^n$ rồi khôi phục $g^{-1}(x^2)\bmod x^{2n}$, vì $f(x)f(-x)$ là hàm chẵn. Độ phức tạp thời gian như trên.
 
-<span id="&#x4EE3;&#x7801;"></span>
+<span id="mã-nguồn"></span>
 ### Mã nguồn
 
 ??? note "Nghịch đảo đa thức"
@@ -152,12 +152,12 @@ Chỉ cần tìm $g^{-1}(x)\bmod x^n$ rồi khôi phục $g^{-1}(x^2)\bmod x^{2n
     }
     ```
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ### Ví dụ
 
 1.  Đếm số đồ thị vô hướng đơn liên thông có nhãn: [POJ 1737 - Connected Graph](http://poj.org/problem?id=1737)
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x5F00;&#x65B9;"></span>
+<span id="khai-căn-đa-thức"></span>
 ## Khai căn đa thức
 
 Cho đa thức $g\left(x\right)$, hãy tìm $f\left(x\right)$ thỏa:
@@ -166,10 +166,10 @@ $$
 f^{2}\left(x\right)\equiv g\left(x\right) \pmod{x^{n}}
 $$
 
-<span id="&#x89E3;&#x6CD5;_1"></span>
+<span id="cách-giải_1"></span>
 ### Cách giải
 
-<span id="&#x500D;&#x589E;&#x6CD5;_1"></span>
+<span id="phương-pháp-nhân-đôi_1"></span>
 #### Phương pháp nhân đôi
 
 Trước hết xét trường hợp $\left[x^0\right]g(x)$ khác $0$.
@@ -227,20 +227,20 @@ Nếu $\left[x^0\right]g(x) = 0$, hãy phân tích $g(x)$ thành $x^{k}h(x)$, tr
 
 Xem [Newton's Method](./newton.md#newtons-method).
 
-<span id="&#x4F8B;&#x9898;_1"></span>
+<span id="ví-dụ_1"></span>
 ### Ví dụ
 
 1.  [Codeforces Round #250 - E. The Child and Binary Tree](https://codeforces.com/contest/438/problem/E)
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x9664;&#x6CD5;--&#x53D6;&#x6A21;"></span>
+<span id="chia-đa-thức-và-lấy-dư"></span>
 ## Chia đa thức và lấy dư
 
 Cho hai đa thức $f\left(x\right),g\left(x\right)$, hãy tìm thương $Q\left(x\right)$ và dư $R\left(x\right)$ khi chia $f\left(x\right)$ cho $g\left(x\right)$.
 
-<span id="&#x89E3;&#x6CD5;_2"></span>
+<span id="cách-giải_2"></span>
 ### Cách giải
 
-Nhận thấy nếu có thể khử ảnh hưởng của $R\left(x\right)$ thì có thể trực tiếp dùng [nghịch đảo đa thức](#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86) để giải.
+Nhận thấy nếu có thể khử ảnh hưởng của $R\left(x\right)$ thì có thể trực tiếp dùng [nghịch đảo đa thức](#nghịch-đảo-đa-thức) để giải.
 
 Xét phép biến đổi
 
@@ -275,19 +275,19 @@ Dùng nghịch đảo đa thức là có thể tìm $Q\left(x\right)$; thay ngư
 
 **Độ phức tạp thời gian**  $O\left(n\log{n}\right)$.
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x5BF9;&#x6570;&#x51FD;&#x6570;--&#x6307;&#x6570;&#x51FD;&#x6570;"></span>
+<span id="hàm-logarit-và-hàm-mũ-của-đa-thức"></span>
 ## Hàm logarit và hàm mũ của đa thức
 
 Cho đa thức $f(x)$, hãy tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo modulo $x^{n}$.
 
-<span id="&#x89E3;&#x6CD5;_3"></span>
+<span id="cách-giải_3"></span>
 ### Cách giải
 
-<span id="&#x666E;&#x901A;&#x65B9;&#x6CD5;"></span>
+<span id="phương-pháp-thông-thường"></span>
 #### Phương pháp thông thường
 
 === "Hàm logarit của đa thức"
-    Trước hết, với đa thức $f(x)$, nếu $\ln{f(x)}$ tồn tại, thì theo [định nghĩa](./intro.md#%E5%A4%8D%E5%90%88), nó phải thỏa:
+    Trước hết, với đa thức $f(x)$, nếu $\ln{f(x)}$ tồn tại, thì theo [định nghĩa](./intro.md#phép-hợp-thành), nó phải thỏa:
     
     $$
     [x^{0}]f(x)=1
@@ -337,7 +337,7 @@ Cho đa thức $f(x)$, hãy tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo modulo $x^{n}
 
 Dùng [Newton's Method](./newton.md#newtons-method) có thể giải $\exp$ của đa thức trong độ phức tạp $O(n\log{n})$.
 
-<span id="&#x4EE3;&#x7801;_1"></span>
+<span id="mã-nguồn_1"></span>
 ### Mã nguồn
 
 ??? note "Logarit/mũ của đa thức"
@@ -401,7 +401,7 @@ Dùng [Newton's Method](./newton.md#newtons-method) có thể giải $\exp$ củ
     }
     ```
 
-<span id="&#x4F8B;&#x9898;_2"></span>
+<span id="ví-dụ_2"></span>
 ### Ví dụ
 
 1.  Tính $f^{k}(x)$
@@ -422,15 +422,15 @@ Dùng [Newton's Method](./newton.md#newtons-method) có thể giải $\exp$ củ
 
     **Độ phức tạp thời gian**  $O(n\log{n})$.
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x4E09;&#x89D2;&#x51FD;&#x6570;"></span>
+<span id="hàm-lượng-giác-của-đa-thức"></span>
 ## Hàm lượng giác của đa thức
 
 Cho đa thức $f\left(x\right)$, hãy tìm $\sin{f\left(x\right)}, \cos{f\left(x\right)}$ và $\tan{f\left(x\right)}$ theo modulo $x^{n}$.
 
-<span id="&#x89E3;&#x6CD5;_4"></span>
+<span id="cách-giải_4"></span>
 ### Cách giải
 
-Trước hết, từ [Euler's formula](../complex.md#%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F) $\left(\mathrm{e}^{\mathrm{i}x} = \cos{x} + \mathrm{i}\sin{x}\right)$, ta có thể suy ra [một biểu diễn khác của hàm lượng giác](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers):
+Trước hết, từ [Euler's formula](../complex.md#công-thức-euler) $\left(\mathrm{e}^{\mathrm{i}x} = \cos{x} + \mathrm{i}\sin{x}\right)$, ta có thể suy ra [một biểu diễn khác của hàm lượng giác](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers):
 
 $$
 \begin{aligned}
@@ -450,7 +450,7 @@ $$
 
 Viết chương trình trực tiếp theo các biểu thức trên là có thể thu được $\sin{f\left(x\right)}$ và $\cos{f\left(x\right)}$ theo modulo $x^{n}$. Sau đó dùng $\tan{f\left(x\right)} = \frac{\sin{f\left(x\right)}}{\cos{f\left(x\right)}}$ để tính $\tan{f\left(x\right)}$.
 
-<span id="&#x4EE3;&#x7801;_2"></span>
+<span id="mã-nguồn_2"></span>
 ### Mã nguồn
 
 ??? note "Hàm lượng giác của đa thức"
@@ -495,12 +495,12 @@ Viết chương trình trực tiếp theo các biểu thức trên là có thể
     }
     ```
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x53CD;&#x4E09;&#x89D2;&#x51FD;&#x6570;"></span>
+<span id="hàm-lượng-giác-ngược-của-đa-thức"></span>
 ## Hàm lượng giác ngược của đa thức
 
 Cho đa thức $f\left(x\right)$, hãy tìm $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ và $\arctan{f\left(x\right)}$ theo modulo $x^{n}$.
 
-<span id="&#x89E3;&#x6CD5;_5"></span>
+<span id="cách-giải_5"></span>
 ### Cách giải
 
 Mô phỏng cách tính $\ln$ của đa thức: lấy đạo hàm của hàm lượng giác ngược rồi tích phân, ta được:
@@ -531,7 +531,7 @@ $$
 
 Chỉ cần tính trực tiếp theo các công thức này.
 
-<span id="&#x4EE3;&#x7801;_3"></span>
+<span id="mã-nguồn_3"></span>
 ### Mã nguồn
 
 ??? note "Hàm lượng giác ngược của đa thức"
@@ -612,7 +612,7 @@ Chỉ cần tính trực tiếp theo các công thức này.
     }
     ```
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x94FE;&#x63A5;"></span>
+<span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết
 
 [^ref1]: [Elementary function - Wikipedia](https://en.wikipedia.org/wiki/Elementary_function)
