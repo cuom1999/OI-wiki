@@ -1,20 +1,20 @@
 author: Marcythm, Xeonacid, CSPNOIP
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
-Xét theo ý tưởng của phương pháp sàng này, nó còn được gọi là "Extended Eratosthenes Sieve".
+Xét theo ý tưởng của phương pháp sàng này, nó còn được gọi là "sàng Eratosthenes mở rộng" (Extended Eratosthenes Sieve).
 
 Vì phương pháp này do [Min_25](https://web.archive.org/web/20211104125457/http://min-25.hatenablog.com/) phát minh và sử dụng sớm nhất, nên được gọi là "sàng Min_25".
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 Sàng này có thể giải một lớp bài toán tính tổng tiền tố của **hàm nhân** với độ phức tạp thời gian $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ hoặc $\Theta\left(n^{1 - \epsilon}\right)$.
 
 Yêu cầu: $f(p)$ là tổng của các hàm hoàn toàn nhân theo $p$ có thể tính nhanh (ví dụ đa thức); $f(p^{c})$ có thể tính nhanh.
 
-<span id="&#x8BB0;&#x53F7;"></span>
+<span id="kí-hiệu"></span>
 ## Kí hiệu
 
 -   **Nếu không có giải thích đặc biệt, mọi biến được kí hiệu là $p$ trong mục này đều lấy giá trị trên tập tất cả số nguyên tố.**
@@ -25,7 +25,7 @@ Yêu cầu: $f(p)$ là tổng của các hàm hoàn toàn nhân theo $p$ có th�
 -   $F_{\mathrm{prime}}(n) := \sum_{2 \le p \le n} f(p)$
 -   $F_{k}(n) := \sum_{i = 2}^{n} [p_{k} \le \operatorname{lpf}(i)] f(i)$
 
-<span id="&#x89E3;&#x91CA;"></span>
+<span id="giải-thích"></span>
 ## Giải thích
 
 Quan sát định nghĩa của $F_{k}(n)$, có thể thấy đáp án chính là $F_{1}(n) + f(1) = F_{1}(n) + 1$.
@@ -74,7 +74,7 @@ $$
 G_{k}(n) = G_{k - 1}(n) - \left[p_{k}^{2} \le n\right] g(p_{k}) (G_{k - 1}(n / p_{k}) - G_{k - 1}(p_{k - 1}))
 $$
 
-<span id="&#x590D;&#x6742;&#x5EA6;&#x5206;&#x6790;"></span>
+<span id="phân-tích-độ-phức-tạp"></span>
 ## Phân tích độ phức tạp
 
 Với việc tính $F_{k}(n)$, độ phức tạp thời gian của phương pháp thứ nhất được chứng minh là $O\left(n^{1 - \epsilon}\right)$ (xem mục 2.3 trong luận văn đội tuyển tập huấn của Zhu Zhenting, ["Một số bài toán tính tổng hàm số học đặc biệt"](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2018%E8%AE%BA%E6%96%87%E9%9B%86.pdf));
@@ -101,7 +101,7 @@ Sau đó xét riêng các giá trị hữu hiệu không lớn hơn $\sqrt{n}$ v
 
 Như vậy, có thể dùng hai mảng kích thước $O(\sqrt{n})$ để ghi $\text{id}$ của mọi giá trị hữu hiệu và truy vấn trong $O(1)$. Khi tính $F_{k}$ hoặc $F_{\mathrm{prime}}$, dùng $\text{id}$ của giá trị hữu hiệu thay cho chính giá trị hữu hiệu làm chỉ số, từ đó tối ưu độ phức tạp không gian xuống $O(\sqrt{n})$.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trình"></span>
 ## Quy trình
 
 Khi tính $F_{k}(n)$, trong cài đặt ta thường chọn phương pháp thứ nhất vì dễ hiện thực hơn; với dữ liệu quy mô nhỏ, nó thường chạy tốt hơn phương pháp thứ hai.
@@ -111,7 +111,7 @@ Với việc tính $F_{\mathrm{prime}}(n)$, chỉ cần cài đặt trực tiế
 Với $p_{k}^{2} \le n$, có thể dùng sàng tuyến tính tiền xử lí $s_{k} := F_{\mathrm{prime}}(p_{k})$ để thay thế $F_{\mathrm{prime}}(p_{k - 1})$ trong công thức truy hồi của $F_{k}$.
 Tương tự, $G_{k - 1}(p_{k - 1}) = \sum_{i = 1}^{k - 1} g(p_{i})$ trong công thức truy hồi của $G$ cũng có thể được tiền xử lí theo cách này.
 
-Khi dùng Extended Eratosthenes Sieve để tính tổng tiền tố của **hàm nhân** $f$, cần xác định rõ các điểm sau:
+Khi dùng sàng Eratosthenes mở rộng để tính tổng tiền tố của **hàm nhân** $f$, cần xác định rõ các điểm sau:
 
 -   Cách sàng nhanh (thường là độ phức tạp tuyến tính) ra các giá trị $f$ đầu tiên trên đoạn đến $\sqrt{n}$;
 -   Biểu diễn đa thức của $f(p)$;
@@ -123,7 +123,7 @@ Sau khi xác định rõ các điểm trên, chỉ cần lần lượt cài đ�
 2.  Với từng hạng tử trong biểu diễn đa thức của $f(p)$, sàng ra $G$ tương ứng, rồi gộp để thu được mọi giá trị hữu dụng $O(\sqrt{n})$ của $F_{\mathrm{prime}}$;
 3.  Cài đặt đệ quy theo công thức truy hồi của $F_{k}$ để tính $F_{1}(n)$.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 ???+ example "[Luogu P4213 mẫu sàng Dujiao](https://www.luogu.com.cn/problem/P4213)"
