@@ -7,27 +7,37 @@ Trang này giới thiệu ngắn gọn về sắp xếp đếm.
 
 ## Định nghĩa
 
-Sắp xếp đếm (tiếng Anh: Counting sort) là một thuật toán sắp xếp thời gian tuyến tính.
+Sắp xếp đếm (tiếng Anh: Counting sort) là một thuật toán sắp xếp có thời gian
+tuyến tính.
 
 ## Quy trình
 
-Nguyên lý hoạt động của sắp xếp đếm là dùng một mảng phụ $C$, trong đó phần tử thứ $i$ là số phần tử có giá trị bằng $i$ trong mảng cần sắp xếp $A$, rồi dựa vào mảng $C$ để đưa các phần tử trong $A$ về đúng vị trí.[^ref1]
+Nguyên lý hoạt động của sắp xếp đếm là dùng một mảng phụ $C$, trong đó phần tử
+thứ $i$ là số phần tử có giá trị bằng $i$ trong mảng cần sắp xếp $A$, rồi dựa
+vào mảng $C$ để đưa các phần tử trong $A$ về đúng vị trí.[^ref1]
 
 Quy trình của thuật toán gồm ba bước:
 
-1.  Tính số lần xuất hiện của từng số;
-2.  Tính [tổng tiền tố](./prefix-sum.md) của số lần xuất hiện của từng số;
-3.  Dùng tổng tiền tố của số lần xuất hiện để tính thứ hạng của từng số từ phải sang trái.
+1.  Tính số lần xuất hiện của từng giá trị;
+2.  Tính [tổng tiền tố](./prefix-sum.md) của số lần xuất hiện của từng giá trị;
+3.  Dùng tổng tiền tố của số lần xuất hiện để tính thứ hạng của từng phần tử
+    từ phải sang trái.
 
 ### Vì sao cần tính tổng tiền tố
 
-Việc trực tiếp đưa lần lượt các phần tử ứng với giá trị dương trong $C$ vào $A$ không xử lý được trường hợp có phần tử trùng nhau.
+Nếu chỉ lần lượt đưa các phần tử ứng với giá trị dương trong $C$ vào $A$, thuật
+toán không xử lý tốt trường hợp có nhiều phần tử trùng khóa.
 
-Bằng cách tính tổng tiền tố cho từng mục trong mảng phụ $C$, rồi kết hợp với giá trị của từng mục, ta có thể xác định một thứ hạng duy nhất cho các phần tử trùng nhau:
+Bằng cách tính tổng tiền tố trên mảng phụ $C$, rồi kết hợp với số lần xuất hiện
+của từng khóa, có thể xác định một thứ hạng duy nhất cho mỗi phần tử trùng khóa:
 
-Giá trị của mỗi mục trong mảng phụ $C$ chính là số phần tử trùng nhau ứng với khóa đó, còn tổng tiền tố của mục này chính là thứ hạng của phần tử trùng nhau đứng cuối cùng.
+Giá trị của mỗi ô trong mảng phụ $C$ chính là số phần tử có khóa tương ứng, còn
+tổng tiền tố tại ô đó chính là thứ hạng của phần tử đứng cuối cùng trong nhóm
+cùng khóa.
 
-Nếu xếp theo thứ tự ngược của $A$, thì rõ ràng mảng sau khi sắp xếp sẽ giữ nguyên thứ tự ban đầu của $A$ trong trường hợp các phần tử có cùng khóa; do đó ta thu được một thuật toán sắp xếp ổn định.
+Nếu duyệt $A$ theo thứ tự ngược, các phần tử có cùng khóa vẫn giữ nguyên thứ tự
+tương đối ban đầu trong mảng sau khi sắp xếp; do đó thu được một thuật toán sắp
+xếp ổn định.
 
 ![Minh họa động sắp xếp đếm](images/counting-sort-animate.svg)
 
@@ -39,7 +49,8 @@ Sắp xếp đếm là một thuật toán sắp xếp ổn định.
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian của sắp xếp đếm là $O(n+w)$, trong đó $w$ là kích thước miền giá trị của dữ liệu cần sắp xếp.
+Độ phức tạp thời gian của sắp xếp đếm là $O(n+w)$, trong đó $w$ là kích thước
+miền giá trị của dữ liệu cần sắp xếp.
 
 ## Cài đặt
 
