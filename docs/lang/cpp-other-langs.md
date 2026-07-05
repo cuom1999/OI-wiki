@@ -1,8 +1,8 @@
 Bài viết này giới thiệu khác biệt giữa C++ và các ngôn ngữ thường dùng khác,
 tập trung vào những khác biệt quan trọng hoặc dễ bị bỏ qua giữa C và C++. Dù C++
-gần như là một siêu tập của C, và trộn mã C/C++ nhìn chung cũng không có vấn đề
-lớn, hiểu các khác biệt quan trọng giữa C/C++ có thể giúp tránh một số bug kỳ
-lạ. Nếu bạn là OIer dùng C làm ngôn ngữ chính, bài viết này cũng giúp bạn chuyển
+thường được xem là khá gần với C, và dùng lẫn mã C/C++ nhìn chung cũng không có
+vấn đề lớn, hiểu các khác biệt quan trọng giữa C/C++ có thể giúp tránh một số lỗi
+khó hiểu. Nếu bạn là OIer dùng C làm ngôn ngữ chính, bài viết này cũng giúp bạn chuyển
 sang C++ thuận lợi hơn. Các đặc tính riêng mà C++ bổ sung so với C có thể đọc
 trong phần hướng dẫn [C++ nâng cao](./class.md). Ngoài ra, bài viết cũng giới
 thiệu ngắn gọn khác biệt giữa Python, Java và C++.
@@ -11,24 +11,24 @@ thiệu ngắn gọn khác biệt giữa Python, Java và C++.
 
 <span id="macro-và-template"></span>
 
-### Macro và mẫu
+### Macro và template
 
-Một trong các mục đích ban đầu khi thiết kế mẫu của C++ là thay thế định
-nghĩa macro. Học lập trình mẫu là một bước quan trọng khi chuyển từ C sang
-C++. Khác với việc thay thế văn bản của macro, mẫu nhận được kiểm tra trình
-biên dịch toàn diện hơn trong lúc biên dịch, giúp viết mã vững chắc hơn. Sau
-C++11, mẫu hỗ trợ danh sách tham số mẫu có độ dài biến đổi, có thể
-dùng để thay thế hàm tham số biến thiên trong C và bảo đảm an toàn kiểu.
+Một trong các mục đích ban đầu khi thiết kế template của C++ là thay thế định
+nghĩa macro. Học lập trình template là một bước quan trọng khi chuyển từ C sang
+C++. Khác với việc thay thế văn bản của macro, template được trình biên dịch
+kiểm tra kiểu toàn diện hơn trong lúc biên dịch, giúp viết mã vững chắc hơn.
+Sau C++11, template hỗ trợ danh sách tham số có độ dài biến đổi, có thể dùng để
+thay thế hàm tham số biến thiên trong C và bảo đảm an toàn kiểu.
 
 ### Con trỏ và tham chiếu
 
 Trong C++, bạn vẫn có thể dùng con trỏ kiểu C, nhưng với việc truyền biến, nên
 dùng đặc tính [tham chiếu](./reference.md) của C++ để thực hiện chức năng tương
-tự. Vì đối tượng mà tham chiếu trỏ tới không thể rỗng, tham chiếu có thể tránh
-một số vấn đề truy cập địa chỉ rỗng. Tuy vậy, con trỏ vẫn có chỗ dùng nhờ tính
-linh hoạt của nó. Đáng nói là từ C++11, con trỏ rỗng `NULL` trong C có phương án
-thay thế an toàn kiểu là `nullptr`. Tham chiếu và con trỏ có thể chuyển đổi qua
-lại bằng [toán tử `*` và `&`](./op.md).
+tự. Vì tham chiếu phải ràng buộc với một đối tượng hợp lệ, nó có thể tránh một
+số vấn đề truy cập con trỏ rỗng. Tuy vậy, con trỏ vẫn có chỗ dùng nhờ tính linh
+hoạt của nó. Đáng nói là từ C++11, con trỏ rỗng `NULL` trong C có phương án thay
+thế an toàn kiểu là `nullptr`. Có thể lấy địa chỉ bằng toán tử `&`, rồi giải tham
+chiếu con trỏ bằng toán tử `*`.
 
 ### bool
 
@@ -46,7 +46,7 @@ bool x = true;  // cần include stdbool.h
 _Bool x = 1;    // không cần include stdbool.h
 ```
 
-Từ C23, `true`,`false` và `bool` trở thành từ khóa trong ngôn ngữ C; dùng chúng
+Từ C23, `true`, `false` và `bool` trở thành từ khóa trong ngôn ngữ C; dùng chúng
 không cần nạp tệp tiêu đề `stdbool.h` nữa, đồng thời vẫn giữ `_Bool` làm cách
 viết thay thế cho `bool`[^boolean-keyword].
 
@@ -88,26 +88,26 @@ struct Node {
 
 ### const
 
-Trong C, `const` chỉ có chức năng giới hạn biến không thể bị sửa. Còn trong C++,
-do có nhiều đặc tính mới xuất hiện, `const` cũng được trao thêm nhiều cách dùng.
-Kế nhiệm của `const` trong C ở C++ là `constexpr`, còn cách dùng `const` trong
-C++ xem giải thích ở trang [hằng](./const.md).
+Trong C, `const` chủ yếu dùng để giới hạn biến không thể bị sửa thông qua tên
+đó. Còn trong C++, do có nhiều đặc tính mới xuất hiện, `const` cũng được trao
+thêm nhiều cách dùng. Nếu cần hằng số có thể dùng ở thời gian biên dịch, C++
+thường dùng `constexpr`; còn cách dùng `const` trong C++ xem giải thích ở trang
+[hằng](./const.md).
 
 ### Cấp phát bộ nhớ
 
-C++ thêm từ khóa `new` và `delete` để cấp phát không gian trên "vùng lưu trữ tự do".
-Vùng lưu trữ tự do này có thể là heap hoặc vùng lưu trữ tĩnh; chúng xuất hiện để phối hợp với
-"lớp". Trong đó `delete[]` còn có thể trực tiếp giải phóng bộ nhớ của mảng động,
-rất tiện lợi. Từ khóa `new` và `delete` sẽ gọi hàm tạo và hàm hủy của kiểu; so
-với các hàm `malloc()`, `realloc()`, `free()` trong C, chúng hỗ trợ kiểu đầy đủ
-hơn, nhưng hiệu suất không bằng các hàm của C.
+C++ thêm từ khóa `new` và `delete` để cấp phát đối tượng trong vùng lưu trữ động
+(dynamic storage). Cơ chế này phối hợp với hệ thống lớp của C++: `new` gọi hàm
+tạo, `delete` gọi hàm hủy, còn `delete[]` dùng để giải phóng mảng động đã cấp
+phát bằng `new[]`. So với các hàm `malloc()`, `realloc()`, `free()` trong C,
+`new`/`delete` hiểu kiểu đối tượng rõ hơn và xử lý vòng đời đối tượng đúng hơn.
 
-Nói ngắn gọn, nếu đối tượng cần cấp phát động là kiểu cơ bản hoặc mảng của chúng,
-bạn có thể dùng `malloc()` để cấp phát bộ nhớ hiệu quả hơn. Nhưng nếu đối tượng
-mới là kiểu không cơ bản, nên dùng `new` để có kiểm tra an toàn. Cần chú ý rằng
-dù `new` và `malloc()` đều trả về con trỏ, con trỏ sinh bởi `new` **chỉ** có thể
-thu hồi bằng `delete`, còn con trỏ sinh bởi `malloc()` cũng chỉ có thể thu hồi
-bằng `free()`, nếu không sẽ có nguy cơ rò rỉ bộ nhớ.
+Nói ngắn gọn, nếu chỉ cần một vùng nhớ thô, `malloc()` vẫn có thể dùng được.
+Nhưng nếu đối tượng cần cấp phát có hàm tạo, hàm hủy hoặc yêu cầu quản lý vòng
+đời kiểu C++, nên dùng `new` hoặc các công cụ thư viện chuẩn thích hợp. Cần chú
+ý rằng dù `new` và `malloc()` đều trả về con trỏ, con trỏ sinh bởi `new` **chỉ**
+có thể thu hồi bằng `delete`, còn con trỏ sinh bởi `malloc()` cũng chỉ có thể thu
+hồi bằng `free()`, nếu không sẽ có hành vi không xác định hoặc rò rỉ bộ nhớ.
 
 ### Khai báo biến
 
@@ -116,15 +116,17 @@ không có giới hạn này.
 
 ### Mảng độ dài biến đổi
 
-Sau C99, ngôn ngữ C hỗ trợ VLA (mảng độ dài biến đổi), còn C++ luôn không hỗ trợ.
+C99 yêu cầu hỗ trợ VLA (mảng độ dài biến đổi); từ C11, VLA trở thành đặc tính
+tùy chọn. C++ chuẩn không hỗ trợ VLA, dù một số trình biên dịch có cung cấp dưới
+dạng phần mở rộng.
 
 ### Khởi tạo cấu trúc
 
-Sau C99, ngôn ngữ C hỗ trợ [khởi tạo bằng designator](https://en.cppreference.com/w/c/language/struct_initialization)
+Sau C99, ngôn ngữ C hỗ trợ [khởi tạo có chỉ định](https://en.cppreference.com/w/c/language/struct_initialization)
 cho cấu trúc (nhưng trong C11 đây là đặc tính tùy chọn). C++ đến C++20 mới hỗ trợ
-khởi tạo bằng designator có yêu cầu về thứ tự, và các đặc tính C hỗ trợ như sai
-thứ tự, lồng nhau, trộn với initializer thông thường, hoặc designator cho mảng
-đều không được C++ hỗ trợ[^cpp-designated-init].
+khởi tạo có chỉ định theo thứ tự khai báo; các đặc tính C hỗ trợ như chỉ định sai
+thứ tự, chỉ định lồng nhau, trộn với bộ khởi tạo thông thường, hoặc chỉ định phần
+tử mảng đều không được C++ hỗ trợ[^cpp-designated-init].
 
 ### Cú pháp chú thích
 
@@ -132,7 +134,7 @@ Chú thích một dòng kiểu C++ `//` không được C hỗ trợ trước C9
 
 ## Khác biệt giữa Python và C++
 
-Python hiện là ngôn ngữ được dùng phổ biến nhất trong giới học máy. So với C++,
+Python được dùng rất rộng rãi trong học máy. So với C++,
 ưu điểm của Python là dễ học và dễ thực hành. Python có cú pháp đơn giản, trực
 tiếp hơn; chẳng hạn khi định nghĩa biến, không cần khai báo trước kiểu của biến.
 Tuy nhiên sự đơn giản này cũng có cái giá của nó. Python hy sinh hiệu năng so
@@ -152,15 +154,14 @@ Khác biệt lớn nhất giữa hai ngôn ngữ nằm ở cơ chế JVM của J
 của Java Virtual Machine, tức máy ảo Java. Một đặc điểm rất quan trọng của ngôn
 ngữ Java là tính độc lập với nền tảng. Sử dụng máy ảo Java là mấu chốt để thực
 hiện đặc điểm này. Nếu muốn chạy trên các nền tảng khác nhau, ngôn ngữ bậc cao
-thông thường ít nhất cần biên dịch thành các mã đích khác nhau. Sau khi đưa máy
-ảo ngôn ngữ Java vào, Java không cần biên dịch lại khi chạy trên các nền tảng
-khác nhau. Java dùng máy ảo Java để che giấu thông tin liên quan đến nền tảng cụ
-thể, khiến trình biên dịch Java chỉ cần sinh mã đích (bytecode) chạy trên máy ảo
-Java là có thể chạy trên nhiều nền tảng mà không cần sửa đổi.
+thông thường ít nhất cần biên dịch thành các mã máy khác nhau. Với Java, trình
+biên dịch sinh bytecode chạy trên JVM; JVM che giấu nhiều khác biệt nền tảng cụ
+thể, nhờ đó cùng một chương trình Java có thể chạy trên nhiều nền tảng mà không
+cần sửa mã nguồn.
 
 Vì đặc điểm này, Java thường được dùng để phát triển các chương trình cần chuyển
-sang nhiều nền tảng khác nhau. Nhưng cũng vì khi biên dịch chương trình Java cần
-bắt đầu từ bytecode, hiệu năng của Java không tốt bằng C++.
+sang nhiều nền tảng khác nhau. Nhưng vì quá trình thực thi thường đi qua tầng JVM
+và bytecode, hiệu năng của Java trong thi đấu thường khó đạt mức của C++.
 
 ## Tài liệu tham khảo
 
