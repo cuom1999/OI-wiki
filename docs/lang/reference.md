@@ -5,7 +5,7 @@ Có thể xem tham chiếu như một con trỏ không rỗng được C++ đón
 Tham chiếu không phải là đối tượng, nên không tồn tại mảng các tham chiếu, không thể lấy con trỏ tới tham chiếu, và cũng không tồn tại tham chiếu tới tham chiếu.
 
 ??? note "Kiểu tham chiếu không thuộc kiểu đối tượng"
-    Nếu muốn tham chiếu có thể thực hiện các thao tác thông thường như sao chép, gán, chẳng hạn làm phần tử của container, cần dùng [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper). Kiểu này thường được hiện thực bằng cách duy trì một con trỏ không rỗng.
+    Nếu muốn tham chiếu có thể thực hiện các thao tác thông thường như sao chép, gán, chẳng hạn làm phần tử của container, cần dùng [`reference_wrapper`](https://en.cppreference.com/w/cpp/utility/functional/reference_wrapper). Kiểu này thường được hiện thực bằng cách duy trì một con trỏ không rỗng.
 
 Tham chiếu chủ yếu được chia thành hai loại: tham chiếu trái trị và tham chiếu phải trị.
 
@@ -14,7 +14,7 @@ Tham chiếu chủ yếu được chia thành hai loại: tham chiếu trái tr�
 
 ## Tham chiếu trái trị T&
 
-Loại tham chiếu thường gặp là tham chiếu trái trị, tức là tham chiếu gắn với trái trị. Đồng thời, tham chiếu trái trị có định tính `const` có thể gắn với phải trị. Dưới đây là một đoạn mã ví dụ từ [tài liệu tham khảo](https://zh.cppreference.com/w/cpp/language/reference).
+Loại tham chiếu thường gặp là tham chiếu trái trị, tức là tham chiếu gắn với trái trị. Đồng thời, tham chiếu trái trị có định tính `const` có thể gắn với phải trị. Dưới đây là một đoạn mã ví dụ từ [tài liệu tham khảo](https://en.cppreference.com/w/cpp/language/reference).
 
 ```cpp
 #include <iostream>
@@ -156,7 +156,7 @@ Trong khi đó, dùng tham chiếu cho **đối tượng nhẹ** không mang l�
 Những kiểu sau thuộc nhóm **đối tượng nhẹ**:
 
 -   Kiểu cơ bản như `int`, `float`, v.v.
--   [Kiểu aggregate](https://zh.cppreference.com/w/cpp/language/aggregate_initialization) nhỏ
+-   [Kiểu aggregate](https://en.cppreference.com/w/cpp/language/aggregate_initialization) nhỏ
 -   Iterator của container trong thư viện chuẩn
 
 ### Chuyển trái trị thành phải trị
@@ -199,6 +199,6 @@ Về mặt ngữ nghĩa, đối tượng tạm có thể gây ra thêm các phé
 
 ## Nội dung tham khảo
 
-1.  [Tài liệu ngôn ngữ C++ - khai báo tham chiếu](https://zh.cppreference.com/w/cpp/language/reference)
-2.  [Tài liệu ngôn ngữ C++ - loại giá trị](https://zh.cppreference.com/w/cpp/language/value_category)
+1.  [Tài liệu ngôn ngữ C++ - khai báo tham chiếu](https://en.cppreference.com/w/cpp/language/reference)
+2.  [Tài liệu ngôn ngữ C++ - loại giá trị](https://en.cppreference.com/w/cpp/language/value_category)
 3.  [Does const ref lvalue to non-const func return value specifically reduce copies?](https://stackoverflow.com/questions/38909228/does-const-ref-lvalue-to-non-const-func-return-value-specifically-reduce-copies)

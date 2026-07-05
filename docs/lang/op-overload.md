@@ -194,14 +194,14 @@ bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
     -   Nếu `a > b`, thì `(a <=> b) > 0`;
     -   Nếu `a` và `b` bằng nhau hoặc tương đương, thì `(a <=> b) == 0`.
     
-    Xem chi tiết cài đặt tại [Toán tử so sánh # so sánh ba chiều - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison).
+    Xem chi tiết cài đặt tại [Toán tử so sánh # so sánh ba chiều - cppreference](https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison).
 
 Tài liệu tham khảo và chú thích:
 
-[^ref1]: [Nạp chồng toán tử - cppreference](https://zh.cppreference.com/w/cpp/language/operators)
+[^ref1]: [Nạp chồng toán tử - cppreference](https://en.cppreference.com/w/cpp/language/operators)
 
-[^ref2]: [Literal do người dùng định nghĩa - cppreference](https://zh.cppreference.com/w/cpp/language/user_literal)
+[^ref2]: [Literal do người dùng định nghĩa - cppreference](https://en.cppreference.com/w/cpp/language/user_literal)
 
-[^ref3]: [Toán tử so sánh # so sánh ba chiều - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#.E4.B8.89.E8.B7.AF.E6.AF.94.E8.BE.83)
+[^ref3]: [Toán tử so sánh # so sánh ba chiều - cppreference](https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison)
 
-[^ref4]: [So sánh mặc định - cppreference](https://zh.cppreference.com/w/cpp/language/default_comparisons)
+[^ref4]: [So sánh mặc định - cppreference](https://en.cppreference.com/w/cpp/language/default_comparisons)
