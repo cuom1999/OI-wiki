@@ -26,10 +26,10 @@ Ví dụ trên định nghĩa một cấu trúc tên là `Object`, có hai thàn
 và `value`, đều thuộc kiểu `int`.
 
 Đoạn mã trên cũng khai báo mảng `e`, hằng `a`, các biến `b` và `tmp`, mảng `B`
-cùng con trỏ `c`; tất cả đều có kiểu dữ liệu là `Object`. Với bất kỳ kiểu đã tồn
-tại nào, ta đều có thể dùng cách này để định nghĩa hằng, biến, con trỏ, mảng,
-v.v. Ở đây `a` là đối tượng `const`, nên ví dụ dùng `{}` để khởi tạo giá trị ban
-đầu cho các thành viên.
+cùng con trỏ `c`; tất cả đều có kiểu dữ liệu là `Object`. Với bất kỳ kiểu đã có
+nào, cũng có thể dùng cách này để định nghĩa hằng, biến, con trỏ, mảng, v.v. Ở
+đây `a` là đối tượng `const`, nên ví dụ dùng `{}` để khởi tạo giá trị ban đầu
+cho các thành viên.
 
 *Về con trỏ: không cần ép bản thân phải nắm vững ngay.*
 
@@ -53,34 +53,34 @@ Ví dụ trên chỉ để minh họa cách một cấu trúc có thể chứa c
 
 ## Truy cập/sửa thành viên
 
-Ta có thể dùng `tên_biến.tên_thành_viên` để truy cập. Ví dụ, có thể dùng
+Có thể dùng `tên_biến.tên_thành_viên` để truy cập. Ví dụ, có thể dùng
 `cout << var.v` để in thành viên `v` của `var`.
 
-Với con trỏ, ta có thể dùng `tên_con_trỏ->tên_thành_viên` hoặc
+Với con trỏ, có thể dùng `tên_con_trỏ->tên_thành_viên` hoặc
 `(*tên_con_trỏ).tên_thành_viên` để truy cập. Ví dụ, `(*ptr).v = tmp` hoặc
 `ptr->v = tmp` đều gán `tmp` cho thành viên `v` của cấu trúc mà con trỏ `ptr`
 đang trỏ tới.
 
 ## Vì sao cần cấu trúc?
 
-Trước hết, có nhiều cách để đạt cùng một kết quả: ta có thể không dùng cấu trúc
+Trước hết, có nhiều cách để đạt cùng một kết quả: có thể không dùng cấu trúc
 mà vẫn viết được chương trình tương tự. Tuy vậy, cấu trúc cho phép gom tường
 minh các thành viên liên quan (trong lập trình thi đấu thường là các biến) lại
 với nhau.
 Chẳng hạn, cấu trúc `Object` trong ví dụ đặt `weight` và `value` cùng một chỗ; ý
 nghĩa thực tế của cấu trúc này là biểu diễn trọng lượng và giá trị của một vật
-phẩm. Lợi ích là phạm vi sử dụng các thành viên được giới hạn rõ hơn. Hãy tưởng
-tượng nếu không dùng cấu trúc mà có hai mảng `value[]`, `Value[]`, ta rất dễ
-nhầm lẫn khi viết. Khi dùng cấu trúc, khả năng dùng nhầm biến sẽ giảm đi.
+phẩm. Lợi ích là phạm vi sử dụng các thành viên được giới hạn rõ hơn. Có thể
+hình dung trường hợp không dùng cấu trúc mà có hai mảng `value[]`, `Value[]`:
+khi viết rất dễ nhầm lẫn. Khi dùng cấu trúc, khả năng dùng nhầm biến sẽ giảm đi.
 
 Ngoài ra, các kiểu cấu trúc khác nhau (như `Object`) hoặc các đối tượng cấu trúc
 khác nhau (như các phần tử trong mảng `e` ở trên) có thể có thành viên cùng tên,
 chẳng hạn `tmp.value` và `b.value`. Các thành viên cùng tên này độc lập với nhau
 và có vùng nhớ riêng; ví dụ sửa `tmp.value` sẽ không ảnh hưởng đến giá trị của
-`b.value`. Lợi ích là ta có thể dùng những tên giống hoặc gần giống nhau để mô tả
-các đối tượng khác nhau. Ví dụ `Object` có thành viên `value`; ta cũng có thể định
+`b.value`. Lợi ích là có thể dùng những tên giống hoặc gần giống nhau để mô tả
+các đối tượng khác nhau. Ví dụ `Object` có thành viên `value`; cũng có thể định
 nghĩa một cấu trúc `Car` và cũng cho nó một thành viên `value`. Nếu không dùng
-cấu trúc, có lẽ ta phải định nghĩa các mảng với tên khác nhau như
+cấu trúc, có lẽ phải định nghĩa các mảng với tên khác nhau như
 `valueOfObject[]`, `valueOfCar[]` để phân biệt.
 
 *Nếu muốn mô tả một đối tượng chi tiết hơn, có thể định nghĩa thêm hàm thành viên.
