@@ -1,6 +1,6 @@
 author: iamtwz, aofall, CCXXXI, CoelacanthusHex, Great-designer, Marcythm, Persdre, shuzhouliu, Tiphereth-A, Xeonacid
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 ???+ abstract "Phương trình đồng dư"
@@ -22,7 +22,7 @@ Bài viết này trước hết nghiên cứu tính giải được và cấu tr
 
 Từ [định lý thặng dư Trung Hoa](./crt.md), việc giải phương trình đồng dư modulo hợp số $m$ có thể chuyển thành các bài toán modulo lũy thừa của số nguyên tố. Vì vậy phần dưới chỉ giới thiệu lý thuyết liên quan đến phương trình đồng dư modulo lũy thừa nguyên tố và modulo nguyên tố.
 
-<span id="&#32032;&#25968;&#24130;&#27169;&#21516;&#20313;&#26041;&#31243;"></span>
+<span id="phương-trình-đồng-dư-modulo-lũy-thừa-nguyên-tố"></span>
 ## Phương trình đồng dư modulo lũy thừa nguyên tố
 
 Dưới đây giả sử modulo có dạng $m=p^e~(p\in\mathbf{P},~e\in\mathbf{Z}_{>1})$.
@@ -41,7 +41,7 @@ $$
 
 Điều này gợi ý ta dùng nghiệm theo modulo lũy thừa thấp hơn để xây dựng nghiệm theo modulo lũy thừa cao hơn. Ta có định lý sau:
 
-<span id="&#23450;&#29702;-1"></span>
+<span id="định-lý-1"></span>
 
 ???+ note "Định lý 1 (bổ đề Hensel)"
     Với số nguyên tố $p$ và số nguyên $e>1$, lấy đa thức hệ số nguyên $f(x)=\sum_{i=0}^na_ix^i~(p^e\nmid a_n)$, và đặt đạo hàm của nó là $f'(x)=\sum_{i=1}^nia_ix^{i-1}$. Gọi $x_0$ là một nghiệm của phương trình
@@ -92,22 +92,22 @@ $$
 
 Từ đó ta có hệ quả:
 
-<span id="&#25512;&#35770;-1"></span>
+<span id="hệ-quả-1"></span>
 
 ???+ note "Hệ quả 1"
-    Với $p$, $e$, $f(x)$, $x_0$ trong [Định lý 1](#%E5%AE%9A%E7%90%86-1),
+    Với $p$, $e$, $f(x)$, $x_0$ trong [Định lý 1](#định-lý-1),
     
     1.  Nếu $s$ là nghiệm của phương trình $f(x)\equiv 0\pmod p$ và $f'(s)\not\equiv 0\pmod p$, thì tồn tại $x_s\in\mathbf{Z}_{p^e}$, $x_s\equiv s\pmod p$ sao cho $x_s$ là nghiệm của phương trình $(4)$.
     2.  Nếu hai phương trình $f(x)\equiv 0\pmod p$ và $f'(x)\equiv 0\pmod p$ không có nghiệm chung, thì phương trình $(4)$ và phương trình $f(x)\equiv 0\pmod p$ có cùng số nghiệm.
 
 Vậy ta có thể quy phương trình đồng dư modulo lũy thừa nguyên tố về trường hợp modulo nguyên tố.
 
-<span id="&#32032;&#25968;&#27169;&#21516;&#20313;&#26041;&#31243;"></span>
+<span id="phương-trình-đồng-dư-modulo-nguyên-tố"></span>
 ## Phương trình đồng dư modulo nguyên tố
 
 Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{i=0}^na_ix^i$ với $p\nmid a_n$, và $x\in\mathbf{Z}_p$.
 
-<span id="&#23450;&#29702;-2"></span>
+<span id="định-lý-2"></span>
 
 ???+ note "Định lý 2"
     Nếu phương trình
@@ -160,7 +160,7 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
     Phương trình $(6)$ có nhiều nhất $n$ nghiệm phân biệt.
 
 ???+ note "Chứng minh"
-    Giả sử $f(x)$ có $n+1$ nghiệm phân biệt $x_1,x_2,\dots,x_{n+1}$. Khi đó theo [Định lý 2](#%E5%AE%9A%E7%90%86-2), với $x_1,x_2,\dots,x_n$ ta có
+    Giả sử $f(x)$ có $n+1$ nghiệm phân biệt $x_1,x_2,\dots,x_{n+1}$. Khi đó theo [Định lý 2](#định-lý-2), với $x_1,x_2,\dots,x_n$ ta có
     
     $$
     f(x)\equiv a_n\prod_{i=1}^n(x-x_i)\pmod p.
@@ -174,7 +174,7 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
     
     Vế phải rõ ràng không chia hết cho $p$, mâu thuẫn.
 
-<span id="&#25512;&#35770;-3"></span>
+<span id="hệ-quả-3"></span>
 
 ???+ note "Hệ quả 3"
     Nếu phương trình đồng dư $\sum_{i=0}^nb_ix^i\equiv 0\pmod p$ có số nghiệm lớn hơn $n$, thì
@@ -183,7 +183,7 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
     (\forall i=0,1,\dots,n),~~p\mid b_i.
     $$
 
-<span id="&#23450;&#29702;-4"></span>
+<span id="định-lý-4"></span>
 
 ???+ note "Định lý 4"
     Nếu số nghiệm của phương trình $(6)$ không bằng $p$, thì tồn tại đa thức hệ số nguyên $r(x)$ với $\deg r<p$ sao cho $f(x)\equiv 0\pmod p$ và $r(x)\equiv 0\pmod p$ có cùng tập nghiệm.
@@ -204,7 +204,7 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
 
 Ta có thể dùng định lý này để hạ bậc phương trình đồng dư.
 
-<span id="&#23450;&#29702;-5"></span>
+<span id="định-lý-5"></span>
 
 ???+ note "Định lý 5"
     Cho $n\leq p$. Phương trình
@@ -226,7 +226,7 @@ Ta có thể dùng định lý này để hạ bậc phương trình đồng dư
         x^p-x=f(x)q(x)+r_1(x).
         $$
     
-        Nếu phương trình $(7)$ có $n$ nghiệm, thì $r_1\equiv 0\pmod p$ cũng có đúng $n$ nghiệm đó. Theo [Hệ quả 3](#%E6%8E%A8%E8%AE%BA-3), tồn tại đa thức hệ số nguyên $r(x)$ sao cho $r_1(x)=pr(x)$, nên mệnh đề được chứng minh.
+        Nếu phương trình $(7)$ có $n$ nghiệm, thì $r_1\equiv 0\pmod p$ cũng có đúng $n$ nghiệm đó. Theo [Hệ quả 3](#hệ-quả-3), tồn tại đa thức hệ số nguyên $r(x)$ sao cho $r_1(x)=pr(x)$, nên mệnh đề được chứng minh.
     -   Tính đủ: nếu $(8)$ đúng, theo [định lý nhỏ Fermat](./fermat.md), với mọi số nguyên $x$,
     
         $$
@@ -243,7 +243,7 @@ Ta có thể dùng định lý này để hạ bậc phương trình đồng dư
 
 Với đa thức không monic, vì $\mathbf{Z}_p$ là trường, có thể đưa nó về đa thức monic rồi áp dụng định lý trên.
 
-<span id="&#23450;&#29702;-6"></span>
+<span id="định-lý-6"></span>
 
 ???+ note "Định lý 6"
     Cho $n\mid p-1$, $p\nmid a$. Phương trình
@@ -279,12 +279,12 @@ Với đa thức không monic, vì $\mathbf{Z}_p$ là trường, có thể đưa
         \end{aligned}
         $$
     
-        trong đó $P(x)$ là một đa thức hệ số nguyên nào đó. Do đó theo [Định lý 5](#%E5%AE%9A%E7%90%86-5), phương trình $(9)$ có $n$ nghiệm.
+        trong đó $P(x)$ là một đa thức hệ số nguyên nào đó. Do đó theo [Định lý 5](#định-lý-5), phương trình $(9)$ có $n$ nghiệm.
 
-<span id="&#39640;&#27425;&#21516;&#20313;&#26041;&#31243;&#65288;&#32452;&#65289;&#30340;&#27714;&#35299;&#26041;&#27861;"></span>
+<span id="cách-giải-phương-trình-đồng-dư-bậc-cao-và-hệ-phương-trình-đồng-dư"></span>
 ## Cách giải phương trình đồng dư bậc cao và hệ phương trình đồng dư
 
-Trước hết, có thể dùng [định lý thặng dư Trung Hoa](./crt.md) để chuyển việc giải **hệ phương trình đồng dư** thành giải từng **phương trình đồng dư**, và chuyển việc giải phương trình đồng dư modulo **hợp số** $m$ thành giải các phương trình đồng dư modulo **lũy thừa nguyên tố**. Sau đó, dùng [Định lý 1](#%E5%AE%9A%E7%90%86-1) để chuyển việc giải phương trình đồng dư modulo **lũy thừa nguyên tố** thành giải phương trình đồng dư modulo **nguyên tố**.
+Trước hết, có thể dùng [định lý thặng dư Trung Hoa](./crt.md) để chuyển việc giải **hệ phương trình đồng dư** thành giải từng **phương trình đồng dư**, và chuyển việc giải phương trình đồng dư modulo **hợp số** $m$ thành giải các phương trình đồng dư modulo **lũy thừa nguyên tố**. Sau đó, dùng [Định lý 1](#định-lý-1) để chuyển việc giải phương trình đồng dư modulo **lũy thừa nguyên tố** thành giải phương trình đồng dư modulo **nguyên tố**.
 
 Kết hợp với các định lý về phương trình đồng dư modulo nguyên tố, ta chỉ cần xét phương trình
 
@@ -312,7 +312,7 @@ trong đó $p$ là số nguyên tố và $n<p$.
 
     thì cách giải xem tại [thặng dư bậc $k$](./residue.md).
 
-<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 1.  [Congruence Equation -- from Wolfram MathWorld](https://mathworld.wolfram.com/CongruenceEquation.html)

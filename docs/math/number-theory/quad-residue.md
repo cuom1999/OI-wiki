@@ -61,7 +61,7 @@ Khi modulo là số nguyên tố lẻ, ta có định lý sau:
     \end{aligned}
     $$
     
-    Theo [Định lý 5 về phương trình đồng dư](./congruence-equation.md#%E5%AE%9A%E7%90%86-5), $a$ là thặng dư bậc hai modulo $p$ khi và chỉ khi $a^{(p-1)/2}\equiv 1\pmod p$. Do đó $a$ là bất thặng dư bậc hai modulo $p$ khi và chỉ khi $a^{(p-1)/2}\equiv -1\pmod p$.
+    Theo [Định lý 5 về phương trình đồng dư](./congruence-equation.md#định-lý-5), $a$ là thặng dư bậc hai modulo $p$ khi và chỉ khi $a^{(p-1)/2}\equiv 1\pmod p$. Do đó $a$ là bất thặng dư bậc hai modulo $p$ khi và chỉ khi $a^{(p-1)/2}\equiv -1\pmod p$.
 
 Dựa trên tiêu chuẩn Euler, ta có hệ quả sau:
 
@@ -71,7 +71,7 @@ Dựa trên tiêu chuẩn Euler, ta có hệ quả sau:
 ??? note "Chứng minh"
     Theo tiêu chuẩn Euler, xét $a^{\frac{p-1}{2}}\equiv 1\pmod p.$
     
-    Chú ý rằng $\dfrac{p-1}{2}\mid (p-1)$. Theo [Định lý 6 về phương trình đồng dư](./congruence-equation.md#%E5%AE%9A%E7%90%86-6), phương trình $a^{\frac{p-1}{2}}\equiv 1\pmod p$ có $\dfrac{p-1}{2}$ nghiệm. Vì vậy trong nghĩa modulo $p$, số thặng dư bậc hai và số bất thặng dư bậc hai đều bằng $\dfrac{p-1}{2}$.
+    Chú ý rằng $\dfrac{p-1}{2}\mid (p-1)$. Theo [Định lý 6 về phương trình đồng dư](./congruence-equation.md#định-lý-6), phương trình $a^{\frac{p-1}{2}}\equiv 1\pmod p$ có $\dfrac{p-1}{2}$ nghiệm. Vì vậy trong nghĩa modulo $p$, số thặng dư bậc hai và số bất thặng dư bậc hai đều bằng $\dfrac{p-1}{2}$.
 
 <span id="legendre-&#x7B26;&#x53F7;"></span>
 ## Ký hiệu Legendre
