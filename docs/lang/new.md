@@ -454,7 +454,7 @@ Range là một dãy có thể duyệt, bao gồm mảng, container, view, v.v.
 
 Khi cần thực hiện các thao tác phức tạp trên container hoặc các range khác, [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) có thể giúp viết thuật toán dễ hơn và rõ ràng hơn.
 
-### View
+### View (khung nhìn)
 
 View là một đối tượng nhẹ, hiện thực một số thuật toán thông qua cơ chế đặc thù (như iterator tự định nghĩa), cung cấp thêm nhiều cách duyệt cho range để đáp ứng nhu cầu.
 
@@ -522,7 +522,7 @@ int main() {
     }
     ```
 
-### Constrained Algorithm
+### Thuật toán có ràng buộc
 
 > Trong C++20, namespace std::ranges cung cấp phiên bản có ràng buộc của hầu hết thuật toán. Có thể dùng cặp iterator-sentinel hoặc một range đơn làm đối số để chỉ định phạm vi, đồng thời hỗ trợ projection và callable object là con trỏ đến thành viên. Ngoài ra, kiểu trả về của hầu hết thuật toán cũng được thay đổi để trả về mọi thông tin có khả năng hữu ích được tính trong quá trình thực thi thuật toán.
 

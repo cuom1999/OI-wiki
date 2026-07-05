@@ -757,7 +757,7 @@ print(lst1, lst2)
 
 <a id="type-hint"></a>
 
-#### Type hint
+#### Gợi ý kiểu (type hint)
 
 Python là ngôn ngữ kiểm tra kiểu động: xử lý kiểu một cách linh hoạt nhưng ngầm định. Trình thông dịch Python chỉ kiểm tra kiểu khi chạy, và cho phép thay đổi kiểu biến trong runtime. Nói vui là "kiểu động lúc đầu rất sướng, đến lúc refactor thì rất đau": một số lỗi trong chương trình có thể chỉ lộ ra lúc chạy:
 
@@ -800,7 +800,7 @@ NameError: name 'nothing' is not defined
 
 <a id="decorator"></a>
 
-## Decorator
+## Decorator (trang trí hàm)
 
 Decorator là một hàm nhận một hàm hoặc phương thức làm tham số duy nhất và trả về một hàm hoặc phương thức mới, trong đó tích hợp hàm/phương thức đã được trang trí và có thêm một số chức năng. Nói ngắn gọn, decorator cho phép tăng cường chức năng của hàm mà không sửa mã của hàm đó. Có thể tham khảo [tài liệu chính thức](https://docs.python.org/3/glossary.html#term-decorator).
 

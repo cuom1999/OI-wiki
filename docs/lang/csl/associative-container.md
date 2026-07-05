@@ -17,7 +17,7 @@ Tương tự tập hợp trong toán học, `set` không có hai phần tử có
     Kiểu trả về của hàm insert là `pair<iterator, bool>`, trong đó iterator trỏ đến phần tử vừa được chèn (hoặc trỏ đến phần tử đã tồn tại sẵn trong container và bằng với giá trị cần chèn), còn bool cho biết việc chèn có thành công hay không. Do các phần tử trong `set` có tính duy nhất, nếu trong `set` đã có phần tử bằng giá trị đó thì chèn thất bại và trả về false; ngược lại chèn thành công và trả về true. `insert` trong `map` cũng tương tự.
 
 <span id="iterator-set"></span>
-### Iterator
+### Iterator (bộ lặp)
 
 `set` cung cấp các loại iterator sau:
 

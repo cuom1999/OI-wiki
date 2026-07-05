@@ -705,7 +705,7 @@ Fermat's Last Theorem has been disproved!
 
 Ví dụ: <https://godbolt.org/z/d834MK7bz>, <https://godbolt.org/z/Eov9nsKqf>.
 
-## Sanitizer
+## Công cụ sanitizer
 
 Sanitizer là công cụ bảo vệ tính đúng đắn: nó kiểm tra lúc chạy xem chương trình của bạn có hành vi không xác định, vượt biên mảng, con trỏ null, và các lỗi tương tự hay không.
 Ở chế độ debug cục bộ, nên bật một số sanitizer; chúng có thể rút ngắn đáng kể thời gian Debug. Các sanitizer này do Google phát triển, phần lớn có thể dùng với GCC và Clang. Sanitizer trong LLVM trưởng thành hơn, vì vậy nên dùng trình biên dịch Clang để debug các vấn đề liên quan trên máy cá nhân.
@@ -740,7 +740,7 @@ Các mục kiểm tra của UBSan có thể tùy chọn; ảnh hưởng đến c
 <a id="linh-tinh"></a>
 ## Linh tinh
 
-### Compiler Explorer
+### Compiler Explorer (trình khám phá biên dịch)
 
 Quan sát hành vi và mã hợp ngữ của các trình biên dịch tại đây: <https://godbolt.org>
 

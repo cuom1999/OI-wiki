@@ -525,14 +525,14 @@ Biến đa hình:
 3.  Khi gán đối tượng của lớp con cho biến của lớp cha, upcasting xảy ra.
 
 <span id="generics"></span>
-## Generics
+## Generic (kiểu tham số hóa)
 
 Generics nghĩa là khi định nghĩa lớp, ta không cố định kiểu cụ thể của thuộc tính hoặc tham số phương thức trong lớp, mà chỉ xác định kiểu khi sử dụng hoặc tạo đối tượng. Bản chất của generics là kiểu tham số hóa, tức kiểu dữ liệu được thao tác được chỉ định như một tham số.
 
 Generics cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm biên dịch, cho phép phát hiện kiểu không hợp lệ khi biên dịch.
 
 <span id="interface"></span>
-## Interface
+## Interface (giao diện)
 
 <span id="interface-giới-thiệu"></span>
 ### Giới thiệu
@@ -658,7 +658,7 @@ public class Main {
 Trong đó, `->` là ký hiệu suy diễn: ngoặc phía trước nhận tham số, rồi suy diễn giá trị trả về ở phía sau; thực chất là truyền phương thức.
 
 <span id="functional-interface"></span>
-### Functional interface
+### Functional interface (giao diện hàm)
 
 1.  Là một interface, phù hợp với định nghĩa interface của Java.
 2.  Chỉ chứa một phương thức trừu tượng.
@@ -725,7 +725,7 @@ Cách dùng functional interface như sau:
     }
     ```
 
-## Collection
+## Collection (tập hợp)
 
 `Collection` là interface trong Java, được nhiều interface container generic hiện thực. Ở đây, `Collection` chỉ các cấu trúc dữ liệu dùng để lưu kiểu đối tượng.
 
@@ -1403,7 +1403,7 @@ Tất nhiên, kiểu của khóa và giá trị cũng có thể thay đổi. Ví
 Map<String, Set<Integer>> map = new HashMap<>();
 ```
 
-## Arrays
+## Arrays (lớp tiện ích mảng)
 
 `Arrays` là một lớp tiện ích trong `java.util` dùng để thao tác với mảng. Các phương thức đều là phương thức tĩnh, có thể gọi trực tiếp bằng tên lớp.
 
@@ -1602,7 +1602,7 @@ private static int binarySearch0(int[] a, int fromIndex, int toIndex, int key) {
 
 Phương thức `Arrays.fill()` gán cùng một giá trị cho các phần tử trong một đoạn liên tiếp của mảng. Tham số mà nó nhận gồm mảng, `fromIndex`, `toIndex` và giá trị cần điền. Sau khi phương thức chạy, mọi phần tử trong đoạn nửa kín nửa mở `[firstIdx,lastIdx)` của mảng đều có giá trị cần điền.
 
-## Collections
+## Collections (lớp tiện ích tập hợp)
 
 `Collections` là một lớp tiện ích trong `java.util` dùng để thao tác với collection. Các phương thức đều là phương thức tĩnh, có thể gọi trực tiếp bằng tên lớp.
 

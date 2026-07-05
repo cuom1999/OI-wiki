@@ -114,7 +114,7 @@ Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông
 
 <span id="iterator-vector"></span>
 
-#### Iterator
+#### Iterator (bộ lặp)
 
 `vector` cung cấp các loại [iterator](./iterator.md) sau:
 
@@ -309,7 +309,7 @@ Giống `vector`, nhưng không thể truy cập bộ nhớ tầng dưới. Tố
 
 <span id="iterator-deque"></span>
 
-#### Iterator
+#### Iterator (bộ lặp)
 
 Giống `vector`.
 

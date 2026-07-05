@@ -37,7 +37,7 @@
     khác `map`/`multimap` ở chỗ khóa (key) không có thứ tự, chỉ quan tâm "quan
     hệ tương ứng giữa khóa và giá trị", và được hiện thực bằng hash.
 
-### Container adaptor
+### Bộ chuyển đổi container
 
 Container adaptor thật ra không phải container. Chúng không có một số đặc điểm
 của container, chẳng hạn iterator hoặc hàm `clear()`.
@@ -63,7 +63,7 @@ số template (các tham số trong `<>`) thay đổi theo từng container cụ
 Nguyên nhân bản chất: STL chính là "thư viện mẫu chuẩn", nên các container đều
 là lớp template.
 
-### Iterator
+### Iterator (bộ lặp)
 
 Vui lòng tham khảo [iterator](./iterator.md).
 
