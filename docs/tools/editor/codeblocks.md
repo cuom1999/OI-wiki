@@ -37,10 +37,10 @@ Tham khảo hướng dẫn cài đặt [trình biên dịch](../compiler.md) tr�
 
 Khi khởi động Code::Blocks lần đầu, phần mềm sẽ tự động quét các trình biên dịch đã cài trong hệ thống. Nếu không tìm thấy trình biên dịch, có thể thêm thủ công theo các bước sau:
 
-1.  Mở Code::Blocks, nhấp `Settings -> Compiler` trên thanh menu để mở hộp thoại thiết lập trình biên dịch (như hình dưới).![Thiết lập trình biên dịch trong Code::Blocks](./images/codeblocks-2.png)
-2.  Trong danh sách thả xuống `Selected compiler`, chọn trình biên dịch cần cấu hình, ví dụ `GNU GCC Compiler`.
-3.  Trong thẻ `Toolchain executables`, nhấp nút `Auto-detect`; Code::Blocks sẽ tự động quét các trình biên dịch đã cài trong hệ thống.
-4.  Nếu tự động quét thất bại, bạn có thể đặt thủ công đường dẫn trình biên dịch. Trong `Compiler's installation directory`, nhập đường dẫn cài đặt của trình biên dịch, ví dụ `C:\MinGW\bin`.
+1.  Mở Code::Blocks, nhấp `Settings -> Compiler` (`Thiết lập -> Trình biên dịch`) trên thanh menu để mở hộp thoại thiết lập trình biên dịch (như hình dưới).![Thiết lập trình biên dịch trong Code::Blocks](./images/codeblocks-2.png)
+2.  Trong danh sách thả xuống `Selected compiler` (`Trình biên dịch đã chọn`), chọn trình biên dịch cần cấu hình, ví dụ `GNU GCC Compiler`.
+3.  Trong thẻ `Toolchain executables` (`Tệp thực thi của chuỗi công cụ`), nhấp nút `Auto-detect` (`Tự động phát hiện`); Code::Blocks sẽ tự động quét các trình biên dịch đã cài trong hệ thống.
+4.  Nếu tự động quét thất bại, bạn có thể đặt thủ công đường dẫn trình biên dịch. Trong `Compiler's installation directory` (`Thư mục cài đặt trình biên dịch`), nhập đường dẫn cài đặt của trình biên dịch, ví dụ `C:\MinGW\bin`.
 5.  Sau khi thiết lập xong, nhấp `OK` để lưu; bây giờ bạn có thể dùng trình biên dịch đó để biên dịch và chạy dự án.
 
 ## Sử dụng
@@ -69,14 +69,14 @@ Lấy một dự án Console Application đơn giản làm ví dụ, dưới đ�
 
 ### Gỡ lỗi
 
-Code::Blocks tích hợp trình gỡ lỗi. Bạn có thể thiết lập và khởi động trình gỡ lỗi trong menu `Debug` để hỗ trợ định vị và giải quyết lỗi trong chương trình.
+Code::Blocks tích hợp trình gỡ lỗi. Bạn có thể thiết lập và khởi động trình gỡ lỗi trong menu `Debug` (`Gỡ lỗi`) để hỗ trợ định vị và giải quyết lỗi trong chương trình.
 
 Tương tự, lấy một dự án Console Application đơn giản làm ví dụ, dưới đây là cách gỡ lỗi dự án:
 
 1.  **Đặt điểm dừng**: nhấp chuột trái ở bên trái dòng mã cần gỡ lỗi để đặt điểm dừng; chương trình sẽ dừng thực thi tại điểm dừng.
-2.  **Khởi động trình gỡ lỗi**: nhấp nút `Debug` trên thanh công cụ, hoặc nhấn phím `F8`; Code::Blocks sẽ tự động biên dịch và khởi động trình gỡ lỗi.
+2.  **Khởi động trình gỡ lỗi**: nhấp nút `Debug` (`Gỡ lỗi`) trên thanh công cụ, hoặc nhấn phím `F8`; Code::Blocks sẽ tự động biên dịch và khởi động trình gỡ lỗi.
 3.  **Gỡ lỗi chương trình**: trong trình gỡ lỗi, bạn có thể thực thi từng bước, xem giá trị biến, ngăn xếp gọi, v.v. để hỗ trợ định vị và giải quyết lỗi trong chương trình.
-4.  **Dừng gỡ lỗi**: sau khi gỡ lỗi xong, có thể nhấp nút `Stop` trên thanh công cụ, hoặc nhấn `Shift + F8`, để dừng trình gỡ lỗi.
+4.  **Dừng gỡ lỗi**: sau khi gỡ lỗi xong, có thể nhấp nút `Stop` (`Dừng`) trên thanh công cụ, hoặc nhấn `Shift + F8`, để dừng trình gỡ lỗi.
 
 ## Tùy chỉnh thiết lập
 
@@ -90,7 +90,7 @@ Code::Blocks cung cấp nhiều tùy chọn thiết lập để giúp điều ch
 
 ### Thiết lập phần bổ trợ
 
-Code::Blocks hỗ trợ phần bổ trợ để mở rộng chức năng. Có thể xem và cài đặt phần bổ trợ khả dụng qua `Settings -> Plugins`, chẳng hạn DoxyBlocks, wxSmith, v.v. Dưới đây là một số phần bổ trợ thường dùng:
+Code::Blocks hỗ trợ phần bổ trợ để mở rộng chức năng. Có thể xem và cài đặt phần bổ trợ khả dụng qua `Settings -> Plugins` (`Thiết lập -> Phần bổ trợ`), chẳng hạn DoxyBlocks, wxSmith, v.v. Dưới đây là một số phần bổ trợ thường dùng:
 
 -   **DoxyBlocks**: phần bổ trợ tích hợp công cụ sinh tài liệu nổi tiếng Doxygen, có thể sinh tài liệu dự án trực tiếp trong Code::Blocks.
 -   **wxSmith**: phần bổ trợ dùng để phát triển ứng dụng wxWidgets, cung cấp công cụ thiết kế giao diện trực quan, cho phép tạo và bố trí giao diện GUI nhanh chóng, đơn giản hóa quy trình phát triển.
@@ -103,7 +103,7 @@ Cách cài đặt và sử dụng phần bổ trợ xem trong [tài liệu phầ
 
 ### Thiết lập phím tắt
 
-Bạn có thể xem và sửa phím tắt qua thẻ `Settings -> Editor -> Keyboard shortcuts`, rồi điều chỉnh theo thói quen của mình.
+Bạn có thể xem và sửa phím tắt qua thẻ `Settings -> Editor -> Keyboard shortcuts` (`Thiết lập -> Trình soạn thảo -> Phím tắt`), rồi điều chỉnh theo thói quen của mình.
 
 Dưới đây là một số phím tắt thường dùng:
 

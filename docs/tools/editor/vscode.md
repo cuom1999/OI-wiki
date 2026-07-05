@@ -88,11 +88,11 @@ Nhấn <kbd>F5</kbd> để vào chế độ gỡ lỗi. Phía trên trình soạ
 
 ![](images/vscode-6.png)
 
-Nếu trình soạn thảo không tự động chuyển tới, hãy nhấp biểu tượng "Debug" trên thanh công cụ bên trái để vào cửa sổ gỡ lỗi; khi đó có thể thấy giá trị biến ở bên trái.
+Nếu trình soạn thảo không tự động chuyển tới, hãy nhấp biểu tượng "Debug" ("Gỡ lỗi") trên thanh công cụ bên trái để vào cửa sổ gỡ lỗi; khi đó có thể thấy giá trị biến ở bên trái.
 
-Trong "Watch", bạn có thể nhập biểu thức; mỗi lần thực hiện thao tác như `next` hoặc `step`, biểu thức sẽ được tính lại và hiển thị.
+Trong "Watch" ("Theo dõi"), bạn có thể nhập biểu thức; mỗi lần thực hiện thao tác như `next` hoặc `step`, biểu thức sẽ được tính lại và hiển thị.
 
-Trong "Call Stack", bạn có thể thấy stack frame của hàm hiện tại.
+Trong "Call Stack" ("Ngăn xếp lời gọi"), bạn có thể thấy stack frame của hàm hiện tại.
 
 ???+ note "Mẹo"
     Bạn có thể tham khảo [tài liệu chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Arrays.html) để xem nội dung của một đoạn trong mảng.
@@ -130,7 +130,7 @@ Mở kho tiện ích mở rộng của VS Code, nhập `clangd` vào thanh tìm 
 
 ![](images/vscode-8.png)
 
-Nếu phía dưới hiện hộp thoại clangd yêu cầu tắt IntelliSense, hãy nhấp "Disable Intellisense", tải lại không gian làm việc, rồi bạn có thể dùng các chức năng như tự động hoàn thành của clangd.
+Nếu phía dưới hiện hộp thoại clangd yêu cầu tắt IntelliSense, hãy nhấp "Disable Intellisense" ("Tắt IntelliSense"), tải lại không gian làm việc, rồi bạn có thể dùng các chức năng như tự động hoàn thành của clangd.
 
 ## Chỉnh sửa
 
@@ -171,7 +171,7 @@ Giữ <kbd>Alt</kbd> rồi nhấp để thêm con trỏ trong trình soạn th�
 
 ![](images/vscode-12.gif)
 
-Nhấn <kbd>Ctrl</kbd>+<kbd>F2</kbd> để đồng thời sửa tất cả kết quả khớp trong trình soạn thảo; cũng có thể tìm "Change All Occurrences" trong menu chuột phải, như hình:
+Nhấn <kbd>Ctrl</kbd>+<kbd>F2</kbd> để đồng thời sửa tất cả kết quả khớp trong trình soạn thảo; cũng có thể tìm "Change All Occurrences" ("Thay đổi tất cả kết quả khớp") trong menu chuột phải, như hình:
 
 ![](images/vscode-13.gif)
 

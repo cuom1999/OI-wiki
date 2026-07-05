@@ -64,7 +64,7 @@ Xem [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbr
 
 #### Thiết lập chuỗi công cụ thủ công
 
-CLion mới cài sẽ tự động phát hiện chuỗi công cụ phát triển C/C++ trong hệ thống. Nếu chuỗi công cụ đã cài không được phát hiện tự động, có thể vào `Settings`, tìm `Build, Execution, Deployment`>`Toolchains` để cấu hình thủ công.
+CLion mới cài sẽ tự động phát hiện chuỗi công cụ phát triển C/C++ trong hệ thống. Nếu chuỗi công cụ đã cài không được phát hiện tự động, có thể vào `Settings` (`Thiết lập`), tìm `Build, Execution, Deployment`>`Toolchains` (`Biên dịch, Thực thi, Triển khai`>`Chuỗi công cụ`) để cấu hình thủ công.
 
 ![Cấu hình chuỗi công cụ](./images/clion-toolchain.png)
 
@@ -74,19 +74,19 @@ Khi mới ra đời, CLion được thiết kế cho các dự án C/C++ phức 
 
 Có nhiều cách để chạy một chương trình C++; một quy trình đơn giản như sau:
 
-1.  Tạo một dự án C/C++: `New -> Project -> C++ Executable`, chọn vị trí và phiên bản chuẩn ngôn ngữ phù hợp, rồi nhấp `Create`.
+1.  Tạo một dự án C/C++: `New -> Project -> C++ Executable` (`Mới -> Dự án -> Tệp thực thi C++`), chọn vị trí và phiên bản chuẩn ngôn ngữ phù hợp, rồi nhấp `Create` (`Tạo`).
 2.  Mở dự án. Lúc này, trong thư mục dự án nên có một thư mục `cmake-build-debug`, một tệp `CMakeLists.txt` và một tệp `main.cpp`. Vì ta không cần dùng CMake để quản lý dự án, có thể xóa tệp `CMakeLists.txt`, thư mục `cmake-build-debug` và toàn bộ tệp bên trong nó.
-3.  Nhấp mở tệp `main.cpp`, rồi nhấp chuột phải trong vùng soạn thảo; bạn sẽ thấy tùy chọn `Run 'main.cpp'`. Chọn tùy chọn này, CLion có thể tự động tạo cấu hình chạy và chạy chương trình.
+3.  Nhấp mở tệp `main.cpp`, rồi nhấp chuột phải trong vùng soạn thảo; bạn sẽ thấy tùy chọn `Run 'main.cpp'` (`Chạy 'main.cpp'`). Chọn tùy chọn này, CLion có thể tự động tạo cấu hình chạy và chạy chương trình.
 
 ![Chạy tệp C++ đơn](./images/clion-single-file-execution.png)
 
-Nếu cần gỡ lỗi chương trình, có thể đặt điểm dừng trong vùng soạn thảo, nhấp chuột phải trong vùng soạn thảo, rồi chọn `Debug 'main.cpp'`.
+Nếu cần gỡ lỗi chương trình, có thể đặt điểm dừng trong vùng soạn thảo, nhấp chuột phải trong vùng soạn thảo, rồi chọn `Debug 'main.cpp'` (`Gỡ lỗi 'main.cpp'`).
 
 ### Biên dịch, chạy và gỡ lỗi bằng CMake
 
 #### Thiết lập
 
-CLion cũng có thể dùng [CMake](https://cmake.org/) làm công cụ xây dựng. Thiết lập liên quan đến CMake có thể được chỉnh trong `Build, Execution, Deployment -> Toolchains -> CMake`.
+CLion cũng có thể dùng [CMake](https://cmake.org/) làm công cụ xây dựng. Thiết lập liên quan đến CMake có thể được chỉnh trong `Build, Execution, Deployment -> Toolchains -> CMake` (`Biên dịch, Thực thi, Triển khai -> Chuỗi công cụ -> CMake`).
 
 ![Thiết lập CMake](./images/clion-cmake.png)
 

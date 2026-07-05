@@ -93,7 +93,7 @@ Chỉ bài tương tác kiểu IO mới cần mục này; hãy tham khảo [hư�
 
 Trình kiểm tra dữ liệu dùng để kiểm tra tính hợp lệ của dữ liệu. Cách viết xem [hướng dẫn viết trình kiểm tra dữ liệu](./testlib/validator.md).
 
-"Validator tests" bên dưới tương tự "Checker tests"; cần cung cấp đầu vào và kỳ vọng hợp lệ hay không, dùng để kiểm thử trình kiểm tra dữ liệu.
+"Validator tests" ("Test cho validator") bên dưới tương tự "Checker tests"; cần cung cấp đầu vào và kỳ vọng hợp lệ hay không, dùng để kiểm thử trình kiểm tra dữ liệu.
 
 ### Dữ liệu kiểm thử
 
@@ -155,17 +155,17 @@ Quản lý quyền truy cập của bài.
 
 Cột đầu tiên sẽ hiển thị một số thông tin cơ bản. Nếu có chỗ nào không đúng quy chuẩn (ví dụ tests không chứa pretests, hoặc có test bị trùng), nó sẽ hiển thị màu vàng; đưa chuột lên đó sẽ thấy thông tin cụ thể.
 
-"View changes" dùng để xem lịch sử thay đổi. Cần chú ý rằng "switch" không dùng để quay lại một phiên bản nào đó; nó chỉ có thể thực hiện sửa đổi không sinh xung đột trên cơ sở một phiên bản nào đó, điều này thực ra không có ý nghĩa, nên switch tương đương chỉ đọc.
+"View changes" ("Xem thay đổi") dùng để xem lịch sử thay đổi. Cần chú ý rằng "switch" ("chuyển") không dùng để quay lại một phiên bản nào đó; nó chỉ có thể thực hiện sửa đổi không sinh xung đột trên cơ sở một phiên bản nào đó, điều này thực ra không có ý nghĩa, nên switch tương đương chỉ đọc.
 
 "Update Working Copy" (cập nhật bản làm việc) dùng để lấy cập nhật của người khác.
 
-"Commit Changes" dùng để commit cập nhật của bạn.
+"Commit Changes" ("Commit thay đổi") dùng để commit cập nhật của bạn.
 
 Khi commit, nếu có chỗ không đúng quy chuẩn hoặc cần cảnh báo, chúng sẽ được liệt kê ra.
 
 ## Quản lý cuộc thi
 
-Nếu muốn ra một cuộc thi, có thể tạo bằng "New Contest", từ đó quản lý bài thuận tiện hơn.
+Nếu muốn ra một cuộc thi, có thể tạo bằng "New Contest" ("Cuộc thi mới"), từ đó quản lý bài thuận tiện hơn.
 
 "Add problems?" (thêm bài?) ở góc trên bên phải của danh sách bài trong trang quản lý cuộc thi dùng để thêm một bài đã có vào cuộc thi.
 

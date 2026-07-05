@@ -74,18 +74,18 @@ Theo mặc định, phông chữ mã nguồn của GUIDE không phải phông ch
 
 Trong Edit -> Options -> Syntax Highlighting Settings ("Chỉnh sửa -> Tùy chọn -> Thiết lập tô sáng cú pháp"), nhấp nút "All Fonts" ("Tất cả phông chữ") để đổi phông chữ của trình soạn thảo.
 
-Cần chú ý rằng với tệp mới chưa lưu, phông chữ vẫn là phông chữ mặc định. Vì vậy, nên lưu tệp trước khi bắt đầu chỉnh sửa (nhấp nút "Save" trên thanh công cụ, hoặc nhấn phím tắt <kbd>Ctrl</kbd>+<kbd>S</kbd>), rồi mới chỉnh sửa.
+Cần chú ý rằng với tệp mới chưa lưu, phông chữ vẫn là phông chữ mặc định. Vì vậy, nên lưu tệp trước khi bắt đầu chỉnh sửa (nhấp nút "Save" ("Lưu") trên thanh công cụ, hoặc nhấn phím tắt <kbd>Ctrl</kbd>+<kbd>S</kbd>), rồi mới chỉnh sửa.
 
 ## Biên dịch và chạy
 
-Sau khi chỉnh sửa xong mã nguồn, nhấp nút "Compile" trên thanh công cụ (hoặc phím tắt <kbd>F7</kbd>) để biên dịch.
+Sau khi chỉnh sửa xong mã nguồn, nhấp nút "Compile" ("Biên dịch") trên thanh công cụ (hoặc phím tắt <kbd>F7</kbd>) để biên dịch.
 
 ???+ note "Thay đổi tùy chọn biên dịch"
     GUIDE không có chức năng đặt tùy chọn biên dịch mặc định; người dùng chỉ có thể thay đổi tùy chọn biên dịch cho từng tệp.
 
-    Nhấp chuột phải vào tab của tệp muốn đổi tùy chọn biên dịch, rồi chọn **Set Compile Command** để thay đổi tùy chọn biên dịch của tệp đó.
+    Nhấp chuột phải vào tab của tệp muốn đổi tùy chọn biên dịch, rồi chọn **Set Compile Command** (**Đặt lệnh biên dịch**) để thay đổi tùy chọn biên dịch của tệp đó.
 
-Nếu mã nguồn biên dịch bình thường, nhấp nút "Run" trên thanh công cụ (hoặc phím tắt <kbd>Ctrl</kbd>+<kbd>F5</kbd>) để chạy chương trình.
+Nếu mã nguồn biên dịch bình thường, nhấp nút "Run" ("Chạy") trên thanh công cụ (hoặc phím tắt <kbd>Ctrl</kbd>+<kbd>F5</kbd>) để chạy chương trình.
 
 ## Gỡ lỗi
 

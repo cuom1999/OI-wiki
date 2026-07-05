@@ -31,7 +31,7 @@ Nhấp `Settings`/`Setting` ("Thiết lập"/"Cài đặt") trên thanh công c�
 
 Kate có thể tự động nhận diện tệp hiện tại dùng mã hóa nào. Nếu nhận diện sai, có thể nhấp nút thứ hai từ phải sang ở góc dưới bên phải và chọn mã hóa đúng.
 
-Đồng thời, Kate cũng có thể tự động nhận diện kiểu ký tự cuối dòng hiện tại. Nếu nhận diện sai, có thể nhấp `Tools` -> `End of line` để chọn đúng kiểu cuối dòng.
+Đồng thời, Kate cũng có thể tự động nhận diện kiểu ký tự cuối dòng hiện tại. Nếu nhận diện sai, có thể nhấp `Tools` -> `End of line` (`Công cụ -> Ký tự cuối dòng`) để chọn đúng kiểu cuối dòng.
 
 ### Tìm kiếm và thay thế
 
@@ -68,7 +68,7 @@ Kate hỗ trợ LSP Client từ phiên bản 19.12. Ban đầu chỉ hỗ trợ 
 | R | [RLanguageServer](https://github.com/REditorSupport/languageserver) |
 | zig | [zls](https://github.com/zigtools/zls) |
 
-Để bật các tính năng liên quan đến LSP, cần vào thanh menu `Settings` -> `Configure Kate`, rồi trong `Plugins`, chọn `LSP Client` để bật các tính năng liên quan. Khi mở tệp của ngôn ngữ tương ứng, Kate sẽ tự động khởi động máy chủ LSP tương ứng.
+Để bật các tính năng liên quan đến LSP, cần vào thanh menu `Settings` -> `Configure Kate` (`Thiết lập -> Cấu hình Kate`), rồi trong `Plugins` (`Phần bổ trợ`), chọn `LSP Client` (`Ứng dụng khách LSP`) để bật các tính năng liên quan. Khi mở tệp của ngôn ngữ tương ứng, Kate sẽ tự động khởi động máy chủ LSP tương ứng.
 
 #### Thêm cấu hình
 
@@ -114,20 +114,20 @@ Ngoài ra, người dùng cũng có thể tự viết cấu hình thủ công. �
 
 Trong đó, mỗi mục trong `servers` đại diện cho một ngôn ngữ. Trong cấu hình của ngôn ngữ đó, `command` là lệnh dùng để khởi động máy chủ LSP; `command` là một mảng, chính là kết quả tách lệnh cần chạy theo dấu cách; `url` là trang web của LSP; `rootIndicationFileNames` là các tệp dùng để xác định thư mục gốc dự án; `highlightingModeRegex` khớp tên của một kiểu tô sáng cú pháp để xác định dùng LSP nào; nếu có mục `use`, nghĩa là dùng cấu hình của ngôn ngữ tương ứng với mục `use`.
 
-Mục cấu hình này nằm tại `Settings` -> `Configure Kate` -> `LSP Client` -> `User Server Settings`; phần `LSP Client` chỉ hiện sau khi đã bật phần bổ trợ `LSP Client` trong `Plugins`.
+Mục cấu hình này nằm tại `Settings` -> `Configure Kate` -> `LSP Client` -> `User Server Settings` (`Thiết lập -> Cấu hình Kate -> Ứng dụng khách LSP -> Thiết lập máy chủ người dùng`); phần `LSP Client` chỉ hiện sau khi đã bật phần bổ trợ `LSP Client` trong `Plugins`.
 
 ### Trình dòng lệnh tích hợp
 
 ???+ note "Chú ý"
     Trình dòng lệnh tích hợp phụ thuộc vào Konsole[^ref1] của KDE, còn Konsole là gói chỉ có trên \*nix. Nói cách khác, tính năng này không dùng được trên Windows.
 
-Nhấn <kbd>F4</kbd> để mở hoặc đóng trình dòng lệnh tích hợp; cũng có thể nhấp nút `Terminal` ở góc dưới bên trái để mở. Thư mục hiện tại của trình dòng lệnh tích hợp sẽ tự động đồng bộ với tệp hiện tại và thay đổi theo tệp bạn chọn. Các phần còn lại không khác nhiều so với trình dòng lệnh thông thường.
+Nhấn <kbd>F4</kbd> để mở hoặc đóng trình dòng lệnh tích hợp; cũng có thể nhấp nút `Terminal` (`Thiết bị đầu cuối`) ở góc dưới bên trái để mở. Thư mục hiện tại của trình dòng lệnh tích hợp sẽ tự động đồng bộ với tệp hiện tại và thay đổi theo tệp bạn chọn. Các phần còn lại không khác nhiều so với trình dòng lệnh thông thường.
 
 ### Công cụ ngoài
 
-Nhấp `Tools` -> `External Tools` để thực thi.
+Nhấp `Tools` -> `External Tools` (`Công cụ -> Công cụ ngoài`) để thực thi.
 
-Nhấp `Tools` -> `External Tools` -> `Configure` để cấu hình công cụ ngoài.
+Nhấp `Tools` -> `External Tools` -> `Configure` (`Công cụ -> Công cụ ngoài -> Cấu hình`) để cấu hình công cụ ngoài.
 
 #### Thêm công cụ ngoài
 
@@ -145,12 +145,12 @@ Sau khi vào trang cấu hình, nhấp `Add` -> `Add Tool` (`Thêm -> Thêm côn
 
 ##### Biên dịch và chạy một tệp C++ đơn
 
-Trên hệ thống \*nix, mở bất kỳ tệp nguồn C++ nào, tìm `Compile Execute cpp` trong công cụ ngoài, rồi nhấp vào đó.
+Trên hệ thống \*nix, mở bất kỳ tệp nguồn C++ nào, tìm `Compile Execute cpp` (`Biên dịch và thực thi cpp`) trong công cụ ngoài, rồi nhấp vào đó.
 
 ???+ note "Dành cho người dùng Windows"
     Theo mặc định, vì tệp thực thi của công cụ này là `sh`, công cụ này không dùng được trên Windows. Tuy nhiên, người dùng có thể chỉnh sửa công cụ này để dùng được trên Windows.
 
-    Để chỉnh sửa, trước hết hãy đảm bảo hệ thống của bạn có một trình biên dịch C++ dùng được. Sau đó thêm `Compile Run cpp` từ công cụ mặc định, đổi `Executable` từ `sh` thành `powershell`, và đổi tham số thành `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2].
+    Để chỉnh sửa, trước hết hãy đảm bảo hệ thống của bạn có một trình biên dịch C++ dùng được. Sau đó thêm `Compile Run cpp` (`Biên dịch và chạy cpp`) từ công cụ mặc định, đổi `Executable` (`Tệp thực thi`) từ `sh` thành `powershell`, và đổi tham số thành `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2].
 
 ##### Git Blame
 
@@ -164,7 +164,7 @@ Mở bất kỳ tệp nguồn nào, tìm `Format with xxx` trong công cụ ngo�
 
 ### Truy vết dòng bằng Git blame
 
-Để bật tính năng này, cần vào thanh menu `Settings` -> `Configure Kate`, rồi trong `Plugins`, chọn `Git Blame`.
+Để bật tính năng này, cần vào thanh menu `Settings` -> `Configure Kate` (`Thiết lập -> Cấu hình Kate`), rồi trong `Plugins` (`Phần bổ trợ`), chọn `Git Blame`.
 
 Sau khi bật tính năng này, Kate sẽ hiển thị bằng chữ nhạt ở cuối mỗi dòng rằng dòng đó được ai sửa lần cuối trong Git và vào thời điểm nào. Di chuột lên đoạn chữ đó sẽ hiện một cửa sổ nổi hiển thị thông tin cụ thể của commit.
 

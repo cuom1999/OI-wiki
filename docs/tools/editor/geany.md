@@ -39,9 +39,9 @@ Ví dụ với ngôn ngữ C++, nhấp *Document -> Set Filetype -> Programming 
 
 ### Đặt mẫu tệp
 
-Tạo thư mục `templates/files` trong thư mục cấu hình; các tệp đặt trong đó sẽ trở thành mẫu tệp. Sau khi mở lại Geany, bạn có thể tìm thấy chúng trong *File -> New (with Template)*.
+Tạo thư mục `templates/files` trong thư mục cấu hình; các tệp đặt trong đó sẽ trở thành mẫu tệp. Sau khi mở lại Geany, bạn có thể tìm thấy chúng trong *File -> New (with Template)* (*Tệp -> Mới (với mẫu)*).
 
-Thư mục cấu hình có thể được tìm thấy qua dòng thứ hai và thứ ba trong *Help -> Debug Messages*.
+Thư mục cấu hình có thể được tìm thấy qua dòng thứ hai và thứ ba trong *Help -> Debug Messages* (*Trợ giúp -> Thông báo gỡ lỗi*).
 
 Dưới đây là thư mục cấu hình mẫu mặc định trên macOS và Linux:
 
@@ -58,7 +58,7 @@ Trong *Preferences -> Tools -> Virtual Terminal* (*Tùy chọn -> Công cụ -> 
 deepin-terminal -x "/bin/sh" %c
 ```
 
-Nhấp nút "Apply" là được.[^3]
+Nhấp nút "Apply" ("Áp dụng") là được.[^3]
 
 ## Tài liệu tham khảo và chú thích
 

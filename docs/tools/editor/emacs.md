@@ -87,12 +87,12 @@ Vì cấu hình không dễ nhớ, nên với một số mục có thể thiết
 
 ### Thiết lập trực tiếp
 
--   Options: `Highlight Matching Parentheses` tô sáng cặp ngoặc khớp.
--   Options: `Blink Cursor` thiết lập con trỏ nhấp nháy.
--   Options Show/Hide: `Tool Bar` hiển thị/ẩn thanh công cụ (mặc định hiển thị, khuyến nghị ẩn).
--   Options: `Use CUA Keys` sau khi chọn có thể dùng các phím tắt như Ctrl + C, Ctrl + V để sao chép/dán.
--   Options Customize-Emacs: `Custom Theme` chọn bảng màu; sau khi chọn xong cần nhấp lưu.
--   Options: `Save Options` **lưu cấu hình**.
+-   Options (`Tùy chọn`): `Highlight Matching Parentheses` (`Tô sáng cặp ngoặc khớp`) tô sáng cặp ngoặc khớp.
+-   Options (`Tùy chọn`): `Blink Cursor` (`Con trỏ nhấp nháy`) thiết lập con trỏ nhấp nháy.
+-   Options Show/Hide (`Tùy chọn Hiển thị/Ẩn`): `Tool Bar` (`Thanh công cụ`) hiển thị/ẩn thanh công cụ (mặc định hiển thị, khuyến nghị ẩn).
+-   Options (`Tùy chọn`): `Use CUA Keys` (`Dùng phím CUA`) sau khi chọn có thể dùng các phím tắt như Ctrl + C, Ctrl + V để sao chép/dán.
+-   Options Customize-Emacs (`Tùy chọn Tùy chỉnh Emacs`): `Custom Theme` (`Chủ đề tùy chỉnh`) chọn bảng màu; sau khi chọn xong cần nhấp lưu.
+-   Options (`Tùy chọn`): `Save Options` (`Lưu tùy chọn`) **lưu cấu hình**.
 
 ### Cấu hình
 

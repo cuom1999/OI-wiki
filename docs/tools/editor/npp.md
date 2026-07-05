@@ -60,7 +60,7 @@ Nếu thấy chưa tiện, có thể vào kho phần bổ trợ tích hợp đ�
 
 Nhấp chuột phải vào "XXX file" ở góc dưới bên trái, bạn có thể chọn tô sáng cho rất nhiều ngôn ngữ như C, C++, PASCAL, Markdown. Thậm chí bạn có thể tự định nghĩa tô sáng.
 
-Nếu thấy mỗi lần mở tệp lại phải đổi tô sáng là phiền, có thể sửa tô sáng mặc định trong "Settings -> Preferences -> New Document -> Default Language".
+Nếu thấy mỗi lần mở tệp lại phải đổi tô sáng là phiền, có thể sửa tô sáng mặc định trong "Settings -> Preferences -> New Document -> Default Language" ("Thiết lập -> Tùy chọn -> Tài liệu mới -> Ngôn ngữ mặc định").
 
 Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Markdown Viewer"; còn nhiều phần bổ trợ tương tự khác đang chờ bạn.
 
@@ -151,7 +151,7 @@ Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công
 
 1.  Cài trình biên dịch và thêm các thư mục tệp cần thiết của nó vào biến môi trường PATH. (Với C++ cần thêm `%APPPATH%\bin`.) Khi nhập `g++` trong cmd mà không còn báo `'g++' is not recognized as an internal or external command...` là được (có thể cần khởi động lại máy). Khuyến nghị [tải ConsolePauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download), đặt ở đâu cũng được rồi thêm thư mục của nó vào biến môi trường (đây là phần bổ trợ của Dev-C++; trong thư mục gốc của phần mềm Dev-C++ cũng có).
 
-2.  Trên thanh menu, chọn "Run" -> "Run...", mở cửa sổ "Run".
+2.  Trên thanh menu, chọn "Run" -> "Run..." ("Chạy -> Chạy..."), mở cửa sổ "Run" ("Chạy").
 
 3.  Nhập lần lượt các lệnh sau:
 
@@ -173,7 +173,7 @@ Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công
     cmd /c (start ConsolePauser "gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe")
     ```
 
-4.  Nhấp "Save"; tên có thể tự đặt, chẳng hạn "Compile", "Run", rồi đặt phím tắt bạn muốn (chọn phím dễ nhớ, ví dụ Dev-C++ lần lượt là `F9` và `F10`).
+4.  Nhấp "Save" ("Lưu"); tên có thể tự đặt, chẳng hạn "Compile" ("Biên dịch"), "Run" ("Chạy"), rồi đặt phím tắt bạn muốn (chọn phím dễ nhớ, ví dụ Dev-C++ lần lượt là `F9` và `F10`).
 
 5.  Thế là xong!
 
