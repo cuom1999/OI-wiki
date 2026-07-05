@@ -40,7 +40,7 @@ $$
 
 Khi đó phương trình chuyển viết thành $b_i=\min_{j<i}\{y_j-k_ix_j\}$. Xem $(x_j,y_j)$ là một điểm trên mặt phẳng hai chiều, $k_i$ là hệ số góc của đường thẳng, còn $b_i$ là tung độ gốc của đường thẳng có hệ số góc $k_i$ đi qua $(x_j,y_j)$. Bài toán chuyển thành chọn $j$ phù hợp ($1\le j<i$) để tối thiểu hóa tung độ gốc của đường thẳng.
 
-![slope\_optimization](../images/optimization.svg)
+![Tịnh tiến đường thẳng để tìm điểm tối ưu trên bao lồi](../images/optimization.svg)
 
 Như hình trên, ta tịnh tiến đường thẳng có hệ số góc $k_i$ từ dưới lên trên cho tới khi có một điểm $(x_p,y_p)$ nằm trên đường thẳng đó. Khi ấy $b_i=y_p-k_ix_p$, và $b_i$ đạt giá trị nhỏ nhất. Sau khi tính xong $f_i$, ta thêm điểm $(x_i,y_i)$ vào tập điểm để làm quyết định DP mới. Vậy cần duy trì tập điểm thế nào?
 

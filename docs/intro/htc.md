@@ -172,7 +172,7 @@ Thay đổi của bạn sẽ tự động được bổ sung vào Pull Request.
 dự án bật preview cho Pull Request, hãy nhấn liên kết Details tương ứng để xem
 trang được build tự động từ thay đổi của mình.
 
-![deploy\_preview](./images/deploy_preview.png)
+![Liên kết xem trước trang build tự động trong Pull Request](./images/deploy_preview.png)
 
 ### Thay đổi với mục lục và liên kết tham chiếu
 

@@ -524,7 +524,7 @@ Bản thân Git có GUI đi kèm, và trên thị trường cũng có nhiều c�
 
 Ở đây giới thiệu ngắn gọn cách dùng TortoiseGit. Sau khi tải và cài TortoiseGit, trong thư mục kho local, nhấp chuột phải là có thể thấy các chức năng Git trong menu chuột phải.
 
-![TortoiseGit Example](images/git11.png)
+![Menu chuột phải của TortoiseGit trong thư mục kho local](images/git11.png)
 
 Ở đây không trình bày chi tiết cách sử dụng nữa; có thể tham khảo tài liệu sử dụng trên trang chính thức hoặc học qua công cụ tìm kiếm, ví dụ [TortoiseGit Manual](https://tortoisegit.org/docs/tortoisegit/index.html).
 
