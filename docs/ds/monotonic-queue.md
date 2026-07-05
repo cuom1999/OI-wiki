@@ -14,7 +14,7 @@ Cách vét cạn rất đơn giản: với mỗi đoạn $i \sim i+k-1$, so sán
 tìm giá trị lớn nhất (và nhỏ nhất), độ phức tạp thời gian khoảng
 $O(n \times k)$.
 
-Rõ ràng cách này thực hiện rất nhiều công việc lặp lại. Ngoài $k-1$ số ở đầu và
+Cách này thực hiện rất nhiều công việc lặp lại. Ngoài $k-1$ số ở đầu và
 $k-1$ số ở cuối, mỗi số đều bị so sánh $k$ lần; trong khi $100\%$ dữ liệu của
 bài có $n \le 1000000$, nên khi $k$ hơi lớn thì chắc chắn sẽ TLE.
 
@@ -22,7 +22,8 @@ Lúc này cần dùng hàng đợi đơn điệu.
 
 ## Định nghĩa
 
-Đúng như tên gọi, trọng tâm của hàng đợi đơn điệu nằm ở hai phần: "đơn điệu" và "hàng đợi".
+Đúng như tên gọi, trọng tâm của hàng đợi đơn điệu nằm ở hai phần: "đơn điệu"
+và "hàng đợi".
 
 "Đơn điệu" chỉ quy luật của các phần tử: tăng dần (hoặc giảm dần).
 
@@ -88,8 +89,9 @@ như sau (giả sử $k = 3$):
     --8<-- "docs/ds/code/monotonic-queue/monotonic-queue_1.cpp"
     ```
 
-P.S. Một khác biệt lớn giữa "hàng đợi" ở đây và hàng đợi thông thường là có thể
-thao tác ở cuối hàng đợi; trong STL có cấu trúc dữ liệu tương tự là `deque`.
+P.S. Một khác biệt lớn giữa "hàng đợi" trong cấu trúc này và hàng đợi thông
+thường là có thể thao tác ở cuối hàng đợi; trong STL có cấu trúc dữ liệu tương
+tự là `deque`.
 
 ???+ note "Ví dụ 2 [Luogu P2698 Flowerpot S](https://www.luogu.com.cn/problem/P2698)"
     Cho tọa độ của $N$ giọt nước, trong đó $y$ biểu thị độ cao của giọt nước,
@@ -106,9 +108,9 @@ thao tác ở cuối hàng đợi; trong STL có cấu trúc dữ liệu tương
 Sau khi sắp xếp tất cả giọt nước theo tọa độ $x$, bài toán có thể chuyển thành
 tìm một đoạn có hiệu tọa độ $x$ nhỏ nhất sao cho trong đoạn đó, hiệu giữa giá
 trị lớn nhất và nhỏ nhất của tọa độ $y$ ít nhất là $D$. Bài này giống ví dụ
-trước ở chỗ đều liên quan tới giá trị lớn nhất và nhỏ nhất trong một đoạn,
-nhưng ở đây kích thước đoạn không cố định, và chính kích thước đoạn cũng là đáp
-án cần tìm.
+trước ở chỗ đều liên quan tới giá trị lớn nhất và nhỏ nhất trong một đoạn.
+Điểm khác là kích thước đoạn không cố định, và chính kích thước đoạn cũng là
+đáp án cần tìm.
 
 Có thể dùng hai hàng đợi đơn điệu, một tăng và một giảm, để duy trì giá trị lớn
 nhất và nhỏ nhất trong $[L,R]$ khi $R$ liên tục dịch sang phải. Lúc này, nếu cố

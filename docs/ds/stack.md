@@ -35,7 +35,7 @@ bảng LIFO.
 
 ## Mô phỏng ngăn xếp bằng mảng
 
-Có thể dễ dàng dùng mảng để mô phỏng một ngăn xếp như sau:
+Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
 
 ???+ note "Cài đặt"
     === "C++"
