@@ -11,28 +11,28 @@ phân đoạn để kiểm soát độ phức tạp tổng thể.
 
 ### Quy trình
 
-Đúng như tên gọi, hợp nhất cây phân đoạn là xây dựng một cây phân đoạn mới, trong đó mỗi nút là kết quả hợp nhất hai nút
+Hợp nhất cây phân đoạn là xây dựng một cây phân đoạn mới, trong đó mỗi nút là kết quả hợp nhất hai nút
 tương ứng của hai cây phân đoạn ban đầu. Kỹ thuật này thường được dùng để duy trì thông tin trên cây hoặc trên đồ thị.
 
 Không thể thật sự xây đầy đủ một cây phân đoạn mới sau mỗi lần hợp nhất, vì vậy cần dùng cây phân đoạn mở nút động đã
 trình bày ở phần trước.
 
-Về bản chất, quy trình hợp nhất cây phân đoạn khá trực tiếp:
+Về bản chất, quy trình hợp nhất cây phân đoạn khá đơn giản:
 
 Giả sử hai cây phân đoạn là A và B. Quá trình hợp nhất đệ quy bắt đầu từ nút số 1.
 
-Khi đệ quy đến một nút, nếu nút tương ứng trên cây A hoặc cây B rỗng, trả về trực tiếp nút tương ứng trên cây còn lại.
+Khi đệ quy đến một nút, nếu nút tương ứng trên cây A hoặc cây B rỗng, trả về nút tương ứng trên cây còn lại.
 Bước này tận dụng đặc tính của cây phân đoạn mở nút động.
 
 Nếu đệ quy đến nút lá, hợp nhất hai nút tương ứng của hai cây.
 
-Cuối cùng, cập nhật nút hiện tại dựa trên các nút con rồi trả về.
+Sau đó, cập nhật nút hiện tại dựa trên các nút con rồi trả về.
 
 ???+ note "Độ phức tạp của hợp nhất cây phân đoạn"
     Với hai cây phân đoạn đầy đủ, độ phức tạp của một thao tác hợp nhất là $O(n)$. Tuy nhiên, trong thực tế thường dùng
     cây phân đoạn theo giá trị, và tổng số nút của tất cả các cây phân đoạn cần hợp nhất thường không chênh lệch nhiều
     so với quy mô $n$. Ngoài ra, khi hợp nhất, thông thường không hợp nhất lặp lại cùng một cây phân đoạn, nên tổng số
-    nút tăng thêm cuối cùng xấp xỉ cấp $n\log n$. Do đó, tổng độ phức tạp để hợp nhất tất cả các cây phân đoạn là
+    nút tăng thêm sau cùng xấp xỉ cấp $n\log n$. Do đó, tổng độ phức tạp để hợp nhất tất cả các cây phân đoạn là
     $O(n\log n)$. Trong một số trường hợp, heap hợp nhất được có thể là lựa chọn tốt hơn.
 
 ### Cài đặt
@@ -76,17 +76,17 @@ theo giá trị mở nút động.
 Khi cả tách và hợp nhất cùng tồn tại, cần thu hồi nút trong lúc hợp nhất để tránh khả năng một nút bị chiếm dụng lặp lại
 khi tách.
 
-Để tách đoạn $[l,r]$ từ một cây phân đoạn có miền $[1,N]$ và xây một cây mới:
+Để tách đoạn $[l,r]$ từ một cây phân đoạn có miền $[1,N]$ và xây một cây mới, thực hiện như sau:
 
 Bắt đầu tách đệ quy từ nút số 1. Khi nút không tồn tại, hoặc đoạn $[s,t]$ mà nút đại diện không giao với $[l,r]$, quay
-lui trực tiếp.
+lui ngay.
 
 Khi $[s,t]$ giao với $[l,r]$, cần mở một nút mới.
 
-Khi $[s,t]$ được chứa trong $[l,r]$, cần nối trực tiếp nút hiện tại vào cây mới và cắt cạnh cũ.
+Khi $[s,t]$ được chứa trong $[l,r]$, cần nối nút hiện tại vào cây mới và cắt cạnh cũ.
 
 ???+ note "Độ phức tạp của tách cây phân đoạn"
-    Có thể thấy số cạnh bị cắt nhiều nhất chỉ là $\log n$, nên độ phức tạp thời gian của mỗi lần tách cuối cùng là
+    Số cạnh bị cắt nhiều nhất chỉ là $\log n$, nên độ phức tạp thời gian của mỗi lần tách là
     $O(\log n)$, tương đương độ phức tạp của truy vấn đoạn.
 
 ### Cài đặt
