@@ -121,6 +121,6 @@ Nếu không có email giáo dục, hãy xem các phương thức xác minh khá
 
 ### Dùng dự án mã nguồn mở để nhận
 
-Nếu bạn là một trong những nhà phát triển hoặc maintainer cốt lõi của một dự án mã nguồn mở, bạn có thể thử đăng ký Open Source Development License. Quy trình đăng ký tương tự giấy phép giáo dục, nhưng cần điền địa chỉ kho mã nguồn của dự án mã nguồn mở.
+Nếu bạn là một trong những nhà phát triển hoặc người duy trì cốt lõi của một dự án mã nguồn mở, bạn có thể thử đăng ký Open Source Development License. Quy trình đăng ký tương tự giấy phép giáo dục, nhưng cần điền địa chỉ kho mã nguồn của dự án mã nguồn mở.
 
 ![Giấy phép phát triển mã nguồn mở](./images/clion-oss.png)

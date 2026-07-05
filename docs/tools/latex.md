@@ -32,7 +32,7 @@ TeX có nhiều định dạng, chẳng hạn Plain TeX và LaTeX. Hiện nay th
 
 ### Cấu hình môi trường
 
-Với người dùng Windows, bạn cần tải [TeX Live](https://tug.org/texlive/acquire.html) hoặc [MikTeX](https://miktex.org/download). Nếu tốc độ tải từ máy chủ mặc định không ổn định, có thể chọn một mirror CTAN gần vị trí của bạn. Bộ cài TeX Live dạng ISO cần được mount rồi chạy `install-tl-advanced.bat` bằng quyền quản trị.
+Với người dùng Windows, bạn cần tải [TeX Live](https://tug.org/texlive/acquire.html) hoặc [MikTeX](https://miktex.org/download). Nếu tốc độ tải từ máy chủ mặc định không ổn định, có thể chọn một máy chủ bản sao CTAN gần vị trí của bạn. Bộ cài TeX Live dạng ISO cần được mount rồi chạy `install-tl-advanced.bat` bằng quyền quản trị.
 
 Với người dùng macOS, có thể cài [MacTeX](https://tug.org/mactex/) hoặc MikTeX cho macOS.
 

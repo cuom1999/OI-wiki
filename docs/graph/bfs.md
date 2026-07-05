@@ -15,7 +15,7 @@ Quá trình của thuật toán có thể được xem như sự lan truyền c�
 
 ## Cài đặt
 
-Các cài đặt C++ và Python bên dưới dựa trên cách lưu đồ thị bằng forward star dạng danh sách liên kết. Bạn có thể tham khảo cách cài đặt này ở trang [Lưu trữ đồ thị](./save.md).
+Các cài đặt C++ và Python bên dưới dựa trên cách lưu đồ thị bằng sao tiến dạng danh sách liên kết. Bạn có thể tham khảo cách cài đặt này ở trang [Lưu trữ đồ thị](./save.md).
 
 === "Mã giả"
     ```text

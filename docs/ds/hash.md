@@ -134,7 +134,7 @@ struct hash_map {  // Mẫu bảng băm
   struct data {
     long long u;
     int v, nex;
-  };  // Cấu trúc forward star
+  };  // Cấu trúc sao tiến
 
   data e[SZ << 1];  // SZ là const int biểu thị kích thước
   int h[SZ], cnt;

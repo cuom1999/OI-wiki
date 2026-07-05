@@ -19,7 +19,7 @@ docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 
 ```bash
 # Chạy các lệnh sau trên máy chủ
-# Clone Git repository
+# Clone kho Git
 git clone https://github.com/cuom1999/OI-wiki.git
 cd OI-wiki/
 # Xây dựng image
@@ -73,7 +73,7 @@ Cách dùng đặc biệt:
 
 ```bash
 # Chạy các lệnh sau trong container
-# Cập nhật Git repository
+# Cập nhật kho Git
 wiki-upd
 
 # Dùng theme tùy chỉnh của chúng tôi

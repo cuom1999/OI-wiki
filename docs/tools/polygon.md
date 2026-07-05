@@ -22,7 +22,7 @@ Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đ
 
 -   Có thể kiểm thử stress rất thuận tiện; dữ liệu tìm được khi kiểm thử stress có thể thêm trực tiếp vào dữ liệu của bài.
 
--   Khi phát hiện vấn đề có thể tạo issue, tránh việc bị tin nhắn trôi mất mà vẫn không có fix.
+-   Khi phát hiện vấn đề có thể tạo issue, tránh việc bị tin nhắn trôi mất mà vẫn chưa được sửa.
 
 -   Chuẩn bị cho việc ra đề CF trong tương lai.
 

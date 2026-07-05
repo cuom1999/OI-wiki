@@ -112,7 +112,7 @@ Nội dung WC gồm nhiều ngày tập huấn và kiểm tra; điểm kiểm tr
 
 ### APIO
 
-**APIO** (tiếng Anh: Asia-Pacific Informatics Olympiad, tiếng Trung: Olympic Tin học Châu Á - Thái Bình Dương) là một cuộc thi môn tin học dành cho học sinh trung học đang học tại khu vực châu Á - Thái Bình Dương. Hằng năm CCF tổ chức cuộc thi mirror cho khu vực Trung Quốc vào đầu tháng 5. Xung quanh ngày thi sẽ có các hoạt động tập huấn.
+**APIO** (tiếng Anh: Asia-Pacific Informatics Olympiad, tiếng Trung: Olympic Tin học Châu Á - Thái Bình Dương) là một cuộc thi môn tin học dành cho học sinh trung học đang học tại khu vực châu Á - Thái Bình Dương. Hằng năm CCF tổ chức kỳ thi song song cho khu vực Trung Quốc vào đầu tháng 5. Xung quanh ngày thi sẽ có các hoạt động tập huấn.
 
 Thí sinh APIO có thể chia thành loại A và loại B; sáu thí sinh đứng đầu loại A (bao gồm đồng hạng) có thể tham gia xét giải quốc tế của APIO, còn thí sinh loại B chỉ có thể tham gia xét giải của khu vực Trung Quốc.
 

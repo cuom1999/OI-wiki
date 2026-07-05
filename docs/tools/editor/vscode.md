@@ -92,7 +92,7 @@ Nếu trình soạn thảo không tự động chuyển tới, hãy nhấp biể
 
 Trong "Watch" ("Theo dõi"), bạn có thể nhập biểu thức; mỗi lần thực hiện thao tác như `next` hoặc `step`, biểu thức sẽ được tính lại và hiển thị.
 
-Trong "Call Stack" ("Ngăn xếp lời gọi"), bạn có thể thấy stack frame của hàm hiện tại.
+Trong "Call Stack" ("Ngăn xếp lời gọi"), bạn có thể thấy khung ngăn xếp của hàm hiện tại.
 
 ???+ note "Mẹo"
     Bạn có thể tham khảo [tài liệu chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Arrays.html) để xem nội dung của một đoạn trong mảng.

@@ -27,7 +27,7 @@ Nói cụ thể hơn, DFS có cấu trúc đại khái như sau:
 
 ## Tính chất
 
-Thuật toán này thường có độ phức tạp thời gian $O(n+m)$ và độ phức tạp bộ nhớ $O(n)$, trong đó $n$ là số đỉnh và $m$ là số cạnh. Lưu ý rằng độ phức tạp bộ nhớ bao gồm cả bộ nhớ ngăn xếp, mà phần này có độ phức tạp $O(n)$. Độ phức tạp thời gian trên chỉ đạt được khi việc duyệt một cạnh mất trung bình $O(1)$, chẳng hạn khi lưu đồ thị bằng forward star hoặc danh sách kề; nếu dùng ma trận kề thì chưa chắc đạt được độ phức tạp này.
+Thuật toán này thường có độ phức tạp thời gian $O(n+m)$ và độ phức tạp bộ nhớ $O(n)$, trong đó $n$ là số đỉnh và $m$ là số cạnh. Lưu ý rằng độ phức tạp bộ nhớ bao gồm cả bộ nhớ ngăn xếp, mà phần này có độ phức tạp $O(n)$. Độ phức tạp thời gian trên chỉ đạt được khi việc duyệt một cạnh mất trung bình $O(1)$, chẳng hạn khi lưu đồ thị bằng sao tiến hoặc danh sách kề; nếu dùng ma trận kề thì chưa chắc đạt được độ phức tạp này.
 
 > Ghi chú: Hiện nay, phần lớn các kỳ thi lập trình thuật toán, bao gồm NOIP, đa số kỳ chọn đội cấp tỉnh và các cuộc thi do CCF tổ chức, đều hỗ trợ **không giới hạn riêng bộ nhớ ngăn xếp**. Nghĩa là bộ nhớ ngăn xếp không bị giới hạn tách biệt, nhưng tổng bộ nhớ vẫn chịu giới hạn của đề bài. Tuy vậy, hầu hết hệ điều hành sẽ đặt thêm giới hạn cho bộ nhớ ngăn xếp, vì thế khi gỡ lỗi cục bộ cần dùng một số cách để gỡ giới hạn này.
 >
@@ -116,7 +116,7 @@ Với cách lưu đồ thị bằng [danh sách kề (Adjacency List)](./save.md
                 dfs(v)
     ```
 
-Lấy [forward star dạng liên kết](./save.md#forward-star-dạng-liên-kết) làm ví dụ:
+Lấy [sao tiến dạng liên kết](./save.md#forward-star-dạng-liên-kết) làm ví dụ:
 
 === "C++"
     ```cpp

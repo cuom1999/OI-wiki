@@ -72,7 +72,7 @@ $$
 Độ phức tạp thời gian của thuật toán Hierholzer là $O(|E| + |V|)$.
 
 Lưu ý rằng trong phân tích tính đúng đắn ở trên, quá trình tìm chu trình đơn trong đồ thị Euler hoặc nửa Euler (hoặc đường đi ban đầu của đồ thị nửa Euler) là **không cần quay lui**: chỉ cần đi theo các cạnh còn lại thì chắc chắn tìm được chu trình hoặc đường đi cần thiết, và **mỗi cạnh chỉ được thăm một lần**.
-Để tận dụng tính chất này, khi cài đặt nên lưu các cạnh trong đồ thị bằng cấu trúc dạng danh sách liên kết, chẳng hạn danh sách kề hoặc forward star, để mỗi cạnh được xóa ngay sau khi được thăm. Nếu dùng ma trận kề đơn giản để lưu trữ, mỗi lần tìm cạnh sẽ tốn $O(|V|)$, tổng độ phức tạp là $O(|V||E|)$.
+Để tận dụng tính chất này, khi cài đặt nên lưu các cạnh trong đồ thị bằng cấu trúc dạng danh sách liên kết, chẳng hạn danh sách kề hoặc sao tiến, để mỗi cạnh được xóa ngay sau khi được thăm. Nếu dùng ma trận kề đơn giản để lưu trữ, mỗi lần tìm cạnh sẽ tốn $O(|V|)$, tổng độ phức tạp là $O(|V||E|)$.
 
 ???+ note "Ghi chú"
     Thật ra, độ phức tạp chính xác của thuật toán nên là $O(|E|)$ chứ không phải $O(|V| + |E|)$, vì cách cài đặt thuật toán có thể phụ thuộc vào cạnh thay vì phụ thuộc vào đỉnh, bằng cách duy trì danh sách liên kết tổng thể của các cạnh còn lại để tìm chu trình ở bước tiếp theo.
@@ -121,7 +121,7 @@ Tìm tùy ý một chu trình Euler $C$ trong $D$, lấy chữ cái cuối cùng
     
     Có thể dùng `std::stack<int>` để lưu đáp án, vì nếu phần tìm được không phải chu trình thì phải đặt phần đó ở cuối.
     
-    Chú ý rằng không thể dùng ma trận kề để lưu đồ thị, nếu không độ phức tạp thời gian sẽ suy biến thành $\Theta(nm)$. Vì cần sắp xếp cạnh, nên dùng forward star hoặc `std::vector` để lưu đồ thị. Mã mẫu dùng `std::vector`.
+    Chú ý rằng không thể dùng ma trận kề để lưu đồ thị, nếu không độ phức tạp thời gian sẽ suy biến thành $\Theta(nm)$. Vì cần sắp xếp cạnh, nên dùng sao tiến hoặc `std::vector` để lưu đồ thị. Mã mẫu dùng `std::vector`.
 
 ??? note "Mã mẫu"
     ```cpp

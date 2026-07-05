@@ -277,7 +277,7 @@ Phương pháp tối ưu cuối cùng đến từ quan sát sau.
     
     Ở đây bất đẳng thức thứ hai chính là bất đẳng thức tứ giác. Từ đó suy ra tính lồi cần chứng minh.
 
-Kết luận này bảo đảm có thể dùng WQS binary search (ở nước ngoài gọi là Aliens Trick) để giải bài toán này. Cụ thể, xét hàm chi phí có tham số $w_c(j,i):=w(j,i)+c$, giải bài toán không giới hạn số khoảng và thu được nghiệm tối ưu $f_c(n)$. Khi số thực $c$ tăng, số khoảng tối ưu tương ứng giảm đơn điệu, nên có thể dùng tìm kiếm nhị phân để tìm tham số $c$ làm cho số khoảng tối ưu đúng bằng $m$. Khi đó nghiệm tối ưu của bài gốc là $f(n,m) = f_c(n)-cm$. Số thực $c$ ở đây có thể xem như nhân tử Lagrange của ràng buộc số khoảng. Cài đặt thuật toán này có nhiều chi tiết; có thể tham khảo trang [WQS binary search](./wqs-binary-search.md). Độ phức tạp thời gian của thuật toán là $O(n\log n\log C)$, trong đó $C$ là một hằng số nào đó.
+Kết luận này bảo đảm có thể dùng tìm kiếm nhị phân WQS (ở nước ngoài gọi là Aliens Trick) để giải bài toán này. Cụ thể, xét hàm chi phí có tham số $w_c(j,i):=w(j,i)+c$, giải bài toán không giới hạn số khoảng và thu được nghiệm tối ưu $f_c(n)$. Khi số thực $c$ tăng, số khoảng tối ưu tương ứng giảm đơn điệu, nên có thể dùng tìm kiếm nhị phân để tìm tham số $c$ làm cho số khoảng tối ưu đúng bằng $m$. Khi đó nghiệm tối ưu của bài gốc là $f(n,m) = f_c(n)-cm$. Số thực $c$ ở đây có thể xem như nhân tử Lagrange của ràng buộc số khoảng. Cài đặt thuật toán này có nhiều chi tiết; có thể tham khảo trang [tìm kiếm nhị phân WQS](./wqs-binary-search.md). Độ phức tạp thời gian của thuật toán là $O(n\log n\log C)$, trong đó $C$ là một hằng số nào đó.
 
 Với ba thuật toán cho bài toán phân tách khoảng có giới hạn số khoảng, hiệu quả của chúng khác nhau theo từng phạm vi dữ liệu; cần chọn thuật toán phù hợp theo bài cụ thể.
 
@@ -302,7 +302,7 @@ Với ba thuật toán cho bài toán phân tách khoảng có giới hạn số
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle_2.cpp"
     ```
 
-??? note "Cài đặt 2, WQS binary search, độ phức tạp $O(n\log n\log C)$"
+??? note "Cài đặt 2, tìm kiếm nhị phân WQS, độ phức tạp $O(n\log n\log C)$"
     ```cpp
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle_3.cpp"
     ```
@@ -317,7 +317,7 @@ $$
 f(j,i) = \min_{j \leq k < i} f(j,k) + f(k+1,i) + w(j,i) \qquad (1\le j< i\le n) \tag{3}
 $$
 
-Trong đó chi phí ban đầu $f(i,i)=0$. Thuật toán vét cạn có tổng độ phức tạp $O(n^3)$; khi có tính đơn điệu quyết định, có thể tối ưu xuống $O(n^2)$. Thuật toán này được Knuth đề xuất đầu tiên khi giải bài toán cây tìm kiếm nhị phân tối ưu, rồi được Yao Chi-Feng nghiên cứu và tổng kết thêm; ở nước ngoài thường gọi là Knuth's optimization hoặc Knuth-Yao speedup.
+Trong đó chi phí ban đầu $f(i,i)=0$. Thuật toán vét cạn có tổng độ phức tạp $O(n^3)$; khi có tính đơn điệu quyết định, có thể tối ưu xuống $O(n^2)$. Thuật toán này được Knuth đề xuất đầu tiên khi giải bài toán cây tìm kiếm nhị phân tối ưu, rồi được Yao Chi-Feng nghiên cứu và tổng kết thêm; ở nước ngoài thường gọi là tối ưu Knuth hoặc tăng tốc Knuth-Yao.
 
 Ngoài bất đẳng thức tứ giác, tính đơn điệu quyết định của bài toán gộp khoảng còn yêu cầu hàm chi phí thỏa mãn tính đơn điệu theo bao hàm khoảng.
 
@@ -430,7 +430,7 @@ Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex F
 
 <span id="bài-tập"></span>
 
--   [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E)(Be careful with I/O!)
+-   [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E) (Cẩn thận với nhập/xuất!)
 -   [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/)
 -   [Codechef - CHEFAOR](https://www.codechef.com/problems/CHEFAOR)
 -   [Hackerrank - Guardians of the Lunatics](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)

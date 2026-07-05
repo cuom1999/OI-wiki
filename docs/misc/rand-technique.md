@@ -491,9 +491,9 @@ Ngoài các bất đẳng thức đã nhắc trong trang trên, quá trình suy 
 -   Vế trái tăng đơn điệu theo $n\geq 1$ và có giới hạn tại $+\infty$ là $\dfrac{1}{\mathrm{e}}$, nên có kết luận này.
 -   Điều này cho ta biết: nếu $n$ sự kiện độc lập với nhau, mỗi sự kiện xảy ra với xác suất $1-\dfrac 1n$, thì xác suất tất cả cùng xảy ra nhiều nhất là $\dfrac{1}{\mathrm{e}}$.
 
-### Tư tưởng "coupling"
+### Tư tưởng ghép cặp
 
-Tư tưởng "coupling" thường dùng để xử lý đồng thời hơn một đối tượng có tính ngẫu nhiên, hoặc xử lý đồng thời đối tượng ngẫu nhiên và đối tượng tất định.
+Tư tưởng ghép cặp thường dùng để xử lý đồng thời hơn một đối tượng có tính ngẫu nhiên, hoặc xử lý đồng thời đối tượng ngẫu nhiên và đối tượng tất định.
 
 #### Dẫn nhập: tính liên thông của đồ thị ngẫu nhiên
 
@@ -509,7 +509,7 @@ Kết luận này trông rất tự nhiên, nhưng chứng minh nghiêm ngặt l
     
     Dễ kiểm tra rằng $G_1$ và $G_2$ sinh ra như vậy phù hợp với định nghĩa của chúng, và trong mọi trường hợp cụ thể, tập cạnh của $G_2$ đều là tập con của tập cạnh của $G_1$. Vì thế trong mọi trường hợp cụ thể, số thành phần liên thông của $G_2$ không nhỏ hơn số thành phần liên thông của $G_1$; khi đó kỳ vọng tự nhiên cũng thỏa cùng quan hệ lớn nhỏ.
 
-Tư tưởng được dùng trong đoạn chứng minh này gọi là "coupling"; có thể hiểu theo nghĩa mặt chữ. Trong ví dụ này, nó thể hiện ở việc gộp hai quá trình ngẫu nhiên vốn độc lập thành một.
+Tư tưởng được dùng trong đoạn chứng minh này gọi là "ghép cặp"; có thể hiểu theo nghĩa mặt chữ. Trong ví dụ này, nó thể hiện ở việc gộp hai quá trình ngẫu nhiên vốn độc lập thành một.
 
 #### Ứng dụng: [NERC 2019 Problem G: Game Relics](https://codeforces.com/contest/1267/problem/G)
 
@@ -573,7 +573,7 @@ Cuối cùng, ta liệt kê mọi trạng thái có thể, tức tập các ph�
 
 ***
 
-**Nhìn lại**: có thể thấy kỹ thuật coupling được dùng hai lần trong bài này. Lần đầu là trong chứng minh, cho hai quá trình ngẫu nhiên dùng chung một nguồn ngẫu nhiên; lần thứ hai là chuyển việc mua thành mua ngẫu nhiên (tức đưa thêm nguồn ngẫu nhiên), từ đó làm cho hai thao tác mua và rút về bản chất được "couple" thành cùng một thao tác, tức là cho thao tác rút và mua chia sẻ cùng một nguồn ngẫu nhiên.
+**Nhìn lại**: có thể thấy kỹ thuật ghép cặp được dùng hai lần trong bài này. Lần đầu là trong chứng minh, cho hai quá trình ngẫu nhiên dùng chung một nguồn ngẫu nhiên; lần thứ hai là chuyển việc mua thành mua ngẫu nhiên (tức đưa thêm nguồn ngẫu nhiên), từ đó làm cho hai thao tác mua và rút về bản chất được "ghép cặp" thành cùng một thao tác, tức là cho thao tác rút và mua chia sẻ cùng một nguồn ngẫu nhiên.
 
 ## Tài liệu tham khảo
 

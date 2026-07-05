@@ -74,7 +74,7 @@ Danh sách này ghi tác giả của sách, không liệt kê dịch giả. Vì 
 
 -   Loạt sách của Liu Rujia
     -   *Nhập môn kinh điển về lập trình thi đấu* (sách tím)
-        -   [Kho tài nguyên đi kèm bản thứ nhất (mirror)](https://github.com/sukhoeing/aoapc-book/)
+        -   [Kho tài nguyên đi kèm bản thứ nhất (bản sao)](https://github.com/sukhoeing/aoapc-book/)
         -   [Kho tài nguyên đi kèm bản thứ hai](https://github.com/aoapc-book/aoapc-bac2nd)
         -   [Lời giải chọn lọc cho bài tập bản thứ hai](https://github.com/sukhoeing/aoapc-bac2nd-keys)
     -   *Nhập môn kinh điển về lập trình thi đấu - Hướng dẫn luyện tập* (sách trắng/xanh) - đồng tác giả Chen Feng

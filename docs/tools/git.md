@@ -167,7 +167,7 @@ Bây giờ đưa các tệp chưa nằm trong vùng tạm vào vùng tạm, rồ
 
 ```console
 $ git add README.md
-$ git commit # Sau đó trình soạn thảo sẽ bật lên; bạn cần viết commit message
+$ git commit # Sau đó trình soạn thảo sẽ bật lên; bạn cần viết thông điệp commit
 [master (root-commit) f992763] initial commit
  1 file changed, 2 insertions(+)
  create mode 100644 README.md
@@ -392,7 +392,7 @@ $ git merge <branch> --squash
 
 Cần chú ý rằng sau khi chạy lệnh trên, Git chỉ đưa toàn bộ thay đổi của nhánh B vào vùng đệm của nhánh A; tiếp theo vẫn cần chạy một lần `git commit` để hoàn thành việc gộp.
 
-Dùng Squash để gộp có thể đơn giản hóa lịch sử commit, nhưng sẽ mất thông tin chi tiết của từng commit (người commit từng lần, thay đổi của từng commit, v.v.), chỉ giữ lại thông tin sau khi gộp thành một tổng thể (người commit của từng commit sẽ được liệt kê trong commit message dưới dạng "Co-authored-by"). Tuy nhiên, nếu Squash and Merge trên GitHub, thông tin ban đầu vẫn có thể xem trong Pull Request.
+Dùng Squash để gộp có thể đơn giản hóa lịch sử commit, nhưng sẽ mất thông tin chi tiết của từng commit (người commit từng lần, thay đổi của từng commit, v.v.), chỉ giữ lại thông tin sau khi gộp thành một tổng thể (người commit của từng commit sẽ được liệt kê trong thông điệp commit dưới dạng "Co-authored-by"). Tuy nhiên, nếu Squash and Merge trên GitHub, thông tin ban đầu vẫn có thể xem trong Pull Request.
 
 #### Rebase
 

@@ -4,7 +4,7 @@ author: Ir1d, TianyiQ
 
 Phương pháp tăng dần ngẫu nhiên là một thuật toán quan trọng trong hình học tính toán. Nó không đòi hỏi nhiều kiến thức lý thuyết, có độ phức tạp thời gian thấp và phạm vi ứng dụng rộng.
 
-Ý tưởng của phương pháp tăng dần (Incremental Algorithm) tương tự nguyên lý quy nạp toán học thứ nhất: bản chất là biến một bài toán thành bài toán con có quy mô nhỏ hơn đúng một mức. Sau khi giải bài toán con, ta thêm đối tượng hiện tại vào. Viết dưới dạng truy hồi:
+Ý tưởng của phương pháp tăng dần tương tự nguyên lý quy nạp toán học thứ nhất: bản chất là biến một bài toán thành bài toán con có quy mô nhỏ hơn đúng một mức. Sau khi giải bài toán con, ta thêm đối tượng hiện tại vào. Viết dưới dạng truy hồi:
 
 $$
 T(n)=T(n-1)+g(n)

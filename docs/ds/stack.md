@@ -6,7 +6,7 @@
 
 Ngăn xếp là một cấu trúc dữ liệu tuyến tính thường dùng trong OI. Lưu ý rằng bài này chủ yếu nói về cấu trúc dữ liệu ngăn xếp, không phải ngăn xếp hệ thống/không gian ngăn xếp khi chương trình chạy.
 
-Các thao tác sửa đổi và truy cập của ngăn xếp tuân theo nguyên tắc vào sau ra trước, vì vậy ngăn xếp thường được gọi là bảng vào sau ra trước (last in first out), viết tắt là bảng LIFO.
+Các thao tác sửa đổi và truy cập của ngăn xếp tuân theo nguyên tắc vào sau ra trước, vì vậy ngăn xếp thường được gọi là bảng vào sau ra trước, viết tắt là bảng LIFO.
 
 ??? warning "Cảnh báo"
     LIFO mô tả việc **phần tử vào sau cùng trong container hiện tại** sẽ ra trước.

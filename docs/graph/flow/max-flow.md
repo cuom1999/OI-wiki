@@ -46,7 +46,7 @@ Dễ thấy rằng chỉ cần trên $G_f$ còn tồn tại đường tăng lu�
 
 Ta đã hiểu sơ lược tư tưởng tăng luồng Ford–Fulkerson, nhưng làm thế nào để chứng minh tính đúng đắn của phương pháp này? Vì sao luồng $f$ sau khi kết thúc tăng luồng là một luồng cực đại?
 
-Thực ra, tính đúng đắn của tăng luồng Ford–Fulkerson tương đương với định lý luồng cực đại - lát cắt nhỏ nhất (The Maxflow-Mincut Theorem). Định lý này phát biểu rằng với mọi mạng $G = (V, E)$, luồng cực đại $f$ và lát cắt nhỏ nhất $\{S, T\}$ trên mạng đó luôn thỏa mãn $|f| = ||S, T||$.
+Thực ra, tính đúng đắn của tăng luồng Ford–Fulkerson tương đương với định lý luồng cực đại - lát cắt nhỏ nhất. Định lý này phát biểu rằng với mọi mạng $G = (V, E)$, luồng cực đại $f$ và lát cắt nhỏ nhất $\{S, T\}$ trên mạng đó luôn thỏa mãn $|f| = ||S, T||$.
 
 Để chứng minh định lý luồng cực đại - lát cắt nhỏ nhất, trước hết xét một bổ đề: với mạng $G = (V, E)$, lấy tùy ý một luồng $f$ và một lát cắt $\{S, T\}$, luôn có $|f| \leq ||S, T||$. Dấu bằng xảy ra khi và chỉ khi mọi cạnh trong $\{(u, v) | u \in S, v \in T\}$ đều đầy luồng, và mọi cạnh trong $\{(u, v) | u \in T, v \in S\}$ đều có luồng bằng không.
 

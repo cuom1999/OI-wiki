@@ -20,7 +20,7 @@ bạn có thể tìm thấy kiến thức thú vị và hữu ích về thi đ�
 cơ bản, dạng bài thường gặp, hướng giải, công cụ và kinh nghiệm học tập.
 
 Bản tiếng Việt này dịch dần từ dự án gốc, giữ nguyên cấu trúc nguồn để dễ theo
-dõi thay đổi upstream. Một số trang vẫn còn dấu vết hoặc bối cảnh từ bản gốc
+dõi thay đổi của bản gốc. Một số trang vẫn còn dấu vết hoặc bối cảnh từ bản gốc
 trong thời gian chuyển đổi.
 
 Dự án gốc lấy cảm hứng từ [CTF Wiki](https://ctf-wiki.org/) và tham khảo nhiều

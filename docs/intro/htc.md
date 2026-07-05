@@ -22,7 +22,7 @@ tốt hơn với các cộng tác viên trong cộng đồng.
 
 ???+ tip "Gợi ý"
     Trong Issues cũng có rất nhiều vấn đề đang chờ sửa hoặc giải quyết, đặc
-    biệt là kế hoạch lặp của chúng tôi (Iteration Plan). Nhận việc từ đây là
+    biệt là kế hoạch lặp của chúng tôi. Nhận việc từ đây là
     một khởi đầu rất tốt!
 
 Để bảo đảm tính chuyên môn và độ chính xác của nội dung mục từ, chúng tôi đề
@@ -166,13 +166,13 @@ Cách thao tác chi tiết có thể tham khảo trang [Git](../tools/git.md).
 Tiếp tục sửa trong kho nhánh cục bộ đã clone, rồi commit và push các thay đổi.
 Thay đổi của bạn sẽ tự động được bổ sung vào Pull Request.
 
-### Xem trước thay đổi trên trang đã build
+### Xem trước thay đổi trên trang đã dựng
 
 Ở phía dưới trang Pull Request, bạn có thể xem trạng thái kiểm thử tự động. Nếu
-dự án bật preview cho Pull Request, hãy nhấn liên kết Details ("Chi tiết") tương ứng để xem
-trang được build tự động từ thay đổi của mình.
+dự án bật xem trước cho Pull Request, hãy nhấn liên kết Details ("Chi tiết") tương ứng để xem
+trang được dựng tự động từ thay đổi của mình.
 
-![Liên kết xem trước trang build tự động trong Pull Request](./images/deploy_preview.png)
+![Liên kết xem trước trang dựng tự động trong Pull Request](./images/deploy_preview.png)
 
 ### Thay đổi với mục lục và liên kết tham chiếu
 
@@ -291,8 +291,8 @@ Ví dụ:
 2.  Đồng thời, trên [GitHub Actions](https://github.com/cuom1999/OI-wiki/actions)
     sẽ chạy kiểm thử tự động. Tiến độ của chúng được đồng bộ ở phía dưới trang
     PR, chủ yếu dùng để xác nhận thay đổi nội dung trong PR không ảnh hưởng đến
-    quá trình build trang web;
-3.  Reviewer có thể phát hiện vấn đề và đưa ra `review` hoặc
+    quá trình dựng trang web;
+3.  Người rà soát có thể phát hiện vấn đề và đưa ra `review` hoặc
     `suggested changes` (đề xuất thay đổi, hiển thị bằng biểu tượng màu xám) /
     `requested changes` (yêu cầu thay đổi bắt buộc, hiển thị bằng biểu tượng
     màu đỏ, chỉ xuất hiện khi người rà soát có quyền ghi vào kho). Thông thường,
@@ -302,7 +302,7 @@ Ví dụ:
     Pull Request` trong `Sử dụng Git để chỉnh sửa cục bộ`.
 4.  Sau khi có đủ nhiều người rà soát bỏ phiếu thông qua một PR, PR đó mới có thể
     được hợp nhất vào nhánh `vietnamese-translation`;
-5.  Sau khi hợp nhất vào nhánh `vietnamese-translation`, GitHub Actions sẽ build lại nội dung
+5.  Sau khi hợp nhất vào nhánh `vietnamese-translation`, GitHub Actions sẽ dựng lại nội dung
     trang web và cập nhật lên nhánh gh-pages;
 6.  Khi đó, máy chủ mới kéo cập nhật từ nhánh gh-pages và triển khai lại nội
     dung phiên bản mới nhất.

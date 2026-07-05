@@ -10,35 +10,35 @@ Nếu bạn muốn bắt đầu thật nhanh, nên đọc trước các mục [T
     | Thời gian  | Nội dung chính                                                                | Liên kết Issue/Pull Request liên quan                                                                     |
     | ---------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
     | 2026-02-22 | Hoàn thiện quy định về cách dùng dấu nháy                                     | [#6793](https://github.com/OI-wiki/OI-wiki/pull/6793)                                                     |
-    | 2026-01-07 | Bản upstream bổ sung quy tắc dấu câu cho văn bản CJK                         | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                     |
+    | 2026-01-07 | Bản gốc bổ sung quy tắc dấu câu cho văn bản CJK                              | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                     |
     | 2025-08-10 | Thêm yêu cầu định dạng cho sổ tay định dạng;<br>Mã: bổ sung yêu cầu về mã đoạn | [#6412](https://github.com/OI-wiki/OI-wiki/pull/6412)                                                    |
-    | 2025-08-10 | Thêm Changelog và TL;DR                                                       | [#6409](https://github.com/OI-wiki/OI-wiki/pull/6409)                                                     |
+    | 2025-08-10 | Thêm nhật ký thay đổi và tóm tắt nhanh                                        | [#6409](https://github.com/OI-wiki/OI-wiki/pull/6409)                                                     |
     | 2024-10-08 | Mã: hoàn thiện yêu cầu định dạng để phù hợp kiểm thử đa nền tảng              | [#5912](https://github.com/OI-wiki/OI-wiki/pull/5912), [#5924](https://github.com/OI-wiki/OI-wiki/pull/5924) |
-    | 2024-03-26 | Khi dẫn liên kết bài trên OJ, dùng liên kết gốc thay vì liên kết mirror       | [#5482](https://github.com/OI-wiki/OI-wiki/pull/5482)                                                     |
-    | 2023-10-09 | Plugin chủ đề: thêm yêu cầu định dạng cho tab[^note6]                         | [#5152](https://github.com/OI-wiki/OI-wiki/pull/5152)                                                     |
+    | 2024-03-26 | Khi dẫn liên kết bài trên OJ, dùng liên kết gốc thay vì liên kết bản sao      | [#5482](https://github.com/OI-wiki/OI-wiki/pull/5482)                                                     |
+    | 2023-10-09 | Phần bổ trợ chủ đề: thêm yêu cầu định dạng cho tab[^note6]                    | [#5152](https://github.com/OI-wiki/OI-wiki/pull/5152)                                                     |
     | 2023-07-23 | Với nội dung về công cụ, yêu cầu dẫn tài liệu chính thức khi nói về tải và cài đặt | [#5023](https://github.com/OI-wiki/OI-wiki/pull/5023)                                                 |
     | 2023-04-15 | Bổ sung quy phạm dùng dấu nháy                                                | [#4792](https://github.com/OI-wiki/OI-wiki/pull/4792)                                                     |
     | 2023-03-28 | LaTeX: bảng ký hiệu toán học                                                  | [#4587](https://github.com/OI-wiki/OI-wiki/pull/4587)                                                     |
     | 2023-03-02 | Bổ sung quy phạm dùng dấu câu, khoảng trắng và dấu nối                       | [#4726](https://github.com/OI-wiki/OI-wiki/pull/4726)                                                     |
-    | 2022-12-13 | Plugin chủ đề: bỏ yêu cầu về bóng của hộp gấp lồng nhau                       | [#4500](https://github.com/OI-wiki/OI-wiki/pull/4500)                                                     |
+    | 2022-12-13 | Phần bổ trợ chủ đề: bỏ yêu cầu về bóng của hộp gấp lồng nhau                  | [#4500](https://github.com/OI-wiki/OI-wiki/pull/4500)                                                     |
     | 2022-08-09 | Khi dẫn một mục của liên kết nội bộ, dùng tiêu đề tương ứng trong bản tiếng Việt | [#4057](https://github.com/OI-wiki/OI-wiki/pull/4057)                                                  |
     | 2022-06-12 | Hoàn thiện yêu cầu liên quan đến thay đổi mục lục[^note4]                     | [#4043](https://github.com/OI-wiki/OI-wiki/pull/4043)                                                     |
-    | 2021-09-09 | Plugin chủ đề: bổ sung yêu cầu liên quan đến hộp gấp                          | [#3517](https://github.com/OI-wiki/OI-wiki/pull/3517)                                                     |
+    | 2021-09-09 | Phần bổ trợ chủ đề: bổ sung yêu cầu liên quan đến hộp gấp                     | [#3517](https://github.com/OI-wiki/OI-wiki/pull/3517)                                                     |
     | 2021-09-03 | LaTeX: `\Leftrightarrow` $\to$ `\iff`                                         | [#3499](https://github.com/OI-wiki/OI-wiki/pull/3499)                                                     |
     | 2021-08-18 | Mã: thêm yêu cầu định dạng cho mã bài mẫu                                     | [#3447](https://github.com/OI-wiki/OI-wiki/pull/3447)                                                     |
     | 2021-08-12 | Hình ảnh: ưu tiên dùng định dạng APNG cho ảnh động                            | [#3422](https://github.com/OI-wiki/OI-wiki/pull/3422)                                                     |
     | 2021-06-29 | Hình ảnh: khuyến nghị nộp kèm tệp nguồn                                       | [#3255](https://github.com/OI-wiki/OI-wiki/pull/3255)                                                     |
     | 2021-05-29 | Mã: bỏ yêu cầu dấu ngoặc nhọn không xuống dòng, bổ sung yêu cầu về khả năng đọc | [#3197](https://github.com/OI-wiki/OI-wiki/pull/3197)                                                  |
-    | 2021-03-15 | Bảo trì site: chuẩn hóa cách merge Pull Request[^note5]                       | [#3061](https://github.com/OI-wiki/OI-wiki/pull/3061)                                                     |
+    | 2021-03-15 | Bảo trì trang: chuẩn hóa cách gộp Pull Request[^note5]                        | [#3061](https://github.com/OI-wiki/OI-wiki/pull/3061)                                                     |
     | 2021-02-01 | LaTeX: `\lt` $\to$ `<`, `\gt` $\to$ `>`                                       | [#2950](https://github.com/OI-wiki/OI-wiki/pull/2950)                                                     |
     | 2021-01-27 | Khuyến nghị lưu bản sao liên kết ngoài trên [Internet Archive](https://web.archive.org/) | [#2918](https://github.com/OI-wiki/OI-wiki/pull/2918)                                           |
-    | 2020-09-19 | Bảo trì site: yêu cầu viết Commit Message và tiêu đề Pull Request[^note4]     | [#2744](https://github.com/OI-wiki/OI-wiki/pull/2744)                                                     |
+    | 2020-09-19 | Bảo trì trang: yêu cầu viết thông điệp commit và tiêu đề Pull Request[^note4] | [#2744](https://github.com/OI-wiki/OI-wiki/pull/2744)                                                     |
     | 2020-10-18 | Hình ảnh: ưu tiên dùng định dạng SVG                                          | [#2215](https://github.com/OI-wiki/OI-wiki/pull/2215)                                                     |
     | 2020-08-05 | LaTeX: thêm yêu cầu định dạng cho biến gồm nhiều chữ cái                      | [#2502](https://github.com/OI-wiki/OI-wiki/pull/2502)                                                     |
     | 2020-07-28 | LaTeX: cấm môi trường `cases` có quá hai cột                                  | [#2466](https://github.com/OI-wiki/OI-wiki/pull/2466)                                                     |
     | 2020-07-24 | LaTeX: `{n \choose m}`$\to$ `\dbinom{n}{m}`                                   | [#2442](https://github.com/OI-wiki/OI-wiki/pull/2442)                                                     |
     | 2020-07-20 | Markdown: cấm cú pháp gạch xóa                                               | [#2422](https://github.com/OI-wiki/OI-wiki/pull/2422)                                                     |
-    | 2020-07-19 | Plugin chủ đề: yêu cầu giữ khoảng trắng thụt lề ở dòng trống trong hộp gấp[^note3];<br>LaTeX: thêm yêu cầu định dạng cho công thức toán | [#2412](https://github.com/OI-wiki/OI-wiki/pull/2412) |
+    | 2020-07-19 | Phần bổ trợ chủ đề: yêu cầu giữ khoảng trắng thụt lề ở dòng trống trong hộp gấp[^note3];<br>LaTeX: thêm yêu cầu định dạng cho công thức toán | [#2412](https://github.com/OI-wiki/OI-wiki/pull/2412) |
     | 2020-07-11 | Phiên bản đầu tiên                                                            | [#2350](https://github.com/OI-wiki/OI-wiki/pull/2350)                                                     |
 
 ## <a id="tom-tat-nhanh"></a>Tóm tắt nhanh
@@ -106,7 +106,7 @@ Nếu bạn muốn bắt đầu thật nhanh, nên đọc trước các mục [T
 
 ## Yêu cầu định dạng của tài liệu này
 
--   <a id="FREQ-1"></a>FREQ-1: khi sửa các mục của sổ tay định dạng, cần bổ sung Changelog đồng thời. Nếu chỉ sửa lỗi định dạng thì không cần bổ sung Changelog.
+-   <a id="FREQ-1"></a>FREQ-1: khi sửa các mục của sổ tay định dạng, cần bổ sung nhật ký thay đổi đồng thời. Nếu chỉ sửa lỗi định dạng thì không cần bổ sung nhật ký thay đổi.
 -   <a id="FREQ-2"></a>FREQ-2: ngoài mục [Tóm tắt nhanh](#tom-tat-nhanh), mọi mục trong sổ tay định dạng đều cần có mã số không trùng lặp. Mã số cần khớp biểu thức chính quy `(?<category>[A-Z]{4})-(?<id>[1-9][0-9]*(?:\.[1-9][0-9]*)*)`, trong đó `category` nên có ý nghĩa trực quan. Phần thuyết minh không cần có mã số.
 -   <a id="FREQ-3"></a>FREQ-3: các mục trong [Tóm tắt nhanh](#tom-tat-nhanh) phải được lấy từ nội dung ở các chương khác của sổ tay định dạng, và cuối mục cần dẫn mã số mục tương ứng.
 -   <a id="FREQ-4"></a>FREQ-4: sau khi mã số của mục đã xác định thì không nên thay đổi. Nếu thật sự cần thay đổi (ví dụ xóa hoặc gộp mục), cần ghi chú bằng nội dung tương tự "đã hủy bỏ" hoặc "chuyển sang XXXX-id".
@@ -245,7 +245,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
 
 -   <a id="MDFM-1"></a>MDFM-1: khi biểu thị nhấn mạnh, vui lòng dùng `**SOMETHING**` hoặc dấu nháy kép `"..."` khi phù hợp, thay vì một cấp tiêu đề nào đó, vì dùng tiêu đề sẽ làm cấu trúc bài viết rối loạn và/hoặc làm mục lục gặp vấn đề.
 
--   <a id="MDFM-2"></a>MDFM-2: khi cần dẫn liên kết bài tập, nên ưu tiên dùng liên kết trong kho bài của OJ gốc thay vì liên kết mirror.
+-   <a id="MDFM-2"></a>MDFM-2: khi cần dẫn liên kết bài tập, nên ưu tiên dùng liên kết trong kho bài của OJ gốc thay vì liên kết bản sao.
 
 -   <a id="MDFM-3"></a>MDFM-3: hãy dùng đúng chức năng block của Markdown. Khi chèn mã trong dòng, dùng một cặp dấu backtick bao quanh khối mã; khi chèn mã riêng dòng, dùng một cặp ` ``` ` bao quanh khối mã. Dấu backtick là ký tự nằm dưới dấu ngã ở góc trên bên trái bàn phím. Với mã riêng dòng, hãy thêm tên ngôn ngữ sau ` ``` ` đầu tiên (ví dụ: ` ```cpp`).
 

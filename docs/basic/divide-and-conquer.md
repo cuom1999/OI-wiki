@@ -108,10 +108,10 @@ int func(giá_trị_đầu_vào) {
 
 ### Nhược điểm của đệ quy
 
-Trong quá trình thực thi, đệ quy được cài đặt bằng stack. Mỗi khi đi vào một
-lời gọi hàm, stack thêm một stack frame; mỗi khi hàm trả về, stack bỏ bớt một
-stack frame. Stack không có kích thước vô hạn, nên nếu tầng đệ quy quá sâu sẽ
-dẫn đến **tràn stack**.
+Trong quá trình thực thi, đệ quy được cài đặt bằng ngăn xếp. Mỗi khi đi vào một
+lời gọi hàm, ngăn xếp thêm một khung ngăn xếp; mỗi khi hàm trả về, ngăn xếp bỏ
+bớt một khung ngăn xếp. Ngăn xếp không có kích thước vô hạn, nên nếu tầng đệ
+quy quá sâu sẽ dẫn đến **tràn ngăn xếp**.
 
 Rõ ràng có lúc đệ quy hiệu quả, chẳng hạn merge sort; nhưng **cũng có lúc đệ
 quy kém hiệu quả**, chẳng hạn đếm số sợi lông trên người Tôn Ngộ Không. Stack
@@ -207,7 +207,7 @@ Cách cài đặt hàm `merge` giống với việc gộp hai danh sách liên k
 
 **Hiểu nhiệm vụ của một hàm và tin rằng nó hoàn thành được nhiệm vụ đó; đừng
 nhảy vào bên trong hàm để cố truy thêm chi tiết**, nếu không bạn sẽ mắc kẹt
-trong vô hạn chi tiết. Bộ não con người đâu thể giữ được nhiều stack frame như
+trong vô hạn chi tiết. Bộ não con người đâu thể giữ được nhiều khung ngăn xếp như
 máy tính.
 
 Lấy duyệt cây nhị phân làm ví dụ.

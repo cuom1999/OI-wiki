@@ -164,7 +164,7 @@ for (si it = s.begin(); it != s.end(); it++) cout << *it << endl;
 
 Cần lưu ý rằng khi giải tham chiếu bộ lặp của `map`, kết quả nhận được là một cặp khóa-giá trị có kiểu `pair<Key, T>`.
 
-Trong C++11, vòng lặp range-for giúp mã ngắn gọn hơn nhiều:
+Trong C++11, vòng lặp for theo phạm vi giúp mã ngắn gọn hơn nhiều:
 
 ```cpp
 set<int> s;

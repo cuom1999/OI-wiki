@@ -196,9 +196,9 @@ The program 'g++' is currently not installed. You can install it by typing:
 sudo apt install g++
 ```
 
-### Đổi sang mirror phần mềm
+### Đổi sang máy chủ bản sao phần mềm
 
-Nguồn phần mềm mặc định của Ubuntu đôi khi có tốc độ không ổn định. Có thể đổi sang một mirror Ubuntu đáng tin cậy và gần vị trí của bạn để tăng tốc tải gói, ví dụ từ [danh sách mirror Ubuntu](https://launchpad.net/ubuntu/+archivemirrors).
+Nguồn phần mềm mặc định của Ubuntu đôi khi có tốc độ không ổn định. Có thể đổi sang một máy chủ bản sao Ubuntu đáng tin cậy và gần vị trí của bạn để tăng tốc tải gói, ví dụ từ [danh sách máy chủ bản sao Ubuntu](https://launchpad.net/ubuntu/+archivemirrors).
 
 ???+ warning "Dùng nguồn phần mềm khớp với phiên bản hệ thống của bạn"
     Hãy tìm nguồn tương ứng với phiên bản hệ thống của mình (có thể dùng `sudo lsb_release -a` để xem phiên bản Ubuntu).
@@ -450,7 +450,7 @@ Xem: [Câu hỏi thường gặp](https://learn.microsoft.com/en-us/windows/wsl/
 ## Liên kết ngoài
 
 -   [Về Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/)
--   [Danh sách mirror Ubuntu](https://launchpad.net/ubuntu/+archivemirrors)
+-   [Danh sách máy chủ bản sao Ubuntu](https://launchpad.net/ubuntu/+archivemirrors)
 -   [Dev on Windows with WSL](https://dowww.spencerwoo.com)
 -   [Awesome-WSL trên GitHub](https://github.com/sirredbeard/Awesome-WSL)
 -   [Khắc phục sự cố Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/troubleshooting)

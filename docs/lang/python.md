@@ -878,9 +878,9 @@ def fib(n):
     INF = 0x3F3F3F3F
     ```
 
-<a id="khai-báo-struct-forward-star-và-các-biến-khác"></a>
+<a id="khai-báo-struct-sao-tiến-và-các-biến-khác"></a>
 
-### Khai báo cấu trúc forward star và các biến khác
+### Khai báo cấu trúc sao tiến và các biến khác
 
 === "C++"
     ```cpp
@@ -900,7 +900,7 @@ def fib(n):
 
 === "Python"
     ```python
-    class qxx:  # Lớp forward star (struct)
+    class qxx:  # Lớp sao tiến (struct)
         def __init__(self):
             self.nex = 0
             self.t = 0
@@ -915,7 +915,7 @@ def fib(n):
     q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là min-heap theo phần tử đầu
 
 
-    def add_path(f, t, v):  # Thêm cạnh vào forward star
+    def add_path(f, t, v):  # Thêm cạnh vào sao tiến
         # Nếu muốn sửa biến toàn cục, phải khai báo bằng global
         global cnt, e, h
         # Câu lệnh xuất khi gỡ lỗi; nhiều biến dùng tuple
@@ -1082,7 +1082,7 @@ def fib(n):
     INF = 0x3F3F3F3F
 
 
-    class qxx:  # Lớp forward star (struct)
+    class qxx:  # Lớp sao tiến (struct)
         def __init__(self):
             self.nex = 0
             self.t = 0
@@ -1097,7 +1097,7 @@ def fib(n):
     q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là min-heap theo phần tử đầu
 
 
-    def add_path(f, t, v):  # Thêm cạnh vào forward star
+    def add_path(f, t, v):  # Thêm cạnh vào sao tiến
         # Nếu muốn sửa biến toàn cục, phải khai báo bằng global
         global cnt, e, h
         # Câu lệnh xuất khi gỡ lỗi; nhiều biến dùng tuple

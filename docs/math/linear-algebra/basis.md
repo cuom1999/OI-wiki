@@ -168,7 +168,7 @@ Giá trị nhỏ nhất của XOR của một số phần tử bất kỳ trong 
 
 Để kiểm tra một số có thể được XOR ra hay không, làm tương tự thao tác chèn; nếu cuối cùng số $p$ cần chèn bị XOR thành $0$, thì số đó có thể được XOR ra.
 
-??? example "Mã nguồn (Luogu P3812 [Template: Linear Basis](https://www.luogu.com.cn/problem/P3812))"
+??? example "Mã nguồn (Luogu P3812 [Mẫu: cơ sở tuyến tính](https://www.luogu.com.cn/problem/P3812))"
     ```cpp
     --8<-- "docs/math/code/basis/basis_1.cpp"
     ```
@@ -178,7 +178,7 @@ Giá trị nhỏ nhất của XOR của một số phần tử bất kỳ trong 
 
 Phương pháp khử Gauss tương đương với việc xây dựng cơ sở tuyến tính từ góc độ hệ phương trình tuyến tính, nên tính đúng đắn là hiển nhiên.
 
-??? example "Mã nguồn (Luogu P3812 [Template: Linear Basis](https://www.luogu.com.cn/problem/P3812))"
+??? example "Mã nguồn (Luogu P3812 [Mẫu: cơ sở tuyến tính](https://www.luogu.com.cn/problem/P3812))"
     ```cpp
     --8<-- "docs/math/code/basis/basis_2.cpp"
     ```
@@ -400,7 +400,7 @@ Nếu cần truy vấn trực tuyến, cũng có thể dùng không gian $O(mn)$
 <span id="bài-tập"></span>
 ### Bài tập
 
--   [Luogu P3812 Template: Linear Basis](https://www.luogu.com.cn/problem/P3812)
+-   [Luogu P3812 Mẫu: cơ sở tuyến tính](https://www.luogu.com.cn/problem/P3812)
 -   [Acwing 3164. Linear Basis](https://www.acwing.com/problem/content/description/3167)
 -   [SGU 275 to xor or not xor](https://codeforces.com/problemsets/acmsguru/problem/99999/275)
 -   [HDU 3949 XOR](https://acm.hdu.edu.cn/showproblem.php?pid=3949)
