@@ -2,13 +2,13 @@
 
 `set` là bộ chứa kết hợp, chứa một tập đã sắp xếp các đối tượng có kiểu khóa.
 Các thao tác tìm kiếm, xóa và chèn có độ phức tạp logarit. Bên trong, `set`
-thường được cài đặt bằng [cây đỏ-đen](../../ds/rbtree.md). Đặc tính của
+thường được cài đặt bằng [cây đỏ-đen](../../ds/rbtree.md). Tính chất của
 [cây nhị phân cân bằng](../../ds/bst.md) khiến `set` rất phù hợp với những bài
 toán cần đồng thời hỗ trợ tìm kiếm, chèn và xóa.
 
 Tương tự tập hợp trong toán học, `set` không có hai phần tử có giá trị bằng
-nhau. Nếu cần một tập cho phép các phần tử trùng nhau, hãy dùng `multiset`. Cách
-sử dụng `multiset` về cơ bản giống với `set`.
+nhau. Nếu cần một tập cho phép các phần tử trùng nhau, dùng `multiset`. Cách sử
+dụng `multiset` gần giống với `set`.
 
 <span id="thao-tác-chèn-và-xóa-set"></span>
 ### Thao tác chèn và xóa
@@ -48,9 +48,9 @@ sử dụng `multiset` về cơ bản giống với `set`.
     với vị trí trước phần tử đầu của bộ chứa; vị trí này không có phần tử.
 
 Trong các bộ lặp liệt kê ở trên, những hàm có chữ cái `c` trả về bộ lặp chỉ đọc;
-bạn không thể dùng bộ lặp chỉ đọc để sửa giá trị phần tử trong `set`. Nếu bản
-thân một `set` là chỉ đọc, bộ lặp thông thường và bộ lặp chỉ đọc của nó hoàn
-toàn tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
+bộ lặp chỉ đọc không thể dùng để sửa giá trị phần tử trong `set`. Nếu bản thân
+một `set` là chỉ đọc, bộ lặp thông thường và bộ lặp chỉ đọc của nó hoàn toàn
+tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
 
 <span id="thao-tác-tìm-kiếm-set"></span>
 ### Thao tác tìm kiếm
@@ -59,10 +59,10 @@ toàn tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
 -   `find(x)` trả về bộ lặp của phần tử có khóa bằng `x` nếu phần tử đó tồn tại
     trong `set`; nếu không, trả về `end()`.
 -   `lower_bound(x)` trả về bộ lặp trỏ đến phần tử đầu tiên không nhỏ hơn khóa đã
-    cho. Nếu không có phần tử như vậy, trả về `end()`.
+    cho. Nếu không tồn tại, trả về `end()`.
 -   `upper_bound(x)` trả về bộ lặp trỏ đến phần tử đầu tiên lớn hơn khóa đã cho.
-    Nếu không có phần tử như vậy, trả về `end()`.
--   `empty()` trả về việc bộ chứa có rỗng hay không.
+    Nếu không tồn tại, trả về `end()`.
+-   `empty()` trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`.
 -   `size()` trả về số phần tử trong bộ chứa.
 
 ???+ warning "Độ phức tạp thời gian của `lower_bound` và `upper_bound`"
@@ -78,7 +78,7 @@ toàn tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
     $O(n)$.
     
     Nếu cần cài đặt chức năng tìm phần tử lớn thứ $k$ trong $O(\log n)$ như cây
-    nhị phân cân bằng, bạn cần tự viết cây nhị phân cân bằng hoặc cây phân đoạn
+    nhị phân cân bằng, cần tự viết cây nhị phân cân bằng hoặc cây phân đoạn
     theo giá trị, hoặc dùng cây nhị phân cân bằng trong thư viện pb\_ds.
 
 <span id="ví-dụ-sử-dụng-set"></span>
@@ -87,7 +87,7 @@ toàn tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
 <span id="dùng-set-trong-tham-lam"></span>
 #### Dùng `set` trong tham lam
 
-Trong thuật toán tham lam, ta thường cần thao tác kiểu **tìm và xóa phần tử nhỏ
+Trong thuật toán tham lam, thường cần thao tác kiểu **tìm và xóa phần tử nhỏ
 nhất lớn hơn hoặc bằng một giá trị nào đó**. Thao tác này có thể được thực hiện
 dễ dàng bằng `set`.
 
@@ -100,11 +100,11 @@ int x;
 // Tìm phần tử nhỏ nhất lớn hơn hoặc bằng x
 set<int>::iterator it = available.lower_bound(x);
 if (it == available.end()) {
-  // Không tồn tại phần tử như vậy, xử lý tương ứng...
+  // Không tồn tại phần tử phù hợp, xử lý theo nhánh thất bại...
 } else {
-  // Đã tìm thấy phần tử như vậy, xóa nó khỏi tập phần tử khả dụng
+  // Đã tìm thấy phần tử phù hợp, xóa nó khỏi tập phần tử khả dụng
   available.erase(it);
-  // Xử lý tương ứng...
+  // Xử lý theo nhánh thành công...
 }
 ```
 
@@ -134,7 +134,7 @@ map<string, int> mp;
 ```
 
 Trong `map` không tồn tại hai phần tử có cùng khóa; `multimap` cho phép nhiều
-phần tử có cùng một khóa. Cách sử dụng `multimap` về cơ bản giống với `map`.
+phần tử có cùng một khóa. Cách sử dụng `multimap` gần giống với `map`.
 
 ??? warning "Cảnh báo"
     Chính vì `multimap` cho phép nhiều phần tử có cùng một khóa, `multimap`
@@ -147,7 +147,8 @@ phần tử có cùng một khóa. Cách sử dụng `multimap` về cơ bản g
     `mp["Alan"] = 100`.
 -   Có thể chèn phần tử bằng cách chèn vào `map` một giá trị có kiểu
     `pair<Key, T>`, ví dụ `mp.insert(pair<string, int>("Alan", 100));`.
--   Hàm `erase(key)` xóa **tất cả** phần tử có khóa bằng `key`. Giá trị trả về là số phần tử đã xóa.
+-   Hàm `erase(key)` xóa **tất cả** phần tử có khóa bằng `key`. Giá trị trả về
+    là số phần tử đã xóa.
 -   `erase(pos)`: xóa phần tử tại bộ lặp `pos`; bộ lặp này phải hợp lệ.
 -   `erase(first, last)`: xóa tất cả phần tử có bộ lặp nằm trong khoảng
     $[first,last)$.
@@ -155,7 +156,7 @@ phần tử có cùng một khóa. Cách sử dụng `multimap` về cơ bản g
 
 ???+ note "Lưu ý khi truy cập bằng chỉ số"
     Khi dùng chỉ số để truy cập một phần tử trong `map`, nếu trong `map` không
-    tồn tại phần tử có khóa tương ứng, một phần tử mới sẽ tự động được chèn vào
+    tồn tại phần tử có khóa đó, một phần tử mới sẽ tự động được chèn vào
     `map`, và giá trị của nó được đặt thành giá trị mặc định (với số nguyên là
     0; với kiểu có hàm tạo mặc định, hàm tạo mặc định sẽ được gọi để khởi tạo).
     
@@ -171,11 +172,12 @@ phần tử có cùng một khóa. Cách sử dụng `multimap` về cơ bản g
     khớp).
 -   `find(x)`: nếu trong bộ chứa tồn tại phần tử có khóa bằng `x`, trả về bộ lặp
     của phần tử đó; nếu không, trả về `end()`.
--   `lower_bound(x)`: trả về bộ lặp trỏ đến phần tử đầu tiên không nhỏ hơn khóa đã cho.
+-   `lower_bound(x)`: trả về bộ lặp trỏ đến phần tử đầu tiên không nhỏ hơn khóa
+    đã cho.
 -   `upper_bound(x)`: trả về bộ lặp trỏ đến phần tử đầu tiên lớn hơn khóa đã cho.
     Nếu tất cả phần tử trong bộ chứa đều nhỏ hơn hoặc bằng khóa đã cho, trả về
     `end()`.
--   `empty()`: trả về việc bộ chứa có rỗng hay không.
+-   `empty()`: trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`.
 -   `size()`: trả về số phần tử trong bộ chứa.
 
 <span id="ví-dụ-sử-dụng-map"></span>
@@ -184,27 +186,27 @@ phần tử có cùng một khóa. Cách sử dụng `multimap` về cơ bản g
 <span id="dùng-map-để-lưu-trạng-thái-phức-tạp"></span>
 #### Dùng `map` để lưu trạng thái phức tạp
 
-Trong tìm kiếm, đôi khi ta cần lưu một số trạng thái khá phức tạp (như tọa độ,
+Trong tìm kiếm, đôi khi cần lưu một số trạng thái khá phức tạp (như tọa độ,
 giá trị không thể rời rạc hóa, chuỗi, v.v.) và đáp án liên quan đến chúng (như
 số bước tối thiểu để đến trạng thái đó). `map` có thể được dùng để cài đặt chức
 năng này. Khóa trong `map` là trạng thái, còn giá trị là đáp án liên quan. Ví dụ
 dưới đây minh họa cách dùng `map` để lưu trạng thái biểu diễn bằng `string`.
 
 ```cpp
-// Lưu trạng thái và đáp án tương ứng
+// Lưu trạng thái và đáp án của trạng thái đó
 map<string, int> record;
 
-// Trạng thái mới tìm được và đáp án tương ứng
+// Trạng thái mới tìm được và đáp án của trạng thái đó
 string status;
 int ans;
-// Kiểm tra trạng thái tương ứng đã xuất hiện chưa
+// Kiểm tra trạng thái này đã xuất hiện chưa
 map<string, int>::iterator it = record.find(status);
 if (it == record.end()) {
-  // Chưa tìm kiếm qua trạng thái này, thêm nó vào bản ghi trạng thái
+  // Chưa từng xét trạng thái này, thêm nó vào bản ghi trạng thái
   record[status] = ans;
-  // Xử lý tương ứng...
+  // Xử lý theo nhánh trạng thái mới...
 } else {
-  // Đã tìm kiếm qua trạng thái này, xử lý tương ứng...
+  // Đã từng xét trạng thái này, xử lý theo nhánh đã có...
 }
 ```
 
@@ -236,11 +238,11 @@ Với mọi bộ chứa kết hợp, thời gian duyệt bộ chứa bằng bộ
 
 Theo mặc định, hàm so sánh của `set` là `<` (nếu là kiểu không dựng sẵn, cần
 [nạp chồng toán tử `<`](../op-overload.md#toán-tử-so-sánh)). Tuy nhiên, trong
-một số tình huống đặc biệt, ta muốn tùy biến cách so sánh bên trong `set`.
+một số tình huống đặc biệt, cần tùy biến cách so sánh bên trong `set`.
 
 Lúc này có thể giải quyết bằng cách truyền vào một bộ so sánh tùy biến.
 
-Cụ thể, ta cần định nghĩa một lớp và
+Cụ thể, cần định nghĩa một lớp và
 [nạp chồng toán tử `()`](../op-overload.md#toán-tử-gọi-hàm) trong lớp đó.
 
 Ví dụ, nếu muốn duy trì một `set` lưu các số nguyên sao cho giá trị lớn hơn đứng
