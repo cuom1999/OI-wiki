@@ -2,14 +2,15 @@ author: HeRaNO, konnyakuxzy, littlefrog
 
 ![Danh sách liên kết chia khối](./images/kuaizhuanglianbiao.svg "Danh sách liên kết chia khối")
 
-Danh sách liên kết chia khối đại khái có dạng như vậy.
+Danh sách liên kết chia khối có dạng tổng quát như hình trên.
 
 Danh sách liên kết chia khối thực chất là một danh sách liên kết,
 trong đó mỗi nút trỏ tới một mảng.
 Chia mảng ban đầu có độ dài $n$ thành $\sqrt{n}$ nút,
 mỗi nút tương ứng với một mảng có kích thước $\sqrt{n}$.
 Vì vậy có thể định nghĩa cấu trúc như sau.
-Trong đó `sqn` biểu thị `sqrt(n)`, tức $\sqrt{n}$; `pb` biểu thị `push_back`, tức thêm một phần tử vào `node` này.
+Trong đó `sqn` biểu thị `sqrt(n)`, tức $\sqrt{n}$;
+`pb` biểu thị `push_back`, tức thêm một phần tử vào `node` này.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -64,7 +65,7 @@ hỗ trợ truy cập ngẫu nhiên, chèn và xóa phần tử.
 
 Do `rope` không thật sự được cài đặt bằng danh sách liên kết chia khối,
 độ phức tạp thời gian của nó không giống danh sách liên kết chia khối,
-mà tương đương độ phức tạp của cây cân bằng khả tồn (tức $O(\log n)$).
+mà tương đương độ phức tạp của cây cân bằng có tính bền vững (tức $O(\log n)$).
 
 Có thể đưa vào chương trình như sau:
 
@@ -101,7 +102,7 @@ using namespace __gnu_cxx;
 [POJ2887 Big String](http://poj.org/problem?id=2887)
 
 Lời giải:
-Đây là một bài mẫu rất đơn giản. Mã như sau:
+Đây là một bài mẫu đơn giản. Mã như sau:
 
 ```cpp
 --8<-- "docs/ds/code/block-list/block-list_1.cpp"
