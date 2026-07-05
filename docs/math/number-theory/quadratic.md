@@ -2,7 +2,7 @@ Bài viết này giới thiệu ngắn gọn các khái niệm liên quan đến
 Hai ví dụ quan trọng có liên quan là số nguyên Gauss và số nguyên Eisenstein;
 chúng có thể dùng để giải một số bài toán số học.
 
-<span id="&#x57fa;&#x672c;&#x6982;&#x5ff5;"></span>
+<span id="khái-niệm-cơ-bản"></span>
 ## Khái niệm cơ bản
 
 Phần này trước hết giới thiệu một loạt khái niệm cơ bản. Trường bậc hai và
@@ -12,7 +12,7 @@ kết quả trong phần này đều có thể mở rộng một cách thích h�
 tổng quát. Ở đây ta chỉ thảo luận riêng trường hợp trường bậc hai, không dựa
 vào quá nhiều nội dung của số học đại số.
 
-<span id="&#x4e8c;&#x6b21;&#x57df;"></span>
+<span id="trường-bậc-hai"></span>
 ### Trường bậc hai
 
 Các phần tử của trường bậc hai đều là số đại số bậc hai.
@@ -42,7 +42,7 @@ $\mathbf Q(\sqrt{d})$ đều là số thực; khi đó $\mathbf Q(\sqrt{d})$ đ�
 trường bậc hai thực. Khi $d<0$, trong trường bậc hai, ngoài các số hữu tỉ ra
 đều là số phức; khi đó $\mathbf Q(\sqrt{d})$ được gọi là trường bậc hai ảo.
 
-<span id="&#x5171;&#x8f6d;&#x4e0e;&#x8303;&#x6570;"></span>
+<span id="liên-hợp-và-chuẩn"></span>
 ### Liên hợp và chuẩn
 
 **Liên hợp** (conjugate) của số vô tỉ bậc hai $a+b\sqrt{d}$ được định nghĩa là
@@ -121,7 +121,7 @@ $4db^2$.
     đại số bậc hai. Ma trận phụ hợp của ma trận tương ứng với số đại số bậc hai
     liên hợp.
 
-<span id="&#x4e8c;&#x6b21;&#x6574;&#x6570;&#x73af;"></span>
+<span id="vành-số-nguyên-bậc-hai"></span>
 ### Vành số nguyên bậc hai
 
 Một lớp đặc biệt trong các số đại số bậc hai là số nguyên bậc hai. **Số nguyên
@@ -169,7 +169,7 @@ $\mathbf Z[\omega]$ cũng được gọi là biệt thức của trường bậc
 $\mathbf Q(\sqrt{d})$. Khi $d\equiv 1\pmod 4$, biệt thức là $d$; khi
 $d\equiv 2,3\pmod 4$, biệt thức là $4d$.
 
-<span id="&#x6574;&#x9664;&#x3001;&#x76f8;&#x4f34;&#x4e0e;&#x5355;&#x4f4d;&#x6570;"></span>
+<span id="chia-hết-liên-kết-và-đơn-vị"></span>
 ### Chia hết, liên kết và đơn vị
 
 Tương tự số nguyên, ta cũng có thể xây dựng lí thuyết chia hết cho số nguyên
@@ -254,7 +254,7 @@ vành thỏa mãn định lý phân tích duy nhất, cũng chỉ một phần c
 phép chia có dư. Có thể tham khảo mục [vành số nguyên bậc hai](../algebra/ring-theory.md#ví-dụ-vành-số-nguyên-bậc-hai)
 trong phần lí thuyết vành hoặc các sách liên quan để biết thêm về nội dung này.
 
-<span id="&#x552f;&#x4e00;&#x5206;&#x89e3;"></span>
+<span id="phân-tích-duy-nhất"></span>
 ### Phân tích duy nhất
 
 Nếu định lý phân tích duy nhất của số nguyên có thể mở rộng lên vành số nguyên
@@ -333,7 +333,7 @@ $D$ là [thặng dư bậc hai](./quad-residue.md), và $p$ chia $D$. Khi $p=2$,
 trường hợp lần lượt tương ứng với $D\equiv \pm 3\pmod 8$,
 $D\equiv \pm 1\pmod 8$ và $2$ chia $D$.
 
-<span id="gauss-&#x6574;&#x6570;"></span>
+<span id="số-nguyên-gauss"></span>
 ## Số nguyên Gauss
 
 Trong phần này, đặt $\mathrm{i}=\sqrt{-1}$ là đơn vị ảo. Trường bậc hai
@@ -358,7 +358,7 @@ $N(r)\le\dfrac{1}{2}N(b)$. Dùng phép chia có dư, có thể chuyển thuật 
 Euclid và định lý Bézout sang số nguyên Gauss, từ đó thiết lập định lý phân
 tích duy nhất.
 
-<span id="gauss-&#x7d20;&#x6570;"></span>
+<span id="số-nguyên-tố-gauss"></span>
 ### Số nguyên tố Gauss
 
 Dùng kết quả của phần trước có thể tìm các phần tử nguyên tố trong số nguyên
@@ -392,7 +392,7 @@ viết dưới dạng tổng hai bình phương nguyên $a^2+b^2$. Vì vậy t�
 suy ra: số nguyên tố $p$ có thể viết thành tổng hai bình phương khi và chỉ khi
 $p=2$ hoặc $p\equiv 1\pmod 4$. Đây là [định lý Fermat về tổng hai bình phương](https://en.wikipedia.org/wiki/Fermat%27s_theorem_on_sums_of_two_squares).
 
-<span id="&#x5706;&#x4e0a;&#x6574;&#x70b9;&#x95ee;&#x9898;"></span>
+<span id="bài-toán-điểm-nguyên-trên-đường-tròn"></span>
 ### Bài toán điểm nguyên trên đường tròn
 
 Trên mặt phẳng phức, số nguyên Gauss biểu diễn mọi điểm nguyên. Chuẩn của số
@@ -466,7 +466,7 @@ Kí hiệu trong tổng bên phải cũng dùng sự thật rằng kí hiệu Kr
 $\left(\dfrac{-4}{n}\right)$ là [đặc trưng Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_character)
 thực modulo $4$.
 
-<span id="&#x52fe;&#x80a1;&#x65b9;&#x7a0b;"></span>
+<span id="phương-trình-pythagoras"></span>
 ### Phương trình Pythagoras
 
 Dùng số nguyên Gauss có thể tìm nghiệm tổng quát của phương trình Pythagoras.
@@ -527,7 +527,7 @@ $x^2+y^2=z^3$, hoặc chứng minh phương trình $x^4+y^4=z^4$ vô nghiệm. D
 dùng nghiệm tổng quát của phương trình Pythagoras và phương pháp lùi vô hạn, có
 thể chứng minh kết quả mạnh hơn: phương trình $x^4+y^4=z^2$ vô nghiệm.
 
-<span id="eisenstein-&#x6574;&#x6570;"></span>
+<span id="số-nguyên-eisenstein"></span>
 ## Số nguyên Eisenstein
 
 Trong phần này, đặt
@@ -640,7 +640,7 @@ $$
 Nghiệm tổng quát của chúng không được trình bày thêm ở đây. Phương pháp tương
 tự cũng có thể dùng để chứng minh $x^3+y^3=z^3$ vô nghiệm.
 
-<span id="&#x53c2;&#x8003;&#x6587;&#x732e;&#x4e0e;&#x6ce8;&#x91ca;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Quadratic field - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_field)
