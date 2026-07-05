@@ -1,6 +1,6 @@
 author: HeRaNO, Xeonacid, AzurIce
 
-<span id="&#x7ED3;&#x6784;"></span>
+<span id="cấu-trúc"></span>
 
 ## Cấu trúc
 
@@ -10,11 +10,11 @@ Tính chất heap: trọng số của cha không nhỏ hơn trọng số của c
 
 Theo tính chất heap, gốc cây lưu giá trị lớn nhất, vì vậy thao tác `getmax` được giải quyết ngay.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trình"></span>
 
 ## Quy trình
 
-<span id="&#x63D2;&#x5165;&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-chèn"></span>
 
 ### Thao tác chèn
 
@@ -34,7 +34,7 @@ Có thể chứng minh rằng sau khi chèn rồi điều chỉnh lên, không c
 
 ![Thao tác chèn của heap nhị phân](./images/binary_heap_insert.svg)
 
-<span id="&#x5220;&#x9664;&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-xóa"></span>
 
 ### Thao tác xóa
 
@@ -54,13 +54,13 @@ Có thể chứng minh rằng sau khi xóa rồi điều chỉnh xuống, không
 
 Độ phức tạp thời gian là $O(\log n)$.
 
-<span id="&#x589E;&#x52A0;&#x67D0;&#x4E2A;&#x70B9;&#x7684;&#x6743;&#x503C;"></span>
+<span id="tăng-trọng-số-của-một-đỉnh"></span>
 
 ### Tăng trọng số của một đỉnh
 
 Rõ ràng, sau khi sửa trực tiếp trọng số, chỉ cần điều chỉnh lên một lần. Độ phức tạp thời gian là $O(\log n)$.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 
 ## Cài đặt
 
@@ -91,7 +91,7 @@ void down(int x) {
 }
 ```
 
-<span id="&#x5EFA;&#x5806;"></span>
+<span id="xây-heap"></span>
 
 ### Xây heap
 
@@ -99,7 +99,7 @@ Xét bài toán sau: bắt đầu từ một heap rỗng, chèn $n$ phần tử 
 
 Nếu chèn trực tiếp từng phần tử một thì cần $O(n \log n)$ thời gian. Có cách nào tốt hơn không?
 
-<span id="&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;&#x4F7F;&#x7528; decreasekey&#xFF08;&#x5373;&#xFF0C;&#x5411;&#x4E0A;&#x8C03;&#x6574;&#xFF09;"></span>
+<span id="cách-1-dùng-decreasekey-tức-điều-chỉnh-lên"></span>
 
 #### Cách 1: dùng decreasekey (tức điều chỉnh lên)
 
@@ -117,7 +117,7 @@ Tổng độ phức tạp: $\log 1 + \log 2 + \cdots + \log n = \Theta(n \log n)
 
 (Điều này đã được chứng minh trong phần "sắp xếp dựa trên so sánh".)
 
-<span id="&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;&#x4F7F;&#x7528;&#x5411;&#x4E0B;&#x8C03;&#x6574;"></span>
+<span id="cách-2-dùng-điều-chỉnh-xuống"></span>
 
 #### Cách 2: dùng điều chỉnh xuống
 
@@ -148,11 +148,11 @@ Sở dĩ có thể xây heap trong $O(n)$ là vì tính chất heap khá yếu, 
 
 Nếu điều kiện mạnh như trong sắp xếp thì chưa chắc làm được như vậy.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 
 ## Ứng dụng
 
-<span id="&#x5BF9;&#x9876;&#x5806;"></span>
+<span id="heap-đối-đỉnh"></span>
 
 ### Heap đối đỉnh
 
@@ -183,7 +183,7 @@ Rõ ràng, độ phức tạp thời gian để truy vấn phần tử lớn th�
     --8<-- "docs/ds/code/binary-heap/binary-heap_1.cpp"
     ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 
 ### Bài tập
 
