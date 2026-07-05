@@ -5,7 +5,7 @@ trường hợp cần xét so với cây đỏ-đen. Cây AA có thể thực hi
 
 ![Ví dụ cây AA](images/aa-tree-1.jpg)
 
-Cây AA là một biến thể của cây đỏ-đen. Khác với cây đỏ-đen, trong cây AA, nút đỏ chỉ được xuất hiện dưới dạng con phải.
+Cây AA là một biến thể của cây đỏ-đen. Khác với cây đỏ-đen, trong cây AA, nút đỏ chỉ được phép xuất hiện dưới dạng con phải.
 Điều này khiến cây AA mô phỏng cây 2-3 thay vì cây 2-3-4, qua đó đơn giản hóa đáng kể các thao tác duy trì cân bằng.
 Thuật toán duy trì cân bằng của cây đỏ-đen cần xét bảy trường hợp khác nhau để cân bằng cây một cách chính xác.
 
@@ -22,9 +22,9 @@ dạng con trái**.
 
 1.  Mỗi nút có thể là đỏ hoặc đen.
 2.  Nút gốc luôn là nút đen.
-3.  Nút lá (NULL) luôn là nút đen.
+3.  Nút lá rỗng (NULL) luôn là nút đen.
 4.  Hai nút con của một nút đỏ đều phải là nút đen, tức là không có hai nút đỏ kề nhau.
-5.  Mọi đường đi từ nút gốc đến nút NULL đều có cùng số lượng nút đen.
+5.  Mọi đường đi từ nút gốc đến nút lá rỗng (NULL) đều có cùng số lượng nút đen.
 6.  Nút đỏ chỉ có thể là con phải.
 
 ## Duy trì cân bằng
@@ -38,7 +38,7 @@ Mỗi nút của cây AA duy trì một trường **mức** (`level`), tương t
 
 3.  Mức của mỗi con phải bằng mức của nút cha hoặc bằng mức của nút cha trừ 1.
 
-4.  Mức của mỗi cháu phải phải nhỏ hơn nghiêm ngặt mức của nút ông.
+4.  Mức của mỗi cháu bên phải phải nhỏ hơn nghiêm ngặt mức của nút ông.
 
 5.  Mỗi nút có mức lớn hơn 1 đều có hai con.
 
@@ -46,14 +46,14 @@ Mỗi nút của cây AA duy trì một trường **mức** (`level`), tương t
 
 ### Liên kết ngang
 
-Liên kết mà mức của nút con bằng mức của nút cha được gọi là **liên kết ngang**, tương tự liên kết đỏ trong cây đỏ-đen.
+Liên kết có mức của nút con bằng mức của nút cha được gọi là **liên kết ngang**, tương tự liên kết đỏ trong cây đỏ-đen.
 Một liên kết ngang bên phải đơn lẻ được cho phép, nhưng các liên kết ngang bên phải liên tiếp thì không; liên kết ngang
 bên trái cũng không được phép. Những ràng buộc này chặt hơn các ràng buộc của cây đỏ-đen, vì vậy quy trình cân bằng cây
 AA đơn giản hơn nhiều về mặt cài đặt so với cây đỏ-đen.
 
 ![Liên kết ngang trong cây AA](images/aa-tree-5.jpg)
 
-Các thao tác chèn và xóa có thể tạm thời làm cây AA mất cân bằng, tức là vi phạm các bất biến của cây AA. Để khôi phục
+Các thao tác chèn và xóa có thể tạm thời làm cây AA mất cân bằng, tức vi phạm các bất biến của cây AA. Để khôi phục
 cân bằng, chỉ cần hai thao tác khác nhau: **nghiêng** (xoay phải để loại bỏ liên kết ngang bên trái) và **tách** (xoay
 trái và tăng mức để xử lý các liên kết ngang bên phải liên tiếp).
 
@@ -110,7 +110,7 @@ Xoay phải nút *T*, xem các nút có mức nhỏ hơn hoặc bằng mức nà
 ## Các thao tác trên cây AA
 
 Bản thân cây AA là một cây tìm kiếm nhị phân, nên thao tác tìm kiếm giống như trên các cây tìm kiếm nhị phân khác. Thao
-tác chèn và xóa giống cây *AVL*: trước hết chèn hoặc xóa khóa trong cây, sau đó lần ngược theo đường tìm kiếm về nút gốc
+tác chèn và xóa giống cây *AVL*: trước hết chèn hoặc xóa khóa trong cây, sau đó đi ngược theo đường tìm kiếm về nút gốc
 và tái cấu trúc cây trong quá trình đó.
 
 ### Chèn
@@ -136,7 +136,7 @@ và tái cấu trúc cây trong quá trình đó.
 ### Xóa
 
 Quá trình xóa tương tự các cây cân bằng nhị phân khác: trước hết chuyển việc xóa một nút trong thành việc xóa một nút
-lá. Cách làm cụ thể là thay nút trong bằng nút tiền nhiệm hoặc nút kế nhiệm gần nhất của nó. Vì mọi nút trong cây AA có
+lá. Cụ thể, thay nút trong bằng nút tiền nhiệm hoặc nút kế nhiệm gần nhất của nó. Vì mọi nút trong cây AA có
 mức lớn hơn 1 đều có hai nút con, nút tiền nhiệm hoặc kế nhiệm sẽ nằm ở mức 1, nên việc xóa một nút mức 1 tương đối đơn
 giản.
 
