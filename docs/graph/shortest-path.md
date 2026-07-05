@@ -2,7 +2,7 @@ author: du33169, lingkerio, Taoran-01
 
 ## Định nghĩa
 
-(Bạn còn nhớ các khái niệm này không? Trước khi đọc nội dung dưới đây, hãy nắm chắc phần cơ bản trong [các khái niệm đồ thị](./concept.md).)
+(Trước khi đọc nội dung dưới đây, cần nắm chắc phần cơ bản trong [các khái niệm đồ thị](./concept.md).)
 
 -   Đường đi
 -   Đường đi ngắn nhất
@@ -11,7 +11,7 @@ author: du33169, lingkerio, Taoran-01
 
 ## Ký hiệu
 
-Để tiện trình bày, trước hết ta nêu ý nghĩa của một số ký hiệu sẽ dùng ở dưới.
+Để tiện trình bày, trước hết nêu ý nghĩa của một số ký hiệu sẽ dùng ở dưới.
 
 -   $n$ là số đỉnh của đồ thị, $m$ là số cạnh của đồ thị;
 -   $s$ là đỉnh nguồn của bài toán đường đi ngắn nhất;
@@ -37,9 +37,9 @@ Thuật toán áp dụng được cho mọi đồ thị, dù có hướng hay v�
 
 ### Cài đặt
 
-Ta định nghĩa mảng `f[k][x][y]`, biểu diễn độ dài đường đi ngắn nhất từ đỉnh $x$ đến đỉnh $y$ khi chỉ được phép đi qua các đỉnh từ $1$ đến $k$ (tức là đường đi trong đồ thị con $V'={1, 2, \ldots, k}$; chú ý rằng $x$ và $y$ không nhất thiết nằm trong đồ thị con này).
+Định nghĩa mảng `f[k][x][y]`, biểu diễn độ dài đường đi ngắn nhất từ đỉnh $x$ đến đỉnh $y$ khi chỉ được phép đi qua các đỉnh từ $1$ đến $k$ (tức là đường đi trong đồ thị con $V'={1, 2, \ldots, k}$; chú ý rằng $x$ và $y$ không nhất thiết nằm trong đồ thị con này).
 
-Rõ ràng, `f[n][x][y]` chính là độ dài đường đi ngắn nhất từ đỉnh $x$ đến đỉnh $y$ (vì $V'={1, 2, \ldots, n}$ chính là toàn bộ $V$, nên đường đi biểu diễn trong đó là đường đi cần tìm).
+`f[n][x][y]` chính là độ dài đường đi ngắn nhất từ đỉnh $x$ đến đỉnh $y$ (vì $V'={1, 2, \ldots, n}$ chính là toàn bộ $V$, nên đường đi biểu diễn trong đó là đường đi cần tìm).
 
 Tiếp theo xét cách tính giá trị của mảng `f`.
 
@@ -47,7 +47,7 @@ Tiếp theo xét cách tính giá trị của mảng `f`.
 
 `f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])` (`f[k-1][x][y]` là đường đi ngắn nhất không đi qua đỉnh $k$, còn `f[k-1][x][k]+f[k-1][k][y]` là đường đi ngắn nhất có đi qua đỉnh $k$).
 
-Hai dòng trên đều hiển nhiên đúng, vì vậy cách làm này dùng không gian $O(N^3)$. Ta lần lượt tăng quy mô bài toán ($k$ từ $1$ đến $n$), rồi xét đường đi ngắn nhất giữa mọi cặp đỉnh trong quy mô hiện tại.
+Hai dòng trên đều đúng. Cách làm này dùng không gian $O(N^3)$. Lần lượt tăng quy mô bài toán ($k$ từ $1$ đến $n$), rồi xét đường đi ngắn nhất giữa mọi cặp đỉnh trong quy mô hiện tại.
 
 === "C++"
     ```cpp
@@ -68,10 +68,10 @@ Hai dòng trên đều hiển nhiên đúng, vì vậy cách làm này dùng kh�
                 f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])
     ```
 
-Vì chiều thứ nhất không ảnh hưởng đến kết quả, ta có thể bỏ chiều đầu của mảng và viết trực tiếp thành `f[x][y] = min(f[x][y], f[x][k]+f[k][y])`.
+Vì chiều thứ nhất không ảnh hưởng đến kết quả, có thể bỏ chiều đầu của mảng và viết trực tiếp thành `f[x][y] = min(f[x][y], f[x][k]+f[k][y])`.
 
 ???+ note "Chứng minh chiều thứ nhất không ảnh hưởng đến kết quả"
-    Với một `k` cố định, khi cập nhật `f[k][x][y]`, các phần tử được dùng luôn đến từ hàng `k` và cột `k` của mảng `f[k-1]`. Ta có thể thấy rằng với `k` cố định, khi cập nhật `f[k][k][y]` hoặc `f[k][x][k]`, giá trị sẽ không thay đổi, vì theo công thức `f[k][k][y] = min(f[k-1][k][y], f[k-1][k][k]+f[k-1][k][y])`, `f[k-1][k][k]` bằng 0, nên giá trị này luôn là `f[k-1][k][y]`; chứng minh cho `f[k][x][k]` tương tự.
+    Với một `k` cố định, khi cập nhật `f[k][x][y]`, các phần tử được dùng luôn đến từ hàng `k` và cột `k` của mảng `f[k-1]`. Khi cập nhật `f[k][k][y]` hoặc `f[k][x][k]`, giá trị sẽ không thay đổi, vì theo công thức `f[k][k][y] = min(f[k-1][k][y], f[k-1][k][k]+f[k-1][k][y])`, `f[k-1][k][k]` bằng 0, nên giá trị này luôn là `f[k-1][k][y]`; chứng minh cho `f[k][x][k]` tương tự.
     
     Do đó, nếu bỏ chiều thứ nhất, với `k` cố định, mọi phần tử được dùng trong mỗi lần cập nhật đều chưa bị thay đổi trong lần lặp này, nên việc bỏ chiều thứ nhất không ảnh hưởng đến kết quả.
 
@@ -98,25 +98,25 @@ Tóm lại, độ phức tạp thời gian là $O(N^3)$, độ phức tạp khô
 
 ### Ứng dụng
 
-???+ question "Cho một đồ thị vô hướng trọng số dương, hãy tìm một chu trình có tổng trọng số nhỏ nhất."
+???+ question "Cho một đồ thị vô hướng trọng số dương, tìm một chu trình có tổng trọng số nhỏ nhất."
     Trước hết, chu trình đó chắc chắn là chu trình đơn.
     
-    Hãy nghĩ xem chu trình này được tạo thành như thế nào.
+    Xét cách chu trình này được tạo thành.
     
     Xét đỉnh $u$ có số thứ tự lớn nhất trên chu trình.
     
     `f[u-1][x][y]` cùng với $(u,x)$, $(u,y)$ tạo thành chu trình.
     
-    Trong quá trình Floyd, ta liệt kê $u$ và tính giá trị nhỏ nhất của tổng này.
+    Trong quá trình Floyd, liệt kê $u$ và tính giá trị nhỏ nhất của tổng này.
     
     Độ phức tạp thời gian là $O(n^3)$.
     
     Xem thêm nội dung trong phần [chu trình nhỏ nhất](./min-cycle.md).
 
-???+ question "Biết với mọi cặp đỉnh trong một đồ thị có hướng rằng giữa chúng có cạnh hay không, hãy xác định mọi cặp đỉnh có liên thông với nhau hay không."
+???+ question "Biết với mọi cặp đỉnh trong một đồ thị có hướng rằng giữa chúng có cạnh hay không, xác định mọi cặp đỉnh có liên thông với nhau hay không."
     Bài toán này chính là tìm **bao đóng bắc cầu của đồ thị**.
     
-    Ta chỉ cần làm theo quá trình Floyd, lần lượt thêm từng đỉnh vào để kiểm tra.
+    Chỉ cần làm theo quá trình Floyd, lần lượt thêm từng đỉnh vào để kiểm tra.
     
     Chỉ khác là lúc này trọng số cạnh trở thành $1/0$, còn phép lấy $\min$ trở thành phép **hoặc**.
     
@@ -133,7 +133,7 @@ Tóm lại, độ phức tạp thời gian là $O(N^3)$, độ phức tạp khô
 
 Thuật toán Bellman-Ford là thuật toán đường đi ngắn nhất dựa trên thao tác nới lỏng (relax). Nó có thể tìm đường đi ngắn nhất trong đồ thị có trọng số âm, đồng thời có thể xác định trường hợp đường đi ngắn nhất không tồn tại.
 
-Trong giới OI Trung Quốc, thuật toán "SPFA" mà bạn có thể đã nghe đến chính là một cách cài đặt Bellman-Ford.
+Trong giới OI Trung Quốc, thuật toán "SPFA" thường được nhắc đến chính là một cách cài đặt Bellman-Ford.
 
 ### Quy trình
 
@@ -141,9 +141,9 @@ Trước hết giới thiệu thao tác nới lỏng mà Bellman-Ford dùng (Dij
 
 Với cạnh $(u,v)$, thao tác nới lỏng tương ứng với công thức: $dis(v) = \min(dis(v), dis(u) + w(u, v))$.
 
-Ý nghĩa của thao tác này rất rõ ràng: ta thử dùng đường đi $S \to u \to v$ (trong đó đường đi $S \to u$ lấy theo đường đi ngắn nhất) để cập nhật độ dài đường đi ngắn nhất đến đỉnh $v$; nếu đường đi này tốt hơn thì cập nhật.
+Ý nghĩa của thao tác này là dùng đường đi $S \to u \to v$ (trong đó đường đi $S \to u$ lấy theo đường đi ngắn nhất) để cập nhật độ dài đường đi ngắn nhất đến đỉnh $v$; nếu đường đi này tốt hơn thì cập nhật.
 
-Việc Bellman-Ford làm là liên tục thử nới lỏng từng cạnh trên đồ thị. Mỗi vòng lặp, ta thử thực hiện một lần nới lỏng trên tất cả cạnh của đồ thị; khi trong một vòng lặp không có thao tác nới lỏng thành công nào, thuật toán dừng.
+Việc Bellman-Ford làm là liên tục thử nới lỏng từng cạnh trên đồ thị. Mỗi vòng lặp, thuật toán thử thực hiện một lần nới lỏng trên tất cả cạnh của đồ thị; khi trong một vòng lặp không có thao tác nới lỏng thành công nào, thuật toán dừng.
 
 Mỗi vòng lặp tốn $O(m)$, vậy nhiều nhất sẽ lặp bao nhiêu lần?
 
@@ -234,11 +234,11 @@ Nhưng còn một trường hợp khác: nếu từ đỉnh $S$ có thể đi đ
 
 SPFA là viết tắt của tên tiếng Anh Shortest Path Faster Algorithm, nghĩa là "thuật toán đường đi ngắn nhất nhanh hơn".
 
-Trong nhiều trường hợp, ta không cần thực hiện quá nhiều thao tác nới lỏng vô ích.
+Trong nhiều trường hợp, không cần thực hiện quá nhiều thao tác nới lỏng vô ích.
 
-Hiển nhiên, chỉ các cạnh nối với những đỉnh vừa được nới lỏng ở lần trước mới có khả năng gây ra thao tác nới lỏng tiếp theo.
+Chỉ các cạnh nối với những đỉnh vừa được nới lỏng ở lần trước mới có khả năng gây ra thao tác nới lỏng tiếp theo.
 
-Vì vậy ta dùng hàng đợi để duy trì "những đỉnh có thể gây ra thao tác nới lỏng", nhờ đó chỉ cần thăm các cạnh cần thiết.
+Vì vậy dùng hàng đợi để duy trì "những đỉnh có thể gây ra thao tác nới lỏng", nhờ đó chỉ cần thăm các cạnh cần thiết.
 
 SPFA cũng có thể dùng để xác định đỉnh $s$ có đi đến được một chu trình âm hay không. Chỉ cần ghi lại số cạnh mà đường đi ngắn nhất đi qua; khi số cạnh đã đi qua ít nhất là $n$, điều đó cho thấy từ $s$ có thể đi đến một chu trình âm.
 
@@ -317,7 +317,7 @@ SPFA cũng có thể dùng để xác định đỉnh $s$ có đi đến đượ
                             vis[v] = True
         ```
 
-Dù trong đa số trường hợp SPFA chạy rất nhanh, độ phức tạp thời gian trong trường hợp xấu nhất của nó là $O(nm)$; việc tạo dữ liệu để đẩy nó đến độ phức tạp này không khó. Vì vậy khi thi cần thận trọng khi dùng SPFA (nếu không có cạnh âm thì tốt nhất dùng Dijkstra; nếu có cạnh âm và đồ thị trong đề không có tính chất đặc biệt, nếu SPFA là một phần của lời giải chuẩn thì đề không nên cho giới hạn dữ liệu khiến Bellman-Ford không thể qua).
+Dù trong đa số trường hợp SPFA chạy rất nhanh, độ phức tạp thời gian trong trường hợp xấu nhất của nó là $O(nm)$; có thể tạo dữ liệu để đẩy nó đến độ phức tạp này. Vì vậy khi thi cần thận trọng khi dùng SPFA (nếu không có cạnh âm thì tốt nhất dùng Dijkstra; nếu có cạnh âm và đồ thị trong đề không có tính chất đặc biệt, nếu SPFA là một phần của lời giải chuẩn thì đề không nên cho giới hạn dữ liệu khiến Bellman-Ford không thể qua).
 
 ???+ note "Các tối ưu khác của Bellman-Ford"
     Ngoài tối ưu bằng hàng đợi (SPFA), Bellman-Ford còn có các dạng tối ưu khác. Những tối ưu này hiệu quả rõ rệt trên một số đồ thị, nhưng trên vài đồ thị đặc biệt, độ phức tạp xấu nhất có thể đạt mức hàm mũ.
@@ -355,7 +355,7 @@ Có thể dùng heap để tối ưu quá trình này: mỗi khi nới lỏng th
 
 Đặc biệt, có thể dùng hàng đợi ưu tiên để duy trì. Khi đó không thể thực hiện Decrease-key, nhưng có thể chèn lại đỉnh mỗi khi nới lỏng, rồi khi lấy ra thì kiểm tra đỉnh đó đã được nới lỏng hay chưa; nếu rồi thì bỏ qua. Độ phức tạp là $O(m\log n)$, ưu điểm là cài đặt đơn giản hơn.
 
-Heap ở đây cũng có thể được cài bằng cây phân đoạn, độ phức tạp là $O(m\log n)$. Với một số cài đặt cây phân đoạn không đệ quy đặc biệt, hằng số của cách này nhỏ hơn heap. Ngoài ra cây phân đoạn hỗ trợ nhiều thao tác hơn, và trong một số bài đồ thị đặc biệt bắt buộc phải dùng cây phân đoạn để duy trì.
+Heap trong phần này cũng có thể được cài bằng cây phân đoạn, độ phức tạp là $O(m\log n)$. Với một số cài đặt cây phân đoạn không đệ quy đặc biệt, hằng số của cách này nhỏ hơn heap. Ngoài ra cây phân đoạn hỗ trợ nhiều thao tác hơn, và trong một số bài đồ thị đặc biệt bắt buộc phải dùng cây phân đoạn để duy trì.
 
 Trong đồ thị thưa, $m = O(n)$, Dijkstra tối ưu bằng heap có lợi thế lớn về hiệu suất; còn trong đồ thị dày, $m = O(n^2)$, cài đặt đơn giản lại tốt hơn.
 
@@ -363,21 +363,21 @@ Trong đồ thị thưa, $m = O(n)$, Dijkstra tối ưu bằng heap có lợi th
 
 Dưới đây dùng quy nạp toán học để chứng minh tính đúng đắn của thuật toán Dijkstra trong điều kiện **mọi trọng số cạnh đều không âm**[^1].
 
-Nói ngắn gọn, ta cần chứng minh rằng ở thao tác 1, đỉnh $u$ được lấy ra đều đã được xác định đường đi ngắn nhất, tức thỏa mãn $D(u) = dis(u)$.
+Nói ngắn gọn, cần chứng minh rằng ở thao tác 1, đỉnh $u$ được lấy ra đều đã được xác định đường đi ngắn nhất, tức thỏa mãn $D(u) = dis(u)$.
 
 Ban đầu $S = \varnothing$, giả thiết đúng.
 
 Tiếp theo dùng phản chứng.
 
-Giả sử $u$ là đỉnh đầu tiên trong thuật toán mà khi được thêm vào tập $S$ không thỏa mãn $D(u) = dis(u)$. Vì đỉnh $s$ chắc chắn thỏa mãn $D(u)=dis(u)=0$, và nó chắc chắn là đỉnh đầu tiên được thêm vào tập $S$, nên trước khi thêm $u$ vào tập $S$, ta có $S \neq \varnothing$; nếu không tồn tại đường đi từ $s$ đến $u$, thì $D(u) = dis(u) = +\infty$, mâu thuẫn với giả thiết.
+Giả sử $u$ là đỉnh đầu tiên trong thuật toán mà khi được thêm vào tập $S$ không thỏa mãn $D(u) = dis(u)$. Vì đỉnh $s$ chắc chắn thỏa mãn $D(u)=dis(u)=0$, và nó chắc chắn là đỉnh đầu tiên được thêm vào tập $S$, nên trước khi thêm $u$ vào tập $S$ có $S \neq \varnothing$; nếu không tồn tại đường đi từ $s$ đến $u$, thì $D(u) = dis(u) = +\infty$, mâu thuẫn với giả thiết.
 
-Vì vậy chắc chắn tồn tại một đường đi $s \to x \to y \to u$, trong đó $y$ là đỉnh đầu tiên trên đường đi từ $s$ đến $u$ thuộc tập $T$, còn $x$ là đỉnh đứng trước $y$ (rõ ràng $x \in S$). Cần chú ý rằng có thể xảy ra $s = x$ hoặc $y = u$, tức $s \to x$ hoặc $y \to u$ có thể là đường đi rỗng.
+Vì vậy chắc chắn tồn tại một đường đi $s \to x \to y \to u$, trong đó $y$ là đỉnh đầu tiên trên đường đi từ $s$ đến $u$ thuộc tập $T$, còn $x$ là đỉnh đứng trước $y$ (khi đó $x \in S$). Cần chú ý rằng có thể xảy ra $s = x$ hoặc $y = u$, tức $s \to x$ hoặc $y \to u$ có thể là đường đi rỗng.
 
 Vì mọi đỉnh được thêm vào trước $u$ đều thỏa mãn $D(u) = dis(u)$, nên khi đỉnh $x$ được thêm vào tập $S$, có $D(x) = dis(x)$; lúc đó cạnh $(x,y)$ sẽ được nới lỏng. Từ đó có thể chứng minh rằng khi thêm $u$ vào tập $S$, chắc chắn có $D(y)=dis(y)$.
 
 Tiếp theo chứng minh $D(u) = dis(u)$. Trên đường đi $s \to x \to y \to u$, vì mọi trọng số cạnh của đồ thị không âm, nên $D(y) \leq D(u)$. Do đó $dis(y) = D(y) \leq D(u)\leq dis(u)$. Nhưng khi đỉnh $u$ được lấy khỏi tập $T$ ở thao tác 1, đỉnh $y$ vẫn chưa bị lấy khỏi tập $T$, vì vậy lúc này có $dis(u)\leq dis(y)$. Suy ra $dis(y) = D(y) = D(u) = dis(u)$, mâu thuẫn với giả thiết $D(u)\neq dis(u)$. Do đó giả thiết sai.
 
-Vậy ta đã chứng minh được rằng mỗi đỉnh được lấy ra ở thao tác 1 đều đã được xác định đường đi ngắn nhất. Mệnh đề được chứng minh.
+Vậy đã chứng minh được rằng mỗi đỉnh được lấy ra ở thao tác 1 đều đã được xác định đường đi ngắn nhất. Mệnh đề được chứng minh.
 
 Chú ý rằng bất đẳng thức then chốt $D(y) \leq D(u)$ trong chứng minh được suy ra nhờ mọi trọng số cạnh trên đồ thị không âm. Khi đồ thị có cạnh âm, bất đẳng thức này không còn đúng, tính đúng đắn của Dijkstra không được bảo đảm, và thuật toán có thể cho kết quả sai.
 
@@ -512,9 +512,9 @@ Giống Floyd, Johnson là thuật toán có thể tìm đường đi ngắn nh�
 
 Đường đi ngắn nhất giữa mọi cặp đỉnh có thể được giải bằng cách liệt kê đỉnh xuất phát và chạy Bellman-Ford $n$ lần, độ phức tạp thời gian là $O(n^2m)$; cũng có thể dùng trực tiếp Floyd, độ phức tạp thời gian là $O(n^3)$.
 
-Nhận thấy Dijkstra tối ưu bằng heap có độ phức tạp tìm đường đi ngắn nhất từ một nguồn tốt hơn Bellman-Ford. Nếu liệt kê đỉnh xuất phát và chạy Dijkstra $n$ lần, ta có thể giải bài toán trong độ phức tạp $O(nm\log m)$ (phụ thuộc vào cách cài đặt Dijkstra), tốt hơn độ phức tạp chạy Bellman-Ford $n$ lần ở trên, và trên đồ thị thưa cũng tốt hơn Floyd.
+Nhận thấy Dijkstra tối ưu bằng heap có độ phức tạp tìm đường đi ngắn nhất từ một nguồn tốt hơn Bellman-Ford. Nếu liệt kê đỉnh xuất phát và chạy Dijkstra $n$ lần, có thể giải bài toán trong độ phức tạp $O(nm\log m)$ (phụ thuộc vào cách cài đặt Dijkstra), tốt hơn độ phức tạp chạy Bellman-Ford $n$ lần ở trên, và trên đồ thị thưa cũng tốt hơn Floyd.
 
-Nhưng Dijkstra không thể tìm đúng đường đi ngắn nhất khi có cạnh âm, vì vậy ta cần tiền xử lý trọng số cạnh của đồ thị ban đầu để bảo đảm mọi trọng số cạnh đều không âm.
+Nhưng Dijkstra không thể tìm đúng đường đi ngắn nhất khi có cạnh âm, vì vậy cần tiền xử lý trọng số cạnh của đồ thị ban đầu để mọi trọng số cạnh đều không âm.
 
 Một cách dễ nghĩ tới là cộng đồng thời một số dương $x$ vào trọng số của mọi cạnh, để mọi cạnh đều có trọng số không âm. Nếu đường đi ngắn nhất từ điểm đầu đến điểm cuối trong đồ thị mới đi qua $k$ cạnh, thì trừ $kx$ khỏi đường đi ngắn nhất đó sẽ nhận được đường đi ngắn nhất thực sự.
 
@@ -524,7 +524,7 @@ Nhưng cách này là sai. Xét hình sau:
 
 Đường đi ngắn nhất từ $1 \to 2$ là $1 \to 5 \to 3 \to 2$, độ dài là $−2$.
 
-Nhưng nếu ta cộng thêm $5$ vào trọng số của mỗi cạnh thì sao?
+Nhưng nếu cộng thêm $5$ vào trọng số của mỗi cạnh thì sao?
 
 ![](./images/shortest-path2.svg)
 
@@ -532,13 +532,13 @@ Trong đồ thị mới, đường đi ngắn nhất từ $1 \to 2$ là $1 \to 4
 
 Thuật toán Johnson dùng một cách khác để gán lại trọng số cho từng cạnh.
 
-Ta tạo một đỉnh ảo mới (ở đây giả sử đánh số là $0$). Từ đỉnh này nối một cạnh trọng số $0$ đến mọi đỉnh khác.
+Tạo một đỉnh ảo mới (giả sử đánh số là $0$). Từ đỉnh này nối một cạnh trọng số $0$ đến mọi đỉnh khác.
 
 Tiếp theo dùng Bellman-Ford để tìm đường đi ngắn nhất từ đỉnh $0$ đến mọi đỉnh khác, ký hiệu là $h_i$.
 
-Giả sử tồn tại một cạnh từ đỉnh $u$ đến đỉnh $v$ với trọng số $w$, ta đặt lại trọng số của cạnh này thành $w+h_u-h_v$.
+Giả sử tồn tại một cạnh từ đỉnh $u$ đến đỉnh $v$ với trọng số $w$, đặt lại trọng số của cạnh này thành $w+h_u-h_v$.
 
-Sau đó lấy từng đỉnh làm điểm xuất phát và chạy Dijkstra $n$ lần, ta sẽ tìm được đường đi ngắn nhất giữa mọi cặp đỉnh.
+Sau đó lấy từng đỉnh làm điểm xuất phát và chạy Dijkstra $n$ lần, sẽ tìm được đường đi ngắn nhất giữa mọi cặp đỉnh.
 
 Bellman-Ford ban đầu không phải nút thắt thời gian; nếu dùng `priority_queue` để cài Dijkstra, độ phức tạp thời gian của thuật toán là $O(nm\log m)$.
 
@@ -546,7 +546,7 @@ Bellman-Ford ban đầu không phải nút thắt thời gian; nếu dùng `prio
 
 Vì sao cách gán lại trọng số này là đúng?
 
-Trước khi bàn về vấn đề đó, hãy xét một khái niệm vật lý: thế năng.
+Trước khi bàn về vấn đề đó, xét một khái niệm vật lý: thế năng.
 
 Các dạng thế năng như thế năng trọng trường, thế năng điện có một đặc điểm: độ biến thiên thế năng chỉ phụ thuộc vào vị trí tương đối của điểm đầu và điểm cuối, không phụ thuộc vào đường đi từ điểm đầu đến điểm cuối.
 
@@ -562,17 +562,17 @@ Rút gọn được:
 
 $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
-Bất kể ta đi từ $s$ đến $t$ theo đường nào, giá trị $h_s-h_t$ đều không đổi, điều này khớp với tính chất của thế năng.
+Bất kể đi từ $s$ đến $t$ theo đường nào, giá trị $h_s-h_t$ đều không đổi, điều này khớp với tính chất của thế năng.
 
-Để tiện gọi, dưới đây ta gọi $h_i$ là thế năng của đỉnh $i$.
+Để tiện gọi, $h_i$ là thế năng của đỉnh $i$.
 
 Trong đồ thị mới ở trên, biểu thức độ dài đường đi ngắn nhất từ $s \to t$ gồm hai phần: tổng trọng số cạnh phía trước là đường đi ngắn nhất từ $s \to t$ trong đồ thị ban đầu, còn phần phía sau là hiệu thế năng giữa hai đỉnh. Vì hiệu thế năng giữa hai đỉnh là hằng số, đường đi ngắn nhất từ $s \to t$ trên đồ thị ban đầu tương ứng với đường đi ngắn nhất từ $s \to t$ trên đồ thị mới.
 
-Đến đây ta đã giải quyết được một nửa chứng minh tính đúng đắn: ta chứng minh rằng sau khi gán lại trọng số, đường đi ngắn nhất trên đồ thị vẫn là đường đi ngắn nhất ban đầu. Tiếp theo cần chứng minh mọi cạnh trong đồ thị mới đều có trọng số không âm, vì trên đồ thị trọng số không âm, Dijkstra bảo đảm cho kết quả đúng.
+Đến đây đã giải quyết được một nửa chứng minh tính đúng đắn: đã chứng minh rằng sau khi gán lại trọng số, đường đi ngắn nhất trên đồ thị vẫn là đường đi ngắn nhất ban đầu. Tiếp theo cần chứng minh mọi cạnh trong đồ thị mới đều có trọng số không âm, vì trên đồ thị trọng số không âm, Dijkstra bảo đảm cho kết quả đúng.
 
-Theo bất đẳng thức tam giác, với mọi cạnh $(u,v)$ trên đồ thị, hai đầu cạnh thỏa mãn $h_v \leq h_u + w(u,v)$. Trọng số cạnh sau khi gán lại là $w'(u,v)=w(u,v)+h_u-h_v \geq 0$. Như vậy ta đã chứng minh mọi trọng số cạnh trong đồ thị mới đều không âm.
+Theo bất đẳng thức tam giác, với mọi cạnh $(u,v)$ trên đồ thị, hai đầu cạnh thỏa mãn $h_v \leq h_u + w(u,v)$. Trọng số cạnh sau khi gán lại là $w'(u,v)=w(u,v)+h_u-h_v \geq 0$. Như vậy đã chứng minh mọi trọng số cạnh trong đồ thị mới đều không âm.
 
-Vậy ta đã chứng minh tính đúng đắn của thuật toán Johnson.
+Vậy đã chứng minh tính đúng đắn của thuật toán Johnson.
 
 ## So sánh các phương pháp
 
