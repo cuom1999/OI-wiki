@@ -8,21 +8,21 @@ năm 1985, C++ đã có 7 chuẩn chính thức do Tổ chức Tiêu chuẩn hó
 công bố, lần lượt là C++98, C++03, C++11 (còn gọi là C++0x), C++14 (còn gọi là
 C++1y), C++17 (còn gọi là C++1z), C++20 (còn gọi là C++2a), C++23 (còn gọi là
 C++2b). Dự thảo chuẩn C++ có trên trang [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/);
-tiến độ xây dựng chuẩn mới nhất có thể xem tại [Current Status : Standard C++](https://isocpp.org/std/status).
+tiến độ xây dựng các chuẩn mới có thể xem tại [Current Status : Standard C++](https://isocpp.org/std/status).
 Ngoài ra còn có một số chuẩn bổ sung, chẳng hạn C++ TR1.
 
 Mỗi phiên bản chuẩn C++ không chỉ quy định cú pháp và tính năng ngôn ngữ của C++,
 mà còn quy định đặc tả cho một bộ thư viện dựng sẵn của C++; đó chính là thư
 viện chuẩn C++. Thư viện chuẩn C++ chứa rất nhiều mã thường dùng đã được cài
 đặt sẵn, như nhập xuất, cấu trúc dữ liệu cơ bản, quản lý bộ nhớ, hỗ trợ đa
-luồng và nhiều thành phần khác. Nắm được thư viện chuẩn C++ là bước cần thiết để viết mã C++ hiện
-đại hơn.
+luồng và nhiều thành phần khác. Nắm được thư viện chuẩn C++ là bước cần thiết
+để viết mã C++ hiện đại hơn.
 Tài liệu chi tiết của thư viện chuẩn C++ có trên [cppreference](https://en.cppreference.com/);
 tài liệu này giới thiệu cách dùng, hiệu suất và điểm cần chú ý của các kiểu và
 hàm trong thư viện chuẩn, nên rất đáng tham khảo.
 
 Cần chú ý rằng các nền tảng OJ khác nhau hỗ trợ phiên bản C++ khác nhau. Ví dụ,
-[quy tắc ICPC mới nhất](https://docs.icpc.global/worldfinals-programming-environment/)
+[quy tắc môi trường lập trình ICPC](https://docs.icpc.global/worldfinals-programming-environment/)
 hỗ trợ chuẩn C++20. Theo nghị quyết của Ủy ban Khoa học NOI, từ ngày 1 tháng 9
 năm 2021, [NOI Linux 2.0](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
 được dùng làm môi trường chuẩn cho hệ thống cuộc thi NOI và các hoạt động như
@@ -33,10 +33,10 @@ dịch trên sân thi.
 
 ## Thư viện template chuẩn (STL)
 
-STL, tức Thư viện template chuẩn (Standard Template Library), là một phần của
-thư viện chuẩn C++ và chứa một số cấu trúc dữ liệu cùng thuật toán tổng quát
+STL, tức Thư viện Template Chuẩn (Standard Template Library), là một phần của
+thư viện chuẩn C++ và chứa nhiều cấu trúc dữ liệu cùng thuật toán tổng quát
 được viết bằng template. Nhờ cơ chế template, nó tương thích với kiểu dữ liệu
-tự định nghĩa và tránh rất nhiều việc "tự chế lại" mã có sẵn. Các cuộc thi NOI
+tự định nghĩa và giúp tránh nhiều việc "tự chế lại" mã có sẵn. Các cuộc thi NOI
 và ICPC đều cho phép dùng STL, vì vậy sử dụng STL hợp lý có thể tránh viết các
 thuật toán không cần thiết, đồng thời tận dụng tối ưu hóa của trình biên dịch cho
 mã thư viện dựa trên template để cải thiện hiệu suất. Giới thiệu chi tiết về
@@ -57,11 +57,12 @@ tiếng bên cạnh thư viện chuẩn. Mã của Boost có tính khả chuyể
 hiệu năng cao và độ tin cậy cao. Boost có số lượng mô-đun rất lớn, chức năng
 toàn diện và hỗ trợ đa nền tảng đầy đủ, nên thường được xem như một thư viện gần
 chuẩn của C++. Không ít tính năng trong chuẩn C++ cũng bắt nguồn từ Boost, như
-con trỏ thông minh, lập trình meta, thư viện ngày giờ và các thành phần khác. Dù trong OI không thể dùng
-Boost, Boost vẫn có nhiều "bánh xe" hữu ích để kiểm chứng thuật toán hoặc đối
+con trỏ thông minh, lập trình meta, thư viện ngày giờ và các thành phần khác. Dù
+trong OI không thể dùng Boost, Boost vẫn có nhiều "bánh xe" hữu ích để kiểm
+chứng thuật toán hoặc đối
 chiếu kết quả, như Boost.Geometry có cài đặt R-tree, Boost.Graph có các thuật
 toán đồ thị, Boost.Intrusive cung cấp một bộ chứa xâm nhập có cách dùng tương tự
-bộ chứa STL. Người đọc quan tâm có thể tự tìm thêm hướng dẫn trên mạng.
+bộ chứa STL. Có thể tự tìm thêm hướng dẫn trên mạng nếu cần.
 
 ## Tài liệu tham khảo
 
