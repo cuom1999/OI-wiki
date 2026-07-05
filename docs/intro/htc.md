@@ -199,7 +199,7 @@ Trường author nằm ở đầu toàn bộ tệp Markdown, có dạng
 cách. ID ở đây là tên người dùng GitHub, tức là phần trong địa chỉ GitHub
 profile (ví dụ `Ir1d` trong <https://github.com/Ir1d>).
 
-Khi sửa liên kết, cần điền lần lượt các contributors hiện có của trang vào
+Khi sửa liên kết, cần điền lần lượt những người đóng góp hiện có của trang vào
 trường author.
 
 ### Tệp chuyển hướng
@@ -287,7 +287,7 @@ Ví dụ:
 
 ### Quy trình cộng tác
 
-1.  Sau khi nhận một Pull Request mới, GitHub sẽ gửi email cho reviewer;
+1.  Sau khi nhận một Pull Request mới, GitHub sẽ gửi email cho người rà soát;
 2.  Đồng thời, trên [GitHub Actions](https://github.com/cuom1999/OI-wiki/actions)
     sẽ chạy kiểm thử tự động. Tiến độ của chúng được đồng bộ ở phía dưới trang
     PR, chủ yếu dùng để xác nhận thay đổi nội dung trong PR không ảnh hưởng đến
@@ -295,12 +295,12 @@ Ví dụ:
 3.  Reviewer có thể phát hiện vấn đề và đưa ra `review` hoặc
     `suggested changes` (đề xuất thay đổi, hiển thị bằng biểu tượng màu xám) /
     `requested changes` (yêu cầu thay đổi bắt buộc, hiển thị bằng biểu tượng
-    màu đỏ, chỉ xuất hiện khi reviewer có quyền ghi vào repo). Thông thường,
-    reviewer cũng sẽ kèm theo góp ý và những thay đổi cần thực hiện. Lúc này,
+    màu đỏ, chỉ xuất hiện khi người rà soát có quyền ghi vào kho). Thông thường,
+    người rà soát cũng sẽ kèm theo góp ý và những thay đổi cần thực hiện. Lúc này,
     bạn cần tiếp tục bổ sung thay đổi khác vào Pull Request. Cách thay đổi có
     thể tham khảo phần `Chỉnh sửa trên GitHub` hoặc phần `Bổ sung thay đổi vào
     Pull Request` trong `Sử dụng Git để chỉnh sửa cục bộ`.
-4.  Sau khi có đủ nhiều reviewer bỏ phiếu thông qua một PR, PR đó mới có thể
+4.  Sau khi có đủ nhiều người rà soát bỏ phiếu thông qua một PR, PR đó mới có thể
     được hợp nhất vào nhánh `vietnamese-translation`;
 5.  Sau khi hợp nhất vào nhánh `vietnamese-translation`, GitHub Actions sẽ build lại nội dung
     trang web và cập nhật lên nhánh gh-pages;

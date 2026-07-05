@@ -16,18 +16,18 @@ cho sự phát triển của **OI** thôi. XD
 Hỏi: Tôi rất quan tâm, làm sao để tham gia?
 
 Đáp: **OI Wiki tiếng Việt** hiện được lưu trữ trên GitHub; bạn có thể truy cập trực tiếp
-[repo](https://github.com/cuom1999/OI-wiki) này để xem tiến độ mới nhất. Các
+[kho](https://github.com/cuom1999/OI-wiki) này để xem tiến độ mới nhất. Các
 cách tham gia gồm mở [Issue](https://github.com/cuom1999/OI-wiki/issues),
 [Pull Request](https://github.com/cuom1999/OI-wiki/pulls) trên GitHub, chia sẻ
 ý tưởng trong nhóm trao đổi, hoặc gửi bài trực tiếp cho quản trị viên. Hiện tại,
-framework chúng tôi dùng là [MkDocs](https://mkdocs.readthedocs.io), được phát
+khung công cụ chúng tôi dùng là [MkDocs](https://mkdocs.readthedocs.io), được phát
 triển bằng Python, hỗ trợ định dạng Markdown (cũng hỗ trợ chèn công thức toán).
 
 ***
 
 Hỏi: Nhưng tôi còn yếu quá... không biết mình có thể làm gì.
 
-Đáp: Mọi thứ bắt đầu từ niềm yêu thích. Bạn có thể hỗ trợ người khác review bản
+Đáp: Mọi thứ bắt đầu từ niềm yêu thích. Bạn có thể hỗ trợ người khác rà soát bản
 sửa, giúp chúng tôi giới thiệu **OI Wiki**, và cùng xây dựng bầu không khí học
 tập, trao đổi lành mạnh trong cộng đồng!
 
@@ -180,26 +180,26 @@ python -m pip install --upgrade pip
 
 ***
 
-Hỏi: Tôi cài dependencies thất bại.
+Hỏi: Tôi cài các gói phụ thuộc thất bại.
 
 Đáp: Hãy kiểm tra: mạng? quyền truy cập? thông báo lỗi?
 
 ***
 
-Hỏi: Tôi đã clone xong, vì sao không deploy được?
+Hỏi: Tôi đã clone xong, vì sao không triển khai được?
 
-Đáp: Hãy kiểm tra xem dependencies đã được cài đầy đủ chưa.
+Đáp: Hãy kiểm tra xem các gói phụ thuộc đã được cài đầy đủ chưa.
 
 ***
 
-Hỏi: Tôi clone repo từ rất lâu trước rồi, làm sao cập nhật lên phiên bản mới?
+Hỏi: Tôi đã clone kho từ rất lâu trước rồi, làm sao cập nhật lên phiên bản mới?
 
 Đáp: Vui lòng tham khảo trang trợ giúp chính thức của GitHub
 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork).
 
 ***
 
-Hỏi: Nếu đã cài dependencies cũ trước đây thì cập nhật thế nào?
+Hỏi: Nếu đã cài các gói phụ thuộc cũ trước đây thì cập nhật thế nào?
 
 Đáp: Vui lòng nhập lệnh sau:
 

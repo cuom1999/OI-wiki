@@ -4,7 +4,7 @@
 (competitive programming)** miễn phí, mở và được cập nhật liên tục.
 
 Bản tiếng Việt này dịch dần nội dung của dự án gốc, giữ nguyên cấu trúc trang,
-đường dẫn và cách tổ chức nguồn để thuận tiện theo dõi upstream.
+đường dẫn và cách tổ chức nguồn để thuận tiện theo dõi bản gốc.
 
 ## Trao đổi
 

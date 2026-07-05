@@ -85,7 +85,7 @@ Chú ý: bsearch khác lower\_bound và upper\_bound ở hai điểm:
 
 Có thể dùng lower\_bound để thực hiện đúng chức năng của bsearch, nên những bài có thể AC bằng bsearch đều có thể viết lại trực tiếp bằng lower\_bound. Tuy nhiên, do điểm khác biệt thứ hai ở trên, chẳng hạn khi tìm 3 trong dãy 1, 2, 4, 5, 6, việc dùng bsearch để thực hiện chức năng của lower\_bound trở nên khó khăn.
 
-Dùng bsearch để thực hiện chức năng của lower\_bound có khó, vậy có nhất thiết là không làm được không? Câu trả lời là không; tồn tại một kỹ thuật khá tricky. Dựa vào đặc tính trình biên dịch xử lý hàm so sánh: tham số thứ nhất luôn trỏ tới phần tử cần tìm, tham số thứ hai trỏ tới phần tử trong mảng cần tìm. Nhờ đó cũng có thể dùng bsearch để thực hiện lower\_bound và upper\_bound như ví dụ dưới đây. Tuy nhiên, cách này yêu cầu mảng cần tìm phải là mảng toàn cục, để có thể truyền trực tiếp địa chỉ đầu.
+Dùng bsearch để thực hiện chức năng của lower\_bound có khó, vậy có nhất thiết là không làm được không? Câu trả lời là không; tồn tại một kỹ thuật khá khéo. Dựa vào đặc tính trình biên dịch xử lý hàm so sánh: tham số thứ nhất luôn trỏ tới phần tử cần tìm, tham số thứ hai trỏ tới phần tử trong mảng cần tìm. Nhờ đó cũng có thể dùng bsearch để thực hiện lower\_bound và upper\_bound như ví dụ dưới đây. Tuy nhiên, cách này yêu cầu mảng cần tìm phải là mảng toàn cục, để có thể truyền trực tiếp địa chỉ đầu.
 
 ```cpp
 int A[100005];  // Mảng toàn cục ví dụ

@@ -9,20 +9,20 @@ Trang này giới thiệu cách triển khai môi trường **OI Wiki** bằng D
 # Chỉ cần chạy một trong các lệnh sau trên máy chủ
 # Image Docker Hub (kho image chính thức)
 docker pull 24oi/oi-wiki
-# Image DaoCloud Hub (mirror của dự án gốc)
+# Image DaoCloud Hub (bản sao của dự án gốc)
 docker pull daocloud.io/sirius/oi-wiki
-# Image Tencent Hub (mirror của dự án gốc)
+# Image Tencent Hub (bản sao của dự án gốc)
 docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 ```
 
-## Tự build image
+## Tự xây dựng image
 
 ```bash
 # Chạy các lệnh sau trên máy chủ
 # Clone Git repository
 git clone https://github.com/cuom1999/OI-wiki.git
 cd OI-wiki/
-# Build image
+# Xây dựng image
 docker build -t [name][:tag] . --build-arg [variable1]=[value1] [variable2]=[value2]...
 ```
 
@@ -31,9 +31,9 @@ docker build -t [name][:tag] . --build-arg [variable1]=[value1] [variable2]=[val
 
 Các biến môi trường có thể dùng:
 
--   Có thể đặt `WIKI_REPO` để dùng mirror site của kho Wiki (nếu không đặt thì tự động dùng GitHub)
--   Có thể đặt `PYPI_MIRROR` để dùng mirror site của kho PyPI (nếu không đặt thì tự động dùng PyPI chính thức)
-    -   Chỉ nên đặt mirror nếu bạn tin cậy mirror đó và cần tăng tốc tải gói trong môi trường mạng hiện tại.
+-   Có thể đặt `WIKI_REPO` để dùng bản sao của kho Wiki (nếu không đặt thì tự động dùng GitHub)
+-   Có thể đặt `PYPI_MIRROR` để dùng bản sao của kho PyPI (nếu không đặt thì tự động dùng PyPI chính thức)
+    -   Chỉ nên đặt nguồn sao lưu nếu bạn tin cậy bản sao đó và cần tăng tốc tải gói trong môi trường mạng hiện tại.
 -   Có thể đặt `LISTEN_IP` để đổi IP lắng nghe (nếu không đặt thì là `0.0.0.0`, tức lắng nghe truy cập từ mọi IP)
 -   Có thể đặt `LISTEN_PORT` để đổi cổng lắng nghe (nếu không đặt thì là `8000`)
 

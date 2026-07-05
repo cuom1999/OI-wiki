@@ -4,7 +4,7 @@ author: ouuan, Henry-ZHR, StudyingFather, ChungZH, xyf007, Cryflmind, oierlinch,
 
 ### Có một trình độ nhất định
 
-Một mặt, khi tự ra đề, rất khó để tạo ra bài có độ khó vượt quá trình độ của chính mình; một nền tảng OI nhất định sẽ giúp nghĩ ra idea chất lượng hơn và tìm được lời giải tốt hơn. Mặt khác, trình độ OI ở một mức nào đó cũng phản ánh kinh nghiệm OI: những thí sinh đã gặp nhiều bài hơn thường sẽ có quan điểm riêng về thế nào là một "bài hay".
+Một mặt, khi tự ra đề, rất khó để tạo ra bài có độ khó vượt quá trình độ của chính mình; một nền tảng OI nhất định sẽ giúp nghĩ ra ý tưởng chất lượng hơn và tìm được lời giải tốt hơn. Mặt khác, trình độ OI ở một mức nào đó cũng phản ánh kinh nghiệm OI: những thí sinh đã gặp nhiều bài hơn thường sẽ có quan điểm riêng về thế nào là một "bài hay".
 
 ### Có thái độ nghiêm túc và có trách nhiệm
 
@@ -20,16 +20,16 @@ Bài viết này giới thiệu toàn bộ quy trình ra đề từ hai góc đ�
 
 ## Nội dung bài toán
 
-Để ra một bài, idea, tức nội dung cốt lõi của bài toán, là linh hồn của bài và cũng là bước đầu tiên của việc ra đề.
+Để ra một bài, ý tưởng, tức nội dung cốt lõi của bài toán, là linh hồn của bài và cũng là bước đầu tiên của việc ra đề.
 
-### Nguồn gốc của idea
+### Nguồn gốc của ý tưởng
 
 1.  Được gợi cảm hứng từ các bài đã có (nhưng không được sao chép hoặc tăng cường một cách vô nghĩa, chẳng hạn: chuyển một bài về dãy lên cactus).
 2.  Được gợi cảm hứng từ các kiến thức đã học (nhưng không được ghép các kiến thức rời rạc một cách vô liên quan).
 3.  Được gợi cảm hứng từ đời sống/trò chơi (nhưng chú ý đừng biến trò chơi thành một bài mô phỏng lớn).
 4.  Không rõ vì sao, tự nhiên nghĩ ra một bài.
 
-### Những idea như thế nào là không tốt
+### Những ý tưởng như thế nào là không tốt
 
 #### Về bài gốc
 
@@ -64,7 +64,7 @@ Các ngoại lệ có thể nới lỏng yêu cầu:
 
 "Bài độc" là một khái niệm rất mơ hồ và chủ quan. Ở đây chỉ trích dẫn một số thảo luận của những người đi trước về vấn đề này, kèm theo một vài cách hiểu của người viết. Chủ đề này rất mở, hoan nghênh mọi người nêu quan điểm của mình.
 
-> Một bài hay không nên là hai bài ghép lại với nhau; một bài hay sẽ có idea riêng của nó, và nó nên làm nổi bật idea ấy mà không cần quá nhiều lớp vỏ bọc.
+> Một bài hay không nên là hai bài ghép lại với nhau; một bài hay sẽ có ý tưởng riêng của nó, và nó nên làm nổi bật ý tưởng ấy mà không cần quá nhiều lớp vỏ bọc.
 >
 > Một bài hay nên mới mẻ. Bài thật sự hay nên là bài có thể khiến người ta mở ra một cách nghĩ mới.
 >
@@ -185,7 +185,7 @@ Nếu có nhiều đáp án hợp lệ, có thể in ra bất kỳ một đáp �
 ```
 
 ???+ note "Sinh dữ liệu vào bằng bộ sinh số ngẫu nhiên trong mã của thí sinh"
-    Một số bài do dữ liệu vào quá lớn, để tránh thời gian đọc dữ liệu quá lâu, sẽ yêu cầu thí sinh sinh dữ liệu trong mã bằng bộ sinh dữ liệu được cho, thay cho việc đọc dữ liệu qua chuẩn vào hoặc qua file.
+    Một số bài do dữ liệu vào quá lớn, để tránh thời gian đọc dữ liệu quá lâu, sẽ yêu cầu thí sinh sinh dữ liệu trong mã bằng bộ sinh dữ liệu được cho, thay cho việc đọc dữ liệu qua chuẩn vào hoặc qua tệp.
     
     Cần cân nhắc thận trọng khi dùng cách này, vì nó có nhiều nhược điểm:
     
