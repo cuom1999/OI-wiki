@@ -21,7 +21,7 @@ int main() {
 
 Có thể thấy trong quá trình chuyển chuỗi, cả `str` và `vec` đều giữ một bản, làm lượng bộ nhớ sử dụng tăng gấp đôi.
 
-Nếu nhất định muốn tiết kiệm phần bộ nhớ này, ta có thể tự hiện thực một thao tác di chuyển đơn giản: tự định nghĩa cấu trúc `MyString`, bên trong có một con trỏ trỏ tới chuỗi của ta. Như vậy ta chỉ cần sao chép con trỏ sang nơi mới, đồng thời cẩn thận dọn con trỏ của đối tượng gốc để tránh bị hủy sai.
+Nếu nhất định muốn tiết kiệm phần bộ nhớ này, ta có thể tự cài đặt một thao tác di chuyển đơn giản: tự định nghĩa cấu trúc `MyString`, bên trong có một con trỏ trỏ tới vùng dữ liệu chuỗi. Như vậy ta chỉ cần sao chép con trỏ sang nơi mới, đồng thời cẩn thận dọn con trỏ của đối tượng gốc để tránh bị hủy sai.
 
 ```cpp
 struct MyString {
@@ -40,12 +40,12 @@ Nhu cầu chuyển đối tượng một cách hiệu quả như vậy khá thư
 
 ## Loại giá trị trong ngôn ngữ C
 
-Trong chuẩn ngôn ngữ C, đối tượng là một khái niệm tổng quát hơn biến; nó chỉ một vùng nhớ có địa chỉ bộ nhớ. Các thuộc tính chính của đối tượng gồm: kích thước, kiểu hiệu lực, giá trị và định danh. Định danh chính là tên biến; giá trị là ý nghĩa của vùng nhớ đó khi được diễn giải theo kiểu của nó. Ví dụ, tuy kiểu `int` và `float` đều chiếm 4 byte, cùng một vùng nhớ sẽ được diễn giải ra các ý nghĩa khác nhau.
+Trong chuẩn ngôn ngữ C, đối tượng là một khái niệm tổng quát hơn biến; nó chỉ một vùng dữ liệu trong môi trường thực thi. Các thuộc tính chính của đối tượng gồm kích thước, kiểu hiệu lực và giá trị. Giá trị là ý nghĩa của vùng dữ liệu đó khi được diễn giải theo kiểu của nó. Ví dụ, tuy kiểu `int` và `float` thường đều chiếm 4 byte, cùng một vùng nhớ sẽ được diễn giải ra các ý nghĩa khác nhau.
 
 Trong ngôn ngữ C, mỗi biểu thức đều có kiểu và loại giá trị. Loại giá trị chủ yếu được chia thành ba loại:
 
--   Trái trị (lvalue): biểu thức ngầm chỉ tới một đối tượng. Nghĩa là ta có thể lấy địa chỉ của biểu thức đó.
--   Phải trị (rvalue): biểu thức không chỉ tới đối tượng; tức là nó chỉ tới một giá trị không có vị trí lưu trữ, nên ta không thể lấy địa chỉ của giá trị này.
+-   Trái trị (lvalue): biểu thức xác định một đối tượng. Nghĩa là ta có thể lấy địa chỉ của biểu thức đó.
+-   Phải trị (rvalue): biểu thức không xác định một đối tượng có thể lấy địa chỉ; nó chỉ biểu diễn một giá trị tạm thời.
 -   Biểu thức chỉ định hàm: biểu thức có kiểu hàm.
 
 Vì vậy, chỉ các trái trị có thể sửa đổi (trái trị không được bổ nghĩa bằng `const` và không phải mảng) mới có thể đứng ở vế trái của biểu thức gán.
@@ -61,8 +61,8 @@ Các hiểu lầm thường gặp:
 
 C++98 gần như giống ngôn ngữ C về loại giá trị, nhưng bổ sung một số quy tắc mới:
 
--   Hàm là trái trị, vì có thể lấy địa chỉ.
--   Tham chiếu trái trị (`T&`) là trái trị, vì có thể lấy địa chỉ.
+-   Biểu thức chỉ định hàm là trái trị, vì có thể lấy địa chỉ.
+-   Biểu thức là tên của biến tham chiếu trái trị (`T&`) là trái trị, vì có thể lấy địa chỉ của thực thể được tham chiếu.
 -   Chỉ `const T&` mới có thể gắn với phải trị.
 
 <span id="loại-bỏ-sao-chép"></span>
@@ -113,8 +113,8 @@ struct MyString {
 
 Lúc này các đặc tính biểu thức mà ta quan tâm tăng thêm một điểm:
 
--   Có danh tính hay không: có chỉ tới một đối tượng hay không, tức có địa chỉ hay không.
--   Có di chuyển được hay không: có các hàm như khởi tạo di chuyển, gán di chuyển hay không, để ta có cách tận dụng các đối tượng tạm này.
+-   Có danh tính hay không: có xác định một thực thể cụ thể hay không, tức có thể phân biệt bằng địa chỉ hay không.
+-   Có thể được di chuyển từ hay không: biểu thức có thể được xem như nguồn để di chuyển tài nguyên hay không.
 
 Vì vậy ta có ba loại giá trị:
 
@@ -125,12 +125,12 @@ Vì vậy ta có ba loại giá trị:
 
 Ngoài ra, C++11 còn đưa vào hai loại tổng hợp:
 
--   Có danh tính: giá trị tổng quát phía trái (glvalue), tức trái trị và giá trị sắp hết hạn.
+-   Có danh tính: giá trị trái tổng quát (glvalue), tức trái trị và giá trị sắp hết hạn.
 -   Có thể di chuyển: phải trị (rvalue), tức giá trị thuần phải và giá trị sắp hết hạn.
 
 ### std::move
 
-Để phối hợp với ngữ nghĩa di chuyển, C++11 còn đưa vào hàm tiện ích `std::move`; tác dụng của nó là ép trái trị thành phải trị để kích hoạt ngữ nghĩa di chuyển.
+Để phối hợp với ngữ nghĩa di chuyển, C++11 còn đưa vào hàm tiện ích `std::move`; tác dụng của nó là ép biểu thức thành xvalue, nhờ đó cho phép kích hoạt ngữ nghĩa di chuyển nếu kiểu dữ liệu hỗ trợ.
 
 ```cpp
 int main() {
@@ -143,7 +143,7 @@ int main() {
 }
 ```
 
-Vì vậy ta chỉ cần đổi `push_back(str)` thành `push_back(std::move(str))` là có thể tránh sao chép.
+Vì vậy ta chỉ cần đổi `push_back(str)` thành `push_back(std::move(str))` là có thể cho phép `vector` dùng hàm khởi tạo di chuyển thay vì sao chép.
 
 ```cpp
 int main() {
@@ -160,7 +160,7 @@ int main() {
 }
 ```
 
-> Do `std::string` có tối ưu hóa chuỗi nhỏ (small string optimization, SSO), các chuỗi ngắn được lưu trực tiếp bên trong cấu trúc. Có thể bạn cần nhập chuỗi dài hơn mới quan sát được tính bất biến của con trỏ `data`.
+> Do `std::string` có tối ưu hóa chuỗi nhỏ (small string optimization, SSO), các chuỗi ngắn được lưu trực tiếp bên trong đối tượng. Có thể bạn cần nhập chuỗi dài hơn mới quan sát rõ việc vùng dữ liệu được chuyển giao khi di chuyển.
 
 ## Loại giá trị trong C++17
 
@@ -172,7 +172,7 @@ C++17 tiếp tục đơn giản hóa loại giá trị:
 
 C++11 đã mở rộng loại bỏ sao chép sang cả di chuyển; trong đoạn mã dưới đây, `urvo` sẽ không có thao tác di chuyển nếu trình biên dịch bật RVO.
 
-C++17 yêu cầu giá trị thuần phải không nhất thiết phải được hiện thực hóa, mà được khởi tạo trực tiếp vào vùng lưu trữ của đích cuối cùng; trước khi khởi tạo, đối tượng còn chưa tồn tại. Vì vậy trong C++17, ta không còn bước trả về đó nữa, và cũng không cần phụ thuộc vào RVO. Cũng có thể hiểu là URVO (RVO không tên, unnamed RVO) đã trở thành bắt buộc, nhưng NRVO (RVO có tên, named RVO) thì vẫn không bắt buộc.
+C++17 yêu cầu giá trị thuần phải không nhất thiết phải được hiện thực hóa thành đối tượng tạm riêng, mà được khởi tạo trực tiếp vào vùng lưu trữ của đích cuối cùng; trước khi khởi tạo, đối tượng tạm đó còn chưa tồn tại. Vì vậy trong C++17, ta không còn bước tạo rồi trả về một đối tượng tạm riêng, và cũng không cần phụ thuộc vào RVO cho trường hợp này. Cũng có thể hiểu là URVO (RVO không tên, unnamed RVO) đã trở thành bắt buộc, nhưng NRVO (RVO có tên, named RVO) thì vẫn không bắt buộc.
 
 ```cpp
 std::string urvo() { return std::string("123"); }
@@ -190,7 +190,7 @@ int main() {
 }
 ```
 
-Đồng thời, C++17 đưa vào cơ chế hiện thực hóa đối tượng tạm: khi ta cần truy cập biến thành viên, gọi hàm thành viên, hoặc gặp các tình huống khác cần giá trị tổng quát phía trái, giá trị thuần phải có thể được chuyển ngầm định thành giá trị sắp hết hạn.
+Đồng thời, C++17 đưa vào cơ chế hiện thực hóa đối tượng tạm: khi ta cần truy cập biến thành viên, gọi hàm thành viên, hoặc gặp các tình huống khác cần một giá trị trái tổng quát (glvalue), giá trị thuần phải có thể được chuyển ngầm định thành giá trị sắp hết hạn.
 
 <span id="các-hiểu-lầm-thường-gặp"></span>
 
@@ -198,8 +198,8 @@ int main() {
 
 Trong ví dụ dưới đây:
 
--   Trả về `std::move(x)` trong `f1` là thừa; nó không đem lại cải thiện hiệu năng, ngược lại còn cản trở trình biên dịch thực hiện tối ưu NRVO.
--   Trả về `std::move(x)` trong `f2` là nguy hiểm; hàm trả về một tham chiếu phải trị trỏ tới biến cục bộ `s` đã bị hủy, gây ra vấn đề tham chiếu treo.
+-   Trả về `std::move(s)` trong `f1` là thừa; nó không đem lại cải thiện hiệu năng, ngược lại còn cản trở trình biên dịch thực hiện tối ưu NRVO.
+-   Trả về `std::move(s)` trong `f2` là nguy hiểm; hàm trả về một tham chiếu phải trị gắn với biến cục bộ `s` đã bị hủy, gây ra vấn đề tham chiếu treo.
 
 ```cpp
 std::string f1() {
