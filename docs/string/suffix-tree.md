@@ -24,7 +24,7 @@ Trong cây hậu tố và cây hậu tố ẩn, mỗi cạnh tương ứng với
 
 Hình dưới đây, từ trái sang phải, lần lượt là trie hậu tố, cây hậu tố và cây hậu tố ẩn được xây dựng từ chuỗi mẹ $\texttt{cabab}$.
 
-![suffix-tree\_cabab1.png](./images/suffix-tree1.png)
+![Trie hậu tố, cây hậu tố và cây hậu tố ẩn của chuỗi cabab](./images/suffix-tree1.png)
 
 Xét việc chèn từng hậu tố của $S$ vào trie hậu tố. Từ lần chèn thứ hai trở đi, mỗi lần nhiều nhất chỉ thêm một nút có nhiều hơn một con và một nút hậu tố, nên số nút trong cây hậu tố nhiều nhất là $2n$, rất tốt.
 
@@ -87,29 +87,29 @@ Ban đầu tạo một nút gốc, gọi là nút số $0$. Đồng thời, vớ
 
 Đầu tiên chèn ký tự $\texttt a$, trực tiếp tạo từ nút $0$ một cạnh được gắn nhãn $[1,\infty]$, trỏ đến một nút mới. Ở đây $\infty$ là một giá trị rất lớn, có thể hiểu là cuối chuỗi; nhờ vậy khi chèn ký tự mới, cạnh này tự động chứa thêm ký tự mới.
 
-![suffix-tree\_a.webp](./images/suffix-tree2.webp)
+![Cây hậu tố sau khi chèn ký tự a](./images/suffix-tree2.webp)
 
 Tiếp theo chèn ký tự $\texttt b$, cũng tạo từ nút $0$ một cạnh được gắn nhãn $[2,\infty]$. Lưu ý rằng ý nghĩa của cạnh $[1,\infty]$ đã tạo trước đó tự động thay đổi: khi cuối chuỗi thay đổi, chuỗi mà nó biểu diễn chuyển từ $\texttt a$ thành $\texttt {ab}$. Điều này đúng, vì mọi hậu tố trước đó đều đã xuất hiện trong cây dưới dạng nút lá; ta chỉ cần chèn ký tự hiện tại vào cuối mọi nút lá.
 
-![suffix-tree\_ab.webp](./images/suffix-tree3.webp)
+![Cây hậu tố sau khi chèn chuỗi ab](./images/suffix-tree3.webp)
 
 Tiếp theo, ta lại chèn một ký tự $\texttt b$. Nhưng $\texttt b$ đã là một chuỗi con của chuỗi đã chèn trước đó, nên cây hiện có đã chứa $\texttt b$. Lúc này ta không làm gì, và ghi lại một $k$ sao cho $S[k,m]$ là hậu tố ẩn dài nhất hiện tại.
 
-![suffix-tree\_abb.webp](./images/suffix-tree4.webp)
+![Cây hậu tố sau khi chèn chuỗi abb](./images/suffix-tree4.webp)
 
 Tiếp theo ta chèn thêm một $\texttt b$. Vì ký tự $\texttt b$ trước đó chưa chèn thành công, lúc này $k=3$, biểu thị hậu tố cần chèn là $\texttt {bb}$. Ta tìm $\texttt {bb}$ từ gốc xuống và thấy nó cũng đã nằm trong cây. Tương tự, ta vẫn không làm gì.
 
-![suffix-tree\_abbb.webp](./images/suffix-tree5.webp)
+![Cây hậu tố sau khi chèn chuỗi abbb](./images/suffix-tree5.webp)
 
 Lưu ý rằng ta không xét các hậu tố sau $k$. Vì nếu $S[k,m]$ là một hậu tố ẩn, thì với $l>k$, $S[l,m]$ đều là hậu tố ẩn. Do $S[k,m]$ là hậu tố ẩn, tồn tại ký tự $c$ sao cho $S[k, m] + c$ là chuỗi con của $S$, do đó $S [ l, m] + c$ cũng là chuỗi con của $S$. Theo định nghĩa của cây hậu tố ẩn, $S[ l, m]$ cũng không xuất hiện dưới dạng nút lá.
 
 Tiếp theo chèn $\texttt c$. Lúc này $k=3$, vì vậy ta cần tìm $\texttt {bbc}$ từ gốc xuống và thấy nó không có trong cây. Ta cần tạo một cạnh đi ra nhãn $[5,\infty]$ tại nút biểu diễn $\texttt {bb}$. Nhưng phát hiện nút này thực ra không tồn tại, mà nằm bên trong một cạnh; vì vậy cần tách cạnh này, tạo một nút mới, rồi tại nút vừa tạo kéo ra cạnh cần tạo. Lần này chèn thành công, đặt $k\to k+1$, vì $S[k,m]$ không còn là hậu tố ẩn.
 
-![suffix-tree\_abbbc1.webp](./images/suffix-tree6.webp)
+![Tách cạnh khi chèn chuỗi abbbc](./images/suffix-tree6.webp)
 
 Tiếp theo, vì $k$ đã thay đổi, ta lặp lại quá trình này cho đến khi lại xuất hiện hậu tố ẩn, hoặc $k>m$ (trong ví dụ này là trường hợp sau).
 
-![suffix-tree\_abbbc2.webp](./images/suffix-tree7.webp)
+![Cây hậu tố sau khi hoàn tất chèn chuỗi abbbc](./images/suffix-tree7.webp)
 
 Quá trình xây dựng kết thúc.
 
