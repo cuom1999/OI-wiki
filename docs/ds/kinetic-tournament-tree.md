@@ -16,14 +16,13 @@ Cần duy trì các thao tác sau:
 
 Để tiện trình bày, giả sử mọi hàm đều khác nhau đôi một.
 
-Bản chất của phép tịnh tiến sang trái trên một đoạn các hàm bậc nhất là
-$b_i \leftarrow b_i+k_i\cdot \delta$:
-với hằng số tự do $b_i$, cộng thêm hệ số góc $k_i$ nhân với lượng tịnh tiến theo hoành độ $\delta$.
-Thao tác này tương đương với kiểu "cộng đoạn có trọng số theo hệ số vị trí"
-thường gặp trong nhiều bài toán cấu trúc dữ liệu:
-với mỗi chỉ số $i$ trong đoạn $[l, r]$,
-cộng vào giá trị của nó một số cố định $\delta$ nhân với hệ số riêng $k_i$ của vị trí đó.
-Vì vậy, về bản chất, tịnh tiến đoạn các hàm bậc nhất chính là phép cộng đoạn có trọng số theo hệ số vị trí.
+Bản chất của phép tịnh tiến sang trái trên một đoạn các hàm bậc nhất là $b_i \leftarrow b_i+k_i\cdot \delta$: với hằng
+số tự do $b_i$, cộng thêm hệ số góc $k_i$ nhân với lượng tịnh tiến theo hoành độ $\delta$.
+
+Thao tác này tương đương với kiểu "cộng đoạn có trọng số theo hệ số vị trí" thường gặp trong nhiều bài toán cấu trúc dữ
+liệu: với mỗi chỉ số $i$ trong đoạn $[l, r]$, cộng vào giá trị của nó một số cố định $\delta$ nhân với hệ số riêng $k_i$
+của vị trí đó. Vì vậy, về bản chất, tịnh tiến đoạn các hàm bậc nhất chính là phép cộng đoạn có trọng số theo hệ số vị
+trí.
 
 Để thể hiện cấu trúc chia để trị nhị phân đặc trưng của KTT,
 phần này bắt đầu trực tiếp từ phép tịnh tiến đoạn.
@@ -31,8 +30,8 @@ phần này bắt đầu trực tiếp từ phép tịnh tiến đoạn.
 <span id="cấu-trúc-dữ-liệu-động-học"></span>
 ## Cấu trúc dữ liệu động học
 
-Cấu trúc dữ liệu động học (Kinetic Data Structures, viết tắt là KDS)
-dùng để duy trì các thuộc tính của một hệ đối tượng hình học trong quá trình chuyển động liên tục.
+Cấu trúc dữ liệu động học (Kinetic Data Structures, viết tắt là KDS) dùng để duy trì các thuộc tính của một hệ đối tượng
+hình học trong quá trình chuyển động liên tục.
 
 ### Hàng đợi sự kiện
 
@@ -46,8 +45,8 @@ nguyên nhân làm thay đổi kế hoạch chuyển động được gọi là 
 Hàng đợi sự kiện sẽ đưa ra các sự kiện theo thứ tự thời gian.
 
 Một điểm then chốt của KDS là cần có các sự kiện dễ duy trì.
-Nói cách khác, kiểu sự kiện trong hàng đợi sự kiện phải tương ứng với những thay đổi tổ hợp có thể xảy ra,
-và mỗi thay đổi chỉ liên quan đến một số lượng hằng số, thường là khá ít, các đối tượng.
+Nói cách khác, kiểu sự kiện trong hàng đợi sự kiện phải tương ứng với những thay đổi tổ hợp có thể xảy ra, và mỗi thay
+đổi chỉ liên quan đến một số lượng hằng số, thường là khá ít, các đối tượng.
 Ví dụ, trong phần duy trì của bài toán này,
 một kiểu sự kiện được dùng là "quan hệ lớn nhỏ giữa hàm $f_i(0)$ và hàm $f_{j}(0)$ thay đổi".
 
@@ -65,9 +64,10 @@ Ví dụ: $[f_i(0) > f_j(0)]$.
 
 ### Giới thiệu
 
-Cây đấu loại động học (Kinetic Tournament Tree, viết tắt là KTT) thuộc nhóm cấu trúc dữ liệu động học,
-xuất hiện lần đầu trong bài báo [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889) năm 1999,
-dùng để duy trì dữ liệu biến đổi liên tục.
+Cây đấu loại động học (Kinetic Tournament Tree, viết tắt là KTT) thuộc nhóm cấu trúc dữ liệu động học. Cấu trúc này xuất
+hiện lần đầu trong bài báo [Data Structures for Mobile
+Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889) năm 1999, dùng để duy trì dữ liệu biến đổi
+liên tục.
 Tổng quát hơn, mọi cấu trúc áp dụng chiến lược động hóa sau đây đều có thể được gọi là cây đấu loại động học:
 
 -   Sinh chứng chỉ đúng đắn cho các thao tác then chốt trong thuật toán tĩnh (chẳng hạn phép so sánh),
@@ -75,24 +75,25 @@ Tổng quát hơn, mọi cấu trúc áp dụng chiến lược động hóa sau
     ghi lại thời điểm chứng chỉ đó có thể mất hiệu lực.
 -   Khi một chứng chỉ mất hiệu lực, cập nhật đầu ra của thuật toán và duy trì tập chứng chỉ một cách hiệu quả.
 
-Trong cộng đồng lập trình thi đấu, cấu trúc này trở nên phổ biến nhờ luận văn đội tuyển tập huấn quốc gia Trung Quốc năm 2020,
-"[Bàn về việc duy trì động giá trị cực trị của hàm số](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/IOI2020%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87%E9%9B%86%20%E9%9D%9E%E6%AD%A3%E5%BC%8F%E7%89%88.pdf)".
+Trong cộng đồng lập trình thi đấu, cấu trúc này trở nên phổ biến nhờ luận văn đội tuyển tập huấn quốc gia Trung Quốc
+năm 2020,
+"[Bàn về việc duy trì động giá trị cực trị của hàm
+số](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/IOI2020%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87%E9%9B%86%20%E9%9D%9E%E6%AD%A3%E5%BC%8F%E7%89%88.pdf)".
 KTT trong giới học thuật và KTT trong giới lập trình thi đấu khác nhau ở lĩnh vực ứng dụng và cách cài đặt,
 nên phần này giới thiệu KTT đã được tối ưu phần nào cho lập trình thi đấu.
 
 ### Cấu trúc cơ bản
 
-Trước hết, xét việc thiết kế một cấu trúc dữ liệu tương tự cây phân đoạn để duy trì giá trị lớn nhất tĩnh.
-Dựng cấu trúc của cây phân đoạn; với mỗi nút không phải lá,
-trọng số của nó là trọng số lớn hơn trong hai nút con.
-Sau $O(n)$ phép so sánh, trọng số ở gốc chính là giá trị lớn nhất toàn cục.
+Trước hết, xét việc thiết kế một cấu trúc dữ liệu tương tự cây phân đoạn để duy trì giá trị lớn nhất tĩnh. Dựng cấu trúc
+của cây phân đoạn; với mỗi nút không phải lá, trọng số của nó là trọng số lớn hơn trong hai nút con. Sau $O(n)$ phép so
+sánh, trọng số ở gốc chính là giá trị lớn nhất toàn cục.
 Bây giờ, các trọng số bắt đầu thay đổi.
 Miễn là KTT phát hiện được mỗi lần nguồn gốc của giá trị lớn nhất tại một nút trên cây thay đổi,
 có thể duy trì giá trị lớn nhất toàn cục.
 
-Để KTT phát hiện được mọi lần nguồn gốc của giá trị lớn nhất trên cây thay đổi,
-với một nút $x$ trên cây và hai hàm $f_L$, $f_R$ do con trái và con phải của nó cung cấp,
-định nghĩa chứng chỉ là "$f_L$ và $f_R$ giữ nguyên quan hệ lớn nhỏ".
+Để KTT phát hiện được mọi lần nguồn gốc của giá trị lớn nhất trên cây thay đổi, với một nút $x$ trên cây và hai hàm
+$f_L$, $f_R$ do con trái và con phải của nó cung cấp, định nghĩa chứng chỉ là "$f_L$ và $f_R$ giữ nguyên quan hệ lớn
+nhỏ".
 Khi chứng chỉ mất hiệu lực,
 cần đi theo đường đi trên cây đến nút có chứng chỉ vừa mất hiệu lực để cập nhật thông tin của nó.
 Để duy trì thời điểm mất hiệu lực của mỗi chứng chỉ,
@@ -102,8 +103,8 @@ Khi đó bài toán trở thành tìm hoành độ giao điểm của hai hàm t
 Với mỗi nút trên cây, duy trì hàm đạt giá trị lớn nhất tại $0$,
 thời điểm chứng chỉ hiện tại mất hiệu lực,
 và thời điểm mất hiệu lực sớm nhất của một chứng chỉ trong toàn bộ cây con.
-Nhờ vậy, với thời điểm mất hiệu lực của mỗi chứng chỉ,
-có thể tìm thấy nó ở đúng thời điểm đó và cập nhật thông tin tương ứng.
+Nhờ vậy, với thời điểm mất hiệu lực của mỗi chứng chỉ, có thể tìm thấy nó ở đúng thời điểm đó và cập nhật thông tin
+tương ứng.
 Những thông tin này dùng để ghi lại chính các hàm.
 Tiếp theo xét việc duy trì thao tác tịnh tiến đoạn;
 vì thao tác này có thể cộng dồn đơn giản, có thể dùng đánh dấu lười để xử lý.
@@ -135,7 +136,8 @@ Từ đó thu được một cách cài đặt đơn giản.
 
 Chứng minh độ phức tạp thời gian của KTT cần dùng phân tích thế năng.
 
-Gọi $d(x)$ là độ sâu của nút $x$ trên cây phân đoạn, với độ sâu của gốc bằng $1$. Định nghĩa thế năng của nút $x$ trên cây phân đoạn là:
+Gọi $d(x)$ là độ sâu của nút $x$ trên cây phân đoạn, với độ sâu của gốc bằng $1$. Định nghĩa thế năng của nút $x$ trên
+cây phân đoạn là:
 
 $$
 \alpha(x) = \begin{cases}
@@ -294,6 +296,9 @@ không phụ thuộc vào bậc đa thức,
     nên tham khảo công thức tổng quát của $\lambda_{s}(n)$ ứng với dãy Davenport-Schinzel
     để thu được cận trên chặt hơn.
 
--   P. K. Agarwal, S. Har-Peled, and K. R. Varadarajan. Approximating extent measures of points. J. ACM, 51(4):606–635, July 2004.
--   J. Basch, L. J. Guibas, and J. Hershberger. Data structures for mobile data. Journal of Algorithms, 31(1):1–28, 1999.
--   G. Alexandron, H. Kaplan, and M. Sharir. Kinetic and dynamic data structures for convex hulls and upper envelopes. Computational Geometry, 36(2):144–158, 2007.
+-   P. K. Agarwal, S. Har-Peled, and K. R. Varadarajan. Approximating extent measures of points. J. ACM,
+    51(4):606-635, July 2004.
+-   J. Basch, L. J. Guibas, and J. Hershberger. Data structures for mobile data. Journal of Algorithms, 31(1):1-28,
+    1999.
+-   G. Alexandron, H. Kaplan, and M. Sharir. Kinetic and dynamic data structures for convex hulls and upper envelopes.
+    Computational Geometry, 36(2):144-158, 2007.
