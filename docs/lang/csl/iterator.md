@@ -6,7 +6,7 @@ niệm tương tự cũng tồn tại trong nhiều ngôn ngữ bậc cao khác,
 
 ## Cách dùng cơ bản
 
-Bộ lặp nghe có vẻ khó, nhưng bản thân bộ lặp có thể xem như một con trỏ dữ
+Bộ lặp nghe có vẻ khó, nhưng về bản chất có thể xem như một con trỏ dữ
 liệu. Bộ lặp chủ yếu hỗ trợ hai toán tử: tự tăng (`++`) và giải tham chiếu
 (toán tử một ngôi `*`). Trong đó, tự tăng dùng để di chuyển bộ lặp, còn giải
 tham chiếu dùng để lấy hoặc sửa phần tử mà nó trỏ tới.
@@ -29,7 +29,7 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 ```
 
 ???+ tip "Dùng `auto` trong thi đấu"
-    Phần lớn thí sinh đều thích dùng `auto` thay cho khai báo bộ lặp rườm rà.
+    Phần lớn thí sinh thường dùng `auto` thay cho khai báo bộ lặp rườm rà.
     Theo [bổ sung về giới hạn sử dụng ngôn ngữ lập trình trong các hoạt động
     thuộc hệ thống NOI](https://www.noi.cn/xw/2021-09-01/735729.shtml) công bố
     tháng 9 năm 2021, các cuộc thi thuộc hệ thống NOI (bao gồm CSP J/S) sẽ dùng
@@ -43,15 +43,15 @@ lần lượt gồm các loại sau:
 -   `InputIterator` (bộ lặp nhập): chỉ yêu cầu hỗ trợ sao chép, tự tăng và truy
     cập bằng giải tham chiếu.
 -   `OutputIterator` (bộ lặp xuất): chỉ yêu cầu hỗ trợ sao chép, tự tăng và gán
-    thông qua giải tham chiếu.
--   `ForwardIterator` (bộ lặp tiến): trên cơ sở `InputIterator`, hỗ trợ duyệt
+    qua toán tử giải tham chiếu.
+-   `ForwardIterator` (bộ lặp tiến): dựa trên `InputIterator`, hỗ trợ duyệt
     nhiều lần và bảo đảm kết quả của nhiều lần giải tham chiếu là nhất quán.
--   `BidirectionalIterator` (bộ lặp hai chiều): trên cơ sở `ForwardIterator`, hỗ
+-   `BidirectionalIterator` (bộ lặp hai chiều): dựa trên `ForwardIterator`, hỗ
     trợ tự giảm, tức truy cập ngược.
--   `RandomAccessIterator` (bộ lặp truy cập ngẫu nhiên): trên cơ sở
+-   `RandomAccessIterator` (bộ lặp truy cập ngẫu nhiên): dựa trên
     `BidirectionalIterator`, hỗ trợ phép cộng trừ và phép so sánh, tức truy cập
     ngẫu nhiên.
--   `ContiguousIterator` (bộ lặp liên tục): trên cơ sở `RandomAccessIterator`,
+-   `ContiguousIterator` (bộ lặp liên tục): dựa trên `RandomAccessIterator`,
     yêu cầu nếu `a + n` có thể giải tham chiếu thì biểu thức `*(a + n)` tương
     đương `*(std::address_of(*a) + n)`, tức các phần tử được lưu trữ liên tục;
     ở đây `a` là bộ lặp liên tục và `n` là giá trị số nguyên.
@@ -62,18 +62,18 @@ lần lượt gồm các loại sau:
     "Nhập" nghĩa là "có thể lấy dữ liệu nhập từ bộ lặp", còn "xuất" nghĩa là "có
     thể xuất dữ liệu vào bộ lặp".
 
-    Chủ thể thực hiện "nhập" và "xuất" là các phần khác của chương trình, không
-    phải bản thân bộ lặp.
+    Phần thực hiện thao tác "nhập" và "xuất" là các phần khác của chương
+    trình, không phải bản thân bộ lặp.
 
-Các phân loại bộ lặp này không loại trừ lẫn nhau. Trên thực tế, ngoài bộ lặp
+Các phân loại bộ lặp này không loại trừ lẫn nhau. Trong thực tế, ngoài bộ lặp
 xuất, các bộ lặp đứng sau trong danh sách đều đáp ứng yêu cầu của bộ lặp đứng
 trước. Ví dụ, nơi yêu cầu dùng bộ lặp tiến cũng có thể dùng bộ lặp hai chiều.
 Bắt đầu từ bộ lặp tiến, nếu những bộ lặp này cũng hỗ trợ thao tác ghi của bộ lặp
-xuất, chúng được gọi là bộ lặp khả biến. Từ đó có thể sinh ra các loại như
+xuất, chúng là bộ lặp khả biến. Từ đó có thể sinh ra các loại như
 "bộ lặp truy cập ngẫu nhiên khả biến" (`mutable random access iterator`).
 
-Các [bộ chứa STL](./container.md) khác nhau hỗ trợ các loại bộ lặp khác
-nhau; khi dùng cần chú ý.
+Mỗi [bộ chứa STL](./container.md) hỗ trợ những loại bộ lặp khác nhau, nên cần
+chú ý khi sử dụng.
 
 Con trỏ mảng thỏa mãn mọi yêu cầu của bộ lặp liên tục (hoặc bộ lặp truy cập
 ngẫu nhiên với C++14 trở về trước), nên có thể dùng như bộ lặp liên tục.
@@ -103,4 +103,4 @@ trỏ đến cuối bộ chứa ("cuối" không phải phần tử cuối, mà 
 ngay sau phần tử cuối; vị trí ngay trước "cuối" là phần tử cuối trong bộ chứa,
 còn bản thân nó không trỏ đến phần tử nào).
 
-Bạn có thể xem thêm cách dùng tại [thư viện bộ lặp trên cppreference.com](https://en.cppreference.com/w/cpp/iterator).
+Có thể xem thêm cách dùng tại [thư viện bộ lặp trên cppreference.com](https://en.cppreference.com/w/cpp/iterator).
