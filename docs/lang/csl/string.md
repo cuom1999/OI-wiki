@@ -8,7 +8,7 @@ không phải thư viện `<string.h>` của ngôn ngữ C); về bản chất n
 
 ## Vì sao nên dùng `string`
 
-Trong ngôn ngữ C, có các thao tác xử lý chuỗi, nhưng chỉ có thể hiện thực chuỗi
+Trong ngôn ngữ C, có các thao tác xử lý chuỗi, nhưng chỉ có thể cài đặt chuỗi
 bằng mảng ký tự. Còn `string` là một lớp đơn giản, dễ dùng và được sử dụng rộng
 rãi trong các cuộc thi OI. So với các bộ chứa STL khác, hằng số của `string`
 có thể xem là rất tốt, gần như không thua mảng ký tự.
@@ -39,14 +39,14 @@ std::string s;
 ### Chuyển sang mảng `char`
 
 Trong ngôn ngữ C cũng có nhiều hàm xử lý chuỗi, nhưng tham số của chúng đều là
-kiểu con trỏ `char`. Để tiện dùng, `string` có hai hàm thành viên có thể chuyển
-bản thân nó thành con trỏ `char`: `data()`/`c_str()` (hai hàm gần như giống nhau,
-nhưng tốt nhất dùng `c_str()`, vì `c_str()` bảo đảm cuối chuỗi có ký tự rỗng,
-còn `data()` thì không bảo đảm). Ví dụ:
+kiểu con trỏ `char`. Để tiện dùng, `string` có hai hàm thành viên trả về con trỏ
+đến dữ liệu ký tự bên trong: `data()`/`c_str()`. Từ C++11 trở đi, hai hàm này
+đều trả về vùng dữ liệu kết thúc bằng ký tự rỗng; nếu cần tương thích với chuẩn
+cũ hơn, hãy ưu tiên dùng `c_str()`. Ví dụ:
 
 ```cpp
 printf("%s", s);          // lỗi biên dịch
-printf("%s", s.data());   // biên dịch được, nhưng là hành vi không xác định
+printf("%s", s.data());   // biên dịch được từ C++11 trở đi
 printf("%s", s.c_str());  // chắc chắn xuất đúng
 ```
 
@@ -69,8 +69,8 @@ printf("độ dài của s là %zu", strlen(s.c_str()));
 
 ???+ warning "Cảnh báo"
     Kiểu trả về của ba hàm này (và hàm `find` sẽ nhắc tới bên dưới) đều là
-    `size_t` (`unsigned long`). Vì vậy, các giá trị trả về này không hỗ trợ so
-    sánh hoặc tính toán trực tiếp với số âm; nên ép kiểu khi cần.
+    `size_t` (một kiểu số nguyên không dấu). Vì vậy, các giá trị trả về này
+    không hỗ trợ so sánh hoặc tính toán trực tiếp với số âm; nên ép kiểu khi cần.
 
 ### Tìm vị trí xuất hiện đầu tiên của ký tự/chuỗi
 
@@ -85,11 +85,12 @@ Ví dụ:
 ```cpp
 string s = "OI Wiki", t = "OI", u = "i";
 int pos = 5;
-printf("ký tự I xuất hiện lần đầu ở vị trí %lu trong s\n", s.find('I'));
-printf("ký tự a xuất hiện lần đầu ở vị trí %lu trong s\n", s.find('a'));
-printf("ký tự a xuất hiện lần đầu ở vị trí %d trong s\n", s.find('a'));
-printf("chuỗi t xuất hiện lần đầu ở vị trí %lu trong s\n", s.find(t));
-printf("trong s, chuỗi u xuất hiện lần đầu từ vị trí pos ở vị trí %lu", s.find(u, pos));
+printf("ký tự I xuất hiện lần đầu ở vị trí %zu trong s\n", s.find('I'));
+printf("ký tự a xuất hiện lần đầu ở vị trí %zu trong s\n", s.find('a'));
+printf("ký tự a xuất hiện lần đầu ở vị trí %d trong s\n", (int)s.find('a'));
+printf("chuỗi t xuất hiện lần đầu ở vị trí %zu trong s\n", s.find(t));
+printf("trong s, chuỗi u xuất hiện lần đầu từ vị trí pos ở vị trí %zu",
+       s.find(u, pos));
 ```
 
 Kết quả:
@@ -97,7 +98,7 @@ Kết quả:
 ```text
 ký tự I xuất hiện lần đầu ở vị trí 1 trong s
 ký tự a xuất hiện lần đầu ở vị trí 18446744073709551615 trong s // tức size_t(-1), giá trị cụ thể phụ thuộc nền tảng.
-ký tự a xuất hiện lần đầu ở vị trí -1 trong s // ép sang kiểu int thì xuất bình thường -1
+ký tự a xuất hiện lần đầu ở vị trí -1 trong s // ép sang kiểu int thì nhận được -1
 chuỗi t xuất hiện lần đầu ở vị trí 0 trong s
 trong s, chuỗi u xuất hiện lần đầu từ vị trí pos ở vị trí 6
 ```
@@ -141,11 +142,14 @@ Ví dụ:
 string s = "OI Wiki", t = " Wiki";
 char u = '!';
 s.erase(2);
-printf("sau khi xóa mọi ký tự từ vị trí thứ ba của s, chuỗi thu được là %s\n", s.c_str());
+printf("sau khi xóa mọi ký tự từ vị trí thứ ba của s, chuỗi thu được là %s\n",
+       s.c_str());
 s.insert(2, t);
-printf("sau khi chèn chuỗi t vào vị trí thứ ba của s, chuỗi thu được là %s\n", s.c_str());
+printf("sau khi chèn chuỗi t vào vị trí thứ ba của s, chuỗi thu được là %s\n",
+       s.c_str());
 s.insert(7, 3, u);
-printf("sau khi chèn liên tiếp 3 lần ký tự u vào vị trí thứ tám của s, chuỗi thu được là %s",
+printf("sau khi chèn liên tiếp 3 lần ký tự u vào vị trí thứ tám của s, "
+       "chuỗi thu được là %s",
        s.c_str());
 ```
 
@@ -159,19 +163,22 @@ sau khi chèn liên tiếp 3 lần ký tự u vào vị trí thứ tám của s,
 
 ### Thay thế ký tự hoặc chuỗi
 
-`replace(pos, count, str)` và `replace(first, last, str)` là hai hàm thay thế thường
-gặp. Chúng lần lượt biểu thị thay chuỗi con gồm `count` ký tự bắt đầu từ `pos`
-bằng `str`, và thay chuỗi con bắt đầu từ `first` (bao gồm) đến `last` (không bao
-gồm) bằng `str`, trong đó `first` và `last` đều là bộ lặp.
+`replace(pos, count, str)` và `replace(first, last, str)` là hai hàm thay thế
+thường gặp. Chúng lần lượt biểu thị thay chuỗi con gồm `count` ký tự bắt đầu từ
+`pos` bằng `str`, và thay chuỗi con bắt đầu từ `first` (bao gồm) đến `last`
+(không bao gồm) bằng `str`, trong đó `first` và `last` đều là bộ lặp.
 
 Ví dụ:
 
 ```cpp
 string s = "OI Wiki";
 s.replace(2, 5, "");
-printf("sau khi thay vị trí thứ 3~7 của s bằng chuỗi rỗng, chuỗi thu được là %s\n", s.c_str());
+printf("sau khi thay vị trí thứ 3~7 của s bằng chuỗi rỗng, "
+       "chuỗi thu được là %s\n",
+       s.c_str());
 s.replace(s.begin(), s.begin() + 2, "NOI");
-printf("sau khi thay hai vị trí đầu của s bằng NOI, chuỗi thu được là %s", s.c_str());
+printf("sau khi thay hai vị trí đầu của s bằng NOI, chuỗi thu được là %s",
+       s.c_str());
 ```
 
 Kết quả:
