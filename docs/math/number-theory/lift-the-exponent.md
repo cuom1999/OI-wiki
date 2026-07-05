@@ -1,4 +1,4 @@
-<span id="&#x5185;&#x5BB9;"></span>
+<span id="nội-dung"></span>
 ## Nội dung
 
 Bổ đề nâng số mũ (Lift the Exponent, LTE) là một định lý khá thường dùng trong số học sơ cấp.
@@ -9,7 +9,7 @@ Vì nội dung của bổ đề nâng số mũ tương đối dài, ta chia thà
 
 Trong phần dưới đây, giả sử $p$ là số nguyên tố, $x,y$ là các số nguyên thỏa mãn $p\nmid x$ và $p\nmid y$, còn $n$ là số nguyên dương.
 
-<span id="&#x7B2C;&#x4E00;&#x90E8;&#x5206;"></span>
+<span id="phần-thứ-nhất"></span>
 ### Phần thứ nhất
 
 Với mọi số nguyên tố $p$ và số nguyên $n$ thỏa mãn $(n,p)=1$:
@@ -37,7 +37,7 @@ Với mọi số nguyên tố $p$ và số nguyên $n$ thỏa mãn $(n,p)=1$:
     
     Trường hợp $p\mid x+y$ được chứng minh tương tự.
 
-<span id="&#x7B2C;&#x4E8C;&#x90E8;&#x5206;"></span>
+<span id="phần-thứ-hai"></span>
 ### Phần thứ hai
 
 Nếu $p$ là số nguyên tố lẻ:
@@ -81,7 +81,7 @@ Nếu $p$ là số nguyên tố lẻ:
     
     Trường hợp $p\mid x+y$ được chứng minh tương tự.
 
-<span id="&#x7B2C;&#x4E09;&#x90E8;&#x5206;"></span>
+<span id="phần-thứ-ba"></span>
 ### Phần thứ ba
 
 Nếu $p=2$ và $p\mid x-y$:
@@ -125,7 +125,7 @@ Nếu $4\mid x-y$, thì:
     
     Vậy mệnh đề được chứng minh.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 1.  [Lifting-the-exponent lemma - Wikipedia](https://en.wikipedia.org/wiki/Lifting-the-exponent_lemma)
