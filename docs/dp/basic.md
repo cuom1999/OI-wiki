@@ -4,7 +4,7 @@ Trang này giới thiệu các tư tưởng cơ bản của quy hoạch động,
 
 Các trang khác trong phần này sẽ trình bày cách xây dựng mô hình quy hoạch động cho nhiều dạng bài khác nhau, cùng một số kỹ thuật tối ưu quy hoạch động.
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 ???+ note "[\[IOI1994\] Tam giác số](https://www.luogu.com.cn/problem/P1216)"
@@ -34,12 +34,12 @@ Lúc này vẫn còn một vấn đề: giữa các bài toán con có rất nhi
 
 Trên đây là một số ý tưởng cơ bản của quy hoạch động. Phần dưới sẽ giới thiệu tư tưởng quy hoạch động một cách hệ thống hơn.
 
-<span id="&#x52A8;&#x6001;&#x89C4;&#x5212;&#x539F;&#x7406;"></span>
+<span id="nguyên-lý-quy-hoạch-động"></span>
 ## Nguyên lý quy hoạch động
 
 Một bài toán có thể giải bằng quy hoạch động cần thỏa mãn ba điều kiện: cấu trúc con tối ưu, tính không hậu hiệu và các bài toán con chồng lặp.
 
-<span id="&#x6700;&#x4F18;&#x5B50;&#x7ED3;&#x6784;"></span>
+<span id="cấu-trúc-con-tối-ưu"></span>
 ### Cấu trúc con tối ưu
 
 Bài toán có cấu trúc con tối ưu cũng có thể phù hợp để giải bằng phương pháp tham lam.
@@ -60,17 +60,17 @@ Sự khác nhau giữa các cấu trúc con tối ưu thể hiện ở hai khía
 
 Trong đồ thị bài toán con, mỗi đỉnh tương ứng với một bài toán con, còn các lựa chọn cần xét tương ứng với các cạnh nối tới đỉnh bài toán con.
 
-<span id="&#x65E0;&#x540E;&#x6548;&#x6027;"></span>
+<span id="tính-không-hậu-hiệu"></span>
 ### Tính không hậu hiệu
 
 Các bài toán con đã được giải sẽ không còn bị ảnh hưởng bởi những quyết định về sau.
 
-<span id="&#x5B50;&#x95EE;&#x9898;&#x91CD;&#x53E0;"></span>
+<span id="bài-toán-con-chồng-lặp"></span>
 ### Bài toán con chồng lặp
 
 Nếu có nhiều bài toán con chồng lặp, ta có thể dùng bộ nhớ để lưu lời giải của chúng, tránh giải lại cùng một bài toán con và nhờ đó nâng cao hiệu quả.
 
-<span id="&#x57FA;&#x672C;&#x601D;&#x8DEF;"></span>
+<span id="ý-tưởng-cơ-bản"></span>
 ### Ý tưởng cơ bản
 
 Với một bài toán có thể giải bằng quy hoạch động, thông thường ta xử lý theo các bước sau:
@@ -81,7 +81,7 @@ Với một bài toán có thể giải bằng quy hoạch động, thông thư�
 
 Nếu hiểu theo góc nhìn đồ thị, ta xây dựng một [đồ thị có hướng không chu trình](../graph/dag.md), trong đó mỗi trạng thái tương ứng với một nút trên đồ thị, còn quyết định tương ứng với cạnh nối giữa các nút. Khi đó bài toán được chuyển thành bài toán tìm đường đi dài nhất (ngắn nhất) trên DAG (xem: [DP trên DAG](./dag.md)).
 
-<span id="&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217;"></span>
+<span id="dãy-con-chung-dài-nhất"></span>
 ## Dãy con chung dài nhất
 
 ???+ note "Bài toán dãy con chung dài nhất"
@@ -114,13 +114,13 @@ Bạn có thể tham khảo [trang tương tác LCS trên SourceForge](http://lc
 
 Ngoài ra, bài này còn có thuật toán $O\left(\dfrac{nm}{w}\right)$[^ref1]. Bạn đọc quan tâm có thể tự tìm hiểu thêm.
 
-<span id="&#x6700;&#x957F;&#x4E0D;&#x4E0B;&#x964D;&#x5B50;&#x5E8F;&#x5217;"></span>
+<span id="dãy-con-không-giảm-dài-nhất"></span>
 ## Dãy con không giảm dài nhất
 
 ???+ note "Bài toán dãy con không giảm dài nhất"
     Cho một dãy $a$ độ dài $n$ ($n \leq 5000$). Hãy tìm một dãy con dài nhất của $a$ sao cho mỗi phần tử phía sau trong dãy con không nhỏ hơn phần tử ngay trước nó.
 
-<span id="&#x7B97;&#x6CD5;&#x4E00;"></span>
+<span id="thuật-toán-1"></span>
 ### Thuật toán 1
 
 Gọi $f(i)$ là độ dài dãy con không giảm dài nhất kết thúc tại $a_i$, khi đó đáp án cần tìm là $\max_{1 \leq i \leq n} f(i)$.
@@ -140,7 +140,7 @@ Khi tính $f(i)$, ta thử nối $a_i$ vào sau các dãy con không giảm dài
 
 Dễ thấy độ phức tạp thời gian của thuật toán này là $O(n^2)$.
 
-<span id="&#x7B97;&#x6CD5;&#x4E8C;"></span>
+<span id="thuật-toán-2"></span>
 ### Thuật toán 2
 
 Khi phạm vi của $n$ tăng lên $n \leq 10^5$, cách làm thứ nhất không còn đủ nhanh. Dưới đây là một cách làm $O(n \log n)$.
@@ -182,7 +182,7 @@ Nếu còn cần xuất ra một dãy con không giảm dài nhất cụ thể, 
     
     Khi cài đặt (lấy C++ làm ví dụ), cần đổi hàm `upper_bound` thành `lower_bound`.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Giải thích chi tiết thuật toán $n\log n$ cho dãy con không giảm dài nhất - lvmememe - cnblogs](https://www.cnblogs.com/itlqs/p/5743114.html)
