@@ -1,8 +1,8 @@
 author: hsfzLZH1, Ir1d, JosephusW
 
-k-D Tree (KDT, k-Dimension Tree) là một cấu trúc dữ liệu có thể **xử lý hiệu quả thông tin trong không gian k chiều**.
+k-D Tree (KDT, k-Dimension Tree) là một cấu trúc dữ liệu dùng để **xử lý hiệu quả thông tin trong không gian k chiều**.
 
-Khi số nút $n$ lớn hơn rất nhiều so với $2^k$, hiệu quả thời gian khi áp dụng k-D Tree là rất tốt.
+Khi số nút $n$ lớn hơn rất nhiều so với $2^k$, k-D Tree thường có hiệu quả thời gian tốt.
 
 Trong các bài toán thi lập trình, thường có $k=2$.
 Khi phân tích độ phức tạp thời gian trên trang này, xem $k$ là hằng số.
@@ -15,7 +15,7 @@ Các điểm trong mỗi cây con đều nằm trong một siêu hình hộp ch�
 và tất cả các điểm bên trong siêu hình hộp chữ nhật đó cũng đều nằm trong cây con này.
 
 Giả sử đã biết tọa độ của $n$ điểm phân biệt trong không gian k chiều.
-Để xây chúng thành một k-D Tree, thực hiện như sau:
+Để xây các điểm này thành một k-D Tree, thực hiện như sau:
 
 1.  Nếu siêu hình hộp chữ nhật hiện tại chỉ có một điểm, trả về điểm đó.
 
@@ -40,18 +40,18 @@ Hình thái k-D Tree được xây ra có thể như sau:
 Trong đó, tọa độ trên mỗi nút của cây là tọa độ của điểm chia được chọn;
 ký hiệu $x$ hoặc $y$ bên cạnh nút không phải lá là chiều cắt được chọn.
 
-Độ phức tạp của cách làm này chưa được bảo đảm. Với bước $2,3$, có hai tối ưu:
+Độ phức tạp của cách làm này chưa được bảo đảm. Với bước $2,3$, có hai tối ưu thường dùng:
 
 1.  Luân phiên chọn trong $k$ chiều, để bảo đảm trong bất kỳ $k$ tầng liên tiếp nào thì mỗi chiều đều được dùng để cắt.
 2.  Mỗi lần chọn điểm cắt trên một chiều, chọn **trung vị** trên chiều đó,
     nhờ đó kích thước hai cây con trái và phải sau mỗi lần chia sẽ cân bằng nhất có thể.
 
-Có thể thấy sau khi dùng tối ưu $2$, chiều cao của k-D Tree được xây ra nhiều nhất là $\log n+O(1)$.
+Sau khi dùng tối ưu $2$, chiều cao của k-D Tree được xây ra nhiều nhất là $\log n+O(1)$.
 
-Lúc này, nút thắt về độ phức tạp thời gian khi xây k-D Tree nằm ở việc nhanh chóng chọn ra trung vị trên một chiều,
+Lúc này, điểm nghẽn về độ phức tạp thời gian khi xây k-D Tree nằm ở việc nhanh chóng chọn ra trung vị trên một chiều,
 rồi đặt các phần tử có giá trị trên chiều đó nhỏ hơn trung vị sang bên trái trung vị, các phần tử còn lại sang bên phải.
 Nếu mỗi lần đều dùng hàm `sort` để sắp xếp theo chiều đó, độ phức tạp thời gian là $O(n\log^2 n)$.
-Thực ra, việc tìm trung vị trong $n$ phần tử một lần và đặt trung vị vào đúng vị trí sau khi sắp xếp có thể đạt độ phức tạp $O(n)$.
+Thực ra, có thể tìm trung vị trong $n$ phần tử và đặt trung vị vào đúng vị trí sau khi sắp xếp với độ phức tạp $O(n)$.
 
 Nhắc lại ý tưởng của quicksort.
 Mỗi lần chọn ra một số, đặt các số nhỏ hơn nó sang bên trái, các số lớn hơn nó sang bên phải,
@@ -64,7 +64,7 @@ Có thể chứng minh độ phức tạp kỳ vọng khi đó là $O(n)$.
 Trong thư viện `algorithm`, hàm `nth_element()` hiện thực chức năng tương tự.
 Để tìm giá trị nằm ở vị trí `s[mid]` sau khi các giá trị giữa `s[l]` và `s[r]` được sắp xếp theo quy tắc `cmp`,
 đồng thời bảo đảm các giá trị bên trái `s[mid]` nhỏ hơn `s[mid]` và các giá trị bên phải lớn hơn `s[mid]`,
-chỉ cần viết `nth_element(s+l,s+mid,s+r+1,cmp)`.
+chỉ cần viết `nth_element(s + l, s + mid, s + r + 1, cmp)`.
 
 Nhờ ý tưởng này, độ phức tạp thời gian để xây k-D Tree là $O(n\log n)$.
 
@@ -105,23 +105,23 @@ Khi truy vấn hình chữ nhật $R$, chia các nút trên k-D Tree thành ba l
 2.  Bị $R$ chứa hoàn toàn.
 3.  Bị $R$ chứa một phần.
 
-Rõ ràng độ phức tạp của một truy vấn là số nút loại $3$.
+Độ phức tạp của một truy vấn phụ thuộc vào số nút loại $3$.
 Chú ý rằng hình chữ nhật của các nút loại ba hoặc chứa hoàn toàn $R$, hoặc không chứa lẫn nhau.
-Trường hợp trước hiển nhiên chỉ có $O(h)=O(\log n)$ nút,
+Trường hợp trước chỉ có $O(h)=O(\log n)$ nút,
 nên bây giờ phân tích số lượng của trường hợp sau.
 
 Trước hết, có thể dịch tất cả các cạnh của hình chữ nhật đi một lượng $\epsilon$,
 sao cho hình chữ nhật truy vấn không đi qua bất kỳ điểm nào đã có.
-Việc này hiển nhiên không ảnh hưởng đến tập điểm mà truy vấn hình chữ nhật bao phủ.
+Việc này không ảnh hưởng đến tập điểm mà truy vấn hình chữ nhật bao phủ.
 
-Chú ý rằng với hình chữ nhật tương ứng với các nút loại $3$ không chứa lẫn nhau,
+Với hình chữ nhật tương ứng với các nút loại $3$ không chứa lẫn nhau,
 chắc chắn có một cạnh của $R$ đi xuyên qua nó.
 Vì vậy chỉ cần tính số hình chữ nhật mà mỗi cạnh của $R$ đi qua,
 tức một đoạn thẳng bất kỳ nhiều nhất đi qua bao nhiêu hình chữ nhật tương ứng với các nút.
 
 Xét một nút $u$.
 Nó có bốn cháu, và từ nó đến mỗi cháu đều đã chia một lần trên từng chiều trong hai chiều.
-Quan sát thấy rằng nếu dùng cách này để chia một hình chữ nhật thành bốn hình chữ nhật con,
+Nếu dùng cách này để chia một hình chữ nhật thành bốn hình chữ nhật con,
 một đoạn thẳng song song với trục tọa độ nhiều nhất đi qua hai vùng.
 Nói cách khác, truy vấn xuất phát từ $u$ nhiều nhất đi xuống hai cháu mà vẫn còn điểm loại $3$.
 Nếu đoạn thẳng vừa khít trùng với biên chia thì chưa chắc,
@@ -170,13 +170,13 @@ truy vấn mất $O(\sqrt{n\log n}+n^{1-\frac1k})$.
 
 #### Nhóm nhị phân
 
-Xét việc duy trì một số k-D Tree có kích thước là lũy thừa tự nhiên của $2$, sao cho tổng kích thước của các cây này là $n$.
+Xét việc duy trì một số k-D Tree có kích thước là lũy thừa của $2$, sao cho tổng kích thước của các cây này là $n$.
 
 Khi chèn, thêm một k-D Tree mới có kích thước $1$,
 rồi liên tục gộp các cây có cùng kích thước bằng cách trải phẳng rồi tái xây dựng trực tiếp.
-Khi hiện thực, có thể chỉ cần tái xây dựng một lần.
+Khi cài đặt, có thể chỉ cần tái xây dựng một lần.
 
-Kích thước của các cây cần gộp chắc chắn bắt đầu từ $2^0$ và có chỉ số mũ liên tiếp.
+Kích thước của các cây cần gộp chắc chắn bắt đầu từ $2^0$ và có các chỉ số mũ liên tiếp.
 Độ phức tạp tương tự phép cộng nhị phân, là trung bình $O(n\log^2 n)$,
 vì bản thân việc tái xây dựng có thêm một nhân tử $\log$.
 
@@ -198,7 +198,7 @@ Khi truy vấn, trực tiếp truy vấn riêng trên từng cây,
     $1\le n\le 500000, 1\le q\le 200000$
 
 Giới hạn bộ nhớ 20M loại bỏ tất cả các cấu trúc cây lồng cây,
-yêu cầu trực tuyến bắt buộc loại bỏ chia để trị CDQ, nên chỉ có thể dùng k-D Tree.
+còn yêu cầu trực tuyến loại bỏ chia để trị CDQ, nên chỉ có thể dùng k-D Tree.
 
 Dưới đây là mã tham khảo cho nhóm nhị phân.
 
@@ -223,7 +223,7 @@ Dưới đây là mã tham khảo cho nhóm nhị phân.
 
 Trước hết xây 2-D Tree cho $n$ điểm này.
 
-Duyệt từng nút. Với mỗi nút, tìm điểm khác nút đó và có khoảng cách nhỏ nhất, từ đó tính được đáp án.
+Duyệt từng nút. Với mỗi nút, tìm điểm khác nút đó có khoảng cách nhỏ nhất, từ đó tính được đáp án.
 Nếu mỗi lần duyệt thô tất cả các nút trên 2-D Tree thì độ phức tạp thời gian là $O(n)$,
 nên cần cắt tỉa.
 Có thể duy trì giá trị tọa độ nhỏ nhất và lớn nhất trên từng chiều của tất cả các nút trong một cây con.
