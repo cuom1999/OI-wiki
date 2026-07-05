@@ -841,15 +841,15 @@ Mỗi lần ta quét toàn bộ đồ thị. Chỉ cần tồn tại đỉnh $u$
 
 Như trong hình, giữa mỗi đỉnh biểu diễn số hiệu, góc trái dưới biểu diễn giá trị độ cao $h(u)$, góc phải dưới biểu diễn luồng dư $e(u)$, độ đậm màu của đỉnh cũng biểu diễn độ cao của đỉnh; trọng số cạnh biểu diễn $c(u,v)-f(u,v)$, cạnh màu xanh lá biểu diễn cạnh $(u,v)$ thỏa mãn $h(u)=h(v)+1$, tức cạnh của mạng thặng dư $E_f$:
 
-![p1](./images/2148.png)
+![Trạng thái ban đầu của thuật toán push-relabel](./images/2148.png)
 
 Ta xem qua toàn bộ quá trình của thuật toán. Ở đây tác giả dùng một thuật toán vét cạn, tức quét vét cạn xem có đỉnh đang hoạt động nào không; nếu có thì cập nhật.
 
-![p2](./images/2149.gif)
+![Quá trình chạy thuật toán push-relabel](./images/2149.gif)
 
 Kết quả cuối cùng:
 
-![p3](./images/2150.png)
+![Kết quả cuối cùng của thuật toán push-relabel](./images/2150.png)
 
 Có thể thấy cuối cùng một phần luồng dư đã quay về $s$, và ngoài nguồn và đích, các đỉnh khác đều không còn đang hoạt động. Khi đó hàm luồng $f$ thỏa mãn bảo toàn luồng, là luồng cực đại, và giá trị luồng là $e(t)$.
 
@@ -1032,7 +1032,7 @@ Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụ
 
 Xem qua quá trình chạy:
 
-![HLPP](./images/1152.png)
+![Quá trình chạy HLPP với tối ưu GAP](./images/1152.png)
 
 Trong đó từ pic13 đến pic14 thực hiện Relabel(4), đồng thời thực hiện tối ưu GAP.
 
