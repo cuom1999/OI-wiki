@@ -52,7 +52,7 @@ int binary_search(int start, int end, int key) {
 
 ### Tối thiểu hóa giá trị lớn nhất
 
-Cần chú ý rằng "có thứ tự" ở đây là có thứ tự theo nghĩa rộng. Nếu một phía của mảng đều thỏa một điều kiện nào đó, còn phía còn lại đều không thỏa điều kiện đó, ta cũng có thể xem đó là một dạng có thứ tự (nếu xem thỏa điều kiện là $1$, không thỏa là $0$, thì ít nhất theo chiều của điều kiện này nó là có thứ tự). Nói cách khác, tìm kiếm nhị phân có thể dùng để tìm giá trị lớn nhất (nhỏ nhất) thỏa một điều kiện nào đó.
+Cần chú ý rằng "có thứ tự" ở đây là có thứ tự theo nghĩa rộng. Nếu một phía của mảng đều thỏa một điều kiện nào đó, còn phía còn lại đều không thỏa điều kiện đó, cũng có thể xem đó là một dạng có thứ tự (nếu xem thỏa điều kiện là $1$, không thỏa là $0$, thì ít nhất theo chiều của điều kiện này nó là có thứ tự). Nói cách khác, tìm kiếm nhị phân có thể dùng để tìm giá trị lớn nhất (nhỏ nhất) thỏa một điều kiện nào đó.
 
 Với bài toán yêu cầu giá trị nhỏ nhất có thể của một giá trị lớn nhất thỏa điều kiện (tối thiểu hóa giá trị lớn nhất), ý tưởng đầu tiên là liệt kê "giá trị lớn nhất" được xem là đáp án từ nhỏ đến lớn, rồi kiểm tra nó có hợp lệ không. Nếu đáp án có tính đơn điệu, có thể dùng tìm kiếm nhị phân để tìm đáp án nhanh hơn. Vì vậy, để dùng tìm kiếm nhị phân giải dạng bài "tối thiểu hóa giá trị lớn nhất", cần thỏa ba điều kiện sau:
 
@@ -85,7 +85,7 @@ Chú ý: bsearch khác lower\_bound và upper\_bound ở hai điểm:
 
 Có thể dùng lower\_bound để thực hiện đúng chức năng của bsearch, nên những bài có thể AC bằng bsearch đều có thể viết lại trực tiếp bằng lower\_bound. Tuy nhiên, do điểm khác biệt thứ hai ở trên, chẳng hạn khi tìm 3 trong dãy 1, 2, 4, 5, 6, việc dùng bsearch để thực hiện chức năng của lower\_bound trở nên khó khăn.
 
-Dùng bsearch để thực hiện chức năng của lower\_bound có khó, vậy có nhất thiết là không làm được không? Câu trả lời là không; tồn tại một kỹ thuật khá khéo. Dựa vào đặc tính trình biên dịch xử lý hàm so sánh: tham số thứ nhất luôn trỏ tới phần tử cần tìm, tham số thứ hai trỏ tới phần tử trong mảng cần tìm. Nhờ đó cũng có thể dùng bsearch để thực hiện lower\_bound và upper\_bound như ví dụ dưới đây. Tuy nhiên, cách này yêu cầu mảng cần tìm phải là mảng toàn cục, để có thể truyền trực tiếp địa chỉ đầu.
+Dùng bsearch để thực hiện chức năng của lower\_bound có khó, vậy có nhất thiết là không làm được không? Câu trả lời là không; tồn tại một kỹ thuật khá khéo. Dựa vào tính chất trình biên dịch xử lý hàm so sánh: tham số thứ nhất luôn trỏ tới phần tử cần tìm, tham số thứ hai trỏ tới phần tử trong mảng cần tìm. Nhờ đó cũng có thể dùng bsearch để thực hiện lower\_bound và upper\_bound như ví dụ sau. Tuy nhiên, cách này yêu cầu mảng cần tìm phải là mảng toàn cục, để có thể truyền trực tiếp địa chỉ đầu.
 
 ```cpp
 int A[100005];  // Mảng toàn cục ví dụ
@@ -119,7 +119,7 @@ Vì hiện nay thí sinh OI hiếm khi viết C thuần và phương pháp này 
 
 ### Nhị phân đáp án
 
-Khi giải bài, ta thường nghĩ tới việc liệt kê đáp án rồi kiểm tra giá trị được liệt kê có đúng hay không. Nếu thỏa tính đơn điệu, điều kiện để dùng phương pháp nhị phân được đáp ứng. Thay việc liệt kê ở đây bằng nhị phân, ta có "nhị phân đáp án".
+Khi giải bài, thường sẽ nghĩ tới việc liệt kê đáp án rồi kiểm tra giá trị được liệt kê có đúng hay không. Nếu thỏa tính đơn điệu, điều kiện để dùng phương pháp nhị phân được đáp ứng. Thay việc liệt kê ở đây bằng nhị phân sẽ có "nhị phân đáp án".
 
 ???+ note "[Luogu P1873 Chặt cây](https://www.luogu.com.cn/problem/P1873)"
     Người thợ đốn gỗ Mirko cần chặt được $M$ mét gỗ. Đây là công việc rất dễ với Mirko, vì anh có một chiếc máy cưa mới rất tốt, có thể đốn rừng nhanh như lửa lan. Tuy nhiên, Mirko chỉ được phép chặt một hàng cây.
@@ -128,10 +128,10 @@ Khi giải bài, ta thường nghĩ tới việc liệt kê đáp án rồi ki�
     
     Ví dụ, nếu chiều cao một hàng cây lần lượt là $20,~15,~10,~17$, Mirko nâng lưỡi cưa lên độ cao $15$ mét. Sau khi cắt, chiều cao còn lại của cây sẽ là $15,~15,~10,~15$, và Mirko nhận được $5$ mét gỗ từ cây thứ $1$, $2$ mét gỗ từ cây thứ $4$, tổng cộng $7$ mét gỗ.
     
-    Mirko rất quan tâm tới bảo vệ môi trường, nên anh sẽ không chặt quá nhiều gỗ. Đó là lý do anh đặt lưỡi cưa cao nhất có thể. Nhiệm vụ của bạn là giúp Mirko tìm độ cao nguyên lớn nhất $H$ của lưỡi cưa sao cho anh nhận được ít nhất $M$ mét gỗ. Tức là nếu nâng lưỡi cưa thêm $1$ mét, anh sẽ không nhận đủ $M$ mét gỗ.
+    Mirko rất quan tâm tới bảo vệ môi trường, nên anh sẽ không chặt quá nhiều gỗ. Đó là lý do anh đặt lưỡi cưa cao nhất có thể. Nhiệm vụ là giúp Mirko tìm độ cao nguyên lớn nhất $H$ của lưỡi cưa sao cho anh nhận được ít nhất $M$ mét gỗ. Tức là nếu nâng lưỡi cưa thêm $1$ mét, anh sẽ không nhận đủ $M$ mét gỗ.
 
 ??? note "Ý tưởng giải"
-    Ta có thể liệt kê đáp án từ $1$ đến $10^9$, nhưng cách ngây thơ này chắc chắn không đạt điểm tối đa, vì liệt kê từ $1$ tới $10^9$ quá tốn thời gian. Ta có thể nhị phân trên đoạn $[1,~10^9]$ để chọn đáp án, rồi kiểm tra tính khả thi của từng đáp án (thường dùng tham lam). **Đó chính là nhị phân đáp án.**
+    Có thể liệt kê đáp án từ $1$ đến $10^9$, nhưng cách ngây thơ này chắc chắn không đạt điểm tối đa, vì liệt kê từ $1$ tới $10^9$ quá tốn thời gian. Có thể nhị phân trên đoạn $[1,~10^9]$ để chọn đáp án, rồi kiểm tra tính khả thi của từng đáp án (thường dùng tham lam). **Đó chính là nhị phân đáp án.**
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -166,7 +166,7 @@ Khi giải bài, ta thường nghĩ tới việc liệt kê đáp án rồi ki�
     }
     ```
     
-    Sau khi đọc đoạn mã trên, chắc chắn bạn sẽ có hai câu hỏi:
+    Sau khi đọc đoạn mã trên, thường sẽ có hai câu hỏi:
     
     1.  Vì sao đoạn tìm kiếm là đóng trái mở phải?
     
@@ -311,7 +311,7 @@ $$
 ### Bài mẫu
 
 ???+ note "[Luogu P3382 - Tam phân](https://www.luogu.com.cn/problem/P3382)"
-    Cho một hàm bậc $N$ và khoảng $[l, r]$, hãy tìm giá trị duy nhất của $x$ sao cho hàm tăng đơn điệu trên $[l, x]$ và giảm đơn điệu trên $[x, r]$.
+    Cho một hàm bậc $N$ và khoảng $[l, r]$, tìm giá trị duy nhất của $x$ sao cho hàm tăng đơn điệu trên $[l, x]$ và giảm đơn điệu trên $[x, r]$.
 
 ??? note "Ý tưởng giải"
     Bài này yêu cầu tìm giá trị của biến độc lập khi hàm bậc $N$ đạt giá trị lớn nhất trên $[l, r]$; rõ ràng có thể dùng tìm kiếm tam phân.
