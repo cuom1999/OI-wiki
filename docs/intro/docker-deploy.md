@@ -143,4 +143,4 @@ docker rmi [image]
 
 ## Câu hỏi
 
-Nếu có câu hỏi, bạn có thể mở [issue](https://github.com/OI-wiki/OI-wiki/issues/new/choose)!
+Nếu có câu hỏi, bạn có thể mở [issue](https://github.com/cuom1999/OI-wiki/issues/new/choose)!

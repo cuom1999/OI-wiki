@@ -2,7 +2,7 @@ Trang này quy định cách viết khuyến nghị cho các ký hiệu toán h�
 
 Trang này được hiệu chỉnh dựa trên [GB/T 3102.11-1993](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=3DE79450D562E62D41CB6E79FF411054), [ISO 80000-2:2019](https://www.iso.org/standard/64973.html) và bảng ký hiệu trong *Concrete Mathematics*, nên về cơ bản tương thích với hệ ký hiệu trong các giáo trình thông dụng và các ký hiệu thường dùng trong bối cảnh OI.
 
-Về cách viết LaTeX của các ký hiệu, hãy tham khảo [mã nguồn của bài viết này](https://github.com/OI-wiki/OI-wiki/blob/master/docs/intro/symbol.md?plain=1).
+Về cách viết LaTeX của các ký hiệu, hãy tham khảo [mã nguồn của bài viết này](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/docs/intro/symbol.md?plain=1).
 
 ## Logic toán học
 

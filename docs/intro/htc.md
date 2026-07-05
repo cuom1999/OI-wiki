@@ -8,7 +8,7 @@ ra nội dung có chất lượng cao hơn.
 
 ## Hướng dẫn đóng góp
 
-Trước khi chỉnh sửa, vui lòng xem [hướng dẫn đóng góp của OI Wiki](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md)
+Trước khi chỉnh sửa, vui lòng xem [hướng dẫn đóng góp của OI Wiki](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/.github/CONTRIBUTING.md)
 và [định hướng dự án](./about.md#định-hướng-dự-án), để phối hợp và trao đổi
 tốt hơn với các cộng tác viên trong cộng đồng.
 
@@ -16,8 +16,8 @@ tốt hơn với các cộng tác viên trong cộng đồng.
 
 ???+ warning "Chú ý"
     Trước khi bắt đầu viết một phần nội dung, hãy xem
-    [Issues](https://github.com/OI-wiki/OI-wiki/issues), xác nhận chưa có ai
-    đang làm cùng việc, rồi mở một [issue mới](https://github.com/OI-wiki/OI-wiki/issues/new)
+    [Issues](https://github.com/cuom1999/OI-wiki/issues), xác nhận chưa có ai
+    đang làm cùng việc, rồi mở một [issue mới](https://github.com/cuom1999/OI-wiki/issues/new)
     để ghi lại nội dung cần viết.
 
 ???+ tip "Gợi ý"
@@ -119,10 +119,10 @@ nhau, hãy làm theo phần [chỉnh sửa nội dung trong một trang](#chinh-
 
 #### Bổ sung thay đổi vào Pull Request
 
-1.  Mở [danh sách Pull Request của OI-Wiki](https://github.com/OI-wiki/OI-wiki/pulls),
+1.  Mở [danh sách Pull Request của OI-Wiki](https://github.com/cuom1999/OI-wiki/pulls),
     tìm Pull Request bạn đã gửi và nhấn vào đó.
 2.  Bên dưới tiêu đề trang Pull Request sẽ có một dòng chữ chẳng hạn
-    `<ID của bạn> wants to merge x commits into OI-wiki:master from <ID của bạn>:patch-1`;
+    `<ID của bạn> wants to merge x commits into cuom1999:vietnamese-translation from <ID của bạn>:patch-1`;
     hãy nhấn vào phần `<ID của bạn>:patch-1`.
 3.  Bạn sẽ được chuyển đến kho nhánh của mình, và tên nhánh ở góc trên bên trái
     danh sách tệp chính là tên nhánh Pull Request bạn đã gửi (trong ví dụ này
@@ -168,9 +168,9 @@ Thay đổi của bạn sẽ tự động được bổ sung vào Pull Request.
 
 ### Xem trước thay đổi trên trang đã build
 
-Ở phía dưới trang Pull Request, bạn có thể tìm trang kiểm thử. Nhấn liên kết
-Details của mục netlify/oi-wiki/deploy-preview (như hình dưới), bạn có thể vào
-trang được build tự động từ thay đổi của mình để xem trước.
+Ở phía dưới trang Pull Request, bạn có thể xem trạng thái kiểm thử tự động. Nếu
+dự án bật preview cho Pull Request, hãy nhấn liên kết Details tương ứng để xem
+trang được build tự động từ thay đổi của mình.
 
 ![deploy\_preview](./images/deploy_preview.png)
 
@@ -178,7 +178,7 @@ trang được build tự động từ thay đổi của mình để xem trướ
 
 Thông thường, nếu bạn cần thêm một trang mới hoặc sửa liên kết của một trang đã
 có trong mục lục, bạn cần thay đổi tệp
-[`mkdocs.yml`](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml).
+[`mkdocs.yml`](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/mkdocs.yml).
 
 Khi thêm trang mới, bạn có thể tham khảo định dạng sẵn có. Tuy nhiên, trừ khi
 đang tái cấu trúc hoặc sửa thuật ngữ, **chúng tôi không khuyến nghị sửa liên
@@ -207,9 +207,9 @@ trường author.
 Khi sửa liên kết, để tránh tạo liên kết chết ở các tham chiếu ngoài trang, cần
 sửa tệp chuyển hướng.
 
-Tệp [`_redirects`](https://github.com/OI-wiki/OI-wiki/blob/master/docs/_redirects)
+Tệp [`_redirects`](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/docs/_redirects)
 dùng để sinh [cấu hình của netlify](https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file)
-và [tệp dùng để chuyển hướng](https://github.com/OI-wiki/OI-wiki/blob/master/scripts/gen_redirect.py).
+và [tệp dùng để chuyển hướng](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/scripts/gen_redirect.py).
 
 Mỗi dòng biểu thị một quy tắc chuyển hướng, lần lượt ghi URL điểm bắt đầu và
 điểm đích của bước nhảy (không bao gồm tên miền):
@@ -259,8 +259,8 @@ Với Pull Request, vui lòng tuân thủ các yêu cầu sau:
 2.  Nội dung cần mô tả ngắn gọn các thay đổi. Nếu đã sửa một vấn đề trong
     issue, hãy thêm trường `fix #xxxx` vào nội dung, trong đó `xxxx` là số hiệu
     issue.
-3.  Vui lòng đọc kỹ [hướng dẫn đóng góp](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md)
-    và [quy tắc ứng xử cộng đồng](https://github.com/OI-wiki/OI-wiki/blob/master/CODE_OF_CONDUCT.md);
+3.  Vui lòng đọc kỹ [hướng dẫn đóng góp](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/.github/CONTRIBUTING.md)
+    và [quy tắc ứng xử cộng đồng](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/CODE_OF_CONDUCT.md);
     sau khi đồng ý, hãy tích vào ô trong mẫu PR để thể hiện rằng bạn đồng ý với
     các hướng dẫn và quy tắc ứng xử trên.
 
@@ -288,13 +288,10 @@ Ví dụ:
 ### Quy trình cộng tác
 
 1.  Sau khi nhận một Pull Request mới, GitHub sẽ gửi email cho reviewer;
-2.  Đồng thời, trên [GitHub Actions](https://github.com/OI-wiki/OI-wiki/actions)
-    và [Netlify](https://app.netlify.com/sites/oi-wiki) sẽ chạy hai nhóm kiểm
-    thử. Tiến độ của chúng được đồng bộ ở phía dưới trang PR. GitHub Actions
-    chủ yếu dùng để xác nhận thay đổi nội dung trong PR không ảnh hưởng đến quá
-    trình build trang web; Netlify dùng để build các cập nhật trong PR, giúp
-    reviewer thuận tiện kiểm tra (sau khi kiểm thử hoàn tất, nhấn Details để
-    biết thêm);
+2.  Đồng thời, trên [GitHub Actions](https://github.com/cuom1999/OI-wiki/actions)
+    sẽ chạy kiểm thử tự động. Tiến độ của chúng được đồng bộ ở phía dưới trang
+    PR, chủ yếu dùng để xác nhận thay đổi nội dung trong PR không ảnh hưởng đến
+    quá trình build trang web;
 3.  Reviewer có thể phát hiện vấn đề và đưa ra `review` hoặc
     `suggested changes` (đề xuất thay đổi, hiển thị bằng biểu tượng màu xám) /
     `requested changes` (yêu cầu thay đổi bắt buộc, hiển thị bằng biểu tượng
@@ -304,14 +301,14 @@ Ví dụ:
     thể tham khảo phần `Chỉnh sửa trên GitHub` hoặc phần `Bổ sung thay đổi vào
     Pull Request` trong `Sử dụng Git để chỉnh sửa cục bộ`.
 4.  Sau khi có đủ nhiều reviewer bỏ phiếu thông qua một PR, PR đó mới có thể
-    được hợp nhất vào nhánh master;
-5.  Sau khi hợp nhất vào nhánh master, GitHub Actions sẽ build lại nội dung
+    được hợp nhất vào nhánh `vietnamese-translation`;
+5.  Sau khi hợp nhất vào nhánh `vietnamese-translation`, GitHub Actions sẽ build lại nội dung
     trang web và cập nhật lên nhánh gh-pages;
 6.  Khi đó, máy chủ mới kéo cập nhật từ nhánh gh-pages và triển khai lại nội
     dung phiên bản mới nhất.
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Wikipedia: Hướng dẫn cho người mới/Chỉnh sửa](https://zh.wikipedia.org/wiki/Wikipedia:%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80/%E7%B7%A8%E8%BC%AF)
+[^ref1]: [Wikipedia tiếng Việt: Hướng dẫn cho người mới](https://vi.wikipedia.org/wiki/Wikipedia:H%C6%B0%E1%BB%9Bng_d%E1%BA%ABn_cho_ng%C6%B0%E1%BB%9Di_m%E1%BB%9Bi)
 
 [^ref2]: [Web-based editor - GitHub Codespaces - GitHub Docs](https://docs.github.com/en/codespaces/developing-in-codespaces/web-based-editor)

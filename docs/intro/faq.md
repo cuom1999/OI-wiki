@@ -15,10 +15,10 @@ cho sự phát triển của **OI** thôi. XD
 
 Hỏi: Tôi rất quan tâm, làm sao để tham gia?
 
-Đáp: **OI Wiki** hiện được lưu trữ trên GitHub; bạn có thể truy cập trực tiếp
-[repo](https://github.com/OI-wiki/OI-wiki) này để xem tiến độ mới nhất. Các
-cách tham gia gồm mở [Issue](https://github.com/OI-wiki/OI-wiki/issues),
-[Pull Request](https://github.com/OI-wiki/OI-wiki/pulls) trên GitHub, chia sẻ
+Đáp: **OI Wiki tiếng Việt** hiện được lưu trữ trên GitHub; bạn có thể truy cập trực tiếp
+[repo](https://github.com/cuom1999/OI-wiki) này để xem tiến độ mới nhất. Các
+cách tham gia gồm mở [Issue](https://github.com/cuom1999/OI-wiki/issues),
+[Pull Request](https://github.com/cuom1999/OI-wiki/pulls) trên GitHub, chia sẻ
 ý tưởng trong nhóm trao đổi, hoặc gửi bài trực tiếp cho quản trị viên. Hiện tại,
 framework chúng tôi dùng là [MkDocs](https://mkdocs.readthedocs.io), được phát
 triển bằng Python, hỗ trợ định dạng Markdown (cũng hỗ trợ chèn công thức toán).
@@ -51,7 +51,7 @@ mọi mặt. Chúng tôi chân thành mời bạn cùng hoàn thiện **OI Wiki*
 Hỏi: Các bạn bảo đảm nội dung chúng tôi thêm vào không đột nhiên biến mất bằng
 cách nào?
 
-Đáp: Chúng tôi lưu trữ nội dung trên [GitHub](https://github.com/OI-wiki/OI-wiki),
+Đáp: Chúng tôi lưu trữ nội dung trên [GitHub](https://github.com/cuom1999/OI-wiki),
 nên dù máy chủ của chúng tôi có sự cố thì nội dung cũng không bị mất. Ngoài ra,
 chúng tôi cũng định kỳ sao lưu công sức của mọi người; ngay cả một ngày nào đó
 GitHub đóng cửa (?), nội dung của chúng ta vẫn không bị mất.
@@ -67,12 +67,12 @@ cùng suy nghĩ để cùng hoàn thiện **OI Wiki**.
 
 ***
 
-Hỏi: Vì sao không viết thẳng lên [Wikipedia tiếng Trung](https://zh.wikipedia.org/)?
+Hỏi: Vì sao không viết thẳng lên [Wikipedia tiếng Việt](https://vi.wikipedia.org/)?
 
-Đáp: Vì chúng tôi hy vọng có thể thật sự giúp được nhiều tuyển thủ hơn, hoặc
-những người quan tâm đến các nội dung này. Hơn nữa, vì những lý do ai cũng biết,
-nội dung trên Wikipedia tiếng Trung không phải lúc nào cũng có thể truy cập
-không rào cản.
+Đáp: Wikipedia là bách khoa toàn thư, còn **OI Wiki** là tài liệu học tập và tra
+cứu cho lập trình thi đấu. Nhiều nội dung ở đây cần ví dụ mã, phân tích kỹ thuật,
+kinh nghiệm luyện tập, liên kết bài tập và cấu trúc mục lục chuyên biệt; những
+điều đó phù hợp với một wiki chuyên ngành hơn là một bài bách khoa.
 
 ## Tôi muốn tham gia!
 
@@ -91,7 +91,7 @@ Vui lòng tham khảo trang [cách tham gia](./htc.md).
 
 Hỏi: Mục lục ở đâu?
 
-Đáp: Mục lục nằm trong tệp [mkdocs.yml](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml#L17)
+Đáp: Mục lục nằm trong tệp [mkdocs.yml](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/mkdocs.yml#L17)
 ở thư mục gốc của dự án.
 
 ***
@@ -103,7 +103,7 @@ Hỏi: Sửa nội dung của một topic như thế nào?
 [cách đóng góp](./htc.md), bạn sẽ được chuyển đến vị trí tệp tương ứng trên
 GitHub.
 
-Hoặc bạn cũng có thể tự đọc mục lục [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml)
+Hoặc bạn cũng có thể tự đọc mục lục [(mkdocs.yml)](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/mkdocs.yml)
 để tìm vị trí tệp.
 
 ***
@@ -114,108 +114,51 @@ Hỏi: Thêm một topic như thế nào?
 
 -   Có thể mở một Issue, ghi rõ nội dung mong muốn được thêm.
 -   Có thể mở một Pull Request, thêm topic mới vào mục lục
-    [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml),
+    [(mkdocs.yml)](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/mkdocs.yml),
     đồng thời tạo một tệp `.md` trống ở vị trí tương ứng trong thư mục
-    [docs](https://github.com/OI-wiki/OI-wiki/tree/master/docs). Chi tiết định
+    [docs](https://github.com/cuom1999/OI-wiki/tree/vietnamese-translation/docs). Chi tiết định
     dạng tài liệu vui lòng tham khảo [sổ tay định dạng](./format.md#yêu-cầu-khi-đóng-góp-tài-liệu).
 
 ***
 
-Hỏi: Tôi gặp khó khăn khi thử truy cập GitHub.
+Hỏi: Tôi gặp khó khăn khi clone dự án từ GitHub.
 
-Đáp: Nên thêm các dòng sau vào tệp hosts[^ref1]:
-
-```text
-# GitHub Start
-140.82.114.25                 alive.github.com
-140.82.113.5                  api.github.com
-185.199.110.153               assets-cdn.github.com
-185.199.111.133               avatars.githubusercontent.com
-185.199.111.133               avatars0.githubusercontent.com
-185.199.111.133               avatars1.githubusercontent.com
-185.199.111.133               avatars2.githubusercontent.com
-185.199.111.133               avatars3.githubusercontent.com
-185.199.111.133               avatars4.githubusercontent.com
-185.199.111.133               avatars5.githubusercontent.com
-185.199.111.133               camo.githubusercontent.com
-140.82.112.22                 central.github.com
-185.199.111.133               cloud.githubusercontent.com
-140.82.114.9                  codeload.github.com
-140.82.113.22                 collector.github.com
-185.199.111.133               desktop.githubusercontent.com
-185.199.111.133               favicons.githubusercontent.com
-140.82.112.3                  gist.github.com
-52.216.163.147                github-cloud.s3.amazonaws.com
-52.217.124.1                  github-com.s3.amazonaws.com
-52.216.144.83                 github-production-release-asset-2e65be.s3.amazonaws.com
-52.217.121.249                github-production-repository-file-5c1aeb.s3.amazonaws.com
-52.217.206.57                 github-production-user-asset-6210df.s3.amazonaws.com
-192.0.66.2                    github.blog
-140.82.114.4                  github.com
-140.82.113.18                 github.community
-185.199.110.154               github.githubassets.com
-151.101.1.194                 github.global.ssl.fastly.net
-185.199.110.153               github.io
-185.199.111.133               github.map.fastly.net
-185.199.110.153               githubstatus.com
-140.82.112.25                 live.github.com
-185.199.111.133               media.githubusercontent.com
-185.199.111.133               objects.githubusercontent.com
-13.107.42.16                  pipelines.actions.githubusercontent.com
-185.199.111.133               raw.githubusercontent.com
-185.199.111.133               user-images.githubusercontent.com
-13.107.253.40                 vscode.dev
-140.82.112.21                 education.github.com
-# GitHub End
-```
-
-Bạn có thể tìm nội dung mới nhất và thêm thông tin trên
-[GitHub520](https://gitee.com/klmahuaw/GitHub520).
-
-Người dùng Linux và macOS có thể thử dùng [script gh-check](https://gist.github.com/lilydjwg/93d33ed04547e1b9f7a86b64ef2ed058)
-của [lilydjwg](https://github.com/lilydjwg/) để lấy IP truy cập nhanh nhất.
-Dùng tham số `--hosts` có thể cập nhật trực tiếp tệp hosts. Dùng tham số
-`--help` để xem trợ giúp. Trước khi dùng, cần cài Python3 và aiohttp
-(`pip install aiohttp -i https://pypi.tuna.tsinghua.edu.cn/simple/`). Bài giới
-thiệu trên blog của lilydjwg: [Tìm IP GitHub nhanh nhất](https://blog.lilydjwg.me/2019/8/16/gh-check.214730.html).
-
-Đồng thời, bạn có thể dùng dịch vụ [Gitclone](https://www.gitclone.com/) để
-tăng tốc Clone; có thể đọc phần hướng dẫn trên trang chủ của dịch vụ này.
-
-Nếu bạn chỉ muốn Clone kho **OI Wiki**, hãy dùng:
+Đáp: Trước hết hãy thử clone nông để giảm dung lượng tải:
 
 ```bash
-git clone https://gitclone.com/github.com/OI-wiki/OI-wiki
+git clone https://github.com/cuom1999/OI-wiki.git --depth=1 -b vietnamese-translation
 ```
 
-Nếu bạn cần đóng góp cho **OI Wiki**, trước hết hãy fork kho của **OI Wiki**,
-sau đó (thay `username` bằng tên người dùng của bạn). Cần chú ý rằng ví dụ dưới
-đây sẽ khiến bạn dùng SSH để kết nối tới GitHub[^only-ssh-connect]:
+Nếu bạn cần đóng góp, trước hết hãy fork kho **OI Wiki tiếng Việt**, sau đó clone
+fork của bạn (thay `username` bằng tên người dùng GitHub của bạn):
 
 ```bash
-git clone https://gitclone.com/github.com/username/OI-wiki
-git remote set-url origin git@github.com:username/OI-wiki.git
+git clone https://github.com/username/OI-wiki.git --depth=1 -b vietnamese-translation
 ```
 
 ***
 
 Hỏi: pip ở chỗ tôi chậm quá!
 
-Đáp: Có thể chọn đổi sang mirror trong nước[^ref2], hoặc dùng:
+Đáp: Trước hết hãy thử nâng cấp `pip` và dùng PyPI chính thức:
 
 ```bash
-pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+python -m pip install -U pip
+pip install -U -r requirements.txt
 ```
+
+Nếu mạng vẫn không ổn định, có thể chỉ định một index PyPI đáng tin cậy bằng tùy
+chọn `-i`.
 
 ***
 
 Hỏi: Tôi clone dự án này bằng client, tốc độ quá chậm.
 
-Đáp: Nếu đã cài `git bash`, bạn có thể thêm vài giới hạn để giảm dung lượng tải
-xuống.[^ref3]
+Đáp: Nếu đã cài `git bash`, bạn có thể dùng shallow clone để giảm dung lượng tải
+xuống.
 
 ```bash
-git clone https://github.com/OI-wiki/OI-wiki.git --depth=1 -b master
+git clone https://github.com/cuom1999/OI-wiki.git --depth=1 -b vietnamese-translation
 ```
 
 ***
@@ -272,7 +215,7 @@ Hỏi: Vì sao định dạng markdown của tôi bị rối?
 hoặc [hướng dẫn sử dụng MkDocs](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E).
 
 Hiện chúng tôi dùng [remark-lint](https://github.com/remarkjs/remark-lint) để
-tự động sửa định dạng. Có thể vẫn còn một số [cấu hình](https://github.com/OI-wiki/OI-wiki/blob/master/.remarkrc)
+tự động sửa định dạng. Có thể vẫn còn một số [cấu hình](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/.remarkrc)
 chưa đủ tốt, rất mong bạn chỉ ra.
 
 ***
@@ -308,7 +251,7 @@ bị lặp đôi.
 tương lai gần.
 
 Nếu muốn tránh công thức bị lặp đôi trong mục lục, bạn có thể tham khảo cách
-viết mục lục của SAM trong phân loại [string](https://github.com/OI-wiki/OI-wiki/blame/master/docs/string/sam.md#L73).
+viết mục lục của SAM trong phân loại [string](https://github.com/cuom1999/OI-wiki/blame/vietnamese-translation/docs/string/sam.md#L73).
 
 ```text
 Vị trí kết thúc <script type="math/tex">endpos</script>
@@ -355,15 +298,4 @@ Nhóm dự án **OI Wiki**
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [GitHub520](https://gitee.com/klmahuaw/GitHub520)
-
-[^ref2]: [Đổi nguồn pip sang mirror trong nước - L Yu - CSDN Blog](https://blog.csdn.net/lambert310/article/details/52412059)
-
-[^ref3]: [GIT--- Xem tôi nhập môn từng bước (Windows Git Bash)](https://blog.csdn.net/FreeApe/article/details/46845555)
-
 [^ref4]: [Metadata - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage)
-
-[^only-ssh-connect]: GitHub đã ngừng xác thực HTTPS bằng mật khẩu; kết nối cần
-    dùng SSH hoặc Personal Access Token. Xem [Tôi nên dùng remote URL nào?](https://docs.github.com/cn/github/using-git/which-remote-url-should-i-use),
-    [Tạo personal access token](https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token)
-    và [Kết nối với GitHub bằng SSH](https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh).
