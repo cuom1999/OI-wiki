@@ -60,7 +60,7 @@ Giả sử với mọi $\lambda$ trong phạm vi hợp lý, hàm $h(\lambda)$ �
 1.  có tồn tại hệ số góc $\lambda$ của đường thẳng sao cho giá trị tung độ gốc nhỏ nhất đạt được đúng tại điểm $(y,v(y))$ hay không, và
 2.  nếu tồn tại, làm thế nào để tìm hệ số góc đó.
 
-Vấn đề thứ nhất tương đối dễ giải quyết. Khi hệ số góc $\lambda$ thay đổi, tập được cắt ra bởi tất cả các đường thẳng này (tức giao của các nửa mặt phẳng phía trên tương ứng) nhất định là một tập lồi. Vì vậy, các đường thẳng này có thể đi qua một điểm khi và chỉ khi điểm đó nằm trên bao lồi dưới của tập lồi này. Điều đó tương đương với việc hàm $v(y)$ là [hàm lồi](./slope-trick.md#%E7%A6%BB%E6%95%A3%E7%82%B9%E9%9B%86%E4%B8%8A%E7%9A%84%E5%87%B8%E5%87%BD%E6%95%B0).
+Vấn đề thứ nhất tương đối dễ giải quyết. Khi hệ số góc $\lambda$ thay đổi, tập được cắt ra bởi tất cả các đường thẳng này (tức giao của các nửa mặt phẳng phía trên tương ứng) nhất định là một tập lồi. Vì vậy, các đường thẳng này có thể đi qua một điểm khi và chỉ khi điểm đó nằm trên bao lồi dưới của tập lồi này. Điều đó tương đương với việc hàm $v(y)$ là [hàm lồi](./slope-trick.md#hàm-lồi-trên-tập-điểm-rời-rạc).
 
 Vấn đề thứ hai tinh tế hơn. Vì hoành độ của điểm cần tìm đã biết là $y$, một ý tưởng tự nhiên là khi tính $h(\lambda)$, đồng thời tính giá trị của hàm ràng buộc $g(x)$ tại nghiệm tối ưu hiện tại $x_\lambda$. Chẳng hạn, trong ví dụ ở trên, khi giải bài toán có phạt, ta có thể ghi lại số vật phẩm được chọn khi hàm mục tiêu có phạt đạt tối ưu. Sau đó so sánh $g(x_\lambda)$ với $y$ mong muốn và điều chỉnh giá trị $\lambda$ cho lần tính tiếp theo. Đây là phương pháp tìm kiếm nhị phân WQS truyền thống nhất.
 
@@ -447,7 +447,7 @@ Với các $\lambda$ nguyên liên tiếp, những khoảng này nối đầu đ
 Các phương pháp này có thể chia sơ bộ thành bốn loại:
 
 -   Quy về tính lồi theo tham số của hàm giá trị trong bài toán tối ưu lồi (bao gồm [quy hoạch tuyến tính](../../math/linear-programming.md), v.v.), trong đó có các cách như xây dựng mô hình [luồng chi phí](../../graph/flow/min-cost.md);
--   dùng phương trình chuyển trạng thái để chứng minh quy nạp tính lồi, trong quá trình đó có thể dùng một số [phép biến đổi bảo toàn tính lồi](./slope-trick.md#%E5%87%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2);
+-   dùng phương trình chuyển trạng thái để chứng minh quy nạp tính lồi, trong quá trình đó có thể dùng một số [phép biến đổi bảo toàn tính lồi](./slope-trick.md#các-phép-biến-đổi-hàm-lồi);
 -   với các bài toán phân đoạn khoảng, có thể kiểm chứng hàm chi phí của mỗi đoạn thỏa [bất đẳng thức tứ giác](./quadrangle.md);
 -   cuối cùng, với các bài toán đặc biệt, cũng có thể dùng lập luận trao đổi để trực tiếp chứng minh tính lồi.
 
@@ -920,7 +920,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
     v(m) = \min_{\{m_i\}}\sum_i f(a_i,m_i)\text{ subject to }\sum_i m_i=m,~m_i\in\mathbf N.
     $$
     
-    Đây là [chập lấy cận dưới đúng](./slope-trick.md#%E5%8D%B7%E7%A7%AF%E4%B8%8B%E7%A1%AE%E7%95%8Cminkowski-%E5%92%8C) của một số hàm lồi, nên cũng là hàm lồi. Nếu đề bài yêu cầu $v(m)$, có thể dùng phương pháp nhất quán với các ví dụ trước để giải, với độ phức tạp thời gian $O(n\log^2L)$. Tuy nhiên, bài này yêu cầu $m$ nhỏ nhất thỏa $v(m)\le V$. Cách dùng tìm kiếm nhị phân WQS để tính $v(m)$ rồi lại nhị phân trên $m$ không khả thi, vì độ phức tạp lên tới $O(n\log^3L)$. Với bài này, có hai cách xử lý sau.
+    Đây là [chập lấy cận dưới đúng](./slope-trick.md#tích-chập-dưới-đúng-tổng-minkowski) của một số hàm lồi, nên cũng là hàm lồi. Nếu đề bài yêu cầu $v(m)$, có thể dùng phương pháp nhất quán với các ví dụ trước để giải, với độ phức tạp thời gian $O(n\log^2L)$. Tuy nhiên, bài này yêu cầu $m$ nhỏ nhất thỏa $v(m)\le V$. Cách dùng tìm kiếm nhị phân WQS để tính $v(m)$ rồi lại nhị phân trên $m$ không khả thi, vì độ phức tạp lên tới $O(n\log^3L)$. Với bài này, có hai cách xử lý sau.
     
     **Cách một**: Vẫn nhị phân hệ số góc $k$, nhưng căn cứ nhị phân là ước lượng cận trên và cận dưới của $v(m)$.
     
@@ -1010,7 +1010,7 @@ Cuối cùng, liệt kê một số bài có thể giải bằng tìm kiếm nh�
 -   Conforti, Michele, Gerard Cornuejols, and Giacomo Zambelli. Integer programming. Springer International Publishing, 2014.
 -   Schrijver, Alexander. Combinatorial optimization: polyhedra and efficiency. Vol. 24, no. 2. Berlin: Springer, 2003.
 
-[^high-d-convex]: Trong bài toán thực tế, $y$ có thể chỉ nhận hữu hạn nhiều điểm lưới trong $\mathbf R^d$. Điều kiện thật sự cần ở đây là nghiệm $v(y)$ của bài toán gốc có thể được mở rộng thành một hàm lồi $\tilde v:\mathbf R^d\rightarrow \mathbf R\cup\{\pm\infty\}$ trên $\mathbf R^d$, tức $v(y)$ là **có thể mở rộng lồi** (convex-extensible). Để tiện trình bày, trong phần chính vẫn dùng $v(y)$ để chỉ hàm sau khi mở rộng. Về trực quan hình học, điều này tương đương với việc toàn bộ tập điểm $\{(y,v(y))\}$ đều nằm trên bao lồi dưới của bao lồi của chúng. Với trường hợp một chiều, điều kiện này [rất dễ mô tả](./slope-trick.md#%E7%A6%BB%E6%95%A3%E7%82%B9%E9%9B%86%E4%B8%8A%E7%9A%84%E5%87%B8%E5%87%BD%E6%95%B0) bằng ngôn ngữ đại số; nhưng với trường hợp nhiều chiều thì hơi phức tạp hơn, và [bài giảng này](https://kzmurota.fpark.tmu.ac.jp/paper/HIMSummerSchool15Murota.pdf) cung cấp một số điều kiện đủ đơn giản.
+[^high-d-convex]: Trong bài toán thực tế, $y$ có thể chỉ nhận hữu hạn nhiều điểm lưới trong $\mathbf R^d$. Điều kiện thật sự cần ở đây là nghiệm $v(y)$ của bài toán gốc có thể được mở rộng thành một hàm lồi $\tilde v:\mathbf R^d\rightarrow \mathbf R\cup\{\pm\infty\}$ trên $\mathbf R^d$, tức $v(y)$ là **có thể mở rộng lồi** (convex-extensible). Để tiện trình bày, trong phần chính vẫn dùng $v(y)$ để chỉ hàm sau khi mở rộng. Về trực quan hình học, điều này tương đương với việc toàn bộ tập điểm $\{(y,v(y))\}$ đều nằm trên bao lồi dưới của bao lồi của chúng. Với trường hợp một chiều, điều kiện này [rất dễ mô tả](./slope-trick.md#hàm-lồi-trên-tập-điểm-rời-rạc) bằng ngôn ngữ đại số; nhưng với trường hợp nhiều chiều thì hơi phức tạp hơn, và [bài giảng này](https://kzmurota.fpark.tmu.ac.jp/paper/HIMSummerSchool15Murota.pdf) cung cấp một số điều kiện đủ đơn giản.
 
 [^other-conditions]: Các điều kiện trong định lý trông có vẻ mạnh hơn tính lồi một chút, nhưng với các trường hợp thường gặp trong lập trình thi đấu, đặc biệt khi $X$ là tập hữu hạn, chỉ nhấn mạnh tính lồi đã đủ. Hàm $\tilde v$ được mở rộng từ hàm lồi proper $v$ trên tập rời rạc nhất định là hàm lồi nửa liên tục dưới, vì bao lồi của hữu hạn điểm nhất định là bao lồi đóng, còn cái gọi là hàm lồi nửa liên tục dưới tương đương với việc epigraph của nó là bao lồi đóng. Còn từ "proper" trong hàm lồi proper được bảo đảm miễn là $v(y)$ nhận giá trị hữu hạn tại ít nhất một điểm và là hàm lồi.
 

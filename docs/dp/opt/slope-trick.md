@@ -1,4 +1,4 @@
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 Với một lớp bài toán DP hai chiều, nếu hàm giá trị $f(i,x)$ là hàm lồi theo
@@ -26,14 +26,14 @@ gì, bản chất của lớp bài toán này là lợi dụng việc dãy độ
 trong chuyển trạng thái để đơn giản hóa phép chuyển. Vì vậy, tất cả chúng đều có
 thể được gọi là Slope Trick.
 
-<span id="&#x51F8;&#x51FD;&#x6570;"></span>
+<span id="hàm-lồi"></span>
 ## Hàm lồi
 
 Trước khi thảo luận các bài toán cụ thể, cần nắm một số tính chất cơ bản của
 hàm lồi, cũng như cách độ dốc của nó thay đổi khi thực hiện các phép biến đổi
 khác nhau trên hàm lồi.
 
-<span id="&#x5B9E;&#x8F74;&#x4E0A;&#x7684;&#x51F8;&#x51FD;&#x6570;"></span>
+<span id="hàm-lồi-trên-trục-thực"></span>
 ### Hàm lồi trên trục thực
 
 Định nghĩa tổng quát hơn của hàm lồi được phát biểu trên $\mathbf R$.
@@ -91,7 +91,7 @@ tập con lồi của $\mathbf R$).
 Tất nhiên, có thể kết hợp các phép biến đổi bảo toàn tính lồi được nêu bên dưới
 để tạo ra những hàm lồi phức tạp hơn.
 
-<span id="&#x79BB;&#x6563;&#x70B9;&#x96C6;&#x4E0A;&#x7684;&#x51F8;&#x51FD;&#x6570;"></span>
+<span id="hàm-lồi-trên-tập-điểm-rời-rạc"></span>
 ### Hàm lồi trên tập điểm rời rạc
 
 Trong lập trình thi đấu, nhiều hàm chỉ được định nghĩa tại một phần các giá trị
@@ -165,7 +165,7 @@ Hàm lồi trên tập số nguyên $\mathbf Z$ có một định nghĩa tương
 Nói cách khác, chỉ cần độ dốc (sai phân) đơn điệu không giảm, dãy đó có thể
 được xem là một hàm lồi trên $\mathbf Z$.
 
-<span id="&#x51F8;&#x51FD;&#x6570;&#x7684;&#x4E24;&#x79CD;&#x523B;&#x753B;"></span>
+<span id="hai-cách-đặc-trưng-hàm-lồi"></span>
 ### Hai cách đặc trưng hàm lồi
 
 Thực ra, cách đặc trưng hàm lồi bằng độ dốc cũng có thể mở rộng cho trường hợp
@@ -274,13 +274,13 @@ hàm tương đương với tính lồi của thượng đồ thị:
 Lát nữa ta sẽ thấy, bằng thượng đồ thị, có thể liên hệ tích chập dưới đúng của
 hàm lồi với tổng Minkowski của tập lồi.
 
-<span id="&#x51F8;&#x51FD;&#x6570;&#x7684;&#x53D8;&#x6362;"></span>
+<span id="các-phép-biến-đổi-hàm-lồi"></span>
 ## Các phép biến đổi hàm lồi
 
 Tiếp theo, bài viết giới thiệu một số phép biến đổi bảo toàn tính lồi thường gặp
 trong Slope Trick.
 
-<span id="&#x975E;&#x8D1F;&#x7EBF;&#x6027;&#x7EC4;&#x5408;"></span>
+<span id="tổ-hợp-tuyến-tính-không-âm"></span>
 ### Tổ hợp tuyến tính không âm
 
 Với hai hàm lồi $f$ và $g$, cùng các số thực không âm $\alpha,\beta\ge0$, hàm
@@ -298,7 +298,7 @@ Trong các bài toán duy trì độ dốc, thường có một hàm có dạng 
 điểm gãy, để tính các điểm gãy của độ dốc của $f+g$, chỉ cần trộn các điểm gãy
 độ dốc của $f$ và $g$.
 
-<span id="&#x5377;&#x79EF;&#x4E0B;&#x786E;&#x754C;minkowski-&#x548C;"></span>
+<span id="tích-chập-dưới-đúng-tổng-minkowski"></span>
 ### Tích chập dưới đúng (tổng Minkowski)
 
 Một phép toán thường gặp khác trên hàm lồi là tích chập dưới đúng. Với hai hàm
@@ -408,7 +408,7 @@ không, có thể cần dùng các kỹ thuật như
 [heap có thể gộp](../../ds/heap.md) để giảm độ phức tạp tổng thể của phép gộp,
 hoặc tìm cách xử lý riêng theo bài toán cụ thể.
 
-<span id="&#x6700;&#x503C;&#x64CD;&#x4F5C;"></span>
+<span id="phép-toán-cực-trị"></span>
 ### Phép toán cực trị
 
 Giá trị lớn nhất của hai hàm lồi vẫn là hàm lồi, nhưng giá trị nhỏ nhất của hai
@@ -455,7 +455,7 @@ này. Tuy nhiên, như đã nhấn mạnh ở trên, cách duy trì không phả
 Slope Trick; cần chọn cách duy trì đoạn độ dốc phù hợp theo yêu cầu của từng bài
 toán.
 
-<span id="&#x7EF4;&#x62A4;&#x62D0;&#x70B9;"></span>
+<span id="duy-trì-điểm-gãy"></span>
 ## Duy trì điểm gãy
 
 Lớp bài toán này thường xuất hiện khi cần tối thiểu hóa tổng của nhiều giá trị
@@ -483,7 +483,7 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
 
 ![](../images/slope-trick/epigraph-convex-kinks.svg)
 
-<span id="&#x4F8B;&#x9898;&#x6700;&#x5C0F;&#x6210;&#x672C;&#x9012;&#x589E;&#x5E8F;&#x5217;"></span>
+<span id="ví-dụ-dãy-tăng-với-chi-phí-nhỏ-nhất"></span>
 ### Ví dụ: dãy tăng với chi phí nhỏ nhất
 
 ???+ example "[\[BalticOI 2004\] Sequence](https://www.luogu.com.cn/problem/P4331)"
@@ -586,7 +586,7 @@ Bài mẫu:
 -   [Luogu P4597 Sequence](https://www.luogu.com.cn/problem/P4597)
 -   [AtCoder dwango Challenge 2 Preliminary E - Fireworks](https://atcoder.jp/contests/dwango2016-prelims/tasks/dwango2016qual_e)
 
-<span id="&#x4F8B;&#x9898;&#x8F6C;&#x79FB;&#x5E26;&#x9650;&#x5236;&#x7684;&#x60C5;&#x5F62;"></span>
+<span id="ví-dụ-trường-hợp-chuyển-trạng-thái-có-ràng-buộc"></span>
 ### Ví dụ: trường hợp chuyển trạng thái có ràng buộc
 
 ???+ example "[\[NOISG 2018 Finals\] Safety](https://www.luogu.com.cn/problem/P11598)"
@@ -669,7 +669,7 @@ Bài mẫu:
 -   [AtCoder Regular Contest 070 E - NarrowRectangles](https://atcoder.jp/contests/arc070/tasks/arc070_c)
 -   [AtCoder Regular Contest 123 D - Inc, Dec - Decomposition](https://atcoder.jp/contests/arc123/tasks/arc123_d)
 
-<span id="&#x7EF4;&#x62A4;&#x659C;&#x7387;"></span>
+<span id="duy-trì-độ-dốc"></span>
 ## Duy trì độ dốc
 
 Còn có một số bài toán mà việc duy trì độ dốc tiện lợi hơn. Lớp bài toán này
@@ -678,7 +678,7 @@ thường cũng có thể giải bằng tư tưởng
 hoặc mô phỏng luồng chi phí. Trong mô hình luồng chi phí, chi phí nhỏ nhất
 thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope Trick.
 
-<span id="&#x4F8B;&#x9898;&#x80A1;&#x7968;&#x4EA4;&#x6613;&#x95EE;&#x9898;"></span>
+<span id="ví-dụ-bài-toán-giao-dịch-cổ-phiếu"></span>
 ### Ví dụ: bài toán giao dịch cổ phiếu
 
 ???+ example "[Codeforces 865 D. Buy Low Sell High](https://codeforces.com/problemset/problem/865/D)"
@@ -730,7 +730,7 @@ thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope
     cắt không đổi giá trị hàm tại $x=0$, đây chính là $f_i(0)$.
 
     So sánh cách cài đặt thuật toán này với code của phần
-    [dãy tăng với chi phí nhỏ nhất](#%E4%BE%8B%E9%A2%98%E6%9C%80%E5%B0%8F%E6%88%90%E6%9C%AC%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97)
+    [dãy tăng với chi phí nhỏ nhất](#ví-dụ-dãy-tăng-với-chi-phí-nhỏ-nhất)
     ở trên có thể thấy, thuật toán này tương đương với bài toán biến dãy giá cổ
     phiếu thành dãy không tăng với chi phí nhỏ nhất.
 
@@ -744,7 +744,7 @@ Bài mẫu:
 
 -   [Codeforces 865 D. Buy Low Sell High](https://codeforces.com/problemset/problem/865/D)
 
-<span id="&#x4F8B;&#x9898;&#x642C;&#x8FD0;&#x571F;&#x77F3;&#x95EE;&#x9898;"></span>
+<span id="ví-dụ-bài-toán-vận-chuyển-đất-đá"></span>
 ### Ví dụ: bài toán vận chuyển đất đá
 
 ???+ example "[\[USACO16OPEN\] Landscaping P](https://www.luogu.com.cn/problem/P2748)"
@@ -830,7 +830,7 @@ Bài mẫu:
 -   [Kyoto University PC 2016 H - WAAAAAAAAAAAAALL](https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h)
 -   [JAG Practice Contest 2017 J - Farm Village](https://atcoder.jp/contests/jag2017autumn/tasks/jag2017autumn_j)
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 Cuối bài viết, dưới đây là một số bài toán từng xuất hiện trong các kỳ thi lập
@@ -851,7 +851,7 @@ trình, có thể giải bằng Slope Trick, để bạn luyện tập.
 -   [2018 ACM-ICPC World Finals C. Conquer The World](https://codeforces.com/gym/102482/problem/C)
 -   [300iq Contest 3 F. Farm of Monsters](https://codeforces.com/gym/102538/problem/F)
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   [\[Tutorial\] Slope Trick - zscoder](https://codeforces.com/blog/entry/47821)
