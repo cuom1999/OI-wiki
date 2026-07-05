@@ -2,15 +2,16 @@
 > hàm đã tồn tại.
 
 Có thể xem tham chiếu như một bí danh bắt buộc gắn với một đối tượng hoặc hàm
-hợp lệ. Khi truyền tham chiếu vào hàm, ta thao tác trực tiếp trên thực thể được
+hợp lệ. Khi truyền tham chiếu vào hàm, hàm thao tác trực tiếp trên thực thể được
 tham chiếu mà không cần sao chép đối tượng.
 
-Tham chiếu không phải là đối tượng, nên không tồn tại mảng các tham chiếu, không
+Tham chiếu không phải là đối tượng, nên không thể có mảng chứa tham chiếu, không
 thể lấy con trỏ tới tham chiếu, và cũng không thể khai báo trực tiếp tham chiếu
 tới tham chiếu.
 
 ??? note "Kiểu tham chiếu không thuộc kiểu đối tượng"
-    Nếu muốn tham chiếu có thể thực hiện các thao tác thông thường như sao chép,
+    Nếu muốn một đối tượng có hành vi giống tham chiếu nhưng vẫn thực hiện được
+    các thao tác thông thường như sao chép,
     gán, chẳng hạn làm phần tử của bộ chứa, cần dùng
     [`reference_wrapper`](https://en.cppreference.com/w/cpp/utility/functional/reference_wrapper).
     Kiểu này thường được cài đặt bằng cách duy trì một con trỏ không rỗng.
@@ -165,7 +166,7 @@ tránh vấn đề tham chiếu treo.
 
 Các **đối tượng không nhẹ** thường gặp gồm:
 
--   Bộ chứa như `vector`, `array`, `map`, v.v.
+-   Bộ chứa như `vector`, `array`, `map`.
 -   `string`
 -   Các kiểu khác đã tự định nghĩa hoặc kế thừa những hàm đặc biệt như hàm tạo
     sao chép, hàm tạo di chuyển
@@ -179,7 +180,7 @@ trình biên dịch tối ưu.
 
 Những kiểu sau thuộc nhóm **đối tượng nhẹ**:
 
--   Kiểu cơ bản như `int`, `float`, v.v.
+-   Kiểu cơ bản như `int`, `float`.
 -   [Kiểu aggregate](https://en.cppreference.com/w/cpp/language/aggregate_initialization) nhỏ
 -   Bộ lặp của bộ chứa trong thư viện chuẩn
 
