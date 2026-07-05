@@ -134,7 +134,7 @@ Ngoài ký hiệu kiểu dữ liệu, còn có một số cách điều khiển 
     
     6.  Đặc biệt, `%%` biểu thị `%`, chỉ dùng trong `printf` hoặc `scanf`; trong các chuỗi ký tự khác, chỉ cần dùng `%` trực tiếp là được.
     
-    ??? note "Literal là gì?"
+    ??? note "Giá trị literal là gì?"
         "Literal" là một đoạn chương trình xuất hiện trực tiếp trong mã dưới dạng một giá trị, ví dụ `3` là một literal kiểu `int`, `'c'` là một literal kiểu char. `"hello world"` trong chương trình chúng ta viết ở trên cũng là một literal chuỗi.
         
         Những literal không có giải thích và xuất hiện không rõ lý do còn được gọi là "số ma thuật" (magic number). Nếu mã cần được người khác đọc, đây là một cách viết rất không được khuyến nghị.

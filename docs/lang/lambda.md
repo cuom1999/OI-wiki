@@ -46,13 +46,13 @@ Dưới đây, chúng ta sẽ lần lượt giới thiệu từng phần trong c
 
 <a id="statement-thân-hàm"></a>
 
-### statement thân hàm
+### Thân hàm (statement)
 
 Thân hàm của biểu thức Lambda tương tự thân hàm thông thường. Ngoài việc có thể truy cập tham số, biến toàn cục, v.v., nó còn có thể truy cập các biến được [bắt giữ](#capture-mệnh-đề-bắt-giữ).
 
 <a id="capture-mệnh-đề-bắt-giữ"></a>
 
-### capture mệnh đề bắt giữ
+### Mệnh đề bắt giữ (capture)
 
 lambda bắt đầu bằng mệnh đề capture, dùng để chỉ định những biến nào được bắt giữ. Danh sách bắt giữ có thể rỗng, hoặc chỉ định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua [tham chiếu](./reference.md), còn biến không có tiền tố này được truy cập theo giá trị.
 
@@ -87,7 +87,7 @@ auto b = f2();  // f2 lấy giá trị của a từ danh sách bắt giữ, khô
 
 <a id="generalized-capture-bắt-giữ-có-khởi-tạo-c14"></a>
 
-#### generalized capture, bắt giữ có khởi tạo (C++14)
+#### Bắt giữ tổng quát, bắt giữ có khởi tạo (C++14)
 
 Từ C++14 trở đi, capture không chỉ có thể bắt giữ biến bên ngoài, mà còn có thể khai báo biến mới và khởi tạo nó, ví dụ:
 
@@ -204,7 +204,7 @@ int main() {
 
 <a id="parameters-danh-sách-tham-số"></a>
 
-### parameters danh sách tham số
+### Danh sách tham số (parameters)
 
 Trong phần lớn trường hợp, nó tương tự danh sách tham số của hàm, ví dụ:
 
@@ -216,7 +216,7 @@ for (auto i : x) std::cout << i << " ";
 
 Đoạn này sẽ in ra kết quả sau khi mảng `x` được sắp xếp theo thứ tự giảm dần.
 
-Vì **parameters danh sách tham số** là tùy chọn, nếu không truyền tham số cho lambda, khai báo của nó không chứa [mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
+Vì **danh sách tham số (parameters)** là tùy chọn, nếu không truyền tham số cho lambda, khai báo của nó không chứa [mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
 
 ??? note "Tham số được khai báo bằng `auto`"
     Sau **C++14**, nếu tham số dùng `auto` để khai báo kiểu, một [biểu thức Lambda tổng quát](#lambda-tổng-quát-c14) sẽ được tạo.
@@ -255,7 +255,7 @@ Còn sau khi thực thi `by_ref()`, giá trị của `a` bên ngoài trở thàn
 
 <a id="return-type-kiểu-trả-về"></a>
 
-### return-type kiểu trả về
+### Kiểu trả về (return type)
 
 Dùng để chỉ định kiểu trả về của biểu thức lambda. Nếu bỏ qua, kiểu trả về sẽ được tự động suy diễn (hành vi giống hàm có giá trị trả về được khai báo bằng `auto`).
 
@@ -474,7 +474,7 @@ Giải quyết vấn đề này như thế nào?
 
 <a id="làm-predicate-vị-từ-cho-thuật-toán-thư-viện-chuẩn"></a>
 
-#### Làm Predicate (vị từ) cho thuật toán thư viện chuẩn
+#### Làm vị từ (predicate) cho thuật toán thư viện chuẩn
 
 Sắp xếp theo thứ tự giảm dần:
 

@@ -156,9 +156,9 @@ tác dụng kiểm tra. Câu thứ hai mới là kiểm tra giá trị của `op
 
 | Toán tử | Chức năng |
 | ------- | --------- |
-| `&&`    | AND logic |
-| `||`    | OR logic |
-| `!`     | NOT logic |
+| `&&`    | Phép VÀ logic |
+| `||`    | Phép HOẶC logic |
+| `!`     | Phép PHỦ ĐỊNH logic |
 
 ```cpp
 Result = op1 && op2;  // nếu op1 và op2 đều đúng thì Result đúng
@@ -282,9 +282,9 @@ Dựa trên [C++ operator precedence - cppreference](https://en.cppreference.com
 | **Cấp 13** | | | |
 | `|` | OR bit | `flags = flags | 42;` | có thể |
 | **Cấp 14** | | | |
-| `&&` | AND logic | `if (conditionA && conditionB) ...` | có thể |
+| `&&` | Phép VÀ logic | `if (conditionA && conditionB) ...` | có thể |
 | **Cấp 15** | | | |
-| `||` | OR logic | `if (conditionA || conditionB) ...` | có thể |
+| `||` | Phép HOẶC logic | `if (conditionA || conditionB) ...` | có thể |
 | **Cấp 16** (kết hợp từ phải sang trái) | | | |
 | `? :` | toán tử điều kiện | `int i = a > b ? a : b;` | không thể |
 | `throw` | ném ngoại lệ | `throw EClass("Message");` | không thể |
