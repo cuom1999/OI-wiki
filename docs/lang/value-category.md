@@ -69,9 +69,9 @@ C++98 gần như giống ngôn ngữ C về loại giá trị, nhưng bổ sung 
 
 ### Loại bỏ sao chép
 
-C++ cho phép trình biên dịch thực hiện loại bỏ sao chép (Copy Elision), nhờ đó giảm việc tạo và hủy đối tượng tạm.
+C++ cho phép trình biên dịch thực hiện loại bỏ sao chép (copy elision), nhờ đó giảm việc tạo và hủy đối tượng tạm.
 
-Ví dụ, đoạn mã dưới đây kích hoạt tối ưu giá trị trả về (Return Value Optimization, RVO) trong cơ chế loại bỏ sao chép. Bạn chỉ thấy một lần khởi tạo và một lần khởi tạo sao chép, kể cả khi việc khởi tạo và hủy có tác dụng phụ.
+Ví dụ, đoạn mã dưới đây kích hoạt tối ưu hóa giá trị trả về (return value optimization, RVO) trong cơ chế loại bỏ sao chép. Bạn chỉ thấy một lần khởi tạo và một lần khởi tạo sao chép, kể cả khi việc khởi tạo và hủy có tác dụng phụ.
 
 ```cpp
 struct X {
@@ -160,7 +160,7 @@ int main() {
 }
 ```
 
-> Do `std::string` có tối ưu đối tượng nhỏ (Small String Optimization, SSO), các chuỗi ngắn được lưu trực tiếp bên trong cấu trúc. Có thể bạn cần nhập chuỗi dài hơn mới quan sát được tính bất biến của con trỏ `data`.
+> Do `std::string` có tối ưu hóa chuỗi nhỏ (small string optimization, SSO), các chuỗi ngắn được lưu trực tiếp bên trong cấu trúc. Có thể bạn cần nhập chuỗi dài hơn mới quan sát được tính bất biến của con trỏ `data`.
 
 ## Loại giá trị trong C++17
 
@@ -172,7 +172,7 @@ C++17 tiếp tục đơn giản hóa loại giá trị:
 
 C++11 đã mở rộng loại bỏ sao chép sang cả di chuyển; trong đoạn mã dưới đây, `urvo` sẽ không có thao tác di chuyển nếu trình biên dịch bật RVO.
 
-C++17 yêu cầu giá trị thuần phải không nhất thiết phải được hiện thực hóa, mà được khởi tạo trực tiếp vào vùng lưu trữ của đích cuối cùng; trước khi khởi tạo, đối tượng còn chưa tồn tại. Vì vậy trong C++17, ta không còn bước trả về đó nữa, và cũng không cần phụ thuộc vào RVO. Cũng có thể hiểu là URVO (Unnamed RVO) đã trở thành bắt buộc, nhưng NRVO (Named RVO) thì vẫn không bắt buộc.
+C++17 yêu cầu giá trị thuần phải không nhất thiết phải được hiện thực hóa, mà được khởi tạo trực tiếp vào vùng lưu trữ của đích cuối cùng; trước khi khởi tạo, đối tượng còn chưa tồn tại. Vì vậy trong C++17, ta không còn bước trả về đó nữa, và cũng không cần phụ thuộc vào RVO. Cũng có thể hiểu là URVO (RVO không tên, unnamed RVO) đã trở thành bắt buộc, nhưng NRVO (RVO có tên, named RVO) thì vẫn không bắt buộc.
 
 ```cpp
 std::string urvo() { return std::string("123"); }
