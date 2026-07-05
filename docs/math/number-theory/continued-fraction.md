@@ -475,7 +475,7 @@ Thực ra, nghiệm của phương trình Diophantine tuyến tính hai ẩn cũ
 
 ## Xấp xỉ Diophantine
 
-Một ứng dụng quan trọng của lý thuyết liên phân số là lý thuyết xấp xỉ Diophantine. Xấp xỉ Diophantine (Diophantine approximation) là việc dùng số hữu tỉ để xấp xỉ số thực. Dĩ nhiên, do tính trù mật của số hữu tỉ, nếu không đặt ràng buộc thì có thể đạt sai số nhỏ tùy ý. Vì vậy, cần ràng buộc các số hữu tỉ được phép dùng, chẳng hạn chỉ chọn các số hữu tỉ có mẫu nhỏ hơn một giá trị nào đó. Phần này thảo luận mối quan hệ giữa xấp xỉ tốt nhất dưới ràng buộc như vậy và liên phân số.
+Một ứng dụng quan trọng của lý thuyết liên phân số là lý thuyết xấp xỉ Diophantine. Xấp xỉ Diophantine (tiếng Anh: Diophantine approximation) là việc dùng số hữu tỉ để xấp xỉ số thực. Dĩ nhiên, do tính trù mật của số hữu tỉ, nếu không đặt ràng buộc thì có thể đạt sai số nhỏ tùy ý. Vì vậy, cần ràng buộc các số hữu tỉ được phép dùng, chẳng hạn chỉ chọn các số hữu tỉ có mẫu nhỏ hơn một giá trị nào đó. Phần này thảo luận mối quan hệ giữa xấp xỉ tốt nhất dưới ràng buộc như vậy và liên phân số.
 
 <span id="dùng-phân-số-tiệm-cận-để-xấp-xỉ-số-thực"></span>
 

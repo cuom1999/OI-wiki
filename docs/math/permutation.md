@@ -314,7 +314,7 @@ Trong thư viện STL `<algorithm>` của C++, có thể dùng `prev_permutation
 
 Nếu liệt kê các cách sắp xếp của $n$ phần tử theo thứ tự từ điển từ nhỏ đến lớn, thì vị trí của một cách sắp xếp trong dãy này chính là thứ hạng của cách sắp xếp đó. Nó thiết lập một tương ứng một-một giữa cách sắp xếp và số nguyên dương, và thường được dùng để nén trạng thái trong các bài toán liên quan đến cách sắp xếp.
 
-Trong giới lập trình thi đấu Trung Quốc, thứ hạng này thường được gọi là "khai triển Cantor" của cách sắp xếp, nhưng tên gọi này không chuẩn xác. Cách nói chặt chẽ hơn là: **khai triển Cantor** (Cantor expansion) của thứ hạng của một cách sắp xếp tương ứng với **mã Lehmer** (Lehmer code) của cách sắp xếp đó.
+Trong giới lập trình thi đấu Trung Quốc, thứ hạng này thường được gọi là "khai triển Cantor" của cách sắp xếp, nhưng tên gọi này không chuẩn xác. Cách nói chặt chẽ hơn là: **khai triển Cantor** (Cantor expansion) của thứ hạng của một cách sắp xếp tương ứng với **mã Lehmer** (Lehmer code) của chính cách sắp xếp đó.
 
 ??? info "Về \"khai triển Cantor\""
     Đúng như tên gọi gợi ý, khai triển Cantor là một phương pháp khai triển số tự nhiên thành một dãy số. Nó có thể xem là một hệ đếm đặc biệt, cũng gọi là [hệ cơ số giai thừa](./numeral-sys/base.md#hệ-cơ-số-hỗn-hợp). Trong hệ đếm này, cơ số (radix) ứng với các vị trí khác nhau không giống nhau. Chẳng hạn, số thập phân $463_{10}$ có thể được biểu diễn trong hệ cơ số giai thừa thành

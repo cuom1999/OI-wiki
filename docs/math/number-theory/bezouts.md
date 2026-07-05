@@ -214,7 +214,7 @@ $$
 <span id="bài-toán-đồng-xu-frobenius"></span>
 ## Bài toán đồng xu Frobenius
 
-Định lý Bézout cho điều kiện cần và đủ để một số nguyên có thể được biểu diễn tuyến tính bởi một số số nguyên. Gần với nó là **bài toán đồng xu Frobenius** (Frobenius coin problem):
+Định lý Bézout cho điều kiện cần và đủ để một số nguyên có thể được biểu diễn tuyến tính bởi một số số nguyên. Gần với nó là **bài toán đồng xu Frobenius** (Frobenius coin problem, bài toán đổi tiền Frobenius):
 
 -   Nếu có các loại đồng xu với mệnh giá nguyên $a_1,a_2,\cdots,a_n$ và $\gcd(a_1,a_2,\cdots,a_n)=1$, thì số nguyên lớn nhất không thể tạo thành từ các đồng xu này là bao nhiêu?
 

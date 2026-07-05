@@ -401,7 +401,7 @@ Ngược lại, nếu biết chỉ số và cần tìm phân số, ta cần tìm
 <span id="các-phần-tử-kề-farey"></span>
 ### Các phần tử kề Farey
 
-Nếu hai phân số $\dfrac{a}{b}$ và $\dfrac{c}{d}$ kề nhau trong một dãy Farey nào đó, ta gọi chúng là **hai phần tử kề Farey** (Farey neighbors), cũng gọi là một cặp Farey (Farey pair).
+Nếu hai phân số $\dfrac{a}{b}$ và $\dfrac{c}{d}$ kề nhau trong một dãy Farey nào đó, ta gọi chúng là **hai phần tử kề Farey** (Farey neighbors), cũng gọi là **cặp Farey** (Farey pair).
 
 Giả sử $\dfrac{a}{b}<\dfrac{c}{d}$. Từ quá trình xây dựng dãy Farey, trong hai phân số kề nhau, phân số được thêm vào sau chắc chắn là trung vị phân số của phân số còn lại với phần tử kề trước đó của nó. Do vậy, hai phần tử kề Farey cũng kề nhau trong một dãy Stern-Brocot bậc nào đó; theo kết luận đã chứng minh trong phần [tính tối giản](#tính-tối-giản), tất yếu có
 

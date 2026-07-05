@@ -134,7 +134,7 @@ Theo cách đệ quy trên, ta cũng có thể viết bản lặp:
         return a
     ```
 
-Các thuật toán trên đều có thể gọi là thuật toán Euclid (Euclidean algorithm).
+Các thuật toán trên đều có thể gọi là thuật toán Euclid (tiếng Anh: Euclidean algorithm).
 
 Ngoài ra, với C++17, ta có thể dùng
 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) và
