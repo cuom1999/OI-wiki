@@ -42,8 +42,8 @@ trên macOS), kết hợp với kiểm thử độ phức tạp chính thức c�
 Dijkstra, có thể thấy rằng:
 ít nhất với người học OI, bốn thẻ ngoài heap ghép cặp đều không đáng dùng: hoặc không có
 tác dụng thực tế, hoặc hằng số lớn đến mức thua `std`, thậm chí có thể gây MLE.
-Vì vậy, ở đây chỉ khuyến nghị dùng heap ghép cặp mặc định. Tương tự, heap ghép cặp
-cũng tốt hơn `make_heap()` trong tệp tiêu đề `<algorithm>`.
+Vì vậy, ở đây chỉ nên dùng heap ghép cặp mặc định. Tương tự, heap ghép cặp cũng
+tốt hơn `make_heap()` trong tệp tiêu đề `<algorithm>`.
 
 ## Cách khởi tạo
 
@@ -54,7 +54,7 @@ Cần ghi rõ không gian tên vì tên lớp trùng với `std`.
 // __gnu_pbds::priority_queue<int, greater<int>>;
 // __gnu_pbds::priority_queue<int, greater<int>, pairing_heap_tag>;
 __gnu_pbds::priority_queue<int>::point_iterator id;  // bộ lặp kiểu điểm
-// modify và push đều trả về point_iterator; bên dưới sẽ giải thích cách dùng
+// modify và push đều trả về point_iterator; phần sau sẽ giải thích cách dùng
 id = q.push(1);
 ```
 
@@ -64,9 +64,9 @@ id = q.push(1);
 -   `pop()`: lấy phần tử đỉnh heap ra.
 -   `top()`: trả về phần tử đỉnh heap.
 -   `size()`: trả về số phần tử.
--   `empty()`: trả về heap có rỗng hay không.
+-   `empty()`: trả về `true` nếu heap rỗng, ngược lại trả về `false`.
 -   `modify(point_iterator, const key)`: sửa phần tử tại vị trí bộ lặp thành
-    giá trị `key` được truyền vào, rồi sắp xếp lại cấu trúc lưu trữ bên dưới.
+    giá trị `key` truyền vào, rồi sắp xếp lại cấu trúc lưu trữ nội bộ.
 -   `erase(point_iterator)`: xóa phần tử tại vị trí bộ lặp khỏi heap.
 -   `join(__gnu_pbds::priority_queue &other)`: hợp nhất `other` vào `*this` rồi
     làm rỗng `other`.
@@ -124,30 +124,30 @@ int main() {
 }
 ```
 
-## Bảo đảm vô hiệu hóa bộ lặp của \_\_gnu\_pbds (invalidation\_guarantee)
+## Đảm bảo về vô hiệu hóa bộ lặp của \_\_gnu\_pbds (invalidation\_guarantee)
 
 Trong ví dụ trên và trong một số tình huống thực tế (như dùng heap pb\_ds của
-chương này để viết thuật toán đường đi ngắn nhất một nguồn), ta thường cần lưu
-và dùng bộ lặp của heap (như
+chương này để viết thuật toán đường đi ngắn nhất một nguồn), thường cần lưu và
+dùng bộ lặp của heap (như
 `__gnu_pbds::priority_queue<int>::point_iterator`).
 
 Tuy nhiên, với các tham số `Tag` khác nhau của `__gnu_pbds::priority_queue`,
-hiện thực bên dưới không giống nhau, nên điều kiện vô hiệu hóa bộ lặp cũng
-khác nhau. Theo thiết kế của thư viện \_\_gnu\_pbds, có ba trường hợp dẫn xuất từ
-trên xuống dưới:
+cách cài đặt nội bộ không giống nhau, nên điều kiện vô hiệu hóa bộ lặp cũng
+khác nhau. Theo thiết kế của thư viện \_\_gnu\_pbds, có ba cấp đảm bảo theo thứ
+tự từ yếu đến mạnh:
 
-1.  Bảo đảm vô hiệu hóa cơ bản (`basic_invalidation_guarantee`): khi không sửa
+1.  Đảm bảo vô hiệu hóa cơ bản (`basic_invalidation_guarantee`): khi không sửa
     bộ chứa, bộ lặp kiểu điểm (`point_iterator`), con trỏ và tham chiếu
     (khóa/giá trị) **vẫn** hợp lệ.
 
-2.  Bảo đảm vô hiệu hóa điểm (`point_invalidation_guarantee`): sau khi **sửa**
+2.  Đảm bảo vô hiệu hóa điểm (`point_invalidation_guarantee`): sau khi **sửa**
     bộ chứa, bộ lặp kiểu điểm (`point_iterator`), con trỏ và tham chiếu
     (khóa/giá trị) **vẫn** hợp lệ miễn là phần tử tương ứng chưa bị xóa khỏi
     bộ chứa.
 
-3.  Bảo đảm vô hiệu hóa phạm vi (`range_invalidation_guarantee`): sau khi
+3.  Đảm bảo vô hiệu hóa phạm vi (`range_invalidation_guarantee`): sau khi
     **sửa** bộ chứa, ngoài tính chất ở (2), mọi bộ lặp kiểu phạm vi (bao gồm
-    giá trị trả về của `begin()` và `end()`) đều đúng. Các thẻ có bảo đảm vô
+    giá trị trả về của `begin()` và `end()`) đều hợp lệ. Các thẻ có đảm bảo vô
     hiệu hóa phạm vi gồm `rb_tree_tag`, `splay_tree_tag` dùng cho
     `__gnu_pbds::tree`, và `pat_trie_tag` dùng cho `__gnu_pbds::trie`.
 
