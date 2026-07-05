@@ -28,7 +28,7 @@ Mỗi số nguyên tố có đúng hai ước, nên ta có thể trực tiếp l
 
 Do bài này khá dễ đối chiếu kiểm thử, có thể trực tiếp thử mọi số trong miền giá trị. Ta sẽ thấy chương trình không xử lý hiệu quả bình phương của số nguyên tố. Vì vậy cần thêm bình phương của 2,3,5,7, tức 4,9,25,49, tổng cộng 19 số, thỏa mãn yêu cầu đề bài.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     #include <cstdio>
     constexpr int prime[] = {2,  3,  4,  5,  7,  9,  11, 13, 17, 19,
@@ -58,7 +58,7 @@ Tuy ý tưởng tổng thể đơn giản, nhưng trên thực tế nếu chưa 
 
 Đồng thời, vì Codeforces có cơ chế hack, nhiều người sẽ cố tình hack các code không khởi tạo hạt giống ngẫu nhiên, nên trước hàm `random_shuffle()` cần gọi `srand((size_t)new char)`.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -122,7 +122,7 @@ Chia thành hai subtasks để thảo luận:
 
     Tuy nhiên cách này cũng không áp dụng tốt cho subtask 1, vì trong trường hợp xấu nhất có thể có rất nhiều truy vấn mà trong miền giá trị không chứa số nào.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -186,7 +186,7 @@ Khi đó lời giải tối ưu trong trường hợp xấu nhất là: với $h
 
 Khi đó thuật toán của ta vừa khít trường hợp xấu nhất 16 lần.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -297,7 +297,7 @@ Hiện tại, code dưới đây chỉ qua được bài mirror trên UOJ: [#247
 
 Tuy nhiên chất lượng standard solution của Liu Rujia vẫn cao hơn code dưới đây rất nhiều; có thể xem [standard solution đã qua bài mirror UOJ](http://uoj.ac/submission/105789) trên UOJ. Với cùng một bộ dữ liệu, số lần di chuyển mà standard solution dùng là rất ít.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     #include <algorithm>
     #include <cstdio>

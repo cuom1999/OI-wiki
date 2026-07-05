@@ -399,7 +399,7 @@ Phần này dùng các bài tập để minh họa cách ứng dụng đảo Mö
     
     Sau khi dùng sàng tuyến tính để tiền xử lý $\mu(d)$ và tổng tiền tố của nó, có thể giải bằng phân khối số học. Tổng độ phức tạp thời gian là $O(N + T\sqrt{N})$, trong đó $N$ là cận trên của $n,m$, còn $T$ là số bộ dữ liệu.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_1.cpp"
     ```
@@ -562,7 +562,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     
     Điều này đơn giản hóa phần tính sàng tuyến tính. Tất nhiên, suy luận này không bắt buộc; với hàm nhân tính không có tính chất đặc biệt, dùng trực tiếp $G(pn)=G(p^{e+1})G(m)$ vẫn có thể hoàn thành sàng tuyến tính.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_2.cpp"
     ```
@@ -621,7 +621,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     
     Đây là tích của hàm nhân tính $\ell$ và hàm nhân tính $\sum_{d\mid\ell}\mu(d)d$, nên cũng là hàm nhân tính. Có thể dùng sàng tuyến tính để tiền xử lý trực tiếp, đồng thời tiền xử lý tổng tiền tố của nó. Sau đó, dùng phân khối số học để tính giá trị $f(n,m)$. Tổng độ phức tạp thời gian là $O(\min\{n,m\})$.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_3.cpp"
     ```
@@ -694,7 +694,7 @@ Bài ví dụ tiếp theo tương đối đặc biệt, cần biến đổi hàm
     
     Công thức này có thể giải bằng phân khối số học. Chỉ cần tiền xử lý $\mu(n)$ và tổng tiền tố của $\sigma_0(n)$. Tổng độ phức tạp thời gian là $O(N+T\sqrt{N})$, trong đó $N$ là cận trên của $n,m$, còn $T$ là số bộ dữ liệu.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_4.cpp"
     ```
@@ -814,7 +814,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     
     Trong đó $\Lambda(n)$ là [hàm von Mangoldt](#đảo-möbius). Lấy mũ kết quả suy luận này, ta thu được kết quả của lời giải 1.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_5.cpp"
     ```

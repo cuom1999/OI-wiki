@@ -313,7 +313,7 @@ Ví dụ: [USACO07DEC - Best Cow Line](https://www.luogu.com.cn/problem/P2870).
     
     Vì cần so sánh trong tập gồm các hậu tố của xâu gốc và hậu tố của xâu đảo, ta có thể nối xâu đảo vào sau xâu gốc, thêm ở giữa một ký tự chưa từng xuất hiện (như `#`; trong code có thể dùng trực tiếp ký tự rỗng), rồi xây dựng mảng hậu tố. Khi đó mỗi lần quyết định chỉ tốn $O(1)$.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/string/code/sa/sa_1.cpp"
     ```
@@ -425,7 +425,7 @@ Ví dụ: [USACO06DEC - Milk Patterns](https://www.luogu.com.cn/problem/P2852).
     
     Có thể dùng hàng đợi đơn điệu để giải trong $O(n)$, nhưng các cách khác cũng đủ để AC.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/string/code/sa/sa_2.cpp"
     ```
@@ -445,7 +445,7 @@ Ví dụ: [NOI2016 - Excellent Splitting](https://loj.ac/p/2083).
 <span id="kết-hợp-với-dsu"></span>
 ### Kết hợp với DSU
 
-Một số bài yêu cầu chia mảng hậu tố thành các đoạn liên tiếp có độ dài LCP lớn hơn hoặc bằng một giá trị nào đó; tương đương với việc chia mảng $h$ thành các đoạn liên tiếp có giá trị nhỏ nhất lớn hơn hoặc bằng giá trị đó, rồi thống kê đáp án cho từng đoạn. Nếu có nhiều truy vấn, ta có thể xử lý offline. Quan sát rằng khi giá trị cho trước giảm đơn điệu, số đoạn thỏa điều kiện chỉ càng ít đi; đoạn mới đều được tạo bằng cách nối hai hoặc nhiều đoạn cũ, và các phần không thuộc đoạn cũ trong đoạn mới có giá trị $h$ đúng bằng giá trị vừa giảm tới. Vì vậy chỉ cần duy trì một DSU, mỗi lần hợp nhất hai đoạn kề nhau và cập nhật thông tin thống kê.
+Một số bài yêu cầu chia mảng hậu tố thành các đoạn liên tiếp có độ dài LCP lớn hơn hoặc bằng một giá trị nào đó; tương đương với việc chia mảng $h$ thành các đoạn liên tiếp có giá trị nhỏ nhất lớn hơn hoặc bằng giá trị đó, rồi thống kê đáp án cho từng đoạn. Nếu có nhiều truy vấn, ta có thể xử lý ngoại tuyến. Quan sát rằng khi giá trị cho trước giảm đơn điệu, số đoạn thỏa điều kiện chỉ càng ít đi; đoạn mới đều được tạo bằng cách nối hai hoặc nhiều đoạn cũ, và các phần không thuộc đoạn cũ trong đoạn mới có giá trị $h$ đúng bằng giá trị vừa giảm tới. Vì vậy chỉ cần duy trì một DSU, mỗi lần hợp nhất hai đoạn kề nhau và cập nhật thông tin thống kê.
 
 Bài kinh điển: [NOI2015 - Wine Tasting Conference](https://uoj.ac/problem/131).
 
@@ -468,7 +468,7 @@ Ví dụ: [AHOI2013 - Difference](https://loj.ac/problem/2377).
     
     Phần ngăn xếp đơn điệu tương tự [Luogu P2659 - Beautiful Sequence](https://www.luogu.com.cn/problem/P2659) và [phương pháp đường treo](../misc/hoverline.md).
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/string/code/sa/sa_3.cpp"
     ```

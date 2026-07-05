@@ -59,7 +59,7 @@ Có thể tìm LCA trước rồi kết hợp với tính chất $7$ để trả
 
 #### Quy trình
 
-Thuật toán Tarjan là một **thuật toán offline**, cần dùng [DSU](../ds/dsu.md) để ghi nhận nút tổ tiên của một nút nào đó. Cách làm như sau:
+Thuật toán Tarjan là một **thuật toán ngoại tuyến**, cần dùng [DSU](../ds/dsu.md) để ghi nhận nút tổ tiên của một nút nào đó. Cách làm như sau:
 
 1.  Trước hết nhận các cạnh đầu vào (danh sách kề) và các cạnh truy vấn (lưu trong một danh sách kề khác). Cạnh truy vấn thực chất là cạnh ảo được thêm vào; để thuận tiện, mỗi khi nhập một cạnh truy vấn, ta thêm cả cạnh đó và cạnh ngược của nó vào mảng `queryEdge`.
 2.  Sau đó thực hiện một lần duyệt DFS, đồng thời dùng mảng `visited` để ghi nhận một nút đã được thăm hay chưa, và dùng `parent` để ghi nhận nút cha của nút hiện tại.
@@ -151,11 +151,13 @@ LCA là đỉnh mà con trỏ có độ sâu nhỏ hơn trỏ tới khi hai con 
 
 Độ phức tạp thời gian tiền xử lý của phân rã cây theo chuỗi là $O(n)$, độ phức tạp thời gian cho một truy vấn là $O(\log n)$, và hằng số khá nhỏ.
 
-### Link Cut Tree
+<span id="link-cut-tree"></span>
 
-Trong [Link Cut Tree](../ds/lct.md), giả sử hai điểm được thực hiện thao tác [access](../ds/lct.md#access) liên tiếp lần lượt là `u` và `v`, thì điểm do thao tác [access](../ds/lct.md#access) thứ hai trả về chính là LCA của `u` và `v`.
+### Cây Link-Cut
 
-Trong trường hợp không có các thao tác như link và cut, độ phức tạp thời gian cho một truy vấn khi dùng Link Cut Tree là $O(\log n)$.
+Trong [cây Link-Cut](../ds/lct.md), giả sử hai điểm được thực hiện thao tác [access](../ds/lct.md#access) liên tiếp lần lượt là `u` và `v`, thì điểm do thao tác [access](../ds/lct.md#access) thứ hai trả về chính là LCA của `u` và `v`.
+
+Trong trường hợp không có các thao tác như link và cut, độ phức tạp thời gian cho một truy vấn khi dùng cây Link-Cut là $O(\log n)$.
 
 ### RMQ chuẩn
 

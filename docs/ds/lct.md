@@ -705,7 +705,7 @@ Nếu cần co mỗi thành phần song liên thông cạnh thành một điểm
 
 Có thể thấy, số cạnh mà mọi đường đi khả dĩ giữa hai điểm $u,v$ đều phải đi qua bằng số nút trên đường đi giữa điểm chứa $u$ và điểm chứa $v$ sau khi co mọi thành phần song liên thông cạnh thành điểm, trừ $1$.
 
-Vì thao tác xóa cạnh trong bài không dễ xử lý, ta xét xử lý offline theo chiều ngược, biến xóa cạnh thành thêm cạnh.
+Vì thao tác xóa cạnh trong bài không dễ xử lý, ta xét xử lý ngoại tuyến theo chiều ngược, biến xóa cạnh thành thêm cạnh.
 
 Khi thêm một cạnh, nếu hai điểm ban đầu không liên thông, ta nối hai điểm trên LCT; ngược lại, trích xuất đường đi giữa hai điểm này trên LCT trước khi thêm cạnh, duyệt cây con tương ứng trên cây phụ trợ, tương đương duyệt đường đi đó, rồi hợp nhất các điểm này và dùng DSU để duy trì thông tin hợp nhất.
 

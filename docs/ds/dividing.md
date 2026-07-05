@@ -102,9 +102,9 @@ Bài ví dụ: [Luogu P3157\[CQOI2011\] Cặp nghịch thế động](https://ww
 
 Bài này có thể được giải bằng CDQ trong thời gian $\Theta(n\log^2n)$ và không gian $\Theta(n)$, hơn nữa hằng số của CDQ cũng rất tốt.
 
-Nếu bài này được đổi thành bắt buộc online, cách thường dùng là cây Fenwick + cây phân đoạn bền vững theo dạng cây lồng cây. Độ phức tạp thời gian là $\Theta(n\log^2n)$, độ phức tạp không gian là $\Theta(n\log^2n)$, hằng số hơi lớn nhưng vẫn có thể qua bài này.
+Nếu bài này được đổi thành bắt buộc xử lý trực tuyến, cách thường dùng là cây Fenwick + cây phân đoạn bền vững theo dạng cây lồng cây. Độ phức tạp thời gian là $\Theta(n\log^2n)$, độ phức tạp không gian là $\Theta(n\log^2n)$, hằng số hơi lớn nhưng vẫn có thể qua bài này.
 
-Còn nếu dùng cây phân hoạch, ta có thể giải online bài này trong thời gian $\Theta(n\log^2n)$ và không gian $\Theta(n\log n)$; đồng thời hằng số cũng nhỏ hơn rất nhiều so với cách cây lồng cây. (Xấp xỉ với CDQ.)
+Còn nếu dùng cây phân hoạch, ta có thể giải trực tuyến bài này trong thời gian $\Theta(n\log^2n)$ và không gian $\Theta(n\log n)$; đồng thời hằng số cũng nhỏ hơn rất nhiều so với cách cây lồng cây. (Xấp xỉ với CDQ.)
 
 ???+ warning "Lưu ý"
     Để thuận tiện khi cài đặt, bài viết này chia mảng lớn thành hai mảng nhỏ theo vị trí giữa. Nói cách khác, cây phân hoạch trong phần dưới tương đương với quá trình của merge sort, chứ không phải quá trình của quicksort. Mảng lớn ở tầng trên cùng là mảng đã sắp xếp, còn tầng dưới cùng là mảng ban đầu.

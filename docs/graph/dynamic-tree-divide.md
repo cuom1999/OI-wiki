@@ -14,7 +14,7 @@ Có thể chứng minh rằng nếu mỗi lần ta chọn trọng tâm của th�
 
 Vì hình dạng của cây gốc không thay đổi trong quá trình phân rã trọng tâm động, hình dạng của cây phân rã trọng tâm cũng không thay đổi.
 
-Dưới đây là code tham khảo để xây cây phân rã trọng tâm:
+Dưới đây là mã tham khảo để xây cây phân rã trọng tâm:
 
 ```cpp
 void calcsiz(int x, int f) {

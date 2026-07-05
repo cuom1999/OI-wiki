@@ -188,7 +188,7 @@ So với vành, trường có cấu trúc cộng và nhân rất đơn giản. V
 Cuối cùng, lấy bài toán dưới đây làm ví dụ để minh họa các đối tượng đại số trừu tượng hỗ trợ phân tích vấn đề cụ thể như thế nào.
 
 ???+ note "[Bài mẫu DP động và phân trị cây động (bản tăng cường)](https://www.luogu.com.cn/problem/P4751)"
-    Cho một cây có $n$ đỉnh, mỗi đỉnh có trọng số, thực hiện $m$ lần sửa đổi trọng số đỉnh. Sau mỗi lần sửa đổi, cần xuất tổng trọng số của tập độc lập có trọng số lớn nhất trên cây. Bài toán bắt buộc online.
+    Cho một cây có $n$ đỉnh, mỗi đỉnh có trọng số, thực hiện $m$ lần sửa đổi trọng số đỉnh. Sau mỗi lần sửa đổi, cần xuất tổng trọng số của tập độc lập có trọng số lớn nhất trên cây. Bài toán bắt buộc xử lý trực tuyến.
 
 ???+ note "Phân tích ý tưởng"
     Bài này là mẫu cho DP động. Một cài đặt có độ phức tạp đúng cần dùng [cây nhị phân cân bằng toàn cục](../../ds/global-bst.md); mã mẫu cụ thể cũng nằm ở trang tương ứng. Ở đây chỉ kết hợp với bối cảnh bài toán này để phân tích quá trình mô hình hóa.

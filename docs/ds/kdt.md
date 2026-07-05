@@ -123,11 +123,11 @@ Khi truy vấn, trực tiếp truy vấn riêng trên từng cây, độ phức 
     1.  `1 x y A`: cộng $A$ vào số tại tọa độ $(x,y)$.
     2.  `2 x1 y1 x2 y2`: xuất tổng các số trong hình chữ nhật có $(x1,y1)$ là góc dưới trái và $(x2,y2)$ là góc trên phải, bao gồm cả biên hình chữ nhật.
     
-    Bắt buộc online. Giới hạn bộ nhớ `20M`. Bảo đảm đáp án và tất cả đại lượng trung gian đều nằm trong phạm vi `int`.
+    Bắt buộc xử lý trực tuyến. Giới hạn bộ nhớ `20M`. Bảo đảm đáp án và tất cả đại lượng trung gian đều nằm trong phạm vi `int`.
     
     $1\le n\le 500000, 1\le q\le 200000$
 
-Giới hạn bộ nhớ 20M loại bỏ tất cả các cấu trúc cây lồng cây, yêu cầu online bắt buộc loại bỏ CDQ divide and conquer, nên chỉ có thể dùng k-D Tree.
+Giới hạn bộ nhớ 20M loại bỏ tất cả các cấu trúc cây lồng cây, yêu cầu trực tuyến bắt buộc loại bỏ chia để trị CDQ, nên chỉ có thể dùng k-D Tree.
 
 Dưới đây là mã tham khảo cho nhóm nhị phân.
 
@@ -150,7 +150,7 @@ Trước hết xây 2-D Tree cho $n$ điểm này.
 
 Duyệt từng nút. Với mỗi nút, tìm điểm khác nút đó và có khoảng cách nhỏ nhất, từ đó tính được đáp án. Nếu mỗi lần duyệt thô tất cả các nút trên 2-D Tree thì độ phức tạp thời gian là $O(n)$, nên cần cắt tỉa. Ta có thể duy trì giá trị tọa độ nhỏ nhất và lớn nhất trên từng chiều của tất cả các nút trong một cây con. Giả sử khoảng cách của cặp điểm gần nhất hiện đã tìm được là $ans$. Nếu khoảng cách **gần nhất** từ điểm truy vấn đến hình chữ nhật chứa tất cả các điểm trong cây con lớn hơn hoặc bằng $ans$, thì chắc chắn không có đáp án trong cây con này, và khi tìm kiếm ta không đi vào cây con đó.
 
-Ngoài ra, còn có thể dùng một phương pháp tìm kiếm heuristic: nếu hai cây con của một nút đều có khả năng chứa đáp án, hãy tìm kiếm trước trong cây con gần điểm truy vấn hơn. Có thể xem **khoảng cách gần nhất từ điểm truy vấn đến hình chữ nhật tương ứng với cây con chính là hàm đánh giá của bài này**.
+Ngoài ra, còn có thể dùng một phương pháp tìm kiếm theo kinh nghiệm: nếu hai cây con của một nút đều có khả năng chứa đáp án, hãy tìm kiếm trước trong cây con gần điểm truy vấn hơn. Có thể xem **khoảng cách gần nhất từ điểm truy vấn đến hình chữ nhật tương ứng với cây con chính là hàm đánh giá của bài này**.
 
 ??? note "Mã tham khảo"
     ```cpp

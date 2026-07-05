@@ -16,7 +16,7 @@ Một ví dụ đơn giản là truy vấn số điểm trong một vùng ma tr�
     
     Bài toán **bắt buộc xử lý trực tuyến**, và bảo đảm $x_i \ne x_j(1 \le i, j \le n, i \ne j)$.
 
-Với thao tác 1, ta có thể dùng bao hàm - loại trừ trên hình chữ nhật để chuyển nó thành 4 truy vấn thứ tự bộ phận hai chiều. Vì bài toán bắt buộc xử lý trực tuyến, các thuật toán offline như chia để trị CDQ không áp dụng được, nên ta nghĩ đến cây lồng cây, chẳng hạn cây Fenwick lồng Treap. Cách này thật sự giải được bài toán, nhưng mã khá dài và không quá dễ cài đặt.
+Với thao tác 1, ta có thể dùng bao hàm - loại trừ trên hình chữ nhật để chuyển nó thành 4 truy vấn thứ tự bộ phận hai chiều. Vì bài toán bắt buộc xử lý trực tuyến, các thuật toán ngoại tuyến như chia để trị CDQ không áp dụng được, nên ta nghĩ đến cây lồng cây, chẳng hạn cây Fenwick lồng Treap. Cách này thật sự giải được bài toán, nhưng mã khá dài và không quá dễ cài đặt.
 
 Chú ý rằng bài toán còn bảo đảm thêm $x_i \ne x_j(1 \le i, j \le n, i \ne j)$, khi đó có thể dùng phân khối lồng cây Fenwick để giải.
 

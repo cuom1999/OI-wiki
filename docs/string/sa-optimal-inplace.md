@@ -277,7 +277,7 @@ Còn việc cảm ứng hậu tố S từ hậu tố L hoàn toàn đối xứng
 
 Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian sử dụng giảm xuống dưới $\dfrac{1}{3}$ so với ban đầu (đổi lại lượng code tăng khoảng gấp đôi). Như vậy khá xứng với tiêu đề Optimal In-Place Suffix Sorting[^in-place-sa-sort] của bài gốc.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```rust
     use std::cmp::max;
     use std::cmp::Ordering;

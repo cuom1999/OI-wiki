@@ -750,7 +750,7 @@ Nói cách khác, khi cấu trúc cây thay đổi, trước thời điểm mộ
 
 <!-- TODO: Có thể thêm một hình giải thích vì sao cần đẩy tag khi tách và hợp nhất -->
 
-Dưới đây là phần giải thích code, code tham khảo từ [^ref3].
+Dưới đây là phần giải thích mã, mã tham khảo từ [^ref3].
 
 Vì phần lớn thao tác trong thao tác đoạn giống Treap không xoay thông thường, ở đây chỉ giải thích những điểm khác với Treap không xoay thông thường.
 

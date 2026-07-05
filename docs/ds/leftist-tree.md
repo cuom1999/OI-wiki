@@ -27,7 +27,7 @@ Cần lưu ý rằng $\mathrm{dist}$ không phải là độ sâu. **Độ sâu 
 
 Khi hợp nhất hai heap, để thỏa mãn tính chất heap, trước hết lấy gốc có giá trị nhỏ hơn (cho tiện, bài này xét heap nhỏ) làm gốc của heap sau khi hợp nhất. Sau đó giữ con trái của gốc này làm con trái của heap mới, rồi đệ quy hợp nhất con phải của nó với heap còn lại để làm con phải của heap mới. Để thỏa mãn tính chất lệch trái, sau khi hợp nhất, nếu $\mathrm{dist}$ của con trái nhỏ hơn $\mathrm{dist}$ của con phải thì đổi chỗ hai con.
 
-Code tham khảo:
+Mã tham khảo:
 
 ???+ note "Cài đặt"
     ```cpp
@@ -238,7 +238,7 @@ Trước hết, để tìm đỉnh heap chứa một nút, cần dùng DSU, khô
 
 Tiếp theo xét truy vấn một điểm. Nếu dùng cách thông thường để gắn tag, ta phải truy vấn tổng tag trên đường từ điểm đó tới gốc, trường hợp xấu nhất có thể đạt độ phức tạp $O(n)$. Nếu chỉ đỉnh heap có tag thì có thể truy vấn nhanh, nhưng làm thế nào để đạt được điều đó?
 
-Có thể dùng cách tương tự hợp nhất heuristic: mỗi lần hợp nhất, đẩy tag của heap nhỏ hơn xuống từng nút bằng vét cạn, rồi dùng tag của heap lớn hơn làm tag của heap sau khi hợp nhất. Vì sau khi hợp nhất sẽ có tag của heap còn lại, khi đẩy tag của heap nhỏ hơn xuống ta cần đẩy giá trị bằng tag của nó trừ tag của heap kia. Do mỗi lần một nút được hợp nhất, kích thước heap chứa nó ít nhất nhân đôi, nên mỗi nút nhiều nhất bị đẩy tag xuống $O(\log n)$ lần; tổng độ phức tạp của việc đẩy tag vét cạn là $O(n\log n)$.
+Có thể dùng cách tương tự hợp nhất theo kinh nghiệm: mỗi lần hợp nhất, đẩy tag của heap nhỏ hơn xuống từng nút bằng vét cạn, rồi dùng tag của heap lớn hơn làm tag của heap sau khi hợp nhất. Vì sau khi hợp nhất sẽ có tag của heap còn lại, khi đẩy tag của heap nhỏ hơn xuống ta cần đẩy giá trị bằng tag của nó trừ tag của heap kia. Do mỗi lần một nút được hợp nhất, kích thước heap chứa nó ít nhất nhân đôi, nên mỗi nút nhiều nhất bị đẩy tag xuống $O(\log n)$ lần; tổng độ phức tạp của việc đẩy tag vét cạn là $O(n\log n)$.
 
 Tiếp theo xét cộng vào một điểm: xóa trước, cập nhật, rồi chèn lại.
 

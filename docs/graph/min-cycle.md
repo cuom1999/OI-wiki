@@ -544,9 +544,9 @@ Tuy nhiên, bước thứ hai đổi sang dùng Floyd để tính.
 
 Khi đó đáp án là khoảng cách giữa hai đỉnh bất kỳ trong trường hợp không đi qua đỉnh truy vấn $x$.
 
-Làm thế nào để xử lý online?
+Làm thế nào để xử lý trực tuyến?
 
-Ép về offline, dùng phương pháp offline để tránh thao tác xóa.
+Ép về ngoại tuyến, dùng phương pháp ngoại tuyến để tránh thao tác xóa.
 
 Sắp xếp các truy vấn theo thứ tự thời gian và dựng một cây phân đoạn trên các truy vấn này.
 
@@ -556,7 +556,7 @@ Sau khi hoàn tất, duyệt toàn bộ cây phân đoạn một lần. Khi đi 
 
 Độ phức tạp thời gian của cách làm này là $O(qn^2\log q)$.
 
-Còn có một cách online có độ phức tạp thời gian tốt hơn.
+Còn có một cách trực tuyến có độ phức tạp thời gian tốt hơn.
 
 Với một truy vấn trên đỉnh $x$, ta chạy đường đi ngắn nhất một nguồn từ $x$, sau đó dựng cây đường đi ngắn nhất và đồng thời xử lý xem mỗi đỉnh nằm trong cây con nào của $x$.
 

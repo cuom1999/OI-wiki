@@ -210,7 +210,7 @@ void Delete(int u, int v) {
 
 Bài mẫu về duy trì tính liên thông.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/ett/ett_connectivity.cpp"
     ```
@@ -225,7 +225,7 @@ Tương tự, có thể chuyển các thao tác như giá trị nhỏ nhất tro
 
 ### Bài tập ví dụ [LOJ #2230. BJOI2014 - Đại dung hợp](https://loj.ac/p/2230)
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/ett/ett_subtree_size.cpp"
     ```
@@ -244,7 +244,7 @@ Trong bài này, thao tác cây động chỉ có đổi cha; có thể xem là 
 
 Có thể chuyển trọng số đỉnh thành trọng số cạnh, duy trì dãy ngoặc của cây, và chuyển thao tác đổi cha thành thao tác tịnh tiến toàn bộ dãy ngoặc tương ứng với cây con đến ngay sau ngoặc trái của cha.
 
-??? note "Code tham khảo"
+??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/ds/code/ett/ett_1.cpp"
     ```

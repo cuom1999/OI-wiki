@@ -41,7 +41,7 @@ Chẳng hạn trong ví dụ trên, phần tử lấy ra chính là giá trị n
 
 Một ứng dụng khá cơ bản là bài này: chỉ cần dùng ngăn xếp đơn điệu một cách đơn giản, ghi lại vị trí mà mỗi con bò bị bật ra; nếu chưa từng bị bật ra thì xem như tới đầu xa nhất. Xử lý thêm một chút là có thể tính được kết quả bài toán yêu cầu.
 
-Ngoài ra, ngăn xếp đơn điệu cũng có thể dùng để giải bài toán RMQ theo kiểu offline.
+Ngoài ra, ngăn xếp đơn điệu cũng có thể dùng để giải bài toán RMQ theo kiểu ngoại tuyến.
 
 Ta có thể sắp xếp tất cả truy vấn theo đầu mút phải, sau đó mỗi lần quét dãy từ trái sang phải tới đầu mút phải của truy vấn hiện tại và chèn các phần tử đã quét vào ngăn xếp đơn điệu. Như vậy, mỗi khi trả lời truy vấn, các giá trị được lưu trong ngăn xếp đơn điệu đều là những điểm quyết định có vị trí $\le r$ và có khả năng trở thành đáp án, đồng thời các phần tử này thỏa mãn tính đơn điệu. Khi đó, phần tử đầu tiên trên ngăn xếp đơn điệu có vị trí $\ge l$ chính là đáp án của truy vấn hiện tại; bước này có thể thực hiện bằng tìm kiếm nhị phân. Dùng ngăn xếp đơn điệu để giải RMQ có độ phức tạp thời gian $O(q\log q + q\log n)$ và độ phức tạp bộ nhớ $O(n)$.
 

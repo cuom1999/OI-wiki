@@ -94,7 +94,7 @@ Tư tưởng chia khối cũng có thể áp dụng cho nhiều bài toán liên
 
 Còn có một số bài toán khác có thể giải bằng chia khối, chẳng hạn duy trì một tập các số cho phép thêm hoặc xóa, kiểm tra một số có thuộc tập này hay không, và tìm số lớn thứ $k$. Để giải bài toán này, cần lưu các số theo thứ tự tăng dần và chia chúng thành nhiều khối, mỗi khối chứa $\sqrt{n}$ số. Mỗi khi thêm hoặc xóa một số, cần chia khối lại bằng cách di chuyển các số ở biên giữa các khối kề nhau.
 
-Một thuật toán offline rất nổi tiếng, [thuật toán Mo](../misc/mo-algo.md), cũng được xây dựng dựa trên tư tưởng chia khối.
+Một thuật toán ngoại tuyến rất nổi tiếng, [thuật toán Mo](../misc/mo-algo.md), cũng được xây dựng dựa trên tư tưởng chia khối.
 
 <span id="bài-tập"></span>
 ## Bài tập

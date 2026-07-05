@@ -2,11 +2,11 @@ author: abc1763613206, cesonic, Ir1d, MingqiHuang, xinchengo, xiaofu-15191, hsef
 
 ## Giới thiệu
 
-Thuật toán heuristic là gì?
+Thuật toán theo kinh nghiệm là gì?
 
-Thuật toán heuristic là cách tối ưu một số thuật toán dựa trên kinh nghiệm và trực giác của con người.
+Thuật toán theo kinh nghiệm là cách tối ưu một số thuật toán dựa trên kinh nghiệm và trực giác của con người.
 
-Ví dụ thường gặp nhất là gộp theo heuristic trong DSU. Mã như sau:
+Ví dụ thường gặp nhất là gộp theo kinh nghiệm trong DSU. Mã như sau:
 
 ```cpp
 void merge(int x, int y) {
@@ -21,11 +21,11 @@ void merge(int x, int y) {
 
 Vì sao lại làm vậy? Trong trường hợp thông thường, kích thước của tập có thể được xem như chiều cao của tập. Việc gộp cây có chiều cao nhỏ vào cây có chiều cao lớn rõ ràng giúp ta tìm cha nhanh hơn.
 
-Cho cây có chiều cao nhỏ trở thành cây con của cây có chiều cao lớn hơn là một cách tối ưu gọi là thuật toán gộp heuristic.
+Cho cây có chiều cao nhỏ trở thành cây con của cây có chiều cao lớn hơn là một cách tối ưu gọi là thuật toán gộp theo kinh nghiệm.
 
 ## Nội dung thuật toán
 
-Gộp heuristic trên cây, hay DSU on tree, là một thuật toán cho một số bài toán offline trên cây. Nó có tốc độ không kém đa số thuật toán khác, đồng thời dễ hiểu và dễ cài đặt hơn.
+Gộp theo kinh nghiệm trên cây, hay DSU on tree, là một thuật toán cho một số bài toán ngoại tuyến trên cây. Nó có tốc độ không kém đa số thuật toán khác, đồng thời dễ hiểu và dễ cài đặt hơn.
 
 Xét bài toán sau: [Đếm số màu trên cây](https://www.luogu.com.cn/problem/U41492).
 
@@ -36,17 +36,17 @@ Xét bài toán sau: [Đếm số màu trên cây](https://www.luogu.com.cn/prob
 
 ![dsu-on-tree-1.png](./images/dsu-on-tree-1.svg)
 
-Với dạng bài này, nhiều lời giải thường dùng các cấu trúc dữ liệu nặng như cây lồng cây. Nếu có thể xử lý offline, liệu có cách nào đơn giản hơn không?
+Với dạng bài này, nhiều lời giải thường dùng các cấu trúc dữ liệu nặng như cây lồng cây. Nếu có thể xử lý ngoại tuyến, liệu có cách nào đơn giản hơn không?
 
 ## Quy trình
 
-Vì bài toán cho phép xử lý offline, ta có thể nghĩ đến việc tiền xử lý rồi xuất mỗi đáp án trong $O(1)$.
+Vì bài toán cho phép xử lý ngoại tuyến, ta có thể nghĩ đến việc tiền xử lý rồi xuất mỗi đáp án trong $O(1)$.
 
 Nếu tiền xử lý trực tiếp bằng vét cạn, độ phức tạp thời gian là $O(n^2)$: với mỗi đỉnh, ta duyệt các đỉnh trong cây con của nó. Mỗi lần duyệt rõ ràng có thể cùng bậc với $n$, và có $n$ đỉnh, nên tổng độ phức tạp là $O(n^2)$.
 
 Ta thấy đáp án của mỗi đỉnh được xác định bởi các cây con của nó và chính nó. Hãy tận dụng tính chất này để xử lý bài toán.
 
-Trước hết, ta tiền xử lý kích thước cây con của mỗi đỉnh và con nặng của nó. Giống như trong phân rã heavy-light, con nặng là đỉnh con có cây con chứa nhiều đỉnh nhất. Quá trình này rõ ràng có thể hoàn thành trong $O(n)$.
+Trước hết, ta tiền xử lý kích thước cây con của mỗi đỉnh và con nặng của nó. Giống như trong phân rã nặng-nhẹ, con nặng là đỉnh con có cây con chứa nhiều đỉnh nhất. Quá trình này rõ ràng có thể hoàn thành trong $O(n)$.
 
 Ta dùng $cnt_i$ để biểu diễn số lần xuất hiện của màu $i$, và $ans_u$ để biểu diễn đáp án của đỉnh $u$.
 
@@ -72,7 +72,7 @@ Lưu ý rằng ngoài con nặng, sau mỗi lần duyệt cần xóa ảnh hư�
 
 ## Chứng minh
 
-Ta định nghĩa cạnh nặng và cạnh nhẹ giống như trong phân rã heavy-light: cạnh nối tới con nặng là cạnh nặng, các cạnh còn lại là cạnh nhẹ. Với một cây có $n$ đỉnh, định nghĩa về con nặng và cạnh nặng có thể xem trong hình dưới đây.
+Ta định nghĩa cạnh nặng và cạnh nhẹ giống như trong phân rã nặng-nhẹ: cạnh nối tới con nặng là cạnh nặng, các cạnh còn lại là cạnh nhẹ. Với một cây có $n$ đỉnh, định nghĩa về con nặng và cạnh nặng có thể xem trong hình dưới đây.
 
 Số cạnh nhẹ trên đường đi từ gốc đến bất kỳ đỉnh nào trên cây không vượt quá $\log n$. Giả sử từ gốc đến đỉnh đó có $x$ cạnh nhẹ và kích thước cây con của đỉnh đó là $y$. Rõ ràng, cây con của đỉnh con được nối bởi một cạnh nhẹ có kích thước nhỏ hơn một nửa kích thước cây con của cha, vì nếu lớn hơn một nửa thì nó sẽ không phải là cạnh nhẹ. Do đó $y<n/2^x$, suy ra $n>2^x$, nên $x<\log n$.
 
@@ -84,11 +84,11 @@ Ngoài ra, nếu một đỉnh là con nặng của cha nó, thì cây con của
 
 ## Tối ưu
 
-Trong phần chứng minh đã nhắc đến việc DSU on tree dùng khái niệm con nặng và con nhẹ trong phân rã heavy-light để tăng tốc quá trình gộp. Vì vậy, ta cũng có thể trực tiếp dùng thứ tự DFS thu được từ phân rã heavy-light, chuyển đệ quy thành lặp để tiếp tục tối ưu hằng số của DSU on tree.
+Trong phần chứng minh đã nhắc đến việc DSU on tree dùng khái niệm con nặng và con nhẹ trong phân rã nặng-nhẹ để tăng tốc quá trình gộp. Vì vậy, ta cũng có thể trực tiếp dùng thứ tự DFS thu được từ phân rã nặng-nhẹ, chuyển đệ quy thành lặp để tiếp tục tối ưu hằng số của DSU on tree.
 
 Bản thân thứ tự DFS có tính chất sau: cây con của một đỉnh luôn là một đoạn liên tiếp trên thứ tự DFS. Vì vậy, ta có thể duyệt mảng thứ tự DFS theo chiều ngược lại. Cách này bảo đảm rằng khi duyệt tới một đỉnh, các đỉnh khác trong cây con của nó đều đã được xử lý.
 
-Thứ tự DFS thu được từ phân rã heavy-light còn có một tính chất tốt: mỗi chuỗi nặng luôn liên tiếp trên thứ tự DFS. Do đó, khi duyệt các đỉnh theo thứ tự DFS ngược, với đỉnh ở đầu một chuỗi nặng, đỉnh được duyệt tiếp theo chắc chắn không phải là cha của nó, nên cần xóa ảnh hưởng của nó. Ngoài trường hợp đó, với các đỉnh không nằm ở đầu chuỗi nặng, đỉnh được duyệt ngay trước đó hoặc là con nặng của chính nó, hoặc là một đỉnh thuộc nhánh khác đã được xóa ảnh hưởng, nên có thể trực tiếp kế thừa ảnh hưởng đó. Trên cơ sở này, ta tiếp tục dùng thứ tự DFS để thống kê nhanh ảnh hưởng của tất cả các con nhẹ và ghi lại đáp án.
+Thứ tự DFS thu được từ phân rã nặng-nhẹ còn có một tính chất tốt: mỗi chuỗi nặng luôn liên tiếp trên thứ tự DFS. Do đó, khi duyệt các đỉnh theo thứ tự DFS ngược, với đỉnh ở đầu một chuỗi nặng, đỉnh được duyệt tiếp theo chắc chắn không phải là cha của nó, nên cần xóa ảnh hưởng của nó. Ngoài trường hợp đó, với các đỉnh không nằm ở đầu chuỗi nặng, đỉnh được duyệt ngay trước đó hoặc là con nặng của chính nó, hoặc là một đỉnh thuộc nhánh khác đã được xóa ảnh hưởng, nên có thể trực tiếp kế thừa ảnh hưởng đó. Trên cơ sở này, ta tiếp tục dùng thứ tự DFS để thống kê nhanh ảnh hưởng của tất cả các con nhẹ và ghi lại đáp án.
 
 Quy trình trên được gọi là cài đặt không đệ quy hoặc cài đặt lặp của DSU on tree, cũng được gọi là cài đặt DSU on tree bằng thứ tự DFS. So với cài đặt đệ quy ban đầu, nó giảm chi phí thời gian và không gian của các lời gọi hàm đệ quy, đem lại tối ưu hằng số đáng kể, **đặc biệt có lợi rõ rệt về không gian ngăn xếp khi xử lý các cây chứa nhiều cấu trúc dạng chuỗi.**
 
