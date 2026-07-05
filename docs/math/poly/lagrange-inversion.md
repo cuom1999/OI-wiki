@@ -1,4 +1,4 @@
-<span id="&#x5F62;&#x5F0F;-laurent-&#x7EA7;&#x6570;"></span>
+<span id="chuỗi-laurent-hình-thức"></span>
 
 ## Chuỗi Laurent hình thức
 
@@ -32,7 +32,7 @@ $$
 \operatorname{ord} (fg)=\operatorname{ord}(f)+\operatorname{ord}(g).
 $$
 
-<span id="&#x5F62;&#x5F0F;&#x7559;&#x6570;"></span>
+<span id="thặng-dư-hình-thức"></span>
 
 ## Thặng dư hình thức
 
@@ -82,7 +82,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#x590D;&#x5408;&#x9006;"></span>
+<span id="nghịch-đảo-hợp-thành"></span>
 
 ## Nghịch đảo hợp thành
 
@@ -117,7 +117,7 @@ Ta chỉ có thể giải phương trình đầu tiên khi $f_1\neq 0$, sau đó
 
 Đặc biệt, xét $f(h(x))=x$. Khi đó $g(f(h(x)))=g(x)$, suy ra $g(x)=g\circ f\circ h(x)=x\circ h(x)=h(x)$.
 
-<span id="lagrange-&#x53CD;&#x6F14;&#x516C;&#x5F0F;"></span>
+<span id="công-thức-nghịch-đảo-lagrange"></span>
 
 ## Công thức nghịch đảo Lagrange
 
@@ -166,7 +166,7 @@ $$
 
 nên phiên bản này có thể được suy ra từ phần đã chứng minh.
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 

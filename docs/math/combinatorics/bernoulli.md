@@ -2,7 +2,7 @@ Số Bernoulli $B_n$ là một dãy số hữu tỉ có liên hệ chặt chẽ 
 
 $B_0=1,B_1=-\frac{1}{2},B_2=\frac{1}{6},B_3=0,B_4=-\frac{1}{30},\dots$
 
-<span id="&#x7B49;&#x5E42;&#x6C42;&#x548C;"></span>
+<span id="tổng-các-lũy-thừa-cùng-bậc"></span>
 ## Tổng các lũy thừa cùng bậc
 
 Số Bernoulli được đặt theo tên Jacob Bernoulli. Khi nghiên cứu công thức tổng các lũy thừa bậc $m$, ông phát hiện ra một quan hệ rất đẹp. Kí hiệu
@@ -27,7 +27,7 @@ Có thể thấy trong $S_m(n)$, hệ số của $n^{m+1}$ luôn là $\frac{1}{m
 
 Hơn nữa, hệ số của $n^{m-k}$ luôn là một hằng số nào đó nhân với $m^{\underline{k}}$, trong đó $m^{\underline{k}}$ là lũy thừa giai thừa giảm, tức $\frac{m!}{(m-k)!}$.
 
-<span id="&#x9012;&#x63A8;&#x516C;&#x5F0F;"></span>
+<span id="công-thức-truy-hồi"></span>
 ## Công thức truy hồi
 
 $$
@@ -52,10 +52,10 @@ Ví dụ, $\binom{2}{0}B_0+\binom{2}{1}B_1=0$. Một vài giá trị đầu tiê
 | :---: | :-: | :------------: | :-----------: | :-: | :-------------: | :-: | :------------: | :-: | :-------------: | :-----: |
 | $B_n$ | $1$ | $-\frac{1}{2}$ | $\frac{1}{6}$ | $0$ | $-\frac{1}{30}$ | $0$ | $\frac{1}{42}$ | $0$ | $-\frac{1}{30}$ | $\dots$ |
 
-<span id="&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh"></span>
 ### Chứng minh
 
-<span id="&#x5229;&#x7528;&#x5F52;&#x7EB3;&#x6CD5;&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh-bằng-quy-nạp"></span>
 #### Chứng minh bằng quy nạp
 
 Cách chứng minh này lấy từ mục 6.5 BERNOULLI NUMBER của Concrete Mathematics.
@@ -157,7 +157,7 @@ $$
 
 Vậy $\Delta=0$, tức $S_m(n)=\hat{S}_m(n)$.
 
-<span id="&#x5229;&#x7528;&#x6307;&#x6570;&#x751F;&#x6210;&#x51FD;&#x6570;&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh-bằng-hàm-sinh-mũ"></span>
 #### Chứng minh bằng hàm sinh mũ
 
 Với truy hồi $\sum_{j=0}^{m}\binom{m+1}{j}B_j=[m=0]$,

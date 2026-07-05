@@ -1,6 +1,6 @@
 Trong logic toán học, đại số Boolean (boolean algebra) là một nhánh của đại số. Trong đại số sơ cấp, giá trị của biến là các số, và các phép toán chủ yếu được nghiên cứu gồm cộng, nhân, lũy thừa cùng các phép toán ngược của ba phép đó. Trong đại số Boolean, giá trị của biến chỉ có hai khả năng **đúng** và **sai** (thường ký hiệu là $1$ và $0$), và các phép toán chủ yếu được nghiên cứu gồm hội (AND, $\land$), tuyển (OR, $\lor$), phủ định (NOT, $\lnot$). Giống như đại số sơ cấp là một hình thức mô tả phép toán trên số, đại số Boolean là một hình thức mô tả phép toán logic.
 
-<span id="&#x5E03;&#x5C14;&#x51FD;&#x6570;"></span>
+<span id="hàm-boolean"></span>
 ## Hàm Boolean
 
 ???+ abstract "Định nghĩa"
@@ -50,7 +50,7 @@ Ta gọi tổ hợp các toán tử logic là **biểu thức logic** (logical e
 
 Nếu xem $\mathbf{B}$ như một [lớp thặng dư](./number-theory/basic.md#lớp-đồng-dư-và-hệ-thặng-dư) modulo $2$, thì XOR tương đương với phép cộng modulo $2$, còn AND tương đương với phép nhân modulo $2$. Vì vậy đôi khi ta cũng dùng $\mathbf{Z}_2$ để biểu thị miền Boolean.
 
-<span id="&#x4F18;&#x5148;&#x7EA7;"></span>
+<span id="thứ-tự-ưu-tiên"></span>
 ### Thứ tự ưu tiên
 
 Toán tử logic một ngôi có thứ tự ưu tiên cao hơn toán tử logic hai ngôi; tức là $\lnot$ có thứ tự ưu tiên cao hơn $\land$, $\lor$, $\oplus$, v.v.
@@ -59,7 +59,7 @@ Có nhiều quy ước khác nhau về thứ tự ưu tiên giữa các toán t�
 
 Quy ước trong C++ xem tại [bảng tổng hợp thứ tự ưu tiên toán tử C++](../lang/op.md#bảng-tổng-hợp-độ-ưu-tiên-toán-tử-c).
 
-<span id="&#x81EA;&#x8DB3;&#x7B97;&#x5B50;&#x4E0E;&#x5B8C;&#x5907;&#x7B97;&#x5B50;&#x96C6;"></span>
+<span id="toán-tử-tự-túc-và-tập-toán-tử-đầy-đủ"></span>
 ### Toán tử tự túc và tập toán tử đầy đủ
 
 Thực ra, chỉ cần NAND hoặc NOR là có thể biểu diễn các toán tử logic còn lại; CPU cũng được xây dựng dựa trên điểm này. Tuy nhiên, do bốn toán tử logic **AND, OR, NOT, XOR** có tính chất tốt hơn, nên khi nghiên cứu đại số Boolean ta thường chỉ dùng bốn hàm này.
@@ -100,7 +100,7 @@ Sau đây là các tập toán tử đầy đủ cực tiểu thường gặp[^v
 -   $\{\lor,\leftrightarrow,\bot\}$, $\{\lor,\leftrightarrow,\nleftrightarrow\}$, $\{\lor,\nleftrightarrow,\top\}$,
 -   $\{\land,\leftrightarrow,\bot\}$, $\{\land,\leftrightarrow,\nleftrightarrow\}$, $\{\land,\nleftrightarrow,\top\}$.
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 ### Tính chất
 
 Trước hết là các tính chất liên quan đến cấu trúc đại số:
@@ -132,7 +132,7 @@ Ta còn có các tính chất sau:
 -   Luật đối hợp của $\oplus$ và $\odot$: $x\oplus y\oplus y=x$, $x\odot y\odot y=x$.
 -   Luật De Morgan: $\lnot(p\land q)=\lnot p\lor \lnot q$, $\lnot(p\lor q)=\lnot p\land \lnot q$.
 
-<span id="&#x903B;&#x8F91;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x6807;&#x51C6;&#x5316;"></span>
+<span id="chuẩn-hóa-biểu-thức-logic"></span>
 ## Chuẩn hóa biểu thức logic
 
 Theo các tính chất trên, ta có thể thực hiện một số phép biến đổi tương đương trên biểu thức logic để đưa nó về những dạng chuẩn nhất định; điều này có thể được dùng trong chứng minh định lý tự động. Các dạng chuẩn hóa thường gặp gồm **dạng chuẩn hội** (conjunctive normal form, CNF), **dạng chuẩn tuyển** (disjunctive normal form, DNF) và **dạng chuẩn đại số** (algebraic normal form, ANF).
@@ -204,7 +204,7 @@ Ta có thể đưa một biểu thức logic bất kỳ chỉ chứa các phép 
 3.  $\lnot$: thay $\lnot x$ bằng $1\oplus x$, chẳng hạn $\lnot(1\oplus x\oplus y)=1\oplus 1\oplus x\oplus y=x\oplus y$,
 4.  $\lor$: thay $x\lor y$ bằng $1\oplus((1\oplus x)\land(1\oplus y))$ hoặc $x\oplus y\oplus (x\land y)$, chẳng hạn $(1\oplus x)\lor(1\oplus x\oplus y)=1\oplus((1\oplus 1\oplus x)\land(1\oplus 1\oplus x\oplus y))=1\oplus x\oplus(x\land y)$.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 1.  [Boolean algebra - Wikipedia](https://en.wikipedia.org/wiki/Boolean_algebra)
