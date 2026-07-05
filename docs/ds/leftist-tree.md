@@ -1,12 +1,12 @@
 author: JiZiQian, llleixx, firefly-zjyjoe
 
-<span id="&#x4EC0;&#x4E48;&#x662F;&#x5DE6;&#x504F;&#x6811;&#xFF1F;"></span>
+<span id="cây-lệch-trái-là-gì"></span>
 
 ## Cây lệch trái là gì?
 
 **Cây lệch trái** cũng như [**heap ghép cặp**](./pairing-heap.md), là một loại **heap có thể hợp nhất**: nó có tính chất heap và có thể hợp nhất nhanh.
 
-<span id="&#x5DE6;&#x504F;&#x6811;&#x7684;&#x5B9A;&#x4E49;&#x548C;&#x6027;&#x8D28;"></span>
+<span id="định-nghĩa-và-tính-chất-của-cây-lệch-trái"></span>
 
 ## Định nghĩa và tính chất của cây lệch trái
 
@@ -21,7 +21,7 @@ Do đó, $\mathrm{dist}$ của mỗi nút trong cây lệch trái đều bằng 
 
 Cần lưu ý rằng $\mathrm{dist}$ không phải là độ sâu. **Độ sâu của cây lệch trái không được bảo đảm**, một chuỗi chỉ đi về bên trái vẫn thỏa mãn định nghĩa cây lệch trái.
 
-<span id="&#x6838;&#x5FC3;&#x64CD;&#x4F5C;&#xFF1A;&#x5408;&#x5E76;&#xFF08;merge&#xFF09;"></span>
+<span id="thao-tác-cốt-lõi-hợp-nhất-merge"></span>
 
 ## Thao tác cốt lõi: hợp nhất (merge)
 
@@ -63,27 +63,27 @@ Cây lệch trái còn có một cách viết không cần hoán đổi con trá
     }
     ```
 
-<span id="&#x5DE6;&#x504F;&#x6811;&#x7684;&#x5176;&#x5B83;&#x64CD;&#x4F5C;"></span>
+<span id="các-thao-tác-khác-của-cây-lệch-trái"></span>
 
 ## Các thao tác khác của cây lệch trái
 
-<span id="&#x63D2;&#x5165;&#x8282;&#x70B9;"></span>
+<span id="chèn-nút"></span>
 
 ### Chèn nút
 
 Một nút đơn lẻ cũng có thể xem là một heap, vì vậy chỉ cần hợp nhất.
 
-<span id="&#x5220;&#x9664;&#x6839;"></span>
+<span id="xóa-gốc"></span>
 
 ### Xóa gốc
 
 Chỉ cần hợp nhất hai con trái và phải của gốc.
 
-<span id="&#x5220;&#x9664;&#x4EFB;&#x610F;&#x8282;&#x70B9;"></span>
+<span id="xóa-nút-bất-kỳ"></span>
 
 ### Xóa nút bất kỳ
 
-<span id="&#x505A;&#x6CD5;"></span>
+<span id="cách-làm"></span>
 
 #### Cách làm
 
@@ -123,7 +123,7 @@ Trước hết hợp nhất hai con trái và phải, rồi cập nhật $\mathr
     }
     ```
 
-<span id="&#x590D;&#x6742;&#x5EA6;&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh-độ-phức-tạp"></span>
 
 #### Chứng minh độ phức tạp
 
@@ -136,7 +136,7 @@ Tiếp theo xét quá trình `pushup`. Gọi nút hiện tại mà `pushup` đan
 
 Vì vậy, ta có: mỗi khi đệ quy lên một tầng, $\mathrm{dist}$ ban đầu của $x$ sẽ tăng một, nên số tầng đệ quy tối đa là $O(\log n)$.
 
-<span id="&#x6574;&#x4E2A;&#x5806;&#x52A0;&#x4E0A;/&#x51CF;&#x53BB;&#x4E00;&#x4E2A;&#x503C;&#x3001;&#x4E58;&#x4E0A;&#x4E00;&#x4E2A;&#x6B63;&#x6570;"></span>
+<span id="cộngtrừ-một-giá-trị-cho-toàn-bộ-heap-nhân-với-một-số-dương"></span>
 
 ### Cộng/trừ một giá trị cho toàn bộ heap, nhân với một số dương
 
@@ -162,11 +162,11 @@ Gắn tag ở gốc, rồi khi xóa gốc/hợp nhất heap (tức là khi truy 
     }
     ```
 
-<span id="&#x5176;&#x4ED6;&#x53EF;&#x5E76;&#x5806;"></span>
+<span id="các-heap-có-thể-hợp-nhất-khác"></span>
 
 ## Các heap có thể hợp nhất khác
 
-<span id="&#x968F;&#x673A;&#x5806;"></span>
+<span id="heap-ngẫu-nhiên"></span>
 
 ### Heap ngẫu nhiên
 
@@ -184,17 +184,17 @@ Gắn tag ở gốc, rồi khi xóa gốc/hợp nhất heap (tức là khi truy 
 
 Có thể thấy điểm khác biệt duy nhất của cách cài đặt này là dùng số ngẫu nhiên để hợp nhất, nhờ đó có thể bỏ các tính toán liên quan đến $\mathrm{dist}$. Độ phức tạp thời gian trung bình cũng là $O(\log n)$; chứng minh chi tiết có thể xem tại [Randomized Heap](https://cp-algorithms.com/data_structures/randomized_heap.html).
 
-<span id="&#x659C;&#x5806;"></span>
+<span id="heap-nghiêng"></span>
 
 ### Heap nghiêng
 
 Heap nghiêng là dạng tự thích nghi của cây lệch trái. Khi hợp nhất hai heap, nó đổi chỗ vô điều kiện tất cả các nút trên đường hợp nhất để cố gắng duy trì cân bằng. Theo phân tích khấu hao, với heap nghiêng từ trên xuống (top-down skew heap), độ phức tạp của chèn, hợp nhất và xóa giá trị nhỏ nhất là $O(\log n)$[^ref1].
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="bài-tập-ví-dụ"></span>
 
 ## Bài tập ví dụ
 
-<span id="&#x6A21;&#x677F;&#x9898;"></span>
+<span id="bài-mẫu"></span>
 
 ### Bài mẫu
 
@@ -215,7 +215,7 @@ Cần chú ý:
     --8<-- "docs/ds/code/leftist-tree/leftist-tree_1.cpp"
     ```
 
-<span id="&#x6811;&#x4E0A;&#x95EE;&#x9898;"></span>
+<span id="bài-toán-trên-cây"></span>
 
 ### Bài toán trên cây
 
@@ -230,7 +230,7 @@ Trong dạng bài này, thường mỗi nút duy trì một heap, hợp nhất v
     --8<-- "docs/ds/code/leftist-tree/leftist-tree_2.cpp"
     ```
 
-<span id="&#x300C;scoi2011&#x300D;&#x68D8;&#x624B;&#x7684;&#x64CD;&#x4F5C;"></span>
+<span id="scoi2011-thao-tác-hóc-búa"></span>
 
 ### [SCOI2011 Thao tác hóc búa](https://loj.ac/problem/2441)
 
@@ -259,13 +259,13 @@ Vì vậy, các thao tác lần lượt như sau:
     --8<-- "docs/ds/code/leftist-tree/leftist-tree_3.cpp"
     ```
 
-<span id="&#x300C;boi2004&#x300D;sequence &#x6570;&#x5B57;&#x5E8F;&#x5217;"></span>
+<span id="boi2004-sequence-dãy-số"></span>
 
 ### [BOI2004 Sequence Dãy số](https://www.luogu.com.cn/problem/P4331)
 
 Đây là một bài được trình bày trong luận văn; xem chi tiết tại [Huang Yuanhe - Đặc điểm và ứng dụng của cây lệch trái](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2005%E8%AE%BA%E6%96%87%E9%9B%86/%E9%BB%84%E6%BA%90%E6%B2%B3--%E5%B7%A6%E5%81%8F%E6%A0%91%E7%9A%84%E7%89%B9%E7%82%B9%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/%E9%BB%84%E6%BA%90%E6%B2%B3.pdf).
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 
