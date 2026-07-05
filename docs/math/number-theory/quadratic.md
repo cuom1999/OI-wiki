@@ -280,47 +280,47 @@ nguyên bậc hai tổng quát là việc phân tích chỉ bằng số nguyên 
 tinh vi. Chuyện tương tự là cần phân tích tích $abcd$, nhưng các phần tử cơ bản
 khả dụng chỉ là $\{ab,cd,ac,bd\}$, thì phân tích thu được tất nhiên không duy
 nhất; để có định lý phân tích duy nhất, phải xét thêm $\{a,b,c,d\}$. Trong
-vành số nguyên bậc hai, cấu trúc tinh vi hơn số nguyên bậc hai là [ideal](../algebra/ring-theory.md#iđêan)
-của vành số nguyên bậc hai. Ánh xạ một số nguyên bậc hai đến ideal chính tương
-ứng của nó sẽ nhúng lớp liên kết của nó vào tập các ideal, vì vậy phân tích số
-nguyên chỉ là trường hợp đặc biệt của phân tích ideal. Nếu xét phân tích ideal
-trong vành số nguyên bậc hai, có thể chứng minh mọi ideal của vành số nguyên
-bậc hai đều phân tích duy nhất thành tích của một số ideal nguyên tố. Điều này
+vành số nguyên bậc hai, cấu trúc tinh vi hơn số nguyên bậc hai là [iđêan](../algebra/ring-theory.md#iđêan)
+của vành số nguyên bậc hai. Ánh xạ một số nguyên bậc hai đến iđêan chính tương
+ứng của nó sẽ nhúng lớp liên kết của nó vào tập các iđêan, vì vậy phân tích số
+nguyên chỉ là trường hợp đặc biệt của phân tích iđêan. Nếu xét phân tích iđêan
+trong vành số nguyên bậc hai, có thể chứng minh mọi iđêan của vành số nguyên
+bậc hai đều phân tích duy nhất thành tích của một số iđêan nguyên tố. Điều này
 cho thấy các vành số nguyên bậc hai đều là [miền Dedekind](https://en.wikipedia.org/wiki/Dedekind_domain).
 Tổng quát hơn, mọi vành số nguyên đại số đều là miền Dedekind.
 
 Nếu một vành số nguyên bậc hai thỏa mãn định lý phân tích duy nhất, thì các
-ideal nguyên tố của nó tương ứng một-một với các phần tử bất khả quy (theo lớp
+iđêan nguyên tố của nó tương ứng một-một với các phần tử bất khả quy (theo lớp
 tương đương liên kết). Vì vậy, với lớp vành số nguyên bậc hai này, phân tích
-ideal thành ideal nguyên tố tương đương với phân tích số nguyên bậc hai thành
+iđêan thành iđêan nguyên tố tương đương với phân tích số nguyên bậc hai thành
 phần tử bất khả quy. Hơn nữa, khi đó các phần tử bất khả quy cũng được gọi là
 [phần tử nguyên tố](../algebra/ring-theory.md#quan-hệ-chia-hết),
 tương ứng với khái niệm số nguyên tố trong số nguyên. Phần thảo luận dưới đây
-sẽ dùng ideal nguyên tố và các khái niệm liên quan; độc giả chưa quen khái
+sẽ dùng iđêan nguyên tố và các khái niệm liên quan; độc giả chưa quen khái
 niệm này có thể thay chúng từng chữ một bằng phần tử nguyên tố, khi đó các phát
 biểu vẫn đúng trong trường hợp định lý phân tích duy nhất đúng.
 
 Để hiểu hoàn toàn phân tích duy nhất trên vành số nguyên bậc hai tổng quát
-$\mathbf Z[\omega]$, cần biết các ideal nguyên tố trong $\mathbf Z[\omega]$ là
-những ideal nào. Trước hết, mọi ideal nguyên tố trong $\mathbf Z[\omega]$ đều
-chia chuẩn của nó (dưới dạng ideal chính). Phân tích chuẩn của nó trong các số
-nguyên thành tích các số nguyên tố; theo định lý phân tích duy nhất, ideal
+$\mathbf Z[\omega]$, cần biết các iđêan nguyên tố trong $\mathbf Z[\omega]$ là
+những iđêan nào. Trước hết, mọi iđêan nguyên tố trong $\mathbf Z[\omega]$ đều
+chia chuẩn của nó (dưới dạng iđêan chính). Phân tích chuẩn của nó trong các số
+nguyên thành tích các số nguyên tố; theo định lý phân tích duy nhất, iđêan
 nguyên tố đó nhất định chia một trong các thừa số nguyên tố này (dưới dạng
-ideal chính). Vì vậy, các ideal nguyên tố trong $\mathbf Z[\omega]$ nhất định
+iđêan chính). Vì vậy, các iđêan nguyên tố trong $\mathbf Z[\omega]$ nhất định
 thu được bằng cách phân tích tiếp các số nguyên tố trong $\mathbf Z$. Để liệt
-kê toàn bộ ideal nguyên tố trong $\mathbf Z[\omega]$, chỉ cần cho phân tích duy
-nhất của số nguyên tố $p$ của $\mathbf Z$ (dưới dạng ideal chính) trong
-$\mathbf Z[\omega]$. Vì chuẩn của số nguyên tố $p$ (dưới dạng ideal chính)
-trong $\mathbf Z[\omega]$ là $p^2$, mà phân tích của nó thành ideal nguyên tố
-có nghĩa chuẩn của các ideal nguyên tố chỉ có thể là ước của $p^2$, nên chỉ có
+kê toàn bộ iđêan nguyên tố trong $\mathbf Z[\omega]$, chỉ cần cho phân tích duy
+nhất của số nguyên tố $p$ của $\mathbf Z$ (dưới dạng iđêan chính) trong
+$\mathbf Z[\omega]$. Vì chuẩn của số nguyên tố $p$ (dưới dạng iđêan chính)
+trong $\mathbf Z[\omega]$ là $p^2$, mà phân tích của nó thành iđêan nguyên tố
+có nghĩa chuẩn của các iđêan nguyên tố chỉ có thể là ước của $p^2$, nên chỉ có
 thể là $p$ hoặc $p^2$. Điều này cho thấy chỉ có ba khả năng sau:
 
-1.  $p$ **bất động** (inert) trong $\mathbf Z[\omega]$, tức $(p)$ vẫn là ideal
+1.  $p$ **bất động** (inert) trong $\mathbf Z[\omega]$, tức $(p)$ vẫn là iđêan
     nguyên tố trong $\mathbf Z[\omega]$;
 2.  $p$ **tách** (split) trong $\mathbf Z[\omega]$, tức $(p)$ có thể viết thành
-    tích của hai ideal nguyên tố liên hợp khác nhau trong $\mathbf Z[\omega]$;
+    tích của hai iđêan nguyên tố liên hợp khác nhau trong $\mathbf Z[\omega]$;
 3.  $p$ **phân nhánh** (ramify) trong $\mathbf Z[\omega]$, tức $(p)$ có thể
-    viết thành bình phương của một ideal nguyên tố.
+    viết thành bình phương của một iđêan nguyên tố.
 
 Có thể chứng minh thêm rằng, để xác định một số nguyên tố $p$ rơi vào trường
 hợp nào trong ba trường hợp trên, chỉ cần tính [kí hiệu Kronecker](https://en.wikipedia.org/wiki/Kronecker_symbol)

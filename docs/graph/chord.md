@@ -6,7 +6,7 @@
 
 **Đồ thị con cảm sinh**: đồ thị có tập đỉnh là một tập con của tập đỉnh ban đầu, còn tập cạnh gồm mọi cạnh có **cả hai đầu mút đều thuộc tập đỉnh được chọn**.
 
-**Clique**: đồ thị con đầy đủ.
+**Clique** (bè): đồ thị con đầy đủ.
 
 **Clique cực đại**: clique không phải là đồ thị con của một clique khác.
 
@@ -104,7 +104,7 @@ Lặp lại quá trình trên. Nếu mọi đỉnh đều bị xóa, thì đồ 
 
 ### Thuật toán MCS
 
-**Maximum Cardinality Search** là một thuật toán có thể tìm thứ tự khử hoàn hảo của đồ thị vô hướng trong độ phức tạp thời gian $O(n+m)$.
+**Tìm kiếm theo lực lượng cực đại** (Maximum Cardinality Search, MCS) là một thuật toán có thể tìm thứ tự khử hoàn hảo của đồ thị vô hướng trong độ phức tạp thời gian $O(n+m)$.
 
 Đánh số các đỉnh theo thứ tự ngược, tức gán nhãn cho đỉnh theo thứ tự từ $n$ đến $1$.
 

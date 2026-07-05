@@ -2,17 +2,17 @@ author: hsfzLZH1, cesonic, AtomAlpaca, caijianhong, Persdre, aofall, Coelacanthu
 
 ## Dẫn nhập
 
-**Weight Balanced Leafy Tree**, dưới đây gọi là **WBLT**, là một loại cây cân bằng. So với các cây cân bằng khác, ưu điểm chính của nó là cài đặt đơn giản và hằng số nhỏ. Nó hỗ trợ thao tác trên đoạn, đồng thời có thể làm bền vững.
+**Cây lá cân bằng theo trọng số** (Weight Balanced Leafy Tree), dưới đây gọi là **WBLT**, là một loại cây cân bằng. So với các cây cân bằng khác, ưu điểm chính của nó là cài đặt đơn giản và hằng số nhỏ. Nó hỗ trợ thao tác trên đoạn, đồng thời có thể làm bền vững.
 
-Đúng như tên gọi, Weight Balanced Leafy Tree là sự kết hợp giữa Weight Balanced Tree và Leafy Tree.
+Đúng như tên gọi, cây lá cân bằng theo trọng số là sự kết hợp giữa cây cân bằng theo trọng số (Weight Balanced Tree) và cây lá (Leafy Tree).
 
-Trong Weight Balanced Tree, mỗi nút lưu kích thước cây con dưới nút đó, và chiều cao cây được bảo đảm bằng cách giữ quan hệ kích thước giữa cây con trái và cây con phải trong một phạm vi nhất định.
+Trong cây cân bằng theo trọng số, mỗi nút lưu kích thước cây con dưới nút đó, và chiều cao cây được bảo đảm bằng cách giữ quan hệ kích thước giữa cây con trái và cây con phải trong một phạm vi nhất định.
 
-Leafy Tree chỉ lưu thông tin gốc cần duy trì trên **nút lá**; các nút không phải lá chỉ dùng để duy trì thông tin của nút con và giữ hình thái của cấu trúc dữ liệu. Cây đoạn quen thuộc cũng là một loại Leafy Tree.
+Cây lá chỉ lưu thông tin gốc cần duy trì trên **nút lá**; các nút không phải lá chỉ dùng để duy trì thông tin của nút con và giữ hình thái của cấu trúc dữ liệu. Cây đoạn quen thuộc cũng là một loại cây lá.
 
 ![](images/leafy-tree-1.svg)
 
-Trong bài này, cây luôn chỉ Leafy Tree nhị phân, tức số nút con của mỗi nút chỉ có thể là $0$ hoặc $2$. Trong bài, $n$ là số nút lá của cây. Với một cây có $n$ nút lá, tổng số nút là $2n-1$, vì vậy không gian mà WBLT chiếm dụng là $\Theta(n)$.
+Trong bài này, cây luôn chỉ cây lá nhị phân, tức số nút con của mỗi nút chỉ có thể là $0$ hoặc $2$. Trong bài, $n$ là số nút lá của cây. Với một cây có $n$ nút lá, tổng số nút là $2n-1$, vì vậy không gian mà WBLT chiếm dụng là $\Theta(n)$.
 
 ## Cấu trúc cơ bản và duy trì cân bằng
 

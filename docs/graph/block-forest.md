@@ -310,7 +310,7 @@ Ta trình bày một vài bài tập có thể giải bằng cây tròn-vuông.
         
         Mỗi lần cho một tập đỉnh $S$ ($2 \le |S| \le n$), hỏi có bao nhiêu đỉnh $u$ thỏa mãn $u \notin S$ và sau khi xóa $u$, các đỉnh trong $S$ không còn nằm tất cả trong cùng một thành phần liên thông.
         
-        Mỗi test point có nhiều bộ dữ liệu.
+        Mỗi điểm kiểm thử có nhiều bộ dữ liệu.
     
     ??? note "Lời giải"
         Trước hết xây dựng cây tròn-vuông. Bài toán trở thành hỏi số đỉnh tròn trong đồ thị con liên thông tương ứng với $S$ trên cây tròn-vuông, rồi trừ đi $|S|$.

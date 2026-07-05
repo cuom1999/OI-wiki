@@ -29,7 +29,7 @@ Duy trì một rừng, hỗ trợ các thao tác sau:
 
 Với một cây bất kỳ, ta có thể dùng lý thuyết **co rút cây** để co nó thành một cạnh.
 
-Cụ thể, co rút cây có hai thao tác cơ bản: **Compress** và **Rake**. Thao tác Compress chọn một đỉnh $x$ có bậc $2$; gọi hai đỉnh kề với $x$ là $y$ và $z$, ta nối một cạnh mới $yz$. Thông tin của đỉnh $x$, cạnh $xz$ và cạnh $xy$ được lưu vào $yz$, rồi xóa chúng đi. Minh họa như hình dưới.
+Cụ thể, co rút cây có hai thao tác cơ bản: **nén** (Compress) và **gom lá** (Rake). Thao tác Compress chọn một đỉnh $x$ có bậc $2$; gọi hai đỉnh kề với $x$ là $y$ và $z$, ta nối một cạnh mới $yz$. Thông tin của đỉnh $x$, cạnh $xz$ và cạnh $xy$ được lưu vào $yz$, rồi xóa chúng đi. Minh họa như hình dưới.
 
 ![](./images/top-tree1.svg)
 
@@ -129,13 +129,13 @@ Ta tách riêng đường cụm ra. Đây là một cây có hình dạng đặc
 
 ![](./images/top-tree10.jpg)
 
-Ta gọi cấu trúc này là **Compress Tree**, vì trong top tree này, hai con của bất kỳ nút nào được gộp thành cha của chúng bằng thao tác Compress.
+Ta gọi cấu trúc này là **cây nén** (Compress Tree), vì trong top tree này, hai con của bất kỳ nút nào được gộp thành cha của chúng bằng thao tác Compress.
 
-Các nút trong Compress Tree được gọi là **Compress Node**. Nếu chỉ xét đường cụm hiện tại, một Compress Node không phải lá đại diện cho một quá trình compress: nó gộp thông tin của con trái và con phải, rồi thêm thông tin của chính đỉnh $x$ được lưu bởi `compress(x)`. Compress Tree này duy trì thông tin của đường cụm của $C(k,g)$.
+Các nút trong Compress Tree được gọi là **nút nén** (Compress Node). Nếu chỉ xét đường cụm hiện tại, một Compress Node không phải lá đại diện cho một quá trình compress: nó gộp thông tin của con trái và con phải, rồi thêm thông tin của chính đỉnh $x$ được lưu bởi `compress(x)`. Compress Tree này duy trì thông tin của đường cụm của $C(k,g)$.
 
 Ngoài ra, trong Compress Tree, ta thực ra còn đặt thêm một số ràng buộc lên top tree được sử dụng. Chú ý rằng Compress Tree duy trì một dây chuyền gồm các đỉnh trong $T$ có độ sâu đôi một khác nhau. Ta quy định rằng thứ tự duyệt trung thứ tự của các cụm cơ sở trong Compress Tree phải nhất quán với độ sâu của các cạnh tương ứng trong $T$, và thứ tự trung thứ tự càng nhỏ thì độ sâu càng nông. Tương tự, quan hệ của `compress(x)` ứng với mỗi đỉnh $x$ cũng như vậy.
 
-Bây giờ xét cách duy trì thông tin không nằm trên đường cụm. Giả sử các đỉnh và cạnh không nằm trên đường cụm đã hình thành từng cụm cực đại, và các cụm cực đại này được tạo ra bằng cách Rake lẫn nhau giữa các cụm nhỏ hơn được khoanh bằng đường xanh. Với quá trình gộp một số cụm nhỏ hơn thành một cụm cực đại, ta dùng một cây tam phân để biểu diễn. Tương tự, ta gọi cấu trúc này là **Rake Tree**, và các nút trong Rake Tree tương ứng được gọi là **Rake Node**. Mỗi Rake Node đều đại diện cho một cụm, được hình thành bằng cách Rake con trái và con phải vào cụm nhỏ hơn do con giữa đại diện. Cụ thể xem hình dưới; có thể thấy mỗi nút trong Rake Tree đều đại diện cho một cụm nhỏ hơn có cùng đầu mút trong $T$.
+Bây giờ xét cách duy trì thông tin không nằm trên đường cụm. Giả sử các đỉnh và cạnh không nằm trên đường cụm đã hình thành từng cụm cực đại, và các cụm cực đại này được tạo ra bằng cách Rake lẫn nhau giữa các cụm nhỏ hơn được khoanh bằng đường xanh. Với quá trình gộp một số cụm nhỏ hơn thành một cụm cực đại, ta dùng một cây tam phân để biểu diễn. Tương tự, ta gọi cấu trúc này là **cây gom lá** (Rake Tree), và các nút trong Rake Tree tương ứng được gọi là **nút gom lá** (Rake Node). Mỗi Rake Node đều đại diện cho một cụm, được hình thành bằng cách Rake con trái và con phải vào cụm nhỏ hơn do con giữa đại diện. Cụ thể xem hình dưới; có thể thấy mỗi nút trong Rake Tree đều đại diện cho một cụm nhỏ hơn có cùng đầu mút trong $T$.
 
 ![](./images/top-tree11.jpg)
 
@@ -312,7 +312,7 @@ Nếu lúc này đỉnh $x$ đã ở gốc thì thoát. Nếu chưa, thực hi�
 
 4.  Nếu nút ông không có con phải, trước hết cho đỉnh $x$ trở thành con phải của nút ông. Lúc này nút cha ban đầu của đỉnh $x$ không có con giữa; theo tính chất của Rake Node ở trên, nó không thể tồn tại. Do đó gọi hàm `Delete` để xóa nó, rồi thoát.
 
-Hai bước 1 và 2 được gọi chung là **Local Splay**. Hai bước 3 và 4 được gọi chung là **Splice**. Để thuận tiện, ta viết tất cả trong hàm `Splice(x)`.
+Hai bước 1 và 2 được gọi chung là **splay cục bộ** (Local Splay). Hai bước 3 và 4 được gọi chung là **nối tách** (Splice). Để thuận tiện, ta viết tất cả trong hàm `Splice(x)`.
 
 Hàm `Delete(x)` nói trên hoạt động như sau:
 
@@ -322,7 +322,7 @@ Hàm `Delete(x)` nói trên hoạt động như sau:
 
 Không khó để nhận ra `Splice(x)` đã thay đổi cách chọn đầu mút của một số cụm trong cây ban đầu. Sau khi hoàn thành một lần splice, ta lấy nút cha của đỉnh $x$ làm đỉnh $x$ mới và thực hiện lần splice tiếp theo.
 
-Cuối cùng ta sẽ thấy đỉnh $x$ ban đầu cần thao tác chắc chắn nằm ở đầu phải nhất của Compress Tree của cụm gốc. Ta chỉ cần thực hiện một lần **Global Splay** cuối cùng để xoay nó lên gốc SATT.
+Cuối cùng ta sẽ thấy đỉnh $x$ ban đầu cần thao tác chắc chắn nằm ở đầu phải nhất của Compress Tree của cụm gốc. Ta chỉ cần thực hiện một lần **splay toàn cục** (Global Splay) cuối cùng để xoay nó lên gốc SATT.
 
 ```cpp
 // ls con trái của một nút SATT

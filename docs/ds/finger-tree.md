@@ -11,7 +11,7 @@ author: isdanni
 
 Trong lập trình hàm, danh sách là một kiểu dữ liệu rất phổ biến. Với các thao tác dựa trên dãy, bao gồm thêm và xóa phần tử ở hai đầu (thao tác hàng đợi hai đầu), chèn vào một nút bất kỳ, nối, xóa, tìm một phần tử thỏa điều kiện, và tách dãy thành các dãy con, hầu như mọi ngôn ngữ hàm đều hỗ trợ. Tuy nhiên, các ngôn ngữ này khó thực hiện thêm nhiều thao tác một cách hiệu quả. Ngay cả khi có cách cài đặt tương ứng, chúng thường rất phức tạp và khó dùng trong thực tế.
 
-Finger Tree cung cấp một cấu trúc dữ liệu dãy thuần hàm: nó có thể thực hiện các thao tác như truy cập, thêm vào đầu và cuối dãy trong thời gian hằng số khấu hao (amortized constant time), đồng thời thực hiện phép nối và truy cập ngẫu nhiên trong thời gian lôgarit (logarithmic time). Ngoài các cận tiệm cận tốt về thời gian chạy, cây ngón tay còn rất linh hoạt: khi kết hợp với nhãn monoid ([monoidal tag](https://en.wikipedia.org/wiki/Monoidal_category)) trên các phần tử, cây ngón tay có thể dùng để cài đặt hiệu quả dãy truy cập ngẫu nhiên, dãy có thứ tự, cây khoảng và hàng đợi ưu tiên.
+Cây ngón tay cung cấp một cấu trúc dữ liệu dãy thuần hàm: nó có thể thực hiện các thao tác như truy cập, thêm vào đầu và cuối dãy trong thời gian hằng số khấu hao (amortized constant time), đồng thời thực hiện phép nối và truy cập ngẫu nhiên trong thời gian lôgarit (logarithmic time). Ngoài các cận tiệm cận tốt về thời gian chạy, cây ngón tay còn rất linh hoạt: khi kết hợp với nhãn vị nhóm ([monoidal tag](https://en.wikipedia.org/wiki/Monoidal_category)) trên các phần tử, cây ngón tay có thể dùng để cài đặt hiệu quả dãy truy cập ngẫu nhiên, dãy có thứ tự, cây khoảng và hàng đợi ưu tiên.
 
 ## Cấu trúc cơ bản
 
@@ -60,7 +60,7 @@ Tầng trên cùng có các phần tử kiểu $a$; tầng tiếp theo có các 
 Cây ngón tay cũng có thể tạo ra một hàng đợi hai đầu hiệu quả. Dù cấu trúc có tính bền vững (persistent) hay không, mọi thao tác đều cần thời gian `Θ(1)`. Có thể xem nó là một phần mở rộng của hàng đợi hai đầu ẩn[^okasaki1999purely]:
 
 1.  Thay thế cặp bằng các nút 2-3 cung cấp đủ độ linh hoạt để hỗ trợ phép nối hiệu quả. (Để giữ các thao tác hàng đợi hai đầu trong thời gian hằng số, cần mở rộng Digit thành bốn.)
-2.  Chú thích các nút trong bằng monoid cho phép tách hiệu quả.
+2.  Chú thích các nút trong bằng vị nhóm cho phép tách hiệu quả.
 
 ```haskell
 data ImplicitDeque a = Empty

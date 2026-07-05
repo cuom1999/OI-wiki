@@ -352,7 +352,7 @@ Cho một đồ thị vô hướng $G = (V, E)$, mỗi cạnh $e \in E$ đều c
 ??? note "Ý tưởng lời giải"
     Dùng thuật toán Kruskal: sắp xếp tất cả các cạnh theo trọng số tăng dần, rồi chọn cạnh từng bước; nếu thêm cạnh đó không tạo thành chu trình thì đưa nó vào cây khung. Cây khung thu được cuối cùng chính là cây khung nhỏ nhất.
 
-**Colorful Graph**:
+**Đồ thị nhiều màu** (Colorful Graph):
 
 Cho một đồ thị vô hướng $G = (V, E)$ có nhiều màu, mỗi cạnh có một thuộc tính màu. Tìm một tập cạnh lớn nhất sao cho:
 

@@ -140,10 +140,10 @@ Theo các tính chất trên, ta có thể thực hiện một số phép biến
 ???+ abstract "Dạng chuẩn hội và dạng chuẩn tuyển"
     Ta định nghĩa đệ quy như sau:
     
-    1.  **Literal** (literal): với biến $x$, $x$ và $\lnot x$ là literal.
+    1.  **Literal** (trực kiện): với biến $x$, $x$ và $\lnot x$ là trực kiện.
     2.  Mệnh đề con:
-        -   Literal là mệnh đề con,
-        -   Nếu $A$ là literal và $B$ là mệnh đề con, thì $A\lor B$ là mệnh đề con.
+        -   Trực kiện là mệnh đề con,
+        -   Nếu $A$ là trực kiện và $B$ là mệnh đề con, thì $A\lor B$ là mệnh đề con.
     3.  Dạng chuẩn hội:
         -   Nếu $A$ là mệnh đề con, thì $(A)$ là dạng chuẩn hội,
         -   Nếu $A$ là mệnh đề con và $B$ là dạng chuẩn hội, thì $(A)\land B$ là dạng chuẩn hội.

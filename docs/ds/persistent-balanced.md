@@ -6,15 +6,15 @@
 
 ### Ý tưởng/cách làm
 
-Với Treap không xoay, có thể bền vững hóa bằng cách sao chép các nút đi qua trên đường trong quá trình thực hiện **Merge** và **Split** (thường sao chép trong thao tác **Split** để bảo đảm không ảnh hưởng đến phiên bản trước).
+Với Treap không xoay, có thể bền vững hóa bằng cách sao chép các nút đi qua trên đường trong quá trình thực hiện **hợp nhất** (Merge) và **tách** (Split) (thường sao chép trong thao tác **tách** để bảo đảm không ảnh hưởng đến phiên bản trước).
 
 Với Treap xoay, ngoài việc sao chép các nút đi qua trên đường, còn cần sao chép các nút bị ảnh hưởng bởi phép xoay (nếu nút đó đã được sao chép trong thao tác hiện tại thì không cần sao chép lại). Một phép xoay thường chỉ ảnh hưởng đến hai nút, nên điều này không làm tăng độ phức tạp thời gian.
 
-Phương pháp trên thường được gọi là path copying.
+Phương pháp trên thường được gọi là sao chép đường đi (path copying).
 
-"Mọi thao tác được hỗ trợ đều có thể hoàn thành thông qua **Merge Split Newnode Build**"; trong đó **Build** chỉ dùng để xây dựng ban đầu nên không cần quan tâm nhiều, còn **Newnode** (tạo nút mới) chính là công cụ để bền vững hóa.
+"Mọi thao tác được hỗ trợ đều có thể hoàn thành thông qua **Merge Split Newnode Build**"; trong đó **Build** (xây dựng) chỉ dùng để xây dựng ban đầu nên không cần quan tâm nhiều, còn **Newnode** (tạo nút mới) chính là công cụ để bền vững hóa.
 
-Quan sát **Merge** và **Split**, ta sẽ thấy chúng đều là các thao tác từ trên xuống dưới.
+Quan sát **Merge** (hợp nhất) và **Split** (tách), ta sẽ thấy chúng đều là các thao tác từ trên xuống dưới.
 
 Do đó hoàn toàn có thể **tham khảo thao tác bền vững hóa cây phân đoạn** để bền vững hóa nó.
 

@@ -8,7 +8,7 @@ Heap ghép cặp là một cấu trúc dữ liệu hỗ trợ các thao tác ch�
 
 ## Định nghĩa
 
-Heap ghép cặp là một cây đa phân có trọng số thỏa mãn tính chất heap (như hình dưới), tức là trọng số của mỗi nút đều nhỏ hơn hoặc bằng trọng số của mọi nút con của nó (ở đây xét min-heap, các phần sau cũng vậy).
+Heap ghép cặp là một cây đa phân có trọng số thỏa mãn tính chất heap (như hình dưới), tức là trọng số của mỗi nút đều nhỏ hơn hoặc bằng trọng số của mọi nút con của nó (ở đây xét heap nhỏ, các phần sau cũng vậy).
 
 ![](./images/pairingheap1.jpg)
 
