@@ -69,14 +69,14 @@ nav:
     - Biên dịch và gỡ lỗi bằng dòng lệnh: tools/compile-debug.md
     - Trình biên dịch: tools/compiler.md
     - WSL (Windows 10): tools/wsl.md
-    - Special Judge: tools/special-judge.md
+    - Trình chấm đặc biệt: tools/special-judge.md
     - Testlib:
       - Giới thiệu Testlib: tools/testlib/index.md
       - Thông dụng: tools/testlib/general.md
-      - Generator: tools/testlib/generator.md
-      - Validator: tools/testlib/validator.md
-      - Interactor: tools/testlib/interactor.md
-      - Checker: tools/testlib/checker.md
+      - Trình sinh dữ liệu: tools/testlib/generator.md
+      - Trình kiểm dữ liệu: tools/testlib/validator.md
+      - Trình tương tác: tools/testlib/interactor.md
+      - Trình kiểm đáp án: tools/testlib/checker.md
     - Polygon: tools/polygon.md
     - Công cụ OJ: tools/oj-tool.md
     - Nhập môn LaTeX: tools/latex.md
@@ -148,10 +148,10 @@ nav:
       - Sắp xếp cơ số: basic/radix-sort.md
       - Sắp xếp nhanh: basic/quick-sort.md
       - Sắp xếp trộn: basic/merge-sort.md
-      - Sắp xếp heap: basic/heap-sort.md
+      - Sắp xếp vun đống: basic/heap-sort.md
       - Sắp xếp theo thùng: basic/bucket-sort.md
       - Sắp xếp Shell: basic/shell-sort.md
-      - Sắp xếp tournament: basic/tournament-sort.md
+      - Sắp xếp giải đấu: basic/tournament-sort.md
       - Sắp xếp Tim: basic/tim-sort.md
       - STL liên quan đến sắp xếp: basic/stl-sort.md
       - Ứng dụng của sắp xếp: basic/use-of-sort.md
@@ -184,7 +184,7 @@ nav:
     - DP chữ số: dp/number.md
     - DP cắm nối: dp/plug.md
     - DP đếm: dp/count.md
-    - Dynamic DP: dp/dynamic.md
+    - DP động: dp/dynamic.md
     - DP xác suất: dp/probability.md
     - DP lồng DP: dp/dp-of-dp.md
     - Tối ưu DP:
@@ -425,7 +425,7 @@ nav:
       - Trọng tâm của cây: graph/tree-centroid.md
       - Tổ tiên chung gần nhất: graph/lca.md
       - Phân rã chuỗi trên cây: graph/hld.md
-      - DSU on tree: graph/dsu-on-tree.md
+      - DSU trên cây: graph/dsu-on-tree.md
       - Cây ảo: graph/virtual-tree.md
       - Phân trị trên cây: graph/tree-divide.md
       - Phân rã trọng tâm động: graph/dynamic-tree-divide.md

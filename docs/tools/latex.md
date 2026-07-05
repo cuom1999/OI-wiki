@@ -766,14 +766,14 @@ $\rightarrow$ Tạo một tệp BibTeX cùng tên trong cùng thư mục và nh�
 
 -   Một bản giới thiệu LATEX 2ε ngắn gọn (không hẳn là ngắn) <https://tobi.oetiker.ch/lshort/lshort.pdf>, còn có tên *The Not So Short Introduction to LaTeX2e*.
 
--   LaTeX Project <http://www.latex-project.org/> Official website - has links to documentation, information about installing LATEX on your own computer, and information about where to look for help.
+-   LaTeX Project <http://www.latex-project.org/> Trang chính thức - có liên kết tới tài liệu, thông tin cài đặt LaTeX trên máy cá nhân và nơi tìm trợ giúp.
 
--   LaTeX Wikibook <http://en.wikibooks.org/wiki/LaTeX/> Comprehensive and clearly written, although still a work in progress. A downloadable PDF is also available.
+-   LaTeX Wikibook <http://en.wikibooks.org/wiki/LaTeX/> Đầy đủ và được viết rõ ràng, dù vẫn đang được hoàn thiện. Cũng có bản PDF để tải xuống.
 
--   Comparison of TeX Editors on Wikipedia <http://en.wikipedia.org/wiki/Comparison_of_TeX_editors> Information to help you to choose which L A TEX editor to install on your own computer.
+-   Comparison of TeX Editors on Wikipedia <http://en.wikipedia.org/wiki/Comparison_of_TeX_editors> Thông tin giúp bạn chọn trình soạn thảo LaTeX để cài trên máy cá nhân.
 
--   TeX Live <http://www.tug.org/texlive/>"An easy way to get up and running with the TeX document production system". Available for Unix and Windows (links to MacTeX for MacOSX users). Includes the TeXworks editor.
+-   TeX Live <http://www.tug.org/texlive/> "Một cách dễ dàng để bắt đầu dùng hệ thống soạn thảo tài liệu TeX". Có cho Unix và Windows (có liên kết tới MacTeX cho người dùng MacOSX). Bao gồm trình soạn thảo TeXworks.
 
--   Workbook Source Files <http://edin.ac/17EQPM1> Download the .tex file and other files needed to compile this workbook.
+-   Workbook Source Files <http://edin.ac/17EQPM1> Tải tệp `.tex` và các tệp khác cần để biên dịch sách bài tập này.
 
 **Bài này được dịch từ [http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf](https://web.archive.org/web/20220309055041/http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf)**, có chỉnh sửa nhẹ dựa trên các tài liệu khác.

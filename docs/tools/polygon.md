@@ -157,7 +157,7 @@ Cột đầu tiên sẽ hiển thị một số thông tin cơ bản. Nếu có 
 
 "View changes" dùng để xem lịch sử thay đổi. Cần chú ý rằng "switch" không dùng để quay lại một phiên bản nào đó; nó chỉ có thể thực hiện sửa đổi không sinh xung đột trên cơ sở một phiên bản nào đó, điều này thực ra không có ý nghĩa, nên switch tương đương chỉ đọc.
 
-"Update Working Copy" dùng để lấy cập nhật của người khác.
+"Update Working Copy" (cập nhật bản làm việc) dùng để lấy cập nhật của người khác.
 
 "Commit Changes" dùng để commit cập nhật của bạn.
 
@@ -167,11 +167,11 @@ Khi commit, nếu có chỗ không đúng quy chuẩn hoặc cần cảnh báo, 
 
 Nếu muốn ra một cuộc thi, có thể tạo bằng "New Contest", từ đó quản lý bài thuận tiện hơn.
 
-"Add problems?" ở góc trên bên phải của danh sách bài trong trang quản lý cuộc thi dùng để thêm một bài đã có vào cuộc thi.
+"Add problems?" (thêm bài?) ở góc trên bên phải của danh sách bài trong trang quản lý cuộc thi dùng để thêm một bài đã có vào cuộc thi.
 
-"New problem" ở thanh bên dùng để tạo một bài mới rồi thêm vào cuộc thi.
+"New problem" (bài mới) ở thanh bên dùng để tạo một bài mới rồi thêm vào cuộc thi.
 
-"Manage problem access" ở phía trên dùng để xem quyền của từng bài; "Manage developers list" ở phía dưới dùng để quản lý những người có quyền trong cuộc thi này. Khi tạo bài bằng "New problem" và khi thêm người phát triển mới, quyền sẽ được tự động thêm; nhưng bài thêm vào bằng "Add problems?" sẽ không cấp quyền cho người phát triển đã có.
+"Manage problem access" (quản lý quyền truy cập bài) ở phía trên dùng để xem quyền của từng bài; "Manage developers list" (quản lý danh sách người phát triển) ở phía dưới dùng để quản lý những người có quyền trong cuộc thi này. Khi tạo bài bằng "New problem" và khi thêm người phát triển mới, quyền sẽ được tự động thêm; nhưng bài thêm vào bằng "Add problems?" sẽ không cấp quyền cho người phát triển đã có.
 
 Thanh bên còn có thể xem trước toàn bộ đề bài, toàn bộ hướng dẫn, toàn bộ validator & checker, tải gói của cả cuộc thi và đánh số lại các bài.
 

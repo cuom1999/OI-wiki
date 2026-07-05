@@ -128,7 +128,7 @@ Nhấp Tools -> Compiler Options, rồi chọn thẻ "Compiler". Dưới đây g
 
 Tránh các tình huống như DFS làm tràn stack hệ thống.
 
-Thêm lệnh `-Wl,--stack=128000000` vào "Add the following commands when calling the linker".
+Thêm lệnh `-Wl,--stack=128000000` vào mục "Add the following commands when calling the linker" (thêm các lệnh sau khi gọi trình liên kết).
 
 Lệnh này đặt stack khoảng 128 MB; nếu cần, có thể tự tăng thêm.
 
@@ -138,7 +138,7 @@ Lệnh này đặt stack khoảng 128 MB; nếu cần, có thể tự tăng thê
 
 Thuận tiện để chấm cục bộ bằng tệp đầu vào/đầu ra hoặc dùng cho mục đích khác.
 
-Thêm lệnh `-D[String]` vào "Add the following commands when calling the linker".
+Thêm lệnh `-D[String]` vào mục "Add the following commands when calling the linker" (thêm các lệnh sau khi gọi trình liên kết).
 
 Trong đó `[String]` đổi thành tên macro bạn cần.
 

@@ -120,7 +120,7 @@ Truy cập trang tải xuống của [LLVM](https://github.com/llvm/llvm-project
 
 Nếu chất lượng mạng không tốt, bạn có thể chọn một mirror GitHub Releases đáng tin cậy hoặc tải lại từ mạng ổn định hơn.
 
-Mở tệp .exe, khi cài đặt hãy chọn Add LLVM to system PATH for current user, sau đó cứ nhấn Next cho đến khi cài đặt hoàn tất.
+Mở tệp .exe, khi cài đặt hãy chọn "Add LLVM to system PATH for current user" (thêm LLVM vào PATH hệ thống cho người dùng hiện tại), sau đó cứ nhấn Next cho đến khi cài đặt hoàn tất.
 
 Mở trình dòng lệnh, nhập `clang++ --version` rồi nhấn Enter. Nếu xuất hiện nội dung tương tự:
 

@@ -124,8 +124,8 @@ Sau đó chọn "Plugins Admin" để quản lý phần bổ trợ.
 
 #### Cài phần bổ trợ (kho phần bổ trợ)
 
-1.  Mở thẻ "Available", đánh dấu phần bổ trợ bạn cần trong danh sách.
-2.  Nhấp nút "Install" ở góc trên bên phải, rồi khởi động lại phần mềm theo hướng dẫn.
+1.  Mở thẻ "Available" (Khả dụng), đánh dấu phần bổ trợ bạn cần trong danh sách.
+2.  Nhấp nút "Install" (Cài đặt) ở góc trên bên phải, rồi khởi động lại phần mềm theo hướng dẫn.
 
 #### Cài phần bổ trợ (thủ công)
 
@@ -139,7 +139,7 @@ Mẹo: Nếu thử nhiều lần vẫn không thành công, có thể tạo mộ
 
 #### Cập nhật phần bổ trợ
 
-Trong trình quản lý phần bổ trợ, chọn thẻ "Updates", đánh dấu phần bổ trợ cần cập nhật, rồi nhấp nút "Update" ở góc trên bên phải.
+Trong trình quản lý phần bổ trợ, chọn thẻ "Updates" (Bản cập nhật), đánh dấu phần bổ trợ cần cập nhật, rồi nhấp nút "Update" (Cập nhật) ở góc trên bên phải.
 
 #### Gỡ phần bổ trợ
 
