@@ -8,8 +8,8 @@ tác tốt nhất theo một tiêu chí nào đó. Đồng thời người này 
 nhìn lợi ích trước mắt và không xét ảnh hưởng có thể xảy ra về sau.
 
 Có thể hình dung rằng không phải lúc nào tham lam cũng cho nghiệm tối ưu. Vì
-vậy khi dùng thuật toán tham lam, thông thường ta phải bảo đảm mình chứng minh
-được tính đúng đắn của nó.
+vậy khi dùng thuật toán tham lam, thường cần chứng minh được tính đúng đắn của
+nó.
 
 ## Giải thích
 
@@ -57,9 +57,9 @@ tính giá trị tối ưu.
 ### Lời giải hối tiếc
 
 Tư tưởng là tạm chấp nhận lựa chọn hiện tại bất kể nó có phải tối ưu hay không,
-sau đó so sánh. Nếu sau khi chọn mà phương án không còn tối ưu, ta "hối tiếc"
-và loại bỏ lựa chọn này; nếu không thì chính thức chấp nhận. Lặp lại quá trình
-đó.
+sau đó so sánh. Nếu sau khi chọn mà phương án không còn tối ưu, thuật toán
+"hối tiếc" và loại bỏ lựa chọn này; nếu không thì chính thức chấp nhận. Lặp lại
+quá trình đó.
 
 ## Khác biệt
 
@@ -85,9 +85,8 @@ nên có khả năng quay lui theo nghĩa rộng.
     chính đại thần đó, rồi lấy phần nguyên xuống.
 
     Nhà vua không muốn một đại thần nào nhận được phần thưởng đặc biệt lớn, nên
-    muốn nhờ bạn sắp xếp lại thứ tự hàng sao cho số vàng lớn nhất mà một đại
-    thần nhận được là nhỏ nhất có thể. Lưu ý rằng vị trí của nhà vua luôn ở đầu
-    hàng.
+    muốn sắp xếp lại thứ tự hàng sao cho số vàng lớn nhất mà một đại thần nhận
+    được là nhỏ nhất có thể. Lưu ý rằng vị trí của nhà vua luôn ở đầu hàng.
 
 ??? note "Ý tưởng giải"
     Giả sử sau khi sắp xếp, hai số trên tay trái và tay phải của đại thần thứ
@@ -108,13 +107,13 @@ nên có khả năng quay lui theo nghĩa rộng.
     \max \left(\dfrac{s} {b_i}, \dfrac{s \cdot a_i} {b_{i+1}}\right)  < \max \left(\dfrac{s} {b_{i+1}}, \dfrac{s \cdot a_{i+1}} {b_i}\right)
     $$
 
-    Tách nhân tử chung $s$ và rút gọn, ta được
+    Tách nhân tử chung $s$ và rút gọn, thu được
 
     $$
     \max \left(\dfrac{1} {b_i}, \dfrac{a_i} {b_{i+1}}\right)  < \max \left(\dfrac{1} {b_{i+1}}, \dfrac{a_{i+1}} {b_i}\right)
     $$
 
-    Chuyển phân thức thành biểu thức nguyên, ta được
+    Chuyển phân thức thành biểu thức nguyên, thu được
 
     $$
     \max (b_{i+1}, a_i\cdot b_i)  < \max (b_i, a_{i+1}\cdot b_{i+1})
@@ -139,8 +138,8 @@ nên có khả năng quay lui theo nghĩa rộng.
     gian. Ở mỗi đơn vị thời gian, anh có thể chọn hoàn thành một trong $N$ công
     việc được đánh số từ $1$ đến $N$ với $N(1 \leq N \leq 10^5)$. Công việc
     $i$ có hạn chót $D_i(1 \leq D_i \leq 10^9)$ và lợi nhuận sau khi hoàn thành
-    là $P_i(1\leq P_i\leq 10^9)$. Với lợi nhuận và hạn chót đã cho, hãy tính
-    lợi nhuận lớn nhất John có thể đạt được.
+    là $P_i(1\leq P_i\leq 10^9)$. Với lợi nhuận và hạn chót đã cho, tính lợi
+    nhuận lớn nhất John có thể đạt được.
 
 ??? note "Ý tưởng giải"
     1.  Trước hết giả sử mọi công việc đều được làm, sắp xếp các công việc theo
@@ -154,7 +153,7 @@ nên có khả năng quay lui theo nghĩa rộng.
         `a[i].d` chỉ có thể làm `a[i].d` công việc. Nếu `q.size()>=a[i].d`,
         nghĩa là thời gian cần để hoàn thành `q.size()` công việc đã lớn hơn
         hoặc bằng `a[i].d`. Vì vậy khi công việc thứ `i` có lợi nhuận lớn hơn,
-        ta nên thay công việc nhỏ nhất trong hàng đợi ưu tiên ra ngoài.
+        nên thay công việc nhỏ nhất trong hàng đợi ưu tiên ra ngoài.
 
 ??? note "Mã tham khảo"
     === "C++"
