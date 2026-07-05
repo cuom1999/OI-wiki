@@ -18,7 +18,7 @@ __gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
     định là `pairing_heap_tag`. Năm loại này gồm:
     -   `pairing_heap_tag`: heap ghép cặp (pairing heap)
         Tài liệu chính thức cho rằng heap ghép cặp có hiệu năng tốt nhất với các
-        phần tử không nguyên thủy (như struct tự định nghĩa, `std::string`,
+        phần tử không nguyên thủy (như `struct` tự định nghĩa, `std::string`,
         `pair`).
     -   `binary_heap_tag`: heap nhị phân
         Tài liệu chính thức cho rằng heap nhị phân có hiệu năng tốt nhất với
@@ -40,7 +40,7 @@ viên và cách dùng.
 Qua thử nghiệm các thao tác heap cơ bản trên máy của tác giả (Core i5 @3.1 GHz
 trên macOS), kết hợp với kiểm thử độ phức tạp chính thức của GNU và kiểm thử
 Dijkstra, có thể thấy rằng:
-ít nhất với OIer, bốn thẻ ngoài heap ghép cặp đều không đáng dùng: hoặc không có
+ít nhất với người học OI, bốn thẻ ngoài heap ghép cặp đều không đáng dùng: hoặc không có
 tác dụng thực tế, hoặc hằng số lớn đến mức thua `std`, thậm chí có thể gây MLE.
 Vì vậy, ở đây chỉ khuyến nghị dùng heap ghép cặp mặc định. Tương tự, heap ghép cặp
 cũng tốt hơn `make_heap()` trong tệp tiêu đề `<algorithm>`.
@@ -54,7 +54,7 @@ Cần ghi rõ không gian tên vì tên lớp trùng với `std`.
 // __gnu_pbds::priority_queue<int, greater<int>>;
 // __gnu_pbds::priority_queue<int, greater<int>, pairing_heap_tag>;
 __gnu_pbds::priority_queue<int>::point_iterator id;  // bộ lặp kiểu điểm
-// modify và push đều trả về một `point_iterator`; bên dưới sẽ giải thích cách dùng
+// modify và push đều trả về point_iterator; bên dưới sẽ giải thích cách dùng
 id = q.push(1);
 ```
 
@@ -65,15 +65,15 @@ id = q.push(1);
 -   `top()`: trả về phần tử đỉnh heap.
 -   `size()`: trả về số phần tử.
 -   `empty()`: trả về heap có rỗng hay không.
--   `modify(point_iterator, const key)`: sửa `key` tại vị trí bộ lặp thành
-    `key` được truyền vào, rồi sắp xếp lại cấu trúc lưu trữ bên dưới.
--   `erase(point_iterator)`: xóa khóa tại vị trí bộ lặp khỏi heap.
+-   `modify(point_iterator, const key)`: sửa phần tử tại vị trí bộ lặp thành
+    giá trị `key` được truyền vào, rồi sắp xếp lại cấu trúc lưu trữ bên dưới.
+-   `erase(point_iterator)`: xóa phần tử tại vị trí bộ lặp khỏi heap.
 -   `join(__gnu_pbds::priority_queue &other)`: hợp nhất `other` vào `*this` rồi
     làm rỗng `other`.
 
 Thẻ được dùng quyết định độ phức tạp thời gian của từng thao tác:
 
-|                        | push                                | pop                                 | modify                              | erase                               | Join              |
+|                        | `push`                              | `pop`                               | `modify`                            | `erase`                             | `join`            |
 | ---------------------- | ----------------------------------- | :---------------------------------- | ----------------------------------- | ----------------------------------- | ----------------- |
 | `pairing_heap_tag`     | $O(1)$                              | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | $O(1)$            |
 | `binary_heap_tag`      | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | xấu nhất $\Theta(n)$, khấu hao $\Theta(\log(n))$ | $\Theta(n)$                         | $\Theta(n)$                         | $\Theta(n)$       |
@@ -89,10 +89,10 @@ Thẻ được dùng quyết định độ phức tạp thời gian của từng
 #include <ext/pb_ds/priority_queue.hpp>
 #include <iostream>
 using namespace __gnu_pbds;
-// Vì hướng đến OIer, bài này dùng heap thường gặp pairing_heap_tag làm ví dụ
+// Vì hướng đến người học OI, bài này dùng heap thường gặp pairing_heap_tag làm ví dụ
 // Để dễ đọc hơn, định nghĩa bí danh như sau:
 using pair_heap = __gnu_pbds::priority_queue<int>;
-pair_heap q1;  // heap lớn, heap ghép cặp
+pair_heap q1;  // heap lớn (max-heap), heap ghép cặp
 pair_heap q2;
 pair_heap::point_iterator id;  // một bộ lặp
 
@@ -126,7 +126,7 @@ int main() {
 
 ## Bảo đảm vô hiệu hóa bộ lặp của \_\_gnu\_pbds (invalidation\_guarantee)
 
-Trong ví dụ trên và trong một số tình huống thực tế (như dùng heap pb-ds của
+Trong ví dụ trên và trong một số tình huống thực tế (như dùng heap pb\_ds của
 chương này để viết thuật toán đường đi ngắn nhất một nguồn), ta thường cần lưu
 và dùng bộ lặp của heap (như
 `__gnu_pbds::priority_queue<int>::point_iterator`).

@@ -16,11 +16,11 @@ __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 -   `Key`: kiểu phần tử được lưu trữ. Nếu muốn lưu nhiều phần tử có cùng `Key`,
     cần dùng cách tương tự `std::pair` hoặc `struct`, rồi kết hợp các hàm thành
     viên `lower_bound` và `upper_bound` để tìm kiếm.
--   `Mapped`: kiểu chính sách ánh xạ (Mapped-Policy). Nếu muốn biểu diễn
+-   `Mapped`: kiểu chính sách ánh xạ (mapped policy). Nếu muốn biểu diễn
     bộ chứa kết hợp là **tập hợp**, tương tự lưu phần tử trong `std::set`, hãy
     điền `null_type` tại đây; với phiên bản `g++` cũ, vị trí này là
-    `null_mapped_type`. Nếu muốn biểu diễn bộ chứa kết hợp là **tập hợp có
-    giá trị**, tương tự lưu phần tử trong `std::map`, hãy điền kiểu `Value`
+    `null_mapped_type`. Nếu muốn biểu diễn bộ chứa kết hợp là **ánh xạ**,
+    tương tự lưu phần tử trong `std::map`, hãy điền kiểu `Value`
     giống như trong `std::map<Key, Value>`.
 -   `Cmp_Fn`: đối tượng hàm so sánh khóa, ví dụ `std::less<Key>`.
 -   `Tag`: chọn loại cấu trúc dữ liệu nền; mặc định là `rb_tree_tag`.
@@ -81,7 +81,7 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 ## Ví dụ
 
 ```cpp
-// Common Header Simple over C++11
+// Tệp tiêu đề thường dùng cho C++11 trở lên
 #include <iostream>
 using namespace std;
 using ll = long long;
@@ -108,7 +108,7 @@ int main() {
   trr.erase(it);
   // Phần tử trên cây: {(1,0), (3,3), (4,2), (5,1)}
 
-  // In first của phần tử có thứ hạng 1 trong các thứ hạng 0 1 2 3
+  // In first của phần tử có thứ hạng 1 trong các thứ hạng 0, 1, 2, 3
   auto it2 = trr.find_by_order(1);
   cout << (*it2).first << endl;  // In ra: 3
 
