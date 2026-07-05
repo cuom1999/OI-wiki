@@ -32,7 +32,7 @@ $$
 
 Vậy công thức khoảng cách Euclid giữa hai điểm trong không gian ba chiều là gì? Hãy quan sát hình dưới đây.
 
-![distance in 3-dimensional space](./images/distance-0.png)
+![Khoảng cách trong không gian ba chiều](./images/distance-0.png)
 
 Ta dễ thấy rằng trong $\triangle ADC$, $\angle ADC = 90^\circ$; trong $\triangle ACB$, $\angle ACB = 90^\circ$.
 
@@ -83,13 +83,13 @@ $$
 
 Quan sát hình dưới đây:
 
-![different Manhattan distance paths](./images/distance-1.png)
+![Các đường đi khác nhau có cùng khoảng cách Manhattan](./images/distance-1.png)
 
 Giữa $A$ và $B$, đường màu vàng và đường màu cam đều biểu diễn khoảng cách Manhattan, đường màu đỏ và đường màu xanh dương biểu diễn các khoảng cách Manhattan tương đương, còn đường màu xanh lá biểu diễn khoảng cách Euclid.
 
 Vẫn với ví dụ tương tự, trong hình dưới đây tọa độ của $A,B$ lần lượt là $A(25,20),B(10,10)$.
 
-![Manhattan distance](./images/distance-2.svg)
+![Khoảng cách Manhattan](./images/distance-2.svg)
 
 Từ công thức, ta dễ dàng tính được khoảng cách Manhattan giữa hai điểm $A,B$:
 
@@ -189,7 +189,7 @@ $$
 
 Vẫn là ví dụ này, trong hình dưới đây tọa độ của $A,B$ lần lượt là $A(25,20),B(10,10)$.
 
-![Chebyshev distance](./images/distance-2.svg)
+![Khoảng cách Chebyshev](./images/distance-2.svg)
 
 $$
 d(A,B) = \max(|20 - 10|, |25 - 10|) = \max(10, 15) = 15
@@ -216,7 +216,7 @@ $$
 
 Vẽ $4$ hàm này lên hệ tọa độ Descartes phẳng, ta được một hình vuông có cạnh dài $\sqrt{2}$ như hình dưới đây:
 
-![unit Manhattan distance square](./images/distance-3.svg)
+![Hình vuông khoảng cách Manhattan đơn vị](./images/distance-3.svg)
 
 Mọi điểm trên biên của hình vuông đều có khoảng cách Manhattan đến gốc tọa độ bằng $1$.
 
@@ -237,7 +237,7 @@ $$
 
 Vẽ chúng lên hệ tọa độ Descartes phẳng, ta được một hình vuông có cạnh dài $2$ như hình dưới đây:
 
-![unit Chebyshev distance square](./images/distance-4.svg)
+![Hình vuông khoảng cách Chebyshev đơn vị](./images/distance-4.svg)
 
 Mọi điểm trên biên của hình vuông đều có khoảng cách Chebyshev đến gốc tọa độ bằng $1$.
 

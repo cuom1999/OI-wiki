@@ -27,7 +27,7 @@ $$
 
 Kết hợp với hình vẽ, đường thẳng $m$ chia các điểm thành hai phần. Bên trái $m$ là tập điểm $A_1$, bên phải là tập điểm $A_2$.
 
-Sau đó, theo quy tắc $B = \{ p_i \ \big | \ \lvert x_i - x_m \rvert < h \}$, ta thu được tập điểm $B$ gồm các điểm màu xanh lá. ![nearest points split strip](./images/nearest-points1.png)
+Sau đó, theo quy tắc $B = \{ p_i \ \big | \ \lvert x_i - x_m \rvert < h \}$, ta thu được tập điểm $B$ gồm các điểm màu xanh lá. ![Dải phân chia trong bài cặp điểm gần nhất](./images/nearest-points1.png)
 
 Với mỗi điểm $p_i$ trong $B$, mục tiêu hiện tại của ta là tìm một điểm cũng thuộc $B$ và có khoảng cách đến nó nhỏ hơn $h$. Để tránh xét một cặp điểm hai lần, ta chỉ xét các điểm có tung độ nhỏ hơn $y_i$. Rõ ràng, với một điểm hợp lệ $p_j$, ta phải có $y_i - y_j < h$. Vì vậy, ta thu được tập $C(p_i)$:
 
@@ -37,7 +37,7 @@ $$
 
 Chọn một điểm $p_i$ trong tập $B$; theo quy tắc $C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \le y_i \}$, ta thu được tập điểm $C$ gồm các điểm màu vàng trong khung đỏ.
 
-![nearest points candidate set](./images/nearest-points2.png)
+![Tập điểm ứng viên trong bài cặp điểm gần nhất](./images/nearest-points2.png)
 
 Nếu ta sắp xếp các điểm trong $B$ theo $y_i$, thì $C(p_i)$ rất dễ thu được: đó là vài điểm liên tiếp nằm ngay cạnh $p_i$.
 
@@ -59,7 +59,7 @@ Tiếp theo, chia hình chữ nhật này thành hai hình vuông $h \times h$. 
 
 Ta chia một hình vuông $h \times h$ thành bốn hình vuông nhỏ kích thước $\frac{h}{2} \times \frac{h}{2}$. Có thể thấy mỗi hình vuông nhỏ chứa nhiều nhất $1$ điểm: vì khoảng cách lớn nhất giữa hai điểm bất kỳ trong hình vuông nhỏ là độ dài đường chéo, tức $\frac{h}{\sqrt 2}$, nhỏ hơn $h$.
 
-![nearest points packing proof](./images/nearest-points3.png)
+![Chứng minh đóng gói cho bài cặp điểm gần nhất](./images/nearest-points3.png)
 
 Do đó, mỗi hình vuông chứa nhiều nhất $4$ điểm, hình chữ nhật chứa nhiều nhất $8$ điểm. Bỏ đi chính $p_i$, ta có $\max(C(p_i))=7$.
 
