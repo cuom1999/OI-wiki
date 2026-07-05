@@ -6,7 +6,7 @@ Trong lập trình thi đấu, có rất nhiều kiểu bài toán khác nhau.
 
 **Bài truyền thống** là dạng bài hiện khá phổ biến trong lập trình thi đấu.
 
-Thí sinh cần nộp mã nguồn. Hệ thống chấm sẽ dùng một số dữ liệu vào và dữ liệu ra tương ứng đã được chuẩn bị trước làm các bộ kiểm thử[^note1], biên dịch mã nguồn thí sinh nộp[^note2], cho chương trình của thí sinh đọc dữ liệu vào, rồi so sánh dữ liệu thí sinh xuất ra với dữ liệu ra đã chuẩn bị trước để phán định chương trình có đúng hay không. Cách chấm này được gọi là **chấm hộp đen**[^note3].
+Thí sinh cần nộp mã nguồn. Hệ thống chấm sẽ dùng một số dữ liệu đầu vào và dữ liệu đầu ra tương ứng đã được chuẩn bị trước làm các bộ kiểm thử[^note1], biên dịch mã nguồn thí sinh nộp[^note2], cho chương trình của thí sinh đọc dữ liệu đầu vào, rồi so sánh dữ liệu thí sinh xuất ra với dữ liệu đầu ra đã chuẩn bị trước để phán định chương trình có đúng hay không. Cách chấm này được gọi là **chấm hộp đen**[^note3].
 
 Với một bộ kiểm thử, thường sẽ có thêm giới hạn thời gian và giới hạn bộ nhớ.
 
@@ -14,13 +14,13 @@ Giới hạn thời gian là giới hạn về thời gian chạy của chương
 
 Giới hạn bộ nhớ là giới hạn về lượng bộ nhớ mà chương trình sử dụng. Lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng khi chạy không được vượt quá giới hạn đã cho.
 
-Sau khi chương trình kết thúc bình thường, dữ liệu xuất ra của thí sinh sẽ được so sánh với dữ liệu ra của bộ kiểm thử. Việc so sánh này thường bỏ qua dòng mới ở cuối tệp và khoảng trắng cuối dòng, rồi so sánh toàn văn. Với một số bài đặc biệt, hệ thống sẽ dùng [trình chấm đặc biệt (Special Judge)](../tools/special-judge.md) để so sánh.
+Sau khi chương trình kết thúc bình thường, dữ liệu xuất ra của thí sinh sẽ được so sánh với dữ liệu đầu ra của bộ kiểm thử. Việc so sánh này thường bỏ qua dòng mới ở cuối tệp và khoảng trắng cuối dòng, rồi so sánh toàn văn. Với một số bài đặc biệt, hệ thống sẽ dùng [trình chấm đặc biệt (Special Judge)](../tools/special-judge.md) để so sánh.
 
 Khi quá trình này kết thúc, hệ thống chấm sẽ căn cứ vào trạng thái chạy của chương trình để đưa ra các **kết quả chấm** khác nhau[^note5]:
 
 -   Được chấp nhận (Accepted, AC): chương trình của thí sinh được chấp nhận.
 -   Lỗi biên dịch (Compile Error, CE): chương trình của thí sinh không thể biên dịch bình thường.
--   Đáp án sai (Wrong Answer, WA): chương trình của thí sinh kết thúc bình thường, nhưng dữ liệu xuất ra không khớp với dữ liệu ra của bộ kiểm thử.
+-   Đáp án sai (Wrong Answer, WA): chương trình của thí sinh kết thúc bình thường, nhưng dữ liệu xuất ra không khớp với dữ liệu đầu ra của bộ kiểm thử.
 -   Lỗi trình bày (Presentation Error, PE): chương trình của thí sinh kết thúc bình thường, nhưng định dạng không đúng yêu cầu[^note6].
 -   Lỗi khi chạy (Runtime Error, RE): chương trình của thí sinh kết thúc bất thường (giá trị trả về khi chương trình kết thúc không bằng không).
 -   Quá giới hạn thời gian (Time Limit Exceeded, TLE): thời gian chạy của chương trình thí sinh vượt quá giới hạn thời gian đã cho.
@@ -31,7 +31,7 @@ Trong các kỳ thi ICPC, chương trình của bạn cần đạt trạng thái
 
 ## Bài nộp đáp án
 
-**Bài nộp đáp án** là dạng bài nộp trực tiếp đáp án. Dạng bài này thường cung cấp các tệp dữ liệu vào và yêu cầu nộp một tệp nén, thư mục hoặc các tệp thuần chứa `XXX1.out`, `XXX2.out`, `XXX3.out`…`XXXn.out`.
+**Bài nộp đáp án** là dạng bài nộp trực tiếp đáp án. Dạng bài này thường cung cấp các tệp dữ liệu đầu vào và yêu cầu nộp một tệp nén, thư mục hoặc các tệp thuần chứa `XXX1.out`, `XXX2.out`, `XXX3.out`…`XXXn.out`.
 
 Sau khi nộp đáp án, hệ thống chấm sẽ so sánh các tệp đáp án với đáp án chuẩn, rồi cho một số điểm nhất định dựa trên chất lượng đáp án của thí sinh và mức độ hoàn thành nhiệm vụ.
 
@@ -99,7 +99,7 @@ Nếu tự thiết kế bài hoặc tổ chức kỳ thi, cần cân nhắc và 
 
 ## Bài truyền tin
 
-**Bài truyền tin** là dạng bài yêu cầu hai chương trình của thí sinh giao tiếp với nhau và phối hợp hoàn thành một nhiệm vụ. Chương trình thứ nhất nhận dữ liệu vào của bài toán và sinh một số dữ liệu ra; dữ liệu vào của chương trình thứ hai sẽ liên quan đến dữ liệu ra của chương trình thứ nhất (đôi khi được giữ nguyên làm một tham số, đôi khi được phía chấm xử lý rồi tạo ra), và chương trình thứ hai cần sinh lời giải của bài toán.
+**Bài truyền tin** là dạng bài yêu cầu hai chương trình của thí sinh giao tiếp với nhau và phối hợp hoàn thành một nhiệm vụ. Chương trình thứ nhất nhận dữ liệu đầu vào của bài toán và sinh một số dữ liệu đầu ra; dữ liệu đầu vào của chương trình thứ hai sẽ liên quan đến dữ liệu đầu ra của chương trình thứ nhất (đôi khi được giữ nguyên làm một tham số, đôi khi được phía chấm xử lý rồi tạo ra), và chương trình thứ hai cần sinh lời giải của bài toán.
 
 Ví dụ về bài truyền tin có: [UOJ #178. Điện mừng năm mới](https://uoj.ac/problem/178), [#454. UER #8: Ném tuyết](https://uoj.ac/problem/454), v.v.
 
