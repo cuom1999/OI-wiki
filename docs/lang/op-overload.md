@@ -4,7 +4,7 @@ Khi một toán tử xuất hiện trong biểu thức và ít nhất một toá
 
 Nói một cách dễ hiểu, nếu xem việc sử dụng "toán tử" như lời gọi một hàm đặc biệt (ví dụ xem `1 + 2` như gọi `add(1, 2)`), và ít nhất một toán hạng có kiểu `class`, `struct` hoặc `enum`, thì trình biên dịch cần dựa vào kiểu của các toán hạng để quyết định nên gọi hàm tùy biến nào.
 
-Trong C++, ta có thể nạp chồng gần như mọi toán tử khả dụng.
+Trong C++, có thể nạp chồng gần như mọi toán tử khả dụng.
 
 ???+ note "Một số toán tử có thể nạp chồng"
     Toán tử một ngôi: `+` (dấu dương); `-` (dấu âm); `~` (đảo bit); `++`; `--`; `!` (phủ định logic); `*` (giải tham chiếu con trỏ); `&` (lấy địa chỉ); `->` (truy cập thành viên thông qua con trỏ), v.v.
@@ -20,7 +20,7 @@ Nạp chồng toán tử có các giới hạn sau:
 -   Chỉ có thể nạp chồng các toán tử đã tồn tại, không thể tự định nghĩa toán tử mới.
 -   Các toán tử sau không thể bị nạp chồng: `::` (phân giải phạm vi), `.` (truy cập thành viên), `.*` (truy cập thành viên thông qua con trỏ tới thành viên), `?:` (toán tử ba ngôi).
 -   Sau khi nạp chồng, độ ưu tiên, số lượng toán hạng và tính kết hợp của toán tử không được thay đổi.
--   Nếu nạp chồng `&&` (AND logic) và `||` (OR logic), chúng sẽ mất đặc tính đánh giá ngắn mạch.
+-   Nếu nạp chồng `&&` (AND logic) và `||` (OR logic), chúng sẽ mất tính chất đánh giá ngắn mạch.
 
 ## Cài đặt
 
@@ -42,11 +42,12 @@ class Example {
 ReturnType operator@(all_operands) { /* ... */ }
 ```
 
-Dưới đây là một vài ví dụ về nạp chồng toán tử.
+Sau đây là một vài ví dụ về nạp chồng toán tử.
 
 ### Toán tử số học cơ bản
 
-Dưới đây định nghĩa một cấu trúc vector hai chiều `Vector2D` và cài đặt nạp chồng cho phép cộng và tích vô hướng.
+Ví dụ sau định nghĩa một cấu trúc vector hai chiều `Vector2D` và cài đặt nạp
+chồng cho phép cộng cùng tích vô hướng.
 
 ??? note "Ví dụ nạp chồng toán tử số học"
     ```cpp
@@ -89,7 +90,10 @@ Có thể hiểu tăng tiền tố là lời gọi `operator++(a)` hoặc `a.ope
     };
     ```
 
-Một điểm khác là với các toán tử tăng giảm có sẵn, toán tử tiền tố trả về tham chiếu, còn toán tử hậu tố trả về giá trị cũ trước khi tăng/giảm. Dù toán tử sau khi nạp chồng không bắt buộc phải tuân theo quy ước này, về mặt ngữ nghĩa, ta vẫn nên giữ kiểu trả về nhất quán với toán tử có sẵn.
+Một điểm khác là với các toán tử tăng giảm có sẵn, toán tử tiền tố trả về tham
+chiếu, còn toán tử hậu tố trả về giá trị cũ trước khi tăng/giảm. Dù toán tử sau
+khi nạp chồng không bắt buộc phải tuân theo quy ước này, về mặt ngữ nghĩa vẫn
+nên giữ kiểu trả về nhất quán với toán tử có sẵn.
 
 Với kiểu `T`, định nghĩa nạp chồng toán tử tăng điển hình như sau:
 
@@ -127,7 +131,9 @@ Bên dưới định nghĩa một cấu trúc so sánh để cài đặt thứ t
 
 ### Toán tử so sánh
 
-Trong `std::sort` và một số bộ chứa STL, cần dùng đến toán tử `<`. Khi sử dụng kiểu tự định nghĩa, ta cần tự nạp chồng toán tử này nếu muốn các công cụ đó biết cách so sánh hai đối tượng.
+Trong `std::sort` và một số bộ chứa STL, cần dùng đến toán tử `<`. Khi sử dụng
+kiểu tự định nghĩa, cần tự nạp chồng toán tử này nếu muốn các công cụ đó biết
+cách so sánh hai đối tượng.
 
 Sau đây là một ví dụ cài đặt cùng chức năng với phần trước.
 
@@ -169,7 +175,7 @@ Thực ra, chỉ cần có toán tử `<`, năm toán tử so sánh còn lại c
 ```cpp
 /* clang-format off */
 
-// Các cách cài đặt bên dưới đều nạp chồng dấu nhỏ hơn thành hàm không phải thành viên
+// Các cách cài đặt sau đều nạp chồng dấu nhỏ hơn thành hàm không phải thành viên
 
 bool operator<(const T& lhs, const T& rhs) { /* Nạp chồng toán tử nhỏ hơn tại đây */ }
 bool operator>(const T& lhs, const T& rhs) { return rhs < lhs; }
@@ -180,7 +186,8 @@ bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
 ```
 
 ??? note "Về toán tử so sánh ba chiều trong C++20"
-    Nếu sử dụng C++20 hoặc phiên bản cao hơn, ta có thể dùng trực tiếp toán tử so sánh ba chiều mặc định để đơn giản hóa mã.[^ref3]
+    Nếu sử dụng C++20 hoặc phiên bản cao hơn, có thể dùng trực tiếp toán tử so
+    sánh ba chiều mặc định để đơn giản hóa mã.[^ref3]
     
     ```cpp
     auto operator<=>(const T &lhs, const T &rhs) = default;
