@@ -2,7 +2,7 @@ author: billchenchina, c-forrest, CCXXXI, danielqfmai, Enter-tainer, Great-desig
 
 Bài viết này giới thiệu tích chập Dirichlet và hàm sinh Dirichlet.
 
-<span id="dirichlet-&#x5377;&#x79ef;"></span>
+<span id="tích-chập-dirichlet"></span>
 ## Tích chập Dirichlet
 
 Với hai hàm số học $f(n)$ và $g(n)$, **tích chập Dirichlet** (Dirichlet convolution), ký hiệu là $f \ast g$, được định nghĩa là hàm số học
@@ -40,7 +40,7 @@ Tích chập Dirichlet là một phép toán quan trọng trên các hàm số h
 
 [Phép đảo Mobius](./mobius.md) chính là việc dùng $\varepsilon=\mu \ast 1$ để biến đổi các đồng nhất thức giữa hàm số học.
 
-<span id="&#x6027;&#x8d28;"></span>
+<span id="tính-chất"></span>
 ### Tính chất
 
 Tích chập Dirichlet có một loạt tính chất đại số.
@@ -144,7 +144,7 @@ Hàm nhân tính là một lớp hàm số học đặc biệt. Lớp này đón
     
     Trong đó, dấu bằng thứ hai dùng giả thiết quy nạp: với $\ell_1\ell_2 < n_1n_2$ và $\ell_1\perp\ell_2$, điều kiện $g(\ell_1\ell_2)=g(\ell_1)g(\ell_2)$ đã đúng.
 
-Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, với phép toán tích chập Dirichlet, tạo thành một [nhóm con](../algebra/group-theory.md#%E5%AD%90%E7%BE%A4) của nhóm nhân các phần tử khả nghịch trong vành Dirichlet.
+Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, với phép toán tích chập Dirichlet, tạo thành một [nhóm con](../algebra/group-theory.md#nhóm-con) của nhóm nhân các phần tử khả nghịch trong vành Dirichlet.
 
 Đặc biệt hơn nữa là các hàm hoàn toàn nhân tính.
 
@@ -153,7 +153,7 @@ Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, 
     
     1.  Luật phân phối: $(\alpha f)\ast(\alpha g) = \alpha\cdot(f\ast g)$.
     2.  Nghịch đảo: $(\alpha f)^{-1}=\alpha f^{-1}$, miễn là $f^{-1}$ tồn tại.
-    3.  Hàm nhân tính $f$ là hàm hoàn toàn nhân tính khi và chỉ khi $f^{-1}=\mu f$, trong đó $\mu$ là [hàm Mobius](./mobius.md#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0).
+    3.  Hàm nhân tính $f$ là hàm hoàn toàn nhân tính khi và chỉ khi $f^{-1}=\mu f$, trong đó $\mu$ là [hàm Mobius](./mobius.md#hàm-möbius).
 
 ??? note "Chứng minh"
     Với ý thứ nhất, kiểm tra trực tiếp ta có
@@ -208,9 +208,9 @@ Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, 
     
     Vì vậy, bước quy nạp đúng. Mệnh đề ban đầu được chứng minh.
 
-Theo ngôn ngữ đại số trừu tượng, nếu $\alpha$ là hàm hoàn toàn nhân tính, ánh xạ $f\mapsto \alpha f$ là một [tự đồng cấu](../algebra/ring-theory.md#%E7%90%86%E6%83%B3) của vành Dirichlet.
+Theo ngôn ngữ đại số trừu tượng, nếu $\alpha$ là hàm hoàn toàn nhân tính, ánh xạ $f\mapsto \alpha f$ là một [tự đồng cấu](../algebra/ring-theory.md#iđêan) của vành Dirichlet.
 
-<span id="dirichlet-&#x751f;&#x6210;&#x51fd;&#x6570;"></span>
+<span id="hàm-sinh-dirichlet"></span>
 ## Hàm sinh Dirichlet
 
 Liên hệ chặt chẽ với tích chập Dirichlet là hàm sinh Dirichlet.
@@ -240,7 +240,7 @@ Tích của các hàm sinh Dirichlet tương ứng với tích chập Dirichlet 
 
 Dựa vào sự tương ứng giữa tích chập Dirichlet và phép nhân hàm sinh Dirichlet, ta có thể hiểu các tính chất của tích chập Dirichlet từ góc nhìn hàm sinh Dirichlet. Vì phép nhân các chuỗi Dirichlet hình thức thỏa luật giao hoán, luật kết hợp và luật phân phối đối với phép cộng, tích chập Dirichlet của các hàm số học cũng thỏa các tính chất đại số tương tự.
 
-<span id="euler-&#x4e58;&#x79ef;"></span>
+<span id="tích-euler"></span>
 ### Tích Euler
 
 Tính đặc biệt của hàm nhân tính cũng được phản ánh trên hàm sinh Dirichlet. Do số nguyên có [định lý phân tích duy nhất](./basic.md#định-lý-cơ-bản-của-số-học), hàm sinh $F(s)$ của hàm nhân tính $f(n)$ có thể viết dưới dạng sau:
@@ -317,7 +317,7 @@ Khác với hàm nhân tính, dạng hàm sinh Dirichlet của hàm hoàn toàn 
         U(s) = \prod_{p\in\mathbf P}(1+p^{-s}) = \prod_{p\in\mathbf P}\dfrac{1-p^{-2s}}{1-p^{-s}} = \dfrac{\zeta(s)}{\zeta(2s)}.
         $$
 
-<span id="&#x5e94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ### Ứng dụng
 
 Hàm sinh Dirichlet có thể dùng để biểu diễn hàm nhân tính dưới dạng tích chập Dirichlet.
@@ -332,12 +332,12 @@ $$
 
 So sánh với hàm sinh Dirichlet của hàm lũy thừa, chỉ cần lấy $g = \mathrm{id}_2$ thì ta có $f \ast g = \mathrm{id}_3$. Cả hai đều có thể tính tổng tiền tố nhanh.
 
-<span id="dirichlet-&#x5377;&#x79ef;&#x7684;&#x8ba1;&#x7b97;"></span>
+<span id="tính-tích-chập-dirichlet"></span>
 ## Tính tích chập Dirichlet
 
 Mục này thảo luận bài toán tính tích chập Dirichlet: cho hai dãy $\{f(k)\}_{k=1}^n$ và $\{g(k)\}_{k=1}^n$, cần tìm một số hạng đầu của tích chập Dirichlet $h=f\ast g$, tức $\{h(k)\}_{k=1}^n$. Tùy theo tính chất của các hàm liên quan, độ phức tạp thuật toán cũng hơi khác nhau.
 
-<span id="&#x4e00;&#x822c;&#x60c5;&#x5f62;"></span>
+<span id="trường-hợp-tổng-quát"></span>
 ### Trường hợp tổng quát
 
 Nếu $f,g,h$ đều không có tính chất đặc biệt, thì việc tính tích chập Dirichlet chỉ có thể dựa vào định nghĩa:
@@ -359,7 +359,7 @@ Cài đặt tham khảo như sau:
     --8<-- "docs/math/code/dirichlet/dirichlet-1.cpp:core"
     ```
 
-<span id="&#x4e0e;&#x79ef;&#x6027;&#x51fd;&#x6570;&#x5377;&#x79ef;&#x7684;&#x60c5;&#x5f62;"></span>
+<span id="trường-hợp-chập-với-hàm-nhân-tính"></span>
 ### Trường hợp chập với hàm nhân tính
 
 Nếu $g$ là hàm nhân tính, ta có thể dùng tích Euler để tăng tốc việc tính tích chập Dirichlet. Tính $h$ tương đương với tính các hệ số trong hàm sinh Dirichlet $H$ của nó. Vì
@@ -380,7 +380,7 @@ $$
 \sum_{p\in\mathbf P,~p\le n}\sum_{k=1}^{\infty}\left\lfloor\dfrac{n}{p^k}\right\rfloor \le \sum_{p\in\mathbf P,~p\le n}\dfrac{n}{p-1} \le \sum_{p\in\mathbf P,~p\le n}\dfrac{2n}{p} \in O(n\log\log n).
 $$
 
-Ước lượng độ phức tạp ở bước cuối giống với chứng minh độ phức tạp của [sàng Eratosthenes](./sieve.md#%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95). Vì vậy, độ phức tạp thời gian của thuật toán này là $O(n\log\log n)$.
+Ước lượng độ phức tạp ở bước cuối giống với chứng minh độ phức tạp của [sàng Eratosthenes](./sieve.md#sàng-eratosthenes). Vì vậy, độ phức tạp thời gian của thuật toán này là $O(n\log\log n)$.
 
 Cài đặt tham khảo như sau:
 
@@ -389,12 +389,12 @@ Cài đặt tham khảo như sau:
     --8<-- "docs/math/code/dirichlet/dirichlet-2.cpp:core"
     ```
 
-Đặc biệt, khi hàm nhân tính $g$ là hàm hoàn toàn nhân tính hoặc là nghịch đảo Dirichlet của một hàm hoàn toàn nhân tính, chẳng hạn $g = 1$ hoặc $g = \mu$, thuật toán còn có thể được đơn giản hóa hơn nữa. Lúc này, việc tính tích chập Dirichlet $h = f\ast g$ có thể dùng thuật toán [tổng tiền tố/sai phân Dirichlet](./mobius.md#dirichlet-%E5%89%8D%E7%BC%80%E5%92%8C) với hằng số nhỏ hơn, nhưng độ phức tạp thời gian vẫn là $O(n\log\log n)$.
+Đặc biệt, khi hàm nhân tính $g$ là hàm hoàn toàn nhân tính hoặc là nghịch đảo Dirichlet của một hàm hoàn toàn nhân tính, chẳng hạn $g = 1$ hoặc $g = \mu$, thuật toán còn có thể được đơn giản hóa hơn nữa. Lúc này, việc tính tích chập Dirichlet $h = f\ast g$ có thể dùng thuật toán [tổng tiền tố/sai phân Dirichlet](./mobius.md#tổng-tiền-tố-dirichlet) với hằng số nhỏ hơn, nhưng độ phức tạp thời gian vẫn là $O(n\log\log n)$.
 
-<span id="&#x7ed3;&#x679c;&#x4e3a;&#x79ef;&#x6027;&#x51fd;&#x6570;&#x7684;&#x60c5;&#x5f62;"></span>
+<span id="trường-hợp-kết-quả-là-hàm-nhân-tính"></span>
 ### Trường hợp kết quả là hàm nhân tính
 
-Cuối cùng, xét trường hợp $h$ là hàm nhân tính. Đặc biệt, khi $f,g$ đều là hàm nhân tính, $h=f \ast g$ sẽ là hàm nhân tính. Để tính $h$, chỉ cần xác định giá trị của nó tại các lũy thừa nguyên tố, rồi dùng [sàng tuyến tính](./sieve.md#%E7%BA%BF%E6%80%A7%E7%AD%9B%E6%B3%95) để tính trong thời gian $O(n)$. Với giá trị $h(p^e)$ tại lũy thừa nguyên tố $p^e$, ta cứ tính vét cạn trực tiếp:
+Cuối cùng, xét trường hợp $h$ là hàm nhân tính. Đặc biệt, khi $f,g$ đều là hàm nhân tính, $h=f \ast g$ sẽ là hàm nhân tính. Để tính $h$, chỉ cần xác định giá trị của nó tại các lũy thừa nguyên tố, rồi dùng [sàng tuyến tính](./sieve.md#sàng-tuyến-tính) để tính trong thời gian $O(n)$. Với giá trị $h(p^e)$ tại lũy thừa nguyên tố $p^e$, ta cứ tính vét cạn trực tiếp:
 
 $$
 h(p^e) = \sum_{i=0}^e f(p^i)g(p^{e-i}).
@@ -418,7 +418,7 @@ Cài đặt tham khảo như sau:
     --8<-- "docs/math/code/dirichlet/dirichlet-3.cpp:core"
     ```
 
-<span id="&#x53c2;&#x8003;&#x8d44;&#x6599;&#x4e0e;&#x6ce8;&#x91ca;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   [Dirichlet convolution - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_convolution)

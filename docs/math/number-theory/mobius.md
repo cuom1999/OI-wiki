@@ -1,6 +1,6 @@
 author: hydingsy, hyp1231, ranwen, 383494
 
-Kiến thức cần biết trước: [phân khối số học](./sqrt-decomposition.md), [tích chập Dirichlet](./dirichlet.md#dirichlet-%E5%8D%B7%E7%A7%AF)
+Kiến thức cần biết trước: [phân khối số học](./sqrt-decomposition.md), [tích chập Dirichlet](./dirichlet.md#tích-chập-dirichlet)
 
 Đảo Möbius là một nội dung quan trọng trong lý thuyết số. Với một số hàm $f(n)$, nếu khó tính trực tiếp giá trị của nó nhưng dễ tính tổng trên các bội hoặc tổng trên các ước $g(n)$, ta có thể dùng đảo Möbius để đơn giản hóa phép tính và tìm được giá trị của $f(n)$.
 
@@ -231,7 +231,7 @@ Tiếp theo, đảo Möbius không chỉ giới hạn ở phép cộng; thực r
     
     Trong đó $a\uparrow b = a^b$ là ký hiệu mũi tên Knuth. So sánh với chứng minh của dạng cơ bản, ta thấy khác biệt duy nhất là phép cộng được thay bằng phép nhân, còn phép nhân được thay bằng phép lũy thừa.
 
-Nhìn từ góc độ tích chập Dirichlet, đảo Möbius chỉ dùng sự thật rằng "hàm Möbius là nghịch đảo Dirichlet của hàm hằng". Có thể hình dung các quan hệ tương tự đảo Möbius cũng đúng với [nghịch đảo Dirichlet](./dirichlet.md#dirichlet-%E5%8D%B7%E7%A7%AF) tổng quát.
+Nhìn từ góc độ tích chập Dirichlet, đảo Möbius chỉ dùng sự thật rằng "hàm Möbius là nghịch đảo Dirichlet của hàm hằng". Có thể hình dung các quan hệ tương tự đảo Möbius cũng đúng với [nghịch đảo Dirichlet](./dirichlet.md#tích-chập-dirichlet) tổng quát.
 
 ???+ note "Mở rộng 3"
     Giả sử $f(n),g(n),\alpha(n)$ đều là các hàm số học, và $\alpha^{-1}(n)$ là nghịch đảo Dirichlet của $\alpha(n)$, tức
@@ -270,7 +270,7 @@ Nhìn từ góc độ tích chập Dirichlet, đảo Möbius chỉ dùng sự th
     $$
 
 ??? note "Chứng minh"
-    Từ [tính chất](./dirichlet.md#%E6%80%A7%E8%B4%A8) của tích chập Dirichlet, với hàm hoàn toàn nhân tính $t(n)$, nghịch đảo Dirichlet của nó chính là $\mu(n)t(n)$.
+    Từ [tính chất](./dirichlet.md#tính-chất) của tích chập Dirichlet, với hàm hoàn toàn nhân tính $t(n)$, nghịch đảo Dirichlet của nó chính là $\mu(n)t(n)$.
 
 Cuối cùng, đảo Möbius còn có thể được mở rộng cho các hàm phức trên $[1,+\infty)$, chứ không chỉ giới hạn trong các hàm số học. Dạng cơ bản của đảo Möbius có thể xem là trường hợp đặc biệt trong đó hàm phức nhận giá trị bằng không tại mọi điểm không nguyên.
 
@@ -316,7 +316,7 @@ Cuối cùng, đảo Möbius còn có thể được mở rộng cho các hàm p
 
 Các dạng mở rộng này có thể kết hợp với nhau, từ đó thu được những quan hệ đảo phức tạp hơn.
 
-<span id="dirichlet-&#21069;&#32512;&#21644;"></span>
+<span id="tổng-tiền-tố-dirichlet"></span>
 ### Tổng tiền tố Dirichlet
 
 Kiến thức cần biết trước: [tổng tiền tố và sai phân](../../basic/prefix-sum.md)
@@ -777,7 +777,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     F(n) = \prod_{d\mid n}\left(\dfrac{n}{d}\right)\uparrow\mu(d).
     $$
     
-    Dễ thấy đây là đảo Möbius dạng tích đối với $\tilde F(n)=n$. Ngay cả khi không biết biểu thức của nó, ta vẫn có thể dùng phương pháp [sai phân Dirichlet](#dirichlet-%E5%89%8D%E7%BC%80%E5%92%8C) để tiền xử lý trong thời gian $O(n\log\log n)$. Tất nhiên, vì dạng của $\tilde F(n)$ rất đơn giản, biểu thức của $F(n)$ có thể tính trực tiếp:
+    Dễ thấy đây là đảo Möbius dạng tích đối với $\tilde F(n)=n$. Ngay cả khi không biết biểu thức của nó, ta vẫn có thể dùng phương pháp [sai phân Dirichlet](#tổng-tiền-tố-dirichlet) để tiền xử lý trong thời gian $O(n\log\log n)$. Tất nhiên, vì dạng của $\tilde F(n)$ rất đơn giản, biểu thức của $F(n)$ có thể tính trực tiếp:
     
     $$
     F(n) = 

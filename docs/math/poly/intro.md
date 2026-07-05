@@ -425,7 +425,7 @@ trong đó $k_n(x)$ được gọi là hàm nhân. Các hàm nhân khác nhau s�
 
 1.  Hàm sinh thường: $k_n(x)=x^n$.
 2.  Hàm sinh mũ: $k_n(x)=\dfrac{x^n}{n!}$.
-3.  [Hàm sinh Dirichlet](../number-theory/dirichlet.md#dirichlet-%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0): $k_n(x)=\dfrac{1}{n^x}$.
+3.  [Hàm sinh Dirichlet](../number-theory/dirichlet.md#hàm-sinh-dirichlet): $k_n(x)=\dfrac{1}{n^x}$.
 
 <span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
 
