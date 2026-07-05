@@ -1,6 +1,6 @@
 author: sshwy, StudyingFather, orzAtalod
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Trước hết giới thiệu khái niệm phân tích Lyndon.
@@ -9,10 +9,10 @@ Xâu Lyndon: với xâu $s$, nếu thứ tự từ điển của $s$ nhỏ hơn 
 
 Phân tích Lyndon: phân tích Lyndon của xâu $s$ được ký hiệu là $s=w_1w_2\cdots w_k$, trong đó mọi $w_i$ đều là xâu đơn giản và thứ tự từ điển của chúng được sắp không tăng, tức $w_1\ge w_2\ge\cdots\ge w_k$. Có thể chứng minh phân tích như vậy tồn tại và là duy nhất.
 
-<span id="Duval-&#31639;&#27861;"></span>
+<span id="thuật-toán-duval"></span>
 ## Thuật toán Duval
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 ### Giải thích
 
 Duval có thể tìm phân tích Lyndon của một xâu trong thời gian $O(n)$.
@@ -21,7 +21,7 @@ Trước hết giới thiệu thêm một khái niệm: nếu một xâu $t$ có
 
 Thuật toán Duval dùng tư tưởng tham lam. Trong quá trình chạy, ta chia xâu $s$ thành ba phần $s=s_1s_2s_3$, trong đó $s_1$ là một xâu Lyndon và phân tích Lyndon của nó đã được ghi lại; $s_2$ là một xâu gần Lyndon; $s_3$ là phần chưa xử lý.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quy-trình"></span>
 ### Quy trình
 
 Mô tả tổng thể: mỗi lần thuật toán thử thêm ký tự đầu của $s_3$ vào cuối $s_2$. Nếu $s_2$ không còn là xâu gần Lyndon, ta có thể cắt ra một phần tiền tố của $s_2$ (chính là một nhân tử trong phân tích Lyndon) và nối vào cuối $s_1$.
@@ -32,7 +32,7 @@ Giải thích chi tiết hơn như sau. Định nghĩa con trỏ $i$ trỏ tới
 2.  Nếu $s[j]>s[k]$, thì $s_2s[j]$ trở thành một xâu Lyndon. Ta tăng con trỏ $j$, đồng thời đưa $k$ về ký tự đầu của $s_2$, để $s_2$ trở thành một xâu Lyndon mới với số chu kỳ bằng 1.
 3.  Nếu $s[j]<s[k]$, thì $s_2s[j]$ không còn là xâu gần đơn giản. Khi đó ta phân tích ra từ $s_2$ một xâu con Lyndon, có độ dài $j-k$, tức một chu kỳ của nó. Sau đó biến $s_2$ thành phần còn lại sau khi cắt và tiếp tục vòng lặp (chú ý rằng trong trường hợp này không thay đổi $j,k$), cho tới khi cắt hết các chu kỳ. Với phần còn lại, chỉ cần "lùi" tiến độ về đầu phần còn lại.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
 Đoạn mã sau trả về một phương án phân tích Lyndon của xâu $s$.
@@ -81,14 +81,14 @@ Giải thích chi tiết hơn như sau. Định nghĩa con trỏ $i$ trỏ tới
         return factorization
     ```
 
-<span id="&#22797;&#26434;&#24230;&#20998;&#26512;"></span>
+<span id="phân-tích-độ-phức-tạp"></span>
 ### Phân tích độ phức tạp
 
 Tiếp theo chứng minh độ phức tạp của thuật toán.
 
 Số lần lặp của vòng ngoài không vượt quá $n$, vì mỗi lần $i$ đều tăng. Vòng trong thứ hai cũng là $O(n)$, vì nó chỉ ghi lại phương án phân tích Lyndon. Bây giờ phân tích vòng trong còn lại. Dễ thấy mỗi xâu Lyndon tìm được trong vòng ngoài dài hơn phần xâu còn lại mà ta đã so sánh, nên tổng độ dài của các phần còn lại nhỏ hơn $n$; vì vậy vòng trong này chạy nhiều nhất $O(n)$ lần. Trên thực tế, tổng số vòng lặp không vượt quá $4n-3$, nên độ phức tạp thời gian là $O(n)$.
 
-<span id="&#26368;&#23567;&#34920;&#31034;&#27861;Finding-the-smallest-cyclic-shift"></span>
+<span id="biểu-diễn-nhỏ-nhất-finding-the-smallest-cyclic-shift"></span>
 ## Biểu diễn nhỏ nhất (Finding the smallest cyclic shift)
 
 Với một xâu $s$ có độ dài $n$, ta có thể dùng thuật toán trên để tìm biểu diễn nhỏ nhất của xâu này.
@@ -141,7 +141,7 @@ Vì vậy trong quá trình phân tích, chỉ cần ghi lại điểm bắt đ�
         return s[ans : ans + n / 2]
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [UVa #719 - Glass Beads](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=660)
