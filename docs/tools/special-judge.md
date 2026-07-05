@@ -4,12 +4,12 @@ Trang này chủ yếu giới thiệu cách viết spj cho một số công cụ
 
 ## Giới thiệu
 
-**Special Judge** (viết tắt: spj, còn gọi là checker) là chương trình dùng để kiểm tra tính hợp lệ của đáp án khi một bài có nhiều lời giải hoặc nhiều đáp án đúng.
+**Trình chấm đặc biệt** (Special Judge, viết tắt: spj, còn gọi là checker) là chương trình dùng để kiểm tra tính hợp lệ của đáp án khi một bài có nhiều lời giải hoặc nhiều đáp án đúng.
 
 ???+ warning "Cảnh báo"
-    spj cũng nên kiểm tra cuối tệp có nội dung thừa hay không, và định dạng output có đúng hay không (ví dụ đề yêu cầu các số cách nhau bằng một dấu cách, nhưng thí sinh lại dùng xuống dòng). Tuy nhiên, hiện nay việc kiểm tra cuối tệp chỉ có Testlib làm được thuận tiện, còn kiểm tra định dạng kiểu này thì hầu như không ai cố ý làm riêng.
+    spj cũng nên kiểm tra cuối tệp có nội dung thừa hay không, và định dạng đầu ra có đúng hay không (ví dụ đề yêu cầu các số cách nhau bằng một dấu cách, nhưng thí sinh lại dùng xuống dòng). Tuy nhiên, hiện nay việc kiểm tra cuối tệp chỉ có Testlib làm được thuận tiện, còn kiểm tra định dạng kiểu này thì hầu như không ai cố ý làm riêng.
 
-    Khi kiểm tra số thực, cần chú ý NaN. Cách kiểm tra không hợp lý có thể dẫn đến tình huống chỉ cần output NaN là AC.
+    Khi kiểm tra số thực, cần chú ý NaN. Cách kiểm tra không hợp lý có thể dẫn đến tình huống chỉ cần xuất NaN là AC.
 
     Khi đọc tệp của thí sinh, nên kiểm tra xem đã đọc đúng nội dung cần thiết hay chưa, để tránh làm spj bị lỗi chạy. Một số OJ xử lý lỗi chạy của spj như lỗi hệ thống.
 
@@ -43,9 +43,9 @@ Với đa số công cụ chấm/OJ khác, cần chỉnh sửa Testlib theo đ�
 
 int main(int argc, char *argv[]) {
   /*
-   * inf: input
-   * ouf: output cua thi sinh
-   * ans: output chuan
+   * inf: đầu vào
+   * ouf: đầu ra của thí sinh
+   * ans: đầu ra chuẩn
    */
   registerTestlibCmd(argc, argv);
 
@@ -71,12 +71,12 @@ int main(int argc, char *argv[]) {
 
 int main(int argc, char* argv[]) {
   /*
-   * argv[1]: input
-   * argv[2]: output cua thi sinh
-   * argv[3]: output chuan
-   * argv[4]: diem cua mot test
-   * argv[5]: ghi diem cuoi cung (0 ~ argv[4])
-   * argv[6]: ghi bao cao loi
+   * argv[1]: đầu vào
+   * argv[2]: đầu ra của thí sinh
+   * argv[3]: đầu ra chuẩn
+   * argv[4]: điểm của một test
+   * argv[5]: ghi điểm cuối cùng (0 ~ argv[4])
+   * argv[6]: ghi báo cáo lỗi
    */
   FILE* fin = fopen(argv[1], "r");
   FILE* fout = fopen(argv[2], "r");
@@ -107,12 +107,12 @@ int main(int argc, char* argv[]) {
 
 int main(int argc, char* argv[]) {
   /*
-   * FILENAME.in: input
-   * FILENAME.out: output cua thi sinh
-   * argv[1]: diem cua mot test
-   * argv[2]: output chuan
-   * score.log: ghi diem cuoi cung (0 ~ argv[1])
-   * report.log: ghi bao cao loi
+   * FILENAME.in: đầu vào
+   * FILENAME.out: đầu ra của thí sinh
+   * argv[1]: điểm của một test
+   * argv[2]: đầu ra chuẩn
+   * score.log: ghi điểm cuối cùng (0 ~ argv[1])
+   * report.log: ghi báo cáo lỗi
    */
   FILE* fin = fopen("num.in", "r");
   FILE* fout = fopen("num.out", "r");
@@ -143,11 +143,11 @@ int main(int argc, char* argv[]) {
 
 int main(int argc, char* argv[]) {
   /*
-   * stdin: input
-   * argv[2]: output chuan
-   * argv[3]: output cua thi sinh
-   * stdout:L1: ghi ti le diem cuoi cung (0 ~ 1)
-   * stdout:L2: ghi bao cao loi
+   * stdin: đầu vào
+   * argv[2]: đầu ra chuẩn
+   * argv[3]: đầu ra của thí sinh
+   * stdout:L1: ghi tỉ lệ điểm cuối cùng (0 ~ 1)
+   * stdout:L2: ghi báo cáo lỗi
    */
   FILE* fout = fopen(argv[3], "r");
   FILE* fstd = fopen(argv[2], "r");
@@ -174,11 +174,11 @@ int main(int argc, char* argv[]) {
 
 int main(int argc, char* argv[]) {
   /*
-   * argv[1]: input
-   * argv[2]: output cua thi sinh
-   * argv[3]: output chuan
-   * /tmp/_eval.score:L1: ghi bao cao loi
-   * /tmp/_eval.score:L2: ghi diem cuoi cung
+   * argv[1]: đầu vào
+   * argv[2]: đầu ra của thí sinh
+   * argv[3]: đầu ra chuẩn
+   * /tmp/_eval.score:L1: ghi báo cáo lỗi
+   * /tmp/_eval.score:L2: ghi điểm cuối cùng
    */
   FILE* fout = fopen(argv[2], "r");
   FILE* fstd = fopen(argv[3], "r");
@@ -210,10 +210,10 @@ int main(int argc, char* argv[]) {
 
 int main(int argc, char* argv[]) {
   /*
-   * argv[1]: input
-   * argv[2]: output chuan
-   * argv[3]: output cua thi sinh
-   * exit code: tra ve ket qua cham
+   * argv[1]: đầu vào
+   * argv[2]: đầu ra chuẩn
+   * argv[3]: đầu ra của thí sinh
+   * exit code: trả về kết quả chấm
    */
   FILE* fin = fopen(argv[1], "r");
   FILE* fout = fopen(argv[3], "r");
@@ -232,7 +232,7 @@ int main(int argc, char* argv[]) {
 
 ## QDUOJ
 
-So với các hệ thống trên, QDUOJ hơi phiền hơn. Bài có spj trên QDUOJ không có output chuẩn, nên chỉ có thể viết std vào trong spj; sau khi chạy ra output chuẩn thì mới so sánh.
+So với các hệ thống trên, QDUOJ hơi phiền hơn. Bài có spj trên QDUOJ không có đầu ra chuẩn, nên chỉ có thể viết lời giải chuẩn vào trong spj; sau khi chạy ra đầu ra chuẩn thì mới so sánh.
 
 ```cpp
 #include <cmath>
@@ -243,14 +243,14 @@ So với các hệ thống trên, QDUOJ hơi phiền hơn. Bài có spj trên QD
 #define ERROR -1
 
 double solve(...) {
-  // std
+  // Lời giải chuẩn
 }
 
 int main(int argc, char* argv[]) {
   /*
-   * argv[1]: input
-   * argv[2]: output cua thi sinh
-   * exit code: tra ve ket qua cham
+   * argv[1]: đầu vào
+   * argv[2]: đầu ra của thí sinh
+   * exit code: trả về kết quả chấm
    */
   FILE* fin = fopen(argv[1], "r");
   FILE* fout = fopen(argv[2], "r");
@@ -268,7 +268,7 @@ int main(int argc, char* argv[]) {
 
 ## HDOJ
 
-Tình huống của HDOJ về cơ bản giống QDUOJ: cũng cần triển khai std trong spj rồi so sánh với output của thí sinh. Tuy nhiên, khác với QDUOJ, HDOJ sẽ so sánh đáp án với nội dung mà spj xuất ra chuẩn xuất rồi đưa ra kết quả cuối cùng. Vì vậy, khi tải output lên, chỉ cần tải output của spj trong trường hợp đúng.
+Tình huống của HDOJ về cơ bản giống QDUOJ: cũng cần triển khai lời giải chuẩn trong spj rồi so sánh với đầu ra của thí sinh. Tuy nhiên, khác với QDUOJ, HDOJ sẽ so sánh đáp án với nội dung mà spj xuất ra làm đầu ra chuẩn rồi đưa ra kết quả cuối cùng. Vì vậy, khi tải đầu ra lên, chỉ cần tải đầu ra của spj trong trường hợp đúng.
 
 HDOJ yêu cầu tải lên tệp nhị phân đã biên dịch trên Windows, không phải mã nguồn.
 
@@ -277,13 +277,13 @@ HDOJ yêu cầu tải lên tệp nhị phân đã biên dịch trên Windows, kh
 #include <cstdio>
 
 double solve(FILE* fin) {
-  // std, read input from fin
+  // Lời giải chuẩn, đọc đầu vào từ fin
 }
 
 int main(int argc, char* argv[]) {
   /*
-   * argv[1]: input
-   * stdin: output cua thi sinh
+   * argv[1]: đầu vào
+   * stdin: đầu ra của thí sinh
    */
   FILE* fin = fopen(argv[1], "r");
 
@@ -324,12 +324,12 @@ AC
 
 int main(int argc, char* argv[]) {
   /*
-   * in: input
-   * user_out: output cua thi sinh
-   * answer: output chuan
-   * code: ma nguon cua thi sinh
-   * stdout: ghi diem cuoi cung (0 ~ 100)
-   * stderr: ghi bao cao loi
+   * in: đầu vào
+   * user_out: đầu ra của thí sinh
+   * answer: đầu ra chuẩn
+   * code: mã nguồn của thí sinh
+   * stdout: ghi điểm cuối cùng (0 ~ 100)
+   * stderr: ghi báo cáo lỗi
    */
   FILE* fin = fopen("input", "r");
   FILE* fout = fopen("user_out", "r");
@@ -367,10 +367,10 @@ Xem thêm: [Cách ra bài lập trình Special Judge trên Nowcoder](https://www
 
 int main(int argc, char* argv[]) {
   /*
-   * input: input
-   * user_output: output cua thi sinh
-   * output: output chuan
-   * exit code: tra ve ket qua cham
+   * input: đầu vào
+   * user_output: đầu ra của thí sinh
+   * output: đầu ra chuẩn
+   * exit code: trả về kết quả chấm
    */
   FILE* fin = fopen("input", "r");
   FILE* fout = fopen("user_output", "r");
@@ -390,7 +390,7 @@ int main(int argc, char* argv[]) {
 ## DOMJudge
 
 ???+ note "Ghi chú"
-    DOMJudge hỗ trợ spj viết bằng bất kỳ ngôn ngữ nào; xem: [định dạng output validator của problemarchive.org](https://www.problemarchive.org/wiki/index.php/Output_validator).
+    DOMJudge hỗ trợ spj viết bằng bất kỳ ngôn ngữ nào; xem: [định dạng trình kiểm tra đầu ra của problemarchive.org](https://www.problemarchive.org/wiki/index.php/Output_validator).
 
     DOMJudge có sẵn phiên bản [Testlib](#testlib) đã chỉnh sửa, nên khuyến nghị dùng Testlib.
 
@@ -408,10 +408,10 @@ char reportfile[50];
 
 int main(int argc, char* argv[]) {
   /*
-   * argv[1]: input
-   * argv[2]: output chuan
-   * argv[3]: thu muc ghi thong tin cham
-   * stdin: output cua thi sinh
+   * argv[1]: đầu vào
+   * argv[2]: đầu ra chuẩn
+   * argv[3]: thư mục ghi thông tin chấm
+   * stdin: đầu ra của thí sinh
    */
   FILE* fin = fopen(argv[1], "r");
   FILE* fstd = fopen(argv[2], "r");
