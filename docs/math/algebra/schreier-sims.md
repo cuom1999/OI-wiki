@@ -2,7 +2,7 @@ author: Enter-tainer, iamtwz, Ir1d, isdanni, ksyx, StudyingFather, Tiphereth-A, 
 
 Kiến thức tiên quyết: [Các khái niệm cơ bản của đại số trừu tượng](./basic.md), [Lý thuyết nhóm](./group-theory.md), [Hoán vị và sắp xếp](../permutation.md)
 
-<span id="&#24341;&#20837;"></span>
+<span id="giới-thiệu"></span>
 ## Giới thiệu
 
 **Thuật toán Schreier-Sims** là một thuật toán trong lý thuyết nhóm tính toán (computational group theory), được đặt theo tên hai nhà toán học Otto Schreier và Charles Sims. Thuật toán này có thể giải nhiều bài toán trong thời gian đa thức, như tìm cấp của một nhóm hoán vị hữu hạn, hoặc kiểm tra một hoán vị cho trước có nằm trong nhóm đã cho hay không. Schreier-Sims được Sims đưa ra lần đầu vào năm 1970 dựa trên bổ đề Schreier. Năm 1981[^knuth-year], Donald Knuth cải tiến thêm thời gian chạy của thuật toán. Về sau, thuật toán còn có một phiên bản ngẫu nhiên hóa nhanh hơn. Các hệ đại số máy tính (chẳng hạn GAP và Magma) thường dùng phiên bản Monte Carlo đã được tối ưu hóa cao của thuật toán này[^monte-carlo].
@@ -10,7 +10,7 @@ Kiến thức tiên quyết: [Các khái niệm cơ bản của đại số tr�
 ???+ info "Ký hiệu"
     Theo thông lệ trong các tài liệu lý thuyết nhóm tính toán, bài này viết tác động nhóm dưới dạng tác động phải; điều này có nghĩa là phép hợp thành hoán vị được thực hiện từ trái sang phải. Mọi tác động nhóm xuất hiện trong bài đều có thể xem là tác động hoán vị, dù một số thuật toán vẫn dùng được cho các tác động nhóm tổng quát hơn. Tương ứng, tập mà nhóm tác động lên mặc định là $X=\{1,2,\cdots,n\}$, và các phần tử của nó được gọi là điểm. Kết quả khi hoán vị $g$ tác động lên điểm $x$ được ký hiệu là $x^g$; đôi khi ta cũng nói hoán vị $g$ đưa điểm $x$ đến điểm $x^g$. Cuối cùng, với nhóm hoán vị $G$, quỹ đạo của điểm $x$ dưới tác động của $G$ được ký hiệu là $x^G=\{x^g:g\in G\}$, còn bộ ổn định của nó là $G_x=\{g\in G:x^g=x\}$. Khái niệm bộ ổn định cũng có thể mở rộng cho tập $B\subseteq X$, khi đó bộ ổn định của $B$ được định nghĩa là $G_B=\bigcap_{x\in B}G_x$.
 
-<span id="&#27010;&#36848;"></span>
+<span id="tổng-quan"></span>
 ## Tổng quan
 
 Schreier-Sims chủ yếu cố gắng giải quyết bài toán sau:
@@ -31,7 +31,7 @@ Tương tự như cách dùng [khử Gauss](../numerical/gauss.md) để xây d�
 
 Tất nhiên, việc cài đặt thuật toán còn nhiều chi tiết cần sắp xếp; đó là nội dung chính của bài này. Trước đó, cần xem kết quả sau khi gọi thuật toán có dạng cấu trúc nào, và cấu trúc ấy giải được những truy vấn nào. Vì thế, ta cần làm rõ một số khái niệm.
 
-<span id="&#31283;&#23450;&#21270;&#23376;&#38142;"></span>
+<span id="chuỗi-bộ-ổn-định"></span>
 ### Chuỗi bộ ổn định
 
 Giả sử gọi thuật toán trên nhóm $G=\langle S\rangle$ tổng cộng $k$ lần; trong lần gọi thứ $i$, đầu vào là tập hoán vị $S^{(i-1)}$, điểm tìm được là $\beta_i$, hệ đại diện lớp kề thu được là $T_i$, và tập sinh của bộ ổn định thu được là $S^{(i)}$. Nếu đặt $G^{(i)}=\langle S^{(i)}\rangle$, thì thuật toán thực chất thu được chuỗi nhóm con
@@ -48,7 +48,7 @@ $$
 
 Vì vậy, có thể xem Schreier-Sims là thuật toán tính một **chuỗi bộ ổn định** (stabilizer chain) như vậy.
 
-<span id="&#22522;&#21644;&#24378;&#29983;&#25104;&#38598;"></span>
+<span id="cơ-sở-và-tập-sinh-mạnh"></span>
 ### Cơ sở và tập sinh mạnh
 
 Nếu một tập con $B$ của $X$ thỏa $G_B=\{e\}$, thì $B$ được gọi là một **cơ sở** (base) của nhóm hoán vị $G$. Rõ ràng thuật toán trên thu được một cơ sở $B=\{\beta_1,\cdots,\beta_k\}$. Điều này có nghĩa là kết quả tác động của một hoán vị $g\in G$ lên các điểm này xác định duy nhất hoán vị đó trong nhóm $G$. Hơn nữa, cơ sở mà thuật toán xuất ra còn thỏa điều kiện
@@ -69,7 +69,7 @@ cũng là một tập sinh của $G$, và thỏa $\langle\bar S\cap G^{(i)}\rang
 
 Tất nhiên, thuật toán còn thu được một dãy quỹ đạo $\Delta_i=\beta_{i}^{G^{(i-1)}}$ và các hệ đại diện lớp kề tương ứng $T_i$. Các quỹ đạo này được gọi là **quỹ đạo cơ bản** (fundamental orbits) của nhóm $G$. Khi bài này nhắc đến chuỗi bộ ổn định hoặc cơ sở và tập sinh mạnh của $G$, mặc định các quỹ đạo cơ bản và hệ đại diện lớp kề tương ứng đã được tính kèm theo.
 
-<span id="&#25968;&#25454;&#32467;&#26500;"></span>
+<span id="cấu-trúc-dữ-liệu"></span>
 ### Cấu trúc dữ liệu
 
 Bài này sẽ đưa ra một loạt mã giả. Trong mã giả, chuỗi bộ ổn định của nhóm (hay cơ sở và tập sinh mạnh) được lưu trong cấu trúc dữ liệu $C$:
@@ -82,12 +82,12 @@ Các thành viên dữ liệu trong cấu trúc này lần lượt là tập sin
 
 Trong mã giả, các thành viên của cấu trúc dữ liệu này có thể được truy cập lần lượt bằng $C.generators$, $C.orbit$, $C.transversal$ và $C.next$. Phần tử đầu tiên của quỹ đạo $C.orbit[0]$ mặc định là điểm cơ sở $\beta$, còn đại diện lớp kề tương ứng $C.transversal[\beta]$ mặc định là biến đổi đồng nhất $e$. Cần chú ý rằng tuy ở đây ta dùng chỉ số mảng để truy cập phần tử trong quỹ đạo và hệ đại diện lớp kề, chúng không nhất thiết phải được lưu bằng mảng; đúng hơn, nên hiểu rằng chúng cung cấp cách truy cập phần tử đầu của quỹ đạo và cách tra cứu đại diện lớp kề tương ứng theo điểm trong quỹ đạo. Các chi tiết cài đặt cụ thể sẽ được bàn ở phần sau.
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ### Ứng dụng
 
 Sau khi thu được cơ sở và tập sinh mạnh của nhóm, ta có thể giải một loạt bài toán truy vấn về nhóm. Cơ bản nhất, và thường gặp nhất trong thi lập trình, là truy vấn cấp của nhóm và kiểm tra một hoán vị có thuộc nhóm đã cho hay không.
 
-<span id="&#32676;&#30340;&#38454;&#25968;"></span>
+<span id="cấp-của-nhóm"></span>
 #### Cấp của nhóm
 
 Nếu đã biết cơ sở và tập sinh mạnh của nhóm $G$, từ định lý Lagrange và định lý quỹ đạo-bộ ổn định, cấp của $G$ có thể được tính bằng
@@ -98,7 +98,7 @@ $$
 
 Do đó, chỉ cần nhân kích thước của tất cả các hệ đại diện lớp kề $T_i$ (tương đương với độ dài của các quỹ đạo cơ bản $\Delta_i$) là thu được cấp của nhóm $G$.
 
-<span id="&#25104;&#21592;&#21028;&#23450;"></span>
+<span id="kiểm-tra-thành-viên"></span>
 #### Kiểm tra thành viên
 
 Nếu đã biết cơ sở và tập sinh mạnh của nhóm $G$, ta cũng có thể xác định một hoán vị $h$ có thuộc $G$ hay không. Bài toán này được gọi là **kiểm tra thành viên** (membership testing).
@@ -132,7 +132,7 @@ $$
 
 Phần sau sẽ thấy bài toán kiểm tra thành viên cũng là một thành phần quan trọng trong cách cài đặt Schreier-Sims được thảo luận ở bài này.
 
-<span id="&#36712;&#36947;&#12289;&#38506;&#38598;&#20195;&#34920;&#31995;&#21644;&#31283;&#23450;&#21270;&#23376;&#30340;&#35745;&#31639;"></span>
+<span id="tính-quỹ-đạo-hệ-đại-diện-lớp-kề-và-bộ-ổn-định"></span>
 ## Tính quỹ đạo, hệ đại diện lớp kề và bộ ổn định
 
 Để cài đặt Schreier-Sims, trước hết cần giải bài toán con sau:[^orbit-algo]
@@ -141,7 +141,7 @@ Phần sau sẽ thấy bài toán kiểm tra thành viên cũng là một thành
 
 Đây là bài toán sẽ được giải quyết trong mục này.
 
-<span id="&#36712;&#36947;&#21644;&#38506;&#38598;&#20195;&#34920;&#31995;&#30340;&#23384;&#20648;"></span>
+<span id="lưu-quỹ-đạo-và-hệ-đại-diện-lớp-kề"></span>
 ### Lưu quỹ đạo và hệ đại diện lớp kề
 
 Để tìm quỹ đạo và hệ đại diện lớp kề, chỉ cần tìm kiếm trực tiếp. Mã giả như sau:
@@ -175,12 +175,12 @@ Trong ngữ cảnh nhóm hoán vị, quỹ đạo chỉ là một tập có tố
 
 Vấn đề là nên dùng cấu trúc dữ liệu nào để lưu hệ đại diện lớp kề tương ứng $T$.
 
-<span id="&#30452;&#25509;&#23384;&#20648;"></span>
+<span id="lưu-trực-tiếp"></span>
 #### Lưu trực tiếp
 
 Cách đơn giản nhất hiển nhiên là lưu trực tiếp mỗi phần tử $t$ của hệ đại diện lớp kề $T$. Một hoán vị đơn lẻ khi lưu bằng [ký hiệu một dòng](../permutation.md#ký-hiệu-một-dòng) cần dùng đúng $n$ ô nhớ, nên độ phức tạp không gian để lưu hệ đại diện lớp kề như vậy là $O(|T|n)$. Lợi ích là truy cập một đại diện lớp kề đơn lẻ trong $O(1)$ thời gian; cái giá phải trả là lần đầu tính các đại diện lớp kề này tốn $O(|T|n)$ thời gian.
 
-<span id="Schreier &#26641;"></span>
+<span id="cây-schreier"></span>
 #### Cây Schreier
 
 Một cách phổ biến khác là cài đặt một cấu trúc cây để lưu hệ đại diện lớp kề. Cấu trúc này được gọi là **cây Schreier** (Schreier tree) hoặc **vectơ Schreier** (Schreier vector)[^schreier-vector]. Nó lấy $\beta$ làm gốc và lấy các phần tử $\delta$ trong quỹ đạo $\Delta$ làm đỉnh. Mỗi khi trong quá trình tìm kiếm ta thu được đỉnh mới $\gamma=\delta^s$, ta nối một cạnh từ đỉnh cũ $\delta$ đến đỉnh mới $\gamma$, và trên cạnh ghi lại chỉ số (hoặc con trỏ) của hoán vị $s$ trong tập sinh $S$. Vì tập sinh đã được lưu sẵn, bộ nhớ phụ cần để lưu hệ đại diện lớp kề là $O(|T|)$. Khi $n$ rất lớn, cách này tiết kiệm bộ nhớ hiệu quả, và độ phức tạp lần tính đầu là $O(|T|)$. Tuy nhiên, tác dụng phụ là mỗi khi cần lấy đại diện lớp kề, ta phải duyệt các cạnh trên đường đi từ đỉnh về gốc và tính lại đại diện lớp kề, nên thời gian phụ thuộc mạnh vào độ sâu của cây Schreier. Trong trường hợp tổng quát, độ sâu của cây có thể đạt cấp $O(n)$.
@@ -189,7 +189,7 @@ Khi cài đặt cụ thể, cần cân đối độ phức tạp thời gian và
 
 Trong mã giả, bài này không phân biệt cách cài đặt cụ thể của hệ đại diện lớp kề; chỉ giả định cấu trúc dữ liệu lưu $T$ có thao tác truy cập và sửa đại diện lớp kề tương ứng $T[\delta]$ theo phần tử quỹ đạo $\delta\in\Delta$.
 
-<span id="Schreier &#24341;&#29702;"></span>
+<span id="bổ-đề-schreier"></span>
 ### Bổ đề Schreier
 
 Sau khi có quỹ đạo $\beta^G$ và hệ đại diện lớp kề $T$, bổ đề Schreier cho ta cách thu được tập sinh của bộ ổn định $G_\beta$.
@@ -224,7 +224,7 @@ Sau khi có quỹ đạo $\beta^G$ và hệ đại diện lớp kề $T$, bổ �
 
 Vì nhóm con tương ứng với hệ đại diện lớp kề $T$ chính là bộ ổn định $G_\beta$, sau khi tìm được $T$ và kết hợp với tập sinh $S$ của nhóm $G$, ta thu được một tập sinh của bộ ổn định $G_\beta$.
 
-<span id="&#31639;&#27861;"></span>
+<span id="thuật-toán"></span>
 ### Thuật toán
 
 Chỉ cần sửa nhẹ mã giả ở trên, ta có thể vừa tính quỹ đạo và hệ đại diện lớp kề, vừa thu được tập sinh của bộ ổn định tương ứng:
@@ -268,12 +268,12 @@ Vì quy trình cơ bản của Schreier-Sims có thể cài đặt bằng cách 
 
 Công trình của Sims đưa ra cách khống chế tốc độ tăng của số phần tử sinh Schreier; nó đảm bảo tập sinh mạnh cuối cùng $\bar S$ có kích thước $O(n^2)$. Nhờ vậy có thể tính cơ sở và tập sinh mạnh trong thời gian đa thức.
 
-<span id="Schreier&#8211;Sims &#31639;&#27861;"></span>
+<span id="thuật-toán-schreier-sims"></span>
 ## Thuật toán Schreier-Sims
 
 Để giải quyết vấn đề trên, mục này thảo luận một cách cài đặt tăng dần của Schreier-Sims, trong đó tập sinh mạnh thu được có kích thước $O(n^2)$.
 
-<span id="&#31579;&#36873;"></span>
+<span id="sàng-lọc"></span>
 ### Sàng lọc
 
 Tối ưu cốt lõi của Schreier-Sims so với thuật toán thô sơ ở trên rất đơn giản: trước khi thêm bất kỳ phần tử sinh Schreier nào vào tập sinh của bộ ổn định, phần tử đó phải được **sàng lọc** (sifting). Sàng lọc nghĩa là trước hết xác định phần tử sinh Schreier mới đã nằm trong nhóm con sinh bởi các phần tử sinh hiện có hay chưa, rồi chỉ thêm những phần tử sinh chưa tồn tại. Để làm điều này, chỉ cần dùng thuật toán kiểm tra thành viên $\textrm{MembershipTest}(C,h)$ đã nêu ở trên.
@@ -288,7 +288,7 @@ Phương pháp sàng lọc vừa nêu do Sims đưa ra, còn gọi là sàng Sim
 
 Có một tối ưu nhỏ cho quá trình sàng lọc: trong cài đặt $\textrm{MembershipTest}(C,h)$, không cần xuất giá trị boolean, mà xuất "phần còn lại sau sàng"[^siftee] $h$ cuối cùng (tức dùng $\textbf{return }h$ thay cho dòng $10$ và dòng $14$ trong mã giả). Nếu "phần còn lại sau sàng" $h\neq e$, nghĩa là kiểm tra thành viên thất bại; khi đó có thể thêm trực tiếp "phần còn lại sau sàng" $h$ thay vì $h$ ban đầu vào tầng hiện tại. Phần tử $h$ này đã bị loại bỏ một số thừa số là đại diện lớp kề, nên di chuyển ít điểm hơn và giảm khối lượng tính toán cục bộ. Tối ưu này không ảnh hưởng đến độ phức tạp tổng thể.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quy-trình"></span>
 ### Quy trình
 
 Bây giờ có thể mô tả quy trình cụ thể của Schreier-Sims: trước hết, khởi tạo một cấu trúc rỗng $C$ để lưu chuỗi bộ ổn định của nhóm. Sau đó lần lượt thêm các phần tử sinh trong tập sinh $S$ vào cấu trúc $C$; cấu trúc $C$ cuối cùng chính là chuỗi bộ ổn định của nhóm $\langle S\rangle$. Mã giả như sau:
@@ -368,7 +368,7 @@ $$
 
 Như vậy ta thu được thuật toán Schreier-Sims hoàn chỉnh.
 
-<span id="&#21478;&#19968;&#31181;&#23454;&#29616;"></span>
+<span id="một-cách-cài-đặt-khác"></span>
 ### Một cách cài đặt khác
 
 Cách cài đặt trên đã đúng, nhưng các dòng $12\sim 19$ và $23\sim 30$ hơi lặp lại. Dựa trên quan sát này, Knuth đề xuất trong bài báo của mình một cách cài đặt đệ quy ngắn gọn hơn. Cách làm của ông là xem phần lặp lại này như việc cập nhật hệ đại diện lớp kề (và quỹ đạo). Mỗi lần cập nhật hệ đại diện lớp kề đều phải kết hợp với tất cả phần tử sinh; tùy theo việc có sinh ra đại diện lớp kề mới hay không mà quyết định gọi đệ quy chính thủ tục này hay gọi thủ tục thêm phần tử sinh. Mã giả như sau:
@@ -417,7 +417,7 @@ $$
 
 So sánh mã giả này với mục trước, ta thấy nó là đúng. Hơn nữa, độ phức tạp của hai cách không khác nhau.
 
-<span id="&#22797;&#26434;&#24230;"></span>
+<span id="độ-phức-tạp"></span>
 ### Độ phức tạp
 
 Để phân tích độ phức tạp của Schreier-Sims, cần một số ký hiệu. Gọi độ dài của hoán vị là $n$, kích thước tập sinh $|S|$ là $m$. Độ dài của cơ sở (không dư thừa) thu được ký hiệu là $|B|$. Ngoài ra, trong bộ ổn định $G_i$ ở tầng thứ $i$ tính từ ngoài vào trong cuối cùng, số phần tử sinh được ký hiệu là $|S_{i-1}|$, còn kích thước hệ đại diện lớp kề (hay độ dài quỹ đạo) được ký hiệu là $|T_i|$. Sau đây phân tích độ phức tạp thời gian cần thiết cho cách cài đặt tăng dần của Schreier-Sims ở trên. Thuật toán chủ yếu gồm hai phần: sàng lọc, và tính quỹ đạo, hệ đại diện lớp kề cùng các phần tử sinh Schreier.
@@ -432,7 +432,7 @@ Phần trước đã nói độ dài của chuỗi nhóm con tăng nghiêm ngặ
 
 Tuy so với lưu trực tiếp, cây Schreier đưa thêm một thừa số $n$ vào độ phức tạp thời gian, nhưng khi $n$ rất lớn mà bản thân nhóm nhỏ hơn nhiều so với nhóm đối xứng bậc $n$, độ phức tạp không gian của nó là $O(n\log^2|G|)$, nhỏ hơn nhiều so với $O(n^2\log|G|)$ của cách lưu trực tiếp. Tuy nhiên trong thi lập trình, rất khó gặp trường hợp dùng cây Schreier để lưu lại tốt hơn.
 
-<span id="&#21442;&#32771;&#23454;&#29616;"></span>
+<span id="cài-đặt-tham-khảo"></span>
 ### Cài đặt tham khảo
 
 Ở đây cung cấp một cài đặt tham khảo cho Schreier-Sims. Vì $n$ tương đối nhỏ, trong cài đặt này ta chỉ định trực tiếp cơ sở $B=\{n,n-1,\cdots,1\}$ thay vì để thuật toán chọn. Lợi ích là trong nhóm ở tầng thứ $k$ tính từ trong ra ngoài (không tính cấu trúc rỗng), các hoán vị chỉ thay đổi $k$ phần tử đầu, thuận tiện cho các tính toán tiếp theo. Một tối ưu khác trong mã là khi lưu đại diện lớp kề, thực ra ta lưu hoán vị nghịch đảo của nó; điều này làm đơn giản các phép toán hoán vị.
@@ -442,7 +442,7 @@ Tuy so với lưu trực tiếp, cây Schreier đưa thêm một thừa số $n$
     --8<-- "docs/math/code/schreier-sims/schreier-sims.cpp"
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [LOJ 177. Cấp của nhóm con sinh ra](https://loj.ac/p/177)
@@ -450,7 +450,7 @@ Tuy so với lưu trực tiếp, cây Schreier đưa thêm một thừa số $n$
 -   [Permutations](https://codeforces.com/gym/421334/problem/A)
 -   [\[Grand Prix of Yekaterinburg 2015\] Problem H. Heimdall](https://disk.yandex.com/i/OfEXXcu-anMHuw)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   [Schreier-Sims algorithm - Wikipedia](https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm)

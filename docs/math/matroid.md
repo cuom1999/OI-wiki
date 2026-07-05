@@ -1,4 +1,4 @@
-<span id="&#24341;&#35328;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
@@ -6,11 +6,11 @@
 
 Matroid cung cấp một công cụ lý thuyết mạnh để xử lý các bài toán tối ưu hóa liên quan đến tính độc lập. Nó được ứng dụng rộng rãi trong tổ hợp, lý thuyết đồ thị, thiết kế thuật toán và đặc biệt đóng vai trò quan trọng trong việc cung cấp cơ sở toán học cho các phương pháp tối ưu hóa như thuật toán tham lam.
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 
 ## Định nghĩa
 
-<span id="&#25311;&#38453;"></span>
+<span id="matroid"></span>
 
 ### Matroid
 
@@ -27,7 +27,7 @@ Một **matroid** có thể được biểu diễn bởi $M = (E, \mathcal{I})$,
 
 Nếu một cấu trúc dạng $(E, \mathcal{I})$ thỏa mãn ba tính chất trên, ta gọi nó là một matroid.
 
-<span id="&#22522;"></span>
+<span id="cơ-sở"></span>
 
 ### Cơ sở
 
@@ -39,13 +39,13 @@ Nếu một cấu trúc dạng $(E, \mathcal{I})$ thỏa mãn ba tính chất tr
 
 2.  **Tính mở rộng**: mọi tập độc lập đều có thể được mở rộng thành một cơ sở bằng cách thêm các phần tử thuộc một cơ sở.
 
-<span id="&#22280;"></span>
+<span id="mạch"></span>
 
 ### Mạch
 
 **Mạch** (Circuit) là một tập phụ thuộc tối tiểu trong matroid: mọi tập con thực sự của nó đều độc lập, nhưng bản thân nó không độc lập. Giữa hai mạch bất kỳ không tồn tại quan hệ bao hàm.
 
-<span id="&#31209;"></span>
+<span id="hạng"></span>
 
 ### Hạng
 
@@ -63,11 +63,11 @@ $$
 
 3.  **Dưới mô-đun**: với mọi $A, B \subseteq E$, ta có $r(A \cup B) + r(A \cap B) \leq r(A) + r(B)$.
 
-<span id="&#20856;&#22411;&#31034;&#20363;"></span>
+<span id="các-ví-dụ-điển-hình"></span>
 
 ## Các ví dụ điển hình
 
-<span id="1-&#22343;&#21248;&#25311;&#38453;uniform-matroid"></span>
+<span id="1-matroid-đều-uniform-matroid"></span>
 
 ### 1. Matroid đều (Uniform Matroid)
 
@@ -83,7 +83,7 @@ $$
 
 -   **Hạng** (Rank): $r(E) = \min(k, |E|)$, tức là một tập độc lập có nhiều nhất $k$ phần tử.
 
-<span id="2-&#22270;&#25311;&#38453;graphical-matroid"></span>
+<span id="2-matroid-đồ-thị-graphical-matroid"></span>
 
 ### 2. Matroid đồ thị (Graphical Matroid)
 
@@ -95,7 +95,7 @@ $$
 
 -   **Hạng**: $r(E) = |V|  - c$, trong đó $c$ là số thành phần liên thông của đồ thị. Với một đồ thị vô hướng liên thông, hạng của nó bằng số đỉnh trừ đi một, tức là $|V|  - 1$.
 
-<span id="3-&#32447;&#24615;&#25311;&#38453;linear-matroid"></span>
+<span id="3-matroid-tuyến-tính-linear-matroid"></span>
 
 ### 3. Matroid tuyến tính (Linear Matroid)
 
@@ -107,7 +107,7 @@ $$
 
 -   **Hạng**: hạng của matroid tuyến tính là $r(E) = \dim(V)$, tức là số chiều của không gian vectơ. Kích thước của một tập độc lập không thể vượt quá số chiều của không gian vectơ.
 
-<span id="4-&#21010;&#20998;&#25311;&#38453;partition-matroid"></span>
+<span id="4-matroid-phân-hoạch-partition-matroid"></span>
 
 ### 4. Matroid phân hoạch (Partition Matroid)
 
@@ -123,7 +123,7 @@ $$
 
 -   **Hạng**: hạng của matroid phân hoạch là $r(E) = \sum_{i=1}^m k_i$, tức là kích thước của tập độc lập lớn nhất bằng tổng số phần tử tối đa được phép chọn trong từng tập con.
 
-<span id="5-&#26377;&#33394;&#25311;&#38453;colored-matroid"></span>
+<span id="5-matroid-màu-colored-matroid"></span>
 
 ### 5. Matroid màu (Colored Matroid)
 
@@ -135,11 +135,11 @@ $$
 
 -   **Hạng**: hạng của matroid màu là kích thước tập độc lập lớn nhất dưới các ràng buộc màu. Nó phụ thuộc cả vào cấu trúc của matroid lẫn quy định cụ thể của các ràng buộc màu.
 
-<span id="&#26500;&#36896;&#21644;&#36816;&#31639;"></span>
+<span id="cấu-tạo-và-phép-toán"></span>
 
 ## Cấu tạo và phép toán
 
-<span id="&#23545;&#20598;"></span>
+<span id="đối-ngẫu"></span>
 
 ### Đối ngẫu
 
@@ -163,7 +163,7 @@ Với một đồ thị vô hướng $G = (V, E)$, đối ngẫu $M(G)^*$ của 
 
 Chẳng hạn, xét một đồ thị tam giác đơn giản $G$ có tập cạnh $E = \{e_1, e_2, e_3\}$. Cơ sở của matroid đồ thị $M(G)$ là các tập gồm hai cạnh (ví dụ $\{e_1, e_2\}$), còn cơ sở của matroid đối ngẫu $M(G)^*$ là các tập gồm một cạnh (ví dụ $\{e_3\}$). Mạch của $M(G)^*$ là các tập gồm hai cạnh (tức là các tập cắt tối tiểu, chẳng hạn $\{e_2,e_3\}$), vì bỏ đi một cạnh trong đó sẽ chia đồ thị thành hai thành phần liên thông.
 
-<span id="&#21024;&#38500;&#21644;&#25910;&#32553;"></span>
+<span id="xóa-và-co"></span>
 
 ### Xóa và co
 
@@ -193,7 +193,7 @@ Phép co có thể được hiểu là co các phần tử trong tập $A$, rồ
 
 -   **Co**: phép co tương ứng với việc co một cạnh thành một đỉnh. Với matroid đồ thị, co một cạnh tương đương với hợp nhất hai đầu mút của cạnh đó thành một đỉnh rồi xóa cạnh đó; sau khi hợp nhất đỉnh, các cạnh còn lại trong đồ thị vẫn có thể tạo thành tập độc lập. Ví dụ, trong một đồ thị tam giác, co bất kỳ một cạnh nào sẽ hợp nhất hai đỉnh thành một, và hai cạnh còn lại sẽ tạo thành một matroid mới.
 
-<span id="&#25311;&#38453;&#21644;&#36138;&#24515;"></span>
+<span id="matroid-và-tham-lam"></span>
 
 ## Matroid và tham lam
 
@@ -207,7 +207,7 @@ $$
 
 Rõ ràng, tập độc lập có trọng số lớn nhất phải là tập độc lập cực đại. Nếu một tập độc lập $A$ chưa cực đại, thì tồn tại một phần tử $x$ có thể thêm vào $A$; do $w(x) > 0$, sau khi thêm phần tử đó thì tổng trọng số tăng lên, nên $A$ không thể là tập độc lập có trọng số lớn nhất.
 
-<span id="&#27493;&#39588;"></span>
+<span id="các-bước"></span>
 
 ### Các bước
 
@@ -253,7 +253,7 @@ Do đó $w(A'') = w(K) + w(y) \geq w(K) + w(x) = w(T)$. Khi ấy:
 
 Tóm lại, giả thiết không đúng; tức là $A' = A \cup \{ y \}$ phải là tập con của một tập độc lập có trọng số lớn nhất nào đó. Vì vậy, bằng cách liên tục áp dụng chiến lược tham lam, cuối cùng ta có thể tìm được tập độc lập có trọng số lớn nhất.
 
-<span id="&#31034;&#20363;"></span>
+<span id="ví-dụ"></span>
 
 ### Ví dụ
 
@@ -281,7 +281,7 @@ Trong khuôn khổ matroid đồ thị, [thuật toán Kruskal](../graph/mst.md#
     -   **Nguyên lý**: thuật toán Prim bắt đầu từ một đỉnh xuất phát, rồi mở rộng cây khung từng bước; mỗi lần chọn cạnh có trọng số nhỏ nhất nối giữa phần trong cây và phần ngoài cây.
     -   Dù thuật toán Prim cũng là tham lam, chiến lược lựa chọn của nó khác với các thuật toán tham lam dựa trên tính mở rộng của matroid. Vì vậy, theo nghĩa chặt chẽ trong lý thuyết matroid, Prim không được xem là một thuật toán tham lam matroid điển hình.
 
-<span id="&#25311;&#38453;&#20132;"></span>
+<span id="giao-matroid"></span>
 
 ## Giao matroid
 
@@ -289,14 +289,14 @@ Với hai matroid $M_1 = (S, \mathcal{I}_1)$ và $M_2 = (S, \mathcal{I}_2)$ đư
 
 **Chú ý**: không phải giao của hai matroid bất kỳ cũng là một matroid. Chỉ khi giao của hai họ tập độc lập thỏa mãn ba tính chất trong định nghĩa họ tập độc lập của matroid thì giao đó mới tạo thành một matroid.
 
-<span id="&#38382;&#39064;&#25551;&#36848;"></span>
+<span id="mô-tả-bài-toán"></span>
 
 ### Mô tả bài toán
 
 1.  **Tập độc lập lớn nhất**: tìm tập độc lập lớn nhất trong $\mathcal{I}_1 \cap \mathcal{I}_2$ (tức là tập độc lập có lực lượng lớn nhất).
 2.  **Tập độc lập có trọng số lớn nhất**: cho hàm trọng số $w: S \to \mathbb{R}$, tìm tập độc lập có tổng trọng số lớn nhất trong $\mathcal{I}_1 \cap \mathcal{I}_2$.
 
-<span id="&#31639;&#27861;"></span>
+<span id="thuật-toán"></span>
 
 ### Thuật toán
 
@@ -338,7 +338,7 @@ Với hai matroid $M_1 = (S, \mathcal{I}_1)$ và $M_2 = (S, \mathcal{I}_2)$ đư
 
 -   **Tổng độ phức tạp thời gian**: độ phức tạp thời gian tổng thể là $O(r \cdot n^2)$, trong đó $r = \min(r_1, r_2)$.
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập-ví-dụ"></span>
 
 ## Bài tập ví dụ
 
@@ -379,7 +379,7 @@ Trong một bài toán phân bổ tài nguyên, có một tập tài nguyên $R 
         -   **Matroid cung ứng ($M_2$)**: định nghĩa bởi các phương án phân bổ không vượt quá lượng cung ứng của từng loại tài nguyên, tức là họ tập độc lập $\mathcal{I}_2$ chứa mọi tập phân bổ thỏa mãn giới hạn cung ứng tài nguyên.
     2.  **Giải giao matroid**: bằng cách giải $M = M_1 \cap M_2$, ta tìm được phương án phân bổ tài nguyên vừa thỏa mãn nhu cầu của mọi dự án vừa không vượt quá lượng cung ứng tài nguyên.
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 
 ## Tài liệu tham khảo và chú thích
 

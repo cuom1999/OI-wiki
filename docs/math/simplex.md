@@ -1,14 +1,14 @@
 Kiến thức nền: [Cơ sở quy hoạch tuyến tính](./linear-programming.md)
 
-<span id="&#24341;&#20837;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Trong thi thuật toán, phương pháp đơn hình thường được dùng để giải các bài toán quy hoạch tuyến tính. Tuy nhiên, phần lớn bài toán quy hoạch tuyến tính gặp trong thi đấu có cấu trúc đặc biệt hơn và thường có thể chuyển thành bài toán luồng mạng, nên phương pháp đơn hình không được dùng thường xuyên, và hiệu quả cũng không bằng các thuật toán chuyên biệt cho luồng mạng.
 
-<span id="&#22522;&#26412;&#27010;&#24565;"></span>
+<span id="khái-niệm-cơ-bản"></span>
 ## Khái niệm cơ bản
 
-Giả sử cần giải bài toán quy hoạch tuyến tính [dạng chuẩn](./linear-programming.md#%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F) sau, có $n$ biến quyết định và $m+n$ ràng buộc:
+Giả sử cần giải bài toán quy hoạch tuyến tính [dạng chuẩn](./linear-programming.md#dạng-chuẩn) sau, có $n$ biến quyết định và $m+n$ ràng buộc:
 
 $$
 \begin{aligned}
@@ -20,7 +20,7 @@ $$
 
 Không mất tính tổng quát, giả sử hệ phương trình tuyến tính do $m$ ràng buộc đẳng thức này xác định có nghiệm, và $A$ đầy hạng. Khi đó $\operatorname{rank}A = m \le n$.
 
-<span id="&#19968;&#20010;&#20363;&#23376;"></span>
+<span id="một-ví-dụ"></span>
 ### Một ví dụ
 
 Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình, phần này xét một ví dụ cụ thể để dễ hiểu hơn.
@@ -166,7 +166,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
 
 Trong ví dụ này, thuật toán bắt đầu từ một nghiệm khả thi, liên tục cải thiện hàm mục tiêu cho tới khi không thể cải thiện nữa. Đây chính là ý tưởng cơ bản của phương pháp đơn hình.
 
-<span id="&#22522;&#26412;&#21487;&#34892;&#35299;"></span>
+<span id="nghiệm-cơ-bản-khả-thi"></span>
 ### Nghiệm cơ bản khả thi
 
 Vì $A$ đầy hạng, luôn có thể chọn một tập con $B\subseteq\{1,2,\cdots,n\}$ kích thước $m$ sao cho $A_B$ là ma trận vuông khả nghịch. Từ đó, có thể biểu diễn $x_B$ theo các biến còn lại $x_N$:
@@ -188,7 +188,7 @@ $$
 
 Nghiệm thu được như vậy gọi là một **nghiệm cơ bản** (basic solution) của bài toán quy hoạch tuyến tính. Nếu nó còn thỏa mãn mọi ràng buộc không âm, tức $x\ge 0$, thì nó cũng là một nghiệm khả thi của bài toán gốc, và gọi là **nghiệm cơ bản khả thi** (basic feasible solution, BFS). Trong quá trình lặp của phương pháp đơn hình, cần luôn giữ nghiệm hiện tại là một nghiệm cơ bản khả thi.
 
-<span id="&#36716;&#36724;"></span>
+<span id="xoay-trục"></span>
 ### Xoay trục
 
 Mỗi lần lặp của phương pháp đơn hình gọi là một lần **xoay trục** (pivoting). Về kết quả, mỗi lần xoay trục luôn loại bỏ một biến cơ sở cũ, thêm vào một biến cơ sở mới, qua đó cải thiện giá trị hàm mục tiêu.
@@ -235,12 +235,12 @@ Biến trở thành không đầu tiên là biến cơ sở $x_{B_j}$ ứng vớ
 
 Giả sử biến vào cơ sở là $x_i$, biến ra khỏi cơ sở là $x_{i'}$. Sau khi xoay trục, các biến cơ sở là $x_{B\setminus\{i\}\cup\{i'\}}$, còn các biến không cơ sở là $x_{N\setminus\{i'\}\cup\{i\}}$.
 
-<span id="&#32456;&#27490;&#26465;&#20214;"></span>
+<span id="điều-kiện-dừng"></span>
 ### Điều kiện dừng
 
 Phương pháp đơn hình là quá trình bắt đầu từ một nghiệm cơ bản khả thi rồi liên tục xoay trục. Phần trước mô tả xoay trục chưa đầy đủ, vì bỏ qua một số trường hợp đặc biệt. Một số trường hợp tương ứng với việc thuật toán dừng, một số khác cần xử lý thêm.
 
-Trước hết, biến vào cơ sở có thể không tồn tại, tức $\tilde c\ge 0$. Khi đó không còn cách cải thiện giá trị tối ưu, điều này cho thấy nghiệm cơ bản khả thi hiện tại là nghiệm tối ưu và thuật toán dừng. Để chứng minh chặt chẽ điều này cần dùng [điều kiện bù trừ độ lỏng](./linear-programming.md#%E4%BA%92%E8%A1%A5%E6%9D%BE%E5%BC%9B%E6%9D%A1%E4%BB%B6). Đặt $y=(A_B^{-1})^Tc_B$. Chú ý rằng trong toàn bộ quá trình thuật toán, $x$ luôn được giữ là nghiệm khả thi, và điều kiện bù trừ độ lỏng luôn đúng:
+Trước hết, biến vào cơ sở có thể không tồn tại, tức $\tilde c\ge 0$. Khi đó không còn cách cải thiện giá trị tối ưu, điều này cho thấy nghiệm cơ bản khả thi hiện tại là nghiệm tối ưu và thuật toán dừng. Để chứng minh chặt chẽ điều này cần dùng [điều kiện bù trừ độ lỏng](./linear-programming.md#điều-kiện-bù-trừ-độ-lỏng). Đặt $y=(A_B^{-1})^Tc_B$. Chú ý rằng trong toàn bộ quá trình thuật toán, $x$ luôn được giữ là nghiệm khả thi, và điều kiện bù trừ độ lỏng luôn đúng:
 
 $$
 x^T(c-A^Ty) = \tilde c^Tx = \tilde c_B^Tx_B + \tilde c_N^Tx_N = 0.
@@ -259,9 +259,9 @@ Do đó, chỉ cần $y$ là nghiệm khả thi của bài toán đối ngẫu, 
 
 Thứ hai, biến ra khỏi cơ sở có thể không tồn tại, tức $A_B^{-1}A_i\le 0$. Khi đó quá trình xoay trục không có "nút thắt" nào; nói cách khác, có thể liên tục tăng $x_i$ để cải thiện hàm mục tiêu cho tới khi nó bằng $-\infty$. Điều này nói rằng bài toán quy hoạch tuyến tính đã cho là không bị chặn, và thuật toán dừng.
 
-Cuối cùng, lựa chọn biến vào cơ sở và biến ra khỏi cơ sở có thể không duy nhất. Cách chọn không thích hợp có thể dẫn tới quá nhiều lần xoay trục, thậm chí làm thuật toán rơi vào vòng lặp và không dừng bình thường. Việc xử lý các trường hợp này hơi phức tạp hơn, cần dùng một số [quy tắc xoay trục](#%E8%BD%AC%E8%BD%B4%E8%A7%84%E5%88%99) để tránh vòng lặp và giảm số lần xoay trục.
+Cuối cùng, lựa chọn biến vào cơ sở và biến ra khỏi cơ sở có thể không duy nhất. Cách chọn không thích hợp có thể dẫn tới quá nhiều lần xoay trục, thậm chí làm thuật toán rơi vào vòng lặp và không dừng bình thường. Việc xử lý các trường hợp này hơi phức tạp hơn, cần dùng một số [quy tắc xoay trục](#quy-tắc-xoay-trục) để tránh vòng lặp và giảm số lần xoay trục.
 
-<span id="&#21333;&#32431;&#24418;&#34920;"></span>
+<span id="bảng-đơn-hình"></span>
 ### Bảng đơn hình
 
 Khi cài đặt quá trình xoay trục, chỉ cần duy trì ma trận hệ số của bài toán quy hoạch tuyến tính sau mỗi lần xoay trục:
@@ -365,7 +365,7 @@ Cài đặt tham khảo để cập nhật bảng đơn hình rút gọn:
     --8<-- "docs/math/code/simplex/simplex_0.cpp:pivot"
     ```
 
-Từ cài đặt này có thể thấy độ phức tạp thời gian của một lần cập nhật bảng đơn hình là $O(mn)$. Khi bàn về [quy tắc xoay trục](#%E8%BD%AC%E8%BD%B4%E8%A7%84%E5%88%99) ở phần sau, ta sẽ thấy độ phức tạp để xác định biến ra khỏi cơ sở và biến vào cơ sở cũng không vượt quá $O(mn)$; do đó độ phức tạp của một lần xoay trục là $O(mn)$.
+Từ cài đặt này có thể thấy độ phức tạp thời gian của một lần cập nhật bảng đơn hình là $O(mn)$. Khi bàn về [quy tắc xoay trục](#quy-tắc-xoay-trục) ở phần sau, ta sẽ thấy độ phức tạp để xác định biến ra khỏi cơ sở và biến vào cơ sở cũng không vượt quá $O(mn)$; do đó độ phức tạp của một lần xoay trục là $O(mn)$.
 
 Để dễ hiểu, dưới đây liệt kê các bước tính chi tiết của ví dụ ở trên bằng bảng đơn hình rút gọn.
 
@@ -444,12 +444,12 @@ Từ cài đặt này có thể thấy độ phức tạp thời gian của mộ
 
 Ngoài việc dùng bảng đơn hình để cài đặt phương pháp đơn hình, còn có thể dùng phương pháp đơn hình sửa đổi (revised simplex method). Nó cải thiện thêm độ phức tạp thời gian và bộ nhớ, giảm độ phức tạp mỗi lần cập nhật xuống $O(m^2)$, đặc biệt hiệu quả khi $m\ll n$ hoặc $A$ là ma trận thưa.
 
-<span id="&#20960;&#20309;&#32972;&#26223;"></span>
+<span id="nền-tảng-hình-học"></span>
 ## Nền tảng hình học
 
 Phần này giới thiệu nền tảng hình học của phương pháp đơn hình.
 
-Phân tích [miền khả thi và nghiệm của bài toán](./linear-programming.md#%E5%8F%AF%E8%A1%8C%E5%9F%9F%E4%B8%8E%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3) đối với miền khả thi của quy hoạch tuyến tính
+Phân tích [miền khả thi và nghiệm của bài toán](./linear-programming.md#miền-khả-thi-và-nghiệm-của-bài-toán) đối với miền khả thi của quy hoạch tuyến tính
 
 $$
 \mathcal D = \{x\in\mathbf R^n : Ax = b,~ x\ge 0\}
@@ -462,7 +462,7 @@ cho thấy:
 
 Dễ thấy khái niệm nghiệm đỉnh trùng với nghiệm cơ bản khả thi đã định nghĩa ở trên. Vì vậy, chỉ cần tìm nghiệm tối ưu trong tất cả nghiệm cơ bản khả thi là có thể thu được nghiệm tối ưu của bài toán gốc. Tuy điều này đơn giản hóa bài toán rất nhiều, số đỉnh của miền khả thi là cấp mũ, nên liệt kê toàn bộ là không thực tế.
 
-Để giải quyết khó khăn này, có thể xét việc di chuyển dọc theo [cạnh](./linear-programming.md#%E5%8F%AF%E8%A1%8C%E5%9F%9F%E4%B8%8E%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3) của miền khả thi, từ một đỉnh sang đỉnh kề với nó. Vì hai đỉnh kề nhau nhất định nằm trên cùng một cạnh, chúng thỏa mãn ít nhất $n-1$ ràng buộc chặt giống nhau. Nói cách khác, các ràng buộc chặt ứng với hai đỉnh kề nhau chỉ có thể khác đúng một ràng buộc. Vì vậy, với một nghiệm cơ bản khả thi $x$, chỉ cần thay một biến cơ sở của nó bằng một biến không cơ sở là có thể thu được một nghiệm cơ bản khả thi **kề** (adjacent) $x'$. Đây chính là thao tác xoay trục.
+Để giải quyết khó khăn này, có thể xét việc di chuyển dọc theo [cạnh](./linear-programming.md#miền-khả-thi-và-nghiệm-của-bài-toán) của miền khả thi, từ một đỉnh sang đỉnh kề với nó. Vì hai đỉnh kề nhau nhất định nằm trên cùng một cạnh, chúng thỏa mãn ít nhất $n-1$ ràng buộc chặt giống nhau. Nói cách khác, các ràng buộc chặt ứng với hai đỉnh kề nhau chỉ có thể khác đúng một ràng buộc. Vì vậy, với một nghiệm cơ bản khả thi $x$, chỉ cần thay một biến cơ sở của nó bằng một biến không cơ sở là có thể thu được một nghiệm cơ bản khả thi **kề** (adjacent) $x'$. Đây chính là thao tác xoay trục.
 
 Vì vậy, quá trình phương pháp đơn hình bắt đầu từ một nghiệm cơ bản khả thi, liên tục xoay trục để cải thiện hàm mục tiêu, thực chất là quá trình trên miền khả thi tương ứng: bắt đầu từ một đỉnh, liên tục đi sang đỉnh kề để cải thiện hàm mục tiêu.
 
@@ -477,22 +477,22 @@ Vì vậy, quá trình phương pháp đơn hình bắt đầu từ một nghi�
     (0,0,0) \rightarrow (0,0,10) \rightarrow (10,0,0) \rightarrow (4,4,4).
     $$
 
-<span id="&#23454;&#29616;&#32454;&#33410;"></span>
+<span id="chi-tiết-cài-đặt"></span>
 ## Chi tiết cài đặt
 
 Dùng bảng đơn hình đã đủ để giải nhiều bài toán quy hoạch tuyến tính. Tuy nhiên, với trường hợp tổng quát nhất, phương pháp đơn hình vẫn có nhiều chi tiết đáng bàn sâu hơn.
 
-<span id="&#26494;&#24347;&#24418;&#24335;"></span>
+<span id="dạng-dư"></span>
 ### Dạng dư
 
-[Cách](./linear-programming.md#%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F) chuyển bài toán quy hoạch tuyến tính tổng quát về dạng chuẩn đã được bàn trước đó. Nhưng để tiện dùng phương pháp đơn hình, còn cần bảo đảm ma trận hệ số $A$ đầy hạng. Tuy cách chuyển về dạng chuẩn rồi khử các ràng buộc phụ thuộc tuyến tính là khả thi, để giải đơn giản hơn người ta thường dùng chiến lược sau:
+[Cách](./linear-programming.md#dạng-chuẩn) chuyển bài toán quy hoạch tuyến tính tổng quát về dạng chuẩn đã được bàn trước đó. Nhưng để tiện dùng phương pháp đơn hình, còn cần bảo đảm ma trận hệ số $A$ đầy hạng. Tuy cách chuyển về dạng chuẩn rồi khử các ràng buộc phụ thuộc tuyến tính là khả thi, để giải đơn giản hơn người ta thường dùng chiến lược sau:
 
 1.  Chuyển bài toán quy hoạch tuyến tính về **dạng bất đẳng thức** (inequality form), tức dạng $\min\{c^Tx : Ax \le b,~ x \ge 0\}$;
 2.  Thêm biến dư $s$ để chuyển bài toán về dạng chuẩn: $\min\{c^Tx : Ax + s = b,~ x\ge 0,~ s \ge 0\}$.
 
 Lợi ích của cách làm này là ma trận hệ số $(A,I)$ của dạng chuẩn thu được luôn đầy hạng, và luôn tồn tại nghiệm cơ bản $(x,s)=(0,b)$ (chưa chắc khả thi). Dạng chuẩn đặc biệt này còn gọi là **dạng dư** (slack form).
 
-<span id="&#21021;&#22987;&#22522;&#26412;&#21487;&#34892;&#35299;"></span>
+<span id="nghiệm-cơ-bản-khả-thi-ban-đầu"></span>
 ### Nghiệm cơ bản khả thi ban đầu
 
 Mô tả phương pháp đơn hình ở trên luôn giả định đã biết một nghiệm cơ bản khả thi. Đôi khi rất dễ tìm một nghiệm như vậy. Chẳng hạn, nếu trong dạng dư nói trên có $b\ge 0$, thì $(x,s)=(0,b)$ là một nghiệm cơ bản khả thi. Đây chính là tình huống trong ví dụ số ở trên.
@@ -593,7 +593,7 @@ $$
     
     Cách làm này tuy đơn giản, nhưng so với phương pháp hai pha, nó không có một hàm mục tiêu mô tả mức độ không khả thi của cơ sở hiện tại, nên thiếu hướng cải thiện rõ ràng. Thử nghiệm thực tế cho thấy so với phương pháp hai pha hoặc phương pháp $M$ lớn thường chỉ cần $O(m)$ lần xoay trục, thuật toán thô này thường cần $O(2^m)$ lần xoay trục, và dễ rơi vào vòng lặp khi $n,m$ lớn. Dù hằng số trong số lần xoay trục của thuật toán thô nhỏ, nó chỉ phù hợp với trường hợp $n,m<50$.
 
-<span id="&#36716;&#36724;&#35268;&#21017;"></span>
+<span id="quy-tắc-xoay-trục"></span>
 ### Quy tắc xoay trục
 
 Khi xoay trục, nếu có nhiều biến vào cơ sở hoặc biến ra khỏi cơ sở có thể chọn, cần dùng **quy tắc xoay trục** (pivot rule) để quyết định chọn biến nào. Dùng bảng đơn hình, mọi quy tắc bàn trong phần này đều có thể tìm biến vào cơ sở và ra khỏi cơ sở trong thời gian $O(mn)$, nên độ phức tạp của một lần xoay trục vẫn là $O(mn)$.
@@ -624,7 +624,7 @@ Việc chọn biến ra khỏi cơ sở thường quyết định thuật toán 
 
 Quy tắc Bland có hiệu quả thấp, vì bản thân quy tắc chọn biến vào cơ sở và ra khỏi cơ sở theo cùng một cách, rất dễ làm cùng một biến liên tục vào rồi ra khỏi cơ sở. Tương đối mà nói, quy tắc thứ tự từ điển thực dụng hơn. Quy tắc thứ tự từ điển tương đương với việc nhiễu loạn các tham số trong bài toán quy hoạch tuyến tính[^lexico], làm cho không tồn tại các nghiệm cơ bản khả thi có cùng giá trị tối ưu, và vì vậy không có khả năng lặp.
 
-<span id="&#21442;&#32771;&#23454;&#29616;"></span>
+<span id="cài-đặt-tham-khảo"></span>
 ## Cài đặt tham khảo
 
 Phần này cung cấp một cài đặt tham khảo của phương pháp đơn hình hai pha dựa trên bảng đơn hình rút gọn.
@@ -634,7 +634,7 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
     --8<-- "docs/math/code/simplex/simplex_0.cpp:full-text"
     ```
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập-ví-dụ"></span>
 ## Bài tập ví dụ
 
 ???+ example "[NOI2008: Tuyển mộ tình nguyện viên](https://www.luogu.com.cn/problem/P3980)"
@@ -661,7 +661,7 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
     \end{cases}
     $$
     
-    Bài toán gốc không có nghiệm khả thi ban đầu hiển nhiên. Vì vậy có thể xét [bài toán đối ngẫu](./linear-programming.md#%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98):
+    Bài toán gốc không có nghiệm khả thi ban đầu hiển nhiên. Vì vậy có thể xét [bài toán đối ngẫu](./linear-programming.md#bài-toán-đối-ngẫu):
     
     $$
     \begin{align*}
@@ -677,7 +677,7 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
     --8<-- "docs/math/code/simplex/simplex_1.cpp"
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Luogu P13337: Mẫu quy hoạch tuyến tính](https://www.luogu.com.cn/problem/P13337)
@@ -686,7 +686,7 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
 -   [Codeforces 1430 G. Yet Another DAG Problem](https://codeforces.com/problemset/problem/1430/G)
 -   [AtCoder Beginner Contest 231 H - Minimum Coloring](https://atcoder.jp/contests/abc231/tasks/abc231_h)
 
-<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 -   [Phương pháp đơn hình cho quy hoạch tuyến tính: giải thích rất chi tiết và minh họa](https://www.cnblogs.com/ECJTUACM-873284962/p/7097864.html)
