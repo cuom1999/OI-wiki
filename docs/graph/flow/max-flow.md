@@ -4,7 +4,7 @@ Trang này chủ yếu giới thiệu kiến thức thuật toán liên quan đ�
 
 Các khái niệm cơ bản về luồng trên mạng có thể xem tại [Giới thiệu luồng mạng](../flow.md).
 
-Cho $G=(V,E)$ là một mạng có nguồn và đích. Ta muốn chỉ định một luồng thích hợp $f$ trên $G$ sao cho giá trị luồng của toàn mạng $|f|$ được cực đại hóa, tức $\sum_{x \in V} f(s, x) - \sum_{x \in V} f(x, s)$. Bài toán này được gọi là bài toán luồng cực đại.
+Cho $G=(V,E)$ là một mạng có nguồn và đích. Mục tiêu là chỉ định một luồng thích hợp $f$ trên $G$ sao cho giá trị luồng của toàn mạng $|f|$ được cực đại hóa, tức $\sum_{x \in V} f(s, x) - \sum_{x \in V} f(x, s)$. Bài toán này được gọi là bài toán luồng cực đại.
 
 ## Tăng luồng Ford–Fulkerson
 
@@ -12,7 +12,7 @@ Tăng luồng Ford–Fulkerson là tên gọi chung của một lớp thuật to
 
 ### Tổng quan
 
-Cho mạng $G$ và một luồng $f$ trên $G$, ta định nghĩa như sau.
+Cho mạng $G$ và một luồng $f$ trên $G$, định nghĩa như sau.
 
 Với cạnh $(u, v)$, hiệu giữa dung lượng và luồng được gọi là dung lượng còn dư $c_f(u,v)$, tức $c_f(u,v)=c(u,v)-f(u,v)$.
 
@@ -21,30 +21,30 @@ Với cạnh $(u, v)$, hiệu giữa dung lượng và luồng được gọi l�
 ???+ warning "Cảnh báo"
     Như sẽ nói ngay sau đây, luồng có thể nhận giá trị âm, vì vậy cạnh trong $E_f$ có thể không thuộc $E$. Sau khi đưa vào khái niệm tăng luồng, phần dưới sẽ giải thích cụ thể điểm này.
 
-Một đường đi từ nguồn $s$ đến đích $t$ trên $G_f$ được gọi là đường tăng luồng. Với một đường tăng luồng, ta cộng cùng một lượng luồng vào mọi cạnh $(u, v)$ trên đường đó để làm tăng giá trị luồng của toàn mạng. Quá trình này được gọi là tăng luồng. Do đó, việc tìm luồng cực đại có thể được xem như chồng nhiều luồng thu được từ các lần tăng luồng.
+Một đường đi từ nguồn $s$ đến đích $t$ trên $G_f$ được gọi là đường tăng luồng. Với một đường tăng luồng, cộng cùng một lượng luồng vào mọi cạnh $(u, v)$ trên đường đó để làm tăng giá trị luồng của toàn mạng. Quá trình này được gọi là tăng luồng. Do đó, việc tìm luồng cực đại có thể được xem như chồng nhiều luồng thu được từ các lần tăng luồng.
 
-Ngoài ra, trong quá trình tăng luồng Ford–Fulkerson, với mỗi cạnh $(u, v)$, ta tạo thêm một cạnh ngược $(v, u)$. Ta quy ước $f(u, v) = -f(v, u)$. Tính chất này có thể được đảm bảo bằng thao tác hoàn luồng trong mỗi lần tăng luồng, tức khi $f(u, v)$ tăng thì $f(v, u)$ phải giảm cùng một lượng.
+Ngoài ra, trong quá trình tăng luồng Ford–Fulkerson, với mỗi cạnh $(u, v)$, tạo thêm một cạnh ngược $(v, u)$. Quy ước $f(u, v) = -f(v, u)$. Tính chất này có thể được bảo đảm bằng thao tác hoàn luồng trong mỗi lần tăng luồng, tức khi $f(u, v)$ tăng thì $f(v, u)$ phải giảm cùng một lượng.
 
 ???+ tip "Mẹo"
-    Trong cài đặt các thuật toán luồng cực đại, ta thường cần hỗ trợ truy cập nhanh cạnh ngược. Với ma trận kề, thao tác này là hiển nhiên ($g_{u, v} \leftrightarrow g_{v, u}$). Tuy nhiên, cách cài đặt phổ biến hơn và tốt hơn là forward-star dạng danh sách liên kết. Một mẹo thường dùng là đánh số cạnh bắt đầu từ số chẵn, thường là $0$, và khi thêm cạnh luôn thêm ngay cạnh ngược của nó để hai cạnh có chỉ số kề nhau. Khi đó, cạnh có chỉ số $i$ và cạnh có chỉ số $i \oplus 1$ luôn là cạnh ngược của nhau.
+    Trong cài đặt các thuật toán luồng cực đại, thường cần hỗ trợ truy cập nhanh cạnh ngược. Với ma trận kề, thao tác này là trực tiếp ($g_{u, v} \leftrightarrow g_{v, u}$). Tuy nhiên, cách cài đặt phổ biến hơn và tốt hơn là forward-star dạng danh sách liên kết. Một mẹo thường dùng là đánh số cạnh bắt đầu từ số chẵn, thường là $0$, và khi thêm cạnh luôn thêm ngay cạnh ngược của nó để hai cạnh có chỉ số kề nhau. Khi đó, cạnh có chỉ số $i$ và cạnh có chỉ số $i \oplus 1$ luôn là cạnh ngược của nhau.
 
-Người mới tiếp xúc với phương pháp này có thể nhận thấy một tình huống trái trực giác: luồng trên cạnh ngược $f(v, u)$ có thể là số âm. Thực ra, trong quá trình tăng luồng Ford–Fulkerson, đại lượng thật sự có ý nghĩa là dung lượng còn dư $c_f$, còn trị tuyệt đối của $f(v, u)$ không quan trọng. Ta có thể xem việc giảm luồng trên cạnh ngược là làm tăng dung lượng còn dư $c_f(v, u)$ của cạnh ngược. Điều này cũng phù hợp với ý nghĩa của hoàn luồng: dung lượng còn dư trên cạnh ngược tăng lên nghĩa là sau đó ta có thể đi qua cạnh ngược để triệt tiêu lần tăng luồng theo chiều thuận trước đó, tương đương với một thao tác "hối lại".
+Người mới tiếp xúc với phương pháp này có thể nhận thấy một tình huống trái trực giác: luồng trên cạnh ngược $f(v, u)$ có thể là số âm. Thực ra, trong quá trình tăng luồng Ford–Fulkerson, đại lượng thật sự có ý nghĩa là dung lượng còn dư $c_f$, còn trị tuyệt đối của $f(v, u)$ không quan trọng. Có thể xem việc giảm luồng trên cạnh ngược là làm tăng dung lượng còn dư $c_f(v, u)$ của cạnh ngược. Điều này cũng phù hợp với ý nghĩa của hoàn luồng: dung lượng còn dư trên cạnh ngược tăng lên nghĩa là sau đó có thể đi qua cạnh ngược để triệt tiêu lần tăng luồng theo chiều thuận trước đó, tương đương với một thao tác "hối lại".
 
-Ví dụ sau có thể giúp bạn hiểu quá trình này. Giả sử $G$ là một mạng dung lượng đơn vị, xét quá trình sau:
+Ví dụ sau minh họa quá trình này. Giả sử $G$ là một mạng dung lượng đơn vị, xét quá trình sau:
 
--   Trên $G$ có nhiều đường tăng luồng. Trong đó, ta chọn thực hiện một lần tăng luồng đi qua $u, v$ theo thứ tự, như hình bên trái, làm giá trị luồng tăng thêm $1$.
--   Ta nhận thấy nếu thực hiện lần tăng luồng như hình giữa, luồng cực đại cục bộ không phải là $1$ mà là $2$. Nhưng do cạnh đi vào $u$ và cạnh đi ra từ $v$ đã dùng hết dung lượng trong lần tăng luồng đầu tiên, lúc này ta không thể thực hiện lần tăng luồng ở hình giữa. Điều này nghĩa là luồng hiện tại chưa đủ tốt, nhưng cục bộ có thể đã không còn đường tăng luồng nào khác nếu chỉ đi qua các cạnh của đồ thị gốc mà không đi qua cạnh ngược.
--   Bây giờ đưa vào thao tác hoàn luồng. Sau lần tăng luồng đầu tiên, hoàn luồng nghĩa là $c_f(v, u)$ tăng thêm $1$ dung lượng còn dư, tương đương với việc thêm cạnh $(v, u)$. Vì vậy ta có thể thực hiện thêm một lần tăng luồng đi qua $p, v, u, q$ theo thứ tự, như đường màu cam trong hình bên phải. Luồng trên cạnh vô hướng $(u, v)$ bị triệt tiêu qua hai lần tăng luồng, và ta thấy kết quả chồng hai lần tăng luồng thực ra tương đương với hình giữa.
+-   Trên $G$ có nhiều đường tăng luồng. Trong đó, chọn thực hiện một lần tăng luồng đi qua $u, v$ theo thứ tự, như hình bên trái, làm giá trị luồng tăng thêm $1$.
+-   Có thể nhận thấy nếu thực hiện lần tăng luồng như hình giữa, luồng cực đại cục bộ không phải là $1$ mà là $2$. Nhưng do cạnh đi vào $u$ và cạnh đi ra từ $v$ đã dùng hết dung lượng trong lần tăng luồng đầu tiên, lúc này không thể thực hiện lần tăng luồng ở hình giữa. Điều này nghĩa là luồng hiện tại chưa đủ tốt, nhưng cục bộ có thể đã không còn đường tăng luồng nào khác nếu chỉ đi qua các cạnh của đồ thị gốc mà không đi qua cạnh ngược.
+-   Bây giờ đưa vào thao tác hoàn luồng. Sau lần tăng luồng đầu tiên, hoàn luồng nghĩa là $c_f(v, u)$ tăng thêm $1$ dung lượng còn dư, tương đương với việc thêm cạnh $(v, u)$. Vì vậy có thể thực hiện thêm một lần tăng luồng đi qua $p, v, u, q$ theo thứ tự, như đường màu cam trong hình bên phải. Luồng trên cạnh vô hướng $(u, v)$ bị triệt tiêu qua hai lần tăng luồng, và kết quả chồng hai lần tăng luồng thực ra tương đương với hình giữa.
 
 ![](./images/flow2.png)
 
-Ví dụ trên cho thấy hiệu ứng "triệt tiêu" do thao tác hoàn luồng đem lại giúp ta không cần lo lắng rằng mình đã chọn đường tăng luồng theo "thứ tự sai".
+Ví dụ trên cho thấy hiệu ứng "triệt tiêu" do thao tác hoàn luồng đem lại giúp không cần lo lắng rằng đường tăng luồng đã được chọn theo "thứ tự sai".
 
-Dễ thấy rằng chỉ cần trên $G_f$ còn tồn tại đường tăng luồng thì tăng luồng theo đường đó sẽ làm tổng giá trị luồng tăng lên. Nếu không còn đường tăng luồng, tổng giá trị luồng đã đạt giá trị lớn nhất có thể và quá trình kết thúc. Đây chính là quá trình tăng luồng Ford–Fulkerson.
+Chỉ cần trên $G_f$ còn tồn tại đường tăng luồng thì tăng luồng theo đường đó sẽ làm tổng giá trị luồng tăng lên. Nếu không còn đường tăng luồng, tổng giá trị luồng đã đạt giá trị lớn nhất có thể và quá trình kết thúc. Đây chính là quá trình tăng luồng Ford–Fulkerson.
 
 ### Định lý luồng cực đại - lát cắt nhỏ nhất
 
-Ta đã hiểu sơ lược tư tưởng tăng luồng Ford–Fulkerson, nhưng làm thế nào để chứng minh tính đúng đắn của phương pháp này? Vì sao luồng $f$ sau khi kết thúc tăng luồng là một luồng cực đại?
+Sau phần trực quan về tư tưởng tăng luồng Ford–Fulkerson, cần chứng minh tính đúng đắn của phương pháp này: vì sao luồng $f$ sau khi kết thúc tăng luồng là một luồng cực đại?
 
 Thực ra, tính đúng đắn của tăng luồng Ford–Fulkerson tương đương với định lý luồng cực đại - lát cắt nhỏ nhất. Định lý này phát biểu rằng với mọi mạng $G = (V, E)$, luồng cực đại $f$ và lát cắt nhỏ nhất $\{S, T\}$ trên mạng đó luôn thỏa mãn $|f| = ||S, T||$.
 
@@ -67,25 +67,25 @@ Thực ra, tính đúng đắn của tăng luồng Ford–Fulkerson tương đư
     
     Để đạt dấu bằng, bất đẳng thức thứ nhất cần mọi cạnh trong $\{(u, v) \mid u \in T, v \in S\}$ đều có luồng bằng không, còn bất đẳng thức thứ hai cần mọi cạnh trong $\{(u, v) \mid u \in S, v \in T\}$ đều đầy luồng. Bổ đề được chứng minh.
 
-Vậy với một mạng bất kỳ, các điều kiện đạt dấu bằng ở trên có luôn được thỏa mãn không? Nếu câu trả lời là có, định lý luồng cực đại - lát cắt nhỏ nhất được chứng minh. Sau đây ta thử chứng minh điều đó.
+Vậy với một mạng bất kỳ, các điều kiện đạt dấu bằng ở trên có luôn được thỏa mãn không? Nếu câu trả lời là có, định lý luồng cực đại - lát cắt nhỏ nhất được chứng minh. Phần sau chứng minh điều đó.
 
 ???+ note "Chứng minh"
-    Giả sử sau một vòng tăng luồng nào đó, ta thu được luồng $f$ sao cho trên $G_f$ không tồn tại đường tăng luồng, tức trên $G_f$ không tồn tại đường đi từ $s$ đến $t$. Khi đó, gọi $S$ là tập các đỉnh có thể đến được từ $s$, và đặt $T = V \setminus S$.
+    Giả sử sau một vòng tăng luồng nào đó, thu được luồng $f$ sao cho trên $G_f$ không tồn tại đường tăng luồng, tức trên $G_f$ không tồn tại đường đi từ $s$ đến $t$. Khi đó, gọi $S$ là tập các đỉnh có thể đến được từ $s$, và đặt $T = V \setminus S$.
     
-    Hiển nhiên, $\{S, T\}$ là một lát cắt của $G_f$, và $||S, T|| = \sum_{u \in S} \sum_{v \in T} c_f(u, v) = 0$. Vì dung lượng còn dư không âm, điều này cũng có nghĩa là với mọi $u \in S, v \in T, (u, v) \in E_f$, ta đều có $c_f(u, v) = 0$. Sau đây ta chia các cạnh này thành hai trường hợp: cạnh tồn tại trong đồ thị gốc và cạnh ngược.
+    Khi đó $\{S, T\}$ là một lát cắt của $G_f$, và $||S, T|| = \sum_{u \in S} \sum_{v \in T} c_f(u, v) = 0$. Vì dung lượng còn dư không âm, điều này cũng có nghĩa là với mọi $u \in S, v \in T, (u, v) \in E_f$, đều có $c_f(u, v) = 0$. Sau đây chia các cạnh này thành hai trường hợp: cạnh tồn tại trong đồ thị gốc và cạnh ngược.
     
     -   $(u, v) \in E$: khi đó $c_f(u, v) = c(u, v) - f(u, v) = 0$, nên $c(u, v) = f(u, v)$, tức mọi cạnh trong $\{(u, v) \mid u \in S, v \in T\}$ đều đầy luồng.
     -   $(v, u) \in E$: khi đó $c_f(u, v) = c(u, v) - f(u, v) = 0 - f(u, v) = f(v, u) = 0$, tức mọi cạnh trong $\{(v, u) \mid u \in S, v \in T\}$ đều có luồng bằng không.
     
     Vì vậy, sau khi tăng luồng dừng lại, luồng $f$ ở trên thỏa mãn điều kiện đạt dấu bằng. Theo quan hệ lớn nhỏ trong bổ đề, một cách tự nhiên, $f$ là một luồng cực đại của $G$, và $\{S, T\}$ là một lát cắt nhỏ nhất của $G$.
 
-Dễ thấy định lý Kőnig là một trường hợp đặc biệt của định lý luồng cực đại - lát cắt nhỏ nhất. Thực ra, cả hai đều liên quan đến đối ngẫu trong quy hoạch tuyến tính.
+Định lý Kőnig là một trường hợp đặc biệt của định lý luồng cực đại - lát cắt nhỏ nhất. Thực ra, cả hai đều liên quan đến đối ngẫu trong quy hoạch tuyến tính.
 
 ### Phân tích độ phức tạp thời gian
 
-Trên mạng $G = (V, E)$ có luồng nguyên, giả sử một cách hiển nhiên rằng lượng luồng tăng thêm mỗi lần đều là số nguyên, thì một cận trên cho độ phức tạp thời gian của tăng luồng Ford–Fulkerson là $O(|E||f|)$, trong đó $f$ là luồng cực đại trên $G$. Lý do là một vòng tăng luồng có độ phức tạp $O(|E|)$, còn mỗi lần tăng luồng đều làm tổng giá trị luồng tăng lên, nên số vòng tăng luồng không thể vượt quá $|f|$.
+Trên mạng $G = (V, E)$ có luồng nguyên, giả sử lượng luồng tăng thêm mỗi lần đều là số nguyên, thì một cận trên cho độ phức tạp thời gian của tăng luồng Ford–Fulkerson là $O(|E||f|)$, trong đó $f$ là luồng cực đại trên $G$. Lý do là một vòng tăng luồng có độ phức tạp $O(|E|)$, còn mỗi lần tăng luồng đều làm tổng giá trị luồng tăng lên, nên số vòng tăng luồng không thể vượt quá $|f|$.
 
-Các cách cài đặt khác nhau của tăng luồng Ford–Fulkerson có độ phức tạp thời gian khác nhau. Trong đó các cài đặt phổ biến hơn gồm Edmonds–Karp, Dinic, SAP, ISAP, v.v. Ta sẽ lần lượt giới thiệu ở phần sau.
+Các cách cài đặt khác nhau của tăng luồng Ford–Fulkerson có độ phức tạp thời gian khác nhau. Trong đó các cài đặt phổ biến hơn gồm Edmonds–Karp, Dinic, SAP, ISAP, v.v. Các phần sau sẽ lần lượt giới thiệu chúng.
 
 ### Thuật toán Edmonds–Karp
 
@@ -93,32 +93,32 @@ Các cách cài đặt khác nhau của tăng luồng Ford–Fulkerson có độ
 
 Làm thế nào để tìm đường tăng luồng trong $G_f$? Khi xét một cài đặt cụ thể của tăng luồng Ford–Fulkerson, phương án tự nhiên nhất là dùng BFS. Khi đó, tăng luồng Ford–Fulkerson trở thành thuật toán Edmonds–Karp. Quy trình cụ thể như sau:
 
--   Nếu trên $G_f$ ta có thể BFS từ $s$ đến $t$, ta đã tìm được một đường tăng luồng mới.
+-   Nếu trên $G_f$ có thể BFS từ $s$ đến $t$, một đường tăng luồng mới đã được tìm thấy.
 
--   Với đường tăng luồng $p$, ta tính giá trị nhỏ nhất của dung lượng còn dư trên các cạnh mà $p$ đi qua: $\Delta = \min_{(u, v) \in p} c_f(u, v)$. Ta cộng $\Delta$ luồng vào mỗi cạnh trên $p$, đồng thời hoàn $\Delta$ luồng trên các cạnh ngược của chúng, làm luồng cực đại tăng thêm $\Delta$.
+-   Với đường tăng luồng $p$, tính giá trị nhỏ nhất của dung lượng còn dư trên các cạnh mà $p$ đi qua: $\Delta = \min_{(u, v) \in p} c_f(u, v)$. Cộng $\Delta$ luồng vào mỗi cạnh trên $p$, đồng thời hoàn $\Delta$ luồng trên các cạnh ngược của chúng, làm luồng cực đại tăng thêm $\Delta$.
 
--   Vì ta đã sửa luồng, ta thu được $G_f$ mới. Lặp lại quá trình trên trên $G_f$ mới cho đến khi không còn đường tăng luồng, khi đó giá trị luồng không tăng thêm nữa.
+-   Vì luồng đã thay đổi, thu được $G_f$ mới. Lặp lại quá trình trên trên $G_f$ mới cho đến khi không còn đường tăng luồng, khi đó giá trị luồng không tăng thêm nữa.
 
 Thuật toán trên chính là thuật toán Edmonds–Karp.
 
 #### Phân tích độ phức tạp thời gian
 
-Tiếp theo ta thử phân tích độ phức tạp thời gian của thuật toán Edmonds–Karp.
+Tiếp theo phân tích độ phức tạp thời gian của thuật toán Edmonds–Karp.
 
-Hiển nhiên, độ phức tạp thời gian của một vòng tăng luồng bằng BFS là $O(|E|)$.
+Độ phức tạp thời gian của một vòng tăng luồng bằng BFS là $O(|E|)$.
 
-Cận trên cho tổng số vòng tăng luồng là $O(|V||E|)$. Mệnh đề này thường bị chứng minh sai trên tài liệu mạng, hoặc bị lược qua một cách mơ hồ. Sau đây ta thử đưa ra một chứng minh tương đối hình thức[^ref_ek].
+Cận trên cho tổng số vòng tăng luồng là $O(|V||E|)$. Mệnh đề này thường bị chứng minh sai trên tài liệu mạng, hoặc bị lược qua một cách mơ hồ. Sau đây là một chứng minh tương đối hình thức[^ref_ek].
 
 ???+ note "Chứng minh cận trên của tổng số vòng tăng luồng"
-    Trước hết, ta đưa vào một bổ đề: bổ đề khoảng cách ngắn nhất không giảm. Cụ thể, ký hiệu $d_f(u)$ là khoảng cách từ đỉnh $u$ đến nguồn $s$ trên $G_f$, tức độ dài đường đi ngắn nhất, dưới đây cũng vậy. Với một vòng tăng luồng nào đó, dùng $f$ và $f'$ lần lượt biểu diễn luồng trước và sau khi tăng. Ta khẳng định rằng với mọi đỉnh $u$, tăng luồng luôn làm $d_{f'}(u) \geq d_f(u)$. Ta sẽ chứng minh bổ đề này sau.
+    Trước hết, đưa vào một bổ đề: bổ đề khoảng cách ngắn nhất không giảm. Cụ thể, ký hiệu $d_f(u)$ là khoảng cách từ đỉnh $u$ đến nguồn $s$ trên $G_f$, tức độ dài đường đi ngắn nhất, dưới đây cũng vậy. Với một vòng tăng luồng nào đó, dùng $f$ và $f'$ lần lượt biểu diễn luồng trước và sau khi tăng. Khẳng định rằng với mọi đỉnh $u$, tăng luồng luôn làm $d_{f'}(u) \geq d_f(u)$. Bổ đề này sẽ được chứng minh sau.
     
     Gọi cạnh có dung lượng còn dư nhỏ nhất trên đường tăng luồng là cạnh bão hòa, nếu có nhiều cạnh cùng nhỏ nhất thì chọn tùy ý một cạnh. Nếu một cạnh có hướng $(u, v)$ được chọn làm cạnh bão hòa, lần tăng luồng sẽ làm dung lượng còn dư của nó bằng không, khiến cạnh bão hòa biến mất, đồng thời hoàn luồng làm xuất hiện cạnh ngược, nếu trước đó cạnh ngược chưa tồn tại, tức $(u, v) \not \in E_{f'}$ và $(v, u) \in E_{f'}$. Phân tích trên cho thấy với một cạnh vô hướng $(u, v)$, hai chiều được tăng luồng của nó luôn xuất hiện xen kẽ.
     
-    Khi tăng luồng dọc theo $(u, v)$ trên $G_f$, ta có $d_f(u) + 1 = d_f(v)$, sau đó mạng thặng dư trở thành $G_{f'}$. Khi tăng luồng dọc theo $(v, u)$ trên $G_{f'}$, ta có $d_{f'}(v) + 1 = d_{f'}(u)$. Theo bổ đề khoảng cách ngắn nhất không giảm lại có $d_{f'}(v) \geq d_f(v)$. Nối các đẳng thức và bất đẳng thức lại, thu được $d_{f'}(u) \geq d_{f}(u) + 2$. Nói cách khác, nếu cạnh có hướng $(u, v)$ được chọn làm cạnh bão hòa, thì so với lần trước nó được chọn làm cạnh bão hòa, khoảng cách từ $u$ đến $s$ tăng ít nhất $2$.
+    Khi tăng luồng dọc theo $(u, v)$ trên $G_f$, có $d_f(u) + 1 = d_f(v)$, sau đó mạng thặng dư trở thành $G_{f'}$. Khi tăng luồng dọc theo $(v, u)$ trên $G_{f'}$, có $d_{f'}(v) + 1 = d_{f'}(u)$. Theo bổ đề khoảng cách ngắn nhất không giảm lại có $d_{f'}(v) \geq d_f(v)$. Nối các đẳng thức và bất đẳng thức lại, thu được $d_{f'}(u) \geq d_{f}(u) + 2$. Nói cách khác, nếu cạnh có hướng $(u, v)$ được chọn làm cạnh bão hòa, thì so với lần trước nó được chọn làm cạnh bão hòa, khoảng cách từ $u$ đến $s$ tăng ít nhất $2$.
     
-    Khoảng cách từ $s$ đến bất kỳ đỉnh nào không thể vượt quá $|V|$. Kết hợp tính chất trên, ta thấy mỗi cạnh được chọn làm cạnh bão hòa $O(|V|)$ lần. Nhân với số cạnh, ta được cận trên $O(|V||E|)$ cho tổng số vòng tăng luồng.
+    Khoảng cách từ $s$ đến bất kỳ đỉnh nào không thể vượt quá $|V|$. Kết hợp tính chất trên, mỗi cạnh được chọn làm cạnh bão hòa $O(|V|)$ lần. Nhân với số cạnh, thu được cận trên $O(|V||E|)$ cho tổng số vòng tăng luồng.
     
-    Tiếp theo ta chứng minh bổ đề khoảng cách ngắn nhất không giảm, tức $d_{f'}(u) \geq d_f(u)$. Chứng minh này không khó, nhưng có thể hơi vòng vèo; người đọc có thể dừng lại suy nghĩ kỹ một chút.
+    Tiếp theo chứng minh bổ đề khoảng cách ngắn nhất không giảm, tức $d_{f'}(u) \geq d_f(u)$. Chứng minh này không khó, nhưng có thể hơi vòng vèo.
     
     ???+ note "Chứng minh bổ đề khoảng cách ngắn nhất không giảm"
         Xét phản chứng. Với một vòng tăng luồng nào đó, giả sử tồn tại một số đỉnh mà sau vòng tăng luồng này, khoảng cách đến $s$ giảm so với trước khi tăng. Gọi $v$ là đỉnh có khoảng cách đến $s$ nhỏ nhất trong số đó, tức $v = \arg \min_{x \in V, d_{f'}(x) < d_f(x)} d_{f'}(x)$. Chú ý rằng theo giả thiết phản chứng, lúc này $d_{f'}(v) < d_f(v)$ là điều đã biết.
@@ -127,16 +127,16 @@ Cận trên cho tổng số vòng tăng luồng là $O(|V||E|)$. Mệnh đề n�
         
         Để $u$ không phá vỡ tính chất "khoảng cách nhỏ nhất" của $v$, $u$ phải thỏa mãn $d_{f'}(u) \geq d_f(u)$.
         
-        Cộng cùng một lượng vào hai vế của bất đẳng thức trên, ta được $d_{f'}(v) \geq d_f(u) + 1$. Dùng giả thiết phản chứng để chặn, ta thu được $d_f(v) > d_f(u) + 1$.
+        Cộng cùng một lượng vào hai vế của bất đẳng thức trên, thu được $d_{f'}(v) \geq d_f(u) + 1$. Dùng giả thiết phản chứng để chặn, thu được $d_f(v) > d_f(u) + 1$.
         
-        Sau đây ta xét hướng tăng luồng trên $(u, v)$.
+        Sau đây xét hướng tăng luồng trên $(u, v)$.
         
-        -   Giả sử cạnh có hướng $(u, v) \in E_f$. Theo tính chất "duyệt theo chiều rộng" của BFS, ta có $d_f(u) + 1 \geq d_f(v)$. Đẳng thức này mâu thuẫn với kết quả chặn ở trên.
-        -   Giả sử cạnh có hướng $(u, v) \not \in E_f$. Theo định nghĩa của $u$, ta đã biết $(u, v) \in E_{f'}$, nên sự tồn tại của cạnh này nhất định là kết quả của việc vòng tăng luồng hiện tại đi qua $(v, u)$ và tạo cạnh ngược do hoàn luồng, tức $d_f(v) + 1 = d_f(u)$. Đẳng thức này mâu thuẫn với kết quả chặn ở trên.
+        -   Giả sử cạnh có hướng $(u, v) \in E_f$. Theo tính chất "duyệt theo chiều rộng" của BFS, có $d_f(u) + 1 \geq d_f(v)$. Đẳng thức này mâu thuẫn với kết quả chặn ở trên.
+        -   Giả sử cạnh có hướng $(u, v) \not \in E_f$. Theo định nghĩa của $u$, đã biết $(u, v) \in E_{f'}$, nên sự tồn tại của cạnh này nhất định là kết quả của việc vòng tăng luồng hiện tại đi qua $(v, u)$ và tạo cạnh ngược do hoàn luồng, tức $d_f(v) + 1 = d_f(u)$. Đẳng thức này mâu thuẫn với kết quả chặn ở trên.
         
         Vì tăng luồng theo bất kỳ hướng nào của $(u, v)$ cũng dẫn đến mâu thuẫn, giả thiết phản chứng không đúng, và bổ đề khoảng cách ngắn nhất không giảm được chứng minh.
 
-Nhân độ phức tạp của một vòng tăng luồng BFS với cận trên của số vòng tăng luồng, ta được độ phức tạp thời gian của thuật toán Edmonds–Karp là $O(|V||E|^2)$.
+Nhân độ phức tạp của một vòng tăng luồng BFS với cận trên của số vòng tăng luồng, thu được độ phức tạp thời gian của thuật toán Edmonds–Karp là $O(|V||E|^2)$.
 
 #### Cài đặt
 
@@ -213,12 +213,12 @@ Một cài đặt khả dĩ của thuật toán Edmonds–Karp như sau.
 
 #### Ý tưởng thuật toán
 
-Xét việc trước khi tăng luồng, ta BFS để phân tầng $G_f$, tức chia các đỉnh thành nhiều tầng theo khoảng cách $d(u)$ từ đỉnh $u$ đến nguồn $s$. Quy định luồng đi qua $u$ chỉ có thể chảy đến các đỉnh $v$ ở tầng kế tiếp, tức xóa các cạnh đi ra từ $u$ đến các đỉnh có số tầng bằng hoặc nhỏ hơn. Phần còn lại của $G_f$ được gọi là đồ thị tầng. Nói hình thức, $G_L = (V, E_L)$ là đồ thị tầng của $G_f = (V, E_f)$, trong đó $E_L = \left\{ (u, v) \mid (u, v) \in E_f, d(u) + 1 = d(v) \right\}$.
+Xét việc trước khi tăng luồng, BFS để phân tầng $G_f$, tức chia các đỉnh thành nhiều tầng theo khoảng cách $d(u)$ từ đỉnh $u$ đến nguồn $s$. Quy định luồng đi qua $u$ chỉ có thể chảy đến các đỉnh $v$ ở tầng kế tiếp, tức xóa các cạnh đi ra từ $u$ đến các đỉnh có số tầng bằng hoặc nhỏ hơn. Phần còn lại của $G_f$ được gọi là đồ thị tầng. Nói hình thức, $G_L = (V, E_L)$ là đồ thị tầng của $G_f = (V, E_f)$, trong đó $E_L = \left\{ (u, v) \mid (u, v) \in E_f, d(u) + 1 = d(v) \right\}$.
 
-Nếu trên đồ thị tầng $G_L$ ta tìm được một luồng tăng cực đại $f_b$ sao cho chỉ xét trên $G_L$ thì không thể tiếp tục mở rộng $f_b$, ta gọi $f_b$ là luồng chặn của $G_L$.
+Nếu trên đồ thị tầng $G_L$ tìm được một luồng tăng cực đại $f_b$ sao cho chỉ xét trên $G_L$ thì không thể tiếp tục mở rộng $f_b$, gọi $f_b$ là luồng chặn của $G_L$.
 
 ??? warning "Cảnh báo"
-    Mặc dù ở trên ta chỉ định nghĩa tăng luồng/luồng tăng trên một đường tăng luồng đơn lẻ, theo nghĩa rộng, thuật ngữ "tăng luồng" không chỉ dùng cho luồng tăng trên một đường đơn, mà còn có thể dùng cho hợp của nhiều luồng tăng. Nghĩa thứ hai là nghĩa được dùng khi ta định nghĩa luồng chặn.
+    Mặc dù ở trên chỉ định nghĩa tăng luồng/luồng tăng trên một đường tăng luồng đơn lẻ, theo nghĩa rộng, thuật ngữ "tăng luồng" không chỉ dùng cho luồng tăng trên một đường đơn, mà còn có thể dùng cho hợp của nhiều luồng tăng. Nghĩa thứ hai là nghĩa được dùng khi định nghĩa luồng chặn.
 
 Sau khi định nghĩa đồ thị tầng và luồng chặn, quy trình của thuật toán Dinic như sau.
 
@@ -229,21 +229,21 @@ Sau khi định nghĩa đồ thị tầng và luồng chặn, quy trình của t
 
 Lúc này $f$ là luồng cực đại.
 
-Trước khi phân tích độ phức tạp của thuật toán này, ta cần đặc biệt giải thích quá trình "DFS trên $G_L$ để tìm luồng chặn $f_b$". Mặc dù BFS đồ thị tầng có lẽ là hiển nhiên với người đọc trang này, quá trình DFS luồng chặn cần một chút kỹ thuật: ta cần đưa vào tối ưu cung hiện tại.
+Trước khi phân tích độ phức tạp của thuật toán này, cần đặc biệt giải thích quá trình "DFS trên $G_L$ để tìm luồng chặn $f_b$". Mặc dù BFS đồ thị tầng khá trực tiếp, quá trình DFS luồng chặn cần một chút kỹ thuật: cần đưa vào tối ưu cung hiện tại.
 
-Chú ý rằng trong quá trình DFS trên $G_L$, nếu đỉnh $u$ đồng thời có rất nhiều cạnh vào và cạnh ra, và mỗi khi $u$ nhận luồng từ cạnh vào đều duyệt danh sách cạnh ra để quyết định truyền luồng sang cạnh ra nào, thì độ phức tạp thời gian cục bộ tại $u$ trong trường hợp xấu nhất có thể đạt $O(|E|^2)$. Để tránh nhược điểm này, nếu tại một thời điểm ta đã biết cạnh $(u, v)$ đã được tăng luồng đến giới hạn, tức cạnh $(u, v)$ không còn dung lượng còn dư hoặc phía sau $v$ đã bị chặn, thì luồng của $u$ không cần thử chảy vào cạnh ra $(u, v)$ nữa. Vì vậy, với mỗi đỉnh $u$, ta duy trì cạnh ra đầu tiên trong danh sách cạnh ra của $u$ mà vẫn còn cần thử. Theo thói quen, con trỏ được duy trì này được gọi là cung hiện tại, và cách làm này được gọi là tối ưu cung hiện tại.
+Chú ý rằng trong quá trình DFS trên $G_L$, nếu đỉnh $u$ đồng thời có rất nhiều cạnh vào và cạnh ra, và mỗi khi $u$ nhận luồng từ cạnh vào đều duyệt danh sách cạnh ra để quyết định truyền luồng sang cạnh ra nào, thì độ phức tạp thời gian cục bộ tại $u$ trong trường hợp xấu nhất có thể đạt $O(|E|^2)$. Để tránh nhược điểm này, nếu tại một thời điểm đã biết cạnh $(u, v)$ đã được tăng luồng đến giới hạn, tức cạnh $(u, v)$ không còn dung lượng còn dư hoặc phía sau $v$ đã bị chặn, thì luồng của $u$ không cần thử chảy vào cạnh ra $(u, v)$ nữa. Vì vậy, với mỗi đỉnh $u$, duy trì cạnh ra đầu tiên trong danh sách cạnh ra của $u$ mà vẫn còn cần thử. Theo thói quen, con trỏ được duy trì này được gọi là cung hiện tại, và cách làm này được gọi là tối ưu cung hiện tại.
 
 ??? note "Tăng luồng nhiều đường"
-    Tăng luồng nhiều đường là một tối ưu hằng số của thuật toán Dinic. Nếu ta tìm được một đường tăng luồng $p$ từ $s$ đến $t$ trên đồ thị tầng, thì tiếp theo không nhất thiết phải quay lại từ $s$ để tìm đường tăng luồng kế tiếp, mà có thể bắt đầu từ vị trí cuối cùng trên $p$ vẫn còn dung lượng còn dư để tìm một nhánh rẽ và tăng luồng. Xét sự nhất quán với dạng quay lui, tối ưu này cũng tự nhiên trong cài đặt DFS.
+    Tăng luồng nhiều đường là một tối ưu hằng số của thuật toán Dinic. Nếu tìm được một đường tăng luồng $p$ từ $s$ đến $t$ trên đồ thị tầng, thì tiếp theo không nhất thiết phải quay lại từ $s$ để tìm đường tăng luồng kế tiếp, mà có thể bắt đầu từ vị trí cuối cùng trên $p$ vẫn còn dung lượng còn dư để tìm một nhánh rẽ và tăng luồng. Xét sự nhất quán với dạng quay lui, tối ưu này cũng tự nhiên trong cài đặt DFS.
     
     ??? failure "Hiểu lầm thường gặp"
-        Có lẽ do nhiều tài liệu mạng diễn đạt sai rồi lan truyền, khá nhiều thí sinh thích gọi tối ưu cung hiện tại và tăng luồng nhiều đường là hai tối ưu của thuật toán Dinic đặt ngang hàng nhau. Thực ra, tối ưu cung hiện tại là một phần dùng để đảm bảo tính đúng đắn của độ phức tạp thời gian của Dinic, còn tăng luồng nhiều đường chỉ là tối ưu hằng số không ảnh hưởng đến độ phức tạp.
+        Có lẽ do nhiều tài liệu mạng diễn đạt sai rồi lan truyền, khá nhiều thí sinh thích gọi tối ưu cung hiện tại và tăng luồng nhiều đường là hai tối ưu của thuật toán Dinic đặt ngang hàng nhau. Thực ra, tối ưu cung hiện tại là một phần dùng để bảo đảm tính đúng đắn của độ phức tạp thời gian của Dinic, còn tăng luồng nhiều đường chỉ là tối ưu hằng số không ảnh hưởng đến độ phức tạp.
 
 #### Phân tích độ phức tạp thời gian
 
 Sau khi áp dụng tối ưu cung hiện tại, phân tích độ phức tạp thời gian của thuật toán Dinic như sau.
 
-Trước hết, ta thử chứng minh độ phức tạp thời gian của DFS tìm luồng chặn trong một vòng tăng luồng là $O(|V||E|)$.
+Trước hết, chứng minh độ phức tạp thời gian của DFS tìm luồng chặn trong một vòng tăng luồng là $O(|V||E|)$.
 
 ???+ note "Chứng minh độ phức tạp thời gian của một vòng tăng luồng"
     Xét từng đường tăng luồng trong luồng chặn $f_b$. Chúng đều là kết quả của việc nhảy theo cung hiện tại trên $G_L$, và số lần nhảy mà mỗi đường tăng luồng trải qua không thể nhiều hơn $|V|$.
@@ -255,35 +255,35 @@ Trước hết, ta thử chứng minh độ phức tạp thời gian của DFS t
     Vì mỗi phần tử của $E_1 \cup E_2$ đều không tốn quá $|V|$ lần nhảy, và khi dùng tối ưu tăng luồng nhiều đường thì một số lần nhảy còn bị đếm lặp, nên tổng số lần nhảy trong quá trình DFS không thể nhiều hơn $|V||E_L|$.
     
     ??? failure "Một chứng minh sai thường gặp"
-        Với mỗi đỉnh, ta duy trì cạnh tiếp theo có thể tăng luồng, còn cung hiện tại thay đổi nhiều nhất $|E|$ lần, từ đó độ phức tạp thời gian xấu nhất của một vòng tăng luồng là $O(|V||E|)$.
+        Với mỗi đỉnh, duy trì cạnh tiếp theo có thể tăng luồng, còn cung hiện tại thay đổi nhiều nhất $|E|$ lần, từ đó độ phức tạp thời gian xấu nhất của một vòng tăng luồng là $O(|V||E|)$.
     
     ??? bug "Lỗi"
         "Cung hiện tại thay đổi nhiều nhất $|E|$ lần" không suy ra được "mỗi đỉnh truy cập các cạnh ra của nó nhiều nhất $|E|$ lần". Lý do là truy cập cung hiện tại không nhất thiết làm cạn dung lượng còn dư trên cung đó; đỉnh $u$ có thể truy cập cùng một cung hiện tại nhiều lần.
 
-Chú ý rằng số tầng của đồ thị tầng hiển nhiên không thể vượt quá $|V|$. Nếu có thể chứng minh số tầng của đồ thị tầng tăng nghiêm ngặt đơn điệu trong quá trình tăng luồng, thì số vòng tăng luồng của thuật toán Dinic là $O(|V|)$. Tiếp theo ta thử chứng minh kết luận này[^ref_dinic].
+Chú ý rằng số tầng của đồ thị tầng không thể vượt quá $|V|$. Nếu có thể chứng minh số tầng của đồ thị tầng tăng nghiêm ngặt đơn điệu trong quá trình tăng luồng, thì số vòng tăng luồng của thuật toán Dinic là $O(|V|)$. Tiếp theo chứng minh kết luận này[^ref_dinic].
 
 ???+ note "Chứng minh tính đơn điệu của số tầng đồ thị tầng"
-    Ta cần đưa vào một khái niệm trong các thuật toán đẩy tiền luồng, một lớp thuật toán luồng cực đại khác: nhãn độ cao. Để thuận tiện kết hợp nhãn độ cao vào chứng minh, trong quá trình chứng minh, đặt $d_f(u)$ là khoảng cách từ đỉnh $u$ đến **đích** $t$ trên $G_f$, và phân tầng bắt đầu từ **đích** chứ không phải nguồn. Điều này không có khác biệt bản chất. Với một vòng tăng luồng nào đó, dùng $f$ và $f'$ lần lượt biểu diễn luồng trước và sau khi tăng. Sau khi tìm và thêm luồng chặn trong vòng tăng luồng này, ký hiệu đồ thị tầng chuyển từ $G_L = (V, E_L)$ thành $G'_{L} = (V, E'_L)$.
+    Cần đưa vào một khái niệm trong các thuật toán đẩy tiền luồng, một lớp thuật toán luồng cực đại khác: nhãn độ cao. Để thuận tiện kết hợp nhãn độ cao vào chứng minh, trong quá trình chứng minh, đặt $d_f(u)$ là khoảng cách từ đỉnh $u$ đến **đích** $t$ trên $G_f$, và phân tầng bắt đầu từ **đích** chứ không phải nguồn. Điều này không có khác biệt bản chất. Với một vòng tăng luồng nào đó, dùng $f$ và $f'$ lần lượt biểu diễn luồng trước và sau khi tăng. Sau khi tìm và thêm luồng chặn trong vòng tăng luồng này, ký hiệu đồ thị tầng chuyển từ $G_L = (V, E_L)$ thành $G'_{L} = (V, E'_L)$.
     
-    Ta tạm thời định nghĩa nhãn độ cao một cách không chặt: trên mạng $G = (V, E)$, cho $h$ là một hàm từ tập đỉnh $V$ đến tập số nguyên $N$. $h$ là một nhãn độ cao hợp lệ trên $G$ khi và chỉ khi $h(u) \leq h(v) + 1$ luôn đúng với mọi $(u, v) \in E$.
+    Tạm thời định nghĩa nhãn độ cao một cách không chặt: trên mạng $G = (V, E)$, cho $h$ là một hàm từ tập đỉnh $V$ đến tập số nguyên $N$. $h$ là một nhãn độ cao hợp lệ trên $G$ khi và chỉ khi $h(u) \leq h(v) + 1$ luôn đúng với mọi $(u, v) \in E$.
     
-    Xét mọi phần tử $(u, v)$ của $E_{f'}$, ta thấy lý do để $(u, v) \in E_{f'}$ là một trong hai trường hợp sau.
+    Xét mọi phần tử $(u, v)$ của $E_{f'}$, lý do để $(u, v) \in E_{f'}$ là một trong hai trường hợp sau.
     
-    -   $(u, v) \in E_f$, và dung lượng còn dư chưa bị dùng hết trong vòng tăng luồng này. Theo định nghĩa đường đi ngắn nhất, lúc này ta có $d_f(u) \leq d_f(v) + 1$.
-    -   $(u, v) \not \in E_f$, nhưng trong vòng tăng luồng này luồng chặn đi qua $(v, u)$ và tạo cạnh ngược do hoàn luồng. Theo định nghĩa của đồ thị tầng và luồng chặn, lúc này ta có $d_f(u) + 1 = d_f(v)$.
+    -   $(u, v) \in E_f$, và dung lượng còn dư chưa bị dùng hết trong vòng tăng luồng này. Theo định nghĩa đường đi ngắn nhất, lúc này có $d_f(u) \leq d_f(v) + 1$.
+    -   $(u, v) \not \in E_f$, nhưng trong vòng tăng luồng này luồng chặn đi qua $(v, u)$ và tạo cạnh ngược do hoàn luồng. Theo định nghĩa của đồ thị tầng và luồng chặn, lúc này có $d_f(u) + 1 = d_f(v)$.
     
-    Quan sát trên cho ta một kết luận: $d_f$ là một nhãn độ cao hợp lệ trên $G_{f'}$. Tất nhiên, nó cũng hợp lệ trên đồ thị con $G'_L$ của $G_{f'}$.
+    Quan sát trên cho kết luận: $d_f$ là một nhãn độ cao hợp lệ trên $G_{f'}$. Tất nhiên, nó cũng hợp lệ trên đồ thị con $G'_L$ của $G_{f'}$.
     
-    Bây giờ, với một đường tăng luồng $p = (s, \dots, u, v, \dots, t)$ trên $G'_L$, xét quá trình bắt đầu từ đường rỗng rồi lần lượt thêm một đỉnh theo thứ tự ngược của các đỉnh trên $p$, tức từ $t$ đến $s$. Giả sử đỉnh $v$ đã được thêm, và đỉnh $u$ đang được thêm. Ta thấy sau khi thêm $u$, theo định nghĩa đồ thị tầng, giá trị $d_{f'}(u)$ lớn hơn $d_{f'}(v)$ đúng $1$; đồng thời, vì $d_f$ là nhãn độ cao trên $G'_L$, giá trị $d_f(u)$ có thể lớn hơn $d_f(v)$ đúng $1$, cũng có thể giữ nguyên hoặc giảm. Vì vậy, sau khi toàn bộ đường được thêm xong, ta thu được $d_{f'}(s) \geq d_f(s)$. Điều kiện cần và đủ để đạt dấu bằng là $d_f(u) = d_f(v) + 1$ luôn đúng với mọi $(u, v) \in p$. Nếu bất đẳng thức này không đạt dấu bằng, thì $d_{f'}(s) > d_f(s)$, tức chính là kết luận ta muốn: số tầng của đồ thị tầng tăng nghiêm ngặt đơn điệu trong quá trình tăng luồng. Sau đây ta thử chứng minh bất đẳng thức này không thể đạt dấu bằng.
+    Bây giờ, với một đường tăng luồng $p = (s, \dots, u, v, \dots, t)$ trên $G'_L$, xét quá trình bắt đầu từ đường rỗng rồi lần lượt thêm một đỉnh theo thứ tự ngược của các đỉnh trên $p$, tức từ $t$ đến $s$. Giả sử đỉnh $v$ đã được thêm, và đỉnh $u$ đang được thêm. Sau khi thêm $u$, theo định nghĩa đồ thị tầng, giá trị $d_{f'}(u)$ lớn hơn $d_{f'}(v)$ đúng $1$; đồng thời, vì $d_f$ là nhãn độ cao trên $G'_L$, giá trị $d_f(u)$ có thể lớn hơn $d_f(v)$ đúng $1$, cũng có thể giữ nguyên hoặc giảm. Vì vậy, sau khi toàn bộ đường được thêm xong, thu được $d_{f'}(s) \geq d_f(s)$. Điều kiện cần và đủ để đạt dấu bằng là $d_f(u) = d_f(v) + 1$ luôn đúng với mọi $(u, v) \in p$. Nếu bất đẳng thức này không đạt dấu bằng, thì $d_{f'}(s) > d_f(s)$, tức chính là kết luận cần chứng minh: số tầng của đồ thị tầng tăng nghiêm ngặt đơn điệu trong quá trình tăng luồng. Sau đây chứng minh bất đẳng thức này không thể đạt dấu bằng.
     
-    Xét phản chứng, giả sử $d_{f'}(s) = d_f(s)$ đúng, và thử dẫn đến mâu thuẫn. Bây giờ ta khẳng định rằng trên $G'_L$, $p$ chứa ít nhất một cạnh $(u, v)$ không tồn tại trên $G_L$. Nếu không có cạnh như vậy, xét $d_f(s) = d_{f'}(s)$ và kết hợp định nghĩa đồ thị tầng cùng luồng chặn, việc tăng luồng trên $G_L$ đáng lẽ chưa hoàn tất. Để tránh mâu thuẫn này, khẳng định của ta phải đúng.
+    Xét phản chứng, giả sử $d_{f'}(s) = d_f(s)$ đúng, và dẫn đến mâu thuẫn. Khẳng định rằng trên $G'_L$, $p$ chứa ít nhất một cạnh $(u, v)$ không tồn tại trên $G_L$. Nếu không có cạnh như vậy, xét $d_f(s) = d_{f'}(s)$ và kết hợp định nghĩa đồ thị tầng cùng luồng chặn, việc tăng luồng trên $G_L$ đáng lẽ chưa hoàn tất. Để tránh mâu thuẫn này, khẳng định phải đúng.
     
     Gọi $(u, v)$ là cạnh thỏa mãn khẳng định đó. Lý do khiến nó thỏa mãn khẳng định chỉ có thể là một trong hai trường hợp sau.
     
     -   $(u, v) \in E_f$ nhưng $d_f(u) \leq d_f(v) + 1$ không đạt dấu bằng, nên theo định nghĩa đồ thị tầng, $(u, v) \not \in E_L$, và sau khi tăng luồng được thêm vào $E'_L$ trong lần phân tầng lại mới.
     -   $(u, v) \not \in E_f$, nghĩa là cạnh $(u, v)$ được sinh ra do luồng chặn trong vòng tăng luồng hiện tại đi qua $(v, u)$ và tạo cạnh ngược do hoàn luồng, tức $d_f(u) = d_f(v) - 1$.
     
-    Dù khẳng định được thỏa mãn theo cách nào, ta đều có $d_f(u) \neq d_f(v) + 1$. Tức là điều kiện cần và đủ để $d_{f'}(s) \geq d_f(s)$ đạt dấu bằng không thể được thỏa mãn, mâu thuẫn với giả thiết phản chứng $d_{f'}(s) = d_f(s)$. Mệnh đề ban đầu được chứng minh.
+    Dù khẳng định được thỏa mãn theo cách nào, đều có $d_f(u) \neq d_f(v) + 1$. Tức là điều kiện cần và đủ để $d_{f'}(s) \geq d_f(s)$ đạt dấu bằng không thể được thỏa mãn, mâu thuẫn với giả thiết phản chứng $d_{f'}(s) = d_f(s)$. Mệnh đề ban đầu được chứng minh.
     
     ??? failure "Một chứng minh sai thường gặp khác"
         Xét phản chứng. Giả sử sau một vòng tăng luồng, số tầng của đồ thị tầng bằng trước đó, thì trên đồ thị tầng vẫn phải tồn tại ít nhất một đường tăng luồng từ $s$ đến $t$ sao cho hiệu số tầng giữa hai đỉnh kề nhau là $1$. Đường tăng luồng này chưa được tăng chứng tỏ vòng tăng luồng đó chưa kết thúc. Để tránh mâu thuẫn trên, mệnh đề ban đầu đúng.
@@ -293,13 +293,13 @@ Chú ý rằng số tầng của đồ thị tầng hiển nhiên không thể v
 
 Nhân độ phức tạp thời gian của một vòng tăng luồng $O(|V||E|)$ với số vòng tăng luồng $O(|V|)$, độ phức tạp thời gian của thuật toán Dinic là $O(|V|^2|E|)$.
 
-Nếu muốn thời gian chạy thực tế của thuật toán Dinic tiệm cận cận trên lý thuyết, ta cần xây dựng mạng đầu vào có tính chất đặc biệt. Trong thực hành thi thuật toán, phần kiểm tra kiến thức luồng mạng thường tập trung vào kỹ thuật mô hình hóa bài toán gốc thành bài toán luồng mạng. Khi đó, mô hình của ta thường không chứa các tính chất đặc biệt khiến thuật toán Dinic chạy chậm; ngược lại, Dinic có hiệu quả rất tốt trên phần lớn đồ thị. Vì vậy, phạm vi dữ liệu của bài toán luồng mạng thường khá lớn, và cách "thay giá trị $|V|, |E|$ vào $|V|^2|E|$ để ước lượng thời gian chạy" không phù hợp. Thực tế, để ước lượng chính xác, thí sinh cần có kinh nghiệm nhất định về hiệu suất thực tế của thuật toán Dinic; người đọc có thể luyện tập thêm.
+Nếu muốn thời gian chạy thực tế của thuật toán Dinic tiệm cận cận trên lý thuyết, cần xây dựng mạng đầu vào có tính chất đặc biệt. Trong thực hành thi thuật toán, phần kiểm tra kiến thức luồng mạng thường tập trung vào kỹ thuật mô hình hóa bài toán gốc thành bài toán luồng mạng. Khi đó, mô hình thường không chứa các tính chất đặc biệt khiến thuật toán Dinic chạy chậm; ngược lại, Dinic có hiệu quả rất tốt trên phần lớn đồ thị. Vì vậy, phạm vi dữ liệu của bài toán luồng mạng thường khá lớn, và cách "thay giá trị $|V|, |E|$ vào $|V|^2|E|$ để ước lượng thời gian chạy" không phù hợp. Thực tế, để ước lượng chính xác, thí sinh cần có kinh nghiệm nhất định về hiệu suất thực tế của thuật toán Dinic.
 
 #### Phân tích độ phức tạp thời gian trong các trường hợp đặc biệt
 
 Trên một số đồ thị có tính chất tốt, thuật toán Dinic có độ phức tạp thời gian tốt hơn.
 
-Với mạng $G = (V, E)$, nếu mọi cạnh đều có dung lượng bằng $1$, tức $c(u, v) \in \{0, 1\}$ luôn đúng với mọi $(u, v) \in E$, ta gọi $G$ là mạng dung lượng đơn vị.
+Với mạng $G = (V, E)$, nếu mọi cạnh đều có dung lượng bằng $1$, tức $c(u, v) \in \{0, 1\}$ luôn đúng với mọi $(u, v) \in E$, gọi $G$ là mạng dung lượng đơn vị.
 
 Trong mạng dung lượng đơn vị, độ phức tạp thời gian của một vòng tăng luồng trong thuật toán Dinic là $O(|E|)$.
 
@@ -311,28 +311,28 @@ Trong mạng dung lượng đơn vị, số vòng tăng luồng của thuật to
 ???+ note "Chứng minh"
     Phân tầng lấy nguồn $s$ làm trung tâm, ký hiệu $d_f(u)$ là khoảng cách từ đỉnh $u$ đến nguồn $s$ trên $G_f$. Ngoài ra, định nghĩa tập đỉnh $\left\{u \mid u \in V, d_f(u) = k \right\}$ là tầng số $k$, ký hiệu $D_k$, và đặt $S_k = \cup_{i \leq k} D_i$.
     
-    Giả sử ta đã thực hiện $|E|^{\frac{1}{2}}$ vòng tăng luồng. Theo nguyên lý Dirichlet, tồn tại ít nhất một $k$ sao cho kích thước của tập cạnh $\left\{ (u, v) \mid u \in D_k, v \in D_{k+1}, (u, v) \in E_f \right\}$ không vượt quá $\frac {|E|} {|E|^{\frac{1}{2}}} \approx |E|^{\frac{1}{2}}$. Hiển nhiên, $\{S_k, V - S_k\}$ là một lát cắt $s$-$t$ trên $G_f$, và dung lượng lát cắt của nó không vượt quá $|E|^{\frac{1}{2}}$. Theo định lý luồng cực đại - lát cắt nhỏ nhất, luồng cực đại trên $G_f$ không vượt quá $|E|^{\frac{1}{2}}$, tức trên $G_f$ nhiều nhất còn có thể thực hiện $|E|^{\frac{1}{2}}$ vòng tăng luồng. Vì vậy tổng số vòng tăng luồng là $O(|E|^{\frac{1}{2}})$.
+    Giả sử đã thực hiện $|E|^{\frac{1}{2}}$ vòng tăng luồng. Theo nguyên lý Dirichlet, tồn tại ít nhất một $k$ sao cho kích thước của tập cạnh $\left\{ (u, v) \mid u \in D_k, v \in D_{k+1}, (u, v) \in E_f \right\}$ không vượt quá $\frac {|E|} {|E|^{\frac{1}{2}}} \approx |E|^{\frac{1}{2}}$. Khi đó, $\{S_k, V - S_k\}$ là một lát cắt $s$-$t$ trên $G_f$, và dung lượng lát cắt của nó không vượt quá $|E|^{\frac{1}{2}}$. Theo định lý luồng cực đại - lát cắt nhỏ nhất, luồng cực đại trên $G_f$ không vượt quá $|E|^{\frac{1}{2}}$, tức trên $G_f$ nhiều nhất còn có thể thực hiện $|E|^{\frac{1}{2}}$ vòng tăng luồng. Vì vậy tổng số vòng tăng luồng là $O(|E|^{\frac{1}{2}})$.
 
 Trong mạng dung lượng đơn vị, số vòng tăng luồng của thuật toán Dinic là $O(|V|^{\frac{2}{3}})$.
 
 ???+ note "Chứng minh"
-    Giả sử ta đã thực hiện $2 |V|^{\frac{2}{3}}$ vòng tăng luồng. Vì nhiều nhất chỉ có một nửa số tầng, tức $|V|^{\frac{2}{3}}$ tầng, chứa nhiều hơn $|V|^{\frac{1}{3}}$ đỉnh, nên bất kể ta phân bố kích thước của tất cả các tầng như thế nào, vẫn tồn tại ít nhất một $k$ sao cho hai tầng kề nhau đều chứa không quá $|V|^{\frac{1}{3}}$ đỉnh, tức $|D_k| \leq |V|^{\frac{1}{3}}$ và $|D_{k+1}| \leq |V|^{\frac{1}{3}}$.
+    Giả sử đã thực hiện $2 |V|^{\frac{2}{3}}$ vòng tăng luồng. Vì nhiều nhất chỉ có một nửa số tầng, tức $|V|^{\frac{2}{3}}$ tầng, chứa nhiều hơn $|V|^{\frac{1}{3}}$ đỉnh, nên bất kể phân bố kích thước của tất cả các tầng như thế nào, vẫn tồn tại ít nhất một $k$ sao cho hai tầng kề nhau đều chứa không quá $|V|^{\frac{1}{3}}$ đỉnh, tức $|D_k| \leq |V|^{\frac{1}{3}}$ và $|D_{k+1}| \leq |V|^{\frac{1}{3}}$.
     
-    Để tối đa hóa số cạnh giữa $D_k$ và $D_{k+1}$, giả sử đây là một đồ thị hai phía đầy đủ. Khi đó kích thước của tập cạnh $\left\{ (u, v) \mid u \in D_k, v \in D_{k+1}, (u, v) \in E_f \right\}$ không vượt quá $|V|^{\frac{2}{3}}$. Hiển nhiên, $\{S_k, V - S_k\}$ là một lát cắt $s$-$t$ trên $G_f$, và dung lượng lát cắt của nó không vượt quá $|V|^{\frac{2}{3}}$. Theo định lý luồng cực đại - lát cắt nhỏ nhất, luồng cực đại trên $G_f$ không vượt quá $|V|^{\frac{2}{3}}$, tức trên $G_f$ nhiều nhất còn có thể thực hiện $|V|^{\frac{2}{3}}$ vòng tăng luồng. Vì vậy tổng số vòng tăng luồng là $O(|V|^{\frac{2}{3}})$.
+    Để tối đa hóa số cạnh giữa $D_k$ và $D_{k+1}$, giả sử đây là một đồ thị hai phía đầy đủ. Khi đó kích thước của tập cạnh $\left\{ (u, v) \mid u \in D_k, v \in D_{k+1}, (u, v) \in E_f \right\}$ không vượt quá $|V|^{\frac{2}{3}}$. Khi đó, $\{S_k, V - S_k\}$ là một lát cắt $s$-$t$ trên $G_f$, và dung lượng lát cắt của nó không vượt quá $|V|^{\frac{2}{3}}$. Theo định lý luồng cực đại - lát cắt nhỏ nhất, luồng cực đại trên $G_f$ không vượt quá $|V|^{\frac{2}{3}}$, tức trên $G_f$ nhiều nhất còn có thể thực hiện $|V|^{\frac{2}{3}}$ vòng tăng luồng. Vì vậy tổng số vòng tăng luồng là $O(|V|^{\frac{2}{3}})$.
 
 Trong mạng dung lượng đơn vị, nếu ngoài nguồn và đích, mỗi đỉnh $u$ đều thỏa mãn $\mathit{deg}_{\mathit{in}}(u) = 1$ hoặc $\mathit{deg}_{\mathit{out}}(u) = 1$, thì số vòng tăng luồng của thuật toán Dinic là $O(|V|^{\frac{1}{2}})$. Trong đó, $\mathit{deg}_{\mathit{in}}(u)$ và $\mathit{deg}_{\mathit{out}}(u)$ lần lượt biểu diễn bậc vào và bậc ra của đỉnh $u$.
 
 ???+ note "Chứng minh"
-    Ta đưa vào bổ đề sau: với mạng có dạng này, bất kỳ luồng nào trên nó luôn có thể phân rã thành một số đường tăng luồng có luồng đơn vị và **không giao nhau theo đỉnh**.
+    Đưa vào bổ đề sau: với mạng có dạng này, bất kỳ luồng nào trên nó luôn có thể phân rã thành một số đường tăng luồng có luồng đơn vị và **không giao nhau theo đỉnh**.
     
-    Giả sử ta đã thực hiện $|V|^{\frac{1}{2}}$ vòng tăng luồng. Theo định nghĩa đồ thị tầng, lúc này độ dài của bất kỳ đường tăng luồng mới nào ít nhất là $|V|^{\frac{1}{2}}$.
+    Giả sử đã thực hiện $|V|^{\frac{1}{2}}$ vòng tăng luồng. Theo định nghĩa đồ thị tầng, lúc này độ dài của bất kỳ đường tăng luồng mới nào ít nhất là $|V|^{\frac{1}{2}}$.
     
     Xét phân rã thành các đường tăng luồng của luồng cực đại trên $G_f$. Số đường tăng luồng thu được không thể nhiều hơn $\frac {|V|} {|V|^{\frac{1}{2}}} \approx |V|^{\frac{1}{2}}$, nghĩa là trên $G_f$ nhiều nhất còn có thể thực hiện $|V|^{\frac{1}{2}}$ vòng tăng luồng. Vì vậy tổng số vòng tăng luồng là $O(|V|^{\frac{1}{2}})$.
 
-Tóm lại, ta thu được một số hệ quả.
+Tóm lại, thu được một số hệ quả.
 
 -   Trên mạng dung lượng đơn vị, tổng độ phức tạp thời gian của thuật toán Dinic là $O(|E| \min(|E|^\frac{1}{2}, |V|^{\frac{2}{3}}))$.
--   Trên mạng dung lượng đơn vị, nếu ngoài nguồn và đích, mỗi đỉnh $u$ đều thỏa mãn $\mathit{deg}_{\mathit{in}}(u) = 1$ hoặc $\mathit{deg}_{\mathit{out}}(u) = 1$, tổng độ phức tạp thời gian của thuật toán Dinic là $O(|E||V|^{\frac{1}{2}})$. Với bài toán ghép cặp cực đại trên đồ thị hai phía, ta thường dùng thuật toán Hopcroft–Karp để giải, và thuật toán này thực ra là một trường hợp đặc biệt của Dinic trên mạng dung lượng đơn vị thỏa mãn ràng buộc bậc nói trên.
+-   Trên mạng dung lượng đơn vị, nếu ngoài nguồn và đích, mỗi đỉnh $u$ đều thỏa mãn $\mathit{deg}_{\mathit{in}}(u) = 1$ hoặc $\mathit{deg}_{\mathit{out}}(u) = 1$, tổng độ phức tạp thời gian của thuật toán Dinic là $O(|E||V|^{\frac{1}{2}})$. Với bài toán ghép cặp cực đại trên đồ thị hai phía, thường dùng thuật toán Hopcroft–Karp để giải, và thuật toán này thực ra là một trường hợp đặc biệt của Dinic trên mạng dung lượng đơn vị thỏa mãn ràng buộc bậc nói trên.
 
 #### Cài đặt
 
@@ -423,22 +423,22 @@ p(v) &= \min (p_{in}(v), p_{out}(v))
 \end{aligned}
 $$
 
-Ta gọi đỉnh $r$ là đỉnh tham chiếu khi và chỉ khi $p(r) = \min {p(v)}$. Với một đỉnh tham chiếu $r$, ta chắc chắn có thể làm luồng đi qua $r$ tăng thêm $p(r)$ để dung lượng của nó trở thành $0$. Lý do là $L$ là đồ thị có hướng không chu trình và dung lượng đỉnh trong $L$ ít nhất là $p(r)$, nên ta chắc chắn tìm được một đường có hướng từ $s$ đi qua $r$ đến $t$. Khi đó chỉ cần tăng luồng trên các cạnh của đường này thêm $p(r)$. Đường này chính là đường tăng luồng của pha này. Có thể dùng BFS để tìm đường tăng luồng. Sau khi tăng luồng xong, mọi cạnh đầy luồng đều có thể bị xóa khỏi $L$ vì chúng sẽ không được dùng tiếp trong pha này. Tương tự, mọi đỉnh khác $s$ và $t$ mà không có cạnh ra hoặc cạnh vào cũng có thể bị xóa.
+Gọi đỉnh $r$ là đỉnh tham chiếu khi và chỉ khi $p(r) = \min {p(v)}$. Với một đỉnh tham chiếu $r$, chắc chắn có thể làm luồng đi qua $r$ tăng thêm $p(r)$ để dung lượng của nó trở thành $0$. Lý do là $L$ là đồ thị có hướng không chu trình và dung lượng đỉnh trong $L$ ít nhất là $p(r)$, nên chắc chắn tìm được một đường có hướng từ $s$ đi qua $r$ đến $t$. Khi đó chỉ cần tăng luồng trên các cạnh của đường này thêm $p(r)$. Đường này chính là đường tăng luồng của pha này. Có thể dùng BFS để tìm đường tăng luồng. Sau khi tăng luồng xong, mọi cạnh đầy luồng đều có thể bị xóa khỏi $L$ vì chúng sẽ không được dùng tiếp trong pha này. Tương tự, mọi đỉnh khác $s$ và $t$ mà không có cạnh ra hoặc cạnh vào cũng có thể bị xóa.
 
 #### Phân tích độ phức tạp thời gian
 
-Mỗi pha của thuật toán MPM cần $O(V^2)$, vì có nhiều nhất $V$ lần lặp, do ít nhất đỉnh tham chiếu được chọn bị xóa, và trong mỗi lần lặp, ta xóa tất cả các cạnh được đi qua, ngoại trừ nhiều nhất $V$ cạnh. Lấy tổng, ta được $O(V^2+E)=O(V^2)$. Vì tổng số pha nhỏ hơn $V$, tổng thời gian chạy của thuật toán MPM là $O(V^3)$.
+Mỗi pha của thuật toán MPM cần $O(V^2)$, vì có nhiều nhất $V$ lần lặp, do ít nhất đỉnh tham chiếu được chọn bị xóa, và trong mỗi lần lặp, xóa tất cả các cạnh được đi qua, ngoại trừ nhiều nhất $V$ cạnh. Lấy tổng, thu được $O(V^2+E)=O(V^2)$. Vì tổng số pha nhỏ hơn $V$, tổng thời gian chạy của thuật toán MPM là $O(V^3)$.
 
 ???+ note "Chứng minh số pha nhỏ hơn V"
-    Thuật toán MPM kết thúc trong ít hơn $V$ pha. Để chứng minh điều này, trước hết ta phải chứng minh hai bổ đề.
+    Thuật toán MPM kết thúc trong ít hơn $V$ pha. Để chứng minh điều này, trước hết cần chứng minh hai bổ đề.
     
     **Bổ đề 1**: sau mỗi lần lặp, khoảng cách từ $s$ đến mỗi đỉnh không giảm, tức $level_{i+1}[v] \ge level_{i}[v]$.
     
-    **Chứng minh**: cố định một pha $i$ và một đỉnh $v$. Xét một đường đi ngắn nhất bất kỳ $P$ từ $s$ đến $v$ trong $G_{i}^R$. Độ dài của $P$ bằng $level_{i}[v]$. Chú ý rằng $G_{i}^R$ chỉ có thể chứa các cạnh lùi và cạnh tiến của $G_{i}^R$. Nếu $P$ không có cạnh lùi của $G_{i}^R$, thì $level_{i+1}[v] \ge level_{i}[v]$, vì $P$ cũng là một đường đi trong $G_{i}^R$. Bây giờ giả sử $P$ có ít nhất một cạnh lùi và cạnh đầu tiên như vậy là $(u,w)$. Khi đó $level_{i+1}[u] \ge level_{i}[u]$, do trường hợp thứ nhất. Cạnh $(u,w)$ không thuộc $G_{i}^R$, vì vậy $(u,w)$ chịu ảnh hưởng của đường tăng luồng ở lần lặp trước. Điều này nghĩa là $level_{i}[u] = level_{i}[w]+1$. Ngoài ra, $level_{i+1}[w] = level_{i+1}[u]+1$. Từ hai phương trình này và $level_{i+1}[u] \ge level_{i}[u]$, ta được $level_{i+1}[w] \ge level_{i}[w]+2$. Phần còn lại của đường đi cũng có thể dùng cùng ý tưởng.
+    **Chứng minh**: cố định một pha $i$ và một đỉnh $v$. Xét một đường đi ngắn nhất bất kỳ $P$ từ $s$ đến $v$ trong $G_{i}^R$. Độ dài của $P$ bằng $level_{i}[v]$. Chú ý rằng $G_{i}^R$ chỉ có thể chứa các cạnh lùi và cạnh tiến của $G_{i}^R$. Nếu $P$ không có cạnh lùi của $G_{i}^R$, thì $level_{i+1}[v] \ge level_{i}[v]$, vì $P$ cũng là một đường đi trong $G_{i}^R$. Bây giờ giả sử $P$ có ít nhất một cạnh lùi và cạnh đầu tiên như vậy là $(u,w)$. Khi đó $level_{i+1}[u] \ge level_{i}[u]$, do trường hợp thứ nhất. Cạnh $(u,w)$ không thuộc $G_{i}^R$, vì vậy $(u,w)$ chịu ảnh hưởng của đường tăng luồng ở lần lặp trước. Điều này nghĩa là $level_{i}[u] = level_{i}[w]+1$. Ngoài ra, $level_{i+1}[w] = level_{i+1}[u]+1$. Từ hai phương trình này và $level_{i+1}[u] \ge level_{i}[u]$, thu được $level_{i+1}[w] \ge level_{i}[w]+2$. Phần còn lại của đường đi cũng có thể dùng cùng ý tưởng.
     
     **Bổ đề 2**: $level_{i+1}[t] > level_{i}[t]$.
     
-    **Chứng minh**: từ bổ đề 1, ta có $level_{i+1}[t] \ge level_{i}[t]$. Giả sử $level_{i+1}[t] = level_{i}[t]$. Chú ý rằng $G_{i}^R$ chỉ có thể chứa các cạnh lùi và cạnh tiến của $G_{i}^R$. Điều này nghĩa là trong $G_{i}^R$ có một đường đi ngắn nhất chưa bị đường tăng luồng chặn, dẫn đến mâu thuẫn.
+    **Chứng minh**: từ bổ đề 1, có $level_{i+1}[t] \ge level_{i}[t]$. Giả sử $level_{i+1}[t] = level_{i}[t]$. Chú ý rằng $G_{i}^R$ chỉ có thể chứa các cạnh lùi và cạnh tiến của $G_{i}^R$. Điều này nghĩa là trong $G_{i}^R$ có một đường đi ngắn nhất chưa bị đường tăng luồng chặn, dẫn đến mâu thuẫn.
 
 #### Cài đặt
 
@@ -627,27 +627,27 @@ Mỗi pha của thuật toán MPM cần $O(V^2)$, vì có nhiều nhất $V$ l�
 
 ### ISAP
 
-Trong thuật toán Dinic, sau mỗi lần tìm xong đường tăng luồng, ta đều phải chạy BFS để phân tầng. Có cách nào hiệu quả hơn không?
+Trong thuật toán Dinic, sau mỗi lần tìm xong đường tăng luồng, đều phải chạy BFS để phân tầng. Có cách nào hiệu quả hơn không?
 
 Câu trả lời chính là thuật toán ISAP được giới thiệu dưới đây.
 
 #### Quy trình
 
-Giống thuật toán Dinic, trước hết ta vẫn chạy BFS để phân tầng các đỉnh trên đồ thị. Tuy nhiên, hơi khác Dinic ở chỗ ta chọn chạy BFS trên đồ thị ngược, từ đỉnh $t$ về đỉnh $s$.
+Giống thuật toán Dinic, trước hết vẫn chạy BFS để phân tầng các đỉnh trên đồ thị. Tuy nhiên, hơi khác Dinic ở chỗ chọn chạy BFS trên đồ thị ngược, từ đỉnh $t$ về đỉnh $s$.
 
-Sau khi thực hiện xong quá trình phân tầng, ta dùng DFS để tìm đường tăng luồng.
+Sau khi thực hiện xong quá trình phân tầng, dùng DFS để tìm đường tăng luồng.
 
-Quá trình tăng luồng tương tự Dinic: ta chỉ chọn các đỉnh có số tầng nhỏ hơn đỉnh hiện tại $1$ đơn vị để tăng luồng.
+Quá trình tăng luồng tương tự Dinic: chỉ chọn các đỉnh có số tầng nhỏ hơn đỉnh hiện tại $1$ đơn vị để tăng luồng.
 
-Khác với Dinic, ta không chạy lại BFS để phân tầng lại các đỉnh trên đồ thị, mà hoàn thành việc phân tầng lại ngay trong quá trình tăng luồng.
+Khác với Dinic, không chạy lại BFS để phân tầng lại các đỉnh trên đồ thị, mà hoàn thành việc phân tầng lại ngay trong quá trình tăng luồng.
 
-Cụ thể, giả sử tầng của đỉnh số $i$ là $d_i$. Khi kết thúc quá trình tăng luồng tại đỉnh số $i$, ta duyệt tất cả các cạnh ra của $i$ trên mạng thặng dư, tìm đỉnh ra $j$ có tầng nhỏ nhất, rồi đặt $d_i \gets d_j+1$. Đặc biệt, nếu trên mạng thặng dư $i$ không có cạnh ra, đặt $d_i \gets n$.
+Cụ thể, giả sử tầng của đỉnh số $i$ là $d_i$. Khi kết thúc quá trình tăng luồng tại đỉnh số $i$, duyệt tất cả các cạnh ra của $i$ trên mạng thặng dư, tìm đỉnh ra $j$ có tầng nhỏ nhất, rồi đặt $d_i \gets d_j+1$. Đặc biệt, nếu trên mạng thặng dư $i$ không có cạnh ra, đặt $d_i \gets n$.
 
-Dễ thấy khi $d_s \geq n$, trên đồ thị không tồn tại đường tăng luồng, khi đó có thể kết thúc thuật toán.
+Khi $d_s \geq n$, trên đồ thị không tồn tại đường tăng luồng, khi đó có thể kết thúc thuật toán.
 
 Giống Dinic, trong ISAP cũng có **tối ưu cung hiện tại**.
 
-ISAP còn có một tối ưu khác: ta ghi lại số lượng đỉnh có tầng bằng $i$ là $num_i$. Mỗi khi cập nhật tầng của một đỉnh từ $x$ thành $y$, đồng thời cập nhật giá trị mảng $num$. Nếu sau cập nhật $num_x=0$, điều đó nghĩa là trên đồ thị xuất hiện một khoảng trống tầng, không thể tìm thêm đường tăng luồng nữa. Khi đó có thể trực tiếp kết thúc thuật toán, khi cài đặt thì trực tiếp đánh dấu $d_s$ thành $n$. Tối ưu này được gọi là **tối ưu GAP**.
+ISAP còn có một tối ưu khác: ghi lại số lượng đỉnh có tầng bằng $i$ là $num_i$. Mỗi khi cập nhật tầng của một đỉnh từ $x$ thành $y$, đồng thời cập nhật giá trị mảng $num$. Nếu sau cập nhật $num_x=0$, điều đó nghĩa là trên đồ thị xuất hiện một khoảng trống tầng, không thể tìm thêm đường tăng luồng nữa. Khi đó có thể trực tiếp kết thúc thuật toán; khi cài đặt, trực tiếp đánh dấu $d_s$ thành $n$. Tối ưu này được gọi là **tối ưu GAP**.
 
 #### Cài đặt
 
@@ -772,17 +772,17 @@ Phương pháp này bỏ qua tính bảo toàn luồng trong quá trình giải,
 
 ### Thuật toán đẩy tiền luồng tổng quát
 
-Trước hết ta giới thiệu tư tưởng chính của thuật toán đẩy tiền luồng, cũng như một thuật toán vét cạn khả thi.
+Trước hết giới thiệu tư tưởng chính của thuật toán đẩy tiền luồng, cũng như một thuật toán vét cạn khả thi.
 
 Thuật toán đẩy tiền luồng giải luồng cực đại bằng cách cập nhật từng đỉnh cho đến khi không còn đỉnh nào cần cập nhật.
 
-Hàm luồng được duy trì trong quá trình thuật toán không nhất thiết luôn thỏa mãn bảo toàn luồng. Với một đỉnh, ta cho phép luồng đi vào đỉnh lớn hơn luồng đi ra khỏi đỉnh; phần vượt quá được gọi là **luồng dư** $e(u)$ của đỉnh $u(u\in V-\{s,t\})$:
+Hàm luồng được duy trì trong quá trình thuật toán không nhất thiết luôn thỏa mãn bảo toàn luồng. Với một đỉnh, cho phép luồng đi vào đỉnh lớn hơn luồng đi ra khỏi đỉnh; phần vượt quá được gọi là **luồng dư** $e(u)$ của đỉnh $u(u\in V-\{s,t\})$:
 
 $$
 e(u)=\sum_{(x,u)\in E}f(x,u)-\sum_{(u,y)\in E}f(u,y)
 $$
 
-Nếu $e(u)>0$, gọi đỉnh $u$ là **đang hoạt động**[^note1]. Chú ý rằng khi nói đến đỉnh đang hoạt động, ta không bao gồm $s$ và $t$.
+Nếu $e(u)>0$, gọi đỉnh $u$ là **đang hoạt động**[^note1]. Chú ý rằng khi nói đến đỉnh đang hoạt động, không bao gồm $s$ và $t$.
 
 Thuật toán đẩy tiền luồng duy trì độ cao $h(u)$ của mỗi đỉnh và quy định rằng nếu đỉnh đang hoạt động $u$ muốn đẩy luồng dư, nó chỉ có thể đẩy đến các đỉnh có độ cao nhỏ hơn $u$. Nếu $u$ không có đỉnh kề nào có độ cao nhỏ hơn $u$, thì sửa độ cao của $u$, tức gán lại nhãn.
 
@@ -803,7 +803,7 @@ Thuật toán chỉ thực hiện đẩy trên các cạnh có $h(u)=h(v)+1$.
 
 Điều kiện áp dụng: đỉnh $u$ đang hoạt động, và tồn tại đỉnh $v((u,v)\in E_f,c(u,v)-f(u,v)>0,h(u)=h(v)+1)$. Khi đó thao tác đẩy áp dụng được cho $(u,v)$.
 
-Vì vậy, ta cố gắng đẩy nhiều nhất có thể luồng dư từ $u$ sang $v$. Trong quá trình đẩy, ta chỉ quan tâm giá trị nhỏ nhất giữa luồng dư và $c(u,v)-f(u,v)$, không quan tâm $v$ có trở thành đỉnh đang hoạt động hay không.
+Vì vậy, cố gắng đẩy nhiều nhất có thể luồng dư từ $u$ sang $v$. Trong quá trình đẩy, chỉ quan tâm giá trị nhỏ nhất giữa luồng dư và $c(u,v)-f(u,v)$, không quan tâm $v$ có trở thành đỉnh đang hoạt động hay không.
 
 Nếu $(u,v)$ đầy luồng sau khi đẩy xong, xóa nó khỏi mạng thặng dư.
 
@@ -833,17 +833,17 @@ $$
 e(u)=\sum_{(x,u)\in E}f(x,u)-\sum_{(u,y)\in E}f(u,y)
 $$
 
-Ở trên ta lấp đầy luồng trên các cạnh $(s,v)\in E$ và nâng $h(s)$ lên, khiến $(s,v)\notin E_f$, vì $h(s)>h(v)$, hơn nữa $(s,v)$ vốn đã đầy luồng nên không cần giữ trong mạng thặng dư. Ở trên cũng khởi tạo $e(s)$ bằng số đối của $\sum_{(s,v)\in E}f(s,v)$.
+Phần trên lấp đầy luồng trên các cạnh $(s,v)\in E$ và nâng $h(s)$ lên, khiến $(s,v)\notin E_f$, vì $h(s)>h(v)$, hơn nữa $(s,v)$ vốn đã đầy luồng nên không cần giữ trong mạng thặng dư. Phần trên cũng khởi tạo $e(s)$ bằng số đối của $\sum_{(s,v)\in E}f(s,v)$.
 
 #### Quy trình
 
-Mỗi lần ta quét toàn bộ đồ thị. Chỉ cần tồn tại đỉnh $u$ thỏa mãn điều kiện của thao tác push hoặc relabel, ta thực hiện thao tác tương ứng.
+Mỗi lần quét toàn bộ đồ thị. Chỉ cần tồn tại đỉnh $u$ thỏa mãn điều kiện của thao tác push hoặc relabel, thực hiện thao tác tương ứng.
 
 Như trong hình, giữa mỗi đỉnh biểu diễn số hiệu, góc trái dưới biểu diễn giá trị độ cao $h(u)$, góc phải dưới biểu diễn luồng dư $e(u)$, độ đậm màu của đỉnh cũng biểu diễn độ cao của đỉnh; trọng số cạnh biểu diễn $c(u,v)-f(u,v)$, cạnh màu xanh lá biểu diễn cạnh $(u,v)$ thỏa mãn $h(u)=h(v)+1$, tức cạnh của mạng thặng dư $E_f$:
 
 ![Trạng thái ban đầu của thuật toán push-relabel](./images/2148.png)
 
-Ta xem qua toàn bộ quá trình của thuật toán. Ở đây tác giả dùng một thuật toán vét cạn, tức quét vét cạn xem có đỉnh đang hoạt động nào không; nếu có thì cập nhật.
+Hình dưới minh họa toàn bộ quá trình của thuật toán. Tác giả dùng một thuật toán vét cạn, tức quét vét cạn xem có đỉnh đang hoạt động nào không; nếu có thì cập nhật.
 
 ![Quá trình chạy thuật toán push-relabel](./images/2149.gif)
 
@@ -903,13 +903,13 @@ Một bài báo kiểm thử hiệu năng thực tế của các thuật toán l
 
 #### Tối ưu BFS
 
-Cận trên của HLPP là $O(n^2\sqrt m)$, nhưng khi sử dụng thì khá sát; ta có thể tối ưu lúc khởi tạo độ cao. Cụ thể, khởi tạo $h(u)$ là khoảng cách ngắn nhất từ $u$ đến $t$; đặc biệt $h(s)=n$.
+Cận trên của HLPP là $O(n^2\sqrt m)$, nhưng khi sử dụng thì khá sát; có thể tối ưu lúc khởi tạo độ cao. Cụ thể, khởi tạo $h(u)$ là khoảng cách ngắn nhất từ $u$ đến $t$; đặc biệt $h(s)=n$.
 
-Trong khi BFS, ta đồng thời kiểm tra tính liên thông của đồ thị để loại trường hợp không có nghiệm.
+Trong khi BFS, đồng thời kiểm tra tính liên thông của đồ thị để loại trường hợp không có nghiệm.
 
 #### Tối ưu GAP
 
-Điều kiện đẩy của HLPP là $h(u)=h(v)+1$. Nếu tại một thời điểm nào đó của thuật toán tồn tại một $k$ sao cho số đỉnh có $h(u)=k$ bằng $0$, thì các đỉnh có $h(u)>k$ sẽ mãi không thể đẩy luồng dư đến $t$, mà chỉ có thể đưa ngược về $s$. Vì vậy lúc này ta trực tiếp đặt độ cao của chúng thành ít nhất $n+1$ để nhanh chóng đẩy ngược về $s$, giảm thao tác gán lại nhãn.
+Điều kiện đẩy của HLPP là $h(u)=h(v)+1$. Nếu tại một thời điểm nào đó của thuật toán tồn tại một $k$ sao cho số đỉnh có $h(u)=k$ bằng $0$, thì các đỉnh có $h(u)>k$ sẽ mãi không thể đẩy luồng dư đến $t$, mà chỉ có thể đưa ngược về $s$. Vì vậy lúc này trực tiếp đặt độ cao của chúng thành ít nhất $n+1$ để nhanh chóng đẩy ngược về $s$, giảm thao tác gán lại nhãn.
 
 Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụng $N*2-1$ xô `B`, trong đó `B[i]` ghi lại tất cả các đỉnh đang hoạt động hiện có độ cao $i$. Cài đặt đã thêm hai tối ưu nói trên, và chỉ xử lý các đỉnh đang hoạt động có độ cao nhỏ hơn $n$.
 
@@ -1012,7 +1012,7 @@ Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụ
           if (!--gap[ht[u]])
             for (int i = 1; i <= n; i++)
               if (i != s && ht[i] > ht[u] && ht[i] < n + 1)
-                ht[i] = n + 1;  // các đỉnh được gán lại thành n+1 ở đây đều không đang hoạt động
+                ht[i] = n + 1;  // các đỉnh được gán lại thành n+1 tại đây đều không đang hoạt động
           relabel(u);
         }
       }
@@ -1050,4 +1050,4 @@ Trong đó từ pic13 đến pic14 thực hiện Relabel(4), đồng thời th�
 
 [^note1]: Trong tài liệu tiếng Anh thường gọi là "active".
 
-[^note2]: Trong tài liệu tiếng Anh, độ cao của một đỉnh thường được gọi là "distance label". Thuật ngữ "độ cao" dùng ở đây bắt nguồn từ chương liên quan trong Introduction to Algorithms.
+[^note2]: Trong tài liệu tiếng Anh, độ cao của một đỉnh thường được gọi là "distance label". Thuật ngữ "độ cao" dùng trong bài này bắt nguồn từ chương liên quan trong Introduction to Algorithms.
