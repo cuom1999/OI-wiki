@@ -66,7 +66,7 @@ Rõ ràng giữa các đoạn nguyên thủy chỉ có quan hệ rời nhau ho�
 
 Phía trước đã trình bày nhiều định nghĩa khô khan, nên cần có hình minh họa. Xét hoán vị $P=\{9,1,10,3,2,5,7,6,8,4\}$. Cây phân hợp do các đoạn nguyên thủy của nó tạo thành như sau:
 
-![p1](./images/div-com1.png)
+![Cây phân hợp của hoán vị ví dụ](./images/div-com1.png)
 
 Trong hình, ta không ghi rõ các đoạn nguyên thủy. **Mỗi nút trong hình đều đại diện cho một đoạn nguyên thủy**. Ta chỉ ghi miền giá trị của mỗi đoạn nguyên thủy. Ví dụ, đoạn nguyên thủy mà nút $[5,8]$ đại diện là $(P,[6,9])=\{5,7,6,8\}$. Từ đây có một câu hỏi: **nút phân tách và nút hợp nhất là gì?**
 
@@ -161,7 +161,7 @@ Cách duy trì cụ thể xem trong mã.
 
 Nói nhiều lý thuyết khô khan có lẽ khiến người đọc thấy rối, vậy ta xem hình trước. Cảnh báo hình dài!
 
-![p2](./images/div-com2.jpg)
+![Minh họa duy trì Q bằng cây đoạn và ngăn xếp đơn điệu](./images/div-com2.jpg)
 
 ### Cài đặt
 

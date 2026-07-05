@@ -4,7 +4,7 @@ author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer
 
 Cây Descartes là một loại cây nhị phân, trong đó mỗi nút gồm một cặp khóa-giá trị $(k,w)$. Ta yêu cầu $k$ thỏa tính chất của cây tìm kiếm nhị phân (BST), còn $w$ thỏa tính chất heap. Nếu các khóa $k,w$ của cây Descartes đã được xác định, đồng thời các $k$ đôi một khác nhau và các $w$ cũng đôi một khác nhau, thì cấu trúc của cây Descartes này là duy nhất. Ví dụ như hình sau:
 
-![ví dụ](./images/cartesian-tree1.png)
+![Ví dụ cây Descartes](./images/cartesian-tree1.png)
 
 (Hình lấy từ Wikipedia)
 
@@ -26,7 +26,7 @@ Do đó ta thực hiện quy trình sau: so sánh $w$ của các nút trên chu�
 
 Phần được khoanh đỏ trong hình là chuỗi phải mà ta luôn duy trì:
 
-![dựng cây](./images/cartesian-tree2.png)
+![Chuỗi phải khi dựng cây Descartes](./images/cartesian-tree2.png)
 
 Rõ ràng mỗi số nhiều nhất chỉ vào và rời chuỗi phải một lần (nói cách khác, thời gian một điểm tồn tại trên chuỗi phải là một khoảng liên tục). Quy trình này có thể được duy trì bằng ngăn xếp đơn điệu: ngăn xếp lưu các nút trên chuỗi phải của cây Descartes hiện tại. Khi một điểm không còn nằm trên chuỗi phải nữa, ta bật nó khỏi ngăn xếp. Như vậy mỗi điểm nhiều nhất vào và ra một lần, nên độ phức tạp là $O(n)$.
 
@@ -52,7 +52,7 @@ for (int i = 1; i <= n; i++) {
 ???+ note "[HDU 1506. Largest Rectangle in a Histogram](https://acm.hdu.edu.cn/showproblem.php?pid=1506)"
     Có $n$ vị trí, chiều cao tại mỗi vị trí là $h_i$; hãy tìm hình chữ nhật con có diện tích lớn nhất. Như hình sau:
 
-    ![ví dụ](./images/cartesian-tree3.png)
+    ![Ví dụ hình chữ nhật lớn nhất trong histogram](./images/cartesian-tree3.png)
 
     Phần tô bóng chính là hình chữ nhật con lớn nhất trong hình.
 
