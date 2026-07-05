@@ -5,17 +5,18 @@ author: Ir1d, cqnuljs, akakw1, MingqiHuang, Chrogeek, henrytbtrue, Planet6174, S
 Tệp là tập hợp dữ liệu có liên quan được gom lại theo một mục đích cụ thể.
 C/C++ xem mỗi tệp là một luồng byte có thứ tự; khi đọc đến cuối tệp, chương
 trình sẽ gặp **dấu kết thúc tệp** (EOF). Nếu muốn thao tác với một tệp, trước
-hết chương trình phải mở tệp đó. Mỗi khi một tệp được mở (hãy nhớ đóng tệp đã
-mở), tệp ấy sẽ được liên kết với một luồng; luồng ở đây thực chất là một dãy
-byte.
+hết chương trình phải mở tệp đó. Mỗi khi một tệp được mở, tệp ấy sẽ được liên
+kết với một luồng; luồng ở đây thực chất là một dãy byte. Sau khi dùng xong,
+cần đóng tệp đã mở.
 
-C/C++ chia tệp thành tệp văn bản và tệp nhị phân. Tệp văn bản là các tệp văn bản
-đơn giản (trọng tâm của phần này); còn tệp nhị phân là các tệp có định dạng đặc
-biệt, tệp mã thực thi, v.v.
+C/C++ chia tệp thành tệp văn bản và tệp nhị phân. Tệp văn bản là các tệp chứa
+nội dung dạng văn bản thông thường (trọng tâm của phần này); còn tệp nhị phân là
+các tệp có định dạng đặc biệt, tệp mã thực thi, v.v.
 
 ## Các bước thao tác với tệp
 
-1. Mở tệp, cho con trỏ tệp trỏ tới tệp và xác định chế độ mở tệp;
+1. Mở tệp, cho con trỏ tệp hoặc luồng tệp liên kết với tệp và xác định chế độ mở
+   tệp;
 2. Thực hiện thao tác đọc, ghi trên tệp (đây là các thao tác chủ yếu dùng trong
    thi đấu; các thao tác khác tạm thời không đề cập);
 3. Sau khi dùng xong tệp, đóng tệp.
@@ -24,10 +25,11 @@ biệt, tệp mã thực thi, v.v.
 
 ### Giới thiệu hàm
 
-Hàm này dùng để chuyển hướng luồng nhập/xuất được chỉ định sang tệp theo một chế
-độ chỉ định. Hàm nằm trong tệp tiêu đề `<cstdio>` (hoặc `<stdio.h>` trong C). Nó
-có thể thay đổi môi trường nhập/xuất mà không cần thay đổi cấu trúc ban đầu của
-mã, nhưng khi sử dụng cần kiểm tra thao tác mở tệp có thành công hay không.
+Hàm này dùng để chuyển hướng luồng nhập/xuất được chỉ định sang một tệp theo chế
+độ mở tệp đã cho. Hàm nằm trong tệp tiêu đề `<cstdio>` (hoặc `<stdio.h>` trong
+C). Nó có thể thay đổi nguồn nhập hoặc đích xuất mà không cần sửa cấu trúc ban
+đầu của chương trình, nhưng khi sử dụng cần kiểm tra thao tác mở tệp có thành
+công hay không.
 
 Hàm chủ yếu có ba cách dùng: đọc, ghi và ghi nối thêm.
 
@@ -40,7 +42,7 @@ FILE* freopen(const char* filename, const char* mode, FILE* stream);
 ### Giải thích tham số
 
 -   `filename`: tên tệp cần mở
--   `mode`: chế độ mở tệp, biểu thị quyền truy cập tệp
+-   `mode`: chế độ mở tệp, biểu thị cách đọc/ghi tệp
 -   `stream`: con trỏ tệp, thường dùng luồng nhập/xuất chuẩn (`stdin`/`stdout`)
     hoặc luồng lỗi chuẩn (`stderr`)
 -   Giá trị trả về: con trỏ tệp trỏ tới tệp đã được mở; nếu thất bại thì trả về
@@ -75,21 +77,21 @@ FILE* freopen(const char* filename, const char* mode, FILE* stream);
 
 ### Cách sử dụng
 
-Đọc nội dung từ tệp:
+Chuyển hướng chuẩn nhập để đọc nội dung từ tệp:
 
 ```cpp
 freopen("data.in", "r", stdin);
 // data.in là tên tệp cần đọc, phải đặt cùng thư mục với tệp thực thi
 ```
 
-Xuất ra tệp:
+Chuyển hướng chuẩn xuất để ghi nội dung ra tệp:
 
 ```cpp
 freopen("data.out", "w", stdout);
 // data.out là tên tệp xuất, nằm cùng thư mục với tệp thực thi
 ```
 
-Đóng luồng nhập/xuất chuẩn:
+Đóng luồng nhập/xuất chuẩn sau khi dùng xong:
 
 ```cpp
 fclose(stdin);
@@ -97,9 +99,9 @@ fclose(stdout);
 ```
 
 ??? note "Ghi chú"
-    Các hàm như `printf`/`scanf`/`cin`/`cout` mặc định sử dụng `stdin`/`stdout`.
-    Sau khi chuyển hướng `stdin`/`stdout`, các hàm này sẽ nhập/xuất từ tệp được
-    chuyển hướng.
+    Các hàm và đối tượng như `printf`/`scanf`/`cin`/`cout` mặc định sử dụng
+    `stdin`/`stdout`. Sau khi chuyển hướng `stdin`/`stdout`, chúng sẽ nhập/xuất
+    qua tệp được chuyển hướng.
 
 ### Mẫu
 
@@ -108,10 +110,10 @@ fclose(stdout);
 #include <iostream>
 
 int main(void) {
-  freopen("data.in", "r", stdin);
-  freopen("data.out", "w", stdout);
+  if (freopen("data.in", "r", stdin) == NULL) return 1;
+  if (freopen("data.out", "w", stdout) == NULL) return 1;
   /*
-  Phần mã ở giữa không cần thay đổi, có thể dùng trực tiếp cin và cout
+  Phần mã ở giữa không cần thay đổi, có thể dùng trực tiếp std::cin và std::cout
   */
   fclose(stdin);
   fclose(stdout);
@@ -121,7 +123,9 @@ int main(void) {
 
 ## Hàm `fopen` (đọc thêm)
 
-Hàm này mở tệp được chỉ định và trả về con trỏ tới tệp đã mở.
+Hàm này mở tệp được chỉ định và trả về con trỏ tới tệp đã mở. Khác với
+`freopen`, `fopen` không chuyển hướng `stdin` hoặc `stdout`; ta cần dùng con trỏ
+trả về để đọc/ghi tệp.
 
 ### Nguyên mẫu hàm
 
@@ -141,35 +145,45 @@ FILE* fopen(const char* path, const char* mode);
 ### Cách sử dụng
 
 ```cpp
-FILE *in, *out;  // định nghĩa con trỏ tệp
-in = fopen("data.in", "r");
-out = fopen("data.out", "w");
-/*
-Làm những gì bạn cần làm
-*/
-fclose(in);
-fclose(out);
+#include <cstdio>
+
+int main(void) {
+  FILE *in, *out;  // định nghĩa con trỏ tệp
+  in = fopen("data.in", "r");
+  out = fopen("data.out", "w");
+  if (in == NULL || out == NULL) {
+    if (in != NULL) fclose(in);
+    if (out != NULL) fclose(out);
+    return 1;
+  }
+  /*
+  Thực hiện đọc từ in và ghi vào out
+  */
+  fclose(in);
+  fclose(out);
+  return 0;
+}
 ```
 
 ## Luồng nhập/xuất tệp `ifstream/ofstream` trong C++
 
 ### Cách sử dụng
 
-Đọc nội dung từ tệp:
+Mở luồng nhập để đọc nội dung từ tệp:
 
 ```cpp
-ifstream fin("data.in");
+std::ifstream fin("data.in");
 // data.in là đường dẫn tương đối hoặc tuyệt đối của tệp cần đọc
 ```
 
-Xuất ra tệp:
+Mở luồng xuất để ghi nội dung ra tệp:
 
 ```cpp
-ofstream fout("data.out");
+std::ofstream fout("data.out");
 // data.out là đường dẫn tương đối hoặc tuyệt đối của tệp xuất
 ```
 
-Đóng luồng tệp:
+Đóng luồng tệp sau khi dùng xong:
 
 ```cpp
 fin.close();
@@ -180,14 +194,14 @@ fout.close();
 
 ```cpp
 #include <fstream>
-using namespace std;  // Cả hai kiểu đều nằm trong không gian tên std
 
-ifstream fin("data.in");
-ofstream fout("data.out");
+std::ifstream fin("data.in");
+std::ofstream fout("data.out");
 
 int main(void) {
+  if (!fin || !fout) return 1;
   /*
-  Trong phần mã ở giữa, chỉ cần đổi cin thành fin và cout thành fout
+  Trong phần mã ở giữa, chỉ cần đổi std::cin thành fin và std::cout thành fout
   */
   fin.close();
   fout.close();
