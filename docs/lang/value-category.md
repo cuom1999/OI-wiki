@@ -43,9 +43,9 @@ void move_to(MyString& src, MyString& dst) {
 }
 ```
 
-Nhu cầu chuyển tài nguyên của đối tượng một cách hiệu quả như vậy khá thường gặp,
-nhưng lại khó phối hợp với các thao tác như khởi tạo và hủy của C++. Vì thế
-C++11 đã đưa ngữ nghĩa di chuyển vào phần lõi của ngôn ngữ.
+Nhu cầu chuyển tài nguyên của đối tượng một cách hiệu quả theo kiểu này khá
+thường gặp, nhưng lại khó phối hợp với các thao tác như khởi tạo và hủy của C++.
+Vì thế C++11 đã đưa ngữ nghĩa di chuyển vào phần lõi của ngôn ngữ.
 
 ## Loại giá trị trong ngôn ngữ C
 
@@ -96,9 +96,10 @@ C++98 gần như giống ngôn ngữ C về loại giá trị, nhưng bổ sung 
 C++ cho phép trình biên dịch thực hiện **loại bỏ sao chép** (copy elision), nhờ
 đó giảm việc tạo và hủy đối tượng tạm.
 
-Ví dụ, đoạn mã dưới đây kích hoạt tối ưu hóa giá trị trả về (return value
-optimization, RVO) trong cơ chế loại bỏ sao chép. Chương trình chỉ in ra một lần khởi tạo
-và một lần khởi tạo sao chép, kể cả khi việc khởi tạo và hủy có tác dụng phụ.
+Ví dụ, đoạn mã sau đây kích hoạt tối ưu hóa giá trị trả về (return value
+optimization, RVO) trong cơ chế loại bỏ sao chép. Chương trình chỉ in ra một lần
+khởi tạo và một lần khởi tạo sao chép, kể cả khi việc khởi tạo và hủy có tác
+dụng phụ.
 
 ```cpp
 struct X {
@@ -245,7 +246,7 @@ thành giá trị sắp hết hạn.
 
 ### Các hiểu lầm thường gặp
 
-Trong ví dụ dưới đây:
+Trong ví dụ sau đây:
 
 -   Trả về `std::move(s)` trong `f1` là thừa; nó không đem lại cải thiện hiệu
     năng, ngược lại còn cản trở trình biên dịch thực hiện tối ưu NRVO.
