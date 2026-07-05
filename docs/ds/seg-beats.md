@@ -1,5 +1,5 @@
 Bài viết này giải thích cách dùng cây phân đoạn để xử lý cực trị lịch sử trên đoạn,
-được thầy Ji nhắc tới trong
+dựa trên hướng tiếp cận được Ji Ruyi nhắc tới trong
 [luận văn đội tuyển quốc gia năm 2016](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf).
 
 ## Cực trị đoạn
@@ -24,7 +24,7 @@ Từ đó có thể duy trì, tại mỗi nút, giá trị lớn nhất $Max$, g
 tổng đoạn $Sum$ và số lượng giá trị lớn nhất $Cnt$ trong đoạn tương ứng.
 Tiếp theo, xét thao tác lấy $\min$ với $t$ trên đoạn.
 
-1.  Nếu $Max\le t$, rõ ràng $t$ không có tác dụng, trả về ngay.
+1.  Nếu $Max\le t$, $t$ không có tác dụng, trả về ngay.
 2.  Nếu $Se<t < Max$, thì $t$ có thể cập nhật các giá trị lớn nhất trong đoạn hiện tại.
     Cộng $Cnt(t-Max)$ vào tổng đoạn, rồi cập nhật $Max$ thành $t$ và gắn một nhãn.
 3.  Nếu $t\le Se$, lúc này chưa biết có bao nhiêu số sẽ bị cập nhật.
@@ -32,7 +32,7 @@ Tiếp theo, xét thao tác lấy $\min$ với $t$ trên đoạn.
 
 Độ phức tạp của thuật toán này là bao nhiêu?
 Dùng phân tích thế năng có thể chứng minh độ phức tạp là $O(m\log n)$.
-Quá trình phân tích cụ thể xem trong luận văn.
+Quá trình phân tích cụ thể có thể xem trong luận văn.
 
 ```cpp
 --8<-- "docs/ds/code/seg-beats/seg-beats_1.cpp"
@@ -53,7 +53,7 @@ Quá trình phân tích cụ thể xem trong luận văn.
 Với cùng phương pháp, cần duy trì giá trị lớn nhất, lớn thứ hai, số lượng giá trị lớn nhất,
 giá trị nhỏ nhất, nhỏ thứ hai, số lượng giá trị nhỏ nhất và tổng đoạn.
 Ngoài các thông tin này, còn cần duy trì các nhãn cộng đoạn, $\max$ đoạn và $\min$ đoạn.
-So với bài trước, vấn đề mới là thứ tự đẩy nhãn xuống.
+So với bài trước, vấn đề mới nằm ở thứ tự đẩy nhãn xuống.
 Chiến lược xử lý như sau:
 
 1.  Xem nhãn cộng đoạn là nhãn có độ ưu tiên cao nhất, hai loại nhãn còn lại ngang hàng.
@@ -61,7 +61,7 @@ Chiến lược xử lý như sau:
     ngoài việc dùng $v$ để cập nhật thông tin phụ và nhãn cộng đoạn của nút hiện tại,
     còn dùng $v$ để cập nhật các nhãn $\max$ đoạn và $\min$ đoạn.
 3.  Khi lấy $\min$ với $v$ cho một nút
-    (trong bước này bỏ qua quá trình tìm kiếm brute force, giả sử nhãn thỏa điều kiện để được gắn),
+    (trong bước này bỏ qua quá trình tìm kiếm thô, giả sử nhãn thỏa điều kiện để được gắn),
     ngoài việc cập nhật thông tin phụ, cần so sánh với nhãn $\max$ đoạn.
     Nếu $v$ nhỏ hơn nhãn $\max$ đoạn, thì cuối cùng mọi số đều sẽ trở thành $v$,
     nên cũng đổi nhãn $\max$ đoạn thành $v$.
@@ -160,25 +160,25 @@ Do cần đồng thời duy trì $\min$ đoạn và cộng đoạn, độ phức
 
 ### Tổng kết
 
-Trong chương này đã đưa ra bốn bài ví dụ,
+Phần này đã đưa ra bốn bài ví dụ,
 lần lượt giải thích cách duy trì thao tác cực trị đoạn cơ bản,
 cách xử lý độ ưu tiên của nhiều nhãn,
 tư tưởng phân loại tập giá trị và cách duy trì nhiều loại phân lớp.
 Về bản chất, tư tưởng cơ bản khi xử lý cực trị đoạn là duy trì thông tin theo phân loại tập giá trị
 và hợp nhất hiệu quả.
-Chương tiếp theo thảo luận các vấn đề liên quan đến cực trị lịch sử trên đoạn.
+Phần tiếp theo thảo luận các vấn đề liên quan đến cực trị lịch sử trên đoạn.
 
 ## Bài toán cực trị lịch sử
 
 ### Cực trị lịch sử không phải là tính bền vững
 
-Chú ý, bài toán cực trị lịch sử được nói tới trong chương này khác với cấu trúc dữ liệu bền vững.
+Chú ý, bài toán cực trị lịch sử được nói tới trong phần này khác với cấu trúc dữ liệu bền vững.
 Gọi riêng lớp bài toán đặc biệt này là bài toán cực trị lịch sử.
 Bài toán cực trị lịch sử có thể chia thành ba loại.
 
 #### Cực đại lịch sử
 
-Nói đơn giản, cực đại lịch sử của một vị trí là giá trị lớn nhất từng xuất hiện tại vị trí hiện tại.
+Nói đơn giản, cực đại lịch sử của một vị trí là giá trị lớn nhất từng xuất hiện tại vị trí đó.
 Định nghĩa hình thức như sau: định nghĩa một mảng phụ $B$, ban đầu hoàn toàn giống $A$.
 Sau mỗi thao tác trên $A$, lấy $\max$ cho toàn bộ mảng:
 
@@ -228,19 +228,18 @@ Tiếp theo xét $\max$ đoạn lịch sử.
 Định nghĩa nhãn $Pre$ với ý nghĩa:
 trong vòng đời của nhãn này, đó là giá trị lớn nhất lịch sử của nhãn $Add$.
 
-Định nghĩa này có thể hơi mơ hồ, nên trước hết giải thích vòng đời của một nhãn.
+Định nghĩa này có thể hơi mơ hồ, nên trước hết cần giải thích vòng đời của một nhãn.
 Một nhãn sẽ trải qua quá trình sau:
 
 1.  Được tạo tại nút $u$.
-2.  Khi nút $u$ nhận một số nhãn mới, nó hợp nhất với nhãn mới (ý nói các nhãn cùng loại).
+2.  Khi nút $u$ nhận một số nhãn mới, nó hợp nhất với nhãn mới (xét các nhãn cùng loại).
 3.  Nhãn của nút $u$ được đẩy xuống các con của $u$, rồi nhãn của $u$ bị xóa.
 
 Xem khoảng thời gian từ bước 1 đến trước bước 3 trong quá trình này là vòng đời của nhãn tại nút $u$.
 Sau khi hai nhãn được hợp nhất và trở thành cùng một nhãn,
 vòng đời của chúng cũng được hợp nhất
 (tức lấy thời điểm tạo sớm hơn làm thời điểm bắt đầu vòng đời).
-Một cách nói tương đương là:
-đó là khoảng thời gian từ lần cuối cùng đẩy nhãn của nút này xuống đến thời điểm hiện tại.
+Nói cách khác, đó là khoảng thời gian từ lần cuối cùng đẩy nhãn của nút này xuống đến thời điểm hiện tại.
 
 Vì sao cần định nghĩa vòng đời?
 Dựa vào khái niệm này, có thể chứng minh:
