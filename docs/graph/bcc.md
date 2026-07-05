@@ -16,7 +16,7 @@ Quan hệ song liên thông cạnh có tính bắc cầu: nếu $x,y$ song liên
 
 Quan hệ song liên thông đỉnh **không** có tính bắc cầu. Phản ví dụ như hình dưới: $A,B$ song liên thông đỉnh, $B,C$ song liên thông đỉnh, nhưng $A,C$ **không** song liên thông đỉnh.
 
-![bcc-counterexample.png](./images/bcc-0.svg)
+![Phản ví dụ cho tính bắc cầu của song liên thông đỉnh](./images/bcc-0.svg)
 
 Với một đồ thị vô hướng, một đồ thị con song liên thông cạnh **cực đại** được gọi là một **thành phần song liên thông cạnh**.
 
@@ -92,7 +92,7 @@ Tương tự thuật toán Tarjan 1, ta trước tiên tìm tất cả các cầ
 
 Trước hết, chạy DFS trên đồ thị ban đầu.
 
-![bcc-1.png](./images/bcc-1.svg)
+![Cạnh cây và cạnh ngoài cây trong thuật toán sai phân tìm thành phần song liên thông cạnh](./images/bcc-1.svg)
 
 Như hình trên, các cạnh màu đen và màu xanh lá là cạnh cây, còn các cạnh màu đỏ là cạnh ngoài cây. Hai đầu mút của mỗi cạnh ngoài cây tương ứng duy nhất với một đường đi đơn trên cây gồm các cạnh cây; ta nói cạnh ngoài cây này **phủ** tất cả các cạnh trên đường đi đơn đó.
 
@@ -154,7 +154,7 @@ Dựa trên tính chất thứ hai, ta xét theo từng trường hợp:
 
 ### Thuật toán sai phân
 
-![bcc-2.png](./images/bcc-2.svg)
+![Đồ thị phụ trợ trong thuật toán sai phân tìm thành phần song liên thông đỉnh](./images/bcc-2.svg)
 
 Như hình trên, các cạnh màu đen là cạnh cây, còn các cạnh màu đỏ là cạnh ngoài cây. Hai đầu mút của mỗi cạnh ngoài cây tương ứng duy nhất với một đường đi đơn trên cây gồm các cạnh cây.
 

@@ -47,7 +47,7 @@ Vì trên đường tăng, số cạnh không ghép cặp nhiều hơn số cạ
 
 Hình dưới minh họa quá trình sau một phép tăng, số cạnh ghép cặp tăng từ $2$ lên $3$.
 
-![tăng-1](./images/augment-1.png)
+![Đảo trạng thái cạnh trên đường tăng để tăng kích thước ghép cặp](./images/augment-1.png)
 
 ### Bổ đề Berge
 
@@ -72,7 +72,7 @@ Thực ra, sau mỗi phép tăng, không cần duyệt lại tất cả các đ�
     
     Giả sử ngược lại. Tức là, giả sử $v$ là một đỉnh chưa ghép cặp đã được duyệt, và sau một lượt tăng dọc theo đường tăng $P$ từ $u$ đến $w$, xuất hiện một đường tăng mới $P'$ bắt đầu từ $v$ mà trước đó không tồn tại. Khi đó, đường $P'$ chắc chắn phải có cạnh chung với $P$; nếu không, việc tăng dọc theo $P$ sẽ không làm thay đổi trạng thái ghép cặp của các cạnh trong $P'$, và $P'$ sẽ không phải là đường tăng mới xuất hiện do lượt tăng này.
     
-    ![tăng-2](./images/augment-2.svg)
+    ![Đường tăng mới giao với đường tăng vừa sử dụng](./images/augment-2.svg)
     
     (Trong hình, màu đen biểu thị cạnh không ghép cặp, màu đỏ và màu xanh biểu thị các trạng thái ghép cặp khác nhau.)
     
@@ -193,7 +193,7 @@ Bài toán ghép cặp lớn nhất có trọng số lớn nhất và bài toán
 
 Trước hết, bài toán ghép cặp trọng số lớn nhất có thể quy về bài toán ghép cặp lớn nhất có trọng số lớn nhất. Đầu tiên, đặt trọng số của mọi cạnh âm trong đồ thị $G$ thành $0$; sau đó mở rộng đồ thị thành đồ thị đầy đủ $G'$ bằng cách nối thêm một số cạnh có trọng số $0$. Chú ý rằng trong đồ thị đầy đủ có trọng số cạnh không âm, ghép cặp lớn nhất có trọng số lớn nhất và ghép cặp trọng số lớn nhất là như nhau. Vì vậy, chỉ cần tính ghép cặp lớn nhất có trọng số lớn nhất $M'$ của $G'$, rồi xóa tất cả các cạnh trọng số không trong $M'$, tập cạnh $M$ thu được chính là ghép cặp trọng số lớn nhất của đồ thị $G$.[^other-approach]
 
-![ghép cặp đồ thị](images/graph-match-5.svg)
+![Quy bài toán ghép cặp trọng số lớn nhất về ghép cặp lớn nhất có trọng số lớn nhất](images/graph-match-5.svg)
 
 Ngược lại, bài toán ghép cặp lớn nhất có trọng số lớn nhất cũng có thể quy về bài toán ghép cặp trọng số lớn nhất. Chỉ cần cộng một số dương đủ lớn $K$ vào trọng số của mọi cạnh trong đồ thị $G$, ta có thể bảo đảm rằng ghép cặp trọng số lớn nhất của đồ thị $G'$ thu được cũng chắc chắn là ghép cặp lớn nhất, và do đó tất yếu là ghép cặp lớn nhất có trọng số lớn nhất. Lý do là việc tính ghép cặp trọng số lớn nhất của $G'$ tương đương với tối đa hóa biểu thức sau trên tất cả các ghép cặp của đồ thị $G$:
 
@@ -207,7 +207,7 @@ $$
 K = \sum_{e\in E}|w(e)| + 1.
 $$
 
-![ghép cặp đồ thị](images/graph-match-6.svg)
+![Cộng hằng số K vào trọng số cạnh để ưu tiên ghép nhiều cạnh nhất](images/graph-match-6.svg)
 
 ### Phủ cạnh nhỏ nhất (có trọng số)
 
@@ -217,7 +217,7 @@ Trong đồ thị $G=(V,E)$, một tập cạnh $C\subseteq E$ được gọi l�
 
 Với đồ thị không trọng số, bài toán phủ cạnh nhỏ nhất gần như chính là bài toán ghép cặp lớn nhất. Với bất kỳ ghép cặp lớn nhất $M$ nào của đồ thị $G$, chỉ cần thêm cho mỗi đỉnh chưa ghép cặp một cạnh kề với nó, ta thu được một phủ cạnh nhỏ nhất $C$. Kích thước của chúng thỏa mãn hệ thức đếm đơn giản: $|M|+|C|=|V|$. Hình dưới là một số ví dụ về phủ cạnh nhỏ nhất:
 
-![ghép cặp đồ thị](images/graph-match-7.svg)
+![Ví dụ phủ cạnh nhỏ nhất từ ghép cặp lớn nhất](images/graph-match-7.svg)
 
 Với đồ thị có trọng số, bài toán phủ cạnh trọng số nhỏ nhất có thể quy về một bài toán **ghép cặp hoàn hảo trọng số nhỏ nhất**. Trước hết, sao chép đồ thị $G=(V,E)$ thành $\tilde G=(\tilde V,\tilde E)$ với trọng số cạnh giữ nguyên như đồ thị ban đầu; sau đó nối mỗi đỉnh $v\in V$ với bản sao $\tilde v\in\tilde V$ của nó, với trọng số bằng giá trị nhỏ nhất trong các trọng số của những cạnh kề với $v$ trong đồ thị $G$. Ký hiệu đồ thị thu được là $G'=(V',E')$. Nếu đồ thị $G$ là đồ thị hai phía hoặc đồ thị thưa, thì $G'$ tương ứng cũng là đồ thị hai phía hoặc đồ thị thưa. Hơn nữa, bài toán phủ cạnh trọng số nhỏ nhất của đồ thị $G$ được quy về bài toán ghép cặp hoàn hảo trọng số nhỏ nhất của đồ thị $G'$[^edge-cover]: với ghép cặp hoàn hảo trọng số nhỏ nhất $M'$ của đồ thị $G'$, chỉ cần giữ lại các cạnh thuộc $E$, rồi thay mọi cạnh đã ghép dạng $(v,v')$ bằng cạnh có trọng số nhỏ nhất kề với $v$ trong đồ thị $G$, ta thu được phủ cạnh trọng số nhỏ nhất của đồ thị $G$.
 

@@ -34,7 +34,7 @@ Xét bài toán sau: [Đếm số màu trên cây](https://www.luogu.com.cn/prob
     
     $n\le 2\times 10^5$.
 
-![dsu-on-tree-1.png](./images/dsu-on-tree-1.svg)
+![Ví dụ cây có màu cho bài toán đếm số màu trên cây con](./images/dsu-on-tree-1.svg)
 
 Với dạng bài này, nhiều lời giải thường dùng các cấu trúc dữ liệu nặng như cây lồng cây. Nếu có thể xử lý ngoại tuyến, liệu có cách nào đơn giản hơn không?
 
@@ -56,7 +56,7 @@ Khi duyệt một đỉnh $u$, ta thực hiện theo các bước sau:
 2.  Duyệt con nặng của nó và **giữ lại ảnh hưởng của con nặng lên mảng $cnt$**.
 3.  Duyệt lại các đỉnh trong cây con của các con nhẹ của $u$, thêm đóng góp của các đỉnh này để thu được đáp án của $u$.
 
-![dsu-on-tree-2.png](./images/dsu-on-tree-2.svg)
+![Quy trình xử lý cây con nhẹ và cây con nặng trong DSU on tree](./images/dsu-on-tree-2.svg)
 
 Hình trên là một ví dụ.
 
@@ -78,7 +78,7 @@ Số cạnh nhẹ trên đường đi từ gốc đến bất kỳ đỉnh nào 
 
 Ngoài ra, nếu một đỉnh là con nặng của cha nó, thì cây con của nó chắc chắn là lớn nhất trong các cây con của anh em nó. Vì vậy, khi tính đáp án, mọi đỉnh cha nối bằng cạnh nặng trên đường từ một đỉnh bất kỳ lên gốc chắc chắn sẽ không duyệt tới đỉnh đó. Do đó số lần một đỉnh được duyệt bằng số cạnh nhẹ trên đường từ nó đến gốc $+1$, trong đó cộng thêm $1$ vì bản thân đỉnh đó cũng cần được duyệt. Vậy số lần một đỉnh được duyệt là $\log n+1$, và tổng độ phức tạp thời gian là $O(n(\log n+1))=O(n\log n)$. Việc xuất đáp án tốn $O(m)$.
 
-![dsu-on-tree-3.png](./images/dsu-on-tree-3.svg)
+![Cạnh nặng và con nặng trong chứng minh độ phức tạp DSU on tree](./images/dsu-on-tree-3.svg)
 
 *Các cạnh được tô đậm trong hình là cạnh nặng; đỉnh con mà cạnh nặng nối tới là con nặng.*
 
