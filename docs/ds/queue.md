@@ -143,7 +143,7 @@ phía cuối hàng đợi. Sau cách xử lý này, các thao tác chèn và xó
 gian hằng số khấu hao.
 
 ??? note "Chứng minh ngắn gọn"
-    Vì thao tác chèn chỉ đóng góp độ phức tạp hằng số, bây giờ xét thao tác
+    Vì thao tác chèn chỉ đóng góp độ phức tạp hằng số, tiếp theo xét thao tác
     pop. Giả sử ban đầu hàng đợi có $m$ phần tử; xét độ phức tạp thời gian để
     pop toàn bộ phần tử (bất kể từ đầu hay từ cuối). Lần cân bằng đầu tiên có
     độ phức tạp $O(m)$. Sau đó, mỗi ngăn xếp có $\frac{m}{2}$ phần tử. Lúc này
@@ -181,8 +181,8 @@ tiêu đề `<deque>`.
     
     `T` là kiểu dữ liệu của các phần tử được lưu trong deque.
     
-    `Allocator` là bộ cấp phát; ở đây không giải thích sâu, thông thường cứ giữ
-    giá trị mặc định.
+    `Allocator` là bộ cấp phát; phần này không giải thích sâu, thông thường cứ
+    giữ giá trị mặc định.
 
 Container `deque` trong STL cung cấp nhiều hàm thành viên để sử dụng. Những hàm
 thường dùng gồm:
@@ -239,8 +239,8 @@ Ví dụ như sau:
 
 Dùng mảng để mô phỏng hàng đợi sẽ gây ra một vấn đề: theo thời gian, toàn bộ
 hàng đợi dịch dần về phía cuối mảng. Khi đã đến cuối mảng, dù phía đầu mảng vẫn
-còn vị trí trống, thao tác enqueue tiếp theo vẫn gây tràn (hiện tượng mảng thực
-tế vẫn còn vị trí trống nhưng lại bị tràn trên được gọi là "tràn giả").
+còn vị trí trống, thao tác enqueue tiếp theo vẫn gây tràn. Hiện tượng mảng thực
+tế vẫn còn vị trí trống nhưng lại báo tràn như vậy được gọi là "tràn giả".
 
 Cách giải quyết tràn giả là tổ chức mảng lưu phần tử hàng đợi theo dạng vòng,
 tức xem vị trí có chỉ số 0 của mảng là phần tử kế tiếp của vị trí cuối cùng.
