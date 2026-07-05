@@ -1,6 +1,6 @@
 author: Ir1d, HeRaNO, Xeonacid
 
-<span id="&#31616;&#20171;"></span>
+<span id="giới-thiệu"></span>
 ## Giới thiệu
 
 Thực ra, chia khối (sqrt decomposition) là một cách tư duy, không phải một cấu trúc dữ liệu.
@@ -19,7 +19,7 @@ Tuy vậy, trong phần lớn bài toán, chia khối vẫn là một lựa ch�
 
 Dưới đây là một vài ví dụ.
 
-<span id="&#21306;&#38388;&#21644;"></span>
+<span id="tổng-đoạn"></span>
 ## Tổng đoạn
 
 ??? note "Ví dụ [LibreOJ 6280 Nhập môn chia khối dãy số 4](https://loj.ac/problem/6280)"
@@ -55,7 +55,7 @@ Theo bất đẳng thức trung bình, khi $\dfrac{n}{s}=s$, tức $s=\sqrt n$, 
     --8<-- "docs/ds/code/decompose/decompose_1.cpp"
     ```
 
-<span id="&#21306;&#38388;&#21644; 2"></span>
+<span id="tổng-đoạn-2"></span>
 ## Tổng đoạn 2
 
 Cách làm trước có độ phức tạp là $\Omega(1) , O(\sqrt{n})$.
@@ -72,7 +72,7 @@ Mỗi lần cập nhật tốn $O(T+\frac{n}{T})$.
 
 Truy vấn: gồm ba phần, mỗi phần đều có thể lấy trực tiếp bằng tổng tiền tố, nên độ phức tạp thời gian là $O(1)$.
 
-<span id="&#23545;&#35810;&#38382;&#20998;&#22359;"></span>
+<span id="chia-khối-theo-truy-vấn"></span>
 ## Chia khối theo truy vấn
 
 Vẫn là bài toán đó, bây giờ độ dài dãy là $n$ và có $m$ thao tác.
@@ -87,7 +87,7 @@ Tổng độ phức tạp: $O(mT+n\frac{m}{T})$.
 
 Khi $T=\sqrt{n}$, tổng độ phức tạp là $O(m \sqrt{n})$.
 
-<span id="&#20854;&#20182;&#38382;&#39064;"></span>
+<span id="các-vấn-đề-khác"></span>
 ### Các vấn đề khác
 
 Tư tưởng chia khối cũng có thể áp dụng cho nhiều bài toán liên quan đến số nguyên: tìm số lượng phần tử bằng không, tìm phần tử khác không đầu tiên, đếm số phần tử thỏa mãn một tính chất nào đó, v.v.
@@ -96,7 +96,7 @@ Còn có một số bài toán khác có thể giải bằng chia khối, chẳn
 
 Một thuật toán offline rất nổi tiếng, [thuật toán Mo](../misc/mo-algo.md), cũng được xây dựng dựa trên tư tưởng chia khối.
 
-<span id="&#32451;&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [UVa - 12003 - Array Transformer](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3154)
