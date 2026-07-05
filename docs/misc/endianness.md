@@ -10,7 +10,7 @@ Thứ tự byte có hai loại: little endian và big endian.
 
 Để tiện trình bày, xét một biến kiểu `int` nằm tại địa chỉ `0x100`, có giá trị thập lục phân là `0x01234567`. Trong đó `0x01` là byte có trọng số cao nhất, còn `0x67` là byte có trọng số thấp nhất.
 
-### Little endian
+### Đầu nhỏ (little endian)
 
 Little endian nghĩa là máy lưu đối tượng trong bộ nhớ theo thứ tự từ byte có trọng số **thấp nhất** đến byte có trọng số **cao nhất**.
 
@@ -20,7 +20,7 @@ Biến ở trên được biểu diễn như sau:
 | ---- | ----- | ----- | ----- | ----- | ---- |
 | .... | 67    | 45    | 23    | 01    | .... |
 
-### Big endian
+### Đầu lớn (big endian)
 
 Big endian nghĩa là máy lưu đối tượng trong bộ nhớ theo thứ tự từ byte có trọng số **cao nhất** đến byte có trọng số **thấp nhất**.
 

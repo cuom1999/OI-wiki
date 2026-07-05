@@ -12,7 +12,7 @@ Vì **OI Wiki** đã có phần mô tả cho nội dung này, bài viết này c
 
 Độ phức tạp thời gian $O(m\log m) \sim O(\log n)$, độ phức tạp không gian $O(n)$.
 
-## ST table
+## Bảng ST
 
 Vì **OI Wiki** đã có phần mô tả cho nội dung này, bài viết này chỉ đưa ra [liên kết](../ds/sparse-table.md). Phần này sẽ không trình bày thêm.
 
@@ -24,7 +24,7 @@ Vì **OI Wiki** đã có phần mô tả cho nội dung này, bài viết này c
 
 Độ phức tạp thời gian $O(n) \sim O(\log n)$, độ phức tạp không gian $O(n)$.
 
-## Four Russians
+## Thuật toán Four Russians
 
 Four Russians là một thuật toán dựa trên ST table, do bốn nhà khoa học máy tính người Nga đề xuất.
 

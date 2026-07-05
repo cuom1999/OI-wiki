@@ -889,7 +889,7 @@ Có thể tách thành $n$ lần sửa đổi một điểm, xây cây trong $\T
 
 Cũng có cách xây cây $\Theta(n)$, xem phương pháp một trong phần [$\Theta(n)$ xây cây](#thetan-xây-cây) trên trang này.
 
-## Tricks
+## Mẹo
 
 ### $\Theta(n)$ xây cây
 

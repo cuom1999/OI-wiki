@@ -61,7 +61,7 @@ while (hàng đợi q không rỗng)
     --8<-- "docs/search/code/bidirectional/bidirectional_1.cpp"
     ```
 
-## Meet in the middle
+## Gặp nhau ở giữa (meet in the middle)
 
 ???+ warning "Cảnh báo"
     Phần này không nói về [**tìm kiếm nhị phân**](../basic/binary.md), dù tìm

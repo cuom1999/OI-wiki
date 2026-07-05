@@ -43,7 +43,7 @@ Vì vậy, **co hoa** hay **không co hoa** đều không ảnh hưởng đến 
 
 Khi hiện thực, sau khi tìm được **hoa**, ta không cần thật sự **co hoa**; có thể dùng mảng để ghi lại mỗi đỉnh đang nằm trong bông hoa có gốc là đỉnh nào.
 
-### Phân tích độ phức tạp Complexity Analysis
+### Phân tích độ phức tạp
 
 Mỗi lần tìm đường tăng, ta duyệt qua tất cả các cạnh; khi gặp **hoa** thì cần duy trì các đỉnh trên **hoa**, độ phức tạp là $O(|E|^2)$.
 
