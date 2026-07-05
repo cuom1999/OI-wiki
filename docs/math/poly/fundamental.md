@@ -1,4 +1,4 @@
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 
 ## Định nghĩa
 
@@ -20,7 +20,7 @@ $$
 
 trong đó mọi nghiệm đều là số phức, và $k_1+k_2+\ldots+k_t=n$.
 
-<span id="&#x865A;&#x6839;&#x6210;&#x5BF9;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-nghiệm-ảo-xuất-hiện-thành-cặp"></span>
 
 ## Định lý nghiệm ảo xuất hiện thành cặp
 
@@ -73,11 +73,11 @@ $$
 
 trong đó mọi hệ số đều là số thực, và $k_1+k_2+\ldots+k_t+2(l_1+l_2+\ldots+l_s)=n$.
 
-<span id="&#x6797;&#x58EB;&#x8C14;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-lin-shie"></span>
 
 ## Thuật toán Lin Shie
 
-<span id="&#x7B80;&#x4ECB;"></span>
+<span id="giới-thiệu"></span>
 
 ### Giới thiệu
 
@@ -93,7 +93,7 @@ Vào tháng 8 năm 1940, tháng 8 năm 1943 và tháng 7 năm 1947, Lin Shie l�
 
 Ngày nay phương pháp này vẫn được dùng để tính nhanh trong máy tính hiện đại; nguyên lý của các chương trình tìm nghiệm đa thức trong các gói phần mềm máy tính, chẳng hạn MATLAB, cũng dựa trên thuật toán này.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quá-trình"></span>
 
 ### Quá trình
 
@@ -165,7 +165,7 @@ $$
 
 Giải hệ phương trình trên sẽ thu được các độ lệch $dp$ và $dq$ tương ứng với $p$ và $q$; có thể giải trực tiếp bằng định thức cấp hai.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 
 ### Cài đặt
 
@@ -207,7 +207,7 @@ void Shie(double a[], int n, double *p, double *q) {
 }
 ```
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 
 ## Tài liệu tham khảo và ghi chú
 

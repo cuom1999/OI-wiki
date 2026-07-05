@@ -1,4 +1,4 @@
-<span id="&#x7279;&#x5F81;&#x5B50;&#x7A7A;&#x95F4;"></span>
+<span id="không-gian-con-riêng"></span>
 ## Không gian con riêng
 
 Toàn bộ các vectơ riêng của ma trận $A$ ứng với $\lambda_0$, sau khi thêm vectơ không, tạo thành một không gian tuyến tính, gọi là một không gian con riêng của ma trận $A$, ký hiệu $E(\lambda_0)$. Nó là không gian nghiệm của hệ phương trình tuyến tính thuần nhất:
@@ -21,7 +21,7 @@ $$
 
 Số này cũng được gọi là **bội hình học** của $\lambda_i$.
 
-<span id="&#x4E0D;&#x53D8;&#x5B50;&#x7A7A;&#x95F4;"></span>
+<span id="không-gian-con-bất-biến"></span>
 ## Không gian con bất biến
 
 Khi nghiên cứu biến đổi tuyến tính $T$, ta thường muốn chọn một cơ sở của không gian $V$ sao cho ma trận của biến đổi tuyến tính $T$ theo cơ sở đó có dạng càng đơn giản càng tốt.
@@ -40,7 +40,7 @@ Với mọi biến đổi tuyến tính $T$ trên $V$, không gian ảnh $R(T)$ 
 
 Với mọi biến đổi tuyến tính $T$ trên $V$, không gian con riêng của $T$ là không gian con bất biến của $T$.
 
-<span id="&#x51C6;&#x7D20;&#x5206;&#x89E3;"></span>
+<span id="phân-rã-nguyên-sơ"></span>
 ## Phân rã nguyên sơ
 
 Theo định lý cơ bản của đại số, đa thức tối tiểu có thể phân tích thành:
@@ -79,7 +79,7 @@ trong đó $A_i$ là ma trận của $T_i$ theo cơ sở tương ứng.
 
 Định lý này cho thấy có thể dùng không gian con bất biến để đơn giản hóa ma trận của biến đổi tuyến tính.
 
-<span id="&#x53EF;&#x5BF9;&#x89D2;&#x5316;&#x77E9;&#x9635;"></span>
+<span id="ma-trận-chéo-hóa-được"></span>
 ## Ma trận chéo hóa được
 
 Với ma trận vuông cấp $n$ $A$, nếu nó tương tự với một ma trận đường chéo, thì $A$ được gọi là ma trận chéo hóa được, hoặc ma trận đơn thuần.
@@ -115,7 +115,7 @@ Khi chọn đại diện, người ta thường trực giao hóa và chuẩn hó
 
 Vectơ riêng không nhất thiết trực giao; các vectơ riêng ứng với giá trị riêng khác nhau có thể không trực giao. Vì vậy trực giao hóa chỉ có thể thực hiện đối với các vectơ riêng của giá trị riêng bội. Tuy nhiên chuẩn hóa có thể thực hiện với mọi vectơ riêng.
 
-<span id="&#x5E42;&#x96F6;&#x77E9;&#x9635;"></span>
+<span id="ma-trận-lũy-linh"></span>
 ## Ma trận lũy linh
 
 Giả sử $T$ là một biến đổi tuyến tính của không gian $V$. Nếu tồn tại một số nguyên dương $r$ sao cho $T^r$ là biến đổi không, thì $T$ được gọi là một biến đổi lũy linh của không gian $V$.
@@ -131,7 +131,7 @@ Thông thường có thể giả sử thêm rằng $r$ là số nguyên dương 
     T^{r-1}(\xi_0)\neq 0
     $$
 
-<span id="&#x5FAA;&#x73AF;&#x5B50;&#x7A7A;&#x95F4;"></span>
+<span id="không-gian-con-cyclic"></span>
 ### Không gian con cyclic
 
 Định lý: Giả sử $T$ là một biến đổi tuyến tính của không gian $V$, và $\xi$ là một vectơ của không gian $V$. Nếu tồn tại một số nguyên dương $s$ sao cho:
@@ -160,7 +160,7 @@ thì không gian con $W$ được gọi là một không gian con cyclic đối 
 
 Rõ ràng, một không gian con $T$-cyclic $W$ bất biến dưới tác dụng của $T$, và với mọi vectơ $\xi$ trong không gian con cyclic $W$, đều có $T^r(\xi)=0$, trong đó $r$ là số chiều của không gian con cyclic.
 
-<span id="&#x5E42;&#x96F6;-jordan-&#x5757;"></span>
+<span id="khối-jordan-lũy-linh"></span>
 ### Khối Jordan lũy linh
 
 Nếu không gian $W$ là không gian con cyclic của biến đổi $T$, thì hạn chế ${T|}_W$ của $T$ trên $W$ là một biến đổi lũy linh của $W$, và ma trận của ${T|}_W$ theo cơ sở cyclic của $W$ được sắp theo thứ tự ngược $T^{r-1}(\xi_0),T^{r-2}(\xi_0),\cdots,\xi_0$ là ma trận tam giác trên cấp $r$ có dạng:
@@ -184,7 +184,7 @@ Với ma trận lũy linh cấp $n$ $A$, $A$ tương tự với một ma trận 
 
 Ma trận lũy linh tuy không thể tương tự với ma trận đường chéo, nhưng có thể tương tự với dạng chuẩn như vậy. Trong dạng chuẩn Jordan, việc chéo hóa tương tự và dạng chuẩn của ma trận lũy linh được kết hợp để đưa ra dạng chuẩn mà một ma trận tổng quát có thể đạt được thông qua biến đổi tương tự.
 
-<span id="&#x4E00;&#x4E9B;&#x5B9A;&#x7406;"></span>
+<span id="một-số-định-lý"></span>
 ### Một số định lý
 
 1.  Giả sử $T$ là một biến đổi lũy linh của không gian $V$, và
