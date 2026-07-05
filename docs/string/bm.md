@@ -6,7 +6,7 @@ Thuật toán KMP khai thác thông tin khớp tiền tố đến mức tối đ
 
 Còn ý tưởng cơ bản phía sau thuật toán BM là dùng khớp hậu tố để thu được nhiều thông tin hơn so với khớp tiền tố, từ đó thực hiện các bước nhảy ký tự nhanh hơn.
 
-<span id="&#24341;&#20837;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 Hãy tưởng tượng xâu mẫu $pat$ được đặt ở đầu bên trái của xâu văn bản $string$, sao cho hai ký tự đầu tiên của chúng thẳng hàng.
@@ -27,12 +27,12 @@ Ta định nghĩa một số ký hiệu ở đây và sẽ không nhắc lại v
 
 Giả sử ta biết ký tự thứ $patlen$ của $string$ là $char$ (ký tự đang thẳng hàng với ký tự cuối của $pat$), hãy xem ta có thể rút ra thông tin gì:
 
-<span id="&#35266;&#23519;-1"></span>
+<span id="quan-sát-1"></span>
 ### Quan sát 1
 
 Nếu biết ký tự $char$ không xuất hiện trong $pat$, ta không cần xét các khả năng $pat$ xuất hiện bắt đầu từ ký tự thứ $1$, thứ $2$, ..., thứ $patlen$ của $string$, mà có thể trượt thẳng $pat$ sang phải $patlen$ ký tự.
 
-<span id="&#35266;&#23519;-2"></span>
+<span id="quan-sát-2"></span>
 ### Quan sát 2
 
 Tổng quát hơn, **nếu vị trí xuất hiện ngoài cùng bên phải của ký tự $char$ trong $pat$ cách cuối xâu $delta_1$ ký tự**,
@@ -59,7 +59,7 @@ Nếu có, ta tiếp tục lùi lại cho đến khi toàn bộ xâu mẫu $pat$
 
 Hoặc cũng có thể sau khi đã khớp $m$ ký tự cuối của $pat$, ta gặp bất khớp ở ký tự thứ $m+1$ tính từ cuối. Khi đó ta muốn trượt $pat$ sang phải đến vị trí tiếp theo có thể khớp, và dĩ nhiên càng trượt xa càng tốt.
 
-<span id="&#35266;&#23519;-3(a)"></span>
+<span id="quan-sát-3a"></span>
 ### Quan sát 3(a)
 
 Trong **Quan sát 2**, khi đã khớp $m$ ký tự cuối của $pat$ rồi bất khớp ở ký tự thứ $m+1$ tính từ cuối, để ký tự bất khớp trong $string$ thẳng hàng với ký tự tương ứng trong $pat$,
@@ -72,7 +72,7 @@ nên điểm chú ý của ta trên $string$ cần nhảy sang phải $delta_1-m
 
 Tuy vậy, ta còn có cơ hội bỏ qua nhiều ký tự hơn; hãy tiếp tục xét.
 
-<span id="&#35266;&#23519;-3(b)"></span>
+<span id="quan-sát-3b"></span>
 ### Quan sát 3(b)
 
 Nếu ta biết $m$ ký tự tiếp theo của $string$ khớp với $m$ ký tự cuối của $pat$, gọi xâu con đó là $subpat$,
@@ -96,7 +96,7 @@ $$
 
 Do đó khi xảy ra bất khớp, ta có thể cho điểm chú ý trên $string$ nhảy sang phải $\max(delta_1,delta_2)$ ký tự.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quy-trình"></span>
 ## Quy trình
 
 Mũi tên chỉ vào ký tự bất khớp $char$:
@@ -174,13 +174,13 @@ $$
 
 Bây giờ ta thấy mọi ký tự trên $pat$ đều bằng ký tự tương ứng trên $string$, tức đã tìm được một lần khớp của $pat$ trong $string$. Tổng cộng chỉ cần 14 lần truy cập $string$, trong đó 7 lần là các phép so sánh bắt buộc để hoàn thành một lần khớp thành công ($patlen=7$), 7 lần còn lại giúp ta bỏ qua 22 ký tự.
 
-<span id="&#31639;&#27861;&#35774;&#35745;"></span>
+<span id="thiết-kế-thuật-toán"></span>
 ## Thiết kế thuật toán
 
-<span id="&#26368;&#21021;&#30340;&#21305;&#37197;&#31639;&#27861;"></span>
+<span id="thuật-toán-khớp-ban-đầu"></span>
 ### Thuật toán khớp ban đầu
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 #### Giải thích
 
 Xét thuật toán khớp xâu sử dụng $delta_1$ và $delta_2$ sau:
@@ -223,7 +223,7 @@ Cũng cần chú ý hai ràng buộc:
 1.  $k < j$. Vì khi $k=j$ thì $pat[k]=pat[j]$, ký tự bất khớp tại $pat[j]$ cũng sẽ bất khớp tại $pat[k]$.
 2.  Do $delta_2(patlastpos)= 0$, ta quy ước $rpr(patlastpos) = patlastpos$.
 
-<span id="&#36807;&#31243;_1"></span>
+<span id="quy-trình_1"></span>
 #### Quy trình
 
 Vì hiểu $rpr(j)$ là phần cốt lõi để cài đặt thuật toán Boyer-Moore, ta dùng hai ví dụ sau để giải thích chi tiết:
@@ -284,7 +284,7 @@ Với $rpr(7)$, $subpat$ là $\texttt{X}$. Mặc dù $string[3]=string[8]$, như
 
 Với $rpr(8)$, theo định nghĩa của $delta_2$, $rpr(patlastpos)=patlastpos$, do đó $rpr(8)=8$.
 
-<span id="&#23545;&#21305;&#37197;&#31639;&#27861;&#30340;&#19968;&#20010;&#25913;&#36827;"></span>
+<span id="một-cải-tiến-cho-thuật-toán-khớp"></span>
 ### Một cải tiến cho thuật toán khớp
 
 Cuối cùng, trong thực tế người ta nhận thấy khoảng 80% thời gian tìm kiếm được dành cho các bước nhảy của **Quan sát 1**, tức quá trình $string[i]$ không khớp với $pat[patlastpos]$, rồi nhảy cả đoạn $patlen$ để bắt đầu lần khớp tiếp theo.
@@ -333,17 +333,17 @@ $$
 
 Sau cải tiến, so với thuật toán gốc, khi thực hiện bước nhảy của **Quan sát 1** ta không còn phải tính thừa $delta_2$ mỗi lần, nhờ đó hiệu năng tìm kiếm trên các bảng chữ cái thông thường được cải thiện rõ rệt.
 
-<span id="delta2-&#26500;&#24314;&#32454;&#33410;"></span>
+<span id="chi-tiết-xây-dựng-delta2"></span>
 ## Chi tiết xây dựng delta2
 
-<span id="&#24341;&#20837;_1"></span>
+<span id="dẫn-nhập_1"></span>
 ### Dẫn nhập
 
 Trong bài báo của Boyer và Moore[^bm] trên *Communications of the ACM* tháng 10 năm 1977, các tác giả chỉ mô tả bảng tĩnh $delta_2$.
 
 Phần thảo luận về cách cài đặt cụ thể để xây dựng $delta_2$ xuất hiện trong bài báo về thuật toán KMP do Knuth, Morris và Pratt cùng công bố chính thức trên *SIAM Journal on Computing* tháng 6 năm 1977[^kmp].
 
-<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+<span id="thuật-toán-đơn-giản"></span>
 ### Thuật toán đơn giản
 
 Trước khi giới thiệu thuật toán xây dựng $delta_2$ của Knuth, theo định nghĩa ta có một thuật toán đơn giản phù hợp với bài toán quy mô nhỏ:
@@ -404,7 +404,7 @@ Riêng về một số đặc điểm của Rust cần giải thích, các đo�
 
 Rõ ràng thuật toán vét cạn này có độ phức tạp thời gian $O(n^3)$.
 
-<span id="&#39640;&#25928;&#31639;&#27861;"></span>
+<span id="thuật-toán-hiệu-quả"></span>
 ### Thuật toán hiệu quả
 
 Tiếp theo ta giới thiệu thuật toán hiệu quả có độ phức tạp thời gian $O(n)$, nhưng cần thêm $O(n)$ bộ nhớ.
@@ -426,12 +426,12 @@ Sắp xếp các loại theo vị trí tái xuất hiện từ xa đến gần, 
 
 Bây giờ ta thảo luận cách tính hiệu quả ba trường hợp này:
 
-<span id="&#31532;&#19968;&#31181;&#24773;&#20917;"></span>
+<span id="trường-hợp-thứ-nhất"></span>
 #### Trường hợp thứ nhất
 
 Đây là trường hợp đơn giản nhất; chỉ cần duyệt một lần và có thể tiện thể khởi tạo $delta_2$.
 
-<span id="&#31532;&#20108;&#31181;&#24773;&#20917;"></span>
+<span id="trường-hợp-thứ-hai"></span>
 #### Trường hợp thứ hai
 
 Ta quan sát xem khi nào sự tái xuất hiện của $subpat$ có một phần nằm bên trái $pat$ và một phần là đầu $pat$. Điều này xảy ra khi một hậu tố nào đó của $subpat$ bằng một tiền tố nào đó của $pat$.
@@ -476,7 +476,7 @@ Dùng hàm tiền tố và áp dụng ngược phương trình chuyển trạng 
 
 Như vậy ta hoàn tất việc tính $delta_2$ cho trường hợp thứ hai.
 
-<span id="&#31532;&#19977;&#31181;&#24773;&#20917;"></span>
+<span id="trường-hợp-thứ-ba"></span>
 #### Trường hợp thứ ba
 
 Sự tái xuất hiện của $subpat$ nằm đúng trong $pat$ (không bao gồm phần đầu của $pat$), tức ta tìm $subpat$ trong $pat[0\dots patlastpos-1]$ theo thứ tự từ phải sang trái.
@@ -492,7 +492,7 @@ Hơn nữa, theo định nghĩa của $delta_2$, ký tự tiếp theo (tức ký
 
 Giống hàm tiền tố, ta cần một mảng phụ để lùi trạng thái; có thể dùng lại không gian của mảng tiền tố đã sinh ra khi tính trường hợp thứ hai.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
 ??? note "Cài đặt ở trên"
@@ -563,10 +563,10 @@ Giống hàm tiền tố, ta cần một mảng phụ để lùi trạng thái; 
     }
     ```
 
-<span id="Galil-&#35268;&#21017;&#23545;&#22810;&#27425;&#21305;&#37197;&#26102;&#26368;&#22351;&#24773;&#20917;&#30340;&#25913;&#21892;"></span>
+<span id="quy-tắc-galil-cải-thiện-trường-hợp-xấu-nhất-khi-khớp-nhiều-lần"></span>
 ## Quy tắc Galil cải thiện trường hợp xấu nhất khi khớp nhiều lần
 
-<span id="&#20851;&#20110;&#21518;&#32512;&#21305;&#37197;&#31639;&#27861;&#30340;&#22810;&#27425;&#21305;&#37197;&#38382;&#39064;"></span>
+<span id="vấn-đề-khớp-nhiều-lần-của-thuật-toán-khớp-hậu-tố"></span>
 ### Vấn đề khớp nhiều lần của thuật toán khớp hậu tố
 
 Các thuật toán tìm kiếm trước đó chỉ xét việc tìm lần khớp đầu tiên của $pat$ trong $string$. Còn với bài toán tìm mọi lần khớp của $pat$ trong $string$, có nhiều hướng thuật toán khác nhau. Trọng tâm của vấn đề là: làm sao tận dụng thông tin về các ký tự đã khớp trước đó để giảm độ phức tạp thời gian trong trường hợp xấu nhất xuống tuyến tính.
@@ -579,7 +579,7 @@ Ví dụ cực đoan: $pat$: $\texttt{AAA}$, $string$: $\texttt{AAAAA}\dots$.
 
 Dưới đây là ý tưởng Galil[^galil-rule], đơn giản hơn và không cần thêm chi phí tiền xử lý.
 
-<span id="Galil-&#35268;&#21017;"></span>
+<span id="quy-tắc-galil"></span>
 ### Quy tắc Galil
 
 Giả sử $pat$ là tiền tố của xâu được tạo bằng cách lặp một xâu con $U$ n lần, tức $UUUU\dots$. Khi đó ta gọi $U$ là một chu kỳ của $pat$.
@@ -670,22 +670,22 @@ Khi biết cặp tiền tố - hậu tố bằng nhau dài nhất của $pat$, t
     }
     ```
 
-<span id="&#26368;&#22351;&#24773;&#20917;&#22312;&#23454;&#36341;&#20013;&#24615;&#33021;&#24433;&#21709;"></span>
+<span id="ảnh-hưởng-của-trường-hợp-xấu-nhất-trong-thực-tế"></span>
 ### Ảnh hưởng của trường hợp xấu nhất trong thực tế
 
 Từ góc độ thực tế, trường hợp xấu nhất trên lý thuyết không dễ ảnh hưởng đến hiệu năng. Ngay cả khi kiểm thử trên văn bản ngẫu nhiên với bảng chữ cái rất nhỏ chỉ có 4 ký tự, ảnh hưởng của trường hợp xấu nhất này cũng nhỏ đến mức khó quan sát.
 
 Vì vậy nếu không được thiết kế tốt, việc dùng quy tắc Galil có thể làm giảm nhẹ hiệu năng trung bình. Nhưng với một số $pat$ và $string$ cực kỳ đặc biệt, chẳng hạn ví dụ $pat$: $\texttt{AAA}$, $string$: $\texttt{AAAAA}\dots$, việc áp dụng quy tắc Galil thật sự có thể cải thiện hiệu năng lên nhiều lần.
 
-<span id="&#25913;&#36827;&#31639;&#27861;"></span>
+<span id="các-thuật-toán-cải-tiến"></span>
 ## Các thuật toán cải tiến
 
-<span id="Simplified-Boyer–Moore-&#31639;&#27861;"></span>
+<span id="thuật-toán-boyer-moore-đơn-giản-hóa"></span>
 ### Thuật toán Boyer-Moore đơn giản hóa
 
 Phần phức tạp nhất của thuật toán BM là xây dựng bảng $delta_2$ (tức bảng hậu tố tốt). Trong thực tế, người ta nhận thấy hiệu năng khớp trên các bảng chữ cái thông thường chủ yếu dựa vào bảng $delta_1$ (tức bảng ký tự xấu), nên xuất hiện phiên bản BM đơn giản hóa chỉ dùng bảng $delta_1$. Hiệu năng của phiên bản này thường không chênh lệch nhiều so với bản gốc.
 
-<span id="Boyer–Moore–Horspol-&#31639;&#27861;"></span>
+<span id="thuật-toán-boyer-moore-horspool"></span>
 ### Thuật toán Boyer-Moore-Horspool
 
 Thuật toán Horspool cũng dựa trên quy tắc ký tự xấu, áp dụng $delta_1$ lên ký tự thẳng hàng với cuối $pat$. Hiệu quả của nó tương tự cải tiến cho thuật toán khớp gốc và thường tốt hơn phiên bản gốc.
@@ -719,7 +719,7 @@ Thuật toán Horspool cũng dựa trên quy tắc ký tự xấu, áp dụng $d
     }
     ```
 
-<span id="Boyer–Moore–Sunday-&#31639;&#27861;"></span>
+<span id="thuật-toán-boyer-moore-sunday"></span>
 ### Thuật toán Boyer-Moore-Sunday
 
 Thuật toán Sunday cũng sử dụng quy tắc ký tự xấu, nhưng tiến thêm một bước so với Horspool: nó trực tiếp xét ký tự nằm ngay sau ký tự đang thẳng hàng với cuối $pat$.
@@ -771,7 +771,7 @@ Thuật toán Sunday thường được dùng như một thuật toán thực d�
     }
     ```
 
-<span id="BMHBNFS-&#31639;&#27861;"></span>
+<span id="thuật-toán-bmhbnfs"></span>
 ### Thuật toán BMHBNFS
 
 Thuật toán này kết hợp Horspool và Sunday. Đây là thuật toán `find` được CPython dùng khi cài đặt module `stringlib`[^b5s], sau đây gọi tắt là B5S.
@@ -788,7 +788,7 @@ Thuật toán này kết hợp Horspool và Sunday. Đây là thuật toán `fin
 
 Tùy mục tiêu ưu tiên là tiết kiệm thời gian hay tiết kiệm bộ nhớ, thuật toán sẽ có các cách cài đặt rất khác nhau.
 
-<span id="&#26102;&#38388;&#33410;&#30465;&#29256;&#26412;"></span>
+<span id="phiên-bản-tiết-kiệm-thời-gian"></span>
 #### Phiên bản tiết kiệm thời gian
 
 ???+ note "Cài đặt"
@@ -868,7 +868,7 @@ Tùy mục tiêu ưu tiên là tiết kiệm thời gian hay tiết kiệm bộ 
 
 Phiên bản B5S này có hiệu năng rất lý tưởng; trong loạt thuật toán khớp hậu tố đang được giới thiệu, nó thường là phiên bản nhanh nhất trong các trường hợp thông thường.
 
-<span id="&#31354;&#38388;&#33410;&#30465;&#29256;&#26412;"></span>
+<span id="phiên-bản-tiết-kiệm-bộ-nhớ"></span>
 #### Phiên bản tiết kiệm bộ nhớ
 
 Phiên bản này cũng được cài đặt trong `stringlib` của CPython. Nó dùng hai số nguyên để xấp xỉ vai trò của bảng ký tự và $delta_1$, nhờ đó tiết kiệm bộ nhớ đáng kể:
@@ -994,7 +994,7 @@ Phiên bản này cũng được cài đặt trong `stringlib` của CPython. N�
 
     So với các thuật toán khớp hậu tố phía trước, phiên bản này không nhanh bằng nhưng chênh lệch không lớn. Nhờ độ phức tạp bộ nhớ rất tốt, tối đa chỉ hai số nguyên `u64`, hiệu năng của nó vẫn tốt hơn KMP.
 
-<span id="&#29702;&#35770;&#20998;&#26512;"></span>
+<span id="phân-tích-lý-thuyết"></span>
 ## Phân tích lý thuyết
 
 Dưới đây là biểu hiện của các thuật toán trên bảng chữ cái thông thường. Trục tung tương tự chi phí thực thi (`cost` chỉ chi phí khi bất khớp sau khi đã khớp thành công m ký tự, `skip` chỉ xác suất dịch sang phải k ký tự khi xảy ra bất khớp); giá trị càng nhỏ thì hiệu năng càng tốt. Trục hoành là độ dài của xâu mẫu $pat$:
@@ -1011,7 +1011,7 @@ Mặt khác, trên bảng chữ cái nhỏ hơn, vai trò của $delta_1$ giảm
 
 Nếu có đủ không gian dư, thuật toán Boyer-Moore đầy đủ với độ phức tạp bộ nhớ $O(m)$ tổng quát hơn và có biểu hiện tổng hợp tốt nhất.
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 [^bm]: [Bài báo năm 1977 về thuật toán Boyer-Moore](https://dl.acm.org/doi/10.1145/359842.359859)

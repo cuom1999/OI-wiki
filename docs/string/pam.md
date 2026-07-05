@@ -1,9 +1,9 @@
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Cây hồi văn (EER Tree, Palindromic Tree, còn được gọi là automaton hồi văn) là một cấu trúc dữ liệu hiệu quả có thể lưu trữ mọi xâu con đối xứng trong một xâu. Nó được Mikhail Rubinchik và Arseny M. Shur công bố lần đầu vào năm 2015. Cấu trúc này được gợi cảm hứng từ các cấu trúc dữ liệu hậu tố cho xâu như cây hậu tố; dùng cây hồi văn có thể giải quyết đơn giản và hiệu quả nhiều bài toán liên quan đến xâu đối xứng.
 
-<span id="&#x7ED3;&#x6784;"></span>
+<span id="kết-cấu"></span>
 ## Kết cấu
 
 Cây hồi văn đại khái có dạng như sau:
@@ -20,7 +20,7 @@ Giống như các automaton khác, con trỏ fail của một nút trỏ tới n
 
 Ta còn cần duy trì trên mỗi nút độ dài `len` của xâu con đối xứng tương ứng. Thông tin này giúp việc xây dựng cây hồi văn trở nên dễ dàng.
 
-<span id="&#x5EFA;&#x9020;"></span>
+<span id="xây-dựng"></span>
 ## Xây dựng
 
 Cây hồi văn có hai trạng thái khởi tạo, lần lượt biểu diễn các xâu đối xứng có độ dài $-1,0$. Ta có thể gọi chúng là gốc lẻ và gốc chẵn. Chúng không biểu diễn xâu thực tế nào, chỉ tồn tại như các trạng thái khởi tạo, tương tự vai trò của nút gốc trong những automaton khác.
@@ -45,15 +45,15 @@ Rõ ràng nút này không cần tạo mới. $len_B$ ký tự đầu và $len_B
 
 Nếu fail không khớp được, ta nối nó tới nút có độ dài $0$; điều này hiển nhiên hợp lệ, vì đó là hậu tố của mọi nút.
 
-<span id="&#x7EBF;&#x6027;&#x72B6;&#x6001;&#x6570;&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh-số-trạng-thái-tuyến-tính"></span>
 ## Chứng minh số trạng thái tuyến tính
 
-<span id="&#x5B9A;&#x7406;"></span>
+<span id="định-lý"></span>
 ### Định lý
 
 Với một xâu $s$, số xâu con đối xứng phân biệt bản chất của nó nhiều nhất chỉ là $|s|$.
 
-<span id="&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh"></span>
 ### Chứng minh
 
 Xét chứng minh bằng quy nạp toán học.
@@ -66,7 +66,7 @@ Theo quy nạp toán học, định lý được chứng minh.
 
 Vì thế số trạng thái của cây hồi văn là $O(|s|)$. Với mỗi trạng thái, trên thực tế nó chỉ biểu diễn một xâu con đối xứng phân biệt bản chất; trạng thái chuyển tới nút đó là duy nhất, nên tổng số cạnh chuyển cũng là $O(|s|)$.
 
-<span id="&#x6B63;&#x786E;&#x6027;&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh-tính-đúng-đắn"></span>
 ## Chứng minh tính đúng đắn
 
 Lấy hình trên làm ví dụ: khi thêm ký tự hiện tại `X`, theo chứng minh số trạng thái tuyến tính, ta chỉ cần tìm hậu tố đối xứng dài nhất chứa ký tự cuối `X`, tức là `XAX`. Sau đó tiếp tục tìm hậu tố đối xứng dài nhất `XBX` của `XAX` và tạo liên kết hậu tố. Trạng thái tương ứng với `XBX` đã xuất hiện trong cây hồi văn. Các hậu tố đối xứng chứa ký tự cuối chính là `XAX`, bản thân `XBX`, và mọi tổ tiên của trạng thái tương ứng trên cây fail.
@@ -79,15 +79,15 @@ Vì chỉ thêm $n$ ký tự, độ sâu chỉ tăng $n$ lần, nên tổng số
 
 Do đó, độ phức tạp thời gian để xây cây hồi văn của $s$ là $O(|s|)$.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
-<span id="&#x672C;&#x8D28;&#x4E0D;&#x540C;&#x56DE;&#x6587;&#x5B50;&#x4E32;&#x4E2A;&#x6570;"></span>
+<span id="số-xâu-con-đối-xứng-phân-biệt-bản-chất"></span>
 ### Số xâu con đối xứng phân biệt bản chất
 
 Từ chứng minh số trạng thái tuyến tính, dễ thấy số xâu con đối xứng phân biệt bản chất của một xâu bằng số trạng thái của cây hồi văn (loại trừ hai trạng thái gốc lẻ và gốc chẵn).
 
-<span id="&#x56DE;&#x6587;&#x5B50;&#x4E32;&#x51FA;&#x73B0;&#x6B21;&#x6570;"></span>
+<span id="số-lần-xuất-hiện-của-xâu-con-đối-xứng"></span>
 ### Số lần xuất hiện của xâu con đối xứng
 
 Sau khi xây cây hồi văn, dùng cách thống kê số lần xuất hiện tương tự automaton hậu tố.
@@ -103,7 +103,7 @@ Bài ví dụ: [APIO2014 - Palindrome](https://www.luogu.com.cn/problem/P3649)
     --8<-- "docs/string/code/pam/pam_1.cpp"
     ```
 
-<span id="&#x6700;&#x5C0F;&#x56DE;&#x6587;&#x5212;&#x5206;"></span>
+<span id="phân-hoạch-đối-xứng-tối-thiểu"></span>
 ### Phân hoạch đối xứng tối thiểu
 
 > Cho một xâu $s(1\le |s| \le 10^5)$, hãy tìm $k$ nhỏ nhất sao cho tồn tại $s_1,s_2,\dots,s_k$, trong đó mọi $s_i(1\le i \le k)$ đều là xâu đối xứng, và khi nối $s_1,s_2, \dots ,s_k$ theo thứ tự ta thu được xâu đúng bằng $s$.
@@ -129,7 +129,7 @@ Quan hệ giữa chu kỳ và border: $t$ là một border của $s$ khi và ch�
     
     Nếu $|s|-|t|$ là một chu kỳ của $s$, thì $\forall 1 \le i \le |s|-(|s|-|t|)=|t|,s[i]=s[|s|-|t|+i]$, do đó $pre(s,|t|)=suf(s,|t|)$, nên $t$ là một border của $s$.
 
-<span id="&#x5F15;&#x7406;&#x4E00;"></span>
+<span id="bổ-đề-1"></span>
 #### Bổ đề 1
 
 $t$ là hậu tố của xâu đối xứng $s$. Khi đó $t$ là border của $s$ khi và chỉ khi $t$ là xâu đối xứng.
@@ -143,7 +143,7 @@ Trong hình dưới, các vị trí cùng màu biểu thị các ký tự tươn
 
 ![](./images/pam3.png)
 
-<span id="&#x5F15;&#x7406;&#x4E8C;"></span>
+<span id="bổ-đề-2"></span>
 #### Bổ đề 2
 
 $t$ là border của xâu $s$ ($|s|\le 2|t|$). Khi đó $s$ là xâu đối xứng khi và chỉ khi $t$ là xâu đối xứng.
@@ -153,12 +153,12 @@ $t$ là border của xâu $s$ ($|s|\le 2|t|$). Khi đó $s$ là xâu đối xứ
     
     Nếu $t$ là xâu đối xứng, vì $t$ là border của $s$, nên $\forall 1 \le i \le |t|, s[i]=s[|s|-|t|+i]=s[|s|-i+1]$. Vì $|s| \le 2|t|$, nên $s$ cũng là xâu đối xứng.
 
-<span id="&#x5F15;&#x7406;&#x4E09;"></span>
+<span id="bổ-đề-3"></span>
 #### Bổ đề 3
 
 $t$ là border của xâu đối xứng $s$, nên $|s|-|t|$ là một chu kỳ của $s$. $|s|-|t|$ là chu kỳ nhỏ nhất của $s$ khi và chỉ khi $t$ là hậu tố đối xứng thực sự dài nhất của $s$.
 
-<span id="&#x5F15;&#x7406;&#x56DB;"></span>
+<span id="bổ-đề-4"></span>
 #### Bổ đề 4
 
 $x$ là một xâu đối xứng, $y$ là hậu tố đối xứng thực sự dài nhất của $x$, và $z$ là hậu tố đối xứng thực sự dài nhất của $y$. Gọi $u,v$ lần lượt là các xâu thỏa $x=uy,y=vz$, khi đó có ba tính chất sau:
@@ -178,7 +178,7 @@ $x$ là một xâu đối xứng, $y$ là hậu tố đối xứng thực sự d
     
     ![](./images/pam5.png)
 
-<span id="&#x63A8;&#x8BBA;"></span>
+<span id="hệ-quả"></span>
 #### Hệ quả
 
 Sau khi sắp xếp mọi hậu tố đối xứng của $s$ theo độ dài, có thể chia chúng thành $\log |s|$ đoạn cấp số cộng.
@@ -190,7 +190,7 @@ Hệ quả này cũng có thể được chứng minh bằng bổ đề chu kỳ
 
 Sau khi có kết luận này, ta có thể xét cách tối ưu chuyển trạng thái của $dp$.
 
-<span id="&#x4F18;&#x5316;"></span>
+<span id="tối-ưu-hóa"></span>
 #### Tối ưu hóa
 
 Mỗi nút $u$ trên cây hồi văn cần duy trì thêm hai thông tin, $diff[u]$ và $slink[u]$. $diff[u]$ biểu thị hiệu độ dài giữa xâu đối xứng mà nút $u$ biểu diễn và xâu đối xứng mà $fail[u]$ biểu diễn, tức là $len[u]-len[fail[u]]$. $slink[u]$ biểu thị nút $v$ đầu tiên mà khi đi từ $u$ lên trên theo fail liên tục thì gặp được sao cho $diff[v] \neq diff[u]$; nói cách khác, đó là nút có độ dài nhỏ nhất trong cấp số cộng chứa $u$.
@@ -222,7 +222,7 @@ Cho một xâu $s$, yêu cầu chia $s$ thành $t_1, t_2, \dots, t_k$, trong đ�
     --8<-- "docs/string/code/pam/pam_2.cpp"
     ```
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Xâu song đối xứng dài nhất](https://www.luogu.com.cn/problem/P4555)
@@ -235,7 +235,7 @@ Cho một xâu $s$, yêu cầu chia $s$ thành $t_1, t_2, \dots, t_k$, trong đ�
 
 -   [CodeChef Palindromeness](https://www.codechef.com/LTIME23/problems/PALPROB)
 
-<span id="&#x76F8;&#x5173;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-liên-quan"></span>
 ## Tài liệu liên quan
 
 -   [EERTREE: An Efficient Data Structure for Processing Palindromes in Strings](https://arxiv.org/pdf/1506.04862)

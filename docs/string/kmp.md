@@ -2,15 +2,15 @@
 author: Ir1d, LeoJacob, Xeonacid, greyqz, StudyingFather, Marcythm, minghu6, Backl1ght
 ---
 
-<span id="&#23383;&#31526;&#20018;&#21069;&#32512;&#21644;&#21518;&#32512;&#23450;&#20041;"></span>
+<span id="định-nghĩa-tiền-tố-và-hậu-tố-của-chuỗi"></span>
 ## Định nghĩa tiền tố và hậu tố của chuỗi
 
 Về định nghĩa tiền tố, tiền tố thực sự, hậu tố và hậu tố thực sự của chuỗi, xem chi tiết tại [Cơ sở về chuỗi](./basic.md).
 
-<span id="&#21069;&#32512;&#20989;&#25968;"></span>
+<span id="hàm-tiền-tố"></span>
 ## Hàm tiền tố
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ### Định nghĩa
 
 Cho một chuỗi $s$ có độ dài $n$, **hàm tiền tố** của nó được định nghĩa là một mảng $\pi$ có độ dài $n$.
@@ -30,7 +30,7 @@ $$
 
 Đặc biệt, quy ước $\pi[0]=0$.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quá-trình"></span>
 ### Quá trình
 
 Ví dụ, với chuỗi `abcabcd`,
@@ -51,10 +51,10 @@ $\pi[6]=0$, vì `abcabcd` không có tiền tố thực sự và hậu tố th�
 
 Tương tự, có thể tính được hàm tiền tố của chuỗi `aabaaab` là $[0, 1, 0, 1, 2, 2, 3]$.
 
-<span id="&#35745;&#31639;&#21069;&#32512;&#20989;&#25968;&#30340;&#26420;&#32032;&#31639;&#27861;"></span>
+<span id="thuật-toán-ngây-thơ-để-tính-hàm-tiền-tố"></span>
 ## Thuật toán ngây thơ để tính hàm tiền tố
 
-<span id="&#36807;&#31243;_1"></span>
+<span id="quá-trình_1"></span>
 ### Quá trình
 
 Một thuật toán trực tiếp tính hàm tiền tố theo đúng định nghĩa có quy trình như sau:
@@ -116,10 +116,10 @@ Một thuật toán trực tiếp tính hàm tiền tố theo đúng định ngh
 
 Rõ ràng thuật toán này có độ phức tạp thời gian $O(n^3)$, nên còn rất nhiều không gian để cải tiến.
 
-<span id="&#35745;&#31639;&#21069;&#32512;&#20989;&#25968;&#30340;&#39640;&#25928;&#31639;&#27861;"></span>
+<span id="thuật-toán-hiệu-quả-để-tính-hàm-tiền-tố"></span>
 ## Thuật toán hiệu quả để tính hàm tiền tố
 
-<span id="&#31532;&#19968;&#20010;&#20248;&#21270;"></span>
+<span id="tối-ưu-thứ-nhất"></span>
 ### Tối ưu thứ nhất
 
 Quan sát quan trọng đầu tiên là **hai giá trị hàm tiền tố kề nhau tăng nhiều nhất $1$**.
@@ -188,7 +188,7 @@ Từ đó ta có thể suy ra một tình huống đạt số lần so sánh chu
 
 Như vậy sau tối ưu này, việc tính hàm tiền tố chỉ cần thực hiện $O(n)$ lần so sánh chuỗi, và tổng độ phức tạp giảm xuống $O(n^2)$.
 
-<span id="&#31532;&#20108;&#20010;&#20248;&#21270;"></span>
+<span id="tối-ưu-thứ-hai"></span>
 ### Tối ưu thứ hai
 
 Trong tối ưu thứ nhất, ta đã thảo luận trường hợp tốt nhất khi tính $\pi[i+1]$: $s[i+1]=s[\pi[i]]$, khi đó $\pi[i+1] = \pi[i]+1$. Bây giờ hãy đi xa hơn theo hướng này: xét cách nhảy khi $s[i+1] \neq s[\pi[i]]$.
@@ -219,7 +219,7 @@ Nói cách khác, $j$ tương đương với giá trị hàm tiền tố của x
 
 Rõ ràng ta có thể thu được phương trình chuyển trạng thái theo $j$: $j^{(n)}=\pi[j^{(n-1)}-1], \ \ (j^{(n-1)}>0)$.
 
-<span id="&#26368;&#32456;&#31639;&#27861;"></span>
+<span id="thuật-toán-cuối-cùng"></span>
 ### Thuật toán cuối cùng
 
 Vì vậy cuối cùng ta có thể xây dựng một thuật toán không cần thực hiện bất kỳ phép so sánh chuỗi nào và chỉ thực hiện $O(n)$ thao tác.
@@ -278,15 +278,15 @@ Hơn nữa, phần cài đặt của thuật toán này ngắn và trực quan m
 
 Đây là một thuật toán **trực tuyến**, tức là nó xử lý dữ liệu khi dữ liệu đến. Chẳng hạn, bạn có thể đọc chuỗi từng ký tự một và xử lý ngay để tính giá trị hàm tiền tố cho từng ký tự. Thuật toán vẫn cần lưu trữ chính chuỗi và các giá trị hàm tiền tố đã tính trước đó; nhưng nếu ta biết trước giá trị lớn nhất có thể của hàm tiền tố của chuỗi là $M$, thì chỉ cần lưu $M + 1$ ký tự đầu của chuỗi và các giá trị hàm tiền tố tương ứng.
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
-<span id="&#22312;&#23383;&#31526;&#20018;&#20013;&#26597;&#25214;&#23376;&#20018;&#65306;Knuth–Morris–Pratt &#31639;&#27861;"></span>
+<span id="tìm-xâu-con-trong-chuỗi-thuật-toán-knuth-morris-pratt"></span>
 ### Tìm xâu con trong chuỗi: thuật toán Knuth-Morris-Pratt
 
 Thuật toán này được Knuth, Pratt và Morris cùng công bố vào năm 1977[^kmp]. Đây là một ứng dụng điển hình của hàm tiền tố.
 
-<span id="&#36807;&#31243;_2"></span>
+<span id="quá-trình_2"></span>
 #### Quá trình
 
 Cho một văn bản $t$ và một chuỗi $s$, ta muốn tìm và hiển thị tất cả các lần xuất hiện (occurrence) của $s$ trong $t$.
@@ -347,7 +347,7 @@ Do đó thuật toán Knuth-Morris-Pratt (viết tắt là KMP) giải bài toá
         }
         ```
 
-<span id="&#23383;&#31526;&#20018;&#30340;&#21608;&#26399;"></span>
+<span id="chu-kỳ-của-chuỗi"></span>
 ### Chu kỳ của chuỗi
 
 Với chuỗi $s$ và $0 < p \le |s|$, nếu $s[i] = s[i+p]$ đúng với mọi $i \in [0, |s| - p - 1]$, thì gọi $p$ là một chu kỳ của $s$.
@@ -360,7 +360,7 @@ Theo định nghĩa của hàm tiền tố, ta có thể nhận được mọi �
 
 Vì vậy, dựa vào hàm tiền tố, ta có thể tính mọi chu kỳ của $s$ trong thời gian $O(n)$. Trong đó, vì $\pi[n-1]$ là độ dài border dài nhất của $s$, nên $n - \pi[n-1]$ là chu kỳ nhỏ nhất của $s$.
 
-<span id="&#32479;&#35745;&#27599;&#20010;&#21069;&#32512;&#30340;&#20986;&#29616;&#27425;&#25968;"></span>
+<span id="đếm-số-lần-xuất-hiện-của-mỗi-tiền-tố"></span>
 ### Đếm số lần xuất hiện của mỗi tiền tố
 
 Trong phần này ta sẽ thảo luận đồng thời hai bài toán. Cho một chuỗi $s$ có độ dài $n$; ở biến thể thứ nhất, ta muốn đếm số lần xuất hiện của mỗi tiền tố $s[0 \dots i]$ trong chính chuỗi đó; ở biến thể thứ hai, ta muốn đếm số lần xuất hiện của mỗi tiền tố $s[0 \dots i]$ trong một chuỗi $t$ cho trước khác.
@@ -387,14 +387,14 @@ Trước hết hãy giải bài toán thứ nhất. Xét giá trị hàm tiền 
             ans[i] += 1
         ```
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 #### Giải thích
 
 Trong đoạn mã trên, trước hết ta đếm mỗi giá trị hàm tiền tố xuất hiện bao nhiêu lần trong mảng $\pi$, rồi tính đáp án cuối cùng: nếu ta biết tiền tố độ dài $i$ xuất hiện đúng $\text{ans}[i]$ lần, thì giá trị này phải được cộng dồn vào số lần xuất hiện của xâu con dài nhất vừa là hậu tố vừa là tiền tố của nó. Cuối cùng, để tính cả chính các tiền tố ban đầu, ta cộng thêm $1$ vào mỗi kết quả.
 
 Bây giờ xét bài toán thứ hai. Ta áp dụng thủ thuật từ Knuth-Morris-Pratt: xây dựng chuỗi $s + \# + t$ và tính hàm tiền tố của nó. Điểm khác biệt duy nhất so với bài toán thứ nhất là ta chỉ quan tâm đến các giá trị hàm tiền tố liên quan đến chuỗi $t$, tức là các $\pi[i]$ với $i \ge n + 1$. Sau khi có các giá trị này, ta có thể áp dụng cùng thuật toán như trong bài toán thứ nhất để giải bài toán.
 
-<span id="&#19968;&#20010;&#23383;&#31526;&#20018;&#20013;&#26412;&#36136;&#19981;&#21516;&#23376;&#20018;&#30340;&#25968;&#30446;"></span>
+<span id="số-xâu-con-khác-nhau-trong-một-chuỗi"></span>
 ### Số xâu con khác nhau trong một chuỗi
 
 Cho một chuỗi $s$ có độ dài $n$, ta muốn tính số xâu con khác nhau của nó.
@@ -411,7 +411,7 @@ Do đó với mỗi ký tự được thêm vào, ta có thể tính số xâu c
 
 Đáng chú ý là ta cũng có thể tính lại số xâu con khác nhau khi thêm một ký tự vào đầu, hoặc khi xóa một ký tự ở cuối hay ở đầu.
 
-<span id="&#23383;&#31526;&#20018;&#21387;&#32553;"></span>
+<span id="nén-chuỗi"></span>
 ### Nén chuỗi
 
 Cho một chuỗi $s$ có độ dài $n$, ta muốn tìm biểu diễn "nén" ngắn nhất của nó, tức là muốn tìm một chuỗi $t$ ngắn nhất sao cho $s$ có thể được biểu diễn bằng cách ghép một hoặc nhiều bản sao của $t$.
@@ -442,7 +442,7 @@ Giả sử $n$ chia hết cho $k$. Khi đó chuỗi có thể được chia thà
 
 [^1]: Phần chứng minh này trong bản tiếng Nga và bản tiếng Anh đều có vẻ có sai sót. Phần chứng minh trong bài viết này do tác giả tự bổ sung.
 
-<span id="&#26681;&#25454;&#21069;&#32512;&#20989;&#25968;&#26500;&#24314;&#19968;&#20010;&#33258;&#21160;&#26426;"></span>
+<span id="xây-dựng-một-ô-tô-mát-từ-hàm-tiền-tố"></span>
 ### Xây dựng một ô-tô-mát từ hàm tiền tố
 
 Hãy quay lại chuỗi mới được tạo bằng cách nối hai chuỗi qua một ký tự phân tách. Với các chuỗi $s$ và $t$, ta tính hàm tiền tố của $s + \# + t$. Rõ ràng, vì $\#$ là một ký tự phân tách, giá trị hàm tiền tố không bao giờ vượt quá $|s|$. Do đó ta chỉ cần lưu chuỗi $s + \#$ và các giá trị hàm tiền tố tương ứng của nó; sau đó có thể tính động giá trị hàm tiền tố cho mọi ký tự tiếp theo:
@@ -550,7 +550,7 @@ Việc thay thế đệ quy sẽ khiến độ dài chuỗi tăng bùng nổ; đ
 
 Bài toán này cũng có thể được giải bằng cách xây dựng ô-tô-mát của hàm tiền tố. Tương tự như trước, ta tận dụng các kết quả đã tính để tính chuyển tiếp cho mỗi mẫu rồi thống kê đáp án tương ứng.
 
-<span id="&#32451;&#20064;&#39064;&#30446;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [UVa 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
@@ -563,7 +563,7 @@ Bài toán này cũng có thể được giải bằng cách xây dựng ô-tô-
 -   [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
 -   [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 **Trang này chủ yếu được dịch từ bài viết [Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function) và bản dịch tiếng Anh của nó, [Prefix function. Knuth-Morris-Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html). Giấy phép của bản tiếng Nga là Public Domain + Leave a Link; giấy phép của bản tiếng Anh là CC-BY-SA 4.0.**
