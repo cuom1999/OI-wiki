@@ -102,7 +102,7 @@ Tích chập Dirichlet có một loạt tính chất đại số.
     
     Công thức này có thể dùng để tính đệ quy các giá trị của $g(n)$. Vì vậy, nghịch đảo $g$ tồn tại khi và chỉ khi $f(1)\neq 0$.
 
-Theo ngôn ngữ đại số trừu tượng, các tính chất đại số này nói rằng toàn bộ các hàm số học, với phép cộng theo điểm và tích chập Dirichlet, tạo thành một [vành giao hoán](../algebra/basic.md#%E7%8E%AF); tập các phần tử khả nghịch của vành này chính là các hàm nhận giá trị khác không tại $n=1$. Vành này được gọi là **vành Dirichlet** (Dirichlet ring).
+Theo ngôn ngữ đại số trừu tượng, các tính chất đại số này nói rằng toàn bộ các hàm số học, với phép cộng theo điểm và tích chập Dirichlet, tạo thành một [vành giao hoán](../algebra/basic.md#vành); tập các phần tử khả nghịch của vành này chính là các hàm nhận giá trị khác không tại $n=1$. Vành này được gọi là **vành Dirichlet** (Dirichlet ring).
 
 Hàm nhân tính là một lớp hàm số học đặc biệt. Lớp này đóng với tích chập Dirichlet và nghịch đảo Dirichlet.
 

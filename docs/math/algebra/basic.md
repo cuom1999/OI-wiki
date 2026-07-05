@@ -72,7 +72,7 @@ Cuối cùng, nhiều phép toán trên các nhóm quen thuộc, ngoài việc t
 
 Đó là các định nghĩa cơ bản liên quan đến lý thuyết nhóm. Nội dung khác về lý thuyết nhóm có thể tham khảo tại [lý thuyết nhóm](./group-theory.md) hoặc các sách liên quan.
 
-<span id="&#x73AF;"></span>
+<span id="vành"></span>
 ## Vành
 
 Định nghĩa của vành như sau.

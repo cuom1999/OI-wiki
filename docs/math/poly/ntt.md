@@ -1,6 +1,6 @@
 author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494, Tiphereth-A, XuYueming520
 
-<span id="&#x7B80;&#x4ECB;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
@@ -10,21 +10,21 @@ author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494, Tiphere
 
 NTT xử lí trường hợp nhân đa thức có lấy modulo. Có thể nói nó chịu một số ràng buộc từ modulo, và các số thường tương đối lớn. Modulo phổ biến nhất hiện nay là 998244353.
 
-<span id="&#x524D;&#x7F6E;&#x77E5;&#x8BC6;"></span>
+<span id="kiến-thức-cần-có"></span>
 
 ## Kiến thức cần có
 
 Để học biến đổi số học, cần biết trước về biến đổi Fourier rời rạc, nhóm con sinh, [căn nguyên thủy](../number-theory/primitive-root.md) và logarit rời rạc. Các kiến thức liên quan có thể học ở các trang tương ứng, nên ở đây không nhắc lại.
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 
 ## Định nghĩa
 
-<span id="&#x6570;&#x8BBA;&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-số-học"></span>
 
 ### Biến đổi số học
 
-Trong toán học, NTT là biến đổi Fourier rời rạc (DFT) trên một [vành](../algebra/basic.md#%E7%8E%AF) bất kì. Trong trường hợp trường hữu hạn, nó thường được gọi là biến đổi số học (NTT).
+Trong toán học, NTT là biến đổi Fourier rời rạc (DFT) trên một [vành](../algebra/basic.md#vành) bất kì. Trong trường hợp trường hữu hạn, nó thường được gọi là biến đổi số học (NTT).
 
 **Biến đổi số học** (NTT) thu được bằng cách chuyển biến đổi Fourier rời rạc sang $F={\mathbb {Z}/p}$, tức các số nguyên modulo số nguyên tố $p$. Đây là một **trường hữu hạn**. Miễn là $n$ chia hết $p-1$, sẽ tồn tại căn nguyên thủy bậc $n$, nên ta có $p=\xi n+1$ với số nguyên dương $\xi$. Cụ thể, với số nguyên tố $p=qn+1, (n=2^m)$, căn nguyên thủy $g$ thỏa mãn $g^{qn} \equiv 1 \pmod p$; nếu xem $g_n=g^q\pmod p$ là phần tử tương ứng với $\omega_n$, thì nó thỏa mãn các tính chất tương tự, chẳng hạn $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$.
 
@@ -56,7 +56,7 @@ Tức là $g^{qn}$ tương ứng với $\mathrm{e}^{2\pi \mathrm{i} n}$.
 
 Khi lặp đến độ dài $l$, ta có $g_l = g^{\frac{p-1}{l}}$, hoặc $\omega_n = g_l = g_N^{\frac{N}{l}} = g_N^{\frac{p-1}{l}}$.
 
-<span id="&#x5FEB;&#x901F;&#x6570;&#x8BBA;&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-số-học-nhanh"></span>
 
 ## Biến đổi số học nhanh
 
@@ -84,7 +84,7 @@ Vì các phép toán được thay thế chỉ gồm cộng và nhân, nên DFT,
 
 Thực ra, miễn là có căn nguyên thủy, tức phần tử sinh trong lí thuyết nhóm, thì NTT hoặc FNTT dưới modulo đó có thể thực hiện được. Xét rằng các modulo $1$, $2$ và $4$ quá nhỏ và không có ý nghĩa thực tế, với số nguyên tố lẻ $p$ và số nguyên dương $\alpha$, chỉ cần cho căn nguyên thủy $g$ của modulo $p^\alpha$ và $2p^\alpha$, dùng cùng phương pháp thì NTT hoặc FNTT vẫn có thể thực hiện.
 
-<span id="&#x6A21;&#x677F;"></span>
+<span id="mẫu"></span>
 
 ## Mẫu
 
@@ -93,7 +93,7 @@ Thực ra, miễn là có căn nguyên thủy, tức phần tử sinh trong lí 
     --8<-- "docs/math/code/poly/ntt/ntt_1.cpp"
     ```
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+<span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 
 ## Tài liệu tham khảo và đọc thêm
 
