@@ -1,7 +1,7 @@
-<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x591A;&#x70B9;&#x6C42;&#x503C;"></span>
+<span id="tính-giá-trị-đa-thức-tại-nhiều-điểm"></span>
 ## Tính giá trị đa thức tại nhiều điểm
 
-<span id="&#x63CF;&#x8FF0;"></span>
+<span id="mô-tả"></span>
 ### Mô tả
 
 Cho một đa thức $f\left(x\right)$ và $n$ điểm $x_{1},x_{2},\dots,x_{n}$, hãy tính
@@ -10,7 +10,7 @@ $$
 f\left(x_{1}\right),f\left(x_{2}\right),\dots,f\left(x_{n}\right)
 $$
 
-<span id="&#x89E3;&#x6CD5;"></span>
+<span id="cách-giải"></span>
 ### Cách giải
 
 Xét dùng chia để trị để giảm một nửa kích thước bài toán.
@@ -48,10 +48,10 @@ $$
 T\left(n\right)=2T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log^{2}{n}\right)
 $$
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x5FEB;&#x901F;&#x63D2;&#x503C;"></span>
+<span id="nội-suy-nhanh-đa-thức"></span>
 ## Nội suy nhanh đa thức
 
-<span id="&#x63CF;&#x8FF0;_1"></span>
+<span id="mô-tả_1"></span>
 ### Mô tả
 
 Cho tập gồm $n+1$ điểm
@@ -62,7 +62,7 @@ $$
 
 Hãy tìm một đa thức bậc $n$ là $f\left(x\right)$ sao cho nó thỏa mãn $\forall\left(x,y\right)\in X:f\left(x\right)=y$.
 
-<span id="&#x89E3;&#x6CD5;_1"></span>
+<span id="cách-giải_1"></span>
 ### Cách giải
 
 Xét công thức nội suy Lagrange

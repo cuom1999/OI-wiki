@@ -1,6 +1,6 @@
 Phép hợp thành và nghịch đảo hợp thành của chuỗi lũy thừa hình thức cũng là những thao tác thường gặp trên chuỗi lũy thừa hình thức. Với $f$ không có tính chất đặc biệt, trước đây ta thường dùng thuật toán $O\left(n^2\right)$ (vẫn cần FFT) để tính $f(g) \bmod{x^n}$, trong đó $f\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$. Tuy nhiên, do hiệu năng thấp nên cách này ít được áp dụng. Phần này giới thiệu thuật toán $O\left(\mathsf{M}\left(n\right)\log n\right)$ của Kinoshita-Li, trong đó $O\left(\mathsf{M}\left(n\right)\right)$ là thời gian nhân hai đa thức bậc $O\left(n\right)$.
 
-<span id="&#x5f62;&#x5f0f;&#x5e42;&#x7ea7;&#x6570;&#x591a;&#x9879;&#x5f0f;&#x7684;&#x590d;&#x5408;"></span>
+<span id="hợp-thành-chuỗi-lũy-thừa-hình-thứcđa-thức"></span>
 ## Hợp thành chuỗi lũy thừa hình thức/đa thức
 
 Để tính $f\left(g\left(x\right)\right)\bmod{x^n}$, mỗi hệ số của $f\left(g\left(x\right)\right)$ phải là tổng hữu hạn số hạng. Vì vậy trước đây ta yêu cầu $f(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g(x)\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$; nếu $f(x),g(x)\in\mathbb{C}\left\lbrack x\right\rbrack$ thì điều kiện này cũng được thỏa mãn. Vì ta cần cắt cụt hệ số của $f\left(g\left(x\right)\right)$, có thể trực tiếp xét trường hợp cả $f(x)$ và $g(x)$ đều là đa thức. Với $f(x)=\sum_{j=0}^{n-1}f_jx^j$, ta có
@@ -62,7 +62,7 @@ Lưu ý tham số thứ ba là để xử lí trường hợp $g(0)$ có thể k
 
 Ngoài ra, do giới hạn của lời gọi, khi đệ quy kết thúc thì $Q(0,y)^{-1}$ có thể được suy ra trực tiếp, không cần dùng thuật toán nghịch đảo nhân của chuỗi lũy thừa hình thức. Ta chỉ cần tính một phép nhân rồi trích các hệ số cần thiết.
 
-<span id="&#x5e38;&#x89c1;&#x7684;&#x7279;&#x6b8a;&#x5f62;&#x5f0f;&#x590d;&#x5408;"></span>
+<span id="các-dạng-hợp-thành-đặc-biệt-thường-gặp"></span>
 ## Các dạng hợp thành đặc biệt thường gặp
 
 Các [hàm sơ cấp của đa thức](./elementary-func.md) thường dùng đều có thể tính bằng phép hợp thành:
@@ -78,7 +78,7 @@ $$
 
 Trong quá trình tính nghịch đảo hợp thành, ta cũng sẽ dùng đến hàm lũy thừa.
 
-<span id="kronecker-&#x4ee3;&#x6362;"></span>
+<span id="thế-kronecker"></span>
 ### Thế Kronecker
 
 Trước khi phân tích độ phức tạp thời gian, ta xét cách thực hiện phép nhân đa thức hai biến. Một ý tưởng là "đóng gói" các hệ số. Phương pháp này được Kronecker đưa ra năm 1882: thông qua phép thay $y\mapsto x^N$, phép nhân trên $R\left\lbrack x,y\right\rbrack$ được đưa về phép nhân trên $R\left\lbrack x\right\rbrack$, với điều kiện $N$ đủ lớn.
@@ -94,7 +94,7 @@ Ta dùng thế Kronecker rồi tính phép nhân đa thức một biến. Không
     --8<-- "docs/math/code/poly/comp-rev/comp_1.cpp"
     ```
 
-<span id="&#x5f62;&#x5f0f;&#x5e42;&#x7ea7;&#x6570;&#x7684;&#x590d;&#x5408;&#x9006;"></span>
+<span id="nghịch-đảo-hợp-thành-của-chuỗi-lũy-thừa-hình-thức"></span>
 ## Nghịch đảo hợp thành của chuỗi lũy thừa hình thức
 
 Cho $f\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ và $f'(0)\neq 0$. Hãy tìm $g(x)\bmod{x^n}$ sao cho $f(g)\equiv g(f)\equiv x\pmod{x^n}$.
@@ -185,12 +185,12 @@ $$
     --8<-- "docs/math/code/poly/comp-rev/rev_1.cpp"
     ```
 
-<span id="&#x7531;&#x8f6c;&#x7f6e;&#x539f;&#x7406;&#x5bfc;&#x51fa;"></span>
+<span id="suy-ra-từ-nguyên-lý-chuyển-vị"></span>
 ### Suy ra từ nguyên lý chuyển vị
 
 Bài toán Power Projection là bài toán chuyển vị của Modular Composition. Kinoshita và Li chỉ ra rằng thuật toán hợp thành ở phần trên có thể thu được trực tiếp bằng cách chuyển vị thuật toán Power Projection. Tương tự, nếu một tối ưu hóa áp dụng được cho thuật toán Power Projection thì nó cũng áp dụng được cho thuật toán Modular Composition. Ta bỏ qua chi tiết.
 
-<span id="&#x53c2;&#x8003;&#x6587;&#x732e;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 1.  Yasunori Kinoshita, Baitian Li.[Power Series Composition in Near-Linear Time](https://arxiv.org/abs/2404.05177). FOCS 2024.

@@ -1,13 +1,13 @@
 author: Enter-tainer, Falicitas, HeRaNO, iamtwz, ImpleLee, Tiphereth-A, Xeonacid, Yanjun-Zhao
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Hệ tam phân cân bằng, còn gọi là hệ tam phân đối xứng, là một hệ cơ số tổng quát.
 
 Trong hệ tam phân thông thường, các chữ số gồm `0`, `1`, `2`; còn trong hệ tam phân cân bằng, các chữ số gồm `-1`, `0`, `1`. Cơ số của nó vẫn là `3` (vì có ba giá trị có thể có). Do viết `-1` dưới dạng một chữ số không tiện, ta dùng chữ cái `Z` để thay cho `-1`.
 
-<span id="&#35299;&#37322;"></span>
+<span id="giải-thích"></span>
 ## Giải thích
 
 Một vài ví dụ:
@@ -32,12 +32,12 @@ Hệ ghi số này biểu diễn số âm rất dễ: chỉ cần đảo từng 
 
 Dễ thấy chữ số cao nhất của số âm là `Z`, còn chữ số cao nhất của số dương là `1`.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quy-trình"></span>
 ## Quy trình
 
 Khi chuyển đổi sang tam phân cân bằng, trước hết cần viết số đã cho `x` trong hệ tam phân chuẩn. Khi `x` được biểu diễn bằng tam phân chuẩn, mỗi chữ số của nó là `0`, `1` hoặc `2`. Bắt đầu từ chữ số thấp nhất, ta có thể bỏ qua mọi `0` và `1`; nếu gặp `2`, đổi nó thành `Z` và cộng `1` vào chữ số kế tiếp. Nếu gặp chữ số `3`, đổi nó thành `0` và cộng `1` vào chữ số kế tiếp.
 
-<span id="&#24212;&#29992;&#19968;"></span>
+<span id="ví-dụ-1"></span>
 ### Ví dụ 1
 
 Chuyển `64` sang tam phân cân bằng.
@@ -62,7 +62,7 @@ $$
 \texttt {1Z101}=81 \times 1 +27 \times (-1) + 9 \times 1 + 3 \times 0 + 1 \times 1 = 64_{10}
 $$
 
-<span id="&#24212;&#29992;&#20108;"></span>
+<span id="ví-dụ-2"></span>
 ### Ví dụ 2
 
 Chuyển `237` sang tam phân cân bằng.
@@ -87,7 +87,7 @@ $$
 \texttt{100Z10} = 243 \cdot 1 + 81 \cdot 0 + 27 \cdot 0 + 9 \cdot (-1) + 3 \cdot 1 + 1 \cdot 0 = 237_{10}
 $$
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 Với một số tam phân cân bằng $X_3$, ta có thể nhân từng chữ số $x_i$ với trọng số tương ứng $3^i$ để nhận được duy nhất một số thập phân $Y_{10}$.
@@ -110,7 +110,7 @@ Câu trả lời là có. Tính chất này được gọi là tính duy nhất 
     
     Vì vậy với mọi số thập phân $Y_{10}$, luôn có duy nhất một số tam phân cân bằng $X_3$ tương ứng.
 
-<span id="&#32451;&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 [Topcoder SRM 604 PowerOfThree](https://archive.topcoder.com/ProblemStatement/pm/12917)
