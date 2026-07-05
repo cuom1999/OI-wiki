@@ -27,43 +27,43 @@ Khi đó bài toán trở thành bài toán cây động, có thể dùng LCT đ
 
 ## Bài toán cây động
 
-Duy trì một **rừng**, hỗ trợ xóa một cạnh, thêm một cạnh, và bảo đảm sau khi thêm hoặc xóa cạnh thì cấu trúc vẫn là rừng. Ta cần duy trì một số thông tin trên rừng này.
+Duy trì một **rừng**, hỗ trợ xóa một cạnh, thêm một cạnh, và bảo đảm sau khi thêm hoặc xóa cạnh thì cấu trúc vẫn là rừng. Đồng thời cần duy trì một số thông tin trên rừng này.
 
 Các thao tác thường gặp gồm kiểm tra liên thông giữa hai điểm, tổng trọng số trên đường đi giữa hai điểm, nối hai điểm, cắt một cạnh, sửa thông tin, v.v.
 
 ### Nhìn lại phân rã cây theo chuỗi từ góc nhìn LCT
 
 -   Phân rã toàn bộ cây theo kích thước cây con và đánh số lại.
--   Sau khi đánh số lại, trên cây xuất hiện một số đoạn liên tiếp theo đơn vị chuỗi, và ta có thể dùng cây đoạn để thao tác trên các đoạn này.
+-   Sau khi đánh số lại, trên cây xuất hiện một số đoạn liên tiếp theo đơn vị chuỗi, và có thể dùng cây đoạn để thao tác trên các đoạn này.
 
 ### Chuyển sang bài toán cây động
 
-Ta thấy phân rã cây vừa nêu dùng kích thước cây con làm điều kiện chia. Vậy có thể định nghĩa lại một kiểu phân rã để phù hợp hơn với bài toán cây động không?
+Phân rã cây vừa nêu dùng kích thước cây con làm điều kiện chia. Vậy có thể định nghĩa lại một kiểu phân rã để phù hợp hơn với bài toán cây động không?
 
-Hãy xét xem bài toán cây động cần loại chuỗi nào.
+Cần xét xem bài toán cây động cần loại chuỗi nào.
 
-Vì ta đang duy trì động một rừng, rõ ràng ta muốn chuỗi này là chuỗi do chính ta chỉ định để tiện dùng trong lời giải.
+Vì bài toán duy trì động một rừng, loại chuỗi mong muốn là chuỗi có thể tự chỉ định để tiện dùng trong lời giải.
 
 ## Phân rã chuỗi thực
 
-Với các cạnh nối một điểm tới tất cả con của nó, ta tự chọn một cạnh để đưa vào phân rã. Cạnh được chọn gọi là cạnh thực, các cạnh còn lại gọi là cạnh ảo. Với một cạnh thực, đứa con mà nó nối tới gọi là con thực. Một chuỗi gồm các cạnh thực cũng được gọi là chuỗi thực. Hãy nhớ lý do quan trọng nhất khiến ta chọn phân rã chuỗi thực: nó do ta chọn, linh hoạt và có thể thay đổi. Chính tính linh hoạt đó khiến ta dùng Splay Tree để duy trì các chuỗi thực này.
+Với các cạnh nối một điểm tới tất cả con của nó, tự chọn một cạnh để đưa vào phân rã. Cạnh được chọn gọi là cạnh thực, các cạnh còn lại gọi là cạnh ảo. Với một cạnh thực, đứa con mà nó nối tới gọi là con thực. Một chuỗi gồm các cạnh thực cũng được gọi là chuỗi thực. Lý do quan trọng nhất để chọn phân rã chuỗi thực là nó được chọn chủ động, linh hoạt và có thể thay đổi. Chính tính linh hoạt đó khiến Splay Tree phù hợp để duy trì các chuỗi thực này.
 
 ## LCT
 
-Có thể hiểu đơn giản LCT là dùng một số Splay để duy trì phân rã cây theo chuỗi một cách động, nhằm thực hiện các thao tác đoạn trên cây động. Với mỗi chuỗi thực, ta xây một Splay để duy trì thông tin của toàn bộ đoạn chuỗi đó.
+Có thể hiểu đơn giản LCT là dùng một số Splay để duy trì phân rã cây theo chuỗi một cách động, nhằm thực hiện các thao tác đoạn trên cây động. Với mỗi chuỗi thực, xây một Splay để duy trì thông tin của toàn bộ đoạn chuỗi đó.
 
 ## Cây phụ trợ
 
-Trước hết hãy xem một số tính chất của cây phụ trợ, rồi dùng hình vẽ để hiểu cấu trúc cụ thể của nó.
+Trước hết xét một số tính chất của cây phụ trợ, rồi dùng hình vẽ để hiểu cấu trúc cụ thể của nó.
 
 Trong bài này, có thể xem một số Splay hợp thành một cây phụ trợ; mỗi cây phụ trợ duy trì một cây, và nhiều cây phụ trợ hợp thành LCT, duy trì toàn bộ rừng.
 
 1.  Cây phụ trợ gồm nhiều Splay. Mỗi Splay duy trì một đường đi trong cây gốc, và dãy đỉnh thu được khi duyệt trung thứ tự Splay này tương ứng từ trước ra sau với một đường đi "từ trên xuống dưới" trong cây gốc.
 2.  Mỗi nút trong cây gốc tương ứng một-một với một nút Splay trong cây phụ trợ.
 3.  Các Splay trong cây phụ trợ không độc lập với nhau. Cha của gốc mỗi Splay lẽ ra phải rỗng, nhưng trong LCT, cha của gốc mỗi Splay trỏ tới nút cha của **chuỗi này** trong cây gốc (tức cha của điểm trên cùng của chuỗi). Loại liên kết cha này khác liên kết cha trong Splay thông thường ở chỗ con nhận cha, nhưng cha không nhận con; nó tương ứng với một **cạnh ảo** trong cây gốc. Vì vậy, mỗi thành phần liên thông có đúng một điểm có cha rỗng.
-4.  Nhờ các tính chất trên của cây phụ trợ, khi duy trì mọi thao tác ta không cần duy trì cây gốc. Cây phụ trợ luôn xác định được duy nhất một cây gốc, nên ta chỉ cần duy trì cây phụ trợ.
+4.  Nhờ các tính chất trên của cây phụ trợ, khi duy trì mọi thao tác không cần duy trì cây gốc. Cây phụ trợ luôn xác định được duy nhất một cây gốc, nên chỉ cần duy trì cây phụ trợ.
 
-Giả sử ta có một cây gốc như hình dưới. (Cạnh tô đậm là cạnh thực, cạnh nét đứt là cạnh ảo.)
+Giả sử có một cây gốc như hình dưới. (Cạnh tô đậm là cạnh thực, cạnh nét đứt là cạnh ảo.)
 
 ![Cây gốc trong Link-Cut Tree](images/lct-atree-1.svg)
 
@@ -78,7 +78,7 @@ Theo định nghĩa vừa nêu, cấu trúc cây phụ trợ như hình sau.
 -   Chú ý: gốc của cây gốc không nhất thiết là gốc của cây phụ trợ.
 -   Con trỏ `Father` trong cây gốc không giống con trỏ `Father` trong cây phụ trợ.
 -   Cây phụ trợ có thể đổi gốc tùy ý miễn vẫn thỏa các tính chất của cây phụ trợ và Splay.
--   Chuyển đổi giữa chuỗi ảo và chuỗi thực có thể thực hiện dễ dàng trên cây phụ trợ; đây chính là cách duy trì động phân rã cây theo chuỗi.
+-   Chuyển đổi giữa chuỗi ảo và chuỗi thực có thể thực hiện thuận tiện trên cây phụ trợ; đây chính là cách duy trì động phân rã cây theo chuỗi.
 
 ### Khai báo biến sẽ dùng sau đây
 
@@ -147,7 +147,7 @@ void PushDown(int p) {
 
 ### `Splay() && Rotate()`
 
-Ở đây `Splay()` và `Rotate()` có vài điểm khác với cách cài đặt Splay Tree thông thường.
+Trong LCT, `Splay()` và `Rotate()` có vài điểm khác với cách cài đặt Splay Tree thông thường.
 
 ```cpp
 #define Get(x) (ch[f[x]][1] == x)
@@ -188,7 +188,7 @@ Sau đây là các hàm riêng của LCT.
 ### `Access()`
 
 ```cpp
-// Access là thao tác cốt lõi của LCT. Hãy tưởng tượng ta muốn giải một đường đi,
+// Access là thao tác cốt lõi của LCT. Hình dung cần xử lý một đường đi,
 // và đường đi đó đúng bằng một Splay hiện tại, khi đó chỉ cần gọi trực tiếp
 // thông tin của nó. Trước hết xem mã, rồi kết hợp với hình để hiểu quá trình.
 int Access(int x) {
@@ -200,7 +200,7 @@ int Access(int x) {
 }
 ```
 
--   Ta có một cây như sau, cạnh liền là cạnh thực, cạnh nét đứt là cạnh ảo.
+-   Có một cây như sau, cạnh liền là cạnh thực, cạnh nét đứt là cạnh ảo.
 
     ![Cây ban đầu trước thao tác Access](images/lct-access-1.svg)
 
@@ -208,37 +208,37 @@ int Access(int x) {
 
     ![Cây phụ trợ ban đầu trước thao tác Access](images/lct-access-2.svg)
 
--   Bây giờ ta cần `Access(N)`, biến mọi cạnh trên đường từ $A$ tới $N$ thành cạnh thực và kéo chúng thành một Splay.
+-   Bây giờ cần `Access(N)`, biến mọi cạnh trên đường từ $A$ tới $N$ thành cạnh thực và kéo chúng thành một Splay.
 
     ![Cây sau khi chọn đường Access](images/lct-access-3.svg)
 
 -   Cách thực hiện là cập nhật Splay từng bước từ dưới lên trên.
 
--   Trước hết ta xoay $N$ lên gốc của Splay hiện tại.
+-   Trước hết xoay $N$ lên gốc của Splay hiện tại.
 
 -   Để bảo đảm tính chất của AuxTree (cây phụ trợ), cạnh thực ban đầu từ $N$ tới $O$ phải đổi thành cạnh ảo.
 
--   Do tính chất con nhận cha nhưng cha không nhận con, ta có thể đơn phương đổi con của $N$ thành `NULL`.
+-   Do tính chất con nhận cha nhưng cha không nhận con, có thể đơn phương đổi con của $N$ thành `NULL`.
 
 -   Vì vậy AuxTree ban đầu chuyển từ hình dưới sang hình kế tiếp.
 
     ![Cây phụ trợ sau bước Access thứ nhất](images/lct-access-4.svg)
 
--   Bước tiếp theo, ta cũng xoay `Father` $I$ mà $N$ trỏ tới lên gốc của Splay chứa $I$.
+-   Bước tiếp theo, cũng xoay `Father` $I$ mà $N$ trỏ tới lên gốc của Splay chứa $I$.
 
--   Cạnh thực ban đầu $I$--$K$ cần bị bỏ. Lúc này ta cho con phải của $I$ trỏ tới $N$, và thu được một Splay từ $I$ tới $L$.
+-   Cạnh thực ban đầu $I$--$K$ cần bị bỏ. Lúc này cho con phải của $I$ trỏ tới $N$, và thu được một Splay từ $I$ tới $L$.
 
     ![Cây phụ trợ sau bước Access thứ hai](images/lct-access-5.svg)
 
--   Tiếp theo, theo các bước vừa rồi, vì `Father` của $I$ trỏ tới $H$, ta xoay $H$ lên gốc của Splay Tree chứa nó, rồi đặt `rs` của $H$ thành $I$.
+-   Tiếp theo, theo các bước vừa rồi, vì `Father` của $I$ trỏ tới $H$, xoay $H$ lên gốc của Splay Tree chứa nó, rồi đặt `rs` của $H$ thành $I$.
 
 -   Cây sau đó có dạng như sau.
 
     ![Cây phụ trợ sau bước Access thứ ba](images/lct-access-6.svg)
 
--   Tương tự, ta `Splay(A)` và cho con phải của $A$ trỏ tới $H$.
+-   Tương tự, `Splay(A)` và cho con phải của $A$ trỏ tới $H$.
 
--   Khi đó ta thu được AuxTree sau, và thấy rằng toàn bộ đường đi $A$--$N$ đã nằm trong cùng một Splay.
+-   Khi đó thu được AuxTree sau, và toàn bộ đường đi $A$--$N$ đã nằm trong cùng một Splay.
 
     ![Cây phụ trợ sau bước Access cuối cùng](images/lct-access-7.svg)
 
@@ -253,14 +253,14 @@ int Access(int x) {
 }
 ```
 
-Ta thấy `Access()` thực ra rất đơn giản, chỉ gồm bốn bước:
+`Access()` thực ra rất đơn giản, chỉ gồm bốn bước:
 
 1.  Xoay nút hiện tại lên gốc.
 2.  Đổi con thành nút trước đó.
 3.  Cập nhật thông tin của điểm hiện tại.
 4.  Đổi điểm hiện tại thành cha của nó và tiếp tục thao tác.
 
-Phiên bản `Access` ở đây còn có giá trị trả về. Giá trị này tương đương chỉ số nút cha của cạnh ảo trong lần chuyển đổi chuỗi ảo/thực cuối cùng. Nó có hai ý nghĩa:
+Phiên bản `Access` trong phần này còn có giá trị trả về. Giá trị này tương đương chỉ số nút cha của cạnh ảo trong lần chuyển đổi chuỗi ảo/thực cuối cùng. Nó có hai ý nghĩa:
 
 -   Khi thực hiện hai thao tác `Access` liên tiếp, giá trị trả về của thao tác `Access` thứ hai bằng LCA của hai nút đó.
 -   Biểu thị gốc của Splay chứa chuỗi từ $x$ tới gốc. Nút này chắc chắn đã được xoay lên gốc và cha của nó chắc chắn rỗng.
@@ -278,12 +278,12 @@ void Update(int p) {
 ### `makeRoot()`
 
 -   Tầm quan trọng của `Make_Root()` không hề kém `Access()`. Khi cần duy trì thông tin đường đi, chắc chắn sẽ có trường hợp độ sâu trên đường đi không tăng nghiêm ngặt; theo tính chất của AuxTree, kiểu đường đi này không thể xuất hiện trong một Splay.
--   Lúc này ta cần dùng `Make_Root()`.
+-   Lúc này cần dùng `Make_Root()`.
 -   Tác dụng của `Make_Root()` là biến điểm được chỉ định thành gốc của cây gốc. Hãy xét cách cài đặt thao tác này.
 -   Giả sử giá trị trả về của `Access(x)` là $y$, khi đó đường đi từ $x$ tới gốc hiện tại vừa đúng tạo thành một Splay, và gốc của Splay này là $y$.
--   Hãy biểu diễn cây bằng đồ thị có hướng, gán cho mỗi cạnh một hướng từ con tới cha. Dễ thấy đổi gốc tương đương đảo hướng mọi cạnh trên đường đi từ $x$ tới gốc (hãy suy nghĩ kỹ).
+-   Biểu diễn cây bằng đồ thị có hướng, gán cho mỗi cạnh một hướng từ con tới cha. Khi đó đổi gốc tương đương đảo hướng mọi cạnh trên đường đi từ $x$ tới gốc.
 -   Vì vậy chỉ cần đảo đường đi từ $x$ tới gốc hiện tại.
--   Do $y$ là gốc của Splay biểu diễn đường đi từ $x$ tới gốc hiện tại, ta chỉ cần đảo đoạn trên Splay có gốc $y$.
+-   Do $y$ là gốc của Splay biểu diễn đường đi từ $x$ tới gốc hiện tại, chỉ cần đảo đoạn trên Splay có gốc $y$.
 
 ```cpp
 void makeRoot(int p) {
@@ -295,7 +295,7 @@ void makeRoot(int p) {
 
 ### `Link()`
 
--   `Link` hai điểm thật ra rất đơn giản: trước hết `Make_Root(x)`, sau đó cho cha của $x$ trỏ tới $y$. Rõ ràng thao tác này không được xảy ra trong cùng một cây, nên hãy nhớ kiểm tra trước.
+-   `Link` hai điểm thật ra rất đơn giản: trước hết `Make_Root(x)`, sau đó cho cha của $x$ trỏ tới $y$. Thao tác này không được xảy ra trong cùng một cây, nên cần kiểm tra trước.
 
 ```cpp
 void Link(int x, int p) {
@@ -320,7 +320,7 @@ void Link(int x, int p) {
 void Cut(int x, int p) { makeRoot(x), Access(p), Splay(p), ls = f[x] = 0; }
 ```
 
-Nếu không bảo đảm hợp lệ, ta cần kiểm tra cạnh đó có tồn tại hay không. Có thể dùng `map` để lưu, nhưng cũng có một cách tận dụng tính chất:
+Nếu không bảo đảm hợp lệ, cần kiểm tra cạnh đó có tồn tại hay không. Có thể dùng `map` để lưu, nhưng cũng có một cách tận dụng tính chất:
 
 Muốn xóa cạnh, phải thỏa ba điều kiện sau:
 
@@ -357,7 +357,7 @@ int Find(int p) {
 
 ## Độ phức tạp thời gian
 
-Phần lớn thao tác trong LCT đều dựa trên `Access`, còn các thao tác khác có độ phức tạp hằng số, vì vậy ta chỉ cần phân tích độ phức tạp của thao tác `Access`.
+Phần lớn thao tác trong LCT đều dựa trên `Access`, còn các thao tác khác có độ phức tạp hằng số, vì vậy chỉ cần phân tích độ phức tạp của thao tác `Access`.
 
 Trong đó, độ phức tạp của `Access` chủ yếu đến từ nhiều thao tác splay và việc truy cập các cạnh ảo trên đường đi. Sau đây phân tích riêng hai phần này.
 
@@ -410,9 +410,9 @@ Thông qua thao tác `Split(x,y)`, LCT có thể trích xuất đường đi t�
 
 Khi sửa đường đi giữa hai điểm $u,v$ trên cây, trước hết `Split(u,v)`.
 
-Bài này yêu cầu thực hiện cộng cây con, nhân cây con và tính tổng cây con trên cây phụ trợ, nên ngoài đánh dấu đảo cây con mà LCT thông thường cần duy trì, ta còn phải duy trì đánh dấu cộng và đánh dấu nhân của cây con. Cách xử lý đánh dấu giống như trên Splay.
+Bài này yêu cầu thực hiện cộng cây con, nhân cây con và tính tổng cây con trên cây phụ trợ, nên ngoài đánh dấu đảo cây con mà LCT thông thường cần duy trì, còn phải duy trì đánh dấu cộng và đánh dấu nhân của cây con. Cách xử lý đánh dấu giống như trên Splay.
 
-Khi gắn và đẩy xuống đánh dấu cộng, lượng thay đổi của tổng trọng số cây con liên quan tới số nút trong cây con, nên ta còn phải duy trì kích thước cây con `siz`.
+Khi gắn và đẩy xuống đánh dấu cộng, lượng thay đổi của tổng trọng số cây con liên quan tới số nút trong cây con, nên còn phải duy trì kích thước cây con `siz`.
 
 Khi đẩy đánh dấu xuống, cần chú ý thứ tự: đẩy đánh dấu nhân trước, rồi đến đánh dấu cộng. Hai loại đánh dấu đảo cây con và cộng/nhân cây con không xung đột.
 
@@ -584,7 +584,7 @@ Khi đẩy đánh dấu xuống, cần chú ý thứ tự: đẩy đánh dấu n
 
 ### Kiểm tra liên thông
 
-Nhờ hàm `Find()` của LCT, ta có thể kiểm tra hai điểm trong rừng động có liên thông hay không. Nếu `Find(x)==Find(y)`, điều đó cho biết hai điểm $x,y$ nằm trong cùng một cây và liên thông với nhau.
+Nhờ hàm `Find()` của LCT, có thể kiểm tra hai điểm trong rừng động có liên thông hay không. Nếu `Find(x)==Find(y)`, điều đó cho biết hai điểm $x,y$ nằm trong cùng một cây và liên thông với nhau.
 
 ???+ note "Ví dụ [SDOI2008 - Khảo sát hang động](https://www.luogu.com.cn/problem/P2147)"
     Ban đầu có $n$ điểm độc lập và $m$ thao tác. Mỗi thao tác thuộc một trong các loại sau:
@@ -705,9 +705,9 @@ Nếu cần co mỗi thành phần song liên thông cạnh thành một điểm
 
 Có thể thấy, số cạnh mà mọi đường đi khả dĩ giữa hai điểm $u,v$ đều phải đi qua bằng số nút trên đường đi giữa điểm chứa $u$ và điểm chứa $v$ sau khi co mọi thành phần song liên thông cạnh thành điểm, trừ $1$.
 
-Vì thao tác xóa cạnh trong bài không dễ xử lý, ta xét xử lý ngoại tuyến theo chiều ngược, biến xóa cạnh thành thêm cạnh.
+Vì thao tác xóa cạnh trong bài không dễ xử lý, xét xử lý ngoại tuyến theo chiều ngược, biến xóa cạnh thành thêm cạnh.
 
-Khi thêm một cạnh, nếu hai điểm ban đầu không liên thông, ta nối hai điểm trên LCT; ngược lại, trích xuất đường đi giữa hai điểm này trên LCT trước khi thêm cạnh, duyệt cây con tương ứng trên cây phụ trợ, tương đương duyệt đường đi đó, rồi hợp nhất các điểm này và dùng DSU để duy trì thông tin hợp nhất.
+Khi thêm một cạnh, nếu hai điểm ban đầu không liên thông, nối hai điểm trên LCT; ngược lại, trích xuất đường đi giữa hai điểm này trên LCT trước khi thêm cạnh, duyệt cây con tương ứng trên cây phụ trợ, tương đương duyệt đường đi đó, rồi hợp nhất các điểm này và dùng DSU để duy trì thông tin hợp nhất.
 
 Dùng phần tử đại diện của DSU sau khi hợp nhất để thay thế đường đi ban đầu trên cây. Chú ý rằng trong mọi thao tác sau đó, cần tìm phần tử đại diện trong DSU của điểm thao tác rồi mới thao tác.
 
@@ -1067,27 +1067,27 @@ Trên LCT không có quan hệ cha-con cố định, nên không thể ghi trọ
 
 ## Duy trì thông tin cây con
 
-LCT không giỏi duy trì thông tin cây con. Nếu thống kê thông tin của mọi cây con ảo của một nút, ta có thể thu được thông tin của toàn bộ cây.
+LCT không giỏi duy trì thông tin cây con. Nếu thống kê thông tin của mọi cây con ảo của một nút, có thể thu được thông tin của toàn bộ cây.
 
 ???+ note "Ví dụ [BJOI2014 - Đại dung hợp](https://loj.ac/problem/2230)"
     Cho $n$ nút và $q$ thao tác, mỗi thao tác có dạng sau:
     
     1.  `A x y` nối một cạnh giữa nút $x$ và nút $y$.
-    2.  `Q x y` cho một cạnh đã tồn tại $(x,y)$, hãy tính có bao nhiêu đường đi đơn chứa cạnh $(x,y)$.
+    2.  `Q x y` với một cạnh đã tồn tại $(x,y)$, tính số đường đi đơn chứa cạnh $(x,y)$.
     
     Bảo đảm ở mọi thời điểm, hình dạng của đồ thị đều là một rừng.
     
     $1\le n,q,x,y\le 10^5$
 
-Với truy vấn `Q`, xét một cách diễn đạt khác: đáp án bằng tích của số nút ở phía $x$ và số nút ở phía $y$ của cạnh $(x,y)$, tức số nút của hai cây lần lượt chứa $x$ và $y$ sau khi cắt cạnh $(x,y)$. Để loại bỏ ảnh hưởng của việc cắt cạnh, sau khi truy vấn ta nối lại cạnh $(x,y)$.
+Với truy vấn `Q`, xét một cách diễn đạt khác: đáp án bằng tích của số nút ở phía $x$ và số nút ở phía $y$ của cạnh $(x,y)$, tức số nút của hai cây lần lượt chứa $x$ và $y$ sau khi cắt cạnh $(x,y)$. Để loại bỏ ảnh hưởng của việc cắt cạnh, sau khi truy vấn nối lại cạnh $(x,y)$.
 
-Các thao tác trong bài vừa có nối cạnh vừa có xóa cạnh, lại bảo đảm ở mọi thời điểm đều là một rừng, nên tự nhiên nghĩ tới dùng LCT để duy trì. Nhưng trong bài này LCT duy trì kích thước cây con, không giống việc duy trì thông tin một chuỗi như ta thường hình dung; hơn nữa cấu tạo của LCT là **con nhận cha nhưng cha không nhận con**, nên không tiện thống kê trực tiếp cây con. Làm thế nào?
+Các thao tác trong bài vừa có nối cạnh vừa có xóa cạnh, lại bảo đảm ở mọi thời điểm đều là một rừng, nên tự nhiên nghĩ tới dùng LCT để duy trì. Nhưng trong bài này LCT duy trì kích thước cây con, không giống việc duy trì thông tin một chuỗi như thường hình dung; hơn nữa cấu tạo của LCT là **con nhận cha nhưng cha không nhận con**, nên không tiện thống kê trực tiếp cây con. Làm thế nào?
 
 Cách làm là thống kê đóng góp của các cây con do mọi con ảo của một nút $x$ biểu diễn (tức các nút có cha là $x$, nhưng không nằm trong con trái hoặc con phải của $x$ trong Splay).
 
 Định nghĩa $siz2[x]$ là số nút trong các cây con do mọi con ảo của nút $x$ biểu diễn, và $siz[x]$ là số nút trong cây con của nút $x$.
 
-Khác với cách trước đây khi duy trì số nút cây con trong Splay, khi tính số nút trong cây con của nút $x$, ta còn phải cộng thêm $siz2[x]$, tức:
+Khác với cách trước đây khi duy trì số nút cây con trong Splay, khi tính số nút trong cây con của nút $x$, còn phải cộng thêm $siz2[x]$, tức:
 
 ```cpp
 void maintain(int x) {
@@ -1096,11 +1096,11 @@ void maintain(int x) {
 }
 ```
 
-Ngoài ra, khi ta **thay đổi hình dạng của Splay** (tức thay đổi con trỏ con trái/phải của một nút trên Splay), cần kịp thời sửa giá trị $siz2[x]$.
+Ngoài ra, khi **thay đổi hình dạng của Splay** (tức thay đổi con trỏ con trái/phải của một nút trên Splay), cần kịp thời sửa giá trị $siz2[x]$.
 
-Trong các thao tác `Rotate(),Splay()`, ta chỉ thay đổi vị trí tương đối của các nút trong Splay, không thay đổi trạng thái ảo/thực của bất kỳ cạnh nào, nên không sửa $siz2[x]$.
+Trong các thao tác `Rotate(),Splay()`, chỉ thay đổi vị trí tương đối của các nút trong Splay, không thay đổi trạng thái ảo/thực của bất kỳ cạnh nào, nên không sửa $siz2[x]$.
 
-Trong thao tác `access`, sau mỗi lần splay xong, con phải của nút vừa được splay sẽ thay đổi. Nói cách khác, trạng thái ảo/thực của cạnh nối nút đó với con phải cũ và cạnh nối nút đó với con phải mới đã thay đổi. Ta cần cộng đóng góp của cây con vừa được nối bằng cạnh ảo mới, và trừ đóng góp của cây con vừa được nối bằng cạnh thực mới. Mã như sau:
+Trong thao tác `access`, sau mỗi lần splay xong, con phải của nút vừa được splay sẽ thay đổi. Nói cách khác, trạng thái ảo/thực của cạnh nối nút đó với con phải cũ và cạnh nối nút đó với con phải mới đã thay đổi. Cần cộng đóng góp của cây con vừa được nối bằng cạnh ảo mới, và trừ đóng góp của cây con vừa được nối bằng cạnh thực mới. Mã như sau:
 
 ```cpp
 void access(int x) {
@@ -1109,9 +1109,9 @@ void access(int x) {
 }
 ```
 
-Trong các thao tác `MakeRoot(),Find()`, ta chỉ gọi các hàm trước đó hoặc đi trên Splay, nên không cần sửa gì thêm.
+Trong các thao tác `MakeRoot(),Find()`, chỉ gọi các hàm trước đó hoặc đi trên Splay, nên không cần sửa gì thêm.
 
-Khi nối hai điểm, ta sửa cha của một nút. Ta cần cộng đóng góp kích thước cây con của nút con mới vào giá trị $siz2$ của nút cha.
+Khi nối hai điểm, sửa cha của một nút. Cần cộng đóng góp kích thước cây con của nút con mới vào giá trị $siz2$ của nút cha.
 
 ```cpp
 st.makeroot(x);
@@ -1120,7 +1120,7 @@ st.fa[x] = y;
 st.siz2[y] += st.siz[x];
 ```
 
-Khi cắt một cạnh, ta chỉ xóa một cạnh thực trên Splay; thao tác `Maintain` sẽ duy trì các thông tin này, nên không cần sửa gì thêm.
+Khi cắt một cạnh, chỉ xóa một cạnh thực trên Splay; thao tác `Maintain` sẽ duy trì các thông tin này, nên không cần sửa gì thêm.
 
 Trên đây là các chi tiết sửa mã. Cuối cùng, tóm tắt yêu cầu và phương pháp để LCT duy trì thông tin cây con:
 
