@@ -163,7 +163,7 @@ Cài đặt tham khảo cho hợp nhất theo kích thước tập hợp: (lưu 
 
 Cài đặt đầy đủ của DSU có nén đường đi và hợp nhất theo kích thước như sau:
 
-??? example "Bài mẫu [Luogu P3367 Template DSU](https://www.luogu.com.cn/problem/P3367), cài đặt tham khảo"
+??? example "Bài mẫu [Luogu P3367 Mẫu DSU](https://www.luogu.com.cn/problem/P3367), cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_0.cpp"

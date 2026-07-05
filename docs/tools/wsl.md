@@ -44,7 +44,7 @@ Môi trường trong phòng thi có một loạt điểm khác với môi trư�
 Điều này có thể dẫn đến một số tình huống khó xử:
 
 -   Muốn dùng <kbd>Ctrl</kbd>+<kbd>C</kbd> để sao chép, nhưng lại thoát chương trình.
--   Template chương trình thường ngày AC, khi đưa lên Linux lại WA.
+-   Mẫu chương trình thường ngày AC, khi đưa lên Linux lại WA.
 
 Để tránh những tình huống như vậy trong phòng thi, ta phải làm quen trước với cách thao tác trên hệ thống Linux.
 

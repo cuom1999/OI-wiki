@@ -849,7 +849,7 @@ def fib(n):
 
 ## Đối chiếu C++ và Python qua bài mẫu
 
-??? note "[Bài mẫu Luogu P4779: Template Single-Source Shortest Path (Standard Version)](https://www.luogu.com.cn/problem/P4779)"
+??? note "[Bài mẫu Luogu P4779: Mẫu đường đi ngắn nhất đơn nguồn (bản chuẩn)](https://www.luogu.com.cn/problem/P4779)"
     Cho một đồ thị có hướng gồm $n(1 \leq n \leq 10^5)$ đỉnh và $m(1 \leq m \leq 2\times 10^5)$ cạnh có trọng số không âm. Hãy tính khoảng cách từ $s$ đến mọi đỉnh. Dữ liệu đảm bảo có thể đi từ $s$ đến mọi đỉnh.
 
 <a id="khai-báo-hằng-số"></a>

@@ -2,7 +2,7 @@ Trong thi đấu thuật toán, đôi khi ta dùng [thuật toán ngẫu nhiên 
 
 Bài viết này giới thiệu ngắn gọn một số công cụ dùng để phân tích thuật toán ngẫu nhiên hóa và đưa ra vài ví dụ ứng dụng đơn giản.
 
-## Cận hợp (Union bound)
+## Cận hợp
 
 Ký hiệu $A_1, \cdots, A_m$ là các biến cố ngẫu nhiên, khi đó
 
@@ -235,7 +235,7 @@ Hãy đưa ra một thuật toán chọn ngẫu nhiên đều xác suất một 
         
         Tóm lại, thuật toán này cần tung đồng xu $n+2\sqrt{\pi n}\lceil\log_2 n\rceil$ lần theo kỳ vọng.
 
-<span id="bài-tập-balls-and-bins"></span>
-### Bài tập: Bóng và hộp (balls and bins)
+<span id="bài-tập-bóng-và-hộp"></span>
+### Bài tập: Bóng và hộp
 
 $n$ quả bóng được ném độc lập ngẫu nhiên vào $n$ hộp. Hãy chứng minh: số bóng trong hộp chứa nhiều bóng nhất không nhỏ hơn $\Omega \left( \dfrac{\log n}{\log \log n} \right)$ với xác suất $1 - \dfrac{1}{n}$.

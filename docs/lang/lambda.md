@@ -44,17 +44,17 @@ void (*f)(int, int) = [](int, int) -> void {};
 
 Dưới đây, chúng ta sẽ lần lượt giới thiệu từng phần trong cú pháp.
 
-<a id="statement-thân-hàm"></a>
+<a id="thân-hàm"></a>
 
-### Thân hàm (statement)
+### Thân hàm
 
 Thân hàm của biểu thức Lambda tương tự thân hàm thông thường. Ngoài việc có thể truy cập tham số, biến toàn cục, v.v., nó còn có thể truy cập các biến được [bắt giữ](#capture-mệnh-đề-bắt-giữ).
 
 <a id="capture-mệnh-đề-bắt-giữ"></a>
 
-### Mệnh đề bắt giữ (capture)
+### Mệnh đề bắt giữ
 
-lambda bắt đầu bằng mệnh đề capture, dùng để chỉ định những biến nào được bắt giữ. Danh sách bắt giữ có thể rỗng, hoặc chỉ định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua [tham chiếu](./reference.md), còn biến không có tiền tố này được truy cập theo giá trị.
+Biểu thức lambda bắt đầu bằng mệnh đề bắt giữ, dùng để chỉ định những biến nào được bắt giữ. Danh sách bắt giữ có thể rỗng, hoặc chỉ định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua [tham chiếu](./reference.md), còn biến không có tiền tố này được truy cập theo giá trị.
 
 Ta cũng có thể dùng chế độ bắt giữ mặc định để bắt giữ tất cả các biến được nhắc đến trong Lambda: `&` nghĩa là mọi biến được bắt giữ sẽ được truy cập thông qua tham chiếu, còn `=` nghĩa là mọi biến được bắt giữ sẽ được truy cập theo giá trị.
 
@@ -202,9 +202,9 @@ int main() {
 }  // val bị hủy theo f
 ```
 
-<a id="parameters-danh-sách-tham-số"></a>
+<a id="danh-sách-tham-số"></a>
 
-### Danh sách tham số (parameters)
+### Danh sách tham số
 
 Trong phần lớn trường hợp, nó tương tự danh sách tham số của hàm, ví dụ:
 
@@ -216,7 +216,7 @@ for (auto i : x) std::cout << i << " ";
 
 Đoạn này sẽ in ra kết quả sau khi mảng `x` được sắp xếp theo thứ tự giảm dần.
 
-Vì **danh sách tham số (parameters)** là tùy chọn, nếu không truyền tham số cho lambda, khai báo của nó không chứa [mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
+Vì **danh sách tham số** là tùy chọn, nếu không truyền tham số cho lambda, khai báo của nó không chứa [mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
 
 ??? note "Tham số được khai báo bằng `auto`"
     Sau **C++14**, nếu tham số dùng `auto` để khai báo kiểu, một [biểu thức Lambda tổng quát](#lambda-tổng-quát-c14) sẽ được tạo.
@@ -253,9 +253,9 @@ by_ref();
 Sau khi thực thi `by_value()`, thành viên bắt giữ `a` của `by_value` có giá trị 1, nhưng biến `a` bên ngoài vẫn là 0.
 Còn sau khi thực thi `by_ref()`, giá trị của `a` bên ngoài trở thành 1.
 
-<a id="return-type-kiểu-trả-về"></a>
+<a id="kiểu-trả-về"></a>
 
-### Kiểu trả về (return type)
+### Kiểu trả về
 
 Dùng để chỉ định kiểu trả về của biểu thức lambda. Nếu bỏ qua, kiểu trả về sẽ được tự động suy diễn (hành vi giống hàm có giá trị trả về được khai báo bằng `auto`).
 
@@ -472,9 +472,9 @@ Giải quyết vấn đề này như thế nào?
 
 ### Ứng dụng của biểu thức Lambda
 
-<a id="làm-predicate-vị-từ-cho-thuật-toán-thư-viện-chuẩn"></a>
+<a id="làm-vị-từ-cho-thuật-toán-thư-viện-chuẩn"></a>
 
-#### Làm vị từ (predicate) cho thuật toán thư viện chuẩn
+#### Làm vị từ cho thuật toán thư viện chuẩn
 
 Sắp xếp theo thứ tự giảm dần:
 

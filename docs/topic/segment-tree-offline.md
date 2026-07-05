@@ -60,7 +60,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
 
 ## Ví dụ
 
-???+ note "[luogu P5787 Đồ thị hai phía / [Template] Chia để trị bằng cây đoạn](https://www.luogu.com.cn/problem/P5787)"
+???+ note "[luogu P5787 Đồ thị hai phía / [Mẫu] Chia để trị bằng cây đoạn](https://www.luogu.com.cn/problem/P5787)"
     Cần duy trì một đồ thị vô hướng có $n$ đỉnh và $m$ cạnh. Cạnh thứ $i$ là $(x_i,y_i)$, xuất hiện trong khoảng thời gian $[l_i,r_i)$ và biến mất ở các thời điểm còn lại.
     
     Với mỗi thời điểm, nếu đồ thị lúc đó là đồ thị hai phía thì in `Yes`, ngược lại in `No`.

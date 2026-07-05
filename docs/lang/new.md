@@ -135,7 +135,7 @@ int main() {
 }
 ```
 
-## Ràng buộc có cấu trúc (structured binding, C++17)
+## Ràng buộc có cấu trúc (C++17)
 
 Ràng buộc có cấu trúc là một dạng cú pháp tiện ích do C++17 cung cấp, giúp trích xuất phần tử con hoặc tham chiếu đến phần tử con một cách thuận tiện, như sau:
 
@@ -192,7 +192,7 @@ int main() {
 }
 ```
 
-Sau C++17, có thể dùng ràng buộc có cấu trúc (structured binding) để trích xuất giá trị, như sau:
+Sau C++17, có thể dùng ràng buộc có cấu trúc để trích xuất giá trị, như sau:
 
 ```cpp
 std::vector<int> vec = {1, 9, 2, 6, 0};

@@ -88,8 +88,8 @@ Tiếp theo chứng minh độ phức tạp của thuật toán.
 
 Số lần lặp của vòng ngoài không vượt quá $n$, vì mỗi lần $i$ đều tăng. Vòng trong thứ hai cũng là $O(n)$, vì nó chỉ ghi lại phương án phân tích Lyndon. Bây giờ phân tích vòng trong còn lại. Dễ thấy mỗi xâu Lyndon tìm được trong vòng ngoài dài hơn phần xâu còn lại mà ta đã so sánh, nên tổng độ dài của các phần còn lại nhỏ hơn $n$; vì vậy vòng trong này chạy nhiều nhất $O(n)$ lần. Trên thực tế, tổng số vòng lặp không vượt quá $4n-3$, nên độ phức tạp thời gian là $O(n)$.
 
-<span id="biểu-diễn-nhỏ-nhất-finding-the-smallest-cyclic-shift"></span>
-## Biểu diễn nhỏ nhất (Finding the smallest cyclic shift)
+<span id="biểu-diễn-vòng-nhỏ-nhất"></span>
+## Biểu diễn vòng nhỏ nhất
 
 Với một xâu $s$ có độ dài $n$, ta có thể dùng thuật toán trên để tìm biểu diễn nhỏ nhất của xâu này.
 

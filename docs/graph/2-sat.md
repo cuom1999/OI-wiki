@@ -8,7 +8,7 @@ Nói đơn giản, 2-SAT cho trước $n$ mệnh đề Boolean, mỗi mệnh đ�
 
 ## Ý tưởng giải
 
-???+ example "[Luogu P4782 [Template] 2-SAT](https://www.luogu.com.cn/problem/P4782)"
+???+ example "[Luogu P4782 [Mẫu] 2-SAT](https://www.luogu.com.cn/problem/P4782)"
     Có $n$ biến Boolean $x_1\sim x_n$, cùng $m$ điều kiện cần thỏa mãn. Mỗi điều kiện đều có dạng "$x_i$ là `true`/`false` hoặc $x_j$ là `true`/`false`". Ví dụ: "$x_1$ là đúng hoặc $x_3$ là sai", "$x_7$ là sai hoặc $x_2$ là sai".
     
     Mục tiêu của bài toán 2-SAT là gán giá trị cho mỗi biến sao cho mọi điều kiện đều được thỏa mãn.

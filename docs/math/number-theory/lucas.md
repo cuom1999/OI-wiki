@@ -233,7 +233,7 @@ Thuật toán này phân tích modulo $m$ thành các lũy thừa nguyên tố t
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [Luogu P3807 [Template] Định lý Lucas](https://www.luogu.com.cn/problem/P3807)
+-   [Luogu P3807 [Mẫu] Định lý Lucas](https://www.luogu.com.cn/problem/P3807)
 -   [SDOI2010 Ancient Pig Script - Định lý Lucas](https://loj.ac/problem/10229)
--   [Luogu P4720 [Template] Lucas mở rộng](https://www.luogu.com.cn/problem/P4720)
+-   [Luogu P4720 [Mẫu] Lucas mở rộng](https://www.luogu.com.cn/problem/P4720)
 -   [Ceizenpok's formula](http://codeforces.com/gym/100633/problem/J)

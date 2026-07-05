@@ -36,7 +36,7 @@ Bài này chỉ cần chia để trị đơn giản là cài đặt được: t�
 
 Cần [rời rạc hóa](../misc/discrete.md).
 
-??? note "[Luogu P5490 Template: Sweep Line and Rectangle Union Area](https://www.luogu.com.cn/problem/P5490) mã tham khảo"
+??? note "[Luogu P5490 Mẫu: quét đường thẳng và diện tích hợp các hình chữ nhật](https://www.luogu.com.cn/problem/P5490) mã tham khảo"
     ```cpp
     --8<-- "docs/geometry/code/scanning/scanning_1.cpp"
     ```

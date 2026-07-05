@@ -161,10 +161,10 @@ Khi tính độ phức tạp thời gian, việc xác định biến nào đư�
 
 Cần chú ý rằng trong các thảo luận lý thuyết về độ phức tạp thời gian, “thuật toán có thể giải bài toán ở mọi kích thước” là một giả định cơ bản (dĩ nhiên trong thực tế, do giới hạn thời gian và bộ nhớ, ta không thể giải các bài toán có kích thước quá lớn). Vì vậy, việc có thể giải trong thời gian hằng số một bài toán có kích thước dữ liệu hữu hạn (ví dụ, tính trước đáp án cho mọi đầu vào có thể trong phạm vi dữ liệu) không làm cho độ phức tạp thời gian của thuật toán trở thành $O(1)$.
 
-## Định lý chính (Master Theorem)
+## Định lý Master
 
-Ta có thể dùng định lý chính để nhanh chóng tìm độ phức tạp của các thuật toán đệ quy.
-Hệ thức truy hồi của định lý chính như sau
+Ta có thể dùng định lý Master để nhanh chóng tìm độ phức tạp của các thuật toán đệ quy.
+Hệ thức truy hồi của định lý Master như sau
 
 $$
 T(n) = a T\left(\frac{n}{b}\right)+f(n)\qquad \forall n > b

@@ -232,7 +232,7 @@ Nhưng còn một trường hợp khác: nếu từ đỉnh $S$ có thể đi đ
 
 ### Tối ưu bằng hàng đợi: SPFA
 
-SPFA là viết tắt của Shortest Path Faster Algorithm.
+SPFA là viết tắt của tên tiếng Anh Shortest Path Faster Algorithm, nghĩa là "thuật toán đường đi ngắn nhất nhanh hơn".
 
 Trong nhiều trường hợp, ta không cần thực hiện quá nhiều thao tác nới lỏng vô ích.
 

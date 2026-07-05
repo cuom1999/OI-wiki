@@ -7,7 +7,7 @@ Quy ước: chỉ số xâu bắt đầu từ $0$.
 
 Với một xâu $s$ có độ dài $n$, định nghĩa hàm $z[i]$ là độ dài tiền tố chung dài nhất (LCP) của $s$ và $s[i,n-1]$ (tức hậu tố bắt đầu tại $s[i]$). Khi đó $z$ được gọi là **hàm Z** của $s$. Đặc biệt, $z[0] = 0$.
 
-Ở nước ngoài, thuật toán tính mảng này thường được gọi là **thuật toán Z** (Z Algorithm); trong tài liệu Trung Quốc, nó còn được gọi là **KMP mở rộng** (exKMP).
+Ở nước ngoài, thuật toán tính mảng này thường được gọi là **thuật toán Z**; trong tài liệu Trung Quốc, nó còn được gọi là **KMP mở rộng** (exKMP).
 
 Bài viết này giới thiệu thuật toán tính hàm Z trong thời gian $O(n)$ và một số ứng dụng của nó.
 
