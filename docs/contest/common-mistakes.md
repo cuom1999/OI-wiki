@@ -176,15 +176,15 @@ Những lỗi này trình biên dịch không phát hiện được, chỉ có t
         #include <iostream>
 
         int main() {
-          // Sau khi tắt đồng bộ, cin/cout dùng buffer độc lập thay vì đồng bộ
-          // output với buffer của scanf/printf, nhờ đó giảm thời gian IO.
+          // Sau khi tắt đồng bộ, cin/cout dùng bộ đệm độc lập thay vì đồng bộ
+          // đầu ra với bộ đệm của scanf/printf, nhờ đó giảm thời gian IO.
           std::ios::sync_with_stdio(false);
-          // Với cout, khi dùng '\n', nội dung được buffer và không in ngay.
+          // Với cout, khi dùng '\n', nội dung được đưa vào bộ đệm và không in ngay.
           std::cout << "a\n";
-          // '\n' của printf sẽ flush buffer của printf, làm thứ tự output lệch.
+          // '\n' của printf sẽ flush bộ đệm của printf, làm thứ tự đầu ra lệch.
           printf("b\n");
           std::cout << "c\n";
-          // Khi chương trình kết thúc, buffer của cout mới được in ra.
+          // Khi chương trình kết thúc, bộ đệm của cout mới được in ra.
           return 0;
         }
         ```
@@ -202,7 +202,7 @@ Những lỗi này trình biên dịch không phát hiện được, chỉ có t
     -   Dịch phải số âm sẽ bù 1 ở bit cao nhất. Xem thêm:
         [toán tử bit](../lang/op.md#toán-tử-bit).
 
--   Quên xóa hoặc comment câu lệnh debug output.
+-   Quên xóa hoặc chú thích câu lệnh xuất gỡ lỗi.
 
 -   Thêm nhầm `;`.
 
@@ -419,7 +419,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
 
 ### Lỗi dẫn đến RE
 
--   Không xóa thao tác file (trên một số OJ).
+-   Không xóa thao tác tệp (trên một số OJ).
 
 -   Hàm so sánh khi sắp xếp sai. `std::sort` yêu cầu hàm so sánh là thứ tự yếu
     nghiêm ngặt: `a<a` là `false`; nếu `a<b` là `true` thì `b<a` là `false`;
@@ -512,7 +512,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
 
     int query(int t, int l, int r, int ql, int qr) {
       if (ql <= l && qr >= r) {
-        ++ti[t];  // ghi số lần truy cập nút để tiện debug
+        ++ti[t];  // ghi số lần truy cập nút để tiện gỡ lỗi
         return vi[t];
       }
 
@@ -557,7 +557,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
     vào xâu `a`, chỉ gọi một lần `operator+=`. Có thể xem so sánh hiệu năng chi
     tiết hơn tại [Benchmark](https://quick-bench.com/q/JNDGl7HgOszNG-bo7AgVc42owv4).
 
--   Không xóa thao tác file (trên một số OJ).
+-   Không xóa thao tác tệp (trên một số OJ).
 
 -   Trong vòng lặp `for/while`, lặp lại việc gọi một hàm có độ phức tạp không
     phải $O(1)$. Nói chặt chẽ, điều này có thể làm thay đổi độ phức tạp thời
@@ -695,20 +695,20 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
         const int mod = 998244353;  // Đúng, giúp trình biên dịch xử lý như hằng số
         ```
 
--   Dùng đệ quy không cần thiết, trừ tail recursion.
+-   Dùng đệ quy không cần thiết, trừ đệ quy đuôi (tail recursion).
 
 -   Khi chuyển đệ quy thành lặp, đưa thêm quá nhiều phép tính phụ.
 
 ### Lỗi chỉ ảnh hưởng khi chạy chương trình cục bộ
 
--   Các lỗi có thể xảy ra với thao tác file:
+-   Các lỗi có thể xảy ra với thao tác tệp:
 
-    -   Khi đối chiếu chương trình, chưa đóng file pointer `fclose(fp)` đã gán
-        lại `fp = fopen()`. Điều này khiến tiến trình có nhiều con trỏ file rác.
+    -   Khi đối chiếu chương trình, chưa đóng con trỏ tệp bằng `fclose(fp)` đã gán
+        lại `fp = fopen()`. Điều này khiến tiến trình có nhiều con trỏ tệp rác.
 
-    -   Tên file trong `freopen()` thiếu `.in`/`.out`.
+    -   Tên tệp trong `freopen()` thiếu `.in`/`.out`.
 
--   Sau khi dùng heap, quên `delete` hoặc `free`.
+-   Sau khi dùng bộ nhớ heap, quên `delete` hoặc `free`.
 
 ## Tài liệu tham khảo và ghi chú
 
