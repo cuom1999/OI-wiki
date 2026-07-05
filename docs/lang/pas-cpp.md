@@ -77,9 +77,9 @@ Có thể một số bạn sẽ hỏi `return 0` phía sau nghĩa là gì, hoặ
 1.  Thử đổi chuỗi được in ra.
 2.  Thử tìm hiểu ký tự thoát.
 
-### A+B Problem: chương trình C++ thứ hai
+### Bài toán A+B: chương trình C++ thứ hai
 
-Bài kinh điển A+B Problem.
+Bài toán kinh điển A+B.
 
 ```cpp
 #include <iostream>
@@ -315,7 +315,7 @@ Trong C++, `break` có tác dụng giống Pascal: thoát khỏi vòng lặp.
 
 ### Mảng và chuỗi
 
-#### Mảng độ dài thay đổi: kiểu thư viện chuẩn Vector
+#### Mảng độ dài thay đổi: kiểu thư viện chuẩn `vector`
 
 Hãy tham khảo nội dung trong trang [Container tuần tự](csl/sequence-container.md).
 
@@ -354,7 +354,7 @@ int main() {
 
 Truy cập phần tử mảng trong C++ khá giống Pascal, nhưng có một khác biệt rất quan trọng: phần tử đầu tiên của mảng là `a[0]`, còn trong Pascal bạn có thể tự chỉ định chỉ số bắt đầu.
 
-#### Chuỗi: kiểu thư viện chuẩn String
+#### Chuỗi: kiểu thư viện chuẩn `string`
 
 Hãy tham khảo nội dung trong trang [string](csl/string.md).
 

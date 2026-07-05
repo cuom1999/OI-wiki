@@ -106,30 +106,31 @@ int main() {
 }
 ```
 
-## Namespace vô danh
+## Không gian tên vô danh
 
-Khi trong một phạm vi ta chỉ định nghĩa một namespace để tránh xung đột tên, cách
-định nghĩa và sử dụng nó có thể trở nên rất gọn. Ta có thể dùng namespace vô
-danh.
+Khi trong một phạm vi ta chỉ định nghĩa một không gian tên (`namespace`) để tránh
+xung đột tên, cách định nghĩa và sử dụng nó có thể trở nên rất gọn. Ta có thể
+dùng không gian tên vô danh.
 
-Namespace được định nghĩa dưới dạng `namespace { /* something ... */ }`, tức bỏ
-qua tên namespace, được gọi là namespace vô danh. Namespace vô danh trong một
-file được xem như có một tên riêng duy nhất, khác với mọi namespace khác, nhưng
-nhiều namespace vô danh trong cùng một phạm vi được xem là cùng một namespace.
-Sau khi namespace vô danh được định nghĩa, các tên bên trong nó có thể được tìm
-thấy khi dùng ở phạm vi bên ngoài, giống như sau định nghĩa namespace vô danh đã
-thêm một chỉ thị `using namespace`.
+Không gian tên được định nghĩa dưới dạng `namespace { /* something ... */ }`,
+tức bỏ qua tên `namespace`, được gọi là không gian tên vô danh. Không gian tên
+vô danh trong một file được xem như có một tên riêng duy nhất, khác với mọi
+không gian tên khác, nhưng nhiều không gian tên vô danh trong cùng một phạm vi
+được xem là cùng một không gian tên. Sau khi không gian tên vô danh được định
+nghĩa, các tên bên trong nó có thể được tìm thấy khi dùng ở phạm vi bên ngoài,
+giống như sau định nghĩa không gian tên vô danh đã thêm một chỉ thị
+`using namespace`.
 
 ## Ứng dụng
 
-### Tránh xung đột tên giữa các subtask
+### Tránh xung đột tên giữa các bài con
 
-Trong một số bài toán có nhiều subtask, ta có thể định nghĩa một namespace riêng
-cho từng subtask, rồi định nghĩa các biến và hàm cần thiết để giải subtask đó
-bên trong. Như vậy, ngay cả khi hai phần cài đặt subtask khai báo cùng một tên,
-chúng cũng không xung đột, giúp các subtask không ảnh hưởng lẫn nhau. Điều này
-thuận tiện hơn cho debug ở một mức độ nhất định và cũng cải thiện khả năng đọc
-của chương trình.
+Trong một số bài toán có nhiều bài con, ta có thể định nghĩa một không gian tên
+riêng cho từng bài con, rồi định nghĩa các biến và hàm cần thiết để giải bài con
+đó bên trong. Như vậy, ngay cả khi hai phần cài đặt bài con khai báo cùng một
+tên, chúng cũng không xung đột, giúp các bài con không ảnh hưởng lẫn nhau. Điều
+này thuận tiện hơn cho việc gỡ lỗi ở một mức độ nhất định và cũng cải thiện khả
+năng đọc của chương trình.
 
 ### Tránh xung đột với thư viện chuẩn và tên do môi trường đưa vào
 

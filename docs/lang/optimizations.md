@@ -43,7 +43,7 @@ int y2 = 6;
 Ví dụ: <https://godbolt.org/z/oEfY35TTd>
 
 <a id="loại-bỏ-mã-chết-deadcode-elimination"></a>
-### Loại bỏ mã chết (Deadcode Elimination)
+### Loại bỏ mã chết (dead code elimination)
 
 Đúng như tên gọi, một đoạn mã không được dùng đến sẽ bị xóa bỏ.
 
@@ -403,7 +403,7 @@ Khi hàm đã là đệ quy đuôi, có thể xóa trực tiếp câu lệnh đ�
 
 ???+ note "[Giai thừa](https://godbolt.org/z/n64e75xrf)"
     ```cpp
-    // Mở thành vòng lặp scalar, rồi thực hiện auto-vectorization; mã sinh ra là SIMD
+    // Mở thành vòng lặp vô hướng, rồi tự động vector hóa; mã sinh ra là SIMD
     unsigned fac(unsigned n) {
       if (n < 2) return 1;
       return n * fac(n - 1);
@@ -413,12 +413,12 @@ Khi hàm đã là đệ quy đuôi, có thể xóa trực tiếp câu lệnh đ�
 Hợp ngữ sau tối ưu hóa của các hàm này hoàn toàn giống phiên bản không đệ quy; đệ quy sẽ bị loại bỏ trực tiếp. Với thí sinh OI, khi bật O2 có thể yên tâm viết các thuật toán dạng đệ quy, vì sẽ không khác dạng không đệ quy. Nếu hàm bạn viết về bản chất không thể được viết lại thành dạng không đệ quy, trình biên dịch cũng bó tay.
 
 <a id="giảm-độ-mạnh-phép-toán-strength-reduction"></a>
-### Giảm độ mạnh phép toán (Strength Reduction)
+### Giảm độ mạnh phép toán (strength reduction)
 
-Đây là một tối ưu hóa biên dịch phổ biến. Ví dụ đơn giản nhất là biến `x * 2` thành `x << 1`; cách viết thứ hai rất thường gặp trong OI. Trình biên dịch sẽ tự động làm các tối ưu hóa tương tự; khi bật tùy chọn tối ưu hóa, `x * 2` và `x << 1` hoàn toàn tương đương. Strength Reduction biến các lệnh chi phí cao thành các lệnh chi phí thấp.
+Đây là một tối ưu hóa biên dịch phổ biến. Ví dụ đơn giản nhất là biến `x * 2` thành `x << 1`; cách viết thứ hai rất thường gặp trong OI. Trình biên dịch sẽ tự động làm các tối ưu hóa tương tự; khi bật tùy chọn tối ưu hóa, `x * 2` và `x << 1` hoàn toàn tương đương. Giảm độ mạnh phép toán biến các lệnh chi phí cao thành các lệnh chi phí thấp.
 
 <a id="biến-đổi-toán-tử-scalar"></a>
-#### Biến đổi toán tử scalar
+#### Biến đổi toán tử vô hướng
 
 <a id="dùng-dịch-bit-thay-cho-phép-nhân"></a>
 ##### Dùng dịch bit thay cho phép nhân
@@ -515,9 +515,9 @@ test(int):                               # @test(int)
 ```
 
 <a id="tự-động-vector-hóa-auto-vectorization"></a>
-### Tự động vector hóa (Auto-Vectorization)
+### Tự động vector hóa (auto-vectorization)
 
-Một luồng lệnh đơn trên nhiều luồng dữ liệu là cách tốt để cung cấp song song hóa trong một nhân. Dùng các lệnh này có thể tận dụng thanh ghi SIMD của CPU, vốn rộng hơn thanh ghi đa dụng; ví dụ, mỗi lần đặt 4 số nguyên vào rồi tính toán. Thí sinh OI không cần hiểu chi tiết về auto-vectorization. Thông thường, trình biên dịch Clang sẽ auto-vectorize mạnh tay hơn GCC:
+Một luồng lệnh đơn trên nhiều luồng dữ liệu là cách tốt để cung cấp song song hóa trong một nhân. Dùng các lệnh này có thể tận dụng thanh ghi SIMD của CPU, vốn rộng hơn thanh ghi đa dụng; ví dụ, mỗi lần đặt 4 số nguyên vào rồi tính toán. Thí sinh OI không cần hiểu chi tiết về tự động vector hóa. Thông thường, trình biên dịch Clang sẽ tự động vector hóa mạnh tay hơn GCC:
 
 ```cpp
 // https://godbolt.org/z/h1hx5sWoE
@@ -528,7 +528,7 @@ void test(int *a, int *b, int n) {
 }
 ```
 
-#### `__restrict` type specifier (GNU, MSVC)
+#### Bộ chỉ định kiểu `__restrict` (GNU, MSVC)
 
 Hai vùng nhớ tương ứng với hai con trỏ bất kỳ có thể bị chồng lấp (overlap), khi đó cần xử lý riêng xem có thể dùng mã vector hay không. Hình dưới đây minh họa một ví dụ về chồng lấp con trỏ:
 
@@ -544,7 +544,7 @@ void test(int* __restrict a, int* __restrict b, int n) {
 }
 ```
 
-`__restrict` không phải một phần của chuẩn C++, nhưng các trình biên dịch lớn đều hỗ trợ. Từ khóa này ảnh hưởng đến chất lượng sinh mã của auto-vectorization; có thể dùng trong các trường hợp cần tối ưu hằng số rất gắt.
+`__restrict` không phải một phần của chuẩn C++, nhưng các trình biên dịch lớn đều hỗ trợ. Từ khóa này ảnh hưởng đến chất lượng sinh mã của tự động vector hóa; có thể dùng trong các trường hợp cần tối ưu hằng số rất gắt.
 
 <a id="các-cách-dùng-ngôn-ngữ-sai-thường-gặp-liên-quan-đến-tối-ưu-hóa-biên-dịch"></a>
 ## Các cách dùng ngôn ngữ sai thường gặp liên quan đến tối ưu hóa biên dịch
@@ -708,7 +708,7 @@ Ví dụ: <https://godbolt.org/z/d834MK7bz>, <https://godbolt.org/z/Eov9nsKqf>.
 ## Công cụ sanitizer
 
 Sanitizer là công cụ bảo vệ tính đúng đắn: nó kiểm tra lúc chạy xem chương trình của bạn có hành vi không xác định, vượt biên mảng, con trỏ null, và các lỗi tương tự hay không.
-Ở chế độ debug cục bộ, nên bật một số sanitizer; chúng có thể rút ngắn đáng kể thời gian Debug. Các sanitizer này do Google phát triển, phần lớn có thể dùng với GCC và Clang. Sanitizer trong LLVM trưởng thành hơn, vì vậy nên dùng trình biên dịch Clang để debug các vấn đề liên quan trên máy cá nhân.
+Ở chế độ gỡ lỗi cục bộ, nên bật một số sanitizer; chúng có thể rút ngắn đáng kể thời gian gỡ lỗi. Các sanitizer này do Google phát triển, phần lớn có thể dùng với GCC và Clang. Sanitizer trong LLVM trưởng thành hơn, vì vậy nên dùng trình biên dịch Clang để gỡ lỗi các vấn đề liên quan trên máy cá nhân.
 
 ### Address Sanitizer -fsanitize=address
 
