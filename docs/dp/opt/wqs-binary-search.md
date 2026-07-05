@@ -1,4 +1,4 @@
-<span id="&#24341;&#20837;"></span>
+<span id="giới-thiệu"></span>
 ## Giới thiệu
 
 Bài viết này giới thiệu cách dùng tìm kiếm nhị phân WQS để tối ưu các bài toán quy hoạch động. Trong các tài liệu khác, kỹ thuật này cũng thường được gọi là tìm kiếm nhị phân có trọng số, DP tối ưu lồi, DP đơn điệu hoàn toàn lồi, phương pháp nhân tử Lagrange, hay ở nước ngoài là Aliens Trick. Nó được Wang Qinshi tổng kết sớm nhất trong bài viết "Phân tích sơ lược một lớp phương pháp nhị phân".
@@ -11,7 +11,7 @@ Giả sử thêm rằng bài toán tối ưu không có ràng buộc số lượ
 
 Đó là ý tưởng cơ bản của tìm kiếm nhị phân WQS. Tuy nhiên, để ý tưởng này hoạt động được, $f(n,m)$ phải là hàm lồi theo $m$. Nếu không, có thể không tồn tại khoản phạt phụ thêm $k$ làm cho số lượng tối ưu đúng bằng $m$. Đây cũng là lý do phương pháp tối ưu DP này thường được gọi là "DP tối ưu lồi" hoặc "DP đơn điệu hoàn toàn lồi".
 
-<span id="&#20256;&#32479;&#26041;&#27861;"></span>
+<span id="phương-pháp-truyền-thống"></span>
 ## Phương pháp truyền thống
 
 Gọi tập không rỗng $X$ là không gian quyết định (hữu hạn), $f:X\rightarrow\mathbf R$ là hàm mục tiêu, và có thêm hàm $g:X\rightarrow\mathbf R^d$ dùng để áp ràng buộc. Bài toán cần giải có thể xem là việc tính giá trị của hàm giá trị $v(y)$ của bài toán tối ưu sau tại một điểm nào đó:
@@ -28,7 +28,7 @@ Ví dụ, với bài toán ràng buộc số lượng đã nêu ở trên, $X$ c
 ???+ info "Quy ước"
     Để trình bày thuận tiện, bài viết này chỉ thảo luận các bài toán cực tiểu hóa hàm mục tiêu. Bài toán cực đại hóa hàm mục tiêu cũng tương tự, chỉ cần thay các hàm lồi (dưới) trong bài viết bằng hàm lõm (còn gọi là lồi trên). Hoặc có thể thêm dấu âm để chuyển bài toán cực đại hóa hàm mục tiêu thành bài toán cực tiểu hóa hàm đối của nó.
 
-<span id="&#20960;&#20309;&#30452;&#35266;"></span>
+<span id="trực-quan-hình-học"></span>
 ### Trực quan hình học
 
 Vì phần lớn bài toán trong lập trình thi đấu là bài toán tối ưu tổ hợp, không gian quyết định $X$ thường không có cấu trúc tốt. Do đó, ta chuyển sang xét tập
@@ -74,7 +74,7 @@ Tóm lại, quy trình cơ bản của tìm kiếm nhị phân WQS truyền th�
 
 Quy trình cơ bản này đã đủ để giải một số bài toán, nhưng chưa hoàn chỉnh. Tiếp theo, bài viết sẽ thảo luận các cải tiến cho quy trình cơ bản này.
 
-<span id="&#20849;&#32447;&#24773;&#24418;&#30340;&#22788;&#29702;"></span>
+<span id="xử-lý-trường-hợp-thẳng-hàng"></span>
 ### Xử lý trường hợp thẳng hàng
 
 Vấn đề đầu tiên gặp phải khi áp dụng quy trình cơ bản là trường hợp thẳng hàng không được xử lý đúng.
@@ -87,7 +87,7 @@ Một cách xử lý khác là nhị phân trên số thực. Nếu các con s�
 
 Sau khi xử lý đúng trường hợp thẳng hàng, tìm kiếm nhị phân WQS đã đủ để giải phần lớn các bài toán WQS trong lập trình thi đấu. Tuy nhiên, phương pháp này vẫn có một số thiếu sót: nó không xử lý được trường hợp khó ghi lại $g(x_\lambda)$, cũng không xử lý được trường hợp nhiều điểm đồng phẳng trong WQS nhiều chiều. Bài viết sẽ tiếp tục khảo sát tính chất của bài toán tối ưu $v(y)$ và đưa ra phương pháp tổng quát hơn.
 
-<span id="&#23545;&#20598;&#26041;&#27861;"></span>
+<span id="phương-pháp-đối-ngẫu"></span>
 ## Phương pháp đối ngẫu
 
 Mục này giới thiệu một cách cài đặt tìm kiếm nhị phân WQS chỉ yêu cầu với mọi $\lambda\in\mathbf R^d$, ta có thể tính hiệu quả giá trị của
@@ -102,7 +102,7 @@ $$
 v^\star(y) = \sup_{\lambda\in\mathbf R^d} h(\lambda)+\lambda\cdot y,
 $$
 
-còn hàm mục tiêu của bài toán đối ngẫu là hàm lõm theo $\lambda\in\mathbf R^d$, do đó là hàm đơn đỉnh và có thể được giải hiệu quả bằng [tìm kiếm tam phân](../../basic/binary.md#%E4%B8%89%E5%88%86%E6%B3%95) hoặc [tìm kiếm tỉ lệ vàng](../../basic/binary.md#%E4%BC%98%E5%8C%96%E9%BB%84%E9%87%91%E5%88%86%E5%89%B2%E6%B3%95), với độ phức tạp vẫn là $O(T(n)\log^d L)$. Điều này giải quyết hoàn toàn vấn đề giá trị $g(x_\lambda)$ được ghi trong phương pháp WQS truyền thống có thể gây lỗi, đồng thời cho phép áp dụng tư tưởng WQS cho trường hợp nhiều chiều.
+còn hàm mục tiêu của bài toán đối ngẫu là hàm lõm theo $\lambda\in\mathbf R^d$, do đó là hàm đơn đỉnh và có thể được giải hiệu quả bằng [tìm kiếm tam phân](../../basic/binary.md#tìm-kiếm-tam-phân) hoặc [tìm kiếm tỉ lệ vàng](../../basic/binary.md#tối-ưu-phương-pháp-lát-cắt-vàng), với độ phức tạp vẫn là $O(T(n)\log^d L)$. Điều này giải quyết hoàn toàn vấn đề giá trị $g(x_\lambda)$ được ghi trong phương pháp WQS truyền thống có thể gây lỗi, đồng thời cho phép áp dụng tư tưởng WQS cho trường hợp nhiều chiều.
 
 Ngoài ra, mục này còn chỉ ra rằng phạm vi của $g(x_\lambda)$ có thể được suy ra từ $h(\lambda)$ mà không cần ghi thêm khi giải $h(\lambda)$. Ví dụ, với $d=1$ và bài toán chỉ liên quan đến số nguyên, có thể chứng minh phạm vi giá trị của $g(x_\lambda)$ đúng bằng
 
@@ -112,9 +112,9 @@ $$
 
 Trên thực tế, điều này cũng cung cấp thêm một cách xử lý vấn đề thẳng hàng cho những bài vẫn buộc phải dùng quy trình nhị phân đã nêu ở trước.
 
-Tiếp theo, mục này sẽ dùng lý thuyết giải tích lồi để chứng minh các kết luận trên. Về ứng dụng cụ thể của những phương pháp này, có thể tham khảo mục [Ví dụ](#%E4%BE%8B%E9%A2%98).
+Tiếp theo, mục này sẽ dùng lý thuyết giải tích lồi để chứng minh các kết luận trên. Về ứng dụng cụ thể của những phương pháp này, có thể tham khảo mục [Ví dụ](#ví-dụ).
 
-<span id="lagrange-&#23545;&#20598;"></span>
+<span id="đối-ngẫu-lagrange"></span>
 ### Đối ngẫu Lagrange
 
 Xét việc dùng [phương pháp nhân tử Lagrange](https://en.wikipedia.org/wiki/Lagrange_multiplier) để giải bài toán. Đưa vào nhân tử Lagrange $\lambda\in\mathbf R^d$, khi đó Lagrangian có thể viết là
@@ -152,7 +152,7 @@ $$
 
 Điều sắp chứng minh là: dưới điều kiện $v(y)$ là hàm lồi theo $y$, đối ngẫu mạnh (strong duality) được thỏa mãn, tức là $v^\star(y)=v(y)$.
 
-<span id="&#20984;&#20849;&#36717;"></span>
+<span id="liên-hợp-lồi"></span>
 ### Liên hợp lồi
 
 Để chứng minh đối ngẫu mạnh, cần đưa vào khái niệm liên hợp lồi.
@@ -311,7 +311,7 @@ Vì vậy, bài toán được chuyển thành: loại hàm $v(y)$ nào có song
 
 Do đó, đối ngẫu mạnh được thỏa mãn khi và chỉ khi $v(y)$ là hàm lồi theo $y\in\mathbf R^d$[^other-conditions].
 
-<span id="&#27425;&#26799;&#24230;"></span>
+<span id="dưới-gradient"></span>
 ### Dưới gradient
 
 Mục trước đã chỉ ra rằng hàm giá trị $h(\lambda)$ của bài toán có phạt là số đối của liên hợp lồi của hàm giá trị $v(y)$ của bài toán gốc. Vì định nghĩa liên hợp lồi thực chất là một bài toán tối ưu có tham số, nó cũng có kết luận tương tự [định lý bao](https://en.wikipedia.org/wiki/Envelope_theorem). Tuy nhiên, vì hàm lồi không khả vi ở mọi nơi, trước hết cần mở rộng định nghĩa đạo hàm cho trường hợp hàm lồi. Điều này dẫn đến khái niệm dưới gradient.
@@ -434,7 +434,7 @@ $$
 
 Với các $\lambda$ nguyên liên tiếp, những khoảng này nối đầu đuôi với nhau, nên nếu dùng cho nhị phân, chỉ cần tính một đầu mút là đủ.
 
-<span id="&#20984;&#24615;&#35777;&#26126;"></span>
+<span id="chứng-minh-tính-lồi"></span>
 ## Chứng minh tính lồi
 
 Điều kiện tiên quyết để áp dụng tìm kiếm nhị phân WQS là tính lồi của hàm giá trị. Trong lập trình thi đấu, có thể đoán tính lồi bằng cách lập bảng, trực giác, v.v. Tuy nhiên, chứng minh chặt chẽ tính lồi thường không dễ. Mục này kết hợp với bài toán kinh điển sau để giới thiệu các phương pháp chứng minh tính lồi thường gặp trong lập trình thi đấu.
@@ -453,7 +453,7 @@ Các phương pháp này có thể chia sơ bộ thành bốn loại:
 
 Bản thân các phương pháp chứng minh này thường gắn với một cách giải nào đó của bài toán.
 
-<span id="&#24402;&#32422;&#20026;&#21547;&#21442;&#20984;&#20248;&#21270;"></span>
+<span id="quy-về-tối-ưu-lồi-có-tham-số"></span>
 ### Quy về tối ưu lồi có tham số
 
 Xét bài toán tối ưu lồi có tham số dạng sau:
@@ -570,9 +570,9 @@ Dùng phương pháp này, ta có chứng minh tính lồi đầu tiên cho bài
     
     Đáp án cuối cùng là chi phí lớn nhất tìm được. Chuyển mô hình đồ thị này thành bài toán quy hoạch tuyến tính tương ứng (cụ thể xem chứng minh của hệ quả ở trên), khi đó tổng lưu lượng $m$ sẽ xuất hiện trong bất đẳng thức biểu thị giới hạn lưu lượng của cạnh $(s,r)$. Theo hệ quả, chi phí lớn nhất $v(m)$ là hàm lõm theo lưu lượng $m$.
     
-    Dùng mô hình luồng chi phí này, có thể giải bài toán trong độ phức tạp $O(n\log n)$ bằng cách mô phỏng luồng chi phí hoặc [tham lam hối tiếc](../../basic/greedy.md#%E5%90%8E%E6%82%94%E8%A7%A3%E6%B3%95).
+    Dùng mô hình luồng chi phí này, có thể giải bài toán trong độ phức tạp $O(n\log n)$ bằng cách mô phỏng luồng chi phí hoặc [tham lam hối tiếc](../../basic/greedy.md#lời-giải-hối-tiếc).
 
-<span id="&#21033;&#29992;&#29366;&#24577;&#36716;&#31227;&#26041;&#31243;"></span>
+<span id="dùng-phương-trình-chuyển-trạng-thái"></span>
 ### Dùng phương trình chuyển trạng thái
 
 Dù phương trình chuyển trạng thái không cung cấp cách tính hiệu quả, nó thường có thể dùng để chứng minh hàm trạng thái $f(i,j)$ có tính lồi theo tham số $j$. Cụ thể, xem hàm $f(i,\cdot)$ là trạng thái tại $i$, ta có thể xem phương trình chuyển trạng thái của $f(i,j)$ là quan hệ truy hồi của $f(i,\cdot)$, từ đó chứng minh quy nạp rằng mỗi $f(i,\cdot)$ đều là hàm lồi. Kiểu chứng minh tính lồi này thường gặp hơn trong bối cảnh [tối ưu DP bằng Slope Trick](./slope-trick.md); trang đó cũng thảo luận các phép biến đổi thường gặp giúp bảo toàn tính lồi.
@@ -635,7 +635,7 @@ Phương pháp này cũng có thể dùng để chứng minh tính lồi của b
     
     Điều này cho thấy có thể dùng cây cân bằng để trực tiếp duy trì dãy $f(i,\cdot)$, với độ phức tạp $O(n\log^2n)$. Ưu điểm là có thể xử lý trường hợp tổng quát với khoảng cách trồng cây bất kỳ, đồng thời thu được tất cả giá trị $v(m)$ trong một lần.
 
-<span id="&#22235;&#36793;&#24418;&#19981;&#31561;&#24335;"></span>
+<span id="bất-đẳng-thức-tứ-giác"></span>
 ### Bất đẳng thức tứ giác
 
 Trong lập trình thi đấu, một lớp bài toán thường gặp khác có tính lồi là [bài toán phân đoạn khoảng](./quadrangle.md#bài-toán-phân-tách-khoảng). Trang đó chứng minh rằng nếu hàm chi phí của một khoảng đơn lẻ thỏa bất đẳng thức tứ giác, thì chi phí nhỏ nhất của bài toán phân đoạn khoảng với số đoạn bị ràng buộc là hàm lồi theo số đoạn. Trang đó cũng cung cấp một số cách phán đoán liệu một hàm $w(l,r)$ có thỏa bất đẳng thức tứ giác hay không. Cách trực tiếp nhất là tính sai phân hỗn hợp bậc hai của nó:
@@ -682,7 +682,7 @@ Bài toán trồng cây cũng có thể xem là một bài toán phân đoạn k
     
     Sau khi chuyển bài toán trồng cây thành bài toán phân đoạn khoảng, chỉ cần dùng bảng ST hoặc cách tương tự để tiền xử lý giá trị cực trị trên khoảng, có thể tính chi phí của một khoảng đơn lẻ trong $O(1)$ mỗi lần, rồi áp dụng thuật toán cho bài toán phân đoạn khoảng với độ phức tạp thời gian $O(n\log n\log L)$ hoặc $O(n(n+m))$. Phương pháp này cũng có thể xử lý bài toán với khoảng cách trồng cây bất kỳ.
 
-<span id="&#20132;&#25442;&#35770;&#35777;"></span>
+<span id="lập-luận-trao-đổi"></span>
 ### Lập luận trao đổi
 
 Trong các bài toán tối ưu tổ hợp, chứng minh tính lồi của hàm giá trị thường dùng lập luận trao đổi (exchange argument). Cụ thể, xuất phát từ các nghiệm tối ưu của bài toán với tham số $m-1$ và $m+1$, thông qua trao đổi một phần phần tử, ta xây dựng nghiệm khả thi có tham số $m$ và giá trị không vượt quá $(v(m-1)+v(m+1))/2$, từ đó dùng tính tối ưu của $v(m)$ để chứng minh tính lồi. So với trường hợp tối ưu lồi, trong bài toán tối ưu tổ hợp không tồn tại cách tự nhiên để xây dựng "dạng trung gian" của hai nghiệm, nên việc áp dụng lập luận trao đổi thường cần một số kỹ thuật.
@@ -727,12 +727,12 @@ Lập luận trao đổi cung cấp một cách chứng minh khác cho tính l�
     
     Bây giờ chỉ còn một vấn đề: có tồn tại đoạn con liên tiếp khác không cực đại có tổng đúng bằng $+1$ hay không. Vì đây là tổng của một số giá trị $\pm 1$ luân phiên, tổng của một đoạn con liên tiếp khác không chỉ có thể là $0$ hoặc $\pm 1$. Lại vì tổng của tất cả các đoạn con liên tiếp khác không cực đại này bằng $2$, nhất định tồn tại ít nhất hai đoạn con cực đại có tổng đúng bằng $+1$. Như vậy hoàn tất chứng minh.
 
-<span id="&#20363;&#39064;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm kiếm nhị phân WQS trong các bối cảnh khác nhau.
 
-<span id="&#27169;&#26495;&#39064;&#30446;"></span>
+<span id="bài-mẫu"></span>
 ### Bài mẫu
 
 ???+ example "[Luogu P1484 Trồng cây](https://www.luogu.com.cn/problem/P1484)"
@@ -797,7 +797,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
         --8<-- "docs/dp/code/opt/wqs-binary-search/black-white-mst-2.cpp"
         ```
 
-<span id="&#21306;&#38388;&#20998;&#25286;&#38382;&#39064;"></span>
+<span id="bài-toán-phân-đoạn-khoảng"></span>
 ### Bài toán phân đoạn khoảng
 
 ???+ example "[Luogu P6246 IOI 2000 Bưu điện, bản tăng cường](https://www.luogu.com.cn/problem/P6246)"
@@ -834,7 +834,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
         --8<-- "docs/dp/code/opt/wqs-binary-search/post-office-2.cpp"
         ```
 
-<span id="&#20108;&#32500;&#30340;&#38480;&#21046;&#26465;&#20214;"></span>
+<span id="điều-kiện-ràng-buộc-hai-chiều"></span>
 ### Điều kiện ràng buộc hai chiều
 
 ???+ example "[Codeforces 739 E. Gosha is hunting](https://codeforces.com/problemset/problem/739/E)"
@@ -885,7 +885,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
     --8<-- "docs/dp/code/opt/wqs-binary-search/gosha-is-hunting.cpp"
     ```
 
-<span id="&#26356;&#24191;&#27867;&#30340;&#38480;&#21046;&#26465;&#20214;"></span>
+<span id="điều-kiện-ràng-buộc-tổng-quát-hơn"></span>
 ### Điều kiện ràng buộc tổng quát hơn
 
 ???+ example "[Codeforces 1661 F. Teleporters](https://codeforces.com/problemset/problem/1661/F)"
@@ -966,7 +966,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
         --8<-- "docs/dp/code/opt/wqs-binary-search/teleporters-2.cpp"
         ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 Cuối cùng, liệt kê một số bài có thể giải bằng tìm kiếm nhị phân WQS để luyện tập:
@@ -995,7 +995,7 @@ Cuối cùng, liệt kê một số bài có thể giải bằng tìm kiếm nh�
 -   [Codeforces 1799 F. Halve or Subtract](https://codeforces.com/problemset/problem/1799/F)
 -   [2019 Summer Petrozavodsk Camp H. Honorable Mention](https://codeforces.com/gym/102331/problem/H)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Wang Qinshi, "Phân tích sơ lược một lớp phương pháp nhị phân"](https://github.com/hzwer/shareOI/blob/master/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B5%85%E6%9E%90%E4%B8%80%E7%B1%BB%E4%BA%8C%E5%88%86%E6%96%B9%E6%B3%95_%E7%8E%8B%E9%92%A6%E7%9F%B3.pdf)
