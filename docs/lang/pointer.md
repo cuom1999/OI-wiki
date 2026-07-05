@@ -2,14 +2,14 @@ author: tsagaanbar, Enter-tainer, Xeonacid
 
 ## Địa chỉ của biến và con trỏ
 
-Trong chương trình, mọi dữ liệu đều có địa chỉ lưu trữ của nó. Trong mỗi lần chương trình thực sự chạy, vị trí lưu trữ của biến trong bộ nhớ vật lý có thể không giống nhau. Tuy vậy, khi lập trình, ta vẫn có thể dùng những câu lệnh nhất định để lấy địa chỉ của dữ liệu trong bộ nhớ.
+Trong chương trình, dữ liệu thường có địa chỉ lưu trữ của nó. Trong mỗi lần chương trình thực sự chạy, vị trí lưu trữ của biến trong không gian địa chỉ có thể không giống nhau. Tuy vậy, khi lập trình, ta vẫn có thể dùng những câu lệnh nhất định để lấy địa chỉ của dữ liệu trong bộ nhớ.
 
 Địa chỉ cũng là dữ liệu. Kiểu biến dùng để lưu địa chỉ có một tên gọi đặc biệt là "biến con trỏ", đôi khi cũng được gọi ngắn gọn là "con trỏ".
 
 ???+ note "Kích thước của biến con trỏ"
-    Kích thước của biến con trỏ khác nhau tùy môi trường. Trên máy 32 bit, địa chỉ được biểu diễn bằng số nguyên nhị phân 32 bit, nên kích thước của một con trỏ là 4 byte. Trên máy 64 bit, địa chỉ được biểu diễn bằng số nguyên nhị phân 64 bit, nên kích thước của một con trỏ trở thành 8 byte.
+    Kích thước của biến con trỏ khác nhau tùy môi trường. Trên các môi trường 32 bit phổ biến, kích thước của một con trỏ thường là 4 byte. Trên các môi trường 64 bit phổ biến, kích thước của một con trỏ thường là 8 byte. Khi cần giá trị chính xác trong chương trình, hãy dùng `sizeof`.
 
-Địa chỉ chỉ là một loại dữ liệu giống như một mốc đo. Để xử lý dữ liệu thuộc các kiểu khác nhau, "biến con trỏ" cũng có các kiểu khác nhau. Ví dụ, ta có thể có biến con trỏ kiểu `int`, trong đó địa chỉ được lưu, tức giá trị được biến con trỏ lưu trữ, tương ứng với địa chỉ bắt đầu của một vùng nhớ có kích thước 32 bit; hoặc biến con trỏ kiểu `char`, trong đó địa chỉ được lưu tương ứng với địa chỉ bắt đầu của một vùng nhớ 8 bit.
+Địa chỉ chỉ là một loại dữ liệu giống như một mốc đo. Để xử lý dữ liệu thuộc các kiểu khác nhau, "biến con trỏ" cũng có các kiểu khác nhau. Ví dụ, ta có thể có biến con trỏ kiểu `int`, trong đó địa chỉ được lưu, tức giá trị được biến con trỏ lưu trữ, tương ứng với địa chỉ bắt đầu của một đối tượng `int`; hoặc biến con trỏ kiểu `char`, trong đó địa chỉ được lưu tương ứng với địa chỉ bắt đầu của một đối tượng `char`.
 
 Trên thực tế, người dùng cũng có thể khai báo biến con trỏ trỏ tới một biến con trỏ khác.
 
@@ -23,7 +23,7 @@ struct ThreeInt {
 };
 ```
 
-Khi đó, biến con trỏ kiểu `ThreeInt` tương ứng với một vùng nhớ có kích thước 3 × 32 = 96 bit.
+Khi đó, biến con trỏ kiểu `ThreeInt` trỏ tới một đối tượng `ThreeInt`. Kích thước của đối tượng này do bố cục cấu trúc quyết định; trong môi trường thường gặp, ba thành viên `int` chiếm ít nhất `3 * sizeof(int)` byte, và trình biên dịch có thể chèn thêm phần đệm.
 
 ## Khai báo và sử dụng con trỏ
 
@@ -41,7 +41,7 @@ int main() {
 }
 ```
 
-Với biến cấu trúc cũng tương tự. Nếu muốn truy cập thành viên của cấu trúc mà con trỏ trỏ tới, trước hết cần giải tham chiếu con trỏ, rồi dùng toán tử quan hệ thành viên `.`. Tuy nhiên, nên dùng cách viết ngắn gọn hơn là toán tử "mũi tên" `->`.
+Với biến cấu trúc cũng tương tự. Nếu muốn truy cập thành viên của cấu trúc mà con trỏ trỏ tới, trước hết cần giải tham chiếu con trỏ, rồi dùng toán tử truy cập thành viên `.`. Tuy nhiên, nên dùng cách viết ngắn gọn hơn là toán tử "mũi tên" `->`.
 
 ```cpp
 struct ThreeInt {
@@ -61,11 +61,11 @@ int main() {
 
 ## Dịch chuyển con trỏ
 
-Biến con trỏ cũng có thể thực hiện phép cộng trừ **với số nguyên**. Với con trỏ kiểu `int`, mỗi khi cộng 1, tức tăng thêm 1, địa chỉ mà nó trỏ tới sẽ dịch đi 32 bit, tức 4 byte; nếu cộng 2, địa chỉ mà nó trỏ tới sẽ dịch đi 2 × 32 = 64 bit. Tương tự, với con trỏ kiểu `char`, mỗi lần tăng, địa chỉ mà nó trỏ tới sẽ dịch đi 8 bit, tức 1 byte.
+Biến con trỏ cũng có thể thực hiện phép cộng trừ **với số nguyên**. Với con trỏ kiểu `int`, mỗi khi cộng 1, địa chỉ mà nó trỏ tới sẽ dịch đi `sizeof(int)` byte; nếu cộng 2, địa chỉ đó sẽ dịch đi `2 * sizeof(int)` byte. Tương tự, với con trỏ kiểu `char`, mỗi lần tăng, địa chỉ mà nó trỏ tới sẽ dịch đi `sizeof(char)` byte, tức 1 byte.
 
 ### Dùng dịch chuyển con trỏ để truy cập mảng
 
-Ở phần trước ta đã nói rằng mảng là một vùng lưu trữ liên tiếp. Trong C/C++, khi dùng trực tiếp tên mảng, ta nhận được địa chỉ bắt đầu của mảng.
+Ở phần trước ta đã nói rằng mảng là một vùng lưu trữ liên tiếp. Trong nhiều biểu thức C/C++, tên mảng sẽ được chuyển đổi ngầm định thành con trỏ trỏ tới phần tử đầu tiên của mảng.
 
 ```cpp
 int main() {
@@ -81,7 +81,7 @@ int main() {
 
 Khi truy cập phần tử trong mảng thông qua con trỏ, ta thường cần dùng đến "dịch chuyển con trỏ". Nói cách khác, ta truy cập bằng cách lấy một địa chỉ cơ sở, tức địa chỉ bắt đầu của mảng, cộng thêm độ lệch.
 
-Ta thường dùng toán tử `[]` để truy cập phần tử của mảng tại một độ lệch được chỉ định, ví dụ `a[3]` hoặc `p[4]`. Cách viết này tương đương với việc tính toán trên con trỏ rồi tham chiếu tới kết quả, tức `p[4]` và `*(p + 4)` là hai cách viết tương đương.
+Ta thường dùng toán tử `[]` để truy cập phần tử của mảng tại một độ lệch được chỉ định, ví dụ `a[3]` hoặc `p[4]`. Cách viết này tương đương với việc tính toán trên con trỏ rồi giải tham chiếu kết quả, tức `p[4]` và `*(p + 4)` là hai cách viết tương đương.
 
 ## Con trỏ null
 
@@ -105,7 +105,7 @@ int f(int* p);
 Khi gọi `f(NULL)`, kiểu của hàm thực sự được gọi là `int(int)` chứ không phải `int(int *)`.
 
 ???+ note "Vấn đề do `NULL` gây ra trong ngôn ngữ C"
-    So với C++, vì có hai định nghĩa, vấn đề do `NULL` gây ra trong ngôn ngữ C còn nghiêm trọng hơn: nếu trong một hàm nhận tham số biến thiên, người viết hàm muốn nhận một con trỏ, nhưng người gọi hàm lại truyền vào một `NULL` được định nghĩa là kiểu số nguyên, thì sẽ gây ra hành vi không xác định. Nguyên nhân là khi dùng tham số biến thiên đã truyền vào bên trong hàm, cần thực hiện chuyển đổi kiểu, mà việc chuyển đổi từ kiểu số nguyên sang kiểu con trỏ là hành vi không xác định.[^note1]
+    So với C++, vì có hai định nghĩa, vấn đề do `NULL` gây ra trong ngôn ngữ C còn nghiêm trọng hơn: nếu trong một hàm nhận tham số biến thiên, người viết hàm muốn nhận một con trỏ, nhưng người gọi hàm lại truyền vào một `NULL` được định nghĩa là kiểu số nguyên, thì có thể gây ra hành vi không xác định. Nguyên nhân là khi lấy tham số biến thiên bên trong hàm, nếu đọc một giá trị được truyền với kiểu số nguyên như thể đó là kiểu con trỏ, kiểu thực tế và kiểu đọc ra không khớp.[^note1]
 
 Để giải quyết các vấn đề này, C++11 đã đưa vào từ khóa `nullptr` làm hằng con trỏ null.
 
@@ -119,10 +119,10 @@ typedef decltype(nullptr) nullptr_t;
 }
 ```
 
-Ngoài ra, từ C++11, cách cài đặt macro `NULL` cũng được sửa thành:
+Ngoài ra, từ C++11, nên dùng `nullptr` thay cho `NULL`; một số thư viện có thể cài đặt `NULL` theo hướng tương tự:
 
 ```cpp
-// Từ C++11
+// Ví dụ minh họa
 #define NULL nullptr
 ```
 
@@ -159,9 +159,9 @@ C++ đưa vào khái niệm tham chiếu; so với con trỏ, tham chiếu dễ 
 
 ### Khởi tạo động
 
-Ngoài ra, khi viết chương trình ta thường gặp cấp phát bộ nhớ động, tức chương trình sẽ yêu cầu hoặc trả lại cho hệ điều hành vùng nhớ cần thiết để lưu dữ liệu trong lúc chạy. Khi chương trình gọi giao diện của hệ điều hành để xin bộ nhớ, hệ điều hành sẽ trả về địa chỉ của vùng nhớ mà chương trình đã xin. Để sử dụng vùng nhớ này, ta cần lưu địa chỉ của nó trong biến con trỏ.
+Ngoài ra, khi viết chương trình ta thường gặp cấp phát bộ nhớ động, tức chương trình sẽ yêu cầu hoặc trả lại vùng nhớ cần thiết để lưu dữ liệu trong lúc chạy. Bộ cấp phát bộ nhớ sẽ trả về địa chỉ của vùng nhớ đã cấp phát. Để sử dụng vùng nhớ này, ta cần lưu địa chỉ của nó trong biến con trỏ.
 
-Trong C++, ta dùng toán tử `new` để lấy một vùng nhớ, và dùng toán tử `delete` để giải phóng vùng nhớ mà một con trỏ trỏ tới.
+Trong C++, ta dùng toán tử `new` để cấp phát một vùng nhớ, và dùng toán tử `delete` để giải phóng vùng nhớ mà một con trỏ trỏ tới.
 
 ```cpp
 int* p = new int(1234);
@@ -169,7 +169,7 @@ int* p = new int(1234);
 delete p;
 ```
 
-Câu lệnh trên dùng toán tử `new` để xin hệ điều hành một vùng nhớ có kích thước của `int`, khởi tạo giá trị trong đó là 1234, đồng thời khai báo một con trỏ kiểu `int` tên `p` trỏ tới vùng nhớ này.
+Câu lệnh trên dùng toán tử `new` để cấp phát một vùng nhớ đủ chứa `int`, khởi tạo giá trị trong đó là 1234, đồng thời khai báo một con trỏ kiểu `int` tên `p` trỏ tới vùng nhớ này.
 
 Tương tự, cũng có thể dùng `new` để tạo đối tượng mới:
 
@@ -188,7 +188,7 @@ int main() {
 }
 ```
 
-Như trên, biểu thức `new` sẽ thử mở một vùng nhớ có kích thước tương ứng, thử xây dựng đối tượng đó trên vùng nhớ này, rồi trả về địa chỉ của vùng nhớ.
+Như trên, biểu thức `new` sẽ thử cấp phát một vùng nhớ có kích thước tương ứng, xây dựng đối tượng trên vùng nhớ này, rồi trả về địa chỉ của vùng nhớ.
 
 ```cpp
 struct ThreeInt {
@@ -205,9 +205,9 @@ int main() {
 ```
 
 ???+ note "Khởi tạo bằng danh sách"
-    Toán tử `{}` có thể dùng để khởi tạo những cấu trúc không có hàm tạo. Ngoài ra, dùng toán tử `{}` có thể làm cho hình thức khởi tạo biến trở nên thống nhất hơn. Xem thêm "[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)".
+    Toán tử `{}` có thể dùng để khởi tạo những cấu trúc không có hàm tạo do người dùng định nghĩa. Ngoài ra, dùng toán tử `{}` có thể làm cho hình thức khởi tạo biến trở nên thống nhất hơn. Xem thêm "[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)".
 
-Cần chú ý rằng khi vùng nhớ được xin bằng `new` không còn được sử dụng, ta cần dùng `delete` để giải phóng vùng nhớ này. Không được giải phóng cùng một vùng nhớ hai lần trở lên. Còn việc dùng thao tác `delete` trên con trỏ null `nullptr` là hợp lệ.
+Cần chú ý rằng khi vùng nhớ được cấp phát bằng `new` không còn được sử dụng, ta cần dùng `delete` để giải phóng vùng nhớ này. Không được giải phóng cùng một vùng nhớ hai lần trở lên. Còn việc dùng thao tác `delete` trên con trỏ null `nullptr` là hợp lệ.
 
 ### Tạo mảng động
 
@@ -225,7 +225,7 @@ Các phần tử trong mảng được lưu liên tiếp, tức `p + 1` trỏ t�
 
 Khi lưu dữ liệu dạng ma trận, ta có thể cần dùng đến kiểu dữ liệu như "mảng hai chiều". Về mặt ngữ nghĩa, mảng hai chiều là một mảng của các mảng. Còn bộ nhớ máy tính có thể được xem như một mảng một chiều rất dài. Khi lưu một mảng hai chiều trong bộ nhớ máy tính, sẽ có khái niệm có "liên tiếp" hay không.
 
-"Liên tiếp" nghĩa là cuối của bất kỳ hàng nào trong mảng hai chiều và đầu của hàng tiếp theo nằm kề nhau về địa chỉ vật lý; nói cách khác, toàn bộ mảng hai chiều có thể được xem như một mảng một chiều. Ngược lại, hai phần đó không nhất thiết kề nhau về mặt vật lý.
+"Liên tiếp" nghĩa là cuối của bất kỳ hàng nào trong mảng hai chiều và đầu của hàng tiếp theo nằm kề nhau trong không gian địa chỉ; nói cách khác, toàn bộ mảng hai chiều có thể được xem như một mảng một chiều. Ngược lại, hai phần đó không nhất thiết kề nhau trong bộ nhớ.
 
 Với mảng hai chiều "liên tiếp", chỉ cần dùng một vòng lặp và một con trỏ tăng dần là có thể duyệt toàn bộ dữ liệu trong mảng. Với mảng hai chiều không liên tiếp, do từng hàng không liên tiếp với nhau, ta cần lấy địa chỉ đầu của một hàng nào đó trước, rồi mới truy cập các phần tử trong hàng đó.
 
@@ -234,7 +234,7 @@ Với mảng hai chiều "liên tiếp", chỉ cần dùng một vòng lặp và
 
 ### Tạo mảng hai chiều động
 
-Trong C/C++, ta có thể dùng câu lệnh tương tự dưới đây để khai báo một mảng hai chiều gồm N hàng và M cột, có vùng nhớ liên tiếp về mặt vật lý.
+Trong C/C++, ta có thể dùng câu lệnh tương tự dưới đây để khai báo một mảng hai chiều gồm N hàng và M cột, có vùng nhớ liên tiếp.
 
 ???+ note "Mô tả số chiều của mảng"
     Cách tổng quát hơn là dùng cách nói chiều thứ n. Với dạng lưu trữ "hàng trước", độ dài của chiều thứ nhất của mảng là N, và độ dài của chiều thứ hai là M.
@@ -257,10 +257,10 @@ int* a = new int[N * M];
 
 Cách này có thể bảo đảm mảng hai chiều là **liên tiếp**.
 
-???+ note "Lưu trữ tuyến tính của mảng ở mức vật lý"
-    Trên thực tế, dữ liệu trong bộ nhớ đều có thể được xem là được lưu theo tuyến tính. Vì vậy, dưới một quy tắc nhất định, chỉ cần mở động vùng nhớ của mảng một chiều là đã có thể lưu mảng n chiều trên đó.
+???+ note "Lưu trữ tuyến tính của mảng"
+    Trên thực tế, dữ liệu trong bộ nhớ đều có thể được xem là được lưu theo tuyến tính. Vì vậy, dưới một quy tắc ánh xạ chỉ số nhất định, chỉ cần cấp phát động vùng nhớ của mảng một chiều là đã có thể lưu mảng n chiều trên đó.
 
-Ngoài ra, cũng có thể xin và sử dụng bộ nhớ theo khái niệm "mảng của các mảng". Đối với một mảng lưu nhiều mảng, thực chất đó là một mảng lưu địa chỉ đầu của nhiều mảng, tức một mảng lưu nhiều biến con trỏ.
+Ngoài ra, cũng có thể cấp phát và sử dụng bộ nhớ theo khái niệm "mảng của các mảng". Đối với một mảng lưu nhiều mảng, thực chất đó là một mảng lưu địa chỉ đầu của nhiều mảng, tức một mảng lưu nhiều biến con trỏ.
 
 Ta cần một biến để lưu địa chỉ đầu của "mảng của các mảng" này, tức địa chỉ của một con trỏ. Biến này chính là một "con trỏ trỏ tới con trỏ", đôi khi cũng gọi là "con trỏ cấp hai", ví dụ:
 
@@ -268,7 +268,7 @@ Ta cần một biến để lưu địa chỉ đầu của "mảng của các m�
 int** a = new int*[5];
 ```
 
-Tiếp theo, ta cần xin vùng nhớ cho từng mảng:
+Tiếp theo, ta cần cấp phát vùng nhớ cho từng mảng:
 
 ```cpp
 for (int i = 0; i < 5; i++) {
@@ -276,7 +276,7 @@ for (int i = 0; i < 5; i++) {
 }
 ```
 
-Đến đây, ta đã hoàn tất việc xin bộ nhớ. Khi giải phóng vùng nhớ thu được theo cách này, ta cần thực hiện thao tác ngược lại: trước hết giải phóng từng mảng, rồi giải phóng mảng lưu địa chỉ đầu của các mảng đó, ví dụ:
+Đến đây, ta đã hoàn tất việc cấp phát bộ nhớ. Khi giải phóng vùng nhớ thu được theo cách này, ta cần thực hiện thao tác ngược lại: trước hết giải phóng từng mảng, rồi giải phóng mảng lưu địa chỉ đầu của các mảng đó, ví dụ:
 
 ```cpp
 for (int i = 0; i < 5; i++) {
@@ -290,7 +290,7 @@ Cần chú ý rằng mảng hai chiều thu được theo cách này không bả
 Còn một cách khác, cần dùng đến "con trỏ trỏ tới mảng".
 
 ???+ note "Khác biệt giữa tên mảng và địa chỉ phần tử đầu của mảng"
-    Trước đây ta đã nói rằng trong C/C++, khi dùng trực tiếp tên mảng, giá trị nhận được bằng địa chỉ của phần tử đầu tiên của mảng. Nhưng kiểu của biến được biểu diễn bởi tên mảng thực ra là toàn bộ mảng, chứ không phải một phần tử đơn lẻ.
+    Trước đây ta đã nói rằng trong nhiều biểu thức C/C++, tên mảng được chuyển đổi thành con trỏ trỏ tới phần tử đầu tiên của mảng. Nhưng bản thân kiểu của định danh mảng vẫn là toàn bộ mảng, chứ không phải một phần tử đơn lẻ.
     
     ```cpp
     int main() { int a[5] = {1, 2, 3, 4, 5}; }
@@ -315,9 +315,9 @@ Vì con trỏ trỏ tới mảng cũng là một kiểu dữ liệu xác định
 
 Phần giới thiệu về hàm có thể xem trong chương [Hàm trong C++](./func.md).
 
-Nói đơn giản, để gọi một hàm, cần biết kiểu tham số, số lượng tham số và kiểu giá trị trả về của hàm đó; các thông tin này cũng được gọi chung là kiểu giao diện.
+Nói đơn giản, để gọi một hàm, cần biết kiểu tham số, số lượng tham số và kiểu giá trị trả về của hàm đó; các thông tin này cũng được gọi chung là chữ ký hàm.
 
-Có thể gọi hàm thông qua con trỏ hàm. Đôi khi, một số hàm có cùng kiểu giao diện; dùng con trỏ hàm cho phép chọn hàm cần gọi **một cách động** theo quá trình chạy của chương trình. Nói cách khác, không cần sửa đổi một hàm, chỉ cần sửa tham số truyền vào nó, tức con trỏ hàm, là có thể làm thay đổi hành vi của hàm đó.
+Có thể gọi hàm thông qua con trỏ hàm. Đôi khi, một số hàm có cùng chữ ký; dùng con trỏ hàm cho phép chọn hàm cần gọi **một cách động** theo quá trình chạy của chương trình. Nói cách khác, không cần sửa đổi một hàm, chỉ cần thay đổi đối số truyền vào nó, tức con trỏ hàm, là có thể làm thay đổi hành vi của hàm đó.
 
 Giả sử ta có một số hàm phép toán hai ngôi dành cho kiểu `int`, thì tham số của hàm là 2 giá trị `int`, và giá trị trả về cũng là `int`. Dưới đây là một ví dụ sử dụng con trỏ hàm:
 
