@@ -178,7 +178,7 @@ Tài liệu của bạn sẽ trở thành:
 
 $\rightarrow$ Nhấp nút **Typeset** và kiểm tra tài liệu PDF. Kết quả sẽ trông như sau:
 
-![p1](images/latex-for-beginners-1.png)
+![Tài liệu LaTeX đầu tiên sau khi biên dịch](images/latex-for-beginners-1.png)
 
 ### Tạo nhãn
 
@@ -215,7 +215,7 @@ Tài liệu của bạn sẽ trở thành:
 
 $\rightarrow$ Biên dịch và kiểm tra tài liệu PDF. Có thể bạn cần biên dịch liên tiếp hai lần:
 
-![p2](images/latex-for-beginners-2.png)
+![Kết quả tham chiếu nhãn và số trang trong LaTeX](images/latex-for-beginners-2.png)
 
 ### Tạo mục lục (TOC)
 
@@ -254,11 +254,11 @@ $\rightarrow$ Biên dịch và kiểm tra tài liệu. Có thể cần biên d�
 
 Trang đầu của tài liệu trông như sau:
 
-![p3](images/latex-for-beginners-3.png)
+![Trang đầu của tài liệu có mục lục](images/latex-for-beginners-3.png)
 
 Trang thứ hai:
 
-![p4](images/latex-for-beginners-4.png)
+![Trang nội dung sau mục lục trong tài liệu LaTeX](images/latex-for-beginners-4.png)
 
 ## Xử lý văn bản
 
@@ -285,7 +285,7 @@ words} \underline{underlined words}
 
 Kết quả như sau:
 
-![p5](images/latex-for-beginners-5.png)
+![Ví dụ các hiệu ứng phông chữ trong LaTeX](images/latex-for-beginners-5.png)
 
 $\rightarrow$ Thêm nhiều văn bản hơn vào tài liệu của bạn và thử các hiệu ứng phông chữ khác nhau.
 
@@ -295,7 +295,7 @@ $\rightarrow$ Thêm nhiều văn bản hơn vào tài liệu của bạn và th�
 
 Sau khi dùng `\usepackage{color}`, chúng ta có thể gọi các màu thường gặp:
 
-![p6](images/latex-for-beginners-6.png)
+![Các màu chữ thường gặp trong LaTeX](images/latex-for-beginners-6.png)
 
 Mã dùng chữ màu là:
 
@@ -327,7 +327,7 @@ normal size words {\tiny tiny words} {\scriptsize scriptsize words}
 
 Kết quả như sau:
 
-![p7](images/latex-for-beginners-7.png)
+![Ví dụ các cỡ chữ trong LaTeX](images/latex-for-beginners-7.png)
 
 $\rightarrow$ Thử điều chỉnh cỡ chữ cho văn bản của bạn.
 
@@ -360,7 +360,7 @@ $\rightarrow$ Biên dịch và kiểm tra tài liệu PDF.
 
 Danh sách trông như sau:
 
-![p8](images/latex-for-beginners-8.png)
+![Danh sách có thứ tự lồng danh sách không thứ tự trong LaTeX](images/latex-for-beginners-8.png)
 
 Có thể dùng tham số trong ngoặc vuông để thay đổi ký hiệu đầu dòng của danh sách không thứ tự. Ví dụ, `\item[-]` sẽ dùng dấu gạch làm ký hiệu; bạn thậm chí có thể dùng một từ, chẳng hạn `\item[One]`.
 
@@ -383,7 +383,7 @@ Có thể dùng tham số trong ngoặc vuông để thay đổi ký hiệu đ�
 
 tạo ra kết quả:
 
-![p9](images/latex-for-beginners-9.png)
+![Danh sách không thứ tự với ký hiệu đầu dòng tùy chỉnh](images/latex-for-beginners-9.png)
 
 ### Chú thích và khoảng trắng
 
@@ -399,7 +399,7 @@ must be in want of a wife.
 
 tạo ra kết quả:
 
-![p10](images/latex-for-beginners-10.png)
+![Kết quả xử lý chú thích và khoảng trắng trong LaTeX](images/latex-for-beginners-10.png)
 
 Nhiều khoảng trắng liên tiếp trong LaTeX được xem như một khoảng trắng. Nhiều dòng trống liên tiếp được xem như một dòng trống. Chức năng chính của dòng trống là bắt đầu một đoạn mới. Nói chung, LaTeX bỏ qua dòng trống và các ký tự khoảng trắng khác; hai dấu gạch chéo ngược (`\\`) có thể được dùng để xuống dòng.
 
@@ -423,13 +423,13 @@ Các ký tự sau là ký tự đặc biệt trong LaTeX:
 
 Lưu ý rằng khi dùng ký tự `^` và `~`, bạn cần đặt ngay sau đó một cặp ngoặc nhọn đóng mở; nếu không, chúng sẽ được hiểu là dấu phía trên chữ cái, giống như `\^ e` sẽ trở thành $\mathrm {\hat{e}}$. Đoạn mã trên tạo ra kết quả sau:
 
-![p11](images/latex-for-beginners-11.png)
+![Kết quả escape các ký tự đặc biệt trong LaTeX](images/latex-for-beginners-11.png)
 
 Lưu ý rằng dấu gạch chéo ngược không thể escape bằng chính dấu gạch chéo ngược, vì như vậy nó sẽ trở thành lệnh xuống dòng; hãy dùng lệnh `\textbackslash` thay thế.
 
 $\rightarrow$ Nhập mã để tạo nội dung sau trong tài liệu của bạn:
 
-![p12](images/latex-for-beginners-12.png)
+![Bài thực hành nhập ký tự đặc biệt trong LaTeX](images/latex-for-beginners-12.png)
 
 Hãy hỏi chuyên gia hoặc xem [mã nguồn](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1) của trang này để được trợ giúp.
 
@@ -486,13 +486,13 @@ Cuối cùng, dùng `\end{tabular}` để kết thúc bảng. Một vài ví d�
 
 Kết quả như sau:
 
-![p13](images/latex-for-beginners-13.png)
+![Bảng được tạo bằng môi trường tabular](images/latex-for-beginners-13.png)
 
 ### Thực hành
 
 Hãy thử vẽ bảng sau:
 
-![p14](images/latex-for-beginners-14.png)
+![Bài thực hành tạo bảng trong LaTeX](images/latex-for-beginners-14.png)
 
 ## Hình ảnh
 
@@ -559,7 +559,7 @@ Nếu muốn tạo công thức có đánh số, có thể dùng `\begin{equatio
 
 tạo ra kết quả:
 
-![equation](images/latex-equation.svg)
+![Công thức có đánh số bằng môi trường equation](images/latex-equation.svg)
 
 Số 6 là số thứ tự của chương, chỉ xuất hiện khi tài liệu của bạn có đặt chương, chẳng hạn tài liệu kiểu **report**.
 
@@ -574,7 +574,7 @@ Dùng `\begin{eqnarray}...\end{eqnarray}` để viết một nhóm công thức 
 
 tạo ra kết quả:
 
-![eqnarray](images/latex-eqnarray.svg)
+![Nhóm công thức có đánh số bằng môi trường eqnarray](images/latex-eqnarray.svg)
 
 Để viết công thức không đánh số, hãy thêm ký tự `*` ngay sau tên môi trường, chẳng hạn `{equation*}`, `{eqnarray*}`.
 
@@ -673,7 +673,7 @@ Ta có thể dùng dấu gạch chéo ngược kèm tên chữ cái Hy Lạp đ�
 
 $\rightarrow$ Viết mã để tạo các công thức sau:
 
-![p15](images/latex-for-beginners-15.png)
+![Bài thực hành viết công thức toán học trong LaTeX](images/latex-for-beginners-15.png)
 
 Nếu cần trợ giúp, bạn có thể xem [mã nguồn](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1) của trang này.
 
