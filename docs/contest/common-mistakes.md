@@ -36,11 +36,13 @@ Ví dụ:
 -   Khi dùng `goto` và `switch-case`, nhảy qua phần khởi tạo của một số biến
     cục bộ.
 
-## Lỗi không gây CE nhưng gây Warning
+<span id="lỗi-không-gây-ce-nhưng-gây-warning"></span>
+
+## Lỗi không gây CE nhưng gây cảnh báo
 
 Chương trình mắc các lỗi này vẫn biên dịch được, nhưng rất có khả năng cho kết
 quả chạy sai. Trình biên dịch có thể chỉ ra những lỗi này khi dùng tùy chọn
-`-W{warningtype}`.
+`-W{loại_cảnh_báo}`.
 
 -   Nhầm toán tử gán `=` với toán tử so sánh `==`.
 
@@ -60,7 +62,7 @@ quả chạy sai. Trình biên dịch có thể chỉ ra những lỗi này khi 
         ```
 
     -   Nếu thật sự muốn dùng `=` trong câu lệnh vốn thường dùng `==`, chẳng
-        hạn `while (foo = bar)`, và không muốn nhận warning, có thể dùng
+        hạn `while (foo = bar)`, và không muốn nhận cảnh báo, có thể dùng
         **hai cặp ngoặc**: `while ((foo = bar))`.
 
 -   Lỗi do độ ưu tiên toán tử.
@@ -116,7 +118,7 @@ quả chạy sai. Trình biên dịch có thể chỉ ra những lỗi này khi 
         }
         ```
 
-        Trên một số compiler và môi trường, sau khi bật tối ưu, chương trình
+        Trên một số trình biên dịch và môi trường, sau khi bật tối ưu, chương trình
         in ra `false`.
 
         Nếu quan tâm, bạn có thể đọc
@@ -132,16 +134,18 @@ quả chạy sai. Trình biên dịch có thể chỉ ra những lỗi này khi 
         ```cpp
         // Ý định ban đầu: << thứ nhất là toán tử đã nạp chồng, biểu thị xuất;
         // << thứ hai là toán tử dịch bit, biểu thị dịch 1 sang trái 1 bit.
-        // Nhưng vì quên thêm ngoặc, compiler cũng xem << thứ hai là toán tử
+        // Nhưng vì quên thêm ngoặc, trình biên dịch cũng xem << thứ hai là toán tử
         // xuất, khiến kết quả khác dự kiến.
         // Sai:  std::cout << 1 << 1;
         // Đúng:
         std::cout << (1 << 1);
         ```
 
-## Lỗi không gây CE cũng không gây Warning
+<span id="lỗi-không-gây-ce-cũng-không-gây-warning"></span>
 
-Những lỗi này compiler không phát hiện được, chỉ có thể tự tìm.
+## Lỗi không gây CE cũng không gây cảnh báo
+
+Những lỗi này trình biên dịch không phát hiện được, chỉ có thể tự tìm.
 
 ### Lỗi dẫn đến WA
 
@@ -249,9 +253,9 @@ Những lỗi này compiler không phát hiện được, chỉ có thể tự t
         f[find(a)] = find(b);  // Đúng
         ```
 
--   Dùng `freopen` với mode `a` để ghi nối tiếp.
-    -   Môi trường kiểm tra của CCF không xóa file output; dùng `a` có thể làm
-        output của thí sinh trước cũng bị máy chấm đọc vào, gây WA.
+-   Dùng `freopen` với chế độ `a` để ghi nối tiếp.
+    -   Môi trường kiểm tra của CCF không xóa tệp đầu ra; dùng `a` có thể làm
+        đầu ra của thí sinh trước cũng bị máy chấm đọc vào, gây WA.
 
 #### Khác biệt ký tự xuống dòng
 
@@ -272,9 +276,9 @@ Các hệ điều hành khác nhau dùng ký hiệu khác nhau để đánh dấ
 
 -   CR (biểu diễn bằng `\r`): `Mac OS` phiên bản 9 trở về trước
 
-C/C++ dùng escape sequence `\n` để xuống dòng. Điều này có thể khiến ta tưởng
-rằng ký tự xuống dòng trong input cũng nhất định được biểu diễn bằng `\n`, rồi
-chỉ đọc một ký tự làm xuống dòng, dẫn đến chưa đọc hết file input.
+C/C++ dùng chuỗi thoát `\n` để xuống dòng. Điều này có thể khiến ta tưởng
+rằng ký tự xuống dòng trong dữ liệu vào cũng nhất định được biểu diễn bằng `\n`, rồi
+chỉ đọc một ký tự làm xuống dòng, dẫn đến chưa đọc hết tệp dữ liệu vào.
 
 Một số cách xử lý:
 
@@ -288,8 +292,8 @@ Một số cách xử lý:
 
 ### Lỗi dẫn đến kết quả không xác định
 
-Undefined behavior có thể dẫn đến kết quả không xác định, có thể là WA, RE,...
-Compiler thường giả định chương trình của bạn không có undefined behavior, vì
+Hành vi không xác định (undefined behavior) có thể dẫn đến kết quả không xác định, có thể là WA, RE,...
+Trình biên dịch thường giả định chương trình của bạn không có hành vi không xác định, vì
 vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hành vi khác nhau.
 
 -   Chia cho 0, hoặc tính nghịch đảo của 0.
@@ -322,12 +326,12 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
     lệnh `return`.
 
     Ngay cả khi một nhánh có giá trị trả về nhưng các nhánh khác không có, kết
-    quả vẫn là undefined behavior.
+    quả vẫn là hành vi không xác định.
 
-    Có thể thêm `-Wall` vào tùy chọn biên dịch để kiểm tra compiler có cảnh báo
+    Có thể thêm `-Wall` vào tùy chọn biên dịch để kiểm tra trình biên dịch có cảnh báo
     về hàm thiếu `return` hay không.
 
--   Thử sửa string literal.
+-   Thử sửa chuỗi literal.
 
     ???+ warning "Ví dụ"
         ```cpp
@@ -336,7 +340,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
         p[1] = 'i';
         ```
 
-    Thử sửa string literal như vậy dẫn đến **undefined behavior**. Nên dùng
+    Thử sửa chuỗi literal như vậy dẫn đến **hành vi không xác định**. Nên dùng
     kiểu dữ liệu **phù hợp** khác, chẳng hạn `std::string` hoặc `char[]`.
 
 -   Giải phóng nhiều lần hoặc dereference vùng nhớ không hợp lệ.
@@ -393,13 +397,13 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
     }
     ```
 
-    Có thể bị compiler tối ưu trực tiếp thành:
+    Có thể bị trình biên dịch tối ưu trực tiếp thành:
 
     ```cpp
     int foo(int x) { return 0; }
     ```
 
-    Vì compiler có thể giả định số nguyên có dấu không bao giờ tràn, nên
+    Vì trình biên dịch có thể giả định số nguyên có dấu không bao giờ tràn, nên
     `x > x + 1` không bao giờ đúng.
 
 -   Dùng biến chưa khởi tạo.
@@ -454,7 +458,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
     cho chương trình, chương trình kết thúc và trả về 3221225725, tức
     `0xC00000FD`, trong NTSTATUS là `STATUS_STACK_OVERFLOW`.
 
-    Nếu dùng compiler gcc, có thể thêm tùy chọn `-Wl,--stack=SIZE` khi biên
+    Nếu dùng trình biên dịch GCC, có thể thêm tùy chọn `-Wl,--stack=SIZE` khi biên
     dịch để chỉ định giới hạn kích thước stack, trong đó `SIZE` là số byte.
 
     Trên Linux, stack không đủ gây tràn stack; Linux sẽ ghi bừa `head_info` vào
@@ -522,7 +526,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
 -   Dùng toán tử `+` để thêm ký tự vào `std::string`.
 
     Lỗi này tạo một biến `string` tạm thời, sửa xong rồi gán lại cho biến gốc.
-    Compiler không thể tối ưu lỗi này; khi dữ liệu lớn, độ phức tạp có thể suy
+    Trình biên dịch không thể tối ưu lỗi này; khi dữ liệu lớn, độ phức tạp có thể suy
     giảm.
 
     Cách viết sai thường gặp:
@@ -621,7 +625,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
             segment; nếu khởi tạo tường minh, chẳng hạn toàn 0 hoặc giá trị
             khác, thì nằm trong DATA segment.
 
-            -   Khi hoàn toàn không dùng mảng (giả sử compiler không tối ưu bỏ
+            -   Khi hoàn toàn không dùng mảng (giả sử trình biên dịch không tối ưu bỏ
                 mảng)
 
                 -   Bộ nhớ vật lý: nếu mảng chưa được truy cập, cơ chế demand
@@ -688,7 +692,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
 
         ```cpp
         // int mod = 998244353;      // Sai
-        const int mod = 998244353;  // Đúng, giúp compiler xử lý như hằng số
+        const int mod = 998244353;  // Đúng, giúp trình biên dịch xử lý như hằng số
         ```
 
 -   Dùng đệ quy không cần thiết, trừ tail recursion.
