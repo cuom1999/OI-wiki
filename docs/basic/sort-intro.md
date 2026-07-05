@@ -1,4 +1,4 @@
-Trang này giới thiệu ngắn gọn về thuật toán sắp xếp.
+Trang này giới thiệu ngắn gọn về các thuật toán sắp xếp.
 
 ## Định nghĩa
 
@@ -24,13 +24,13 @@ Trang chính: [Độ phức tạp](./complexity.md)
 
 Cách tính độ phức tạp đơn giản thường là đếm số lần thực hiện các "thao tác đơn giản"; đôi khi cũng có thể ước lượng gần đúng bằng cách đếm số tầng vòng lặp.
 
-Độ phức tạp thời gian được chia thành độ phức tạp tốt nhất, trung bình và xấu nhất. Trong các kỳ thi OI, ta thường cần xét độ phức tạp xấu nhất, vì nó thể hiện mức bảo đảm của thuật toán; trong quá trình chấm, sẽ không có kết quả tệ hơn mức này.
+Độ phức tạp thời gian được chia thành độ phức tạp tốt nhất, trung bình và xấu nhất. Trong các kỳ thi OI, thường cần xét độ phức tạp xấu nhất, vì nó thể hiện mức bảo đảm của thuật toán; trong quá trình chấm, sẽ không có kết quả tệ hơn mức này.
 
 Cận dưới độ phức tạp thời gian của các thuật toán sắp xếp dựa trên so sánh là $O(n\log n)$.
 
 Tất nhiên, cũng có những thuật toán không có độ phức tạp $O(n\log n)$. Ví dụ, [sắp xếp đếm](./counting-sort.md) có độ phức tạp thời gian là $O(n+w)$, trong đó $w$ là kích thước miền giá trị của dữ liệu đầu vào.
 
-Dưới đây là phần so sánh một số thuật toán sắp xếp.
+Sau đây là phần so sánh một số thuật toán sắp xếp.
 
 ![So sánh một số thuật toán sắp xếp](images/sort-intro-1.apng)
 

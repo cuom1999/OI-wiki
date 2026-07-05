@@ -12,11 +12,11 @@ Sắp xếp chọn (tiếng Anh: Selection sort) là một thuật toán sắp x
 
 Tính ổn định của sắp xếp chọn phụ thuộc vào cách cài đặt cụ thể.
 
-Nếu cài đặt bằng danh sách liên kết, do thao tác chèn và xóa tại vị trí bất kỳ trong danh sách liên kết đều là $O(1)$, ta không cần dùng thao tác hoán đổi hai phần tử: mỗi lần chọn phần tử nhỏ nhất trong phần chưa sắp xếp (nếu có nhiều phần tử như vậy thì chọn phần tử đầu tiên), rồi chèn nó vào trước phần tử đầu tiên của phần chưa sắp xếp. Cách này bảo đảm được tính ổn định.
+Nếu cài đặt bằng danh sách liên kết, do thao tác chèn và xóa tại vị trí bất kỳ trong danh sách liên kết đều là $O(1)$, không cần dùng thao tác hoán đổi hai phần tử: mỗi lần chọn phần tử nhỏ nhất trong phần chưa sắp xếp (nếu có nhiều phần tử như vậy thì chọn phần tử đầu tiên), rồi chèn nó vào trước phần tử đầu tiên của phần chưa sắp xếp. Cách này bảo đảm được tính ổn định.
 
-Nếu cài đặt bằng mảng (cách cài đặt thường gặp trong OI), do thao tác chèn và xóa tại vị trí bất kỳ trong mảng đều là $O(n)$, ta thường chỉ có thể dùng hoán đổi để đưa phần tử từ phần chưa sắp xếp sang phần đã sắp xếp. Thao tác hoán đổi làm cho sắp xếp chọn cài đặt bằng mảng không ổn định.
+Nếu cài đặt bằng mảng (cách cài đặt thường gặp trong OI), do thao tác chèn và xóa tại vị trí bất kỳ trong mảng đều là $O(n)$, thường chỉ có thể dùng hoán đổi để đưa phần tử từ phần chưa sắp xếp sang phần đã sắp xếp. Thao tác hoán đổi làm cho sắp xếp chọn cài đặt bằng mảng không ổn định.
 
-Các ví dụ cài đặt dưới đây đều dựa trên việc hoán đổi phần tử trong mảng, nên đều **không ổn định**.
+Các ví dụ cài đặt sau đây đều dựa trên việc hoán đổi phần tử trong mảng, nên đều **không ổn định**.
 
 ### Độ phức tạp thời gian
 
