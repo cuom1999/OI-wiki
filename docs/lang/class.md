@@ -405,12 +405,12 @@ khảo".*
 
 ## Tài liệu tham khảo
 
-1.  [cppreference class](https://zh.cppreference.com/w/cpp/language/class)
-2.  [cppreference access](https://zh.cppreference.com/w/cpp/language/access)
-3.  [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor)
-4.  [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators)
+1.  [cppreference class](https://en.cppreference.com/w/cpp/language/class)
+2.  [cppreference access](https://en.cppreference.com/w/cpp/language/access)
+3.  [cppreference default_constructor](https://en.cppreference.com/w/cpp/language/default_constructor)
+4.  [cppreference operator](https://en.cppreference.com/w/cpp/language/operators)
 5.  [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/)
 6.  [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/)
 7.  [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html)
 8.  [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/)
-9.  [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization)
+9.  [cppreference value initialization](https://en.cppreference.com/w/cpp/language/value_initialization)
