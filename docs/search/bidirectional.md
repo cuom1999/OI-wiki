@@ -1,7 +1,7 @@
 author: FFjet, ChungZH, frank-xjh, hsfzLZH1, Xarfa, AndrewWayne, hcx1204
 
 Trang này giới thiệu ngắn gọn hai thuật toán tìm kiếm hai chiều: "tìm kiếm đồng
-thời hai chiều" và "meet in the middle".
+thời hai chiều" và "gặp nhau ở giữa".
 
 ## Tìm kiếm đồng thời hai chiều
 
@@ -69,20 +69,21 @@ while (hàng đợi q không rỗng)
 
 ### Dẫn nhập
 
-Thuật toán meet in the middle không có tên dịch chính thức; các cách dịch thường
-gặp gồm "tìm kiếm chia đôi", "tìm kiếm hai chiều" hoặc "gặp nhau ở giữa".
+Thuật toán gặp nhau ở giữa (meet in the middle) không có tên dịch chính thức;
+các cách dịch thường gặp gồm "tìm kiếm chia đôi", "tìm kiếm hai chiều" hoặc
+"gặp nhau ở giữa".
 
 Nó phù hợp với trường hợp dữ liệu đầu vào nhỏ, nhưng chưa nhỏ đến mức có thể
 dùng vét cạn trực tiếp.
 
 ### Quy trình
 
-Ý tưởng chính của meet in the middle là chia toàn bộ quá trình tìm kiếm thành
+Ý tưởng chính của gặp nhau ở giữa là chia toàn bộ quá trình tìm kiếm thành
 hai nửa, tìm kiếm riêng từng nửa, rồi cuối cùng gộp kết quả của hai nửa lại.
 
 ### Tính chất
 
-Độ phức tạp của vét cạn thường có dạng mũ; sau khi đổi sang meet in the middle,
+Độ phức tạp của vét cạn thường có dạng mũ; sau khi đổi sang gặp nhau ở giữa,
 số mũ của độ phức tạp có thể giảm một nửa, tức từ $O(a^b)$ xuống
 $O(a^{b/2})$.
 
@@ -98,7 +99,7 @@ $O(a^{b/2})$.
 
 ??? note "Ý tưởng giải"
     Nếu dùng DFS vét cạn để tìm trạng thái bật/tắt công tắc, độ phức tạp là
-    $O(2^{n})$, rõ ràng quá thời gian. Nhưng dùng meet in the middle thì có thể
+    $O(2^{n})$, rõ ràng quá thời gian. Nhưng dùng gặp nhau ở giữa thì có thể
     tối ưu còn $O(n2^{n/2})$. Cụ thể, trước hết tìm một nửa trạng thái, tức tìm
     mọi trạng thái có thể đạt được chỉ bằng các công tắc đánh số từ $1$ đến
     $\mathrm{mid}$; sau đó tìm mọi trạng thái có thể đạt được bằng nửa công tắc
