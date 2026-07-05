@@ -1,13 +1,13 @@
 Trước khi đọc bài này, hãy đọc trước [tự động hữu hạn](../misc/fsm.md).
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Sequence automaton là tự động chỉ chấp nhận các dãy con của một xâu duy nhất.
 
 Trong bài này, dùng $s$ để chỉ xâu đó.
 
-<span id="&#29366;&#24577;"></span>
+<span id="trạng-thái"></span>
 ### Trạng thái
 
 Nếu $s$ chứa $n$ ký tự, sequence automaton có $n+1$ trạng thái.
@@ -18,14 +18,14 @@ Nói cách khác, trạng thái $i$ biểu diễn hiệu của tập dãy con c�
 
 Mọi trạng thái trên sequence automaton đều là trạng thái chấp nhận.
 
-<span id="&#36716;&#31227;"></span>
+<span id="chuyển-trạng-thái"></span>
 ### Chuyển trạng thái
 
 Từ định nghĩa trạng thái, ta có $\delta(u, c)=\min\{i|i>u,s[i]=c\}$, tức vị trí xuất hiện tiếp theo của ký tự $c$.
 
 Tại sao là vị trí xuất hiện "tiếp theo"? Vì nếu $i>j$, tập dãy con của hậu tố $s[i..|s|]$ là tập con của tập dãy con của hậu tố $s[j..|s|]$; chọn vị trí càng sớm càng tốt là tối ưu.
 
-<span id="&#23454;&#29616;"></span>
+<span id="cài-đặt"></span>
 ## Cài đặt
 
 Quét từ sau ra trước, trong quá trình đó duy trì vị trí xuất hiện sớm nhất của mỗi ký tự:
@@ -47,7 +47,7 @@ $$
 
 Độ phức tạp xây dựng như vậy là $O(n|\Sigma|)$.
 
-<span id="&#20363;&#39064;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 ???+ example "[HEOI2015] Xâu con không chung ngắn nhất](https://loj.ac/problem/2123)"
