@@ -8,7 +8,7 @@ Trie, hay cây từ điển, đúng như tên gọi: đây là một cấu trúc
 
 Trước hết hãy xem hình sau:
 
-![trie1](./images/trie1.png)
+![Ví dụ cây trie biểu diễn các xâu](./images/trie1.png)
 
 Có thể thấy cây trie này dùng cạnh để biểu diễn chữ cái, và đường đi từ gốc đến một đỉnh nào đó trên cây biểu diễn một xâu. Ví dụ, $1\to4\to 8\to 12$ biểu diễn xâu `caa`.
 

@@ -38,7 +38,7 @@ Khi tìm vỏ lồi, nếu phát hiện điểm sắp được đưa vào stack 
 
 Thông thường không cần giữ các điểm nằm trên cạnh của bao lồi, vì vậy dấu "$<$" trong điều kiện $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ ở đoạn trên có thể đổi thành $\le$ tùy tình huống, đồng thời điều kiện phía sau cần đổi thành $>$.
 
-![Andrew](./images/andrew.svg)
+![Quá trình duy trì bao lồi bằng thuật toán Andrew](./images/andrew.svg)
 
 #### Cài đặt
 
