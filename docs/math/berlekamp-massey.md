@@ -2,7 +2,7 @@ author: AntiLeaf
 
 Thuật toán Berlekamp–Massey là thuật toán dùng để tìm hệ thức truy hồi ngắn nhất của một dãy số. Cho một dãy có độ dài $n$, nếu bậc của hệ thức truy hồi ngắn nhất là $m$, thì thuật toán Berlekamp–Massey có thể tìm hệ thức truy hồi ngắn nhất của từng tiền tố của dãy trong thời gian $O(nm)$. Trong trường hợp xấu nhất $m = O(n)$, vì vậy độ phức tạp xấu nhất của thuật toán là $O(n^2)$.
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 
 ### Định nghĩa
 
@@ -14,7 +14,7 @@ trong đó $r_0 = 1$. $m$ được gọi là **bậc** của hệ thức truy h�
 
 Hệ thức truy hồi ngắn nhất của dãy $\{a_i\}$ là hệ thức truy hồi có bậc nhỏ nhất.
 
-<span id="&#20570;&#27861;"></span>
+<span id="cách-làm"></span>
 
 ### Cách làm
 
@@ -105,13 +105,13 @@ Khi cài đặt thuật toán, do mỗi lần điều chỉnh hệ số truy h�
 
 Thuật toán Berlekamp–Massey đơn giản giải hệ thức truy hồi ngắn nhất của một dãy có số hạng hữu hạn. Nếu dãy cần tìm hệ thức truy hồi có vô hạn số hạng, nhưng đã biết cận trên của bậc hệ thức truy hồi ngắn nhất, thì chỉ cần lấy $2m$ số hạng đầu của dãy là có thể tìm được hệ thức truy hồi ngắn nhất của toàn bộ dãy. (Lược bỏ chứng minh)
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 
 ### Ứng dụng
 
 Do tính ổn định số của thuật toán Berlekamp–Massey khá kém, thuật toán này thường hiếm khi được dùng để xử lý các bài toán trên số thực. Để tiện trình bày, dưới đây đều giả định các phép toán được thực hiện trong hệ thặng dư theo một số nguyên tố $p$.
 
-<span id="&#27714;&#21521;&#37327;&#21015;&#25110;&#30697;&#38453;&#21015;&#30340;&#26368;&#30701;&#36882;&#25512;&#24335;"></span>
+<span id="tìm-hệ-thức-truy-hồi-ngắn-nhất-của-dãy-vector-hoặc-dãy-ma-trận"></span>
 
 #### Tìm hệ thức truy hồi ngắn nhất của dãy vector hoặc dãy ma trận
 
@@ -119,7 +119,7 @@ Nếu cần tìm hệ thức truy hồi ngắn nhất của dãy vector $\boldsy
 
 Việc tìm hệ thức truy hồi ngắn nhất của dãy ma trận $\{A_i\}$ cũng tương tự. Giả sử kích thước ma trận là $n \times m$, ta chỉ cần chọn ngẫu nhiên một vector hàng $1 \times n$ $\mathbf u^T$ và một vector cột $m \times 1$ $\boldsymbol{v}$, rồi tính hệ thức truy hồi ngắn nhất của dãy vô hướng $\{\boldsymbol{u}^T A_i \boldsymbol{v}\}$. Từ bổ đề Schwartz–Zippel cũng có thể suy ra tương tự rằng xác suất hai hệ thức truy hồi trùng nhau ít nhất là $1 - \frac{n + m} p$.
 
-<span id="&#20248;&#21270;&#30697;&#38453;&#24555;&#36895;&#24130;"></span>
+<span id="tối-ưu-lũy-thừa-nhanh-ma-trận"></span>
 
 #### Tối ưu lũy thừa nhanh ma trận
 
@@ -129,7 +129,7 @@ Ta có thể trực tiếp tính vét cạn $\boldsymbol{f}_0 \dots \boldsymbol{
 
 Nếu vector cần tìm là $\boldsymbol{f}_m$, độ phức tạp của thuật toán là $O(n^3 + n\log n \log m)$. Nếu $A$ là ma trận thưa chỉ có $k$ phần tử khác $0$, độ phức tạp có thể giảm xuống $O(nk + n\log n \log m)$. Tuy nhiên, vì thuật toán ít nhất cần thời gian tiền xử lý $O(nk)$, nên khi giới hạn không quá chặt cũng có thể dùng thuật toán truy hồi tuyến tính $O(n^2 \log m)$; độ phức tạp này vẫn chấp nhận được.
 
-<span id="&#27714;&#30697;&#38453;&#30340;&#26368;&#23567;&#22810;&#39033;&#24335;"></span>
+<span id="tìm-đa-thức-tối-tiểu-của-ma-trận"></span>
 
 #### Tìm đa thức tối tiểu của ma trận
 
@@ -141,7 +141,7 @@ Nút thắt nằm ở việc tính $A^i$, vì nếu mỗi lần đều nhân ma 
 
 Giả sử $A$ có $k$ phần tử khác $0$, độ phức tạp là $O(kn + n^2)$.
 
-<span id="&#27714;&#31232;&#30095;&#30697;&#38453;&#34892;&#21015;&#24335;"></span>
+<span id="tìm-định-thức-của-ma-trận-thưa"></span>
 
 #### Tìm định thức của ma trận thưa
 
@@ -151,7 +151,7 @@ Thực ra nếu nhân $A$ với một ma trận đường chéo ngẫu nhiên $B
 
 Giả sử $A$ là ma trận vuông cấp $n$ và có $k$ phần tử khác $0$, độ phức tạp là $O(kn + n ^ 2)$.
 
-<span id="&#27714;&#31232;&#30095;&#30697;&#38453;&#30340;&#31209;"></span>
+<span id="tìm-hạng-của-ma-trận-thưa"></span>
 
 #### Tìm hạng của ma trận thưa
 
@@ -161,7 +161,7 @@ Thực ra không cần gọi phép nhân ma trận, vì khi tìm đa thức tố
 
 Giả sử $A$ có $k$ phần tử khác $0$ và $n \le m$, độ phức tạp là $O(kn + n ^ 2)$.
 
-<span id="&#35299;&#31232;&#30095;&#26041;&#31243;&#32452;"></span>
+<span id="giải-hệ-phương-trình-thưa"></span>
 
 #### Giải hệ phương trình thưa
 
@@ -220,7 +220,7 @@ Tương tự, giả sử $A$ có $k$ phần tử khác $0$, độ phức tạp l
     }
     ```
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập-ví-dụ"></span>
 
 ### Bài tập ví dụ
 
