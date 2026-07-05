@@ -10,7 +10,7 @@ Nếu bạn muốn bắt đầu thật nhanh, nên đọc trước các mục [T
     | Thời gian  | Nội dung chính                                                                | Liên kết Issue/Pull Request liên quan                                                                     |
     | ---------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
     | 2026-02-22 | Hoàn thiện quy định về cách dùng dấu nháy                                     | [#6793](https://github.com/OI-wiki/OI-wiki/pull/6793)                                                     |
-    | 2026-01-07 | Yêu cầu dùng dấu chấm toàn chiều rộng thay cho dấu chấm câu tiếng Trung       | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                     |
+    | 2026-01-07 | Bản upstream bổ sung quy tắc dấu câu cho văn bản CJK                         | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                     |
     | 2025-08-10 | Thêm yêu cầu định dạng cho sổ tay định dạng;<br>Mã: bổ sung yêu cầu về mã đoạn | [#6412](https://github.com/OI-wiki/OI-wiki/pull/6412)                                                    |
     | 2025-08-10 | Thêm Changelog và TL;DR                                                       | [#6409](https://github.com/OI-wiki/OI-wiki/pull/6409)                                                     |
     | 2024-10-08 | Mã: hoàn thiện yêu cầu định dạng để phù hợp kiểm thử đa nền tảng              | [#5912](https://github.com/OI-wiki/OI-wiki/pull/5912), [#5924](https://github.com/OI-wiki/OI-wiki/pull/5924) |
@@ -19,9 +19,9 @@ Nếu bạn muốn bắt đầu thật nhanh, nên đọc trước các mục [T
     | 2023-07-23 | Với nội dung về công cụ, yêu cầu dẫn tài liệu chính thức khi nói về tải và cài đặt | [#5023](https://github.com/OI-wiki/OI-wiki/pull/5023)                                                 |
     | 2023-04-15 | Bổ sung quy phạm dùng dấu nháy                                                | [#4792](https://github.com/OI-wiki/OI-wiki/pull/4792)                                                     |
     | 2023-03-28 | LaTeX: bảng ký hiệu toán học                                                  | [#4587](https://github.com/OI-wiki/OI-wiki/pull/4587)                                                     |
-    | 2023-03-02 | Bổ sung quy phạm dùng dấu câu toàn chiều rộng, nửa chiều rộng và dấu nối      | [#4726](https://github.com/OI-wiki/OI-wiki/pull/4726)                                                     |
+    | 2023-03-02 | Bổ sung quy phạm dùng dấu câu, khoảng trắng và dấu nối                       | [#4726](https://github.com/OI-wiki/OI-wiki/pull/4726)                                                     |
     | 2022-12-13 | Plugin chủ đề: bỏ yêu cầu về bóng của hộp gấp lồng nhau                       | [#4500](https://github.com/OI-wiki/OI-wiki/pull/4500)                                                     |
-    | 2022-08-09 | Khi dẫn một mục của liên kết nội bộ, dùng tiêu đề tiếng Trung                 | [#4057](https://github.com/OI-wiki/OI-wiki/pull/4057)                                                     |
+    | 2022-08-09 | Khi dẫn một mục của liên kết nội bộ, dùng tiêu đề tương ứng trong bản tiếng Việt | [#4057](https://github.com/OI-wiki/OI-wiki/pull/4057)                                                  |
     | 2022-06-12 | Hoàn thiện yêu cầu liên quan đến thay đổi mục lục[^note4]                     | [#4043](https://github.com/OI-wiki/OI-wiki/pull/4043)                                                     |
     | 2021-09-09 | Plugin chủ đề: bổ sung yêu cầu liên quan đến hộp gấp                          | [#3517](https://github.com/OI-wiki/OI-wiki/pull/3517)                                                     |
     | 2021-09-03 | LaTeX: `\Leftrightarrow` $\to$ `\iff`                                         | [#3499](https://github.com/OI-wiki/OI-wiki/pull/3499)                                                     |
@@ -210,13 +210,13 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
 
 <!-- scripts.linter.postprocess.fix_full_stop off -->
 
--   <a id="PUNC-2"></a>PUNC-2: hãy dùng đúng **dấu câu toàn chiều rộng** và **dấu câu nửa chiều rộng**. Văn bản tiếng Trung nên dùng ký hiệu toàn chiều rộng, văn bản tiếng Anh nên dùng ký hiệu nửa chiều rộng. Khi chèn tiếng Anh trong văn bản tiếng Trung, hãy tham khảo [quy phạm biên tập khi chèn tiếng Anh trong ấn phẩm tiếng Trung](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html). Đặc biệt, hãy dùng fullwidth full stop U+FF0E thay cho dấu chấm câu tiếng Trung U+3002.
+-   <a id="PUNC-2"></a>PUNC-2: hãy dùng dấu câu và khoảng trắng theo quy chuẩn tiếng Việt. Dấu câu thông dụng như `.`, `,`, `:`, `;`, `?`, `!`, dấu ngoặc và dấu nháy nên dùng dạng nửa chiều rộng; không dùng dấu câu toàn chiều rộng kiểu CJK trong văn bản tiếng Việt, trừ khi trích nguyên văn hoặc ghi chú về một ký hiệu cụ thể. Không đặt khoảng trắng trước dấu câu đóng như dấu phẩy, dấu chấm, dấu hai chấm, dấu chấm phẩy, dấu hỏi, dấu than; đặt một khoảng trắng sau các dấu đó nếu câu còn tiếp tục.
 
 <!-- scripts.linter.postprocess.fix_full_stop on -->
 
 <!-- scripts.linter.postprocess.fix_quotation off -->
 
--   <a id="PUNC-3"></a>PUNC-3: vì các cặp dấu nháy cong U+201C/U+201D và U+2018/U+2019 không phân biệt toàn chiều rộng với nửa chiều rộng, hãy dùng U+300C/U+300D làm dấu nháy kép toàn chiều rộng, `"..."` làm dấu nháy kép nửa chiều rộng, U+300E/U+300F làm dấu nháy đơn toàn chiều rộng, và `'...'` làm dấu nháy đơn nửa chiều rộng.
+-   <a id="PUNC-3"></a>PUNC-3: khi cần đặt một cụm từ trong dấu nháy, ưu tiên dùng dấu nháy kép `"..."` trong Markdown để giữ văn bản nhất quán và dễ tìm kiếm. Chỉ dùng dấu nháy đơn `'...'` khi cần phân biệt một lớp trích dẫn lồng bên trong, hoặc khi đó là ký hiệu bắt buộc trong mã nguồn, chuỗi ký tự hay cú pháp lệnh.
 
 <!-- scripts.linter.postprocess.fix_quotation on -->
 
@@ -243,7 +243,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
 
 #### Yêu cầu về định dạng Markdown và định dạng mở rộng của chủ đề
 
--   <a id="MDFM-1"></a>MDFM-1: khi biểu thị nhấn mạnh, vui lòng dùng `**SOMETHING**` và dấu nháy kép toàn chiều rộng, thay vì một cấp tiêu đề nào đó, vì dùng tiêu đề sẽ làm cấu trúc bài viết rối loạn và/hoặc làm mục lục gặp vấn đề.
+-   <a id="MDFM-1"></a>MDFM-1: khi biểu thị nhấn mạnh, vui lòng dùng `**SOMETHING**` hoặc dấu nháy kép `"..."` khi phù hợp, thay vì một cấp tiêu đề nào đó, vì dùng tiêu đề sẽ làm cấu trúc bài viết rối loạn và/hoặc làm mục lục gặp vấn đề.
 
 -   <a id="MDFM-2"></a>MDFM-2: khi cần dẫn liên kết bài tập, nên ưu tiên dùng liên kết trong kho bài của OJ gốc thay vì liên kết mirror.
 
@@ -421,7 +421,7 @@ Nếu còn câu hỏi về mkdocs-material (chủ đề mà chúng ta đang dùn
 
 -   <a id="CONT-7"></a>CONT-7: do giới hạn của định dạng Markdown, tiêu đề cấp hai `## Tài liệu tham khảo và chú thích` phải đặt ở cuối bài.
 
--   <a id="CONT-8"></a>CONT-8: các số dùng làm số thứ tự nên viết bằng chữ tiếng Trung. Ví dụ:
+-   <a id="CONT-8"></a>CONT-8: khi số thứ tự xuất hiện trong câu văn tự nhiên, nên viết bằng chữ tiếng Việt nếu cách viết đó giúp câu dễ đọc hơn. Ví dụ:
     -   Hạng thứ nhất của dãy số.
     -   Dòng thứ nhất của tệp nhập.
 
@@ -483,7 +483,7 @@ LaTeX là lựa chọn ưu tiên để dàn công thức, và chúng ta nên s�
 
     Do trong LaTeX việc viết chữ cái Hy Lạp thường dạng Roman khá khó, các hằng, toán tử và hàm là chữ cái Hy Lạp thường có thể dùng Italic, như $\pi$ và $\delta$ trong $\delta x$.
 
-    Nếu gặp **tên hàm** cần dùng Roman nhưng chưa được định nghĩa sẵn, chúng ta có thể dùng `$\operatorname{something}$` để tạo ra. Ví dụ có thể dùng `$\operatorname{lcm}$` để tạo ký hiệu bội chung nhỏ nhất (hàm) ở dạng roman. Tương tự, để tạo **hằng** dạng Roman, dùng `$\mathrm{}$`; để tạo ký hiệu Roman đậm, dùng `$\mathbf{}$`; để tạo ký hiệu Italic đậm, dùng `$\boldsymbol{}$` (như vector $\boldsymbol{a}$). Với biến gồm nhiều chữ cái, nên dùng `$\textit{}$`. Các nội dung phi toán học khác, bao gồm tiếng Anh, ký hiệu đặc biệt, v.v., đều dùng `$\text{}$`. Với tiếng Trung, chúng tôi khuyến nghị không đặt trong công thức LaTeX.
+    Nếu gặp **tên hàm** cần dùng Roman nhưng chưa được định nghĩa sẵn, chúng ta có thể dùng `$\operatorname{something}$` để tạo ra. Ví dụ có thể dùng `$\operatorname{lcm}$` để tạo ký hiệu bội chung nhỏ nhất (hàm) ở dạng roman. Tương tự, để tạo **hằng** dạng Roman, dùng `$\mathrm{}$`; để tạo ký hiệu Roman đậm, dùng `$\mathbf{}$`; để tạo ký hiệu Italic đậm, dùng `$\boldsymbol{}$` (như vector $\boldsymbol{a}$). Với biến gồm nhiều chữ cái, nên dùng `$\textit{}$`. Các nội dung phi toán học khác, bao gồm tiếng Anh, ký hiệu đặc biệt, v.v., đều dùng `$\text{}$`. Với tiếng Việt hoặc văn bản tự nhiên dài, hãy cân nhắc đưa nội dung ra ngoài công thức LaTeX nếu có thể.
 
 -   <a id="MATH-1.3"></a>MATH-1.3: nếu biểu thức cần xuống dòng (thường gặp trong công thức hiển thị riêng dòng dài), nên tuân theo các quy tắc xuống dòng sau:
 
@@ -572,7 +572,7 @@ Các quy tắc này đã nhân nhượng MathJax hết mức có thể. Công c�
 
 -   <a id="MATH-2.6"></a>MATH-2.6: nếu muốn xuất ký hiệu LaTeX $\rm{\LaTeX}$, hãy dùng `$\rm{\LaTeX}$`, thay vì `mathrm`; (`\LaTeX` trong hệ thống dàn trang TeX là lệnh không thể dùng trong math mode, còn `\mathrm` lại không thể dùng trong normal mode; ngoài ra, tuy lệnh `\text` xuất đúng trên TeX, trong MathJax tham số của lệnh `\text` sẽ được xuất nguyên dạng, không được escape theo lệnh);
 
--   <a id="MATH-2.7"></a>MATH-2.7: chữ tiếng Trung trong công thức toán **bắt buộc đặt trong lệnh `\text{}`**, còn biến, số, toán tử và tên hàm bắt buộc đặt ngoài lệnh `\text{}`. **Vui lòng không lồng công thức toán trong lệnh `\text{}`**;
+-   <a id="MATH-2.7"></a>MATH-2.7: chữ tiếng Việt hoặc văn bản tự nhiên trong công thức toán **bắt buộc đặt trong lệnh `\text{}`**, còn biến, số, toán tử và tên hàm bắt buộc đặt ngoài lệnh `\text{}`. **Vui lòng không lồng công thức toán trong lệnh `\text{}`**;
 
 -   <a id="MATH-2.8"></a>MATH-2.8: khi dùng môi trường `array`, hãy chú ý **số cột thực tế phải khớp với số ký hiệu căn chỉnh**. Ví dụ trong công thức dưới đây, dữ liệu thực tế có 3 cột (`&` là ký hiệu tách cột), vì vậy cần 3 ký hiệu căn chỉnh (`l`/`r`/`c` lần lượt biểu thị căn trái, căn phải, căn giữa).
 
@@ -690,7 +690,7 @@ Có thể các yêu cầu trên hơi khó nắm bắt, nên tiếp theo chúng t
 
 ![](./images/format-1.png)
 
-Dùng định dạng hiển thị riêng dòng cho công thức LaTeX phức tạp có thể làm trang rõ ràng và cân đối hơn. Tuy nhiên, **OI Wiki** là một site lấy tiếng Trung làm chủ đạo, nên chúng ta mong phần lớn thông tin có tính dàn ý (như tiêu đề) ưu tiên dùng tiếng Trung (trừ các thuật ngữ riêng tiếng Anh).
+Dùng định dạng hiển thị riêng dòng cho công thức LaTeX phức tạp có thể làm trang rõ ràng và cân đối hơn. Với bản tiếng Việt, phần lớn thông tin có tính dàn ý (như tiêu đề) nên ưu tiên dùng tiếng Việt rõ nghĩa, trừ các thuật ngữ riêng hoặc tên chuẩn tiếng Anh thật sự cần giữ nguyên.
 
 ### Ví dụ 2
 
@@ -736,18 +736,17 @@ Liệt kê tài liệu tham khảo ở cuối bài có thể làm nội dung tra
 
 ## Liên kết ngoài
 
--   [Cách dùng dấu câu (GB/T 15834-2011)](http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/W020190128580990138234.pdf)
+-   [Wikipedia tiếng Việt: Cẩm nang biên soạn](https://vi.wikipedia.org/wiki/Wikipedia:C%E1%BA%A9m_nang_bi%C3%AAn_so%E1%BA%A1n)
 -   [Wikipedia: Manual of Style/Punctuation](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style#Punctuation)
--   [Hướng dẫn sắp chữ văn bản tiếng Trung (bản giản thể)](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
--   [Hướng dẫn phong cách văn bản tiếng Trung - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
--   [Một giới thiệu không quá ngắn về LATEX2epsilon, hoặc tìm hiểu LATEX2epsilon trong 106 phút](https://github.com/CTeX-org/lshort-zh-cn/releases)
--   [Quy phạm biên tập khi chèn tiếng Anh trong ấn phẩm tiếng Trung](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)
+-   [Google developer documentation style guide](https://developers.google.com/style)
+-   [The Markdown Guide: Basic Syntax](https://www.markdownguide.org/basic-syntax/)
+-   [LaTeX2e unofficial reference manual](https://latexref.xyz/)
 
 ## Tài liệu tham khảo và chú thích
 
 [^note1]: Dấu hai chấm biểu thị việc tổng kết nội dung phía trước.
 
-[^note2]: Giữa tên đầy đủ bằng tiếng Anh của thuật ngữ khoa học kỹ thuật và dạng viết tắt của nó nên dùng dấu phẩy tiếng Anh. Khi trong câu tiếng Trung có chèn câu hoặc cụm câu tiếng Anh dùng để chú thích, bổ sung hoặc giải thích, câu hoặc cụm câu tiếng Anh đó được đánh dấu bằng ngoặc tròn tiếng Trung.
+[^note2]: Giữa tên đầy đủ bằng tiếng Anh của thuật ngữ khoa học kỹ thuật và dạng viết tắt của nó nên dùng dấu phẩy tiếng Anh. Khi trong câu tiếng Việt có chèn câu hoặc cụm câu tiếng Anh để chú thích, bổ sung hoặc giải thích, hãy đặt phần đó trong ngoặc tròn nửa chiều rộng.
 
 [^note3]: Hộp gấp: xem [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks). Đôi khi chúng ta cũng dùng "cú pháp Details" để chỉ cú pháp này, vì về chức năng nó giống với [`<details>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) trong HTML.
 
@@ -763,7 +762,7 @@ Liệt kê tài liệu tham khảo ở cuối bài có thể làm nội dung tra
 
 [^ref3]: [Vì sao công thức của tôi không hiển thị bình thường trong mục lục? Hình như bị nhân đôi](faq.md)
 
-[^ref4]: [SVG | MDN](https://developer.mozilla.org/zh-CN/docs/Web/SVG)
+[^ref4]: [SVG | MDN](https://developer.mozilla.org/en-US/docs/Web/SVG)
 
 [^webarchive]: [Save Page in Internet Archive](https://web.archive.org/save/)
 
