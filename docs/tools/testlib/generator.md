@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 
 ## Vì sao nên dùng Testlib?
 
-Có người cho rằng viết generator không cần dùng Testlib, vì Testlib không có nhiều tác dụng ở đây. Thực ra đây là một suy nghĩ không đúng. Một generator tốt nên thỏa tính chất sau: **với cùng một input, nó cho cùng một output trong mọi môi trường**. Khi viết generator, gần như không thể tránh khỏi việc sinh giá trị ngẫu nhiên. Các công cụ ta thường dùng như `rand()` hoặc `mt19937/uniform_int_distribution` của C++11 có thể cho output khác nhau khi hệ điều hành khác nhau, trình biên dịch khác nhau, thời điểm chạy khác nhau, v.v. (với cách dùng rất phổ biến `srand(time(nullptr))`, điều này là hiển nhiên), và điều đó tạo ra tính bất định cho dữ liệu sinh ra.
+Có người cho rằng viết generator không cần dùng Testlib, vì Testlib không có nhiều tác dụng ở đây. Thực ra đây là một suy nghĩ không đúng. Một generator tốt nên thỏa tính chất sau: **với cùng một đầu vào, nó cho cùng một đầu ra trong mọi môi trường**. Khi viết generator, gần như không thể tránh khỏi việc sinh giá trị ngẫu nhiên. Các công cụ ta thường dùng như `rand()` hoặc `mt19937/uniform_int_distribution` của C++11 có thể cho đầu ra khác nhau khi hệ điều hành khác nhau, trình biên dịch khác nhau, thời điểm chạy khác nhau, v.v. (với cách dùng rất phổ biến `srand(time(nullptr))`, điều này là hiển nhiên), và điều đó tạo ra tính bất định cho dữ liệu sinh ra.
 
 Cần lưu ý rằng một khi đã dùng Testlib, bạn không được dùng các hàm sinh số ngẫu nhiên của thư viện chuẩn như `srand()` và `rand()` nữa, nếu không sẽ gặp lỗi khi biên dịch. Vì vậy, **hãy bảo đảm mọi hàm liên quan đến ngẫu nhiên đều dùng Testlib thay vì thư viện chuẩn**.
 
@@ -30,7 +30,7 @@ Các hàm sinh giá trị ngẫu nhiên trong Testlib bảo đảm rằng cùng 
 
 ## Testlib có thể làm gì?
 
-Trước hết, hãy gọi `registerGen(argc, argv, 1)` để khởi tạo Testlib (trong đó `1` là phiên bản generator được dùng, thông thường giữ nguyên). Sau đó, ta có thể dùng đối tượng `rnd` để sinh giá trị ngẫu nhiên. Seed ngẫu nhiên được lấy từ giá trị băm của tham số dòng lệnh. Với một generator `g.cpp`, `g 100` (Unix-Like) và `g.exe "100"` (Windows) sẽ cho cùng output, còn `g 100 0` sẽ cho output khác.
+Trước hết, hãy gọi `registerGen(argc, argv, 1)` để khởi tạo Testlib (trong đó `1` là phiên bản generator được dùng, thông thường giữ nguyên). Sau đó, ta có thể dùng đối tượng `rnd` để sinh giá trị ngẫu nhiên. Seed ngẫu nhiên được lấy từ giá trị băm của tham số dòng lệnh. Với một generator `g.cpp`, `g 100` (Unix-Like) và `g.exe "100"` (Windows) sẽ cho cùng đầu ra, còn `g 100 0` sẽ cho đầu ra khác.
 
 Đối tượng `rnd` có kiểu `random_t`. Bạn có thể tạo một đối tượng sinh giá trị ngẫu nhiên mới, nhưng thông thường không cần làm vậy.
 
@@ -99,13 +99,13 @@ for (int i = 0; i + 1 < n; i++)
 
 ## Sinh nhiều bộ dữ liệu một lần
 
-Tương tự khi viết mà không dùng Testlib, bạn chỉ cần chuyển hướng luồng output trước mỗi lần xuất. Tuy nhiên, Testlib cung cấp một hàm hỗ trợ `startTest(test_index)`, giúp bạn chuyển hướng luồng output tới tệp `test_index`.
+Tương tự khi viết mà không dùng Testlib, bạn chỉ cần chuyển hướng luồng đầu ra trước mỗi lần xuất. Tuy nhiên, Testlib cung cấp một hàm hỗ trợ `startTest(test_index)`, giúp bạn chuyển hướng luồng đầu ra tới tệp `test_index`.
 
 ## Một số lưu ý
 
 -   Tuân thủ nghiêm ngặt yêu cầu định dạng của đề, chẳng hạn dấu cách và xuống dòng; lưu ý cuối tệp nên có một ký tự xuống dòng.
 -   Với dữ liệu lớn, ưu tiên `printf` thay vì `cout` để cải thiện hiệu năng. (Không khuyến nghị tắt đồng bộ luồng khi dùng Testlib.)
--   Không dùng UB (Undefined Behavior, hành vi không xác định). Ví dụ, trong ví dụ đầu bài, nếu viết output thành `cout << rnd.next(1, n) << " " << rnd.next(1, n) << endl;`, thứ tự gọi `rnd.next()` là không xác định.
+-   Không dùng UB (hành vi không xác định, undefined behavior). Ví dụ, trong ví dụ đầu bài, nếu viết đầu ra thành `cout << rnd.next(1, n) << " " << rnd.next(1, n) << endl;`, thứ tự gọi `rnd.next()` là không xác định.
 
 ## Tính năng mới: phân tích tham số dòng lệnh
 

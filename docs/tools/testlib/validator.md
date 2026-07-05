@@ -16,10 +16,10 @@ Nếu dữ liệu không có vấn đề, chương trình sẽ không in gì và
 
 ## Gợi ý
 
--   Khi viết validator, không được đưa ra bất kỳ giả định nào về dữ liệu đang được validate, vì nó có thể chứa bất cứ thứ gì. Vì vậy, người ra đề cần xét đủ các trường hợp không hợp lệ (Testlib sẽ đơn giản hóa đáng kể quá trình này).
-    -   Ví dụ, với input là một cây có $n$ đỉnh, công việc chính là kiểm tra $n$ có nằm trong phạm vi hay không và input có thật sự là cây hay không. Tuy nhiên, tuyệt đối không được chỉ kiểm tra phạm vi của $n$ rồi bỏ qua việc kiểm tra phạm vi đầu mút của các cạnh tiếp theo, nếu không validator có thể RE.
+-   Khi viết validator, không được đưa ra bất kỳ giả định nào về dữ liệu đang được kiểm tra, vì nó có thể chứa bất cứ thứ gì. Vì vậy, người ra đề cần xét đủ các trường hợp không hợp lệ (Testlib sẽ đơn giản hóa đáng kể quá trình này).
+    -   Ví dụ, với đầu vào là một cây có $n$ đỉnh, công việc chính là kiểm tra $n$ có nằm trong phạm vi hay không và đầu vào có thật sự là cây hay không. Tuy nhiên, tuyệt đối không được chỉ kiểm tra phạm vi của $n$ rồi bỏ qua việc kiểm tra phạm vi đầu mút của các cạnh tiếp theo, nếu không validator có thể RE.
     -   Ngay cả khi không RE, cũng không nên bỏ kiểm tra, vì thông báo lỗi sẽ không chính xác. Trong ví dụ trên, nếu không kiểm tra, lỗi có thể là "không phải cây", nhưng lỗi đúng phải là "đầu mút của cạnh không nằm trong $[1,n]$".
--   Không được đưa ra bất kỳ giả định nào về cách thí sinh đọc input. Vì vậy, dữ liệu được validator chấp nhận phải hoàn toàn tuân thủ định dạng input.
+-   Không được đưa ra bất kỳ giả định nào về cách thí sinh đọc đầu vào. Vì vậy, dữ liệu được validator chấp nhận phải hoàn toàn tuân thủ định dạng đầu vào.
     -   Ví dụ, thí sinh có thể đọc số theo từng ký tự và chỉ đọc một dấu cách giữa hai số. Do đó, khi viết validator, mọi ký tự trắng trong dữ liệu đều phải được đọc tường minh trong validator (chẳng hạn dấu cách và xuống dòng).
 -   Đừng quên gọi `inf.readEof()` khi kết thúc.
 -   Nếu bài cho phép hack (nói cách khác, thông báo lỗi của validator sẽ được người khác nhìn thấy), hãy làm thông báo lỗi thân thiện nhất có thể.

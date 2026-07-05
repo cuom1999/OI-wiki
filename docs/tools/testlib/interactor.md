@@ -5,9 +5,9 @@ Interactor, tức trình tương tác, dùng để giao tiếp với chương tr
 
 Hãy đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 
-Testlib cung cấp cho interactor một luồng đặc biệt `std::fstream tout`. Đây là luồng log; bạn có thể ghi vào nó trong interactor và đọc lại bằng `ouf` trong checker.
+Testlib cung cấp cho interactor một luồng đặc biệt `std::fstream tout`. Đây là luồng nhật ký; bạn có thể ghi vào nó trong interactor và đọc lại bằng `ouf` trong checker.
 
-Trong interactor, ta đọc dữ liệu test của đề từ `inf`, ghi input chuẩn cho chương trình thí sinh (và chương trình chuẩn) vào `stdout` (trực tuyến), đọc output của thí sinh từ `ouf` (trực tuyến), và đọc output chuẩn từ `ans` (trực tuyến).
+Trong interactor, ta đọc dữ liệu test của đề từ `inf`, ghi đầu vào chuẩn cho chương trình thí sinh (và chương trình chuẩn) vào `stdout` (trực tuyến), đọc đầu ra của thí sinh từ `ouf` (trực tuyến), và đọc đầu ra chuẩn từ `ans` (trực tuyến).
 
 Nếu interactor trả về trạng thái ok, checker (nếu có) sẽ tiếp quản và kiểm tra tính hợp lệ của đáp án.
 
@@ -38,7 +38,7 @@ Linux:
     
     `2`: số được hỏi lớn hơn đáp án.
 
-Lưu ý rằng trong bài này ta không cần `ans`, vì không cần so sánh với output chuẩn; trong các bài khác, việc này có thể cần thiết.
+Lưu ý rằng trong bài này ta không cần `ans`, vì không cần so sánh với đầu ra chuẩn; trong các bài khác, việc này có thể cần thiết.
 
 ```cpp
 int main(int argc, char** argv) {
