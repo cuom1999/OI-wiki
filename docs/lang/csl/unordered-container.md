@@ -2,7 +2,7 @@
 ## Tổng quan
 
 Từ chuẩn C++11, bốn bộ chứa kết hợp không thứ tự được cài đặt dựa trên
-[băm](../../ds/hash.md) chính thức được đưa vào thư viện template chuẩn của C++:
+[băm](../../ds/hash.md) chính thức được đưa vào thư viện chuẩn C++:
 `unordered_set`, `unordered_multiset`, `unordered_map`, `unordered_multimap`.
 
 ??? note "Cách dùng khi trình biên dịch không hỗ trợ C++11"
@@ -15,17 +15,15 @@ Từ chuẩn C++11, bốn bộ chứa kết hợp không thứ tự được cà
     `tr1::unordered_map`).
 
 Chúng có nhiều điểm chung với các bộ chứa kết hợp tương ứng về chức năng, hàm
-thành viên, v.v. Khác biệt lớn nhất nằm ở chỗ các bộ chứa kết hợp thông thường
-thường được cài đặt bằng cây đỏ-đen, các phần tử bên trong được sắp xếp theo một
-thứ tự xác định; còn các bộ chứa kết hợp không thứ tự này lưu phần tử bằng bảng
-băm, các phần tử bên trong không được sắp xếp theo bất kỳ thứ tự xác định nào.
-Vì vậy, khi truy cập phần tử trong bộ chứa kết hợp không thứ tự, thứ tự truy cập
-không được đảm bảo.
+thành viên, v.v. Khác biệt lớn nhất là các bộ chứa kết hợp thông thường thường
+được cài đặt bằng cây đỏ-đen, nên các phần tử bên trong được sắp xếp theo một
+thứ tự xác định; còn các bộ chứa kết hợp không thứ tự lưu phần tử bằng bảng băm,
+nên thứ tự phần tử không được đảm bảo.
 
-Nhờ cách lưu trữ bằng bảng băm, bộ chứa kết hợp không thứ tự **trong trường hợp
-trung bình** có thể thực hiện hầu hết thao tác (bao gồm tìm kiếm, chèn, xóa) với
-độ phức tạp hằng số, tốt hơn độ phức tạp logarit theo kích thước bộ chứa của bộ
-chứa kết hợp có thứ tự.
+Nhờ cách lưu trữ bằng bảng băm, bộ chứa kết hợp không thứ tự có thể thực hiện
+hầu hết thao tác (bao gồm tìm kiếm, chèn, xóa) với độ phức tạp hằng số **trong
+trường hợp trung bình**, tốt hơn độ phức tạp logarit theo kích thước bộ chứa
+của bộ chứa kết hợp có thứ tự.
 
 ??? warning "Cảnh báo"
     Trong trường hợp xấu nhất, độ phức tạp thời gian của các thao tác chèn, xóa,
@@ -39,11 +37,12 @@ chứa kết hợp có thứ tự.
     
     Vì vậy cần thận trọng khi sử dụng bộ chứa kết hợp không thứ tự, tránh lạm
     dụng (ví dụ vì ngại rời rạc hóa mà trực tiếp dùng
-    `unordered_map<int, int>` như một mảng thông thường có không gian vô hạn).
+    `unordered_map<int, int>` như một mảng thông thường trên không gian khóa rất
+    lớn).
 
 Do bộ chứa kết hợp không thứ tự và bộ chứa kết hợp tương ứng có nhiều điểm chung
 về mục đích và thao tác, phần này không giới thiệu lại từng thao tác của bộ chứa
-kết hợp không thứ tự. Bạn đọc có thể tham khảo
+kết hợp không thứ tự. Có thể tham khảo
 [bộ chứa kết hợp](./associative-container.md).
 
 <span id="tạo-va-chạm-băm"></span>
@@ -70,9 +69,9 @@ của những số nguyên tố này để tạo ra nhiều va chạm băm.
 ## Tùy biến hàm băm
 
 Dùng hàm băm tùy biến có thể giúp tránh hiệu quả nhiều va chạm băm do dữ liệu
-được xây dựng có chủ đích tạo ra.
+được thiết kế có chủ đích tạo ra.
 
-Để dùng hàm băm tùy biến, cần định nghĩa một struct và nạp chồng toán tử `()`
+Để dùng hàm băm tùy biến, cần định nghĩa một `struct` và nạp chồng toán tử `()`
 trong struct đó, như sau:
 
 ```cpp
