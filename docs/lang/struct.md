@@ -1,6 +1,6 @@
 author: Ir1d, cjsoft, Lans1ot
 
-**Cấu trúc** (`struct`) có thể xem là một tổ hợp gồm nhiều thành viên.
+**Cấu trúc** (`struct`) có thể xem là một kiểu gom nhiều thành viên liên quan lại với nhau.
 
 Nó cũng có thể được xem như một kiểu dữ liệu do người dùng tự định nghĩa.
 
@@ -17,7 +17,7 @@ struct Object {
   int value;
 } e[array_length];
 
-const Object a;
+const Object a{};
 Object b, B[array_length], tmp;
 Object *c;
 ```
@@ -28,7 +28,8 @@ và `value`, đều thuộc kiểu `int`.
 Đoạn mã trên cũng khai báo mảng `e`, hằng `a`, các biến `b` và `tmp`, mảng `B`
 cùng con trỏ `c`; tất cả đều có kiểu dữ liệu là `Object`. Với bất kỳ kiểu đã tồn
 tại nào, ta đều có thể dùng cách này để định nghĩa hằng, biến, con trỏ, mảng,
-v.v.
+v.v. Ở đây `a` là đối tượng `const`, nên ví dụ dùng `{}` để khởi tạo giá trị ban
+đầu cho các thành viên.
 
 *Về con trỏ: không cần ép bản thân phải nắm vững ngay.*
 
@@ -37,7 +38,7 @@ v.v.
 Khi khai báo con trỏ tới kiểu dựng sẵn, cách viết giống khai báo con trỏ thông
 thường.
 
-Khi khai báo con trỏ tới cấu trúc, dùng `StructName*` trong khai báo.
+Khi khai báo con trỏ tới cấu trúc, dùng dạng `StructName*` trong khai báo.
 
 ```cpp
 struct Edge {
@@ -48,7 +49,7 @@ struct Edge {
 };
 ```
 
-Ví dụ trên chỉ để minh họa, không cần bận tâm quá nhiều đến ý nghĩa thực tế.
+Ví dụ trên chỉ để minh họa cách một cấu trúc có thể chứa con trỏ tới chính kiểu của nó.
 
 ## Truy cập/sửa thành viên
 
@@ -62,26 +63,27 @@ Với con trỏ, ta có thể dùng `tên_con_trỏ->tên_thành_viên` hoặc
 
 ## Vì sao cần cấu trúc?
 
-Trước hết, có nhiều con đường dẫn tới cùng một kết quả: ta có thể không dùng cấu
-trúc mà vẫn đạt hiệu quả tương tự. Tuy vậy, cấu trúc cho phép gom tường minh các
-thành viên liên quan (trong lập trình thi đấu thường là các biến) lại với nhau.
+Trước hết, có nhiều cách để đạt cùng một kết quả: ta có thể không dùng cấu trúc
+mà vẫn viết được chương trình tương tự. Tuy vậy, cấu trúc cho phép gom tường
+minh các thành viên liên quan (trong lập trình thi đấu thường là các biến) lại
+với nhau.
 Chẳng hạn, cấu trúc `Object` trong ví dụ đặt `weight` và `value` cùng một chỗ; ý
 nghĩa thực tế của cấu trúc này là biểu diễn trọng lượng và giá trị của một vật
-phẩm. Lợi ích là phạm vi dùng các thành viên được giới hạn rõ hơn. Hãy tưởng
+phẩm. Lợi ích là phạm vi sử dụng các thành viên được giới hạn rõ hơn. Hãy tưởng
 tượng nếu không dùng cấu trúc mà có hai mảng `value[]`, `Value[]`, ta rất dễ
-nhầm lẫn khi viết. Khi dùng cấu trúc, xác suất dùng nhầm biến sẽ giảm đi.
+nhầm lẫn khi viết. Khi dùng cấu trúc, khả năng dùng nhầm biến sẽ giảm đi.
 
 Ngoài ra, các kiểu cấu trúc khác nhau (như `Object`) hoặc các đối tượng cấu trúc
 khác nhau (như các phần tử trong mảng `e` ở trên) có thể có thành viên cùng tên,
 chẳng hạn `tmp.value` và `b.value`. Các thành viên cùng tên này độc lập với nhau
 và có vùng nhớ riêng; ví dụ sửa `tmp.value` sẽ không ảnh hưởng đến giá trị của
 `b.value`. Lợi ích là ta có thể dùng những tên giống hoặc gần giống nhau để mô tả
-các sự vật khác nhau. Ví dụ `Object` có thành viên `value`; ta cũng có thể định
+các đối tượng khác nhau. Ví dụ `Object` có thành viên `value`; ta cũng có thể định
 nghĩa một cấu trúc `Car` và cũng cho nó một thành viên `value`. Nếu không dùng
 cấu trúc, có lẽ ta phải định nghĩa các mảng với tên khác nhau như
 `valueOfObject[]`, `valueOfCar[]` để phân biệt.
 
-*Nếu muốn mô tả một sự vật chi tiết hơn, có thể định nghĩa thêm hàm thành viên.
+*Nếu muốn mô tả một đối tượng chi tiết hơn, có thể định nghĩa thêm hàm thành viên.
 Xem [lớp](./class.md) để biết thêm chi tiết.*
 
 ## Còn thao tác nào khác?
@@ -92,9 +94,9 @@ Xem [lớp](./class.md).
 
 Để truy cập bộ nhớ hiệu quả hơn, khi sắp xếp cách lưu trữ thực tế của các thành
 viên trong cấu trúc, trình biên dịch có thể căn chỉnh thành viên theo những ranh
-giới byte nhất định. Điều này có nghĩa là bên trong cấu trúc có thể có phần đệm.
-Vì vậy, kích thước bộ nhớ mà cấu trúc chiếm có thể lớn hơn tổng kích thước của
-tất cả thành viên bên trong.
+giới byte nhất định. Điều này có nghĩa là bên trong cấu trúc có thể có phần đệm
+giữa các thành viên. Vì vậy, kích thước bộ nhớ mà cấu trúc chiếm có thể lớn hơn
+tổng kích thước của tất cả thành viên bên trong.
 
 ## Tài liệu tham khảo
 
