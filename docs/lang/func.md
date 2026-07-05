@@ -2,11 +2,11 @@ author: Ir1d, tsagaanbar, yang-lile
 
 ## Khai báo hàm
 
-Hàm trong lập trình thường là một tập hợp gồm nhiều câu lệnh. Ta cũng
-có thể gọi nó là **thủ tục con**. Trong lập trình, nếu có một số
-quy trình bị lặp lại, ta có thể tách chúng ra để tạo thành một hàm. Hàm có thể
-nhận một số giá trị; các giá trị này được gọi là tham số của hàm. Hàm cũng có
-thể trả về một giá trị; giá trị đó được gọi là giá trị trả về của hàm.
+Hàm trong lập trình thường là một tập hợp gồm nhiều câu lệnh. Trong lập trình,
+nếu có một số quy trình bị lặp lại, ta có thể tách chúng ra để tạo thành một
+hàm. Hàm có thể nhận một số giá trị; các giá trị này được gọi là tham số của
+hàm. Hàm cũng có thể trả về một giá trị; giá trị đó được gọi là giá trị trả về
+của hàm.
 
 Để khai báo một hàm, ta cần kiểu giá trị trả về, tên hàm và danh sách tham số.
 
@@ -22,14 +22,14 @@ tham số kiểu `int`, và kiểu giá trị trả về cũng là `int`. Có th
 này sẽ thực hiện một số thao tác trên hai số nguyên được truyền vào, rồi trả về
 một kết quả cùng kiểu.
 
-## Cài đặt hàm: viết định nghĩa hàm
+## Định nghĩa hàm
 
 Chỉ có khai báo hàm là chưa đủ. Khai báo chỉ cho phép ta biết kiểu
 **giao diện** của hàm khi gọi (tức nhận dữ liệu gì, trả về dữ liệu gì), nhưng
-chưa có phần cài đặt cụ thể bên trong, tức **định nghĩa** của hàm.
-Ta có thể viết mã **cài đặt** hàm này ở **một nơi khác sau phần khai
-báo**. Cũng có thể cài đặt trong tệp khác, nhưng khi liên kết cần cung cấp cả
-các tệp đã được biên dịch riêng.
+chưa có phần thân cụ thể bên trong, tức **định nghĩa** của hàm. Ta có thể viết
+phần định nghĩa này ở **một nơi khác sau phần khai báo**. Cũng có thể định nghĩa
+hàm trong tệp khác, nhưng khi liên kết cần cung cấp cả các tệp đã được biên dịch
+riêng.
 
 Nếu hàm có giá trị trả về, cần dùng câu lệnh `return` để trả giá trị cho nơi
 gọi. Khi hàm thực thi đến câu lệnh `return`, hàm hiện tại sẽ kết thúc ngay và
@@ -50,8 +50,8 @@ int some_function(int x, int y) {  // định nghĩa
 Khi định nghĩa, ta đặt tên cho các biến trong danh sách tham số của hàm. Nhờ
 vậy, ta có thể dùng các biến này trong định nghĩa hàm.
 
-Nếu ở cùng một tệp, ta cũng có thể trực tiếp **gộp khai báo và định nghĩa lại
-với nhau**; nói cách khác, hoàn thành định nghĩa ngay lúc khai báo.
+Nếu ở cùng một tệp, ta cũng có thể trực tiếp **gộp khai báo và định nghĩa với
+nhau**; nói cách khác, hoàn thành định nghĩa ngay lúc khai báo.
 
 ```cpp
 int some_function(int x, int y) { return 2 * x + y; }
@@ -101,8 +101,8 @@ void foo(int x, int y) {
 
 /* ... */
 
-a = 1;
-b = 1;
+int a = 1;
+int b = 1;
 // trước khi gọi: a = 1, b = 1
 foo(a, b);  // gọi foo
             // sau khi gọi: a = 1, b = 1
@@ -113,8 +113,8 @@ Trong ví dụ trên, `foo(a, b)` là một lần gọi `foo`. Khi gọi, các b
 Vì vậy, việc sửa biến `x` và `y` trong `foo` **không ảnh hưởng đến giá trị của
 biến tại nơi gọi**.
 
-Nếu cần sửa giá trị của biến trong hàm (thủ tục con), ta cần dùng cách "truyền
-tham chiếu".
+Nếu cần sửa giá trị của biến tại nơi gọi, ta có thể dùng cách "truyền tham
+chiếu".
 
 ```cpp
 void foo(int& x, int& y) {
@@ -124,8 +124,8 @@ void foo(int& x, int& y) {
 
 /* ... */
 
-a = 1;
-b = 1;
+int a = 1;
+int b = 1;
 // trước khi gọi: a = 1, b = 1
 foo(a, b);  // gọi foo
             // sau khi gọi: a = 2, b = 4
@@ -147,7 +147,7 @@ trình đều bắt đầu chạy từ hàm `main`.
 > thể nhận các chỉ thị mà bên ngoài truyền cho chương trình này (tức "tham số
 > dòng lệnh"), để đưa ra phản ứng khác nhau.
 
-Dưới đây là một đoạn mã có gọi hàm (thủ tục con):
+Dưới đây là một đoạn mã có gọi hàm:
 
 ```cpp
 // hello_subroutine.cpp
