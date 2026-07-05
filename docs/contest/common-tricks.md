@@ -102,11 +102,11 @@ Khi kiểm thử cục bộ, lập trình viên thường cần thêm một số
 ```cpp
 #define DEBUG
 #ifdef DEBUG
-// do something when DEBUG is defined
+// Làm gì đó khi DEBUG được định nghĩa
 #endif
 // or
 #ifndef DEBUG
-// do something when DEBUG isn't defined
+// Làm gì đó khi DEBUG không được định nghĩa
 #endif
 ```
 
@@ -124,7 +124,7 @@ Quá trình đối chiếu cần thực hiện nhiều lần, vì vậy cần d�
 
 Cụ thể, đối chiếu chương trình cần một [bộ sinh dữ liệu](../tools/testlib/generator.md) và hai chương trình cần so sánh kết quả đầu ra.
 
-Mỗi lần chạy bộ sinh dữ liệu sẽ ghi dữ liệu được sinh ra vào file đầu vào. Sau đó dùng redirect để cho hai chương trình đọc dữ liệu và ghi đầu ra vào các file chỉ định, cuối cùng dùng lệnh `fc` trên Windows (trên Linux là lệnh `diff`) để so sánh file và kiểm tra tính đúng đắn của chương trình. Nếu phát hiện chương trình sai, có thể trực tiếp dùng dữ liệu vừa sinh ra để gỡ lỗi.
+Mỗi lần chạy bộ sinh dữ liệu sẽ ghi dữ liệu được sinh ra vào tệp đầu vào. Sau đó dùng chuyển hướng để cho hai chương trình đọc dữ liệu và ghi đầu ra vào các tệp chỉ định, cuối cùng dùng lệnh `fc` trên Windows (trên Linux là lệnh `diff`) để so sánh tệp và kiểm tra tính đúng đắn của chương trình. Nếu phát hiện chương trình sai, có thể trực tiếp dùng dữ liệu vừa sinh ra để gỡ lỗi.
 
 Khung đại khái của chương trình đối chiếu như sau:
 
@@ -133,19 +133,19 @@ Khung đại khái của chương trình đối chiếu như sau:
 #include <cstdlib>
 
 int main() {
-  // For Windows
-  // Khi đối chiếu không bật nhập xuất file
-  // Tất nhiên, đoạn chương trình này cũng có thể viết lại thành batch script
+  // Dành cho Windows
+  // Khi đối chiếu không bật nhập xuất tệp
+  // Tất nhiên, đoạn chương trình này cũng có thể viết lại thành tập lệnh batch
   while (true) {
-    system("gen > test.in");  // Bộ sinh dữ liệu ghi dữ liệu sinh ra vào file đầu vào
+    system("gen > test.in");  // Bộ sinh dữ liệu ghi dữ liệu sinh ra vào tệp đầu vào
     system("test1.exe < test.in > a.out");  // Lấy đầu ra chương trình 1
     system("test2.exe < test.in > b.out");  // Lấy đầu ra chương trình 2
     if (system("fc a.out b.out")) {
-      // Câu lệnh này so sánh các file đầu ra
+      // Câu lệnh này so sánh các tệp đầu ra
       // Khi fc trả về 0 nghĩa là đầu ra giống nhau, ngược lại là có chỗ khác
       system("pause");  // Tiện xem chỗ khác nhau
       return 0;
-      // Dữ liệu đầu vào này đã được lưu trong file test.in, có thể dùng trực tiếp để gỡ lỗi
+      // Dữ liệu đầu vào này đã được lưu trong tệp test.in, có thể dùng trực tiếp để gỡ lỗi
     }
   }
 }
