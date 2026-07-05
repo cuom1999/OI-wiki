@@ -36,7 +36,7 @@ Thuật toán này áp dụng cho mọi trường hợp nghịch đảo tồn t�
 <span id="&#24555;&#36895;&#24130;&#27861;"></span>
 ### Phương pháp lũy thừa nhị phân
 
-Phương pháp này chủ yếu áp dụng khi modulo là số nguyên tố $p$. Khi đó, theo [định lý nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), với mọi $a\perp p$ đều có
+Phương pháp này chủ yếu áp dụng khi modulo là số nguyên tố $p$. Khi đó, theo [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), với mọi $a\perp p$ đều có
 
 $$
 a\cdot a^{p-2} = a^{p-1} \equiv 1 \pmod p.
@@ -55,7 +55,7 @@ Theo tính duy nhất của nghịch đảo, nghịch đảo $a^{-1}\bmod p$ b�
         --8<-- "docs/math/code/inverse/inverse-2.py:core"
         ```
 
-Về lý thuyết, phương pháp này có thể được mở rộng sang modulo tổng quát $m$ bằng [định lý Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), tức dùng $a^{\varphi(m)-1}\bmod m$ để tính nghịch đảo. Tuy nhiên, tính riêng [hàm Euler](./euler-totient.md) $\varphi(m)$ không dễ, nên thuật toán này không hiệu quả trong trường hợp tổng quát.
+Về lý thuyết, phương pháp này có thể được mở rộng sang modulo tổng quát $m$ bằng [định lý Euler](./fermat.md#định-lý-euler), tức dùng $a^{\varphi(m)-1}\bmod m$ để tính nghịch đảo. Tuy nhiên, tính riêng [hàm Euler](./euler-totient.md) $\varphi(m)$ không dễ, nên thuật toán này không hiệu quả trong trường hợp tổng quát.
 
 <span id="&#22810;&#20010;&#36870;&#20803;&#30340;&#27714;&#27861;"></span>
 ## Cách tính nhiều nghịch đảo

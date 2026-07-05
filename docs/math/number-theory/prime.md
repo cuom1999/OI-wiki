@@ -92,7 +92,7 @@ Vì $1$ chắc chắn là ước nên ta không cần kiểm tra nó.
 **Kiểm tra tính nguyên tố Fermat** là phép kiểm tra tính nguyên tố xác suất đơn
 giản nhất.
 
-Từ [định lý nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86),
+Từ [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat),
 ta có một ý tưởng để kiểm tra số nguyên tố:
 
 Ý tưởng cơ bản là liên tục chọn cơ số $a$ trong $[2, n-1]$ và kiểm tra mỗi lần

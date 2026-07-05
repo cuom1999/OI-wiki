@@ -111,7 +111,7 @@ Cấp của phần tử luôn không vượt quá cấp của nhóm; thực ra p
     
     Đặc biệt, số phần tử sinh của $C_n$ là $\varphi(n)$, trong đó $\varphi(\cdot)$ là [hàm phi Euler](../number-theory/euler-totient.md).
 
-Ứng dụng thảo luận trên, cấp của nhóm nhân modulo $n$ của các số nguyên bằng $\varphi(n)$, và cấp của mọi phần tử $a$ trong nhóm đều là ước của nó, nên tất yếu $a^{\varphi(n)}=1$. Đây chính là [định lý Euler](../number-theory/fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), vì các phần tử trong nhóm này chính là tất cả các phần tử nguyên tố cùng nhau với $n$.
+Ứng dụng thảo luận trên, cấp của nhóm nhân modulo $n$ của các số nguyên bằng $\varphi(n)$, và cấp của mọi phần tử $a$ trong nhóm đều là ước của nó, nên tất yếu $a^{\varphi(n)}=1$. Đây chính là [định lý Euler](../number-theory/fermat.md#định-lý-euler), vì các phần tử trong nhóm này chính là tất cả các phần tử nguyên tố cùng nhau với $n$.
 
 ### Lớp kề
 

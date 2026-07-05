@@ -38,7 +38,7 @@ Khi modulo là số nguyên tố lẻ, ta có định lý sau:
     2.  $a$ là bất thặng dư bậc hai modulo $p$ khi và chỉ khi $a^{\frac{p-1}{2}}\equiv -1 \pmod p$.
 
 ??? note "Chứng minh"
-    Trước hết, từ [định lý nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86) ta có $a^{p-1}\equiv 1\pmod p$, nên
+    Trước hết, từ [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat) ta có $a^{p-1}\equiv 1\pmod p$, nên
     
     $$
     \left(a^{\frac{p-1}{2}}+1\right)\left(a^{\frac{p-1}{2}}-1\right)\equiv 0\pmod p,

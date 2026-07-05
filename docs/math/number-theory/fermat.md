@@ -2,10 +2,10 @@ author: PeterlitsZo, Tiphereth-A
 
 Bài viết này thảo luận định lý nhỏ Fermat, định lý Euler và dạng mở rộng của chúng. Các định lý này giải quyết bài toán tính lũy thừa với số mũ rất lớn dưới modulo bất kỳ.
 
-<span id="&#x8D39;&#x9A6C;&#x5C0F;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-nhỏ-fermat"></span>
 ## Định lý nhỏ Fermat
 
-**Định lý nhỏ Fermat** (Fermat's little theorem) là một trong những định lý cơ bản nhất của số học. Nó cũng là cơ sở lý thuyết của [kiểm tra nguyên tố Fermat](./prime.md#fermat-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95).
+**Định lý nhỏ Fermat** (Fermat's little theorem) là một trong những định lý cơ bản nhất của số học. Nó cũng là cơ sở lý thuyết của [kiểm tra nguyên tố Fermat](./prime.md#kiểm-tra-tính-nguyên-tố-fermat).
 
 ???+ note "Định lý nhỏ Fermat"
     Cho $p$ là số nguyên tố. Với mọi số nguyên $a$ thỏa $p\nmid a$, ta có $a^{p-1}\equiv 1\pmod p$.
@@ -55,9 +55,9 @@ Khi $p\nmid a$, hai quan hệ đồng dư này là tương đương; còn khi $p
     
     Bước thứ hai dùng giả thiết quy nạp. Vậy theo quy nạp toán học, định lý nhỏ Fermat đúng.
 
-Mệnh đề đảo của định lý nhỏ Fermat không đúng. Ngay cả khi với mọi $a$ nguyên tố cùng nhau với $n$ đều có $a^{n-1}\equiv 1\pmod n$, $n$ vẫn chưa chắc là số nguyên tố. Thảo luận liên quan xem thêm mục [kiểm tra nguyên tố Fermat](./prime.md#fermat-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95).
+Mệnh đề đảo của định lý nhỏ Fermat không đúng. Ngay cả khi với mọi $a$ nguyên tố cùng nhau với $n$ đều có $a^{n-1}\equiv 1\pmod n$, $n$ vẫn chưa chắc là số nguyên tố. Thảo luận liên quan xem thêm mục [kiểm tra nguyên tố Fermat](./prime.md#kiểm-tra-tính-nguyên-tố-fermat).
 
-<span id="&#x6B27;&#x62C9;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-euler"></span>
 ## Định lý Euler
 
 **Định lý Euler** (Euler's theorem) mở rộng định lý nhỏ Fermat cho modulo bất kỳ, nhưng vẫn yêu cầu cơ số và modulo nguyên tố cùng nhau.
@@ -86,9 +86,9 @@ Mệnh đề đảo của định lý nhỏ Fermat không đúng. Ngay cả khi 
     
     Lặp lại lập luận khử $\prod_{r\in R}r$ như trước, ta được $a^{\varphi(m)}\equiv 1\pmod m$.
 
-Với số nguyên tố $p$, ta có $\varphi(p)=p-1$, nên định lý nhỏ Fermat là một trường hợp đặc biệt của định lý Euler. Ngoài ra, số mũ $\varphi(m)$ trong định lý Euler nói chung không phải số mũ nhỏ nhất làm cho công thức đúng. Có thể cải thiện nó thành $\lambda(m)$, trong đó $\lambda(\cdot)$ là [hàm Carmichael](./primitive-root.md#carmichael-%E5%87%BD%E6%95%B0). Về nền tảng đại số của kết quả liên quan, có thể tham khảo mục [nhóm nhân của các lớp đồng dư nguyên](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4).
+Với số nguyên tố $p$, ta có $\varphi(p)=p-1$, nên định lý nhỏ Fermat là một trường hợp đặc biệt của định lý Euler. Ngoài ra, số mũ $\varphi(m)$ trong định lý Euler nói chung không phải số mũ nhỏ nhất làm cho công thức đúng. Có thể cải thiện nó thành $\lambda(m)$, trong đó $\lambda(\cdot)$ là [hàm Carmichael](./primitive-root.md#hàm-carmichael). Về nền tảng đại số của kết quả liên quan, có thể tham khảo mục [nhóm nhân của các lớp đồng dư nguyên](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên).
 
-<span id="&#x6269;&#x5C55;&#x6B27;&#x62C9;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-euler-mở-rộng"></span>
 ## Định lý Euler mở rộng
 
 Định lý Euler mở rộng[^ex-euler] tiếp tục mở rộng kết quả cho trường hợp cơ số và modulo không nguyên tố cùng nhau. Nhờ đó, nó giải quyết hoàn toàn bài toán tính lũy thừa với cơ số bất kỳ dưới modulo bất kỳ: đưa số mũ về nhỏ hơn $2\varphi(m)$, rồi dùng [lũy thừa nhị phân](../binary-exponentiation.md) để tính trong thời gian $O(\log\varphi(m))$.
@@ -106,7 +106,7 @@ Với số nguyên tố $p$, ta có $\varphi(p)=p-1$, nên định lý nhỏ Fer
 
 Trường hợp thứ hai nói rằng nếu $k < \varphi(m)$ thì không cần tiếp tục giảm số mũ, chỉ cần dùng lũy thừa nhị phân trực tiếp. Khác biệt lớn nhất giữa trường hợp thứ ba và trường hợp thứ nhất là: sau khi lấy dư để giảm số mũ, có cần cộng thêm một lượng $\varphi(m)$ hay không. Tất nhiên, gộp trường hợp thứ nhất vào hai trường hợp thứ hai và thứ ba cũng vẫn đúng.
 
-<span id="&#x76F4;&#x89C2;&#x7406;&#x89E3;"></span>
+<span id="hiểu-trực-quan"></span>
 ### Hiểu trực quan
 
 Trước khi chứng minh chặt chẽ, ta có thể hiểu trực quan ý nghĩa của định lý.
@@ -117,7 +117,7 @@ Xét sự thay đổi của số dư $a^k\bmod m$ khi $k$ tăng. Vì giá trị 
 
 Định lý Euler mở rộng cho biết các chu trình này có thể là chu trình thuần túy (trường hợp thứ nhất) hoặc chu trình có đoạn dẫn vào (trường hợp thứ hai và thứ ba). Trong chu trình thuần túy, không có nút nào có hai tiền nhiệm; còn trong trường hợp có đoạn dẫn vào thì hiện tượng đó xuất hiện. Vì vậy, với trường hợp tổng quát, chỉ cần tìm được độ dài chu kỳ và độ dài đoạn trước khi vào chu kỳ là có thể dùng tính chất này để giảm số mũ.
 
-<span id="&#x4E25;&#x683C;&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh-chặt-chẽ"></span>
 ### Chứng minh chặt chẽ
 
 Mục này đưa ra chứng minh chặt chẽ của định lý Euler mở rộng.
@@ -175,7 +175,7 @@ Mục này đưa ra chứng minh chặt chẽ của định lý Euler mở rộn
     
     Vậy kết quả đã nêu được chứng minh hoàn toàn.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 Mục này dùng một bài toán để minh họa một ứng dụng kinh điển của định lý Euler mở rộng: tính tháp lũy thừa dưới modulo bất kỳ. **Tháp lũy thừa** (power tower) là biểu thức dạng $A\uparrow(B\uparrow(C\uparrow(D\uparrow\cdots)))$, trong đó $\uparrow$ là ký hiệu mũi tên Knuth, còn $A,B,C,D,\cdots$ là một dãy số nguyên không âm.
@@ -201,7 +201,7 @@ Mục này dùng một bài toán để minh họa một ứng dụng kinh đi�
     --8<-- "docs/math/code/fermat/tetration.cpp"
     ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Luogu P5091, mẫu: định lý Euler mở rộng](https://www.luogu.com.cn/problem/P5091)
@@ -211,7 +211,7 @@ Mục này dùng một bài toán để minh họa một ứng dụng kinh đi�
 -   [Luogu P3934, Ynoi Easy Round 2016: Khủng long cổ dài nổ tung I](https://www.luogu.com.cn/problem/P3934)
 -   [Luogu P6736, Wdsr-2: giáo dục Bạch Trạch](https://www.luogu.com.cn/problem/P6736)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Fermat's little theorem - Wikipedia](https://en.wikipedia.org/wiki/Fermat%27s_little_theorem)

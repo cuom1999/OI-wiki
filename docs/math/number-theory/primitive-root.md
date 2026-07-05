@@ -1,4 +1,4 @@
-Kiến thức nền: [định lí nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), [định lí Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), [định lí Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86)
+Kiến thức nền: [định lí nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), [định lí Euler](./fermat.md#định-lý-euler), [định lí Lagrange](./congruence-equation.md#%E5%AE%9A%E7%90%86-3lagrange-%E5%AE%9A%E7%90%86)
 
 Bậc và căn nguyên thủy là các công cụ quan trọng để hiểu cấu trúc nhân của
 [hệ thặng dư thu gọn](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
@@ -6,7 +6,7 @@ $\mathbf Z_m^*$ modulo $m$. Dựa trên chúng, ta có thể định nghĩa các
 như [logarit rời rạc](./discrete-logarithm.md). Phần thảo luận tổng quát hơn có
 thể xem ở các mục liên quan trong phần đại số trừu tượng, chẳng hạn
 [lý thuyết nhóm](../algebra/group-theory.md#%E9%98%B6) và
-[lý thuyết vành](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4).
+[lý thuyết vành](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên).
 
 <span id="&#x9636;"></span>
 
@@ -84,13 +84,13 @@ không âm đầu tiên. Từ đó suy ra một loạt tính chất về bậc.
     $r=0$. Do đó $a^n \equiv 1 \pmod m$ khi và chỉ khi
     $n\bmod \delta_m(a) = 0$, tức là $\delta_m(a)\mid n$.
 
-Trong [định lí Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86), đồng
+Trong [định lí Euler](./fermat.md#định-lý-euler), đồng
 dư $a^{\varphi(m)}\equiv 1\pmod m$ đúng với mọi $a\perp m$. Kết hợp với
 [Tính chất 2](#ord-prop-2), điều này cho thấy với mọi $a\perp m$ đều có
 $\delta_m(a)\mid\varphi(m)$. Nói cách khác, $\varphi(m)$ là một bội chung của
 bậc của tất cả các $a\perp m$. Với một số nguyên dương $m$, bội chung nhỏ nhất
 của tất cả các bậc $\delta_m(a)$ với $a\perp m$, ký hiệu là $\lambda(m)$, chính
-là [hàm Carmichael](#carmichael-%E5%87%BD%E6%95%B0) của $m$. Phần sau sẽ thảo
+là [hàm Carmichael](#hàm-carmichael) của $m$. Phần sau sẽ thảo
 luận chi tiết các tính chất của nó.
 
 Tương tự các cấu trúc tuần hoàn khác, ta có thể tính bậc của $a^k$ dựa trên
@@ -295,7 +295,7 @@ hệ thặng dư thu gọn modulo $m$. Đặc biệt, với số nguyên tố $p
 $g^i\bmod p$ đôi một khác nhau với $i=1,2,\cdots,p-1$.
 
 ???+ tip "Ghi chú"
-    Trong [đại số trừu tượng](../algebra/ring-theory.md#%E5%BA%94%E7%94%A8%E6%95%B4%E6%95%B0%E5%90%8C%E4%BD%99%E7%B1%BB%E7%9A%84%E4%B9%98%E6%B3%95%E7%BE%A4),
+    Trong [đại số trừu tượng](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên),
     căn nguyên thủy chính là phần tử sinh của nhóm cyclic. Khái niệm này chỉ có
     tên "căn nguyên thủy" trong nhóm tạo bởi hệ thặng dư thu gọn modulo $m$ theo
     phép nhân; trong nhóm cyclic tổng quát, nó được gọi là "phần tử sinh".
@@ -406,7 +406,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         f(x) = x^{d(k-1)} + x^{d(k-2)} + \cdots + x^d + 1.
         $$
 
-        Theo [định lí Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86),
+        Theo [định lí Euler](./fermat.md#định-lý-euler),
         phương trình đồng dư
         $(x^d-1)f(x)=x^{p-1}-1\equiv 0\pmod{p}$ có đúng $p-1$ nghiệm đôi một
         khác nhau. Các nghiệm này lần lượt là nghiệm của $x^d-1$ và $f(x)$.
@@ -823,7 +823,7 @@ căn nguyên thủy, đây tạo thành một chứng minh khác cho định lí
 
 Dùng hàm Carmichael, ta có thể thảo luận tính chất và phân bố của số Carmichael
 (OEIS:[A002997](https://oeis.org/A002997)). Đây là các hợp số mà
-[kiểm tra tính nguyên tố Fermat](./prime.md#fermat-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95)
+[kiểm tra tính nguyên tố Fermat](./prime.md#kiểm-tra-tính-nguyên-tố-fermat)
 chắc chắn không thể loại bỏ chính xác.
 
 ???+ abstract "Số Carmichael"

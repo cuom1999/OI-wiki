@@ -323,7 +323,7 @@ Với trường hợp modulo nguyên tố $p$, bài viết xét hai cách chứn
         \end{aligned}
         $$
     
-        Trong quá trình rút gọn, ta dùng các kết luận sau: theo [định lý Lucas](../number-theory/lucas.md), với $0 < k < p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, và với $1 < k < p$ đều có $\dbinom{p+1}{k}\equiv 0\pmod{p}$; theo [định lý nhỏ Fermat](../number-theory/fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), có $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$; với $p\equiv 1,4\pmod{5}$, $p$ là thặng dư bậc hai modulo $5$, nên theo [luật tương hỗ bậc hai](../number-theory/quad-residue.md#%E4%BA%8C%E6%AC%A1%E4%BA%92%E5%8F%8D%E5%BE%8B), $5$ cũng là thặng dư bậc hai modulo $p$, do đó $5^{(p-1)/2} \equiv 1\pmod{p}$. Suy ra $(F_p,F_{p+1}) \equiv (F_1,F_2) \pmod{p}$, nên $(p-1)$ là một chu kỳ modulo $p$. Vì vậy $\pi(p)\mid(p-1)$.
+        Trong quá trình rút gọn, ta dùng các kết luận sau: theo [định lý Lucas](../number-theory/lucas.md), với $0 < k < p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, và với $1 < k < p$ đều có $\dbinom{p+1}{k}\equiv 0\pmod{p}$; theo [định lý nhỏ Fermat](../number-theory/fermat.md#định-lý-nhỏ-fermat), có $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$; với $p\equiv 1,4\pmod{5}$, $p$ là thặng dư bậc hai modulo $5$, nên theo [luật tương hỗ bậc hai](../number-theory/quad-residue.md#%E4%BA%8C%E6%AC%A1%E4%BA%92%E5%8F%8D%E5%BE%8B), $5$ cũng là thặng dư bậc hai modulo $p$, do đó $5^{(p-1)/2} \equiv 1\pmod{p}$. Suy ra $(F_p,F_{p+1}) \equiv (F_1,F_2) \pmod{p}$, nên $(p-1)$ là một chu kỳ modulo $p$. Vì vậy $\pi(p)\mid(p-1)$.
     -   Nếu $p\equiv 2,3\pmod{5}$, ta có
     
         $$

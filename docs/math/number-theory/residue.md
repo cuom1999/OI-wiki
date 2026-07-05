@@ -214,7 +214,7 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
 
 ???+ note "Tính chất"
     Với modulo $m$, đặt $\lambda(m)$ là
-    [hàm Carmichael](./primitive-root.md#carmichael-%E5%87%BD%E6%95%B0) của nó.
+    [hàm Carmichael](./primitive-root.md#hàm-carmichael) của nó.
     Khi đó:
 
     1.  Mọi số nguyên $a$ nguyên tố cùng nhau với $m$ đều là căn đơn vị nguyên
@@ -508,7 +508,7 @@ $$
 x^d\equiv x^{k\ell} \equiv a^{\ell} =: b \pmod{m}.
 $$
 
-Đồng dư đầu tiên dùng [định lí Euler](./fermat.md#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86)
+Đồng dư đầu tiên dùng [định lí Euler](./fermat.md#định-lý-euler)
 và quan hệ đồng dư sau: ($c\in\mathbf Z$)
 
 $$

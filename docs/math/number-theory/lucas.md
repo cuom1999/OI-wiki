@@ -40,7 +40,7 @@ Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó t
     \binom{p}{n} \equiv [n=0\lor n=p] \pmod p.
     $$
     
-    Đặt $f(x) = ax^n + bx^m$. Tổng quát hơn, theo [khai triển nhị thức](../combinatorics/combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86) và [định lý nhỏ Fermat](./fermat.md#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86), ta có
+    Đặt $f(x) = ax^n + bx^m$. Tổng quát hơn, theo [khai triển nhị thức](../combinatorics/combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86) và [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), ta có
     
     $$
     \begin{aligned}
