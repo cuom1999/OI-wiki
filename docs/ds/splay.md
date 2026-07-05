@@ -72,27 +72,27 @@ Giả sử nút vừa được truy cập là $x$. Để thực hiện thao tác
 
 1.  **zig**: thực hiện khi $p$ là nút gốc. Cây Splay sẽ xoay theo cạnh giữa $x$ và $p$. **zig** tồn tại để xử lý vấn đề chẵn lẻ, và chỉ được thực hiện như bước cuối cùng của thao tác splay khi $x$ có độ sâu lẻ tại thời điểm bắt đầu thao tác splay.
 
-    ![splay-zig](./images/splay-zig.svg)
+    ![Bước zig trong cây Splay](./images/splay-zig.svg)
 
     Tức là trực tiếp xoay phải hoặc xoay trái $x$ (hình 1, 2).
 
-    ![Hình 1](./images/splay-rotate1.svg)![Hình 2](./images/splay-rotate2.svg)
+    ![Zig xoay phải](./images/splay-rotate1.svg)![Zig xoay trái](./images/splay-rotate2.svg)
 
 2.  **zig-zig**: thực hiện khi $p$ không phải nút gốc và $x$ cùng $p$ đều là con phải hoặc đều là con trái. Hình ví dụ bên dưới thể hiện trường hợp $x$ và $p$ đều là con trái. Cây Splay trước tiên xoay theo cạnh nối $p$ với nút cha $g$ của nó, sau đó xoay theo cạnh nối $x$ và $p$.
 
-    ![splay-zig-zig](./images/splay-zig-zig.svg)
+    ![Bước zig-zig trong cây Splay](./images/splay-zig-zig.svg)
 
     Tức là trước tiên xoay phải hoặc xoay trái $p$, sau đó xoay phải hoặc xoay trái $x$ (hình 3, 4).
 
-    ![Hình 3](./images/splay-rotate3.svg)![Hình 4](./images/splay-rotate4.svg)
+    ![Zig-zig xoay phải](./images/splay-rotate3.svg)![Zig-zig xoay trái](./images/splay-rotate4.svg)
 
 3.  **zig-zag**: thực hiện khi $p$ không phải nút gốc và trong hai nút $x$, $p$, một nút là con phải còn nút kia là con trái. Cây Splay trước tiên xoay theo cạnh giữa $p$ và $x$, sau đó xoay theo cạnh kết quả mới sinh ra giữa $x$ và $g$.
 
-    ![splay-zig-zag](./images/splay-zig-zag.svg)
+    ![Bước zig-zag trong cây Splay](./images/splay-zig-zag.svg)
 
     Tức là xoay $x$ trái rồi phải, hoặc phải rồi trái (hình 5, 6).
 
-    ![Hình 5](./images/splay-rotate5.svg)![Hình 6](./images/splay-rotate6.svg)
+    ![Zig-zag xoay trái rồi phải](./images/splay-rotate5.svg)![Zig-zag xoay phải rồi trái](./images/splay-rotate6.svg)
 
 ???+ tip "Mẹo"
     Bạn đọc hãy thử tự mô phỏng $6$ trường hợp xoay để hiểu tư tưởng cơ bản của thao tác splay.
