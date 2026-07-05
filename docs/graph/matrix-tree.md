@@ -70,7 +70,7 @@ Ký hiệu số cây khung có hướng lấy $k$ làm gốc và hướng ra lá
 Định nghĩa $[n]=\{1,2,\cdots,n\}$. Với ma trận $A$, ma trận con $A_{S,T}$ là ma trận thu được bằng cách chọn các phần tử $A_{i,j}\pod{i\in S,j\in T}$.
 
 ???+ note "Định lý 1 (định lý ma trận cây, đồ thị vô hướng, dạng định thức)"
-    Với đồ thị vô hướng $G$ và $k$ bất kỳ, ta có
+    Với đồ thị vô hướng $G$ và $k$ bất kỳ, có
 
     $$
     t(G) = \det L(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
@@ -86,7 +86,7 @@ Ký hiệu số cây khung có hướng lấy $k$ làm gốc và hướng ra lá
     $$
 
 ???+ note "Định lý 2 (định lý ma trận cây, cây hướng về gốc trong đồ thị có hướng, dạng định thức)"
-    Với đồ thị có hướng $G$ và $k$ bất kỳ, ta có
+    Với đồ thị có hướng $G$ và $k$ bất kỳ, có
 
     $$
     t^\mathrm{root}(G,k) = \det L^\mathrm{out}(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
@@ -97,7 +97,7 @@ Ký hiệu số cây khung có hướng lấy $k$ làm gốc và hướng ra lá
 Vì vậy, nếu muốn đếm tất cả cây khung có hướng hướng về gốc của một đồ thị, chỉ cần duyệt mọi gốc $k$ và lấy tổng các giá trị $t^\mathrm{root}(G,k)$.
 
 ???+ note "Định lý 3 (định lý ma trận cây, cây hướng ra lá trong đồ thị có hướng, dạng định thức)"
-    Với đồ thị có hướng $G$ và $k$ bất kỳ, ta có
+    Với đồ thị có hướng $G$ và $k$ bất kỳ, có
 
     $$
     t^\mathrm{leaf}(G,k) = \det L^\mathrm{in}(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
@@ -112,7 +112,7 @@ Vì vậy, nếu muốn đếm tất cả cây khung có hướng hướng ra l�
 
 ## Chứng minh định lý
 
-Quan sát các phát biểu trên, ta thấy chúng rất giống nhau. Phần này đưa ra một cách chứng minh thống nhất, đồng thời mở rộng các kết luận trước đó sang đồ thị có trọng số.
+Các phát biểu trên rất giống nhau. Phần này đưa ra một cách chứng minh thống nhất, đồng thời mở rộng các kết luận trước đó sang đồ thị có trọng số.
 
 Ý tưởng chính của chứng minh như sau:
 
@@ -133,7 +133,7 @@ Quan sát các phát biểu trên, ta thấy chúng rất giống nhau. Phần n
     trong đó ký hiệu tổng nghĩa là $S$ chạy qua mọi tập con kích thước $n$ của $[m]$. Nếu $n>m$, tất nhiên $\det(AB)=0$.
 
 ??? note "Chứng minh (góc nhìn tổ hợp)"
-    Tham khảo mô hình trong bài [NOI2021 - Giao điểm đường đi](https://loj.ac/p/3533). Trước hết xét ý nghĩa tổ hợp sau của định thức. Với ma trận vuông $C$ cấp $n\times n$, dựng đồ thị có hướng không chu trình $G=(V,E)$. Trong đó, tập đỉnh là $V=[2]\times[n]\subset\mathbb R^2$, tức hai cột điểm trên mặt phẳng. Ký hiệu cột điểm bên trái là $L=\{l_i=(1,i):i\in[n]\}$, cột điểm bên phải là $R=\{r_i=(2,i):i\in[n]\}$; tập cạnh có hướng là $E=\{(l_i,r_j):i,j\in[n]\}$, với trọng số cạnh $w(l_i,r_j)=C_{i,j}$. Trong đồ thị, gọi một tập con cạnh $E^\sigma\subset E$ có kích thước $n$ là một nhóm đường đi nếu các điểm đầu đôi một khác nhau và các điểm cuối cũng đôi một khác nhau. Rõ ràng, các nhóm đường đi $E^\sigma$ tương ứng một-một với các hoán vị $\sigma$ trên $[n]$. Chú ý rằng nếu vẽ một nhóm đường đi trên mặt phẳng, các cạnh có thể cắt nhau từng đôi một, và số giao điểm đó, tính cả bội, chính bằng số nghịch thế của $\sigma$. Lý do là cạnh $(l_i,r_{\sigma(i)})$ và cạnh $(l_j,r_{\sigma(j)})$ cắt nhau khi và chỉ khi $(i-j)(\sigma(i)-\sigma(j))< 0$, tức đó là một cặp nghịch thế. Để tiện, gọi tính chẵn lẻ của số nghịch thế của hoán vị tương ứng, hay tương đương tính chẵn lẻ của số giao điểm của nhóm đường đi, là tính chẵn lẻ của nhóm đường đi. Do đó, nếu đếm các nhóm đường đi theo trọng số, rồi lấy số nhóm có số giao điểm chẵn trừ đi số nhóm có số giao điểm lẻ, ta thu được khai triển Leibniz của định thức:
+    Tham khảo mô hình trong bài [NOI2021 - Giao điểm đường đi](https://loj.ac/p/3533). Trước hết xét ý nghĩa tổ hợp sau của định thức. Với ma trận vuông $C$ cấp $n\times n$, dựng đồ thị có hướng không chu trình $G=(V,E)$. Trong đó, tập đỉnh là $V=[2]\times[n]\subset\mathbb R^2$, tức hai cột điểm trên mặt phẳng. Ký hiệu cột điểm bên trái là $L=\{l_i=(1,i):i\in[n]\}$, cột điểm bên phải là $R=\{r_i=(2,i):i\in[n]\}$; tập cạnh có hướng là $E=\{(l_i,r_j):i,j\in[n]\}$, với trọng số cạnh $w(l_i,r_j)=C_{i,j}$. Trong đồ thị, gọi một tập con cạnh $E^\sigma\subset E$ có kích thước $n$ là một nhóm đường đi nếu các điểm đầu đôi một khác nhau và các điểm cuối cũng đôi một khác nhau. Các nhóm đường đi $E^\sigma$ tương ứng một-một với các hoán vị $\sigma$ trên $[n]$. Chú ý rằng nếu vẽ một nhóm đường đi trên mặt phẳng, các cạnh có thể cắt nhau từng đôi một, và số giao điểm đó, tính cả bội, chính bằng số nghịch thế của $\sigma$. Lý do là cạnh $(l_i,r_{\sigma(i)})$ và cạnh $(l_j,r_{\sigma(j)})$ cắt nhau khi và chỉ khi $(i-j)(\sigma(i)-\sigma(j))< 0$, tức đó là một cặp nghịch thế. Để tiện, gọi tính chẵn lẻ của số nghịch thế của hoán vị tương ứng, hay tương đương tính chẵn lẻ của số giao điểm của nhóm đường đi, là tính chẵn lẻ của nhóm đường đi. Do đó, nếu đếm các nhóm đường đi theo trọng số, rồi lấy số nhóm có số giao điểm chẵn trừ đi số nhóm có số giao điểm lẻ, sẽ thu được khai triển Leibniz của định thức:
 
     $$
     \det(C)=\sum_{\sigma\in S_n}\mathrm{sgn}(\sigma)\prod_{i\in[n]}C_{i,\sigma(i)},
@@ -141,14 +141,14 @@ Quan sát các phát biểu trên, ta thấy chúng rất giống nhau. Phần n
 
     trong đó $S_n$ là nhóm hoán vị trên $[n]$, còn $\mathrm{sgn}(\sigma)$ là dấu của hoán vị $\sigma$; nó bằng $1$ khi số nghịch thế chẵn và bằng $-1$ khi số nghịch thế lẻ.
 
-    Sau khi hiểu ý nghĩa tổ hợp của định thức, ta có thể dùng mô hình tổ hợp sau để chứng minh công thức Cauchy-Binet. Với ma trận $A$ cấp $n\times m$ và ma trận $B$ cấp $m\times n$, dựng đồ thị có hướng không chu trình $G=(V,E)$. Trong đó, tập đỉnh là $V=L\cup D\cup R$, với $L=\{l_i=(1,i):i\in[n]\}$, $D=\{d_i=(2,i):i\in[m]\}$ và $R=\{r_i=(3,i):i\in[n]\}$; tập cạnh có hướng là $E=E_L\cup E_R$, trong đó $E_L=\{(l_i,d_j):i\in[n],j\in[m]\}$ và $E_R=\{(d_j,r_i):j\in[m],i\in[n]\}$, lần lượt có trọng số cạnh $w(l_i,d_j)=A_{i,j}$ và $w(d_j,r_i)=B_{j,i}$. Tương tự, xét các nhóm đường đi từ $L$ qua $D$ đến $R$ mà các đường đi đôi một không dùng chung đỉnh, đếm theo trọng số, rồi lấy số nhóm có số giao điểm chẵn trừ đi số nhóm có số giao điểm lẻ. Ta sẽ chỉ ra rằng hai vế của công thức Cauchy-Binet tính số này theo hai cách.
+    Sau khi hiểu ý nghĩa tổ hợp của định thức, có thể dùng mô hình tổ hợp sau để chứng minh công thức Cauchy-Binet. Với ma trận $A$ cấp $n\times m$ và ma trận $B$ cấp $m\times n$, dựng đồ thị có hướng không chu trình $G=(V,E)$. Trong đó, tập đỉnh là $V=L\cup D\cup R$, với $L=\{l_i=(1,i):i\in[n]\}$, $D=\{d_i=(2,i):i\in[m]\}$ và $R=\{r_i=(3,i):i\in[n]\}$; tập cạnh có hướng là $E=E_L\cup E_R$, trong đó $E_L=\{(l_i,d_j):i\in[n],j\in[m]\}$ và $E_R=\{(d_j,r_i):j\in[m],i\in[n]\}$, lần lượt có trọng số cạnh $w(l_i,d_j)=A_{i,j}$ và $w(d_j,r_i)=B_{j,i}$. Tương tự, xét các nhóm đường đi từ $L$ qua $D$ đến $R$ mà các đường đi đôi một không dùng chung đỉnh, đếm theo trọng số, rồi lấy số nhóm có số giao điểm chẵn trừ đi số nhóm có số giao điểm lẻ. Hai vế của công thức Cauchy-Binet sẽ tính số này theo hai cách.
 
-    Với vế trái, dựa trên đồ thị $G$ mô tả ở trên, dựng đồ thị mới $G'$ có tập đỉnh $V'=L\cup R$, tập cạnh $E'=\{(l_i,r_j):i,j\in[n]\}$, và gán cho cạnh $(l_i,r_j)$ trọng số $\sum_{k\in[m]}A_{i,k}B_{k,j}$, tức số đếm có trọng số của các đường đi đơn từ $l_i$ đến $r_j$ trong đồ thị gốc $G$. Trọng số cạnh này chính là $(AB)_{i,j}$. Điều này tương đương với việc rút gọn đồ thị ba lớp ở trên thành đồ thị hai lớp. Tuy nhiên, các nhóm đường đi trong đồ thị hai lớp $G'$, khi tính theo trọng số, không tương ứng một-một với các nhóm đường đi trong đồ thị ba lớp $G$. Vì trong đồ thị hai lớp, mỗi đường đi tương ứng với nhiều đường đi đơn trong đồ thị ba lớp, nên khi đếm nhóm đường đi của đồ thị hai lớp, ta phải nhân các trọng số, tương đương với việc ghép đôi các tập đường đi tương ứng trong đồ thị ba lớp. Điều này chắc chắn tạo ra các trường hợp dùng chung điểm trung gian. Nhưng các cặp đường đi dùng chung điểm trung gian không đóng góp vào đáp án cuối cùng, vì với $i_1< i_2$, $j_1< j_2$ và điểm trung gian $d$ bất kỳ, luôn tồn tại hai cặp đường đi đơn $(l_{i_1}\rightarrow d\rightarrow r_{j_1}, l_{i_2}\rightarrow d\rightarrow r_{j_2})$ và $(l_{i_1}\rightarrow d\rightarrow r_{j_2}, l_{i_2}\rightarrow d\rightarrow r_{j_1})$, nhưng hai nhóm đường đi này trong đồ thị ba lớp có tính chẵn lẻ số giao điểm đối nhau, bởi nếu chỉ nhìn điểm đầu và điểm cuối thì hai nhóm đã hoán đổi điểm cuối. Vì vậy, khi đếm trên đồ thị hai lớp đã rút gọn, các đường đi dùng chung điểm trung gian sẽ triệt tiêu theo từng cặp. Với những trường hợp còn lại, nếu cố định điểm đầu và điểm cuối của hai đường đi, thì bất kể chọn các điểm trung gian thế nào, miễn là không chọn cùng một điểm, tính chẵn lẻ của số giao điểm của hai đường đi không đổi. Do đó, mọi nhóm đường đi trong đồ thị gốc $G$ tương ứng với cùng một nhóm đường đi trong $G'$ đều có cùng tính chẵn lẻ. Vì thế, $\det(AB)$ cung cấp một cách tính hiệu số nhóm đường đi nói trên.
+    Với vế trái, dựa trên đồ thị $G$ mô tả ở trên, dựng đồ thị mới $G'$ có tập đỉnh $V'=L\cup R$, tập cạnh $E'=\{(l_i,r_j):i,j\in[n]\}$, và gán cho cạnh $(l_i,r_j)$ trọng số $\sum_{k\in[m]}A_{i,k}B_{k,j}$, tức số đếm có trọng số của các đường đi đơn từ $l_i$ đến $r_j$ trong đồ thị gốc $G$. Trọng số cạnh này chính là $(AB)_{i,j}$. Điều này tương đương với việc rút gọn đồ thị ba lớp ở trên thành đồ thị hai lớp. Tuy nhiên, các nhóm đường đi trong đồ thị hai lớp $G'$, khi tính theo trọng số, không tương ứng một-một với các nhóm đường đi trong đồ thị ba lớp $G$. Vì trong đồ thị hai lớp, mỗi đường đi tương ứng với nhiều đường đi đơn trong đồ thị ba lớp, nên khi đếm nhóm đường đi của đồ thị hai lớp phải nhân các trọng số, tương đương với việc ghép đôi các tập đường đi tương ứng trong đồ thị ba lớp. Điều này chắc chắn tạo ra các trường hợp dùng chung điểm trung gian. Nhưng các cặp đường đi dùng chung điểm trung gian không đóng góp vào đáp án cuối cùng, vì với $i_1< i_2$, $j_1< j_2$ và điểm trung gian $d$ bất kỳ, luôn tồn tại hai cặp đường đi đơn $(l_{i_1}\rightarrow d\rightarrow r_{j_1}, l_{i_2}\rightarrow d\rightarrow r_{j_2})$ và $(l_{i_1}\rightarrow d\rightarrow r_{j_2}, l_{i_2}\rightarrow d\rightarrow r_{j_1})$, nhưng hai nhóm đường đi này trong đồ thị ba lớp có tính chẵn lẻ số giao điểm đối nhau, bởi nếu chỉ nhìn điểm đầu và điểm cuối thì hai nhóm đã hoán đổi điểm cuối. Vì vậy, khi đếm trên đồ thị hai lớp đã rút gọn, các đường đi dùng chung điểm trung gian sẽ triệt tiêu theo từng cặp. Với những trường hợp còn lại, nếu cố định điểm đầu và điểm cuối của hai đường đi, thì bất kể chọn các điểm trung gian thế nào, miễn là không chọn cùng một điểm, tính chẵn lẻ của số giao điểm của hai đường đi không đổi. Do đó, mọi nhóm đường đi trong đồ thị gốc $G$ tương ứng với cùng một nhóm đường đi trong $G'$ đều có cùng tính chẵn lẻ. Vì thế, $\det(AB)$ cung cấp một cách tính hiệu số nhóm đường đi nói trên.
 
-    Với vế phải, nó tương đương với việc duyệt mọi tổ hợp điểm trung gian có thể. Cho một tập điểm trung gian bất kỳ $S\subset D=[m]$ với $|S|=n$, xét riêng nhóm đường đi từ $L$ đến $S$ và nhóm đường đi từ $S$ đến $R$. Ghép chúng lại sẽ thu được nhóm đường đi từ $L$ đến $R$, và hợp thành của hai hoán vị ứng với hai nhóm đường đi trước chính là hoán vị ứng với nhóm đường đi sau, nên tích tính chẵn lẻ của hai nhóm đường đi trước bằng tính chẵn lẻ của nhóm đường đi sau. Do đó, với mọi nhóm đường đi có tập điểm trung gian là $S$, hiệu số đếm được đúng bằng tích của hiệu số đếm nhóm đường đi từ $L$ đến $S$ và hiệu số đếm nhóm đường đi từ $S$ đến $R$. Lấy tổng trên mọi $S$ có thể, ta thu được vế phải, và nó chính là hiệu số nhóm đường đi đã nêu ở trên.
+    Với vế phải, nó tương đương với việc duyệt mọi tổ hợp điểm trung gian có thể. Cho một tập điểm trung gian bất kỳ $S\subset D=[m]$ với $|S|=n$, xét riêng nhóm đường đi từ $L$ đến $S$ và nhóm đường đi từ $S$ đến $R$. Ghép chúng lại sẽ thu được nhóm đường đi từ $L$ đến $R$, và hợp thành của hai hoán vị ứng với hai nhóm đường đi trước chính là hoán vị ứng với nhóm đường đi sau, nên tích tính chẵn lẻ của hai nhóm đường đi trước bằng tính chẵn lẻ của nhóm đường đi sau. Do đó, với mọi nhóm đường đi có tập điểm trung gian là $S$, hiệu số đếm được đúng bằng tích của hiệu số đếm nhóm đường đi từ $L$ đến $S$ và hiệu số đếm nhóm đường đi từ $S$ đến $R$. Lấy tổng trên mọi $S$ có thể, thu được vế phải, và nó chính là hiệu số nhóm đường đi đã nêu ở trên.
 
 ??? note "Chứng minh (góc nhìn đại số)"
-    Chứng minh tổ hợp ở trên thực ra có thể dịch gần như từng câu thành chứng minh đại số. Ở đây ta đưa ra một chứng minh đại số khác có tính kỹ thuật hơn, nhưng dùng vài kết quả quen thuộc. Khi $m< n$, định thức bằng không, vì
+    Chứng minh tổ hợp ở trên thực ra có thể dịch gần như từng câu thành chứng minh đại số. Phần này đưa ra một chứng minh đại số khác có tính kỹ thuật hơn, nhưng dùng vài kết quả quen thuộc. Khi $m< n$, định thức bằng không, vì
 
     $$
     \mathrm{rank}(AB)\le \min\{\mathrm{rank}(A),\mathrm{rank}(B)\}\le m< n.
@@ -162,7 +162,7 @@ Quan sát các phát biểu trên, ta thấy chúng rất giống nhau. Phần n
     x^{m-n}\det(xI_n+AB) = \det(xI_m+BA).
     $$
 
-    Lại dùng kết quả đã biết: hệ số của $x^{n-k}$ trong $\det(xI_n+C)$ là tổng mọi định thức con chính cấp $k$ của $C$. Vì vậy, so sánh hệ số hai vế của đẳng thức trên, ta có
+    Lại dùng kết quả đã biết: hệ số của $x^{n-k}$ trong $\det(xI_n+C)$ là tổng mọi định thức con chính cấp $k$ của $C$. Vì vậy, so sánh hệ số hai vế của đẳng thức trên, có
 
     $$
     \det(AB) = \sum_{S\subset[m];~|S|=n}\det(BA)_{S,S} = \sum_{S\subset[m];~|S|=n}\det(B)_{S,[n]}\det(A)_{[n],S} = \sum_{S\subset[m];~|S|=n}\det(A)_{[n],S}\det(B)_{S,[n]}.
@@ -172,7 +172,7 @@ Quan sát các phát biểu trên, ta thấy chúng rất giống nhau. Phần n
 
 ### Mô tả cấu trúc đồ thị bằng ma trận liên thuộc
 
-Với đồ thị có hướng $G=(V,E)$, số đỉnh là $n$, số cạnh là $m$, và cạnh $e$ có trọng số $w(e)$. Từ đó, ta có thể định nghĩa ma trận liên thuộc bậc ra cấp $m\times n$
+Với đồ thị có hướng $G=(V,E)$, số đỉnh là $n$, số cạnh là $m$, và cạnh $e$ có trọng số $w(e)$. Từ đó, có thể định nghĩa ma trận liên thuộc bậc ra cấp $m\times n$
 
 $$
 M^\mathrm{out}_{ij}=\begin{cases}
@@ -229,7 +229,7 @@ Công thức Cauchy-Binet ở trên cho thấy định thức con chính của m
 Bây giờ có thể chứng minh kết quả chính của bài viết. Các dạng định lý ma trận cây đã nêu ở trên đều là trường hợp đặc biệt của định lý này.
 
 ???+ note "Định lý 4 (định lý ma trận cây, cây hướng về gốc trong đồ thị có hướng có trọng số, dạng định thức)"
-    Với $k$ bất kỳ, ta có
+    Với $k$ bất kỳ, có
 
     $$
     \sum_{T\in\mathcal T^\mathrm{root}(G,k)}w(T)=\det L^\mathrm{out}(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
@@ -246,10 +246,10 @@ Bây giờ có thể chứng minh kết quả chính của bài viết. Các d�
 
     Duyệt mọi $S$. Theo Bổ đề 2, khi và chỉ khi $T=(V,S)$ tạo thành một rừng hướng về gốc với tập gốc $V\setminus W=\{k\}$, tức $T$ là cây khung có hướng lấy $k$ làm gốc và hướng về gốc, vế phải cộng thêm một lượng $w(T)$.
 
-Khi $w(e)=1$, trọng số của mỗi cây đều là $1$, nên vế trái chính là số đếm tất cả các cây, tức $t^\mathrm{root}(G,k)$. Như vậy ta thu được Định lý 2. Tương tự như trên, có thể mở rộng trực tiếp kết luận sang cây khung có hướng hướng ra lá, từ đó thu được Định lý 3. Cuối cùng, để đếm cây khung trên đồ thị vô hướng, ta có thể dùng hệ quả sau.
+Khi $w(e)=1$, trọng số của mỗi cây đều là $1$, nên vế trái chính là số đếm tất cả các cây, tức $t^\mathrm{root}(G,k)$. Như vậy thu được Định lý 2. Tương tự như trên, có thể mở rộng trực tiếp kết luận sang cây khung có hướng hướng ra lá, từ đó thu được Định lý 3. Cuối cùng, để đếm cây khung trên đồ thị vô hướng, có thể dùng hệ quả sau.
 
 ???+ note "Hệ quả 4 (định lý ma trận cây, đồ thị vô hướng có trọng số, dạng định thức)"
-    Với đồ thị vô hướng $G$ và $k$ bất kỳ, ta có
+    Với đồ thị vô hướng $G$ và $k$ bất kỳ, có
 
     $$
     \sum_{T\in\mathcal T(G)}w(T) = \det L(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
@@ -258,7 +258,7 @@ Khi $w(e)=1$, trọng số của mỗi cây đều là $1$, nên vế trái chí
     Ở đây, $\mathcal T(G)$ là tập các cây khung của $G$. Điều này cũng cho thấy mọi định thức con chính cấp $(n-1)$ của $L(G)$ đều bằng nhau.
 
 ??? note "Chứng minh"
-    Với đồ thị vô hướng $G=(V,E)$, ta có thể xây dựng đồ thị có hướng $G'=(V,E')$, trong đó $E'=\{(v_i,v_j):(v_i,v_j)\in E\}\cup\{(v_j,v_i):(v_i,v_j)\in E\}$, tức mỗi cạnh vô hướng trong $G$ được tách thành hai cạnh có hướng ngược chiều nhau trong đồ thị có hướng. Chọn tùy ý $k$. Khi đó, cây khung có hướng lấy $k$ làm gốc và hướng về gốc trong $G'$ tương ứng một-một với cây khung trong $G$. Từ đối tượng trước sang đối tượng sau, chỉ cần bỏ hướng cạnh và bỏ lựa chọn gốc; từ đối tượng sau sang đối tượng trước, chỉ cần bắt đầu từ gốc đã chọn $k$ và định hướng từng cạnh theo chiều hướng về gốc. Do đó, lúc này
+    Với đồ thị vô hướng $G=(V,E)$, có thể xây dựng đồ thị có hướng $G'=(V,E')$, trong đó $E'=\{(v_i,v_j):(v_i,v_j)\in E\}\cup\{(v_j,v_i):(v_i,v_j)\in E\}$, tức mỗi cạnh vô hướng trong $G$ được tách thành hai cạnh có hướng ngược chiều nhau trong đồ thị có hướng. Chọn tùy ý $k$. Khi đó, cây khung có hướng lấy $k$ làm gốc và hướng về gốc trong $G'$ tương ứng một-một với cây khung trong $G$. Từ đối tượng trước sang đối tượng sau, chỉ cần bỏ hướng cạnh và bỏ lựa chọn gốc; từ đối tượng sau sang đối tượng trước, chỉ cần bắt đầu từ gốc đã chọn $k$ và định hướng từng cạnh theo chiều hướng về gốc. Do đó, lúc này
 
     $$
     \sum_{T\in\mathcal T(G)}w(T) = \sum_{T\in\mathcal T^\mathrm{root}(G',k)}w(T) = \det L^\mathrm{out}(G')_{[n]\setminus\{k\},[n]\setminus\{k\}} = \det L(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
@@ -294,7 +294,7 @@ Vẫn bắt đầu bằng kết luận trên đồ thị có hướng.
 
     Duyệt mọi $S$. Theo Bổ đề 2, khi và chỉ khi $T=(V,S)$ tạo thành một rừng hướng về gốc với tập gốc $V\setminus W=\{k_1,\cdots,k_r\}$, vế phải cộng thêm một lượng $w(T)$.
 
-Thay $x$ vào mọi biến chưa biết, ta thu được đa thức đặc trưng của ma trận Laplace
+Thay $x$ vào mọi biến chưa biết, thu được đa thức đặc trưng của ma trận Laplace
 
 $$
 P(x) = \det(xI-L^\mathrm{out}(G)) = \chi(x,\cdots,x).
@@ -325,14 +325,14 @@ $$
     \sum_{T\in\mathcal T_k(G)}w(T)Q(T) = (-1)^{n-k}[x^k]P(x).
     $$
 
-    Ở đây, $Q(T)$ là tích số đỉnh của từng thành phần liên thông trong rừng $T$. Đặc biệt, khi $k=1$, ta có $Q(T)=n$, nên
+    Ở đây, $Q(T)$ là tích số đỉnh của từng thành phần liên thông trong rừng $T$. Đặc biệt, khi $k=1$, có $Q(T)=n$, nên
 
     $$
     n\sum_{T\in\mathcal T(G)}w(T) = \lambda_1\lambda_2\cdots\lambda_{n-1}.
     $$
 
 ??? note "Chứng minh"
-    Làm tương tự chứng minh Hệ quả 4, ta có thể dùng trực tiếp kết luận của Hệ quả 5. Mỗi rừng hướng về gốc gồm $k$ cây trong đồ thị có hướng đều tương ứng với một rừng khung $k$ thành phần trong đồ thị vô hướng. Tuy nhiên, do mỗi rừng khung $k$ thành phần $T$ có $Q(T)$ cách chọn gốc, nó sẽ xuất hiện trong $Q(T)$ rừng hướng về gốc của đồ thị có hướng.
+    Làm tương tự chứng minh Hệ quả 4, có thể dùng trực tiếp kết luận của Hệ quả 5. Mỗi rừng hướng về gốc gồm $k$ cây trong đồ thị có hướng đều tương ứng với một rừng khung $k$ thành phần trong đồ thị vô hướng. Tuy nhiên, do mỗi rừng khung $k$ thành phần $T$ có $Q(T)$ cách chọn gốc, nó sẽ xuất hiện trong $Q(T)$ rừng hướng về gốc của đồ thị có hướng.
 
 ## Ứng dụng
 
@@ -348,7 +348,7 @@ $$
     L(G) = \left(\begin{matrix} n-1 & -1 & \cdots & -1 \\ -1 & n-1 & \cdots & -1 \\ \vdots & \vdots & \ddots & \vdots \\ -1 & -1 & \cdots & n-1  \end{matrix}\right)_{n\times n}.
     $$
 
-    Tính một định thức con chính bất kỳ của nó, ta có
+    Tính một định thức con chính bất kỳ của nó, có
 
     $$
     \det(nI_{n-1}-{\bf 1}{\bf 1}^T) = n^{n-1}\det(I_{n-1}-n^{-1}{\bf 1}{\bf 1}^T) = n^{n-1}(1-n^{-1}{\bf 1}^T{\bf 1}) = n^{n-1}(1-(n-1)/n) = n^{n-2}.
@@ -378,7 +378,7 @@ Với đồ thị Euler, vì bậc ra và bậc vào bằng nhau, có thể bỏ
     \mathrm{ec}(G) = t^\mathrm{root}(G,k)\prod_{v\in V}(\deg (v) - 1)!.
     $$
 
-    Điều này cũng cho thấy với mọi hai đỉnh $k, k'$ của đồ thị Euler $G$, ta đều có $t^\mathrm{root}(G,k)=t^\mathrm{root}(G,k')$.
+    Điều này cũng cho thấy với mọi hai đỉnh $k, k'$ của đồ thị Euler $G$, đều có $t^\mathrm{root}(G,k)=t^\mathrm{root}(G,k')$.
 
 ??? note "Chứng minh"
     Ý tưởng chính của chứng minh là xây dựng một tương ứng giữa chu trình Euler bắt đầu từ $k$, cây khung có hướng lấy $k$ làm gốc và hướng về gốc, cùng các hoán vị của các cạnh ra tại từng đỉnh. Sau khi chỉ định đỉnh bắt đầu của chu trình Euler, số cần chứng minh phải bằng
@@ -387,17 +387,17 @@ Với đồ thị Euler, vì bậc ra và bậc vào bằng nhau, có thể bỏ
     \mathrm{deg}(k)\mathrm{ec}(G) = t^\mathrm{root}(G,k)\deg(k)!\prod_{v\neq k}(\deg (v) - 1)!.
     $$
 
-    Ý nghĩa tổ hợp của số đếm này ứng với cấu trúc sau. Với một chu trình Euler bắt đầu tại $k$, dựa trên thứ tự xuất hiện của từng cạnh trong chu trình, ta có thể xây dựng
+    Ý nghĩa tổ hợp của số đếm này ứng với cấu trúc sau. Với một chu trình Euler bắt đầu tại $k$, dựa trên thứ tự xuất hiện của từng cạnh trong chu trình, có thể xây dựng
 
     -   một cây khung có hướng lấy $k$ làm gốc và hướng về gốc, gồm các cạnh ra cuối cùng tại mọi đỉnh không phải gốc, tức $t^\mathrm{root}(G,k)$,
     -   thứ tự hoán vị của mọi cạnh ra tại gốc $k$, tức $\mathrm{deg}(k)!$, và
     -   thứ tự hoán vị của mọi cạnh ra còn lại tại đỉnh không phải gốc $v\neq k$ sau khi bỏ cạnh ra cuối cùng, tức $(\mathrm{deg}(v)-1)!$.
 
-    Ta sẽ chỉ ra rằng ánh xạ do cấu trúc này tạo ra là song ánh.
+    Cần chỉ ra rằng ánh xạ do cấu trúc này tạo ra là song ánh.
 
     Một mặt, cho một chu trình Euler, cần chứng minh các cạnh ra cuối cùng tại mọi đỉnh không phải gốc tạo thành một cây khung có hướng hướng về gốc. Theo cách dựng, trong cây mỗi đỉnh không phải gốc đúng là chỉ có một cạnh ra, nên chỉ cần chứng minh các cạnh ra này không tạo chu trình. Chú ý rằng nếu sắp xếp tất cả đỉnh theo thứ tự xuất hiện lần cuối trong chu trình Euler, thì cạnh ra cuối cùng của một đỉnh không phải gốc chắc chắn trỏ đến một đỉnh đứng sau nó một cách nghiêm ngặt trong thứ tự này. Nếu tồn tại chu trình, thì trong chu trình đó có một đỉnh đứng sau cùng theo thứ tự; vì nó nằm trong chu trình, nó lại trỏ đến một đỉnh không đứng sau nó, mâu thuẫn với lập luận trên. Vì vậy, các cạnh ra cuối cùng của các đỉnh không phải gốc chắc chắn tạo thành cây khung có hướng hướng về gốc.
 
-    Mặt khác, cho một cây khung có hướng hướng về gốc bất kỳ và thứ tự hoán vị của các cạnh ra còn lại, ta có thể khôi phục một chu trình Euler sao cho sau khi áp dụng cấu trúc trên, chu trình Euler đó cho lại đúng cây khung có hướng và thứ tự cạnh ra đã cho. Để làm điều này, chỉ cần xuất phát từ gốc $k$; mỗi khi đến một đỉnh, dựa trên thứ tự hoán vị các cạnh ra đã cho tại đỉnh đó, chọn cạnh ra chưa đi qua và đứng sớm nhất làm cạnh lần này của chu trình Euler. Nếu mọi cạnh ra trong hoán vị tại đỉnh đó đều đã đi qua, thì chọn cạnh ra của đỉnh đó trong cây khung có hướng làm cạnh lần này của chu trình Euler. Vì đồ thị là đồ thị Euler, bậc vào của mỗi đỉnh bằng bậc ra, nên quá trình này không dừng ở đỉnh không phải gốc, tức đường đi thu được đúng là một chu trình. Để chứng minh đường đi thu được là chu trình Euler hợp lệ, chỉ cần chứng minh quá trình này có thể đi qua mọi cạnh.
+    Mặt khác, cho một cây khung có hướng hướng về gốc bất kỳ và thứ tự hoán vị của các cạnh ra còn lại, có thể khôi phục một chu trình Euler sao cho sau khi áp dụng cấu trúc trên, chu trình Euler đó cho lại đúng cây khung có hướng và thứ tự cạnh ra đã cho. Để làm điều này, chỉ cần xuất phát từ gốc $k$; mỗi khi đến một đỉnh, dựa trên thứ tự hoán vị các cạnh ra đã cho tại đỉnh đó, chọn cạnh ra chưa đi qua và đứng sớm nhất làm cạnh lần này của chu trình Euler. Nếu mọi cạnh ra trong hoán vị tại đỉnh đó đều đã đi qua, thì chọn cạnh ra của đỉnh đó trong cây khung có hướng làm cạnh lần này của chu trình Euler. Vì đồ thị là đồ thị Euler, bậc vào của mỗi đỉnh bằng bậc ra, nên quá trình này không dừng ở đỉnh không phải gốc, tức đường đi thu được đúng là một chu trình. Để chứng minh đường đi thu được là chu trình Euler hợp lệ, chỉ cần chứng minh quá trình này có thể đi qua mọi cạnh.
 
     Nếu không, chắc chắn có một cạnh ra nào đó của một đỉnh $v$ chưa được đi qua. Xét đỉnh $v$. Đỉnh $v$ không thể là gốc, vì cuối cùng quá trình dừng ở gốc; nếu gốc vẫn còn cạnh ra chưa dùng, điều đó mâu thuẫn với việc quá trình đã dừng. Vì vậy, $v$ chắc chắn không phải gốc. Theo quá trình mô tả ở trên, chỉ cần đỉnh không phải gốc $v$ còn bất kỳ cạnh ra nào chưa dùng, thì cạnh ra $e$ của đỉnh không phải gốc đó trong cây chắc chắn còn chưa dùng. Ký hiệu $e=(v,u)$. Vì có một cạnh vào của $u$ chưa được đi qua, và bậc ra của $u$ bằng bậc vào, chắc chắn $u$ có một cạnh ra chưa được đi qua. Sau đó, có thể xét đỉnh $u$ theo cách tương tự. Lập luận này chuyển đỉnh đang xét từ $v$ sang $u$, tức đi một bước dọc theo cây khung có hướng về phía gốc của cây. Bằng quy nạp, có thể chứng minh lúc này chắc chắn tồn tại một cạnh ra của gốc $k$ chưa được đi qua. Ở trên đã chỉ ra điều này là không thể, nên thu được mâu thuẫn. Điều này chứng minh đường đi ở đoạn trước đúng là chu trình Euler hợp lệ.
 
@@ -479,8 +479,8 @@ Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian 
         mat[2][1] = mat[2][3] = 1;
         mat[3][0] = mat[3][2] = 1;
         mat[0][0] = mat[1][1] = mat[2][2] = mat[3][3] = -2;
-        this->n--;  // xoa mot hang
-        this->m--;  // xoa mot cot
+        this->n--;  // xóa một hàng
+        this->m--;  // xóa một cột
       }
 
       double gauss() {
@@ -529,7 +529,7 @@ Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian 
     **Lời giải** Đây là bài áp dụng trực tiếp định lý ma trận cây. Xem mỗi phòng trống là một nút, dựng đồ thị theo thông tin đầu vào, thu được ma trận Laplace rồi xóa tùy ý hàng $i$ và cột $i$ của $L$, sau đó tính định thức của định thức con này. Cách tính định thức là khử Gauss về ma trận tam giác trên rồi lấy tích đường chéo. Ngoài ra, bài này cần khử Gauss trên vành con số nguyên modulo $k$, tức $\mathbb{Z}_k$, nên có thể dùng thuật toán Euclid.
 
 ???+ note "Ví dụ 2: [FJOI2007 - Virus hình bánh xe](https://www.luogu.com.cn/problem/P2144)"
-    **Lời giải** Bài này có nhiều cách giải; ở đây dùng định lý ma trận cây là cách trực tiếp nhất. Khi đầu vào là $n$, dễ viết ma trận Laplace cấp $n+1$ của nó như sau:
+    **Lời giải** Bài này có nhiều cách giải; dùng định lý ma trận cây là cách trực tiếp nhất. Khi đầu vào là $n$, dễ viết ma trận Laplace cấp $n+1$ của nó như sau:
 
     $$
     L_n = \begin{bmatrix}
@@ -552,7 +552,7 @@ Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian 
 
     Quá trình suy ra công thức truy hồi:
 
-    Chú ý rằng ma trận thu được sau khi xóa hàng 1 và cột 1 của $L_n$ có quy luật rõ ràng, nên thực chất ta đang tính định thức của ma trận
+    Chú ý rằng ma trận thu được sau khi xóa hàng 1 và cột 1 của $L_n$ có quy luật đều đặn, nên thực chất đang tính định thức của ma trận
 
     $$
     M_n = \begin{bmatrix}
@@ -592,7 +592,7 @@ Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian 
     Ký hiệu định thức của ba ma trận trên lần lượt là $d_{n-1}, a_{n-1}, b_{n-1}$.
 
     Chú ý rằng $d_n$ là định thức ba đường chéo. Dùng cách khai triển tương tự, có thể thu được công thức truy hồi $d_n=3d_{n-1}-d_{n-2}$. Tương tự, khai triển cũng cho $a_{n-1}=-d_{n-2}-1$ và $(-1)^n b_{n-1}=-d_{n-2}-1$.
-    Thay các công thức truy hồi này vào biểu thức trên, ta được:
+    Thay các công thức truy hồi này vào biểu thức trên, thu được:
 
     $$
     \det M_n = 3d_{n-1}-2d_{n-2}-2
@@ -602,7 +602,7 @@ Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian 
     d_n = 3d_{n-1}-d_{n-2}
     $$
 
-    Từ đó đoán rằng $\det M_n$ cũng là một truy hồi tuyến tính bậc hai không thuần nhất. Dùng phương pháp hệ số bất định, ta thu được công thức truy hồi cuối cùng:
+    Từ đó đoán rằng $\det M_n$ cũng là một truy hồi tuyến tính bậc hai không thuần nhất. Dùng phương pháp hệ số bất định, thu được công thức truy hồi cuối cùng:
 
     $$
     \det M_n = 3\det M_{n-1} - \det M_{n-2} + 2
