@@ -19,7 +19,7 @@ Mã nguồn được lưu trữ tại [xalanq/cf-tool](https://github.com/xalanq
 -   Tải mẫu của bài.
 -   Biên dịch cục bộ và kiểm thử mẫu.
 -   Tải toàn bộ mã của một người.
--   Sinh mã từ template chỉ định (bao gồm timestamp, tác giả và các thông tin khác).
+-   Sinh mã từ mẫu chỉ định (bao gồm dấu thời gian, tác giả và các thông tin khác).
 -   Liệt kê thông tin tổng quát của tất cả bài trong một cuộc thi.
 -   Mở trang bài, bảng xếp hạng, trang nộp bài, v.v. bằng trình duyệt mặc định.
 -   Giao diện dòng lệnh nhiều màu sắc.
@@ -32,7 +32,7 @@ Các bản cập nhật sau đó có thể được lấy trực tiếp bằng l
 
 ### Cách dùng
 
-Sau khi đặt tệp thực thi đã tải `cf` (hoặc `cf.exe`) vào vị trí phù hợp (xem câu hỏi thường gặp thứ hai), mở dòng lệnh và dùng lệnh `cf config` để cấu hình tên người dùng, mật khẩu và template mã.
+Sau khi đặt tệp thực thi đã tải `cf` (hoặc `cf.exe`) vào vị trí phù hợp (xem câu hỏi thường gặp thứ hai), mở dòng lệnh và dùng lệnh `cf config` để cấu hình tên người dùng, mật khẩu và mẫu mã.
 
 ### Ví dụ sử dụng
 
@@ -50,7 +50,7 @@ Nếu cuộc thi chưa bắt đầu, lệnh này sẽ đếm ngược. Khi cuộ
 
 `cf gen`
 
-Sinh một tệp mã bằng template mặc định; ở đây giả sử đặt là `a.cpp`.
+Sinh một tệp mã bằng mẫu mặc định; ở đây giả sử đặt là `a.cpp`.
 
 `vim a.cpp`
 
@@ -76,7 +76,7 @@ Mở bảng xếp hạng bằng trình duyệt để xem thứ hạng.
 
 1.  Tôi nhấp đúp vào chương trình này nhưng không thấy gì xảy ra
 
-    cf-tool là công cụ giao diện dòng lệnh; bạn nên chạy công cụ này trong terminal.
+    cf-tool là công cụ giao diện dòng lệnh; bạn nên chạy công cụ này trong trình dòng lệnh.
 
 2.  Tôi không thể dùng lệnh `cf`
 
@@ -88,7 +88,7 @@ Mở bảng xếp hạng bằng trình duyệt để xem thứ hạng.
 
     Tạo thêm hai tệp dữ liệu test `inK.txt` và `ansK.txt` (K là một chuỗi gồm các chữ số 0\~9).
 
-4.  Cách bật hoàn thành bằng tab trong terminal
+4.  Cách bật hoàn thành bằng tab trong trình dòng lệnh
 
     Có thể dùng công cụ [Infinidat/infi.docopt\_completion](https://github.com/Infinidat/infi.docopt_completion).
 
