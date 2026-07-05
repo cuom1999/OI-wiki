@@ -1,16 +1,16 @@
 ## Định nghĩa
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 
 Một số bài toán [DP nén trạng thái](./state.md) yêu cầu ta ghi lại thông tin liên thông của trạng thái. Những bài toán như vậy thường được gọi một cách hình tượng là DP đầu nối (plug DP), hay DP nén trạng thái liên thông. Ví dụ: đếm đường đi Hamilton trên đồ thị lưới, đếm số cách tô đen trắng bàn cờ sao cho các ô cùng màu tạo thành một khối liên thông, hoặc đếm cây khung của một số đồ thị đặc biệt. Các bài toán này thường cần mã hóa tính liên thông của trạng thái và phân tích cách tính liên thông thay đổi trong quá trình chuyển trạng thái.
 
 ## Mở đầu
 
-<span id="&#24341;&#20837;"></span>
+<span id="mở-đầu"></span>
 
 ### Lát domino và DP đường biên
 
-<span id="&#39592;&#29260;&#35206;&#30422;&#19982;&#36718;&#24275;&#32447;-dp"></span>
+<span id="lát-domino-và-dp-đường-biên"></span>
 
 Ôn cũ để biết mới: trước khi học DP đầu nối, ta hãy nhắc lại một bài toán kinh điển.
 
@@ -79,7 +79,7 @@ Ta thấy hai công thức "không đặt" và "đặt dọc" có thể gộp l�
 
 ### Thuật ngữ
 
-<span id="&#26415;&#35821;"></span>
+<span id="thuật-ngữ"></span>
 
 Giai đoạn: thứ tự thực hiện quy hoạch động; kết quả của các giai đoạn sau chỉ phụ thuộc vào kết quả của các giai đoạn trước (không có hậu hiệu). Nhiều bài toán DP có thể có nhiều cách chia giai đoạn. Ví dụ trong bài toán ba lô, ta thường có thể chia theo vật phẩm hoặc theo dung lượng ba lô (vòng lặp ngoài duyệt gì trước). Còn trong bài toán domino, ta có thể chia theo hàng, cột, ô, đường chéo và các đặc trưng khác.
 
@@ -93,15 +93,15 @@ Giai đoạn: thứ tự thực hiện quy hoạch động; kết quả của c�
 
 ## Mô hình đường đi
 
-<span id="&#36335;&#24452;&#27169;&#22411;"></span>
+<span id="mô-hình-đường-đi"></span>
 
 ### Nhiều chu trình
 
-<span id="&#22810;&#26465;&#22238;&#36335;"></span>
+<span id="nhiều-chu-trình"></span>
 
 #### Ví dụ
 
-<span id="&#20363;&#39064;"></span>
+<span id="ví-dụ"></span>
 
 ???+ note "Ví dụ [「HDU 1693」Eat the Trees](https://acm.hdu.edu.cn/showproblem.php?pid=1693)"
     Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng một số chu trình; một số vị trí có chướng ngại.
@@ -117,18 +117,18 @@ Chú ý rằng với một bàn cờ rộng $m$, độ rộng của đường bi
 
 #### Bài tập
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 
 ??? note "Bài tập [「ZOJ 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827368730)"
     Tóm tắt đề bài: giống bài trên, nhưng các ô trở thành lục giác.
 
 ### Một chu trình
 
-<span id="&#19968;&#26465;&#22238;&#36335;"></span>
+<span id="một-chu-trình"></span>
 
 #### Ví dụ
 
-<span id="&#20363;&#39064;_1"></span>
+<span id="ví-dụ_1"></span>
 
 ???+ note "Ví dụ [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
     Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng đúng một chu trình.
@@ -137,7 +137,7 @@ Trong cách biểu diễn trạng thái ở trên, mỗi lần ta ghép một nh
 
 #### Mã hóa trạng thái
 
-<span id="&#29366;&#24577;&#32534;&#30721;"></span>
+<span id="mã-hóa-trạng-thái"></span>
 
 Các cách mã hóa thường dùng gồm biểu diễn bằng ngoặc và biểu diễn tối tiểu. Ở đây ta tập trung giới thiệu biểu diễn tối tiểu, vì nó có tính tổng quát tốt hơn. Ta dùng một mảng số nguyên độ dài $m+1$ để ghi lại trạng thái của từng đầu nối trên đường biên; $0$ nghĩa là không có đầu nối, và quy ước các đầu nối liên thông với nhau được đánh dấu bằng cùng một số.
 
@@ -180,7 +180,7 @@ Ta nhận thấy các đầu nối luôn xuất hiện theo cặp và biến m�
 
 #### Tự viết bảng băm
 
-<span id="&#25163;&#20889;&#21704;&#24076;"></span>
+<span id="tự-viết-bảng-băm"></span>
 
 Trong một số bài toán [DP nén trạng thái](./state.md), các trạng thái hợp lệ có thể rất thưa (ví dụ bài này). Để tối ưu độ phức tạp thời gian và bộ nhớ, ta có thể dùng bảng băm để lưu các trạng thái DP hợp lệ. Với người dùng C++, ta có thể dùng [std::unordered\_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/), và dĩ nhiên cũng có thể tự viết trực tiếp để linh hoạt đóng gói cả hàm chuyển trạng thái.
 
@@ -227,11 +227,11 @@ Trong đoạn mã trên:
 -   `push()` là hàm chuyển trạng thái; trong đó `d` là một biến toàn cục (để viết nhanh), biểu thị lượng tăng thêm do mỗi lần chuyển trạng thái mang lại. Nếu tìm thấy trạng thái thì `+=`, nếu không thì tạo một nút mới có trạng thái là `s` và khóa là `d`.
 -   `roll()` cuộn đường biên sau khi duyệt xong cả một hàng.
 
-Về phân tích độ phức tạp của bảng băm, cũng như sự khác nhau giữa hashing mở và hashing đóng, có thể tham khảo các chương liên quan đến bảng băm trong [Introduction to Algorithms](../contest/resources.md#%E4%B9%A6%E7%B1%8D).
+Về phân tích độ phức tạp của bảng băm, cũng như sự khác nhau giữa hashing mở và hashing đóng, có thể tham khảo các chương liên quan đến bảng băm trong [Introduction to Algorithms](../contest/resources.md#sách).
 
 #### Chuyển trạng thái
 
-<span id="&#29366;&#24577;&#36716;&#31227;"></span>
+<span id="chuyển-trạng-thái"></span>
 
 ???+ note "Cài đặt mã"
     ```cpp
@@ -273,7 +273,7 @@ Về phân tích độ phức tạp của bảng băm, cũng như sự khác nha
 
 #### Bài tập
 
-<span id="&#20064;&#39064;_1"></span>
+<span id="bài-tập_1"></span>
 
 ??? note "Bài tập [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng đúng một chu trình; một số vị trí có chướng ngại.
@@ -295,11 +295,11 @@ Về phân tích độ phức tạp của bảng băm, cũng như sự khác nha
 
 ### Một đường đi
 
-<span id="&#19968;&#26465;&#36335;&#24452;"></span>
+<span id="một-đường-đi"></span>
 
 #### Ví dụ
 
-<span id="&#20363;&#39064;_2"></span>
+<span id="ví-dụ_2"></span>
 
 ???+ note "Ví dụ [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
     Tóm tắt đề bài: với một hình vuông $N\times M$ ($N,M\le 8$), mỗi điểm lưới có một trọng số. Tìm một đường đi sao cho tổng trọng số các điểm lưới được đường đi phủ là lớn nhất.
@@ -310,7 +310,7 @@ Ta cần ghi thêm trong trạng thái tổng số lần loại sự kiện này
 
 #### Chuyển trạng thái
 
-<span id="&#29366;&#24577;&#36716;&#31227;_1"></span>
+<span id="chuyển-trạng-thái_1"></span>
 
 ???+ note "Cài đặt mã"
     ```cpp
@@ -376,7 +376,7 @@ Ta cần ghi thêm trong trạng thái tổng số lần loại sự kiện này
 
 #### Bài tập
 
-<span id="&#20064;&#39064;_2"></span>
+<span id="bài-tập_2"></span>
 
 ??? note "Bài tập [「BZOJ 2310」ParkII](https://hydro.ac/p/bzoj-P2310)"
     Tóm tắt đề bài: bàn cờ $m\times n$, mỗi điểm lưới có một trọng số. Tìm một đường đi phủ sao cho tổng trọng số các điểm mà đường đi đi qua là lớn nhất.
@@ -391,13 +391,13 @@ Ta cần ghi thêm trong trạng thái tổng số lần loại sự kiện này
 
 ## Mô hình tô màu
 
-<span id="&#26579;&#33394;&#27169;&#22411;"></span>
+<span id="mô-hình-tô-màu"></span>
 
 Ngoài mô hình đường đi, còn có một loại mô hình thường gặp khác, trong đó ta cần tô màu bàn cờ; các nút kề nhau có cùng màu được xem là liên thông. Trong các bài toán dạng đường đi, khi chuyển trạng thái ta liệt kê hướng của đường đi hiện tại; còn trong các bài toán tô màu, ta liệt kê màu sẽ tô cho nút hiện tại. Trong mô hình tô màu, các nút có cùng tính liên thông trong trạng thái có thể không chỉ có hai nút. Nhưng nhìn chung cách xử lý vẫn gần giống nhau. Ta hãy xét một ví dụ kinh điển.
 
 ### Ví dụ「UVa 10572」Black & White
 
-<span id="&#20363;&#39064;uva-10572black--white"></span>
+<span id="ví-dụuva-10572black--white"></span>
 
 ???+ note "Ví dụ [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513)"
     Tóm tắt đề bài: tô đen trắng các điểm lưới chưa tô trong một bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời màu trong bất kỳ hình chữ nhật con $2\times 2$ nào không được hoàn toàn giống nhau (ví dụ trường hợp trong hình dưới là không hợp lệ). Hãy đếm số phương án hợp lệ và dựng một phương án hợp lệ.
@@ -406,7 +406,7 @@ Ngoài mô hình đường đi, còn có một loại mô hình thường gặp 
 
 ### Mã hóa trạng thái
 
-<span id="&#29366;&#24577;&#32534;&#30721;_1"></span>
+<span id="mã-hóa-trạng-thái_1"></span>
 
 Trước hết xét cách mã hóa trạng thái. Nếu không xét tính liên thông thì đây chính là [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197), có thể giải trực tiếp bằng [DP nén trạng thái](./state.md). Bây giờ ta cần thể hiện đồng thời thông tin màu và tính liên thông trong trạng thái. Xét trạng thái của từng vị trí trên đường biên: mỗi `Offset` bit trong biểu diễn nhị phân mô tả một vị trí trên đường biên. Vì chỉ có hai màu đen trắng, ta dùng tính chẵn lẻ của bit thấp nhất để biểu thị màu, các phần còn lại biểu thị tính liên thông.
 
@@ -450,7 +450,7 @@ Trong trường hợp nhiều nhất (ví dụ hàng đầu tiên đen trắng x
 
 ### Tự viết bảng băm
 
-<span id="&#25163;&#20889;&#21704;&#24076;_1"></span>
+<span id="tự-viết-bảng-băm_1"></span>
 
 Vì cần dựng một phương án bất kỳ, bảng băm ở đây cần thêm một trường `pre[]` để ghi lại một tiền nhiệm bất kỳ của mỗi trạng thái ở giai đoạn trước.
 
@@ -491,7 +491,7 @@ Vì cần dựng một phương án bất kỳ, bảng băm ở đây cần thê
 
 ### Dựng phương án
 
-<span id="&#26041;&#26696;&#26500;&#36896;"></span>
+<span id="dựng-phương-án"></span>
 
 Với các thông tin trên, ta có thể dễ dàng dựng phương án. Trước hết duyệt các trạng thái trong bảng băm hiện tại; nếu số thành phần liên thông không vượt quá $2$ thì cộng vào số phương án. Nếu số phương án khác $0$, ta dùng mảng `pre` theo thứ tự ngược để dựng phương án. Chú ý ở cuối mỗi hàng, vì ta đã thực hiện thao tác `Roll()`, màu cần lấy từ `c[j+1]`.
 
@@ -526,7 +526,7 @@ Với các thông tin trên, ta có thể dễ dàng dựng phương án. Trư�
 
 ### Chuyển trạng thái
 
-<span id="&#29366;&#24577;&#36716;&#31227;_2"></span>
+<span id="chuyển-trạng-thái_2"></span>
 
 Ta ký hiệu:
 
@@ -563,7 +563,7 @@ Ta dùng $-1$ để biểu thị màu không tồn tại. Tiếp theo xét chuy�
     }
     ```
 
-Với trường hợp cuối cùng, cần chú ý: nếu đã sinh ra một vùng liên thông khép kín, ta không thể tiếp tục dùng màu của vùng đó để tô, nếu không màu này sẽ có hai thành phần liên thông. Có vẻ ta cần ghi thêm loại sự kiện này; có thể tham khảo cách làm trong [「ZOJ 3213」Beautiful Meadow](#%E4%BE%8B%E9%A2%98_2), thêm một chiều để ghi lại sự kiện. Tuy nhiên nhờ tính chất đặc biệt của bài này, ta cũng có thể xử lý riêng.
+Với trường hợp cuối cùng, cần chú ý: nếu đã sinh ra một vùng liên thông khép kín, ta không thể tiếp tục dùng màu của vùng đó để tô, nếu không màu này sẽ có hai thành phần liên thông. Có vẻ ta cần ghi thêm loại sự kiện này; có thể tham khảo cách làm trong [「ZOJ 3213」Beautiful Meadow](#ví-dụ_2), thêm một chiều để ghi lại sự kiện. Tuy nhiên nhờ tính chất đặc biệt của bài này, ta cũng có thể xử lý riêng.
 
 ???+ note "Xử lý riêng - mã"
     ```cpp
@@ -602,7 +602,7 @@ Ta xử lý riêng trường hợp này. Nhờ vậy trong bài này có thể v
 
 ### Bài tập
 
-<span id="&#20064;&#39064;_3"></span>
+<span id="bài-tập_3"></span>
 
 ??? note "Bài tập [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://archive.topcoder.com/ProblemStatement/pm/6482)"
     Tóm tắt đề bài: cho một đồ thị bàn cờ, mỗi ô có trọng số. Tìm một khối liên thông có tổng trọng số nhỏ nhất.
@@ -615,7 +615,7 @@ Ta xử lý riêng trường hợp này. Nhờ vậy trong bài này có thể v
 
 ## Mô hình đồ thị
 
-<span id="&#22270;&#35770;&#27169;&#22411;"></span>
+<span id="mô-hình-đồ-thị"></span>
 
 ???+ note "Ví dụ [「NOI 2007 Day2」Đếm cây khung](https://www.luogu.com.cn/problem/P2109)"
     Tóm tắt đề bài: đếm cây khung của một lớp đồ thị đặc biệt, trong đó mỗi nút có cạnh nối tới đúng $k$ nút đứng trước nó.
@@ -630,11 +630,11 @@ Ta xử lý riêng trường hợp này. Nhờ vậy trong bài này có thể v
 
 ## Thực chiến
 
-<span id="&#23454;&#25112;&#31687;"></span>
+<span id="thực-chiến"></span>
 
 ### Ví dụ
 
-<span id="&#20363;&#39064;_3"></span>
+<span id="ví-dụ_3"></span>
 
 ???+ note "Ví dụ [「HDU 4113」Construct the Great Wall](https://acm.hdu.edu.cn/showproblem.php?pid=4113)"
     Tóm tắt đề bài: dựng một tập chu trình trong bàn cờ $N\times M$ để phân tách tất cả `x` và `o`.
@@ -650,7 +650,7 @@ Trong bài này, nếu xem như mô hình tô màu, ta không chỉ cần thảo
     oxo
     ooo
 
-Vì vậy ta dùng mô hình đường đi và chuyển thành bài toán [một chu trình](#%E4%B8%80%E6%9D%A1%E5%9B%9E%E8%B7%AF) để xử lý.
+Vì vậy ta dùng mô hình đường đi và chuyển thành bài toán [một chu trình](#một-chu-trình) để xử lý.
 
 Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chiều dài và chiều rộng cần tăng thêm $1$). Mỗi lần chuyển, cần bảo đảm tất cả `x` nằm ngoài chu trình và `o` nằm trong chu trình. Do đó ta còn cần duy trì vị trí hiện tại có nằm bên trong chu trình hay không. Với thông tin này, ta có thể thêm một chiều, hoặc trực tiếp thống kê tính chẵn lẻ của số đầu nối đi xuống đã xuất hiện trên đường biên trước vị trí này (phương pháp tia).
 
@@ -805,7 +805,7 @@ Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chi�
 
 ### Bài tập
 
-<span id="&#20064;&#39064;_4"></span>
+<span id="bài-tập_4"></span>
 
 ??? note "Bài tập [「SCOI 2011」Sàn nhà](https://www.luogu.com.cn/problem/P3272)"
     Tóm tắt đề bài: trên bàn cờ $r\times c$ có một số vị trí đặt chướng ngại. Hỏi có bao nhiêu cách dùng gạch hình chữ L lát kín tất cả các ô không có chướng ngại.
@@ -847,7 +847,7 @@ Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chi�
 
 ## Ghi chú chương
 
-<span id="&#26412;&#31456;&#27880;&#35760;"></span>
+<span id="ghi-chú-chương"></span>
 
 Các bài toán DP đầu nối thường khó mã hóa và thảo luận phức tạp, nên thuộc nhóm lĩnh vực tương đối [ít phổ biến](https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt) trong OI/ACM. Tài liệu kinh điển nhất về hướng này là luận văn đội tuyển năm 2008 của [Chen Danqi](https://www.cs.princeton.edu/~danqic/) - [Dynamic Programming Based on Connectivity State Compression](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/tree/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2008%E8%AE%BA%E6%96%87%E9%9B%86/%E9%99%88%E4%B8%B9%E7%90%A6%E3%80%8A%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E6%80%A7%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E3%80%8B). Ngoài ra, năm 2011 notonlysuccess của HDU từng viết hai bài chuyên đề từ dễ đến khó trên blog, cũng là tài liệu rất quý, nhưng hiện nay phải tra lại qua Web Archive.
 
@@ -856,9 +856,9 @@ Các bài toán DP đầu nối thường khó mã hóa và thảo luận phức
 
 ### Lát domino
 
-<span id="&#22810;&#31859;&#35834;&#39592;&#29260;&#35206;&#30422;"></span>
+<span id="lát-domino"></span>
 
-[「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400) cũng xuất hiện trong [Training Guide for Algorithmic Contests](../contest/resources.md#%E4%B9%A6%E7%B1%8D), với vai trò bài ví dụ của mục "quy hoạch động trên đường biên". [Lát domino (Domino tiling)](https://en.wikipedia.org/wiki/Domino_tiling) là một nhóm bài toán toán học rất kinh điển; chỉ cần thay đổi nhẹ phạm vi dữ liệu là có thể thu được các bài toán con ở nhiều mức độ khó khác nhau, đòi hỏi các thuật toán khác nhau.
+[「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400) cũng xuất hiện trong [Training Guide for Algorithmic Contests](../contest/resources.md#sách), với vai trò bài ví dụ của mục "quy hoạch động trên đường biên". [Lát domino (Domino tiling)](https://en.wikipedia.org/wiki/Domino_tiling) là một nhóm bài toán toán học rất kinh điển; chỉ cần thay đổi nhẹ phạm vi dữ liệu là có thể thu được các bài toán con ở nhiều mức độ khó khác nhau, đòi hỏi các thuật toán khác nhau.
 
 Khi giới hạn $m=2$, lát domino tương đương với dãy Fibonacci. [Concrete Mathematics](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) dùng bài toán này để dẫn nhập dãy Fibonacci, đồng thời dùng nhiều phương pháp để thu được nghiệm giải tích của nó.
 
@@ -875,6 +875,6 @@ Khi $n,m\le 100$, có thể dùng [thuật toán FKT](https://en.wikipedia.org/w
 
 ### Một đường đi
 
-<span id="&#19968;&#26465;&#36335;&#24452;_1"></span>
+<span id="một-đường-đi_1"></span>
 
 "Một đường đi" là một trường hợp đặc biệt của bài toán [đường đi Hamilton (Hamiltonian Path)](https://en.wikipedia.org/wiki/Hamiltonian_path) trên [đồ thị lưới (Grid Graph)](https://mathworld.wolfram.com/GridGraph.html). Bài toán quyết định của đường đi Hamilton là một thành viên quan trọng trong họ [NP-complete](https://en.wikipedia.org/wiki/NP-completeness).
