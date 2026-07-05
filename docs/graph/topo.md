@@ -6,7 +6,7 @@ Sắp xếp topo (Topological sorting) giải quyết bài toán sắp thứ t�
 
 Ta có thể mô tả quá trình này bằng ví dụ xếp lịch học theo từng học kỳ ở đại học. Giả sử các môn học gồm "Lập trình", "Ngôn ngữ thuật toán", "Giải tích cao cấp", "Toán rời rạc", "Kỹ thuật biên dịch", "Vật lý đại cương", "Cấu trúc dữ liệu", "Hệ quản trị cơ sở dữ liệu", v.v. Theo quan hệ tiên quyết trong ví dụ, muốn học "Cấu trúc dữ liệu" thì trước đó phải học "Toán rời rạc"; sau khi học xong môn này, ta có điều kiện tiên quyết để học "Kỹ thuật biên dịch". Tất nhiên, "Kỹ thuật biên dịch" còn có một môn học trước đó nữa là "Ngôn ngữ thuật toán". Các môn học này tương ứng với các đỉnh $u$, còn cạnh có hướng $(u,v)$ giữa các đỉnh tương ứng với thứ tự học. Việc phòng đào tạo sắp xếp các môn này thành một thời khóa biểu thỏa mãn các quan hệ logic chính là quá trình sắp xếp topo.
 
-![topo](images/topo-example-1.svg)
+![Ví dụ sắp xếp topo cho lịch học](images/topo-example-1.svg)
 
 Nhưng nếu một ngày nào đó người xếp lịch lơ đãng và ghi rằng muốn học Cấu trúc dữ liệu thì phải học Hệ điều hành trước, trong khi môn tiên quyết của Hệ điều hành lại là Cấu trúc dữ liệu, vậy rốt cuộc phải học môn nào trước, nếu không xét trường hợp học đồng thời? Ở đây giữa Cấu trúc dữ liệu và Hệ điều hành đã xuất hiện một chu trình. Rõ ràng sinh viên không còn xác định được mình cần học gì trước, nên cũng không thể sắp xếp topo. Nếu trong đồ thị có hướng tồn tại chu trình, ta không thể thực hiện sắp xếp topo.
 
@@ -41,7 +41,7 @@ Lặp lại hai bước trên cho đến khi tất cả các đỉnh đã đư�
 
 Tương ứng với mạng AOV là **mạng AOE (Activity On Edge Network)**, tức mạng trong đó cạnh biểu diễn hoạt động. Mạng AOE là một đồ thị có hướng không chu trình có trọng số, trong đó đỉnh biểu diễn sự kiện, còn cung biểu diễn thời gian kéo dài của hoạt động. Thông thường, mạng AOE có thể được dùng để ước lượng thời gian hoàn thành một công trình. Mạng AOE phải không có chu trình, đồng thời có đúng một đỉnh bắt đầu có bậc vào bằng không, gọi là nguồn, và đúng một đỉnh kết thúc có bậc ra bằng không, gọi là đích.
 
-![topo](images/topo-example-2.svg)
+![Ví dụ mạng AOE](images/topo-example-2.svg)
 
 Trong mạng AOE, một số hoạt động có thể được tiến hành song song. Vì vậy thời gian ngắn nhất để hoàn thành toàn bộ công trình là độ dài của đường hoạt động dài nhất từ điểm bắt đầu đến điểm kết thúc. Ở đây, độ dài đường đi là tổng thời gian kéo dài của các hoạt động trên đường đi, tức tổng trọng số của các cung, chứ không phải số lượng cung trên đường đi. Vì một công trình cần hoàn thành tất cả hoạt động bên trong nó, đường hoạt động dài nhất cũng là đường găng, và nó quyết định tổng thời gian hoàn thành công trình.
 
@@ -100,7 +100,7 @@ Cốt lõi của mã là duy trì một tập các đỉnh có bậc vào bằng
 
 Có thể tham khảo hình sau:
 
-![topo](images/topo-example.svg)
+![Ví dụ thuật toán Kahn](images/topo-example.svg)
 
 Một kết quả sắp xếp của đồ thị này là: 2 -> 8 -> 0 -> 3 -> 7 -> 1 -> 5 -> 6 -> 9 -> 4 -> 11 -> 10 -> 12
 

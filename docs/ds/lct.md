@@ -65,11 +65,11 @@ Trong bài này, có thể xem một số Splay hợp thành một cây phụ tr
 
 Giả sử ta có một cây gốc như hình dưới. (Cạnh tô đậm là cạnh thực, cạnh nét đứt là cạnh ảo.)
 
-![tree](images/lct-atree-1.svg)
+![Cây gốc trong Link-Cut Tree](images/lct-atree-1.svg)
 
 Theo định nghĩa vừa nêu, cấu trúc cây phụ trợ như hình sau.
 
-![auxtree](images/lct-atree-2.svg)
+![Cây phụ trợ trong Link-Cut Tree](images/lct-atree-2.svg)
 
 ### Quan hệ cấu trúc giữa cây gốc và cây phụ trợ
 
@@ -202,15 +202,15 @@ int Access(int x) {
 
 -   Ta có một cây như sau, cạnh liền là cạnh thực, cạnh nét đứt là cạnh ảo.
 
-    ![initial tree](images/lct-access-1.svg)
+    ![Cây ban đầu trước thao tác Access](images/lct-access-1.svg)
 
 -   Cây phụ trợ của nó có thể có dạng sau (cách vẽ khác nhau có thể dẫn tới cấu trúc LCT khác nhau).
 
-    ![initial auxtree](images/lct-access-2.svg)
+    ![Cây phụ trợ ban đầu trước thao tác Access](images/lct-access-2.svg)
 
 -   Bây giờ ta cần `Access(N)`, biến mọi cạnh trên đường từ $A$ tới $N$ thành cạnh thực và kéo chúng thành một Splay.
 
-    ![access tree](images/lct-access-3.svg)
+    ![Cây sau khi chọn đường Access](images/lct-access-3.svg)
 
 -   Cách thực hiện là cập nhật Splay từng bước từ dưới lên trên.
 
@@ -222,25 +222,25 @@ int Access(int x) {
 
 -   Vì vậy AuxTree ban đầu chuyển từ hình dưới sang hình kế tiếp.
 
-    ![step 1 auxtree](images/lct-access-4.svg)
+    ![Cây phụ trợ sau bước Access thứ nhất](images/lct-access-4.svg)
 
 -   Bước tiếp theo, ta cũng xoay `Father` $I$ mà $N$ trỏ tới lên gốc của Splay chứa $I$.
 
 -   Cạnh thực ban đầu $I$--$K$ cần bị bỏ. Lúc này ta cho con phải của $I$ trỏ tới $N$, và thu được một Splay từ $I$ tới $L$.
 
-    ![step 2 auxtree](images/lct-access-5.svg)
+    ![Cây phụ trợ sau bước Access thứ hai](images/lct-access-5.svg)
 
 -   Tiếp theo, theo các bước vừa rồi, vì `Father` của $I$ trỏ tới $H$, ta xoay $H$ lên gốc của Splay Tree chứa nó, rồi đặt `rs` của $H$ thành $I$.
 
 -   Cây sau đó có dạng như sau.
 
-    ![step 3 auxtree](images/lct-access-6.svg)
+    ![Cây phụ trợ sau bước Access thứ ba](images/lct-access-6.svg)
 
 -   Tương tự, ta `Splay(A)` và cho con phải của $A$ trỏ tới $H$.
 
 -   Khi đó ta thu được AuxTree sau, và thấy rằng toàn bộ đường đi $A$--$N$ đã nằm trong cùng một Splay.
 
-    ![step final auxtree](images/lct-access-7.svg)
+    ![Cây phụ trợ sau bước Access cuối cùng](images/lct-access-7.svg)
 
 ```cpp
 // Nhìn lại mã

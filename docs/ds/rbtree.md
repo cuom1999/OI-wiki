@@ -15,7 +15,7 @@ Một cây đỏ-đen hợp lệ phải tuân theo bốn tính chất sau:
 
 Hình dưới đây là một cây đỏ-đen hợp lệ:
 
-![rbtree-example](images/rbtree-example.svg)
+![Ví dụ cây đỏ-đen hợp lệ](images/rbtree-example.svg)
 
 ???+ note "Ghi chú"
     Một số tài liệu còn thêm tính chất thứ năm, tức nút gốc phải có màu đen. Tính chất này yêu cầu sau khi hoàn tất thao tác chèn, nếu nút gốc có màu đỏ thì tô nó thành đen. Tuy nhiên, thao tác tô đen nút gốc cũng có thể được trì hoãn đến khi thực hiện thao tác xóa, nên tính chất này không bắt buộc phải thỏa mãn (phần cài đặt mã trong bài này có thỏa mãn tính chất đó). Để chặt chẽ, ở đây trích dẫn thêm nguyên văn từ [Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Properties):
@@ -51,7 +51,7 @@ Ngoài ra, trong chú thích mã của phần duy trì cân bằng khi chèn/xó
 
 Thao tác xoay là điểm mấu chốt giúp phần lớn các cây cân bằng duy trì cân bằng. Nó có thể thay đổi độ sâu của các nút cục bộ mà không làm thay đổi kết quả duyệt trung thứ tự của một cây BST hợp lệ.
 
-![rbtree-rotations](images/rbtree-rotate.svg)
+![Các phép xoay trong cây đỏ-đen](images/rbtree-rotate.svg)
 
 ???+ note "Cài đặt"
     ```cpp
