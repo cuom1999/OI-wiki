@@ -9,7 +9,7 @@ $$
 \left\lfloor\dfrac{ai+b}{c}\right\rfloor
 $$
 
-Ý tưởng chính của nó là tận dụng cấu trúc đệ quy của chính phân số để chuyển bài toán thành bài toán quy mô nhỏ hơn rồi giải đệ quy. Vì cấu trúc đệ quy của phân số có [liên hệ](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%B1%82%E6%B3%95) trực tiếp với [thuật toán Euclid](./gcd.md#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95), phương pháp tính tổng này cũng được gọi là thuật toán Euclid tương tự.
+Ý tưởng chính của nó là tận dụng cấu trúc đệ quy của chính phân số để chuyển bài toán thành bài toán quy mô nhỏ hơn rồi giải đệ quy. Vì cấu trúc đệ quy của phân số có [liên hệ](./continued-fraction.md#%E8%BF%9E%E5%88%86%E6%95%B0%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%B1%82%E6%B3%95) trực tiếp với [thuật toán Euclid](./gcd.md#thuật-toán-euclid), phương pháp tính tổng này cũng được gọi là thuật toán Euclid tương tự.
 
 Do các phương pháp như [liên phân số](./continued-fraction.md) và [cây Stern-Brocot](./stern-brocot.md) cũng mô tả cấu trúc đệ quy của phân số, những bài toán có thể giải bằng thuật toán Euclid tương tự thường cũng có thể giải bằng các phương pháp đó. So với chúng, thuật toán Euclid tương tự thường dễ hiểu hơn và cài đặt cũng ngắn gọn hơn.
 

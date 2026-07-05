@@ -101,7 +101,7 @@ $$
 a_k = \left\lfloor\frac{p_k}{q_k}\right\rfloor,\ r_{k+1} = \dfrac{1}{r_k-a_k} = \dfrac{q_k}{p_k-a_kq_k} = \dfrac{q_k}{p_k\bmod q_k}.
 $$
 
-Quá trình tính toán lúc này thực chất là áp dụng [thuật toán Euclid](./gcd.md#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95) cho $p$ và $q$. Điều này cũng cho thấy, với số hữu tỉ $r=\dfrac{p}{q}$, độ dài biểu diễn liên phân số là $O(\log\min\{p, q\})$. Độ phức tạp để tính biểu diễn của $\dfrac{p}{q}$ cũng là $O(\log\min\{p, q\})$.
+Quá trình tính toán lúc này thực chất là áp dụng [thuật toán Euclid](./gcd.md#thuật-toán-euclid) cho $p$ và $q$. Điều này cũng cho thấy, với số hữu tỉ $r=\dfrac{p}{q}$, độ dài biểu diễn liên phân số là $O(\log\min\{p, q\})$. Độ phức tạp để tính biểu diễn của $\dfrac{p}{q}$ cũng là $O(\log\min\{p, q\})$.
 
 ???+ example "Cài đặt tham khảo"
     Cho tử số $p$ và mẫu số $q$ của một phân số, xuất ra dãy hệ số $[a_0,a_1,\cdots,a_n]$ của liên phân số.

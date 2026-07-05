@@ -166,7 +166,7 @@ Bảng dưới đây liệt kê một phần giá trị của ký hiệu Legendr
         $$
     4.  Xem [luật thuận nghịch bậc hai](#luật-thuận-nghịch-bậc-hai).
 
-Dựa trên các tính chất trên, nếu tính được giá trị của $\left(\dfrac{p}{q}\right)$ với mọi số nguyên tố lẻ $p$ và $q$, thì ta có thể tính ký hiệu Legendre trong mọi trường hợp hợp lệ. Tiếp theo là một định lý đẹp, thiết lập liên hệ khéo léo giữa $\left(\dfrac{p}{q}\right)$ và $\left(\dfrac{q}{p}\right)$, nhờ đó ta có thể tính theo ý tưởng tương tự [thuật toán Euclid](./gcd.md#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95).
+Dựa trên các tính chất trên, nếu tính được giá trị của $\left(\dfrac{p}{q}\right)$ với mọi số nguyên tố lẻ $p$ và $q$, thì ta có thể tính ký hiệu Legendre trong mọi trường hợp hợp lệ. Tiếp theo là một định lý đẹp, thiết lập liên hệ khéo léo giữa $\left(\dfrac{p}{q}\right)$ và $\left(\dfrac{q}{p}\right)$, nhờ đó ta có thể tính theo ý tưởng tương tự [thuật toán Euclid](./gcd.md#thuật-toán-euclid).
 
 <span id="&#x4E8C;&#x6B21;&#x4E92;&#x53CD;&#x5F8B;"></span>
 ### Luật thuận nghịch bậc hai

@@ -1,4 +1,4 @@
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Ước chung lớn nhất trong tiếng Anh là Greatest Common Divisor, thường viết tắt
@@ -23,10 +23,10 @@ số](./basic.md#ước-chung-lớn-nhất-và-bội-chung-nhỏ-nhất).
 
 Vậy làm thế nào để tìm ước chung lớn nhất? Trước hết xét trường hợp hai số.
 
-<span id="&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-euclid"></span>
 ### Thuật toán Euclid
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quá-trình-thuật-toán-euclid"></span>
 #### Quá trình
 
 Nếu biết hai số $a$ và $b$, làm thế nào để tìm ước chung lớn nhất của chúng?
@@ -61,7 +61,7 @@ Có thể chứng minh $\gcd(a,b)=\gcd(b,a \bmod b)$ như sau:
 Sau khi có $\gcd(a, b) = \gcd(b, r)$, kích thước hai số không tăng lên, nên ta
 thu được một cách đệ quy để tính ước chung lớn nhất của hai số.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-thuật-toán-euclid"></span>
 #### Cài đặt
 
 === "C++"
@@ -151,7 +151,7 @@ chung lớn nhất và bội chung nhỏ nhất.
 Nếu hai số $a$ và $b$ thỏa mãn $\gcd(a, b) = 1$, ta nói $a$ và $b$ nguyên tố
 cùng nhau.
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất-thuật-toán-euclid"></span>
 #### Tính chất
 
 Hiệu quả thời gian của thuật toán Euclid ra sao? Sau đây ta chứng minh: khi đầu
@@ -177,13 +177,13 @@ Thực tế, nếu dùng thuật toán Euclid để tính ước chung lớn nh�
 xóm trong [dãy Fibonacci](../combinatorics/fibonacci.md), thuật toán sẽ đạt độ
 phức tạp xấu nhất.
 
-<span id="&#x66F4;&#x76F8;&#x51CF;&#x635F;&#x672F;"></span>
+<span id="thuật-toán-trừ-dần"></span>
 ### Thuật toán trừ dần
 
 Với số lớn, phép lấy modulo có độ phức tạp cao, còn cộng trừ thì thấp hơn. Vì
 vậy có thể dùng cộng trừ thay cho nhân chia để tính ước chung lớn nhất.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quá-trình-thuật-toán-trừ-dần"></span>
 #### Quá trình
 
 Cho hai số $a$ và $b$, cần tính $\gcd(a,b)$.
@@ -194,7 +194,7 @@ $\forall d\mid a, d\mid b$, có thể chứng minh $d\mid a-b$.
 Do đó **tất cả** ước chung của $a$ và $b$ đều là ước chung của $a-b$ và $b$,
 nên $\gcd(a,b) = \gcd(a-b, b)$.
 
-<span id="stein-&#x7B97;&#x6CD5;&#x7684;&#x4F18;&#x5316;"></span>
+<span id="tối-ưu-hóa-bằng-thuật-toán-stein"></span>
 #### Tối ưu hóa bằng thuật toán Stein
 
 Nếu $a\gg b$, độ phức tạp $O(n)$ của thuật toán trừ dần sẽ rơi vào trường hợp
@@ -218,7 +218,7 @@ $O(\log n)$.
     
     Thuật toán đệ quy tối đa $O(\log n)$ lần.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-thuật-toán-stein"></span>
 #### Cài đặt
 
 Mẫu số độ chính xác cao xem tại [tính toán số lớn](../bignum.md).
@@ -313,7 +313,7 @@ ngược lại nó có thể chậm hơn Euclid.
 Đọc thêm thảo luận về tốc độ của các cách cài đặt `gcd` tại [Fastest way to
 compute the greatest common divisor](https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/).
 
-<span id="&#x591A;&#x4E2A;&#x6570;&#x7684;&#x6700;&#x5927;&#x516C;&#x7EA6;&#x6570;"></span>
+<span id="ước-chung-lớn-nhất-của-nhiều-số"></span>
 ### Ước chung lớn nhất của nhiều số
 
 Vậy tính ước chung lớn nhất của nhiều số như thế nào? Rõ ràng đáp án phải là
@@ -321,13 +321,13 @@ Vậy tính ước chung lớn nhất của nhiều số như thế nào? Rõ r�
 nạp có thể chứng minh: mỗi lần lấy hai số ra tính đáp án rồi đưa lại vào sẽ
 không ảnh hưởng đến đáp án cần tìm.
 
-<span id="&#x6700;&#x5C0F;&#x516C;&#x500D;&#x6570;"></span>
+<span id="bội-chung-nhỏ-nhất"></span>
 ## Bội chung nhỏ nhất
 
 Tiếp theo ta giới thiệu cách tính bội chung nhỏ nhất (Least Common Multiple,
 LCM).
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa-bội-chung-nhỏ-nhất"></span>
 ### Định nghĩa
 
 Bội chung của một tập số nguyên là số đồng thời là bội của mọi số trong tập đó.
@@ -343,7 +343,7 @@ Với các số nguyên $a_1,\dots,a_n$, bội chung nhỏ nhất của chúng �
 $\operatorname{lcm}(a_1,\dots,a_n)$; khi không gây nhầm lẫn có thể viết gọn là
 $[a_1,\dots,a_n]$.
 
-<span id="&#x4E24;&#x4E2A;&#x6570;"></span>
+<span id="hai-số"></span>
 ### Hai số
 
 Đặt $a = p_1^{k_{a_1}}p_2^{k_{a_2}} \cdots p_s^{k_{a_s}}$,
@@ -363,7 +363,7 @@ suy ra $\gcd(a, b) \times \operatorname{lcm}(a, b) = a \times b$.
 
 Muốn tính bội chung nhỏ nhất của hai số, chỉ cần tính ước chung lớn nhất trước.
 
-<span id="&#x591A;&#x4E2A;&#x6570;"></span>
+<span id="nhiều-số"></span>
 ### Nhiều số
 
 Khi đã tính được $\gcd$ của hai số, việc tính bội chung nhỏ nhất là $O(1)$. Vì
@@ -372,13 +372,13 @@ tiếp. Cách trực tiếp là: sau khi tính $\gcd$ của hai số, thay vì �
 lớn nhất đó vào dãy để tiếp tục tính với các số sau, ta chuyển sang đưa bội
 chung nhỏ nhất vào dãy.
 
-<span id="&#x6269;&#x5C55;&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-euclid-mở-rộng"></span>
 ## Thuật toán Euclid mở rộng
 
 Thuật toán Euclid mở rộng (Extended Euclidean algorithm, EXGCD) thường dùng để
 tìm một nghiệm khả thi của $ax+by=\gcd(a,b)$.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quá-trình-thuật-toán-euclid-mở-rộng"></span>
 ### Quá trình
 
 Đặt
@@ -402,7 +402,7 @@ Vì $a=a,b=b$, suy ra $x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$.
 Liên tục thay $x_2,y_2$ vào đệ quy cho đến khi $b$ bằng $0$, rồi trả ngược với
 $x=1,y=0$ để tính nghiệm.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt-thuật-toán-euclid-mở-rộng"></span>
 ### Cài đặt
 
 === "C++"
@@ -432,7 +432,7 @@ $x=1,y=0$ để tính nghiệm.
 
 Hàm trả về giá trị $\gcd$; trong quá trình đó ta tính được $x,y$.
 
-<span id="&#x503C;&#x57DF;&#x5206;&#x6790;"></span>
+<span id="phân-tích-miền-giá-trị"></span>
 ### Phân tích miền giá trị
 
 Phương trình $ax+by=\gcd(a,b)$ có vô số nghiệm, và rõ ràng một số nghiệm có thể
@@ -451,7 +451,7 @@ tính chất này.
         $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$
         Do đó $|x_1|\le b,|y_1|\le a$ đúng.
 
-<span id="&#x8FED;&#x4EE3;&#x6CD5;&#x7F16;&#x5199;&#x6269;&#x5C55;&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+<span id="viết-thuật-toán-euclid-mở-rộng-bằng-phương-pháp-lặp"></span>
 ### Viết thuật toán Euclid mở rộng bằng phương pháp lặp
 
 Ban đầu, khi $x = 1$, $y = 0$, $x_1 = 0$, $y_1 = 1$, rõ ràng có:
@@ -516,7 +516,7 @@ toán chắc chắn tính đúng $\gcd$.
 Cuối cùng $a_1$ chính là $\gcd$ cần tìm, và có
 $x \cdot a +y \cdot b = g$.
 
-<span id="&#x77E9;&#x9635;&#x7684;&#x89E3;&#x91CA;"></span>
+<span id="giải-thích-bằng-ma-trận"></span>
 #### Giải thích bằng ma trận
 
 Với hai số nguyên dương $a$ và $b$, một bước thuật toán Euclid
@@ -611,14 +611,14 @@ int exgcd(int a, int b, int &x, int &y) {
 
 Cách diễn giải này đơn giản hơn so với đệ quy.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 -   [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
 -   [GYM - (J) once upon a time](http://codeforces.com/gym/100963)
 -   [UVa - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x94FE;&#x63A5;"></span>
+<span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết
 
 [^1]: [libstdc++: std Namespace Reference](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00978.html#a2686a128df5a576cb53a1ed5f674607)
