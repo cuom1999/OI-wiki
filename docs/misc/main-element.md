@@ -43,4 +43,4 @@ Vì phần tử đa số xuất hiện nhiều hơn $n/2$ lần, nên với mộ
 
 ## Tài liệu tham khảo
 
-[^ref1]: [Thuật toán bỏ phiếu đa số - Wikipedia](https://zh.wikipedia.org/zh-cn/%E5%A4%9A%E6%95%B0%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95)
+[^ref1]: [Thuật toán bỏ phiếu đa số - Wikipedia](https://en.wikipedia.org/wiki/Boyer–Moore_majority_vote_algorithm)

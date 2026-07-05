@@ -135,4 +135,4 @@ Dưới đây là một số phím tắt thường dùng:
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Code::Blocks - Wikipedia](https://zh.wikipedia.org/wiki/Code::Blocks)
+[^ref1]: [Code::Blocks - Wikipedia](https://en.wikipedia.org/wiki/Code::Blocks)

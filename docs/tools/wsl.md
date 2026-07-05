@@ -52,7 +52,7 @@ Mặc dù trang chính thức của NOI đã cung cấp ảnh ISO của NOI Linu
 
 Windows 10 ra mắt Linux subsystem (WSL) trong bản Anniversary Update, rồi nâng cấp lên WSL 2 trong bản cập nhật tháng 5 năm 2020. Tính đến ngày 1 tháng 6 năm 2020, WSL đã hỗ trợ cài các bản phân phối Linux phổ biến như Ubuntu, openSUSE Leap, Kali, Debian. Tuy nhiên, WSL không hỗ trợ Arbiter dùng để chấm trong NOI.
 
-???+ note "[Windows Subsystem for Linux (WSL) là gì?](https://zh.wikipedia.org/zh-cn/%E9%80%82%E7%94%A8%E4%BA%8ELinux%E7%9A%84Windows%E5%AD%90%E7%B3%BB%E7%BB%9F)"
+???+ note "[Windows Subsystem for Linux (WSL) là gì?](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)"
     Windows Subsystem for Linux (viết tắt là WSL) là một lớp tương thích cho phép chạy trực tiếp các tệp thực thi nhị phân Linux (định dạng ELF) trên Windows 10, Windows 11 và Windows Server 2019.
 
     WSL cho phép nhà phát triển chạy nguyên trạng môi trường GNU/Linux, bao gồm hầu hết công cụ dòng lệnh, tiện ích và ứng dụng, mà không phát sinh chi phí của máy ảo.

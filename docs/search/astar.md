@@ -96,5 +96,5 @@ Phần này giới thiệu một bài toán kinh điển có thể giải bằng
 
 -   [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm)
 
-[^note1]: $h$ ở đây nghĩa là heuristic. Xem thêm [Heuristic search - Wikipedia](https://zh.wikipedia.org/wiki/%E5%90%AF%E5%8F%91%E5%BC%8F%E6%90%9C%E7%B4%A2)
+[^note1]: $h$ ở đây nghĩa là heuristic. Xem thêm [Heuristic - Wikipedia](https://en.wikipedia.org/wiki/Heuristic_(computer_science))
     và phần Bounded relaxation của [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation).

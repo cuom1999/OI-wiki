@@ -184,7 +184,7 @@ Dĩ nhiên, sau khi quy định thứ tự ưu tiên của các phép toán, có
     -   $R_2^\ast = R_2$,
     -   $L(R_1 + R_2) = \{0,\ 01,\ \varepsilon,\ 1,\ 11,\ 111,\ \dots\}$.
 
-Mỗi biểu thức chính quy đều có thể được chuyển thành một NFA bằng [Thompson's construction](https://zh.wikipedia.org/wiki/%E6%B1%A4%E6%99%AE%E6%A3%AE%E6%9E%84%E9%80%A0%E6%B3%95). Mỗi DFA cũng có thể được chuyển thành một biểu thức chính quy bằng phương pháp loại bỏ trạng thái[^state-elimination-method] (State Elimination Method). Vì vậy, biểu thức chính quy và FSM là tương đương.
+Mỗi biểu thức chính quy đều có thể được chuyển thành một NFA bằng [Thompson's construction](https://en.wikipedia.org/wiki/Thompson%27s_construction). Mỗi DFA cũng có thể được chuyển thành một biểu thức chính quy bằng phương pháp loại bỏ trạng thái[^state-elimination-method] (State Elimination Method). Vì vậy, biểu thức chính quy và FSM là tương đương.
 
 ### Ngôn ngữ chính quy
 

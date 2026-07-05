@@ -40,6 +40,6 @@ Tương tự [VS Code](./vscode.md), Eclipse cũng cung cấp nhiều plugin; c�
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Eclipse - Wikipedia](https://zh.wikipedia.org/wiki/Eclipse)
+[^ref1]: [Eclipse - Wikipedia](https://en.wikipedia.org/wiki/Eclipse_(software))
 
 [^ref2]: [Eclipse, Java IDE từng là số một, đã thật sự xuống dốc chưa? 21 plugin giúp nó mạnh hơn](https://blog.csdn.net/csdnnews/article/details/78495979)

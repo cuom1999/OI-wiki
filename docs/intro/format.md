@@ -224,7 +224,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
 -   <a id="PUNC-5"></a>PUNC-5: chú ý vị trí của dấu ngoặc. Vị trí của ngoặc trong câu và ngoặc ngoài câu là khác nhau.
 -   <a id="PUNC-6"></a>PUNC-6: thông thường dùng **dấu chấm phẩy** để biểu thị quan hệ giữa các mệnh đề phức trong môi trường danh sách.
 -   <a id="PUNC-7"></a>PUNC-7: với danh sách có thứ tự, nên thêm **dấu chấm phẩy** sau mỗi mục và thêm **dấu chấm câu** sau mục cuối cùng; với danh sách không thứ tự, nên thêm **dấu chấm câu** sau mỗi mục.
--   <a id="PUNC-8"></a>PUNC-8: chú ý phân biệt các loại dấu nối khác nhau, như hyphen (thường dùng U+002D hyphen-minus (-), tức phím "dấu trừ" trên bàn phím, để thay thế), U+2013 en dash (–) và U+2014 em dash (—). (Trong tiếng Anh, khi nối nhiều tên người, phải dùng en dash, nhưng lỗi thường gặp là dùng nhầm thành hyphen. Các lỗi khác hiếm hơn; về cơ bản chỉ cần nhớ điểm này.) Xem [hyphen - Wikipedia](https://zh.wikipedia.org/wiki/%E8%BF%9E%E6%8E%A5%E5%8F%B7).
+-   <a id="PUNC-8"></a>PUNC-8: chú ý phân biệt các loại dấu nối khác nhau, như hyphen (thường dùng U+002D hyphen-minus (-), tức phím "dấu trừ" trên bàn phím, để thay thế), U+2013 en dash (–) và U+2014 em dash (—). (Trong tiếng Anh, khi nối nhiều tên người, phải dùng en dash, nhưng lỗi thường gặp là dùng nhầm thành hyphen. Các lỗi khác hiếm hơn; về cơ bản chỉ cần nhớ điểm này.) Xem [hyphen - Wikipedia](https://en.wikipedia.org/wiki/Hyphen).
 
     ???+ success "Ví dụ"
         -   Các kỳ thi môn học cấp trung học chủ yếu bao gồm Olympic Tin học, Olympic Tin học, Olympic Tin học, Olympic Tin học và Olympic Tin học (ai viết ví dụ này thì nên mời ra ngoài sửa lại).
@@ -737,7 +737,7 @@ Liệt kê tài liệu tham khảo ở cuối bài có thể làm nội dung tra
 ## Liên kết ngoài
 
 -   [Cách dùng dấu câu (GB/T 15834-2011)](http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/W020190128580990138234.pdf)
--   [Wikipedia: Manual of Style/Punctuation](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7)
+-   [Wikipedia: Manual of Style/Punctuation](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style#Punctuation)
 -   [Hướng dẫn sắp chữ văn bản tiếng Trung (bản giản thể)](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
 -   [Hướng dẫn phong cách văn bản tiếng Trung - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
 -   [Một giới thiệu không quá ngắn về LATEX2epsilon, hoặc tìm hiểu LATEX2epsilon trong 106 phút](https://github.com/CTeX-org/lshort-zh-cn/releases)

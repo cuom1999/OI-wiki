@@ -36,7 +36,7 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 -   [CS Academy](https://csacademy.com/)
 -   [DMOJ](https://dmoj.ca/) là OJ mã nguồn mở của Canada, hỗ trợ nhiều ngôn ngữ; kho bài lưu trữ đề của nhiều cuộc thi lớn và cũng có các cuộc thi tự tổ chức định kỳ.
 -   [HackerRank](https://www.hackerrank.com/) có nhiều cuộc thi.
--   [Kattis](https://open.kattis.com/) có kho bài chủ yếu gồm các bài giống phong cách ICPC; hệ thống đánh giá cấp độ người dùng dựa trên tình hình giải bài và gợi ý các bài ở bốn mức trivial/easy/medium/hard phù hợp với trình độ, trong đó độ khó bài được đánh giá bằng hệ thống tương tự [điểm xếp hạng ELO](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86).
+-   [Kattis](https://open.kattis.com/) có kho bài chủ yếu gồm các bài giống phong cách ICPC; hệ thống đánh giá cấp độ người dùng dựa trên tình hình giải bài và gợi ý các bài ở bốn mức trivial/easy/medium/hard phù hợp với trình độ, trong đó độ khó bài được đánh giá bằng hệ thống tương tự [điểm xếp hạng Elo](https://en.wikipedia.org/wiki/Elo_rating_system).
 -   [LeetCode](https://leetcode.com/) là trang luyện bài phỏng vấn cho lập trình viên, có nhánh tiếng Trung: [LeetCode China](https://leetcode.cn).
 -   [Light OJ](https://lightoj.com)
 -   [Open Trains](https://opentrains.opencup.org/) là nền tảng luyện tập cho Russian Open Cup, xây dựng trên hệ thống mã nguồn mở [ejudge](https://ejudge.ru/), hỗ trợ virtual contest; kho bài gồm đề Open Cup qua các năm và bài từ Petrozavodsk training camp.
