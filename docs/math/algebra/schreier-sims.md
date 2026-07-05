@@ -109,23 +109,23 @@ Viết quá trình trên thành mã giả:
 
 $$
 \begin{array}{l}
-\textbf{Algorithm }\textrm{MembershipTest}(C,h):\\
-\textbf{Input. }\textrm{A stabilizer chain }C\textrm{ for a group }G\textrm{ and a permutation }h.\\
-\textbf{Output. }\textrm{Whether }h\in G.\\
-\textbf{Method.}\\
+\textbf{Thuật toán }\textrm{MembershipTest}(C,h):\\
+\textbf{Đầu vào. }\textrm{Chuỗi bộ ổn định }C\textrm{ của nhóm }G\textrm{ và một hoán vị }h.\\
+\textbf{Đầu ra. }\textrm{Liệu }h\in G\textrm{ hay không.}\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
-1  & \textbf{while }C\textrm{ is not empty }\\
+1  & \textbf{trong khi }C\textrm{ không rỗng }\\
 2  & \qquad \beta \leftarrow C.orbit[0]\\
 3  & \qquad \delta \leftarrow \beta^h\\
-4  & \qquad \textbf{if }\delta\in C.orbit\textbf{ then}\\
+4  & \qquad \textbf{nếu }\delta\in C.orbit\textbf{ thì}\\
 5  & \qquad \qquad t \leftarrow C.transversal[\delta]\\
 6  & \qquad \qquad h \leftarrow ht^{-1}\\
-7  & \qquad \textbf{else }\\
-8  & \qquad \qquad \textbf{return }\textrm{false}\\
-9  & \qquad \textbf{end if}\\
+7  & \qquad \textbf{ngược lại }\\
+8  & \qquad \qquad \textbf{trả về }\textrm{false}\\
+9  & \qquad \textbf{kết thúc nếu}\\
 10 & \qquad C \leftarrow C.next\\
-11 & \textbf{end while}\\
-12 & \textbf{return }h=e
+11 & \textbf{kết thúc vòng lặp}\\
+12 & \textbf{trả về }h=e
 \end{array}
 \end{array}
 $$
@@ -148,23 +148,23 @@ Phần sau sẽ thấy bài toán kiểm tra thành viên cũng là một thành
 
 $$
 \begin{array}{l}
-\textbf{Algorithm }\textrm{OrbitTransversal}(S,\beta):\\
-\textbf{Input. }\textrm{A generating set }S\textrm{ for a group }G\textrm{ and a point }\beta.\\
-\textbf{Output. }\textrm{The orbit }\Delta=\beta^G\textrm{ and the transversal }T.\\
-\textbf{Method.}\\
+\textbf{Thuật toán }\textrm{OrbitTransversal}(S,\beta):\\
+\textbf{Đầu vào. }\textrm{Tập sinh }S\textrm{ của nhóm }G\textrm{ và một điểm }\beta.\\
+\textbf{Đầu ra. }\textrm{Quỹ đạo }\Delta=\beta^G\textrm{ và hệ đại diện lớp kề }T.\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
 1  & \Delta \leftarrow [\beta]\\
 2  & T[\beta] \leftarrow e\\
-3  & \textbf{for }\delta\in\Delta\\
-4  & \qquad \textbf{for }s\in S\\
+3  & \textbf{với mỗi }\delta\in\Delta\\
+4  & \qquad \textbf{với mỗi }s\in S\\
 5  & \qquad \qquad \gamma \leftarrow \delta^s\\
-6  & \qquad \qquad \textbf{if }\gamma\notin\Delta\textbf{ then}\\
-7  & \qquad \qquad \qquad\textrm{append }\gamma\textrm{ to }\Delta\\
+6  & \qquad \qquad \textbf{nếu }\gamma\notin\Delta\textbf{ thì}\\
+7  & \qquad \qquad \qquad\textrm{thêm }\gamma\textrm{ vào }\Delta\\
 8  & \qquad \qquad \qquad T[\gamma] \leftarrow T[\delta]\cdot s\\
-9  & \qquad \qquad \textbf{end if}\\
-10 & \qquad \textbf{end for}\\
-11 & \textbf{end for}\\
-12 & \textbf{return }\Delta, T
+9  & \qquad \qquad \textbf{kết thúc nếu}\\
+10 & \qquad \textbf{kết thúc vòng lặp}\\
+11 & \textbf{kết thúc vòng lặp}\\
+12 & \textbf{trả về }\Delta, T
 \end{array}
 \end{array}
 $$
@@ -231,27 +231,27 @@ Chỉ cần sửa nhẹ mã giả ở trên, ta có thể vừa tính quỹ đ�
 
 $$
 \begin{array}{l}
-\textbf{Algorithm }\textrm{OrbitTransversalStabilizer}(S,\beta):\\
-\textbf{Input. }\textrm{A generating set }S\textrm{ for a group }G\textrm{ and a point }\beta.\\
-\textbf{Output. }\textrm{The orbit }\Delta=\beta^G\textrm{, the transversal }T\textrm{, and a}\\
-\qquad\textrm{ generating set }S'\textrm{ for the stabilizer }G_\beta.\\
-\textbf{Method.}\\
+\textbf{Thuật toán }\textrm{OrbitTransversalStabilizer}(S,\beta):\\
+\textbf{Đầu vào. }\textrm{Tập sinh }S\textrm{ của nhóm }G\textrm{ và một điểm }\beta.\\
+\textbf{Đầu ra. }\textrm{Quỹ đạo }\Delta=\beta^G\textrm{, hệ đại diện lớp kề }T\textrm{, và một}\\
+\qquad\textrm{ tập sinh }S'\textrm{ của bộ ổn định }G_\beta.\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
 1  & \Delta \leftarrow [\beta]\\
 2  & T[\beta] \leftarrow e\\
 3  & S' \leftarrow [e]\\
-4  & \textbf{for }\delta\in\Delta\\
-5  & \qquad \textbf{for }s\in S\\
+4  & \textbf{với mỗi }\delta\in\Delta\\
+5  & \qquad \textbf{với mỗi }s\in S\\
 6  & \qquad \qquad \gamma \leftarrow \delta^s\\
-7  & \qquad \qquad \textbf{if }\gamma\notin\Delta\textbf{ then}\\
-8  & \qquad \qquad \qquad\textrm{append }\gamma\textrm{ to }\Delta\\
+7  & \qquad \qquad \textbf{nếu }\gamma\notin\Delta\textbf{ thì}\\
+8  & \qquad \qquad \qquad\textrm{thêm }\gamma\textrm{ vào }\Delta\\
 9  & \qquad \qquad \qquad T[\gamma] \leftarrow T[\delta]\cdot s\\
-10 & \qquad \qquad \textbf{else} \\
-11 & \qquad \qquad \qquad \textrm{append }T[\delta]\cdot s\cdot T[\gamma]^{-1}\textrm{ to }S'\\
-12 & \qquad \qquad \textbf{end if}\\
-13 & \qquad \textbf{end for}\\
-14 & \textbf{end for}\\
-15 & \textbf{return }\Delta, T, S'
+10 & \qquad \qquad \textbf{ngược lại} \\
+11 & \qquad \qquad \qquad \textrm{thêm }T[\delta]\cdot s\cdot T[\gamma]^{-1}\textrm{ vào }S'\\
+12 & \qquad \qquad \textbf{kết thúc nếu}\\
+13 & \qquad \textbf{kết thúc vòng lặp}\\
+14 & \textbf{kết thúc vòng lặp}\\
+15 & \textbf{trả về }\Delta, T, S'
 \end{array}
 \end{array}
 $$
@@ -295,16 +295,16 @@ Bây giờ có thể mô tả quy trình cụ thể của Schreier-Sims: trướ
 
 $$
 \begin{array}{l}
-\textbf{Algorithm }\textrm{SchreierSims}(S):\\
-\textbf{Input. }\textrm{A generating set }S\textrm{ for a group }G.\\
-\textbf{Output. }\textrm{The stabilizer chain }C\textrm{ for the group }G.\\
-\textbf{Method.}\\
+\textbf{Thuật toán }\textrm{SchreierSims}(S):\\
+\textbf{Đầu vào. }\textrm{Tập sinh }S\textrm{ của nhóm }G.\\
+\textbf{Đầu ra. }\textrm{Chuỗi bộ ổn định }C\textrm{ của nhóm }G.\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
 1  & C \leftarrow []\\
-2  & \textbf{for }s\in S\\
+2  & \textbf{với mỗi }s\in S\\
 3  & \qquad C \leftarrow \textrm{Extend}(C,s)\\
-4  & \textbf{end for}\\
-5  & \textbf{return }C
+4  & \textbf{kết thúc vòng lặp}\\
+5  & \textbf{trả về }C
 \end{array}
 \end{array}
 $$
@@ -323,45 +323,45 @@ Mã giả để thêm hoán vị $g$ vào cấu trúc $C$ như sau:
 
 $$
 \begin{array}{l}
-\textbf{Algorithm }\textrm{Extend}(C,g):\\
-\textbf{Input. }\textrm{A stabilizer chain }C\textrm{ for the group generated by }S\textrm{ and a}\\
-\qquad \textrm{permutation }g.\\
-\textbf{Output. }\textrm{A stabilizer chain }C\textrm{ for the group generated by }S\cup\{g\}.\\
-\textbf{Method.}\\
+\textbf{Thuật toán }\textrm{Extend}(C,g):\\
+\textbf{Đầu vào. }\textrm{Chuỗi bộ ổn định }C\textrm{ của nhóm sinh bởi }S\textrm{ và một}\\
+\qquad \textrm{hoán vị }g.\\
+\textbf{Đầu ra. }\textrm{Chuỗi bộ ổn định }C\textrm{ của nhóm sinh bởi }S\cup\{g\}.\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
-1  & \textbf{if }\textrm{MembershipTest}(C,g)\textrm{ is passed}\textbf{ then}\\
-2  & \qquad \textbf{return }C\\
-3  & \textbf{end if}\\
-4  & \textbf{if }C\textrm{ is empty}\textbf{ then}\\
-5  & \qquad \beta \leftarrow \textrm{an element moved by }g\\
+1  & \textbf{nếu }\textrm{MembershipTest}(C,g)\textrm{ thành công}\textbf{ thì}\\
+2  & \qquad \textbf{trả về }C\\
+3  & \textbf{kết thúc nếu}\\
+4  & \textbf{nếu }C\textrm{ rỗng}\textbf{ thì}\\
+5  & \qquad \beta \leftarrow \textrm{một phần tử bị }g\textrm{ di chuyển}\\
 6  & \qquad C.orbit[0] \leftarrow \beta \\
 7  & \qquad C.transversal[\beta] \leftarrow e\\
-8  & \textbf{end if}\\
-9  & \textrm{append }g\textrm{ to }C.generators\\
+8  & \textbf{kết thúc nếu}\\
+9  & \textrm{thêm }g\textrm{ vào }C.generators\\
 10  & \Delta \leftarrow C.orbit \\
-11 & \textbf{for }\delta\in\Delta \\
+11 & \textbf{với mỗi }\delta\in\Delta \\
 12 & \qquad \gamma \leftarrow \delta^g \\
-13 & \qquad \textbf{if }\gamma\notin C.orbit\textbf{ then}\\
-14 & \qquad \qquad \textrm{append }\gamma\textrm{ to }C.orbit\\
+13 & \qquad \textbf{nếu }\gamma\notin C.orbit\textbf{ thì}\\
+14 & \qquad \qquad \textrm{thêm }\gamma\textrm{ vào }C.orbit\\
 15 & \qquad \qquad C.transversal[\gamma] \leftarrow C.transversal[\delta]\cdot g\\
-16 & \qquad \textbf{else}\\
+16 & \qquad \textbf{ngược lại}\\
 17 & \qquad \qquad s'\leftarrow C.transversal[\delta]\cdot g\cdot C.transversal[\gamma]^{-1}\\
 18 & \qquad \qquad C.next \leftarrow \textrm{Extend}(C.next, s')\\
-19 & \qquad \textbf{end if}\\
-20 & \textbf{end for} \\
-21 & \textbf{for }\delta\in C.orbit\setminus\Delta \\ 
-22 & \qquad \textbf{for }s\in C.generators \\
+19 & \qquad \textbf{kết thúc nếu}\\
+20 & \textbf{kết thúc vòng lặp} \\
+21 & \textbf{với mỗi }\delta\in C.orbit\setminus\Delta \\
+22 & \qquad \textbf{với mỗi }s\in C.generators \\
 23 & \qquad \qquad \gamma \leftarrow \delta^s \\
-24 & \qquad \qquad \textbf{if }\gamma\notin C.orbit\textbf{ then}\\
-25 & \qquad \qquad \qquad \textrm{append }\gamma\textrm{ to }C.orbit\\
+24 & \qquad \qquad \textbf{nếu }\gamma\notin C.orbit\textbf{ thì}\\
+25 & \qquad \qquad \qquad \textrm{thêm }\gamma\textrm{ vào }C.orbit\\
 26 & \qquad \qquad \qquad C.transversal[\gamma] \leftarrow C.transversal[\delta]\cdot s\\
-27 & \qquad \qquad \textbf{else}\\
+27 & \qquad \qquad \textbf{ngược lại}\\
 28 & \qquad \qquad \qquad s'\leftarrow C.transversal[\delta]\cdot s\cdot C.transversal[\gamma]^{-1}\\
 29 & \qquad \qquad \qquad \textrm{Extend}(C.next, s')\\
-30 & \qquad \qquad \textbf{end if}\\
-31 & \qquad \textbf{end for}\\
-32 & \textbf{end for} \\
-33 & \textbf{return }C
+30 & \qquad \qquad \textbf{kết thúc nếu}\\
+31 & \qquad \textbf{kết thúc vòng lặp}\\
+32 & \textbf{kết thúc vòng lặp} \\
+33 & \textbf{trả về }C
 \end{array}
 \end{array}
 $$
@@ -375,42 +375,42 @@ Cách cài đặt trên đã đúng, nhưng các dòng $12\sim 19$ và $23\sim 3
 
 $$
 \begin{array}{l}
-\textbf{Algorithm }\textrm{Extend}(C,g):\\
-\textbf{Input. }\textrm{A stabilizer chain }C\textrm{ for the group generated by }S\textrm{ and a}\\
-\qquad \textrm{permutation }g.\\
-\textbf{Output. }\textrm{A stabilizer chain }C\textrm{ for the group generated by }S\cup\{g\}.\\
-\textbf{Method.}\\
+\textbf{Thuật toán }\textrm{Extend}(C,g):\\
+\textbf{Đầu vào. }\textrm{Chuỗi bộ ổn định }C\textrm{ của nhóm sinh bởi }S\textrm{ và một}\\
+\qquad \textrm{hoán vị }g.\\
+\textbf{Đầu ra. }\textrm{Chuỗi bộ ổn định }C\textrm{ của nhóm sinh bởi }S\cup\{g\}.\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
-1  & \textbf{if }\textrm{MembershipTest}(C,g)\textrm{ is passed}\textbf{ then}\\
-2  & \qquad \textbf{return }C\\
-3  & \textbf{end if}\\
-4  & \textbf{if }C\textrm{ is empty}\textbf{ then}\\
-5  & \qquad \beta \leftarrow \textrm{an element moved by }g\\
+1  & \textbf{nếu }\textrm{MembershipTest}(C,g)\textrm{ thành công}\textbf{ thì}\\
+2  & \qquad \textbf{trả về }C\\
+3  & \textbf{kết thúc nếu}\\
+4  & \textbf{nếu }C\textrm{ rỗng}\textbf{ thì}\\
+5  & \qquad \beta \leftarrow \textrm{một phần tử bị }g\textrm{ di chuyển}\\
 6  & \qquad C.orbit[0] \leftarrow \beta \\
 7  & \qquad C.transversal[\beta] \leftarrow e\\
-8  & \textbf{end if}\\
-9  & \textrm{append }g\textrm{ to }C.generators\\
-10 & \textbf{for }t\in C.transversal\\
+8  & \textbf{kết thúc nếu}\\
+9  & \textrm{thêm }g\textrm{ vào }C.generators\\
+10 & \textbf{với mỗi }t\in C.transversal\\
 11 & \qquad \textrm{ExtendTransversal}(C,t\cdot g)\\
-12 & \textbf{end for}\\
-13 & \textbf{return }C
+12 & \textbf{kết thúc vòng lặp}\\
+13 & \textbf{trả về }C
 \end{array}\\
 \\
-\textbf{Sub-Algorithm }\textrm{ExtendTransversal}(C,t):\\
-\textbf{Method.}\\
+\textbf{Thuật toán con }\textrm{ExtendTransversal}(C,t):\\
+\textbf{Phương pháp.}\\
 \begin{array}{ll}
 1  & \beta \leftarrow C.orbit[0]\\
 2  & \gamma \leftarrow \beta^t\\
-3  & \textbf{if }\gamma\notin C.orbit\textbf{ then}\\
-4  & \qquad \textrm{append }\gamma\textrm{ to }C.orbit\\
+3  & \textbf{nếu }\gamma\notin C.orbit\textbf{ thì}\\
+4  & \qquad \textrm{thêm }\gamma\textrm{ vào }C.orbit\\
 5  & \qquad C.transversal[\gamma] \leftarrow t\\
-6  & \qquad \textbf{for }s\in C.generators\\
+6  & \qquad \textbf{với mỗi }s\in C.generators\\
 7  & \qquad \qquad \textrm{ExtendTransversal}(C,t\cdot s)\\
-8  & \qquad \textbf{end for}\\
-9  & \textbf{else}\\
+8  & \qquad \textbf{kết thúc vòng lặp}\\
+9  & \textbf{ngược lại}\\
 10 & \qquad s' \leftarrow t\cdot C.transversal[\gamma]^{-1}\\
 11 & \qquad \textrm{Extend}(C.next,s')\\
-12 & \textbf{end if}
+12 & \textbf{kết thúc nếu}
 \end{array}
 \end{array}
 $$
