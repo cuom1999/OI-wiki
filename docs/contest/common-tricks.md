@@ -6,7 +6,7 @@ Trang này chủ yếu liệt kê một số mẹo nhỏ trong thi đấu.
 
 Tính cục bộ là xu hướng chương trình tham chiếu tới các mục dữ liệu nằm gần những mục dữ liệu vừa được tham chiếu gần đây, hoặc tham chiếu lại chính các mục dữ liệu vừa được tham chiếu gần đây. Tính cục bộ được chia thành tính cục bộ theo thời gian và tính cục bộ theo không gian.
 
-Có thể xem cụ thể hơn ở các phần [mở vòng lặp (Loop Unroll)](../lang/optimizations.md#mở-vòng-lặp-loop-unroll), [tối ưu bố trí mã (Code Layout Optimizations)](../lang/optimizations.md#tối-ưu-hóa-bố-cục-mã-code-layout-optimizations), v.v.
+Có thể xem cụ thể hơn ở các phần [mở vòng lặp (loop unroll)](../lang/optimizations.md#mở-vòng-lặp-loop-unroll), [tối ưu hóa bố cục mã](../lang/optimizations.md#tối-ưu-hóa-bố-cục-mã-code-layout-optimizations), v.v.
 
 ## Định nghĩa macro cho vòng lặp
 

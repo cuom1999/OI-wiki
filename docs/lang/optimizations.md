@@ -6,7 +6,7 @@ Ngôn ngữ lập trình thường dùng trong giới OI là C++. Đã dùng ng�
 ## Giới thiệu về tối ưu hóa của trình biên dịch
 
 <a id="tối-ưu-hóa-là-gì-optimization"></a>
-### Tối ưu hóa là gì (Optimization)
+### Tối ưu hóa là gì (optimization)
 
 Theo [quy tắc as-if](https://en.cppreference.com/w/cpp/language/as_if) (The as-if Rule), trình biên dịch có thể cải thiện tốc độ chạy của chương trình hoặc kích thước tệp thực thi, miễn là giữ nguyên ngữ nghĩa quan sát được của chương trình.
 
@@ -18,9 +18,9 @@ Theo [quy tắc as-if](https://en.cppreference.com/w/cpp/language/as_if) (The as
 ## Các tối ưu hóa trình biên dịch thường gặp
 
 <a id="gấp-hằng-số-constant-folding"></a>
-### Gấp hằng số (Constant Folding)
+### Gấp hằng số (constant folding)
 
-Gấp hằng số, cũng được gọi là lan truyền hằng số (Constant Propagation): nếu một biểu thức có thể được xác định là hằng số, giá trị hằng số đó có thể được lan truyền cho đến trước lần định nghĩa (Definition) kế tiếp của nó.
+Gấp hằng số, cũng được gọi là lan truyền hằng số (constant propagation): nếu một biểu thức có thể được xác định là hằng số, giá trị hằng số đó có thể được lan truyền cho đến trước lần định nghĩa (definition) kế tiếp của nó.
 
 ```cpp
 int x = 1;
@@ -65,7 +65,7 @@ int test() { return 234; }
 Lưu ý, đoạn mã này trước hết được gấp hằng số, nên giá trị trả về có thể xác định là 234; `a` và `b` là các biến không còn sống, vì vậy bị xóa bỏ.
 
 <a id="xoay-vòng-lặp-loop-rotate"></a>
-### Xoay vòng lặp (Loop Rotate)
+### Xoay vòng lặp (loop rotate)
 
 Biến đổi vòng lặp từ dạng "for" sang dạng "do-while", đồng thời thêm một điều kiện kiểm tra ở phía trước. Phép biến đổi này chủ yếu để chuẩn bị cho các phép biến đổi khác.
 
@@ -89,9 +89,9 @@ if (0 < n) {
 ```
 
 <a id="đưa-bất-biến-vòng-lặp-ra-ngoài-loop-invariant-code-motion"></a>
-### Đưa bất biến vòng lặp ra ngoài (Loop Invariant Code Motion)
+### Đưa bất biến vòng lặp ra ngoài (loop-invariant code motion)
 
-Dựa trên phân tích bí danh (Alias Analysis), trình biên dịch đưa những đoạn mã trong vòng lặp đã được chứng minh là bất biến ra ngoài thân vòng lặp. Các đoạn mã này có thể bao gồm truy cập bộ nhớ, load/store, nên việc chứng minh phụ thuộc vào phân tích bí danh. Kết quả là thân vòng lặp có ít mã hơn.
+Dựa trên phân tích bí danh (alias analysis), trình biên dịch đưa những đoạn mã trong vòng lặp đã được chứng minh là bất biến ra ngoài thân vòng lặp. Các đoạn mã này có thể bao gồm truy cập bộ nhớ, load/store, nên việc chứng minh phụ thuộc vào phân tích bí danh. Kết quả là thân vòng lặp có ít mã hơn.
 
 ```cpp
 for (int i = 0; i < n; ++i) {
@@ -122,7 +122,7 @@ if (0 < n) {  // loop guard
 ```
 
 <a id="mở-vòng-lặp-loop-unroll"></a>
-### Mở vòng lặp (Loop Unroll)
+### Mở vòng lặp (loop unroll)
 
 Vòng lặp gồm thân vòng lặp và các câu lệnh rẽ nhánh, nên CPU hiện đại cần thực hiện một mức độ dự đoán nhánh nhất định. Mở trực tiếp vòng lặp là cách đổi thêm kích thước mã lấy thời gian chạy ngắn hơn.
 
@@ -175,11 +175,11 @@ void after(int x) {
 ```
 
 <a id="tối-ưu-hóa-bố-cục-mã-code-layout-optimizations"></a>
-### Tối ưu hóa bố cục mã (Code Layout Optimizations)
+### Tối ưu hóa bố cục mã (code layout optimization)
 
 Khi chương trình thực thi, các đường chạy có thể được chia thành đường lạnh và đường nóng (cold/hot path). Trong tuyệt đại đa số trường hợp, CPU nhảy đến một vị trí khác không nhanh bằng thực thi tuần tự trực tiếp; kiểu thực thi sau thường được tác giả trình biên dịch gọi là "fallthrough". Tương ứng với nó, mã thường được thực thi là mã nóng, còn phần đối lập là mã lạnh. Trong mã OI, nếu có một đoạn xử lý điều kiện biên đặc biệt trong vòng lặp, xử lý ngoại lệ, hoặc logic tương tự, đoạn đó là mã lạnh.
 
-Khối cơ bản (Basic Block) là cấu trúc cơ bản của luồng điều khiển. Một thủ tục (Procedure) gồm nhiều khối cơ bản, tạo thành một đồ thị có hướng. Trong quá trình sinh tệp thực thi, trình biên dịch cần sắp xếp bố cục (Layout) để đặt các khối cơ bản; cách sắp xếp bố cục chính là trọng tâm của tối ưu hóa này.
+Khối cơ bản (basic block) là cấu trúc cơ bản của luồng điều khiển. Một thủ tục (procedure) gồm nhiều khối cơ bản, tạo thành một đồ thị có hướng. Trong quá trình sinh tệp thực thi, trình biên dịch cần sắp xếp bố cục (layout) để đặt các khối cơ bản; cách sắp xếp bố cục chính là trọng tâm của tối ưu hóa này.
 
 Về nguyên tắc, nên ưu tiên đặt các đoạn mã nóng gần nhau và tách mã lạnh ra. Lý do là cách này tận dụng instruction cache tốt hơn, vì mã nóng có tính cục bộ tốt hơn.
 
@@ -193,7 +193,7 @@ int hotpath_again;  // <-- nóng!
 ```
 
 <a id="đặt-khối-cơ-bản-basic-block-placement"></a>
-#### Đặt khối cơ bản (Basic Block Placement)
+#### Đặt khối cơ bản (basic block placement)
 
 Ta dùng label để biểu diễn một loại "mã máy giả". Chương trình C++ này có hai cách dịch:
 
@@ -300,12 +300,12 @@ Một thủ tục (Procedure) có thể chứa đồng thời cả đường nó
     }
     ```
 
-Tách mã nóng/lạnh thực ra là thao tác ngược với nội tuyến hàm (Function Inlining). Sự tồn tại của tối ưu hóa này cho thấy nội tuyến hàm không nhất thiết làm chương trình chạy nhanh hơn. Thậm chí nếu đoạn mã được nội tuyến là mã lạnh, nó còn có thể làm chương trình chạy chậm hơn. Một số trình biên dịch có tùy chọn biên dịch bắt buộc nội tuyến, nhưng không nên dùng. Bên trong trình biên dịch có quá trình phân tích tĩnh để tính xác suất của mỗi khối cơ bản và mỗi nhánh, cùng với một mô hình chi phí liên quan đến lời gọi hàm, rồi dựa vào đó quyết định có nội tuyến hay không. Tự quyết định nội tuyến không chắc tốt hơn quyết định của trình biên dịch.
+Tách mã nóng/lạnh thực ra là thao tác ngược với nội tuyến hàm (function inlining). Sự tồn tại của tối ưu hóa này cho thấy nội tuyến hàm không nhất thiết làm chương trình chạy nhanh hơn. Thậm chí nếu đoạn mã được nội tuyến là mã lạnh, nó còn có thể làm chương trình chạy chậm hơn. Một số trình biên dịch có tùy chọn biên dịch bắt buộc nội tuyến, nhưng không nên dùng. Bên trong trình biên dịch có quá trình phân tích tĩnh để tính xác suất của mỗi khối cơ bản và mỗi nhánh, cùng với một mô hình chi phí liên quan đến lời gọi hàm, rồi dựa vào đó quyết định có nội tuyến hay không. Tự quyết định nội tuyến không chắc tốt hơn quyết định của trình biên dịch.
 
-Thực tế, khi không có thông tin bổ sung, trình biên dịch thường giả định xác suất nhảy nhánh và không nhảy nhánh là như nhau, rồi dựa vào đó lan truyền mức nóng/lạnh của các đường luồng điều khiển. Một phần của PGO (Profile Guided Optimization) là chạy nhiều lần benchmark và thí nghiệm hiệu năng để thu được xác suất nhánh trong môi trường thực, những thông tin này có thể giúp bố cục mã tốt hơn.
+Thực tế, khi không có thông tin bổ sung, trình biên dịch thường giả định xác suất nhảy nhánh và không nhảy nhánh là như nhau, rồi dựa vào đó lan truyền mức nóng/lạnh của các đường luồng điều khiển. Một phần của PGO (tối ưu hóa dựa trên hồ sơ chạy, profile-guided optimization) là chạy nhiều lần benchmark và thí nghiệm hiệu năng để thu được xác suất nhánh trong môi trường thực, những thông tin này có thể giúp bố cục mã tốt hơn.
 
 <a id="nội-tuyến-hàm-function-inlining"></a>
-### Nội tuyến hàm (Function Inlining)
+### Nội tuyến hàm (function inlining)
 
 Lời gọi hàm thường cần thanh ghi và ngăn xếp để truyền tham số; cả bên gọi (caller) và bên được gọi (callee) đều cần lưu một số trạng thái thanh ghi. Quá trình này thường được gọi là quy ước gọi hàm (calling convention). Vì vậy một lời gọi hàm gây ra một số tổn hao thời gian, còn nội tuyến hàm nghĩa là viết trực tiếp thân hàm vào thủ tục của bên gọi, không thực hiện lời gọi hàm thật sự.
 
@@ -334,9 +334,9 @@ int foo() {
 Một số trình biên dịch cung cấp cách nội tuyến lời gọi hàm thủ công bằng cách thêm `__attribute__((always_inline))` trước hàm. Dùng như vậy không nhất thiết nhanh hơn lời gọi hàm; lúc này trình biên dịch tin rằng lập trình viên có đủ năng lực phán đoán.
 
 <a id="tối-ưu-hóa-lời-gọi-đuôi-tail-call-optimization"></a>
-### Tối ưu hóa lời gọi đuôi (Tail Call Optimization)
+### Tối ưu hóa lời gọi đuôi (tail call optimization)
 
-Khi một lời gọi hàm nằm ở vị trí cuối thân hàm, lời gọi đó được gọi là lời gọi đuôi (Tail Call). Với dạng lời gọi đặc biệt này, có thể thực hiện một số tối ưu hóa riêng. Tuyệt đại đa số kiến trúc có Frame Pointer (a.k.a FP) và Stack Pointer (a.k.a SP) để duy trì khung gọi hàm (Frame) của hàm; nếu lời gọi nằm ở cuối hàm, ta có thể không giữ lại bản ghi gọi của hàm bên ngoài mà dùng trực tiếp hàm bên trong thay thế.
+Khi một lời gọi hàm nằm ở vị trí cuối thân hàm, lời gọi đó được gọi là lời gọi đuôi (tail call). Với dạng lời gọi đặc biệt này, có thể thực hiện một số tối ưu hóa riêng. Tuyệt đại đa số kiến trúc có frame pointer (a.k.a FP) và stack pointer (a.k.a SP) để duy trì khung gọi hàm (frame) của hàm; nếu lời gọi nằm ở cuối hàm, ta có thể không giữ lại bản ghi gọi của hàm bên ngoài mà dùng trực tiếp hàm bên trong thay thế.
 
 <a id="dùng-lệnh-nhảy-thay-cho-lời-gọi-hàm"></a>
 #### Dùng lệnh nhảy thay cho lời gọi hàm
@@ -710,7 +710,8 @@ Ví dụ: <https://godbolt.org/z/d834MK7bz>, <https://godbolt.org/z/Eov9nsKqf>.
 Sanitizer là công cụ bảo vệ tính đúng đắn: nó kiểm tra lúc chạy xem chương trình của bạn có hành vi không xác định, vượt biên mảng, con trỏ null, và các lỗi tương tự hay không.
 Ở chế độ gỡ lỗi cục bộ, nên bật một số sanitizer; chúng có thể rút ngắn đáng kể thời gian gỡ lỗi. Các sanitizer này do Google phát triển, phần lớn có thể dùng với GCC và Clang. Sanitizer trong LLVM trưởng thành hơn, vì vậy nên dùng trình biên dịch Clang để gỡ lỗi các vấn đề liên quan trên máy cá nhân.
 
-### Address Sanitizer -fsanitize=address
+<span id="address-sanitizer-fsanitizeaddress"></span>
+### AddressSanitizer `-fsanitize=address`
 
 <https://clang.llvm.org/docs/AddressSanitizer.html>
 
@@ -725,11 +726,12 @@ Cả GCC và Clang đều hỗ trợ sanitizer này. Nó bao gồm các mục ki
 
 Áp dụng kiểm tra này sẽ làm chương trình chậm khoảng 2x.
 
-### Undefined Behavior Sanitizer -fsanitize=undefined
+<span id="undefined-behavior-sanitizer-fsanitizeundefined"></span>
+### UndefinedBehaviorSanitizer `-fsanitize=undefined`
 
 <https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html>
 
-Undefined Behavior Sanitizer (a.k.a UBSan) dùng để kiểm tra hành vi không xác định trong mã. Cả GCC và Clang đều hỗ trợ sanitizer này. Nó tự động kiểm tra chương trình của bạn có UB hay không. Các mục kiểm tra của UBSan gồm:
+UndefinedBehaviorSanitizer (a.k.a UBSan) dùng để kiểm tra hành vi không xác định trong mã. Cả GCC và Clang đều hỗ trợ sanitizer này. Nó tự động kiểm tra chương trình của bạn có UB hay không. Các mục kiểm tra của UBSan gồm:
 
 -   Tràn phép dịch bit, ví dụ dịch trái một số nguyên 32 bit thêm 72 bit
 -   Tràn số nguyên có dấu
@@ -740,7 +742,8 @@ Các mục kiểm tra của UBSan có thể tùy chọn; ảnh hưởng đến c
 <a id="linh-tinh"></a>
 ## Linh tinh
 
-### Compiler Explorer (trình khám phá biên dịch)
+<span id="compiler-explorer-trình-khám-phá-biên-dịch"></span>
+### Trình khám phá biên dịch (Compiler Explorer)
 
 Quan sát hành vi và mã hợp ngữ của các trình biên dịch tại đây: <https://godbolt.org>
 
