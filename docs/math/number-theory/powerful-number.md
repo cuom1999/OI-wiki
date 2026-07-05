@@ -124,7 +124,7 @@ f(n) =
 \begin{cases}
 1 & n = 1 \\
 p \oplus c & n=p^c \\
-f(a)f(b) & n=ab \text{ and } a \perp b
+f(a)f(b) & n=ab \text{ và } a \perp b
 \end{cases}
 $$
 
@@ -134,7 +134,7 @@ $$
 f(p) =
 \begin{cases}
 p + 1 & p = 2 \\
-p - 1 & \text{otherwise} \\
+p - 1 & \text{ngược lại} \\
 \end{cases}
 $$
 
@@ -144,7 +144,7 @@ $$
 g(n) =
 \begin{cases}
 3 \varphi(n) & 2 \mid n \\
-\varphi(n) & \text{otherwise} \\
+\varphi(n) & \text{ngược lại} \\
 \end{cases}
 $$
 

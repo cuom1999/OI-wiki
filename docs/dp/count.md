@@ -72,7 +72,7 @@ $$
 Thay thế các biểu thức tương đương, ta có $f_{11,3}=f_{11,2}+f_{8,3}$, $f_{12,3}=f_{12,2}+f_{9,3}$, $f_{13,3}=f_{13,2}+f_{10,3}$. Tương tự, thu được phương trình chuyển trạng thái tổng quát:
 
 $$
-f_{n, M} = f_{n, M - 1} + \begin{cases} f_{n - M, M} & n \ge M, \\ 0 & \text{otherwise}. \end{cases}
+f_{n, M} = f_{n, M - 1} + \begin{cases} f_{n - M, M} & n \ge M, \\ 0 & \text{ngược lại}. \end{cases}
 $$
 
 Lúc này, độ phức tạp thời gian là $\Theta(n^2)$.

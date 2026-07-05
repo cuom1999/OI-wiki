@@ -107,7 +107,7 @@ Bài toán dừng là một bài toán không tính được theo Turing kinh đ
     Định nghĩa hàm $\mathsf{UC}:\{0,1\}^\ast\to\{0,1\}$ như sau:
     
     $$
-    \mathsf{UC}(\alpha)=\begin{cases}0&M_\alpha(\alpha)=1\\1&\text{otherwise}\end{cases}
+    \mathsf{UC}(\alpha)=\begin{cases}0&M_\alpha(\alpha)=1\\1&\text{ngược lại}\end{cases}
     $$
     
     Trước hết, ta chứng minh hàm $\mathsf{UC}$ là không tính được theo Turing:

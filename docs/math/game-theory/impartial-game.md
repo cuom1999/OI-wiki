@@ -605,8 +605,8 @@ Phần này thảo luận một số bài tập điển hình.
     $$
     g(i,j) =
     \begin{cases}
-    0, & \text{if }2\mid i\text{ and }2\mid j,\\
-    g(\lfloor i/2\rfloor,\lfloor j/2\rfloor)+1,& \text{otherwise}.
+    0, & \text{nếu }2\mid i\text{ và }2\mid j,\\
+    g(\lfloor i/2\rfloor,\lfloor j/2\rfloor)+1,& \text{ngược lại}.
     \end{cases}
     $$
     
@@ -651,7 +651,7 @@ Phần này thảo luận một số bài tập điển hình.
     0, & x = x_0,\\
     x - 1, & x_0 < x < y_0,\\
     x + 1, & y_0 < x < x_0,\\
-    x, & \text{otherwise}.
+    x, & \text{ngược lại}.
     \end{cases}
     $$
     

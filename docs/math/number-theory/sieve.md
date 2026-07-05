@@ -414,7 +414,7 @@ $$
 \mu(n)=
 \begin{cases}
     0 & n' \bmod p_1 = 0\\\\
-    -\mu(n') & \text{otherwise}
+    -\mu(n') & \text{ngược lại}
 \end{cases}
 $$
 
@@ -641,7 +641,7 @@ $$
 g_n=
 \begin{cases}
     g_x\cdot p & x\bmod p=0\\\\
-    p & \text{otherwise}
+    p & \text{ngược lại}
 \end{cases}
 $$
 

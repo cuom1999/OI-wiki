@@ -58,9 +58,9 @@ Tóm lại:
 
 $$
 A(n, m) = \begin{cases}
-    0, & m > n \text{ or } n = 0, \\
+    0, & m > n \text{ hoặc } n = 0, \\
     1, & m = 0, \\
-    (n-m) \cdot A(n-1, m-1) + (m+1) \cdot A(n-1, m), & \text{otherwise}.
+    (n-m) \cdot A(n-1, m-1) + (m+1) \cdot A(n-1, m), & \text{ngược lại}.
 \end{cases}
 $$
 

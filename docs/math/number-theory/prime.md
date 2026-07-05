@@ -265,7 +265,7 @@ là số nguyên tố không vượt quá $1/4^k$.
     nguyên $n$ vượt qua kiểm tra Miller-Rabin với cơ sở $a$ có nghĩa là
 
     $$
-    a^u\equiv 1{\textstyle\pmod n},\text{ or }a^{u2^i}\equiv -1{\textstyle\pmod n}\text{ for some }0\le i < t.
+    a^u\equiv 1{\textstyle\pmod n},\text{ hoặc }a^{u2^i}\equiv -1{\textstyle\pmod n}\text{ với một số }0\le i < t.
     $$
 
     Gọi $S$ là tập các lớp đồng dư của những $a$ như vậy. Cần chứng minh

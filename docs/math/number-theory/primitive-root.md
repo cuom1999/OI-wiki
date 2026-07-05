@@ -794,9 +794,9 @@ Carmichael:
 
     $$
     \lambda(m) = \begin{cases}
-    \varphi(m), & \text{if }m=1,2,4,p^e\text{ for odd prime }p\text{ and }e \ge 1,\\
-    \frac{1}{2}\varphi(m), &\text{if }m=2^e,~e\ge 3,\\
-    \operatorname{lcm}\{\lambda(p_1^{e_1}),\lambda(p_2^{e_2}),\cdots,\lambda(p_s^{e_s})\}, &\text{if }m = p_1^{e_1}p_2^{e_2}\cdots p_s^{e_s}\text{ for distinct }p_1,p_2,\cdots,p_s.
+    \varphi(m), & \text{nếu }m=1,2,4,p^e\text{ với }p\text{ nguyên tố lẻ và }e \ge 1,\\
+    \frac{1}{2}\varphi(m), &\text{nếu }m=2^e,~e\ge 3,\\
+    \operatorname{lcm}\{\lambda(p_1^{e_1}),\lambda(p_2^{e_2}),\cdots,\lambda(p_s^{e_s})\}, &\text{nếu }m = p_1^{e_1}p_2^{e_2}\cdots p_s^{e_s}\text{ với }p_1,p_2,\cdots,p_s\text{ đôi một phân biệt}.
     \end{cases}
     $$
 

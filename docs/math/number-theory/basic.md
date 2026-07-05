@@ -568,7 +568,7 @@ $F(x)=\prod F(p_i^{k_i})=\prod F(p_i)^{k_i}$.
     là $\sigma(n)$.
 -   Hàm Euler: $\varphi(n)=\sum_{i=1}^n[(i,n)=1]$.
 -   Hàm Mobius:
-    $\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$,
+    $\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{ngược lại}\end{cases}$,
     trong đó $\omega(n)$ là số lượng thừa số nguyên tố phân biệt của $n$.
 
 <span id="hàm-cộng-tính"></span>

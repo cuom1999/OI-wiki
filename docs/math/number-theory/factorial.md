@@ -100,7 +100,7 @@ Trong tính toán, trường hợp modulo là lũy thừa nguyên tố đặc bi
     \prod_{1\le k<p^\alpha,\ k\perp p}k \equiv 
     \begin{cases}
     1, & p=2\text{ và }\alpha\ge3,\\
-    -1, &\text{otherwise}
+    -1, &\text{ngược lại}
     \end{cases}
     \pmod{p^\alpha}.
     $$

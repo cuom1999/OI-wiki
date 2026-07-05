@@ -153,7 +153,7 @@ Trong các tổng hàm số học liên quan đến quan hệ chia hết, đảo
         \Lambda(n) = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\log d = 
         \begin{cases}
         \log p, & n = p^e,~p\in\mathbf P,~e\in\mathbf N_+, \\
-        0, &\text{otherwise}.
+        0, &\text{ngược lại}.
         \end{cases}
         $$
 
@@ -783,7 +783,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     F(n) = 
     \begin{cases}
     p, & n = p^e,~p\in\mathbf P,~e\in\mathbf N_+, \\
-    1, &\text{otherwise}.
+    1, &\text{ngược lại}.
     \end{cases}
     $$
     

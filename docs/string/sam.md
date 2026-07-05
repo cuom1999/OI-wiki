@@ -118,8 +118,8 @@ Từ giá trị của $\operatorname{endpos}$, ta có thể rút ra một số k
     
     $$
     \begin{cases}
-    \operatorname{endpos}(w) \subseteq \operatorname{endpos}(u), & \text{if } u \text{ is a suffix of } w, \\
-    \operatorname{endpos}(w) \cap \operatorname{endpos}(u) = \varnothing, & \text{otherwise}.
+    \operatorname{endpos}(w) \subseteq \operatorname{endpos}(u), & \text{nếu } u \text{ là hậu tố của } w, \\
+    \operatorname{endpos}(w) \cap \operatorname{endpos}(u) = \varnothing, & \text{ngược lại}.
     \end{cases}
     $$
 

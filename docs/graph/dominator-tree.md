@@ -402,9 +402,9 @@ $$
 idom(u) =
 \left\{ 
 \begin{aligned} 
-& sdom(u), &\text{if}\ sdom(u) = sdom(v)
+& sdom(u), &\text{nếu}\ sdom(u) = sdom(v)
 \\
-&idom(v), &\text{otherwise}
+&idom(v), &\text{ngược lại}
 \end{aligned}
 \right.
 $$

@@ -241,7 +241,7 @@ $$
 \tilde{A}(G)_{i,j} = \begin{cases}
 x_{i,j}, & i<j,\; (v_i, v_j)\in E \\
 -x_{i,j}, & i > j,\; (v_i, v_j) \in E \\
-0, & \text{otherwise}
+0, & \text{ngược lại}
 \end{cases}
 $$
 

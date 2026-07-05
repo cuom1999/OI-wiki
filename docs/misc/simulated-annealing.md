@@ -20,8 +20,8 @@ Gọi nhiệt độ hiện tại là $T$, hiệu năng lượng, hay hiệu giá
 $$
 P(\Delta E)=
 \begin{cases}
-1,                              & S' \text{ is better than } S,\\
-\mathrm{e}^\frac{-\Delta E}{T}, & \text{otherwise}.
+1,                              & S' \text{ tốt hơn } S,\\
+\mathrm{e}^\frac{-\Delta E}{T}, & \text{ngược lại}.
 \end{cases}
 $$
 

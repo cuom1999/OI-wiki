@@ -28,7 +28,7 @@ Khi modulo là số nguyên tố lẻ, ta có định lý sau:
     $$
     a^{\frac{p-1}{2}}\equiv\begin{cases}
         1 \pmod p,  & (\exists x\in\mathbf{Z}),~~a\equiv x^2\pmod p,\\
-        -1 \pmod p, & \text{otherwise}.
+        -1 \pmod p, & \text{ngược lại}.
     \end{cases}
     $$
     
@@ -85,7 +85,7 @@ Dựa trên tiêu chuẩn Euler, ta có hệ quả sau:
     \left(\frac{a}{p}\right)=\begin{cases}
         0,  & p\mid a,\\
         1,  & (p\nmid a) \land ((\exists x\in\mathbf{Z}),~~a\equiv x^2\pmod p),\\
-        -1, & \text{otherwise}.
+        -1, & \text{ngược lại}.
     \end{cases}
     $$
 
@@ -452,8 +452,8 @@ và
 $$
 \left\lbrack x^n\right\rbrack\dfrac{k_0+k_1x}{1+k_2x+k_3x^2}=
 \begin{cases}
-\left\lbrack x^{(n-1)/2}\right\rbrack\dfrac{k_1-k_0k_2+k_1k_3x}{1+(2k_3-k_2^2)x+k_3^2x^2},&\text{if }n\bmod 2=1\\
-\left\lbrack x^{n/2}\right\rbrack\dfrac{k_0+(k_0k_3-k_1k_2)x}{1+(2k_3-k_2^2)x+k_3^2x^2},&\text{else if }n\neq 0
+\left\lbrack x^{(n-1)/2}\right\rbrack\dfrac{k_1-k_0k_2+k_1k_3x}{1+(2k_3-k_2^2)x+k_3^2x^2},&\text{nếu }n\bmod 2=1\\
+\left\lbrack x^{n/2}\right\rbrack\dfrac{k_0+(k_0k_3-k_1k_2)x}{1+(2k_3-k_2^2)x+k_3^2x^2},&\text{ngược lại nếu }n\neq 0
 \end{cases}
 $$
 
@@ -532,8 +532,8 @@ Vấn đề còn lại là tính $e$. Tonelli và Shanks đề xuất xác đị
 $$
 \left(g^eg^{-(e\bmod 2^k)}\right)^{2^{n-1-k}}\equiv g^{2^{n-1}\cdot e_k}\equiv 
 \begin{cases}
-1\pmod p,&\text{if }e_k=0\\
--1\pmod p,&\text{if }e_k=1
+1\pmod p,&\text{nếu }e_k=0\\
+-1\pmod p,&\text{nếu }e_k=1
 \end{cases}
 $$
 

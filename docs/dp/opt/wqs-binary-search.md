@@ -19,7 +19,7 @@ Gọi tập không rỗng $X$ là không gian quyết định (hữu hạn), $f:
 $$
 \begin{aligned}
 v(y)=\min_{x\in X}\;&f(x)\\
-\text{subject to }&g(x)=y.
+\text{với ràng buộc }&g(x)=y.
 \end{aligned}
 $$
 
@@ -129,7 +129,7 @@ $$
 \sup_{\lambda\in\mathbf R^d}L(x,\lambda,y)
 = \begin{cases}
 f(x),&g(x)=y,\\
-+\infty,&\text{otherwise}.
++\infty,&\text{ngược lại}.
 \end{cases}
 $$
 
@@ -510,7 +510,7 @@ Trong lập trình thi đấu, bài toán tối ưu lồi thường gặp nhất
     Gọi $c\in\mathbf R^n$, $A_1\in\mathbf R^{d_1\times n}$, $A_2\in\mathbf R^{d_2\times n}$, $y_1\in\mathbf R^{d_1}$, $y_2\in\mathbf R^{d_2}$. Xét bài toán quy hoạch tuyến tính có tham số sau:
     
     $$
-    v(y_1,y_2)=\min_{x\in\mathbf R^n} c\cdot x \text{ subject to }A_1x\le y_1,A_2x=y_2,x\ge 0.
+    v(y_1,y_2)=\min_{x\in\mathbf R^n} c\cdot x \text{ với ràng buộc }A_1x\le y_1,A_2x=y_2,x\ge 0.
     $$
     
     Khi đó, hàm giá trị $v(y_1,y_2)$ là hàm lồi theo $(y_1,y_2)$.
@@ -543,11 +543,11 @@ Ví dụ, trong ngữ cảnh luồng chi phí, có kết luận thường gặp 
     $$
     \begin{aligned}
     v(m)=\min_{\{f_{ij}\}}\;&\sum_{(i,j)\in E}w_{ij}f_{ij}\\
-    \text{subject to }&\sum_{(j,i)\in E}f_{ji} - \sum_{(i,j)\in E}f_{ij} = 
+    \text{với ràng buộc }&\sum_{(j,i)\in E}f_{ji} - \sum_{(i,j)\in E}f_{ij} =
     \begin{cases}
     -m, & i=s,\\
     m,  & i=t,\\
-    0,  & \text{otherwise},
+    0,  & \text{ngược lại},
     \end{cases}
     ~\forall i\in V,\\
     &0\le f_{ij}\le c_{ij},~\forall (i,j)\in E.
@@ -698,7 +698,7 @@ Trong các bài toán tối ưu tổ hợp, chứng minh tính lồi của hàm 
     thì gọi $f$ là **siêu mô-đun** (supermodular). Tuy nhiên, trong bài toán tối ưu dùng hàm siêu mô-đun làm hàm mục tiêu, hàm giá trị
     
     $$
-    v(m) = \min_{A\subseteq X} f(A) \text{ subject to }|A|=m
+    v(m) = \min_{A\subseteq X} f(A) \text{ với ràng buộc }|A|=m
     $$
     
     **chưa chắc** là hàm lồi theo $m$. Nguyên nhân là từ các nghiệm tối ưu có kích thước tập con lần lượt là $m-1$ và $m+1$, nhìn chung không thể xây dựng được nghiệm khả thi có kích thước tập con $m$ và thỏa quan hệ giá trị nêu trên.
@@ -917,7 +917,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
     Dùng $f(\cdot,\cdot)$, có thể viết tổng bình phương nhỏ nhất thu được khi cắt tất cả đoạn thẳng tổng cộng $m$ lần thành hàm giá trị của bài toán tối ưu sau:
     
     $$
-    v(m) = \min_{\{m_i\}}\sum_i f(a_i,m_i)\text{ subject to }\sum_i m_i=m,~m_i\in\mathbf N.
+    v(m) = \min_{\{m_i\}}\sum_i f(a_i,m_i)\text{ với ràng buộc }\sum_i m_i=m,~m_i\in\mathbf N.
     $$
     
     Đây là [chập lấy cận dưới đúng](./slope-trick.md#tích-chập-dưới-đúng-tổng-minkowski) của một số hàm lồi, nên cũng là hàm lồi. Nếu đề bài yêu cầu $v(m)$, có thể dùng phương pháp nhất quán với các ví dụ trước để giải, với độ phức tạp thời gian $O(n\log^2L)$. Tuy nhiên, bài này yêu cầu $m$ nhỏ nhất thỏa $v(m)\le V$. Cách dùng tìm kiếm nhị phân WQS để tính $v(m)$ rồi lại nhị phân trên $m$ không khả thi, vì độ phức tạp lên tới $O(n\log^3L)$. Với bài này, có hai cách xử lý sau.
@@ -939,7 +939,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
     Bài này có thể được xem trực tiếp là bài toán tối ưu sau:
     
     $$
-    m(v) = \min_{\{m_i\}} \sum_i m_i \text{ subject to }\sum_i f(a_i,m_i) \le V.
+    m(v) = \min_{\{m_i\}} \sum_i m_i \text{ với ràng buộc }\sum_i f(a_i,m_i) \le V.
     $$
     
     Phân tích trong bài viết này vẫn áp dụng cho bài toán này. Vì vậy, có thể dùng bài toán đối ngẫu của nó để giải $m(v)$ cần tìm:
