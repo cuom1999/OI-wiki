@@ -36,7 +36,7 @@ tập $Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ đóng dưới phép cộng,
 nhân, chia. Vì một tập đóng dưới bốn phép toán số học được gọi là
 [trường](../algebra/basic.md#trường), tập $Q(\sqrt{d})$ được gọi là
 **trường bậc hai** (quadratic field). Mọi trường bậc hai đều chứa toàn bộ các
-số hữu tỉ, do đó chúng đều là [mở rộng bậc hai](../algebra/field-theory.md#%E5%9F%9F%E7%9A%84%E6%89%A9%E5%BC%A0)
+số hữu tỉ, do đó chúng đều là [mở rộng bậc hai](../algebra/field-theory.md#mở-rộng-trường)
 của trường số hữu tỉ $\mathbf Q$. Khi $d>0$, mọi số trong trường bậc hai
 $\mathbf Q(\sqrt{d})$ đều là số thực; khi đó $\mathbf Q(\sqrt{d})$ được gọi là
 trường bậc hai thực. Khi $d<0$, trong trường bậc hai, ngoài các số hữu tỉ ra
@@ -238,7 +238,7 @@ $\{\pm u^k:k\in\mathbf Z\}$, trong đó $u$ được gọi là **đơn vị cơ 
 $\bar u$ của nó, cũng như $-u$ và $-\bar u$, đều là đơn vị cơ bản.
 
 Cấu trúc các đơn vị của vành số nguyên bậc hai có thể mở rộng sang [vành số
-nguyên đại số](../algebra/field-theory.md#%E4%BB%A3%E6%95%B0%E6%89%A9%E5%BC%A0)
+nguyên đại số](../algebra/field-theory.md#mở-rộng-đại-số)
 tổng quát. [Định lý đơn vị Dirichlet](https://en.wikipedia.org/wiki/Dirichlet%27s_unit_theorem)
 trong số học đại số phát biểu rằng tất cả đơn vị của mọi vành số nguyên đại số
 lập thành một [nhóm Abel hữu hạn sinh](../algebra/group-theory.md#nhóm-abel-hữu-hạn-sinh),
@@ -338,7 +338,7 @@ $D\equiv \pm 1\pmod 8$ và $2$ chia $D$.
 
 Trong phần này, đặt $\mathrm{i}=\sqrt{-1}$ là đơn vị ảo. Trường bậc hai
 $\mathbf Q(\mathrm{i})$ còn được gọi là trường Gauss, đồng thời là [trường
-cyclotomic](../algebra/field-theory.md#%E5%88%86%E5%9C%86%E5%9F%9F) bậc bốn.
+cyclotomic](../algebra/field-theory.md#trường-cyclotomic) bậc bốn.
 Vành số nguyên bậc hai tương ứng $\mathbf Z[\mathrm{i}]$ được gọi là vành số
 nguyên Gauss; các phần tử của nó được gọi là **số nguyên Gauss** (Gaussian
 integer). Số nguyên Gauss có bốn đơn vị, là $\pm 1$ và $\pm\mathrm{i}$, nên mỗi
@@ -533,7 +533,7 @@ thể chứng minh kết quả mạnh hơn: phương trình $x^4+y^4=z^2$ vô ng
 Trong phần này, đặt
 $\omega=\dfrac{-1+\sqrt{3}\mathrm{i}}{2}=e^{2\pi\mathrm{i}/3}$.[^omega]
 Trường bậc hai $\mathbf Q(\sqrt{3}\mathrm{i})$ là
-[trường cyclotomic](../algebra/field-theory.md#%E5%88%86%E5%9C%86%E5%9F%9F)
+[trường cyclotomic](../algebra/field-theory.md#trường-cyclotomic)
 bậc ba và bậc sáu; các số nguyên đại số trong trường này được gọi là số
 nguyên Eisenstein. Vành gồm tất cả số nguyên Eisenstein $\mathbf Z[\omega]$
 được gọi là vành số nguyên Eisenstein. Vành số nguyên Eisenstein có sáu đơn

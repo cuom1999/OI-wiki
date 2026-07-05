@@ -1,6 +1,6 @@
 Kiến thức cần có: [khái niệm cơ bản của đại số trừu tượng](./basic.md), [lý thuyết nhóm](./group-theory.md), [lý thuyết vành](./ring-theory.md)
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
@@ -13,7 +13,7 @@ Liên quan chặt chẽ với lý thuyết trường là lý thuyết Galois. L�
 ???+ info "Ký hiệu"
     Khi không gây nhầm lẫn, bài này có thể lược bỏ ký hiệu phép nhân của vành và trường, viết vành $(R,+,\cdot)$ là vành $R$, viết trường $(F,+,\cdot)$ là trường $F$. Phần tử đơn vị của phép cộng trong vành và trường gọi là phần tử không, phần tử đơn vị của phép nhân gọi là phần tử một. Ngoài ra, trong bài này $p$ luôn là số nguyên tố, còn $q$ luôn là lũy thừa của một số nguyên tố, có thể viết thành $p^n$, trong đó $n$ là số nguyên dương.
 
-<span id="&#x57DF;&#x7684;&#x6269;&#x5F20;"></span>
+<span id="mở-rộng-trường"></span>
 
 ## Mở rộng trường
 
@@ -43,7 +43,7 @@ Trong bối cảnh trường, trường nhỏ hơn thường quen thuộc hơn, 
 ???+ example "Ví dụ"
     Trường số phức $\mathbf C$ là mở rộng của trường số thực $\mathbf R$, còn trường số thực $\mathbf R$ lại là mở rộng của trường số hữu tỉ $\mathbf Q$.
 
-<span id="&#x57DF;&#x6269;&#x5F20;&#x7684;&#x6B21;&#x6570;"></span>
+<span id="bậc-của-mở-rộng-trường"></span>
 
 ### Bậc của mở rộng trường
 
@@ -65,7 +65,7 @@ Bậc của mở rộng trường thỏa mãn nguyên lý nhân.
 
 Các trường hợp được thảo luận trong bài này chủ yếu là các mở rộng hữu hạn.
 
-<span id="&#x57DF;&#x7684;&#x7279;&#x5F81;"></span>
+<span id="đặc-trưng-của-trường"></span>
 
 ### Đặc trưng của trường
 
@@ -103,7 +103,7 @@ Trường có đặc trưng hữu hạn và trường có đặc trưng $0$ thư
 
 Dĩ nhiên, với trường hữu hạn, tự đồng cấu Frobenius nhất định cũng toàn ánh, do đó là tự đẳng cấu của trường.
 
-<span id="&#x5355;&#x6269;&#x5F20;"></span>
+<span id="mở-rộng-đơn"></span>
 
 ### Mở rộng đơn
 
@@ -130,7 +130,7 @@ Trường hợp đơn giản nhất tất nhiên là khi tập $S$ có rất ít
 
 Các ví dụ này cho thấy tính chất của mở rộng đơn có thể rất khác nhau. Điều này phụ thuộc vào tính chất của phần tử được thêm vào.
 
-<span id="&#x4EE3;&#x6570;&#x6269;&#x5F20;"></span>
+<span id="mở-rộng-đại-số"></span>
 
 ### Mở rộng đại số
 
@@ -182,7 +182,7 @@ Tầm quan trọng của mở rộng đơn đại số cũng thể hiện qua đ
 
 Điều này có nghĩa để hiểu tính chất của mở rộng hữu hạn, chỉ cần hiểu mở rộng đơn đại số. Bởi vì mọi mở rộng hữu hạn luôn có thể thu được từ hữu hạn nhiều mở rộng đơn đại số.
 
-<span id="&#x5355;&#x4EE3;&#x6570;&#x6269;&#x5F20;&#x7684;&#x7ED3;&#x6784;&#x4E0E;&#x8BA1;&#x7B97;"></span>
+<span id="cấu-trúc-và-tính-toán-của-mở-rộng-đơn-đại-số"></span>
 
 ### Cấu trúc và tính toán của mở rộng đơn đại số
 
@@ -293,11 +293,11 @@ $$
 
 để hạ bậc đa thức mục tiêu. Ngoài ra, với mở rộng bậc thấp, thường có thể trực tiếp tính ra quy tắc phép toán trên hệ số, dùng cách cài đặt tương tự lớp số phức mà không cần mỗi lần đều thực hiện phép lấy modulo.
 
-Như một ví dụ về mở rộng đơn đại số, có thể xem [triển khai tham khảo](#%E5%8F%82%E8%80%83%E5%AE%9E%E7%8E%B0) cho trường hữu hạn ở phần dưới.
+Như một ví dụ về mở rộng đơn đại số, có thể xem [triển khai tham khảo](#triển-khai-tham-khảo) cho trường hữu hạn ở phần dưới.
 
-Các thuật toán mô tả ở đây trong thực tế chỉ xử lý được trường hợp bậc mở rộng tương đối thấp; điều này đủ cho tuyệt đại đa số ứng dụng trong lập trình thi đấu. Nếu bậc mở rộng lớn đến mức trở thành nút thắt độ phức tạp, nên dùng các kỹ thuật đa thức thích hợp như [biến đổi Fourier nhanh](../poly/fft.md), [biến đổi số học nhanh](../poly/ntt.md), [lấy dư đa thức nhanh](../poly/elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E9%99%A4%E6%B3%95--%E5%8F%96%E6%A8%A1), [Euclid đa thức](../poly/intro.md#%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3%E5%92%8C%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97), v.v. để tăng tốc phép toán.
+Các thuật toán mô tả ở đây trong thực tế chỉ xử lý được trường hợp bậc mở rộng tương đối thấp; điều này đủ cho tuyệt đại đa số ứng dụng trong lập trình thi đấu. Nếu bậc mở rộng lớn đến mức trở thành nút thắt độ phức tạp, nên dùng các kỹ thuật đa thức thích hợp như [biến đổi Fourier nhanh](../poly/fft.md), [biến đổi số học nhanh](../poly/ntt.md), [lấy dư đa thức nhanh](../poly/elementary-func.md#chia-đa-thức-và-lấy-dư), [Euclid đa thức](../poly/intro.md#phân-tích-nhân-tử-và-euclid), v.v. để tăng tốc phép toán.
 
-<span id="&#x5206;&#x88C2;&#x57DF;"></span>
+<span id="trường-phân-rã"></span>
 
 ### Trường phân rã
 
@@ -329,7 +329,7 @@ Có thể chứng minh, tương tự mở rộng đơn, trường phân rã củ
 
 Mở rộng chuẩn tắc đóng vai trò cơ sở trong lý thuyết Galois.
 
-<span id="&#x4EE3;&#x6570;&#x95ED;&#x57DF;"></span>
+<span id="trường-đóng-đại-số"></span>
 
 ### Trường đóng đại số
 
@@ -378,7 +378,7 @@ Thực ra khái niệm này có các định nghĩa tương đương sau:
 
 Cuối cùng, [định lý cơ bản của đại số](../poly/fundamental.md)[^fundamental-algebra] cho biết $\mathbf C$ là trường đóng đại số. Các đa thức bất khả quy trên trường số thực $\mathbf R$ có bậc không quá hai, hay tương đương, các mở rộng đại số của nó có bậc không quá hai, là vì trường lớn nhất thu được bằng mở rộng đại số chính là $\mathbf C$.
 
-<span id="&#x53EF;&#x5206;&#x6269;&#x5F20;"></span>
+<span id="mở-rộng-tách-được"></span>
 
 ### Mở rộng tách được
 
@@ -467,13 +467,13 @@ Mọi mở rộng đại số trên trường hoàn hảo đều là mở rộng
 
 Nếu một mở rộng đại số vừa là mở rộng chuẩn tắc vừa là mở rộng tách được, nó còn được gọi là mở rộng Galois. Trong mở rộng Galois, mọi đa thức bất khả quy đều không có nghiệm bội, và số nghiệm đúng bằng bậc của đa thức, nên các hoán vị của nghiệm có thể phản ánh đầy đủ tính chất của mở rộng trường và đa thức. Những mở rộng như vậy là nền tảng để xây dựng lý thuyết Galois. Độc giả quan tâm có thể tham khảo các tài liệu liên quan ở cuối bài.
 
-<span id="&#x5206;&#x5706;&#x57DF;"></span>
+<span id="trường-cyclotomic"></span>
 
 ## Trường cyclotomic
 
 Như một ví dụ đơn giản về mở rộng trường, mục này thảo luận trường cyclotomic. Một ví dụ đơn giản khác về mở rộng trường là [trường bậc hai](../number-theory/quadratic.md).
 
-<span id="&#x5355;&#x4F4D;&#x6839;&#x7FA4;"></span>
+<span id="nhóm-căn-đơn-vị"></span>
 
 ### Nhóm căn đơn vị
 
@@ -485,7 +485,7 @@ $$
 
 Đếm số phần tử hai vế thu được đẳng thức $n=\sum_{d\mid n}\varphi(d)$.
 
-<span id="&#x5206;&#x5706;&#x57DF;_1"></span>
+<span id="trường-cyclotomic-chi-tiết"></span>
 
 ### Trường cyclotomic
 
@@ -504,7 +504,7 @@ Vì toàn bộ căn đơn vị bậc $n$ tạo thành nhóm cyclic $\langle\zeta
 
 Điều này có thể xem là một định nghĩa tương đương của trường cyclotomic. Thực ra, thêm bất kỳ căn đơn vị nguyên thủy bậc $n$ nào vào trường số hữu tỉ cũng đều thu được $\mathbf Q(\zeta_n)$.
 
-<span id="&#x5206;&#x5706;&#x591A;&#x9879;&#x5F0F;"></span>
+<span id="đa-thức-cyclotomic"></span>
 
 ### Đa thức cyclotomic
 
@@ -600,7 +600,7 @@ Các tính chất này cho thấy trọng tâm của việc tính đa thức cyc
 
 Đa thức cyclotomic còn có thể dùng để giải một số bài toán số học và đại số. Chẳng hạn, độ dài chu kỳ của một phân số khi viết thành số thập phân trong một cơ số nào đó có liên hệ mật thiết với đa thức cyclotomic. Với các ứng dụng cụ thể này, độc giả quan tâm có thể tham khảo tài liệu cuối bài.
 
-<span id="&#x6709;&#x9650;&#x57DF;"></span>
+<span id="trường-hữu-hạn"></span>
 
 ## Trường hữu hạn
 
@@ -622,7 +622,7 @@ Các tính chất này cho thấy trọng tâm của việc tính đa thức cyc
 
 Trong trường nguyên tố $\mathbf F_p$, kết luận về tích trong hệ quả này chính là một phần của [định lý Wilson](../number-theory/factorial.md#định-lý-wilson) trong số học.
 
-<span id="&#x4E58;&#x6CD5;&#x7ED3;&#x6784;"></span>
+<span id="cấu-trúc-nhân"></span>
 
 ### Cấu trúc nhân
 
@@ -657,7 +657,7 @@ Thông qua phép nhân, phần tử nguyên thủy đã có thể sinh toàn b�
 
 Đa thức tối tiểu của phần tử nguyên thủy là đa thức bất khả quy trên trường con của trường hữu hạn.
 
-<span id="&#x5305;&#x542B;&#x5173;&#x7CFB;"></span>
+<span id="quan-hệ-bao-hàm"></span>
 
 ### Quan hệ bao hàm
 
@@ -684,7 +684,7 @@ Trường con của trường hữu hạn cũng là trường hữu hạn. Quan 
     
     Chú ý rằng với bất kỳ $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$, nhất định tồn tại $n\in\mathbf N_+$ sao cho $\alpha\in\mathbf F_{p^n}$, nên $\alpha$ là phần tử đại số trên $\mathbf F_p$. Vì vậy $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ là mở rộng đại số của $\mathbf F_p$. Với mọi đa thức bậc $m$ trên $\mathbf F_p$, $f(x)$, nó có nhiều nhất $m$ nghiệm khác nhau $\{\alpha_i\}_{i=1}^m$ trong bao đóng đại số $F$. Gọi $n_i$ là bậc đa thức tối tiểu của nghiệm $\alpha_i$, khi đó $\alpha_i$ nhất định nằm trong trường $\mathbf F_{p^{n_i}}$. Do đó mọi nghiệm của $f(x)$ đều nằm trong $\bigcup_{n=1}^\infty\mathbf F_{p^n}$, tức $f(x)$ phân rã trên $\bigcup_{n=1}^\infty\mathbf F_{p^n}$. Theo định nghĩa bao đóng đại số, $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ chính là bao đóng đại số của $\mathbf F_p$.
 
-<span id="&#x81EA;&#x540C;&#x6784;&#x7FA4;"></span>
+<span id="nhóm-tự-đẳng-cấu"></span>
 
 ### Nhóm tự đẳng cấu
 
@@ -716,7 +716,7 @@ Các nhóm con của nhóm tự đẳng cấu $\operatorname{Aut}(\mathbf F_q)$ 
 
 Kết luận này là một trường hợp đặc biệt của định lý cơ bản trong lý thuyết Galois tổng quát. Nó liên hệ mở rộng trường với lý thuyết nhóm, nhờ đó có thể dùng phương pháp của lý thuyết nhóm để giải quyết vấn đề về mở rộng trường.
 
-<span id="&#x4E0D;&#x53EF;&#x7EA6;&#x591A;&#x9879;&#x5F0F;"></span>
+<span id="đa-thức-bất-khả-quy"></span>
 
 ### Đa thức bất khả quy
 
@@ -752,7 +752,7 @@ $$
 \frac1n\sum_{d\mid n}\mu(d)q^{n/d}.
 $$
 
-Đây đúng bằng số loại vòng cổ độ dài $n$ dùng $q$ màu, không phân biệt các cấu hình chỉ khác nhau bởi phép quay ([chứng minh](../combinatorics/polya.md#%E5%BE%AA%E7%8E%AF%E7%BE%A4)), nên còn được gọi là đa thức vòng cổ (necklace polynomial).
+Đây đúng bằng số loại vòng cổ độ dài $n$ dùng $q$ màu, không phân biệt các cấu hình chỉ khác nhau bởi phép quay ([chứng minh](../combinatorics/polya.md#nhóm-cyclic)), nên còn được gọi là đa thức vòng cổ (necklace polynomial).
 
 ???+ note "Định lý"
     Trên trường hữu hạn $\mathbf F_q$ tồn tại đa thức bất khả quy với mọi bậc.
@@ -769,7 +769,7 @@ Phần trước đã chỉ ra rằng nghiệm của đa thức bất khả quy t
 
 Dù đa thức bất khả quy rất quan trọng đối với việc cài đặt trường hữu hạn, không có phương pháp tất định tốt để tìm một đa thức bất khả quy bậc $n$ trên trường hữu hạn $\mathbf F_q$. Trong trường hợp tổng quát, có thể dùng phương pháp ngẫu nhiên để sinh đa thức bất khả quy như vậy. Vì trong tất cả các đa thức monic bậc $n$, tỉ lệ đa thức bất khả quy là $\Theta(1/n)$, có thể sinh ngẫu nhiên một đa thức monic bậc $n$ rồi kiểm tra nó có khả quy hay không. Làm như vậy kỳ vọng tìm được một đa thức bất khả quy sau khi sinh $\Theta(n)$ đa thức monic. Dĩ nhiên, đa thức bất khả quy sinh theo cách này chưa chắc là đa thức nguyên thủy, hệ số cũng chưa chắc đơn giản. Trong thực tế, nếu kích thước trường hữu hạn được cho trước, thường có thể tra bảng[^list-prim-poly] để tìm đa thức nguyên thủy có hệ số đơn giản, thuận tiện cho tính toán về sau.
 
-<span id="&#x53C2;&#x8003;&#x5B9E;&#x73B0;"></span>
+<span id="triển-khai-tham-khảo"></span>
 
 ### Triển khai tham khảo
 
@@ -782,7 +782,7 @@ Mục này cung cấp một cài đặt trường hữu hạn đơn giản, ch�
 
 Trường hữu hạn được dùng nhiều nhất trong mật mã học là trường có đặc trưng $2$. Với loại trường hữu hạn này, có thể lưu các phần tử trong trường dưới dạng chuỗi 01 và dùng phép toán bit để cài đặt các phép toán của trường.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 
 ## Ứng dụng
 
@@ -790,7 +790,7 @@ Mục này liệt kê một số ứng dụng của mở rộng trường trong 
 
 Trong một số trường hợp, mở rộng trường có thể giảm độ phức tạp tính toán nên là cần thiết, ví dụ [biến đổi Fourier nhanh](../poly/fft.md) trên trường số thực. Trong một số trường hợp khác, mở rộng trường chỉ là một trong nhiều cách giải, và thường có phương pháp có độ phức tạp tương tự nhưng tránh dùng mở rộng trường, ví dụ phép tính dãy Fibonacci sẽ nói ngay sau đây. Khi tìm hiểu các ứng dụng này, độc giả nên so sánh ưu nhược điểm của các phương pháp khác nhau để chọn phương pháp phù hợp khi giải bài.
 
-<span id="&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;"></span>
+<span id="dãy-fibonacci"></span>
 
 ### Dãy Fibonacci
 
@@ -812,11 +812,11 @@ Nếu $5$ không phải thặng dư bậc hai modulo $p$, đa thức $x^2-x-1$ l
 
 Phương pháp tính dãy Fibonacci tất nhiên có thể mở rộng sang các tình huống khác. Nhưng cần chú ý một điểm: tính bất khả quy của đa thức trên trường hữu hạn không giống trên trường số hữu tỉ. Chẳng hạn $x^4-10x^2+1$ bất khả quy trên $\mathbf Q$, trường phân rã tương ứng là $\mathbf Q(\sqrt 2+\sqrt 3)=\mathbf Q(\sqrt 2,\sqrt 3)$; nhưng trong $\mathbf F_p$, nếu cả $2$ và $3$ đều không phải thặng dư bậc hai modulo $p$, thì nó là tích của hai đa thức bất khả quy, tức trong mở rộng $\mathbf F_p(\sqrt 2)$ đã tồn tại căn bậc hai $\sqrt{3}$ và không cần mở rộng thêm.
 
-<span id="&#x63A8;&#x5E7F;&#x5230;&#x73AF;&#x4E0A;&#x7684;&#x6269;&#x5F20;"></span>
+<span id="mở-rộng-sang-mở-rộng-trên-vành"></span>
 
 ### Mở rộng sang "mở rộng" trên vành
 
-Như mục trước đã cho thấy, mở rộng trường có nhiều hạn chế. Với việc tính dãy Fibonacci, nếu chỉ dùng phương pháp mở rộng trường thì ta chỉ xử lý trực tiếp được trường hợp modulo $p$ là số nguyên tố và $5$ không phải thặng dư bậc hai modulo $p$. Tuy nhiên cần chú ý rằng thảo luận trong mục [mở rộng đại số](#%E4%BB%A3%E6%95%B0%E6%89%A9%E5%BC%A0) cho thấy nếu không yêu cầu thực hiện phép chia trong cấu trúc sau khi mở rộng, ta có thể mở rộng vành[^ring-extension]. Mục này lấy ví dụ tính dãy Fibonacci dưới modulo bất kỳ $n$ để thảo luận ngắn gọn phương pháp này. Các tình huống thường gặp khác không liên quan quá nhiều đến phép chia, bao gồm tính định thức, biến đổi Fourier nhanh, v.v.; khi cần cũng có thể thử áp dụng phương pháp này.
+Như mục trước đã cho thấy, mở rộng trường có nhiều hạn chế. Với việc tính dãy Fibonacci, nếu chỉ dùng phương pháp mở rộng trường thì ta chỉ xử lý trực tiếp được trường hợp modulo $p$ là số nguyên tố và $5$ không phải thặng dư bậc hai modulo $p$. Tuy nhiên cần chú ý rằng thảo luận trong mục [mở rộng đại số](#mở-rộng-đại-số) cho thấy nếu không yêu cầu thực hiện phép chia trong cấu trúc sau khi mở rộng, ta có thể mở rộng vành[^ring-extension]. Mục này lấy ví dụ tính dãy Fibonacci dưới modulo bất kỳ $n$ để thảo luận ngắn gọn phương pháp này. Các tình huống thường gặp khác không liên quan quá nhiều đến phép chia, bao gồm tính định thức, biến đổi Fourier nhanh, v.v.; khi cần cũng có thể thử áp dụng phương pháp này.
 
 Gọi $m$ là số nguyên dương bất kỳ, $f(n)$ là số hạng thứ $n$ của dãy Fibonacci. Bài toán là tính $f(n)\bmod m$. Về nguyên tắc, cần tính trên $\mathbf Z/m\mathbf Z$. Nhưng như mục trước đã chỉ ra, dưới các modulo khác nhau, tính khả quy và tình huống có nghiệm bội của đa thức $x^2-x-1$ không giống nhau, nên công thức tổng quát của dãy Fibonacci có thể rất khác. Hơn nữa, nếu bản thân $\mathbf Z/m\mathbf Z$ không phải trường, phần tử sau khi mở rộng cũng thường không có nghịch đảo hợp lệ (ví dụ modulo $5$, mẫu số $\sqrt 5$ trực tiếp bằng không). Tuy có nhiều vấn đề như vậy, thực ra khi các hệ số được lấy modulo $m$, ta chỉ cần tính hạng tử hằng của phần dư
 
@@ -842,7 +842,7 @@ $$
 
 Trong trường hợp tổng quát, nếu một biểu thức có thể được tính trong trường mở rộng của trường số hữu tỉ $\mathbf Q$, thì nhất định có thể khử mẫu để thu được kết luận trên $\mathbf Z[x]$, rồi lấy modulo $m$ để thu được kết luận trên $(\mathbf Z/m\mathbf Z)[x]$. Mấu chốt để tư duy này hoạt động là bước khử mẫu không được gây ra hậu quả "không thể cứu vãn". Chẳng hạn với việc tính dãy Fibonacci, nếu không dùng hệ số của hạng tử hằng mà dùng hệ số của hạng tử bậc nhất, thì do hệ số có nhân tử $2$, khi $m$ chẵn thì $2$ không có nghịch đảo modulo $m$, không có cách khôi phục giá trị $f(n)$. Lại chẳng hạn, cũng trong việc tính dãy Fibonacci, nếu dùng công thức tổng quát có hạng tử $(-\phi)^{-n}$, bước khử mẫu sẽ đưa vào nhân tử khó xử lý, khiến không thể suy ra kết luận từ kết quả sau khi lấy dư. Vì vậy, việc chọn quá trình tính toán là điểm then chốt để áp dụng kỹ thuật này.
 
-<span id="cipolla-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-cipolla"></span>
 
 ### Thuật toán Cipolla
 
@@ -850,7 +850,7 @@ Trong trường hợp tổng quát, nếu một biểu thức có thể được
 
 Cụ thể, thuật toán Cipolla trước hết chọn $r$ sao cho $r^2-a$ là bất thặng dư bậc hai modulo $p$. Điều này có nghĩa $x^2-(r^2-a)$ là đa thức bất khả quy. Vì vậy, đặt $u=r^2-a$, ta có thể xét trường mở rộng $\mathbf F_p(\sqrt u)$. Vì tự đồng cấu Frobenius chỉ có thể ánh xạ một phần tử đến phần tử liên hợp của nó, mà trong mở rộng bậc hai phần tử liên hợp như vậy là duy nhất, nên $(r-\sqrt u)^p=r+\sqrt u$. Do đó $(r-\sqrt u)^{p+1}=(r+\sqrt u)(r-\sqrt u)=r^2-u=a$. Vì vậy để xác định căn bậc hai, chỉ cần tính $(r-\sqrt u)^{(p+1)/2}$. Giá trị này nhất định nằm trong $\mathbf F_p$, vì trường phân rã của $x^2-a$ chính là $\mathbf F_p$.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 
 ## Bài tập
 
@@ -868,7 +868,7 @@ Cuối cùng, ta liệt kê một số bài toán áp dụng trực tiếp nội
     -   [\[Oleksandr Kulkov Contest 2\] Problem A. Square Root Partitioning](https://codeforces.com/gym/102354/problem/A)
     -   [CF1103E. Radix Sum](https://codeforces.com/problemset/problem/1103/E)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 
 ## Tài liệu tham khảo và chú thích
 
