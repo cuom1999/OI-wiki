@@ -241,7 +241,7 @@ Cấu trúc các đơn vị của vành số nguyên bậc hai có thể mở r�
 nguyên đại số](../algebra/field-theory.md#%E4%BB%A3%E6%95%B0%E6%89%A9%E5%BC%A0)
 tổng quát. [Định lý đơn vị Dirichlet](https://en.wikipedia.org/wiki/Dirichlet%27s_unit_theorem)
 trong số học đại số phát biểu rằng tất cả đơn vị của mọi vành số nguyên đại số
-lập thành một [nhóm Abel hữu hạn sinh](../algebra/group-theory.md#%E6%9C%89%E9%99%90%E7%94%9F%E6%88%90-abel-%E7%BE%A4),
+lập thành một [nhóm Abel hữu hạn sinh](../algebra/group-theory.md#nhóm-abel-hữu-hạn-sinh),
 đồng thời định lý này cũng cho biết hạng của nhóm đó.
 
 Các nội dung trong lí thuyết chia hết của số nguyên như ước chung lớn nhất,

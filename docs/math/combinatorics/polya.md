@@ -16,7 +16,7 @@ Nguyên lí đếm Pólya thường được dùng để giải các bài toán 
 <span id="burnside-&#x5F15;&#x7406;"></span>
 ## Bổ đề Burnside
 
-Đọc thêm: [bổ đề Burnside](../algebra/group-theory.md#burnside-%E5%BC%95%E7%90%86)
+Đọc thêm: [bổ đề Burnside](../algebra/group-theory.md#bổ-đề-burnside)
 
 Nguyên lí đếm Pólya là một ứng dụng và mở rộng của bổ đề Burnside. Trước khi giới thiệu nguyên lí đếm Pólya, ta cần nhắc lại ngắn gọn nội dung của bổ đề Burnside.
 
@@ -129,7 +129,7 @@ Phân tích trong ví dụ có thể mở rộng sang trường hợp tổng qu�
     
     Ở đây, $X^g=\{x\in X:gx=x\}$ là tập điểm bất động dưới tác động của $g\in G$.
 
-Chứng minh gần như chỉ là chép lại phân tích trong ví dụ trên. Tuy nhiên, ví dụ dùng một quan sát: kết quả tác động của nhóm $G$ lên một phần tử riêng lẻ $x$ có một dạng "chu kì", nên số lần lặp của chu kì bằng số phép toán biến $x$ thành chính nó. Quan sát này đúng trong trường hợp tổng quát, nhưng vì cấu trúc của nhóm $G$ có thể phức tạp, "chu kì" của nó không nhất thiết trực quan như trong ví dụ. Phát biểu chặt chẽ quan sát này cần dùng [định lí quỹ đạo - ổn định tử (orbit-stabilizer theorem)](../algebra/group-theory.md#%E7%A8%B3%E5%AE%9A%E5%8C%96%E5%AD%90) trong lí thuyết nhóm.
+Chứng minh gần như chỉ là chép lại phân tích trong ví dụ trên. Tuy nhiên, ví dụ dùng một quan sát: kết quả tác động của nhóm $G$ lên một phần tử riêng lẻ $x$ có một dạng "chu kì", nên số lần lặp của chu kì bằng số phép toán biến $x$ thành chính nó. Quan sát này đúng trong trường hợp tổng quát, nhưng vì cấu trúc của nhóm $G$ có thể phức tạp, "chu kì" của nó không nhất thiết trực quan như trong ví dụ. Phát biểu chặt chẽ quan sát này cần dùng [định lí quỹ đạo - ổn định tử (orbit-stabilizer theorem)](../algebra/group-theory.md#bộ-ổn-định) trong lí thuyết nhóm.
 
 Khi áp dụng, chỉ cần liệt kê mọi phép đối xứng và cho biết số điểm bất động ứng với từng phép đối xứng là giải được bài toán đếm tương ứng. Dưới đây là một ứng dụng hơi phức tạp hơn.
 
@@ -314,7 +314,7 @@ Ví dụ này cho thấy phiên bản có trọng số của nguyên lí đếm 
 <span id="&#x5E38;&#x89C1;&#x7A7A;&#x95F4;&#x5BF9;&#x79F0;&#x7FA4;"></span>
 ## Các nhóm đối xứng không gian thường gặp
 
-Một khó khăn của các bài toán đếm Pólya là phân tích cấu trúc của nhóm hoán vị. Ở đây thảo luận ngắn gọn cấu trúc của các nhóm đối xứng không gian thường gặp và mô tả chúng bằng chỉ số chu trình. Cần chú ý rằng với cùng một nhóm đối xứng không gian của một cấu trúc, nếu tập đối tượng mà nó tác động lên khác nhau thì [tác động nhóm](../algebra/group-theory.md#%E7%BE%A4%E4%BD%9C%E7%94%A8) tương ứng cũng khác nhau, do đó biểu diễn hoán vị cũng khác nhau. Ví dụ, nhóm đối xứng không gian của khối lập phương khi tác động lên đỉnh, cạnh, mặt lần lượt cho nhóm hoán vị đỉnh, nhóm hoán vị cạnh và nhóm hoán vị mặt của khối lập phương; số lượng đỉnh, cạnh, mặt đôi một khác nhau, nên các nhóm hoán vị đó và chỉ số chu trình tương ứng cũng khác nhau. Vì vậy trong bài toán cụ thể, không được bỏ qua việc chỉ rõ đối tượng mà nhóm tác động lên.
+Một khó khăn của các bài toán đếm Pólya là phân tích cấu trúc của nhóm hoán vị. Ở đây thảo luận ngắn gọn cấu trúc của các nhóm đối xứng không gian thường gặp và mô tả chúng bằng chỉ số chu trình. Cần chú ý rằng với cùng một nhóm đối xứng không gian của một cấu trúc, nếu tập đối tượng mà nó tác động lên khác nhau thì [tác động nhóm](../algebra/group-theory.md#tác-động-nhóm) tương ứng cũng khác nhau, do đó biểu diễn hoán vị cũng khác nhau. Ví dụ, nhóm đối xứng không gian của khối lập phương khi tác động lên đỉnh, cạnh, mặt lần lượt cho nhóm hoán vị đỉnh, nhóm hoán vị cạnh và nhóm hoán vị mặt của khối lập phương; số lượng đỉnh, cạnh, mặt đôi một khác nhau, nên các nhóm hoán vị đó và chỉ số chu trình tương ứng cũng khác nhau. Vì vậy trong bài toán cụ thể, không được bỏ qua việc chỉ rõ đối tượng mà nhóm tác động lên.
 
 ??? info "Quan hệ giữa nhóm đối xứng không gian và nhóm hoán vị"
     Dù hai khái niệm rất giống nhau về trực giác, chúng tuyệt đối không phải cùng một đối tượng. Nói bằng ngôn ngữ lí thuyết nhóm, cho nhóm đối xứng không gian $G$ và tác động nhóm của nó lên tập $X$, biểu diễn hoán vị của tác động nhóm thực ra cho một đồng cấu từ nhóm $G$ đến nhóm đối xứng $S_X$, kí hiệu $\varphi$. Trong ngữ cảnh đếm tổ hợp, biểu diễn hoán vị này thường là trung thành, tức $\ker\varphi=\{e\}$, nên đồng cấu $\varphi$ thực chất là một phép nhúng từ nhóm $G$ vào nhóm $S_X$. Nhóm hoán vị trong bài chính là ảnh của phép nhúng này, tức $\varphi(G)$, và nó đẳng cấu với nhóm đối xứng không gian $G$. Vì vậy, với cùng một nhóm đối xứng không gian $G$ trên cùng một cấu trúc, nếu cách chọn tác động nhóm khác nhau thì nó sẽ đẳng cấu với các nhóm hoán vị $\varphi(G)$ khác nhau, từ đó có chỉ số chu trình khác nhau (các nhóm hoán vị đẳng cấu chưa chắc có cùng chỉ số chu trình).

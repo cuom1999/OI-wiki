@@ -35,7 +35,7 @@ Tương tự trường hợp của nhóm, ta có thể xây dựng các khái ni
 ???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
     Với mọi số nguyên khác không $n$, ánh xạ lấy phần dư modulo $n$, tức $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$ với $\pi(a)=\bar a$, đều là đồng cấu vành.
 
-Phần [thảo luận](./group-theory.md#%E7%BE%A4%E5%90%8C%E6%80%81) về hạt nhân và ảnh của đồng cấu nhóm gần như có thể chuyển nguyên vẹn sang đây. Ảnh của đồng cấu quyết định đồng cấu có toàn ánh hay không, còn việc hạt nhân có tầm thường hay không quyết định đồng cấu có đơn ánh hay không. Hạt nhân của đồng cấu vành được định nghĩa như sau:
+Phần [thảo luận](./group-theory.md#đồng-cấu-nhóm) về hạt nhân và ảnh của đồng cấu nhóm gần như có thể chuyển nguyên vẹn sang đây. Ảnh của đồng cấu quyết định đồng cấu có toàn ánh hay không, còn việc hạt nhân có tầm thường hay không quyết định đồng cấu có đơn ánh hay không. Hạt nhân của đồng cấu vành được định nghĩa như sau:
 
 ???+ abstract "Hạt nhân của đồng cấu"
     **Hạt nhân** (kernel) của đồng cấu $\pi:R\rightarrow S$ từ vành $R$ đến vành $S$ là $\{r\in R:\pi(r)=0\}$, ký hiệu là $\ker\pi$, trong đó $0$ là đơn vị cộng của $S$.
@@ -748,7 +748,7 @@ Nói chung, khi khái quát phương pháp này, còn có thể suy ra [công th
 <span id="&#24212;&#29992;&#25972;&#25968;&#21516;&#20313;&#31867;&#30340;&#20056;&#27861;&#32676;"></span>
 ### Ứng dụng: nhóm nhân của các lớp đồng dư số nguyên
 
-Đọc thêm: [căn nguyên thủy](../number-theory/primitive-root.md), [định lý cơ bản về nhóm Abel hữu hạn sinh](./group-theory.md#%E5%88%86%E7%B1%BB%E5%AE%9A%E7%90%86)
+Đọc thêm: [căn nguyên thủy](../number-theory/primitive-root.md), [định lý cơ bản về nhóm Abel hữu hạn sinh](./group-theory.md#định-lý-phân-loại)
 
 Là một ứng dụng của định lý số dư Trung Hoa và các nội dung liên quan đến lý thuyết nhóm, ở đây ta thảo luận cấu trúc của nhóm nhân modulo $n$ của số nguyên. Mục này lược bỏ ký hiệu gạch ngang của lớp đồng dư.
 

@@ -80,7 +80,7 @@ Nhóm chỉ được sinh bởi một phần tử có cấu trúc rất đơn gi
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
     Mỗi nhóm con không tầm thường của $D_6$ và cả $\{e\}$ đều là nhóm vòng.
 
-Có thể chứng minh cấu trúc của nhóm vòng được xác định duy nhất bởi kích thước của nó. Nếu nhóm vòng vô hạn, nó có cùng cấu trúc nhóm với nhóm cộng các số nguyên $(\mathbf Z,+)$, ký hiệu $C_\infty$ hoặc $\mathbf Z$; nếu không, gọi số phần tử của nhóm là $n\in\mathbf N_+$, thì nó có cùng cấu trúc nhóm với nhóm cộng các lớp đồng dư modulo $n$, $(\mathbf Z/n\mathbf Z,+)$, ký hiệu $C_n$ hoặc $\mathbf Z_n$. Phát biểu nghiêm ngặt của kết quả này cần dùng khái niệm [đẳng cấu nhóm](#dang-cau-nhom) ở phần sau, dùng để mô tả chính xác việc hai nhóm có cùng cấu trúc.
+Có thể chứng minh cấu trúc của nhóm vòng được xác định duy nhất bởi kích thước của nó. Nếu nhóm vòng vô hạn, nó có cùng cấu trúc nhóm với nhóm cộng các số nguyên $(\mathbf Z,+)$, ký hiệu $C_\infty$ hoặc $\mathbf Z$; nếu không, gọi số phần tử của nhóm là $n\in\mathbf N_+$, thì nó có cùng cấu trúc nhóm với nhóm cộng các lớp đồng dư modulo $n$, $(\mathbf Z/n\mathbf Z,+)$, ký hiệu $C_n$ hoặc $\mathbf Z_n$. Phát biểu nghiêm ngặt của kết quả này cần dùng khái niệm [đẳng cấu nhóm](#đẳng-cấu-nhóm) ở phần sau, dùng để mô tả chính xác việc hai nhóm có cùng cấu trúc.
 
 ???+ note "Định lý phân loại nhóm vòng"
     Nhóm vòng hữu hạn $G$ có kích thước $n$ đẳng cấu với $C_n$; nhóm vòng vô hạn $G$ đẳng cấu với $C_\infty$.
