@@ -2,27 +2,28 @@ disqus:
 
 ## Cấu hình môi trường
 
-Muốn làm việc tốt thì trước hết cần chuẩn bị công cụ tốt.
+Muốn viết chương trình thuận lợi, trước hết cần chuẩn bị công cụ phù hợp.
 
 ### Môi trường phát triển tích hợp
 
 Thao tác với IDE tương đối đơn giản, nên người mới bắt đầu thường chọn IDE để
-viết mã. Trong thi đấu, công cụ phổ biến nhất là
+viết mã. Trong thi đấu, công cụ phổ biến là
 [Dev-C++](../tools/editor/devcpp.md); nếu môi trường thi là Windows, thông
-thường IDE này cũng được cung cấp.
+thường IDE này cũng sẽ được cung cấp.
 
 ### Trình biên dịch
 
 #### Windows
 
 Nên dùng trình biên dịch GNU. Bạn cần tải và cài MinGW từ
-[MinGW Distro](https://nuwen.net/mingw.html). Ngoài ra, trên Windows cũng có
-thể chọn [trình biên dịch Microsoft Visual C++](https://docs.microsoft.com/en-us/cpp/build/projects-and-build-systems-cpp);
-cần tải và cài từ [trang Visual Studio](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019).
+[MinGW Distro](https://nuwen.net/mingw.html). Ngoài ra, trên Windows cũng có thể
+chọn [trình biên dịch Microsoft Visual C++](https://docs.microsoft.com/en-us/cpp/build/projects-and-build-systems-cpp);
+công cụ này có thể tải và cài từ
+[trang Visual Studio](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019).
 
 #### macOS
 
-Chạy trong trình dòng lệnh:
+Chạy lệnh sau trong dòng lệnh:
 
 ```bash
 xcode-select --install
@@ -40,42 +41,41 @@ sudo apt update && sudo apt install g++
 
 #### Biên dịch mã trong dòng lệnh
 
-Khi đã quen hơn, nhiều người sẽ dùng dòng lệnh linh hoạt hơn để biên dịch mã.
-Cách này không phụ thuộc vào IDE, mà dùng trình soạn thảo văn bản quen thuộc để
-viết mã.
+Khi đã quen hơn, nhiều người sẽ dùng dòng lệnh để biên dịch mã vì cách này linh
+hoạt hơn. Khi đó, bạn không phụ thuộc vào IDE mà có thể dùng trình soạn thảo văn
+bản quen thuộc để viết mã.
 
 ```bash
 g++ test.cpp -o test -lm
 ```
 
-`g++` là trình biên dịch của ngôn ngữ C++ (trình biên dịch của C là `gcc`),
+`g++` là trình biên dịch của ngôn ngữ C++ (trình biên dịch của C là `gcc`).
 `-o` dùng để chỉ định tên tệp thực thi, còn tùy chọn biên dịch `-lm` dùng để
 liên kết thư viện toán học `libm`, giúp mã dùng `math.h` có thể biên dịch và
 chạy bình thường.
 
-Ghi chú: Chương trình C++ không cần `-lm` vẫn có thể biên dịch và chạy bình
-thường. Các đề NOI/NOIP qua các năm đều có `-lm` trong tùy chọn biên dịch C++,
-nên ở đây cũng thêm tùy chọn này.
+Ghi chú: Chương trình C++ thường không cần `-lm` vẫn có thể biên dịch và chạy
+bình thường. Các đề NOI/NOIP qua các năm đều có `-lm` trong tùy chọn biên dịch
+C++, nên ở đây cũng thêm tùy chọn này.
 
 ## Đoạn mã đầu tiên
 
-Hãy bắt đầu hành trình nhập môn C++ bằng chương trình ví dụ này.
+Hãy bắt đầu hành trình nhập môn C++ bằng chương trình ví dụ sau.
 
-Ghi chú: Trước khi viết, hãy chú ý bật bộ gõ tiếng Anh.
+Ghi chú: Trước khi gõ mã, hãy chú ý chuyển bộ gõ sang tiếng Anh.
 
-Ngôn ngữ C++
+Chương trình C++:
 
 ```cpp
 #include <iostream>  // nạp tệp tiêu đề
 
 int main() {                     // định nghĩa hàm main
   std::cout << "Hello, world!";  // dùng cout trong không gian tên chuẩn
-  return 0;  // trả về 0, kết thúc hàm main; trình biên dịch thường tự thêm dòng này,
-             // nên thông thường có thể bỏ qua
+  return 0;  // trả về 0, kết thúc hàm main; trong C++ có thể bỏ qua dòng này
 }
 ```
 
-Ngôn ngữ C
+Chương trình C:
 
 ```c
 #include <stdio.h>  // nạp tệp tiêu đề
@@ -86,6 +86,7 @@ int main() {                // định nghĩa hàm main
 }
 ```
 
-Lưu ý: Ngôn ngữ C ở đây chỉ dùng để tham khảo. C++ về cơ bản tương thích với C,
-đồng thời có nhiều tính năng mới giúp thí sinh làm việc hiệu quả hơn trong phòng
-thi. Xem thêm [khác biệt giữa C++ và các ngôn ngữ thường dùng khác](./cpp-other-langs.md).
+Lưu ý: Chương trình C ở đây chỉ dùng để tham khảo. C++ về cơ bản tương thích với
+C, đồng thời có nhiều tính năng mới giúp thí sinh làm việc hiệu quả hơn trong
+phòng thi. Xem thêm
+[khác biệt giữa C++ và các ngôn ngữ thường dùng khác](./cpp-other-langs.md).
