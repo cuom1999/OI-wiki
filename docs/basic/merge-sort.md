@@ -6,7 +6,7 @@ Sắp xếp trộn ([merge sort](https://en.wikipedia.org/wiki/Merge_sort)) là 
 
 Sắp xếp trộn dựa trên tư tưởng chia để trị: chia mảng thành các đoạn, sắp xếp từng đoạn rồi trộn lại. Độ phức tạp thời gian trong trường hợp tốt nhất, xấu nhất và trung bình đều là $\Theta (n \log n)$; độ phức tạp không gian là $\Theta (n)$.
 
-Sắp xếp trộn có thể chỉ dùng $\Theta (1)$ không gian phụ, nhưng để tiện cài đặt, ta thường dùng một mảng phụ có cùng độ dài với mảng ban đầu.
+Sắp xếp trộn có thể chỉ dùng $\Theta (1)$ không gian phụ, nhưng để tiện cài đặt, thường dùng một mảng phụ có cùng độ dài với mảng ban đầu.
 
 ## Quy trình
 
@@ -16,7 +16,7 @@ Phần cốt lõi nhất của sắp xếp trộn là thao tác trộn (merge): 
 
 Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất rồi đưa vào mảng `c[k]`; lặp lại quá trình trên cho đến khi một trong hai mảng `a[i]` và `b[j]` rỗng, sau đó đưa các phần tử còn lại của mảng kia vào `c[k]`.
 
-Để bảo đảm tính ổn định của phép sắp xếp, khi phần tử đầu của đoạn trước nhỏ hơn hoặc bằng phần tử đầu của đoạn sau (`a[i] <= b[j]`), thay vì chỉ khi nhỏ hơn (`a[i] < b[j]`), ta phải đưa nó vào `c[k]` như giá trị nhỏ nhất.
+Để bảo đảm tính ổn định của phép sắp xếp, khi phần tử đầu của đoạn trước nhỏ hơn hoặc bằng phần tử đầu của đoạn sau (`a[i] <= b[j]`), thay vì chỉ khi nhỏ hơn (`a[i] < b[j]`), cần đưa nó vào `c[k]` như giá trị nhỏ nhất.
 
 #### Cài đặt
 
@@ -89,11 +89,11 @@ Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất r
 
 Có thể chứng minh bằng quy nạp toán học rằng quy trình này biến một mảng thành mảng đã sắp xếp.
 
-Để bảo đảm độ phức tạp của phép sắp xếp, thông thường ta chia mảng thành hai đoạn có độ dài gần bằng nhau nhất có thể ($mid = \left\lfloor \dfrac{l + r}{2} \right\rfloor$).
+Để bảo đảm độ phức tạp của phép sắp xếp, thông thường mảng được chia thành hai đoạn có độ dài gần bằng nhau nhất có thể ($mid = \left\lfloor \dfrac{l + r}{2} \right\rfloor$).
 
 #### Cài đặt
 
-Lưu ý rằng các đoạn được biểu diễn trong đoạn mã dưới đây lần lượt là $[l, r)$, $[l, mid)$, $[mid, r)$.
+Lưu ý rằng các đoạn được biểu diễn trong đoạn mã sau lần lượt là $[l, r)$, $[l, mid)$, $[mid, r)$.
 
 === "C/C++"
     ```cpp
@@ -103,7 +103,7 @@ Lưu ý rằng các đoạn được biểu diễn trong đoạn mã dưới đ�
       int mid = l + ((r - l) >> 1);
       merge_sort(a, l, mid), merge_sort(a, mid, r);
       // Trộn
-      int tmp[1024] = {};  // Hãy đặt độ dài mảng tmp theo tình huống thực tế
+      int tmp[1024] = {};  // Cần đặt độ dài mảng tmp theo tình huống thực tế
                            // (bằng a), hoặc dùng vector; trước hết đặt kết quả
                            // trộn vào tmp, rồi chép ngược về mảng a
       merge(a + l, a + mid, a + mid, a + r, tmp + l);  // pointer-style merge
@@ -126,7 +126,7 @@ Lưu ý rằng các đoạn được biểu diễn trong đoạn mã dưới đ�
 
 ### Cài đặt sắp xếp trộn bằng nhân đôi
 
-Ta đã biết rằng khi độ dài mảng là $1$, mảng đó đã được sắp xếp.
+Khi độ dài mảng là $1$, mảng đó đã được sắp xếp.
 
 Cắt toàn bộ mảng thành các đoạn có độ dài $1$.
 
@@ -148,7 +148,7 @@ Lặp lại quá trình trên cho đến khi trong mảng chỉ còn một đo�
 === "C/C++"
     ```cpp
     void merge_sort(int *a, size_t n) {
-      int tmp[1024] = {};  // Hãy đặt độ dài mảng tmp theo tình huống thực tế
+      int tmp[1024] = {};  // Cần đặt độ dài mảng tmp theo tình huống thực tế
                            // (bằng a), hoặc dùng vector; trước hết đặt kết quả
                            // trộn vào tmp, rồi chép ngược về mảng a
       for (size_t seg = 1; seg < n; seg <<= 1) {
@@ -175,7 +175,7 @@ Lặp lại quá trình trên cho đến khi trong mảng chỉ còn một đo�
                 l2 = r1
                 r2 = l2 + seg
                 a[l1:r2] = merge(a[l1:r1], a[l2:r2])
-        seg <<= 1
+            seg <<= 1
     ```
 
 ## Nghịch thế
