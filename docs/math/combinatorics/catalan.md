@@ -1,4 +1,4 @@
-<span id="&#24341;&#20837;"></span>
+<span id="giới-thiệu"></span>
 ## Giới thiệu
 
 Số Catalan thường xuất hiện trong nhiều bài toán đếm. Nhà toán học Bỉ Eugene Charles Catalan đã phát hiện dãy số này khi nghiên cứu bài toán đếm dãy ngoặc vào năm 1838, và dãy được đặt theo tên ông. Nhà toán học triều Thanh Minggatu đã phát hiện dãy này từ những năm 1730.
@@ -18,7 +18,7 @@ $$
 1,1,2,5,14,42,132,429,1430,\ldots
 $$
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Hệ thức truy hồi của số Catalan $C_n$ có cấu trúc đệ quy tự nhiên: một bài toán đếm quy mô $n$ ứng với $C_n$ có thể được tách thành hai bài toán con có quy mô lần lượt là $i$ và $(n-1-i)$ bằng cách duyệt điểm chia. Hệ thức này khiến số Catalan xuất hiện rộng rãi trong các bài toán có cấu trúc đệ quy tương tự.
@@ -100,7 +100,7 @@ Hệ thức truy hồi của số Catalan $C_n$ có cấu trúc đệ quy tự n
 
 Mặc dù hệ thức truy hồi này được ứng dụng rộng rãi, việc tính trực tiếp có độ phức tạp cao, nên cần tìm công thức đơn giản hơn.
 
-<span id="&#24120;&#35265;&#24418;&#24335;"></span>
+<span id="các-dạng-thường-gặp"></span>
 ## Các dạng thường gặp
 
 Số Catalan có các biểu thức thường gặp sau:
@@ -121,7 +121,7 @@ Các dạng này của số Catalan đều có thể tính hiệu quả: hai d�
 
 Với ba dạng thường gặp này, bài viết đưa ra hai cách chứng minh.
 
-<span id="&#20195;&#25968;&#25512;&#28436;"></span>
+<span id="suy-diễn-đại-số"></span>
 ### Suy diễn đại số
 
 Việc suy ra các biểu thức trên của số Catalan bằng phương pháp đại số gồm hai bước. Trước hết, kiểm tra ba dạng là tương đương với nhau.
@@ -174,7 +174,7 @@ Tiếp theo, kiểm tra rằng các dạng này thật sự là nghiệm của c
     C(x) = \dfrac{1- \sqrt{1-4x}}{2x}.
     $$
     
-    Tiếp theo, cần khai triển nó thành chuỗi lũy thừa. Dùng [khai triển chuỗi lũy thừa](../poly/intro.md#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B9%82%E7%BA%A7%E6%95%B0%E5%B1%95%E5%BC%80%E5%BC%8F) của $(1+x)^a$, ta có:
+    Tiếp theo, cần khai triển nó thành chuỗi lũy thừa. Dùng [khai triển chuỗi lũy thừa](../poly/intro.md#các-khai-triển-chuỗi-lũy-thừa-thường-gặp) của $(1+x)^a$, ta có:
     
     $$
     \sqrt{1-4x} = \sum_{n=0}^{\infty} \dfrac{\left(\frac{1}{2}\right)_{-n}}{n!}(-4x)^n,
@@ -203,7 +203,7 @@ Tiếp theo, kiểm tra rằng các dạng này thật sự là nghiệm của c
     
     Từ đó thu được biểu thức $(2)$ của $C_n$.
 
-<span id="&#32452;&#21512;&#24847;&#20041;"></span>
+<span id="ý-nghĩa-tổ-hợp"></span>
 ### Ý nghĩa tổ hợp
 
 Vì số Catalan có ý nghĩa tổ hợp rõ ràng, chỉ dùng phương pháp đếm tổ hợp cũng có thể chứng minh các dạng trên. Phần này đưa ra một chứng minh tổ hợp cho từng biểu thức trong ba biểu thức.
@@ -255,7 +255,7 @@ Vì số Catalan có ý nghĩa tổ hợp rõ ràng, chỉ dùng phương pháp 
     
     Sắp xếp lại, kết hợp với $C_0=1$, ta thu được biểu thức $(4)$ của số Catalan.
 
-<span id="&#20363;&#39064;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 ???+ example "[Luogu P1044 Stack](https://www.luogu.com.cn/problem/P1044)"
@@ -272,7 +272,7 @@ Vì số Catalan có ý nghĩa tổ hợp rõ ràng, chỉ dùng phương pháp 
         --8<-- "docs/math/code/combinatorics/catalan/catalan_1.py"
         ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Luogu P2532 [AHOI2012] Treehouse Stairs](https://www.luogu.com.cn/problem/P2532)
@@ -283,5 +283,5 @@ Vì số Catalan có ý nghĩa tổ hợp rõ ràng, chỉ dùng phương pháp 
 -   [Luogu P5014 Water Triangle (modified version)](https://www.luogu.com.cn/problem/P5014)
 -   [Luogu P3978 [TJOI2015] Probability Theory](https://www.luogu.com.cn/problem/P3978)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích

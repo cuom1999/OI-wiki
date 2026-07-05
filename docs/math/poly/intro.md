@@ -1,4 +1,4 @@
-<span id="&#x591A;&#x9879;&#x5F0F;&#x4E0E;&#x751F;&#x6210;&#x51FD;&#x6570;"></span>
+<span id="đa-thức-và-hàm-sinh"></span>
 
 ## Đa thức và hàm sinh
 
@@ -6,7 +6,7 @@ Thao tác với các đa thức có số hạng hữu hạn hoặc vô hạn là
 
 Các thuật toán đa thức dựa trên nền tảng [biến đổi Fourier nhanh](./fft.md) trao cho thí sinh lập trình khả năng thao tác trực tiếp với hàm sinh.
 
-<span id="&#x57FA;&#x672C;&#x6982;&#x5FF5;"></span>
+<span id="khái-niệm-cơ-bản"></span>
 
 ## Khái niệm cơ bản
 
@@ -42,13 +42,13 @@ $$
 
 thì thu được **vành chuỗi lũy thừa hình thức** (formal power series ring) $R[[x]]$, trong đó mỗi phần tử $f$ được gọi là **chuỗi lũy thừa hình thức** (formal power series), dưới đây gọi tắt là chuỗi lũy thừa.
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x6B21;&#x6570;"></span>
+<span id="bậc-của-đa-thức"></span>
 
 ### Bậc của đa thức
 
 Với một đa thức $f(x)$, bậc của số hạng có bậc cao nhất được gọi là **bậc** (degree) của đa thức, ký hiệu $\operatorname{deg}{f}$.
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x4E58;&#x6CD5;"></span>
+<span id="phép-nhân-đa-thức"></span>
 
 ### Phép nhân đa thức
 
@@ -71,7 +71,7 @@ Phép nhân đa thức hoặc chuỗi lũy thừa thỏa mãn tính kết hợp 
 
 Nếu trên $R$ tồn tại căn đơn vị bậc $2^n$, [biến đổi Fourier nhanh](./fft.md) cho phép tính tích của hai đa thức bậc $2^n$ trong thời gian $O(n2^n)$ thay vì $O(2^{2n})$.
 
-<span id="&#x590D;&#x5408;"></span>
+<span id="phép-hợp-thành"></span>
 
 ### Phép hợp thành
 
@@ -93,7 +93,7 @@ $\circ$ thỏa mãn tính kết hợp khi cả $(f\circ g)\circ h$ và $f\circ (
 
 Phép hợp thành đa thức và nghịch đảo hợp thành có cách làm $\Theta(n\log^2 n)$, được Yasunori Kinoshita và Li Baitian đề xuất năm 2024; xem chi tiết tại [hợp thành chuỗi lũy thừa hình thức | nghịch đảo hợp thành](./comp-rev.md).
 
-<span id="&#x5BFC;&#x6570;"></span>
+<span id="đạo-hàm"></span>
 
 ### Đạo hàm
 
@@ -113,7 +113,7 @@ Những quy tắc đạo hàm cơ bản, gồm quy tắc cộng, quy tắc nhân
 
 Nếu trên $R$ cho phép thực hiện phép chia, ta cũng có thể định nghĩa tương tự **nguyên hàm hình thức** (formal indefinite integral) của chuỗi lũy thừa hình thức.
 
-<span id="&#x4E58;&#x6CD5;&#x9006;&#x5143;"></span>
+<span id="nghịch-đảo-nhân"></span>
 
 ### Nghịch đảo nhân
 
@@ -137,12 +137,12 @@ $$
 f^{-1}_0=\dfrac{1}{f_0},f^{-1}_n=\dfrac{-1}{f_0}\sum_{k=0}^{n-1}f^{-1}_kf_{n-k}
 $$
 
-Tính trực tiếp $n$ số hạng đầu bằng công thức truy hồi mất $O(n^2)$; [sử dụng FFT](./elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86) có thể thu được thuật toán $O(n\log n)$.
+Tính trực tiếp $n$ số hạng đầu bằng công thức truy hồi mất $O(n^2)$; [sử dụng FFT](./elementary-func.md#nghịch-đảo-đa-thức) có thể thu được thuật toán $O(n\log n)$.
 
 ???+ note "Ghi chú"
     Dễ thấy rằng nghịch đảo của $f(x)$ chính là khai triển Maclaurin vô hạn số hạng của $\frac{1}{f(x)}$, tức khai triển Taylor vô hạn số hạng tại $x=0$.
 
-<span id="&#x5E38;&#x89C1;&#x7684;&#x5E42;&#x7EA7;&#x6570;&#x5C55;&#x5F00;&#x5F0F;"></span>
+<span id="các-khai-triển-chuỗi-lũy-thừa-thường-gặp"></span>
 
 ### Các khai triển chuỗi lũy thừa thường gặp
 
@@ -204,7 +204,7 @@ $$
 \arcsin x=x+\frac{1}{6}x^3+\frac{3}{40}x^5+\ldots+\frac{(2n)!}{{(n!)}^2(2n+1)4^n} x^{2n+1}+\ldots
 $$
 
-<span id="&#x590D;&#x5408;&#x9006;"></span>
+<span id="nghịch-đảo-hợp-thành"></span>
 
 ### Nghịch đảo hợp thành
 
@@ -218,7 +218,7 @@ $$
 
 trong đó $[x^k]f(x)$ biểu thị hệ số của $f(x)$ tại $x^k$.
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x6574;&#x9664;"></span>
+<span id="tính-chia-hết-của-đa-thức"></span>
 
 ### Tính chia hết của đa thức
 
@@ -232,7 +232,7 @@ thì đa thức $g(x)$ chia hết đa thức $f(x)$.
 
 Hiển nhiên, đa thức $g(x)$ chia hết đa thức $f(x)$ khi và chỉ khi tất cả các nghiệm của $g(x)$ đều là nghiệm của $f(x)$, và bội số của chúng trong $g(x)$ không vượt quá bội số tương ứng trong $f(x)$.
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x4F59;&#x6570;&#x548C;&#x5546;"></span>
+<span id="số-dư-và-thương-của-đa-thức"></span>
 
 ### Số dư và thương của đa thức
 
@@ -247,7 +247,7 @@ $$
 
 Khi $\operatorname{deg}{f} \ge \operatorname{deg}{g}$, có $\operatorname{deg}{Q} = \operatorname{deg}{f} - \operatorname{deg}{g}$; ngược lại $Q(x) = 0$. Ta gọi $Q(x)$ là **thương** (quotient) khi chia $f(x)$ cho $g(x)$, và $R(x)$ là **số dư** (remainder) khi chia $f(x)$ cho $g(x)$.
 
-<span id="&#x6A21;&#x591A;&#x9879;&#x5F0F;"></span>
+<span id="đa-thức-modulo"></span>
 
 ## Đa thức modulo
 
@@ -283,7 +283,7 @@ Rõ ràng tất cả các số hạng còn lại đều chia hết cho $x^n$, v�
 
 Trong một số trường hợp cụ thể, cũng có thể lấy modulo theo các đa thức khác; phần sau sẽ giải thích những trường hợp tương ứng.
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x7684;&#x591A;&#x70B9;&#x6C42;&#x503C;&#x548C;&#x63D2;&#x503C;"></span>
+<span id="tính-giá-trị-nhiều-điểm-và-nội-suy-đa-thức"></span>
 
 ### Tính giá trị nhiều điểm và nội suy đa thức
 
@@ -330,7 +330,7 @@ Bản chất của hai thao tác này là chuyển đổi đa thức giữa **bi
 
     Vì đạo hàm bậc bất kỳ của chuỗi lũy thừa tại $0$ luôn tồn tại, modulo $x^n$ luôn có thể tính được, phù hợp với ý nghĩa "cắt cụt" đã nêu ở trên. Biến đổi Fourier rời rạc và biến đổi ngược của nó tương đương với modulo đa thức $x^n-1$.
 
-<span id="&#x56E0;&#x5F0F;&#x5206;&#x89E3;&#x548C;&#x6B27;&#x51E0;&#x91CC;&#x5F97;"></span>
+<span id="phân-tích-nhân-tử-và-euclid"></span>
 
 ### Phân tích nhân tử và Euclid
 
@@ -380,7 +380,7 @@ $$
 
 [HALF-GCD](https://loj.ac/p/172) cho phép tính Euclid đa thức trong thời gian $O(n\log^2 n)$.
 
-<span id="&#x6A21;&#x591A;&#x9879;&#x5F0F;&#x7684;&#x4E58;&#x6CD5;&#x9006;&#x5143;"></span>
+<span id="nghịch-đảo-nhân-modulo-đa-thức"></span>
 
 ### Nghịch đảo nhân modulo đa thức
 
@@ -409,7 +409,7 @@ Xét khái niệm "cắt cụt", thông thường nghịch đảo theo modulo $x
 
     Câu trả lời là không. Theo giải thích ở trên, nghịch đảo thu được trực tiếp bằng biến đổi Fourier rời rạc và biến đổi ngược của nó là nghịch đảo theo modulo đa thức $x^n-1$, không phải nghịch đảo theo modulo đa thức $x^n$ thông thường. Hơn nữa, vì đa thức ban đầu có thể bằng $0$ tại một số giá trị điểm, cách tính này chưa chắc thực hiện được.
 
-<span id="&#x751F;&#x6210;&#x51FD;&#x6570;"></span>
+<span id="hàm-sinh"></span>
 
 ## Hàm sinh
 
@@ -427,7 +427,7 @@ trong đó $k_n(x)$ được gọi là hàm nhân. Các hàm nhân khác nhau s�
 2.  Hàm sinh mũ: $k_n(x)=\dfrac{x^n}{n!}$.
 3.  [Hàm sinh Dirichlet](../number-theory/dirichlet.md#hàm-sinh-dirichlet): $k_n(x)=\dfrac{1}{n^x}$.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x62D3;&#x5C55;&#x9605;&#x8BFB;"></span>
+<span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 
 ## Tài liệu tham khảo và đọc thêm
 

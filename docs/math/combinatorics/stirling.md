@@ -1,4 +1,4 @@
-<span id="&#x7B2C;&#x4E8C;&#x7C7B;&#x65AF;&#x7279;&#x6797;&#x6570;stirling-number"></span>
+<span id="số-stirling-loại-hai-stirling-number"></span>
 ## Số Stirling loại hai (Stirling Number)
 
 ??? note "Vì sao giới thiệu số Stirling loại hai trước"
@@ -6,7 +6,7 @@
 
 **Số Stirling loại hai** (số Stirling tập con) $\begin{Bmatrix}n\\ k\end{Bmatrix}$, cũng có thể kí hiệu là $S(n,k)$, biểu diễn số cách chia $n$ phần tử đôi một khác nhau thành $k$ tập con không rỗng và không phân biệt thứ tự.
 
-<span id="&#x9012;&#x63A8;&#x5F0F;"></span>
+<span id="công-thức-truy-hồi"></span>
 ### Công thức truy hồi
 
 $$
@@ -24,7 +24,7 @@ Khi chèn một phần tử mới, có hai khả năng:
 
 Theo nguyên lí cộng, cộng hai biểu thức sẽ thu được công thức truy hồi.
 
-<span id="&#x901A;&#x9879;&#x516C;&#x5F0F;"></span>
+<span id="công-thức-tổng-quát"></span>
 ### Công thức tổng quát
 
 $$
@@ -58,7 +58,7 @@ $$
 \begin{Bmatrix}n\\m\end{Bmatrix}=\dfrac{F_m}{m!}=\sum\limits_{i=0}^m\dfrac{(-1)^{m-i}i^n}{i!(m-i)!}
 $$
 
-<span id="&#x540C;&#x4E00;&#x884C;&#x7B2C;&#x4E8C;&#x7C7B;&#x65AF;&#x7279;&#x6797;&#x6570;&#x7684;&#x8BA1;&#x7B97;"></span>
+<span id="tính-một-hàng-số-stirling-loại-hai"></span>
 ### Tính một hàng số Stirling loại hai
 
 "Cùng một hàng" của số Stirling loại hai là dãy $\begin{Bmatrix}n\\i\end{Bmatrix}$ với $n$ cố định và $i$ thay đổi. Tính toàn bộ một hàng tức là tính, với mọi $i=0..n$, số cách chia $n$ phần tử khác nhau thành $i$ tập không rỗng.
@@ -666,7 +666,7 @@ Mã dưới đây dùng một lớp đa thức tên `poly`, chỉ để tham kh�
     }
     ```
 
-<span id="&#x540C;&#x4E00;&#x5217;&#x7B2C;&#x4E8C;&#x7C7B;&#x65AF;&#x7279;&#x6797;&#x6570;&#x7684;&#x8BA1;&#x7B97;"></span>
+<span id="tính-một-cột-số-stirling-loại-hai"></span>
 ### Tính một cột số Stirling loại hai
 
 "Cùng một cột" của số Stirling loại hai là dãy $\begin{Bmatrix}i\\k\end{Bmatrix}$ với $k$ cố định và $i$ thay đổi. Tính toàn bộ một cột tức là tính, với mọi $i=0..n$, số cách chia $i$ phần tử khác nhau thành $k$ tập không rỗng.
@@ -697,14 +697,14 @@ Ngoài ra, $\exp F(x)=\sum\limits_{i=0}^{+\infty}\dfrac{F^i(x)}{i!}$ chính là 
     }
     ```
 
-<span id="&#x7B2C;&#x4E00;&#x7C7B;&#x65AF;&#x7279;&#x6797;&#x6570;stirling-number"></span>
+<span id="số-stirling-loại-một-stirling-number"></span>
 ## Số Stirling loại một (Stirling Number)
 
 **Số Stirling loại một** (số Stirling chu trình) $\begin{bmatrix}n\\ k\end{bmatrix}$, cũng có thể kí hiệu là $s(n,k)$, biểu diễn số cách chia $n$ phần tử đôi một khác nhau thành $k$ chu trình không rỗng và không phân biệt thứ tự.
 
 Một chu trình là một hoán vị vòng có đầu cuối nối nhau. Ta có thể viết một chu trình $[A,B,C,D]$ và xem $[A,B,C,D]=[B,C,D,A]=[C,D,A,B]=[D,A,B,C]$, tức hai chu trình thu được từ nhau bằng phép quay là tương đương. Chú ý rằng hai chu trình thu được từ nhau bằng phép lật không được xem là tương đương, tức $[A,B,C,D]\neq[D,C,B,A]$.
 
-<span id="&#x9012;&#x63A8;&#x5F0F;_1"></span>
+<span id="công-thức-truy-hồi_1"></span>
 ### Công thức truy hồi
 
 $$
@@ -722,12 +722,12 @@ Khi chèn một phần tử mới, có hai khả năng:
 
 Theo nguyên lí cộng, cộng hai biểu thức sẽ thu được công thức truy hồi.
 
-<span id="&#x901A;&#x9879;&#x516C;&#x5F0F;_1"></span>
+<span id="công-thức-tổng-quát_1"></span>
 ### Công thức tổng quát
 
 Số Stirling loại một không có công thức tổng quát thực dụng.
 
-<span id="&#x540C;&#x4E00;&#x884C;&#x7B2C;&#x4E00;&#x7C7B;&#x65AF;&#x7279;&#x6797;&#x6570;&#x7684;&#x8BA1;&#x7B97;"></span>
+<span id="tính-một-hàng-số-stirling-loại-một"></span>
 ### Tính một hàng số Stirling loại một
 
 Tương tự số Stirling loại hai, ta xây dựng hàm sinh cho một hàng số Stirling loại một:
@@ -742,9 +742,9 @@ Do đó
 
 $F_n(x)=\prod\limits_{i=0}^{n-1}(x+i)=\dfrac{(x+n-1)!}{(x-1)!}$
 
-Đây thực chất là lũy thừa giai thừa tăng bậc $n$ của $x$, kí hiệu $x^{\overline n}$. Có thể tính trực tiếp bằng nhân chia để trị trong $O(n\log^2n)$, nhưng dùng kĩ thuật liên quan đến lũy thừa tăng có thể tính trong $O(n\log n)$. Xem thêm [tịnh tiến đa thức | tịnh tiến giá trị tại các điểm liên tiếp](../poly/shift.md#%E5%90%8C%E4%B8%80%E8%A1%8C%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%97%A0%E7%AC%A6%E5%8F%B7-stirling-%E6%95%B0).
+Đây thực chất là lũy thừa giai thừa tăng bậc $n$ của $x$, kí hiệu $x^{\overline n}$. Có thể tính trực tiếp bằng nhân chia để trị trong $O(n\log^2n)$, nhưng dùng kĩ thuật liên quan đến lũy thừa tăng có thể tính trong $O(n\log n)$. Xem thêm [tịnh tiến đa thức | tịnh tiến giá trị tại các điểm liên tiếp](../poly/shift.md#các-số-stirling-không-dấu-loại-một-trên-cùng-một-hàng).
 
-<span id="&#x540C;&#x4E00;&#x5217;&#x7B2C;&#x4E00;&#x7C7B;&#x65AF;&#x7279;&#x6797;&#x6570;&#x7684;&#x8BA1;&#x7B97;"></span>
+<span id="tính-một-cột-số-stirling-loại-một"></span>
 ### Tính một cột số Stirling loại một
 
 Mô phỏng cách tính số Stirling loại hai, ta có thể dùng hàm sinh mũ để giải bài toán này. Chú ý rằng vì công thức truy hồi phụ thuộc vào hàng, ta không thể dùng truy hồi đó để tính một cột số Stirling loại một.
@@ -772,10 +772,10 @@ Lũy thừa bậc $k$ của nó chính là hàm sinh mũ của $\begin{bmatrix}i
     }
     ```
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
-<span id="&#x4E0A;&#x5347;&#x5E42;&#x4E0E;&#x666E;&#x901A;&#x5E42;&#x7684;&#x76F8;&#x4E92;&#x8F6C;&#x5316;"></span>
+<span id="chuyển-đổi-giữa-lũy-thừa-tăng-và-lũy-thừa-thường"></span>
 ### Chuyển đổi giữa lũy thừa tăng và lũy thừa thường
 
 Kí hiệu lũy thừa giai thừa tăng là $x^{\overline{n}}=\prod_{k=0}^{n-1} (x+k)$.
@@ -792,7 +792,7 @@ $$
 x^n=\sum_{k} \begin{Bmatrix}n\\ k\end{Bmatrix} (-1)^{n-k} x^{\overline{k}}
 $$
 
-<span id="&#x4E0B;&#x964D;&#x5E42;&#x4E0E;&#x666E;&#x901A;&#x5E42;&#x7684;&#x76F8;&#x4E92;&#x8F6C;&#x5316;"></span>
+<span id="chuyển-đổi-giữa-lũy-thừa-giảm-và-lũy-thừa-thường"></span>
 ### Chuyển đổi giữa lũy thừa giảm và lũy thừa thường
 
 Kí hiệu lũy thừa giai thừa giảm là $x^{\underline{n}}=\dfrac{x!}{(x-n)!}=\prod_{k=0}^{n-1} (x-k)$.
@@ -809,7 +809,7 @@ $$
 x^{\underline{n}}=\sum_{k} \begin{bmatrix}n\\ k\end{bmatrix} (-1)^{n-k} x^k
 $$
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x4E0B;&#x964D;&#x9636;&#x4E58;&#x5E42;&#x8868;&#x793A;&#x4E0E;&#x591A;&#x9879;&#x5F0F;&#x70B9;&#x503C;&#x8868;&#x793A;&#x7684;&#x5173;&#x7CFB;"></span>
+<span id="quan-hệ-giữa-biểu-diễn-theo-lũy-thừa-giai-thừa-giảm-và-biểu-diễn-điểm-trị-của-đa-thức"></span>
 ### Quan hệ giữa biểu diễn theo lũy thừa giai thừa giảm và biểu diễn điểm trị của đa thức
 
 Ở đây, biểu diễn đa thức theo lũy thừa giai thừa giảm là biểu diễn dưới dạng
@@ -842,14 +842,14 @@ $$
 
 Đây là một công thức dạng tích chập, nên ta có thể chuyển đổi qua lại giữa điểm trị và lũy thừa giai thừa giảm trong độ phức tạp thời gian $O(n\log n)$.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [HDU3625 Examining the Rooms](https://acm.hdu.edu.cn/showproblem.php?pid=3625)
 -   [UOJ540 Bài toán số tổ hợp, kì tuyển chọn liên tỉnh 2020](https://uoj.ac/problem/540)
 -   [UOJ269 Trại huấn luyện Tsinghua 2016: Cách tính tổng một cách thanh lịch](https://uoj.ac/problem/269)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 1.  [Stirling Number of the First Kind - Wolfram MathWorld](http://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html)

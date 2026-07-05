@@ -1,6 +1,6 @@
 author: Xeonacid, nocriz, ZnPdCo
 
-<span id="&#31616;&#20171;"></span>
+<span id="giới-thiệu"></span>
 ## Giới thiệu
 
 Biến đổi Walsh (Walsh Transform)[^note1] là một phương pháp thay thế biến đổi Fourier rời rạc trong phân tích phổ, và được ứng dụng rộng rãi trong xử lý tín hiệu. FFT làm việc với kiểu `double`, còn Walsh phân rã tín hiệu theo các sóng vuông có tần số dao động khác nhau, nên mọi hệ số đều là số nguyên có cùng độ lớn tuyệt đối. Nhờ đó không cần thực hiện phép nhân số thực, giúp tăng tốc độ tính toán.
@@ -23,10 +23,10 @@ Trong đó $\oplus$ là một phép toán bit nhị phân nào đó.
 
 Dưới đây ta lấy $\cup$ (OR theo bit), $\cap$ (AND theo bit) và $\oplus$ (XOR theo bit) làm ví dụ.
 
-<span id="fwt-&#30340;&#36816;&#31639;"></span>
+<span id="các-phép-toán-của-fwt"></span>
 ## Các phép toán của FWT
 
-<span id="&#25110;&#36816;&#31639;"></span>
+<span id="phép-or"></span>
 ### Phép OR
 
 Nếu có $k=i\cup j$, thì các vị trí bit bằng $1$ của $i$ và các vị trí bit bằng $1$ của $j$ chắc chắn đều là tập con của các vị trí bit bằng $1$ của $k$.
@@ -84,7 +84,7 @@ Dưới đây là cài đặt. Dễ thấy biến đổi xuôi và ngược có 
     }
     ```
 
-<span id="&#19982;&#36816;&#31639;"></span>
+<span id="phép-and"></span>
 ### Phép AND
 
 Với phép AND, lập luận tương tự phép OR cho ta kết luận tương ứng:
@@ -113,7 +113,7 @@ Dưới đây là cài đặt. Khi biến đổi xuôi $\text{type}=1$, khi bi�
     }
     ```
 
-<span id="&#24322;&#25110;&#36816;&#31639;"></span>
+<span id="phép-xor"></span>
 ### Phép XOR
 
 Tích chập XOR dựa trên nguyên lý sau:
@@ -176,7 +176,7 @@ Dưới đây là mã nguồn. Khi biến đổi xuôi $\text{type}=1$, khi bi�
     }
     ```
 
-<span id="&#21516;&#25110;&#36816;&#31639;"></span>
+<span id="phép-xnor"></span>
 ### Phép XNOR
 
 Bằng cách lập luận tương tự phép XOR, ta có công thức:
@@ -191,7 +191,7 @@ $$
 UFWT[A'] = merge(\frac{UFWT[A_1'] - UFWT[A_0']}{2}, \frac{UFWT[A_1'] + UFWT[A_0']}{2})
 $$
 
-<span id="&#21478;&#19968;&#20010;&#35282;&#24230;&#30340;-fwt"></span>
+<span id="một-góc-nhìn-khác-về-fwt"></span>
 ## Một góc nhìn khác về FWT
 
 Đặt $c(i,j)$ là hệ số đóng góp của $A_j$ vào $FWT[A]_i$. Ta có thể mô tả lại quá trình biến đổi FWT:
@@ -263,7 +263,7 @@ $$
 
 Ma trận nghịch đảo không phải lúc nào cũng tồn tại. Chẳng hạn, nếu có một hàng toàn $0$ hoặc một cột toàn $0$, ma trận sẽ không có nghịch đảo; vì vậy cần đặc biệt cẩn thận khi xây dựng.
 
-<span id="&#25353;&#20301;&#25110;"></span>
+<span id="or-theo-bit"></span>
 ### OR theo bit
 
 Ta có thể xây dựng:
@@ -304,7 +304,7 @@ $$
 
 Sau đó chỉ cần đưa ma trận biến đổi ngược vào theo cách làm của biến đổi xuôi.
 
-<span id="&#25353;&#20301;&#19982;"></span>
+<span id="and-theo-bit"></span>
 ### AND theo bit
 
 Ta có thể xây dựng:
@@ -327,7 +327,7 @@ $$
 \end{bmatrix}
 $$
 
-<span id="&#25353;&#20301;&#24322;&#25110;"></span>
+<span id="xor-theo-bit"></span>
 ### XOR theo bit
 
 Ta có thể xây dựng:
@@ -350,7 +350,7 @@ $$
 \end{bmatrix}
 $$
 
-<span id="fwt-&#26159;&#32447;&#24615;&#21464;&#25442;"></span>
+<span id="fwt-là-biến-đổi-tuyến-tính"></span>
 ## FWT là biến đổi tuyến tính
 
 FWT là một biến đổi tuyến tính. Nghĩa là nó thỏa mãn:
@@ -365,7 +365,7 @@ $$
 FWT[c\cdot A]=c\cdot FWT[A]
 $$
 
-<span id="k-&#32500;-fwt"></span>
+<span id="fwt-k-chiều"></span>
 ## FWT K chiều
 
 Bản chất của phép toán bit là phép toán trên một vector $\{0,1\}$ có $n$ chiều. Phép OR lấy $\max$ trên từng chiều. Phép AND lấy $\min$ trên từng chiều. Phép XOR cộng từng chiều rồi lấy $\bmod 2$.
@@ -374,7 +374,7 @@ Phép toán bit có một đặc điểm: mỗi bit của vector đều độc l
 
 Ta mở rộng $\{0,1\}$ thành $[0,K)\cap \mathbf{Z}$, tức mở rộng sang hệ cơ số $K$, và xem sẽ thu được gì.
 
-<span id="max-&#36816;&#31639;"></span>
+<span id="phép-max"></span>
 ### Phép max
 
 Ta mở rộng phép $\cup$ sang hệ cơ số $K$, định nghĩa $i\cup j$ là lấy $\max$ theo từng chữ số, khi đó:
@@ -411,7 +411,7 @@ $$
 \end{bmatrix}
 $$
 
-<span id="min-&#36816;&#31639;"></span>
+<span id="phép-min"></span>
 ### Phép min
 
 Ta mở rộng phép $\cap$ sang hệ cơ số $K$, định nghĩa $i\cap j$ là lấy $\min$ theo từng chữ số, khi đó:
@@ -450,7 +450,7 @@ $$
 
 Hai phép đầu được dùng ít hơn; phép được dùng nhiều hơn là:
 
-<span id="&#19981;&#36827;&#20301;&#21152;&#27861;"></span>
+<span id="phép-cộng-không-nhớ"></span>
 ### Phép cộng không nhớ
 
 Ta mở rộng phép $\oplus$ sang hệ cơ số $K$, định nghĩa $i\oplus j$ là cộng theo từng chữ số rồi lấy $\bmod K$, khi đó:
@@ -514,7 +514,7 @@ Vì thế ta không tính theo $\bmod {x^K-1}$ nữa, mà tính theo $\bmod$ đa
 
 Vẫn còn một vấn đề: tính theo $\bmod \Phi_{K}(x)$ có hằng số lớn (vì bản thân $\Phi$ là một đa thức). Nhưng vì $\Phi_{K}(x)\mid x^k-1$, khi tính ta chỉ cần lấy $\bmod x^k -1$, đến cuối mới lấy tiếp $\bmod \Phi_{K}(x)$.
 
-<span id="&#20363;&#39064;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 ???+ note "[CF 1103E - Radix sum](https://www.luogu.com.cn/problem/CF1103E)"
@@ -540,7 +540,7 @@ Vẫn còn một vấn đề: tính theo $\bmod \Phi_{K}(x)$ có hằng số l�
     ??? note "Lời giải"
         Đây là một bài không quá mẫu mực. Tác giả đề bài đã cung cấp lời giải tiếng Anh chi tiết; xem cụ thể tại [liên kết này](https://codeforces.com/blog/entry/96518).
 
-<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 -   [Ghi chú thuật toán của Taojiang](https://zhuanlan.zhihu.com/p/41867199)
