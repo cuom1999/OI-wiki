@@ -1,6 +1,6 @@
 Bài này giới thiệu một nội dung rất quan trọng trong đại số tuyến tính: ma trận (Matrix), chủ yếu trình bày các tính chất, phép toán của ma trận và một số ứng dụng của phép nhân ma trận.
 
-<span id="&#21521;&#37327;&#19982;&#30697;&#38453;"></span>
+<span id="vectơ-và-ma-trận"></span>
 ## Vectơ và ma trận
 
 Trong đại số tuyến tính, vectơ được chia thành vectơ cột và vectơ hàng.
@@ -12,7 +12,7 @@ Trong đại số tuyến tính, vectơ được chia thành vectơ cột và ve
 
 Vectơ cũng là một ma trận đặc biệt. Nếu muốn biểu diễn vectơ hàng, cần viết ký hiệu chuyển vị ở góc trên bên phải của chữ thường in đậm. Trong đại số tuyến tính, vectơ hàng thường biểu diễn phương trình.
 
-<span id="&#24341;&#20837;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 Ma trận được đưa vào từ hệ phương trình tuyến tính. Tương tự vectơ, ma trận thể hiện tư tưởng "đóng gói xử lý" dữ liệu.
@@ -61,36 +61,36 @@ Khi đối tượng nghiên cứu là vectơ cột ở bên phải, phép nhân 
 
 Ma trận có thể biến đổi một vectơ cột, cũng có thể "đóng gói" để biến đổi một nhóm vectơ cột, thậm chí có thể biến đổi cả không gian, tức toàn bộ các vectơ cột. Khi ma trận được xem là phép biến đổi trên cả không gian, nó cũng tách khỏi không gian và trở thành một phép biến đổi thuần túy.
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Với ma trận $A$, đường chéo chính là các phần tử $A_{i,i}$.
 
 Thường dùng $I$ để biểu diễn ma trận đơn vị, tức ma trận có các phần tử trên đường chéo chính bằng 1, các vị trí còn lại bằng 0.
 
-<span id="&#21516;&#22411;&#30697;&#38453;"></span>
+<span id="ma-trận-cùng-dạng"></span>
 ### Ma trận cùng dạng
 
 Hai ma trận có số hàng và số cột tương ứng bằng nhau được gọi là ma trận cùng dạng.
 
-<span id="&#26041;&#38453;"></span>
+<span id="ma-trận-vuông"></span>
 ### Ma trận vuông
 
 Ma trận có số hàng bằng số cột được gọi là ma trận vuông. Ma trận vuông là một loại ma trận đặc biệt. Cách nói quen thuộc "ma trận bậc $n$" thực ra chỉ ma trận vuông bậc $n$. Các ma trận vuông cùng bậc là ma trận cùng dạng.
 
 Khi nghiên cứu hệ phương trình, hệ vectơ, hạng của ma trận, ta dùng ma trận tổng quát. Khi nghiên cứu giá trị riêng, vectơ riêng và dạng toàn phương, ta dùng ma trận vuông.
 
-<span id="&#20027;&#23545;&#35282;&#32447;"></span>
+<span id="đường-chéo-chính"></span>
 #### Đường chéo chính
 
 Trong ma trận vuông, các phần tử có chỉ số hàng bằng chỉ số cột tạo thành đường chéo chính.
 
-<span id="&#23545;&#31216;&#30697;&#38453;"></span>
+<span id="ma-trận-đối-xứng"></span>
 #### Ma trận đối xứng
 
 Nếu các phần tử của ma trận vuông đối xứng qua đường chéo chính, tức với mọi $i$ và $j$, phần tử ở hàng $i$ cột $j$ bằng phần tử ở hàng $j$ cột $i$, thì ma trận vuông đó được gọi là ma trận đối xứng.
 
-<span id="&#23545;&#35282;&#30697;&#38453;"></span>
+<span id="ma-trận-đường-chéo"></span>
 #### Ma trận đường chéo
 
 Ma trận vuông có mọi phần tử ngoài đường chéo chính đều bằng $0$ được gọi là ma trận đường chéo, thường ký hiệu là:
@@ -105,36 +105,36 @@ Ma trận đường chéo là ma trận đối xứng.
 
 Nếu mọi phần tử của ma trận đường chéo đều bằng $1$, nó được gọi là ma trận đơn vị, ký hiệu $I$. Miễn phép nhân thực hiện được, bất kể hình dạng, nhân một ma trận bất kỳ với ma trận đơn vị vẫn giữ nguyên ma trận đó.
 
-<span id="&#19977;&#35282;&#30697;&#38453;"></span>
+<span id="ma-trận-tam-giác"></span>
 #### Ma trận tam giác
 
 Nếu các phần tử phía dưới bên trái đường chéo chính của ma trận vuông đều bằng $0$, ma trận đó được gọi là ma trận tam giác trên. Nếu các phần tử phía trên bên phải đường chéo chính của ma trận vuông đều bằng $0$, ma trận đó được gọi là ma trận tam giác dưới.
 
 Tích của hai ma trận tam giác trên (dưới) vẫn là ma trận tam giác trên (dưới). Nếu các phần tử trên đường chéo đều khác $0$, thì ma trận tam giác trên (dưới) khả nghịch, và nghịch đảo của nó cũng là ma trận tam giác trên (dưới).
 
-<span id="&#21333;&#20301;&#19977;&#35282;&#30697;&#38453;"></span>
+<span id="ma-trận-tam-giác-đơn-vị"></span>
 #### Ma trận tam giác đơn vị
 
 Nếu mọi phần tử trên đường chéo của ma trận tam giác trên $A$ đều bằng $1$, thì $A$ được gọi là ma trận tam giác trên đơn vị. Nếu mọi phần tử trên đường chéo của ma trận tam giác dưới $A$ đều bằng $1$, thì $A$ được gọi là ma trận tam giác dưới đơn vị.
 
 Tích của hai ma trận tam giác trên (dưới) đơn vị vẫn là ma trận tam giác trên (dưới) đơn vị, và nghịch đảo của ma trận tam giác trên (dưới) đơn vị cũng là ma trận tam giác trên (dưới) đơn vị.
 
-<span id="&#36816;&#31639;"></span>
+<span id="phép-toán"></span>
 ## Phép toán
 
-<span id="&#30697;&#38453;&#30340;&#32447;&#24615;&#36816;&#31639;"></span>
+<span id="phép-toán-tuyến-tính-của-ma-trận"></span>
 ### Phép toán tuyến tính của ma trận
 
 Phép toán tuyến tính của ma trận gồm cộng, trừ và nhân với số; tất cả đều thực hiện theo từng phần tử. Chỉ các ma trận cùng dạng mới có thể cộng trừ tương ứng.
 
-<span id="&#30697;&#38453;&#30340;&#36716;&#32622;"></span>
+<span id="chuyển-vị-ma-trận"></span>
 ### Chuyển vị ma trận
 
 Chuyển vị ma trận là viết ký hiệu chuyển vị "T" ở góc trên bên phải của ma trận, biểu thị việc hoán đổi hàng và cột của ma trận.
 
 Ma trận đối xứng không đổi sau khi chuyển vị.
 
-<span id="&#30697;&#38453;&#20056;&#27861;"></span>
+<span id="phép-nhân-ma-trận"></span>
 ### Phép nhân ma trận
 
 Phép nhân ma trận là sự khái quát của tích trong vectơ.
@@ -159,7 +159,7 @@ Dùng tính kết hợp, phép nhân ma trận có thể được tối ưu bằ
 
 Trong thi đấu, vì truy hồi tuyến tính có thể biểu diễn dưới dạng nhân ma trận, người ta cũng thường dùng lũy thừa ma trận nhanh để tính một số hạng của dãy truy hồi tuyến tính.
 
-<span id="&#20248;&#21270;"></span>
+<span id="tối-ưu"></span>
 #### Tối ưu
 
 Trước hết, với ma trận khá nhỏ, có thể cân nhắc tự trải vòng lặp thủ công để giảm hằng số.
@@ -193,19 +193,19 @@ mat operator*(const mat& T) const {
 }
 ```
 
-<span id="&#26041;&#38453;&#30340;&#36870;"></span>
+<span id="nghịch-đảo-của-ma-trận-vuông"></span>
 ### Nghịch đảo của ma trận vuông
 
 Ma trận nghịch đảo $P$ của ma trận vuông $A$ là ma trận sao cho $A \times P = I$.
 
 Ma trận nghịch đảo không nhất thiết tồn tại. Nếu tồn tại, có thể dùng [khử Gauss](../numerical/gauss.md) để tìm.
 
-<span id="&#26041;&#38453;&#30340;&#34892;&#21015;&#24335;"></span>
+<span id="định-thức-của-ma-trận-vuông"></span>
 ### Định thức của ma trận vuông
 
 Định thức là một phép toán trên ma trận vuông.
 
-<span id="&#21442;&#32771;&#20195;&#30721;"></span>
+<span id="mã-tham-khảo"></span>
 ## Mã tham khảo
 
 Nói chung, có thể dùng mảng hai chiều để mô phỏng ma trận.
@@ -261,7 +261,7 @@ struct mat {
 };
 ```
 
-<span id="&#30475;&#24453;&#32447;&#24615;&#26041;&#31243;&#32452;&#30340;&#20004;&#31181;&#35270;&#35282;"></span>
+<span id="hai-góc-nhìn-về-hệ-phương-trình-tuyến-tính"></span>
 ## Hai góc nhìn về hệ phương trình tuyến tính
 
 Có hai góc nhìn để xem ma trận $A$, hoặc biến đổi $A$.
@@ -290,17 +290,17 @@ Giải phương trình trở thành việc nghiên cứu liệu có thể điề
 
 Nhìn theo cột mới mẻ hơn nhìn theo hàng. Theo góc nhìn theo cột, có thể nghiên cứu độc lập tuyến tính và phụ thuộc tuyến tính.
 
-<span id="&#30697;&#38453;&#20056;&#27861;&#30340;&#24212;&#29992;"></span>
+<span id="ứng-dụng-của-phép-nhân-ma-trận"></span>
 ## Ứng dụng của phép nhân ma trận
 
-<span id="&#30697;&#38453;&#21152;&#36895;&#36882;&#25512;"></span>
+<span id="dùng-ma-trận-tăng-tốc-truy-hồi"></span>
 ### Dùng ma trận tăng tốc truy hồi
 
 Lấy [dãy Fibonacci (Fibonacci Sequence)](../combinatorics/fibonacci.md) làm ví dụ. Trong dãy Fibonacci, $F_1 = F_2 = 1$, $F_i = F_{i - 1} + F_{i - 2}(i \geq 3)$.
 
 Nếu một bài toán yêu cầu tính giá trị số hạng thứ $n$ của dãy Fibonacci, cách đơn giản nhất là truy hồi trực tiếp. Nhưng nếu phạm vi của $n$ đạt mức $10^{18}$, truy hồi trực tiếp không còn khả thi; lúc này có thể xét tăng tốc truy hồi bằng ma trận.
 
-Theo [dạng ma trận của công thức truy hồi](../combinatorics/fibonacci.md#%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8F) của dãy Fibonacci:
+Theo [dạng ma trận của công thức truy hồi](../combinatorics/fibonacci.md#dạng-ma-trận) của dãy Fibonacci:
 
 $$
 \begin{bmatrix}
@@ -401,7 +401,7 @@ $$
 \end{bmatrix}
 $$
 
-<span id="&#30697;&#38453;&#34920;&#36798;&#20462;&#25913;"></span>
+<span id="dùng-ma-trận-biểu-diễn-cập-nhật"></span>
 ### Dùng ma trận biểu diễn cập nhật
 
 ???+ note "[THUSCH 2017 Đại pháp sư](https://loj.ac/p/2980)"
@@ -501,7 +501,7 @@ d & 0 & 1
 \end{aligned}
 $$
 
-<span id="&#23450;&#38271;&#36335;&#24452;&#32479;&#35745;"></span>
+<span id="đếm-đường-đi-độ-dài-cố-định"></span>
 ### Đếm đường đi độ dài cố định
 
 ???+ note "Mô tả bài toán"
@@ -531,7 +531,7 @@ $$
 
 Để tính lũy thừa ma trận này, có thể dùng tư tưởng lũy thừa nhanh (lũy thừa nhị phân), tính kết quả trong độ phức tạp $O(n^3 \log k)$.
 
-<span id="&#23450;&#38271;&#26368;&#30701;&#36335;"></span>
+<span id="đường-đi-ngắn-nhất-có-độ-dài-cố-định"></span>
 ### Đường đi ngắn nhất có độ dài cố định
 
 ???+ note "Mô tả bài toán"
@@ -565,7 +565,7 @@ $$
 
 Ta vẫn có thể dùng phương pháp lũy thừa ma trận nhanh để tính biểu thức trên, vì phép toán này hiển nhiên có tính kết hợp. Độ phức tạp thời gian là $O(n^3 \log k)$.
 
-<span id="&#38480;&#38271;&#36335;&#24452;&#35745;&#25968;/&#26368;&#30701;&#36335;"></span>
+<span id="đếm-đường-đi-đường-đi-ngắn-nhất-với-giới-hạn-độ-dài"></span>
 ### Đếm đường đi/đường đi ngắn nhất với giới hạn độ dài
 
 Thuật toán trên chỉ áp dụng cho trường hợp số cạnh cố định. Tuy nhiên, ta có thể cải tiến thuật toán để giải trường hợp số cạnh nhỏ hơn hoặc bằng $k$. Cụ thể, xét bài toán sau:
@@ -577,7 +577,7 @@ Với mỗi đỉnh $v$, ta tạo một đỉnh ảo $v'$ để ghi đáp án, �
 
 Với bài toán tìm đường đi ngắn nhất có số cạnh nhỏ hơn hoặc bằng $k$, chỉ cần thêm cho mỗi đỉnh một khuyên có trọng số $0$.
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Luogu P1962 Dãy Fibonacci](https://www.luogu.com.cn/problem/P1962), chính là ví dụ ở trên, cùng bài với POJ3070
