@@ -1,4 +1,4 @@
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Sàng Powerful Number (sau đây viết tắt là PN) tương tự sàng Dujiao, hoặc có thể xem là một mở rộng của sàng Dujiao, dùng để tính tổng tiền tố của một số hàm nhân.
@@ -30,7 +30,7 @@ $$
 
 Vậy làm thế nào để tìm mọi PN không vượt quá $n$? Dùng sàng tuyến tính tìm mọi số nguyên tố không vượt quá $\sqrt{n}$, rồi DFS trên số mũ của từng số nguyên tố. Vì số PN không vượt quá $n$ nhiều nhất là $O(\sqrt{n})$, nên số lần tìm kiếm cũng nhiều nhất là $O(\sqrt{n})$.
 
-<span id="PN-&#x7B5B;"></span>
+<span id="sàng-pn"></span>
 ## Sàng PN
 
 Trước hết, xây dựng một hàm nhân $g$ dễ tính tổng tiền tố và thỏa mãn $g(p) = f(p)$ với mọi số nguyên tố $p$. Kí hiệu $G(n) = \sum_{i=1}^{n} g(i)$.
@@ -56,7 +56,7 @@ Dùng $O(\sqrt{n})$ để tìm mọi PN và tính mọi giá trị hữu hiệu 
 
 Tiếp theo xét cách tính $h(p^c)$. Có hai phương pháp: một là trực tiếp suy ra công thức tính $h(p^c)$ chỉ liên quan đến $p,c$, rồi tính theo công thức; hai là từ $f = g * h$ có $f(p^c) = \sum_{i=0}^c g(p^i)h(p^{c-i})$, chuyển vế được $h(p^c) = f(p^c) - \sum_{i=1}^{c}g(p^i)h(p^{c-i})$, sau đó liệt kê số nguyên tố $p$ và số mũ $c$ để tính mọi $h(p^c)$.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trình"></span>
 ### Quy trình
 
 1.  Xây dựng $g$.
@@ -67,7 +67,7 @@ Tiếp theo xét cách tính $h(p^c)$. Có hai phương pháp: một là trực 
 
 Với bước 3, có thể tính trực tiếp theo công thức, có thể tiền xử lí bằng cách liệt kê để lập bảng, hoặc chỉ suy ra tạm thời khi tìm kiếm đến.
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 ### Tính chất
 
 Phân tích với ví dụ dùng phương pháp thứ hai để tính $h(p^c)$. Có thể tách thành hai phần: tính $h(p^c)$ và tìm kiếm.
@@ -80,7 +80,7 @@ Với phần tìm kiếm, vì số PN không vượt quá $n$ nhiều nhất là
 
 Về độ phức tạp không gian, nút thắt nằm ở việc lưu $h(p^c)$. Nếu dùng mảng hai chiều $a$ để ghi, trong đó $a_{i,j}$ biểu thị giá trị $h(p_i^j)$, thì độ phức tạp không gian là $O\left(\dfrac{\sqrt{n}}{\log n} \cdot \log n\right) = O(\sqrt{n})$.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 ### [Luogu P5325 mẫu sàng Min_25](https://www.luogu.com.cn/problem/P5325)
@@ -198,14 +198,14 @@ $S_1$ có thể tính bằng sàng Dujiao, còn $S_2$ được suy trực tiếp
     --8<-- "docs/math/code/powerful-number/powerful-number_2.cpp"
     ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [PE708 Twos are all you need](https://projecteuler.net/problem=708)
 -   [PE639 Summing a multiplicative function](https://projecteuler.net/problem=639)
 -   [PE484 Arithmetic Derivative](https://projecteuler.net/problem=484)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 -   [wallbreaker5th - Giới thiệu ngắn về sàng Powerful Number](https://www.cnblogs.com/wallbreaker5th/p/13901487.html)
