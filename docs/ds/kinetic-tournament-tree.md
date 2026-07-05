@@ -15,9 +15,10 @@ Bản chất của phép tịnh tiến sang trái trên một đoạn các hàm 
 
 Để thể hiện cấu trúc chia để trị nhị phân đặc trưng của KTT, ta sẽ bắt đầu trực tiếp từ phép tịnh tiến đoạn.
 
-## Kinetic Data Structures
+<span id="kinetic-data-structures"></span>
+## Cấu trúc dữ liệu động học (kinetic data structures)
 
-Kinetic Data Structures được viết tắt là KDS. KDS dùng để duy trì các thuộc tính của một hệ đối tượng hình học trong quá trình chuyển động liên tục.
+Cấu trúc dữ liệu động học (Kinetic Data Structures, viết tắt là KDS) dùng để duy trì các thuộc tính của một hệ đối tượng hình học trong quá trình chuyển động liên tục.
 
 ### Hàng đợi sự kiện
 
@@ -31,11 +32,12 @@ Hàng đợi sự kiện có thể được duy trì một cách ngầm định.
 
 Các sự kiện này nên tương đương với việc được bảo đảm bởi giao của một loạt điều kiện đại số bậc thấp, trong đó mỗi điều kiện đại số chỉ liên quan đến hữu hạn đối tượng. Ta gọi các điều kiện này là chứng chỉ của KDS. Ví dụ: $[f_i(0) > f_j(0)]$.
 
-## Kinetic Tournament Tree
+<span id="kinetic-tournament-tree"></span>
+## Cây đấu loại động học (kinetic tournament tree)
 
 ### Giới thiệu
 
-Kinetic Tournament Tree (viết tắt là KTT) thuộc nhóm Kinetic Data Structures, xuất hiện lần đầu trong bài báo [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889) năm 1999, dùng để duy trì dữ liệu biến đổi liên tục. Tổng quát hơn, mọi cấu trúc áp dụng chiến lược động hóa (kinetization strategy) sau đây đều có thể được gọi là Kinetic Tournament:
+Cây đấu loại động học (Kinetic Tournament Tree, viết tắt là KTT) thuộc nhóm cấu trúc dữ liệu động học, xuất hiện lần đầu trong bài báo [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889) năm 1999, dùng để duy trì dữ liệu biến đổi liên tục. Tổng quát hơn, mọi cấu trúc áp dụng chiến lược động hóa (kinetization strategy) sau đây đều có thể được gọi là kinetic tournament:
 
 -   Sinh chứng chỉ đúng đắn cho các thao tác then chốt trong thuật toán tĩnh (chẳng hạn phép so sánh), rồi gắn mỗi chứng chỉ với một hàng đợi sự kiện toàn cục, ghi lại thời điểm chứng chỉ đó có thể mất hiệu lực.
 -   Khi một chứng chỉ mất hiệu lực, ta có thể cập nhật đầu ra của thuật toán và duy trì tập chứng chỉ một cách hiệu quả.

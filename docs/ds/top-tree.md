@@ -1,12 +1,13 @@
 author:F7487
 
-## Self-Adjusting Top Tree
+<span id="self-adjusting-top-tree"></span>
+## Top tree tự điều chỉnh (self-adjusting top tree)
 
 ### Giới thiệu
 
-Self-Adjusting Top Tree, viết tắt là SATT, là một cấu trúc dữ liệu dựa trên lý thuyết Top Tree để duy trì rừng động hoàn toàn, được Tarjan và Werneck đề xuất năm 2005 trong bài báo Self-Adjusting Top Trees.
+Top tree tự điều chỉnh (Self-Adjusting Top Tree, viết tắt là SATT) là một cấu trúc dữ liệu dựa trên lý thuyết top tree để duy trì rừng động hoàn toàn, được Tarjan và Werneck đề xuất năm 2005 trong bài báo Self-Adjusting Top Trees.
 
-Self-Adjusting Top Tree có thể thực hiện các thao tác cập nhật/truy vấn trên đường đi, cập nhật/truy vấn trên cây con, cũng như tìm kiếm phi cục bộ trong bất kỳ cây nào của rừng.
+Top tree tự điều chỉnh có thể thực hiện các thao tác cập nhật/truy vấn trên đường đi, cập nhật/truy vấn trên cây con, cũng như tìm kiếm phi cục bộ trong bất kỳ cây nào của rừng.
 
 Splay Tree là nền tảng của SATT, nhưng Splay Tree dùng trong SATT khác Splay thông thường ở một số chi tiết, vì nó được mở rộng thêm.
 
@@ -76,39 +77,39 @@ Do đó ta cũng có thể có hình sau, là một cách biểu diễn khác c�
 
 ![](./images/top-tree6.svg)
 
-### Top Tree
+### Top tree
 
 Bây giờ ta muốn biểu diễn toàn bộ quá trình co rút cây của một cây nào đó.
 
 Ta có thể dùng hai cách ở trên để biểu diễn quá trình này, nhưng như vậy rất rườm rà: nếu quá trình co rút cây có $n$ bước, ta cần dùng $n$ cây để biểu diễn toàn bộ quá trình.
 
-Xét một cách biểu diễn gọn hơn cho một quá trình co rút cây trên một cây, ta đưa vào **Top Tree**.
+Xét một cách biểu diễn gọn hơn cho một quá trình co rút cây trên một cây, ta đưa vào **top tree**.
 
 ![](./images/top-tree7.jpg)
 
-Hình trên là một Top Tree dựa trên cây ban đầu và phương pháp co rút đã nêu.
+Hình trên là một top tree dựa trên cây ban đầu và phương pháp co rút đã nêu.
 
-Top Tree có các tính chất sau:
+Top tree có các tính chất sau:
 
-1.  Một Top Tree tương ứng với một cây ban đầu và một cách co rút cây trên nó. Mỗi nút của Top Tree biểu diễn một cạnh nào đó trong một $T_x$, tức là một cụm được hình thành trong quá trình co rút cây. Trong hình, các nút dạng $N_x$ biểu diễn cụm được tạo bởi thao tác `compress(x)`.
+1.  Một top tree tương ứng với một cây ban đầu và một cách co rút cây trên nó. Mỗi nút của top tree biểu diễn một cạnh nào đó trong một $T_x$, tức là một cụm được hình thành trong quá trình co rút cây. Trong hình, các nút dạng $N_x$ biểu diễn cụm được tạo bởi thao tác `compress(x)`.
 
-2.  Một nút trong Top Tree có hai con, mỗi con đều đại diện cho một cụm. Cụm do nút này đại diện là cụm mới thu được bằng cách gộp hai cụm con thông qua thao tác Compress hoặc Rake.
+2.  Một nút trong top tree có hai con, mỗi con đều đại diện cho một cụm. Cụm do nút này đại diện là cụm mới thu được bằng cách gộp hai cụm con thông qua thao tác Compress hoặc Rake.
 
-3.  Lá của Top Tree là các cụm cơ sở, còn gốc của nó là cụm gốc. Vì vậy, nếu chia một Top Tree theo thứ tự topo thành các tầng, mỗi tầng của nó biểu diễn một cây $T_x$.
+3.  Lá của top tree là các cụm cơ sở, còn gốc của nó là cụm gốc. Vì vậy, nếu chia một top tree theo thứ tự topo thành các tầng, mỗi tầng của nó biểu diễn một cây $T_x$.
 
-### Duy trì thông tin bằng Self-Adjusting Top Tree tam bậc hóa
+### Duy trì thông tin bằng top tree tự điều chỉnh tam bậc hóa
 
 #### Nguyên lý
 
-Top Tree giản lược rất nhiều quá trình co rút cây, giúp ta thấy khả năng duy trì thông tin trên cây bằng cách duy trì quá trình co rút cây. SATT duy trì thông tin trên cây dựa trên nguyên lý này.
+Top tree giản lược rất nhiều quá trình co rút cây, giúp ta thấy khả năng duy trì thông tin trên cây bằng cách duy trì quá trình co rút cây. SATT duy trì thông tin trên cây dựa trên nguyên lý này.
 
 Chú ý rằng quá trình co rút cây cũng là quá trình thông tin trên cây liên tục được thêm vào. Khi thực hiện một lần `compress(x)`, thông tin của đỉnh $x$ bắt đầu xuất hiện trong một cụm kể từ thời điểm đó và ảnh hưởng đến kết quả thống kê.
 
-Giả sử hiện tại ta dùng Top Tree để duy trì một cây $T$, mỗi đỉnh và cạnh trên cây đều có trọng số, và ta muốn duy trì tổng trọng số của $T$.
+Giả sử hiện tại ta dùng top tree để duy trì một cây $T$, mỗi đỉnh và cạnh trên cây đều có trọng số, và ta muốn duy trì tổng trọng số của $T$.
 
-Khi đang duy trì mà cần sửa trọng số của một đỉnh $x$ trong $T$, rõ ràng ta phải thay đổi thông tin của tất cả các nút trong Top Tree mà cụm của chúng chứa $x$. Làm như vậy có độ phức tạp thời gian mỗi lần ở mức $O(n)$.
+Khi đang duy trì mà cần sửa trọng số của một đỉnh $x$ trong $T$, rõ ràng ta phải thay đổi thông tin của tất cả các nút trong top tree mà cụm của chúng chứa $x$. Làm như vậy có độ phức tạp thời gian mỗi lần ở mức $O(n)$.
 
-Tuy nhiên, nếu đỉnh được chọn xuất hiện trong rất ít nút cụm của Top Tree, nói cách khác làm cho thông tin của nó được thêm vào cụm càng muộn càng tốt, thì độ phức tạp mỗi thao tác sẽ được cải thiện đáng kể. Minh họa như hình.
+Tuy nhiên, nếu đỉnh được chọn xuất hiện trong rất ít nút cụm của top tree, nói cách khác làm cho thông tin của nó được thêm vào cụm càng muộn càng tốt, thì độ phức tạp mỗi thao tác sẽ được cải thiện đáng kể. Minh họa như hình.
 
 ![](./images/top-tree8.jpg)
 
@@ -116,7 +117,7 @@ SATT duy trì thông tin trên cây bằng cách thay đổi thứ tự mà thô
 
 ### Cấu trúc thực tế
 
-Trước hết, ta gốc hóa cây ban đầu $T$ theo tầng. Sau đó xét cụm gốc của một Top Tree ứng với một thứ tự co rút cây nào đó. Cụm gốc có hai đầu mút; ta chọn một trong hai đầu mút đó là gốc của cây ban đầu, đầu mút còn lại chọn tùy ý.
+Trước hết, ta gốc hóa cây ban đầu $T$ theo tầng. Sau đó xét cụm gốc của một top tree ứng với một thứ tự co rút cây nào đó. Cụm gốc có hai đầu mút; ta chọn một trong hai đầu mút đó là gốc của cây ban đầu, đầu mút còn lại chọn tùy ý.
 
 ![](./images/top-tree9.jpg)
 
@@ -128,11 +129,11 @@ Ta tách riêng đường cụm ra. Đây là một cây có hình dạng đặc
 
 ![](./images/top-tree10.jpg)
 
-Ta gọi cấu trúc này là **Compress Tree**, vì trong Top Tree này, hai con của bất kỳ nút nào được gộp thành cha của chúng bằng thao tác Compress.
+Ta gọi cấu trúc này là **Compress Tree**, vì trong top tree này, hai con của bất kỳ nút nào được gộp thành cha của chúng bằng thao tác Compress.
 
 Các nút trong Compress Tree được gọi là **Compress Node**. Nếu chỉ xét đường cụm hiện tại, một Compress Node không phải lá đại diện cho một quá trình compress: nó gộp thông tin của con trái và con phải, rồi thêm thông tin của chính đỉnh $x$ được lưu bởi `compress(x)`. Compress Tree này duy trì thông tin của đường cụm của $C(k,g)$.
 
-Ngoài ra, trong Compress Tree, ta thực ra còn đặt thêm một số ràng buộc lên Top Tree được sử dụng. Chú ý rằng Compress Tree duy trì một dây chuyền gồm các đỉnh trong $T$ có độ sâu đôi một khác nhau. Ta quy định rằng thứ tự duyệt trung thứ tự của các cụm cơ sở trong Compress Tree phải nhất quán với độ sâu của các cạnh tương ứng trong $T$, và thứ tự trung thứ tự càng nhỏ thì độ sâu càng nông. Tương tự, quan hệ của `compress(x)` ứng với mỗi đỉnh $x$ cũng như vậy.
+Ngoài ra, trong Compress Tree, ta thực ra còn đặt thêm một số ràng buộc lên top tree được sử dụng. Chú ý rằng Compress Tree duy trì một dây chuyền gồm các đỉnh trong $T$ có độ sâu đôi một khác nhau. Ta quy định rằng thứ tự duyệt trung thứ tự của các cụm cơ sở trong Compress Tree phải nhất quán với độ sâu của các cạnh tương ứng trong $T$, và thứ tự trung thứ tự càng nhỏ thì độ sâu càng nông. Tương tự, quan hệ của `compress(x)` ứng với mỗi đỉnh $x$ cũng như vậy.
 
 Bây giờ xét cách duy trì thông tin không nằm trên đường cụm. Giả sử các đỉnh và cạnh không nằm trên đường cụm đã hình thành từng cụm cực đại, và các cụm cực đại này được tạo ra bằng cách Rake lẫn nhau giữa các cụm nhỏ hơn được khoanh bằng đường xanh. Với quá trình gộp một số cụm nhỏ hơn thành một cụm cực đại, ta dùng một cây tam phân để biểu diễn. Tương tự, ta gọi cấu trúc này là **Rake Tree**, và các nút trong Rake Tree tương ứng được gọi là **Rake Node**. Mỗi Rake Node đều đại diện cho một cụm, được hình thành bằng cách Rake con trái và con phải vào cụm nhỏ hơn do con giữa đại diện. Cụ thể xem hình dưới; có thể thấy mỗi nút trong Rake Tree đều đại diện cho một cụm nhỏ hơn có cùng đầu mút trong $T$.
 
@@ -146,7 +147,7 @@ Với các cụm nhỏ hơn đó, ta xử lý tương tự: chọn đường c�
 
 Hình trên là Rake-Compress Tree của cây ban đầu (vì mỗi Rake Node đều nối với một Compress Tree, nên nó có dạng một Rake Tree nối với nhiều Compress Tree) và Compress Tree đại diện cho đường cụm gốc.
 
-Xét việc ghép các cây này với nhau theo một cách nào đó để chúng tạo thành một tổng thể có thứ tự. Gọi $x$ là đầu mút chung của tập các cụm nhỏ nhất mà một Rake Tree đại diện. Ta thêm đầu mút còn lại, không phải $x$, vào các con giữa của những Rake Node này (một tập Compress Tree), đồng thời vẫn giữ nguyên thứ tự trung thứ tự và các tính chất cơ bản của Top Tree, như hình.
+Xét việc ghép các cây này với nhau theo một cách nào đó để chúng tạo thành một tổng thể có thứ tự. Gọi $x$ là đầu mút chung của tập các cụm nhỏ nhất mà một Rake Tree đại diện. Ta thêm đầu mút còn lại, không phải $x$, vào các con giữa của những Rake Node này (một tập Compress Tree), đồng thời vẫn giữ nguyên thứ tự trung thứ tự và các tính chất cơ bản của top tree, như hình.
 
 ![](./images/top-tree13.jpg)
 
@@ -158,13 +159,13 @@ Lúc này, đỉnh `compress(x)` sau khi tam phân hóa có ý nghĩa là trư�
 
 Cuối cùng, ta xử lý Compress Tree của đường cụm gốc: giống như mọi Compress Tree khác, thêm hai đầu mút của nó theo thứ tự trung thứ tự, để gốc của nó lưu thông tin của toàn bộ $T$.
 
-Như vậy, ta đã thực hiện được việc dùng Self-Adjusting Top Tree tam bậc hóa để duy trì thông tin của một cây.
+Như vậy, ta đã thực hiện được việc dùng top tree tự điều chỉnh tam bậc hóa để duy trì thông tin của một cây.
 
 ![](./images/top-tree15.jpg)
 
 Tóm lại, SATT có các tính chất sau:
 
-1.  SATT gồm Compress Tree và Rake Tree. Compress Tree là một Top Tree đặc biệt; Rake Tree là một cây tam phân. Cả hai đều tương ứng với quá trình co rút cây của một cây.
+1.  SATT gồm Compress Tree và Rake Tree. Compress Tree là một top tree đặc biệt; Rake Tree là một cây tam phân. Cả hai đều tương ứng với quá trình co rút cây của một cây.
 
 2.  Một nút trong Compress Tree có nhiều nhất ba con. Compress Tree có thể thực hiện các phép xoay tương tự Splay tree, miễn là bảo đảm thứ tự trung thứ tự không đổi; khi xoay một nút, giữ nguyên con giữa của nó.
 
@@ -180,7 +181,7 @@ Thông qua thao tác `access(x)`, ta có thể đưa nút đại diện cho `com
 
 ### Cài đặt
 
-#### Các hàm Push
+#### Các hàm đẩy (push)
 
 Trước hết xét việc đẩy thông tin lên, tức hàm `Pushup(x)`. Khi duy trì thông tin cho một nút nào đó của SATT, đầu tiên cần xét nút này nằm trong Compress Tree hay Rake Tree. Lý do đã được trình bày ở trên, nên không lặp lại nữa. Dưới đây lấy ví dụ duy trì kích thước cây con của một đỉnh.
 
@@ -242,7 +243,7 @@ void pushall(int x, int type) {
 }
 ```
 
-#### Các hàm Splay
+#### Các hàm splay
 
 Ta biết rằng Rake Tree và Compress Tree trong SATT đều có thể xoay, tức là có thể dùng Splay để duy trì chúng. Do đó ta có thể viết mã sau:
 
@@ -283,7 +284,7 @@ void splay(int x, int type, int goal = 0) {
 
 Đáng chú ý là hai hàm `direction` và `isroot` khác với Splay thông thường, vì dù nút này xoay thế nào thì con giữa của nó cũng không thay đổi.
 
-#### Các hàm Access
+#### Các hàm access
 
 Ý nghĩa của `access(x)` là: xoay đỉnh $x$ lên gốc của toàn bộ SATT, làm cho đỉnh $x$ trở thành một trong hai đầu mút của cụm gốc (đầu mút còn lại là gốc của $T$), đồng thời không làm thay đổi cấu trúc của cây ban đầu và gốc của cây ban đầu.
 
@@ -415,7 +416,8 @@ void expose(int x, int y) {
 }
 ```
 
-### Link & Cut
+<span id="link-cut"></span>
+### Nối và cắt (link & cut)
 
 Bây giờ ta muốn nối một cạnh giữa hai đỉnh không liên thông trong cây ban đầu. Trước hết cho một trong hai đỉnh, $x$, trở thành gốc của cây ban đầu, rồi xoay đỉnh còn lại $y$ lên gốc. Khi đó có thể thấy cần làm cho đỉnh $y$ trở thành con phải của đỉnh $x$. Sau đó treo cạnh này vào con phải của đỉnh $y$ (nếu SATT chỉ cần duy trì đỉnh thì bước này có thể bỏ qua).
 
