@@ -126,7 +126,7 @@ Extension C/C++ của VS Code cũng có các chức năng như tự động hoà
 
 Xem [Getting started](https://clangd.llvm.org/installation).
 
-### Extension VS Code
+### Tiện ích mở rộng VS Code
 
 Mở extension store của VS Code, nhập `clangd` vào thanh tìm kiếm, tìm extension clangd rồi cài đặt.
 

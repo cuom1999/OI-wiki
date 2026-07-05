@@ -84,7 +84,7 @@ Nó cũng có thể tự động nhận diện ký tự xuống dòng là `CR`, 
 
 Phần này phù hợp với người dùng có nhu cầu cao hơn.
 
-### Macro
+### Macro tự động hóa
 
 Macro có thể giúp bạn hoàn thành nhiều việc lặp lại. Ví dụ, đổi "abcde" ở các dòng lẻ thành "afce" cần hai bước.
 
@@ -110,7 +110,7 @@ Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên
 
 Nhấp "Macro" -> "Save Current Recorded Macro", đặt tên và phím tắt, là có thể lưu lại để tiện dùng về sau.
 
-### Plugin
+### Plugin mở rộng
 
 #### Quản lý plugin
 

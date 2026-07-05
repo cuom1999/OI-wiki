@@ -516,7 +516,7 @@ $ git clone git@github.com:OI-wiki/OI-wiki.git
 
 Quá trình đẩy thay đổi lên kho từ xa tương tự khi dùng HTTP(S). Nhưng khi dùng ssh, có thể bỏ qua bước xác thực tên tài khoản và mật khẩu của kho từ xa.
 
-## Git GUI Tools
+## Công cụ GUI cho Git
 
 Với các bạn chưa quen dòng lệnh, Git thuần dòng lệnh có thể hơi khó bắt đầu; dùng công cụ GUI có thể giảm một phần độ khó khi học Git. Ngoài ra, so với dòng lệnh, công cụ GUI có trải nghiệm tốt hơn ở một mức độ nhất định khi xem diff và log.
 

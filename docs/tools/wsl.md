@@ -431,7 +431,7 @@ Chạy lệnh `wsl -l -v` để thấy phiên bản WSL hiện là 1; cần nân
 
     Bước này khá tốn thời gian. Sau khi chạy xong, dùng lệnh `wsl -l -v` để kiểm tra nâng cấp đã thành công chưa.
 
-## FAQ
+## Câu hỏi thường gặp
 
 Xem: [Câu hỏi thường gặp](https://learn.microsoft.com/en-us/windows/wsl/faq).
 

@@ -167,7 +167,7 @@ Nhấp Tools -> Editor Options, rồi chọn thẻ "Display".
 
 ![](./images/Dev-C++-9.png)
 
-#### Theme
+#### Giao diện
 
 Nhấp Tools -> Editor Options, rồi chọn thẻ "Syntax". Có thể dùng theme có sẵn hoặc tự điều chỉnh.
 

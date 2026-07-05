@@ -340,7 +340,7 @@ Nên đặt `"auto_find_in_selection"` thành `true` trong Preferences. Khi đó
 
 ## Minh họa
 
-### Hot exit
+### Thoát nóng
 
 Thử nhập một số nội dung trong ST rồi đóng thẳng toàn bộ ST. ST sẽ đóng ngay mà không có thông báo nào; khi mở lại ST, miễn là máy tính không bị khôi phục dữ liệu, dữ liệu sẽ không mất.
 

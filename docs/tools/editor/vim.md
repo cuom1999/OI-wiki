@@ -185,7 +185,7 @@ Cách sửa thứ hai tiết kiệm thời gian hơn là dùng chế độ tìm 
 
 Cách sửa thứ ba là lệnh tìm kiếm đơn giản `f`. Trong chế độ thường trên một dòng, `f + một ký tự` sẽ tìm ký tự đó trong dòng này và đưa con trỏ tới vị trí ký tự; nhấn `;` để tìm tiếp, `,` để tìm trước đó. Vì vậy với đoạn mã trên, chỉ cần gõ `fb;;;`, sau đó vào chế độ nhập để sửa, rồi dùng `;.` là được. Cách này phù hợp khi chỉ cần di chuyển trong cùng một dòng.
 
-### Macro
+### Macro tự động hóa
 
 Chức năng macro của Vim có thể lặp lại một chuỗi lệnh dài tùy ý.
 
