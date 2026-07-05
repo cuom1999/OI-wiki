@@ -42,7 +42,7 @@ Biểu thức lambda có danh sách bắt giữ rỗng có thể được chuy�
 void (*f)(int, int) = [](int, int) -> void {};
 ```
 
-Dưới đây là từng phần trong cú pháp.
+Sau đây là từng phần trong cú pháp.
 
 <a id="thân-hàm"></a>
 
@@ -70,7 +70,7 @@ Nếu cần truy cập biến ngoài `a` bằng tham chiếu và truy cập bi�
 
 Đồng thời, danh sách bắt giữ cũng có thể được dùng để khai báo biến mới; kiểu của biến được suy luận từ bộ khởi tạo, tương tự khai báo biến bằng `auto`.
 
-Dưới đây là một số ví dụ thường gặp:
+Sau đây là một số ví dụ thường gặp:
 
 ```cpp
 int a = 0;
@@ -302,7 +302,7 @@ Cả hai tham số của `add` đều được khai báo bằng `auto`, tương 
 
 ### Đệ quy trong lambda
 
-Trước hết hãy xem một ví dụ biên dịch thất bại:
+Trước hết, xét một ví dụ biên dịch thất bại:
 
 ```cpp
 int n = 10;
@@ -316,7 +316,11 @@ auto dfs = [&](int i) -> void {
 };
 ```
 
-Ở đây đoạn mã thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề: kiểu của $dfs$ là `auto`, nên phải chờ đến khi kiểu của vế phải dấu bằng được suy luận xong thì mới suy luận được kiểu của $dfs$. Trong khi đó, để lambda bắt giữ $dfs$, nó lại phải biết kiểu của $dfs$ trước mới tạo được biến tham chiếu tương ứng. Như vậy ta rơi vào một vòng phụ thuộc lẫn nhau.
+Ở đây đoạn mã thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề:
+kiểu của $dfs$ là `auto`, nên phải chờ đến khi kiểu của vế phải dấu bằng được suy
+luận xong thì mới suy luận được kiểu của $dfs$. Trong khi đó, để lambda bắt giữ
+$dfs$, nó lại phải biết kiểu của $dfs$ trước mới tạo được biến tham chiếu tương
+ứng. Kết quả là xuất hiện một vòng phụ thuộc lẫn nhau.
 
 Có một số cách giải quyết vấn đề này:
 
@@ -423,7 +427,8 @@ Có một số cách giải quyết vấn đề này:
     ???+ note "Khác biệt giữa `auto self`, `auto& self` và `auto&& self`:"
         Về lý thuyết, `auto& self` và `auto&& self` đều chỉ dùng $8$ byte (kích thước của con trỏ) để truyền tham số, và sẽ không phát sinh bản sao nào khác. Cụ thể còn phụ thuộc vào cách trình biên dịch cài đặt lambda và các tối ưu tương ứng.
         Còn với `auto self`, sẽ phát sinh bản sao của đối tượng. Kích thước bản sao phụ thuộc vào các phần tử trong danh sách bắt giữ, vì chúng đều là biến thành viên riêng của lớp lambda này.
-3.  Có thể khai triển thủ công lớp lambda, hoặc dùng cách viết tương tự; như vậy có thể khai báo trực tiếp kiểu của $dfs$.
+3.  Có thể khai triển thủ công lớp lambda, hoặc dùng cách viết tương tự; nhờ đó
+    có thể khai báo trực tiếp kiểu của $dfs$.
 
     ???+ example "Sửa đoạn mã trên thành:"
         ```cpp
@@ -446,7 +451,7 @@ Có một số cách giải quyết vấn đề này:
         
         dfs(1);
         ```
-4.  Nếu lambda không bắt giữ bất kỳ biến nào, ta cũng có thể tận dụng con trỏ hàm.
+4.  Nếu lambda không bắt giữ bất kỳ biến nào, cũng có thể tận dụng con trỏ hàm.
 
     Nếu lambda không bắt giữ bất kỳ biến nào, nó có thể được chuyển đổi ngầm định thành con trỏ hàm. Đồng thời, lúc này lambda cũng có thể được khai báo là `static`, và kiểu con trỏ hàm cũng có thể được khai báo là `static`. Dựa vào đó, lambda có thể truy cập con trỏ hàm mà không cần bắt giữ, từ đó thực hiện đệ quy.
 
@@ -494,9 +499,12 @@ auto it = std::find_if(v.begin(), v.end(), [](int a) { return a > 3; });
 
 #### Kiểm soát vòng đời của biến trung gian
 
-Trong lập trình thi đấu, ta sẽ gặp những tình huống như sau: việc khởi tạo một biến cần dùng các biến đã khai báo trước đó, và quá trình khởi tạo lại sinh ra các biến trung gian chiếm nhiều bộ nhớ.
+Trong lập trình thi đấu, sẽ gặp những tình huống như sau: việc khởi tạo một biến
+cần dùng các biến đã khai báo trước đó, và quá trình khởi tạo lại sinh ra các
+biến trung gian chiếm nhiều bộ nhớ.
 
-Ta muốn hủy các biến trung gian này càng sớm càng tốt để giảm mức tiêu thụ bộ nhớ. Lúc này, ta có thể dùng lambda để kiểm soát vòng đời của các biến trung gian.
+Cần hủy các biến trung gian này càng sớm càng tốt để giảm mức tiêu thụ bộ nhớ.
+Lúc này, có thể dùng lambda để kiểm soát vòng đời của các biến trung gian.
 
 ```cpp
 void solution(const vector<int>& input) {
@@ -516,7 +524,9 @@ void solution(const vector<int>& input) {
 }
 ```
 
-So với việc dùng phạm vi khối lệnh, lambda cho phép ta dùng giá trị trả về, giúp mã ngắn gọn hơn; so với hàm, ta không cần đặt thêm tên và khai báo riêng các tham số được bắt giữ, giúp mã chặt chẽ hơn.
+So với việc dùng phạm vi khối lệnh, lambda cho phép dùng giá trị trả về, giúp mã
+ngắn gọn hơn; so với hàm, không cần đặt thêm tên và khai báo riêng các tham số
+được bắt giữ, giúp mã chặt chẽ hơn.
 
 <a id="tài-liệu-tham-khảo"></a>
 
