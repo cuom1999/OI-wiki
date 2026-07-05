@@ -1,16 +1,16 @@
 author: Tiphereth-A, ShaoChenHeng, Enter-tainer, ksyx, c-forrest, StudyingFather, H-J-Granger, iamtwz, imp2002, Ir1d, kenlig, LeBronGod, Marcythm, MegaOwIer, NachtgeistW, ouuan, Patchouliys, Soohti, TianKong-y, sun2snow
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 DP xác suất được dùng để giải các bài toán về xác suất và kỳ vọng. Nên có hiểu biết nhất định về nội dung [xác suất & kỳ vọng](../math/probability/exp-var.md) trước khi học phần này. Thông thường, khi giải bài toán xác suất ta cần duyệt theo thứ tự xuôi, còn khi giải bài toán kỳ vọng ta dùng thứ tự ngược. Nếu phương trình chuyển trạng thái được định nghĩa có vấn đề hậu hiệu, cần dùng thêm [khử Gauss](../math/numerical/gauss.md) để tối ưu. DP xác suất cũng thường được kết hợp với các kiến thức khác để kiểm tra, chẳng hạn [nén trạng thái](./state.md), chuyển DP trên cây, v.v.
 
-<span id="&#x6982;&#x7387;-dp"></span>
+<span id="dp-xác-suất"></span>
 ## DP xác suất
 
 Dạng bài này dùng cách đẩy xuôi, tức là đẩy từ trạng thái ban đầu tới kết quả. Tương tự DP nói chung, điểm khó vẫn là mô tả phương trình chuyển trạng thái; chỉ có điều dạng bài này được bọc trong kiến thức xác suất.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ### Ví dụ
 
 ???+ example "[Codeforces 148D Bag of mice](https://codeforces.com/problemset/problem/148/D)"
@@ -32,16 +32,16 @@ Dạng bài này dùng cách đẩy xuôi, tức là đẩy từ trạng thái b
     --8<-- "docs/dp/code/probability/probability_1.cpp"
     ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ### Bài tập
 
 -   [POJ3071 Football](http://poj.org/problem?id=3071)
 -   [CodeForces 768D Jon and Orbs](https://codeforces.com/problemset/problem/768/D)
 
-<span id="&#x671F;&#x671B;-dp"></span>
+<span id="dp-kỳ-vọng"></span>
 ## DP kỳ vọng
 
-<span id="&#x4F8B;&#x9898;_1"></span>
+<span id="ví-dụ_1"></span>
 ### Ví dụ
 
 ???+ example "[POJ2096 Collecting Bugs](http://poj.org/problem?id=2096)"
@@ -98,17 +98,17 @@ Dạng bài này dùng cách đẩy xuôi, tức là đẩy từ trạng thái b
 
 So sánh hai bài toán này có thể thấy: trong các bài dùng DP để tính kỳ vọng, việc bài toán yêu cầu tính một giá trị cụ thể hay tối ưu hóa sẽ ảnh hưởng phần nào tới cách thu được phương trình chuyển trạng thái. Nhưng dù là dùng DP để tính xác suất hay tính kỳ vọng, ta luôn không thể tách khỏi kiến thức xác suất và các bước liệt kê, rút gọn công thức tính toán; những chi tiết cần suy nghĩ khi viết phương trình chuyển trạng thái cũng tương tự nhau.
 
-<span id="&#x4E60;&#x9898;_1"></span>
+<span id="bài-tập_1"></span>
 ### Bài tập
 
 -   [HDU3853 LOOPS](https://acm.hdu.edu.cn/showproblem.php?pid=3853)
 -   [HDU4035 Maze](https://acm.hdu.edu.cn/showproblem.php?pid=4035)
 -   [「SCOI2008」Cửa thưởng](https://www.luogu.com.cn/problem/P2473)
 
-<span id="&#x6709;&#x540E;&#x6548;&#x6027;-dp"></span>
+<span id="dp-có-hậu-hiệu"></span>
 ## DP có hậu hiệu
 
-<span id="&#x4F8B;&#x9898;_2"></span>
+<span id="ví-dụ_2"></span>
 ### Ví dụ
 
 ???+ example "[CodeForces 24D Broken robot](https://codeforces.com/problemset/problem/24/D)"
@@ -138,13 +138,13 @@ So sánh hai bài toán này có thể thấy: trong các bài dùng DP để t�
     --8<-- "docs/dp/code/probability/probability_4.cpp"
     ```
 
-<span id="&#x4E60;&#x9898;_2"></span>
+<span id="bài-tập_2"></span>
 ### Bài tập
 
 -   [HDU 4418 Time Travel](https://acm.hdu.edu.cn/showproblem.php?pid=4418)
 -   [「HNOI2013」Đi dạo](https://loj.ac/problem/2383)
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 [Tổng kết DP xác suất của kuangbin](https://www.cnblogs.com/kuangbin/archive/2012/10/02/2710606.html)
