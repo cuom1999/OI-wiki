@@ -1,6 +1,7 @@
 author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, xyf007
 
-[Giá trị nhỏ thứ k trên đoạn tĩnh (POJ 2104 K-th Number)](http://poj.org/problem?id=2104) có thể được giải bằng [cây phân đoạn theo giá trị](./persistent-seg.md) với độ phức tạp thời gian $O(n\log n)$.
+[Giá trị nhỏ thứ $k$ trên đoạn tĩnh (POJ 2104 K-th Number)](http://poj.org/problem?id=2104) có thể được giải bằng
+[cây phân đoạn theo giá trị](./persistent-seg.md) với độ phức tạp thời gian $O(n\log n)$.
 
 Nếu đoạn trở thành động thì sao? Nói cách khác, nếu còn phải hỗ trợ thao tác sửa giá trị tại một vị trí đơn lẻ thì cần làm thế nào?
 
@@ -19,15 +20,28 @@ Nếu đoạn trở thành động thì sao? Nói cách khác, nếu còn phải
     -   `Q l r k` biểu thị truy vấn số nhỏ thứ $k$ trong các phần tử có chỉ số thuộc đoạn $[l,r]$
     -   `C x y` biểu thị đổi $a_x$ thành $y$
 
-Nếu dùng cách [cây phân đoạn lồng cây cân bằng](./balanced-in-seg.md) đã thảo luận, tức là với mỗi nút của cây phân đoạn, duy trì một cây cân bằng cho đoạn mà nút đó biểu diễn, rồi dùng tìm kiếm nhị phân để tìm giá trị nhỏ thứ $k$. Vì mỗi thao tác truy vấn phải phủ nhiều đoạn, tức là liên quan đến nhiều nút, nhưng cây cân bằng không thể tìm đồng thời nhiều giá trị, nên độ phức tạp thời gian là $O(n\log^3 n)$, chưa phải tối ưu.
+Nếu dùng cách [cây phân đoạn lồng cây cân bằng](./balanced-in-seg.md) đã thảo luận, tức là với mỗi nút của cây phân đoạn
+duy trì một cây cân bằng cho đoạn mà nút đó biểu diễn, rồi dùng tìm kiếm nhị phân để tìm giá trị nhỏ thứ $k$. Mỗi thao
+tác truy vấn phải phủ nhiều đoạn, tức là liên quan đến nhiều nút, nhưng cây cân bằng không thể tìm đồng thời nhiều giá
+trị, nên độ phức tạp thời gian là $O(\log^3 n)$, chưa phải tối ưu.
 
-Ý tưởng tối ưu là kết hợp thao tác tìm kiếm nhị phân trên đáp án với thao tác truy vấn số lượng phần tử nhỏ hơn một giá trị, sử dụng **cây phân đoạn lồng cây phân đoạn theo giá trị mở nút động**. Vì cấu trúc của tất cả các cây phân đoạn là giống nhau, ta có thể thực hiện tìm kiếm nhị phân trên cây phân đoạn đồng thời trên nhiều cây.
+Ý tưởng tối ưu là kết hợp thao tác tìm kiếm nhị phân trên đáp án với thao tác truy vấn số lượng phần tử nhỏ hơn một giá
+trị, sử dụng **cây phân đoạn lồng cây phân đoạn theo giá trị mở nút động**. Vì cấu trúc của tất cả các cây phân đoạn là
+giống nhau, có thể thực hiện tìm kiếm nhị phân trên cây phân đoạn đồng thời trên nhiều cây.
 
-Khi thực hiện thao tác sửa, trước hết đi từ trên xuống dưới trên cây phân đoạn đến điểm cần sửa, xóa giá trị cũ trong cây phân đoạn theo giá trị mở nút động mà mỗi nút đi qua trỏ tới, rồi chèn giá trị mới. Quá trình này đi qua $O(\log n)$ nút trên cây phân đoạn; một lần sửa trên cây phân đoạn theo giá trị mở nút động mất $O(\log n)$, nên độ phức tạp thời gian của thao tác sửa là $O(\log^2 n)$.
+Khi thực hiện thao tác sửa, trước hết đi từ trên xuống dưới trên cây phân đoạn đến điểm cần sửa, xóa giá trị cũ trong
+cây phân đoạn theo giá trị mở nút động mà mỗi nút đi qua trỏ tới, rồi chèn giá trị mới. Quá trình này đi qua
+$O(\log n)$ nút trên cây phân đoạn; một lần sửa trên cây phân đoạn theo giá trị mở nút động mất $O(\log n)$, nên độ
+phức tạp thời gian của thao tác sửa là $O(\log^2 n)$.
 
-Khi truy vấn đáp án, trước hết lấy ra tất cả các nút trên cây phân đoạn được đoạn truy vấn phủ, sau đó dùng phương pháp tương tự bài giá trị nhỏ thứ $k$ trên đoạn tĩnh để cho các nút này cùng đi sang con trái hoặc con phải. Nếu tổng các giá trị được lưu ở con trái của tất cả các nút này lớn hơn hoặc bằng $k$, thì đi sang trái, ngược lại đi sang phải. Vì nhiều nhất chỉ phủ $O(\log n)$ nút, nên mỗi lần cũng chỉ có bấy nhiêu nút đi xuống, độ phức tạp thời gian là $O(\log^2 n)$.
+Khi truy vấn đáp án, trước hết lấy ra tất cả các nút trên cây phân đoạn được đoạn truy vấn phủ, sau đó dùng phương pháp
+tương tự bài giá trị nhỏ thứ $k$ trên đoạn tĩnh để cho các nút này cùng đi sang con trái hoặc con phải. Nếu tổng các
+giá trị được lưu ở con trái của tất cả các nút này lớn hơn hoặc bằng $k$, thì đi sang trái, ngược lại đi sang phải. Vì
+nhiều nhất chỉ phủ $O(\log n)$ nút, nên mỗi lần cũng chỉ có bấy nhiêu nút đi xuống; độ phức tạp thời gian là
+$O(\log^2 n)$.
 
-Do hằng số của cây phân đoạn khá lớn, trong cài đặt người ta thường dùng **cây Fenwick**, có hằng số nhỏ hơn và xử lý tổng tiền tố thuận tiện hơn. Ngoài ra, độ phức tạp bộ nhớ là $O(n\log^2 n)$, vì vậy khi sử dụng cần **chú ý giới hạn bộ nhớ**.
+Do hằng số của cây phân đoạn khá lớn, trong cài đặt thường dùng **cây Fenwick**, có hằng số nhỏ hơn và xử lý tổng tiền
+tố thuận tiện hơn. Ngoài ra, độ phức tạp bộ nhớ là $O(n\log^2 n)$, vì vậy khi sử dụng cần **chú ý giới hạn bộ nhớ**.
 
 Dưới đây là một cách cài đặt:
 
@@ -48,7 +62,7 @@ Dưới đây là một cách cài đặt:
     set<int> ST;
     map<int, int> mp;
     
-    struct segment_tree  // Cay phan doan theo gia tri mo nut dong duoc dong goi
+    struct segment_tree  // Cây phân đoạn theo giá trị mở nút động được đóng gói
     {
       int cur, rt[MAXN * 4], sum[MAXN * 60], lc[MAXN * 60], rc[MAXN * 60];
     
@@ -74,8 +88,8 @@ Dưới đây là một cách cài đặt:
       }
     } st;
     
-    // Cai dat cay Fenwick
-    namepace fenwick_impl {
+    // Cài đặt cây Fenwick
+    namespace fenwick_impl {
       int lowbit(int o) { return (o & (-o)); }
     
       void upd(int o, int x, int v) {
@@ -106,7 +120,7 @@ Dưới đây là một cách cài đặt:
     }
     using namespace fenwick_impl;
     
-    // Cai dat cay phan doan
+    // Cài đặt cây phân đoạn
     namespace segtree_impl {
     void build(int o, int l, int r) {
       st.build(st.rt[o]);
