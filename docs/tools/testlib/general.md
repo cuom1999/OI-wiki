@@ -1,4 +1,4 @@
-Trang này giới thiệu một số trạng thái, đối tượng và hàm dùng chung trong checker/interactor/validator của Testlib, cùng với vài cách dùng và lưu ý quan trọng. Hãy đọc hết trang này trước khi đọc các trang khác.
+Trang này giới thiệu một số trạng thái, đối tượng và hàm dùng chung trong trình kiểm tra đáp án (checker), trình tương tác (interactor) và trình xác thực dữ liệu (validator) của Testlib, cùng với vài cách dùng và lưu ý quan trọng. Hãy đọc hết trang này trước khi đọc các trang khác.
 
 ## Trạng thái chung
 
@@ -10,7 +10,7 @@ Trang này giới thiệu một số trạng thái, đối tượng và hàm dù
 | Partially Correct  | `_pc(score)` | Đáp án đúng một phần. Chỉ dùng cho các test có điểm thành phần; `score` là một số nguyên dương từ $0$ (không có điểm) đến $100$ (điểm tối đa có thể đạt). (`quitf+_pc` chỉ nhằm tương thích với pascal-testlib cũ; nếu muốn xuất điểm thành phần, nên dùng `quitp`[^1].) |
 | Fail               | `_fail`      | Trong validator, trạng thái này nghĩa là đầu vào không hợp lệ và không qua kiểm tra.<br>Trong checker, trạng thái này biểu thị lỗi nội bộ của chương trình, đầu ra chuẩn sai, hoặc đầu ra của thí sinh tốt hơn đầu ra chuẩn, cần giám khảo/người ra đề xem xét. Nói cách khác, lỗi thuộc về đề. |
 
-Thông thường kết quả được biểu thị bằng giá trị trả về của chương trình, nhưng cũng có một số cách khác: tạo tệp XML đầu ra, in thông tin ra stdout hoặc vị trí khác, v.v. Các cách này đều được thực hiện thông qua hàm `quitf` trong bảng hàm bên dưới.
+Thông thường kết quả được biểu thị bằng giá trị trả về của chương trình, nhưng cũng có một số cách khác: tạo tệp XML đầu ra, in thông tin ra `stdout` (đầu ra chuẩn) hoặc vị trí khác, v.v. Các cách này đều được thực hiện thông qua hàm `quitf` trong bảng hàm bên dưới.
 
 ## Đối tượng chung
 
@@ -26,11 +26,11 @@ Hàm không phải hàm thành viên:
 
 | Lời gọi                                                                                        | Ý nghĩa                                                                                                                                      |
 | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `void registerTestlibCmd(int argc, char* argv[])`                                               | Đăng ký chương trình là checker                                                                                                             |
-| `void registerInteraction(int argc, char* argv[])`                                              | Đăng ký chương trình là interactor                                                                                                          |
-| `void registerValidation()`/`void registerValidation(int argc, char* argv[])`                   | Đăng ký chương trình là validator                                                                                                           |
-| `void registerGen(int argc, char* argv[], int randomGeneratorVersion)`                          | Đăng ký chương trình là generator<br>Nên đặt `randomGeneratorVersion` là `1`                                                                 |
-| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)` | Kết thúc chương trình, trả về `verdict` và xuất `message`                                                                                   |
+| `void registerTestlibCmd(int argc, char* argv[])`                                               | Đăng ký chương trình là trình kiểm tra đáp án (checker)                                                                                     |
+| `void registerInteraction(int argc, char* argv[])`                                              | Đăng ký chương trình là trình tương tác (interactor)                                                                                        |
+| `void registerValidation()`/`void registerValidation(int argc, char* argv[])`                   | Đăng ký chương trình là trình xác thực dữ liệu (validator)                                                                                  |
+| `void registerGen(int argc, char* argv[], int randomGeneratorVersion)`                          | Đăng ký chương trình là trình sinh dữ liệu (generator)<br>Nên đặt `randomGeneratorVersion` là `1`                                            |
+| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)` | Kết thúc chương trình, trả về kết quả chấm `verdict` và xuất thông báo `message`                                                            |
 | `void quitif(bool condition, TResult verdict, string message, ...)`                             | Nếu `condition` đúng, gọi `quitf(verdict, message, ...)`                                                                                    |
 | `void quitp(F points, string message, ...)`                                                     | Kết thúc chương trình và trả về điểm thành phần. Với phần lớn OJ (như Luogu, UOJ), `points` cần là một số thực trong $[0,1]$, biểu thị phần trăm điểm; với một số OJ khác (như Lyrio), `points` cần là một số thực trong $[0,100]$ (OJ sẽ tự bỏ phần thập phân), biểu thị điểm của test theo thang 100. |
 
@@ -56,7 +56,7 @@ Hàm thành viên của luồng:
 | `string readString(string regex)`/`string readLine(string regex)`                                                                                                 | Đọc một dòng, dòng đó bắt buộc phải khớp với `regex` |
 | `void readEoln()`                                                                                                                                                 | Đọc EOLN (`LF` trong môi trường Linux, `CR LF` trong môi trường Windows) |
 | `void readEof()`                                                                                                                                                  | Đọc EOF |
-| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)`                                                                   | Kết thúc chương trình; nếu `Stream` là `ouf` thì trả về `verdict`, nếu không thì trả về `_fail`; xuất `message` |
+| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)`                                                                   | Kết thúc chương trình; nếu luồng `Stream` là `ouf` thì trả về kết quả chấm `verdict`, nếu không thì trả về `_fail`; xuất thông báo `message` |
 | `void quitif(bool condition, TResult verdict, string message, ...)`                                                                                               | Nếu `condition` đúng, gọi `quitf(verdict, message, ...)` |
 
 Nội dung còn được bổ sung tiếp...
@@ -72,9 +72,9 @@ Một số hàm nhập ở trên cho phép sử dụng tính năng "biểu thứ
 -   Ký hiệu "lặp". Ví dụ, `[0-9]*` biểu thị không hoặc nhiều chữ số, còn `[0-9]+` biểu thị một hoặc nhiều chữ số.
 -   Lưu ý rằng biểu thức chính quy ở đây là "tham lam" ("lặp" sẽ khớp nhiều nhất có thể). Ví dụ, `[0-9]?1` sẽ không khớp với `1` (vì `[0-9]?` đã khớp với `1`, khiến ký tự `1` còn lại trong mẫu không thể khớp).
 
-## Include testlib.h trước tiên
+## Đặt testlib.h trước tiên
 
-Hãy bảo đảm `testlib.h` là header **đầu tiên** bạn include. Testlib sẽ ghi đè/vô hiệu hóa (thông qua xung đột tên) một số hàm liên quan đến ngẫu nhiên, chẳng hạn `random()`, để bảo đảm kết quả ngẫu nhiên không phụ thuộc môi trường. Điều này rất quan trọng với generator; [trang generator](./generator.md) sẽ giải thích chi tiết hơn.
+Hãy bảo đảm `testlib.h` là tệp header **đầu tiên** được nạp bằng `#include`. Testlib sẽ ghi đè/vô hiệu hóa (thông qua xung đột tên) một số hàm liên quan đến ngẫu nhiên, chẳng hạn `random()`, để bảo đảm kết quả ngẫu nhiên không phụ thuộc môi trường. Điều này rất quan trọng với trình sinh dữ liệu; [trang generator](./generator.md) sẽ giải thích chi tiết hơn.
 
 ## Dùng bí danh cho hạng mục
 
@@ -88,7 +88,7 @@ Hai hàm này dùng để kiểm tra điều kiện có đúng hay không (tươ
 ensuref(x[i] != y[i], "Graph can't contain loops");
 ```
 
-Bạn cũng có thể dùng placeholder kiểu C, chẳng hạn:
+Bạn cũng có thể dùng phần giữ chỗ (placeholder) kiểu C, chẳng hạn:
 
 ```cpp
 ensuref(s.length() % 2 == 0,
@@ -101,9 +101,9 @@ Hàm này có phiên bản rút gọn `ensure()`: ta có thể dùng trực ti�
 ???+ warning "Cảnh báo"
     Chú ý sự khác nhau giữa `ensuref/ensure()` toàn cục và hàm thành viên.
     
-    Hàm toàn cục `::ensuref/ensure()` thường dùng trong generator và validator; nếu kiểm tra thất bại, chúng sẽ luôn trả về `_fail`.
+    Hàm toàn cục `::ensuref/ensure()` thường dùng trong trình sinh dữ liệu và trình xác thực dữ liệu; nếu kiểm tra thất bại, chúng sẽ luôn trả về `_fail`.
     
-    Hàm thành viên `InStream::ensuref/ensure()` thường dùng để xác định đầu ra của thí sinh và chương trình tham chiếu có hợp lệ hay không. Khi `InStream` là `ouf`, chúng trả về `_wa`; khi là `inf` (thông thường không kiểm tra dữ liệu đầu vào trong checker, việc này nên được thực hiện trong validator) hoặc `ans`, chúng trả về `_fail`. Xem thêm phần viết hàm `readAns` trong [trang Checker](./checker.md).
+    Hàm thành viên `InStream::ensuref/ensure()` thường dùng để xác định đầu ra của thí sinh và chương trình tham chiếu có hợp lệ hay không. Khi `InStream` là `ouf`, chúng trả về `_wa`; khi là `inf` (thông thường không kiểm tra dữ liệu đầu vào trong trình kiểm tra đáp án, việc này nên được thực hiện trong trình xác thực dữ liệu) hoặc `ans`, chúng trả về `_fail`. Xem thêm phần viết hàm `readAns` trong [trang Checker](./checker.md).
 
 **Bài viết này chủ yếu được dịch và tổng hợp từ loạt bài [Testlib - Codeforces](https://codeforces.com/testlib). Kho GitHub của `testlib.h` là [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib).**
 

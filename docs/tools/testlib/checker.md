@@ -1,6 +1,6 @@
-Checker, tức [trình chấm đặc biệt](../special-judge.md), dùng để kiểm tra đáp án có hợp lệ hay không. Dùng Testlib giúp ta không phải tự kiểm tra nhiều chi tiết, nên việc viết checker đơn giản hơn đáng kể.
+Trình kiểm tra đáp án (checker), tức [trình chấm đặc biệt](../special-judge.md), dùng để kiểm tra đáp án có hợp lệ hay không. Dùng Testlib giúp ta không phải tự kiểm tra nhiều chi tiết, nên việc viết checker đơn giản hơn đáng kể.
 
-Checker đọc tên tệp đầu vào, tên tệp đầu ra của thí sinh và tên tệp đầu ra chuẩn từ tham số dòng lệnh, sau đó xác định đầu ra của thí sinh có đúng hay không và trả về một kết quả đã định nghĩa trước.
+Checker đọc tên tệp đầu vào, tên tệp đầu ra của thí sinh và tên tệp đầu ra chuẩn từ tham số dòng lệnh, sau đó xác định đầu ra của thí sinh có đúng hay không và trả về một kết quả chấm đã định nghĩa trước.
 
 Hãy đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 
@@ -128,7 +128,7 @@ int n, m, s, t;
 
 // Hàm này nhận một luồng để đọc từ đó,
 // kiểm tra tính hợp lệ của đường đi và trả về độ dài đường đi.
-// Khi stream là ans, mọi stream.quitf(_wa, ...)
+// Khi luồng stream là ans, mọi stream.quitf(_wa, ...)
 // và mọi readXxx() thất bại đều trả về _fail thay vì _wa.
 // Nói cách khác, nếu đầu ra không hợp lệ, với luồng đầu ra của thí sinh
 // hàm này trả về _wa, còn với luồng đầu ra chuẩn nó trả về _fail.
@@ -213,7 +213,7 @@ Có thể thấy cách viết này đồng thời kiểm tra cả đầu ra chu�
     vector<int> lst;
     for (int i = 0; i < k; i++)  // k = 0 và k = -5 có tác dụng như nhau ở đây (không vào vòng lặp)
       lst.push_back(ouf.readInt());
-    // Nhưng ta không muốn chấp nhận một list có độ dài -5, đúng không?
+    // Nhưng ta không muốn chấp nhận một danh sách có độ dài -5, đúng không?
     // ....
     int pos = ouf.readInt();
     int x = A[pos];
@@ -228,7 +228,7 @@ Có thể thấy cách viết này đồng thời kiểm tra cả đầu ra chu�
     vector<int> lst;
     for (int i = 0; i < k; i++) lst.push_back(ouf.readInt());
     // ....
-    int pos = ouf.readInt(0, (int)A.size() - 1);  // Tránh out of range
+    int pos = ouf.readInt(0, (int)A.size() - 1);  // Tránh vượt phạm vi
     int x = A[pos];
     // ....
     ```

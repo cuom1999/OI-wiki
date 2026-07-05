@@ -1,16 +1,16 @@
 Kiến thức cần biết trước: [Thông dụng](./general.md)
 
-Trang này giới thiệu ngắn gọn khái niệm và cách dùng validator.
+Trang này giới thiệu ngắn gọn khái niệm và cách dùng trình xác thực dữ liệu (validator).
 
 ## Tổng quan
 
-Validator dùng để kiểm tra tính hợp lệ của dữ liệu đã tạo. Khi đã tạo xong dữ liệu cho một bài nhưng vẫn lo dữ liệu không hợp lệ (không thỏa ràng buộc của đề: tràn số, đồ thị không liên thông, không phải cây, v.v.), người ra đề thường dùng validator để kiểm tra.[^ref1]
+Trình xác thực dữ liệu dùng để kiểm tra tính hợp lệ của dữ liệu đã tạo. Khi đã tạo xong dữ liệu cho một bài nhưng vẫn lo dữ liệu không hợp lệ (không thỏa ràng buộc của đề: tràn số, đồ thị không liên thông, không phải cây, v.v.), người ra đề thường dùng validator để kiểm tra.[^ref1]
 
 Vì Codeforces hỗ trợ tính năng hack, mọi bài trên Codeforces đều bắt buộc phải có validator. UOJ cũng như vậy. [Polygon](../polygon.md) có sẵn hỗ trợ cho validator.
 
 ## Cách dùng
 
-Chỉ cần nhập trực tiếp `./val` trên dòng lệnh. Dữ liệu được đưa vào qua stdin. Nếu muốn nhập từ tệp, có thể dùng `./val < a.in`.
+Chỉ cần nhập trực tiếp `./val` trên dòng lệnh. Dữ liệu được đưa vào qua `stdin` (đầu vào chuẩn). Nếu muốn nhập từ tệp, có thể dùng `./val < a.in`.
 
 Nếu dữ liệu không có vấn đề, chương trình sẽ không in gì và trả về 0; nếu không, chương trình sẽ in thông báo lỗi và trả về một giá trị khác 0.
 

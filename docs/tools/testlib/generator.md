@@ -22,15 +22,15 @@ int main(int argc, char* argv[]) {
 
 ## Vì sao nên dùng Testlib?
 
-Có người cho rằng viết generator không cần dùng Testlib, vì Testlib không có nhiều tác dụng ở đây. Thực ra đây là một suy nghĩ không đúng. Một generator tốt nên thỏa tính chất sau: **với cùng một đầu vào, nó cho cùng một đầu ra trong mọi môi trường**. Khi viết generator, gần như không thể tránh khỏi việc sinh giá trị ngẫu nhiên. Các công cụ ta thường dùng như `rand()` hoặc `mt19937/uniform_int_distribution` của C++11 có thể cho đầu ra khác nhau khi hệ điều hành khác nhau, trình biên dịch khác nhau, thời điểm chạy khác nhau, v.v. (với cách dùng rất phổ biến `srand(time(nullptr))`, điều này là hiển nhiên), và điều đó tạo ra tính bất định cho dữ liệu sinh ra.
+Có người cho rằng viết trình sinh dữ liệu không cần dùng Testlib, vì Testlib không có nhiều tác dụng ở đây. Thực ra đây là một suy nghĩ không đúng. Một trình sinh dữ liệu tốt nên thỏa tính chất sau: **với cùng một đầu vào, nó cho cùng một đầu ra trong mọi môi trường**. Khi viết trình sinh dữ liệu, gần như không thể tránh khỏi việc sinh giá trị ngẫu nhiên. Các công cụ ta thường dùng như `rand()` hoặc `mt19937/uniform_int_distribution` của C++11 có thể cho đầu ra khác nhau khi hệ điều hành khác nhau, trình biên dịch khác nhau, thời điểm chạy khác nhau, v.v. (với cách dùng rất phổ biến `srand(time(nullptr))`, điều này là hiển nhiên), và điều đó tạo ra tính bất định cho dữ liệu sinh ra.
 
 Cần lưu ý rằng một khi đã dùng Testlib, bạn không được dùng các hàm sinh số ngẫu nhiên của thư viện chuẩn như `srand()` và `rand()` nữa, nếu không sẽ gặp lỗi khi biên dịch. Vì vậy, **hãy bảo đảm mọi hàm liên quan đến ngẫu nhiên đều dùng Testlib thay vì thư viện chuẩn**.
 
-Các hàm sinh giá trị ngẫu nhiên trong Testlib bảo đảm rằng cùng một lời gọi sẽ cho cùng một giá trị, độc lập với bản thân generator và nền tảng chạy. Ngoài ra, Testlib giúp sinh giá trị ngẫu nhiên theo nhiều yêu cầu khác nhau rất thuận tiện. Ví dụ, `rnd.next("[a-z]{1,10}")` sẽ sinh một chuỗi có độ dài trong khoảng $[1,10]$, mỗi ký tự nằm từ `a` đến `z`.
+Các hàm sinh giá trị ngẫu nhiên trong Testlib bảo đảm rằng cùng một lời gọi sẽ cho cùng một giá trị, độc lập với bản thân trình sinh dữ liệu và nền tảng chạy. Ngoài ra, Testlib giúp sinh giá trị ngẫu nhiên theo nhiều yêu cầu khác nhau rất thuận tiện. Ví dụ, `rnd.next("[a-z]{1,10}")` sẽ sinh một chuỗi có độ dài trong khoảng $[1,10]$, mỗi ký tự nằm từ `a` đến `z`.
 
 ## Testlib có thể làm gì?
 
-Trước hết, hãy gọi `registerGen(argc, argv, 1)` để khởi tạo Testlib (trong đó `1` là phiên bản generator được dùng, thông thường giữ nguyên). Sau đó, ta có thể dùng đối tượng `rnd` để sinh giá trị ngẫu nhiên. Seed ngẫu nhiên được lấy từ giá trị băm của tham số dòng lệnh. Với một generator `g.cpp`, `g 100` (Unix-Like) và `g.exe "100"` (Windows) sẽ cho cùng đầu ra, còn `g 100 0` sẽ cho đầu ra khác.
+Trước hết, hãy gọi `registerGen(argc, argv, 1)` để khởi tạo Testlib (trong đó `1` là phiên bản trình sinh dữ liệu được dùng, thông thường giữ nguyên). Sau đó, ta có thể dùng đối tượng `rnd` để sinh giá trị ngẫu nhiên. Hạt giống ngẫu nhiên được lấy từ giá trị băm của tham số dòng lệnh. Với một trình sinh dữ liệu `g.cpp`, `g 100` (trên hệ Unix-like) và `g.exe "100"` (trên Windows) sẽ cho cùng đầu ra, còn `g 100 0` sẽ cho đầu ra khác.
 
 Đối tượng `rnd` có kiểu `random_t`. Bạn có thể tạo một đối tượng sinh giá trị ngẫu nhiên mới, nhưng thông thường không cần làm vậy.
 
@@ -43,7 +43,7 @@ Trước hết, hãy gọi `registerGen(argc, argv, 1)` để khởi tạo Testl
 | `rnd.next(10.0)`                             | Sinh ngẫu nhiên đều một số thực dấu phẩy động trong khoảng $[0,10.0)$                                                                                                                                                                                   |
 | <code>rnd.next("one \| two \| three")</code> | Trả về ngẫu nhiên đều một trong ba chuỗi `one`, `two`, `three`                                                                                                                                                                                          |
 | `rnd.wnext(4, t)`                            | `wnext()` là hàm sinh theo phân phối không đều (có kỳ vọng bị lệch)[^note1]. $t$ biểu thị số lần gọi `next()` và lấy giá trị lớn nhất sinh được. Ví dụ, `rnd.wnext(3, 1)` tương đương `max({rnd.next(3), rnd.next(3)})`; `rnd.wnext(4, 2)` tương đương `max({rnd.next(4), rnd.next(4), rnd.next(4)})`. Nếu $t<0$, hàm gọi $-t$ lần và lấy giá trị nhỏ nhất; nếu $t=0$, hàm tương đương `next()`. |
-| `rnd.any(container)`                         | Trả về đều tham chiếu tới một phần tử trong container có iterator truy cập ngẫu nhiên, chẳng hạn `std::vector` và `std::string`                                                                                                                        |
+| `rnd.any(container)`                         | Trả về đều tham chiếu tới một phần tử trong vùng chứa có bộ lặp (iterator) truy cập ngẫu nhiên, chẳng hạn `std::vector` và `std::string`                                                                                                              |
 
 Phụ lục: định nghĩa hình thức của `rnd.wnext(i,t)`:
 
@@ -56,7 +56,7 @@ $$
 \end{cases}
 $$
 
-Ngoài ra, đừng dùng `std::random_shuffle()`; hãy dùng `shuffle()` trong Testlib. Hàm này cũng nhận một cặp iterator. Nó dùng `rnd` để xáo trộn dãy, tức thỏa yêu cầu về "generator tốt" ở trên.
+Ngoài ra, đừng dùng `std::random_shuffle()`; hãy dùng `shuffle()` trong Testlib. Hàm này cũng nhận một cặp bộ lặp (iterator). Nó dùng `rnd` để xáo trộn dãy, tức thỏa yêu cầu về "trình sinh dữ liệu tốt" ở trên.
 
 ## Ví dụ: sinh một cây
 
@@ -118,7 +118,7 @@ Hiện nay, bạn có thể viết như sau: `int n = opt<int>(3)`. Đồng th�
 
 Ngoài ra, Testlib cũng hỗ trợ tham số có tên. Nếu có nhiều tham số, cách viết `g 10 20000 a true` sẽ khó đọc hơn `g -n10 -m200000 -t=a -increment`.
 
-Trong trường hợp này, hiện bạn có thể dùng đoạn mã sau trong generator:
+Trong trường hợp này, hiện bạn có thể dùng đoạn mã sau trong trình sinh dữ liệu:
 
 ```cpp
 int n = opt<int>("n");
@@ -133,8 +133,8 @@ Các dạng viết tham số có tên được hỗ trợ gồm:
 
 -   `--key=value` hoặc `-key=value`;
 -   `--key value` hoặc `-key value`, nếu `value` không phải phần bắt đầu của một tham số mới (không bắt đầu bằng dấu gạch nối `-`, hoặc sau một/hai dấu gạch nối không phải là chữ cái);
--   `--k12345` hoặc `-k12345`, nếu key `k` là một chữ cái và phía sau là một chữ số;
--   `-prop` hoặc `--prop`, để bật thuộc tính bool.
+-   `--k12345` hoặc `-k12345`, nếu khóa `k` là một chữ cái và phía sau là một chữ số;
+-   `-prop` hoặc `--prop`, để bật thuộc tính kiểu boolean.
 
 Dưới đây là một số ví dụ:
 

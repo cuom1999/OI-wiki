@@ -1,15 +1,15 @@
-Interactor, tức trình tương tác, dùng để giao tiếp với chương trình của thí sinh trong bài tương tác. Phần giới thiệu về bài tương tác nằm ở [Các dạng bài - Bài tương tác](../../contest/problems.md#bài-tương-tác).
+Trình tương tác (interactor) dùng để giao tiếp với chương trình của thí sinh trong bài tương tác. Phần giới thiệu về bài tương tác nằm ở [Các dạng bài - Bài tương tác](../../contest/problems.md#bài-tương-tác).
 
 ???+ note "Ghi chú"
     Testlib chỉ hỗ trợ bài tương tác theo kiểu Codeforces, tức hai chương trình tương tác với nhau. Testlib không hỗ trợ kiểu NOI, trong đó thí sinh viết hàm để tương tác với các hàm khác.
 
 Hãy đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 
-Testlib cung cấp cho interactor một luồng đặc biệt `std::fstream tout`. Đây là luồng nhật ký; bạn có thể ghi vào nó trong interactor và đọc lại bằng `ouf` trong checker.
+Testlib cung cấp cho trình tương tác một luồng đặc biệt `std::fstream tout`. Đây là luồng nhật ký; bạn có thể ghi vào nó trong interactor và đọc lại bằng `ouf` trong checker.
 
 Trong interactor, ta đọc dữ liệu test của đề từ `inf`, ghi đầu vào chuẩn cho chương trình thí sinh (và chương trình chuẩn) vào `stdout` (trực tuyến), đọc đầu ra của thí sinh từ `ouf` (trực tuyến), và đọc đầu ra chuẩn từ `ans` (trực tuyến).
 
-Nếu interactor trả về trạng thái ok, checker (nếu có) sẽ tiếp quản và kiểm tra tính hợp lệ của đáp án.
+Nếu interactor trả về trạng thái `_ok`, checker (nếu có) sẽ tiếp quản và kiểm tra tính hợp lệ của đáp án.
 
 ## Cách dùng
 
@@ -28,9 +28,9 @@ Linux:
 ## Ví dụ đơn giản
 
 ???+ note "Đề bài"
-    Interactor chọn ngẫu nhiên một số nguyên trong khoảng $[1,10^9]$. Bạn cần viết một chương trình để đoán số đó; bạn được hỏi tối đa $50$ lần, mỗi lần hỏi một số nguyên trong khoảng $[1,10^9]$.
+    Trình tương tác chọn ngẫu nhiên một số nguyên trong khoảng $[1,10^9]$. Bạn cần viết một chương trình để đoán số đó; bạn được hỏi tối đa $50$ lần, mỗi lần hỏi một số nguyên trong khoảng $[1,10^9]$.
     
-    Interactor sẽ trả về:
+    Trình tương tác sẽ trả về:
     
     `1`: số được hỏi bằng đáp án, chương trình của bạn nên dừng hỏi.
     
