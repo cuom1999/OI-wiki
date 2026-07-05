@@ -2,7 +2,7 @@ Nghiên cứu ánh xạ tuyến tính là nghiên cứu các ánh xạ giữa nh
 
 Ánh xạ tuyến tính có thể được biểu diễn dưới dạng ma trận, vì vậy nhiều khái niệm của ma trận đều có đối ứng trong ánh xạ tuyến tính.
 
-<span id="&#x7EBF;&#x6027;&#x6620;&#x5C04;&#x4E0E;&#x7EBF;&#x6027;&#x53D8;&#x6362;"></span>
+<span id="ánh-xạ-tuyến-tính-và-biến-đổi-tuyến-tính"></span>
 ## Ánh xạ tuyến tính và biến đổi tuyến tính
 
 Giả sử $V$ và $W$ là hai không gian tuyến tính trên trường $F$, và $T$ là một ánh xạ từ $V$ đến $W$.
@@ -19,7 +19,7 @@ Ví dụ, biến đổi đồng nhất $T_e$ giữ nguyên không gian, còn bi�
 
 Có thể ký hiệu $L(V,W)$ là tập hợp tất cả các ánh xạ tuyến tính từ $V$ đến $W$. Với toàn bộ các biến đổi tuyến tính $L(V,V)$, ta cũng ký hiệu là $L(V)$.
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 ### Tính chất
 
 -   Ánh xạ tuyến tính đưa vectơ không thành vectơ không.
@@ -28,7 +28,7 @@ Có thể ký hiệu $L(V,W)$ là tập hợp tất cả các ánh xạ tuyến 
 
 Tuy nhiên ánh xạ tuyến tính không bảo toàn tính độc lập tuyến tính. Các vectơ độc lập tuyến tính trước khi ánh xạ chưa chắc vẫn độc lập tuyến tính sau khi ánh xạ.
 
-<span id="&#x7EBF;&#x6027;&#x6620;&#x5C04;&#x7684;&#x77E9;&#x9635;&#x8868;&#x793A;"></span>
+<span id="biểu-diễn-ma-trận-của-ánh-xạ-tuyến-tính"></span>
 ## Biểu diễn ma trận của ánh xạ tuyến tính
 
 Giả sử $V$ có số chiều là $n$, một cơ sở của $V$ là $\alpha_1,\cdots,\alpha_n$, $W$ có số chiều là $m$, một cơ sở của $W$ là $\beta_1,\cdots,\beta_m$, và $T$ là một ánh xạ tuyến tính từ $V$ đến $W$.
@@ -47,7 +47,7 @@ $$
 
 Ma trận $A$ được gọi là biểu diễn ma trận của ánh xạ tuyến tính $T$ theo hai cơ sở này.
 
-<span id="&#x7EBF;&#x6027;&#x6620;&#x5C04;&#x7684;&#x6838;&#x7A7A;&#x95F4;&#x4E0E;&#x50CF;&#x7A7A;&#x95F4;"></span>
+<span id="không-gian-hạt-nhân-và-không-gian-ảnh-của-ánh-xạ-tuyến-tính"></span>
 ## Không gian hạt nhân và không gian ảnh của ánh xạ tuyến tính
 
 Ở đây không gian hạt nhân và không gian ảnh được mô tả từ góc nhìn của ánh xạ tuyến tính. Nhờ biểu diễn ma trận có thể thấy không gian hạt nhân và không gian ảnh của ánh xạ tuyến tính trùng với không gian hạt nhân và không gian ảnh của ma trận.
@@ -72,7 +72,7 @@ $$
 
 tức là độ khuyết cộng với hạng của $T$ bằng số chiều của miền xác định $V$.
 
-<span id="&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x7684;&#x77E9;&#x9635;&#x8868;&#x793A;"></span>
+<span id="biểu-diễn-ma-trận-của-biến-đổi-tuyến-tính"></span>
 ## Biểu diễn ma trận của biến đổi tuyến tính
 
 Giả sử $V$ có số chiều là $n$, một cơ sở của $V$ là $\alpha_1,\cdots,\alpha_n$, và $T$ là một biến đổi tuyến tính trên $V$. Khi đó:
@@ -97,7 +97,7 @@ Hệ quả: Có một song ánh giữa $L(V,V)$ và toàn bộ các ma trận vu
 
 Ví dụ: biến đổi không tương ứng với ma trận không, biến đổi đồng nhất tương ứng với ma trận đơn vị.
 
-<span id="&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x6784;&#x6210;&#x7684;&#x7A7A;&#x95F4;"></span>
+<span id="không-gian-tạo-bởi-các-biến-đổi-tuyến-tính"></span>
 ## Không gian tạo bởi các biến đổi tuyến tính
 
 Định lý: $L(V)$ cũng có thể tạo thành một không gian tuyến tính. Đưa các phép toán sau vào $L(V)$: với mọi $T_1$ và $T_2$ trong $L(V)$, mọi $x$ trong $V$, và mọi $k$ trong trường $F$, ta có:
@@ -145,7 +145,7 @@ $$
 -   Ma trận của tích biến đổi tuyến tính $T_1T_2$ là $AB$.
 -   Nếu biến đổi nghịch đảo của $T_1$ tồn tại, thì ma trận của nó là $A^{-1}$.
 
-<span id="&#x5750;&#x6807;"></span>
+<span id="tọa-độ"></span>
 ## Tọa độ
 
 Giả sử $n$ vectơ $x$ là một cơ sở của không gian $n$ chiều $V$. Với mọi vectơ $y$ trong $V$, đặt $y$ là:
@@ -164,7 +164,7 @@ $$
 
 Có thể thấy tọa độ là vectơ cột tạo bởi các vô hướng trong trường, cần phân biệt với vectơ trong nhóm Abel.
 
-<span id="&#x5750;&#x6807;&#x53D8;&#x6362;&#x516C;&#x5F0F;"></span>
+<span id="công-thức-đổi-tọa-độ"></span>
 ## Công thức đổi tọa độ
 
 Giả sử $V$ có số chiều là $n$, trong $L(V)$ có biến đổi $T$, và ma trận của $T$ theo cơ sở $\alpha_1,\cdots,\alpha_n$ là $A$. Giả sử:
@@ -195,7 +195,7 @@ Có thể xem biến đổi tuyến tính $T$ như một bộ lọc quan sát đ
 
 Vì vậy, giữa các cơ sở khác nhau, quan hệ tọa độ là nhân bên trái với ma trận nghịch đảo của ma trận chuyển cơ sở.
 
-<span id="&#x8FC7;&#x6E21;&#x77E9;&#x9635;"></span>
+<span id="ma-trận-chuyển-cơ-sở"></span>
 ## Ma trận chuyển cơ sở
 
 Giả sử $n$ vectơ $x$ và $n$ vectơ $y$ là hai cơ sở của không gian $V$. Với $1\leq i\leq n$, gọi tọa độ của mỗi vectơ $y_i$ theo cơ sở $x_1,x_2,\cdots,x_n$ là:
@@ -260,7 +260,7 @@ Nếu ma trận chuyển cơ sở của biến đổi tuyến tính $T$ ánh x�
 
 Vì vậy quan hệ tọa độ đúng là đảo ngược lại. Giả sử tọa độ sau khi qua biến đổi tuyến tính $T$ là $b$, tức là tọa độ quan sát được sau khi thêm bộ lọc là $b$, thì biểu diễn của điểm trong $V$ là $\beta b$. Cách khôi phục là dùng ma trận chuyển cơ sở để viết biểu diễn của điểm trong $V$ thành $\alpha Ab$. Khi đó cách nhìn rằng đổi tọa độ là nhân bên trái với nghịch đảo của ma trận chuyển cơ sở trở nên rõ ràng.
 
-<span id="&#x7EBF;&#x6027;&#x53D8;&#x6362;&#x4E0E;&#x77E9;&#x9635;&#x76F8;&#x4F3C;"></span>
+<span id="biến-đổi-tuyến-tính-và-tương-tự-ma-trận"></span>
 ## Biến đổi tuyến tính và tương tự ma trận
 
 Quan hệ của một biến đổi tuyến tính $T$ trong không gian $V$ đối với cơ sở $\alpha$ của không gian $V$ là:
@@ -299,7 +299,7 @@ Vì tương tự ma trận liên quan chặt chẽ đến hình dạng của ma 
 
 Nhìn lại, cách giải thích tương tự ma trận chính là 4 đẳng thức: $\beta=\alpha C$, $T(\alpha)=\alpha A$, $T(\beta)=\beta B$, $T(\beta)=T(\alpha)C$.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 -   [Tuyển tập song ngữ chính thức: Bản chất của đại số tuyến tính - P13 09 - Đổi cơ sở](https://www.bilibili.com/video/BV1Ls411b7r2)
