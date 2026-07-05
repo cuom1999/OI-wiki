@@ -3,19 +3,19 @@ author: johnvp22, Ir1d
 ## `string` là gì
 
 `std::string` là một lớp được cung cấp trong thư viện chuẩn `<string>` (chú ý
-không phải thư viện `<string.h>` của ngôn ngữ C); về bản chất nó là alias của
+không phải thư viện `<string.h>` của ngôn ngữ C); về bản chất nó là bí danh của
 `std::basic_string<char>`.
 
 ## Vì sao nên dùng `string`
 
 Trong ngôn ngữ C, có các thao tác xử lý chuỗi, nhưng chỉ có thể hiện thực chuỗi
 bằng mảng ký tự. Còn `string` là một lớp đơn giản, dễ dùng và được sử dụng rộng
-rãi trong các cuộc thi OI. So với các STL container khác, hằng số của `string`
+rãi trong các cuộc thi OI. So với các bộ chứa STL khác, hằng số của `string`
 có thể xem là rất tốt, gần như không thua mảng ký tự.
 
 ### `string` có thể cấp phát bộ nhớ động
 
-Giống nhiều STL container khác, `string` có thể cấp phát bộ nhớ động, nhờ đó ta
+Giống nhiều bộ chứa STL khác, `string` có thể cấp phát bộ nhớ động, nhờ đó ta
 có thể dùng trực tiếp `std::cin` để nhập, dù tốc độ nhập như vậy cũng chậm. Điều
 này cũng giúp ta không phải lo quá nhiều về bộ nhớ.
 
@@ -36,11 +36,11 @@ Dưới đây giới thiệu các thao tác cơ bản của `string`; chi tiết
 std::string s;
 ```
 
-### Chuyển sang mảng char
+### Chuyển sang mảng `char`
 
 Trong ngôn ngữ C cũng có nhiều hàm xử lý chuỗi, nhưng tham số của chúng đều là
-kiểu con trỏ char. Để tiện dùng, `string` có hai hàm thành viên có thể chuyển
-bản thân nó thành con trỏ char: `data()`/`c_str()` (hai hàm gần như giống nhau,
+kiểu con trỏ `char`. Để tiện dùng, `string` có hai hàm thành viên có thể chuyển
+bản thân nó thành con trỏ `char`: `data()`/`c_str()` (hai hàm gần như giống nhau,
 nhưng tốt nhất dùng `c_str()`, vì `c_str()` bảo đảm cuối chuỗi có ký tự rỗng,
 còn `data()` thì không bảo đảm). Ví dụ:
 
@@ -52,7 +52,7 @@ printf("%s", s.c_str());  // chắc chắn xuất đúng
 
 ### Lấy độ dài
 
-Nhiều hàm có thể trả về độ dài của string:
+Nhiều hàm có thể trả về độ dài của một `string`:
 
 ```cpp
 printf("độ dài của s là %zu", s.size());
@@ -128,7 +128,7 @@ chuỗi con gồm tối đa ba ký tự bắt đầu từ vị trí thứ hai c�
 ### Chèn/xóa ký tự hoặc chuỗi
 
 `insert(index,count,ch)` và `insert(index,str)` là hai hàm chèn thường gặp.
-Chúng lần lượt biểu thị chèn liên tiếp `count` lần chuỗi `ch` tại `index`, và
+Chúng lần lượt biểu thị chèn liên tiếp `count` lần ký tự `ch` tại `index`, và
 chèn chuỗi `str` tại `index`.
 
 Hàm `erase(index,count)` xóa `count` ký tự bắt đầu từ vị trí `index` của chuỗi
@@ -162,7 +162,7 @@ sau khi chèn liên tiếp 3 lần ký tự u vào vị trí thứ tám của s,
 `replace(pos,count,str)` và `replace(first,last,str)` là hai hàm thay thế thường
 gặp. Chúng lần lượt biểu thị thay chuỗi con gồm `count` ký tự bắt đầu từ `pos`
 bằng `str`, và thay chuỗi con bắt đầu từ `first` (bao gồm) đến `last` (không bao
-gồm) bằng `str`, trong đó `first` và `last` đều là iterator.
+gồm) bằng `str`, trong đó `first` và `last` đều là bộ lặp.
 
 Ví dụ:
 

@@ -20,7 +20,7 @@ Nhiều khi ta không thể mở sẵn một vùng nhớ lớn như vậy (ví d
 
 #### `vector` nạp chồng toán tử so sánh và toán tử gán
 
-`vector` nạp chồng sáu toán tử so sánh, được cài đặt theo thứ tự từ điển. Điều này giúp ta dễ dàng kiểm tra hai container có bằng nhau hay không (độ phức tạp tuyến tính theo kích thước container). Chẳng hạn có thể dùng `vector<char>` để so sánh xâu (tất nhiên, dùng `std::string` vẫn nhanh và tiện hơn). Ngoài ra, `vector` cũng nạp chồng toán tử gán, giúp việc sao chép mảng thuận tiện hơn.
+`vector` nạp chồng sáu toán tử so sánh, được cài đặt theo thứ tự từ điển. Điều này giúp ta dễ dàng kiểm tra hai bộ chứa có bằng nhau hay không (độ phức tạp tuyến tính theo kích thước bộ chứa). Chẳng hạn có thể dùng `vector<char>` để so sánh xâu (tất nhiên, dùng `std::string` vẫn nhanh và tiện hơn). Ngoài ra, `vector` cũng nạp chồng toán tử gán, giúp việc sao chép mảng thuận tiện hơn.
 
 <span id="khởi-tạo-vector-thuận-tiện"></span>
 
@@ -38,7 +38,7 @@ Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi ti
 
 #### Hàm khởi tạo
 
-Ví dụ cách dùng như đoạn mã sau (giả sử bạn đã `using` các kiểu liên quan trong namespace `std`):
+Ví dụ cách dùng như đoạn mã sau (giả sử bạn đã `using` các kiểu liên quan trong không gian tên `std`):
 
 ```cpp
 // 1. Tạo vector rỗng; độ phức tạp hằng số
@@ -94,11 +94,11 @@ Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông
 
 1.  `at()`
 
-    `v.at(pos)` trả về tham chiếu đến phần tử có chỉ số `pos` trong container. Nếu vượt biên mảng, nó ném ngoại lệ kiểu `std::out_of_range`.
+    `v.at(pos)` trả về tham chiếu đến phần tử có chỉ số `pos` trong bộ chứa. Nếu vượt biên mảng, nó ném ngoại lệ kiểu `std::out_of_range`.
 
 2.  `operator[]`
 
-    `v[pos]` trả về tham chiếu đến phần tử có chỉ số `pos` trong container. Không kiểm tra vượt biên.
+    `v[pos]` trả về tham chiếu đến phần tử có chỉ số `pos` trong bộ chứa. Không kiểm tra vượt biên.
 
 3.  `front()`
 
@@ -114,49 +114,49 @@ Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông
 
 <span id="iterator-vector"></span>
 
-#### Iterator (bộ lặp)
+#### Bộ lặp
 
-`vector` cung cấp các loại [iterator](./iterator.md) sau:
+`vector` cung cấp các loại [bộ lặp](./iterator.md) sau:
 
 1.  `begin()/cbegin()`
 
-    Trả về iterator trỏ đến phần tử đầu tiên, trong đó `*begin = front`.
+    Trả về bộ lặp trỏ đến phần tử đầu tiên, trong đó `*begin = front`.
 
 2.  `end()/cend()`
 
-    Trả về iterator trỏ đến vị trí lính canh ở cuối container; lưu ý vị trí này không có phần tử.
+    Trả về bộ lặp trỏ đến vị trí lính canh ở cuối bộ chứa; lưu ý vị trí này không có phần tử.
 
 3.  `rbegin()/crbegin()`
 
-    Trả về reverse iterator trỏ đến phần tử đầu tiên của dãy đảo ngược, có thể hiểu là phần tử cuối của container theo chiều xuôi.
+    Trả về bộ lặp ngược trỏ đến phần tử đầu tiên của dãy đảo ngược, có thể hiểu là phần tử cuối của bộ chứa theo chiều xuôi.
 
 4.  `rend()/crend()`
 
-    Trả về iterator trỏ đến vị trí sau phần tử cuối của dãy đảo ngược, tương ứng với vị trí trước phần tử đầu của container; vị trí này không có phần tử.
+    Trả về bộ lặp trỏ đến vị trí sau phần tử cuối của dãy đảo ngược, tương ứng với vị trí trước phần tử đầu của bộ chứa; vị trí này không có phần tử.
 
-Trong các iterator liệt kê trên, những hàm có ký tự `c` trả về iterator chỉ đọc; bạn không thể dùng iterator chỉ đọc để sửa giá trị phần tử trong `vector`. Nếu bản thân một `vector` là chỉ đọc, iterator thông thường và iterator chỉ đọc của nó hoàn toàn tương đương. Iterator chỉ đọc được hỗ trợ từ C++11.
+Trong các bộ lặp liệt kê trên, những hàm có ký tự `c` trả về bộ lặp chỉ đọc; bạn không thể dùng bộ lặp chỉ đọc để sửa giá trị phần tử trong `vector`. Nếu bản thân một `vector` là chỉ đọc, bộ lặp thông thường và bộ lặp chỉ đọc của nó hoàn toàn tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
 
 <span id="độ-dài-và-dung-lượng-vector"></span>
 
 #### Độ dài và dung lượng
 
-`vector` có các hàm sau liên quan đến độ dài và dung lượng container. Lưu ý, độ dài (size) của `vector` là số phần tử hợp lệ, còn dung lượng (capacity) là độ dài vùng nhớ thực tế đã cấp phát; chi tiết xem phần về cách cài đặt ở bên dưới.
+`vector` có các hàm sau liên quan đến độ dài và dung lượng bộ chứa. Lưu ý, độ dài (`size`) của `vector` là số phần tử hợp lệ, còn dung lượng (`capacity`) là độ dài vùng nhớ thực tế đã cấp phát; chi tiết xem phần về cách cài đặt ở bên dưới.
 
 **Liên quan đến độ dài**:
 
 -   `empty()` trả về một giá trị `bool`, tức `v.begin() == v.end()`; `true` nghĩa là rỗng, `false` nghĩa là không rỗng.
 
--   `size()` trả về độ dài container (số phần tử), tức `std::distance(v.begin(), v.end())`.
+-   `size()` trả về độ dài bộ chứa (số phần tử), tức `std::distance(v.begin(), v.end())`.
 
 -   `resize(n)` thay đổi độ dài của `vector` thành `n`. Nếu `n` lớn hơn độ dài hiện tại, các phần tử sẽ được bổ sung; nếu tham số có cung cấp giá trị cần bổ sung thì dùng giá trị đó, nếu không thì dùng giá trị mặc định. Nếu `n` nhỏ hơn độ dài hiện tại, giữ lại `n` phần tử đầu và xóa các phần tử phía sau.
 
--   `max_size()` trả về độ dài tối đa có thể có của container.
+-   `max_size()` trả về độ dài tối đa có thể có của bộ chứa.
 
 **Liên quan đến dung lượng**:
 
 -   `reserve()` yêu cầu `vector` dự trữ một lượng bộ nhớ nhất định, tránh cấp phát và sao chép bộ nhớ không cần thiết.
 
--   `capacity()` trả về dung lượng container, tức số phần tử mà `vector` hiện đã cấp phát đủ chỗ.
+-   `capacity()` trả về dung lượng bộ chứa, tức số phần tử mà `vector` hiện đã cấp phát đủ chỗ.
 
 -   `shrink_to_fit()` làm cho dung lượng của `vector` bằng độ dài, loại bỏ phần dung lượng chưa dùng đến.
 
@@ -165,17 +165,17 @@ Trong các iterator liệt kê trên, những hàm có ký tự `c` trả về i
 ### Thêm, xóa và sửa phần tử
 
 -   `clear()` xóa tất cả phần tử.
--   `insert()` hỗ trợ chèn một hoặc nhiều phần tử tại một vị trí iterator. **Độ phức tạp tuyến tính theo khoảng cách từ `pos` đến cuối, không phải hằng số**.
--   `erase()` xóa một phần tử tại iterator hoặc một đoạn phần tử, trả về iterator sau phần tử cuối cùng bị xóa. Độ phức tạp giống `insert`.
+-   `insert()` hỗ trợ chèn một hoặc nhiều phần tử tại một vị trí bộ lặp. **Độ phức tạp tuyến tính theo khoảng cách từ `pos` đến cuối, không phải hằng số**.
+-   `erase()` xóa một phần tử tại bộ lặp hoặc một đoạn phần tử, trả về bộ lặp sau phần tử cuối cùng bị xóa. Độ phức tạp giống `insert`.
 -   `push_back()` chèn một phần tử vào cuối; độ phức tạp khấu hao là **hằng số**, trường hợp xấu nhất là tuyến tính.
 -   `pop_back()` xóa phần tử cuối, độ phức tạp hằng số.
--   `swap()` trao đổi với một container khác; thao tác này có **độ phức tạp hằng số**, không phải tuyến tính.
+-   `swap()` trao đổi với một bộ chứa khác; thao tác này có **độ phức tạp hằng số**, không phải tuyến tính.
 
 <span id="chi-tiết-cài-đặt-của-vector"></span>
 
 ### Chi tiết cài đặt của `vector`
 
-Tầng dưới của `vector` thực ra vẫn là mảng có độ dài cố định. Lý do nó mở rộng động được là vì có thêm thao tác để tránh tràn số lượng. Trước hết cần nói rõ: số phần tử (độ dài) $n$ trong `vector` và số phần tử tối đa mà vùng nhớ đã cấp phát có thể chứa (dung lượng) $N$ không nhất thiết giống nhau; `vector` lưu riêng hai đại lượng này. Khi thêm phần tử vào `vector`, nếu thấy $n>N$, container sẽ cấp phát một mảng kích thước $2N$, sao chép dữ liệu cũ từ vị trí ban đầu sang mảng mới, rồi giải phóng vùng nhớ cũ. Dù độ phức tạp tiệm cận của thao tác này là $O(n)$, có thể chứng minh độ phức tạp khấu hao của nó là $O(1)$. Xóa phần tử ở cuối và truy cập phần tử vẫn tốn chi phí $O(1)$.
+Tầng dưới của `vector` thực ra vẫn là mảng có độ dài cố định. Lý do nó mở rộng động được là vì có thêm thao tác để tránh tràn số lượng. Trước hết cần nói rõ: số phần tử (độ dài) $n$ trong `vector` và số phần tử tối đa mà vùng nhớ đã cấp phát có thể chứa (dung lượng) $N$ không nhất thiết giống nhau; `vector` lưu riêng hai đại lượng này. Khi thêm phần tử vào `vector`, nếu thấy $n>N$, bộ chứa sẽ cấp phát một mảng kích thước $2N$, sao chép dữ liệu cũ từ vị trí ban đầu sang mảng mới, rồi giải phóng vùng nhớ cũ. Dù độ phức tạp tiệm cận của thao tác này là $O(n)$, có thể chứng minh độ phức tạp khấu hao của nó là $O(1)$. Xóa phần tử ở cuối và truy cập phần tử vẫn tốn chi phí $O(1)$.
 Vì vậy, chỉ cần ước lượng kích thước `vector` hợp lý và tận dụng `resize()` cùng `reserve()`, hiệu năng của `vector` sẽ không thua mảng có độ dài cố định quá nhiều.
 
 ## `vector<bool>`
@@ -224,11 +224,11 @@ Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bo
 
 | Hàm        | Tác dụng                         |
 | ---------- | -------------------------------- |
-| `empty`    | Kiểm tra container có rỗng không |
+| `empty`    | Kiểm tra bộ chứa có rỗng không |
 | `size`     | Trả về số phần tử đang chứa      |
 | `max_size` | Trả về số phần tử tối đa có thể chứa |
 
-Vì mỗi `array` đều là container kích thước cố định, giá trị `size()` trả về bằng giá trị `max_size()` trả về.
+Vì mỗi `array` đều là bộ chứa kích thước cố định, giá trị `size()` trả về bằng giá trị `max_size()` trả về.
 
 <span id="thao-tác-array"></span>
 
@@ -236,10 +236,10 @@ Vì mỗi `array` đều là container kích thước cố định, giá trị `
 
 | Hàm    | Tác dụng                         |
 | ------ | -------------------------------- |
-| `fill` | Điền container bằng giá trị chỉ định |
+| `fill` | Điền bộ chứa bằng giá trị chỉ định |
 | `swap` | Trao đổi nội dung                |
 
-**Lưu ý, trao đổi hai `array` có độ phức tạp $\Theta(\text{size})$, không phải $O(1)$ như các container STL thông thường.**
+**Lưu ý, trao đổi hai `array` có độ phức tạp $\Theta(\text{size})$, không phải $O(1)$ như các bộ chứa STL thông thường.**
 
 <span id="hàm-không-phải-thành-viên-array"></span>
 
@@ -273,13 +273,13 @@ for (int i = 0; i != arr.size(); ++i) cout << arr[i] << " ";
 
 ### Cách dùng `deque`
 
-Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/deque). Các hàm iterator của `deque` giống `vector`, nên không trình bày chi tiết.
+Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/deque). Các hàm bộ lặp của `deque` giống `vector`, nên không trình bày chi tiết.
 
 <span id="hàm-khởi-tạo-deque"></span>
 
 #### Hàm khởi tạo
 
-Xem đoạn mã sau (giả sử bạn đã `using` các kiểu liên quan trong namespace `std`):
+Xem đoạn mã sau (giả sử bạn đã `using` các kiểu liên quan trong không gian tên `std`):
 
 ```cpp
 // 1. Định nghĩa hàng đợi hai đầu rỗng kiểu int tên v0
@@ -302,14 +302,14 @@ deque<int> v5(std::move(v2));
 
 Giống `vector`, nhưng không thể truy cập bộ nhớ tầng dưới. Tốc độ truy cập phần tử hiệu quả của nó được giải thích trong phần chi tiết cài đặt.
 
--   `at()` trả về tham chiếu đến phần tử tại vị trí chỉ định trong container, có kiểm tra vượt biên, **độ phức tạp hằng số**.
--   `operator[]` trả về tham chiếu đến phần tử tại vị trí chỉ định trong container. Không kiểm tra vượt biên, **độ phức tạp hằng số**.
+-   `at()` trả về tham chiếu đến phần tử tại vị trí chỉ định trong bộ chứa, có kiểm tra vượt biên, **độ phức tạp hằng số**.
+-   `operator[]` trả về tham chiếu đến phần tử tại vị trí chỉ định trong bộ chứa. Không kiểm tra vượt biên, **độ phức tạp hằng số**.
 -   `front()` trả về tham chiếu đến phần tử đầu tiên.
 -   `back()` trả về tham chiếu đến phần tử cuối cùng.
 
 <span id="iterator-deque"></span>
 
-#### Iterator (bộ lặp)
+#### Bộ lặp
 
 Giống `vector`.
 
@@ -326,19 +326,19 @@ Giống `vector`, nhưng không có hàm `reserve()` và `capacity()`. (Vẫn c�
 Giống `vector`, và có thêm các hàm chèn phần tử vào đầu hàng đợi.
 
 -   `clear()` xóa tất cả phần tử.
--   `insert()` hỗ trợ chèn một hoặc nhiều phần tử tại một vị trí iterator. **Độ phức tạp tuyến tính theo khoảng cách nhỏ hơn giữa `pos` và hai đầu**.
--   `erase()` xóa một phần tử tại iterator hoặc một đoạn phần tử, trả về iterator sau phần tử cuối cùng bị xóa. Độ phức tạp giống `insert`.
+-   `insert()` hỗ trợ chèn một hoặc nhiều phần tử tại một vị trí bộ lặp. **Độ phức tạp tuyến tính theo khoảng cách nhỏ hơn giữa `pos` và hai đầu**.
+-   `erase()` xóa một phần tử tại bộ lặp hoặc một đoạn phần tử, trả về bộ lặp sau phần tử cuối cùng bị xóa. Độ phức tạp giống `insert`.
 -   `push_front()` chèn một phần tử vào đầu, **độ phức tạp hằng số**.
 -   `pop_front()` xóa phần tử đầu, **độ phức tạp hằng số**.
 -   `push_back()` chèn một phần tử vào cuối, **độ phức tạp hằng số**.
 -   `pop_back()` xóa phần tử cuối, **độ phức tạp hằng số**.
--   `swap()` trao đổi với một container khác; thao tác này có **độ phức tạp hằng số**, không phải tuyến tính.
+-   `swap()` trao đổi với một bộ chứa khác; thao tác này có **độ phức tạp hằng số**, không phải tuyến tính.
 
 <span id="chi-tiết-cài-đặt-của-deque"></span>
 
 ### Chi tiết cài đặt của `deque`
 
-Tầng dưới của `deque` thường được cài đặt bằng nhiều buffer không liên tục, nhưng bộ nhớ bên trong mỗi buffer là liên tục. Mỗi buffer còn ghi lại con trỏ đầu và con trỏ cuối để đánh dấu đoạn dữ liệu hợp lệ. Khi một buffer đầy, `deque` sẽ cấp phát buffer mới ở phía trước hoặc phía sau để lưu thêm dữ liệu. Có thể tham khảo giải thích chi tiết hơn tại bài [nguyên lý cài đặt `deque` trong "STL source code analysis"](https://www.cnblogs.com/q1076452761/p/16903229.html).
+Tầng dưới của `deque` thường được cài đặt bằng nhiều vùng đệm không liên tục, nhưng bộ nhớ bên trong mỗi vùng đệm là liên tục. Mỗi vùng đệm còn ghi lại con trỏ đầu và con trỏ cuối để đánh dấu đoạn dữ liệu hợp lệ. Khi một vùng đệm đầy, `deque` sẽ cấp phát vùng đệm mới ở phía trước hoặc phía sau để lưu thêm dữ liệu. Có thể tham khảo giải thích chi tiết hơn tại bài [nguyên lý cài đặt `deque` trong "STL source code analysis"](https://www.cnblogs.com/q1076452761/p/16903229.html).
 
 ## `list`
 
@@ -348,13 +348,13 @@ Tầng dưới của `deque` thường được cài đặt bằng nhiều buffe
 
 ### Cách dùng `list`
 
-Cách dùng `list` về cơ bản giống `deque`, nhưng độ phức tạp của thao tác thêm xóa và truy cập khác nhau. Nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/list). Các hàm liên quan đến iterator, độ dài, thêm xóa và sửa phần tử của `list` giống `deque`, nên không trình bày chi tiết.
+Cách dùng `list` về cơ bản giống `deque`, nhưng độ phức tạp của thao tác thêm xóa và truy cập khác nhau. Nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/list). Các hàm liên quan đến bộ lặp, độ dài, thêm xóa và sửa phần tử của `list` giống `deque`, nên không trình bày chi tiết.
 
 <span id="truy-cập-phần-tử-list"></span>
 
 #### Truy cập phần tử
 
-Vì `list` được cài đặt bằng danh sách liên kết, nó không cung cấp giao diện truy cập ngẫu nhiên. Nếu cần truy cập phần tử ở giữa, cần dùng iterator.
+Vì `list` được cài đặt bằng danh sách liên kết, nó không cung cấp giao diện truy cập ngẫu nhiên. Nếu cần truy cập phần tử ở giữa, cần dùng bộ lặp.
 
 -   `front()` trả về tham chiếu đến phần tử đầu tiên.
 -   `back()` trả về tham chiếu đến phần tử cuối cùng.
@@ -363,7 +363,7 @@ Vì `list` được cài đặt bằng danh sách liên kết, nó không cung c
 
 #### Thao tác
 
-Kiểu `list` còn cung cấp một số hàm thuật toán STL được cài đặt riêng theo đặc tính của nó. Vì các thuật toán này cần [random-access iterator](./iterator.md), `list` cung cấp các phiên bản đặc biệt để tiện sử dụng. Các thuật toán này gồm `splice()`, `remove()`, `sort()`, `unique()`, `merge()` và các hàm tương tự.
+Kiểu `list` còn cung cấp một số hàm thuật toán STL được cài đặt riêng theo đặc tính của nó. Vì các thuật toán này cần [bộ lặp truy cập ngẫu nhiên](./iterator.md), `list` cung cấp các phiên bản đặc biệt để tiện sử dụng. Các thuật toán này gồm `splice()`, `remove()`, `sort()`, `unique()`, `merge()` và các hàm tương tự.
 
 ## `forward_list` (C++11)
 
@@ -373,4 +373,4 @@ Kiểu `list` còn cung cấp một số hàm thuật toán STL được cài đ
 
 ### Cách dùng `forward_list`
 
-Cách dùng `forward_list` gần như giống `list`, nhưng iterator chỉ là một chiều, nên ở đây không trình bày chi tiết. Nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/forward_list).
+Cách dùng `forward_list` gần như giống `list`, nhưng bộ lặp chỉ là một chiều, nên ở đây không trình bày chi tiết. Nội dung chi tiết [xem tại tài liệu C++](https://en.cppreference.com/w/cpp/container/forward_list).

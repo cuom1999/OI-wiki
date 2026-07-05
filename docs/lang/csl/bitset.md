@@ -3,16 +3,16 @@ author: i-Yirannn, Xeonacid, ouuan
 <span id="giới-thiệu"></span>
 ## Giới thiệu
 
-`std::bitset` là một container có kích thước cố định trong thư viện chuẩn, dùng để lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
+`std::bitset` là một bộ chứa có kích thước cố định trong thư viện chuẩn, dùng để lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
 
 ??? note "bitset và STL"
-    > Thư viện chuẩn C++ cung cấp một số lớp container đặc biệt, gọi là container adapter (stack, queue, priority queue). Ngoài ra, một vài lớp cung cấp giao diện giống container, ví dụ string, bitset và valarray. Tất cả các lớp này được trình bày riêng. Container adapter và bitset được nói ở Chương 12.
+    > Thư viện chuẩn C++ cung cấp một số lớp bộ chứa đặc biệt, gọi là bộ chuyển đổi bộ chứa (`stack`, `queue`, `priority_queue`). Ngoài ra, một vài lớp cung cấp giao diện giống bộ chứa, ví dụ `string`, `bitset` và `valarray`. Tất cả các lớp này được trình bày riêng. Bộ chuyển đổi bộ chứa và `bitset` được nói ở Chương 12.
     >
-    > Thư viện chuẩn C++ không chỉ cung cấp các container cho khung STL, mà còn có những container phù hợp với các nhu cầu đặc biệt và đưa ra giao diện đơn giản, gần như tự giải thích. Có thể chia chúng thành container adapter, tức các lớp điều chỉnh container STL chuẩn cho nhu cầu đặc biệt, hoặc bitset, một container cho bit hay giá trị Boolean. Có ba container adapter chuẩn: stack, queue và priority queue. Trong priority queue, các phần tử được tự động sắp xếp theo một tiêu chí sắp xếp; vì vậy phần tử "kế tiếp" của priority queue là phần tử có giá trị "cao nhất". Bitset là một bitfield với số bit tùy ý nhưng cố định. Lưu ý rằng thư viện chuẩn C++ cũng cung cấp một container đặc biệt có kích thước thay đổi được cho giá trị Boolean: vector.
+    > Thư viện chuẩn C++ không chỉ cung cấp các bộ chứa cho khung STL, mà còn có những bộ chứa phù hợp với các nhu cầu đặc biệt và đưa ra giao diện đơn giản, gần như tự giải thích. Có thể chia chúng thành bộ chuyển đổi bộ chứa, tức các lớp điều chỉnh bộ chứa STL chuẩn cho nhu cầu đặc biệt, hoặc `bitset`, một bộ chứa dành cho bit hay giá trị logic. Có ba bộ chuyển đổi bộ chứa chuẩn: `stack`, `queue` và `priority_queue`. Trong `priority_queue`, các phần tử được tự động sắp xếp theo một tiêu chí sắp xếp; vì vậy phần tử "kế tiếp" của `priority_queue` là phần tử có giá trị "cao nhất". `bitset` là một trường bit với số bit tùy ý nhưng cố định. Lưu ý rằng thư viện chuẩn C++ cũng cung cấp một bộ chứa đặc biệt có kích thước thay đổi được cho giá trị logic: `vector`.
     
     Trích từ *The C++ Standard Library 2nd Edition*
     
-    Như vậy, `bitset` không thuộc STL mà là một "Special Container" trong thư viện chuẩn. Trên thực tế, dù nó là một container, nó cũng không thỏa mãn các yêu cầu của container STL. Gọi nó là adapter cũng không chính xác, vì nó không dựa vào container STL nào khác làm tầng hiện thực bên dưới.
+    Như vậy, `bitset` không thuộc STL mà là một bộ chứa đặc biệt trong thư viện chuẩn. Trên thực tế, dù nó là một bộ chứa, nó cũng không thỏa mãn các yêu cầu của bộ chứa STL. Gọi nó là bộ chuyển đổi cũng không chính xác, vì nó không dựa vào bộ chứa STL nào khác làm tầng hiện thực bên dưới.
 
 Vì địa chỉ bộ nhớ được đánh địa chỉ theo byte, chứ không phải theo bit, nên một biến kiểu `bool`, dù chỉ biểu diễn được `0/1`, vẫn chiếm 1 byte bộ nhớ.
 
@@ -62,13 +62,13 @@ std::bitset<1000> bs;  // một bitset gồm 1000 bit
 
 -   `operator ==`/`operator !=`: so sánh xem nội dung hai `bitset` có hoàn toàn giống nhau hay không.
 
--   `operator &`/`operator &=`/`operator |`/`operator |=`/`operator ^`/`operator ^=`/`operator ~`: thực hiện các phép bitwise AND/OR/XOR/NOT.
+-   `operator &`/`operator &=`/`operator |`/`operator |=`/`operator ^`/`operator ^=`/`operator ~`: thực hiện các phép AND/OR/XOR/NOT theo bit.
 
-    Lưu ý: **`bitset` chỉ có thể thực hiện phép toán bit với `bitset`**. Nếu muốn tính bitwise với số nguyên, cần chuyển số nguyên đó thành `bitset` trước.
+    Lưu ý: **`bitset` chỉ có thể thực hiện phép toán theo bit với `bitset`**. Nếu muốn tính theo bit với số nguyên, cần chuyển số nguyên đó thành `bitset` trước.
 
 -   `operator <<`/`operator >>`/`operator <<=`/`operator >>=`: thực hiện dịch trái/dịch phải nhị phân.
 
-Ngoài ra, `bitset` còn hỗ trợ IO kiểu stream của C++, nghĩa là có thể nhập xuất bằng `cin`/`cout`.
+Ngoài ra, `bitset` còn hỗ trợ nhập xuất kiểu luồng của C++, nghĩa là có thể nhập xuất bằng `cin`/`cout`.
 
 <span id="hàm-thành-viên"></span>
 ### Hàm thành viên
@@ -255,18 +255,18 @@ Cho $n$ đa tập hợp, hỗ trợ bốn loại thao tác:
 1.  Gán một đa tập hợp nào đó thành một số.
 2.  Gán một đa tập hợp nào đó thành tổng của hai đa tập hợp khác.
 3.  Gán một đa tập hợp nào đó thành tập các $\gcd$ khi chọn mỗi đa tập hợp khác một số. Cụ thể: $A=\{\gcd(x,y)|x\in B,y\in C\}$.
-4.  Hỏi số lần xuất hiện của một số trong một đa tập hợp, **theo modulo 2**.
+4.  Hỏi số lần xuất hiện của một số trong một đa tập hợp, **theo mô-đun 2**.
 
 Số đa tập hợp là $10^5$, số thao tác là $10^6$, miền giá trị là $7000$.
 
 <span id="cách-làm"></span>
 #### Cách làm
 
-Thấy cụm "theo modulo $2$", ta có thể nghĩ đến việc dùng `bitset` để duy trì mỗi đa tập hợp.
+Thấy cụm "theo mô-đun $2$", ta có thể nghĩ đến việc dùng `bitset` để duy trì mỗi đa tập hợp.
 
-Khi đó, thao tác $1$ gán trực tiếp, thao tác $2$ là XOR (vì tính theo modulo $2$), thao tác $4$ là truy vấn trực tiếp. Nhưng thao tác $3$ thì sao?
+Khi đó, thao tác $1$ gán trực tiếp, thao tác $2$ là XOR (vì tính theo mô-đun $2$), thao tác $4$ là truy vấn trực tiếp. Nhưng thao tác $3$ thì sao?
 
-Ta có thể thử duy trì đa tập hợp gồm tất cả ước của các phần tử trong mỗi đa tập hợp. Khi đó thao tác $3$ chính là AND bitwise trực tiếp.
+Ta có thể thử duy trì đa tập hợp gồm tất cả ước của các phần tử trong mỗi đa tập hợp. Khi đó thao tác $3$ chính là AND theo bit trực tiếp.
 
 Có thể tiền xử lý `bitset` gồm các ước của mỗi số trong miền giá trị, như vậy thao tác $1$ được giải quyết. Thao tác $2$ vẫn là XOR.
 
@@ -278,7 +278,7 @@ $$
 \begin{aligned}&\sum\limits_{i\in A}[\frac i x=1]\\=&\sum\limits_{i\in A}\sum\limits_{d|\frac i x}\mu(d)\\=&\sum\limits_{d\in A',x|d}\mu(\frac d x)\end{aligned}
 $$
 
-Vì tính theo modulo $2$, $-1$ và $1$ là như nhau, nên chỉ cần xem $\frac d x$ có chứa thừa số bình phương hay không. Do đó, với mỗi số trong miền giá trị, có thể tiền xử lý `bitset` gồm các bội của nó mà sau khi chia cho nó thì không chứa thừa số bình phương. Khi tính đáp án, chỉ cần AND rồi `count()`.
+Vì tính theo mô-đun $2$, $-1$ và $1$ là như nhau, nên chỉ cần xem $\frac d x$ có chứa thừa số bình phương hay không. Do đó, với mỗi số trong miền giá trị, có thể tiền xử lý `bitset` gồm các bội của nó mà sau khi chia cho nó thì không chứa thừa số bình phương. Khi tính đáp án, chỉ cần AND rồi `count()`.
 
 Như vậy, độ phức tạp cho mỗi truy vấn là $O(\frac v w)$ ($v=7000,\,w=32$).
 
@@ -367,20 +367,20 @@ Phần tiền xử lý có thể làm đơn giản với $O(v\sqrt v)$ hoặc $O
 
 Do hiệu năng đọc ghi liên tiếp của `bitset` rất nhanh, nó rất phù hợp để kết hợp với [sàng Eratosthenes](../../math/number-theory/sieve.md#sàng-eratosthenes) khi tạo bảng số nguyên tố.
 
-Cách dùng cũng rất đơn giản: chỉ cần thay mảng Boolean trong sàng Eratosthenes bằng `bitset`.
+Cách dùng cũng rất đơn giản: chỉ cần thay mảng `bool` trong sàng Eratosthenes bằng `bitset`.
 
 ??? note "Kiểm thử tốc độ"
     Sử dụng [Quick C++ Benchmarks](https://quick-bench.com) để kiểm thử, trình biên dịch là `GCC 13.2`, tham số biên dịch là `-std=c++20 -O2`.
     
     | Thuật toán                                                       | Tên hàm                    |
     | --------------------------------------------------------------- | -------------------------- |
-    | Sàng Eratosthenes + mảng Boolean kiểu C, không lưu số nguyên tố | `Eratosthenes_CArray`      |
+    | Sàng Eratosthenes + mảng `bool` kiểu C, không lưu số nguyên tố | `Eratosthenes_CArray`      |
     | Sàng Eratosthenes + `vector<bool>`, không lưu số nguyên tố      | `Eratosthenes_vector`      |
     | Sàng Eratosthenes + `bitset`, không lưu số nguyên tố            | `Eratosthenes_bitset`      |
-    | Sàng Eratosthenes + mảng Boolean kiểu C, lưu số nguyên tố       | `Eratosthenes_CArray_sp`   |
+    | Sàng Eratosthenes + mảng `bool` kiểu C, lưu số nguyên tố       | `Eratosthenes_CArray_sp`   |
     | Sàng Eratosthenes + `vector<bool>`, lưu số nguyên tố            | `Eratosthenes_vector_sp`   |
     | Sàng Eratosthenes + `bitset`, lưu số nguyên tố                  | `Eratosthenes_bitset_sp`   |
-    | Sàng Euler + mảng Boolean kiểu C                                | `Euler_CArray`             |
+    | Sàng Euler + mảng `bool` kiểu C                                | `Euler_CArray`             |
     | Sàng Euler + `vector<bool>`                                     | `Euler_vector`             |
     | Sàng Euler + `bitset`                                           | `Euler_bitset`             |
     
