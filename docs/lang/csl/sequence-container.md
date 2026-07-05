@@ -253,9 +253,9 @@ cung cấp. Bản chất của nó là lớp bọc trực tiếp quanh mảng ng
 
 ### Vì sao nên dùng `array`
 
-`array` thực chất là lớp bọc mảng của STL. So với `vector`, nó hy sinh đặc tính
+`array` thực chất là lớp bọc mảng của STL. So với `vector`, nó hy sinh khả năng
 mở rộng động, đổi lại hiệu năng gần như tương đương mảng nguyên thủy (với điều
-kiện bật tối ưu hóa đầy đủ). Vì vậy nếu có thể dùng đặc tính C++11, gần như mọi
+kiện bật tối ưu hóa đầy đủ). Vì vậy nếu có thể dùng tính năng C++11, gần như mọi
 nơi dùng được mảng nguyên thủy đều có thể thay mảng độ dài cố định bằng `array`,
 còn mảng cấp phát động có thể thay bằng `vector`.
 
@@ -269,7 +269,7 @@ còn mảng cấp phát động có thể thay bằng `vector`.
 
 | Hàm          | Tác dụng                                                        |
 | ------------ | --------------------------------------------------------------- |
-| `operator=` | Gán từng phần tử từ một `array` khác vào phần tử tương ứng của `array` |
+| `operator=` | Gán từng phần tử từ một `array` khác vào phần tử cùng vị trí của `array` |
 
 <span id="truy-cập-phần-tử-array"></span>
 
@@ -320,7 +320,7 @@ $O(1)$ như các bộ chứa STL thông thường.**
 | `std::get`     | Truy cập một phần tử của `array`       |
 | `std::swap`    | Thuật toán `std::swap` đã được chuyên biệt hóa |
 
-Dưới đây là một ví dụ sử dụng `array`:
+Sau đây là một ví dụ sử dụng `array`:
 
 ```cpp
 // 1. Tạo std::array rỗng, độ dài là 3; độ phức tạp hằng số
@@ -344,16 +344,16 @@ trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
 
 ### Cách dùng `deque`
 
-Dưới đây giới thiệu các cách dùng thường gặp; nội dung chi tiết có thể xem trong
+Phần này giới thiệu các cách dùng thường gặp; nội dung chi tiết có thể xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/container/deque). Các hàm bộ
-lặp của `deque` giống `vector`, nên không trình bày chi tiết.
+lặp của `deque` tương tự `vector`, nên không trình bày chi tiết.
 
 <span id="hàm-khởi-tạo-deque"></span>
 
 #### Hàm khởi tạo
 
-Xem đoạn mã sau (giả sử bạn đã `using` các kiểu liên quan trong không gian tên
-`std`):
+Ví dụ cách dùng như đoạn mã sau (giả sử đã `using` các kiểu liên quan trong
+không gian tên `std`):
 
 ```cpp
 // 1. Định nghĩa hàng đợi hai đầu rỗng kiểu int tên v0
@@ -378,8 +378,8 @@ deque<int> v5(std::move(v2));
 
 #### Truy cập phần tử
 
-Giống `vector`, nhưng không thể truy cập trực tiếp bộ nhớ bên dưới. Tốc độ truy
-cập phần tử thực tế của nó được giải thích trong phần chi tiết cài đặt.
+Giống `vector`, nhưng không thể truy cập trực tiếp bộ nhớ nội bộ. Tốc độ truy
+cập phần tử thực tế được giải thích trong phần chi tiết cài đặt.
 
 -   `at()` trả về tham chiếu đến phần tử tại vị trí chỉ định trong bộ chứa, có
     kiểm tra vượt biên, **độ phức tạp hằng số**.
@@ -440,7 +440,7 @@ và xóa có độ phức tạp hằng số.
 
 ### Cách dùng `list`
 
-Cách dùng `list` về cơ bản giống `deque`, nhưng độ phức tạp của thao tác thêm,
+Cách dùng `list` gần giống `deque`, nhưng độ phức tạp của thao tác thêm,
 xóa và truy cập khác nhau. Nội dung chi tiết có thể xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/container/list). Các hàm liên
 quan đến bộ lặp, độ dài, thêm, xóa và sửa phần tử của `list` giống `deque`, nên
@@ -460,8 +460,8 @@ cập ngẫu nhiên. Nếu cần truy cập phần tử ở giữa, cần dùng 
 
 #### Thao tác
 
-Kiểu `list` còn cung cấp một số hàm thuật toán STL được cài đặt riêng theo đặc
-tính của nó. Vì các thuật toán chuẩn tương ứng thường cần
+Kiểu `list` còn cung cấp một số hàm thuật toán STL được cài đặt riêng theo tính
+chất của nó. Vì các thuật toán chuẩn tương ứng thường cần
 [bộ lặp truy cập ngẫu nhiên](./iterator.md), `list` cung cấp các phiên bản đặc
 biệt để tiện sử dụng. Các thuật toán này gồm `splice()`, `remove()`, `sort()`,
 `unique()`, `merge()` và các hàm tương tự.
