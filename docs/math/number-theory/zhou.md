@@ -1,35 +1,35 @@
 author: Early0v0
 
-<span id="&#x524D;&#x7F6E;&#x77E5;&#x8BC6;"></span>
+<span id="kiến-thức-chuẩn-bị"></span>
 ## Kiến thức chuẩn bị
 
 -   [Hàm nhân](./basic.md#hàm-nhân-tính)
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Sàng Zhouge là một phương pháp sàng có thể tính tổng tiền tố của phần lớn hàm nhân trong độ phức tạp dưới tuyến tính.
 
 Dưới đây lấy việc tính $\displaystyle\sum_{i=1}^nf(i)$ làm ví dụ để trình bày cụ thể nguyên lí của sàng Zhouge.
 
-<span id="&#x7EA6;&#x5B9A;"></span>
+<span id="quy-ước"></span>
 ## Quy ước
 
 -   $\mathbb P$ biểu thị tập số nguyên tố, $p_i$ biểu thị số nguyên tố thứ $i$.
 -   $m$ biểu thị số lượng số nguyên tố không vượt quá $\sqrt n$.
 
-<span id="&#x8981;&#x6C42;"></span>
+<span id="yêu-cầu"></span>
 ## Yêu cầu
 
 Khi $p\in\mathbb P,c\in\mathbb N$, $f(p^c)$ là một đa thức bậc thấp theo $p$.
 
-<span id="&#x601D;&#x60F3;"></span>
+<span id="ý-tưởng"></span>
 ## Ý tưởng
 
 -   Với một số nguyên bất kì trong $[1,n]$, nó có nhiều nhất một thừa số nguyên tố $>\sqrt n$.
 -   Tận dụng tính chất rằng $\left\lfloor\dfrac ni\right\rfloor(i\in[1,n]\cap\mathbb N)$ chỉ có cỡ $\sqrt n$ giá trị khác nhau để giảm độ phức tạp thời gian.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trình"></span>
 ## Quy trình
 
 Chia mọi số nguyên trong $[1,n]$ thành hai loại theo việc có thừa số nguyên tố $>\sqrt n$ hay không:
@@ -46,7 +46,7 @@ $$
 
 Hai phần trước và sau có thể được tính riêng.
 
-### Part 1
+### Phần 1
 
 > Tính $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot\left(\sum_{d=\lfloor\sqrt n\rfloor+1}^{\lfloor\frac ni\rfloor}[d\in\mathbb P]f(d)\right)$.
 
@@ -54,7 +54,7 @@ Xét việc liệt kê $i$, sau đó tính phần trong ngoặc trong $O(1)$.
 
 Kí hiệu $\displaystyle g(t,l)=\sum_{i=1}^l[\forall j\in[1,t],\gcd(i,p_j)=1]f(i)$, tức là tổng giá trị $f$ của các số trong $[1,l]$ cùng nguyên tố với mọi $p_1,p_2,\dots,p_t$.
 
-Như vậy, việc tính Part 1 trở thành $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot g\left(m,\left\lfloor\frac ni\right\rfloor\right)$.
+Như vậy, việc tính phần 1 trở thành $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot g\left(m,\left\lfloor\frac ni\right\rfloor\right)$.
 
 Biên là $g(0,l)=\sum_{i=1}^lf(i)$, chuyển trạng thái $g(t,l)=g(t-1,l)-f(p_t)\cdot g\left(t-1,\left\lfloor\frac l{p_t}\right\rfloor\right)$.
 
@@ -68,13 +68,13 @@ Vì vậy, một khi phát hiện $p_t^2>l$ thì dừng chuyển trạng thái. 
 
 Tiền xử lí tổng tiền tố giá trị $f$ trên các số nguyên tố là có thể tính nhanh $g$, độ phức tạp thời gian được tối ưu xuống $O\left(\dfrac{n^{\frac34}}{\log n}\right)$.
 
-### Part 2
+### Phần 2
 
 > Tính $\displaystyle\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)$.
 
 Kí hiệu $\displaystyle h(t,l)=\sum_{i=1}^l\left[i=\prod_{j=t}^mp_j^{c_j},c_j\in\mathbb N\right]f(i)$, tức là tổng giá trị $f$ của mọi số trong $[1,l]$ chỉ chứa các thừa số nguyên tố $p_t,p_{t+1},\dots,p_m$.
 
-Part 2 chính là tính $h(0,n)$.
+Phần 2 chính là tính $h(0,n)$.
 
 Biên là $h(m+1,l)=1$, chuyển trạng thái $\displaystyle h(t,l)=h(t+1,l)+\sum_{c\in\mathbb N^*}f(p_t^c)\cdot h\left(t+1,\left\lfloor\frac l{p_t^c}\right\rfloor\right)$.
 
@@ -88,12 +88,12 @@ Vì vậy, một khi phát hiện $p_t^2>l$ thì dừng chuyển trạng thái. 
 
 Độ phức tạp thời gian được tối ưu xuống $O\left(\dfrac{n^{\frac34}}{\log n}\right)$.
 
-<span id="&#x6C42;&#x548C;"></span>
+<span id="tính-tổng"></span>
 ### Tính tổng
 
-Sau khi tính được đáp án của Part 1 và Part 2, cộng chúng lại là $\displaystyle\sum_{i=1}^nf(i)$.
+Sau khi tính được đáp án của phần 1 và phần 2, cộng chúng lại là $\displaystyle\sum_{i=1}^nf(i)$.
 
-<span id="&#x53C2;&#x8003;"></span>
+<span id="tham-khảo"></span>
 ## Tham khảo
 
 [Ghi chú học tập về sàng tuyến tính hàm nhân / sàng Dujiao / sàng Zhouge | Bill Yang's Blog](https://blog.bill.moe/multiplicative-function-sieves-notes)
