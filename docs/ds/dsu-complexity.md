@@ -2,10 +2,10 @@ author: orzAtalod
 
 Nội dung phần này được đăng lại và chỉnh sửa từ [Thời gian phức tạp - bàn sơ về phân tích thế năng](https://www.luogu.com.cn/blog/Atalod/shi-jian-fu-za-du-shi-neng-fen-xi-qian-tan), đã được tác giả gốc cho phép.
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
-<span id="&#x963F;&#x514B;&#x66FC;&#x51FD;&#x6570;"></span>
+<span id="hàm-ackermann"></span>
 ### Hàm Ackermann
 
 Trước hết, ta đưa ra định nghĩa của $\alpha(n)$. Để định nghĩa nó, trước tiên cần định nghĩa $A_k(j)$.
@@ -27,7 +27,7 @@ $$
 
 Tiếp theo, định nghĩa $\alpha(n)$ là giá trị nguyên nhỏ nhất sao cho $A_{\alpha(n)}(1)\geq n$. Lưu ý rằng trước đây ta mô tả nó bằng $A_{\alpha(n)}(\alpha(n))\geq n$; dù sao tốc độ tăng của chúng đều rất chậm, và giá trị đều không vượt quá 4.
 
-<span id="&#x57FA;&#x7840;&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa-cơ-bản"></span>
 ### Định nghĩa cơ bản
 
 Mỗi nút đều có một hạng. Ở đây hạng không phải là số lượng nút, mà là độ sâu. Hạng ban đầu của một nút là 0; khi hợp nhất, nếu hạng của hai nút khác nhau thì gắn nút có hạng nhỏ hơn vào nút có hạng lớn hơn, đồng thời không cập nhật hạng của nút lớn hơn. Nếu hạng bằng nhau, tùy ý gắn một nút vào nút còn lại và tăng hạng của nút gốc thêm 1. Ở đây hạng của nút gốc cho biết chiều cao của cây. Ký hiệu hạng của $x$ là $rnk(x)$; tương tự, ký hiệu nút cha của $x$ là $fa(x)$. Ta luôn có $rnk(x)+1\leq rnk(fa(x))$.
@@ -62,10 +62,10 @@ Tiếp theo ta sẽ chứng minh độ phức tạp thời gian khấu hao là $
 
 Dễ thấy thế năng luôn là một số không âm. Ngoài ra, ở thời điểm ban đầu, thế năng của DSU bằng $0$.
 
-<span id="&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh"></span>
 ## Chứng minh
 
-<span id="unionxy-&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-unionxy"></span>
 ### Thao tác union(x,y)
 
 Thời gian tiêu tốn của nó là $\Theta(1)$, vì vậy ta xét biến thiên thế năng mà nó gây ra.
@@ -83,7 +83,7 @@ Vì vậy, các nút có thế năng tăng chỉ có thể là $x$ hoặc $y$. C
 
 Do đó, điểm duy nhất mà thế năng có thể tăng là $y$. Thế năng của $y$ tăng nhiều nhất $\alpha(n)$. Vì vậy, độ phức tạp thời gian khấu hao của thao tác $union$ là $\Theta(\alpha(n))$.
 
-<span id="finda-&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-finda"></span>
 ### Thao tác find(a)
 
 Nếu đường tìm kiếm chứa $\Theta(s)$ nút, rõ ràng thời gian tìm kiếm là $\Theta(s)$. Nếu do thao tác tìm kiếm không có nút nào tăng thế năng, và có ít nhất $s-\alpha(n)$ nút giảm thế năng ít nhất $1$, thì có thể chứng minh độ phức tạp thời gian của thao tác $find(a)$ là $\Theta(\alpha(n))$. Để tránh nhầm lẫn, ở đây dùng $a$ làm tham số, còn các $x$ xuất hiện đều chỉ chung một nút nào đó trong DSU.
@@ -110,7 +110,7 @@ Rõ ràng $rnk(root_y)\geq rnk(fa(y))$, và $rnk(x)$ không đổi khi nén đư
 
 Do đó, $\Phi(x)$ giảm ít nhất 1. Vì có ít nhất $s-\alpha(n)-2$ nút $x$ như vậy, cuối cùng $\Phi(S)$ giảm ít nhất $s-\alpha(n)-2$, nên độ phức tạp thời gian khấu hao là $\Theta(\alpha(n)+2)=\Theta(\alpha(n))$.
 
-<span id="&#x4E3A;&#x4F55;&#x5E76;&#x67E5;&#x96C6;&#x4F1A;&#x88AB;&#x5361;"></span>
+<span id="vì-sao-dsu-có-thể-bị-hack"></span>
 ## Vì sao DSU có thể bị hack
 
 Câu hỏi này thực chất là: nếu ta không hợp nhất theo hạng, những tính chất nào sẽ bị phá vỡ, khiến độ phức tạp thời gian của DSU không còn được bảo đảm là $\Theta(m\alpha(n))$.
@@ -135,7 +135,7 @@ $$
 
 Biến đổi một chút và bỏ mọi ký hiệu lấy phần nguyên, ta có thể suy ra lượng tăng thế năng $\geq \alpha(n)\times(\log_{1+\frac{m}{n}}n-\frac{n}{m})$; với $m$ thao tác, kết quả là $\Omega(m\log_{1+\frac{m}{n}}n-n)=\Omega(m\log_{1+\frac{m}{n}}n)$.
 
-<span id="&#x5173;&#x4E8E;&#x542F;&#x53D1;&#x5F0F;&#x5408;&#x5E76;"></span>
+<span id="về-hợp-nhất-theo-heuristic"></span>
 ## Về hợp nhất theo heuristic
 
 Vì hợp nhất theo hạng khó viết hơn hợp nhất theo heuristic, nên nhiều cao thủ chọn dùng hợp nhất theo heuristic để viết DSU. Cụ thể, ta duy trì một $size(x)$ cho mỗi gốc, và mỗi lần hợp nhất thì gắn cây có $size$ nhỏ hơn vào cây lớn hơn.
