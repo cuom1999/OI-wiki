@@ -4,9 +4,13 @@
 
 ![](./images/stack.svg)
 
-Ngăn xếp là một cấu trúc dữ liệu tuyến tính thường dùng trong OI. Lưu ý rằng bài này chủ yếu nói về cấu trúc dữ liệu ngăn xếp, không phải ngăn xếp hệ thống/không gian ngăn xếp khi chương trình chạy.
+Ngăn xếp là một cấu trúc dữ liệu tuyến tính thường dùng trong OI. Lưu ý rằng
+bài này chủ yếu nói về cấu trúc dữ liệu ngăn xếp, không phải ngăn xếp hệ
+thống/không gian ngăn xếp khi chương trình chạy.
 
-Các thao tác sửa đổi và truy cập của ngăn xếp tuân theo nguyên tắc vào sau ra trước, vì vậy ngăn xếp thường được gọi là bảng vào sau ra trước, viết tắt là bảng LIFO.
+Các thao tác sửa đổi và truy cập của ngăn xếp tuân theo nguyên tắc vào sau ra
+trước, vì vậy ngăn xếp thường được gọi là bảng vào sau ra trước, viết tắt là
+bảng LIFO.
 
 ??? warning "Cảnh báo"
     LIFO mô tả việc **phần tử vào sau cùng trong container hiện tại** sẽ ra trước.
@@ -20,15 +24,18 @@ Các thao tác sửa đổi và truy cập của ngăn xếp tuân theo nguyên 
     pop(2)
     ```
 
-    Nếu nhìn toàn bộ quá trình, $1$ vào ngăn xếp đầu tiên và cũng ra đầu tiên, $2$ vào ngăn xếp cuối cùng và cũng ra cuối cùng; như vậy lại giống bảng vào trước ra trước, rõ ràng là sai.
+    Nếu nhìn toàn bộ quá trình, $1$ vào ngăn xếp đầu tiên và cũng ra đầu tiên,
+    $2$ vào ngăn xếp cuối cùng và cũng ra cuối cùng; như vậy lại giống bảng vào
+    trước ra trước, rõ ràng là sai.
 
-    Vì vậy, khi xét một cấu trúc dữ liệu là LIFO hay FIFO, cần xét trạng thái của các phần tử đang nằm trong container tại thời điểm đó.
+    Vì vậy, khi xét một cấu trúc dữ liệu là LIFO hay FIFO, cần xét trạng thái
+    của các phần tử đang nằm trong container tại thời điểm đó.
 
 <span id="mô-phỏng-ngăn-xếp-bằng-mảng"></span>
 
 ## Mô phỏng ngăn xếp bằng mảng
 
-Ta có thể dễ dàng dùng mảng để mô phỏng một ngăn xếp như sau:
+Có thể dễ dàng dùng mảng để mô phỏng một ngăn xếp như sau:
 
 ???+ note "Cài đặt"
     === "C++"
@@ -69,7 +76,8 @@ Ta có thể dễ dàng dùng mảng để mô phỏng một ngăn xếp như sa
 
 ## Ngăn xếp trong C++ STL
 
-STL trong C++ cung cấp container `std::stack`; trước khi dùng cần nạp tệp tiêu đề `stack`.
+STL trong C++ cung cấp container `std::stack`; trước khi dùng cần nạp tệp tiêu
+đề `stack`.
 
 ???+ info "Định nghĩa `stack` trong STL"
     ```cpp
@@ -82,15 +90,19 @@ STL trong C++ cung cấp container `std::stack`; trước khi dùng cần nạp 
 
     `T` là kiểu dữ liệu cần lưu trong `stack`.
 
-    `Container` là kiểu container nền dùng để lưu phần tử. Container này phải cung cấp các hàm sau với ngữ nghĩa thông thường:
+    `Container` là kiểu container nền dùng để lưu phần tử. Container này phải
+    cung cấp các hàm sau với ngữ nghĩa thông thường:
 
     -   `back()`
     -   `push_back()`
     -   `pop_back()`
 
-    Các container STL `std::vector`, `std::deque` và `std::list` đều thỏa mãn những yêu cầu này. Nếu không chỉ định, mặc định dùng `std::deque` làm container nền.
+    Các container STL `std::vector`, `std::deque` và `std::list` đều thỏa mãn
+    những yêu cầu này. Nếu không chỉ định, mặc định dùng `std::deque` làm
+    container nền.
 
-Container `stack` trong STL cung cấp nhiều hàm thành viên để gọi; các hàm thường dùng gồm:
+Container `stack` trong STL cung cấp nhiều hàm thành viên để gọi; các hàm
+thường dùng gồm:
 
 -   Truy cập phần tử
     -   `st.top()` trả về đỉnh ngăn xếp
@@ -101,7 +113,8 @@ Container `stack` trong STL cung cấp nhiều hàm thành viên để gọi; c�
     -   `st.empty()` trả về ngăn xếp có rỗng hay không
     -   `st.size()` trả về số phần tử
 
-Ngoài ra, `std::stack` còn cung cấp một số toán tử. Toán tử thường dùng là toán tử gán `=` để gán giá trị cho `stack`, ví dụ:
+Ngoài ra, `std::stack` còn cung cấp một số toán tử. Toán tử thường dùng là toán
+tử gán `=` để gán giá trị cho `stack`, ví dụ:
 
 ```cpp
 // Tạo hai ngăn xếp st1 và st2.
@@ -122,7 +135,7 @@ cout << st2.top() << endl;
 
 ## Mô phỏng ngăn xếp bằng `list` trong Python
 
-Trong Python, bạn có thể dùng danh sách để mô phỏng một ngăn xếp:
+Trong Python, có thể dùng danh sách để mô phỏng một ngăn xếp:
 
 ???+ note "Cài đặt"
     ```python
