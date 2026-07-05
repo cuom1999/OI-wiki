@@ -1,6 +1,6 @@
 author: GoodCoder666, abc1763613206, ksyx
 
-<span id="&#x4E00;&#x4E9B;&#x8BB0;&#x53F7;"></span>
+<span id="một-số-ký-hiệu"></span>
 
 ## Một số ký hiệu
 
@@ -14,7 +14,7 @@ author: GoodCoder666, abc1763613206, ksyx
 -   $\operatorname{minlen}(v)$: độ dài xâu con ngắn nhất ứng với trạng thái $v$.
 -   $\operatorname{shortest}(v)$: xâu con ngắn nhất ứng với trạng thái $v$.
 
-<span id="&#x540E;&#x7F00;&#x81EA;&#x52A8;&#x673A;&#x6982;&#x8FF0;"></span>
+<span id="tổng-quan-về-suffix-automaton"></span>
 
 ## Tổng quan về suffix automaton
 
@@ -27,7 +27,7 @@ Ví dụ, các bài toán xâu sau đều có thể được giải bằng SAM t
 
 Về trực giác, SAM của một xâu có thể được hiểu là dạng nén của **tất cả xâu con** của xâu đó. Điểm đáng chú ý là SAM lưu toàn bộ thông tin này dưới dạng nén rất cao. Với một xâu độ dài $n$, độ phức tạp bộ nhớ chỉ là $O(n)$. Hơn nữa, SAM cũng có thể được xây dựng trong $O(n)$. Chính xác hơn, một SAM có nhiều nhất $2n-1$ đỉnh và $3n-4$ cạnh chuyển.
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 
 ## Định nghĩa
 
@@ -43,7 +43,7 @@ Nói cách khác:
 
 Điểm cốt lõi của SAM chính là tính nhỏ nhất này. Thực ra, nếu trực tiếp xây [AC automaton](./ac-automaton.md) cho tất cả hậu tố của xâu $s$, ta cũng thu được một DFA chấp nhận tất cả hậu tố của $s$. Nhưng trong trường hợp xấu nhất, automaton đó có $\Theta(n^2)$ đỉnh, nên độ phức tạp không chấp nhận được. Từ ví dụ bên dưới có thể thấy DFA nhận được khi xây AC automaton cho mọi hậu tố có nhiều đỉnh trùng lặp và có thể gộp lại. SAM đẩy việc gộp đỉnh đến mức tối đa, nhờ đó kích thước DFA thu được được khống chế ở $O(n)$. Theo nghĩa này, SAM là AC automaton "nén" của toàn bộ các hậu tố của xâu.
 
-<span id="&#x5B50;&#x4E32;&#x548C;&#x8DEF;&#x5F84;"></span>
+<span id="xâu-con-và-đường-đi"></span>
 
 ### Xâu con và đường đi
 
@@ -53,7 +53,7 @@ Tính chất đơn giản nhất và cũng quan trọng nhất của SAM là nó
 
 Có thể có nhiều hơn một đường đi đi tới cùng một trạng thái, vì vậy ta nói một trạng thái ứng với một tập các xâu; các xâu trong tập lần lượt ứng với các đường đi đó.
 
-<span id="&#x7B80;&#x5355;&#x4F8B;&#x5B50;"></span>
+<span id="ví-dụ-đơn-giản"></span>
 
 ### Ví dụ đơn giản
 
@@ -87,13 +87,13 @@ Với xâu $s=\texttt{abbb}$:
 
 Trong ví dụ cuối cùng, nếu trực tiếp xây AC automaton cho tất cả hậu tố của nó, đường đi $\texttt{bbb}$ và đường đi $\texttt{abbb}$ đáng ra sẽ dẫn tới hai đỉnh khác nhau. Tuy nhiên hai đỉnh này đều là trạng thái kết thúc, và dù thêm bất kỳ ký tự nào nữa cũng không thể nhận được một xâu khớp dài hơn. Điều đó cho thấy hai đỉnh này có hành vi chuyển trạng thái giống nhau trong automaton, nên có thể gộp thành cùng một đỉnh. Khi đó ta thu được SAM như hình. Phần thảo luận bên dưới sẽ mở rộng ý tưởng gộp đỉnh này cho mọi trường hợp và chứng minh rằng, nếu gộp đỉnh hợp lý, SAM cuối cùng chỉ có $O(n)$ đỉnh và chuyển trạng thái.
 
-<span id="&#x7EBF;&#x6027;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x6784;&#x9020;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-xây-dựng-tuyến-tính"></span>
 
 ## Thuật toán xây dựng tuyến tính
 
 Trước khi mô tả thuật toán xây SAM trong thời gian tuyến tính, ta cần giới thiệu hai khái niệm rất quan trọng để hiểu quá trình xây dựng, đồng thời chứng minh ngắn gọn các tính chất của chúng. Trong đó, tập vị trí kết thúc $\operatorname{endpos}$ định nghĩa các đỉnh trong SAM, tức chỉ ra điều kiện cần và đủ để gộp các đỉnh; còn liên kết hậu tố $\operatorname{link}$ chỉ là đối ứng tự nhiên trong SAM của [con trỏ thất bại](./ac-automaton.md#con-trỏ-thất-bại) trong AC automaton.
 
-<span id="&#x7ED3;&#x675F;&#x4F4D;&#x7F6E;-endpos"></span>
+<span id="tập-vị-trí-kết-thúc-endpos"></span>
 
 ### Tập vị trí kết thúc `endpos`
 
@@ -138,7 +138,7 @@ Từ giá trị của $\operatorname{endpos}$, ta có thể rút ra một số k
 
 Tóm lại trong một câu: các xâu con ứng với cùng một trạng thái có độ dài đôi một khác nhau, tạo thành một số tự nhiên liên tiếp, và xâu ngắn hơn luôn là hậu tố của xâu dài hơn.
 
-<span id="&#x540E;&#x7F00;&#x94FE;&#x63A5;-link"></span>
+<span id="liên-kết-hậu-tố-link"></span>
 
 ### Liên kết hậu tố `link`
 
@@ -179,7 +179,7 @@ Dưới đây là một **ví dụ** về cây liên kết hậu tố sinh ra kh
 Kết hợp với hình minh họa, nếu hình thành được một số trực giác về suffix automaton thì việc hiểu thuật toán xây dựng và các ứng dụng bên dưới sẽ dễ hơn.
 
 ???+ example "Giải thích hình minh họa"
-    -   Trên SAM tồn tại một đường đi dài nhất có nhãn đúng bằng chính xâu $\texttt{abcbc}$. Đường đi này bắt đầu từ trạng thái ban đầu; mỗi trạng thái đi qua đều ứng với một tiền tố của xâu $\texttt{abcbc}$ ($\varnothing,\texttt{a},\texttt{ab},\texttt{abc},\texttt{abcb},\texttt{abcbc}$). Các trạng thái này rất quan trọng trong phần [ứng dụng](#%E5%90%8E%E7%BC%80%E9%93%BE%E6%8E%A5%E6%A0%91) phía sau.
+    -   Trên SAM tồn tại một đường đi dài nhất có nhãn đúng bằng chính xâu $\texttt{abcbc}$. Đường đi này bắt đầu từ trạng thái ban đầu; mỗi trạng thái đi qua đều ứng với một tiền tố của xâu $\texttt{abcbc}$ ($\varnothing,\texttt{a},\texttt{ab},\texttt{abc},\texttt{abcb},\texttt{abcbc}$). Các trạng thái này rất quan trọng trong phần [ứng dụng](#cây-liên-kết-hậu-tố) phía sau.
     -   Có thể xem cây liên kết hậu tố là kết quả "nén" các đường đi từ những "trạng thái tiền tố" này về gốc (tức trạng thái ban đầu) theo liên kết hậu tố.
     
         -   Dọc theo mỗi đường đi, các tập xâu ứng với các đỉnh tạo thành một phân hoạch của toàn bộ hậu tố của tiền tố tương ứng. Ví dụ, đường đi theo liên kết hậu tố từ trạng thái gắn nhãn $\texttt{abcbc}$ về gốc là $\texttt{abcbc}\rightarrow\texttt{bc}\rightarrow\varnothing$. Trong đó, đỉnh $\texttt{abcbc}$ thực ra ứng với tập xâu $\{\texttt{abcbc},\texttt{bcbc},\texttt{cbc}\}$, đỉnh $\texttt{bc}$ ứng với tập xâu $\{\texttt{bc},\texttt{c}\}$, và đỉnh $\varnothing$ ứng với xâu rỗng.
@@ -198,7 +198,7 @@ Suffix automaton lưu thông tin về toàn bộ xâu con của xâu. Có thể 
 
 Cả hai cách nhìn này đều hữu ích khi xử lý các bài toán khác nhau.
 
-<span id="&#x5C0F;&#x7ED3;"></span>
+<span id="tóm-tắt"></span>
 
 ### Tóm tắt
 
@@ -220,7 +220,7 @@ Trước khi tiếp tục bàn về chính thuật toán, ta tóm tắt nội du
 
 -   Nếu bắt đầu từ trạng thái bất kỳ $v_0$ và duyệt theo liên kết hậu tố, ta luôn đi tới trạng thái ban đầu $t_0$. Khi đó ta nhận được một dãy các đoạn đôi một không giao nhau $[\operatorname{minlen}(v_i),\operatorname{len}(v_i)]$, và hợp của chúng tạo thành đoạn liên tiếp $[0,\operatorname{len}(v_0)]$.
 
-<span id="&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán"></span>
 
 ### Thuật toán
 
@@ -258,7 +258,7 @@ Trước khi bàn về cài đặt chi tiết, trước hết hãy dùng hình m
 
 Sau khi nắm được ý tưởng về đường đi hậu tố mới, bây giờ ta thảo luận các bước cụ thể của quá trình xây dựng tăng dần.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
+<span id="quy-trình"></span>
 
 #### Quy trình
 
@@ -286,7 +286,7 @@ Nếu muốn biết trạng thái nào là **trạng thái kết thúc**, ta có
 
 Vì với mỗi ký tự của $s$ ta chỉ tạo một hoặc hai trạng thái mới, SAM chỉ chứa **số lượng tuyến tính** trạng thái. Tuy nhiên, số chuyển trạng thái của SAM là tuyến tính và tổng thời gian chạy của thuật toán là tuyến tính vẫn chưa được giải thích rõ; phần sau sẽ chứng minh.
 
-<span id="&#x89E3;&#x91CA;"></span>
+<span id="giải-thích"></span>
 
 #### Giải thích
 
@@ -314,7 +314,7 @@ Ta giải thích chi tiết từng bước của thuật toán và chứng minh 
     
         Bước cuối cùng là nối lại một số chuyển trạng thái vốn trỏ tới $q$ sang $\textit{clone}$. Cần sửa những chuyển trạng thái nào? Chỉ cần nối lại các chuyển trạng thái ứng với các hậu tố của mọi xâu $w+c$, trong đó $w$ là xâu dài nhất ứng với trạng thái $p$. Tức là ta tiếp tục đi theo liên kết hậu tố từ đỉnh $p$ tới trạng thái ảo $-1$, hoặc cho tới khi chuyển trạng thái qua $c$ của trạng thái hiện tại không còn trỏ tới $q$.
 
-<span id="&#x7EBF;&#x6027;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;"></span>
+<span id="độ-phức-tạp-thời-gian-tuyến-tính"></span>
 
 ### Độ phức tạp thời gian tuyến tính
 
@@ -337,7 +337,7 @@ Ta giả sử kích thước bảng chữ cái là **hằng số**, tức mỗi 
 
 Tất nhiên, nếu kích thước bảng chữ cái không phải hằng số, độ phức tạp thời gian của SAM sẽ không còn tuyến tính. Các chuyển trạng thái xuất phát từ một đỉnh cần được lưu trong một cây cân bằng hỗ trợ truy vấn và chèn nhanh. Vì vậy, nếu ký hiệu $\Sigma$ là bảng chữ cái và $\left|\Sigma\right|$ là kích thước bảng chữ cái, thì độ phức tạp thời gian tiệm cận của thuật toán là $O(n\log\left|\Sigma\right|)$, còn độ phức tạp bộ nhớ là $O(n)$.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 
 ### Cài đặt
 
@@ -405,11 +405,11 @@ Cuối cùng là cài đặt hàm chính: thêm một ký tự vào cuối xâu 
 
 Như đã nói ở trên, nếu dùng bộ nhớ đổi lấy thời gian (độ phức tạp bộ nhớ $O(n\left|\Sigma\right|)$, trong đó $\left|\Sigma\right|$ là kích thước bảng chữ cái), bạn có thể xây SAM trong thời gian $O(n)$[^time-complexity] với bảng chữ cái tùy ý. Nhưng khi đó cần lưu cho mỗi trạng thái một mảng kích thước $\left|\Sigma\right|$ (để nhanh chóng tìm chuyển trạng thái tương ứng theo ký tự) và một danh sách chứa mọi chuyển trạng thái khả dụng (để duyệt nhanh mọi chuyển trạng thái khả dụng).
 
-<span id="&#x66F4;&#x591A;&#x6027;&#x8D28;"></span>
+<span id="các-tính-chất-khác"></span>
 
 ## Các tính chất khác
 
-<span id="&#x72B6;&#x6001;&#x6570;"></span>
+<span id="số-trạng-thái"></span>
 
 ### Số trạng thái
 
@@ -422,7 +422,7 @@ Với một xâu $s$ độ dài $n$, số trạng thái trong SAM của nó **kh
     
     Xâu $\texttt{abbb} \cdots \texttt{bbb}$ đạt tới cận trên này: từ sau lần lặp thứ ba, mỗi lần lặp của thuật toán đều tách một trạng thái, cuối cùng tạo đúng $2n-1$ trạng thái.
 
-<span id="&#x8F6C;&#x79FB;&#x6570;"></span>
+<span id="số-chuyển-trạng-thái"></span>
 
 ### Số chuyển trạng thái
 
@@ -437,7 +437,7 @@ Với một xâu $s$ độ dài $n$, số chuyển trạng thái trong SAM của
     
     Do đó ta thu được cận trên chặt hơn cho số chuyển trạng thái của SAM: $3n-4$. Xâu $\texttt{abbb} \cdots \texttt{bbbc}$ đạt tới cận trên này.
 
-<span id="&#x540E;&#x7F00;&#x94FE;&#x63A5;&#x6811;"></span>
+<span id="cây-liên-kết-hậu-tố"></span>
 
 ### Cây liên kết hậu tố
 
@@ -459,13 +459,13 @@ Các tính chất này có rất nhiều ứng dụng. Ví dụ, xâu là hậu 
 
 Cuối cùng, cây liên kết hậu tố xây cho xâu $s$ có cùng cấu trúc với [cây hậu tố](./suffix-tree.md) xây cho xâu đảo $s_R$ của nó. Điều này thường được dùng để xây cây hậu tố ngoại tuyến.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 
 ## Ứng dụng
 
 Bây giờ ta xem một số bài toán có thể giải bằng SAM. Để đơn giản, giả sử kích thước bảng chữ cái $k$ là hằng số. Khi đó có thể coi độ phức tạp của việc thêm một ký tự và duyệt là hằng số.
 
-<span id="&#x68C0;&#x67E5;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x51FA;&#x73B0;"></span>
+<span id="kiểm-tra-một-xâu-có-xuất-hiện-hay-không"></span>
 
 ### Kiểm tra một xâu có xuất hiện hay không
 
@@ -477,7 +477,7 @@ Bây giờ ta xem một số bài toán có thể giải bằng SAM. Để đơn
     
     Với mỗi xâu $P$, độ phức tạp thời gian của thuật toán là $O(\left|P\right|)$. Ngoài ra, thuật toán này cũng tìm được độ dài tiền tố dài nhất của xâu mẫu $P$ xuất hiện trong xâu văn bản.
 
-<span id="&#x4E0D;&#x540C;&#x5B50;&#x4E32;&#x4E2A;&#x6570;"></span>
+<span id="số-xâu-con-phân-biệt"></span>
 
 ### Số xâu con phân biệt
 
@@ -508,7 +508,7 @@ Bây giờ ta xem một số bài toán có thể giải bằng SAM. Để đơn
 
 Bài ví dụ: [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804), [SDOI2016 Sinh bùa chú](https://loj.ac/problem/2033)
 
-<span id="&#x6240;&#x6709;&#x4E0D;&#x540C;&#x5B50;&#x4E32;&#x7684;&#x603B;&#x957F;&#x5EA6;"></span>
+<span id="tổng-độ-dài-của-mọi-xâu-con-phân-biệt"></span>
 
 ### Tổng độ dài của mọi xâu con phân biệt
 
@@ -539,7 +539,7 @@ Bài ví dụ: [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804),
     
     Tổng độ phức tạp thời gian vẫn là $O(\left|S\right|)$.
 
-<span id="&#x5B57;&#x5178;&#x5E8F;&#x7B2C;-k-&#x5927;&#x5B50;&#x4E32;"></span>
+<span id="xâu-con-lớn-thứ-k-theo-thứ-tự-từ-điển"></span>
 
 ### Xâu con lớn thứ k theo thứ tự từ điển
 
@@ -556,7 +556,7 @@ Bài ví dụ: [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804),
 
 Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015 String Theory](https://loj.ac/problem/2102)
 
-<span id="&#x6700;&#x5C0F;&#x5FAA;&#x73AF;&#x79FB;&#x4F4D;"></span>
+<span id="phép-dịch-vòng-nhỏ-nhất"></span>
 
 ### Phép dịch vòng nhỏ nhất
 
@@ -570,7 +570,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
     
     Tổng độ phức tạp thời gian là $O(\left|S\right|)$.
 
-<span id="&#x51FA;&#x73B0;&#x6B21;&#x6570;"></span>
+<span id="số-lần-xuất-hiện"></span>
 
 ### Số lần xuất hiện
 
@@ -611,7 +611,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
     
     Cuối cùng, để trả lời truy vấn chỉ cần tìm giá trị $cnt_{t}$, trong đó $t$ là trạng thái ứng với xâu mẫu; nếu xâu mẫu không tồn tại thì đáp án là $0$. Độ phức tạp mỗi truy vấn là $O(\left|P\right|)$.
 
-<span id="&#x7B2C;&#x4E00;&#x6B21;&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;"></span>
+<span id="vị-trí-xuất-hiện-đầu-tiên"></span>
 
 ### Vị trí xuất hiện đầu tiên
 
@@ -646,7 +646,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
     
     Khi đó đáp án truy vấn là $\operatorname{firstpos}(t)-\left|P\right|+1$, trong đó $t$ là trạng thái ứng với xâu $P$. Mỗi truy vấn chỉ cần thời gian $O(\left|P\right|)$.
 
-<span id="&#x6240;&#x6709;&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;"></span>
+<span id="mọi-vị-trí-xuất-hiện"></span>
 
 ### Mọi vị trí xuất hiện
 
@@ -656,7 +656,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
 ??? note "Lời giải 1"
     Sau khi tìm được nút ứng với xâu mẫu $P$, dùng thông tin của cây liên kết hậu tố để duyệt cây con; hễ gặp một nút kết thúc thì xuất ra.
     
-    Độ phức tạp mỗi truy vấn là $O(|P|)+O(\textit{answer}(P))$, trong đó $\textit{answer}(P)$ là đáp án của truy vấn này. Tương tự [chứng minh số trạng thái là tuyến tính](#%E7%8A%B6%E6%80%81%E6%95%B0), có thể chỉ ra kích thước cây con của cây liên kết hậu tố không vượt quá hai lần kích thước tập $\operatorname{endpos}$ của nút đó, nên độ phức tạp duyệt cây con là $O(\textit{answer}(P))$.
+    Độ phức tạp mỗi truy vấn là $O(|P|)+O(\textit{answer}(P))$, trong đó $\textit{answer}(P)$ là đáp án của truy vấn này. Tương tự [chứng minh số trạng thái là tuyến tính](#số-trạng-thái), có thể chỉ ra kích thước cây con của cây liên kết hậu tố không vượt quá hai lần kích thước tập $\operatorname{endpos}$ của nút đó, nên độ phức tạp duyệt cây con là $O(\textit{answer}(P))$.
 
 ??? note "Lời giải 2"
     Ta vẫn xây suffix automaton cho xâu văn bản $T$. Tương tự bài trước, ta tính vị trí $\operatorname{firstpos}$ cho mọi trạng thái.
@@ -669,7 +669,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
     
     Ta sẽ không thăm lặp một trạng thái, vì mỗi trạng thái chỉ có một liên kết hậu tố trỏ tới một trạng thái khác, nên không tồn tại hai đường đi khác nhau trỏ tới cùng một trạng thái.
     
-    Ta chỉ cần xét trường hợp hai trạng thái khác nhau có cùng giá trị $\operatorname{firstpos}$. Tình huống này chỉ xảy ra khi một trạng thái được sao chép từ trạng thái kia. Tuy nhiên, điều này không ảnh hưởng tới phân tích độ phức tạp. Tương tự [chứng minh số trạng thái là tuyến tính](#%E7%8A%B6%E6%80%81%E6%95%B0), số trạng thái có hậu tố là $P$ như vậy không vượt quá $2\textit{answer}(P)$.
+    Ta chỉ cần xét trường hợp hai trạng thái khác nhau có cùng giá trị $\operatorname{firstpos}$. Tình huống này chỉ xảy ra khi một trạng thái được sao chép từ trạng thái kia. Tuy nhiên, điều này không ảnh hưởng tới phân tích độ phức tạp. Tương tự [chứng minh số trạng thái là tuyến tính](#số-trạng-thái), số trạng thái có hậu tố là $P$ như vậy không vượt quá $2\textit{answer}(P)$.
     
     Ngoài ra, ta có thể loại bỏ vị trí lặp bằng cách không xét giá trị $\operatorname{firstpos}$ của các nút được sao chép. Thực tế, với một trạng thái, nếu có thể đi tới nó qua trạng thái được sao chép thì cũng có thể đi tới nó qua trạng thái gốc. Do đó, nếu ghi cho mỗi trạng thái một cờ `is_clone` biểu diễn trạng thái này có phải được sao chép ra hay không, ta có thể đơn giản bỏ qua các trạng thái được sao chép, chỉ xuất giá trị $firstpos$ của mọi trạng thái còn lại.
     
@@ -693,7 +693,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
     }
     ```
 
-<span id="&#x6700;&#x77ED;&#x7684;&#x6CA1;&#x6709;&#x51FA;&#x73B0;&#x7684;&#x5B57;&#x7B26;&#x4E32;"></span>
+<span id="xâu-ngắn-nhất-không-xuất-hiện"></span>
 
 ### Xâu ngắn nhất không xuất hiện
 
@@ -713,7 +713,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
     
     Đáp án của bài toán là $d_{t_0}$; xâu cụ thể có thể được truy vết ngược từ mảng $d$ đã tính.
 
-<span id="&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x4E32;"></span>
+<span id="xâu-con-chung-dài-nhất-của-hai-xâu"></span>
 
 ### Xâu con chung dài nhất của hai xâu
 
@@ -773,7 +773,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
 
 Bài ví dụ: [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/)
 
-<span id="&#x591A;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x95F4;&#x7684;&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x4E32;"></span>
+<span id="xâu-con-chung-dài-nhất-giữa-nhiều-xâu"></span>
 
 ### Xâu con chung dài nhất giữa nhiều xâu
 
@@ -804,7 +804,7 @@ Bài ví dụ: [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS
 
 Bài ví dụ: [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 
 ## Bài tập
 
@@ -823,7 +823,7 @@ Bài ví dụ: [SPOJ Longest Common Substring II](https://www.spoj.com/problems/
 -   [CTSC2012 Familiar Article](https://www.luogu.com.cn/problem/P4022)
 -   [NOI2018 Your Name](https://uoj.ac/problem/395)
 
-<span id="&#x76F8;&#x5173;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-liên-quan"></span>
 
 ## Tài liệu liên quan
 

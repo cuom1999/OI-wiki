@@ -1,11 +1,11 @@
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Ta định nghĩa một hàm $f$ ánh xạ chuỗi thành số nguyên; hàm $f$ này được gọi là hàm Hash.
 
 Ta mong hàm $f$ có thể giúp kiểm tra hai chuỗi có bằng nhau hay không một cách thuận tiện.
 
-<span id="hash-&#x7684;&#x601D;&#x60F3;"></span>
+<span id="ý-tưởng-của-hash"></span>
 ## Ý tưởng của Hash
 
 Ý tưởng cốt lõi của Hash là ánh xạ dữ liệu đầu vào vào một miền giá trị nhỏ hơn và dễ so sánh.
@@ -19,7 +19,7 @@ Ta mong hàm $f$ có thể giúp kiểm tra hai chuỗi có bằng nhau hay khô
     
     Đồng thời, để giảm tỉ lệ va chạm hash, miền giá trị cũng không được quá nhỏ.
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 Cụ thể, hai tính chất quan trọng nhất của hàm hash có thể tóm tắt như sau:
@@ -30,7 +30,7 @@ Cụ thể, hai tính chất quan trọng nhất của hàm hash có thể tóm 
 
     Hiện tượng giá trị hàm Hash bằng nhau nhưng chuỗi gốc khác nhau được gọi là va chạm hash.
 
-<span id="&#x89E3;&#x91CA;"></span>
+<span id="giải-thích"></span>
 ## Giải thích
 
 Ta cần quan tâm điều gì?
@@ -49,10 +49,10 @@ Ngoài ra, để tiện lợi và để mở rộng modulo, trong C++ đôi khi 
 
 Độ chính xác sẽ được thảo luận ở phần sau.
 
-<span id="hash-&#x7684;&#x9519;&#x8BEF;&#x7387;&#x5206;&#x6790;"></span>
+<span id="phân-tích-tỉ-lệ-lỗi-của-hash"></span>
 ## Phân tích tỉ lệ lỗi của Hash
 
-<span id="hash-&#x51B2;&#x7A81;"></span>
+<span id="va-chạm-hash"></span>
 ### Va chạm Hash
 
 Va chạm Hash chỉ việc hai chuỗi khác nhau được ánh xạ đến cùng một giá trị Hash.
@@ -120,7 +120,7 @@ $$
     p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d})
     $$
 
-<span id="&#x5361;&#x5927;&#x6A21;&#x6570;-hash"></span>
+<span id="đánh-bại-hash-modulo-lớn"></span>
 ### Đánh bại Hash modulo lớn
 
 Xét công thức:
@@ -144,14 +144,14 @@ $p(10^6,62^{6}) \approx 0.9$
 
 Vì vậy trong phạm vi này, nếu sinh ngẫu nhiên $10^6$ chuỗi có độ dài $6$, xác suất chúng có cùng giá trị Hash có thể cao đến $90\%$.
 
-<span id="&#x5361;&#x81EA;&#x7136;&#x6EA2;&#x51FA;-hash"></span>
+<span id="đánh-bại-hash-tràn-tự-nhiên"></span>
 ### Đánh bại Hash tràn tự nhiên
 
 Vì loại Hash này có modulo quá lớn, không thể đánh bại bằng cách trên, nên ta cần một phương pháp khác.
 
 Trước hết, dạng Hash này có dạng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i}$; ta phân loại theo $b$ để thảo luận.
 
-<span id="b-&#x4E3A;&#x5076;&#x6570;"></span>
+<span id="khi-b-là-số-chẵn"></span>
 #### Khi b là số chẵn
 
 Lúc này $f(s) = s_1\cdot b^l + s_2\cdot b^{l-1} + \cdots + s_l\cdot b \pmod M$, trong đó $M$ là $2^{64}$.
@@ -166,7 +166,7 @@ Vậy chỉ cần xây dựng các chuỗi có dạng:
 
 và có độ dài lớn hơn $64$ là có thể tạo va chạm.
 
-<span id="b-&#x4E3A;&#x5947;&#x6570;"></span>
+<span id="khi-b-là-số-lẻ"></span>
 #### Khi b là số lẻ
 
 Định nghĩa $!s_i$ là chuỗi thu được khi đổi từng ký tự trong $s_i$.
@@ -253,7 +253,7 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi ta cần.
     
     Nghĩa là khi $i=12$, ta đã có thể làm cho $2^{64} | hash_i - !hash_i$ và đạt yêu cầu.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="bài-tập-ví-dụ"></span>
 ### Bài tập ví dụ
 
 ???+ note "[Ví dụ: BZOJ 3097 Hash Killer I](https://hydro.ac/p/bzoj-P3097)"
@@ -265,10 +265,10 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi ta cần.
 ???+ note "[Ví dụ: Luogu U461211 String Hash (dữ liệu tăng cường)](https://www.luogu.com.cn/problem/U461211)"
     Cho $n$ chuỗi, hãy xác định có bao nhiêu chuỗi khác nhau.
 
-<span id="hash-&#x7684;&#x6539;&#x8FDB;"></span>
+<span id="cải-tiến-hash"></span>
 ## Cải tiến Hash
 
-<span id="&#x591A;&#x503C;-hash"></span>
+<span id="hash-nhiều-giá-trị"></span>
 ### Hash nhiều giá trị
 
 Sau khi xem nhiều cách đánh bại Hash ở trên, tất nhiên cũng có cách khắc phục.
@@ -279,7 +279,7 @@ Khi so sánh, chỉ cần một trong các giá trị Hash khác nhau thì coi h
 
 Thông thường, Hash hai giá trị là đủ dùng.
 
-<span id="&#x591A;&#x6B21;&#x8BE2;&#x95EE;&#x5B50;&#x4E32;&#x54C8;&#x5E0C;"></span>
+<span id="nhiều-truy-vấn-hash-chuỗi-con"></span>
 ### Nhiều truy vấn hash chuỗi con
 
 Tính hash của một chuỗi một lần có độ phức tạp $O(n)$, trong đó $n$ là độ dài chuỗi; điều này không khác gì so khớp vét cạn. Nếu cần truy vấn hash của các chuỗi con trong cùng một chuỗi nhiều lần, tính lại mỗi lần sẽ rất kém hiệu quả.
@@ -292,10 +292,10 @@ Bây giờ ta muốn tính nhanh $f(s[l..r])$ theo cách tương tự tổng ti�
 
 So sánh hai công thức trên, ta thấy $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ là đúng (có thể tự thay giá trị vào để kiểm tra). Vì vậy có thể dùng công thức này để tính nhanh hash của chuỗi con. Trong đó, $b^{r-l+1}$ có thể được tiền xử lý trong $O(n)$ rồi trả lời mỗi truy vấn trong $O(1)$ (tất nhiên cũng có thể dùng lũy thừa nhanh để trả lời mỗi truy vấn trong $O(\log n)$).
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 ## Cài đặt
 
-<span id="&#x6A21;&#x6570;-hash"></span>
+<span id="hash-modulo"></span>
 ### Hash modulo:
 
 Ghi chú: hiệu năng thấp, không khuyến nghị dùng trong thực tế.
@@ -339,7 +339,7 @@ Ghi chú: hiệu năng thấp, không khuyến nghị dùng trong thực tế.
         return get_hash(s) == get_hash(t)
     ```
 
-<span id="&#x53CC;&#x503C;-hash"></span>
+<span id="hash-hai-giá-trị"></span>
 ### Hash hai giá trị:
 
 === "C++"
@@ -395,15 +395,15 @@ Ghi chú: hiệu năng thấp, không khuyến nghị dùng trong thực tế.
         return f1 or f2
     ```
 
-<span id="hash-&#x7684;&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng-của-hash"></span>
 ## Ứng dụng của Hash
 
-<span id="&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;"></span>
+<span id="so-khớp-chuỗi"></span>
 ### So khớp chuỗi
 
 Sau khi tính giá trị hash của mẫu, tính giá trị hash của mỗi chuỗi con trong văn bản có độ dài bằng độ dài mẫu, rồi lần lượt so sánh với giá trị hash của mẫu.
 
-<span id="&#x5141;&#x8BB8;-k-&#x6B21;&#x5931;&#x914D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;"></span>
+<span id="so-khớp-chuỗi-cho-phép-k-vị-trí-khác-nhau"></span>
 ### So khớp chuỗi cho phép $k$ vị trí khác nhau
 
 Bài toán: Cho chuỗi nguồn $s$ độ dài $n$ và chuỗi mẫu $p$ độ dài $m$, yêu cầu tìm trong chuỗi nguồn có bao nhiêu chuỗi con khớp với chuỗi mẫu. $s'$ khớp với $s$ khi và chỉ khi $s'$ và $s$ có cùng độ dài, và có nhiều nhất $k$ vị trí có ký tự khác nhau. Trong đó $1\leq n,m\leq 10^6$, $0\leq k\leq 5$.
@@ -414,7 +414,7 @@ Liệt kê tất cả chuỗi con có thể khớp. Giả sử chuỗi con đang
 
 Tổng độ phức tạp thời gian là $O(m+kn\log_2m)$.
 
-<span id="&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x4E32;"></span>
+<span id="chuỗi-con-đối-xứng-dài-nhất"></span>
 ### Chuỗi con đối xứng dài nhất
 
 Tìm kiếm nhị phân đáp án; khi kiểm tra tính khả thi, liệt kê tâm đối xứng (trục đối xứng), rồi dùng hash để kiểm tra hai phía có bằng nhau hay không. Cần tiền xử lý riêng giá trị hash xuôi và ngược. Độ phức tạp thời gian $O(n\log n)$.
@@ -423,7 +423,7 @@ Bài toán này có thể được giải bằng [thuật toán Manacher](./mana
 
 Hash cũng có thể giải bài này trong $O(n)$. Cách làm cụ thể là đặt $R_i$ là độ dài chuỗi đối xứng dài nhất kết thúc tại $i$, khi đó đáp án là $\max_{i=1}^nR_i$. Vì $R_i\leq R_{i-1}+2$, ta chỉ cần vét cạn giảm dần từ $R_{i-1}+2$ cho đến khi tìm được chuỗi đối xứng đầu tiên. Đặt biến $z$ là $R_i$ đang liệt kê, ban đầu bằng $0$; mỗi khi $i$ tăng, $z$ sẽ tăng thêm $2$, sau đó mỗi lần lặp vét cạn sẽ giảm $1$, nên vòng lặp vét cạn xảy ra tối đa $2n$ lần. Tổng độ phức tạp thời gian là $O(n)$.
 
-<span id="&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x5B57;&#x7B26;&#x4E32;"></span>
+<span id="chuỗi-con-chung-dài-nhất"></span>
 ### Chuỗi con chung dài nhất
 
 Bài toán: Cho $m$ chuỗi không rỗng có tổng độ dài không vượt quá $n$, tìm chuỗi con chung dài nhất của tất cả các chuỗi; nếu có nhiều đáp án, in ra một đáp án bất kỳ. Trong đó $1\leq m, n\leq 10^6$.
@@ -432,7 +432,7 @@ Rõ ràng nếu tồn tại chuỗi con chung dài nhất có độ dài $k$, th
 
 Độ phức tạp thời gian là $O(m+n\log n)$.
 
-<span id="&#x786E;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x4E0D;&#x540C;&#x5B50;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x6570;&#x91CF;"></span>
+<span id="xác-định-số-lượng-chuỗi-con-khác-nhau-trong-một-chuỗi"></span>
 ### Xác định số lượng chuỗi con khác nhau trong một chuỗi
 
 Bài toán: Cho chuỗi độ dài $n$ chỉ gồm các chữ cái thường tiếng Anh, hãy tìm số lượng chuỗi con khác nhau của chuỗi đó.
@@ -470,7 +470,7 @@ Bài toán: Cho chuỗi độ dài $n$ chỉ gồm các chữ cái thường ti�
     }
     ```
 
-<span id="&#x4F8B;&#x9898;_1"></span>
+<span id="bài-tập-ví-dụ_1"></span>
 ### Bài tập ví dụ
 
 ???+ note "[CF1200E Compress Words](http://codeforces.com/contest/1200/problem/E)"

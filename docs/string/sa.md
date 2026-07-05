@@ -1,4 +1,4 @@
-<span id="&#19968;&#20123;&#32422;&#23450;"></span>
+<span id="một-số-quy-ước"></span>
 ## Một số quy ước
 
 Với các định nghĩa liên quan đến xâu, hãy xem [Cơ sở về xâu](./basic.md).
@@ -9,7 +9,7 @@ Chỉ số của xâu bắt đầu từ $1$.
 
 "Hậu tố $i$" chỉ hậu tố bắt đầu từ ký tự thứ $i$; khi lưu trữ, ta dùng $i$ để đại diện cho hậu tố $s[i\dots n]$ của xâu $s$.
 
-<span id="&#21518;&#32512;&#25968;&#32452;&#26159;&#20160;&#20040;"></span>
+<span id="mảng-hậu-tố-là-gì"></span>
 ## Mảng hậu tố là gì?
 
 Mảng hậu tố (Suffix Array) chủ yếu liên quan đến hai mảng: $sa$ và $rk$.
@@ -20,22 +20,22 @@ $rk[i]$ là thứ hạng của hậu tố $i$, một mảng phụ quan trọng; 
 
 Hai mảng này thỏa tính chất: $sa[rk[i]]=rk[sa[i]]=i$.
 
-<span id="&#35299;&#37322;"></span>
+<span id="diễn-giải"></span>
 ### Diễn giải
 
 Ví dụ về mảng hậu tố:
 
 [![](./images/sa1.png)][2]
 
-<span id="&#21518;&#32512;&#25968;&#32452;&#24590;&#20040;&#27714;"></span>
+<span id="tính-mảng-hậu-tố-như-thế-nào"></span>
 ## Tính mảng hậu tố như thế nào?
 
-<span id="on2logn-&#20570;&#27861;"></span>
+<span id="cách-on2log-n"></span>
 ### Cách $O(n^2\log n)$
 
 Cách này khá dễ tự nghĩ ra: đưa tất cả hậu tố vào một mảng rồi sắp xếp bằng `sort`. Việc sắp xếp cần $O(n\log n)$ lần so sánh xâu, mỗi lần so sánh xâu tốn $O(n)$ phép so sánh ký tự, nên độ phức tạp thời gian là $O(n^2\log n)$.
 
-<span id="onlog2n-&#20570;&#27861;"></span>
+<span id="cách-onlog2-n"></span>
 ### Cách $O(n\log^2 n)$
 
 Cách này dùng ý tưởng nhân đôi.
@@ -52,7 +52,7 @@ Quá trình nhân đôi:
 
 4.  $rk_w[i]$ chính là thứ hạng của xâu con $s[i\dots i + w - 1]$. Khi $w \geqslant n$, mảng chỉ số $sa_w$ thu được chính là mảng hậu tố cần tìm.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quá-trình"></span>
 #### Quá trình
 
 Sơ đồ minh họa sắp xếp bằng nhân đôi:
@@ -112,7 +112,7 @@ Vì vậy độ phức tạp thời gian của thuật toán là $O(n\log^2 n)$.
     }
     ```
 
-<span id="onlogn-&#20570;&#27861;"></span>
+<span id="cách-onlog-n"></span>
 ### Cách $O(n\log n)$
 
 Trong cách $O(n\log^2 n)$ ở trên, mỗi lần sắp xếp tốn $O(n\log n)$. Nếu có thể sắp xếp trong $O(n)$, ta sẽ tính được mảng hậu tố trong $O(n\log n)$.
@@ -186,7 +186,7 @@ Trong quá trình tính mảng hậu tố, khóa sắp xếp là thứ hạng, c
     }
     ```
 
-<span id="&#19968;&#20123;&#24120;&#25968;&#20248;&#21270;"></span>
+<span id="một-số-tối-ưu-hằng-số"></span>
 ### Một số tối ưu hằng số
 
 Nếu nộp đoạn code trên lên [LOJ #111: Suffix Sorting](https://loj.ac/problem/111):
@@ -195,7 +195,7 @@ Nếu nộp đoạn code trên lên [LOJ #111: Suffix Sorting](https://loj.ac/pr
 
 Nguyên nhân là hằng số của đoạn code trên thực sự khá lớn.
 
-<span id="&#31532;&#20108;&#20851;&#38190;&#23383;&#26080;&#38656;&#35745;&#25968;&#25490;&#24207;"></span>
+<span id="khóa-thứ-hai-không-cần-sắp-xếp-đếm"></span>
 #### Khóa thứ hai không cần sắp xếp đếm
 
 Xét bản chất của việc sắp xếp theo khóa thứ hai: thực ra ta chỉ cần đưa các $sa[i]$ vượt khỏi phạm vi xâu (tức $sa[i] + w > n$) lên đầu mảng $sa$, rồi đưa phần còn lại vào theo thứ tự cũ:
@@ -207,12 +207,12 @@ for (int i = 1; i <= n; i++)
   if (sa[i] > w) id[++cur] = sa[i] - w;
 ```
 
-<span id="&#20248;&#21270;&#35745;&#25968;&#25490;&#24207;&#30340;&#20540;&#22495;"></span>
+<span id="tối-ưu-miền-giá-trị-của-sắp-xếp-đếm"></span>
 #### Tối ưu miền giá trị của sắp xếp đếm
 
 Sau mỗi lần cập nhật $rk$, ta đều tính được một giá trị $p$; đây chính là miền giá trị của $rk$, nên chỉ cần đặt miền giá trị thành $p$.
 
-<span id="&#33509;&#25490;&#21517;&#37117;&#19981;&#30456;&#21516;&#21487;&#30452;&#25509;&#29983;&#25104;&#21518;&#32512;&#25968;&#32452;"></span>
+<span id="nếu-mọi-thứ-hạng-đều-khác-nhau-thì-có-thể-tạo-ngay-mảng-hậu-tố"></span>
 #### Nếu mọi thứ hạng đều khác nhau thì có thể tạo ngay mảng hậu tố
 
 Xét mảng $rk$ mới: nếu miền giá trị của nó là $[1,n]$ thì mọi thứ hạng đều khác nhau, lúc này không cần sắp xếp tiếp.
@@ -271,7 +271,7 @@ Xét mảng $rk$ mới: nếu miền giá trị của nó là $[1,n]$ thì mọi
     }
     ```
 
-<span id="on-&#20570;&#27861;"></span>
+<span id="cách-on"></span>
 ### Cách $O(n)$
 
 Trong đa số bài toán thông thường, cách nhân đôi với hằng số nhỏ đã hoàn toàn đủ dùng. Những phần khác ngoài việc tính mảng hậu tố cũng thường có độ phức tạp $O(n\log n)$, nên bước tính mảng hậu tố bằng nhân đôi không trở thành nút thắt.
@@ -286,22 +286,22 @@ Có thể tham khảo [Induced Sorting and SA-IS Algorithm](https://riteme.site/
 
 Có thể tham khảo [[2009] Suffix Array: A Powerful Tool for String Processing, by Luo Suiqian][2].
 
-<span id="&#21518;&#32512;&#25968;&#32452;&#30340;&#24212;&#29992;"></span>
+<span id="ứng-dụng-của-mảng-hậu-tố"></span>
 ## Ứng dụng của mảng hậu tố
 
-<span id="&#23547;&#25214;&#26368;&#23567;&#30340;&#24490;&#29615;&#31227;&#21160;&#20301;&#32622;"></span>
+<span id="tìm-vị-trí-dịch-vòng-nhỏ-nhất"></span>
 ### Tìm vị trí dịch vòng nhỏ nhất
 
 Sao chép xâu $S$ một lần để thành $SS$, bài toán sẽ chuyển thành bài toán sắp xếp hậu tố.
 
 Ví dụ: [JSOI2007 - Character Encryption](https://www.luogu.com.cn/problem/P4051).
 
-<span id="&#22312;&#23383;&#31526;&#20018;&#20013;&#25214;&#23376;&#20018;"></span>
+<span id="tìm-xâu-con-trong-xâu"></span>
 ### Tìm xâu con trong xâu
 
 Nhiệm vụ là tìm xâu mẫu $S$ trong xâu chính $T$ theo kiểu trực tuyến. "Trực tuyến" nghĩa là ta đã biết trước xâu chính $T$, nhưng chỉ biết xâu mẫu $S$ khi có truy vấn. Ta có thể xây dựng trước mảng hậu tố của $T$, rồi tìm xâu con $S$. Nếu $S$ xuất hiện trong $T$, nó chắc chắn là tiền tố của một số hậu tố của $T$. Vì tất cả hậu tố đã được sắp xếp, ta có thể nhị phân $S$ trên mảng $p$. Mỗi lần so sánh $S$ với hậu tố hiện tại tốn $O(|S|)$, nên độ phức tạp tìm xâu con là $O(|S|\log |T|)$. Chú ý rằng nếu xâu con xuất hiện nhiều lần trong $T$, các lần xuất hiện đó sẽ nằm liên tiếp trong mảng $p$. Vì vậy có thể nhị phân thêm để tìm số lần xuất hiện, và việc in ra mọi vị trí xuất hiện cũng rất đơn giản.
 
-<span id="&#20174;&#23383;&#31526;&#20018;&#39318;&#23614;&#21462;&#23383;&#31526;&#26368;&#23567;&#21270;&#23383;&#20856;&#24207;"></span>
+<span id="lấy-ký-tự-từ-hai-đầu-để-tối-thiểu-hóa-thứ-tự-từ-điển"></span>
 ### Lấy ký tự từ hai đầu để tối thiểu hóa thứ tự từ điển
 
 Ví dụ: [USACO07DEC - Best Cow Line](https://www.luogu.com.cn/problem/P2870).
@@ -318,24 +318,24 @@ Ví dụ: [USACO07DEC - Best Cow Line](https://www.luogu.com.cn/problem/P2870).
     --8<-- "docs/string/code/sa/sa_1.cpp"
     ```
 
-<span id="height-&#25968;&#32452;"></span>
+<span id="mảng-height"></span>
 ## Mảng height
 
-<span id="lcp&#26368;&#38271;&#20844;&#20849;&#21069;&#32512;"></span>
+<span id="lcp-tiền-tố-chung-dài-nhất"></span>
 ### LCP (tiền tố chung dài nhất)
 
 LCP của hai xâu $S$ và $T$ là giá trị lớn nhất $x$ ($x\le \min(|S|, |T|)$) sao cho $S_i=T_i\ (\forall\ 1\le i\le x)$.
 
 Trong phần sau, $lcp(i,j)$ biểu thị độ dài tiền tố chung dài nhất của hậu tố $i$ và hậu tố $j$.
 
-<span id="height-&#25968;&#32452;&#30340;&#23450;&#20041;"></span>
+<span id="định-nghĩa-mảng-height"></span>
 ### Định nghĩa mảng height
 
 $height[i]=lcp(sa[i],sa[i-1])$, tức tiền tố chung dài nhất của hậu tố hạng $i$ và hậu tố đứng ngay trước nó.
 
 Có thể xem $height[1]$ là $0$.
 
-<span id="on-&#27714;-height-&#25968;&#32452;&#38656;&#35201;&#30340;&#19968;&#20010;&#24341;&#29702;"></span>
+<span id="bổ-đề-cần-dùng-để-tính-mảng-height-trong-on"></span>
 ### Bổ đề cần dùng để tính mảng height trong $O(n)$
 
 $height[rk[i]]\ge height[rk[i-1]]-1$
@@ -361,7 +361,7 @@ $height[rk[i]]\ge height[rk[i-1]]-1$
     
     Do đó $lcp(i,sa[rk[i]-1])$ ít nhất là $height[rk[i-1]]-1$, tức $height[rk[i]]\ge height[rk[i-1]]-1$.
 
-<span id="on-&#27714;-height-&#25968;&#32452;&#30340;&#20195;&#30721;&#23454;&#29616;"></span>
+<span id="cài-đặt-tính-mảng-height-trong-on"></span>
 ### Cài đặt tính mảng height trong $O(n)$
 
 Chỉ cần dùng bổ đề trên để tính trực tiếp:
@@ -377,10 +377,10 @@ for (i = 1, k = 0; i <= n; ++i) {
 
 $k$ không vượt quá $n$ và giảm nhiều nhất $n$ lần, nên cũng tăng nhiều nhất $2n$ lần. Tổng độ phức tạp là $O(n)$.
 
-<span id="height-&#25968;&#32452;&#30340;&#24212;&#29992;"></span>
+<span id="ứng-dụng-của-mảng-height"></span>
 ## Ứng dụng của mảng height
 
-<span id="&#20004;&#23376;&#20018;&#26368;&#38271;&#20844;&#20849;&#21069;&#32512;"></span>
+<span id="tiền-tố-chung-dài-nhất-của-hai-xâu-con"></span>
 ### Tiền tố chung dài nhất của hai xâu con
 
 $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$
@@ -391,7 +391,7 @@ Chứng minh chặt chẽ có thể tham khảo [[2004] Suffix Array, by Xu Zhil
 
 Với định lý này, bài toán tìm tiền tố chung dài nhất của hai xâu con được chuyển thành [bài toán RMQ](../topic/rmq.md).
 
-<span id="&#27604;&#36739;&#19968;&#20010;&#23383;&#31526;&#20018;&#30340;&#20004;&#20010;&#23376;&#20018;&#30340;&#22823;&#23567;&#20851;&#31995;"></span>
+<span id="so-sánh-thứ-tự-của-hai-xâu-con-trong-một-xâu"></span>
 ### So sánh thứ tự của hai xâu con trong một xâu
 
 Giả sử cần so sánh thứ tự của $A=S[a..b]$ và $B=S[c..d]$.
@@ -400,7 +400,7 @@ Nếu $lcp(a, c)\ge\min(|A|, |B|)$, thì $A<B\iff |A|<|B|$.
 
 Ngược lại, $A<B\iff rk[a]< rk[c]$.
 
-<span id="&#19981;&#21516;&#23376;&#20018;&#30340;&#25968;&#30446;"></span>
+<span id="số-lượng-xâu-con-khác-nhau"></span>
 ### Số lượng xâu con khác nhau
 
 Xâu con chính là tiền tố của một hậu tố, nên có thể duyệt từng hậu tố, tính tổng số tiền tố rồi trừ đi phần trùng lặp.
@@ -413,7 +413,7 @@ Vì vậy đáp án là:
 
 $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
-<span id="&#20986;&#29616;&#33267;&#23569;-k-&#27425;&#30340;&#23376;&#20018;&#30340;&#26368;&#22823;&#38271;&#24230;"></span>
+<span id="độ-dài-lớn-nhất-của-xâu-con-xuất-hiện-ít-nhất-k-lần"></span>
 ### Độ dài lớn nhất của xâu con xuất hiện ít nhất $k$ lần
 
 Ví dụ: [USACO06DEC - Milk Patterns](https://www.luogu.com.cn/problem/P2852).
@@ -430,31 +430,31 @@ Ví dụ: [USACO06DEC - Milk Patterns](https://www.luogu.com.cn/problem/P2852).
     --8<-- "docs/string/code/sa/sa_2.cpp"
     ```
 
-<span id="&#26159;&#21542;&#26377;&#26576;&#23383;&#31526;&#20018;&#22312;&#25991;&#26412;&#20018;&#20013;&#33267;&#23569;&#19981;&#37325;&#21472;&#22320;&#20986;&#29616;&#20102;&#20004;&#27425;"></span>
+<span id="kiểm-tra-một-xâu-có-xuất-hiện-ít-nhất-hai-lần-không-chồng-lấp-trong-văn-bản-hay-không"></span>
 ### Kiểm tra một xâu có xuất hiện ít nhất hai lần không chồng lấp trong văn bản hay không
 
 Có thể nhị phân độ dài $|s|$ của xâu mục tiêu, chia mảng $h$ thành các đoạn liên tiếp có LCP lớn hơn hoặc bằng $|s|$, rồi dùng RMQ để tìm chỉ số lớn nhất và nhỏ nhất xuất hiện trong từng đoạn. Nếu khoảng cách giữa hai chỉ số đó thỏa điều kiện, chắc chắn tồn tại một xâu độ dài $|s|$ xuất hiện hai lần không chồng lấp.
 
-<span id="&#36830;&#32493;&#30340;&#33509;&#24178;&#20010;&#30456;&#21516;&#23376;&#20018;"></span>
+<span id="một-số-xâu-con-giống-nhau-liên-tiếp"></span>
 ### Một số xâu con giống nhau liên tiếp
 
 Ta có thể duyệt độ dài $|s|$ của chuỗi lặp liên tiếp, chia toàn bộ xâu thành các khối theo $|s|$, rồi truy vấn LCP và LCS tại đầu của hai khối kề nhau. Chi tiết xem [[2009] Suffix Array: A Powerful Tool for String Processing][2].
 
 Ví dụ: [NOI2016 - Excellent Splitting](https://loj.ac/p/2083).
 
-<span id="&#32467;&#21512;&#24182;&#26597;&#38598;"></span>
+<span id="kết-hợp-với-dsu"></span>
 ### Kết hợp với DSU
 
 Một số bài yêu cầu chia mảng hậu tố thành các đoạn liên tiếp có độ dài LCP lớn hơn hoặc bằng một giá trị nào đó; tương đương với việc chia mảng $h$ thành các đoạn liên tiếp có giá trị nhỏ nhất lớn hơn hoặc bằng giá trị đó, rồi thống kê đáp án cho từng đoạn. Nếu có nhiều truy vấn, ta có thể xử lý offline. Quan sát rằng khi giá trị cho trước giảm đơn điệu, số đoạn thỏa điều kiện chỉ càng ít đi; đoạn mới đều được tạo bằng cách nối hai hoặc nhiều đoạn cũ, và các phần không thuộc đoạn cũ trong đoạn mới có giá trị $h$ đúng bằng giá trị vừa giảm tới. Vì vậy chỉ cần duy trì một DSU, mỗi lần hợp nhất hai đoạn kề nhau và cập nhật thông tin thống kê.
 
 Bài kinh điển: [NOI2015 - Wine Tasting Conference](https://uoj.ac/problem/131).
 
-<span id="&#32467;&#21512;&#32447;&#27573;&#26641;"></span>
+<span id="kết-hợp-với-cây-phân-đoạn"></span>
 ### Kết hợp với cây phân đoạn
 
 Một số bài yêu cầu tìm vài số đầu tiên thỏa điều kiện, trong khi các số đó lại nằm trong một đoạn của thứ tự sắp xếp hậu tố. Khi đó có thể dùng tính chất của sắp xếp trộn để hợp nhất thông tin của hai nút, rồi dùng cây phân đoạn để duy trì và truy vấn đáp án trên đoạn.
 
-<span id="&#32467;&#21512;&#21333;&#35843;&#26632;"></span>
+<span id="kết-hợp-với-ngăn-xếp-đơn-điệu"></span>
 ### Kết hợp với ngăn xếp đơn điệu
 
 Ví dụ: [AHOI2013 - Difference](https://loj.ac/problem/2377).
@@ -475,7 +475,7 @@ Ví dụ: [AHOI2013 - Difference](https://loj.ac/problem/2377).
 
 Bài tương tự: [HAOI2016 - Find Identical Characters](https://loj.ac/problem/2064).
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [UVa 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701)
@@ -513,7 +513,7 @@ Bài tương tự: [HAOI2016 - Find Identical Characters](https://loj.ac/problem
 -   [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E)
 -   [Gym 101470B - Circle of digits](https://codeforces.com/gym/101470/problem/B)
 
-<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 Các phần trên trang này được đưa vào từ commit [4070a9b](https://github.com/OI-wiki/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef), chủ yếu dịch từ bài viết [Суффиксный массив](http://e-maxx.ru/algo/suffix_array) và bản dịch tiếng Anh [Suffix Array](https://cp-algorithms.com/string/suffix-array.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.
