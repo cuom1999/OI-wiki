@@ -1,4 +1,4 @@
-Phần này giới thiệu các kiến thức cơ bản của lý thuyết tính toán. Nội dung này không có vai trò lớn trong OI (nhưng vẫn có một chút tác dụng: nếu gặp một bài toán NP-hard, bạn có thể xem như nó không có lời giải với độ phức tạp đa thức), có thể đọc để mở rộng hiểu biết hoặc chuẩn bị cho việc học sau này.
+Phần này giới thiệu các kiến thức cơ bản của lý thuyết tính toán. Nội dung này không có vai trò lớn trong OI (nhưng vẫn có một chút tác dụng: nếu gặp một bài toán NP-khó, bạn có thể xem như nó không có lời giải với độ phức tạp đa thức), có thể đọc để mở rộng hiểu biết hoặc chuẩn bị cho việc học sau này.
 
 Nhiều kết luận trong bài này được nêu mà không chứng minh. Nếu quan tâm, bạn có thể tự tra cứu các chứng minh liên quan.
 
@@ -185,19 +185,21 @@ $$
 
 Mọi bài toán thuộc lớp $\mathsf P$ đều là bài toán thuộc lớp $\mathsf{NP}$. Để xem thêm các bài toán thuộc lớp $\mathsf{NP}$, hãy tham khảo các bài toán NPC và NP-intermediate ở phần dưới.
 
-#### NP-hard
+<span id="np-hard"></span>
+#### NP-khó (NP-hard)
 
-Nếu mọi bài toán thuộc lớp $\mathsf{NP}$ đều có thể quy về bài toán $H$ trong thời gian đa thức, thì bài toán $H$ là NP-hard.
+Nếu mọi bài toán thuộc lớp $\mathsf{NP}$ đều có thể quy về bài toán $H$ trong thời gian đa thức, thì bài toán $H$ là NP-khó (NP-hard).
 
-Nói cách khác, nếu có thể giải bài toán NP-hard $H$ trong một đơn vị thời gian, thì mọi bài toán thuộc lớp $\mathsf{NP}$ đều có thể được giải trong một số đơn vị thời gian đa thức.
+Nói cách khác, nếu có thể giải bài toán NP-khó $H$ trong một đơn vị thời gian, thì mọi bài toán thuộc lớp $\mathsf{NP}$ đều có thể được giải trong một số đơn vị thời gian đa thức.
 
-#### NP-complete
+<span id="np-complete"></span>
+#### NP-đầy đủ (NP-complete)
 
-Nếu một bài toán vừa thuộc lớp $\mathsf{NP}$ vừa là NP-hard, thì bài toán đó là NP hoàn toàn (NP-complete), hoặc nói cách khác là một bài toán NPC.
+Nếu một bài toán vừa thuộc lớp $\mathsf{NP}$ vừa là NP-khó, thì bài toán đó là NP-đầy đủ (NP-complete), hoặc nói cách khác là một bài toán NPC.
 
 Một số bài toán NPC kinh điển: phiên bản quyết định của bài toán người bán hàng du lịch, phiên bản quyết định của bài toán tập độc lập lớn nhất, phiên bản quyết định của bài toán phủ đỉnh nhỏ nhất, phiên bản quyết định của bài toán đường đi dài nhất, phiên bản quyết định của bài toán quy hoạch nguyên 0-1, bài toán phủ tập, bài toán tô màu đồ thị, bài toán ba lô, bài toán ghép cặp ba chiều, phiên bản quyết định của bài toán lát cắt lớn nhất.
 
-Phiên bản hàm của bài toán NPC thường là NP-hard. Ví dụ: "quyết định trong một đồ thị có tồn tại clique kích thước $k$ hay không" vừa là một bài toán thuộc lớp $\mathsf{NP}$ vừa là NP-hard, nên nó là một bài toán NPC; còn phiên bản hàm của nó, "tìm clique lớn nhất của một đồ thị", không phải là bài toán NPC, nhưng phiên bản hàm này vẫn là NP-hard.
+Phiên bản hàm của bài toán NPC thường là NP-khó. Ví dụ: "quyết định trong một đồ thị có tồn tại clique kích thước $k$ hay không" vừa là một bài toán thuộc lớp $\mathsf{NP}$ vừa là NP-khó, nên nó là một bài toán NPC; còn phiên bản hàm của nó, "tìm clique lớn nhất của một đồ thị", không phải là bài toán NPC, nhưng phiên bản hàm này vẫn là NP-khó.
 
 Tương tự, các lớp độ phức tạp khác cũng có khái niệm "XX-complete". Chẳng hạn, mọi bài toán thuộc lớp $\mathsf{EXPTIME}$ đều có thể quy về một bài toán EXPTIME-complete trong thời gian đa thức.
 
@@ -207,13 +209,14 @@ Một bài toán thuộc lớp $\mathsf{co-NP}$ khi và chỉ khi phần bù c�
 
 Ví dụ: "cho $n$ tập con, xác định có thể chọn $k$ tập trong số đó để phủ toàn bộ tập hay không" là một bài toán NPC, còn phần bù của nó, "cho $n$ tập con, xác định có phải bất kỳ cách chọn $k$ tập nào trong số đó cũng không thể phủ toàn bộ tập hay không", là một bài toán thuộc lớp $\mathsf{co-NP}$. Nếu đáp án của bài toán thứ nhất là "có", thì điều đó tương đương với việc tìm được một phản ví dụ cho bài toán thứ hai, nên đáp án của bài toán thứ hai là "không".
 
-#### NP-intermediate
+<span id="np-intermediate"></span>
+#### NP-trung gian (NP-intermediate)
 
-Nếu một bài toán thuộc lớp $\mathsf{NP}$ nhưng vừa không thuộc lớp $\mathsf{P}$ vừa không phải là bài toán NPC, thì nó được gọi là bài toán NP-intermediate.
+Nếu một bài toán thuộc lớp $\mathsf{NP}$ nhưng vừa không thuộc lớp $\mathsf{P}$ vừa không phải là bài toán NPC, thì nó được gọi là bài toán NP-trung gian (NP-intermediate).
 
-Theo hiểu biết hiện nay, bài toán đẳng cấu đồ thị, bài toán logarit rời rạc và bài toán phân tích thừa số có thể là NP-intermediate.
+Theo hiểu biết hiện nay, bài toán đẳng cấu đồ thị, bài toán logarit rời rạc và bài toán phân tích thừa số có thể là NP-trung gian.
 
-Định lý Ladner chỉ ra rằng nếu $\mathsf{P}\ne\mathsf{NP}$, thì chắc chắn tồn tại bài toán NP-intermediate.
+Định lý Ladner chỉ ra rằng nếu $\mathsf{P}\ne\mathsf{NP}$, thì chắc chắn tồn tại bài toán NP-trung gian.
 
 ### NEXPTIME
 
@@ -261,7 +264,8 @@ Nói đơn giản, nếu tồn tại số dương $k$ sao cho độ phức tạp
 
 Thời gian đa thức có thể chia thành thời gian đa thức mạnh và thời gian đa thức yếu; ngoài ra còn có thời gian giả đa thức.
 
-### Strongly polynomial time
+<span id="strongly-polynomial-time"></span>
+### Thời gian đa thức mạnh
 
 Trước hết, ta định nghĩa một mô hình tính toán gọi là mô hình số học. Trong mô hình số học, các phép toán số học giữa các số (cộng, trừ, nhân, chia, so sánh độ lớn) có thể hoàn thành trong thời gian đơn vị (tức là trong thời gian $O(1)$, không phụ thuộc vào độ lớn của số).
 
@@ -269,19 +273,21 @@ Nếu số phép toán của một thuật toán trong mô hình số học là 
 
 Nói chung, độ phức tạp thời gian của thuật toán thời gian đa thức mạnh không phụ thuộc vào miền giá trị.
 
-### Weakly polynomial time
+<span id="weakly-polynomial-time"></span>
+### Thời gian đa thức yếu
 
 Nếu một thuật toán có thời gian đa thức nhưng không có thời gian đa thức mạnh, thì nó có **thời gian đa thức yếu**.
 
 Ví dụ, thuật toán Euclid để tính ước chung lớn nhất có độ phức tạp thời gian $O(\log a + \log b)$ (trong đó $a$ và $b$ là độ lớn của các số đầu vào), nên là thuật toán thời gian đa thức yếu.
 
-### Pseudo-polynomial time
+<span id="pseudo-polynomial-time"></span>
+### Thời gian giả đa thức
 
 Nếu thời gian chạy của một thuật toán là đa thức theo miền giá trị, thì thuật toán đó được gọi là có **thời gian giả đa thức**. Thuật toán thời gian giả đa thức có thể là thời gian đa thức hoặc cũng có thể không phải. Lý do có thể không phải thời gian đa thức là vì để biểu diễn một số nguyên dương có độ lớn $n$ thường chỉ cần $O(\log n)$ bit nhị phân, nên thuật toán có thời gian đa thức theo miền giá trị thường có thời gian cấp số mũ theo độ dài đầu vào. Tuy theo định nghĩa, thời gian giả đa thức cũng có thể là thời gian đa thức, nhưng khi nói một thuật toán có thời gian giả đa thức, thông thường ta đang nói thuật toán đó không phải là thời gian đa thức.
 
-Ví dụ, bài toán ba lô là bài toán NP-hard, nhưng nó có lời giải thời gian giả đa thức dựa trên quy hoạch động.
+Ví dụ, bài toán ba lô là bài toán NP-khó, nhưng nó có lời giải thời gian giả đa thức dựa trên quy hoạch động.
 
-Nếu một bài toán NPC/NP-hard có lời giải thời gian giả đa thức, thì bài toán đó được gọi là bài toán **NPC yếu**/**NP-hard yếu**. Nếu một bài toán NPC/NP-hard không có lời giải thời gian giả đa thức dưới giả thiết $\mathsf{P} \ne \mathsf{NP}$, thì bài toán đó được gọi là bài toán **NPC mạnh**/**NP-hard mạnh**.
+Nếu một bài toán NPC/NP-khó có lời giải thời gian giả đa thức, thì bài toán đó được gọi là bài toán **NPC yếu**/**NP-khó yếu**. Nếu một bài toán NPC/NP-khó không có lời giải thời gian giả đa thức dưới giả thiết $\mathsf{P} \ne \mathsf{NP}$, thì bài toán đó được gọi là bài toán **NPC mạnh**/**NP-khó mạnh**.
 
 ## Hàm xây dựng được
 
