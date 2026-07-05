@@ -4,7 +4,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 ### Bảng chữ cái
 
-Một **bảng chữ cái** $\Sigma$ là một tập hợp có quan hệ [thứ tự toàn phần](../math/order-theory.md#%E5%81%8F%E5%BA%8F%E9%9B%86). Nói cách khác, với hai phần tử khác nhau bất kỳ $\alpha$ và $\beta$ trong $\Sigma$, luôn có thể so sánh chúng: hoặc $\alpha<\beta$, hoặc $\beta<\alpha$. Các phần tử của bảng chữ cái $\Sigma$ được gọi là ký tự.
+Một **bảng chữ cái** $\Sigma$ là một tập hợp có quan hệ [thứ tự toàn phần](../math/order-theory.md#tập-có-thứ-tự-bộ-phận). Nói cách khác, với hai phần tử khác nhau bất kỳ $\alpha$ và $\beta$ trong $\Sigma$, luôn có thể so sánh chúng: hoặc $\alpha<\beta$, hoặc $\beta<\alpha$. Các phần tử của bảng chữ cái $\Sigma$ được gọi là ký tự.
 
 ### Xâu
 

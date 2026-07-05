@@ -4,7 +4,7 @@ author: Xarfa
 
 Cây phân hoạch là một cấu trúc dữ liệu dùng để xử lý truy vấn phần tử nhỏ thứ $k$ trong đoạn (tùy quy ước cũng có thể viết dưới dạng phần tử lớn thứ $K$). Hằng số và độ khó khi hiểu của nó đều thấp hơn cây phân đoạn bền vững khá nhiều. Đồng thời, cây phân hoạch gắn chặt với bài toán "phần tử nhỏ thứ $k$", nên đây là một cấu trúc dữ liệu dựa trên sắp xếp.
 
-Kiến thức cần có: [cây phân đoạn bền vững](persistent-seg.md#%E4%B8%BB%E5%B8%AD%E6%A0%91)
+Kiến thức cần có: [cây phân đoạn bền vững](persistent-seg.md#cây-chủ-tịch)
 
 ## Quy trình
 
