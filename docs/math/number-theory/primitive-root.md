@@ -601,7 +601,7 @@ $m$; do đó độ phức tạp của phần liệt kê phụ thuộc vào kích
 -   Ước lượng cận trên: Wang Yuan[^yuan1959note] và
     Burgess[^burgess1962character] chứng minh rằng căn nguyên thủy nhỏ nhất của
     số nguyên tố $p$ thỏa mãn $g_p=O\left(p^{0.25+\epsilon}\right)$, trong đó
-    $\epsilon>0$. Cohen, Odoni, and Stothers[^cohen1974least] và Elliott and
+    $\epsilon>0$. Cohen, Odoni và Stothers[^cohen1974least] cùng Elliott và
     Murata[^elliott1998least] lần lượt chứng minh ước lượng này cũng đúng cho
     modulo $p^2$ và $2p^2$, trong đó $p$ là số nguyên tố lẻ. Vì với $e>2$, căn
     nguyên thủy modulo $p^2$ (hoặc $2p^2$) cũng là căn nguyên thủy modulo $p^e$
@@ -610,13 +610,13 @@ $m$; do đó độ phức tạp của phần liệt kê phụ thuộc vào kích
 -   Ước lượng cận dưới: Fridlander[^fridlender1949least] và
     Salie[^salie1949kleinsten] chứng minh rằng tồn tại $C>0$ sao cho với vô hạn
     số nguyên tố $p$, căn nguyên thủy nhỏ nhất thỏa mãn $g_p > C\log p$.
--   Ước lượng trong trường hợp trung bình: Burgess and
+-   Ước lượng trong trường hợp trung bình: Burgess và
     Elliott[^burgess1968average] chứng minh rằng trong trường hợp trung bình,
     căn nguyên thủy nhỏ nhất của số nguyên tố $p$ thỏa mãn
-    $g_p=O((\log p)^2(\log\log p)^4)$. Elliott and Murata[^elliott1997average]
+    $g_p=O((\log p)^2(\log\log p)^4)$. Elliott và Murata[^elliott1997average]
     tiếp tục dự đoán giá trị trung bình của căn nguyên thủy nhỏ nhất của số
     nguyên tố $p$ là một hằng số, và qua kiểm chứng số[^more-evidence] thu được
-    giá trị xấp xỉ $4.926$. Sau đó, Elliott and Murata[^elliott1998least] mở
+    giá trị xấp xỉ $4.926$. Sau đó, Elliott và Murata[^elliott1998least] mở
     rộng dự đoán này sang trường hợp modulo $2p^2$.
 
 Theo các phân tích này, khi tìm căn nguyên thủy nhỏ nhất bằng vét cạn, độ phức

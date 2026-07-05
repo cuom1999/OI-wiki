@@ -114,7 +114,7 @@ Chọn nhãn tùy chọn "Show most warnings (-Wall)" trong thẻ con "Code Warn
 
 #### Sinh thông tin gỡ lỗi
 
-Khi xuất hiện thông báo "Project does not have debugging information, do you want to enable debugging and rebuild?" rồi bị thoát sau khi nhấp, hoặc khi muốn dùng chức năng gỡ lỗi, cần bật chức năng này.
+Khi xuất hiện thông báo "Project does not have debugging information, do you want to enable debugging and rebuild?" ("Dự án chưa có thông tin gỡ lỗi, bạn có muốn bật gỡ lỗi và biên dịch lại không?") rồi bị thoát sau khi nhấp, hoặc khi muốn dùng chức năng gỡ lỗi, cần bật chức năng này.
 
 Chọn nhãn tùy chọn "Generate debugging information" trong thẻ con "Linker".
 
