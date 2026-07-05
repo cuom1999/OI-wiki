@@ -208,7 +208,7 @@ Trừ toán tử cuối cùng, các toán tử nêu trên đều có thể đư�
 dung liên quan đến `&`, `*` và `->`, hãy đọc hướng dẫn về [con trỏ](./pointer.md)
 và [tham chiếu](./reference.md). Ở đây cũng lược bỏ hai toán tử rất ít dùng là
 `.*` và `->*`; cách dùng cụ thể có thể xem tại
-[sổ tay ngôn ngữ C++](https://zh.cppreference.com/w/cpp/language/operator_member_access).
+[sổ tay ngôn ngữ C++](https://en.cppreference.com/w/cpp/language/operator_member_access).
 
 ```cpp
 auto result1 = v[1];    // lấy đối tượng có chỉ số 1 trong v
@@ -223,7 +223,7 @@ auto result5 = *v;      // lấy đối tượng mà con trỏ v trỏ tới
 
 ## Bảng tổng hợp độ ưu tiên toán tử C++
 
-Dựa trên [C++ operator precedence - cppreference](https://zh.cppreference.com/w/cpp/language/operator_precedence), có chỉnh sửa.
+Dựa trên [C++ operator precedence - cppreference](https://en.cppreference.com/w/cpp/language/operator_precedence), có chỉnh sửa.
 
 | Toán tử | Mô tả | Ví dụ | Có thể nạp chồng |
 | :-----: | :---: | :---: | :--------------: |

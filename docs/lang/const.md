@@ -230,5 +230,5 @@ Trong bài toán thuật toán, có thể dùng `constexpr` để lưu các bi�
 
 ## Tài liệu tham khảo
 
--   [Từ khóa C++: const](https://zh.cppreference.com/w/cpp/keyword/const)
--   [Từ khóa C++: constexpr](https://zh.cppreference.com/w/cpp/keyword/constexpr)
+-   [Từ khóa C++: const](https://en.cppreference.com/w/cpp/keyword/const)
+-   [Từ khóa C++: constexpr](https://en.cppreference.com/w/cpp/keyword/constexpr)

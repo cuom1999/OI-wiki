@@ -30,4 +30,4 @@ liên hiệp sẽ bị ghi đè. Nói cách khác, tại cùng một thời đi�
 thể lưu giá trị của một thành viên.
 
 Xem thêm các cách dùng liên hiệp tại
-[cppreference: khai báo union](https://zh.cppreference.com/w/cpp/language/union).
+[cppreference: khai báo union](https://en.cppreference.com/w/cpp/language/union).
