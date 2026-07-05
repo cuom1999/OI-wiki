@@ -4,7 +4,7 @@ Kiến thức cần biết trước: [phân khối số học](./sqrt-decomposit
 
 Đảo Möbius là một nội dung quan trọng trong lý thuyết số. Với một số hàm $f(n)$, nếu khó tính trực tiếp giá trị của nó nhưng dễ tính tổng trên các bội hoặc tổng trên các ước $g(n)$, ta có thể dùng đảo Möbius để đơn giản hóa phép tính và tìm được giá trị của $f(n)$.
 
-<span id="&#33707;&#27604;&#20044;&#26031;&#20989;&#25968;"></span>
+<span id="hàm-möbius"></span>
 ## Hàm Möbius
 
 Hàm Möbius được định nghĩa là
@@ -24,7 +24,7 @@ Cụ thể, giả sử số nguyên dương $n$ có phân tích thừa số nguy
 2.  nếu tồn tại $i$ sao cho $e_i > 1$, tức có một thừa số nguyên tố nào đó xuất hiện hơn một lần, thì $\mu(n)=0$;
 3.  ngược lại, với mọi $i$ đều có $e_i = 1$, tức mọi thừa số nguyên tố đều chỉ xuất hiện một lần, thì $\mu(n)=(-1)^k$, trong đó $k$ là số lượng thừa số nguyên tố phân biệt.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ### Tính chất
 
 Từ định nghĩa có thể kiểm tra dễ dàng rằng hàm Möbius $\mu(n)$ là hàm nhân tính, nhưng không phải hàm hoàn toàn nhân tính. Ngoài ra, tính chất quan trọng nhất là hằng đẳng thức sau:
@@ -43,7 +43,7 @@ Từ định nghĩa có thể kiểm tra dễ dàng rằng hàm Möbius $\mu(n)$
     Trong đó $[\cdot]$ là ngoặc Iverson.
 
 ??? note "Chứng minh"
-    Đặt $n=\prod_{i=1}^kp_i^{e_i}$ và $n' = \prod_{i=1}^kp_i$. Theo [định lý nhị thức](../combinatorics/combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86), ta có
+    Đặt $n=\prod_{i=1}^kp_i^{e_i}$ và $n' = \prod_{i=1}^kp_i$. Theo [định lý nhị thức](../combinatorics/combination.md#định-lý-nhị-thức), ta có
     
     $$
     \sum_{d\mid n}\mu(d) = \sum_{d\mid n'}\mu(d) = \sum_{i=0}^k\binom{k}{i}(-1)^i = (1 + (-1))^k = [k = 0] = [n = 1].
@@ -59,7 +59,7 @@ $$
 
 Nó biến điều kiện nguyên tố cùng nhau thành một tổng theo hàm Möbius, thuận tiện cho các bước suy luận tiếp theo.
 
-<span id="&#27714;&#27861;"></span>
+<span id="cách-tính"></span>
 ### Cách tính
 
 Nếu cần tính giá trị hàm Möbius $\mu(n)$ cho một $n$ riêng lẻ, có thể dùng [phân tích thừa số nguyên tố](./pollard-rho.md). Chẳng hạn, khi $n$ không quá lớn, ta có thể tính $\mu(n)$ trong thời gian $O(\sqrt{n})$.
@@ -75,7 +75,7 @@ Nếu cần tính giá trị hàm Möbius $\mu(n)$ cho một $n$ riêng lẻ, c�
         --8<-- "docs/math/code/mobius/mobius-func-1.py:core"
         ```
 
-Nếu cần tiền xử lý giá trị $\mu(n)$ cho $n$ số nguyên dương đầu tiên, có thể dùng tính nhân tính của nó và tính bằng [sàng tuyến tính](./sieve.md#%E7%AD%9B%E6%B3%95%E6%B1%82%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0) trong thời gian $O(n)$.
+Nếu cần tiền xử lý giá trị $\mu(n)$ cho $n$ số nguyên dương đầu tiên, có thể dùng tính nhân tính của nó và tính bằng [sàng tuyến tính](./sieve.md#tính-hàm-möbius-bằng-sàng) trong thời gian $O(n)$.
 
 ???+ example "Cài đặt tham khảo"
     === "C++"
@@ -88,7 +88,7 @@ Nếu cần tiền xử lý giá trị $\mu(n)$ cho $n$ số nguyên dương đ�
         --8<-- "docs/math/code/mobius/mobius-func-2.py:core"
         ```
 
-<span id="&#33707;&#27604;&#20044;&#26031;&#21453;&#28436;"></span>
+<span id="đảo-möbius"></span>
 ## Đảo Möbius
 
 Ứng dụng quan trọng nhất của hàm Möbius là đảo Möbius.
@@ -178,7 +178,7 @@ Trong các tổng hàm số học liên quan đến quan hệ chia hết, đảo
     
     Do đó, với mọi hợp số $n$ có nhiều hơn một thừa số nguyên tố, ta đều có $\Lambda(n)=0$.
 
-<span id="&#25299;&#23637;&#24418;&#24335;"></span>
+<span id="các-dạng-mở-rộng"></span>
 ### Các dạng mở rộng
 
 Ngoài dạng cơ bản trên, đảo Möbius còn có một số dạng mở rộng thường gặp. Trước hết, có thể xét dạng tổng trên các bội.
@@ -329,7 +329,7 @@ $$
 
 Ở đẳng thức bên trái, giá trị $f(n)$ là tổng các giá trị của $g(n)$ tại mọi ước của $n$. Nếu hiểu $a\mid b$ là $a$ đứng trước $b$, thì $f(n)$ có thể được xem như một dạng tổng tiền tố của $g(n)$. Vì vậy, trong giới thi lập trình Trung Quốc, quá trình tính $\{f(k)\}_{k=1}^n$ từ $\{g(k)\}_{k=1}^n$ còn được gọi là **tổng tiền tố Dirichlet**, còn quá trình ngược lại được gọi là sai phân Dirichlet. Các phương pháp này chủ yếu xuất hiện khi cần tiền xử lý giá trị của một hàm số học tại $N$ điểm đầu tiên.
 
-Tiếp theo, xét cách tính tổng tiền tố Dirichlet. Nếu xem mỗi số nguyên tố là một chiều, đây chính là một dạng tổng tiền tố nhiều chiều. Nhắc lại [thuật toán tổng tiền tố theo từng chiều](../../basic/prefix-sum.md#%E9%80%90%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C) của tổng tiền tố nhiều chiều: lần lượt duyệt mọi chiều và cộng giá trị của mỗi vị trí sang vị trí kế tiếp theo chiều đó. Với hàm số học, điều này tương đương với việc duyệt các số nguyên tố $p$ theo thứ tự tăng dần, rồi cộng giá trị hàm tại $n$ sang $np$. Thứ tự duyệt này trùng với [sàng Eratosthenes](./sieve.md#%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95). Do đó, thuật toán này có thể tính tổng tiền tố Dirichlet của một dãy độ dài $n$ trong thời gian $O(n\log\log n)$. Tương tự, dùng sai phân theo từng chiều cũng có thể tính sai phân Dirichlet của dãy trong cùng độ phức tạp.
+Tiếp theo, xét cách tính tổng tiền tố Dirichlet. Nếu xem mỗi số nguyên tố là một chiều, đây chính là một dạng tổng tiền tố nhiều chiều. Nhắc lại [thuật toán tổng tiền tố theo từng chiều](../../basic/prefix-sum.md#tổng-tiền-tố-theo-từng-chiều) của tổng tiền tố nhiều chiều: lần lượt duyệt mọi chiều và cộng giá trị của mỗi vị trí sang vị trí kế tiếp theo chiều đó. Với hàm số học, điều này tương đương với việc duyệt các số nguyên tố $p$ theo thứ tự tăng dần, rồi cộng giá trị hàm tại $n$ sang $np$. Thứ tự duyệt này trùng với [sàng Eratosthenes](./sieve.md#sàng-eratosthenes). Do đó, thuật toán này có thể tính tổng tiền tố Dirichlet của một dãy độ dài $n$ trong thời gian $O(n\log\log n)$. Tương tự, dùng sai phân theo từng chiều cũng có thể tính sai phân Dirichlet của dãy trong cùng độ phức tạp.
 
 ???+ example "Cài đặt tham khảo"
     === "Tổng tiền tố Dirichlet"
@@ -344,7 +344,7 @@ Tiếp theo, xét cách tính tổng tiền tố Dirichlet. Nếu xem mỗi số
 
 Cách tính này có thể mở rộng sang tổng trên các bội (mở rộng 1), dạng tích (mở rộng 2), hoặc dạng dùng hàm hoàn toàn nhân tính thay cho hàm hằng (hệ quả của mở rộng 3).
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập-ví-dụ"></span>
 ## Bài tập ví dụ
 
 Phần này dùng các bài tập để minh họa cách ứng dụng đảo Möbius và một số kỹ thuật biến đổi thường gặp. Trước hết, hãy làm quen với kỹ thuật cơ bản để xử lý điều kiện ước chung lớn nhất trong tổng.
@@ -404,7 +404,7 @@ Phần này dùng các bài tập để minh họa cách ứng dụng đảo Mö
     --8<-- "docs/math/code/mobius/mobius_1.cpp"
     ```
 
-Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước chung, đồng thời dùng [sàng](./sieve.md#%E4%B8%80%E8%88%AC%E7%9A%84%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0) để tính giá trị của hàm nhân tính tổng quát.
+Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước chung, đồng thời dùng [sàng](./sieve.md#hàm-nhân-tính-tổng-quát) để tính giá trị của hàm nhân tính tổng quát.
 
 ???+ example "[SPOJ LCMSUM](https://www.spoj.com/problems/LCMSUM/)"
     Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, hãy tính:
@@ -787,7 +787,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     \end{cases}
     $$
     
-    [Hàm von Mangoldt](#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94) chính là logarit tự nhiên của nó. Sau khi có giá trị của $F(n)$, dùng trực tiếp phân khối số học phiên bản nhân là có thể tính giá trị của $g(n)$ trong thời gian $O(\sqrt{n})$, rồi từ đó tính được $f(n)$. Tổng độ phức tạp thời gian là $O(n)$.
+    [Hàm von Mangoldt](#đảo-möbius) chính là logarit tự nhiên của nó. Sau khi có giá trị của $F(n)$, dùng trực tiếp phân khối số học phiên bản nhân là có thể tính giá trị của $g(n)$ trong thời gian $O(\sqrt{n})$, rồi từ đó tính được $f(n)$. Tổng độ phức tạp thời gian là $O(n)$.
     
     Cần chú ý rằng khi tính các tích, ta thường phải dùng [định lý Euler](./fermat.md), nên modulo dùng cho phần số mũ không giống modulo đề bài cho.
 
@@ -812,14 +812,14 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     \end{aligned}
     $$
     
-    Trong đó $\Lambda(n)$ là [hàm von Mangoldt](#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94). Lấy mũ kết quả suy luận này, ta thu được kết quả của lời giải 1.
+    Trong đó $\Lambda(n)$ là [hàm von Mangoldt](#đảo-möbius). Lấy mũ kết quả suy luận này, ta thu được kết quả của lời giải 1.
 
 ??? note "Code tham khảo"
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_5.cpp"
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Luogu P3312 \[SDOI2014\] Number Table](https://www.luogu.com.cn/problem/P3312)
@@ -835,7 +835,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
 -   [AtCoder Grand Contest 038 C - LCMs](https://atcoder.jp/contests/agc038/tasks/agc038_c)
 -   [Codeforces 1139 D. Steps to One](https://codeforces.com/problemset/problem/1139/D)
 
-<span id="&#21442;&#32771;&#25991;&#29486;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 -   [Möbius function - Wikipedia](https://en.wikipedia.org/wiki/M%C3%B6bius_function)

@@ -289,7 +289,7 @@ $$
 A^k = p^e\Lambda + I 
 $$
 
-Do [định lý nhị thức](./combination.md#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86), ta có
+Do [định lý nhị thức](./combination.md#định-lý-nhị-thức), ta có
 
 $$
 A^{kp} = (p^e\Lambda + I)^p = I + \sum_{i=1}^p\binom{p}{i}(p^e\Lambda)^i \equiv I\pmod{p^{e+1}}. 
