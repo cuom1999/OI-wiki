@@ -5,17 +5,17 @@ Trang này đi từ ghép cặp hoàn hảo trọng số lớn nhất trên đ�
 ## Kiến thức chuẩn bị
 
 <span id="blossomhoa-blossom"></span>
-### Hoa (blossom)
+### Hoa
 
 Điểm khác nhau giữa ghép cặp trên đồ thị tổng quát và ghép cặp trên đồ thị hai phía là đồ thị có thể có chu trình lẻ. Chu trình chẵn có thể được xem như đồ thị hai phía.
 
-Cách xử lý của thuật toán blossom (Blossom algorithm) là khi gặp một chu trình lẻ thì co nó lại thành một **hoa (blossom)**, đồng thời đặt tất cả các đỉnh trong hoa thành đỉnh chẵn. Vì mọi đỉnh trên hoa đều có thể trở thành đỉnh chẵn, ta có thể co cả hoa trực tiếp thành một đỉnh chẵn. Lưu ý rằng một hoa có thể chứa các hoa khác.
+Cách xử lý của thuật toán blossom là khi gặp một chu trình lẻ thì co nó lại thành một **hoa**, đồng thời đặt tất cả các đỉnh trong hoa thành đỉnh chẵn. Vì mọi đỉnh trên hoa đều có thể trở thành đỉnh chẵn, ta có thể co cả hoa trực tiếp thành một đỉnh chẵn. Lưu ý rằng một hoa có thể chứa các hoa khác.
 
 Vấn đề này cũng có thể được chuyển thành quy hoạch tuyến tính và bài toán đối ngẫu, nhưng cần xử lý thêm đối với hoa.
 
-### Nhãn đỉnh (vertex labeling) và cạnh đẳng thức (equality edge)
+### Nhãn đỉnh và cạnh đẳng thức
 
-Định nghĩa $z_u$ là nhãn đỉnh (vertex labeling) của đỉnh $u$, có ý nghĩa giống nhãn đỉnh trong thuật toán $KM$. Định nghĩa cạnh $e(u,v)$ là "cạnh đẳng thức" khi và chỉ khi tổng nhãn của đỉnh $u$ và đỉnh $v$ bằng trọng số của cạnh $e$ ($z_u + z_v = w(e)$). Khi đó nhãn của cạnh là $z_e = z_u + z_v - w(e) = 0$.
+Định nghĩa $z_u$ là nhãn đỉnh của đỉnh $u$, có ý nghĩa giống nhãn đỉnh trong thuật toán $KM$. Định nghĩa cạnh $e(u,v)$ là "cạnh đẳng thức" khi và chỉ khi tổng nhãn của đỉnh $u$ và đỉnh $v$ bằng trọng số của cạnh $e$ ($z_u + z_v = w(e)$). Khi đó nhãn của cạnh là $z_e = z_u + z_v - w(e) = 0$.
 
 ## Quy hoạch tuyến tính cho ghép cặp hoàn hảo trọng số lớn nhất trên đồ thị tổng quát
 
@@ -44,7 +44,7 @@ $$
     \end{aligned}
     $$
 
-Sau đó, dùng nguyên thủy - đối ngẫu (Primal-Dual) để chuyển bài toán thành bài toán đối ngẫu.
+Sau đó, dùng phương pháp nguyên thủy - đối ngẫu để chuyển bài toán thành bài toán đối ngẫu.
 
 ???+ note "Bài toán đối ngẫu"
     $$
@@ -98,21 +98,21 @@ Như vậy sẽ đồng thời sinh ra nhiều cây luân phiên.
 
 Thuật toán này có thể chia thành bốn bước.
 
-1.  GROW (mở rộng bằng cạnh đẳng thức): dùng "cạnh đẳng thức" để xây dựng cây luân phiên.
-2.  AUGMENT (tăng cường): tìm đường tăng cường và mở rộng ghép cặp.
-3.  SHRINK (co hoa): co hoa thành một đỉnh.
-4.  EXPAND (bung hoa): tách hoa ra.
+1.  Mở rộng bằng cạnh đẳng thức: dùng "cạnh đẳng thức" để xây dựng cây luân phiên.
+2.  Tăng cường: tìm đường tăng cường và mở rộng ghép cặp.
+3.  Co hoa: co hoa thành một đỉnh.
+4.  Bung hoa: tách hoa ra.
 
-![Bốn bước grow, augment, shrink và expand của thuật toán](images/general-weight-match-1.png)
+![Bốn bước mở rộng, tăng cường, co hoa và bung hoa của thuật toán](images/general-weight-match-1.png)
 
-Trong giai đoạn AUGMENT, vì mọi đỉnh chưa ghép cặp nằm trên các cây luân phiên khác nhau, nên khi hai đỉnh chẵn của hai cây luân phiên được nối với nhau trong lúc tăng cường, điều đó có nghĩa là đã tìm được một đường tăng cường.
+Trong giai đoạn tăng cường, vì mọi đỉnh chưa ghép cặp nằm trên các cây luân phiên khác nhau, nên khi hai đỉnh chẵn của hai cây luân phiên được nối với nhau trong lúc tăng cường, điều đó có nghĩa là đã tìm được một đường tăng cường.
 
 ### Không tìm được cạnh đẳng thức để mở rộng
 
-Giống như trong đồ thị hai phía, cũng có trường hợp không tìm được "cạnh đẳng thức" để mở rộng. Khi đó cần điều chỉnh nhãn đỉnh (vertex labeling).
+Giống như trong đồ thị hai phía, cũng có trường hợp không tìm được "cạnh đẳng thức" để mở rộng. Khi đó cần điều chỉnh nhãn đỉnh.
 
 <span id="điều-chỉnh-vertex-labeling"></span>
-### Điều chỉnh nhãn đỉnh (vertex labeling)
+### Điều chỉnh nhãn đỉnh
 
 Nhãn đỉnh vẫn phải duy trì tính chất lớn hơn hoặc bằng, các "cạnh đẳng thức" đã có không được thay đổi, đồng thời cần làm cho $z_B$ nhỏ nhất có thể.
 
@@ -146,7 +146,7 @@ z_{B^-} - &= 2d \\
 \end{aligned}
 $$
 
-Nếu xuất hiện $z_B=0(d=d3)$, để tránh trường hợp $z_B<0$, cần bung hoa này ra (EXPAND).
+Nếu xuất hiện $z_B=0(d=d3)$, để tránh trường hợp $z_B<0$, cần bung hoa này ra.
 Sau khi bung hoa, chỉ giữ lại đường luân phiên bên trong hoa, và đặt các đỉnh trong hoa không nằm trên đường luân phiên thành chưa thăm ($\varnothing$).
 
 Như vậy ta tạo ra một hoặc nhiều cạnh đẳng thức, giữ nguyên các cạnh đẳng thức đã có, vẫn duy trì tính chất $z_e\geq0:\forall e\in E$, đồng thời chỉ tăng $z_B$ ở mức tối thiểu, rồi có thể tiếp tục tìm đường tăng cường.
@@ -545,7 +545,7 @@ int get_lca(int u, int v) {
               lab[b] -= d * 2;
           }
         }
-        q = queue<int>();  // Xóa rỗng queue
+        q = queue<int>();  // Xóa rỗng hàng đợi
         for (int x = 1; x <= n_x; ++x) {
           // Kiểm tra xem có sinh ra đường tăng cường hay không
           if (st[x] == x && slack[x] && st[slack[x]] != x &&
@@ -553,7 +553,7 @@ int get_lca(int u, int v) {
             if (on_found_edge(g[slack[x]][x])) return true;
         }
         for (int b = n + 1; b <= n_x; ++b) {
-          // Thao tác EXPAND, bung mỗi hoa lẻ có lab[b]=0
+          // Thao tác bung hoa: bung mỗi hoa lẻ có lab[b]=0
           if (st[b] == b && S[b] == 1 && lab[b] == 0) expand_blossom(b);
         }
       }

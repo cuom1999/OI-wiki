@@ -1,12 +1,12 @@
 author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, ShizuhaAki, pukui
 
-## Thuật toán blossom (Blossom algorithm)
+## Thuật toán blossom
 
-Thuật toán blossom (Blossom algorithm, còn được gọi là cây hoa) có thể giải bài toán ghép cặp lớn nhất trong đồ thị tổng quát (maximum cardinality matching). Thuật toán này được Jack Edmonds đề xuất vào năm 1961.
+Thuật toán blossom, còn được gọi là cây hoa, có thể giải bài toán ghép cặp lớn nhất trong đồ thị tổng quát. Thuật toán này được Jack Edmonds đề xuất vào năm 1961.
 Sau một số sửa đổi, nó cũng có thể giải bài toán ghép cặp trọng số lớn nhất trong đồ thị tổng quát.
 Đây là thuật toán đầu tiên đưa ra chứng minh rằng bài toán ghép cặp lớn nhất có độ phức tạp đa thức.
 
-Điểm khác biệt giữa ghép cặp trong đồ thị tổng quát và ghép cặp trong đồ thị hai phía (bipartite matching) là đồ thị có thể chứa chu trình lẻ.
+Điểm khác biệt giữa ghép cặp trong đồ thị tổng quát và ghép cặp trong đồ thị hai phía là đồ thị có thể chứa chu trình lẻ.
 
 ![Chu trình lẻ gây xung đột khi đảo trạng thái cạnh ghép cặp](./images/general-matching-1.png)
 
@@ -96,11 +96,11 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
     template <typename T>
     vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       std::mt19937 rng(std::random_device{}());
-      vector<int> match(g.n, -1);   // ghep cap
-      vector<int> aux(g.n, -1);     // dau thoi gian
-      vector<int> label(g.n);       // "o" hoac "i"
-      vector<int> orig(g.n);        // goc hoa
-      vector<int> parent(g.n, -1);  // nut cha
+      vector<int> match(g.n, -1);   // ghép cặp
+      vector<int> aux(g.n, -1);     // dấu thời gian
+      vector<int> label(g.n);       // "o" hoặc "i"
+      vector<int> orig(g.n);        // gốc hoa
+      vector<int> parent(g.n, -1);  // nút cha
       queue<int> q;
       int aux_time = -1;
     
@@ -115,7 +115,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
             if (match[v] == -1) {
               v = -1;
             } else {
-              v = orig[parent[match[v]]];  // tiep tuc tim tu nut cha cua dinh ghep cap
+              v = orig[parent[match[v]]];  // tiếp tục tìm từ nút cha của đỉnh ghép cặp
             }
           }
           swap(v, u);
@@ -152,7 +152,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
           q.pop();
         }
         q.push(root);
-        // Dat diem ban dau la "o"; o day dung "0" thay cho "o", "1" thay cho "i"
+        // Đặt điểm ban đầu là "o"; ở đây dùng "0" thay cho "o", "1" thay cho "i"
         label[root] = 0;
         while (!q.empty()) {
           int v = q.front();
@@ -167,7 +167,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
                 augment(u);          // tìm đường tăng
                 return true;
               }
-              // Tìm thấy đỉnh đã ghép cặp; đưa đỉnh ghép với nó vào queue để mở rộng cây xen kẽ
+              // Tìm thấy đỉnh đã ghép cặp; đưa đỉnh ghép với nó vào hàng đợi để mở rộng cây xen kẽ
               label[match[u]] = 0;
               q.push(match[u]);
               continue;

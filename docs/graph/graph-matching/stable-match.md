@@ -1,6 +1,6 @@
 ## Mở đầu
 
-**Bài toán ghép cặp ổn định** (stable matching problem) là một bài toán kinh điển trong tối ưu tổ hợp và lý thuyết trò chơi hợp tác. So với các bài toán ghép cặp đồ thị truyền thống, ghép cặp ổn định đưa thêm các ràng buộc về sở thích cá nhân và tính ổn định, khiến thiết kế thuật toán phụ thuộc nhiều hơn vào thứ tự ưu tiên thay vì chỉ vào cấu trúc đồ thị. Trong mô hình của bài toán ghép cặp ổn định, mỗi cá thể có sở thích đối với các đối tượng ghép cặp tiềm năng, và bài toán mong muốn thiết lập một quan hệ ghép cặp ổn định giữa họ. Trong một ghép cặp ổn định, không tồn tại bất kỳ nhóm cá thể nào có thể cùng rời bỏ kết quả ghép cặp hiện tại vì họ có lựa chọn tốt hơn. Ghép cặp ổn định và các bài toán liên quan được ứng dụng rộng rãi trong thị trường lao động, tuyển sinh, phân bổ tài nguyên y tế và nhiều bối cảnh khác.
+**Bài toán ghép cặp ổn định** là một bài toán kinh điển trong tối ưu tổ hợp và lý thuyết trò chơi hợp tác. So với các bài toán ghép cặp đồ thị truyền thống, ghép cặp ổn định đưa thêm các ràng buộc về sở thích cá nhân và tính ổn định, khiến thiết kế thuật toán phụ thuộc nhiều hơn vào thứ tự ưu tiên thay vì chỉ vào cấu trúc đồ thị. Trong mô hình của bài toán ghép cặp ổn định, mỗi cá thể có sở thích đối với các đối tượng ghép cặp tiềm năng, và bài toán mong muốn thiết lập một quan hệ ghép cặp ổn định giữa họ. Trong một ghép cặp ổn định, không tồn tại bất kỳ nhóm cá thể nào có thể cùng rời bỏ kết quả ghép cặp hiện tại vì họ có lựa chọn tốt hơn. Ghép cặp ổn định và các bài toán liên quan được ứng dụng rộng rãi trong thị trường lao động, tuyển sinh, phân bổ tài nguyên y tế và nhiều bối cảnh khác.
 
 Trong lập trình thi đấu, bài toán ghép cặp ổn định thường gặp nhất là ghép cặp một-một trong thị trường hai phía, tức bài toán hôn nhân ổn định. Bài viết này tập trung giới thiệu bài toán hôn nhân ổn định và thuật toán của nó.
 
@@ -15,7 +15,7 @@ Thị trường ghép cặp gồm một số nam $M$ và một số nữ $W$. M�
 -   Với mỗi nam $m\in M$, tồn tại một thứ tự toàn phần nghiêm ngặt $\preceq_m$ trên tập $W\cup\{m\}$;
 -   Với mỗi nữ $w\in W$, tồn tại một thứ tự toàn phần nghiêm ngặt $\preceq_w$ trên tập $M\cup\{w\}$.
 
-Ngoài việc so sánh giữa những người khác giới, mỗi người còn đưa chính mình vào thứ tự ưu tiên này. Điều đó biểu thị rằng người này chỉ chấp nhận ghép cặp với những người khác giới được họ xếp cao hơn chính mình; các đối tượng này được gọi là **chấp nhận được** (acceptable). Rõ ràng, thứ tự ưu tiên giữa các đối tượng không chấp nhận được không còn quan trọng; về nguyên tắc, chỉ cần đưa ra thứ tự ưu tiên giữa các đối tượng chấp nhận được. Vì vậy, các sở thích có tồn tại đối tượng không chấp nhận được cũng được gọi là sở thích với danh sách không đầy đủ (preferences with incomplete lists).
+Ngoài việc so sánh giữa những người khác giới, mỗi người còn đưa chính mình vào thứ tự ưu tiên này. Điều đó biểu thị rằng người này chỉ chấp nhận ghép cặp với những người khác giới được họ xếp cao hơn chính mình; các đối tượng này được gọi là **chấp nhận được**. Rõ ràng, thứ tự ưu tiên giữa các đối tượng không chấp nhận được không còn quan trọng; về nguyên tắc, chỉ cần đưa ra thứ tự ưu tiên giữa các đối tượng chấp nhận được. Vì vậy, các sở thích có tồn tại đối tượng không chấp nhận được cũng được gọi là sở thích với danh sách không đầy đủ.
 
 ???+ example "Ví dụ"
     Giả sử $m$ là một nam, $w_1,w_2,w_3$ là ba nữ, và có quan hệ ưu tiên $w_1\prec_m m \prec_m w_2\prec_m w_3$. Khi đó, nam $m$ thích độc thân hơn là ghép cặp với nữ $w_1$; thích ghép cặp với nữ $w_2$ hơn là độc thân; và thích ghép cặp với nữ $w_3$ hơn là ghép cặp với nữ $w_2$. Đối với nam $m$, nữ $w_1$ là không chấp nhận được, còn nữ $w_2,w_3$ là chấp nhận được.
@@ -27,16 +27,16 @@ Một **ghép cặp** $\mu:M\cup W\rightarrow M\cup W$ trên thị trường c�
 
 Trong một ghép cặp $\mu$, có thể tồn tại hai loại yếu tố gây bất ổn:
 
--   Nếu tồn tại một cá thể $i\in M\cup W$ sao cho $\mu(i)\prec_i i$, tức là so với đối tượng ghép cặp hiện tại, cá thể $i$ thà độc thân hơn, thì $i$ được gọi là **cá thể chặn** (blocking individual) của ghép cặp $\mu$.
--   Nếu tồn tại một cặp khác giới $m\in M$ và $w\in W$ sao cho $\mu(m)\prec_m w$ và $\mu(w)\prec_w m$, tức là so với đối tượng hiện tại của mỗi người, nam $m$ và nữ $w$ đều muốn ở với nhau hơn, thì $(m,w)$ được gọi là **cặp chặn** (blocking pair) của ghép cặp $\mu$.
+-   Nếu tồn tại một cá thể $i\in M\cup W$ sao cho $\mu(i)\prec_i i$, tức là so với đối tượng ghép cặp hiện tại, cá thể $i$ thà độc thân hơn, thì $i$ được gọi là **cá thể chặn** của ghép cặp $\mu$.
+-   Nếu tồn tại một cặp khác giới $m\in M$ và $w\in W$ sao cho $\mu(m)\prec_m w$ và $\mu(w)\prec_w m$, tức là so với đối tượng hiện tại của mỗi người, nam $m$ và nữ $w$ đều muốn ở với nhau hơn, thì $(m,w)$ được gọi là **cặp chặn** của ghép cặp $\mu$.
 
-Nếu một ghép cặp $\mu$ không có cá thể chặn cũng không có cặp chặn, thì $\mu$ được gọi là **ổn định** (stable). Trong một ghép cặp ổn định, không ai có thể phá vỡ trạng thái hiện tại: người độc thân không tìm được ai sẵn lòng ở với mình; người đã ghép cặp không muốn trở lại độc thân, cũng không tìm được ai sẵn lòng rời bỏ đối tượng hiện tại để đi với mình.
+Nếu một ghép cặp $\mu$ không có cá thể chặn cũng không có cặp chặn, thì $\mu$ được gọi là **ổn định**. Trong một ghép cặp ổn định, không ai có thể phá vỡ trạng thái hiện tại: người độc thân không tìm được ai sẵn lòng ở với mình; người đã ghép cặp không muốn trở lại độc thân, cũng không tìm được ai sẵn lòng rời bỏ đối tượng hiện tại để đi với mình.
 
 Bài toán ghép cặp ổn định đặt ra câu hỏi: với bất kỳ bộ thứ tự ưu tiên cho trước nào, liệu luôn tồn tại một ghép cặp ổn định hay không? Nếu có, làm thế nào để tìm được một ghép cặp như vậy?
 
 ### Thuật toán Gale–Shapley
 
-Gale và Shapley đã đề xuất **thuật toán chấp nhận trì hoãn** (deferred acceptance algorithm) vào năm 1962, có thể tìm một ghép cặp ổn định cho bất kỳ bộ thứ tự ưu tiên cho trước nào. Do đó, ghép cặp ổn định luôn tồn tại.
+Gale và Shapley đã đề xuất **thuật toán chấp nhận trì hoãn** vào năm 1962, có thể tìm một ghép cặp ổn định cho bất kỳ bộ thứ tự ưu tiên cho trước nào. Do đó, ghép cặp ổn định luôn tồn tại.
 
 Thuật toán Gale–Shapley có hai phiên bản đối xứng, lần lượt là phiên bản nam cầu hôn và phiên bản nữ cầu hôn. Lấy thuật toán Gale–Shapley nam cầu hôn làm ví dụ, quy trình thuật toán như sau:
 
@@ -58,7 +58,7 @@ Cài đặt tham khảo như sau:
 
 Ghép cặp ổn định có những tính chất lý thuyết tốt. Trước hết, thuật toán Gale–Shapley chứng minh một cách xây dựng rằng ghép cặp ổn định luôn tồn tại.
 
-???+ note "Định lý 1 (Gale and Shapley, 1962)"
+???+ note "Định lý 1 (Gale và Shapley, 1962)"
     Kết quả của thuật toán Gale–Shapley là một ghép cặp ổn định. Do đó, ghép cặp ổn định tồn tại.
 
 ??? note "Chứng minh"
@@ -71,7 +71,7 @@ Ghép cặp ổn định có những tính chất lý thuyết tốt. Trước h
 
 Trong thuật toán Gale–Shapley, có thể để nam cầu hôn hoặc nữ cầu hôn. Nói chung, hai phiên bản này của thuật toán Gale–Shapley không cho cùng một ghép cặp ổn định. Thực tế, ghép cặp ổn định do thuật toán Gale–Shapley nam cầu hôn thu được là ghép cặp có lợi nhất cho nam trong tất cả các ghép cặp ổn định; chiều ngược lại cũng đúng.
 
-???+ note "Định lý 2 (Gale and Shapley, 1962)"
+???+ note "Định lý 2 (Gale và Shapley, 1962)"
     Gọi $\mu_M$ và $\mu_W$ lần lượt là các ghép cặp ổn định thu được từ thuật toán Gale–Shapley nam cầu hôn và nữ cầu hôn. Với mọi ghép cặp ổn định $\mu$, ta có $\mu(m)\preceq_m\mu_M(m)$ với mọi $m\in M$, và $\mu(w)\preceq_w\mu_W(w)$ với mọi $w\in W$.
 
 ??? note "Chứng minh"
@@ -98,7 +98,7 @@ Phép phân rã này dựa trên bổ đề sau:
 
 Bổ đề này cho thấy hai tập thứ tự bộ phận $(\mathcal S,\preceq_M)$ và $(\mathcal S,\preceq_W)$ là [đối ngẫu](../../math/order-theory.md#đối-ngẫu). Hơn nữa, dưới mỗi thứ tự bộ phận, tập $\mathcal S$ đều tạo thành một [dàn](../../math/order-theory.md#tập-định-hướng-và-dàn). Vì $\mathcal S$ là hữu hạn, hai dàn này chắc chắn có phần tử lớn nhất và phần tử nhỏ nhất. Hai phần tử cực trị này chính là các ghép cặp ổn định thu được từ hai phiên bản của thuật toán Gale–Shapley đã nói ở trên.
 
-???+ note "Định lý 3 (Conway and Knuth, 1976)"
+???+ note "Định lý 3 (Conway và Knuth, 1976)"
     Các tập thứ tự bộ phận $(\mathcal S,\preceq_M)$ và $(\mathcal S,\preceq_W)$ là hai dàn đối ngẫu của nhau. Hơn nữa, $\mu_M$ và $\mu_W$ lần lượt là phần tử lớn nhất và nhỏ nhất của $(\mathcal S,\preceq_M)$, đồng thời lần lượt là phần tử nhỏ nhất và lớn nhất của $(\mathcal S,\preceq_W)$.
 
 ??? note "Chứng minh"
@@ -108,7 +108,7 @@ Bổ đề này cho thấy hai tập thứ tự bộ phận $(\mathcal S,\preceq
 
 Cuối cùng, trong tất cả các ghép cặp ổn định, tập nam và nữ chưa được ghép cặp là cố định.
 
-???+ note "Định lý 4 (McVitie and Wilson, 1970)"
+???+ note "Định lý 4 (McVitie và Wilson, 1970)"
     Gọi $\mu_1$ và $\mu_2$ là hai ghép cặp ổn định. Khi đó, tập điểm bất động của $\mu_1$ và $\mu_2$ là như nhau.
 
 ??? note "Chứng minh"
@@ -122,17 +122,17 @@ Ghép cặp ổn định và các bài toán tương tự còn xuất hiện tro
 
 ### Bài toán tuyển sinh đại học
 
-Nếu nới lỏng ràng buộc ghép cặp một-một trong bài toán hôn nhân ổn định và cho phép ghép cặp nhiều-một, ta thu được **bài toán tuyển sinh đại học** (college admissions problem). Khi đó, một trường đại học có thể tuyển nhiều sinh viên, miễn là không vượt quá chỉ tiêu tuyển sinh; nhưng mỗi sinh viên vẫn chỉ được phép vào học nhiều nhất một trường. Các tình huống tương tự cũng xuất hiện trong tuyển dụng công ty, bệnh viện tuyển bác sĩ nội trú và các bối cảnh khác.
+Nếu nới lỏng ràng buộc ghép cặp một-một trong bài toán hôn nhân ổn định và cho phép ghép cặp nhiều-một, ta thu được **bài toán tuyển sinh đại học**. Khi đó, một trường đại học có thể tuyển nhiều sinh viên, miễn là không vượt quá chỉ tiêu tuyển sinh; nhưng mỗi sinh viên vẫn chỉ được phép vào học nhiều nhất một trường. Các tình huống tương tự cũng xuất hiện trong tuyển dụng công ty, bệnh viện tuyển bác sĩ nội trú và các bối cảnh khác.
 
-Với loại bài toán này, thuật toán Gale–Shapley vẫn áp dụng được. Chẳng hạn, trong thuật toán Gale–Shapley do sinh viên nộp đơn, trường đại học có thể duy trì một danh sách chờ (waitlist) có độ dài không vượt quá chỉ tiêu; mỗi khi số lượng đơn vượt quá chỉ tiêu, chỉ cần từ chối đơn của sinh viên kém nhất. Những thảo luận ở trên về tính chất của ghép cặp ổn định vẫn áp dụng cho bối cảnh này. Đặc biệt, phiên bản tương ứng của định lý 4 là: trong tất cả các ghép cặp ổn định, số sinh viên mà mỗi trường tuyển được là cố định. Điều này còn được gọi là **định lý bệnh viện nông thôn** (rural hospitals theorem). Tên gọi này xuất phát từ hệ quả rằng dù thay đổi cơ chế ghép cặp thế nào, miễn là kết quả thu được ổn định, những bệnh viện nông thôn vốn không tuyển đủ bác sĩ sẽ mãi không tuyển đủ người.
+Với loại bài toán này, thuật toán Gale–Shapley vẫn áp dụng được. Chẳng hạn, trong thuật toán Gale–Shapley do sinh viên nộp đơn, trường đại học có thể duy trì một danh sách chờ có độ dài không vượt quá chỉ tiêu; mỗi khi số lượng đơn vượt quá chỉ tiêu, chỉ cần từ chối đơn của sinh viên kém nhất. Những thảo luận ở trên về tính chất của ghép cặp ổn định vẫn áp dụng cho bối cảnh này. Đặc biệt, phiên bản tương ứng của định lý 4 là: trong tất cả các ghép cặp ổn định, số sinh viên mà mỗi trường tuyển được là cố định. Điều này còn được gọi là **định lý bệnh viện nông thôn**. Tên gọi này xuất phát từ hệ quả rằng dù thay đổi cơ chế ghép cặp thế nào, miễn là kết quả thu được ổn định, những bệnh viện nông thôn vốn không tuyển đủ bác sĩ sẽ mãi không tuyển đủ người.
 
 ### Bài toán bạn cùng phòng ổn định
 
-Nếu nới lỏng điều kiện trong bài toán hôn nhân ổn định rằng chỉ có thể ghép cặp với người khác giới, ta thu được **bài toán bạn cùng phòng ổn định** (stable roommates problem). Khi đó, ban đầu chỉ có một số sinh viên và cần ghép họ thành từng cặp bạn cùng phòng. Với loại bài toán này, ghép cặp ổn định không nhất thiết tồn tại. Irving đã đề xuất vào năm 1985 một thuật toán giải bài toán này trong thời gian $O(n^2)$.
+Nếu nới lỏng điều kiện trong bài toán hôn nhân ổn định rằng chỉ có thể ghép cặp với người khác giới, ta thu được **bài toán bạn cùng phòng ổn định**. Khi đó, ban đầu chỉ có một số sinh viên và cần ghép họ thành từng cặp bạn cùng phòng. Với loại bài toán này, ghép cặp ổn định không nhất thiết tồn tại. Irving đã đề xuất vào năm 1985 một thuật toán giải bài toán này trong thời gian $O(n^2)$.
 
 ### Bài toán phân bổ nhà ở
 
-Trong bài toán hôn nhân ổn định, hai nhóm cá thể có sở thích đối với nhau, nên đó là bài toán ghép cặp hai phía. Ngoài ra, cũng có thể xét bài toán ghép cặp một phía. Một bối cảnh thường gặp là **bài toán phân bổ nhà ở** (house allocation problem). Có $n$ cư dân, mỗi người sở hữu một căn nhà. Mỗi người có một sở thích nghiêm ngặt đối với tất cả các căn nhà. Bây giờ cần phân bổ lại các căn nhà này cho các cư dân, với yêu cầu mỗi cư dân không nhận căn nhà tệ hơn căn ban đầu của mình, và không tồn tại bất kỳ nhóm cư dân nào có thể tự trao đổi nhà với nhau để thu được kết quả hài lòng hơn. Bài toán này có thể được giải bằng thuật toán Top Trading Cycle trong thời gian $O(n^2)$. Các bài toán thuộc loại này cũng xuất hiện trong bối cảnh ghép thận và những tình huống tương tự.
+Trong bài toán hôn nhân ổn định, hai nhóm cá thể có sở thích đối với nhau, nên đó là bài toán ghép cặp hai phía. Ngoài ra, cũng có thể xét bài toán ghép cặp một phía. Một bối cảnh thường gặp là **bài toán phân bổ nhà ở**. Có $n$ cư dân, mỗi người sở hữu một căn nhà. Mỗi người có một sở thích nghiêm ngặt đối với tất cả các căn nhà. Bây giờ cần phân bổ lại các căn nhà này cho các cư dân, với yêu cầu mỗi cư dân không nhận căn nhà tệ hơn căn ban đầu của mình, và không tồn tại bất kỳ nhóm cư dân nào có thể tự trao đổi nhà với nhau để thu được kết quả hài lòng hơn. Bài toán này có thể được giải bằng thuật toán Top Trading Cycle trong thời gian $O(n^2)$. Các bài toán thuộc loại này cũng xuất hiện trong bối cảnh ghép thận và những tình huống tương tự.
 
 ## Bài tập
 
