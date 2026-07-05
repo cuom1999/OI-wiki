@@ -1,6 +1,6 @@
 Kiến thức cần có: [Giới thiệu về lý thuyết trò chơi](./intro.md)
 
-Bài viết này thảo luận về [trò chơi tổng bằng không](./intro.md#%E9%9B%B6%E5%92%8C%E9%9D%9E%E9%9B%B6%E5%92%8C%E5%8D%9A%E5%BC%88) hai người.
+Bài viết này thảo luận về [trò chơi tổng bằng không](./intro.md#trò-chơi-tổng-bằng-không-không-tổng-bằng-không) hai người.
 
 Trong trò chơi tổng bằng không, tổng lợi ích của hai người chơi luôn bằng không; lợi ích của một bên tất yếu tương ứng với tổn thất của bên còn lại. Trò chơi tổng bằng không có thể xem là một trường hợp đặc biệt của trò chơi tổng hằng. Tuy nhiên, bất kỳ trò chơi tổng hằng nào cũng có thể được chuyển đổi tương đương thành trò chơi tổng bằng không bằng cách cộng hoặc trừ cùng một hằng số vào toàn bộ lợi ích của một bên, vì vậy ta chỉ cần xét trò chơi tổng bằng không.
 
@@ -48,11 +48,11 @@ Khi áp dụng thuật toán này vào bài toán thực tế, thường có cá
 
     Trong đó, $a_{s\to t}$ biểu thị một hành động có thể chuyển trạng thái từ $s$ sang $t$; nếu có nhiều hành động như vậy, lấy hành động có lợi ích $w(a)$ lớn nhất.
 
--   Mọi trò chơi tổ hợp công bằng đều là trò chơi tuần tự tổng bằng không; chỉ cần đặt lợi ích của bên thắng và bên thua trong trò chơi lần lượt là $+1$ và $-1$. Khi đó, truy hồi của hàm lợi ích $V(\cdot)$ thực chất chính là [bổ đề](./impartial-game.md#%E5%8D%9A%E5%BC%88%E5%9B%BE%E5%92%8C%E7%8A%B6%E6%80%81) dùng để xác định trạng thái thắng chắc và trạng thái thua chắc.
+-   Mọi trò chơi tổ hợp công bằng đều là trò chơi tuần tự tổng bằng không; chỉ cần đặt lợi ích của bên thắng và bên thua trong trò chơi lần lượt là $+1$ và $-1$. Khi đó, truy hồi của hàm lợi ích $V(\cdot)$ thực chất chính là [bổ đề](./impartial-game.md#đồ-thị-trò-chơi-và-trạng-thái) dùng để xác định trạng thái thắng chắc và trạng thái thua chắc.
 
     Dạng bài này còn có một biến thể thường gặp: tìm số lượt ít nhất mà bên thắng cần dùng, và số lượt nhiều nhất mà bên thua có thể cầm cự. Để làm điều đó, chỉ cần chú ý rằng khi bắt đầu BFS từ trạng thái kết thúc và dùng bổ đề để xác định trạng thái thắng chắc, thua chắc, số vòng BFS tại thời điểm trạng thái được xác định chính là số lượt cần tìm. Lý do là một trạng thái được xác định là thắng chắc chỉ cần có một trạng thái kế tiếp là thua chắc, nên nó luôn được chuyển từ trạng thái thua chắc có số vòng nhỏ nhất trong các trạng thái kế tiếp; còn một trạng thái được xác định là thua chắc cần mọi trạng thái kế tiếp đều là thắng chắc, nên nó luôn được chuyển từ trạng thái thắng chắc có số vòng lớn nhất trong các trạng thái kế tiếp.
 
-    Phương pháp này cũng có thể mở rộng cho [trò chơi trên đồ thị có hướng](./impartial-game.md#%E6%9C%89%E5%90%91%E5%9B%BE%E6%B8%B8%E6%88%8F) nói chung.
+    Phương pháp này cũng có thể mở rộng cho [trò chơi trên đồ thị có hướng](./impartial-game.md#trò-chơi-trên-đồ-thị-có-hướng) nói chung.
 
 <span id="ví-dụ"></span>
 ### Ví dụ
@@ -151,7 +151,7 @@ $$
 w_+ = \min_{a_2\in A_2}\max_{a_1\in A_1} v(a_1,a_2)
 $$
 
-Vì người chơi $1$ quan sát được hành động của người chơi $2$, đây nên là kết quả tốt nhất mà người chơi $1$ có thể đạt được. Người chơi $1$ nên kỳ vọng rằng trong trò chơi thực tế, lợi ích đạt được là $w\in[w_-,w_+]$. Mặc dù bất đẳng thức $w_-\le w_+$ luôn đúng (chứng minh xem tại [định lý đối ngẫu yếu](../linear-programming.md#%E5%AF%B9%E5%81%B6%E5%8E%9F%E7%90%86)), nhưng vì dấu bằng chưa chắc xảy ra, chỉ dùng phương pháp phân tích của trò chơi tuần tự thì nói chung không thể xác định duy nhất kết quả trò chơi.
+Vì người chơi $1$ quan sát được hành động của người chơi $2$, đây nên là kết quả tốt nhất mà người chơi $1$ có thể đạt được. Người chơi $1$ nên kỳ vọng rằng trong trò chơi thực tế, lợi ích đạt được là $w\in[w_-,w_+]$. Mặc dù bất đẳng thức $w_-\le w_+$ luôn đúng (chứng minh xem tại [định lý đối ngẫu yếu](../linear-programming.md#nguyên-lý-đối-ngẫu)), nhưng vì dấu bằng chưa chắc xảy ra, chỉ dùng phương pháp phân tích của trò chơi tuần tự thì nói chung không thể xác định duy nhất kết quả trò chơi.
 
 ???+ example "Ví dụ (tiếp)"
     Trong trò chơi kéo búa bao, nếu có thứ tự ra tay trước sau, người đi trước chắc chắn thua, người đi sau chắc chắn thắng. Chuyển sang ngôn ngữ toán học, đó chính là bất đẳng thức sau:
@@ -219,7 +219,7 @@ Sau khi đưa vào chiến lược hỗn hợp, kết quả thu được từ t�
     \end{aligned}
     $$
     
-    Bài toán này hiển nhiên khả thi và có nghiệm tối ưu. Theo [nguyên lý đối ngẫu](../linear-programming.md#%E5%AF%B9%E5%81%B6%E5%8E%9F%E7%90%86), nghiệm tối ưu của nó bằng nghiệm tối ưu của bài toán đối ngẫu:
+    Bài toán này hiển nhiên khả thi và có nghiệm tối ưu. Theo [nguyên lý đối ngẫu](../linear-programming.md#nguyên-lý-đối-ngẫu), nghiệm tối ưu của nó bằng nghiệm tối ưu của bài toán đối ngẫu:
     
     $$
     (D) \qquad

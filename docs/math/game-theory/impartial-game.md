@@ -11,7 +11,7 @@ Cuối cùng, bài viết giới thiệu ngắn gọn Nim luật ngược. Trò 
 ???+ info "\"Trạng thái\", \"cục diện\" và \"trò chơi\""
     Bài viết sẽ dùng xen kẽ ba thuật ngữ này. Trong lý thuyết trò chơi, trạng thái (state) của trò chơi thường bao gồm mọi thông tin có thể liên quan tới trò chơi tính đến một thời điểm nào đó. Trong trường hợp tổng quát, trạng thái trò chơi thường bao gồm các hành động đã qua của hai người chơi, các giá trị ngẫu nhiên đã được hiện thực hóa, nội dung thông tin mà hai bên biết, v.v. Cục diện (position) không hẳn là thuật ngữ chuẩn trong lý thuyết trò chơi; nó thường chỉ tình thế mà hai người chơi đang đối mặt tại một thời điểm, chẳng hạn vị trí các quân trong trò chơi cờ. Riêng với trò chơi tổ hợp công bằng, hoặc rộng hơn là trò chơi tổng bằng không, xác định và có thông tin hoàn hảo, trò chơi không có tính ngẫu nhiên, đồng thời tập hành động tương lai và hàm lợi ích của người chơi đều không phụ thuộc vào đường đi lịch sử dẫn tới cục diện hiện tại, tức các hành vi trước đó của hai bên. Do đó trạng thái (state) và cục diện (position) không khác nhau, và cả hai đều có thể xem là một đỉnh (node) trên đồ thị trò chơi. Vì một trò chơi (game) luôn có thể được mô tả bằng cục diện ban đầu của nó, đôi khi bài viết cũng dùng trực tiếp từ "cục diện" để chỉ bản thân trò chơi.
 
-<span id="Nim &#28216;&#25103;"></span>
+<span id="trò-chơi-nim"></span>
 ## Trò chơi Nim
 
 Luật của trò chơi Nim rất đơn giản:
@@ -24,7 +24,7 @@ Dễ kiểm tra rằng Nim là một trò chơi tổ hợp công bằng theo lu�
 ???+ example "Ví dụ"
     Chẳng hạn, hiện có $3$ đống đá với số lượng lần lượt là $2,5,4$. Khi đó có thể lấy đi $2$ vật từ đống thứ $1$, cục diện trở thành $0, 5, 4$; cũng có thể lấy đi $4$ vật từ đống thứ $2$, cục diện trở thành $2, 1, 4$. Nếu tại một thời điểm nào đó cục diện trở thành $0, 0, 5$, người chơi A lấy đi $5$ vật ở đống thứ $3$, tức lấy đi vật cuối cùng, thì người chơi A thắng.
 
-<span id="&#21338;&#24328;&#22270;&#21644;&#29366;&#24577;"></span>
+<span id="đồ-thị-trò-chơi-và-trạng-thái"></span>
 ### Đồ thị trò chơi và trạng thái
 
 Trong trò chơi Nim, các biến đổi có thể xảy ra của cục diện có thể được mô tả bằng đồ thị trò chơi.
@@ -60,7 +60,7 @@ Trong mọi trò chơi tổ hợp công bằng, đồ thị trò chơi đều l�
 
 Bổ đề này có thể mở rộng cho trò chơi luật ngược và trường hợp đồ thị có hướng có thể có chu trình. Thảo luận liên quan xem trong phần [trò chơi trên đồ thị có hướng](#tro-choi-tren-do-thi-co-huong).
 
-<span id="Nim &#21644;"></span>
+<span id="tổng-nim"></span>
 ### Tổng Nim
 
 Tiếp tục xét trò chơi Nim.
@@ -90,12 +90,12 @@ Cái gọi là tổng Nim chính là [phép toán XOR](../bit.md#phép-toán-bit
 
 Từ đó có thể xác định trong thời gian $O(n)$ xem một trạng thái của Nim có tất thắng cho người đi trước hay không.
 
-<span id="Sprague&#8211;Grundy &#29702;&#35770;"></span>
+<span id="lý-thuyết-sprague-grundy"></span>
 ## Lý thuyết Sprague-Grundy
 
 Lý thuyết Sprague-Grundy chỉ ra rằng mọi trò chơi tổ hợp công bằng đều tương đương với trò chơi Nim một đống. Kết luận này chủ yếu được áp dụng trong tình huống trò chơi gồm nhiều trò chơi con độc lập với nhau. Khi đó, việc phán định trạng thái có thể được thực hiện bằng cách tính tổng Nim của các giá trị hàm SG của những trò chơi con. Nếu bản thân trò chơi không có cấu trúc như vậy, thì để phán định trạng thái tất thắng và tất bại chỉ cần áp dụng [bổ đề](#np-lem) trong phần đồ thị trò chơi ở trên.
 
-<span id="&#28216;&#25103;&#30340;&#35760;&#27861;"></span>
+<span id="ký-hiệu-trò-chơi"></span>
 ### Ký hiệu trò chơi
 
 Như đã nói ở trên, mọi trò chơi tổ hợp công bằng đều có thể được mô tả bằng đồ thị trò chơi. Vì trong đồ thị trò chơi, tính chất của mỗi trạng thái chỉ do các trạng thái kế tiếp của nó quyết định, nên ta có thể biểu diễn một trạng thái $S$ trong đồ thị trò chơi bằng tập các trạng thái kế tiếp của nó.
@@ -138,7 +138,7 @@ Trong đó, ký hiệu $*n$ biểu thị trò chơi Nim một đống, hay trạ
 
 Trong các phần sau, ký hiệu $T\in S$ nên được hiểu là trạng thái $T$ là trạng thái kế tiếp của trạng thái $S$.
 
-<span id="&#28216;&#25103;&#30340;&#21644;&#19982;&#31561;&#20215;"></span>
+<span id="tổng-và-tương-đương-của-trò-chơi"></span>
 ### Tổng và tương đương của trò chơi
 
 Quan hệ tương đương giữa các trò chơi phụ thuộc vào khái niệm tổng[^more-sums] của trò chơi.
@@ -161,7 +161,7 @@ Quan sát này gợi ý rằng ta có thể nghiên cứu tính chất của m�
 
 Dễ kiểm tra rằng $\approx$ được định nghĩa như trên thực sự là một [quan hệ tương đương](../order-theory.md#quan-hệ-hai-ngôi) trên tập tất cả trò chơi công bằng.
 
-<span id="Sprague&#8211;Grundy &#20989;&#25968;"></span>
+<span id="hàm-sprague-grundy"></span>
 ### Hàm Sprague-Grundy
 
 Phân tích trò chơi Nim cho thấy các trò chơi Nim một đống khác nhau không tương đương với nhau. Tuy nhiên, mọi trò chơi công bằng đều tương đương với một trò chơi Nim một đống nào đó. Từ đó, có thể gán cho mỗi trò chơi công bằng một con số; đây chính là hàm Sprague-Grundy.
@@ -287,7 +287,7 @@ Từ đó, có thể tóm tắt phương pháp tính giá trị hàm SG như sau
 -   Với một trò chơi đơn lẻ, giá trị hàm SG của mỗi trạng thái là giá trị $\operatorname{mex}$ của các giá trị hàm SG của mọi trạng thái kế tiếp;
 -   Đặc biệt, trạng thái kết thúc, tức trạng thái không có trạng thái kế tiếp, có giá trị hàm SG bằng $\operatorname{mex}\varnothing = 0$.
 
-<span id="Nim &#25968;"></span>
+<span id="số-nim"></span>
 ### Số Nim
 
 Mọi trò chơi công bằng đều tương ứng duy nhất với một số Nim. Tập các số Nim hữu hạn chính là tập số tự nhiên $\mathbf N$. Tuy nhiên, tính chất đại số của nó khác với tập số tự nhiên. Cụ thể, trên các số Nim có thể định nghĩa hai phép toán: tổng Nim $\oplus$ và tích Nim $\otimes$.
@@ -300,7 +300,7 @@ Mọi trò chơi công bằng đều tương ứng duy nhất với một số N
 
 Tập tất cả số Nim với hai phép toán $\oplus$ và $\otimes$ tạo thành một [trường](../algebra/basic.md#trường) có đặc số $2$. Hơn nữa, các phép toán này và các phép toán nghịch đảo của chúng đóng trên $2^{2^n}$ số Nim đầu tiên; từ đó nhận được một dãy các [trường hữu hạn](../algebra/field-theory.md#trường-hữu-hạn) $\mathbf F_{2^{2^n}}$ có kích thước $2^{2^n}$.
 
-<span id="&#24120;&#35265;&#30340;&#20844;&#24179;&#28216;&#25103;"></span>
+<span id="các-trò-chơi-công-bằng-thường-gặp"></span>
 ## Các trò chơi công bằng thường gặp
 
 Dù lý thuyết Sprague-Grundy giải quyết hoàn toàn bài toán của trò chơi công bằng, khi xử lý các trò chơi công bằng thực tế, việc trực tiếp áp dụng định lý Sprague-Grundy thường vẫn không hiệu quả. Ví dụ, trong trò chơi Nim, độ phức tạp của cách tính vét cạn giá trị Sprague-Grundy là cấp số mũ. Vì vậy, thường cần lập bảng để phỏng đoán kết luận cụ thể cho từng trò chơi công bằng.
@@ -310,7 +310,7 @@ Phần này liệt kê một số trò chơi công bằng thường gặp và k�
 ???+ info "Phương pháp chứng minh các kết luận trong phần này"
     Các chứng minh kết luận trong phần này đều mang tính kiểm chứng. Với một trò chơi, kết luận sẽ mô tả các trạng thái người đi trước tất bại và tất thắng. Trong chứng minh, chỉ cần kiểm tra rằng từ một trạng thái người đi trước tất bại chỉ có thể đi tới trạng thái người đi trước tất thắng; còn từ một trạng thái người đi trước tất thắng luôn có thể đi tới ít nhất một trạng thái người đi trước tất bại. Để viết các chứng minh này thành chứng minh chặt chẽ, cần xây dựng đồ thị trò chơi rồi áp dụng quy nạp toán học trên đồ thị đó; các bước kiểm chứng nói trên chính là phần quy nạp.
 
-<span id="Bachet &#28216;&#25103;"></span>
+<span id="trò-chơi-bachet"></span>
 ### Trò chơi Bachet
 
 So với Nim một đống, trò chơi Bachet giới hạn số đá có thể lấy trong mỗi lượt.
@@ -339,7 +339,7 @@ Với trò chơi này, có kết luận sau:
     
     Tập này duyệt qua mọi số dư modulo $k+1$, ngoại trừ $n\bmod{(k+1)}$. Vì vậy $f(n) = n\bmod{(k+1)}$.
 
-<span id="Moore's Nim-k &#28216;&#25103;"></span>
+<span id="trò-chơi-nim-k-của-moore"></span>
 ### Trò chơi Nim-$k$ của Moore
 
 So với Nim, trò chơi Nim-$k$ của Moore cho phép lấy đá từ $k$ đống cùng lúc.
@@ -357,7 +357,7 @@ Với trò chơi này, có kết luận sau:
     
     Thật vậy, chỉ cần chọn $k'$ đống đá và ở mỗi đống lấy đi $2^d$ viên là có thể làm số dư ở bit thứ $d$ trong kết quả trở thành $0$. Với số dư ở các bit thấp hơn, có thể phân bổ tùy ý các số dư này cho một đống nào đó.
 
-<span id="&#38454;&#26799; Nim &#28216;&#25103;"></span>
+<span id="trò-chơi-nim-bậc-thang"></span>
 ### Trò chơi Nim bậc thang
 
 Trò chơi Nim bậc thang phức tạp hơn một chút: nó cho phép di chuyển đá giữa các đống kề nhau.
@@ -373,7 +373,7 @@ Với trò chơi này, có kết luận sau:
 ??? note "Chứng minh"
     Khi một người chơi chuyển đá từ đống chẵn sang đống lẻ, đối thủ có thể tiếp tục chuyển số đá đó sang đống chẵn tiếp theo, hoặc lấy đi, nên nước đi như vậy không ảnh hưởng tới cục diện của các đống lẻ. Lúc này, mỗi việc chuyển một đống lẻ xuống đống chẵn kề dưới, hoặc lấy đi, có thể xem như một trò chơi Nim một đống độc lập. Theo kết luận của định lý Sprague-Grundy về tổng trò chơi, giá trị hàm SG của Nim bậc thang là tổng Nim của các giá trị hàm SG của những trò chơi con này. Từ đó nhận được kết luận trên.
 
-<span id="Fibonacci Nim &#28216;&#25103;"></span>
+<span id="trò-chơi-fibonacci-nim"></span>
 ### Trò chơi Fibonacci Nim
 
 Fibonacci Nim giống trò chơi Bachet ở chỗ chỉ có một đống đá và giới hạn số lượng được lấy mỗi lượt. Khác với Bachet, trong Fibonacci Nim, giới hạn số lượng được lấy là động.
@@ -393,7 +393,7 @@ Với trò chơi này, có kết luận sau:
     
     Ngược lại, nếu hiện tại là trạng thái tất bại, giả sử số đá được lấy hiện tại là $k$, thì nó chắc chắn nhỏ nghiêm ngặt hơn số Fibonacci nhỏ nhất $F$ trong phân rã hiện tại. Giả sử số Fibonacci nhỏ nhất ở lượt sau là $F'$, nó cũng nhất định là số Fibonacci nhỏ nhất trong phân rã ứng với $F - k$. Đặt $F'=F''+F'''$ và $F''>F'''$, tức $F''',F'',F'$ là ba số Fibonacci kề nhau. Nếu $k<F''$, thì khi dùng mã hóa Fibonacci để tính $k + (F-k)$, không cần nhớ, nên không thể thu được $F$. Vì vậy nhất định có $k\ge F''$. Điều này cho thấy hạn mức lượt sau $2k>F''+F'''=F'$, nên đó là trạng thái tất thắng.
 
-<span id="Wythoff &#28216;&#25103;"></span>
+<span id="trò-chơi-wythoff"></span>
 ### Trò chơi Wythoff
 
 Trò chơi Wythoff cho phép loại bỏ đá đồng thời từ nhiều đống, nhưng yêu cầu mỗi đống bị loại bỏ cùng một số lượng đá.
@@ -440,7 +440,7 @@ Từ đây có thể chứng minh kết luận đã nêu.
     
     Trong trò chơi Wythoff, một thao tác hợp lệ hoặc giữ nguyên một trong hai thành phần, hoặc giữ nguyên hiệu của hai thành phần. Vì vậy, từ một trạng thái người đi trước tất bại, đúng là không thể nhận được một trạng thái người đi trước tất bại khác chỉ bằng một thao tác hợp lệ. Ngược lại, với bất kỳ trạng thái người đi trước tất thắng $(a_1,a_2)$, giả sử không mất tính tổng quát rằng $a_1\le a_2$ và đặt $k=a_2-a_1$. Nếu $a_1>\lfloor k\phi\rfloor$, người đi trước có thể lấy từ mỗi đống $(a_1 - \lfloor k\phi\rfloor)$ viên đá để biến cục diện thành trạng thái tất bại. Ngược lại, theo kết luận ở đoạn trước, với $a_1$ này tất nhiên tồn tại duy nhất một trạng thái tất bại $(a_1,a_2')$. Tiếp đó, nếu $a_1 > a_2'$ thì hiển nhiên $a_2' < a_2$; còn nếu $a_1 < a_2'$, lấy $k'=a_2'-a_1$ sao cho $a_1=\lfloor k'\phi\rfloor$. Lại có $a_1 < \lfloor k\phi\rfloor$, nên $k' < k$, do đó $a_2'=a_1 + k' < a_1+k = a_2$. Vì vậy, miễn là $a_1 < \lfloor k\phi\rfloor$, nhất định có $a_2' < a_2$; người đi trước chỉ cần lấy đi $(a_2-a'_2)$ viên đá từ đống thứ hai là có thể biến cục diện thành trạng thái tất bại.
 
-<span id="&#32763;&#30828;&#24065;&#28216;&#25103;"></span>
+<span id="trò-chơi-lật-đồng-xu"></span>
 ### Trò chơi lật đồng xu
 
 Trò chơi lật đồng xu cũng là một lớp trò chơi tổ hợp công bằng thường gặp.
@@ -484,7 +484,7 @@ $$
 
 Điều này tương đương với việc cung cấp một công thức truy hồi cho giá trị hàm SG của cục diện cơ sở.
 
-<span id="&#20108;&#20998;&#22270;&#21338;&#24328;"></span>
+<span id="trò-chơi-trên-đồ-thị-hai-phía"></span>
 ### Trò chơi trên đồ thị hai phía
 
 Kiến thức cần có: [ghép cặp lớn nhất trên đồ thị hai phía](../../graph/graph-matching/bigraph-match.md)
@@ -513,7 +513,7 @@ Ngoài ra, trò chơi trên đồ thị hai phía còn có một biến thể:
 
 Rõ ràng, biến thể này tương đương với việc trong trò chơi trên đồ thị hai phía ở trên, cho người đi trước chọn cục diện ban đầu, rồi để người đi sau bắt đầu trò chơi trên đồ thị hai phía. Vì vậy, trong biến thể này, người đi trước tất bại khi và chỉ khi mọi đỉnh đều là điểm then chốt của ghép cặp lớn nhất, tức đồ thị $G$ tồn tại [ghép cặp hoàn hảo](../../graph/graph-matching/graph-match.md#sự-tồn-tại-của-ghép-cặp-hoàn-hảo).
 
-<span id="&#21453;&#24120; Nim &#28216;&#25103;"></span>
+<span id="trò-chơi-nim-luật-ngược"></span>
 ## Trò chơi Nim luật ngược
 
 Phần này thảo luận cách giải Nim luật ngược.
@@ -538,7 +538,7 @@ Với trò chơi này, có kết luận sau:
     
     Trường hợp B: hiện có hơn một đống đá có số lượng lớn hơn nghiêm ngặt $1$. Khi đó dù thao tác thế nào, trong cục diện tiếp theo vẫn có ít nhất một đống đá có số lượng lớn hơn nghiêm ngặt $1$. Theo giả thiết quy nạp, trong cục diện tiếp theo, người đi trước tất bại tương ứng với tổng Nim bằng không, còn người đi trước tất thắng tương ứng với tổng Nim khác không. Điều này hoàn toàn giống giả thiết quy nạp của Nim bình thường. Vì vậy, lặp lại lập luận của trò chơi Nim, ta biết cục diện hiện tại cũng thỏa kết luận rằng tổng Nim bằng không tương ứng với trạng thái người đi trước tất bại.
 
-<span id="&#26377;&#21521;&#22270;&#28216;&#25103;"></span>
+<span id="trò-chơi-trên-đồ-thị-có-hướng"></span>
 ## Trò chơi trên đồ thị có hướng
 
 Các trò chơi tổ hợp công bằng được thảo luận trong bài này yêu cầu cùng một cục diện không thể xuất hiện hai lần, và không có khả năng hòa. Do đó, đồ thị trò chơi tương ứng luôn là đồ thị có hướng không chu trình. Phần này nới lỏng hạn chế đó và thảo luận cách phán định từng trạng thái trên một đồ thị có hướng tổng quát là người đi trước tất thắng, người đi trước tất bại hay hòa.
@@ -557,7 +557,7 @@ Luật của trò chơi trên đồ thị có hướng về cơ bản giống c�
 
 Thuật toán này có thể phân loại mọi trạng thái trong thời gian $O(|V|+|E|)$.
 
-<span id="&#20363;&#39064;"></span>
+<span id="bài-tập-ví-dụ"></span>
 ## Bài tập ví dụ
 
 Phần này thảo luận một số bài tập điển hình.
@@ -662,7 +662,7 @@ Phần này thảo luận một số bài tập điển hình.
     --8<-- "docs/math/code/impartial-game/impartial-game-3.cpp"
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 Trước hết là một số bài mẫu. Chúng là các ứng dụng đơn giản của những kết luận trong trang này:
@@ -706,7 +706,7 @@ Cuối cùng là một số bài về trò chơi trên đồ thị hai phía. V�
 -   [Luogu P1971 \[NOI2011\] Trò chơi của Thỏ Thỏ và Đản Đản](https://www.luogu.com.cn/problem/P1971)
 -   [Codeforces 1147 F. Zigzag Game](https://codeforces.com/problemset/problem/1147/F)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [(Đăng lại) Lý thuyết trò chơi Nim (bản sưu tầm đầy đủ) by exponent - Blog Garden](http://www.cnblogs.com/exponent/articles/2141477.html)

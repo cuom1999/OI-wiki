@@ -1,11 +1,11 @@
 > Bản đọc nhanh: mẫu có sẵn ở cuối bài...
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Tính toán độ chính xác tùy ý (Arbitrary-Precision Arithmetic), còn được gọi là tính toán số nguyên lớn (bignum), sử dụng một số cấu trúc và thuật toán để hỗ trợ phép toán trên các số nguyên lớn hơn kiểu số nguyên mà ngôn ngữ cung cấp sẵn.
 
-<span id="&#24341;&#20837;"></span>
+<span id="giới-thiệu"></span>
 ## Giới thiệu
 
 Các bài toán độ chính xác cao có rất nhiều chi tiết nhỏ, và cách cài đặt cũng có nhiều điểm cần chú ý.
@@ -25,7 +25,7 @@ Vì vậy, hãy cùng cài đặt một máy tính đơn giản.
     -   Với phép `/`, in hai dòng lần lượt là thương và số dư.
     -   Đảm bảo mọi kết quả đều là số nguyên không âm.
 
-<span id="&#23384;&#20648;"></span>
+<span id="lưu-trữ"></span>
 ## Lưu trữ
 
 Trong các cách cài đặt thông thường, số độ chính xác cao được biểu diễn bằng chuỗi, mỗi ký tự biểu diễn một chữ số thập phân. Vì thế có thể nói tính toán số độ chính xác cao thực chất là một dạng xử lý chuỗi đặc biệt.
@@ -108,14 +108,14 @@ Ghép các phần lại, ta được một chương trình đọc rồi in lại
     }
     ```
 
-<span id="&#22235;&#21017;&#36816;&#31639;"></span>
+<span id="bốn-phép-toán-cơ-bản"></span>
 ## Bốn phép toán cơ bản
 
 Độ khó của bốn phép toán cơ bản cũng khác nhau. Đơn giản nhất là cộng và trừ độ chính xác cao, tiếp theo là nhân độ chính xác cao với độ chính xác đơn (kiểu `int` thông thường) và nhân hai số độ chính xác cao, cuối cùng là chia hai số độ chính xác cao.
 
 Ta sẽ cài đặt lần lượt tất cả chức năng cần có theo thứ tự này.
 
-<span id="&#21152;&#27861;"></span>
+<span id="phép-cộng"></span>
 ### Phép cộng
 
 Cộng độ chính xác cao thực ra chính là phép cộng đặt dọc.
@@ -199,7 +199,7 @@ Thử kết hợp với phần trước, ta có được một máy tính phép 
     }
     ```
 
-<span id="&#20943;&#27861;"></span>
+<span id="phép-trừ"></span>
 ### Phép trừ
 
 Trừ độ chính xác cao cũng chính là phép trừ đặt dọc.
@@ -288,10 +288,10 @@ $a-b=-(b-a)$
 
 Để tính giá trị $b-a$, vì $b>a$, có thể gọi hàm `sub` ở trên bằng cách viết `sub(b,a,c)`. Để thu được giá trị $a-b$, chỉ cần thêm dấu trừ vào trước kết quả.
 
-<span id="&#20056;&#27861;"></span>
+<span id="phép-nhân"></span>
 ### Phép nhân
 
-<span id="&#39640;&#31934;&#24230;&#21333;&#31934;&#24230;"></span>
+<span id="độ-chính-xác-cao---độ-chính-xác-đơn"></span>
 #### Độ chính xác cao - độ chính xác đơn
 
 Nhân độ chính xác cao cũng là phép đặt... khoan đã!
@@ -325,7 +325,7 @@ void mul_short(int a[], int b, int c[]) {
 }
 ```
 
-<span id="&#39640;&#31934;&#24230;&#39640;&#31934;&#24230;"></span>
+<span id="độ-chính-xác-cao---độ-chính-xác-cao"></span>
 #### Độ chính xác cao - độ chính xác cao
 
 Nếu cả hai thừa số đều có độ chính xác cao, phép nhân đặt dọc lại phát huy tác dụng.
@@ -356,7 +356,7 @@ void mul(int a[], int b[], int c[]) {
 }
 ```
 
-<span id="&#38500;&#27861;"></span>
+<span id="phép-chia"></span>
 ### Phép chia
 
 Một cách cài đặt phép chia độ chính xác cao là phép chia dài đặt dọc.
@@ -421,7 +421,7 @@ void div(int a[], int b[], int c[], int d[]) {
 }
 ```
 
-<span id="&#20837;&#38376;&#31687;&#23436;&#25104;"></span>
+<span id="hoàn-thành-phần-nhập-môn"></span>
 ## Hoàn thành phần nhập môn
 
 Kết hợp các cài đặt của bốn phép toán đã giới thiệu ở trên là có thể hoàn thành chương trình máy tính đã nêu ở đầu bài.
@@ -566,10 +566,10 @@ Kết hợp các cài đặt của bốn phép toán đã giới thiệu ở tr�
     }
     ```
 
-<span id="&#21387;&#20301;&#39640;&#31934;&#24230;"></span>
+<span id="độ-chính-xác-cao-gộp-chữ-số"></span>
 ## Độ chính xác cao gộp chữ số
 
-<span id="&#24341;&#20837;_1"></span>
+<span id="giới-thiệu_1"></span>
 ### Giới thiệu
 
 Trong các phép cộng, trừ, nhân độ chính xác cao thông thường, ta đều tách các số tham gia phép toán thành từng chữ số riêng lẻ để tính.
@@ -582,7 +582,7 @@ Có cách nào tối ưu hơn không?
 
 Nhận thấy cách tách số không ảnh hưởng đến kết quả cuối cùng, ta có thể gộp nhiều chữ số lại với nhau.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quá-trình"></span>
 ### Quá trình
 
 Vẫn lấy ví dụ trên: nếu cứ mỗi hai chữ số ta tách thành một phần, ta có thể tách thành $(8100+92)\times 42$.
@@ -612,7 +612,7 @@ Dưới đây là mã cộng độ chính xác cao gộp chữ số, dùng để
     }
     ```
 
-<span id="&#21387;&#20301;&#39640;&#31934;&#19979;&#30340;&#39640;&#25928;&#31446;&#24335;&#38500;&#27861;"></span>
+<span id="phép-chia-đặt-dọc-hiệu-quả-khi-gộp-chữ-số"></span>
 ### Phép chia đặt dọc hiệu quả khi gộp chữ số
 
 Khi dùng độ chính xác cao gộp chữ số, nếu vẫn thử thương bằng phương pháp đã giới thiệu ở trên, số lần thử thương sẽ rất nhiều và hằng số tính toán sẽ cực lớn. Chẳng hạn trong hệ cơ số mười nghìn, trung bình mỗi vị trí cần thử thương 5000 lần; hằng số lớn như vậy là không thể chấp nhận. Vì thế ta cần một cách thử thương hiệu quả hơn.
@@ -702,7 +702,7 @@ Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể r�
     }
     ```
 
-<span id="karatsuba-&#20056;&#27861;"></span>
+<span id="phép-nhân-karatsuba"></span>
 ## Phép nhân Karatsuba
 
 Gọi số chữ số của số độ chính xác cao là $n$. Khi đó, phép nhân đặt dọc giữa hai số độ chính xác cao cần thời gian $O(n^2)$. Phần này giới thiệu một thuật toán có độ phức tạp thời gian tốt hơn, do nhà toán học Liên Xô cũ (Nga) Anatoly Karatsuba đề xuất; đây là một thuật toán chia để trị.
@@ -791,11 +791,11 @@ Toàn bộ quá trình có thể cài đặt bằng đệ quy. Để rõ ràng, 
     ```
 
 ??? note "Về `new` và `delete`"
-    Xem [memory pool](../contest/common-tricks.md#%E5%86%85%E5%AD%98%E6%B1%A0).
+    Xem [memory pool](../contest/common-tricks.md#vùng-nhớ-cấp-phát-sẵn-memory-pool).
 
 Tuy nhiên, cách cài đặt này có một vấn đề: trong hệ cơ số $b$, mỗi hệ số của đa thức đều có thể đạt cấp độ $n \cdot b^2$, nên trong cài đặt độ chính xác cao gộp chữ số có thể gây tràn số nguyên. Nếu xử lý nhớ ngay trong quá trình nhân đa thức, kết quả của $x_1 + x_0$ và $y_1 + y_0$ có thể đạt $2 \cdot b^m$, làm tăng thêm một chữ số (nếu dùng cách tính $x_1 - x_0$ thì lại phải xử lý riêng trường hợp số âm). Vì vậy, cần dựa vào bối cảnh ứng dụng thực tế để quyết định dùng cách cài đặt nào.
 
-<span id="&#22522;&#20110;&#22810;&#39033;&#24335;&#30340;&#39640;&#25928;&#22823;&#25972;&#25968;&#20056;&#27861;"></span>
+<span id="phép-nhân-số-nguyên-lớn-hiệu-quả-dựa-trên-đa-thức"></span>
 ## Phép nhân số nguyên lớn hiệu quả dựa trên đa thức
 
 Nếu quy mô dữ liệu đạt $10^{10^5}$ hoặc lớn hơn, phép nhân độ chính xác cao thông thường có thể bị quá thời gian. Phần này giới thiệu cách dùng đa thức để tối ưu kiểu phép nhân này.
@@ -804,7 +804,7 @@ Với một số nguyên thập phân $a$ có $n$ chữ số, có thể xem nó 
 
 Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian $O(n^2)$, nhưng có thể tối ưu bằng các thuật toán trong phần đa thức như [biến đổi Fourier nhanh](poly/fft.md), [biến đổi số học nhanh](poly/ntt.md). Sau khi tối ưu, độ phức tạp thời gian là $O(n\log n)$.
 
-<span id="&#23553;&#35013;&#31867;"></span>
+<span id="lớp-đóng-gói"></span>
 ## Lớp đóng gói
 
 [Tại đây](https://paste.ubuntu.com/p/7VKYzpC7dn/) có một lớp số nguyên độ chính xác cao đã được đóng gói sẵn, và [tại đây](https://github.com/Baobaobear/MiniBigInteger/blob/main/bigint_tiny.h) là một lớp cài đặt siêu nhỏ hỗ trợ độ dài động cùng bốn phép toán cơ bản.
@@ -1028,7 +1028,7 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
     char s[100024];
     ```
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [NOIP 2012 - King's Game](https://loj.ac/problem/2603)
@@ -1038,7 +1038,7 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
 -   [UVa - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
 -   [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#38142;&#25509;"></span>
+<span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết
 
 1.  [Karatsuba algorithm - Wikipedia](https://en.wikipedia.org/wiki/Karatsuba_algorithm)

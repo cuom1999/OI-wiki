@@ -1,4 +1,4 @@
-<span id="&#x5F15;&#x5165;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
@@ -6,27 +6,27 @@ Hoán vị và tổ hợp là các kiến thức cơ bản của tổ hợp. Ho�
 
 Trong toán sơ cấp ở trung học, các bài hoán vị tổ hợp thường được giải bằng các cách như lập bảng, liệt kê trực tiếp.
 
-<span id="&#x52A0;&#x6CD5;-&#x4E58;&#x6CD5;&#x539F;&#x7406;"></span>
+<span id="nguyên-lý-cộng-và-nhân"></span>
 
 ## Nguyên lý cộng và nhân
 
-<span id="&#x52A0;&#x6CD5;&#x539F;&#x7406;"></span>
+<span id="nguyên-lý-cộng"></span>
 
 ### Nguyên lý cộng
 
 Để hoàn thành một công việc có $n$ loại cách làm, trong đó $a_i(1 \le i \le n)$ là số cách của loại thứ $i$. Khi đó có tổng cộng $S=a_1+a_2+\cdots +a_n$ cách khác nhau để hoàn thành công việc.
 
-<span id="&#x4E58;&#x6CD5;&#x539F;&#x7406;"></span>
+<span id="nguyên-lý-nhân"></span>
 
 ### Nguyên lý nhân
 
 Để hoàn thành một công việc cần thực hiện qua $n$ bước, trong đó $a_i(1 \le i \le n)$ là số cách khác nhau để thực hiện bước thứ $i$. Khi đó có tổng cộng $S = a_1 \times a_2 \times \cdots \times a_n$ cách khác nhau để hoàn thành công việc.
 
-<span id="&#x6392;&#x5217;&#x4E0E;&#x7EC4;&#x5408;&#x57FA;&#x7840;"></span>
+<span id="cơ-bản-về-hoán-vị-và-tổ-hợp"></span>
 
 ## Cơ bản về hoán vị và tổ hợp
 
-<span id="&#x6392;&#x5217;&#x6570;"></span>
+<span id="số-hoán-vị"></span>
 
 ### Số hoán vị
 
@@ -54,7 +54,7 @@ $$
 
 Hoán vị toàn phần là một trường hợp đặc biệt của số hoán vị.
 
-<span id="&#x7EC4;&#x5408;&#x6570;"></span>
+<span id="số-tổ-hợp"></span>
 
 ### Số tổ hợp
 
@@ -81,13 +81,13 @@ Số tổ hợp còn được gọi là "hệ số nhị thức"; phần định
 
 Đặc biệt, quy ước khi $m>n$ thì $\mathrm A_n^m=\dbinom{n}{m}=0$.
 
-<span id="&#x63D2;&#x677F;&#x6CD5;"></span>
+<span id="phương-pháp-thanh-ngăn"></span>
 
 ## Phương pháp thanh ngăn
 
 Phương pháp thanh ngăn (Stars and bars) là một kỹ thuật để đếm số phương án chia nhóm các phần tử giống nhau, và cũng có thể dùng để đếm số nghiệm của một lớp phương trình bất định tuyến tính.
 
-<span id="&#x6B63;&#x6574;&#x6570;&#x548C;&#x7684;&#x6570;&#x76EE;"></span>
+<span id="số-cách-có-tổng-là-số-nguyên-dương"></span>
 
 ### Số cách có tổng là số nguyên dương
 
@@ -99,7 +99,7 @@ Vì các phần tử hoàn toàn giống nhau, đáp án là $\dbinom{n - 1}{k -
 
 Bản chất là đếm số nghiệm nguyên dương của $x_1+x_2+\cdots+x_k=n$.
 
-<span id="&#x975E;&#x8D1F;&#x6574;&#x6570;&#x548C;&#x7684;&#x6570;&#x76EE;"></span>
+<span id="số-cách-có-tổng-là-số-nguyên-không-âm"></span>
 
 ### Số cách có tổng là số nguyên không âm
 
@@ -121,7 +121,7 @@ Từ đó suy ra công thức của phương pháp thanh ngăn: $\dbinom{n + k -
 
 Bản chất là đếm số nghiệm nguyên không âm của $x_1+x_2+\cdots+x_k=n$ (tức yêu cầu $x_i \ge 0$).
 
-<span id="&#x4E0D;&#x540C;&#x4E0B;&#x754C;&#x6574;&#x6570;&#x548C;&#x7684;&#x6570;&#x76EE;"></span>
+<span id="số-cách-có-tổng-với-các-cận-dưới-khác-nhau"></span>
 
 ### Số cách có tổng với các cận dưới khác nhau
 
@@ -157,13 +157,13 @@ $$
 \binom{n - \sum a_i + k - 1}{n - \sum a_i}
 $$
 
-<span id="&#x4E0D;&#x76F8;&#x90BB;&#x7684;&#x6392;&#x5217;"></span>
+<span id="các-cách-chọn-không-kề-nhau"></span>
 
 ### Các cách chọn không kề nhau
 
 Chọn $k$ số trong $n$ số tự nhiên $1 \sim n$ sao cho không có hai số nào kề nhau, số tổ hợp là $\dbinom {n-k+1}{k}$.
 
-<span id="&#x4E8C;&#x9879;&#x5F0F;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-nhị-thức"></span>
 
 ## Định lý nhị thức
 
@@ -191,13 +191,13 @@ $$
 \sum{\binom{n}{n_1,n_2,\cdots,n_t}} = t^n
 $$
 
-<span id="&#x6392;&#x5217;&#x4E0E;&#x7EC4;&#x5408;&#x8FDB;&#x9636;&#x7BC7;"></span>
+<span id="hoán-vị-và-tổ-hợp-nâng-cao"></span>
 
 ## Hoán vị và tổ hợp nâng cao
 
 Tiếp theo ta giới thiệu một số biến thể của hoán vị và tổ hợp.
 
-<span id="&#x591A;&#x91CD;&#x96C6;&#x7684;&#x6392;&#x5217;&#x6570;-&#x591A;&#x91CD;&#x7EC4;&#x5408;&#x6570;"></span>
+<span id="số-hoán-vị-của-đa-tập--hệ-số-đa-thức"></span>
 
 ### Số hoán vị của đa tập | Hệ số đa thức
 
@@ -217,7 +217,7 @@ $$
 
 Có thể thấy $\dbinom{n}{m}$ tương đương với $\dbinom{n}{m,n-m}$, nhưng cách viết sau dài dòng hơn nên thường không dùng.
 
-<span id="&#x591A;&#x91CD;&#x96C6;&#x7684;&#x7EC4;&#x5408;&#x6570;-1"></span>
+<span id="số-tổ-hợp-của-đa-tập-1"></span>
 
 ### Số tổ hợp của đa tập 1
 
@@ -227,7 +227,7 @@ $$
 \binom{r+k-1}{k-1}
 $$
 
-<span id="&#x591A;&#x91CD;&#x96C6;&#x7684;&#x7EC4;&#x5408;&#x6570;-2"></span>
+<span id="số-tổ-hợp-của-đa-tập-2"></span>
 
 ### Số tổ hợp của đa tập 2
 
@@ -275,7 +275,7 @@ $$
 
 Trong đó $A$ đóng vai trò tập con đang được liệt kê, thỏa $|A|=p,\ A_i<A_{i+1}$.
 
-<span id="&#x5706;&#x6392;&#x5217;"></span>
+<span id="hoán-vị-vòng-tròn"></span>
 
 ### Hoán vị vòng tròn
 
@@ -292,7 +292,7 @@ $$
 \mathrm Q_n^r = \frac{\mathrm A_n^r}{r} = \frac{n!}{r \times (n-r)!}
 $$
 
-<span id="&#x7EC4;&#x5408;&#x6570;&#x6027;&#x8D28;-&#x4E8C;&#x9879;&#x5F0F;&#x63A8;&#x8BBA;"></span><span id="tinh-chat-cua-so-to-hop-he-qua-nhi-thuc"></span>
+<span id="tính-chất-của-số-tổ-hợp--hệ-quả-nhị-thức"></span>
 
 ## Tính chất của số tổ hợp | Hệ quả nhị thức
 
@@ -376,7 +376,7 @@ $$
 
 Có thể chứng minh bằng $(6)$. Công thức này được gọi là [đồng nhất thức Li Shanlan](https://en.wikipedia.org/wiki/Li_Shanlan_identity).
 
-<span id="&#x4E8C;&#x9879;&#x5F0F;&#x53CD;&#x6F14;"></span>
+<span id="nghịch-đảo-nhị-thức"></span>
 
 ## Nghịch đảo nhị thức
 
@@ -396,7 +396,7 @@ $$
 
 Quá trình tính $f_n$ từ $g_n$ như trên được gọi là **nghịch đảo nhị thức**.
 
-<span id="&#x8BC1;&#x660E;"></span>
+<span id="chứng-minh"></span>
 
 ### Chứng minh
 
@@ -418,7 +418,7 @@ f_n &= \sum_{j = 0}^{n}\sum_{i = j}^{n}\binom{n}{i}\binom{i}{j} (-1)^{n-i}f_j \\
 \end{aligned}
 $$
 
-Dùng công thức (11) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tinh-chat-cua-so-to-hop-he-qua-nhi-thuc), ta được:
+Dùng công thức (11) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tính-chất-của-số-tổ-hợp--hệ-quả-nhị-thức), ta được:
 
 $$
 \begin{aligned}
@@ -433,7 +433,7 @@ $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j\sum_{k = 0}^{n - j}\binom{n - j}{k} (-1)^{n-j-k}1^{k}
 $$
 
-Dùng công thức (5) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tinh-chat-cua-so-to-hop-he-qua-nhi-thuc), ta được:
+Dùng công thức (5) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tính-chất-của-số-tổ-hợp--hệ-quả-nhị-thức), ta được:
 
 $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j[n = j] = f_n
