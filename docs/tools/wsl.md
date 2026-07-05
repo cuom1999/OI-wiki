@@ -101,7 +101,7 @@ Dùng dòng lệnh:
 
 Dùng giao diện đồ họa:
 
-![Windows Features](./images/wsl-windows-features.png)
+![Tính năng Windows cần bật cho WSL](./images/wsl-windows-features.png)
 
 1.  Mở Control Panel.
 

@@ -2,7 +2,7 @@
 
 CLion là một môi trường phát triển tích hợp (IDE) C/C++ đa nền tảng, giàu tính năng và mạnh mẽ, do JetBrains phát triển.
 
-![Clion](./images/clion.png)
+![Giao diện CLion](./images/clion.png)
 
 ## Hướng dẫn chính thức
 
@@ -113,7 +113,7 @@ CLion là sản phẩm trả phí, nhưng có thể xin giấy phép đặc bi�
 
 Vào trang [Free Educational Licenses](https://www.jetbrains.com/community/education/#students) trên trang chính thức, nhấp nút `Apply`, rồi điền thông tin liên quan để đăng ký.
 
-![Educational Licenses](./images/clion-edu.png)
+![Giấy phép giáo dục](./images/clion-edu.png)
 
 Chú ý: khi đăng ký, ở mục email hãy điền email giáo dục do trường cấp; giấy phép đặc biệt chỉ nhận được sau khi xác minh email.
 
@@ -123,4 +123,4 @@ Nếu không có email giáo dục, hãy xem các phương thức xác minh khá
 
 Nếu bạn là một trong những nhà phát triển hoặc maintainer cốt lõi của một dự án mã nguồn mở, bạn có thể thử đăng ký Open Source Development License. Quy trình đăng ký tương tự giấy phép giáo dục, nhưng cần điền địa chỉ kho mã nguồn của dự án mã nguồn mở.
 
-![Open Source Development License](./images/clion-oss.png)
+![Giấy phép phát triển mã nguồn mở](./images/clion-oss.png)

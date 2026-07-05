@@ -2,7 +2,7 @@ author: ouuan, CBW2007, partychicken, StudyingFather, Xeonacid, Henry-ZHR
 
 ## Giới thiệu phần mềm
 
-Notepad++ là trình soạn thảo văn bản trên hệ điều hành Windows, hỗ trợ nhiều ngôn ngữ, nhiều kiểu mã hóa, cũng như tô sáng và tự động hoàn thành cho nhiều ngôn ngữ lập trình. Logo của nó cũng khá đáng yêu: một con tắc kè hoa (![npp-logo](./images/npp-logo.webp)).
+Notepad++ là trình soạn thảo văn bản trên hệ điều hành Windows, hỗ trợ nhiều ngôn ngữ, nhiều kiểu mã hóa, cũng như tô sáng và tự động hoàn thành cho nhiều ngôn ngữ lập trình. Logo của nó cũng khá đáng yêu: một con tắc kè hoa (![Logo Notepad++](./images/npp-logo.webp)).
 
 Chức năng của nó mạnh hơn nhiều trình soạn thảo khác; khi mở tệp lớn thì ổn định hơn, và undo liên tục cũng không gặp vấn đề. Khi đóng phần mềm cũng không cần lưu ngay, vì nó sẽ tự lưu vào vùng đệm cho bạn (có thể cần cấu hình). Hơn nữa, nó rất nhỏ gọn, chỉ hơn 10 MB, thậm chí có thể đặt trong USB để mang theo.
 
@@ -12,7 +12,7 @@ Xem [Hướng dẫn bắt đầu | Notepad++ User Manual](https://npp-user-manua
 
 ## Đổi ngôn ngữ giao diện
 
-![npp-lang](./images/npp-lang.gif)
+![Đổi ngôn ngữ giao diện Notepad++](./images/npp-lang.gif)
 
 Sau khi đổi ngôn ngữ xong, bạn có thể tùy ý chỉnh sửa trình soạn thảo theo ý mình.
 
@@ -24,11 +24,11 @@ Phần này chủ yếu nói về một số chức năng cơ bản và đặc t
 
 Lần lượt nhấp "(thanh menu) Search" -> "Find" (phím tắt `CTRL`+`F`) để mở trang "Find" (như hình dưới).
 
-![npp-search](./images/npp-search.png)
+![Tìm kiếm trong Notepad++](./images/npp-search.png)
 
 Lần lượt nhấp "(thanh menu) Search" -> "Replace" (phím tắt `CTRL`+`H`) để mở trang "Replace" (như hình dưới).
 
-![npp-replace](./images/npp-replace.png)
+![Thay thế trong Notepad++](./images/npp-replace.png)
 
 Thực ra tìm kiếm và thay thế nằm trong cùng một cửa sổ; chỉ cần nhấp các thẻ phía trên là có thể chuyển đổi.
 
@@ -42,7 +42,7 @@ Chức năng của nó gần giống trình soạn thảo thông thường, như
 
 ### Sao lưu định kỳ
 
-![npp-settings-1](./images/npp-settings-1.png)
+![Thiết lập sao lưu định kỳ trong Notepad++](./images/npp-settings-1.png)
 
 Có chức năng này thì bạn không cần quá lo mã bị mất do sự cố bất ngờ.
 
@@ -66,7 +66,7 @@ Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Ma
 
 ### Hiển thị toàn bộ ký tự
 
-![npp-settings-2](./images/npp-settings-2.png)
+![Hiển thị toàn bộ ký tự trong Notepad++](./images/npp-settings-2.png)
 
 Nhấp nút được khoanh đỏ để hiển thị rất rõ các ký tự vốn không nhìn thấy như "space", "TAB", "newline".
 
@@ -90,11 +90,11 @@ Macro có thể giúp bạn hoàn thành nhiều việc lặp lại. Ví dụ, �
 
 #### Ghi macro
 
-![npp-macro-rec](./images/npp-macro-rec.gif)
+![Ghi macro trong Notepad++](./images/npp-macro-rec.gif)
 
 #### Dùng macro
 
-![npp-macro-use](./images/npp-macro-use.gif)
+![Dùng macro trong Notepad++](./images/npp-macro-use.gif)
 
 #### Xử lý hàng loạt và dùng lặp lại
 

@@ -75,17 +75,17 @@ Sau đó bắt đầu cấu hình thư mục chấm.
 
 Ở góc dưới bên trái, chọn "Hiển thị ứng dụng" - "Tất cả" - "Arbiter\_local" để khởi động Arbiter.
 
-![Arbiter\_Home](./images/arbiter_home.png)
+![Trang chủ Arbiter](./images/arbiter_home.png)
 
 Nhấn OPEN để mở một kỳ thi đã tạo; sau đó cần chọn tệp `setup.cfg` trong thư mục kỳ thi tương ứng. Nhấn NEW để tạo một kỳ thi mới và đặt tên cùng thư mục kỳ thi. Lưu ý, cần tạo một thư mục trong **thư mục home** của người dùng rồi chọn thư mục đó làm thư mục kỳ thi; nếu tạo thư mục kỳ thi trên desktop thì sẽ không chấm được. Nên tránh dùng ký tự ngoài ASCII trong đường dẫn thư mục kỳ thi, bao gồm cả dấu tiếng Việt, để hạn chế lỗi tương thích.
 
-![add\_problem](./images/arbiter_addproblem.png)
+![Thêm bài trong Arbiter](./images/arbiter_addproblem.png)
 
 Trong phần tổng quan bài ở bên trái, "nhấp chuột phải" - "Thêm kỳ thi", rồi trên nhãn kỳ thi "nhấp chuột phải" - "Thêm bài", là có thể tạo bài mới.
 
 Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ nhớ và cách so sánh. Rất không khuyến nghị dùng cách so sánh "so sánh trực tiếp toàn văn", vì cách này không thân thiện với dữ liệu được tạo trên Windows. Có thể tự chọn checker theo bài, nhưng cần lưu ý bắt buộc phải chọn một checker, nếu không kết quả chấm sẽ là `No Score.`.
 
-![problem\_list](./images/arbiter_problem.png)
+![Danh sách bài trong Arbiter](./images/arbiter_problem.png)
 
 Nhấn "Tệp" - "Lưu". Không được bỏ qua thao tác này, nếu không chương trình sẽ không sinh tệp cấu hình bài. Lưu ý mỗi lần sửa cấu hình bài đều phải lưu lại.
 
@@ -116,13 +116,13 @@ Thư mục `filter` chứa một số checker; thư mục `result` lưu kết qu
 
 Mở thẻ "Chấm bài", sẽ thấy giao diện như sau:
 
-![Pretest](./images/arbiter_pretest.png)
+![Giao diện chấm thử trong Arbiter](./images/arbiter_pretest.png)
 
 Nếu đã tạo danh sách thí sinh, chọn trực tiếp "Nhập danh sách" ở bên phải để nhập. Nếu số lượng người ít, có thể chọn "Thêm thí sinh" ở bên phải để nhập.
 
 Sau khi nhập, giao diện như hình sau.
 
-![Test](./images/arbiter_test.png)
+![Giao diện chấm chính thức trong Arbiter](./images/arbiter_test.png)
 
 Trong ví dụ, mã là `HL-001`; chương trình sẽ tự nhận ra cột "Thuộc". Nếu mã không theo chuẩn NOIP thì sẽ không nhận ra được.
 
