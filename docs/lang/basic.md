@@ -25,7 +25,7 @@ int main() {
     gặp không có hậu tố `.h`, còn các tệp tiêu đề `xx.h` của C thường có dạng
     `cxx`, chẳng hạn `stdio.h` trở thành `cstdio`. Để tương thích với C, C++
     trực tiếp sử dụng các tệp tiêu đề của C; để phân biệt tệp tiêu đề C++ với
-    tệp tiêu đề C, người ta dùng tiền tố `c`.
+    tệp tiêu đề C, C++ dùng tiền tố `c`.
 
     Thông thường, nên quyết định cần `#include` những tệp tiêu đề nào dựa
     trên nhu cầu của chương trình C++ đang viết. Nếu `#include` thừa tệp tiêu
@@ -47,10 +47,9 @@ int main() {
     Có thể hiểu rằng khi chương trình chạy, các đoạn mã trong `main()` sẽ được
     thực thi.
 
-    Trên thực tế, hàm `main` được hệ thống hoặc chương trình bên ngoài gọi. Ví
-    dụ, khi gọi chương trình từ dòng lệnh, tức là hàm
-    `main` trong chương trình đó (trước đó việc khởi tạo các [biến](./var.md)
-    toàn cục đã hoàn tất).
+    Thực tế, hàm `main` được hệ thống hoặc chương trình bên ngoài gọi. Ví dụ,
+    khi gọi chương trình từ dòng lệnh, hệ thống sẽ gọi hàm `main` trong chương
+    trình đó (trước đó việc khởi tạo các [biến](./var.md) toàn cục đã hoàn tất).
 
     Câu lệnh `return 0;` cuối cùng biểu thị chương trình chạy thành công. Theo
     mặc định, khi chương trình kết thúc, trả về 0 nghĩa là mọi thứ bình thường;
@@ -151,7 +150,7 @@ Tương tự:
     là `%I64u`.
 
 Ngoài ký hiệu kiểu dữ liệu, còn có một số cách điều khiển định dạng. Nhiều cách
-không thường dùng; dưới đây liệt kê hai cách phổ biến:
+không thường dùng; sau đây là hai cách phổ biến:
 
 1.  `%1d` biểu thị số nguyên có độ dài 1. Khi đọc vào, ngay cả khi không có
     khoảng trắng cũng có thể đọc từng chữ số. Khi xuất ra, nếu độ dài được chỉ
@@ -171,7 +170,7 @@ ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
     Ở đây, `&` thực chất là toán tử lấy địa chỉ, trả về địa chỉ của biến trong bộ
     nhớ. Tham số mà `scanf` nhận chính là địa chỉ của biến. Cụ thể hơn có lẽ
     phải đến [Con trỏ](./pointer.md) mới có thể giải thích thật rõ ràng; hiện
-    tại chỉ cần ghi nhớ như vậy là được.
+    tại chỉ cần ghi nhớ điểm này là đủ.
 
 ??? note "`\n` là gì?"
     `\n` là một **ký tự thoát**, biểu thị xuống dòng.
@@ -225,7 +224,7 @@ Ví dụ:
 --8<-- "docs/lang/code/basic/basic_1.cpp:main"
 ```
 
-Tất nhiên, cách viết như vậy không nên dùng trong mã thông thường.
+Tất nhiên, cách viết này không nên dùng trong mã thông thường.
 
 Một phong cách viết mã khác cũng được sử dụng rộng rãi, nhưng khác với phong cách
 mà **OI Wiki** yêu cầu:
