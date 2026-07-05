@@ -2,13 +2,13 @@ author: Ir1d, tsagaanbar, yang-lile
 
 ## Khai báo hàm
 
-Hàm trong lập trình thường là một tập hợp gồm nhiều câu lệnh. Trong lập trình,
-nếu có một số quy trình bị lặp lại, ta có thể tách chúng ra để tạo thành một
-hàm. Hàm có thể nhận một số giá trị; các giá trị này được gọi là tham số của
-hàm. Hàm cũng có thể trả về một giá trị; giá trị đó được gọi là giá trị trả về
-của hàm.
+Trong lập trình, hàm thường là một tập hợp gồm nhiều câu lệnh. Nếu có một số
+quy trình bị lặp lại, ta có thể tách chúng ra thành một hàm. Hàm có thể nhận một
+số dữ liệu đầu vào và cũng có thể trả về một giá trị; giá trị đó được gọi là giá
+trị trả về của hàm.
 
-Để khai báo một hàm, ta cần kiểu giá trị trả về, tên hàm và danh sách tham số.
+Để khai báo một hàm, ta cần kiểu giá trị trả về, tên hàm và danh sách tham số
+hình thức.
 
 ```cpp
 // kiểu giá trị trả về: int
@@ -17,19 +17,18 @@ của hàm.
 int some_function(int, int);
 ```
 
-Như trên, ta đã khai báo một hàm tên là `some_function`. Hàm này cần nhận hai
-tham số kiểu `int`, và kiểu giá trị trả về cũng là `int`. Có thể hiểu rằng hàm
-này sẽ thực hiện một số thao tác trên hai số nguyên được truyền vào, rồi trả về
-một kết quả cùng kiểu.
+Như trên, ta đã khai báo một hàm tên là `some_function`. Hàm này nhận hai tham
+số kiểu `int`, và kiểu giá trị trả về cũng là `int`. Có thể hiểu rằng hàm này sẽ
+thực hiện một số thao tác trên hai số nguyên được truyền vào, rồi trả về một kết
+quả cùng kiểu.
 
 ## Định nghĩa hàm
 
-Chỉ có khai báo hàm là chưa đủ. Khai báo chỉ cho phép ta biết kiểu
-**giao diện** của hàm khi gọi (tức nhận dữ liệu gì, trả về dữ liệu gì), nhưng
-chưa có phần thân cụ thể bên trong, tức **định nghĩa** của hàm. Ta có thể viết
-phần định nghĩa này ở **một nơi khác sau phần khai báo**. Cũng có thể định nghĩa
-hàm trong tệp khác, nhưng khi liên kết cần cung cấp cả các tệp đã được biên dịch
-riêng.
+Chỉ có khai báo hàm là chưa đủ. Khai báo chỉ cho phép ta biết **giao diện** của
+hàm khi gọi (tức nhận dữ liệu gì, trả về dữ liệu gì), nhưng chưa có phần thân cụ
+thể bên trong, tức **định nghĩa** của hàm. Ta có thể viết phần định nghĩa này ở
+**một nơi khác sau phần khai báo**. Cũng có thể định nghĩa hàm trong tệp khác,
+nhưng khi liên kết cần cung cấp cả các tệp đã được biên dịch riêng.
 
 Nếu hàm có giá trị trả về, cần dùng câu lệnh `return` để trả giá trị cho nơi
 gọi. Khi hàm thực thi đến câu lệnh `return`, hàm hiện tại sẽ kết thúc ngay và
@@ -63,49 +62,48 @@ khi một hàm không có giá trị trả về thực thi đến câu lệnh `r
 kết thúc.
 
 ```cpp
+#include <iostream>
+
 void say_hello() {
-  cout << "hello!\n";
-  cout << "hello!\n";
-  cout << "hello!\n";
+  std::cout << "hello!\n";
+  std::cout << "hello!\n";
+  std::cout << "hello!\n";
   return;
-  cout << "hello!\n";  // câu lệnh này sẽ không được thực thi
+  std::cout << "hello!\n";  // câu lệnh này sẽ không được thực thi
 }
 ```
 
 ## Gọi hàm
 
-Giống như biến, hàm cần được khai báo trước rồi mới có thể sử dụng. Hành vi sử
-dụng hàm được gọi là "gọi". Ta có thể gọi hàm khác bên trong bất kỳ hàm
-nào, bao gồm cả chính hàm đó. Hành vi một hàm gọi chính nó được gọi là **đệ
-quy**.
+Giống như biến, hàm cần được khai báo trước rồi mới có thể sử dụng. Hành động sử
+dụng hàm được gọi là "gọi hàm". Ta có thể gọi hàm khác bên trong bất kỳ hàm nào,
+bao gồm cả chính hàm đó. Hành vi một hàm gọi chính nó được gọi là **đệ quy**.
 
 Trong hầu hết ngôn ngữ, cách gọi hàm là **tên hàm cộng với một cặp ngoặc**
-`()`; ví dụ `foo()`. Nếu hàm cần tham số, ta điền các tham số cần thiết vào
-trong ngoặc theo thứ tự, phân tách bằng dấu phẩy, ví dụ `foo(1, 2)`. Lời gọi
-hàm cũng là một biểu thức, và **giá trị trả về của hàm** chính là **giá trị của
-biểu thức**.
+`()`; ví dụ `foo()`. Nếu hàm cần dữ liệu đầu vào, ta điền các **đối số** cần
+thiết vào trong ngoặc theo thứ tự, phân tách bằng dấu phẩy, ví dụ `foo(1, 2)`.
+Lời gọi hàm cũng là một biểu thức, và **giá trị trả về của hàm** chính là **giá
+trị của biểu thức**.
 
-Các tham số viết trong khai báo hàm có thể hiểu là những biến có thể dùng **bên
-trong lần gọi hiện tại** của hàm. Giá trị của các biến này được khởi tạo bằng
-giá trị truyền vào từ nơi gọi. Xem ví dụ sau:
+Các tham số viết trong khai báo hoặc định nghĩa hàm có thể hiểu là những biến có
+thể dùng **bên trong lần gọi hiện tại** của hàm. Giá trị của các biến này được
+khởi tạo bằng đối số truyền vào từ nơi gọi. Xem ví dụ sau:
 
 ```cpp
 void foo(int, int);
-
-/* ... */
 
 void foo(int x, int y) {
   x = x * 2;
   y = y + 3;
 }
 
-/* ... */
-
-int a = 1;
-int b = 1;
-// trước khi gọi: a = 1, b = 1
-foo(a, b);  // gọi foo
-            // sau khi gọi: a = 1, b = 1
+int main() {
+  int a = 1;
+  int b = 1;
+  // trước khi gọi: a = 1, b = 1
+  foo(a, b);  // gọi foo
+              // sau khi gọi: a = 1, b = 1
+}
 ```
 
 Trong ví dụ trên, `foo(a, b)` là một lần gọi `foo`. Khi gọi, các biến `x` và
@@ -122,26 +120,26 @@ void foo(int& x, int& y) {
   y = y + 3;
 }
 
-/* ... */
-
-int a = 1;
-int b = 1;
-// trước khi gọi: a = 1, b = 1
-foo(a, b);  // gọi foo
-            // sau khi gọi: a = 2, b = 4
+int main() {
+  int a = 1;
+  int b = 1;
+  // trước khi gọi: a = 1, b = 1
+  foo(a, b);  // gọi foo
+              // sau khi gọi: a = 2, b = 4
+}
 ```
 
-Trong đoạn mã trên, ta thấy sau "`int`" trong danh sách tham số hàm có thêm dấu
-"`&`" (ký hiệu và). Điều này biểu thị **tham chiếu** tới kiểu
-`int`. Khi gọi `foo`, các biến `a` và `b` tại nơi gọi lần lượt khởi tạo hai
-tham chiếu tới kiểu `int` là `x` và `y` trong `foo`. Có thể hiểu `x` và `y`
-trong `foo` là "bí danh" của các biến `a` và `b` tại nơi gọi; tức thao tác lên
-`x` và `y` trong `foo` chính là thao tác lên `a` và `b` tại nơi gọi.
+Trong đoạn mã trên, ta thấy sau `int` trong danh sách tham số hàm có thêm dấu
+`&`. Điều này biểu thị **tham chiếu** tới kiểu `int`. Khi gọi `foo`, các biến
+`a` và `b` tại nơi gọi lần lượt dùng để khởi tạo hai tham chiếu kiểu `int` là
+`x` và `y` trong `foo`. Có thể hiểu `x` và `y` trong `foo` là "bí danh" của các
+biến `a` và `b` tại nơi gọi; tức thao tác lên `x` và `y` trong `foo` chính là
+thao tác lên `a` và `b` tại nơi gọi.
 
 ## Hàm `main`
 
-Đặc biệt, mỗi chương trình C/C++ đều cần có một hàm tên là `main`. Mọi chương
-trình đều bắt đầu chạy từ hàm `main`.
+Đặc biệt, trong môi trường thi lập trình thông thường, mỗi chương trình C/C++
+đều cần có một hàm tên là `main`. Chương trình bắt đầu chạy từ hàm `main`.
 
 > Hàm `main` cũng có thể có tham số. Thông qua tham số của hàm `main`, ta có
 > thể nhận các chỉ thị mà bên ngoài truyền cho chương trình này (tức "tham số
