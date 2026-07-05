@@ -556,7 +556,7 @@ Chúng ta có thể dùng một bảng để tóm tắt các nội dung trên. C
 
 Vui lòng chú ý, mặc dù cú pháp nhập công thức nói trên rất giống hệ thống dàn trang LaTeX thực sự, **MathJax và LaTeX là hai thứ hoàn toàn không liên quan**, MathJax chỉ sử dụng một phần cú pháp rất giống LaTeX mà thôi. Trên thực tế, giữa hai bên có nhiều khác biệt chi tiết, và các khác biệt này thường làm công thức viết ra không dùng chung được giữa hai bên.
 
-Vì **OI Wiki** đã phát triển công cụ xuất PDF dựa trên engine dàn trang LaTeX, cần nhấn mạnh tính tương thích của công thức giữa MathJax và LaTeX. **Khi viết công thức toán trong Wiki, vui lòng chú ý các điểm sau.**
+Vì **OI Wiki** đã phát triển công cụ xuất PDF dựa trên bộ máy dàn trang LaTeX, cần nhấn mạnh tính tương thích của công thức giữa MathJax và LaTeX. **Khi viết công thức toán trong Wiki, vui lòng chú ý các điểm sau.**
 
 Các quy tắc này đã nhân nhượng MathJax hết mức có thể. Công cụ xuất đã tương thích với một phần cách viết vốn chỉ xuất đúng trong MathJax.
 

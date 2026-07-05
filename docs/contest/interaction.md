@@ -12,7 +12,7 @@ Các lỗi đặc thù của bài tương tác:
 
 Vì nhập xuất của bài tương tác khá rườm rà, nên đóng gói riêng các hàm nhập và xuất.
 
-Khi thi, nếu tác giả bài cho sẵn header grader (dùng để debug bài tương tác kiểu grader) hoặc chương trình checker (dùng để debug bài tương tác kiểu stdio), việc debug bài tương tác sẽ tương đối đơn giản, vì đối chiếu kiểm thử bài tương tác khó hơn nhiều so với bài thông thường. Khi không có `testlib.h`, thư viện tương tác stdio cho một bài có nhiều chi tiết tương tác thường đã có khoảng 3k dòng code; cộng thêm một bộ đối chiếu dài khoảng 3k nữa thì ít nhất cần một giờ để cài đặt. Tuy nhiên, bất kể có chương trình debug hay không, khi debug code bài tương tác, thí sinh thường phải tự mô phỏng quá trình tương tác với chương trình. Vì vậy bài tương tác đòi hỏi thí sinh thiết kế được chương trình chất lượng cao, cố gắng làm đúng ngay từ đầu, đồng thời có năng lực kiểm lỗi tĩnh tốt.
+Khi thi, nếu tác giả bài cho sẵn tệp tiêu đề grader (dùng để gỡ lỗi bài tương tác kiểu grader) hoặc chương trình checker (dùng để gỡ lỗi bài tương tác kiểu stdio), việc gỡ lỗi bài tương tác sẽ tương đối đơn giản, vì đối chiếu kiểm thử bài tương tác khó hơn nhiều so với bài thông thường. Khi không có `testlib.h`, thư viện tương tác stdio cho một bài có nhiều chi tiết tương tác thường đã có khoảng 3k dòng mã; cộng thêm một bộ đối chiếu dài khoảng 3k nữa thì ít nhất cần một giờ để cài đặt. Tuy nhiên, bất kể có chương trình gỡ lỗi hay không, khi gỡ lỗi mã bài tương tác, thí sinh thường phải tự mô phỏng quá trình tương tác với chương trình. Vì vậy bài tương tác đòi hỏi thí sinh thiết kế được chương trình chất lượng cao, cố gắng làm đúng ngay từ đầu, đồng thời có năng lực kiểm lỗi tĩnh tốt.
 
 Ví dụ:
 
@@ -54,9 +54,9 @@ Danh sách liên kết có tối đa $5 \times 10 ^ 4$ phần tử, nhưng ta ch
 
 Với trường hợp $n < 2000$ thì liệt kê trực tiếp. Khi $n \ge 2000$, ta rải trực tiếp 1000 điểm; lúc này khoảng cách kỳ vọng giữa các điểm này rất nhỏ, và ta có thể bắt đầu duyệt về sau từ giá trị lớn nhất nhỏ hơn $x$. Có thể chứng minh rằng trước khi đến điểm tiếp theo, ta đã thu được đáp án. Trong quá trình duyệt, hễ tìm được phần tử lớn hơn hoặc bằng $x$ thì có thể suy ra trực tiếp.
 
-Tuy ý tưởng tổng thể đơn giản, nhưng trên thực tế nếu chưa từng học các thuật toán ngẫu nhiên không hoàn hảo như simulated annealing, việc nghĩ ra có thể sẽ khó hơn một chút.
+Tuy ý tưởng tổng thể đơn giản, nhưng trên thực tế nếu chưa từng học các thuật toán ngẫu nhiên không hoàn hảo như mô phỏng luyện kim, việc nghĩ ra có thể sẽ khó hơn một chút.
 
-Đồng thời, vì Codeforces có cơ chế hack, nhiều người sẽ cố tình hack các code không khởi tạo hạt giống ngẫu nhiên, nên trước hàm `random_shuffle()` cần gọi `srand((size_t)new char)`.
+Đồng thời, vì Codeforces có cơ chế hack, nhiều người sẽ cố tình hack các mã không khởi tạo hạt giống ngẫu nhiên, nên trước hàm `random_shuffle()` cần gọi `srand((size_t)new char)`.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -285,7 +285,7 @@ Vì phản hồi duy nhất là khi di chuyển có va vào tường hay không,
 -   Khi đi sát mép tường, rất dễ biết mình có va vào tường hay không, nhờ đó thu được nhiều thông tin nhất có thể.
 -   Các ô sát tường đều không thể là ô có cổng dịch chuyển, nhờ vậy có thể tránh để robot bị lạc.
 
-Vì vậy, nếu đã biết robot có thể đang ở một vị trí nào đó sát tường, để xác định robot có thật sự ở vị trí này hay không, có thể dùng [phương pháp "một tay men tường"](https://en.wikipedia.org/wiki/Maze_solving_algorithm). Theo nguyên lý tô pô, trong mê cung có tường ở hai bên, nếu đi vào từ cửa vào và luôn dùng một tay men theo cùng một bên tường, có thể đảm bảo tìm được lối ra. Vì tường trong bài này khép kín, chỉ cần đi dọc theo đường sát tường là có thể đảm bảo quay về điểm xuất phát mà không va tường. Ngoài ra, vì đường sát tường là chu trình khép kín lớn nhất trên bản đồ, trong code thực tế không cần cố tình đâm vào tường để đảm bảo robot đang ở sát tường; có thể dùng đánh dấu để chỉ ra đường sát tường trên bản đồ. Hơn nữa, một khi va vào tường thì cần nhanh chóng quay lại theo đường cũ, vừa tránh để robot bị lạc vừa giảm số bước.
+Vì vậy, nếu đã biết robot có thể đang ở một vị trí nào đó sát tường, để xác định robot có thật sự ở vị trí này hay không, có thể dùng [phương pháp "một tay men tường"](https://en.wikipedia.org/wiki/Maze_solving_algorithm). Theo nguyên lý tô pô, trong mê cung có tường ở hai bên, nếu đi vào từ cửa vào và luôn dùng một tay men theo cùng một bên tường, có thể đảm bảo tìm được lối ra. Vì tường trong bài này khép kín, chỉ cần đi dọc theo đường sát tường là có thể đảm bảo quay về điểm xuất phát mà không va tường. Ngoài ra, vì đường sát tường là chu trình khép kín lớn nhất trên bản đồ, trong mã thực tế không cần cố tình đâm vào tường để đảm bảo robot đang ở sát tường; có thể dùng đánh dấu để chỉ ra đường sát tường trên bản đồ. Hơn nữa, một khi va vào tường thì cần nhanh chóng quay lại theo đường cũ, vừa tránh để robot bị lạc vừa giảm số bước.
 
 Từ đó có thể suy ra phương pháp thử sai để xác định robot có ở một ô cụ thể hay không: đưa robot, trong điều kiện không đi vào ô chưa biết hoặc cổng dịch chuyển đã biết, đến đường sát tường, rồi đi một vòng quanh đường sát tường. Nếu trong quá trình này không va tường, có thể xác định robot đúng là đang ở ô cụ thể đó.
 
@@ -293,9 +293,9 @@ Ta có thể dùng phương pháp trên: ban đầu đánh dấu toàn bộ các
 
 Sau khi tìm ra các ô chưa biết, cần phán đoán quan hệ ghép cặp của $2k$ ô chưa biết. Cách làm thực tế cũng rất đơn giản: chỉ cần ghép cặp brute force. Vì $k \le 5$, nên nhiều nhất chỉ cần $9 + 7 + 5 + 3$ lần thử sai. Để so sánh, trường hợp phán đoán toàn bộ ô chưa biết trong hình nhiều nhất cần $121 - 40$ lần thử sai.
 
-Hiện tại, code dưới đây chỉ qua được bài mirror trên UOJ: [#247. Rujia Liu's Present 7: Mysterious Space Station](http://uoj.ac/problem/247), nhưng không qua được đề gốc UVa. Sau khi sửa standard solution của Liu Rujia trên UOJ vẫn không qua, và tạm thời chưa liên hệ được với Liu Rujia. Vì vậy code dưới đây lấy UOJ làm chuẩn.
+Hiện tại, mã dưới đây chỉ qua được bài mirror trên UOJ: [#247. Rujia Liu's Present 7: Mysterious Space Station](http://uoj.ac/problem/247), nhưng không qua được đề gốc UVa. Sau khi sửa lời giải chuẩn của Liu Rujia trên UOJ vẫn không qua, và tạm thời chưa liên hệ được với Liu Rujia. Vì vậy mã dưới đây lấy UOJ làm chuẩn.
 
-Tuy nhiên chất lượng standard solution của Liu Rujia vẫn cao hơn code dưới đây rất nhiều; có thể xem [standard solution đã qua bài mirror UOJ](http://uoj.ac/submission/105789) trên UOJ. Với cùng một bộ dữ liệu, số lần di chuyển mà standard solution dùng là rất ít.
+Tuy nhiên chất lượng lời giải chuẩn của Liu Rujia vẫn cao hơn mã dưới đây rất nhiều; có thể xem [lời giải chuẩn đã qua bài mirror UOJ](http://uoj.ac/submission/105789) trên UOJ. Với cùng một bộ dữ liệu, số lần di chuyển mà lời giải chuẩn dùng là rất ít.
 
 ??? note "Mã tham khảo"
     ```cpp

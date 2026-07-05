@@ -133,7 +133,7 @@ Xét việc ghi lại mỗi nút có bao nhiêu cha (xem gốc của mỗi phiê
 
 ### Cài đặt
 
-??? note "Code đầy đủ (cây cân bằng văn nghệ bền vững)"
+??? note "Mã đầy đủ (cây cân bằng văn nghệ bền vững)"
     ```cpp
     --8<-- "docs/ds/code/persistent-balanced/persistent-wblt.cpp"
     ```

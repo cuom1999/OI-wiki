@@ -13,7 +13,7 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 Với một cây nhị phân, ta định nghĩa **nút ngoài** là nút có số con nhỏ hơn hai. $\mathrm{dist}$ của một nút là số cạnh trên đường đi từ nút đó tới nút ngoài gần nhất trong cây con của nó. $\mathrm{dist}$ của nút rỗng là $0$.
 
 ???+ note "Lưu ý"
-    Trong một số tài liệu, $\mathrm{dist}$ được định nghĩa bằng $\mathrm{dist}$ trong bài này trừ $1$. Cách định nghĩa đó giúp khi viết code có thể bỏ qua một số bước kiểm tra rỗng, nhưng cần đặt trước $\mathrm{dist}$ của nút rỗng là $-1$. Tất cả code trong bài này đều dùng định nghĩa **$\mathrm{dist}$ của nút rỗng là $-1$**, hãy chú ý điểm khác biệt này so với định nghĩa $\mathrm{dist}$ trong phần diễn giải.
+    Trong một số tài liệu, $\mathrm{dist}$ được định nghĩa bằng $\mathrm{dist}$ trong bài này trừ $1$. Cách định nghĩa đó giúp khi viết mã có thể bỏ qua một số bước kiểm tra rỗng, nhưng cần đặt trước $\mathrm{dist}$ của nút rỗng là $-1$. Tất cả mã trong bài này đều dùng định nghĩa **$\mathrm{dist}$ của nút rỗng là $-1$**, hãy chú ý điểm khác biệt này so với định nghĩa $\mathrm{dist}$ trong phần diễn giải.
 
 Cây lệch trái là một cây nhị phân. Nó không chỉ có tính chất heap mà còn "lệch trái": tại mỗi nút, $\mathrm{dist}$ của con trái luôn lớn hơn hoặc bằng $\mathrm{dist}$ của con phải.
 

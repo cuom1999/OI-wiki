@@ -24,11 +24,11 @@ Dưới đây là các ký hiệu được dùng trong bài:
 
 TeX Live và MikTeX đều đi kèm trình soạn thảo TeXworks. Bạn cũng có thể cài trình soạn thảo nhiều tính năng hơn như TeXstudio, hoặc tự cấu hình Visual Studio Code, Notepad++ và các trình soạn thảo khác. Trình soạn thảo dùng trong phần dưới là TeXworks chạy trên Windows 7.
 
-Phần lớn các bản phân phối đều có nhiều engine, chẳng hạn pdfTeX, XeTeX và LuaTeX. Với văn bản Unicode nhiều dấu như tiếng Việt, XeTeX hoặc LuaTeX thường thuận tiện hơn.
+Phần lớn các bản phân phối đều có nhiều bộ máy, chẳng hạn pdfTeX, XeTeX và LuaTeX. Với văn bản Unicode nhiều dấu như tiếng Việt, XeTeX hoặc LuaTeX thường thuận tiện hơn.
 
-TeX có nhiều format, chẳng hạn Plain TeX và LaTeX. Hiện nay thường dùng format LaTeX. Vì vậy, bạn cần dùng engine được đóng gói cùng format mà bạn sử dụng. Ví dụ với pdfTeX, bạn cần dùng pdfLaTeX; với XeTeX thì dùng XeLaTeX.
+TeX có nhiều định dạng, chẳng hạn Plain TeX và LaTeX. Hiện nay thường dùng định dạng LaTeX. Vì vậy, bạn cần dùng bộ máy được đóng gói cùng định dạng mà bạn sử dụng. Ví dụ với pdfTeX, bạn cần dùng pdfLaTeX; với XeTeX thì dùng XeLaTeX.
 
-Đọc thêm: [Giới thiệu về engine, format và bản phân phối TeX](https://liam.page/2018/11/26/introduction-to-TeX-engine-format-and-distribution/).
+Đọc thêm: [Giới thiệu về bộ máy, định dạng và bản phân phối TeX](https://liam.page/2018/11/26/introduction-to-TeX-engine-format-and-distribution/).
 
 ### Cấu hình môi trường
 

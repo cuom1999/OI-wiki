@@ -261,11 +261,11 @@ ngược lại nó có thể chậm hơn Euclid.
 ???+ note "Về countr_zero"
     1.  gcc có [hàm nội tại](../bit.md#hàm-nội-tại-của-gcc)
         `__builtin_ctz` (32 bit) hoặc `__builtin_ctzll` (64 bit), có thể thay
-        cho `countr_zero` trong đoạn code trên;
-    2.  Từ C++20, header `<bit>` chứa
+        cho `countr_zero` trong đoạn mã trên;
+    2.  Từ C++20, tệp tiêu đề `<bit>` chứa
         [`std::countr_zero`](https://en.cppreference.com/w/cpp/numeric/countr_zero);
     3.  Nếu không dùng hàm ngoài thư viện chuẩn và cũng không dùng được C++20,
-        đoạn code sau là một cách cài đặt $O(1)$ sau tiền xử lý trong mô hình
+        đoạn mã sau là một cách cài đặt $O(1)$ sau tiền xử lý trong mô hình
         Word-RAM with multiplication:
     
     ```cpp
