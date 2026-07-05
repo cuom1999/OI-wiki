@@ -1,6 +1,6 @@
 author: sshwy, FFjet, qz-cqy
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Thuật toán Euclid tương tự là nội dung do Hong Huadun đề xuất trong buổi trao đổi trại viên tại Winter Camp 2016. Nó thường được dùng để giải các bài toán tính tổng của những dãy số (chỉ số là $i$) có cấu trúc dạng
@@ -13,7 +13,7 @@ $$
 
 Do các phương pháp như [liên phân số](./continued-fraction.md) và [cây Stern-Brocot](./stern-brocot.md) cũng mô tả cấu trúc đệ quy của phân số, những bài toán có thể giải bằng thuật toán Euclid tương tự thường cũng có thể giải bằng các phương pháp đó. So với chúng, thuật toán Euclid tương tự thường dễ hiểu hơn và cài đặt cũng ngắn gọn hơn.
 
-<span id="&#x7C7B;&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-euclid-tương-tự"></span>
 ## Thuật toán Euclid tương tự
 
 Ví dụ đơn giản nhất là bài toán tính tổng:
@@ -24,7 +24,7 @@ $$
 
 trong đó $a,b,c,n$ đều là số nguyên dương.
 
-<span id="&#x4EE3;&#x6570;&#x89E3;&#x6CD5;"></span>
+<span id="cách-giải-đại-số"></span>
 ### Cách giải đại số
 
 Trước hết, lấy phần dư của $a,b$ theo $c$ để đơn giản hóa bài toán, đưa nó về trường hợp $0\le a,b<c$:
@@ -105,7 +105,7 @@ Cài đặt tham khảo cho bài mẫu như sau:
     --8<-- "docs/math/code/euclidean/euclidean-0.cpp:full-text"
     ```
 
-<span id="&#x51E0;&#x4F55;&#x76F4;&#x89C2;"></span>
+<span id="trực-giác-hình-học"></span>
 ### Trực giác hình học
 
 Thuật toán này cũng có thể được hiểu từ góc nhìn hình học. Những bài toán mà thuật toán Euclid tương tự xử lý chủ yếu là bài toán đếm điểm nguyên nằm dưới một đường thẳng.
@@ -147,7 +147,7 @@ Thuật toán đệ quy này hoạt động được chủ yếu vì hai lý do:
 
 Dùng trực giác hình học tương tự, có thể mở rộng thuật toán Euclid tương tự cho trường hợp hệ số góc là số vô tỉ; phân tích cụ thể xem trong bài ví dụ phía sau.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ### Ví dụ
 
 ???+ example "[Bài mẫu - Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)"
@@ -332,7 +332,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     --8<-- "docs/math/code/euclidean/euclidean-3.cpp"
     ```
 
-<span id="&#x4E07;&#x80FD;&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-euclid-vạn-năng"></span>
 ## Thuật toán Euclid vạn năng
 
 Phần trước đã thảo luận cách suy ra thuật toán Euclid tương tự; quá trình đó thường khá rườm rà, và những tổng mà nó giải được chủ yếu là các tổng có thể chuyển thành bài toán đếm điểm nguyên (có trọng số) dưới một đường thẳng. Phần này thảo luận một phương pháp tổng quát hơn, trừu tượng hóa thêm quá trình trên để giải được nhiều bài toán hơn. Vì vậy, phương pháp này cũng được gọi là thuật toán Euclid vạn năng. Nó cũng tận dụng cấu trúc đệ quy của phân số để giải bài toán, nhưng cách rút gọn bài toán hơi khác với thuật toán Euclid tương tự.
@@ -345,7 +345,7 @@ $$
 
 trong đó $a,b,c,n$ đều là số nguyên dương.
 
-<span id="&#x95EE;&#x9898;&#x8F6C;&#x5316;"></span>
+<span id="chuyển-hóa-bài-toán"></span>
 ### Chuyển hóa bài toán
 
 Xét đoạn thẳng có tham số $(a,b,c,n)$:
@@ -419,7 +419,7 @@ Dễ kiểm tra rằng phép nhân này thỏa mãn luật kết hợp và có �
 
 Cả hai cách đều cho kết quả đúng. Tuy nhiên, vì giữ lại khá nhiều thông tin dư thừa, hằng số của phép toán ma trận lớn hơn, nên cách thứ hai thực dụng hơn khi xử lý bài toán thực tế.
 
-<span id="&#x7B97;&#x6CD5;&#x8FC7;&#x7A0B;"></span>
+<span id="quá-trình-thuật-toán"></span>
 ### Quá trình thuật toán
 
 Khác với thuật toán Euclid tương tự, vốn rút gọn bài toán một cách tổng thể, thuật toán Euclid vạn năng rút gọn bài toán bằng cách gộp các thao tác theo từng nhóm. Ký hiệu tích của các thao tác tương ứng với chuỗi là
@@ -549,7 +549,7 @@ Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như s
     --8<-- "docs/math/code/euclidean/euclidean-4.cpp:full-text"
     ```
 
-<span id="&#x4F8B;&#x9898;_1"></span>
+<span id="ví-dụ_1"></span>
 ### Ví dụ
 
 ???+ example "[Bài mẫu - Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)"
@@ -703,7 +703,7 @@ Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như s
     --8<-- "docs/math/code/euclidean/euclidean-6.cpp"
     ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 Bài mẫu:
@@ -727,7 +727,7 @@ Bài ứng dụng:
 -   [Codeforces 1098 E. Fedya the Potter](https://codeforces.com/problemset/problem/1098/E)
 -   [Codeforces 868 G. El Toll Caves](https://codeforces.com/problemset/problem/868/G)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 [^complexity]: Trong những bài toán thường xét, $b$ thường cùng bậc với $a$, nên hạng $O(\log(b/c))$ có thể bỏ qua. Hơn nữa, nếu trước khi gọi thuật toán Euclid vạn năng ta thực hiện một vòng lấy modulo của thuật toán Euclid tương tự để loại bỏ ảnh hưởng của $b$, thì có thể tránh độ phức tạp của phép lũy thừa nhanh ở hạng này. Thực chất là vì trong các bài toán thông thường, dạng ban đầu của $U$ khá đặc biệt, lũy thừa của nó có dạng đơn giản hơn và không cần tính bằng lũy thừa nhanh. Chẳng hạn trong ví dụ ở phần chính, kết quả của $U^{\lfloor b/a\rfloor}$ chỉ là thay số $1$ không nằm trên đường chéo trong $U$ bằng $\lfloor b/a\rfloor$, không cần dùng lũy thừa nhanh.
