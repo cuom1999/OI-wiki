@@ -2,12 +2,12 @@ author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFat
 
 ## Định nghĩa
 
-Trước khi đọc các nội dung dưới đây, hãy đọc phần [các khái niệm liên quan đến đồ thị](./concept.md) và [kiến thức cơ bản về cây](./tree-basic.md), đồng thời nắm các định nghĩa sau:
+Trước khi đọc các nội dung dưới đây, cần đọc phần [các khái niệm liên quan đến đồ thị](./concept.md) và [kiến thức cơ bản về cây](./tree-basic.md), đồng thời nắm các định nghĩa sau:
 
 1.  Đồ thị con bao trùm
 2.  Cây khung
 
-Ta định nghĩa **cây khung nhỏ nhất** (Minimum Spanning Tree, MST) của một đồ thị vô hướng liên thông là cây khung có tổng trọng số cạnh nhỏ nhất.
+**Cây khung nhỏ nhất** (Minimum Spanning Tree, MST) của một đồ thị vô hướng liên thông được định nghĩa là cây khung có tổng trọng số cạnh nhỏ nhất.
 
 Lưu ý: chỉ đồ thị liên thông mới có cây khung; với đồ thị không liên thông, chỉ tồn tại rừng khung.
 
@@ -64,21 +64,21 @@ $$
 \end{array}
 $$
 
-Thuật toán tuy đơn giản, nhưng cần cấu trúc dữ liệu phù hợp để hỗ trợ. Cụ thể, ta cần duy trì một khu rừng, truy vấn hai đỉnh có nằm trong cùng một cây hay không, và nối hai cây lại với nhau.
+Thuật toán tuy đơn giản, nhưng cần cấu trúc dữ liệu phù hợp để hỗ trợ. Cụ thể, cần duy trì một khu rừng, truy vấn hai đỉnh có nằm trong cùng một cây hay không, và nối hai cây lại với nhau.
 
-Nói một cách trừu tượng hơn, ta duy trì một tập hợp các **tập hợp**, truy vấn hai phần tử có thuộc cùng một tập hợp hay không, và hợp nhất hai tập hợp.
+Nói một cách trừu tượng hơn, cần duy trì một tập hợp các **tập hợp**, truy vấn hai phần tử có thuộc cùng một tập hợp hay không, và hợp nhất hai tập hợp.
 
 Trong đó, việc truy vấn hai đỉnh có liên thông hay không và việc nối hai đỉnh có thể được duy trì bằng DSU.
 
-Nếu dùng thuật toán sắp xếp $O(m\log m)$ và DSU có độ phức tạp $O(m\alpha(m, n))$ hoặc $O(m\log n)$, ta thu được thuật toán Kruskal có độ phức tạp thời gian $O(m\log m)$.
+Nếu dùng thuật toán sắp xếp $O(m\log m)$ và DSU có độ phức tạp $O(m\alpha(m, n))$ hoặc $O(m\log n)$, thuật toán Kruskal có độ phức tạp thời gian $O(m\log m)$.
 
 ### Chứng minh
 
-Ý tưởng rất đơn giản: để tạo một cây khung nhỏ nhất, ta bắt đầu từ cạnh có trọng số nhỏ nhất, thêm lần lượt các cạnh theo thứ tự trọng số tăng dần. Nếu một lần thêm cạnh tạo ra chu trình, ta bỏ cạnh đó đi, cho đến khi đã thêm $n-1$ cạnh, tức là đã tạo thành một cây.
+Ý tưởng rất đơn giản: để tạo một cây khung nhỏ nhất, bắt đầu từ cạnh có trọng số nhỏ nhất, thêm lần lượt các cạnh theo thứ tự trọng số tăng dần. Nếu một lần thêm cạnh tạo ra chu trình, bỏ cạnh đó đi, cho đến khi đã thêm $n-1$ cạnh, tức là đã tạo thành một cây.
 
 Chứng minh: dùng quy nạp để chứng minh rằng ở mọi thời điểm, tập cạnh mà thuật toán Kruskal chọn đều được chứa trong một MST nào đó.
 
-Cơ sở: khi thuật toán vừa bắt đầu, mệnh đề hiển nhiên đúng vì cây khung nhỏ nhất tồn tại.
+Cơ sở: khi thuật toán vừa bắt đầu, mệnh đề đúng vì cây khung nhỏ nhất tồn tại.
 
 Bước quy nạp: giả sử ở một thời điểm nào đó mệnh đề đúng, tập cạnh hiện tại là $F$, và gọi $T$ là MST đó; xét cạnh tiếp theo được thêm vào, ký hiệu $e$.
 
@@ -95,7 +95,7 @@ Do đó, $T+e-f$ chứa $F$ và cũng là một cây khung nhỏ nhất, nên b�
 ### Bài tập mẫu
 
 ???+ note "[Luogu P1195 Bầu trời của Pocket](https://www.luogu.com.cn/problem/P1195)"
-    Có $n$ đám mây. Bạn cần nối chúng thành $k$ kẹo bông; nối đám mây $X_i$ với đám mây $Y_i$ tốn chi phí $L_i$. Hãy tìm chi phí nhỏ nhất.
+    Có $n$ đám mây. Cần nối chúng thành $k$ kẹo bông; nối đám mây $X_i$ với đám mây $Y_i$ tốn chi phí $L_i$. Tìm chi phí nhỏ nhất.
 
 ??? note "Mã cho bài tập mẫu"
     === "C++"
@@ -123,11 +123,11 @@ Minh họa:
 
 ![](./images/mst-3.apng)
 
-Cụ thể, mỗi lần ta chọn một đỉnh có khoảng cách nhỏ nhất, rồi dùng cạnh mới để cập nhật khoảng cách của các đỉnh khác.
+Cụ thể, mỗi lần chọn một đỉnh có khoảng cách nhỏ nhất, rồi dùng cạnh mới để cập nhật khoảng cách của các đỉnh khác.
 
 Thực ra điều này giống thuật toán Dijkstra: mỗi lần tìm đỉnh có khoảng cách nhỏ nhất, có thể tìm bằng vét cạn hoặc duy trì bằng heap.
 
-Cách tối ưu bằng heap tương tự tối ưu heap của Dijkstra. Tuy nhiên, nếu dùng heap nhị phân hoặc các loại heap không hỗ trợ thao tác decrease-key trong $O(1)$, độ phức tạp sẽ không tốt hơn Kruskal và hằng số cũng lớn hơn Kruskal. Vì vậy, trong trường hợp thông thường người ta dùng Kruskal; trên đồ thị dày đặc, đặc biệt là đồ thị đầy đủ, độ phức tạp của Prim vét cạn tốt hơn Kruskal, nhưng khi chạy thực tế **chưa chắc** nhanh hơn.
+Cách tối ưu bằng heap tương tự tối ưu heap của Dijkstra. Tuy nhiên, nếu dùng heap nhị phân hoặc các loại heap không hỗ trợ thao tác decrease-key trong $O(1)$, độ phức tạp sẽ không tốt hơn Kruskal và hằng số cũng lớn hơn Kruskal. Vì vậy, trong trường hợp thông thường thường chọn Kruskal; trên đồ thị dày đặc, đặc biệt là đồ thị đầy đủ, độ phức tạp của Prim vét cạn tốt hơn Kruskal, nhưng khi chạy thực tế **chưa chắc** nhanh hơn.
 
 Vét cạn: $O(n^2+m)$.
 
@@ -160,7 +160,7 @@ $$
 \end{array}
 $$
 
-Lưu ý: đoạn mã trên chỉ tính tổng trọng số của cây khung nhỏ nhất. Nếu cần in phương án, ta phải ghi lại mỗi giá trị $dis$ của từng đỉnh đại diện cho cạnh nào.
+Lưu ý: đoạn mã trên chỉ tính tổng trọng số của cây khung nhỏ nhất. Nếu cần in phương án, phải ghi lại mỗi giá trị $dis$ của từng đỉnh đại diện cho cạnh nào.
 
 ??? note "Cài đặt mã"
     ```cpp
@@ -230,23 +230,23 @@ Lưu ý: đoạn mã trên chỉ tính tổng trọng số của cây khung nh�
 
 Bắt đầu từ một đỉnh bất kỳ, chia các đỉnh thành hai loại: đã được thêm và chưa được thêm.
 
-Mỗi lần, trong các đỉnh chưa được thêm, ta tìm đỉnh có giá trị nhỏ nhất của cạnh nhẹ nhất nối nó với một đỉnh đã được thêm.
+Mỗi lần, trong các đỉnh chưa được thêm, tìm đỉnh có giá trị nhỏ nhất của cạnh nhẹ nhất nối nó với một đỉnh đã được thêm.
 
 Sau đó thêm đỉnh này vào, đồng thời nối cạnh có trọng số nhỏ nhất đó.
 
 Lặp lại $n-1$ lần là đủ.
 
-Chứng minh: ta vẫn chứng minh rằng ở mỗi bước, tồn tại một cây khung nhỏ nhất chứa tập cạnh đã chọn.
+Chứng minh: vẫn chứng minh rằng ở mỗi bước, tồn tại một cây khung nhỏ nhất chứa tập cạnh đã chọn.
 
-Cơ sở: khi chỉ có một đỉnh, mệnh đề hiển nhiên đúng.
+Cơ sở: khi chỉ có một đỉnh, mệnh đề đúng.
 
-Bước quy nạp: nếu một bước nào đó mệnh đề đúng, tập cạnh hiện tại là $F$ và thuộc về MST $T$; tiếp theo ta thêm cạnh $e$.
+Bước quy nạp: nếu một bước nào đó mệnh đề đúng, tập cạnh hiện tại là $F$ và thuộc về MST $T$; tiếp theo thêm cạnh $e$.
 
 Nếu $e$ thuộc $T$, mệnh đề đúng.
 
 Ngược lại, xét trong $T+e$ một cạnh khác $f$ trên chu trình mà có thể thêm vào tập cạnh hiện tại.
 
-Trước hết, trọng số của $f$ chắc chắn không nhỏ hơn trọng số của $e$, nếu không ta đã chọn $f$ thay vì $e$.
+Trước hết, trọng số của $f$ chắc chắn không nhỏ hơn trọng số của $e$, nếu không $f$ đã được chọn thay vì $e$.
 
 Tiếp theo, trọng số của $f$ chắc chắn không lớn hơn trọng số của $e$, nếu không $T+e-f$ sẽ là một cây khung nhỏ hơn.
 
@@ -258,9 +258,9 @@ Tiếp theo là một thuật toán khác để tìm cây khung nhỏ nhất: th
 
 Trong các bài toán mà cạnh có nhiều tính chất đặc biệt, thuật toán Boruvka có lợi thế. Ví dụ bài toán đồ thị đầy đủ [CF888G](https://codeforces.com/problemset/problem/888/G).
 
-Để mô tả thuật toán này, ta cần đưa vào một số định nghĩa:
+Để mô tả thuật toán này, cần đưa vào một số định nghĩa:
 
-1.  Định nghĩa $E'$ là tập cạnh của rừng khung nhỏ nhất mà ta hiện đang tìm được. Trong quá trình thuật toán chạy, ta dần thêm cạnh vào $E'$. Định nghĩa **thành phần liên thông** là một tập đỉnh $V'\subseteq V$ sao cho với hai đỉnh bất kỳ $u$, $v$ trong tập này, chúng liên thông với nhau trên đồ thị con được tạo bởi các cạnh trong $E'$.
+1.  Định nghĩa $E'$ là tập cạnh của rừng khung nhỏ nhất đang tìm được. Trong quá trình thuật toán chạy, các cạnh dần được thêm vào $E'$. Định nghĩa **thành phần liên thông** là một tập đỉnh $V'\subseteq V$ sao cho với hai đỉnh bất kỳ $u$, $v$ trong tập này, chúng liên thông với nhau trên đồ thị con được tạo bởi các cạnh trong $E'$.
 2.  Định nghĩa **cạnh nhỏ nhất** của một thành phần liên thông là cạnh có trọng số nhỏ nhất trong số các cạnh nối nó đến các thành phần liên thông khác.
 
 Ban đầu, $E'=\varnothing$, mỗi đỉnh là một thành phần liên thông riêng:
@@ -310,7 +310,7 @@ Xét tính duy nhất của cây khung nhỏ nhất. Nếu một cạnh **không
 
 Với thuật toán Kruskal, chỉ cần tính số cạnh có trọng số hiện tại có thể được thêm và số cạnh thực sự được thêm. Nếu hai giá trị này khác nhau, điều đó cho thấy các cạnh này cùng với các cạnh trước đó đã tạo ra một chu trình. Chu trình này có ít nhất hai cạnh mang trọng số hiện tại; nếu không, theo DSU cạnh đó không thể được thêm. Khi đó cây khung nhỏ nhất không duy nhất.
 
-Để tìm các cạnh có trọng số bằng cạnh hiện tại, ta chỉ cần ghi lại con trỏ đầu và cuối; dùng hàng đợi đơn điệu có thể xử lý vấn đề này trong độ phức tạp $O(\alpha(m))$ với $m$ là số cạnh, gần như bằng thời gian của thuật toán gốc.
+Để tìm các cạnh có trọng số bằng cạnh hiện tại, chỉ cần ghi lại con trỏ đầu và cuối; dùng hàng đợi đơn điệu có thể xử lý vấn đề này trong độ phức tạp $O(\alpha(m))$ với $m$ là số cạnh, gần như bằng thời gian của thuật toán gốc.
 
 ??? note "Bài tập mẫu: [POJ 1679](http://poj.org/problem?id=1679)"
     ```cpp
@@ -328,12 +328,12 @@ Trong đồ thị vô hướng, đây là cây khung có tổng trọng số nh�
 #### Cách giải
 
 -   Tìm cây khung nhỏ nhất $T$ của đồ thị vô hướng, gọi tổng trọng số của nó là $M$
--   Duyệt mỗi cạnh chưa được chọn $e = (u,v,w)$, tìm cạnh có trọng số lớn nhất $e' = (s,t,w')$ trên đường đi từ $u$ đến $v$ trong $T$. Khi thay $e'$ bằng $e$ trong $T$, ta thu được một cây khung $T'$ có tổng trọng số $M' = M + w - w'$.
+-   Duyệt mỗi cạnh chưa được chọn $e = (u,v,w)$, tìm cạnh có trọng số lớn nhất $e' = (s,t,w')$ trên đường đi từ $u$ đến $v$ trong $T$. Khi thay $e'$ bằng $e$ trong $T$, thu được một cây khung $T'$ có tổng trọng số $M' = M + w - w'$.
 -   Lấy giá trị nhỏ nhất trong tất cả đáp án $M'$ thu được từ các phép thay thế
 
 Làm thế nào để tìm trọng số cạnh lớn nhất trên đường đi $u,v$?
 
-Ta có thể dùng kỹ thuật nhảy nhị phân để duy trì: tiền xử lý tổ tiên cấp $2^i$ của mỗi nút và trọng số cạnh lớn nhất trên đường đi từ nút đó đến tổ tiên cấp $2^i$ của nó. Khi đó trong quá trình tìm LCA bằng nhảy nhị phân, ta có thể lấy trực tiếp giá trị này.
+Có thể dùng kỹ thuật nhảy nhị phân để duy trì: tiền xử lý tổ tiên cấp $2^i$ của mỗi nút và trọng số cạnh lớn nhất trên đường đi từ nút đó đến tổ tiên cấp $2^i$ của nó. Khi đó trong quá trình tìm LCA bằng nhảy nhị phân, có thể lấy trực tiếp giá trị này.
 
 ### Cây khung nhỏ thứ hai nghiêm ngặt
 
@@ -345,9 +345,9 @@ Trong đồ thị vô hướng, đây là cây khung có tổng trọng số nh�
 
 Xét lại quá trình tìm cây khung nhỏ thứ hai không nghiêm ngặt ở trên: tại sao đáp án thu được là không nghiêm ngặt?
 
-Vì cây khung nhỏ nhất đảm bảo rằng trong cây khung, giá trị lớn nhất của cạnh trên đường đi từ $u$ đến $v$ chắc chắn **không lớn hơn** giá trị lớn nhất của cạnh trên bất kỳ đường đi nào khác từ $u$ đến $v$. Nói cách khác, khi trọng số của cạnh dùng để thay thế bằng trọng số của cạnh bị thay thế trong cây khung ban đầu, cây khung nhỏ thứ hai thu được là không nghiêm ngặt.
+Vì cây khung nhỏ nhất bảo đảm rằng trong cây khung, giá trị lớn nhất của cạnh trên đường đi từ $u$ đến $v$ chắc chắn **không lớn hơn** giá trị lớn nhất của cạnh trên bất kỳ đường đi nào khác từ $u$ đến $v$. Nói cách khác, khi trọng số của cạnh dùng để thay thế bằng trọng số của cạnh bị thay thế trong cây khung ban đầu, cây khung nhỏ thứ hai thu được là không nghiêm ngặt.
 
-Cách xử lý rất tự nhiên: khi duy trì trọng số cạnh lớn nhất trên đường đi đến tổ tiên cấp $2^i$, ta đồng thời duy trì **trọng số cạnh lớn thứ hai nghiêm ngặt**. Khi trọng số của cạnh dùng để thay thế bằng trọng số lớn nhất trên đường đi trong cây khung ban đầu, ta thay bằng giá trị lớn thứ hai nghiêm ngặt.
+Cách xử lý rất tự nhiên: khi duy trì trọng số cạnh lớn nhất trên đường đi đến tổ tiên cấp $2^i$, đồng thời duy trì **trọng số cạnh lớn thứ hai nghiêm ngặt**. Khi trọng số của cạnh dùng để thay thế bằng trọng số lớn nhất trên đường đi trong cây khung ban đầu, thay bằng giá trị lớn thứ hai nghiêm ngặt.
 
 Quá trình này có thể giải bằng nhảy nhị phân, với độ phức tạp $O(m \log m)$.
 
@@ -519,12 +519,12 @@ Cây khung nút cổ chai của đồ thị vô hướng $G$ là một cây khun
 
 **Cây khung nhỏ nhất là điều kiện đủ nhưng không cần của cây khung nút cổ chai.** Nghĩa là cây khung nhỏ nhất chắc chắn là cây khung nút cổ chai, nhưng cây khung nút cổ chai chưa chắc là cây khung nhỏ nhất.
 
-Có thể chứng minh bằng phản chứng mệnh đề "cây khung nhỏ nhất chắc chắn là cây khung nút cổ chai": giả sử trọng số cạnh lớn nhất trong cây khung nhỏ nhất là $w$. Nếu cây khung nhỏ nhất không phải cây khung nút cổ chai, thì mọi cạnh trong cây khung nút cổ chai đều có trọng số nhỏ hơn $w$. Ta chỉ cần xóa cạnh dài nhất trong cây khung nhỏ nhất ban đầu, rồi dùng một cạnh trong cây khung nút cổ chai để nối hai cây tạo thành sau khi xóa cạnh đó. Cây khung mới thu được sẽ có tổng trọng số nhỏ hơn cây khung nhỏ nhất ban đầu, tạo ra mâu thuẫn.
+Có thể chứng minh bằng phản chứng mệnh đề "cây khung nhỏ nhất chắc chắn là cây khung nút cổ chai": giả sử trọng số cạnh lớn nhất trong cây khung nhỏ nhất là $w$. Nếu cây khung nhỏ nhất không phải cây khung nút cổ chai, thì mọi cạnh trong cây khung nút cổ chai đều có trọng số nhỏ hơn $w$. Chỉ cần xóa cạnh dài nhất trong cây khung nhỏ nhất ban đầu, rồi dùng một cạnh trong cây khung nút cổ chai để nối hai cây tạo thành sau khi xóa cạnh đó. Cây khung mới thu được sẽ có tổng trọng số nhỏ hơn cây khung nhỏ nhất ban đầu, tạo ra mâu thuẫn.
 
 ### Bài tập mẫu
 
 ???+ note "POJ 2395 Out of Hay"
-    Cho $n$ nông trại và $m$ cạnh, các nông trại được đánh số từ $1$ đến $n$. Có một người cần đi từ nông trại số $1$ đến các nông trại khác. Hãy tìm khối lượng nước tối đa người đó cần mang theo trên hành trình; lưu ý mỗi khi đến một nông trại, người đó có thể bổ sung nước, và tổng độ dài đường đi phải nhỏ nhất.
+    Cho $n$ nông trại và $m$ cạnh, các nông trại được đánh số từ $1$ đến $n$. Có một người cần đi từ nông trại số $1$ đến các nông trại khác. Tìm khối lượng nước tối đa người đó cần mang theo trên hành trình; lưu ý mỗi khi đến một nông trại, người đó có thể bổ sung nước, và tổng độ dài đường đi phải nhỏ nhất.
     Bài toán yêu cầu cạnh lớn nhất của cây nút cổ chai, có thể giải bằng cách tìm cây khung nhỏ nhất.
 
 ## Đường đi nút cổ chai nhỏ nhất
@@ -543,7 +543,7 @@ Ví dụ trong hình sau:
 
 ![](./images/mst5.png)
 
-Từ $1$ đến $4$ rõ ràng có hai đường đi nút cổ chai nhỏ nhất sau: $1-2-3-4$ và $1-3-4$.
+Từ $1$ đến $4$ có hai đường đi nút cổ chai nhỏ nhất sau: $1-2-3-4$ và $1-3-4$.
 
 Tuy nhiên, cạnh $1-2$ sẽ không xuất hiện trong bất kỳ cây khung nhỏ nhất nào.
 
@@ -551,21 +551,21 @@ Tuy nhiên, cạnh $1-2$ sẽ không xuất hiện trong bất kỳ cây khung n
 
 Vì đường đi nút cổ chai nhỏ nhất không duy nhất, thông thường truy vấn sẽ hỏi trọng số lớn nhất trên đường đi nút cổ chai nhỏ nhất.
 
-Nói cách khác, ta cần tìm giá trị max trên chuỗi trong cây khung nhỏ nhất.
+Nói cách khác, cần tìm giá trị max trên chuỗi trong cây khung nhỏ nhất.
 
-Binary lifting và phân tách cây theo chuỗi đều có thể xử lý việc này; ở đây không trình bày thêm.
+Binary lifting và phân tách cây theo chuỗi đều có thể xử lý việc này; phần này không trình bày thêm.
 
 ## Cây tái cấu trúc Kruskal
 
 ### Định nghĩa
 
-Trong quá trình chạy Kruskal, ta thêm một số cạnh theo thứ tự trọng số tăng dần. Bây giờ ta vẫn theo đúng thứ tự này.
+Trong quá trình chạy Kruskal, các cạnh được thêm theo thứ tự trọng số tăng dần. Phần này vẫn theo đúng thứ tự này.
 
 Trước hết tạo mới $n$ tập hợp, mỗi tập hợp có đúng một nút, và trọng số đỉnh bằng $0$.
 
-Mỗi lần thêm cạnh sẽ hợp nhất hai tập hợp. Ta có thể tạo một nút mới, đặt trọng số đỉnh của nó bằng trọng số cạnh vừa thêm, đồng thời đặt gốc của hai tập hợp lần lượt làm con trái và con phải của nút mới. Sau đó hợp nhất hai tập hợp và nút mới thành một tập hợp, rồi đặt nút mới làm gốc.
+Mỗi lần thêm cạnh sẽ hợp nhất hai tập hợp. Có thể tạo một nút mới, đặt trọng số đỉnh của nó bằng trọng số cạnh vừa thêm, đồng thời đặt gốc của hai tập hợp lần lượt làm con trái và con phải của nút mới. Sau đó hợp nhất hai tập hợp và nút mới thành một tập hợp, rồi đặt nút mới làm gốc.
 
-Dễ thấy rằng sau $n-1$ vòng, ta thu được một cây nhị phân có đúng $n$ lá, và mỗi nút không phải lá đều có đúng hai con. Cây này được gọi là cây tái cấu trúc Kruskal.
+Sau $n-1$ vòng, thu được một cây nhị phân có đúng $n$ lá, và mỗi nút không phải lá đều có đúng hai con. Cây này được gọi là cây tái cấu trúc Kruskal.
 
 Ví dụ:
 
@@ -577,13 +577,13 @@ Cây tái cấu trúc Kruskal của hình này như sau:
 
 ### Tính chất
 
-Dễ thấy rằng, trong đồ thị ban đầu, giá trị nhỏ nhất của trọng số cạnh lớn nhất trên mọi đường đi đơn giữa hai đỉnh = giá trị lớn nhất trên đường đi đơn giữa hai đỉnh trong cây khung nhỏ nhất = trọng số của LCA của hai đỉnh trong cây tái cấu trúc Kruskal.
+Trong đồ thị ban đầu, giá trị nhỏ nhất của trọng số cạnh lớn nhất trên mọi đường đi đơn giữa hai đỉnh = giá trị lớn nhất trên đường đi đơn giữa hai đỉnh trong cây khung nhỏ nhất = trọng số của LCA của hai đỉnh trong cây tái cấu trúc Kruskal.
 
 Nói cách khác, mọi đỉnh $y$ sao cho giá trị nhỏ nhất của trọng số cạnh lớn nhất trên đường đi đơn đến đỉnh $x$ không vượt quá $val$ đều nằm trong một cây con nào đó của cây tái cấu trúc Kruskal, và tập đỉnh này đúng bằng toàn bộ các lá của cây con đó.
 
-Ta tìm trên cây tái cấu trúc Kruskal nút nông nhất trên đường từ $x$ đến gốc có trọng số $\leq val$. Rõ ràng đây chính là gốc của cây con chứa tất cả các nút thỏa điều kiện.
+Tìm trên cây tái cấu trúc Kruskal nút nông nhất trên đường từ $x$ đến gốc có trọng số $\leq val$. Đây chính là gốc của cây con chứa tất cả các nút thỏa điều kiện.
 
-Nếu cần tìm giá trị lớn nhất của trọng số cạnh nhỏ nhất trên mọi đường đi đơn giữa hai đỉnh trong đồ thị ban đầu, thì khi chạy Kruskal ta thêm cạnh theo thứ tự trọng số giảm dần.
+Nếu cần tìm giá trị lớn nhất của trọng số cạnh nhỏ nhất trên mọi đường đi đơn giữa hai đỉnh trong đồ thị ban đầu, thì khi chạy Kruskal, thêm cạnh theo thứ tự trọng số giảm dần.
 
 ??? note "[LOJ 137 Minimum Bottleneck Path, enhanced version](https://loj.ac/problem/137)"
     ```cpp
@@ -593,11 +593,11 @@ Nếu cần tìm giá trị lớn nhất của trọng số cạnh nhỏ nhất 
 ??? note "[NOI 2018 Return Journey](https://uoj.ac/problem/393)"
     Trước hết tiền xử lý đường đi ngắn nhất từ mỗi đỉnh đến nút gốc.
 
-    Ta xây dựng cây khung lớn nhất theo độ cao. Rõ ràng, với mỗi truy vấn, các nút có thể đi đến là các nút mà trên đường đi giữa chúng và đỉnh truy vấn trong cây khung lớn nhất, cạnh có trọng số nhỏ nhất lớn hơn $p$.
+    Xây dựng cây khung lớn nhất theo độ cao. Với mỗi truy vấn, các nút có thể đi đến là các nút mà trên đường đi giữa chúng và đỉnh truy vấn trong cây khung lớn nhất, cạnh có trọng số nhỏ nhất lớn hơn $p$.
 
     Theo tính chất của cây tái cấu trúc Kruskal, các nút này nằm trong cùng một cây con và đồng thời là toàn bộ các lá của cây con đó.
 
-    Nói cách khác, ta chỉ cần tính giá trị min của các lá trong mỗi cây con của cây tái cấu trúc Kruskal để hỗ trợ truy vấn cây con.
+    Nói cách khác, chỉ cần tính giá trị min của các lá trong mỗi cây con của cây tái cấu trúc Kruskal để hỗ trợ truy vấn cây con.
 
     Nút gốc của truy vấn có thể được tìm bằng nhảy nhị phân trên cây tái cấu trúc Kruskal.
 
