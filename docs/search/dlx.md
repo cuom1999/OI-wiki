@@ -2,10 +2,10 @@ author: LeverImmy, 383494
 
 Trang này giới thiệu bài toán phủ chính xác, bài toán phủ lặp, thuật toán X dùng để giải hai bài toán đó, và danh sách liên kết chữ thập hai chiều Dancing Links dùng để tối ưu thuật toán X. Trang cũng trình bày cách phối hợp DLX với bước mô hình hóa để giải một số bài tìm kiếm.
 
-<span id="&#x7CBE;&#x786E;&#x8986;&#x76D6;&#x95EE;&#x9898;"></span>
+<span id="bài-toán-phủ-chính-xác"></span>
 ## Bài toán phủ chính xác
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ### Định nghĩa
 
 Bài toán phủ chính xác (tiếng Anh: Exact Cover Problem) là bài toán: cho nhiều tập hợp $S_i (1 \le i \le n)$ và một tập hợp $X$, hãy tìm một bộ nhiều phần tử không xét thứ tự $(T_1, T_2, \cdots , T_m)$ thỏa mãn các điều kiện sau:
@@ -14,7 +14,7 @@ Bài toán phủ chính xác (tiếng Anh: Exact Cover Problem) là bài toán: 
 2.  $X = \bigcup\limits_{i = 1}^{m}T_i$
 3.  $\forall i \in[1, m], T_i \in \{S_1, S_2, \cdots, S_n\}$
 
-<span id="&#x89E3;&#x91CA;"></span>
+<span id="giải-thích"></span>
 ### Giải thích
 
 Ví dụ, nếu cho
@@ -33,7 +33,7 @@ $$
 
 thì $(S_1, S_4, S_5)$ là một nghiệm hợp lệ.
 
-<span id="&#x95EE;&#x9898;&#x8F6C;&#x5316;"></span>
+<span id="chuyển-đổi-bài-toán"></span>
 ### Chuyển đổi bài toán
 
 Rời rạc hóa tất cả các số trong $\bigcup\limits_{i = 1}^{n}S_i$, ta thu được mô hình sau:
@@ -54,10 +54,10 @@ $$
 
 > Trong đó, hàng thứ $i$ biểu diễn $S_i$, còn từng số trên hàng này lần lượt biểu diễn $[1 \in S_i],[3 \in S_i],[5 \in S_i],\cdots,[119 \in S_i]$.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 ### Cài đặt
 
-<span id="&#x66B4;&#x529B;-1"></span>
+<span id="vét-cạn-1"></span>
 #### Vét cạn 1
 
 Một cách làm là liệt kê những hàng được chọn, rồi kiểm tra phương án đó có hợp lệ hay không.
@@ -95,7 +95,7 @@ mỗi lần kiểm tra cần $O(nm)$ thời gian. Vì vậy độ phức tạp t
     if (!ok) puts("No solution.");
     ```
 
-<span id="&#x66B4;&#x529B;-2"></span>
+<span id="vét-cạn-2"></span>
 #### Vét cạn 2
 
 Xét tính chất đặc biệt của ma trận 01, mỗi hàng có thể được xem như một số nhị phân $m$ bit.
@@ -134,19 +134,17 @@ mỗi lần tính `tmp` cần $O(n)$ thời gian. Vì vậy độ phức tạp t
     if (!ok) puts("No solution.");
     ```
 
-<span id="&#x91CD;&#x590D;&#x8986;&#x76D6;&#x95EE;&#x9898;"></span>
+<span id="bài-toán-phủ-lặp"></span>
 ## Bài toán phủ lặp
 
-Bài toán phủ lặp tương tự bài toán phủ chính xác, nhưng không hạn chế việc một phần tử được phủ nhiều lần. [Thuật toán X](#thuat-toan-x) được trình bày bên dưới vốn dành cho bài toán phủ chính xác, nhưng sau một vài chỉnh sửa và tối ưu (đã được ghi chú trong phần tương ứng), nó cũng có thể giải hiệu quả bài toán phủ lặp.
+Bài toán phủ lặp tương tự bài toán phủ chính xác, nhưng không hạn chế việc một phần tử được phủ nhiều lần. [Thuật toán X](#thuật-toán-x) được trình bày bên dưới vốn dành cho bài toán phủ chính xác, nhưng sau một vài chỉnh sửa và tối ưu (đã được ghi chú trong phần tương ứng), nó cũng có thể giải hiệu quả bài toán phủ lặp.
 
-<span id="x-&#x7B97;&#x6CD5;"></span>
-<span id="thuat-toan-x"></span>
+<span id="thuật-toán-x"></span>
 ## Thuật toán X
 
 Donald E. Knuth đề xuất thuật toán X (Algorithm X). Ý tưởng của nó khá giống cách vét cạn phía trên, nhưng thuận tiện hơn cho việc tối ưu.
 
-<span id="&#x8FC7;&#x7A0B;"></span>
-<span id="quy-trinh"></span>
+<span id="quy-trình"></span>
 ### Quy trình
 
 Tiếp tục dùng ví dụ ở trên, ta có ma trận 01 sau:
@@ -305,7 +303,7 @@ Từ các bước trên, có thể tóm tắt quy trình của thuật toán X n
 
 1.  Với ma trận hiện tại $M$, chọn và đánh dấu một hàng $r$, rồi thêm $r$ vào $S$;
 2.  Nếu đã thử tất cả các $r$ mà vẫn không có nghiệm, thuật toán kết thúc và xuất ra không có nghiệm;
-3.  Đánh dấu các hàng $r_i$ và các cột $c_i$ liên quan đến $r$ (hàng và cột liên quan được định nghĩa giống bước 2 trong phần [thuật toán X](#quy-trinh); bên dưới cũng dùng cùng nghĩa này);
+3.  Đánh dấu các hàng $r_i$ và các cột $c_i$ liên quan đến $r$ (hàng và cột liên quan được định nghĩa giống bước 2 trong phần [thuật toán X](#quy-trình); bên dưới cũng dùng cùng nghĩa này);
 4.  Xóa tất cả các hàng và cột đã đánh dấu, thu được ma trận mới $M'$;
 5.  Nếu $M'$ rỗng và $r$ là hàng toàn $1$, thuật toán kết thúc, xuất ra tập $S$ gồm các hàng đã bị xóa;
 
@@ -321,10 +319,10 @@ Donald E. Knuth nghĩ đến việc dùng danh sách liên kết chữ thập ha
 
 Quá trình liên tục nhảy qua lại trên danh sách liên kết chữ thập hai chiều được ví như một điệu nhảy, vì vậy cấu trúc danh sách liên kết chữ thập hai chiều dùng để tối ưu thuật toán X còn được gọi là "Dancing Links".
 
-<span id="dancing-links-&#x4F18;&#x5316;&#x7684;-x-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-x-tối-ưu-bằng-dancing-links"></span>
 ## Thuật toán X tối ưu bằng Dancing Links
 
-<span id="&#x9884;&#x7F16;&#x8BD1;&#x547D;&#x4EE4;"></span>
+<span id="lệnh-tiền-xử-lý"></span>
 ### Lệnh tiền xử lý
 
 ```cpp
@@ -358,7 +356,7 @@ int col[MS], row[MS];
 
 ### Quy trình
 
-<span id="remove-&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-remove"></span>
 #### Thao tác remove
 
 `remove(c)` biểu diễn việc xóa cột thứ $c$ và các hàng, cột liên quan đến nó trong Dancing Links.
@@ -400,7 +398,7 @@ Mã cài đặt hàm `remove` như sau:
     }
     ```
 
-<span id="recover-&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-recover"></span>
 #### Thao tác recover
 
 `recover(c)` biểu diễn việc khôi phục cột thứ $c$ và các hàng, cột liên quan đến nó trong Dancing Links.
@@ -420,7 +418,7 @@ Mã cài đặt `recover(c)` như sau:
     }
     ```
 
-<span id="build-&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-build"></span>
 #### Thao tác build
 
 `build(r, c)` biểu diễn việc tạo mới một Dancing Links kích thước $r \times c$, tức có $r$ hàng và $c$ cột.
@@ -451,7 +449,7 @@ Mã cài đặt `build(r, c)` như sau:
     }
     ```
 
-<span id="insert-&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-insert"></span>
 #### Thao tác insert
 
 `insert(r, c)` biểu diễn việc chèn một nút vào hàng thứ $r$, cột thứ $c$.
@@ -518,7 +516,7 @@ Mã cài đặt `insert(r, c)` như sau:
     }
     ```
 
-<span id="dance-&#x64CD;&#x4F5C;"></span>
+<span id="thao-tác-dance"></span>
 #### Thao tác dance
 
 `dance()` chính là quá trình đệ quy xóa và khôi phục các hàng, cột.
@@ -558,7 +556,7 @@ Chú ý rằng mỗi lần ta ưu tiên chọn cột có số phần tử ít nh
 
 Với bài toán phủ lặp, khi tìm kiếm có thể dùng hàm đánh giá (tương tự trong [A\*](astar.md)) để cắt tỉa: nếu trong trường hợp tốt nhất hiện tại, số hàng đã chọn vẫn vượt quá nghiệm tối ưu hiện có, ta có thể trả về ngay.
 
-<span id="&#x6A21;&#x677F;"></span>
+<span id="mẫu"></span>
 ## Mẫu
 
 ??? note "[Mã mẫu](https://www.luogu.com.cn/problem/P4929)"
@@ -566,14 +564,14 @@ Với bài toán phủ lặp, khi tìm kiếm có thể dùng hàm đánh giá (
     --8<-- "docs/search/code/dlx/dlx_1.cpp"
     ```
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 Số lần đệ quy và quay lui của DLX liên quan đến số lượng ô $1$ trong ma trận, không liên quan đến các tham số như $r, c$ của ma trận. Vì vậy, độ phức tạp thời gian của nó là **cấp số mũ**; độ phức tạp lý thuyết xấp xỉ $O(c^n)$, trong đó $c$ là một hằng số rất gần $1$, còn $n$ là số lượng ô $1$ trong ma trận.
 
 Tuy nhiên trong thực tế, DLX hoạt động tốt và thường giải được phần lớn các bài toán.
 
-<span id="&#x5EFA;&#x6A21;"></span>
+<span id="mô-hình-hóa"></span>
 ## Mô hình hóa
 
 Khó khăn của DLX không hoàn toàn nằm ở việc xây dựng danh sách liên kết, mà nằm ở bước mô hình hóa.
@@ -588,7 +586,7 @@ Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu di
 
 Đối với một hàng, do giá trị ở các cột khác nhau không giống nhau, ta **định nghĩa một quyết định thông qua các trạng thái khác nhau**.
 
-<span id="&#x4F8B;&#x9898;-1-p1784-&#x6570;&#x72EC;"></span>
+<span id="ví-dụ-1-p1784-sudoku"></span>
 ### Ví dụ 1 [P1784 Sudoku](https://www.luogu.com.cn/problem/P1784)
 
 ??? note "Ý tưởng giải"
@@ -618,7 +616,7 @@ Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu di
     --8<-- "docs/search/code/dlx/dlx_2.cpp"
     ```
 
-<span id="&#x4F8B;&#x9898;-2-&#x9776;&#x5F62;&#x6570;&#x72EC;"></span>
+<span id="ví-dụ-2-sudoku-có-trọng-số-theo-hình-bia"></span>
 ### Ví dụ 2 [Sudoku có trọng số theo hình bia](https://www.luogu.com.cn/problem/P1074)
 
 ??? note "Ý tưởng giải"
@@ -633,7 +631,7 @@ Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu di
     --8<-- "docs/search/code/dlx/dlx_3.cpp"
     ```
 
-<span id="&#x4F8B;&#x9898;-3-noi2005-&#x667A;&#x6167;&#x73E0;&#x6E38;&#x620F;"></span>
+<span id="ví-dụ-3-noi2005-trò-chơi-smart-beads"></span>
 ### Ví dụ 3 ["NOI2005" Trò chơi Smart Beads](https://www.luogu.com.cn/problem/P4205)
 
 ??? note "Ý tưởng giải"
@@ -673,20 +671,20 @@ Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu di
     --8<-- "docs/search/code/dlx/dlx_4.cpp"
     ```
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [SUDOKU - Sudoku](https://www.spoj.com/problems/SUDOKU/)
 -   [Chuyên đề 3 Dancing Links trong chuỗi "kuangbin dai ban bay"](https://vjudge.net/contest/65998#overview)
 
-<span id="&#x5916;&#x90E8;&#x94FE;&#x63A5;"></span>
+<span id="liên-kết-ngoài"></span>
 ## Liên kết ngoài
 
 -   [Dancing Links và bài toán phủ chính xác](https://www.cnblogs.com/grenet/p/3145800.html)
 -   [Tìm kiếm: thuật toán DLX](https://www.cnblogs.com/aininot260/p/9629926.html)
 -   [Huấn luyện thi lập trình: sách hướng dẫn luyện tập](https://book.douban.com/subject/35431537/)
 
-<span id="&#x6CE8;&#x91CA;"></span>
+<span id="chú-thích"></span>
 ## Chú thích
 
 [^note1]: Ghi chú thuật ngữ giữa các vùng dùng tiếng Trung: Taiwan dùng "vertical line" cho column và "horizontal row" cho row.
