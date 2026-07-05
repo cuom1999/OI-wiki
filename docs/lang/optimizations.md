@@ -112,7 +112,7 @@ for (int i = 0; i < n; ++i) {
 Nhưng trên thực tế, nếu `n <= 0` thì vòng lặp không bao giờ được vào, trong khi ta lại thực thi thêm một lệnh (có thể có tác dụng phụ!). Vì vậy, vòng lặp thường được Rotate thành dạng do-while để có thể chèn một "loop guard" một cách thuận tiện, rồi sau đó mới thực hiện đưa bất biến vòng lặp ra ngoài.
 
 ```cpp
-if (0 < n) {  // loop guard
+if (0 < n) {  // điều kiện bảo vệ vòng lặp
   auto v = *p;
   do {
     use(v);
@@ -601,7 +601,7 @@ Có thể dùng tùy chọn [`-fwrapv`](https://gcc.gnu.org/onlinedocs/gcc-13.2.
 ```cpp
 int f(int x) {
   int a;
-  if (x)  // either x nonzero or UB
+  if (x)  // hoặc x khác 0, hoặc xảy ra UB
     a = 42;
   return a;
 }
@@ -622,8 +622,8 @@ Ví dụ: <https://godbolt.org/z/8WYMYYjdG>, <https://godbolt.org/z/qvGd1nvv9>.
 int table[4] = {};
 
 bool exists_in_table(int v) {
-  // return true in one of the first 4 iterations or UB due to out-of-bounds
-  // access
+  // trả về true trong một trong 4 lượt lặp đầu tiên,
+  // hoặc xảy ra UB do truy cập vượt biên
   for (int i = 0; i <= 4; i++)
     if (table[i] == v) return true;
   return false;
@@ -645,7 +645,7 @@ Ví dụ: <https://godbolt.org/z/xfePeYsE3>.
 int f(int* p) {
   int x = *p;
   if (!p)
-    return x;  // Either UB above or this branch is never taken
+    return x;  // Hoặc đã xảy ra UB ở trên, hoặc nhánh này không bao giờ được đi tới
   else
     return 0;
 }
@@ -671,10 +671,10 @@ Ví dụ: <https://godbolt.org/z/GY1jvsrb5>, <https://godbolt.org/z/4ronPsnxf>.
     bool fermat() {
       const int max_value = 1000;
 
-      // Endless loop with no side effects is UB
+      // Vòng lặp vô hạn không có tác dụng phụ là UB
       for (int a = 1, b = 1, c = 1; true;) {
         if (((a * a * a) == ((b * b * b) + (c * c * c))))
-          return true;  // disproved :(
+          return true;  // đã bị bác bỏ :(
         a++;
         if (a > max_value) {
           a = 1;
@@ -687,20 +687,20 @@ Ví dụ: <https://godbolt.org/z/GY1jvsrb5>, <https://godbolt.org/z/4ronPsnxf>.
         if (c > max_value) c = 1;
       }
 
-      return false;  // not disproved
+      return false;  // chưa bị bác bỏ
     }
 
     int main() {
-      std::cout << "Fermat's Last Theorem ";
-      fermat() ? std::cout << "has been disproved!\n"
-               : std::cout << "has not been disproved.\n";
+      std::cout << "Định lý lớn Fermat ";
+      fermat() ? std::cout << "đã bị bác bỏ!\n"
+               : std::cout << "chưa bị bác bỏ.\n";
     }
     ```
 
 Trình biên dịch có thể giả định chương trình không có vòng lặp vô hạn không tác dụng phụ, nên nó cho rằng vòng `for` trong hàm `fermat()` chắc chắn sẽ kết thúc tại một thời điểm nào đó và trả về `true`. Cuối cùng chương trình có thể in ra:
 
 ```text
-Fermat's Last Theorem has been disproved!
+Định lý lớn Fermat đã bị bác bỏ!
 ```
 
 Ví dụ: <https://godbolt.org/z/d834MK7bz>, <https://godbolt.org/z/Eov9nsKqf>.
