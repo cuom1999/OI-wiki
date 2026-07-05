@@ -327,7 +327,7 @@ hợp nào trong ba trường hợp trên, chỉ cần tính [kí hiệu Kroneck
 $\left(\dfrac{D}{p}\right)$ với biệt thức $D$ của trường bậc hai chứa
 $\mathbf Z[\omega]$ và số nguyên tố $p$. Ba trường hợp này tương ứng với ba giá
 trị của kí hiệu Kronecker: $-1$, $+1$ và $0$. Khi $p$ là số nguyên tố lẻ, kí
-hiệu Kronecker chính là [kí hiệu Legendre](./quad-residue.md#legendre-%E7%AC%A6%E5%8F%B7),
+hiệu Kronecker chính là [kí hiệu Legendre](./quad-residue.md#ký-hiệu-legendre),
 và ba trường hợp tương ứng với $D$ là [không thặng dư bậc hai](./quad-residue.md),
 $D$ là [thặng dư bậc hai](./quad-residue.md), và $p$ chia $D$. Khi $p=2$, ba
 trường hợp lần lượt tương ứng với $D\equiv \pm 3\pmod 8$,

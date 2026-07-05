@@ -846,7 +846,7 @@ Trong trường hợp tổng quát, nếu một biểu thức có thể được
 
 ### Thuật toán Cipolla
 
-Đây là ví dụ điển hình về việc dùng mở rộng của trường hữu hạn để tính toán. Với thặng dư bậc hai $a$ modulo $p\neq 2$, cần tìm căn bậc hai của nó, tức tìm $x$ sao cho $x^2\equiv a\pmod p$. Dù đây là bài toán trên $\mathbf F_p$, [thuật toán Cipolla](../number-theory/quad-residue.md#cipolla-%E7%AE%97%E6%B3%95) tính trong trường hữu hạn $\mathbf F_{p^2}$. Mục này dùng ngôn ngữ lý thuyết trường để giải thích thuật toán. Chứng minh số học sơ cấp có thể xem trong liên kết đã cho.
+Đây là ví dụ điển hình về việc dùng mở rộng của trường hữu hạn để tính toán. Với thặng dư bậc hai $a$ modulo $p\neq 2$, cần tìm căn bậc hai của nó, tức tìm $x$ sao cho $x^2\equiv a\pmod p$. Dù đây là bài toán trên $\mathbf F_p$, [thuật toán Cipolla](../number-theory/quad-residue.md#thuật-toán-cipolla) tính trong trường hữu hạn $\mathbf F_{p^2}$. Mục này dùng ngôn ngữ lý thuyết trường để giải thích thuật toán. Chứng minh số học sơ cấp có thể xem trong liên kết đã cho.
 
 Cụ thể, thuật toán Cipolla trước hết chọn $r$ sao cho $r^2-a$ là bất thặng dư bậc hai modulo $p$. Điều này có nghĩa $x^2-(r^2-a)$ là đa thức bất khả quy. Vì vậy, đặt $u=r^2-a$, ta có thể xét trường mở rộng $\mathbf F_p(\sqrt u)$. Vì tự đồng cấu Frobenius chỉ có thể ánh xạ một phần tử đến phần tử liên hợp của nó, mà trong mở rộng bậc hai phần tử liên hợp như vậy là duy nhất, nên $(r-\sqrt u)^p=r+\sqrt u$. Do đó $(r-\sqrt u)^{p+1}=(r+\sqrt u)(r-\sqrt u)=r^2-u=a$. Vì vậy để xác định căn bậc hai, chỉ cần tính $(r-\sqrt u)^{(p+1)/2}$. Giá trị này nhất định nằm trong $\mathbf F_p$, vì trường phân rã của $x^2-a$ chính là $\mathbf F_p$.
 

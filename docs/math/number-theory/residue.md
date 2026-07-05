@@ -373,7 +373,7 @@ tính logarit rời rạc trong phép khai căn.
 ## Khai căn theo modulo
 
 Cuối cùng, bài viết thảo luận cách tìm căn bậc $k$. Với $k=2$, có
-[nhiều thuật toán hiệu quả](./quad-residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E5%B9%B3%E6%96%B9)
+[nhiều thuật toán hiệu quả](./quad-residue.md#khai-căn-bậc-hai-trong-nghĩa-modulo)
 để khai căn bậc hai theo modulo. Tuy nhiên, với $k$ tổng quát, hiện chưa biết
 thuật toán thời gian đa thức. Mục này giới thiệu hai thuật toán phổ biến, lần
 lượt có thể tìm một căn bậc $k$ trong thời gian $O(m^{1/2})$ và
@@ -456,7 +456,7 @@ minh họa; do độ phức tạp quá cao, không đủ để AC bài mẫu nà
 <span id="&#25913;&#33391; Tonelli&#8211;Shanks &#31639;&#27861;"></span>
 ### Thuật toán Tonelli-Shanks cải tiến
 
-Mở rộng phù hợp [thuật toán Tonelli-Shanks](./quad-residue.md#tonellishanks-%E7%AE%97%E6%B3%95)
+Mở rộng phù hợp [thuật toán Tonelli-Shanks](./quad-residue.md#thuật-toán-tonelli-shanks)
 dùng cho khai căn bậc hai theo modulo sẽ giải quyết được phép khai căn theo
 modulo lũy thừa của số nguyên tố. Một cách mở rộng trực tiếp hơn là thuật toán
 Adleman-Manders-Miller[^amm], nhưng độ phức tạp của nó vẫn chưa đủ tốt[^amm-comp].

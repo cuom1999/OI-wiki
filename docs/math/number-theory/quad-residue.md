@@ -1,11 +1,11 @@
 author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, monkeysui, nanmenyangde, rgw2010, sshwy, StudyingFather, TachikakaMin, Tiphereth-A, Xeonacid, xyf007, marscheng1
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="mở-đầu"></span>
 ## Mở đầu
 
 Có thể xem thặng dư bậc hai là việc bàn về tính khả thi của phép **khai căn bậc hai** trong nghĩa modulo. Với khai căn bậc cao hơn, xem [thặng dư bậc $k$](./residue.md).
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 ???+ abstract "Thặng dư bậc hai"
@@ -17,7 +17,7 @@ Có thể xem thặng dư bậc hai là việc bàn về tính khả thi của p
     
     thì $a$ được gọi là thặng dư bậc hai modulo $p$; ngược lại, $a$ được gọi là bất thặng dư bậc hai modulo $p$. Khi modulo $p$ đã rõ, phần sau có thể viết ngắn gọn là thặng dư/bất thặng dư bậc hai.
 
-<span id="euler-&#x5224;&#x522B;&#x6CD5;"></span>
+<span id="tiêu-chuẩn-euler"></span>
 ## Tiêu chuẩn Euler
 
 Khi modulo là số nguyên tố lẻ, ta có định lý sau:
@@ -73,7 +73,7 @@ Dựa trên tiêu chuẩn Euler, ta có hệ quả sau:
     
     Chú ý rằng $\dfrac{p-1}{2}\mid (p-1)$. Theo [Định lý 6 về phương trình đồng dư](./congruence-equation.md#định-lý-6), phương trình $a^{\frac{p-1}{2}}\equiv 1\pmod p$ có $\dfrac{p-1}{2}$ nghiệm. Vì vậy trong nghĩa modulo $p$, số thặng dư bậc hai và số bất thặng dư bậc hai đều bằng $\dfrac{p-1}{2}$.
 
-<span id="legendre-&#x7B26;&#x53F7;"></span>
+<span id="ký-hiệu-legendre"></span>
 ## Ký hiệu Legendre
 
 Để thuận tiện cho phần thảo luận tiếp theo, ta đưa vào ký hiệu sau:
@@ -98,7 +98,7 @@ Bảng dưới đây liệt kê một phần giá trị của ký hiệu Legendr
 
 ![](./images/quad_residue.png)
 
-<span id="&#x6027;&#x8D28;"></span>
+<span id="tính-chất"></span>
 ### Tính chất
 
 1.  Với mọi số nguyên $a$,
@@ -141,7 +141,7 @@ Bảng dưới đây liệt kê một phần giá trị của ký hiệu Legendr
     $$
 
 ??? note "Chứng minh"
-    1.  Suy ra trực tiếp từ [định nghĩa ký hiệu Legendre](#legendre-%E7%AC%A6%E5%8F%B7) và [tiêu chuẩn Euler](#euler-%E5%88%A4%E5%88%AB%E6%B3%95).
+    1.  Suy ra trực tiếp từ [định nghĩa ký hiệu Legendre](#ký-hiệu-legendre) và [tiêu chuẩn Euler](#tiêu-chuẩn-euler).
     2.  Chú ý rằng
     
         $$
@@ -168,7 +168,7 @@ Bảng dưới đây liệt kê một phần giá trị của ký hiệu Legendr
 
 Dựa trên các tính chất trên, nếu tính được giá trị của $\left(\dfrac{p}{q}\right)$ với mọi số nguyên tố lẻ $p$ và $q$, thì ta có thể tính ký hiệu Legendre trong mọi trường hợp hợp lệ. Tiếp theo là một định lý đẹp, thiết lập liên hệ khéo léo giữa $\left(\dfrac{p}{q}\right)$ và $\left(\dfrac{q}{p}\right)$, nhờ đó ta có thể tính theo ý tưởng tương tự [thuật toán Euclid](./gcd.md#thuật-toán-euclid).
 
-<span id="&#x4E8C;&#x6B21;&#x4E92;&#x53CD;&#x5F8B;"></span>
+<span id="luật-thuận-nghịch-bậc-hai"></span>
 ### Luật thuận nghịch bậc hai
 
 ???+ note "Luật thuận nghịch bậc hai"
@@ -206,7 +206,7 @@ Có nhiều cách chứng minh định lý này[^ref5]. Một cách chứng minh
     n^{\frac{p-1}{2}}\equiv(-1)^{\mu}\pmod{p}.
     $$
     
-    Từ [tính chất 1](#%E6%80%A7%E8%B4%A8) của ký hiệu Legendre, suy ra điều phải chứng minh.
+    Từ [tính chất 1](#tính-chất) của ký hiệu Legendre, suy ra điều phải chứng minh.
 
 ??? tip "Mở rộng"
     Bổ đề Gauss có thể được mở rộng như sau[^ref7]:
@@ -286,7 +286,7 @@ Luật thuận nghịch bậc hai không chỉ dùng để phán đoán số $n$
 
 Ngoài ra, ta còn có thể chứng minh các kết luận như "có vô hạn số nguyên tố dạng $4k+1$". Loại kết luận này thực ra là hệ quả đơn giản của [định lý Dirichlet](https://en.wikipedia.org/wiki/Dirichlet%27s_theorem_on_arithmetic_progressions).
 
-<span id="jacobi-&#x7B26;&#x53F7;"></span>
+<span id="ký-hiệu-jacobi"></span>
 ## Ký hiệu Jacobi
 
 Từ luật thuận nghịch bậc hai, ta có thể nghĩ một cách tự nhiên đến việc mở rộng ký hiệu Legendre:
@@ -298,19 +298,19 @@ Từ luật thuận nghịch bậc hai, ta có thể nghĩ một cách tự nhi�
     \left(\frac{a}{m}\right):=\prod_{i=1}^k\left(\frac{a}{p_i}\right)^{\alpha_i}.
     $$
     
-    Trong đó $\left(\frac{a}{p_i}\right)$ ở vế phải là [ký hiệu Legendre](#legendre-%E7%AC%A6%E5%8F%B7). Ngoài ra, với số nguyên $a$ ta có $\left(\dfrac{a}{1}\right)=1.$
+    Trong đó $\left(\frac{a}{p_i}\right)$ ở vế phải là [ký hiệu Legendre](#ký-hiệu-legendre). Ngoài ra, với số nguyên $a$ ta có $\left(\dfrac{a}{1}\right)=1.$
 
 ???+ warning "Cảnh báo"
     Thông thường ta không phân biệt ký hiệu Legendre và ký hiệu Jacobi, vì từ tính nhân hoàn toàn có thể thấy ký hiệu Jacobi có các tính chất giống ký hiệu Legendre, nên cách tính hai ký hiệu này là như nhau. Tuy nhiên cần chú ý một điểm: khi $m$ **không phải số nguyên tố lẻ**, giá trị $\left(\dfrac{a}{m}\right)$ **không liên quan** đến việc $a$ có là thặng dư bậc hai modulo $m$ hay không. Nhưng nếu $\left(\dfrac{a}{m}\right)=-1$, thì $m$ có ít nhất một (thực ra là số lẻ) thừa số nguyên tố $p$ sao cho $a$ là bất thặng dư bậc hai modulo $p$; do đó lúc này $a$ là bất thặng dư bậc hai modulo $m$.
 
 Ta còn có thể mở rộng modulo thêm một bước thành **số nguyên** bằng cách bổ sung định nghĩa cho $\left(\dfrac{a}{-1}\right)$, $\left(\dfrac{a}{0}\right)$ và $\left(\dfrac{a}{2}\right)$. Như vậy thu được [ký hiệu Kronecker](https://en.wikipedia.org/wiki/Kronecker_symbol).
 
-<span id="&#x6A21;&#x610F;&#x4E49;&#x4E0B;&#x5F00;&#x5E73;&#x65B9;"></span>
+<span id="khai-căn-bậc-hai-trong-nghĩa-modulo"></span>
 ## Khai căn bậc hai trong nghĩa modulo
 
-Phần này thảo luận các thuật toán khai căn bậc hai trong nghĩa modulo. Cụ thể, phần này chủ yếu giới thiệu trường hợp modulo nguyên tố. Với modulo tổng quát, có thể tham khảo phần thảo luận về [khai căn bậc cao trong nghĩa modulo](./residue.md#%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E5%BC%80%E6%96%B9).
+Phần này thảo luận các thuật toán khai căn bậc hai trong nghĩa modulo. Cụ thể, phần này chủ yếu giới thiệu trường hợp modulo nguyên tố. Với modulo tổng quát, có thể tham khảo phần thảo luận về [khai căn bậc cao trong nghĩa modulo](./residue.md#khai-căn-theo-modulo).
 
-<span id="&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#x65F6;&#x7684;&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-cho-các-trường-hợp-đặc-biệt"></span>
 ### Thuật toán cho các trường hợp đặc biệt
 
 Với phương trình đồng dư $x^2\equiv a\pmod p$, trong đó $p$ là số nguyên tố lẻ và $a$ là thặng dư bậc hai, khi $p\bmod 4=3$ có cách giải đơn giản hơn. Xét
@@ -326,7 +326,7 @@ $$
 
 Khi đó $a^{(p+1)/4}\bmod p$ là một nghiệm.
 
-<span id="atkin-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-atkin"></span>
 #### Thuật toán Atkin
 
 Vẫn xét phương trình đồng dư ở trên. Khi $p\bmod 8=5$, đặt $b\equiv (2a)^{(p-5)/8}\pmod p$ và $\mathrm{i}\equiv 2ab^2\pmod p$. Khi đó $\mathrm{i}^2\equiv -1\pmod p$ và $ab(\mathrm{i}-1)\bmod p$ là một nghiệm.
@@ -352,7 +352,7 @@ Vẫn xét phương trình đồng dư ở trên. Khi $p\bmod 8=5$, đặt $b\eq
     \end{aligned}
     $$
 
-<span id="cipolla-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-cipolla"></span>
 ### Thuật toán Cipolla
 
 Thuật toán Cipolla dùng để giải phương trình đồng dư $y^2\equiv a\pmod p$, trong đó $p$ là số nguyên tố lẻ và $a$ là thặng dư bậc hai.
@@ -360,7 +360,7 @@ Thuật toán Cipolla dùng để giải phương trình đồng dư $y^2\equiv 
 Phần này xét phép toán trong $\mathbf{F}_p\lbrack x\rbrack /(x^2-g)$, với $g \in \mathbf{F}_p$.
 
 ??? note "Cách tính"
-    Nếu chưa quen với [vành đa thức](../algebra/ring-theory.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%8E%AF), có thể hiểu đơn giản rằng mỗi phần tử của tập này đều có dạng $a_0+a_1x$ với $a_0,a_1\in\mathbf F_p$, và tuân theo các quy tắc tính sau:
+    Nếu chưa quen với [vành đa thức](../algebra/ring-theory.md#vành-đa-thức), có thể hiểu đơn giản rằng mỗi phần tử của tập này đều có dạng $a_0+a_1x$ với $a_0,a_1\in\mathbf F_p$, và tuân theo các quy tắc tính sau:
     
     $$
     \begin{aligned}
@@ -438,7 +438,7 @@ Bước đầu tiên của thuật toán là tìm một $r$ sao cho $r^2-a$ là 
     --8<-- "docs/math/code/quad-residue/quad-residue_1.cpp"
     ```
 
-<span id="bostanmori-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-bostan-mori"></span>
 ### Thuật toán Bostan-Mori
 
 Thuật toán này dựa trên thuật toán Cipolla: ta chuyển bài toán thành [truy hồi tuyến tính thuần nhất hệ số hằng](../poly/linear-recurrence.md), rồi áp dụng thuật toán Bostan-Mori. Xét một cách mô tả thường gặp khác của thuật toán Cipolla: $b=x^{\left(p+1\right)/2}\bmod{\left(x^2-tx+a\right)}$ là một nghiệm thỏa $b^2\equiv a\pmod{p}$[^ref3], trong đó $x^2-tx+a\in \mathbf{F}_p\lbrack x\rbrack$ là đa thức bất khả quy. Hệ số $t$ cũng được chọn bằng phương pháp ngẫu nhiên. Phần chứng minh lược bỏ. Dựa trên thuật toán trong bài báo của Bostan và Mori[^ref4], có thể thấy bài toán được chuyển thành việc tìm một hệ số của nghịch đảo nhân của chuỗi lũy thừa hình thức:
@@ -459,7 +459,7 @@ $$
 
 Khi $n=0$ thì hiển nhiên $\left\lbrack x^0\right\rbrack\dfrac{k_0+k_1x}{1+k_2x+k_3x^2}=k_0$. Thuật toán này dùng ít phép nhân hơn thuật toán Cipolla. Các thuật toán liên quan có số phép nhân ít hơn có thể xem trong bài viết của Müller[^ref2].
 
-<span id="legendre-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-legendre"></span>
 ### Thuật toán Legendre
 
 Với phương trình đồng dư $x^2\equiv a\pmod p$, trong đó $p$ là số nguyên tố lẻ và $a$ là thặng dư bậc hai, thuật toán Legendre có thể mô tả như sau: tìm $r$ thỏa $r^2-a$ là bất thặng dư bậc hai, đặt $a_0+a_1x=(r-x)^{\frac{p-1}{2}}\bmod (x^2-a)$. Khi đó $a_0\equiv 0\pmod p$ và $a_1^{-2}\equiv a\pmod p$.
@@ -493,7 +493,7 @@ Với phương trình đồng dư $x^2\equiv a\pmod p$, trong đó $p$ là số 
     
     Vì vậy $2a_0=(\pm 1)+(\mp 1)=0$ và $2a_1b=(\pm 1)-(\mp 1)=\pm 2$.
 
-<span id="tonellishanks-&#x7B97;&#x6CD5;"></span>
+<span id="thuật-toán-tonelli-shanks"></span>
 ### Thuật toán Tonelli-Shanks
 
 Thuật toán Tonelli-Shanks là thuật toán dựa trên logarit rời rạc để giải phương trình đồng dư $x^2\equiv a\pmod p$[^ref1], trong đó $p$ là số nguyên tố lẻ và $a$ là thặng dư bậc hai modulo $p$.
@@ -539,13 +539,13 @@ $$
 
 Trong đó $g^e\equiv ab^2\pmod p$ đã biết, còn giá trị $e\bmod 2^k$ có thể tính từ các bit trước đó $e_0,e_1,\cdots,e_{k-1}$. Khi cài đặt thuật toán, chỉ cần trực tiếp duy trì tích $g^eg^{-(e\bmod 2^k)}\bmod p$.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [Luogu P5491 [Mẫu] Thặng dư bậc hai](https://www.luogu.com.cn/problem/P5491)
 -   ["Timus 1132" Square Root](https://acm.timus.ru/problem.aspx?space=1&num=1132)
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;&#x4E0E;&#x6CE8;&#x91CA;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 1.  [Quadratic residue - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_residue)
