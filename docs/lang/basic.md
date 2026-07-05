@@ -1,7 +1,7 @@
 ## Khung chương trình
 
-Nếu chưa muốn tìm hiểu sâu nguyên lý phía sau, khi mới học bạn có thể ghi nhớ
-trực tiếp "khung" sau:
+Nếu chưa muốn tìm hiểu sâu nguyên lý phía sau, khi mới học có thể ghi nhớ trực
+tiếp "khung" sau:
 
 ```cpp
 #include <cstdio>
@@ -18,28 +18,28 @@ int main() {
     trí của câu lệnh này; tệp được đặt vào đó gọi là tệp tiêu đề. Nói cách khác,
     khi biên dịch, trình biên dịch sẽ "sao chép" nội dung trong tệp tiêu đề
     `iostream` rồi "dán" vào vị trí câu lệnh `#include <iostream>`. Nhờ vậy,
-    bạn có thể dùng các đối tượng mà `iostream` cung cấp như `std::cin`,
+    có thể dùng các đối tượng mà `iostream` cung cấp như `std::cin`,
     `std::cout`, `std::endl`, v.v.
 
-    Nếu đã học ngôn ngữ C, bạn sẽ thấy trong C++ hiện nay các tệp tiêu đề thường
+    Nếu đã học ngôn ngữ C, có thể thấy trong C++ hiện nay các tệp tiêu đề thường
     gặp không có hậu tố `.h`, còn các tệp tiêu đề `xx.h` của C thường có dạng
     `cxx`, chẳng hạn `stdio.h` trở thành `cstdio`. Để tương thích với C, C++
     trực tiếp sử dụng các tệp tiêu đề của C; để phân biệt tệp tiêu đề C++ với
     tệp tiêu đề C, người ta dùng tiền tố `c`.
 
-    Thông thường, bạn nên quyết định cần `#include` những tệp tiêu đề nào dựa
-    trên nhu cầu của chương trình C++ mình viết. Nếu `#include` thừa tệp tiêu
+    Thông thường, nên quyết định cần `#include` những tệp tiêu đề nào dựa
+    trên nhu cầu của chương trình C++ đang viết. Nếu `#include` thừa tệp tiêu
     đề, thời gian biên dịch có thể tăng, nhưng thời gian chạy gần như không bị
-    ảnh hưởng. Hiện tại chúng ta mới tiếp xúc với hai tệp tiêu đề `iostream` và
-    `cstdio`; nếu bạn chỉ cần `scanf` và `printf`, thì không cần
+    ảnh hưởng. Ở phần hiện tại chỉ dùng đến hai tệp tiêu đề `iostream` và
+    `cstdio`; nếu chỉ cần `scanf` và `printf`, thì không cần
     `#include <iostream>`.
 
     Có thể `#include` tệp tiêu đề tự viết không? Câu trả lời là có.
 
-    Bạn có thể tự viết một tệp tiêu đề, ví dụ `myheader.h`. Sau đó đặt nó vào
+    Có thể tự viết một tệp tiêu đề, ví dụ `myheader.h`. Sau đó đặt nó vào
     cùng thư mục với mã nguồn, rồi dùng `#include "myheader.h"` là được. Cần chú
     ý rằng tệp tiêu đề tự định nghĩa phải dùng dấu ngoặc kép thay vì dấu ngoặc
-    nhọn. Tất nhiên, bạn cũng có thể dùng tùy chọn biên dịch
+    nhọn. Tất nhiên, cũng có thể dùng tùy chọn biên dịch
     `-I <header_file_path>` để cho trình biên dịch biết cần tìm tệp tiêu đề ở
     đâu; khi đó không cần đặt tệp tiêu đề cùng thư mục với mã nguồn nữa.
 
@@ -48,7 +48,7 @@ int main() {
     thực thi.
 
     Trên thực tế, hàm `main` được hệ thống hoặc chương trình bên ngoài gọi. Ví
-    dụ, khi bạn gọi chương trình của mình trong dòng lệnh, tức là bạn đã gọi hàm
+    dụ, khi gọi chương trình từ dòng lệnh, tức là hàm
     `main` trong chương trình đó (trước đó việc khởi tạo các [biến](./var.md)
     toàn cục đã hoàn tất).
 
@@ -57,7 +57,7 @@ int main() {
     ngược lại, giá trị trả về biểu thị mã lỗi (trên Windows, dạng thập lục phân
     của mã lỗi này có thể tra cứu trên trang [Windows Error Codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/)).
     Giá trị này được trả về cho ai? Thực ra là cho hệ thống hoặc chương trình
-    bên ngoài đã gọi chương trình bạn viết; khi chương trình của bạn kết thúc,
+    bên ngoài đã gọi chương trình; khi chương trình kết thúc,
     nó sẽ nhận được giá trị trả về này. Nếu không viết câu lệnh `return`, khi
     chương trình kết thúc bình thường, giá trị trả về mặc định cũng là 0.
 
@@ -84,11 +84,11 @@ nhưng vẫn được giữ lại trong tệp nguồn.
 Trong phát triển phần mềm, chú thích giúp việc bảo trì về sau và việc đọc mã của
 người khác thuận tiện hơn.
 
-Trong OI, rất ít người viết nhiều chú thích, nhưng chú thích có thể giúp bạn làm
-rõ suy nghĩ khi viết mã, hoặc tiện cho việc ôn lại sau này. Hơn nữa, nếu cần
+Trong OI, rất ít người viết nhiều chú thích, nhưng chú thích có thể giúp làm rõ
+suy nghĩ khi viết mã, hoặc tiện cho việc ôn lại sau này. Hơn nữa, nếu cần
 viết lời giải hoặc giáo trình, lượng chú thích vừa phải sẽ giúp người đọc dễ
-hiểu ý đồ của mã hơn. Hy vọng các bạn sẽ hình thành thói quen viết chú thích
-tốt.
+hiểu ý đồ của mã hơn. Nên hình thành thói quen viết chú thích vừa đủ và đúng
+chỗ.
 
 ## Nhập và xuất
 
@@ -106,7 +106,7 @@ int main() {
 ```
 
 ???+ note "Biến là gì?"
-    Bạn có thể tham khảo trang [Biến](./var.md).
+    Có thể tham khảo trang [Biến](./var.md).
 
 ???+ note "`std` là gì?"
     `std` là **không gian tên** mà thư viện chuẩn C++ sử dụng. Không gian tên
@@ -123,7 +123,7 @@ dạng nhập xuất một cách thuận tiện.
 
 ???+ note "Tối ưu nhập xuất"
     Về khác biệt cụ thể giữa `cin`/`cout` và `scanf`/`printf`, cũng như tối ưu
-    nhập xuất, hãy tham khảo trang [Tối ưu đọc vào, xuất ra](../contest/io.md).
+    nhập xuất, xem thêm trang [Tối ưu đọc vào, xuất ra](../contest/io.md).
 
 ```cpp
 #include <cstdio>
@@ -203,11 +203,11 @@ ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
     ??? note "Giá trị trực tiếp (literal) là gì?"
         Literal là một giá trị xuất hiện trực tiếp trong mã, ví dụ `3` là một
         literal kiểu `int`, `'c'` là một literal kiểu `char`. `"hello world"`
-        trong chương trình chúng ta viết ở trên cũng là một literal chuỗi.
+        trong chương trình ở trên cũng là một literal chuỗi.
 
         Những literal không có giải thích và xuất hiện không rõ lý do còn được
         gọi là "số ma thuật" (magic number). Nếu mã cần được người khác đọc, đây
-        là một cách viết rất không được khuyến nghị.
+        là một cách viết không nên dùng.
 
 ## Một số nội dung mở rộng
 
@@ -217,7 +217,7 @@ Trong C++, tất cả ký tự trắng (dấu cách, tab, xuống dòng), dù nh
 được xem như nhau. Tất nhiên, điều này không áp dụng cho các ký tự nằm trong dấu
 ngoặc kép và được xem là một phần của chuỗi.
 
-Vì vậy, bạn có thể tự do sử dụng nhiều phong cách viết mã khác nhau. Ngoại lệ là
+Vì vậy, có thể sử dụng nhiều phong cách viết mã khác nhau. Ngoại lệ là
 chú thích trên dòng, literal chuỗi và lệnh tiền xử lý phải nằm trong một dòng.
 Ví dụ:
 
@@ -225,7 +225,7 @@ Ví dụ:
 --8<-- "docs/lang/code/basic/basic_1.cpp:main"
 ```
 
-Tất nhiên, cách viết như vậy không được khuyến nghị.
+Tất nhiên, cách viết như vậy không nên dùng trong mã thông thường.
 
 Một phong cách viết mã khác cũng được sử dụng rộng rãi, nhưng khác với phong cách
 mà **OI Wiki** yêu cầu:
@@ -265,7 +265,7 @@ int main() {
 ??? note "Lệnh tiền xử lý là gì?"
     Lệnh tiền xử lý là lệnh mà bộ tiền xử lý chấp nhận, dùng để thực hiện các
     biến đổi văn bản sơ bộ trên mã, chẳng hạn thao tác bao gồm tệp `#include` và
-    xử lý macro `#define`, v.v. Với GCC, theo mặc định tệp đầu ra `.i` của giai
+    xử lý macro `#define` và các thao tác tương tự. Với GCC, theo mặc định tệp đầu ra `.i` của giai
     đoạn tiền xử lý sẽ không được giữ lại. Có thể dùng tùy chọn `-E` để giữ lại
     tệp đầu ra.
 
@@ -306,11 +306,11 @@ int main() {
 Sử dụng `#define` có rủi ro: vì phạm vi tác dụng của `#define` là toàn bộ chương
 trình sau điểm định nghĩa, nó có thể khiến văn bản bị thay thế ngoài ý muốn; khi
 cần, phải dùng `#undef` để hủy định nghĩa kịp thời. Do đó, nên dùng `#define`
-thận trọng. Cách làm được khuyến nghị hơn là dùng bộ định tính `const` để khai
-báo hằng, và dùng hàm thay cho macro.
+thận trọng. Cách làm nên ưu tiên hơn là dùng bộ định tính `const` để khai báo
+hằng, và dùng hàm thay cho macro.
 
 Tuy vậy, trong OI, `#define` vẫn có những chỗ hữu dụng. Hai cách dùng sau không
-được khuyến nghị, vì sẽ làm giảm tính chuẩn mực của mã:
+nên dùng thường xuyên, vì sẽ làm giảm tính chuẩn mực của mã:
 
 1.  `#define int long long`+`signed main()`. Cách này thường được dùng để tránh
     lỗi do quên dùng `long long`, hoặc để loại trừ khả năng đó khi gỡ lỗi. Nó
