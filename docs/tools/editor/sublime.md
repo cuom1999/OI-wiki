@@ -23,7 +23,7 @@ ST có hệ sinh thái gói mở rộng phong phú. Package Control là cách ph
 
 #### Cài trình quản lý gói
 
-Sau khi mở ST, nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> để gọi hộp lệnh, nhập `Install` rồi nhấn Enter (lệnh đầy đủ là `Install Package Control`, không phân biệt chữ hoa chữ thường). Lúc này ở góc dưới bên trái thường sẽ thấy một dấu `=` di chuyển qua lại liên tục. Khi Package Control cài xong (hoặc thất bại), sẽ có cửa sổ thông báo; thời gian tải cụ thể phụ thuộc vào mạng.
+Sau khi mở ST, nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> để gọi hộp lệnh, nhập `Install` (`Cài đặt`) rồi nhấn Enter (lệnh đầy đủ là `Install Package Control` (`Cài đặt Package Control`), không phân biệt chữ hoa chữ thường). Lúc này ở góc dưới bên trái thường sẽ thấy một dấu `=` di chuyển qua lại liên tục. Khi Package Control cài xong (hoặc thất bại), sẽ có cửa sổ thông báo; thời gian tải cụ thể phụ thuộc vào mạng.
 
 Nếu cửa sổ hoàn tất báo cài đặt thất bại (liên quan đến mạng), cần tải thủ công [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) rồi đặt tệp đã tải vào thư mục `\Installed Packages` trong thư mục dữ liệu của ST. Chờ một lát, ST sẽ tự nhận diện gói này (đôi khi cần khởi động lại ST).
 
@@ -34,19 +34,19 @@ Nếu cửa sổ hoàn tất báo cài đặt thất bại (liên quan đến m�
 
     Trong Ubuntu 20.04.1 dùng bởi NOI Linux, thư mục dữ liệu của ST3 là `$HOME/.config/sublime-text-3`, còn của ST4 là `$HOME/.config/sublime-text`; quy tắc sử dụng cụ thể giống môi trường Windows.
 
-    Có thể dùng `Preferences->Browse Packages...` để xem nhanh thư mục `\Packages` nằm dưới đường dẫn thư mục dữ liệu.
+    Có thể dùng `Preferences->Browse Packages...` (`Tùy chọn -> Duyệt gói...`) để xem nhanh thư mục `\Packages` nằm dưới đường dẫn thư mục dữ liệu.
 
 #### Cài một gói mở rộng
 
-Nhấn lại <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` rồi nhấn Enter (lệnh đầy đủ là `Package Control: Install Package`), đợi tải xong. Tiếp theo sẽ thấy giao diện như sau:
+Nhấn lại <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` (`Cài đặt`) rồi nhấn Enter (lệnh đầy đủ là `Package Control: Install Package` (`Package Control: Cài đặt gói`)), đợi tải xong. Tiếp theo sẽ thấy giao diện như sau:
 
 ![](./images/sublime3-1.png)
 
-Nhập tên gói cần cài, chọn đúng gói rồi nhấn Enter. Sau khi cài xong, một số gói có thể cần cấu hình thêm trong `Preferences->Package Settings`.
+Nhập tên gói cần cài, chọn đúng gói rồi nhấn Enter. Sau khi cài xong, một số gói có thể cần cấu hình thêm trong `Preferences->Package Settings` (`Tùy chọn -> Thiết lập gói`).
 
 ### Điều chỉnh phông chữ
 
-Vào `Preferences->Settings`, trong phần thiết lập người dùng ở bên phải, thêm một dòng `"font_face": "tên phông",` vào trong cặp ngoặc nhọn. Thiết lập của ST được lưu bằng định dạng JSON. Sau khi sửa xong và lưu lại, nếu hệ thống đã cài phông tương ứng thì ST sẽ tự chuyển.
+Vào `Preferences->Settings` (`Tùy chọn -> Thiết lập`), trong phần thiết lập người dùng ở bên phải, thêm một dòng `"font_face": "tên phông",` vào trong cặp ngoặc nhọn. Thiết lập của ST được lưu bằng định dạng JSON. Sau khi sửa xong và lưu lại, nếu hệ thống đã cài phông tương ứng thì ST sẽ tự chuyển.
 
 Nên chọn phông chữ đơn cách có hỗ trợ Unicode và dấu tiếng Việt đầy đủ, chẳng hạn Cascadia Mono, Consolas, JetBrains Mono hoặc Noto Sans Mono.
 
@@ -57,7 +57,7 @@ Nên chọn phông chữ đơn cách có hỗ trợ Unicode và dấu tiếng Vi
 
 Cách cài phần bổ trợ và giao diện giống cách cài một gói mở rộng ở trên.
 
-Nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` rồi nhấn Enter, sau đó tìm phần bổ trợ, giao diện hoặc bảng màu cần cài.
+Nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` (`Cài đặt`) rồi nhấn Enter, sau đó tìm phần bổ trợ, giao diện hoặc bảng màu cần cài.
 
 Phần bổ trợ khuyến nghị:
 
@@ -78,7 +78,7 @@ Một số giao diện:[^ref3]
 
 Nếu muốn chỉnh bảng màu riêng, có thể truy cập [tmTheme Editor](http://tmtheme-editor.herokuapp.com/).
 
-Nếu dùng ST4, có thể chỉnh bảng màu trong `Preferences->Customize Color Scheme` hoặc chỉnh giao diện trong `Preferences->Customize Scheme`.
+Nếu dùng ST4, có thể chỉnh bảng màu trong `Preferences->Customize Color Scheme` (`Tùy chọn -> Tùy chỉnh bảng màu`) hoặc chỉnh giao diện trong `Preferences->Customize Scheme` (`Tùy chọn -> Tùy chỉnh giao diện`).
 
 ### Bật chế độ Vi
 
@@ -86,13 +86,13 @@ Nhà phát triển ST cung cấp cho người dùng Vi một phần bổ trợ t
 
 #### Cách bật
 
-Vintage mặc định bị tắt. Có thể vào `Preferences->Settings`, trong thiết lập người dùng, xóa Vintage khỏi mục `"ignored_packages"` rồi lưu lại (không xóa cả mục, chỉ xóa Vintage). Bên trái thanh trạng thái của ST sẽ xuất hiện `INSERT MODE`, tức là Vintage đã được bật.
+Vintage mặc định bị tắt. Có thể vào `Preferences->Settings` (`Tùy chọn -> Thiết lập`), trong thiết lập người dùng, xóa Vintage khỏi mục `"ignored_packages"` rồi lưu lại (không xóa cả mục, chỉ xóa Vintage). Bên trái thanh trạng thái của ST sẽ xuất hiện `INSERT MODE` (`CHẾ ĐỘ CHÈN`), tức là Vintage đã được bật.
 
-Hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Enable`, chọn `Package Control: Enable Package` rồi nhấn Enter, sau đó chọn Vintage. Cách này cần Package Control.
+Hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Enable` (`Bật`), chọn `Package Control: Enable Package` (`Package Control: Bật gói`) rồi nhấn Enter, sau đó chọn Vintage. Cách này cần Package Control.
 
 #### Cấu hình liên quan
 
-Nếu muốn vô hiệu hóa các phím mũi tên, có thể thêm vào `Preferences->Key Bindings`:
+Nếu muốn vô hiệu hóa các phím mũi tên, có thể thêm vào `Preferences->Key Bindings` (`Tùy chọn -> Gán phím`):
 
 ```JSON
 { "keys": ["left"], "command": ""},
@@ -101,7 +101,7 @@ Nếu muốn vô hiệu hóa các phím mũi tên, có thể thêm vào `Prefere
 { "keys": ["down"], "command": ""},
 ```
 
-Nếu muốn ST khởi động ở chế độ lệnh, có thể thêm vào `Preferences->Settings`:
+Nếu muốn ST khởi động ở chế độ lệnh, có thể thêm vào `Preferences->Settings` (`Tùy chọn -> Thiết lập`):
 
 ```json
 "vintage_start_in_command_mode": true,
@@ -118,14 +118,14 @@ Vintage của ST có một số điểm khác với Vi, một phần được li
 -   Các phím tắt dùng <kbd>Ctrl</kbd>, <kbd>Shift</kbd> và <kbd>Alt</kbd> vẫn giữ nguyên phím tắt do ST thiết lập; ví dụ <kbd>Ctrl</kbd>+<kbd>V</kbd> sẽ không vào chế độ chọn trực quan mà vẫn dán bình thường.
 -   Chế độ dòng lệnh chỉ giữ lại `:e`, `:0`, `:$`, `:s`.
 -   Khi dùng lệnh `\` và `?`, ST sẽ tự gọi hộp tìm kiếm thay vì nhập trực tiếp từ cần tìm trong lệnh. Đồng thời, số đếm sẽ không có hiệu lực.
--   Lệnh ghi macro `q` sẽ khởi động chức năng ghi macro có sẵn của ST. Sau khi nhấn <kbd>Q</kbd>, cần nhấn thêm một phím để bắt đầu ghi, nhưng macro đã ghi sẽ không được gắn với phím đó; cần nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd> mới chạy. Nếu cần lưu, dùng `Tools->Save Macro`; phím tắt cần tự thiết lập.
+-   Lệnh ghi macro `q` sẽ khởi động chức năng ghi macro có sẵn của ST. Sau khi nhấn <kbd>Q</kbd>, cần nhấn thêm một phím để bắt đầu ghi, nhưng macro đã ghi sẽ không được gắn với phím đó; cần nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd> mới chạy. Nếu cần lưu, dùng `Tools->Save Macro` (`Công cụ -> Lưu macro`); phím tắt cần tự thiết lập.
 -   Không thể dùng tổ hợp `số+.`.
 
 ### Thiết lập
 
 #### Thiết lập ST
 
-Thiết lập trong `Preferences->Settings`. Dưới đây liệt kê một số tùy chọn khá hữu ích:
+Thiết lập trong `Preferences->Settings` (`Tùy chọn -> Thiết lập`). Dưới đây liệt kê một số tùy chọn khá hữu ích:
 
 ```JSON
 {
@@ -168,9 +168,9 @@ Thiết lập trong `Preferences->Settings`. Dưới đây liệt kê một số
 
 #### Thiết lập phím tắt
 
-Thiết lập trong `Preferences->Key Bindings`: tìm chức năng cần sửa ở bên trái, sao chép sang bên phải rồi sửa phím.
+Thiết lập trong `Preferences->Key Bindings` (`Tùy chọn -> Gán phím`): tìm chức năng cần sửa ở bên trái, sao chép sang bên phải rồi sửa phím.
 
-Ví dụ, nếu muốn đổi phím biên dịch từ <kbd>Ctrl</kbd>+<kbd>B</kbd> sang <kbd>F9</kbd> (nếu không vô hiệu hóa phím tắt cũ thì thực tế là thêm một cách kích hoạt), có thể thêm vào `Preferences->Key Bindings`:
+Ví dụ, nếu muốn đổi phím biên dịch từ <kbd>Ctrl</kbd>+<kbd>B</kbd> sang <kbd>F9</kbd> (nếu không vô hiệu hóa phím tắt cũ thì thực tế là thêm một cách kích hoạt), có thể thêm vào `Preferences->Key Bindings` (`Tùy chọn -> Gán phím`):
 
 ```JSON
 // Đổi lệnh build thành f9
@@ -183,9 +183,9 @@ Ví dụ, nếu muốn đổi phím biên dịch từ <kbd>Ctrl</kbd>+<kbd>B</kb
 
 #### Thiết lập phần bổ trợ
 
-Thiết lập của phần bổ trợ có thể tìm trong `Preferences->Package Settings->tên phần bổ trợ`; khi sửa, chú ý không sửa thiết lập mặc định.
+Thiết lập của phần bổ trợ có thể tìm trong `Preferences->Package Settings->tên phần bổ trợ` (`Tùy chọn -> Thiết lập gói -> tên phần bổ trợ`); khi sửa, chú ý không sửa thiết lập mặc định.
 
-Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, chỉnh trong `Preferences->Package Settings->BracketHighlighter->Bracket Settings`:
+Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, chỉnh trong `Preferences->Package Settings->BracketHighlighter->Bracket Settings` (`Tùy chọn -> Thiết lập gói -> BracketHighlighter -> Thiết lập ngoặc`):
 
 ```JSON
 {
@@ -272,7 +272,7 @@ Do cập nhật phần bổ trợ sẽ trực tiếp ghi đè tệp gốc, nên 
 
 ### Thiết lập cú pháp
 
-Sau khi nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập tên cú pháp cần dùng; hoặc nhấn `Plain Text` ở góc dưới bên phải rồi đổi sang ngôn ngữ cần thiết. Cũng có thể thiết lập trong `View->Syntax`.
+Sau khi nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập tên cú pháp cần dùng; hoặc nhấn `Plain Text` (`Văn bản thuần`) ở góc dưới bên phải rồi đổi sang ngôn ngữ cần thiết. Cũng có thể thiết lập trong `View->Syntax` (`Xem -> Cú pháp`).
 
 ![](images/sublime3-2.png)
 
@@ -319,7 +319,7 @@ Nếu không có hoàn thành tự động, hãy sửa như sau:
 
 1.  Kiểm tra xem đã chuyển ngôn ngữ chưa; tệp mới của ST mặc định là Plain Text.
 
-2.  Vào `Preferences->Settings` rồi thêm hai dòng:
+2.  Vào `Preferences->Settings` (`Tùy chọn -> Thiết lập`) rồi thêm hai dòng:
 
 ```JSON
 "auto_complete": true,
@@ -425,7 +425,7 @@ Nhấn trực tiếp <kbd>Ctrl</kbd>+<kbd>B</kbd> để biên dịch. Lần đ�
 
 Tùy chọn biên dịch mặc định của ST là `g++ "${file}" -o "${file_path}/${file_base_name}"`. Nếu muốn sửa tùy chọn biên dịch, có thể tạo một hệ thống biên dịch mới.
 
-Vào `Tools->Build System->New Build System...`, rồi nhập vào giữa cặp ngoặc nhọn:
+Vào `Tools->Build System->New Build System...` (`Công cụ -> Hệ thống biên dịch -> Hệ thống biên dịch mới...`), rồi nhập vào giữa cặp ngoặc nhọn:
 
 ```JSON
 // Tùy chọn biên dịch có thể tự điều chỉnh

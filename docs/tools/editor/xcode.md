@@ -32,7 +32,7 @@ Sau khi cài đặt xong, phía bên trái giao diện sẽ hiển thị:
 
 ![](images/xcode-4.jpg)
 
-Nhấp `Create a new Xcode project` (tạo một dự án Xcode mới), sau đó chọn `Command Line Tool` (công cụ dòng lệnh) trong mục `macOS` ở phía trên, rồi nhấp `Next` ở góc dưới bên phải.
+Nhấp `Create a new Xcode project` (tạo một dự án Xcode mới), sau đó chọn `Command Line Tool` (công cụ dòng lệnh) trong mục `macOS` ở phía trên, rồi nhấp `Next` (`Tiếp theo`) ở góc dưới bên phải.
 
 ![](images/xcode-5.jpg)
 

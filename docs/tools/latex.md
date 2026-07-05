@@ -515,7 +515,7 @@ Lệnh `\includegraphics{...}` có thể tự động đặt hình vào tài li�
 
 `[width=1\textwidth]` là tham số tùy chọn chỉ định chiều rộng của hình, ở đây bằng chiều rộng phần văn bản. Chiều rộng cũng có thể được đặt theo đơn vị xentimét. Bạn cũng có thể dùng `[scale=0.5]` để thu nhỏ hình theo tỷ lệ; ví dụ này tương đương thu nhỏ một nửa.
 
-`\caption{...}` định nghĩa tiêu đề của hình ảnh. Nếu dùng lệnh này, LaTeX sẽ thêm số thứ tự bắt đầu bằng "Figure" cho hình ảnh của bạn. Bạn có thể dùng `\listoffigures` để tạo danh mục hình ảnh.
+`\caption{...}` định nghĩa tiêu đề của hình ảnh. Nếu dùng lệnh này, LaTeX sẽ thêm số thứ tự bắt đầu bằng "Figure" ("Hình") cho hình ảnh của bạn. Bạn có thể dùng `\listoffigures` để tạo danh mục hình ảnh.
 
 `\label{...}` tạo một nhãn để bạn có thể tham chiếu.
 

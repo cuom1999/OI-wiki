@@ -340,7 +340,7 @@ Tải Xming Server mới nhất từ [địa chỉ tải Xming X Server](https:/
 
 ![](./images/wsl-xming-setup-wizard.png)
 
-Nếu sau khi cài xong quên chọn Launch Xming, cần mở Xming trong menu Start:
+Nếu sau khi cài xong quên chọn Launch Xming ("Khởi chạy Xming"), cần mở Xming trong menu Start:
 
 ![Đừng quên!](./images/wsl-xming.png)
 

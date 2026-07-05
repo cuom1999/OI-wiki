@@ -68,7 +68,7 @@ Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Ma
 
 ![Hiển thị toàn bộ ký tự trong Notepad++](./images/npp-settings-2.png)
 
-Nhấp nút được khoanh đỏ để hiển thị rất rõ các ký tự vốn không nhìn thấy như "space" ("dấu cách"), "TAB" và "newline" ("xuống dòng").
+Nhấp nút được khoanh đỏ để hiển thị rất rõ các ký tự vốn không nhìn thấy như "space" ("dấu cách"), "TAB" ("tab") và "newline" ("xuống dòng").
 
 ### Tự động nhận diện mã hóa tệp và ký tự xuống dòng
 

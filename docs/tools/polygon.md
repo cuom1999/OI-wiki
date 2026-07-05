@@ -171,7 +171,7 @@ Nếu muốn ra một cuộc thi, có thể tạo bằng "New Contest" ("Cuộc 
 
 "New problem" (bài mới) ở thanh bên dùng để tạo một bài mới rồi thêm vào cuộc thi.
 
-"Manage problem access" (quản lý quyền truy cập bài) ở phía trên dùng để xem quyền của từng bài; "Manage developers list" (quản lý danh sách người phát triển) ở phía dưới dùng để quản lý những người có quyền trong cuộc thi này. Khi tạo bài bằng "New problem" và khi thêm người phát triển mới, quyền sẽ được tự động thêm; nhưng bài thêm vào bằng "Add problems?" sẽ không cấp quyền cho người phát triển đã có.
+"Manage problem access" ("Quản lý quyền truy cập bài") ở phía trên dùng để xem quyền của từng bài; "Manage developers list" ("Quản lý danh sách người phát triển") ở phía dưới dùng để quản lý những người có quyền trong cuộc thi này. Khi tạo bài bằng "New problem" ("Bài mới") và khi thêm người phát triển mới, quyền sẽ được tự động thêm; nhưng bài thêm vào bằng "Add problems?" ("Thêm bài?") sẽ không cấp quyền cho người phát triển đã có.
 
 Thanh bên còn có thể xem trước toàn bộ đề bài, toàn bộ hướng dẫn, toàn bộ trình kiểm tra dữ liệu và trình kiểm tra đáp án, tải gói của cả cuộc thi và đánh số lại các bài.
 

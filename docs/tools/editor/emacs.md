@@ -30,11 +30,11 @@ Có thể nhấp tên bộ đệm ở đáy vùng bộ đệm hoặc dùng phím
 
 ### Biên dịch, gỡ lỗi và chạy
 
-Lối vào chức năng biên dịch và gỡ lỗi nằm trong menu thả xuống Tools trên thanh menu phía trên. Người dùng cũng có thể dùng lệnh hoặc phím tắt tự định nghĩa để dùng chức năng biên dịch và gỡ lỗi.
+Lối vào chức năng biên dịch và gỡ lỗi nằm trong menu thả xuống Tools (`Công cụ`) trên thanh menu phía trên. Người dùng cũng có thể dùng lệnh hoặc phím tắt tự định nghĩa để dùng chức năng biên dịch và gỡ lỗi.
 
 Có thể dùng trình dòng lệnh hoặc Eshell để chạy chương trình.
 
-Sau khi nhấn gỡ lỗi (gud-gdb) trong Tools, nhập tên chương trình (thường sẽ được tự động điền sẵn, nhưng nếu giữa chừng lưu chương trình thành tên khác hoặc mở hai chương trình cần gỡ lỗi, **tên tệp tự động điền có thể sai**) là có thể bắt đầu gỡ lỗi.
+Sau khi nhấn gỡ lỗi (gud-gdb) trong Tools (`Công cụ`), nhập tên chương trình (thường sẽ được tự động điền sẵn, nhưng nếu giữa chừng lưu chương trình thành tên khác hoặc mở hai chương trình cần gỡ lỗi, **tên tệp tự động điền có thể sai**) là có thể bắt đầu gỡ lỗi.
 
 ### Chia cửa sổ
 
