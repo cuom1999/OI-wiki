@@ -93,7 +93,7 @@ Ví dụ, lệnh `./prog < 1.in > 1.out` sẽ làm cho chương trình `prog` đ
 
 Lưu ý rằng PowerShell chỉ hỗ trợ chuyển hướng xuất, không hỗ trợ chuyển hướng nhập.
 
-Trên thực tế, đa số OJ đều dùng cơ chế chuyển hướng như vậy. Chương trình thí sinh nộp sử dụng chuẩn nhập xuất; thông qua cơ chế chuyển hướng, hệ thống có thể cho chương trình của thí sinh đọc dữ liệu từ tệp nhập cho trước, xuất ra tệp xuất chỉ định, rồi chấm bằng cách so sánh tệp.
+Trên thực tế, đa số OJ đều dùng cơ chế chuyển hướng như vậy. Chương trình thí sinh nộp sử dụng đầu vào/đầu ra chuẩn; thông qua cơ chế chuyển hướng, hệ thống có thể cho chương trình của thí sinh đọc dữ liệu từ tệp nhập cho trước, xuất ra tệp xuất chỉ định, rồi chấm bằng cách so sánh tệp.
 
 ### Thực thi chương trình
 
@@ -151,30 +151,30 @@ Xem: [Biên dịch và gỡ lỗi bằng dòng lệnh](compile-debug.md).
 
 ### Tự động hoàn thành
 
-Hoàn thành là một trong những chức năng cơ bản do shell cung cấp, chủ yếu dùng để giảm lượng nhập liệu và giảm khả năng gõ sai khi dùng dòng lệnh.
+Tự động hoàn thành là một trong những chức năng cơ bản do shell cung cấp, chủ yếu dùng để giảm lượng nhập liệu và giảm khả năng gõ sai khi dùng dòng lệnh.
 
-Thông thường, phím tắt dùng để hoàn thành là <kbd>Tab</kbd>; sau khi nhấn, shell sẽ dựa vào các ký tự đã nhập để hoàn thành thông tin.
+Thông thường, phím tắt dùng để tự động hoàn thành là <kbd>Tab</kbd>; sau khi nhấn, shell sẽ dựa vào các ký tự đã nhập để hoàn thành thông tin.
 
-Các shell khác nhau cung cấp khả năng hoàn thành không hoàn toàn giống nhau.
+Các shell khác nhau cung cấp khả năng tự động hoàn thành không hoàn toàn giống nhau.
 
-Dưới đây là khả năng hoàn thành của một số shell thường gặp[^autocomplete]:
+Dưới đây là khả năng tự động hoàn thành của một số shell thường gặp[^autocomplete]:
 
-| Shell | Khả năng hoàn thành (phạm vi hoàn thành) |
+| Shell | Khả năng tự động hoàn thành (phạm vi hoàn thành) |
 | ----- | ---------------------------------------- |
 | cmd (console truyền thống của Windows) | Đường dẫn tệp |
 | PowerShell | Đường dẫn tệp, tên lệnh trong PATH, tên lệnh tích hợp, tên hàm, tham số lệnh; hỗ trợ khớp mờ, tự động sửa lỗi |
 | Bash | Đường dẫn tệp, tên lệnh trong PATH, tên lệnh tích hợp, tên hàm, tham số lệnh |
 | Zsh | Đường dẫn tệp, tên lệnh trong PATH, tên lệnh tích hợp, tên hàm, tham số lệnh; hỗ trợ khớp mờ, tự động sửa lỗi và gợi ý |
-| Fish | Đường dẫn tệp, tên lệnh trong PATH, tên lệnh tích hợp, tên hàm, tham số lệnh; hỗ trợ khớp mờ, có thể hiển thị chức năng của tham số khi hoàn thành, tự động sửa lỗi và gợi ý |
+| Fish | Đường dẫn tệp, tên lệnh trong PATH, tên lệnh tích hợp, tên hàm, tham số lệnh; hỗ trợ khớp mờ, có thể hiển thị chức năng của tham số khi tự động hoàn thành, tự động sửa lỗi và gợi ý |
 
 ???+ note "Ghi chú"
     Một số chức năng của PowerShell cần nạp PSReadline Module hoặc cần nằm trong PowerShell ISE.
 
-    Chức năng hoàn thành của Bash thường cần một gói tên là `bash-completions` để có đầy đủ tính năng; tệp hoàn thành của một số phần mềm được cung cấp kèm theo gói phần mềm đó.
+    Chức năng tự động hoàn thành của Bash thường cần một gói tên là `bash-completions` để có đầy đủ tính năng; tệp hoàn thành của một số phần mềm được cung cấp kèm theo gói phần mềm đó.
 
-    Chức năng hoàn thành đầy đủ của Zsh cần phối hợp với các tệp định nghĩa trước của người dùng (thường được cài cùng gói Zsh hoặc gói phần mềm tương ứng).
+    Chức năng tự động hoàn thành đầy đủ của Zsh cần phối hợp với các tệp định nghĩa trước của người dùng (thường được cài cùng gói Zsh hoặc gói phần mềm tương ứng).
 
-    Fish cung cấp chức năng hoàn thành tốt và đầy đủ trong cấu hình mặc định, nhưng tệp hoàn thành của một số phần mềm chưa được dự án chính thức bao phủ vẫn do chính phần mềm đó cung cấp.
+    Fish cung cấp chức năng tự động hoàn thành tốt và đầy đủ trong cấu hình mặc định, nhưng tệp hoàn thành của một số phần mềm chưa được dự án chính thức bao phủ vẫn do chính phần mềm đó cung cấp.
 
 ### Tài liệu trợ giúp
 
@@ -182,11 +182,11 @@ Nói chung, chương trình chạy dưới dòng lệnh đều kèm theo "trợ 
 
 Ngoài ra, trên hệ thống kiểu Unix còn có sổ tay (`manual`) có thể xem bằng `man command`, thường chi tiết hơn trợ giúp ngắn của chương trình.
 
-### built-in time và GNU time
+### time tích hợp và GNU time
 
 Khi kiểm tra thời gian chạy của chương trình, ta thường có thể dùng lệnh `time`.
 
-Tuy nhiên, lệnh này thực ra có hai dạng tương ứng trong hệ thống: một dạng là lệnh tích hợp của một số shell (chẳng hạn Bash), dạng còn lại là GNU time (một phần mềm riêng). Hai dạng này có một số khác biệt.
+Tuy nhiên, lệnh này thực ra có hai dạng tương ứng trong hệ thống: một dạng là lệnh tích hợp sẵn của một số shell (chẳng hạn Bash), dạng còn lại là GNU time (một phần mềm riêng). Hai dạng này có một số khác biệt.
 
 Thông thường, khi dùng trực tiếp `time` trong Bash thì phiên bản được gọi là phiên bản tích hợp của Bash. Ta có thể dùng biến môi trường `TIMEFORMAT` để điều khiển định dạng xuất; ví dụ đặt nó thành `%3lR` để xuất thời gian chạy thực tế với độ chính xác ba chữ số, hoặc `%3lU` để xuất thời gian chạy trong không gian người dùng với độ chính xác ba chữ số.[^bash-time-format]
 
@@ -194,7 +194,7 @@ Nếu muốn gọi phiên bản GNU của time, cần dùng `\time` hoặc `/usr
 
 ## Ống dẫn
 
-Giả sử ta có hai chương trình A và B đều dùng chuẩn nhập xuất. Làm thế nào để chuyển hướng đầu ra của A vào đầu vào của B?
+Giả sử ta có hai chương trình A và B đều dùng đầu vào/đầu ra chuẩn. Làm thế nào để chuyển hướng đầu ra của A vào đầu vào của B?
 
 Ta có thể dùng cách chuyển hướng đã nói ở trên: trước hết chuyển hướng đầu ra của A vào một tệp tạm, rồi chuyển hướng đầu vào của B vào tệp tạm đó.
 

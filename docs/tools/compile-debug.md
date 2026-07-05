@@ -1,6 +1,6 @@
 author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, Enter-tainer, mcendu, Tiphereth-A, ayalhw, CCXXXI, Early0v0, HeRaNO, ouuan, swiftqwq, Xeonacid, xiaofu-15191
 
-Trước khi đọc mục này, hãy cài GCC và gdb trước; cách cài đặt cụ thể xem trong bài [trình biên dịch](compiler.md).
+Trước khi đọc mục này, hãy cài GCC và GDB trước; cách cài đặt cụ thể xem trong bài [trình biên dịch](compiler.md).
 
 ## Dùng g++ trên dòng lệnh để biên dịch tệp cpp
 
@@ -11,9 +11,9 @@ Nhập `g++ a.cpp` trong dòng lệnh là có thể biên dịch tệp `a.cpp` (
 Có thể thêm một số tùy chọn biên dịch trong quá trình biên dịch:
 
 -   `-o <tên tệp>`: chỉ định tên tệp thực thi mà trình biên dịch xuất ra.
--   `-g`: thêm thông tin gỡ lỗi khi biên dịch (cần khi dùng gdb để gỡ lỗi).
+-   `-g`: thêm thông tin gỡ lỗi khi biên dịch (cần khi dùng GDB để gỡ lỗi).
 -   `-Wall`: hiển thị toàn bộ thông tin cảnh báo khi biên dịch.
--   `-O1`, `-O2`, `-O3`, `-Ofast`: tối ưu hóa chương trình được biên dịch; mức càng về sau biểu thị càng dùng nhiều biện pháp tối ưu hơn (bật tối ưu hóa sẽ ảnh hưởng đến việc gỡ lỗi bằng gdb).
+-   `-O1`, `-O2`, `-O3`, `-Ofast`: tối ưu hóa chương trình được biên dịch; mức càng về sau biểu thị càng dùng nhiều biện pháp tối ưu hơn (bật tối ưu hóa sẽ ảnh hưởng đến việc gỡ lỗi bằng GDB).
 -   `-DDEBUG`: định nghĩa ký hiệu `DEBUG` khi biên dịch (ký hiệu có thể thay tùy ý; ví dụ `-DONLINE_JUDGE` định nghĩa ký hiệu `ONLINE_JUDGE`).
 -   `-UDEBUG`: hủy định nghĩa ký hiệu `DEBUG` khi biên dịch.
 -   `-lm`, `-lgmp`: liên kết một thư viện nào đó (ở đây là math và gmp; tên cụ thể cần dùng phải tra tài liệu của thư viện, nhưng thường giống tên thư viện).
@@ -47,7 +47,7 @@ Nó được chia thành các loại sau:
 
 #### Cách sử dụng
 
-Các phiên bản mới của clang++, g++ và MSVC (hỗ trợ một phần) đều đã tích hợp sanitizers, nhưng chức năng và cách dùng có khác nhau. Ở đây lấy clang++ làm ví dụ; cách dùng như sau:
+Các phiên bản mới của clang++, g++ và MSVC (hỗ trợ một phần) đều đã tích hợp sanitizer, nhưng chức năng và cách dùng có khác nhau. Ở đây lấy clang++ làm ví dụ; cách dùng như sau:
 
 ```console
 $ clang++ -fsanitize=<name> test.cc
@@ -68,7 +68,7 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 ```
 
 ???+ warning "Cảnh báo"
-    g++ trên Windows không hỗ trợ sanitizers; cần dùng [MinGW64 đã được chỉnh sửa](https://github.com/ssbssa/gcc/releases) hoặc dùng trình biên dịch khác.
+    g++ trên Windows không hỗ trợ sanitizer; cần dùng [MinGW64 đã được chỉnh sửa](https://github.com/ssbssa/gcc/releases) hoặc dùng trình biên dịch khác.
 
     Từ MSVC 16.0 đến phiên bản 17.14, MSVC chỉ hỗ trợ AddressSanitizer.
 
@@ -83,7 +83,7 @@ Hiển nhiên, các công cụ gỡ lỗi này sẽ làm chương trình chạy 
 | MemorySanitizer | N/A | 3 |
 | UndefinedBehaviorSanitizer | N/A | N/A |
 
-## Dùng gdb trên dòng lệnh để gỡ lỗi
+## Dùng GDB trên dòng lệnh để gỡ lỗi
 
 ```console
 $ g++ a.cpp -o a -g
@@ -107,12 +107,12 @@ Nhấn `c` để tiếp tục. Sau đó sẽ hiện thông báo `Reading symbols
 
 Dưới đây là các lệnh thường dùng được liệt kê theo phân loại:
 
-### Lệnh gdb cơ bản
+### Lệnh GDB cơ bản
 
 | Lệnh | Mô tả |
 | ---- | ----- |
 | `help` | Hiển thị thông tin trợ giúp |
-| `quit` | Thoát gdb |
+| `quit` | Thoát GDB |
 | `file [filename]` | Nạp chương trình `[filename]` cần gỡ lỗi |
 
 ### Lệnh điều khiển chạy
@@ -156,9 +156,9 @@ Bạn cũng có thể dùng `break [num] [p]` khi đặt điểm dừng để đ
 | ---- | ----- |
 | `print [p]` | In giá trị của biểu thức `[p]`; có thể sửa giá trị biến thông qua biểu thức |
 | `display [p]` | In giá trị của biểu thức `[p]` mỗi khi chương trình tạm dừng |
-| `watch [var]` | Theo dõi giá trị của biến `[var]`; khi biến bị ghi, gdb sẽ tự động in ra và tạm dừng |
-| `rwatch [var]` | Theo dõi giá trị của biến `[var]`; khi biến bị đọc, gdb sẽ tự động in ra |
-| `awatch [var]` | Khi biến `[var]` bị sửa hoặc bị ghi, gdb sẽ tự động in ra và tạm dừng |
+| `watch [var]` | Theo dõi giá trị của biến `[var]`; khi biến bị ghi, GDB sẽ tự động in ra và tạm dừng |
+| `rwatch [var]` | Theo dõi giá trị của biến `[var]`; khi biến bị đọc, GDB sẽ tự động in ra |
+| `awatch [var]` | Khi biến `[var]` bị sửa hoặc bị ghi, GDB sẽ tự động in ra và tạm dừng |
 | `set [assignment]` | Thực hiện câu lệnh gán |
 
 Cả hai lệnh `display` và `print` đều hỗ trợ điều khiển định dạng xuất. Cách làm là thêm ngay sau lệnh ký tự `/` và ký tự định dạng; ví dụ `print/display [var]` (in giá trị biến `[var]` theo hệ thập phân). Các ký tự định dạng được hỗ trợ gồm:
@@ -194,10 +194,10 @@ Cả hai lệnh `display` và `print` đều hỗ trợ điều khiển định 
 | `checkpoint`[^checkpoint] | Tạo điểm kiểm tra, có thể quay lại điểm kiểm tra đó |
 | `restart [num]`[^checkpoint] | Quay lại điểm kiểm tra thứ `[num]` |
 | `save breakpoints [filename]` | Lưu điểm dừng vào tệp |
-| `source [filename]` | Nhập tệp điểm dừng |
+| `source [filename]` | Nạp tệp điểm dừng |
 
 ???+ tip "Mẹo"
-    Phần lớn lệnh khi gỡ lỗi bằng gdb có thể được viết tắt thành một dạng rút gọn bằng chữ cái đủ để xác định duy nhất, ví dụ `breakpoint` viết tắt thành `b`, `step` viết tắt thành `s`, `info args` viết tắt thành `i ar`. Xem lệnh `help` để biết chi tiết.
+    Phần lớn lệnh khi gỡ lỗi bằng GDB có thể được viết tắt thành một dạng rút gọn bằng chữ cái đủ để xác định duy nhất, ví dụ `breakpoint` viết tắt thành `b`, `step` viết tắt thành `s`, `info args` viết tắt thành `i ar`. Xem lệnh `help` để biết chi tiết.
 
 ## Tài liệu tham khảo và chú thích
 
