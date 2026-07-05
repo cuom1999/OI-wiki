@@ -1,6 +1,6 @@
 author: ouuan, Ir1d, Marcythm, Xeonacid
 
-<span id="&#x6811;&#x5206;&#x5757;&#x7684;&#x65B9;&#x5F0F;"></span>
+<span id="cách-chia-khối-trên-cây"></span>
 
 ## Cách chia khối trên cây
 
@@ -10,7 +10,7 @@ Cũng có thể tham khảo [blog của ouuan/giải thích chi tiết Mo, Mo c�
 
 Bản thân Mo trên cây cũng có thể tham khảo hai bài viết trên.
 
-<span id="&#x6811;&#x5206;&#x5757;&#x7684;&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng-của-chia-khối-trên-cây"></span>
 
 ## Ứng dụng của chia khối trên cây
 
@@ -18,7 +18,7 @@ Ngoài việc áp dụng cho Mo, chia khối trên cây còn có thể được 
 
 Nhân tiện, cách chia khối trên cây cho bài "cây cô gái của gty" có thể bị dữ liệu hình sao đánh bại.
 
-<span id="bzoj4763-&#x96EA;&#x8F89;"></span>
+<span id="bzoj4763-tuyết-huy"></span>
 
 ### [BZOJ4763 Tuyết Huy](https://hydro.ac/p/bzoj-P4763)
 
@@ -33,7 +33,7 @@ Do đó, tổng độ phức tạp là $O((n+m)(\sqrt n+\frac c{32}))$.
     --8<-- "docs/ds/code/tree-decompose/tree-decompose_1.cpp"
     ```
 
-<span id="bzoj4812-&#x7531;&#x4E43;&#x6253;&#x6251;&#x514B;"></span>
+<span id="bzoj4812-yuno-chơi-poker"></span>
 
 ### [BZOJ4812 Yuno chơi poker](https://hydro.ac/p/bzoj-P4812)
 
