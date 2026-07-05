@@ -286,7 +286,7 @@ Có vẻ như vấn đề bùng nổ theo cấp số mũ nêu trên vẫn tồn 
 
 Phương pháp sàng lọc vừa nêu do Sims đưa ra, còn gọi là sàng Sims (Sims filter). Còn một phương pháp sàng lọc phức tạp hơn do Jerrum đưa ra, gọi là [sàng Jerrum](https://groupprops.subwiki.org/w/index.php?title=Jerrum%27s_filter) (Jerrum filter), đảm bảo tập sinh mạnh thu được có kích thước $O(n)$. Độc giả quan tâm có thể tự tìm hiểu.
 
-Có một tối ưu nhỏ cho quá trình sàng lọc: trong cài đặt $\textrm{MembershipTest}(C,h)$, không cần xuất giá trị boolean, mà xuất "phần còn lại sau sàng"[^siftee] $h$ cuối cùng (tức dùng $\textbf{return }h$ thay cho dòng $10$ và dòng $14$ trong mã giả). Nếu "phần còn lại sau sàng" $h\neq e$, nghĩa là kiểm tra thành viên thất bại; khi đó có thể thêm trực tiếp "phần còn lại sau sàng" $h$ thay vì $h$ ban đầu vào tầng hiện tại. Phần tử $h$ này đã bị loại bỏ một số thừa số là đại diện lớp kề, nên di chuyển ít điểm hơn và giảm khối lượng tính toán cục bộ. Tối ưu này không ảnh hưởng đến độ phức tạp tổng thể.
+Có một tối ưu nhỏ cho quá trình sàng lọc: trong cài đặt $\textrm{MembershipTest}(C,h)$, không cần xuất giá trị boolean, mà xuất "phần còn lại sau sàng"[^siftee] $h$ cuối cùng (tức dùng $\textbf{trả về }h$ thay cho dòng $10$ và dòng $14$ trong mã giả). Nếu "phần còn lại sau sàng" $h\neq e$, nghĩa là kiểm tra thành viên thất bại; khi đó có thể thêm trực tiếp "phần còn lại sau sàng" $h$ thay vì $h$ ban đầu vào tầng hiện tại. Phần tử $h$ này đã bị loại bỏ một số thừa số là đại diện lớp kề, nên di chuyển ít điểm hơn và giảm khối lượng tính toán cục bộ. Tối ưu này không ảnh hưởng đến độ phức tạp tổng thể.
 
 <span id="quy-trình"></span>
 ### Quy trình
