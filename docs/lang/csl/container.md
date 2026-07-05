@@ -15,8 +15,8 @@
 ### Bộ chứa kết hợp
 
 -   **Set** (`set`): bộ chứa dùng để lưu có thứ tự các phần tử **khác nhau**.
-    Hiện thực của nó là cây đỏ-đen gồm các nút; mỗi nút chứa một phần tử, các
-    nút được sắp xếp theo một vị từ so sánh phần tử.
+    Cấu trúc bên dưới thường là cây đỏ-đen gồm các nút; mỗi nút chứa một phần
+    tử, các nút được sắp xếp theo một vị từ so sánh phần tử.
 -   **Multiset** (`multiset`): bộ chứa dùng để lưu có thứ tự các phần tử, cho
     phép có các phần tử bằng nhau.
 -   **Map** (`map`): tập hợp các cặp {khóa, giá trị}, được sắp xếp theo một
@@ -26,16 +26,16 @@
 
 ???+ note "Vị từ ([predicate](https://en.wikipedia.org/wiki/Predicate_%28mathematical_logic%29)) là gì?"
     Vị từ là hàm trả về đúng hoặc sai. Trong bộ chứa STL, vị từ thường được dùng
-    làm tham số khuôn mẫu.
+    làm tham số template.
 
 ### Bộ chứa không thứ tự (kết hợp)
 
 -   **Tập/đa tập không thứ tự** (`unordered_set`/`unordered_multiset`) **C++11**:
     khác `set`/`multiset` ở chỗ phần tử không có thứ tự, chỉ quan tâm "phần tử
-    có tồn tại hay không", và được hiện thực bằng băm.
+    có tồn tại hay không", và được cài đặt bằng bảng băm.
 -   **Ánh xạ/đa ánh xạ không thứ tự** (`unordered_map`/`unordered_multimap`) **C++11**:
     khác `map`/`multimap` ở chỗ khóa (`key`) không có thứ tự, chỉ quan tâm "quan
-    hệ tương ứng giữa khóa và giá trị", và được hiện thực bằng băm.
+    hệ tương ứng giữa khóa và giá trị", và được cài đặt bằng bảng băm.
 
 ### Bộ chuyển đổi bộ chứa
 
@@ -58,10 +58,10 @@ Bộ chuyển đổi bộ chứa thật ra không phải là bộ chứa. Chúng
 ### Khai báo bộ chứa
 
 Đều có dạng `containerName<typeName,...> name`, nhưng số lượng và hình thức tham
-số khuôn mẫu (các tham số trong `<>`) thay đổi theo từng bộ chứa cụ thể.
+số template (các tham số trong `<>`) thay đổi theo từng bộ chứa cụ thể.
 
-Nguyên nhân bản chất: STL chính là "thư viện khuôn mẫu chuẩn", nên các bộ chứa
-đều là mẫu lớp.
+Nguyên nhân bản chất: STL chính là "thư viện template chuẩn", nên các bộ chứa
+đều là template lớp.
 
 ### Bộ lặp
 
@@ -74,7 +74,7 @@ Vui lòng tham khảo [bộ lặp](./iterator.md).
 `begin()`: trả về bộ lặp trỏ đến phần tử đầu.
 
 `end()`: trả về bộ lặp trỏ đến vị trí sau phần tử cuối. `end()` không trỏ đến
-một phần tử nào, nhưng nó là hậu kế của phần tử cuối.
+một phần tử nào, mà là vị trí ngay sau phần tử cuối.
 
 `size()`: trả về số phần tử trong bộ chứa.
 
