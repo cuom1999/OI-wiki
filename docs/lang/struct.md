@@ -98,4 +98,4 @@ thành viên bên trong.
 
 1.  [Class - cppreference.com](https://en.cppreference.com/w/cpp/language/class)
 2.  [Data structures - cplusplus.com](http://www.cplusplus.com/doc/tutorial/structures/)
-3.  [Alignment - Microsoft Docs](https://docs.microsoft.com/zh-cn/cpp/cpp/alignment-cpp-declarations)
+3.  [Alignment - Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/alignment-cpp-declarations)

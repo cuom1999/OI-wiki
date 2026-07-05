@@ -6,7 +6,7 @@ author: zarttic, xk2013
 
 ## Tải xuống và cài đặt
 
-Xem [Installation | CP Editor](https://cpeditor.org/zh/docs/installation/).
+Xem [Installation | CP Editor](https://cpeditor.org/docs/installation/).
 
 ## Cấu hình cơ bản
 
@@ -47,7 +47,7 @@ Xem [Installation | CP Editor](https://cpeditor.org/zh/docs/installation/).
     |          <kbd>Ctrl</kbd>+<kbd>K</kbd>            | Dừng toàn bộ tiến trình    |
     | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>    |       Định dạng mã         |
 
-    Chi tiết có thể xem trong [tài liệu chính thức](https://cpeditor.org/zh/docs/preferences/key-bindings/).
+    Chi tiết có thể xem trong [tài liệu chính thức](https://cpeditor.org/docs/preferences/key-bindings/).
 
 -   Kiểm thử sample
 

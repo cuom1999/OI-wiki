@@ -20,11 +20,11 @@ Dưới đây là các ký hiệu được dùng trong bài:
 
 ### Một số khái niệm
 
-Để viết tài liệu LaTeX, bạn cần cài một "bản phân phối". Các bản phân phối thường dùng gồm [TeX Live](http://tug.org/texlive/), [MikTeX](https://miktex.org/) và MacTeX dành cho người dùng macOS (thực chất là phiên bản TeX Live cho macOS). Còn [CTeX](http://www.ctex.org/) hiện không được khuyến nghị dùng nữa. TeX Live và MacTeX đi kèm gần như toàn bộ các gói LaTeX; MikTeX chỉ đi kèm một số gói bắt buộc, các gói khác sẽ được cài khi cần.
+Để viết tài liệu LaTeX, bạn cần cài một "bản phân phối". Các bản phân phối thường dùng gồm [TeX Live](http://tug.org/texlive/), [MikTeX](https://miktex.org/) và MacTeX dành cho người dùng macOS (thực chất là phiên bản TeX Live cho macOS). TeX Live và MacTeX đi kèm gần như toàn bộ các gói LaTeX; MikTeX chỉ đi kèm một số gói bắt buộc, các gói khác sẽ được cài khi cần.
 
 TeX Live và MikTeX đều đi kèm trình soạn thảo TeXworks. Bạn cũng có thể cài trình soạn thảo nhiều tính năng hơn như TeXstudio, hoặc tự cấu hình Visual Studio Code, Notepad++ và các trình soạn thảo khác. Trình soạn thảo dùng trong phần dưới là TeXworks chạy trên Windows 7.
 
-Phần lớn các bản phân phối đều có nhiều engine, chẳng hạn pdfTeX và XeTeX. Với người dùng cần tiếng Trung, nên dùng XeTeX để có hỗ trợ Unicode.
+Phần lớn các bản phân phối đều có nhiều engine, chẳng hạn pdfTeX, XeTeX và LuaTeX. Với văn bản Unicode nhiều dấu như tiếng Việt, XeTeX hoặc LuaTeX thường thuận tiện hơn.
 
 TeX có nhiều format, chẳng hạn Plain TeX và LaTeX. Hiện nay thường dùng format LaTeX. Vì vậy, bạn cần dùng engine được đóng gói cùng format mà bạn sử dụng. Ví dụ với pdfTeX, bạn cần dùng pdfLaTeX; với XeTeX thì dùng XeLaTeX.
 
@@ -32,9 +32,9 @@ TeX có nhiều format, chẳng hạn Plain TeX và LaTeX. Hiện nay thường 
 
 ### Cấu hình môi trường
 
-Với người dùng Windows, bạn cần tải TeX Live hoặc MikTeX. Người dùng ở Trung Quốc có thể dùng [mirror TUNA của Đại học Thanh Hoa](https://mirrors.tuna.tsinghua.edu.cn/): nhấp nút "lấy liên kết tải xuống" ở bên phải trang, rồi chọn "hệ thống dàn trang TeX" trong thẻ "phần mềm ứng dụng" để tải bộ cài TeX Live hoặc MikTeX. Trong đó, bộ cài TeX Live là một tệp ISO, cần mount rồi chạy `install-tl-advanced.bat` bằng quyền quản trị.
+Với người dùng Windows, bạn cần tải [TeX Live](https://tug.org/texlive/acquire.html) hoặc [MikTeX](https://miktex.org/download). Nếu tốc độ tải từ máy chủ mặc định không ổn định, có thể chọn một mirror CTAN gần vị trí của bạn. Bộ cài TeX Live dạng ISO cần được mount rồi chạy `install-tl-advanced.bat` bằng quyền quản trị.
 
-Với người dùng macOS, mirror TUNA của Đại học Thanh Hoa cũng cung cấp bản tải MacTeX và MikTeX cho macOS.
+Với người dùng macOS, có thể cài [MacTeX](https://tug.org/mactex/) hoặc MikTeX cho macOS.
 
 Với người dùng Linux, nếu dùng TeX Live thì cũng tải tệp ISO và chạy script `install-tl`; nếu dùng MikTeX thì cài theo [tài liệu chính thức](https://miktex.org/download#unx).
 
@@ -262,15 +262,16 @@ Trang thứ hai:
 
 ## Xử lý văn bản
 
-### Hỗ trợ phông chữ tiếng Trung
+### Hỗ trợ tiếng Việt và Unicode
 
-Với người đọc bài này để học LaTeX, một trong những điều đầu tiên cần nắm tự nhiên là hỗ trợ phông chữ tiếng Trung trong LaTeX. Thực tế có nhiều cách để LaTeX hỗ trợ phông chữ tiếng Trung. Ở đây, chúng tôi chỉ đưa ra cách **gọn nhất**: dùng gói CTeX. Chỉ cần thêm vào phần lệnh tiền tố của tài liệu:
+Với người đọc bài này để học LaTeX, một trong những điều đầu tiên cần nắm là cách soạn văn bản Unicode có dấu. Cách gọn và dễ kiểm soát là dùng XeLaTeX hoặc LuaLaTeX cùng gói `fontspec`, rồi chọn một phông chữ có hỗ trợ tiếng Việt:
 
 ```tex
-\usepackage[UTF8]{ctex}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes}
 ```
 
-Như vậy là đủ. Khi biên dịch tài liệu, hãy dùng lệnh `xelatex`, vì lệnh này hỗ trợ phông chữ tiếng Trung.
+Khi biên dịch tài liệu, hãy dùng `xelatex` hoặc `lualatex`. Nếu đổi sang phông chữ khác, cần bảo đảm phông chữ đó có đủ các dấu tiếng Việt.
 
 ### Hiệu ứng phông chữ
 
@@ -763,7 +764,7 @@ $\rightarrow$ Tạo một tệp BibTeX cùng tên trong cùng thư mục và nh�
 
 ## Đọc thêm
 
--   Một bản giới thiệu LATEX 2ε ngắn gọn (không hẳn là ngắn) <https://github.com/CTeX-org/lshort-zh-cn/releases/download/v6.02/lshort-zh-cn.pdf>, hoặc tìm hiểu LaTeX 2ε trong 112 phút.
+-   Một bản giới thiệu LATEX 2ε ngắn gọn (không hẳn là ngắn) <https://tobi.oetiker.ch/lshort/lshort.pdf>, còn có tên *The Not So Short Introduction to LaTeX2e*.
 
 -   LaTeX Project <http://www.latex-project.org/> Official website - has links to documentation, information about installing LATEX on your own computer, and information about where to look for help.
 

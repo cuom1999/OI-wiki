@@ -6,7 +6,7 @@ Kate là một trình soạn thảo văn bản đa nền tảng với nhiều ch
 
 ## Tải xuống và cài đặt
 
-Có thể mở [trang chủ Kate](https://kate-editor.org/), rồi vào [trang tải xuống](https://kate-editor.org/zh-cn/get-it/). Sau đó, cài đặt theo hệ thống bạn dùng và cách cài đặt bạn thích.
+Có thể mở [trang chủ Kate](https://kate-editor.org/), rồi vào [trang tải xuống](https://kate-editor.org/get-it/). Sau đó, cài đặt theo hệ thống bạn dùng và cách cài đặt bạn thích.
 
 ## Cách dùng và chức năng
 

@@ -100,7 +100,7 @@ brew install gcc
 
 JDK có nhiều bản phân phối. Dưới đây giới thiệu hai loại:
 
--   [Eclipse Temurin](https://adoptium.net/zh-cn/) trong OpenJDK[^temurin]: xem [Install Eclipse Temurin™ | Adoptium](https://adoptium.net/zh-CN/installation/).
+-   [Eclipse Temurin](https://adoptium.net/) trong OpenJDK[^temurin]: xem [Install Eclipse Temurin™ | Adoptium](https://adoptium.net/installation/).
 -   Oracle JDK: có thể tham khảo [JDK Installation Guide (JDK 17)](https://docs.oracle.com/en/java/javase/17/install/overview-jdk-installation.html).
 
 ## Python 3
@@ -155,7 +155,7 @@ sudo zypper in llvm clang
 
 ## MSVC (Visual Studio)
 
-Truy cập trang [Tải xuống Visual Studio](https://visualstudio.microsoft.com/zh-hans/downloads/), tìm phần "Community" trong mục "Tải xuống", rồi nhấn "Tải miễn phí". Sau khi tải xong, mở trình cài đặt và chọn "Cài đặt Community 2022". Trong cửa sổ hiện ra sau đó, chỉ chọn "Desktop development with C++", rồi nhấn cài đặt.
+Truy cập trang [Tải xuống Visual Studio](https://visualstudio.microsoft.com/downloads/), tìm phần "Community" trong mục "Tải xuống", rồi nhấn "Tải miễn phí". Sau khi tải xong, mở trình cài đặt và chọn "Cài đặt Community 2022". Trong cửa sổ hiện ra sau đó, chỉ chọn "Desktop development with C++", rồi nhấn cài đặt.
 
 Nếu không muốn cài Visual Studio đầy đủ, bạn có thể cuộn xuống mục "Tất cả tải xuống", tìm "Build Tools for Visual Studio" trong phần "Tools for Visual Studio", rồi nhấn nút "Download" phía sau. Sau khi tải xong, mở trình cài đặt, làm theo hướng dẫn để chọn "Desktop development with C++" rồi cài đặt. Cũng có thể dùng công cụ [PortableBuildTools](https://github.com/Data-Oriented-House/PortableBuildTools) để chỉ cài trình biên dịch MSVC.
 

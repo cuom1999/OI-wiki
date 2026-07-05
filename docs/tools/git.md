@@ -528,19 +528,19 @@ Bản thân Git có GUI đi kèm, và trên thị trường cũng có nhiều c�
 
 Ở đây không trình bày chi tiết cách sử dụng nữa; có thể tham khảo tài liệu sử dụng trên trang chính thức hoặc học qua công cụ tìm kiếm, ví dụ [TortoiseGit Manual](https://tortoisegit.org/docs/tortoisegit/index.html).
 
-Nhiều công cụ GUI có hỗ trợ tiếng Trung chính thức, ví dụ Git Desktop và TortoiseGit. Tuy nhiên vẫn có một số bản dịch đọc hơi gượng, nên khuyến nghị dùng bản tiếng Anh.
+Nhiều công cụ GUI có hỗ trợ nhiều ngôn ngữ giao diện, ví dụ Git Desktop và TortoiseGit. Tuy nhiên vẫn có một số bản dịch đọc hơi gượng, nên khuyến nghị dùng bản tiếng Anh nếu cần đối chiếu thuật ngữ chính xác.
 
 ## Liên kết ngoài
 
 -   [Git Reference](https://git-scm.com/docs)
--   [Pro Git Book](https://git-scm.com/book/zh/v2)
+-   [Pro Git Book](https://git-scm.com/book/en/v2)
 -   [Learn Git Branching](https://learngitbranching.js.org/)
 
 ## Tài liệu tham khảo và chú thích
 
 [^note1]: Thực ra Git còn có một tệp cấu hình chung dành cho mọi người dùng trên hệ thống và mọi kho trên hệ thống. Tệp cấu hình này có phạm vi bao phủ rộng nhất, cấp cao hơn tệp cấu hình người dùng. Vì cấu hình này ít dùng trong thực tế, ở đây không trình bày thêm.
 
-[^note2]: [Pro Git Book](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA) cung cấp hình minh họa quá trình Rebase; nhờ hình ảnh, người đọc có thể hiểu cơ chế Rebase tốt hơn.
+[^note2]: [Pro Git Book](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) cung cấp hình minh họa quá trình Rebase; nhờ hình ảnh, người đọc có thể hiểu cơ chế Rebase tốt hơn.
 
 [^note3]: [TortoiseGit](https://tortoisegit.org/)
 

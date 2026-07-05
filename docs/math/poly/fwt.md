@@ -546,4 +546,4 @@ Vẫn còn một vấn đề: tính theo $\bmod \Phi_{K}(x)$ có hằng số l�
 -   [Ghi chú thuật toán của Taojiang](https://zhuanlan.zhihu.com/p/41867199)
 -   [Blog của ZnPdCo](https://znpdco.github.io/%E7%AE%97%E6%B3%95/2024/05/07/FWT.html)
 
-[^note1]: [Wikipedia](https://zh.wikipedia.org/zh-cn/%E6%B2%83%E7%88%BE%E4%BB%80%E8%BD%89%E6%8F%9B)
+[^note1]: [Wikipedia](https://en.wikipedia.org/wiki/Fast_Walsh%E2%80%93Hadamard_transform)

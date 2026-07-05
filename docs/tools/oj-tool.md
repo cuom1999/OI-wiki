@@ -129,8 +129,8 @@ ac-predictor là một tiện ích giúp biết trước thay đổi rating củ
 
 Công cụ này là một script Tampermonkey, vì vậy trước hết bạn cần cài [Tampermonkey](https://www.tampermonkey.net/).
 
-Sau đó vào [greasyfork](https://greasyfork.org/zh-CN/scripts/369954-ac-predictor) và nhấn cài đặt.
+Sau đó vào [Greasy Fork](https://greasyfork.org/en/scripts/369954-ac-predictor) và nhấn cài đặt.
 
 Sau khi cài đặt xong, giao diện bảng xếp hạng của cuộc thi sẽ hiển thị dự đoán thay đổi rating của từng người dùng.
 
-Công cụ này có một phiên bản được [GoodCoder666](https://github.com/GoodCoder666) bản địa hóa sang tiếng Trung; nhấn [vào đây](https://greasyfork.org/zh-CN/scripts/458528-ac-predictor-cn) để cài đặt.
+Nếu trang script có nhiều phiên bản, nên ưu tiên bản gốc hoặc bản đang được duy trì thường xuyên.
