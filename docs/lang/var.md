@@ -33,7 +33,7 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ (thông
     ???+ note "Ghi chú"
         Từ C23, kiểu `bool` của C không còn được định nghĩa bằng giá trị nguyên bằng không và khác không nữa, mà được định nghĩa là kiểu đủ để lưu hai hằng `true` và `false`.
 
-    Để tiện sử dụng, `stdbool.h` cung cấp ba macro `bool`,`true`,`false`, được định nghĩa như sau:
+    Để tiện sử dụng, `stdbool.h` cung cấp ba macro `bool`, `true`, `false`, được định nghĩa như sau:
 
     ```c
     #define bool _Bool
@@ -41,7 +41,7 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ (thông
     #define false 0
     ```
 
-    Các macro này bị loại bỏ trong C23. Từ C23, `true`,`false` và `bool` được đưa vào làm từ khóa, đồng thời vẫn giữ `_Bool` như một cách viết thay thế[^note10].
+    Các macro này bị loại bỏ trong C23. Từ C23, `true`, `false` và `bool` được đưa vào làm từ khóa, đồng thời vẫn giữ `_Bool` như một cách viết thay thế[^note10].
 
     Ngoài ra, từ C23 cũng có thể lấy độ rộng bit của kiểu luận lý thông qua hằng macro `BOOL_WIDTH` trong `<limits.h>`.
 

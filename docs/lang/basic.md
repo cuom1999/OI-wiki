@@ -12,7 +12,7 @@ int main() {
 }
 ```
 
-??? note "include là gì?"
+??? note "`#include` là gì?"
     `#include` thực chất là một lệnh tiền xử lý, có nghĩa là "đặt" một tệp vào vị trí của câu lệnh này; tệp được "đặt" vào đó gọi là tệp tiêu đề. Nói cách khác, khi biên dịch, trình biên dịch sẽ "sao chép" nội dung trong tệp tiêu đề `iostream` rồi "dán" vào vị trí câu lệnh `#include <iostream>`. Nhờ vậy, bạn có thể sử dụng các đối tượng mà `iostream` cung cấp như `std::cin`, `std::cout`, `std::endl`, v.v.
     
     Nếu đã học ngôn ngữ C, bạn sẽ thấy trong C++ hiện nay các tệp tiêu đề mà chúng ta tiếp xúc thường không có hậu tố `.h`, còn các tệp tiêu đề `xx.h` trong C đều trở thành `cxx`, chẳng hạn `stdio.h` trở thành `cstdio`. Vì để tương thích với C, C++ trực tiếp sử dụng các tệp tiêu đề của C; để phân biệt tệp tiêu đề C++ với tệp tiêu đề C, người ta dùng tiền tố `c`.
@@ -134,8 +134,8 @@ Ngoài ký hiệu kiểu dữ liệu, còn có một số cách điều khiển 
     
     6.  Đặc biệt, `%%` biểu thị `%`, chỉ dùng trong `printf` hoặc `scanf`; trong các chuỗi ký tự khác, chỉ cần dùng `%` trực tiếp là được.
     
-    ??? note "Giá trị literal là gì?"
-        "Literal" là một đoạn chương trình xuất hiện trực tiếp trong mã dưới dạng một giá trị, ví dụ `3` là một literal kiểu `int`, `'c'` là một literal kiểu char. `"hello world"` trong chương trình chúng ta viết ở trên cũng là một literal chuỗi.
+    ??? note "Giá trị trực tiếp (literal) là gì?"
+        Literal là một đoạn chương trình xuất hiện trực tiếp trong mã dưới dạng một giá trị, ví dụ `3` là một literal kiểu `int`, `'c'` là một literal kiểu `char`. `"hello world"` trong chương trình chúng ta viết ở trên cũng là một literal chuỗi.
         
         Những literal không có giải thích và xuất hiện không rõ lý do còn được gọi là "số ma thuật" (magic number). Nếu mã cần được người khác đọc, đây là một cách viết rất không được khuyến nghị.
 

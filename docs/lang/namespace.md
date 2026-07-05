@@ -46,17 +46,17 @@ void f()  // ở đây định nghĩa hàm f trong không gian tên toàn cục,
 }
 ```
 
-## Chỉ thị `using`
+## Khai báo và chỉ thị `using`
 
 Sau khi khai báo không gian tên, nếu ở bên ngoài không gian tên mà muốn truy cập thành
-viên bên trong không gian tên, cần thêm `namespace::` trước tên thành viên.
+viên bên trong không gian tên, cần thêm `tên_không_gian_tên::` trước tên thành viên.
 
 Có cách nào tiện hơn để ta trực tiếp truy cập thành viên trong không gian tên bằng
-tên thành viên không? Câu trả lời là có. Ta có thể dùng chỉ thị `using`.
+tên thành viên không? Câu trả lời là có. Ta có thể dùng `using`.
 
-Chỉ thị `using` có hai dạng sau:
+`using` có hai dạng thường gặp sau:
 
-1.  `using namespace::tên_thành_viên;`: chỉ thị này cho phép ta lược bỏ tên không gian tên
+1.  `using tên_không_gian_tên::tên_thành_viên;`: khai báo này cho phép ta lược bỏ tên không gian tên
     trước tên của một thành viên nào đó và truy cập trực tiếp bằng tên thành
     viên. Tương đương với việc đưa thành viên này vào phạm vi hiện tại.
 2.  `using namespace tên_không_gian_tên;`: chỉ thị này cho phép trực tiếp truy cập
@@ -64,18 +64,18 @@ Chỉ thị `using` có hai dạng sau:
     đưa toàn bộ thành viên của không gian tên này vào phạm vi hiện tại.
 
 Vì vậy, nếu thực thi `using namespace std;`, mọi tên trong `std` sẽ được đưa vào
-không gian tên toàn cục trong phạm vi hiện tại. Khi đó ta có thể dùng `cin` thay cho
+phạm vi hiện tại. Khi đó ta có thể dùng `cin` thay cho
 `std::cin`, dùng `cout` thay cho `std::cout`.
 
-??? warning "Chỉ thị `using` có thể gây xung đột tên!"
+??? warning "Chỉ thị `using namespace` có thể gây xung đột tên!"
     Vì `using namespace std;` sẽ đưa **toàn bộ tên** trong `std` vào phạm vi
-    hiện tại, nếu khai báo biến hoặc hàm trùng tên với `std`, có thể xảy ra lỗi
+    hiện tại, nếu khai báo biến hoặc hàm trùng với tên trong `std`, có thể xảy ra lỗi
     biên dịch do xung đột tên.
 
     Vì vậy trong phát triển phần mềm, không khuyến nghị dùng chỉ thị
     `using namespace tên_không_gian_tên;`.
 
-Với chỉ thị `using`, đoạn mã trong [cú pháp C++ cơ bản](./basic.md#cin-và-cout)
+Với `using`, đoạn mã trong [cú pháp C++ cơ bản](./basic.md#cin-và-cout)
 có thể viết theo hai cách tương đương sau:
 
 ```cpp
