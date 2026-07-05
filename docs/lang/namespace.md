@@ -1,16 +1,16 @@
 ## Tổng quan
 
-Cơ chế **namespace** của C++ có thể dùng để giải quyết vấn đề xung đột tên trong
-các dự án phức tạp.
+Cơ chế **không gian tên** (`namespace`) của C++ có thể dùng để giải quyết vấn đề
+xung đột tên trong các dự án phức tạp.
 
 Lấy một ví dụ: toàn bộ nội dung của thư viện chuẩn C++ đều được định nghĩa trong
-namespace `std`. Nếu bạn định nghĩa một biến tên là `cin`, bạn có thể truy cập
+không gian tên `std`. Nếu bạn định nghĩa một biến tên là `cin`, bạn có thể truy cập
 biến `cin` do mình định nghĩa bằng `cin`, đồng thời truy cập đối tượng `cin` của
 thư viện chuẩn bằng `std::cin`, mà không cần lo xung đột.
 
 ## Khai báo
 
-Đoạn mã sau khai báo một namespace tên là `A`:
+Đoạn mã sau khai báo một không gian tên có tên `A`:
 
 ```cpp
 namespace A {
@@ -20,11 +20,11 @@ void f(int x) { cnt = x; }
 }  // namespace A
 ```
 
-Sau khi khai báo, ở bên ngoài namespace này, bạn có thể dùng `A::f(x)` để truy
-cập hàm `f` bên trong namespace `A`, cũng có thể dùng `A::cnt` để truy cập biến
-`cnt` bên trong namespace `A`.
+Sau khi khai báo, ở bên ngoài không gian tên này, bạn có thể dùng `A::f(x)` để truy
+cập hàm `f` bên trong không gian tên `A`, cũng có thể dùng `A::cnt` để truy cập biến
+`cnt` bên trong không gian tên `A`.
 
-Khai báo namespace có thể lồng nhau, vì vậy đoạn mã sau cũng được phép:
+Khai báo không gian tên có thể lồng nhau, vì vậy đoạn mã sau cũng được phép:
 
 ```cpp
 namespace A {
@@ -33,12 +33,12 @@ void f() { ... }
 }  // namespace B
 
 void f() {
-  B::f();  // thực ra truy cập A::B::f(); vì hiện đang ở trong namespace A,
+  B::f();  // thực ra truy cập A::B::f(); vì hiện đang ở trong không gian tên A,
            // nên có thể lược bỏ A:: phía trước
 }
 }  // namespace A
 
-void f()  // ở đây định nghĩa hàm f trong namespace toàn cục, không xung đột
+void f()  // ở đây định nghĩa hàm f trong không gian tên toàn cục, không xung đột
           // với A::f hay A::B::f
 {
   A::f();
@@ -48,23 +48,23 @@ void f()  // ở đây định nghĩa hàm f trong namespace toàn cục, không
 
 ## Chỉ thị `using`
 
-Sau khi khai báo namespace, nếu ở bên ngoài namespace mà muốn truy cập thành
-viên bên trong namespace, cần thêm `namespace::` trước tên thành viên.
+Sau khi khai báo không gian tên, nếu ở bên ngoài không gian tên mà muốn truy cập thành
+viên bên trong không gian tên, cần thêm `namespace::` trước tên thành viên.
 
-Có cách nào tiện hơn để ta trực tiếp truy cập thành viên trong namespace bằng
+Có cách nào tiện hơn để ta trực tiếp truy cập thành viên trong không gian tên bằng
 tên thành viên không? Câu trả lời là có. Ta có thể dùng chỉ thị `using`.
 
 Chỉ thị `using` có hai dạng sau:
 
-1.  `using namespace::tên_thành_viên;`: chỉ thị này cho phép ta lược bỏ namespace
+1.  `using namespace::tên_thành_viên;`: chỉ thị này cho phép ta lược bỏ tên không gian tên
     trước tên của một thành viên nào đó và truy cập trực tiếp bằng tên thành
     viên. Tương đương với việc đưa thành viên này vào phạm vi hiện tại.
-2.  `using namespace tên_namespace;`: chỉ thị này cho phép trực tiếp truy cập
-    **mọi** thành viên trong namespace bằng tên thành viên. Tương đương với việc
-    đưa toàn bộ thành viên của namespace này vào phạm vi hiện tại.
+2.  `using namespace tên_không_gian_tên;`: chỉ thị này cho phép trực tiếp truy cập
+    **mọi** thành viên trong không gian tên bằng tên thành viên. Tương đương với việc
+    đưa toàn bộ thành viên của không gian tên này vào phạm vi hiện tại.
 
 Vì vậy, nếu thực thi `using namespace std;`, mọi tên trong `std` sẽ được đưa vào
-namespace toàn cục trong phạm vi hiện tại. Khi đó ta có thể dùng `cin` thay cho
+không gian tên toàn cục trong phạm vi hiện tại. Khi đó ta có thể dùng `cin` thay cho
 `std::cin`, dùng `cout` thay cho `std::cout`.
 
 ??? warning "Chỉ thị `using` có thể gây xung đột tên!"
@@ -73,7 +73,7 @@ namespace toàn cục trong phạm vi hiện tại. Khi đó ta có thể dùng 
     biên dịch do xung đột tên.
 
     Vì vậy trong phát triển phần mềm, không khuyến nghị dùng chỉ thị
-    `using namespace tên_namespace;`.
+    `using namespace tên_không_gian_tên;`.
 
 Với chỉ thị `using`, đoạn mã trong [cú pháp C++ cơ bản](./basic.md#cin-và-cout)
 có thể viết theo hai cách tương đương sau:
@@ -134,7 +134,7 @@ năng đọc của chương trình.
 
 ### Tránh xung đột với thư viện chuẩn và tên do môi trường đưa vào
 
-Đồng thời, dùng namespace cũng có thể tránh việc một số tên thường dùng trong
+Đồng thời, dùng không gian tên cũng có thể tránh việc một số tên thường dùng trong
 lập trình thi đấu xung đột với chuẩn, như ví dụ sau:
 
 ```cpp
@@ -155,7 +155,7 @@ int y1;  // y1 là hàm Bessel loại hai do POSIX định nghĩa
 void solve() {
   // Trong Sol::solve(), việc dùng end và y1 mà ta đã khai báo theo cách không
   // định danh đầy đủ (không dùng ::) sẽ không gây xung đột tên. Nếu đoạn mã
-  // trên nằm trong namespace toàn cục thì sẽ gây xung đột: end chỉ xung đột với
+  // trên nằm trong không gian tên toàn cục thì sẽ gây xung đột: end chỉ xung đột với
   // std::end khi tra cứu tên (tức khi biên dịch mã sử dụng nó), còn y1 xung đột
   // ngay lúc khai báo. Hơn nữa, xung đột của y1 phụ thuộc vào môi trường, nên
   // thậm chí có thể không bị phát hiện trên Windows nhưng lại gây lỗi biên dịch

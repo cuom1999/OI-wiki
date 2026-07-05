@@ -55,7 +55,7 @@ Dùng `const` để giới hạn kiểu tham số trong tham số hàm có thể
 ```cpp
 void sum(const std::vector<int> &data, int &total) {
   for (auto iter = data.begin(); iter != data.end(); ++iter)
-    total += *iter;  // iter là iterator, kiểu sau khi giải tham chiếu là const int
+    total += *iter;  // iter là bộ lặp, kiểu sau khi giải tham chiếu là const int
 }
 ```
 

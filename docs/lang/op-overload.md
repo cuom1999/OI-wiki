@@ -102,7 +102,7 @@ Với kiểu `T`, định nghĩa nạp chồng toán tử tăng điển hình nh
 
 Toán tử gọi hàm `()` chỉ có thể được nạp chồng thành hàm thành viên. Bằng cách nạp chồng toán tử `()` cho một lớp, đối tượng của lớp đó có thể được gọi như một hàm.
 
-Một ứng dụng phổ biến của nạp chồng toán tử `()` là truyền một cấu trúc đã nạp chồng `()` làm hàm so sánh tùy biến vào các container STL như hàng đợi ưu tiên.
+Một ứng dụng phổ biến của nạp chồng toán tử `()` là truyền một cấu trúc đã nạp chồng `()` làm hàm so sánh tùy biến vào các bộ chứa STL như hàng đợi ưu tiên.
 
 Sau đây là một ví dụ: cho tên và điểm của $n$ học sinh, sắp xếp theo điểm giảm dần; nếu điểm bằng nhau thì sắp xếp tên theo thứ tự từ điển tăng dần; in tên và điểm của người có thứ hạng cao nhất.
 
@@ -121,13 +121,13 @@ Bên dưới định nghĩa một cấu trúc so sánh để cài đặt cách s
       }
     };
     
-    // Lưu ý tham số template truyền vào là tên cấu trúc, không phải một thể hiện
+    // Lưu ý tham số mẫu truyền vào là tên cấu trúc, không phải một thể hiện
     priority_queue<student, vector<student>, cmp> pq;
     ```
 
 ### Toán tử so sánh
 
-Trong `std::sort` và một số container STL, cần dùng đến toán tử `<`. Khi sử dụng kiểu tùy biến, ta cần tự nạp chồng toán tử này.
+Trong `std::sort` và một số bộ chứa STL, cần dùng đến toán tử `<`. Khi sử dụng kiểu tùy biến, ta cần tự nạp chồng toán tử này.
 
 Sau đây là một ví dụ cài đặt cùng chức năng với phần trước.
 

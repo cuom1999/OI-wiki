@@ -5,7 +5,7 @@ Có thể xem tham chiếu như một con trỏ không rỗng được C++ đón
 Tham chiếu không phải là đối tượng, nên không tồn tại mảng các tham chiếu, không thể lấy con trỏ tới tham chiếu, và cũng không tồn tại tham chiếu tới tham chiếu.
 
 ??? note "Kiểu tham chiếu không thuộc kiểu đối tượng"
-    Nếu muốn tham chiếu có thể thực hiện các thao tác thông thường như sao chép, gán, chẳng hạn làm phần tử của container, cần dùng [`reference_wrapper`](https://en.cppreference.com/w/cpp/utility/functional/reference_wrapper). Kiểu này thường được hiện thực bằng cách duy trì một con trỏ không rỗng.
+    Nếu muốn tham chiếu có thể thực hiện các thao tác thông thường như sao chép, gán, chẳng hạn làm phần tử của bộ chứa, cần dùng [`reference_wrapper`](https://en.cppreference.com/w/cpp/utility/functional/reference_wrapper). Kiểu này thường được hiện thực bằng cách duy trì một con trỏ không rỗng.
 
 Tham chiếu chủ yếu được chia thành hai loại: tham chiếu trái trị và tham chiếu phải trị.
 
@@ -133,7 +133,7 @@ Dưới đây là các ví dụ thường gặp về tham chiếu treo:
     }
     ```
 
-    Tương tự, thao tác chèn vào các container như `std::vector`, `std::unordered_map` cũng đều có thể dẫn tới cấp phát lại bộ nhớ.
+    Tương tự, thao tác chèn vào các bộ chứa như `std::vector`, `std::unordered_map` cũng đều có thể dẫn tới cấp phát lại bộ nhớ.
 
 Khi sử dụng tham chiếu, cần luôn chú ý tới thời gian sống của đối tượng mà tham chiếu trỏ tới để tránh tạo ra tham chiếu treo.
 
@@ -145,7 +145,7 @@ Thông thường, công cụ kiểm tra tĩnh và thói quen viết mã tốt c�
 
 Các **đối tượng không nhẹ** thường gặp gồm:
 
--   Container như `vector`, `array`, `map`, v.v.
+-   Bộ chứa như `vector`, `array`, `map`, v.v.
 -   `string`
 -   Các kiểu khác đã hiện thực hoặc kế thừa những hàm đặc biệt như hàm khởi tạo sao chép, hàm khởi tạo di chuyển tự định nghĩa
 
@@ -157,7 +157,7 @@ Những kiểu sau thuộc nhóm **đối tượng nhẹ**:
 
 -   Kiểu cơ bản như `int`, `float`, v.v.
 -   [Kiểu aggregate](https://en.cppreference.com/w/cpp/language/aggregate_initialization) nhỏ
--   Iterator của container trong thư viện chuẩn
+-   Bộ lặp của bộ chứa trong thư viện chuẩn
 
 ### Chuyển trái trị thành phải trị
 

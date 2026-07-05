@@ -1,4 +1,4 @@
-Mảng là một container lưu các đối tượng cùng kiểu. Các đối tượng trong mảng
+Mảng là một bộ chứa lưu các đối tượng cùng kiểu. Các đối tượng trong mảng
 không có tên riêng, mà được truy cập thông qua vị trí của chúng. Kích thước của
 mảng là cố định, không thể tùy ý thay đổi độ dài mảng.
 
