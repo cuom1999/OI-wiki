@@ -136,7 +136,7 @@ Lệnh này đặt stack khoảng 128 MB; nếu cần, có thể tự tăng thê
 
 #### Định nghĩa macro
 
-Thuận tiện để chấm cục bộ bằng file input/output hoặc dùng cho mục đích khác.
+Thuận tiện để chấm cục bộ bằng tệp đầu vào/đầu ra hoặc dùng cho mục đích khác.
 
 Thêm lệnh `-D[String]` vào "Add the following commands when calling the linker".
 
