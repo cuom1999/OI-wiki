@@ -11,8 +11,8 @@ có thể khác nhau.
     Khi sử dụng, trình biên dịch sẽ sinh lớp tương ứng theo kiểu dữ liệu được
     truyền vào, rồi tạo đối tượng tương ứng.
 
-    Template là một đặc tính tương đối nâng cao của C++; trong thi đấu tin học
-    gần như không cần tự viết `template`. Nếu quan tâm, bạn có thể đọc thêm
+    Template là một tính năng tương đối nâng cao của C++; trong thi đấu tin học
+    gần như không cần tự viết `template`. Nếu quan tâm, có thể đọc thêm
     "C++ Primer" để học sâu hơn về C++.
 
 Sử dụng `pair` linh hoạt giúp xử lý dễ dàng các tình huống **cần ghép hai dữ liệu
@@ -124,9 +124,9 @@ p2.swap(p3);
 
 ### Rời rạc hóa
 
-`pair` có thể dùng để cài đặt rời rạc hóa rất dễ dàng.
+`pair` có thể dùng để cài đặt rời rạc hóa một cách gọn gàng.
 
-Ta có thể tạo một mảng `pair`, dùng thành viên thứ nhất của mỗi `pair` để lưu giá trị
+Có thể tạo một mảng `pair`, dùng thành viên thứ nhất của mỗi `pair` để lưu giá trị
 dữ liệu gốc, và thành viên thứ hai để lưu vị trí ban đầu của dữ liệu gốc. Sau khi sắp
 xếp, gán thứ hạng của giá trị dữ liệu gốc (vị trí của giá trị đó sau khi sắp
 xếp) về vị trí ban đầu của giá trị đó là được.
@@ -172,7 +172,7 @@ priority_queue<pair<int, int>, std::vector<pair<int, int>>,
 ### `pair` và `map`
 
 `map` là cấu trúc dữ liệu lưu cặp khóa-giá trị trong C++. Phần tử của `map` về
-cơ bản là một cặp gồm khóa và giá trị, nên khi chèn dữ liệu ta thường dùng `pair`
+cơ bản là một cặp gồm khóa và giá trị, nên khi chèn dữ liệu thường dùng `pair`
 hoặc `make_pair`.
 
 ```cpp
