@@ -4,9 +4,11 @@ author: HeRaNO, Xeonacid, AzurIce
 
 ## Cấu trúc
 
-Bắt đầu từ cấu trúc của heap nhị phân (đống nhị phân): nó là một cây nhị phân, hơn nữa là cây nhị phân hoàn chỉnh. Mỗi đỉnh lưu một phần tử, hay nói cách khác là một trọng số.
+Bắt đầu từ cấu trúc của heap nhị phân (đống nhị phân): đó là một cây nhị phân, hơn nữa là cây nhị phân hoàn chỉnh. Mỗi
+đỉnh lưu một phần tử, hay nói cách khác là một trọng số.
 
-Tính chất heap: trọng số của cha không nhỏ hơn trọng số của con (heap lớn). Tương tự, ta cũng có thể định nghĩa heap nhỏ. Bài viết này lấy heap lớn làm ví dụ.
+Tính chất heap: trọng số của cha không nhỏ hơn trọng số của con (heap lớn). Tương tự, cũng có thể định nghĩa heap nhỏ.
+Bài viết này lấy heap lớn làm ví dụ.
 
 Theo tính chất heap, gốc cây lưu giá trị lớn nhất, vì vậy thao tác `getmax` được giải quyết ngay.
 
@@ -22,11 +24,12 @@ Thao tác chèn là đưa một phần tử vào heap nhị phân, đồng thờ
 
 Cách đơn giản nhất là chèn vào ngay sau lá ngoài cùng bên phải ở tầng dưới cùng.
 
-Nếu tầng dưới cùng đã đầy, ta tạo thêm một tầng mới.
+Nếu tầng dưới cùng đã đầy, tạo thêm một tầng mới.
 
 Sau khi chèn, có thể tính chất heap sẽ không còn được thỏa mãn?
 
-**Điều chỉnh lên**: nếu trọng số của đỉnh này lớn hơn trọng số của cha nó, hoán đổi hai đỉnh; lặp lại quá trình này cho đến khi điều kiện không còn đúng hoặc đã lên tới gốc.
+**Điều chỉnh lên**: nếu trọng số của đỉnh này lớn hơn trọng số của cha nó, hoán đổi hai đỉnh; lặp lại quá trình này cho
+đến khi điều kiện không còn đúng hoặc đã lên tới gốc.
 
 Có thể chứng minh rằng sau khi chèn rồi điều chỉnh lên, không có đỉnh nào khác vi phạm tính chất heap.
 
@@ -38,17 +41,19 @@ Có thể chứng minh rằng sau khi chèn rồi điều chỉnh lên, không c
 
 ### Thao tác xóa
 
-Thao tác xóa ở đây là xóa phần tử lớn nhất trong heap, tức xóa đỉnh gốc.
+Thao tác xóa trong phần này là xóa phần tử lớn nhất trong heap, tức xóa đỉnh gốc.
 
 Nhưng nếu xóa trực tiếp, cây sẽ tách thành hai heap và khó xử lý.
 
-Vì vậy, ta có thể nghĩ tới quá trình ngược với thao tác chèn: tìm cách chuyển đỉnh gốc tới đỉnh cuối cùng rồi xóa trực tiếp.
+Vì vậy, có thể nghĩ tới quá trình ngược với thao tác chèn: tìm cách chuyển đỉnh gốc tới đỉnh cuối cùng rồi xóa trực
+tiếp.
 
 Tuy nhiên cách đó khó thực hiện trong thực tế. Phương pháp thường dùng là hoán đổi trực tiếp đỉnh gốc với đỉnh cuối cùng.
 
 Sau đó xóa trực tiếp đỉnh gốc đang nằm ở vị trí đỉnh cuối cùng, nhưng đỉnh gốc mới có thể không thỏa mãn tính chất heap...
 
-**Điều chỉnh xuống**: trong các con của đỉnh hiện tại, tìm con có trọng số lớn nhất và hoán đổi với đỉnh đó; lặp lại quá trình này cho đến tầng dưới cùng.
+**Điều chỉnh xuống**: trong các con của đỉnh hiện tại, tìm con có trọng số lớn nhất và hoán đổi với đỉnh đó; lặp lại
+quá trình này cho đến tầng dưới cùng.
 
 Có thể chứng minh rằng sau khi xóa rồi điều chỉnh xuống, không có đỉnh nào khác vi phạm tính chất heap.
 
@@ -58,13 +63,13 @@ Có thể chứng minh rằng sau khi xóa rồi điều chỉnh xuống, không
 
 ### Tăng trọng số của một đỉnh
 
-Rõ ràng, sau khi sửa trực tiếp trọng số, chỉ cần điều chỉnh lên một lần. Độ phức tạp thời gian là $O(\log n)$.
+Sau khi sửa trực tiếp trọng số, chỉ cần điều chỉnh lên một lần. Độ phức tạp thời gian là $O(\log n)$.
 
 <span id="cài-đặt"></span>
 
 ## Cài đặt
 
-Ta thấy các thao tác ở trên chủ yếu dựa vào hai thao tác cốt lõi: điều chỉnh lên và điều chỉnh xuống.
+Các thao tác ở trên chủ yếu dựa vào hai thao tác cốt lõi: điều chỉnh lên và điều chỉnh xuống.
 
 Xét cách dùng một dãy $h$ để biểu diễn heap. Hai con của $h_i$ lần lượt là $h_{2i}$ và $h_{2i+1}$; $1$ là đỉnh gốc:
 
@@ -121,7 +126,7 @@ Tổng độ phức tạp: $\log 1 + \log 2 + \cdots + \log n = \Theta(n \log n)
 
 #### Cách 2: dùng điều chỉnh xuống
 
-Lúc này ta đổi góc nhìn: bắt đầu từ các lá và lần lượt điều chỉnh xuống.
+Lúc này đổi góc nhìn: bắt đầu từ các lá và lần lượt điều chỉnh xuống.
 
 ```cpp
 void build_heap_2() {
@@ -129,9 +134,11 @@ void build_heap_2() {
 }
 ```
 
-Một cách hiểu khác là mỗi lần ta "gộp" hai heap đã được điều chỉnh xong; điều này cho thấy tính đúng đắn của thuật toán.
+Một cách hiểu khác là mỗi lần "gộp" hai heap đã được điều chỉnh xong; điều này cho thấy tính đúng đắn của thuật toán.
 
-Lưu ý rằng độ phức tạp của điều chỉnh xuống là $O(\log n - k)$. Ngoài ra, các đỉnh lá không cần điều chỉnh, nên có thể bắt đầu từ vị trí xấp xỉ $n/2$ trong dãy; cách này giảm được một phần hằng số nhưng không ảnh hưởng đến độ phức tạp tiệm cận.
+Lưu ý rằng độ phức tạp của điều chỉnh xuống là $O(\log n - k)$. Ngoài ra, các đỉnh lá không cần điều chỉnh, nên có thể
+bắt đầu từ vị trí xấp xỉ $n/2$ trong dãy; cách này giảm được một phần hằng số nhưng không ảnh hưởng đến độ phức tạp
+tiệm cận.
 
 ???+ note "Chứng minh"
     $$
@@ -164,19 +171,26 @@ Nếu điều kiện mạnh như trong sắp xếp thì chưa chắc làm đư�
 
 Bài toán này có thể được trừu tượng hóa thêm thành: duy trì động phần tử lớn thứ $k$ trên một dãy, trong đó giá trị $k$ có thể thay đổi.
 
-Với loại bài toán này, ta có thể dùng kỹ thuật **heap đối đỉnh** để giải quyết, tránh sự rườm rà khi phải viết cây đoạn theo trọng số hoặc cây tìm kiếm nhị phân.
+Với loại bài toán này, có thể dùng kỹ thuật **heap đối đỉnh** để giải quyết, tránh sự rườm rà khi phải viết cây đoạn
+theo trọng số hoặc cây tìm kiếm nhị phân.
 
-Heap đối đỉnh gồm một heap lớn và một heap nhỏ. Heap nhỏ duy trì các giá trị lớn, tức $k$ giá trị lớn nhất (bao gồm phần tử lớn thứ $k$); heap lớn duy trì các giá trị nhỏ, tức các số còn lại nhỏ hơn phần tử lớn thứ $k$.
+Heap đối đỉnh gồm một heap lớn và một heap nhỏ. Heap nhỏ duy trì các giá trị lớn, tức $k$ giá trị lớn nhất (bao gồm
+phần tử lớn thứ $k$); heap lớn duy trì các giá trị nhỏ, tức các số còn lại nhỏ hơn phần tử lớn thứ $k$.
 
 Cấu trúc dữ liệu tạo bởi hai heap này hỗ trợ các thao tác sau:
 
--   Duy trì: khi kích thước của heap nhỏ chưa đạt $k$, liên tục lấy phần tử ở đỉnh heap lớn ra và chèn vào heap nhỏ cho đến khi kích thước heap nhỏ bằng $k$; khi kích thước của heap nhỏ vượt quá $k$, liên tục lấy phần tử ở đỉnh heap nhỏ ra và chèn vào heap lớn cho đến khi kích thước heap nhỏ bằng $k$;
--   Chèn phần tử: nếu phần tử cần chèn lớn hơn hoặc bằng phần tử ở đỉnh heap nhỏ, chèn nó vào heap nhỏ; ngược lại, chèn nó vào heap lớn. Sau đó duy trì heap đối đỉnh;
+-   Duy trì: khi kích thước của heap nhỏ chưa đạt $k$, liên tục lấy phần tử ở đỉnh heap lớn ra và chèn vào heap nhỏ cho
+    đến khi kích thước heap nhỏ bằng $k$; khi kích thước của heap nhỏ vượt quá $k$, liên tục lấy phần tử ở đỉnh heap
+    nhỏ ra và chèn vào heap lớn cho đến khi kích thước heap nhỏ bằng $k$;
+-   Chèn phần tử: nếu phần tử cần chèn lớn hơn hoặc bằng phần tử ở đỉnh heap nhỏ, chèn nó vào heap nhỏ; ngược lại, chèn
+    nó vào heap lớn. Sau đó duy trì heap đối đỉnh;
 -   Truy vấn phần tử lớn thứ $k$: phần tử ở đỉnh heap nhỏ chính là đáp án;
 -   Xóa phần tử lớn thứ $k$: xóa phần tử ở đỉnh heap nhỏ, sau đó duy trì heap đối đỉnh;
 -   Giá trị $k$ tăng/giảm $1$: duy trì trực tiếp heap đối đỉnh theo giá trị $k$ mới.
 
-Rõ ràng, độ phức tạp thời gian để truy vấn phần tử lớn thứ $k$ là $O(1)$. Sau khi chèn, xóa hoặc điều chỉnh giá trị $k$, kích thước của heap nhỏ lệch tối đa $1$ so với giá trị $k$ mong muốn. Vì vậy mỗi lần duy trì chỉ cần điều chỉnh nhiều nhất một phần tử giữa heap lớn và heap nhỏ, nên độ phức tạp thời gian của các thao tác này đều là $O(\log n)$.
+Độ phức tạp thời gian để truy vấn phần tử lớn thứ $k$ là $O(1)$. Sau khi chèn, xóa hoặc điều chỉnh giá trị $k$, kích
+thước của heap nhỏ lệch tối đa $1$ so với giá trị $k$ mong muốn. Vì vậy mỗi lần duy trì chỉ cần điều chỉnh nhiều nhất
+một phần tử giữa heap lớn và heap nhỏ, nên độ phức tạp thời gian của các thao tác này đều là $O(\log n)$.
 
 ??? note "Mã tham khảo"
     ```cpp
