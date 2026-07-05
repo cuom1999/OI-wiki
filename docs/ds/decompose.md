@@ -3,12 +3,12 @@ author: Ir1d, HeRaNO, Xeonacid
 <span id="giới-thiệu"></span>
 ## Giới thiệu
 
-Thực ra, chia khối (sqrt decomposition) là một cách tư duy, không phải một cấu trúc dữ liệu.
+Chia khối (sqrt decomposition) là một cách tư duy thuật toán, không phải một cấu trúc dữ liệu cụ thể.
 
-Từ NOIP đến NOI rồi IOI, tư tưởng chia khối đã xuất hiện ở nhiều bài với độ khó khác nhau.
+Từ NOIP đến NOI rồi IOI, tư tưởng chia khối xuất hiện trong nhiều bài với độ khó khác nhau.
 
 Ý tưởng cơ bản của chia khối là chia dữ liệu gốc thành các phần phù hợp,
-rồi tiền xử lý một phần thông tin trên mỗi khối sau khi chia,
+rồi tiền xử lý một số thông tin trên mỗi khối,
 qua đó đạt độ phức tạp thời gian tốt hơn thuật toán vét cạn thông thường.
 
 Độ phức tạp thời gian của chia khối chủ yếu phụ thuộc vào độ dài khối.
@@ -21,7 +21,7 @@ nó có thể duy trì nhiều loại thông tin mà cây Fenwick và cây đo�
 
 Tất nhiên, nhược điểm của chia khối là độ phức tạp tiệm cận thường không tốt bằng cây đoạn hay cây Fenwick.
 
-Tuy vậy, trong phần lớn bài toán, chia khối vẫn là một lựa chọn tốt để giải quyết chúng.
+Tuy vậy, trong phần lớn bài toán phù hợp, chia khối vẫn là một lựa chọn hiệu quả.
 
 Dưới đây là một vài ví dụ.
 
@@ -73,7 +73,8 @@ Tiếp theo là thao tác cập nhật:
     với các khối đầy đủ, chỉ cần sửa trực tiếp tổng khối $b_i$.
     Trong trường hợp này, độ phức tạp xấu nhất vẫn là $O(\dfrac{n}{s}+s)$.
 
-Theo bất đẳng thức trung bình, khi $\dfrac{n}{s}=s$, tức $s=\sqrt n$, độ phức tạp thời gian cho một thao tác là tối ưu, bằng $O(\sqrt n)$.
+Theo bất đẳng thức trung bình, khi $\dfrac{n}{s}=s$, tức $s=\sqrt n$, độ phức tạp thời gian cho một thao tác đạt giá trị
+tối ưu $O(\sqrt n)$.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -83,20 +84,20 @@ Theo bất đẳng thức trung bình, khi $\dfrac{n}{s}=s$, tức $s=\sqrt n$, 
 <span id="tổng-đoạn-2"></span>
 ## Tổng đoạn 2
 
-Cách làm trước có độ phức tạp là $\Omega(1) , O(\sqrt{n})$.
+Cách làm trước có độ phức tạp truy vấn/cập nhật là $O(\sqrt{n})$.
 
 Phần này giới thiệu một thuật toán $O(\sqrt{n}) - O(1)$.
 
-Để truy vấn $O(1)$, có thể duy trì các loại tổng tiền tố.
+Để truy vấn trong $O(1)$, có thể duy trì thêm các loại tổng tiền tố.
 
-Tuy nhiên, khi có cập nhật thì việc duy trì không thuận tiện;
-chỉ có thể duy trì tổng tiền tố bên trong từng khối.
+Tuy nhiên, khi có cập nhật thì việc duy trì toàn cục không thuận tiện;
+thay vào đó chỉ duy trì tổng tiền tố bên trong từng khối.
 
-Đồng thời duy trì tổng tiền tố với mỗi khối nguyên vẹn được xem như một đơn vị.
+Đồng thời, duy trì tổng tiền tố trên dãy các khối nguyên vẹn, trong đó mỗi khối được xem như một đơn vị.
 
 Mỗi lần cập nhật tốn $O(T+\frac{n}{T})$.
 
-Truy vấn: gồm ba phần, mỗi phần đều có thể lấy trực tiếp bằng tổng tiền tố, nên độ phức tạp thời gian là $O(1)$.
+Một truy vấn vẫn gồm ba phần; mỗi phần đều có thể lấy trực tiếp bằng tổng tiền tố, nên độ phức tạp thời gian là $O(1)$.
 
 <span id="chia-khối-theo-truy-vấn"></span>
 ## Chia khối theo truy vấn
@@ -146,4 +147,6 @@ Một thuật toán ngoại tuyến rất nổi tiếng, [thuật toán Mo](../m
 -   [Codeforces - Powerful array](http://codeforces.com/problemset/problem/86/D)
 -   [SPOJ - DQUERY](https://www.spoj.com/problems/DQUERY)
 
-    **Trang này chủ yếu được dịch từ bài viết [Sqrt-декомпозиция](http://e-maxx.ru/algo/sqrt_decomposition) và bản dịch tiếng Anh [Sqrt Decomposition](https://cp-algorithms.com/data_structures/sqrt_decomposition.html). Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**
+    **Trang này chủ yếu được dịch từ bài viết [Sqrt-декомпозиция](http://e-maxx.ru/algo/sqrt_decomposition) và bản dịch
+    tiếng Anh [Sqrt Decomposition](https://cp-algorithms.com/data_structures/sqrt_decomposition.html). Bản tiếng Nga được
+    cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**
