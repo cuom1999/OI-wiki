@@ -142,7 +142,7 @@ Xét các trường hợp sau:
       } else if (value > root->key) {
         root->right = insert(root->right, value);
       } else {
-        root->count++;  // Khóa bằng nhau, tăng số lượng lặp
+        root->count++;  // Khóa bằng nhau, tăng số lần xuất hiện
       }
       root->size = root->count + (root->left ? root->left->size : 0) +
                    (root->right ? root->right->size : 0);  // Cập nhật kích thước cây con
@@ -162,7 +162,7 @@ Trước tiên tìm nút có khóa `value` trong cây tìm kiếm nhị phân, r
 
     -   Nếu `root` là nút lá, chỉ cần xóa nút đó.
 
-    -   Nếu `root` là nút trên một chuỗi, tức chỉ có một con, trả về nút con đó.
+    -   Nếu `root` chỉ có một nút con, trả về nút con đó.
 
     -   Nếu `root` có cả hai con không rỗng, thông thường thay nó bằng giá trị lớn nhất trong cây con trái
         (nút ngoài cùng bên phải của cây con trái) hoặc giá trị nhỏ nhất trong cây con phải
@@ -185,7 +185,7 @@ Trước tiên tìm nút có khóa `value` trong cây tìm kiếm nhị phân, r
         root->right = remove(root->right, value);
       } else {
         if (root->count > 1) {
-          root->count--;  // Có nhiều bản sao, giảm số lần lặp
+          root->count--;  // Có nhiều bản sao, giảm số lần xuất hiện
         } else {
           if (root->left == nullptr) {
             TreeNode* temp = root->right;
@@ -198,9 +198,9 @@ Trước tiên tìm nút có khóa `value` trong cây tìm kiếm nhị phân, r
           } else {
             TreeNode* successor = findMinNode(root->right);
             root->key = successor->key;
-            root->count = successor->count;  // Cập nhật số lần lặp
+            root->count = successor->count;  // Cập nhật số lần xuất hiện
             // Khi successor->count > 1, vẫn cần xóa nút này;
-            // nếu không, lần xóa tiếp theo chỉ giảm số lần lặp.
+            // nếu không, lần xóa tiếp theo chỉ giảm số lần xuất hiện.
             successor->count = 1;
             root->right = remove(root->right, successor->key);
           }
@@ -227,7 +227,7 @@ Trước tiên tìm nút có khóa `value` trong cây tìm kiếm nhị phân, r
 Thứ hạng được định nghĩa là số phần tử đứng trước phần tử đầu tiên bằng nó trong dãy đã sắp xếp tăng dần, cộng thêm một.
 
 Để tìm thứ hạng của một phần tử, bắt đầu từ gốc và đi xuống nút chứa phần tử đó.
-Mỗi khi đi sang phải, cộng vào đáp án kích thước cây con trái và số lần lặp của nút hiện tại.
+Mỗi khi đi sang phải, cộng vào đáp án kích thước cây con trái và số lần xuất hiện của nút hiện tại.
 Cuối cùng, cộng thêm kích thước cây con trái của nút đích và $1$.
 
 Độ phức tạp thời gian là $O(h)$.
@@ -273,7 +273,8 @@ Trong một cây con, thứ hạng của nút gốc phụ thuộc vào kích th�
 
 ## Giới thiệu về cây cân bằng
 
-Một mục đích của việc dùng cây tìm kiếm là rút ngắn thời gian chèn, xóa, sửa và tìm kiếm nút (trong đó chèn, xóa, sửa đều bao gồm thao tác tìm kiếm).
+Một mục đích của việc dùng cây tìm kiếm là rút ngắn thời gian chèn, xóa, sửa và tìm kiếm nút.
+Trong đó, các thao tác chèn, xóa, sửa đều bao gồm bước tìm kiếm.
 
 Về hiệu quả tìm kiếm, nếu chiều cao của cây là $h$, trong trường hợp xấu nhất cần so sánh $h$ lần để tìm một khóa.
 Độ phức tạp tìm kiếm, cũng là độ dài tìm kiếm trung bình ASL (Average Search Length), không vượt quá $O(h)$.
@@ -297,7 +298,8 @@ hoặc số nút trong cây con trái lớn hơn rất nhiều so với cây con
 Với cây tìm kiếm nhị phân, một định nghĩa cân bằng thường gặp là:
 trong cây gốc $T$, tại mọi nút, độ chênh lệch chiều cao giữa cây con trái và cây con phải không vượt quá 1.
 
--   Trong [cây splay](splay.md), mỗi thao tác truy cập đến một nút bất kỳ (tìm kiếm, chèn hoặc xóa) đều đưa nút được truy cập lên vị trí gốc của cây.
+-   Trong [cây splay](splay.md), mỗi thao tác truy cập đến một nút bất kỳ (tìm kiếm, chèn hoặc xóa) đều đưa nút được truy
+    cập lên vị trí gốc của cây.
 
 -   [Cây AVL](avl.md) lưu thông tin chiều cao của cây gốc $N$ tại mỗi nút $N$.
     Định nghĩa cân bằng của cây AVL: $T$ là một cây AVL khi và chỉ khi hai cây con trái/phải cũng là cây AVL
@@ -361,7 +363,8 @@ Mã cho xoay trái và xoay phải như sau.
     }
     ```
 
-Với đoạn mã ví dụ này, khi gọi cần lưu nút cha `pre` của `root`. Hàm trả về con trỏ đến gốc mới, nên chỉ cần cho `pre` trỏ đến gốc mới đó.
+Với đoạn mã ví dụ này, khi gọi cần lưu nút cha `pre` của `root`.
+Hàm trả về con trỏ đến gốc mới, nên chỉ cần cho `pre` trỏ đến gốc mới đó.
 
 #### Bốn trường hợp phá vỡ cân bằng
 
