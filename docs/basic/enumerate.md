@@ -28,10 +28,10 @@ Cần quyết định theo yêu cầu của bài toán. Chẳng hạn nếu bài
 
 ## Ví dụ
 
-Dưới đây là một ví dụ về cách dùng liệt kê để giải bài và tối ưu phạm vi liệt kê.
+Sau đây là một ví dụ về cách dùng liệt kê để giải bài và tối ưu phạm vi liệt kê.
 
 ??? note "Đề bài"
-    Cho một mảng có tất cả phần tử đôi một khác nhau và đều khác $0$. Hãy tìm số cặp số trong mảng có tổng bằng $0$.
+    Cho một mảng có tất cả phần tử đôi một khác nhau và đều khác $0$. Tìm số cặp số trong mảng có tổng bằng $0$.
 
 ??? note "Ý tưởng giải"
     Rất dễ viết đoạn mã liệt kê hai số.
@@ -58,9 +58,9 @@ Dưới đây là một ví dụ về cách dùng liệt kê để giải bài v
             if (a[i] + a[j] == 0) ++ans;
         ```
     
-    Hãy xem cách tối ưu phạm vi liệt kê. Vì đề bài không yêu cầu cặp số có thứ tự, đáp án bằng hai lần số trường hợp có thứ tự (vì nếu `(a, b)` là đáp án, thì `(b, a)` cũng là đáp án). Với tình huống này, ta chỉ cần đếm đáp án sau khi tự đặt thêm một thứ tự, rồi cuối cùng nhân với $2$.
+    Tiếp theo xét cách tối ưu phạm vi liệt kê. Vì đề bài không yêu cầu cặp số có thứ tự, đáp án bằng hai lần số trường hợp có thứ tự (vì nếu `(a, b)` là đáp án, thì `(b, a)` cũng là đáp án). Với tình huống này, chỉ cần đếm đáp án sau khi tự đặt thêm một thứ tự, rồi cuối cùng nhân với $2$.
     
-    Chẳng hạn, ta yêu cầu số thứ nhất phải xuất hiện ở vị trí phía sau. Đoạn mã như sau:
+    Chẳng hạn, yêu cầu số thứ nhất phải xuất hiện ở vị trí phía sau. Đoạn mã như sau:
     
     === "C++"
         ```cpp
@@ -89,9 +89,9 @@ Dưới đây là một ví dụ về cách dùng liệt kê để giải bài v
     
     Có thể thấy phạm vi liệt kê của $j$ đã được giảm, nhờ đó giảm chi phí thời gian của đoạn mã này.
     
-    Ta còn có thể tối ưu thêm.
+    Vẫn có thể tối ưu thêm.
     
-    Có nhất thiết phải liệt kê cả hai số không? Sau khi liệt kê một số, điều kiện của bài toán đã xác định điều kiện cho yếu tố còn lại (số kia). Nếu tìm được cách trực tiếp kiểm tra số mà đề bài cần có tồn tại hay không, ta có thể bỏ qua thời gian liệt kê số thứ hai. Tiến thêm một bước, khi phạm vi dữ liệu cho phép, ta có thể dùng thùng[^1] để ghi lại các số đã duyệt.
+    Có nhất thiết phải liệt kê cả hai số không? Sau khi liệt kê một số, điều kiện của bài toán đã xác định điều kiện cho yếu tố còn lại (số kia). Nếu tìm được cách trực tiếp kiểm tra số mà đề bài cần có tồn tại hay không, có thể bỏ qua thời gian liệt kê số thứ hai. Tiến thêm một bước, khi phạm vi dữ liệu cho phép, có thể dùng thùng[^1] để ghi lại các số đã duyệt.
     
     === "C++"
         ```cpp
