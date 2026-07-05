@@ -437,7 +437,7 @@ Hai phương trình này mỗi phương trình có đúng một nghiệm nguyên
 
 Tất nhiên, hai phân số $\dfrac{a}{b}<\dfrac{c}{d}$ tìm được trong quá trình này chính là hai phần tử kề trái phải khi chèn $\dfrac{p}{q}$ vào dãy. Vì vậy, bản thân chúng là hai phần tử kề Farey và $\dfrac{p}{q}$ là trung vị phân số của chúng. Giả sử $\dfrac{p}{q}=[t_0,t_1,\cdots,t_n,1]$, thì hai phần tử kề Farey có mẫu số nhỏ hơn này lần lượt là $[t_0,t_1,\cdots,t_n]$ và $[t_0,t_1,\cdots,t_{n-1}]$.
 
-Để tính các phần tử kề Farey khác của phân số hiện tại $\dfrac{p}{q}$, chỉ cần dùng [thuật toán Euclid mở rộng](./bezouts.md#%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E6%83%85%E5%BD%A2) để tìm tất cả nghiệm thỏa mãn điều kiện.
+Để tính các phần tử kề Farey khác của phân số hiện tại $\dfrac{p}{q}$, chỉ cần dùng [thuật toán Euclid mở rộng](./bezouts.md#trường-hợp-hai-biến) để tìm tất cả nghiệm thỏa mãn điều kiện.
 
 <span id="&#x9012;&#x63A8;&#x5173;&#x7CFB;"></span>
 ### Quan hệ truy hồi

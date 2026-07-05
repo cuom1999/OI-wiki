@@ -1,6 +1,6 @@
 Định lý Bézout cho thấy mối liên hệ sâu sắc giữa ước chung lớn nhất và tổ hợp tuyến tính nguyên. Đây là một trong những kết quả cơ bản và quan trọng nhất của số học. Dựa trên đó, bài này tiếp tục thảo luận cách giải phương trình nghiệm nguyên tuyến tính.
 
-<span id="&#x88F4;&#x8700;&#x5B9A;&#x7406;"></span>
+<span id="định-lý-bézout"></span>
 ## Định lý Bézout
 
 **Định lý Bézout** (Bézout's lemma), còn gọi là **đồng nhất thức Bézout** (Bézout's identity), cho điều kiện cần và đủ để một số nguyên có thể biểu diễn thành tổ hợp tuyến tính với hệ số nguyên của hai số nguyên.
@@ -62,14 +62,14 @@
     
     Vậy tồn tại $x,y$ sao cho $ax+by=d$. Kết hợp với phần trên, mệnh đề ban đầu được chứng minh.
 
-Chứng minh về tính tồn tại ở đây mang tính xây dựng, đồng thời cho một cách tính các hệ số. Cách tính đó chính là [thuật toán Euclid mở rộng](./gcd.md#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95).
+Chứng minh về tính tồn tại ở đây mang tính xây dựng, đồng thời cho một cách tính các hệ số. Cách tính đó chính là [thuật toán Euclid mở rộng](./gcd.md#thuật-toán-euclid-mở-rộng).
 
 Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, ta có hệ quả sau:
 
 ???+ note "Hệ quả"
     Hai số nguyên $a,b$ nguyên tố cùng nhau khi và chỉ khi tồn tại các số nguyên $x,y$ sao cho $ax+by=1$.
 
-<span id="&#x591A;&#x4E2A;&#x6574;&#x6570;&#x7684;&#x60C5;&#x5F62;"></span>
+<span id="trường-hợp-nhiều-số-nguyên"></span>
 ### Trường hợp nhiều số nguyên
 
 Định lý Bézout có thể mở rộng cho trường hợp nhiều số nguyên.
@@ -80,7 +80,7 @@ Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, ta c
 ??? note "Chứng minh"
     Sử dụng đẳng thức $\gcd(a_1,a_2,\cdots,a_n)=\gcd(\gcd(a_1,a_2,\cdots,a_{n-1}),a_n)$ và quy nạp theo $n$.
 
-<span id="&#x4F8B;&#x9898;"></span>
+<span id="ví-dụ"></span>
 ### Ví dụ
 
 ???+ example "[Codeforces 510 D. Fox And Jumping](https://codeforces.com/problemset/problem/510/D)"
@@ -105,7 +105,7 @@ Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, ta c
     
     Thực ra, đồ thị được xây dựng trong cách 1 chính là đồ thị chuyển trạng thái của quy hoạch động trong cách 2; cách 2 tương đương với việc dùng quy hoạch động để tìm đường đi ngắn nhất trên đồ thị có hướng không chu trình. Vì vậy cách 1 và cách 2 là tương đương. Tuy nhiên, cách 2 không cần lưu toàn bộ đồ thị, và độ phức tạp thời gian của DP là $O(n + m)$, nhỏ hơn Dijkstra, nên tốt hơn về cả thời gian lẫn bộ nhớ.
 
-<span id="&#x4E00;&#x6B21;&#x4E0D;&#x5B9A;&#x65B9;&#x7A0B;"></span>
+<span id="phương-trình-nghiệm-nguyên-tuyến-tính"></span>
 ## Phương trình nghiệm nguyên tuyến tính
 
 **Phương trình nghiệm nguyên tuyến tính** (linear Diophantine equation) có dạng
@@ -116,7 +116,7 @@ $$
 
 trong đó $a_1,a_2,\cdots,a_n$ đều là số nguyên. Mục tiêu của phần này là tìm toàn bộ nghiệm nguyên của nó.
 
-<span id="&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x60C5;&#x5F62;"></span>
+<span id="trường-hợp-hai-biến"></span>
 ### Trường hợp hai biến
 
 Trước hết xét phương trình nghiệm nguyên tuyến tính hai biến:
@@ -157,7 +157,7 @@ $$
 
 Đây là một dãy các điểm nguyên cách đều trên đường thẳng $a_1x_1+a_2x_2 = b$.
 
-<span id="&#x591A;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x60C5;&#x5F62;"></span>
+<span id="trường-hợp-nhiều-biến"></span>
 ### Trường hợp nhiều biến
 
 Sau khi giải được trường hợp hai biến, trường hợp nhiều biến cũng dễ xử lý. Với phương trình nghiệm nguyên tuyến tính $n$ biến
@@ -211,7 +211,7 @@ x_i &= x_i^\circ + \sum_{k=2}^{n-1}t_kx_i^{(k)},\quad i=3,\cdots,n.
 \end{aligned}
 $$
 
-<span id="frobenius-&#x786C;&#x5E01;&#x95EE;&#x9898;"></span>
+<span id="bài-toán-đồng-xu-frobenius"></span>
 ## Bài toán đồng xu Frobenius
 
 Định lý Bézout cho điều kiện cần và đủ để một số nguyên có thể được biểu diễn tuyến tính bởi một số số nguyên. Gần với nó là **bài toán đồng xu Frobenius** (Frobenius coin problem):
@@ -222,7 +222,7 @@ Bài toán vẫn xét khi nào một số nguyên $k$ có thể biểu diễn d�
 
 Trường hợp chỉ có một loại đồng xu là hiển nhiên, vì khi đó chỉ có thể có $a_1=1$ và mọi số tự nhiên đều biểu diễn được. Trường hợp $n>2$ lại quá phức tạp, nên mục này chỉ thảo luận trường hợp $n=2$.
 
-<span id="sylvester-&#x5B9A;&#x7406;"></span>
+<span id="định-lý-sylvester"></span>
 ### Định lý Sylvester
 
 Năm 1882, Sylvester đã giải quyết trọn vẹn bài toán đồng xu Frobenius khi $n = 2$:
@@ -294,7 +294,7 @@ Năm 1882, Sylvester đã giải quyết trọn vẹn bài toán đồng xu Frob
     \max_{0\le i < a_2} ia_1 - a_2 = (a_2-1)a_1 - a_2 = C.
     $$
 
-<span id="&#x51E0;&#x4F55;&#x610F;&#x4E49;"></span>
+<span id="ý-nghĩa-hình-học"></span>
 ### Ý nghĩa hình học
 
 Xem phương trình $a_1x_1 + a_2x_2 = k$ là một đường thẳng. Khi đó $k$ biểu diễn được khi và chỉ khi đường thẳng này đi qua một điểm nguyên trong góc phần tư thứ nhất, tính cả các trục tọa độ. Khi $k < a_1a_2$, đường thẳng này đi qua nhiều nhất một điểm nguyên trong góc phần tư thứ nhất. Vì vậy, với $0\le k < a_1a_2$, số nguyên $k$ biểu diễn được khi và chỉ khi đường thẳng ứng với $k$ đi qua đúng một điểm nguyên trong góc phần tư thứ nhất.
@@ -305,9 +305,9 @@ $$
 \sum_{i=0}^{\lfloor k / a_1 \rfloor} \left\lfloor\dfrac{k-ia_1}{a_2}\right\rfloor.
 $$
 
-Đây là bài toán kinh điển đếm điểm nguyên dưới đường thẳng, có thể giải bằng [thuật toán Euclid tổng quát](./euclidean.md#%E7%B1%BB%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95) trong thời gian $O(\log\min\{a_1,a_2,k\})$.
+Đây là bài toán kinh điển đếm điểm nguyên dưới đường thẳng, có thể giải bằng [thuật toán Euclid tương tự](./euclidean.md#thuật-toán-euclid-tương-tự) trong thời gian $O(\log\min\{a_1,a_2,k\})$.
 
-<span id="&#x4E60;&#x9898;"></span>
+<span id="bài-tập"></span>
 ### Bài tập
 
 -   [Luogu P3951 NOIP2017 nâng cao, Nghi vấn của Xiao Kai / Lanqiao Cup 2013 cấp tỉnh, Số lượng không mua được](https://www.luogu.com.cn/problem/P3951)

@@ -451,7 +451,7 @@ Thực ra, nghiệm của phương trình Diophantine tuyến tính hai ẩn cũ
     Cho $A, B, C \in \mathbf Z$. Tìm $x, y \in \mathbf Z$ sao cho $Ax + By = C$.
 
 ??? note "Lời giải"
-    Dù bài toán này thường được giải bằng [thuật toán Euclid mở rộng](./bezouts.md#%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E6%83%85%E5%BD%A2), nó cũng có thể được giải bằng liên phân số.
+    Dù bài toán này thường được giải bằng [thuật toán Euclid mở rộng](./bezouts.md#trường-hợp-hai-biến), nó cũng có thể được giải bằng liên phân số.
     
     Giả sử $\dfrac{A}{B}=[a_0, a_1, \cdots, a_k]$. Ở trên đã chứng minh $p_k q_{k-1} - p_{k-1} q_k = (-1)^{k-1}$. Thay $p_k$ và $q_k$ bằng $A$ và $B$, ta được
     
