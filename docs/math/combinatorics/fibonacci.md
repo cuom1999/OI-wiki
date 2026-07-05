@@ -10,7 +10,7 @@ $$
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots
 $$
 
-<span id="&#21346;&#21345;&#26031;&#25968;&#21015;"></span>
+<span id="dãy-lucas"></span>
 ## Dãy Lucas
 
 Dãy Lucas (The Lucas sequence, [OEIS A000032](http://oeis.org/A000032)) được định nghĩa như sau:
@@ -27,12 +27,12 @@ $$
 
 Khi nghiên cứu dãy Fibonacci, trong nhiều trường hợp ta cần dùng dãy Lucas như một công cụ.
 
-<span id="&#26000;&#27874;&#37027;&#22865;&#25968;&#21015;&#36890;&#39033;&#20844;&#24335;"></span>
+<span id="công-thức-tổng-quát-của-dãy-fibonacci"></span>
 ## Công thức tổng quát của dãy Fibonacci
 
 Số Fibonacci thứ $n$ có thể được tính bằng công thức truy hồi trong thời gian $\Theta(n)$. Tuy nhiên vẫn có các cách tính nhanh hơn.
 
-<span id="&#35299;&#26512;&#35299;"></span>
+<span id="nghiệm-giải-tích"></span>
 ### Nghiệm giải tích
 
 Nghiệm giải tích là nghiệm dạng công thức. Ta có công thức tổng quát của dãy Fibonacci (Binet's Formula):
@@ -53,7 +53,7 @@ Trong đó cặp ngoặc vuông biểu thị việc lấy số nguyên gần nh�
 
 Hai công thức này đòi hỏi độ chính xác rất cao khi tính toán nên hiếm khi được dùng trực tiếp trong thực tế. Tuy vậy không nên bỏ qua chúng: kết hợp với khái niệm thặng dư bậc hai và nghịch đảo trong modulo, công thức này vẫn hữu ích trong OI.
 
-<span id="&#21346;&#21345;&#26031;&#25968;&#21015;&#36890;&#39033;&#20844;&#24335;"></span>
+<span id="công-thức-tổng-quát-của-dãy-lucas"></span>
 ### Công thức tổng quát của dãy Lucas
 
 Ta có công thức tổng quát của dãy Lucas:
@@ -86,7 +86,7 @@ $$
 {L_n}^2-5{F_n}^2=-4
 $$
 
-<span id="&#30697;&#38453;&#24418;&#24335;"></span>
+<span id="dạng-ma-trận"></span>
 ### Dạng ma trận
 
 Công thức truy hồi của dãy Fibonacci có thể biểu diễn bằng phép nhân ma trận:
@@ -103,7 +103,7 @@ $$
 
 Vì vậy ta có thể tính số Fibonacci bằng phép nhân ma trận trong thời gian $\Theta(\log n)$. Ngoài ra, công thức ở phần trước cũng có thể được suy ra bằng kỹ thuật chéo hóa ma trận.
 
-<span id="&#24555;&#36895;&#20493;&#22686;&#27861;"></span>
+<span id="phương-pháp-nhân-đôi-nhanh"></span>
 ### Phương pháp nhân đôi nhanh
 
 Từ các công thức trên, ta thu được các đẳng thức:
@@ -130,7 +130,7 @@ pair<int, int> fib(int n) {
 }
 ```
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 Dãy Fibonacci có nhiều tính chất thú vị; dưới đây là một số tính chất cơ bản:
@@ -143,7 +143,7 @@ Dãy Fibonacci có nhiều tính chất thú vị; dưới đây là một số 
 6.  Tính chất GCD: $(F_m, F_n) = F_{(m, n)}$.
 7.  Khi đầu vào là hai số Fibonacci liên tiếp, thuật toán Euclid đạt độ phức tạp xấu nhất; xem thêm [Wikipedia - Lame](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9).
 
-<span id="&#26000;&#27874;&#37027;&#22865;&#25968;&#21015;&#19982;&#21346;&#21345;&#26031;&#25968;&#21015;&#30340;&#20851;&#31995;"></span>
+<span id="quan-hệ-giữa-dãy-fibonacci-và-dãy-lucas"></span>
 ### Quan hệ giữa dãy Fibonacci và dãy Lucas
 
 Không khó để nhận thấy các đẳng thức liên quan đến dãy Lucas và dãy Fibonacci có độ tương đồng cao với các công thức lượng giác. Chẳng hạn:
@@ -198,7 +198,7 @@ $$
 
 Đây cũng là một cách nhân đôi chỉ số nhanh. Tương tự, ta có thể mô phỏng các công thức lượng giác như tính chẵn lẻ, biến tổng thành tích, biến tích thành tổng, công thức nửa góc, phép thế vạn năng, v.v. để suy ra thêm nhiều đẳng thức tương ứng cho dãy Lucas và dãy Fibonacci.
 
-<span id="&#26000;&#27874;&#37027;&#22865;&#32534;&#30721;"></span>
+<span id="mã-hóa-fibonacci"></span>
 ## Mã hóa Fibonacci
 
 Ta có thể dùng dãy Fibonacci để mã hóa số nguyên dương. Theo [định lý Zeckendorf](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem), mọi số tự nhiên $n$ đều có thể được biểu diễn duy nhất thành tổng của một số số Fibonacci:
@@ -231,7 +231,7 @@ Quá trình mã hóa $n$ có thể giải bằng thuật toán tham lam:
 
 Giải mã cũng tương tự: trước hết xóa chữ số 1 cuối cùng; với mỗi vị trí $i$ có mã bằng 1, cộng $F_{i+2}$ vào đáp án. Kết quả cuối cùng chính là số ban đầu.
 
-<span id="&#27169;&#24847;&#20041;&#19979;&#21608;&#26399;&#24615;"></span>
+<span id="tính-tuần-hoàn-trong-modulo"></span>
 ## Tính tuần hoàn trong modulo
 
 Với dãy Fibonacci xét theo modulo $m$, nguyên lý Dirichlet cho phép chứng minh dễ dàng rằng dãy này có tính tuần hoàn. Vì mỗi số Fibonacci phụ thuộc vào hai số liền trước, cần mô tả trạng thái của dãy bằng cặp hai số Fibonacci liên tiếp. Xét $m^2+1$ cặp Fibonacci đầu tiên trong modulo:
@@ -242,7 +242,7 @@ $$
 
 Hệ thặng dư modulo $m$ có kích thước $m$, nên có nhiều nhất $m^2$ cặp khác nhau. Do đó, trong $m^2+1$ cặp đầu tiên chắc chắn có hai cặp bằng nhau; từ hai cặp đó về sau sẽ sinh ra cùng một dãy Fibonacci. Vì vậy dãy Fibonacci là tuần hoàn, và chu kỳ dương nhỏ nhất không vượt quá $m^2$.
 
-<span id="pisano-&#21608;&#26399;"></span>
+<span id="chu-kỳ-pisano"></span>
 ### Chu kỳ Pisano
 
 Chu kỳ dương nhỏ nhất của dãy Fibonacci trong modulo $m$ được gọi là **chu kỳ Pisano** (Pisano period, [OEIS A001175](http://oeis.org/A001175)). Trong bài này, ký hiệu $\pi(m)$ là chu kỳ Pisano modulo $m$.
@@ -268,7 +268,7 @@ Dựa trên các kết luận trên, ta có thể dùng phân tích thừa số 
 
 Chu kỳ thu được theo cách này có thể chỉ là một bội của chu kỳ Pisano. Để tìm chu kỳ Pisano chính xác, có thể tiếp tục xét các ước của chu kỳ đó; hoặc trực tiếp dùng [thuật toán BSGS](../number-theory/discrete-logarithm.md#thuật-toán-bước-lớn-bước-nhỏ) để tính trong độ phức tạp $O(\sqrt{m})$.
 
-<span id="&#35777;&#26126;"></span>
+<span id="chứng-minh"></span>
 ### Chứng minh
 
 Cuối cùng, bài viết chứng minh ngắn gọn các kết luận nêu trên về chu kỳ Pisano. Cần lưu ý rằng phương pháp dưới đây có thể mở rộng cho dãy truy hồi tuyến tính thuần nhất bậc hai với hệ số hằng nói chung. Dù hằng số cụ thể khác nhau, chu kỳ Pisano modulo $m$ của các dãy này đều là $O(m)$.
@@ -363,7 +363,7 @@ $$
 
 Điều này chứng tỏ chu kỳ Pisano của dãy Fibonacci modulo $m$ luôn không vượt quá $6m$, và dấu bằng xảy ra khi và chỉ khi $m=2\cdot 5^e$.
 
-<span id="&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ## Bài tập
 
 -   [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)
@@ -372,7 +372,7 @@ $$
 -   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
 -   [Luogu P4000 Fibonacci sequence](https://www.luogu.com.cn/problem/P4000)
 
-<span id="&#21442;&#32771;&#25991;&#29486;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 -   [Fibonacci sequence - Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_sequence)

@@ -1,10 +1,10 @@
-<span id="&#x591A;&#x9879;&#x5F0F;&#x5E73;&#x79FB;"></span>
+<span id="tịnh-tiến-đa-thức"></span>
 
 ## Tịnh tiến đa thức
 
 Tịnh tiến đa thức là một trường hợp đơn giản của phép hợp thành đa thức. Cho các hệ số của $f(x)=\sum _ {i=0}^nf_ix^i$ và một hằng số $c$, cần tìm các hệ số của $f(x+c)$, tức phép biến đổi $f(x)\mapsto f(x+c)$.
 
-<span id="&#x5206;&#x6CBB;&#x6CD5;"></span>
+<span id="phương-pháp-chia-để-trị"></span>
 
 ### Phương pháp chia để trị
 
@@ -28,7 +28,7 @@ $$
 
 trong đó $O(n\log n)$ là thời gian nhân đa thức.
 
-<span id="taylor-&#x516C;&#x5F0F;&#x6CD5;"></span>
+<span id="phương-pháp-công-thức-taylor"></span>
 
 ### Phương pháp công thức Taylor
 
@@ -73,7 +73,7 @@ $$
 \end{aligned}
 $$
 
-<span id="&#x4E8C;&#x9879;&#x5F0F;&#x5B9A;&#x7406;&#x6CD5;"></span>
+<span id="phương-pháp-định-lí-nhị-thức"></span>
 
 ### Phương pháp định lí nhị thức
 
@@ -90,14 +90,14 @@ $$
 
 Kết quả thu được giống với phương pháp trên.
 
-<span id="&#x8FDE;&#x7EED;&#x70B9;&#x503C;&#x5E73;&#x79FB;"></span>
+<span id="tịnh-tiến-các-giá-trị-tại-điểm-liên-tiếp"></span>
 
 ## Tịnh tiến các giá trị tại điểm liên tiếp
 
 ???+ note "Bài tập [LOJ 166. Nội suy Lagrange 2](https://loj.ac/p/166)"
     Cho các giá trị tại điểm liên tiếp $f(0),f(1),\dots ,f(n)$ của một đa thức $f$ có bậc không vượt quá $n$. Tính $f(c),f(c+1),\dots ,f(c+n)$ theo modulo $998244353$, trong đó $1\leq n\leq 10^5,n < m\leq 10^8$.
 
-<span id="lagrange-&#x63D2;&#x503C;&#x516C;&#x5F0F;&#x6CD5;"></span>
+<span id="phương-pháp-công-thức-nội-suy-lagrange"></span>
 
 ### Phương pháp công thức nội suy Lagrange
 
@@ -136,11 +136,11 @@ Nếu sửa bài toán một chút, giả sử với một $d$ nào đó, các g
 
 Công thức nội suy Lagrange cũng cho một phương pháp tính một giá trị tại điểm trong thời gian tuyến tính bằng cách duy trì một số tích tiền tố và hậu tố.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 
 ## Ứng dụng
 
-<span id="&#x540C;&#x4E00;&#x884C;&#x7B2C;&#x4E00;&#x7C7B;&#x65E0;&#x7B26;&#x53F7;-stirling-&#x6570;"></span>
+<span id="các-số-stirling-không-dấu-loại-một-trên-cùng-một-hàng"></span>
 
 ### Các số Stirling không dấu loại một trên cùng một hàng
 
@@ -165,7 +165,7 @@ $$
 T(n)=T(n/2)+O(n\log n)=O(n\log n).
 $$
 
-<span id="&#x6A21;&#x7D20;&#x6570;&#x610F;&#x4E49;&#x4E0B;&#x9636;&#x4E58;"></span>
+<span id="giai-thừa-theo-modulo-số-nguyên-tố"></span>
 
 ### Giai thừa theo modulo số nguyên tố
 
@@ -180,13 +180,13 @@ $$
 
 Trong đó $\prod _ {i=v^2+1}^n i$ có thể tính trong $O(\sqrt{n})$. Ta muốn tính nhanh nửa trước của biểu thức trên.
 
-<span id="&#x591A;&#x9879;&#x5F0F;&#x591A;&#x70B9;&#x6C42;&#x503C;"></span>
+<span id="tính-giá-trị-đa-thức-tại-nhiều-điểm"></span>
 
 #### Tính giá trị đa thức tại nhiều điểm
 
 Các hệ số của $g(x)$ có thể được tính bằng thuật toán tịnh tiến đa thức ở trên trong thời gian $O(n\log n)$, nhưng việc tính giá trị tại nhiều điểm $g(0),g(v),g(2v),\dots ,g(v^2-v)$ cần thời gian $O(\sqrt{n}\log ^2n)$.
 
-<span id="&#x8FDE;&#x7EED;&#x70B9;&#x503C;&#x5E73;&#x79FB;"></span>
+<span id="tịnh-tiến-các-giá-trị-tại-điểm-liên-tiếp_1"></span>
 
 #### Tịnh tiến các giá trị tại điểm liên tiếp
 
@@ -212,7 +212,7 @@ $$
 
 Mà ta chỉ cần khoảng $\sqrt{n}$ giá trị tại điểm, nên độ phức tạp thời gian là $O(\sqrt{n}\log n)$.
 
-<span id="&#x6A21;&#x7D20;&#x6570;&#x610F;&#x4E49;&#x4E0B;&#x4E8C;&#x9879;&#x5F0F;&#x7CFB;&#x6570;&#x524D;&#x7F00;&#x548C;"></span>
+<span id="tổng-tiền-tố-hệ-số-nhị-thức-theo-modulo-số-nguyên-tố"></span>
 
 ### Tổng tiền tố hệ số nhị thức theo modulo số nguyên tố
 
@@ -371,7 +371,7 @@ $$
 
 có thể được tính xong trong thời gian $O(\sqrt m\log m)$.
 
-<span id="&#x6A21;&#x7D20;&#x6570;&#x610F;&#x4E49;&#x4E0B;&#x8C03;&#x548C;&#x6570;"></span>
+<span id="số-điều-hòa-theo-modulo-số-nguyên-tố"></span>
 
 ### Số điều hòa theo modulo số nguyên tố
 
@@ -414,7 +414,7 @@ $$
 
 Ở đây $\displaystyle {n+1\brack 1}$ và $\displaystyle {n+1\brack 2}$ là các số Stirling không dấu loại một. Phương pháp duy trì ma trận giá trị tại điểm giống như trên.
 
-<span id="&#x6574;&#x5F0F;&#x9012;&#x63A8;"></span>
+<span id="truy-hồi-đa-thức"></span>
 
 ## Truy hồi đa thức
 
@@ -483,7 +483,7 @@ Khi viết mã, có thể dùng kĩ thuật tích chập vòng để giảm hằ
 
 Trong ứng dụng thực tế, ta thường trích hệ số xa của một GF vi phân hữu hạn đã biết, do đó $m,d$ đều là hằng số, tức đạt được việc tính hệ số xa trong $\Theta(\sqrt n\log n)$.
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 

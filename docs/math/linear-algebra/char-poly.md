@@ -4,7 +4,7 @@ Trong các bài toán thực tế, ta thường phải xét việc thực hiện
 
 Tuy nhiên trên thực tế, biến đổi tuyến tính tương ứng với ma trận $A$ rất có thể không có điểm bất động, nên ta lùi một bước và tìm các phần cộng tuyến hoặc gần giống một biến dạng đơn giản.
 
-<span id="&#x7279;&#x5F81;&#x503C;&#x4E0E;&#x7279;&#x5F81;&#x5411;&#x91CF;"></span>
+<span id="giá-trị-riêng-và-vectơ-riêng"></span>
 ## Giá trị riêng và vectơ riêng
 
 Dưới tác dụng của biến đổi tuyến tính tương ứng với ma trận $A$, hướng của một số vectơ không thay đổi, chỉ bị co giãn.
@@ -57,7 +57,7 @@ $$
 
 Vì vậy định thức tương ứng cũng bằng $0$.
 
-<span id="&#x7279;&#x5F81;&#x591A;&#x9879;&#x5F0F;"></span>
+<span id="đa-thức-đặc-trưng"></span>
 ## Đa thức đặc trưng
 
 Xét một ma trận $n\times n$ là $A$, trong đó $n\geq 0\land n\in\mathbb{Z}$. Gọi $\lambda$ là một tham số, ma trận $\lambda I-A$ được gọi là **ma trận đặc trưng** của $A$.
@@ -93,7 +93,7 @@ $$
 
 Gọi $d_i$ là **bội đại số** của giá trị riêng $\lambda_i$. Tổng của tất cả các bội đại số bằng số chiều không gian $n$.
 
-<span id="&#x6C42;&#x89E3;&#x77E9;&#x9635;&#x7684;&#x5168;&#x90E8;&#x7279;&#x5F81;&#x503C;&#x53CA;&#x7279;&#x5F81;&#x5411;&#x91CF;"></span>
+<span id="tìm-toàn-bộ-giá-trị-riêng-và-vectơ-riêng-của-ma-trận"></span>
 ### Tìm toàn bộ giá trị riêng và vectơ riêng của ma trận
 
 Chia thành các bước sau:
@@ -124,10 +124,10 @@ trong biểu thức này, các $k_i$ không đồng thời bằng không.
 
 Việc giá trị riêng và vectơ riêng có tồn tại hay không phụ thuộc vào trường chứa $V$.
 
-<span id="&#x76F8;&#x4F3C;&#x53D8;&#x6362;"></span>
+<span id="biến-đổi-tương-tự"></span>
 ## Biến đổi tương tự
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 ### Dẫn nhập
 
 Nếu ma trận $n\times n$ $A$ là ma trận tam giác trên như sau:
@@ -161,7 +161,7 @@ $$
 
 ta có thể tính rất dễ; với ma trận tam giác dưới cũng tương tự. Nhưng nếu $A$ không thuộc hai loại ma trận này, ta cần dùng biến đổi tương tự để đưa ma trận về dạng dễ tính đa thức đặc trưng.
 
-<span id="&#x5B9A;&#x4E49;"></span>
+<span id="định-nghĩa"></span>
 ### Định nghĩa
 
 Với hai ma trận $n\times n$ $A$ và $B$, nếu tồn tại ma trận khả nghịch $n\times n$ $P$ sao cho:
@@ -206,7 +206,7 @@ $$
 
 Định lý: Các ma trận tương tự có cùng vết.
 
-<span id="&#x6362;&#x4F4D;&#x516C;&#x5F0F;"></span>
+<span id="công-thức-đổi-chỗ"></span>
 ### Công thức đổi chỗ
 
 Định lý: Bất kể ma trận $A$ và ma trận $B$ có là ma trận vuông hay không, miễn là phép nhân thực hiện được, thì vết của ma trận $AB$ bằng vết của ma trận $BA$.
@@ -221,7 +221,7 @@ $$
 
 Công thức này cho thấy $AB$ và $BA$ có cùng các giá trị riêng khác không.
 
-<span id="&#x8212;&#x5C14;&#xFF08;schur&#xFF09;&#x5F15;&#x7406;"></span>
+<span id="bổ-đề-schur"></span>
 ### Bổ đề Schur
 
 Mọi ma trận cấp $n$ $A$ đều tương tự với một ma trận tam giác trên, tức tồn tại ma trận đủ hạng $P$ sao cho $P^{-1}AP$ là ma trận tam giác trên, và các phần tử trên đường chéo chính của nó là toàn bộ các giá trị riêng của $A$.
@@ -234,7 +234,7 @@ $$
 
 Đặc biệt, các giá trị riêng của $kA$ là $k\lambda_1,\cdots,k\lambda_n$, các giá trị riêng của $A^m$ là ${\lambda_1}^m,\cdots,{\lambda_n}^m$.
 
-<span id="&#x4F7F;&#x7528;&#x9AD8;&#x65AF;&#x6D88;&#x5143;&#x8FDB;&#x884C;&#x76F8;&#x4F3C;&#x53D8;&#x6362;"></span>
+<span id="dùng-khử-gauss-để-thực-hiện-biến-đổi-tương-tự"></span>
 ### Dùng khử Gauss để thực hiện biến đổi tương tự
 
 Với ma trận $n\times n$ $B$, có thể thực hiện khử Gauss; các thao tác cơ bản là các phép biến đổi sơ cấp trên hàng.
@@ -245,7 +245,7 @@ Nếu có thể đưa ma trận bằng biến đổi tương tự về dạng ta
 
 Phần sau sẽ giải thích rằng sau khi áp dụng phép biến đổi lên các phần tử trên đường chéo phụ, ma trận thu được vẫn có thể được dùng để tính đa thức đặc trưng một cách dễ dàng.
 
-<span id="&#x4E0A;-hessenberg-&#x77E9;&#x9635;"></span>
+<span id="ma-trận-hessenberg-trên"></span>
 ### Ma trận Hessenberg trên
 
 Với $n\gt 2$, ma trận có dạng:
@@ -324,7 +324,7 @@ $$
 
 Đến đây toàn bộ thuật toán đã hoàn tất; thuật toán này thường được gọi là thuật toán Hessenberg.
 
-<span id="cayley&#x2013;hamilton-&#x5B9A;&#x7406;"></span>
+<span id="định-lý-cayley-hamilton"></span>
 ## Định lý Cayley-Hamilton
 
 Với mọi ma trận cấp $n$ $A$, nếu đa thức đặc trưng là $f(\lambda)=|\lambda I-A|$, thì nhất định có $f(A)=0$.
@@ -333,7 +333,7 @@ Với biến đổi tuyến tính $T$ cũng có kết quả song song: nếu $f(
 
 Từ định lý này có thể biết rằng, với mọi ma trận $A$, luôn tồn tại một đa thức triệt tiêu nó.
 
-<span id="&#x6700;&#x5C0F;&#x591A;&#x9879;&#x5F0F;"></span>
+<span id="đa-thức-tối-tiểu"></span>
 ## Đa thức tối tiểu
 
 Giả sử $V$ là một không gian vectơ $n$ chiều. Vì ma trận tương ứng với một biến đổi tuyến tính có $n^2$ phần tử, nên toàn bộ các biến đổi tuyến tính tạo thành một không gian tuyến tính $n^2$ chiều.
@@ -348,7 +348,7 @@ Theo phép chia Euclid của đa thức, đa thức tối tiểu là duy nhất 
 
 Định lý: Các vectơ riêng của ma trận $A$ ứng với các giá trị riêng khác nhau thì độc lập tuyến tính.
 
-<span id="&#x5E94;&#x7528;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Trong tin học, ta thường xét các ma trận trên $(\mathbb{Z}/m\mathbb{Z})^{n\times n}$; thông thường $m$ là số nguyên tố, khi đó thực hiện các biến đổi tương tự ở trên là đơn giản. Khi $m$ là hợp số, ta có thể xét cách làm tương tự thuật toán Euclid.
@@ -504,7 +504,7 @@ $$
 
 Lấy $k=\sqrt{n}$, có thể thấy việc tính $f(A)$ cần khoảng $O(\sqrt{n})$ phép nhân ma trận với ma trận.
 
-<span id="&#x53C2;&#x8003;&#x6587;&#x732E;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 -   Rizwana Rehman, Ilse C.F. Ipsen.[La Budde's Method for Computing Characteristic Polynomials](https://ipsen.math.ncsu.edu/ps/charpoly3.pdf).
