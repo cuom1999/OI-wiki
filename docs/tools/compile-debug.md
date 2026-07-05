@@ -21,10 +21,10 @@ Có thể thêm một số tùy chọn biên dịch trong quá trình biên dị
 ???+ note "Ghi chú"
     Trên Unix, nếu dùng thư viện math trong thư viện C chuẩn (`math.h`), cần thêm tham số `-lm` khi biên dịch.[^have-to-link-libm-in-gcc]
 
-???+ note "Làm thế nào để tăng kích thước stack?"
-    Trên Windows, có thể dùng tùy chọn biên dịch `-Wl,--stack=536870912` để tăng stack lên 512 MB; số sau dấu bằng là **số byte**.
+???+ note "Làm thế nào để tăng kích thước ngăn xếp?"
+    Trên Windows, có thể dùng tùy chọn biên dịch `-Wl,--stack=536870912` để tăng ngăn xếp lên 512 MB; số sau dấu bằng là **số byte**.
 
-    Trên Unix, dùng `ulimit -s [num]` để đặt stack của **terminal hiện tại** thành `[num]` **KiB**.
+    Trên Unix, dùng `ulimit -s [num]` để đặt ngăn xếp của **trình dòng lệnh hiện tại** thành `[num]` **KiB**.
 
 ### Dùng quy tắc tích hợp của GNU Make[^gnu-make-built-in-rules]
 
@@ -40,7 +40,7 @@ Sanitizer là một loại công cụ được tích hợp trong trình biên d�
 
 Nó được chia thành các loại sau:
 
--   AddressSanitizer[^address-sanitizer]: phát hiện truy cập vượt biên trên heap, stack và biến toàn cục, giải phóng bộ nhớ không hợp lệ, rò rỉ bộ nhớ (thử nghiệm).
+-   AddressSanitizer[^address-sanitizer]: phát hiện truy cập vượt biên trên heap, ngăn xếp và biến toàn cục, giải phóng bộ nhớ không hợp lệ, rò rỉ bộ nhớ (thử nghiệm).
 -   ThreadSanitizer[^thread-sanitizer]: phát hiện tranh chấp dữ liệu trong đa luồng.
 -   MemorySanitizer[^memory-sanitizer]: phát hiện việc đọc bộ nhớ chưa được khởi tạo.
 -   UndefinedBehaviorSanitizer[^ub-san]: phát hiện hành vi không xác định.
@@ -119,36 +119,36 @@ Dưới đây là các lệnh thường dùng được liệt kê theo phân lo�
 
 | Lệnh | Mô tả |
 | ---- | ----- |
-| `run` | Chạy chương trình cho đến khi gặp breakpoint hoặc chương trình kết thúc |
-| `continue` | Tiếp tục chạy cho đến khi gặp breakpoint hoặc chương trình kết thúc |
+| `run` | Chạy chương trình cho đến khi gặp điểm dừng hoặc chương trình kết thúc |
+| `continue` | Tiếp tục chạy cho đến khi gặp điểm dừng hoặc chương trình kết thúc |
 | `next` | Thực thi từng bước; nếu gặp lời gọi hàm thì bước qua lời gọi đó |
 | `step` | Thực thi từng bước; nếu gặp lời gọi hàm thì đi vào hàm |
 | `finish` | Chạy đến khi hàm hiện tại trả về, rồi dừng lại chờ lệnh |
 | `until [num]` | Chạy đến dòng số `[num]`, rồi dừng lại chờ lệnh |
-| `break [num]` | Đặt breakpoint tại dòng `[num]`; khi chương trình chạy đến dòng đó thì dừng lại chờ lệnh |
-| `condition [id] [p]` | Đặt điều kiện cho breakpoint số `[id]`; breakpoint chỉ được kích hoạt khi biểu thức `[p]` thỏa mãn |
-| `ignore [id] [num]` | Bỏ qua `[num]` lần đầu breakpoint được kích hoạt |
-| `delete [id]` | Xóa breakpoint có số chỉ định |
-| `disable [id]` | Tắt breakpoint có số chỉ định |
-| `enable [id]` | Bật breakpoint có số chỉ định |
+| `break [num]` | Đặt điểm dừng tại dòng `[num]`; khi chương trình chạy đến dòng đó thì dừng lại chờ lệnh |
+| `condition [id] [p]` | Đặt điều kiện cho điểm dừng số `[id]`; điểm dừng chỉ được kích hoạt khi biểu thức `[p]` thỏa mãn |
+| `ignore [id] [num]` | Bỏ qua `[num]` lần đầu điểm dừng được kích hoạt |
+| `delete [id]` | Xóa điểm dừng có số chỉ định |
+| `disable [id]` | Tắt điểm dừng có số chỉ định |
+| `enable [id]` | Bật điểm dừng có số chỉ định |
 | `list` | Liệt kê mã nguồn, tiếp tục từ vị trí trước đó; mỗi lần liệt kê 10 dòng |
 | `list [num]` | Liệt kê mã nguồn với dòng `[num]` ở giữa |
 | `list [func-name]` | Liệt kê mã nguồn với một hàm nào đó ở giữa |
 | `call [function]` | Gọi hàm và in giá trị trả về |
 
-`break [num]` sẽ xuất ra số hiệu của breakpoint; cũng có thể dùng `break [func-name]` để đặt breakpoint tại hàm.
+`break [num]` sẽ xuất ra số hiệu của điểm dừng; cũng có thể dùng `break [func-name]` để đặt điểm dừng tại hàm.
 
-Bạn cũng có thể dùng `break [num] [p]` khi đặt breakpoint để đạt hiệu quả gần giống `condition [id] [p]`.
+Bạn cũng có thể dùng `break [num] [p]` khi đặt điểm dừng để đạt hiệu quả gần giống `condition [id] [p]`.
 
-### Lệnh stack frame
+### Lệnh khung ngăn xếp
 
 | Lệnh | Mô tả |
 | ---- | ----- |
 | `info args` | Xem tham số của hàm |
 | `backtrace` | Xem các cấp lời gọi hàm và tham số |
-| `frame` | Chọn stack frame |
-| `up` | Di chuyển lên một cấp stack frame |
-| `down` | Di chuyển xuống một cấp stack frame |
+| `frame` | Chọn khung ngăn xếp |
+| `up` | Di chuyển lên một cấp khung ngăn xếp |
+| `down` | Di chuyển xuống một cấp khung ngăn xếp |
 
 ### Lệnh biến
 
@@ -178,23 +178,23 @@ Cả hai lệnh `display` và `print` đều hỗ trợ điều khiển định 
 
 | Lệnh | Mô tả |
 | ---- | ----- |
-| `info breakpoints` | Liệt kê tất cả breakpoint |
-| `info locals` | Liệt kê biến cục bộ của stack frame hiện tại |
-| `info args` | Liệt kê tham số hàm của stack frame hiện tại |
+| `info breakpoints` | Liệt kê tất cả điểm dừng |
+| `info locals` | Liệt kê biến cục bộ của khung ngăn xếp hiện tại |
+| `info args` | Liệt kê tham số hàm của khung ngăn xếp hiện tại |
 | `info threads` | Liệt kê tất cả luồng |
 | `info program` | Hiển thị trạng thái hiện tại của chương trình |
 | `info registers` | Hiển thị giá trị thanh ghi hiện tại |
-| `info frame` | Hiển thị thông tin của stack frame hiện tại |
+| `info frame` | Hiển thị thông tin của khung ngăn xếp hiện tại |
 
 ### Lệnh khác
 
 | Lệnh | Mô tả |
 | ---- | ----- |
 | `enable pretty-printer` | Bật pretty-printer, có thể in container STL theo cách con người dễ đọc |
-| `checkpoint`[^checkpoint] | Tạo checkpoint, có thể quay lại checkpoint đó |
-| `restart [num]`[^checkpoint] | Quay lại checkpoint thứ `[num]` |
-| `save breakpoints [filename]` | Lưu breakpoint vào tệp |
-| `source [filename]` | Nhập tệp breakpoint |
+| `checkpoint`[^checkpoint] | Tạo điểm kiểm tra, có thể quay lại điểm kiểm tra đó |
+| `restart [num]`[^checkpoint] | Quay lại điểm kiểm tra thứ `[num]` |
+| `save breakpoints [filename]` | Lưu điểm dừng vào tệp |
+| `source [filename]` | Nhập tệp điểm dừng |
 
 ???+ tip "Mẹo"
     Phần lớn lệnh khi gỡ lỗi bằng gdb có thể được viết tắt thành một dạng rút gọn bằng chữ cái đủ để xác định duy nhất, ví dụ `breakpoint` viết tắt thành `b`, `step` viết tắt thành `s`, `info args` viết tắt thành `i ar`. Xem lệnh `help` để biết chi tiết.
@@ -213,4 +213,4 @@ Cả hai lệnh `display` và `print` đều hỗ trợ điều khiển định 
 
 [^gnu-make-built-in-rules]: [Catalogue of Built-In Rules](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)
 
-[^checkpoint]: Các lệnh liên quan đến checkpoint chỉ dùng được trên nền tảng GNU/Linux. Xem [sổ tay chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb#Checkpoint_002fRestart) để biết chi tiết.
+[^checkpoint]: Các lệnh liên quan đến điểm kiểm tra (checkpoint) chỉ dùng được trên nền tảng GNU/Linux. Xem [sổ tay chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb#Checkpoint_002fRestart) để biết chi tiết.
