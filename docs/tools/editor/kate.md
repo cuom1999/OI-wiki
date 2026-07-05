@@ -2,7 +2,7 @@ author: CoelacanthusHex
 
 ## Giới thiệu phần mềm
 
-Kate là một trình soạn thảo văn bản đa nền tảng với nhiều chức năng. Kate còn đi kèm nhiều plugin, bao gồm terminal nhúng để bạn khởi động lệnh console trực tiếp từ Kate, plugin tìm kiếm và thay thế mạnh, cùng plugin xem trước có thể render tệp MD, HTML, thậm chí SVG. Kate hỗ trợ khôi phục dữ liệu khi hệ thống crash thông qua swap file, tự động hoàn thành kèm gợi ý tham số, đồng thời hỗ trợ [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) để có khả năng hoàn thành mã mạnh hơn.
+Kate là một trình soạn thảo văn bản đa nền tảng với nhiều chức năng. Kate còn đi kèm nhiều phần bổ trợ, bao gồm trình dòng lệnh nhúng để bạn khởi động lệnh trực tiếp từ Kate, phần bổ trợ tìm kiếm và thay thế mạnh, cùng phần bổ trợ xem trước có thể hiển thị tệp MD, HTML, thậm chí SVG. Kate hỗ trợ khôi phục dữ liệu khi hệ thống gặp sự cố thông qua tệp hoán đổi, tự động hoàn thành kèm gợi ý tham số, đồng thời hỗ trợ [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) để có khả năng hoàn thành mã mạnh hơn.
 
 ## Tải xuống và cài đặt
 
@@ -10,9 +10,9 @@ Có thể mở [trang chủ Kate](https://kate-editor.org/), rồi vào [trang t
 
 ## Cách dùng và chức năng
 
-### Swap file để tránh mất dữ liệu
+### Tệp hoán đổi để tránh mất dữ liệu
 
-Tương tự Vim, Kate sẽ ghi các thay đổi chưa lưu vào một swap file (thường là thêm dấu chấm trước tên tệp gốc và thêm `.kate-swp` phía sau). Nếu gặp sự cố như mất điện hoặc chương trình crash, lần khởi động tiếp theo sẽ không làm mất các thay đổi chưa lưu.
+Tương tự Vim, Kate sẽ ghi các thay đổi chưa lưu vào một tệp hoán đổi (thường là thêm dấu chấm trước tên tệp gốc và thêm `.kate-swp` phía sau). Nếu gặp sự cố như mất điện hoặc chương trình gặp lỗi, lần khởi động tiếp theo sẽ không làm mất các thay đổi chưa lưu.
 
 ### Tô sáng mã
 
@@ -41,14 +41,14 @@ Thao tác cụ thể không khác nhiều so với các trình soạn thảo kh�
 
 1.  Có phân biệt hoa thường hay không.
 2.  Hỗ trợ biểu thức chính quy (bao gồm nhóm bắt).
-3.  Phạm vi từ tệp hiện tại, nhiều tệp, cho tới project hiện tại.
+3.  Phạm vi từ tệp hiện tại, nhiều tệp, cho tới dự án hiện tại.
 4.  Thay thế có chọn lọc trong kết quả tìm kiếm.
 
 ### Giao thức máy chủ ngôn ngữ
 
 Kate hỗ trợ LSP Client từ phiên bản 19.12. Ban đầu chỉ hỗ trợ C/C++, D, Fortran, Go, Latex/BibTeX, OCaml, Python, Rust; hiện nay hỗ trợ các ngôn ngữ trong bảng sau:
 
-| Ngôn ngữ | LSP Server |
+| Ngôn ngữ | Máy chủ LSP |
 | :------: | :---------: |
 | Bash | [bash-language-server](https://github.com/bash-lsp/bash-language-server) |
 | LaTeX | [texlab](https://texlab.netlify.com/) |
@@ -68,7 +68,7 @@ Kate hỗ trợ LSP Client từ phiên bản 19.12. Ban đầu chỉ hỗ trợ 
 | R | [RLanguageServer](https://github.com/REditorSupport/languageserver) |
 | zig | [zls](https://github.com/zigtools/zls) |
 
-Để bật các tính năng liên quan đến LSP, cần vào thanh menu `Settings` -> `Configure Kate`, rồi trong `Plugins`, chọn `LSP Client` để bật các tính năng liên quan. Khi mở tệp của ngôn ngữ tương ứng, Kate sẽ tự động khởi động LSP Server tương ứng.
+Để bật các tính năng liên quan đến LSP, cần vào thanh menu `Settings` -> `Configure Kate`, rồi trong `Plugins`, chọn `LSP Client` để bật các tính năng liên quan. Khi mở tệp của ngôn ngữ tương ứng, Kate sẽ tự động khởi động máy chủ LSP tương ứng.
 
 #### Thêm cấu hình
 
@@ -112,16 +112,16 @@ Ngoài ra, người dùng cũng có thể tự viết cấu hình thủ công. �
 }
 ```
 
-Trong đó, mỗi mục trong `server` đại diện cho một ngôn ngữ. Trong cấu hình của ngôn ngữ đó, `command` là lệnh dùng để khởi động LSP Server; `command` là một mảng, chính là kết quả tách lệnh cần chạy theo dấu cách; `url` là trang web của LSP; `rootIndicationFileNames` là các tệp dùng để xác định thư mục gốc project; `highlightingModeRegex` khớp tên của một kiểu tô sáng cú pháp để xác định dùng LSP nào; nếu có mục `use`, nghĩa là dùng cấu hình của ngôn ngữ tương ứng với mục `use`.
+Trong đó, mỗi mục trong `servers` đại diện cho một ngôn ngữ. Trong cấu hình của ngôn ngữ đó, `command` là lệnh dùng để khởi động máy chủ LSP; `command` là một mảng, chính là kết quả tách lệnh cần chạy theo dấu cách; `url` là trang web của LSP; `rootIndicationFileNames` là các tệp dùng để xác định thư mục gốc dự án; `highlightingModeRegex` khớp tên của một kiểu tô sáng cú pháp để xác định dùng LSP nào; nếu có mục `use`, nghĩa là dùng cấu hình của ngôn ngữ tương ứng với mục `use`.
 
-Mục cấu hình này nằm tại `Settings` -> `Configure Kate` -> `LSP Client` -> `User Server Settings`; phần `LSP Client` chỉ hiện sau khi đã bật plugin `LSP Client` trong `Plugins`.
+Mục cấu hình này nằm tại `Settings` -> `Configure Kate` -> `LSP Client` -> `User Server Settings`; phần `LSP Client` chỉ hiện sau khi đã bật phần bổ trợ `LSP Client` trong `Plugins`.
 
-### Terminal tích hợp
+### Trình dòng lệnh tích hợp
 
 ???+ note "Chú ý"
-    Terminal tích hợp phụ thuộc vào Konsole[^ref1] của KDE, còn Konsole là gói chỉ có trên \*nix. Nói cách khác, tính năng này không dùng được trên Windows.
+    Trình dòng lệnh tích hợp phụ thuộc vào Konsole[^ref1] của KDE, còn Konsole là gói chỉ có trên \*nix. Nói cách khác, tính năng này không dùng được trên Windows.
 
-Nhấn <kbd>F4</kbd> để mở hoặc đóng terminal tích hợp; cũng có thể nhấp nút `Terminal` ở góc dưới bên trái để mở. Thư mục hiện tại của terminal tích hợp sẽ tự động đồng bộ với tệp hiện tại và thay đổi theo tệp bạn chọn. Các phần còn lại không khác nhiều so với terminal thông thường.
+Nhấn <kbd>F4</kbd> để mở hoặc đóng trình dòng lệnh tích hợp; cũng có thể nhấp nút `Terminal` ở góc dưới bên trái để mở. Thư mục hiện tại của trình dòng lệnh tích hợp sẽ tự động đồng bộ với tệp hiện tại và thay đổi theo tệp bạn chọn. Các phần còn lại không khác nhiều so với trình dòng lệnh thông thường.
 
 ### Công cụ ngoài
 
@@ -176,7 +176,7 @@ Sau khi bật tính năng này, Kate sẽ hiển thị bằng chữ nhạt ở c
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: Trong [mô tả gói này trên Arch Linux](https://archlinux.org/packages/extra/x86_64/kate/), gói có optional dependency là `konsole`, được mô tả là `open a terminal in Kate` (mở terminal trong Kate).
+[^ref1]: Trong [mô tả gói này trên Arch Linux](https://archlinux.org/packages/extra/x86_64/kate/), gói có phụ thuộc tùy chọn là `konsole`, được mô tả là `open a terminal in Kate` (mở trình dòng lệnh trong Kate).
 
 [^note1]: Nếu `g++` không nằm trong biến môi trường `PATH`, hãy đổi nó thành đường dẫn tuyệt đối của trình biên dịch.
 
