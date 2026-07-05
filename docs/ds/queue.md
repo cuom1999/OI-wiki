@@ -2,15 +2,15 @@ Trang này giới thiệu các cấu trúc dữ liệu liên quan đến hàng �
 
 ![](./images/queue.svg)
 
-<span id="&#x5F15;&#x5165;"></span>
+<span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
 Hàng đợi (queue) là một dạng danh sách có tính chất "phần tử vào hàng đợi trước chắc chắn sẽ ra khỏi hàng đợi trước". Vì tính chất này, hàng đợi thường được gọi là danh sách vào trước ra trước (first in first out), viết tắt là FIFO.
 
-<span id="&#x5B9E;&#x73B0;"></span>
+<span id="cài-đặt"></span>
 ## Cài đặt
 
-<span id="&#x6570;&#x7EC4;&#x6A21;&#x62DF;&#x961F;&#x5217;"></span>
+<span id="mô-phỏng-hàng-đợi-bằng-mảng"></span>
 ### Mô phỏng hàng đợi bằng mảng
 
 Thông thường ta dùng một mảng để mô phỏng một hàng đợi, cùng hai biến đánh dấu đầu và cuối hàng đợi.
@@ -32,7 +32,7 @@ Các thao tác hàng đợi tương ứng với đoạn mã sau:
     --8<-- "docs/ds/code/queue/queue_1.cpp"
     ```
 
-<span id="&#x53CC;&#x6808;&#x6A21;&#x62DF;&#x961F;&#x5217;"></span>
+<span id="mô-phỏng-hàng-đợi-bằng-hai-ngăn-xếp"></span>
 ### Mô phỏng hàng đợi bằng hai ngăn xếp
 
 Còn một cách ít phổ biến hơn là dùng hai [ngăn xếp](./stack.md) để mô phỏng một hàng đợi.
@@ -49,7 +49,7 @@ Dễ chứng minh rằng mỗi phần tử chỉ được đưa vào, chuyển s
     --8<-- "docs/ds/code/queue/queue_2.cpp"
     ```
 
-<span id="c-stl-&#x4E2D;&#x7684;&#x961F;&#x5217;"></span>
+<span id="hàng-đợi-trong-c-stl"></span>
 ## Hàng đợi trong C++ STL
 
 C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần include header `<queue>`.
@@ -102,10 +102,10 @@ std::cout << q2.front() << std::endl;
 // Kết quả: 1
 ```
 
-<span id="&#x7279;&#x6B8A;&#x961F;&#x5217;"></span>
+<span id="các-hàng-đợi-đặc-biệt"></span>
 ## Các hàng đợi đặc biệt
 
-<span id="&#x53CC;&#x7AEF;&#x961F;&#x5217;"></span>
+<span id="hàng-đợi-hai-đầu"></span>
 ### Hàng đợi hai đầu
 
 Hàng đợi hai đầu là hàng đợi cho phép chèn hoặc xóa phần tử ở cả đầu và cuối hàng đợi. Có thể xem nó như sự kết hợp giữa chức năng của ngăn xếp và hàng đợi. Cụ thể, hàng đợi hai đầu hỗ trợ 4 thao tác:
@@ -133,7 +133,7 @@ Tương tự, ta cũng có thể dùng ý tưởng mô phỏng hàng đợi bằ
     --8<-- "docs/ds/code/queue/queue_3.cpp"
     ```
 
-<span id="c-stl-&#x4E2D;&#x7684;&#x53CC;&#x7AEF;&#x961F;&#x5217;"></span>
+<span id="hàng-đợi-hai-đầu-trong-c-stl"></span>
 #### Hàng đợi hai đầu trong C++ STL
 
 C++ cũng cung cấp container `std::deque` trong STL. Trước khi dùng, cần include header `<deque>`.
@@ -174,7 +174,7 @@ Ngoài ra, `deque` còn cung cấp một số toán tử. Những toán tử th�
 
 Header `<queue>` còn cung cấp hàng đợi ưu tiên `std::priority_queue`. Vì cấu trúc này giống với [heap](./heap.md) hơn, trang này không giới thiệu sâu.
 
-<span id="python-&#x4E2D;&#x7684;&#x53CC;&#x7AEF;&#x961F;&#x5217;"></span>
+<span id="hàng-đợi-hai-đầu-trong-python"></span>
 #### Hàng đợi hai đầu trong Python
 
 Trong Python, container hàng đợi hai đầu được cung cấp bởi `collections.deque`.
@@ -199,14 +199,14 @@ Ví dụ như sau:
     # deque([0, 1, 2, 3, 4])
     ```
 
-<span id="&#x5FAA;&#x73AF;&#x961F;&#x5217;"></span>
+<span id="hàng-đợi-vòng"></span>
 ### Hàng đợi vòng
 
 Dùng mảng để mô phỏng hàng đợi sẽ gây ra một vấn đề: theo thời gian, toàn bộ hàng đợi dịch dần về phía cuối mảng. Khi đã đến cuối mảng, dù phía đầu mảng vẫn còn vị trí trống, thao tác enqueue tiếp theo vẫn gây tràn (hiện tượng mảng thực tế vẫn còn vị trí trống nhưng lại bị tràn trên được gọi là "tràn giả").
 
 Cách giải quyết tràn giả là tổ chức mảng lưu phần tử hàng đợi theo dạng vòng, tức xem vị trí có chỉ số 0 của mảng là phần tử kế tiếp của vị trí cuối cùng. (Với phần tử có chỉ số mảng là `x`, phần tử kế tiếp của nó là `(x + 1) % SIZE`.) Như vậy ta có hàng đợi vòng.
 
-<span id="&#x53C2;&#x8003;&#x8D44;&#x6599;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
 1.  [std::queue - cppreference.com](https://en.cppreference.com/w/cpp/container/queue)

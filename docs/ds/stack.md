@@ -1,4 +1,4 @@
-<span id="&#24341;&#20837;"></span>
+<span id="giới-thiệu"></span>
 
 ## Giới thiệu
 
@@ -24,7 +24,7 @@ Các thao tác sửa đổi và truy cập của ngăn xếp tuân theo nguyên 
 
     Vì vậy, khi xét một cấu trúc dữ liệu là LIFO hay FIFO, cần xét trạng thái của các phần tử đang nằm trong container tại thời điểm đó.
 
-<span id="&#20351;&#29992;&#25968;&#32452;&#27169;&#25311;&#26632;"></span>
+<span id="mô-phỏng-ngăn-xếp-bằng-mảng"></span>
 
 ## Mô phỏng ngăn xếp bằng mảng
 
@@ -65,7 +65,7 @@ Ta có thể dễ dàng dùng mảng để mô phỏng một ngăn xếp như sa
         st[0] = 0
         ```
 
-<span id="C++ STL &#20013;&#30340;&#26632;"></span>
+<span id="ngăn-xếp-trong-c-stl"></span>
 
 ## Ngăn xếp trong C++ STL
 
@@ -118,7 +118,7 @@ cout << st2.top() << endl;
 // Output: 1
 ```
 
-<span id="&#20351;&#29992; Python &#20013;&#30340; list &#27169;&#25311;&#26632;"></span>
+<span id="mô-phỏng-ngăn-xếp-bằng-list-trong-python"></span>
 
 ## Mô phỏng ngăn xếp bằng `list` trong Python
 
@@ -143,7 +143,7 @@ Trong Python, bạn có thể dùng danh sách để mô phỏng một ngăn x�
     st.clear()
     ```
 
-<span id="&#21442;&#32771;&#36164;&#26009;"></span>
+<span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 
