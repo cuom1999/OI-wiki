@@ -1,47 +1,74 @@
 author: isdanni,xyf007
 
-PQ tree là một cấu trúc dữ liệu dựa trên cây, biểu diễn một tập các hoán vị trên một tập phần tử. Nó được Kellogg S. Booth và George S. Lueker phát hiện và đặt tên vào năm 1976, dùng để giải bài toán sau:
+PQ tree là một cấu trúc dữ liệu dựa trên cây, biểu diễn một tập các hoán vị trên một tập phần tử. Cấu trúc này được
+Kellogg S. Booth và George S. Lueker phát hiện và đặt tên vào năm 1976, dùng để giải bài toán sau:
 
-> Cho $m$ tập hợp $S_i$, hãy tìm một hoán vị của $1\sim n$ sao cho các phần tử trong mỗi tập hợp đều nằm kề nhau.
+> Cho $m$ tập hợp $S_i$, cần tìm một hoán vị của $1\sim n$ sao cho các phần tử trong mỗi tập hợp đều nằm kề nhau.
 
-PQ tree có thể được xây dựng trong thời gian $O(n+\sum|S_i|)$. Phương pháp xây dựng được giới thiệu trong bài này có độ phức tạp thời gian $O(nm)$.
+PQ tree có thể được xây dựng trong thời gian $O(n+\sum|S_i|)$. Phương pháp xây dựng được giới thiệu trong bài này có độ
+phức tạp thời gian $O(nm)$.
 
 ## Định nghĩa
 
-PQ tree có ba loại nút: **nút lá**, **nút P** và **nút Q**. Trong đó, nút lá biểu diễn một phần tử trong hoán vị, nút P cho biết các nút con của nó có thể được sắp xếp theo thứ tự bất kỳ, còn nút Q cho biết thứ tự các con của nó có thể bị đảo ngược. Mọi nút không phải nút lá đều là một nút P hoặc một nút Q. Một nút P có ít nhất 2 con, còn một nút Q có ít nhất 3 con.
-Theo định nghĩa của các nút, bản thân PQ tree biểu diễn **tất cả** các phương án hợp lệ; phép duyệt tiền thứ tự của nó là một trong các phương án đó.
+PQ tree có ba loại nút: **nút lá**, **nút P** và **nút Q**. Nút lá biểu diễn một phần tử trong hoán vị. Nút P cho biết
+các nút con của nó có thể được sắp xếp theo thứ tự bất kỳ, còn nút Q cho biết thứ tự các con của nó có thể bị đảo
+ngược. Mọi nút không phải nút lá đều là một nút P hoặc một nút Q. Một nút P có ít nhất 2 con, còn một nút Q có ít nhất
+3 con.
+
+Theo định nghĩa của các nút, bản thân PQ tree biểu diễn **tất cả** các phương án hợp lệ; phép duyệt tiền thứ tự của nó
+là một trong các phương án đó.
+
 Hình dưới đây là một PQ tree.
+
 ![](https://gregable.com/2008/11/i/pq-tree.webp)  
-Duyệt tiền thứ tự của nó là 1,2,3,4,5, biểu diễn một phương án hợp lệ. Nếu sắp xếp lại các con của nút P thành 4,2,3, ta nhận được một phương án hợp lệ khác là 1,4,2,3,5. Nếu giữ nguyên thứ tự các con của nút P và đảo ngược thứ tự các con của nút Q, ta nhận được một phương án hợp lệ khác là 5,3,2,4,1.
+
+Duyệt tiền thứ tự của cây này là $1,2,3,4,5$, biểu diễn một phương án hợp lệ. Nếu sắp xếp lại các con của nút P thành
+$4,2,3$, có thể nhận được một phương án hợp lệ khác là $1,4,2,3,5$. Nếu giữ nguyên thứ tự các con của nút P và đảo
+ngược thứ tự các con của nút Q, có thể nhận được phương án hợp lệ $5,3,2,4,1$.
 
 ## Xây dựng
 
 **PQ tree dùng cách biểu diễn con - anh em.**
 
-Ta xây dựng PQ tree theo kiểu tăng dần.
+PQ tree được xây dựng theo kiểu tăng dần.
 
-Trước hết, tạo một cây có gốc là P và có tổng cộng $n$ con, lần lượt là $1,2,\ldots,n$; cây này biểu diễn PQ tree khi chưa có ràng buộc nào. Khi các ràng buộc được thêm vào, ta liên tục sửa cây này.
+Trước hết, tạo một cây có gốc là P và có tổng cộng $n$ con, lần lượt là $1,2,\ldots,n$; cây này biểu diễn PQ tree khi
+chưa có ràng buộc nào. Khi các ràng buộc được thêm vào, cây này được sửa dần.
 
-Khi thêm một tập ràng buộc mới $S$, ta đánh dấu mọi nút lá thuộc tập này là **đen**, còn các nút lá không thuộc tập này là **trắng**. Với mọi nút không phải lá, nếu tất cả con của nó đều đen thì cũng đánh dấu nó là đen; nếu tất cả con của nó đều trắng thì cũng đánh dấu nó là trắng; nếu không thì đánh dấu nó là **xám**. Trong các hình bên dưới, nút đen, nút trắng và nút xám lần lượt được biểu diễn bằng màu đen, màu xám, và nửa đen nửa xám.
+Khi thêm một tập ràng buộc mới $S$, đánh dấu mọi nút lá thuộc tập này là **đen**, còn các nút lá không thuộc tập này là
+**trắng**. Với mọi nút không phải lá, nếu tất cả con của nó đều đen thì cũng đánh dấu nó là đen; nếu tất cả con của nó
+đều trắng thì cũng đánh dấu nó là trắng; nếu không thì đánh dấu nó là **xám**. Trong các hình bên dưới, nút đen, nút
+trắng và nút xám lần lượt được biểu diễn bằng màu đen, màu xám, và nửa đen nửa xám.
 
-Ta yêu cầu các nút trong PQ tree được sắp xếp theo màu.
+Các nút trong PQ tree cần được sắp xếp theo màu.
 
 ### Phương pháp từ dưới lên
 
-Cây con nhỏ nhất chứa tất cả các nút đen được gọi là **cây con liên quan**, và gốc của cây con liên quan (không nhất thiết là gốc của toàn bộ cây) được gọi là **gốc liên quan**.
+Cây con nhỏ nhất chứa tất cả các nút đen được gọi là **cây con liên quan**, và gốc của cây con liên quan (không nhất
+thiết là gốc của toàn bộ cây) được gọi là **gốc liên quan**.
 
 Quá trình thêm một ràng buộc được gọi là một lần rút gọn. Một lần rút gọn gồm hai giai đoạn: giai đoạn nổi bọt và giai đoạn rút gọn.
 
 #### Giai đoạn nổi bọt
 
-Giai đoạn nổi bọt chỉ xử lý cây con liên quan. Ta đánh dấu mọi nút trong cây con liên quan là đen hoặc xám, đồng thời tính cho mỗi nút số nút con liên quan mà nó có. Để thực hiện quá trình này hiệu quả, ta xử lý cây con liên quan từ lá lên gốc. Việc này cần ghi lại nút cha của mỗi điểm, nhưng trong giai đoạn rút gọn, nút cha của một điểm thường phải bị sửa. Để xây dựng trong thời gian tuyến tính, chỉ các con của nút P và **con cuối cùng của nút Q** luôn ghi đúng nút cha. Với các con khác của nút Q, trong giai đoạn nổi bọt ta dùng nút cha của con cuối cùng để cập nhật nút cha của chúng.
+Giai đoạn nổi bọt chỉ xử lý cây con liên quan. Mọi nút trong cây con liên quan được đánh dấu là đen hoặc xám, đồng thời
+tính số nút con liên quan của từng nút. Để thực hiện quá trình này hiệu quả, xử lý cây con liên quan từ lá lên gốc.
+Việc này cần ghi lại nút cha của mỗi điểm, nhưng trong giai đoạn rút gọn, nút cha của một điểm thường phải bị sửa. Để
+xây dựng trong thời gian tuyến tính, chỉ các con của nút P và **con cuối cùng của nút Q** luôn ghi đúng nút cha. Với các
+con khác của nút Q, giai đoạn nổi bọt dùng nút cha của con cuối cùng để cập nhật nút cha của chúng.
 
-Khi gặp một nút ở giữa, ta kiểm tra xem nút anh em của nó đã có nút cha hợp lệ hay chưa. Nếu chưa, đánh dấu nó là **bị chặn**. Nếu về sau nút anh em của nó có nút cha hợp lệ, ta sửa nút cha của nút này và bỏ đánh dấu. Nếu khi giai đoạn nổi bọt kết thúc mà vẫn còn một đoạn liên tiếp các nút bị chặn (như trường hợp Q3 bên dưới), một "nút giả" không có nút cha sẽ trở thành nút cha của khối này, rồi bị loại bỏ trong giai đoạn rút gọn.
+Khi gặp một nút ở giữa, kiểm tra xem nút anh em của nó đã có nút cha hợp lệ hay chưa. Nếu chưa, đánh dấu nó là **bị
+chặn**. Nếu về sau nút anh em của nó có nút cha hợp lệ, sửa nút cha của nút này và bỏ đánh dấu. Nếu khi giai đoạn nổi
+bọt kết thúc mà vẫn còn một đoạn liên tiếp các nút bị chặn (như trường hợp Q3 bên dưới), một "nút giả" không có nút cha
+sẽ trở thành nút cha của khối này, rồi bị loại bỏ trong giai đoạn rút gọn.
 
 #### Giai đoạn rút gọn
 
-Giai đoạn rút gọn dùng một hàng đợi để xử lý các nút. Trước hết, đưa mọi nút lá nằm trong ràng buộc vào hàng đợi. Mỗi lần lấy nút đầu hàng đợi $u$ ra và xử lý. Nếu cha của $u$ cũng là một nút trong cây con liên quan, đưa $\mathit{fa}_u$ vào hàng đợi.
-Với mỗi nút $u$, ta xét theo từng trường hợp. Nếu không thuộc bất kỳ trường hợp nào trong số đó thì vô nghiệm.
+Giai đoạn rút gọn dùng một hàng đợi để xử lý các nút. Trước hết, đưa mọi nút lá nằm trong ràng buộc vào hàng đợi. Mỗi
+lần lấy nút đầu hàng đợi $u$ ra và xử lý. Nếu cha của $u$ cũng là một nút trong cây con liên quan, đưa $\mathit{fa}_u$
+vào hàng đợi.
+
+Với mỗi nút $u$, xét theo từng trường hợp. Nếu không thuộc bất kỳ trường hợp nào trong số đó thì vô nghiệm.
 
 ##### Nút lá
 
@@ -64,11 +91,13 @@ Nếu $u$ có cả con đen và con trắng, đồng thời $u$ không phải g�
 -   Nếu $e$ (và/hoặc $f$) chỉ có một con, không tạo nút mới, mà gán trực tiếp $e$ (và/hoặc $f$) thành con đó.
 -   Đổi $u$ thành nút Q, đặt các con của nó là $e$ và $f$, rồi đánh dấu nó là xám.
 
-Lưu ý rằng theo định nghĩa ở trên, nút Q có ít nhất 3 con, nên $u$ ở đây được xem là một "nút giả" và sẽ tiếp tục được xử lý về sau.
+Lưu ý rằng theo định nghĩa ở trên, nút Q có ít nhất 3 con, nên trong trường hợp này $u$ được xem là một "nút giả" và sẽ
+tiếp tục được xử lý về sau.
 ![](https://gregable.com/2008/11/i/p3-template.png)  
 ![](https://gregable.com/2008/11/i/p3-replacement.png)
 
-Nếu $u$ có một con xám $p$, đồng thời $u$ là gốc liên quan, tạo một nút P mới $v$ làm gốc của tất cả các con đen của nó, đặt anh em của $v$ là con đen cuối cùng của $p$, rồi đặt $v$ làm con cuối cùng của $p$.
+Nếu $u$ có một con xám $p$, đồng thời $u$ là gốc liên quan, tạo một nút P mới $v$ làm gốc của tất cả các con đen của nó.
+Sau đó, đặt anh em của $v$ là con đen cuối cùng của $p$, rồi đặt $v$ làm con cuối cùng của $p$.
 ![](https://gregable.com/2008/11/i/p4-template.png)  
 ![](https://gregable.com/2008/11/i/p4-replacement.png)
 
@@ -91,7 +120,7 @@ Nếu $u$ có đúng hai con xám $p_1,p_2$, thực hiện các thao tác sau:
 -   Đặt anh em của $f$ là con đen cuối cùng của $p_2$.
 -   Đặt con cuối cùng của $p_2$ thành con trắng cuối cùng của $p_2$.
 
-Có thể thấy rằng bằng cách này, $p_2$ đã được gộp vào $p_1$.
+Bằng cách này, $p_2$ đã được gộp vào $p_1$.
 ![](https://gregable.com/2008/11/i/p6-template.png)  
 ![](https://gregable.com/2008/11/i/p6-replacement.png)
 
@@ -111,7 +140,8 @@ Nếu $u$ có một con xám $p$, và mọi con có cùng màu đều xuất hi�
 ![](https://gregable.com/2008/11/i/q2-template.png)  
 ![](https://gregable.com/2008/11/i/q2-replacement.png)
 
-Nếu $u$ có đúng hai con xám $p_1,p_2$, và mọi con có cùng màu đều xuất hiện liên tiếp, chỉ cần thực hiện thao tác ở trường hợp trước cho cả $p_1,p_2$.
+Nếu $u$ có đúng hai con xám $p_1,p_2$, và mọi con có cùng màu đều xuất hiện liên tiếp, chỉ cần thực hiện thao tác ở
+trường hợp trước cho cả $p_1,p_2$.
 ![](https://gregable.com/2008/11/i/q3-template.png)  
 ![](https://gregable.com/2008/11/i/q3-replacement.png)
 
@@ -119,30 +149,42 @@ Phương pháp xây dựng này đến từ bài báo gốc, nhưng khá bất t
 
 ### Phương pháp từ trên xuống
 
-Hiện nay, phần lớn các cài đặt trong OI dùng phương pháp này. Thực ra phương pháp là tương tự; các trường hợp xuất hiện bên dưới về cơ bản đều có thể tìm thấy ở trên.
+Hiện nay, phần lớn các cài đặt trong OI dùng phương pháp này. Ý tưởng vẫn tương tự; các trường hợp xuất hiện bên dưới về
+cơ bản đều có thể tìm thấy ở trên.
 
-Lưu ý rằng theo quá trình tô màu ở trên, mọi điểm đen và trắng đều đã thỏa mãn điều kiện, vì vậy ta **chỉ cần xử lý các nút xám**.
+Lưu ý rằng theo quá trình tô màu ở trên, mọi điểm đen và trắng đều đã thỏa mãn điều kiện, vì vậy **chỉ cần xử lý các nút
+xám**.
 
 #### Nút P
 
 -   Nếu $u$ có nhiều hơn hai con xám, vô nghiệm.
 -   Nếu $u$ chỉ có một con xám và không có con đen, xử lý đệ quy con xám đó.
--   Nếu không, trước hết xóa rỗng danh sách con của $u$, rồi thêm tất cả các con trắng vào. Tạo một nút Q mới $q_1$ và cho nó trở thành con của $u$. Thêm tất cả các con xám vào $q_1$. Tạo một nút P mới $p$ làm gốc của tất cả các con đen, rồi chèn $p$ vào giữa $q_1$. (Tương ứng với tất cả các trường hợp nút P trong phương pháp từ dưới lên.)
+-   Nếu không, trước hết xóa rỗng danh sách con của $u$, rồi thêm tất cả các con trắng vào. Tạo một nút Q mới $q_1$ và
+    cho nó trở thành con của $u$. Thêm tất cả các con xám vào $q_1$. Tạo một nút P mới $p$ làm gốc của tất cả các con
+    đen, rồi chèn $p$ vào giữa $q_1$. Trường hợp này tương ứng với tất cả các trường hợp nút P trong phương pháp từ dưới
+    lên.
 
-Lưu ý rằng ta sẽ yêu cầu hai nút xám có toàn bộ phần trắng ở bên trái và toàn bộ phần đen ở bên phải (hoặc ngược lại), vì vậy ta cần cài đặt một hàm tách `split`, có thể tách các điểm trong cây con này thành phần đen và phần trắng, đồng thời giữ lại **tất cả khả năng** của các nút trong các cây con thu được sau khi tách.
+Lưu ý rằng hai nút xám sẽ được yêu cầu có toàn bộ phần trắng ở bên trái và toàn bộ phần đen ở bên phải (hoặc ngược lại).
+Vì vậy, cần cài đặt một hàm tách `split`, có thể tách các điểm trong cây con này thành phần đen và phần trắng, đồng thời
+giữ lại **tất cả khả năng** của các nút trong các cây con thu được sau khi tách.
 
 #### Nút Q
 
--   Tìm vị trí của nút không trắng ngoài cùng bên trái và ngoài cùng bên phải, lần lượt là $l,r$. Nếu trong $[l+1,r-1]$ có nút không đen, vô nghiệm.
+-   Tìm vị trí của nút không trắng ngoài cùng bên trái và ngoài cùng bên phải, lần lượt là $l,r$. Nếu trong $[l+1,r-1]$
+    có nút không đen, vô nghiệm.
 -   Nếu không có nút đen và chỉ có một nút xám, xử lý đệ quy nút xám đó; nếu không, chỉ cần tách các nút ở vị trí $l$ và $r$.
 
 #### Hàm tách
 
-Gọi điểm cần tách là $u$. Ta muốn tách $u$ thành một rừng mà bên trái toàn trắng, bên phải toàn đen. Nếu $u$ không phải nút xám, trả về trực tiếp cây con đó. Chỉ xét trường hợp nút xám.
+Gọi điểm cần tách là $u$. Mục tiêu là tách $u$ thành một rừng mà bên trái toàn trắng, bên phải toàn đen. Nếu $u$ không
+phải nút xám, trả về trực tiếp cây con đó. Chỉ cần xét trường hợp nút xám.
+
 Nếu $u$ là nút loại P:
 
 -   Nếu $u$ có ít nhất hai con xám, vô nghiệm.
--   Nếu không, bên trái là tất cả các con trắng, ở giữa là kết quả xử lý đệ quy con xám, và bên phải là tất cả các con đen. Lưu ý rằng để giữ lại tất cả khả năng, cần tạo hai nút P mới lần lượt làm gốc của các con trắng và các con đen. (Tương ứng với trường hợp P4 trong phương pháp từ dưới lên.)
+-   Nếu không, bên trái là tất cả các con trắng, ở giữa là kết quả xử lý đệ quy con xám, và bên phải là tất cả các con
+    đen. Để giữ lại tất cả khả năng, cần tạo hai nút P mới lần lượt làm gốc của các con trắng và các con đen. Trường hợp
+    này tương ứng với trường hợp P4 trong phương pháp từ dưới lên.
 -   Xóa $u$.
 
 Nếu $u$ là nút loại Q:
@@ -360,6 +402,9 @@ class PQTree {
 
 ## Tài liệu tham khảo
 
--   Booth, Kellogg S. & Lueker, George S. (1976).["Testing for the consecutive ones property, interval graphs, and graph planarity using PQ-tree algorithms"](https://www.sciencedirect.com/science/article/pii/S0022000076800451?via%3Dihub).*[Journal of Computer and System Sciences](https://en.wikipedia.org/wiki/Journal_of_Computer_and_System_Sciences)*.**13**(3): 335–379.[doi](https://en.wikipedia.org/wiki/Doi_%28identifier%29):[10.1016/S0022-0000(76)80045-1](https://doi.org/10.1016%2FS0022-0000%2876%2980045-1).
+-   Booth, Kellogg S. & Lueker, George S. (1976). "Testing for the consecutive ones property, interval graphs, and graph
+    planarity using PQ-tree algorithms". *[Journal of Computer and System
+    Sciences](https://en.wikipedia.org/wiki/Journal_of_Computer_and_System_Sciences)*. **13**(3): 335-379.
+    [doi:10.1016/S0022-0000(76)80045-1](https://doi.org/10.1016%2FS0022-0000%2876%2980045-1).
 -   [PQ Tree Algorithm and Consecutive Ones Problem](https://gregable.com/2008/11/pq-tree-algorithm.html)
 -   [CF243E Matrix PQTree - RainAir's Blog](https://blog.aor.sd.cn/archives/1657/)
