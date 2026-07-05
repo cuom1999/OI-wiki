@@ -1,6 +1,6 @@
-Mảng là một bộ chứa lưu các đối tượng cùng kiểu. Các đối tượng trong mảng
-không có tên riêng, mà được truy cập thông qua vị trí của chúng. Kích thước của
-mảng là cố định, không thể tùy ý thay đổi độ dài mảng.
+Mảng là một bộ chứa lưu các đối tượng cùng kiểu. Các đối tượng trong mảng không
+có tên riêng, mà được truy cập thông qua vị trí của chúng. Kích thước của mảng
+là cố định, không thể tùy ý thay đổi độ dài mảng.
 
 ## Định nghĩa mảng
 
@@ -19,14 +19,14 @@ Không thể gán trực tiếp một mảng cho một mảng khác:
 
 ```cpp
 int arr1[3];
-int arr2 = arr1;  // sai
+int arr2[3];
 arr2 = arr1;      // sai
 ```
 
-Nên cố gắng định nghĩa các mảng lớn thành biến toàn cục. Vì biến cục bộ được
-tạo trên vùng stack, mảng quá lớn (lớn hơn kích thước stack) sẽ làm tràn stack
-và dẫn đến RE. Nếu khai báo mảng ở phạm vi toàn cục, mảng sẽ được tạo trong
-vùng tĩnh.
+Nên cố gắng định nghĩa các mảng lớn ở phạm vi toàn cục. Vì biến cục bộ được tạo
+trên vùng stack, mảng quá lớn (lớn hơn kích thước stack) sẽ làm tràn stack và
+dẫn đến lỗi chạy (RE). Nếu khai báo mảng ở phạm vi toàn cục, mảng sẽ được tạo
+trong vùng nhớ tĩnh.
 
 ## Truy cập phần tử mảng
 
@@ -84,19 +84,19 @@ int main() {
 
 Chỉ số mảng $\mathit{idx}$ phải thỏa mãn
 $0\leq \mathit{idx}< \mathit{size}$. Nếu chỉ số không nằm trong phạm vi này, đó
-là hành vi không xác định và có thể sinh ra hậu quả không dự đoán được, như
+là hành vi không xác định và có thể sinh ra hậu quả không dự đoán được, như lỗi
 segmentation fault hoặc sửa nhầm biến ngoài dự kiến, v.v.
 
 ## Mảng nhiều chiều
 
 Bản chất của mảng nhiều chiều là "mảng của mảng", tức phần tử của mảng ngoài
 cũng là mảng. Một mảng hai chiều cần hai kích thước để định nghĩa: độ dài của
-mảng và độ dài của phần tử bên trong mảng. Khi truy cập mảng hai chiều, cần viết
-hai chỉ số:
+mảng ngoài và độ dài của mỗi mảng bên trong. Khi truy cập mảng hai chiều, cần
+viết hai chỉ số:
 
 ```cpp
-int arr[3][4];  // một mảng độ dài 3, phần tử của nó là "mảng độ dài 4
-                // có phần tử kiểu int"
+int arr[3][4];  // một mảng độ dài 3, mỗi phần tử là mảng độ dài 4
+                // gồm các phần tử kiểu int
 arr[2][1] = 1;  // truy cập mảng hai chiều
 ```
 
@@ -105,7 +105,7 @@ Ta thường dùng vòng lặp `for` lồng nhau để xử lý mảng hai chi�
 Ví dụ: đọc hai số $n$ và $m$ từ chuẩn nhập, lần lượt biểu thị chiều cao và chiều
 rộng của một ảnh đen trắng, thỏa mãn $n,m\leq 1000$. Trong $n$ dòng dữ liệu tiếp
 theo, mỗi dòng có $m$ số cách nhau bằng khoảng trắng, biểu thị giá trị độ sáng
-tại vị trí đó. Bây giờ ta đọc ảnh này và lưu vào mảng hai chiều.
+tại vị trí đó. Ta sẽ đọc ảnh này và lưu vào mảng hai chiều.
 
 ```cpp
 const int MAXN = 1001;
