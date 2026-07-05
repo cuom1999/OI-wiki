@@ -287,20 +287,20 @@ class Object {
     value = _value;
   }
 
-  // the same as
+  // Tương đương với
   // Object(int _weight,int _value):weight(_weight),value(_value) {}
 };
 
-// the same as
+// Tương đương với
 // Object::Object(int _weight,int _value){
 //   weight = _weight;
 //   value = _value;
 // }
 //}
 
-Object A;        // ok
-Object B(1, 2);  // ok
-Object C{1, 2};  // ok,(C++11)
+Object A;        // hợp lệ
+Object B(1, 2);  // hợp lệ
+Object C{1, 2};  // hợp lệ (C++11)
 ```
 
 ??? note "Về chuyển đổi kiểu ngầm định"

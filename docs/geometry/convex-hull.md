@@ -248,12 +248,12 @@ Theo tính chất 2, ta có thể sắp xếp các tập lồi $P,Q$ theo góc c
         return {a.x - b.x, a.y - b.y};
       }
     
-      // Tich vo huong
+      // Tích vô hướng
       friend T operator*(const Point &a, const Point &b) {
         return a.x * b.x + a.y * b.y;
       }
     
-      // Tich co huong
+      // Tích có hướng
       friend T operator^(const Point &a, const Point &b) {
         return a.x * b.y - a.y * b.x;
       }

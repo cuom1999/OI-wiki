@@ -130,7 +130,7 @@ Trong C++20, còn có thể dùng câu lệnh khởi tạo để thực hiện m
 int main() {
   std::vector<int> v = {0, 1, 2, 3, 4, 5};
 
-  for (int counter = 0; auto i : v)  // the init-statement (C++20)
+  for (int counter = 0; auto i : v)  // câu lệnh khởi tạo (C++20)
     std::cout << counter++ << ' ' << i << std::endl;
 }
 ```
