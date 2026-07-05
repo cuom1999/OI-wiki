@@ -1,6 +1,6 @@
 author: codewasp942, Tiphereth-A
 
-Không gian tuyến tính là một khái quát của không gian Euclid $d$ chiều ($0\leq d\leq 3$), v.v. Có thể xem quan hệ giữa các khái niệm liên quan ở [quan hệ giữa không gian Euclid và không gian tuyến tính](#%E6%AC%A7%E6%B0%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB).
+Không gian tuyến tính là một khái quát của không gian Euclid $d$ chiều ($0\leq d\leq 3$), v.v. Có thể xem quan hệ giữa các khái niệm liên quan ở [quan hệ giữa không gian Euclid và không gian tuyến tính](#quan-hệ-giữa-không-gian-euclid-và-không-gian-tuyến-tính).
 
 Kiến thức chuẩn bị: nhóm Abel, trường.
 
@@ -8,7 +8,7 @@ Nói một cách trực quan, nếu một tập hợp đóng với một phép t
 
 Nếu một tập hợp đóng với bốn phép toán số học thì nó tạo thành một trường. Định nghĩa liên quan được trình bày chi tiết trong [các khái niệm cơ bản của đại số trừu tượng](../algebra/basic.md#trường).
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Không gian tuyến tính (không gian vectơ) là một khái niệm cơ bản và là đối tượng nghiên cứu quan trọng của đại số tuyến tính. Không gian tuyến tính là một cấu trúc đại số dạng mô-đun gồm tập vectơ $V$, trường $\Bbb{P}$, phép cộng $+$ và phép nhân vô hướng (nhân với số).
@@ -40,14 +40,14 @@ Phép cộng trừ vectơ trong nhóm Abel ban đầu, cùng với phép nhân v
     
     Cần chú ý phân biệt theo ngữ cảnh.
 
-<span id="&#30452;&#35266;&#29702;&#35299;"></span>
+<span id="cách-hiểu-trực-quan"></span>
 ### Cách hiểu trực quan
 
 Nói không hoàn toàn chặt chẽ, nhân vô hướng tương ứng với một kiểu "**co giãn**"; phần tử trong trường cơ sở $\Bbb{P}$ biểu thị "**tỉ lệ**" co giãn đó; còn cộng vectơ tương ứng với "**chồng cộng**". Đồng thời, phần tử của $\Bbb{P}$ cũng biểu thị phạm vi giá trị của "**tọa độ**" của vectơ.
 
 Các điều kiện 1-4 mô tả quan hệ giữa "co giãn" và "chồng cộng". Có thể hiểu chúng thông qua các mũi tên trên mặt phẳng hai chiều.
 
-<span id="&#31616;&#21333;&#24615;&#36136;"></span>
+<span id="một-số-tính-chất-đơn-giản"></span>
 ### Một số tính chất đơn giản
 
 ???+ note "Ghi chú"
@@ -65,7 +65,7 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
     > Thật ra, luật khử của phép cộng là tính chất của nhóm Abel.
 
-<span id="&#20363;&#23376;"></span>
+<span id="ví-dụ"></span>
 ### Ví dụ
 
 1.  $\Bbb{P}^n$ với phép cộng và phép nhân trên trường số $\Bbb{P}$ tạo thành một không gian tuyến tính trên $\Bbb{P}$. Ví dụ $\Bbb{P}$ có thể là $\Bbb{R}$, $\Bbb{C}$, $\Bbb{N}_p$ ($p$ là số nguyên tố), v.v.
@@ -73,10 +73,10 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 3.  Vành đa thức một biến $\Bbb{P}[x]$ trên trường số $\Bbb{P}$ với phép cộng đa thức và nhân vô hướng tạo thành một không gian tuyến tính trên $\Bbb{P}$.
 4.  Tập tất cả hàm liên tục trên đoạn $[a,b]$ (ký hiệu $C[a,b]$) với "phép cộng hàm" và "nhân giá trị với hàm liên tục" tạo thành một không gian tuyến tính trên miền giá trị.
 
-<span id="&#30456;&#20851;&#27010;&#24565;"></span>
+<span id="các-khái-niệm-liên-quan"></span>
 ## Các khái niệm liên quan
 
-<span id="&#32447;&#24615;&#30456;&#20851;&#12289;&#32447;&#24615;&#26080;&#20851;"></span>
+<span id="phụ-thuộc-tuyến-tính-và-độc-lập-tuyến-tính"></span>
 ### Phụ thuộc tuyến tính và độc lập tuyến tính
 
 Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
@@ -102,7 +102,7 @@ Phần sau sẽ chỉ ra rằng biểu diễn tuyến tính ở đây cũng tư�
 
 Theo định nghĩa bên dưới, vectơ không chắc chắn nằm trong không gian ảnh. Nếu nhìn từ góc độ ánh xạ tuyến tính, phụ thuộc tuyến tính tương đương với việc có nhiều vectơ sau biến đổi đi tới vectơ không, còn độc lập tuyến tính tương đương với việc chỉ bản thân vectơ không đi tới vectơ không.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 #### Tính chất
 
 Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
@@ -113,7 +113,7 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 4.  Nếu vectơ $\beta$ có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$, thì cách biểu diễn là duy nhất khi và chỉ khi hệ vectơ $a_1,a_2,\dots,a_n$ độc lập tuyến tính.
 5.  Nếu hệ vectơ $a_1,a_2,\dots,a_n$ độc lập tuyến tính, thì vectơ $\beta$ có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$ khi và chỉ khi hệ vectơ $a_1,a_2,\dots,a_n,\beta$ phụ thuộc tuyến tính.
 
-<span id="&#26497;&#22823;&#32447;&#24615;&#26080;&#20851;&#32452;&#12289;&#31209;"></span>
+<span id="hệ-con-độc-lập-tuyến-tính-cực-đại-và-hạng"></span>
 ### Hệ con độc lập tuyến tính cực đại và hạng
 
 Phụ thuộc tuyến tính có thể hiểu là "dư thừa": bên trong hệ vectơ có một số vectơ có thể được biểu diễn bởi các vectơ khác, nên có thể xóa đi. Sau khi xóa hết phần dư thừa, phần còn lại là một hệ con độc lập tuyến tính cực đại.
@@ -147,7 +147,7 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
     Tương đương ma trận chỉ yêu cầu hạng bằng nhau, nên tương đương ma trận biểu thị rằng ma trận hoặc không gian phía trước có thể đi tới ma trận hoặc không gian phía sau thông qua một biến đổi khả nghịch.
 
-<span id="&#24615;&#36136;_1"></span>
+<span id="tính-chất-1"></span>
 #### Tính chất
 
 Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
@@ -166,14 +166,14 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
 5.  Các hệ vectơ tương đương có hạng bằng nhau.
 
-<span id="&#32447;&#24615;&#21253;"></span>
+<span id="bao-tuyến-tính"></span>
 ### Bao tuyến tính
 
 Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$, tập $\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$ cũng tạo thành một không gian tuyến tính, gọi là không gian tuyến tính **sinh bởi** hệ vectơ $a_1,a_2,\dots,a_n$ (hoặc **bao tuyến tính**), ký hiệu $\operatorname{span}\{a_1,a_2,\dots,a_n\}$.
 
 $n$ vectơ $a$ ở đây không nhất thiết độc lập tuyến tính.
 
-<span id="&#32447;&#24615;&#23376;&#31354;&#38388;"></span>
+<span id="không-gian-con-tuyến-tính"></span>
 ### Không gian con tuyến tính
 
 Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$, nếu hệ đại số $(V_1,+,\cdot,\Bbb{P})$ thỏa mãn:
@@ -193,7 +193,7 @@ Không khó để chứng minh: tập con không rỗng $V_1$ của không gian 
 1.  $\forall u,v\in V_1$,$u+v\in V_1$.
 2.  $\forall v\in V_1$,$\forall k\in \Bbb{P}$,$kv\in V_1$.
 
-<span id="&#20132;&#12289;&#21644;&#19982;&#30452;&#21644;&#12289;&#30452;&#31215;"></span>
+<span id="giao-tổng-tổng-trực-tiếp-và-tích-trực-tiếp"></span>
 ### Giao, tổng, tổng trực tiếp và tích trực tiếp
 
 Với các không gian tuyến tính $(V_1,+,\cdot,\Bbb{P})$ và $(V_2,+,\cdot,\Bbb{P})$:
@@ -219,7 +219,7 @@ Với các không gian tuyến tính $(V_1,+,\cdot,\Bbb{P})$ và $(V_2,+,\cdot,\
 
     Tương tự, có thể định nghĩa tích trực tiếp của nhiều không gian tuyến tính $\prod_{i=1}^m V_i$.
 
-<span id="&#20363;&#23376;_1"></span>
+<span id="ví-dụ-1"></span>
 #### Ví dụ
 
 Với không gian tuyến tính $V=\Bbb{R}^3$, xét các không gian tuyến tính:
@@ -237,7 +237,7 @@ Khi đó:
 4.  $V_2\oplus V_3=V_4$,$V_2\oplus V_4=V_3$,$V_3\oplus V_4=V_2$.
 5.  $V_2+V_3\leq V$.
 
-<span id="&#24615;&#36136;_2"></span>
+<span id="tính-chất-2"></span>
 #### Tính chất
 
 1.  Gọi $V_1,V_2,V_3$ là các không gian tuyến tính trên $\Bbb{P}$. Tương tự giao của tập hợp, giao của không gian tuyến tính thỏa mãn:
@@ -279,7 +279,7 @@ Khi đó:
         
         Suy ra $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, mâu thuẫn với điều kiện.
 
-<span id="&#21516;&#26500;"></span>
+<span id="đẳng-cấu"></span>
 ### Đẳng cấu
 
 Giả sử $V,V'$ đều là không gian tuyến tính trên trường $\Bbb{P}$. Nếu tồn tại song ánh $\sigma:V\mapsto V'$ bảo toàn phép cộng và nhân vô hướng, tức với $\forall u,v\in V$,$\forall k\in\Bbb{P}$ thỏa mãn:
@@ -292,7 +292,7 @@ thì $\sigma$ được gọi là **ánh xạ đẳng cấu** từ $V$ tới $V'$
 ???+ note "Ghi chú"
     Nếu $\sigma$ là đơn ánh thì có thể định nghĩa **đơn đồng cấu**; nếu $\sigma$ là toàn ánh thì có thể định nghĩa **toàn đồng cấu**.
 
-<span id="&#24615;&#36136;_3"></span>
+<span id="tính-chất-3"></span>
 #### Tính chất
 
 1.  Hai không gian tuyến tính trên trường $\Bbb{P}$ đẳng cấu khi và chỉ khi chúng có cùng số chiều. (Định nghĩa số chiều xem ở [cơ sở tuyến tính](./basis.md).)
@@ -301,7 +301,7 @@ thì $\sigma$ được gọi là **ánh xạ đẳng cấu** từ $V$ tới $V'$
     ???+ note "Ghi chú"
         Tính chất này cho thấy về cơ bản ta có thể xem tọa độ và vectơ như nhau.
 
-<span id="&#27431;&#27663;&#31354;&#38388;&#19982;&#32447;&#24615;&#31354;&#38388;&#30340;&#20851;&#31995;"></span>
+<span id="quan-hệ-giữa-không-gian-euclid-và-không-gian-tuyến-tính"></span>
 ## Quan hệ giữa không gian Euclid và không gian tuyến tính
 
 Lấy không gian Euclid ba chiều quen thuộc nhất làm ví dụ, một số khái niệm liên quan của nó tương ứng với không gian tuyến tính như bảng sau:
@@ -315,7 +315,7 @@ Lấy không gian Euclid ba chiều quen thuộc nhất làm ví dụ, một s�
 | Vectơ cơ sở                | [Cơ sở tuyến tính](./basis.md) |
 | Số chiều của không gian    | Số chiều của không gian |
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Từ phần này trở đi chủ yếu trình bày quan điểm "nhìn theo cột" đối với hệ phương trình tuyến tính.
@@ -330,7 +330,7 @@ $$
 
 Khi đó trong phép nhân ma trận, ma trận $A$ ở bên trái có thể được xem là một hệ vectơ, tức một hệ vectơ cột. Hệ vectơ cột này, với vai trò một hệ cơ sở, sinh ra một không gian; ta xét xem vectơ cột $b$ có nằm trong không gian đó hay không.
 
-<span id="&#25353;&#21015;&#30475;&#24453;&#32447;&#24615;&#26041;&#31243;&#32452;&#30340;&#35299;"></span>
+<span id="nhìn-nghiệm-của-hệ-phương-trình-tuyến-tính-theo-cột"></span>
 ### Nhìn nghiệm của hệ phương trình tuyến tính theo cột
 
 Hạng là số vectơ trong hệ con độc lập tuyến tính cực đại, đại diện cho "ràng buộc". Các vectơ còn lại đem lại bậc tự do cho nghiệm, tức cho phép gán các vectơ dư thừa ở những hướng khác.
@@ -343,7 +343,7 @@ $$
 
 Tập tất cả nghiệm của hệ phương trình cũng tạo thành một hệ vectơ; bậc tự do $S$ chính là hạng của hệ vectơ nghiệm của $Ax=0$, tức số chiều của không gian hạt nhân bên dưới.
 
-<span id="&#26041;&#31243;&#32452;&#30340;&#21516;&#35299;"></span>
+<span id="hệ-phương-trình-tương-đương-nghiệm"></span>
 ### Hệ phương trình tương đương nghiệm
 
 Nghiệm chung của hai hệ phương trình được định nghĩa là giao của hai tập nghiệm.
@@ -358,7 +358,7 @@ Tương đương ma trận không nhất thiết kéo theo tương đương hệ
 
 Nếu hệ vectơ tương ứng với ma trận là tương đương, thì sau khi chuyển vị ma trận, hệ phương trình tương ứng là tương đương nghiệm, và ngược lại.
 
-<span id="&#30697;&#38453;&#30340;&#26680;&#31354;&#38388;&#19982;&#20687;&#31354;&#38388;"></span>
+<span id="không-gian-hạt-nhân-và-không-gian-ảnh-của-ma-trận"></span>
 ### Không gian hạt nhân và không gian ảnh của ma trận
 
 Phần này trình bày không gian hạt nhân và không gian ảnh từ góc độ không gian tuyến tính.
@@ -397,7 +397,7 @@ Tương đương của hệ vectơ tương đương với việc không gian ả
 
 Tương đương nghiệm của hệ phương trình tương đương với việc không gian hàng $R(A^T)$ của ma trận tương ứng là như nhau.
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 1.  Qiu Weisheng, *Advanced Algebra (Vol. 2)*. Tsinghua University Press.
