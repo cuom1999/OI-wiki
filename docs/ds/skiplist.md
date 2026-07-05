@@ -6,10 +6,10 @@ chèn và xóa trong skip list đều là $O(\log n)$.
 
 ## Ý tưởng cơ bản
 
-Đúng như tên gọi, skip list là một cấu trúc dữ liệu tương tự danh sách liên kết.
+Về hình thức, skip list là một cấu trúc dữ liệu tương tự danh sách liên kết.
 Chính xác hơn, skip list là một cải tiến của danh sách liên kết có thứ tự.
 
-Để thuận tiện cho việc thảo luận, mọi danh sách liên kết có thứ tự bên dưới mặc định được sắp xếp theo thứ tự **tăng dần**.
+Trong phần dưới đây, mọi danh sách liên kết có thứ tự đều mặc định được sắp xếp theo thứ tự **tăng dần**.
 
 Thao tác tìm kiếm trên một danh sách liên kết có thứ tự bắt đầu từ đầu danh sách
 và so sánh từng phần tử,
@@ -50,7 +50,7 @@ Do $p$ là hằng số,
 
 Trong trường hợp xấu nhất,
 danh sách liên kết có thứ tự ở mỗi tầng đều bằng danh sách liên kết có thứ tự ban đầu,
-tức **độ phức tạp không gian tệ nhất** của skip list là $O(n \log n)$.
+tức **độ phức tạp không gian trong trường hợp xấu nhất** của skip list là $O(n \log n)$.
 
 ### Độ phức tạp thời gian
 
@@ -102,11 +102,11 @@ nên **độ phức tạp thời gian kỳ vọng** của truy vấn trên skip 
 Trong trường hợp xấu nhất,
 danh sách liên kết có thứ tự ở mỗi tầng đều bằng danh sách liên kết có thứ tự ban đầu.
 Khi đó, quá trình tìm kiếm tương đương với truy vấn trên danh sách liên kết có thứ tự ở tầng cao nhất,
-tức **độ phức tạp thời gian tệ nhất** của thao tác truy vấn trên skip list là $O(n)$.
+tức **độ phức tạp thời gian trong trường hợp xấu nhất** của thao tác truy vấn trên skip list là $O(n)$.
 
-Thao tác chèn và thao tác xóa đều là quá trình thực hiện một lượt truy vấn,
+Thao tác chèn và thao tác xóa đều bắt đầu bằng một lượt truy vấn,
 ghi lại các nút cần sửa đổi trên đường đi,
-rồi cuối cùng hoàn tất việc sửa đổi.
+rồi hoàn tất việc sửa đổi.
 Ở mỗi tầng nhiều nhất chỉ cần sửa đổi một nút.
 Lại do số tầng kỳ vọng của skip list là $\log_{\frac{1}{p}}n$,
 nên **độ phức tạp thời gian kỳ vọng** của thao tác chèn và xóa cũng là $O(\log n)$.
@@ -115,7 +115,7 @@ nên **độ phức tạp thời gian kỳ vọng** của thao tác chèn và x�
 
 ### Lấy số tầng tối đa của nút
 
-Mô phỏng việc tăng thêm một tầng với xác suất $p$, cuối cùng lấy giá trị nhỏ hơn giữa kết quả và giới hạn trên.
+Mô phỏng việc tăng thêm một tầng với xác suất $p$, sau đó lấy giá trị nhỏ hơn giữa kết quả và giới hạn trên.
 
 ```cpp
 int randomLevel() {
@@ -252,7 +252,7 @@ bool erase(const K &key) {
 
 ### Mã hoàn chỉnh
 
-Đoạn mã sau là một `map` được cài đặt bằng skip list. Mã chưa được kiểm thử nghiêm túc, chỉ dùng để tham khảo.
+Đoạn mã sau là một `map` được cài đặt bằng skip list. Mã chỉ dùng để tham khảo và chưa được kiểm thử đầy đủ.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -452,11 +452,13 @@ lớn hơn hoặc bằng $k$, rồi đi xuống tầng dưới.
 Lặp lại quá trình này cho đến khi đến tầng thứ nhất và không thể tiếp tục thao tác.
 Lúc này, nút hiện tại chính là nút thứ $k$ trong skip list.
 
-Như vậy, có thể truy cập nhanh phần tử thứ $k$ của skip list.
+Như vậy, thao tác truy cập phần tử thứ $k$ của skip list cũng có thể thực hiện nhanh.
 Có thể chứng minh rằng độ phức tạp thời gian của thao tác này là $O(\log n)$.
 
 ## Tài liệu tham khảo
 
-1.  [Skip Lists: A Probabilistic Alternative to Balanced Trees](https://15721.courses.cs.cmu.edu/spring2018/papers/08-oltpindexes1/pugh-skiplists-cacm1990.pdf)
+1.  [Skip Lists: A Probabilistic Alternative to Balanced Trees][skip-lists-paper]
 2.  [Skip List](https://en.wikipedia.org/wiki/Skip_list)
 3.  [A Skip List Cookbook](http://cglab.ca/~morin/teaching/5408/refs/p90b.pdf)
+
+[skip-lists-paper]: https://15721.courses.cs.cmu.edu/spring2018/papers/08-oltpindexes1/pugh-skiplists-cacm1990.pdf
