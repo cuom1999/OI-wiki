@@ -4,7 +4,7 @@ Nhớ lại khái niệm vectơ cơ sở trong hình học không gian ở bậc
 
 Không gian Euclid ba chiều là một trường hợp đặc biệt của [không gian tuyến tính](./vector-space.md); vectơ cơ sở của không gian Euclid ba chiều được khái quát trong không gian tuyến tính thành cơ sở tuyến tính.
 
-Trong OI, các ứng dụng liên quan đến cơ sở tuyến tính thường chỉ xét hai loại không gian tuyến tính: không gian tuyến tính thực $n$ chiều $\mathbf{R}^n$ và không gian tuyến tính $n$ chiều trên [trường Boolean](https://en.wikipedia.org/wiki/Boolean_domain) $\mathbf{Z}_2^n$. Chúng ta sẽ giới thiệu chi tiết trong phần [ứng dụng](#%E5%BA%94%E7%94%A8). Nếu chưa quen với đại số tuyến tính, bạn nên bắt đầu đọc từ phần ứng dụng.
+Trong OI, các ứng dụng liên quan đến cơ sở tuyến tính thường chỉ xét hai loại không gian tuyến tính: không gian tuyến tính thực $n$ chiều $\mathbf{R}^n$ và không gian tuyến tính $n$ chiều trên [trường Boolean](https://en.wikipedia.org/wiki/Boolean_domain) $\mathbf{Z}_2^n$. Chúng ta sẽ giới thiệu chi tiết trong phần [ứng dụng](#ứng-dụng). Nếu chưa quen với đại số tuyến tính, bạn nên bắt đầu đọc từ phần ứng dụng.
 
 Phần dưới sẽ xuất phát từ không gian tuyến tính tổng quát để giới thiệu cơ sở tuyến tính và nêu các tính chất thường gặp của nó.
 
@@ -12,7 +12,7 @@ Kiến thức chuẩn bị: [không gian tuyến tính](./vector-space.md).
 
 Cơ sở tuyến tính là một bộ cơ sở của không gian tuyến tính, là công cụ quan trọng để nghiên cứu không gian tuyến tính.
 
-<span id="&#23450;&#20041;"></span>
+<span id="định-nghĩa"></span>
 ## Định nghĩa
 
 Một hệ con độc lập tuyến tính cực đại của không gian tuyến tính $V$ được gọi là một **cơ sở Hamel** hoặc **cơ sở tuyến tính** của $V$, gọi tắt là **cơ sở**.
@@ -21,7 +21,7 @@ Quy ước rằng cơ sở của không gian tuyến tính $\{\theta\}$ là tậ
 
 Có thể chứng minh mọi không gian tuyến tính đều tồn tại cơ sở tuyến tính[^existence_basis]. Ta định nghĩa **số chiều** của không gian tuyến tính $V$ là số phần tử (hoặc lực lượng) của một cơ sở tuyến tính, ký hiệu $\dim V$.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất"></span>
 ## Tính chất
 
 1.  Với không gian tuyến tính hữu hạn chiều $V$, giả sử số chiều của nó là $n$, khi đó:
@@ -71,7 +71,7 @@ Có thể chứng minh mọi không gian tuyến tính đều tồn tại cơ s�
     ???+ note "Ghi chú"
         Hai mệnh đề 1 và 3 có thể được mở rộng sang không gian tuyến tính vô hạn chiều.
 
-<span id="&#20363;&#23376;"></span>
+<span id="ví-dụ"></span>
 ## Ví dụ
 
 Xét các cơ sở của $\Bbb{R}^2$.
@@ -100,16 +100,16 @@ Xét các cơ sở của $\Bbb{R}^2$.
 
     $u,v,w$ không phải là một cơ sở, vì $u+4v+6w=\theta$.
 
-<span id="&#27491;&#20132;&#22522;&#19982;&#21333;&#20301;&#27491;&#20132;&#22522;"></span>
+<span id="cơ-sở-trực-giao-và-cơ-sở-trực-chuẩn"></span>
 ## Cơ sở trực giao và cơ sở trực chuẩn
 
 Nếu một cơ sở $B$ của không gian tuyến tính $V$ thỏa mãn $\forall b,b'\in B,~(b,b')\ne 0\iff b=b'$ (tức các vectơ đôi một trực giao), thì cơ sở này được gọi là **cơ sở trực giao**.
 
 Nếu một cơ sở trực giao $B$ của không gian tuyến tính $V$ còn thỏa mãn $\forall b\in B,~|b|=\sqrt{(b,b)}=1$, thì cơ sở này được gọi là **cơ sở trực chuẩn**.
 
-Mọi cơ sở của không gian tuyến tính hữu hạn chiều $V$ đều có thể được biến đổi thành cơ sở trực giao bằng [trực giao hóa Schmidt](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process).
+Mọi cơ sở của không gian tuyến tính hữu hạn chiều $V$ đều có thể được biến đổi thành cơ sở trực giao bằng [trực giao hóa Schmidt](https://en.wikipedia.org/wiki/Gram–Schmidt_process).
 
-<span id="&#24212;&#29992;"></span>
+<span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Từ các nội dung phía trước, ta có thể dùng cơ sở tuyến tính để:
@@ -150,12 +150,12 @@ Ta có thể dùng cơ sở tuyến tính XOR để:
 3.  Tìm giá trị XOR lớn nhất/nhỏ nhất/lớn thứ $k$/nhỏ thứ $k$ của các tập con của một tập số.
 4.  Tìm thứ hạng của một số trong các giá trị XOR của các tập con của một tập số.
 
-<span id="&#26500;&#36896;&#26041;&#27861;"></span>
+<span id="phương-pháp-xây-dựng"></span>
 ### Phương pháp xây dựng
 
 Vì cơ sở tuyến tính XOR và cơ sở tuyến tính thực không khác nhau về bản chất, phần tiếp theo sẽ lấy cơ sở tuyến tính XOR làm ví dụ; phiên bản mã cho cơ sở tuyến tính thực chỉ cần sửa đổi đơn giản.
 
-<span id="&#36138;&#24515;&#27861;"></span>
+<span id="phương-pháp-tham-lam"></span>
 #### Phương pháp tham lam
 
 Với mỗi số $p$ trong tập ban đầu, chuyển nó sang dạng nhị phân và quét từ bit cao xuống bit thấp. Với bit thứ $x$ bằng $1$, nếu $a_x$ chưa tồn tại thì gán $a_x \leftarrow p$ và kết thúc quét; nếu đã tồn tại thì gán $p\leftarrow p~\text{xor}~a_x$.
@@ -173,7 +173,7 @@ Giá trị nhỏ nhất của XOR của một số phần tử bất kỳ trong 
     --8<-- "docs/math/code/basis/basis_1.cpp"
     ```
 
-<span id="&#39640;&#26031;&#28040;&#20803;&#27861;"></span>
+<span id="phương-pháp-khử-gauss"></span>
 #### Phương pháp khử Gauss
 
 Phương pháp khử Gauss tương đương với việc xây dựng cơ sở tuyến tính từ góc độ hệ phương trình tuyến tính, nên tính đúng đắn là hiển nhiên.
@@ -183,7 +183,7 @@ Phương pháp khử Gauss tương đương với việc xây dựng cơ sở tu
     --8<-- "docs/math/code/basis/basis_2.cpp"
     ```
 
-<span id="&#24615;&#36136;_1"></span>
+<span id="tính-chất-1"></span>
 ### Tính chất
 
 Cơ sở tuyến tính xây dựng bằng phương pháp tham lam có các tính chất sau:
@@ -250,29 +250,29 @@ Cơ sở tuyến tính sinh bởi phương pháp khử Gauss:
 
 Với các bài toán kinh điển khác như truy vấn một số có thể được XOR ra hay không, truy vấn số lớn thứ $k$ có thể được XOR ra, v.v., cơ sở tuyến tính thu được từ khử Gauss cũng giải quyết thuận tiện hơn.
 
-<span id="&#26102;&#38388;&#22797;&#26434;&#24230;"></span>
+<span id="độ-phức-tạp-thời-gian"></span>
 ### Độ phức tạp thời gian
 
 Giả sử độ dài vectơ là $n$, tổng số vectơ là $m$, khi đó độ phức tạp thời gian là $O(nm)$. Hằng số của phương pháp khử Gauss lớn hơn một chút.
 
 Nếu là cơ sở tuyến tính thực, độ phức tạp thời gian là $O(n^2m)$.
 
-<span id="&#32447;&#24615;&#22522;&#21512;&#24182;"></span>
+<span id="hợp-nhất-cơ-sở-tuyến-tính"></span>
 ### Hợp nhất cơ sở tuyến tính
 
 Việc hợp nhất cơ sở tuyến tính chỉ cần xử lý trực tiếp: chèn thô toàn bộ cơ sở tuyến tính cần hợp nhất vào cơ sở tuyến tính còn lại. Độ phức tạp cho một lần hợp nhất là $O(n^2)$ (cơ sở tuyến tính XOR) hoặc $O(n^3)$ (cơ sở tuyến tính thực).
 
-<span id="&#32447;&#24615;&#22522;&#27714;&#20132;"></span>
+<span id="tìm-giao-của-cơ-sở-tuyến-tính"></span>
 ### Tìm giao của cơ sở tuyến tính
 
 Nói chặt chẽ, tìm giao của cơ sở tuyến tính là tìm một cơ sở tuyến tính của giao của hai không gian tuyến tính do chúng sinh ra. Phần này giới thiệu hai thuật toán. Cả hai thuật toán đều có độ phức tạp cho một lần tìm giao là $O(n^2)$ (cơ sở tuyến tính XOR) hoặc $O(n^3)$ (cơ sở tuyến tính thực).
 
-<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+<span id="thuật-toán-đơn-giản"></span>
 #### Thuật toán đơn giản
 
 Giả sử hai cơ sở tuyến tính cần tìm giao lần lượt là $\alpha$ và $\beta$. Thuật toán tìm giao của cơ sở tuyến tính chỉ cần điều chỉnh thuật toán hợp nhất thô cơ sở tuyến tính như sau (lấy cơ sở tuyến tính XOR làm ví dụ):
 
--   Thử chèn vectơ $\beta_j$ trong cơ sở tuyến tính $\beta$ vào $\alpha$ bằng [phương pháp tham lam](#%E8%B4%AA%E5%BF%83%E6%B3%95), đồng thời khởi tạo giao $\gamma$ của các cơ sở tuyến tính là tập rỗng.
+-   Thử chèn vectơ $\beta_j$ trong cơ sở tuyến tính $\beta$ vào $\alpha$ bằng [phương pháp tham lam](#phương-pháp-tham-lam), đồng thời khởi tạo giao $\gamma$ của các cơ sở tuyến tính là tập rỗng.
 -   Khi chèn, cần ghi lại đóng góp của các phần tử trong cơ sở tuyến tính $\beta$ vào vectơ đang chèn. Cụ thể, duy trì một vectơ mới $b$, khởi tạo bằng $\beta_j$; hơn nữa, nếu vectơ đang chèn đã XOR với vectơ ở bit thứ $x$ trong cơ sở tuyến tính, thì đóng góp $b$ cũng phải XOR một lần với đóng góp $b_x$ được ghi ở bit thứ $x$.
 -   Nếu chèn thành công, tức đã chèn vectơ $\beta_j'$ vào bit thứ $x$ của cơ sở tuyến tính, thì đổi $b_x$ được ghi ở bit thứ $x$ thành đóng góp $b$ của các phần tử trong cơ sở tuyến tính $\beta$ trong quá trình thu được $\beta_j'$.
 -   Nếu chèn không thành công, thì chèn đóng góp $b$ của các phần tử trong cơ sở tuyến tính $\beta$ đã ghi trong quá trình đó vào $\gamma$.
@@ -315,7 +315,7 @@ Mã mẫu cho bài toán mẫu như sau:
     --8<-- "docs/math/code/basis/basis_intersect_1.cpp"
     ```
 
-<span id="Zassenhaus &#31639;&#27861;"></span>
+<span id="thuật-toán-zassenhaus"></span>
 #### Thuật toán Zassenhaus
 
 Một cách làm tương đương khác là thuật toán Zassenhaus; nó cũng có thể tính đồng thời tổng và giao của hai cơ sở tuyến tính. Độ phức tạp hoàn toàn giống phần trên.
@@ -327,7 +327,7 @@ Các bước cụ thể như sau:
 -   Chèn mỗi phần tử $\beta_j$ trong $\beta$ vào $\gamma$ dưới dạng $(\beta_j,0)$.
 -   Trong tất cả phần tử khác không $(c_k,d_k)$ của cơ sở tuyến tính $\gamma$ cuối cùng, tập các thành phần $c_k$ của những vectơ có $c_k$ khác không tạo thành cơ sở tuyến tính của tổng của $\alpha$ và $\beta$; tập các thành phần $d_k$ của những vectơ có $c_k$ bằng không tạo thành cơ sở tuyến tính của giao của $\alpha$ và $\beta$.
 
-Phương pháp xây dựng cơ sở tuyến tính trong thuật toán có thể là [phương pháp tham lam](#%E8%B4%AA%E5%BF%83%E6%B3%95) hoặc [phương pháp khử Gauss](#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%B3%95), miễn là đảm bảo cơ sở tuyến tính trong $\gamma$ tạo thành một ma trận bậc thang theo hàng.
+Phương pháp xây dựng cơ sở tuyến tính trong thuật toán có thể là [phương pháp tham lam](#phương-pháp-tham-lam) hoặc [phương pháp khử Gauss](#phương-pháp-khử-gauss), miễn là đảm bảo cơ sở tuyến tính trong $\gamma$ tạo thành một ma trận bậc thang theo hàng.
 
 So sánh các bước khử trong thuật toán Zassenhaus với thuật toán đơn giản phía trên, rất dễ thấy thuật toán Zassenhaus dựa trên tham lam tương đương với thuật toán đơn giản duy trì đóng góp của các phần tử trong $\alpha$. Nếu chuyển sang chèn trước tất cả $(\alpha_i,0)$, rồi chèn tất cả $(\beta_j,\beta_j)$, thì thuật toán Zassenhaus dựa trên tham lam tương đương với thuật toán đơn giản duy trì đóng góp của các phần tử trong $\beta$. Từ tính tương đương của các bước khử, tính đúng đắn của thuật toán Zassenhaus cũng được đảm bảo.
 
@@ -348,7 +348,7 @@ Ngoài ra, ta cũng có thể đưa ra một chứng minh đại số độc l�
     \end{aligned}
     $$
     
-    Theo [các định lý liên quan của ánh xạ tuyến tính](./linear-mapping.md#%E7%BA%BF%E6%80%A7%E6%98%A0%E5%B0%84%E7%9A%84%E6%A0%B8%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%83%8F%E7%A9%BA%E9%97%B4), có $\dim H = \dim\pi(H)+\dim\ker\pi = \dim(U+W)+\dim(U\cap W)$.
+    Theo [các định lý liên quan của ánh xạ tuyến tính](./linear-mapping.md#không-gian-hạt-nhân-và-không-gian-ảnh-của-ánh-xạ-tuyến-tính), có $\dim H = \dim\pi(H)+\dim\ker\pi = \dim(U+W)+\dim(U\cap W)$.
     
     Các cột đầu của một ma trận bậc thang theo hàng vẫn là một ma trận bậc thang theo hàng, nên số hàng có $c_k\neq 0$ đúng bằng hạng hàng của $\alpha\cup\beta$, tức $\dim(U+W)$; hơn nữa, tập các $c_k$ trong những hàng này tạo thành một cơ sở của $U+W$. Các hàng khác không còn lại đúng bằng $\dim(U\cap W)$ hàng và đều thỏa mãn $c_k=0$. Với các $d_k$ trong những hàng này, vì $(0,d_k)\in\ker\pi$, nên $d_k\in U\cap W$; hơn nữa, các $(0,d_k)$ là các hàng của một ma trận bậc thang theo hàng nên nhất định độc lập tuyến tính. Tổng hợp lại, các $d_k$ này là một hệ độc lập tuyến tính trong không gian giao $U\cap W$ có kích thước $\dim(U\cap W)$, nên chắc chắn là một cơ sở của không gian đó.
 
@@ -361,7 +361,7 @@ Mã mẫu cho bài toán mẫu như sau:
 
 Chú ý rằng khi xuất, chỉ cần xét những vectơ có $n$ bit đầu đều bằng không.
 
-<span id="&#25299;&#23637;&#65306;&#21069;&#32512;&#32447;&#24615;&#22522;"></span>
+<span id="mở-rộng-cơ-sở-tuyến-tính-tiền-tố"></span>
 ### Mở rộng: cơ sở tuyến tính tiền tố
 
 Phần này chỉ thảo luận trường hợp cơ sở tuyến tính XOR, đồng thời giả sử một vectơ đơn lẻ có thể lưu trong không gian $O(1)$, và độ phức tạp của mỗi thao tác luôn là $O(1)$.
@@ -378,7 +378,7 @@ $$
 
 Biểu thức này chỉ là cách viết hình thức cho mô tả ở đoạn trước. Nó gợi ý rằng để duy trì dấu thời gian của mỗi vectơ $v$ trong cơ sở tuyến tính, ta chỉ cần tham lam chọn vectơ mới nhất có thể để thay thế vectơ cũ.
 
-Dựa trên [phương pháp tham lam](#%E8%B4%AA%E5%BF%83%E6%B3%95) xây dựng cơ sở tuyến tính đã nêu ở trên, cơ sở tuyến tính tiền tố điều chỉnh quá trình xây dựng như sau:
+Dựa trên [phương pháp tham lam](#phương-pháp-tham-lam) xây dựng cơ sở tuyến tính đã nêu ở trên, cơ sở tuyến tính tiền tố điều chỉnh quá trình xây dựng như sau:
 
 -   Với mỗi vectơ $a_x$ được giữ trong cơ sở tuyến tính, lưu thêm một dấu thời gian $t_x$, ban đầu đều đặt là $0$.
 -   Khi thêm vectơ thứ $i$ của dãy, gọi là $v$, vẫn quét từ bit cao xuống bit thấp, nhưng đồng thời cần ghi lại thời gian hiện tại $i$.
@@ -386,7 +386,7 @@ Dựa trên [phương pháp tham lam](#%E8%B4%AA%E5%BF%83%E6%B3%95) xây dựng 
     -   Nếu $i>t_x$, tức vectơ cần thêm có thời gian muộn hơn, đặt $a_x$ thành $v$, cập nhật dấu thời gian thành $i$, rồi tiếp tục quá trình thêm với kết quả XOR của $a_x$ cũ và $v$, tức $a_x\oplus v$, theo thời gian $t_x$ đã ghi trước đó.
     -   Nếu $i<t_x$, tức vectơ cần thêm có thời gian sớm hơn, không cập nhật $a_x$ và $t_x$, chỉ cần XOR $v$ với $a_x$ rồi tiếp tục thêm.
 
-Nói cách khác, nếu bit hiện tại có thể được biểu diễn bằng vectơ mới hơn, thì dùng trực tiếp vectơ mới hơn; nếu không, giữ lại vectơ ban đầu. Khi cập nhật vectơ ở vị trí $x$, không được lưu kết quả XOR $a_x\oplus v$ vào vị trí $x$, vì dấu thời gian của kết quả XOR $a_x\oplus v$ là $\min\{t(a_x)=t(v)\}=t(a_x)$, nhỏ hơn dấu thời gian $t(v)$ của biến cần thêm $v$. Cũng vì lý do này, bước cập nhật ngược lên trên trong quá trình xây dựng cơ sở tuyến tính bằng [phương pháp khử Gauss](#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%B3%95) có thể phá hỏng tính chất dấu thời gian, nên không còn phù hợp để xây dựng cơ sở tuyến tính tiền tố.
+Nói cách khác, nếu bit hiện tại có thể được biểu diễn bằng vectơ mới hơn, thì dùng trực tiếp vectơ mới hơn; nếu không, giữ lại vectơ ban đầu. Khi cập nhật vectơ ở vị trí $x$, không được lưu kết quả XOR $a_x\oplus v$ vào vị trí $x$, vì dấu thời gian của kết quả XOR $a_x\oplus v$ là $\min\{t(a_x)=t(v)\}=t(a_x)$, nhỏ hơn dấu thời gian $t(v)$ của biến cần thêm $v$. Cũng vì lý do này, bước cập nhật ngược lên trên trong quá trình xây dựng cơ sở tuyến tính bằng [phương pháp khử Gauss](#phương-pháp-khử-gauss) có thể phá hỏng tính chất dấu thời gian, nên không còn phù hợp để xây dựng cơ sở tuyến tính tiền tố.
 
 Mã mẫu cho bài toán mẫu như sau:
 
@@ -397,7 +397,7 @@ Mã mẫu cho bài toán mẫu như sau:
 
 Nếu cần truy vấn trực tuyến, cũng có thể dùng không gian $O(mn)$ để lưu lại cơ sở tuyến tính tiền tố tại mỗi tiền tố rồi truy vấn; cách này có thể xem như một cơ sở tuyến tính "khả bền vững". Nếu cần dùng các tính chất của cơ sở tuyến tính thu được từ khử Gauss, có thể xử lý riêng khi truy vấn.
 
-<span id="&#32451;&#20064;&#39064;"></span>
+<span id="bài-tập"></span>
 ### Bài tập
 
 -   [Luogu P3812 Template: Linear Basis](https://www.luogu.com.cn/problem/P3812)
@@ -411,7 +411,7 @@ Nếu cần truy vấn trực tuyến, cũng có thể dùng không gian $O(mn)$
 -   [Codeforces 1100F Ivan and Burgers](https://codeforces.com/problemset/problem/1100/F)
 -   [Luogu P3292 [SCOI2016] Lucky Numbers](https://www.luogu.com.cn/problem/P3292)
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
 1.  Qiu Weisheng, *Advanced Algebra (Vol. 2)*. Tsinghua University Press.
