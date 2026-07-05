@@ -27,7 +27,7 @@ tại mỗi nút, $\mathrm{dist}$ của con trái luôn lớn hơn hoặc bằng
 Do đó, $\mathrm{dist}$ của mỗi nút trong cây lệch trái đều bằng $\mathrm{dist}$ của con phải cộng một.
 
 Cần lưu ý rằng $\mathrm{dist}$ không phải là độ sâu.
-**Độ sâu của cây lệch trái không được bảo đảm**; một chuỗi chỉ đi về bên trái vẫn thỏa mãn định nghĩa cây lệch trái.
+**Độ sâu của cây lệch trái không có cận bảo đảm**; một chuỗi chỉ đi về bên trái vẫn thỏa mãn định nghĩa cây lệch trái.
 
 <span id="thao-tác-cốt-lõi-hợp-nhất-merge"></span>
 
@@ -144,7 +144,7 @@ Nếu không thỏa tính chất lệch trái thì đổi chỗ hai con; khi $\m
 
 #### Chứng minh độ phức tạp
 
-Trước hết xét quá trình `merge`: mỗi lần gọi đều làm cho $x$ hoặc $y$ đi xuống một tầng. Trong tình huống cực đoan nhất,
+Trước hết xét quá trình `merge`: mỗi lần gọi đều làm cho $x$ hoặc $y$ đi xuống một tầng. Trong trường hợp cực đoan nhất,
 quá trình luôn đi theo nút phải của cây lệch trái, tức nút có $\mathrm{dist}$ nhỏ nhất; khi đó $\mathrm{dist}$ giảm $1$.
 
 Tiếp theo xét quá trình `pushup`. Gọi nút hiện tại mà `pushup` đang xử lý là $x$, cha của nó là $y$.
@@ -164,7 +164,7 @@ $O(\log n)$.
 
 ### Cộng/trừ một giá trị cho toàn bộ heap, nhân với một số dương
 
-Thực ra, mọi thao tác có thể gắn đánh dấu lười mà không làm thay đổi thứ tự tương đối đều xử lý được.
+Nhìn chung, mọi thao tác có thể gắn đánh dấu lười mà không làm thay đổi thứ tự tương đối đều xử lý được.
 
 Gắn đánh dấu ở gốc; khi xóa gốc hoặc hợp nhất heap, tức khi cần truy cập con, thì đẩy đánh dấu xuống:
 
@@ -239,9 +239,9 @@ Cần chú ý:
 1.  Trước khi hợp nhất, cần kiểm tra xem hai nút đã ở trong cùng một heap hay chưa.
 
 2.  Độ sâu của cây lệch trái có thể đạt $O(n)$, vì vậy muốn tìm đỉnh heap chứa một điểm thì phải dùng DSU để duy trì,
-    không thể nhảy cha trực tiếp theo cách vét cạn.
+    không thể nhảy cha trực tiếp bằng vét cạn.
     Dù dữ liệu của nhiều bài khá yếu và nhảy cha vét cạn vẫn có thể qua,
-    khi dùng DSU để duy trì gốc cần bảo đảm gốc cũ trỏ tới gốc mới, còn gốc mới trỏ tới chính nó.
+    khi dùng DSU để duy trì gốc cần giữ cho gốc cũ trỏ tới gốc mới, còn gốc mới trỏ tới chính nó.
 
 ??? note "Mã tham khảo cho Trò chơi La Mã"
     ```cpp
@@ -257,7 +257,7 @@ Cần chú ý:
 [JLOI2015 Chiếm thành trì](https://loj.ac/problem/2107)
 
 Trong dạng bài này, thường mỗi nút duy trì một heap, hợp nhất với các con, rồi tùy đề mà pop, sửa đổi và tính đáp án.
-Cách xử lý này khá giống các bài hợp nhất cây phân đoạn.
+Cách xử lý này gần giống các bài hợp nhất cây phân đoạn.
 
 ??? note "Mã tham khảo cho Chiếm thành trì"
     ```cpp
@@ -309,11 +309,12 @@ Vì vậy, các thao tác lần lượt như sau:
 ### [BOI2004 Sequence Dãy số](https://www.luogu.com.cn/problem/P4331)
 
 Đây là một bài được trình bày trong luận văn; xem chi tiết tại
-[Huang Yuanhe - Đặc điểm và ứng dụng của cây lệch
-trái](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2005%E8%AE%BA%E6%96%87%E9%9B%86/%E9%BB%84%E6%BA%90%E6%B2%B3--%E5%B7%A6%E5%81%8F%E6%A0%91%E7%9A%84%E7%89%B9%E7%82%B9%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/%E9%BB%84%E6%BA%90%E6%B2%B3.pdf).
+[Huang Yuanhe - Đặc điểm và ứng dụng của cây lệch trái][huang-leftist-tree].
 
 <span id="tài-liệu-tham-khảo"></span>
 
 ## Tài liệu tham khảo
 
 [^ref1]: [Self-Adjusting Heaps](https://epubs.siam.org/doi/10.1137/0215004)
+
+[huang-leftist-tree]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2005%E8%AE%BA%E6%96%87%E9%9B%86/%E9%BB%84%E6%BA%90%E6%B2%B3--%E5%B7%A6%E5%81%8F%E6%A0%91%E7%9A%84%E7%89%B9%E7%82%B9%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/%E9%BB%84%E6%BA%90%E6%B2%B3.pdf
