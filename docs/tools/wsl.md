@@ -122,10 +122,10 @@ Tải và cài [gói cập nhật WSL2 Linux kernel dành cho máy x64](https://
 #### Thiết lập phiên bản WSL mặc định
 
 Trong phần lớn trường hợp, nên dùng WSL 2.
-Sự khác biệt giữa WSL 1 và WSL 2 xem tại [So sánh WSL 2 và WSL 1](https://docs.microsoft.com/zh-cn/windows/wsl/compare-versions).
+Sự khác biệt giữa WSL 1 và WSL 2 xem tại [So sánh WSL 2 và WSL 1](https://learn.microsoft.com/en-us/windows/wsl/compare-versions).
 
 ??? note "Về systemd"
-    WSL 1 hoàn toàn không hỗ trợ systemd (nghĩa là một số chức năng cần systemd sẽ không thể dùng hoặc cần phương án thay thế). WSL 2 đã tích hợp sẵn hỗ trợ systemd. Nếu cần dùng systemd mà bản phân phối hiện tại chưa được cấu hình để bật systemd, có thể tham khảo [cấu hình nâng cao trong WSL](https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config#systemd-support).
+    WSL 1 hoàn toàn không hỗ trợ systemd (nghĩa là một số chức năng cần systemd sẽ không thể dùng hoặc cần phương án thay thế). WSL 2 đã tích hợp sẵn hỗ trợ systemd. Nếu cần dùng systemd mà bản phân phối hiện tại chưa được cấu hình để bật systemd, có thể tham khảo [cấu hình nâng cao trong WSL](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#systemd-support).
 
 ```powershell
 # Đặt phiên bản WSL mặc định thành WSL 2
@@ -136,7 +136,7 @@ wsl --set-default-version 2
 
 ![Trang tìm kiếm](./images/wsl-search-page.png)
 
-Vào Microsoft Store, tìm "Ubuntu", sau đó chọn "Ubuntu" và nhấp "Install" để cài đặt. Cũng có thể mở [trang Store của Ubuntu](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6).
+Vào Microsoft Store, tìm "Ubuntu", sau đó chọn "Ubuntu" và nhấp "Install" để cài đặt. Cũng có thể mở [trang Store của Ubuntu](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6).
 
 ???+ warning "Warning"
     Ubuntu trong Microsoft Store sẽ cập nhật theo Ubuntu, vì vậy nội dung có thể thay đổi. Nếu muốn có bản Ubuntu hỗ trợ dài hạn ổn định, có thể cài phiên bản LTS của Ubuntu trong Microsoft Store.
@@ -220,18 +220,18 @@ exit
 $
 ```
 
-### Cài môi trường tiếng Trung
+### Cài locale tiếng Việt
 
 ```console
-# apt install language-pack-zh-hans -y
+# apt install language-pack-vi -y
 # apt install fontconfig -y
-# apt install fonts-noto-cjk fonts-wqy-microhei fonts-wqy-zenhei -y # Phông chữ tiếng Trung
+# apt install fonts-noto-core -y # Phông chữ hỗ trợ tốt tiếng Việt
 # dpkg-reconfigure locales
 ```
 
-Lúc này sẽ vào một menu thiết lập; không cần chỉnh gì, cứ nhấn Enter.
+Lúc này sẽ vào một menu thiết lập. Hãy bảo đảm `vi_VN.UTF-8` được chọn; nếu vẫn muốn giữ môi trường dòng lệnh tiếng Anh, có thể chọn thêm `en_US.UTF-8`.
 
-Trong menu tiếp theo, chọn `zh_CN.UTF-8` rồi nhấn Enter.
+Trong menu tiếp theo, chọn `vi_VN.UTF-8` rồi nhấn Enter.
 
 <!-- scripts.linter.preprocess.fix_details off -->
 
@@ -241,23 +241,14 @@ Trong menu tiếp theo, chọn `zh_CN.UTF-8` rồi nhấn Enter.
                  None
                  C.UTF-8
                  en_US.UTF-8
-                [zh_CN.UTF-8]
+                [vi_VN.UTF-8]
 
             <Ok>            <Cancel>
 ```
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Sau đó đóng WSL rồi khởi động lại, hệ thống sẽ chuyển sang tiếng Trung.
-
-Tiếp tục nhập lần lượt các lệnh sau để thay trang trợ giúp `man` bằng tiếng Trung.[^ref6]
-
-```console
-# apt install manpages-zh
-# sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
-```
-
-Có thể dùng `man help` để kiểm tra.
+Sau đó đóng WSL rồi khởi động lại. Có thể dùng lệnh `locale` để kiểm tra locale hiện tại. Trang trợ giúp `man` thường vẫn là tiếng Anh; điều này thuận tiện hơn khi tra cứu thông báo lỗi và tài liệu kỹ thuật.
 
 ### Cài môi trường biên dịch[^ref7]
 
@@ -268,7 +259,7 @@ Có thể dùng `man help` để kiểm tra.
 Việc cài GUIDE xem tại [Cài GUIDE trên Debian hoặc Ubuntu](./editor/guide.md#cài-đặt-trên-debian-hoặc-ubuntu).
 
 Ở đây cài đặt môi trường cơ bản và môi trường chính thức mà NOI yêu cầu. Nếu cần, có thể dùng `sudo apt install <tên_chương_trình>` để cài các gói phần mềm khác.
-Nếu muốn cài phiên bản khác, có thể tham khảo [sổ tay quản lý gói](https://www.debian.org/doc/manuals/debian-reference/ch02.zh-cn.html) chính thức của Debian.
+Nếu muốn cài phiên bản khác, có thể tham khảo [sổ tay quản lý gói](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html) chính thức của Debian.
 
 Dưới đây là một chương trình ví dụ:
 
@@ -289,7 +280,7 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 Nếu bạn dùng Windows 10 phiên bản 19044 trở lên hoặc Windows 11, có thể dùng trải nghiệm desktop tích hợp do WSL 2 cung cấp. Chức năng này cho phép cài và khởi động trực tiếp chương trình desktop Linux mà không cần cấu hình khác.
 
-Xem [Chạy ứng dụng Linux GUI trên Windows Subsystem for Linux](https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps).
+Xem [Chạy ứng dụng Linux GUI trên Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps).
 
 ### Cài môi trường đồ họa và kết nối bằng Remote Desktop
 
@@ -442,7 +433,7 @@ Chạy lệnh `wsl -l -v` để thấy phiên bản WSL hiện là 1; cần nân
 
 ## FAQ
 
-Xem: [Câu hỏi thường gặp](https://docs.microsoft.com/zh-cn/windows/wsl/faq), [Câu hỏi thường gặp về WSL 2](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-faq).
+Xem: [Câu hỏi thường gặp](https://learn.microsoft.com/en-us/windows/wsl/faq).
 
 -   Làm thế nào để thực hiện xxx trong subsystem?
 
@@ -458,11 +449,11 @@ Xem: [Câu hỏi thường gặp](https://docs.microsoft.com/zh-cn/windows/wsl/f
 
 ## Liên kết ngoài
 
--   [Về Windows Subsystem for Linux](https://docs.microsoft.com/zh-cn/windows/wsl/about)
+-   [Về Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/)
 -   [Hướng dẫn dùng mirror Ubuntu, Tsinghua TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 -   [Dev on Windows with WSL](https://dowww.spencerwoo.com)
 -   [Awesome-WSL trên GitHub](https://github.com/sirredbeard/Awesome-WSL)
--   [Khắc phục sự cố Windows Subsystem for Linux](https://docs.microsoft.com/zh-cn/windows/wsl/troubleshooting)
+-   [Khắc phục sự cố Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/troubleshooting)
 -   [Nâng cấp WSL1 lên WSL2](https://www.cnblogs.com/stulzq/p/13926936.html)
 
 ## Tài liệu tham khảo và chú thích
@@ -471,12 +462,10 @@ Xem: [Câu hỏi thường gặp](https://docs.microsoft.com/zh-cn/windows/wsl/f
 
 [^ref2]: [NOI Linux 2.0 phát hành, chính thức sử dụng từ ngày 1 tháng 9](https://noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
 
-[^ref3]: [Cài đặt WSL, Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install)
+[^ref3]: [Cài đặt WSL, Microsoft Docs](https://learn.microsoft.com/en-us/windows/wsl/install)
 
-[^ref4]: [Các bước cài đặt thủ công WSL phiên bản cũ](https://docs.microsoft.com/zh-cn/windows/wsl/install-manual)
+[^ref4]: [Các bước cài đặt thủ công WSL phiên bản cũ](https://learn.microsoft.com/en-us/windows/wsl/install-manual)
 
 [^ref5]: [WSL-Ubuntu Wiki, Ubuntu Wiki](https://wiki.ubuntu.com/WSL)
-
-[^ref6]: [Cách thiết lập bản tiếng Trung cho trợ giúp lệnh man của Ubuntu, Frank xem Lư Sơn, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)
 
 [^ref7]: [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)
