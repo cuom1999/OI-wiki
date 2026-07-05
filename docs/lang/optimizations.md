@@ -10,9 +10,11 @@ Ngôn ngữ lập trình thường dùng trong giới OI là C++. Đã dùng ng�
 
 Theo [quy tắc as-if](https://en.cppreference.com/w/cpp/language/as_if), trình biên dịch có thể cải thiện tốc độ chạy của chương trình hoặc kích thước tệp thực thi, miễn là giữ nguyên ngữ nghĩa quan sát được của chương trình.
 
-<!-- ### Những cuộc thi nào bật tối ưu hóa? -->
+### Những cuộc thi nào bật tối ưu hóa?
 
-<!-- TODO: Các cuộc thi bật O2 -->
+Việc có bật tối ưu hóa hay không phụ thuộc vào quy chế và hệ thống chấm của từng cuộc thi. Trước khi thi, hãy đọc kỹ thông báo môi trường biên dịch, đặc biệt là tiêu chuẩn C++ và các cờ như `-O2`, `-std=gnu++17`, `-Wall`. Khi luyện tập trên OJ, cũng nên kiểm tra trang trợ giúp hoặc phần cấu hình ngôn ngữ của hệ thống để biết chương trình sẽ được biên dịch bằng lệnh nào.
+
+Nếu môi trường chính thức bật `-O2`, nên luyện tập và kiểm thử bằng cùng mức tối ưu hóa đó. Một số lỗi liên quan đến hành vi không xác định chỉ bộc lộ rõ khi bật tối ưu hóa, nên không nên chỉ dựa vào kết quả chạy ở chế độ không tối ưu.
 
 <a id="các-tối-ưu-hóa-trình-biên-dịch-thường-gặp"></a>
 ## Các tối ưu hóa trình biên dịch thường gặp
@@ -20,7 +22,7 @@ Theo [quy tắc as-if](https://en.cppreference.com/w/cpp/language/as_if), trình
 <a id="gấp-hằng-số-constant-folding"></a>
 ### Gấp hằng số
 
-Gấp hằng số, cũng được gọi là lan truyền hằng số: nếu một biểu thức có thể được xác định là hằng số, giá trị hằng số đó có thể được lan truyền cho đến trước lần định nghĩa kế tiếp của nó.
+Gấp hằng số, cũng thường đi cùng lan truyền hằng số: nếu một biểu thức có thể được xác định là hằng số, giá trị hằng số đó có thể được lan truyền cho đến trước lần định nghĩa kế tiếp của nó.
 
 ```cpp
 int x = 1;
@@ -62,7 +64,7 @@ sẽ được biến đổi thành
 int test() { return 234; }
 ```
 
-Lưu ý, đoạn mã này trước hết được gấp hằng số, nên giá trị trả về có thể xác định là 234; `a` và `b` là các biến không còn sống, vì vậy bị xóa bỏ.
+Lưu ý, đoạn mã này trước hết được gấp hằng số, nên giá trị trả về có thể xác định là 234; `a` và `b` là các biến không còn sống (không còn ảnh hưởng đến kết quả quan sát được), vì vậy bị xóa bỏ.
 
 <a id="xoay-vòng-lặp-loop-rotate"></a>
 ### Xoay vòng lặp
@@ -109,7 +111,7 @@ for (int i = 0; i < n; ++i) {
 }
 ```
 
-Nhưng trên thực tế, nếu `n <= 0` thì vòng lặp không bao giờ được vào, trong khi ta lại thực thi thêm một lệnh (có thể có tác dụng phụ!). Vì vậy, vòng lặp thường được xoay thành dạng do-while để có thể chèn một "điều kiện bảo vệ vòng lặp" một cách thuận tiện, rồi sau đó mới thực hiện đưa bất biến vòng lặp ra ngoài.
+Nhưng trên thực tế, nếu `n <= 0` thì thân vòng lặp không bao giờ được thực thi, trong khi ta lại thực thi thêm một lệnh (có thể có tác dụng phụ!). Vì vậy, vòng lặp thường được xoay thành dạng do-while để có thể chèn một "điều kiện bảo vệ vòng lặp" một cách thuận tiện, rồi sau đó mới thực hiện đưa bất biến vòng lặp ra ngoài.
 
 ```cpp
 if (0 < n) {  // điều kiện bảo vệ vòng lặp
@@ -177,7 +179,7 @@ void after(int x) {
 <a id="tối-ưu-hóa-bố-cục-mã-code-layout-optimizations"></a>
 ### Tối ưu hóa bố cục mã
 
-Khi chương trình thực thi, các đường chạy có thể được chia thành đường lạnh và đường nóng. Trong tuyệt đại đa số trường hợp, CPU nhảy đến một vị trí khác không nhanh bằng thực thi tuần tự trực tiếp; kiểu thực thi sau thường được tác giả trình biên dịch gọi là "rơi tiếp". Tương ứng với nó, mã thường được thực thi là mã nóng, còn phần đối lập là mã lạnh. Trong mã OI, nếu có một đoạn xử lý điều kiện biên đặc biệt trong vòng lặp, xử lý ngoại lệ, hoặc logic tương tự, đoạn đó là mã lạnh.
+Khi chương trình thực thi, các đường đi có thể được chia thành đường lạnh và đường nóng. Trong tuyệt đại đa số trường hợp, CPU nhảy đến một vị trí khác không nhanh bằng thực thi tuần tự trực tiếp; kiểu thực thi sau thường được tác giả trình biên dịch gọi là "đi tiếp" (fall-through). Tương ứng với nó, mã thường được thực thi là mã nóng, còn phần đối lập là mã lạnh. Trong mã OI, nếu có một đoạn xử lý điều kiện biên đặc biệt trong vòng lặp, xử lý ngoại lệ, hoặc logic tương tự, đoạn đó là mã lạnh.
 
 Khối cơ bản là cấu trúc cơ bản của luồng điều khiển. Một thủ tục gồm nhiều khối cơ bản, tạo thành một đồ thị có hướng. Trong quá trình sinh tệp thực thi, trình biên dịch cần sắp xếp bố cục để đặt các khối cơ bản; cách sắp xếp bố cục chính là trọng tâm của tối ưu hóa này.
 
@@ -195,7 +197,7 @@ int hotpath_again;  // <-- nóng!
 <a id="đặt-khối-cơ-bản-basic-block-placement"></a>
 #### Đặt khối cơ bản
 
-Ta dùng nhãn để biểu diễn một loại "mã máy giả". Chương trình C++ này có hai cách dịch:
+Ta dùng nhãn để biểu diễn một loại "mã máy giả". Chương trình C++ này có hai cách bố trí:
 
 ???+ note "Bố cục 1"
     ```cpp
@@ -253,7 +255,7 @@ if (unlikely(/* một số kiểm tra điều kiện biên */ false)) {
 <a id="tách-mã-nóng-lạnh-hot-cold-splitting"></a>
 #### Tách mã nóng/lạnh
 
-Một thủ tục có thể chứa đồng thời cả đường nóng và đường lạnh. Khi mã lạnh khá dài, cách tốt hơn là để mã lạnh thành một lời gọi hàm, thay vì chặn đường nóng. Điều này cũng nhắc ta không nên tự tin quá mức mà biến mọi hàm thành `inline`. Trở ngại mà mã lạnh gây ra cho tốc độ thực thi lớn hơn chi phí gọi hàm rất nhiều.
+Một thủ tục có thể chứa đồng thời cả đường nóng và đường lạnh. Khi mã lạnh khá dài, cách tốt hơn là tách mã lạnh thành một lời gọi hàm, thay vì để nó chặn đường nóng. Điều này cũng nhắc ta không nên tự tin quá mức mà biến mọi hàm thành `inline`. Trở ngại mà mã lạnh gây ra cho tốc độ thực thi lớn hơn chi phí gọi hàm rất nhiều.
 
 ???+ note "Bố cục mã không tốt"
     ```cpp
@@ -302,7 +304,7 @@ Một thủ tục có thể chứa đồng thời cả đường nóng và đư�
 
 Tách mã nóng/lạnh thực ra là thao tác ngược với nội tuyến hàm. Sự tồn tại của tối ưu hóa này cho thấy nội tuyến hàm không nhất thiết làm chương trình chạy nhanh hơn. Thậm chí nếu đoạn mã được nội tuyến là mã lạnh, nó còn có thể làm chương trình chạy chậm hơn. Một số trình biên dịch có tùy chọn biên dịch bắt buộc nội tuyến, nhưng không nên dùng. Bên trong trình biên dịch có quá trình phân tích tĩnh để tính xác suất của mỗi khối cơ bản và mỗi nhánh, cùng với một mô hình chi phí liên quan đến lời gọi hàm, rồi dựa vào đó quyết định có nội tuyến hay không. Tự quyết định nội tuyến không chắc tốt hơn quyết định của trình biên dịch.
 
-Thực tế, khi không có thông tin bổ sung, trình biên dịch thường giả định xác suất nhảy nhánh và không nhảy nhánh là như nhau, rồi dựa vào đó lan truyền mức nóng/lạnh của các đường luồng điều khiển. Một phần của PGO (tối ưu hóa dựa trên hồ sơ chạy) là chạy chương trình nhiều lần trong các phép đo và thử nghiệm hiệu năng để thu được xác suất nhánh trong môi trường thực; những thông tin này có thể giúp bố cục mã tốt hơn.
+Thực tế, khi không có thông tin bổ sung, trình biên dịch thường giả định xác suất nhảy nhánh và không nhảy nhánh là như nhau, rồi dựa vào đó lan truyền mức nóng/lạnh của các đường luồng điều khiển. Một phần của PGO (tối ưu hóa dựa trên hồ sơ chạy) là chạy chương trình nhiều lần trong các phép đo và thử nghiệm hiệu năng để thu được xác suất nhánh trong môi trường thực; thông tin này có thể giúp bố cục mã tốt hơn.
 
 <a id="nội-tuyến-hàm-function-inlining"></a>
 ### Nội tuyến hàm
@@ -327,7 +329,7 @@ int foo() {
 }
 ```
 
-#### `always_inline`,`__force_inline`
+#### `always_inline`, `__force_inline`
 
 <https://clang.llvm.org/docs/AttributeReference.html#always-inline-force-inline>
 
@@ -410,7 +412,7 @@ Khi hàm đã là đệ quy đuôi, có thể xóa trực tiếp câu lệnh đ�
     }
     ```
 
-Hợp ngữ sau tối ưu hóa của các hàm này hoàn toàn giống phiên bản không đệ quy; đệ quy sẽ bị loại bỏ trực tiếp. Với thí sinh OI, khi bật O2 có thể yên tâm viết các thuật toán dạng đệ quy, vì sẽ không khác dạng không đệ quy. Nếu hàm bạn viết về bản chất không thể được viết lại thành dạng không đệ quy, trình biên dịch cũng bó tay.
+Hợp ngữ sau tối ưu hóa của các hàm này hoàn toàn giống phiên bản không đệ quy; đệ quy sẽ bị loại bỏ trực tiếp. Với thí sinh OI, khi bật `-O2` có thể yên tâm viết các thuật toán dạng đệ quy, vì sẽ không khác dạng không đệ quy. Nếu hàm bạn viết về bản chất không thể được viết lại thành dạng không đệ quy, trình biên dịch cũng bó tay.
 
 <a id="giảm-độ-mạnh-phép-toán-strength-reduction"></a>
 ### Giảm độ mạnh phép toán
@@ -429,7 +431,7 @@ a = x * 2;   // không tốt!
 a = x << 1;  // tốt!
 ```
 
-Cần lưu ý rằng số có dấu và số không dấu có khác biệt rõ rệt ở cấp độ dịch bit và nâng kiểu. Bit dấu được xử lý đặc biệt khi dịch, gồm hai loại là dịch số học và dịch logic. Điều này thể hiện rõ khi viết tìm kiếm nhị phân, cây đoạn, và các cấu trúc có nhiều phép chia đôi: phép chia số nguyên có dấu không thể được tối ưu trực tiếp thành một lệnh dịch phải duy nhất.
+Cần lưu ý rằng số có dấu và số không dấu có khác biệt rõ rệt ở cấp độ dịch bit và nâng kiểu. Bit dấu được xử lý đặc biệt khi dịch, gồm hai loại là dịch số học và dịch logic. Điều này thể hiện rõ khi viết tìm kiếm nhị phân, cây đoạn, và các cấu trúc có nhiều phép chia đôi: phép chia số nguyên có dấu không thể luôn được tối ưu trực tiếp thành một lệnh dịch phải duy nhất.
 
 ```cpp
 int l, r;
@@ -445,14 +447,14 @@ int mid = (l + r) / 2; /* Nếu trình biên dịch không thể giả định l
 
 ```cpp
 int mid = (l + r);
-int sign = mid >> 31; /* dịch phải logic, lấy bit dấu */
+int sign = mid >> 31; /* dịch phải số học, lấy bit dấu */
 mid += sign;
 mid >>= 1; /* dịch phải số học */
 ```
 
 Các cách giải quyết khả thi:
 
--   Dùng `unsigned l, r;`, chỉ số vốn nên là số không dấu
+-   Nếu bài toán bảo đảm chỉ số không âm, có thể dùng `unsigned l, r;`
 -   Dùng dịch bit ngay trong mã nguồn
 
 <a id="dùng-phép-nhân-thay-cho-phép-chia"></a>
@@ -517,7 +519,7 @@ test(int):                               # @test(int)
 <a id="tự-động-vector-hóa-auto-vectorization"></a>
 ### Tự động vector hóa
 
-Một luồng lệnh đơn trên nhiều luồng dữ liệu là cách tốt để cung cấp song song hóa trong một nhân. Dùng các lệnh này có thể tận dụng thanh ghi SIMD của CPU, vốn rộng hơn thanh ghi đa dụng; ví dụ, mỗi lần đặt 4 số nguyên vào rồi tính toán. Thí sinh OI không cần hiểu chi tiết về tự động vector hóa. Thông thường, trình biên dịch Clang sẽ tự động vector hóa mạnh tay hơn GCC:
+Một luồng lệnh trên nhiều phần tử dữ liệu là cách tốt để khai thác song song hóa trong một lõi CPU. Dùng các lệnh này có thể tận dụng thanh ghi SIMD của CPU, vốn rộng hơn thanh ghi đa dụng; ví dụ, mỗi lần đặt 4 số nguyên vào rồi tính toán. Thí sinh OI không cần hiểu chi tiết về tự động vector hóa. Thông thường, trình biên dịch Clang sẽ tự động vector hóa mạnh tay hơn GCC:
 
 ```cpp
 // https://godbolt.org/z/h1hx5sWoE
@@ -544,7 +546,7 @@ void test(int* __restrict a, int* __restrict b, int n) {
 }
 ```
 
-`__restrict` không phải một phần của chuẩn C++, nhưng các trình biên dịch lớn đều hỗ trợ. Từ khóa này ảnh hưởng đến chất lượng sinh mã của tự động vector hóa; có thể dùng trong các trường hợp cần tối ưu hằng số rất gắt.
+`__restrict` không phải một phần của chuẩn C++, nhưng các trình biên dịch lớn đều hỗ trợ. Từ khóa này ảnh hưởng đến chất lượng sinh mã của tự động vector hóa; có thể dùng trong các trường hợp cần tối ưu hằng số rất khắt khe.
 
 <a id="các-cách-dùng-ngôn-ngữ-sai-thường-gặp-liên-quan-đến-tối-ưu-hóa-biên-dịch"></a>
 ## Các cách dùng ngôn ngữ sai thường gặp liên quan đến tối ưu hóa biên dịch
@@ -552,14 +554,14 @@ void test(int* __restrict a, int* __restrict b, int n) {
 <a id="inline---nội-tuyến"></a>
 ### inline - nội tuyến
 
-Nội tuyến hàm khi bật O2 thường do trình biên dịch tự động hoàn thành. `inline` trong định nghĩa struct hoàn toàn thừa; nếu cuộc thi bật tối ưu hóa O2 thì không cần khai báo nội tuyến. Nếu không bật O2, dùng `inline` cũng không làm trình biên dịch thật sự nội tuyến.
+Nội tuyến hàm khi bật `-O2` thường do trình biên dịch tự động hoàn thành. `inline` trong định nghĩa `struct` hoàn toàn thừa; nếu cuộc thi bật tối ưu hóa `-O2` thì không cần khai báo nội tuyến. Nếu không bật `-O2`, dùng `inline` cũng không làm trình biên dịch thật sự nội tuyến.
 
 Trong C++ hiện đại, từ khóa `inline` được xem là một hành vi ngữ nghĩa về liên kết và xuất ký hiệu, chứ không phải để thực hiện nội tuyến hàm.
 
 <a id="register---gợi-ý-thanh-ghi-không-còn-thực-chất"></a>
 ### register - gợi ý thanh ghi không còn thực chất
 
-Trình biên dịch hiện đại sẽ bỏ qua trực tiếp từ khóa `register`; cách phân bổ thanh ghi bạn tự nghĩ ra thường không thông minh bằng việc để trình biên dịch chạy thuật toán phân bổ thanh ghi. Từ khóa này bị deprecated từ C++11 và bị xóa từ C++17[^p0001r1].
+Trình biên dịch hiện đại sẽ bỏ qua trực tiếp từ khóa `register`; cách phân bổ thanh ghi bạn tự nghĩ ra thường không thông minh bằng việc để trình biên dịch chạy thuật toán phân bổ thanh ghi. Từ khóa này không còn được khuyến nghị từ C++11 và bị xóa từ C++17[^p0001r1].
 
 <https://en.cppreference.com/w/cpp/keyword/register>
 
@@ -707,7 +709,7 @@ Ví dụ: <https://godbolt.org/z/d834MK7bz>, <https://godbolt.org/z/Eov9nsKqf>.
 
 ## Công cụ sanitizer
 
-Sanitizer là công cụ bảo vệ tính đúng đắn: nó kiểm tra lúc chạy xem chương trình của bạn có hành vi không xác định, vượt biên mảng, con trỏ null, và các lỗi tương tự hay không.
+Sanitizer là công cụ hỗ trợ bảo đảm tính đúng đắn: nó kiểm tra lúc chạy xem chương trình của bạn có hành vi không xác định, vượt biên mảng, con trỏ null, và các lỗi tương tự hay không.
 Ở chế độ gỡ lỗi cục bộ, nên bật một số sanitizer; chúng có thể rút ngắn đáng kể thời gian gỡ lỗi. Các sanitizer này do Google phát triển, phần lớn có thể dùng với GCC và Clang. Sanitizer trong LLVM trưởng thành hơn, vì vậy nên dùng trình biên dịch Clang để gỡ lỗi các vấn đề liên quan trên máy cá nhân.
 
 <span id="address-sanitizer-fsanitizeaddress"></span>
