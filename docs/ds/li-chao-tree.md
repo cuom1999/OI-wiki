@@ -3,42 +3,60 @@
 ???+ note "[Luogu 4097 \[HEOI2013\]Segment](https://www.luogu.com.cn/problem/P4097)"
     Yêu cầu duy trì hai thao tác trong hệ tọa độ Descartes phẳng (bắt buộc trực tuyến):
 
-    1.  Thêm một đoạn thẳng vào mặt phẳng. Gọi chỉ số của đoạn thẳng được chèn thứ $i$ là $i$, hai đầu mút của đoạn thẳng này lần lượt là $(x_0,y_0)$ và $(x_1,y_1)$.
-    2.  Cho một số $k$, hỏi trong các đoạn thẳng cắt đường thẳng $x = k$, chỉ số của đoạn thẳng có tung độ giao điểm lớn nhất (nếu có nhiều đoạn thẳng cùng đạt tung độ giao điểm lớn nhất với đường thẳng truy vấn, xuất đoạn có chỉ số nhỏ nhất). Đặc biệt, nếu không có đoạn thẳng nào cắt đường thẳng đã cho, xuất $0$.
+    1.  Thêm một đoạn thẳng vào mặt phẳng. Gọi chỉ số của đoạn thẳng được chèn thứ $i$ là $i$, hai đầu mút của đoạn thẳng
+        này lần lượt là $(x_0,y_0)$ và $(x_1,y_1)$.
+    2.  Cho một số $k$, hỏi trong các đoạn thẳng cắt đường thẳng $x = k$, đoạn nào có tung độ giao điểm lớn nhất. Nếu có
+        nhiều đoạn thẳng cùng đạt giá trị lớn nhất, xuất đoạn có chỉ số nhỏ nhất. Đặc biệt, nếu không có đoạn thẳng nào
+        cắt đường thẳng đã cho, xuất $0$.
 
     Dữ liệu thỏa mãn: tổng số thao tác $1 \leq n \leq 10^5$, $1 \leq k, x_0, x_1 \leq 39989$, $1 \leq y_0, y_1 \leq 10^9$.
 
-Ta thấy rằng cây phân đoạn truyền thống khó duy trì tốt loại thông tin này. Trong tình huống đó, **cây phân đoạn Li Chao** ra đời.
+Với loại thông tin này, cây phân đoạn truyền thống khó duy trì hiệu quả. **Cây phân đoạn Li Chao** được dùng để xử lý
+tình huống đó.
 
 ## Quá trình
 
-Ta có thể chuyển bài toán thành việc duy trì các thao tác sau:
+Có thể chuyển bài toán thành việc duy trì các thao tác sau:
 
 -   Thêm một hàm bậc nhất có miền xác định là $[l,r]$;
--   Cho $k$, trong tất cả các hàm bậc nhất có miền xác định chứa $k$, tìm hàm có giá trị lớn nhất tại $x=k$; nếu có nhiều hàm có cùng giá trị, chọn hàm có chỉ số nhỏ nhất.
+-   Cho $k$, trong tất cả các hàm bậc nhất có miền xác định chứa $k$, tìm hàm có giá trị lớn nhất tại $x=k$; nếu có nhiều
+    hàm có cùng giá trị, chọn hàm có chỉ số nhỏ nhất.
 
 ???+ warning "Chú ý"
-    Khi đoạn thẳng vuông góc với trục $x$, sẽ xảy ra trường hợp chia cho không. Giả sử hai đầu mút của đoạn thẳng lần lượt là $(x,y_0)$ và $(x,y_1)$, $y_0<y_1$, khi đó chèn hàm bậc nhất $f(x)=0\cdot x+y_1$ có miền xác định là $[x,x]$.
+    Khi đoạn thẳng vuông góc với trục $x$, sẽ xảy ra trường hợp chia cho không. Giả sử hai đầu mút của đoạn thẳng lần
+    lượt là $(x,y_0)$ và $(x,y_1)$, $y_0<y_1$, khi đó chèn hàm bậc nhất $f(x)=0\cdot x+y_1$ có miền xác định là $[x,x]$.
 
-Khi gặp cập nhật đoạn, ta làm theo cách thường dùng của cây phân đoạn để giải bài toán trên đoạn: gán cho mỗi nút một nhãn lười. Nhãn lười của mỗi nút $i$ là một đoạn thẳng, ký hiệu là $l_i$, biểu thị rằng cần dùng $l_i$ để cập nhật toàn bộ đoạn mà nút đó đại diện.
+Khi gặp cập nhật đoạn, dùng cách quen thuộc của cây phân đoạn: gán cho mỗi nút một nhãn lười. Nhãn lười của mỗi nút $i$
+là một đoạn thẳng, ký hiệu là $l_i$, biểu thị rằng cần dùng $l_i$ để cập nhật toàn bộ đoạn mà nút đó đại diện.
 
-Bây giờ ta cần chèn một đoạn thẳng $f$, xét một đoạn trên cây phân đoạn được đoạn thẳng mới $f$ phủ hoàn toàn. Nếu đoạn này chưa có nhãn, trực tiếp gán nhãn cập nhật bằng đoạn thẳng đó.
+Bây giờ cần chèn một đoạn thẳng $f$. Xét một đoạn trên cây phân đoạn được đoạn thẳng mới $f$ phủ hoàn toàn. Nếu đoạn này
+chưa có nhãn, trực tiếp gán nhãn cập nhật bằng đoạn thẳng đó.
 
-Nếu đoạn này đã có nhãn, do các nhãn khó hợp nhất, ta chỉ có thể đẩy nhãn xuống. Tuy nhiên các nút con cũng có nhãn riêng và cũng có thể phát sinh xung đột, nên ta phải đệ quy đẩy nhãn xuống.
+Nếu đoạn này đã có nhãn, do các nhãn khó hợp nhất, chỉ có thể đẩy nhãn xuống. Tuy nhiên các nút con cũng có nhãn riêng
+và cũng có thể phát sinh xung đột, nên phải đệ quy đẩy nhãn xuống.
 
 ![](images/li-chao-tree-1.png)
 
-Như hình minh họa, dựa trên việc giá trị của đoạn thẳng mới $f$ có lớn hơn nhãn cũ $g$ hay không, ta có thể chia đoạn hiện tại thành hai đoạn con. Trong đó **chắc chắn có một đoạn con được nửa trái hoặc nửa phải chứa hoàn toàn**, tức là trong hai đoạn thẳng, chắc chắn có một đoạn chỉ có thể trở thành đáp án ở nửa trái, hoặc chỉ có thể trở thành đáp án ở nửa phải. Ta dùng đoạn thẳng đó để đệ quy cập nhật cây con tương ứng, và dùng đoạn thẳng còn lại làm nhãn lười để cập nhật toàn bộ đoạn; nhờ vậy đảm bảo độ phức tạp của quá trình đệ quy đẩy xuống. Một đoạn thẳng chỉ được đẩy xuống khi nó chỉ có thể trở thành đáp án ở nửa trái hoặc nửa phải, nên không cần lo bỏ sót đoạn thẳng nào.
+Như hình minh họa, dựa trên việc giá trị của đoạn thẳng mới $f$ có lớn hơn nhãn cũ $g$ hay không, có thể chia đoạn hiện
+tại thành hai đoạn con. Trong đó **chắc chắn có một đoạn con được nửa trái hoặc nửa phải chứa hoàn toàn**. Nói cách
+khác, trong hai đoạn thẳng, chắc chắn có một đoạn chỉ có thể trở thành đáp án ở nửa trái, hoặc chỉ có thể trở thành đáp
+án ở nửa phải. Dùng đoạn thẳng đó để đệ quy cập nhật cây con tương ứng, và dùng đoạn thẳng còn lại làm nhãn lười để cập
+nhật toàn bộ đoạn; nhờ vậy độ phức tạp của quá trình đệ quy đẩy xuống được bảo đảm. Một đoạn thẳng chỉ được đẩy xuống
+khi nó chỉ có thể trở thành đáp án ở nửa trái hoặc nửa phải, nên không cần lo bỏ sót đoạn thẳng nào.
 
-Cụ thể, giả sử trung điểm của đoạn hiện tại là $m$, ta so sánh giá trị của đoạn thẳng mới $f$ tại trung điểm với giá trị của đoạn thẳng tối ưu cũ $g$ tại trung điểm.
+Cụ thể, giả sử trung điểm của đoạn hiện tại là $m$. So sánh giá trị của đoạn thẳng mới $f$ tại trung điểm với giá trị của
+đoạn thẳng tối ưu cũ $g$ tại trung điểm.
 
-Nếu đoạn thẳng mới $f$ tốt hơn, hoán đổi $f$ và $g$. Khi đó ta chỉ cần xét trường hợp tại trung điểm $f$ không tốt bằng $g$:
+Nếu đoạn thẳng mới $f$ tốt hơn, hoán đổi $f$ và $g$. Khi đó chỉ cần xét trường hợp tại trung điểm $f$ không tốt bằng $g$:
 
-1.  Nếu tại đầu mút trái $f$ tốt hơn, thì $f$ và $g$ chắc chắn có giao điểm trong nửa trái; $f$ chỉ có thể tốt hơn $g$ ở nửa trái, nên đệ quy xuống con trái để đẩy nhãn.
-2.  Nếu tại đầu mút phải $f$ tốt hơn, thì $f$ và $g$ chắc chắn có giao điểm trong nửa phải; $f$ chỉ có thể tốt hơn $g$ ở nửa phải, nên đệ quy xuống con phải để đẩy nhãn.
+1.  Nếu tại đầu mút trái $f$ tốt hơn, thì $f$ và $g$ chắc chắn có giao điểm trong nửa trái. Khi đó $f$ chỉ có thể tốt hơn
+    $g$ ở nửa trái, nên đệ quy xuống con trái để đẩy nhãn.
+2.  Nếu tại đầu mút phải $f$ tốt hơn, thì $f$ và $g$ chắc chắn có giao điểm trong nửa phải. Khi đó $f$ chỉ có thể tốt hơn
+    $g$ ở nửa phải, nên đệ quy xuống con phải để đẩy nhãn.
 3.  Nếu tại cả hai đầu mút trái và phải $g$ đều tốt hơn, thì $f$ không thể trở thành đáp án, không cần tiếp tục đẩy xuống.
 
-Ngoài các trường hợp trên, còn có trường hợp $f$ và $g$ giao nhau đúng tại trung điểm. Khi cài đặt, có thể xếp trường hợp này vào nhóm tại trung điểm $f$ không tốt bằng $g$; kết quả sẽ đệ quy đẩy xuống về phía đầu mút mà $f$ tốt hơn.
+Ngoài các trường hợp trên, còn có trường hợp $f$ và $g$ giao nhau đúng tại trung điểm. Khi cài đặt, có thể xếp trường hợp
+này vào nhóm tại trung điểm $f$ không tốt bằng $g$; kết quả sẽ đệ quy đẩy xuống về phía đầu mút mà $f$ tốt hơn.
 
 Cuối cùng, đặt $g$ làm nhãn lười của đoạn hiện tại.
 
@@ -54,7 +72,7 @@ Cuối cùng, đặt $g$ làm nhãn lười của đoạn hiện tại.
       return 0;
     }
 
-    //...
+    // Các phần phụ trợ khác
 
     void upd(int root, int cl, int cr, int u) {  // Cập nhật đoạn được đoạn thẳng phủ hoàn toàn
       int &v = s[root], mid = (cl + cr) >> 1;
@@ -64,7 +82,7 @@ Cuối cùng, đặt $g$ làm nhãn lười của đoạn hiện tại.
       int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
       if (bl == 1 || (!bl && u < v)) upd(root << 1, cl, mid, u);
       if (br == 1 || (!br && u < v)) upd(root << 1 | 1, mid + 1, cr, u);
-      // Trong hai điều kiện if trên, nhiều nhất chỉ một điều kiện đúng; điều này đảm bảo độ phức tạp của cây Li Chao
+      // Trong hai điều kiện if trên, nhiều nhất chỉ một điều kiện đúng; điều này bảo đảm độ phức tạp của cây Li Chao
     }
     ```
 
@@ -88,9 +106,12 @@ Chú ý rằng nhãn lười không tương đương với đoạn thẳng có g
 
 ![](images/li-chao-tree-2.png)
 
-Như hình, sau khi thêm đoạn thẳng màu vàng, chỉ nhãn của nút màu đỏ được cập nhật, còn nhãn của các nút màu xanh lá vẫn chưa thay đổi. Nhưng tại trung điểm của các đoạn màu xanh lá thứ hai, thứ ba và thứ tư, rõ ràng đoạn thẳng màu vàng có giá trị lớn nhất.
+Như hình minh họa, sau khi thêm đoạn thẳng màu vàng, chỉ nhãn của nút màu đỏ được cập nhật, còn nhãn của các nút màu xanh
+lá vẫn chưa thay đổi. Nhưng tại trung điểm của các đoạn màu xanh lá thứ hai, thứ ba và thứ tư, đoạn thẳng màu vàng có
+giá trị lớn nhất.
 
-Khi truy vấn, ta có thể dùng tư tưởng vĩnh cửu hóa nhãn: trong các đoạn trên cây phân đoạn chứa $x$ (không quá $O(\log n)$ đoạn), so sánh các đoạn thẳng được lưu trong nhãn để thu được đáp án cuối cùng.
+Khi truy vấn, có thể dùng tư tưởng vĩnh cửu hóa nhãn: trong các đoạn trên cây phân đoạn chứa $x$ (không quá $O(\log n)$
+đoạn), so sánh các đoạn thẳng được lưu trong nhãn để thu được đáp án cuối cùng.
 
 Truy vấn:
 
@@ -106,7 +127,9 @@ Truy vấn:
     }
     ```
 
-Theo mô tả trên, độ phức tạp thời gian của quá trình truy vấn rõ ràng là $O(\log n)$. Còn khi chèn, ta cần tách đoạn thẳng ban đầu vào $O(\log n)$ đoạn; với mỗi đoạn, lại cần tốn $O(\log n)$ thời gian để đệ quy đẩy nhãn xuống, do đó độ phức tạp thời gian của quá trình chèn là $O(\log^2 n)$.
+Theo mô tả trên, độ phức tạp thời gian của quá trình truy vấn là $O(\log n)$. Khi chèn, cần tách đoạn thẳng ban đầu vào
+$O(\log n)$ đoạn. Với mỗi đoạn, lại cần $O(\log n)$ thời gian để đệ quy đẩy nhãn xuống, do đó độ phức tạp thời gian của
+quá trình chèn là $O(\log^2 n)$.
 
 ??? note "[\[HEOI2013\]Segment](https://www.luogu.com.cn/problem/P4097) Mã tham khảo"
     ```cpp
@@ -115,7 +138,8 @@ Theo mô tả trên, độ phức tạp thời gian của quá trình truy vấn
 
 ## Hợp nhất
 
-Tương tự cách hợp nhất cây phân đoạn thông thường, ta định nghĩa quy trình sau để hợp nhất hai nút cây phân đoạn Li Chao $u,v$, lấy $u$ làm gốc mới.
+Tương tự cách hợp nhất cây phân đoạn thông thường, định nghĩa quy trình sau để hợp nhất hai nút cây phân đoạn Li Chao
+$u,v$, lấy $u$ làm gốc mới.
 
 1.  Nếu $v$ rỗng, kết thúc quy trình.
 
@@ -125,7 +149,10 @@ Tương tự cách hợp nhất cây phân đoạn thông thường, ta định 
 
 4.  Đệ quy hợp nhất tương ứng các cây con trái và phải của $u,v$.
 
-Nếu tổng số nút liên quan khi hợp nhất một số cây phân đoạn Li Chao là $n$, độ phức tạp của quy trình này là $O(n\log n)$: với mỗi nút tương ứng với một đoạn thẳng bất kỳ trên cây, mỗi lần cần di chuyển nó, ta hoặc làm độ sâu của nó tăng $1$, hoặc trực tiếp xóa nó khỏi cây. Cả hai thao tác đều có chi phí $O(1)$, còn độ sâu của mỗi nút nhiều nhất là $O(\log n)$, vì vậy thu được độ phức tạp như trên.
+Nếu tổng số nút liên quan khi hợp nhất một số cây phân đoạn Li Chao là $n$, độ phức tạp của quy trình này là
+$O(n\log n)$. Với mỗi nút tương ứng với một đoạn thẳng bất kỳ trên cây, mỗi lần cần di chuyển nó, hoặc độ sâu của nó tăng
+$1$, hoặc nó bị xóa trực tiếp khỏi cây. Cả hai thao tác đều có chi phí $O(1)$, còn độ sâu của mỗi nút nhiều nhất là
+$O(\log n)$, vì vậy thu được độ phức tạp như trên.
 
 ???+ note "Cài đặt"
     ```cpp
