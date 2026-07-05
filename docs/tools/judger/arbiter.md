@@ -65,7 +65,7 @@ Tiếp theo, cấu hình dữ liệu test. Định dạng tên của mỗi bộ 
 <problem_x><y>.in <problem_x><y>.ans
 ```
 
-Trong đó, `<y>` là số hiệu dữ liệu, bắt đầu từ 1. Hậu tố mặc định của dữ liệu test là `.ans`, còn hậu tố output của thí sinh là `.out`; không được nhầm lẫn hai loại này.
+Trong đó, `<y>` là số hiệu dữ liệu, bắt đầu từ 1. Hậu tố mặc định của dữ liệu test là `.ans`, còn hậu tố đầu ra của thí sinh là `.out`; không được nhầm lẫn hai loại này.
 
 Nếu cần đổi định dạng `out` đã sinh trước đó thành định dạng `ans`, trong NOI Linux 2.0 có thể dùng lệnh `rename` để đổi hàng loạt, còn trong Windows có thể dùng lệnh `ren`. Phần sau sẽ giới thiệu cách dùng các lệnh này.
 
@@ -132,7 +132,7 @@ Chi tiết từng test cần xem trong thư mục `result`. Trong thư mục nà
 
 ### Viết checker tùy chỉnh
 
-Khi dịch ngược các checker khác, có thể biết lệnh chạy checker tùy chỉnh là `<problem>_e <in> <out> <ans>`. Ba tham số sau lần lượt biểu thị input, output của thí sinh và tệp đáp án. Kết quả chấm cuối cùng cần được ghi vào tệp `/tmp/_eval.score`: dòng đầu tiên là thông tin chấm, dòng thứ hai là điểm, với 10 điểm là điểm tối đa.
+Khi dịch ngược các checker khác, có thể biết lệnh chạy checker tùy chỉnh là `<problem>_e <in> <out> <ans>`. Ba tham số sau lần lượt biểu thị đầu vào, đầu ra của thí sinh và tệp đáp án. Kết quả chấm cuối cùng cần được ghi vào tệp `/tmp/_eval.score`: dòng đầu tiên là thông tin chấm, dòng thứ hai là điểm, với 10 điểm là điểm tối đa.
 
 Tên checker tùy chỉnh sau khi biên dịch bắt buộc phải là `<problem>_e`, trong đó `<problem>` là tên bài. Khi cấu hình bài, chọn checker tùy chỉnh rồi chọn checker tùy chỉnh cần dùng.
 
