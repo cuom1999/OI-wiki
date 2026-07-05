@@ -14,79 +14,85 @@ Xem [Download CLion](https://www.jetbrains.com/clion/download/).
 
 ## Cấu hình
 
-### Cài đặt toolchain
+<span id="cài-đặt-toolchain"></span>
 
-Mặc định CLion không đi kèm trình biên dịch, công cụ build và công cụ gỡ lỗi; cần cài đặt thủ công.
+### Cài đặt chuỗi công cụ
+
+Mặc định CLion không đi kèm trình biên dịch, công cụ xây dựng và công cụ gỡ lỗi; cần cài đặt thủ công.
 
 #### Windows
 
 Xem [Tutorial: Configure CLion on Windows | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html).
 
-Đáng chú ý là phiên bản CLion cho Windows có sẵn MinGW, nên có thể không cần cài đặt thêm toolchain MinGW.
+Đáng chú ý là phiên bản CLion cho Windows có sẵn MinGW, nên có thể không cần cài đặt thêm chuỗi công cụ MinGW.
 
 #### Linux
 
 ##### Debian/Ubuntu và các bản phân phối phái sinh
 
 ```bash
-sudo apt install make cmake # build tools
-sudo apt install gcc g++ gdb # compiler and debugger
-sudo apt install clang clang++ llvm lldb # you can also choose to use clang toolchain
+sudo apt install make cmake # công cụ xây dựng
+sudo apt install gcc g++ gdb # trình biên dịch và trình gỡ lỗi
+sudo apt install clang clang++ llvm lldb # cũng có thể chọn dùng chuỗi công cụ clang
 ```
 
 ##### Arch Linux và các bản phân phối phái sinh
 
 ```bash
-sudo pacman -S make cmake # build tools
-sudo pacman -S gcc g++ gdb # compiler and debugger
-sudo pacman -S clang clang++ llvm lldb # you can also choose to use clang toolchain
+sudo pacman -S make cmake # công cụ xây dựng
+sudo pacman -S gcc g++ gdb # trình biên dịch và trình gỡ lỗi
+sudo pacman -S clang clang++ llvm lldb # cũng có thể chọn dùng chuỗi công cụ clang
 ```
 
 ##### Fedora/RHEL/CentOS/Rocky Linux
 
 ```bash
-sudo dnf install make cmake # build tools
-sudo dnf install gcc g++ gdb # compiler and debugger
-sudo dnf install clang clang++ llvm lldb # you can also choose to use clang toolchain
+sudo dnf install make cmake # công cụ xây dựng
+sudo dnf install gcc g++ gdb # trình biên dịch và trình gỡ lỗi
+sudo dnf install clang clang++ llvm lldb # cũng có thể chọn dùng chuỗi công cụ clang
 ```
 
 #### macOS
 
 Xem [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html).
 
-### Thiết lập toolchain
+<span id="thiết-lập-toolchain"></span>
 
-#### Thiết lập toolchain thủ công
+### Thiết lập chuỗi công cụ
 
-CLion mới cài sẽ tự động phát hiện toolchain phát triển C/C++ trong hệ thống. Nếu toolchain đã cài không được phát hiện tự động, có thể vào `Settings`, tìm `Build, Execution, Deployment`>`Toolchains` để cấu hình thủ công.
+<span id="thiết-lập-toolchain-thủ-công"></span>
 
-![Config Toolchains](./images/clion-toolchain.png)
+#### Thiết lập chuỗi công cụ thủ công
+
+CLion mới cài sẽ tự động phát hiện chuỗi công cụ phát triển C/C++ trong hệ thống. Nếu chuỗi công cụ đã cài không được phát hiện tự động, có thể vào `Settings`, tìm `Build, Execution, Deployment`>`Toolchains` để cấu hình thủ công.
+
+![Cấu hình chuỗi công cụ](./images/clion-toolchain.png)
 
 ### Biên dịch, chạy và gỡ lỗi
 
-Khi mới ra đời, CLion được thiết kế cho các dự án C/C++ phức tạp gồm nhiều tệp, và các phiên bản CLion trước đây mặc định dùng [CMake](https://cmake.org/) làm công cụ build. Tuy nhiên, từ CLion 2022.3, CLion đã hỗ trợ [chạy tệp đơn C, C++](https://www.jetbrains.com/help/clion/run-single-file.html).
+Khi mới ra đời, CLion được thiết kế cho các dự án C/C++ phức tạp gồm nhiều tệp, và các phiên bản CLion trước đây mặc định dùng [CMake](https://cmake.org/) làm công cụ xây dựng. Tuy nhiên, từ CLion 2022.3, CLion đã hỗ trợ [chạy tệp đơn C, C++](https://www.jetbrains.com/help/clion/run-single-file.html).
 
 Có nhiều cách để chạy một chương trình C++; một quy trình đơn giản như sau:
 
-1.  Tạo một project C/C++: `New -> Project -> C++ Executable`, chọn vị trí và phiên bản chuẩn ngôn ngữ phù hợp, rồi nhấp `Create`.
-2.  Mở project. Lúc này, trong thư mục project nên có một thư mục `cmake-build-debug`, một tệp `CMakeLists.txt` và một tệp `main.cpp`. Vì ta không cần dùng CMake để quản lý project, có thể xóa tệp `CMakeLists.txt`, thư mục `cmake-build-debug` và toàn bộ tệp bên trong nó.
+1.  Tạo một dự án C/C++: `New -> Project -> C++ Executable`, chọn vị trí và phiên bản chuẩn ngôn ngữ phù hợp, rồi nhấp `Create`.
+2.  Mở dự án. Lúc này, trong thư mục dự án nên có một thư mục `cmake-build-debug`, một tệp `CMakeLists.txt` và một tệp `main.cpp`. Vì ta không cần dùng CMake để quản lý dự án, có thể xóa tệp `CMakeLists.txt`, thư mục `cmake-build-debug` và toàn bộ tệp bên trong nó.
 3.  Nhấp mở tệp `main.cpp`, rồi nhấp chuột phải trong vùng soạn thảo; bạn sẽ thấy tùy chọn `Run 'main.cpp'`. Chọn tùy chọn này, CLion có thể tự động tạo cấu hình chạy và chạy chương trình.
 
-![C++ Single File Execution](./images/clion-single-file-execution.png)
+![Chạy tệp C++ đơn](./images/clion-single-file-execution.png)
 
-Nếu cần gỡ lỗi chương trình, có thể đặt breakpoint trong vùng soạn thảo, nhấp chuột phải trong vùng soạn thảo, rồi chọn `Debug 'main.cpp'`.
+Nếu cần gỡ lỗi chương trình, có thể đặt điểm dừng trong vùng soạn thảo, nhấp chuột phải trong vùng soạn thảo, rồi chọn `Debug 'main.cpp'`.
 
 ### Biên dịch, chạy và gỡ lỗi bằng CMake
 
 #### Thiết lập
 
-CLion cũng có thể dùng [CMake](https://cmake.org/) làm công cụ build. Thiết lập liên quan đến CMake có thể được chỉnh trong `Build, Execution, Deployment -> Toolchains -> CMake`.
+CLion cũng có thể dùng [CMake](https://cmake.org/) làm công cụ xây dựng. Thiết lập liên quan đến CMake có thể được chỉnh trong `Build, Execution, Deployment -> Toolchains -> CMake`.
 
-![CMake Settings](./images/clion-cmake.png)
+![Thiết lập CMake](./images/clion-cmake.png)
 
 #### Tùy chọn biên dịch
 
-Mặc định CMake dùng `CMakeLists.txt` trong thư mục gốc project làm tệp cấu hình build project. Có thể dùng lệnh `add_compile_options` để thêm tùy chọn biên dịch, ví dụ:
+Mặc định CMake dùng `CMakeLists.txt` trong thư mục gốc dự án làm tệp cấu hình xây dựng dự án. Có thể dùng lệnh `add_compile_options` để thêm tùy chọn biên dịch, ví dụ:
 
 ```cmake
 add_compile_options(-std=c++17 -DDEBUG)
