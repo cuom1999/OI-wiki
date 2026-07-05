@@ -1,6 +1,6 @@
 ## Mở đầu
 
-Trong các kỳ thi lập trình thi đấu, có một số bài có thể giải bằng chặt nhị phân. Tuy nhiên, khi dạng bài này có nhiều truy vấn và việc chặt nhị phân trực tiếp cho từng truy vấn có thể dẫn đến TLE, ta sẽ dùng chặt nhị phân tổng thể. Ý tưởng chính của chặt nhị phân tổng thể là xử lý nhiều truy vấn cùng lúc. Vì vậy, đây là một thuật toán offline. Thuật ngữ này cũng thường được gọi là chặt nhị phân song song.
+Trong các kỳ thi lập trình thi đấu, có một số bài có thể giải bằng chặt nhị phân. Tuy nhiên, khi dạng bài này có nhiều truy vấn và việc chặt nhị phân trực tiếp cho từng truy vấn có thể dẫn đến TLE, ta sẽ dùng chặt nhị phân tổng thể. Ý tưởng chính của chặt nhị phân tổng thể là xử lý nhiều truy vấn cùng lúc. Vì vậy, đây là một thuật toán ngoại tuyến. Thuật ngữ này cũng thường được gọi là chặt nhị phân song song.
 
 Những bài có thể giải bằng chặt nhị phân tổng thể cần thỏa mãn các tính chất sau[^ref1]:
 
@@ -8,7 +8,7 @@ Những bài có thể giải bằng chặt nhị phân tổng thể cần thỏ
 2.  **Đóng góp của các phép sửa đổi vào việc kiểm tra đáp án độc lập với nhau**, hiệu quả của các phép sửa đổi không ảnh hưởng lẫn nhau.
 3.  Nếu một phép sửa đổi có đóng góp vào việc kiểm tra đáp án, đóng góp đó là một giá trị xác định và không phụ thuộc vào tiêu chuẩn kiểm tra.
 4.  Các đóng góp thỏa mãn tính giao hoán, tính kết hợp và có tính cộng được.
-5.  Bài toán cho phép dùng thuật toán offline.
+5.  Bài toán cho phép dùng thuật toán ngoại tuyến.
 
 ## Giải thích
 
@@ -298,9 +298,9 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
 ??? note "Lời giải"
     Lấy tiền nhiệm làm ví dụ. Cách dùng cấu trúc dữ liệu để giải dạng bài này thường là trước tiên truy vấn trong đoạn có bao nhiêu số nhỏ hơn nghiêm ngặt $k$, giả sử số lượng là $x$, rồi truy vấn số nhỏ thứ $x$ trong đoạn. Với kế nhiệm, truy vấn trong đoạn có bao nhiêu số không lớn hơn $k$, số lượng là $x$, rồi truy vấn số nhỏ thứ $x+1$ trong đoạn.
     
-    Xét dùng chặt nhị phân tổng thể để giải bài này: chặt nhị phân tổng thể là một thuật toán offline hiệu quả để tìm phần tử nhỏ thứ $k$ trên đoạn, còn [chia để trị CDQ](./cdq-divide.md) có thể tính offline hiệu quả hạng trong một đoạn. Chạy chia để trị CDQ một lần để tìm hạng, sau đó có thể dùng chặt nhị phân tổng thể để thu được tiền nhiệm và kế nhiệm trong đoạn.
+    Xét dùng chặt nhị phân tổng thể để giải bài này: chặt nhị phân tổng thể là một thuật toán ngoại tuyến hiệu quả để tìm phần tử nhỏ thứ $k$ trên đoạn, còn [chia để trị CDQ](./cdq-divide.md) có thể tính ngoại tuyến hiệu quả hạng trong một đoạn. Chạy chia để trị CDQ một lần để tìm hạng, sau đó có thể dùng chặt nhị phân tổng thể để thu được tiền nhiệm và kế nhiệm trong đoạn.
     
-    Bài này cũng có thể giải offline một lần bằng chia để trị CDQ lồng cây đoạn, nhưng hiệu quả kém xa việc chạy hai lần: chia để trị CDQ rồi chặt nhị phân tổng thể.
+    Bài này cũng có thể giải ngoại tuyến một lần bằng chia để trị CDQ lồng cây đoạn, nhưng hiệu quả kém xa việc chạy hai lần: chia để trị CDQ rồi chặt nhị phân tổng thể.
 
 ### Xây dựng dãy có tính đơn điệu
 

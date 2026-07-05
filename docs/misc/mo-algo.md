@@ -6,7 +6,7 @@ Giả sử $n=m$. Với bài toán truy vấn đoạn trên dãy, nếu từ đ�
 
 ## Giải thích
 
-Sau khi đưa các truy vấn về dạng offline, ta sắp xếp rồi xử lý lần lượt từng truy vấn, chuyển đáp án từ đoạn trước sang đoạn sau một cách trực tiếp bằng cách di chuyển từng bước.
+Sau khi đưa các truy vấn về dạng ngoại tuyến, ta sắp xếp rồi xử lý lần lượt từng truy vấn, chuyển đáp án từ đoạn trước sang đoạn sau một cách trực tiếp bằng cách di chuyển từng bước.
 
 ## Cách sắp xếp
 
@@ -84,7 +84,7 @@ Thuật toán Mo trông khá trực tiếp, phần lớn vì cách sắp xếp t
 
 Giả sử $n, m$ cùng bậc và $n$ là số chính phương. Xét các đoạn có dạng $[a \sqrt n, b \sqrt n](1 \le a, b \le \sqrt n)$; có tổng cộng $n$ đoạn như vậy. Nếu xem mọi đoạn là điểm trên mặt phẳng, khoảng cách Manhattan giữa hai điểm đúng bằng chi phí chuyển giữa hai đoạn, và khoảng cách Manhattan nhỏ nhất giữa hai đoạn bất kỳ là $\sqrt n$. Do đó độ phức tạp thời gian tối thiểu để xử lý tất cả truy vấn là $O(n \sqrt n)$. Cách dựng dữ liệu cho các trường hợp khác cũng tương tự.
 
-Thuật toán Mo còn có một đặc điểm: khi $n$ không đổi, $m$ càng lớn thì chi phí chuyển trung bình cho mỗi truy vấn càng nhỏ. Một số thuật toán offline khác cũng có đặc điểm tương tự, chẳng hạn thuật toán Tarjan để tìm LCA, nhưng với thuật toán Mo, chi phí chuyển trung bình thay đổi theo $m$ rõ rệt nhất.
+Thuật toán Mo còn có một đặc điểm: khi $n$ không đổi, $m$ càng lớn thì chi phí chuyển trung bình cho mỗi truy vấn càng nhỏ. Một số thuật toán ngoại tuyến khác cũng có đặc điểm tương tự, chẳng hạn thuật toán Tarjan để tìm LCA, nhưng với thuật toán Mo, chi phí chuyển trung bình thay đổi theo $m$ rõ rệt nhất.
 
 ## Bài mẫu & mã nguồn
 

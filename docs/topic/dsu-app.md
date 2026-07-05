@@ -35,9 +35,9 @@ Một cách khác là duy trì cây tái cấu trúc Kruskal. Về bản chất,
     
     Tiếp theo có $q$ truy vấn. Truy vấn thứ $i$ hỏi kích thước thành phần liên thông chứa đỉnh $x_i$ sau thao tác thứ $t_i$.
 
-Thuật toán offline: sắp xếp các truy vấn theo $t_i$ tăng dần. Trong quá trình thêm cạnh, dùng DSU và xử lý luôn các truy vấn tương ứng. Độ phức tạp thời gian là $O(q\log q+(n+q)\alpha(n))$.
+Thuật toán ngoại tuyến: sắp xếp các truy vấn theo $t_i$ tăng dần. Trong quá trình thêm cạnh, dùng DSU và xử lý luôn các truy vấn tương ứng. Độ phức tạp thời gian là $O(q\log q+(n+q)\alpha(n))$.
 
-Thuật toán online: với bài này, thuật toán online chỉ có thể dùng cây tái cấu trúc Kruskal. Điểm khác biệt giữa cây tái cấu trúc Kruskal và DSU là: nếu ở thao tác thứ $i$, $a_i$ và $b_i$ thuộc hai cây con khác nhau, Kruskal tạo một đỉnh mới $u$, rồi nối gốc của cây con chứa $a_i$ và gốc của cây con chứa $b_i$ lần lượt tới $u$, làm hai con của $u$. Có thể xem trọng số đỉnh của $u$ là $i$. Với $n$ đỉnh ban đầu, trọng số đỉnh là $0$.
+Thuật toán trực tuyến: với bài này, thuật toán trực tuyến chỉ có thể dùng cây tái cấu trúc Kruskal. Điểm khác biệt giữa cây tái cấu trúc Kruskal và DSU là: nếu ở thao tác thứ $i$, $a_i$ và $b_i$ thuộc hai cây con khác nhau, Kruskal tạo một đỉnh mới $u$, rồi nối gốc của cây con chứa $a_i$ và gốc của cây con chứa $b_i$ lần lượt tới $u$, làm hai con của $u$. Có thể xem trọng số đỉnh của $u$ là $i$. Với $n$ đỉnh ban đầu, trọng số đỉnh là $0$.
 
 Đối với mỗi truy vấn, ta chỉ cần tìm thành phần liên thông lớn nhất chứa $x_i$ trong cây tái cấu trúc sao cho trọng số đỉnh lớn nhất trong thành phần đó không vượt quá $t_i$. Đáp án của truy vấn là số đỉnh có trọng số $0$ trong thành phần liên thông này, tức số đỉnh lá.
 
@@ -91,7 +91,7 @@ Cách duy trì của bài này tương tự phiên bản trên cây của bài D
     
     Định nghĩa cầu: với một cạnh $(x,y)$ trong $G$, nếu xóa cạnh đó làm số thành phần liên thông tăng lên, thì $(x,y)$ được gọi là cầu.
     
-    Bắt buộc xử lý online.
+    Bắt buộc xử lý trực tuyến.
 
 Bài này kiểm tra khả năng hiểu tính chất của DSU. Xét việc dùng DSU để duy trì tính liên thông. Với cây các thành phần song liên thông cạnh, ta duy trì một cây có gốc, đặt $p_i$ là cha của đỉnh $i$. Đây chính là DSU không dùng nén đường đi.
 

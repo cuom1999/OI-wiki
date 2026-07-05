@@ -1,8 +1,8 @@
 author: xiezheyuan
 
-Các bài toán kết hợp cây đoạn với truy vấn offline cũng xuất hiện trong OI. Kỹ thuật này còn được gọi là chia để trị bằng cây đoạn.
+Các bài toán kết hợp cây đoạn với truy vấn ngoại tuyến cũng xuất hiện trong OI. Kỹ thuật này còn được gọi là chia để trị bằng cây đoạn.
 
-Nếu cần duy trì một số thông tin chỉ tồn tại trong từng khoảng thời gian, và cần trả lời hợp các thông tin tại một thời điểm nào đó trong bối cảnh offline, có thể cân nhắc dùng kỹ thuật chia để trị bằng cây đoạn.
+Nếu cần duy trì một số thông tin chỉ tồn tại trong từng khoảng thời gian, và cần trả lời hợp các thông tin tại một thời điểm nào đó trong bối cảnh ngoại tuyến, có thể cân nhắc dùng kỹ thuật chia để trị bằng cây đoạn.
 
 Trong thực tế, chia để trị bằng cây đoạn thường có các công dụng sau:
 
@@ -98,10 +98,10 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
     -   `A x y` nối cạnh $(x,y)$.
     -   `Q x y` in số đường đi đi qua cạnh $(x,y)$.
     
-    Cho phép xử lý offline.
+    Cho phép xử lý ngoại tuyến.
     
     ??? note "Ý tưởng giải"
-        Vì cho phép xử lý offline, có thể nghĩ đến chia để trị bằng cây đoạn.
+        Vì cho phép xử lý ngoại tuyến, có thể nghĩ đến chia để trị bằng cây đoạn.
         
         Tiếp theo xét cách hỗ trợ thao tác `Q`. Nếu cạnh $(x,y)$ không tồn tại, đáp án chính là kích thước thành phần liên thông chứa $x$ nhân với kích thước thành phần liên thông chứa $y$. Giá trị này có thể được duy trì bằng DSU.
         
@@ -118,7 +118,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
     -   `C x` đảo màu của đỉnh thứ $x$.
     -   `G` hỏi khoảng cách xa nhất giữa hai đỉnh đen trên cây. Đặc biệt, nếu không tồn tại đỉnh đen nào, in $-1$.
     
-    Cho phép xử lý offline.
+    Cho phép xử lý ngoại tuyến.
     
     ??? note "Ý tưởng giải"
         Trước hết xét cách duy trì đường kính của một tập đỉnh trên cây. Có suy luận sau:
@@ -127,7 +127,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
         
         Sau đó quay lại bài toán gốc. Có thể duy trì tập các đỉnh đen, đồng thời duy trì các khoảng thời gian mà mỗi đỉnh nằm trong tập đỉnh đen. Cụ thể, chỉ cần mở một mảng bucket để ghi lại thời điểm lần gần nhất đỉnh đó đi vào tập đỉnh đen.
         
-        Khi đó có thể xử lý offline một cách tự nhiên: chèn tất cả khoảng thời gian vào cây đoạn. Sau đó chia để trị trên cây đoạn; mỗi nút trên cây đoạn ghi lại các đỉnh được thêm vào tập đỉnh trong đoạn thời gian hiện tại. Với các đỉnh mới thêm, có thể dùng suy luận trên để tìm hai đầu mút đường kính của tập đỉnh mới.
+        Khi đó có thể xử lý ngoại tuyến một cách tự nhiên: chèn tất cả khoảng thời gian vào cây đoạn. Sau đó chia để trị trên cây đoạn; mỗi nút trên cây đoạn ghi lại các đỉnh được thêm vào tập đỉnh trong đoạn thời gian hiện tại. Với các đỉnh mới thêm, có thể dùng suy luận trên để tìm hai đầu mút đường kính của tập đỉnh mới.
         
         Việc rollback rất trực tiếp: chỉ cần dùng một ngăn xếp để ghi lại các thay đổi của hai đầu mút đường kính.
     

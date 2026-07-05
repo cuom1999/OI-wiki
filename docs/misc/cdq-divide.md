@@ -152,7 +152,7 @@ Trong hai trường hợp trước, mục đích của việc dùng chia để t
 
 Nó phù hợp với một số bài cấu trúc dữ liệu dạng "cần hỗ trợ thực hiện sửa đổi xxx rồi thực hiện truy vấn xxx". Loại bài này có hai đặc điểm:
 
--   Nếu đưa các truy vấn về dạng [offline](offline.md), tất cả thao tác sẽ tự nhiên xếp thành một dãy theo thời gian.
+-   Nếu đưa các truy vấn về dạng [ngoại tuyến](offline.md), tất cả thao tác sẽ tự nhiên xếp thành một dãy theo thời gian.
 -   Mỗi sửa đổi đều liên quan mật thiết đến các thao tác truy vấn phía sau. Những quan hệ "sửa đổi - truy vấn" như vậy có tổng cộng $O(n^2)$ cặp.
 
 Ta có thể dùng chia để trị CDQ trên dãy thao tác này để xử lý quan hệ giữa sửa đổi và truy vấn.
@@ -167,9 +167,9 @@ Chú ý rằng nếu các sửa đổi **độc lập** với nhau, ta không c�
     Duy trì một mảng hai chiều, hỗ trợ cộng một số vào một vùng hình chữ nhật, và mỗi lần truy vấn tổng của một vùng hình chữ nhật.
 
 ??? note "Ý tưởng giải"
-    Với phiên bản không sửa đổi của bài này, tức "cho một mảng hai chiều, nhiều lần truy vấn tổng của một vùng hình chữ nhật", có một cách làm kinh điển dùng đường quét kết hợp với cây đoạn. Cách làm cụ thể là trước hết tách mỗi hình chữ nhật thành hai thao tác chèn và xóa, tiếp theo tách mỗi truy vấn thành dạng hiệu của các tổng tiền tố hai chiều, cuối cùng xử lý offline. Tuy nhiên đề gốc có sửa đổi, nên không thể trực tiếp dùng cách này.
+    Với phiên bản không sửa đổi của bài này, tức "cho một mảng hai chiều, nhiều lần truy vấn tổng của một vùng hình chữ nhật", có một cách làm kinh điển dùng đường quét kết hợp với cây đoạn. Cách làm cụ thể là trước hết tách mỗi hình chữ nhật thành hai thao tác chèn và xóa, tiếp theo tách mỗi truy vấn thành dạng hiệu của các tổng tiền tố hai chiều, cuối cùng xử lý ngoại tuyến. Tuy nhiên đề gốc có sửa đổi, nên không thể trực tiếp dùng cách này.
     
-    Hãy thử dùng chia để trị CDQ. Ta đưa toàn bộ truy vấn và thao tác sửa đổi về offline. Các thao tác này tạo thành một dãy, và có $O(N^2)$ cặp quan hệ sửa đổi - truy vấn. Vẫn dùng quy trình chung của chia để trị CDQ: chia tất cả quan hệ thành ba loại, trong tầng chia để trị này chỉ xử lý các quan hệ sửa đổi - truy vấn vượt qua $mid$, các quan hệ sửa đổi - truy vấn còn lại được giải quyết bằng đệ quy.
+    Hãy thử dùng chia để trị CDQ. Ta đưa toàn bộ truy vấn và thao tác sửa đổi về ngoại tuyến. Các thao tác này tạo thành một dãy, và có $O(N^2)$ cặp quan hệ sửa đổi - truy vấn. Vẫn dùng quy trình chung của chia để trị CDQ: chia tất cả quan hệ thành ba loại, trong tầng chia để trị này chỉ xử lý các quan hệ sửa đổi - truy vấn vượt qua $mid$, các quan hệ sửa đổi - truy vấn còn lại được giải quyết bằng đệ quy.
     
     Ta nhận thấy tất cả sửa đổi đều đã hoàn thành trước truy vấn. Khi đó bài toán gốc tương đương với "trên mặt phẳng có một số hình chữ nhật tĩnh, liên tục truy vấn tổng của một vùng hình chữ nhật".
     
@@ -177,7 +177,7 @@ Chú ý rằng nếu các sửa đổi **độc lập** với nhau, ta không c�
     
     Trong cách hiện thực chia để trị CDQ như vậy, cùng một truy vấn được xử lý $O(\log n)$ lần. Nhưng điều đó không sao, vì các sửa đổi đóng góp cho truy vấn đó ở mỗi lần là rời nhau. Độ phức tạp thời gian của toàn bộ quy trình là $T(n)=T(\lfloor \frac{n}{2} \rfloor)+T(\lceil \frac{n}{2} \rceil)+ O(n\log n)=O(n\log^2n)$.
     
-    Quan sát quy trình thuật toán trên, ta thấy ban đầu ta chỉ có thể giải bài toán tĩnh cộng hình chữ nhật, tính tổng hình chữ nhật; nhưng chỉ cần đơn giản dùng chia để trị CDQ, ta đã có thể giải offline một bài toán động cộng hình chữ nhật, tính tổng hình chữ nhật. Tinh túy của việc chuyển bài toán động thành bài toán tĩnh nằm ở chỗ chia để trị CDQ mỗi lần chỉ xử lý quan hệ sửa đổi và truy vấn vượt qua một điểm nào đó, nhờ vậy ta chỉ cần xét bài toán đơn giản "mọi truy vấn đều nằm sau các sửa đổi". Chính vì điểm này, chia để trị CDQ được gọi là "công cụ chuyển bài toán động thành bài toán tĩnh".
+    Quan sát quy trình thuật toán trên, ta thấy ban đầu ta chỉ có thể giải bài toán tĩnh cộng hình chữ nhật, tính tổng hình chữ nhật; nhưng chỉ cần đơn giản dùng chia để trị CDQ, ta đã có thể giải ngoại tuyến một bài toán động cộng hình chữ nhật, tính tổng hình chữ nhật. Tinh túy của việc chuyển bài toán động thành bài toán tĩnh nằm ở chỗ chia để trị CDQ mỗi lần chỉ xử lý quan hệ sửa đổi và truy vấn vượt qua một điểm nào đó, nhờ vậy ta chỉ cần xét bài toán đơn giản "mọi truy vấn đều nằm sau các sửa đổi". Chính vì điểm này, chia để trị CDQ được gọi là "công cụ chuyển bài toán động thành bài toán tĩnh".
 
 ???+ example "[\[Ynoi2016\] Côn trùng trong gương](https://www.luogu.com.cn/problem/P4690)"
     Duy trì một dãy $a_i$ độ dài $n$, có $m$ thao tác.
