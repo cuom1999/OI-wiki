@@ -333,11 +333,11 @@ Quá trình liên tục nhảy qua lại trên danh sách liên kết chữ th�
 
 Trong danh sách liên kết chữ thập hai chiều có bốn miền con trỏ, lần lượt trỏ tới phần tử phía trên, phía dưới, bên trái và bên phải. Mỗi phần tử $i$ trong toàn bộ hệ danh sách liên kết chữ thập hai chiều đều tương ứng với một ô, nên còn cần biểu diễn cột và hàng chứa $i$, như hình sau:
 
-![dlx-1.svg](./images/dlx-1.svg)
+![Các con trỏ của một nút trong Dancing Links](./images/dlx-1.svg)
 
 Một danh sách liên kết hai chiều cỡ lớn sẽ phức tạp hơn:
 
-![dlx-2.svg](./images/dlx-2.svg)
+![Danh sách liên kết chữ thập hai chiều trong Dancing Links](./images/dlx-2.svg)
 
 Mỗi hàng có một chỉ thị đầu hàng, mỗi cột có một chỉ thị cột.
 
@@ -368,7 +368,7 @@ Trước hết xóa $c$. Khi đó:
 
 Tức là `L[R[c]] = L[c], R[L[c]] = R[c];`.
 
-![dlx-3.svg](./images/dlx-3.svg)
+![Xóa chỉ thị cột trong thao tác remove](./images/dlx-3.svg)
 
 Sau đó đi xuống dọc theo cột này, xóa từng hàng đi qua.
 
@@ -381,7 +381,7 @@ Chú ý phải cập nhật số phần tử của từng cột.
 
 Tức là `U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];`.
 
-![dlx-4.svg](./images/dlx-4.svg)
+![Xóa các nút trên hàng liên quan trong thao tác remove](./images/dlx-4.svg)
 
 Mã cài đặt hàm `remove` như sau:
 
@@ -429,7 +429,7 @@ Nút thứ $i$ có nút bên trái là $i - 1$, nút bên phải là $i + 1$, n�
 
 Như vậy ta thu được một danh sách liên kết hai chiều dạng vòng:
 
-![dlx-5.svg](./images/dlx-5.svg)
+![Danh sách vòng của các chỉ thị cột sau khi build](./images/dlx-5.svg)
 
 Vậy là đã khởi tạo xong một Dancing Links.
 
@@ -496,7 +496,7 @@ Thao tác chèn được chia thành hai trường hợp:
 
 Có thể dùng hình sau để hỗ trợ hiểu thao tác `insert(r, c)`:
 
-![dlx-6.svg](./images/dlx-6.svg)
+![Chèn một nút vào hàng và cột trong Dancing Links](./images/dlx-6.svg)
 
 Hãy chú ý hướng của các mũi tên cong.
 
