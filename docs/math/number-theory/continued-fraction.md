@@ -601,7 +601,7 @@ $$
     \left|x-\dfrac{p}{q}\right|<\left|x-\dfrac{p'}{q'}\right|,
     $$
     
-    thì số hữu tỉ $\dfrac{p}{q}$ được gọi là **xấp xỉ tốt nhất loại một** (best approximation of the first kind) của số thực $x$.
+    thì số hữu tỉ $\dfrac{p}{q}$ được gọi là **xấp xỉ tốt nhất loại một** của số thực $x$.
 
 Xấp xỉ tốt nhất loại một không nhất thiết là phân số tiệm cận, mà thuộc một lớp phân số rộng hơn.
 
@@ -742,7 +742,7 @@ Xấp xỉ tốt nhất loại hai dùng $|qx-p|$ để đo mức độ xấp x�
     \left|qx-p\right|<\left|q'x-p'\right|,
     $$
     
-    thì số hữu tỉ $\dfrac{p}{q}$ được gọi là **xấp xỉ tốt nhất loại hai** (best approximation of the second kind) của số thực $x$.
+    thì số hữu tỉ $\dfrac{p}{q}$ được gọi là **xấp xỉ tốt nhất loại hai** của số thực $x$.
 
 Điều kiện của xấp xỉ tốt nhất loại hai tương đương với
 

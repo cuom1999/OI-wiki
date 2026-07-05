@@ -23,39 +23,39 @@ Cây AA tuân theo các quy tắc giống cây đỏ-đen, nhưng bổ sung thê
 
 ## Duy trì cân bằng
 
-Mỗi nút của cây AA duy trì một trường **level**, tương tự như mỗi nút của cây đỏ-đen duy trì một trường color ("RED" hoặc "BLACK"). Quy định về level phải thỏa mãn 5 điều kiện sau:
+Mỗi nút của cây AA duy trì một trường **mức** (`level`), tương tự như mỗi nút của cây đỏ-đen duy trì một trường màu (`color`, "RED" hoặc "BLACK"). Quy định về mức phải thỏa mãn 5 điều kiện sau:
 
-1.  Level của mỗi nút lá là 1.
+1.  Mức của mỗi nút lá là 1.
 
-2.  Level của mỗi con trái bằng level của nút cha trừ 1.
+2.  Mức của mỗi con trái bằng mức của nút cha trừ 1.
 
-3.  Level của mỗi con phải bằng level của nút cha hoặc bằng level của nút cha trừ 1.
+3.  Mức của mỗi con phải bằng mức của nút cha hoặc bằng mức của nút cha trừ 1.
 
-4.  Level của mỗi cháu phải phải nhỏ hơn nghiêm ngặt level của nút ông.
+4.  Mức của mỗi cháu phải phải nhỏ hơn nghiêm ngặt mức của nút ông.
 
-5.  Mỗi nút có level lớn hơn 1 đều có hai con.
+5.  Mỗi nút có mức lớn hơn 1 đều có hai con.
 
-![Level trong cây AA](images/aa-tree-4.jpg)
+![Mức trong cây AA](images/aa-tree-4.jpg)
 
-### Liên kết ngang (Horizontal Link)
+### Liên kết ngang
 
-Liên kết mà level của nút con bằng level của nút cha được gọi là **liên kết ngang**, tương tự liên kết đỏ trong cây đỏ-đen. Một liên kết ngang bên phải đơn lẻ được cho phép, nhưng các liên kết ngang bên phải liên tiếp thì không; liên kết ngang bên trái cũng không được phép. Những ràng buộc này chặt hơn các ràng buộc của cây đỏ-đen, vì vậy quy trình cân bằng cây AA đơn giản hơn nhiều về mặt cài đặt so với cây đỏ-đen.
+Liên kết mà mức của nút con bằng mức của nút cha được gọi là **liên kết ngang**, tương tự liên kết đỏ trong cây đỏ-đen. Một liên kết ngang bên phải đơn lẻ được cho phép, nhưng các liên kết ngang bên phải liên tiếp thì không; liên kết ngang bên trái cũng không được phép. Những ràng buộc này chặt hơn các ràng buộc của cây đỏ-đen, vì vậy quy trình cân bằng cây AA đơn giản hơn nhiều về mặt cài đặt so với cây đỏ-đen.
 
 ![Liên kết ngang trong cây AA](images/aa-tree-5.jpg)
 
-Các thao tác chèn và xóa có thể tạm thời làm cây AA mất cân bằng, tức là vi phạm các bất biến của cây AA. Để khôi phục cân bằng, chỉ cần hai thao tác khác nhau: "**skew**" (xoay phải để loại bỏ liên kết ngang bên trái) và "**split**" (xoay trái và tăng level để xử lý các liên kết ngang bên phải liên tiếp). Thao tác "skew" xoay phải một cây con có liên kết ngang bên trái để thay bằng một cây con có liên kết ngang bên phải. Thao tác "split" xoay trái và tăng level để thay một cây con có từ hai liên kết ngang bên phải liên tiếp trở lên bằng một cây con có ít liên kết ngang bên phải liên tiếp hơn. Việc cài đặt chèn và xóa có duy trì cân bằng trở nên đơn giản hơn nhờ dựa vào hai thao tác "skew" và "split" để chỉ chỉnh sửa cây khi cần, thay vì để phía gọi tự quyết định có thực hiện "skew" hay "split" hay không.
+Các thao tác chèn và xóa có thể tạm thời làm cây AA mất cân bằng, tức là vi phạm các bất biến của cây AA. Để khôi phục cân bằng, chỉ cần hai thao tác khác nhau: **nghiêng** (xoay phải để loại bỏ liên kết ngang bên trái) và **tách** (xoay trái và tăng mức để xử lý các liên kết ngang bên phải liên tiếp). Thao tác nghiêng xoay phải một cây con có liên kết ngang bên trái để thay bằng một cây con có liên kết ngang bên phải. Thao tác tách xoay trái và tăng mức để thay một cây con có từ hai liên kết ngang bên phải liên tiếp trở lên bằng một cây con có ít liên kết ngang bên phải liên tiếp hơn. Việc cài đặt chèn và xóa có duy trì cân bằng trở nên đơn giản hơn nhờ dựa vào hai thao tác nghiêng và tách để chỉ chỉnh sửa cây khi cần, thay vì để phía gọi tự quyết định có thực hiện thao tác nào hay không.
 
-### split (xoay trái)
+### Tách (xoay trái)
 
-Xuất hiện một chuỗi liên kết ngang liên tiếp sang phải, tức là ba nút liên tiếp theo hướng con phải cùng thuộc một level; nút R và nút X đều là nút đỏ.
+Xuất hiện một chuỗi liên kết ngang liên tiếp sang phải, tức là ba nút liên tiếp theo hướng con phải cùng thuộc một mức; nút R và nút X đều là nút đỏ.
 
-Khi đó xoay trái nút *T*, xem các nút có level nhỏ hơn hoặc bằng level này là một cây con.
+Khi đó xoay trái nút *T*, xem các nút có mức nhỏ hơn hoặc bằng mức này là một cây con.
 
 1.  Con phải của gốc cây con trở thành gốc mới của cây con;
 2.  Gốc cũ của cây con trở thành con trái của gốc mới;
-3.  Level của gốc mới tăng thêm 1.
+3.  Mức của gốc mới tăng thêm 1.
 
-![Thao tác split trong cây AA](images/aa-tree-split.svg)
+![Thao tác tách trong cây AA](images/aa-tree-split.svg)
 
 ???+ note "Cài đặt giả mã"
     $$
@@ -67,16 +67,16 @@ Khi đó xoay trái nút *T*, xem các nút có level nhỏ hơn hoặc bằng l
     \end{array}
     $$
 
-### skew (xoay phải)
+### Nghiêng (xoay phải)
 
-Xuất hiện một liên kết ngang sang trái, tức là hai nút liên tiếp theo hướng con trái cùng thuộc một level.
+Xuất hiện một liên kết ngang sang trái, tức là hai nút liên tiếp theo hướng con trái cùng thuộc một mức.
 
-Xoay phải nút *T*, xem các nút có level nhỏ hơn hoặc bằng level này là một cây con.
+Xoay phải nút *T*, xem các nút có mức nhỏ hơn hoặc bằng mức này là một cây con.
 
 1.  Con trái của gốc cây con trở thành gốc mới của cây con;
 2.  Gốc cũ của cây con trở thành con phải của gốc mới.
 
-![Thao tác skew trong cây AA](images/aa-tree-skew.svg)
+![Thao tác nghiêng trong cây AA](images/aa-tree-skew.svg)
 
 ???+ note "Cài đặt giả mã"
     $$
@@ -105,7 +105,7 @@ Bản thân cây AA là một cây tìm kiếm nhị phân, nên thao tác tìm 
     6 & \qquad \textbf{ngược lại nếu } \text{add}\rightarrow\text{key} > \text{root}\rightarrow\text{key} \\
     7 & \qquad\qquad \text{insert}(\text{root}\rightarrow\text{right}, \text{add}) \\
     8 & \qquad \textbf{kết thúc nếu} \\
-    9 & \qquad \text{// nếu không cho phép phần tử trùng lặp, thực hiện skew và split ở mỗi level} \\
+    9 & \qquad \text{// nếu không cho phép phần tử trùng lặp, thực hiện skew và split ở mỗi mức} \\
     10 & \qquad \text{skew}(\text{root}); \\
     11 & \qquad \text{split}(\text{root}); \\
     12 & \textbf{kết thúc hàm}
@@ -114,7 +114,7 @@ Bản thân cây AA là một cây tìm kiếm nhị phân, nên thao tác tìm 
 
 ### Xóa
 
-Quá trình xóa tương tự các cây cân bằng nhị phân khác: trước hết chuyển việc xóa một nút trong thành việc xóa một nút lá. Cách làm cụ thể là thay nút trong bằng nút tiền nhiệm hoặc nút kế nhiệm gần nhất của nó. Vì mọi nút trong cây AA có level lớn hơn 1 đều có hai nút con, nút tiền nhiệm hoặc kế nhiệm sẽ nằm ở level 1, nên việc xóa một nút level 1 tương đối đơn giản.
+Quá trình xóa tương tự các cây cân bằng nhị phân khác: trước hết chuyển việc xóa một nút trong thành việc xóa một nút lá. Cách làm cụ thể là thay nút trong bằng nút tiền nhiệm hoặc nút kế nhiệm gần nhất của nó. Vì mọi nút trong cây AA có mức lớn hơn 1 đều có hai nút con, nút tiền nhiệm hoặc kế nhiệm sẽ nằm ở mức 1, nên việc xóa một nút mức 1 tương đối đơn giản.
 
 ???+ note "Cài đặt giả mã"
     $$

@@ -873,7 +873,7 @@ Phiên bản B5S này có hiệu năng rất lý tưởng; trong loạt thuật 
 
 Phiên bản này cũng được cài đặt trong `stringlib` của CPython. Nó dùng hai số nguyên để xấp xỉ vai trò của bảng ký tự và $delta_1$, nhờ đó tiết kiệm bộ nhớ đáng kể:
 
-1.  Dùng một bộ lọc Bloom (Bloom filter) đơn giản để thay thế bảng ký tự (alphabet).
+1.  Dùng một bộ lọc Bloom đơn giản để thay thế bảng ký tự.
 
     ???+ note "Cài đặt"
         ```rust
@@ -898,7 +898,7 @@ Phiên bản này cũng được cài đặt trong `stringlib` của CPython. N�
         }
         ```
 
-    Thiết kế bộ lọc Bloom (Bloom filter) đánh đổi độ chính xác (thực tế cả thời gian chạy) để tiết kiệm đáng kể không gian lưu trữ cho cấu trúc dữ liệu kiểu `Set`. Đặc điểm của nó là có thể phán đoán nhầm một phần tử không thuộc tập thành thuộc tập (False Positives, viết tắt FP), nhưng không phán đoán nhầm một phần tử thuộc tập thành không thuộc tập (False Negatives, viết tắt FN). Vì vậy khi dùng nó, FP có thể khiến ta không đạt được bước nhảy ký tự lớn nhất, nhưng FN sẽ không làm ta bỏ qua ký tự đáng lẽ phải khớp.
+    Thiết kế bộ lọc Bloom đánh đổi độ chính xác (thực tế cả thời gian chạy) để tiết kiệm đáng kể không gian lưu trữ cho cấu trúc dữ liệu kiểu `Set`. Đặc điểm của nó là có thể phán đoán nhầm một phần tử không thuộc tập thành thuộc tập (dương tính giả, viết tắt FP), nhưng không phán đoán nhầm một phần tử thuộc tập thành không thuộc tập (âm tính giả, viết tắt FN). Vì vậy khi dùng nó, FP có thể khiến ta không đạt được bước nhảy ký tự lớn nhất, nhưng FN sẽ không làm ta bỏ qua ký tự đáng lẽ phải khớp.
 
     Về mặt lý thuyết, với cài đặt "bộ lọc Bloom" ở trên, khi độ dài $pat$ là 50 byte, xác suất FP khoảng 0.5; khi độ dài $pat$ là 10 byte, xác suất FP khoảng 0.15.
 

@@ -142,7 +142,7 @@ Bài toán phủ lặp tương tự bài toán phủ chính xác, nhưng không 
 <span id="thuật-toán-x"></span>
 ## Thuật toán X
 
-Donald E. Knuth đề xuất thuật toán X (Algorithm X). Ý tưởng của nó khá giống cách vét cạn phía trên, nhưng thuận tiện hơn cho việc tối ưu.
+Donald E. Knuth đề xuất thuật toán X. Ý tưởng của nó khá giống cách vét cạn phía trên, nhưng thuận tiện hơn cho việc tối ưu.
 
 <span id="quy-trình"></span>
 ### Quy trình
@@ -419,7 +419,7 @@ Mã cài đặt `recover(c)` như sau:
     ```
 
 <span id="thao-tác-build"></span>
-#### Thao tác build
+#### Thao tác xây dựng
 
 `build(r, c)` biểu diễn việc tạo mới một Dancing Links kích thước $r \times c$, tức có $r$ hàng và $c$ cột.
 
@@ -429,7 +429,7 @@ Nút thứ $i$ có nút bên trái là $i - 1$, nút bên phải là $i + 1$, n�
 
 Như vậy ta thu được một danh sách liên kết hai chiều dạng vòng:
 
-![Danh sách vòng của các chỉ thị cột sau khi build](./images/dlx-5.svg)
+![Danh sách vòng của các chỉ thị cột sau khi xây dựng](./images/dlx-5.svg)
 
 Vậy là đã khởi tạo xong một Dancing Links.
 

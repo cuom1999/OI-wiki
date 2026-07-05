@@ -51,7 +51,7 @@ FSM được chia thành hai loại: ô-tô-mát trạng thái hữu hạn xác 
     DFA là một bộ năm $(Q,\Sigma,\delta,q_0,F)$, bao gồm:
     
     1.  **Tập trạng thái hữu hạn** $Q$. Nếu xem một DFA như một đồ thị có hướng, thì các trạng thái trong DFA tương ứng với các đỉnh trên đồ thị.
-    2.  **Bảng chữ cái** $\Sigma$. Automaton này chỉ có thể nhận các ký tự này làm đầu vào.
+    2.  **Bảng chữ cái** $\Sigma$. Ô-tô-mát này chỉ có thể nhận các ký tự này làm đầu vào.
     3.  **Hàm chuyển** $\delta:Q\times \Sigma \to Q$ là một hàm nhận hai tham số và trả về một giá trị; tham số thứ nhất và giá trị trả về đều là một trạng thái, tham số thứ hai là một ký tự trong bảng chữ cái. Nếu xem một DFA như một đồ thị có hướng, thì hàm chuyển của DFA tương ứng với các cạnh giữa các đỉnh, và trên mỗi cạnh có một ký tự.
     4.  **Trạng thái khởi đầu** $q_0\in Q$ là một trạng thái đặc biệt. Trong các bài viết khác nhau, trạng thái khởi đầu thường được ký hiệu là $s$, $\textit{start}$ hoặc $q_0$; trong bài này dùng $q_0$.
     5.  **Tập trạng thái chấp nhận** $F\subseteq Q$ là một nhóm trạng thái đặc biệt.
@@ -79,25 +79,25 @@ Khi một DFA đọc một chuỗi, nó bắt đầu từ trạng thái ban đ�
 ???+ abstract "Ngôn ngữ hình thức"
     Một **ngôn ngữ hình thức** (language), hay gọi tắt là **ngôn ngữ**, trên tập ký tự $\Sigma$ là một tập hợp các chuỗi trên $\Sigma$, ký hiệu là $L$.
 
-???+ abstract "Ngôn ngữ được automaton nhận dạng"
-    Với một automaton $M$, ngôn ngữ $L(M)$ mà nó nhận dạng được định nghĩa là tập tất cả các chuỗi mà nó chấp nhận: $\{w\mid M\text{ chấp nhận }w\}$.
+???+ abstract "Ngôn ngữ được ô-tô-mát nhận dạng"
+    Với một ô-tô-mát $M$, ngôn ngữ $L(M)$ mà nó nhận dạng được định nghĩa là tập tất cả các chuỗi mà nó chấp nhận: $\{w\mid M\text{ chấp nhận }w\}$.
 
 Không phải mọi ngôn ngữ đều có thể được nhận dạng bởi DFA.
 
 ???+ abstract "Ngôn ngữ chính quy"
     Nếu một ngôn ngữ có thể được nhận dạng bởi một DFA nào đó, thì gọi nó là **ngôn ngữ chính quy** (regular language).
 
-Như đã nói ở trên, một automaton có thể được biểu diễn bằng đồ thị trạng thái. Sau đây là một DFA chấp nhận và chỉ chấp nhận các chuỗi $\tt a$, $\tt ab$, $\tt aac$:
+Như đã nói ở trên, một ô-tô-mát có thể được biểu diễn bằng đồ thị trạng thái. Sau đây là một DFA chấp nhận và chỉ chấp nhận các chuỗi $\tt a$, $\tt ab$, $\tt aac$:
 
 ![](./images/fsm3.svg)
 
 (Trong hình đã lược bỏ trạng thái thất bại; mọi chuyển trạng thái không được vẽ đều trỏ tới trạng thái thất bại đó.)
 
-## Automaton trạng thái hữu hạn không xác định
+## Ô-tô-mát trạng thái hữu hạn không xác định
 
-**Automaton trạng thái hữu hạn không xác định**[^nfa-and-nfaepsilon] (Nondeterministic Finite Automaton, NFA) là mở rộng tự nhiên của DFA. Trong NFA, với một trạng thái bất kỳ và một ký tự bất kỳ, có thể tồn tại không, một hoặc nhiều trạng thái kế tiếp. Đồng thời, NFA được thảo luận trong mục này cho phép nhận ký tự rỗng, nghĩa là có thể chuyển từ một trạng thái sang một trạng thái kế tiếp nào đó mà không tiêu thụ ký tự nào.
+**Ô-tô-mát trạng thái hữu hạn không xác định**[^nfa-and-nfaepsilon] (Nondeterministic Finite Automaton, NFA) là mở rộng tự nhiên của DFA. Trong NFA, với một trạng thái bất kỳ và một ký tự bất kỳ, có thể tồn tại không, một hoặc nhiều trạng thái kế tiếp. Đồng thời, NFA được thảo luận trong mục này cho phép nhận ký tự rỗng, nghĩa là có thể chuyển từ một trạng thái sang một trạng thái kế tiếp nào đó mà không tiêu thụ ký tự nào.
 
-Ví dụ, vẫn là "automaton trà sữa". Sau khi đặt hàng, dù có tiền mua trà sữa, vẫn có thể vì mạng kém mà không mua được trà sữa, đây là trường hợp tồn tại nhiều trạng thái kế tiếp; cũng có thể vì thao tác chậm, dù chuỗi đầu vào (tức dãy thao tác) là như nhau, nhưng trà sữa đã bán hết nên không mua được, đây là sự tồn tại của ký tự rỗng: cạnh ký tự rỗng có thể đi hoặc không đi. Chỉ cần sửa nhẹ automaton ở trên là có thể mô tả các chức năng này:
+Ví dụ, vẫn là "ô-tô-mát trà sữa". Sau khi đặt hàng, dù có tiền mua trà sữa, vẫn có thể vì mạng kém mà không mua được trà sữa, đây là trường hợp tồn tại nhiều trạng thái kế tiếp; cũng có thể vì thao tác chậm, dù chuỗi đầu vào (tức dãy thao tác) là như nhau, nhưng trà sữa đã bán hết nên không mua được, đây là sự tồn tại của ký tự rỗng: cạnh ký tự rỗng có thể đi hoặc không đi. Chỉ cần sửa nhẹ ô-tô-mát ở trên là có thể mô tả các chức năng này:
 
 ![NFA mô phỏng quy trình đặt hàng](./images/fsm4.svg)
 
@@ -127,7 +127,7 @@ Do cho phép ký tự rỗng, khi biểu diễn chuỗi $w$ thành $y_1y_2\cdots
 
 ## Tính tương đương giữa DFA và NFA
 
-Ta nói hai automaton là tương đương khi và chỉ khi chúng nhận dạng cùng một ngôn ngữ. DFA và NFA là tương đương, tức là mỗi NFA đều tương đương với một DFA nào đó; vì vậy, lớp ngôn ngữ mà NFA nhận dạng được cũng chính là toàn bộ ngôn ngữ chính quy. Mỗi DFA có thể được xem trực tiếp như một NFA; ngược lại, có thể chuyển một NFA thành DFA bằng phương pháp **xây dựng tập lũy thừa** (powerset construction).
+Ta nói hai ô-tô-mát là tương đương khi và chỉ khi chúng nhận dạng cùng một ngôn ngữ. DFA và NFA là tương đương, tức là mỗi NFA đều tương đương với một DFA nào đó; vì vậy, lớp ngôn ngữ mà NFA nhận dạng được cũng chính là toàn bộ ngôn ngữ chính quy. Mỗi DFA có thể được xem trực tiếp như một NFA; ngược lại, có thể chuyển một NFA thành DFA bằng phương pháp **xây dựng tập lũy thừa** (powerset construction).
 
 ???+ abstract "Xây dựng tập lũy thừa"
     Giả sử NFA là $N = (Q, \Sigma, \delta, q_0, F)$. Định nghĩa $E(q)$ là tập trạng thái có thể đi tới từ trạng thái $q$ nếu chỉ đi theo các chuyển $\varepsilon$.
@@ -144,7 +144,7 @@ Dù NFA và DFA có cùng khả năng nhận dạng ngôn ngữ, NFA vẫn hữu
 
 ## Độ phức tạp thời gian khi tính toán DFA và NFA
 
-Giả sử độ dài chuỗi cho trước là $n$, số trạng thái của automaton là $s$, và kích thước bảng chữ cái là hằng số. Khi đó hiển nhiên độ phức tạp thời gian để tính toán DFA là $O(n)$, chỉ cần mô phỏng quá trình nêu trên.
+Giả sử độ dài chuỗi cho trước là $n$, số trạng thái của ô-tô-mát là $s$, và kích thước bảng chữ cái là hằng số. Khi đó hiển nhiên độ phức tạp thời gian để tính toán DFA là $O(n)$, chỉ cần mô phỏng quá trình nêu trên.
 
 Tính toán NFA một cách đơn giản có độ phức tạp $O(ns^2)$, vì cần xét mọi trạng thái kế tiếp và chi phí hợp nhất các trạng thái. Tất nhiên, có thể dùng bitset hoặc phương pháp Four Russians để tối ưu độ phức tạp tính toán xuống $O\left(\dfrac{ns^2}{w}\right)$ hoặc $O\left(\dfrac{ns^2}{w\cdot \log n}\right)$.
 
@@ -202,7 +202,7 @@ Trong tiểu mục này, ta không xét các biểu thức chính quy cụ thể
     8.  Tính lũy đẳng của hợp: $L + L = L$
     9.  Các luật liên quan đến bao đóng: $(L^\ast)^\ast = L^\ast$, $\varnothing^\ast = \varepsilon$, $\varepsilon^\ast = \varepsilon$
 
-**Tính đóng** của ngôn ngữ chính quy cũng là một tính chất quan trọng. Các tính chất này cho phép ta xuất phát từ một số automaton đơn giản, thông qua một số phép toán, xây dựng các máy trạng thái hữu hạn (FSM) có thể nhận dạng những ngôn ngữ khác. Nói ngắn gọn, tính đóng có thể được dùng như công cụ để xây dựng FSM phức tạp.
+**Tính đóng** của ngôn ngữ chính quy cũng là một tính chất quan trọng. Các tính chất này cho phép ta xuất phát từ một số ô-tô-mát đơn giản, thông qua một số phép toán, xây dựng các máy trạng thái hữu hạn (FSM) có thể nhận dạng những ngôn ngữ khác. Nói ngắn gọn, tính đóng có thể được dùng như công cụ để xây dựng FSM phức tạp.
 
 Về tính đóng của ngôn ngữ chính quy, ta có:
 
@@ -219,7 +219,7 @@ Về tính đóng của ngôn ngữ chính quy, ta có:
     8.  Đồng cấu $h(L)=\{h(s)\mid s\in L\}$ của ngôn ngữ chính quy là chính quy,
     9.  Nghịch đồng cấu $h^{-1}(L) = \{ s \in \Sigma^\ast \mid h(s) \in L \}$ của ngôn ngữ chính quy là chính quy.
 
-Một hệ quả đơn giản là mọi ngôn ngữ hữu hạn đều là ngôn ngữ chính quy. Thực tế, [Trie](../string/trie.md) chính là một automaton nhận dạng chúng.
+Một hệ quả đơn giản là mọi ngôn ngữ hữu hạn đều là ngôn ngữ chính quy. Thực tế, [Trie](../string/trie.md) chính là một ô-tô-mát nhận dạng chúng.
 
 ## Định lý Myhill-Nerode
 
@@ -246,9 +246,9 @@ Theo định nghĩa trên, ta chia tập mọi chuỗi hữu hạn thành một 
 -   Trạng thái ban đầu là lớp tương đương tương ứng với xâu rỗng $\varepsilon$.
 -   Tập trạng thái chấp nhận là tập các lớp tương đương mà chuỗi đại diện thuộc ngôn ngữ đã cho.
 
-Một ví dụ kinh điển là [suffix automaton](../string/sam.md), được xây dựng thành DFA nhỏ nhất bằng định lý Myhill-Nerode.
+Một ví dụ kinh điển là [ô-tô-mát hậu tố](../string/sam.md), được xây dựng thành DFA nhỏ nhất bằng định lý Myhill-Nerode.
 
-Định lý Myhill-Nerode thường được áp dụng để xây dựng DFA tương ứng với một số ngôn ngữ chính quy vô hạn. Trong nhiều trường hợp, điều kiện của bài toán khá đơn giản; chỉ cần khảo sát tập các chuỗi có độ dài không quá lớn là đã có thể xây dựng automaton nhận dạng toàn bộ ngôn ngữ.
+Định lý Myhill-Nerode thường được áp dụng để xây dựng DFA tương ứng với một số ngôn ngữ chính quy vô hạn. Trong nhiều trường hợp, điều kiện của bài toán khá đơn giản; chỉ cần khảo sát tập các chuỗi có độ dài không quá lớn là đã có thể xây dựng ô-tô-mát nhận dạng toàn bộ ngôn ngữ.
 
 ### Ví dụ
 
@@ -266,11 +266,11 @@ Mục này giới thiệu cách áp dụng thực tế định lý Myhill-Nerode
 ??? note "Lời giải"
     Tập các chuỗi $01$ có thể tổng hợp ra $1$ là một ngôn ngữ chính quy (tức là tồn tại một DFA có thể phán định một chuỗi $01$ có thể tổng hợp ra $1$ hay không)[^prove-regular-language]. Vì vậy xét dùng định lý Myhill-Nerode. Do điều kiện khá đơn giản, qua thực nghiệm ta chỉ cần chia lớp tương đương cho các chuỗi $01$ có độ dài $\le 9$; khi phán định hai chuỗi có tương đương không, chỉ cần liệt kê thêm các hậu tố có độ dài $\le 6$ để kiểm tra. Chỉ cần với hai chuỗi, sau khi nối vào mọi hậu tố có độ dài $\le 6$, chúng hoặc đều có thể tổng hợp ra chuỗi ta muốn, hoặc đều không thể tổng hợp ra chuỗi ta muốn, thì hai chuỗi đó là tương đương.
     
-    Mỗi lần chuyển tương đương với việc thêm một ký tự $01$ mới vào sau chuỗi hiện tại, rồi biến chuỗi mới này thành chuỗi có độ dài nhỏ nhất trong lớp tương đương chứa chuỗi mới đó. Dựa trên cách thiết kế chuyển này, ta xây dựng một automaton. Automaton này có thể phán định trong độ phức tạp $O(n)$ xem một chuỗi độ dài $n$ có tồn tại cách thực hiện phép toán để kết quả là $1$ hay không. Đồng thời số trạng thái của automaton rất ít.
+    Mỗi lần chuyển tương đương với việc thêm một ký tự $01$ mới vào sau chuỗi hiện tại, rồi biến chuỗi mới này thành chuỗi có độ dài nhỏ nhất trong lớp tương đương chứa chuỗi mới đó. Dựa trên cách thiết kế chuyển này, ta xây dựng một ô-tô-mát. Ô-tô-mát này có thể phán định trong độ phức tạp $O(n)$ xem một chuỗi độ dài $n$ có tồn tại cách thực hiện phép toán để kết quả là $1$ hay không. Đồng thời số trạng thái của ô-tô-mát rất ít.
     
-    Để thuận tiện, ta sẽ dựng $6$ automaton; $6$ automaton này lần lượt biểu diễn việc có thể dùng một cách thực hiện phép toán để tạo ra $0,1,00,01,10,11$ hay không. Với mọi bảng toán tử có thể, số trạng thái lớn nhất của automaton là $47$.
+    Để thuận tiện, ta sẽ dựng $6$ ô-tô-mát; $6$ ô-tô-mát này lần lượt biểu diễn việc có thể dùng một cách thực hiện phép toán để tạo ra $0,1,00,01,10,11$ hay không. Với mọi bảng toán tử có thể, số trạng thái lớn nhất của ô-tô-mát là $47$.
     
-    Dùng automaton, thông qua tiền xử lý thích hợp, có thể dùng nhảy nhị phân hoặc cat tree để hiện thực truy vấn tĩnh trên đoạn: một đoạn có tồn tại cách thực hiện phép toán để kết quả là $1$ hay không. Cách trước truy vấn một lần là $O(\log n)$, cách sau truy vấn một lần là $O(1)$.
+    Dùng ô-tô-mát, thông qua tiền xử lý thích hợp, có thể dùng nhảy nhị phân hoặc cat tree để hiện thực truy vấn tĩnh trên đoạn: một đoạn có tồn tại cách thực hiện phép toán để kết quả là $1$ hay không. Cách trước truy vấn một lần là $O(\log n)$, cách sau truy vấn một lần là $O(1)$.
     
     Xét dùng chia để trị để giải bài toán dựng phương án. Gọi $f(l,r,t)$ biểu diễn phương án gộp đoạn $[l,r]$ thành $t\in\{{0,1,00,01,10,11}\}$. Lúc này dùng cách tách theo kinh nghiệm, duy trì hai con trỏ $i,j$, một con trỏ quét từ trái sang phải, một con trỏ quét từ phải sang trái, để liệt kê điểm cắt $\textit{mid}$ là $i$ hoặc $j$. Với $t\in\{{0,1}\}$, liệt kê $t$ được tách thành hai phần trái phải như thế nào, trong đó một phần có độ dài $2$ và phần còn lại có độ dài $1$. (Ví dụ với bảng toán tử lấy trung vị $s=00010111$, $1$ có thể tách thành $01$ và $1$.) Với $t\in\{{00,01,10,11}\}$, $type$ được tách trực tiếp thành hai phần trái phải.
     
@@ -286,7 +286,7 @@ Mục này giới thiệu cách áp dụng thực tế định lý Myhill-Nerode
 ### Bài tập
 
 -   [Median Replace Hard](https://qoj.ac/problem/12010)
--   [JOISC 2024 Card Collection](https://www.luogu.com.cn/problem/P10436) (xây dựng automaton bằng định lý Myhill-Nerode; bài này có thể xử lý nhiều truy vấn đoạn)
+-   [JOISC 2024 Card Collection](https://www.luogu.com.cn/problem/P10436) (xây dựng ô-tô-mát bằng định lý Myhill-Nerode; bài này có thể xử lý nhiều truy vấn đoạn)
 
 ## Tối thiểu hóa DFA
 
@@ -392,9 +392,9 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
     g_{i+1,|c-v|}\gets g_{i,c}.
     $$
     
-    DP tầng ngoài xét digit DP. Lấy hiệu các truy vấn. Gọi trạng thái là $f_{\textit{len},\textit{lim},\textit{sta}}$, các chỉ số lần lượt biểu diễn đã xét tới vị trí thứ $\textit{len}$, có đang bị giới hạn trên hay không, trạng thái hiện tại của automaton là $\textit{sta}$, v.v.
+    DP tầng ngoài xét digit DP. Lấy hiệu các truy vấn. Gọi trạng thái là $f_{\textit{len},\textit{lim},\textit{sta}}$, các chỉ số lần lượt biểu diễn đã xét tới vị trí thứ $\textit{len}$, có đang bị giới hạn trên hay không, trạng thái hiện tại của ô-tô-mát là $\textit{sta}$, v.v.
     
-    Khác với DFA thông thường, ta cần ghi lại đáp án tương ứng cho mỗi trạng thái của automaton. Chạy một lần tìm kiếm vét cạn sẽ thấy số trạng thái của DP tầng trong chỉ là $19564$. Sau đó chạy trực tiếp tối thiểu hóa DFA, có thể giảm số trạng thái xuống $715$.
+    Khác với DFA thông thường, ta cần ghi lại đáp án tương ứng cho mỗi trạng thái của ô-tô-mát. Chạy một lần tìm kiếm vét cạn sẽ thấy số trạng thái của DP tầng trong chỉ là $19564$. Sau đó chạy trực tiếp tối thiểu hóa DFA, có thể giảm số trạng thái xuống $715$.
     
     Lúc này ta tiền xử lý toàn bộ đáp án digit DP với $\textit{lim}=0$; khi có nhiều test chỉ cần chạy trường hợp $\textit{lim}=1$, nên có thể tính đáp án rất nhanh.
     
@@ -412,13 +412,13 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
 
 ## Ứng dụng thường gặp của ô-tô-mát
 
-Mục này liệt kê một số ứng dụng thường gặp của ô-tô-mát (automaton) trong lập trình thi đấu[^is-dfa].
+Mục này liệt kê một số ứng dụng thường gặp của ô-tô-mát trong lập trình thi đấu[^is-dfa].
 
 ### Trie
 
 [Trie](../string/trie.md) là ô-tô-mát đầu tiên mà phần lớn OIer tiếp xúc, chấp nhận và chỉ chấp nhận các phần tử trong tập chuỗi được chỉ định. Hàm chuyển chính là các cạnh trên Trie, còn trạng thái chấp nhận là trạng thái đi tới khi chèn từng chuỗi vào Trie.
 
-### Ô-tô-mát KMP (KMP automaton)
+### Ô-tô-mát KMP
 
 [Thuật toán KMP](../string/kmp.md) có thể được xem như ô-tô-mát. Ô-tô-mát KMP dựa trên chuỗi $s$ chấp nhận và chỉ chấp nhận các chuỗi có $s$ là hậu tố; trạng thái chấp nhận của nó là $|s|$.
 
@@ -433,21 +433,21 @@ i+1&s[i+1]=c\\
 \end{cases}
 $$
 
-### Ô-tô-mát AC (AC automaton)
+### Ô-tô-mát AC
 
 [Ô-tô-mát AC](../string/ac-automaton.md) chấp nhận và chỉ chấp nhận các chuỗi có hậu tố là một phần tử trong tập chuỗi được chỉ định. Nói cách khác là Trie + KMP.
 
-### Ô-tô-mát hậu tố (Suffix automaton)
+### Ô-tô-mát hậu tố
 
 [Ô-tô-mát hậu tố](../string/sam.md) chấp nhận và chỉ chấp nhận các hậu tố của chuỗi được chỉ định.
 
-### Ô-tô-mát hậu tố tổng quát (Generalized suffix automaton)
+### Ô-tô-mát hậu tố tổng quát
 
 [Ô-tô-mát hậu tố tổng quát](../string/general-sam.md) chấp nhận và chỉ chấp nhận các hậu tố của một phần tử nào đó trong tập chuỗi được chỉ định. Nói cách khác là Trie + SAM.
 
 Quan hệ giữa generalized SAM và SAM chính là quan hệ giữa ô-tô-mát AC và ô-tô-mát KMP.
 
-### Ô-tô-mát đối xứng (Palindromic automaton)
+### Ô-tô-mát đối xứng
 
 [Ô-tô-mát đối xứng](../string/pam.md) khá đặc biệt, nó không thể được định nghĩa rất thuận tiện như một ô-tô-mát.
 
@@ -455,7 +455,7 @@ Nếu cần định nghĩa, nó chấp nhận và chỉ chấp nhận **tâm và
 
 "Tâm và phần bên phải" trong chuỗi đối xứng lẻ là ý nghĩa theo mặt chữ; trong chuỗi đối xứng chẵn, nó được định nghĩa là một ký tự đặc biệt cộng với phần bên phải. Định nghĩa này trông hơi lạ, nhưng nó giúp PAM thực sự trở thành một ô-tô-mát, chứ không chỉ là hai cây.
 
-### Ô-tô-mát dãy con (Sequence automaton)
+### Ô-tô-mát dãy con
 
 [Ô-tô-mát dãy con](../string/seq-automaton.md) chấp nhận và chỉ chấp nhận các dãy con của chuỗi được chỉ định.
 
@@ -471,15 +471,15 @@ Một trạng thái sẽ tương ứng với một số chuỗi. Liên kết h�
 
 ## Đọc thêm
 
--   [Computational Complexity (1) Warming Up: mô hình automaton](https://lingeros-tot.github.io/2019/03/05/Warming-Up-%E8%87%AA%E5%8A%A8%E6%9C%BA%E6%A8%A1%E5%9E%8B/)
--   [Bài báo đội tuyển quốc gia 2021, Xu Zhean: Bàn về automaton trạng thái hữu hạn và ứng dụng](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)
+-   [Computational Complexity (1) Warming Up: mô hình ô-tô-mát](https://lingeros-tot.github.io/2019/03/05/Warming-Up-%E8%87%AA%E5%8A%A8%E6%9C%BA%E6%A8%A1%E5%9E%8B/)
+-   [Bài báo đội tuyển quốc gia 2021, Xu Zhean: Bàn về ô-tô-mát trạng thái hữu hạn và ứng dụng](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)
 -   [Myhill-Nerode theorem - Wikipedia](https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem)
 -   Knuutila, Timo. "Re-describing an algorithm by Hopcroft." Theoretical Computer Science 250, no. 1-2 (2001): 333-363.
 -   Hopcroft, John E., Rajeev Motwani, and Jeffrey D. Ullman. "Introduction to automata theory, languages, and computation." Acm Sigact News 32, no. 1 (2001): 60-65.
 
-[^nfa-and-nfaepsilon]: Trong định nghĩa này, ta cho phép chuyển giữa các trạng thái bằng ký tự rỗng ($\varepsilon$), nên nói chính xác hơn, đây là automaton hữu hạn không xác định có chuyển $\varepsilon$ (NFA-$\varepsilon$). Một số giáo trình gọi trực tiếp nó là NFA; để ngắn gọn, bài này dùng cách gọi đó. Về mặt lý thuyết, NFA và NFA-$\varepsilon$ có phân biệt, nhưng trong thực tế khả năng tính toán của chúng là như nhau.
+[^nfa-and-nfaepsilon]: Trong định nghĩa này, ta cho phép chuyển giữa các trạng thái bằng ký tự rỗng ($\varepsilon$), nên nói chính xác hơn, đây là ô-tô-mát hữu hạn không xác định có chuyển $\varepsilon$ (NFA-$\varepsilon$). Một số giáo trình gọi trực tiếp nó là NFA; để ngắn gọn, bài này dùng cách gọi đó. Về mặt lý thuyết, NFA và NFA-$\varepsilon$ có phân biệt, nhưng trong thực tế khả năng tính toán của chúng là như nhau.
 
-[^state-elimination-method]: Xem chi tiết mục 3.2 trong [Bài báo đội tuyển quốc gia 2021, Xu Zhean: Bàn về automaton trạng thái hữu hạn và ứng dụng](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf).
+[^state-elimination-method]: Xem chi tiết mục 3.2 trong [Bài báo đội tuyển quốc gia 2021, Xu Zhean: Bàn về ô-tô-mát trạng thái hữu hạn và ứng dụng](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf).
 
 [^prove-regular-language]: Xem chi tiết trong [lời giải chính thức](https://qoj.ac/download.php?type=attachments&id=2079&r=1).
 
@@ -487,6 +487,6 @@ Một trạng thái sẽ tương ứng với một số chuỗi. Liên kết h�
 
 [^detail]: Có một chi tiết trong hiện thực thuật toán: với một chứng cứ $A$, có thể sau khi kiểm tra xong một phần ký tự thì tập chứng cứ này đã bị tách thành $B$ và $C$. Giả sử $|B|\ge |C|$. Trong hiện thực tham khảo, tập nhỏ hơn $C$ được chèn vào cuối hàng đợi chứng cứ, còn tập chứng cứ lớn hơn $B$ thay thế vị trí ban đầu của tập $A$. Khi thuật toán tiếp tục chạy, thực tế chỉ dùng chứng cứ $B$ để kiểm tra các ký tự còn lại. Cách làm này là đúng, vì với các ký tự đã kiểm tra xong, ít nhất đã kiểm chứng hai tập $A$ và $C$; còn với các ký tự chưa kiểm tra, ít nhất kiểm chứng hai tập $B$ và $C$.
 
-[^upper-bound]: Xem chi tiết bài ví dụ 5.2 trong [Bài báo đội tuyển quốc gia 2021, Xu Zhean: Bàn về automaton trạng thái hữu hạn và ứng dụng](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf).
+[^upper-bound]: Xem chi tiết bài ví dụ 5.2 trong [Bài báo đội tuyển quốc gia 2021, Xu Zhean: Bàn về ô-tô-mát trạng thái hữu hạn và ứng dụng](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf).
 
-[^is-dfa]: Định nghĩa automaton trong bài này yêu cầu nó là đầy đủ, tức là mọi trạng thái dưới mọi ký tự đều phải có chuyển. Trong mô tả các automaton liên quan đến chuỗi này, trạng thái thất bại thường bị lược bỏ. Trie, SAM, v.v. đều là các ví dụ như vậy. Để phù hợp với định nghĩa trong bài này, cần thêm tường minh trạng thái thất bại vào mô tả các automaton đó.
+[^is-dfa]: Định nghĩa ô-tô-mát trong bài này yêu cầu nó là đầy đủ, tức là mọi trạng thái dưới mọi ký tự đều phải có chuyển. Trong mô tả các ô-tô-mát liên quan đến chuỗi này, trạng thái thất bại thường bị lược bỏ. Trie, SAM, v.v. đều là các ví dụ như vậy. Để phù hợp với định nghĩa trong bài này, cần thêm tường minh trạng thái thất bại vào mô tả các ô-tô-mát đó.

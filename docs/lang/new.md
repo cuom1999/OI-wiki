@@ -248,7 +248,7 @@ std::cout << x << std::endl;
 
 ## Đối tượng hàm
 
-Đối tượng có thể dùng toán tử gọi hàm `operator()` được gọi là đối tượng hàm (FunctionObject).
+Đối tượng có thể dùng toán tử gọi hàm `operator()` được gọi là đối tượng hàm.
 
 Nó không phải một đặc tính ngôn ngữ, mà là một [khái niệm hoặc yêu cầu](https://en.cppreference.com/w/cpp/named_req/FunctionObject), được dùng rộng rãi trong thư viện chuẩn.
 

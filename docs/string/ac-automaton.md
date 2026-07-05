@@ -71,7 +71,7 @@ Dưới đây dùng một số ảnh GIF để minh họa quá trình xây dựn
 3.  Cạnh màu cam: con trỏ `fail`.
 4.  Cạnh màu đỏ: con trỏ `fail` hiện đang được tính.
 
-![Quá trình xây con trỏ fail trong AC automaton](./images/ac-automaton1.gif)
+![Quá trình xây con trỏ fail trong ô-tô-mát AC](./images/ac-automaton1.gif)
 
 Ta phân tích kỹ việc xây dựng con trỏ `fail` của đỉnh $6$:
 
@@ -86,7 +86,7 @@ Hình dưới đây thể hiện trạng thái sau khi xây dựng xong:
 <span id="trie-và-đồ-thị-từ-điển"></span>
 ## Trie và đồ thị từ điển
 
-Xét hàm xây dựng `build`. Hàm này có hai mục tiêu: xây dựng con trỏ `fail` và xây dựng automaton. Các biến liên quan được định nghĩa như sau:
+Xét hàm xây dựng `build`. Hàm này có hai mục tiêu: xây dựng con trỏ `fail` và xây dựng ô-tô-mát. Các biến liên quan được định nghĩa như sau:
 
 1.  `tr[u].son[c]`: có hai cách hiểu. Ta có thể hiểu đơn giản là một cạnh trên Trie, tức $\operatorname{trie}(u, c)$; cũng có thể hiểu là trạng thái (đỉnh) đạt được khi thêm một ký tự $c$ vào sau trạng thái (đỉnh) $u$, tức một hàm chuyển trạng thái $\operatorname{trans}(u, c)$. Để thuận tiện, bên dưới ta dùng cách hiểu thứ hai.
 2.  Hàng đợi `q`: dùng để BFS trên Trie.
@@ -143,7 +143,7 @@ Cách xử lý này dùng phần mã trong nhánh `else` để sửa cấu trúc
 
 Còn $\operatorname{trans}(S, c)$ tương đương với việc thêm ký tự $c$ vào sau $S$ để trở thành một trạng thái khác $S'$. Nếu $S'$ tồn tại, nghĩa là có một tiền tố của xâu mẫu bằng $S'$; nếu không, ta cho $\operatorname{trans}(S, c)$ trỏ tới $\operatorname{trans}(\operatorname{fail}(S), c)$. Vì xâu tương ứng với $\operatorname{fail}(S)$ là một hậu tố của $S$, nên xâu tương ứng với $\operatorname{trans}(\operatorname{fail}(S), c)$ cũng là một hậu tố của $S'$.
 
-Nói cách khác, khi chuyển trên Trie, ta chỉ đi từ $S$ tới $S'$, tương đương với việc khớp được một $S'$; còn khi chuyển trên AC automaton, ta sẽ đi từ $S$ tới một hậu tố của $S'$. Tức là ta khớp một ký tự $c$, rồi bỏ đi một phần tiền tố của $S$. Phần tiền tố bị bỏ chắc chắn vẫn cho phép tiếp tục khớp. Đồng thời, nếu xâu văn bản khớp được $S$, hiển nhiên nó cũng khớp được hậu tố của $S$, nên con trỏ `fail` cũng đang bỏ đi tiền tố. Cái gọi là con trỏ `fail` thực ra chính là một tập các hậu tố của $S$.
+Nói cách khác, khi chuyển trên Trie, ta chỉ đi từ $S$ tới $S'$, tương đương với việc khớp được một $S'$; còn khi chuyển trên ô-tô-mát AC, ta sẽ đi từ $S$ tới một hậu tố của $S'$. Tức là ta khớp một ký tự $c$, rồi bỏ đi một phần tiền tố của $S$. Phần tiền tố bị bỏ chắc chắn vẫn cho phép tiếp tục khớp. Đồng thời, nếu xâu văn bản khớp được $S$, hiển nhiên nó cũng khớp được hậu tố của $S$, nên con trỏ `fail` cũng đang bỏ đi tiền tố. Cái gọi là con trỏ `fail` thực ra chính là một tập các hậu tố của $S$.
 
 Mảng con `son` của các đỉnh Trie còn có một cách hiểu đơn giản hơn: nếu tại vị trí $u$ bị khớp thất bại, ta sẽ nhảy tới vị trí $\operatorname{fail}(u)$. Chú ý rằng điều này có thể khiến ta phải nhảy theo mảng `fail` nhiều lần mới tới được vị trí tiếp theo có thể khớp. Vì vậy ta có thể dùng `son` để ghi trực tiếp vị trí tiếp theo có thể khớp, nhờ đó bảo đảm độ phức tạp thời gian của chương trình.
 
@@ -154,11 +154,11 @@ Việc sửa cấu trúc Trie ở đây giúp các phép chuyển khi khớp tr�
 
 Ở đây vẫn dùng một số ảnh GIF để minh họa quá trình xây dựng:
 
-![Quá trình xây đồ thị từ điển của AC automaton](./images/ac-automaton2.gif)
+![Quá trình xây đồ thị từ điển của ô-tô-mát AC](./images/ac-automaton2.gif)
 
 1.  Đỉnh màu xanh dương: đỉnh $u$ đang được BFS duyệt tới.
-2.  Cạnh màu xanh dương: cạnh mà AC automaton thêm ra khi sửa cấu trúc Trie tại đỉnh hiện tại.
-3.  Cạnh màu đen: cạnh mà AC automaton thêm ra khi sửa cấu trúc Trie.
+2.  Cạnh màu xanh dương: cạnh mà ô-tô-mát AC thêm ra khi sửa cấu trúc Trie tại đỉnh hiện tại.
+3.  Cạnh màu đen: cạnh mà ô-tô-mát AC thêm ra khi sửa cấu trúc Trie.
 4.  Cạnh màu đỏ: con trỏ `fail` hiện đang được tính.
 5.  Cạnh màu vàng: con trỏ `fail`.
 6.  Cạnh màu xám: cạnh của Trie.
@@ -208,31 +208,31 @@ Tiếp theo phân tích hàm khớp `query`:
 <span id="giải-thích_2"></span>
 ### Giải thích
 
-Ở đây $u$ là đỉnh hiện đang khớp tới trên Trie, còn `res` là đáp án trả về. Vòng lặp duyệt xâu cần khớp, $u$ theo dõi ký tự hiện tại trên Trie. Ta dùng con trỏ `fail` để tìm mọi xâu mẫu đã khớp và cộng vào đáp án. Sau đó đặt số lần xuất hiện của xâu đã khớp thành không còn xét nữa, để tránh đếm lặp cùng một xâu. Như đã phân tích ở trên, cấu trúc Trie thực chất là một hàm `trans`; sau khi xây dựng hàm này, trong quá trình khớp xâu, ta sẽ bỏ bớt một phần tiền tố để đạt tới mức khớp tối thiểu. Con trỏ `fail` thì trỏ tới nhiều trạng thái khớp hơn. Cuối cùng xem lại một hình. Với automaton vừa rồi:
+Ở đây $u$ là đỉnh hiện đang khớp tới trên Trie, còn `res` là đáp án trả về. Vòng lặp duyệt xâu cần khớp, $u$ theo dõi ký tự hiện tại trên Trie. Ta dùng con trỏ `fail` để tìm mọi xâu mẫu đã khớp và cộng vào đáp án. Sau đó đặt số lần xuất hiện của xâu đã khớp thành không còn xét nữa, để tránh đếm lặp cùng một xâu. Như đã phân tích ở trên, cấu trúc Trie thực chất là một hàm `trans`; sau khi xây dựng hàm này, trong quá trình khớp xâu, ta sẽ bỏ bớt một phần tiền tố để đạt tới mức khớp tối thiểu. Con trỏ `fail` thì trỏ tới nhiều trạng thái khớp hơn. Cuối cùng xem lại một hình. Với ô-tô-mát vừa rồi:
 
-![AC automaton sau khi xây dựng](./images/ac-automaton3.png)
+![Ô-tô-mát AC sau khi xây dựng](./images/ac-automaton3.png)
 
 Ta bắt đầu từ gốc và thử khớp $\mathtt{ushersheishis}$, khi đó sự thay đổi của $p$ là:
 
-![Quá trình khớp xâu trên AC automaton](./images/ac-automaton3.gif)
+![Quá trình khớp xâu trên ô-tô-mát AC](./images/ac-automaton3.gif)
 
 1.  Đỉnh màu đỏ: đỉnh $p$.
-2.  Mũi tên màu hồng: bước chuyển của $p$ trên automaton.
+2.  Mũi tên màu hồng: bước chuyển của $p$ trên ô-tô-mát.
 3.  Cạnh màu xanh dương: xâu mẫu được khớp thành công.
 4.  Đỉnh màu xanh dương: đỉnh (trạng thái) khi nhảy theo con trỏ `fail`.
 
 <span id="tối-ưu-hiệu-suất"></span>
 ## Tối ưu hiệu suất
 
-Bài toán tham khảo: Luogu [P5357 - Mẫu AC automaton](https://www.luogu.com.cn/problem/P5357).
+Bài toán tham khảo: Luogu [P5357 - Mẫu ô-tô-mát AC](https://www.luogu.com.cn/problem/P5357).
 
-Trong AC automaton của ta, mỗi lần khớp sẽ liên tục nhảy theo các cạnh `fail` để tìm tất cả các lần khớp. Cách này có hiệu suất khá thấp và sẽ quá thời gian ở một số bài.
+Trong ô-tô-mát AC của ta, mỗi lần khớp sẽ liên tục nhảy theo các cạnh `fail` để tìm tất cả các lần khớp. Cách này có hiệu suất khá thấp và sẽ quá thời gian ở một số bài.
 
-Vậy cần tối ưu như thế nào? Trước hết cần biết một tính chất của con trỏ `fail`: trong một AC automaton, nếu chỉ giữ lại các cạnh `fail`, đồ thị còn lại chắc chắn là một cây.
+Vậy cần tối ưu như thế nào? Trước hết cần biết một tính chất của con trỏ `fail`: trong một ô-tô-mát AC, nếu chỉ giữ lại các cạnh `fail`, đồ thị còn lại chắc chắn là một cây.
 
 Điều này hiển nhiên, vì `fail` không tạo chu trình và độ sâu luôn nhỏ hơn hiện tại, nên suy ra kết luận.
 
-Như vậy, việc khớp trên AC automaton có thể chuyển thành bài toán tính tổng trên một đường đi trong cây `fail`; chỉ cần tối ưu phần này là đủ.
+Như vậy, việc khớp trên ô-tô-mát AC có thể chuyển thành bài toán tính tổng trên một đường đi trong cây `fail`; chỉ cần tối ưu phần này là đủ.
 
 Dưới đây đưa ra hai hướng.
 
@@ -308,7 +308,7 @@ Cuối cùng là hàm `main`:
     }
     ```
 
-??? note "Mã tham khảo tối ưu bằng sắp xếp topo cho bài mẫu [Luogu P5357 - Mẫu AC automaton](https://www.luogu.com.cn/problem/P5357)"
+??? note "Mã tham khảo tối ưu bằng sắp xếp topo cho bài mẫu [Luogu P5357 - Mẫu ô-tô-mát AC](https://www.luogu.com.cn/problem/P5357)"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_topu.cpp"
     ```
@@ -321,11 +321,11 @@ Cuối cùng là hàm `main`:
 Mã đầy đủ xem ở mẫu tổng kết 3.
 
 <span id="dp-trên-ac-automaton"></span>
-## DP trên AC automaton
+## DP trên ô-tô-mát AC
 
 Phần này dùng bài [P2292 [HNOI2004] Ngôn ngữ L](https://www.luogu.com.cn/problem/P2292) làm ví dụ để giải thích.
 
-Không khó để nghĩ ra một hướng đơn giản: xây dựng AC automaton, chuyển trạng thái theo mọi xâu con trên các con trỏ `fail` trong AC automaton, rồi lấy giá trị lớn nhất làm đáp án.
+Không khó để nghĩ ra một hướng đơn giản: xây dựng ô-tô-mát AC, chuyển trạng thái theo mọi xâu con trên các con trỏ `fail` trong ô-tô-mát AC, rồi lấy giá trị lớn nhất làm đáp án.
 
 Phần mã chính như sau. Nếu chưa quen với các định nghĩa kiểu trong mã, có thể xem mã đầy đủ ở cuối phần này:
 
@@ -414,19 +414,19 @@ Nếu kết quả phép toán `&` khác $0$, nghĩa là giao của hai tập đ�
 <span id="tổng-kết"></span>
 ## Tổng kết
 
-Độ phức tạp thời gian: định nghĩa $|s_i|$ là độ dài xâu mẫu, $|S|$ là độ dài xâu văn bản, $|\Sigma|$ là kích thước bảng chữ cái (hằng số, thường là $26$). Nếu nối thành đồ thị Trie, độ phức tạp thời gian là $O(\sum|s_i|+n|\Sigma|+|S|)$, trong đó $n$ là số đỉnh của AC automaton và tối đa có thể đạt $O(\sum|s_i|)$. Nếu không nối đồ thị Trie, đồng thời tránh duyệt các con rỗng khi xây dựng con trỏ `fail`, độ phức tạp thời gian là $O(\sum|s_i|+|S|)$.
+Độ phức tạp thời gian: định nghĩa $|s_i|$ là độ dài xâu mẫu, $|S|$ là độ dài xâu văn bản, $|\Sigma|$ là kích thước bảng chữ cái (hằng số, thường là $26$). Nếu nối thành đồ thị Trie, độ phức tạp thời gian là $O(\sum|s_i|+n|\Sigma|+|S|)$, trong đó $n$ là số đỉnh của ô-tô-mát AC và tối đa có thể đạt $O(\sum|s_i|)$. Nếu không nối đồ thị Trie, đồng thời tránh duyệt các con rỗng khi xây dựng con trỏ `fail`, độ phức tạp thời gian là $O(\sum|s_i|+|S|)$.
 
-??? note "Mã tham khảo cho bài mẫu [Luogu P3808 AC automaton (bản đơn giản)](https://www.luogu.com.cn/problem/P3808)"
+??? note "Mã tham khảo cho bài mẫu [Luogu P3808 ô-tô-mát AC (bản đơn giản)](https://www.luogu.com.cn/problem/P3808)"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_1.cpp"
     ```
 
-??? note "Mã tham khảo cho bài mẫu [Luogu P3796 AC automaton (bản đơn giản II)](https://www.luogu.com.cn/problem/P3796)"
+??? note "Mã tham khảo cho bài mẫu [Luogu P3796 ô-tô-mát AC (bản đơn giản II)](https://www.luogu.com.cn/problem/P3796)"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_2.cpp"
     ```
 
-??? note "Mã tham khảo tối ưu bằng DFS cho bài mẫu [Luogu P5357 - Mẫu AC automaton](https://www.luogu.com.cn/problem/P5357)"
+??? note "Mã tham khảo tối ưu bằng DFS cho bài mẫu [Luogu P5357 - Mẫu ô-tô-mát AC](https://www.luogu.com.cn/problem/P5357)"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_3.cpp"
     ```

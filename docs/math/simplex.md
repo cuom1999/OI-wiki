@@ -217,7 +217,7 @@ $$
 \tilde c = (\tilde c_B^T,\tilde c_N^T)^T = c - A^T(A_B^{-1})^Tc_B
 $$
 
-là **chi phí rút gọn** (reduced cost) của bài toán quy hoạch tuyến tính tại nghiệm cơ bản khả thi $x$. Thành phần $\tilde c_i<0$ nói rằng tăng giá trị biến $x_i$ có thể cải thiện hàm mục tiêu của bài toán gốc. Biến như vậy chỉ có thể là biến không cơ sở; nó gọi là **biến vào cơ sở** (entering variable) của lần xoay trục này. Sau khi xoay trục, $x_i$ sẽ trở thành biến cơ sở, không còn luôn bị đặt bằng không nữa (nhưng vẫn có thể bằng không).
+là **chi phí rút gọn** của bài toán quy hoạch tuyến tính tại nghiệm cơ bản khả thi $x$. Thành phần $\tilde c_i<0$ nói rằng tăng giá trị biến $x_i$ có thể cải thiện hàm mục tiêu của bài toán gốc. Biến như vậy chỉ có thể là biến không cơ sở; nó gọi là **biến vào cơ sở** của lần xoay trục này. Sau khi xoay trục, $x_i$ sẽ trở thành biến cơ sở, không còn luôn bị đặt bằng không nữa (nhưng vẫn có thể bằng không).
 
 Sau khi chọn biến vào cơ sở, còn cần chọn biến cơ sở cũ sẽ bị loại bỏ. Để làm vậy, chỉ cần xác định trong quá trình tăng $x_i$, biến cơ sở hiện có nào trở thành không đầu tiên. Thay $x_N=(x_i,x_{N\setminus\{i\}})=(x_i,0)$ vào biểu thức của $x_B$, ta có
 

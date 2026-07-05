@@ -1,6 +1,6 @@
 ## Định nghĩa
 
-Cây khung nhỏ nhất trên đồ thị có hướng (Directed Minimum Spanning Tree) được gọi là arborescence nhỏ nhất.
+Cây khung nhỏ nhất trên đồ thị có hướng được gọi là arborescence nhỏ nhất.
 
 Thuật toán thường dùng là thuật toán Chu-Liu (còn gọi là thuật toán Edmonds), giải bài toán arborescence nhỏ nhất trong thời gian $O(nm)$.
 

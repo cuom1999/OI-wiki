@@ -4,7 +4,7 @@ Trang này giới thiệu các kiến thức cơ bản về độ phức tạp k
 
 ## Dẫn nhập
 
-Phân tích khấu hao (Amortized Analysis) là một kỹ thuật dùng để phân tích hiệu năng của thuật toán và cấu trúc dữ liệu động. Nó không chỉ quan tâm đến chi phí của một thao tác đơn lẻ, mà còn đánh giá chi phí trung bình trên một chuỗi thao tác để đưa ra nhận định chính xác hơn về hiệu năng tổng thể. Phân tích khấu hao không liên quan đến xác suất; nó chỉ bảo đảm thời gian trung bình cho mỗi thao tác trong trường hợp xấu nhất, chứ không xác nhận hiệu năng trung bình của hệ thống. Trong trường hợp xấu nhất, phân tích khấu hao phân bổ chi phí của các thao tác đắt đỏ sang các thao tác rẻ hơn, từ đó bảo đảm chi phí trung bình của toàn bộ chuỗi thao tác vẫn nằm trong phạm vi hợp lý.
+Phân tích khấu hao là một kỹ thuật dùng để phân tích hiệu năng của thuật toán và cấu trúc dữ liệu động. Nó không chỉ quan tâm đến chi phí của một thao tác đơn lẻ, mà còn đánh giá chi phí trung bình trên một chuỗi thao tác để đưa ra nhận định chính xác hơn về hiệu năng tổng thể. Phân tích khấu hao không liên quan đến xác suất; nó chỉ bảo đảm thời gian trung bình cho mỗi thao tác trong trường hợp xấu nhất, chứ không xác nhận hiệu năng trung bình của hệ thống. Trong trường hợp xấu nhất, phân tích khấu hao phân bổ chi phí của các thao tác đắt đỏ sang các thao tác rẻ hơn, từ đó bảo đảm chi phí trung bình của toàn bộ chuỗi thao tác vẫn nằm trong phạm vi hợp lý.
 
 Phân tích khấu hao thường dùng ba phương pháp chính: phân tích gộp, phân tích kế toán và phân tích thế năng. Mỗi phương pháp có trọng tâm riêng và phù hợp với các tình huống khác nhau, nhưng mục tiêu chung của chúng là cân bằng chi phí thao tác, qua đó tối ưu hiệu năng tổng thể của cấu trúc dữ liệu trong trường hợp xấu nhất.
 
@@ -16,7 +16,7 @@ Tiếp theo, ta dùng thao tác chèn vào mảng động làm ví dụ và phâ
 
 ### Phân tích gộp
 
-Phân tích gộp (Aggregate Analysis) tính tổng chi phí của một chuỗi thao tác rồi chia đều cho từng thao tác, từ đó thu được độ phức tạp thời gian khấu hao của mỗi thao tác.
+Phân tích gộp tính tổng chi phí của một chuỗi thao tác rồi chia đều cho từng thao tác, từ đó thu được độ phức tạp thời gian khấu hao của mỗi thao tác.
 
 Với ví dụ mảng động, trước hết ta có hai loại chi phí chính của thao tác chèn:
 
@@ -32,7 +32,7 @@ Do đó, tổng chi phí chèn của mảng là $O(n)$, và chi phí khấu hao 
 
 ### Phân tích kế toán
 
-Phương pháp kế toán (Accounting Method) gán trước một chi phí khấu hao cố định cho mỗi thao tác để bảo đảm tổng chi phí thực tế của mọi thao tác không vượt quá tổng chi phí đã phân bổ trước. Phương pháp kế toán giống một cơ chế **trả trước chi phí**: các thao tác có chi phí thấp sẽ lưu lại một phần “tín dụng” để trả cho các thao tác có chi phí cao trong tương lai.
+Phương pháp kế toán gán trước một chi phí khấu hao cố định cho mỗi thao tác để bảo đảm tổng chi phí thực tế của mọi thao tác không vượt quá tổng chi phí đã phân bổ trước. Phương pháp kế toán giống một cơ chế **trả trước chi phí**: các thao tác có chi phí thấp sẽ lưu lại một phần “tín dụng” để trả cho các thao tác có chi phí cao trong tương lai.
 
 Với ví dụ mảng động, ta có thể phân bổ một chi phí khấu hao cố định cho mỗi thao tác chèn để bảo đảm khi cần mở rộng dung lượng, ta đã dự trữ đủ chi phí.
 
@@ -68,7 +68,7 @@ Quá trình trên cho thấy chi phí khấu hao được lưu lại từ mỗi 
 
 ### Phân tích thế năng
 
-Phân tích thế năng (Potential Method) định nghĩa một hàm thế năng (thường ký hiệu là $\Phi$) để đo **năng lượng tiềm ẩn** của cấu trúc dữ liệu, tức các tài nguyên dự trữ trong trạng thái hệ thống có thể dùng để trả cho các thao tác đắt đỏ trong tương lai. Sự thay đổi thế năng được dùng để cân bằng tổng chi phí của chuỗi thao tác, từ đó bảo đảm chi phí khấu hao của toàn bộ thuật toán nằm trong phạm vi hợp lý.
+Phân tích thế năng định nghĩa một hàm thế năng (thường ký hiệu là $\Phi$) để đo **năng lượng tiềm ẩn** của cấu trúc dữ liệu, tức các tài nguyên dự trữ trong trạng thái hệ thống có thể dùng để trả cho các thao tác đắt đỏ trong tương lai. Sự thay đổi thế năng được dùng để cân bằng tổng chi phí của chuỗi thao tác, từ đó bảo đảm chi phí khấu hao của toàn bộ thuật toán nằm trong phạm vi hợp lý.
 
 #### Nguyên lý
 

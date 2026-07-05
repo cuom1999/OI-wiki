@@ -4,7 +4,7 @@ Trang này chủ yếu giới thiệu kiến thức thuật toán liên quan đ�
 
 Các khái niệm cơ bản về luồng trên mạng có thể xem tại [Giới thiệu luồng mạng](../flow.md).
 
-Cho $G=(V,E)$ là một mạng có nguồn và đích. Ta muốn chỉ định một luồng thích hợp $f$ trên $G$ sao cho giá trị luồng của toàn mạng $|f|$ được cực đại hóa, tức $\sum_{x \in V} f(s, x) - \sum_{x \in V} f(x, s)$. Bài toán này được gọi là bài toán luồng cực đại (Maximum flow problem).
+Cho $G=(V,E)$ là một mạng có nguồn và đích. Ta muốn chỉ định một luồng thích hợp $f$ trên $G$ sao cho giá trị luồng của toàn mạng $|f|$ được cực đại hóa, tức $\sum_{x \in V} f(s, x) - \sum_{x \in V} f(x, s)$. Bài toán này được gọi là bài toán luồng cực đại.
 
 ## Tăng luồng Ford–Fulkerson
 
@@ -14,14 +14,14 @@ Tăng luồng Ford–Fulkerson là tên gọi chung của một lớp thuật to
 
 Cho mạng $G$ và một luồng $f$ trên $G$, ta định nghĩa như sau.
 
-Với cạnh $(u, v)$, hiệu giữa dung lượng và luồng được gọi là dung lượng còn dư $c_f(u,v)$ (Residual Capacity), tức $c_f(u,v)=c(u,v)-f(u,v)$.
+Với cạnh $(u, v)$, hiệu giữa dung lượng và luồng được gọi là dung lượng còn dư $c_f(u,v)$, tức $c_f(u,v)=c(u,v)-f(u,v)$.
 
-Đồ thị con gồm tất cả các đỉnh của $G$ và các cạnh có dung lượng còn dư lớn hơn $0$ được gọi là mạng thặng dư $G_f$ (Residual Network), tức $G_f=(V,E_f)$, trong đó $E_f=\left\{(u,v) \mid c_f(u,v)>0\right\}$.
+Đồ thị con gồm tất cả các đỉnh của $G$ và các cạnh có dung lượng còn dư lớn hơn $0$ được gọi là mạng thặng dư $G_f$, tức $G_f=(V,E_f)$, trong đó $E_f=\left\{(u,v) \mid c_f(u,v)>0\right\}$.
 
 ???+ warning "Cảnh báo"
     Như sẽ nói ngay sau đây, luồng có thể nhận giá trị âm, vì vậy cạnh trong $E_f$ có thể không thuộc $E$. Sau khi đưa vào khái niệm tăng luồng, phần dưới sẽ giải thích cụ thể điểm này.
 
-Một đường đi từ nguồn $s$ đến đích $t$ trên $G_f$ được gọi là đường tăng luồng (Augmenting Path). Với một đường tăng luồng, ta cộng cùng một lượng luồng vào mọi cạnh $(u, v)$ trên đường đó để làm tăng giá trị luồng của toàn mạng. Quá trình này được gọi là tăng luồng (Augment). Do đó, việc tìm luồng cực đại có thể được xem như chồng nhiều luồng thu được từ các lần tăng luồng.
+Một đường đi từ nguồn $s$ đến đích $t$ trên $G_f$ được gọi là đường tăng luồng. Với một đường tăng luồng, ta cộng cùng một lượng luồng vào mọi cạnh $(u, v)$ trên đường đó để làm tăng giá trị luồng của toàn mạng. Quá trình này được gọi là tăng luồng. Do đó, việc tìm luồng cực đại có thể được xem như chồng nhiều luồng thu được từ các lần tăng luồng.
 
 Ngoài ra, trong quá trình tăng luồng Ford–Fulkerson, với mỗi cạnh $(u, v)$, ta tạo thêm một cạnh ngược $(v, u)$. Ta quy ước $f(u, v) = -f(v, u)$. Tính chất này có thể được đảm bảo bằng thao tác hoàn luồng trong mỗi lần tăng luồng, tức khi $f(u, v)$ tăng thì $f(v, u)$ phải giảm cùng một lượng.
 
@@ -213,9 +213,9 @@ Một cài đặt khả dĩ của thuật toán Edmonds–Karp như sau.
 
 #### Ý tưởng thuật toán
 
-Xét việc trước khi tăng luồng, ta BFS để phân tầng $G_f$, tức chia các đỉnh thành nhiều tầng theo khoảng cách $d(u)$ từ đỉnh $u$ đến nguồn $s$. Quy định luồng đi qua $u$ chỉ có thể chảy đến các đỉnh $v$ ở tầng kế tiếp, tức xóa các cạnh đi ra từ $u$ đến các đỉnh có số tầng bằng hoặc nhỏ hơn. Phần còn lại của $G_f$ được gọi là đồ thị tầng (Level Graph). Nói hình thức, $G_L = (V, E_L)$ là đồ thị tầng của $G_f = (V, E_f)$, trong đó $E_L = \left\{ (u, v) \mid (u, v) \in E_f, d(u) + 1 = d(v) \right\}$.
+Xét việc trước khi tăng luồng, ta BFS để phân tầng $G_f$, tức chia các đỉnh thành nhiều tầng theo khoảng cách $d(u)$ từ đỉnh $u$ đến nguồn $s$. Quy định luồng đi qua $u$ chỉ có thể chảy đến các đỉnh $v$ ở tầng kế tiếp, tức xóa các cạnh đi ra từ $u$ đến các đỉnh có số tầng bằng hoặc nhỏ hơn. Phần còn lại của $G_f$ được gọi là đồ thị tầng. Nói hình thức, $G_L = (V, E_L)$ là đồ thị tầng của $G_f = (V, E_f)$, trong đó $E_L = \left\{ (u, v) \mid (u, v) \in E_f, d(u) + 1 = d(v) \right\}$.
 
-Nếu trên đồ thị tầng $G_L$ ta tìm được một luồng tăng cực đại $f_b$ sao cho chỉ xét trên $G_L$ thì không thể tiếp tục mở rộng $f_b$, ta gọi $f_b$ là luồng chặn (Blocking Flow) của $G_L$.
+Nếu trên đồ thị tầng $G_L$ ta tìm được một luồng tăng cực đại $f_b$ sao cho chỉ xét trên $G_L$ thì không thể tiếp tục mở rộng $f_b$, ta gọi $f_b$ là luồng chặn của $G_L$.
 
 ??? warning "Cảnh báo"
     Mặc dù ở trên ta chỉ định nghĩa tăng luồng/luồng tăng trên một đường tăng luồng đơn lẻ, theo nghĩa rộng, thuật ngữ "tăng luồng" không chỉ dùng cho luồng tăng trên một đường đơn, mà còn có thể dùng cho hợp của nhiều luồng tăng. Nghĩa thứ hai là nghĩa được dùng khi ta định nghĩa luồng chặn.
@@ -299,7 +299,7 @@ Nếu muốn thời gian chạy thực tế của thuật toán Dinic tiệm c�
 
 Trên một số đồ thị có tính chất tốt, thuật toán Dinic có độ phức tạp thời gian tốt hơn.
 
-Với mạng $G = (V, E)$, nếu mọi cạnh đều có dung lượng bằng $1$, tức $c(u, v) \in \{0, 1\}$ luôn đúng với mọi $(u, v) \in E$, ta gọi $G$ là mạng dung lượng đơn vị (Unit Capacity).
+Với mạng $G = (V, E)$, nếu mọi cạnh đều có dung lượng bằng $1$, tức $c(u, v) \in \{0, 1\}$ luôn đúng với mọi $(u, v) \in E$, ta gọi $G$ là mạng dung lượng đơn vị.
 
 Trong mạng dung lượng đơn vị, độ phức tạp thời gian của một vòng tăng luồng trong thuật toán Dinic là $O(|E|)$.
 
@@ -766,7 +766,7 @@ ISAP còn có một tối ưu khác: ta ghi lại số lượng đỉnh có tầ
     };
     ```
 
-## Thuật toán đẩy tiền luồng Push-Relabel
+## Thuật toán đẩy tiền luồng gán lại nhãn
 
 Phương pháp này bỏ qua tính bảo toàn luồng trong quá trình giải, và mỗi lần cập nhật thông tin của một đỉnh để tìm luồng cực đại.
 
@@ -799,17 +799,17 @@ Bổ đề 1: giả sử hàm độ cao trên $G_f$ là $h$. Với hai đỉnh b
 
 Thuật toán chỉ thực hiện đẩy trên các cạnh có $h(u)=h(v)+1$.
 
-#### Đẩy (Push)
+#### Đẩy
 
-Điều kiện áp dụng: đỉnh $u$ đang hoạt động, và tồn tại đỉnh $v((u,v)\in E_f,c(u,v)-f(u,v)>0,h(u)=h(v)+1)$. Khi đó thao tác push áp dụng được cho $(u,v)$.
+Điều kiện áp dụng: đỉnh $u$ đang hoạt động, và tồn tại đỉnh $v((u,v)\in E_f,c(u,v)-f(u,v)>0,h(u)=h(v)+1)$. Khi đó thao tác đẩy áp dụng được cho $(u,v)$.
 
 Vì vậy, ta cố gắng đẩy nhiều nhất có thể luồng dư từ $u$ sang $v$. Trong quá trình đẩy, ta chỉ quan tâm giá trị nhỏ nhất giữa luồng dư và $c(u,v)-f(u,v)$, không quan tâm $v$ có trở thành đỉnh đang hoạt động hay không.
 
 Nếu $(u,v)$ đầy luồng sau khi đẩy xong, xóa nó khỏi mạng thặng dư.
 
-#### Gán lại nhãn (Relabel)
+#### Gán lại nhãn
 
-Điều kiện áp dụng: nếu đỉnh $u$ đang hoạt động, và $\forall (u,v)\in E_f,h(u)\leq h(v)$, thì thao tác relabel áp dụng được cho $u$.
+Điều kiện áp dụng: nếu đỉnh $u$ đang hoạt động, và $\forall (u,v)\in E_f,h(u)\leq h(v)$, thì thao tác gán lại nhãn áp dụng được cho $u$.
 
 Khi đó chỉ cần cập nhật $h(u)$ thành $\min_{(u,v)\in E_f}h(v)+1$.
 
@@ -888,7 +888,7 @@ Tuy nhiên, trên thực tế bài báo[^ref1] chỉ ra rằng chỉ xử lý c�
 
 ### Thuật toán HLPP
 
-Thuật toán đẩy tiền luồng nhãn cao nhất (Highest Label Preflow Push) trong thuật toán đẩy tiền luồng tổng quát ở trên luôn ưu tiên chọn đỉnh đang hoạt động có độ cao lớn nhất mỗi khi chọn đỉnh. Độ phức tạp của thuật toán là $O(n^2\sqrt m)$.
+Thuật toán đẩy tiền luồng nhãn cao nhất trong thuật toán đẩy tiền luồng tổng quát ở trên luôn ưu tiên chọn đỉnh đang hoạt động có độ cao lớn nhất mỗi khi chọn đỉnh. Độ phức tạp của thuật toán là $O(n^2\sqrt m)$.
 
 #### Quy trình
 
