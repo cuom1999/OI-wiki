@@ -1,15 +1,15 @@
-Trong STL, bộ lặp là đối tượng dùng để truy cập và kiểm tra phần tử trong bộ
-chứa STL. Mô hình hành vi của nó tương tự con trỏ, nhưng nó đóng gói thêm một
-số kiểm tra tính hợp lệ và cung cấp một định dạng truy cập thống nhất. Khái niệm
-tương tự cũng tồn tại trong nhiều ngôn ngữ bậc cao khác, như hàm `__iter__` của
-Python hoặc `IEnumerator` của C#.
+Trong STL, bộ lặp là đối tượng dùng để truy cập và kiểm tra các phần tử trong
+bộ chứa STL. Mô hình hành vi của nó tương tự con trỏ, nhưng nó đóng gói thêm
+một số kiểm tra tính hợp lệ và cung cấp một giao diện truy cập thống nhất. Khái
+niệm tương tự cũng tồn tại trong nhiều ngôn ngữ bậc cao khác, như hàm
+`__iter__` của Python hoặc `IEnumerator` của C#.
 
 ## Cách dùng cơ bản
 
 Bộ lặp nghe có vẻ khó, nhưng bản thân bộ lặp có thể xem như một con trỏ dữ
 liệu. Bộ lặp chủ yếu hỗ trợ hai toán tử: tự tăng (`++`) và giải tham chiếu
 (toán tử một ngôi `*`). Trong đó, tự tăng dùng để di chuyển bộ lặp, còn giải
-tham chiếu có thể lấy hoặc sửa phần tử mà nó trỏ tới.
+tham chiếu dùng để lấy hoặc sửa phần tử mà nó trỏ tới.
 
 Kiểu bộ lặp trỏ đến phần tử trong một [bộ chứa STL](./container.md)
 `container` thường là `container::iterator`.
@@ -45,17 +45,16 @@ lần lượt gồm các loại sau:
 -   `OutputIterator` (bộ lặp xuất): chỉ yêu cầu hỗ trợ sao chép, tự tăng và gán
     thông qua giải tham chiếu.
 -   `ForwardIterator` (bộ lặp tiến): trên cơ sở `InputIterator`, hỗ trợ duyệt
-    nhiều lần và bảo đảm kết quả truy cập bằng giải tham chiếu nhiều lần là nhất
-    quán.
+    nhiều lần và bảo đảm kết quả của nhiều lần giải tham chiếu là nhất quán.
 -   `BidirectionalIterator` (bộ lặp hai chiều): trên cơ sở `ForwardIterator`, hỗ
     trợ tự giảm, tức truy cập ngược.
 -   `RandomAccessIterator` (bộ lặp truy cập ngẫu nhiên): trên cơ sở
     `BidirectionalIterator`, hỗ trợ phép cộng trừ và phép so sánh, tức truy cập
     ngẫu nhiên.
 -   `ContiguousIterator` (bộ lặp liên tục): trên cơ sở `RandomAccessIterator`,
-    yêu cầu với bộ lặp có thể giải tham chiếu `a + n`, biểu thức `*(a + n)` tương
-    đương `*(std::address_of(*a) + n)`, tức lưu trữ liên tục; ở đây `a` là
-    bộ lặp liên tục và `n` là giá trị số nguyên.
+    yêu cầu nếu `a + n` có thể giải tham chiếu thì biểu thức `*(a + n)` tương
+    đương `*(std::address_of(*a) + n)`, tức các phần tử được lưu trữ liên tục;
+    ở đây `a` là bộ lặp liên tục và `n` là giá trị số nguyên.
 
     `ContiguousIterator` được chính thức đưa vào từ C++17.
 
@@ -69,10 +68,9 @@ lần lượt gồm các loại sau:
 Các phân loại bộ lặp này không loại trừ lẫn nhau. Trên thực tế, ngoài bộ lặp
 xuất, các bộ lặp đứng sau trong danh sách đều đáp ứng yêu cầu của bộ lặp đứng
 trước. Ví dụ, nơi yêu cầu dùng bộ lặp tiến cũng có thể dùng bộ lặp hai chiều.
-Bắt đầu từ bộ lặp tiến, nếu những bộ lặp này cũng hiện thực chức năng của bộ lặp
-xuất (tức cho phép ghi), chúng được gọi là bộ lặp khả biến. Từ đó có thể sinh ra
-các loại như "bộ lặp truy cập ngẫu nhiên khả biến" (`mutable random access
-iterator`).
+Bắt đầu từ bộ lặp tiến, nếu những bộ lặp này cũng hỗ trợ thao tác ghi của bộ lặp
+xuất, chúng được gọi là bộ lặp khả biến. Từ đó có thể sinh ra các loại như
+"bộ lặp truy cập ngẫu nhiên khả biến" (`mutable random access iterator`).
 
 Các [bộ chứa STL](./container.md) khác nhau hỗ trợ các loại bộ lặp khác
 nhau; khi dùng cần chú ý.
@@ -84,25 +82,25 @@ ngẫu nhiên với C++14 trở về trước), nên có thể dùng như bộ l
 
 Nhiều [hàm STL](./algorithm.md) dùng bộ lặp làm tham số.
 
-Có thể dùng `std::advance(it, n)` để di chuyển bộ lặp `it` về sau `n` bước;
-nếu `n` âm thì tương ứng di chuyển về trước, khi đó bộ lặp phải thỏa mãn yêu cầu
+Có thể dùng `std::advance(it, n)` để di chuyển bộ lặp `it` tiến thêm `n` bước;
+nếu `n` âm thì tương ứng di chuyển lùi lại, khi đó bộ lặp phải thỏa mãn yêu cầu
 của bộ lặp hai chiều, nếu không hành vi không xác định.
 
-Từ C++11 trở đi, có thể dùng `std::next(it)` để lấy hậu kế của bộ lặp tiến `it`
-(bộ lặp `it` không đổi), và `std::next(it, n)` để lấy hậu kế thứ `n` của bộ lặp
-tiến `it`.
+Từ C++11 trở đi, có thể dùng `std::next(it)` để lấy bộ lặp ngay sau bộ lặp tiến
+`it` (bộ lặp `it` không đổi), và `std::next(it, n)` để lấy bộ lặp cách `it`
+`n` bước về phía sau.
 
-Từ C++11 trở đi, có thể dùng `std::prev(it)` để lấy tiền nhiệm của
-bộ lặp hai chiều `it` (bộ lặp `it` không đổi), và `std::prev(it, n)` để
-lấy tiền nhiệm thứ `n` của bộ lặp hai chiều `it`.
+Từ C++11 trở đi, có thể dùng `std::prev(it)` để lấy bộ lặp ngay trước bộ lặp hai
+chiều `it` (bộ lặp `it` không đổi), và `std::prev(it, n)` để lấy bộ lặp cách
+`it` `n` bước về phía trước.
 
 [Bộ chứa STL](./container.md) thường hỗ trợ truy cập từ một đầu hoặc hai đầu,
 cũng như hỗ trợ [bộ sửa đổi const](../const.md). Ví dụ, hàm `begin()` của
 bộ chứa có thể lấy bộ lặp trỏ đến phần tử đầu tiên của bộ chứa; `rbegin()`
 có thể lấy bộ lặp ngược trỏ đến phần tử cuối cùng của bộ chứa; `cbegin()`
 có thể lấy bộ lặp hằng trỏ đến phần tử đầu tiên; `end()` có thể lấy bộ lặp
-trỏ đến cuối bộ chứa ("cuối" không phải phần tử cuối, mà có thể xem là hậu kế
-của phần tử cuối; tiền nhiệm của "cuối" là phần tử cuối trong bộ chứa, còn bản
-thân nó không trỏ đến phần tử nào).
+trỏ đến cuối bộ chứa ("cuối" không phải phần tử cuối, mà có thể xem là vị trí
+ngay sau phần tử cuối; vị trí ngay trước "cuối" là phần tử cuối trong bộ chứa,
+còn bản thân nó không trỏ đến phần tử nào).
 
 Bạn có thể xem thêm cách dùng tại [thư viện bộ lặp trên cppreference.com](https://en.cppreference.com/w/cpp/iterator).
