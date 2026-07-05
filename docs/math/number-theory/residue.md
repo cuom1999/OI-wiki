@@ -2,7 +2,7 @@ Kiến thức nền tảng: [Logarit rời rạc](./discrete-logarithm.md)
 
 Bài viết này thảo luận về thặng dư bậc cao và căn đơn vị theo modulo, đồng thời giới thiệu các thuật toán khai căn theo modulo.
 
-<span id="&#39640;&#27425;&#21097;&#20313;"></span>
+<span id="thặng-dư-bậc-cao"></span>
 ## Thặng dư bậc cao
 
 Thặng dư bậc cao trong phép toán modulo có thể được hiểu là việc xét khả năng khai lũy thừa bậc cao theo modulo. Đây là một sự tổng quát hóa của [thặng dư bậc hai](./quad-residue.md).
@@ -22,7 +22,7 @@ Thặng dư bậc cao trong phép toán modulo có thể được hiểu là vi�
 Nói cách khác, căn bậc $k$ của $a$ modulo $m$ tồn tại khi và chỉ khi $a$ là
 thặng dư bậc $k$ modulo $m$.
 
-<span id="&#24615;&#36136;"></span>
+<span id="tính-chất-thặng-dư-bậc-cao"></span>
 ### Tính chất
 
 Tương tự thặng dư bậc hai, ta có thể thảo luận bài toán kiểm tra thặng dư bậc
@@ -70,7 +70,7 @@ trường hợp có căn nguyên thủy, ta có kết quả sau:
     $$
 
     Trong đó, $\operatorname{ind}_g a$ là logarit rời rạc. Theo
-    [tính chất của bậc](./primitive-root.md#%E5%B9%82%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84)
+    [tính chất của bậc](./primitive-root.md#cấu-trúc-tuần-hoàn-của-lũy-thừa)
     và $\delta_m(g)=\varphi(m)$, điều này tương đương với phương trình đồng dư
 
     $$
@@ -173,16 +173,16 @@ Như vậy, bài toán kiểm tra thặng dư bậc $k$ với các modulo khác 
 giải quyết đầy đủ. Ký hiệu Legendre và luật tương hỗ bậc hai trong thặng dư bậc
 hai cũng có thể tổng quát hóa sang thặng dư bậc cao, nhưng điều này không dễ và
 cần đến các khái niệm như
-[trường chia đường tròn](../algebra/field-theory.md#%E5%88%86%E5%9C%86%E5%9F%9F).
+[trường chia đường tròn](../algebra/field-theory.md#trường-cyclotomic).
 Trong lý thuyết số đại số, luật tương hỗ bậc hai cuối cùng có thể được tổng
 quát thành [luật tương hỗ Artin](https://en.wikipedia.org/wiki/Artin_reciprocity).
 
-<span id="&#21333;&#20301;&#26681;"></span>
+<span id="căn-đơn-vị"></span>
 ## Căn đơn vị
 
 Là một trường hợp đặc biệt của căn bậc $k$, mục này thảo luận khái niệm căn đơn
 vị (nguyên thủy) bậc $k$. Nó có thể xem là đối ứng của khái niệm
-[căn đơn vị](../complex.md#%E5%8D%95%E4%BD%8D%E6%A0%B9) bậc $k$ trong trường số
+[căn đơn vị](../complex.md#căn-đơn-vị) bậc $k$ trong trường số
 phức $\mathbf C$ trên hệ thặng dư thu gọn $\mathbf Z_m^*$ modulo $m$. Khi modulo
 $m$ phù hợp, có thể dùng căn đơn vị nguyên thủy bậc $k$ modulo $m$ thay cho căn
 phức $\omega_k$ để tăng tốc tính toán.
@@ -196,7 +196,7 @@ Tương tự trường hợp trên trường số phức, ta có định nghĩa 
     modulo $m$, thì $x$ được gọi là **căn đơn vị nguyên thủy bậc $k$ modulo
     $m$** ($k$-th primitive root of unity modulo $m$).
 
-So sánh với [định nghĩa căn nguyên thủy](./primitive-root.md#%E5%8E%9F%E6%A0%B9),
+So sánh với [định nghĩa căn nguyên thủy](./primitive-root.md#căn-nguyên-thủy),
 ta thấy căn nguyên thủy $g$ chính là căn đơn vị nguyên thủy bậc $\varphi(m)$
 modulo $m$, trong đó $\varphi(m)$ là [hàm Euler](./euler-totient.md).
 
@@ -206,7 +206,7 @@ nó thay $\omega_k$ trong nhiều phép tính. Ví dụ, áp dụng nó vào
 [biến đổi Fourier nhanh](../poly/fft.md) sẽ thu được
 [biến đổi số học nhanh](../poly/ntt.md) trên trường hữu hạn[^fnnt].
 
-<span id="&#24615;&#36136;_1"></span>
+<span id="tính-chất-căn-đơn-vị"></span>
 ### Tính chất
 
 Trong trường số phức, căn đơn vị (nguyên thủy) bậc bất kỳ đều tồn tại. Nhưng
@@ -219,7 +219,7 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
 
     1.  Mọi số nguyên $a$ nguyên tố cùng nhau với $m$ đều là căn đơn vị nguyên
         thủy bậc $\delta_m(a)$ modulo $m$, trong đó $\delta_m(a)$ là
-        [bậc](./primitive-root.md#%E9%98%B6) của $a$ modulo $m$.
+        [bậc](./primitive-root.md#bậc) của $a$ modulo $m$.
     2.  Nếu phần tử $a$ là căn đơn vị bậc $k$ modulo $m$, và $k'$ là một bội bất
         kỳ của $k$, thì $a$ cũng là căn đơn vị bậc $k'$ modulo $m$.
     3.  Nếu phần tử $a$ là căn đơn vị (nguyên thủy) bậc $k$ modulo $m$, thì phần
@@ -291,7 +291,7 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
     Suy ra tính chất 5.
 
     Gần như lặp lại chứng minh của
-    [định lí kiểm tra căn nguyên thủy](./primitive-root.md#%E5%8E%9F%E6%A0%B9%E5%88%A4%E5%AE%9A%E5%AE%9A%E7%90%86)
+    [định lí kiểm tra căn nguyên thủy](./primitive-root.md#định-lí-kiểm-tra-căn-nguyên-thủy)
     sẽ thu được tính chất 6. Tiêu chuẩn này thực chất đang kiểm tra
     $\delta_m(a)=k$.
 
@@ -364,12 +364,12 @@ trúc của căn đơn vị đơn giản hơn:
     $a$.
 
 Định lí này cho thấy, khi căn nguyên thủy tồn tại, toàn bộ các căn đơn vị bậc
-$k$ có cấu trúc [nhóm cyclic](../algebra/group-theory.md#%E5%BE%AA%E7%8E%AF%E7%BE%A4),
+$k$ có cấu trúc [nhóm cyclic](../algebra/group-theory.md#nhóm-vòng),
 và các căn đơn vị nguyên thủy bậc $k$ là phần tử sinh của nhóm cyclic đó. Ngay
 sau đây ta sẽ thấy thuật toán Tonelli-Shanks tận dụng điểm này để tăng tốc phần
 tính logarit rời rạc trong phép khai căn.
 
-<span id="&#27169;&#24847;&#20041;&#19979;&#24320;&#26041;"></span>
+<span id="khai-căn-theo-modulo"></span>
 ## Khai căn theo modulo
 
 Cuối cùng, bài viết thảo luận cách tìm căn bậc $k$. Với $k=2$, có
@@ -381,10 +381,10 @@ $O(m^{1/4+\varepsilon})$. Dùng định lí thặng dư Trung Hoa luôn có th�
 toán về trường hợp modulo lũy thừa của số nguyên tố, vì vậy mục này chủ yếu
 thảo luận lời giải trong trường hợp modulo lũy thừa của số nguyên tố.
 
-<span id="&#26420;&#32032;&#31639;&#27861;"></span>
+<span id="thuật-toán-trực-tiếp"></span>
 ### Thuật toán trực tiếp
 
-[Phân tích](#%E6%80%A7%E8%B4%A8) về tính chất của thặng dư bậc $k$ ở trên thực
+[Phân tích](#tính-chất-thặng-dư-bậc-cao) về tính chất của thặng dư bậc $k$ ở trên thực
 ra đã chỉ ra một cách tìm căn bậc $k$ theo modulo lũy thừa của số nguyên tố.
 Nói chính xác, phần trên đã giải quyết trường hợp số được khai căn $a$ nguyên tố
 cùng nhau với modulo $m$. Quá trình thuật toán tóm tắt như sau:
@@ -453,7 +453,7 @@ minh họa; do độ phức tạp quá cao, không đủ để AC bài mẫu nà
     --8<-- "docs/math/code/residue/bsgs-mod-p.cpp"
     ```
 
-<span id="&#25913;&#33391; Tonelli&#8211;Shanks &#31639;&#27861;"></span>
+<span id="thuật-toán-tonelli-shanks-cải-tiến"></span>
 ### Thuật toán Tonelli-Shanks cải tiến
 
 Mở rộng phù hợp [thuật toán Tonelli-Shanks](./quad-residue.md#thuật-toán-tonelli-shanks)
@@ -475,7 +475,7 @@ phức tạp vẫn là $\Omega\left(\sqrt{p_\text{max}(k)}\right)$. Thuật toá
 mục này cải tiến thêm quá trình đó, tránh tính logarit rời rạc với các thừa số
 nguyên tố lớn, và khống chế tổng độ phức tạp ở mức $O(m^{1/4+\varepsilon})$.
 
-<span id="&#36807;&#31243;"></span>
+<span id="quy-trình"></span>
 #### Quy trình
 
 Xét việc tính căn bậc $k$ của $a$ modulo lũy thừa số nguyên tố $m$, tức là giải
@@ -584,7 +584,7 @@ Khi $B=\sqrt{(s-e)p}$, tổng độ phức tạp đạt nhỏ nhất, bằng
 $O\left(\sqrt{(s-e)p}\right)$. Sau khi thu được $h$, thay vào biểu thức của $x$
 ở trên sẽ tìm được một nghiệm riêng.
 
-<span id="&#26102;&#38388;&#22797;&#26434;&#24230;"></span>
+<span id="độ-phức-tạp-thời-gian"></span>
 #### Độ phức tạp thời gian
 
 Độ phức tạp thời gian của thuật toán này là $O(m^{1/4+\varepsilon})$. Khi thảo
@@ -648,7 +648,7 @@ Mã tham khảo để tìm căn bậc $k$ theo modulo số nguyên tố như sau
     --8<-- "docs/math/code/residue/tonelli-shanks-mod-p.cpp"
     ```
 
-<span id="&#19968;&#33324;&#24773;&#24418;&#30340;&#22788;&#29702;"></span>
+<span id="xử-lý-trường-hợp-tổng-quát"></span>
 ### Xử lý trường hợp tổng quát
 
 Xét trường hợp tổng quát, vẫn giả sử modulo $m$ là lũy thừa số nguyên tố $p^e$,
@@ -690,7 +690,7 @@ Mã tham khảo để tìm toàn bộ căn bậc $k$ theo modulo bất kỳ như
         --8<-- "docs/math/code/residue/tonelli-shanks.cpp"
         ```
 
-<span id="&#21442;&#32771;&#36164;&#26009;&#19982;&#27880;&#37322;"></span>
+<span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
 -   Feng Keqin. Elementary Number Theory and Its Applications.
@@ -699,7 +699,7 @@ Mã tham khảo để tìm toàn bộ căn bậc $k$ theo modulo bất kỳ như
 
 [^fnnt]: Thật ra, modulo $m$ không nhất thiết là số nguyên tố. Chỉ cần $a$ là căn đơn vị nguyên thủy bậc $k=2^e$ modulo $m$, nó có thể được dùng cho biến đổi số học nhanh modulo $m$. Tuy nhiên, vì $2^e$ cần xử lý thường khá lớn, mỗi thừa số nguyên tố của modulo $m$ phải có dạng $c2^e+1$. Do đó chỉ một thừa số nguyên tố đã rất lớn, còn modulo $m$ thường lớn hơn nữa; vì vậy trường hợp modulo tổng quát không thông dụng bằng trường hợp modulo số nguyên tố.
 
-[^lambda-density]: Theo [kết quả về số lượng căn nguyên thủy](./primitive-root.md#%E5%8E%9F%E6%A0%B9%E4%B8%AA%E6%95%B0), số lượng $\lambda$-căn nguyên thủy đúng bằng $\varphi(\lambda(m))$, trong đó $\varphi(\cdot)$ và $\lambda(\cdot)$ lần lượt là hàm Euler và hàm Carmichael. Vì với hầu hết số nguyên $m$, ta có $\lambda(m)/m = \exp(-(1+o(1))\log\log m\log\log\log m)$, và tồn tại $C > 0$ sao cho với mọi số nguyên $m > 2$ đều có $\varphi(m)/m = C / \log\log m$, nên với hầu hết số nguyên $m$, ta có $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$. Ở đây, $o(1)$ trong hệ số của phần mũ đã hấp thụ đóng góp của thừa số $\varphi(\lambda(m))/\lambda(m)$. Vì vậy, có thể tìm $\lambda$-căn nguyên thủy sau kỳ vọng $\exp((1+o(1))\log\log m\log\log\log m)$ lần thử. Về ước lượng cho hàm Euler, có thể tham khảo bài báo Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94. Về ước lượng cho hàm Carmichael, có thể tham khảo bài báo Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael's lambda function." Acta Arith 58, no. 4 (1991): 363-385.
+[^lambda-density]: Theo [kết quả về số lượng căn nguyên thủy](./primitive-root.md#số-lượng-căn-nguyên-thủy), số lượng $\lambda$-căn nguyên thủy đúng bằng $\varphi(\lambda(m))$, trong đó $\varphi(\cdot)$ và $\lambda(\cdot)$ lần lượt là hàm Euler và hàm Carmichael. Vì với hầu hết số nguyên $m$, ta có $\lambda(m)/m = \exp(-(1+o(1))\log\log m\log\log\log m)$, và tồn tại $C > 0$ sao cho với mọi số nguyên $m > 2$ đều có $\varphi(m)/m = C / \log\log m$, nên với hầu hết số nguyên $m$, ta có $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$. Ở đây, $o(1)$ trong hệ số của phần mũ đã hấp thụ đóng góp của thừa số $\varphi(\lambda(m))/\lambda(m)$. Vì vậy, có thể tìm $\lambda$-căn nguyên thủy sau kỳ vọng $\exp((1+o(1))\log\log m\log\log\log m)$ lần thử. Về ước lượng cho hàm Euler, có thể tham khảo bài báo Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94. Về ước lượng cho hàm Carmichael, có thể tham khảo bài báo Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael's lambda function." Acta Arith 58, no. 4 (1991): 363-385.
 
 [^amm]: Bài báo gốc: Adleman, Leonard, Kenneth Manders, and Gary Miller. "On taking roots in finite fields." In 18th Annual Symposium on Foundations of Computer Science (sfcs 1977), pp. 175-178. IEEE Computer Society, 1977. Một phần giới thiệu dễ đọc hơn có trong Cao, Zhengjun, Qian Sha, and Xiao Fan. "Adleman-Manders-Miller root extraction method revisited." In International Conference on Information Security and Cryptology, pp. 77-85. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011.
 

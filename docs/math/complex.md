@@ -290,7 +290,7 @@ Ngoài ra, như một hệ quả đơn giản của các phân tích này, có:
 ???+ note "Định lý"
     Khi $k$ chạy qua các ước của $n$, toàn bộ căn đơn vị nguyên thủy bậc $k$ vừa đúng tạo thành một phân hoạch của các căn đơn vị bậc $n$. Hơn nữa, với $\ell\perp n$, ánh xạ $x\mapsto x^\ell$ cho một song ánh giữa các căn đơn vị bậc $n$, và giữ nguyên phân hoạch trên: nó vẫn ánh xạ căn đơn vị nguyên thủy bậc $k\mid n$ sang căn đơn vị nguyên thủy bậc $k$.
 
-Dù có nhiều lựa chọn cho căn đơn vị nguyên thủy, do căn đầu tiên $\omega_n$ có dạng đơn giản nhất, trong lập trình thi đấu $\omega_n$ vẫn được dùng phổ biến nhất. Trong một số tình huống, để nâng cao hiệu suất tính toán, cũng có thể cân nhắc dùng [căn đơn vị nguyên thủy](./number-theory/residue.md#%E5%8D%95%E4%BD%8D%E6%A0%B9) dưới một môđun nào đó thay cho $\omega_n$ trong trường số phức.
+Dù có nhiều lựa chọn cho căn đơn vị nguyên thủy, do căn đầu tiên $\omega_n$ có dạng đơn giản nhất, trong lập trình thi đấu $\omega_n$ vẫn được dùng phổ biến nhất. Trong một số tình huống, để nâng cao hiệu suất tính toán, cũng có thể cân nhắc dùng [căn đơn vị nguyên thủy](./number-theory/residue.md#căn-đơn-vị) dưới một môđun nào đó thay cho $\omega_n$ trong trường số phức.
 
 ## Số phức trong ngôn ngữ lập trình
 
