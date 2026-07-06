@@ -3,7 +3,7 @@ author: Marcythm, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chrogeek
 ## Dẫn nhập bằng ví dụ
 
 ???+ note "[「HNOI2008」Đóng gói đồ chơi](https://loj.ac/problem/10188)"
-    Có $n$ món đồ chơi xếp thành một hàng, món thứ $i$ có giá trị $c_i$. Cần chia $n$ món đồ chơi thành một số đoạn. Với một đoạn $[l,r]$, chi phí của nó là $(r-l+\sum_{i=l}^r c_i-L)^2$, trong đó $L$ là hằng số. Hãy tìm chi phí chia đoạn nhỏ nhất.
+    Có $n$ món đồ chơi xếp thành một hàng, món thứ $i$ có giá trị $c_i$. Cần chia $n$ món đồ chơi thành một số đoạn. Với một đoạn $[l,r]$, chi phí của nó là $(r-l+\sum_{i=l}^r c_i-L)^2$, trong đó $L$ là hằng số. Yêu cầu tìm chi phí chia đoạn nhỏ nhất.
     
     $1\le n\le 5\times 10^4, 1\le L, c_i\le 10^7$.
 
@@ -21,13 +21,13 @@ Cách làm này có độ phức tạp thời gian $O(n^2)$, không đủ để 
 
 Xét đơn giản hóa phương trình chuyển ở trên. Đặt $s_i=pre_i+i,L'=L+1$, khi đó $f_i=\min_{j<i}\{f_j+(s_i-s_j-L')^2\}$.
 
-Đưa các phần không liên quan tới $j$ ra ngoài, ta được:
+Đưa các phần không liên quan tới $j$ ra ngoài, thu được:
 
 $$
 f_i - (s_i-L')^2=\min_{j<i}\{f_j+s_j^2 + 2s_j(L'-s_i) \} 
 $$
 
-Xét dạng hệ số góc - tung độ gốc của hàm bậc nhất $y=kx+b$, chuyển vế được $b=y-kx$. Ta biểu diễn thông tin liên quan tới $j$ dưới dạng $y$, thông tin liên quan đồng thời tới $i,j$ dưới dạng $kx$, và thông tin cần tối thiểu hóa (liên quan tới $i$) dưới dạng $b$, tức tung độ gốc. Cụ thể, đặt:
+Xét dạng hệ số góc - tung độ gốc của hàm bậc nhất $y=kx+b$, chuyển vế được $b=y-kx$. Biểu diễn thông tin liên quan tới $j$ dưới dạng $y$, thông tin liên quan đồng thời tới $i,j$ dưới dạng $kx$, và thông tin cần tối thiểu hóa (liên quan tới $i$) dưới dạng $b$, tức tung độ gốc. Cụ thể, đặt:
 
 $$
 \begin{aligned}
@@ -42,15 +42,15 @@ Khi đó phương trình chuyển viết thành $b_i=\min_{j<i}\{y_j-k_ix_j\}$. 
 
 ![Tịnh tiến đường thẳng để tìm điểm tối ưu trên bao lồi](../images/optimization.svg)
 
-Như hình trên, ta tịnh tiến đường thẳng có hệ số góc $k_i$ từ dưới lên trên cho tới khi có một điểm $(x_p,y_p)$ nằm trên đường thẳng đó. Khi ấy $b_i=y_p-k_ix_p$, và $b_i$ đạt giá trị nhỏ nhất. Sau khi tính xong $f_i$, ta thêm điểm $(x_i,y_i)$ vào tập điểm để làm quyết định DP mới. Vậy cần duy trì tập điểm thế nào?
+Như hình trên, tịnh tiến đường thẳng có hệ số góc $k_i$ từ dưới lên trên cho tới khi có một điểm $(x_p,y_p)$ nằm trên đường thẳng đó. Khi ấy $b_i=y_p-k_ix_p$, và $b_i$ đạt giá trị nhỏ nhất. Sau khi tính xong $f_i$, thêm điểm $(x_i,y_i)$ vào tập điểm để làm quyết định DP mới. Vậy cần duy trì tập điểm thế nào?
 
-Dễ thấy các điểm có thể làm $b_i$ đạt giá trị nhỏ nhất chắc chắn nằm trên bao lồi dưới. Vì vậy khi tìm $p$, không cần duyệt tất cả $i-1$ điểm, chỉ cần xét các điểm trên bao lồi. Trong bài này, $k_i$ tăng theo $i$, nên có thể dùng hàng đợi đơn điệu để duy trì bao lồi.
+Các điểm có thể làm $b_i$ đạt giá trị nhỏ nhất đều nằm trên bao lồi dưới. Vì vậy khi tìm $p$, không cần duyệt tất cả $i-1$ điểm, chỉ cần xét các điểm trên bao lồi. Trong bài này, $k_i$ tăng theo $i$, nên có thể dùng hàng đợi đơn điệu để duy trì bao lồi.
 
 Cụ thể, đặt $K(a,b)$ là hệ số góc của đường thẳng đi qua $(x_a,y_a)$ và $(x_b,y_b)$. Xét hàng đợi $q_l,q_{l+1},\ldots,q_r$, duy trì các điểm trên bao lồi dưới. Nói cách khác, với $l<i<r$, luôn có $K(q_{i-1},q_i)<K(q_i,q_{i+1})$.
 
-Ta duy trì một con trỏ $e$ để tính giá trị nhỏ nhất của $b_i$. Cần tìm $e$ sao cho $K(q_{e-1},q_e)\le k_i<K(q_e,q_{e+1})$ (đặc biệt, khi $e=l$ hoặc $e=r$ cần xử lý riêng). Khi đó $p=q_e$, tức $q_e$ là điểm quyết định tối ưu của $i$. Vì $k_i$ tăng đơn điệu, số lần di chuyển của $e$ là khấu hao $O(1)$.
+Duy trì một con trỏ $e$ để tính giá trị nhỏ nhất của $b_i$. Cần tìm $e$ sao cho $K(q_{e-1},q_e)\le k_i<K(q_e,q_{e+1})$ (đặc biệt, khi $e=l$ hoặc $e=r$ cần xử lý riêng). Khi đó $p=q_e$, tức $q_e$ là điểm quyết định tối ưu của $i$. Vì $k_i$ tăng đơn điệu, số lần di chuyển của $e$ là khấu hao $O(1)$.
 
-Khi chèn một điểm $(x_i,y_i)$, ta cần kiểm tra liệu $K(q_{r-1},q_r)<K(q_r,i)$ có đúng không. Nếu bất đẳng thức không đúng, pop $q_r$ cho tới khi điều kiện thỏa, rồi chèn $i$ vào cuối hàng đợi $q$.
+Khi chèn một điểm $(x_i,y_i)$, cần kiểm tra liệu $K(q_{r-1},q_r)<K(q_r,i)$ có đúng không. Nếu bất đẳng thức không đúng, loại $q_r$ khỏi cuối hàng đợi cho tới khi điều kiện thỏa, rồi chèn $i$ vào cuối hàng đợi $q$.
 
 Như vậy độ phức tạp của DP được tối ưu xuống $O(n)$.
 
@@ -64,12 +64,12 @@ Tiếp theo giới thiệu các ứng dụng nâng cao của tối ưu bằng đ
 
 ## Tối ưu DP bằng nhị phân/CDQ/cây cân bằng
 
-Khi tìm quyết định tối ưu tại điểm $i$, ta dùng một đường thẳng $f(i)$ liên quan tới $i$ để cắt bao lồi đang duy trì. Điểm được cắt tới chính là quyết định tối ưu.
+Khi tìm quyết định tối ưu tại điểm $i$, dùng một đường thẳng $f(i)$ liên quan tới $i$ để cắt bao lồi đang duy trì. Điểm được cắt tới chính là quyết định tối ưu.
 
 Trong ví dụ trên, hệ số góc của đường thẳng biến thiên đơn điệu theo $i$, nhưng trong một số bài, hệ số góc không đơn điệu. Khi đó cần duy trì mọi nút trên bao lồi, rồi mỗi lần dùng đường thẳng hiện tại để cắt bao lồi này. Quá trình đó có thể giải bằng tìm kiếm nhị phân, vì hệ số góc giữa hai điểm kề nhau trên bao lồi có tính đơn điệu.
 
 ???+ note "Đóng gói đồ chơi - phiên bản sửa"
-    Có $n$ món đồ chơi xếp thành một hàng, món thứ $i$ có giá trị $c_i$. Cần chia $n$ món đồ chơi thành một số đoạn. Với đoạn $[l,r]$, chi phí là $(r-l+\sum_{i=l}^r c_i-L)^2$, trong đó $L$ là hằng số. Hãy tìm chi phí chia đoạn nhỏ nhất.
+    Có $n$ món đồ chơi xếp thành một hàng, món thứ $i$ có giá trị $c_i$. Cần chia $n$ món đồ chơi thành một số đoạn. Với đoạn $[l,r]$, chi phí là $(r-l+\sum_{i=l}^r c_i-L)^2$, trong đó $L$ là hằng số. Yêu cầu tìm chi phí chia đoạn nhỏ nhất.
     
     $1\le n\le 5\times 10^4,1\le L\le 10^7,-10^7\le c_i\le 10^7$.
 
@@ -92,7 +92,7 @@ Tuy nhiên lúc này có hai điều kiện không còn đúng:
 
 Vẫn xét việc duy trì bao lồi.
 
-Khi tìm điểm quyết định tối ưu, tức dùng đường thẳng cắt bao lồi, ta thay thao tác lấy đầu hàng đợi đơn điệu bằng tìm kiếm nhị phân trên bao lồi. Tìm nhị phân cạnh trên bao lồi có hệ số góc gần nhất với hệ số góc của đường thẳng là có thể tìm được quyết định tối ưu.
+Khi tìm điểm quyết định tối ưu, tức dùng đường thẳng cắt bao lồi, thay thao tác lấy đầu hàng đợi đơn điệu bằng tìm kiếm nhị phân trên bao lồi. Tìm kiếm nhị phân cạnh trên bao lồi có hệ số góc gần nhất với hệ số góc của đường thẳng sẽ tìm được quyết định tối ưu.
 
 Khi thêm điểm quyết định, tức thêm một điểm vào bao lồi, có hai cách duy trì.
 
@@ -102,7 +102,7 @@ Dưới đây giới thiệu một cách làm dựa trên [chia để trị CDQ]
 
 Đặt $\text{CDQ}(l,r)$ là quá trình tính $f_i,i\in[l,r]$. Xét $\text{CDQ}(1,n)$:
 
--   Trước hết gọi $\text{CDQ}(1,mid)$ để tính $f_i,i\in[1,mid]$. Sau đó dựng bao lồi từ các điểm quyết định trong đoạn $[1,mid]$, rồi dùng bao lồi này để cập nhật $f_i,i\in[mid+1,n]$. Lúc này tập điểm quyết định là cố định, không giống trước đó vừa tính giá trị DP vừa thêm điểm quyết định. Vì vậy có thể sắp xếp trước các $f_i$ với $i\in[mid+1,n]$ theo hệ số góc $k_i$ của đường thẳng, rồi dùng hàng đợi đơn điệu để tính giá trị DP. Tất nhiên, cũng có thể tìm nhị phân trên bao lồi tĩnh để tính giá trị DP.
+-   Trước hết gọi $\text{CDQ}(1,mid)$ để tính $f_i,i\in[1,mid]$. Sau đó dựng bao lồi từ các điểm quyết định trong đoạn $[1,mid]$, rồi dùng bao lồi này để cập nhật $f_i,i\in[mid+1,n]$. Lúc này tập điểm quyết định là cố định, không giống trước đó vừa tính giá trị DP vừa thêm điểm quyết định. Vì vậy có thể sắp xếp trước các $f_i$ với $i\in[mid+1,n]$ theo hệ số góc $k_i$ của đường thẳng, rồi dùng hàng đợi đơn điệu để tính giá trị DP. Ngoài ra, cũng có thể tìm nhị phân trên bao lồi tĩnh để tính giá trị DP.
 
 -   Với mỗi điểm trong $[mid+1,n]$, nếu vị trí quyết định tối ưu của nó nằm trong $[1,mid]$, thì nó sẽ được cập nhật thành đáp án tối ưu ở bước này. Sau khi thực hiện xong, mọi điểm trong $[1,mid]$ đã phát huy hết tác dụng; việc chúng còn trong bao lồi hay không không ảnh hưởng tới các cập nhật sau. Do đó có thể trực tiếp bỏ các điểm quyết định của đoạn này, rồi dùng $\text{CDQ}(mid+1,n)$ để giải phần còn lại của đoạn phải.
 
