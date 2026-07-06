@@ -114,7 +114,7 @@ Nếu cần tiền xử lý giá trị $\mu(n)$ cho $n$ số nguyên dương đ�
     \end{aligned}
     $$
     
-    Điểm then chốt của phép biến đổi là đổi thứ tự lấy tổng và chú ý rằng $k\mid d\mid n$ tương đương với $\dfrac{n}{d}\mid\dfrac{n}{k}$. Dấu bằng áp chót chính là tổng hàm Möbius trên các ước $\dfrac{n}{d}$ của $\dfrac{n}{k}$, nên bằng $\left[\dfrac{n}{k} = 1\right]$. Biểu thức này chỉ khác $0$ tại $n=k$, do đó cuối cùng thu được $g(n)$.
+    Điểm then chốt của phép biến đổi là đổi thứ tự lấy tổng và dùng nhận xét $k\mid d\mid n$ tương đương với $\dfrac{n}{d}\mid\dfrac{n}{k}$. Dấu bằng áp chót chính là tổng hàm Möbius trên các ước $\dfrac{n}{d}$ của $\dfrac{n}{k}$, nên bằng $\left[\dfrac{n}{k} = 1\right]$. Biểu thức này chỉ khác $0$ tại $n=k$, do đó cuối cùng thu được $g(n)$.
 
 ??? note "Chứng minh 2"
     Dùng tích chập Dirichlet, mệnh đề tương đương với
@@ -206,7 +206,7 @@ Ngoài dạng cơ bản trên, đảo Möbius còn có một số dạng mở r�
     
     Suy luận này hoàn toàn đối ngẫu với dạng cơ bản.
 
-Tiếp theo, đảo Möbius không chỉ giới hạn ở phép cộng; thực ra nó đúng với phép toán trong bất kỳ [nhóm Abel](../algebra/basic.md#nhóm) nào. Chẳng hạn, nó có dạng nhân sau:
+Tiếp theo, đảo Möbius không chỉ giới hạn ở phép cộng, mà còn đúng với phép toán trong bất kỳ [nhóm Abel](../algebra/basic.md#nhóm) nào. Chẳng hạn, nó có dạng nhân sau:
 
 ???+ note "Mở rộng 2"
     Giả sử $f(n),g(n)$ là hai hàm số học. Khi đó
@@ -462,7 +462,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     f(n) = n\sum_{\ell\mid n}G\left(\dfrac{n}{\ell}\right)F(\ell).
     $$
     
-    Vì $\mu(d)d$ là hàm nhân tính, tích chập của nó với hàm hằng $1$, tức $F(n)$, cũng là hàm nhân tính. Dù tổng trên có dạng tích chập Dirichlet, $G(n)$ không phải hàm nhân tính, nên toàn bộ tổng không phải hàm nhân tính. Tuy nhiên, $G(n)$ là đa thức, nên thực ra nó là tổ hợp tuyến tính của một số hàm hoàn toàn nhân tính. Do đó
+    Vì $\mu(d)d$ là hàm nhân tính, tích chập của nó với hàm hằng $1$, tức $F(n)$, cũng là hàm nhân tính. Dù tổng trên có dạng tích chập Dirichlet, $G(n)$ không phải hàm nhân tính, nên toàn bộ tổng không phải hàm nhân tính. Tuy nhiên, $G(n)$ là đa thức, nên có thể biểu diễn nó thành tổ hợp tuyến tính của một số hàm hoàn toàn nhân tính. Do đó
     
     $$
     f(n) = \dfrac{1}{2}n\left(\sum_{\ell}\left(\dfrac{n}{\ell}\right)^2F(\ell) + \sum_{\ell}\dfrac{n}{\ell}F(\ell)\right).
@@ -494,13 +494,13 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     Trong cài đặt tham khảo, do tính đặc biệt của biểu thức trong bài này, phần sàng tuyến tính được suy luận sâu hơn; điều này không bắt buộc. Chỉ dùng giá trị tại lũy thừa nguyên tố vẫn có thể hoàn thành tiền xử lý trong $O(N)$. Các suy luận này được trình bày trong lời giải 2.
 
 ??? note "Lời giải 2"
-    Riêng với bài này, có một cách xử lý linh hoạt hơn. Từ lời giải 1 có thể thấy
+    Riêng với bài này, có một cách xử lý linh hoạt hơn. Từ lời giải 1 suy ra
     
     $$
     f(n) = n\sum_{k\mid n}\sum_{i=1}^{n/k}i\left[\gcd\left(i,\dfrac{n}{k}\right)=1\right] = n\sum_{k\mid n}F\left(\dfrac{n}{k}\right).
     $$
     
-    Nếu ở bước này không tiếp tục dùng đảo Möbius, mà quan sát rằng tổng phía sau thực chất là tổng các số nguyên không vượt quá $d=n/k$ và nguyên tố cùng nhau với nó. Với $d>1$, vì các số nguyên tố cùng nhau với $d$ xuất hiện thành cặp, tức $i$ và $d-i$ chắc chắn đồng thời nguyên tố cùng nhau với $d$, nên
+    Nếu bước này không tiếp tục dùng đảo Möbius, tổng phía sau có thể được nhìn như tổng các số nguyên không vượt quá $d=n/k$ và nguyên tố cùng nhau với nó. Với $d>1$, các số nguyên tố cùng nhau với $d$ xuất hiện thành cặp, tức $i$ và $d-i$ luôn đồng thời nguyên tố cùng nhau với $d$, nên
     
     $$
     F(d)=\sum_{i=1}^{d}i[i\perp d] = \sum_{i=1}^{d}(d-i)[i\perp d] = \dfrac{1}{2}d\sum_{i=1}^{d}[i\perp d] = \dfrac{1}{2}d\varphi(d).
@@ -524,7 +524,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     G(p^e) = 1 + \sum_{i=1}^ep^e(p^e-1) = G(p^{e-1}) + p^{2e} - p^{2e-1}.
     $$
     
-    Có thể thấy biểu thức này nhất quán với kết quả suy ra ở lời giải 1. Độ phức tạp thời gian tổng thể của phương pháp này vẫn là $O(N+T)$.
+    Biểu thức này nhất quán với kết quả suy ra ở lời giải 1. Độ phức tạp thời gian tổng thể của phương pháp này vẫn là $O(N+T)$.
     
     Cuối cùng, dùng biểu thức hàm nhân tính của bài này, có thể tối ưu thêm quá trình tính bằng sàng tuyến tính. Với số nguyên tố $p$, có
     
@@ -560,7 +560,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     G(pn) = G(n) + p^2\left(G(n) - G\left(\dfrac{n}{p}\right)\right).
     $$
     
-    Điều này đơn giản hóa phần tính sàng tuyến tính. Tất nhiên, suy luận này không bắt buộc; với hàm nhân tính không có tính chất đặc biệt, dùng trực tiếp $G(pn)=G(p^{e+1})G(m)$ vẫn có thể hoàn thành sàng tuyến tính.
+    Điều này đơn giản hóa phần tính sàng tuyến tính. Suy luận này không bắt buộc; với hàm nhân tính không có tính chất đặc biệt, dùng trực tiếp $G(pn)=G(p^{e+1})G(m)$ vẫn có thể hoàn thành sàng tuyến tính.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -652,7 +652,7 @@ Bài ví dụ tiếp theo tương đối đặc biệt, cần biến đổi hàm
     \sigma_0(ij) = \prod_p\sigma_0(i_pj_p)= \prod_p\sum_{x_p\mid i_p}\sum_{y_p\mid j_p}[x_p\perp y_p].
     $$
     
-    Chú ý rằng với mỗi thừa số lũy thừa nguyên tố $i_p$ của $i$, liệt kê ước $x_p$ của nó tương đương với liệt kê một ước $x$ của $i$ rồi tách ra mọi thừa số lũy thừa nguyên tố $x_p$; với $j$ cũng tương tự. Do đó, dùng luật phân phối của phép nhân, biểu thức trên trở thành
+    Với mỗi thừa số lũy thừa nguyên tố $i_p$ của $i$, liệt kê ước $x_p$ của nó tương đương với liệt kê một ước $x$ của $i$ rồi tách ra mọi thừa số lũy thừa nguyên tố $x_p$; với $j$ cũng tương tự. Do đó, dùng luật phân phối của phép nhân, biểu thức trên trở thành
     
     $$
     \sigma_0(ij) = \sum_{x\mid i}\sum_{y\mid j}\prod_p[x_p\perp y_p] = \sum_{x\mid i}\sum_{y\mid j}[x\perp y].
@@ -723,7 +723,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     f(n) = \prod_{i=1}^n\prod_{j=1}^n\dfrac{ij}{(\gcd(i,j))^2}.
     $$
     
-    Chú ý rằng tích của các nhân tử này độc lập với nhau và có thể tính riêng. Đặt
+    Các nhân tử trong tích này độc lập với nhau và có thể tính riêng. Đặt
     
     $$
     g(n) = \prod_{i=1}^n\prod_{j=1}^n\gcd(i,j).
@@ -777,7 +777,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     F(n) = \prod_{d\mid n}\left(\dfrac{n}{d}\right)\uparrow\mu(d).
     $$
     
-    Đây là đảo Möbius dạng tích đối với $\tilde F(n)=n$. Ngay cả khi không biết biểu thức của nó, vẫn có thể dùng phương pháp [sai phân Dirichlet](#tổng-tiền-tố-dirichlet) để tiền xử lý trong thời gian $O(n\log\log n)$. Tất nhiên, vì dạng của $\tilde F(n)$ rất đơn giản, biểu thức của $F(n)$ có thể tính trực tiếp:
+    Đây là đảo Möbius dạng tích đối với $\tilde F(n)=n$. Ngay cả khi không biết biểu thức của nó, vẫn có thể dùng phương pháp [sai phân Dirichlet](#tổng-tiền-tố-dirichlet) để tiền xử lý trong thời gian $O(n\log\log n)$. Do dạng của $\tilde F(n)$ rất đơn giản, biểu thức của $F(n)$ có thể tính trực tiếp:
     
     $$
     F(n) = 
@@ -789,7 +789,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     
     [Hàm von Mangoldt](#đảo-möbius) chính là logarit tự nhiên của nó. Sau khi có giá trị của $F(n)$, dùng trực tiếp phân khối số học phiên bản nhân là có thể tính giá trị của $g(n)$ trong thời gian $O(\sqrt{n})$, rồi từ đó tính được $f(n)$. Tổng độ phức tạp thời gian là $O(n)$.
     
-    Cần chú ý rằng khi tính các tích, thường phải dùng [định lý Euler](./fermat.md), nên modulo dùng cho phần số mũ không giống modulo đề bài cho.
+    Khi tính các tích, thường phải dùng [định lý Euler](./fermat.md), nên modulo dùng cho phần số mũ không giống modulo đề bài cho.
 
 ??? note "Lời giải 2"
     Điểm khó của suy luận phiên bản nhân nằm ở việc xử lý tích và lũy thừa còn khá lạ. Vì vậy, với loại bài này cũng có thể lấy logarit rồi suy luận. Trong bài này, chỉ xét phần suy luận cho $g(n)$. Lấy logarit, có:

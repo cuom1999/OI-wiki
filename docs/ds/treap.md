@@ -17,7 +17,7 @@ Tính chất của heap là:
 
 -   Độ ưu tiên ($\textit{priority}$) của nút con lớn hơn hoặc nhỏ hơn nút cha, tùy theo đó là min-heap hay max-heap.
 
-Có thể thấy rằng nếu dùng cùng một giá trị cho cả hai cấu trúc, khi kết hợp lại cấu trúc sẽ biến thành một chuỗi. Vì vậy, trên nền tảng cây tìm kiếm, Treap đưa thêm một giá trị $\textit{priority}$ cho heap. Với giá trị $\textit{val}$, duy trì tính chất cây tìm kiếm; với giá trị $\textit{priority}$, duy trì tính chất heap. Giá trị $\textit{priority}$ này được gán ngẫu nhiên.
+Nếu dùng cùng một giá trị cho cả hai cấu trúc, khi kết hợp lại cấu trúc sẽ biến thành một chuỗi. Vì vậy, trên nền tảng cây tìm kiếm, Treap đưa thêm một giá trị $\textit{priority}$ cho heap. Với giá trị $\textit{val}$, duy trì tính chất cây tìm kiếm; với giá trị $\textit{priority}$, duy trì tính chất heap. Giá trị $\textit{priority}$ này được gán ngẫu nhiên.
 
 Hình dưới đây là một ví dụ về Treap (dùng min-heap, tức nút gốc có độ ưu tiên nhỏ nhất).
 
@@ -219,7 +219,7 @@ void _insert(Node *&cur, int val) {
     // Duy trì tính chất cây tìm kiếm: val nhỏ hơn nút hiện tại thì chèn bên trái, ngược lại bên phải
     _insert(cur->ch[0], val);
     if (cur->ch[0]->rank < cur->rank) {
-      // Trong min-heap, độ ưu tiên của nút phía trên chắc chắn nhỏ hơn
+      // Trong min-heap, độ ưu tiên của nút phía trên luôn nhỏ hơn
       // Vì nút con trái mới chèn nhỏ hơn nút cha, bây giờ cần cho nút con trái thành nút cha
       _rotate(cur, RT);  // Lưu ý tính chất xoay ở trên: muốn đưa nút con trái lên thì cần xoay phải
     }
@@ -236,7 +236,7 @@ void _insert(Node *&cur, int val) {
 
 ### Xóa
 
-Chủ yếu là phân loại từng trường hợp; mỗi trường hợp có cách xử lý khác nhau. Sau khi xóa, kích thước cây thay đổi, cần chú ý cập nhật. Nếu nút cần xóa có cả cây con trái và cây con phải, cần xét sau khi xóa thì nút nào làm cha (duy trì nút có `rank` nhỏ hơn ở phía trên).
+Chủ yếu là phân loại từng trường hợp; mỗi trường hợp có cách xử lý khác nhau. Sau khi xóa, kích thước cây thay đổi và cần cập nhật lại. Nếu nút cần xóa có cả cây con trái và cây con phải, cần xét sau khi xóa thì nút nào làm cha (duy trì nút có `rank` nhỏ hơn ở phía trên).
 
 ```cpp
 void _del(Node *&cur, int val) {
@@ -375,7 +375,7 @@ int _query_prev(Node *cur, int val) {
   } else {
     // Chỉ khi vào được nhánh else này mới cập nhật q_prev_tmp
     q_prev_tmp = cur->val;
-    // Nút hiện tại đã nhỏ hơn val, nhưng chưa chắc là lớn nhất, nên tiếp tục tìm trong cây con phải
+    // Nút hiện tại đã nhỏ hơn val, nhưng không nhất thiết là lớn nhất, nên tiếp tục tìm trong cây con phải
     if (cur->ch[1] != nullptr) _query_prev(cur->ch[1], val);
     // Các lần đệ quy tiếp theo có thể không thay đổi q_prev_tmp,
     // khi đó trả về trực tiếp giá trị này; nói tóm lại, giá trị trả về là cur->val
@@ -418,7 +418,7 @@ Cách thao tác của Treap không xoay giúp nó tự nhiên hỗ trợ duy tr�
 
 Quá trình tách nhận hai tham số: con trỏ gốc $\textit{cur}$ và khóa $\textit{key}$. Kết quả là tách Treap mà con trỏ gốc trỏ tới thành hai Treap: mỗi nút trong Treap thứ nhất có giá trị ($\textit{val}$) nhỏ hơn hoặc bằng $\textit{key}$, mỗi nút trong Treap thứ hai có giá trị lớn hơn $\textit{key}$.
 
-Quá trình này trước hết kiểm tra $\textit{key}$ có nhỏ hơn giá trị của $\textit{cur}$ hay không. Nếu nhỏ hơn, điều đó cho thấy $\textit{cur}$ và toàn bộ cây con phải của nó đều lớn hơn $\textit{key}$, thuộc Treap thứ hai. Tất nhiên, một phần cây con trái cũng có thể có giá trị lớn hơn $\textit{key}$, nên cần tiếp tục đệ quy tách cây con trái. Với phần cây con trái lớn hơn $\textit{key}$, gán nó làm cây con trái của $\textit{cur}$; như vậy mọi nút trong toàn bộ $\textit{cur}$ đều lớn hơn $\textit{key}$.
+Quá trình này trước hết kiểm tra $\textit{key}$ có nhỏ hơn giá trị của $\textit{cur}$ hay không. Nếu nhỏ hơn, điều đó cho thấy $\textit{cur}$ và toàn bộ cây con phải của nó đều lớn hơn $\textit{key}$, thuộc Treap thứ hai. Một phần cây con trái cũng có thể có giá trị lớn hơn $\textit{key}$, nên cần tiếp tục đệ quy tách cây con trái. Với phần cây con trái lớn hơn $\textit{key}$, gán nó làm cây con trái của $\textit{cur}$; như vậy mọi nút trong toàn bộ $\textit{cur}$ đều lớn hơn $\textit{key}$.
 
 Tương ứng, nếu $\textit{key}$ lớn hơn hoặc bằng giá trị của $\textit{cur}$, điều đó cho thấy toàn bộ cây con trái của $\textit{cur}$ và chính nó đều nhỏ hơn hoặc bằng $\textit{key}$, thuộc Treap thứ nhất sau khi tách. Đồng thời, một phần cây con phải của $\textit{cur}$ cũng có thể nhỏ hơn hoặc bằng $\textit{key}$, nên cần tiếp tục đệ quy tách cây con phải. Lấy phần nhỏ hơn hoặc bằng $\textit{key}$ làm cây con phải của $\textit{cur}$; như vậy mọi nút trong toàn bộ $\textit{cur}$ đều nhỏ hơn hoặc bằng $\textit{key}$.
 
@@ -430,7 +430,7 @@ Hình dưới đây minh họa trường hợp tách theo giá trị khi giá tr
 pair<Node *, Node *> split(Node *cur, int key) {
   if (cur == nullptr) return {nullptr, nullptr};
   if (cur->val <= key) {
-    // cur và cây con trái của nó chắc chắn thuộc cây thứ nhất sau khi tách
+    // cur và cây con trái của nó thuộc cây thứ nhất sau khi tách
     auto temp = split(cur->ch[1], key);
     // Nhưng nó có thể có một phần cây con phải cũng nhỏ hơn key
     cur->ch[1] = temp.first;
@@ -560,7 +560,7 @@ Chỉ cần $\textit{val}$ và giá trị của nút là số nguyên (hầu h�
 
 Khi chèn, nếu nút thỏa mãn $T_{1\ \text{phải}}$ tồn tại, có thể trực tiếp tăng số lần lặp; ngược lại thì tạo một nút mới.
 
-Lưu ý sau khi tách cây xong, vẫn cần dùng hợp nhất để "dán" nó lại, để lần sau có thể tiếp tục sử dụng. Đồng thời cần chú ý thứ tự tham số của thao tác hợp nhất có yêu cầu: mọi nút của cây thứ nhất phải nhỏ hơn các nút của cây thứ hai.
+Sau khi tách cây xong, vẫn cần dùng hợp nhất để "dán" nó lại, để lần sau có thể tiếp tục sử dụng. Đồng thời thứ tự tham số của thao tác hợp nhất có yêu cầu: mọi nút của cây thứ nhất phải nhỏ hơn các nút của cây thứ hai.
 
 ```cpp
 void insert(int val) {
@@ -568,7 +568,7 @@ void insert(int val) {
   // Tách toàn bộ cây thành hai phần theo giá trị val
   // Lưu ý cài đặt split: cây con bằng val nằm ở cây con trái
   auto l_tr = split(temp.first, val - 1);
-  // Cây con trái của l_tr <= val - 1; nếu có nút = val thì nó chắc chắn nằm ở cây con phải
+  // Cây con trái của l_tr <= val - 1; nếu có nút = val thì nó nằm ở cây con phải
   Node *new_node;
   if (l_tr.second == nullptr) {
     // Không có nút này thì tạo mới, ngược lại tăng trực tiếp số lần lặp.
@@ -717,13 +717,13 @@ Có thể tham khảo [phương pháp xây cây bằng ngăn xếp đơn điệu
 
 Giả sử nút mới chèn là $\textit{u}$.
 
-Trước hết, vì chèn nút theo thứ tự tăng dần, mỗi nút mới chèn chắc chắn sẽ được nối vào chuỗi phải của Treap (tức chuỗi gồm các nút đi từ nút gốc liên tục sang cây con phải).
+Trước hết, vì chèn nút theo thứ tự tăng dần, mỗi nút mới chèn sẽ được nối vào chuỗi phải của Treap (tức chuỗi gồm các nút đi từ nút gốc liên tục sang cây con phải).
 
 Bắt đầu từ nút gốc, độ ưu tiên $\textit{priority}$ của các nút trên chuỗi phải tăng dần (min-heap). Có thể tìm nút đầu tiên trên chuỗi phải có $\textit{priority}$ lớn hơn $\textit{u}$, gọi nút này là $\textit{v}$, và thay nút này bằng $\textit{u}$.
 
-Vì $\textit{u}$ chắc chắn lớn hơn tất cả nút khác trong cây, cần đặt $\textit{v}$ và cây con của nó làm cây con trái của $\textit{u}$. Đồng thời lúc này $\textit{u}$ không có cây con phải.
+Vì $\textit{u}$ lớn hơn tất cả nút khác trong cây, cần đặt $\textit{v}$ và cây con của nó làm cây con trái của $\textit{u}$. Đồng thời lúc này $\textit{u}$ không có cây con phải.
 
-Có thể thấy khi duyệt trung thứ tự, $\textit{u}$ chắc chắn là nút cuối cùng được duyệt (vì $\textit{u}$ là nút cuối trên chuỗi phải, mà trong duyệt trung thứ tự, cây con phải được duyệt cuối cùng).
+Khi duyệt trung thứ tự, $\textit{u}$ là nút cuối cùng được duyệt (vì $\textit{u}$ là nút cuối trên chuỗi phải, mà trong duyệt trung thứ tự, cây con phải được duyệt cuối cùng).
 
 Hình dưới đây cho thấy sự thay đổi khi chèn nút số $5$ trong quá trình chèn các nút $1 \sim 5$ vào Treap theo thứ tự tăng dần. Có thể dùng hình này để hiểu tốt hơn quá trình chèn tăng dần.
 
@@ -739,7 +739,7 @@ Thao tác đảo ngược cụ thể là hoán đổi vị trí mọi cặp nút
 
 Lưu ý nếu đảo ngược theo cách này, mỗi lần đảo ngược đoạn $[l, r]$ sẽ có $r - l$ nút bị hoán đổi vị trí. Thao tác thường xuyên như vậy không đáp ứng được giới hạn dữ liệu $10^5$; độ phức tạp một lần đảo ngược $O(n \times \log_2 n)$ kém hiệu quả hơn cả làm trực tiếp (vì ngoài thời gian tuyến tính để hoán đổi nút, còn cần tốn $O(\log_2 n)$ để tìm các nút cần hoán đổi trong cây).
 
-Quan sát lại yêu cầu bài toán, có thể thấy vì chỉ cần xuất đoạn cuối cùng sau tất cả thao tác, không cần mỗi lần đều hoán đổi thật. Do đó có thể dùng đánh dấu lười thường gặp trong cây phân đoạn để tối ưu độ phức tạp. Khi hoán đổi, chỉ cần gán đánh dấu trên nút cha, biểu thị mọi cặp nút con trái/phải dưới cây con này đều cần hoán đổi.
+Quan sát lại yêu cầu bài toán, vì chỉ cần xuất đoạn cuối cùng sau tất cả thao tác, không cần mỗi lần đều hoán đổi thật. Do đó có thể dùng đánh dấu lười thường gặp trong cây phân đoạn để tối ưu độ phức tạp. Khi hoán đổi, chỉ cần gán đánh dấu trên nút cha, biểu thị mọi cặp nút con trái/phải dưới cây con này đều cần hoán đổi.
 
 Trong cây phân đoạn, đánh dấu lười thường được đẩy xuống khi cập nhật và truy vấn. Lý do là khi cập nhật/truy vấn, phạm vi cần cập nhật/truy vấn không nhất thiết trùng với phạm vi mà đánh dấu lười đại diện, nên phải đẩy đánh dấu xuống trước để bảo đảm giá trị tìm được và giá trị sau cập nhật là đúng.
 
@@ -804,7 +804,7 @@ pair<Node*, Node*> split(Node* cur, int sz) {
 
 #### Hợp nhất
 
-Điểm duy nhất cần chú ý là đẩy đánh dấu lười xuống trước khi hợp nhất.
+Điểm duy nhất cần xử lý là đẩy đánh dấu lười xuống trước khi hợp nhất.
 
 ```cpp
 Node *merge(Node *sm, Node *bg) {
@@ -843,7 +843,7 @@ void seg_rev(int l, int r) {
 
 #### In bằng duyệt trung thứ tự
 
-Cần chú ý đẩy đánh dấu xuống khi in.
+Cần đẩy đánh dấu xuống khi in.
 
 ```cpp
 void print(Node* cur) {
@@ -1333,7 +1333,7 @@ Dưới đây là mã mẫu bzoj cho bài cây cân bằng thông thường, cà
           cur->upd_siz();
           return {temp.first, cur};
         } else {
-          // Cây bên trái cộng với một phần bên phải (tất nhiên gồm cả nút này)
+          // Cây bên trái cộng với một phần bên phải (bao gồm cả nút này)
           auto temp = split(cur->ch[1], sz - siz(cur->ch[0]) - 1);
           cur->ch[1] = temp.first;
           cur->upd_siz();

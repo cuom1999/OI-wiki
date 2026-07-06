@@ -12,7 +12,7 @@ Một số bài toán [DP nén trạng thái](./state.md) yêu cầu ghi lại t
 
 <span id="lát-domino-và-dp-đường-biên"></span>
 
-Ôn cũ để biết mới: trước khi học DP đầu nối, trước hết nhắc lại một bài toán kinh điển.
+Trước khi đi vào DP đầu nối, cần nhắc lại một bài toán kinh điển.
 
 ???+ note "Ví dụ [「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400)"
     Tóm tắt đề bài: lát kín một bàn cờ $N\times M$ bằng các quân domino $1\times 2$ hoặc $2\times 1$, hỏi có bao nhiêu cách lát.
@@ -108,7 +108,7 @@ Giai đoạn: thứ tự thực hiện quy hoạch động; kết quả của c�
 
 Nói nghiêm ngặt, bài toán nhiều chu trình không thuộc DP đầu nối, vì cũng như bài toán lát domino ở trên, chỉ cần ghi lại đầu nối có tồn tại hay không, rồi ghép và sinh đầu nối theo từng cặp.
 
-Chú ý rằng với một bàn cờ rộng $m$, độ rộng của đường biên là $m+1$, vì nó gồm $m$ đầu nối phía trên và $1$ đầu nối bên trái. Sau khi duyệt xong một hàng, đầu nối trái ở ngoài cùng bên phải thường là trạng thái không hợp lệ; đồng thời cần bổ sung đầu nối trái đầu tiên của hàng tiếp theo. Việc này đòi hỏi điều chỉnh trạng thái đường biên hiện tại, thường là dịch trái toàn bộ trạng thái; thao tác này gọi là cuộn `roll()`.
+Với một bàn cờ rộng $m$, độ rộng của đường biên là $m+1$, vì nó gồm $m$ đầu nối phía trên và $1$ đầu nối bên trái. Sau khi duyệt xong một hàng, đầu nối trái ở ngoài cùng bên phải thường là trạng thái không hợp lệ; đồng thời cần bổ sung đầu nối trái đầu tiên của hàng tiếp theo. Vì vậy cần điều chỉnh trạng thái đường biên hiện tại, thường là dịch trái toàn bộ trạng thái; thao tác này gọi là cuộn `roll()`.
 
 ??? note "Mã ví dụ"
     ```cpp
@@ -148,7 +148,7 @@ Khi đó hai cách mã hóa sau biểu diễn cùng một trạng thái:
 
 Mọi trạng thái tương đương được ánh xạ về biểu diễn có thứ tự từ điển nhỏ nhất; trong ví dụ trên, `0 1 2 0 2 1` là một biểu diễn tối tiểu.
 
-Dùng mảng `b[]` để biểu diễn trạng thái của các đầu nối trên đường biên. `bb[]` biểu diễn, trong quá trình mã hóa tối tiểu, mỗi số được ánh xạ tới số nhỏ nhất nào. Chú ý $0$ biểu thị đầu nối không tồn tại, nên không được ánh xạ thành giá trị khác.
+Dùng mảng `b[]` để biểu diễn trạng thái của các đầu nối trên đường biên. `bb[]` biểu diễn, trong quá trình mã hóa tối tiểu, mỗi số được ánh xạ tới số nhỏ nhất nào. Do $0$ biểu thị đầu nối không tồn tại, giá trị này không được ánh xạ thành giá trị khác.
 
 ??? note "Cài đặt mã"
     ```cpp
@@ -182,7 +182,7 @@ Các đầu nối luôn xuất hiện theo cặp và biến mất theo cặp. V�
 
 <span id="tự-viết-bảng-băm"></span>
 
-Trong một số bài toán [DP nén trạng thái](./state.md), các trạng thái hợp lệ có thể rất thưa (ví dụ bài này). Để tối ưu độ phức tạp thời gian và bộ nhớ, có thể dùng bảng băm để lưu các trạng thái DP hợp lệ. Với C++, có thể dùng [std::unordered\_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/), và dĩ nhiên cũng có thể tự viết trực tiếp để linh hoạt đóng gói cả hàm chuyển trạng thái.
+Trong một số bài toán [DP nén trạng thái](./state.md), các trạng thái hợp lệ có thể rất thưa (ví dụ bài này). Để tối ưu độ phức tạp thời gian và bộ nhớ, có thể dùng bảng băm để lưu các trạng thái DP hợp lệ. Với C++, có thể dùng [std::unordered\_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/), hoặc tự viết trực tiếp để linh hoạt đóng gói cả hàm chuyển trạng thái.
 
 ???+ note "Cài đặt mã"
     ```cpp
@@ -304,9 +304,9 @@ Về phân tích độ phức tạp của bảng băm, cũng như sự khác nha
 ???+ note "Ví dụ [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
     Tóm tắt đề bài: với một hình vuông $N\times M$ ($N,M\le 8$), mỗi điểm lưới có một trọng số. Tìm một đường đi sao cho tổng trọng số các điểm lưới được đường đi phủ là lớn nhất.
 
-Đây là bài toán một đường đi tiêu chuẩn. Trong bài toán một đường đi, trạng thái mã hóa còn có thể tồn tại các đầu nối độc lập không thể ghép cặp. Hàm chuyển trạng thái cần thảo luận thêm việc sinh, ghép và biến mất của các đầu nối độc lập. Việc sinh và biến mất của đầu nối độc lập tương ứng với một đầu mút của đường đi, nên loại sự kiện này không xảy ra quá hai lần (một lần sinh một lần biến mất, hoặc hai lần sinh một lần ghép); nếu không, kết quả cuối cùng chắc chắn sẽ có nhiều thành phần liên thông.
+Đây là bài toán một đường đi tiêu chuẩn. Trong bài toán một đường đi, trạng thái mã hóa còn có thể tồn tại các đầu nối độc lập không thể ghép cặp. Hàm chuyển trạng thái cần thảo luận thêm việc sinh, ghép và biến mất của các đầu nối độc lập. Việc sinh và biến mất của đầu nối độc lập tương ứng với một đầu mút của đường đi, nên loại sự kiện này không xảy ra quá hai lần (một lần sinh một lần biến mất, hoặc hai lần sinh một lần ghép); nếu không, kết quả cuối cùng sẽ có nhiều thành phần liên thông.
 
-Cần ghi thêm trong trạng thái tổng số lần loại sự kiện này đã xảy ra. Có thể mã hóa thông tin này vào trạng thái (chú ý rằng các thông tin bổ sung kiểu này không cần cuộn theo khi điều chỉnh đường biên), hoặc thêm một chiều bên ngoài mảng `hashTable`. Chương trình mẫu dưới đây chọn cách thứ hai.
+Cần ghi thêm trong trạng thái tổng số lần loại sự kiện này đã xảy ra. Có thể mã hóa thông tin này vào trạng thái (các thông tin bổ sung kiểu này không cần cuộn theo khi điều chỉnh đường biên), hoặc thêm một chiều bên ngoài mảng `hashTable`. Chương trình mẫu dưới đây chọn cách thứ hai.
 
 #### Chuyển trạng thái
 
@@ -410,11 +410,11 @@ Ngoài mô hình đường đi, còn có một loại mô hình thường gặp 
 
 Trước hết xét cách mã hóa trạng thái. Nếu không xét tính liên thông thì đây chính là [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197), có thể giải trực tiếp bằng [DP nén trạng thái](./state.md). Bây giờ cần thể hiện đồng thời thông tin màu và tính liên thông trong trạng thái. Xét trạng thái của từng vị trí trên đường biên: mỗi `Offset` bit trong biểu diễn nhị phân mô tả một vị trí trên đường biên. Vì chỉ có hai màu đen trắng, dùng tính chẵn lẻ của bit thấp nhất để biểu thị màu, các phần còn lại biểu thị tính liên thông.
 
-Xét các nút phía trên hàng đầu tiên và các nút bên trái cột đầu tiên. Nếu muốn tránh xử lý riêng, có thể đưa thêm màu thứ ba để phân biệt chúng. Thông tin liên thông của các trạng thái biên này chắc chắn bằng 0, nên không cần mã hóa thêm cho màu thứ ba.
+Xét các nút phía trên hàng đầu tiên và các nút bên trái cột đầu tiên. Nếu muốn tránh xử lý riêng, có thể đưa thêm màu thứ ba để phân biệt chúng. Thông tin liên thông của các trạng thái biên này luôn bằng 0, nên không cần mã hóa thêm cho màu thứ ba.
 
 Trong bài toán đường đi, đường biên gồm $m$ đầu nối phía trên và $1$ đầu nối bên trái. Ở bài này, vì còn cần kiểm tra hình chữ nhật con $2\times 2$ có ô hiện tại là góc dưới phải có hợp lệ hay không, nên cần ghi lại màu của ô góc trên trái; do đó độ dài đường biên vẫn là $m+1$.
 
-Cách mã hóa này vẫn giữ lại nhiều thông tin dư thừa (các vùng liên thông chắc chắn cùng màu, và ô góc trên trái chỉ cần thông tin màu, không cần thông tin liên thông). Tuy nhiên vì đã dùng bảng băm và biểu diễn tối tiểu, ảnh hưởng đến độ phức tạp thời gian không lớn; để giảm áp lực lập trình, không tinh giản thêm.
+Cách mã hóa này vẫn giữ lại nhiều thông tin dư thừa (các vùng liên thông luôn cùng màu, và ô góc trên trái chỉ cần thông tin màu, không cần thông tin liên thông). Tuy nhiên vì đã dùng bảng băm và biểu diễn tối tiểu, ảnh hưởng đến độ phức tạp thời gian không lớn; để giảm áp lực lập trình, không tinh giản thêm.
 
 Trong trường hợp nhiều nhất (ví dụ hàng đầu tiên đen trắng xen kẽ), thông tin liên thông của mỗi đầu nối đều khác nhau. Vì vậy cần $4$ bit nhị phân để ghi tính liên thông; cộng thêm thông tin màu, `Offset` của bài này là $5$ bit.
 
@@ -493,7 +493,7 @@ Vì cần dựng một phương án bất kỳ, bảng băm cần thêm một tr
 
 <span id="dựng-phương-án"></span>
 
-Với các thông tin trên, có thể dựng phương án trực tiếp. Trước hết duyệt các trạng thái trong bảng băm hiện tại; nếu số thành phần liên thông không vượt quá $2$ thì cộng vào số phương án. Nếu số phương án khác $0$, dùng mảng `pre` theo thứ tự ngược để dựng phương án. Chú ý ở cuối mỗi hàng, vì đã thực hiện thao tác `Roll()`, màu cần lấy từ `c[j+1]`.
+Với các thông tin trên, có thể dựng phương án trực tiếp. Trước hết duyệt các trạng thái trong bảng băm hiện tại; nếu số thành phần liên thông không vượt quá $2$ thì cộng vào số phương án. Nếu số phương án khác $0$, dùng mảng `pre` theo thứ tự ngược để dựng phương án. Ở cuối mỗi hàng, vì đã thực hiện thao tác `Roll()`, màu cần lấy từ `c[j+1]`.
 
 ???+ note "Cài đặt mã"
     ```cpp
@@ -563,7 +563,7 @@ Dùng $-1$ để biểu thị màu không tồn tại. Tiếp theo xét chuyển
     }
     ```
 
-Với trường hợp cuối cùng, cần chú ý: nếu đã sinh ra một vùng liên thông khép kín, không thể tiếp tục dùng màu của vùng đó để tô, nếu không màu này sẽ có hai thành phần liên thông. Có vẻ cần ghi thêm loại sự kiện này; có thể tham khảo cách làm trong [「ZOJ 3213」Beautiful Meadow](#ví-dụ_2), thêm một chiều để ghi lại sự kiện. Tuy nhiên nhờ tính chất đặc biệt của bài này, cũng có thể xử lý riêng.
+Với trường hợp cuối cùng, cần lưu ý: nếu đã sinh ra một vùng liên thông khép kín, không thể tiếp tục dùng màu của vùng đó để tô, nếu không màu này sẽ có hai thành phần liên thông. Có vẻ cần ghi thêm loại sự kiện này; có thể tham khảo cách làm trong [「ZOJ 3213」Beautiful Meadow](#ví-dụ_2), thêm một chiều để ghi lại sự kiện. Tuy nhiên nhờ tính chất đặc biệt của bài này, cũng có thể xử lý riêng.
 
 ???+ note "Xử lý riêng - mã"
     ```cpp
@@ -573,7 +573,7 @@ Với trường hợp cuối cùng, cần chú ý: nếu đã sinh ra một vùn
       if (!up) return true;
       int c1 = 0, c2 = 0;
       REP(i, m + 1) if (i != j + 1) {
-        if (b[i] == b[j + 1]) {  // Tính liên thông giống nhau thì màu chắc chắn giống nhau
+        if (b[i] == b[j + 1]) {  // Tính liên thông giống nhau thì màu luôn giống nhau
           assert(c[i] == c[j + 1]);
         }
         if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
@@ -587,7 +587,7 @@ Với trường hợp cuối cùng, cần chú ý: nếu đã sinh ra một vùn
     }
     ```
 
-Thảo luận thêm về trường hợp một thành phần liên thông biến mất. Mỗi khi tô màu một ô, nếu không còn ô nào khác liên thông với ô phía trên nó, thì một thành phần liên thông khép kín sẽ được tạo thành. Sự kiện này chỉ được xảy ra ở hai cột cuối của hàng cuối; nếu không, để tránh xuất hiện khối $2\times 2$ cùng màu, màu này chắc chắn sẽ lại xuất hiện về sau, ngoại trừ trường hợp sau:
+Thảo luận thêm về trường hợp một thành phần liên thông biến mất. Mỗi khi tô màu một ô, nếu không còn ô nào khác liên thông với ô phía trên nó, thì một thành phần liên thông khép kín sẽ được tạo thành. Sự kiện này chỉ được xảy ra ở hai cột cuối của hàng cuối; nếu không, để tránh xuất hiện khối $2\times 2$ cùng màu, màu này sẽ lại xuất hiện về sau, ngoại trừ trường hợp sau:
 
     2 2
     o#
