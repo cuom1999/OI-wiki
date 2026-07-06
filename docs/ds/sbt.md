@@ -1,13 +1,13 @@
 Cây cân bằng theo kích thước (Size Balanced Tree, SBT) là một loại cây tìm kiếm nhị phân tự cân bằng
 (Self-Balanced Binary Search Tree, SBBST) do tuyển thủ OI Trung Quốc Chen Qifeng đề xuất vào năm 2007.
-Cấu trúc này duy trì cân bằng bằng cách kiểm tra số lượng nút trong các cây con.
+Cấu trúc này duy trì cân bằng bằng cách so sánh số lượng nút trong các cây con.
 So với các cây tìm kiếm nhị phân tự cân bằng phổ biến như cây đỏ-đen hay AVL,
 SBT hỗ trợ truy vấn thứ hạng của một khóa trong cây với độ phức tạp thời gian $O(\log n)$.
 
 ## Định nghĩa nút
 
 So với cây tìm kiếm nhị phân thông thường, mỗi nút $N$ của SBT chỉ cần duy trì thêm một trường số nguyên `size`,
-dùng để lưu số nút trong cây con có gốc là $N$.
+dùng để lưu số nút trong cây con có gốc tại $N$.
 Kiểu nút `Node` được định nghĩa như sau:
 
 | Định danh  | Kiểu    | Mô tả           |
@@ -18,7 +18,7 @@ Kiểu nút `Node` được định nghĩa như sau:
 
 ## Tính chất
 
-Mọi nút $N$ trong cây cân bằng theo kích thước thỏa mãn các tính chất sau:
+Mọi nút $N$ trong cây cân bằng theo kích thước phải thỏa mãn các bất đẳng thức sau:
 
 ```text
 size(N.left) >= size(N.right.left)
@@ -27,9 +27,8 @@ size(N.right) >= size(N.left.left)
 size(N.right) >= size(N.left.right)
 ```
 
-Diễn đạt bằng ngôn ngữ tự nhiên:
-`size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút con của nút anh em của nó (sibling),
-tức các nút cháu theo nhánh bên (nephew).
+Diễn đạt bằng lời: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút con của nút anh em của nó (sibling),
+tức các nút cháu đi qua nhánh bên (nephew).
 
 ## Duy trì cân bằng
 
@@ -95,6 +94,8 @@ static void rotateRight(NodePtr& node) {
 
 `size(N.left) < size(N.right.left)`
 
+Nút cháu trái của cây con phải quá lớn, nên trước hết xoay phải cây con phải, rồi xoay trái nút hiện tại.
+
 ```cpp
 if (size(node->right->left) > size(node->left)) {
   // clang-format off
@@ -118,6 +119,8 @@ if (size(node->right->left) > size(node->left)) {
 
 `size(N.left) < size(N.right.right)`
 
+Cây con phải lệch về phải quá nhiều, nên chỉ cần xoay trái nút hiện tại.
+
 ```cpp
 if (size(node->right->right) > size(node->left)) {
   // clang-format off
@@ -139,6 +142,8 @@ if (size(node->right->right) > size(node->left)) {
 
 `size(N.right) < size(N.left.left)`
 
+Đây là trường hợp đối xứng với trường hợp 2: cây con trái lệch về trái quá nhiều, nên xoay phải nút hiện tại.
+
 ```cpp
 if (size(node->left->left) > size(node->right)) {
   // clang-format off
@@ -159,6 +164,9 @@ if (size(node->left->left) > size(node->right)) {
 #### Trường hợp 4
 
 `size(N.right) < size(N.left.right)`
+
+Đây là trường hợp đối xứng với trường hợp 1: nút cháu phải của cây con trái quá lớn, nên trước hết xoay trái cây con
+trái, rồi xoay phải nút hiện tại.
 
 ```cpp
 if (size(node->left->right) > size(node->right)) {
@@ -220,7 +228,7 @@ Theo mô tả về thao tác xóa trong bài báo của Chen Qifeng, người đ
 > trong đó $n$ là tổng số lần chèn, không phải kích thước hiện tại.
 
 Thao tác xóa tuy có thể phá vỡ tính chất của SBT, nhưng không làm chiều cao cây tăng lên,
-nên không ảnh hưởng đến hiệu quả của các thao tác sau đó.
+nên theo phân tích ban đầu không ảnh hưởng đến cận độ phức tạp của các thao tác sau đó.
 Tuy nhiên trong thực tế, nếu sau một đợt chèn hàng loạt chỉ thực hiện nhiều thao tác xóa và truy vấn,
 cây vẫn có thể mất cân bằng và ảnh hưởng đến hiệu suất tổng thể.
 Vì vậy, cách cài đặt thao tác xóa của SBT trong bài này vẫn thêm bước duy trì cân bằng.
@@ -354,11 +362,11 @@ và xóa $N$ sau khi thay thế,
 cần cập nhật trường `size` của mọi nút trên đường từ nút cha $P$ của $S$ trước khi thay thế
 đến nút $S$ sau khi thay thế, như chú thích trong mã.
 Cài đặt trong bài này dùng ngăn xếp để lần lượt ghi lại các nút trên đường đi,
-cuối cùng bật ra theo thứ tự ngược với khi duyệt để cập nhật.
+cuối cùng lấy ra theo thứ tự ngược với khi duyệt để cập nhật.
 
 ### Truy vấn thứ hạng
 
-Vì mỗi nút SBT lưu thông tin số nút trong cây con,
+Vì mỗi nút SBT lưu số nút trong cây con,
 có thể truy vấn thứ hạng của một `key` (hoặc số nút lớn hơn/nhỏ hơn một `key`) trong thời gian $O(\log n)$.
 Mã ví dụ như sau:
 
