@@ -27,8 +27,8 @@ size(N.right) >= size(N.left.left)
 size(N.right) >= size(N.left.right)
 ```
 
-Diễn đạt bằng lời: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút con của nút anh em của nó (sibling),
-tức các nút cháu đi qua nhánh bên (nephew).
+Diễn đạt bằng lời: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút con thuộc nút anh em của nó (sibling),
+tức các nút cháu nằm ở nhánh bên (nephew).
 
 ## Duy trì cân bằng
 
@@ -221,7 +221,7 @@ if (compare(key, node->key)) {
 
 ### Xóa
 
-Theo mô tả về thao tác xóa trong bài báo của Chen Qifeng, người đề xuất cây cân bằng theo kích thước:
+Theo mô tả về thao tác xóa trong bài báo của Chen Qifeng, tác giả đề xuất cây cân bằng theo kích thước:
 
 > Điều này có thể làm hỏng tính chất của SBT. Nhưng với cách chèn ở trên,
 > cây tìm kiếm nhị phân vẫn giữ chiều cao $O(\log n)$,
@@ -266,10 +266,10 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
   action(node);
 
   if (node->isLeaf()) {
-    // Case 1: no child
+    // Trường hợp 1: không có con
     node = nullptr;
   } else if (node->right == nullptr) {
-    // Case 2: left child only
+    // Trường hợp 2: chỉ có con trái
     // clang-format off
     //     P
     //     |  remove(N)  P
@@ -279,7 +279,7 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
     // clang-format on
     node = node->left;
   } else if (node->left == nullptr) {
-    // Case 3: right child only
+    // Trường hợp 3: chỉ có con phải
     // clang-format off
     //   P
     //   |    remove(N)  P
@@ -289,7 +289,7 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
     // clang-format on
     node = node->right;
   } else if (node->right->left == nullptr) {
-    // Case 4: both left and right child, right child has no left child
+    // Trường hợp 4: có cả con trái và con phải, con phải không có con trái
     // clang-format off
     //    |                 |
     //    N    remove(N)    R
@@ -303,14 +303,14 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
     node->updateSize();
     fixBalance(node);
   } else {
-    // Case 5: both left and right child, right child is not a leaf
+    // Trường hợp 5: có cả con trái và con phải, con phải không phải nút lá
     // clang-format off
-    //   Step 1. find the node N with the smallest key
-    //           and its parent P on the right subtree
-    //   Step 2. swap S and N
-    //   Step 3. remove node N like Case 1 or Case 3
-    //   Step 4. update size for all nodes on the path
-    //           from S to P
+    //   Bước 1. tìm nút S có khóa nhỏ nhất
+    //           và cha P của nó trong cây con phải
+    //   Bước 2. hoán đổi S và N
+    //   Bước 3. xóa nút N như Trường hợp 1 hoặc Trường hợp 3
+    //   Bước 4. cập nhật size cho mọi nút trên đường đi
+    //           từ S đến P
     //     |                  |
     //     N                  S                 |
     //    / \                / \                S
@@ -326,7 +326,7 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
 
     std::stack<NodePtr> path;
 
-    // Step 1
+    // Bước 1
     NodePtr successor = node->right;
     NodePtr parent = node;
     path.push(node);
@@ -337,15 +337,15 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
       successor = parent->left;
     }
 
-    // Step 2
+    // Bước 2
     swapNode(node, successor);
 
-    // Step 3
+    // Bước 3
     parent->left = node->right;
-    // Restore node
+    // Khôi phục node
     node = successor;
 
-    // Step 4
+    // Bước 4
     while (!path.empty()) {
       path.top()->updateSize();
       path.pop();
@@ -356,11 +356,11 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
 }
 ```
 
-Trong Case 5 của đoạn mã trên,
+Trong Trường hợp 5 của đoạn mã trên,
 sau khi dùng nút kế nhiệm $S$ (cũng có thể chọn nút tiền nhiệm) để thay thế nút cần xóa $N$
 và xóa $N$ sau khi thay thế,
-cần cập nhật trường `size` của mọi nút trên đường từ nút cha $P$ của $S$ trước khi thay thế
-đến nút $S$ sau khi thay thế, như chú thích trong mã.
+cần cập nhật trường `size` của mọi nút trên đường từ nút $S$ sau khi thay thế
+đến nút cha $P$ của $S$ trước khi thay thế, như chú thích trong mã.
 Cài đặt trong bài này dùng ngăn xếp để lần lượt ghi lại các nút trên đường đi,
 cuối cùng lấy ra theo thứ tự ngược với khi duyệt để cập nhật.
 
