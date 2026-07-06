@@ -50,7 +50,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     \end{aligned}
     $$
     
-    Quan sát các ràng buộc đẳng thức của bài toán này, chúng thực ra biểu diễn các biến $x_4,x_5,x_6$ theo các biến $x_1,x_2,x_3$. Viết lại bài toán một chút, ta có
+    Quan sát các ràng buộc đẳng thức của bài toán này, chúng thực ra biểu diễn các biến $x_4,x_5,x_6$ theo các biến $x_1,x_2,x_3$. Viết lại bài toán một chút như sau:
     
     $$
     \begin{array}{rrrrrr}
@@ -61,7 +61,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     \end{array}
     $$
     
-    Từ dạng này có thể thấy rõ: nếu đặt $x_1=x_2=x_3=0$, ta thu được một nghiệm khả thi của bài toán gốc
+    Từ dạng này nhận được ngay: nếu đặt $x_1=x_2=x_3=0$, thu được một nghiệm khả thi của bài toán gốc
     
     $$
     x = (0,0,0,20,20,20)^T.
@@ -69,7 +69,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     
     Giá trị tương ứng của nó là $z=0$. Để tiện trình bày, gọi các biến được đặt bằng không $x_1,x_2,x_3$ là biến không cơ sở, và các biến còn lại $x_4,x_5,x_6$ là biến cơ sở.
     
-    Nghiệm khả thi này hiển nhiên chưa tối ưu. Nếu tăng thích hợp các giá trị $x_1,x_2,x_3$ mà vẫn giữ $x_4,x_5,x_6$ không âm, nghiệm vẫn khả thi. Hơn nữa, vì hệ số của $x_1,x_2,x_3$ trong hàm mục tiêu đều âm nghiêm ngặt, tăng chúng chắc chắn làm giảm giá trị hàm mục tiêu. Chẳng hạn, ta có thể chọn tăng $x_1$. Để giảm hàm mục tiêu nhiều nhất, cần tăng $x_1$ nhiều nhất có thể. Nhưng để nghiệm vẫn khả thi, cần bảo đảm $x_4,x_5,x_6\ge 0$. Vì vậy $x_1$ nhiều nhất có thể tăng tới
+    Nghiệm khả thi này chưa tối ưu. Nếu tăng thích hợp các giá trị $x_1,x_2,x_3$ mà vẫn giữ $x_4,x_5,x_6$ không âm, nghiệm vẫn khả thi. Hơn nữa, vì hệ số của $x_1,x_2,x_3$ trong hàm mục tiêu đều âm nghiêm ngặt, tăng chúng sẽ làm giảm giá trị hàm mục tiêu. Chẳng hạn, có thể chọn tăng $x_1$. Để giảm hàm mục tiêu nhiều nhất, cần tăng $x_1$ nhiều nhất có thể. Nhưng để nghiệm vẫn khả thi, cần giữ $x_4,x_5,x_6\ge 0$. Vì vậy $x_1$ nhiều nhất có thể tăng tới
     
     $$
     \min\left\{\dfrac{20}{1},\dfrac{20}{2},\dfrac{20}{2}\right\} = 10.
@@ -87,7 +87,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     x_1 = 10 - 0.5x_5 - 0.5x_2 - x_3
     $$
     
-    vào bài toán ban đầu, ta viết lại được
+    vào bài toán ban đầu, viết lại được
     
     $$
     \begin{array}{rrrrrr}
@@ -98,7 +98,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     \end{array}
     $$
     
-    Như vậy ta lại quay về tình huống ban đầu.
+    Như vậy lại quay về tình huống ban đầu.
     
     Tiếp tục quan sát hàm mục tiêu hiện tại. Hệ số của biến không cơ sở $x_3$ vẫn âm, nên có thể tăng $x_3$. Để bảo đảm $x_4,x_1,x_6\ge 0$, biến $x_3$ chỉ có thể tăng nhiều nhất tới
     
@@ -106,13 +106,13 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     \min\left\{\dfrac{10}{1},\dfrac{10}{1}\right\} = 10.
     $$
     
-    Chú ý rằng trong biểu thức của $x_6$, hệ số của $x_3$ là dương, nên tăng $x_3$ thế nào cũng không làm $x_6$ âm. Đó là lý do trong tập ngoặc nhọn lần này chỉ có hai phần tử. Khi $x_3$ tăng tới $10$, cả $x_1$ và $x_4$ đều trở thành không, nên có thể chọn một trong hai làm biến không cơ sở mới. Giả sử chọn $x_4$. Khi đó thay
+    Lưu ý rằng trong biểu thức của $x_6$, hệ số của $x_3$ là dương, nên tăng $x_3$ thế nào cũng không làm $x_6$ âm. Đó là lý do trong tập ngoặc nhọn lần này chỉ có hai phần tử. Khi $x_3$ tăng tới $10$, cả $x_1$ và $x_4$ đều trở thành không, nên có thể chọn một trong hai làm biến không cơ sở mới. Giả sử chọn $x_4$. Khi đó thay
     
     $$
     x_3 = 10 + 0.5x_5 - 1.5x_2 - x_4
     $$
     
-    vào bài toán trên, ta được
+    vào bài toán trên, thu được
     
     $$
     \begin{array}{rrrrrr}
@@ -123,7 +123,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     \end{array}
     $$
     
-    Chỉ cần thay $x_5=x_2=x_4=0$, ta đọc được nghiệm khả thi hiện tại là
+    Chỉ cần thay $x_5=x_2=x_4=0$, đọc được nghiệm khả thi hiện tại là
     
     $$
     x = (0,0,10,0,0,10)^T,
@@ -143,7 +143,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     x_2 = 4 + 0.6x_5 - 0.4x_6 - 0.4x_4
     $$
     
-    vào bài toán trên, ta viết lại được
+    vào bài toán trên, viết lại được
     
     $$
     \begin{array}{rrrrrr}
@@ -154,7 +154,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     \end{array}
     $$
     
-    Vẫn đặt các biến không cơ sở $x_5,x_6,x_4$ bằng không, ta được nghiệm khả thi hiện tại
+    Vẫn đặt các biến không cơ sở $x_5,x_6,x_4$ bằng không, thu được nghiệm khả thi hiện tại
     
     $$
     x = (4,4,4,0,0,0)^T.
@@ -180,7 +180,7 @@ Trong đó, $N=\{1,2,\cdots,n\}\setminus B$; các ma trận $A_B,A_N$ lần lư�
 ???+ tip "\"Cơ sở\""
     Tên gọi "cơ sở" có thể hiểu từ góc nhìn đại số tuyến tính. Gọi $V$ là không gian tuyến tính sinh bởi toàn bộ các vector cột của $A$. Khi đó, các vector cột ứng với cơ sở $B$ chính là một cơ sở của không gian $V$.
 
-Trong biểu thức của biến cơ sở $x_B$, đặt $x_N=0$, ta được một nghiệm của toàn bộ các ràng buộc đẳng thức[^notation]
+Trong biểu thức của biến cơ sở $x_B$, đặt $x_N=0$, thu được một nghiệm của toàn bộ các ràng buộc đẳng thức[^notation]
 
 $$
 x = (x_B,x_N) = (A_B^{-1}b,0).
@@ -196,7 +196,7 @@ Mỗi lần lặp của phương pháp đơn hình gọi là một lần **xoay 
 ???+ tip "\"Xoay trục\""
     Tên gọi "xoay trục" cũng có thể hiểu từ góc nhìn đại số tuyến tính. Như đã nói, các vector cột ứng với cơ sở $B$ là một cơ sở của không gian $V$, và chúng tương ứng với một hệ trục tọa độ của $V$ trong biểu diễn theo cơ sở đó. Vì vậy, quá trình xoay trục chính là quá trình xoay một trục tọa độ sang vị trí mới.
 
-Để xác định biến cơ sở cần thêm vào, ta biểu diễn hàm mục tiêu bằng các biến không cơ sở:
+Để xác định biến cơ sở cần thêm vào, biểu diễn hàm mục tiêu bằng các biến không cơ sở:
 
 $$
 \begin{aligned}
@@ -211,7 +211,7 @@ $$
 \tilde c_N = \dfrac{\partial z}{\partial x_N} = c_N - A_N^T(A_B^{-1})^Tc_B.
 $$
 
-Chú ý $c_B - A_B^T(A_B^{-1})^Tc_B = 0$, nên có thể gọi vector
+Lưu ý $c_B - A_B^T(A_B^{-1})^Tc_B = 0$, nên có thể gọi vector
 
 $$
 \tilde c = (\tilde c_B^T,\tilde c_N^T)^T = c - A^T(A_B^{-1})^Tc_B
@@ -219,7 +219,7 @@ $$
 
 là **chi phí rút gọn** của bài toán quy hoạch tuyến tính tại nghiệm cơ bản khả thi $x$. Thành phần $\tilde c_i<0$ nói rằng tăng giá trị biến $x_i$ có thể cải thiện hàm mục tiêu của bài toán gốc. Biến như vậy chỉ có thể là biến không cơ sở; nó gọi là **biến vào cơ sở** của lần xoay trục này. Sau khi xoay trục, $x_i$ sẽ trở thành biến cơ sở, không còn luôn bị đặt bằng không nữa (nhưng vẫn có thể bằng không).
 
-Sau khi chọn biến vào cơ sở, còn cần chọn biến cơ sở cũ sẽ bị loại bỏ. Để làm vậy, chỉ cần xác định trong quá trình tăng $x_i$, biến cơ sở hiện có nào trở thành không đầu tiên. Thay $x_N=(x_i,x_{N\setminus\{i\}})=(x_i,0)$ vào biểu thức của $x_B$, ta có
+Sau khi chọn biến vào cơ sở, còn cần chọn biến cơ sở cũ sẽ bị loại bỏ. Để làm vậy, chỉ cần xác định trong quá trình tăng $x_i$, biến cơ sở hiện có nào trở thành không đầu tiên. Thay $x_N=(x_i,x_{N\setminus\{i\}})=(x_i,0)$ vào biểu thức của $x_B$, thu được
 
 $$
 x_B = A_B^{-1}b - A_B^{-1}A_ix_i.
@@ -240,7 +240,7 @@ Giả sử biến vào cơ sở là $x_i$, biến ra khỏi cơ sở là $x_{i'}
 
 Phương pháp đơn hình là quá trình bắt đầu từ một nghiệm cơ bản khả thi rồi liên tục xoay trục. Phần trước mô tả xoay trục chưa đầy đủ, vì bỏ qua một số trường hợp đặc biệt. Một số trường hợp tương ứng với việc thuật toán dừng, một số khác cần xử lý thêm.
 
-Trước hết, biến vào cơ sở có thể không tồn tại, tức $\tilde c\ge 0$. Khi đó không còn cách cải thiện giá trị tối ưu, điều này cho thấy nghiệm cơ bản khả thi hiện tại là nghiệm tối ưu và thuật toán dừng. Để chứng minh chặt chẽ điều này cần dùng [điều kiện bù trừ độ lỏng](./linear-programming.md#điều-kiện-bù-trừ-độ-lỏng). Đặt $y=(A_B^{-1})^Tc_B$. Chú ý rằng trong toàn bộ quá trình thuật toán, $x$ luôn được giữ là nghiệm khả thi, và điều kiện bù trừ độ lỏng luôn đúng:
+Trước hết, biến vào cơ sở có thể không tồn tại, tức $\tilde c\ge 0$. Khi đó không còn cách cải thiện giá trị tối ưu, điều này cho thấy nghiệm cơ bản khả thi hiện tại là nghiệm tối ưu và thuật toán dừng. Để chứng minh chặt chẽ điều này cần dùng [điều kiện bù trừ độ lỏng](./linear-programming.md#điều-kiện-bù-trừ-độ-lỏng). Đặt $y=(A_B^{-1})^Tc_B$. Lưu ý rằng trong toàn bộ quá trình thuật toán, $x$ luôn được giữ là nghiệm khả thi, và điều kiện bù trừ độ lỏng luôn đúng:
 
 $$
 x^T(c-A^Ty) = \tilde c^Tx = \tilde c_B^Tx_B + \tilde c_N^Tx_N = 0.
@@ -249,7 +249,7 @@ $$
 Do đó, chỉ cần $y$ là nghiệm khả thi của bài toán đối ngẫu, tức $A^Ty\le c$, thì có thể kết luận $x$ và $y$ lần lượt là nghiệm tối ưu của bài toán gốc và bài toán đối ngẫu. Điều kiện này chính là $\tilde c\ge 0$, tức không tồn tại biến vào cơ sở.
 
 ???+ tip "\"Giá bóng\""
-    Vector $y=(A_B^{-1})^Tc_B$ thường gọi là **vector đối ngẫu** (dual vector). Khi nghiệm cơ bản khả thi ứng với $B$ là nghiệm tối ưu của bài toán gốc, vector $y$ là nghiệm tối ưu của bài toán đối ngẫu. Vì vậy, khi dùng phương pháp đơn hình để giải nghiệm tối ưu của bài toán gốc, ta cũng thu được nghiệm tối ưu của bài toán đối ngẫu. Vì vector $y$ là đạo hàm riêng của giá trị hiện tại theo hằng số ràng buộc, tức
+    Vector $y=(A_B^{-1})^Tc_B$ thường gọi là **vector đối ngẫu** (dual vector). Khi nghiệm cơ bản khả thi ứng với $B$ là nghiệm tối ưu của bài toán gốc, vector $y$ là nghiệm tối ưu của bài toán đối ngẫu. Vì vậy, khi dùng phương pháp đơn hình để giải nghiệm tối ưu của bài toán gốc, cũng thu được nghiệm tối ưu của bài toán đối ngẫu. Vì vector $y$ là đạo hàm riêng của giá trị hiện tại theo hằng số ràng buộc, tức
     
     $$
     \dfrac{\partial(c^Tx)}{\partial b} = (A_B^{-1})^Tc_B = y,
@@ -290,7 +290,7 @@ $$
 
 Ma trận $\tilde T_B$ gọi là **bảng đơn hình rút gọn** (condensed simplex tableau) của bài toán quy hoạch tuyến tính đối với cơ sở $B$. Góc trên trái $(\tilde T_B)_{00}$ của bảng là giá trị hiện tại lấy dấu đối; phần tử $(\tilde T_B)_{0i}$ ở hàng $0$, cột $i$ là chi phí rút gọn của biến không cơ sở thứ $i$, $x_{N_i}$; phần tử $(\tilde T_B)_{j0}$ ở hàng $j$, cột $0$ là giá trị của biến cơ sở thứ $j$, $x_{B_j}$; còn $A_B^{-1}A_N$ là các hệ số trong biểu thức biểu diễn biến cơ sở $x_B$ theo biến không cơ sở $x_N$.
 
-Dễ thấy mọi thông tin cần cho xoay trục đều có thể lấy trực tiếp từ bảng đơn hình rút gọn. Cụ thể, dùng bảng này, một lần xoay trục gồm các thao tác:
+Mọi thông tin cần cho xoay trục đều có thể lấy trực tiếp từ bảng đơn hình rút gọn. Cụ thể, dùng bảng này, một lần xoay trục gồm các thao tác:
 
 1.  Chọn cột $i=1,\cdots,n-m$ sao cho $(\tilde T_B)_{0i}<0$. Nếu không tồn tại $i$ như vậy, nghiệm hiện tại là nghiệm tối ưu và $-(\tilde T_B)_{00}$ là giá trị tối ưu.
 2.  Chọn hàng $j=1,\cdots,m$ sao cho $(\tilde T_B)_{ji}>0$ và $(\tilde T_B)_{j0}/(\tilde T_B)_{ji}$ nhỏ nhất. Nếu không tồn tại $j$ như vậy, bài toán gốc không bị chặn.
@@ -308,7 +308,7 @@ $$
 x_{N_i} = \dfrac{(\tilde T_B)_{j0}}{(\tilde T_B)_{ji}} - \dfrac{1}{(\tilde T_B)_{ji}}x_{B_j} - \sum_{i'\neq i}\dfrac{(\tilde T_B)_{ji'}}{(\tilde T_B)_{ji}}x_{N_{i'}}.
 $$
 
-Thay nó vào các phương trình còn lại, ta được
+Thay nó vào các phương trình còn lại, thu được
 
 $$
 x_{B_{j'}} = \left((\tilde T_B)_{j'0} - (\tilde T_B)_{j'i}\dfrac{(\tilde T_B)_{j0}}{(\tilde T_B)_{ji}}\right) + \dfrac{(\tilde T_B)_{j'i}}{(\tilde T_B)_{ji}}x_{B_j} - \sum_{i'\neq i}\left((\tilde T_B)_{j'i'}-(\tilde T_B)_{j'i}\dfrac{(\tilde T_B)_{ji'}}{(\tilde T_B)_{ji}}\right)x_{N_i}.
@@ -337,7 +337,7 @@ Hàng $0$ tương tự, chỉ khác vế trái của đẳng thức trở thành
     
     So với bảng đơn hình rút gọn, nó có thêm $m$ cột, lần lượt ứng với $m$ biến cơ sở; hơn nữa, cột ứng với biến cơ sở thứ $j$ nhất định là $e_j$, tức vector này nhận giá trị $1$ tại hàng $j$ và $0$ ở các hàng còn lại. Vì các cột này không cung cấp thêm thông tin, khi cài đặt phương pháp đơn hình thường lược bỏ chúng, thu được bảng đơn hình rút gọn.
     
-    Dùng bảng đơn hình, ta có thể hiểu các bước cập nhật bảng thuận tiện hơn. Vì mọi bảng đơn hình $T_B$ đều có thể thu được bằng cách nhân trái cùng một ma trận $T_0$ với một ma trận khả nghịch $L_B$ phụ thuộc vào cơ sở:
+    Dùng bảng đơn hình, có thể hiểu các bước cập nhật bảng thuận tiện hơn. Vì mọi bảng đơn hình $T_B$ đều có thể thu được bằng cách nhân trái cùng một ma trận $T_0$ với một ma trận khả nghịch $L_B$ phụ thuộc vào cơ sở:
     
     $$
     T_B=
@@ -365,7 +365,7 @@ Cài đặt tham khảo để cập nhật bảng đơn hình rút gọn:
     --8<-- "docs/math/code/simplex/simplex_0.cpp:pivot"
     ```
 
-Từ cài đặt này có thể thấy độ phức tạp thời gian của một lần cập nhật bảng đơn hình là $O(mn)$. Khi bàn về [quy tắc xoay trục](#quy-tắc-xoay-trục) ở phần sau, ta sẽ thấy độ phức tạp để xác định biến ra khỏi cơ sở và biến vào cơ sở cũng không vượt quá $O(mn)$; do đó độ phức tạp của một lần xoay trục là $O(mn)$.
+Cài đặt này cho thấy độ phức tạp thời gian của một lần cập nhật bảng đơn hình là $O(mn)$. Khi bàn về [quy tắc xoay trục](#quy-tắc-xoay-trục) ở phần sau, sẽ thấy độ phức tạp để xác định biến ra khỏi cơ sở và biến vào cơ sở cũng không vượt quá $O(mn)$; do đó độ phức tạp của một lần xoay trục là $O(mn)$.
 
 Để dễ hiểu, dưới đây liệt kê các bước tính chi tiết của ví dụ ở trên bằng bảng đơn hình rút gọn.
 
@@ -460,7 +460,7 @@ cho thấy:
 -   Nghiệm tối ưu của bài toán quy hoạch tuyến tính (nếu tồn tại) luôn có thể chọn là một đỉnh của miền khả thi $\mathcal D$. Việc giải quy hoạch tuyến tính vì thế chuyển thành tìm trong tất cả nghiệm đỉnh nghiệm có hàm giá trị tối ưu.
 -   Tọa độ của mỗi đỉnh đều có thể tìm bằng cách giải hệ phương trình thu được từ $n$ ràng buộc chặt. Với các ràng buộc dạng chuẩn, mọi $m$ ràng buộc đẳng thức nhất định đều chặt; $n-m$ ràng buộc còn lại chỉ có thể chọn từ các ràng buộc không âm. Chọn các ràng buộc không âm này làm ràng buộc chặt tương đương với đặt các biến quyết định tương ứng $x_N$ bằng $0$; khi đó hệ phương trình $Ax = b$ suy biến thành hệ tuyến tính theo $m$ biến quyết định còn lại $x_B$: $A_Bx_B = b$. Nếu $A_B$ khả nghịch, giải được $x_B = A_B^{-1}b$. Như vậy thu được một nghiệm $(x_B,x_N)=(A_B^{-1}b,0)$; nếu $x_B\ge 0$, đây là tọa độ của một đỉnh của $\mathcal D$.
 
-Dễ thấy khái niệm nghiệm đỉnh trùng với nghiệm cơ bản khả thi đã định nghĩa ở trên. Vì vậy, chỉ cần tìm nghiệm tối ưu trong tất cả nghiệm cơ bản khả thi là có thể thu được nghiệm tối ưu của bài toán gốc. Tuy điều này đơn giản hóa bài toán rất nhiều, số đỉnh của miền khả thi là cấp mũ, nên liệt kê toàn bộ là không thực tế.
+Khái niệm nghiệm đỉnh trùng với nghiệm cơ bản khả thi đã định nghĩa ở trên. Vì vậy, chỉ cần tìm nghiệm tối ưu trong tất cả nghiệm cơ bản khả thi là có thể thu được nghiệm tối ưu của bài toán gốc. Tuy điều này đơn giản hóa bài toán rất nhiều, số đỉnh của miền khả thi là cấp mũ, nên liệt kê toàn bộ là không thực tế.
 
 Để giải quyết khó khăn này, có thể xét việc di chuyển dọc theo [cạnh](./linear-programming.md#miền-khả-thi-và-nghiệm-của-bài-toán) của miền khả thi, từ một đỉnh sang đỉnh kề với nó. Vì hai đỉnh kề nhau nhất định nằm trên cùng một cạnh, chúng thỏa mãn ít nhất $n-1$ ràng buộc chặt giống nhau. Nói cách khác, các ràng buộc chặt ứng với hai đỉnh kề nhau chỉ có thể khác đúng một ràng buộc. Vì vậy, với một nghiệm cơ bản khả thi $x$, chỉ cần thay một biến cơ sở của nó bằng một biến không cơ sở là có thể thu được một nghiệm cơ bản khả thi **kề** (adjacent) $x'$. Đây chính là thao tác xoay trục.
 
@@ -485,7 +485,7 @@ Dùng bảng đơn hình đã đủ để giải nhiều bài toán quy hoạch 
 <span id="dạng-dư"></span>
 ### Dạng dư
 
-[Cách](./linear-programming.md#dạng-chuẩn) chuyển bài toán quy hoạch tuyến tính tổng quát về dạng chuẩn đã được bàn trước đó. Nhưng để tiện dùng phương pháp đơn hình, còn cần bảo đảm ma trận hệ số $A$ đầy hạng. Tuy cách chuyển về dạng chuẩn rồi khử các ràng buộc phụ thuộc tuyến tính là khả thi, để giải đơn giản hơn người ta thường dùng chiến lược sau:
+[Cách](./linear-programming.md#dạng-chuẩn) chuyển bài toán quy hoạch tuyến tính tổng quát về dạng chuẩn đã được bàn trước đó. Nhưng để tiện dùng phương pháp đơn hình, còn cần bảo đảm ma trận hệ số $A$ đầy hạng. Tuy cách chuyển về dạng chuẩn rồi khử các ràng buộc phụ thuộc tuyến tính là khả thi, để giải đơn giản hơn thường dùng chiến lược sau:
 
 1.  Chuyển bài toán quy hoạch tuyến tính về **dạng bất đẳng thức** (inequality form), tức dạng $\min\{c^Tx : Ax \le b,~ x \ge 0\}$;
 2.  Thêm biến dư $s$ để chuyển bài toán về dạng chuẩn: $\min\{c^Tx : Ax + s = b,~ x\ge 0,~ s \ge 0\}$.
@@ -508,7 +508,7 @@ $$
 Về bản chất, đây là bài toán quy hoạch tuyến tính khả thi, trong đó biến mới thêm $x_a$ gọi là **biến nhân tạo** (artificial variable). Nó nhất định có nghiệm cơ bản khả thi $(x,x_a)=(0,b)$, nên có thể trực tiếp dùng phương pháp đơn hình để giải. Nếu giá trị tối ưu của bài toán này lớn hơn nghiêm ngặt $0$, thì không tồn tại $x\ge 0$ sao cho $Ax=b$, tức bài toán gốc không khả thi. Nếu giá trị tối ưu bằng $0$, mọi biến nhân tạo trong nghiệm tối ưu chỉ có thể bằng không. Nếu vẫn còn một số biến nhân tạo là biến cơ sở, có thể xoay trục vài lần để đưa chúng ra khỏi cơ sở. Cuối cùng, khi mọi biến nhân tạo đều là biến không cơ sở, nghiệm cơ bản thu được từ pha thứ nhất có thể dùng làm nghiệm cơ bản khả thi ban đầu cho pha thứ hai.
 
 ???+ note "Cài đặt pha thứ nhất không đưa biến nhân tạo vào tường minh"
-    Khi cài đặt pha thứ nhất, không nhất thiết phải đưa biến nhân tạo vào tường minh. Với cơ sở ban đầu $B$ được chọn tùy ý, ta có
+    Khi cài đặt pha thứ nhất, không nhất thiết phải đưa biến nhân tạo vào tường minh. Với cơ sở ban đầu $B$ được chọn tùy ý, thu được
     
     $$
     x_B + A_B^{-1}A_Nx_N = A_B^{-1}b.
@@ -591,7 +591,7 @@ $$
         --8<-- "docs/math/code/simplex/simplex_2.cpp:initialize"
         ```
     
-    Cách làm này tuy đơn giản, nhưng so với phương pháp hai pha, nó không có một hàm mục tiêu mô tả mức độ không khả thi của cơ sở hiện tại, nên thiếu hướng cải thiện rõ ràng. Thử nghiệm thực tế cho thấy so với phương pháp hai pha hoặc phương pháp $M$ lớn thường chỉ cần $O(m)$ lần xoay trục, thuật toán thô này thường cần $O(2^m)$ lần xoay trục, và dễ rơi vào vòng lặp khi $n,m$ lớn. Dù hằng số trong số lần xoay trục của thuật toán thô nhỏ, nó chỉ phù hợp với trường hợp $n,m<50$.
+    Cách làm này tuy đơn giản, nhưng so với phương pháp hai pha, nó không có một hàm mục tiêu mô tả mức độ không khả thi của cơ sở hiện tại, nên thiếu hướng cải thiện cụ thể. Thử nghiệm thực tế cho thấy so với phương pháp hai pha hoặc phương pháp $M$ lớn thường chỉ cần $O(m)$ lần xoay trục, thuật toán thô này thường cần $O(2^m)$ lần xoay trục, và có thể rơi vào vòng lặp khi $n,m$ lớn. Dù hằng số trong số lần xoay trục của thuật toán thô nhỏ, nó chỉ phù hợp với trường hợp $n,m<50$.
 
 <span id="quy-tắc-xoay-trục"></span>
 ### Quy tắc xoay trục
@@ -607,7 +607,7 @@ Việc chọn biến vào cơ sở thường quyết định số lần xoay tr�
 -   Chọn biến vào cơ sở ứng với cạnh dốc nhất, tức cải thiện hàm giá trị trên mỗi đơn vị độ dài di chuyển dọc cạnh lớn nhất, tức $|c_i|/\|A_B^{-1}A_i\|$;
 -   Chọn ngẫu nhiên một biến vào cơ sở.
 
-Trong thực tế, quy tắc cạnh dốc nhất có hiệu quả cao nhất[^steepest-edge]. Thông thường người ta cho rằng quy tắc xoay trục thích hợp có thể tìm nghiệm tối ưu của đa số bài toán trong khoảng $2m$ lần xoay trục. Tuy nhiên, với mọi quy tắc xoay trục đã biết hiện nay, đều tồn tại ví dụ được xây dựng đặc biệt[^klee-minty] có thể làm số lần xoay trục tăng tới cấp mũ. Đây chính là lý do phương pháp đơn hình chạy rất tốt trong thực tế nhưng độ phức tạp trường hợp xấu nhất về lý thuyết là cấp mũ.
+Trong thực tế, quy tắc cạnh dốc nhất có hiệu quả cao nhất[^steepest-edge]. Thông thường, quy tắc xoay trục thích hợp có thể tìm nghiệm tối ưu của đa số bài toán trong khoảng $2m$ lần xoay trục. Tuy nhiên, với mọi quy tắc xoay trục đã biết hiện nay, đều tồn tại ví dụ được xây dựng đặc biệt[^klee-minty] có thể làm số lần xoay trục tăng tới cấp mũ. Đây chính là lý do phương pháp đơn hình chạy rất tốt trong thực tế nhưng độ phức tạp trường hợp xấu nhất về lý thuyết là cấp mũ.
 
 Việc chọn biến ra khỏi cơ sở thường quyết định thuật toán có rơi vào vòng lặp hay không. Nếu tồn tại nhiều nghiệm cơ bản khả thi có cùng giá trị tối ưu, thuật toán có thể lặp mãi giữa các nghiệm cơ bản khả thi đó. Những tình huống này không thường gặp, nên nhiều cài đặt phương pháp đơn hình không chỉ định quy tắc chọn biến ra khỏi cơ sở. Hai quy tắc thường gặp để tránh vòng lặp là:
 
@@ -620,7 +620,7 @@ Việc chọn biến ra khỏi cơ sở thường quyết định thuật toán 
 
     nhỏ nhất theo thứ tự từ điển. Cách chọn biến vào cơ sở không quan trọng.
 
-    Chú ý rằng nếu bài toán quy hoạch tuyến tính ở dạng dư, các đại lượng này đều có thể lấy trực tiếp từ bảng đơn hình $T_B$ dạng đã nêu ở trên; ngược lại, sau khi tìm một nghiệm cơ bản ban đầu (chưa chắc khả thi), có thể dùng các hệ số của các cột ứng với biến cơ sở trong cơ sở ban đầu này (giữ nguyên thứ tự) làm hệ số của $A_B^{-1}$.
+    Lưu ý rằng nếu bài toán quy hoạch tuyến tính ở dạng dư, các đại lượng này đều có thể lấy trực tiếp từ bảng đơn hình $T_B$ dạng đã nêu ở trên; ngược lại, sau khi tìm một nghiệm cơ bản ban đầu (chưa chắc khả thi), có thể dùng các hệ số của các cột ứng với biến cơ sở trong cơ sở ban đầu này (giữ nguyên thứ tự) làm hệ số của $A_B^{-1}$.
 
 Quy tắc Bland có hiệu quả thấp, vì bản thân quy tắc chọn biến vào cơ sở và ra khỏi cơ sở theo cùng một cách, rất dễ làm cùng một biến liên tục vào rồi ra khỏi cơ sở. Tương đối mà nói, quy tắc thứ tự từ điển thực dụng hơn. Quy tắc thứ tự từ điển tương đương với việc nhiễu loạn các tham số trong bài toán quy hoạch tuyến tính[^lexico], làm cho không tồn tại các nghiệm cơ bản khả thi có cùng giá trị tối ưu, và vì vậy không có khả năng lặp.
 
@@ -638,7 +638,7 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
 ## Bài tập ví dụ
 
 ???+ example "[NOI2008: Tuyển mộ tình nguyện viên](https://www.luogu.com.cn/problem/P3980)"
-    Có tổng cộng $n$ ngày hoạt động cần tuyển tình nguyện viên, trong đó ngày thứ $i$ cần ít nhất $b_i$ tình nguyện viên. Có tất cả $m$ loại tình nguyện viên; loại thứ $j$ có thể phục vụ trong đoạn ngày liên tiếp $[l_j,r_j]$, và chi phí tuyển mỗi người là $c_i$. Hãy tìm phương án tuyển tối ưu sao cho tổng chi phí tuyển tình nguyện viên nhỏ nhất.
+    Có tổng cộng $n$ ngày hoạt động cần tuyển tình nguyện viên, trong đó ngày thứ $i$ cần ít nhất $b_i$ tình nguyện viên. Có tất cả $m$ loại tình nguyện viên; loại thứ $j$ có thể phục vụ trong đoạn ngày liên tiếp $[l_j,r_j]$, và chi phí tuyển mỗi người là $c_i$. Tìm phương án tuyển tối ưu sao cho tổng chi phí tuyển tình nguyện viên nhỏ nhất.
 
 ??? note "Lời giải"
     Gọi $x_j$ là số tình nguyện viên loại thứ $j$ được tuyển. Khi đó có thể lập bài toán quy hoạch tuyến tính:
@@ -661,7 +661,7 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
     \end{cases}
     $$
     
-    Bài toán gốc không có nghiệm khả thi ban đầu hiển nhiên. Vì vậy có thể xét [bài toán đối ngẫu](./linear-programming.md#bài-toán-đối-ngẫu):
+    Bài toán gốc không có nghiệm khả thi ban đầu trực tiếp. Vì vậy có thể xét [bài toán đối ngẫu](./linear-programming.md#bài-toán-đối-ngẫu):
     
     $$
     \begin{align*}
