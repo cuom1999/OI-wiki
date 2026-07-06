@@ -6,8 +6,8 @@ Danh sách liên kết chia khối có dạng tổng quát như hình trên.
 
 Danh sách liên kết chia khối thực chất là một danh sách liên kết,
 trong đó mỗi nút trỏ tới một mảng.
-Chia mảng ban đầu có độ dài $n$ thành $\sqrt{n}$ nút,
-mỗi nút tương ứng với một mảng có kích thước $\sqrt{n}$.
+Chia mảng ban đầu có độ dài $n$ thành khoảng $\sqrt{n}$ nút,
+mỗi nút tương ứng với một mảng có kích thước khoảng $\sqrt{n}$.
 Vì vậy có thể định nghĩa cấu trúc như sau.
 Trong đó `sqn` biểu thị `sqrt(n)`, tức $\sqrt{n}$;
 `pb` biểu thị `push_back`, tức thêm một phần tử vào `node` này.
@@ -25,9 +25,9 @@ Trong đó `sqn` biểu thị `sqrt(n)`, tức $\sqrt{n}$;
     };
     ```
 
-Danh sách liên kết chia khối tối thiểu nên hỗ trợ: tách, chèn và tìm kiếm.
+Danh sách liên kết chia khối tối thiểu nên hỗ trợ ba thao tác: tách, chèn và tìm kiếm.
 Tách nghĩa là chia một `node` thành hai `node` nhỏ hơn,
-để bảo đảm kích thước của mỗi `node` đều gần $\sqrt{n}$.
+để bảo đảm kích thước của mỗi `node` vẫn gần $\sqrt{n}$.
 Nếu không, cấu trúc có thể suy biến thành mảng thông thường.
 Khi kích thước của một `node` vượt quá $2\times \sqrt{n}$, thực hiện thao tác tách.
 
@@ -40,7 +40,7 @@ Mọi thao tác của danh sách liên kết chia khối đều có độ phức
 
 Còn một điểm cần nói thêm.
 Khi chèn (hoặc xóa) phần tử, $n$ thay đổi, nên $\sqrt{n}$ cũng thay đổi.
-Như vậy kích thước khối sẽ thay đổi; có cần bảo trì lại kích thước khối sau mỗi thao tác không?
+Như vậy kích thước khối sẽ thay đổi; có cần duy trì lại kích thước khối sau mỗi thao tác không?
 
 Không cần.
 Chỉ cần đặt $\sqrt{n}$ thành một hằng số cố định.
@@ -60,7 +60,7 @@ list<vector<char>> orz_list;
 ### Nhập thư viện
 
 `rope` trong libstdc++ cũng có thể đóng vai trò của danh sách liên kết chia khối.
-Nó được cài đặt bằng cây cân bằng khả tồn,
+Nó được cài đặt bằng cây cân bằng bền vững,
 hỗ trợ truy cập ngẫu nhiên, chèn và xóa phần tử.
 
 Do `rope` không thật sự được cài đặt bằng danh sách liên kết chia khối,
