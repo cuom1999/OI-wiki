@@ -52,7 +52,7 @@ Hạt nhân và ảnh của đồng cấu vành đều là vành con. Ngược l
 Trong định nghĩa này, iđêan $I$ được yêu cầu đóng dưới phép nhân trái và phép nhân phải bởi các phần tử của vành $R$. Điều kiện này rất tự nhiên. Các phần tử trong iđêan sẽ được ánh xạ về phần tử không dưới một đồng cấu vành, mà phần tử không nhân trái hay nhân phải với bất kỳ phần tử nào cũng vẫn là phần tử không; đó chính là tính đóng cần có. Ngoài ra, cấu trúc cộng của vành là nhóm Abel nên mọi nhóm con đều là nhóm con chuẩn tắc; còn cấu trúc nhân của vành khá yếu, không tự áp đặt thêm ràng buộc nào lên cấu trúc con. Điều này cho thấy điều kiện đóng dưới nhân trái và nhân phải cũng là đủ.
 
 ???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
-    Chẳng hạn, vành con $n\mathbf Z$ đã nêu là một iđêan của $\mathbf Z$. Nó là tập hợp tất cả bội của $n$. Một bội của $n$ khi nhân với bất kỳ số nguyên nào vẫn là một bội của $n$. Trên thực tế, mọi iđêan của $\mathbf Z$ đều có dạng này; những vành như vậy được gọi là [miền iđêan chính](#miền-iđêan-chính). Đối với vành tổng quát, một số iđêan không phải là tập các bội của một phần tử nào đó; sự tồn tại của các vành như vậy cũng là động cơ ban đầu để nghiên cứu iđêan, thay vì chỉ nghiên cứu bội số[^ideal-history].
+    Chẳng hạn, vành con $n\mathbf Z$ đã nêu là một iđêan của $\mathbf Z$. Nó là tập hợp tất cả bội của $n$. Một bội của $n$ khi nhân với bất kỳ số nguyên nào vẫn là một bội của $n$. Mọi iđêan của $\mathbf Z$ đều có dạng này; những vành như vậy được gọi là [miền iđêan chính](#miền-iđêan-chính). Đối với vành tổng quát, một số iđêan không phải là tập các bội của một phần tử nào đó; sự tồn tại của các vành như vậy cũng là động cơ ban đầu để nghiên cứu iđêan, thay vì chỉ nghiên cứu bội số[^ideal-history].
 
 <span id="vành-thương"></span>
 ### Vành thương
@@ -121,7 +121,7 @@ Kiểm tra trực tiếp từ định nghĩa cho thấy kết quả của các p
     \end{aligned}
     $$
 
-Nói chung, với vành $R$ và các iđêan $I,J$ của nó, luôn có
+Trong trường hợp tổng quát, với vành $R$ và các iđêan $I,J$ của nó, luôn có
 
 $$
 IJ\subseteq I\cap J\subseteq I,J\subseteq I+J.
@@ -245,7 +245,7 @@ Trong miền nguyên còn có thể xây dựng khái niệm tương tự số n
 
 Có thể chỉ ra rằng iđêan chính $(r)$ ứng với phần tử bất khả quy $r$ luôn cực đại trong tập các iđêan chính của vành. Tuy nhiên, trong miền nguyên tổng quát, không phải mọi iđêan đều là iđêan chính, nên khái niệm phần tử bất khả quy và iđêan cực đại không tương đương.
 
-Tương tự cách chứng minh trong miền iđêan chính rằng iđêan nguyên tố là iđêan cực đại, nói chung có thể chứng minh kết luận sau:
+Tương tự cách chứng minh trong miền iđêan chính rằng iđêan nguyên tố là iđêan cực đại, trong trường hợp tổng quát có thể chứng minh kết luận sau:
 
 ???+ note "Định lý"
     Giả sử $R$ là miền nguyên. Nếu $a\in R$ là phần tử nguyên tố, thì $a$ cũng là phần tử bất khả quy.
@@ -319,7 +319,7 @@ Phân tích về định lý Bézout ở mục trước có thể chuyển sang 
 ???+ note "Định lý"
     Giả sử $R$ là miền iđêan chính, và $a,b\in R$ là các phần tử khác không. Gọi $d\in R$ là phần tử sinh của iđêan $(a,b)$. Khi đó ước chung lớn nhất của $a$ và $b$ là $d$, và là duy nhất theo nghĩa liên hợp; hơn nữa, tồn tại $x,y\in R$ sao cho $ax+by=d$.
 
-Nói cách khác, [định lý Bézout](../number-theory/bezouts.md) vẫn đúng trong miền iđêan chính. Dù cả hai đều có ước chung lớn nhất, khác biệt lớn nhất giữa miền Euclid và miền iđêan chính là trong miền Euclid, ước chung lớn nhất có thể được tính hiệu quả bằng thuật toán Euclid, còn trong miền iđêan chính nói chung không có thuật toán hiệu quả như vậy.
+Nói cách khác, [định lý Bézout](../number-theory/bezouts.md) vẫn đúng trong miền iđêan chính. Dù cả hai đều có ước chung lớn nhất, khác biệt lớn nhất giữa miền Euclid và miền iđêan chính là trong miền Euclid, ước chung lớn nhất có thể được tính hiệu quả bằng thuật toán Euclid, còn trong miền iđêan chính thường không có thuật toán hiệu quả như vậy.
 
 <span id="miền-phân-tích-duy-nhất"></span>
 ### Miền phân tích duy nhất
@@ -579,7 +579,7 @@ Khái niệm nghiệm có thể được khái quát cho trường hợp nghiệ
 ??? note "Chứng minh"
     Kết luận suy ra từ việc $F[x]$ là miền phân tích duy nhất.
 
-Dù định lý phân tích duy nhất đúng với đa thức trên trường, nói chung không có cách tổng quát để phán đoán một đa thức cho trước có khả quy hay không. Trường hợp bậc tương đối nhỏ đơn giản hơn. Chẳng hạn, mọi đa thức bậc nhất đều là đa thức bất khả quy. Trên những trường đặc biệt, mọi đa thức bất khả quy đều là đa thức bậc nhất. Những trường như vậy được gọi là [trường đóng đại số](./field-theory.md#trường-đóng-đại-số). Trên những trường như vậy, mọi đa thức không đồng nhất bằng hằng số khác không đều có nghiệm, nên mọi đa thức bậc lớn hơn một đều có thể tiếp tục phân tích. Một ví dụ là trường số phức $\mathbf C$. Còn trên trường số thực $\mathbf R$, tồn tại đa thức bậc hai bất khả quy; trên trường số hữu tỉ $\mathbf Q$, cấu trúc đa thức bất khả quy còn phức tạp hơn. Trang [lý thuyết trường](./field-theory.md) có thảo luận thêm về đa thức trên trường số hữu tỉ và trường hữu hạn.
+Dù định lý phân tích duy nhất đúng với đa thức trên trường, với một trường tùy ý không có cách tổng quát để phán đoán một đa thức cho trước có khả quy hay không. Trường hợp bậc tương đối nhỏ đơn giản hơn. Chẳng hạn, mọi đa thức bậc nhất đều là đa thức bất khả quy. Trên những trường đặc biệt, mọi đa thức bất khả quy đều là đa thức bậc nhất. Những trường như vậy được gọi là [trường đóng đại số](./field-theory.md#trường-đóng-đại-số). Trên những trường như vậy, mọi đa thức không đồng nhất bằng hằng số khác không đều có nghiệm, nên mọi đa thức bậc lớn hơn một đều có thể tiếp tục phân tích. Một ví dụ là trường số phức $\mathbf C$. Còn trên trường số thực $\mathbf R$, tồn tại đa thức bậc hai bất khả quy; trên trường số hữu tỉ $\mathbf Q$, cấu trúc đa thức bất khả quy còn phức tạp hơn. Trang [lý thuyết trường](./field-theory.md) có thảo luận thêm về đa thức trên trường số hữu tỉ và trường hữu hạn.
 
 Các kết luận trên đều nói về đa thức trên trường. Đa thức trên miền nguyên tổng quát hơn thường có thể được chuyển về trường hợp như vậy.
 
@@ -633,7 +633,7 @@ $$
 \sum_{k=0}^\infty a_kx^k=a_0+a_1x+a_2x^2+\cdots.
 $$
 
-Dùng cách nhất quán với vành đa thức $R[x]$, có thể định nghĩa phép cộng và phép nhân giữa các chuỗi lũy thừa. Khi đó các chuỗi lũy thừa hình thức cũng tạo thành một vành, ký hiệu là $R[[x]]$. Trong định nghĩa này, chuỗi lũy thừa hình thức không cần xét tính hội tụ hay phân kỳ, vì trên thực tế mỗi chuỗi lũy thừa hình thức chỉ là dãy hệ số của nó và không được gán thêm cấu trúc tôpô nào.
+Dùng cách nhất quán với vành đa thức $R[x]$, có thể định nghĩa phép cộng và phép nhân giữa các chuỗi lũy thừa. Khi đó các chuỗi lũy thừa hình thức cũng tạo thành một vành, ký hiệu là $R[[x]]$. Trong định nghĩa này, chuỗi lũy thừa hình thức không cần xét tính hội tụ hay phân kỳ, vì mỗi chuỗi lũy thừa hình thức chỉ là dãy hệ số của nó và không được gán thêm cấu trúc tôpô nào.
 
 Cấu trúc của vành chuỗi lũy thừa hình thức rất thú vị. Trong vành đa thức trên miền nguyên, phần tử khả nghịch chỉ có thể là hằng số. Nhưng trong vành chuỗi lũy thừa hình thức, lại có
 
@@ -743,7 +743,7 @@ $$
 f(x)=\sum_{i=1}^ny_i\frac{\prod_{j\neq i}(x-x_j)}{\prod_{j\neq i}(x_i-x_j)}.
 $$
 
-Nói chung, khi khái quát phương pháp này, còn có thể suy ra [công thức nội suy Hermite](https://en.wikipedia.org/wiki/Hermite_interpolation), cho phép ràng buộc thêm một số giá trị đạo hàm của đa thức tại từng điểm.
+Tổng quát hơn, khi khái quát phương pháp này, còn có thể suy ra [công thức nội suy Hermite](https://en.wikipedia.org/wiki/Hermite_interpolation), cho phép ràng buộc thêm một số giá trị đạo hàm của đa thức tại từng điểm.
 
 <span id="ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên"></span>
 ### Ứng dụng: nhóm nhân của các lớp đồng dư số nguyên

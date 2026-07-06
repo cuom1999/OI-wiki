@@ -151,7 +151,7 @@ Vì cấp của một phần tử chính là cấp của nhóm con vòng sinh b�
 
 ### Nhóm con chuẩn tắc
 
-Nói chung, lớp kề trái và lớp kề phải của một nhóm con cho trước không giống nhau.
+Trong trường hợp tổng quát, lớp kề trái và lớp kề phải của một nhóm con cho trước không giống nhau.
 
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
     Trong nhóm $D_6$, $\langle s\rangle r=\{r,sr\}$, nhưng $r\langle s\rangle=\{r,sr^2\}$. Tuy nhiên, nếu xét nhóm con $\langle r\rangle$, các lớp kề trái và phải lại luôn bằng nhau, vì khi đó nhóm chỉ có hai lớp kề và chính nhóm con đã là một lớp kề.
@@ -459,7 +459,7 @@ Dưới tác động liên hợp của nhóm, quỹ đạo và bộ ổn định
 ???+ abstract "Tâm"
     **Tâm** (center) của nhóm $G$ là $Z(G)=\cap_{a\in G}C_G(a)=\{g\in G:\forall a\in G(ga=ag)\}$.
 
-Tâm của nhóm là tập các phần tử giao hoán với mọi phần tử trong nhóm; vì nó là hạt nhân của tác động nhóm, nó tất yếu là nhóm con chuẩn tắc. Kích thước của tâm cho biết nhóm cách nhóm giao hoán bao xa. Bộ trung tâm hóa của một phần tử là tập tất cả các phần tử giao hoán với phần tử đó; nó cũng là nhóm con lớn nhất trong các nhóm con có tâm chứa phần tử đó, do đó có tên như vậy. Đồng thời, vì nó là bộ ổn định của một phần tử dưới tác động liên hợp, nó là nhóm con. Lớp liên hợp nói chung không phải nhóm con.
+Tâm của nhóm là tập các phần tử giao hoán với mọi phần tử trong nhóm; vì nó là hạt nhân của tác động nhóm, nó tất yếu là nhóm con chuẩn tắc. Kích thước của tâm cho biết nhóm cách nhóm giao hoán bao xa. Bộ trung tâm hóa của một phần tử là tập tất cả các phần tử giao hoán với phần tử đó; nó cũng là nhóm con lớn nhất trong các nhóm con có tâm chứa phần tử đó, do đó có tên như vậy. Đồng thời, vì nó là bộ ổn định của một phần tử dưới tác động liên hợp, nó là nhóm con. Trong trường hợp tổng quát, lớp liên hợp không phải nhóm con.
 
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
     Quay lại nhóm $D_6$, tâm của nó là $\{e\}\neq G$, cho thấy nó không phải nhóm giao hoán. Bộ trung tâm hóa $C_G(r)$ của phần tử $r$ là $\langle r\rangle$, còn bộ trung tâm hóa $C_G(s)$ của phần tử $s$ là $\langle s\rangle$. Tổng quát, với mọi $g\in G$, luôn có $\langle g\rangle\le C_G(g)$. Nhóm $D_6$ có ba lớp liên hợp: $\{e\},\{r,r^2\},\{s,sr,sr^2\}$. Các phần tử liên hợp có cùng cấp[^conjugate].

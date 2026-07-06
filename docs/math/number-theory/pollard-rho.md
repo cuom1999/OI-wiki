@@ -103,7 +103,7 @@ $$
 
 Thay $n=365$ cho kết quả $k\geq 23$. Vì vậy, chỉ cần ít nhất $23$ người trong một căn phòng là xác suất có hai người cùng ngày sinh đã đạt $50\%$; sự thật toán học này khá trái trực giác, nên được gọi là một nghịch lý.
 
-Khi $k>56$ và $n=365$, xác suất có hai người sinh cùng ngày sẽ lớn hơn $99\%$[^ref1]. Nói chung, khi một năm có $n$ ngày, nếu trong phòng có $\frac{1}{2}(\sqrt{8n\ln 2+1}+1)\approx \sqrt{2n\ln 2}$ người thì xác suất có ít nhất hai người cùng ngày sinh xấp xỉ $50\%$.
+Khi $k>56$ và $n=365$, xác suất có hai người sinh cùng ngày sẽ lớn hơn $99\%$[^ref1]. Tổng quát hơn, khi một năm có $n$ ngày, nếu trong phòng có $\frac{1}{2}(\sqrt{8n\ln 2+1}+1)\approx \sqrt{2n\ln 2}$ người thì xác suất có ít nhất hai người cùng ngày sinh xấp xỉ $50\%$.
 
 Tương tự, nếu chọn ngẫu nhiên đều một dãy ngày sinh, số người kỳ vọng cần chọn để lần đầu gặp một ngày sinh bị lặp cũng là $O(\sqrt n)$. Gọi số người đó là $X$, khi đó
 

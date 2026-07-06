@@ -165,7 +165,7 @@ Các thảo luận này gợi ra các định nghĩa sau:
     1.  $\sqrt 2$ là phần tử đại số trên $\mathbf Q$, đa thức tối tiểu là $x^2-2$.
     2.  $\sqrt 2$ là phần tử đại số trên $\mathbf R$, đa thức tối tiểu là $x-\sqrt 2$.
     3.  $\pi$ là phần tử siêu việt trên $\mathbf Q$.
-    4.  Nói chung, các phần tử đại số trên $\mathbf Q$ được gọi là **số đại số** (algebraic number), còn phần tử siêu việt được gọi là **số siêu việt** (transcendental number). Đặc biệt, nếu đa thức tối tiểu của một số đại số là đa thức monic hệ số nguyên, số đó được gọi là **số nguyên đại số** (algebraic integer). Tập tất cả các số nguyên đại số trong một mở rộng đại số tạo thành một vành. Chẳng hạn, các số nguyên đại số trong trường bậc hai $\mathbf Q(\sqrt{D})$ tạo thành vành số nguyên bậc hai $\mathbf Z[\omega]$. Ý nghĩa ký hiệu này xem trang [vành số nguyên bậc hai](./ring-theory.md#ví-dụ-vành-số-nguyên-bậc-hai).
+    4.  Thông thường, các phần tử đại số trên $\mathbf Q$ được gọi là **số đại số** (algebraic number), còn phần tử siêu việt được gọi là **số siêu việt** (transcendental number). Đặc biệt, nếu đa thức tối tiểu của một số đại số là đa thức monic hệ số nguyên, số đó được gọi là **số nguyên đại số** (algebraic integer). Tập tất cả các số nguyên đại số trong một mở rộng đại số tạo thành một vành. Chẳng hạn, các số nguyên đại số trong trường bậc hai $\mathbf Q(\sqrt{D})$ tạo thành vành số nguyên bậc hai $\mathbf Z[\omega]$. Ý nghĩa ký hiệu này xem trang [vành số nguyên bậc hai](./ring-theory.md#ví-dụ-vành-số-nguyên-bậc-hai).
 
 ???+ abstract "Mở rộng đại số và mở rộng siêu việt"
     Với mở rộng $E/F$, nếu mọi phần tử của trường $E$ đều là phần tử đại số trên $F$, thì trường $E$ được gọi là **mở rộng đại số** (algebraic extension) của $F$; ngược lại, $E$ được gọi là **mở rộng siêu việt** (transcendental extension) của $F$.
@@ -270,10 +270,10 @@ Dưới đây là vài ví dụ cụ thể để làm rõ cách tính.
 
 Trong ví dụ, chỉ dùng điều kiện $\alpha$ là một nghiệm của phương trình, nhưng không chỉ rõ nó là nghiệm cụ thể nào. Đa thức $x^3-2x-2=0$ có một nghiệm thực và một cặp nghiệm phức liên hợp trong trường số phức $\mathbf C$. Thêm bất kỳ nghiệm nào trong ba nghiệm đó vào trường số hữu tỉ $\mathbf Q$ đều thu được các trường mở rộng đẳng cấu. Nói cách khác, dưới góc nhìn đại số, ba nghiệm phân biệt này không khác nhau.
 
-Nói chung, với một đa thức bất khả quy $f(x)$ trên trường $F$, nếu trong trường mở rộng có các nghiệm khác nhau $\alpha\neq\beta$, thì các nghiệm này biểu hiện cùng tính chất đại số khi lần lượt sinh mở rộng đơn của $F$. Các nghiệm như vậy được gọi là **liên hợp** (conjugate) của nhau. Liên hợp thông thường trên trường số phức là trường hợp đặc biệt của khái niệm này đối với mở rộng trường $\mathbf C/\mathbf R$.
+Trong trường hợp tổng quát, với một đa thức bất khả quy $f(x)$ trên trường $F$, nếu trong trường mở rộng có các nghiệm khác nhau $\alpha\neq\beta$, thì các nghiệm này biểu hiện cùng tính chất đại số khi lần lượt sinh mở rộng đơn của $F$. Các nghiệm như vậy được gọi là **liên hợp** (conjugate) của nhau. Liên hợp thông thường trên trường số phức là trường hợp đặc biệt của khái niệm này đối với mở rộng trường $\mathbf C/\mathbf R$.
 
 ???+ example "Ví dụ"
-    Xét trường mở rộng $\mathbf F_2(\alpha)$, trong đó $\alpha$ là một nghiệm của phương trình $x^2+x+1=0$. Nói chung, với $a+b\alpha$ và $c+d\alpha$, có quy tắc tính
+    Xét trường mở rộng $\mathbf F_2(\alpha)$, trong đó $\alpha$ là một nghiệm của phương trình $x^2+x+1=0$. Với $a+b\alpha$ và $c+d\alpha$, có quy tắc tính
     
     $$
     \begin{aligned}
@@ -295,7 +295,7 @@ $$
 
 Như một ví dụ về mở rộng đơn đại số, có thể xem [triển khai tham khảo](#triển-khai-tham-khảo) cho trường hữu hạn ở phần dưới.
 
-Các thuật toán mô tả trong phần này trên thực tế chỉ xử lý được trường hợp bậc mở rộng tương đối thấp; điều này đủ cho tuyệt đại đa số ứng dụng trong lập trình thi đấu. Nếu bậc mở rộng lớn đến mức trở thành nút thắt độ phức tạp, nên dùng các kỹ thuật đa thức thích hợp như [biến đổi Fourier nhanh](../poly/fft.md), [biến đổi số học nhanh](../poly/ntt.md), [lấy dư đa thức nhanh](../poly/elementary-func.md#chia-đa-thức-và-lấy-dư), [Euclid đa thức](../poly/intro.md#phân-tích-nhân-tử-và-euclid), v.v. để tăng tốc phép toán.
+Các thuật toán mô tả trong phần này chỉ xử lý được trường hợp bậc mở rộng tương đối thấp; điều này đủ cho tuyệt đại đa số ứng dụng trong lập trình thi đấu. Nếu bậc mở rộng lớn đến mức trở thành nút thắt độ phức tạp, nên dùng các kỹ thuật đa thức thích hợp như [biến đổi Fourier nhanh](../poly/fft.md), [biến đổi số học nhanh](../poly/ntt.md), [lấy dư đa thức nhanh](../poly/elementary-func.md#chia-đa-thức-và-lấy-dư), [Euclid đa thức](../poly/intro.md#phân-tích-nhân-tử-và-euclid), v.v. để tăng tốc phép toán.
 
 <span id="trường-phân-rã"></span>
 

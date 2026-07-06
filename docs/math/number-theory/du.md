@@ -132,7 +132,7 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
 
         Do chưa đưa ghi nhớ vào, $T\left(\left\lfloor\sqrt{\dfrac{n}{i}}\right\rfloor\right)$ trong công thức trên vẫn là $\Omega\left(\left(\dfrac{n}{i}\right)^{1/4}\right)$, nên phần được gọi là "vô cùng bé bậc cao" không thể bị bỏ đi.
 
-        Trên thực tế, độ phức tạp dưới tuyến tính của sàng Dujiao được bảo đảm bởi ghi nhớ. Chỉ sau khi dùng ghi nhớ mới bảo đảm không xuất hiện hạng tổng nhiều tầng đó.
+        Độ phức tạp dưới tuyến tính của sàng Dujiao được bảo đảm bởi ghi nhớ. Chỉ sau khi dùng ghi nhớ mới bảo đảm không xuất hiện hạng tổng nhiều tầng đó.
 
 <span id="ví-dụ"></span>
 ## Ví dụ

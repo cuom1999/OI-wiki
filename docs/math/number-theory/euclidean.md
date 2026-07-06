@@ -211,7 +211,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     \end{aligned}
     $$
     
-    Từ góc nhìn trực giác hình học, những tổng phi tuyến này tương đương với việc gán cho mỗi điểm $(i,j)$ trong miền một trọng số tương ứng $w(i,j)$. Ngoài các trọng số này, phần còn lại của quá trình tính là hoàn toàn giống nhau. Với cách chọn trọng số, nói chung có
+    Từ góc nhìn trực giác hình học, những tổng phi tuyến này tương đương với việc gán cho mỗi điểm $(i,j)$ trong miền một trọng số tương ứng $w(i,j)$. Ngoài các trọng số này, phần còn lại của quá trình tính là hoàn toàn giống nhau. Với cách chọn trọng số này, có
     
     $$
     \sum_{i=0}^ni^r\left\lfloor \frac{ai+b}{c} \right\rfloor^s = \sum_{i=0}^n\sum_{j=0}^{m-1} i^r\left((j+1)^s-j^s\right)\left[j<\left\lfloor\frac{ai+b}{c}\right\rfloor\right].
@@ -389,7 +389,7 @@ Do đó trạng thái cuối cùng là tích $(1,0,0)S$, trong đó $S$ được
 
 Ngoài việc định nghĩa các phần tử trong vị nhóm là ma trận, cũng có thể định nghĩa chúng là đóng góp của một đoạn dãy thao tác vào kết quả cuối cùng, rồi định nghĩa tích của hai thao tác là phép hợp nhất đóng góp của hai đoạn dãy thao tác.
 
-Trong bài này, có thể định nghĩa đóng góp của mỗi đoạn dãy thao tác là $(x,y,\sum y)$. Để giải thích chặt chẽ các ký hiệu này, có thể xem các thành phần đều là hàm của dãy thao tác, tức với dãy thao tác $S$, đóng góp của nó có thể viết là $(x(S),y(S),(\sum y)(S))$. Trong đó, $x(S)$ và $y(S)$ lần lượt tương ứng với số ký tự $R$ và $U$ trong dãy thao tác $S$, tức số lần đoạn thẳng đi sang phải và đi lên qua đường lưới. Với ký hiệu tổng ở thành phần cuối, nói chung định nghĩa như sau: với một hàm $f(S)$ trên dãy thao tác, có thể định nghĩa $(\sum f)(S)$, hoặc ký hiệu $\sum_S f$, là biểu thức
+Trong bài này, có thể định nghĩa đóng góp của mỗi đoạn dãy thao tác là $(x,y,\sum y)$. Để giải thích chặt chẽ các ký hiệu này, có thể xem các thành phần đều là hàm của dãy thao tác, tức với dãy thao tác $S$, đóng góp của nó có thể viết là $(x(S),y(S),(\sum y)(S))$. Trong đó, $x(S)$ và $y(S)$ lần lượt tương ứng với số ký tự $R$ và $U$ trong dãy thao tác $S$, tức số lần đoạn thẳng đi sang phải và đi lên qua đường lưới. Với ký hiệu tổng ở thành phần cuối, định nghĩa như sau: với một hàm $f(S)$ trên dãy thao tác, có thể định nghĩa $(\sum f)(S)$, hoặc ký hiệu $\sum_S f$, là biểu thức
 
 $$
 \sum_S f := \sum\{f(S_{[1,r]}):S_r=R\}.
