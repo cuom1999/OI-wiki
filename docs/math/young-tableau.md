@@ -17,11 +17,11 @@ Bảng Young là một dạng ma trận đặc biệt. Nó thuận tiện cho vi
 
 ### Biểu đồ Young
 
-**Biểu đồ Young** (Young diagram; khi dùng các điểm để biểu diễn còn gọi là [biểu đồ Ferrers](https://en.wikipedia.org/wiki/Partition_%28number_theory%29#Ferrers_diagram), đã được giới thiệu trong mục [phân hoạch số nguyên](./combinatorics/partition.md#biểu-đồ-ferrers)) là một tập hữu hạn các ô, được căn trái, với độ dài các hàng sắp theo thứ tự không tăng. Nếu liệt kê số ô trên từng hàng của biểu đồ Young, ta thu được một **phân hoạch số nguyên** (integer partition) $\lambda$ của một số nguyên không âm $n$ (tổng số ô). Vì vậy ta có thể xem hình dạng của biểu đồ Young là $\lambda$, bởi nó mang cùng lượng thông tin với phân hoạch số nguyên tương ứng.
+**Biểu đồ Young** (Young diagram; khi dùng các điểm để biểu diễn còn gọi là [biểu đồ Ferrers](https://en.wikipedia.org/wiki/Partition_%28number_theory%29#Ferrers_diagram), đã được giới thiệu trong mục [phân hoạch số nguyên](./combinatorics/partition.md#biểu-đồ-ferrers)) là một tập hữu hạn các ô, được căn trái, với độ dài các hàng sắp theo thứ tự không tăng. Việc liệt kê số ô trên từng hàng của biểu đồ Young cho một **phân hoạch số nguyên** (integer partition) $\lambda$ của một số nguyên không âm $n$ (tổng số ô). Vì vậy, có thể xem hình dạng của biểu đồ Young là $\lambda$, bởi nó mang cùng lượng thông tin với phân hoạch số nguyên tương ứng.
 
-Quan hệ bao hàm giữa các biểu đồ Young định nghĩa một quan hệ [thứ tự bộ phận](../math/order-theory.md#tập-có-thứ-tự-bộ-phận) trên các phân hoạch số nguyên. Quan hệ này có cấu trúc [dàn](../math/order-theory.md#tập-định-hướng-và-dàn) và được gọi là **dàn Young** (Young's lattice). Nếu liệt kê số ô trên từng cột của biểu đồ Young, ta nhận được "phân hoạch liên hợp" hoặc "phân hoạch chuyển vị" của phân hoạch số nguyên $\lambda$; biểu đồ Young tương ứng có thể thu được bằng cách phản xạ biểu đồ ban đầu qua đường chéo chính.
+Quan hệ bao hàm giữa các biểu đồ Young định nghĩa một quan hệ [thứ tự bộ phận](../math/order-theory.md#tập-có-thứ-tự-bộ-phận) trên các phân hoạch số nguyên. Quan hệ này có cấu trúc [dàn](../math/order-theory.md#tập-định-hướng-và-dàn) và được gọi là **dàn Young** (Young's lattice). Việc liệt kê số ô trên từng cột của biểu đồ Young cho "phân hoạch liên hợp" hoặc "phân hoạch chuyển vị" của phân hoạch số nguyên $\lambda$; biểu đồ Young tương ứng có thể thu được bằng cách phản xạ biểu đồ ban đầu qua đường chéo chính.
 
-Vị trí của mỗi ô trong biểu đồ Young được xác định bởi hai tọa độ lần lượt biểu thị **số hàng** và **số cột**. Các cột được đánh theo thứ tự từ trái sang phải, còn các hàng được đánh theo hướng số ô giảm dần. Cần chú ý rằng, tùy quy ước, có hai cách vẽ biểu đồ Young khác nhau: cách thứ nhất đặt hàng có ít ô hơn ở bên dưới hàng có nhiều ô hơn, còn cách thứ hai xếp các hàng từ lớn đến nhỏ lên phía trên. Vì cách đầu chủ yếu được dùng trong các nước nói tiếng Anh, còn cách sau thường được dùng trong các nước nói tiếng Pháp, theo quy ước chúng được gọi lần lượt là kiểu Anh và kiểu Pháp.
+Vị trí của mỗi ô trong biểu đồ Young được xác định bởi hai tọa độ lần lượt biểu thị **số hàng** và **số cột**. Các cột được đánh theo thứ tự từ trái sang phải, còn các hàng được đánh theo hướng số ô giảm dần. Tùy quy ước, có hai cách vẽ biểu đồ Young khác nhau: cách thứ nhất đặt hàng có ít ô hơn ở bên dưới hàng có nhiều ô hơn, còn cách thứ hai xếp các hàng từ lớn đến nhỏ lên phía trên. Vì cách đầu chủ yếu được dùng trong các nước nói tiếng Anh, còn cách sau thường được dùng trong các nước nói tiếng Pháp, theo quy ước chúng được gọi lần lượt là kiểu Anh và kiểu Pháp.
 
 Sau đây là hai cách vẽ khác nhau của biểu đồ Young ứng với phân hoạch số nguyên $(5,4,1)$:
 
@@ -34,16 +34,16 @@ Sau đây là hai cách vẽ khác nhau của biểu đồ Young ứng với ph�
 
 #### Định nghĩa
 
-**Bảng Young** (Young tableau) thu được bằng cách điền các ký hiệu lấy từ một bảng chữ cái nào đó vào các ô của biểu đồ Young; thông thường bảng chữ cái này cần là một tập sắp thứ tự toàn phần. Các phần tử được viết là $x_{1}$, $x_{2}$, $x_{3}$, $\ldots$. Tuy nhiên, để thuận tiện, người ta thường điền trực tiếp các số nguyên dương.
+**Bảng Young** (Young tableau) thu được bằng cách điền các ký hiệu lấy từ một bảng chữ cái nào đó vào các ô của biểu đồ Young; thông thường bảng chữ cái này cần là một tập sắp thứ tự toàn phần. Các phần tử được viết là $x_{1}$, $x_{2}$, $x_{3}$, $\ldots$. Tuy nhiên, để thuận tiện, các số nguyên dương thường được điền trực tiếp.
 
-Khi bảng Young ban đầu được dùng trong lý thuyết biểu diễn của nhóm đối xứng, người ta cho phép điền tùy ý các số nguyên dương phân biệt từ $1$ đến $n$ vào $n$ ô của biểu đồ Young. Trong nghiên cứu hiện nay, phần lớn sử dụng bảng Young "chuẩn", tức là ngoài điều kiện trên, các số trong mỗi hàng và mỗi cột đều tăng nghiêm ngặt. Số lượng bảng Young phân biệt gồm $n$ ô tạo thành dãy [số đối hợp](https://en.wikipedia.org/wiki/Telephone_number_%28mathematics%29):
+Trong cách dùng ban đầu của bảng Young trong lý thuyết biểu diễn của nhóm đối xứng, các số nguyên dương phân biệt từ $1$ đến $n$ được phép điền tùy ý vào $n$ ô của biểu đồ Young. Trong nghiên cứu hiện nay, phần lớn sử dụng bảng Young "chuẩn", tức là ngoài điều kiện trên, các số trong mỗi hàng và mỗi cột đều tăng nghiêm ngặt. Số lượng bảng Young phân biệt gồm $n$ ô tạo thành dãy [số đối hợp](https://en.wikipedia.org/wiki/Telephone_number_%28mathematics%29):
 
 ???+ note "Ghi chú"
     **Số đối hợp** (involution number/telephone number) là một dãy số nguyên trong toán học, dùng để đếm số cách nối các đường dây khi trong $n$ đường dây điện thoại mỗi đường dây được nối với nhiều nhất một đường dây khác. Nó cũng có thể mô tả số matching trên đồ thị đầy đủ $n$ đỉnh, số hoán vị là đối hợp của $n$ phần tử, tổng trị tuyệt đối các hệ số của đa thức Hermite, số bảng Young chuẩn có $n$ ô, và tổng bậc của các biểu diễn bất khả quy của nhóm đối xứng.
 
 $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$ (dãy [A000085](https://oeis.org/A000085) trong [OEIS](https://en.wikipedia.org/wiki/On-Line_Encyclopedia_of_Integer_Sequences))
 
-Trong các ứng dụng khác, biểu đồ Young cũng có thể được điền các số trùng nhau. Nếu các số trong cùng một cột tăng nghiêm ngặt, còn các số trong cùng một hàng tăng không giảm, bảng Young đó được gọi là **nửa chuẩn** (Semistandard Young Tableaux, đôi khi gọi là chặt theo cột). Dãy ghi lại số lần xuất hiện của từng số trong bảng Young được xem là **trọng số** của bảng Young. Vì vậy, trọng số của bảng Young chuẩn nhất định là $(1,1,\ldots,1)$, bởi trong bảng Young chuẩn, mỗi số nguyên dương từ $1$ đến $n$ xuất hiện đúng một lần.
+Trong các ứng dụng khác, biểu đồ Young cũng có thể được điền các số trùng nhau. Nếu các số trong cùng một cột tăng nghiêm ngặt, còn các số trong cùng một hàng tăng không giảm, bảng Young đó được gọi là **nửa chuẩn** (Semistandard Young tableaux, đôi khi gọi là chặt theo cột). Dãy ghi lại số lần xuất hiện của từng số trong bảng Young được xem là **trọng số** của bảng Young. Vì vậy, trọng số của bảng Young chuẩn luôn là $(1,1,\ldots,1)$, bởi trong bảng Young chuẩn, mỗi số nguyên dương từ $1$ đến $n$ xuất hiện đúng một lần.
 
 <span id="thuật-toán-chèn-bảng-young-chuẩn"></span>
 
@@ -65,7 +65,7 @@ Ví dụ, các bước chèn $3$ vào bảng Young $(2, 5, 9)(6, 7)(8)$ là:
 
 ### Các biến thể
 
-Bảng Young không hoàn toàn chuẩn theo nghĩa nghiêm ngặt có nhiều **biến thể** (variations). Chẳng hạn, bảng Young chặt theo hàng yêu cầu các số trong cùng hàng tăng nghiêm ngặt và các số trong cùng cột tăng không giảm; nó chính là liên hợp của bảng Young chặt theo cột. Ngoài ra, trong lý thuyết phân hoạch phẳng (plane partitions), người ta thường đổi các điều kiện tăng trong định nghĩa trên thành giảm. Một biến thể khác là bảng Young dạng dải: trước hết gom một số ô thành từng nhóm, rồi yêu cầu các ô trong cùng một nhóm phải được điền cùng một số.
+Bảng Young không hoàn toàn chuẩn theo nghĩa nghiêm ngặt có nhiều **biến thể** (variations). Chẳng hạn, bảng Young chặt theo hàng yêu cầu các số trong cùng hàng tăng nghiêm ngặt và các số trong cùng cột tăng không giảm; nó chính là liên hợp của bảng Young chặt theo cột. Ngoài ra, trong lý thuyết phân hoạch phẳng (plane partitions), các điều kiện tăng trong định nghĩa trên thường được đổi thành giảm. Một biến thể khác là bảng Young dạng dải: trước hết gom một số ô thành từng nhóm, rồi yêu cầu các ô trong cùng một nhóm phải được điền cùng một số.
 
 <span id="bảng-young-lệch"></span>
 
@@ -105,7 +105,7 @@ $$
 
 ![](./images/young-tableau-2.svg)
 
-Vì vậy, với bảng Young của phân hoạch số nguyên $10 = 5 + 4 + 1$ như hình trên, ta có
+Vì vậy, với bảng Young của phân hoạch số nguyên $10 = 5 + 4 + 1$ như hình trên, số cách điền là
 
 $$
 \dim \pi _{\lambda }={\frac  {10!}{7\cdot 5\cdot 4\cdot 3\cdot 1\cdot 5\cdot 3\cdot 2\cdot 1\cdot 1}}=288.
@@ -127,15 +127,15 @@ Với bảng Young $P$, xét một hoán vị $X = x_{1}, \ldots , x_{n}$ của 
 
 2.  Với một hoán vị $X$ và bảng Young $P_{X}$ do nó sinh ra, nếu $X^R$ là hoán vị đảo ngược của $X$, thì bảng Young $P_{X^R}$ do $X^R$ sinh ra chính là bảng nhận được từ $P_{X}$ sau khi hoán đổi hàng và cột.
 
-    Ví dụ, với hoán vị $X = 1, 5, 7, 2, 8, 6, 3, 4$ và $X^R = 4, 3, 6, 8, 2, 7, 5, 1$, ta thu được bảng Young $P_{X}$ như sau:
+    Ví dụ, với hoán vị $X = 1, 5, 7, 2, 8, 6, 3, 4$ và $X^R = 4, 3, 6, 8, 2, 7, 5, 1$, bảng Young $P_{X}$ thu được như sau:
 
     ![](./images/young-tableau-LIS.svg)
 
 3.  Độ dài cột đầu tiên của bảng Young $P_{X}$ chính là độ dài **dãy con giảm dài nhất (LDS)** của hoán vị $X$.
 
-Định nghĩa độ dài $LIS/LDS$ gồm không quá $k$ dãy là $k-LIS$ và $k-LDS$. Loại bài toán này cũng có thể giải bằng bảng Young. Với $1-LIS$, hiển nhiên dãy con $1-LIS$ dài nhất chính là $LDS$ của dãy, cũng chính là cột đầu tiên của bảng Young; tương tự, độ dài của $k$ cột đầu tiên trong bảng Young là độ dài dãy con $k-LIS$ dài nhất. Chứng minh như sau:
+Định nghĩa độ dài $LIS/LDS$ gồm không quá $k$ dãy là $k-LIS$ và $k-LDS$. Loại bài toán này cũng có thể giải bằng bảng Young. Với $1-LIS$, dãy con $1-LIS$ dài nhất chính là $LDS$ của dãy, cũng chính là cột đầu tiên của bảng Young; tương tự, độ dài của $k$ cột đầu tiên trong bảng Young là độ dài dãy con $k-LIS$ dài nhất. Chứng minh như sau:
 
-Với một hoán vị $X$ và bảng Young $P$ gồm $m$ hàng của nó, đặt hoán vị $X^*$ là $(P_{m,1}\ldots,P_{m,\lambda_{m}},P_{m-1,1}\ldots,P_{1,1}\ldots P_{1,\lambda_{1}})$, tức là viết lần lượt từng hàng của bảng Young từ dưới lên trên. Khi đó $X$ chắc chắn có thể được biến đổi thành $X^*$ bằng các phép đổi chỗ.
+Với một hoán vị $X$ và bảng Young $P$ gồm $m$ hàng của nó, đặt hoán vị $X^*$ là $(P_{m,1}\ldots,P_{m,\lambda_{m}},P_{m-1,1}\ldots,P_{1,1}\ldots P_{1,\lambda_{1}})$, tức là viết lần lượt từng hàng của bảng Young từ dưới lên trên. Khi đó $X$ có thể được biến đổi thành $X^*$ bằng các phép đổi chỗ.
 
 Vì vậy, độ dài dãy con $k-LIS$ dài nhất có thể biểu diễn là $F(k)=\sum_{i=1}^{m} \min(k,\lambda_{i})$, tức là tổng độ dài của $k$ cột đầu tiên.
 
@@ -143,21 +143,21 @@ Vì vậy, độ dài dãy con $k-LIS$ dài nhất có thể biểu diễn là $
     Có một dãy số $b$ độ dài $n$. Với dãy $B_{m} = (b_{1}, b_{2},\ldots, b_{m})$, gọi $C$ là một dãy con của $B_{m}$ sao cho độ dài dãy con tăng dài nhất của $C$ không vượt quá $k$. Hỏi độ dài lớn nhất của $C$ là bao nhiêu.
 
 ??? note "Hướng giải"
-    Với nhiều truy vấn, xét dùng phương pháp đường quét. Khi đó ta cần duy trì bảng Young của từng tiền tố. Dùng kết luận trên, có thể thấy bài toán trở thành cách duy trì nhanh tổng độ dài của $k$ cột đầu tiên trong bảng Young. Nếu duy trì trực tiếp thì độ phức tạp $O(n^2 \log n)$ là không chấp nhận được. Ta xét duy trì đồng thời $\sqrt{n}$ cột đầu tiên và $\sqrt{n}$ hàng đầu tiên.
+    Với nhiều truy vấn, xét dùng phương pháp đường quét. Khi đó cần duy trì bảng Young của từng tiền tố. Theo kết luận trên, bài toán trở thành cách duy trì nhanh tổng độ dài của $k$ cột đầu tiên trong bảng Young. Nếu duy trì trực tiếp thì độ phức tạp $O(n^2 \log n)$ là không chấp nhận được. Có thể duy trì đồng thời $\sqrt{n}$ cột đầu tiên và $\sqrt{n}$ hàng đầu tiên.
 
-    Có thể nhận thấy bảng Young chắc chắn không phủ kín hoàn toàn hình chữ nhật $W \times H$ này. Nếu $K \leq W$, ta có thể trả lời trực tiếp; nếu $K > W$, phần vượt quá $W$ chắc chắn nằm trong $H$ hàng. Vì vậy có thể xét cách duy trì đồng thời $\sqrt{n}$ cột đầu tiên và $\sqrt{n}$ hàng đầu tiên. Đảo ngược hoán vị sẽ nhận được bảng Young chuyển vị, nên chỉ cần đồng thời duy trì thêm $-A_{i}$ là đủ; độ phức tạp là $O(n \sqrt{n} \log n)$.
+    Bảng Young không phủ kín hoàn toàn hình chữ nhật $W \times H$ này. Nếu $K \leq W$, có thể trả lời trực tiếp; nếu $K > W$, phần vượt quá $W$ nằm trong $H$ hàng. Vì vậy có thể xét cách duy trì đồng thời $\sqrt{n}$ cột đầu tiên và $\sqrt{n}$ hàng đầu tiên. Đảo ngược hoán vị sẽ nhận được bảng Young chuyển vị, nên chỉ cần đồng thời duy trì thêm $-A_{i}$ là đủ; độ phức tạp là $O(n \sqrt{n} \log n)$.
 
 ???+ note "[BJWC2018 Dãy con tăng dài nhất](https://www.luogu.com.cn/problem/P4484)"
-    Cho một hoán vị ngẫu nhiên độ dài $n$, hãy tính kỳ vọng độ dài dãy con tăng dài nhất của nó.
+    Cho một hoán vị ngẫu nhiên độ dài $n$, tính kỳ vọng độ dài dãy con tăng dài nhất của nó.
 
 ???+ note "[CF1268B Domino Young](https://codeforces.com/problemset/problem/1268/B)"
-    Cho một histogram gồm $n$ cột có độ dài $a_{1} ,a_{2},\ldots,a_{n}\,(a_{1} \geq a_{2} \geq \ldots \geq a_{n} \geq 1)$. Đây là biểu đồ Young của $a=[3,2,2,2,1]$. Hãy tìm số lượng domino không giao nhau lớn nhất có thể vẽ trong histogram này, trong đó mỗi domino là một hình chữ nhật $1 \times 2$ hoặc $2 \times 1$.
+    Cho một histogram gồm $n$ cột có độ dài $a_{1} ,a_{2},\ldots,a_{n}\,(a_{1} \geq a_{2} \geq \ldots \geq a_{n} \geq 1)$. Đây là biểu đồ Young của $a=[3,2,2,2,1]$. Tìm số lượng domino không giao nhau lớn nhất có thể vẽ trong histogram này, trong đó mỗi domino là một hình chữ nhật $1 \times 2$ hoặc $2 \times 1$.
 
 <span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 
 ## Tài liệu tham khảo và đọc thêm
 
-1.  [Young Tableau - from Wolfram MathWorld](https://mathworld.wolfram.com/YoungTableau.html)
+1.  [Young tableau - from Wolfram MathWorld](https://mathworld.wolfram.com/YoungTableau.html)
 2.  [Young tableau - Wikipedia](https://en.wikipedia.org/wiki/Young_tableau)
 3.  [Hook length formula - Wikipedia](https://en.wikipedia.org/wiki/Hook_length_formula)
 4.  Yuan Fangzhou, ["Bàn về ứng dụng của bảng Young trong lập trình thi đấu" IOI2019](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2019%E8%AE%BA%E6%96%87%E9%9B%86.pdf), tuyển tập luận văn đội tuyển dự tuyển quốc gia Trung Quốc, tr. 202-229

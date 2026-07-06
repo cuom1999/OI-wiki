@@ -2,13 +2,13 @@
 
 ## Chuỗi Laurent hình thức
 
-Ta đã biết vành chuỗi lũy thừa hình thức $\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$. Định nghĩa vành chuỗi Laurent hình thức:
+Từ vành chuỗi lũy thừa hình thức $\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$, định nghĩa vành chuỗi Laurent hình thức:
 
 $$
 \mathbb{C}\left(\left(x\right)\right):=\left\lbrace \sum_{k\geq N}a_kx^k : N\in\mathbb{Z},a_k\in \mathbb{C}\right\rbrace
 $$
 
-Ta có thể mô phỏng định nghĩa nghịch đảo nhân trong chuỗi lũy thừa hình thức để định nghĩa nghịch đảo nhân của phần tử trong $\mathbb{C}\left(\left(x\right)\right)$:
+Có thể mô phỏng định nghĩa nghịch đảo nhân trong chuỗi lũy thừa hình thức để định nghĩa nghịch đảo nhân của phần tử trong $\mathbb{C}\left(\left(x\right)\right)$:
 
 Nếu với $f:=\sum_{k\geq N}f_kx^k$ và $f_N\neq 0$, tồn tại $g=\sum_{k\geq -N}g_kx^k$ thỏa mãn $fg=1$, thì
 
@@ -20,13 +20,13 @@ f_N^{-1}, &\text{ nếu }k=-N\text{,} \\
 \end{cases}
 $$
 
-Tương tự chuỗi lũy thừa hình thức, với $f(x)=\sum_{k\geq N}f_kx^k$ khác không, ta cũng định nghĩa:
+Tương tự chuỗi lũy thừa hình thức, với $f(x)=\sum_{k\geq N}f_kx^k$ khác không, cũng định nghĩa:
 
 $$
 \operatorname{ord} f:=\min\lbrace k:f_k\neq 0\rbrace
 $$
 
-Hiển nhiên, với $g\neq 0$ ta có
+Với $g\neq 0$, có
 
 $$
 \operatorname{ord} (fg)=\operatorname{ord}(f)+\operatorname{ord}(g).
@@ -38,15 +38,15 @@ $$
 
 Thặng dư hình thức là hệ số của hạng $x^{-1}$ trong chuỗi Laurent hình thức. Kí hiệu $\operatorname{res} f:=\lbrack x^{-1}\rbrack f$.
 
-**Bổ đề**: với mọi chuỗi Laurent hình thức $f$, ta có $\operatorname{res} f'=0$.
+**Bổ đề**: với mọi chuỗi Laurent hình thức $f$, có $\operatorname{res} f'=0$.
 
 **Chứng minh**: xét định nghĩa đạo hàm hình thức $\left(x^k\right)'=kx^{k-1}$.
 
-**Bổ đề**: với mọi chuỗi Laurent hình thức $f,g$, ta có $\operatorname{res}(f'g)=-\operatorname{res}(fg')$.
+**Bổ đề**: với mọi chuỗi Laurent hình thức $f,g$, có $\operatorname{res}(f'g)=-\operatorname{res}(fg')$.
 
 **Chứng minh**: xét quy tắc nhân $(fg)'=f'g+fg'$, nên $0=\operatorname{res}((fg)')=\operatorname{res}(f'g)+\operatorname{res}(fg')$.
 
-**Bổ đề**: với chuỗi Laurent hình thức $f(x)\neq 0$, ta có $\operatorname{res}(f'/f)=\operatorname{ord}f$.
+**Bổ đề**: với chuỗi Laurent hình thức $f(x)\neq 0$, có $\operatorname{res}(f'/f)=\operatorname{ord}f$.
 
 **Chứng minh**: đặt $\operatorname{ord}f=k$. Khi đó
 
@@ -58,9 +58,9 @@ $$
 \end{aligned}
 $$
 
-**Bổ đề**: với chuỗi Laurent hình thức $f$ và chuỗi lũy thừa hình thức $g\neq 0$, ta có $\operatorname{res}(f)\operatorname{ord}(g)=\operatorname{res}(f(g)g')$.
+**Bổ đề**: với chuỗi Laurent hình thức $f$ và chuỗi lũy thừa hình thức $g\neq 0$, có $\operatorname{res}(f)\operatorname{ord}(g)=\operatorname{res}(f(g)g')$.
 
-**Chứng minh**: xét tính tuyến tính, ta chỉ cần chứng minh trường hợp $f=x^k$, trong đó $k\in\mathbb{Z}$. Nếu $k\neq -1$ thì
+**Chứng minh**: xét tính tuyến tính, chỉ cần chứng minh trường hợp $f=x^k$, trong đó $k\in\mathbb{Z}$. Nếu $k\neq -1$ thì
 
 $$
 \begin{aligned}
@@ -102,7 +102,7 @@ g(f(x))&=g_1(f_1x+f_2x^2+f_3x^3+\cdots ) \\
 \end{aligned}
 $$
 
-Vì $g(f(x))=x$, ta có hệ phương trình sau:
+Vì $g(f(x))=x$, có hệ phương trình sau:
 
 $$
 \begin{cases}
@@ -113,7 +113,7 @@ g_1f_3+2g_2f_1f_2+g_3f_1^3&=0 \\
 \end{cases}
 $$
 
-Ta chỉ có thể giải phương trình đầu tiên khi $f_1\neq 0$, sau đó lần lượt giải được $g_2,\dots$.
+Phương trình đầu tiên chỉ giải được khi $f_1\neq 0$, sau đó lần lượt giải được $g_2,\dots$.
 
 Đặc biệt, xét $f(h(x))=x$. Khi đó $g(f(h(x)))=g(x)$, suy ra $g(x)=g\circ f\circ h(x)=x\circ h(x)=h(x)$.
 
@@ -140,7 +140,7 @@ $$
 \end{aligned}
 $$
 
-Một số độc giả có thể quen thuộc hơn với phiên bản sau: với $k\in\mathbb{Z}_{\geq 0},n\in\mathbb{Z}_{>0}$, ta có
+Một số độc giả có thể quen thuộc hơn với phiên bản sau: với $k\in\mathbb{Z}_{\geq 0},n\in\mathbb{Z}_{>0}$, có
 
 $$
 \lbrack x^n\rbrack f(x)^k=\frac{k}{n}\lbrack x^{n-k}\rbrack\left(\frac{x}{g(x)}\right)^n
