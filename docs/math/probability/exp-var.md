@@ -59,7 +59,7 @@ hội tụ tuyệt đối, thì giá trị của nó được gọi là **kỳ v
     f(y) = \frac{1}{\pi} \cdot \frac{1}{1 + y^2}, \quad y \in (-\infty, +\infty)
     $$
     
-    Dễ kiểm chứng rằng kỳ vọng của $Y$ cũng không tồn tại.
+    Có thể kiểm chứng rằng kỳ vọng của $Y$ cũng không tồn tại.
 
 <span id="tính-chất-của-kỳ-vọng"></span>
 
@@ -71,7 +71,7 @@ hội tụ tuyệt đối, thì giá trị của nó được gọi là **kỳ v
 
 Nếu kỳ vọng của các biến ngẫu nhiên $X, Y$ tồn tại, thì:
 
--   Với mọi số thực $a, b$, ta có $E(aX + b) = a \cdot EX + b$.
+-   Với mọi số thực $a, b$, có $E(aX + b) = a \cdot EX + b$.
 -   $E(X + Y) = EX + EY$.
 
 <span id="kỳ-vọng-của-tích-các-biến-ngẫu-nhiên"></span>
@@ -84,7 +84,7 @@ $$
 E(XY) = EX \cdot EY
 $$
 
-Chú ý: tính độc lập trong tính chất trên **không phải** là điều kiện cần.
+Lưu ý: tính độc lập trong tính chất trên **không phải** là điều kiện cần.
 
 ??? example "Phản ví dụ"
     Xét các biến ngẫu nhiên $X$ và $Y$, trong đó $X$ tuân theo phân phối đều trên $[-1, 1]$, còn $Y = X^2$.
@@ -102,20 +102,20 @@ I_A(\omega) = \begin{cases}
 \end{cases}
 $$
 
-Theo định nghĩa, ta tính được kỳ vọng của nó là $EI_A = P(A)$. Phép chuyển đổi này rất thường gặp trong ứng dụng thực tế.
+Theo định nghĩa, kỳ vọng của nó là $EI_A = P(A)$. Phép chuyển đổi này rất thường gặp trong ứng dụng thực tế.
 
 ??? example "Ví dụ"
     Giả sử với một dãy độ dài $n$, $\{ a_i \}$, trong đó $a_k$ nhận giá trị $k$ với xác suất $p_k$ và nhận giá trị $0$ với xác suất $1 - p_k$. Xét cách tính kỳ vọng của $S = \sum_{i=1}^{n} a_i$.
     
-    Nếu tính trực tiếp theo định nghĩa, cần tìm xác suất để $S$ nhận từng giá trị có thể, quá trình tính toán này khá rườm rà nên không trình bày chi tiết ở đây.
+    Nếu tính trực tiếp theo định nghĩa, cần tìm xác suất để $S$ nhận từng giá trị có thể; quá trình tính toán này khá rườm rà nên phần chi tiết được lược bỏ.
     
-    Mặt khác, dùng $I_k$ để biểu thị hàm chỉ báo của biến cố ngẫu nhiên $a_k = k$, ta có:
+    Mặt khác, dùng $I_k$ để biểu thị hàm chỉ báo của biến cố ngẫu nhiên $a_k = k$, có:
     
     $$
     S = \sum_{k=1}^{n} k \cdot I_k
     $$
     
-    Từ đó không khó để suy ra:
+    Từ đó suy ra:
     
     $$
     ES = E \left( \sum_{k=1}^{n} k \cdot I_k \right) = \sum_{k=1}^{n} k \cdot E[I_k] = \sum_{k=1}^{n} k \cdot p_k
@@ -125,27 +125,27 @@ Theo định nghĩa, ta tính được kỳ vọng của nó là $EI_A = P(A)$. 
 
 ## Phân phối có điều kiện và kỳ vọng có điều kiện
 
-Trước đây ta đã nghiên cứu xác suất có điều kiện; tương tự, cũng có thể đưa ra khái niệm gọi là kỳ vọng có điều kiện.
+Sau khi đã xét xác suất có điều kiện, có thể định nghĩa tương tự cho kỳ vọng có điều kiện.
 
 <span id="định-nghĩa_1"></span>
 
 ### Định nghĩa
 
-Với hai biến ngẫu nhiên $X$, $Y$, khi đã biết $Y = y$, phân phối xác suất (hàm mật độ) của $X$ được gọi là **phân phối xác suất có điều kiện (mật độ xác suất có điều kiện)**, lần lượt ký hiệu là:
+Với hai biến ngẫu nhiên $X$, $Y$, khi đã biết $Y = y$, phân phối của $X$ được gọi là **phân phối có điều kiện**. Trong trường hợp rời rạc, nếu $P(Y = y) > 0$, ký hiệu thường dùng là:
 
 $$
-P( X = x_i | Y = y ) \qquad f_{X|Y}(x|y)
+P( X = x_i | Y = y )
 $$
 
-Trong điều kiện này, kỳ vọng của $X$ được gọi là **kỳ vọng có điều kiện**, ký hiệu là $E[X|Y=y]$.
+Trong trường hợp liên tục, khái niệm tương ứng được mô tả bằng **mật độ có điều kiện** $f_{X|Y}(x|y)$ khi mật độ này tồn tại. Kỳ vọng của $X$ theo phân phối có điều kiện đó được gọi là **kỳ vọng có điều kiện**, ký hiệu là $E[X|Y=y]$.
 
 <span id="tính-chất-của-kỳ-vọng-có-điều-kiện"></span>
 
 ### Tính chất của kỳ vọng có điều kiện
 
-Nhiều tính chất của kỳ vọng có điều kiện có thể suy ra từ xác suất có điều kiện, nên ở đây không trình bày thêm.
+Nhiều tính chất của kỳ vọng có điều kiện có thể suy ra từ xác suất có điều kiện, nên phần này không trình bày thêm.
 
-Điều đáng nói là $E[X | Y]$ nói chung là một hàm của biến ngẫu nhiên $Y$, và hàm này thường không tuyến tính. Tuy nhiên, ta có:
+Điều đáng nói là $E[X | Y]$ nói chung là một hàm của biến ngẫu nhiên $Y$, và hàm này thường không tuyến tính. Tuy nhiên, luôn có:
 
 $$
 E[E[X|Y]] = EX
@@ -158,12 +158,12 @@ Công thức trên được gọi là **công thức kỳ vọng toàn phần**.
 ### Ứng dụng
 
 ???+ example "[HDU 5984 Pocky](https://acm.hdu.edu.cn/showproblem.php?pid=5984)"
-    Có một thanh Pocky dài $L$, mỗi lần được bẻ ngẫu nhiên thành hai đoạn. Nếu đoạn bên phải có độ dài không lớn hơn $d$ thì dừng lại; ngược lại, lặp lại quá trình trên với đoạn bên phải. Hãy tính kỳ vọng của số lần lặp.
+    Có một thanh Pocky dài $L$, mỗi lần được bẻ ngẫu nhiên thành hai đoạn. Nếu đoạn bên phải có độ dài không lớn hơn $d$ thì dừng lại; ngược lại, lặp lại quá trình trên với đoạn bên phải. Tính kỳ vọng của số lần lặp.
 
 ??? note "Lời giải"
-    Gọi $f(x)$ là kỳ vọng số lần lặp khi độ dài là $x$. Trường hợp $x \leq d$ là hiển nhiên.
+    Gọi $f(x)$ là kỳ vọng số lần lặp khi độ dài là $x$. Với $x \leq d$, quá trình luôn dừng sau lần bẻ đầu tiên nên $f(x) = 1$.
     
-    Khi $x > d$, giả sử vị trí bẻ cách đầu bên phải một đoạn dài $k$; khi đó hiển nhiên $k \sim U[0, x]$. Lúc này kỳ vọng của số lần lặp là:
+    Khi $x > d$, giả sử vị trí bẻ cách đầu bên phải một đoạn dài $k$; khi đó $k \sim U[0, x]$. Lúc này kỳ vọng của số lần lặp là:
     
     $$
     g(k) = \begin{cases}
@@ -172,7 +172,7 @@ Công thức trên được gọi là **công thức kỳ vọng toàn phần**.
     \end{cases}
     $$
     
-    Theo công thức kỳ vọng toàn phần, ta có:
+    Theo công thức kỳ vọng toàn phần, có:
     
     $$
     f(x) = Eg(k) = 1 + \frac{1}{x} \cdot \int_{d}^{x} f(t) \text{d} t
@@ -198,7 +198,7 @@ $$
 E(X - EX)^2
 $$
 
-cũng tồn tại. Khi đó giá trị của biểu thức trên được gọi là **phương sai** của biến ngẫu nhiên $X$, ký hiệu là $DX$ hoặc $Var(x)$. Căn bậc hai số học của phương sai được gọi là **độ lệch chuẩn**, ký hiệu là $\sigma(X) = \sqrt{DX}$.
+cũng tồn tại. Khi đó giá trị của biểu thức trên được gọi là **phương sai** của biến ngẫu nhiên $X$, ký hiệu là $DX$ hoặc $Var(X)$. Căn bậc hai số học của phương sai được gọi là **độ lệch chuẩn**, ký hiệu là $\sigma(X) = \sqrt{DX}$.
 
 <span id="tính-chất-của-phương-sai"></span>
 
@@ -206,40 +206,40 @@ cũng tồn tại. Khi đó giá trị của biểu thức trên được gọi 
 
 Nếu phương sai của biến ngẫu nhiên $X$ tồn tại, thì:
 
--   Với mọi hằng số $a, b$, ta có $D(aX + b) = a^2 \cdot DX$.
+-   Với mọi hằng số $a, b$, có $D(aX + b) = a^2 \cdot DX$.
 -   $DX = E(X^2) - (EX)^2$.
 
 <span id="hiệp-phương-sai-và-hệ-số-tương-quan"></span>
 
 ## Hiệp phương sai và hệ số tương quan
 
-Nói chung, đẳng thức $D(X + Y) = DX + DY$ không đúng. Một cách tự nhiên, ta sẽ đặt ra hai câu hỏi:
+Nói chung, đẳng thức $D(X + Y) = DX + DY$ không đúng. Từ đó xuất hiện hai câu hỏi:
 
 -   Phần chênh lệch giữa $D(X + Y)$ và $DX + DY$ rốt cuộc là gì?
 -   Trong trường hợp nào thì $D(X + Y)$ bằng $DX + DY$?
 
-Với câu hỏi thứ nhất, ta đưa vào hiệp phương sai để trả lời.
+Với câu hỏi thứ nhất, hiệp phương sai cho biết phần chênh lệch này.
 
 <span id="định-nghĩa-hiệp-phương-sai"></span>
 
 ### Định nghĩa hiệp phương sai
 
-Với các biến ngẫu nhiên $X, Y$, ta gọi
+Với các biến ngẫu nhiên $X, Y$, biểu thức
 
 $$
 E((X - EX)(Y - EY))
 $$
 
-là **hiệp phương sai** của $X$ và $Y$, ký hiệu là $\operatorname{Cov}(X, Y)$.
+được gọi là **hiệp phương sai** của $X$ và $Y$, ký hiệu là $\operatorname{Cov}(X, Y)$.
 
 <span id="tính-chất-của-hiệp-phương-sai"></span>
 
 ### Tính chất của hiệp phương sai
 
-Với các biến ngẫu nhiên $X, Y, Z$, ta có:
+Với các biến ngẫu nhiên $X, Y, Z$, có:
 
 -   $\operatorname{Cov}(X, Y) = \operatorname{Cov}(Y, X)$.
--   Với mọi hằng số $a, b$, ta có $\operatorname{Cov}(aX + bY, Z) = a \cdot \operatorname{Cov}(X, Z) + b \cdot \operatorname{Cov}(Y, Z)$.
+-   Với mọi hằng số $a, b$, có $\operatorname{Cov}(aX + bY, Z) = a \cdot \operatorname{Cov}(X, Z) + b \cdot \operatorname{Cov}(Y, Z)$.
 
 Đồng thời, hiệp phương sai và phương sai cũng có các liên hệ sau:
 
@@ -247,40 +247,40 @@ Với các biến ngẫu nhiên $X, Y, Z$, ta có:
 -   $D(X + Y) = DX + 2 \operatorname{Cov}(X, Y) + DY$.
 
 ??? note "Về hiệp phương sai"
-    Bạn có thể nhận thấy các tính chất của hiệp phương sai có hình thức rất giống với các tính chất phép toán của tích vô hướng giữa các vectơ.
+    Các tính chất của hiệp phương sai có hình thức rất giống với các tính chất phép toán của tích vô hướng giữa các vectơ.
     
-    Dưới góc nhìn của giải tích hàm, với một không gian xác suất cho trước, toàn bộ các biến ngẫu nhiên trên đó tạo thành một không gian tuyến tính; hiệp phương sai là một tích vô hướng trên không gian này, còn độ lệch chuẩn là chuẩn được dẫn xuất từ tích vô hướng đó.
+    Dưới góc nhìn của giải tích hàm, với một không gian xác suất cho trước, các biến ngẫu nhiên có mô men bậc hai hữu hạn tạo thành một không gian tuyến tính; hiệp phương sai là tích vô hướng trên không gian các biến đã quy tâm, hoặc tương đương trên không gian thương theo các biến hằng gần như chắc chắn. Độ lệch chuẩn là chuẩn tương ứng.
 
-Với câu hỏi thứ hai đã nêu ở trên, không khó để thấy $D(X + Y) = DX + DY$ khi và chỉ khi $\operatorname{Cov}(X, Y) = 0$. Một điều kiện đủ trực quan là $X$ và $Y$ độc lập, vì khi đó:
+Với câu hỏi thứ hai đã nêu ở trên, $D(X + Y) = DX + DY$ khi và chỉ khi $\operatorname{Cov}(X, Y) = 0$. Một điều kiện đủ trực quan là $X$ và $Y$ độc lập, vì khi đó:
 
 $$
 \operatorname{Cov}(X, Y) = E((X - EX)(Y - EY)) = E(X - EX) E(Y - EY) = 0
 $$
 
-Nhưng điều kiện này không cần thiết. Để mô tả quan hệ giữa các biến ngẫu nhiên $X$, $Y$ thỏa mãn $\operatorname{Cov}(X, Y) = 0$, ta đưa vào hệ số tương quan.
+Nhưng điều kiện này không cần thiết. Để mô tả quan hệ giữa các biến ngẫu nhiên $X$, $Y$ thỏa mãn $\operatorname{Cov}(X, Y) = 0$, dùng hệ số tương quan.
 
 <span id="hệ-số-tương-quan"></span>
 
 ### Hệ số tương quan
 
-Với các biến ngẫu nhiên $X, Y$, ta gọi
+Với các biến ngẫu nhiên $X, Y$ có $\sigma(X) > 0$ và $\sigma(Y) > 0$, biểu thức
 
 $$
 \frac{ \operatorname{Cov}(X, Y)}{ \sigma(X)\sigma(Y) }
 $$
 
-là **hệ số tương quan Pearson** của $X$ và $Y$, ký hiệu là $\rho_{X,Y}$.
+được gọi là **hệ số tương quan Pearson** của $X$ và $Y$, ký hiệu là $\rho_{X,Y}$.
 
-Hệ số tương quan Pearson mô tả mức độ chặt chẽ của liên hệ tuyến tính giữa hai biến ngẫu nhiên. $|\rho_{X,Y}|$ càng lớn thì mức độ liên hệ tuyến tính giữa $X$ và $Y$ càng mạnh. Không khó để chứng minh $|\rho_{X,Y}| \leq 1$, và $|\rho_{X,Y}| = 1$ chỉ có thể xuất hiện trong hai trường hợp sau:
+Hệ số tương quan Pearson mô tả mức độ chặt chẽ của liên hệ tuyến tính giữa hai biến ngẫu nhiên. $|\rho_{X,Y}|$ càng lớn thì mức độ liên hệ tuyến tính giữa $X$ và $Y$ càng mạnh. Từ bất đẳng thức Cauchy-Schwarz suy ra $|\rho_{X,Y}| \leq 1$, và $|\rho_{X,Y}| = 1$ chỉ có thể xuất hiện trong hai trường hợp sau:
 
--   Khi tồn tại số thực $a$ và số thực dương $b$ sao cho $P(X = a + bY) = 1$, ta có $\rho_{X,Y} = 1$.
--   Khi tồn tại số thực $a$ và số thực âm $b$ sao cho $P(X = a + bY) = 1$, ta có $\rho_{X,Y} = -1$.
+-   Khi tồn tại số thực $a$ và số thực dương $b$ sao cho $P(X = a + bY) = 1$, có $\rho_{X,Y} = 1$.
+-   Khi tồn tại số thực $a$ và số thực âm $b$ sao cho $P(X = a + bY) = 1$, có $\rho_{X,Y} = -1$.
 
-Khi $\rho_{X,Y} = 0$, ta nói các biến ngẫu nhiên $X$ và $Y$ **không tương quan**; khi đó giữa $X$ và $Y$ không tồn tại quan hệ tuyến tính.
+Khi $\rho_{X,Y} = 0$, các biến ngẫu nhiên $X$ và $Y$ được gọi là **không tương quan**; khi đó giữa $X$ và $Y$ không có tương quan tuyến tính theo nghĩa hiệp phương sai.
 
 ??? note "\"Không tương quan\" và \"độc lập\""
     Hai biến ngẫu nhiên không tương quan chỉ cho thấy giữa chúng không có liên hệ tuyến tính, chứ không có nghĩa là không có liên hệ dưới những hình thức khác.
     
-    Vì vậy, việc hai biến ngẫu nhiên $X, Y$ không tương quan là điều kiện **cần nhưng không đủ** để chúng độc lập với nhau.
+    Khi các kỳ vọng liên quan tồn tại, độc lập suy ra không tương quan; chiều ngược lại không đúng.
 
-Với câu hỏi thứ hai được nêu ở đầu tiểu mục này, ta đưa ra kết luận: điều kiện cần và đủ để $\operatorname{Cov}(X, Y) = 0$ là một trong hai biến $X$, $Y$ nhận giá trị hằng với xác suất $1$, hoặc $X, Y$ không tương quan.
+Với câu hỏi thứ hai được nêu ở đầu tiểu mục này, kết luận là $D(X + Y) = DX + DY$ khi và chỉ khi $\operatorname{Cov}(X, Y) = 0$. Nếu $\sigma(X) > 0$ và $\sigma(Y) > 0$, điều kiện này tương đương với $\rho_{X,Y} = 0$; nếu một trong hai biến là hằng gần như chắc chắn thì hiệp phương sai bằng $0$, nhưng hệ số tương quan Pearson không xác định.
