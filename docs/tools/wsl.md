@@ -34,11 +34,14 @@ Yêu cầu môi trường của kỳ thi NOI (từ ngày 1 tháng 9 năm 2021) n
 | | xterm (uxterm) | `3.5.3` | Terminal |
 | | Arbiter-local | `1.02` | Bản độc lập của công cụ chấm bài |
 
-Môi trường trong phòng thi có một loạt điểm khác với môi trường thông thường:
+Môi trường trong phòng thi có một số điểm khác với môi trường thông thường:
 
 -   Thao tác trên dòng lệnh và thao tác trên giao diện đồ họa không hoàn toàn giống nhau.
 -   Linux và Windows có khác biệt, chẳng hạn Linux thường phân biệt chữ hoa chữ thường trong tên tệp.
--   Hành vi của các trình biên dịch khác nhau (MSVC và GCC), cũng như các phiên bản trình biên dịch khác nhau (GCC trên Windows và Linux, Linux GCC 32-bit và 64-bit, GCC 7 và GCC 8, v.v.) có thể khác nhau; ví dụ cách xử lý khởi tạo biến và truy cập mảng vượt biên.
+-   Hành vi của các trình biên dịch khác nhau (MSVC và GCC), cũng như các phiên
+    bản trình biên dịch khác nhau (GCC trên Windows và Linux, Linux GCC 32-bit và
+    64-bit, GCC 7 và GCC 8, v.v.) có thể khác nhau; ví dụ cách xử lý khởi tạo
+    biến và truy cập mảng vượt biên.
 -   Các hệ thống chấm bài khác nhau (Luogu và Arbiter) có thể khác nhau về kiểm tra quá thời gian và kiểm tra giới hạn bộ nhớ.
 
 Điều này có thể dẫn đến một số tình huống khó xử:
@@ -48,7 +51,9 @@ Môi trường trong phòng thi có một loạt điểm khác với môi trư�
 
 Để tránh các tình huống tương tự trong phòng thi, cần làm quen trước với cách thao tác trên hệ thống Linux.
 
-Mặc dù trang chính thức của NOI đã cung cấp ảnh ISO của NOI Linux, việc cấu hình máy ảo khá phiền phức. Hơn nữa, do NOI Linux mặc định có sẵn giao diện đồ họa, khó bảo đảm chạy mượt trên các máy cấu hình thấp.
+Mặc dù trang chính thức của NOI đã cung cấp ảnh ISO của NOI Linux, việc cấu hình
+máy ảo vẫn tốn công. Hơn nữa, do NOI Linux mặc định có sẵn giao diện đồ họa, khó
+bảo đảm chạy mượt trên các máy cấu hình thấp.
 
 Windows 10 giới thiệu WSL trong bản Anniversary Update, rồi nâng cấp lên WSL 2 trong bản cập nhật tháng 5 năm 2020. Tính đến ngày 1 tháng 6 năm 2020, WSL đã hỗ trợ cài các bản phân phối Linux phổ biến như Ubuntu, openSUSE Leap, Kali và Debian. Tuy nhiên, WSL không hỗ trợ Arbiter dùng để chấm trong NOI.
 
@@ -258,8 +263,10 @@ Sau đó đóng WSL rồi khởi động lại. Có thể dùng lệnh `locale` 
 
 Cách cài GUIDE xem tại [Cài GUIDE trên Debian hoặc Ubuntu](./editor/guide.md#cài-đặt-trên-debian-hoặc-ubuntu).
 
-Phần này cài đặt môi trường cơ bản và môi trường chính thức mà NOI yêu cầu. Nếu cần, có thể dùng `sudo apt install <tên_chương_trình>` để cài các gói phần mềm khác.
-Nếu muốn cài phiên bản khác, có thể tham khảo [sổ tay quản lý gói](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html) chính thức của Debian.
+Phần này cài đặt môi trường cơ bản và môi trường chính thức mà NOI yêu cầu. Nếu
+cần, có thể dùng `sudo apt install <tên_chương_trình>` để cài các gói phần mềm
+khác. Nếu muốn cài phiên bản khác, có thể tham khảo [sổ tay quản lý gói](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html)
+chính thức của Debian.
 
 Dưới đây là một chương trình ví dụ:
 
@@ -300,7 +307,8 @@ Nếu muốn cài thêm nhiều phần mềm ngoài Xfce, có thể chạy lện
 $ sudo apt install xubuntu-desktop -y
 ```
 
-Các gói của môi trường đồ họa khá lớn, việc tải và giải nén sẽ mất một khoảng thời gian.
+Các gói của môi trường đồ họa có dung lượng lớn, nên việc tải và giải nén sẽ mất
+một khoảng thời gian.
 
 Cấu hình xrdp:
 
@@ -381,7 +389,9 @@ PS C:\Users\chtholly> bash
 Welcome!
 ```
 
-Ngoài ra, cũng có thể truy cập thư mục WSL từ trình quản lý tệp. Sau khi cài WSL, trong thanh bên của File Explorer sẽ thấy mục Linux; trong đó có thể truy cập tệp của tất cả bản phân phối đã cài.
+Ngoài ra, cũng có thể truy cập thư mục WSL từ trình quản lý tệp. Sau khi cài WSL,
+trong thanh bên của File Explorer sẽ thấy mục Linux; trong đó có thể truy cập tệp
+của tất cả bản phân phối đã cài.
 
 Tương tự, cũng có thể nhập trực tiếp `\\wsl$` trong đường dẫn của File Explorer hoặc Run (Win+R) để chuyển đến thư mục WSL.
 
@@ -389,9 +399,13 @@ Cũng có thể dùng trực tiếp các đường dẫn như `\\wsl$\Ubuntu\hom
 
 ### Phối hợp với Visual Studio Code để soạn thảo
 
-Nếu quen dùng [Visual Studio Code](./editor/vscode.md) trong môi trường Windows để soạn thảo mã, có thể cài phần mở rộng `Remote - WSL` trong VS Code để chỉnh sửa tệp trong WSL thuận tiện hơn.
+Nếu quen dùng [Visual Studio Code](./editor/vscode.md) trong môi trường Windows
+để soạn thảo mã, có thể cài phần mở rộng `Remote - WSL` trong VS Code để chỉnh
+sửa tệp trong WSL thuận tiện hơn.
 
-Thông qua `Remote - WSL`, có thể thao tác trực tiếp với WSL trong giao diện VS Code trên Windows, chỉnh sửa tệp trong thư mục của WSL thuận tiện hơn và dùng trình dòng lệnh để gỡ lỗi tiện hơn.
+Thông qua `Remote - WSL`, có thể thao tác trực tiếp với WSL trong giao diện VS
+Code trên Windows, chỉnh sửa tệp trong thư mục của WSL thuận tiện hơn và dùng
+trình dòng lệnh để gỡ lỗi thuận tiện hơn.
 
 Bằng cách nhập trực tiếp `code .` trong WSL, có thể gọi Visual Studio Code ngay tại thư mục đó để chỉnh sửa các tệp trong thư mục.
 
@@ -399,7 +413,10 @@ Bằng cách nhập trực tiếp `code .` trong WSL, có thể gọi Visual Stu
 
 Trang Getting Started của phần mở rộng `Remote - WSL` giới thiệu chi tiết các thao tác soạn thảo.
 
-Đồng thời, cũng có thể tham khảo nội dung về WSL trong tài liệu chính thức của Visual Studio Code ([Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)); bài viết này giới thiệu toàn bộ quy trình từ cài WSL đến sử dụng cùng phần mở rộng một cách chi tiết hơn.
+Đồng thời, cũng có thể tham khảo nội dung về WSL trong tài liệu chính thức của
+Visual Studio Code ([Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial));
+bài viết này giới thiệu toàn bộ quy trình từ cài WSL đến sử dụng cùng phần mở
+rộng một cách chi tiết hơn.
 
 ## Nâng cấp WSL1 lên WSL2
 
@@ -429,7 +446,8 @@ Chạy lệnh `wsl -l -v` để xem phiên bản WSL hiện là 1; nếu cần d
 
     Ví dụ: lệnh đặt Ubuntu 18.04 thành WSL 2 là `wsl --set-version Ubuntu-18.04 2`.
 
-    Bước này khá tốn thời gian. Sau khi chạy xong, dùng lệnh `wsl -l -v` để kiểm tra nâng cấp đã thành công chưa.
+    Bước này tốn thời gian. Sau khi chạy xong, dùng lệnh `wsl -l -v` để kiểm tra
+    nâng cấp đã thành công chưa.
 
 ## Câu hỏi thường gặp
 
@@ -438,7 +456,8 @@ Xem: [Câu hỏi thường gặp](https://learn.microsoft.com/en-us/windows/wsl/
 -   Làm thế nào để thực hiện một thao tác nào đó trong WSL?
 
     Có thể dùng dòng lệnh có sẵn hoặc dùng giao diện đồ họa.
-    Ví dụ với Vim, nhập `man vim` trong dòng lệnh sẽ có một hướng dẫn sử dụng rất chi tiết.
+    Ví dụ với Vim, nhập `man vim` trong dòng lệnh sẽ có một hướng dẫn sử dụng
+    chi tiết.
     Cũng có thể dùng `vim --help`.
 
     Về dòng lệnh, có thể đọc [Dòng lệnh](./cmd.md).
