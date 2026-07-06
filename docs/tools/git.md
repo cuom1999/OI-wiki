@@ -290,7 +290,7 @@ Trước khi gộp, `master` trỏ đến `5ca15f0`, còn `dev` trỏ đến `5d
 
 Git sẽ tìm tổ tiên chung gần nhất của hai trạng thái này (trong hình trên là `ae9dd37`) và thực hiện một lần gộp dựa trên ba ảnh chụp. Kết quả gộp của ba ảnh chụp trở thành một ảnh chụp mới, rồi nhánh hiện tại được trỏ đến ảnh chụp này.
 
-Bản thân quá trình gộp cũng là một commit. Tuy nhiên, khác với commit thông thường, merge commit có nhiều hơn một commit tiền nhiệm; nó là kết quả sau khi gộp nhiều trạng thái commit.
+Bản thân quá trình gộp cũng là một commit. Tuy nhiên, khác với commit thông thường, commit gộp (merge commit) có nhiều hơn một commit tiền nhiệm; nó là kết quả sau khi gộp nhiều trạng thái commit.
 
 Sau khi gộp xong, nhánh `dev` đã hoàn thành nhiệm vụ. Lúc này có thể dùng lệnh sau để xóa nhánh `dev`:
 
@@ -374,13 +374,13 @@ $ git commit
 
 ### Các cách gộp khác
 
-Mặc định, Git dùng cách Merge để gộp hai nhánh. Khi dùng cách này để gộp nhánh B vào nhánh A, toàn bộ commit của nhánh B sẽ được đưa vào lịch sử commit của nhánh A.
+Mặc định, Git dùng cách gộp thường (Merge) để gộp hai nhánh. Khi dùng cách này để gộp nhánh B vào nhánh A, toàn bộ commit của nhánh B sẽ được đưa vào lịch sử commit của nhánh A.
 
 Ngoài ra, Git còn cung cấp hai cách gộp nhánh khác: Squash và Rebase.
 
 #### Squash
 
-Khi dùng Squash để gộp nhánh B vào nhánh A, tất cả thay đổi trên nhánh B sẽ được gộp thành một commit rồi commit vào nhánh A.
+Khi dùng cách gộp nén (Squash) để gộp nhánh B vào nhánh A, tất cả thay đổi trên nhánh B sẽ được gộp thành một commit rồi commit vào nhánh A.
 
 Thêm tham số `--squash` vào `git merge` là có thể dùng cách Squash để gộp nhánh.
 
@@ -390,11 +390,11 @@ $ git merge <branch> --squash
 
 Lưu ý rằng sau khi chạy lệnh trên, Git chỉ đưa toàn bộ thay đổi của nhánh B vào vùng staging của nhánh A; tiếp theo vẫn cần chạy một lần `git commit` để hoàn thành việc gộp.
 
-Dùng Squash để gộp có thể đơn giản hóa lịch sử commit, nhưng sẽ mất thông tin chi tiết của từng commit (người commit từng lần, thay đổi của từng commit, v.v.), chỉ giữ lại thông tin sau khi gộp thành một tổng thể (người commit của từng commit sẽ được liệt kê trong thông điệp commit dưới dạng "Co-authored-by"). Tuy nhiên, nếu Squash and Merge trên GitHub, thông tin ban đầu vẫn có thể xem trong Pull Request.
+Dùng cách gộp nén (Squash) có thể đơn giản hóa lịch sử commit, nhưng sẽ mất thông tin chi tiết của từng commit (người commit từng lần, thay đổi của từng commit, v.v.), chỉ giữ lại thông tin sau khi gộp thành một tổng thể (người commit của từng commit sẽ được liệt kê trong thông điệp commit dưới dạng "Co-authored-by"). Tuy nhiên, nếu dùng "Squash and Merge" trên GitHub, thông tin ban đầu vẫn có thể xem trong Pull Request.
 
 #### Rebase
 
-Khi dùng Rebase để gộp nhánh B vào nhánh A, từng commit trên nhánh B sẽ được thêm riêng vào nhánh A, thay vì tạo một merge commit để gộp nội dung hai nhánh như cách Merge[^note2].
+Khi dùng cách đổi nền (Rebase) để gộp nhánh B vào nhánh A, từng commit trên nhánh B sẽ được thêm riêng vào nhánh A, thay vì tạo một commit gộp (merge commit) để gộp nội dung hai nhánh như cách Merge[^note2].
 
 Trước hết, chuyển sang nhánh B, sau đó rebase nhánh B lên nhánh A:
 
@@ -410,7 +410,7 @@ $ git checkout A
 $ git merge B
 ```
 
-Dùng Rebase để hoàn thành việc gộp có thể làm lịch sử commit tuyến tính hơn. Trong bối cảnh phù hợp, dùng Rebase đúng cách có thể đạt hiệu quả tốt hơn Merge. Nhưng cách này sẽ thay đổi lịch sử commit; khi rebase và khi thực hiện các thao tác gộp liên quan sau rebase, khả năng xuất hiện xung đột đều tăng lên. Nếu thao tác không đúng, lịch sử commit có thể còn rối hơn. Vì vậy, nếu chưa hiểu đầy đủ thao tác Rebase, không nên dùng.
+Dùng cách đổi nền (Rebase) để hoàn thành việc gộp có thể làm lịch sử commit tuyến tính hơn. Trong bối cảnh phù hợp, dùng Rebase đúng cách có thể đạt hiệu quả tốt hơn Merge. Nhưng cách này sẽ thay đổi lịch sử commit; khi rebase và khi thực hiện các thao tác gộp liên quan sau rebase, khả năng xuất hiện xung đột đều tăng lên. Nếu thao tác không đúng, lịch sử commit có thể còn rối hơn. Vì vậy, nếu chưa hiểu đầy đủ thao tác Rebase, không nên dùng.
 
 ## Quản lý kho từ xa
 
