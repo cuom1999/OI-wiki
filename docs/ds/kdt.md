@@ -1,6 +1,6 @@
 author: hsfzLZH1, Ir1d, JosephusW
 
-k-D Tree (KDT, k-Dimension Tree) là một cấu trúc dữ liệu dùng để **xử lý hiệu quả thông tin trong không gian k chiều**.
+k-D Tree (KDT, k-Dimension Tree) là một cấu trúc dữ liệu dùng để **xử lý hiệu quả thông tin trong không gian $k$ chiều**.
 
 Khi số nút $n$ lớn hơn rất nhiều so với $2^k$, k-D Tree thường có hiệu quả thời gian tốt.
 
@@ -11,22 +11,22 @@ Khi phân tích độ phức tạp thời gian trên trang này, xem $k$ là h�
 
 k-D Tree có hình thái của cây tìm kiếm nhị phân.
 Mỗi nút trên cây tìm kiếm nhị phân tương ứng với một điểm trong không gian k chiều.
-Các điểm trong mỗi cây con đều nằm trong một siêu hình hộp chữ nhật k chiều,
-và tất cả các điểm bên trong siêu hình hộp chữ nhật đó cũng đều nằm trong cây con này.
+Các điểm trong mỗi cây con đều nằm trong một hình hộp chữ nhật $k$ chiều,
+và mọi điểm bên trong hình hộp chữ nhật đó đều thuộc cây con này.
 
 Giả sử đã biết tọa độ của $n$ điểm phân biệt trong không gian k chiều.
 Để xây các điểm này thành một k-D Tree, thực hiện như sau:
 
-1.  Nếu siêu hình hộp chữ nhật hiện tại chỉ có một điểm, trả về điểm đó.
+1.  Nếu hình hộp chữ nhật hiện tại chỉ có một điểm, trả về điểm đó.
 
-2.  Chọn một chiều, rồi chia siêu hình hộp chữ nhật hiện tại thành hai siêu hình hộp chữ nhật theo chiều đó.
+2.  Chọn một chiều, rồi chia hình hộp chữ nhật hiện tại thành hai hình hộp chữ nhật theo chiều đó.
 
 3.  Chọn điểm cắt: trên chiều đã chọn, chọn một điểm.
-    Những điểm có giá trị ở chiều này nhỏ hơn điểm đó được đưa vào một siêu hình hộp chữ nhật, tức cây con trái;
-    các điểm còn lại được đưa vào siêu hình hộp chữ nhật kia, tức cây con phải.
+    Những điểm có giá trị ở chiều này nhỏ hơn điểm đó được đưa vào một hình hộp chữ nhật, tức cây con trái;
+    các điểm còn lại được đưa vào hình hộp chữ nhật kia, tức cây con phải.
 
 4.  Lấy điểm đã chọn làm gốc của cây con này,
-    đệ quy xây cây con trái và cây con phải trên hai siêu hình hộp chữ nhật đã tách ra,
+    đệ quy xây cây con trái và cây con phải trên hai hình hộp chữ nhật đã tách ra,
     đồng thời duy trì thông tin của cây con.
 
 Để dễ hiểu hơn, xét ví dụ khi $k=2$.
@@ -58,12 +58,12 @@ Mỗi lần chọn ra một số, đặt các số nhỏ hơn nó sang bên trá
 bảo đảm số đó nằm ở đúng vị trí sau khi sắp xếp,
 rồi đệ quy sắp xếp các giá trị ở bên trái và bên phải.
 Độ phức tạp kỳ vọng của cách này là $O(n\log n)$.
-Nhưng vì k-D Tree chỉ yêu cầu trung vị nằm ở đúng vị trí sau khi sắp xếp,
-chỉ cần đệ quy sắp xếp **một phía** chứa trung vị.
+Nhưng vì k-D Tree chỉ yêu cầu trung vị nằm ở đúng vị trí như sau khi sắp xếp,
+chỉ cần đệ quy xử lý **một phía** chứa trung vị.
 Có thể chứng minh độ phức tạp kỳ vọng khi đó là $O(n)$.
 Trong thư viện `algorithm`, hàm `nth_element()` hiện thực chức năng tương tự.
-Để tìm giá trị nằm ở vị trí `s[mid]` sau khi các giá trị giữa `s[l]` và `s[r]` được sắp xếp theo quy tắc `cmp`,
-đồng thời bảo đảm các giá trị bên trái `s[mid]` nhỏ hơn `s[mid]` và các giá trị bên phải lớn hơn `s[mid]`,
+Để tìm giá trị sẽ nằm ở vị trí `s[mid]` nếu các giá trị giữa `s[l]` và `s[r]` được sắp xếp theo quy tắc `cmp`,
+đồng thời bảo đảm các giá trị bên trái `s[mid]` không lớn hơn `s[mid]` và các giá trị bên phải không nhỏ hơn `s[mid]`,
 chỉ cần viết `nth_element(s + l, s + mid, s + r + 1, cmp)`.
 
 Nhờ ý tưởng này, độ phức tạp thời gian để xây k-D Tree là $O(n\log n)$.
@@ -137,7 +137,8 @@ $$
 
 Theo định lý chính, $T(n)=O(\sqrt{n})$.
 
-Mở rộng hệ thức truy hồi sang $k$ chiều, tức $T(n)=2^{k-1}T(n/2^k)+O(1)$, suy ra $T(n)=O(n^{1-\frac1k})$, với $k$ được xem là hằng số.
+Mở rộng hệ thức truy hồi sang $k$ chiều, tức $T(n)=2^{k-1}T(n/2^k)+O(1)$, suy ra $T(n)=O(n^{1-\frac1k})$, với $k$ được
+xem là hằng số.
 
 ### Chèn/xóa
 
@@ -177,7 +178,7 @@ rồi liên tục gộp các cây có cùng kích thước bằng cách trải p
 Khi cài đặt, có thể chỉ cần tái xây dựng một lần.
 
 Kích thước của các cây cần gộp bắt đầu từ $2^0$ và có các chỉ số mũ liên tiếp.
-Độ phức tạp tương tự phép cộng nhị phân, là trung bình $O(n\log^2 n)$,
+Tính theo từng lần chèn, độ phức tạp khấu hao là $O(\log^2 n)$,
 vì bản thân việc tái xây dựng có thêm một nhân tử $\log$.
 
 Khi truy vấn, trực tiếp truy vấn riêng trên từng cây,
@@ -251,7 +252,7 @@ Tương tự ví dụ trước, bài toán chuyển từ cặp điểm gần nh�
 và hàm đánh giá đổi thành khoảng cách xa nhất từ điểm truy vấn đến vùng hình chữ nhật tương ứng với cây con.
 Dùng một heap nhỏ để duy trì khoảng cách của $k$ cặp điểm xa nhất đã tìm được hiện tại.
 Nếu khoảng cách của cặp điểm vừa tìm được lớn hơn đỉnh heap,
-pop đỉnh heap rồi chèn khoảng cách này.
+lấy đỉnh heap ra rồi chèn khoảng cách này.
 Tương tự, dùng khoảng cách ở đỉnh heap để cắt tỉa.
 
 Vì đề bài nhấn mạnh cặp điểm không thứ tự,
