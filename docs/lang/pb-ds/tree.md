@@ -14,8 +14,9 @@ __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 ## Tham số mẫu
 
 -   `Key`: kiểu phần tử được lưu trữ. Nếu muốn lưu nhiều phần tử có cùng `Key`,
-    cần dùng cách tương tự `std::pair` hoặc `struct`, rồi kết hợp các hàm thành
-    viên `lower_bound` và `upper_bound` để tìm kiếm.
+    cần dùng một kiểu có thể phân biệt từng phần tử, chẳng hạn `std::pair` hoặc
+    `struct`, rồi kết hợp các hàm thành viên `lower_bound` và `upper_bound` để
+    tìm kiếm.
 -   `Mapped`: kiểu chính sách ánh xạ (mapped policy). Nếu muốn biểu diễn
     bộ chứa kết hợp là **tập hợp**, tương tự lưu phần tử trong `std::set`, cần
     điền `null_type` tại đây; với phiên bản `g++` cũ, vị trí này là
@@ -25,15 +26,15 @@ __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 -   `Cmp_Fn`: đối tượng hàm so sánh khóa, ví dụ `std::less<Key>`.
 -   `Tag`: chọn loại cấu trúc dữ liệu nền; mặc định là `rb_tree_tag`.
     `__gnu_pbds` cung cấp ba loại cây cân bằng khác nhau:
-    -   `rb_tree_tag`: cây đỏ-đen; thường dùng loại này, hai loại sau thường có
-        hiệu năng kém cây đỏ-đen.
+    -   `rb_tree_tag`: cây đỏ-đen; đây là lựa chọn thường dùng, hai loại sau
+        thường có hiệu năng kém hơn cây đỏ-đen.
     -   `splay_tree_tag`: cây splay.
     -   `ov_tree_tag`: cây vector có thứ tự, tức một cấu trúc có thứ tự được
-        triển khai bằng `vector`, tương tự dùng `vector` đã sắp xếp để mô phỏng cây
-        cân bằng; hiệu năng phụ thuộc dữ liệu có cố tình gây khó hay không.
+        triển khai bằng `vector`, tương tự dùng `vector` đã sắp xếp để mô phỏng
+        cây cân bằng; hiệu năng phụ thuộc mạnh vào dữ liệu.
 -   `Node_Update`: chính sách dùng để cập nhật nút; mặc định là
-    `null_node_update`. Nếu muốn dùng `order_of_key` và `find_by_order`, cần dùng
-    `tree_order_statistics_node_update`.
+    `null_tree_node_update`. Nếu muốn dùng `order_of_key` và `find_by_order`,
+    cần dùng `tree_order_statistics_node_update`.
 -   `Allocator`: kiểu bộ cấp phát bộ nhớ.
 
 ## Cách khởi tạo
@@ -50,10 +51,10 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 -   `insert(x)`: chèn một phần tử `x` vào cây, trả về
     `std::pair<point_iterator, bool>`, trong đó phần tử thứ nhất là bộ lặp tại
     vị trí chèn, phần tử thứ hai cho biết chèn có thành công hay không.
--   `erase(x)`: xóa một phần tử/bộ lặp `x` khỏi cây. Nếu `x` là bộ lặp, hàm
-    trả về bộ lặp trỏ đến phần tử sau `x` (nếu `x` là `end()` thì trả về
-    `end()`); nếu `x` là `Key`, hàm trả về xóa có thành công hay không (nếu
-    không tồn tại thì xóa thất bại).
+-   `erase(x)`: xóa một phần tử hoặc một bộ lặp `x` khỏi cây. Nếu `x` là bộ lặp,
+    hàm trả về bộ lặp trỏ đến phần tử ngay sau phần tử vừa xóa (nếu `x` là
+    `end()` thì trả về `end()`); nếu `x` là `Key`, hàm trả về việc xóa có thành
+    công hay không (nếu khóa không tồn tại thì xóa thất bại).
 -   `order_of_key(x)`: trả về số phần tử nhỏ hơn nghiêm ngặt `x` (theo logic so
     sánh của `Cmp_Fn`), tức thứ hạng bắt đầu từ $0$.
 -   `find_by_order(x)`: trả về bộ lặp của phần tử ứng với thứ hạng theo so
@@ -62,18 +63,18 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
     (theo logic so sánh của `Cmp_Fn`).
 -   `upper_bound(x)`: trả về bộ lặp của phần tử đầu tiên lớn hơn nghiêm ngặt
     `x` (theo logic so sánh của `Cmp_Fn`).
--   `join(x)`: gộp cây `x` vào cây hiện tại, rồi làm rỗng cây `x` (phải bảo đảm
+-   `join(x)`: gộp cây `x` vào cây hiện tại, rồi làm rỗng cây `x` (cần bảo đảm
     **hàm so sánh** và **kiểu phần tử** của hai cây giống nhau).
--   `split(x, b)`: theo so sánh của `Cmp_Fn`, các phần tử nhỏ hơn hoặc bằng `x`
-    thuộc cây hiện tại, các phần tử còn lại thuộc cây `b`.
+-   `split(x, b)`: theo thứ tự do `Cmp_Fn` xác định, các phần tử nhỏ hơn hoặc
+    bằng `x` ở lại cây hiện tại, các phần tử còn lại được chuyển sang cây `b`.
 -   `empty()`: trả về cây có rỗng hay không.
 -   `size()`: trả về kích thước.
 
 ???+ warning "Lưu ý"
     Hàm `join(x)` yêu cầu miền giá trị khóa của cây được gộp và cây nhận gộp
-    **không giao nhau** (tức mọi giá trị trong cây được gộp phải đều lớn hơn
-    hoặc đều nhỏ hơn mọi giá trị trong cây hiện tại), nếu không sẽ ném ngoại lệ
-    `join_error`.
+    **không giao nhau**: mọi giá trị trong cây được gộp phải đều lớn hơn hoặc
+    đều nhỏ hơn mọi giá trị trong cây hiện tại. Nếu điều kiện này không thỏa mãn,
+    hàm sẽ ném ngoại lệ `join_error`.
     
     Nếu cần gộp hai cây có miền giá trị giao nhau, cần chèn từng phần tử của một
     cây vào cây còn lại.
