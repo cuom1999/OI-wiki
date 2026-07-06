@@ -1,11 +1,11 @@
 ## Tổng quan
 
-Cơ chế **không gian tên** (`namespace`) của C++ dùng để giải quyết vấn đề xung
-đột tên trong các chương trình hoặc dự án phức tạp.
+Cơ chế **không gian tên** (`namespace`) của C++ dùng để giải quyết vấn đề trùng
+tên trong các chương trình hoặc dự án phức tạp.
 
 Ví dụ, toàn bộ nội dung của thư viện chuẩn C++ đều được định nghĩa trong không
-gian tên `std`. Nếu tự định nghĩa một biến tên là `cin`, có thể truy cập biến
-`cin` đó bằng `cin`, đồng thời truy cập đối tượng `cin` của thư viện chuẩn bằng
+gian tên `std`. Nếu tự định nghĩa một biến tên là `cin`, ta có thể truy cập biến
+đó bằng `cin`, đồng thời truy cập đối tượng `cin` của thư viện chuẩn bằng
 `std::cin`, nhờ đó tránh xung đột tên.
 
 ## Định nghĩa
@@ -21,8 +21,8 @@ void f(int x) { cnt = x; }
 ```
 
 Sau khi định nghĩa, ở bên ngoài không gian tên này, có thể dùng `A::f(x)` để gọi
-hàm `f` bên trong không gian tên `A`, đồng thời dùng `A::cnt` để truy cập biến
-`cnt` bên trong không gian tên `A`.
+hàm `f` bên trong `A`, đồng thời dùng `A::cnt` để truy cập biến `cnt` bên trong
+`A`.
 
 Không gian tên có thể lồng nhau, vì vậy đoạn mã sau cũng được phép:
 
@@ -60,22 +60,22 @@ dùng `using`.
 
 1.  `using tên_không_gian_tên::tên_thành_viên;`: khai báo này cho phép lược bỏ
     tên không gian tên trước một thành viên cụ thể và truy cập bằng chính tên
-    thành viên đó. Nó đưa riêng thành viên đó vào phạm vi hiện tại.
+    thành viên đó. Nói cách khác, nó đưa riêng thành viên đó vào phạm vi hiện tại.
 2.  `using namespace tên_không_gian_tên;`: chỉ thị này cho phép truy cập **mọi**
-    thành viên trong không gian tên bằng tên thành viên. Nó đưa toàn bộ thành
-    viên của không gian tên đó vào phạm vi hiện tại.
+    thành viên trong không gian tên bằng tên thành viên. Nó đưa toàn bộ thành viên
+    của không gian tên đó vào phạm vi hiện tại.
 
-Vì vậy, nếu viết `using namespace std;`, mọi tên trong `std` sẽ được đưa vào
-phạm vi hiện tại. Khi đó có thể dùng `cin` thay cho `std::cin`, dùng `cout` thay
-cho `std::cout`.
+Vì vậy, nếu viết `using namespace std;`, mọi tên trong `std` sẽ được đưa vào phạm
+vi hiện tại. Khi đó có thể dùng `cin` thay cho `std::cin`, dùng `cout` thay cho
+`std::cout`.
 
 ??? warning "Chỉ thị `using namespace` có thể gây xung đột tên!"
-    Vì `using namespace std;` sẽ đưa **toàn bộ tên** trong `std` vào phạm vi
-    hiện tại, nếu khai báo biến hoặc hàm trùng với tên trong `std`, có thể xảy
-    ra lỗi biên dịch do xung đột tên.
+    Vì `using namespace std;` đưa **toàn bộ tên** trong `std` vào phạm vi hiện
+    tại, nếu khai báo biến hoặc hàm trùng với tên trong `std`, chương trình có thể
+    gặp lỗi biên dịch do xung đột tên.
 
     Vì vậy, trong phát triển phần mềm, không nên dùng chỉ thị
-    `using namespace tên_không_gian_tên;`.
+    `using namespace tên_không_gian_tên;` ở phạm vi rộng.
 
 Với `using`, đoạn mã trong [cú pháp C++ cơ bản](./basic.md#cin-và-cout)
 có thể viết theo hai cách tương đương sau:
@@ -110,14 +110,13 @@ int main() {
 
 ## Không gian tên vô danh
 
-Khi chỉ cần một không gian tên (`namespace`) để tránh xung đột tên nội bộ trong
-một phạm vi, có thể viết gọn phần định nghĩa và sử dụng bằng không gian tên vô
-danh.
+Khi chỉ cần một không gian tên để tránh xung đột tên nội bộ trong một phạm vi, có
+thể dùng không gian tên vô danh để viết gọn phần định nghĩa và sử dụng.
 
-Không gian tên được định nghĩa dưới dạng `namespace { /* something ... */ }`,
-tức bỏ qua tên sau từ khóa `namespace`, được gọi là không gian tên vô danh. Một
-không gian tên vô danh trong một tệp được xem như có một tên riêng duy nhất, khác
-với mọi không gian tên khác; nhưng nhiều khối không gian tên vô danh trong cùng
+Không gian tên được định nghĩa dưới dạng `namespace { /* something ... */ }`, tức
+bỏ qua tên sau từ khóa `namespace`, được gọi là không gian tên vô danh. Một không
+gian tên vô danh trong một tệp được xem như có một tên riêng duy nhất, khác với
+mọi không gian tên khác. Tuy nhiên, nhiều khối không gian tên vô danh trong cùng
 một phạm vi được xem là cùng một không gian tên. Sau khi không gian tên vô danh
 được định nghĩa, các tên bên trong nó có thể được tìm thấy khi dùng ở phạm vi bên
 ngoài, giống như sau phần định nghĩa đã có thêm một chỉ thị `using namespace`.
@@ -129,8 +128,8 @@ ngoài, giống như sau phần định nghĩa đã có thêm một chỉ thị 
 Trong một số bài toán có nhiều bài con, có thể định nghĩa một không gian tên
 riêng cho từng bài con, rồi đặt các biến và hàm cần thiết để giải bài con đó bên
 trong. Khi đó, ngay cả khi hai phần cài đặt bài con khai báo cùng một tên, chúng
-cũng không xung đột, giúp các bài con không ảnh hưởng lẫn nhau. Cách làm này giúp
-gỡ lỗi thuận tiện hơn và cũng cải thiện khả năng đọc của chương trình.
+cũng không xung đột. Cách làm này giúp các bài con không ảnh hưởng lẫn nhau, thuận
+tiện hơn khi gỡ lỗi và cải thiện khả năng đọc của chương trình.
 
 ### Tránh xung đột với thư viện chuẩn và tên do môi trường đưa vào
 
