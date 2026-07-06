@@ -7,7 +7,7 @@ Trang này giới thiệu ngắn gọn về dạng bài xây dựng.
 Bài xây dựng là một dạng bài thường gặp trong các cuộc thi.
 
 Xét về hình thức, đáp án của bài thường có một quy luật nào đó, nhờ vậy khi
-kích thước bài toán tăng nhanh, vẫn có cơ hội tìm được đáp án tương đối dễ.
+kích thước bài toán tăng nhanh, vẫn có cơ hội tìm được đáp án theo quy luật đó.
 
 Điều này đòi hỏi khi giải bài phải phân tích việc tăng kích thước bài toán
 ảnh hưởng đến đáp án như thế nào, và ảnh hưởng đó có thể tổng quát hóa hay
@@ -16,21 +16,21 @@ trạng thái sang trạng thái kế tiếp gây ra tác động gì.
 
 ## Đặc điểm
 
-Một đặc điểm rất rõ của bài xây dựng là độ tự do cao. Nói cách khác, một bài
-có thể có nhiều cách xây dựng, nhưng thường tồn tại một cách tương đối đơn
-giản thỏa mãn đề bài. Thoạt nhìn yêu cầu có vẻ được nới lỏng và bài trở nên dễ
-hơn, nhưng nhiều khi chính độ tự do cao này làm bài không có hướng đi cụ thể
-và khiến việc bắt đầu trở nên khó khăn.
+Một đặc điểm nổi bật của bài xây dựng là độ tự do cao. Nói cách khác, một bài
+có thể có nhiều cách xây dựng, nhưng thường tồn tại một cách đơn giản thỏa mãn
+đề bài. Thoạt nhìn yêu cầu có vẻ được nới lỏng và bài trở nên dễ hơn, nhưng
+nhiều khi chính độ tự do cao này làm bài không có hướng đi cụ thể và khiến việc
+bắt đầu trở nên khó khăn.
 
 Một đặc điểm khác là hình thức linh hoạt và biến hóa đa dạng. Không có một lời
-giải tổng quát hay khuôn mẫu nào giải được mọi bài xây dựng; thậm chí rất khó
-tìm ra điểm chung trong tư duy giải.
+giải tổng quát hay khuôn mẫu nào giải được mọi bài xây dựng; thậm chí khó tìm
+ra điểm chung trong tư duy giải.
 
 ## Bài ví dụ
 
 Sau đây là một số bài ví dụ giúp người đọc cảm nhận tư tưởng của dạng bài xây
 dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem lời giải sẽ hữu
-ích. Những bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
+ích. Những bài xây dựng thú vị khác cũng đáng được chia sẻ thêm.
 
 ### Bài ví dụ 1
 
@@ -45,7 +45,7 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
     $n=1$ thì vô nghiệm, vì khi đó $n+1$ và $n(n+1)$ bằng nhau.
 
     Việc nghĩ ra cách xây dựng này có lẽ đến từ quan sát ví dụ cộng với trực
-    giác số học. Bài này tương đối thuận lợi với người có trực giác toán tốt.
+    giác số học. Bài này thuận lợi với người có trực giác toán tốt.
 
 ### Bài ví dụ 2
 
@@ -66,7 +66,7 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
     Khi $n$ là số chẵn, có thể xây dựng một dãy dạng
     $n,1,n-2,3,\cdots$.
 
-    Trước hết, $n$ bắt buộc phải xuất hiện ở vị trí đầu tiên của dãy.
+    Trước hết, $n$ phải xuất hiện ở vị trí đầu tiên của dãy.
     Nếu không, hai tổng tiền tố trước và sau khi $n$ xuất hiện sẽ
     bằng nhau theo modulo.
 
@@ -102,14 +102,14 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
 
     Tiếp theo xét cách xây dựng dãy:
 
-    Tương tự nhiệm vụ 1, $1$ bắt buộc phải xuất hiện ở vị trí đầu tiên,
+    Tương tự nhiệm vụ 1, $1$ phải xuất hiện ở vị trí đầu tiên,
     nếu không hai tích tiền tố trước và sau khi $1$ xuất hiện sẽ bằng nhau.
-    Còn $n$ bắt buộc phải xuất hiện ở vị trí cuối cùng, vì sau vị trí xuất hiện
+    Còn $n$ phải xuất hiện ở vị trí cuối cùng, vì sau vị trí xuất hiện
     của $n$, mọi tích tiền tố theo modulo đều bằng $0$. Sau khi phân tích vài
     ví dụ trong đề, các ví dụ đều có một nghiệm hợp lệ sao cho dãy tích
     tiền tố theo modulo là $1,2,3,\cdots,n$. Vì vậy có thể xây dựng dãy đã nêu
-    ở trên để thỏa điều kiện này. Khi đó chỉ cần chứng minh $n$ số này đôi một
-    khác nhau.
+    ở trên để thỏa điều kiện này. Khi đó cần chứng minh $n$ số này đôi một khác
+    nhau.
 
     Các số đó đều là nghịch đảo của $1\cdots n-2$ cộng thêm $1$,
     nên chúng đôi một khác nhau. Bài toán được giải.
@@ -140,8 +140,8 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
     Nếu $n$ lẻ, tách riêng $n$ thành một nhóm, rồi ghép cặp $n-1$ số còn
     lại: $\{n\},\{1,n-1\},\{2,n-2\}\cdots$.
 
-    Tính liên thông của đồ thị khi $n\ge 3$ được suy ra trực tiếp từ cách ghép
-    trên, nên không trình bày thêm trong phần này.
+    Tính liên thông của đồ thị khi $n\ge 3$ được suy ra từ cách ghép trên, nên
+    không trình bày thêm trong phần này.
 
     Bài toán được giải.
 
@@ -155,8 +155,8 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
 
     Cho $n$ đồ vật, thể tích của từng đồ vật lần lượt là $v_1,v_2,\ldots,v_n$.
     Tính số cách chọn một số đồ vật, cũng có thể không chọn đồ vật nào, sao
-    cho tổng thể tích đúng bằng $w$. Vì đáp án có thể rất lớn, chỉ cần in đáp
-    án modulo $P$.
+    cho tổng thể tích đúng bằng $w$. Vì đáp án có thể lớn, hãy in đáp án modulo
+    $P$.
 
     Do thức khuya luyện bài lâu ngày, cậu chỉ nhìn thấy trong đầu vào mẫu có $w$
     và $P$, đầu ra mẫu là $k$, còn không nhìn rõ có bao nhiêu đồ vật và thể
@@ -170,8 +170,8 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
     Trước hết, modulo không phải ràng buộc cốt lõi. Vì dữ liệu được xây dựng tự do,
     luôn có thể khiến số cách không vượt quá modulo.
 
-    Một hướng xây dựng ít trực tiếp hơn là dùng $n$ đồ vật nhỏ có thể tích
-    $1$ và một vài đồ vật lớn có thể tích lớn hơn $\dfrac{w}{2}$.
+    Một hướng xây dựng gián tiếp hơn là dùng $n$ đồ vật nhỏ có thể tích $1$ và
+    một vài đồ vật lớn có thể tích lớn hơn $\dfrac{w}{2}$.
 
     Vì mỗi đồ vật lớn chỉ có thể chọn nhiều nhất một cái, nên một đồ vật lớn có
     thể tích $x$ đóng góp $\dbinom{n}{w-x}$ vào số cách.
@@ -179,7 +179,7 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
     Gọi $f_{i,j}$ là số đồ vật lớn ít nhất cần dùng khi có $i$ đồ vật thể tích
     $1$ và số cách là $j$.
 
-    Dùng DP để tiền xử lý $f$. Tính toán cho thấy chỉ cần tiền xử lý mọi giá
-    trị với $i\le 20$ là đủ.
+    Dùng DP để tiền xử lý $f$. Tính toán cho thấy tiền xử lý mọi giá trị với
+    $i\le 20$ là đủ.
 
     Bài toán được giải.
