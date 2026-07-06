@@ -455,7 +455,10 @@ nguyên tắc: **đừng dùng biến toàn cục nếu có thể dùng biến c
 tránh được việc tên biến trong hàm (ví dụ `i`) bị xung đột.
 
 ??? note "Ghi chú bổ sung"
-    Pascal có thể tránh vấn đề này ở một mức độ nhất định bằng cách mô phỏng cách làm của C++: trong chương trình chính chỉ gọi thủ tục/hàm, không khai báo các biến toàn cục dễ xung đột tên như `i`, `j`; nếu cần vòng lặp thì viết thêm một thủ tục riêng để gọi.
+    Pascal có thể tránh vấn đề này ở một mức độ nhất định bằng cách mô phỏng cách
+    làm của C++: trong chương trình chính chỉ gọi thủ tục/hàm, không khai báo các
+    biến toàn cục dễ xung đột tên như `i`, `j`; nếu cần vòng lặp thì viết thêm
+    một thủ tục riêng để gọi.
 
 ### C++ có thể tự động chuyển đổi kiểu
 
@@ -468,7 +471,9 @@ if (i) {  // i = 0 trả về false, các giá trị khác trả về true
 }
 ```
 
-Không chỉ `int` có thể chuyển thành `bool`, `int` và `float` cũng có thể chuyển đổi qua lại. Trong Pascal, có thể gán số nguyên cho số thực, nhưng không thể làm ngược lại. C++ không gặp vấn đề này.
+Không chỉ `int` có thể chuyển thành `bool`, `int` và `float` cũng có thể chuyển
+đổi qua lại. Trong Pascal, có thể gán số nguyên cho số thực, nhưng không thể làm
+ngược lại. C++ không gặp vấn đề này.
 
 ```cpp
 int a;
@@ -476,7 +481,8 @@ a = 3.2;      // lúc này a = 3
 float b = a;  // lúc này b = 3.0
 ```
 
-Việc phân biệt `/` là phép chia nguyên hay phép chia số thực được quyết định dựa trên kiểu của số bị chia và số chia.
+Việc phân biệt `/` là phép chia nguyên hay phép chia số thực được quyết định dựa
+trên kiểu của số bị chia và số chia.
 
 ```cpp
 float a = 32 / 10;    // kết quả của 32/10 là 3 (chia nguyên); a = 3.0
@@ -500,14 +506,19 @@ std::cout << (a == '0');  // true xuất ra 1
 
 Trong C++, `char` và `bool` về bản chất đều là kiểu số nguyên.
 
-Chi tiết xem bài [Implicit conversions - cppreference.com](https://en.cppreference.com/w/cpp/language/implicit_conversion).
+Chi tiết xem bài
+[Implicit conversions - cppreference.com](https://en.cppreference.com/w/cpp/language/implicit_conversion).
 
-### Nhiều câu lệnh C++ có giá trị trả về: ví dụ cách đọc dữ liệu với số lượng không cố định
+### Nhiều câu lệnh C++ có giá trị trả về
 
-Đôi khi cần đọc cho đến khi hết dữ liệu, chẳng hạn tính tổng một dãy số có số lượng không cố định (dữ liệu có thể nằm trên nhiều dòng) cho đến cuối tệp. Cách làm là:
+Ví dụ thường gặp là đọc dữ liệu với số lượng không cố định. Đôi khi cần đọc cho
+đến khi hết dữ liệu, chẳng hạn tính tổng một dãy số có thể nằm trên nhiều dòng
+cho đến cuối tệp. Cách làm là:
 
 ??? note "Cuối tệp EOF"
-    EOF là ký hiệu cuối tệp. Trong dòng lệnh Windows, nhập bằng <kbd>Ctrl</kbd>+<kbd>Z</kbd> (sau đó cần nhấn <kbd>Enter</kbd>); trên hệ Unix-like, nhập bằng <kbd>Ctrl</kbd>+<kbd>D</kbd>.
+    EOF là ký hiệu cuối tệp. Trong dòng lệnh Windows, nhập bằng
+    <kbd>Ctrl</kbd>+<kbd>Z</kbd> (sau đó cần nhấn <kbd>Enter</kbd>); trên hệ
+    Unix-like, nhập bằng <kbd>Ctrl</kbd>+<kbd>D</kbd>.
 
 ```cpp
 #include <iostream>
@@ -524,11 +535,13 @@ int main() {
 }
 ```
 
-Nguyên lý: trong `while (std::cin >> a)`, nếu `std::cin >> a` gặp lỗi khi nhập hoặc gặp cuối tệp, nó sẽ trả về `false`, làm vòng lặp dừng lại.
+Nguyên lý: trong `while (std::cin >> a)`, nếu `std::cin >> a` gặp lỗi khi nhập
+hoặc gặp cuối tệp, nó sẽ trả về `false`, làm vòng lặp dừng lại.
 
 ### Hàm
 
-C++ chỉ có hàm, không có thủ tục, nhưng có `void`; không có biến giá trị hàm như Pascal, nhưng có `return`.
+C++ chỉ có hàm, không có thủ tục, nhưng có `void`; không có biến giá trị hàm như
+Pascal, nhưng có `return`.
 
 Ví dụ đối chiếu hàm Pascal và hàm C++:
 
@@ -556,7 +569,9 @@ int abs(int x) {
 }
 ```
 
-Trong C++, khai báo hàm `int abs` định nghĩa hàm `abs()` và cho biết giá trị trả về có kiểu `int` (số nguyên). Giá trị trả về của hàm là giá trị do câu lệnh `return` đưa ra.
+Trong C++, khai báo hàm `int abs` định nghĩa hàm `abs()` và cho biết giá trị trả
+về có kiểu `int` (số nguyên). Giá trị trả về của hàm là giá trị do câu lệnh
+`return` đưa ra.
 
 Nếu không muốn có giá trị trả về (tức "thủ tục" trong Pascal), dùng `void`.
 `void` nghĩa là "rỗng", không trả về gì cả.
@@ -592,7 +607,12 @@ int main() {
 }
 ```
 
-`return` của C++ khác rõ rệt so với việc gán giá trị cho biến hàm trong Pascal. Trong C++, `return` trả về một giá trị; sau khi thực thi câu lệnh này, hàm kết thúc ngay. Còn trong Pascal, gán giá trị cho biến hàm không làm thoát khỏi hàm, mà chương trình vẫn tiếp tục thực thi. Vì vậy, nếu Pascal cần dừng hàm/thủ tục ở một chỗ nào đó, cần thêm lệnh `exit`. C++ thì không cần; nếu cần dừng ở đâu, có thể dùng trực tiếp `return`. Ví dụ:
+`return` của C++ khác rõ rệt so với việc gán giá trị cho biến hàm trong Pascal.
+Trong C++, `return` trả về một giá trị; sau khi thực thi câu lệnh này, hàm kết
+thúc ngay. Còn trong Pascal, gán giá trị cho biến hàm không làm thoát khỏi hàm,
+mà chương trình vẫn tiếp tục thực thi. Vì vậy, nếu Pascal cần dừng hàm/thủ tục ở
+một chỗ nào đó, cần thêm lệnh `exit`. C++ thì không cần; nếu cần dừng ở đâu, có
+thể dùng `return`. Ví dụ:
 
 ```cpp
 #include <iostream>
@@ -614,7 +634,8 @@ int main() {
 }
 ```
 
-Theo một nghĩa nào đó, hàm `abs` ở trên nếu muốn tương đương nghiêm ngặt thì phải viết như sau:
+Theo một nghĩa nào đó, nếu muốn hàm `abs` ở trên tương đương nghiêm ngặt với
+phiên bản C++, cần viết như sau:
 
 ```pas
 function abs(x:integer):integer;
@@ -644,14 +665,18 @@ int abs(int x) {
     Trong C++, `exit` là thoát khỏi chương trình; đừng tiện tay gõ `exit`; nên
     dùng `return`.
 
-C++ coi cả hàm lẫn thủ tục đều là hàm, kể cả `main` cũng không ngoại lệ. Ví dụ khi viết `int main`, C++ xem `main` là một hàm kiểu số nguyên; giá trị trả về là `0`. Đây là một quy ước thông dụng: trả về `0` nghĩa là chương trình kết thúc bình thường.
+C++ coi cả hàm lẫn thủ tục đều là hàm, kể cả `main` cũng không ngoại lệ. Ví dụ
+khi viết `int main`, C++ xem `main` là một hàm kiểu số nguyên; giá trị trả về là
+`0`. Đây là một quy ước thông dụng: trả về `0` nghĩa là chương trình kết thúc
+bình thường.
 
 Các tham số trong `main(int argc, char const *argv[])` là `int argc` và
 `char const *argv[]`; ý nghĩa của chúng có thể tham khảo trong tài liệu khác.
 
 ### Truyền tham số trong hàm
 
-C++ không có từ khóa `var` của Pascal để thay đổi tham số được truyền vào, nhưng C++ có thể dùng tham chiếu và con trỏ để đạt hiệu quả tương tự.
+C++ không có từ khóa `var` của Pascal để thay đổi tham số được truyền vào, nhưng
+C++ có thể dùng tham chiếu và con trỏ để đạt hiệu quả tương tự.
 
 ```pas
 var a, b: integer;
@@ -665,7 +690,7 @@ begin
 end;
 
 begin
-    a := 10; b:= 20;    
+    a := 10; b:= 20;
     swap(a, b);
     writeln(a, ' ', b);
 end.
@@ -692,7 +717,7 @@ int main() {
 ```
 
 Đoạn C++ này **liên quan đến con trỏ**. Con trỏ là nội dung tương đối phức tạp,
-nên đọc thêm tài liệu liên quan.
+nên đọc thêm tài liệu liên quan trước khi dùng rộng rãi.
 
 ```cpp
 // Mã dùng tham chiếu
@@ -720,10 +745,10 @@ gọi một số thư viện STL hoặc thư viện viết bằng template, có 
 Primer* bản thứ năm hoặc tài liệu trên mạng.
 
 C++ còn có các cách truyền tham số khác. Một trong số đó là **truyền tham số bằng
-cách dùng trực tiếp biến toàn cục**; nếu chưa biết dùng con trỏ, có thể tạm dùng
-cách này. Nhưng khuyết điểm của cách này là không có ngăn xếp để lưu dữ liệu,
-nên **không thể truyền tham số trong hàm đệ quy**. (Trừ khi tự viết ngăn xếp;
-lưu ý, tự viết ngăn xếp cũng là một cách vượt qua giới hạn ngăn xếp hệ thống.)
+cách dùng biến toàn cục**; nếu chưa biết dùng con trỏ, có thể tạm dùng cách này.
+Khuyết điểm của cách này là không có ngăn xếp để lưu dữ liệu, nên **không thể
+truyền tham số trong hàm đệ quy**. Trừ khi tự viết ngăn xếp; lưu ý, tự viết ngăn
+xếp cũng là một cách vượt qua giới hạn ngăn xếp hệ thống.
 
 ## Thư viện chuẩn C++ và tài liệu tham khảo
 
@@ -733,8 +758,8 @@ nên xem trước đã có hàm hoặc cấu trúc dữ liệu tương ứng hay
 ### Thư viện chuẩn C++
 
 Trong thư viện chuẩn C++, `<algorithm>` có nhiều hàm hữu ích như sắp xếp
-nhanh, tìm kiếm nhị phân, v.v.; có thể gọi trực tiếp. Tham khảo trang [Thuật toán
-STL](csl/algorithm.md).
+nhanh, tìm kiếm nhị phân, v.v.; có thể gọi ngay. Tham khảo trang
+[Thuật toán STL](csl/algorithm.md).
 
 Ngoài ra còn có container STL, chẳng hạn mảng, vector (mảng có kích thước thay
 đổi), hàng đợi, ngăn xếp, v.v., kèm nhiều hàm hỗ trợ. Tham khảo trang [Giới thiệu
@@ -745,7 +770,9 @@ Nếu muốn tìm các hàm thao tác chuỗi, xem:
 -   [std::basic\_string - cppreference.com](https://en.cppreference.com/w/cpp/string/basic_string)
 -   [`<string>` - C++ Reference](https://www.cplusplus.com/reference/string/)
 
-Con trỏ trong C/C++ là một cơ chế linh hoạt; có thể tham khảo trang [Con trỏ](pointer.md). Nếu muốn hiểu kỹ con trỏ, nên tìm một cuốn sách hoặc sổ tay tham khảo để đọc cẩn thận.
+Con trỏ trong C/C++ là một cơ chế linh hoạt; có thể tham khảo trang
+[Con trỏ](pointer.md). Nếu muốn hiểu kỹ con trỏ, nên tìm một cuốn sách hoặc sổ
+tay tham khảo để đọc cẩn thận.
 
 ### Gỡ lỗi và mẹo
 
@@ -773,7 +800,8 @@ ký tự trong chuỗi, v.v. không phù hợp với một bài viết ngắn g�
 những thứ đó ra thì đây sẽ trở thành giáo trình nhập môn C++, nên cần tận dụng
 đầy đủ Wiki này, sổ tay tham khảo và công cụ tìm kiếm.
 
-Cần chỉ ra một điểm: nhiều cú pháp C++ nói ở trên đến từ ngôn ngữ C. Tiêu đề viết chính xác hơn có lẽ nên là "Bài cấp cứu chuyển từ Pascal sang C/C++".
+Cần chỉ ra một điểm: nhiều cú pháp C++ nói ở trên đến từ ngôn ngữ C. Tiêu đề
+viết chính xác hơn có lẽ nên là "Bài cấp cứu chuyển từ Pascal sang C/C++".
 
 Pascal là một ngôn ngữ phổ biến vào nửa sau thế kỷ trước. Nó ra đời sớm hơn
 C, nhưng cùng với sự phổ biến của hệ thống UNIX và việc Microsoft sử dụng C,
