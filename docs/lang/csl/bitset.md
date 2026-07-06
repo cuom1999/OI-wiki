@@ -682,7 +682,9 @@ Cách dùng là thay mảng `bool` trong sàng Eratosthenes bằng `bitset`.
 <span id="kết-hợp-với-phân-khối-trên-cây"></span>
 ### Kết hợp với phân khối trên cây
 
-`bitset` kết hợp với phân khối trên cây có thể giải một lớp bài toán hỏi hợp thông tin của nhiều đường đi trên cây. Xem thêm [Cấu trúc dữ liệu / phân khối trên cây](../../ds/tree-decompose.md).
+`bitset` kết hợp với phân khối trên cây có thể giải một lớp bài toán hỏi hợp
+thông tin của nhiều đường đi trên cây. Xem thêm
+[Cấu trúc dữ liệu / phân khối trên cây](../../ds/tree-decompose.md).
 
 <span id="kết-hợp-với-thuật-toán-mo"></span>
 ### Kết hợp với thuật toán Mo
@@ -692,11 +694,15 @@ Xem thêm [Tạp mục / thuật toán Mo kết hợp bitset](../../misc/mo-algo
 <span id="tính-thứ-tự-riêng-phần-nhiều-chiều"></span>
 ### Tính thứ tự riêng phần nhiều chiều
 
-Xem thêm [slide của FHR](https://github.com/OI-wiki/libs/blob/master/lang/csl/FHR-%E5%88%86%E5%9D%97bitset%E6%B1%82%E9%AB%98%E7%BB%B4%E5%81%8F%E5%BA%8F.pdf).
+Xem thêm [slide của FHR][fhr-bitset-slide].
 
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
-[^bitset1]: [libstdc++: SGI STL extensions](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00994.html#g32541eb0d6581b915af48b5a51006dff)
+[^bitset1]: [libstdc++: SGI STL extensions][libstdcxx-sgi]
 
-[^bitset2]: [libstdc++: std::bitset<\_Nb> Class Template Reference](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00219.html)
+[^bitset2]: [libstdc++: std::bitset<\_Nb> Class Template Reference][libstdcxx-bitset]
+
+[fhr-bitset-slide]: https://github.com/OI-wiki/libs/blob/master/lang/csl/FHR-%E5%88%86%E5%9D%97bitset%E6%B1%82%E9%AB%98%E7%BB%B4%E5%81%8F%E5%BA%8F.pdf
+[libstdcxx-sgi]: https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00994.html#g32541eb0d6581b915af48b5a51006dff
+[libstdcxx-bitset]: https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00219.html
