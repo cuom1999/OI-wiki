@@ -2,7 +2,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ## Giới thiệu
 
-Trong một số bài toán, khi chuyển trạng thái giữa các đoạn, có thể thao tác thêm hoặc xóa không hiện thực được. Khi chỉ thao tác thêm không hiện thực được, hoặc chỉ thao tác xóa không hiện thực được, ta có thể dùng Mo có khôi phục trạng thái (Mo rollback) để giải trong thời gian $O(n \sqrt m)$. Ý tưởng cốt lõi của Mo có khôi phục trạng thái là: nếu chỉ hiện thực được một thao tác, thì chỉ dùng thao tác đó, phần còn lại giao cho cơ chế khôi phục trạng thái xử lý.
+Trong một số bài toán, khi chuyển trạng thái giữa các đoạn, có thể thao tác thêm hoặc xóa không hiện thực được. Khi chỉ thao tác thêm không hiện thực được, hoặc chỉ thao tác xóa không hiện thực được, có thể dùng Mo có khôi phục trạng thái (Mo rollback) để giải trong thời gian $O(n \sqrt m)$. Ý tưởng cốt lõi của Mo có khôi phục trạng thái là: nếu chỉ hiện thực được một thao tác, thì chỉ dùng thao tác đó, phần còn lại giao cho cơ chế khôi phục trạng thái xử lý.
 
 Mo có khôi phục trạng thái được chia thành loại chỉ dùng thao tác thêm và loại chỉ dùng thao tác xóa. Phần dưới chỉ giới thiệu Mo có khôi phục trạng thái chỉ dùng thao tác thêm; loại chỉ dùng thao tác xóa chỉ khác đôi chút trong hiện thực thuật toán, nên không trình bày thêm.
 
@@ -10,7 +10,7 @@ Mo có khôi phục trạng thái được chia thành loại chỉ dùng thao t
 
 Cho một mảng $A$ độ dài $n$ và $m$ truy vấn $(1 \leq n, m \leq 10^5)$. Mỗi truy vấn hỏi số có độ quan trọng lớn nhất trong đoạn $[L, R]$, và yêu cầu **in ra độ quan trọng đó**. Độ quan trọng của một số $i$ được định nghĩa là $i$ nhân với số lần $i$ xuất hiện trong đoạn.
 
-Trong bài toán này, cập nhật đáp án khi thêm phần tử rất dễ hiện thực, nhưng cập nhật đáp án khi xóa phần tử lại khó. Nếu thao tác thêm làm thay đổi đáp án, đáp án mới chắc chắn là độ quan trọng của số vừa được thêm. Còn nếu sau khi xóa, số có độ quan trọng lớn nhất trong đoạn thay đổi, ta khó xác định số mới có độ quan trọng lớn nhất là số nào. Vì vậy Mo thông thường khó giải được bài này.
+Trong bài toán này, cập nhật đáp án khi thêm phần tử rất dễ hiện thực, nhưng cập nhật đáp án khi xóa phần tử lại khó. Nếu thao tác thêm làm thay đổi đáp án, đáp án mới là độ quan trọng của số vừa được thêm. Còn nếu sau khi xóa, số có độ quan trọng lớn nhất trong đoạn thay đổi, khó xác định số mới có độ quan trọng lớn nhất là số nào. Vì vậy Mo thông thường khó giải được bài này.
 
 ## Quy trình
 
