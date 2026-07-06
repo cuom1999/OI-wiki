@@ -16,12 +16,12 @@ $\mathrm{dist}$ của một nút là số cạnh trên đường đi từ nút �
 $\mathrm{dist}$ của nút rỗng là $0$.
 
 ???+ note "Lưu ý"
-    Trong một số tài liệu, $\mathrm{dist}$ được định nghĩa bằng $\mathrm{dist}$ trong bài này trừ $1$.
-    Cách định nghĩa đó giúp mã nguồn bỏ qua một số bước kiểm tra rỗng, nhưng phải quy ước $\mathrm{dist}$ của nút rỗng
-    là $-1$. Mã trong bài này dùng quy ước **$\mathrm{dist}$ của nút rỗng là $-1$**, cần phân biệt với định nghĩa dùng
-    trong phần diễn giải.
+    Trong một số tài liệu, $\mathrm{dist}$ được định nghĩa nhỏ hơn quy ước trong phần diễn giải của bài này đúng $1$.
+    Quy ước đó giúp mã nguồn bỏ qua một số bước kiểm tra rỗng, nhưng phải đặt $\mathrm{dist}$ của nút rỗng là $-1$.
+    Các đoạn mã mẫu trong bài dùng quy ước **$\mathrm{dist}$ của nút rỗng là $-1$**, vì vậy cần phân biệt với định nghĩa
+    dùng khi giải thích ý tưởng.
 
-Cây lệch trái là một cây nhị phân. Ngoài tính chất heap, nó còn "lệch trái":
+Về cấu trúc, cây lệch trái là một cây nhị phân. Ngoài tính chất heap, nó còn "lệch trái":
 tại mỗi nút, $\mathrm{dist}$ của con trái luôn lớn hơn hoặc bằng $\mathrm{dist}$ của con phải.
 
 Do đó, $\mathrm{dist}$ của mỗi nút trong cây lệch trái đều bằng $\mathrm{dist}$ của con phải cộng một.
@@ -33,10 +33,10 @@ Cần lưu ý rằng $\mathrm{dist}$ không phải là độ sâu.
 
 ## Thao tác cốt lõi: hợp nhất (merge)
 
-Khi hợp nhất hai heap, trước hết lấy gốc có giá trị nhỏ hơn làm gốc của heap sau hợp nhất để giữ tính chất heap (bài này
-xét min-heap). Sau đó giữ nguyên con trái của gốc này, rồi đệ quy hợp nhất con phải của nó với heap còn lại để tạo con
-phải mới. Để giữ tính chất lệch trái, sau khi hợp nhất, nếu $\mathrm{dist}$ của con trái nhỏ hơn $\mathrm{dist}$ của con
-phải thì đổi chỗ hai con.
+Khi hợp nhất hai heap, trước hết chọn gốc có giá trị nhỏ hơn làm gốc của heap kết quả để giữ tính chất heap (bài này xét
+min-heap). Sau đó giữ nguyên con trái của gốc này, rồi đệ quy hợp nhất con phải của nó với heap còn lại để tạo con phải
+mới. Để giữ tính chất lệch trái, sau khi hợp nhất, nếu $\mathrm{dist}$ của con trái nhỏ hơn $\mathrm{dist}$ của con phải
+thì đổi chỗ hai con.
 
 Mã tham khảo:
 
@@ -53,17 +53,18 @@ Mã tham khảo:
     }
     ```
 
-Nhờ tính chất lệch trái, mỗi khi đệ quy xuống một tầng, $\mathrm{dist}$ của gốc một trong hai heap sẽ giảm $1$.
+Nhờ tính chất lệch trái, mỗi khi đệ quy xuống một tầng, $\mathrm{dist}$ của gốc ở một trong hai heap sẽ giảm $1$.
 Mặt khác, trong một cây nhị phân có $n$ nút, $\mathrm{dist}$ của gốc không vượt quá $\left\lceil\log (n+1)\right\rceil$.
 Vì vậy, độ phức tạp khi hợp nhất hai heap có kích thước lần lượt là $n$ và $m$ là $O(\log n+\log m)$.
 
 ???+ note "Chứng minh tính chất của $\mathrm{dist}$"
     Nếu một cây nhị phân có $\mathrm{dist}$ của gốc bằng $x$, thì ít nhất $x-1$ tầng của nó là cây nhị phân đầy đủ, nên
-    cây có ít nhất $2^x-1$ nút.
+    cây đó có ít nhất $2^x-1$ nút.
     Tính chất này đúng với mọi cây nhị phân, không phải tính chất riêng của cây lệch trái.
 
 Cây lệch trái còn có một cách viết không cần hoán đổi tường minh con trái và con phải: xem con có $\mathrm{dist}$ lớn hơn
 là con trái, con có $\mathrm{dist}$ nhỏ hơn là con phải.
+Đoạn mã sau viết theo biến thể max-heap; nếu dùng min-heap thì đổi chiều so sánh giá trị.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -110,7 +111,7 @@ Nếu không thỏa tính chất lệch trái thì đổi chỗ hai con; khi $\m
     ```cpp
     int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
     
-    // Có pushup thì chỉ cần merge hai con là xóa được nút và vẫn giữ tính chất lệch trái
+    // Với pushup, chỉ cần merge hai con là xóa được nút mà vẫn giữ tính chất lệch trái.
     int merge(int x, int y) {
       if (!x || !y) return x | y;
       if (t[x].val < t[y].val) swap(x, y);
@@ -144,10 +145,10 @@ Nếu không thỏa tính chất lệch trái thì đổi chỗ hai con; khi $\m
 
 #### Chứng minh độ phức tạp
 
-Trước hết xét quá trình `merge`: mỗi lần gọi đều làm cho $x$ hoặc $y$ đi xuống một tầng. Trong trường hợp cực đoan nhất,
-quá trình luôn đi theo nút phải của cây lệch trái, tức nút có $\mathrm{dist}$ nhỏ nhất; khi đó $\mathrm{dist}$ giảm $1$.
+Trước hết xét quá trình `merge`: mỗi lần gọi đều làm cho $x$ hoặc $y$ đi xuống một tầng. Trong trường hợp xấu nhất, quá
+trình luôn đi theo con phải của cây lệch trái, tức nhánh có $\mathrm{dist}$ nhỏ nhất; khi đó $\mathrm{dist}$ giảm $1$.
 
-Tiếp theo xét quá trình `pushup`. Gọi nút hiện tại mà `pushup` đang xử lý là $x$, cha của nó là $y$.
+Tiếp theo xét quá trình `pushup`. Gọi nút hiện tại mà `pushup` đang xử lý là $x$, và gọi cha của nó là $y$.
 Gọi "$\mathrm{dist}$ ban đầu" của một nút là $\mathrm{dist}$ của nó trước khi `pushup`.
 Khi đệ quy bắt đầu từ cha của nút bị xóa, có hai trường hợp:
 
@@ -206,8 +207,8 @@ Gắn đánh dấu ở gốc; khi xóa gốc hoặc hợp nhất heap, tức khi
     }
     ```
 
-Điểm khác biệt duy nhất của cách cài đặt này là dùng số ngẫu nhiên trong quá trình hợp nhất,
-nhờ đó có thể bỏ các tính toán liên quan đến $\mathrm{dist}$.
+Điểm khác biệt duy nhất của cách cài đặt này là dùng lựa chọn ngẫu nhiên trong quá trình hợp nhất, nhờ đó có thể bỏ các
+tính toán liên quan đến $\mathrm{dist}$.
 Độ phức tạp thời gian trung bình cũng là $O(\log n)$;
 chứng minh chi tiết có thể xem tại [Randomized Heap](https://cp-algorithms.com/data_structures/randomized_heap.html).
 
@@ -216,7 +217,7 @@ chứng minh chi tiết có thể xem tại [Randomized Heap](https://cp-algorit
 ### Heap nghiêng
 
 Heap nghiêng là dạng tự thích nghi của cây lệch trái.
-Khi hợp nhất hai heap, nó đổi chỗ vô điều kiện tất cả các nút trên đường hợp nhất để cố gắng duy trì cân bằng.
+Khi hợp nhất hai heap, nó đổi chỗ hai con ở mọi nút trên đường hợp nhất để cố gắng duy trì cân bằng.
 Theo phân tích khấu hao, với heap nghiêng từ trên xuống (top-down skew heap),
 độ phức tạp của chèn, hợp nhất và xóa giá trị nhỏ nhất là $O(\log n)$[^ref1].
 
@@ -238,9 +239,9 @@ Lưu ý:
 
 1.  Trước khi hợp nhất, cần kiểm tra xem hai nút đã ở trong cùng một heap hay chưa.
 
-2.  Độ sâu của cây lệch trái có thể đạt $O(n)$, vì vậy muốn tìm đỉnh heap chứa một điểm thì phải dùng DSU để duy trì,
-    không thể nhảy cha trực tiếp bằng vét cạn.
-    Dù dữ liệu của nhiều bài khá yếu và nhảy cha vét cạn vẫn đủ để được chấp nhận,
+2.  Độ sâu của cây lệch trái có thể đạt $O(n)$, vì vậy muốn tìm gốc của heap chứa một nút thì phải dùng DSU để duy trì,
+    không thể lần ngược cha trực tiếp bằng cách tuyến tính.
+    Dù dữ liệu của nhiều bài khá yếu và cách lần ngược cha tuyến tính vẫn đủ để được chấp nhận,
     khi dùng DSU để duy trì gốc cần giữ cho gốc cũ trỏ tới gốc mới, còn gốc mới trỏ tới chính nó.
 
 ??? note "Mã tham khảo cho Trò chơi La Mã"
@@ -268,35 +269,35 @@ Cách xử lý này gần giống các bài hợp nhất cây phân đoạn.
 
 ### [SCOI2011 Thao tác hóc búa](https://loj.ac/problem/2441)
 
-Trước hết, để tìm đỉnh heap chứa một nút, cần dùng DSU, không thể nhảy lên trên bằng vét cạn.
+Trước hết, để tìm gốc của heap chứa một nút, cần dùng DSU, không thể lần ngược cha tuyến tính.
 
-Tiếp theo xét truy vấn một điểm. Nếu dùng cách thông thường để gắn đánh dấu,
-cần truy vấn tổng các đánh dấu trên đường từ điểm đó tới gốc; trường hợp xấu nhất có thể đạt $O(n)$.
-Nếu chỉ đỉnh heap có đánh dấu thì có thể truy vấn nhanh, nhưng làm thế nào để đạt được điều đó?
+Tiếp theo xét truy vấn một nút. Nếu dùng cách thông thường để gắn đánh dấu,
+cần truy vấn tổng các đánh dấu trên đường từ nút đó tới gốc; trường hợp xấu nhất có thể đạt $O(n)$.
+Nếu chỉ gốc heap có đánh dấu thì có thể truy vấn nhanh, nhưng làm thế nào để đạt được điều đó?
 
 Có thể dùng cách tương tự hợp nhất theo kinh nghiệm: mỗi lần hợp nhất, đẩy đánh dấu của heap nhỏ hơn xuống từng nút bằng
-vét cạn, rồi dùng đánh dấu của heap lớn hơn làm đánh dấu của heap sau hợp nhất. Vì sau khi hợp nhất sẽ dùng đánh dấu của
-heap còn lại, khi đẩy đánh dấu của heap nhỏ hơn xuống cần đẩy lượng bằng đánh dấu của nó trừ đánh dấu của heap kia. Mỗi
-lần một nút được hợp nhất, kích thước heap chứa nó ít nhất nhân đôi, nên mỗi nút bị đẩy đánh dấu xuống nhiều nhất
-$O(\log n)$ lần.
-Tổng độ phức tạp của việc đẩy đánh dấu vét cạn là $O(n\log n)$.
+duyệt tuyến tính, rồi dùng đánh dấu của heap lớn hơn làm đánh dấu của heap sau hợp nhất. Vì sau khi hợp nhất sẽ dùng
+đánh dấu của heap còn lại, khi đẩy đánh dấu của heap nhỏ hơn xuống cần đẩy lượng bằng đánh dấu của nó trừ đánh dấu của
+heap kia. Mỗi lần một nút được hợp nhất, kích thước heap chứa nó ít nhất nhân đôi, nên mỗi nút bị đẩy đánh dấu xuống
+nhiều nhất $O(\log n)$ lần.
+Tổng độ phức tạp của việc đẩy đánh dấu bằng duyệt tuyến tính là $O(n\log n)$.
 
-Tiếp theo xét cộng vào một điểm: xóa trước, cập nhật, rồi chèn lại.
+Tiếp theo xét cộng vào một nút: xóa trước, cập nhật, rồi chèn lại.
 
 Cuối cùng là giá trị lớn nhất toàn cục.
-Có thể dùng cây cân bằng, heap hỗ trợ xóa nút bất kỳ (như cây lệch trái), hoặc `multiset` để duy trì đỉnh heap của mỗi
+Có thể dùng cây cân bằng, heap hỗ trợ xóa nút bất kỳ (như cây lệch trái), hoặc `multiset` để duy trì gốc heap của mỗi
 heap.
 
 Vì vậy, các thao tác lần lượt như sau:
 
-1.  Đẩy đánh dấu của heap có ít nút hơn bằng vét cạn, hợp nhất hai heap, cập nhật kích thước và đánh dấu,
-    rồi xóa khỏi `multiset` đỉnh heap cũ không còn là đỉnh heap sau hợp nhất.
+1.  Đẩy đánh dấu của heap có ít nút hơn bằng duyệt tuyến tính, hợp nhất hai heap, cập nhật kích thước và đánh dấu,
+    rồi xóa khỏi `multiset` gốc heap cũ không còn là gốc heap sau hợp nhất.
 2.  Xóa nút, cập nhật giá trị, chèn lại, rồi cập nhật multiset. Cần xét riêng trường hợp nút bị xóa có phải là gốc hay
     không.
-3.  Gắn đánh dấu lên đỉnh heap, cập nhật multiset.
+3.  Gắn đánh dấu lên gốc heap, cập nhật `multiset`.
 4.  Gắn đánh dấu toàn cục.
-5.  Truy vấn giá trị + đánh dấu của đỉnh heap + đánh dấu toàn cục.
-6.  Truy vấn giá trị của gốc + đánh dấu của đỉnh heap + đánh dấu toàn cục.
+5.  Truy vấn giá trị + đánh dấu của gốc heap + đánh dấu toàn cục.
+6.  Truy vấn giá trị của gốc + đánh dấu của gốc heap + đánh dấu toàn cục.
 7.  Truy vấn giá trị lớn nhất trong multiset + đánh dấu toàn cục.
 
 ??? note "Mã tham khảo cho Thao tác hóc búa"
