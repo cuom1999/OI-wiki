@@ -2,7 +2,7 @@ Kiến thức nền: [định lí nhỏ Fermat](./fermat.md#định-lý-nhỏ-fe
 
 Bậc và căn nguyên thủy là các công cụ quan trọng để hiểu cấu trúc nhân của
 [hệ thặng dư thu gọn](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
-$\mathbf Z_m^*$ modulo $m$. Dựa trên chúng, ta có thể định nghĩa các khái niệm
+$\mathbf Z_m^*$ modulo $m$. Dựa trên chúng, có thể định nghĩa các khái niệm
 như [logarit rời rạc](./discrete-logarithm.md). Phần thảo luận tổng quát hơn có
 thể xem ở các mục liên quan trong phần đại số trừu tượng, chẳng hạn
 [lý thuyết nhóm](../algebra/group-theory.md#cấp) và
@@ -12,7 +12,7 @@ thể xem ở các mục liên quan trong phần đại số trừu tượng, ch
 
 ## Bậc
 
-Trong mục này, ta luôn giả sử modulo $m\in\mathbf N_+$ và cơ số
+Trong mục này, luôn giả sử modulo $m\in\mathbf N_+$ và cơ số
 $a\in\mathbf Z$ nguyên tố cùng nhau, tức là $(a,m)=1$, cũng viết là
 $a\perp m$.
 
@@ -43,20 +43,20 @@ $a^0\bmod m = 1$:
 
 ### Cấu trúc tuần hoàn của lũy thừa
 
-Dùng bậc, ta có thể mô tả cấu trúc tuần hoàn của lũy thừa. Với lũy thừa
+Dùng bậc, có thể mô tả cấu trúc tuần hoàn của lũy thừa. Với lũy thừa
 $a^n\bmod m$, chia số mũ $n$ cho bậc $\delta_m(a)$ có dư:
 
 $$
 n = \delta_m(a)q + r, ~ 0\le r < \delta_m(a).
 $$
 
-Tiếp theo, dùng các quy tắc tính lũy thừa, ta có
+Tiếp theo, dùng các quy tắc tính lũy thừa, có
 
 $$
 a^n = a^{\delta_m(a)q + r} = (a^{\delta_m(a)})^q \cdot a^r \equiv a^r \pmod m.
 $$
 
-Điều này cho thấy với lũy thừa có số mũ bất kỳ, ta có thể tiến nó về chu kỳ
+Điều này cho thấy với lũy thừa có số mũ bất kỳ, có thể đưa nó về chu kỳ
 không âm đầu tiên. Từ đó suy ra một loạt tính chất về bậc.
 
 <a id="ord-prop-1"></a>
@@ -93,13 +93,13 @@ của tất cả các bậc $\delta_m(a)$ với $a\perp m$, ký hiệu là $\lam
 là [hàm Carmichael](#hàm-carmichael) của $m$. Phần sau sẽ thảo
 luận chi tiết các tính chất của nó.
 
-Tương tự các cấu trúc tuần hoàn khác, ta có thể tính bậc của $a^k$ dựa trên
+Tương tự các cấu trúc tuần hoàn khác, có thể tính bậc của $a^k$ dựa trên
 bậc của $a$.
 
 <a id="ord-prop-3"></a>
 
 ???+ note "Tính chất 3"
-    Với $k,a\in\mathbf Z,m\in\mathbf N_+$ và $a\perp m$, ta có
+    Với $k,a\in\mathbf Z,m\in\mathbf N_+$ và $a\perp m$, có
 
     $$
     \delta_m(a^k) = \dfrac{\delta_m(a)}{(\delta_m(a),k)}.
@@ -125,13 +125,13 @@ bậc của $a$.
 ### Bậc của tích
 
 Giả sử $a,b$ là các số nguyên khác nhau và cùng nguyên tố với $m$. Nếu đã biết
-các bậc $\delta_m(a)$ và $\delta_m(b)$, ta cũng có thể thu được một số thông
+các bậc $\delta_m(a)$ và $\delta_m(b)$, cũng có thể thu được một số thông
 tin về bậc $\delta_{m}(ab)$ của tích $ab$.
 
 <a id="ord-prop-4"></a>
 
 ???+ note "Tính chất 4"
-    Với $a,b\in\mathbf Z,m\in\mathbf N_+$ và $a,b\perp m$, ta có
+    Với $a,b\in\mathbf Z,m\in\mathbf N_+$ và $a,b\perp m$, có
 
     $$
     \dfrac{[\delta_m(a),\delta_m(b)]}{(\delta_m(a),\delta_m(b))} \mid \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
@@ -139,13 +139,13 @@ tin về bậc $\delta_{m}(ab)$ của tích $ab$.
 
 ??? note "Chứng minh"
     Vì $[\delta_m(a),\delta_m(b)]$ là bội của cả $\delta_m(a)$ lẫn
-    $\delta_m(b)$, theo [Tính chất 2](#ord-prop-2) ta có
+    $\delta_m(b)$, theo [Tính chất 2](#ord-prop-2) có
 
     $$
     (ab)^{[\delta_m(a),\delta_m(b)]} = a^{[\delta_m(a),\delta_m(b)]} b^{[\delta_m(a),\delta_m(b)]} \equiv 1 \pmod m.
     $$
 
-    Áp dụng Tính chất 2 một lần nữa, ta được
+    Áp dụng Tính chất 2 một lần nữa, thu được
 
     $$
     \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
@@ -159,8 +159,8 @@ tin về bậc $\delta_{m}(ab)$ của tích $ab$.
     1 \equiv (ab)^{\delta_m(ab)\delta_m(b)} \equiv a^{\delta_m(ab)\delta_m(b)} \pmod m,
     $$
 
-    nên áp dụng Tính chất 2 ta được $\delta_m(a)\mid\delta_m(ab)\delta_m(b)$.
-    Rút gọn $(\delta_m(a),\delta_m(b))$ ở hai phía, ta có
+    nên áp dụng Tính chất 2 thu được $\delta_m(a)\mid\delta_m(ab)\delta_m(b)$.
+    Rút gọn $(\delta_m(a),\delta_m(b))$ ở hai phía, có
 
     $$
     \dfrac{\delta_m(a)}{(\delta_m(a),\delta_m(b))}\mid\delta_m(ab)\dfrac{\delta_m(b)}{(\delta_m(a),\delta_m(b))}.
@@ -172,13 +172,13 @@ tin về bậc $\delta_{m}(ab)$ của tích $ab$.
     \dfrac{\delta_m(a)}{(\delta_m(a),\delta_m(b))}\mid\delta_m(ab).
     $$
 
-    Tương tự, ta cũng có
+    Tương tự, cũng có
 
     $$
     \dfrac{\delta_m(b)}{(\delta_m(a),\delta_m(b))}\mid\delta_m(ab).
     $$
 
-    Vì hai vế trái của hai quan hệ chia hết này nguyên tố cùng nhau, ta có
+    Vì hai vế trái của hai quan hệ chia hết này nguyên tố cùng nhau, có
 
     $$
     \dfrac{[\delta_m(a),\delta_m(b)]}{(\delta_m(a),\delta_m(b))} =\dfrac{\delta_m(a)\delta_m(b)}{(\delta_m(a),\delta_m(b))^2}\mid\delta_m(ab).
@@ -192,7 +192,7 @@ giản hơn.
 <a id="ord-prop-4p"></a>
 
 ???+ note "Tính chất 4'"
-    Với $a,b\in\mathbf Z,m\in\mathbf N_+$ và $a,b\perp m$, ta có
+    Với $a,b\in\mathbf Z,m\in\mathbf N_+$ và $a,b\perp m$, có
 
     $$
     \delta_m(ab) = \delta_m(a)\delta_m(b) \iff \delta_m(a)\perp\delta_m(b).
@@ -206,7 +206,7 @@ giản hơn.
     \delta_m(ab) = [\delta_m(a),\delta_m(b)] = \delta_m(a)\delta_m(b).
     $$
 
-    Ngược lại, nếu $\delta_m(ab)=\delta_m(a)\delta_m(b)$, theo Tính chất 4 ta có
+    Ngược lại, nếu $\delta_m(ab)=\delta_m(a)\delta_m(b)$, theo Tính chất 4 có
 
     $$
     \delta_m(a)\delta_m(b) = \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
@@ -217,11 +217,11 @@ giản hơn.
 
 Trong trường hợp tổng quát, các cận thu được từ [Tính chất 4](#ord-prop-4) đã
 là chặt. Trường hợp bậc của tích đạt cận dưới rất dễ xây dựng: chẳng hạn với
-$(a,b,m)=(3,5,7)$, ta có $\delta_m(a)=\delta_m(b)=6$, nhưng bậc của tích là
+$(a,b,m)=(3,5,7)$, có $\delta_m(a)=\delta_m(b)=6$, nhưng bậc của tích là
 $\delta_m(ab)=1$.
 
 Mặc dù trong trường hợp tổng quát, bậc của tích $ab$ không nhất thiết là bội
-chung nhỏ nhất của các bậc của chúng, ta luôn có thể tìm một phần tử có bậc
+chung nhỏ nhất của các bậc của chúng, luôn có thể tìm một phần tử có bậc
 bằng bội chung nhỏ nhất đó.
 
 <a id="ord-prop-5"></a>
@@ -255,7 +255,7 @@ bằng bội chung nhỏ nhất đó.
     $$
 
     thì $\delta_m(a) = \gamma_A\gamma_B$ và $\delta_m(b)=\eta_A\eta_B$. Theo
-    [Tính chất 3](#ord-prop-3), ta có
+    [Tính chất 3](#ord-prop-3), có
 
     $$
     \begin{aligned}
@@ -264,7 +264,7 @@ bằng bội chung nhỏ nhất đó.
     \end{aligned}
     $$
 
-    Vì $\gamma_A\perp\eta_B$, theo [Tính chất 4'](#ord-prop-4p), ta có
+    Vì $\gamma_A\perp\eta_B$, theo [Tính chất 4'](#ord-prop-4p), có
 
     $$
     \delta_m(a^{\gamma_B}b^{\eta_A}) = \gamma_A\eta_B = \prod_p p^{\max\{\alpha_p,\beta_p\}} = [\delta_m(a),\delta_m(b)].
@@ -285,7 +285,7 @@ hệ thặng dư thu gọn modulo $m$.
 ???+ abstract "Căn nguyên thủy"
     Với $m\in\mathbf N_+$, nếu tồn tại $g\in\mathbf Z$ và $g\perp m$ sao cho
     $\delta_m(g)=|\mathbf Z_m^*|=\varphi(m)$, thì $g$ được gọi là **căn nguyên
-    thủy modulo $m$** (primitive root modulo $m$). Ở đây, $\varphi(m)$ là
+    thủy modulo $m$** (primitive root modulo $m$). Trong đó, $\varphi(m)$ là
     [hàm Euler](./euler-totient.md).
 
 Không phải mọi số nguyên dương $m$ đều có căn nguyên thủy modulo $m$. Theo
@@ -303,30 +303,31 @@ $g^i\bmod p$ đôi một khác nhau với $i=1,2,\cdots,p-1$.
     đều là nhóm cyclic; việc tồn tại căn nguyên thủy cho thấy nó đẳng cấu với
     một nhóm cyclic, còn nếu không tồn tại căn nguyên thủy thì không đẳng cấu.
 
-Khi modulo bằng $1$, nhóm nhân các số nguyên modulo $1$ là $\{0\}$. Hiển nhiên
-đây là nhóm cyclic, nên căn nguyên thủy là $0$.
+Khi modulo bằng $1$, nhóm nhân các số nguyên modulo $1$ là $\{0\}$. Đây là
+nhóm cyclic, nên căn nguyên thủy là $0$.
 
 <span id="định-lí-kiểm-tra-căn-nguyên-thủy"></span>
 
 ### Định lí kiểm tra căn nguyên thủy
 
-Nếu đã biết tất cả các thừa số nguyên tố của $\varphi(m)$, ta có thể dễ dàng
-kiểm tra một số có phải căn nguyên thủy modulo $m$ hay không.
+Nếu đã biết tất cả các thừa số nguyên tố của $\varphi(m)$, có thể kiểm tra một
+số có phải căn nguyên thủy modulo $m$ hay không.
 
 ???+ note "Định lí"
     Với số nguyên $m\ge 3$ và $g\perp m$, $g$ là căn nguyên thủy modulo $m$ khi
-    và chỉ khi với mọi thừa số nguyên tố $p$ của $\varphi(m)$, ta đều có
+    và chỉ khi với mọi thừa số nguyên tố $p$ của $\varphi(m)$, điều kiện sau
+    đều đúng:
 
     $$
     g^{\frac{\varphi(m)}{p}}\not\equiv 1 \pmod m.
     $$
 
 ??? note "Chứng minh"
-    Chiều cần là hiển nhiên. Để chứng minh chiều đủ, ta dùng phản chứng. Nếu
-    $g$ không phải là căn nguyên thủy modulo $m$, thì chắc chắn
+    Chiều cần suy ra trực tiếp từ định nghĩa bậc. Để chứng minh chiều đủ, dùng
+    phản chứng. Nếu $g$ không phải là căn nguyên thủy modulo $m$, thì chắc chắn
     $\delta_m(g)< \varphi(m)$. Theo [Tính chất 2](#ord-prop-2) và định lí
     Euler, $\delta_m(g)\mid\varphi(m)$. Do đó, lấy $p$ là một thừa số nguyên tố
-    của $\dfrac{\varphi(m)}{\delta_m(g)}$, ta có
+    của $\dfrac{\varphi(m)}{\delta_m(g)}$, có
     $\delta_m(g)\mid\dfrac{\varphi(m)}{p}$. Áp dụng lại Tính chất 2, suy ra
 
     $$
@@ -342,7 +343,7 @@ kiểm tra một số có phải căn nguyên thủy modulo $m$ hay không.
 
 Căn nguyên thủy nếu tồn tại thì cũng không nhất thiết duy nhất. Tổng quát hơn,
 với các bậc có thể có của mỗi phần tử trong hệ thặng dư thu gọn modulo $m$ và
-số phần tử có một bậc nào đó, ta có kết luận sau:
+số phần tử có một bậc nào đó, có kết luận sau:
 
 ???+ note "Định lí"
     Nếu số nguyên dương $m$ có căn nguyên thủy $g$, thì phần tử bậc $d$ modulo
@@ -386,7 +387,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
 
 Để chứng minh kết luận này, cần lần lượt xét bốn trường hợp sau:
 
-1.  $m=1,2,4$, các căn nguyên thủy lần lượt là $g=0,1,3$, hiển nhiên tồn tại.
+1.  $m=1,2,4$, các căn nguyên thủy lần lượt là $g=0,1,3$, nên tồn tại.
 
 2.  $m=p^{e}$ là lũy thừa của một số nguyên tố lẻ, trong đó $p$ là số nguyên
     tố lẻ và $e\in\mathbf N_+$.
@@ -462,7 +463,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$.
 
         Cách chọn $g$ bảo đảm biểu thức này đúng khi $e=1$. Giả sử biểu thức
-        đúng với trường hợp $e$, ta chứng minh nó cũng đúng với trường hợp
+        đúng với trường hợp $e$, cần chứng minh nó cũng đúng với trường hợp
         $e+1$. Với mọi $e \ge 1$, theo định lí Euler tồn tại $\lambda$ sao cho
 
         $$
@@ -476,7 +477,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         g^{\varphi(p^{e+1})} = \left(g^{\varphi(p^{e})}\right)^p = (1 + \lambda p^e)^p \equiv 1 + \lambda p^{e+1} \pmod{p^{e+2}}.
         $$
 
-        Kết hợp với $\lambda\perp p$, ta được
+        Kết hợp với $\lambda\perp p$, thu được
         $g^{\varphi(p^{e+1})}\not\equiv 1\pmod{p^{e+2}}$. Theo quy nạp toán
         học, mệnh đề đúng.
 
@@ -484,7 +485,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         nguyên thủy modulo $p^e$.
 
         Cách chọn $g$ bảo đảm mệnh đề đúng khi $e=1$. Giả sử mệnh đề đúng với
-        $e$, ta chứng minh nó đúng với $e+1$. Viết gọn $\delta_{p^{e+1}}(g)$ là
+        $e$, cần chứng minh nó đúng với $e+1$. Viết gọn $\delta_{p^{e+1}}(g)$ là
         $\delta$. Vì $g^\delta\equiv 1\pmod{p^{e+1}}$, tất yếu cũng có
         $g^\delta\equiv 1\pmod{p^e}$. Theo giả thiết quy nạp,
         $\delta_{p^e}(g) = \varphi(p^e)$. Do đó, theo
@@ -508,12 +509,12 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
     ??? note "Chứng minh"
         Giả sử $g$ là căn nguyên thủy modulo $p^{e}$, khi đó $g+p^e$ cũng là
         căn nguyên thủy modulo $p^{e}$. Trong hai số này chắc chắn có một số
-        lẻ; không mất tính tổng quát, giả sử đó là $g$. Hiển nhiên
+        lẻ; không mất tính tổng quát, giả sử đó là $g$. Khi đó
         $(g,2p^e)=1$. Đặt $\delta=\delta_{2p^e}(g)$, cần chứng minh
         $\delta=\varphi(2p^e)$. Theo định lí Euler,
         $\delta\mid\varphi(2p^e)$. Đồng thời, theo định nghĩa
         $g^\delta\equiv 1\pmod{2p^e}$, nên $g^\delta\equiv 1\pmod{p^e}$. Do
-        đó, theo [Tính chất 2](#ord-prop-2) về bậc và cách chọn $g$, ta có
+        đó, theo [Tính chất 2](#ord-prop-2) về bậc và cách chọn $g$, có
         $\delta_{p^e}(g)=\varphi(p^e)\mid \delta$. Theo công thức hàm Euler,
         $\varphi(2p^e) = \varphi(p^e)$. Vì vậy
         $\delta=\delta_{2p^e}(g)=\varphi(p^e)$. Điều này chứng minh $g$ là căn
@@ -560,7 +561,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         g^{\varphi(m_i)} \equiv 1 \pmod{m_i}.
         $$
 
-        Vì $m_i > 2$, $\varphi(m_i)$ là số chẵn, nên với $i=1,2$ ta có
+        Vì $m_i > 2$, $\varphi(m_i)$ là số chẵn, nên với $i=1,2$ có
 
         $$
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m_i}.
@@ -572,7 +573,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m}.
         $$
 
-        Lại vì $\varphi(m)=\varphi(m_1)\varphi(m_2)$, theo định nghĩa bậc ta có
+        Lại vì $\varphi(m)=\varphi(m_1)\varphi(m_2)$, theo định nghĩa bậc có
 
         $$
         \delta_m(g) \le \frac{1}{2}\varphi(m_1)\varphi(m_2) = \dfrac{1}{2}\varphi(m) < \varphi(m).
@@ -581,7 +582,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         Điều này mâu thuẫn với giả thiết $g$ là căn nguyên thủy modulo $m$. Vì
         vậy, theo phản chứng, căn nguyên thủy modulo $m$ không tồn tại.
 
-Tổng hợp bốn bổ đề trên, ta đã đưa ra điều kiện cần và đủ để một số có căn
+Tổng hợp bốn bổ đề trên cho điều kiện cần và đủ để một số có căn
 nguyên thủy.
 
 <span id="thuật-toán-tìm-căn-nguyên-thủy"></span>
@@ -594,7 +595,7 @@ căn nguyên thủy hay không. Khi liệt kê, thường có hai cách xử lý
 nhỏ đến lớn, hoặc sinh ngẫu nhiên một vài số nguyên dương. Hiệu quả thực tế của
 hai cách này tương đương nhau.
 
-Khi liệt kê từ nhỏ đến lớn, ta thu được căn nguyên thủy nhỏ nhất $g_m$ modulo
+Khi liệt kê từ nhỏ đến lớn, thu được căn nguyên thủy nhỏ nhất $g_m$ modulo
 $m$; do đó độ phức tạp của phần liệt kê phụ thuộc vào kích thước của $g_m$. Về
 điểm này, có các ước lượng sau:
 
@@ -622,7 +623,7 @@ $m$; do đó độ phức tạp của phần liệt kê phụ thuộc vào kích
 Theo các phân tích này, khi tìm căn nguyên thủy nhỏ nhất bằng vét cạn, độ phức
 tạp $O(g_m(\log m)^2)$ của phần liệt kê là chấp nhận được.
 
-Ngoài việc liệt kê từ nhỏ đến lớn, ta còn có thể tìm căn nguyên thủy bằng cách
+Ngoài việc liệt kê từ nhỏ đến lớn, còn có thể tìm căn nguyên thủy bằng cách
 sinh ngẫu nhiên các số nguyên dương rồi kiểm tra. Mật độ căn nguyên thủy không
 thấp:[^density-prim-root]
 
@@ -633,7 +634,7 @@ $$
 Vì vậy, khi tìm căn nguyên thủy bằng phương pháp ngẫu nhiên, độ phức tạp kỳ vọng
 của phần liệt kê là $O((\log m)^2\log\log m)$.
 
-Cần lưu ý rằng khi kiểm tra căn nguyên thủy, ta cần biết phân tích thừa số
+Cần lưu ý rằng khi kiểm tra căn nguyên thủy, cần biết phân tích thừa số
 nguyên tố của $\varphi(m)$. Trong các
 [thuật toán phân tích thừa số nguyên tố thường dùng](./pollard-rho.md) trong
 lập trình thi đấu, thuật toán Pollard Rho có độ phức tạp tối ưu cũng cần thời
@@ -667,7 +668,7 @@ $$
 
 Đây cũng thường được dùng làm định nghĩa tương đương của hàm Carmichael.
 
-Áp dụng lặp lại [Tính chất 5](#ord-prop-5), ta biết chắc chắn tồn tại một phần
+Áp dụng lặp lại [Tính chất 5](#ord-prop-5), biết chắc chắn tồn tại một phần
 tử $a\perp m$ sao cho $\delta_m(a)=\lambda(m)$. Do đó công thức trên cũng có thể
 viết thành
 
@@ -686,11 +687,11 @@ Hàm Carmichael là một [hàm số học](./basic.md#hàm-số-học).
 Mục này thảo luận một công thức truy hồi của nó, từ đó đưa ra một chứng minh
 khác cho định lí tồn tại căn nguyên thủy.
 
-Tuy không phải hàm nhân tính, khi tính hàm Carmichael ta vẫn có thể xử lý riêng
+Tuy không phải hàm nhân tính, khi tính hàm Carmichael vẫn có thể xử lý riêng
 các thừa số nguyên tố cùng nhau.
 
 ???+ note "Bổ đề"
-    Với hai số nguyên dương nguyên tố cùng nhau $m_1,m_2$, ta có
+    Với hai số nguyên dương nguyên tố cùng nhau $m_1,m_2$, có
     $\lambda(m_1m_2)=[\lambda(m_1),\lambda(m_2)]$.
 
 ??? note "Chứng minh"
@@ -699,13 +700,13 @@ các thừa số nguyên tố cùng nhau.
     [định lí thặng dư Trung Hoa](./crt.md), tồn tại $a\perp m$ sao cho
     $a\equiv a_i\pmod{m_i}$ với $i=1,2$. Vì $a^{\lambda(m)}\equiv 1\pmod m$,
     nên với $i=1,2$ đều có $a_i^{\lambda(m)} \equiv 1\pmod{m_i}$. Từ đó theo
-    [Tính chất 2](#ord-prop-2) và cách chọn $a_i$, ta có
+    [Tính chất 2](#ord-prop-2) và cách chọn $a_i$, có
     $\lambda(m_i)=\delta_{m_i}(a_i)\mid \lambda(m)$. Điều này chứng minh
     $[\lambda(m_1),\lambda(m_2)]\mid\lambda(m)$.
 
-    Ngược lại, với mọi $a\perp m$ và $i=1,2$, ta đều có
+    Ngược lại, với mọi $a\perp m$ và $i=1,2$, đều có
     $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m_i}$. Áp dụng định lí
-    thặng dư Trung Hoa, ta được
+    thặng dư Trung Hoa, thu được
     $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m}$ với mọi $a\perp m$.
     Theo định nghĩa hàm Carmichael, $\lambda(m)\mid [\lambda(m_1),\lambda(m_2)]$.
 
@@ -715,12 +716,12 @@ Vì vậy, tiếp theo chỉ cần tính giá trị của hàm Carmichael tại 
 nguyên tố. Trước hết, xử lý trường hợp lũy thừa của $2$.
 
 ???+ note "Bổ đề"
-    Với $m=2^e$ và $e\in\mathbf N_+$, ta có $\lambda(2)=1$, $\lambda(4)=2$, và
+    Với $m=2^e$ và $e\in\mathbf N_+$, có $\lambda(2)=1$, $\lambda(4)=2$, và
     với mọi $e\ge 3$ đều có $\lambda(m)=2^{e-2}$.
 
 ??? note "Chứng minh"
     Trường hợp $m=2,4$ có thể xét riêng. Với $m=2^e$ và $e\ge 3$, trước hết lặp
-    lại phần đầu trong chứng minh [Bổ đề 4](#prim-root-lem-4) ở trên, ta được
+    lại phần đầu trong chứng minh [Bổ đề 4](#prim-root-lem-4) ở trên, thu được
     $\lambda(m)\le 2^{e-2}$. Tiếp theo, chỉ cần chứng minh tồn tại phần tử bậc
     $2^{e-2}$. Để làm việc này, có
 
@@ -732,7 +733,7 @@ nguyên tố. Trước hết, xử lý trường hợp lũy thừa của $2$.
     $\delta_m(5) \mid 2^{e-2}$, nên $5$ chỉ có thể là phần tử bậc $2^{e-2}$. Do
     đó $\lambda(m)=2^{e-2}$.
 
-Trong quá trình chứng minh bổ đề này, thực ra ta đã thu được mô tả về cấu trúc
+Trong quá trình chứng minh bổ đề này, thực ra đã thu được mô tả về cấu trúc
 của hệ thặng dư thu gọn modulo $2^e$:
 
 <a id="mod-pow-2"></a>
@@ -744,8 +745,8 @@ của hệ thặng dư thu gọn modulo $2^e$:
     một không đồng dư, và tạo thành một hệ thặng dư thu gọn.
 
 ??? note "Chứng minh"
-    Dễ dàng kiểm tra trường hợp $e=2$ đúng. Với $e \ge 3$, trong chứng minh ở
-    trên ta đã có bậc của $5$ modulo $2^e$ là $2^{e-2}$, nên
+    Có thể kiểm tra trực tiếp trường hợp $e=2$ đúng. Với $e \ge 3$, trong
+    chứng minh ở trên đã có bậc của $5$ modulo $2^e$ là $2^{e-2}$, nên
     $1,5,\cdots,5^{2^{e-2}-1}$ đôi một không đồng dư. Vì các số nguyên này đều
     dư $1$ modulo $4$, còn các số đối của chúng đều dư $3$ modulo $4$, nên
     $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ đôi một không đồng dư modulo $2^e$.
@@ -755,7 +756,7 @@ của hệ thặng dư thu gọn modulo $2^e$:
 Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
 
 ???+ note "Bổ đề"
-    Với $m=p^e$, trong đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$, ta có
+    Với $m=p^e$, trong đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$, có
     $\lambda(m)=p^{e-1}(p-1)$.
 
 ??? note "Chứng minh"
@@ -765,7 +766,7 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
     $x^{\lambda(p)}\equiv 1\pmod{p}$. Theo nghĩa modulo $p$, phương trình này có
     tổng cộng $p-1$ nghiệm đôi một khác nhau. Theo
     [định lí Lagrange](./congruence-equation.md#định-lý-3-lagrange),
-    ta có $p-1\le\lambda(p)$. Đồng thời, định lí Euler yêu cầu
+    có $p-1\le\lambda(p)$. Đồng thời, định lí Euler yêu cầu
     $\lambda(p)\mid\varphi(p)=p-1$. Do đó $\lambda(p)=p-1$.
 
     Với $m=p^e$ và $e> 1$, có thể bắt đầu bằng việc chứng minh $1+p$ là phần tử
@@ -777,7 +778,7 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
 
     Nên $\delta_m(1+p)=p^{e-1}$. Ngoài ra, giả sử $g$ là căn nguyên thủy modulo
     $p$. Khi đó, vì $g^{\delta_m(g)}\equiv 1 \pmod{p}$, theo
-    [Tính chất 2](#ord-prop-2) về bậc, ta có $p-1\mid\delta_m(g)$. Theo định
+    [Tính chất 2](#ord-prop-2) về bậc, có $p-1\mid\delta_m(g)$. Theo định
     nghĩa hàm Carmichael và định lí Euler,
 
     $$
@@ -786,11 +787,11 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
 
     Do đó $\lambda(m)=p^{e-1}(p-1)$.
 
-Tóm tắt các kết quả của mục này, ta thu được công thức truy hồi của hàm
+Tóm tắt các kết quả của mục này, thu được công thức truy hồi của hàm
 Carmichael:
 
 ???+ note "Định lí"
-    Với mọi số nguyên dương $m$, ta có
+    Với mọi số nguyên dương $m$, có
 
     $$
     \lambda(m) = \begin{cases}
@@ -803,12 +804,12 @@ Carmichael:
 Dùng công thức truy hồi này có thể làm mạnh kết quả phía trên:
 
 ???+ note "Hệ quả"
-    Với các số nguyên dương $m_1,m_2$, ta có
+    Với các số nguyên dương $m_1,m_2$, có
     $\lambda([m_1,m_2])=[\lambda(m_1),\lambda(m_2)]$.
 
-So sánh định nghĩa căn nguyên thủy và hàm Carmichael, ta thấy căn nguyên thủy
+So sánh định nghĩa căn nguyên thủy và hàm Carmichael, thấy rằng căn nguyên thủy
 modulo $m$ tồn tại khi và chỉ khi $\lambda(m)=\varphi(m)$. Từ công thức truy
-hồi của hàm Carmichael, dễ dàng quy nạp ra kết quả sau:
+hồi của hàm Carmichael, có thể quy nạp ra kết quả sau:
 
 ???+ note "Hệ quả"
     Căn nguyên thủy modulo $m$ tồn tại khi và chỉ khi $m=1,2,4,p^e,2p^e$, trong
@@ -821,7 +822,7 @@ căn nguyên thủy, đây tạo thành một chứng minh khác cho định lí
 
 ### Số Carmichael
 
-Dùng hàm Carmichael, ta có thể thảo luận tính chất và phân bố của số Carmichael
+Dùng hàm Carmichael, có thể thảo luận tính chất và phân bố của số Carmichael
 (OEIS:[A002997](https://oeis.org/A002997)). Đây là các hợp số mà
 [kiểm tra tính nguyên tố Fermat](./prime.md#kiểm-tra-tính-nguyên-tố-fermat)
 chắc chắn không thể loại bỏ chính xác.
@@ -833,7 +834,7 @@ chắc chắn không thể loại bỏ chính xác.
 Số Carmichael nhỏ nhất là $561 = 3 \times 11 \times 17$.
 
 Theo định nghĩa hàm Carmichael, hợp số $n$ là số Carmichael khi và chỉ khi
-$\lambda(n)\mid n-1$, trong đó $\lambda(n)$ là hàm Carmichael. Hơn nữa, ta có
+$\lambda(n)\mid n-1$, trong đó $\lambda(n)$ là hàm Carmichael. Hơn nữa, có
 phương pháp sau để xác định hợp số $n$ có phải số Carmichael hay không:
 
 ???+ note "Tiêu chuẩn Korselt[^korselt1899probleme]"
@@ -866,7 +867,7 @@ Carmichael:
     của nó. Để thu được tính chất thứ ba, chỉ cần chứng minh thêm: tích
     $n=p_1p_2$ của hai số nguyên tố phân biệt $p_1,p_2$ chắc chắn không phải số
     Carmichael. Giả sử $n=p_1p_2$ là số Carmichael. Theo tiêu chuẩn Korselt,
-    $(p_i-1)\mid (n-1)$. Nhưng ta có
+    $(p_i-1)\mid (n-1)$. Nhưng có
 
     $$
     n-1=p_1p_2-1\equiv p_2-1 \pmod{p_1-1}.
@@ -876,10 +877,10 @@ Carmichael:
     $(p_2-1)\mid(p_1-1)$. Nghĩa là $p_1=p_2$. Điều này mâu thuẫn với giả thiết.
     Vì vậy số Carmichael $n$ có ít nhất $3$ thừa số nguyên tố phân biệt.
 
-Dùng số học giải tích, ta còn có thể thu được một số tính chất về phân bố của
+Dùng số học giải tích, còn có thể thu được một số tính chất về phân bố của
 số Carmichael. Gọi $C(n)$ là số lượng số Carmichael không vượt quá $n$. Alford,
 Granville, and Pomerance[^alford1994infinitely] chứng minh rằng với $n$ đủ lớn,
-ta có $C(n)>n^{2/7}$. Từ đó, có vô hạn số Carmichael. Trước đó,
+có $C(n)>n^{2/7}$. Từ đó, có vô hạn số Carmichael. Trước đó,
 Erdos[^erdos1956pseudoprimes] đã chứng minh
 $C(n) < n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$, trong đó $c$
 là hằng số. Vì vậy phân bố của số Carmichael rất thưa (so với số nguyên tố).
@@ -920,7 +921,7 @@ Thực tế, có[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
     $m=2\times 3^e~(e\in\mathbf N_+)$. Hơn nữa, khi $m > 2$, có ước lượng cho
     hàm Euler $\varphi(m)$:
     $\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$. Kết hợp
-    hai kết quả này, ta thu được biểu thức trong bài. Về ước lượng này của hàm
+    hai kết quả này, thu được biểu thức trong bài. Về ước lượng này của hàm
     Euler, có thể tham khảo bài báo Rosser, J. Barkley, and Lowell Schoenfeld.
     "Approximate formulas for some functions of prime numbers." Illinois Journal
     of Mathematics 6, no. 1 (1962): 64-94.
