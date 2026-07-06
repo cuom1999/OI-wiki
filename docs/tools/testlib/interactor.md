@@ -1,11 +1,15 @@
-Trình tương tác (interactor) dùng để giao tiếp với chương trình của thí sinh trong bài tương tác. Phần giới thiệu về bài tương tác nằm ở [Các dạng bài - Bài tương tác](../../contest/problems.md#bài-tương-tác).
+Trình tương tác (interactor) dùng để giao tiếp với chương trình của thí sinh
+trong bài tương tác. Phần giới thiệu về bài tương tác nằm ở
+[Các dạng bài - Bài tương tác](../../contest/problems.md#bài-tương-tác).
 
 ???+ note "Ghi chú"
     Testlib chỉ hỗ trợ bài tương tác theo kiểu Codeforces, tức hai chương trình tương tác với nhau. Testlib không hỗ trợ kiểu NOI, trong đó thí sinh viết hàm để tương tác với các hàm khác.
 
 Nên đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 
-Testlib cung cấp cho trình tương tác một luồng đặc biệt `std::fstream tout`. Đây là luồng nhật ký; trình tương tác có thể ghi vào luồng này, còn trình kiểm tra có thể đọc lại bằng `ouf`.
+Testlib cung cấp cho trình tương tác một luồng đặc biệt `std::fstream tout`. Đây
+là luồng ghi nhật ký; trình tương tác có thể ghi vào luồng này, còn trình kiểm
+tra có thể đọc lại bằng `ouf`.
 
 Trong trình tương tác, dữ liệu kiểm thử của đề được đọc từ `inf`; đầu vào chuẩn cho chương trình thí sinh (và chương trình chuẩn) được ghi vào `stdout` (trực tuyến); đầu ra của thí sinh được đọc từ `ouf` (trực tuyến); đầu ra chuẩn được đọc từ `ans` (trực tuyến).
 
@@ -28,11 +32,13 @@ Linux:
 ## Ví dụ đơn giản
 
 ???+ note "Đề bài"
-    Trình tương tác chọn ngẫu nhiên một số nguyên trong khoảng $[1,10^9]$. Yêu cầu là viết một chương trình để đoán số đó; chương trình được phép hỏi tối đa $50$ lần, mỗi lần hỏi một số nguyên trong khoảng $[1,10^9]$.
+    Trình tương tác chọn ngẫu nhiên một số nguyên trong khoảng $[1,10^9]$. Yêu
+    cầu: viết chương trình đoán số đó; chương trình được phép hỏi tối đa $50$
+    lần, mỗi lần hỏi một số nguyên trong khoảng $[1,10^9]$.
     
     Trình tương tác sẽ trả về:
     
-    `1`: số được hỏi bằng đáp án, chương trình thí sinh nên dừng hỏi.
+    `1`: số vừa hỏi bằng đáp án, chương trình thí sinh nên dừng hỏi.
     
     `0`: số được hỏi nhỏ hơn đáp án.
     

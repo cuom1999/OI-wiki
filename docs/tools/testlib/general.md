@@ -1,4 +1,7 @@
-Trang này giới thiệu một số trạng thái, đối tượng và hàm dùng chung trong trình kiểm tra đáp án (checker), trình tương tác (interactor) và trình xác thực dữ liệu (validator) của Testlib, cùng với vài cách dùng và lưu ý quan trọng. Nên đọc hết trang này trước khi đọc các trang khác.
+Trang này giới thiệu một số trạng thái, đối tượng và hàm dùng chung trong trình
+kiểm tra đáp án (checker), trình tương tác (interactor) và trình xác thực dữ liệu
+(validator) của Testlib, cùng với vài cách dùng và lưu ý quan trọng. Nên đọc hết
+trang này trước khi đọc các trang khác.
 
 ## Trạng thái chung
 
@@ -10,7 +13,10 @@ Trang này giới thiệu một số trạng thái, đối tượng và hàm dù
 | Partially Correct  | `_pc(score)` | Đáp án đúng một phần. Chỉ dùng cho các bộ kiểm thử có điểm thành phần; `score` là một số nguyên dương từ $0$ (không có điểm) đến $100$ (điểm tối đa có thể đạt). (`quitf+_pc` chỉ nhằm tương thích với pascal-testlib cũ; nếu muốn xuất điểm thành phần, nên dùng `quitp`[^1].) |
 | Fail               | `_fail`      | Trong trình xác thực dữ liệu, trạng thái này nghĩa là đầu vào không hợp lệ và không qua kiểm tra.<br>Trong trình kiểm tra, trạng thái này biểu thị lỗi nội bộ của chương trình, đầu ra chuẩn sai, hoặc đầu ra của thí sinh tốt hơn đầu ra chuẩn, cần giám khảo/người ra đề xem xét. Nói cách khác, lỗi thuộc về đề. |
 
-Thông thường kết quả được biểu thị bằng giá trị trả về của chương trình, nhưng cũng có một số cách khác: tạo tệp XML đầu ra, in thông tin ra `stdout` (đầu ra chuẩn) hoặc vị trí khác, v.v. Các cách này đều được thực hiện thông qua hàm `quitf` trong bảng hàm bên dưới.
+Thông thường kết quả được biểu thị bằng giá trị trả về của chương trình, nhưng
+cũng có một số cách khác: tạo tệp XML đầu ra, in thông tin ra `stdout` (đầu ra
+chuẩn) hoặc vị trí khác, v.v. Các cách này đều được thực hiện thông qua hàm
+`quitf` trong bảng hàm bên dưới.
 
 ## Đối tượng chung
 
@@ -22,7 +28,7 @@ Thông thường kết quả được biểu thị bằng giá trị trả về 
 
 ## Hàm chung
 
-Hàm không phải hàm thành viên:
+Hàm không phải thành viên:
 
 | Lời gọi                                                                                        | Ý nghĩa                                                                                                                                      |
 | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -74,7 +80,11 @@ Một số hàm nhập ở trên cho phép sử dụng tính năng "biểu thứ
 
 ## Đặt testlib.h trước tiên
 
-Cần bảo đảm `testlib.h` là tệp tiêu đề **đầu tiên** được nạp bằng `#include`. Testlib sẽ ghi đè/vô hiệu hóa (thông qua xung đột tên) một số hàm liên quan đến ngẫu nhiên, chẳng hạn `random()`, để bảo đảm kết quả ngẫu nhiên không phụ thuộc môi trường. Điều này rất quan trọng với trình sinh dữ liệu; [trang trình sinh dữ liệu](./generator.md) sẽ giải thích chi tiết hơn.
+Cần bảo đảm `testlib.h` là tệp tiêu đề **đầu tiên** được nạp bằng `#include`.
+Testlib sẽ ghi đè/vô hiệu hóa (thông qua xung đột tên) một số hàm liên quan đến
+ngẫu nhiên, chẳng hạn `random()`, để bảo đảm kết quả ngẫu nhiên không phụ thuộc
+môi trường. Điều này rất quan trọng với trình sinh dữ liệu; [trang trình sinh dữ liệu](./generator.md)
+sẽ giải thích chi tiết hơn.
 
 ## Dùng bí danh cho hạng mục
 
@@ -96,7 +106,12 @@ ensuref(s.length() % 2 == 0,
         int(s.length()));
 ```
 
-Hàm này có phiên bản rút gọn `ensure()`: có thể dùng trực tiếp `ensure(x > y)` mà không thêm nội dung giải thích (hàm này cũng không hỗ trợ thêm nội dung giải thích). Nếu điều kiện không thỏa, lỗi sẽ là `FAIL Condition failed: "x > y"`. Trong nhiều trường hợp, thông báo lỗi không có giải thích bổ sung như vậy không thân thiện, nên ưu tiên dùng `ensuref()` kèm nội dung giải thích thay vì dùng `ensure()`.
+Hàm này có phiên bản rút gọn `ensure()`: có thể dùng trực tiếp `ensure(x > y)`
+mà không thêm nội dung giải thích (hàm này cũng không hỗ trợ thêm nội dung giải
+thích). Nếu điều kiện không thỏa, lỗi sẽ là `FAIL Condition failed: "x > y"`.
+Trong nhiều trường hợp, thông báo lỗi không có giải thích bổ sung như vậy khó
+hiểu, nên ưu tiên dùng `ensuref()` kèm nội dung giải thích thay vì dùng
+`ensure()`.
 
 ???+ warning "Cảnh báo"
     Lưu ý sự khác nhau giữa `ensuref/ensure()` toàn cục và hàm thành viên.

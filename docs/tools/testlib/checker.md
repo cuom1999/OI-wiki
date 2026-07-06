@@ -1,6 +1,10 @@
-Trình kiểm tra đáp án (checker), tức [trình chấm đặc biệt](../special-judge.md), dùng để kiểm tra đáp án có hợp lệ hay không. Dùng Testlib giúp giảm bớt nhiều chi tiết cần tự kiểm tra, nên việc viết trình kiểm tra đơn giản hơn đáng kể.
+Trình kiểm tra đáp án (checker), tức [trình chấm đặc biệt](../special-judge.md),
+dùng để kiểm tra đáp án có hợp lệ hay không. Dùng Testlib giúp giảm bớt nhiều
+chi tiết cần tự kiểm tra, nên việc viết trình kiểm tra đơn giản hơn đáng kể.
 
-Trình kiểm tra đọc tên tệp đầu vào, tên tệp đầu ra của thí sinh và tên tệp đầu ra chuẩn từ tham số dòng lệnh, sau đó xác định đầu ra của thí sinh có đúng hay không và trả về một kết quả chấm đã định nghĩa trước.
+Trình kiểm tra đọc tên tệp đầu vào, tên tệp đầu ra của thí sinh và tên tệp đầu
+ra chuẩn qua tham số dòng lệnh, sau đó xác định đầu ra của thí sinh có đúng hay
+không và trả về một kết quả chấm đã định nghĩa trước.
 
 Nên đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 
@@ -9,7 +13,8 @@ Nên đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 ???+ note "Đề bài"
     Cho hai số nguyên $a,b$ ($-1000 \le a,b \le 1000$), cần in ra tổng của chúng.
 
-Bài này không cần trình kiểm tra. Nhưng nếu thật sự cần thì cũng có thể viết một trình kiểm tra như sau:
+Bài này không cần trình kiểm tra. Tuy nhiên, nếu cần thì vẫn có thể viết một
+trình kiểm tra như sau:
 
 ```cpp
 #include "testlib.h"
@@ -32,11 +37,13 @@ int main(int argc, char* argv[]) {
 
 ## Viết hàm readAns
 
-Giả sử có một bài mà đầu vào và đầu ra đều chứa nhiều số, chẳng hạn: cho một DAG, cần tìm đường đi dài nhất từ $s$ đến $t$ và in ra đường đi đó (có thể có nhiều đường, in ra một đường bất kỳ).
+Giả sử có một bài mà đầu vào và đầu ra đều chứa nhiều số, chẳng hạn: cho một DAG,
+cần tìm đường đi dài nhất từ $s$ đến $t$ và in ra đường đi đó (có thể có nhiều
+đường, in ra một đường bất kỳ).
 
-Dưới đây là một ví dụ trình kiểm tra **không tốt**.
+Dưới đây là một ví dụ về trình kiểm tra **chưa tốt**.
 
-### Cài đặt không tốt
+### Cài đặt chưa tốt
 
 ```cpp
 #include "testlib.h"
@@ -106,12 +113,19 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-Trình kiểm tra này chủ yếu có hai vấn đề:
+Trình kiểm tra này có hai vấn đề chính:
 
-1.  Nó tin chắc đầu ra chuẩn là đúng. Nếu đầu ra của thí sinh tốt hơn đầu ra chuẩn, thí sinh sẽ bị chấm WA, điều này không ổn. Đồng thời, nếu đầu ra chuẩn không hợp lệ thì cũng sẽ sinh WA. Trong cả hai trường hợp, thao tác đúng là trả về trạng thái Fail.
-2.  Phần mã đọc đầu ra chuẩn và đầu ra của thí sinh bị lặp. Với bài này, viết hai lần phần đọc không phải vấn đề lớn, vì chỉ cần một vòng `for`; nhưng nếu gặp bài có đầu ra phức tạp, trình kiểm tra sẽ trở nên rối. Mã lặp làm giảm mạnh khả năng bảo trì và khiến việc gỡ lỗi hoặc sửa định dạng khó hơn.
+1.  Nó mặc định đầu ra chuẩn là đúng. Nếu đầu ra của thí sinh tốt hơn đầu ra
+    chuẩn, thí sinh sẽ bị chấm WA, điều này không ổn. Đồng thời, nếu đầu ra chuẩn
+    không hợp lệ thì cũng sẽ dẫn đến WA. Trong cả hai trường hợp, thao tác đúng
+    là trả về trạng thái Fail.
+2.  Phần mã đọc đầu ra chuẩn và đầu ra của thí sinh bị lặp. Với bài này, viết
+    hai lần phần đọc không phải vấn đề lớn, vì chỉ cần một vòng `for`; nhưng nếu
+    gặp bài có đầu ra phức tạp, trình kiểm tra sẽ trở nên rối. Mã lặp làm giảm
+    mạnh khả năng bảo trì và khiến việc gỡ lỗi hoặc sửa định dạng khó hơn.
 
-Cách đọc đầu ra chuẩn và đầu ra của thí sinh hoàn toàn giống nhau. Đây là lý do thường viết một hàm đọc nhận luồng làm tham số.
+Cách đọc đầu ra chuẩn và đầu ra của thí sinh hoàn toàn giống nhau. Vì vậy, người
+ta thường viết một hàm đọc nhận luồng làm tham số.
 
 ### Cài đặt tốt
 
@@ -201,7 +215,7 @@ Cách viết này đồng thời kiểm tra cả đầu ra chuẩn có hợp l�
 
 ## Khuyến nghị và lỗi thường gặp
 
--   Viết hàm `readAns`; nó có thể làm trình kiểm tra tốt hơn rất nhiều.
+-   Viết hàm `readAns`; cách này giúp trình kiểm tra rõ ràng và chắc chắn hơn.
 
 -   Khi đọc đầu ra của thí sinh, luôn giới hạn phạm vi cụ thể. Nếu quên giới hạn một số biến rồi dùng chúng làm đối số, trình kiểm tra có thể chấm sai, RE, v.v.
 
@@ -233,13 +247,14 @@ Cách viết này đồng thời kiểm tra cả đầu ra chuẩn có hợp l�
     // ....
     ```
 
--   Dùng bí danh hạng mục.
+-   Dùng bí danh cho hạng mục.
 
 -   Khác với trình xác thực dữ liệu, trình kiểm tra không cần cố ý kiểm tra các ký tự không trắng. Ví dụ, với một trình kiểm tra so sánh các số nguyên theo thứ tự, chỉ cần xác định các số nguyên trong đầu ra của thí sinh có lần lượt bằng các số nguyên trong đáp án hay không; trình kiểm tra không cần quan tâm thí sinh in mỗi số trên một dòng hay in tất cả số trên cùng một dòng.
 
 ## Cách dùng
 
-Thông thường không cần chạy trình kiểm tra cục bộ, vì công cụ chấm/OJ sẽ làm mọi việc. Nhưng nếu cần, có thể chạy trên dòng lệnh theo định dạng sau:
+Thông thường không cần chạy trình kiểm tra cục bộ, vì công cụ chấm/OJ sẽ xử lý
+các bước cần thiết. Nhưng nếu cần, có thể chạy trên dòng lệnh theo định dạng sau:
 
 ```bash
 ./checker <input-file> <output-file> <answer-file> [<report-file> [<-appes>]]
@@ -247,7 +262,10 @@ Thông thường không cần chạy trình kiểm tra cục bộ, vì công c�
 
 ## Một số trình kiểm tra có sẵn
 
-Trong nhiều trường hợp, công việc của trình kiểm tra rất đơn giản, chẳng hạn kiểm tra đầu ra là số nguyên có đúng không, hoặc đầu ra là số thực có thỏa sai số yêu cầu không. [Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) đã cung cấp sẵn các cài đặt trình kiểm tra này, và có thể dùng trực tiếp.
+Trong nhiều trường hợp, công việc của trình kiểm tra khá đơn giản, chẳng hạn
+kiểm tra đầu ra có đúng là số nguyên không, hoặc đầu ra là số thực có thỏa sai số
+yêu cầu không. [Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers)
+đã cung cấp sẵn các cài đặt trình kiểm tra này, và có thể dùng trực tiếp.
 
 Một số trình kiểm tra thường dùng:
 
