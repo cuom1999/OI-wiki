@@ -2,12 +2,12 @@ author: tsagaanbar, Enter-tainer, Xeonacid
 
 ## Địa chỉ của biến và con trỏ
 
-Trong chương trình, dữ liệu thường nằm ở một địa chỉ nào đó trong bộ nhớ. Mỗi lần
-chương trình chạy, vị trí của biến trong không gian địa chỉ có thể khác nhau.
-Tuy vậy, khi lập trình, vẫn có thể dùng các câu lệnh nhất định để lấy địa chỉ
-của dữ liệu trong bộ nhớ.
+Trong chương trình, dữ liệu thường nằm tại một địa chỉ nào đó trong bộ nhớ. Mỗi
+lần chương trình chạy, vị trí của biến trong không gian địa chỉ có thể khác nhau.
+Tuy vậy, khi lập trình, vẫn có thể dùng các câu lệnh nhất định để lấy địa chỉ của
+dữ liệu trong bộ nhớ.
 
-Địa chỉ cũng là một loại dữ liệu. Biến dùng để lưu địa chỉ có tên gọi riêng là
+Địa chỉ cũng là một loại giá trị. Biến dùng để lưu địa chỉ có tên gọi riêng là
 "biến con trỏ", thường gọi ngắn gọn là "con trỏ".
 
 ???+ note "Kích thước của biến con trỏ"
@@ -45,9 +45,8 @@ kiểu của con trỏ tới `int` là `int*`.
 
 Có thể dùng ký hiệu `&` để lấy địa chỉ của một biến.
 
-Muốn truy cập vùng nhớ tương ứng với địa chỉ mà biến con trỏ lưu, còn gọi là vùng
-nhớ mà con trỏ **trỏ tới**, cần **giải tham chiếu** biến con trỏ bằng ký hiệu
-`*`.
+Muốn truy cập vùng nhớ tương ứng với địa chỉ mà biến con trỏ lưu, tức vùng nhớ mà
+con trỏ **trỏ tới**, cần **giải tham chiếu** biến con trỏ bằng ký hiệu `*`.
 
 ```cpp
 int main() {
@@ -133,8 +132,8 @@ Trong C++, `NULL` thường được định nghĩa như sau:
     sang kiểu `void *`. Trình biên dịch có thể chọn một trong các cách cài đặt
     này.
 
-Việc dùng lẫn con trỏ null và số nguyên `0` trong C++ sẽ gây ra nhiều vấn đề, ví
-dụ:
+Việc dùng lẫn con trỏ null và số nguyên `0` trong C++ có thể gây ra nhiều vấn đề,
+ví dụ:
 
 ```cpp
 int f(int x);
@@ -153,14 +152,14 @@ chứ không phải `int(int *)`.
     kiểu số nguyên như thể đó là kiểu con trỏ, khiến kiểu thực tế và kiểu được
     đọc ra không khớp.[^note1]
 
-Để giải quyết các vấn đề này, C++11 đã đưa vào từ khóa `nullptr` làm hằng con
-trỏ null.
+Để giải quyết các vấn đề này, C++11 đã đưa vào từ khóa `nullptr` làm hằng con trỏ
+null.
 
 C++ quy định rằng `nullptr` có thể được chuyển đổi ngầm định sang bất kỳ kiểu con
 trỏ nào; kết quả của phép chuyển đổi này là giá trị con trỏ null của kiểu đó.
 
-Kiểu của `nullptr` là `std::nullptr_t`, gọi là kiểu con trỏ null. Một cách cài
-đặt có thể như sau:
+Kiểu của `nullptr` là `std::nullptr_t`, gọi là kiểu con trỏ null. Một cách cài đặt
+có thể như sau:
 
 ```cpp
 namespace std {
@@ -183,7 +182,7 @@ cài đặt `NULL` theo hướng tương tự:
 ## Sử dụng con trỏ nâng cao
 
 Con trỏ cho phép người lập trình thao tác với dữ liệu ở nhiều nơi trong lúc
-chương trình chạy, thay vì bị giới hạn trong phạm vi hiện tại.
+chương trình chạy, thay vì chỉ bị giới hạn trong phạm vi hiện tại.
 
 ### Sử dụng tham số kiểu con trỏ
 
@@ -220,13 +219,13 @@ dễ dùng hơn con trỏ và cũng khó bị dùng sai hơn. Xem thêm
 
 ### Cấp phát động
 
-Khi viết chương trình, cũng thường gặp việc cấp phát bộ nhớ động, tức chương
-trình yêu cầu hoặc trả lại vùng nhớ cần thiết để lưu dữ liệu trong lúc chạy. Bộ
-cấp phát bộ nhớ trả về địa chỉ của vùng nhớ đã cấp phát. Để sử dụng vùng nhớ đó,
-cần lưu địa chỉ của nó trong biến con trỏ.
+Khi viết chương trình, cũng thường gặp việc cấp phát bộ nhớ động, tức chương trình
+yêu cầu hoặc trả lại vùng nhớ cần thiết để lưu dữ liệu trong lúc chạy. Bộ cấp phát
+bộ nhớ trả về địa chỉ của vùng nhớ đã cấp phát. Để sử dụng vùng nhớ đó, cần lưu
+địa chỉ của nó trong biến con trỏ.
 
-Trong C++, dùng toán tử `new` để cấp phát vùng nhớ, và dùng toán tử `delete`
-để giải phóng vùng nhớ mà con trỏ trỏ tới.
+Trong C++, dùng toán tử `new` để cấp phát vùng nhớ, và dùng toán tử `delete` để
+giải phóng vùng nhớ mà con trỏ trỏ tới.
 
 ```cpp
 int* p = new int(1234);
@@ -234,9 +233,9 @@ int* p = new int(1234);
 delete p;
 ```
 
-Câu lệnh trên dùng toán tử `new` để cấp phát vùng nhớ đủ chứa `int`, khởi tạo
-giá trị trong đó là 1234, đồng thời khai báo một con trỏ kiểu `int` tên `p` trỏ
-tới vùng nhớ này.
+Câu lệnh trên dùng toán tử `new` để cấp phát vùng nhớ đủ chứa `int`, khởi tạo giá
+trị trong đó là 1234, đồng thời khai báo một con trỏ kiểu `int` tên `p` trỏ tới
+vùng nhớ này.
 
 Tương tự, cũng có thể dùng `new` để tạo đối tượng mới:
 
@@ -301,17 +300,17 @@ sau `p`.
 
 Khi lưu dữ liệu dạng ma trận, có thể cần dùng đến kiểu dữ liệu như "mảng hai
 chiều". Về mặt ngữ nghĩa, mảng hai chiều là một mảng của các mảng. Trong khi đó,
-bộ nhớ máy tính giống một mảng một chiều dài. Khi lưu một mảng hai chiều trong
-bộ nhớ máy tính, cần phân biệt vùng nhớ có "liên tiếp" hay không.
+bộ nhớ máy tính giống một mảng một chiều dài. Khi lưu một mảng hai chiều trong bộ
+nhớ máy tính, cần phân biệt vùng nhớ có "liên tiếp" hay không.
 
-"Liên tiếp" nghĩa là cuối một hàng trong mảng hai chiều và đầu hàng tiếp theo
-nằm kề nhau trong không gian địa chỉ; khi đó toàn bộ mảng hai chiều có thể được
-xem như một mảng một chiều. Ngược lại, hai phần đó không nhất thiết kề nhau trong
-bộ nhớ.
+"Liên tiếp" nghĩa là cuối một hàng trong mảng hai chiều và đầu hàng tiếp theo nằm
+kề nhau trong không gian địa chỉ; khi đó toàn bộ mảng hai chiều có thể được xem
+như một mảng một chiều. Ngược lại, hai phần đó không nhất thiết kề nhau trong bộ
+nhớ.
 
 Với mảng hai chiều "liên tiếp", có thể duyệt toàn bộ dữ liệu bằng một vòng lặp và
-một con trỏ tăng dần. Với mảng hai chiều không liên tiếp, do từng hàng không liền
-kề nhau, cần lấy địa chỉ đầu của hàng trước rồi mới truy cập các phần tử trong
+một con trỏ tăng dần. Với mảng hai chiều không liên tiếp, do từng hàng không nằm
+liền kề nhau, cần lấy địa chỉ đầu của từng hàng rồi mới truy cập các phần tử trong
 hàng đó.
 
 ???+ note "Cách lưu trữ mảng hai chiều"
@@ -338,13 +337,13 @@ Cách khai báo này yêu cầu N và M là các biểu thức hằng có thể 
 điểm biên dịch.
 
 Trong C/C++, chỉ số của phần tử đầu tiên trong mảng là 0, nên biểu thức như
-`a[r][c]` biểu thị phần tử thứ c + 1 của hàng thứ r + 1 trong mảng hai chiều
+`a[r][c]` biểu thị phần tử thứ `c + 1` của hàng thứ `r + 1` trong mảng hai chiều
 `a`; chỉ số của phần tử này cũng được gọi là `(r, c)`.
 
 Tuy nhiên, trong sử dụng thực tế, kích thước của mảng hai chiều có thể không cố
 định, nên cần cấp phát bộ nhớ động.
 
-Cách thường gặp là khai báo một **mảng một chiều** có độ dài N × M, rồi truy cập
+Cách thường gặp là khai báo một **mảng một chiều** có độ dài `N * M`, rồi truy cập
 phần tử có chỉ số `(r, c)` trong mảng hai chiều bằng chỉ số `r * M + c`.
 
 ```cpp
@@ -395,8 +394,8 @@ Một cách nữa là dùng "con trỏ trỏ tới mảng".
 
 ???+ note "Khác biệt giữa tên mảng và địa chỉ phần tử đầu của mảng"
     Trước đây đã nói rằng trong nhiều biểu thức C/C++, tên mảng được chuyển đổi
-    thành con trỏ trỏ tới phần tử đầu tiên của mảng. Nhưng bản thân kiểu của định
-    danh mảng vẫn là toàn bộ mảng, chứ không phải một phần tử đơn lẻ.
+    thành con trỏ trỏ tới phần tử đầu tiên của mảng. Tuy nhiên, bản thân kiểu của
+    định danh mảng vẫn là toàn bộ mảng, chứ không phải một phần tử đơn lẻ.
 
     ```cpp
     int main() { int a[5] = {1, 2, 3, 4, 5}; }
@@ -416,14 +415,14 @@ int main() {
 }
 ```
 
-Cách này cũng thu được bộ nhớ liên tiếp, đồng thời có thể dùng dạng `a[n]` để
-lấy địa chỉ đầu của hàng thứ n + 1 của mảng. Vì vậy, dạng `a[r][c]` truy cập
-được phần tử có chỉ số `(r, c)`.
+Cách này cũng thu được bộ nhớ liên tiếp, đồng thời có thể dùng dạng `a[n]` để lấy
+địa chỉ đầu của hàng thứ `n + 1` của mảng. Vì vậy, dạng `a[r][c]` truy cập được
+phần tử có chỉ số `(r, c)`.
 
-Vì con trỏ trỏ tới mảng cũng là một kiểu dữ liệu xác định, nên ngoại trừ chiều
-thứ nhất của mảng, độ dài của các chiều còn lại đều phải là hằng có thể được
-trình biên dịch xác định. Nếu không, trình biên dịch sẽ không thể dịch các biểu
-thức như `a[n]`, trong đó `a` là con trỏ trỏ tới mảng.
+Vì con trỏ trỏ tới mảng cũng là một kiểu dữ liệu xác định, nên ngoại trừ chiều thứ
+nhất của mảng, độ dài của các chiều còn lại đều phải là hằng có thể được trình
+biên dịch xác định. Nếu không, trình biên dịch sẽ không thể dịch các biểu thức như
+`a[n]`, trong đó `a` là con trỏ trỏ tới mảng.
 
 ## Con trỏ trỏ tới hàm
 
@@ -437,9 +436,9 @@ con trỏ hàm cho phép chọn hàm cần gọi **một cách động** theo qu
 chương trình. Nhờ vậy, không cần sửa thân hàm nhận callback; chỉ cần thay đổi đối
 số truyền vào, tức con trỏ hàm, là có thể thay đổi hành vi của hàm đó.
 
-Giả sử có một số hàm phép toán hai ngôi dành cho kiểu `int`, thì tham số của hàm
-là 2 giá trị `int`, và giá trị trả về cũng là `int`. Sau đây là một ví dụ sử
-dụng con trỏ hàm:
+Giả sử có một số hàm phép toán hai ngôi dành cho kiểu `int`: mỗi hàm nhận 2 giá
+trị `int`, và giá trị trả về cũng là `int`. Sau đây là một ví dụ sử dụng con trỏ
+hàm:
 
 ```cpp
 #include <iostream>
@@ -477,16 +476,16 @@ int main() {
     viết `void (*p)() = &foo;` vẫn hợp lệ.
 
     Toán tử `*` trên con trỏ hàm lấy hàm mà con trỏ trỏ tới. Với cách viết như
-    `**foo`, `*foo` thu được chính hàm `foo`, rồi ngay sau đó lại được chuyển
-    đổi ngầm định thành con trỏ trỏ tới `foo`. Suy luận tương tự, kết quả cuối
-    cùng của `**foo` vẫn là con trỏ hàm trỏ tới `foo`; có thể viết bao nhiêu dấu
-    `*` tùy ý, kết quả vẫn như nhau.
+    `**foo`, `*foo` thu được chính hàm `foo`, rồi ngay sau đó lại được chuyển đổi
+    ngầm định thành con trỏ trỏ tới `foo`. Suy luận tương tự, kết quả cuối cùng
+    của `**foo` vẫn là con trỏ hàm trỏ tới `foo`; có thể viết bao nhiêu dấu `*`
+    tùy ý, kết quả vẫn như nhau.
 
     Tương tự, khi gọi hàm, các câu lệnh như `(*p)()` và `p()` là như nhau; có
     thể lược bỏ toán tử `*`.
 
     Tài liệu tham khảo:
-    [Why do function pointer definitions work with any number of ampersands '&' or asterisks '\*'? - stackoverflow.com](https://stackoverflow.com/questions/6893285/why-do-function-pointer-definitions-work-with-any-number-of-ampersands-or-as)
+    [Why do function pointer definitions work with any number of ampersands '&' or asterisks '\*'?][so-6893285]
 
 Có thể dùng từ khóa `typedef` để khai báo kiểu của con trỏ hàm.
 
@@ -494,8 +493,8 @@ Có thể dùng từ khóa `typedef` để khai báo kiểu của con trỏ hàm
 typedef int (*p_bi_int_op)(int, int);
 ```
 
-Từ đó, về sau có thể dùng kiểu `p_bi_int_op`, tức kiểu con trỏ trỏ tới hàm "có
-2 tham số kiểu `int` và giá trị trả về cũng là `int`".
+Từ đó, về sau có thể dùng kiểu `p_bi_int_op`, tức kiểu con trỏ trỏ tới hàm "có 2
+tham số kiểu `int` và giá trị trả về cũng là `int`".
 
 Ngoài con trỏ hàm, `std::function` cũng có thể dùng để tham chiếu hàm thuận tiện
 hơn.
@@ -505,3 +504,5 @@ Con trỏ hàm cũng thường được dùng để triển khai "hàm callback"
 ## Tài liệu tham khảo và chú thích
 
 [^note1]: Xem [Introduce the nullptr constant](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3042.htm)
+
+[so-6893285]: https://stackoverflow.com/questions/6893285/why-do-function-pointer-definitions-work-with-any-number-of-ampersands-or-as
