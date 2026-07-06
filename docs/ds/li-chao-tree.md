@@ -5,13 +5,14 @@
 
     1.  Thêm một đoạn thẳng vào mặt phẳng. Gọi chỉ số của đoạn thẳng được chèn thứ $i$ là $i$, hai đầu mút của đoạn thẳng
         này lần lượt là $(x_0,y_0)$ và $(x_1,y_1)$.
-    2.  Cho một số $k$, hỏi trong các đoạn thẳng cắt đường thẳng $x = k$, đoạn nào có tung độ giao điểm lớn nhất. Nếu có
-        nhiều đoạn thẳng cùng đạt giá trị lớn nhất, xuất đoạn có chỉ số nhỏ nhất. Đặc biệt, nếu không có đoạn thẳng nào
-        cắt đường thẳng đã cho, xuất $0$.
+    2.  Cho một số $k$, hỏi trong các đoạn thẳng cắt đường thẳng $x = k$, đoạn nào có tọa độ $y$ của giao điểm lớn nhất.
+        Nếu có nhiều đoạn thẳng cùng đạt giá trị lớn nhất, xuất đoạn có chỉ số nhỏ nhất. Đặc biệt, nếu không có đoạn
+        thẳng nào cắt đường thẳng đã cho, xuất $0$.
 
     Dữ liệu thỏa mãn: tổng số thao tác $1 \leq n \leq 10^5$, $1 \leq k, x_0, x_1 \leq 39989$, $1 \leq y_0, y_1 \leq 10^9$.
 
-Với loại thông tin này, cây phân đoạn truyền thống khó duy trì hiệu quả. **Cây phân đoạn Li Chao** xử lý tốt tình huống đó.
+Với loại thông tin này, cây phân đoạn truyền thống khó duy trì hiệu quả. **Cây phân đoạn Li Chao** xử lý tốt tình huống
+đó.
 
 ## Quá trình
 
@@ -101,7 +102,7 @@ Tách đoạn thẳng:
     }
     ```
 
-Nhãn lười không tương đương với đoạn thẳng có giá trị lớn nhất tại trung điểm của đoạn.
+Nhãn lười không nhất thiết là đoạn thẳng có giá trị lớn nhất tại trung điểm của đoạn.
 
 ![](images/li-chao-tree-2.png)
 
@@ -149,8 +150,8 @@ $u,v$, lấy $u$ làm gốc mới.
 4.  Đệ quy hợp nhất tương ứng các cây con trái và phải của $u,v$.
 
 Nếu tổng số nút liên quan khi hợp nhất một số cây phân đoạn Li Chao là $n$, độ phức tạp của quy trình này là
-$O(n\log n)$. Với mỗi nút tương ứng với một đoạn thẳng bất kỳ trên cây, mỗi lần cần di chuyển nó, hoặc độ sâu của nó tăng
-$1$, hoặc nó bị xóa trực tiếp khỏi cây. Cả hai thao tác đều có chi phí $O(1)$, còn độ sâu của mỗi nút nhiều nhất là
+$O(n\log n)$. Với mỗi nút tương ứng với một đoạn thẳng bất kỳ trên cây, mỗi lần cần di chuyển nó thì hoặc độ sâu của nó
+tăng $1$, hoặc nó bị xóa trực tiếp khỏi cây. Cả hai thao tác đều có chi phí $O(1)$, còn độ sâu của mỗi nút nhiều nhất là
 $O(\log n)$, vì vậy thu được độ phức tạp như trên.
 
 ???+ note "Cài đặt"
