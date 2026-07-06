@@ -100,7 +100,7 @@ while (statement2) {
 ```
 
 Nếu trong `statement4` không có câu lệnh `continue` (xem phần sau), hai cách
-viết này là tương đương, nhưng cách viết bằng `while` sau đây rất ít khi được
+viết này là tương đương, nhưng cách viết bằng `while` sau đây ít khi được
 dùng để thay thế trực tiếp cho `for`.
 
 ```cpp

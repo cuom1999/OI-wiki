@@ -201,7 +201,7 @@ std::ofstream fout("data.out");
 int main(void) {
   if (!fin || !fout) return 1;
   /*
-  Trong phần mã ở giữa, chỉ cần đổi std::cin thành fin và std::cout thành fout
+  Trong phần mã ở giữa, đổi std::cin thành fin và std::cout thành fout
   */
   fin.close();
   fout.close();

@@ -73,13 +73,13 @@ Chẳng hạn, cấu trúc `Object` trong ví dụ đặt `weight` và `value` c
 nghĩa thực tế của cấu trúc này là biểu diễn trọng lượng và giá trị của một vật
 phẩm. Lợi ích là phạm vi sử dụng các thành viên được giới hạn rõ hơn. Có thể
 hình dung trường hợp không dùng cấu trúc mà có hai mảng `value[]`, `Value[]`:
-khi viết rất dễ nhầm lẫn. Khi dùng cấu trúc, khả năng dùng nhầm biến sẽ giảm đi.
+khi viết dễ nhầm lẫn. Khi dùng cấu trúc, khả năng dùng nhầm biến sẽ giảm đi.
 
 Ngoài ra, các kiểu cấu trúc khác nhau (như `Object`) hoặc các đối tượng cấu trúc
 khác nhau (như các phần tử trong mảng `e` ở trên) có thể có thành viên cùng tên,
 chẳng hạn `tmp.value` và `b.value`. Các thành viên cùng tên này độc lập với nhau
 và có vùng nhớ riêng; ví dụ sửa `tmp.value` sẽ không ảnh hưởng đến giá trị của
-`b.value`. Lợi ích là có thể dùng những tên giống hoặc gần giống nhau để mô tả
+`b.value`. Lợi ích là được dùng những tên giống hoặc gần nhau để mô tả
 các đối tượng khác nhau. Ví dụ `Object` có thành viên `value`; cũng có thể định
 nghĩa một cấu trúc `Car` và cũng cho nó một thành viên `value`. Nếu không dùng
 cấu trúc, có lẽ phải định nghĩa các mảng với tên khác nhau như

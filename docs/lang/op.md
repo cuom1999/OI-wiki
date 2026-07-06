@@ -149,7 +149,7 @@ Trong đó cần đặc biệt phân biệt toán tử bằng `==` với toán t
 điều này đặc biệt quan trọng trong câu lệnh kiểm tra điều kiện.
 
 `if (op = 1)` và `if (op == 1)` trông có vẻ giống nhau, nhưng chức năng thực tế
-khác rất xa. Câu thứ nhất gán giá trị cho `op`; nếu giá trị được gán khác 0 thì
+khác hẳn. Câu thứ nhất gán giá trị cho `op`; nếu giá trị được gán khác 0 thì
 được xem là đúng, nên điều kiện luôn thỏa mãn và không còn tác dụng kiểm tra. Câu
 thứ hai mới là kiểm tra giá trị của `op`.
 
@@ -207,7 +207,7 @@ Các toán tử này dùng để truy cập thành viên của đối tượng h
 Trong các toán tử ở bảng trên, `.` không thể được nạp chồng, còn `[]`, `&`, `*`
 và `->` có thể được nạp chồng. Với nội dung liên quan đến `&`, `*` và `->`, nên
 đọc hướng dẫn về [con trỏ](./pointer.md) và [tham chiếu](./reference.md). Phần
-này cũng lược bỏ hai toán tử rất ít dùng là `.*` và `->*`; cách dùng cụ thể có thể
+này cũng lược bỏ hai toán tử ít dùng là `.*` và `->*`; cách dùng cụ thể có thể
 xem tại
 [sổ tay ngôn ngữ C++](https://en.cppreference.com/w/cpp/language/operator_member_access).
 

@@ -1,6 +1,6 @@
 Theo mặc định, các câu lệnh trong chương trình được thực thi theo thứ tự xuất
 hiện.
-Trong nhiều trường hợp, một số câu lệnh chỉ cần được thực thi khi điều kiện
+Trong nhiều trường hợp, một số câu lệnh chỉ được thực thi khi điều kiện
 nhất định được thỏa mãn; khi đó cần dùng cấu trúc rẽ nhánh. Việc chọn câu lệnh
 rẽ nhánh phù hợp giúp logic chương trình mạch lạc hơn.
 
