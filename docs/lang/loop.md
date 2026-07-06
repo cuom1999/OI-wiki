@@ -167,7 +167,7 @@ END:;
 Cả hai câu lệnh `break` và `continue` đều có thể được dùng trong thân vòng lặp
 của ba loại câu lệnh lặp.
 
-Nói chung, câu lệnh `break` và `continue` có thể làm logic của mã nguồn dễ theo
+Thông thường, câu lệnh `break` và `continue` có thể làm logic của mã nguồn dễ theo
 dõi hơn, ví dụ:
 
 ```cpp

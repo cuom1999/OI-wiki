@@ -76,7 +76,7 @@ So với bốn tham số của qsort ([STL liên quan đến sắp xếp](./stl-
 
 Như vậy, bsearch có tổng cộng năm tham số: địa chỉ của phần tử cần tìm, tên mảng, số lượng phần tử, kích thước phần tử, và quy tắc so sánh. Quy tắc so sánh vẫn được thực hiện bằng cách chỉ định hàm so sánh; xem chi tiết ở [STL liên quan đến sắp xếp](./stl-sort.md).
 
-Giá trị trả về của bsearch là địa chỉ của phần tử tìm được; địa chỉ này có kiểu void.
+Giá trị trả về của bsearch là địa chỉ của phần tử tìm được; địa chỉ này có kiểu `void *`.
 
 Lưu ý: bsearch khác lower\_bound và upper\_bound ở hai điểm:
 
@@ -174,7 +174,7 @@ Khi giải bài, một hướng tự nhiên là liệt kê đáp án rồi kiể
     
         ![](./images/binary-final-1.svg)
     
-        Sau đó sẽ
+        Sau đó trạng thái chuyển thành như hình dưới.
     
         ![](./images/binary-final-2.svg)
     
@@ -192,7 +192,7 @@ Phương pháp nhị phân có thể dùng để xấp xỉ nghiệm của hàm 
 Với một hàm $f(x)$, nếu tồn tại $x^*$ sao cho $f(x)$ tăng đơn điệu khi $x<x^*$ và giảm đơn điệu khi $x>x^*$, thì gọi $f(x)$ là hàm đơn đỉnh (unimodal function). Khi đó, $x^*$ là điểm đạt giá trị lớn nhất, còn $f(x^*)$ là giá trị lớn nhất của hàm.
 
 ??? note "Vì sao không tìm điểm cực trị bằng cách tìm nghiệm của đạo hàm?"
-    Về mặt khách quan, sau khi lấy đạo hàm, dùng nhị phân để tìm nghiệm của đạo hàm (do hàm là đơn đỉnh, nghiệm của đạo hàm trong cùng một phạm vi là duy nhất) để thu được điểm cực trị của hàm đơn đỉnh là khả thi.
+    Về lý thuyết, sau khi lấy đạo hàm, dùng nhị phân để tìm nghiệm của đạo hàm (do hàm là đơn đỉnh, nghiệm của đạo hàm trong cùng một phạm vi là duy nhất) để thu được điểm cực trị của hàm đơn đỉnh là khả thi.
     
     Nhưng trước hết, với một số hàm, quá trình và kết quả lấy đạo hàm khá phức tạp.
     
@@ -238,11 +238,11 @@ $$
     Trong mã, điểm chia được chọn là $mid \pm \varepsilon / 3$ để bảo đảm điểm chia luôn nằm giữa $l$ và $r$ hiện tại, từ đó tránh rơi vào vòng lặp vô hạn.
 
 ???+ info "Trường hợp số nguyên"
-    Nếu miền xác định của hàm $f(x)$ là số nguyên, thì tìm kiếm tam phân nói trên và phương pháp lát cắt vàng ở phần sau đều nên dừng khi $r-l$ còn rất nhỏ. Với trường hợp $r-l$ rất nhỏ, cần duyệt vét cạn để tìm điểm đạt giá trị lớn nhất.
+    Nếu miền xác định của hàm $f(x)$ là số nguyên, thì tìm kiếm tam phân nói trên và tìm kiếm theo tỉ lệ vàng ở phần sau đều nên dừng khi $r-l$ còn rất nhỏ. Với trường hợp $r-l$ rất nhỏ, cần duyệt vét cạn để tìm điểm đạt giá trị lớn nhất.
 
-### Tối ưu: phương pháp lát cắt vàng
+### Tối ưu: tìm kiếm theo tỉ lệ vàng
 
-Nếu chi phí cho một lần gọi $f(x)$ rất cao, cần giảm thêm số lần gọi $f(x)$, có thể dùng phương pháp lát cắt vàng (golden-section search) để cải thiện hằng số của tìm kiếm tam phân. Đây cũng là nội dung quan trọng trong phương pháp tối ưu do Hoa La Canh đề xuất.
+Nếu chi phí cho một lần gọi $f(x)$ rất cao, cần giảm thêm số lần gọi $f(x)$, có thể dùng tìm kiếm theo tỉ lệ vàng (golden-section search) để cải thiện hằng số của tìm kiếm tam phân. Đây cũng là nội dung quan trọng trong phương pháp tối ưu do Hoa La Canh đề xuất.
 
 Trong tìm kiếm tam phân, mỗi vòng lặp cần hai lần gọi hàm, và sau một vòng lặp, độ dài đoạn nhiều nhất giảm còn $1/2$ ban đầu. Điều này có nghĩa là để đạt độ chính xác $\varepsilon$, cần ít nhất
 
@@ -252,7 +252,7 @@ $$
 
 lần gọi hàm. Đây là kết quả tốt nhất mà tìm kiếm tam phân có thể đạt được. Nếu chọn các điểm chia khác, chẳng hạn hai điểm chia ba, số lần gọi sẽ tăng thêm vì đoạn thu hẹp chậm hơn sau mỗi vòng lặp.
 
-Ý tưởng cải tiến của phương pháp lát cắt vàng là tái sử dụng điểm chia đã tính ở vòng trước. Như vậy, ngoài vòng lặp đầu tiên cần hai lần gọi hàm, các vòng lặp còn lại chỉ cần một lần gọi hàm. Gọi tỉ lệ lát cắt vàng là
+Ý tưởng cải tiến của tìm kiếm theo tỉ lệ vàng là tái sử dụng điểm chia đã tính ở vòng trước. Như vậy, ngoài vòng lặp đầu tiên cần hai lần gọi hàm, các vòng lặp còn lại chỉ cần một lần gọi hàm. Gọi tỉ lệ vàng là
 
 $$
 \phi = \dfrac{\sqrt{5}-1}{2} \approx 0.618.

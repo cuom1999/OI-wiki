@@ -238,7 +238,7 @@ thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba l
 ???+ warning "Lưu ý"
     Khác với các kiểu số nguyên khác, `char`, `signed char`, `unsigned char` là **ba kiểu khác nhau**.
 
-    Nói chung, không nên dùng `signed char`, `unsigned char` để lưu ký tự. Trong hầu hết trường hợp, hai kiểu này được xem như kiểu số nguyên.
+    Thông thường, không nên dùng `signed char`, `unsigned char` để lưu ký tự. Trong hầu hết trường hợp, hai kiểu này được xem như kiểu số nguyên.
 
 <a id="kiểu-số-thực-dấu-phẩy-động"></a>
 
@@ -553,7 +553,7 @@ char org = 'c';
 
 Trong các đoạn chương trình cơ bản trong phần này, biến được định nghĩa trong phạm vi được bao bởi cặp ngoặc nhọn là biến cục bộ, còn biến được định nghĩa bên ngoài các khối đó là biến toàn cục. C++ vẫn có ngoại lệ phức tạp hơn, nhưng chưa cần xét trong phần nhập môn này.
 
-Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$. Biến cục bộ không có tính chất này, nên cần được gán giá trị ban đầu cụ thể; nếu không có thể gây ra lỗi khó phát hiện.
+Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$. Biến cục bộ không có tính chất này, nên cần gán giá trị ban đầu cụ thể; nếu không có thể gây ra lỗi khó phát hiện.
 
 <a id="phạm-vi-của-biến"></a>
 

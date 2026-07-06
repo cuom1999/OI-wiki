@@ -104,9 +104,9 @@ trí, không cần xử lý. Chỉ cần trộn $[6, 10]$ của đoạn A với 
 
 ![Quá trình trộn trong Timsort](./images/tim-sort-2.apng)
 
-#### Chế độ tăng tốc
+#### Chế độ galloping
 
-Để tiếp tục nâng cao hiệu quả trộn, Timsort đưa vào **chế độ tăng tốc**. Trong
+Để tiếp tục nâng cao hiệu quả trộn, Timsort đưa vào **chế độ galloping**. Trong
 quá trình trộn chuẩn, thuật toán so sánh từng phần tử của hai đoạn và đưa phần
 tử nhỏ hơn vào mảng kết quả. Tuy nhiên, nếu một phía có nhiều phần tử liên tiếp
 nhỏ hơn phần tử hiện tại của phía còn lại, việc so sánh từng phần tử sẽ gây chi
@@ -114,10 +114,10 @@ phí không cần thiết.
 
 Để xử lý vấn đề này, Timsort đặt một ngưỡng `Min_Gallop` (giá trị mặc định là
 $7$). Khi các phần tử ở một phía thắng liên tiếp trong số lần so sánh đạt
-`Min_Gallop`, thuật toán chuyển sang chế độ tăng tốc để định vị nhanh vị trí
+`Min_Gallop`, thuật toán chuyển sang chế độ galloping để định vị nhanh vị trí
 phần tử. Các bước cụ thể như sau:
 
-1.  **Tìm kiếm lũy tiến**: Từ vị trí hiện tại, thuật toán tìm trong một phía
+1.  **Tìm kiếm mũ**: Từ vị trí hiện tại, thuật toán tìm trong một phía
     với bước nhảy tăng theo lũy thừa $(1, 2, 4, 8, \dots)$ cho đến khi tìm được
     một khoảng chứa phần tử mục tiêu.
 2.  **Tìm kiếm nhị phân**: Sau khi xác định được khoảng chứa phần tử mục tiêu,
@@ -128,20 +128,20 @@ Bằng cách này, Timsort có thể bỏ qua rất nhiều phép so sánh khôn
 nhanh chóng xử lý các phần tử liên tiếp nhỏ hơn (hoặc lớn hơn) trong một phía
 và chuyển hàng loạt chúng vào kết quả hợp nhất.
 
-Tuy nhiên, chế độ tăng tốc không phải lúc nào cũng hiệu quả hơn. Với một số
-phân bố dữ liệu, chế độ tăng tốc có thể làm tăng số lần so sánh. Vì vậy,
+Tuy nhiên, chế độ galloping không phải lúc nào cũng hiệu quả hơn. Với một số
+phân bố dữ liệu, chế độ galloping có thể làm tăng số lần so sánh. Vì vậy,
 Timsort dùng chiến lược điều chỉnh động:
 
 -   **Điều chỉnh ngưỡng**: Duy trì một tham số `Min_Gallop` có thể thay đổi.
-    Khi chế độ tăng tốc hoạt động tốt (tức là liên tiếp chọn phần tử nhiều lần
+    Khi chế độ galloping hoạt động tốt (tức là liên tiếp chọn phần tử nhiều lần
     từ cùng một đoạn), `Min_Gallop` giảm $1$ để khuyến khích tiếp tục dùng chế
-    độ tăng tốc; khi chế độ tăng tốc hoạt động không tốt (thường xuyên chuyển
+    độ galloping; khi chế độ galloping hoạt động không tốt (thường xuyên chuyển
     qua lại giữa hai đoạn), `Min_Gallop` tăng $1$ để giảm tần suất dùng chế độ
-    tăng tốc.
+    galloping.
 
 Bằng cách điều chỉnh động giá trị `Min_Gallop`, thuật toán có thể cân bằng giữa
-chế độ trộn thông thường và chế độ tăng tốc tùy theo dữ liệu thực tế. Với dữ
-liệu có thứ tự một phần hoặc có mức độ có thứ tự cao, chế độ tăng tốc có thể
+chế độ trộn thông thường và chế độ galloping tùy theo dữ liệu thực tế. Với dữ
+liệu có thứ tự một phần hoặc có mức độ có thứ tự cao, chế độ galloping có thể
 cải thiện hiệu quả rõ rệt, khiến hiệu năng của Timsort tiến gần $O(n)$; còn với
 dữ liệu ngẫu nhiên, thuật toán sẽ dần nghiêng về trộn thông thường để bảo đảm
 độ phức tạp thời gian $O(n \log n)$.

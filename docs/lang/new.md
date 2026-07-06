@@ -410,7 +410,7 @@ void func(A arg1, C... arg2) {
 func(1, 2, 1.1, 2.1f);
 ```
 
-Như vậy, khi số lượng tham số khác 0 thì mẫu hàm sẽ được gọi; khi không còn tham
+Vì vậy, khi số lượng tham số khác 0 thì mẫu hàm sẽ được gọi; khi không còn tham
 số thì hàm thông thường sẽ được gọi, nên chương trình có thể chạy bình thường.
 
 ### Biểu thức gấp (fold expression, C++17)

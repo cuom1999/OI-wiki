@@ -86,7 +86,7 @@ Việc này hoàn thành trong thời gian $O(1)$.
 Trong trường hợp hai chiều, độ phức tạp thời gian của thuật toán trên có thể xem đơn giản là $O(mn)$, tức tuyến tính theo kích thước mảng đã cho. Tuy nhiên, khi số chiều $k$ tăng lên, do số hạng liên quan đến nguyên lý bao hàm - loại trừ tăng theo cấp số mũ, độ phức tạp thời gian sẽ trở thành $O(2^kN)$, trong đó $k$ là số chiều của mảng và $N$ là kích thước mảng đã cho. Vì vậy, thuật toán này không còn phù hợp.
 
 ???+ example "[Luogu P1387 Hình vuông lớn nhất](https://www.luogu.com.cn/problem/P1387)"
-    Trong một ma trận $n\times m$ chỉ gồm $0$ và $1$, tìm hình vuông lớn nhất không chứa $0$ và xuất độ dài cạnh.
+    Trong một ma trận $n\times m$ chỉ gồm $0$ và $1$, tìm hình vuông lớn nhất không chứa $0$ và in ra độ dài cạnh của nó.
 
 ??? note "Mã tham khảo"
     === "C++"
@@ -195,7 +195,7 @@ Khác với tổng tiền tố trên cây, tổng cây con không thể dùng đ
 
 Sai phân là một chiến lược đối ngẫu với tổng tiền tố, là phép toán ngược của tổng tiền tố. So với việc cho một dãy rồi tính sai phân của nó, tình huống thường gặp hơn trong thi đấu là duy trì thông tin của dãy sai phân để thực hiện nhiều lần sửa đổi đoạn. Sau khi kết thúc các phép sửa đổi đoạn, có thể dùng tổng tiền tố để khôi phục thông tin của dãy ban đầu, rồi truy vấn dãy ban đầu. Lưu ý rằng mọi thao tác sửa đổi phải diễn ra trước thao tác truy vấn.
 
-Nếu cần hỗ trợ nhiều thao tác sửa đổi và truy vấn xen kẽ, cần dùng [cây Fenwick](../ds/fenwick.md), nhưng tư tưởng của chúng là tương thông.
+Nếu cần hỗ trợ nhiều thao tác sửa đổi và truy vấn xen kẽ, cần dùng [cây Fenwick](../ds/fenwick.md), nhưng hai cách làm này có chung ý tưởng.
 
 ### Sai phân một chiều
 

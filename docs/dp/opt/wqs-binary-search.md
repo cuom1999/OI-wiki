@@ -102,7 +102,7 @@ $$
 v^\star(y) = \sup_{\lambda\in\mathbf R^d} h(\lambda)+\lambda\cdot y,
 $$
 
-còn hàm mục tiêu của bài toán đối ngẫu là hàm lõm theo $\lambda\in\mathbf R^d$, do đó là hàm đơn đỉnh và có thể được giải hiệu quả bằng [tìm kiếm tam phân](../../basic/binary.md#tìm-kiếm-tam-phân) hoặc [tìm kiếm tỉ lệ vàng](../../basic/binary.md#tối-ưu-phương-pháp-lát-cắt-vàng), với độ phức tạp vẫn là $O(T(n)\log^d L)$. Điều này giải quyết hoàn toàn vấn đề giá trị $g(x_\lambda)$ được ghi trong phương pháp WQS truyền thống có thể gây lỗi, đồng thời cho phép áp dụng tư tưởng WQS cho trường hợp nhiều chiều.
+còn hàm mục tiêu của bài toán đối ngẫu là hàm lõm theo $\lambda\in\mathbf R^d$, do đó là hàm đơn đỉnh và có thể được giải hiệu quả bằng [tìm kiếm tam phân](../../basic/binary.md#tìm-kiếm-tam-phân) hoặc [tìm kiếm theo tỉ lệ vàng](../../basic/binary.md#tối-ưu-tìm-kiếm-theo-tỉ-lệ-vàng), với độ phức tạp vẫn là $O(T(n)\log^d L)$. Điều này giải quyết hoàn toàn vấn đề giá trị $g(x_\lambda)$ được ghi trong phương pháp WQS truyền thống có thể gây lỗi, đồng thời cho phép áp dụng tư tưởng WQS cho trường hợp nhiều chiều.
 
 Ngoài ra, mục này còn chỉ ra rằng phạm vi của $g(x_\lambda)$ có thể được suy ra từ $h(\lambda)$ mà không cần ghi thêm khi giải $h(\lambda)$. Ví dụ, với $d=1$ và bài toán chỉ liên quan đến số nguyên, có thể chứng minh phạm vi giá trị của $g(x_\lambda)$ đúng bằng
 

@@ -75,7 +75,7 @@ void say_hello() {
 
 ## Gọi hàm
 
-Giống như biến, hàm cần được khai báo trước rồi mới có thể sử dụng. Hành động sử
+Giống như biến, hàm cần được khai báo trước rồi mới có thể sử dụng. Thao tác sử
 dụng hàm được gọi là "gọi hàm". Có thể gọi hàm khác bên trong bất kỳ hàm nào,
 bao gồm cả chính hàm đó. Hành vi một hàm gọi chính nó được gọi là **đệ quy**.
 

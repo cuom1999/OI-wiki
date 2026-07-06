@@ -419,7 +419,7 @@ Có thể dùng từ khóa `typedef` để khai báo kiểu của con trỏ hàm
 typedef int (*p_bi_int_op)(int, int);
 ```
 
-Như vậy, về sau có thể dùng kiểu `p_bi_int_op`, tức kiểu con trỏ trỏ tới hàm "có
+Từ đó, về sau có thể dùng kiểu `p_bi_int_op`, tức kiểu con trỏ trỏ tới hàm "có
 2 tham số kiểu `int` và giá trị trả về cũng là `int`".
 
 Có thể dùng `std::function` để tham chiếu hàm một cách thuận tiện hơn. (Còn tiếp)

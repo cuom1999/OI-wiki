@@ -15,7 +15,7 @@ Có thể tham khảo nội dung trong các trang sau:
 
 Có thể tham khảo nội dung trong trang [VS Code](../tools/editor/vscode.md).
 Trang web chính thức của Visual Studio Code có tài liệu giải thích cách cấu hình
-C++. Nói chung, VS Code sẽ tiện hơn khi dùng kèm các tiện ích mở rộng; xem
+C++. Thông thường, VS Code sẽ tiện hơn khi dùng kèm các tiện ích mở rộng; xem
 [trang web chính thức của VS Code](https://code.visualstudio.com/).
 
 ## Tóm tắt nhanh cú pháp C++

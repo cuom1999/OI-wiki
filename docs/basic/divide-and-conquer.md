@@ -205,7 +205,7 @@ Cách cài đặt hàm `merge` giống với việc gộp hai danh sách liên k
 ### Điểm chính khi viết đệ quy
 
 **Hiểu nhiệm vụ của một hàm và tin rằng nó hoàn thành được nhiệm vụ đó; không
-nên nhảy vào bên trong hàm để cố truy thêm chi tiết**, nếu không sẽ mắc kẹt
+nên đi sâu vào thân hàm để lần theo từng chi tiết**, nếu không sẽ mắc kẹt
 trong vô hạn chi tiết. Con người khó giữ đồng thời nhiều khung ngăn xếp như máy
 tính.
 

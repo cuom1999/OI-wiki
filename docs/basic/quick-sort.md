@@ -368,7 +368,7 @@ dãy được sắp xếp tăng dần (đánh số từ 0).
 
 Để tìm phần tử hạng $k$ (K-th order statistic), cách đơn giản nhất là sắp xếp
 trước rồi trực tiếp lấy phần tử ở vị trí hạng $k$. Cách làm này có độ phức tạp
-thời gian $O(n\log n)$, rất không kinh tế đối với bài toán này.
+thời gian $O(n\log n)$, không hiệu quả đối với bài toán này.
 
 Có thể mượn ý tưởng của sắp xếp nhanh để giải bài toán. Xét quá trình phân
 hoạch của sắp xếp nhanh: sau khi quá trình "phân hoạch" kết thúc, dãy
