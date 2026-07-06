@@ -1,9 +1,9 @@
 > Khai báo một biến có tên là tham chiếu, tức là bí danh của một đối tượng hoặc
 > hàm đã tồn tại.
 
-Tham chiếu có thể hiểu là một bí danh được ràng buộc với một đối tượng hoặc hàm
-hợp lệ. Khi truyền tham chiếu vào hàm, hàm thao tác trên chính thực thể được
-tham chiếu mà không cần sao chép đối tượng.
+Tham chiếu là một bí danh được ràng buộc với một đối tượng hoặc hàm hợp lệ. Khi
+truyền tham chiếu vào hàm, hàm thao tác trên chính thực thể được tham chiếu mà
+không cần sao chép đối tượng.
 
 Tham chiếu không phải là đối tượng, nên không thể có mảng chứa tham chiếu, không
 thể lấy con trỏ tới tham chiếu, và cũng không thể khai báo tham chiếu tới tham
@@ -20,13 +20,14 @@ Tham chiếu chủ yếu được chia thành hai loại: tham chiếu trái tr�
 phải trị.
 
 ??? note "Trái trị và phải trị"
-    Phần giải thích về trái trị và phải trị nằm ở trang [loại giá trị](./value-category.md).
+    Phần giải thích về trái trị và phải trị nằm ở trang
+    [loại giá trị](./value-category.md).
 
 ## Tham chiếu trái trị T&
 
-Loại tham chiếu thường gặp là tham chiếu trái trị, tức là tham chiếu gắn với trái
-trị. Đồng thời, tham chiếu trái trị tới `const` có thể gắn với phải trị. Dưới
-đây là một đoạn mã ví dụ từ
+Loại tham chiếu thường gặp nhất là tham chiếu trái trị, tức tham chiếu gắn với
+trái trị. Đồng thời, tham chiếu trái trị tới `const` có thể gắn với phải trị.
+Dưới đây là một đoạn mã ví dụ từ
 [tài liệu tham khảo](https://en.cppreference.com/w/cpp/language/reference).
 
 ```cpp
@@ -44,8 +45,8 @@ int main() {
 }
 ```
 
-Nơi tham chiếu trái trị được dùng phổ biến nhất là tham số hàm, nhằm tránh những
-phép sao chép không cần thiết.
+Tham chiếu trái trị thường được dùng làm tham số hàm để tránh những phép sao chép
+không cần thiết.
 
 ```cpp
 #include <iostream>
@@ -65,10 +66,10 @@ int main() {
 }
 ```
 
-## Tham chiếu phải trị T&& (C++ 11)
+## Tham chiếu phải trị T&& (C++11)
 
-Tham chiếu phải trị là tham chiếu gắn với phải trị, dùng để di chuyển đối tượng,
-và cũng có thể dùng để **kéo dài thời gian sống của đối tượng tạm**.
+Tham chiếu phải trị là tham chiếu gắn với phải trị, thường dùng trong di chuyển
+đối tượng, và cũng có thể dùng để **kéo dài thời gian sống của đối tượng tạm**.
 
 ```cpp
 #include <iostream>
@@ -100,7 +101,7 @@ int main() {
 
 Khi đối tượng mà tham chiếu gắn với đã bị hủy, tham chiếu sẽ trở thành tham chiếu
 treo. Truy cập tham chiếu treo là hành vi không xác định và có thể khiến chương
-trình bị sập.
+trình gặp lỗi khi chạy.
 
 Sau đây là các ví dụ thường gặp về tham chiếu treo:
 
@@ -151,14 +152,14 @@ Sau đây là các ví dụ thường gặp về tham chiếu treo:
     }
     ```
 
-    Tương tự, thao tác chèn vào các bộ chứa như `std::vector`,
-    `std::unordered_map` cũng đều có thể dẫn tới cấp phát lại bộ nhớ.
+    Tương tự, thao tác chèn vào các bộ chứa như `std::vector` hoặc
+    `std::unordered_map` cũng có thể dẫn tới cấp phát lại bộ nhớ.
 
 Khi sử dụng tham chiếu, cần luôn lưu ý tới thời gian sống của đối tượng mà tham
 chiếu gắn với để tránh tạo ra tham chiếu treo.
 
-Thông thường, công cụ kiểm tra tĩnh và thói quen viết mã tốt giúp hạn chế vấn
-đề tham chiếu treo.
+Thông thường, công cụ kiểm tra tĩnh và thói quen viết mã cẩn thận giúp hạn chế
+vấn đề tham chiếu treo.
 
 ## Kỹ thuật cải thiện hiệu năng liên quan đến tham chiếu
 
@@ -166,14 +167,14 @@ Thông thường, công cụ kiểm tra tĩnh và thói quen viết mã tốt gi
 
 Các **đối tượng tốn kém khi sao chép** thường gặp gồm:
 
--   Bộ chứa như `vector`, `array`, `map`.
--   `string`
--   Các kiểu khác đã tự định nghĩa hoặc kế thừa những hàm đặc biệt như hàm tạo
-    sao chép, hàm tạo di chuyển
+-   Bộ chứa như `std::vector`, `std::array`, `std::map`.
+-   `std::string`
+-   Các kiểu đã tự định nghĩa hoặc kế thừa những hàm đặc biệt như hàm tạo sao
+    chép, hàm tạo di chuyển
 
-Trong khi đó, dùng tham chiếu cho **đối tượng nhẹ** không mang lại lợi ích nào;
-kích thước chiếm dụng của kiểu tham chiếu khi làm tham số thậm chí có thể lớn
-hơn chính kiểu đó.
+Trong khi đó, dùng tham chiếu cho **đối tượng nhẹ** không mang lại lợi ích rõ
+ràng; kích thước chiếm dụng của kiểu tham chiếu khi làm tham số thậm chí có thể
+lớn hơn chính kiểu đó.
 
 Điều này có thể tạo thêm một ít gánh nặng hiệu năng, đồng thời cản trở trình
 biên dịch tối ưu.
@@ -181,13 +182,13 @@ biên dịch tối ưu.
 Những kiểu sau thuộc nhóm **đối tượng nhẹ**:
 
 -   Kiểu cơ bản như `int`, `float`.
--   [Kiểu aggregate](https://en.cppreference.com/w/cpp/language/aggregate_initialization) nhỏ
+-   [Kiểu kết tập (aggregate)](https://en.cppreference.com/w/cpp/language/aggregate_initialization) nhỏ
 -   Bộ lặp của bộ chứa trong thư viện chuẩn
 
-### Chuyển trái trị thành phải trị
+### Chuyển biểu thức thành xvalue
 
 Dùng `std::move` để [chuyển](./value-category.md#stdmove) một biểu thức thành
-phải trị, từ đó cho phép kích hoạt ngữ nghĩa di chuyển nếu kiểu dữ liệu hỗ trợ.
+xvalue, từ đó cho phép kích hoạt ngữ nghĩa di chuyển nếu kiểu dữ liệu hỗ trợ.
 Cách này thường xuất hiện giữa các biến cục bộ, hoặc giữa tham số và biến cục bộ:
 
 ```cpp
@@ -227,8 +228,8 @@ Trong ví dụ `world` ở trên, không cần viết `return std::move(str);`.
 
 ### Tham chiếu kéo dài thời gian sống của đối tượng tạm
 
-Về mặt ngữ nghĩa, đối tượng tạm có thể gây ra thêm các phép sao chép hoặc di
-chuyển. Dù trong đa số trường hợp trình biên dịch có thể tối ưu bằng
+Về mặt ngữ nghĩa, đối tượng tạm có thể kéo theo các phép sao chép hoặc di chuyển.
+Dù trong đa số trường hợp trình biên dịch có thể tối ưu bằng
 [loại bỏ sao chép](./value-category.md#loại-bỏ-sao-chép), việc gắn đối tượng tạm
 với tham chiếu phù hợp có thể kéo dài thời gian sống của nó, tránh dùng một đối
 tượng đã bị hủy.
