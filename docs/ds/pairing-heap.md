@@ -3,7 +3,7 @@
 ## Mở đầu
 
 Heap ghép cặp (pairing heap) là một cấu trúc dữ liệu hỗ trợ các thao tác chèn,
-truy vấn hoặc xóa phần tử nhỏ nhất, hợp nhất, sửa phần tử, v.v.
+truy vấn hoặc xóa phần tử nhỏ nhất, hợp nhất, giảm khóa, v.v.
 Đây là một loại heap có thể hợp nhất.
 Nó có ưu điểm là nhanh và có cấu trúc đơn giản,
 nhưng vì độ phức tạp chỉ được bảo đảm theo nghĩa khấu hao qua phân tích thế năng nên không phù hợp để bền vững hóa.
@@ -45,7 +45,7 @@ Hơn nữa, bất kỳ cây nào thỏa mãn tính chất heap cũng là một h
 Chính cấu trúc đơn giản nhưng rất linh hoạt này là nền tảng cho hiệu quả tốt của heap ghép cặp trong thực tế.
 Để so sánh, hằng số lớn của heap Fibonacci xuất phát từ việc nó phải duy trì rất nhiều thông tin phụ.
 
-Heap ghép cặp bảo đảm tổng độ phức tạp bằng một trình tự thao tác được thiết kế cẩn thận.
+Heap ghép cặp bảo đảm tổng độ phức tạp nhờ một trình tự thao tác được thiết kế cẩn thận.
 Bài báo gốc[^ref1] gọi nó là "heap tự điều chỉnh" (Self Adjusting Heap).
 Ở khía cạnh này, nó khá giống cây Splay
 (trong bài báo gốc gọi là Self Adjusting Binary Tree, tức cây nhị phân tự điều chỉnh).
@@ -84,7 +84,7 @@ còn nút ngoài cùng bên trái trở thành con của nút cha gần đây nh
       // Đặt y làm con của x
       y->sibling = x->child;
       x->child = y;
-      return x;  // nút gốc mới là x
+      return x;  // Nút gốc mới là x.
     }
     ```
 
@@ -117,7 +117,8 @@ nhưng độ phức tạp của một thao tác có thể suy giảm thành $O(n
 Để bảo đảm độ phức tạp khấu hao, cần dùng một phương pháp hợp nhất "hai bước":
 
 1.  Ghép các con thành từng cặp, rồi dùng thao tác `meld` để hợp nhất hai con trong cùng một cặp (xem hình 1 bên dưới).
-2.  Hợp nhất lần lượt các heap mới sinh ra **từ phải sang trái** (tức theo hướng từ các con cũ đến các con mới) (xem hình 2 bên dưới).
+2.  Hợp nhất lần lượt các heap mới sinh ra **từ phải sang trái** (tức theo hướng từ các con cũ đến các con mới; xem hình
+    2 bên dưới).
 
 ![](./images/pairingheap4.jpg)
 
@@ -133,7 +134,7 @@ Trước hết cài đặt một hàm phụ trợ `merges`, có tác dụng hợ
       Node* y = x->sibling;                // y là anh em kế tiếp của x
       Node* c = y->sibling;                // c là anh em tiếp theo nữa
       x->sibling = y->sibling = nullptr;   // tách rời
-      return meld(merges(c), meld(x, y));  // phần cốt lõi
+      return meld(merges(c), meld(x, y));  // Phần cốt lõi.
     }
     ```
 
@@ -155,7 +156,7 @@ Khi đã có hàm `merges`, thao tác `delete-min` trở nên trực tiếp.
     ```cpp
     Node* delete_min(Node* x) {
       Node* t = merges(x->child);
-      delete x;  // nếu cần thu hồi bộ nhớ
+      delete x;  // Nếu cần thu hồi bộ nhớ.
       return t;
     }
     ```
@@ -229,8 +230,8 @@ rồi chỉ cần hợp nhất chúng lại là hoàn thành toàn bộ thao tá
     // root là gốc của heap, x là nút cần thao tác, v là trọng số mới; khi gọi cần bảo đảm v <= x->v
     // Giá trị trả về là nút gốc mới
     Node *decrease_key(Node *root, Node *x, LL v) {
-      x->v = v;                 // cập nhật trọng số
-      if (x == root) return x;  // nếu x là gốc thì trả về trực tiếp
+      x->v = v;                 // Cập nhật trọng số.
+      if (x == root) return x;  // Nếu x là gốc thì trả về trực tiếp.
       // Tách x khỏi các nút con của cha; cần xét vị trí của x.
       if (x->father->child == x) {
         x->father->child = x->sibling;
@@ -242,7 +243,7 @@ rồi chỉ cần hợp nhất chúng lại là hoàn thành toàn bộ thao tá
       }
       x->sibling = nullptr;
       x->father = nullptr;
-      return meld(root, x);  // hợp nhất lại x và nút gốc
+      return meld(root, x);  // Hợp nhất lại x và nút gốc.
     }
     ```
 
