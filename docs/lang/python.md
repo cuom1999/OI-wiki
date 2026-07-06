@@ -4,19 +4,27 @@ author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZ
 
 ## Về Python
 
-Python là một ngôn ngữ thông dịch được sử dụng rộng rãi trên thế giới. Ngôn ngữ này cung cấp các cấu trúc dữ liệu bậc cao hiệu quả, hỗ trợ lập trình hướng đối tượng đơn giản mà mạnh mẽ, và cũng có thể dùng trong lập trình thi đấu.
+Python là một ngôn ngữ thông dịch được sử dụng rộng rãi. Ngôn ngữ này cung cấp
+các cấu trúc dữ liệu bậc cao hiệu quả, hỗ trợ lập trình hướng đối tượng gọn gàng
+mà mạnh mẽ, và cũng có thể dùng trong lập trình thi đấu.
 
 <a id="ưu-điểm-của-python"></a>
 
 ### Ưu điểm của Python
 
--   Python là một ngôn ngữ **thông dịch**: không cần biên dịch và liên kết trước, nên giảm được nhiều thao tác khi chạy chương trình.
--   Python là một ngôn ngữ **tương tác**: trình thông dịch Python hỗ trợ thao tác tương tác, có thể nhập và chạy lệnh trực tiếp trong trình dòng lệnh.
+-   Python là một ngôn ngữ **thông dịch**: không cần biên dịch và liên kết trước,
+    nên giảm được nhiều thao tác khi chạy chương trình.
+-   Python là một ngôn ngữ **tương tác**: trình thông dịch Python hỗ trợ thao tác
+    tương tác, có thể nhập và chạy lệnh ngay trong trình dòng lệnh.
 -   Python **dễ học, dễ dùng**: Python cung cấp nhiều cấu trúc dữ liệu tiện lợi và vẫn phù hợp để phát triển chương trình lớn.
 -   Python **tương thích tốt**: Python hỗ trợ Windows, macOS và các hệ điều hành Unix.
--   Python **thực dụng**: từ nhập xuất đơn giản, tính toán khoa học cho đến các ứng dụng web lớn, đều có thể viết bằng Python.
--   Chương trình Python **ngắn gọn và dễ đọc**: mã Python thường ngắn hơn mã của các ngôn ngữ khác khi thực hiện cùng một chức năng.
--   Python **hỗ trợ mở rộng**: Python được phát triển bằng C (tức CPython), hỗ trợ liên kết trình thông dịch Python với ứng dụng viết bằng C, nhờ đó có thể dùng Python để mở rộng và điều khiển ứng dụng đó.
+-   Python **thực dụng**: từ nhập xuất cơ bản, tính toán khoa học cho đến các ứng
+    dụng web lớn đều có thể viết bằng Python.
+-   Chương trình Python **ngắn gọn và dễ đọc**: mã Python thường ngắn hơn mã của
+    các ngôn ngữ khác khi thực hiện cùng một chức năng.
+-   Python **hỗ trợ mở rộng**: Python được phát triển bằng C (tức CPython), hỗ trợ
+    liên kết trình thông dịch Python với ứng dụng viết bằng C, nhờ đó có thể dùng
+    Python để mở rộng và điều khiển ứng dụng đó.
 
 <a id="lưu-ý-khi-học-python"></a>
 
@@ -32,8 +40,8 @@ Python là một ngôn ngữ thông dịch được sử dụng rộng rãi trê
     số ngôn ngữ khác**. Python che giấu nhiều chi tiết tầng thấp, vì vậy mang
     phong cách thực dụng và gọn gàng.
 -   Python là ngôn ngữ thông dịch có tính động cao, nên **tốc độ chạy chương
-    trình tương đối chậm**, đặc biệt khi dùng vòng lặp `for` thuần Python. Khi
-    dùng Python, nên tận dụng các hàm dựng sẵn như `filter`, `map`, hoặc dùng cú
+    trình chậm**, đặc biệt khi dùng vòng lặp `for` thuần Python. Khi dùng Python,
+    nên tận dụng các hàm dựng sẵn như `filter`, `map`, hoặc dùng cú
     pháp [biểu thức sinh danh sách](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python)
     để cải thiện hiệu năng.
 
@@ -50,7 +58,9 @@ Xem [Python 3](../tools/compiler.md#python-3). Hoặc:
     nhất thiết phải cài thêm Python.
 
     ???+ warning "Lưu ý"
-        Trên một số hệ thống cài Python mặc định (tức cài bằng trình quản lý gói), chẳng hạn các hệ Unix, nên chạy `python3` trong trình dòng lệnh để mở trình thông dịch Python 3.[^ref1]
+        Trên một số hệ thống cài Python mặc định (tức cài bằng trình quản lý
+        gói), chẳng hạn các hệ Unix, nên chạy `python3` trong trình dòng lệnh để
+        mở trình thông dịch Python 3.[^ref1]
 
 Ngoài ra, cũng có thể dùng các công cụ như venv, conda, Nix để quản lý bộ công
 cụ Python và các gói Python, tạo môi trường ảo độc lập và tránh lỗi phụ thuộc.
@@ -64,7 +74,9 @@ sẽ được mở ra; môi trường này còn gọi là "REPL" (vòng lặp "�
 kết quả"). Người mới học có thể nhập lệnh tại đây và thấy kết quả ngay, phù hợp
 để kiểm tra nhanh cú pháp. Phần sau cũng sẽ thường dùng hình thức này.
 
-Nhưng nếu muốn viết một chương trình hoàn chỉnh, tốt hơn hết là tạo một tệp văn bản mới (thường có đuôi `.py`), sau đó chạy `python3 filename.py` trên dòng lệnh để xem kết quả.
+Nhưng nếu muốn viết một chương trình hoàn chỉnh, tốt hơn hết là tạo một tệp văn
+bản mới (thường có đuôi `.py`), sau đó chạy `python3 filename.py` trên dòng lệnh
+để xem kết quả.
 
 <a id="một-số-phiên-bản-python-trên-các-nền-tảng"></a>
 
@@ -79,7 +91,8 @@ Nhưng nếu muốn viết một chương trình hoàn chỉnh, tốt hơn hết
 | Microsoft Store             | Bản ổn định mới nhất          |
 
 ???+ warning "Lưu ý"
-    Bảng này đúng tại thời điểm bài viết được soạn (2025/01/15); nên kiểm tra lại trên các nền tảng liên quan.
+    Bảng này đúng tại thời điểm bài viết được soạn (2025/01/15); nên kiểm tra lại
+    trên các nền tảng liên quan.
 
 Nên tải Python từ [trang tải chính thức](https://www.python.org/downloads/) hoặc
 trình quản lý gói của hệ điều hành. Nếu tốc độ tải không ổn định, có thể chọn
@@ -109,13 +122,18 @@ phản chiếu PyPI trên [MirrorZ](https://mirrorz.org/list/pypi).
 
 ## Cú pháp cơ bản
 
-Cú pháp Python ngắn gọn và dễ hiểu, đồng thời có nhiều tài liệu và giáo trình cả chính thức lẫn bên thứ ba. Phần này chỉ giới thiệu một số đặc điểm ngôn ngữ hữu ích với OIer. Có thể đọc thêm các bài học Python trên [tài liệu Python](https://docs.python.org/3/) và [Python Wiki](https://wiki.python.org/moin/).
+Cú pháp Python ngắn gọn và dễ hiểu, đồng thời có nhiều tài liệu và giáo trình cả
+chính thức lẫn bên thứ ba. Phần này chỉ giới thiệu một số đặc điểm ngôn ngữ hữu
+ích với OIer. Có thể đọc thêm các bài học Python trên
+[tài liệu Python](https://docs.python.org/3/) và
+[Python Wiki](https://wiki.python.org/moin/).
 
 <a id="chú-thích"></a>
 
 ### Chú thích
 
-Thêm chú thích không ảnh hưởng đến việc chạy mã, nhưng giúp mã dễ hiểu và dễ dùng hơn.
+Thêm chú thích không ảnh hưởng đến việc chạy mã, nhưng giúp mã dễ hiểu và dễ
+dùng hơn.
 
 ```python
 # Dòng bắt đầu bằng ký tự # là chú thích một dòng
@@ -127,7 +145,8 @@ nhưng nó cũng thường được dùng làm chú thích
 """
 ```
 
-Thêm mã chú thích sẽ không ảnh hưởng đến chương trình. Nên thêm chú thích để mã dễ hiểu và dễ dùng hơn.
+Thêm mã chú thích sẽ không ảnh hưởng đến chương trình. Nên thêm chú thích để mã
+dễ hiểu và dễ dùng hơn.
 
 <a id="kiểu-dữ-liệu-cơ-bản"></a>
 
@@ -137,7 +156,8 @@ Thêm mã chú thích sẽ không ảnh hưởng đến chương trình. Nên th
 
 #### Mọi thứ đều là đối tượng
 
-Trong Python, không cần khai báo trước tên biến và kiểu của nó; gán giá trị sẽ tạo biến thuộc nhiều kiểu khác nhau:
+Trong Python, không cần khai báo trước tên biến và kiểu của nó; gán giá trị sẽ
+tạo biến thuộc nhiều kiểu khác nhau:
 
 ```pycon
 >>> x = -3  # Cuối câu lệnh không cần dấu chấm phẩy
@@ -155,7 +175,9 @@ False
 True
 ```
 
-Điều này không có nghĩa Python không có khái niệm kiểu. Thực tế, trình thông dịch sẽ tự động suy luận kiểu biến theo phép gán hoặc phép tính. Có thể dùng hàm dựng sẵn `type()` để xem kiểu của các biến này:
+Điều này không có nghĩa Python không có khái niệm kiểu. Thực tế, trình thông
+dịch sẽ tự động suy luận kiểu biến theo phép gán hoặc phép tính. Có thể dùng hàm
+dựng sẵn `type()` để xem kiểu của các biến này:
 
 ```pycon
 >>> type(x)
@@ -169,11 +191,24 @@ True
 ```
 
 ???+ note "[**Hàm dựng sẵn**](https://docs.python.org/3/library/functions.html) là gì?"
-    Trong C/C++, nhiều hàm thường dùng nằm rải rác trong các tệp tiêu đề khác nhau. Còn trình thông dịch Python tích hợp sẵn nhiều hàm thực dụng và tổng quát; có thể dùng trực tiếp mà không cần quan tâm chúng nằm ở đâu. Điều này cũng tạo ra một vấn đề nhỏ: tên các hàm dựng sẵn thường là từ thông dụng, vì vậy cần tránh đặt biến trùng tên, nếu không có thể sinh ra kết quả kỳ lạ.
+    Trong C/C++, nhiều hàm thường dùng nằm rải rác trong các tệp tiêu đề khác
+    nhau. Còn trình thông dịch Python tích hợp sẵn nhiều hàm thực dụng và tổng
+    quát; có thể dùng ngay mà không cần quan tâm chúng nằm ở đâu. Điều này cũng
+    tạo ra một vấn đề nhỏ: tên các hàm dựng sẵn thường là từ thông dụng, vì vậy
+    cần tránh đặt biến trùng tên, nếu không có thể sinh ra kết quả kỳ lạ.
 
-Python có sẵn các kiểu số nguyên, số thực dấu phẩy động, chuỗi và luận lý, có thể đối chiếu với `int`, `float`, `string` và `bool` trong C++. Nhưng có một số khác biệt đáng lưu ý: Python không có kiểu ký tự `char`, cũng không có kiểu `double` (nhưng `float` tương ứng với số chính xác kép trong C). Nếu cần phép tính dấu phẩy động chính xác hơn, có thể dùng mô-đun [decimal](https://docs.python.org/3/library/decimal.html) trong thư viện chuẩn. Nếu cần số phức, Python có sẵn kiểu `complex` (tốt nhất là không đặt biến tên `complex`).
+Python có sẵn các kiểu số nguyên, số thực dấu phẩy động, chuỗi và luận lý, có thể
+đối chiếu với `int`, `float`, `string` và `bool` trong C++. Nhưng có một số khác
+biệt đáng lưu ý: Python không có kiểu ký tự `char`, cũng không có kiểu `double`
+(nhưng `float` tương ứng với số chính xác kép trong C). Nếu cần phép tính dấu
+phẩy động chính xác hơn, có thể dùng mô-đun
+[decimal](https://docs.python.org/3/library/decimal.html) trong thư viện chuẩn.
+Nếu cần số phức, Python có sẵn kiểu `complex` (tốt nhất là không đặt biến tên
+`complex`).
 
-Các kiểu này đều bắt đầu bằng `class`, và đây là điểm cốt lõi khiến Python khác C++: mọi dữ liệu trong chương trình Python được biểu diễn bằng đối tượng hoặc quan hệ giữa các đối tượng. Hàm là đối tượng, bản thân kiểu cũng là đối tượng:
+Các kiểu này đều bắt đầu bằng `class`, và đây là điểm cốt lõi khiến Python khác
+C++: mọi dữ liệu trong chương trình Python được biểu diễn bằng đối tượng hoặc
+quan hệ giữa các đối tượng. Hàm là đối tượng, bản thân kiểu cũng là đối tượng:
 
 ```pycon
 >>> type(int)
@@ -193,7 +228,8 @@ tượng thay vì quanh quy trình; mã sẽ gọn và rõ hơn.
 
 #### Phép toán số học
 
-Có người nói rằng có thể xem Python cài trên máy như một chiếc máy tính đa năng; điều đó đúng.
+Có thể xem Python cài trên máy như một chiếc máy tính đa năng; cách hiểu này khá
+đúng.
 Trong chế độ tương tác, có thể nhập một biểu thức sau dấu nhắc `>>>`, dùng các
 toán tử `+`, `-`, `*`, `/`, `%` để tính toán trên số như phần lớn ngôn ngữ khác
 (ví dụ C++), và dùng `()` để nhóm theo thứ tự kết hợp. Có thể tự thử các phép
@@ -220,9 +256,14 @@ toán này; phần này chỉ trình bày các điểm khác C++ rõ hơn:
 10001.0
 ```
 
-Từ các thử nghiệm trên, phép chia (`/`) luôn trả về kiểu dấu phẩy động (trong Python 2 thì trả về số nguyên). Nếu muốn kết quả số nguyên hoặc làm tròn xuống, dùng chia nguyên (`//`). Tương tự C++, có thể dùng modulo (`%`) để tính phần dư, và dạng ký pháp khoa học cũng giống nhau.
+Từ các thử nghiệm trên, phép chia (`/`) luôn trả về kiểu dấu phẩy động (trong
+Python 2 thì trả về số nguyên). Nếu muốn kết quả số nguyên hoặc làm tròn xuống,
+dùng chia nguyên (`//`). Tương tự C++, có thể dùng modulo (`%`) để tính phần dư,
+và dạng ký pháp khoa học cũng giống nhau.
 
-Đặc biệt, Python dùng `**` để tính lũy thừa, và cung cấp cài đặt hiệu quả của [lũy thừa nhanh](../math/binary-exponentiation.md) qua hàm dựng sẵn `pow(a, b, mod)`.
+Đặc biệt, Python dùng `**` để tính lũy thừa, và cung cấp cài đặt hiệu quả của
+[lũy thừa nhanh](../math/binary-exponentiation.md) qua hàm dựng sẵn
+`pow(a, b, mod)`.
 
 ```pycon
 >>> 3 ** 4  # Lũy thừa
