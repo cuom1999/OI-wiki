@@ -5,7 +5,7 @@ Sàng Dujiao được dùng để xử lí một lớp bài toán tính tổng t
 <span id="ý-tưởng-thuật-toán"></span>
 ## Ý tưởng thuật toán
 
-Ta tìm cách xây dựng một công thức truy hồi của $S(n)$ theo $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$.
+Cần xây dựng một công thức truy hồi của $S(n)$ theo $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$.
 
 Với một hàm số học bất kì $g$, luôn có:
 
@@ -19,7 +19,7 @@ $$
 Trong đó $f*g$ là [tích chập Dirichlet](./dirichlet.md#tích-chập-dirichlet) của hai hàm số học $f$ và $g$.
 
 ???+ note "Chứng minh sơ lược"
-    $g(d)f\left(\frac{i}{d}\right)$ chính là phần đóng góp của mọi $i\leq n$. Vì vậy ta đổi thứ tự liệt kê, lần lượt liệt kê $d$ và $\frac{i}{d}$ (tương ứng với $i,j$ mới):
+    $g(d)f\left(\frac{i}{d}\right)$ chính là phần đóng góp của mọi $i\leq n$. Vì vậy đổi thứ tự liệt kê, lần lượt liệt kê $d$ và $\frac{i}{d}$ (tương ứng với $i,j$ mới):
 
     $$
     \begin{aligned}
@@ -38,17 +38,17 @@ $$
 \end{aligned}
 $$
 
-Nếu ta xây dựng được một hàm số học $g$ thích hợp sao cho:
+Nếu xây dựng được một hàm số học $g$ thích hợp sao cho:
 
 1.  Có thể tính nhanh $\sum_{i=1}^n(f * g)(i)$;
 2.  Có thể tính nhanh tổng tiền tố của $g$, để dùng chia đoạn số học tính $\sum_{i=2}^ng(i)S\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$.
 
-Khi đó ta có thể tính $g(1)S(n)$ trong thời gian ngắn.
+Khi đó có thể tính $g(1)S(n)$ trong thời gian ngắn.
 
 ???+ warning "Lưu ý"
     Bất kể hàm số học $f$ có là hàm nhân hay không, miễn là xây dựng được hàm số học $g$ thích hợp thì đều có thể cân nhắc dùng sàng Dujiao để tính tổng tiền tố của $f$.
 
-    Chẳng hạn xét $f(n)=\mathrm{i}\varphi(n)$. Rõ ràng $f$ không phải hàm nhân, nhưng có thể lấy $g(n)=1$, do đó:
+    Chẳng hạn xét $f(n)=\mathrm{i}\varphi(n)$. Hàm $f$ không phải hàm nhân, nhưng có thể lấy $g(n)=1$, do đó:
 
     $$
     \sum_{k=1}^n (f*g)(k)=\mathrm{i}\frac{n(n+1)}{2}
@@ -72,7 +72,7 @@ $$
 \end{aligned}
 $$
 
-Nếu ta có thể tiền xử lí một phần $S(k)$, với $k=1,2,\dots,m$ và $m\geq \lfloor\sqrt n\rfloor$. Giả sử độ phức tạp tiền xử lí là $T_0(m)$, thì lúc này $T(n)$ là:
+Nếu có thể tiền xử lí một phần $S(k)$, với $k=1,2,\dots,m$ và $m\geq \lfloor\sqrt n\rfloor$. Giả sử độ phức tạp tiền xử lí là $T_0(m)$, thì lúc này $T(n)$ là:
 
 $$
 \begin{aligned}
@@ -83,10 +83,10 @@ $$
 \end{aligned}
 $$
 
-Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức trung bình ta có: khi $m=\Theta\left(n^{2/3}\right)$, $T(n)$ đạt giá trị nhỏ nhất $O\left(n^{2/3}\right)$.
+Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức trung bình có: khi $m=\Theta\left(n^{2/3}\right)$, $T(n)$ đạt giá trị nhỏ nhất $O\left(n^{2/3}\right)$.
 
 ??? failure "Một chứng minh sai"
-    Giả sử độ phức tạp tính $S(n)$ là $T(n)$, ta có:
+    Giả sử độ phức tạp tính $S(n)$ là $T(n)$, có:
 
     $$
     T(n)=\Theta\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\right)
@@ -99,7 +99,7 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
     \end{aligned}
     $$
 
-    Ở đây, $O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ bị xem như vô cùng bé bậc cao rồi bỏ đi. Vì vậy:
+    Trong lập luận này, $O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ bị xem như vô cùng bé bậc cao rồi bỏ đi. Vì vậy:
 
     $$
     \begin{aligned}
@@ -111,7 +111,7 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
     $$
 
     ??? bug "Lỗi"
-        Vấn đề nằm ở chỗ "xem như vô cùng bé bậc cao rồi bỏ đi". Thay $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ vào công thức của $T(n)$, ta có:
+        Vấn đề nằm ở chỗ "xem như vô cùng bé bậc cao rồi bỏ đi". Thay $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ vào công thức của $T(n)$, có:
 
         $$
         \begin{aligned}
@@ -121,7 +121,7 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
         \end{aligned}
         $$
 
-        Xét phần $\displaystyle\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)$, không khó thấy rằng:
+        Xét phần $\displaystyle\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)$, có:
 
         $$
         \begin{aligned}
@@ -144,7 +144,7 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
     Tính giá trị của $S_1(n)= \sum_{i=1}^{n} \mu(i)$ và $S_2(n)= \sum_{i=1}^{n} \varphi(i)$, với $1\leq n<2^{31}$.
 
 === "Tổng tiền tố của hàm Möbius"
-    Ta biết:
+    Có:
 
     $$
     \epsilon = [n=1] = \mu * 1 = \sum_{d \mid n} \mu(d)
@@ -162,7 +162,7 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
     Với các giá trị lớn, cần dùng `map`/`unordered_map` để lưu giá trị tương ứng, thuận tiện cho việc dùng lại kết quả đã tính trước đó.
 
 === "Tổng tiền tố của hàm Euler"
-    Dĩ nhiên cũng có thể dùng sàng Dujiao để tính tổng tiền tố của $\varphi (x)$, nhưng cách tốt hơn là áp dụng đảo Möbius.
+    Cũng có thể dùng sàng Dujiao để tính tổng tiền tố của $\varphi (x)$, nhưng cách tốt hơn là áp dụng đảo Möbius.
 
     === "Đảo Möbius"
         $$
@@ -172,9 +172,9 @@ Nếu $T_0(m)=O(m)$ (ví dụ sàng tuyến tính), theo bất đẳng thức tr
         \end{aligned}
         $$
 
-        Vì đề bài yêu cầu $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$, ta chỉ cần loại trường hợp $i=1,j=1$ rồi chia kết quả cho $2$.
+        Vì đề bài yêu cầu $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$, chỉ cần loại trường hợp $i=1,j=1$ rồi chia kết quả cho $2$.
 
-        Có thể thấy chỉ cần tính tổng tiền tố của hàm Möbius là có thể nhanh chóng tính được tổng tiền tố của hàm Euler. Độ phức tạp thời gian là $O\left(n^{\frac 2 3}\right)$.
+        Chỉ cần tính tổng tiền tố của hàm Möbius là có thể nhanh chóng tính được tổng tiền tố của hàm Euler. Độ phức tạp thời gian là $O\left(n^{\frac 2 3}\right)$.
 
     === "Sàng Dujiao"
         Tính $S(n)=\sum_{i=1}^n\varphi(i)$.
@@ -225,7 +225,7 @@ $$
 
 Cần xây dựng một hàm nhân $g$ sao cho $f\times g$ và $g$ đều có thể tính tổng nhanh.
 
-Tổng tiền tố của riêng $\varphi$ có thể xử lí bằng sàng Dujiao cho $\varphi * 1$, nhưng ở đây $f$ có thêm một thừa số $\operatorname{id}^2$. Vì vậy ta chập thêm một $\operatorname{id}^2$ để biến nó thành hằng số:
+Tổng tiền tố của riêng $\varphi$ có thể xử lí bằng sàng Dujiao cho $\varphi * 1$, nhưng trong bài này $f$ có thêm một thừa số $\operatorname{id}^2$. Vì vậy chập thêm một $\operatorname{id}^2$ để biến nó thành hằng số:
 
 $$
 S(n)=\sum_{i=1}^n\left(\left(\operatorname{id}^2\varphi\right) * \operatorname{id}^2\right)(i)-\sum_{i=2}^n\operatorname{id}^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)

@@ -2,9 +2,9 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ## Thuật toán Mo trên cây theo thứ tự ngoặc
 
-Thuật toán Mo thông thường chỉ xử lý được bài toán tuyến tính, vì vậy ta cần ép cây thành một dãy.
+Thuật toán Mo thông thường chỉ xử lý được bài toán tuyến tính, vì vậy cần ép cây thành một dãy.
 
-Ta có thể duyệt thứ tự ngoặc của cây, chia khối trên thứ tự ngoặc rồi chạy thuật toán Mo trên dãy đó.
+Có thể duyệt thứ tự ngoặc của cây, chia khối trên thứ tự ngoặc rồi chạy thuật toán Mo trên dãy đó.
 
 Cụ thể làm như sau.
 
@@ -17,12 +17,12 @@ DFS cây. Khi DFS tới đỉnh x thì `push_back(x)`, khi DFS x xong thì `push
 -   Giá trị mới bị xóa là x --->`del(x)`
 -   Giá trị mới bị xóa là -x --->`add(x)`
 
-Như vậy, ta đã biến một cây thành một dãy.
+Như vậy, cây đã được biến thành một dãy.
 
 ### Ví dụ
 
 ???+ note "Ví dụ [WC2013 Candy Park](https://uoj.ac/problem/58)"
-    Đề bài: cho một cây, đỉnh thứ $i$ trên cây có màu $c_i$. Mỗi truy vấn cho một đường đi $u_i$,$v_i$, hãy tính trên đường đi đó:
+    Đề bài: cho một cây, đỉnh thứ $i$ trên cây có màu $c_i$. Mỗi truy vấn cho một đường đi $u_i$,$v_i$, cần tính trên đường đi đó:
     
     $\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$
     
@@ -30,19 +30,19 @@ Như vậy, ta đã biến một cây thành một dãy.
 
 #### Quy trình
 
-Trước hết biến cây thành một dãy. Sau đó, mỗi lần thêm/xóa một đỉnh, đóng góp của đỉnh này vào đáp án có thể tính trong $O(1)$, tức là $val_c\times w_{cnt_{c+1}}$.
+Trước hết biến cây thành một dãy. Sau đó, mỗi lần thêm/xóa một đỉnh, đóng góp của đỉnh này vào đáp án có thể tính trong $O(1)$: khi thêm màu $c$ thì tăng $val_c\times w_{cnt_c+1}$, còn khi xóa màu $c$ thì giảm $val_c\times w_{cnt_c}$.
 
-Ta thấy quá trình này cũng quét qua cây con của điểm bắt đầu, tạo ra đóng góp thừa. Xử lý thế nào?
+Quá trình này cũng quét qua cây con của điểm bắt đầu, tạo ra đóng góp thừa. Cần xử lý phần thừa này.
 
-Trong quá trình quét, các đỉnh trong cây con của điểm bắt đầu chắc chắn bị quét hai lần, nên đóng góp của chúng là 0.
+Trong quá trình quét, các đỉnh trong cây con của điểm bắt đầu sẽ bị quét hai lần, nên đóng góp của chúng là 0.
 
-Vì vậy có thể dùng một mảng $vis$; mỗi lần quét tới đỉnh x, ta XOR $vis_x$ với 1.
+Vì vậy có thể dùng một mảng $vis$; mỗi lần quét tới đỉnh x, XOR $vis_x$ với 1.
 
 Nếu $vis_x=0$, đóng góp của đỉnh này có thể bỏ qua.
 
 Do đó có thể dùng thuật toán Mo trên cây để giải.
 
-Với thao tác sửa đổi, chỉ cần thêm một chiều thời gian, ta được thuật toán Mo trên cây có sửa đổi.
+Với thao tác sửa đổi, chỉ cần thêm một chiều thời gian để thu được thuật toán Mo trên cây có sửa đổi.
 
 Ngoài ra, đoạn đang xét có thể không chứa LCA. Với trường hợp này, cần loại bỏ phần đóng góp thừa là xong.
 
@@ -215,7 +215,7 @@ Vì các bài liên quan tới thuật toán Mo thường là bài mẫu, phần
 
 ### Sắp xếp truy vấn
 
-Trước hết, ta biết thuật toán Mo dựa trên chia khối, nên cần tìm một cách chia khối trên cây để bảo đảm độ phức tạp thời gian.
+Thuật toán Mo dựa trên chia khối, nên cần tìm một cách chia khối trên cây để bảo đảm độ phức tạp thời gian.
 
 Các điều kiện:
 
@@ -224,12 +224,12 @@ Các điều kiện:
 -   Mỗi đỉnh đều phải thuộc một khối.
 -   Khoảng cách giữa các khối có chỉ số kề nhau không được quá lớn.
 
-Sau khi nắm các điều kiện này, hãy xét bài [SCOI2005 Royal Federation](https://loj.ac/problem/2152).
+Sau khi nắm các điều kiện này, xét bài [SCOI2005 Royal Federation](https://loj.ac/problem/2152).
 
 Dựa trên bài này, chỉ cần bảo đảm thêm điều kiện cuối cùng là có thể giải quyết vấn đề chia khối.
 
 ??? note "Ý tưởng"
-    Gọi lim là kích thước khối mong muốn. Trước hết DFS toàn bộ cây; khi kích thước một cây con lớn hơn lim, đưa các đỉnh đó vào cùng một khối. Dễ thấy với gốc có thể còn dư một số đỉnh, khi đó đưa các đỉnh này vào khối cuối cùng.
+    Gọi lim là kích thước khối mong muốn. Trước hết DFS toàn bộ cây; khi kích thước một cây con lớn hơn lim, đưa các đỉnh đó vào cùng một khối. Với gốc có thể còn dư một số đỉnh, khi đó đưa các đỉnh này vào khối cuối cùng.
 
 Cách làm: dùng một ngăn xếp để duy trì các đỉnh con được thăm khi đỉnh hiện tại đóng vai trò cha. Khi khoảng cách từ đỉnh trên cùng của ngăn xếp tới đỉnh cha lớn hơn kích thước khối mong muốn, lấy phần tử của đoạn này ra để tạo thành một khối. Phần còn lại cuối cùng tạo thành một khối riêng.
 
@@ -241,13 +241,13 @@ Cách sắp xếp cuối cùng: nếu mốc thời gian ở chiều thứ nhất
 
 Dễ nghĩ tới cách đánh dấu các đỉnh đang được tính vào đáp án, cho con trỏ di chuyển thẳng tới mục tiêu, đồng thời đảo trạng thái các đỉnh trên đường đi.
 
-Tuy nhiên cách này có một vấn đề. Nếu ban đầu cả hai con trỏ đều ở x, rõ ràng x được đánh dấu. Khi hai con trỏ cùng di chuyển tới một đỉnh con giống nhau, hoặc trong nhiều trường hợp tương tự, x lẽ ra không được đánh dấu, nhưng thực tế x vẫn bị đánh dấu, vì hai con trỏ mỗi bên đã đánh dấu một lần và triệt tiêu lẫn nhau.
+Tuy nhiên cách này có một vấn đề. Nếu ban đầu cả hai con trỏ đều ở x, x được đánh dấu. Khi hai con trỏ cùng di chuyển tới một đỉnh con giống nhau, hoặc trong nhiều trường hợp tương tự, x lẽ ra không được đánh dấu, nhưng thực tế x vẫn bị đánh dấu, vì hai con trỏ mỗi bên đã đánh dấu một lần và triệt tiêu lẫn nhau.
 
 Giải quyết thế nào?
 
-Có một tính chất rất rõ ràng: các đỉnh này chắc chắn là một số LCA, vì chỉ tại LCA mới có khả năng bị hủy lặp lại khiến việc hủy thất bại.
+Có một tính chất quan trọng: các đỉnh này thuộc nhóm LCA, vì chỉ tại LCA mới có khả năng bị hủy lặp lại khiến việc hủy thất bại.
 
-Vì vậy mỗi lần ta không đánh dấu LCA ngay; chỉ khi cần trả lời truy vấn mới đánh dấu LCA, rồi hủy đánh dấu lại.
+Vì vậy mỗi lần không đánh dấu LCA ngay; chỉ khi cần trả lời truy vấn mới đánh dấu LCA, rồi hủy đánh dấu lại.
 
 #### Cài đặt
 
@@ -261,7 +261,7 @@ void move(int x, int y) {
 }
 ```
 
-Để tìm LCA, ta có thể dùng phân rã nặng nhẹ. Khi đó có thể đặt bước chia khối vào lần DFS đầu tiên của phân rã nặng nhẹ, còn mốc thời gian có thể trực tiếp dùng thứ tự DFS của lần DFS thứ hai.
+Để tìm LCA, có thể dùng phân rã nặng nhẹ. Khi đó có thể đặt bước chia khối vào lần DFS đầu tiên của phân rã nặng nhẹ, còn mốc thời gian có thể trực tiếp dùng thứ tự DFS của lần DFS thứ hai.
 
 ```cpp
 int bl[100002], bls = 0;  // Khoi chua dinh, so luong khoi
