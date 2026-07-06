@@ -72,7 +72,7 @@ Phân tích cụ thể các bước xoay: (giả sử nút cần đưa lên là 
     --8<-- "docs/ds/code/splay/splay-1.cpp:rotate"
     ```
 
-Khi cài đặt mọi hàm, cần chú ý không sửa thông tin của nút $0$.
+Khi cài đặt mọi hàm, không sửa thông tin của nút $0$.
 
 ### Thao tác splay
 
@@ -119,7 +119,7 @@ Gọi $p$ là nút cha của $x$. Có ba loại bước splay:
 ???+ tip "Mẹo"
     Có thể tự mô phỏng $6$ trường hợp xoay để hiểu tư tưởng cơ bản của thao tác splay.
 
-So sánh ba loại bước splay có thể thấy, để phân biệt nên dùng thao tác nào,
+Khi so sánh ba loại bước splay, để phân biệt nên dùng thao tác nào,
 điểm mấu chốt là cần xác định $x$ có phải là con của nút gốc hay không,
 và $x$ cùng nút cha của nó có nằm cùng phía so với nút cha tương ứng của chúng hay không.
 
@@ -255,7 +255,7 @@ và độ phức tạp khấu hao của một thao tác là $O(\log n)$.
     Đặt $w^{(n)}(x)=(w^{(n-1)})'(x)$ và $w^{(0)}(x)=w(x)$.
     Giả sử một thao tác splay lần lượt truy cập các nút $x_{1}, x_{2}, \cdots, x_{n}$,
     và cuối cùng $x_{1}$ trở thành nút gốc.
-    Quá trình này chắc chắn đi qua một số thao tác **zig-zig** và **zig-zag**,
+    Quá trình này đi qua một số thao tác **zig-zig** và **zig-zag**,
     cùng nhiều nhất một thao tác **zig**.
     Chi phí khấu hao của hai loại thao tác đầu đều không vượt quá $3(w'(x)-w(x))$,
     còn chi phí khấu hao của thao tác cuối không vượt quá $3(w'(x) - w(x))+1$,
@@ -307,9 +307,9 @@ Với vai trò là cây tìm kiếm nhị phân, có thể tìm nút tương ứ
 chỉ cần so sánh giá trị cần tìm $v$ với giá trị của nút hiện tại,
 sau khi tìm thấy thì đưa phần tử đó lên gốc.
 
-Cần chú ý rằng thường có trường hợp trong cây không tồn tại nút tương ứng.
+Thường có trường hợp trong cây không tồn tại nút tương ứng.
 Với trường hợp này, cần ghi lại nút được truy cập cuối cùng (tức $y$ trong cài đặt) và đưa $y$ lên gốc.
-Lúc này, giá trị được lưu trong nút $y$ chắc chắn hoặc là phần tử lớn nhất trong tất cả các phần tử nhỏ hơn $v$
+Lúc này, giá trị được lưu trong nút $y$ hoặc là phần tử lớn nhất trong tất cả các phần tử nhỏ hơn $v$
 (tức tiền nhiệm của $v$),
 hoặc là phần tử nhỏ nhất trong tất cả các phần tử lớn hơn $v$ (tức hậu nhiệm của $v$).
 Điều này là vì quá trình tìm kiếm bảo đảm cây con trái luôn lưu các giá trị nhỏ hơn $v$,
@@ -360,7 +360,7 @@ Thao tác hợp nhất như sau:
 
 -   Nếu một trong $x$ và $y$, hoặc cả hai, là cây rỗng, trực tiếp trả về nút gốc của cây không rỗng hoặc cây rỗng;
 -   Ngược lại, dùng `loc(y, 1)` để đưa giá trị nhỏ nhất trong cây $y$ lên vị trí gốc $y$,
-    sau đó đặt nút con trái của nó (lúc này chắc chắn rỗng) thành $x$,
+    sau đó đặt nút con trái của nó (lúc này luôn rỗng) thành $x$,
     cập nhật thông tin nút và trả về nút $y$.
 
 ???+ example "Cài đặt"
@@ -395,7 +395,7 @@ Thao tác xóa cũng là một thao tác tương đối phức tạp. Các bư�
 -   Nếu không tồn tại nút lưu giá trị đó, trực tiếp trả về; (bước trước đã thực hiện thao tác splay)
 -   Ngược lại, cập nhật thông tin nút;
 -   Nếu nút gốc thu được là nút rỗng, thì hợp nhất cây con trái và cây con phải làm nút gốc mới;
-    chú ý trước khi hợp nhất cần cập nhật nút cha của gốc hai cây con thành rỗng.
+    trước khi hợp nhất cần cập nhật nút cha của gốc hai cây con thành rỗng.
 
 ???+ example "Cài đặt"
     ```cpp
@@ -406,7 +406,7 @@ Thao tác xóa cũng là một thao tác tương đối phức tạp. Các bư�
 
 Trực tiếp truy cập nút theo giá trị $v$ (và đưa nó lên gốc), sau đó trả về giá trị tương ứng.
 
-Chú ý, khi $v$ không tồn tại, quan hệ lớn nhỏ giữa nút gốc mà phương thức `find(rt, v)` trả về và $v$ không xác định, cần thảo luận riêng.
+Khi $v$ không tồn tại, quan hệ lớn nhỏ giữa nút gốc mà phương thức `find(rt, v)` trả về và $v$ không xác định, cần thảo luận riêng.
 
 ???+ example "Cài đặt"
     ```cpp
@@ -418,7 +418,7 @@ Chú ý, khi $v$ không tồn tại, quan hệ lớn nhỏ giữa nút gốc mà
 Tiền nhiệm được định nghĩa là số lớn nhất nhỏ hơn $v$. Các bước cụ thể như sau:
 
 -   Truy cập nút theo giá trị $v$ (và đưa nó lên gốc);
--   Nếu giá trị ở gốc nhỏ hơn $v$, thì nó chắc chắn là giá trị lớn nhất như vậy, trực tiếp trả về;
+-   Nếu giá trị ở gốc nhỏ hơn $v$, thì nó là giá trị lớn nhất như vậy, trực tiếp trả về;
 -   Ngược lại, tìm giá trị lớn nhất trong cây con trái và đưa nó lên gốc.
 
 Bước cuối cùng tương đương với việc gọi trực tiếp `loc(ch[rt][0], sz[ch[rt][0]])`, chỉ là lược bỏ các phán đoán không cần thiết.
@@ -522,7 +522,7 @@ Hàm trước hoán đổi nút trái và nút phải, đồng thời cập nh�
 Sau đó, chỉ cần đẩy đánh dấu xuống khi đi qua nút theo hướng xuống.
 Thao tác mà bài mẫu yêu cầu khá đơn giản,
 chỉ có thao tác tìm theo thứ hạng (tức `loc`) là liên quan đến việc truy cập nút theo hướng xuống.
-Chú ý, cần đẩy đánh dấu xuống **trước** mỗi lần hàm truy cập một nút mới.
+Cần đẩy đánh dấu xuống **trước** mỗi lần hàm truy cập một nút mới.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp

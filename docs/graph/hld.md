@@ -117,7 +117,7 @@ void dfs2(int u, int ftop) {
 
 **Mỗi đỉnh trên cây thuộc đúng một chuỗi nặng**.
 
-Đỉnh đầu của một chuỗi nặng chắc chắn không phải là con nặng, vì nó hoặc là gốc, hoặc là con nhẹ của cha nó.
+Đỉnh đầu của một chuỗi nặng không thể là con nặng, vì nó hoặc là gốc, hoặc là con nhẹ của cha nó.
 
 Tất cả các chuỗi nặng **phân rã hoàn toàn** toàn bộ cây.
 
@@ -125,7 +125,7 @@ Khi phân rã, cần **duyệt ưu tiên cạnh nặng**. Khi đó trên thứ t
 
 Thứ tự DFS trong một cây con là liên tiếp.
 
-Có thể nhận thấy khi đi xuống qua một **cạnh nhẹ**, kích thước cây con đang xét ít nhất sẽ giảm một nửa.
+Khi đi xuống qua một **cạnh nhẹ**, kích thước cây con đang xét giảm ít nhất một nửa.
 
 Do đó, với một đường đi bất kỳ trên cây, có thể tách nó thành hai đoạn đi xuống từ [LCA](./lca.md) về hai phía. Mỗi phía nhiều nhất đi qua $O(\log n)$ cạnh nhẹ, vì vậy mỗi đường đi trên cây có thể được tách thành không quá $O(\log n)$ chuỗi nặng.
 
@@ -138,7 +138,7 @@ Do đó, với một đường đi bất kỳ trên cây, có thể tách nó th
     
     Như vậy, với các truy vấn ngẫu nhiên, có thể ép số lần chuyển giữa chuỗi nhẹ và chuỗi nặng trung bình xuống khoảng $\frac{\log n}{2}$, đồng thời độ sâu là $O(\sqrt{n} \log n)$.
     
-    Thêm một số lá ngẫu nhiên trông có vẻ có thể ép HLD, nhưng do hằng số của HLD nhỏ nên chưa chắc ép được.
+    Thêm một số lá ngẫu nhiên có vẻ giúp ép HLD, nhưng do hằng số của HLD nhỏ nên khả năng ép được vẫn thấp.
 
 ## Ứng dụng thường gặp
 
@@ -228,11 +228,11 @@ Bài viết dùng các ví dụ để minh họa cách áp dụng phân rã chu�
     2.  Truy vấn giá trị lớn nhất trên một đoạn.
     3.  Truy vấn tổng trên một đoạn.
     
-    Sửa một điểm rất dễ cài đặt.
+    Sửa một điểm có cách cài đặt đơn giản.
     
     Vì thứ tự DFS của cây con là liên tiếp, dù có HLD hay không, để sửa cây con của một đỉnh chỉ cần sửa đoạn thứ tự DFS liên tiếp đó.
     
-    Vấn đề là làm sao sửa/truy vấn đường đi giữa hai đỉnh.
+    Vấn đề còn lại là cách sửa/truy vấn đường đi giữa hai đỉnh.
     
     Xét cách dùng **nhân đôi để tìm LCA**. Trước hết **nâng hai đỉnh lên cùng độ cao, rồi nâng cả hai đỉnh cùng lúc**. HLD cũng có thể dùng tư tưởng này.
     
@@ -263,30 +263,30 @@ Tiếp theo là một bài mẫu về phân rã chuỗi nặng có thao tác đ�
 ??? note "Lời giải"
     Trước hết chạy DFS với $1$ làm gốc để tiền xử lý các thông tin cần thiết cho HLD. Để tiện trình bày, gọi cây có gốc $1$ là "cây ban đầu", còn cây sau một số thao tác đổi gốc là "cây hiện tại". Trong quá trình thao tác, cần duy trì $\textit{root}$ là gốc của cây hiện tại. Vì cây đoạn lưu thông tin theo thứ tự DFS của cây ban đầu, nên mỗi lần truy vấn và sửa cần chuyển thao tác trên cây hiện tại về cây ban đầu.
     
-    Với thao tác đổi gốc, trực tiếp đặt $\textit{root}\gets u$. Với thao tác trên đường đi, vì đổi gốc không ảnh hưởng tới đường đi, nên cứ xử lý tương ứng trên cây ban đầu.
+    Với thao tác đổi gốc, trực tiếp đặt $\textit{root}\gets u$. Với thao tác trên đường đi, vì đổi gốc không ảnh hưởng tới đường đi, nên xử lý tương ứng trên cây ban đầu.
     
     Trọng tâm là các thao tác trên cây con. Phân loại theo vị trí tương đối của $u$ và $\textit{root}$:
     
     -   $u = \textit{root}$: đây là trường hợp đặc biệt nhất, tương đương thao tác trên toàn bộ cây. Khi đó chỉ cần gắn đánh dấu vào gốc cây đoạn hoặc truy vấn đáp án tại đó.
     -   $u$ là tổ tiên của $\textit{root}$ trong cây ban đầu, tức $u$ nằm trên đường đi đơn từ $1$ tới $\textit{root}$.
     
-        Đây là trường hợp đáng chú ý nhất. Định nghĩa $v$ là đỉnh có độ sâu nhỏ nhất trên đường đi đơn từ $u$ tới $\textit{root}$ trong cây ban đầu, nhưng khác $u$. Có thể thấy phần ngoài cây con của $v$ trong cây ban đầu chính là cây con của $u$ trong cây hiện tại.
+        Đây là trường hợp quan trọng nhất. Định nghĩa $v$ là đỉnh có độ sâu nhỏ nhất trên đường đi đơn từ $u$ tới $\textit{root}$ trong cây ban đầu, nhưng khác $u$. Phần ngoài cây con của $v$ trong cây ban đầu chính là cây con của $u$ trong cây hiện tại.
     
         Xét cách tìm $v$ hiệu quả. Trước hết đặt $v\gets\textit{root}$, rồi nhảy lên theo các chuỗi nặng cho tới khi $\operatorname{dep}(\operatorname{top}(v))\le\operatorname{dep}(u)+1$.
     
         -   Nếu $\operatorname{dep}(\operatorname{top}(v))=\operatorname{dep}(u)+1$, đặt $v\gets\operatorname{top}(v)$. Khi đó $v$ là một con nhẹ của $u$.
-        -   Nếu $\operatorname{dep}(\operatorname{top}(v))<\operatorname{dep}(u)+1$, tức $\operatorname{dep}(\operatorname{top}(v))\le \operatorname{dep}(u)$, điều này cho thấy $u,v$ nằm trên cùng một chuỗi nặng. Theo tính chất thứ tự DFS liên tiếp trên cùng một chuỗi nặng, đỉnh $v$ cần tìm chắc chắn thỏa $\operatorname{dfn}(v)=\operatorname{dfn}(u)+1$. Vì vậy có thể đặt $v\gets\operatorname{rnk}(\operatorname{dfn}(u)+1)$.
+        -   Nếu $\operatorname{dep}(\operatorname{top}(v))<\operatorname{dep}(u)+1$, tức $\operatorname{dep}(\operatorname{top}(v))\le \operatorname{dep}(u)$, điều này cho thấy $u,v$ nằm trên cùng một chuỗi nặng. Theo tính chất thứ tự DFS liên tiếp trên cùng một chuỗi nặng, đỉnh $v$ cần tìm thỏa $\operatorname{dfn}(v)=\operatorname{dfn}(u)+1$. Vì vậy có thể đặt $v\gets\operatorname{rnk}(\operatorname{dfn}(u)+1)$.
     
-        Chú ý rằng hai trường hợp này có thể gộp lại: sau khi nhảy xong, có thể trực tiếp đặt
+        Hai trường hợp này có thể gộp lại: sau khi nhảy xong, có thể trực tiếp đặt
     
         $$
         v\gets\operatorname{rnk}(\operatorname{dfn}(\operatorname{top}(v))+\operatorname{dep}(u)+1-\operatorname{dep}(\operatorname{top}(v))).
         $$
     
-        Dễ kiểm chứng rằng $v$ tìm được bằng biểu thức này tương đương với $v$ tìm được bằng cách phân loại ở trên. Cài đặt tham khảo cũng dùng biểu thức này.
+        Có thể kiểm chứng rằng $v$ tìm được bằng biểu thức này tương đương với $v$ tìm được bằng cách phân loại ở trên. Cài đặt tham khảo cũng dùng biểu thức này.
     
         Vì đoạn mà cây con của $v$ phủ là $[\operatorname{dfn}(v),\operatorname{dfn}(v)+\operatorname{siz}(v))$, nên chỉ cần thao tác trên $[1,\operatorname{dfn}(v))\cup[\operatorname{dfn}(v)+\operatorname{siz}(v),n]$.
-    -   Các trường hợp khác. Có thể thấy thao tác đổi gốc không ảnh hưởng tới cây con của $u$, nên cứ duy trì theo cách bình thường.
+    -   Các trường hợp khác. Thao tác đổi gốc không ảnh hưởng tới cây con của $u$, nên duy trì theo cách bình thường.
     
     Độ phức tạp của cách làm này giống cách không có đổi gốc, đều là $O(n\log^2 n)$.
 
@@ -305,7 +305,7 @@ Cuối cùng là một bài tương tác, cũng là một ứng dụng không tr
 ??? note "Lời giải"
     Trước hết có thể xác định độ sâu của mỗi đỉnh bằng $n-1$ lần hỏi.
     
-    Sau đó xét việc xác định cha của các đỉnh theo thứ tự độ sâu tăng dần. Khi xác định cha của một đỉnh, tất cả tổ tiên của nó chắc chắn đã biết.
+    Sau đó xét việc xác định cha của các đỉnh theo thứ tự độ sâu tăng dần. Khi xác định cha của một đỉnh, tất cả tổ tiên của nó đều đã biết.
     
     Trước khi xác định cha của một đỉnh, thực hiện phân rã chuỗi nặng trên phần cây đã biết.
     
@@ -371,9 +371,9 @@ Trước hết, nhận thấy trong phân rã chuỗi dài, số lần chuyển 
     
     Nếu $D = 0$, có thể dựng trực tiếp một đỉnh lá đơn lẻ rồi kết thúc lời gọi.
     
-    Cách dựng này chắc chắn làm cho đường đi từ đỉnh lá đơn lẻ tới gốc toàn là cạnh nhẹ, đồng thời cần số đỉnh cỡ $D^2$.
+    Cách dựng này làm cho đường đi từ đỉnh lá đơn lẻ tới gốc toàn là cạnh nhẹ, đồng thời cần số đỉnh cỡ $D^2$.
     
-    Lấy $D=\sqrt{n}$ là được.
+    Chọn $D=\sqrt{n}$.
 
 #### Tối ưu DP bằng phân rã chuỗi dài
 
@@ -381,7 +381,7 @@ Thông thường, DP có thể được tối ưu bằng phân rã chuỗi dài 
 
 Có thể cân nhắc dùng phân rã chuỗi dài để tối ưu DP trên cây.
 
-Cụ thể, trạng thái của mỗi đỉnh trực tiếp kế thừa trạng thái của con nặng của nó, đồng thời gộp thô bạo các trạng thái DP của con nhẹ.
+Cụ thể, trạng thái của mỗi đỉnh trực tiếp kế thừa trạng thái của con nặng của nó, đồng thời gộp trực tiếp các trạng thái DP của con nhẹ.
 
 ???+ example "[Codeforces 1009 F. Dominant Indices](http://codeforces.com/contest/1009/problem/F)"
     Cho một cây có gốc gồm $n$ đỉnh, lấy đỉnh $1$ làm gốc.
@@ -401,28 +401,28 @@ Cụ thể, trạng thái của mỗi đỉnh trực tiếp kế thừa trạng 
 ??? note "Lời giải"
     Đặt $f_{i,j}$ biểu thị số đỉnh trong cây con của $i$ có khoảng cách tới $i$ là $j$.
     
-    Chuyển trạng thái thô bạo trực tiếp có độ phức tạp thời gian $O(n^2)$.
+    Chuyển trạng thái trực tiếp có độ phức tạp thời gian $O(n^2)$.
     
     Xét mỗi lần chuyển trạng thái: trực tiếp kế thừa mảng DP và đáp án của con nặng, rồi cập nhật trên cơ sở đó.
     
     Trước hết cần chèn một phần tử 1 vào đầu mảng DP của con nặng; phần tử này đại diện cho đỉnh hiện tại.
     
-    Sau đó gộp thô bạo mảng DP của tất cả con nhẹ vào mảng DP của đỉnh hiện tại.
+    Sau đó gộp trực tiếp mảng DP của tất cả con nhẹ vào mảng DP của đỉnh hiện tại.
     
-    Chú ý rằng độ dài mảng DP của một con nhẹ bằng độ dài chuỗi nặng chứa con nhẹ đó, còn tổng độ dài của tất cả chuỗi nặng là $n$.
+    Độ dài mảng DP của một con nhẹ bằng độ dài chuỗi nặng chứa con nhẹ đó, còn tổng độ dài của tất cả chuỗi nặng là $n$.
     
-    Nói cách khác, tổng độ phức tạp thời gian để gộp thô bạo các con nhẹ là $O(n)$.
+    Nói cách khác, tổng độ phức tạp thời gian để gộp trực tiếp các con nhẹ là $O(n)$.
 
 ??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/graph/code/hld/hld_3.cpp"
     ```
 
-Chú ý rằng trong trường hợp thông thường, bộ nhớ của mảng DP được cấp phát theo cả một chuỗi nặng, còn các đỉnh khác nhau trên chuỗi có các con trỏ đầu khác nhau.
+Trong trường hợp thông thường, bộ nhớ của mảng DP được cấp phát theo cả một chuỗi nặng, còn các đỉnh khác nhau trên chuỗi có các con trỏ đầu khác nhau.
 
 Độ dài mảng DP có thể được tính theo đỉnh sâu nhất trong cây con.
 
-Dĩ nhiên các kỹ thuật tối ưu DP bằng phân rã chuỗi dài rất nhiều, bao gồm nhưng không giới hạn ở việc đánh dấu lười. Phần này không trình bày thêm.
+Có nhiều kỹ thuật tối ưu DP bằng phân rã chuỗi dài, bao gồm nhưng không giới hạn ở việc đánh dấu lười. Phần này không trình bày thêm.
 
 Tham khảo [blog của Zusu Yu](https://www.cnblogs.com/zhoushuyu/p/9468669.html).
 
@@ -447,7 +447,7 @@ Tiền xử lý cần tính tổ tiên cấp $2^i$ bằng nhân đôi, đồng t
 ## Bài tập
 
 -   [Luogu P3379 - Mẫu tổ tiên chung gần nhất (LCA)](https://www.luogu.com.cn/problem/P3379) (tìm LCA bằng HLD không cần cấu trúc dữ liệu, có thể dùng để luyện tập)
--   [JLOI2014 - Nhà mới của sóc](https://loj.ac/problem/2236) (tất nhiên cũng có thể dùng hiệu trên cây)
+-   [JLOI2014 - Nhà mới của sóc](https://loj.ac/problem/2236) (cũng có thể dùng hiệu trên cây)
 -   [HAOI2015 - Thao tác trên cây](https://loj.ac/problem/2125)
 -   [Luogu P3384 - Mẫu phân rã chuỗi nặng/phân rã chuỗi trên cây](https://www.luogu.com.cn/problem/P3384)
 -   [Luogu P1505 - Du lịch](https://www.luogu.com.cn/problem/P1505)

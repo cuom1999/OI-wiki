@@ -324,10 +324,10 @@ số có phải căn nguyên thủy modulo $m$ hay không.
 
 ??? note "Chứng minh"
     Chiều cần suy ra trực tiếp từ định nghĩa bậc. Để chứng minh chiều đủ, dùng
-    phản chứng. Nếu $g$ không phải là căn nguyên thủy modulo $m$, thì chắc chắn
+    phản chứng. Nếu $g$ không phải là căn nguyên thủy modulo $m$, thì
     $\delta_m(g)< \varphi(m)$. Theo [Tính chất 2](#ord-prop-2) và định lí
-    Euler, $\delta_m(g)\mid\varphi(m)$. Do đó, lấy $p$ là một thừa số nguyên tố
-    của $\dfrac{\varphi(m)}{\delta_m(g)}$, có
+    Euler, $\delta_m(g)\mid\varphi(m)$. Do đó, có thể lấy $p$ là một thừa số
+    nguyên tố của $\dfrac{\varphi(m)}{\delta_m(g)}$, và khi đó
     $\delta_m(g)\mid\dfrac{\varphi(m)}{p}$. Áp dụng lại Tính chất 2, suy ra
 
     $$
@@ -508,8 +508,8 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
 
     ??? note "Chứng minh"
         Giả sử $g$ là căn nguyên thủy modulo $p^{e}$, khi đó $g+p^e$ cũng là
-        căn nguyên thủy modulo $p^{e}$. Trong hai số này chắc chắn có một số
-        lẻ; không mất tính tổng quát, giả sử đó là $g$. Khi đó
+        căn nguyên thủy modulo $p^{e}$. Trong hai số này có đúng một số lẻ;
+        không mất tính tổng quát, giả sử đó là $g$. Khi đó
         $(g,2p^e)=1$. Đặt $\delta=\delta_{2p^e}(g)$, cần chứng minh
         $\delta=\varphi(2p^e)$. Theo định lí Euler,
         $\delta\mid\varphi(2p^e)$. Đồng thời, theo định nghĩa
@@ -553,7 +553,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         thủy như vậy không tồn tại.
 
         Giả sử $m$ thỏa mãn các điều kiện đã nêu và không phải lũy thừa của
-        $2$. Khi đó chắc chắn tồn tại $2 < m_1 < m_2$ và $m_1\perp m_2$ sao cho
+        $2$. Khi đó tồn tại $2 < m_1 < m_2$ và $m_1\perp m_2$ sao cho
         $m=m_1m_2$. Giả sử căn nguyên thủy $g$ modulo $m$ tồn tại. Vì
         $g\perp m$, nên với $i=1,2$ đều có $g\perp m_i$. Theo định lí Euler,
 
@@ -668,8 +668,8 @@ $$
 
 Đây cũng thường được dùng làm định nghĩa tương đương của hàm Carmichael.
 
-Áp dụng lặp lại [Tính chất 5](#ord-prop-5), biết chắc chắn tồn tại một phần
-tử $a\perp m$ sao cho $\delta_m(a)=\lambda(m)$. Do đó công thức trên cũng có thể
+Áp dụng lặp lại [Tính chất 5](#ord-prop-5), suy ra tồn tại một phần tử
+$a\perp m$ sao cho $\delta_m(a)=\lambda(m)$. Do đó công thức trên cũng có thể
 viết thành
 
 $$
@@ -733,8 +733,8 @@ nguyên tố. Trước hết, xử lý trường hợp lũy thừa của $2$.
     $\delta_m(5) \mid 2^{e-2}$, nên $5$ chỉ có thể là phần tử bậc $2^{e-2}$. Do
     đó $\lambda(m)=2^{e-2}$.
 
-Trong quá trình chứng minh bổ đề này, thực ra đã thu được mô tả về cấu trúc
-của hệ thặng dư thu gọn modulo $2^e$:
+Trong quá trình chứng minh bổ đề này, đồng thời thu được mô tả về cấu trúc của
+hệ thặng dư thu gọn modulo $2^e$:
 
 <a id="mod-pow-2"></a>
 
@@ -825,7 +825,7 @@ căn nguyên thủy, đây tạo thành một chứng minh khác cho định lí
 Dùng hàm Carmichael, có thể thảo luận tính chất và phân bố của số Carmichael
 (OEIS:[A002997](https://oeis.org/A002997)). Đây là các hợp số mà
 [kiểm tra tính nguyên tố Fermat](./prime.md#kiểm-tra-tính-nguyên-tố-fermat)
-chắc chắn không thể loại bỏ chính xác.
+không thể phát hiện chính xác là hợp số.
 
 ???+ abstract "Số Carmichael"
     Với hợp số $n$, nếu với mọi số nguyên $a\perp n$ đều có đồng dư
@@ -844,15 +844,17 @@ phương pháp sau để xác định hợp số $n$ có phải số Carmichael 
 ??? note "Chứng minh"
     Trước hết chứng minh tính cần thiết. Giả sử $\lambda(n)\mid (n-1)$. Kiểm
     tra công thức truy hồi của hàm Carmichael: nếu $n$ có thừa số chính phương
-    $p$, thì chắc chắn $p\mid \lambda(n)$. Nhưng $p\nmid (n-1)$, mâu thuẫn.
+    $p$, thì $p\mid \lambda(n)$. Nhưng $p\nmid (n-1)$, mâu thuẫn.
     Tương tự, công thức truy hồi của hàm Carmichael cho thấy
     $(p-1)\mid \lambda(n)$, nên cũng có $(p-1) \mid (n-1)$.
 
-    Tiếp theo chứng minh tính đủ. Vì $n$ là hợp số, nó chắc chắn có thừa số
-    nguyên tố lẻ $p$, do đó $n-1$ là số chẵn, và $n$ cũng chắc chắn là số lẻ.
-    Với hợp số lẻ không có thừa số chính phương $n$, theo công thức truy hồi
-    của hàm Carmichael, $\lambda(n)=\operatorname{lcm}\{p-1:p\mid n\}$. Vì vậy,
-    chỉ cần $(p-1) \mid (n-1)$ đúng với mọi thừa số nguyên tố $p$, thì chắc chắn
+    Tiếp theo chứng minh tính đủ. Trước hết, $n$ phải là số lẻ: nếu $n$ chẵn,
+    do $n$ là hợp số không có thừa số chính phương, $n$ có một thừa số nguyên tố
+    lẻ $p$; khi đó $p-1$ là số chẵn và $(p-1)\mid(n-1)$, mâu thuẫn với việc
+    $n-1$ là số lẻ. Với hợp số lẻ không có thừa số chính phương $n$, theo công
+    thức truy hồi của hàm Carmichael,
+    $\lambda(n)=\operatorname{lcm}\{p-1:p\mid n\}$. Vì vậy, chỉ cần
+    $(p-1) \mid (n-1)$ đúng với mọi thừa số nguyên tố $p$, thì
     $\lambda(n)\mid (n-1)$.
 
 Từ tiêu chuẩn này, có thể thiết lập một số tính chất đơn giản của số
@@ -865,7 +867,7 @@ Carmichael:
 ??? note "Chứng minh"
     Hai tính chất đầu có thể suy trực tiếp từ tiêu chuẩn Korselt và chứng minh
     của nó. Để thu được tính chất thứ ba, chỉ cần chứng minh thêm: tích
-    $n=p_1p_2$ của hai số nguyên tố phân biệt $p_1,p_2$ chắc chắn không phải số
+    $n=p_1p_2$ của hai số nguyên tố phân biệt $p_1,p_2$ không phải số
     Carmichael. Giả sử $n=p_1p_2$ là số Carmichael. Theo tiêu chuẩn Korselt,
     $(p_i-1)\mid (n-1)$. Nhưng có
 

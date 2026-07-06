@@ -22,7 +22,7 @@ Trong trường hợp tổng quát, tổng độ phức tạp thời gian của 
 -   **Tính đơn điệu quyết định**: với mọi $i_1 < i_2$, luôn có $\operatorname{opt}(i_1) \leq \operatorname{opt}(i_2)$.
 
 ??? note "Ghi chú"
-    Với bài toán $i$, tập quyết định tối ưu chưa chắc là một khoảng. Tính đơn điệu quyết định thật ra có thể được định nghĩa trên tập các quyết định tối ưu. Với hai tập $A$ và $B$, có thể định nghĩa $A \leq B$ khi và chỉ khi với mọi $a\in A$ và $b\in B$, có $\min\{a,b\}\in A$ và $\max\{a,b\}\in B$. Điều này kéo theo tính đơn điệu của điểm quyết định tối ưu nhỏ nhất (hoặc lớn nhất), tức định nghĩa được dùng trong phần này. Các kết luận trong bài viết về điểm quyết định tối ưu nhỏ nhất cũng áp dụng cho điểm quyết định tối ưu lớn nhất. Tuy nhiên, có những trường hợp điểm quyết định tối ưu nhỏ nhất của một bài toán lớn hơn lại nhỏ hơn nghiêm ngặt điểm quyết định tối ưu lớn nhất của một bài toán nhỏ hơn; tức là có thể tồn tại $i_1 < i_2$ sao cho $\mathop{\mathrm{optmax}}(i_1) > \mathop{\mathrm{optmin}}(i_2)$. Vì vậy khi viết code, cần bảo đảm luôn lấy điểm quyết định tối ưu nhỏ nhất hoặc lớn nhất một cách nhất quán.
+    Với bài toán $i$, tập quyết định tối ưu không nhất thiết là một khoảng. Tính đơn điệu quyết định cũng có thể được định nghĩa trên tập các quyết định tối ưu. Với hai tập $A$ và $B$, có thể định nghĩa $A \leq B$ khi và chỉ khi với mọi $a\in A$ và $b\in B$, có $\min\{a,b\}\in A$ và $\max\{a,b\}\in B$. Điều này kéo theo tính đơn điệu của điểm quyết định tối ưu nhỏ nhất (hoặc lớn nhất), tức định nghĩa được dùng trong phần này. Các kết luận trong bài viết về điểm quyết định tối ưu nhỏ nhất cũng áp dụng cho điểm quyết định tối ưu lớn nhất. Tuy nhiên, có những trường hợp điểm quyết định tối ưu nhỏ nhất của một bài toán lớn hơn lại nhỏ hơn nghiêm ngặt điểm quyết định tối ưu lớn nhất của một bài toán nhỏ hơn; tức là có thể tồn tại $i_1 < i_2$ sao cho $\mathop{\mathrm{optmax}}(i_1) > \mathop{\mathrm{optmin}}(i_2)$. Vì vậy khi viết code, cần bảo đảm luôn lấy điểm quyết định tối ưu nhỏ nhất hoặc lớn nhất một cách nhất quán.
     
     Mặt khác, các bài toán có cùng điểm quyết định tối ưu nhỏ nhất tạo thành một khoảng. Khoảng này, nếu xem như hàm của điểm quyết định tối ưu nhỏ nhất, phải tăng nghiêm ngặt. Nói cách khác, cho $j_1 = \operatorname{opt}(i_1)$ và $j_2 = \operatorname{opt}(i_2)$, nếu $j_1 < j_2$ thì tất yếu $i_1 < i_2$. Tương đương, nếu các khoảng bài toán mà quyết định $j_1 < j_2$ có thể trở thành quyết định tối ưu nhỏ nhất lần lượt là $[l_{j_1},r_{j_1}]$ và $[l_{j_2},r_{j_2}]$, thì tất yếu $r_{j_1} < l_{j_2}$.
 
@@ -57,7 +57,7 @@ Hai tính chất này không loại trừ nhau; có thể tồn tại trường 
 
 <span id="chia-để-trị"></span>
 
-Để tính mọi trạng thái, chỉ cần tìm mọi điểm quyết định tối ưu. Để tìm $\operatorname{opt}(i)$ cho mọi $1 \leq i \leq n$, trước hết tính $\operatorname{opt}(n/2)$, rồi lần lượt tính $\operatorname{opt}(i)$ trên các đoạn $1 \leq i < n/2$ và $n/2 < i \leq n$. Lúc này, $\operatorname{opt}(i)$ của nửa trước chắc chắn nằm giữa $1$ và $\operatorname{opt}(n/2)$ (kể cả hai đầu), còn $\operatorname{opt}(i)$ của nửa sau chắc chắn nằm giữa $\operatorname{opt}(n/2)$ và $n$ (kể cả hai đầu). Với hai đoạn con, xử lý tương tự cho đến khi tính được quyết định tối ưu của mọi bài toán. Nếu trong quá trình chia để trị ghi lại cận dưới và cận trên của vùng tìm kiếm, có thể bảo đảm độ phức tạp thuật toán là $O(n\log n)$. Cây đệ quy có $O(\log n)$ tầng, và trên mỗi tầng, một điểm quyết định được tính nhiều nhất hai lần, nên tổng số lần tính là $O(n\log n)$.
+Để tính mọi trạng thái, chỉ cần tìm mọi điểm quyết định tối ưu. Để tìm $\operatorname{opt}(i)$ cho mọi $1 \leq i \leq n$, trước hết tính $\operatorname{opt}(n/2)$, rồi lần lượt tính $\operatorname{opt}(i)$ trên các đoạn $1 \leq i < n/2$ và $n/2 < i \leq n$. Lúc này, $\operatorname{opt}(i)$ của nửa trước luôn nằm giữa $1$ và $\operatorname{opt}(n/2)$ (kể cả hai đầu), còn $\operatorname{opt}(i)$ của nửa sau luôn nằm giữa $\operatorname{opt}(n/2)$ và $n$ (kể cả hai đầu). Với hai đoạn con, xử lý tương tự cho đến khi tính được quyết định tối ưu của mọi bài toán. Nếu trong quá trình chia để trị ghi lại cận dưới và cận trên của vùng tìm kiếm, có thể bảo đảm độ phức tạp thuật toán là $O(n\log n)$. Cây đệ quy có $O(\log n)$ tầng, và trên mỗi tầng, một điểm quyết định được tính nhiều nhất hai lần, nên tổng số lần tính là $O(n\log n)$.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
@@ -70,9 +70,9 @@ Ngoài trường hợp cơ bản có truy cập ngẫu nhiên, thuật toán chi
 
 <span id="hàng-đợi-nhị-phân"></span>
 
-Chú ý rằng với mỗi điểm quyết định $j$, các bài toán $i$ mà trong đó $j$ trở thành điểm quyết định tối ưu nhỏ nhất chắc chắn tạo thành một khoảng. Có thể dùng hàng đợi đơn điệu để ghi lại, cho đến hiện tại, khoảng bài toán mà mỗi điểm quyết định có thể giải. Khi đó nghiệm tối ưu của bài toán có thể được tính trực tiếp từ các điểm quyết định ghi trong hàng đợi.
+Với mỗi điểm quyết định $j$, các bài toán $i$ mà trong đó $j$ trở thành điểm quyết định tối ưu nhỏ nhất luôn tạo thành một khoảng. Có thể dùng hàng đợi đơn điệu để ghi lại, cho đến hiện tại, khoảng bài toán mà mỗi điểm quyết định có thể giải. Khi đó nghiệm tối ưu của bài toán có thể được tính trực tiếp từ các điểm quyết định ghi trong hàng đợi.
 
-Cụ thể, thuật toán cần duyệt tuần tự các điểm quyết định. Khi duyệt đến điểm quyết định $k$, hàng đợi cần ghi lại **bộ ba** gồm mỗi điểm quyết định khả thi $j$ đã xét đến hiện tại, và hai đầu $l_j$, $r_j$ của khoảng bài toán mà nó có thể giải. Với các bài toán trong khoảng $[l_j,r_j]$, $j$ phải là quyết định tối ưu nhỏ nhất trong số các điểm quyết định đã xét (tức các điểm quyết định trong khoảng $[1,k]$). Ở mọi thời điểm, các quyết định lưu trong hàng đợi chưa chắc liên tiếp, nhưng các bài toán chưa giải $[j,n]$ phải là hợp rời nhau của các khoảng bài toán lưu trong hàng đợi.
+Cụ thể, thuật toán cần duyệt tuần tự các điểm quyết định. Khi duyệt đến điểm quyết định $k$, hàng đợi cần ghi lại **bộ ba** gồm mỗi điểm quyết định khả thi $j$ đã xét đến hiện tại, và hai đầu $l_j$, $r_j$ của khoảng bài toán mà nó có thể giải. Với các bài toán trong khoảng $[l_j,r_j]$, $j$ phải là quyết định tối ưu nhỏ nhất trong số các điểm quyết định đã xét (tức các điểm quyết định trong khoảng $[1,k]$). Ở mọi thời điểm, các quyết định lưu trong hàng đợi không nhất thiết liên tiếp, nhưng các bài toán chưa giải $[j,n]$ phải là hợp rời nhau của các khoảng bài toán lưu trong hàng đợi.
 
 Để chứng minh trong quá trình cập nhật hàng đợi, các bài toán $i$ mà điểm quyết định $j$ là quyết định tối ưu nhỏ nhất luôn tạo thành một đoạn liên tiếp, cần tăng cường kết luận phía trên một chút:
 
@@ -154,10 +154,10 @@ Trước hết, có thể chứng minh tính đúng đắn của thuật toán n
 
 Tiếp theo, cần chứng minh độ phức tạp của thuật toán vẫn là $O(n\log n)$. Cây đệ quy có $O(\log n)$ tầng. Với mỗi nút ở cùng một tầng của cây đệ quy, lần lượt duyệt các quyết định trong các khoảng $[\operatorname{opt}(l),\operatorname{opt}_l(r)]$ và $(l,\textit{mid}]$. Vì $\operatorname{opt}(l)\le\operatorname{opt}_l(r)\le\operatorname{opt}(r)$, nên ở cùng một tầng, mỗi điểm quyết định chỉ được duyệt $O(1)$ lần. Vì vậy tổng số lần duyệt trên mỗi tầng của cây đệ quy là $O(n)$. Giả sử độ phức tạp của một lần truy cập hoặc tính $w(j,i)$ là $O(1)$, độ phức tạp thời gian của thuật toán là $O(n\log n)$.
 
-Với một số trường hợp $w(j,i)$ chỉ hỗ trợ truy cập bằng di chuyển, độ phức tạp của thuật toán này vẫn là $O(n\log n)$. Khi đó, cần lần lượt duy trì con trỏ $(j,i)$ và giá trị hiện tại của $w(j,i)$ cho bước 1 và bước 3 trong quy trình thuật toán. Mỗi khi cần truy cập giá trị mới, cần di chuyển trực tiếp con trỏ $(j,i)$ từ vị trí của lần truy cập trước đến vị trí hiện tại, đồng thời chuyển giá trị hàm $w(j,i)$. Dễ kiểm tra rằng khi duyệt cây đệ quy, tổng số lần cập nhật trực tiếp này là $O(n\log n)$. Vì vậy, độ phức tạp thời gian của thuật toán vẫn là $O(n\log n)$.
+Với một số trường hợp $w(j,i)$ chỉ hỗ trợ truy cập bằng di chuyển, độ phức tạp của thuật toán này vẫn là $O(n\log n)$. Khi đó, cần lần lượt duy trì con trỏ $(j,i)$ và giá trị hiện tại của $w(j,i)$ cho bước 1 và bước 3 trong quy trình thuật toán. Mỗi khi cần truy cập giá trị mới, cần di chuyển trực tiếp con trỏ $(j,i)$ từ vị trí của lần truy cập trước đến vị trí hiện tại, đồng thời chuyển giá trị hàm $w(j,i)$. Khi duyệt cây đệ quy, tổng số lần cập nhật trực tiếp này là $O(n\log n)$. Vì vậy, độ phức tạp thời gian của thuật toán vẫn là $O(n\log n)$.
 
 ??? note "Chứng minh độ phức tạp khi không truy cập ngẫu nhiên"
-    Chỉ cần chứng minh tổng số lần di chuyển con trỏ là $O(n\log n)$. Gọi $A$ và $B$ lần lượt là các con trỏ tương ứng với bước 1 và bước 3. Thật ra có thể bảo đảm rằng: trước khi giải các bài toán trong khoảng $(l,r]$, con trỏ $A$ ở vị trí $(\operatorname{opt}(l),l)$, con trỏ $B$ ở vị trí $(l,l)$; còn sau khi giải xong, con trỏ $A$ ở vị trí $(\operatorname{opt}(r),r)$, con trỏ $B$ ở vị trí $(r,r)$.
+    Chỉ cần chứng minh tổng số lần di chuyển con trỏ là $O(n\log n)$. Gọi $A$ và $B$ lần lượt là các con trỏ tương ứng với bước 1 và bước 3. Có thể bảo đảm rằng: trước khi giải các bài toán trong khoảng $(l,r]$, con trỏ $A$ ở vị trí $(\operatorname{opt}(l),l)$, con trỏ $B$ ở vị trí $(l,l)$; còn sau khi giải xong, con trỏ $A$ ở vị trí $(\operatorname{opt}(r),r)$, con trỏ $B$ ở vị trí $(r,r)$.
     
     Xét cách dựng quy tắc di chuyển con trỏ như sau. Ở bước 1, có thể cho con trỏ $A$ đi theo đường
     
@@ -199,7 +199,7 @@ $$
 f(i) = \min_{1\leq j\leq i} f(j-1)+w(j,i) \qquad (1\leq i\leq n)
 $$
 
-Trong công thức này, $f(0)=0$. Chú ý rằng chỉ cần $w(j,i)$ thỏa mãn bất đẳng thức tứ giác, $f(j-1)+w(j,i)$ chắc chắn cũng thỏa mãn bất đẳng thức tứ giác, vì hạng đầu không chứa hạng giao nhau giữa $j$ và $i$, nên sẽ bị khử trong sai phân hỗn hợp. Tuy nhiên, vì hàm chi phí phụ thuộc vào các bài toán con phía trước, chuyển trạng thái này chỉ có thể được tính tuần tự, nên không thể áp dụng thuật toán chia để trị thứ nhất đã mô tả ở trên; thường chỉ phù hợp với thuật toán hàng đợi nhị phân hoặc thuật toán LARSCH giản lược. Độ phức tạp thuật toán là $O(n\log n)$.
+Trong công thức này, $f(0)=0$. Chỉ cần $w(j,i)$ thỏa mãn bất đẳng thức tứ giác, $f(j-1)+w(j,i)$ cũng thỏa mãn bất đẳng thức tứ giác, vì hạng đầu không chứa hạng giao nhau giữa $j$ và $i$, nên sẽ bị khử trong sai phân hỗn hợp. Tuy nhiên, vì hàm chi phí phụ thuộc vào các bài toán con phía trước, chuyển trạng thái này chỉ có thể được tính tuần tự, nên không thể áp dụng thuật toán chia để trị thứ nhất đã mô tả ở trên; thường chỉ phù hợp với thuật toán hàng đợi nhị phân hoặc thuật toán LARSCH giản lược. Độ phức tạp thuật toán là $O(n\log n)$.
 
 ### Trường hợp giới hạn số khoảng
 
@@ -211,9 +211,9 @@ $$
 f(k,i) = \min_{1\leq j\leq i} f(k-1,j-1)+w(j,i) \qquad (1\leq k\leq m,\ 1\leq i\leq n) \tag{2}
 $$
 
-Trong đó, $f(0,0)=0$, còn $f(0,i)=f(k,0)=\infty$ với mọi $1\leq k\leq m$ và $1\leq i\leq n$. Tương tự phần trên, $f(k-1,j-1)+w(j,i)$ trong trường hợp này chắc chắn thỏa mãn bất đẳng thức tứ giác. Lúc này việc tính tầng thứ $k$ không còn phụ thuộc vào kết quả của chính tầng đó, nên với mỗi tầng, có thể dùng bất kỳ thuật toán nào đã mô tả ở mục trước để tính. Khi đó độ phức tạp thuật toán là $O(mn\log n)$.
+Trong đó, $f(0,0)=0$, còn $f(0,i)=f(k,0)=\infty$ với mọi $1\leq k\leq m$ và $1\leq i\leq n$. Tương tự phần trên, $f(k-1,j-1)+w(j,i)$ trong trường hợp này vẫn thỏa mãn bất đẳng thức tứ giác. Lúc này việc tính tầng thứ $k$ không còn phụ thuộc vào kết quả của chính tầng đó, nên với mỗi tầng, có thể dùng bất kỳ thuật toán nào đã mô tả ở mục trước để tính. Khi đó độ phức tạp thuật toán là $O(mn\log n)$.
 
-Với bài toán này, ngoài cách dùng tính đơn điệu quyết định, thực ra còn có các thuật toán tối ưu khác. Ý tưởng tối ưu thứ hai dựa vào kết quả sau. Thuật toán tối ưu này rất giống tối ưu Knuth được mô tả chi tiết phía dưới.
+Với bài toán này, ngoài cách dùng tính đơn điệu quyết định, còn có các thuật toán tối ưu khác. Ý tưởng tối ưu thứ hai dựa vào kết quả sau. Thuật toán tối ưu này rất giống tối ưu Knuth được mô tả chi tiết phía dưới.
 
 ???+ note "Định lý 2"
     Nếu $w$ thỏa mãn bất đẳng thức tứ giác, thì với bài toán (2) có $\operatorname{opt}(k-1,i) \leq \operatorname{opt}(k,i) \leq \operatorname{opt}(k,i+1)$.
@@ -245,7 +245,7 @@ Với bài toán này, ngoài cách dùng tính đơn điệu quyết định, t
 
 Nhờ kết quả này, có thể giới hạn phạm vi tìm kiếm của quyết định $j$. Khi cài đặt thuật toán, duyệt $k$ theo chiều tăng và duyệt $i$ theo chiều giảm; trong phạm vi cận trên và cận dưới đã biết trước đó, tìm kiếm vét cạn $j$ là đủ để bảo đảm độ phức tạp thuật toán $O(n(n+m))$.
 
-??? warning "Chú ý"
+??? warning "Lưu ý"
     Độ phức tạp thuật toán trong phần này không phải $O(nm)$. Cách tính độ phức tạp đúng cần xét ma trận trạng thái $n\times m$. Vì với bài toán $(i,k)$, chỉ cần xét các quyết định trong $\operatorname{opt}(k-1,i) \leq j \leq \operatorname{opt}(k,i+1)$, nên trên mỗi đường chéo phụ (tức $i-k$ là hằng số), tổng số quyết định cần duyệt là $O(n)$. Có tổng cộng $(n+m)$ đường chéo như vậy, nên tổng độ phức tạp thời gian là $O(n(n+m))$.
 
 Phương pháp tối ưu cuối cùng đến từ quan sát sau.
@@ -295,7 +295,7 @@ Với ba thuật toán cho bài toán phân tách khoảng có giới hạn số
     
     Theo kiến thức toán học, với khoảng $[i,j]$, bưu cục nên được xây tại làng thứ $\left\lfloor\dfrac{i+j}2\right\rfloor$. Dùng tổng tiền tố có thể tính $w(i,j)$ một cách trực tiếp.
     
-    Bài toán được chuyển thành bài toán phân tách khoảng có giới hạn số khoảng. Có thể chứng minh hàm $w$ thỏa mãn bất đẳng thức tứ giác. Áp dụng trực tiếp phương pháp tối ưu trên là được.
+    Bài toán được chuyển thành bài toán phân tách khoảng có giới hạn số khoảng. Có thể chứng minh hàm $w$ thỏa mãn bất đẳng thức tứ giác. Do đó, có thể áp dụng trực tiếp phương pháp tối ưu trên.
 
 ??? note "Cài đặt 1, phương pháp tối ưu thứ hai ở trên, độ phức tạp $O(n(n+m))$"
     ```cpp
@@ -377,7 +377,7 @@ Về bản chất, đây là điều kiện bậc nhất của hàm chi phí, t�
     $$
 
 ??? note "Chứng minh"
-    Bổ đề 1 đã chứng minh $f(j,i)$ thỏa mãn bất đẳng thức tứ giác, nên hàm mục tiêu $f(j,k) + f(k+1,i) + w(j,i)$, với $j$ cố định và xem như hàm theo $(k,i)$, cũng thỏa mãn bất đẳng thức tứ giác. Vì vậy theo Định lý 1 có $\operatorname{opt}(j,i-1) \leq \operatorname{opt}(j,i)$. Chú ý rằng các hạng không đồng thời chứa $(k,i)$ không ảnh hưởng đến việc bất đẳng thức tứ giác có đúng hay không. Tương tự, với $i$ cố định và xem như hàm theo $(k,j)$, nó cũng thỏa mãn bất đẳng thức tứ giác, nên $\operatorname{opt}(j,i) \leq \operatorname{opt}(j+1,i)$. Từ đó suy ra điều cần chứng minh.
+    Bổ đề 1 đã chứng minh $f(j,i)$ thỏa mãn bất đẳng thức tứ giác, nên hàm mục tiêu $f(j,k) + f(k+1,i) + w(j,i)$, với $j$ cố định và xem như hàm theo $(k,i)$, cũng thỏa mãn bất đẳng thức tứ giác. Vì vậy theo Định lý 1 có $\operatorname{opt}(j,i-1) \leq \operatorname{opt}(j,i)$. Lưu ý rằng các hạng không đồng thời chứa $(k,i)$ không ảnh hưởng đến việc bất đẳng thức tứ giác có đúng hay không. Tương tự, với $i$ cố định và xem như hàm theo $(k,j)$, nó cũng thỏa mãn bất đẳng thức tứ giác, nên $\operatorname{opt}(j,i) \leq \operatorname{opt}(j+1,i)$. Từ đó suy ra điều cần chứng minh.
 
 Nhờ kết luận này, cũng có thể giới hạn phạm vi tìm kiếm của điểm quyết định $k$. Trong phần này, duyệt độ dài khoảng $i-j+1$ theo thứ tự tăng, rồi duyệt mọi khoảng $[j,i]$ có cùng độ dài; tìm kiếm vét cạn mọi $k$ giữa $\operatorname{opt}(j,i-1)$ và $\operatorname{opt}(j+1,i)$ để thu được nghiệm tối ưu $f(j,i)$, đồng thời ghi lại quyết định tối ưu nhỏ nhất $\operatorname{opt}(j,i)$. Với mọi khoảng cùng độ dài, tổng độ dài không gian quyết định trong thuật toán này là $O(n)$, và số độ dài khoảng có thể có cũng là $O(n)$, nên tổng độ phức tạp thuật toán là $O(n^2)$.
 
@@ -403,7 +403,7 @@ Nhờ kết luận này, cũng có thể giới hạn phạm vi tìm kiếm củ
 Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex Function) trong các giáo trình Trung Quốc có sự khác biệt. Trong bài này, hàm lồi chỉ hàm lồi xuống theo cách gọi tại đó, tức hàm có đạo hàm bậc nhất tăng đơn điệu (khi khả vi).
 
 ??? note "Chứng minh"
-    Hai tính chất đầu rất dễ chứng minh theo định nghĩa. Dưới đây chứng minh tính chất thứ ba; quá trình chứng minh tính chất thứ tư tương tự. Vì $h(x)$ đơn điệu, $h(w(j,i))$ tự nhiên giữ được tính đơn điệu theo bao hàm khoảng. Điểm mấu chốt là chứng minh bất đẳng thức tứ giác.
+    Hai tính chất đầu suy ra trực tiếp từ định nghĩa. Dưới đây chứng minh tính chất thứ ba; quá trình chứng minh tính chất thứ tư tương tự. Vì $h(x)$ đơn điệu, $h(w(j,i))$ giữ được tính đơn điệu theo bao hàm khoảng. Điểm mấu chốt là chứng minh bất đẳng thức tứ giác.
     
     Để làm vậy, xét sai phân hỗn hợp bậc hai trên $a \leq j \leq b \leq c \leq i \leq d$.
     
@@ -416,9 +416,9 @@ Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex F
     \end{aligned}
     $$
     
-    Theo tính đơn điệu theo bao hàm khoảng, $\Delta_iw(a,i) := w(a,d) - w(a,c) \geq 0$ và $\Delta_jw(j,c) := w(b,c) - w(a,c) \leq 0$. Vì $h(x)$ có tính lồi, với $t_1,t_2\geq 0$ có $h(x + t_1 - t_2) - h(x + t_1) \leq h(x - t_2) - h(x)$, nên hai dòng sau chắc chắn không dương. Đồng thời, do bất đẳng thức tứ giác, $w(b,d) \leq w(a,c) + \Delta_jw(j,c) + \Delta_iw(a,i) = w(b,c) + w(a,d) - w(a,c)$; vì vậy hiệu ở dòng đầu tiên cũng chắc chắn không dương khi $h(x)$ tăng đơn điệu. Do đó, tổng sai phân hỗn hợp bậc hai không dương. Đây chính là bất đẳng thức tứ giác.
-    
-    Chứng minh này thực ra là phiên bản rời rạc của chứng minh bằng đạo hàm sau.
+    Theo tính đơn điệu theo bao hàm khoảng, $\Delta_iw(a,i) := w(a,d) - w(a,c) \geq 0$ và $\Delta_jw(j,c) := w(b,c) - w(a,c) \leq 0$. Vì $h(x)$ có tính lồi, với $t_1,t_2\geq 0$ có $h(x + t_1 - t_2) - h(x + t_1) \leq h(x - t_2) - h(x)$, nên hai dòng sau đều không dương. Đồng thời, do bất đẳng thức tứ giác, $w(b,d) \leq w(a,c) + \Delta_jw(j,c) + \Delta_iw(a,i) = w(b,c) + w(a,d) - w(a,c)$; vì vậy hiệu ở dòng đầu tiên cũng không dương khi $h(x)$ tăng đơn điệu. Do đó, tổng sai phân hỗn hợp bậc hai không dương. Đây chính là bất đẳng thức tứ giác.
+
+    Chứng minh này là phiên bản rời rạc của chứng minh bằng đạo hàm sau.
     
     $$
     \frac{\partial^2}{\partial x\partial y}h(w(x,y)) = h''(w(x,y))\frac{\partial }{\partial x}w(x,y)\frac{\partial}{\partial y}w(x,y) + h'(w(x,y))\frac{\partial^2}{\partial x\partial y}w(x,y) \leq 0.
